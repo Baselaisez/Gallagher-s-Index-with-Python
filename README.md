@@ -36,25 +36,28 @@ The Python code provided in this repository calculates Gallagher's index using t
 ```python
 import numpy as np
 
+import numpy as np
+
 def rae(*args):
-    squared =  [i**2 for i in args]
-    E = 1-sum(squared)
+    squared = [i**2 for i in args]
+    E = 1 - sum(squared)
     return E
 
 def effect(*args):
-    squared =  [i**2 for i in args]
-    E = 1/sum(squared)
-
+    squared = [i**2 for i in args]
+    E = 1 / sum(squared)
+    return E
 
 def taking(*args):
     return args
 
 def gallagher(v1, v2):
     arr = list(np.array(v1) - np.array(v2))
-    sqrd_nums = list(map(lambda x: x**2, arr))
+    sqrd_nums = [x**2 for x in arr]
     sm = sum(sqrd_nums)
-    res = ((sm) * (1/2))**(1/2)
-    return print(res)
+    res = ((sm) * 0.5)**0.5
+    return res
+
 ```
 
 ### Usage
