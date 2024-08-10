@@ -71,6 +71,20 @@ seats = [45, 25, 20, 10]  # Seat distribution
 gallagher(votes, seats)
 ```
 
+The gallagher index would be equal to "5"in this scenario. What does it signify where the gallagher is equal to 5;
+
+# Interpreting Gallagher's Index:
+ Lower Values (Closer to 0): Indicate a more proportional electoral outcome, where the distribution of seats closely matches the distribution of votes. In such cases, smaller parties are    more likely to be fairly represented in the legislature.
+
+ Higher Values: Indicate a greater degree of disproportionality, where larger parties may have received a disproportionately large share of seats relative to their vote share, while    
+ smaller parties might be underrepresented.
+
+ Specific Meaning of a Gallagher Index of 5:
+ A Gallagher index of 5 suggests that there is some discrepancy between votes and seats, but it's not extremely high. The electoral system in question likely allows for some  
+ proportionality, but there is still enough deviation to indicate that some parties are benefiting more than others from the distribution of seats.
+ In summary, a Gallagher index of 5 reflects a moderate mismatch between how voters' preferences were expressed in the ballot box and how they are reflected in the composition of the 
+ legislature.
+
 This will calculate and print the Gallagher index for the provided data.
 
 ## Contributions
