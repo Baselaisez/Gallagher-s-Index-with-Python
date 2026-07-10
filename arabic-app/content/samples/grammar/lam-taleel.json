@@ -1,0 +1,18 @@
+{
+  "id": "lam-taleel",
+  "title": { "ar": "لَام التَّعْلِيل", "en": "The lam of purpose" },
+  "level": 2,
+  "group": "awamil",
+  "amil": "تَنْصِبُ الْمُضَارِعَ بِأَنْ مُضْمَرَةً — governs nasb through an implied أَنْ",
+  "explanation": { "en": "Prefixed لِ before a present verb means \"in order to\". Grammatically the verb is mansub by a hidden أَنْ after the lam — so it behaves exactly like the أَنْ clause: final fatha, نون dropped in the five verbs. In this story: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ (\"in order to bid him farewell\")." },
+  "examples": [
+    { "ar": "ذَهَبَ إِلَيْهِ لِيُوَدِّعَهُ.", "en": "He went to him to bid him farewell.", "sourceStory": "wasiyyat-abi-hanifa-L2", "sentence": "s2" },
+    { "ar": "أَدْرُسُ لِأَنْجَحَ.", "en": "I study in order to succeed." }
+  ],
+  "commonMistakes": [
+    { "wrong": "ذهب لِيُوَدِّعُهُ", "right": "ذهب لِيُوَدِّعَهُ", "why": { "en": "The verb after lam at-ta'lil is mansub — fatha on the last radical, not damma." } },
+    { "wrong": "أدرس لِأَنَّ أنجحَ", "right": "أدرس لِأَنْجَحَ / لِكَيْ أَنْجَحَ", "why": { "en": "Mixing لأنّ (\"because\", followed by a noun) with the purpose lam (followed by a mansub verb)." } }
+  ],
+  "relatedNotes": ["an-masdariyya"],
+  "gameSeeds": { "spotTheError": true }
+}
