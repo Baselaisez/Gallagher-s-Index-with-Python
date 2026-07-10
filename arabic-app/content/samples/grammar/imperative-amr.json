@@ -1,0 +1,36 @@
+{
+  "id": "imperative-amr",
+  "title": { "ar": "فِعْل الأَمْر", "en": "The Imperative (fi'l al-amr)" },
+  "level": 2,
+  "explanation": {
+    "en": "The imperative commands someone to do something. It is built from the present-tense (مضارع) stem: drop the prefix, and if the result starts with a consonant cluster, add a helping alif. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun (or drops for weak-final verbs).",
+    "tr": "Emir fiili, muzari gövdesinden yapılır: muzaraat harfi atılır, gerekirse başa hemze getirilir. تَسْمَعُ → اسْمَعْ (dinle!). Son harf cezimlenir."
+  },
+  "examples": [
+    { "ar": "اسْمَعْ وَصِيَّتِي.", "en": "Listen to my testament.", "sourceStory": "wasiyyat-abi-hanifa-L2", "sentence": "s3" },
+    { "ar": "اُكْتُبْ دَرْسَكَ.", "en": "Write your lesson." },
+    { "ar": "قُلِ الْحَقَّ.", "en": "Speak the truth. (hollow verb: قال → قُلْ)" }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اِسْمَعُ وصيتي",
+      "right": "اسْمَعْ وصيتي",
+      "why": { "en": "Learners keep the present-tense damma on the last letter. The imperative ends in sukun: اسْمَعْ, not اسمَعُ.", "tr": "Öğrenciler son harfte muzarinin ötresini bırakır; emirde son harf cezimli olmalı." }
+    },
+    {
+      "wrong": "أَسْمَعْ! (meaning: listen!)",
+      "right": "اسْمَعْ!",
+      "why": { "en": "Using hamzat qat' (أَ) instead of hamzat wasl (ا). أَسْمَعُ means 'I hear'. The Form-I imperative takes hamzat wasl, which drops in connected speech: يا يوسفُ اسْمَعْ.", "tr": "Hemze-i kat' değil hemze-i vasl gelir; أَسْمَعُ 'duyuyorum' demektir." }
+    },
+    {
+      "wrong": "اِسْمَعْ إلى وصيتي",
+      "right": "اسْمَعْ وصيتي / اِسْتَمِعْ إِلَى وصيتي",
+      "why": { "en": "Preposition transfer from English 'listen TO'. سَمِعَ takes a direct object; only اِسْتَمَعَ (Form VIII) takes إلى.", "tr": "İngilizce 'listen to'dan aktarma; سمع nesneyi doğrudan alır, إلى yalnız استمع ile kullanılır." }
+    }
+  ],
+  "relatedNotes": ["hollow-verbs", "lam-taleel"],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": ["اسْمَعْ", "اُكْتُبْ", "قُلْ"]
+  }
+}

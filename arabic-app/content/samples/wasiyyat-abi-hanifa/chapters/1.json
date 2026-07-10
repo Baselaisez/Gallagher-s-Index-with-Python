@@ -1,0 +1,77 @@
+{
+  "chapter": 1,
+  "sentences": [
+    {
+      "id": "s1",
+      "audio": [0, 3400],
+      "translation": {
+        "en": "Yusuf wanted to return to his city, Basra.",
+        "tr": "Yusuf, şehri Basra'ya dönmek istedi."
+      },
+      "tokens": [
+        { "surface": { "full": "أَرَادَ", "smart": "أَرَادَ", "bare": "أراد" }, "lex": "arada", "pos": "verb", "grammar": ["form-iv-verbs"] },
+        { "surface": { "full": "يُوسُفُ", "smart": "يُوسُفُ", "bare": "يوسف" }, "lex": "yusuf", "pos": "propn" },
+        { "surface": { "full": "أَنْ", "smart": "أَنْ", "bare": "أن" }, "lex": "an", "pos": "part", "grammar": ["an-masdariyya"] },
+        { "surface": { "full": "يَرْجِعَ", "smart": "يَرْجِعَ", "bare": "يرجع" }, "lex": "rajaa", "pos": "verb", "grammar": ["an-masdariyya"] },
+        {
+          "surface": { "full": "إِلَى", "smart": "إِلَى", "bare": "إلى" }, "lex": "ila", "pos": "prep"
+        },
+        {
+          "surface": { "full": "مَدِينَتِهِ", "smart": "مَدِينَتِهِ", "bare": "مدينته" },
+          "segments": [ { "form": "مَدِينَةِ", "lex": "madina", "pos": "noun" }, { "form": "هِ", "lex": "pron-3ms", "pos": "pron" } ]
+        },
+        { "surface": { "full": "الْبَصْرَةِ", "smart": "البَصْرَة", "bare": "البصرة" }, "lex": "al-basra", "pos": "propn", "punctAfter": "." }
+      ]
+    },
+    {
+      "id": "s2",
+      "audio": [3400, 7100],
+      "translation": {
+        "en": "He went to his teacher, Abu Hanifa, to bid him farewell.",
+        "tr": "Vedalaşmak için hocası Ebu Hanife'ye gitti."
+      },
+      "tokens": [
+        { "surface": { "full": "ذَهَبَ", "smart": "ذَهَبَ", "bare": "ذهب" }, "lex": "dhahaba", "pos": "verb" },
+        { "surface": { "full": "إِلَى", "smart": "إِلَى", "bare": "إلى" }, "lex": "ila", "pos": "prep" },
+        {
+          "surface": { "full": "مُعَلِّمِهِ", "smart": "مُعَلِّمِهِ", "bare": "معلمه" },
+          "segments": [ { "form": "مُعَلِّمِ", "lex": "muallim", "pos": "noun" }, { "form": "هِ", "lex": "pron-3ms", "pos": "pron" } ],
+          "grammar": ["idafa-definiteness"]
+        },
+        { "surface": { "full": "أَبِي", "smart": "أَبِي", "bare": "أبي" }, "lex": "ab", "pos": "noun", "grammar": ["five-nouns"] },
+        { "surface": { "full": "حَنِيفَةَ", "smart": "حَنِيفَة", "bare": "حنيفة" }, "lex": "hanifa", "pos": "propn" },
+        {
+          "surface": { "full": "لِيُوَدِّعَهُ", "smart": "لِيُوَدِّعَهُ", "bare": "ليودعه" },
+          "segments": [ { "form": "لِ", "lex": "li-taleel", "pos": "part" }, { "form": "يُوَدِّعَ", "lex": "waddaa", "pos": "verb" }, { "form": "هُ", "lex": "pron-3ms", "pos": "pron" } ],
+          "grammar": ["lam-taleel", "form-ii-verbs"],
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "audio": [7100, 11200],
+      "translation": {
+        "en": "Abu Hanifa said to him: \"O Yusuf, listen to my testament.\"",
+        "tr": "Ebu Hanife ona dedi ki: \"Ey Yusuf, vasiyetimi dinle.\""
+      },
+      "tokens": [
+        { "surface": { "full": "قَالَ", "smart": "قَالَ", "bare": "قال" }, "lex": "qala", "pos": "verb", "grammar": ["hollow-verbs"] },
+        {
+          "surface": { "full": "لَهُ", "smart": "لَهُ", "bare": "له" },
+          "segments": [ { "form": "لَ", "lex": "li", "pos": "prep" }, { "form": "هُ", "lex": "pron-3ms", "pos": "pron" } ]
+        },
+        { "surface": { "full": "أَبُو", "smart": "أَبُو", "bare": "أبو" }, "lex": "ab", "pos": "noun", "grammar": ["five-nouns"] },
+        { "surface": { "full": "حَنِيفَةَ", "smart": "حَنِيفَة", "bare": "حنيفة" }, "lex": "hanifa", "pos": "propn", "punctAfter": ":" },
+        { "surface": { "full": "يَا", "smart": "يَا", "bare": "يا" }, "lex": "ya", "pos": "part", "quoteBefore": "«" },
+        { "surface": { "full": "يُوسُفُ", "smart": "يُوسُفُ", "bare": "يوسف" }, "lex": "yusuf", "pos": "propn", "grammar": ["vocative-munada"], "punctAfter": "،" },
+        { "surface": { "full": "اسْمَعْ", "smart": "اسْمَعْ", "bare": "اسمع" }, "lex": "samia", "pos": "verb", "grammar": ["imperative-amr"] },
+        {
+          "surface": { "full": "وَصِيَّتِي", "smart": "وَصِيَّتِي", "bare": "وصيتي" },
+          "segments": [ { "form": "وَصِيَّةَ", "lex": "wasiyya", "pos": "noun" }, { "form": "ي", "lex": "pron-1s", "pos": "pron" } ],
+          "punctAfter": ".", "quoteAfter": "»"
+        }
+      ]
+    }
+  ]
+}

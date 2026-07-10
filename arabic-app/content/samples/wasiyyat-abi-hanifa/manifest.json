@@ -1,0 +1,29 @@
+{
+  "id": "wasiyyat-abi-hanifa-L2",
+  "storyGroup": "wasiyyat-abi-hanifa",
+  "title": {
+    "ar": "وَصِيَّةُ أَبِي حَنِيفَةَ",
+    "en": "Abu Hanifa's Testament",
+    "tr": "Ebu Hanife'nin Vasiyeti"
+  },
+  "subtitle": {
+    "ar": "وصية الإمام أبي حنيفة لتلميذه يوسف بن خالد السمتي",
+    "en": "The Imam's parting advice to his student Yusuf ibn Khalid al-Samti"
+  },
+  "level": 2,
+  "levelName": "Elementary",
+  "version": "0.1.0",
+  "access": "free",
+  "chapters": [
+    { "n": 1, "title": { "ar": "الوَدَاع", "en": "The Farewell" }, "audio": "audio/chapter-1.mp3" }
+  ],
+  "siblings": [
+    { "id": "wasiyyat-abi-hanifa-L4", "level": 4, "status": "planned" },
+    { "id": "wasiyyat-abi-hanifa-L6", "level": 6, "status": "planned", "note": "Original classical text — verify wording against a printed edition (e.g. al-Khatib al-Baghdadi's Tarikh Baghdad / manaqib literature) before authoring." }
+  ],
+  "attribution": {
+    "ar": "إعادة صياغة مبسّطة لوصية الإمام أبي حنيفة (ت ١٥٠هـ) لتلميذه يوسف بن خالد السمتي عند عودته إلى البصرة.",
+    "en": "Simplified retelling of Imam Abu Hanifa's (d. 150 AH) testament to his student Yusuf ibn Khalid al-Samti upon his return to Basra. Original retelling written for this app; classical source consulted for content.",
+    "reviewStatus": "pending-scholarly-review"
+  }
+}
