@@ -10,6 +10,8 @@ catalog.json                     # index of all packages: id, level, version, fr
   manifest.json                  # story metadata
   chapters/<n>.json              # text: sentences → tokens (3 tashkeel layers), audio alignment
   glossary.json                  # story-scoped lexicon: lemma, root, gloss(es), level, audio ref
+  morphology.json                # Emsile/Bina-style verb data: bab, wazn, masdar, ism fail/maful,
+                                 #   full mazi/mudari (14 cells) and amr (6 cells) paradigms
   grammar-links.json             # token/phrase → grammar-note id
   audio/chapter-<n>.mp3          # human narration
   audio/words/<lemma-id>.mp3     # word audio (TTS ok at launch)
@@ -27,6 +29,11 @@ grammar/<note-id>.json           # GLOBAL, reusable grammar notes incl. common-m
    colored-underline rendering and flashcard creation are lookups, not NLP at runtime.
 4. **Grammar notes are global objects** referenced from many stories; each has ≥1
    `commonMistakes[]` entry. The "spot the error" game later generates directly from these.
+   Notes are grouped after the madrasah primers — **sarf** (الأمثلة / بناء الأفعال: paradigms,
+   verb classes/abwab) and **nahw/awamil** (Birgivi's العوامل: each governing particle carries an
+   `amil` field stating what it governs). Every token may also carry an `irab` field — the full
+   classical parsing of that word in its sentence (Arabic + learner-English) — cheap to author
+   per story and the backbone of the Master-level treatment.
 5. **Audio alignment** is per-sentence `[startMs, endMs]` against the chapter MP3 (forced alignment
    in the pipeline) → karaoke highlight + tap-to-hear.
 6. **Same story, multiple levels** = separate packages sharing `storyGroup` so the app can offer

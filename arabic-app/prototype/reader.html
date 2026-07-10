@@ -62,9 +62,7 @@
   }
   .wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.1rem 6rem; }
 
-  header.app {
-    padding: 1.6rem 0 1rem; border-bottom: 1px solid var(--line);
-  }
+  header.app { padding: 1.6rem 0 1rem; border-bottom: 1px solid var(--line); }
   .eyebrow {
     font-family: var(--ui-font); font-size: .68rem; letter-spacing: .14em;
     text-transform: uppercase; color: var(--accent); font-weight: 600;
@@ -81,6 +79,8 @@
     color: var(--ink-soft); background: var(--panel);
   }
   .chip.level { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .chip.amil { color: var(--danger); border-color: var(--danger); background: transparent; }
+  .chip .ar { font-family: var(--ar-font); font-size: 1.05em; }
 
   nav.controls {
     position: sticky; top: 0; z-index: 5; background: var(--ground);
@@ -137,7 +137,7 @@
   .sent-tools { display: flex; gap: .6rem; align-items: center; padding: .15rem .3rem 0; font-family: var(--ui-font); }
   .play {
     border: 1px solid var(--line); background: var(--panel); color: var(--accent); cursor: pointer;
-    width: 1.7rem; height: 1.7rem; border-radius: 999px; font-size: .75rem; line-height: 1;
+    width: 1.7rem; height: 1.7rem; border-radius: 999px; font-size: .75rem; line-height: 1; flex: none;
   }
   .trans { color: var(--ink-soft); font-size: .95rem; }
   .trans[hidden] { display: none; }
@@ -158,21 +158,21 @@
     position: fixed; z-index: 10; left: 50%; bottom: 0; transform: translate(-50%, 105%);
     width: min(40rem, 100%); background: var(--panel); border: 1px solid var(--line); border-bottom: 0;
     border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow);
-    transition: transform .25s cubic-bezier(.3,.9,.35,1); max-height: 78vh; overflow-y: auto;
+    transition: transform .25s cubic-bezier(.3,.9,.35,1); max-height: 82vh; overflow-y: auto;
   }
   .sheet.show { transform: translate(-50%, 0); }
-  @media (prefers-reduced-motion: reduce) {
-    .sheet, .scrim { transition: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .sheet, .scrim { transition: none; } }
   .sheet-inner { padding: 1rem 1.2rem 1.4rem; }
   .grab { width: 2.4rem; height: 4px; border-radius: 2px; background: var(--line); margin: .6rem auto 0; }
-  .tabs { display: flex; gap: .4rem; margin: .4rem 0 .9rem; font-family: var(--ui-font); }
+  .tabs { display: flex; gap: .15rem; margin: .4rem 0 .9rem; font-family: var(--ui-font); flex-wrap: wrap; }
   .tabs button {
     border: 0; background: transparent; color: var(--ink-soft); font-weight: 600; font-size: .8rem;
     padding: .35rem .6rem; cursor: pointer; border-bottom: 2px solid transparent;
   }
+  .tabs button .ar { font-family: var(--ar-font); font-size: 1.05rem; }
   .tabs button.on { color: var(--accent); border-bottom-color: var(--accent); }
   .lemma { font-family: var(--ar-font); font-size: 2.2rem; direction: rtl; text-align: right; line-height: 1.5; margin: 0; }
+  .bab-line { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.05rem; color: var(--ink-soft); margin: .1rem 0 .3rem; }
   .facts { display: flex; gap: .45rem; flex-wrap: wrap; margin: .5rem 0 .7rem; }
   .gloss { font-size: 1.02rem; margin: .2rem 0; }
   .gloss small { color: var(--ink-soft); font-family: var(--ui-font); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; margin-inline-end: .45rem; }
@@ -182,7 +182,7 @@
   }
   .segrow .seg-item { background: var(--accent-soft); border: 1px dashed var(--accent); border-radius: 8px; padding: .1rem .55rem; }
   .segrow .seg-item small { display: block; font-family: var(--ui-font); font-size: .62rem; color: var(--ink-soft); direction: ltr; text-align: center; }
-  .sheet-actions { display: flex; gap: .6rem; margin-top: 1rem; font-family: var(--ui-font); }
+  .sheet-actions { display: flex; gap: .6rem; margin-top: 1rem; font-family: var(--ui-font); flex-wrap: wrap; }
   .btn {
     border: 1px solid var(--line); border-radius: 10px; padding: .55rem .9rem; cursor: pointer;
     font-family: var(--ui-font); font-weight: 600; font-size: .84rem; background: var(--panel); color: var(--ink);
@@ -190,7 +190,8 @@
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .btn.saved { background: var(--ok); border-color: var(--ok); color: #fff; }
 
-  .gnote h3 { font-size: 1.05rem; margin: .2rem 0 .4rem; }
+  /* ---------- grammar ---------- */
+  .gnote h3 { font-size: 1.05rem; margin: .8rem 0 .4rem; }
   .gnote .ar-inline { font-family: var(--ar-font); font-size: 1.25em; }
   .gnote p { margin: .4rem 0; font-size: .95rem; }
   .ex { border-inline-start: 3px solid var(--accent); padding: .3rem .8rem; margin: .55rem 0; background: var(--accent-soft); border-radius: 0 8px 8px 0; }
@@ -200,8 +201,45 @@
   .mistake .wrong { color: var(--danger); text-decoration: line-through; font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; }
   .mistake .right { color: var(--ok); font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; margin-inline-start: .8rem; }
   .mistake .why { font-size: .87rem; color: var(--ink-soft); margin-top: .3rem; }
-  .mlabel { font-family: var(--ui-font); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--danger); font-weight: 700; }
-  .planned { color: var(--ink-soft); font-size: .9rem; font-style: italic; }
+  .mlabel { font-family: var(--ui-font); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--danger); font-weight: 700; margin-top: .9rem; }
+
+  /* ---------- sarf (conjugation) ---------- */
+  .tense-seg { margin: .6rem 0; }
+  .conj-wrap { overflow-x: auto; }
+  table.conj {
+    width: 100%; border-collapse: collapse; direction: rtl;
+    font-family: var(--ar-font); font-size: 1.15rem;
+  }
+  table.conj th {
+    font-family: var(--ui-font); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 600; padding: .3rem .5rem; text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  table.conj th.person { font-family: var(--ar-font); font-size: .95rem; letter-spacing: 0; text-transform: none; text-align: right; }
+  table.conj td { padding: .35rem .5rem; text-align: center; border-bottom: 1px solid var(--line); }
+  table.conj td.hl { background: var(--accent-soft); border-radius: 8px; color: var(--accent); font-weight: 600; }
+  .sarf-note { font-size: .85rem; color: var(--ink-soft); font-family: var(--ui-font); margin-top: .6rem; }
+
+  /* ---------- i'rab ---------- */
+  .irab-ar { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.25rem; line-height: 2;
+    background: var(--accent-soft); border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0; }
+  .irab-en { font-size: .9rem; color: var(--ink-soft); }
+
+  /* ---------- grammar reference ---------- */
+  .ref-group { font-family: var(--ui-font); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 1.1rem 0 .3rem; display: flex; align-items: center; gap: .6rem; }
+  .ref-group .ar { font-family: var(--ar-font); font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--ink); }
+  .ref-group::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .ref-list { list-style: none; margin: 0; padding: 0; }
+  .ref-list li { border-bottom: 1px solid var(--line); }
+  .ref-list button {
+    width: 100%; border: 0; background: none; cursor: pointer; color: var(--ink);
+    display: flex; align-items: baseline; gap: .7rem; padding: .55rem .2rem; text-align: start;
+  }
+  .ref-list button:hover { background: var(--accent-soft); }
+  .ref-list .t-ar { font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; }
+  .ref-list .t-en { color: var(--ink-soft); font-family: var(--ui-font); font-size: .8rem; flex: 1; }
+  .ref-intro { font-size: .85rem; color: var(--ink-soft); font-family: var(--ui-font); margin: .2rem 0 .4rem; }
 
   /* ---------- deck ---------- */
   .deck-card {
@@ -211,18 +249,18 @@
   .deck-card .front { font-family: var(--ar-font); font-size: 2.6rem; line-height: 1.6; }
   .deck-card .step { color: var(--ink-soft); font-family: var(--ui-font); font-size: .75rem; margin-top: .6rem; }
   .deck-list { list-style: none; margin: .6rem 0; padding: 0; }
-  .deck-list li {
-    display: flex; align-items: center; gap: .7rem; padding: .45rem .2rem; border-bottom: 1px solid var(--line);
-  }
+  .deck-list li { display: flex; align-items: center; gap: .7rem; padding: .45rem .2rem; border-bottom: 1px solid var(--line); }
   .deck-list .w { font-family: var(--ar-font); font-size: 1.3rem; direction: rtl; }
   .deck-list .g { color: var(--ink-soft); font-size: .85rem; flex: 1; }
   .deck-list button { border: 0; background: none; color: var(--danger); cursor: pointer; font-size: .8rem; }
   .empty { color: var(--ink-soft); font-size: .9rem; }
+  .backrow { margin-bottom: .4rem; }
+  .backrow button { border: 0; background: none; color: var(--accent); cursor: pointer; font-family: var(--ui-font); font-size: .8rem; font-weight: 600; padding: 0; }
 </style>
 
 <div class="wrap">
   <header class="app">
-    <div class="eyebrow">Qissa · reader prototype v0.1</div>
+    <div class="eyebrow">Qissa · reader prototype v0.2</div>
     <h1 class="story-title">وَصِيَّةُ أَبِي حَنِيفَةَ</h1>
     <p class="story-sub">Abu Hanifa's testament to his student Yusuf ibn Khalid al-Samti — Level 2 retelling</p>
     <div class="meta-row">
@@ -247,6 +285,7 @@
     <button class="tbtn" id="fontMinus" aria-label="Smaller text">A−</button>
     <button class="tbtn" id="fontPlus" aria-label="Larger text">A+</button>
     <span class="spacer"></span>
+    <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn deckbtn" id="deckOpen">Deck <span class="count" id="deckCount" hidden>0</span></button>
   </nav>
 
@@ -257,18 +296,18 @@
     <span><span class="sw" style="background:var(--lvl1)"></span>Level 1</span>
     <span><span class="sw" style="background:var(--lvl2)"></span>Level 2</span>
     <span><span class="sw" style="background:var(--lvl3)"></span>Level 3</span>
-    <span>Tap any word for meaning &amp; grammar · tap ▶ to hear the sentence</span>
+    <span>Tap any word for meaning, صرف conjugation, إعراب &amp; grammar · tap ▶ to hear the sentence</span>
   </div>
   <footer class="note">
     Prototype validating the content-package format (<code>content/samples/wasiyyat-abi-hanifa</code>).
-    Sentence audio uses your device's Arabic voice as a stand-in for studio narration.
-    Saved words persist on this device.
+    Grammar layer follows the madrasah primers — <span lang="ar" style="font-family:var(--ar-font)">الأمثلة، بناء الأفعال، العوامل</span>
+    (Emsile, Bina, Birgivi's Awamil). Sentence audio uses your device's Arabic voice as a stand-in for studio narration.
   </footer>
 </div>
 
 <button class="scrim" id="scrim" aria-label="Close panel"></button>
 
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Word details">
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details">
   <div class="grab"></div>
   <div class="sheet-inner" id="sheetInner"></div>
 </div>
@@ -298,51 +337,122 @@ const GLOSSARY = {
   "pron-1s":{lemma:"ـي",pos:"pronoun",gloss:{en:"my / me (attached)",tr:"benim / beni"},level:1}
 };
 
+// ---------- morphology (الأمثلة + بناء الأفعال) ----------
+// 14-cell order: هو هما هم | هي هما هنّ | أنتَ أنتما أنتم | أنتِ أنتما أنتنّ | أنا نحن
+const MORPH = {
+  "rajaa": {
+    bab:"مِنْ بَابِ ضَرَبَ يَضْرِبُ", wazn:"فَعَلَ يَفْعِلُ",
+    masdar:"رُجُوع", fail:"رَاجِع", maful:"مَرْجُوع (إِلَيْهِ)",
+    mazi:["رَجَعَ","رَجَعَا","رَجَعُوا","رَجَعَتْ","رَجَعَتَا","رَجَعْنَ","رَجَعْتَ","رَجَعْتُمَا","رَجَعْتُمْ","رَجَعْتِ","رَجَعْتُمَا","رَجَعْتُنَّ","رَجَعْتُ","رَجَعْنَا"],
+    mudari:["يَرْجِعُ","يَرْجِعَانِ","يَرْجِعُونَ","تَرْجِعُ","تَرْجِعَانِ","يَرْجِعْنَ","تَرْجِعُ","تَرْجِعَانِ","تَرْجِعُونَ","تَرْجِعِينَ","تَرْجِعَانِ","تَرْجِعْنَ","أَرْجِعُ","نَرْجِعُ"],
+    amr:["اِرْجِعْ","اِرْجِعَا","اِرْجِعُوا","اِرْجِعِي","اِرْجِعَا","اِرْجِعْنَ"]
+  },
+  "dhahaba": {
+    bab:"مِنْ بَابِ فَتَحَ يَفْتَحُ", wazn:"فَعَلَ يَفْعَلُ",
+    masdar:"ذَهَاب", fail:"ذَاهِب", maful:"مَذْهُوب (إِلَيْهِ)",
+    mazi:["ذَهَبَ","ذَهَبَا","ذَهَبُوا","ذَهَبَتْ","ذَهَبَتَا","ذَهَبْنَ","ذَهَبْتَ","ذَهَبْتُمَا","ذَهَبْتُمْ","ذَهَبْتِ","ذَهَبْتُمَا","ذَهَبْتُنَّ","ذَهَبْتُ","ذَهَبْنَا"],
+    mudari:["يَذْهَبُ","يَذْهَبَانِ","يَذْهَبُونَ","تَذْهَبُ","تَذْهَبَانِ","يَذْهَبْنَ","تَذْهَبُ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبِينَ","تَذْهَبَانِ","تَذْهَبْنَ","أَذْهَبُ","نَذْهَبُ"],
+    amr:["اِذْهَبْ","اِذْهَبَا","اِذْهَبُوا","اِذْهَبِي","اِذْهَبَا","اِذْهَبْنَ"]
+  },
+  "samia": {
+    bab:"مِنْ بَابِ عَلِمَ يَعْلَمُ", wazn:"فَعِلَ يَفْعَلُ",
+    masdar:"سَمْع / سَمَاع", fail:"سَامِع", maful:"مَسْمُوع",
+    mazi:["سَمِعَ","سَمِعَا","سَمِعُوا","سَمِعَتْ","سَمِعَتَا","سَمِعْنَ","سَمِعْتَ","سَمِعْتُمَا","سَمِعْتُمْ","سَمِعْتِ","سَمِعْتُمَا","سَمِعْتُنَّ","سَمِعْتُ","سَمِعْنَا"],
+    mudari:["يَسْمَعُ","يَسْمَعَانِ","يَسْمَعُونَ","تَسْمَعُ","تَسْمَعَانِ","يَسْمَعْنَ","تَسْمَعُ","تَسْمَعَانِ","تَسْمَعُونَ","تَسْمَعِينَ","تَسْمَعَانِ","تَسْمَعْنَ","أَسْمَعُ","نَسْمَعُ"],
+    amr:["اِسْمَعْ","اِسْمَعَا","اِسْمَعُوا","اِسْمَعِي","اِسْمَعَا","اِسْمَعْنَ"]
+  },
+  "qala": {
+    bab:"مِنْ بَابِ نَصَرَ يَنْصُرُ — أَجْوَف وَاوِيّ، أَصْلُهُ قَوَلَ", wazn:"فَعَلَ يَفْعُلُ",
+    masdar:"قَوْل", fail:"قَائِل", maful:"مَقُول",
+    note:"Hollow verb: the middle و collapses. Before a consonant suffix the long vowel shortens: قَالَ → قُلْتُ, and the jussive/imperative shorten too: لَمْ يَقُلْ، قُلْ.",
+    mazi:["قَالَ","قَالَا","قَالُوا","قَالَتْ","قَالَتَا","قُلْنَ","قُلْتَ","قُلْتُمَا","قُلْتُمْ","قُلْتِ","قُلْتُمَا","قُلْتُنَّ","قُلْتُ","قُلْنَا"],
+    mudari:["يَقُولُ","يَقُولَانِ","يَقُولُونَ","تَقُولُ","تَقُولَانِ","يَقُلْنَ","تَقُولُ","تَقُولَانِ","تَقُولُونَ","تَقُولِينَ","تَقُولَانِ","تَقُلْنَ","أَقُولُ","نَقُولُ"],
+    amr:["قُلْ","قُولَا","قُولُوا","قُولِي","قُولَا","قُلْنَ"]
+  },
+  "waddaa": {
+    bab:"الْبَابُ الثَّانِي: فَعَّلَ يُفَعِّلُ تَفْعِيلًا", wazn:"فَعَّلَ يُفَعِّلُ",
+    masdar:"تَوْدِيع", fail:"مُوَدِّع", maful:"مُوَدَّع",
+    mazi:["وَدَّعَ","وَدَّعَا","وَدَّعُوا","وَدَّعَتْ","وَدَّعَتَا","وَدَّعْنَ","وَدَّعْتَ","وَدَّعْتُمَا","وَدَّعْتُمْ","وَدَّعْتِ","وَدَّعْتُمَا","وَدَّعْتُنَّ","وَدَّعْتُ","وَدَّعْنَا"],
+    mudari:["يُوَدِّعُ","يُوَدِّعَانِ","يُوَدِّعُونَ","تُوَدِّعُ","تُوَدِّعَانِ","يُوَدِّعْنَ","تُوَدِّعُ","تُوَدِّعَانِ","تُوَدِّعُونَ","تُوَدِّعِينَ","تُوَدِّعَانِ","تُوَدِّعْنَ","أُوَدِّعُ","نُوَدِّعُ"],
+    amr:["وَدِّعْ","وَدِّعَا","وَدِّعُوا","وَدِّعِي","وَدِّعَا","وَدِّعْنَ"]
+  },
+  "arada": {
+    bab:"الْبَابُ الرَّابِعُ: أَفْعَلَ يُفْعِلُ إِفْعَالًا — أَجْوَف، أَصْلُهُ أَرْوَدَ", wazn:"أَفْعَلَ يُفْعِلُ",
+    masdar:"إِرَادَة", fail:"مُرِيد", maful:"مُرَاد",
+    note:"Form IV hollow verb: أَرَادَ ← أَرْوَدَ. Before consonant suffixes it shortens: أَرَدْتُ, and in the jussive: لَمْ يُرِدْ.",
+    mazi:["أَرَادَ","أَرَادَا","أَرَادُوا","أَرَادَتْ","أَرَادَتَا","أَرَدْنَ","أَرَدْتَ","أَرَدْتُمَا","أَرَدْتُمْ","أَرَدْتِ","أَرَدْتُمَا","أَرَدْتُنَّ","أَرَدْتُ","أَرَدْنَا"],
+    mudari:["يُرِيدُ","يُرِيدَانِ","يُرِيدُونَ","تُرِيدُ","تُرِيدَانِ","يُرِدْنَ","تُرِيدُ","تُرِيدَانِ","تُرِيدُونَ","تُرِيدِينَ","تُرِيدَانِ","تُرِدْنَ","أُرِيدُ","نُرِيدُ"],
+    amr:["أَرِدْ","أَرِيدَا","أَرِيدُوا","أَرِيدِي","أَرِيدَا","أَرِدْنَ"]
+  }
+};
+
+// ---------- sentences with إعراب ----------
 const SENTENCES = [
   { id:"s1",
     translation:{en:"Yusuf wanted to return to his city, Basra.",tr:"Yusuf, şehri Basra'ya dönmek istedi."},
     tokens:[
-      {s:{full:"أَرَادَ",smart:"أَرَادَ",bare:"أراد"},lex:"arada",grammar:["form-iv-verbs"]},
-      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf"},
-      {s:{full:"أَنْ",smart:"أَنْ",bare:"أن"},lex:"an",grammar:["an-masdariyya"]},
-      {s:{full:"يَرْجِعَ",smart:"يَرْجِعَ",bare:"يرجع"},lex:"rajaa",grammar:["an-masdariyya"]},
-      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila"},
-      {s:{full:"مَدِينَتِهِ",smart:"مَدِينَتِهِ",bare:"مدينته"},lex:"madina",
-       segments:[{form:"مَدِينَةِ",lex:"madina"},{form:"هِ",lex:"pron-3ms"}]},
-      {s:{full:"الْبَصْرَةِ",smart:"البَصْرَة",bare:"البصرة"},lex:"al-basra",punctAfter:"."}
+      {s:{full:"أَرَادَ",smart:"أَرَادَ",bare:"أراد"},lex:"arada",grammar:["form-iv-verbs","hollow-verbs"],
+       irab:{ar:"فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",en:"Past-tense verb, indeclinable on fatha."}},
+      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf",
+       irab:{ar:"فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",en:"Subject (fa'il), nominative, marked by damma."}},
+      {s:{full:"أَنْ",smart:"أَنْ",bare:"أن"},lex:"an",grammar:["an-masdariyya"],
+       irab:{ar:"حَرْفٌ مَصْدَرِيٌّ وَنَصْبٍ.",en:"Masdar particle that governs the subjunctive (an amil of nasb)."}},
+      {s:{full:"يَرْجِعَ",smart:"يَرْجِعَ",bare:"يرجع"},lex:"rajaa",grammar:["an-masdariyya"],
+       irab:{ar:"فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «هُوَ». وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",en:"Present verb in the subjunctive (nasb) governed by أنْ, marked by fatha; hidden subject «he». The clause أن يرجع serves as the object of أراد."}},
+      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila",grammar:["huruf-jarr"],
+       irab:{ar:"حَرْفُ جَرٍّ.",en:"Preposition (an amil that puts the noun in jarr)."}},
+      {s:{full:"مَدِينَتِهِ",smart:"مَدِينَتِهِ",bare:"مدينته"},lex:"madina",grammar:["idafa-definiteness"],
+       segments:[{form:"مَدِينَةِ",lex:"madina"},{form:"هِ",lex:"pron-3ms"}],
+       irab:{ar:"اسْمٌ مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",en:"Noun in jarr after إلى, marked by kasra; it is mudaf, and the attached ـه is mudaf ilayh."}},
+      {s:{full:"الْبَصْرَةِ",smart:"البَصْرَة",bare:"البصرة"},lex:"al-basra",punctAfter:".",
+       irab:{ar:"بَدَلٌ مِنْ «مَدِينَتِهِ» مَجْرُورٌ مِثْلُهُ.",en:"Appositive (badal) of «his city», in jarr like it."}}
     ]},
   { id:"s2",
     translation:{en:"He went to his teacher, Abu Hanifa, to bid him farewell.",tr:"Vedalaşmak için hocası Ebu Hanife'ye gitti."},
     tokens:[
-      {s:{full:"ذَهَبَ",smart:"ذَهَبَ",bare:"ذهب"},lex:"dhahaba"},
-      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila"},
+      {s:{full:"ذَهَبَ",smart:"ذَهَبَ",bare:"ذهب"},lex:"dhahaba",
+       irab:{ar:"فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «هُوَ».",en:"Past verb on fatha; hidden subject «he»."}},
+      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila",grammar:["huruf-jarr"],
+       irab:{ar:"حَرْفُ جَرٍّ.",en:"Preposition."}},
       {s:{full:"مُعَلِّمِهِ",smart:"مُعَلِّمِهِ",bare:"معلمه"},lex:"muallim",grammar:["idafa-definiteness"],
-       segments:[{form:"مُعَلِّمِ",lex:"muallim"},{form:"هِ",lex:"pron-3ms"}]},
-      {s:{full:"أَبِي",smart:"أَبِي",bare:"أبي"},lex:"ab",grammar:["five-nouns"]},
-      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa"},
+       segments:[{form:"مُعَلِّمِ",lex:"muallim"},{form:"هِ",lex:"pron-3ms"}],
+       irab:{ar:"اسْمٌ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",en:"Noun in jarr with kasra; mudaf, with ـه as mudaf ilayh."}},
+      {s:{full:"أَبِي",smart:"أَبِي",bare:"أبي"},lex:"ab",grammar:["five-nouns"],
+       irab:{ar:"بَدَلٌ مِنْ «مُعَلِّمِهِ» مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.",en:"Appositive of «his teacher», in jarr marked by ي — one of the five nouns; also mudaf."}},
+      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa",
+       irab:{ar:"مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ.",en:"Mudaf ilayh in jarr, marked by fatha in place of kasra — a diptote (mamnu' min as-sarf)."}},
       {s:{full:"لِيُوَدِّعَهُ",smart:"لِيُوَدِّعَهُ",bare:"ليودعه"},lex:"waddaa",grammar:["lam-taleel","form-ii-verbs"],punctAfter:".",
-       segments:[{form:"لِ",lex:"li-taleel"},{form:"يُوَدِّعَ",lex:"waddaa"},{form:"هُ",lex:"pron-3ms"}]}
+       segments:[{form:"لِ",lex:"li-taleel"},{form:"يُوَدِّعَ",lex:"waddaa"},{form:"هُ",lex:"pron-3ms"}],
+       irab:{ar:"اللَّامُ لَامُ التَّعْلِيلِ، «يُوَدِّعَ» فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ مُضْمَرَةً بَعْدَ اللَّامِ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ»، وَالْهَاءُ مَفْعُولٌ بِهِ.",en:"The ل is the lam of purpose; the verb is subjunctive by an implied أنْ; hidden subject «he»; attached ـه is the direct object."}}
     ]},
   { id:"s3",
     translation:{en:"Abu Hanifa said to him: “O Yusuf, listen to my testament.”",tr:"Ebu Hanife ona dedi ki: “Ey Yusuf, vasiyetimi dinle.”"},
     tokens:[
-      {s:{full:"قَالَ",smart:"قَالَ",bare:"قال"},lex:"qala",grammar:["hollow-verbs"]},
-      {s:{full:"لَهُ",smart:"لَهُ",bare:"له"},lex:"li",segments:[{form:"لَ",lex:"li"},{form:"هُ",lex:"pron-3ms"}]},
-      {s:{full:"أَبُو",smart:"أَبُو",bare:"أبو"},lex:"ab",grammar:["five-nouns"]},
-      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa",punctAfter:":"},
-      {s:{full:"يَا",smart:"يَا",bare:"يا"},lex:"ya",quoteBefore:"«"},
-      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf",grammar:["vocative-munada"],punctAfter:"،"},
-      {s:{full:"اسْمَعْ",smart:"اسْمَعْ",bare:"اسمع"},lex:"samia",grammar:["imperative-amr"]},
-      {s:{full:"وَصِيَّتِي",smart:"وَصِيَّتِي",bare:"وصيتي"},lex:"wasiyya",punctAfter:".",quoteAfter:"»",
-       segments:[{form:"وَصِيَّةَ",lex:"wasiyya"},{form:"ي",lex:"pron-1s"}]}
+      {s:{full:"قَالَ",smart:"قَالَ",bare:"قال"},lex:"qala",grammar:["hollow-verbs"],
+       irab:{ar:"فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",en:"Past verb on fatha."}},
+      {s:{full:"لَهُ",smart:"لَهُ",bare:"له"},lex:"li",grammar:["huruf-jarr"],segments:[{form:"لَ",lex:"li"},{form:"هُ",lex:"pron-3ms"}],
+       irab:{ar:"اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ.",en:"The ل is a preposition; the pronoun ـه is in the position of jarr."}},
+      {s:{full:"أَبُو",smart:"أَبُو",bare:"أبو"},lex:"ab",grammar:["five-nouns"],
+       irab:{ar:"فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.",en:"Subject, nominative marked by و — one of the five nouns; mudaf."}},
+      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa",punctAfter:":",
+       irab:{ar:"مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ.",en:"Mudaf ilayh in jarr with fatha (diptote)."}},
+      {s:{full:"يَا",smart:"يَا",bare:"يا"},lex:"ya",quoteBefore:"«",grammar:["vocative-munada"],
+       irab:{ar:"حَرْفُ نِدَاءٍ.",en:"Vocative particle."}},
+      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf",grammar:["vocative-munada"],punctAfter:"،",
+       irab:{ar:"مُنَادًى مُفْرَدٌ عَلَمٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",en:"Vocative noun (munada): a single proper name, fixed on damma, in the position of nasb."}},
+      {s:{full:"اسْمَعْ",smart:"اسْمَعْ",bare:"اسمع"},lex:"samia",grammar:["imperative-amr"],
+       irab:{ar:"فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «أَنْتَ».",en:"Imperative verb, indeclinable on sukun; hidden subject «you»."}},
+      {s:{full:"وَصِيَّتِي",smart:"وَصِيَّتِي",bare:"وصيتي"},lex:"wasiyya",grammar:["idafa-definiteness"],punctAfter:".",quoteAfter:"»",
+       segments:[{form:"وَصِيَّةَ",lex:"wasiyya"},{form:"ي",lex:"pron-1s"}],
+       irab:{ar:"مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الْمُقَدَّرَةُ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",en:"Direct object in nasb; the fatha is implied before the 1st-person ي; mudaf with ي as mudaf ilayh."}}
     ]}
 ];
 
+// ---------- grammar notes (النحو والعوامل على طريقة البيركوي) ----------
 const GRAMMAR = {
   "imperative-amr": {
-    title:{ar:"فِعْل الأَمْر",en:"The Imperative"},
-    level:2,
-    explanation:"The imperative commands someone to do something. Build it from the present-tense stem: drop the prefix, add a helping alif if needed. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun.",
+    title:{ar:"فِعْل الأَمْر",en:"The Imperative"}, level:2, group:"sarf",
+    explanation:"The imperative commands someone to do something. Build it from the present-tense stem: drop the prefix, add a helping alif if needed. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun. The Emsile drills this as one of the core paradigms — open the صرف tab on اسْمَعْ to see all six imperative forms.",
     examples:[
       {ar:"اسْمَعْ وَصِيَّتِي.",en:"Listen to my testament. — from this story"},
       {ar:"اُكْتُبْ دَرْسَكَ.",en:"Write your lesson."},
@@ -354,15 +464,130 @@ const GRAMMAR = {
       {wrong:"اسْمَعْ إلى وصيتي",right:"اسْمَعْ وصيتي / اِسْتَمِعْ إِلَى وصيتي",why:"Transfer from English “listen TO”. سَمِعَ takes a direct object; only اِسْتَمَعَ (Form VIII) takes إلى."}
     ]
   },
-  "form-iv-verbs":{title:{ar:"الوزن الرابع أَفْعَلَ",en:"Form IV verbs"}},
-  "an-masdariyya":{title:{ar:"أَنْ المصدرية والمضارع المنصوب",en:"'an + subjunctive"}},
-  "idafa-definiteness":{title:{ar:"الإضافة والتعريف",en:"Idafa & definiteness"}},
-  "five-nouns":{title:{ar:"الأسماء الخمسة: أبو / أبي / أبا",en:"The five nouns (abu/abi/aba)"}},
-  "lam-taleel":{title:{ar:"لام التعليل",en:"lam of purpose"}},
-  "form-ii-verbs":{title:{ar:"الوزن الثاني فَعَّلَ",en:"Form II verbs"}},
-  "hollow-verbs":{title:{ar:"الفعل الأجوف",en:"Hollow verbs"}},
-  "vocative-munada":{title:{ar:"النداء والمنادى",en:"The vocative"}}
+  "an-masdariyya": {
+    title:{ar:"أَنْ الْمَصْدَرِيَّة",en:"'an + subjunctive"}, level:2, group:"awamil",
+    amil:"مِنْ نَوَاصِبِ الْمُضَارِعِ — a governor (amil) that puts the following verb in nasb",
+    explanation:"أَنْ turns a verb into the equivalent of a masdar (“that he return” = “his returning”) and forces the present verb into the subjunctive (mansub): a fatha replaces the final damma. In Birgivi's Awamil it is listed first among the four nasb particles: أَنْ، لَنْ، كَيْ، إِذَنْ. The whole clause then acts as a noun — in this story, أَنْ يَرْجِعَ is the object of أَرَادَ.",
+    examples:[
+      {ar:"أَرَادَ يُوسُفُ أَنْ يَرْجِعَ.",en:"Yusuf wanted to return. — from this story"},
+      {ar:"أُحِبُّ أَنْ أَقْرَأَ.",en:"I love to read."},
+      {ar:"يَجِبُ أَنْ تَذْهَبُوا.",en:"You (pl.) must go — note the نون drops: تَذْهَبُونَ → تَذْهَبُوا."}
+    ],
+    mistakes:[
+      {wrong:"أراد أن يرجعُ",right:"أراد أن يرجعَ",why:"The damma stays by habit. After أَنْ the verb is mansub: fatha, not damma."},
+      {wrong:"أريد أَنَّ أذهبَ",right:"أريد أَنْ أذهبَ",why:"Confusing أَنْ (with verbs) and أَنَّ (with a following noun, from the إنّ family). Before a verb use أَنْ."},
+      {wrong:"يجب أن تذهبونَ",right:"يجب أن تذهبوا",why:"The five verbs (الأفعال الخمسة) mark nasb by dropping the ن — keeping it is a very common error."}
+    ]
+  },
+  "lam-taleel": {
+    title:{ar:"لَام التَّعْلِيل",en:"The lam of purpose"}, level:2, group:"awamil",
+    amil:"تَنْصِبُ الْمُضَارِعَ بِأَنْ مُضْمَرَةً — governs nasb through an implied أَنْ",
+    explanation:"Prefixed لِ before a present verb means “in order to”. Grammatically the verb is mansub by a hidden أَنْ after the lam — so it behaves exactly like the أَنْ clause: final fatha, نون dropped in the five verbs. In this story: لِيُوَدِّعَهُ = لِأَنْ يُوَدِّعَهُ (“in order to bid him farewell”).",
+    examples:[
+      {ar:"ذَهَبَ إِلَيْهِ لِيُوَدِّعَهُ.",en:"He went to him to bid him farewell. — from this story"},
+      {ar:"أَدْرُسُ لِأَنْجَحَ.",en:"I study in order to succeed."}
+    ],
+    mistakes:[
+      {wrong:"ذهب لِيُوَدِّعُهُ",right:"ذهب لِيُوَدِّعَهُ",why:"The verb after lam at-ta'lil is mansub — fatha on the last radical, not damma."},
+      {wrong:"أدرس لِأَنَّ أنجحَ",right:"أدرس لِأَنْجَحَ / لِكَيْ أَنْجَحَ",why:"Mixing لأنّ (“because”, followed by a noun) with the purpose lam (followed by a mansub verb)."}
+    ]
+  },
+  "huruf-jarr": {
+    title:{ar:"حُرُوف الْجَرّ",en:"Prepositions"}, level:1, group:"awamil",
+    amil:"تَجُرُّ الِاسْمَ — the largest family of governors in the Awamil: they put the noun in jarr",
+    explanation:"Birgivi opens the Awamil with them: مِنْ، إِلَى، عَنْ، عَلَى، فِي، بِـ، لِـ، كَـ، حَتَّى، رُبَّ، وَاو الْقَسَم، تَاء الْقَسَم … Every noun after them takes kasra (or its substitute). In this story: إِلَى مَدِينَتِهِ، إِلَى مُعَلِّمِهِ، لَهُ.",
+    examples:[
+      {ar:"أَرَادَ أَنْ يَرْجِعَ إِلَى مَدِينَتِهِ.",en:"…to return to his city. — from this story"},
+      {ar:"قَالَ لَهُ أَبُو حَنِيفَةَ.",en:"Abu Hanifa said to him. — from this story"}
+    ],
+    mistakes:[
+      {wrong:"ذهبتُ إلى البيتَ",right:"ذهبتُ إلى البيتِ",why:"After a preposition the noun is majrur — kasra, never fatha."},
+      {wrong:"سلّمتُ على أبو حنيفة",right:"سلّمتُ على أبي حنيفة",why:"The five nouns show jarr with ي: على أَبِي، not على أبو."}
+    ]
+  },
+  "idafa-definiteness": {
+    title:{ar:"الإِضَافَة",en:"Idafa (possessive construction)"}, level:2, group:"nahw",
+    explanation:"Two nouns chained: the first (mudaf) never takes الـ or tanwin; the second (mudaf ilayh) is always majrur and supplies the definiteness. مُعَلِّمِهِ = مُعَلِّم + ه: “his teacher” — definite because of the pronoun, though مُعَلِّم itself carries no الـ. An attached pronoun (ـه، ـي…) counts as a mudaf ilayh in the position of jarr.",
+    examples:[
+      {ar:"ذَهَبَ إِلَى مُعَلِّمِهِ.",en:"He went to his teacher. — from this story"},
+      {ar:"اسْمَعْ وَصِيَّتِي.",en:"Listen to my testament. — وصيّة + ي — from this story"},
+      {ar:"كِتَابُ الطَّالِبِ جَدِيدٌ.",en:"The student's book is new."}
+    ],
+    mistakes:[
+      {wrong:"الْكِتَابُ الطَّالِبِ",right:"كِتَابُ الطَّالِبِ",why:"The mudaf never takes الـ — definiteness flows up from the mudaf ilayh."},
+      {wrong:"كِتَابٌ الطَّالِبِ",right:"كِتَابُ الطَّالِبِ",why:"The mudaf also never takes tanwin — tanwin and idafa exclude each other."}
+    ]
+  },
+  "five-nouns": {
+    title:{ar:"الأَسْمَاء الْخَمْسَة",en:"The five nouns (abu / abi / aba)"}, level:2, group:"nahw",
+    explanation:"أَب، أَخ، حَم، فُو، ذُو show case with long vowels instead of harakat when they are mudaf: rafʿ with و (أَبُو), nasb with ا (أَبَا), jarr with ي (أَبِي). Watch the same kunya change through this story: قَالَ أَبُو حَنِيفَةَ (subject) but ذَهَبَ إِلَى أَبِي حَنِيفَةَ (after a preposition).",
+    examples:[
+      {ar:"قَالَ لَهُ أَبُو حَنِيفَةَ.",en:"Abu Hanifa (subject → أبو) said to him. — from this story"},
+      {ar:"ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ.",en:"…to his teacher Abu Hanifa (after إلى → أبي). — from this story"},
+      {ar:"رَأَيْتُ أَبَا حَنِيفَةَ.",en:"I saw Abu Hanifa (object → أبا)."}
+    ],
+    mistakes:[
+      {wrong:"ذهبتُ إلى أبو حنيفة",right:"ذهبتُ إلى أبي حنيفة",why:"The kunya must show jarr with ي after a preposition — treating أبو as frozen is one of the most common learner errors."},
+      {wrong:"جاء أبي حنيفة إلى الدرس",right:"جاء أبو حنيفة إلى الدرس",why:"As subject it must be أبو (rafʿ with و)."}
+    ]
+  },
+  "hollow-verbs": {
+    title:{ar:"الْفِعْل الأَجْوَف",en:"Hollow verbs"}, level:3, group:"sarf",
+    explanation:"A hollow (ajwaf) verb has و or ي as its middle radical: قَالَ (aslu-hu قَوَلَ), أَرَادَ (aslu-hu أَرْوَدَ). The long vowel survives before vowel-initial endings (قَالَتْ) but shortens before consonant endings (قُلْتُ) and in the jussive and imperative (لَمْ يَقُلْ، قُلْ). The Bina classifies these among the seven irregular classes (الأقسام السبعة). Open the صرف tab on قَالَ to see the shortening across the table.",
+    examples:[
+      {ar:"قَالَ لَهُ أَبُو حَنِيفَةَ.",en:"Abu Hanifa said to him. — from this story"},
+      {ar:"قُلْتُ الْحَقَّ وَقَالُوا كَذِبًا.",en:"I spoke the truth and they spoke a lie — long and short stems side by side."}
+    ],
+    mistakes:[
+      {wrong:"قَالْتُ لك",right:"قُلْتُ لك",why:"Before the consonant suffix ـتُ the long alif must shorten to damma: قُلْتُ."},
+      {wrong:"لم يَقُولْ شيئًا",right:"لم يَقُلْ شيئًا",why:"In the jussive after لم the long vowel shortens: لم يَقُلْ."}
+    ]
+  },
+  "form-ii-verbs": {
+    title:{ar:"الْبَاب الثَّانِي فَعَّلَ",en:"Form II verbs"}, level:3, group:"sarf",
+    explanation:"Form II doubles the middle radical: فَعَّلَ يُفَعِّلُ, masdar تَفْعِيل. It often makes a verb transitive or intensive: وَدُعَ (to be gentle/left) → وَدَّعَ (to bid farewell), عَلِمَ (to know) → عَلَّمَ (to teach). In the Bina's ordering of the mazid forms this is باب التفعيل. The shadda is meaning-bearing — dropping it in speech or writing changes the verb.",
+    examples:[
+      {ar:"ذَهَبَ لِيُوَدِّعَهُ.",en:"He went to bid him farewell. — from this story"},
+      {ar:"عَلَّمَ أَبُو حَنِيفَةَ تَلَامِيذَهُ الْفِقْهَ.",en:"Abu Hanifa taught his students fiqh."}
+    ],
+    mistakes:[
+      {wrong:"عَلِمْتُ الطُّلَّابَ الدَّرْسَ",right:"عَلَّمْتُ الطُّلَّابَ الدَّرْسَ",why:"Form I عَلِمَ means “to know”; teaching someone requires Form II عَلَّمَ with the shadda."},
+      {wrong:"ودعتُه (بدون شدة، بمعنى التوديع)",right:"وَدَّعْتُهُ",why:"Without the shadda the verb is a different word — always write and pronounce the doubling in Form II."}
+    ]
+  },
+  "form-iv-verbs": {
+    title:{ar:"الْبَاب الرَّابِع أَفْعَلَ",en:"Form IV verbs"}, level:3, group:"sarf",
+    explanation:"Form IV prefixes a hamza: أَفْعَلَ يُفْعِلُ, masdar إِفْعَال. It is usually causative/transitive: رَجَعَ (to return, intransitive) → أَرْجَعَ (to give something back). أَرَادَ (to want) is Form IV of ر-و-د. Its hamza is hamzat qatʿ — it is written with the seat (أ) and never drops: قَالَ وَأَرَادَ, unlike the wasl of Form I imperatives.",
+    examples:[
+      {ar:"أَرَادَ يُوسُفُ أَنْ يَرْجِعَ.",en:"Yusuf wanted to return. — from this story"},
+      {ar:"أَرْجَعْتُ الْكِتَابَ إِلَى الْمَكْتَبَةِ.",en:"I returned the book to the library."}
+    ],
+    mistakes:[
+      {wrong:"رَجَعْتُ الْكِتَابَ",right:"أَرْجَعْتُ الْكِتَابَ",why:"رَجَعَ is intransitive (“to come back”); giving something back needs the Form IV causative أَرْجَعَ."},
+      {wrong:"اراد ان يرجع (بألف وصل)",right:"أَرَادَ أَنْ يَرْجِعَ",why:"Form IV takes hamzat qatʿ — spell it أَرَادَ, never اراد. In careful writing the hamza is not optional."}
+    ]
+  },
+  "vocative-munada": {
+    title:{ar:"النِّدَاء وَالْمُنَادَى",en:"The vocative"}, level:2, group:"nahw",
+    amil:"يَا مِنْ عَوَامِلِ النَّصْبِ فِي الْمَعْنَى — the munada counts as the object of an omitted verb (أَدْعُو)",
+    explanation:"After يَا, a single proper name (مفرد علم) is fixed on damma with no tanwin: يَا يُوسُفُ — grammatically “in the position of nasb”, because the vocative is treated as the object of an implied verb. A mudaf munada, by contrast, takes real nasb: يَا عَبْدَ اللهِ. Nouns with الـ cannot follow يا directly; use أَيُّهَا.",
+    examples:[
+      {ar:"يَا يُوسُفُ، اسْمَعْ وَصِيَّتِي.",en:"O Yusuf, listen to my testament. — from this story"},
+      {ar:"يَا عَبْدَ اللهِ، تَعَالَ.",en:"O Abdullah (mudaf → nasb), come."},
+      {ar:"يَا أَيُّهَا الطَّالِبُ.",en:"O student — الـ nouns need أيُّها."}
+    ],
+    mistakes:[
+      {wrong:"يا يوسفَ",right:"يا يوسفُ",why:"A single proper name after يا is fixed on damma — learners wrongly give it fatha because it is “in the position of nasb”."},
+      {wrong:"يا الطالبُ",right:"يا أيُّها الطالبُ",why:"يا never sits directly before الـ — insert أيُّها (masc.) / أيَّتُها (fem.)."}
+    ]
+  }
 };
+
+const REF_GROUPS = [
+  { id:"sarf", ar:"الصَّرْف", en:"Morphology — after Emsile & Bina" },
+  { id:"nahw", ar:"النَّحْو", en:"Syntax" },
+  { id:"awamil", ar:"الْعَوَامِل", en:"Governors — after Birgivi's Awamil" }
+];
 
 // ---------- state ----------
 const state = {
@@ -388,7 +613,7 @@ function renderStory(){
     sen.tokens.forEach((tok, ti) => {
       if (tok.quoteBefore) line.appendChild(document.createTextNode(tok.quoteBefore));
       const w = document.createElement("span");
-      w.className = "word"; w.tabIndex = 0; w.role = "button";
+      w.className = "word"; w.tabIndex = 0; w.setAttribute("role", "button");
       w.textContent = tok.s[state.layer];
       const entry = GLOSSARY[tok.lex];
       if (entry && entry.level > 0) w.dataset.lvl = levelBucket(entry.level);
@@ -417,7 +642,7 @@ function renderStory(){
   });
 }
 
-// ---------- audio (device TTS stands in for studio narration) ----------
+// ---------- audio ----------
 let arVoice = null;
 function pickVoice(){
   const vs = speechSynthesis.getVoices();
@@ -445,6 +670,7 @@ const sheet = document.getElementById("sheet");
 const scrim = document.getElementById("scrim");
 const sheetInner = document.getElementById("sheetInner");
 let activeWordEl = null;
+function showSheet(){ sheet.classList.add("show"); scrim.classList.add("show"); }
 function closeSheet(){
   sheet.classList.remove("show"); scrim.classList.remove("show");
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
@@ -453,25 +679,60 @@ scrim.addEventListener("click", closeSheet);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
 
 function chip(txt, cls){ return `<span class="chip ${cls||""}">${txt}</span>`; }
+function arSpan(t){ return `<span class="ar">${t}</span>`; }
 
+// ---------- word sheet with Word / Sarf / I'rab / Grammar tabs ----------
+const PERSON_ROWS = [
+  { label:"الْغَائِب", idx:[0,1,2] },
+  { label:"الْغَائِبَة", idx:[3,4,5] },
+  { label:"الْمُخَاطَب", idx:[6,7,8] },
+  { label:"الْمُخَاطَبَة", idx:[9,10,11] },
+  { label:"الْمُتَكَلِّم", idx:[12,13] }
+];
+const AMR_ROWS = [
+  { label:"الْمُخَاطَب", idx:[0,1,2] },
+  { label:"الْمُخَاطَبَة", idx:[3,4,5] }
+];
+
+function conjTable(forms, rows, highlight){
+  let h = `<div class="conj-wrap"><table class="conj">
+    <tr><th class="person"></th><th>المفرد</th><th>المثنى</th><th>الجمع</th></tr>`;
+  rows.forEach(r => {
+    h += `<tr><th class="person">${r.label}</th>`;
+    r.idx.forEach(i => {
+      const f = forms[i] === undefined ? "" : forms[i];
+      h += `<td class="${f === highlight ? "hl" : ""}">${f}</td>`;
+    });
+    if (r.idx.length === 2) h += `<td></td>`;
+    h += `</tr>`;
+  });
+  return h + `</table></div>`;
+}
+
+let sarfTense = "mazi";
 function openWord(tok, el, tab){
   if (activeWordEl) activeWordEl.classList.remove("active");
   activeWordEl = el; if (el) el.classList.add("active");
   const entry = GLOSSARY[tok.lex] || {lemma: tok.s.full, gloss:{en:"—",tr:"—"}, pos:""};
+  const morph = MORPH[tok.lex];
   const hasGrammar = tok.grammar && tok.grammar.length;
   const mode = tab || "word";
   let html = "";
   html += `<div class="tabs" role="tablist">
     <button class="${mode==="word"?"on":""}" data-tab="word">Word</button>
+    ${morph ? `<button class="${mode==="sarf"?"on":""}" data-tab="sarf">${arSpan("صَرْف")} Conjugation</button>` : ""}
+    ${tok.irab ? `<button class="${mode==="irab"?"on":""}" data-tab="irab">${arSpan("إِعْرَاب")} Analysis</button>` : ""}
     ${hasGrammar ? `<button class="${mode==="grammar"?"on":""}" data-tab="grammar">Grammar</button>` : ""}
   </div>`;
 
   if (mode === "word") {
-    html += `<p class="lemma">${entry.lemma}</p><div class="facts">`;
+    html += `<p class="lemma">${entry.lemma}</p>`;
+    if (morph) html += `<p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
+    html += `<div class="facts">`;
     if (entry.pos) html += chip(entry.pos);
     if (entry.form) html += chip("Form " + entry.form);
-    if (entry.root) html += chip("root: <span style='font-family:var(--ar-font)'>" + entry.root + "</span>");
-    if (entry.plural) html += chip("pl. <span style='font-family:var(--ar-font)'>" + entry.plural + "</span>");
+    if (entry.root) html += chip("root: " + arSpan(entry.root));
+    if (entry.plural) html += chip("pl. " + arSpan(entry.plural));
     if (entry.level > 0) html += chip("Level " + entry.level, "level");
     html += `</div>
       <p class="gloss"><small>EN</small>${entry.gloss.en}</p>
@@ -487,32 +748,84 @@ function openWord(tok, el, tab){
       <button class="btn ${saved ? "saved" : "primary"}" id="saveBtn">${saved ? "✓ In your deck" : "＋ Save to flashcards"}</button>
       ${hasGrammar ? `<button class="btn" id="toGrammar">Grammar note</button>` : ""}
     </div>`;
+  } else if (mode === "sarf" && morph) {
+    html += `<p class="lemma">${entry.lemma}</p>
+      <p class="bab-line">${morph.bab} — ${morph.wazn}</p>
+      <div class="facts">
+        ${chip("المصدر: " + arSpan(morph.masdar))}
+        ${chip("اسم الفاعل: " + arSpan(morph.fail))}
+        ${morph.maful ? chip("اسم المفعول: " + arSpan(morph.maful)) : ""}
+      </div>
+      <div class="seg tense-seg" role="group" aria-label="Tense">
+        <button data-tense="mazi" class="${sarfTense==="mazi"?"on":""}">الماضي</button>
+        <button data-tense="mudari" class="${sarfTense==="mudari"?"on":""}">المضارع</button>
+        <button data-tense="amr" class="${sarfTense==="amr"?"on":""}">الأمر</button>
+      </div>`;
+    const highlight = tok.s.full.replace(/[«»،:.]/g, "");
+    if (sarfTense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
+    else html += conjTable(morph[sarfTense], PERSON_ROWS, highlight);
+    html += `<p class="sarf-note">Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.${morph.note ? " " + morph.note : ""}</p>`;
+  } else if (mode === "irab" && tok.irab) {
+    html += `<p class="lemma">${tok.s.full}</p>
+      <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
+      <p class="irab-en">${tok.irab.en}</p>
+      <p class="sarf-note">Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.</p>`;
   } else {
-    tok.grammar.forEach(gid => {
-      const g = GRAMMAR[gid];
-      if (!g) return;
-      html += `<div class="gnote"><h3><span class="ar-inline">${g.title.ar}</span> — ${g.title.en}${g.level ? " " + chip("Level " + g.level, "level") : ""}</h3>`;
-      if (g.explanation) {
-        html += `<p>${g.explanation}</p>`;
-        (g.examples || []).forEach(x => html += `<div class="ex"><div class="ar" lang="ar">${x.ar}</div><div class="en">${x.en}</div></div>`);
-        if (g.mistakes && g.mistakes.length) {
-          html += `<p class="mlabel">أخطاء شائعة · Common mistakes</p>`;
-          g.mistakes.forEach(m => html += `<div class="mistake"><span class="wrong" lang="ar">${m.wrong}</span><span class="right" lang="ar">${m.right}</span><div class="why">${m.why}</div></div>`);
-        }
-      } else {
-        html += `<p class="planned">Full note planned — arrives with a content update, no app release needed.</p>`;
-      }
-      html += `</div>`;
-    });
+    tok.grammar.forEach(gid => { html += renderNote(gid); });
   }
   sheetInner.innerHTML = html;
   sheetInner.querySelectorAll("[data-tab]").forEach(b =>
     b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
+  sheetInner.querySelectorAll("[data-tense]").forEach(b =>
+    b.addEventListener("click", () => { sarfTense = b.dataset.tense; openWord(tok, el, "sarf"); }));
   const sb = document.getElementById("saveBtn");
   if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
-  sheet.classList.add("show"); scrim.classList.add("show");
+  showSheet();
+}
+
+function renderNote(gid){
+  const g = GRAMMAR[gid];
+  if (!g) return "";
+  let html = `<div class="gnote"><h3><span class="ar-inline">${g.title.ar}</span> — ${g.title.en}
+    ${g.level ? " " + chip("Level " + g.level, "level") : ""}</h3>`;
+  if (g.amil) html += `<div class="facts">${chip("العوامل: " + arSpan(g.amil.split(" — ")[0]) + (g.amil.includes(" — ") ? " — " + g.amil.split(" — ")[1] : ""), "amil")}</div>`;
+  html += `<p>${g.explanation}</p>`;
+  (g.examples || []).forEach(x => html += `<div class="ex"><div class="ar" lang="ar">${x.ar}</div><div class="en">${x.en}</div></div>`);
+  if (g.mistakes && g.mistakes.length) {
+    html += `<p class="mlabel">أخطاء شائعة · Common mistakes</p>`;
+    g.mistakes.forEach(m => html += `<div class="mistake"><span class="wrong" lang="ar">${m.wrong}</span><span class="right" lang="ar">${m.right}</span><div class="why">${m.why}</div></div>`);
+  }
+  return html + `</div>`;
+}
+
+// ---------- grammar reference browser ----------
+function openRef(noteId){
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  let html = "";
+  if (noteId) {
+    html += `<div class="backrow"><button id="refBack">← All grammar topics</button></div>` + renderNote(noteId);
+  } else {
+    html += `<div class="tabs"><button class="on">Grammar reference</button></div>
+      <p class="ref-intro">Organized after the madrasah primers: <span lang="ar" style="font-family:var(--ar-font)">الأمثلة المختلفة، بناء الأفعال، العوامل</span> —
+      conjugation drills, verb classes, and the governors of i'rab (Birgivi). Every topic links to live examples in the stories.</p>`;
+    REF_GROUPS.forEach(gr => {
+      const notes = Object.entries(GRAMMAR).filter(([,g]) => g.group === gr.id);
+      if (!notes.length) return;
+      html += `<div class="ref-group"><span class="ar">${gr.ar}</span><span>${gr.en}</span></div><ul class="ref-list">`;
+      notes.forEach(([id, g]) => {
+        html += `<li><button data-note="${id}"><span class="t-ar">${g.title.ar}</span><span class="t-en">${g.title.en}</span>${g.level ? chip("L" + g.level, "level") : ""}</button></li>`;
+      });
+      html += `</ul>`;
+    });
+  }
+  sheetInner.innerHTML = html;
+  sheetInner.querySelectorAll("[data-note]").forEach(b =>
+    b.addEventListener("click", () => openRef(b.dataset.note)));
+  const back = document.getElementById("refBack");
+  if (back) back.addEventListener("click", () => openRef());
+  showSheet();
 }
 
 // ---------- deck ----------
@@ -535,7 +848,7 @@ let reviewIdx = 0, reviewStep = 0;
 function openDeck(){
   reviewIdx = 0; reviewStep = 0;
   renderDeck();
-  sheet.classList.add("show"); scrim.classList.add("show");
+  showSheet();
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
 }
 function renderDeck(){
@@ -571,10 +884,10 @@ function renderDeck(){
 }
 
 // ---------- controls ----------
-document.querySelectorAll(".seg [data-layer]").forEach(b =>
+document.querySelectorAll(".controls .seg [data-layer]").forEach(b =>
   b.addEventListener("click", () => {
     state.layer = b.dataset.layer;
-    document.querySelectorAll(".seg [data-layer]").forEach(x => x.classList.toggle("on", x === b));
+    document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x === b));
     renderStory();
   }));
 document.getElementById("ulToggle").addEventListener("click", e => {
@@ -592,6 +905,7 @@ document.querySelectorAll("#transSeg [data-tr]").forEach(b =>
 document.getElementById("fontPlus").addEventListener("click", () => { state.arSize = Math.min(2.6, state.arSize + 0.15); renderStory(); });
 document.getElementById("fontMinus").addEventListener("click", () => { state.arSize = Math.max(1.2, state.arSize - 0.15); renderStory(); });
 document.getElementById("deckOpen").addEventListener("click", openDeck);
+document.getElementById("refOpen").addEventListener("click", () => openRef());
 
 renderStory();
 persistDeck();
