@@ -1,0 +1,52 @@
+{
+  "id": "idafa-definiteness",
+  "title": {
+    "ar": "الإِضَافَة",
+    "en": "Idafa (possessive construction)"
+  },
+  "level": 2,
+  "group": "nahw",
+  "explanation": {
+    "en": "Two nouns chained: the first (mudaf) never takes الـ or tanwin; the second (mudaf ilayh) is always majrur and supplies the definiteness. مُعَلِّمِهِ = مُعَلِّم + ه: \"his teacher\" — definite because of the pronoun, though مُعَلِّم itself carries no الـ. An attached pronoun (ـه، ـي…) counts as a mudaf ilayh in the position of jarr.",
+    "tr": "İki isim tamlaması: birincisi (muzaf) asla الـ ve tenvin almaz; ikincisi (muzafun ileyh) daima mecrurdur ve belirliliği sağlar. مُعَلِّمِهِ = مُعَلِّم + ه: 'onun hocası'. Bitişik zamir, cer mahallinde muzafun ileyhtir."
+  },
+  "examples": [
+    {
+      "ar": "ذَهَبَ إِلَى مُعَلِّمِهِ.",
+      "en": "He went to his teacher.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s2"
+    },
+    {
+      "ar": "اسْمَعْ وَصِيَّتِي.",
+      "en": "Listen to my testament (وصيّة + ي).",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3"
+    },
+    {
+      "ar": "كِتَابُ الطَّالِبِ جَدِيدٌ.",
+      "en": "The student's book is new."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "الْكِتَابُ الطَّالِبِ",
+      "right": "كِتَابُ الطَّالِبِ",
+      "why": {
+        "en": "The mudaf never takes الـ — definiteness flows up from the mudaf ilayh.",
+        "tr": "Muzaf asla الـ almaz — belirlilik muzafun ileyhten gelir."
+      }
+    },
+    {
+      "wrong": "كِتَابٌ الطَّالِبِ",
+      "right": "كِتَابُ الطَّالِبِ",
+      "why": {
+        "en": "The mudaf also never takes tanwin — tanwin and idafa exclude each other.",
+        "tr": "Muzaf tenvin de almaz — tenvin ile izafet bir arada bulunmaz."
+      }
+    }
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

@@ -257,11 +257,15 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("package", type=Path, help="story package directory")
     ap.add_argument("--grammar-dir", type=Path, default=None,
-                    help="global grammar notes directory (default: <package>/../grammar)")
+                    help="global grammar registry (default: content/grammar next to the package tree)")
     args = ap.parse_args()
 
     pkg: Path = args.package
-    grammar_dir = args.grammar_dir or pkg.parent / "grammar"
+    grammar_dir = args.grammar_dir
+    if grammar_dir is None:
+        # Global registry lives at content/grammar; packages at content/<collection>/<story>.
+        candidates = [pkg.parent.parent / "grammar", pkg.parent / "grammar"]
+        grammar_dir = next((c for c in candidates if c.is_dir()), candidates[0])
     rep = Report()
     stats = {"tokens": 0, "irab_tokens": 0, "used_lex": set(), "used_grammar": set()}
 

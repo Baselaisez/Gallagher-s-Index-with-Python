@@ -1,0 +1,56 @@
+{
+  "id": "five-nouns",
+  "title": {
+    "ar": "الأَسْمَاء الْخَمْسَة",
+    "en": "The five nouns (abu / abi / aba)"
+  },
+  "level": 2,
+  "group": "nahw",
+  "explanation": {
+    "en": "أَب، أَخ، حَم، فُو، ذُو show case with long vowels instead of harakat when they are mudaf: raf' with و (أَبُو), nasb with ا (أَبَا), jarr with ي (أَبِي). Watch the same kunya change through this story: قَالَ أَبُو حَنِيفَةَ (subject) but ذَهَبَ إِلَى أَبِي حَنِيفَةَ (after a preposition).",
+    "tr": "أَب، أَخ، حَم، فُو، ذُو muzaf olduklarında i'rabı uzun harflerle gösterir: ref و ile (أَبُو), nasb ا ile (أَبَا), cer ي ile (أَبِي). Hikâyede aynı künye değişir: قَالَ أَبُو حَنِيفَةَ ama إِلَى أَبِي حَنِيفَةَ."
+  },
+  "examples": [
+    {
+      "ar": "قَالَ لَهُ أَبُو حَنِيفَةَ.",
+      "en": "Abu Hanifa (subject → أبو) said to him.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3"
+    },
+    {
+      "ar": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ.",
+      "en": "…to his teacher Abu Hanifa (after إلى → أبي).",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s2"
+    },
+    {
+      "ar": "رَأَيْتُ أَبَا حَنِيفَةَ.",
+      "en": "I saw Abu Hanifa (object → أبا)."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ذهبتُ إلى أبو حنيفة",
+      "right": "ذهبتُ إلى أبي حنيفة",
+      "why": {
+        "en": "The kunya must show jarr with ي after a preposition — treating أبو as frozen is one of the most common learner errors.",
+        "tr": "Harf-i cerden sonra künye cerri ي ile göstermeli — أبو'yu donmuş saymak en yaygın öğrenci hatalarındandır."
+      }
+    },
+    {
+      "wrong": "جاء أبي حنيفة إلى الدرس",
+      "right": "جاء أبو حنيفة إلى الدرس",
+      "why": {
+        "en": "As subject it must be أبو (raf' with و).",
+        "tr": "Fail olduğunda أبو olmalıdır (ref, و ile)."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "huruf-jarr",
+    "idafa-definiteness"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

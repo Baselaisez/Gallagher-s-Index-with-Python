@@ -1,0 +1,51 @@
+{
+  "id": "vocative-munada",
+  "title": {
+    "ar": "النِّدَاء وَالْمُنَادَى",
+    "en": "The vocative"
+  },
+  "level": 2,
+  "group": "nahw",
+  "amil": "يَا مِنْ عَوَامِلِ النَّصْبِ فِي الْمَعْنَى — the munada counts as the object of an omitted verb (أَدْعُو)",
+  "explanation": {
+    "en": "After يَا, a single proper name (مفرد علم) is fixed on damma with no tanwin: يَا يُوسُفُ — grammatically \"in the position of nasb\", because the vocative is treated as the object of an implied verb. A mudaf munada, by contrast, takes real nasb: يَا عَبْدَ اللهِ. Nouns with الـ cannot follow يا directly; use أَيُّهَا.",
+    "tr": "يَا'dan sonra tek kelimelik özel isim (müfred alem) tenvinsiz ötre üzerine mebnidir: يَا يُوسُفُ — mahallen mansubdur, çünkü münada gizli bir fiilin (أَدْعُو) mef'ulü sayılır. Muzaf münada gerçek nasb alır: يَا عَبْدَ اللهِ. الـ'lı isimler يا'dan sonra doğrudan gelmez; أَيُّهَا kullanılır."
+  },
+  "examples": [
+    {
+      "ar": "يَا يُوسُفُ، اسْمَعْ وَصِيَّتِي.",
+      "en": "O Yusuf, listen to my testament.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3"
+    },
+    {
+      "ar": "يَا عَبْدَ اللهِ، تَعَالَ.",
+      "en": "O Abdullah (mudaf → nasb), come."
+    },
+    {
+      "ar": "يَا أَيُّهَا الطَّالِبُ.",
+      "en": "O student — الـ nouns need أيُّها."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "يا يوسفَ",
+      "right": "يا يوسفُ",
+      "why": {
+        "en": "A single proper name after يا is fixed on damma — learners wrongly give it fatha because it is \"in the position of nasb\".",
+        "tr": "يا'dan sonra müfred alem ötre üzerine mebnidir — 'nasb mahallinde' diye fetha vermek yanlıştır."
+      }
+    },
+    {
+      "wrong": "يا الطالبُ",
+      "right": "يا أيُّها الطالبُ",
+      "why": {
+        "en": "يا never sits directly before الـ — insert أيُّها (masc.) / أيَّتُها (fem.).",
+        "tr": "يا, الـ'dan önce doğrudan gelmez — أيُّها (eril) / أيَّتُها (dişil) araya girer."
+      }
+    }
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "form-iv-verbs",
+  "title": {
+    "ar": "الْبَاب الرَّابِع أَفْعَلَ",
+    "en": "Form IV verbs"
+  },
+  "level": 3,
+  "group": "sarf",
+  "explanation": {
+    "en": "Form IV prefixes a hamza: أَفْعَلَ يُفْعِلُ, masdar إِفْعَال. It is usually causative/transitive: رَجَعَ (to return, intransitive) → أَرْجَعَ (to give something back). أَرَادَ (to want) is Form IV of ر-و-د. Its hamza is hamzat qat' — written with the seat (أ) and never dropping: قَالَ وَأَرَادَ, unlike the wasl of Form I imperatives.",
+    "tr": "Dördüncü bab başa hemze getirir: أَفْعَلَ يُفْعِلُ, masdarı إِفْعَال. Genellikle geçişlilik katar: رَجَعَ (dönmek) → أَرْجَعَ (geri vermek). أَرَادَ, ر-و-د kökünün dördüncü babıdır. Hemzesi kat' hemzesidir: düşmez ve أ ile yazılır."
+  },
+  "examples": [
+    {
+      "ar": "أَرَادَ يُوسُفُ أَنْ يَرْجِعَ.",
+      "en": "Yusuf wanted to return.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s1"
+    },
+    {
+      "ar": "أَرْجَعْتُ الْكِتَابَ إِلَى الْمَكْتَبَةِ.",
+      "en": "I returned the book to the library."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "رَجَعْتُ الْكِتَابَ",
+      "right": "أَرْجَعْتُ الْكِتَابَ",
+      "why": {
+        "en": "رَجَعَ is intransitive (\"to come back\"); giving something back needs the Form IV causative أَرْجَعَ.",
+        "tr": "رَجَعَ geçişsizdir ('geri dönmek'); bir şeyi geri vermek dördüncü bab أَرْجَعَ ister."
+      }
+    },
+    {
+      "wrong": "اراد ان يرجع (بألف وصل)",
+      "right": "أَرَادَ أَنْ يَرْجِعَ",
+      "why": {
+        "en": "Form IV takes hamzat qat' — spell it أَرَادَ, never اراد. In careful writing the hamza is not optional.",
+        "tr": "Dördüncü bab hemze-i kat' alır — أَرَادَ diye yazılır, asla اراد değil."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "form-ii-verbs",
+    "hollow-verbs"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

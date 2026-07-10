@@ -20,11 +20,11 @@ START = "// __DATA_START__"
 END = "// __DATA_END__"
 
 
-def text(value):
-    """Accept both plain strings and {en: ...} objects."""
+def bilingual(value):
+    """Normalize plain strings and {en, tr} objects to {en, tr}."""
     if isinstance(value, dict):
-        return value.get("en", "")
-    return value or ""
+        return {"en": value.get("en", ""), "tr": value.get("tr", value.get("en", ""))}
+    return {"en": value or "", "tr": value or ""}
 
 
 def build_glossary(pkg: Path):
@@ -74,18 +74,19 @@ def build_grammar(grammar_dir: Path, story_id: str):
     for path in sorted(grammar_dir.glob("*.json")):
         g = json.load(open(path, encoding="utf-8"))
         note = {"title": g["title"], "level": g.get("level"), "group": g.get("group", "nahw"),
-                "explanation": text(g.get("explanation"))}
+                "explanation": bilingual(g.get("explanation"))}
         if g.get("amil"):
             note["amil"] = g["amil"]
         if g.get("classicalSources"):
             note["sources"] = g["classicalSources"]
         note["examples"] = [
             {"ar": x["ar"],
-             "en": x.get("en", "") + (" — from this story" if x.get("sourceStory") == story_id else "")}
+             "en": x.get("en", "") + (" — from this story" if x.get("sourceStory") == story_id else ""),
+             "fromStory": x.get("sourceStory") == story_id}
             for x in g.get("examples", [])
         ]
         note["mistakes"] = [
-            {"wrong": m["wrong"], "right": m["right"], "why": text(m.get("why"))}
+            {"wrong": m["wrong"], "right": m["right"], "why": bilingual(m.get("why"))}
             for m in g.get("commonMistakes", [])
         ]
         notes[g["id"]] = note
@@ -100,7 +101,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     root = Path(__file__).resolve().parent.parent
     ap.add_argument("--package", type=Path, default=root / "content/samples/wasiyyat-abi-hanifa")
-    ap.add_argument("--grammar-dir", type=Path, default=root / "content/samples/grammar")
+    ap.add_argument("--grammar-dir", type=Path, default=root / "content/grammar")
     ap.add_argument("--html", type=Path, default=root / "prototype/reader.html")
     args = ap.parse_args()
 
@@ -126,6 +127,23 @@ def main():
     if i == -1 or j == -1:
         raise SystemExit(f"markers {START} / {END} not found in {args.html}")
     html = html[:i] + block + html[j + len(END):]
+
+    # Stamp the static header from the manifest so standalone readers are correct.
+    import re
+    title = manifest["title"]
+    subtitle = manifest.get("subtitle", {}).get("en") or title.get("en", "")
+    access = {"free": "Free story", "premium": "Premium story",
+              "user-upload": "Your upload · machine-analyzed"}.get(manifest.get("access"), "")
+    chips = (f'<span class="chip level">Level {manifest["level"]}'
+             f' · {manifest.get("levelName", "")}</span>\n      '
+             f'<span class="chip">{len(chapters)} chapter{"s" if len(chapters) != 1 else ""}</span>'
+             + (f'\n      <span class="chip">{access}</span>' if access else ""))
+    html = re.sub(r'<h1 class="story-title">.*?</h1>',
+                  f'<h1 class="story-title">{title["ar"]}</h1>', html, flags=re.S)
+    html = re.sub(r'<p class="story-sub">.*?</p>',
+                  f'<p class="story-sub">{subtitle}</p>', html, flags=re.S)
+    html = re.sub(r'(<div class="meta-row">\s*).*?(\s*</div>)',
+                  lambda m: m.group(1) + chips + m.group(2), html, count=1, flags=re.S)
     args.html.write_text(html, encoding="utf-8")
     n_tokens = sum(len(s["tokens"]) for c in chapters for s in c["sentences"])
     print(f"Rebuilt {args.html}: {len(chapters)} chapters, {n_tokens} tokens, "
