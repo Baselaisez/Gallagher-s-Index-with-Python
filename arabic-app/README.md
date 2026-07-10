@@ -19,9 +19,12 @@ and a lite/premium subscription model with continuously updated content.
 - [x] Competitive research (DuChinese + Arabic landscape) — `research/01-duchinese-competitive-research.md`
 - [x] Product spec v0.1 — `docs/02-product-spec.md`
 - [x] Content data model + pilot sample — `docs/03-content-data-model.md`, `content/samples/wasiyyat-abi-hanifa/`
-- [x] Interactive reader prototype v0.2 (tashkeel toggle, tap-word, sarf tables, i'rab, awamil, flashcards) — `prototype/reader.html`
-- [x] Grammar note library seeded (10 notes: sarf / nahw / awamil, each with common-mistakes) — `content/samples/grammar/`
+- [x] Interactive reader prototype v0.3 (tashkeel toggle, tap-word, sarf tables, i'rab, awamil, flashcards) — `prototype/reader.html`
+- [x] Grammar note library (14 notes: sarf / nahw / awamil, each with common-mistakes; classical sources cited: Emsile, Bina, Awamil, Izhar, al-Kafiya, Qatr al-Nada) — `content/samples/grammar/`
 - [x] Content validator — `tools/validate_content.py` (tashkeel-layer consistency, lex/grammar refs, audio spans, paradigm shapes)
+- [x] Wasiyya chapter 2 (the first counsels: إنّ وأخواتها، لا الناهية، إذا الشرطية) — 48 tokens, 100% i'rab coverage, 14 verb paradigms
+- [x] Prototype build pipeline — `tools/build_prototype.py` regenerates the prototype from content packages (packages are the single source of truth)
+- [ ] Deepen grammar notes from uploaded studies of al-Kafiya / Izhar / Qatr al-Nada (pending user uploads)
+- [ ] Wasiyya chapters 3+ and the level-4 sibling package
 - [ ] Tech-stack decision & Flutter scaffold
-- [ ] Wasiyya chapters 2+ (the counsels) and the level-4 sibling package
 - [ ] Content pipeline: morphological analysis + forced audio alignment

@@ -1,0 +1,21 @@
+{
+  "id": "la-nahiya",
+  "title": { "ar": "لَا النَّاهِيَة", "en": "The prohibiting la" },
+  "level": 2,
+  "group": "awamil",
+  "amil": "مِنْ جَوَازِمِ الْمُضَارِعِ — a governor that puts the present verb in jazm",
+  "classicalSources": ["العوامل (البيركوي)", "إظهار الأسرار (البيركوي)", "قطر الندى (ابن هشام)"],
+  "explanation": { "en": "لا الناهية (\"do not…\") governs the present verb in the jussive (majzum): sukun on the last radical, or dropping the ن in the five verbs. Birgivi lists it among the jazm governors with لَمْ، لَمَّا، لام الأمر. Contrast لا النافية, which merely negates and governs nothing: لَا تَتَكَلَّمْ (don't speak!) vs لَا تَتَكَلَّمُ (you are not speaking) — the haraka on the final letter is the whole difference in meaning." },
+  "examples": [
+    { "ar": "لَا تَحْتَقِرْ أَحَدًا.", "en": "Do not belittle anyone.", "sourceStory": "wasiyyat-abi-hanifa-L2", "sentence": "s6" },
+    { "ar": "وَلَا تَتَكَلَّمْ كَثِيرًا.", "en": "And do not talk too much.", "sourceStory": "wasiyyat-abi-hanifa-L2", "sentence": "s6" },
+    { "ar": "لَا تَحْزَنْ إِنَّ اللهَ مَعَنَا.", "en": "Do not grieve; indeed Allah is with us. (Quran 9:40)" }
+  ],
+  "commonMistakes": [
+    { "wrong": "لا تتكلمُ كثيرًا (بمعنى النهي)", "right": "لا تتكلمْ كثيرًا", "why": { "en": "Keeping the damma turns the prohibition into a statement (\"you do not talk much\"). The prohibiting لا demands sukun." } },
+    { "wrong": "لن تحتقرْ أحدًا (بمعنى النهي)", "right": "لا تحتقرْ أحدًا", "why": { "en": "لن negates the future (and governs nasb: لن تحتقرَ); prohibition needs لا + jazm." } },
+    { "wrong": "لا تذهبوننَ", "right": "لا تذهبوا", "why": { "en": "In the five verbs jazm is shown by dropping the ن: تذهبون → لا تذهبوا." } }
+  ],
+  "relatedNotes": ["imperative-amr", "an-masdariyya"],
+  "gameSeeds": { "spotTheError": true, "harakatTargets": ["لَا تَحْتَقِرْ", "لَا تَتَكَلَّمْ"] }
+}

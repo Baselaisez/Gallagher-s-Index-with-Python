@@ -1,0 +1,124 @@
+{
+  "chapter": 2,
+  "sentences": [
+    {
+      "id": "s4",
+      "audio": [0, 4200],
+      "translation": {
+        "en": "Abu Hanifa said: \"When you enter Basra, the people will come to you.\"",
+        "tr": "Ebu Hanife dedi: \"Basra'ya girdiğinde insanlar sana gelecek.\""
+      },
+      "tokens": [
+        { "surface": { "full": "قَالَ", "smart": "قَالَ", "bare": "قال" }, "lex": "qala", "pos": "verb",
+          "grammar": ["hollow-verbs"],
+          "irab": { "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.", "en": "Past verb on fatha." } },
+        { "surface": { "full": "أَبُو", "smart": "أَبُو", "bare": "أبو" }, "lex": "ab", "pos": "noun",
+          "grammar": ["five-nouns"],
+          "irab": { "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.", "en": "Subject, nominative with و (five nouns); mudaf." } },
+        { "surface": { "full": "حَنِيفَةَ", "smart": "حَنِيفَة", "bare": "حنيفة" }, "lex": "hanifa", "pos": "propn", "punctAfter": ":",
+          "irab": { "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ.", "en": "Mudaf ilayh in jarr with fatha (diptote)." } },
+        { "surface": { "full": "إِذَا", "smart": "إِذَا", "bare": "إذا" }, "lex": "idha", "pos": "part", "quoteBefore": "«",
+          "grammar": ["idha-shartiyya"],
+          "irab": { "ar": "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ، خَافِضٌ لِشَرْطِهِ مَنْصُوبٌ بِجَوَابِهِ، مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.", "en": "Adverb of future time carrying conditional meaning; its clause is in jarr by idafa to it." } },
+        { "surface": { "full": "دَخَلْتَ", "smart": "دَخَلْتَ", "bare": "دخلت" }, "lex": "dakhala", "pos": "verb",
+          "grammar": ["idha-shartiyya"],
+          "segments": [ { "form": "دَخَلْ", "lex": "dakhala", "pos": "verb" }, { "form": "تَ", "lex": "pron-2ms-subj", "pos": "pron" } ],
+          "irab": { "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا.", "en": "Past verb fixed on sukun before the subject ت; the ت is the subject; the clause is in jarr as mudaf ilayh of إذا." } },
+        { "surface": { "full": "الْبَصْرَةَ", "smart": "البَصْرَةَ", "bare": "البصرة" }, "lex": "al-basra", "pos": "propn",
+          "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.", "en": "Direct object in nasb with fatha." } },
+        { "surface": { "full": "فَسَيَأْتِيكَ", "smart": "فَسَيَأْتِيكَ", "bare": "فسيأتيك" }, "lex": "ata", "pos": "verb",
+          "grammar": ["idha-shartiyya"],
+          "segments": [ { "form": "فَ", "lex": "fa", "pos": "part" }, { "form": "سَ", "lex": "sa", "pos": "part" }, { "form": "يَأْتِي", "lex": "ata", "pos": "verb" }, { "form": "كَ", "lex": "pron-2ms", "pos": "pron" } ],
+          "irab": { "ar": "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ الشَّرْطِ، وَالسِّينُ لِلِاسْتِقْبَالِ، «يَأْتِي» فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْكَافُ مَفْعُولٌ بِهِ، وَالْجُمْلَةُ جَوَابُ شَرْطٍ غَيْرِ جَازِمٍ لَا مَحَلَّ لَهَا.", "en": "The ف introduces the result clause, the س marks future; the verb is marfu' with an implied damma on the ي (defective verb); the ك is the object." } },
+        { "surface": { "full": "النَّاسُ", "smart": "النَّاسُ", "bare": "الناس" }, "lex": "nas", "pos": "noun", "punctAfter": ".", "quoteAfter": "»",
+          "irab": { "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.", "en": "Subject of يأتي, nominative with damma." } }
+      ]
+    },
+    {
+      "id": "s5",
+      "audio": [4200, 8600],
+      "translation": {
+        "en": "\"Honor the scholars, respect the elders, and be merciful to the young.\"",
+        "tr": "\"Âlimlere ikram et, büyüklere saygı göster, küçüklere merhamet et.\""
+      },
+      "tokens": [
+        { "surface": { "full": "أَكْرِمِ", "smart": "أَكْرِمِ", "bare": "أكرم" }, "lex": "akrama", "pos": "verb", "quoteBefore": "«",
+          "grammar": ["imperative-amr", "form-iv-verbs"],
+          "irab": { "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».", "en": "Imperative on sukun, given a kasra to break the two adjacent sukuns before الـ; hidden subject «you»." } },
+        { "surface": { "full": "الْعُلَمَاءَ", "smart": "العُلَمَاءَ", "bare": "العلماء" }, "lex": "alim", "pos": "noun", "punctAfter": "،",
+          "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.", "en": "Direct object in nasb." } },
+        { "surface": { "full": "وَاحْتَرِمِ", "smart": "واحْتَرِمِ", "bare": "واحترم" }, "lex": "ihtarama", "pos": "verb",
+          "grammar": ["imperative-amr", "form-viii-verbs"],
+          "segments": [ { "form": "وَ", "lex": "wa", "pos": "conj" }, { "form": "احْتَرِمِ", "lex": "ihtarama", "pos": "verb" } ],
+          "irab": { "ar": "الْوَاوُ عَاطِفَةٌ، «احْتَرِمِ» فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ.", "en": "The و conjoins; imperative on sukun with helping kasra before الـ." } },
+        { "surface": { "full": "الْكِبَارَ", "smart": "الكِبَارَ", "bare": "الكبار" }, "lex": "kabir", "pos": "noun", "punctAfter": "،",
+          "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "en": "Direct object in nasb." } },
+        { "surface": { "full": "وَارْحَمِ", "smart": "وارْحَمِ", "bare": "وارحم" }, "lex": "rahima", "pos": "verb",
+          "grammar": ["imperative-amr"],
+          "segments": [ { "form": "وَ", "lex": "wa", "pos": "conj" }, { "form": "ارْحَمِ", "lex": "rahima", "pos": "verb" } ],
+          "irab": { "ar": "الْوَاوُ عَاطِفَةٌ، «ارْحَمِ» فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ.", "en": "Conjoined imperative, same helping kasra." } },
+        { "surface": { "full": "الصِّغَارَ", "smart": "الصِّغَارَ", "bare": "الصغار" }, "lex": "saghir", "pos": "noun", "punctAfter": ".", "quoteAfter": "»",
+          "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "en": "Direct object in nasb." } }
+      ]
+    },
+    {
+      "id": "s6",
+      "audio": [8600, 12300],
+      "translation": {
+        "en": "\"Do not belittle anyone, and do not talk too much.\"",
+        "tr": "\"Hiç kimseyi hor görme ve çok konuşma.\""
+      },
+      "tokens": [
+        { "surface": { "full": "لَا", "smart": "لا", "bare": "لا" }, "lex": "la-nahiya", "pos": "part", "quoteBefore": "«",
+          "grammar": ["la-nahiya"],
+          "irab": { "ar": "حَرْفُ نَهْيٍ وَجَزْمٍ.", "en": "Prohibition particle that governs the jussive (jazm)." } },
+        { "surface": { "full": "تَحْتَقِرْ", "smart": "تَحْتَقِرْ", "bare": "تحتقر" }, "lex": "ihtaqara", "pos": "verb",
+          "grammar": ["la-nahiya", "form-viii-verbs"],
+          "irab": { "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».", "en": "Present verb in jussive after لا الناهية, marked by sukun; hidden subject «you»." } },
+        { "surface": { "full": "أَحَدًا", "smart": "أَحَدًا", "bare": "أحدا" }, "lex": "ahad", "pos": "noun", "punctAfter": "،",
+          "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.", "en": "Direct object in nasb with tanwin fatha." } },
+        { "surface": { "full": "وَلَا", "smart": "ولا", "bare": "ولا" }, "lex": "la-nahiya", "pos": "part",
+          "grammar": ["la-nahiya"],
+          "segments": [ { "form": "وَ", "lex": "wa", "pos": "conj" }, { "form": "لَا", "lex": "la-nahiya", "pos": "part" } ],
+          "irab": { "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» نَاهِيَةٌ جَازِمَةٌ.", "en": "The و conjoins; لا is the jussive-governing prohibition particle." } },
+        { "surface": { "full": "تَتَكَلَّمْ", "smart": "تَتَكَلَّمْ", "bare": "تتكلم" }, "lex": "takallama", "pos": "verb",
+          "grammar": ["la-nahiya"],
+          "irab": { "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ السُّكُونُ.", "en": "Present verb in jussive, marked by sukun." } },
+        { "surface": { "full": "كَثِيرًا", "smart": "كَثِيرًا", "bare": "كثيرا" }, "lex": "kathir", "pos": "noun", "punctAfter": ".", "quoteAfter": "»",
+          "irab": { "ar": "نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ مَنْصُوبٌ (أَيْ: كَلَامًا كَثِيرًا).", "en": "Stands in for the absolute object, in nasb — i.e. \"(speech) that is much\"." } }
+      ]
+    },
+    {
+      "id": "s7",
+      "audio": [12300, 17000],
+      "translation": {
+        "en": "\"Indeed knowledge is a trust, and indeed the people are watching you.\"",
+        "tr": "\"Şüphesiz ilim bir emanettir ve insanlar sana bakıyorlar.\""
+      },
+      "tokens": [
+        { "surface": { "full": "إِنَّ", "smart": "إِنَّ", "bare": "إن" }, "lex": "inna", "pos": "part", "quoteBefore": "«",
+          "grammar": ["inna-wa-akhawatuha"],
+          "irab": { "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، تَنْصِبُ الِاسْمَ وَتَرْفَعُ الْخَبَرَ.", "en": "Emphasis particle: puts its noun in nasb and its predicate in raf'." } },
+        { "surface": { "full": "الْعِلْمَ", "smart": "العِلْمَ", "bare": "العلم" }, "lex": "ilm", "pos": "noun",
+          "grammar": ["inna-wa-akhawatuha"],
+          "irab": { "ar": "اسْمُ إِنَّ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.", "en": "The noun (ism) of إنّ, in nasb with fatha." } },
+        { "surface": { "full": "أَمَانَةٌ", "smart": "أَمَانَةٌ", "bare": "أمانة" }, "lex": "amana", "pos": "noun", "punctAfter": "،",
+          "grammar": ["inna-wa-akhawatuha"],
+          "irab": { "ar": "خَبَرُ إِنَّ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.", "en": "The predicate (khabar) of إنّ, in raf' with damma." } },
+        { "surface": { "full": "وَإِنَّ", "smart": "وإِنَّ", "bare": "وإن" }, "lex": "inna", "pos": "part",
+          "grammar": ["inna-wa-akhawatuha"],
+          "segments": [ { "form": "وَ", "lex": "wa", "pos": "conj" }, { "form": "إِنَّ", "lex": "inna", "pos": "part" } ],
+          "irab": { "ar": "الْوَاوُ عَاطِفَةٌ، وَ«إِنَّ» حَرْفُ تَوْكِيدٍ وَنَصْبٍ.", "en": "Conjoined إنّ." } },
+        { "surface": { "full": "النَّاسَ", "smart": "النَّاسَ", "bare": "الناس" }, "lex": "nas", "pos": "noun",
+          "grammar": ["inna-wa-akhawatuha"],
+          "irab": { "ar": "اسْمُ إِنَّ مَنْصُوبٌ.", "en": "The ism of إنّ, in nasb." } },
+        { "surface": { "full": "يَنْظُرُونَ", "smart": "يَنْظُرُونَ", "bare": "ينظرون" }, "lex": "nazara", "pos": "verb",
+          "irab": { "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ، وَالْوَاوُ فَاعِلٌ، وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ.", "en": "Present verb, raf' shown by keeping the ن (five verbs); the و is the subject; the clause is the khabar of إنّ." } },
+        { "surface": { "full": "إِلَيْكَ", "smart": "إِلَيْكَ", "bare": "إليك" }, "lex": "ila", "pos": "prep", "punctAfter": ".", "quoteAfter": "»",
+          "grammar": ["huruf-jarr"],
+          "segments": [ { "form": "إِلَيْ", "lex": "ila", "pos": "prep" }, { "form": "كَ", "lex": "pron-2ms", "pos": "pron" } ],
+          "irab": { "ar": "إِلَى حَرْفُ جَرٍّ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ.", "en": "Preposition إلى with the attached ك in the position of jarr." } }
+      ]
+    }
+  ]
+}

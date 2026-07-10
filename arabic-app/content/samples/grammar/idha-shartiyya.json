@@ -1,0 +1,18 @@
+{
+  "id": "idha-shartiyya",
+  "title": { "ar": "إِذَا الشَّرْطِيَّة", "en": "Conditional idha" },
+  "level": 2,
+  "group": "nahw",
+  "classicalSources": ["قطر الندى (ابن هشام)", "الكافية (ابن الحاجب)"],
+  "explanation": { "en": "إِذَا is an adverb of future time carrying conditional meaning (\"when/whenever\"): ظرف لما يستقبل من الزمان متضمن معنى الشرط. Unlike إِنْ, it does not put verbs in jazm in standard prose — its verb is usually a past form understood as future: إِذَا دَخَلْتَ الْبَصْرَةَ (when you enter Basra). When the answer clause is a future statement, request, or nominal sentence, it is introduced by ف: فَسَيَأْتِيكَ النَّاسُ. Ibn Hisham treats إذا at length in Qatr al-Nada." },
+  "examples": [
+    { "ar": "إِذَا دَخَلْتَ الْبَصْرَةَ فَسَيَأْتِيكَ النَّاسُ.", "en": "When you enter Basra, the people will come to you.", "sourceStory": "wasiyyat-abi-hanifa-L2", "sentence": "s4" },
+    { "ar": "إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ.", "en": "When Allah's help and the victory come… (Quran 110:1)" }
+  ],
+  "commonMistakes": [
+    { "wrong": "إذا تدخلْ البصرةَ", "right": "إذا دخلتَ البصرةَ", "why": { "en": "Treating إذا like إنْ and jazming the verb. In prose إذا does not govern jazm; it prefers a past-tense verb with future meaning." } },
+    { "wrong": "إذا دخلتَ البصرةَ سيأتيك الناسُ", "right": "إذا دخلتَ البصرةَ فسيأتيك الناسُ", "why": { "en": "When the answer clause starts with س/سوف (or is a command or nominal sentence), it must be tied with the answer ف." } }
+  ],
+  "relatedNotes": ["la-nahiya"],
+  "gameSeeds": { "spotTheError": true }
+}

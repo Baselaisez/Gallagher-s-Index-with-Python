@@ -15,11 +15,35 @@
   "version": "0.1.0",
   "access": "free",
   "chapters": [
-    { "n": 1, "title": { "ar": "الوَدَاع", "en": "The Farewell" }, "audio": "audio/chapter-1.mp3" }
+    {
+      "n": 1,
+      "title": {
+        "ar": "الوَدَاع",
+        "en": "The Farewell"
+      },
+      "audio": "audio/chapter-1.mp3"
+    },
+    {
+      "n": 2,
+      "title": {
+        "ar": "الوَصَايَا الأُولَى",
+        "en": "The First Counsels"
+      },
+      "audio": "audio/chapter-2.mp3"
+    }
   ],
   "siblings": [
-    { "id": "wasiyyat-abi-hanifa-L4", "level": 4, "status": "planned" },
-    { "id": "wasiyyat-abi-hanifa-L6", "level": 6, "status": "planned", "note": "Original classical text — verify wording against a printed edition (e.g. al-Khatib al-Baghdadi's Tarikh Baghdad / manaqib literature) before authoring." }
+    {
+      "id": "wasiyyat-abi-hanifa-L4",
+      "level": 4,
+      "status": "planned"
+    },
+    {
+      "id": "wasiyyat-abi-hanifa-L6",
+      "level": 6,
+      "status": "planned",
+      "note": "Original classical text — verify wording against a printed edition (e.g. al-Khatib al-Baghdadi's Tarikh Baghdad / manaqib literature) before authoring."
+    }
   ],
   "attribution": {
     "ar": "إعادة صياغة مبسّطة لوصية الإمام أبي حنيفة (ت ١٥٠هـ) لتلميذه يوسف بن خالد السمتي عند عودته إلى البصرة.",
