@@ -1,0 +1,598 @@
+<title>Qissa — Arabic Reader Prototype</title>
+<style>
+  :root {
+    --ground: #FAF6EE;
+    --panel: #FFFDF7;
+    --ink: #22303A;
+    --ink-soft: #5A6B76;
+    --line: #E4DCCB;
+    --accent: #0E7C74;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(14,124,116,.10);
+    --danger: #B23B3B;
+    --ok: #2E7D46;
+    --lvl1: #2E7D46;
+    --lvl2: #0E7C74;
+    --lvl3: #B07A1E;
+    --lvl4: #B23B3B;
+    --shadow: 0 12px 40px rgba(34,48,58,.18);
+    --radius: 14px;
+    --ar-font: "Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic", "Amiri", "Scheherazade New", serif;
+    --body-font: Charter, Georgia, "Times New Roman", serif;
+    --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #101A20;
+      --panel: #16232B;
+      --ink: #E9E2D2;
+      --ink-soft: #97A6AD;
+      --line: #27363F;
+      --accent: #45C2B4;
+      --accent-ink: #08221F;
+      --accent-soft: rgba(69,194,180,.14);
+      --danger: #E07A7A;
+      --ok: #7CC98F;
+      --lvl1: #7CC98F;
+      --lvl2: #45C2B4;
+      --lvl3: #D9A94E;
+      --lvl4: #E07A7A;
+      --shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #FAF6EE; --panel: #FFFDF7; --ink: #22303A; --ink-soft: #5A6B76; --line: #E4DCCB;
+    --accent: #0E7C74; --accent-ink: #FFFFFF; --accent-soft: rgba(14,124,116,.10);
+    --danger: #B23B3B; --ok: #2E7D46;
+    --lvl1: #2E7D46; --lvl2: #0E7C74; --lvl3: #B07A1E; --lvl4: #B23B3B;
+    --shadow: 0 12px 40px rgba(34,48,58,.18);
+  }
+  :root[data-theme="dark"] {
+    --ground: #101A20; --panel: #16232B; --ink: #E9E2D2; --ink-soft: #97A6AD; --line: #27363F;
+    --accent: #45C2B4; --accent-ink: #08221F; --accent-soft: rgba(69,194,180,.14);
+    --danger: #E07A7A; --ok: #7CC98F;
+    --lvl1: #7CC98F; --lvl2: #45C2B4; --lvl3: #D9A94E; --lvl4: #E07A7A;
+    --shadow: 0 12px 40px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--body-font); line-height: 1.55;
+  }
+  .wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.1rem 6rem; }
+
+  header.app {
+    padding: 1.6rem 0 1rem; border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    font-family: var(--ui-font); font-size: .68rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+  h1.story-title {
+    font-family: var(--ar-font); font-size: 2.1rem; margin: .35rem 0 .1rem;
+    direction: rtl; text-align: right; text-wrap: balance; line-height: 1.4; font-weight: 600;
+  }
+  .story-sub { color: var(--ink-soft); font-size: .92rem; margin: 0; }
+  .meta-row { display: flex; gap: .5rem; margin-top: .8rem; flex-wrap: wrap; align-items: center; }
+  .chip {
+    font-family: var(--ui-font); font-size: .72rem; font-weight: 600;
+    padding: .22rem .6rem; border-radius: 999px; border: 1px solid var(--line);
+    color: var(--ink-soft); background: var(--panel);
+  }
+  .chip.level { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  nav.controls {
+    position: sticky; top: 0; z-index: 5; background: var(--ground);
+    padding: .7rem 0; border-bottom: 1px solid var(--line);
+    display: flex; gap: .55rem; align-items: center; flex-wrap: wrap;
+    font-family: var(--ui-font);
+  }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--panel); }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-soft); cursor: pointer;
+    font-family: var(--ar-font); font-size: .95rem; padding: .3rem .75rem;
+  }
+  .seg button.on { background: var(--accent); color: var(--accent-ink); }
+  .tbtn {
+    border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft);
+    border-radius: 999px; padding: .32rem .7rem; cursor: pointer;
+    font-family: var(--ui-font); font-size: .76rem; font-weight: 600;
+  }
+  .tbtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .tbtn:focus-visible, .seg button:focus-visible, .word:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .spacer { flex: 1; }
+  .deckbtn { position: relative; }
+  .deckbtn .count {
+    position: absolute; top: -7px; inset-inline-end: -7px; background: var(--danger); color: #fff;
+    font-size: .62rem; border-radius: 999px; min-width: 1.05rem; height: 1.05rem;
+    display: grid; place-items: center; padding: 0 .2rem;
+  }
+
+  .chapter-head {
+    font-family: var(--ui-font); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 1.6rem 0 .4rem; display: flex; align-items: center; gap: .7rem;
+  }
+  .chapter-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .chapter-title-ar { font-family: var(--ar-font); font-size: 1.15rem; color: var(--ink); letter-spacing: 0; text-transform: none; }
+
+  section.sentence { margin: 1.15rem 0; padding: .2rem 0; border-radius: var(--radius); }
+  section.sentence.playing { background: var(--accent-soft); }
+  .ar-line {
+    direction: rtl; text-align: right; font-family: var(--ar-font);
+    font-size: var(--ar-size, 1.7rem); line-height: 2.15; padding: 0 .3rem;
+  }
+  .word {
+    cursor: pointer; border-radius: 6px; padding: 0 .07em;
+    text-decoration-thickness: 2px; text-underline-offset: 7px;
+  }
+  .word:hover { background: var(--accent-soft); }
+  .word.active { background: var(--accent); color: var(--accent-ink); }
+  .underlines .word[data-lvl="1"] { text-decoration: underline; text-decoration-color: var(--lvl1); }
+  .underlines .word[data-lvl="2"] { text-decoration: underline; text-decoration-color: var(--lvl2); }
+  .underlines .word[data-lvl="3"] { text-decoration: underline; text-decoration-color: var(--lvl3); }
+  .underlines .word[data-lvl="4"] { text-decoration: underline; text-decoration-color: var(--lvl4); }
+  .sent-tools { display: flex; gap: .6rem; align-items: center; padding: .15rem .3rem 0; font-family: var(--ui-font); }
+  .play {
+    border: 1px solid var(--line); background: var(--panel); color: var(--accent); cursor: pointer;
+    width: 1.7rem; height: 1.7rem; border-radius: 999px; font-size: .75rem; line-height: 1;
+  }
+  .trans { color: var(--ink-soft); font-size: .95rem; }
+  .trans[hidden] { display: none; }
+
+  .legend { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: .8rem;
+    font-family: var(--ui-font); font-size: .74rem; color: var(--ink-soft);
+    display: flex; gap: 1rem; flex-wrap: wrap; }
+  .legend .sw { display: inline-block; width: .9em; height: 3px; border-radius: 2px; vertical-align: middle; margin-inline-end: .3em; }
+  footer.note { margin-top: 1.2rem; font-family: var(--ui-font); font-size: .74rem; color: var(--ink-soft); }
+
+  /* ---------- bottom sheet ---------- */
+  .scrim {
+    position: fixed; inset: 0; background: rgba(10,16,20,.45); z-index: 9; border: 0; padding: 0;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .scrim.show { opacity: 1; pointer-events: auto; }
+  .sheet {
+    position: fixed; z-index: 10; left: 50%; bottom: 0; transform: translate(-50%, 105%);
+    width: min(40rem, 100%); background: var(--panel); border: 1px solid var(--line); border-bottom: 0;
+    border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow);
+    transition: transform .25s cubic-bezier(.3,.9,.35,1); max-height: 78vh; overflow-y: auto;
+  }
+  .sheet.show { transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) {
+    .sheet, .scrim { transition: none; }
+  }
+  .sheet-inner { padding: 1rem 1.2rem 1.4rem; }
+  .grab { width: 2.4rem; height: 4px; border-radius: 2px; background: var(--line); margin: .6rem auto 0; }
+  .tabs { display: flex; gap: .4rem; margin: .4rem 0 .9rem; font-family: var(--ui-font); }
+  .tabs button {
+    border: 0; background: transparent; color: var(--ink-soft); font-weight: 600; font-size: .8rem;
+    padding: .35rem .6rem; cursor: pointer; border-bottom: 2px solid transparent;
+  }
+  .tabs button.on { color: var(--accent); border-bottom-color: var(--accent); }
+  .lemma { font-family: var(--ar-font); font-size: 2.2rem; direction: rtl; text-align: right; line-height: 1.5; margin: 0; }
+  .facts { display: flex; gap: .45rem; flex-wrap: wrap; margin: .5rem 0 .7rem; }
+  .gloss { font-size: 1.02rem; margin: .2rem 0; }
+  .gloss small { color: var(--ink-soft); font-family: var(--ui-font); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; margin-inline-end: .45rem; }
+  .segrow {
+    direction: rtl; display: flex; gap: .4rem; flex-wrap: wrap; margin: .6rem 0;
+    font-family: var(--ar-font); font-size: 1.25rem;
+  }
+  .segrow .seg-item { background: var(--accent-soft); border: 1px dashed var(--accent); border-radius: 8px; padding: .1rem .55rem; }
+  .segrow .seg-item small { display: block; font-family: var(--ui-font); font-size: .62rem; color: var(--ink-soft); direction: ltr; text-align: center; }
+  .sheet-actions { display: flex; gap: .6rem; margin-top: 1rem; font-family: var(--ui-font); }
+  .btn {
+    border: 1px solid var(--line); border-radius: 10px; padding: .55rem .9rem; cursor: pointer;
+    font-family: var(--ui-font); font-weight: 600; font-size: .84rem; background: var(--panel); color: var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.saved { background: var(--ok); border-color: var(--ok); color: #fff; }
+
+  .gnote h3 { font-size: 1.05rem; margin: .2rem 0 .4rem; }
+  .gnote .ar-inline { font-family: var(--ar-font); font-size: 1.25em; }
+  .gnote p { margin: .4rem 0; font-size: .95rem; }
+  .ex { border-inline-start: 3px solid var(--accent); padding: .3rem .8rem; margin: .55rem 0; background: var(--accent-soft); border-radius: 0 8px 8px 0; }
+  .ex .ar { font-family: var(--ar-font); font-size: 1.35rem; direction: rtl; text-align: right; }
+  .ex .en { color: var(--ink-soft); font-size: .88rem; }
+  .mistake { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .8rem; margin: .6rem 0; }
+  .mistake .wrong { color: var(--danger); text-decoration: line-through; font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; }
+  .mistake .right { color: var(--ok); font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; display: inline-block; margin-inline-start: .8rem; }
+  .mistake .why { font-size: .87rem; color: var(--ink-soft); margin-top: .3rem; }
+  .mlabel { font-family: var(--ui-font); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--danger); font-weight: 700; }
+  .planned { color: var(--ink-soft); font-size: .9rem; font-style: italic; }
+
+  /* ---------- deck ---------- */
+  .deck-card {
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--ground);
+    padding: 1.4rem 1rem; text-align: center; margin: .8rem 0;
+  }
+  .deck-card .front { font-family: var(--ar-font); font-size: 2.6rem; line-height: 1.6; }
+  .deck-card .step { color: var(--ink-soft); font-family: var(--ui-font); font-size: .75rem; margin-top: .6rem; }
+  .deck-list { list-style: none; margin: .6rem 0; padding: 0; }
+  .deck-list li {
+    display: flex; align-items: center; gap: .7rem; padding: .45rem .2rem; border-bottom: 1px solid var(--line);
+  }
+  .deck-list .w { font-family: var(--ar-font); font-size: 1.3rem; direction: rtl; }
+  .deck-list .g { color: var(--ink-soft); font-size: .85rem; flex: 1; }
+  .deck-list button { border: 0; background: none; color: var(--danger); cursor: pointer; font-size: .8rem; }
+  .empty { color: var(--ink-soft); font-size: .9rem; }
+</style>
+
+<div class="wrap">
+  <header class="app">
+    <div class="eyebrow">Qissa · reader prototype v0.1</div>
+    <h1 class="story-title">وَصِيَّةُ أَبِي حَنِيفَةَ</h1>
+    <p class="story-sub">Abu Hanifa's testament to his student Yusuf ibn Khalid al-Samti — Level 2 retelling</p>
+    <div class="meta-row">
+      <span class="chip level">Level 2 · أساسي</span>
+      <span class="chip">Chapter 1 of 1 (sample)</span>
+      <span class="chip">Free story</span>
+    </div>
+  </header>
+
+  <nav class="controls" aria-label="Reading controls">
+    <div class="seg" role="group" aria-label="Tashkeel">
+      <button data-layer="full" class="on">كَامِل</button>
+      <button data-layer="smart">ذكي</button>
+      <button data-layer="bare">بدون</button>
+    </div>
+    <button class="tbtn on" id="ulToggle" aria-pressed="true">Levels</button>
+    <div class="seg" role="group" aria-label="Translation" id="transSeg">
+      <button data-tr="off" style="font-family:var(--ui-font);font-size:.76rem">–</button>
+      <button data-tr="en" class="on" style="font-family:var(--ui-font);font-size:.76rem">EN</button>
+      <button data-tr="tr" style="font-family:var(--ui-font);font-size:.76rem">TR</button>
+    </div>
+    <button class="tbtn" id="fontMinus" aria-label="Smaller text">A−</button>
+    <button class="tbtn" id="fontPlus" aria-label="Larger text">A+</button>
+    <span class="spacer"></span>
+    <button class="tbtn deckbtn" id="deckOpen">Deck <span class="count" id="deckCount" hidden>0</span></button>
+  </nav>
+
+  <div class="chapter-head"><span>Chapter 1</span><span class="chapter-title-ar">الوَدَاع</span></div>
+  <main id="story" class="underlines"></main>
+
+  <div class="legend">
+    <span><span class="sw" style="background:var(--lvl1)"></span>Level 1</span>
+    <span><span class="sw" style="background:var(--lvl2)"></span>Level 2</span>
+    <span><span class="sw" style="background:var(--lvl3)"></span>Level 3</span>
+    <span>Tap any word for meaning &amp; grammar · tap ▶ to hear the sentence</span>
+  </div>
+  <footer class="note">
+    Prototype validating the content-package format (<code>content/samples/wasiyyat-abi-hanifa</code>).
+    Sentence audio uses your device's Arabic voice as a stand-in for studio narration.
+    Saved words persist on this device.
+  </footer>
+</div>
+
+<button class="scrim" id="scrim" aria-label="Close panel"></button>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Word details">
+  <div class="grab"></div>
+  <div class="sheet-inner" id="sheetInner"></div>
+</div>
+
+<script>
+// ---------- content package (embedded copy of content/samples/wasiyyat-abi-hanifa) ----------
+const GLOSSARY = {
+  "arada":{lemma:"أَرَادَ",root:"ر و د",pos:"verb",form:"IV",gloss:{en:"to want, to intend",tr:"istemek"},level:2},
+  "rajaa":{lemma:"رَجَعَ",root:"ر ج ع",pos:"verb",form:"I",gloss:{en:"to return",tr:"dönmek"},level:1},
+  "madina":{lemma:"مَدِينَة",root:"م د ن",pos:"noun",plural:"مُدُن",gloss:{en:"city",tr:"şehir"},level:1},
+  "dhahaba":{lemma:"ذَهَبَ",root:"ذ ه ب",pos:"verb",form:"I",gloss:{en:"to go",tr:"gitmek"},level:1},
+  "muallim":{lemma:"مُعَلِّم",root:"ع ل م",pos:"noun",gloss:{en:"teacher",tr:"öğretmen"},level:1},
+  "waddaa":{lemma:"وَدَّعَ",root:"و د ع",pos:"verb",form:"II",gloss:{en:"to bid farewell",tr:"vedalaşmak"},level:3},
+  "qala":{lemma:"قَالَ",root:"ق و ل",pos:"verb",form:"I",gloss:{en:"to say",tr:"demek, söylemek"},level:1},
+  "samia":{lemma:"سَمِعَ",root:"س م ع",pos:"verb",form:"I",gloss:{en:"to hear, to listen",tr:"duymak, dinlemek"},level:1},
+  "wasiyya":{lemma:"وَصِيَّة",root:"و ص ي",pos:"noun",plural:"وَصَايَا",gloss:{en:"testament, parting advice",tr:"vasiyet"},level:3},
+  "ab":{lemma:"أَب",root:"أ ب و",pos:"noun",gloss:{en:"father (here: the kunya Abu Hanifa)",tr:"baba (künye: Ebu)"},level:1},
+  "ila":{lemma:"إِلَى",pos:"prep",gloss:{en:"to, towards",tr:"-e, -e doğru"},level:1},
+  "li":{lemma:"لِ",pos:"prep",gloss:{en:"to, for",tr:"için, -e"},level:1},
+  "li-taleel":{lemma:"لِـ (التعليل)",pos:"particle",gloss:{en:"so that, in order to (+ subjunctive)",tr:"-mek için"},level:2},
+  "an":{lemma:"أَنْ",pos:"particle",gloss:{en:"that, to (+ subjunctive)",tr:"-mek/-mak (masdariyye)"},level:2},
+  "ya":{lemma:"يَا",pos:"particle",gloss:{en:"O! (vocative)",tr:"ey (nida)"},level:1},
+  "yusuf":{lemma:"يُوسُف",pos:"proper name",gloss:{en:"Yusuf ibn Khalid al-Samti, the student",tr:"Yusuf (öğrenci)"},level:0},
+  "hanifa":{lemma:"حَنِيفَة",pos:"proper name",gloss:{en:"Hanifa (in the kunya Abu Hanifa)",tr:"Hanife"},level:0},
+  "al-basra":{lemma:"الْبَصْرَة",pos:"proper name",gloss:{en:"Basra (city in Iraq)",tr:"Basra"},level:0},
+  "pron-3ms":{lemma:"ـهُ",pos:"pronoun",gloss:{en:"him / his (attached)",tr:"onu / onun"},level:1},
+  "pron-1s":{lemma:"ـي",pos:"pronoun",gloss:{en:"my / me (attached)",tr:"benim / beni"},level:1}
+};
+
+const SENTENCES = [
+  { id:"s1",
+    translation:{en:"Yusuf wanted to return to his city, Basra.",tr:"Yusuf, şehri Basra'ya dönmek istedi."},
+    tokens:[
+      {s:{full:"أَرَادَ",smart:"أَرَادَ",bare:"أراد"},lex:"arada",grammar:["form-iv-verbs"]},
+      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf"},
+      {s:{full:"أَنْ",smart:"أَنْ",bare:"أن"},lex:"an",grammar:["an-masdariyya"]},
+      {s:{full:"يَرْجِعَ",smart:"يَرْجِعَ",bare:"يرجع"},lex:"rajaa",grammar:["an-masdariyya"]},
+      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila"},
+      {s:{full:"مَدِينَتِهِ",smart:"مَدِينَتِهِ",bare:"مدينته"},lex:"madina",
+       segments:[{form:"مَدِينَةِ",lex:"madina"},{form:"هِ",lex:"pron-3ms"}]},
+      {s:{full:"الْبَصْرَةِ",smart:"البَصْرَة",bare:"البصرة"},lex:"al-basra",punctAfter:"."}
+    ]},
+  { id:"s2",
+    translation:{en:"He went to his teacher, Abu Hanifa, to bid him farewell.",tr:"Vedalaşmak için hocası Ebu Hanife'ye gitti."},
+    tokens:[
+      {s:{full:"ذَهَبَ",smart:"ذَهَبَ",bare:"ذهب"},lex:"dhahaba"},
+      {s:{full:"إِلَى",smart:"إِلَى",bare:"إلى"},lex:"ila"},
+      {s:{full:"مُعَلِّمِهِ",smart:"مُعَلِّمِهِ",bare:"معلمه"},lex:"muallim",grammar:["idafa-definiteness"],
+       segments:[{form:"مُعَلِّمِ",lex:"muallim"},{form:"هِ",lex:"pron-3ms"}]},
+      {s:{full:"أَبِي",smart:"أَبِي",bare:"أبي"},lex:"ab",grammar:["five-nouns"]},
+      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa"},
+      {s:{full:"لِيُوَدِّعَهُ",smart:"لِيُوَدِّعَهُ",bare:"ليودعه"},lex:"waddaa",grammar:["lam-taleel","form-ii-verbs"],punctAfter:".",
+       segments:[{form:"لِ",lex:"li-taleel"},{form:"يُوَدِّعَ",lex:"waddaa"},{form:"هُ",lex:"pron-3ms"}]}
+    ]},
+  { id:"s3",
+    translation:{en:"Abu Hanifa said to him: “O Yusuf, listen to my testament.”",tr:"Ebu Hanife ona dedi ki: “Ey Yusuf, vasiyetimi dinle.”"},
+    tokens:[
+      {s:{full:"قَالَ",smart:"قَالَ",bare:"قال"},lex:"qala",grammar:["hollow-verbs"]},
+      {s:{full:"لَهُ",smart:"لَهُ",bare:"له"},lex:"li",segments:[{form:"لَ",lex:"li"},{form:"هُ",lex:"pron-3ms"}]},
+      {s:{full:"أَبُو",smart:"أَبُو",bare:"أبو"},lex:"ab",grammar:["five-nouns"]},
+      {s:{full:"حَنِيفَةَ",smart:"حَنِيفَة",bare:"حنيفة"},lex:"hanifa",punctAfter:":"},
+      {s:{full:"يَا",smart:"يَا",bare:"يا"},lex:"ya",quoteBefore:"«"},
+      {s:{full:"يُوسُفُ",smart:"يُوسُفُ",bare:"يوسف"},lex:"yusuf",grammar:["vocative-munada"],punctAfter:"،"},
+      {s:{full:"اسْمَعْ",smart:"اسْمَعْ",bare:"اسمع"},lex:"samia",grammar:["imperative-amr"]},
+      {s:{full:"وَصِيَّتِي",smart:"وَصِيَّتِي",bare:"وصيتي"},lex:"wasiyya",punctAfter:".",quoteAfter:"»",
+       segments:[{form:"وَصِيَّةَ",lex:"wasiyya"},{form:"ي",lex:"pron-1s"}]}
+    ]}
+];
+
+const GRAMMAR = {
+  "imperative-amr": {
+    title:{ar:"فِعْل الأَمْر",en:"The Imperative"},
+    level:2,
+    explanation:"The imperative commands someone to do something. Build it from the present-tense stem: drop the prefix, add a helping alif if needed. From تَسْمَعُ (you listen) → اسْمَعْ (listen!). The final letter takes sukun.",
+    examples:[
+      {ar:"اسْمَعْ وَصِيَّتِي.",en:"Listen to my testament. — from this story"},
+      {ar:"اُكْتُبْ دَرْسَكَ.",en:"Write your lesson."},
+      {ar:"قُلِ الْحَقَّ.",en:"Speak the truth (hollow verb: قال → قُلْ)."}
+    ],
+    mistakes:[
+      {wrong:"اِسْمَعُ وصيتي",right:"اسْمَعْ وصيتي",why:"Learners keep the present-tense damma on the last letter. The imperative ends in sukun."},
+      {wrong:"أَسْمَعْ!",right:"اسْمَعْ!",why:"Hamzat qat' instead of hamzat wasl — أَسْمَعُ means “I hear”. The Form-I imperative takes hamzat wasl, which drops in connected speech."},
+      {wrong:"اسْمَعْ إلى وصيتي",right:"اسْمَعْ وصيتي / اِسْتَمِعْ إِلَى وصيتي",why:"Transfer from English “listen TO”. سَمِعَ takes a direct object; only اِسْتَمَعَ (Form VIII) takes إلى."}
+    ]
+  },
+  "form-iv-verbs":{title:{ar:"الوزن الرابع أَفْعَلَ",en:"Form IV verbs"}},
+  "an-masdariyya":{title:{ar:"أَنْ المصدرية والمضارع المنصوب",en:"'an + subjunctive"}},
+  "idafa-definiteness":{title:{ar:"الإضافة والتعريف",en:"Idafa & definiteness"}},
+  "five-nouns":{title:{ar:"الأسماء الخمسة: أبو / أبي / أبا",en:"The five nouns (abu/abi/aba)"}},
+  "lam-taleel":{title:{ar:"لام التعليل",en:"lam of purpose"}},
+  "form-ii-verbs":{title:{ar:"الوزن الثاني فَعَّلَ",en:"Form II verbs"}},
+  "hollow-verbs":{title:{ar:"الفعل الأجوف",en:"Hollow verbs"}},
+  "vocative-munada":{title:{ar:"النداء والمنادى",en:"The vocative"}}
+};
+
+// ---------- state ----------
+const state = {
+  layer: "full",
+  underlines: true,
+  trans: "en",
+  arSize: 1.7,
+  deck: JSON.parse(localStorage.getItem("qissa-deck") || "[]")
+};
+
+// ---------- render story ----------
+const storyEl = document.getElementById("story");
+function levelBucket(l){ return l >= 4 ? 4 : l; }
+function renderStory(){
+  storyEl.innerHTML = "";
+  storyEl.classList.toggle("underlines", state.underlines);
+  SENTENCES.forEach((sen, si) => {
+    const sec = document.createElement("section");
+    sec.className = "sentence"; sec.dataset.id = sen.id;
+    const line = document.createElement("p");
+    line.className = "ar-line"; line.lang = "ar"; line.dir = "rtl";
+    line.style.setProperty("--ar-size", state.arSize + "rem");
+    sen.tokens.forEach((tok, ti) => {
+      if (tok.quoteBefore) line.appendChild(document.createTextNode(tok.quoteBefore));
+      const w = document.createElement("span");
+      w.className = "word"; w.tabIndex = 0; w.role = "button";
+      w.textContent = tok.s[state.layer];
+      const entry = GLOSSARY[tok.lex];
+      if (entry && entry.level > 0) w.dataset.lvl = levelBucket(entry.level);
+      w.addEventListener("click", () => openWord(tok, w));
+      w.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openWord(tok, w); } });
+      line.appendChild(w);
+      if (tok.punctAfter) line.appendChild(document.createTextNode(tok.punctAfter));
+      if (tok.quoteAfter) line.appendChild(document.createTextNode(tok.quoteAfter));
+      if (ti < sen.tokens.length - 1) line.appendChild(document.createTextNode(" "));
+    });
+    sec.appendChild(line);
+    const tools = document.createElement("div");
+    tools.className = "sent-tools";
+    const play = document.createElement("button");
+    play.className = "play"; play.textContent = "▶"; play.title = "Listen";
+    play.setAttribute("aria-label", "Listen to sentence " + (si + 1));
+    play.addEventListener("click", () => speak(sen, sec));
+    tools.appendChild(play);
+    const tr = document.createElement("span");
+    tr.className = "trans";
+    tr.textContent = state.trans !== "off" ? sen.translation[state.trans] : "";
+    tr.hidden = state.trans === "off";
+    tools.appendChild(tr);
+    sec.appendChild(tools);
+    storyEl.appendChild(sec);
+  });
+}
+
+// ---------- audio (device TTS stands in for studio narration) ----------
+let arVoice = null;
+function pickVoice(){
+  const vs = speechSynthesis.getVoices();
+  arVoice = vs.find(v => v.lang && v.lang.toLowerCase().startsWith("ar")) || null;
+}
+if ("speechSynthesis" in window) {
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(sen, sec){
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  document.querySelectorAll(".sentence.playing").forEach(s => s.classList.remove("playing"));
+  const text = sen.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ");
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "ar-SA"; u.rate = 0.85;
+  if (arVoice) u.voice = arVoice;
+  sec.classList.add("playing");
+  u.onend = u.onerror = () => sec.classList.remove("playing");
+  speechSynthesis.speak(u);
+}
+
+// ---------- bottom sheet ----------
+const sheet = document.getElementById("sheet");
+const scrim = document.getElementById("scrim");
+const sheetInner = document.getElementById("sheetInner");
+let activeWordEl = null;
+function closeSheet(){
+  sheet.classList.remove("show"); scrim.classList.remove("show");
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+}
+scrim.addEventListener("click", closeSheet);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+function chip(txt, cls){ return `<span class="chip ${cls||""}">${txt}</span>`; }
+
+function openWord(tok, el, tab){
+  if (activeWordEl) activeWordEl.classList.remove("active");
+  activeWordEl = el; if (el) el.classList.add("active");
+  const entry = GLOSSARY[tok.lex] || {lemma: tok.s.full, gloss:{en:"—",tr:"—"}, pos:""};
+  const hasGrammar = tok.grammar && tok.grammar.length;
+  const mode = tab || "word";
+  let html = "";
+  html += `<div class="tabs" role="tablist">
+    <button class="${mode==="word"?"on":""}" data-tab="word">Word</button>
+    ${hasGrammar ? `<button class="${mode==="grammar"?"on":""}" data-tab="grammar">Grammar</button>` : ""}
+  </div>`;
+
+  if (mode === "word") {
+    html += `<p class="lemma">${entry.lemma}</p><div class="facts">`;
+    if (entry.pos) html += chip(entry.pos);
+    if (entry.form) html += chip("Form " + entry.form);
+    if (entry.root) html += chip("root: <span style='font-family:var(--ar-font)'>" + entry.root + "</span>");
+    if (entry.plural) html += chip("pl. <span style='font-family:var(--ar-font)'>" + entry.plural + "</span>");
+    if (entry.level > 0) html += chip("Level " + entry.level, "level");
+    html += `</div>
+      <p class="gloss"><small>EN</small>${entry.gloss.en}</p>
+      <p class="gloss"><small>TR</small>${entry.gloss.tr}</p>`;
+    if (tok.segments) {
+      html += `<div class="segrow">` + tok.segments.map(sg => {
+        const e = GLOSSARY[sg.lex];
+        return `<span class="seg-item">${sg.form}<small>${e ? e.gloss.en : ""}</small></span>`;
+      }).join("") + `</div>`;
+    }
+    const saved = state.deck.some(d => d.lex === tok.lex);
+    html += `<div class="sheet-actions">
+      <button class="btn ${saved ? "saved" : "primary"}" id="saveBtn">${saved ? "✓ In your deck" : "＋ Save to flashcards"}</button>
+      ${hasGrammar ? `<button class="btn" id="toGrammar">Grammar note</button>` : ""}
+    </div>`;
+  } else {
+    tok.grammar.forEach(gid => {
+      const g = GRAMMAR[gid];
+      if (!g) return;
+      html += `<div class="gnote"><h3><span class="ar-inline">${g.title.ar}</span> — ${g.title.en}${g.level ? " " + chip("Level " + g.level, "level") : ""}</h3>`;
+      if (g.explanation) {
+        html += `<p>${g.explanation}</p>`;
+        (g.examples || []).forEach(x => html += `<div class="ex"><div class="ar" lang="ar">${x.ar}</div><div class="en">${x.en}</div></div>`);
+        if (g.mistakes && g.mistakes.length) {
+          html += `<p class="mlabel">أخطاء شائعة · Common mistakes</p>`;
+          g.mistakes.forEach(m => html += `<div class="mistake"><span class="wrong" lang="ar">${m.wrong}</span><span class="right" lang="ar">${m.right}</span><div class="why">${m.why}</div></div>`);
+        }
+      } else {
+        html += `<p class="planned">Full note planned — arrives with a content update, no app release needed.</p>`;
+      }
+      html += `</div>`;
+    });
+  }
+  sheetInner.innerHTML = html;
+  sheetInner.querySelectorAll("[data-tab]").forEach(b =>
+    b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
+  const sb = document.getElementById("saveBtn");
+  if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
+  const tg = document.getElementById("toGrammar");
+  if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
+  sheet.classList.add("show"); scrim.classList.add("show");
+}
+
+// ---------- deck ----------
+function persistDeck(){
+  localStorage.setItem("qissa-deck", JSON.stringify(state.deck));
+  const c = document.getElementById("deckCount");
+  c.hidden = state.deck.length === 0;
+  c.textContent = state.deck.length;
+}
+function toggleSave(tok){
+  const i = state.deck.findIndex(d => d.lex === tok.lex);
+  if (i >= 0) state.deck.splice(i, 1);
+  else {
+    const e = GLOSSARY[tok.lex];
+    state.deck.push({lex: tok.lex, bare: tok.s.bare, lemma: e.lemma, gloss: e.gloss.en});
+  }
+  persistDeck();
+}
+let reviewIdx = 0, reviewStep = 0;
+function openDeck(){
+  reviewIdx = 0; reviewStep = 0;
+  renderDeck();
+  sheet.classList.add("show"); scrim.classList.add("show");
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+}
+function renderDeck(){
+  let html = `<div class="tabs"><button class="on">Your deck (${state.deck.length})</button></div>`;
+  if (!state.deck.length) {
+    html += `<p class="empty">No cards yet — tap a word in the story, then “Save to flashcards”.</p>`;
+  } else {
+    const card = state.deck[reviewIdx % state.deck.length];
+    const faces = [card.bare, card.lemma, card.lemma + " — " + card.gloss];
+    const steps = ["Recall it, then tap to reveal the vowels", "Tap to reveal the meaning", "Did you know it?"];
+    html += `<div class="deck-card" id="reviewCard" style="cursor:pointer">
+        <div class="front" lang="ar" dir="rtl">${reviewStep === 2 ? card.lemma : faces[reviewStep]}</div>
+        ${reviewStep === 2 ? `<div style="margin-top:.4rem">${card.gloss}</div>` : ""}
+        <div class="step">${steps[reviewStep]} · card ${(reviewIdx % state.deck.length) + 1}/${state.deck.length}</div>
+      </div>`;
+    if (reviewStep === 2) {
+      html += `<div class="sheet-actions" style="justify-content:center">
+        <button class="btn" id="againBtn">↻ Again</button>
+        <button class="btn primary" id="goodBtn">✓ Good</button>
+      </div>`;
+    }
+    html += `<ul class="deck-list">` + state.deck.map((d, i) =>
+      `<li><span class="w" lang="ar">${d.lemma}</span><span class="g">${d.gloss}</span><button data-del="${i}">remove</button></li>`).join("") + `</ul>`;
+  }
+  sheetInner.innerHTML = html;
+  const rc = document.getElementById("reviewCard");
+  if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
+  const next = () => { reviewIdx++; reviewStep = 0; renderDeck(); };
+  const gb = document.getElementById("goodBtn"); if (gb) gb.addEventListener("click", next);
+  const ab = document.getElementById("againBtn"); if (ab) ab.addEventListener("click", next);
+  sheetInner.querySelectorAll("[data-del]").forEach(b =>
+    b.addEventListener("click", () => { state.deck.splice(+b.dataset.del, 1); persistDeck(); renderDeck(); }));
+}
+
+// ---------- controls ----------
+document.querySelectorAll(".seg [data-layer]").forEach(b =>
+  b.addEventListener("click", () => {
+    state.layer = b.dataset.layer;
+    document.querySelectorAll(".seg [data-layer]").forEach(x => x.classList.toggle("on", x === b));
+    renderStory();
+  }));
+document.getElementById("ulToggle").addEventListener("click", e => {
+  state.underlines = !state.underlines;
+  e.currentTarget.classList.toggle("on", state.underlines);
+  e.currentTarget.setAttribute("aria-pressed", state.underlines);
+  storyEl.classList.toggle("underlines", state.underlines);
+});
+document.querySelectorAll("#transSeg [data-tr]").forEach(b =>
+  b.addEventListener("click", () => {
+    state.trans = b.dataset.tr;
+    document.querySelectorAll("#transSeg [data-tr]").forEach(x => x.classList.toggle("on", x === b));
+    renderStory();
+  }));
+document.getElementById("fontPlus").addEventListener("click", () => { state.arSize = Math.min(2.6, state.arSize + 0.15); renderStory(); });
+document.getElementById("fontMinus").addEventListener("click", () => { state.arSize = Math.max(1.2, state.arSize - 0.15); renderStory(); });
+document.getElementById("deckOpen").addEventListener("click", openDeck);
+
+renderStory();
+persistDeck();
+</script>
