@@ -21,7 +21,7 @@ and a lite/premium subscription model with continuously updated content.
 - [x] Competitive research (DuChinese + Arabic landscape) — `research/01-duchinese-competitive-research.md`
 - [x] Product spec v0.1 — `docs/02-product-spec.md`
 - [x] Content data model + pilot sample — `docs/03-content-data-model.md`, `content/samples/wasiyyat-abi-hanifa/`
-- [x] Interactive reader prototype v0.3 (tashkeel toggle, tap-word, sarf tables, i'rab, awamil, flashcards) — `prototype/reader.html`
+- [x] Interactive reader prototype (now v0.6 app shell) (tashkeel toggle, tap-word, sarf tables, i'rab, awamil, flashcards) — `prototype/reader.html`
 - [x] Grammar note library (14 notes: sarf / nahw / awamil, each with common-mistakes; classical sources cited: Emsile, Bina, Awamil, Izhar, al-Kafiya, Qatr al-Nada) — `content/samples/grammar/`
 - [x] Content validator — `tools/validate_content.py` (tashkeel-layer consistency, lex/grammar refs, audio spans, paradigm shapes)
 - [x] Wasiyya chapter 2 (the first counsels: إنّ وأخواتها، لا الناهية، إذا الشرطية) — 48 tokens, 100% i'rab coverage, 14 verb paradigms
@@ -33,6 +33,7 @@ and a lite/premium subscription model with continuously updated content.
 - [x] Real SRS scheduling for the deck (graded intervals, due badge, next-review forecast)
 - [x] innama-kaffa grammar note authored from the analyzer's suggestion and linked back into the analyzed hadith package (registry now 15 notes)
 - [x] Browser test suite — tools/smoke_test.js (Playwright/Chromium, 12 checks on both readers; caught 2 real UI bugs)
+- [x] Library / app shell (v0.6): home screen listing every package (editorial stories + analyzed uploads) with level, access, and per-story reading progress; single build carries all stories; standalone single-story builds auto-open
 - [ ] Deepen grammar notes from uploaded studies of al-Kafiya / Izhar / Qatr al-Nada (pending user uploads)
 - [ ] Wasiyya chapters 3+ and the level-4 sibling package
 - [ ] Flutter scaffold + backend v1 (see docs/04-analyzer-service.md for the store roadmap)
