@@ -1,0 +1,27 @@
+{
+  "id": "innama-kaffa",
+  "title": { "ar": "إِنَّمَا الْكَافَّة وَالْمَكْفُوفَة", "en": "innama — restriction (kaffa wa-makfufa)" },
+  "level": 3,
+  "group": "awamil",
+  "amil": "كَفَّتْ مَا إِنَّ عَنِ الْعَمَلِ — the attached ما neutralizes inna's government; the sentence returns to plain mubtada + khabar",
+  "classicalSources": ["الكافية (ابن الحاجب)", "قطر الندى (ابن هشام)", "إظهار الأسرار (البيركوي)"],
+  "explanation": {
+    "en": "When ما attaches to إِنَّ, the compound إِنَّمَا loses inna's governing power (the ما is called kaffa, 'the restrainer', and inna is makfufa, 'restrained'): no ism in nasb, no khabar — the sentence after it is an ordinary nominal sentence with both parts in raf'. In exchange, إنما adds the meaning of restriction (hasr): 'only, nothing but'. In the hadith: إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ — deeds are ONLY by intentions, with الأعمال in plain raf' as mubtada.",
+    "tr": "ما, إِنَّ'ye bitişince إِنَّمَا bileşiği إنّ'nin amelini kaybeder (bu ما'ya kâffe 'engelleyici', إنّ'ye mekfûfe denir): mansub isim ve haber kalmaz — sonrası mübteda ve haberi merfu, sıradan bir isim cümlesidir. Buna karşılık إنما hasr ('ancak, yalnızca') anlamı katar. Hadiste: إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ — ameller ANCAK niyetlere göredir; الأعمال merfu mübtedadır."
+  },
+  "examples": [
+    { "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ.", "en": "Deeds are only by intentions. (hadith)", "sourceStory": "deeds-are-by-intentions", "sentence": "s1" },
+    { "ar": "إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ.", "en": "The believers are but brothers. (Quran 49:10)" },
+    { "ar": "إِنَّ الْعِلْمَ أَمَانَةٌ / إِنَّمَا الْعِلْمُ أَمَانَةٌ.", "en": "Contrast: with إنّ the noun is mansub; with إنما it returns to raf'." }
+  ],
+  "commonMistakes": [
+    { "wrong": "إنما الأعمالَ بالنيات", "right": "إنما الأعمالُ بالنيات",
+      "why": { "en": "Keeping inna's nasb after إنما. The kaffa ما cancels the government — the noun goes back to raf'.",
+               "tr": "إنما'dan sonra إنّ'nin nasbını sürdürmek yanlıştır. Kâffe ما ameli düşürür — isim ref'e döner." } },
+    { "wrong": "إنما تفعلُه حسنٌ (بمعنى: الذي تفعله)", "right": "إنَّ ما تفعلُه حسنٌ",
+      "why": { "en": "Confusing fused إنما (restriction) with separate إنَّ + ما الموصولة ('that which'). When ما means 'what/that which', write it separately and inna keeps its government.",
+               "tr": "Bitişik إنما (hasr) ile ayrı إنَّ + ism-i mevsul ما ('şey ki') karıştırılıyor. ما 'şey' anlamındaysa ayrı yazılır ve إنّ ameline devam eder." } }
+  ],
+  "relatedNotes": ["inna-wa-akhawatuha"],
+  "gameSeeds": { "spotTheError": true }
+}

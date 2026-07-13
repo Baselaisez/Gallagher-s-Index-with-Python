@@ -29,6 +29,10 @@ and a lite/premium subscription model with continuously updated content.
 - [x] Bilingual EN/TR: UI language toggle in the reader; all grammar notes carry English and Turkish explanations and mistake notes
 - [x] Global grammar registry (`content/grammar/`) — same note everywhere a topic appears, in stories and uploads alike
 - [x] LLM analyzer ability — `tools/analyze_text.py`: upload classical Arabic → full package (tashkeel layers, EN/TR/AR i'rab, glossary, registry-linked grammar) → validated → standalone reader; demo package committed
+- [x] Flashcard games hub (v0.5): Match pairs, Endings/i'rab game (pick the correct final haraka in a real sentence), Spot-the-error (generated from every grammar note's common-mistakes) — all bilingual EN/TR
+- [x] Real SRS scheduling for the deck (graded intervals, due badge, next-review forecast)
+- [x] innama-kaffa grammar note authored from the analyzer's suggestion and linked back into the analyzed hadith package (registry now 15 notes)
+- [x] Browser test suite — tools/smoke_test.js (Playwright/Chromium, 12 checks on both readers; caught 2 real UI bugs)
 - [ ] Deepen grammar notes from uploaded studies of al-Kafiya / Izhar / Qatr al-Nada (pending user uploads)
 - [ ] Wasiyya chapters 3+ and the level-4 sibling package
 - [ ] Flutter scaffold + backend v1 (see docs/04-analyzer-service.md for the store roadmap)
