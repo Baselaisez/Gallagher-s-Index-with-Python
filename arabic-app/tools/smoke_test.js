@@ -212,6 +212,54 @@ if (!CHROME) {
     if (pressedAfter !== 'false') throw new Error('playAll aria-pressed after stop=' + pressedAfter);
   });
 
+  await check('grammar reference: search box and level filter narrow the list', async () => {
+    await page.keyboard.press('Escape');
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.ref-list', { timeout: 3000 });
+
+    const unfilteredCount = await page.locator('.ref-list li').count();
+    const totalNotes = await page.evaluate(() => Object.keys(GRAMMAR).length);
+    if (unfilteredCount !== totalNotes) {
+      throw new Error('unfiltered ref list=' + unfilteredCount + ' expected=' + totalNotes);
+    }
+
+    // Pick a query guaranteed to hit at least one note (its own English title),
+    // but not necessarily all of them — derived from page data, not hardcoded.
+    const sampleTitle = await page.evaluate(() => Object.values(GRAMMAR)[0].title.en);
+    const queryWord = sampleTitle.split(/\s+/)[0];
+    await page.locator('#refSearch').fill(queryWord);
+    const searchedCount = await page.locator('.ref-list li').count();
+    if (searchedCount < 1) throw new Error('search for "' + queryWord + '" matched nothing');
+    if (searchedCount >= unfilteredCount) {
+      throw new Error('search did not narrow the list: ' + searchedCount + ' >= ' + unfilteredCount);
+    }
+
+    // Clear the search, then apply a level filter and confirm the list changes
+    // to exactly the notes at that level (derived from GRAMMAR, not hardcoded).
+    await page.locator('#refSearch').fill('');
+    const clearedCount = await page.locator('.ref-list li').count();
+    if (clearedCount !== unfilteredCount) throw new Error('clearing search did not restore full list: ' + clearedCount);
+
+    const level = await page.evaluate(() => {
+      const levels = [...new Set(Object.values(GRAMMAR).map(g => g.level).filter(Boolean))];
+      return levels.sort((a, b) => a - b)[0];
+    });
+    const expectedForLevel = await page.evaluate(lvl =>
+      Object.values(GRAMMAR).filter(g => g.level === lvl).length, level);
+    await page.locator('#refLevels [data-level="' + level + '"]').click();
+    const leveledCount = await page.locator('.ref-list li').count();
+    if (leveledCount !== expectedForLevel) {
+      throw new Error('level ' + level + ' filter=' + leveledCount + ' expected=' + expectedForLevel);
+    }
+    if (leveledCount === unfilteredCount) throw new Error('level filter did not change the list');
+
+    // A query with no plausible match should show the localized empty state.
+    await page.locator('#refLevels [data-level="all"]').click();
+    await page.locator('#refSearch').fill('zzzzznonexistentzzzzz');
+    await page.waitForSelector('.ref-empty', { timeout: 3000 });
+    if (await page.locator('.ref-list li').count() !== 0) throw new Error('expected zero results for nonsense query');
+  });
+
   await check('back to library shows reading progress', async () => {
     await page.keyboard.press('Escape');
     await page.locator('#backLib').click();

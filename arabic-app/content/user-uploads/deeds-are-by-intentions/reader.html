@@ -241,6 +241,15 @@
   .ref-list .t-ar { font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; }
   .ref-list .t-en { color: var(--ink-soft); font-family: var(--ui-font); font-size: .8rem; flex: 1; }
   .ref-intro { font-size: .85rem; color: var(--ink-soft); font-family: var(--ui-font); margin: .2rem 0 .4rem; }
+  .ref-search-row { margin: .6rem 0 .5rem; }
+  .ref-search {
+    width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    color: var(--ink); font-family: var(--ui-font); font-size: .9rem; padding: .55rem .75rem;
+  }
+  .ref-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .ref-levels { flex-wrap: wrap; margin-bottom: .3rem; }
+  .ref-levels button { font-family: var(--ui-font); font-size: .78rem; padding: .3rem .7rem; }
+  .ref-empty { font-size: .88rem; color: var(--ink-soft); font-family: var(--ui-font); margin: 1.2rem 0; text-align: center; }
 
   /* ---------- library ---------- */
   .lib-mode .reader-only { display: none !important; }
@@ -439,6 +448,12 @@ Object.assign(L.en, {
 Object.assign(L.tr, {
   level:"Seviye",
   legendHelp:"Anlamı, صرف çekimi, إعراب ve grameri görmek için bir kelimeye dokunun · cümleyi dinlemek için ▶'a dokunun"
+});
+Object.assign(L.en, {
+  searchGrammar:"Search grammar topics…", allLevels:"All", noResults:"No grammar topics match your search."
+});
+Object.assign(L.tr, {
+  searchGrammar:"Gramer konularında ara…", allLevels:"Tümü", noResults:"Aramanızla eşleşen bir gramer konusu yok."
 });
 function ui(){ return L[state.uiLang] || L.en; }
 function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en || "") : (v || ""); }
@@ -677,6 +692,7 @@ function showSheet(){ sheet.classList.add("show"); scrim.classList.add("show"); 
 function closeSheet(){
   sheet.classList.remove("show"); scrim.classList.remove("show");
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  refQuery = ""; refLevel = "all"; // don't over-engineer persistence — reset on close
 }
 scrim.addEventListener("click", closeSheet);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
@@ -808,29 +824,104 @@ function renderNote(gid){
 }
 
 // ---------- grammar reference browser ----------
+// Search + level-filter state for the browse/index view. Reset whenever the
+// bottom sheet is closed (see closeSheet) — deliberately not persisted.
+let refQuery = "";
+let refLevel = "all";
+
+function escapeAttr(s){
+  return (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+// Case-insensitive, tashkeel-insensitive match against a note's title (ar/en/tr)
+// and explanation (en/tr). stripAr() only strips Arabic diacritics, so running it
+// over the whole haystack + query before a plain lowercase substring check makes
+// one comparison serve both the Arabic (tashkeel-stripped) and Latin (EN/TR) cases.
+function refNoteMatches(g, query){
+  const needle = stripAr(query || "").trim().toLowerCase();
+  if (!needle) return true;
+  const hay = stripAr([
+    g.title.ar, g.title.en, g.title.tr,
+    g.explanation && g.explanation.en, g.explanation && g.explanation.tr
+  ].filter(Boolean).join(" \n ")).toLowerCase();
+  return hay.includes(needle);
+}
+
+// Notes with no level are only shown under "All" (never under a specific level chip).
+function refLevelMatches(g, level){
+  if (level === "all") return true;
+  if (!g.level) return false;
+  return String(g.level) === String(level);
+}
+
+function refAvailableLevels(){
+  const set = new Set();
+  Object.values(GRAMMAR).forEach(g => { if (g.level) set.add(g.level); });
+  return [...set].sort((a, b) => a - b);
+}
+
+function refListHtml(){
+  let html = "";
+  let any = false;
+  REF_GROUPS.forEach(gr => {
+    const notes = Object.entries(GRAMMAR).filter(([, g]) =>
+      g.group === gr.id && refLevelMatches(g, refLevel) && refNoteMatches(g, refQuery));
+    if (!notes.length) return;
+    any = true;
+    html += `<div class="ref-group"><span class="ar">${gr.ar}</span><span>${gr.en}</span></div><ul class="ref-list">`;
+    notes.forEach(([id, g]) => {
+      html += `<li><button data-note="${id}"><span class="t-ar">${g.title.ar}</span><span class="t-en">${g.title.en}</span>${g.level ? chip("L" + g.level, "level") : ""}</button></li>`;
+    });
+    html += `</ul>`;
+  });
+  if (!any) html += `<p class="ref-empty">${ui().noResults}</p>`;
+  return html;
+}
+
+function bindRefListEvents(){
+  document.querySelectorAll("#refListWrap [data-note]").forEach(b =>
+    b.addEventListener("click", () => openRef(b.dataset.note)));
+}
+
+function refRerenderList(){
+  document.getElementById("refListWrap").innerHTML = refListHtml();
+  bindRefListEvents();
+}
+
+function bindRefIndexEvents(){
+  const search = document.getElementById("refSearch");
+  if (search) {
+    search.addEventListener("input", () => { refQuery = search.value; refRerenderList(); });
+  }
+  document.querySelectorAll("#refLevels [data-level]").forEach(b =>
+    b.addEventListener("click", () => {
+      refLevel = b.dataset.level;
+      document.querySelectorAll("#refLevels [data-level]").forEach(x => x.classList.toggle("on", x === b));
+      refRerenderList();
+    }));
+  bindRefListEvents();
+}
+
 function openRef(noteId){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
-  let html = "";
   if (noteId) {
-    html += `<div class="backrow"><button id="refBack">${ui().back}</button></div>` + renderNote(noteId);
+    sheetInner.innerHTML = `<div class="backrow"><button id="refBack">${ui().back}</button></div>` + renderNote(noteId);
+    const back = document.getElementById("refBack");
+    if (back) back.addEventListener("click", () => openRef());
   } else {
-    html += `<div class="tabs"><button class="on">${ui().refTitle}</button></div>
-      <p class="ref-intro"><span lang="ar" style="font-family:var(--ar-font)">الأمثلة المختلفة، بناء الأفعال، العوامل، الكافية، قطر الندى</span> — ${ui().refIntro}</p>`;
-    REF_GROUPS.forEach(gr => {
-      const notes = Object.entries(GRAMMAR).filter(([,g]) => g.group === gr.id);
-      if (!notes.length) return;
-      html += `<div class="ref-group"><span class="ar">${gr.ar}</span><span>${gr.en}</span></div><ul class="ref-list">`;
-      notes.forEach(([id, g]) => {
-        html += `<li><button data-note="${id}"><span class="t-ar">${g.title.ar}</span><span class="t-en">${g.title.en}</span>${g.level ? chip("L" + g.level, "level") : ""}</button></li>`;
-      });
-      html += `</ul>`;
-    });
+    const levels = refAvailableLevels();
+    sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().refTitle}</button></div>
+      <p class="ref-intro"><span lang="ar" style="font-family:var(--ar-font)">الأمثلة المختلفة، بناء الأفعال، العوامل، الكافية، قطر الندى</span> — ${ui().refIntro}</p>
+      <div class="ref-search-row">
+        <input type="search" id="refSearch" class="ref-search" placeholder="${escapeAttr(ui().searchGrammar)}" aria-label="${escapeAttr(ui().searchGrammar)}" value="${escapeAttr(refQuery)}">
+      </div>
+      <div class="seg ref-levels" id="refLevels" role="group" aria-label="${escapeAttr(ui().level)}">
+        <button data-level="all" class="${refLevel === "all" ? "on" : ""}">${ui().allLevels}</button>
+        ${levels.map(l => `<button data-level="${l}" class="${String(refLevel) === String(l) ? "on" : ""}">${l}</button>`).join("")}
+      </div>
+      <div id="refListWrap">${refListHtml()}</div>`;
+    bindRefIndexEvents();
   }
-  sheetInner.innerHTML = html;
-  sheetInner.querySelectorAll("[data-note]").forEach(b =>
-    b.addEventListener("click", () => openRef(b.dataset.note)));
-  const back = document.getElementById("refBack");
-  if (back) back.addEventListener("click", () => openRef());
   showSheet();
 }
 

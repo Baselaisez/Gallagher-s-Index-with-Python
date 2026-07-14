@@ -118,6 +118,40 @@ def js(name, value):
     return f"const {name} = {json.dumps(value, ensure_ascii=False, separators=(',', ':'))};"
 
 
+def build_catalog(pkgs):
+    """Build a catalog.json index from discovered packages.
+
+    Returns a catalog dict with packages sorted by level then id (stable/diff-friendly).
+    Each package entry includes: id, title, level, levelName, version, access,
+    storyGroup, reviewStatus, chapters (count), rotationWindow (null).
+    """
+    catalog_packages = []
+    for pkg in pkgs:
+        manifest = json.loads((pkg / "manifest.json").read_text(encoding="utf-8"))
+        entry = {
+            "id": manifest["id"],
+            "title": manifest["title"],
+            "level": manifest.get("level", 1),
+            "levelName": manifest.get("levelName", ""),
+            "version": manifest.get("version", ""),
+            "access": manifest.get("access", "free"),
+            "storyGroup": manifest.get("storyGroup", manifest["id"]),
+            "reviewStatus": manifest.get("attribution", {}).get("reviewStatus", ""),
+            "chapters": len(manifest.get("chapters", [])),
+            "rotationWindow": None,
+        }
+        catalog_packages.append(entry)
+
+    # Sort by level then id for deterministic output
+    catalog_packages.sort(key=lambda p: (p["level"], p["id"]))
+
+    return {
+        "catalogVersion": "0.1",
+        "generatedFrom": "tools/build_prototype.py",
+        "packages": catalog_packages,
+    }
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--package", type=Path, default=None,
@@ -127,12 +161,15 @@ def main():
     ap.add_argument("--html", type=Path, default=ROOT / "prototype/reader.html")
     args = ap.parse_args()
 
+    # Track whether we're doing a full discovery (for catalog write guard)
+    is_full_discovery = False
     if args.package:
         pkgs = [args.package]
     elif args.packages:
         pkgs = args.packages
     else:
         pkgs = discover()
+        is_full_discovery = True
     if not pkgs:
         raise SystemExit("no packages found")
 
@@ -161,6 +198,16 @@ def main():
                    for c in st["chapters"] for s in c["sentences"])
     print(f"Rebuilt {args.html}: {len(stories)} stories, {n_tokens} tokens, "
           f"{len(grammar)} grammar notes")
+
+    # Build and write catalog only on full discovery, not on --package single builds
+    if is_full_discovery:
+        catalog = build_catalog(pkgs)
+        catalog_path = ROOT / "content/catalog.json"
+        catalog_path.write_text(
+            json.dumps(catalog, ensure_ascii=False, indent=2),
+            encoding="utf-8"
+        )
+        print(f"Wrote catalog.json: {len(catalog['packages'])} packages")
 
 
 if __name__ == "__main__":

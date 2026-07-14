@@ -1,0 +1,54 @@
+{
+  "catalogVersion": "0.1",
+  "generatedFrom": "tools/build_prototype.py",
+  "packages": [
+    {
+      "id": "yunus-wa-al-hut",
+      "title": {
+        "ar": "يُونُسُ وَالْحُوتُ",
+        "en": "Yunus and the Whale",
+        "tr": "Yunus ve Balina"
+      },
+      "level": 1,
+      "levelName": "Newbie",
+      "version": "0.1.0",
+      "access": "free",
+      "storyGroup": "yunus-wa-al-hut",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 1,
+      "rotationWindow": null
+    },
+    {
+      "id": "wasiyyat-abi-hanifa-L2",
+      "title": {
+        "ar": "وَصِيَّةُ أَبِي حَنِيفَةَ",
+        "en": "Abu Hanifa's Testament",
+        "tr": "Ebu Hanife'nin Vasiyeti"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "access": "free",
+      "storyGroup": "wasiyyat-abi-hanifa",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 3,
+      "rotationWindow": null
+    },
+    {
+      "id": "deeds-are-by-intentions",
+      "title": {
+        "ar": "إنما الأعمال بالنيات",
+        "en": "Deeds Are by Intentions",
+        "tr": "Ameller Niyetlere Göredir"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "access": "user-upload",
+      "storyGroup": "deeds-are-by-intentions",
+      "reviewStatus": "auto-generated-unreviewed",
+      "chapters": 1,
+      "rotationWindow": null
+    }
+  ]
+}
