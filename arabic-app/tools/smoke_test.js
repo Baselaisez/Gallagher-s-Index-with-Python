@@ -192,13 +192,18 @@ if (!CHROME) {
 
   await check('audiobook: Play all highlights a sentence and stops cleanly', async () => {
     // Headless Chromium ships no TTS voices, so speechSynthesis.speak() may
-    // fire onend/onerror almost immediately, very slowly, or never produce
-    // audible sound. The app applies the .playing highlight and the
-    // aria-pressed state SYNCHRONOUSLY inside the click handler, before the
-    // (inherently async) speechSynthesis.speak() call — so asserting right
-    // after click(), with no polling/timeout, is race-free regardless of TTS
-    // behavior in this environment.
+    // fire onend/onerror almost immediately, very slowly, or never. On CI's
+    // Chrome-for-Testing the instant-error path let the play-all queue race
+    // through the whole story and auto-stop BEFORE our second click, which
+    // then restarted playback and failed the "stops cleanly" assertion.
+    // Freeze TTS entirely: with speak() stubbed out no utterance event ever
+    // fires, so the queue deterministically stays on its first sentence and
+    // both clicks exercise exactly the start/stop state machine.
     await page.keyboard.press('Escape');
+    await page.evaluate(() => {
+      speechSynthesis.speak = () => {};
+      speechSynthesis.cancel = () => {};
+    });
     await page.locator('#playAll').click();
     const playingCount = await page.locator('.sentence.playing').count();
     if (playingCount !== 1) throw new Error('expected exactly one playing sentence right after click, got ' + playingCount);

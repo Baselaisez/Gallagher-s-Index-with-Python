@@ -637,7 +637,15 @@ function speak(sen, sec, onDone){
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "ar-SA"; u.rate = state.rate || 1;
   if (arVoice) u.voice = arVoice;
-  u.onend = u.onerror = finish;
+  u.onend = finish;
+  // A TTS error (e.g. a browser with no voices installed) must not advance the
+  // queue — otherwise "Play all" races through the whole story in silence,
+  // marking every sentence read. Clear the highlight and stop cleanly instead.
+  u.onerror = () => {
+    if (gen !== speakGen) return;
+    sec.classList.remove("playing");
+    if (playAllActive) stopPlayAll();
+  };
   speechSynthesis.speak(u);
 }
 
