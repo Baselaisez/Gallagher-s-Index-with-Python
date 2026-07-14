@@ -1,0 +1,62 @@
+{
+  "id": "kana-wa-akhawatuha",
+  "title": {
+    "ar": "كَانَ وَأَخَوَاتُهَا",
+    "en": "Kana and its sisters",
+    "tr": "Kâne ve kardeşleri"
+  },
+  "level": 2,
+  "group": "nahw",
+  "amil": "تَرْفَعُ الِاسْمَ وَتَنْصِبُ الْخَبَرَ — the defective verbs that raise the subject to raf' and put the predicate in nasb",
+  "classicalSources": [
+    "الآجُرُّومِيَّة (ابن آجُرُّوم)",
+    "العوامل (البيركوي)",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "كَانَ and its sisters — صَارَ، لَيْسَ، أَصْبَحَ، أَمْسَى، أَضْحَى، ظَلَّ، بَاتَ، مَا زَالَ، مَا دَامَ … — are the الأفعال الناقصة (defective verbs): they carry tense but no full meaning of their own, so they need a predicate to complete them. They enter a nominal sentence (mubtada + khabar) and re-work it: the old mubtada becomes the اسم كان and stays marfu', while the old khabar becomes the خبر كان and turns mansub. This is the exact mirror of إِنَّ, which does the opposite (nasb on the ism, raf' on the khabar) — so the two make a clean contrasting pair. If the story's nominal sentence «الْعِلْمُ أَمَانَةٌ» took كان, it would read «كَانَ الْعِلْمُ أَمَانَةً»: الْعِلْمُ raised as ism, أَمَانَةً dropped to nasb as khabar. Ibn Ajurrum gives them their own chapter (\"ترفع الاسم وتنصب الخبر\"); Birgivi counts them among the لفظية governors in the Awamil.",
+    "tr": "كَانَ ve kardeşleri — صَارَ، لَيْسَ، أَصْبَحَ، أَمْسَى، أَضْحَى، ظَلَّ، بَاتَ، مَا زَالَ، مَا دَامَ … — nâkıs fiillerdir: zaman taşırlar ama tek başlarına tam mana vermezler, tamamlanmak için bir habere ihtiyaç duyarlar. İsim cümlesine (mübteda + haber) girip onu yeniden düzenlerler: eski mübteda kânenin ismi olur ve merfu kalır; eski haber kânenin haberi olur ve mansub olur. Bu, tam olarak إِنَّ'nin tersidir (o ismi nasb, haberi ref eder) — böylece ikisi karşıt bir çift oluşturur. Hikâyedeki «الْعِلْمُ أَمَانَةٌ» isim cümlesi كان alsaydı «كَانَ الْعِلْمُ أَمَانَةً» olurdu: الْعِلْمُ ism olarak merfu, أَمَانَةً haber olarak mansub. İbn Âcurrûm bunlara ayrı bir bab ayırır (\"ismi ref, haberi nasb eder\"); Birgivî Avâmil'de bunları lafzî âmiller arasında sayar."
+  },
+  "examples": [
+    {
+      "ar": "كَانَ الْعِلْمُ أَمَانَةً.",
+      "en": "Knowledge was a trust — the كان mirror of the story's «إِنَّ الْعِلْمَ أَمَانَةٌ» (s7): here الْعِلْمُ is the ism, raised to raf', and أَمَانَةً is the khabar, dropped to nasb.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s7"
+    },
+    {
+      "ar": "صَارَ الطَّالِبُ عَالِمًا.",
+      "en": "The student became a scholar — الطَّالِبُ ism (raf'), عَالِمًا khabar (nasb)."
+    },
+    {
+      "ar": "لَيْسَ الْكَلَامُ كَثِيرًا مَحْمُودًا.",
+      "en": "Much talk is not praiseworthy — لَيْسَ negates and works like كان: الكلامُ marfu' ism, محمودًا mansub khabar."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "كَانَ الْعِلْمُ أَمَانَةٌ",
+      "right": "كَانَ الْعِلْمُ أَمَانَةً",
+      "why": {
+        "en": "The khabar of كان must be mansub. Learners keep the mubtada's raf' damma on it out of habit; كان demands nasb on the predicate — أَمَانَةً.",
+        "tr": "Kânenin haberi mansub olmalıdır. Öğrenciler alışkanlıkla mübtedanın ref ötresini haberde bırakır; kâne haberi nasb ister — أَمَانَةً."
+      }
+    },
+    {
+      "wrong": "كَانَ الْعِلْمَ أَمَانَةً",
+      "right": "كَانَ الْعِلْمُ أَمَانَةً",
+      "why": {
+        "en": "Confusing كان with إنّ: كان raises its ism to raf' (الْعِلْمُ), it does not put it in nasb. Only the khabar of كان is mansub — the opposite of what إنّ does.",
+        "tr": "Kâne ile إنّ'yi karıştırmak: kâne ismini ref eder (الْعِلْمُ), nasb etmez. Kânede yalnız haber mansubdur — إنّ'nin yaptığının tersi."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "inna-wa-akhawatuha",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

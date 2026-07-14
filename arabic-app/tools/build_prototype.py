@@ -72,8 +72,11 @@ def build_story(pkg: Path):
                     t["segments"] = [{"form": s["form"], "lex": s["lex"]}
                                      for s in tok["segments"]]
                 tokens.append(t)
-            sentences.append({"id": sen["id"], "translation": sen["translation"],
-                              "tokens": tokens})
+            sentence = {"id": sen["id"], "translation": sen["translation"],
+                        "tokens": tokens}
+            if sen.get("audio"):
+                sentence["audio"] = sen["audio"]  # [startMs, endMs] — forward-prep for real narration
+            sentences.append(sentence)
         chapters.append({"n": ch["n"], "title": ch["title"], "sentences": sentences})
 
     return {

@@ -13,6 +13,7 @@
           "grammar": ["form-iv-verbs", "hollow-verbs"],
           "irab": { "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.", "en": "Past-tense verb, indeclinable on fatha." } },
         { "surface": { "full": "يُوسُفُ", "smart": "يُوسُفُ", "bare": "يوسف" }, "lex": "yusuf", "pos": "propn",
+          "grammar": ["fail", "mamnu-min-sarf"],
           "irab": { "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.", "en": "Subject (fa'il), nominative, marked by damma." } },
         { "surface": { "full": "أَنْ", "smart": "أَنْ", "bare": "أن" }, "lex": "an", "pos": "part",
           "grammar": ["an-masdariyya"],
@@ -28,6 +29,7 @@
           "segments": [ { "form": "مَدِينَةِ", "lex": "madina", "pos": "noun" }, { "form": "هِ", "lex": "pron-3ms", "pos": "pron" } ],
           "irab": { "ar": "اسْمٌ مَجْرُورٌ بِإِلَى وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "en": "Noun in jarr after إلى, marked by kasra; it is mudaf, and the attached ـه is mudaf ilayh." } },
         { "surface": { "full": "الْبَصْرَةِ", "smart": "البَصْرَة", "bare": "البصرة" }, "lex": "al-basra", "pos": "propn", "punctAfter": ".",
+          "grammar": ["badal"],
           "irab": { "ar": "بَدَلٌ مِنْ «مَدِينَتِهِ» مَجْرُورٌ مِثْلُهُ.", "en": "Appositive (badal) of «his city», in jarr like it." } }
       ]
     },
@@ -49,9 +51,10 @@
           "segments": [ { "form": "مُعَلِّمِ", "lex": "muallim", "pos": "noun" }, { "form": "هِ", "lex": "pron-3ms", "pos": "pron" } ],
           "irab": { "ar": "اسْمٌ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "en": "Noun in jarr with kasra; mudaf, with ـه as mudaf ilayh." } },
         { "surface": { "full": "أَبِي", "smart": "أَبِي", "bare": "أبي" }, "lex": "ab", "pos": "noun",
-          "grammar": ["five-nouns"],
+          "grammar": ["five-nouns", "badal"],
           "irab": { "ar": "بَدَلٌ مِنْ «مُعَلِّمِهِ» مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.", "en": "Appositive of «his teacher», in jarr marked by ي — one of the five nouns; also mudaf." } },
         { "surface": { "full": "حَنِيفَةَ", "smart": "حَنِيفَة", "bare": "حنيفة" }, "lex": "hanifa", "pos": "propn",
+          "grammar": ["mamnu-min-sarf"],
           "irab": { "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ.", "en": "Mudaf ilayh in jarr, marked by fatha in place of kasra — a diptote (mamnu' min as-sarf)." } },
         { "surface": { "full": "لِيُوَدِّعَهُ", "smart": "لِيُوَدِّعَهُ", "bare": "ليودعه" }, "lex": "waddaa", "pos": "verb",
           "grammar": ["lam-taleel", "form-ii-verbs"], "punctAfter": ".",
@@ -75,9 +78,10 @@
           "segments": [ { "form": "لَ", "lex": "li", "pos": "prep" }, { "form": "هُ", "lex": "pron-3ms", "pos": "pron" } ],
           "irab": { "ar": "اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ.", "en": "The ل is a preposition; the pronoun ـه is in the position of jarr." } },
         { "surface": { "full": "أَبُو", "smart": "أَبُو", "bare": "أبو" }, "lex": "ab", "pos": "noun",
-          "grammar": ["five-nouns"],
+          "grammar": ["five-nouns", "fail"],
           "irab": { "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.", "en": "Subject, nominative marked by و — one of the five nouns; mudaf." } },
         { "surface": { "full": "حَنِيفَةَ", "smart": "حَنِيفَة", "bare": "حنيفة" }, "lex": "hanifa", "pos": "propn", "punctAfter": ":",
+          "grammar": ["mamnu-min-sarf"],
           "irab": { "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ.", "en": "Mudaf ilayh in jarr with fatha (diptote)." } },
         { "surface": { "full": "يَا", "smart": "يَا", "bare": "يا" }, "lex": "ya", "pos": "part", "quoteBefore": "«",
           "grammar": ["vocative-munada"],
@@ -89,7 +93,7 @@
           "grammar": ["imperative-amr"],
           "irab": { "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «أَنْتَ».", "en": "Imperative verb, indeclinable on sukun; hidden subject «you»." } },
         { "surface": { "full": "وَصِيَّتِي", "smart": "وَصِيَّتِي", "bare": "وصيتي" }, "lex": "wasiyya", "pos": "noun", "punctAfter": ".", "quoteAfter": "»",
-          "grammar": ["idafa-definiteness"],
+          "grammar": ["idafa-definiteness", "maful-bihi"],
           "segments": [ { "form": "وَصِيَّةَ", "lex": "wasiyya", "pos": "noun" }, { "form": "ي", "lex": "pron-1s", "pos": "pron" } ],
           "irab": { "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الْمُقَدَّرَةُ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.", "en": "Direct object in nasb; the fatha is implied before the 1st-person ي; mudaf with ي as mudaf ilayh." } }
       ]

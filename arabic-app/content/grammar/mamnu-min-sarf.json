@@ -1,0 +1,62 @@
+{
+  "id": "mamnu-min-sarf",
+  "title": {
+    "ar": "الْمَمْنُوعُ مِنَ الصَّرْف",
+    "en": "The diptote (mamnu' min as-sarf)",
+    "tr": "Gayr-ı munsarif isim"
+  },
+  "level": 2,
+  "group": "nahw",
+  "explanation": {
+    "en": "A diptote is a noun \"barred from full inflection\": it refuses tanwin, and in the jarr position it takes fatha instead of kasra. The label lives on the border of sarf and nahw — the *reasons* it is barred are morphological (the causes are sarf: proper-name + feminine, proper-name + foreignness, the plural pattern مَفَاعِل/مَفَاعِيل, the adjectival أَفْعَل pattern, ألف التأنيث…), but the *effect* is a nahw rule about case endings, which is why al-Ajurrumiyya files it under علامات الجر (\"jarr is shown by fatha in the noun that does not inflect fully\"). In this story حَنِيفَة is a diptote through عَلَمِيَّة + تَأْنِيث (a feminine proper name), so «أَبِي حَنِيفَةَ» ends in fatha though it is majrur. يُوسُف is a diptote through عَلَمِيَّة + عُجْمَة (a foreign proper name): notice it never takes tanwin even in raf' (يُوسُفُ). One escape hatch: add الـ or make it a mudaf, and the kasra returns (فِي الْمَسَاجِدِ).",
+    "tr": "Gayr-ı munsarif, \"tam çekimden men edilmiş\" isimdir: tenvin almaz ve cer halinde kesre yerine fetha alır. Terim sarf ile nahiv sınırındadır — men sebepleri sarfîdir (alemiyet + te'nis, alemiyet + ucme, مَفَاعِل/مَفَاعِيل müntehe'l-cumû kalıbı, أَفْعَل sıfat kalıbı, elif-i te'nis…), ama sonucu i'rab (harekeler) ile ilgili bir nahiv kuralıdır; bu yüzden Âcurrûmiyye onu cer alâmetleri babında zikreder. Bu hikâyede حَنِيفَة alemiyet + te'nis ile gayr-ı munsariftir; bu yüzden «أَبِي حَنِيفَةَ» mecrur olduğu halde fetha ile biter. يُوسُف alemiyet + ucme ile gayr-ı munsariftir: ref halinde bile tenvin almaz (يُوسُفُ). İstisna: başına الـ gelirse veya muzaf olursa kesre geri döner (فِي الْمَسَاجِدِ)."
+  },
+  "classicalSources": [
+    "الآجُرُّومِيَّة (ابن آجُرُّوم)",
+    "الكافية (ابن الحاجب)",
+    "الشافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "examples": [
+    {
+      "ar": "قَالَ أَبُو حَنِيفَةَ.",
+      "en": "Abu Hanifa said — حَنِيفَةَ is mudaf ilayh, majrur but marked by fatha because it is a diptote (feminine proper name).",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3"
+    },
+    {
+      "ar": "أَرَادَ يُوسُفُ أَنْ يَرْجِعَ.",
+      "en": "Yusuf wanted to return — يُوسُفُ is marfu' with a bare damma and no tanwin: a foreign proper name is a diptote.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s1"
+    },
+    {
+      "ar": "صَلَّيْتُ فِي مَسَاجِدَ كَثِيرَةٍ.",
+      "en": "I prayed in many mosques — مَسَاجِدَ (pattern مَفَاعِل) is a diptote: majrur but with fatha and no tanwin."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "قَالَ أَبُو حَنِيفَةٍ",
+      "right": "قَالَ أَبُو حَنِيفَةَ",
+      "why": {
+        "en": "A diptote never takes tanwin and shows jarr by fatha, so «حنيفة» must end in a plain fatha — not the kasra-with-tanwin (ـةٍ) that a normal noun would take as mudaf ilayh.",
+        "tr": "Gayr-ı munsarif tenvin almaz ve cerri fetha ile gösterir; bu yüzden «حنيفة» düz fetha ile bitmeli — sıradan bir muzafun ileyhin alacağı tenvinli kesre (ـةٍ) ile değil."
+      }
+    },
+    {
+      "wrong": "جَاءَ يُوسُفٌ",
+      "right": "جَاءَ يُوسُفُ",
+      "why": {
+        "en": "Even in raf' a diptote refuses tanwin: يُوسُفُ takes a single damma, not tanwin damma (ـٌ). Learners add tanwin by analogy with ordinary triptote nouns.",
+        "tr": "Ref halinde bile gayr-ı munsarif tenvin almaz: يُوسُفُ tek ötre alır, tenvinli ötre (ـٌ) değil. Öğrenciler sıradan munsarif isimlere kıyasla tenvin ekler."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "idafa-definiteness"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

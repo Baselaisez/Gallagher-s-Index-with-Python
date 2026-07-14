@@ -1,0 +1,64 @@
+{
+  "id": "fail",
+  "title": {
+    "ar": "الْفَاعِل",
+    "en": "The subject of a verb (fa'il)",
+    "tr": "Fâil (özne)"
+  },
+  "level": 2,
+  "group": "nahw",
+  "explanation": {
+    "en": "The fa'il is the doer — the noun in raf' that comes after a complete active verb and performs its action. Its governor (عامل) is the verb itself, and it is always marfu'. In Arabic the verb comes first (VSO), so the fa'il follows it: «أَرَادَ يُوسُفُ» — يُوسُفُ is the fa'il, marfu' by damma. The fa'il may be a visible noun (اسم ظاهر) or a hidden pronoun (ضمير مستتر): in «ذَهَبَ» the doer is a concealed «هو» (he). One rule surprises beginners: when the fa'il is a visible noun, the verb stays singular even if that noun is dual or plural — قَامَ الرِّجَالُ, not قاموا الرجالُ; number and gender are shown on the verb only by the ت/ا endings of agreement, not by plural marking. Ibn Ajurrum defines it as \"the marfu' noun whose verb is mentioned before it\"; it is the first of the مرفوعات in the Ajurrumiyya and Qatr al-Nada.",
+    "tr": "Fâil, işi yapandır — tam bir malum fiilden sonra gelen ve fiilin işini yapan merfu isimdir. Âmili fiilin kendisidir ve daima merfudur. Arapçada fiil önce gelir (fiil-özne-nesne), fâil onu takip eder: «أَرَادَ يُوسُفُ» — يُوسُفُ fâildir, ötre ile merfu. Fâil açık bir isim (ism-i zâhir) ya da gizli bir zamir (zamir-i müstetir) olabilir: «ذَهَبَ»de yapan gizli bir «هو» (o)'dur. Yeni başlayanları şaşırtan bir kural: fâil açık bir isimse, o isim tesniye ya da cemi olsa bile fiil müfred kalır — قَامَ الرِّجَالُ, قاموا الرجالُ değil; sayı ve cinsiyet fiilde yalnız ت/ا uyum ekleriyle gösterilir. İbn Âcurrûm onu \"fiili kendinden önce zikredilen merfu isim\" diye tanımlar; Âcurrûmiyye ve Katru'n-Nedâ'da merfûâtın ilkidir."
+  },
+  "classicalSources": [
+    "الآجُرُّومِيَّة (ابن آجُرُّوم)",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "examples": [
+    {
+      "ar": "أَرَادَ يُوسُفُ أَنْ يَرْجِعَ.",
+      "en": "Yusuf wanted to return — يُوسُفُ is the fa'il of أراد, marfu' by damma.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s1"
+    },
+    {
+      "ar": "قَالَ أَبُو حَنِيفَةَ.",
+      "en": "Abu Hanifa said — أَبُو is the fa'il of قال, marfu' by و (one of the five nouns).",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3"
+    },
+    {
+      "ar": "قَالَ رَسُولُ اللهِ.",
+      "en": "The Messenger of Allah said — رَسُولُ is the fa'il, marfu' and mudaf.",
+      "sourceStory": "deeds-are-by-intentions",
+      "sentence": "s1"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "أَرَادَ يُوسُفَ أَنْ يَرْجِعَ",
+      "right": "أَرَادَ يُوسُفُ أَنْ يَرْجِعَ",
+      "why": {
+        "en": "The fa'il is marfu'. Giving يوسف a fatha treats the doer as an object — but يوسف here is who wanted, so it must be marfu' (a bare damma, since it is also a diptote).",
+        "tr": "Fâil merfudur. يوسف'a fetha vermek yapanı nesne saymaktır — oysa يوسف isteyen kişidir, bu yüzden merfu olmalı (gayr-ı munsarif olduğu için düz ötre)."
+      }
+    },
+    {
+      "wrong": "قَالُوا الْعُلَمَاءُ",
+      "right": "قَالَ الْعُلَمَاءُ",
+      "why": {
+        "en": "With a following visible fa'il the verb stays singular: قَالَ الْعُلَمَاءُ, not قالوا. Plural marking on the verb (قالوا) is only for a pronoun subject.",
+        "tr": "Ardından açık bir fâil gelince fiil müfred kalır: قَالَ الْعُلَمَاءُ, قالوا değil. Fiildeki cemi işareti (قالوا) yalnız zamir özne içindir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-bihi",
+    "five-nouns"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
