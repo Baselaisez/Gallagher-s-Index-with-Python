@@ -189,6 +189,12 @@
   .tabs button .ar { font-family: var(--ar-font); font-size: 1.05rem; }
   .tabs button.on { color: var(--accent); border-bottom-color: var(--accent); }
   .lemma { font-family: var(--ar-font); font-size: 2.2rem; direction: rtl; text-align: right; line-height: 1.5; margin: 0; }
+  .lemma .say {
+    font-size: 1.1rem; line-height: 1; cursor: pointer; vertical-align: middle;
+    border: 1px solid var(--line); background: var(--panel); border-radius: 999px;
+    padding: .3rem .45rem; margin-inline-start: .4rem;
+  }
+  .lemma .say:hover { border-color: var(--accent); }
   .bab-line { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.05rem; color: var(--ink-soft); margin: .1rem 0 .3rem; }
   .facts { display: flex; gap: .45rem; flex-wrap: wrap; margin: .5rem 0 .7rem; }
   .gloss { font-size: 1.02rem; margin: .2rem 0; }
@@ -448,6 +454,7 @@ Object.assign(L.en, {
   stories:"stories", readLbl:"read", fromThisStory:"— from this story",
   accessFree:"Free story", accessUpload:"Your upload · machine-analyzed",
   accessPremium:"★ Premium", chaptersWord:"chapters", backLib:"← Library",
+  sayWord:"Pronounce this word",
   previewLbl:"Free preview", upsellTitle:"★ This is a Premium story",
   upsellBody:"You have read the free preview. Unlock every chapter, the full word-by-word analysis, and audio with Qissa Premium.",
   upsellBtn:"Demo: unlock Premium", premiumActive:"★ Premium active (demo) — tap to reset",
@@ -458,6 +465,7 @@ Object.assign(L.tr, {
   stories:"hikâye", readLbl:"okundu", fromThisStory:"— bu hikâyeden",
   accessFree:"Ücretsiz hikâye", accessUpload:"Yüklemeniz · makine analizi",
   accessPremium:"★ Premium", chaptersWord:"bölüm", backLib:"← Kütüphane",
+  sayWord:"Bu kelimeyi seslendir",
   previewLbl:"Ücretsiz önizleme", upsellTitle:"★ Bu bir Premium hikâye",
   upsellBody:"Ücretsiz önizlemeyi okudunuz. Qissa Premium ile tüm bölümlerin, kelime kelime tahlilin ve sesin kilidini açın.",
   upsellBtn:"Demo: Premium'u aç", premiumActive:"★ Premium açık (demo) — sıfırlamak için dokunun",
@@ -822,7 +830,7 @@ function openWord(tok, el, tab){
   </div>`;
 
   if (mode === "word") {
-    html += `<p class="lemma">${entry.lemma}</p>`;
+    html += `<p class="lemma">${entry.lemma} <button class="say" id="sayWord" aria-label="${ui().sayWord}" title="${ui().sayWord}">🔊</button></p>`;
     if (morph) html += `<p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
     html += `<div class="facts">`;
     if (entry.pos) html += chip(entry.pos);
@@ -878,6 +886,17 @@ function openWord(tok, el, tab){
   if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
+  const say = document.getElementById("sayWord");
+  if (say) say.addEventListener("click", () => {
+    const entry = GLOSSARY[tok.lex];
+    if (!entry || !("speechSynthesis" in window)) return;
+    const u = new SpeechSynthesisUtterance(entry.lemma);
+    u.lang = arVoice ? arVoice.lang : "ar";
+    if (arVoice) u.voice = arVoice;
+    u.rate = state.rate;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  });
   showSheet();
 }
 

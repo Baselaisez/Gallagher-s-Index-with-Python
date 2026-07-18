@@ -273,7 +273,8 @@ if (!CHROME) {
     await page.keyboard.press('Escape');
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
-    const w = await page.locator('.lib-card .progress > div').first().getAttribute('style');
+    const w = await page.locator('.lib-card').nth(wasiyyaStats.index)
+      .locator('.progress > div').getAttribute('style');
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
   });
 
@@ -333,6 +334,33 @@ if (!CHROME) {
     // Reset the demo-premium flag so the library check state stays clean.
     await page.locator('#premiumReset').click();
     if (await page.locator('#premiumReset').count()) throw new Error('premium reset chip still shown');
+  });
+
+  await check('ashab-al-fil story: mithal amr + word pronounce button', async () => {
+    const fil = await page.evaluate(() => {
+      const i = STORIES.findIndex(s => s.id === 'ashab-al-fil');
+      return i === -1 ? null : { index: i, level: STORIES[i].level };
+    });
+    if (!fil) throw new Error('ashab-al-fil missing from STORIES');
+    if (fil.level !== 1) throw new Error('level=' + fil.level);
+    await page.locator('.lib-card').nth(fil.index).click();
+    // وَقَفَ is a mithal verb — its amr paradigm must show the waw-dropping قِفْ.
+    await page.locator('.word', { hasText: 'وَقَفَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.locator('.tense-seg button', { hasText: 'الأمر' }).click();
+    await page.waitForSelector('table.conj', { timeout: 3000 });
+    const cells = await page.locator('table.conj td').allTextContents();
+    if (!cells.some(c => c.trim() === 'قِفْ')) throw new Error('mithal amr قِفْ missing');
+    // The Word tab has the 🔊 pronounce button; clicking must not throw.
+    await page.locator('.sheet .tabs button', { hasText: 'Word' }).click();
+    await page.waitForSelector('#sayWord', { timeout: 3000 });
+    await page.evaluate(() => { speechSynthesis.speak = () => {}; speechSynthesis.cancel = () => {}; });
+    await page.locator('#sayWord').click();
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
   await check('no JS errors on page', async () => {
