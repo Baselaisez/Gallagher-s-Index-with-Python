@@ -277,12 +277,15 @@ if (!CHROME) {
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
   });
 
-  await check('premium L4 sibling: label, hal note, sarf table', async () => {
+  await check('premium L4: paywall preview then unlock', async () => {
     // The TR-UI check left the app in Turkish; this check asserts English tab labels.
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     const l4 = await page.evaluate(() => {
       const i = STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L4');
-      return i === -1 ? null : { index: i, access: STORIES[i].access };
+      if (i === -1) return null;
+      const s = STORIES[i];
+      return { index: i, access: s.access,
+               sentences: s.chapters.reduce((n, c) => n + c.sentences.length, 0) };
     });
     if (!l4) throw new Error('wasiyyat-abi-hanifa-L4 missing from STORIES');
     if (l4.access !== 'premium') throw new Error('access=' + l4.access);
@@ -290,6 +293,18 @@ if (!CHROME) {
     const chips = await card.locator('.chip').allTextContents();
     if (!chips.some(c => c.includes('Premium'))) throw new Error('no Premium chip: ' + chips.join(','));
     await card.click();
+    // Locked: only the preview renders, then the upsell card. The Play-all
+    // queue is built from the rendered sentences, so audio is gated too.
+    const previewCount = await page.locator('.sentence').count();
+    if (previewCount >= l4.sentences) throw new Error('paywall did not limit render: ' + previewCount);
+    await page.waitForSelector('.upsell', { timeout: 3000 });
+    await page.locator('#unlockPremium').click();
+    await page.waitForSelector('.upsell', { state: 'detached', timeout: 3000 });
+    const fullCount = await page.locator('.sentence').count();
+    if (fullCount !== l4.sentences) throw new Error('unlock rendered ' + fullCount + '/' + l4.sentences);
+  });
+
+  await check('premium L4 sibling: hal note, sarf table, level switcher', async () => {
     // مُوَدِّعًا carries the hal note — a Level-4 structure shared via the registry.
     await page.locator('.word', { hasText: 'مُوَدِّعًا' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
@@ -309,8 +324,15 @@ if (!CHROME) {
     const cells = await page.locator('table.conj td').allTextContents();
     if (!cells.some(c => c.includes('جَادَلْتُمَا'))) throw new Error('Form III paradigm missing');
     await page.evaluate(() => document.getElementById('scrim').click());
+    // Level switcher: the L4 story links to its Level-2 sibling in the same storyGroup.
+    await page.locator('#metaRow .sib').first().click();
+    const levelChip = await page.locator('#metaRow .chip.level').first().textContent();
+    if (!levelChip.includes('Level 2')) throw new Error('sibling switch landed on: ' + levelChip);
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
+    // Reset the demo-premium flag so the library check state stays clean.
+    await page.locator('#premiumReset').click();
+    if (await page.locator('#premiumReset').count()) throw new Error('premium reset chip still shown');
   });
 
   await check('no JS errors on page', async () => {

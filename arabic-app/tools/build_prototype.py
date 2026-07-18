@@ -81,6 +81,7 @@ def build_story(pkg: Path):
 
     return {
         "id": manifest["id"],
+        "group": manifest.get("storyGroup", manifest["id"]),
         "title": manifest["title"],
         "subtitle": manifest.get("subtitle", {}),
         "level": manifest.get("level", 1),
