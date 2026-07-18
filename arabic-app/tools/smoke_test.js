@@ -57,15 +57,19 @@ if (!CHROME) {
   // (see tools/build_prototype.py) instead of hardcoded magic numbers, so
   // the test survives content additions.
   const storyCount = await page.evaluate(() => STORIES.length);
+  // Pin to the L2 package by id — the L4 sibling shares the same Arabic title,
+  // so a title substring would match two library cards.
   const wasiyyaStats = await page.evaluate(() => {
-    const s = STORIES.find(s => s.title.ar.includes('وَصِيَّةُ'));
-    if (!s) return null;
+    const i = STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2');
+    if (i === -1) return null;
+    const s = STORIES[i];
     return {
+      index: i,
       chapters: s.chapters.length,
       sentences: s.chapters.reduce((n, c) => n + c.sentences.length, 0),
     };
   });
-  if (!wasiyyaStats) throw new Error('could not find the وَصِيَّةُ story in STORIES to derive expectations');
+  if (!wasiyyaStats) throw new Error('could not find wasiyyat-abi-hanifa-L2 in STORIES to derive expectations');
 
   await check('library lists ' + storyCount + ' stories, reader controls hidden', async () => {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
@@ -75,7 +79,7 @@ if (!CHROME) {
   });
 
   await check('open story renders ' + wasiyyaStats.chapters + ' chapters', async () => {
-    await page.locator('.lib-card', { hasText: 'وَصِيَّةُ' }).click();
+    await page.locator('.lib-card').nth(wasiyyaStats.index).click();
     const chapterCount = await page.locator('.chapter-head').count();
     if (chapterCount !== wasiyyaStats.chapters) throw new Error('chapter count=' + chapterCount + ' expected=' + wasiyyaStats.chapters);
     const sentenceCount = await page.locator('.sentence').count();
@@ -271,6 +275,42 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
     const w = await page.locator('.lib-card .progress > div').first().getAttribute('style');
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
+  });
+
+  await check('premium L4 sibling: label, hal note, sarf table', async () => {
+    // The TR-UI check left the app in Turkish; this check asserts English tab labels.
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+    const l4 = await page.evaluate(() => {
+      const i = STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L4');
+      return i === -1 ? null : { index: i, access: STORIES[i].access };
+    });
+    if (!l4) throw new Error('wasiyyat-abi-hanifa-L4 missing from STORIES');
+    if (l4.access !== 'premium') throw new Error('access=' + l4.access);
+    const card = page.locator('.lib-card').nth(l4.index);
+    const chips = await card.locator('.chip').allTextContents();
+    if (!chips.some(c => c.includes('Premium'))) throw new Error('no Premium chip: ' + chips.join(','));
+    await card.click();
+    // مُوَدِّعًا carries the hal note — a Level-4 structure shared via the registry.
+    await page.locator('.word', { hasText: 'مُوَدِّعًا' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
+    const notes = await page.locator('.gnote h3').allTextContents();
+    if (!notes.some(t => t.includes('الْحَال'))) throw new Error('hal note not shown: ' + notes.join(','));
+    // Form III conjugation table for جَادَلَ must render from the new morphology.
+    await page.keyboard.press('Escape');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('.word', { hasText: 'تُجَادِلْ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    // sarfTense persists from the earlier amr check — select mazi explicitly.
+    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.locator('.tense-seg button', { hasText: 'الماضي' }).click();
+    await page.waitForSelector('table.conj', { timeout: 3000 });
+    const cells = await page.locator('table.conj td').allTextContents();
+    if (!cells.some(c => c.includes('جَادَلْتُمَا'))) throw new Error('Form III paradigm missing');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
   await check('no JS errors on page', async () => {
