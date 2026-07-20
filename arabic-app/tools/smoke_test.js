@@ -363,6 +363,30 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('classical L5 (Abu Yusuf): premium, tahdhir note in preview', async () => {
+    const l5 = await page.evaluate(() => {
+      const i = STORIES.findIndex(s => s.id === 'wasiyyat-abi-yusuf-L5');
+      if (i === -1) return null;
+      return { index: i, level: STORIES[i].level, access: STORIES[i].access,
+               hasTahdhir: !!GRAMMAR['at-tahdhir'], hasVI: !!GRAMMAR['form-vi-verbs'] };
+    });
+    if (!l5) throw new Error('wasiyyat-abi-yusuf-L5 missing from STORIES');
+    if (l5.level !== 5) throw new Error('level=' + l5.level);
+    if (l5.access !== 'premium') throw new Error('access=' + l5.access);
+    if (!l5.hasTahdhir || !l5.hasVI) throw new Error('new grammar notes missing from registry');
+    await page.locator('.lib-card').nth(l5.index).click();
+    // s2 «وَإِيَّاكَ وَالْكَذِبَ» sits inside the free preview — no unlock needed.
+    // Tapping إِيَّاكَ opens the shared at-tahdhir note.
+    await page.locator('.word', { hasText: 'إِيَّاك' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
+    const notes = await page.locator('.gnote h3').allTextContents();
+    if (!notes.some(t => t.includes('التَّحْذِير'))) throw new Error('tahdhir note not shown: ' + notes.join(','));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

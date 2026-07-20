@@ -1,0 +1,69 @@
+{
+  "id": "at-tahdhir",
+  "title": {
+    "ar": "التَّحْذِير (إِيَّاكَ وَ...)",
+    "en": "The tahdhir (warning) construction"
+  },
+  "level": 4,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)",
+    "إظهار الأسرار (البيركوي)"
+  ],
+  "explanation": {
+    "en": "Tahdhir is warning the listener away from something. Its most famous vehicle is إِيَّاكَ: a detached object pronoun that is the object of a verb left unsaid — «احْذَرْ» (beware!). The thing warned against (الْمُحَذَّر مِنْه) then follows, and it too is mansub as the object of that same hidden verb. When a وَ links them — إِيَّاكَ وَالْكَذِبَ — the noun after the و takes nasb (احْذَرِ الْكَذِبَ). This testament opens counsel after counsel with it: إِيَّاكَ وَالْكَذِبَ، إِيَّاكَ وَكَثْرَةَ الْكَلَامِ. The ـكَ is a particle of address (حَرْف خِطَاب) and changes with the addressee: إِيَّاكِ (to a woman), إِيَّاكُمْ (to a group).",
+    "tr": "Tahzir, muhatabı bir şeyden sakındırmaktır. En meşhur kalıbı إِيَّاكَ'dir: hazfedilmiş bir fiilin («احْذَرْ» = sakın!) mef'ûlü olan munfasıl nasb zamiri. Sakındırılan şey (muhazzerun minh) ardından gelir ve o da aynı gizli fiilin mef'ûlü olarak mansubdur. Aralarını bir وَ bağladığında — إِيَّاكَ وَالْكَذِبَ — و'dan sonraki isim nasb alır (احْذَرِ الْكَذِبَ). Bu vasiyet öğüt üstüne öğüdü bununla açar: إِيَّاكَ وَالْكَذِبَ، إِيَّاكَ وَكَثْرَةَ الْكَلَامِ. ـكَ hitap harfidir ve muhataba göre değişir: إِيَّاكِ (bir kadına), إِيَّاكُمْ (topluluğa)."
+  },
+  "examples": [
+    {
+      "ar": "وَإِيَّاكَ وَالْكَذِبَ بَيْنَ يَدَيْهِ.",
+      "en": "And beware of lying in his presence — «lying» is mansub, object of the implied «beware».",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s2"
+    },
+    {
+      "ar": "وَإِيَّاكَ وَكَثْرَةَ الْكَلَامِ بَيْنَ يَدَيْهِ.",
+      "en": "And beware of talking too much before him.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s6"
+    },
+    {
+      "ar": "إِيَّاكَ وَالْأَسَدَ.",
+      "en": "Beware of the lion! — the schoolbook example of tahdhir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "إِيَّاكَ وَالْكَذِبُ",
+      "right": "إِيَّاكَ وَالْكَذِبَ",
+      "why": {
+        "en": "The thing warned against is mansub — it is the object of the hidden «beware», not a subject. Learners leave the damma out of habit.",
+        "tr": "Sakındırılan şey mansubdur — gizli «احذر»in mef'ûlüdür, fâil değil. Öğrenciler alışkanlıkla ötreyi bırakır."
+      }
+    },
+    {
+      "wrong": "اِحْذَرْ إِيَّاكَ مِنَ الْكَذِبِ",
+      "right": "إِيَّاكَ وَالْكَذِبَ",
+      "why": {
+        "en": "Do not add an explicit «beware»: إِيَّاكَ already stands in for it. Nor does it need مِنْ — the classical construction is إِيَّاكَ وَ + a mansub noun.",
+        "tr": "Açık bir «احذر» ekleme: إِيَّاكَ zaten onun yerini tutar. مِنْ'e de gerek yok — klasik kalıp إِيَّاكَ وَ + mansub isimdir."
+      }
+    },
+    {
+      "wrong": "إِيَّاكُمْ وَالْكَذِبَ (لِمُخَاطَبٍ وَاحِدٍ)",
+      "right": "إِيَّاكَ وَالْكَذِبَ",
+      "why": {
+        "en": "The attached ـكَ must agree with the addressee: singular masculine is كَ, not the plural كُمْ.",
+        "tr": "Bitişik ـكَ muhataba uymalıdır: tekil müzekker كَ'dir, çoğul كُمْ değil."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-bihi",
+    "la-nahiya"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
