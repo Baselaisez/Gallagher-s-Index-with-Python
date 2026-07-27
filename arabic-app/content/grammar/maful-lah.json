@@ -1,0 +1,73 @@
+{
+  "id": "maful-lah",
+  "title": {
+    "ar": "الْمَفْعُولُ لَهُ (لِأَجْلِهِ)",
+    "en": "The maf'ul lah (accusative of purpose)"
+  },
+  "level": 4,
+  "group": "nahw",
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "Defined in the Mansubat as «هُوَ مَا فُعِلَ لِأَجْلِهِ فِعْلٌ مَذْكُورٌ» — the noun naming the REASON for which the stated action was done. It answers «why?» and takes nasb: قُمْتُ إِجْلَالًا لِلْعَالِمِ «I stood out of respect for the scholar». For it to take nasb rather than a preposition, three things are normally required: it must be a masdar (a قلبي one, an act of the heart — fear, desire, respect), and it must share the doer and the time of the main verb. When any of those fails, Arabic uses لِ instead: جِئْتُ لِلْعِلْمِ.",
+    "tr": "Mensûbât'ta şöyle tanımlanır: «هُوَ مَا فُعِلَ لِأَجْلِهِ فِعْلٌ مَذْكُورٌ» — zikredilen işin kendisi SEBEBİYLE yapıldığı şeyin ismidir. «Niçin?» sorusuna cevap verir ve nasb alır: قُمْتُ إِجْلَالًا لِلْعَالِمِ «Âlime saygıdan dolayı ayağa kalktım». Harf-i cer yerine nasb alabilmesi için genelde üç şart aranır: masdar olması (kalbî bir masdar — korku, arzu, saygı gibi), fâilinin ve zamanının asıl fiille aynı olması. Bunlardan biri düşerse لِ kullanılır: جِئْتُ لِلْعِلْمِ."
+  },
+  "examples": [
+    {
+      "ar": "قُمْتُ إِجْلَالًا لِلْعَالِمِ.",
+      "en": "I stood out of respect for the scholar — the reason, in nasb."
+    },
+    {
+      "ar": "وَإِنَّمَا أُوصِيكَ لِمَصْلَحَتِكَ وَمَصْلَحَةِ الْمُسْلِمِينَ.",
+      "en": "I counsel you only for your good and the good of the Muslims — the reason, carried by لِ rather than nasb because it is not a heart-masdar.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s12"
+    },
+    {
+      "ar": "وَإِنَّمَا أُوصِيكَ لِمَصْلَحَتِكَ وَمَصْلَحَةِ الْمُسْلِمِينَ.",
+      "en": "I counsel you only for your good and the good of the Muslims — here the reason is carried by لِ, not by nasb, because it is not a heart-masdar. From Abu Hanifa's testament to Abu Yusuf."
+    },
+    {
+      "ar": "تَرَكْتُ الْمَعْصِيَةَ خَوْفًا مِنَ اللَّهِ.",
+      "en": "I abandoned the sin out of fear of Allah."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "قمتُ إجلالٌ للعالمِ",
+      "right": "قمتُ إجلالًا للعالمِ",
+      "why": {
+        "en": "The maf'ul lah is mansub — it is one of the thirteen mansubat, not a subject.",
+        "tr": "Mef'ûl leh mansubdur — on üç mensûbâttan biridir, fâil değildir."
+      }
+    },
+    {
+      "wrong": "جئتُ الْعِلْمَ (يريد: لطلب العلم)",
+      "right": "جئتُ لِلْعِلْمِ",
+      "why": {
+        "en": "A non-masdar, or one whose doer differs from the verb's, cannot take nasb as maf'ul lah — it needs لِ. Putting it in nasb makes it read as a direct object.",
+        "tr": "Masdar olmayan veya fâili asıl fiilden farklı olan kelime mef'ûl leh olarak nasb alamaz — لِ gerekir. Nasb yapılırsa mef'ûlün bih gibi okunur."
+      }
+    },
+    {
+      "wrong": "ضربتُه تأديبًا لأخيه",
+      "right": "ضربتُه تأديبًا لَهُ",
+      "why": {
+        "en": "The maf'ul lah must share the doer of the main verb; if the purpose belongs to someone else, the sentence must be recast.",
+        "tr": "Mef'ûl leh, asıl fiilin fâiliyle aynı fâile sahip olmalıdır; maksat başkasına aitse cümle yeniden kurulmalıdır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-fih",
+    "maful-mutlaq",
+    "lam-taleel"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

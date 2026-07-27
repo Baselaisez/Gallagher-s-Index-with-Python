@@ -1,0 +1,74 @@
+{
+  "id": "istithna",
+  "title": {
+    "ar": "الِاسْتِثْنَاء (الْمُسْتَثْنَى)",
+    "en": "Exception (the mustathna)"
+  },
+  "level": 4,
+  "group": "nahw",
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "إظهار الأسرار (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "The mustathna is what إِلَّا and its sisters (غَيْر، سِوَى، خَلَا، عَدَا، حَاشَا) take OUT of a larger group. The Mansubat divides it in two: (1) مُتَّصِل, «هُوَ الْمُخْرَجُ عَنْ مُتَعَدِّدٍ لَفْظًا أَوْ تَقْدِيرًا بِإِلَّا وَأَخَوَاتِهَا» — the excepted thing belongs to the group it is taken from (جَاءَ الْقَوْمُ إِلَّا زَيْدًا); (2) مُنْقَطِع, where it does not (مَا جَاءَ أَحَدٌ إِلَّا حِمَارًا). The case follows the sentence: after a COMPLETE AFFIRMATIVE sentence the mustathna is mansub. After a negative sentence with the excepted-from mentioned, it may either be mansub or follow the case of that noun. In a sentence where the excepted-from is dropped (مُفَرَّغ), إِلَّا governs nothing at all and the noun simply takes whatever the verb requires: مَا جَاءَ إِلَّا زَيْدٌ.",
+    "tr": "Müstesnâ, إِلَّا ve kardeşlerinin (غَيْر، سِوَى، خَلَا، عَدَا، حَاشَا) daha büyük bir topluluktan ÇIKARDIĞI şeydir. Mensûbât ikiye ayırır: (1) muttasıl, «هُوَ الْمُخْرَجُ عَنْ مُتَعَدِّدٍ لَفْظًا أَوْ تَقْدِيرًا بِإِلَّا وَ أَخَوَاتِهَا» — çıkarılan, çıkarıldığı cinsten olur (جَاءَ الْقَوْمُ إِلَّا زَيْدًا); (2) munkatı', olmaz (مَا جَاءَ أَحَدٌ إِلَّا حِمَارًا). İ'rabı cümleye bağlıdır: TAM ve MÛCEB bir cümleden sonra müstesnâ mansubdur. Menfî cümlede müstesnâ minh zikredilmişse ya mansub olur ya da ondan bedel olarak i'rabına uyar. Müstesnâ minh hazfedilmişse (müferrağ), إِلَّا hiçbir amel yapmaz ve isim fiilin gerektirdiği i'rabı alır: مَا جَاءَ إِلَّا زَيْدٌ."
+  },
+  "examples": [
+    {
+      "ar": "وَمَنْ جَاءَكَ يَسْتَفْتِيكَ فَلَا تُجِبْ إِلَّا عَنْ سُؤَالِهِ.",
+      "en": "Whoever comes asking you for a ruling — answer nothing but his question. A mufarragh exception: إلا governs nothing, so the phrase simply takes the case its position requires.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s9"
+    },
+    {
+      "ar": "وَمَنْ جَاءَكَ يَسْتَفْتِيكَ فَلَا تُجِبْ إِلَّا عَنْ سُؤَالِهِ.",
+      "en": "Whoever comes asking you for a ruling — answer only his question. A mufarragh exception: إِلَّا governs nothing, the phrase simply completes the verb. From Abu Hanifa's testament to Abu Yusuf."
+    },
+    {
+      "ar": "جَاءَ الْقَوْمُ إِلَّا زَيْدًا.",
+      "en": "The people came except Zayd — complete affirmative sentence, so the mustathna is mansub."
+    },
+    {
+      "ar": "مَا جَاءَ أَحَدٌ إِلَّا زَيْدًا / إِلَّا زَيْدٌ.",
+      "en": "No one came except Zayd — negative sentence: nasb, or badal following أَحَدٌ, are both allowed."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ما جاء إلا زيدًا",
+      "right": "ما جاء إلا زيدٌ",
+      "why": {
+        "en": "When the excepted-from is not mentioned (mufarragh), إِلَّا governs nothing — the noun takes the case its position requires, here fa'il in raf'. This is the single most common exception error.",
+        "tr": "Müstesnâ minh zikredilmemişse (müferrağ) إِلَّا amel etmez — isim, konumunun gerektirdiği i'rabı alır, burada fâil olarak merfû. En sık yapılan istisna hatasıdır."
+      }
+    },
+    {
+      "wrong": "جاء القومُ إلا زيدٌ",
+      "right": "جاء القومُ إلا زيدًا",
+      "why": {
+        "en": "After a complete affirmative sentence the mustathna must be mansub; it does not follow the case of the group.",
+        "tr": "Tam ve mûceb cümleden sonra müstesnâ mansub olmalıdır; topluluğun i'rabına uymaz."
+      }
+    },
+    {
+      "wrong": "جاء القومُ غيرًا زيدٍ",
+      "right": "جاء القومُ غَيْرَ زَيْدٍ",
+      "why": {
+        "en": "With غَيْر and سِوَى the exception is expressed by idafa: غَيْر itself takes the case the mustathna would have taken, and the excepted noun goes into jarr after it.",
+        "tr": "غَيْر ve سِوَى ile istisna izafetle yapılır: غَيْر, müstesnânın alacağı i'rabı alır, istisna edilen isim ondan sonra mecrûr olur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-bihi",
+    "fail",
+    "innama-kaffa"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

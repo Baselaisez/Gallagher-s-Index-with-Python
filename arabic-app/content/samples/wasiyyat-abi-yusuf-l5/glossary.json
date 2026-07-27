@@ -1,48 +1,671 @@
 {
   "entries": {
-    "ya": { "lemma": "يَا", "pos": "part", "gloss": { "en": "O! (vocative)", "tr": "ey (nida)" }, "level": 1 },
-    "yaqub": { "lemma": "يَعْقُوب", "pos": "propn", "gloss": { "en": "Ya'qub (Abu Yusuf, the student)", "tr": "Yakub (Ebu Yusuf, öğrenci)" }, "level": 0 },
-    "waqqara": { "lemma": "وَقَّرَ", "root": "و ق ر", "pos": "verb", "form": "II", "gloss": { "en": "to honor, hold in reverence", "tr": "saygı göstermek, ululamak" }, "level": 4 },
-    "sultan": { "lemma": "سُلْطَان", "root": "س ل ط", "pos": "noun", "plural": "سَلَاطِين", "gloss": { "en": "ruler, sultan", "tr": "sultan, hükümdar" }, "level": 3 },
-    "azzama": { "lemma": "عَظَّمَ", "root": "ع ظ م", "pos": "verb", "form": "II", "gloss": { "en": "to magnify, exalt", "tr": "yüceltmek, tazim etmek" }, "level": 3 },
-    "manzila": { "lemma": "مَنْزِلَة", "root": "ن ز ل", "pos": "noun", "plural": "مَنَازِل", "gloss": { "en": "standing, rank", "tr": "mevki, makam" }, "level": 3 },
-    "iyya": { "lemma": "إِيَّاكَ", "pos": "pron", "gloss": { "en": "beware! (warning object-pronoun)", "tr": "sakın! (tahzir zamiri)" }, "level": 4 },
-    "kadhib": { "lemma": "كَذِب", "root": "ك ذ ب", "pos": "noun", "gloss": { "en": "lying, falsehood", "tr": "yalan" }, "level": 2 },
-    "bayna": { "lemma": "بَيْنَ", "pos": "adv", "gloss": { "en": "between; بَيْنَ يَدَيْهِ: in his presence", "tr": "arasında; بَيْنَ يَدَيْهِ: huzurunda" }, "level": 1 },
-    "yad": { "lemma": "يَد", "root": "ي د ي", "pos": "noun", "plural": "أَيْدٍ", "gloss": { "en": "hand", "tr": "el" }, "level": 1 },
-    "fa": { "lemma": "فَـ", "pos": "part", "gloss": { "en": "so, for, then", "tr": "o halde, çünkü, hemen" }, "level": 1 },
-    "inna": { "lemma": "إِنَّ", "pos": "part", "gloss": { "en": "indeed (governs its noun in nasb)", "tr": "şüphesiz (ismini nasbeder)" }, "level": 2 },
-    "idha": { "lemma": "إِذَا", "pos": "part", "gloss": { "en": "when, if (conditional)", "tr": "-dığında, -ınca (şart)" }, "level": 2 },
-    "akthara": { "lemma": "أَكْثَرَ", "root": "ك ث ر", "pos": "verb", "form": "IV", "gloss": { "en": "to do much, do often", "tr": "çok yapmak, sıklaştırmak" }, "level": 3 },
-    "ikhtilaf": { "lemma": "اِخْتِلَاف", "root": "خ ل ف", "pos": "noun", "gloss": { "en": "frequent coming and going (here); also: disagreement", "tr": "sık gidip gelme (burada); ayrıca: ihtilaf" }, "level": 4 },
-    "ila": { "lemma": "إِلَى", "pos": "prep", "gloss": { "en": "to, towards", "tr": "-e, -e doğru" }, "level": 1 },
-    "tahawana": { "lemma": "تَهَاوَنَ", "root": "ه و ن", "pos": "verb", "form": "VI", "gloss": { "en": "to make light of, belittle (بـ: someone)", "tr": "küçümsemek, hafife almak" }, "level": 4 },
-    "bi": { "lemma": "بِ", "pos": "prep", "gloss": { "en": "with, by", "tr": "ile, -le" }, "level": 1 },
-    "saghura": { "lemma": "صَغُرَ", "root": "ص غ ر", "pos": "verb", "form": "I", "gloss": { "en": "to become small, diminish", "tr": "küçülmek, önemsizleşmek" }, "level": 2 },
-    "inda": { "lemma": "عِنْد", "pos": "adv", "gloss": { "en": "at, with (someone)", "tr": "yanında, katında" }, "level": 1 },
-    "kana": { "lemma": "كَانَ", "root": "ك و ن", "pos": "verb", "form": "I", "gloss": { "en": "to be (incomplete verb)", "tr": "olmak (nakıs fiil)" }, "level": 2 },
-    "min": { "lemma": "مِنْ", "pos": "prep", "gloss": { "en": "from", "tr": "-den, -dan" }, "level": 1 },
-    "ka": { "lemma": "كَـ", "pos": "prep", "gloss": { "en": "like, as (comparison)", "tr": "gibi (teşbih)" }, "level": 2 },
-    "ma-masdariyya": { "lemma": "مَا (المَصْدَرِيَّة)", "pos": "part", "gloss": { "en": "as, just as (masdar «ma»)", "tr": "-diği gibi (masdariyye «ma»)" }, "level": 3 },
-    "anta": { "lemma": "أَنْتَ", "pos": "pron", "gloss": { "en": "you (masc. sing., detached)", "tr": "sen (müzekker, munfasıl)" }, "level": 1 },
-    "nar": { "lemma": "نَار", "root": "ن و ر", "pos": "noun", "gloss": { "en": "fire", "tr": "ateş" }, "level": 1 },
-    "intafaa": { "lemma": "اِنْتَفَعَ", "root": "ن ف ع", "pos": "verb", "form": "VIII", "gloss": { "en": "to benefit (بـ: from)", "tr": "faydalanmak" }, "level": 3 },
-    "an-jarr": { "lemma": "عَنْ", "pos": "prep", "gloss": { "en": "from, away from", "tr": "-den (uzaklaşma)" }, "level": 1 },
-    "tabaaada": { "lemma": "تَبَاعَدَ", "root": "ب ع د", "pos": "verb", "form": "VI", "gloss": { "en": "to keep one's distance, move gradually away", "tr": "uzak durmak, gitgide uzaklaşmak" }, "level": 3 },
-    "la-nahiya": { "lemma": "لَا (النَّاهِيَة)", "pos": "part", "gloss": { "en": "do not (prohibition; governs the jussive)", "tr": "-me/-ma (nehiy edatı)" }, "level": 1 },
-    "dana": { "lemma": "دَنَا", "root": "د ن و", "pos": "verb", "form": "I", "gloss": { "en": "to draw near (مِن: to)", "tr": "yaklaşmak" }, "level": 3 },
-    "wa": { "lemma": "وَ", "pos": "conj", "gloss": { "en": "and", "tr": "ve" }, "level": 1 },
-    "kathra": { "lemma": "كَثْرَة", "root": "ك ث ر", "pos": "noun", "gloss": { "en": "abundance, excess", "tr": "çokluk, fazlalık" }, "level": 2 },
-    "kalam": { "lemma": "كَلَام", "root": "ك ل م", "pos": "noun", "gloss": { "en": "speech, talk", "tr": "söz, konuşma" }, "level": 1 },
-    "la-nafiya": { "lemma": "لَا (النَّافِيَة)", "pos": "part", "gloss": { "en": "not (simple negation)", "tr": "değil, -maz (nefy)" }, "level": 1 },
-    "raa": { "lemma": "رَأَى", "root": "ر أ ي", "pos": "verb", "form": "I", "gloss": { "en": "to see; to regard, deem", "tr": "görmek; saymak, uygun görmek" }, "level": 1 },
-    "li": { "lemma": "لِ", "pos": "prep", "gloss": { "en": "to, for", "tr": "için, -e" }, "level": 1 },
-    "ahad": { "lemma": "أَحَد", "root": "أ ح د", "pos": "noun", "gloss": { "en": "anyone, one", "tr": "biri, hiç kimse" }, "level": 1 },
-    "ma-mawsula": { "lemma": "مَا (المَوْصُولَة)", "pos": "pron", "gloss": { "en": "that which, what", "tr": "-dığı şey" }, "level": 2 },
-    "nafs": { "lemma": "نَفْس", "root": "ن ف س", "pos": "noun", "plural": "نُفُوس", "gloss": { "en": "self, soul", "tr": "nefs, kendi" }, "level": 2 },
-    "pron-2ms": { "lemma": "ـكَ", "pos": "pron", "gloss": { "en": "you / your (attached pronoun)", "tr": "seni / senin (bitişik zamir)" }, "level": 1 },
-    "pron-2ms-subj": { "lemma": "تَ (تاء الفاعل)", "pos": "pron", "gloss": { "en": "you (subject suffix on past verbs)", "tr": "-n (mazide fail zamiri)" }, "level": 1 },
-    "pron-3ms": { "lemma": "ـهُ", "pos": "pron", "gloss": { "en": "him / his (attached pronoun)", "tr": "onu / onun (bitişik zamir)" }, "level": 1 },
-    "pron-3fs": { "lemma": "ـهَا", "pos": "pron", "gloss": { "en": "her / it (attached pronoun, feminine)", "tr": "onu / onun (müennes bitişik zamir)" }, "level": 1 }
+    "ya": {
+      "lemma": "يَا",
+      "pos": "part",
+      "gloss": {
+        "en": "O! (vocative)",
+        "tr": "ey (nida)"
+      },
+      "level": 1
+    },
+    "yaqub": {
+      "lemma": "يَعْقُوب",
+      "pos": "propn",
+      "gloss": {
+        "en": "Ya'qub (Abu Yusuf, the student)",
+        "tr": "Yakub (Ebu Yusuf, öğrenci)"
+      },
+      "level": 0
+    },
+    "waqqara": {
+      "lemma": "وَقَّرَ",
+      "root": "و ق ر",
+      "pos": "verb",
+      "form": "II",
+      "gloss": {
+        "en": "to honor, hold in reverence",
+        "tr": "saygı göstermek, ululamak"
+      },
+      "level": 4
+    },
+    "sultan": {
+      "lemma": "سُلْطَان",
+      "root": "س ل ط",
+      "pos": "noun",
+      "plural": "سَلَاطِين",
+      "gloss": {
+        "en": "ruler, sultan",
+        "tr": "sultan, hükümdar"
+      },
+      "level": 3
+    },
+    "azzama": {
+      "lemma": "عَظَّمَ",
+      "root": "ع ظ م",
+      "pos": "verb",
+      "form": "II",
+      "gloss": {
+        "en": "to magnify, exalt",
+        "tr": "yüceltmek, tazim etmek"
+      },
+      "level": 3
+    },
+    "manzila": {
+      "lemma": "مَنْزِلَة",
+      "root": "ن ز ل",
+      "pos": "noun",
+      "plural": "مَنَازِل",
+      "gloss": {
+        "en": "standing, rank",
+        "tr": "mevki, makam"
+      },
+      "level": 3
+    },
+    "iyya": {
+      "lemma": "إِيَّاكَ",
+      "pos": "pron",
+      "gloss": {
+        "en": "beware! (warning object-pronoun)",
+        "tr": "sakın! (tahzir zamiri)"
+      },
+      "level": 4
+    },
+    "kadhib": {
+      "lemma": "كَذِب",
+      "root": "ك ذ ب",
+      "pos": "noun",
+      "gloss": {
+        "en": "lying, falsehood",
+        "tr": "yalan"
+      },
+      "level": 2
+    },
+    "bayna": {
+      "lemma": "بَيْنَ",
+      "pos": "adv",
+      "gloss": {
+        "en": "between; بَيْنَ يَدَيْهِ: in his presence",
+        "tr": "arasında; بَيْنَ يَدَيْهِ: huzurunda"
+      },
+      "level": 1
+    },
+    "yad": {
+      "lemma": "يَد",
+      "root": "ي د ي",
+      "pos": "noun",
+      "plural": "أَيْدٍ",
+      "gloss": {
+        "en": "hand",
+        "tr": "el"
+      },
+      "level": 1
+    },
+    "fa": {
+      "lemma": "فَـ",
+      "pos": "part",
+      "gloss": {
+        "en": "so, for, then",
+        "tr": "o halde, çünkü, hemen"
+      },
+      "level": 1
+    },
+    "inna": {
+      "lemma": "إِنَّ",
+      "pos": "part",
+      "gloss": {
+        "en": "indeed (governs its noun in nasb)",
+        "tr": "şüphesiz (ismini nasbeder)"
+      },
+      "level": 2
+    },
+    "idha": {
+      "lemma": "إِذَا",
+      "pos": "part",
+      "gloss": {
+        "en": "when, if (conditional)",
+        "tr": "-dığında, -ınca (şart)"
+      },
+      "level": 2
+    },
+    "akthara": {
+      "lemma": "أَكْثَرَ",
+      "root": "ك ث ر",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to do much, do often",
+        "tr": "çok yapmak, sıklaştırmak"
+      },
+      "level": 3
+    },
+    "ikhtilaf": {
+      "lemma": "اِخْتِلَاف",
+      "root": "خ ل ف",
+      "pos": "noun",
+      "gloss": {
+        "en": "frequent coming and going (here); also: disagreement",
+        "tr": "sık gidip gelme (burada); ayrıca: ihtilaf"
+      },
+      "level": 4
+    },
+    "ila": {
+      "lemma": "إِلَى",
+      "pos": "prep",
+      "gloss": {
+        "en": "to, towards",
+        "tr": "-e, -e doğru"
+      },
+      "level": 1
+    },
+    "tahawana": {
+      "lemma": "تَهَاوَنَ",
+      "root": "ه و ن",
+      "pos": "verb",
+      "form": "VI",
+      "gloss": {
+        "en": "to make light of, belittle (بـ: someone)",
+        "tr": "küçümsemek, hafife almak"
+      },
+      "level": 4
+    },
+    "bi": {
+      "lemma": "بِ",
+      "pos": "prep",
+      "gloss": {
+        "en": "with, by",
+        "tr": "ile, -le"
+      },
+      "level": 1
+    },
+    "saghura": {
+      "lemma": "صَغُرَ",
+      "root": "ص غ ر",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to become small, diminish",
+        "tr": "küçülmek, önemsizleşmek"
+      },
+      "level": 2
+    },
+    "inda": {
+      "lemma": "عِنْد",
+      "pos": "adv",
+      "gloss": {
+        "en": "at, with (someone)",
+        "tr": "yanında, katında"
+      },
+      "level": 1
+    },
+    "kana": {
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to be (incomplete verb)",
+        "tr": "olmak (nakıs fiil)"
+      },
+      "level": 2
+    },
+    "min": {
+      "lemma": "مِنْ",
+      "pos": "prep",
+      "gloss": {
+        "en": "from",
+        "tr": "-den, -dan"
+      },
+      "level": 1
+    },
+    "ka": {
+      "lemma": "كَـ",
+      "pos": "prep",
+      "gloss": {
+        "en": "like, as (comparison)",
+        "tr": "gibi (teşbih)"
+      },
+      "level": 2
+    },
+    "ma-masdariyya": {
+      "lemma": "مَا (المَصْدَرِيَّة)",
+      "pos": "part",
+      "gloss": {
+        "en": "as, just as (masdar «ma»)",
+        "tr": "-diği gibi (masdariyye «ma»)"
+      },
+      "level": 3
+    },
+    "anta": {
+      "lemma": "أَنْتَ",
+      "pos": "pron",
+      "gloss": {
+        "en": "you (masc. sing., detached)",
+        "tr": "sen (müzekker, munfasıl)"
+      },
+      "level": 1
+    },
+    "nar": {
+      "lemma": "نَار",
+      "root": "ن و ر",
+      "pos": "noun",
+      "gloss": {
+        "en": "fire",
+        "tr": "ateş"
+      },
+      "level": 1
+    },
+    "intafaa": {
+      "lemma": "اِنْتَفَعَ",
+      "root": "ن ف ع",
+      "pos": "verb",
+      "form": "VIII",
+      "gloss": {
+        "en": "to benefit (بـ: from)",
+        "tr": "faydalanmak"
+      },
+      "level": 3
+    },
+    "an-jarr": {
+      "lemma": "عَنْ",
+      "pos": "prep",
+      "gloss": {
+        "en": "from, away from",
+        "tr": "-den (uzaklaşma)"
+      },
+      "level": 1
+    },
+    "tabaaada": {
+      "lemma": "تَبَاعَدَ",
+      "root": "ب ع د",
+      "pos": "verb",
+      "form": "VI",
+      "gloss": {
+        "en": "to keep one's distance, move gradually away",
+        "tr": "uzak durmak, gitgide uzaklaşmak"
+      },
+      "level": 3
+    },
+    "la-nahiya": {
+      "lemma": "لَا (النَّاهِيَة)",
+      "pos": "part",
+      "gloss": {
+        "en": "do not (prohibition; governs the jussive)",
+        "tr": "-me/-ma (nehiy edatı)"
+      },
+      "level": 1
+    },
+    "dana": {
+      "lemma": "دَنَا",
+      "root": "د ن و",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to draw near (مِن: to)",
+        "tr": "yaklaşmak"
+      },
+      "level": 3
+    },
+    "wa": {
+      "lemma": "وَ",
+      "pos": "conj",
+      "gloss": {
+        "en": "and",
+        "tr": "ve"
+      },
+      "level": 1
+    },
+    "kathra": {
+      "lemma": "كَثْرَة",
+      "root": "ك ث ر",
+      "pos": "noun",
+      "gloss": {
+        "en": "abundance, excess",
+        "tr": "çokluk, fazlalık"
+      },
+      "level": 2
+    },
+    "kalam": {
+      "lemma": "كَلَام",
+      "root": "ك ل م",
+      "pos": "noun",
+      "gloss": {
+        "en": "speech, talk",
+        "tr": "söz, konuşma"
+      },
+      "level": 1
+    },
+    "la-nafiya": {
+      "lemma": "لَا (النَّافِيَة)",
+      "pos": "part",
+      "gloss": {
+        "en": "not (simple negation)",
+        "tr": "değil, -maz (nefy)"
+      },
+      "level": 1
+    },
+    "raa": {
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to see; to regard, deem",
+        "tr": "görmek; saymak, uygun görmek"
+      },
+      "level": 1
+    },
+    "li": {
+      "lemma": "لِ",
+      "pos": "prep",
+      "gloss": {
+        "en": "to, for",
+        "tr": "için, -e"
+      },
+      "level": 1
+    },
+    "ahad": {
+      "lemma": "أَحَد",
+      "root": "أ ح د",
+      "pos": "noun",
+      "gloss": {
+        "en": "anyone, one",
+        "tr": "biri, hiç kimse"
+      },
+      "level": 1
+    },
+    "ma-mawsula": {
+      "lemma": "مَا (المَوْصُولَة)",
+      "pos": "pron",
+      "gloss": {
+        "en": "that which, what",
+        "tr": "-dığı şey"
+      },
+      "level": 2
+    },
+    "nafs": {
+      "lemma": "نَفْس",
+      "root": "ن ف س",
+      "pos": "noun",
+      "plural": "نُفُوس",
+      "gloss": {
+        "en": "self, soul",
+        "tr": "nefs, kendi"
+      },
+      "level": 2
+    },
+    "pron-2ms": {
+      "lemma": "ـكَ",
+      "pos": "pron",
+      "gloss": {
+        "en": "you / your (attached pronoun)",
+        "tr": "seni / senin (bitişik zamir)"
+      },
+      "level": 1
+    },
+    "pron-2ms-subj": {
+      "lemma": "تَ (تاء الفاعل)",
+      "pos": "pron",
+      "gloss": {
+        "en": "you (subject suffix on past verbs)",
+        "tr": "-n (mazide fail zamiri)"
+      },
+      "level": 1
+    },
+    "pron-3ms": {
+      "lemma": "ـهُ",
+      "pos": "pron",
+      "gloss": {
+        "en": "him / his (attached pronoun)",
+        "tr": "onu / onun (bitişik zamir)"
+      },
+      "level": 1
+    },
+    "pron-3fs": {
+      "lemma": "ـهَا",
+      "pos": "pron",
+      "gloss": {
+        "en": "her / it (attached pronoun, feminine)",
+        "tr": "onu / onun (müennes bitişik zamir)"
+      },
+      "level": 1
+    },
+    "takallama": {
+      "lemma": "تَكَلَّمَ",
+      "root": "ك ل م",
+      "pos": "verb",
+      "form": "V",
+      "gloss": {
+        "en": "to speak",
+        "tr": "konuşmak"
+      },
+      "level": 2
+    },
+    "amma": {
+      "lemma": "الْعَامَّة",
+      "root": "ع م م",
+      "pos": "noun",
+      "gloss": {
+        "en": "the common people, the public",
+        "tr": "halk, avam"
+      },
+      "level": 3
+    },
+    "illa": {
+      "lemma": "إِلَّا",
+      "pos": "part",
+      "gloss": {
+        "en": "except, but (exception)",
+        "tr": "-den başka, ancak (istisna)"
+      },
+      "level": 3
+    },
+    "saala": {
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to ask (passive: to be asked)",
+        "tr": "sormak (meçhul: sorulmak)"
+      },
+      "level": 2
+    },
+    "man-shartiyya": {
+      "lemma": "مَنْ (الشَّرْطِيَّة)",
+      "pos": "pron",
+      "gloss": {
+        "en": "whoever (conditional)",
+        "tr": "her kim (şart)"
+      },
+      "level": 3
+    },
+    "jaa": {
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to come",
+        "tr": "gelmek"
+      },
+      "level": 1
+    },
+    "istafta": {
+      "lemma": "اِسْتَفْتَى",
+      "root": "ف ت ي",
+      "pos": "verb",
+      "form": "X",
+      "gloss": {
+        "en": "to seek a legal ruling (fatwa)",
+        "tr": "fetva sormak"
+      },
+      "level": 5
+    },
+    "ajaba": {
+      "lemma": "أَجَابَ",
+      "root": "ج و ب",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to answer",
+        "tr": "cevap vermek"
+      },
+      "level": 3
+    },
+    "sual": {
+      "lemma": "سُؤَال",
+      "root": "س أ ل",
+      "pos": "noun",
+      "plural": "أَسْئِلَة",
+      "gloss": {
+        "en": "question",
+        "tr": "soru"
+      },
+      "level": 2
+    },
+    "akhadha": {
+      "lemma": "أَخَذَ",
+      "root": "أ خ ذ",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to take",
+        "tr": "almak"
+      },
+      "level": 1
+    },
+    "mal": {
+      "lemma": "مَال",
+      "root": "م و ل",
+      "pos": "noun",
+      "plural": "أَمْوَال",
+      "gloss": {
+        "en": "wealth, property",
+        "tr": "mal, servet"
+      },
+      "level": 2
+    },
+    "tamia": {
+      "lemma": "طَمِعَ",
+      "root": "ط م ع",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to covet, be greedy for (فِي)",
+        "tr": "tamah etmek, göz dikmek"
+      },
+      "level": 4
+    },
+    "ghaya": {
+      "lemma": "غَايَة",
+      "root": "غ ي ي",
+      "pos": "noun",
+      "gloss": {
+        "en": "utmost, extreme end",
+        "tr": "son derece, gaye"
+      },
+      "level": 4
+    },
+    "tama": {
+      "lemma": "طَمَع",
+      "root": "ط م ع",
+      "pos": "noun",
+      "gloss": {
+        "en": "covetousness, greed",
+        "tr": "tamah, hırs"
+      },
+      "level": 4
+    },
+    "sirr": {
+      "lemma": "سِرّ",
+      "root": "س ر ر",
+      "pos": "noun",
+      "plural": "أَسْرَار",
+      "gloss": {
+        "en": "secret, private life",
+        "tr": "sır, gizli hâl"
+      },
+      "level": 3
+    },
+    "alaniya": {
+      "lemma": "عَلَانِيَة",
+      "root": "ع ل ن",
+      "pos": "noun",
+      "gloss": {
+        "en": "open, public life",
+        "tr": "alenîlik, açık hâl"
+      },
+      "level": 4
+    },
+    "awsa": {
+      "lemma": "أَوْصَى",
+      "root": "و ص ي",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to counsel, enjoin",
+        "tr": "vasiyet etmek, öğüt vermek"
+      },
+      "level": 4
+    },
+    "maslaha": {
+      "lemma": "مَصْلَحَة",
+      "root": "ص ل ح",
+      "pos": "noun",
+      "plural": "مَصَالِح",
+      "gloss": {
+        "en": "benefit, welfare",
+        "tr": "maslahat, fayda"
+      },
+      "level": 4
+    },
+    "muslim": {
+      "lemma": "مُسْلِم",
+      "root": "س ل م",
+      "pos": "noun",
+      "plural": "مُسْلِمُونَ",
+      "gloss": {
+        "en": "Muslim",
+        "tr": "Müslüman"
+      },
+      "level": 1
+    },
+    "innama": {
+      "lemma": "إِنَّمَا",
+      "pos": "part",
+      "gloss": {
+        "en": "only (restriction)",
+        "tr": "ancak, sadece (hasr)"
+      },
+      "level": 3
+    },
+    "fi": {
+      "lemma": "فِي",
+      "pos": "prep",
+      "gloss": {
+        "en": "in",
+        "tr": "içinde, -de"
+      },
+      "level": 1
+    },
+    "pron-3mp": {
+      "lemma": "ـهُمْ",
+      "pos": "pron",
+      "gloss": {
+        "en": "them / their (attached pronoun, masc. plural)",
+        "tr": "onları / onların (çoğul bitişik zamir)"
+      },
+      "level": 2
+    },
+    "allah": {
+      "lemma": "اللَّه",
+      "pos": "propn",
+      "gloss": {
+        "en": "Allah",
+        "tr": "Allah"
+      },
+      "level": 0
+    }
   }
 }
