@@ -112,15 +112,26 @@ if (!CHROME) {
     if (badge !== '1') throw new Error('badge=' + badge);
   });
 
-  await check('SRS review: reveal + Good schedules card', async () => {
+  await check('SRS review: four grades, SM-2 intervals, deck stats', async () => {
     await page.keyboard.press('Escape');
     await page.locator('#deckOpen').click();
+    // Stats row is present before any review.
+    await page.waitForSelector('.deck-stats .fresh', { timeout: 3000 });
     await page.locator('#reviewCard').click();
     await page.locator('#reviewCard').click();
-    await page.locator('#goodBtn').click();
+    // All four SM-2 grades, each showing the interval it would schedule.
+    const grades = await page.locator('.grade-row .grade').count();
+    if (grades !== 4) throw new Error('expected 4 grade buttons, got ' + grades);
+    const previews = await page.locator('.grade-row .grade i').allTextContents();
+    if (!previews.every(t => t.trim())) throw new Error('a grade button has no interval preview');
+    if (previews[0] !== '10m') throw new Error('Again should schedule 10m, got ' + previews[0]);
+    await page.locator('.grade-row .grade[data-q="good"]').click();
     const txt = await page.locator('.empty').textContent();
     if (!txt.includes('Next review')) throw new Error('no next-review text: ' + txt);
     if (!(await page.locator('#deckCount').isHidden())) throw new Error('badge should hide when nothing due');
+    // A card graded Good from new is due in a day, not ten minutes.
+    const ivl = await page.evaluate(() => state.deck[0].srs.ivl);
+    if (ivl !== 1) throw new Error('first Good should give ivl=1, got ' + ivl);
   });
 
   await check('games: spot-the-error round works', async () => {
@@ -484,6 +495,51 @@ if (!CHROME) {
     // قَالَ is hollow: the passive takes kasra and a ي (قِيلَ), never *قُولَ.
     if (!maj[0].includes('قِيلَ')) throw new Error('hollow passive wrong: ' + maj.join('/'));
     if (maj.some(f => f.includes('قُولَ'))) throw new Error('derived-but-wrong hollow passive leaked');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('conjugation cards and the two new games', async () => {
+    await page.evaluate(() => document.getElementById('scrim').click());
+    if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
+      await page.locator('#backLib').click();
+      await page.waitForSelector('.lib-card', { timeout: 3000 });
+    }
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
+    await page.locator('.lib-card').nth(i).click();
+
+    // Saving a verb creates a conjugation card, distinct from a meaning card.
+    await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('#saveConjBtn').click();
+    const verbCards = await page.evaluate(() => state.deck.filter(c => c.type === 'verb').length);
+    if (verbCards !== 1) throw new Error('expected 1 verb card, got ' + verbCards);
+    // It must ask for a sigha, not a gloss.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#deckOpen').click();
+    await page.locator('#reviewCard').click();
+    await page.locator('#reviewCard').click();
+    if (!(await page.locator('.verb-answer').count())) throw new Error('verb card did not show a conjugated form');
+
+    // Sarf drill: distractors come from the same verb's own paradigm.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#gamesOpen').click();
+    await page.locator('#gSarf').click();
+    await page.waitForSelector('.game-q .sigha', { timeout: 3000 });
+    if (await page.locator('.opts button').count() < 2) throw new Error('sarf drill has too few options');
+    await page.locator('.opts button').first().click();
+    await page.waitForSelector('.opts button.right', { timeout: 3000 });
+
+    // Which-case drill, answered from the token's own i'rab.
+    await page.locator('#gBack').click();
+    await page.locator('#gCase').click();
+    await page.waitForSelector('.game-q .target', { timeout: 3000 });
+    const caseOpts = await page.locator('.opts [data-k]').count();
+    if (caseOpts !== 4) throw new Error('expected 4 case options, got ' + caseOpts);
+    await page.locator('.opts [data-k]').first().click();
+    await page.waitForSelector('.opts .right', { timeout: 3000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });

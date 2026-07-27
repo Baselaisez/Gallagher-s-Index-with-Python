@@ -230,6 +230,20 @@
   /* ---------- sarf (conjugation) ---------- */
   .tense-seg { margin: .6rem 0; }
   .conj-wrap { overflow-x: auto; }
+  .deck-stats { display: flex; gap: .4rem; flex-wrap: wrap; margin: .6rem 0; font-family: var(--ui-font); font-size: .72rem; }
+  .deck-stats .st { padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-soft); }
+  .deck-stats .fresh { color: var(--accent); border-color: var(--accent); }
+  .deck-stats .leech { color: var(--danger); border-color: var(--danger); }
+  .grade-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; margin: .8rem 0; }
+  .grade-row .btn.grade { display: flex; flex-direction: column; align-items: center; gap: .12rem; padding: .5rem .2rem; }
+  .grade-row .btn.grade b { font-size: .8rem; }
+  .grade-row .btn.grade i { font-style: normal; font-size: .66rem; color: var(--ink-soft); }
+  .grade-row .again { border-color: var(--danger); color: var(--danger); }
+  .grade-row .easy  { border-color: var(--accent); color: var(--accent); }
+  .verb-ask { font-family: var(--ui-font); font-size: .85rem; color: var(--ink-soft); margin-top: .5rem; }
+  .verb-answer { font-family: var(--ar-font); font-size: 1.8rem; direction: rtl; margin-top: .3rem; }
+  .game-q .sigha { font-family: var(--ui-font); font-size: .85rem; color: var(--accent); margin-top: .35rem; }
+  .game-q .target { color: var(--accent); border-bottom: 2px solid var(--accent); }
   table.conj.muhtelife th.person { text-align: start; font-family: var(--ui-font); font-size: .78rem; white-space: nowrap; }
   table.conj.muhtelife td { font-size: 1.25rem; text-align: right; direction: rtl; }
   table.conj.muhtelife tr.majhul th, table.conj.muhtelife tr.majhul td { background: var(--accent-soft); }
@@ -459,6 +473,13 @@ Object.assign(L.en, {
   accessFree:"Free story", accessUpload:"Your upload · machine-analyzed",
   accessPremium:"★ Premium", chaptersWord:"chapters", backLib:"← Library",
   sayWord:"Pronounce this word",
+  hard:"Hard", easy:"Easy", tenMin:"10m", dayShort:"d", conjCard:"conjugation drill",
+  stNew:"new", stLearning:"learning", stMature:"mature", stLeech:"leech",
+  sarfGame:"Sarf drill", sarfGameDesc:"Name the sigha, pick the form — the Emsile-i Muhtelife.",
+  sarfGameAsk:"Which form of this verb is being asked for?",
+  caseGame:"Which case?", caseGameDesc:"A word in a real sentence — say how it is governed.",
+  caseGameAsk:"The highlighted word is governed in which case?",
+  saveConj:"+ Save conjugation drill", savedConj:"✓ Conjugation saved",
   muhtelifeNote:"The Emsile-i Muhtelife: the fourteen forms built from one verb — the first table of the madrasah curriculum. The highlighted row is the form used in this story.",
   previewLbl:"Free preview", upsellTitle:"★ This is a Premium story",
   upsellBody:"You have read the free preview. Unlock every chapter, the full word-by-word analysis, and audio with Qissa Premium.",
@@ -471,6 +492,13 @@ Object.assign(L.tr, {
   accessFree:"Ücretsiz hikâye", accessUpload:"Yüklemeniz · makine analizi",
   accessPremium:"★ Premium", chaptersWord:"bölüm", backLib:"← Kütüphane",
   sayWord:"Bu kelimeyi seslendir",
+  hard:"Zor", easy:"Kolay", tenMin:"10dk", dayShort:"g", conjCard:"çekim alıştırması",
+  stNew:"yeni", stLearning:"öğreniliyor", stMature:"pekişmiş", stLeech:"takıldı",
+  sarfGame:"Sarf alıştırması", sarfGameDesc:"Sîgayı oku, şekli seç — Emsile-i Muhtelife.",
+  sarfGameAsk:"Bu fiilin hangi sîgası isteniyor?",
+  caseGame:"Hangi i'rab?", caseGameDesc:"Gerçek bir cümledeki kelime — nasıl amel görmüş?",
+  caseGameAsk:"Vurgulanan kelime hangi i'rab ile amel görmüştür?",
+  saveConj:"+ Çekim alıştırması ekle", savedConj:"✓ Çekim eklendi",
   muhtelifeNote:"Emsile-i Muhtelife: bir fiilden türeyen on dört sîga — medrese müfredatının ilk cetveli. Vurgulanan satır, bu hikâyede geçen şekildir.",
   previewLbl:"Ücretsiz önizleme", upsellTitle:"★ Bu bir Premium hikâye",
   upsellBody:"Ücretsiz önizlemeyi okudunuz. Qissa Premium ile tüm bölümlerin, kelime kelime tahlilin ve sesin kilidini açın.",
@@ -677,6 +705,114 @@ function openStory(st){
   closeSheet();
   renderStory();
   window.scrollTo(0, 0);
+}
+
+
+// ---------- game: Emsile-i Muhtelife drill ----------
+// Name a cell of the fourteen, pick the form. The distractors are other cells
+// of the SAME verb, so the learner must know the sigha, not just the root.
+let SG = null;
+function sarfItems(){
+  const out = [];
+  STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+    const rows = muhtelife(m);
+    if (!rows || rows.length < 5) return;
+    rows.forEach((row, ri) => out.push({ lex, m, ri, rows, lemma: m.mazi[0] }));
+  }));
+  return out;
+}
+function startSarfGame(){
+  const items = shuffle(sarfItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  SG = { items, i: 0, score: 0 };
+  renderSarfGame();
+}
+function renderSarfGame(){
+  const it = SG.items[SG.i];
+  const right = it.rows[it.ri];
+  const others = it.rows.filter((r, k) => k !== it.ri && r.ar !== right.ar);
+  const opts = shuffle([right.ar, ...shuffle(others).slice(0, 3).map(r => r.ar)]);
+  const label = state.uiLang === "tr" ? right.tr : right.en;
+  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+    <div class="tabs"><button class="on">${ui().sarfGame} · ${SG.i + 1}/${SG.items.length}</button></div>
+    <p class="ref-intro">${ui().sarfGameAsk}</p>
+    <div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${it.lemma}</span>
+      <div class="sigha">${label}</div></div>
+    <div class="opts">` + opts.map((o, oi) => `<button data-o="${oi}" lang="ar">${o}</button>`).join("") + `</div>
+    <div class="game-meta"><span>${ui().score}: ${SG.score}</span></div><div id="sgWhy"></div>`;
+  document.getElementById("gBack").addEventListener("click", openGames);
+  sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
+    if (opts[+b.dataset.o] === right.ar) SG.score++;
+    sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
+      if (opts[+x.dataset.o] === right.ar) x.classList.add("right");
+      else if (x === b) x.classList.add("wrongpick");
+      x.disabled = true;
+    });
+    document.getElementById("sgWhy").innerHTML =
+      `<div class="game-why">${it.m.bab} — ${it.m.wazn}${it.m.note ? "<br>" + it.m.note : ""}</div>
+       <div class="sheet-actions"><button class="btn primary" id="sgNext">${SG.i + 1 < SG.items.length ? ui().next : ui().replay}</button></div>`;
+    document.getElementById("sgNext").addEventListener("click", () => {
+      SG.i++;
+      if (SG.i < SG.items.length) renderSarfGame(); else startSarfGame();
+    });
+  }));
+}
+
+// ---------- game: which case? ----------
+// Birgivi's classes of governed form, drilled on real sentences. The answer is
+// read off the i'rab already written for the token, never guessed.
+const CASE_KEYS = [
+  { k: "marfu",  re: /مَرْفُوع/ },
+  { k: "mansub", re: /مَنْصُوب/ },
+  { k: "majrur", re: /مَجْرُور/ },
+  { k: "majzum", re: /مَجْزُوم/ },
+];
+let CG = null;
+function caseItems(){
+  const out = [];
+  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+    sen.tokens.forEach((t, ti) => {
+      if (!t.irab || !t.irab.ar) return;
+      const hits = CASE_KEYS.filter(c => c.re.test(t.irab.ar));
+      if (hits.length !== 1) return;          // skip tokens naming two cases
+      out.push({ sen, ti, tok: t, key: hits[0].k, story: st.id });
+    }))));
+  return out;
+}
+function startCaseGame(){
+  const items = shuffle(caseItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  CG = { items, i: 0, score: 0 };
+  renderCaseGame();
+}
+function renderCaseGame(){
+  const it = CG.items[CG.i];
+  const sentence = it.sen.tokens.map((t, ti) =>
+    (ti === it.ti ? `<b class="target">${t.s.full}</b>` : t.s.full) + (t.punctAfter || "")).join(" ");
+  const opts = ["marfu", "mansub", "majrur", "majzum"];
+  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+    <div class="tabs"><button class="on">${ui().caseGame} · ${CG.i + 1}/${CG.items.length}</button></div>
+    <p class="ref-intro">${ui().caseGameAsk}</p>
+    <div class="game-q" lang="ar">${sentence}</div>
+    <div class="opts">` + opts.map(o =>
+      `<button data-k="${o}"><span lang="ar">${MAMUL_LABEL[o].ar}</span> · ${MAMUL_LABEL[o][state.uiLang === "tr" ? "tr" : "en"]}</button>`).join("") + `</div>
+    <div class="game-meta"><span>${ui().score}: ${CG.score}</span></div><div id="cgWhy"></div>`;
+  document.getElementById("gBack").addEventListener("click", openGames);
+  sheetInner.querySelectorAll(".opts [data-k]").forEach(b => b.addEventListener("click", () => {
+    if (b.dataset.k === it.key) CG.score++;
+    sheetInner.querySelectorAll(".opts [data-k]").forEach(x => {
+      if (x.dataset.k === it.key) x.classList.add("right");
+      else if (x === b) x.classList.add("wrongpick");
+      x.disabled = true;
+    });
+    document.getElementById("cgWhy").innerHTML =
+      `<div class="game-why"><span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.tok.irab.ar}</span><br>${it.tok.irab[state.uiLang] || it.tok.irab.en}</div>
+       <div class="sheet-actions"><button class="btn primary" id="cgNext">${CG.i + 1 < CG.items.length ? ui().next : ui().replay}</button></div>`;
+    document.getElementById("cgNext").addEventListener("click", () => {
+      CG.i++;
+      if (CG.i < CG.items.length) renderCaseGame(); else startCaseGame();
+    });
+  }));
 }
 
 // ---------- audio ----------
@@ -931,6 +1067,11 @@ function openWord(tok, el, tab){
     else if (sarfTense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);
     else html += conjTable(morph[sarfTense], PERSON_ROWS, highlight);
     html += `<p class="sarf-note">${sarfTense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${morph.note ? " " + morph.note : ""}</p>`;
+    // Saving a verb adds a conjugation card, not a meaning card.
+    if (muhtelife(morph)) {
+      const savedV = state.deck.some(d => d.lex === tok.lex && d.type === "verb");
+      html += `<div class="sheet-actions"><button class="btn ${savedV ? "" : "primary"}" id="saveConjBtn">${savedV ? ui().savedConj : ui().saveConj}</button></div>`;
+    }
   } else if (mode === "irab" && tok.irab) {
     html += `<p class="lemma">${tok.s.full}</p>
       <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
@@ -948,6 +1089,8 @@ function openWord(tok, el, tab){
   if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
+  const sc = document.getElementById("saveConjBtn");
+  if (sc) sc.addEventListener("click", () => { toggleSaveVerb(tok.lex); openWord(tok, el, "sarf"); });
   const say = document.getElementById("sayWord");
   if (say) say.addEventListener("click", () => {
     const entry = GLOSSARY[tok.lex];
@@ -1087,8 +1230,20 @@ function openRef(noteId){
 }
 
 // ---------- deck (SRS scheduling) ----------
+// SM-2. Each card carries an ease factor that rises when recall is easy and
+// falls when it is not, so a card you keep failing comes back faster than one
+// you keep getting right — a fixed multiplier cannot do that.
 const DAY = 86400000;
-function ensureSrs(c){ if (!c.srs) c.srs = { due: 0, ivl: 0 }; return c; }
+const MIN_EASE = 1.3, START_EASE = 2.5, LEECH_AT = 8;
+function ensureSrs(c){
+  if (!c.srs) c.srs = { due: 0, ivl: 0 };
+  const s = c.srs;
+  if (s.ease === undefined) s.ease = START_EASE;
+  if (s.reps === undefined) s.reps = s.ivl ? 2 : 0;   // migrate older decks
+  if (s.lapses === undefined) s.lapses = 0;
+  return c;
+}
+function isLeech(c){ return ensureSrs(c).srs.lapses >= LEECH_AT; }
 function dueCards(){ const now = Date.now(); return state.deck.filter(c => ensureSrs(c).srs.due <= now); }
 function persistDeck(){
   localStorage.setItem("qissa-deck", JSON.stringify(state.deck));
@@ -1097,13 +1252,27 @@ function persistDeck(){
   c.hidden = due === 0;
   c.textContent = due;
 }
+function cardKey(c){ return c.type === "verb" ? "verb:" + c.lex : c.lex; }
 function toggleSave(tok){
-  const i = state.deck.findIndex(d => d.lex === tok.lex);
+  const i = state.deck.findIndex(d => d.lex === tok.lex && d.type !== "verb");
   if (i >= 0) state.deck.splice(i, 1);
   else {
     const e = GLOSSARY[tok.lex];
-    state.deck.push({lex: tok.lex, bare: tok.s.bare, lemma: e.lemma, gloss: {en: e.gloss.en, tr: e.gloss.tr}, srs: {due: 0, ivl: 0}});
+    state.deck.push({lex: tok.lex, type: "word", bare: tok.s.bare, lemma: e.lemma,
+                     gloss: {en: e.gloss.en, tr: e.gloss.tr}, srs: {due: 0, ivl: 0}});
   }
+  persistDeck();
+}
+// A conjugation card asks for one cell of the Emsile-i Muhtelife rather than a
+// meaning — the drill a madrasah student actually does.
+function toggleSaveVerb(lex){
+  const i = state.deck.findIndex(d => d.lex === lex && d.type === "verb");
+  if (i >= 0) { state.deck.splice(i, 1); persistDeck(); return; }
+  const m = MORPH[lex], e = GLOSSARY[lex];
+  if (!m || !muhtelife(m)) return;
+  state.deck.push({lex, type: "verb", lemma: e ? e.lemma : m.mazi[0],
+                   gloss: e ? {en: e.gloss.en, tr: e.gloss.tr} : {en: "", tr: ""},
+                   srs: {due: 0, ivl: 0}});
   persistDeck();
 }
 let reviewStep = 0;
@@ -1122,15 +1291,77 @@ function fmtDue(c){
   if (hrs < 24) return hrs + "h";
   return Math.round(hrs / 24) + "d";
 }
-function grade(card, ok){
+// q: "again" | "hard" | "good" | "easy"
+function grade(card, q){
+  if (q === true) q = "good";            // older call sites passed a boolean
+  if (q === false) q = "again";
   const s = ensureSrs(card).srs;
-  if (ok) { s.ivl = s.ivl ? Math.ceil(s.ivl * 2.5) : 1; s.due = Date.now() + s.ivl * DAY; }
-  else { s.ivl = 0; s.due = Date.now() + 10 * 60000; }
+  if (q === "again") {
+    s.reps = 0; s.lapses++;
+    s.ease = Math.max(MIN_EASE, s.ease - 0.20);
+    s.ivl = 0;
+    s.due = Date.now() + 10 * 60000;     // back in ten minutes
+  } else {
+    if (q === "hard")      s.ease = Math.max(MIN_EASE, s.ease - 0.15);
+    else if (q === "easy") s.ease = s.ease + 0.15;
+    if (s.reps === 0)      s.ivl = q === "easy" ? 3 : 1;
+    else if (s.reps === 1) s.ivl = q === "hard" ? 3 : (q === "easy" ? 8 : 6);
+    else {
+      const mult = q === "hard" ? 1.2 : (q === "easy" ? s.ease * 1.3 : s.ease);
+      s.ivl = Math.max(s.ivl + 1, Math.ceil(s.ivl * mult));
+    }
+    s.reps++;
+    s.due = Date.now() + s.ivl * DAY;
+  }
   persistDeck();
+}
+// What each button will do, so the learner can see the schedule before choosing.
+function previewIvl(card, q){
+  const s = ensureSrs(card).srs;
+  if (q === "again") return ui().tenMin;
+  let ivl;
+  if (s.reps === 0)      ivl = q === "easy" ? 3 : 1;
+  else if (s.reps === 1) ivl = q === "hard" ? 3 : (q === "easy" ? 8 : 6);
+  else {
+    const ease = q === "hard" ? Math.max(MIN_EASE, s.ease - 0.15)
+               : q === "easy" ? s.ease + 0.15 : s.ease;
+    const mult = q === "hard" ? 1.2 : (q === "easy" ? ease * 1.3 : ease);
+    ivl = Math.max(s.ivl + 1, Math.ceil(s.ivl * mult));
+  }
+  return ivl + ui().dayShort;
+}
+function deckStats(){
+  const now = Date.now();
+  let fresh = 0, learning = 0, mature = 0, leeches = 0;
+  state.deck.forEach(c => {
+    const s = ensureSrs(c).srs;
+    if (isLeech(c)) leeches++;
+    if (s.reps === 0) fresh++;
+    else if (s.ivl < 21) learning++;
+    else mature++;
+  });
+  return { fresh, learning, mature, leeches, due: dueCards().length, total: state.deck.length };
+}
+// A verb card asks for one cell of the Muhtelife; a word card asks for a meaning.
+function verbPrompt(card){
+  const m = MORPH[card.lex];
+  if (!m) return null;
+  const rows = muhtelife(m);
+  if (!rows) return null;
+  // Deterministic per review round so the two taps show the same cell.
+  const row = rows[Math.floor((ensureSrs(card).srs.reps + (card.pick || 0)) % rows.length)];
+  return { label: state.uiLang === "tr" ? row.tr : row.en, answer: row.ar, lemma: m.mazi[0] };
 }
 function renderDeck(){
   const queue = dueCards();
-  let html = `<div class="tabs"><button class="on">${ui().yourDeck} (${state.deck.length}) · ${queue.length} ${ui().due}</button></div>`;
+  const st = deckStats();
+  let html = `<div class="tabs"><button class="on">${ui().yourDeck} (${st.total}) · ${st.due} ${ui().due}</button></div>`;
+  html += `<div class="deck-stats">
+      <span class="st fresh">${st.fresh} ${ui().stNew}</span>
+      <span class="st learn">${st.learning} ${ui().stLearning}</span>
+      <span class="st mature">${st.mature} ${ui().stMature}</span>
+      ${st.leeches ? `<span class="st leech">${st.leeches} ${ui().stLeech}</span>` : ""}
+    </div>`;
   if (!state.deck.length) {
     html += `<p class="empty">${ui().empty}</p>`;
   } else if (!queue.length) {
@@ -1138,28 +1369,42 @@ function renderDeck(){
     html += `<p class="empty">${ui().allDone} ${ui().nextReview}: ${fmtDue(next)}</p>`;
   } else {
     const card = queue[0];
+    const vp = card.type === "verb" ? verbPrompt(card) : null;
     const steps = [ui().step1, ui().step2, ui().step3];
+    let front, back;
+    if (vp) {
+      front = vp.lemma;
+      back = `<div class="verb-ask">${vp.label}</div>` +
+             (reviewStep === 2 ? `<div class="verb-answer" lang="ar">${vp.answer}</div>` : "");
+    } else {
+      front = reviewStep === 0 ? card.bare : card.lemma;
+      back = reviewStep === 2 ? `<div style="margin-top:.4rem">${T(card.gloss)}</div>` : "";
+    }
     html += `<div class="deck-card" id="reviewCard" style="cursor:pointer">
-        <div class="front" lang="ar" dir="rtl">${reviewStep === 0 ? card.bare : card.lemma}</div>
-        ${reviewStep === 2 ? `<div style="margin-top:.4rem">${T(card.gloss)}</div>` : ""}
-        <div class="step">${steps[reviewStep]} · ${queue.length} ${ui().due}</div>
+        <div class="front" lang="ar" dir="rtl">${front}</div>
+        ${back}
+        <div class="step">${steps[reviewStep]} · ${queue.length} ${ui().due}${isLeech(card) ? " · " + ui().stLeech : ""}</div>
       </div>`;
     if (reviewStep === 2) {
-      html += `<div class="sheet-actions" style="justify-content:center">
-        <button class="btn" id="againBtn">${ui().again}</button>
-        <button class="btn primary" id="goodBtn">${ui().good}</button>
+      html += `<div class="grade-row">
+        <button class="btn grade again" data-q="again"><b>${ui().again}</b><i>${previewIvl(card, "again")}</i></button>
+        <button class="btn grade hard"  data-q="hard"><b>${ui().hard}</b><i>${previewIvl(card, "hard")}</i></button>
+        <button class="btn grade good"  data-q="good"><b>${ui().good}</b><i>${previewIvl(card, "good")}</i></button>
+        <button class="btn grade easy"  data-q="easy"><b>${ui().easy}</b><i>${previewIvl(card, "easy")}</i></button>
       </div>`;
     }
   }
   html += `<ul class="deck-list">` + state.deck.map((d, i) =>
-    `<li><span class="w" lang="ar">${d.lemma}</span><span class="g">${T(d.gloss)}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`).join("") + `</ul>`;
+    `<li><span class="w" lang="ar">${d.lemma}</span><span class="g">${d.type === "verb" ? ui().conjCard : T(d.gloss)}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`).join("") + `</ul>`;
   sheetInner.innerHTML = html;
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
-  const gb = document.getElementById("goodBtn");
-  if (gb) gb.addEventListener("click", () => { grade(dueCards()[0], true); reviewStep = 0; renderDeck(); });
-  const ab = document.getElementById("againBtn");
-  if (ab) ab.addEventListener("click", () => { grade(dueCards()[0], false); reviewStep = 0; renderDeck(); });
+  sheetInner.querySelectorAll(".grade[data-q]").forEach(b =>
+    b.addEventListener("click", () => {
+      const c = dueCards()[0];
+      if (c) { c.pick = (c.pick || 0) + 1; grade(c, b.dataset.q); }
+      reviewStep = 0; renderDeck();
+    }));
   sheetInner.querySelectorAll("[data-del]").forEach(b =>
     b.addEventListener("click", () => { state.deck.splice(+b.dataset.del, 1); persistDeck(); renderDeck(); }));
 }
@@ -1172,10 +1417,14 @@ function openGames(){
     <button id="gMatch"><div class="gt">${ui().match}</div><div class="gd">${ui().matchDesc}</div></button>
     <button id="gHarakat"><div class="gt">${ui().harakat}</div><div class="gd">${ui().harakatDesc}</div></button>
     <button id="gSpot"><div class="gt">${ui().spot}</div><div class="gd">${ui().spotDesc}</div></button>
+    <button id="gSarf"><div class="gt">${ui().sarfGame}</div><div class="gd">${ui().sarfGameDesc}</div></button>
+    <button id="gCase"><div class="gt">${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
   </div>`;
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
   document.getElementById("gSpot").addEventListener("click", startSpot);
+  document.getElementById("gSarf").addEventListener("click", startSarfGame);
+  document.getElementById("gCase").addEventListener("click", startCaseGame);
   showSheet();
 }
 
