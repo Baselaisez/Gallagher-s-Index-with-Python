@@ -59,3 +59,28 @@ classical framework, not to reproduce any single book. A rule enters the
 registry when it is attested across the tradition (Emsile/Bina for sarf, Awamil,
 Izhar, al-Kafiya and Qatr al-Nada for nahw), with story examples hanging off the
 rule rather than defining it.
+
+## Second batch
+
+| File | Source | Status |
+|---|---|---|
+| `mensubat.txt` | المنصوبات — the thirteen governed-in-nasb categories, 237 questions in Ottoman Turkish | extracted |
+| `ZİYADE BABLARDAN MUHTELİFE ÇEKİMİ.xls` | Emsile-i Muhtelife for the augmented babs | extracted (see above) |
+| `SARF ... Kopya (7).xls` | blank conjugation worksheet: muttarida x (ma'lum / majhul), nun al-tawkid, muhtelife | extracted |
+| `ZDÜRER KELİMELERİ.xls` | vocabulary from al-Durar | extracted |
+| `SULH.doc`, `VAKIF_MALI.doc` | fiqh passages (sulh, waqf property) | **no recoverable text** |
+
+The two fiqh documents could not be read: their WordDocument streams are
+essentially empty — no text runs under any of the plausible encodings, and no
+embedded images either. Re-supplying them as `.docx`, `.txt` or PDF would let
+them become Level 5-6 stories, which is what they are suited to.
+
+The Mensûbât file filled the gap the Awamil taxonomy had exposed: six of the
+thirteen mansubat had no note. Each new note now quotes that source's
+definition, and chapter 2 of the Abu Yusuf wasiyya was authored to give three
+of them real examples rather than invented ones.
+
+The SARF worksheet also shows two dimensions the app does not yet model:
+**ma'lum / majhul** (active and passive) and the **nun al-tawkid** forms. The
+passive already occurs in the corpus — تُسْأَلُ in Abu Yusuf 2:s8 is analyzed
+as mabni li'l-majhul — so the data supports it before the tables do.
