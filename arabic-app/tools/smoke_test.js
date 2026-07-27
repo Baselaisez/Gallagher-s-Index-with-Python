@@ -814,6 +814,35 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('Abu Yusuf runs to five chapters; the conditional governs two verbs', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'wasiyyat-abi-yusuf-L5');
+      const sens = st.chapters.flatMap(c => c.sentences);
+      const toks = sens.flatMap(s => s.tokens);
+      const walTakun = toks.find(t => t.s.bare === 'ولتكن');
+      return {
+        chapters: st.chapters.length, sentences: sens.length, tokens: toks.length,
+        full: toks.filter(t => t.irab && t.irab.ar && t.irab.tr).length,
+        notes: ['in-shartiyya', 'lam-amr'].filter(id => GRAMMAR[id]).length,
+        walTakunGrammar: walTakun && (walTakun.grammar || []),
+        // hollow verbs shorten in jazm, and the stored forms must say so
+        kanaJussive: st.morph.kana && st.morph.kana.majzum,
+        ajabaJussive: st.morph.ajaba && st.morph.ajaba.majzum,
+        // Form III defective: the passive is what the text actually uses
+        nadaPassive: st.morph.nada && st.morph.nada.majhulMudari,
+      };
+    });
+    if (info.chapters !== 5) throw new Error('chapters=' + info.chapters);
+    if (info.sentences !== 27) throw new Error('sentences=' + info.sentences);
+    if (info.notes !== 2) throw new Error('in-shartiyya / lam-amr missing: ' + info.notes);
+    if (info.full !== info.tokens) throw new Error(`ar+tr i'rab ${info.full}/${info.tokens}`);
+    if (!(info.walTakunGrammar || []).includes('lam-amr'))
+      throw new Error('وَلْتَكُنْ not anchored to lam-amr: ' + info.walTakunGrammar);
+    if (info.kanaJussive !== 'يَكُنْ') throw new Error('كان jussive: ' + info.kanaJussive);
+    if (info.ajabaJussive !== 'يُجِبْ') throw new Error('أجاب jussive: ' + info.ajabaJussive);
+    if (info.nadaPassive !== 'يُنَادَى') throw new Error('نادى passive: ' + info.nadaPassive);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

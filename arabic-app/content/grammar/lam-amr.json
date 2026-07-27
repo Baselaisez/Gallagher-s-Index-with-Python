@@ -1,0 +1,74 @@
+{
+  "id": "lam-amr",
+  "title": {
+    "ar": "لَامُ الْأَمْر",
+    "en": "The lam of command",
+    "tr": "Emir lâmı"
+  },
+  "level": 4,
+  "group": "awamil",
+  "mamul": "majzum",
+  "classicalSources": [
+    "العوامل (البيركوي) — الجوازم",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "Arabic has a proper imperative only for the person you are addressing: اِفْعَلْ. To command anyone else — a third person, or yourself, or a passive — you put لِ on the present verb and it goes into jazm: لِيَذْهَبْ «let him go», لِنَذْهَبْ «let us go», لِيُعْلَمْ «let it be known». The لِ carries kasra on its own, but after وَ, فَ or ثُمَّ it is usually left vowelless: وَلْتَكُنْ, فَلْيَقُلْ. That is why the wasiyya's وَلْتَكُنْ looks unfamiliar — it is simply «let it be», with the لِ having lost its vowel to the وَ before it. Two things to keep straight. The verb is مَجْزُوم, so a hollow verb shortens (تَكُونُ → تَكُنْ) and a defective one drops its weak letter. And the لِ of command is not the لِ of purpose: the first gives jazm and means «let», the second gives nasb through an implied أَنْ and means «in order to» — لِيَذْهَبْ against لِيَذْهَبَ.",
+    "tr": "Arapçada hakiki emir sadece muhatap içindir: اِفْعَلْ. Başkasına — gâibe, kendine yahut meçhule — emretmek için muzârinin başına لِ getirilir ve fiil cezmedilir: لِيَذْهَبْ «gitsin», لِنَذْهَبْ «gidelim», لِيُعْلَمْ «bilinsin». لِ kendi başına kesreli gelir, fakat وَ، فَ yahut ثُمَّ'den sonra çoğunlukla sâkin bırakılır: وَلْتَكُنْ، فَلْيَقُلْ. Vasiyetteki وَلْتَكُنْ'un yabancı görünmesinin sebebi budur — «ol(sun)» demektir, لِ kendinden önceki وَ sebebiyle harekesini bırakmıştır. İki noktaya dikkat: fiil MECZÛMdur, dolayısıyla ecvef kısalır (تَكُونُ → تَكُنْ), nâkıs ise illetli harfini düşürür. Ve emir lâmı, ta'lîl lâmı değildir: birincisi cezmeder ve «-sin» manasındadır, ikincisi mukadder أَنْ ile nasbeder ve «için» manasındadır — لِيَذْهَبْ ile لِيَذْهَبَ."
+  },
+  "examples": [
+    {
+      "ar": "وَلْتَكُنْ إِذَا دَخَلْتَ عَلَيْهِ تَعْرِفُ قَدْرَكَ.",
+      "en": "And when you enter upon him, let it be that you know your own worth — تَكُنْ is in jazm, so the و of تَكُونُ is gone.",
+      "tr": "Onun yanına girdiğinde kendi kadrini bilir ol — تَكُنْ meczûmdur, تَكُونُ'nun vâvı düşmüştür.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 3,
+      "sentence": "s14"
+    },
+    {
+      "ar": "لِيُنْفِقْ ذُو سَعَةٍ مِنْ سَعَتِهِ.",
+      "en": "Let a man of means spend out of his means (Quran 65:7) — the لِ with its own kasra, at the start of the clause.",
+      "tr": "Varlıklı olan varlığından infak etsin (Talâk 65:7) — cümle başında kendi kesresiyle لِ."
+    },
+    {
+      "ar": "لِنَذْهَبْ إِلَى الدَّرْسِ.",
+      "en": "Let us go to the lesson — the command turned on the speaker himself.",
+      "tr": "Derse gidelim — emrin mütekellime yöneltilmiş hâli."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "لِيَذْهَبُ",
+      "right": "لِيَذْهَبْ",
+      "why": {
+        "en": "The lam of command is a jazim. A damma on the end means it was read as something else entirely.",
+        "tr": "Emir lâmı câzimdir. Sondaki damme, kelimenin bambaşka okunduğunu gösterir."
+      }
+    },
+    {
+      "wrong": "لِيَذْهَبَ إِلَى السُّوقِ (بِمَعْنَى: لِيَذْهَبْ)",
+      "right": "لِيَذْهَبْ إِلَى السُّوقِ",
+      "why": {
+        "en": "With fatha this is the لِ of purpose — «in order for him to go». The command needs jazm.",
+        "tr": "Fetha ile bu, ta'lîl lâmıdır: «gitmesi için». Emir için cezm gerekir."
+      }
+    },
+    {
+      "wrong": "وَلِتَكُنْ صَابِرًا — بِكَسْرِ اللَّامِ بَعْدَ الْوَاوِ",
+      "right": "وَلْتَكُنْ صَابِرًا",
+      "why": {
+        "en": "After وَ, فَ or ثُمَّ the lam is normally left vowelless. Keeping the kasra is not wrong in principle but is not how it is read.",
+        "tr": "وَ، فَ yahut ثُمَّ'den sonra lâm sâkin bırakılır. Kesreyi korumak aslen hatalı olmasa da okunuş bu değildir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "imperative-amr",
+    "lam-taleel",
+    "la-nahiya",
+    "in-shartiyya"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
