@@ -1,0 +1,556 @@
+{
+  "chapter": 1,
+  "sentences": [
+    {
+      "id": "s1",
+      "translation": {
+        "en": "The principles of jurisprudence: a science by which the states of the two kinds of evidence and rulings are known.",
+        "tr": "Usûl-i fıkıh: şer'î delillerin ve hükümlerin hâllerinin kendisiyle bilindiği ilimdir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "أُصُولُ",
+            "smart": "أُصُولُ",
+            "bare": "أصول"
+          },
+          "lex": "usul",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+            "en": "Mubtada in raf'; mudaf.",
+            "tr": "Merfû mübteda; muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْفِقْهِ",
+            "smart": "الْفِقْهِ",
+            "bare": "الفقه"
+          },
+          "lex": "fiqh",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+            "en": "Mudaf ilayh in jarr.",
+            "tr": "Mecrûr muzâfun ileyh."
+          },
+          "punctAfter": ":"
+        },
+        {
+          "surface": {
+            "full": "وَهُوَ",
+            "smart": "وَهُوَ",
+            "bare": "وهو"
+          },
+          "lex": "huwa",
+          "pos": "pron",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«هُوَ» ضَمِيرٌ مُنْفَصِلٌ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+            "en": "The و opens a new clause; «huwa» is a detached pronoun, in the position of raf' as mubtada.",
+            "tr": "Vâv isti'nâfiyyedir; «hüve» munfasıl zamir, mahallen merfû mübtedadır."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "هُوَ",
+              "lex": "huwa",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عِلْمٌ",
+            "smart": "عِلْمٌ",
+            "bare": "علم"
+          },
+          "lex": "ilm",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Khabar in raf' marked by damma.",
+            "tr": "Damme ile merfû haber."
+          }
+        },
+        {
+          "surface": {
+            "full": "يُعْرَفُ",
+            "smart": "يُعْرَفُ",
+            "bare": "يعرف"
+          },
+          "lex": "arafa",
+          "pos": "verb",
+          "grammar": [
+            "naib-al-fail"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَالْجُمْلَةُ صِفَةٌ لِـ«عِلْمٌ».",
+            "en": "Present verb in the PASSIVE, in raf'; the clause describes «a science».",
+            "tr": "MEÇHUL sîgasıyla merfû muzari fiil; cümle «ilmün»ün sıfatıdır."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِهِ",
+            "smart": "بِهِ",
+            "bare": "به"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition ب with the pronoun in jarr.",
+            "tr": "Bâ harf-i cerdir, hâ mahallen mecrûrdur."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "أَحْوَالُ",
+            "smart": "أَحْوَالُ",
+            "bare": "أحوال"
+          },
+          "lex": "ahwal",
+          "pos": "noun",
+          "grammar": [
+            "naib-al-fail",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+            "en": "The deputy subject (naib al-fail), in raf'; mudaf.",
+            "tr": "Merfû nâib-i fâil; muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْأَدِلَّةِ",
+            "smart": "الْأَدِلَّةِ",
+            "bare": "الأدلة"
+          },
+          "lex": "adilla",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+            "en": "Mudaf ilayh in jarr.",
+            "tr": "Mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "وَالْأَحْكَامِ",
+            "smart": "وَالْأَحْكَامِ",
+            "bare": "والأحكام"
+          },
+          "lex": "ahkam",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «الْأَحْكَامِ» مَعْطُوفٌ مَجْرُورٌ.",
+            "en": "The و joins; «the rulings» follows in jarr.",
+            "tr": "Vâv atıftır; «el-ahkâmi» mecrûr ma'tûftur."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْأَحْكَامِ",
+              "lex": "ahkam",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "الشَّرْعِيَّتَيْنِ",
+            "smart": "الشَّرْعِيَّتَيْنِ",
+            "bare": "الشرعيتين"
+          },
+          "lex": "shariyya",
+          "pos": "noun",
+          "grammar": [
+            "naat-sifa"
+          ],
+          "irab": {
+            "ar": "نَعْتٌ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مُثَنًّى.",
+            "en": "An adjective in jarr, marked by ي because it is dual — «the two Shar'i kinds».",
+            "tr": "Mecrûr sıfat; tesniye olduğu için cer alâmeti yâdır."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "translation": {
+        "en": "The principle (asl): that upon which something else is built.",
+        "tr": "Asıl: kendisi üzerine başkasının bina edildiği şeydir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "الْأَصْلُ",
+            "smart": "الْأَصْلُ",
+            "bare": "الأصل"
+          },
+          "lex": "asl",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' marked by damma.",
+            "tr": "Damme ile merfû mübteda."
+          },
+          "punctAfter": ":"
+        },
+        {
+          "surface": {
+            "full": "وَهُوَ",
+            "smart": "وَهُوَ",
+            "bare": "وهو"
+          },
+          "lex": "huwa",
+          "pos": "pron",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«هُوَ» مُبْتَدَأٌ.",
+            "en": "The و opens the clause; «huwa» is the mubtada.",
+            "tr": "Vâv isti'nâfiyyedir; «hüve» mübtedadır."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "هُوَ",
+              "lex": "huwa",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+            "en": "Relative noun, in the position of raf' as the khabar.",
+            "tr": "İsm-i mevsûl, mahallen merfû haberdir."
+          }
+        },
+        {
+          "surface": {
+            "full": "يُبْتَنَى",
+            "smart": "يُبْتَنَى",
+            "bare": "يبتنى"
+          },
+          "lex": "ibtana",
+          "pos": "verb",
+          "grammar": [
+            "naib-al-fail",
+            "form-viii-verbs"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Present verb in the PASSIVE, in raf' with an implied damma; the clause is the sila. Form VIII.",
+            "tr": "MEÇHUL sîgasıyla takdîrî damme ile merfû muzari fiil; cümle sıla-i mevsûldür. Sekizinci bâb."
+          }
+        },
+        {
+          "surface": {
+            "full": "عَلَيْهِ",
+            "smart": "عَلَيْهِ",
+            "bare": "عليه"
+          },
+          "lex": "ala",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«عَلَى» حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition على with the pronoun in jarr.",
+            "tr": "«Alâ» harf-i cerdir, hâ mahallen mecrûrdur."
+          },
+          "segments": [
+            {
+              "form": "عَلَيْ",
+              "lex": "ala",
+              "pos": "prep"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "غَيْرُهُ",
+            "smart": "غَيْرُهُ",
+            "bare": "غيره"
+          },
+          "lex": "ghayr",
+          "pos": "noun",
+          "grammar": [
+            "naib-al-fail",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "The deputy subject, in raf'; mudaf, with ـه as mudaf ilayh.",
+            "tr": "Merfû nâib-i fâil; muzâftır, hâ muzâfun ileyhtir."
+          },
+          "segments": [
+            {
+              "form": "غَيْرُ",
+              "lex": "ghayr",
+              "pos": "noun"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "translation": {
+        "en": "Jurisprudence: the soul's knowing what is for it and what is against it, in practice.",
+        "tr": "Fıkıh: nefsin lehinde ve aleyhinde olanı amel bakımından bilmesidir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "الْفِقْهُ",
+            "smart": "الْفِقْهُ",
+            "bare": "الفقه"
+          },
+          "lex": "fiqh",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "punctAfter": ":"
+        },
+        {
+          "surface": {
+            "full": "مَعْرِفَةُ",
+            "smart": "مَعْرِفَةُ",
+            "bare": "معرفة"
+          },
+          "lex": "marifa",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+            "en": "Khabar in raf'; mudaf.",
+            "tr": "Merfû haber; muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "النَّفْسِ",
+            "smart": "النَّفْسِ",
+            "bare": "النفس"
+          },
+          "lex": "nafs",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَهُوَ فَاعِلُ الْمَعْرِفَةِ فِي الْمَعْنَى.",
+            "en": "Mudaf ilayh in jarr — and the doer of the knowing, in sense.",
+            "tr": "Mecrûr muzâfun ileyh — mânâ bakımından bilme fiilinin fâilidir."
+          }
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "grammar": [
+            "maful-bihi"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِلْمَصْدَرِ «مَعْرِفَة».",
+            "en": "Relative noun, in the position of nasb as the object of the masdar «knowing».",
+            "tr": "İsm-i mevsûl, «ma'rife» masdarının mef'ûlü olarak mahallen mansubdur."
+          }
+        },
+        {
+          "surface": {
+            "full": "لَهَا",
+            "smart": "لَهَا",
+            "bare": "لها"
+          },
+          "lex": "li",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "اللَّامُ حَرْفُ جَرٍّ، وَ«هَا» فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Preposition ل with «ha» in jarr; the phrase is the sila.",
+            "tr": "Lâm harf-i cerdir, «hâ» mahallen mecrûrdur; câr-mecrûr sıladır."
+          },
+          "segments": [
+            {
+              "form": "لَ",
+              "lex": "li",
+              "pos": "prep"
+            },
+            {
+              "form": "هَا",
+              "lex": "pron-3fs",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "وَمَا",
+            "smart": "وَمَا",
+            "bare": "وما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» مَعْطُوفٌ عَلَى «مَا» الْأُولَى.",
+            "en": "The و joins; this «ma» is coupled to the first.",
+            "tr": "Vâv atıftır; bu «mâ» birinciye ma'tûftur."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "مَا",
+              "lex": "ma-mawsula",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عَلَيْهَا",
+            "smart": "عَلَيْهَا",
+            "bare": "عليها"
+          },
+          "lex": "ala",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«عَلَى» حَرْفُ جَرٍّ، وَ«هَا» فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition على with «ha» in jarr.",
+            "tr": "«Alâ» harf-i cerdir, «hâ» mahallen mecrûrdur."
+          },
+          "segments": [
+            {
+              "form": "عَلَيْ",
+              "lex": "ala",
+              "pos": "prep"
+            },
+            {
+              "form": "هَا",
+              "lex": "pron-3fs",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عَمَلًا",
+            "smart": "عَمَلًا",
+            "bare": "عملا"
+          },
+          "lex": "amal",
+          "pos": "noun",
+          "grammar": [
+            "tamyiz"
+          ],
+          "irab": {
+            "ar": "تَمْيِيزٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ — رَفَعَ الْإِبْهَامَ عَنْ جِهَةِ الْمَعْرِفَةِ: أَعَمَلًا أَمِ اعْتِقَادًا؟",
+            "en": "Tamyiz in nasb — it clears up in WHAT RESPECT the knowing is meant: in practice, not in belief. This one word is what distinguishes fiqh from kalam.",
+            "tr": "Fetha ile mansub temyiz — bilmenin hangi cihetten olduğunu açıklar: amel bakımından mı, itikad bakımından mı? Fıkhı kelâmdan ayıran kayıt budur."
+          },
+          "punctAfter": "."
+        }
+      ]
+    }
+  ]
+}

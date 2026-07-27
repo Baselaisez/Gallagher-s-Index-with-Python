@@ -1,0 +1,73 @@
+{
+  "id": "ism-tafdil",
+  "title": {
+    "ar": "اسْمُ التَّفْضِيل",
+    "en": "The ism tafdil (comparative and superlative)"
+  },
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "الأمثلة المختلفة",
+    "بناء الأفعال",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "The ism tafdil is built on the pattern أَفْعَل and says that one thing has a quality MORE than another: أَبْيَضُ مِنَ اللَّبَنِ «whiter than milk». Three things follow from that pattern. First, it is a DIPTOTE (مَمْنُوعٌ مِنَ الصَّرْفِ) — it never takes tanwin, and in jarr it takes fatha instead of kasra. Second, the thing compared against is introduced by مِنْ, never by a separate word for «than». Third, in its bare أَفْعَل form it does not change for gender or number: هُوَ أَكْبَرُ, هِيَ أَكْبَرُ. It only inflects when made definite (الْأَكْبَرُ، الْكُبْرَى) or made mudaf. The Emsile lists it among the forms derived from every verb, and it is built only from a three-letter verb whose meaning admits degrees.",
+    "tr": "İsm-i tafdîl «ef'al» vezninde kurulur ve bir şeyin bir vasıfta diğerinden ÜSTÜN olduğunu bildirir: أَبْيَضُ مِنَ اللَّبَنِ «sütten daha beyaz». Bu vezinden üç şey doğar. Birincisi, GAYR-İ MUNSARİFTİR — tenvin almaz, cer hâlinde kesre yerine fetha alır. İkincisi, kendisine üstünlük verilen «min» ile gelir; ayrıca «-den daha» diye bir kelime kullanılmaz. Üçüncüsü, yalın «ef'al» şeklinde cinsiyet ve sayıya göre değişmez: هُوَ أَكْبَرُ, هِيَ أَكْبَرُ. Ancak marife yapılınca (الْأَكْبَرُ، الْكُبْرَى) veya muzâf olunca çekimlenir. Emsile onu her fiilden türeyen sîgalar arasında sayar; yalnız mânâsı derecelenebilen üç harfli fiilden yapılır."
+  },
+  "examples": [
+    {
+      "ar": "وَمَاؤُهُ أَبْيَضُ مِنَ اللَّبَنِ.",
+      "en": "Its water is whiter than milk — أَبْيَضُ is a diptote, and مِنْ names what it is compared against.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3"
+    },
+    {
+      "ar": "وَرِيحُهُ أَطْيَبُ مِنَ الْمِسْكِ.",
+      "en": "And its scent sweeter than musk.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3"
+    },
+    {
+      "ar": "وَكِيزَانُهُ أَكْثَرُ مِنْ نُجُومِ السَّمَاءِ.",
+      "en": "And its cups more numerous than the stars of the sky.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s4"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "مَاؤُهُ أَبْيَضٌ مِنَ اللَّبَنِ",
+      "right": "مَاؤُهُ أَبْيَضُ مِنَ اللَّبَنِ",
+      "why": {
+        "en": "The ism tafdil is a diptote: no tanwin, ever. Writing أَبْيَضٌ treats it as an ordinary noun.",
+        "tr": "İsm-i tafdîl gayr-i munsariftir: asla tenvin almaz. أَبْيَضٌ yazmak onu sıradan bir isim saymaktır."
+      }
+    },
+    {
+      "wrong": "مَرَرْتُ بِأَكْبَرِ مِنْهُ",
+      "right": "مَرَرْتُ بِأَكْبَرَ مِنْهُ",
+      "why": {
+        "en": "As a diptote it takes FATHA in jarr, not kasra — unless it is made definite or mudaf, when the kasra returns.",
+        "tr": "Gayr-i munsarif olduğu için cer hâlinde kesre değil FETHA alır — marife veya muzâf yapılırsa kesre geri döner."
+      }
+    },
+    {
+      "wrong": "هِيَ أَكْبَرَةُ مِنْهَا",
+      "right": "هِيَ أَكْبَرُ مِنْهَا",
+      "why": {
+        "en": "The bare أَفْعَل form does not take a feminine ending. Feminine appears only in the definite form الْكُبْرَى.",
+        "tr": "Yalın «ef'al» şekli müenneslik alâmeti almaz. Müenneslik ancak marife şekilde görülür: الْكُبْرَى."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "mamnu-min-sarf",
+    "naat-sifa",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
