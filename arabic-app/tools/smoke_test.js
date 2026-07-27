@@ -584,6 +584,63 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('Aqaid: four chapters, the creed definitions, new grammar notes', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      if (!st) return null;
+      const sens = st.chapters.flatMap(c => c.sentences);
+      const withIrab = sens.flatMap(s => s.tokens).filter(t => t.irab);
+      const trIrab = withIrab.filter(t => t.irab.tr && t.irab.ar);
+      return {
+        chapters: st.chapters.length,
+        sentences: sens.length,
+        tokens: sens.reduce((n, s) => n + s.tokens.length, 0),
+        irab: withIrab.length, trIrab: trIrab.length,
+        notes: ['ism-mawsul', 'jumla-sifa', 'damir-fasl', 'anwa-al-khabar', 'jumla-mutarida',
+                'istithna-mufarragh', 'qad-harf', 'jam-muannath-salim', 'ism-maqsur-manqus',
+                'doubled-verbs'].filter(id => GRAMMAR[id]).length,
+        // Weak-verb paradigms must be stored, not derived.
+        khalaJussive: st.morph.khala && st.morph.khala.majzum,
+        istaaddaFakk: st.morph.istaadda && st.morph.istaadda.mazi[12],
+      };
+    });
+    if (!info) throw new Error('aqaid-ahl-al-sunna missing from STORIES');
+    if (info.chapters !== 4) throw new Error('chapters=' + info.chapters);
+    if (info.notes !== 10) throw new Error('new grammar notes present: ' + info.notes + '/10');
+    if (info.irab !== info.tokens) throw new Error(`i'rab ${info.irab}/${info.tokens}`);
+    if (info.trIrab !== info.tokens) throw new Error(`ar+tr i'rab ${info.trIrab}/${info.tokens}`);
+    if (info.khalaJussive !== 'يَخْلُ') throw new Error('خَلَا jussive: ' + info.khalaJussive);
+    if (info.istaaddaFakk !== 'اِسْتَعْدَدْتُ') throw new Error('doubled verb fakk al-idgham: ' + info.istaaddaFakk);
+  });
+
+  await check("sentence i'rab sheet lists every word and its topics", async () => {
+    const idx = await page.evaluate(() =>
+      STORIES.findIndex(s => s.id === 'aqaid-ahl-al-sunna'));
+    await page.locator('.lib-card').nth(idx).click();
+    await page.locator('.sentence').first().locator('.irab-btn').click();
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    const [rows, expected] = await Promise.all([
+      page.locator('.irab-sheet tbody tr').count(),
+      page.evaluate(() => STORIES.find(s => s.id === 'aqaid-ahl-al-sunna')
+        .chapters[0].sentences[0].tokens.length),
+    ]);
+    if (rows !== expected) throw new Error(`sheet rows ${rows}, sentence has ${expected} tokens`);
+    if (!(await page.locator('.irab-sheet .ir-ar').count()))
+      throw new Error("Arabic i'rab column empty");
+    if (!(await page.locator('.sheet-topics .btn').count()))
+      throw new Error('no grammar topics listed for the sentence');
+    // A topic chip opens that note; a word cell opens that word.
+    await page.locator('.sheet-topics .btn').first().click();
+    await page.waitForSelector('.sheet.show .gnote', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('.sentence').first().locator('.irab-btn').click();
+    await page.locator('.irab-sheet .jump').first().click();
+    await page.waitForSelector('.sheet.show .lemma', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

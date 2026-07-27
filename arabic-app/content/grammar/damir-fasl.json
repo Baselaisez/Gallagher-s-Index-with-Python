@@ -1,0 +1,63 @@
+{
+  "id": "damir-fasl",
+  "title": {
+    "ar": "ضَمِيرُ الْفَصْل",
+    "en": "The pronoun of separation"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "Between a definite mubtada and a definite khabar the language inserts a detached pronoun — هُوَ, هِيَ, هُمْ — that is not a word in the sentence at all. It has no case position (لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ) and no meaning of its own; its job is to stop the reader from taking the second definite noun as a further adjective. «الْمُحْدَثُ الْمُخْرَجُ…» would read as «the originated brought-out thing…», a phrase still waiting for its predicate; «الْمُحْدَثُ هُوَ الْمُخْرَجُ…» is a complete statement: «the originated IS what is brought out». That is exactly the work of the English «is» in a definition, and it is why the creed's ta'rifat use it so heavily. It also adds restriction — «the atom is THE part that admits of no division», and nothing else is.",
+    "tr": "Marife mübteda ile marife haber arasına, cümlenin öğesi olmayan munfasıl bir zamir — هُوَ، هِيَ، هُمْ — girer. İ'rabdan mahalli yoktur ve müstakil bir manası da yoktur; görevi, ikinci marife ismin sıfat sanılmasını önlemektir. «الْمُحْدَثُ الْمُخْرَجُ…» dendiğinde «çıkarılmış olan hâdis…» diye okunur ve cümle hâlâ haberini bekler; «الْمُحْدَثُ هُوَ الْمُخْرَجُ…» ise tam bir hükümdür: «Hâdis, çıkarılan şeyDİR». Ta'rif cümlelerinde bu kadar sık geçmesinin sebebi budur. Ayrıca hasr da katar: «cevher, bölünemeyen cüzDÜR», başkası değil."
+  },
+  "examples": [
+    {
+      "ar": "وَالْمُحْدَثُ هُوَ الْمُخْرَجُ مِنَ الْعَدَمِ إِلَى الْوُجُودِ.",
+      "en": "The originated is that which is brought out from non-existence into existence.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 3
+    },
+    {
+      "ar": "إِنَّ طَرِيقَ النَّجَاةِ هُوَ مُتَابَعَةُ أَهْلِ السُّنَّةِ وَالْجَمَاعَةِ.",
+      "en": "The path of deliverance is following Ahl al-Sunna wa'l-Jama‘a — the fasl pronoun also appears after إِنَّ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s5",
+      "chapter": 4
+    },
+    {
+      "ar": "وَالْخَبَرُ الْمُتَوَاتِرُ هُوَ الْخَبَرُ الثَّابِتُ عَلَى أَلْسِنَةِ قَوْمٍ.",
+      "en": "The mass-transmitted report is the report established upon the tongues of a people.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 3
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "زَيْدٌ هُوَ الْقَائِمُ — «هُوَ» مُبْتَدَأٌ ثَانٍ",
+      "right": "«هُوَ» ضَمِيرُ فَصْلٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ",
+      "why": {
+        "en": "The fasl pronoun is not an element of the sentence. Parsing it as a second mubtada leaves the first without a khabar.",
+        "tr": "Zamîr-i fasl cümlenin öğesi değildir. İkinci mübteda sayılırsa birinci mübteda habersiz kalır."
+      }
+    },
+    {
+      "wrong": "جَاءَ رَجُلٌ هُوَ كَرِيمٌ (فَصْلًا)",
+      "right": "لَا يُؤْتَى بِضَمِيرِ الْفَصْلِ إِلَّا بَيْنَ مَعْرِفَتَيْنِ (أَوْ مَا يُشْبِهُ الْمَعْرِفَةَ)",
+      "why": {
+        "en": "The fasl pronoun belongs between two definites. After an indefinite there is nothing to separate — no adjective reading was possible.",
+        "tr": "Zamîr-i fasl iki marife arasında gelir. Nekreden sonra ayrılacak bir şey yoktur; sıfat okunuşu zaten söz konusu değildir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "mubtada-khabar",
+    "naat-sifa",
+    "inna-wa-akhawatuha"
+  ]
+}

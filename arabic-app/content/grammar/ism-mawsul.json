@@ -1,0 +1,72 @@
+{
+  "id": "ism-mawsul",
+  "title": {
+    "ar": "الِاسْمُ الْمَوْصُولُ وَصِلَتُهُ",
+    "en": "The relative noun and its clause"
+  },
+  "level": 4,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — المعارف",
+    "إظهار الأسرار (البركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "A relative noun — اَلَّذِي, اَلَّتِي, مَنْ (for people), مَا (for things) — is a definite noun that cannot stand on its own. It needs a clause after it, the صِلَة, and that clause must contain a pronoun pointing back at it, the عَائِد. All three parts count as one noun for i'rab: «الْجُزْءُ الَّذِي لَا يَتَجَزَّى» is one thing, «the part that admits of no division». Two consequences fall out of this. First, the sila itself has NO case position (لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ) — you never i'rab it as subject or object of anything; it belongs to the relative. Second, the relative noun is مَبْنِيّ: اَلَّذِي and مَنْ never change their ending, so you say «in the position of raf'» rather than «in raf'». Drop the ‘aid and the sentence collapses — «مَا يُعْلَمُ بِهِ الصَّانِعُ» needs that بِهِ to tie the clause back to مَا.",
+    "tr": "İsm-i mevsûl — اَلَّذِي، اَلَّتِي، مَنْ (âkil için), مَا (gayr-i âkil için) — tek başına anlam vermeyen marife isimdir. Kendisinden sonra bir cümleye, yani sılaya muhtaçtır; o cümlede de mevsûle dönen bir zamir, âid bulunmalıdır. Üçü birlikte i'rab bakımından tek bir isim sayılır: «الْجُزْءُ الَّذِي لَا يَتَجَزَّى» tek bir şeydir. Bundan iki sonuç çıkar. Birincisi, sıla cümlesinin i'rabdan mahalli yoktur; onu fâil veya mef'ûl diye tahlil etmezsiniz, mevsûle aittir. İkincisi, ism-i mevsûl mebnîdir: اَلَّذِي ve مَنْ sonu değişmez, bu yüzden «merfû» değil «ref mahallinde» denir. Âid düşerse cümle çöker — «مَا يُعْلَمُ بِهِ الصَّانِعُ» ifadesinde بِهِ, cümleyi مَا'ya bağlayan âiddir."
+  },
+  "examples": [
+    {
+      "ar": "وَالْجَوْهَرُ هُوَ الْجُزْءُ الَّذِي لَا يَتَجَزَّى.",
+      "en": "The atom is the part that admits of no division — الَّذِي is definite, so it can be the na't of the definite الْجُزْءُ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s5",
+      "chapter": 3
+    },
+    {
+      "ar": "الْبَيِّنَةُ لِلْمُدَّعِي وَالْيَمِينُ عَلَى مَنْ أَنْكَرَ.",
+      "en": "…and the oath on the one who denies — مَنْ is in jarr after عَلَى, and أَنْكَرَ is its sila.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 4
+    },
+    {
+      "ar": "الْعَالَمُ مَا سِوَى اللهِ تَعَالَى.",
+      "en": "The world is what is other than Allah — مَا stands in the position of raf' as the khabar."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "الرَّجُلُ الَّذِي جَاءَ أَمْسِ كَرِيمٌ — «الَّذِي جَاءَ» فَاعِلٌ",
+      "right": "«جَاءَ أَمْسِ» صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ",
+      "why": {
+        "en": "Beginners parse the sila as though it were a clause of the main sentence. It is not — it has no case position at all; only the relative noun carries the i'rab.",
+        "tr": "Sıla cümlesi ana cümlenin bir öğesi gibi tahlil edilir; hâlbuki i'rabdan mahalli yoktur, i'rabı taşıyan sadece mevsûldür."
+      }
+    },
+    {
+      "wrong": "هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُ",
+      "right": "هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُهُ",
+      "why": {
+        "en": "The sila needs the ‘aid. Without the ـهُ nothing ties «I read» back to «the book».",
+        "tr": "Sıla âidsiz olmaz. ـهُ olmadan «okudum» fiili «kitap»a bağlanmaz."
+      }
+    },
+    {
+      "wrong": "جَاءَ الَّذِينَ اجْتَهَدُوا — «الَّذِينَ» مَرْفُوعٌ بِالْوَاوِ",
+      "right": "«الَّذِينَ» مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ",
+      "why": {
+        "en": "Relative nouns are mabni — they do not take case endings. Say «in the position of raf'», never «in raf' with a waw».",
+        "tr": "İsm-i mevsûller mebnîdir, i'rab alâmeti almaz. «Vâv ile merfû» değil, «ref mahallinde» denir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "jumla-sifa",
+    "naat-sifa",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

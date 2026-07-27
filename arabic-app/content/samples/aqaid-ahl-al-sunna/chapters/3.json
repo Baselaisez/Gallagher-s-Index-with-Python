@@ -1,0 +1,905 @@
+{
+  "chapter": 3,
+  "sentences": [
+    {
+      "id": "s1",
+      "translation": {
+        "en": "The world is everything other than Allah — exalted is He — among the existent things by which the Maker is known.",
+        "tr": "Âlem, Allah Teâlâ'nın dışında kalan ve kendisiyle Sâni'in bilindiği varlıkların tamamıdır."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "الْعَالَمُ",
+            "smart": "الْعَالَمُ",
+            "bare": "العالم"
+          },
+          "lex": "alam",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          }
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "grammar": [
+            "ism-mawsul",
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+            "en": "Relative noun, mabni on sukun, in the position of raf' as the khabar.",
+            "tr": "Sükûn üzere mebnî ism-i mevsûl, haber olarak ref mahallinde."
+          }
+        },
+        {
+          "surface": {
+            "full": "سِوَى",
+            "smart": "سِوَى",
+            "bare": "سوى"
+          },
+          "lex": "siwa",
+          "pos": "adv",
+          "grammar": [
+            "ism-mawsul",
+            "maful-fih",
+            "ism-maqsur-manqus"
+          ],
+          "irab": {
+            "ar": "ظَرْفٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، مُتَعَلِّقٌ بِمَحْذُوفٍ صِلَةً لِلْمَوْصُولِ، وَهُوَ مُضَافٌ.",
+            "en": "Adverb in nasb with an implied fatha on the alif, attached to an omitted word that serves as the sila; a mudaf.",
+            "tr": "Elif üzerinde takdîrî fetha ile mansub zarf; mahzûf sılaya mütealliḳ ve muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "اللهِ",
+            "smart": "اللهِ",
+            "bare": "الله"
+          },
+          "lex": "allah",
+          "pos": "propn",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+            "en": "The majestic name as mudaf ilayh in jarr.",
+            "tr": "Lafza-i celâl, mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "تَعَالَى",
+            "smart": "تَعَالَى",
+            "bare": "تعالى"
+          },
+          "lex": "taala",
+          "pos": "verb",
+          "grammar": [
+            "jumla-mutarida"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مَاضٍ وَفَاعِلُهُ ضَمِيرٌ مُسْتَتِرٌ، وَالْجُمْلَةُ دُعَائِيَّةٌ مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+            "en": "Past verb with a hidden fa'il; the clause is a parenthetical invocation with no case position.",
+            "tr": "Mâzi fiil, fâili müstetir zamir; cümle duâ için mu'terizedir, i'rabdan mahalli yoktur."
+          }
+        },
+        {
+          "surface": {
+            "full": "مِنَ",
+            "smart": "مِنَ",
+            "bare": "من"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ لِلْبَيَانِ، حُرِّكَتْ نُونُهُ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+            "en": "Explicative preposition; its ن takes fatha because two vowelless letters would otherwise meet.",
+            "tr": "Beyân için cer harfi; iki sâkin bir araya geldiği için nûnu fethalanmıştır."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْمَوْجُودَاتِ",
+            "smart": "الْمَوْجُودَاتِ",
+            "bare": "الموجودات"
+          },
+          "lex": "mawjudat",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr",
+            "jam-muannath-salim"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ بِالْكَسْرَةِ لِأَنَّهُ جَمْعُ مُؤَنَّثٍ سَالِمٌ.",
+            "en": "Noun in jarr with kasra — a sound feminine plural.",
+            "tr": "Cem-i müennes-i sâlim olduğu için kesre ile mecrûr."
+          }
+        },
+        {
+          "surface": {
+            "full": "مِمَّا",
+            "smart": "مِمَّا",
+            "bare": "مما"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "«مِنْ» حَرْفُ جَرٍّ وَ«مَا» اسْمٌ مَوْصُولٌ فِي مَحَلِّ جَرٍّ، أُدْغِمَتِ النُّونُ فِي الْمِيمِ.",
+            "en": "مِنْ + مَا: the relative noun stands in jarr, and the ن is assimilated into the م.",
+            "tr": "«مِنْ» cer harfi, «مَا» cer mahallinde ism-i mevsûl; nûn mîme idgam edilmiştir."
+          },
+          "segments": [
+            {
+              "form": "مِنْ",
+              "lex": "min",
+              "pos": "prep"
+            },
+            {
+              "form": "مَا",
+              "lex": "ma-mawsula",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "يُعْلَمُ",
+            "smart": "يُعْلَمُ",
+            "bare": "يعلم"
+          },
+          "lex": "alima",
+          "pos": "verb",
+          "grammar": [
+            "naib-al-fail",
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا.",
+            "en": "Passive mudari' in raf'; the clause is the sila of the relative noun and has no case position.",
+            "tr": "Meçhûl sîgada merfû muzâri; cümle sıla-i mevsûldür, mahalli yoktur."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِهِ",
+            "smart": "بِهِ",
+            "bare": "به"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ، وَالْهَاءُ هِيَ الْعَائِدُ عَلَى «مَا».",
+            "en": "Preposition + pronoun; the ه is the ‘aid returning to «مَا».",
+            "tr": "Câr-mecrûr; hâ, «مَا»ya dönen âiddir."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "الصَّانِعُ",
+            "smart": "الصَّانِعُ",
+            "bare": "الصانع"
+          },
+          "lex": "sani",
+          "pos": "noun",
+          "grammar": [
+            "naib-al-fail"
+          ],
+          "irab": {
+            "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ.",
+            "en": "Na'ib al-fa'il in raf'.",
+            "tr": "Merfû nâib-i fâil."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "translation": {
+        "en": "The world, with all its parts, is originated.",
+        "tr": "Âlem, bütün cüzleriyle birlikte hâdistir (sonradan var edilmiştir)."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْعَالَمُ",
+            "smart": "وَالْعَالَمُ",
+            "bare": "والعالم"
+          },
+          "lex": "alam",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْعَالَمُ",
+              "lex": "alam",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "بِجَمِيعِ",
+            "smart": "بِجَمِيعِ",
+            "bare": "بجميع"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«مُحْدَثٌ»، وَ«جَمِيعِ» مُضَافٌ.",
+            "en": "Preposition + noun attached to مُحْدَث; جَمِيع is a mudaf.",
+            "tr": "«مُحْدَثٌ»a mütealliḳ câr-mecrûr; «جَمِيعِ» muzâftır."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "جَمِيعِ",
+              "lex": "jami",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "أَجْزَائِهِ",
+            "smart": "أَجْزَائِهِ",
+            "bare": "أجزائه"
+          },
+          "lex": "juz",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Mudaf ilayh in jarr, itself a mudaf; the ه is its mudaf ilayh.",
+            "tr": "Mecrûr muzâfun ileyh ve muzâf; hâ muzâfun ileyhtir."
+          },
+          "segments": [
+            {
+              "form": "أَجْزَائِ",
+              "lex": "juz",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مُحْدَثٌ",
+            "smart": "مُحْدَثٌ",
+            "bare": "محدث"
+          },
+          "lex": "muhdath",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "form-iv-verbs"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ، وَهُوَ اسْمُ مَفْعُولٍ مِنْ «أَحْدَثَ».",
+            "en": "Khabar in raf'; the ism maf'ul of أَحْدَثَ, Form IV.",
+            "tr": "Merfû haber; «أَحْدَثَ» fiilinin ism-i mef'ûlüdür."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "translation": {
+        "en": "The originated is that which is brought out from non-existence into existence.",
+        "tr": "Hâdis, yokluktan varlığa çıkarılan şeydir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْمُحْدَثُ",
+            "smart": "وَالْمُحْدَثُ",
+            "bare": "والمحدث"
+          },
+          "lex": "muhdath",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْمُحْدَثُ",
+              "lex": "muhdath",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "هُوَ",
+            "smart": "هُوَ",
+            "bare": "هو"
+          },
+          "lex": "pron-3ms-munfasil",
+          "pos": "pron",
+          "grammar": [
+            "damir-fasl"
+          ],
+          "irab": {
+            "ar": "ضَمِيرُ فَصْلٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+            "en": "Pronoun of separation, with no case position.",
+            "tr": "İ'rabdan mahalli olmayan zamîr-i fasl."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْمُخْرَجُ",
+            "smart": "الْمُخْرَجُ",
+            "bare": "المخرج"
+          },
+          "lex": "mukhraj",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "form-iv-verbs"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ، وَهُوَ اسْمُ مَفْعُولٍ مِنْ «أَخْرَجَ».",
+            "en": "Khabar in raf'; the ism maf'ul of أَخْرَجَ, Form IV.",
+            "tr": "Merfû haber; «أَخْرَجَ» fiilinin ism-i mef'ûlüdür."
+          }
+        },
+        {
+          "surface": {
+            "full": "مِنَ",
+            "smart": "مِنَ",
+            "bare": "من"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ مُتَعَلِّقٌ بِـ«الْمُخْرَجُ».",
+            "en": "Preposition attached to الْمُخْرَج.",
+            "tr": "«الْمُخْرَجُ»a mütealliḳ cer harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْعَدَمِ",
+            "smart": "الْعَدَمِ",
+            "bare": "العدم"
+          },
+          "lex": "adam",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ.",
+            "en": "Noun in jarr.",
+            "tr": "Mecrûr isim."
+          }
+        },
+        {
+          "surface": {
+            "full": "إِلَى",
+            "smart": "إِلَى",
+            "bare": "إلى"
+          },
+          "lex": "ila",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ.",
+            "en": "Preposition.",
+            "tr": "Cer harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْوُجُودِ",
+            "smart": "الْوُجُودِ",
+            "bare": "الوجود"
+          },
+          "lex": "wujud",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ.",
+            "en": "Noun in jarr.",
+            "tr": "Mecrûr isim."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "translation": {
+        "en": "The concrete entities are that which has subsistence through its own essence.",
+        "tr": "A'yân, kendi zatıyla kâim olan şeydir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْأَعْيَانُ",
+            "smart": "وَالْأَعْيَانُ",
+            "bare": "والأعيان"
+          },
+          "lex": "ayan",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْأَعْيَانُ",
+              "lex": "ayan",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "grammar": [
+            "ism-mawsul",
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+            "en": "Relative noun in the position of raf' as the khabar.",
+            "tr": "Haber olarak ref mahallinde ism-i mevsûl."
+          }
+        },
+        {
+          "surface": {
+            "full": "يَكُونُ",
+            "smart": "يَكُونُ",
+            "bare": "يكون"
+          },
+          "lex": "kana",
+          "pos": "verb",
+          "grammar": [
+            "kana-wa-akhawatuha",
+            "ism-mawsul",
+            "hollow-verbs"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَرْفُوعٌ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Defective mudari' in raf'; the clause is the sila of the relative noun.",
+            "tr": "Merfû nâkıs muzâri; cümle sıla-i mevsûldür."
+          }
+        },
+        {
+          "surface": {
+            "full": "لَهُ",
+            "smart": "لَهُ",
+            "bare": "له"
+          },
+          "lex": "li",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "kana-wa-akhawatuha",
+            "anwa-al-khabar"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ فِي مَحَلِّ نَصْبٍ خَبَرُ «يَكُونُ» مُقَدَّمٌ.",
+            "en": "Preposition + pronoun standing in nasb as the fronted khabar of يَكُونُ.",
+            "tr": "«يَكُونُ»nun mukaddem haberi olarak nasb mahallinde câr-mecrûr."
+          },
+          "segments": [
+            {
+              "form": "لَ",
+              "lex": "li",
+              "pos": "prep"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "قِيَامٌ",
+            "smart": "قِيَامٌ",
+            "bare": "قيام"
+          },
+          "lex": "qiyam",
+          "pos": "noun",
+          "grammar": [
+            "kana-wa-akhawatuha"
+          ],
+          "irab": {
+            "ar": "اسْمُ «يَكُونُ» مُؤَخَّرٌ مَرْفُوعٌ.",
+            "en": "The ism of يَكُونُ, postponed, in raf'.",
+            "tr": "«يَكُونُ»nun muahhar ve merfû ismi."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِذَاتِهِ",
+            "smart": "بِذَاتِهِ",
+            "bare": "بذاته"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«قِيَامٌ»، وَ«ذَاتِ» مُضَافٌ وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Preposition + noun attached to قِيَام; ذَات is a mudaf and the ه its mudaf ilayh.",
+            "tr": "«قِيَامٌ»a mütealliḳ câr-mecrûr; «ذَاتِ» muzâf, hâ muzâfun ileyhtir."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "ذَاتِ",
+              "lex": "dhat",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "translation": {
+        "en": "The atom is the part that admits of no division.",
+        "tr": "Cevher, bölünemeyen cüzdür."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْجَوْهَرُ",
+            "smart": "وَالْجَوْهَرُ",
+            "bare": "والجوهر"
+          },
+          "lex": "jawhar",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْجَوْهَرُ",
+              "lex": "jawhar",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "هُوَ",
+            "smart": "هُوَ",
+            "bare": "هو"
+          },
+          "lex": "pron-3ms-munfasil",
+          "pos": "pron",
+          "grammar": [
+            "damir-fasl"
+          ],
+          "irab": {
+            "ar": "ضَمِيرُ فَصْلٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+            "en": "Pronoun of separation, with no case position.",
+            "tr": "İ'rabdan mahalli olmayan zamîr-i fasl."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْجُزْءُ",
+            "smart": "الْجُزْءُ",
+            "bare": "الجزء"
+          },
+          "lex": "juz",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ.",
+            "en": "Khabar in raf'.",
+            "tr": "Merfû haber."
+          }
+        },
+        {
+          "surface": {
+            "full": "الَّذِي",
+            "smart": "الَّذِي",
+            "bare": "الذي"
+          },
+          "lex": "alladhi",
+          "pos": "pron",
+          "grammar": [
+            "ism-mawsul",
+            "naat-sifa"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ نَعْتٌ لِـ«الْجُزْءُ».",
+            "en": "Relative noun, mabni on sukun, in the position of raf' as the na't of «الْجُزْءُ» — a definite noun takes a definite relative as its adjective.",
+            "tr": "Sükûn üzere mebnî ism-i mevsûl; «الْجُزْءُ»un na'tı olarak ref mahallindedir."
+          }
+        },
+        {
+          "surface": {
+            "full": "لَا",
+            "smart": "لَا",
+            "bare": "لا"
+          },
+          "lex": "la-nafiya",
+          "pos": "part",
+          "grammar": [
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "حَرْفُ نَفْيٍ لَا عَمَلَ لَهُ.",
+            "en": "Particle of negation, with no governing effect.",
+            "tr": "Ameli olmayan nefy harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "يَتَجَزَّى",
+            "smart": "يَتَجَزَّى",
+            "bare": "يتجزى"
+          },
+          "lex": "tajazza",
+          "pos": "verb",
+          "grammar": [
+            "mudari-marfu",
+            "form-v-verbs",
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Mudari' in raf' with an implied damma on the final alif; the clause is the sila of the relative noun.",
+            "tr": "Elif üzerinde takdîrî damme ile merfû muzâri; cümle sıla-i mevsûldür."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "translation": {
+        "en": "The accident is that which does not subsist through its own essence.",
+        "tr": "Araz, kendi zatıyla kâim olmayan şeydir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْعَرَضُ",
+            "smart": "وَالْعَرَضُ",
+            "bare": "والعرض"
+          },
+          "lex": "arad",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+            "en": "Mubtada in raf'.",
+            "tr": "Merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْعَرَضُ",
+              "lex": "arad",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "grammar": [
+            "ism-mawsul",
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+            "en": "Relative noun in the position of raf' as the khabar.",
+            "tr": "Haber olarak ref mahallinde ism-i mevsûl."
+          }
+        },
+        {
+          "surface": {
+            "full": "لَا",
+            "smart": "لَا",
+            "bare": "لا"
+          },
+          "lex": "la-nafiya",
+          "pos": "part",
+          "grammar": [
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "حَرْفُ نَفْيٍ لَا عَمَلَ لَهُ.",
+            "en": "Particle of negation, with no governing effect.",
+            "tr": "Ameli olmayan nefy harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "يَقُومُ",
+            "smart": "يَقُومُ",
+            "bare": "يقوم"
+          },
+          "lex": "qama",
+          "pos": "verb",
+          "grammar": [
+            "mudari-marfu",
+            "hollow-verbs",
+            "ism-mawsul"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Mudari' in raf' with damma; the clause is the sila of the relative noun.",
+            "tr": "Damme ile merfû muzâri; cümle sıla-i mevsûldür."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِذَاتِهِ",
+            "smart": "بِذَاتِهِ",
+            "bare": "بذاته"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«يَقُومُ».",
+            "en": "Preposition + noun attached to يَقُومُ.",
+            "tr": "«يَقُومُ»a mütealliḳ câr-mecrûr."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "ذَاتِ",
+              "lex": "dhat",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": "."
+        }
+      ]
+    }
+  ]
+}

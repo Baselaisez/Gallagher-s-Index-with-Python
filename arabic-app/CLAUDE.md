@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          46 global grammar notes — one JSON per topic, shared by every story
+  grammar/          56 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -17,12 +17,12 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         26 browser checks (Playwright)
+  smoke_test.js         28 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Nine stories, Levels 1–6. Grammar notes are **global**: a note authored once shows
+Nine stories, Levels 1–6; the Aqaid package runs to four chapters. Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -78,6 +78,9 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   glossary entry (`pos: "phrase"`, plus `literal` and `note`). The reader tints the
   span and shows a banner above every tab. **Both layers survive**: بَيْنَ يَدَيْهِ
   means "in his presence" *and* بَيْنَ stays a mansub zarf with يَدَيْهِ its mudaf ilayh.
+- **Sentence i'rab sheet**: the إعراب button on each sentence opens the whole sentence
+  analysed at once — the exercise a madrasah student writes out. It needs nothing beyond
+  per-token `irab`, so it comes free with any new chapter.
 - **Birgivi's ma'mul taxonomy** organizes the registry — every note carries `mamul`
   (marfu' 8/8, mansub 13/13, majrur 2/2, majzum 1/1, tawabi' 5/5: complete).
 - **Emsile-i Muttarida** = one form across 14 persons; **Emsile-i Muhtelife** = 14

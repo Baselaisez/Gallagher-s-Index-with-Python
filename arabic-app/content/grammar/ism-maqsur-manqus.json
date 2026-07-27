@@ -1,0 +1,72 @@
+{
+  "id": "ism-maqsur-manqus",
+  "title": {
+    "ar": "الِاسْمُ الْمَقْصُورُ وَالْمَنْقُوص",
+    "en": "Nouns ending in a weak letter"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب)",
+    "مراح الأرواح",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "Two classes of noun cannot carry their case vowel where you expect it. The MAQSUR ends in a fixed alif — مَعْنًى, هُدًى, مُصْطَفَى. No vowel can sit on an alif, so all three cases are مُقَدَّر, implied: raf', nasb and jarr look identical and only the governor tells you which one you have. The MANQUS ends in an unstressed ي — الْمُدَّعِي, الْقَاضِي, الرَّامِي. Here raf' and jarr are implied on the ي, but NASB appears normally: رَأَيْتُ الْقَاضِيَ, with a visible fatha. That asymmetry is the whole point of learning the pair. One further habit of the manqus: when it is indefinite and not in nasb, the ي is dropped and tanwin takes its place — قَاضٍ, مُدَّعٍ, رَامٍ; the ي returns with ال or in idafa.",
+    "tr": "İki isim sınıfı, i'rab harekesini beklendiği yerde taşıyamaz. MAKSÛR, sabit bir elif ile biter: مَعْنًى، هُدًى، مُصْطَفَى. Elif üzerine hareke gelemediği için üç i'rab da takdîrîdir; ref, nasb ve cer aynı görünür ve hangisi olduğunu ancak âmil gösterir. MANKÛS ise harekesiz bir yâ ile biter: الْمُدَّعِي، الْقَاضِي، الرَّامِي. Burada ref ve cer yâ üzerinde takdîrîdir, fakat NASB açıkça görünür: رَأَيْتُ الْقَاضِيَ, fetha zâhirdir. Bu ikisini birlikte öğrenmenin asıl sebebi bu farktır. Mankûsun bir âdeti daha vardır: nekre olup nasb hâlinde değilken yâ düşer ve yerine tenvin gelir — قَاضٍ، مُدَّعٍ، رَامٍ; ال ile veya izafette yâ geri döner."
+  },
+  "examples": [
+    {
+      "ar": "وَالْإِلْهَامُ إِلْقَاءُ مَعْنًى فِي الْقَلْبِ.",
+      "en": "…the casting of a meaning into the heart — مَعْنًى is a mudaf ilayh in jarr with an implied kasra.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s5",
+      "chapter": 2
+    },
+    {
+      "ar": "الْبَيِّنَةُ لِلْمُدَّعِي.",
+      "en": "The proof is on the claimant — a manqus in jarr, the kasra implied on the ي.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 4
+    },
+    {
+      "ar": "الْعَالَمُ مَا سِوَى اللهِ تَعَالَى.",
+      "en": "…what is other than Allah — سِوَى is a maqsur adverb in nasb with an implied fatha."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "رَأَيْتُ الْقَاضِي",
+      "right": "رَأَيْتُ الْقَاضِيَ",
+      "why": {
+        "en": "The manqus is the one weak-ended noun that DOES show nasb. Leaving the ي bare hides the only case it can display.",
+        "tr": "Mankûs, nasbı gösteren tek illetli isimdir. Yâyı harekesiz bırakmak, gösterebildiği tek i'rabı gizler."
+      }
+    },
+    {
+      "wrong": "جَاءَ قَاضِي",
+      "right": "جَاءَ قَاضٍ",
+      "why": {
+        "en": "An indefinite manqus in raf' or jarr drops its ي and takes tanwin instead.",
+        "tr": "Nekre mankûs, ref ve cer hâlinde yâsını düşürür ve yerine tenvin alır."
+      }
+    },
+    {
+      "wrong": "رَأَيْتُ الْفَتَى — بِفَتْحَةٍ ظَاهِرَةٍ",
+      "right": "الْفَتَى مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ",
+      "why": {
+        "en": "A maqsur shows nothing at all. Writing a fatha on the alif is not possible — the case is implied in every position.",
+        "tr": "Maksûr hiçbir i'rabı göstermez. Elif üzerine fetha yazılamaz; her hâlde i'rab takdîrîdir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "idafa-definiteness",
+    "mamnu-min-sarf",
+    "five-nouns"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "istithna-mufarragh",
+  "title": {
+    "ar": "الِاسْتِثْنَاءُ الْمُفَرَّغ (مَا … إِلَّا)",
+    "en": "Restriction: «nothing but…»"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — الاستثناء",
+    "العوامل (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "explanation": {
+    "en": "When a negation is followed by إِلَّا and no مُسْتَثْنَى مِنْهُ has been mentioned, the sentence is «emptied» — مُفَرَّغ — and إِلَّا governs nothing at all. The word after it simply takes whatever case the sentence would have given it if the negation and the إِلَّا were both deleted. Test it: مَا مُحَمَّدٌ إِلَّا رَسُولٌ → remove both → مُحَمَّدٌ رَسُولٌ, mubtada and khabar, so رَسُولٌ is marfu'. There is a second effect worth naming. مَا can otherwise act like لَيْسَ and put its khabar in nasb (مَا مُحَمَّدٌ رَسُولًا). The moment إِلَّا arrives, that governing power lapses — النَّفْيُ مُنْتَقِضٌ بِإِلَّا — and raf' is the only option. The meaning is restriction, not exception: «Muhammad is nothing but a messenger».",
+    "tr": "Nefyden sonra إِلَّا gelir ve müstesnâ minh zikredilmezse cümle «boşaltılmış» (müferrağ) olur; إِلَّا hiçbir amel yapmaz. Ondan sonraki kelime, nefy ve إِلَّا kaldırılsaydı hangi i'rabı alacaksa onu alır. Deneyin: مَا مُحَمَّدٌ إِلَّا رَسُولٌ → ikisini kaldırın → مُحَمَّدٌ رَسُولٌ; mübteda ve haber, dolayısıyla رَسُولٌ merfûdur. İkinci bir netice daha vardır: مَا, aksi hâlde لَيْسَ gibi amel edip haberini nasb edebilir (مَا مُحَمَّدٌ رَسُولًا). إِلَّا geldiği anda bu amel düşer — النَّفْيُ مُنْتَقِضٌ بِإِلَّا — ve tek seçenek ref olur. Mana istisnâ değil hasrdır: «Muhammed ancak bir resuldür»."
+  },
+  "examples": [
+    {
+      "ar": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ قَدْ خَلَتْ مِنْ قَبْلِهِ الرُّسُلُ.",
+      "en": "Muhammad is but a messenger; messengers have passed away before him. (Al ‘Imran 144)",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s4",
+      "chapter": 4
+    },
+    {
+      "ar": "مَا جَاءَ إِلَّا زَيْدٌ.",
+      "en": "No one came but Zayd — delete مَا and إِلَّا and زَيْدٌ is the fa'il, so it stays marfu'."
+    },
+    {
+      "ar": "مَا رَأَيْتُ إِلَّا زَيْدًا.",
+      "en": "I saw none but Zayd — here the emptied position is the object, so nasb."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "مَا مُحَمَّدٌ إِلَّا رَسُولًا",
+      "right": "مَا مُحَمَّدٌ إِلَّا رَسُولٌ",
+      "why": {
+        "en": "إِلَّا cancels مَا's power to give nasb. Once the negation is broken by إِلَّا, the khabar returns to raf'.",
+        "tr": "إِلَّا, مَا'nın nasb etme amelini iptal eder. Nefy إِلَّا ile bozulunca haber ref'e döner."
+      }
+    },
+    {
+      "wrong": "مَا جَاءَ إِلَّا زَيْدًا",
+      "right": "مَا جَاءَ إِلَّا زَيْدٌ",
+      "why": {
+        "en": "In the emptied construction the case comes from the role, not from إِلَّا. Here زَيْد is the doer, so raf' — nasb would only be right if a مُسْتَثْنَى مِنْهُ had been mentioned.",
+        "tr": "Müferrağ istisnâda i'rab, إِلَّا'dan değil kelimenin görevinden gelir. Burada زَيْد fâildir, dolayısıyla ref alır; nasb ancak müstesnâ minh zikredilseydi doğru olurdu."
+      }
+    },
+    {
+      "wrong": "مَا جَاءَ الْقَوْمُ إِلَّا زَيْدٌ",
+      "right": "مَا جَاءَ الْقَوْمُ إِلَّا زَيْدًا (وَيَجُوزُ الْبَدَلُ: إِلَّا زَيْدٌ)",
+      "why": {
+        "en": "This one is NOT emptied — الْقَوْمُ is the mustathna minhu, so the ordinary rules of istithna apply again.",
+        "tr": "Bu cümle müferrağ değildir; الْقَوْمُ müstesnâ minhtir, dolayısıyla normal istisnâ kuralları geçerlidir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "istithna",
+    "ma-la-mushabbaha",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
