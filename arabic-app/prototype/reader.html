@@ -310,6 +310,26 @@
   table.irab-sheet button.jump:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .sheet-topics { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .9rem; }
 
+  /* ---------- corpus search ---------- */
+  .hit-lex { display: flex; align-items: baseline; gap: .5rem; margin: 1rem 0 .3rem;
+    padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+  .hit-lex .hl-ar { font-family: var(--ar-font); font-size: 1.3rem; }
+  .hit-lex .hl-gl { font-family: var(--ui-font); font-size: .82rem; color: var(--ink-soft); flex: 1; }
+  .hit-lex .hl-n { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft);
+    font-variant-numeric: tabular-nums; }
+  .hit { all: unset; display: block; cursor: pointer; width: 100%; box-sizing: border-box;
+    padding: .5rem .6rem; border-radius: 10px; border: 1px solid transparent; }
+  .hit:hover, .hit:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+  .hit .h-ar { font-family: var(--ar-font); font-size: 1.15rem; direction: rtl; text-align: right;
+    line-height: 1.9; }
+  .hit .h-ar b { color: var(--accent); font-weight: inherit;
+    background: linear-gradient(transparent 70%, var(--accent-soft) 70%); }
+  .hit .h-src { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft); margin-top: .15rem; }
+  .root-btn { all: unset; cursor: pointer; }
+  .root-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chip.tappable { cursor: pointer; }
+  .chip.tappable:hover { border-color: var(--accent); color: var(--accent); }
+
   /* ---------- grammar reference ---------- */
   .ref-group { font-family: var(--ui-font); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase;
     color: var(--ink-soft); margin: 1.1rem 0 .3rem; display: flex; align-items: center; gap: .6rem; }
@@ -432,6 +452,7 @@
     <button class="tbtn reader-only" id="fontMinus" aria-label="Smaller text">A−</button>
     <button class="tbtn reader-only" id="fontPlus" aria-label="Larger text">A+</button>
     <span class="spacer"></span>
+    <button class="tbtn" id="searchOpen">Search</button>
     <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn reader-only" id="gamesOpen">Games</button>
     <button class="tbtn deckbtn" id="deckOpen">Deck <span class="count" id="deckCount" hidden>0</span></button>
@@ -493,7 +514,13 @@ const L = {
         modeHint_medium:"No sentence translation — each word carries its meaning beneath it.",
         modeHint_hard:"Arabic only. Tap a word to see what it means.",
         peek:"Show meaning",
-        formChip:"Form", rootChip:"root:", pluralChip:"pl." },
+        formChip:"Form", rootChip:"root:", pluralChip:"pl.",
+        searchBtn:"Search", searchTitle:"Search the corpus",
+        searchPlaceholder:"Arabic, a root, or a meaning\u2026",
+        searchHint:"Type two letters or more. Arabic matches with or without vowels; you can also search a root (\u0642 \u0648 \u0644) or an English or Turkish meaning.",
+        searchNone:"Nothing in the stories matches that.",
+        searchFound:"{n} occurrences of {w} words.",
+        searchMore:"+{n} more" },
   tr: { word:"Kelime", sarf:"Çekim (Sarf)", irab:"İ'rab", grammar:"Gramer",
         save:"＋ Kart destesine ekle", saved:"✓ Destede", gnote:"Gramer notu",
         deck:"Deste", grammarBtn:"Gramer", levels:"Seviye", chapter:"Bölüm",
@@ -515,7 +542,13 @@ const L = {
         modeHint_medium:"Cümle tercümesi yok — her kelimenin manası altında yazılıdır.",
         modeHint_hard:"Sadece Arapça. Manası için kelimeye dokunun.",
         peek:"Manayı göster",
-        formChip:"Bâb", rootChip:"kök:", pluralChip:"çoğ." }
+        formChip:"Bâb", rootChip:"kök:", pluralChip:"çoğ.",
+        searchBtn:"Ara", searchTitle:"Metinlerde ara",
+        searchPlaceholder:"Arapça, bir kök yahut bir mana\u2026",
+        searchHint:"En az iki harf yazın. Arapça harekeli ya da harekesiz eşleşir; kök (\u0642 \u0648 \u0644) veya İngilizce/Türkçe mana da arayabilirsiniz.",
+        searchNone:"Hikâyelerde buna uyan bir şey yok.",
+        searchFound:"{w} kelimede {n} geçiş.",
+        searchMore:"+{n} tane daha" }
 };
 Object.assign(L.en, {
   games:"Games", match:"Match pairs", matchDesc:"Match each Arabic word with its meaning.",
@@ -1292,7 +1325,8 @@ function openWord(tok, el, tab, ctx){
     html += `<div class="facts">`;
     if (entry.pos) html += chip(posLabel(entry.pos));
     if (entry.form) html += chip(ui().formChip + " " + entry.form);
-    if (entry.root) html += chip(ui().rootChip + " " + arSpan(entry.root));
+    if (entry.root) html += `<button class="root-btn" data-root="${escapeAttr(entry.root)}">` +
+      chip(ui().rootChip + " " + arSpan(entry.root), "tappable") + `</button>`;
     if (entry.plural) html += chip(ui().pluralChip + " " + arSpan(entry.plural));
     if (entry.level > 0) html += chip(ui().level + " " + entry.level, "level");
     html += `</div>
@@ -1351,6 +1385,8 @@ function openWord(tok, el, tab, ctx){
   if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
+  sheetInner.querySelectorAll(".root-btn").forEach(b =>
+    b.addEventListener("click", () => openRoot(b.dataset.root)));
   const sc = document.getElementById("saveConjBtn");
   if (sc) sc.addEventListener("click", () => { toggleSaveVerb(tok.lex); openWord(tok, el, "sarf"); });
   const say = document.getElementById("sayWord");
@@ -1466,6 +1502,125 @@ function bindRefIndexEvents(){
       refRerenderList();
     }));
   bindRefListEvents();
+}
+
+// ---------- corpus search ----------
+// Ten stories in, "where else does this word appear?" stopped being answerable
+// by scrolling. The index is built once, lazily, over every token in every
+// story; a story's own glossary is the only place a lemma or root is recorded,
+// so the walk has to carry it rather than read the global GLOSSARY.
+let CORPUS = null;
+function buildCorpus(){
+  if (CORPUS) return CORPUS;
+  CORPUS = [];
+  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+    sen.tokens.forEach((tok, ti) => {
+      const e = st.glossary[tok.lex] || {};
+      CORPUS.push({
+        st, ch, sen, ti, tok, entry: e,
+        // The root is stored spaced but a learner types it closed up, so index both.
+        hay: [tok.s.bare, strip(e.lemma || ""), strip(e.root || ""), strip(e.root || "").replace(/\s+/g, ""),
+              (e.gloss && e.gloss.en || "").toLowerCase(),
+              (e.gloss && e.gloss.tr || "").toLowerCase()].join(" "),
+      });
+    }))));
+  return CORPUS;
+}
+const DIACRITICS_RE = /[ً-ْٓ-ٰٕ]/g;
+function strip(t){ return String(t).replace(DIACRITICS_RE, ""); }
+// ا / أ / إ / آ and ة / ه are the two spellings learners actually get wrong when
+// typing, so fold them before matching.
+function foldAr(t){ return strip(t).replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي"); }
+
+let searchQuery = "";
+function searchCorpus(q){
+  const needle = q.trim();
+  if (needle.length < 2) return [];
+  const nAr = foldAr(needle), nLat = needle.toLowerCase();
+  return buildCorpus().filter(r =>
+    foldAr(r.hay).includes(nAr) || r.hay.includes(nLat));
+}
+function openSearch(q){
+  if (q !== undefined) searchQuery = q;
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  const hits = searchCorpus(searchQuery);
+  // Group by lex so a word with twenty occurrences is one heading, not twenty.
+  const byLex = new Map();
+  hits.forEach(h => {
+    if (!byLex.has(h.tok.lex)) byLex.set(h.tok.lex, []);
+    byLex.get(h.tok.lex).push(h);
+  });
+  const groups = [...byLex.entries()].sort((a, b) => b[1].length - a[1].length).slice(0, 12);
+  let body = "";
+  if (searchQuery.trim().length < 2) {
+    body = `<p class="ref-intro">${ui().searchHint}</p>`;
+  } else if (!groups.length) {
+    body = `<p class="ref-intro">${ui().searchNone}</p>`;
+  } else {
+    body = `<p class="ref-intro">${ui().searchFound
+      .replace("{n}", hits.length).replace("{w}", byLex.size)}</p>`;
+    groups.forEach(([lex, rows]) => {
+      const e = rows[0].entry;
+      body += `<div class="hit-lex"><span class="hl-ar" lang="ar">${e.lemma || lex}</span>
+        <span class="hl-gl">${e.gloss ? T(e.gloss) : ""}</span>
+        <span class="hl-n">${rows.length}</span></div>`;
+      rows.slice(0, 4).forEach(r => {
+        const line = r.sen.tokens.map((t, i) =>
+          (i === r.ti ? `<b>${t.s.full}</b>` : t.s.full) + (t.punctAfter || "")).join(" ");
+        body += `<button class="hit" data-sid="${escapeAttr(r.st.id)}" data-ch="${r.ch.n}"
+            data-sen="${escapeAttr(r.sen.id)}" data-ti="${r.ti}">
+          <div class="h-ar" lang="ar" dir="rtl">${line}</div>
+          <div class="h-src">${r.st.title.ar} · ${ui().chapter} ${r.ch.n}</div>
+        </button>`;
+      });
+      if (rows.length > 4)
+        body += `<div class="h-src" style="padding:0 .6rem">${ui().searchMore
+          .replace("{n}", rows.length - 4)}</div>`;
+    });
+  }
+  sheetInner.innerHTML = `<div class="tabs"><button class="on">${arSpan("بَحْث")} ${ui().searchTitle}</button></div>
+    <div class="ref-search-row">
+      <input type="search" id="corpusSearch" class="ref-search" autocomplete="off"
+        placeholder="${escapeAttr(ui().searchPlaceholder)}" aria-label="${escapeAttr(ui().searchTitle)}"
+        value="${escapeAttr(searchQuery)}">
+    </div>${body}`;
+  const input = document.getElementById("corpusSearch");
+  input.addEventListener("input", () => {
+    searchQuery = input.value;
+    const at = input.selectionStart;
+    openSearch();
+    const again = document.getElementById("corpusSearch");
+    again.focus();
+    try { again.setSelectionRange(at, at); } catch (e) {}
+  });
+  sheetInner.querySelectorAll(".hit").forEach(b =>
+    b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti))));
+  showSheet();
+  if (q !== undefined) input.focus();
+}
+// Jumping across stories has to survive the paywall: a locked premium story
+// renders only its preview, so the target sentence may not be on the page.
+function jumpTo(storyId, senId, ti){
+  const st = STORIES.find(s => s.id === storyId);
+  if (!st) return;
+  if (!CUR || CUR.id !== st.id) openStory(st);
+  closeSheet();
+  const found = SENTENCE_FLAT.find(({ sen }) => sen.id === senId);
+  if (!found) {                       // behind the paywall — say so instead of failing silently
+    setTimeout(() => { openSearch(); }, 0);
+    return;
+  }
+  found.sec.scrollIntoView({ block: "center" });
+  const words = found.sec.querySelectorAll(".word");
+  const w = words[ti];
+  if (w) { markRead(senId); openWord(found.sen.tokens[ti], w, null, { sen: found.sen, ti }); }
+}
+
+// Every word from one root, across every story. The root chip in the word sheet
+// runs this — it is the same index, queried by root rather than by spelling.
+function openRoot(root){
+  searchQuery = strip(root);
+  openSearch(searchQuery);
 }
 
 // The whole sentence analysed at once — what a student actually writes out in
@@ -1915,6 +2070,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     renderModeSeg();   // the mode labels are localized too
     document.getElementById("refOpen").textContent = ui().grammarBtn;
     document.getElementById("gamesOpen").textContent = ui().games;
+    document.getElementById("searchOpen").textContent = ui().searchBtn;
     document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
     renderLegend();
     updatePlayAllBtn();
@@ -1926,6 +2082,7 @@ document.getElementById("fontMinus").addEventListener("click", () => { state.arS
 document.getElementById("deckOpen").addEventListener("click", openDeck);
 document.getElementById("refOpen").addEventListener("click", () => openRef());
 document.getElementById("gamesOpen").addEventListener("click", openGames);
+document.getElementById("searchOpen").addEventListener("click", () => openSearch(searchQuery));
 
 document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x.dataset.ui === state.uiLang));
 renderModeSeg();
@@ -1933,6 +2090,7 @@ document.querySelectorAll("#speedSeg [data-rate]").forEach(x => x.classList.togg
 document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x.dataset.layer === state.layer));
 document.getElementById("refOpen").textContent = ui().grammarBtn;
 document.getElementById("gamesOpen").textContent = ui().games;
+    document.getElementById("searchOpen").textContent = ui().searchBtn;
 document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
 renderLegend();
 updatePlayAllBtn();

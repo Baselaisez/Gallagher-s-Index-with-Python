@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         33 browser checks (Playwright)
+  smoke_test.js         34 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
@@ -98,6 +98,13 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
 - **`pos` reaches the reader.** The role game needs it: a verb's i'rab routinely names
   another word's role («فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il), so
   anything derived by regex from i'rab text must first filter to nominals.
+- **Corpus search** (`buildCorpus`, `searchCorpus`): one lazily-built index over every
+  token in every story, matched against the bare spelling, the lemma, the root (stored
+  spaced ق و ل but indexed closed-up too, because that is how it gets typed) and both
+  glosses. Alif and ta-marbuta are folded. The root chip in the word sheet is a button
+  that runs the same index — that is the root family view, not a separate feature.
+  `jumpTo` opens the story if needed; a hit behind a paywall preview is not on the page,
+  so it reopens the search rather than failing silently.
 - **Sentence i'rab sheet**: the إعراب button on each sentence opens the whole sentence
   analysed at once — the exercise a madrasah student writes out. It needs nothing beyond
   per-token `irab`, so it comes free with any new chapter.

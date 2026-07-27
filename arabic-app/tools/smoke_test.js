@@ -843,6 +843,52 @@ if (!CHROME) {
     if (info.nadaPassive !== 'يُنَادَى') throw new Error('نادى passive: ' + info.nadaPassive);
   });
 
+  await check('corpus search finds by spelling, root and meaning, and jumps there', async () => {
+    const counts = await page.evaluate(() => ({
+      corpus: buildCorpus().length,
+      tokens: STORIES.reduce((n, s) => n + s.chapters
+        .reduce((m, c) => m + c.sentences.reduce((k, x) => k + x.tokens.length, 0), 0), 0),
+      spelled: searchCorpus('قول').length,       // root typed closed up
+      spaced: searchCorpus('ق و ل').length,      // root typed as stored
+      unvowelled: searchCorpus('علم').length,
+      english: searchCorpus('knowledge').length,
+      turkish: searchCorpus('ilim').length,
+      folded: searchCorpus('امر').length,        // bare alif for a hamza'd one
+      tooShort: searchCorpus('a').length,
+    }));
+    if (counts.corpus !== counts.tokens)
+      throw new Error(`index ${counts.corpus} vs ${counts.tokens} tokens`);
+    if (counts.spelled !== counts.spaced)
+      throw new Error(`root closed-up ${counts.spelled} != spaced ${counts.spaced}`);
+    for (const k of ['spelled', 'unvowelled', 'english', 'turkish'])
+      if (!counts[k]) throw new Error('no hits for ' + k);
+    if (!counts.folded) throw new Error('alif folding does not match');
+    if (counts.tooShort) throw new Error('a one-letter query should return nothing');
+
+    await page.locator('#searchOpen').click();
+    await page.waitForSelector('#corpusSearch', { timeout: 3000 });
+    await page.fill('#corpusSearch', 'علم');
+    await page.waitForSelector('.hit', { timeout: 3000 });
+    if (!(await page.locator('.hit-lex').count())) throw new Error('results not grouped by word');
+    if (!(await page.locator('.hit .h-ar b').count())) throw new Error('hit not highlighted');
+    await page.locator('.hit').first().click();
+    await page.waitForSelector('.sheet.show .lemma', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+
+    // the root chip in the word sheet runs the same index
+    await page.locator('.sentence .word').first().click();
+    await page.waitForSelector('.sheet.show .facts', { timeout: 3000 });
+    if (await page.locator('.root-btn').count()) {
+      await page.locator('.root-btn').first().click();
+      await page.waitForSelector('#corpusSearch', { timeout: 3000 });
+      const q = await page.locator('#corpusSearch').inputValue();
+      if (!q.trim()) throw new Error('root chip did not fill the search box');
+    }
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
