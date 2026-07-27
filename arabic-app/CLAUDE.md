@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          56 global grammar notes — one JSON per topic, shared by every story
+  grammar/          60 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -62,6 +62,10 @@ vowel-swap rule breaks on weak verbs — يَقُولُ → لَمْ يَقُل�
 **Passive by wazn, not by letter count.** Form II verbs with three bare letters
 (وَدَّعَ, عَلَّمَ) fell through to the Form I branch and produced *وُدِعَ. Match the
 `wazn` regex first.
+
+**Old `.doc` files decode as utf-16-le.** Scoring encodings by "most letters" picks
+cp1256 and yields garbage; the WordDocument stream is UTF-16. Check the output reads
+as words before trusting it.
 
 **PDF Arabic extraction is unreliable** — harakat come out as separately positioned
 glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.

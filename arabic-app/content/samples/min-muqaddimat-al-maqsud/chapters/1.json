@@ -320,7 +320,8 @@
           "lex": "allama",
           "pos": "verb",
           "grammar": [
-            "form-ii-verbs"
+            "form-ii-verbs",
+            "augmented-babs"
           ],
           "irab": {
             "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْجُمْلَةُ صِفَةٌ لِـ«رَجُلٌ». مِنْ بَابِ التَّفْعِيلِ.",
@@ -354,7 +355,8 @@
           "lex": "intafaa",
           "pos": "verb",
           "grammar": [
-            "form-viii-verbs"
+            "form-viii-verbs",
+            "augmented-babs"
           ],
           "irab": {
             "ar": "الْفَاءُ عَاطِفَةٌ لِلتَّرْتِيبِ، «انْتَفَعَ» فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ. مِنْ بَابِ الِافْتِعَالِ.",
@@ -647,7 +649,10 @@
             "tr": "Elif üzerinde takdîrî fetha ile mebnî mazi fiil; cümle sıla-i mevsûldür."
           },
           "punctAfter": ".",
-          "quoteAfter": "»"
+          "quoteAfter": "»",
+          "grammar": [
+            "naqis-verbs"
+          ]
         }
       ]
     },
@@ -787,6 +792,9 @@
               "lex": "pron-1s-obj",
               "pos": "pron"
             }
+          ],
+          "grammar": [
+            "naqis-verbs"
           ]
         },
         {
@@ -829,7 +837,10 @@
             "tr": "Takdîrî fetha ile mebnî mazi fiil; cümle mahallen meczûm şartın cevabıdır."
           },
           "punctAfter": ".",
-          "quoteAfter": "»"
+          "quoteAfter": "»",
+          "grammar": [
+            "naqis-verbs"
+          ]
         }
       ]
     }

@@ -84,3 +84,40 @@ The SARF worksheet also shows two dimensions the app does not yet model:
 **ma'lum / majhul** (active and passive) and the **nun al-tawkid** forms. The
 passive already occurs in the corpus — تُسْأَلُ in Abu Yusuf 2:s8 is analyzed
 as mabni li'l-majhul — so the data supports it before the tables do.
+
+## Fourth batch — sarf rules and balagha
+
+| File | Source | What it gave the app |
+|---|---|---|
+| `ilal-misal-ecvef-naqis.txt` | كواعد الإعلال — the i'lal rules for the three weak classes, Ottoman Turkish | the `mithal-verbs` and `naqis-verbs` notes, and a rewritten `hollow-verbs` |
+| `bablara-nakil-tablosu.txt` | «bablara nakil» — 11 roots × 12 augmented babs | the `augmented-babs` note |
+| `masdar-sifa-mubalagha-vezinleri.txt` | 32 masdar patterns, 17 sifa mushabbaha patterns, 8+1 mubalagha patterns | the `sighat-mubalagha` note |
+| `alaqat-al-majaz-balagha.txt` | علاقات المجاز — the relations licensing figurative usage | not yet used — see below |
+| `talkhis-al-miftah-balagha.txt` | تلخيص المفتاح (al-Qazwini), Ottoman-Turkish commentary, 247k Arabic letters | not yet used — see below |
+
+### The i'lal document is a verification, not just a source
+
+Every weak-verb paradigm in the corpus was hand-written before this document
+arrived, on the principle that a derived form is a guessed form. The rules it
+states confirm each of them independently:
+
+| Rule in the source | Form already in the corpus |
+|---|---|
+| after dropping the alif, the preceding fatha becomes damma for a lost و, kasra for a lost ي | قُلْنَ, قُمْنَ, كُنَّ — and بِعْنَ, كِلْنَ |
+| moving the vowel back, then dropping the weak letter when two sukuns meet | لَمْ يَقُلْ, لَمْ يَبِعْ |
+| in the passive madi the damma goes and the kasra moves back | قِيلَ, بِيعَ, خِيفَ |
+| the و/ي after the alif of the ism fa'il becomes hamza | قَائِل, قَائِم |
+| i'lal in إفعال، انفعال، افتعال، استفعال only — not in فعّل، فاعل، تفعّل، تفاعل | تَصَوَّرَ / يَتَصَوَّرُ conjugated as sound, وَقَّرَ keeping its و |
+| a final و past the third letter becomes ي | اِدَّعَى and its ism fa'il مُدَّعٍ |
+| a kasra on a final weak letter is dropped as heavy | تَخْلِينَ, تَدَّعِينَ |
+
+Nothing had to be corrected. That is the strongest argument yet for storing
+these forms rather than deriving them at build time.
+
+### Balagha: a layer the app does not have yet
+
+The Talkhis and the ʿAlaqat documents are rhetoric, not grammar — majaz and its
+relations, tashbih, kinaya, the three divisions maʿani / bayan / badiʿ. The
+registry currently has three groups (sarf, nahw, awamil) and no place to put
+them. Adding a fourth group is the natural next step once the nahw coverage
+stops growing; the material is transcribed and waiting.
