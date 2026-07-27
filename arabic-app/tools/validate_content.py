@@ -135,6 +135,16 @@ def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
         if not seg.get("form"):
             rep.error(f"{where}: segment missing 'form'")
 
+    phrase = tok.get("phrase")
+    if phrase:
+        plex = phrase.get("lex")
+        if plex not in glossary:
+            rep.error(f"{where}: phrase lex '{plex}' not in glossary.json")
+        else:
+            stats["used_lex"].add(plex)
+        if not isinstance(phrase.get("span"), int) or phrase["span"] < 2:
+            rep.error(f"{where}: phrase span must be an integer >= 2")
+
     for gid in tok.get("grammar", []):
         if gid not in grammar_ids:
             rep.error(f"{where}: grammar id '{gid}' has no note file in grammar dir")
@@ -182,6 +192,9 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
             rep.error(f"{where}: sentence has no tokens")
         for i, tok in enumerate(tokens):
             check_token(tok, f"{where}[{i}]", glossary, grammar_ids, rep, stats)
+            ph = tok.get("phrase")
+            if ph and isinstance(ph.get("span"), int) and i + ph["span"] > len(tokens):
+                rep.error(f"{where}[{i}]: phrase span {ph['span']} runs past the end of the sentence")
 
 
 def check_morphology(pkg: Path, glossary: dict, rep: Report):

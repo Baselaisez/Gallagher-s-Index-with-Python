@@ -1,36 +1,344 @@
 {
   "entries": {
-    "jaa": { "lemma": "جَاءَ", "root": "ج ي أ", "pos": "verb", "form": "I", "gloss": { "en": "to come", "tr": "gelmek" }, "level": 1 },
-    "abraha": { "lemma": "أَبْرَهَة", "pos": "propn", "gloss": { "en": "Abraha (the Aksumite ruler of Yemen)", "tr": "Ebrehe (Yemen valisi)" }, "level": 0 },
-    "min": { "lemma": "مِنْ", "pos": "prep", "gloss": { "en": "from", "tr": "-den, -dan" }, "level": 1 },
-    "yaman": { "lemma": "الْيَمَن", "pos": "propn", "gloss": { "en": "Yemen", "tr": "Yemen" }, "level": 0 },
-    "bi": { "lemma": "بِ", "pos": "prep", "gloss": { "en": "with, by", "tr": "ile, -le" }, "level": 1 },
-    "jaysh": { "lemma": "جَيْش", "root": "ج ي ش", "pos": "noun", "plural": "جُيُوش", "gloss": { "en": "army", "tr": "ordu" }, "level": 2 },
-    "kabir": { "lemma": "كَبِير", "root": "ك ب ر", "pos": "noun", "plural": "كِبَار", "gloss": { "en": "big; great", "tr": "büyük" }, "level": 1 },
-    "arada": { "lemma": "أَرَادَ", "root": "ر و د", "pos": "verb", "form": "IV", "gloss": { "en": "to want, to intend", "tr": "istemek" }, "level": 2 },
-    "an": { "lemma": "أَنْ", "pos": "part", "gloss": { "en": "that, to (+ subjunctive)", "tr": "-mek/-mak (masdariyye)" }, "level": 2 },
-    "hadama": { "lemma": "هَدَمَ", "root": "ه د م", "pos": "verb", "form": "I", "gloss": { "en": "to demolish, tear down", "tr": "yıkmak" }, "level": 3 },
-    "kaaba": { "lemma": "الْكَعْبَة", "pos": "propn", "gloss": { "en": "the Kaaba", "tr": "Kâbe" }, "level": 0 },
-    "maa": { "lemma": "مَعَ", "root": "م ع", "pos": "adv", "gloss": { "en": "with, together with", "tr": "ile, beraber" }, "level": 1 },
-    "fil": { "lemma": "فِيل", "root": "ف ي ل", "pos": "noun", "plural": "أَفْيَال", "gloss": { "en": "elephant", "tr": "fil" }, "level": 1 },
-    "azim": { "lemma": "عَظِيم", "root": "ع ظ م", "pos": "noun", "plural": "عِظَام", "gloss": { "en": "huge, mighty", "tr": "kocaman, yüce" }, "level": 2 },
-    "waqafa": { "lemma": "وَقَفَ", "root": "و ق ف", "pos": "verb", "form": "I", "gloss": { "en": "to stop, stand", "tr": "durmak" }, "level": 1 },
-    "amama": { "lemma": "أَمَامَ", "root": "أ م م", "pos": "adv", "gloss": { "en": "in front of, before", "tr": "önünde" }, "level": 1 },
-    "makka": { "lemma": "مَكَّة", "pos": "propn", "gloss": { "en": "Mecca", "tr": "Mekke" }, "level": 0 },
-    "ma-nafiya": { "lemma": "مَا (النَّافِيَة)", "pos": "part", "gloss": { "en": "not (negates past verbs)", "tr": "-medi/-madı (maziyi olumsuzlar)" }, "level": 1 },
-    "wasala": { "lemma": "وَصَلَ", "root": "و ص ل", "pos": "verb", "form": "I", "gloss": { "en": "to arrive, reach (إِلَى: at)", "tr": "varmak, ulaşmak" }, "level": 1 },
-    "ila": { "lemma": "إِلَى", "pos": "prep", "gloss": { "en": "to, towards", "tr": "-e, -e doğru" }, "level": 1 },
-    "arsala": { "lemma": "أَرْسَلَ", "root": "ر س ل", "pos": "verb", "form": "IV", "gloss": { "en": "to send", "tr": "göndermek" }, "level": 2 },
-    "allah": { "lemma": "اللَّه", "pos": "propn", "gloss": { "en": "Allah", "tr": "Allah" }, "level": 0 },
-    "tayr": { "lemma": "طَيْر", "root": "ط ي ر", "pos": "noun", "plural": "طُيُور", "gloss": { "en": "bird(s)", "tr": "kuş(lar)" }, "level": 1 },
-    "kathir": { "lemma": "كَثِير", "root": "ك ث ر", "pos": "noun", "gloss": { "en": "much, many", "tr": "çok" }, "level": 1 },
-    "rama": { "lemma": "رَمَى", "root": "ر م ي", "pos": "verb", "form": "I", "gloss": { "en": "to throw, pelt (بِ: with)", "tr": "atmak, fırlatmak" }, "level": 2 },
-    "hijara": { "lemma": "حِجَارَة", "root": "ح ج ر", "pos": "noun", "gloss": { "en": "stones (plural of حَجَر)", "tr": "taşlar (حَجَر kelimesinin çoğulu)" }, "level": 2 },
-    "halaka": { "lemma": "هَلَكَ", "root": "ه ل ك", "pos": "verb", "form": "I", "gloss": { "en": "to perish, be destroyed", "tr": "helâk olmak" }, "level": 3 },
-    "hafiza": { "lemma": "حَفِظَ", "root": "ح ف ظ", "pos": "verb", "form": "I", "gloss": { "en": "to protect, preserve", "tr": "korumak" }, "level": 2 },
-    "bayt": { "lemma": "بَيْت", "root": "ب ي ت", "pos": "noun", "plural": "بُيُوت", "gloss": { "en": "house", "tr": "ev" }, "level": 1 },
-    "haram": { "lemma": "الْحَرَام", "root": "ح ر م", "pos": "noun", "gloss": { "en": "sacred, inviolable (in الْبَيْت الْحَرَام)", "tr": "haram, kutsal (الْبَيْت الْحَرَام'da)" }, "level": 2 },
-    "fa": { "lemma": "فَـ", "pos": "part", "gloss": { "en": "so, then (also introduces a result clause)", "tr": "o halde, hemen (cevap fası)" }, "level": 1 },
-    "pron-3ms": { "lemma": "ـهُ", "pos": "pron", "gloss": { "en": "him / his (attached pronoun)", "tr": "onu / onun (bitişik zamir)" }, "level": 1 }
+    "jaa": {
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to come",
+        "tr": "gelmek"
+      },
+      "level": 1
+    },
+    "abraha": {
+      "lemma": "أَبْرَهَة",
+      "pos": "propn",
+      "gloss": {
+        "en": "Abraha (the Aksumite ruler of Yemen)",
+        "tr": "Ebrehe (Yemen valisi)"
+      },
+      "level": 0
+    },
+    "min": {
+      "lemma": "مِنْ",
+      "pos": "prep",
+      "gloss": {
+        "en": "from",
+        "tr": "-den, -dan"
+      },
+      "level": 1
+    },
+    "yaman": {
+      "lemma": "الْيَمَن",
+      "pos": "propn",
+      "gloss": {
+        "en": "Yemen",
+        "tr": "Yemen"
+      },
+      "level": 0
+    },
+    "bi": {
+      "lemma": "بِ",
+      "pos": "prep",
+      "gloss": {
+        "en": "with, by",
+        "tr": "ile, -le"
+      },
+      "level": 1
+    },
+    "jaysh": {
+      "lemma": "جَيْش",
+      "root": "ج ي ش",
+      "pos": "noun",
+      "plural": "جُيُوش",
+      "gloss": {
+        "en": "army",
+        "tr": "ordu"
+      },
+      "level": 2
+    },
+    "kabir": {
+      "lemma": "كَبِير",
+      "root": "ك ب ر",
+      "pos": "noun",
+      "plural": "كِبَار",
+      "gloss": {
+        "en": "big; great",
+        "tr": "büyük"
+      },
+      "level": 1
+    },
+    "arada": {
+      "lemma": "أَرَادَ",
+      "root": "ر و د",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to want, to intend",
+        "tr": "istemek"
+      },
+      "level": 2
+    },
+    "an": {
+      "lemma": "أَنْ",
+      "pos": "part",
+      "gloss": {
+        "en": "that, to (+ subjunctive)",
+        "tr": "-mek/-mak (masdariyye)"
+      },
+      "level": 2
+    },
+    "hadama": {
+      "lemma": "هَدَمَ",
+      "root": "ه د م",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to demolish, tear down",
+        "tr": "yıkmak"
+      },
+      "level": 3
+    },
+    "kaaba": {
+      "lemma": "الْكَعْبَة",
+      "pos": "propn",
+      "gloss": {
+        "en": "the Kaaba",
+        "tr": "Kâbe"
+      },
+      "level": 0
+    },
+    "maa": {
+      "lemma": "مَعَ",
+      "root": "م ع",
+      "pos": "adv",
+      "gloss": {
+        "en": "with, together with",
+        "tr": "ile, beraber"
+      },
+      "level": 1
+    },
+    "fil": {
+      "lemma": "فِيل",
+      "root": "ف ي ل",
+      "pos": "noun",
+      "plural": "أَفْيَال",
+      "gloss": {
+        "en": "elephant",
+        "tr": "fil"
+      },
+      "level": 1
+    },
+    "azim": {
+      "lemma": "عَظِيم",
+      "root": "ع ظ م",
+      "pos": "noun",
+      "plural": "عِظَام",
+      "gloss": {
+        "en": "huge, mighty",
+        "tr": "kocaman, yüce"
+      },
+      "level": 2
+    },
+    "waqafa": {
+      "lemma": "وَقَفَ",
+      "root": "و ق ف",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to stop, stand",
+        "tr": "durmak"
+      },
+      "level": 1
+    },
+    "amama": {
+      "lemma": "أَمَامَ",
+      "root": "أ م م",
+      "pos": "adv",
+      "gloss": {
+        "en": "in front of, before",
+        "tr": "önünde"
+      },
+      "level": 1
+    },
+    "makka": {
+      "lemma": "مَكَّة",
+      "pos": "propn",
+      "gloss": {
+        "en": "Mecca",
+        "tr": "Mekke"
+      },
+      "level": 0
+    },
+    "ma-nafiya": {
+      "lemma": "مَا (النَّافِيَة)",
+      "pos": "part",
+      "gloss": {
+        "en": "not (negates past verbs)",
+        "tr": "-medi/-madı (maziyi olumsuzlar)"
+      },
+      "level": 1
+    },
+    "wasala": {
+      "lemma": "وَصَلَ",
+      "root": "و ص ل",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to arrive, reach (إِلَى: at)",
+        "tr": "varmak, ulaşmak"
+      },
+      "level": 1
+    },
+    "ila": {
+      "lemma": "إِلَى",
+      "pos": "prep",
+      "gloss": {
+        "en": "to, towards",
+        "tr": "-e, -e doğru"
+      },
+      "level": 1
+    },
+    "arsala": {
+      "lemma": "أَرْسَلَ",
+      "root": "ر س ل",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to send",
+        "tr": "göndermek"
+      },
+      "level": 2
+    },
+    "allah": {
+      "lemma": "اللَّه",
+      "pos": "propn",
+      "gloss": {
+        "en": "Allah",
+        "tr": "Allah"
+      },
+      "level": 0
+    },
+    "tayr": {
+      "lemma": "طَيْر",
+      "root": "ط ي ر",
+      "pos": "noun",
+      "plural": "طُيُور",
+      "gloss": {
+        "en": "bird(s)",
+        "tr": "kuş(lar)"
+      },
+      "level": 1
+    },
+    "kathir": {
+      "lemma": "كَثِير",
+      "root": "ك ث ر",
+      "pos": "noun",
+      "gloss": {
+        "en": "much, many",
+        "tr": "çok"
+      },
+      "level": 1
+    },
+    "rama": {
+      "lemma": "رَمَى",
+      "root": "ر م ي",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to throw, pelt (بِ: with)",
+        "tr": "atmak, fırlatmak"
+      },
+      "level": 2
+    },
+    "hijara": {
+      "lemma": "حِجَارَة",
+      "root": "ح ج ر",
+      "pos": "noun",
+      "gloss": {
+        "en": "stones (plural of حَجَر)",
+        "tr": "taşlar (حَجَر kelimesinin çoğulu)"
+      },
+      "level": 2
+    },
+    "halaka": {
+      "lemma": "هَلَكَ",
+      "root": "ه ل ك",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to perish, be destroyed",
+        "tr": "helâk olmak"
+      },
+      "level": 3
+    },
+    "hafiza": {
+      "lemma": "حَفِظَ",
+      "root": "ح ف ظ",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to protect, preserve",
+        "tr": "korumak"
+      },
+      "level": 2
+    },
+    "bayt": {
+      "lemma": "بَيْت",
+      "root": "ب ي ت",
+      "pos": "noun",
+      "plural": "بُيُوت",
+      "gloss": {
+        "en": "house",
+        "tr": "ev"
+      },
+      "level": 1
+    },
+    "haram": {
+      "lemma": "الْحَرَام",
+      "root": "ح ر م",
+      "pos": "noun",
+      "gloss": {
+        "en": "sacred, inviolable (in الْبَيْت الْحَرَام)",
+        "tr": "haram, kutsal (الْبَيْت الْحَرَام'da)"
+      },
+      "level": 2
+    },
+    "fa": {
+      "lemma": "فَـ",
+      "pos": "part",
+      "gloss": {
+        "en": "so, then (also introduces a result clause)",
+        "tr": "o halde, hemen (cevap fası)"
+      },
+      "level": 1
+    },
+    "pron-3ms": {
+      "lemma": "ـهُ",
+      "pos": "pron",
+      "gloss": {
+        "en": "him / his (attached pronoun)",
+        "tr": "onu / onun (bitişik zamir)"
+      },
+      "level": 1
+    },
+    "al-bayt-al-haram": {
+      "lemma": "الْبَيْتُ الْحَرَامُ",
+      "pos": "phrase",
+      "level": 3,
+      "gloss": {
+        "en": "the Sacred House (the Kaaba)",
+        "tr": "Beytü'l-Harâm (Kâbe)"
+      },
+      "literal": {
+        "en": "literally «the inviolable house»",
+        "tr": "lafzen «dokunulmaz ev»"
+      },
+      "note": {
+        "en": "A name for the Kaaba. Grammatically it is a noun with its adjective, and the story's «بَيْتَهُ الْحَرَامَ» shows the rule at work: the noun is definite through its pronoun, so its na't takes ال.",
+        "tr": "Kâbe'nin adıdır. Gramer bakımından mevsûf ve sıfattır; hikâyedeki «بَيْتَهُ الْحَرَامَ» kuralı gösterir: isim zamirle marife olduğu için sıfatı ال alır."
+      }
+    }
   }
 }

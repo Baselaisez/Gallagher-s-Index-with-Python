@@ -86,7 +86,8 @@ def build_story(pkg: Path, irab_tr=None):
             tokens = []
             for tok in sen["tokens"]:
                 t = {"s": tok["surface"], "lex": tok["lex"]}
-                for key in ("grammar", "punctAfter", "quoteBefore", "quoteAfter", "irab"):
+                for key in ("grammar", "punctAfter", "quoteBefore", "quoteAfter",
+                            "irab", "phrase"):
                     if tok.get(key):
                         t[key] = tok[key]
                 if t.get("irab") and t["irab"].get("en") and not t["irab"].get("tr"):

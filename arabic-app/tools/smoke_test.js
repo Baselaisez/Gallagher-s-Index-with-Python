@@ -398,6 +398,45 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('idiom: بَيْنَ يَدَيْهِ reads as one unit without losing each word\'s i\'rab', async () => {
+    // The two words keep their own analysis (mansub zarf + mudaf ilayh); the
+    // banner adds what they mean *together*. Both layers must survive.
+    const idx = await page.evaluate(() =>
+      STORIES.findIndex(s => s.id === 'wasiyyat-abi-yusuf-L5'));
+    await page.locator('.lib-card').nth(idx).click();
+    const tinted = await page.locator('.sentence .word.in-phrase').count();
+    if (tinted < 2) throw new Error('phrase span not tinted in the text: ' + tinted);
+    await page.locator('.sentence .word', { hasText: 'بَيْنَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    const gloss = await page.locator('.phrase-banner .pb-gloss').first().textContent();
+    if (!/in his presence/i.test(gloss)) throw new Error('idiom gloss missing: ' + gloss);
+    const lit = await page.locator('.phrase-banner .pb-lit').first().textContent();
+    if (!/between his two hands/i.test(lit)) throw new Error('literal reading missing: ' + lit);
+    // ...and the word's own i'rab is still there, unchanged.
+    await page.locator('.sheet .tabs button[data-tab="irab"]').click();
+    const irab = await page.locator('.irab-en').first().textContent();
+    if (!irab.trim()) throw new Error('i\'rab lost under the idiom banner');
+    if (!(await page.locator('.phrase-banner').count()))
+      throw new Error('idiom banner should persist across tabs');
+    // TR UI must show the Turkish idiom, not fall back to English.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.locator('.sentence .word', { hasText: 'بَيْنَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    const trGloss = await page.locator('.phrase-banner .pb-gloss').first().textContent();
+    if (!/huzurunda/.test(trGloss)) throw new Error('idiom not Turkish under TR UI: ' + trGloss);
+    // A word outside any idiom must not inherit the previous banner.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('.sentence .word:not(.in-phrase)').first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    if (await page.locator('.phrase-banner').count())
+      throw new Error('stale idiom banner shown on a word outside the span');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check("i'rab tab is Turkish when TR UI is selected", async () => {
     // Regression guard: i'rab notes used to fall back to English under TR UI
     // because the token data only carried {ar, en}. Turkish now comes from the
