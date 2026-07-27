@@ -121,3 +121,40 @@ relations, tashbih, kinaya, the three divisions maʿani / bayan / badiʿ. The
 registry currently has three groups (sarf, nahw, awamil) and no place to put
 them. Adding a fourth group is the natural next step once the nahw coverage
 stops growing; the material is transcribed and waiting.
+
+## Fifth batch — the 35 babs, and a fiqh text with no Arabic in it
+
+| File | Source | Status |
+|---|---|---|
+| `sarf-35-bab-tablosu.txt` | إلمي صرفك بابلرى — the complete 35-bab taxonomy: wazn, mawzun, ʿalāmat, binā and a sample sentence for each | → `thulathi-mujarrad-babs`, and the meanings in `augmented-babs` |
+| `misal-kaideleri-mesnedli.txt` | the mithal rules again, this time **with page citations** (Marah al-Arwah 83-84, ʿIzzi 148-150, Maqsud 183/205, Mulakhkhas 66) | → citations added to `mithal-verbs`; **corrected an error** (see below) |
+| `buyu-tarifler-turkish.txt` | بيوع بحثى تعريفلر — Turkish definitions for the chapter on sales, then nikah | → the `kitab-al-buyu` story (see below) |
+| `irab-taksimat-turkish.txt` | i'rab taxonomy in Turkish: mamul majrur/majzum, i'rab by haraka/harf/hazf, lafzi/taqdiri/mahalli, and the table of case-marks by noun class | headers extracted; **the table cells did not survive** — the Word table structure defeats the stream reader. Re-supplying as `.docx` or PDF would recover it |
+
+### A correction the citations forced
+
+`mithal-verbs` said the asl of عِدَة was وِعْدًا. The mesnedli copy gives وِعْدَة —
+which is the only reading consistent with the rule, since the rule is about the
+وزن فِعْلَة. Fixed, with the page reference. Two copies of the same ruleset
+disagreed and the one carrying citations was right; that is an argument for
+preferring sources that cite.
+
+### The Buyu' document has no Arabic in it
+
+It is a Turkish definition list — «Beyi: karşılıklı rıza ile bir malı başka bir
+mal ile değiştirmektir» — covering bay', the three khiyars, murabaha, tawliya,
+wadi'a, musawama, riba, salam, sarf, rahn, hajr, iqrar, ijara, shuf'a, the four
+sharikas, mudaraba, wakala, kafala, hawala, sulh, hiba, waqf, ghasb, wadi'a,
+'ariya, laqit, luqata, mafqud, ibaq, ma'dhun, ihya' al-mawat, muzara'a, and then
+a nikah section.
+
+To make a story out of it the Arabic had to be supplied. Each ta'rif in
+`kitab-al-buyu` is the **received wording** of the standard Hanafi definition the
+Turkish is translating — chiefly al-Quduri's Mukhtasar and al-Marghinani's
+Hidaya, with the Mecelle (art. 105) behind the definition of bay'. Where the two
+diverge the received wording wins: the source's havale definition names the
+creditor's dhimma, which is a slip, so نَقْلُ الدَّيْنِ مِنْ ذِمَّةٍ إِلَى ذِمَّةٍ
+was not used at all rather than reproduce it. The manifest states all of this,
+and adds that these are teaching definitions for reading practice, not a fatwa.
+
+The nikah section of the document is left for a later story.

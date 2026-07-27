@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          60 global grammar notes — one JSON per topic, shared by every story
+  grammar/          63 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -17,12 +17,12 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         30 browser checks (Playwright)
+  smoke_test.js         31 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Nine stories, Levels 1–6; the Aqaid package runs to four chapters. Grammar notes are **global**: a note authored once shows
+Ten stories, Levels 1–6; Aqaid runs to four chapters and Kitab al-Buyu is the first fiqh text. Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -97,6 +97,12 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   (marfu' 8/8, mansub 13/13, majrur 2/2, majzum 1/1, tawabi' 5/5: complete).
 - **Emsile-i Muttarida** = one form across 14 persons; **Emsile-i Muhtelife** = 14
   forms from one verb (+2 passive rows). Both render from `morphology.json`.
+
+**A source with no Arabic in it.** The Buyu' upload was a Turkish definition
+list. Supplying the Arabic is legitimate when the underlying wording is the
+received one (al-Quduri, al-Hidaya, the Mecelle) — but the manifest must say so
+line by line, and where the Turkish and the received wording diverge, the
+received wording wins and the divergence is recorded.
 
 ## Grammar sourcing
 

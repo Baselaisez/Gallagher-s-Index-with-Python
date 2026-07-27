@@ -1,0 +1,72 @@
+{
+  "id": "masdar",
+  "title": {
+    "ar": "الْمَصْدَر",
+    "en": "The masdar (verbal noun)"
+  },
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "المقصود",
+    "مراح الأرواح",
+    "الكافية (ابن الحاجب)"
+  ],
+  "explanation": {
+    "en": "The masdar names the act itself, with no doer and no time: نَقْل «transferring», حَبْس «holding», تَمْلِيك «conveying ownership». It is a NOUN, so it takes case endings and can head an idafa — and that is why almost every classical definition is built on one. «الرَّهْنُ حَبْسُ شَيْءٍ» is mubtada and khabar, and the khabar is a masdar governing what follows. For the augmented babs the masdar is regular and can simply be learned with the pattern: أَفْعَلَ → إِفْعَال, فَعَّلَ → تَفْعِيل, فَاعَلَ → مُفَاعَلَة, تَفَعَّلَ → تَفَعُّل, تَفَاعَلَ → تَفَاعُل, اِنْفَعَلَ → اِنْفِعَال, اِفْتَعَلَ → اِفْتِعَال, اِسْتَفْعَلَ → اِسْتِفْعَال. For the BARE triliteral it is not regular at all: it is سَمَاعِيّ, heard and memorised, and the manuals count some thirty-two patterns for it — قَتْلٌ, فِسْقٌ, شُغْلٌ, رَحْمَةٌ, بُشْرَى, حِرْمَانٌ, طَلَبٌ, ذَهَابٌ, دُخُولٌ, صُهُوبَةٌ and the rest. There is no rule to apply; the masdar of a bare verb is learned with the verb, exactly like its bab.",
+    "tr": "Masdar, fâili ve zamanı olmaksızın işin kendisini adlandırır: نَقْل «devretme», حَبْس «tutma», تَمْلِيك «temlik». İSİMDİR; i'rab alır ve izafetin başına geçer — klasik tariflerin neredeyse tamamının masdarla kurulmasının sebebi budur. «الرَّهْنُ حَبْسُ شَيْءٍ» mübteda ve haberdir, haber ise sonrasını izafetle alan bir masdardır. Mezîd bablarda masdar kıyasîdir ve vezniyle birlikte öğrenilir: أَفْعَلَ → إِفْعَال، فَعَّلَ → تَفْعِيل، فَاعَلَ → مُفَاعَلَة، تَفَعَّلَ → تَفَعُّل، تَفَاعَلَ → تَفَاعُل، اِنْفَعَلَ → اِنْفِعَال، اِفْتَعَلَ → اِفْتِعَال، اِسْتَفْعَلَ → اِسْتِفْعَال. Sülâsî MÜCERREDDE ise hiç kıyasî değildir: semâîdir, işitilip ezberlenir; kitaplar bunun için otuz iki kadar vezin sayar — قَتْلٌ، فِسْقٌ، شُغْلٌ، رَحْمَةٌ، بُشْرَى، حِرْمَانٌ، طَلَبٌ، ذَهَابٌ، دُخُولٌ، صُهُوبَةٌ ve diğerleri. Uygulanacak bir kaide yoktur; mücerred fiilin masdarı, tıpkı bâbı gibi, fiille birlikte öğrenilir."
+  },
+  "examples": [
+    {
+      "ar": "الْبَيْعُ مُبَادَلَةُ مَالٍ بِمَالٍ.",
+      "en": "A sale is the exchange of property for property — the khabar is a Form III masdar heading an idafa.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 1,
+      "sentence": "s1"
+    },
+    {
+      "ar": "وَالرَّهْنُ حَبْسُ شَيْءٍ بِحَقٍّ.",
+      "en": "A pledge is the holding of a thing against a right — حَبْس is a sama'i masdar of the bare verb.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 3,
+      "sentence": "s2"
+    },
+    {
+      "ar": "وَالْوَكَالَةُ إِقَامَةُ الْغَيْرِ مَقَامَ نَفْسِهِ.",
+      "en": "Agency is putting another in one's own place — إِقَامَة is the Form IV masdar of أَقَامَ, its ة standing in for the lost و.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 3,
+      "sentence": "s3"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "أَكْرَمَ — إِكْرَامَة",
+      "right": "أَكْرَمَ — إِكْرَام",
+      "why": {
+        "en": "Form IV's masdar is إِفْعَال. The ة appears only where a weak letter was lost — إِقَامَة for أَقَامَ, إِطَاعَة for أَطَاعَ.",
+        "tr": "İf'âl bâbının masdarı إِفْعَال'dir. Tâ yalnız illetli harf düştüğünde gelir: أَقَامَ → إِقَامَة، أَطَاعَ → إِطَاعَة."
+      }
+    },
+    {
+      "wrong": "ذَهَبَ — ذَهْب",
+      "right": "ذَهَبَ — ذَهَاب",
+      "why": {
+        "en": "There is no rule to fall back on for a bare verb; the masdar is heard, not derived. ذَهَاب is the one that is used.",
+        "tr": "Mücerred fiilde başvurulacak bir kaide yoktur; masdar semâîdir. Kullanılan şekil ذَهَاب'tır."
+      }
+    },
+    {
+      "wrong": "«حَبْسُ شَيْءٌ»",
+      "right": "«حَبْسُ شَيْءٍ»",
+      "why": {
+        "en": "A masdar governs its complement by idafa, so what follows is majrur — not by any verbal force it might seem to have.",
+        "tr": "Masdar mütemmimini izafetle alır; sonrası mecrûrdur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "thulathi-mujarrad-babs",
+    "augmented-babs",
+    "idafa-definiteness"
+  ]
+}

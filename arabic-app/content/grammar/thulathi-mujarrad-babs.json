@@ -1,0 +1,75 @@
+{
+  "id": "thulathi-mujarrad-babs",
+  "title": {
+    "ar": "أَبْوَابُ الثُّلَاثِيِّ الْمُجَرَّد",
+    "en": "The six babs of the bare triliteral"
+  },
+  "level": 2,
+  "group": "sarf",
+  "classicalSources": [
+    "الأمثلة المختلفة",
+    "بناء الأفعال",
+    "مراح الأرواح",
+    "المقصود"
+  ],
+  "explanation": {
+    "en": "Every bare three-letter verb belongs to one of exactly six babs, and the bab is fixed by ONE thing: the vowel on the middle radical in the past and in the present. That pair is the bab's «sign» (عَلَامَة), and the pattern verb is its name. (1) نَصَرَ يَنْصُرُ — fatha then damma. (2) ضَرَبَ يَضْرِبُ — fatha then kasra. (3) فَتَحَ يَفْتَحُ — fatha then fatha, and this one has a condition: the middle or last radical must be a throat letter (ء ه ع ح غ خ), which is why فَتَحَ and ذَهَبَ qualify. (4) عَلِمَ يَعْلَمُ — kasra then fatha. (5) كَرُمَ يَكْرُمُ — damma then damma, and this bab alone is ALWAYS intransitive; it is the bab of settled qualities, حَسُنَ, كَبُرَ, صَغُرَ. (6) حَسِبَ يَحْسِبُ — kasra then kasra, the rarest. The first four and the sixth are usually transitive and sometimes intransitive. You cannot derive the bab from the letters: قَعَدَ is bab 1 and جَلَسَ is bab 2 though they mean the same thing. The bab is learned with the word, which is why every verb in this app carries its bab on the Conjugation tab.",
+    "tr": "Her sülâsî mücerred fiil tam olarak altı bâbdan birine girer ve bâbı TEK bir şey belirler: ayne'l-fiilin mâzideki ve muzârideki harekesi. Bu ikili bâbın «alâmet»idir, vezin fiili de adıdır. (1) نَصَرَ يَنْصُرُ — fetha, sonra damme. (2) ضَرَبَ يَضْرِبُ — fetha, sonra kesre. (3) فَتَحَ يَفْتَحُ — fetha, fetha; bunun bir şartı vardır: ayne'l-fiil yahut lâme'l-fiil hurûf-ı halktan (ء ه ع ح غ خ) olmalıdır; فَتَحَ ve ذَهَبَ bu yüzden bu bâbdandır. (4) عَلِمَ يَعْلَمُ — kesre, sonra fetha. (5) كَرُمَ يَكْرُمُ — damme, damme; yalnız bu bâb DAİMA lâzımdır, yerleşik vasıfların bâbıdır: حَسُنَ، كَبُرَ، صَغُرَ. (6) حَسِبَ يَحْسِبُ — kesre, kesre; en az kullanılanıdır. Beşinci dışındakiler çok kere müteaddî, bazen lâzımdır. Bâb harflerden çıkarılamaz: قَعَدَ birinci, جَلَسَ ikinci bâbdandır, hâlbuki manaları aynıdır. Bâb kelimeyle birlikte öğrenilir; uygulamadaki her fiilin Çekim sekmesinde bâbının yazılı olmasının sebebi budur."
+  },
+  "examples": [
+    {
+      "ar": "نَظَرَ يَنْظُرُ — مِنْ بَابِ نَصَرَ.",
+      "en": "«He looked» — bab 1, fatha then damma.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2"
+    },
+    {
+      "ar": "جَلَسَ يَجْلِسُ — مِنْ بَابِ ضَرَبَ.",
+      "en": "«He sat» — bab 2, fatha then kasra, though قَعَدَ with the same meaning is bab 1.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2"
+    },
+    {
+      "ar": "ذَهَبَ يَذْهَبُ — مِنْ بَابِ فَتَحَ.",
+      "en": "«He went» — bab 3; the ه is a throat letter, which is what admits it.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2"
+    },
+    {
+      "ar": "صَغُرَ يَصْغُرُ — مِنْ بَابِ كَرُمَ.",
+      "en": "«He became small» — bab 5, always intransitive, always a quality.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ضَرَبَ يَضْرُبُ",
+      "right": "ضَرَبَ يَضْرِبُ",
+      "why": {
+        "en": "The bab is not a choice. ضَرَبَ is bab 2 and its present takes kasra; changing the vowel changes the word into one that does not exist.",
+        "tr": "Bâb keyfî değildir. ضَرَبَ ikinci bâbdandır, muzârisi kesre alır; hareke değişince kelime var olmayan bir şekle döner."
+      }
+    },
+    {
+      "wrong": "كَرُمَ الرَّجُلُ الضَّيْفَ",
+      "right": "أَكْرَمَ الرَّجُلُ الضَّيْفَ",
+      "why": {
+        "en": "Bab 5 never takes an object. To make it transitive you must move the verb to bab IV: أَكْرَمَ.",
+        "tr": "Beşinci bâb mef'ûl almaz. Müteaddî yapmak için fiili if'âl bâbına nakletmek gerekir: أَكْرَمَ."
+      }
+    },
+    {
+      "wrong": "كَتَبَ يَكْتَبُ",
+      "right": "كَتَبَ يَكْتُبُ",
+      "why": {
+        "en": "Bab 3's fatha-fatha needs a throat letter in the middle or last radical. ك ت ب has none, so كَتَبَ is bab 1.",
+        "tr": "Üçüncü bâbın fetha-fethası için ayn yahut lâmda hurûf-ı halktan bir harf gerekir. ك ت ب'de yoktur, dolayısıyla كَتَبَ birinci bâbdandır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "augmented-babs",
+    "masdar",
+    "hollow-verbs"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

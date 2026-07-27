@@ -1,0 +1,805 @@
+{
+  "entries": {
+    "wa": {
+      "lemma": "وَ",
+      "pos": "conj",
+      "gloss": {
+        "en": "and",
+        "tr": "ve"
+      },
+      "level": 1
+    },
+    "bi": {
+      "lemma": "بِ",
+      "pos": "prep",
+      "gloss": {
+        "en": "with, by; for (a price)",
+        "tr": "ile, -e karşılık"
+      },
+      "level": 1
+    },
+    "li": {
+      "lemma": "لِ",
+      "pos": "prep",
+      "gloss": {
+        "en": "for, belonging to",
+        "tr": "için, -e ait"
+      },
+      "level": 1
+    },
+    "fi": {
+      "lemma": "فِي",
+      "pos": "prep",
+      "gloss": {
+        "en": "in",
+        "tr": "-de, içinde"
+      },
+      "level": 1
+    },
+    "min": {
+      "lemma": "مِنْ",
+      "pos": "prep",
+      "gloss": {
+        "en": "from; than (after an elative)",
+        "tr": "-den; -den daha"
+      },
+      "level": 1
+    },
+    "an": {
+      "lemma": "عَنْ",
+      "pos": "prep",
+      "gloss": {
+        "en": "from, free of",
+        "tr": "-den, -den uzak"
+      },
+      "level": 2
+    },
+    "ala": {
+      "lemma": "عَلَى",
+      "pos": "prep",
+      "gloss": {
+        "en": "on, upon",
+        "tr": "üzerine"
+      },
+      "level": 1
+    },
+    "maa": {
+      "lemma": "مَعَ",
+      "pos": "adv",
+      "gloss": {
+        "en": "with, together with",
+        "tr": "ile beraber"
+      },
+      "level": 1
+    },
+    "ghayr": {
+      "lemma": "غَيْر",
+      "pos": "noun",
+      "gloss": {
+        "en": "other than, without",
+        "tr": "-den başka, -sız"
+      },
+      "level": 2,
+      "root": "غ ي ر"
+    },
+    "la-nafiya": {
+      "lemma": "لَا (النَّافِيَة)",
+      "pos": "part",
+      "gloss": {
+        "en": "not, without",
+        "tr": "olmaksızın, -sız"
+      },
+      "level": 1
+    },
+    "lam": {
+      "lemma": "لَمْ",
+      "pos": "part",
+      "gloss": {
+        "en": "did not (+ jussive)",
+        "tr": "-medi (cezm eder)"
+      },
+      "level": 2
+    },
+    "ma-mawsula": {
+      "lemma": "مَا (الْمَوْصُولَة)",
+      "pos": "pron",
+      "gloss": {
+        "en": "that which, what",
+        "tr": "olan şey, -dığı şey"
+      },
+      "level": 3
+    },
+    "man-mawsula": {
+      "lemma": "مَنْ (الْمَوْصُولَة)",
+      "pos": "pron",
+      "gloss": {
+        "en": "the one who, whoever",
+        "tr": "olan kimse"
+      },
+      "level": 3
+    },
+    "pron-3ms": {
+      "lemma": "ـهُ",
+      "pos": "pron",
+      "gloss": {
+        "en": "it / its (attached pronoun)",
+        "tr": "onu / onun (bitişik zamir)"
+      },
+      "level": 1
+    },
+    "pron-3ms-munfasil": {
+      "lemma": "هُوَ",
+      "pos": "pron",
+      "gloss": {
+        "en": "it, he (detached pronoun)",
+        "tr": "o (munfasıl zamir)"
+      },
+      "level": 1
+    },
+    "bay": {
+      "lemma": "بَيْع",
+      "pos": "noun",
+      "gloss": {
+        "en": "sale; selling",
+        "tr": "bey', satım"
+      },
+      "level": 3,
+      "root": "ب ي ع",
+      "plural": "بُيُوع"
+    },
+    "mubadala": {
+      "lemma": "مُبَادَلَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "exchange, swapping one thing for another",
+        "tr": "mübâdele, değiş tokuş"
+      },
+      "level": 5,
+      "root": "ب د ل"
+    },
+    "mal": {
+      "lemma": "مَال",
+      "pos": "noun",
+      "gloss": {
+        "en": "property, wealth",
+        "tr": "mal"
+      },
+      "level": 2,
+      "root": "م و ل",
+      "plural": "أَمْوَال"
+    },
+    "taradi": {
+      "lemma": "التَّرَاضِي",
+      "pos": "noun",
+      "gloss": {
+        "en": "mutual consent",
+        "tr": "karşılıklı rıza"
+      },
+      "level": 5,
+      "root": "ر ض و"
+    },
+    "ijab": {
+      "lemma": "إِيجَاب",
+      "pos": "noun",
+      "gloss": {
+        "en": "the offer (the first party's words)",
+        "tr": "icap"
+      },
+      "level": 5,
+      "root": "و ج ب"
+    },
+    "qabul": {
+      "lemma": "قَبُول",
+      "pos": "noun",
+      "gloss": {
+        "en": "the acceptance (the second party's words)",
+        "tr": "kabul"
+      },
+      "level": 4,
+      "root": "ق ب ل"
+    },
+    "khiyar": {
+      "lemma": "خِيَار",
+      "pos": "noun",
+      "gloss": {
+        "en": "option, the right to rescind",
+        "tr": "hıyâr, muhayyerlik"
+      },
+      "level": 5,
+      "root": "خ ي ر"
+    },
+    "shart": {
+      "lemma": "شَرْط",
+      "pos": "noun",
+      "gloss": {
+        "en": "condition, stipulation",
+        "tr": "şart"
+      },
+      "level": 3,
+      "root": "ش ر ط",
+      "plural": "شُرُوط"
+    },
+    "jaiz": {
+      "lemma": "جَائِز",
+      "pos": "noun",
+      "gloss": {
+        "en": "permitted, valid",
+        "tr": "caiz"
+      },
+      "level": 3,
+      "root": "ج و ز"
+    },
+    "bai": {
+      "lemma": "بَائِع",
+      "pos": "noun",
+      "gloss": {
+        "en": "seller",
+        "tr": "satıcı, bâyi'"
+      },
+      "level": 3,
+      "root": "ب ي ع"
+    },
+    "mushtari": {
+      "lemma": "مُشْتَرٍ (الْمُشْتَرِي)",
+      "pos": "noun",
+      "gloss": {
+        "en": "buyer",
+        "tr": "alıcı, müşteri"
+      },
+      "level": 4,
+      "root": "ش ر ي"
+    },
+    "ruya": {
+      "lemma": "رُؤْيَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "seeing, inspection",
+        "tr": "görme, rü'yet"
+      },
+      "level": 4,
+      "root": "ر أ ي"
+    },
+    "thabit": {
+      "lemma": "ثَابِت",
+      "pos": "noun",
+      "gloss": {
+        "en": "established, firmly held",
+        "tr": "sabit"
+      },
+      "level": 3,
+      "root": "ث ب ت"
+    },
+    "shay": {
+      "lemma": "شَيْء",
+      "pos": "noun",
+      "gloss": {
+        "en": "thing",
+        "tr": "şey"
+      },
+      "level": 1,
+      "root": "ش ي أ",
+      "plural": "أَشْيَاء"
+    },
+    "ayb": {
+      "lemma": "عَيْب",
+      "pos": "noun",
+      "gloss": {
+        "en": "defect, fault",
+        "tr": "ayıp, kusur"
+      },
+      "level": 3,
+      "root": "ع ي ب",
+      "plural": "عُيُوب"
+    },
+    "thaman": {
+      "lemma": "ثَمَن",
+      "pos": "noun",
+      "gloss": {
+        "en": "price",
+        "tr": "bedel, fiyat"
+      },
+      "level": 3,
+      "root": "ث م ن",
+      "plural": "أَثْمَان"
+    },
+    "ada": {
+      "lemma": "عَادَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "custom, usage",
+        "tr": "âdet, örf"
+      },
+      "level": 2,
+      "root": "ع و د"
+    },
+    "tujjar": {
+      "lemma": "تُجَّار",
+      "pos": "noun",
+      "gloss": {
+        "en": "merchants (plural of تَاجِر)",
+        "tr": "tüccar"
+      },
+      "level": 3,
+      "root": "ت ج ر"
+    },
+    "murabaha": {
+      "lemma": "مُرَابَحَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "resale at a stated profit",
+        "tr": "murâbaha"
+      },
+      "level": 5,
+      "root": "ر ب ح"
+    },
+    "naql": {
+      "lemma": "نَقْل",
+      "pos": "noun",
+      "gloss": {
+        "en": "transferring, conveying",
+        "tr": "nakil, devir"
+      },
+      "level": 4,
+      "root": "ن ق ل"
+    },
+    "aqd": {
+      "lemma": "عَقْد",
+      "pos": "noun",
+      "gloss": {
+        "en": "contract",
+        "tr": "akit, sözleşme"
+      },
+      "level": 3,
+      "root": "ع ق د",
+      "plural": "عُقُود"
+    },
+    "awwal": {
+      "lemma": "أَوَّل",
+      "pos": "noun",
+      "gloss": {
+        "en": "first",
+        "tr": "ilk, evvel"
+      },
+      "level": 2,
+      "root": "أ و ل"
+    },
+    "ziyada": {
+      "lemma": "زِيَادَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "increase, addition",
+        "tr": "ziyade, fazlalık"
+      },
+      "level": 3,
+      "root": "ز ي د"
+    },
+    "ribh": {
+      "lemma": "رِبْح",
+      "pos": "noun",
+      "gloss": {
+        "en": "profit",
+        "tr": "kâr"
+      },
+      "level": 3,
+      "root": "ر ب ح"
+    },
+    "anqas": {
+      "lemma": "أَنْقَص",
+      "pos": "noun",
+      "gloss": {
+        "en": "less, lower (elative of نَاقِص)",
+        "tr": "daha az, daha düşük"
+      },
+      "level": 5,
+      "root": "ن ق ص"
+    },
+    "tawliya": {
+      "lemma": "تَوْلِيَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "resale at cost, with no profit",
+        "tr": "tevliye"
+      },
+      "level": 5,
+      "root": "و ل ي"
+    },
+    "wadia": {
+      "lemma": "وَضِيعَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "resale below cost",
+        "tr": "vadîa"
+      },
+      "level": 5,
+      "root": "و ض ع"
+    },
+    "salam": {
+      "lemma": "سَلَم",
+      "pos": "noun",
+      "gloss": {
+        "en": "forward sale — price now, goods later",
+        "tr": "selem"
+      },
+      "level": 5,
+      "root": "س ل م"
+    },
+    "ajil": {
+      "lemma": "آجِل",
+      "pos": "noun",
+      "gloss": {
+        "en": "deferred, due later",
+        "tr": "veresiye, âcil olmayan"
+      },
+      "level": 5,
+      "root": "أ ج ل"
+    },
+    "ajil-hadir": {
+      "lemma": "عَاجِل",
+      "pos": "noun",
+      "gloss": {
+        "en": "immediate, paid on the spot",
+        "tr": "peşin"
+      },
+      "level": 5,
+      "root": "ع ج ل"
+    },
+    "riba": {
+      "lemma": "رِبَا",
+      "pos": "noun",
+      "gloss": {
+        "en": "usurious increase",
+        "tr": "ribâ, faiz"
+      },
+      "level": 4,
+      "root": "ر ب و"
+    },
+    "fadl": {
+      "lemma": "فَضْل",
+      "pos": "noun",
+      "gloss": {
+        "en": "excess, surplus",
+        "tr": "fazlalık"
+      },
+      "level": 3,
+      "root": "ف ض ل"
+    },
+    "khali": {
+      "lemma": "خَالٍ (الْخَالِي)",
+      "pos": "noun",
+      "gloss": {
+        "en": "free of, empty of",
+        "tr": "hâlî, -den boş"
+      },
+      "level": 4,
+      "root": "خ ل و"
+    },
+    "iwad": {
+      "lemma": "عِوَض",
+      "pos": "noun",
+      "gloss": {
+        "en": "counter-value, consideration",
+        "tr": "ivaz, karşılık"
+      },
+      "level": 4,
+      "root": "ع و ض"
+    },
+    "mashrut": {
+      "lemma": "مَشْرُوط",
+      "pos": "noun",
+      "gloss": {
+        "en": "stipulated",
+        "tr": "şart koşulmuş"
+      },
+      "level": 4,
+      "root": "ش ر ط"
+    },
+    "ahad": {
+      "lemma": "أَحَد",
+      "pos": "noun",
+      "gloss": {
+        "en": "one (of two or more)",
+        "tr": "biri"
+      },
+      "level": 2,
+      "root": "أ ح د"
+    },
+    "mutaaqid": {
+      "lemma": "مُتَعَاقِد",
+      "pos": "noun",
+      "gloss": {
+        "en": "a contracting party",
+        "tr": "âkid, sözleşen taraf"
+      },
+      "level": 5,
+      "root": "ع ق د"
+    },
+    "haram-fiqh": {
+      "lemma": "حَرَام",
+      "pos": "noun",
+      "gloss": {
+        "en": "forbidden",
+        "tr": "haram"
+      },
+      "level": 2,
+      "root": "ح ر م"
+    },
+    "ijara": {
+      "lemma": "إِجَارَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "hire, lease",
+        "tr": "icâre, kira"
+      },
+      "level": 4,
+      "root": "أ ج ر"
+    },
+    "manafi": {
+      "lemma": "مَنَافِع",
+      "pos": "noun",
+      "gloss": {
+        "en": "usufructs, benefits (plural of مَنْفَعَة)",
+        "tr": "menfaatler"
+      },
+      "level": 4,
+      "root": "ن ف ع"
+    },
+    "rahn": {
+      "lemma": "رَهْن",
+      "pos": "noun",
+      "gloss": {
+        "en": "pledge, security",
+        "tr": "rehin"
+      },
+      "level": 4,
+      "root": "ر ه ن"
+    },
+    "habs": {
+      "lemma": "حَبْس",
+      "pos": "noun",
+      "gloss": {
+        "en": "holding back, detaining",
+        "tr": "hapsetme, tutma"
+      },
+      "level": 4,
+      "root": "ح ب س"
+    },
+    "haqq": {
+      "lemma": "حَقّ",
+      "pos": "noun",
+      "gloss": {
+        "en": "right; a due",
+        "tr": "hak"
+      },
+      "level": 2,
+      "root": "ح ق ق",
+      "plural": "حُقُوق"
+    },
+    "istifa": {
+      "lemma": "اسْتِيفَاء",
+      "pos": "noun",
+      "gloss": {
+        "en": "recovering in full, exacting",
+        "tr": "istifa, tam olarak alma"
+      },
+      "level": 5,
+      "root": "و ف ي"
+    },
+    "wakala": {
+      "lemma": "وَكَالَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "agency, appointing a proxy",
+        "tr": "vekâlet"
+      },
+      "level": 4,
+      "root": "و ك ل"
+    },
+    "iqama": {
+      "lemma": "إِقَامَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "setting up, putting in place",
+        "tr": "ikâme, yerine geçirme"
+      },
+      "level": 4,
+      "root": "ق و م"
+    },
+    "maqam": {
+      "lemma": "مَقَام",
+      "pos": "noun",
+      "gloss": {
+        "en": "place, standing",
+        "tr": "makam, yer"
+      },
+      "level": 3,
+      "root": "ق و م"
+    },
+    "nafs": {
+      "lemma": "نَفْس",
+      "pos": "noun",
+      "gloss": {
+        "en": "self, soul",
+        "tr": "nefis, kendi"
+      },
+      "level": 2,
+      "root": "ن ف س",
+      "plural": "نُفُوس"
+    },
+    "tasarruf": {
+      "lemma": "تَصَرُّف",
+      "pos": "noun",
+      "gloss": {
+        "en": "disposition, legal act",
+        "tr": "tasarruf"
+      },
+      "level": 5,
+      "root": "ص ر ف"
+    },
+    "malum": {
+      "lemma": "مَعْلُوم",
+      "pos": "noun",
+      "gloss": {
+        "en": "known, determinate",
+        "tr": "malum, belirli"
+      },
+      "level": 3,
+      "root": "ع ل م"
+    },
+    "hiba": {
+      "lemma": "هِبَة",
+      "pos": "noun",
+      "gloss": {
+        "en": "gift",
+        "tr": "hibe, bağış"
+      },
+      "level": 3,
+      "root": "و ه ب"
+    },
+    "tamlik": {
+      "lemma": "تَمْلِيك",
+      "pos": "noun",
+      "gloss": {
+        "en": "conveying ownership",
+        "tr": "temlik"
+      },
+      "level": 5,
+      "root": "م ل ك"
+    },
+    "ayn": {
+      "lemma": "عَيْن",
+      "pos": "noun",
+      "gloss": {
+        "en": "a thing itself, the corpus of property",
+        "tr": "ayn, malın kendisi"
+      },
+      "level": 4,
+      "root": "ع ي ن"
+    },
+    "ghasb": {
+      "lemma": "غَصْب",
+      "pos": "noun",
+      "gloss": {
+        "en": "usurpation, seizing by force",
+        "tr": "gasp"
+      },
+      "level": 4,
+      "root": "غ ص ب"
+    },
+    "akhdh": {
+      "lemma": "أَخْذ",
+      "pos": "noun",
+      "gloss": {
+        "en": "taking",
+        "tr": "alma"
+      },
+      "level": 2,
+      "root": "أ خ ذ"
+    },
+    "mutaqawwim": {
+      "lemma": "مُتَقَوِّم",
+      "pos": "noun",
+      "gloss": {
+        "en": "having legal value",
+        "tr": "mütekavvim, kıymetli"
+      },
+      "level": 6,
+      "root": "ق و م"
+    },
+    "muhtaram": {
+      "lemma": "مُحْتَرَم",
+      "pos": "noun",
+      "gloss": {
+        "en": "protected, inviolable",
+        "tr": "muhterem, korunmuş"
+      },
+      "level": 4,
+      "root": "ح ر م"
+    },
+    "idhn": {
+      "lemma": "إِذْن",
+      "pos": "noun",
+      "gloss": {
+        "en": "permission",
+        "tr": "izin"
+      },
+      "level": 2,
+      "root": "أ ذ ن"
+    },
+    "malik": {
+      "lemma": "مَالِك",
+      "pos": "noun",
+      "gloss": {
+        "en": "owner",
+        "tr": "mâlik, sahip"
+      },
+      "level": 3,
+      "root": "م ل ك"
+    },
+    "inaqada": {
+      "lemma": "اِنْعَقَدَ",
+      "root": "ع ق د",
+      "pos": "verb",
+      "form": "VII",
+      "gloss": {
+        "en": "to be concluded, be tied (of a contract)",
+        "tr": "in'ikad etmek, akdolunmak"
+      },
+      "level": 5
+    },
+    "ishtara": {
+      "lemma": "اِشْتَرَى",
+      "root": "ش ر ي",
+      "pos": "verb",
+      "form": "VIII",
+      "gloss": {
+        "en": "to buy",
+        "tr": "satın almak"
+      },
+      "level": 3
+    },
+    "raa": {
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to see",
+        "tr": "görmek"
+      },
+      "level": 1
+    },
+    "naqasa": {
+      "lemma": "نَقَصَ",
+      "root": "ن ق ص",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to decrease, fall short",
+        "tr": "eksilmek, azalmak"
+      },
+      "level": 3
+    },
+    "malaka": {
+      "lemma": "مَلَكَ",
+      "root": "م ل ك",
+      "pos": "verb",
+      "form": "I",
+      "gloss": {
+        "en": "to own, possess",
+        "tr": "sahip olmak, mâlik olmak"
+      },
+      "level": 2
+    },
+    "amkana": {
+      "lemma": "أَمْكَنَ",
+      "root": "م ك ن",
+      "pos": "verb",
+      "form": "IV",
+      "gloss": {
+        "en": "to be possible",
+        "tr": "mümkün olmak"
+      },
+      "level": 3
+    }
+  }
+}

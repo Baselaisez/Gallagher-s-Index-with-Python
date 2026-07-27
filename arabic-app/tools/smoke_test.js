@@ -718,6 +718,47 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('Kitab al-Buyu: Level 6 fiqh story, masdar-headed definitions', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-buyu');
+      if (!st) return null;
+      const sens = st.chapters.flatMap(c => c.sentences);
+      const toks = sens.flatMap(s => s.tokens);
+      const anqas = toks.find(t => t.s.bare === 'بأنقص');
+      return {
+        level: st.level, access: st.access, chapters: st.chapters.length,
+        tokens: toks.length,
+        full: toks.filter(t => t.irab && t.irab.ar && t.irab.tr).length,
+        notes: ['masdar', 'thulathi-mujarrad-babs', 'form-vii-verbs'].filter(id => GRAMMAR[id]).length,
+        // the elative is barred from tanwin, so its jarr is marked by fatha
+        anqasIrab: anqas && anqas.irab.ar,
+        // Form VII is always intransitive — no passive may have been invented
+        vii: st.morph.inaqada && (st.morph.inaqada.majhulMazi || null),
+        // and the defective VIII drops its ya in the jussive
+        ishtaraJussive: st.morph.ishtara && st.morph.ishtara.majzum,
+      };
+    });
+    if (!info) throw new Error('kitab-al-buyu missing from STORIES');
+    if (info.level !== 6) throw new Error('level=' + info.level);
+    if (info.access !== 'premium') throw new Error('access=' + info.access);
+    if (info.chapters !== 3) throw new Error('chapters=' + info.chapters);
+    if (info.notes !== 3) throw new Error('new sarf notes present: ' + info.notes + '/3');
+    if (info.full !== info.tokens) throw new Error(`ar+tr i'rab ${info.full}/${info.tokens}`);
+    if (!/بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ/.test(info.anqasIrab || ''))
+      throw new Error('أَنْقَصَ not analysed as mamnu min al-sarf: ' + info.anqasIrab);
+    if (info.vii) throw new Error('Form VII must have no passive, got ' + info.vii);
+    if (info.ishtaraJussive !== 'يَشْتَرِ') throw new Error('اشترى jussive: ' + info.ishtaraJussive);
+    // and the story opens
+    const idx = await page.evaluate(() => STORIES.findIndex(s => s.id === 'kitab-al-buyu'));
+    await page.locator('.lib-card').nth(idx).click();
+    await page.waitForSelector('.sentence', { timeout: 3000 });
+    await page.locator('.sentence').first().locator('.irab-btn').click();
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
