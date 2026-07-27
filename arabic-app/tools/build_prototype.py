@@ -85,7 +85,11 @@ def build_story(pkg: Path, irab_tr=None):
         for sen in data["sentences"]:
             tokens = []
             for tok in sen["tokens"]:
+                # pos travels with the token: the reader needs to know whether a
+                # word is a nominal before it can quiz its role in the sentence.
                 t = {"s": tok["surface"], "lex": tok["lex"]}
+                if tok.get("pos"):
+                    t["pos"] = tok["pos"]
                 for key in ("grammar", "punctAfter", "quoteBefore", "quoteAfter",
                             "irab", "phrase"):
                     if tok.get(key):

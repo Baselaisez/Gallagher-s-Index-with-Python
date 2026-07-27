@@ -584,6 +584,37 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('games: role game asks the role, and its pool holds only nominals', async () => {
+    // The pool is derived by regex from the Arabic i'rab, so it is exactly the
+    // kind of thing that silently goes wrong. Guard the invariant, not the UI:
+    // a verb or particle whose i'rab merely NAMES a role must never be an item.
+    const pool = await page.evaluate(() => {
+      const items = roleItems();
+      const nonNominal = items.filter(i => !['noun', 'propn', 'pron', 'adv'].includes(i.tok.pos));
+      const keys = {};
+      items.forEach(i => keys[i.key] = (keys[i.key] || 0) + 1);
+      return { n: items.length, nonNominal: nonNominal.length, kinds: Object.keys(keys).length };
+    });
+    if (pool.nonNominal) throw new Error(pool.nonNominal + ' non-nominal tokens in the role pool');
+    if (pool.n < 50) throw new Error('role pool too small: ' + pool.n);
+    if (pool.kinds < 5) throw new Error('role pool covers only ' + pool.kinds + ' roles');
+    await page.locator('.lib-card').first().click();   // Games is a reader-only control
+    await page.locator('#gamesOpen').click();
+    await page.locator('.game-pick #gRole').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    const opts = await page.locator('.opts [data-k]').count();
+    if (opts !== 4) throw new Error('expected 4 options, got ' + opts);
+    if (!(await page.locator('.game-q .target').count())) throw new Error('no word highlighted');
+    await page.locator('.opts [data-k]').first().click();
+    if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
+    // the explanation offers the full sentence sheet
+    await page.locator('#rgSheet').click();
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('Aqaid: four chapters, the creed definitions, new grammar notes', async () => {
     const info = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
