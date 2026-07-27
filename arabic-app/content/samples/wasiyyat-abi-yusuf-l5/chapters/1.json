@@ -85,7 +85,8 @@
           "pos": "verb",
           "grammar": [
             "imperative-amr",
-            "form-ii-verbs"
+            "form-ii-verbs",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «عَظِّمْ» فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
@@ -188,7 +189,8 @@
           "pos": "noun",
           "grammar": [
             "at-tahdhir",
-            "maful-bihi"
+            "maful-bihi",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «الْكَذِبَ» مَفْعُولٌ بِهِ مَنْصُوبٌ لِفِعْلٍ مَحْذُوفٍ (احْذَرِ الْكَذِبَ)، وَهُوَ الْمُحَذَّرُ مِنْهُ.",
@@ -452,6 +454,9 @@
               "lex": "saghura",
               "pos": "verb"
             }
+          ],
+          "grammar": [
+            "atf-nasaq"
           ]
         },
         {
@@ -677,7 +682,8 @@
           "lex": "intafaa",
           "pos": "verb",
           "grammar": [
-            "form-viii-verbs"
+            "form-viii-verbs",
+            "mudari-marfu"
           ],
           "irab": {
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ»، وَالْجُمْلَةُ حَالٌ.",
@@ -722,7 +728,9 @@
           "lex": "tabaaada",
           "pos": "verb",
           "grammar": [
-            "form-vi-verbs"
+            "form-vi-verbs",
+            "mudari-marfu",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «تَتَبَاعَدُ» فِعْلٌ مُضَارِعٌ مَرْفُوعٌ. بَابُ تَفَاعَلَ يُفِيدُ هُنَا التَّدَرُّجَ.",
@@ -778,7 +786,8 @@
           "lex": "la-nahiya",
           "pos": "part",
           "grammar": [
-            "la-nahiya"
+            "la-nahiya",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» نَاهِيَةٌ جَازِمَةٌ.",
@@ -861,7 +870,8 @@
           "lex": "iyya",
           "pos": "pron",
           "grammar": [
-            "at-tahdhir"
+            "at-tahdhir",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «إِيَّا» ضَمِيرُ نَصْبٍ مُنْفَصِلٌ مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ «احْذَرْ»، وَالْكَافُ حَرْفُ خِطَابٍ.",
@@ -897,7 +907,8 @@
           "grammar": [
             "at-tahdhir",
             "maful-bihi",
-            "idafa-definiteness"
+            "idafa-definiteness",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «كَثْرَةَ» مَفْعُولٌ بِهِ مَنْصُوبٌ لِفِعْلٍ مَحْذُوفٍ (احْذَرْ)، وَهُوَ مُضَافٌ.",
@@ -1056,7 +1067,10 @@
           "irab": {
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ضَمَّةٌ مُقَدَّرَةٌ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ»، وَجُمْلَةُ «لَا يَرَى» خَبَرُ «إِنَّ».",
             "en": "Present verb in raf' with an IMPLIED damma on the alif; hidden subject «he»; the clause «does not regard» is the khabar of إنّ. (رَأَى يَرَى drops its hamza in the present.)"
-          }
+          },
+          "grammar": [
+            "mudari-marfu"
+          ]
         },
         {
           "surface": {
@@ -1110,7 +1124,10 @@
           "irab": {
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ»، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
             "en": "Present verb in raf' (implied damma); hidden subject «he»; the clause is the sila of the relative."
-          }
+          },
+          "grammar": [
+            "mudari-marfu"
+          ]
         },
         {
           "surface": {

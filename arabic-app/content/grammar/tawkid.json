@@ -1,0 +1,67 @@
+{
+  "id": "tawkid",
+  "title": {
+    "ar": "التَّوْكِيد",
+    "en": "Emphasis (tawkid)"
+  },
+  "level": 4,
+  "group": "nahw",
+  "mamul": "tabai",
+  "classicalSources": [
+    "العوامل (البيركوي) — التوابع",
+    "إظهار الأسرار (البيركوي)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "explanation": {
+    "en": "Tawkid is a follower that removes doubt about what precedes it, and like every tabi' it copies that word's case. It comes in two kinds. LAFZI tawkid simply repeats the word or phrase: جَاءَ زَيْدٌ زَيْدٌ. MA'NAWI tawkid uses a fixed set of words — نَفْس and عَيْن for a single thing, and كُلّ، جَمِيع، أَجْمَع for the whole of it — each made mudaf to a pronoun agreeing with what it emphasizes: جَاءَ الْقَوْمُ كُلُّهُمْ, رَأَيْتُ الْأَمِيرَ نَفْسَهُ. The point of نَفْس and عَيْن is to deny that a deputy is meant; the point of كُلّ is to deny that only a part is meant.",
+    "tr": "Te'kîd, kendinden öncekiyle ilgili şüpheyi gideren bir tâbidir ve her tâbi gibi onun i'rabını kopyalar. İki çeşittir. LAFZÎ te'kîd kelimeyi veya terkibi tekrar eder: جَاءَ زَيْدٌ زَيْدٌ. MA'NEVÎ te'kîd belirli kelimelerle yapılır — bir şeyin kendisi için نَفْس ve عَيْن, tamamı için كُلّ، جَمِيع، أَجْمَع — her biri te'kîd ettiği şeye uyan bir zamire muzâf olur: جَاءَ الْقَوْمُ كُلُّهُمْ, رَأَيْتُ الْأَمِيرَ نَفْسَهُ. نَفْس ve عَيْن'in maksadı, bir vekilin kastedilmediğini bildirmektir; كُلّ'ün maksadı ise yalnız bir kısmın kastedilmediğini bildirmektir."
+  },
+  "examples": [
+    {
+      "ar": "جَاءَ الْقَوْمُ كُلُّهُمْ.",
+      "en": "The people came, all of them — ma'nawi tawkid, copying the raf' of «the people»."
+    },
+    {
+      "ar": "رَأَيْتُ الْأَمِيرَ نَفْسَهُ.",
+      "en": "I saw the commander himself — not a messenger on his behalf; the tawkid follows into nasb."
+    },
+    {
+      "ar": "جَاءَ زَيْدٌ زَيْدٌ.",
+      "en": "Zayd came — Zayd! Lafzi tawkid by plain repetition."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "جاء القومُ كلَّهم",
+      "right": "جَاءَ الْقَوْمُ كُلُّهُمْ",
+      "why": {
+        "en": "Tawkid is a tabi': it copies the case of what it emphasizes. After a marfu' it is marfu', not mansub.",
+        "tr": "Te'kîd bir tâbidir: te'kîd ettiği kelimenin i'rabını alır. Merfûdan sonra merfû olur, mansub değil."
+      }
+    },
+    {
+      "wrong": "رأيتُ الأميرَ نفسٌ",
+      "right": "رَأَيْتُ الْأَمِيرَ نَفْسَهُ",
+      "why": {
+        "en": "Ma'nawi tawkid must be mudaf to a pronoun matching the emphasized word; without that pronoun it is not tawkid at all.",
+        "tr": "Ma'nevî te'kîd, te'kîd edilen kelimeye uyan bir zamire muzâf olmalıdır; o zamir olmadan te'kîd sayılmaz."
+      }
+    },
+    {
+      "wrong": "جاء رجلٌ نفسُهُ",
+      "right": "جَاءَ الرَّجُلُ نَفْسُهُ",
+      "why": {
+        "en": "What is emphasized is normally definite: emphasizing an indefinite says nothing, since there was no particular thing to be doubted.",
+        "tr": "Te'kîd edilen kelime çoğunlukla marifedir: nekreyi te'kîd etmek bir şey ifade etmez, çünkü şüphe edilecek belirli bir şey yoktur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "naat-sifa",
+    "badal",
+    "atf-nasaq"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

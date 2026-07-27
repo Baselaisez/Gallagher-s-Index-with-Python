@@ -17,7 +17,8 @@
           "lex": "la-nahiya",
           "pos": "part",
           "grammar": [
-            "la-nahiya"
+            "la-nahiya",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» نَاهِيَةٌ جَازِمَةٌ.",
@@ -236,7 +237,10 @@
               "pos": "pron"
             }
           ],
-          "quoteBefore": "«"
+          "quoteBefore": "«",
+          "grammar": [
+            "atf-nasaq"
+          ]
         },
         {
           "surface": {
@@ -276,7 +280,8 @@
           "lex": "istafta",
           "pos": "verb",
           "grammar": [
-            "form-x-verbs"
+            "form-x-verbs",
+            "mudari-marfu"
           ],
           "irab": {
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ، وَالْكَافُ مَفْعُولٌ بِهِ، وَالْجُمْلَةُ حَالٌ.",
@@ -465,7 +470,10 @@
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ، وَالْوَاوُ فَاعِلٌ، وَالْجُمْلَةُ خَبَرُ «إِنَّ».",
             "en": "Present verb in raf' marked by the RETAINED ن — one of the five verbs; the و is its subject; the clause is the khabar of إنّ.",
             "tr": "Efâl-i hamseden olduğu için nûnun sübûtuyla merfû muzari fiil; vâv fâildir; cümle «inne»nin haberidir."
-          }
+          },
+          "grammar": [
+            "mudari-marfu"
+          ]
         },
         {
           "surface": {
@@ -521,6 +529,10 @@
               "lex": "tamia",
               "pos": "verb"
             }
+          ],
+          "grammar": [
+            "mudari-marfu",
+            "atf-nasaq"
           ]
         },
         {
@@ -608,7 +620,8 @@
           "pos": "verb",
           "grammar": [
             "imperative-amr",
-            "kana-wa-akhawatuha"
+            "kana-wa-akhawatuha",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «كُنْ» فِعْلُ أَمْرٍ نَاقِصٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَاسْمُهُ مُسْتَتِرٌ «أَنْتَ».",
@@ -845,7 +858,8 @@
           "lex": "innama",
           "pos": "part",
           "grammar": [
-            "innama-kaffa"
+            "innama-kaffa",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، وَ«إِنَّمَا» أَدَاةُ حَصْرٍ: «مَا» الْكَافَّةُ كَفَّتْ «إِنَّ» عَنِ الْعَمَلِ.",
@@ -875,7 +889,8 @@
           "lex": "awsa",
           "pos": "verb",
           "grammar": [
-            "form-iv-verbs"
+            "form-iv-verbs",
+            "mudari-marfu"
           ],
           "irab": {
             "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنَا»، وَالْكَافُ مَفْعُولٌ بِهِ.",
@@ -940,7 +955,8 @@
           "lex": "maslaha",
           "pos": "noun",
           "grammar": [
-            "idafa-definiteness"
+            "idafa-definiteness",
+            "atf-nasaq"
           ],
           "irab": {
             "ar": "الْوَاوُ عَاطِفَةٌ، «مَصْلَحَةِ» مَعْطُوفٌ مَجْرُورٌ وَهُوَ مُضَافٌ.",

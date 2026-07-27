@@ -128,6 +128,8 @@ def build_grammar(grammar_dir: Path):
                 "explanation": bilingual(g.get("explanation"))}
         if g.get("amil"):
             note["amil"] = g["amil"]
+        if g.get("mamul"):
+            note["mamul"] = g["mamul"]
         if g.get("classicalSources"):
             note["sources"] = g["classicalSources"]
         note["examples"] = [{"ar": x["ar"], "en": x.get("en", ""),
