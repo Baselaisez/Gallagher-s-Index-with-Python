@@ -387,6 +387,42 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check("i'rab tab is Turkish when TR UI is selected", async () => {
+    // Regression guard: i'rab notes used to fall back to English under TR UI
+    // because the token data only carried {ar, en}. Turkish now comes from the
+    // shared translation memory (content/i18n/irab-tr.json) merged in at build.
+    const coverage = await page.evaluate(() => {
+      let total = 0, withTr = 0;
+      for (const st of STORIES)
+        for (const c of st.chapters)
+          for (const s of c.sentences)
+            for (const t of s.tokens)
+              if (t.irab && t.irab.en) { total++; if (t.irab.tr) withTr++; }
+      return { total, withTr };
+    });
+    if (coverage.withTr !== coverage.total) {
+      throw new Error(`i'rab tr coverage ${coverage.withTr}/${coverage.total}`);
+    }
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.locator('.lib-card').first().click();
+    await page.locator('.sentence .word').first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: "İ'rab" }).click();
+    const shown = await page.locator('.irab-en').first().textContent();
+    const expected = await page.evaluate(() => {
+      const t = STORIES[0].chapters[0].sentences[0].tokens[0];
+      return { tr: t.irab.tr, en: t.irab.en };
+    });
+    if (shown.trim() !== expected.tr.trim()) {
+      throw new Error(`i'rab under TR UI showed "${shown}" (expected the Turkish "${expected.tr}")`);
+    }
+    if (shown.trim() === expected.en.trim()) throw new Error('i\'rab still English under TR UI');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

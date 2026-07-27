@@ -23,6 +23,19 @@ END = "// __DATA_END__"
 
 ROOT = Path(__file__).resolve().parent.parent
 COLLECTIONS = [ROOT / "content/samples", ROOT / "content/user-uploads"]
+IRAB_TR = ROOT / "content/i18n/irab-tr.json"
+
+
+def load_irab_tr():
+    """Turkish translation memory for i'rab notes, keyed by the English string.
+
+    Chapters author i'rab as {ar, en}; the Turkish comes from this shared file so
+    a phrase repeated across stories is translated once. Missing keys simply fall
+    back to English in the reader — run tools/check_irab_tr.py to find them.
+    """
+    if not IRAB_TR.is_file():
+        return {}
+    return json.loads(IRAB_TR.read_text(encoding="utf-8")).get("entries", {})
 
 
 def bilingual(value):
@@ -40,7 +53,8 @@ def discover():
     return pkgs
 
 
-def build_story(pkg: Path):
+def build_story(pkg: Path, irab_tr=None):
+    irab_tr = irab_tr or {}
     manifest = json.loads((pkg / "manifest.json").read_text(encoding="utf-8"))
     glossary = json.loads((pkg / "glossary.json").read_text(encoding="utf-8"))["entries"]
 
@@ -68,6 +82,10 @@ def build_story(pkg: Path):
                 for key in ("grammar", "punctAfter", "quoteBefore", "quoteAfter", "irab"):
                     if tok.get(key):
                         t[key] = tok[key]
+                if t.get("irab") and t["irab"].get("en") and not t["irab"].get("tr"):
+                    tr = irab_tr.get(t["irab"]["en"])
+                    if tr:
+                        t["irab"] = dict(t["irab"], tr=tr)
                 if tok.get("segments"):
                     t["segments"] = [{"form": s["form"], "lex": s["lex"]}
                                      for s in tok["segments"]]
@@ -174,7 +192,8 @@ def main():
     if not pkgs:
         raise SystemExit("no packages found")
 
-    stories = [build_story(p) for p in pkgs]
+    irab_tr = load_irab_tr()
+    stories = [build_story(p, irab_tr) for p in pkgs]
     grammar = build_grammar(args.grammar_dir)
     block = "\n".join([
         START,
