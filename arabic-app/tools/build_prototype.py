@@ -70,7 +70,8 @@ def build_story(pkg: Path, irab_tr=None):
             # Governed mudari' forms feed the Emsile-i Muhtelife table. They are
             # stored, not derived: for hollow/defective verbs the jussive is not a
             # vowel swap (يَقُولُ -> لَمْ يَقُلْ, يَرْمِي -> لَمْ يَرْمِ).
-            for key in ("mansub", "majzum", "majzum2"):
+            for key in ("mansub", "majzum", "majzum2",
+                        "majhulMazi", "majhulMudari"):
                 if m.get(key):
                     entry[key] = m[key]
             if m.get("note"):

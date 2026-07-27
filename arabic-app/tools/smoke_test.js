@@ -443,12 +443,47 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
     await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
-    const forms = await page.locator('table.conj.muhtelife td').allTextContents();
-    if (forms.length !== 14) throw new Error('expected 14 forms, got ' + forms.length);
+    const forms = await page.locator('table.conj.muhtelife tr:not(.majhul) td').allTextContents();
+    if (forms.length !== 14) throw new Error('expected 14 active forms, got ' + forms.length);
     // أَرَادَ is Form IV hollow: the jussive must shorten (لَمْ يُرِدْ), and the
     // naive damma->sukun derivation (لَمْ يُرِيدْ) must never appear.
     if (!forms.some(f => f.includes('لَمْ يُرِدْ'))) throw new Error('hollow jussive wrong: ' + forms.join(' / '));
     if (forms.some(f => f.includes('يُرِيدْ'))) throw new Error('naive derived jussive leaked into the table');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('passive (majhul): rows render, hollow takes kasra, none invented', async () => {
+    // Intransitive verbs must carry NO passive rather than a derived guess.
+    const bad = await page.evaluate(() => {
+      const out = [];
+      for (const st of STORIES)
+        for (const [lex, m] of Object.entries(st.morph || {})) {
+          if ((m.majhulMazi && !m.majhulMudari) || (!m.majhulMazi && m.majhulMudari))
+            out.push(st.id + ':' + lex + ' half-passive');
+        }
+      return out;
+    });
+    if (bad.length) throw new Error(bad.join(', '));
+
+    await page.evaluate(() => document.getElementById('scrim').click());
+    if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
+      await page.locator('#backLib').click();
+      await page.waitForSelector('.lib-card', { timeout: 3000 });
+    }
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
+    await page.locator('.lib-card').nth(i).click();
+    await page.locator('.word', { hasText: 'قَالَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
+    await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
+    const maj = await page.locator('table.conj.muhtelife tr.majhul td').allTextContents();
+    if (maj.length !== 2) throw new Error('expected 2 passive rows, got ' + maj.length);
+    // قَالَ is hollow: the passive takes kasra and a ي (قِيلَ), never *قُولَ.
+    if (!maj[0].includes('قِيلَ')) throw new Error('hollow passive wrong: ' + maj.join('/'));
+    if (maj.some(f => f.includes('قُولَ'))) throw new Error('derived-but-wrong hollow passive leaked');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
