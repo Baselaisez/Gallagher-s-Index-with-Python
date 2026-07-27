@@ -137,7 +137,12 @@ def build_grammar(grammar_dir: Path):
             note["mamul"] = g["mamul"]
         if g.get("classicalSources"):
             note["sources"] = g["classicalSources"]
-        note["examples"] = [{"ar": x["ar"], "en": x.get("en", ""),
+        # The worked example carries a TRANSLATED explanation, not just Arabic:
+        # under TR UI an English gloss here was the last place the app still
+        # spoke English to a Turkish reader.
+        note["examples"] = [{"ar": x["ar"],
+                             "gloss": bilingual({"en": x.get("en", ""),
+                                                 "tr": x.get("tr", "")}),
                              "src": x.get("sourceStory")}
                             for x in g.get("examples", [])]
         note["mistakes"] = [{"wrong": m["wrong"], "right": m["right"],
@@ -216,9 +221,15 @@ def main():
         js("STORIES", stories),
         js("GRAMMAR", grammar),
         js("REF_GROUPS", [
-            {"id": "sarf", "ar": "الصَّرْف", "en": "Morphology — after Emsile & Bina"},
-            {"id": "nahw", "ar": "النَّحْو", "en": "Syntax — after al-Kafiya & Qatr al-Nada"},
-            {"id": "awamil", "ar": "الْعَوَامِل", "en": "Governors — after Birgivi's Awamil"},
+            {"id": "sarf", "ar": "الصَّرْف",
+             "label": {"en": "Morphology — after Emsile & Bina",
+                       "tr": "Sarf — Emsile ve Binâ'ya göre"}},
+            {"id": "nahw", "ar": "النَّحْو",
+             "label": {"en": "Syntax — after al-Kafiya & Qatr al-Nada",
+                       "tr": "Nahiv — Kâfiye ve Katru'n-Nedâ'ya göre"}},
+            {"id": "awamil", "ar": "الْعَوَامِل",
+             "label": {"en": "Governors — after Birgivi's Awamil",
+                       "tr": "Âmiller — Birgivî'nin Avâmil'ine göre"}},
         ]),
         END,
     ])

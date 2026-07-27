@@ -759,6 +759,61 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('TR UI leaves no English in the grammar reference or the word sheet', async () => {
+    // The gap the checker was written for: explanations were bilingual, but note
+    // titles, worked examples, level names and the fact chips were not.
+    const gaps = await page.evaluate(() => {
+      const out = [];
+      for (const [id, g] of Object.entries(GRAMMAR)) {
+        if (!g.title.tr) out.push('title:' + id);
+        (g.examples || []).forEach((x, i) => {
+          if (x.gloss && x.gloss.en && !x.gloss.tr) out.push(`example:${id}[${i}]`);
+        });
+      }
+      REF_GROUPS.forEach(gr => { if (!gr.label || !gr.label.tr) out.push('refgroup:' + gr.id); });
+      STORIES.forEach(s => { if (!LEVEL_TR[s.levelName]) out.push('levelName:' + s.levelName); });
+      return out;
+    });
+    if (gaps.length) throw new Error('untranslated: ' + gaps.slice(0, 6).join(', '));
+
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    const group = await page.locator('.ref-group span:not(.ar)').first().textContent();
+    if (!/Sarf|Nahiv|Âmiller/.test(group)) throw new Error('ref group still English: ' + group);
+    // the list is grouped, so read the id off the button rather than assuming one
+    const noteId = await page.locator('.ref-list button').first().getAttribute('data-note');
+    await page.locator('.ref-list button').first().click();
+    await page.waitForSelector('.sheet.show .gnote', { timeout: 3000 });
+    const heading = await page.locator('.gnote h3').first().textContent();
+    const exGloss = await page.locator('.gnote .ex .en').first().textContent();
+    const expect = await page.evaluate(id => ({
+      tr: GRAMMAR[id].title.tr, en: GRAMMAR[id].title.en,
+      exTr: (GRAMMAR[id].examples[0] || {}).gloss?.tr,
+    }), noteId);
+    if (!heading.includes(expect.tr)) throw new Error('note heading not Turkish: ' + heading);
+    if (expect.en && heading.includes(expect.en)) throw new Error('note heading still English');
+    if (expect.exTr && !exGloss.includes(expect.exTr.slice(0, 20)))
+      throw new Error('example gloss not Turkish: ' + exGloss);
+    await page.evaluate(() => document.getElementById('scrim').click());
+
+    // word sheet: pos chip and level chip
+    await page.locator('.lib-card').first().click();
+    const lvl = await page.locator('.chip.level').first().textContent();
+    if (!lvl.includes('Seviye')) throw new Error('level chip still English: ' + lvl);
+    await page.locator('.sentence .word').first().click();
+    await page.waitForSelector('.sheet.show .facts', { timeout: 3000 });
+    const chips = await page.locator('.facts .chip').allTextContents();
+    if (chips.some(c => /^(noun|verb|prep|part|pron|propn|adv|conj)$/.test(c.trim())))
+      throw new Error('pos chip still English: ' + chips.join('|'));
+    if (chips.some(c => /^(root:|pl\.|Form |Level )/.test(c.trim())))
+      throw new Error('fact chip still English: ' + chips.join('|'));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

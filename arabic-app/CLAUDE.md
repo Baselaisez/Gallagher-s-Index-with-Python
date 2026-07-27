@@ -17,8 +17,9 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         31 browser checks (Playwright)
+  smoke_test.js         32 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
+  check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
@@ -48,8 +49,15 @@ hand-edit inside the data block.
 - Every `lex` resolves in `glossary.json`; every `grammar` id resolves in the registry.
 - Every glossary entry is reached by at least one token (no dead vocabulary).
 - Bilingual everywhere: `{en, tr}` on glosses, notes, explanations, mistakes,
-  manifest titles/subtitles/chapter titles. Turkish is not optional — it regressed
-  once already and the coverage check now catches it.
+  manifest titles/subtitles/chapter titles, **grammar-note titles and every worked
+  example**. Turkish is not optional. `tools/check_i18n.py` is the gate: run it
+  with the validator. It applies the same i'rab translation-memory merge the
+  builder does, so a token without `tr` is fine if `content/i18n/irab-tr.json`
+  covers its English.
+- Labels that live in the data as English — `pos`, `levelName` — are translated at
+  the point of display (`POS_TR`, `LEVEL_TR` in the reader), not duplicated per
+  package. Adding a new level name means adding it to `LEVEL_TR` too; the checker
+  enforces that.
 
 ## Rules learned the hard way
 
