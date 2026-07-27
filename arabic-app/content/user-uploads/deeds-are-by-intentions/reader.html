@@ -325,6 +325,19 @@
   .hit .h-ar b { color: var(--accent); font-weight: inherit;
     background: linear-gradient(transparent 70%, var(--accent-soft) 70%); }
   .hit .h-src { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft); margin-top: .15rem; }
+  .tbtn.streak { font-family: var(--ui-font); font-size: .78rem; font-variant-numeric: tabular-nums; }
+  .daily { border: 1px solid var(--line); border-radius: 12px; padding: .7rem .8rem; margin: .6rem 0;
+    font-family: var(--ui-font); }
+  .daily .d-head { display: flex; align-items: baseline; gap: .6rem; margin-bottom: .5rem; }
+  .daily .d-streak { font-weight: 700; font-size: .95rem; flex: 1; }
+  .daily .d-goal { all: unset; cursor: pointer; color: var(--accent); font-size: .74rem; }
+  .daily .d-goal:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .daily .d-bar { height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; margin-top: .35rem; }
+  .daily .d-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .daily .d-bar.new span { background: var(--lvl3, var(--accent)); }
+  .daily .d-lbl { font-size: .72rem; color: var(--ink-soft); margin-top: .2rem;
+    font-variant-numeric: tabular-nums; }
+  .daily .d-learn { display: block; width: 100%; margin-top: .7rem; text-align: center; }
   .root-btn { all: unset; cursor: pointer; }
   .root-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .chip.tappable { cursor: pointer; }
@@ -452,6 +465,7 @@
     <button class="tbtn reader-only" id="fontMinus" aria-label="Smaller text">A−</button>
     <button class="tbtn reader-only" id="fontPlus" aria-label="Larger text">A+</button>
     <span class="spacer"></span>
+    <button class="tbtn streak" id="streakChip" hidden></button>
     <button class="tbtn" id="searchOpen">Search</button>
     <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn reader-only" id="gamesOpen">Games</button>
@@ -520,7 +534,12 @@ const L = {
         searchHint:"Type two letters or more. Arabic matches with or without vowels; you can also search a root (\u0642 \u0648 \u0644) or an English or Turkish meaning.",
         searchNone:"Nothing in the stories matches that.",
         searchFound:"{n} occurrences of {w} words.",
-        searchMore:"+{n} more" },
+        searchMore:"+{n} more",
+        dayStreak:"day streak", goalEdit:"change goal",
+        goalReviews:"{a} of {b} reviews today", goalNew:"{a} of {b} new words today",
+        learnHere:"Learn {n} new words from this story",
+        goalAskReviews:"How many reviews a day?", goalAskNew:"How many new words a day?",
+        streakTitle:"{d}-day streak \u2014 {r}/{R} reviews, {n}/{N} new words today" },
   tr: { word:"Kelime", sarf:"Çekim (Sarf)", irab:"İ'rab", grammar:"Gramer",
         save:"＋ Kart destesine ekle", saved:"✓ Destede", gnote:"Gramer notu",
         deck:"Deste", grammarBtn:"Gramer", levels:"Seviye", chapter:"Bölüm",
@@ -548,7 +567,12 @@ const L = {
         searchHint:"En az iki harf yazın. Arapça harekeli ya da harekesiz eşleşir; kök (\u0642 \u0648 \u0644) veya İngilizce/Türkçe mana da arayabilirsiniz.",
         searchNone:"Hikâyelerde buna uyan bir şey yok.",
         searchFound:"{w} kelimede {n} geçiş.",
-        searchMore:"+{n} tane daha" }
+        searchMore:"+{n} tane daha",
+        dayStreak:"günlük seri", goalEdit:"hedefi değiştir",
+        goalReviews:"Bugün {b} tekrardan {a} tanesi", goalNew:"Bugün {b} yeni kelimeden {a} tanesi",
+        learnHere:"Bu hikâyeden {n} yeni kelime öğren",
+        goalAskReviews:"Günde kaç tekrar?", goalAskNew:"Günde kaç yeni kelime?",
+        streakTitle:"{d} günlük seri \u2014 bugün {r}/{R} tekrar, {n}/{N} yeni kelime" }
 };
 Object.assign(L.en, {
   games:"Games", match:"Match pairs", matchDesc:"Match each Arabic word with its meaning.",
@@ -636,7 +660,13 @@ const state = {
   rate: parseFloat(localStorage.getItem("qissa-rate")) || 1,
   deck: JSON.parse(localStorage.getItem("qissa-deck") || "[]"),
   progress: JSON.parse(localStorage.getItem("qissa-progress") || "{}"),
-  premium: localStorage.getItem("qissa-premium") === "1"
+  premium: localStorage.getItem("qissa-premium") === "1",
+  // The daily loop. `streak.days` counts consecutive days on which the learner
+  // did something real — graded a card or read a sentence — and `today` resets
+  // itself whenever the date rolls over.
+  streak: JSON.parse(localStorage.getItem("qissa-streak") || '{"days":0,"last":""}'),
+  today: JSON.parse(localStorage.getItem("qissa-today") || '{"date":"","reviewed":0,"learned":0,"read":0}'),
+  goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
 };
 function setMode(m){
   state.mode = m;
@@ -814,6 +844,7 @@ function markRead(senId){
   if (!prog[senId]) {
     prog[senId] = 1;
     localStorage.setItem("qissa-progress", JSON.stringify(state.progress));
+    countActivity("read");
   }
 }
 function setHeader(titleAr, sub, chipsHtml){
@@ -1703,6 +1734,89 @@ function ensureSrs(c){
   return c;
 }
 function isLeech(c){ return ensureSrs(c).srs.lapses >= LEECH_AT; }
+
+// ---------- the daily loop ----------
+// Local date, not UTC: a streak is about the learner's day, and midnight in
+// Istanbul is not midnight in London.
+function todayKey(d){
+  d = d || new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0")
+       + "-" + String(d.getDate()).padStart(2, "0");
+}
+function rollDay(){
+  const k = todayKey();
+  if (state.today.date !== k) {
+    state.today = { date: k, reviewed: 0, learned: 0, read: 0 };
+    localStorage.setItem("qissa-today", JSON.stringify(state.today));
+  }
+  return state.today;
+}
+// Called on any act of study. A day already counted does nothing; yesterday
+// extends the streak; anything older starts a new one.
+function countActivity(kind){
+  const t = rollDay();
+  t[kind] = (t[kind] || 0) + 1;
+  localStorage.setItem("qissa-today", JSON.stringify(t));
+  const k = todayKey();
+  if (state.streak.last !== k) {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    state.streak = { days: state.streak.last === todayKey(y) ? state.streak.days + 1 : 1,
+                     last: k };
+    localStorage.setItem("qissa-streak", JSON.stringify(state.streak));
+  }
+  updateStreakChip();   // the percentage moves on every act, not only the first
+}
+function goalPct(){
+  const t = rollDay();
+  const r = Math.min(1, state.goal.reviews ? t.reviewed / state.goal.reviews : 1);
+  const n = Math.min(1, state.goal.newWords ? t.learned / state.goal.newWords : 1);
+  return Math.round(((r + n) / 2) * 100);
+}
+function updateStreakChip(){
+  const el = document.getElementById("streakChip");
+  if (!el) return;
+  rollDay();
+  const pct = goalPct();
+  el.hidden = state.streak.days === 0 && pct === 0;
+  el.textContent = "\u{1F525} " + state.streak.days + " \u00b7 " + pct + "%";
+  el.title = ui().streakTitle.replace("{d}", state.streak.days)
+    .replace("{r}", state.today.reviewed).replace("{R}", state.goal.reviews)
+    .replace("{n}", state.today.learned).replace("{N}", state.goal.newWords);
+}
+
+// The words of the chapter you are reading, in level order, that are not in the
+// deck yet — so "learn N new today" is a button and not a chore.
+function newWordsHere(limit){
+  if (!CUR) return [];
+  const have = new Set(state.deck.filter(d => d.type !== "verb").map(d => d.lex));
+  const out = [], seen = new Set();
+  SENTENCE_FLAT.forEach(({ sen }) => sen.tokens.forEach(tok => {
+    const e = GLOSSARY[tok.lex];
+    if (!e || !e.level || e.level < 1) return;      // skip proper nouns
+    if (have.has(tok.lex) || seen.has(tok.lex)) return;
+    seen.add(tok.lex);
+    out.push({ tok, entry: e });
+  }));
+  out.sort((a, b) => a.entry.level - b.entry.level);
+  return limit ? out.slice(0, limit) : out;
+}
+function editGoal(){
+  const r = prompt(ui().goalAskReviews, state.goal.reviews);
+  if (r === null) return;
+  const n = prompt(ui().goalAskNew, state.goal.newWords);
+  if (n === null) return;
+  state.goal = { reviews: Math.max(0, parseInt(r, 10) || 0),
+                 newWords: Math.max(0, parseInt(n, 10) || 0) };
+  localStorage.setItem("qissa-goal", JSON.stringify(state.goal));
+  updateStreakChip();
+  renderDeck();
+}
+function learnNewHere(){
+  const left = Math.max(0, state.goal.newWords - rollDay().learned);
+  const picks = newWordsHere(left || state.goal.newWords);
+  picks.forEach(({ tok }) => { toggleSave(tok); countActivity("learned"); });
+  renderDeck();
+}
 function dueCards(){ const now = Date.now(); return state.deck.filter(c => ensureSrs(c).srs.due <= now); }
 function persistDeck(){
   localStorage.setItem("qissa-deck", JSON.stringify(state.deck));
@@ -1773,6 +1887,7 @@ function grade(card, q){
     s.due = Date.now() + s.ivl * DAY;
   }
   persistDeck();
+  countActivity("reviewed");
 }
 // What each button will do, so the learner can see the schedule before choosing.
 function previewIvl(card, q){
@@ -1815,6 +1930,22 @@ function renderDeck(){
   const queue = dueCards();
   const st = deckStats();
   let html = `<div class="tabs"><button class="on">${ui().yourDeck} (${st.total}) · ${st.due} ${ui().due}</button></div>`;
+  const t = rollDay();
+  const rPct = Math.min(100, state.goal.reviews ? Math.round(t.reviewed / state.goal.reviews * 100) : 100);
+  const nPct = Math.min(100, state.goal.newWords ? Math.round(t.learned / state.goal.newWords * 100) : 100);
+  const canLearn = newWordsHere(1).length && t.learned < state.goal.newWords;
+  html += `<div class="daily">
+      <div class="d-head">
+        <span class="d-streak">\u{1F525} ${state.streak.days} ${ui().dayStreak}</span>
+        <button class="d-goal" id="goalEdit">${ui().goalEdit}</button>
+      </div>
+      <div class="d-bar"><span style="width:${rPct}%"></span></div>
+      <div class="d-lbl">${ui().goalReviews.replace("{a}", t.reviewed).replace("{b}", state.goal.reviews)}</div>
+      <div class="d-bar new"><span style="width:${nPct}%"></span></div>
+      <div class="d-lbl">${ui().goalNew.replace("{a}", t.learned).replace("{b}", state.goal.newWords)}</div>
+      ${canLearn ? `<button class="btn primary d-learn" id="learnHere">${ui().learnHere
+        .replace("{n}", Math.min(newWordsHere(0).length, state.goal.newWords - t.learned))}</button>` : ""}
+    </div>`;
   html += `<div class="deck-stats">
       <span class="st fresh">${st.fresh} ${ui().stNew}</span>
       <span class="st learn">${st.learning} ${ui().stLearning}</span>
@@ -1858,6 +1989,10 @@ function renderDeck(){
   sheetInner.innerHTML = html;
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
+  const le = document.getElementById("learnHere");
+  if (le) le.addEventListener("click", learnNewHere);
+  const ge = document.getElementById("goalEdit");
+  if (ge) ge.addEventListener("click", editGoal);
   sheetInner.querySelectorAll(".grade[data-q]").forEach(b =>
     b.addEventListener("click", () => {
       const c = dueCards()[0];
@@ -2071,6 +2206,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     document.getElementById("refOpen").textContent = ui().grammarBtn;
     document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
+    updateStreakChip();
     document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
     renderLegend();
     updatePlayAllBtn();
@@ -2091,6 +2227,7 @@ document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classLis
 document.getElementById("refOpen").textContent = ui().grammarBtn;
 document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
+    updateStreakChip();
 document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
 renderLegend();
 updatePlayAllBtn();

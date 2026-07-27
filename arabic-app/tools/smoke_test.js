@@ -889,6 +889,57 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('daily loop: streak starts, goal moves, new words come from the story', async () => {
+    await page.evaluate(() => {
+      ['qissa-streak', 'qissa-today', 'qissa-goal', 'qissa-deck', 'qissa-progress']
+        .forEach(k => localStorage.removeItem(k));
+    });
+    await page.reload();
+    if (!(await page.locator('#streakChip').isHidden()))
+      throw new Error('streak chip should be hidden before any activity');
+
+    await page.locator('.lib-card').first().click();
+    await page.locator('.sentence .word').first().click();      // reading counts
+    await page.evaluate(() => document.getElementById('scrim').click());
+    const afterRead = await page.evaluate(() => ({ ...state.streak, read: state.today.read }));
+    if (afterRead.days !== 1) throw new Error('streak did not start: ' + afterRead.days);
+    if (!afterRead.read) throw new Error('reading was not counted');
+
+    await page.locator('#deckOpen').click();
+    await page.waitForSelector('.daily', { timeout: 3000 });
+    if (!(await page.locator('#learnHere').count()))
+      throw new Error('no "learn new words" button with an empty deck');
+    await page.locator('#learnHere').click();
+    const afterLearn = await page.evaluate(() => ({
+      learned: state.today.learned, deck: state.deck.length, goal: state.goal.newWords,
+      // every word pulled in must come from the story being read and be new
+      allFromHere: state.deck.every(d => !!CUR.glossary[d.lex]),
+    }));
+    if (afterLearn.learned !== afterLearn.goal)
+      throw new Error(`learned ${afterLearn.learned}, goal ${afterLearn.goal}`);
+    if (afterLearn.deck !== afterLearn.goal)
+      throw new Error('deck size ' + afterLearn.deck + ' should equal the daily new-word goal');
+    if (!afterLearn.allFromHere) throw new Error('a saved word is not from this story');
+    // the button goes once the day's allowance is spent
+    if (await page.locator('#learnHere').count())
+      throw new Error('learn button should disappear once the goal is met');
+
+    const chip = await page.locator('#streakChip').textContent();
+    if (!/1/.test(chip) || !/%/.test(chip)) throw new Error('chip text: ' + chip);
+    // grading a card counts as a review and moves the other bar
+    await page.locator('#reviewCard').click();
+    await page.locator('#reviewCard').click();
+    await page.locator('.grade[data-q="good"]').click();
+    const reviewed = await page.evaluate(() => state.today.reviewed);
+    if (reviewed !== 1) throw new Error('review not counted: ' + reviewed);
+    // a second act on the same day must not bump the streak again
+    const days = await page.evaluate(() => state.streak.days);
+    if (days !== 1) throw new Error('streak double-counted the same day: ' + days);
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

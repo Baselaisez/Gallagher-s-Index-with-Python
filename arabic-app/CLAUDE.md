@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         34 browser checks (Playwright)
+  smoke_test.js         35 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
@@ -98,6 +98,13 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
 - **`pos` reaches the reader.** The role game needs it: a verb's i'rab routinely names
   another word's role («فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il), so
   anything derived by regex from i'rab text must first filter to nominals.
+- **The daily loop**: `state.streak` (days + last date), `state.today` (reviewed /
+  learned / read, reset by `rollDay()` when the local date changes) and `state.goal`.
+  `countActivity(kind)` is called from `grade()` and `markRead()` — it bumps the
+  counter, extends the streak only when the date is new, and always refreshes the
+  chip (an early return there once froze the percentage at 0). Dates are LOCAL:
+  a streak is about the learner's day. `newWordsHere()` offers the words of the
+  chapter being read, level-ascending, that are not already in the deck.
 - **Corpus search** (`buildCorpus`, `searchCorpus`): one lazily-built index over every
   token in every story, matched against the bare spelling, the lemma, the root (stored
   spaced ق و ل but indexed closed-up too, because that is how it gets typed) and both
