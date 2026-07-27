@@ -423,6 +423,37 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('Emsile-i Muhtelife: 14 forms, hollow jussive shortens', async () => {
+    // Every verb in the corpus must carry the three governed forms the
+    // muhtelife needs — they are stored, not derived, precisely because weak
+    // verbs break the sound-verb rule.
+    const missing = await page.evaluate(() => {
+      const out = [];
+      for (const st of STORIES)
+        for (const [lex, m] of Object.entries(st.morph || {}))
+          if (!m.mansub || !m.majzum || !m.majzum2) out.push(st.id + ':' + lex);
+      return out;
+    });
+    if (missing.length) throw new Error('verbs without governed forms: ' + missing.join(', '));
+
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
+    await page.locator('.lib-card').nth(i).click();
+    await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
+    await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
+    const forms = await page.locator('table.conj.muhtelife td').allTextContents();
+    if (forms.length !== 14) throw new Error('expected 14 forms, got ' + forms.length);
+    // أَرَادَ is Form IV hollow: the jussive must shorten (لَمْ يُرِدْ), and the
+    // naive damma->sukun derivation (لَمْ يُرِيدْ) must never appear.
+    if (!forms.some(f => f.includes('لَمْ يُرِدْ'))) throw new Error('hollow jussive wrong: ' + forms.join(' / '));
+    if (forms.some(f => f.includes('يُرِيدْ'))) throw new Error('naive derived jussive leaked into the table');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

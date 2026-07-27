@@ -67,6 +67,12 @@ def build_story(pkg: Path, irab_tr=None):
                      "amr": m["amr"]}
             if m.get("ismMaful"):
                 entry["maful"] = m["ismMaful"]
+            # Governed mudari' forms feed the Emsile-i Muhtelife table. They are
+            # stored, not derived: for hollow/defective verbs the jussive is not a
+            # vowel swap (يَقُولُ -> لَمْ يَقُلْ, يَرْمِي -> لَمْ يَرْمِ).
+            for key in ("mansub", "majzum", "majzum2"):
+                if m.get(key):
+                    entry[key] = m[key]
             if m.get("note"):
                 entry["note"] = m["note"]
             morph[lex] = entry

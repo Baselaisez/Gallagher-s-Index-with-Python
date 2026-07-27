@@ -229,6 +229,8 @@
   /* ---------- sarf (conjugation) ---------- */
   .tense-seg { margin: .6rem 0; }
   .conj-wrap { overflow-x: auto; }
+  table.conj.muhtelife th.person { text-align: start; font-family: var(--ui-font); font-size: .78rem; white-space: nowrap; }
+  table.conj.muhtelife td { font-size: 1.25rem; text-align: right; direction: rtl; }
   table.conj {
     width: 100%; border-collapse: collapse; direction: rtl;
     font-family: var(--ar-font); font-size: 1.15rem;
@@ -455,6 +457,7 @@ Object.assign(L.en, {
   accessFree:"Free story", accessUpload:"Your upload · machine-analyzed",
   accessPremium:"★ Premium", chaptersWord:"chapters", backLib:"← Library",
   sayWord:"Pronounce this word",
+  muhtelifeNote:"The Emsile-i Muhtelife: the fourteen forms built from one verb — the first table of the madrasah curriculum. The highlighted row is the form used in this story.",
   previewLbl:"Free preview", upsellTitle:"★ This is a Premium story",
   upsellBody:"You have read the free preview. Unlock every chapter, the full word-by-word analysis, and audio with Qissa Premium.",
   upsellBtn:"Demo: unlock Premium", premiumActive:"★ Premium active (demo) — tap to reset",
@@ -466,6 +469,7 @@ Object.assign(L.tr, {
   accessFree:"Ücretsiz hikâye", accessUpload:"Yüklemeniz · makine analizi",
   accessPremium:"★ Premium", chaptersWord:"bölüm", backLib:"← Kütüphane",
   sayWord:"Bu kelimeyi seslendir",
+  muhtelifeNote:"Emsile-i Muhtelife: bir fiilden türeyen on dört sîga — medrese müfredatının ilk cetveli. Vurgulanan satır, bu hikâyede geçen şekildir.",
   previewLbl:"Ücretsiz önizleme", upsellTitle:"★ Bu bir Premium hikâye",
   upsellBody:"Ücretsiz önizlemeyi okudunuz. Qissa Premium ile tüm bölümlerin, kelime kelime tahlilin ve sesin kilidini açın.",
   upsellBtn:"Demo: Premium'u aç", premiumActive:"★ Premium açık (demo) — sıfırlamak için dokunun",
@@ -813,6 +817,44 @@ function conjTable(forms, rows, highlight){
   return h + `</table></div>`;
 }
 
+// ---------- Emsile-i Muhtelife ----------
+// The other half of the Emsile: not the person-by-person conjugation
+// (muttarida) but the fourteen FORMS built from one verb — the first table a
+// madrasah student memorizes. Order and Turkish names follow the classical
+// Emsile tables (see research/sources/). The governed forms come from the
+// package data, never derived here, because hollow and defective verbs do not
+// follow the sound-verb rule (يَقُولُ → لَمْ يَقُلْ, يَرْمِي → لَمْ يَرْمِ).
+function muhtelife(morph){
+  if (!morph || !morph.majzum || !morph.mansub || !morph.majzum2) return null;
+  const mazi = morph.mazi[0], mudari = morph.mudari[0], amr = morph.amr[0];
+  return [
+    { ar: mazi,                      tr: "Fiil-i mâzî",                en: "Past tense" },
+    { ar: mudari,                    tr: "Fiil-i muzâri",              en: "Present / future" },
+    { ar: morph.masdar,              tr: "Masdar (gayr-i mîmî)",       en: "Verbal noun" },
+    { ar: "فَهُوَ " + morph.fail,     tr: "İsm-i fâil",                 en: "Active participle" },
+    ...(morph.maful ? [{ ar: "وَذَاكَ " + morph.maful, tr: "İsm-i mef'ûl", en: "Passive participle" }] : []),
+    { ar: "لَمْ " + morph.majzum,     tr: "Cahd-ı mutlak",              en: "Absolute negation of the past" },
+    { ar: "لَمَّا " + morph.majzum,   tr: "Cahd-ı müstağrak",           en: "Negation of the past, up to now" },
+    { ar: "مَا " + mudari,           tr: "Nefy-i hâl",                 en: "Negation of the present" },
+    { ar: "لَا " + mudari,           tr: "Nefy-i istikbâl",            en: "Negation of the future" },
+    { ar: "لَنْ " + morph.mansub,     tr: "Te'kîd-i nefy-i istikbâl",   en: "Emphatic negation of the future" },
+    { ar: "لِ" + morph.majzum,        tr: "Emr-i gâib",                 en: "Third-person command" },
+    { ar: "لَا " + morph.majzum,      tr: "Nehy-i gâib",                en: "Third-person prohibition" },
+    { ar: amr,                       tr: "Emr-i hâzır",                en: "Second-person command" },
+    { ar: "لَا " + morph.majzum2,     tr: "Nehy-i hâzır",               en: "Second-person prohibition" },
+  ];
+}
+function muhtelifeTable(morph, highlight){
+  const hlBare = highlight ? stripAr(highlight) : "";
+  let h = `<div class="conj-wrap"><table class="conj muhtelife">`;
+  muhtelife(morph).forEach(row => {
+    const hit = row.ar === highlight || (hlBare && stripAr(row.ar) === hlBare);
+    h += `<tr><th class="person">${state.uiLang === "tr" ? row.tr : row.en}</th>
+          <td class="${hit ? "hl" : ""}" lang="ar">${row.ar}</td></tr>`;
+  });
+  return h + `</table></div>`;
+}
+
 let sarfTense = "mazi";
 function openWord(tok, el, tab){
   if (activeWordEl) activeWordEl.classList.remove("active");
@@ -864,11 +906,14 @@ function openWord(tok, el, tab){
         <button data-tense="mazi" class="${sarfTense==="mazi"?"on":""}">الماضي</button>
         <button data-tense="mudari" class="${sarfTense==="mudari"?"on":""}">المضارع</button>
         <button data-tense="amr" class="${sarfTense==="amr"?"on":""}">الأمر</button>
+        ${muhtelife(morph) ? `<button data-tense="muhtelife" class="${sarfTense==="muhtelife"?"on":""}">المُخْتَلِفَة</button>` : ""}
       </div>`;
     const highlight = tok.s.full.replace(/[«»،:.]/g, "");
-    if (sarfTense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
+    if (sarfTense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
+    else if (sarfTense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
+    else if (sarfTense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);
     else html += conjTable(morph[sarfTense], PERSON_ROWS, highlight);
-    html += `<p class="sarf-note">${ui().sarfNote}${morph.note ? " " + morph.note : ""}</p>`;
+    html += `<p class="sarf-note">${sarfTense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${morph.note ? " " + morph.note : ""}</p>`;
   } else if (mode === "irab" && tok.irab) {
     html += `<p class="lemma">${tok.s.full}</p>
       <div class="irab-ar" lang="ar">${tok.irab.ar}</div>

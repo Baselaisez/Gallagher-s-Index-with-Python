@@ -200,6 +200,14 @@ def check_morphology(pkg: Path, glossary: dict, rep: Report):
         for field in ("bab", "wazn", "masdar", "ismFail"):
             if not m.get(field):
                 rep.error(f"{where}: missing '{field}'")
+        # The Emsile-i Muhtelife table needs the governed mudari' forms. They are
+        # stored rather than derived because hollow/defective verbs break the
+        # sound-verb rule (يَقُولُ -> لَمْ يَقُلْ), so a missing one is a warning:
+        # the muhtelife tab is simply hidden for that verb.
+        missing_gov = [f for f in ("mansub", "majzum", "majzum2") if not m.get(f)]
+        if missing_gov:
+            rep.warn(f"{where}: no {'/'.join(missing_gov)} — "
+                     f"the Emsile-i Muhtelife table will be hidden for this verb")
         for tense, size in (("mazi", 14), ("mudari", 14), ("amr", 6)):
             forms = m.get(tense)
             if not isinstance(forms, list) or len(forms) != size:
