@@ -152,6 +152,21 @@
   .underlines .word[data-lvl="2"] { text-decoration: underline; text-decoration-color: var(--lvl2); }
   .underlines .word[data-lvl="3"] { text-decoration: underline; text-decoration-color: var(--lvl3); }
   .underlines .word[data-lvl="4"] { text-decoration: underline; text-decoration-color: var(--lvl4); }
+  /* Interlinear (medium mode): each word is a column — Arabic over its gloss. */
+  .word.stacked { display: inline-flex; flex-direction: column; align-items: center;
+    vertical-align: top; line-height: 1.35; }
+  .word.stacked .w-gl { font-family: var(--ui-font); font-size: .58rem; color: var(--ink-soft);
+    direction: ltr; letter-spacing: 0; margin-top: .1rem; max-width: 8.5rem;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .word.stacked.active .w-gl { color: var(--accent-ink); }
+  .ar-line:has(.stacked) { line-height: 2.4; }
+  #modeSeg button { font-family: var(--ui-font); display: inline-flex; align-items: baseline; gap: .3rem; }
+  #modeSeg .m-ar { font-family: var(--ar-font); font-size: 1rem; }
+  #modeSeg .m-en { font-size: .7rem; }
+  .peek { border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft);
+    cursor: pointer; border-radius: 999px; font-size: .7rem; line-height: 1; flex: none;
+    padding: .35rem .6rem; font-family: var(--ui-font); }
+  .peek:hover { color: var(--accent); border-color: var(--accent); }
   .sent-tools { display: flex; gap: .6rem; align-items: center; padding: .15rem .3rem 0; font-family: var(--ui-font); }
   .play {
     border: 1px solid var(--line); background: var(--panel); color: var(--accent); cursor: pointer;
@@ -403,10 +418,10 @@
       <button data-ui="en" class="on" style="font-family:var(--ui-font);font-size:.76rem" title="English interface">EN UI</button>
       <button data-ui="tr" style="font-family:var(--ui-font);font-size:.76rem" title="Türkçe arayüz">TR UI</button>
     </div>
-    <div class="seg reader-only" role="group" aria-label="Translation" id="transSeg">
-      <button data-tr="off" style="font-family:var(--ui-font);font-size:.76rem">–</button>
-      <button data-tr="en" class="on" style="font-family:var(--ui-font);font-size:.76rem">EN</button>
-      <button data-tr="tr" style="font-family:var(--ui-font);font-size:.76rem">TR</button>
+    <div class="seg reader-only" role="group" aria-label="Reading mode" id="modeSeg">
+      <button data-mode="easy" class="on"><span class="m-ar" lang="ar">سَهْل</span><span class="m-en"></span></button>
+      <button data-mode="medium"><span class="m-ar" lang="ar">وَسَط</span><span class="m-en"></span></button>
+      <button data-mode="hard"><span class="m-ar" lang="ar">صَعْب</span><span class="m-en"></span></button>
     </div>
     <button class="tbtn reader-only" id="playAll" aria-pressed="false">▶ Listen</button>
     <div class="seg reader-only" role="group" aria-label="Playback speed" id="speedSeg">
@@ -472,7 +487,12 @@ const L = {
         sheetHint:"The whole sentence analysed the way it is written out in the madrasah: word, then its position in the sentence. Tap a word to open it.",
         colWord:"Word", colIrab:"Analysis", sheetTopics:"Topics in this sentence",
         roleGame:"What is it doing?", roleGameDesc:"Four words can all be marfu' — name the role, not the case.",
-        roleGameAsk:"What is the highlighted word in this sentence?" },
+        roleGameAsk:"What is the highlighted word in this sentence?",
+        mode_easy:"Easy", mode_medium:"Medium", mode_hard:"Hard",
+        modeHint_easy:"Every sentence is translated underneath.",
+        modeHint_medium:"No sentence translation — each word carries its meaning beneath it.",
+        modeHint_hard:"Arabic only. Tap a word to see what it means.",
+        peek:"Show meaning" },
   tr: { word:"Kelime", sarf:"Çekim (Sarf)", irab:"İ'rab", grammar:"Gramer",
         save:"＋ Kart destesine ekle", saved:"✓ Destede", gnote:"Gramer notu",
         deck:"Deste", grammarBtn:"Gramer", levels:"Seviye", chapter:"Bölüm",
@@ -488,7 +508,12 @@ const L = {
         sheetHint:"Cümlenin tamamı, medresede yazıldığı şekliyle tahlil edilmiştir: önce kelime, sonra cümledeki mahalli. Kelimeye dokununca açılır.",
         colWord:"Kelime", colIrab:"İ'rab", sheetTopics:"Bu cümledeki konular",
         roleGame:"Cümledeki görevi ne?", roleGameDesc:"Dört kelime birden merfû olabilir — i'rabı değil, görevi söyleyin.",
-        roleGameAsk:"İşaretli kelime bu cümlede nedir?" }
+        roleGameAsk:"İşaretli kelime bu cümlede nedir?",
+        mode_easy:"Kolay", mode_medium:"Orta", mode_hard:"Zor",
+        modeHint_easy:"Her cümlenin altında tam tercümesi vardır.",
+        modeHint_medium:"Cümle tercümesi yok — her kelimenin manası altında yazılıdır.",
+        modeHint_hard:"Sadece Arapça. Manası için kelimeye dokunun.",
+        peek:"Manayı göster" }
 };
 Object.assign(L.en, {
   games:"Games", match:"Match pairs", matchDesc:"Match each Arabic word with its meaning.",
@@ -567,7 +592,10 @@ function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en ||
 const state = {
   layer: localStorage.getItem("qissa-layer") || "full",
   underlines: true,
-  trans: localStorage.getItem("qissa-trans") || localStorage.getItem("qissa-lang") || "en",
+  // Reading mode, the app's difficulty dial. easy: the whole sentence is
+  // translated. medium: no sentence translation, but each word carries its
+  // gloss underneath. hard: nothing but the Arabic — meaning only on a tap.
+  mode: localStorage.getItem("qissa-mode") || "easy",
   uiLang: localStorage.getItem("qissa-lang") || "en",
   arSize: parseFloat(localStorage.getItem("qissa-arsize")) || 1.7,
   rate: parseFloat(localStorage.getItem("qissa-rate")) || 1,
@@ -575,6 +603,19 @@ const state = {
   progress: JSON.parse(localStorage.getItem("qissa-progress") || "{}"),
   premium: localStorage.getItem("qissa-premium") === "1"
 };
+function setMode(m){
+  state.mode = m;
+  localStorage.setItem("qissa-mode", m);
+  renderModeSeg();
+}
+function renderModeSeg(){
+  document.querySelectorAll("#modeSeg [data-mode]").forEach(b => {
+    b.classList.toggle("on", b.dataset.mode === state.mode);
+    b.querySelector(".m-en").textContent = ui()["mode_" + b.dataset.mode];
+    b.title = ui()["modeHint_" + b.dataset.mode];
+  });
+}
+
 function setPremium(v){
   state.premium = v;
   localStorage.setItem("qissa-premium", v ? "1" : "0");
@@ -637,8 +678,22 @@ function renderStory(){
       w.className = "word"; w.tabIndex = 0; w.setAttribute("role", "button");
       // A token inside an idiom is tinted so the span reads as one unit.
       if (phraseAt(sen, ti)) w.classList.add("in-phrase");
-      w.textContent = tok.s[state.layer];
       const entry = GLOSSARY[tok.lex];
+      if (state.mode === "medium") {
+        // Interlinear: the word above, its meaning directly beneath it, so the
+        // reader assembles the sentence themselves instead of reading a ready
+        // translation. Proper nouns are left bare — their gloss is the name.
+        w.classList.add("stacked");
+        const ar = document.createElement("span");
+        ar.className = "w-ar"; ar.textContent = tok.s[state.layer];
+        w.appendChild(ar);
+        const gl = document.createElement("span");
+        gl.className = "w-gl";
+        gl.textContent = (entry && entry.gloss && entry.level > 0) ? shortGloss(T(entry.gloss)) : "";
+        w.appendChild(gl);
+      } else {
+        w.textContent = tok.s[state.layer];
+      }
       if (entry && entry.level > 0) w.dataset.lvl = levelBucket(entry.level);
       w.addEventListener("click", () => { markRead(sen.id); openWord(tok, w, null, {sen, ti}); });
       w.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); markRead(sen.id); openWord(tok, w, null, {sen, ti}); } });
@@ -669,10 +724,23 @@ function renderStory(){
       irb.addEventListener("click", () => { markRead(sen.id); openIrabSheet(sen); });
       tools.appendChild(irb);
     }
+    if (state.mode !== "easy") {
+      // Being stuck should not force a mode change. One sentence, revealed.
+      const peek = document.createElement("button");
+      peek.className = "peek";
+      peek.textContent = ui().peek;
+      peek.addEventListener("click", () => {
+        const line = sec.querySelector(".trans");
+        line.textContent = T(sen.translation);
+        line.hidden = false;
+        peek.remove();
+      });
+      tools.appendChild(peek);
+    }
     const tr = document.createElement("span");
     tr.className = "trans";
-    tr.textContent = state.trans !== "off" ? sen.translation[state.trans] : "";
-    tr.hidden = state.trans === "off";
+    tr.textContent = state.mode === "easy" ? T(sen.translation) : "";
+    tr.hidden = state.mode !== "easy";
     tools.appendChild(tr);
     sec.appendChild(tools);
     storyEl.appendChild(sec);
@@ -1070,6 +1138,14 @@ function closeSheet(){
 }
 scrim.addEventListener("click", closeSheet);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+// The interlinear line has one word's width to work with. A gloss like
+// "to arrive, reach (إِلَى: at)" has to become "to arrive"; the full entry is
+// one tap away.
+function shortGloss(g){
+  let t = String(g).split(/[;(]/)[0].split(",")[0].trim();
+  return t.length > 22 ? t.slice(0, 21) + "…" : t;
+}
 
 function chip(txt, cls){ return `<span class="chip ${cls||""}">${txt}</span>`; }
 function arSpan(t){ return `<span class="ar">${t}</span>`; }
@@ -1795,11 +1871,9 @@ document.getElementById("ulToggle").addEventListener("click", e => {
   e.currentTarget.setAttribute("aria-pressed", state.underlines);
   storyEl.classList.toggle("underlines", state.underlines);
 });
-document.querySelectorAll("#transSeg [data-tr]").forEach(b =>
+document.querySelectorAll("#modeSeg [data-mode]").forEach(b =>
   b.addEventListener("click", () => {
-    state.trans = b.dataset.tr;
-    localStorage.setItem("qissa-trans", state.trans);
-    document.querySelectorAll("#transSeg [data-tr]").forEach(x => x.classList.toggle("on", x === b));
+    setMode(b.dataset.mode);
     renderStory();
   }));
 document.getElementById("playAll").addEventListener("click", () => {
@@ -1816,11 +1890,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     state.uiLang = b.dataset.ui;
     localStorage.setItem("qissa-lang", state.uiLang);
     document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x === b));
-    if (state.trans !== "off") {
-      state.trans = state.uiLang;
-      localStorage.setItem("qissa-trans", state.trans);
-      document.querySelectorAll("#transSeg [data-tr]").forEach(x => x.classList.toggle("on", x.dataset.tr === state.trans));
-    }
+    renderModeSeg();   // the mode labels are localized too
     document.getElementById("refOpen").textContent = ui().grammarBtn;
     document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
@@ -1836,7 +1906,7 @@ document.getElementById("refOpen").addEventListener("click", () => openRef());
 document.getElementById("gamesOpen").addEventListener("click", openGames);
 
 document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x.dataset.ui === state.uiLang));
-document.querySelectorAll("#transSeg [data-tr]").forEach(x => x.classList.toggle("on", x.dataset.tr === state.trans));
+renderModeSeg();
 document.querySelectorAll("#speedSeg [data-rate]").forEach(x => x.classList.toggle("on", parseFloat(x.dataset.rate) === state.rate));
 document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x.dataset.layer === state.layer));
 document.getElementById("refOpen").textContent = ui().grammarBtn;

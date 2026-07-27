@@ -584,6 +584,52 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('reading modes: easy translates, medium glosses each word, hard hides both', async () => {
+    await page.locator('.lib-card').first().click();
+    const first = page.locator('.sentence').first();
+
+    await page.locator('#modeSeg [data-mode="easy"]').click();
+    const easyTr = (await first.locator('.trans').textContent()).trim();
+    if (!easyTr) throw new Error('easy mode shows no sentence translation');
+    if (await first.locator('.word.stacked').count()) throw new Error('easy mode should not gloss words');
+    if (await first.locator('.peek').count()) throw new Error('nothing to peek at in easy mode');
+
+    await page.locator('#modeSeg [data-mode="medium"]').click();
+    if ((await first.locator('.trans').textContent()).trim())
+      throw new Error('medium mode still shows the sentence translation');
+    const glossed = await first.locator('.word.stacked .w-gl:not(:empty)').count();
+    if (glossed < 2) throw new Error('medium mode glossed only ' + glossed + ' words');
+    // proper nouns are deliberately left bare
+    const bare = await page.evaluate(() => {
+      const sen = CHAPTERS[0].sentences[0];
+      return sen.tokens.filter(t => { const e = GLOSSARY[t.lex]; return e && e.level === 0; }).length;
+    });
+    const empties = await first.locator('.word.stacked .w-gl:empty').count();
+    if (empties !== bare) throw new Error(`${empties} bare glosses, ${bare} level-0 words`);
+
+    await page.locator('#modeSeg [data-mode="hard"]').click();
+    if ((await first.locator('.trans').textContent()).trim())
+      throw new Error('hard mode still shows the sentence translation');
+    if (await first.locator('.word.stacked').count()) throw new Error('hard mode should not gloss words');
+    // ...but a word still opens on tap, and one sentence can be peeked at
+    await first.locator('.word').first().click();
+    await page.waitForSelector('.sheet.show .gloss', { timeout: 3000 });
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await first.locator('.peek').click();
+    if ((await first.locator('.trans').textContent()).trim() !== easyTr)
+      throw new Error('peek did not reveal the same translation easy mode shows');
+    if (await first.locator('.peek').count()) throw new Error('peek button should go once used');
+
+    // the mode survives a reload and localizes with the UI
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    const label = await page.locator('#modeSeg [data-mode="hard"] .m-en').textContent();
+    if (label !== 'Zor') throw new Error('mode label not Turkish under TR UI: ' + label);
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+    await page.locator('#modeSeg [data-mode="easy"]').click();
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('games: role game asks the role, and its pool holds only nominals', async () => {
     // The pool is derived by regex from the Arabic i'rab, so it is exactly the
     // kind of thing that silently goes wrong. Guard the invariant, not the UI:

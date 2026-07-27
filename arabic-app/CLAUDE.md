@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         29 browser checks (Playwright)
+  smoke_test.js         30 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
 research/sources/       transcribed madrasah texts + README on provenance
 ```
@@ -78,6 +78,11 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   glossary entry (`pos: "phrase"`, plus `literal` and `note`). The reader tints the
   span and shows a banner above every tab. **Both layers survive**: بَيْنَ يَدَيْهِ
   means "in his presence" *and* بَيْنَ stays a mansub zarf with يَدَيْهِ its mudaf ilayh.
+- **Reading modes** (`state.mode`): `easy` translates the sentence, `medium` drops the
+  translation and stacks each word over its gloss (interlinear — `.word.stacked`),
+  `hard` shows Arabic only. Translation language follows `state.uiLang`; the old
+  `– / EN / TR` segment is gone. A per-sentence "Show meaning" button lets a stuck
+  reader peek without leaving the mode.
 - **`pos` reaches the reader.** The role game needs it: a verb's i'rab routinely names
   another word's role («فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il), so
   anything derived by regex from i'rab text must first filter to nominals.
