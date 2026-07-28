@@ -20,6 +20,10 @@ tools/
   smoke_test.js         46 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
+  check_canon.py        audits the registry against the madrasah's own lists
+                        (20 harf-i cer, 8 inna sisters, 15 jawazim, 13 mansubat…)
+                        — coverage report, not a gate; --strict only checks that
+                        every mapped note id really exists
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
@@ -99,6 +103,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   `hard` shows Arabic only. Translation language follows `state.uiLang`; the old
   `– / EN / TR` segment is gone. A per-sentence "Show meaning" button lets a stuck
   reader peek without leaving the mode.
+- **The quiz shell is `runQuiz` — games supply hooks, never markup.** Six of
+  the seven games (sarf, case, role, harakat, spot, cloze) run on one machine:
+  `runQuiz({title, ask, items, restart, question(it), options(it), why(it),
+  after?, extras?})`. `options()` returns `[{html, ok, ar?}]` **pre-shuffled** —
+  the shell knows nothing about distractors, which is where each game's domain
+  logic lives (the role game's nominal filter, cloze's pos gating; the case game
+  deliberately does NOT shuffle, its four options sit in the case-table order).
+  Reveal DOM is uniform: `.opts [data-o]`, `#qWhy`, `#qNext`, extras `#qX0…`.
+  Match stays OUTSIDE the shell on purpose — a pairing grid with no rounds and
+  no reveal is a different game, not a seventh copy. A new quiz game is an items
+  function plus ~15 lines of hooks; anything that needs shell changes is a shell
+  feature and lands for all six at once.
 - **`pos` reaches the reader.** The role game needs it: a verb's i'rab routinely names
   another word's role («فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il), so
   anything derived by regex from i'rab text must first filter to nominals.
@@ -238,6 +254,17 @@ protocol test, so file:// and the published artifact are untouched.
 because the artifact host supplies one. Served standalone the browser guesses,
 and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
 test asserts `document.characterSet === "UTF-8"` for exactly this reason.
+
+**The registry is audited against the canon, not just against itself.**
+`check_canon.py` holds the madrasah's own lists (from the Turkish table
+transcriptions in `research/sources/`) and maps each item to the note that
+teaches it. 65/81 covered; the 16 TODOs are real gaps, the biggest being the
+tail of Birgivi's twenty harf-i cer (حاشا مذ منذ خلا عدا لولا كي لعل) and ism
+fa'il / ism maf'ul as GOVERNORS. Two mapping rules to keep honest: a particle
+counts as covered only if a note names it AND its government; and حاشا/خلا/عدا
+appear in istithna.json only as sisters of إلّا, so their jarr function — the
+reason the amil table lists them — is still uncovered. Do not stretch a
+neighbouring note over a gap; write the note or leave the TODO.
 
 ## Grammar sourcing
 
