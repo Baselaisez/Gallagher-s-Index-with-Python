@@ -29,7 +29,7 @@ tools/
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Ten stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five, and Kitab al-Buyu is the first fiqh text. Grammar notes are **global**: a note authored once shows
+Eleven stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts. Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -248,6 +248,17 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   (marfu' 8/8, mansub 13/13, majrur 2/2, majzum 1/1, tawabi' 5/5: complete).
 - **Emsile-i Muttarida** = one form across 14 persons; **Emsile-i Muhtelife** = 14
   forms from one verb (+2 passive rows). Both render from `morphology.json`.
+
+**Kitab al-Kaffarat repeats the Buyu' pattern and adds a third source class.**
+The upload was again a Turkish teaching text; the Arabic is, line by line:
+the source's own definition rendered in standard fiqh phrasing, the received
+Quduri wording for the Ramadan kaffara — and, where the Turkish itself cites
+scripture, the Qur'an quoted exactly (al-Ma'ida 5:89 for the oath; s10 built
+on al-Baqara 2:196). Qur'anic wording is the one class that needs no
+hedging, and the manifest attribution says which sentences are which. The
+story anchors the newest registry notes on arrival: مُتَتَابِعَيْنِ is the Form VI
+ism fa'il in na't position, مِسْكِينًا the tamyiz of a number (the canon's
+«İsmi Mübhemüt Tam» governor), أَذًى a maqsur noun under the lam of cause.
 
 **A source with no Arabic in it.** The Buyu' upload was a Turkish definition
 list. Supplying the Arabic is legitimate when the underlying wording is the
