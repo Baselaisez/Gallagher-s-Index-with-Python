@@ -55,16 +55,17 @@ CANON = [
         ("رب", ["huruf-jarr"]),
         ("واو القسم", ["huruf-jarr"]),
         ("تاء القسم", ["huruf-jarr"]),
-        # حاشا/خلا/عدا are named in istithna.json, but only as sisters of
-        # إِلَّا; their jarr reading is not taught anywhere, so: TODO.
-        ("حاشا", []),
-        ("مذ", []),
-        ("منذ", []),
-        ("خلى (خَلَا)", []),
-        ("عدى (عَدَا)", []),
-        ("لولا", []),
-        ("كيمه (كَيْ)", []),
-        ("لعل", []),
+        # The tail of the twenty, each with its restriction, is taught as a
+        # family in huruf-jarr-nawadir (istithna.json still covers the nasb
+        # reading of حاشا/خلا/عدا separately).
+        ("حاشا", ["huruf-jarr-nawadir"]),
+        ("مذ", ["huruf-jarr-nawadir"]),
+        ("منذ", ["huruf-jarr-nawadir"]),
+        ("خلى (خَلَا)", ["huruf-jarr-nawadir"]),
+        ("عدى (عَدَا)", ["huruf-jarr-nawadir"]),
+        ("لولا", ["huruf-jarr-nawadir"]),
+        ("كيمه (كَيْ)", ["huruf-jarr-nawadir"]),
+        ("لعل", ["huruf-jarr-nawadir"]),
     ]),
     ("amil-tablolari-turkce.txt", "İsmini nasb, haberini raf edenler (8)", [
         ("اِن", ["inna-wa-akhawatuha"]),
@@ -97,23 +98,23 @@ CANON = [
         ("امر لامى (لام الأمر)", ["lam-amr"]),
         ("نهى لاسى (لا الناهية)", ["la-nahiya"]),
         ("ان", ["in-shartiyya"]),
-        ("مهما", []),
+        ("مهما", ["in-shartiyya"]),
         # in-shartiyya names the jazm nouns مَنْ ما مَتَى أَيْنَ أَيُّ حَيْثُمَا.
         ("ما", ["in-shartiyya"]),
         ("من", ["in-shartiyya"]),
         ("اين", ["in-shartiyya"]),
         ("متى", ["in-shartiyya"]),
-        ("انى", []),
+        ("انى", ["in-shartiyya"]),
         ("اى", ["in-shartiyya"]),
         ("حيثما", ["in-shartiyya"]),
-        ("اذما", []),
-        ("اذاما", []),
+        ("اذما", ["in-shartiyya"]),
+        ("اذاما", ["in-shartiyya"]),
     ]),
     ("mamul-tablolari-turkce.txt", "Amil-i kıyasi (9)", [
         # fail.json: "Its governor (عامل) is the verb itself."
         ("Mutlak Fiil", ["fail"]),
-        ("İsmi Fail", []),
-        ("İsmi Meful", []),
+        ("İsmi Fail", ["ism-fail"]),
+        ("İsmi Meful", ["ism-maful"]),
         ("Sıfatı Müşebbehe", ["sifa-mushabbaha"]),
         ("İsmi Tefdıl", ["ism-tafdil"]),
         ("Masdar", ["masdar"]),

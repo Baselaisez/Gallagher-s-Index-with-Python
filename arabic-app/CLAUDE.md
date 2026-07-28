@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          75 global grammar notes — one JSON per topic, shared by every story
+  grammar/          78 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -258,13 +258,15 @@ test asserts `document.characterSet === "UTF-8"` for exactly this reason.
 **The registry is audited against the canon, not just against itself.**
 `check_canon.py` holds the madrasah's own lists (from the Turkish table
 transcriptions in `research/sources/`) and maps each item to the note that
-teaches it. 65/81 covered; the 16 TODOs are real gaps, the biggest being the
-tail of Birgivi's twenty harf-i cer (حاشا مذ منذ خلا عدا لولا كي لعل) and ism
-fa'il / ism maf'ul as GOVERNORS. Two mapping rules to keep honest: a particle
-counts as covered only if a note names it AND its government; and حاشا/خلا/عدا
-appear in istithna.json only as sisters of إلّا, so their jarr function — the
-reason the amil table lists them — is still uncovered. Do not stretch a
-neighbouring note over a gap; write the note or leave the TODO.
+teaches it. 79/81 covered. The tail of Birgivi's twenty harf-i cer is taught
+as ONE note (`huruf-jarr-nawadir`) because each rare letter is defined by its
+restriction, not by a story appearance; ism fa'il and ism maf'ul as GOVERNORS
+are `ism-fail` / `ism-maful`, anchored to real tokens (مُوَدِّعًا، عَامِلًا،
+الْمُخْرَجُ، مَشْرُوطٌ). The two remaining TODOs are honest: the الا of the inna
+table (identity unclear in the transcription) and Manayı Fiil. Two mapping
+rules to keep: a particle counts as covered only if a note names it AND its
+government, and never stretch a neighbouring note over a gap — write the note
+or leave the TODO.
 
 ## Grammar sourcing
 
