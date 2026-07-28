@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         47 browser checks over file:// (Playwright)
+  smoke_test.js         49 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -118,6 +118,12 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
 - **`pos` reaches the reader.** The role game needs it: a verb's i'rab routinely names
   another word's role («فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il), so
   anything derived by regex from i'rab text must first filter to nominals.
+- **The Lite deck cap** (`LITE_DECK_CAP`, research §7.5) gates ADDING only —
+  reviewing, grading and removing always work, because a lapsed subscriber must
+  never lose access to their own cards. `toggleCard` returns false on refusal;
+  `learnNewHere` counts only words that actually went in, or the daily goal
+  would fill with cards that were never created. Save buttons render disabled
+  with the reason instead of dying silently.
 - **The daily loop**: `state.streak` (days + last date), `state.today` (reviewed /
   learned / read, reset by `rollDay()` when the local date changes) and `state.goal`.
   `countActivity(kind)` is called from `grade()` and `markRead()` — it bumps the
@@ -144,10 +150,10 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   timer re-checks `currentTime` and re-arms rather than truncating (buffering
   makes wall-clock a lie), and same-source detection compares RESOLVED URLs
   (`endsWith` both matched wrong files and missed percent-encoded ones).
-  Known gap, recorded deliberately: cloze's «see it in the story» on a story
-  that has rotated back behind the paywall lands in the search sheet — the
-  jumpTo fallback was written for search hits, and a game-aware fallback is a
-  shell feature to design, not a one-liner.
+  The cloze «see it in the story» gap was closed as a shell feature: a quiz
+  extra may declare `show(it)` and is simply not offered for items where the
+  action would dead-end — a sentence behind the paywall gets no jump button
+  rather than a jump into the preview wall.
 - **Corpus search** (`buildCorpus`, `searchCorpus`): one lazily-built index over every
   token in every story, matched against the bare spelling, the lemma, the root (stored
   spaced ق و ل but indexed closed-up too, because that is how it gets typed) and both

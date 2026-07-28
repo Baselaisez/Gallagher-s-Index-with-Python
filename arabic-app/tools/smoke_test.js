@@ -1486,6 +1486,85 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
   });
 
+  await check('Lite deck cap: adding stops at the limit, reviewing never does', async () => {
+    await toLibrary();
+    const r = await page.evaluate(() => {
+      const saved = { deck: state.deck, premium: state.premium };
+      state.premium = false;
+      // Fill to one below the cap with well-formed word cards.
+      state.deck = Array.from({ length: LITE_DECK_CAP - 1 }, (_, i) =>
+        ({ lex: 'zz' + i, type: 'word', bare: 'x', lemma: 'x',
+           gloss: { en: 'x', tr: 'x' }, srs: { due: 0, ivl: 0 } }));
+      const out = {};
+      out.atCapAfterOne = (toggleCard('word:last', () =>
+        ({ lex: 'last', type: 'word', bare: 'x', lemma: 'x', gloss: { en: 'x', tr: 'x' } })),
+        state.deck.length);
+      // The cap refuses the 101st…
+      out.refused = toggleCard('word:overflow', () =>
+        ({ lex: 'overflow', type: 'word', bare: 'x', lemma: 'x', gloss: { en: 'x', tr: 'x' } }));
+      out.lenAfterRefused = state.deck.length;
+      // …removal always works at the cap…
+      toggleCard('word:last', () => null);
+      out.lenAfterRemove = state.deck.length;
+      // …and Premium lifts the limit.
+      state.premium = true;
+      out.premiumAdd = toggleCard('word:premium-extra', () =>
+        ({ lex: 'premium-extra', type: 'word', bare: 'x', lemma: 'x', gloss: { en: 'x', tr: 'x' } }));
+      const len = state.deck.length;
+      state.deck = saved.deck; state.premium = saved.premium; persistDeck();
+      out.premiumLen = len;
+      return out;
+    });
+    if (r.atCapAfterOne !== 100) throw new Error('expected the cap-filling add to land at 100, got ' + r.atCapAfterOne);
+    if (r.refused !== false) throw new Error('the 101st card was not refused: ' + r.refused);
+    if (r.lenAfterRefused !== 100) throw new Error('deck length moved on a refused add');
+    if (r.lenAfterRemove !== 99) throw new Error('removal at the cap failed');
+    if (r.premiumAdd !== true || r.premiumLen !== 100)
+      throw new Error('premium did not lift the cap: ' + r.premiumAdd + '/' + r.premiumLen);
+  });
+
+  await check('cloze hides «see it in the story» when the sentence is behind the paywall', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.access === 'premium');
+      const savedPremium = state.premium;
+      state.premium = true;
+      const openShow = it => !storyLocked(STORIES.find(x => x.id === it.storyId));
+      // With premium on, every sentence of every story is reachable.
+      const anyLockedWhilePremium = STORIES.some(s => storyLocked(s));
+      state.premium = savedPremium;
+      return { anyLockedWhilePremium, probe: st.id };
+    });
+    if (r.anyLockedWhilePremium) throw new Error('a story is locked while premium is on');
+    // Structural check of the predicate itself, on a locked story's sentences:
+    const probe = await page.evaluate(() => {
+      const saved = state.premium;
+      state.premium = false;
+      const st = STORIES.find(s => s.access === 'premium' && storyLocked(s));
+      if (!st) { state.premium = saved; return null; }
+      const flat = st.chapters.flatMap(c => c.sentences);
+      const inside = flat[0], outside = flat[PREVIEW_SENTENCES];
+      const show = it => {
+        const s2 = STORIES.find(x => x.id === it.storyId);
+        if (!storyLocked(s2)) return true;
+        let i = 0;
+        for (const ch of s2.chapters) for (const sen of ch.sentences) {
+          if (sen.id === it.sen.id) return i < PREVIEW_SENTENCES;
+          i++;
+        }
+        return false;
+      };
+      const out = {
+        preview: show({ storyId: st.id, sen: inside }),
+        behind: outside ? show({ storyId: st.id, sen: outside }) : null,
+      };
+      state.premium = saved;
+      return out;
+    });
+    if (!probe) throw new Error('no locked premium story to probe');
+    if (probe.preview !== true) throw new Error('a preview sentence should be jumpable');
+    if (probe.behind !== false) throw new Error('a behind-paywall sentence should hide the jump');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
