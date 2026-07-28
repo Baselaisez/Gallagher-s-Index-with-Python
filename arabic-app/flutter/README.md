@@ -1,10 +1,20 @@
-# Qissa — Flutter client (UN-COMPILED SPIKE)
+# Qissa — Flutter client (data layer VERIFIED; screens still a spike)
 
-> **Status: design + skeleton only. This does NOT compile or run yet.**
-> There is no Flutter/Dart SDK on the machine that authored this, so nothing here
-> has been type-checked or executed. It is a *buildable target*: correct,
-> idiomatic-looking Dart whose JSON parsing matches the real content packages
-> byte-for-byte, ready for a developer to `flutter create` around and fill in.
+> **Status: split.** The `lib/models/` data layer is now REAL, verified Dart:
+> `dart analyze` clean, and `tool/verify_models.dart` parses the entire content
+> tree through the production `fromJson`s — every package, every chapter, every
+> grammar note — and re-asserts the core invariants (tashkeel law, lex/grammar
+> resolution, phrase spans, paradigm sizes) from the Dart side. Run it with any
+> plain Dart SDK, no Flutter needed:
+>
+> ```sh
+> dart analyze flutter/lib/models flutter/tool
+> dart flutter/tool/verify_models.dart content     # from arabic-app/
+> ```
+>
+> The `main.dart` / `reader/` screens remain a DESIGN SPIKE: they import
+> Flutter, which is not on this machine, and have never been type-checked. The
+> boundary is marked by the file headers.
 
 This is the Flutter port of the web prototype at `../prototype/reader.html`,
 rendering the same content packages described in `../docs/03-content-data-model.md`.

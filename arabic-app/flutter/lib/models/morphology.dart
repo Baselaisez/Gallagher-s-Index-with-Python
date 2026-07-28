@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `<story-id>/morphology.json` — Emsile/Bina-style verb paradigms keyed by
 /// `lex`, powering the Sarf (صَرْف) conjugation tab of the word sheet.
@@ -41,6 +42,14 @@ class VerbParadigm {
   final String ismFail; // active participle, e.g. "رَاجِع"   (JSON key: ismFail)
   final String? ismMaful; // passive participle, e.g. "مَرْجُوع"; may be null (JSON key: ismMaful)
   final String? irregularity; // "hollow" | "hollow-wawi" | "defective-yai"; may be absent
+  /// Governed mudari' forms — STORED, never derived (weak verbs break the
+  /// vowel-swap rule: يَقُولُ → لَمْ يَقُلْ). Absent when genuinely uncertain;
+  /// the UI hides the row rather than guessing.
+  final String? mansub; // after لَنْ
+  final String? majzum; // after لَمْ (3rd person)
+  final String? majzum2; // the BARE 2nd-person jussive; the app renders «لَا » + this
+  final String? majhulMazi; // passive past, e.g. قِيلَ
+  final String? majhulMudari; // passive present, e.g. يُقَالُ
   final List<String> mazi; // 14 cells (past)
   final List<String> mudari; // 14 cells (present)
   final List<String> amr; // 6 cells (imperative)
@@ -53,6 +62,11 @@ class VerbParadigm {
     required this.ismFail,
     required this.ismMaful,
     required this.irregularity,
+    required this.mansub,
+    required this.majzum,
+    required this.majzum2,
+    required this.majhulMazi,
+    required this.majhulMudari,
     required this.mazi,
     required this.mudari,
     required this.amr,
@@ -71,6 +85,11 @@ class VerbParadigm {
       ismFail: json['ismFail'] as String? ?? '',
       ismMaful: json['ismMaful'] as String?, // can be JSON null (e.g. takallama)
       irregularity: json['irregularity'] as String?,
+      mansub: json['mansub'] as String?,
+      majzum: json['majzum'] as String?,
+      majzum2: json['majzum2'] as String?,
+      majhulMazi: json['majhulMazi'] as String?,
+      majhulMudari: json['majhulMudari'] as String?,
       mazi: _cells(json['mazi']),
       mudari: _cells(json['mudari']),
       amr: _cells(json['amr']),

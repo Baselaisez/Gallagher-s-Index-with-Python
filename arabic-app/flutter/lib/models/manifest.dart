@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `<story-id>/manifest.json` — per-story metadata + chapter list.
 /// Field names verified against:
@@ -18,7 +19,8 @@ class StoryManifest {
   final int level;
   final String levelName;
   final String version;
-  final String access; // "free" | "user-upload"
+  final String published; // "YYYY-MM-DD" — the day the story entered the library
+  final String access; // "free" | "premium" | "user-upload"
   final List<ChapterRef> chapters;
   final List<StorySibling> siblings; // same story, other levels (may be empty)
   final Attribution attribution;
@@ -31,6 +33,7 @@ class StoryManifest {
     required this.level,
     required this.levelName,
     required this.version,
+    required this.published,
     required this.access,
     required this.chapters,
     required this.siblings,
@@ -49,6 +52,7 @@ class StoryManifest {
       level: (json['level'] as num?)?.toInt() ?? 1,
       levelName: json['levelName'] as String? ?? '',
       version: json['version'] as String? ?? '',
+      published: json['published'] as String? ?? '',
       access: json['access'] as String? ?? 'free',
       chapters: (json['chapters'] as List<dynamic>? ?? const [])
           .map((e) => ChapterRef.fromJson(e as Map<String, dynamic>))
@@ -67,16 +71,19 @@ class StoryManifest {
 class ChapterRef {
   final int n; // chapter number; also the filename: chapters/<n>.json
   final LocalizedText title; // {ar,en} or {ar,en,tr}
-  final String? audio; // e.g. "audio/chapter-1.mp3" — may be absent
+  /// JSON key `audioFile` — the chapter's recording, package-relative. The
+  /// sentences carry their [startMs, endMs] slices of this one file; either
+  /// half missing means TTS fallback, never silence (see CLAUDE.md).
+  final String? audioFile;
 
-  const ChapterRef({required this.n, required this.title, this.audio});
+  const ChapterRef({required this.n, required this.title, this.audioFile});
 
   factory ChapterRef.fromJson(Map<String, dynamic> json) {
     return ChapterRef(
       n: (json['n'] as num).toInt(),
       title: LocalizedText.fromJson(
           (json['title'] as Map<String, dynamic>?) ?? const {}),
-      audio: json['audio'] as String?,
+      audioFile: json['audioFile'] as String?,
     );
   }
 }
@@ -123,6 +130,7 @@ class Attribution {
     final text = <String, dynamic>{
       if (json['ar'] is String) 'ar': json['ar'],
       if (json['en'] is String) 'en': json['en'],
+      if (json['tr'] is String) 'tr': json['tr'],
     };
     return Attribution(
       text: LocalizedText.fromJson(text),

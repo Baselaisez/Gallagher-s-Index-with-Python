@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `<story-id>/glossary.json` — the story-scoped lexicon keyed by `lex`.
 /// Every token's `lex` resolves here for the tap-word sheet, the level-colored

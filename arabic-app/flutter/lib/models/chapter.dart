@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `<story-id>/chapters/<n>.json` — the text body: sentences → tokens, each
 /// token carrying the three tashkeel layers, morphology links, and i'rab.
@@ -94,6 +95,7 @@ class Token {
   final String? punctAfter; // "." "،" ":" — printed after the word, outside the tap target
   final String? quoteBefore; // "«" — printed before the word
   final String? quoteAfter; // "»" — printed after the word
+  final PhraseRef? phrase; // idiom marker on the FIRST token of a span; null elsewhere
 
   const Token({
     required this.surface,
@@ -105,6 +107,7 @@ class Token {
     required this.punctAfter,
     required this.quoteBefore,
     required this.quoteAfter,
+    required this.phrase,
   });
 
   bool get hasGrammar => grammar.isNotEmpty;
@@ -129,6 +132,27 @@ class Token {
       punctAfter: json['punctAfter'] as String?,
       quoteBefore: json['quoteBefore'] as String?,
       quoteAfter: json['quoteAfter'] as String?,
+      phrase: json['phrase'] == null
+          ? null
+          : PhraseRef.fromJson(json['phrase'] as Map<String, dynamic>),
+    );
+  }
+}
+
+/// `token.phrase` — declared on the FIRST token of an idiom span
+/// (`{"lex": "bayna-yadayh", "span": 2}`). Every token inside the window
+/// belongs to the phrase; the phrase has its own glossary entry, and each
+/// word keeps its own i'rab — both layers survive (see CLAUDE.md).
+class PhraseRef {
+  final String lex; // glossary key of the phrase entry (pos: "phrase")
+  final int span; // number of tokens the idiom covers, >= 2
+
+  const PhraseRef({required this.lex, required this.span});
+
+  factory PhraseRef.fromJson(Map<String, dynamic> json) {
+    return PhraseRef(
+      lex: json['lex'] as String? ?? '',
+      span: (json['span'] as num?)?.toInt() ?? 0,
     );
   }
 }

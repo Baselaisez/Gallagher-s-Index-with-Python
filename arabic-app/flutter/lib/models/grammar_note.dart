@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `content/grammar/<note-id>.json` — the GLOBAL, reusable grammar notes
 /// (data-model rule 4). The same note object opens from every story and every
@@ -22,6 +23,9 @@ class GrammarNote {
   final int level; // 1..6
   final String group; // "nahw" | "awamil" | "sarf" — madrasah primer grouping
   final String? amil; // for awamil: what the governor governs; absent otherwise
+  final String? mamul; // Birgivi's governed-form class: marfu|mansub|majrur|majzum|tawabi
+  final LocalizedText plain; // REQUIRED: the jargon-free one-line lede, {en,tr}
+  final QuestionTest? question; // the madrasah edat test; ~11 nahw notes carry it
   final List<String> classicalSources; // Arabic source titles (JSON key: classicalSources)
   final LocalizedText explanation; // { en, tr }
   final List<GrammarExample> examples; // ≥1; some tagged with sourceStory + sentence
@@ -35,6 +39,9 @@ class GrammarNote {
     required this.level,
     required this.group,
     required this.amil,
+    required this.mamul,
+    required this.plain,
+    required this.question,
     required this.classicalSources,
     required this.explanation,
     required this.examples,
@@ -52,6 +59,12 @@ class GrammarNote {
       level: (json['level'] as num?)?.toInt() ?? 0,
       group: json['group'] as String? ?? '',
       amil: json['amil'] as String?,
+      mamul: json['mamul'] as String?,
+      plain: LocalizedText.fromJson(
+          (json['plain'] as Map<String, dynamic>?) ?? const {}),
+      question: json['question'] == null
+          ? null
+          : QuestionTest.fromJson(json['question'] as Map<String, dynamic>),
       classicalSources: (json['classicalSources'] as List<dynamic>? ?? const [])
           .map((e) => e as String)
           .toList(growable: false),
@@ -113,5 +126,23 @@ class CommonMistake {
       why: LocalizedText.fromJson(
           (json['why'] as Map<String, dynamic>?) ?? const {}),
     );
+  }
+}
+
+/// `note.question` — the madrasah edat test: which interrogative the role
+/// answers (fa'il → «Ne? Kim?»). The two lists CORRESPOND index-by-index and
+/// the validator guarantees equal, non-zero length; the Turkish is the source
+/// device and the English a functional equivalent (see research/sources README).
+class QuestionTest {
+  final List<String> tr;
+  final List<String> en;
+
+  const QuestionTest({required this.tr, required this.en});
+
+  factory QuestionTest.fromJson(Map<String, dynamic> json) {
+    List<String> asList(dynamic v) => (v as List<dynamic>? ?? const [])
+        .map((e) => e as String)
+        .toList(growable: false);
+    return QuestionTest(tr: asList(json['tr']), en: asList(json['en']));
   }
 }

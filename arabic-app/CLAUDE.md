@@ -26,6 +26,9 @@ tools/
                         every mapped note id really exists
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
+flutter/                the mobile client: lib/models is a VERIFIED data layer
+                        (tool/verify_models.dart proves it against content/);
+                        main.dart + reader/ are still an unverified design spike
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
@@ -43,6 +46,9 @@ python3 tools/build_prototype.py --package content/user-uploads/deeds-are-by-int
 NODE_PATH=<scratchpad>/node_modules CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
         node tools/smoke_test.js
 python3 tools/check_i18n.py                                 # no English without Turkish
+# when the content SCHEMA changes (new manifest/token/note field), also:
+#   dart analyze flutter/lib/models flutter/tool && dart flutter/tool/verify_models.dart content
+# — the Flutter data layer must not drift from what the packages actually hold
 node tools/pwa_test.js                                      # only when the head or sw.js changed
 ```
 

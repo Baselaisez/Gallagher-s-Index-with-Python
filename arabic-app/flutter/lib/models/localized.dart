@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Shared helper for the `{ "ar": ..., "en": ..., "tr": ... }` localized-string
 /// objects that appear all over the content packages (titles, subtitles, glosses,

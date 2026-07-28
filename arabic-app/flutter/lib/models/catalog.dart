@@ -1,4 +1,5 @@
-/// UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+/// VERIFIED DATA LAYER — analyzed and exercised against the full content tree
+/// by flutter/tool/verify_models.dart (see that file for what is asserted).
 ///
 /// Maps `content/catalog.json` — the server-driven index the app fetches first
 /// (spec §3.5 "self-updating content"). Field names verified against the real
@@ -40,11 +41,11 @@ class CatalogEntry {
   final int level; // 1..6
   final String levelName; // "Elementary"
   final String version; // "0.1.0"
-  final String access; // "free" | "user-upload" | (future) "premium"
+  final String published; // "YYYY-MM-DD" — the day the story entered the library
+  final String access; // "free" | "premium" | "user-upload"
   final String storyGroup; // groups same-story-different-levels siblings
   final String reviewStatus; // "pending-scholarly-review" | "auto-generated-unreviewed"
   final int chapterCount; // JSON key is "chapters" but it is a COUNT here
-  final String? rotationWindow; // spec §3.6 Lite rotation flag; null today
 
   const CatalogEntry({
     required this.id,
@@ -52,16 +53,15 @@ class CatalogEntry {
     required this.level,
     required this.levelName,
     required this.version,
+    required this.published,
     required this.access,
     required this.storyGroup,
     required this.reviewStatus,
     required this.chapterCount,
-    required this.rotationWindow,
   });
 
   /// True for the Lite tier gating: free or currently-rotated stories are
   /// openable without Premium (spec §3.6). Real gating also considers
-  /// rotationWindow + entitlement — see SubscriptionService in the doc.
   bool get isFreeToOpen => access == 'free' || access == 'user-upload';
 
   factory CatalogEntry.fromJson(Map<String, dynamic> json) {
@@ -72,11 +72,11 @@ class CatalogEntry {
       level: (json['level'] as num?)?.toInt() ?? 1,
       levelName: json['levelName'] as String? ?? '',
       version: json['version'] as String? ?? '',
+      published: json['published'] as String? ?? '',
       access: json['access'] as String? ?? 'free',
       storyGroup: json['storyGroup'] as String? ?? (json['id'] as String),
       reviewStatus: json['reviewStatus'] as String? ?? '',
       chapterCount: (json['chapters'] as num?)?.toInt() ?? 0,
-      rotationWindow: json['rotationWindow'] as String?,
     );
   }
 }
