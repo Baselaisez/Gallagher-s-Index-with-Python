@@ -207,6 +207,12 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   for ✓ instead. The card is a `.continue-card`, deliberately NOT a
   `.lib-card`: every test and sort walks `.lib-card`, and the hero must never
   count as a second copy of the story.
+- **The progress page computes, never stores.** `openStats()` reads everything
+  live through `storyStats`/`deckStats`/`rollDay` — the same primitives the
+  library and deck already trust — so the tiles cannot disagree with the shelf.
+  The smoke check derives its expectations through those primitives too, which
+  proves agreement rather than two copies of the same arithmetic. The streak
+  chip is the same numbers seen smaller; tapping either opens the page.
 - **`cardKey()` is the only statement of card identity.** Membership tests and
   toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
   declares its key once instead of adding a fourth hand-written `findIndex`

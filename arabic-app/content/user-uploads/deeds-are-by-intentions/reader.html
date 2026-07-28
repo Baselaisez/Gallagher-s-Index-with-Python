@@ -113,6 +113,16 @@
   .sentence.resume-target { animation: resumeflash 1.6s ease 1; }
   @keyframes resumeflash { 0%, 60% { background: var(--accent-soft); } 100% { background: transparent; } }
   .welcome-h { font-family: var(--ui-font); margin: .2rem 0 .4rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: .6rem 0 .4rem; font-family: var(--ui-font); }
+  .stat-tile { border: 1px solid var(--line); border-radius: 10px; padding: .6rem .3rem; text-align: center; }
+  .stat-tile b { display: block; font-size: 1.25rem; }
+  .stat-tile span { font-size: .66rem; color: var(--ink-soft); }
+  .lvl-row { display: flex; align-items: center; gap: .5rem; font-family: var(--ui-font); font-size: .76rem; margin: .35rem 0; }
+  .lvl-row .lv { width: 5.2rem; }
+  .lvl-row.mine .lv { color: var(--accent); font-weight: 700; }
+  .lvl-row .bar { flex: 1; height: 7px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .lvl-row .bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .lvl-row .n { color: var(--ink-soft); min-width: 3.2rem; text-align: right; }
   .level-pick { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .8rem 0; font-family: var(--ui-font); }
   .level-pick .btn { margin: 0; text-align: center; }
   .btn.unsure { width: 100%; margin-top: .2rem; color: var(--ink-soft); }
@@ -528,6 +538,7 @@
     <button class="tbtn reader-only" id="fontPlus" aria-label="Larger text">A+</button>
     <span class="spacer"></span>
     <button class="tbtn streak" id="streakChip" hidden></button>
+    <button class="tbtn" id="statsOpen">Progress</button>
     <button class="tbtn" id="searchOpen">Search</button>
     <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn reader-only" id="gamesOpen">Games</button>
@@ -747,6 +758,10 @@ Object.assign(L.tr, {
 Object.assign(L.en, {
   continueReading:"Continue reading",
   finishedLbl:"Finished",
+  statsBtn:"Progress", statsTitle:"Your progress",
+  stStories:"stories finished", stSentences:"sentences read",
+  stCards:"cards in deck", stKnown:"words known well", stTopics:"grammar topics saved",
+  todayLine:"Today: {r} reviews · {n} new words · {s} sentences read",
   welcomeTitle:"Welcome to Qissa",
   welcomeBody:"Stories run from Level {a} (first words) to Level {b} (classical texts as they were written). Pick the level that fits you and the library will shelve the closest stories first — you can change it any time.",
   welcomeUnsure:"Not sure? Start at Level {a}",
@@ -757,6 +772,10 @@ Object.assign(L.en, {
 Object.assign(L.tr, {
   continueReading:"Kaldığınız yerden devam",
   finishedLbl:"Tamamlandı",
+  statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
+  stStories:"biten hikâye", stSentences:"okunan cümle",
+  stCards:"destedeki kart", stKnown:"iyi bilinen kelime", stTopics:"kayıtlı gramer konusu",
+  todayLine:"Bugün: {r} tekrar · {n} yeni kelime · {s} okunan cümle",
   welcomeTitle:"Qissa'ya hoş geldiniz",
   welcomeBody:"Hikâyeler {a}. seviyeden (ilk kelimeler) {b}. seviyeye (asıl klasik metinler) kadar uzanır. Size uyan seviyeyi seçin; kütüphane en yakın hikâyeleri öne dizsin — istediğiniz zaman değiştirebilirsiniz.",
   welcomeUnsure:"Emin değil misiniz? {a}. seviyeden başlayın",
@@ -2498,6 +2517,49 @@ function deckStats(){
   });
   return { fresh, learning, mature, leeches, due: dueCards().length, total: state.deck.length };
 }
+// ---------- the progress page ----------
+// The numbers a reader wants in one place. Everything is computed live from
+// progress + deck through the same primitives the library and deck already
+// trust (storyStats, deckStats, rollDay) — the page itself stores nothing,
+// so it can never disagree with the shelf.
+function corpusStats(){
+  const out = { stories: STORIES.length, storiesDone: 0,
+                sentencesRead: 0, sentencesTotal: 0, levels: new Map() };
+  STORIES.forEach(st => {
+    const { total, read } = storyStats(st);
+    out.sentencesTotal += total; out.sentencesRead += read;
+    if (total && read === total) out.storiesDone++;
+    const e = out.levels.get(st.level) || { read: 0, total: 0 };
+    e.read += read; e.total += total;
+    out.levels.set(st.level, e);
+  });
+  return out;
+}
+function openStats(){
+  const c = corpusStats(), d = deckStats(), t = rollDay();
+  const noteCards = state.deck.filter(x => x.type === "note").length;
+  const tile = (n, lbl) => `<div class="stat-tile"><b>${n}</b><span>${lbl}</span></div>`;
+  const lvlRows = [...c.levels.entries()].sort((a, b) => a[0] - b[0]).map(([lv, e]) => `
+    <div class="lvl-row ${state.myLevel === lv ? "mine" : ""}">
+      <span class="lv">${ui().level} ${lv}</span>
+      <span class="bar"><span style="width:${e.total ? Math.round(100 * e.read / e.total) : 0}%"></span></span>
+      <span class="n">${e.read}/${e.total}</span>
+    </div>`).join("");
+  sheetInner.innerHTML = `
+    <h3 class="welcome-h">${ui().statsTitle}</h3>
+    <div class="stats-grid">
+      ${tile("\u{1F525} " + state.streak.days, ui().dayStreak)}
+      ${tile(c.storiesDone + "/" + c.stories, ui().stStories)}
+      ${tile(c.sentencesRead, ui().stSentences)}
+      ${tile(d.total, ui().stCards)}
+      ${tile(d.mature, ui().stKnown)}
+      ${tile(noteCards, ui().stTopics)}
+    </div>
+    <p class="ref-intro">${ui().todayLine.replace("{r}", t.reviewed)
+      .replace("{n}", t.learned).replace("{s}", t.read)}</p>
+    ${lvlRows}`;
+  showSheet();
+}
 // A verb card asks for one cell of the Muhtelife; a word card asks for a meaning.
 function verbPrompt(card){
   const m = MORPH[card.lex];
@@ -2869,6 +2931,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     document.getElementById("refOpen").textContent = ui().grammarBtn;
     document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
+    document.getElementById("statsOpen").textContent = ui().statsBtn;
     updateStreakChip();
     document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
     renderLegend();
@@ -2879,6 +2942,9 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
 document.getElementById("fontPlus").addEventListener("click", () => { state.arSize = Math.min(2.6, state.arSize + 0.15); localStorage.setItem("qissa-arsize", state.arSize); renderStory(); });
 document.getElementById("fontMinus").addEventListener("click", () => { state.arSize = Math.max(1.2, state.arSize - 0.15); localStorage.setItem("qissa-arsize", state.arSize); renderStory(); });
 document.getElementById("deckOpen").addEventListener("click", openDeck);
+document.getElementById("statsOpen").addEventListener("click", openStats);
+// The streak chip is the same numbers seen smaller — tapping it opens the page.
+document.getElementById("streakChip").addEventListener("click", openStats);
 document.getElementById("refOpen").addEventListener("click", () => openRef());
 document.getElementById("gamesOpen").addEventListener("click", openGames);
 document.getElementById("searchOpen").addEventListener("click", () => openSearch(searchQuery));
@@ -2890,6 +2956,7 @@ document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classLis
 document.getElementById("refOpen").textContent = ui().grammarBtn;
 document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
+    document.getElementById("statsOpen").textContent = ui().statsBtn;
     updateStreakChip();
 document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
 renderLegend();

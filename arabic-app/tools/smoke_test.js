@@ -1622,6 +1622,39 @@ if (!CHROME) {
     }, target.id);
   });
 
+  await check('the progress page agrees with the shelf, the deck and today', async () => {
+    await toLibrary();
+    const exp = await page.evaluate(() => {
+      // Live expectations through the same primitives the page itself uses —
+      // this proves the tiles agree with the library, not that both copied
+      // the same arithmetic.
+      let done = 0, read = 0;
+      STORIES.forEach(st => {
+        const s = storyStats(st);
+        read += s.read;
+        if (s.total && s.read === s.total) done++;
+      });
+      return { done, read, stories: STORIES.length,
+               levels: new Set(STORIES.map(s => s.level)).size };
+    });
+    await page.locator('#statsOpen').click();
+    await page.waitForSelector('.sheet.show .stats-grid', { timeout: 3000 });
+    const tiles = (await page.locator('.stat-tile b').allTextContents()).map(x => x.trim());
+    if (tiles.length !== 6) throw new Error('expected 6 tiles, got ' + tiles.length);
+    if (!tiles.includes(exp.done + '/' + exp.stories))
+      throw new Error('stories tile: ' + tiles.join('|') + ' missing ' + exp.done + '/' + exp.stories);
+    if (!tiles.includes(String(exp.read)))
+      throw new Error('sentences tile: ' + tiles.join('|') + ' missing ' + exp.read);
+    if ((await page.locator('.lvl-row').count()) !== exp.levels)
+      throw new Error('level rows do not match the levels on the shelf');
+    // The reader's own level is the highlighted row — and only that one.
+    await page.evaluate(() => { state.myLevel = STORIES[0].level; openStats(); });
+    if ((await page.locator('.lvl-row.mine').count()) !== 1)
+      throw new Error('own level not highlighted exactly once');
+    await page.evaluate(() => { state.myLevel = 0; });
+    await page.evaluate(() => document.getElementById('scrim').click());
+  });
+
   await check('first run asks the level once, and "For you" shelves by it', async () => {
     // A brand-new profile: nothing stored, so this is the first visit.
     const ctx3 = await browser.newContext();
