@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         40 browser checks over file:// (Playwright)
+  smoke_test.js         42 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_irab_tr.py      finds i'rab strings with no Turkish yet
@@ -126,6 +126,22 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   it, and the test asserts they cannot disagree. Anything hard-coding a
   particular premium story as "locked" will break in the week that story is free
   — pick by `storyLocked()` instead.
+- **`published` is authored, never derived.** Each manifest carries the day the
+  story entered the library (not the day the text was written) — seeded once
+  from each package's first git commit, stamped by `analyze_text.py` for
+  uploads, and required by the validator. A rebuild must never re-date the
+  catalogue, which is why it is content and not something the builder computes.
+  The library badges anything under `NEW_FOR_DAYS` and can sort newest-first;
+  undated stories sort *last*, not first, which an epoch-0 fallback would do.
+  This exists because invisible content cadence is the single sharpest
+  complaint about the app this one is modelled on — see `research/01-*.md` §7.2.
+- **Cloze gates on the glossary's `pos`, not the token's.** They legitimately
+  disagree — تَعَالَى is a verb in form but a formulaic particle in the lexicon —
+  and since the options are citation forms, the lexical class has to govern both
+  which words may be blanked and which words may be distractors. Mixing the two
+  offered a verb against three particles, which gives the answer away by shape
+  alone. Anything drawing multiple-choice options from the glossary needs the
+  same rule.
 - **Word-following playback.** `tokenOffsets(sen)` maps a boundary event's
   `charIndex` back to a token by walking the same join `speak()` builds
   (`full + punctAfter`, spaces between; `quoteBefore`/`quoteAfter` are rendered

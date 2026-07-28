@@ -30,6 +30,7 @@ import re
 import subprocess
 import sys
 import unicodedata
+from datetime import date
 from pathlib import Path
 
 TOOLS_DIR = Path(__file__).resolve().parent
@@ -278,6 +279,9 @@ def main():
         "levelName": ["Newbie", "Elementary", "Intermediate", "Upper-Intermediate",
                       "Advanced", "Master"][min(max(level, 1), 6) - 1],
         "version": "0.1.0",
+        # An upload enters the library the day it is analyzed — that is exactly
+        # what the library's "New" shelf means.
+        "published": date.today().isoformat(),
         "access": "user-upload",
         "chapters": chapters_meta,
         "attribution": {

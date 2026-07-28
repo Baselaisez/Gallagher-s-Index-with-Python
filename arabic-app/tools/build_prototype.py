@@ -116,6 +116,8 @@ def build_story(pkg: Path, irab_tr=None):
         "subtitle": manifest.get("subtitle", {}),
         "level": manifest.get("level", 1),
         "levelName": manifest.get("levelName", ""),
+        # The day the story entered the library — the reader sorts and badges on it.
+        "published": manifest.get("published", ""),
         "access": manifest.get("access", "free"),
         "review": manifest.get("attribution", {}).get("reviewStatus", ""),
         "glossary": glossary,
@@ -172,6 +174,7 @@ def build_catalog(pkgs):
             "level": manifest.get("level", 1),
             "levelName": manifest.get("levelName", ""),
             "version": manifest.get("version", ""),
+            "published": manifest.get("published", ""),
             "access": manifest.get("access", "free"),
             "storyGroup": manifest.get("storyGroup", manifest["id"]),
             "reviewStatus": manifest.get("attribution", {}).get("reviewStatus", ""),

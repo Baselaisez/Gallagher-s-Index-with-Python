@@ -1101,6 +1101,108 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('library: New badges and a sort that agrees with the dates', async () => {
+    await page.evaluate(() => document.getElementById('scrim').click());
+    if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
+      await page.locator('#backLib').click();
+      await page.waitForSelector('.lib-card', { timeout: 3000 });
+    }
+    const data = await page.evaluate(() => ({
+      undated: STORIES.filter(s => !s.published).map(s => s.id),
+      malformed: STORIES.filter(s => s.published && !/^\d{4}-\d{2}-\d{2}$/.test(s.published)).map(s => s.id),
+      fresh: STORIES.filter(isNewStory).map(s => s.id),
+      future: STORIES.filter(s => { const d = daysSincePublished(s); return d !== null && d < 0; }).map(s => s.id),
+    }));
+    if (data.undated.length) throw new Error('stories with no publication date: ' + data.undated);
+    if (data.malformed.length) throw new Error('published is not YYYY-MM-DD on: ' + data.malformed);
+    if (data.future.length) throw new Error('published in the future: ' + data.future);
+
+    // Default sort is by level, so the cards are in STORIES order.
+    const byLevel = await page.evaluate(() =>
+      [...document.querySelectorAll('.lib-card')].map(c => c.dataset.storyId));
+    if (String(byLevel) !== String(await page.evaluate(() => STORIES.map(s => s.id))))
+      throw new Error('default sort is not the catalogue order');
+    const badged = await page.evaluate(() => [...document.querySelectorAll('.lib-card')]
+      .filter(c => [...c.querySelectorAll('.chip')].some(x => /NEW/.test(x.textContent)))
+      .map(c => c.dataset.storyId));
+    if (String(badged.slice().sort()) !== String(data.fresh.slice().sort()))
+      throw new Error('badges ' + badged + ' disagree with isNewStory ' + data.fresh);
+
+    await page.locator('.lib-sort [data-sort="new"]').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    const order = await page.evaluate(() =>
+      [...document.querySelectorAll('.lib-card')].map(c => c.dataset.storyId));
+    const dates = await page.evaluate(ids => ids.map(id =>
+      STORIES.find(s => s.id === id).published), order);
+    for (let i = 1; i < dates.length; i++)
+      if (dates[i] > dates[i - 1]) throw new Error('newest-first sort is out of order at ' + i + ': ' + dates);
+    if (order.length !== byLevel.length) throw new Error('sorting dropped or duplicated cards');
+    if (new Set(order).size !== order.length) throw new Error('a story appears twice after sorting');
+    await page.locator('.lib-sort [data-sort="level"]').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('cloze: built only from sentences already read', async () => {
+    // With nothing read anywhere it must say so rather than offer an empty game.
+    const empty = await page.evaluate(() => {
+      const saved = state.progress;
+      state.progress = {};
+      const n = clozeItems().length;
+      state.progress = saved;
+      return n;
+    });
+    if (empty !== 0) throw new Error('cloze drew ' + empty + ' items from unread sentences');
+
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'yunus-wa-al-hut'));
+    await page.locator('.lib-card').nth(i).click();
+    await page.waitForSelector('.sentence .word', { timeout: 3000 });
+    // Read the story, then the game has something to draw on.
+    await page.evaluate(() => { STORIES[STORIES.findIndex(s => s.id === 'yunus-wa-al-hut')]
+      .chapters.forEach(c => c.sentences.forEach(s => markRead(s.id))); });
+    const items = await page.evaluate(() => {
+      const out = [];
+      for (const it of clozeItems()) {
+        const st = STORIES.find(s => s.id === it.storyId);
+        // A distractor must never be a second right answer, so no lemma already
+        // standing in the sentence may appear among them.
+        const inSentence = new Set(it.sen.tokens
+          .map(t => (st.glossary[t.lex] || {}).lemma).filter(Boolean));
+        out.push({
+          story: it.storyId,
+          read: !!(state.progress[it.storyId] || {})[it.sen.id],
+          pos: it.entry.pos,
+          // No option may be identifiable by its class: the answer and every
+          // distractor share one part of speech.
+          collides: it.pool.some(g => inSentence.has(g.lemma)),
+          samePos: it.pool.every(g => g.pos === it.entry.pos),
+          enough: it.pool.length >= 2,
+        });
+      }
+      return out;
+    });
+    if (!items.length) throw new Error('no cloze items after reading a whole story');
+    const bad = items.filter(x => !x.read || !x.samePos || !x.enough || x.collides);
+    if (bad.length) throw new Error(bad.length + '/' + items.length + ' bad items, e.g. ' + JSON.stringify(bad[0]));
+    if (items.some(x => !['noun', 'verb', 'propn', 'adv'].includes(x.pos)))
+      throw new Error('a particle was blanked out');
+
+    await page.locator('#gamesOpen').click();
+    await page.waitForSelector('#gCloze', { timeout: 3000 });
+    await page.locator('#gCloze').click();
+    await page.waitForSelector('.game-q', { timeout: 3000 });
+    const q = await page.locator('.game-q').textContent();
+    if (!q.includes('ـــــ')) throw new Error('no gap in the prompt: ' + q);
+    const optCount = await page.locator('.opts [data-o]').count();
+    if (optCount < 3) throw new Error('only ' + optCount + ' options');
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    const right = await page.locator('.opts .right').count();
+    if (right !== 1) throw new Error('expected exactly one correct option, got ' + right);
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('playback offsets index the exact string that is spoken', async () => {
     // The word-following highlight maps a boundary event's charIndex back to a
     // token. That mapping is only as good as its agreement with the join speak()

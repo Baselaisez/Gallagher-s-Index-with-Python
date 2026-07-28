@@ -27,6 +27,7 @@ import json
 import re
 import sys
 import unicodedata
+from datetime import date
 from pathlib import Path
 
 # Arabic diacritics: tanwin/harakat/shadda/sukun (064B-0652), quranic marks
@@ -34,7 +35,8 @@ from pathlib import Path
 DIACRITICS = re.compile(r"[ً-ٰٕ]")
 ARABIC_ONLY = re.compile(r"^[؀-ۿ\s]+$")
 
-REQUIRED_MANIFEST = ["id", "title", "level", "version", "access", "chapters"]
+REQUIRED_MANIFEST = ["id", "title", "level", "version", "published", "access", "chapters"]
+ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 REQUIRED_NOTE = ["id", "title", "level", "group", "explanation", "examples", "commonMistakes"]
 NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha"}
 
@@ -87,6 +89,18 @@ def check_manifest(pkg: Path, rep: Report):
     title = manifest.get("title", {})
     if not isinstance(title, dict) or "ar" not in title or "en" not in title:
         rep.error("manifest.json: title must contain at least 'ar' and 'en'")
+    # The date the story entered the library, not the date the text was written —
+    # the library's "New" shelf is about what the reader has not seen yet. It is
+    # authored, not derived: a rebuild must never silently re-date the catalogue.
+    published = manifest.get("published")
+    if published is not None:
+        if not isinstance(published, str) or not ISO_DATE_RE.match(published):
+            rep.error(f"manifest.json: published must be YYYY-MM-DD, got {published!r}")
+        else:
+            try:
+                date.fromisoformat(published)
+            except ValueError:
+                rep.error(f"manifest.json: published is not a real date: {published!r}")
     for ch in manifest.get("chapters", []):
         n = ch.get("n")
         chapter_file = pkg / "chapters" / f"{n}.json"
