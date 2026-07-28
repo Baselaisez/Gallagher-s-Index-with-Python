@@ -91,6 +91,7 @@
   .chip.amil { color: var(--danger); border-color: var(--danger); background: transparent; }
   .chip.mamul { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
   .chip.preview { color: var(--danger); border-color: var(--danger); }
+  .chip.freeweek { color: var(--lvl3); border-color: var(--lvl3); background: transparent; font-weight: 700; }
   button.chip.sib { cursor: pointer; color: var(--accent); border-color: var(--accent); background: transparent; }
   button.chip.sib:hover { background: var(--accent-soft); }
   .chip .ar { font-family: var(--ar-font); font-size: 1.05em; }
@@ -147,6 +148,13 @@
 
   section.sentence { margin: 1.15rem 0; padding: .2rem 0; border-radius: var(--radius); }
   section.sentence.playing { background: var(--accent-soft); }
+  /* The word currently being spoken. Only ever set while a boundary event is
+     actually arriving — a browser that never fires one simply keeps the
+     sentence-level highlight, which is the old behaviour. */
+  .word.speaking { background: var(--accent); color: var(--accent-ink); }
+  @media (prefers-reduced-motion: no-preference) {
+    .word.speaking { transition: background .12s linear; }
+  }
   .ar-line {
     direction: rtl; text-align: right; font-family: var(--ar-font);
     font-size: var(--ar-size, 1.7rem); line-height: 2.15; padding: 0 .3rem;
@@ -237,6 +245,7 @@
   }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .btn.saved { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .btn.on { background: var(--ok); border-color: var(--ok); color: #fff; }
 
   /* ---------- grammar ---------- */
   .gnote h3 { font-size: 1.05rem; margin: .8rem 0 .4rem; }
@@ -273,6 +282,7 @@
   .grade-row .easy  { border-color: var(--accent); color: var(--accent); }
   .verb-ask { font-family: var(--ui-font); font-size: .85rem; color: var(--ink-soft); margin-top: .5rem; }
   .verb-answer { font-family: var(--ar-font); font-size: 1.8rem; direction: rtl; margin-top: .3rem; }
+  .note-ex-gloss { font-family: var(--ui-font); font-size: .82rem; color: var(--ink-soft); margin-top: .25rem; }
   .game-q .sigha { font-family: var(--ui-font); font-size: .85rem; color: var(--accent); margin-top: .35rem; }
   .game-q .target { color: var(--accent); border-bottom: 2px solid var(--accent); }
   table.conj.muhtelife th.person { text-align: start; font-family: var(--ui-font); font-size: .78rem; white-space: nowrap; }
@@ -653,6 +663,24 @@ Object.assign(L.en, {
 Object.assign(L.tr, {
   searchGrammar:"Gramer konularında ara…", allLevels:"Tümü", noResults:"Aramanızla eşleşen bir gramer konusu yok."
 });
+Object.assign(L.en, {
+  freeWeek:"Free this week", freeWeekLeft:"{n} days left",
+  rotationChip:"{n} free this week · {d}d",
+  rotationNote:"A couple of premium stories open up free every week — the whole story, not a preview.",
+  addNote:"＋ Review this topic", noteAdded:"✓ In your deck", noteCard:"grammar topic",
+  noteStep1:"Recall what this term means, then tap",
+  noteStep2:"Tap for a worked example",
+  noteStep3:"Did you know it?"
+});
+Object.assign(L.tr, {
+  freeWeek:"Bu hafta ücretsiz", freeWeekLeft:"{n} gün kaldı",
+  rotationChip:"Bu hafta {n} ücretsiz · {d}g",
+  rotationNote:"Her hafta birkaç premium hikâye ücretsiz açılır — önizleme değil, hikâyenin tamamı.",
+  addNote:"＋ Bu konuyu tekrar et", noteAdded:"✓ Destede", noteCard:"gramer konusu",
+  noteStep1:"Bu terimin manasını hatırlayın, sonra dokunun",
+  noteStep2:"İşlenmiş bir misal için dokunun",
+  noteStep3:"Biliyor muydunuz?"
+});
 function ui(){ return L[state.uiLang] || L.en; }
 function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en || "") : (v || ""); }
 
@@ -696,7 +724,56 @@ function setPremium(v){
 }
 // Demo paywall: premium stories show this many free sentences before the upsell.
 const PREVIEW_SENTENCES = 3;
-function storyLocked(st){ return !!st && st.access === "premium" && !state.premium; }
+
+// ---------- the Lite tier: a rotating free set ----------
+// Locking every premium story forever shows a Lite reader the same wall every
+// day, and there is nothing to come back for. So a couple of them open up each
+// week instead — the whole story, not a longer preview.
+//
+// The window is DERIVED from the date, never stored: every device shows the
+// same stories in the same week with no server and no sync, and a reader who
+// clears storage does not get a fresh set. It slides forward by its own width
+// each week, so it walks the premium catalogue and every story comes round in
+// turn rather than the same two recurring.
+const FREE_ROTATION = 2;
+const WEEK_MS = 604800000;
+const DAY_MS = 86400000;
+const ROTATION_EPOCH = Date.UTC(2026, 0, 5); // a Monday — weeks start there
+
+// Midnight of the learner's own day, as a UTC instant, so the week turns over
+// at local midnight rather than at whatever hour UTC midnight falls on here.
+function localMidnight(now){
+  const d = now || new Date();
+  return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+}
+function weekIndex(now){
+  return Math.floor((localMidnight(now) - ROTATION_EPOCH) / WEEK_MS);
+}
+// Sorted by id, not by catalogue order: adding a story to the middle of the
+// library must not reshuffle which stories are free this week.
+function premiumIds(){
+  return STORIES.filter(s => s.access === "premium").map(s => s.id).sort();
+}
+function rotatingFree(now){
+  const ids = premiumIds();
+  if (!ids.length) return new Set();
+  const n = Math.min(FREE_ROTATION, ids.length);
+  const w = weekIndex(now);
+  const start = ((w * n) % ids.length + ids.length) % ids.length; // w is negative before the epoch
+  const out = new Set();
+  for (let k = 0; k < n; k++) out.add(ids[(start + k) % ids.length]);
+  return out;
+}
+function isFreeThisWeek(st){
+  return !!st && st.access === "premium" && !state.premium && rotatingFree().has(st.id);
+}
+function daysLeftInRotation(now){
+  const next = ROTATION_EPOCH + (weekIndex(now) + 1) * WEEK_MS;
+  return Math.max(1, Math.round((next - localMidnight(now)) / DAY_MS));
+}
+function storyLocked(st){
+  return !!st && st.access === "premium" && !state.premium && !rotatingFree().has(st.id);
+}
 let CUR = null, GLOSSARY = {}, MORPH = {}, CHAPTERS = [];
 let SENTENCE_FLAT = []; // [{sen, sec}] in reading order, rebuilt by renderStory() — the
                          // "Play all" queue walks this list.
@@ -750,6 +827,7 @@ function renderStory(){
       if (tok.quoteBefore) line.appendChild(document.createTextNode(tok.quoteBefore));
       const w = document.createElement("span");
       w.className = "word"; w.tabIndex = 0; w.setAttribute("role", "button");
+      w.dataset.ti = ti; // the playback highlight maps a character offset back to this
       // A token inside an idiom is tinted so the span reads as one unit.
       if (phraseAt(sen, ti)) w.classList.add("in-phrase");
       const entry = GLOSSARY[tok.lex];
@@ -868,7 +946,10 @@ function renderLibrary(){
   document.getElementById("backLib").hidden = true;
   setHeader("\u0642\u0650\u0635\u0651\u064e\u0629", ui().libSub,
     `<span class="chip level">${STORIES.length} ${ui().stories}</span>` +
-    (state.premium ? `<button class="chip sib" id="premiumReset">${ui().premiumActive}</button>` : ""));
+    (state.premium ? `<button class="chip sib" id="premiumReset">${ui().premiumActive}</button>`
+      : (premiumIds().length ? `<span class="chip freeweek" title="${escapeAttr(ui().rotationNote)}">${
+          ui().rotationChip.replace("{n}", Math.min(FREE_ROTATION, premiumIds().length))
+                           .replace("{d}", daysLeftInRotation())}</span>` : "")));
   const pr = document.getElementById("premiumReset");
   if (pr) pr.addEventListener("click", () => { setPremium(false); renderLibrary(); });
   storyEl.innerHTML = "";
@@ -882,6 +963,7 @@ function renderLibrary(){
         <span class="chip level">${ui().level} ${st.level} \u00b7 ${levelName(st)}</span>
         <span class="chip">${st.chapters.length} ${ui().chaptersWord}</span>
         <span class="chip">${accessLabel(st)}</span>
+        ${isFreeThisWeek(st) ? `<span class="chip freeweek">${ui().freeWeek}</span>` : ""}
         <span class="chip">${read}/${total} ${ui().readLbl}</span>
       </div>
       <div class="progress"><div style="width:${total ? Math.round(100 * read / total) : 0}%"></div></div>`;
@@ -903,6 +985,8 @@ function openStory(st){
      <span class="chip">${st.chapters.length} ${ui().chaptersWord}</span>
      <span class="chip">${accessLabel(st)}</span>` +
     (storyLocked(st) ? `<span class="chip preview">${ui().previewLbl}</span>` : "") +
+    (isFreeThisWeek(st) ? `<span class="chip freeweek">${ui().freeWeek} · ${
+      ui().freeWeekLeft.replace("{n}", daysLeftInRotation())}</span>` : "") +
     siblings.map(s =>
       `<button class="chip sib" data-sid="${s.id}">${ui().alsoAt} Level ${s.level} \u2192</button>`
     ).join(""));
@@ -1126,10 +1210,34 @@ function reducedMotion(){
 // callback (from a cancelled or superseded utterance) from clearing the
 // wrong highlight or advancing a play-all run that has already moved on.
 let speakGen = 0;
+
+// Clearing the word highlight is its own function because three things end a
+// utterance — finishing, erroring, and being superseded — and every one of them
+// has to leave the page without a stranded highlighted word.
+function clearSpokenWord(){
+  document.querySelectorAll(".word.speaking").forEach(w => w.classList.remove("speaking"));
+}
+
+// The utterance is one string; the page is a row of spans. This maps the
+// character offset a boundary event reports back to the token that produced it,
+// by walking the same join speak() uses to build the string.
+function tokenOffsets(sen){
+  const out = [];
+  let at = 0;
+  sen.tokens.forEach((t, ti) => {
+    const w = t.s.full;
+    out.push({ ti, start: at, end: at + w.length });
+    at += w.length + (t.punctAfter || "").length;
+    if (ti < sen.tokens.length - 1) at += 1; // the space the join inserts
+  });
+  return out;
+}
+
 function speak(sen, sec, onDone){
   // Apply the karaoke highlight synchronously, independent of whether audio
   // actually plays — headless/voiceless environments still get the visual cue.
   document.querySelectorAll(".sentence.playing").forEach(s => s.classList.remove("playing"));
+  clearSpokenWord();
   sec.classList.add("playing");
   sec.scrollIntoView({ block: "center", behavior: reducedMotion() ? "auto" : "smooth" });
   speakGen++;
@@ -1137,6 +1245,7 @@ function speak(sen, sec, onDone){
   const finish = () => {
     if (gen !== speakGen) return; // superseded by a newer speak() call
     sec.classList.remove("playing");
+    clearSpokenWord();
     if (onDone) onDone();
   };
   if (!("speechSynthesis" in window)) { setTimeout(finish, 0); return; }
@@ -1145,6 +1254,21 @@ function speak(sen, sec, onDone){
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "ar-SA"; u.rate = state.rate || 1;
   if (arVoice) u.voice = arVoice;
+  // Follow the voice word by word. Boundary events are best-effort — Chrome
+  // fires them, some engines never do, and none of them are contractual — so
+  // this is written as pure enrichment: if nothing arrives, the sentence-level
+  // highlight is exactly what it always was.
+  const offsets = tokenOffsets(sen);
+  u.onboundary = e => {
+    if (gen !== speakGen) return;
+    if (e.name && e.name !== "word") return;
+    const hit = offsets.find(o => e.charIndex >= o.start && e.charIndex < o.end)
+             || offsets.find(o => e.charIndex < o.end);
+    if (!hit) return;
+    clearSpokenWord();
+    const el = sec.querySelector('.word[data-ti="' + hit.ti + '"]');
+    if (el) el.classList.add("speaking");
+  };
   u.onend = finish;
   // A TTS error (e.g. a browser with no voices installed) must not advance the
   // queue — otherwise "Play all" races through the whole story in silence,
@@ -1152,6 +1276,7 @@ function speak(sen, sec, onDone){
   u.onerror = () => {
     if (gen !== speakGen) return;
     sec.classList.remove("playing");
+    clearSpokenWord();
     if (playAllActive) stopPlayAll();
   };
   speechSynthesis.speak(u);
@@ -1175,6 +1300,7 @@ function stopPlayAll(){
   speakGen++; // invalidate any utterance still in flight
   if ("speechSynthesis" in window) speechSynthesis.cancel();
   document.querySelectorAll(".sentence.playing").forEach(s => s.classList.remove("playing"));
+  clearSpokenWord();
   updatePlayAllBtn();
 }
 
@@ -1213,6 +1339,16 @@ function closeSheet(){
 }
 scrim.addEventListener("click", closeSheet);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+// One listener for every "review this note" button, wherever renderNote landed:
+// the word sheet's Grammar tab, the reference browser, the sentence i'rab sheet.
+sheetInner.addEventListener("click", e => {
+  const b = e.target.closest("[data-note-save]");
+  if (!b) return;
+  const id = b.dataset.noteSave;
+  toggleSaveNote(id);
+  b.textContent = noteSaved(id) ? ui().noteAdded : ui().addNote;
+  b.classList.toggle("on", noteSaved(id));
+});
 
 // The interlinear line has one word's width to work with. A gloss like
 // "to arrive, reach (إِلَى: at)" has to become "to arrive"; the full entry is
@@ -1462,6 +1598,11 @@ function renderNote(gid){
     html += `<p class="mlabel">${ui().mistakes}</p>`;
     g.mistakes.forEach(m => html += `<div class="mistake"><span class="wrong" lang="ar">${m.wrong}</span><span class="right" lang="ar">${m.right}</span><div class="why">${T(m.why)}</div></div>`);
   }
+  // Words and verb paradigms were already reviewable; the topics themselves
+  // were not. Bound by delegation on sheetInner, because renderNote's output is
+  // inlined in three different views.
+  html += `<div class="sheet-actions"><button class="btn ${noteSaved(gid) ? "on" : ""}" data-note-save="${gid}">${
+    noteSaved(gid) ? ui().noteAdded : ui().addNote}</button></div>`;
   return html + `</div>`;
 }
 
@@ -1834,7 +1975,11 @@ function persistDeck(){
   c.hidden = due === 0;
   c.textContent = due;
 }
-function cardKey(c){ return c.type === "verb" ? "verb:" + c.lex : c.lex; }
+function cardKey(c){
+  if (c.type === "verb") return "verb:" + c.lex;
+  if (c.type === "note") return "note:" + c.noteId;
+  return c.lex;
+}
 function toggleSave(tok){
   const i = state.deck.findIndex(d => d.lex === tok.lex && d.type !== "verb");
   if (i >= 0) state.deck.splice(i, 1);
@@ -1856,6 +2001,23 @@ function toggleSaveVerb(lex){
                    gloss: e ? {en: e.gloss.en, tr: e.gloss.tr} : {en: "", tr: ""},
                    srs: {due: 0, ivl: 0}});
   persistDeck();
+}
+// A grammar card asks the madrasah question: name the term, then give an
+// example of it. Only the note id is stored — the title and the example are
+// read from GRAMMAR at review time, so a note that is later corrected or
+// retranslated does not leave a stale copy sitting in someone's deck.
+function noteSaved(id){ return state.deck.some(d => d.type === "note" && d.noteId === id); }
+function toggleSaveNote(id){
+  const i = state.deck.findIndex(d => d.type === "note" && d.noteId === id);
+  if (i >= 0) state.deck.splice(i, 1);
+  else if (GRAMMAR[id]) state.deck.push({type: "note", noteId: id, srs: {due: 0, ivl: 0}});
+  persistDeck();
+}
+function notePrompt(card){
+  const g = GRAMMAR[card.noteId];
+  if (!g) return null;
+  const ex = (g.examples || [])[0];
+  return { ar: g.title.ar, label: T(g.title), exAr: ex ? ex.ar : "", exGloss: ex ? T(ex.gloss) : "" };
 }
 let reviewStep = 0;
 function openDeck(){
@@ -1969,9 +2131,17 @@ function renderDeck(){
   } else {
     const card = queue[0];
     const vp = card.type === "verb" ? verbPrompt(card) : null;
-    const steps = [ui().step1, ui().step2, ui().step3];
+    const np = card.type === "note" ? notePrompt(card) : null;
+    let steps = [ui().step1, ui().step2, ui().step3];
     let front, back;
-    if (vp) {
+    if (np) {
+      steps = [ui().noteStep1, ui().noteStep2, ui().noteStep3];
+      front = np.ar;
+      back = (reviewStep >= 1 ? `<div class="verb-ask">${np.label}</div>` : "") +
+             (reviewStep === 2 && np.exAr
+               ? `<div class="verb-answer" lang="ar">${np.exAr}</div>
+                  <div class="note-ex-gloss">${np.exGloss}</div>` : "");
+    } else if (vp) {
       front = vp.lemma;
       back = `<div class="verb-ask">${vp.label}</div>` +
              (reviewStep === 2 ? `<div class="verb-answer" lang="ar">${vp.answer}</div>` : "");
@@ -1993,8 +2163,14 @@ function renderDeck(){
       </div>`;
     }
   }
-  html += `<ul class="deck-list">` + state.deck.map((d, i) =>
-    `<li><span class="w" lang="ar">${d.lemma}</span><span class="g">${d.type === "verb" ? ui().conjCard : T(d.gloss)}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`).join("") + `</ul>`;
+  html += `<ul class="deck-list">` + state.deck.map((d, i) => {
+    const g = d.type === "note" ? GRAMMAR[d.noteId] : null;
+    const head = d.type === "note" ? (g ? g.title.ar : d.noteId) : d.lemma;
+    const sub = d.type === "verb" ? ui().conjCard
+              : d.type === "note" ? (g ? ui().noteCard + " · " + T(g.title) : ui().noteCard)
+              : T(d.gloss);
+    return `<li><span class="w" lang="ar">${head}</span><span class="g">${sub}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`;
+  }).join("") + `</ul>`;
   sheetInner.innerHTML = html;
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
@@ -2242,6 +2418,10 @@ renderLegend();
 updatePlayAllBtn();
 document.getElementById("backLib").addEventListener("click", renderLibrary);
 if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
+// A grammar card holds only a note id. If a note is ever renamed or retired,
+// the card would have nothing to show, so drop it here rather than render a
+// blank front in the middle of someone's review.
+state.deck = state.deck.filter(c => c.type !== "note" || GRAMMAR[c.noteId]);
 persistDeck();
 
 // ---------- installable / offline ----------

@@ -289,21 +289,79 @@ if (!CHROME) {
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
   });
 
-  await check('premium L4: paywall preview then unlock', async () => {
-    // The TR-UI check left the app in Turkish; this check asserts English tab labels.
+  await check('Lite tier: a free set that rotates with the week', async () => {
     await page.locator('#uiLangSeg [data-ui="en"]').click();
+    await page.evaluate(() => { setPremium(false); renderLibrary(); });
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    const info = await page.evaluate(() => {
+      const sorted = s => [...s].sort();
+      const setOf = d => sorted(rotatingFree(d));
+      const now = new Date();
+      const day = 86400000;
+      const prem = STORIES.filter(s => s.access === 'premium').map(s => s.id).sort();
+      // Step a week at a time: the window slides by its own width, so every
+      // premium story must come round within one lap of the catalogue.
+      const covered = new Set();
+      for (let i = 0; i < prem.length; i++)
+        setOf(new Date(now.getTime() + i * 7 * day)).forEach(id => covered.add(id));
+      const tomorrow = new Date(now.getTime() + day);
+      return {
+        prem,
+        now: setOf(now),
+        again: setOf(now),                                   // purity
+        tomorrow: setOf(tomorrow),
+        rolled: weekIndex(tomorrow) !== weekIndex(now),
+        next: setOf(new Date(now.getTime() + 7 * day)),
+        covered: [...covered].sort(),
+        unlocked: STORIES.filter(s => s.access === 'premium' && !storyLocked(s)).map(s => s.id).sort(),
+      };
+    });
+    const want = Math.min(2, info.prem.length);
+    if (info.now.length !== want) throw new Error('free set size ' + info.now.length + ' expected ' + want);
+    if (info.now.some(id => !info.prem.includes(id))) throw new Error('non-premium in free set: ' + info.now);
+    if (String(info.again) !== String(info.now)) throw new Error('rotation is not a pure function of the date');
+    // Within a week it must not move; across the boundary it must.
+    if (!info.rolled && String(info.tomorrow) !== String(info.now))
+      throw new Error('free set changed inside one week: ' + info.now + ' -> ' + info.tomorrow);
+    if (info.next.some(id => info.now.includes(id)))
+      throw new Error('next week repeats this week: ' + info.now + ' / ' + info.next);
+    if (String(info.covered) !== String(info.prem))
+      throw new Error('rotation never reaches: ' + info.prem.filter(i => !info.covered.includes(i)));
+    // storyLocked must agree with the rotation — the badge and the paywall
+    // cannot disagree about the same story.
+    if (String(info.unlocked) !== String(info.now))
+      throw new Error('unlocked ' + info.unlocked + ' but free set is ' + info.now);
+
+    // A rotated story opens in full — it is free, not a longer preview.
+    const idx = await page.evaluate(id => STORIES.findIndex(s => s.id === id), info.now[0]);
+    const card = page.locator('.lib-card').nth(idx);
+    const chips = await card.locator('.chip').allTextContents();
+    if (!chips.some(c => /Free this week/.test(c))) throw new Error('no rotation badge: ' + chips.join(','));
+    await card.click();
+    const shown = await page.locator('.sentence').count();
+    const total = await page.evaluate(id => STORIES.find(s => s.id === id)
+      .chapters.reduce((n, c) => n + c.sentences.length, 0), info.now[0]);
+    if (shown !== total) throw new Error('rotated story truncated: ' + shown + '/' + total);
+    if (await page.locator('.upsell').count()) throw new Error('rotated story showed the upsell');
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('premium: paywall preview then unlock', async () => {
+    // Whichever premium stories are free this week, four of the six are not.
     const l4 = await page.evaluate(() => {
-      const i = STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L4');
+      const i = STORIES.findIndex(s => s.access === 'premium' && storyLocked(s));
       if (i === -1) return null;
       const s = STORIES[i];
-      return { index: i, access: s.access,
+      return { index: i, id: s.id, access: s.access,
                sentences: s.chapters.reduce((n, c) => n + c.sentences.length, 0) };
     });
-    if (!l4) throw new Error('wasiyyat-abi-hanifa-L4 missing from STORIES');
+    if (!l4) throw new Error('no locked premium story to test the paywall with');
     if (l4.access !== 'premium') throw new Error('access=' + l4.access);
     const card = page.locator('.lib-card').nth(l4.index);
     const chips = await card.locator('.chip').allTextContents();
     if (!chips.some(c => c.includes('Premium'))) throw new Error('no Premium chip: ' + chips.join(','));
+    if (chips.some(c => /Free this week/.test(c))) throw new Error('locked story badged free: ' + l4.id);
     await card.click();
     // Locked: only the preview renders, then the upsell card. The Play-all
     // queue is built from the rendered sentences, so audio is gated too.
@@ -317,6 +375,13 @@ if (!CHROME) {
   });
 
   await check('premium L4 sibling: hal note, sarf table, level switcher', async () => {
+    // Premium is unlocked by the check above, so L4 renders in full whether or
+    // not this week's rotation happens to include it.
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L4'));
+    if (i === -1) throw new Error('wasiyyat-abi-hanifa-L4 missing from STORIES');
+    await page.locator('.lib-card').nth(i).click();
     // مُوَدِّعًا carries the hal note — a Level-4 structure shared via the registry.
     await page.locator('.word', { hasText: 'مُوَدِّعًا' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
@@ -1034,6 +1099,81 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('playback offsets index the exact string that is spoken', async () => {
+    // The word-following highlight maps a boundary event's charIndex back to a
+    // token. That mapping is only as good as its agreement with the join speak()
+    // uses — punctuation and the inter-word space are where it would drift — so
+    // check every token of every sentence in the whole corpus.
+    const bad = await page.evaluate(() => {
+      const out = [];
+      for (const st of STORIES)
+        for (const ch of st.chapters)
+          for (const sen of ch.sentences) {
+            const text = sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' ');
+            tokenOffsets(sen).forEach(o => {
+              const got = text.slice(o.start, o.end);
+              if (got !== sen.tokens[o.ti].s.full)
+                out.push(st.id + ' ' + sen.id + ' [' + o.ti + '] ' + JSON.stringify(got));
+            });
+          }
+      return out.slice(0, 5);
+    });
+    if (bad.length) throw new Error('offset drift: ' + bad.join(' | '));
+
+    // ...and the DOM has to carry the index the mapping resolves to.
+    if (!(await page.locator('.sentence .word').count())) {
+      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.locator('.lib-card').first().click();
+      await page.waitForSelector('.sentence .word', { timeout: 3000 });
+    }
+    const mismatch = await page.evaluate(() => {
+      const words = [...document.querySelectorAll('.sentence')].flatMap(s =>
+        [...s.querySelectorAll('.word')].map((w, i) => w.dataset.ti === String(i)));
+      return { total: words.length, wrong: words.filter(x => !x).length };
+    });
+    if (!mismatch.total) throw new Error('no words on the page to check');
+    if (mismatch.wrong) throw new Error(mismatch.wrong + ' words carry the wrong data-ti');
+  });
+
+  await check('a grammar topic can be reviewed like a word', async () => {
+    await page.evaluate(() => { state.deck.length = 0; persistDeck(); });
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.locator('.ref-list [data-note]').first().click();
+    await page.waitForSelector('.gnote [data-note-save]', { timeout: 3000 });
+    const noteId = await page.locator('.gnote [data-note-save]').first().getAttribute('data-note-save');
+    await page.locator('.gnote [data-note-save]').first().click();
+    const after = await page.locator('.gnote [data-note-save]').first().textContent();
+    if (!/In your deck/.test(after)) throw new Error('button did not flip: ' + after);
+    const card = await page.evaluate(() => state.deck.find(c => c.type === 'note'));
+    if (!card || card.noteId !== noteId) throw new Error('note card not stored: ' + JSON.stringify(card));
+
+    // The card asks the madrasah question: name the term, then give an example.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#deckOpen').click();
+    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 3000 });
+    const front = await page.locator('#reviewCard .front').textContent();
+    const want = await page.evaluate(id => GRAMMAR[id].title.ar, noteId);
+    if (front.trim() !== want) throw new Error('front is ' + front + ' expected ' + want);
+    if (await page.locator('#reviewCard .verb-ask').count()) throw new Error('the answer was on the front');
+    await page.locator('#reviewCard').click();
+    if (!(await page.locator('#reviewCard .verb-ask').count())) throw new Error('step 2 revealed nothing');
+    await page.locator('#reviewCard').click();
+    if (!(await page.locator('#reviewCard .verb-answer').count())) throw new Error('no example at step 3');
+    await page.locator('.grade[data-q="good"]').click();
+    const due = await page.evaluate(() => state.deck[0].srs.due - Date.now());
+    if (!(due > 0)) throw new Error('grading did not schedule the note card: ' + due);
+
+    // A card pointing at a note that no longer exists must never reach a review.
+    const pruned = await page.evaluate(() => {
+      state.deck.push({ type: 'note', noteId: 'no-such-note-xyz', srs: { due: 0, ivl: 0 } });
+      return state.deck.filter(c => c.type !== 'note' || GRAMMAR[c.noteId]).length;
+    });
+    if (pruned !== 1) throw new Error('orphan note card survived the prune: ' + pruned);
+    await page.evaluate(() => { state.deck.length = 0; persistDeck(); });
+    await page.evaluate(() => document.getElementById('scrim').click());
   });
 
   await check('no JS errors on page', async () => {

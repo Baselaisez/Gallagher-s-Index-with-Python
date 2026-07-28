@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         37 browser checks over file:// (Playwright)
+  smoke_test.js         40 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_irab_tr.py      finds i'rab strings with no Turkish yet
@@ -116,6 +116,29 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   that runs the same index — that is the root family view, not a separate feature.
   `jumpTo` opens the story if needed; a hit behind a paywall preview is not on the page,
   so it reopens the search rather than failing silently.
+- **The Lite tier rotates.** `rotatingFree()` derives the week's free premium
+  stories from the date — never from storage, so every device agrees with no
+  server and clearing storage does not mint a new set. The window is
+  `FREE_ROTATION` wide and slides forward by its own width each week, over the
+  premium ids **sorted by id**, so inserting a story mid-catalogue does not
+  reshuffle the week and every story comes round in turn. `storyLocked()` is the
+  single source of truth: the badge, the paywall and the Play-all gate all read
+  it, and the test asserts they cannot disagree. Anything hard-coding a
+  particular premium story as "locked" will break in the week that story is free
+  — pick by `storyLocked()` instead.
+- **Word-following playback.** `tokenOffsets(sen)` maps a boundary event's
+  `charIndex` back to a token by walking the same join `speak()` builds
+  (`full + punctAfter`, spaces between; `quoteBefore`/`quoteAfter` are rendered
+  but never spoken). Boundary events are best-effort — some engines never fire
+  one — so the word highlight is pure enrichment layered over the sentence
+  highlight, which still works with no voices at all. The test checks the
+  offsets against the real string for every token in the corpus, because that
+  agreement is the only thing that can silently drift.
+- **Grammar topics are reviewable.** A `note` card stores only `noteId`; the
+  title and example are read from `GRAMMAR` at review time, so a corrected or
+  retranslated note never leaves a stale copy in someone's deck — and an orphan
+  id is pruned at boot rather than rendered blank. The card asks the madrasah
+  question: name the term, then give an example.
 - **Sentence i'rab sheet**: the إعراب button on each sentence opens the whole sentence
   analysed at once — the exercise a madrasah student writes out. It needs nothing beyond
   per-token `irab`, so it comes free with any new chapter.
