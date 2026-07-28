@@ -17,7 +17,9 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         36 browser checks (Playwright)
+  smoke_test.js         36 browser checks over file:// (Playwright)
+  pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
+  make_icons.js         regenerates prototype/icons from one HTML source
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
@@ -36,6 +38,8 @@ python3 tools/build_prototype.py --package content/user-uploads/deeds-are-by-int
         --html content/user-uploads/deeds-are-by-intentions/reader.html
 NODE_PATH=<scratchpad>/node_modules CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
         node tools/smoke_test.js
+python3 tools/check_i18n.py                                 # no English without Turkish
+node tools/pwa_test.js                                      # only when the head or sw.js changed
 ```
 
 Run every command from `arabic-app/`, but `git add` from the repo root — a recurring
@@ -125,6 +129,18 @@ list. Supplying the Arabic is legitimate when the underlying wording is the
 received one (al-Quduri, al-Hidaya, the Mecelle) — but the manifest must say so
 line by line, and where the Turkish and the received wording diverge, the
 received wording wins and the divergence is recorded.
+
+**The app is installable.** `prototype/` is a deployable directory:
+`reader.html` + `manifest.webmanifest` + `sw.js` + `icons/`. The service worker is
+network-first with a cache fallback, so a reader who is online gets the current
+text and one who is not still gets the app; bump `CACHE` in `sw.js` whenever
+reader.html is rebuilt for a deploy. Registration is guarded by an `https?:`
+protocol test, so file:// and the published artifact are untouched.
+
+**Declare the charset.** reader.html had no `<meta charset>` for a long time
+because the artifact host supplies one. Served standalone the browser guesses,
+and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
+test asserts `document.characterSet === "UTF-8"` for exactly this reason.
 
 ## Grammar sourcing
 
