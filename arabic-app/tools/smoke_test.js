@@ -981,6 +981,61 @@ if (!CHROME) {
     await page.locator('#uiLangSeg [data-ui="en"]').click();
   });
 
+  await check('badiʿ: the third division, and tibaq kept apart from muqabala', async () => {
+    const info = await page.evaluate(() => {
+      const ids = ['tibaq', 'muqabala', 'muraat-al-nazir', 'jinas', 'saj'];
+      const anchored = {};
+      // tibaq is one word against one word; muqabala is a set answered by a set.
+      // A token that claims both would be teaching the reader the distinction is
+      // not real, so the two must never land on the same word.
+      const bothOnOneToken = [];
+      STORIES.forEach(s => s.chapters.forEach(c => c.sentences.forEach(x =>
+        x.tokens.forEach(t => {
+          const g = t.grammar || [];
+          g.forEach(id => { if (ids.includes(id)) anchored[id] = (anchored[id] || 0) + 1; });
+          if (g.includes('tibaq') && g.includes('muqabala'))
+            bothOnOneToken.push(s.id + ' ' + x.id + ' ' + t.s.bare);
+        }))));
+      return {
+        missing: ids.filter(id => !GRAMMAR[id]),
+        wrongGroup: ids.filter(id => GRAMMAR[id] && GRAMMAR[id].group !== 'balagha'),
+        unanchored: ids.filter(id => !anchored[id]),
+        bothOnOneToken,
+        // every badi' note must carry a mistake, like every other note
+        noMistakes: ids.filter(id => GRAMMAR[id] && !(GRAMMAR[id].mistakes || []).length),
+        untranslated: ids.filter(id => GRAMMAR[id] &&
+          (!GRAMMAR[id].title.tr || (GRAMMAR[id].examples || [])
+            .some(x => x.gloss && x.gloss.en && !x.gloss.tr))),
+      };
+    });
+    if (info.missing.length) throw new Error('missing notes: ' + info.missing);
+    if (info.wrongGroup.length) throw new Error('not in balagha: ' + info.wrongGroup);
+    if (info.unanchored.length) throw new Error('not anchored to any token: ' + info.unanchored);
+    if (info.bothOnOneToken.length) throw new Error('tibaq and muqabala on one token: ' + info.bothOnOneToken);
+    if (info.noMistakes.length) throw new Error('no commonMistakes on: ' + info.noMistakes);
+    if (info.untranslated.length) throw new Error('no Turkish on: ' + info.untranslated);
+
+    // الْكِبَارَ / الصِّغَارَ carry two figures at once — the opposition and the
+    // rhyme it falls into — and the word sheet must show both.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
+      await page.locator('#backLib').click();
+      await page.waitForSelector('.lib-card', { timeout: 3000 });
+    }
+    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
+    await page.locator('.lib-card').nth(i).click();
+    await page.locator('.word', { hasText: 'الْكِبَارَ' }).first().click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
+    const titles = await page.locator('.gnote h3').allTextContents();
+    for (const want of ['الطِّبَاق', 'السَّجْع'])
+      if (!titles.some(t => t.includes(want)))
+        throw new Error(want + ' not on the word: ' + titles.join(' | '));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
