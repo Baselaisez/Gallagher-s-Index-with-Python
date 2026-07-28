@@ -1568,6 +1568,60 @@ if (!CHROME) {
     if (probe.behind !== false) throw new Error('a behind-paywall sentence should hide the jump');
   });
 
+  await check('the library remembers the reader: continue card resumes mid-story', async () => {
+    await toLibrary();
+    const target = await page.evaluate(() => {
+      // Start from a clean slate — earlier checks opened stories too.
+      state.lastRead = null; localStorage.removeItem('qissa-lastread');
+      // A free multi-sentence story, so the resume point really renders.
+      const st = STORIES.find(s => s.access === 'free' &&
+        s.chapters.reduce((n, c) => n + c.sentences.length, 0) >= 4);
+      const sens = st.chapters.flatMap(c => c.sentences).map(x => x.id);
+      // The reader stopped after the first two sentences.
+      state.progress[st.id] = { [sens[0]]: 1, [sens[1]]: 1 };
+      localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+      renderLibrary();
+      return { id: st.id, resumeAt: sens[2] };
+    });
+    // Progress alone earns no card — only a story actually opened does.
+    if (await page.locator('.continue-card').count())
+      throw new Error('a continue card appeared with no last-read story');
+    await openStoryCard(target.id);
+    await toLibrary();
+    const cc = page.locator('.continue-card');
+    if (!(await cc.count())) throw new Error('no continue card after opening a story');
+    if ((await cc.getAttribute('data-story-id')) !== target.id)
+      throw new Error('continue card shows the wrong story');
+    if (!/2\/\d+/.test(await cc.textContent()))
+      throw new Error('continue card does not show progress');
+    await cc.click();
+    await page.waitForSelector('.sentence.resume-target', { timeout: 3000 });
+    const at = await page.evaluate(() => document.querySelector('.sentence.resume-target').dataset.id);
+    if (at !== target.resumeAt) throw new Error('resumed at ' + at + ', expected ' + target.resumeAt);
+
+    // A finished story retires the card and earns the ✓ chip in its place.
+    const done = await page.evaluate(id => {
+      const st = STORIES.find(s => s.id === id);
+      const all = {};
+      st.chapters.forEach(c => c.sentences.forEach(x => { all[x.id] = 1; }));
+      state.progress[id] = all;
+      localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+      renderLibrary();
+      return {
+        cards: document.querySelectorAll('.continue-card').length,
+        chip: !!document.querySelector('.lib-card[data-story-id="' + id + '"] .chip.done'),
+      };
+    }, target.id);
+    if (done.cards) throw new Error('a finished story still offers "continue"');
+    if (!done.chip) throw new Error('a finished story shows no ✓ chip');
+    await page.evaluate(id => {
+      delete state.progress[id];
+      localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+      state.lastRead = null; localStorage.removeItem('qissa-lastread');
+      renderLibrary();
+    }, target.id);
+  });
+
   await check('first run asks the level once, and "For you" shelves by it', async () => {
     // A brand-new profile: nothing stored, so this is the first visit.
     const ctx3 = await browser.newContext();

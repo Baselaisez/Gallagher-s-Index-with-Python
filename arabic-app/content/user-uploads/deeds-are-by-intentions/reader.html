@@ -98,6 +98,20 @@
     margin: 0 0 .8rem; font-family: var(--ui-font);
   }
   .lib-sort .ls-lbl { font-size: .78rem; color: var(--ink-soft); }
+  .chip.done { color: var(--ok); border-color: var(--ok); font-weight: 700; }
+  .continue-card {
+    display: block; width: 100%; text-align: inherit; cursor: pointer;
+    border: 1.5px solid var(--accent); border-radius: 12px; background: var(--accent-soft);
+    padding: .8rem .9rem; margin: 0 0 .8rem; font-family: var(--ui-font);
+  }
+  .continue-card .cc-lbl {
+    display: block; font-size: .72rem; text-transform: uppercase;
+    letter-spacing: .06em; color: var(--accent); font-weight: 700;
+  }
+  .continue-card .cc-title { display: block; font-family: var(--ar-font); font-size: 1.3rem; margin: .15rem 0; }
+  .continue-card .cc-sub { display: block; font-size: .8rem; color: var(--ink-soft); margin-bottom: .4rem; }
+  .sentence.resume-target { animation: resumeflash 1.6s ease 1; }
+  @keyframes resumeflash { 0%, 60% { background: var(--accent-soft); } 100% { background: transparent; } }
   .welcome-h { font-family: var(--ui-font); margin: .2rem 0 .4rem; }
   .level-pick { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .8rem 0; font-family: var(--ui-font); }
   .level-pick .btn { margin: 0; text-align: center; }
@@ -731,6 +745,8 @@ Object.assign(L.tr, {
   noteStep3:"Biliyor muydunuz?"
 });
 Object.assign(L.en, {
+  continueReading:"Continue reading",
+  finishedLbl:"Finished",
   welcomeTitle:"Welcome to Qissa",
   welcomeBody:"Stories run from Level {a} (first words) to Level {b} (classical texts as they were written). Pick the level that fits you and the library will shelve the closest stories first — you can change it any time.",
   welcomeUnsure:"Not sure? Start at Level {a}",
@@ -739,6 +755,8 @@ Object.assign(L.en, {
   yourLevelHint:"Tap to change your level"
 });
 Object.assign(L.tr, {
+  continueReading:"Kaldığınız yerden devam",
+  finishedLbl:"Tamamlandı",
   welcomeTitle:"Qissa'ya hoş geldiniz",
   welcomeBody:"Hikâyeler {a}. seviyeden (ilk kelimeler) {b}. seviyeye (asıl klasik metinler) kadar uzanır. Size uyan seviyeyi seçin; kütüphane en yakın hikâyeleri öne dizsin — istediğiniz zaman değiştirebilirsiniz.",
   welcomeUnsure:"Emin değil misiniz? {a}. seviyeden başlayın",
@@ -777,6 +795,8 @@ const state = {
   // 0 = never chosen. The picker asks once on first run; the level chip in the
   // library reopens it, so a wrong first answer costs one tap.
   myLevel: parseInt(localStorage.getItem("qissa-mylevel"), 10) || 0,
+  // The id of the last story opened — what the library's continue card resumes.
+  lastRead: localStorage.getItem("qissa-lastread") || null,
 };
 function setMode(m){
   state.mode = m;
@@ -1100,6 +1120,22 @@ function renderLibrary(){
   const pr = document.getElementById("premiumReset");
   if (pr) pr.addEventListener("click", () => { setPremium(false); renderLibrary(); });
   storyEl.innerHTML = "";
+  // The shelf remembers the reader: the last story they opened, resumable in
+  // one tap, as long as it is unfinished. A finished story retires the card —
+  // its ✓ chip records the achievement and the sorts suggest what is next.
+  const lastSt = continueStory();
+  if (lastSt) {
+    const { total, read } = storyStats(lastSt);
+    const hero = document.createElement("button");
+    hero.className = "continue-card";
+    hero.dataset.storyId = lastSt.id;
+    hero.innerHTML = `<span class="cc-lbl">${ui().continueReading}</span>
+      <span class="cc-title" lang="ar">${lastSt.title.ar}</span>
+      <span class="cc-sub">${T(lastSt.subtitle) || T(lastSt.title) || ""} · ${read}/${total} ${ui().readLbl}</span>
+      <div class="progress"><div style="width:${total ? Math.round(100 * read / total) : 0}%"></div></div>`;
+    hero.addEventListener("click", () => openStory(lastSt, true));
+    storyEl.appendChild(hero);
+  }
   const sortBar = document.createElement("div");
   sortBar.className = "lib-sort";
   const fresh = STORIES.filter(isNewStory).length;
@@ -1130,7 +1166,8 @@ function renderLibrary(){
         <span class="chip">${st.chapters.length} ${ui().chaptersWord}</span>
         <span class="chip">${accessLabel(st)}</span>
         ${isFreeThisWeek(st) ? `<span class="chip freeweek">${ui().freeWeek}</span>` : ""}
-        <span class="chip">${read}/${total} ${ui().readLbl}</span>
+        ${total && read === total ? `<span class="chip done">✓ ${ui().finishedLbl}</span>`
+          : `<span class="chip">${read}/${total} ${ui().readLbl}</span>`}
       </div>
       <div class="progress"><div style="width:${total ? Math.round(100 * read / total) : 0}%"></div></div>`;
     card.addEventListener("click", () => openStory(st));
@@ -1179,9 +1216,31 @@ function buildSenAudio(){
     });
   });
 }
-function openStory(st){
+// The story a returning reader is offered to pick back up: the last one they
+// opened, as long as it exists and is not finished.
+function continueStory(){
+  const st = STORIES.find(s => s.id === state.lastRead);
+  if (!st) return null;
+  const { total, read } = storyStats(st);
+  return read < total ? st : null;
+}
+// Land the returning reader on the first sentence they have not read, not at
+// the top of a text they have already worked through.
+function resumeScroll(){
+  const prog = state.progress[CUR ? CUR.id : ""] || {};
+  const hit = SENTENCE_FLAT.find(({ sen }) => !prog[sen.id]);
+  if (!hit) return;
+  hit.sec.scrollIntoView({ block: "center" });
+  hit.sec.classList.add("resume-target");
+  hit.sec.addEventListener("animationend", () => hit.sec.classList.remove("resume-target"), { once: true });
+}
+function openStory(st, resume){
   stopPlayAll();
   CUR = st; GLOSSARY = st.glossary; MORPH = st.morph; CHAPTERS = st.chapters;
+  if (STORIES.length > 1) {
+    state.lastRead = st.id;
+    localStorage.setItem("qissa-lastread", st.id);
+  }
   buildSenAudio();
   document.body.classList.remove("lib-mode");
   const back = document.getElementById("backLib");
@@ -1206,6 +1265,7 @@ function openStory(st){
   closeSheet();
   renderStory();
   window.scrollTo(0, 0);
+  if (resume) resumeScroll();
 }
 
 

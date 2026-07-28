@@ -199,6 +199,14 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   of sorting by a default. Every fresh-context test (smoke, PWA) pre-seeds
   `qissa-welcomed=1` unless it is testing onboarding itself, or the sheet sits
   over whatever the test clicks first.
+- **The library remembers the reader.** `qissa-lastread` stores only the id of
+  the last story opened; the continue card offers it back while it is
+  unfinished, and `openStory(st, true)` resumes at the first sentence whose id
+  is not in `state.progress` (scroll + one flash of `.resume-target`). A
+  finished story retires the card — `read === total` swaps the read-count chip
+  for ✓ instead. The card is a `.continue-card`, deliberately NOT a
+  `.lib-card`: every test and sort walks `.lib-card`, and the hero must never
+  count as a second copy of the story.
 - **`cardKey()` is the only statement of card identity.** Membership tests and
   toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
   declares its key once instead of adding a fourth hand-written `findIndex`
