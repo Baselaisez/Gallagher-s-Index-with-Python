@@ -230,6 +230,9 @@ def main():
             {"id": "awamil", "ar": "الْعَوَامِل",
              "label": {"en": "Governors — after Birgivi's Awamil",
                        "tr": "Âmiller — Birgivî'nin Avâmil'ine göre"}},
+            {"id": "balagha", "ar": "الْبَلَاغَة",
+             "label": {"en": "Rhetoric — after al-Qazwini's Talkhis",
+                       "tr": "Belâgat — Kazvînî'nin Telhîs'ine göre"}},
         ]),
         END,
     ])

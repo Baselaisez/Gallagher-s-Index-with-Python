@@ -1,0 +1,65 @@
+{
+  "id": "istiara",
+  "title": {
+    "ar": "الِاسْتِعَارَة",
+    "en": "Metaphor — a simile with one side removed",
+    "tr": "İstiâre — bir tarafı hazfedilmiş teşbih"
+  },
+  "level": 5,
+  "group": "balagha",
+  "classicalSources": [
+    "تلخيص المفتاح (القزويني) — علم البيان",
+    "علاقات المجاز",
+    "مختصر السعد"
+  ],
+  "explanation": {
+    "en": "An isti'ara is a majaz whose relation is resemblance — which is to say, a tashbih with one of its two sides deleted and the tool gone with it. If what is named is the thing compared TO, the metaphor is مُصَرَّحَة (declared): «رَأَيْتُ أَسَدًا» names the lion and leaves the man out. If what is named is the thing compared and something belonging to the other side is attached to it instead, it is مَكْنِيَّة (implicit): «أَنْشَبَتِ الْمَنِيَّةُ أَظْفَارَهَا» never says «beast», but claws give it away — and the claws themselves are called تَخْيِيلِيَّة, the imagined trace of the deleted side. That second kind is what the wasiyya uses when it says laughter «kills» the heart: death belongs to a living thing, so the heart is being treated as one, and يُمِيتُ is the trace. Test it the same way every time: name the two sides, ask which one is missing from the words, and the answer tells you which kind you have.",
+    "tr": "İstiâre, alâkası müşâbehet olan mecazdır; yani iki tarafından biri ve onunla birlikte edâtı hazfedilmiş bir teşbihtir. Zikredilen müşebbehün bih ise istiâre musarrahadır: «رَأَيْتُ أَسَدًا» aslanı zikreder, adamı bırakır. Zikredilen müşebbeh olup öbür tarafın levazımından biri ona eklenmişse mekniyyedir: «أَنْشَبَتِ الْمَنِيَّةُ أَظْفَارَهَا» hiç «yırtıcı» demez, fakat pençeler ele verir — pençelerin kendisine de tahyîliyye denir, hazfedilen tarafın hayalî izidir. Vasiyet, gülmenin kalbi «öldürdüğünü» söylerken bu ikinciyi kullanır: ölmek diriye ait olduğu için kalp diri sayılmıştır, يُمِيتُ ise izidir. Ölçü her seferinde aynıdır: iki tarafı adlandırın, hangisinin lafızda bulunmadığını sorun; cevap türü söyler."
+  },
+  "examples": [
+    {
+      "ar": "وَإِيَّاكَ أَنْ تُكْثِرَ الضَّحِكَ فَإِنَّهُ يُمِيتُ الْقَلْبَ.",
+      "en": "Beware of laughing much, for it kills the heart — the heart is treated as a living thing and «kills» is the trace: isti'ara makniyya.",
+      "tr": "Çok gülmekten sakın, zira kalbi öldürür — kalp diri sayılmış, «öldürür» izdir: istiâre-i mekniyye.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 4,
+      "sentence": "s21"
+    },
+    {
+      "ar": "تَهَاوَنَ بِكَ وَصَغُرَتْ مَنْزِلَتُكَ عِنْدَهُ.",
+      "en": "Your standing shrank with him — a standing has no size; smallness is borrowed from bodies.",
+      "tr": "Yanında mevkiin küçüldü — mevkiin bir boyu yoktur; küçüklük cisimlerden ödünç alınmıştır.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 1,
+      "sentence": "s3"
+    },
+    {
+      "ar": "أَنْشَبَتِ الْمَنِيَّةُ أَظْفَارَهَا.",
+      "en": "Death sank its claws in — the beast is never named; the claws are the whole clue.",
+      "tr": "Ölüm pençelerini geçirdi — yırtıcı hiç anılmaz; bütün karîne pençelerdir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "«يُمِيتُ الْقَلْبَ» مَجَازٌ مُرْسَلٌ",
+      "right": "اسْتِعَارَةٌ، لِأَنَّ الْعَلَاقَةَ مُشَابَهَةٌ",
+      "why": {
+        "en": "The relation here is likeness — the heart is being likened to something that can die. That makes it an isti'ara, not a mursal.",
+        "tr": "Buradaki alâka benzerliktir — kalp, ölebilen bir şeye benzetilmiştir. Bu mürsel değil istiâredir."
+      }
+    },
+    {
+      "wrong": "الِاسْتِعَارَةُ الْمَكْنِيَّةُ تَذْكُرُ الْمُشَبَّهَ بِهِ",
+      "right": "الْمَكْنِيَّةُ تَحْذِفُ الْمُشَبَّهَ بِهِ وَتُبْقِي مِنْ لَوَازِمِهِ شَيْئًا",
+      "why": {
+        "en": "It is the makniyya that deletes the thing compared to; naming it makes the metaphor musarraha instead.",
+        "tr": "Müşebbehün bihi hazfeden mekniyyedir; onu zikretmek istiâreyi musarraha yapar."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "tashbih",
+    "haqiqa-majaz",
+    "kinaya"
+  ]
+}

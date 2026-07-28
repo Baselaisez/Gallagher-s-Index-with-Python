@@ -36,7 +36,7 @@ ARABIC_ONLY = re.compile(r"^[؀-ۿ\s]+$")
 
 REQUIRED_MANIFEST = ["id", "title", "level", "version", "access", "chapters"]
 REQUIRED_NOTE = ["id", "title", "level", "group", "explanation", "examples", "commonMistakes"]
-NOTE_GROUPS = {"sarf", "nahw", "awamil"}
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha"}
 
 
 def strip_diacritics(text: str) -> str:

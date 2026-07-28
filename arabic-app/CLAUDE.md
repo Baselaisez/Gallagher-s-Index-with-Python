@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          65 global grammar notes — one JSON per topic, shared by every story
+  grammar/          70 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         35 browser checks (Playwright)
+  smoke_test.js         36 browser checks (Playwright)
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
 research/sources/       transcribed madrasah texts + README on provenance
@@ -128,7 +128,12 @@ received wording wins and the divergence is recorded.
 
 ## Grammar sourcing
 
-Emsile, Bina, Maqsud, Birgivi's Awamil, Izhar, al-Kafiya (Ibn al-Hajib), Qatr al-Nada.
+Emsile, Bina, Maqsud, Birgivi's Awamil, Izhar, al-Kafiya (Ibn al-Hajib), Qatr al-Nada,
+and — for the balagha group — al-Qazwini's Talkhis and the ʿAlaqat treatise.
+
+The registry has **four** groups now: sarf, nahw, awamil, balagha. Adding a fifth
+means adding it to `NOTE_GROUPS` in the validator and to `REF_GROUPS` in the
+builder; nothing else knows about the list.
 Transcriptions live in `research/sources/` with provenance in its README. Teach from
 the books' own categories and wording — but generalize; do not overfit to one book's
 example sentences.

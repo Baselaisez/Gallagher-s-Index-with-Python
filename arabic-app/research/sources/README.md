@@ -114,13 +114,24 @@ states confirm each of them independently:
 Nothing had to be corrected. That is the strongest argument yet for storing
 these forms rather than deriving them at build time.
 
-### Balagha: a layer the app does not have yet
+### Balagha: the layer now exists
 
 The Talkhis and the ʿAlaqat documents are rhetoric, not grammar — majaz and its
-relations, tashbih, kinaya, the three divisions maʿani / bayan / badiʿ. The
-registry currently has three groups (sarf, nahw, awamil) and no place to put
-them. Adding a fourth group is the natural next step once the nahw coverage
-stops growing; the material is transcribed and waiting.
+relations, tashbih, kinaya, the divisions maʿani / bayan / badiʿ. The registry
+now carries a fourth group, `balagha`, with five notes drawn from them:
+`haqiqa-majaz`, `tashbih`, `istiara`, `kinaya`, `qasr`.
+
+The ʿAlaqat treatise supplies the definitions verbatim, which is why the notes
+can quote them rather than paraphrase: majaz is «لفظ مستعمل في غير ما وضع له …
+بعلاقة بينهما مع قرينة مانعة عن إرادة الموضوع له», kinaya is «لفظ مستعمل في لازم
+ما وضع له بلا قرينة مانعة» — and that last clause, *without* a blocking clue, is
+the whole difference between the two.
+
+Every note anchors to text already in the corpus. That was the argument for the
+layer: the stories had been doing rhetoric all along — «be to him as you are to
+fire», «laughter kills the heart», «beasts are what get called from behind» —
+and the app had nothing to say about it. Only maʿani and bayan are covered;
+badiʿ is still untouched.
 
 ## Fifth batch — the 35 babs, and a fiqh text with no Arabic in it
 

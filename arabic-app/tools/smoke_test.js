@@ -940,6 +940,47 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('balagha: a fourth group, anchored to the imagery already in the stories', async () => {
+    const info = await page.evaluate(() => {
+      const ids = ['haqiqa-majaz', 'tashbih', 'istiara', 'kinaya', 'qasr'];
+      const anchored = {};
+      STORIES.forEach(s => s.chapters.forEach(c => c.sentences.forEach(x =>
+        x.tokens.forEach(t => (t.grammar || []).forEach(g => {
+          if (ids.includes(g)) anchored[g] = (anchored[g] || 0) + 1;
+        })))));
+      return {
+        present: ids.filter(id => GRAMMAR[id]).length,
+        group: ids.map(id => GRAMMAR[id] && GRAMMAR[id].group),
+        inRefGroups: REF_GROUPS.some(g => g.id === 'balagha'),
+        anchored,
+        // every note must be bilingual like the rest
+        untranslated: ids.filter(id => GRAMMAR[id] &&
+          (!GRAMMAR[id].title.tr || (GRAMMAR[id].examples || [])
+            .some(x => x.gloss && x.gloss.en && !x.gloss.tr))),
+      };
+    });
+    if (info.present !== 5) throw new Error('balagha notes present: ' + info.present + '/5');
+    if (info.group.some(g => g !== 'balagha')) throw new Error('wrong group: ' + info.group);
+    if (!info.inRefGroups) throw new Error('balagha missing from REF_GROUPS');
+    if (info.untranslated.length) throw new Error('no Turkish on: ' + info.untranslated);
+    for (const id of ['haqiqa-majaz', 'tashbih', 'istiara', 'kinaya', 'qasr'])
+      if (!info.anchored[id]) throw new Error(id + ' is not anchored to any token');
+
+    // it shows up as its own section of the reference, in both languages
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    let heads = await page.locator('.ref-group').allTextContents();
+    if (!heads.some(h => /Rhetoric/.test(h))) throw new Error('no rhetoric group: ' + heads.join('|'));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    heads = await page.locator('.ref-group').allTextContents();
+    if (!heads.some(h => /Belâgat/.test(h))) throw new Error('rhetoric group not Turkish: ' + heads.join('|'));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -1,0 +1,66 @@
+{
+  "id": "qasr",
+  "title": {
+    "ar": "الْقَصْر (الْحَصْر)",
+    "en": "Restriction — «only this, and nothing else»",
+    "tr": "Kasr (hasr) — «ancak bu»"
+  },
+  "level": 4,
+  "group": "balagha",
+  "classicalSources": [
+    "تلخيص المفتاح (القزويني) — علم المعاني",
+    "مختصر السعد",
+    "الكافية (ابن الحاجب)"
+  ],
+  "explanation": {
+    "en": "Qasr is confining one thing to another: this predicate to this subject and to nothing else. Arabic has four standard ways to do it, and they are not interchangeable. (1) NEGATION THEN EXCEPTION — مَا مُحَمَّدٌ إِلَّا رَسُولٌ. This is the strongest and the most explicit; it is used when the listener firmly believes the opposite, and it denies before it affirms. (2) إِنَّمَا — إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ. Softer, and used when the point is treated as already granted or easily granted; it affirms without a preceding denial. (3) FRONTING what would normally come later — إِيَّاكَ نَعْبُدُ puts the object first and thereby confines the worship. (4) The particles إِنَّمَا's cousins, بَلْ and لَا and لَكِنْ, which restrict by correcting. Reading the choice is the skill: the hadith says إِنَّمَا الْأَعْمَالُ because nobody was denying it, while the verse says مَا مُحَمَّدٌ إِلَّا رَسُولٌ at a moment when people were doing exactly that.",
+    "tr": "Kasr, bir şeyi başka bir şeye hasretmektir: bu hükmü bu konuya, başkasına değil. Arapçada dört yolu vardır ve birbirinin yerine geçmezler. (1) NEFY VE İSTİSNÂ — مَا مُحَمَّدٌ إِلَّا رَسُولٌ. En kuvvetli ve en açık olanıdır; muhatap aksine kesin inandığında kullanılır, ispattan önce nefyeder. (2) إِنَّمَا — إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ. Daha yumuşaktır; hüküm zaten kabul edilmiş yahut kolay kabul edilir sayıldığında kullanılır, öncesinde nefy olmadan ispat eder. (3) TAKDÎM — normalde sonra gelecek olanı öne almak: إِيَّاكَ نَعْبُدُ mef'ûlü öne alır ve ibadeti böylece hasreder. (4) بَلْ، لَا، لَكِنْ gibi tashih yoluyla hasreden edatlar. Hangisinin seçildiğini okumak asıl hünerdir: hadis إِنَّمَا الْأَعْمَالُ der, çünkü kimse bunu inkâr etmiyordu; âyet ise insanların tam da bunu yaptığı bir anda مَا مُحَمَّدٌ إِلَّا رَسُولٌ der."
+  },
+  "examples": [
+    {
+      "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ.",
+      "en": "Deeds are only by intentions — إِنَّمَا, affirming what nobody was contesting.",
+      "tr": "Ameller ancak niyetlerledir — kimsenin itiraz etmediğini ispat eden إِنَّمَا.",
+      "sourceStory": "deeds-are-by-intentions"
+    },
+    {
+      "ar": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ.",
+      "en": "Muhammad is but a messenger — negation then exception, at a moment when people believed otherwise.",
+      "tr": "Muhammed ancak bir resuldür — insanların aksine inandığı bir anda nefy ve istisnâ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "chapter": 4,
+      "sentence": "s4"
+    },
+    {
+      "ar": "وَإِنَّمَا أُوصِيكَ لِمَصْلَحَتِكَ وَمَصْلَحَةِ الْمُسْلِمِينَ.",
+      "en": "I counsel you only for your good and the good of the Muslims — إِنَّمَا confining the motive.",
+      "tr": "Sana ancak senin ve Müslümanların iyiliği için nasihat ediyorum — sebebi hasreden إِنَّمَا.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 2,
+      "sentence": "s12"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "إِنَّمَا وَمَا … إِلَّا سَوَاءٌ",
+      "right": "لَا؛ «مَا … إِلَّا» لِلْمُنْكِرِ، وَ«إِنَّمَا» لِغَيْرِ الْمُنْكِرِ",
+      "why": {
+        "en": "They restrict the same thing but address different listeners. Choosing the wrong one is a mistake of tone, and tone is what balagha is about.",
+        "tr": "İkisi de aynı şeyi hasreder fakat farklı muhataba hitap eder. Yanlışını seçmek üslup hatasıdır; belâgat da zaten üsluptur."
+      }
+    },
+    {
+      "wrong": "«إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ» — «الْأَعْمَالُ» اسْمُ إِنَّ مَنْصُوبٌ",
+      "right": "مَرْفُوعٌ، لِأَنَّ «مَا» كَفَّتْ «إِنَّ» عَنِ الْعَمَلِ",
+      "why": {
+        "en": "The مَا that turns إِنَّ into a restrictor also strips its government, so the noun goes back to raf'. The rhetoric and the grammar move together.",
+        "tr": "إِنَّ'yi hasr edatına çeviren مَا, aynı zamanda amelini de düşürür; isim ref'e döner. Belâgat ile nahiv birlikte hareket eder."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "innama-kaffa",
+    "istithna-mufarragh",
+    "ma-la-mushabbaha"
+  ]
+}
