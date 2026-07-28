@@ -1378,6 +1378,66 @@ if (!CHROME) {
     if (mismatch.wrong) throw new Error(mismatch.wrong + ' words carry the wrong data-ti');
   });
 
+  await check('recorded narration plays the sentence\'s slice, and TTS yields to it', async () => {
+    await toLibrary();
+    await page.locator('.lib-card[data-story-id="yunus-wa-al-hut"]').click();
+    await page.waitForSelector('.sentence .word', { timeout: 3000 });
+    // Wire one sentence to a synthetic half-second WAV, exactly as a content
+    // drop would: chapter names the file, the sentence carries its slice.
+    await page.evaluate(() => {
+      const rate = 8000, secs = 0.5, n = rate * secs;
+      const buf = new ArrayBuffer(44 + n), v = new DataView(buf);
+      const w = (o, str) => [...str].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+      w(0, 'RIFF'); v.setUint32(4, 36 + n, true); w(8, 'WAVE');
+      w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true);
+      v.setUint16(22, 1, true); v.setUint32(24, rate, true); v.setUint32(28, rate, true);
+      v.setUint16(32, 1, true); v.setUint16(34, 8, true); w(36, 'data'); v.setUint32(40, n, true);
+      for (let i = 0; i < n; i++) v.setUint8(44 + i, 128); // silence
+      const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+      CHAPTERS[0].audioFile = 'data:audio/wav;base64,' + b64;
+      // The story ships with every sentence already timed (forward-prep), so
+      // naming the file is genuinely all a narration drop needs. Shorten the
+      // first slice so the test does not sit through a full sentence, and
+      // strip the second sentence's span to prove the fallback.
+      CHAPTERS[0].sentences[0].audio = [0, 250];
+      window._savedSpan = CHAPTERS[0].sentences[1].audio;
+      delete CHAPTERS[0].sentences[1].audio;
+      buildSenAudio();
+    });
+    const counts = await page.evaluate(() => ({
+      mapped: SEN_AUDIO.size,
+      timed: CHAPTERS[0].sentences.filter(x => x.audio).length,
+    }));
+    if (counts.mapped !== counts.timed)
+      throw new Error('SEN_AUDIO mapped ' + counts.mapped + ' but ' + counts.timed + ' sentences carry spans');
+
+    await page.locator('.sentence').first().locator('.play:not(.irab-btn)').click();
+    // The real path: the shared narration element takes the chapter file and
+    // plays; the sentence highlight behaves exactly as with TTS.
+    await page.waitForFunction(() => narration.src.startsWith('data:audio/wav'), null, { timeout: 3000 });
+    if (!(await page.locator('.sentence.playing').count())) throw new Error('no sentence highlight during narration');
+    // The slice ends on its own — [0,250]ms plus the guard timer — and the
+    // highlight must come down with it, with nothing left playing.
+    await page.waitForFunction(() => narration.paused, null, { timeout: 4000 });
+    await page.waitForFunction(() => !document.querySelector('.sentence.playing'), null, { timeout: 2000 });
+
+    // A sentence WITHOUT a slice must still take the synthesis path even
+    // while its chapter has a recording — half-wired narration falls back.
+    const second = await page.evaluate(() => !!SEN_AUDIO.get(CHAPTERS[0].sentences[1].id));
+    if (second) throw new Error('a sentence with no span was mapped to the recording');
+    await page.locator('.sentence').nth(1).locator('.play:not(.irab-btn)').click();
+    await page.waitForFunction(() => narration.paused, null, { timeout: 2000 }); // recording untouched
+    // Undo the injection so later checks see the story as shipped.
+    await page.evaluate(() => {
+      delete CHAPTERS[0].audioFile;
+      CHAPTERS[0].sentences[1].audio = window._savedSpan;
+      delete window._savedSpan;
+      buildSenAudio();
+    });
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check('a grammar topic can be reviewed like a word', async () => {
     await page.evaluate(() => { state.deck.length = 0; persistDeck(); });
     await page.locator('#refOpen').click();

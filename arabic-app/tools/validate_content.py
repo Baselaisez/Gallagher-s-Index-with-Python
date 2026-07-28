@@ -115,6 +115,12 @@ def check_manifest(pkg: Path, rep: Report):
         chapter_file = pkg / "chapters" / f"{n}.json"
         if not chapter_file.exists():
             rep.error(f"manifest.json: chapter {n} declared but {chapter_file.name} missing")
+        # Narration is two-part: the chapter names its recording, the sentences
+        # carry their slices. Naming a file that is not in the package would
+        # ship a player pointing at a 404.
+        audio_file = ch.get("audioFile")
+        if audio_file and not (pkg / audio_file).exists():
+            rep.error(f"manifest.json: chapter {n} audioFile '{audio_file}' not found in package")
     attribution = manifest.get("attribution", {})
     if attribution.get("reviewStatus") != "approved":
         rep.warn(

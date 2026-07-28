@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         46 browser checks over file:// (Playwright)
+  smoke_test.js         47 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -125,6 +125,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   chip (an early return there once froze the percentage at 0). Dates are LOCAL:
   a streak is about the learner's day. `newWordsHere()` offers the words of the
   chapter being read, level-ascending, that are not already in the deck.
+- **Recorded narration is a content drop, not an app change.** A chapter names
+  its recording (`audioFile` in the manifest chapter entry, file inside the
+  package — the validator 404-checks it) and each sentence carries its
+  `audio: [startMs, endMs]` slice. `buildSenAudio()` maps sentence → slice when
+  a story opens; `speak()` plays the slice through one shared `Audio` element
+  and only falls back to synthesis where either half is missing — half-wired
+  narration must fall back, never go silent. The stop is a rate-scaled timer
+  plus a `timeupdate` guard (timers drift when the tab is throttled). No
+  word-level highlight on recordings: there are no boundary events, and
+  interpolating one would be a guess — the sentence highlight is the honest
+  cue. To ship narration: record the chapter, time the sentences, add two
+  fields, rebuild. Nothing else.
 - **Corpus search** (`buildCorpus`, `searchCorpus`): one lazily-built index over every
   token in every story, matched against the bare spelling, the lemma, the root (stored
   spaced ق و ل but indexed closed-up too, because that is how it gets typed) and both

@@ -107,7 +107,13 @@ def build_story(pkg: Path, irab_tr=None):
             if sen.get("audio"):
                 sentence["audio"] = sen["audio"]  # [startMs, endMs] — forward-prep for real narration
             sentences.append(sentence)
-        chapters.append({"n": ch["n"], "title": ch["title"], "sentences": sentences})
+        chapter = {"n": ch["n"], "title": ch["title"], "sentences": sentences}
+        if ch.get("audioFile"):
+            # One recorded file per chapter; sentences carry their [startMs, endMs]
+            # slice of it. The reader plays this instead of synthesis wherever
+            # both halves exist.
+            chapter["audioFile"] = ch["audioFile"]
+        chapters.append(chapter)
 
     return {
         "id": manifest["id"],

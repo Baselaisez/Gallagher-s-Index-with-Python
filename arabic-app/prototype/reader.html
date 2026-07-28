@@ -1096,9 +1096,23 @@ function renderLibrary(){
   });
   closeSheet();
 }
+// sen.id -> {src, span} for every sentence that has BOTH a chapter audio file
+// and its own [startMs, endMs]. One without the other plays nothing real —
+// half-wired narration must fall back to TTS, never to silence.
+let SEN_AUDIO = new Map();
+function buildSenAudio(){
+  SEN_AUDIO = new Map();
+  CHAPTERS.forEach(ch => {
+    if (!ch.audioFile) return;
+    ch.sentences.forEach(sen => {
+      if (sen.audio) SEN_AUDIO.set(sen.id, { src: ch.audioFile, span: sen.audio });
+    });
+  });
+}
 function openStory(st){
   stopPlayAll();
   CUR = st; GLOSSARY = st.glossary; MORPH = st.morph; CHAPTERS = st.chapters;
+  buildSenAudio();
   document.body.classList.remove("lib-mode");
   const back = document.getElementById("backLib");
   back.hidden = STORIES.length < 2;
@@ -1373,6 +1387,37 @@ function sentenceText(sen){
   return { text, offsets };
 }
 
+// One shared element for recorded narration. A chapter's audio is one file;
+// each sentence plays its own [startMs, endMs] slice of it.
+const narration = new Audio();
+narration.preload = "auto";
+let narrationTimer = null;
+function stopNarration(){
+  if (narrationTimer) { clearTimeout(narrationTimer); narrationTimer = null; }
+  if (!narration.paused) narration.pause();
+}
+// Plays [a, b] ms of src, then onDone. The stop is belt-and-braces: a timer
+// scaled by the playback rate, plus a timeupdate guard for when the tab was
+// throttled and the timer drifted past the segment end.
+function playSpan(src, span, gen, onDone){
+  const [a, b] = span;
+  if (!narration.src.endsWith(src)) narration.src = src;
+  narration.playbackRate = state.rate || 1;
+  narration.currentTime = a / 1000;
+  const end = () => {
+    if (gen !== speakGen) return;
+    stopNarration();
+    narration.ontimeupdate = null;
+    onDone();
+  };
+  narration.ontimeupdate = () => { if (narration.currentTime * 1000 >= b) end(); };
+  narration.onended = end;
+  const p = narration.play();
+  narrationTimer = setTimeout(end, (b - a) / (state.rate || 1) + 120);
+  // Autoplay refusal (no user gesture yet) must not strand the highlight.
+  if (p && p.catch) p.catch(end);
+}
+
 function speak(sen, sec, onDone){
   // Apply the karaoke highlight synchronously, independent of whether audio
   // actually plays — headless/voiceless environments still get the visual cue.
@@ -1388,6 +1433,16 @@ function speak(sen, sec, onDone){
     clearSpokenWord();
     if (onDone) onDone();
   };
+  stopNarration();
+  // Recorded narration wins over synthesis wherever it exists. No word-level
+  // highlight here — a recording has no boundary events, and interpolating one
+  // would be a guess; the sentence highlight is the honest cue.
+  const real = SEN_AUDIO.get(sen.id);
+  if (real) {
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    playSpan(real.src, real.span, gen, finish);
+    return;
+  }
   if (!("speechSynthesis" in window)) { setTimeout(finish, 0); return; }
   speechSynthesis.cancel();
   const { text, offsets } = sentenceText(sen);
@@ -1442,6 +1497,7 @@ function stopPlayAll(){
   playAllIdx = -1;
   speakGen++; // invalidate any utterance still in flight
   if ("speechSynthesis" in window) speechSynthesis.cancel();
+  stopNarration();
   document.querySelectorAll(".sentence.playing").forEach(s => s.classList.remove("playing"));
   clearSpokenWord();
   updatePlayAllBtn();
