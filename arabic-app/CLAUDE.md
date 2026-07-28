@@ -122,10 +122,30 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   `FREE_ROTATION` wide and slides forward by its own width each week, over the
   premium ids **sorted by id**, so inserting a story mid-catalogue does not
   reshuffle the week and every story comes round in turn. `storyLocked()` is the
-  single source of truth: the badge, the paywall and the Play-all gate all read
+  single source of truth — `isFreeThisWeek()` is defined as its complement
+  rather than as a second copy of the same clauses. The badge, the paywall and
+  the Play-all gate all read
   it, and the test asserts they cannot disagree. Anything hard-coding a
   particular premium story as "locked" will break in the week that story is free
   — pick by `storyLocked()` instead.
+- **One civil-date convention, everywhere.** `localMidnight()` renders the
+  learner's own day as a UTC instant, and everything that subtracts dates must
+  produce its operands the same way. `Date.parse("2026-07-28T00:00:00")` returns
+  *local* midnight, and mixing the two made a story published today read as −1
+  days old anywhere west of UTC — so the NEW badge never appeared on the day a
+  story shipped, for half the world, on a machine where the tests were green.
+  The regression test asserts a story published *today* is zero days old, which
+  holds in any timezone the suite happens to run in.
+- **`cardKey()` is the only statement of card identity.** Membership tests and
+  toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
+  declares its key once instead of adding a fourth hand-written `findIndex`
+  predicate. Test deck membership *positively* (`type === "word"`), never
+  negatively (`type !== "verb"`) — the negative form silently widened to admit
+  note cards, which have no `lex` at all.
+- **`pruneDeck()` is the single guarantee that a stored deck is renderable.**
+  `GRAMMAR` is baked into the file and never changes at runtime, so once it has
+  run no card can point at a missing note — which is why nothing downstream
+  carries a fallback for that case. Don't add one back; extend the prune.
 - **`published` is authored, never derived.** Each manifest carries the day the
   story entered the library (not the day the text was written) — seeded once
   from each package's first git commit, stamped by `analyze_text.py` for
@@ -141,11 +161,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   which words may be blanked and which words may be distractors. Mixing the two
   offered a verb against three particles, which gives the answer away by shape
   alone. Anything drawing multiple-choice options from the glossary needs the
-  same rule.
-- **Word-following playback.** `tokenOffsets(sen)` maps a boundary event's
-  `charIndex` back to a token by walking the same join `speak()` builds
+  same rule. Candidates are bucketed by pos **once per story**
+  (`glossaryByPos`) and pools are resolved only for the eight items a round
+  uses — filtering the whole glossary per candidate made the walk cost
+  tokens-read x glossary-size, so it got slower the more the reader had read.
+- **Word-following playback.** `sentenceText(sen)` returns the spoken string
+  **and** each token's character range from one walk, so the boundary handler
+  and the utterance cannot describe the format differently
   (`full + punctAfter`, spaces between; `quoteBefore`/`quoteAfter` are rendered
-  but never spoken). Boundary events are best-effort — some engines never fire
+  but never spoken). The highlighted element is held in `spokenEl` rather than
+  re-queried: boundary events arrive several times a second and `.word.speaking`
+  has no fast path, so the document sweep walked hundreds of spans to find the
+  one element we had just classed ourselves. Boundary events are best-effort — some engines never fire
   one — so the word highlight is pure enrichment layered over the sentence
   highlight, which still works with no voices at all. The test checks the
   offsets against the real string for every token in the corpus, because that

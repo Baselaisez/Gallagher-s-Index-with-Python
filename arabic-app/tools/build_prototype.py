@@ -179,7 +179,6 @@ def build_catalog(pkgs):
             "storyGroup": manifest.get("storyGroup", manifest["id"]),
             "reviewStatus": manifest.get("attribution", {}).get("reviewStatus", ""),
             "chapters": len(manifest.get("chapters", [])),
-            "rotationWindow": None,
         }
         catalog_packages.append(entry)
 

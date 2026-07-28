@@ -98,9 +98,14 @@ def check_manifest(pkg: Path, rep: Report):
             rep.error(f"manifest.json: published must be YYYY-MM-DD, got {published!r}")
         else:
             try:
-                date.fromisoformat(published)
+                when = date.fromisoformat(published)
             except ValueError:
                 rep.error(f"manifest.json: published is not a real date: {published!r}")
+            else:
+                # A future date makes the story permanently "not yet new" in the
+                # reader, which reads as a missing badge rather than as an error.
+                if when > date.today():
+                    rep.error(f"manifest.json: published is in the future: {published}")
     for ch in manifest.get("chapters", []):
         n = ch.get("n")
         chapter_file = pkg / "chapters" / f"{n}.json"

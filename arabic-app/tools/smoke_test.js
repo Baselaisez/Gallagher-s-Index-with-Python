@@ -53,6 +53,26 @@ if (!CHROME) {
     catch (e) { console.log('FAIL', name, '—', e.message.split('\n')[0]); process.exitCode = 1; }
   };
 
+  // Select a library card by the story it holds, never by position: the library
+  // sorts (by level, or newest-first), so a card's index is not its place in
+  // STORIES. reader.html stamps data-story-id for exactly this.
+  const storyCard = id => page.locator('.lib-card[data-story-id="' + id + '"]');
+  // Get back to the library from wherever the previous check left off, so a
+  // check that fails part-way cannot cascade into the next one.
+  const toLibrary = async () => {
+    await page.evaluate(() => document.getElementById('scrim').click());
+    if (await page.locator('#backLib').isVisible().catch(() => false)) {
+      await page.locator('#backLib').click();
+    }
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  };
+  const openStoryCard = async id => {
+    if (!(await storyCard(id).count())) await toLibrary();
+    const card = storyCard(id);
+    if (!(await card.count())) throw new Error(id + ' is not in the library');
+    await card.click();
+  };
+
   // Data-driven expectations, derived from the page's own STORIES global
   // (see tools/build_prototype.py) instead of hardcoded magic numbers, so
   // the test survives content additions.
@@ -64,7 +84,7 @@ if (!CHROME) {
     if (i === -1) return null;
     const s = STORIES[i];
     return {
-      index: i,
+      id: s.id,
       chapters: s.chapters.length,
       sentences: s.chapters.reduce((n, c) => n + c.sentences.length, 0),
     };
@@ -79,7 +99,7 @@ if (!CHROME) {
   });
 
   await check('open story renders ' + wasiyyaStats.chapters + ' chapters', async () => {
-    await page.locator('.lib-card').nth(wasiyyaStats.index).click();
+    await openStoryCard(wasiyyaStats.id);
     const chapterCount = await page.locator('.chapter-head').count();
     if (chapterCount !== wasiyyaStats.chapters) throw new Error('chapter count=' + chapterCount + ' expected=' + wasiyyaStats.chapters);
     const sentenceCount = await page.locator('.sentence').count();
@@ -284,7 +304,7 @@ if (!CHROME) {
     await page.keyboard.press('Escape');
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
-    const w = await page.locator('.lib-card').nth(wasiyyaStats.index)
+    const w = await storyCard(wasiyyaStats.id)
       .locator('.progress > div').getAttribute('style');
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
   });
@@ -297,8 +317,8 @@ if (!CHROME) {
       const sorted = s => [...s].sort();
       const setOf = d => sorted(rotatingFree(d));
       const now = new Date();
-      const day = 86400000;
-      const prem = STORIES.filter(s => s.access === 'premium').map(s => s.id).sort();
+      const day = DAY_MS;
+      const prem = premiumIds();
       // Step a week at a time: the window slides by its own width, so every
       // premium story must come round within one lap of the catalogue.
       const covered = new Set();
@@ -333,8 +353,7 @@ if (!CHROME) {
       throw new Error('unlocked ' + info.unlocked + ' but free set is ' + info.now);
 
     // A rotated story opens in full — it is free, not a longer preview.
-    const idx = await page.evaluate(id => STORIES.findIndex(s => s.id === id), info.now[0]);
-    const card = page.locator('.lib-card').nth(idx);
+    const card = storyCard(info.now[0]);
     const chips = await card.locator('.chip').allTextContents();
     if (!chips.some(c => /Free this week/.test(c))) throw new Error('no rotation badge: ' + chips.join(','));
     await card.click();
@@ -358,7 +377,7 @@ if (!CHROME) {
     });
     if (!l4) throw new Error('no locked premium story to test the paywall with');
     if (l4.access !== 'premium') throw new Error('access=' + l4.access);
-    const card = page.locator('.lib-card').nth(l4.index);
+    const card = storyCard(l4.id);
     const chips = await card.locator('.chip').allTextContents();
     if (!chips.some(c => c.includes('Premium'))) throw new Error('no Premium chip: ' + chips.join(','));
     if (chips.some(c => /Free this week/.test(c))) throw new Error('locked story badged free: ' + l4.id);
@@ -379,9 +398,9 @@ if (!CHROME) {
     // not this week's rotation happens to include it.
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L4'));
-    if (i === -1) throw new Error('wasiyyat-abi-hanifa-L4 missing from STORIES');
-    await page.locator('.lib-card').nth(i).click();
+    const card4 = page.locator('.lib-card[data-story-id="wasiyyat-abi-hanifa-L4"]');
+    if (!(await card4.count())) throw new Error('wasiyyat-abi-hanifa-L4 missing from the library');
+    await card4.click();
     // مُوَدِّعًا carries the hal note — a Level-4 structure shared via the registry.
     await page.locator('.word', { hasText: 'مُوَدِّعًا' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
@@ -419,7 +438,7 @@ if (!CHROME) {
     });
     if (!fil) throw new Error('ashab-al-fil missing from STORIES');
     if (fil.level !== 1) throw new Error('level=' + fil.level);
-    await page.locator('.lib-card').nth(fil.index).click();
+    await openStoryCard('ashab-al-fil');
     // وَقَفَ is a mithal verb — its amr paradigm must show the waw-dropping قِفْ.
     await page.locator('.word', { hasText: 'وَقَفَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
@@ -450,7 +469,7 @@ if (!CHROME) {
     if (l5.level !== 5) throw new Error('level=' + l5.level);
     if (l5.access !== 'premium') throw new Error('access=' + l5.access);
     if (!l5.hasTahdhir || !l5.hasVI) throw new Error('new grammar notes missing from registry');
-    await page.locator('.lib-card').nth(l5.index).click();
+    await openStoryCard('wasiyyat-abi-yusuf-L5');
     // s2 «وَإِيَّاكَ وَالْكَذِبَ» sits inside the free preview — no unlock needed.
     // Tapping إِيَّاكَ opens the shared at-tahdhir note.
     await page.locator('.word', { hasText: 'إِيَّاك' }).first().click();
@@ -466,9 +485,7 @@ if (!CHROME) {
   await check('idiom: بَيْنَ يَدَيْهِ reads as one unit without losing each word\'s i\'rab', async () => {
     // The two words keep their own analysis (mansub zarf + mudaf ilayh); the
     // banner adds what they mean *together*. Both layers must survive.
-    const idx = await page.evaluate(() =>
-      STORIES.findIndex(s => s.id === 'wasiyyat-abi-yusuf-L5'));
-    await page.locator('.lib-card').nth(idx).click();
+    await openStoryCard('wasiyyat-abi-yusuf-L5');
     const tinted = await page.locator('.sentence .word.in-phrase').count();
     if (tinted < 2) throw new Error('phrase span not tinted in the text: ' + tinted);
     await page.locator('.sentence .word', { hasText: 'بَيْنَ' }).first().click();
@@ -519,15 +536,17 @@ if (!CHROME) {
       throw new Error(`i'rab tr coverage ${coverage.withTr}/${coverage.total}`);
     }
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    const firstId = await page.locator('.lib-card').first().getAttribute('data-story-id');
     await page.locator('.lib-card').first().click();
     await page.locator('.sentence .word').first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
     await page.locator('.sheet .tabs button', { hasText: "İ'rab" }).click();
     const shown = await page.locator('.irab-en').first().textContent();
-    const expected = await page.evaluate(() => {
-      const t = STORIES[0].chapters[0].sentences[0].tokens[0];
+    const expected = await page.evaluate(id => {
+      const t = STORIES.find(s => s.id === id).chapters[0].sentences[0].tokens[0];
       return { tr: t.irab.tr, en: t.irab.en };
-    });
+    }, firstId);
     if (shown.trim() !== expected.tr.trim()) {
       throw new Error(`i'rab under TR UI showed "${shown}" (expected the Turkish "${expected.tr}")`);
     }
@@ -551,8 +570,7 @@ if (!CHROME) {
     });
     if (missing.length) throw new Error('verbs without governed forms: ' + missing.join(', '));
 
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
-    await page.locator('.lib-card').nth(i).click();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
@@ -587,8 +605,7 @@ if (!CHROME) {
       await page.locator('#backLib').click();
       await page.waitForSelector('.lib-card', { timeout: 3000 });
     }
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
-    await page.locator('.lib-card').nth(i).click();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'قَالَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
@@ -610,8 +627,7 @@ if (!CHROME) {
       await page.locator('#backLib').click();
       await page.waitForSelector('.lib-card', { timeout: 3000 });
     }
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
-    await page.locator('.lib-card').nth(i).click();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
 
     // Saving a verb creates a conjugation card, distinct from a meaning card.
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
@@ -756,9 +772,7 @@ if (!CHROME) {
   });
 
   await check("sentence i'rab sheet lists every word and its topics", async () => {
-    const idx = await page.evaluate(() =>
-      STORIES.findIndex(s => s.id === 'aqaid-ahl-al-sunna'));
-    await page.locator('.lib-card').nth(idx).click();
+    await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
     await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
     const [rows, expected] = await Promise.all([
@@ -814,8 +828,7 @@ if (!CHROME) {
     if (info.vii) throw new Error('Form VII must have no passive, got ' + info.vii);
     if (info.ishtaraJussive !== 'يَشْتَرِ') throw new Error('اشترى jussive: ' + info.ishtaraJussive);
     // and the story opens
-    const idx = await page.evaluate(() => STORIES.findIndex(s => s.id === 'kitab-al-buyu'));
-    await page.locator('.lib-card').nth(idx).click();
+    await openStoryCard('kitab-al-buyu');
     await page.waitForSelector('.sentence', { timeout: 3000 });
     await page.locator('.sentence').first().locator('.irab-btn').click();
     await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
@@ -1066,19 +1079,15 @@ if (!CHROME) {
         wrongGroup: ids.filter(id => GRAMMAR[id] && GRAMMAR[id].group !== 'balagha'),
         unanchored: ids.filter(id => !anchored[id]),
         bothOnOneToken,
-        // every badi' note must carry a mistake, like every other note
-        noMistakes: ids.filter(id => GRAMMAR[id] && !(GRAMMAR[id].mistakes || []).length),
-        untranslated: ids.filter(id => GRAMMAR[id] &&
-          (!GRAMMAR[id].title.tr || (GRAMMAR[id].examples || [])
-            .some(x => x.gloss && x.gloss.en && !x.gloss.tr))),
       };
     });
     if (info.missing.length) throw new Error('missing notes: ' + info.missing);
     if (info.wrongGroup.length) throw new Error('not in balagha: ' + info.wrongGroup);
     if (info.unanchored.length) throw new Error('not anchored to any token: ' + info.unanchored);
     if (info.bothOnOneToken.length) throw new Error('tibaq and muqabala on one token: ' + info.bothOnOneToken);
-    if (info.noMistakes.length) throw new Error('no commonMistakes on: ' + info.noMistakes);
-    if (info.untranslated.length) throw new Error('no Turkish on: ' + info.untranslated);
+    // "every note has mistakes / has Turkish" is enforced for all 75 notes by
+    // validate_content.py and check_i18n.py — asserting it here for five would
+    // pass loudly while saying nothing about the other seventy.
 
     // الْكِبَارَ / الصِّغَارَ carry two figures at once — the opposition and the
     // rhyme it falls into — and the word sheet must show both.
@@ -1087,8 +1096,7 @@ if (!CHROME) {
       await page.locator('#backLib').click();
       await page.waitForSelector('.lib-card', { timeout: 3000 });
     }
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'wasiyyat-abi-hanifa-L2'));
-    await page.locator('.lib-card').nth(i).click();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'الْكِبَارَ' }).first().click();
     await page.waitForSelector('.sheet.show', { timeout: 3000 });
     await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
@@ -1107,21 +1115,31 @@ if (!CHROME) {
       await page.locator('#backLib').click();
       await page.waitForSelector('.lib-card', { timeout: 3000 });
     }
-    const data = await page.evaluate(() => ({
-      undated: STORIES.filter(s => !s.published).map(s => s.id),
-      malformed: STORIES.filter(s => s.published && !/^\d{4}-\d{2}-\d{2}$/.test(s.published)).map(s => s.id),
-      fresh: STORIES.filter(isNewStory).map(s => s.id),
-      future: STORIES.filter(s => { const d = daysSincePublished(s); return d !== null && d < 0; }).map(s => s.id),
-    }));
-    if (data.undated.length) throw new Error('stories with no publication date: ' + data.undated);
-    if (data.malformed.length) throw new Error('published is not YYYY-MM-DD on: ' + data.malformed);
-    if (data.future.length) throw new Error('published in the future: ' + data.future);
+    const data = await page.evaluate(() => {
+      // A story published TODAY must read as zero days old in every timezone.
+      // Mixing Date.UTC against a local-midnight parse made it -1 west of UTC,
+      // so the badge never appeared on the day a story shipped.
+      const now = new Date();
+      const iso = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') +
+                  '-' + String(now.getDate()).padStart(2, '0');
+      return {
+        fresh: STORIES.filter(isNewStory).map(s => s.id),
+        todayAge: daysSincePublished({ published: iso }),
+        shippedToday: isNewStory({ published: iso }),
+      };
+    });
+    if (data.todayAge !== 0)
+      throw new Error('a story published today reads as ' + data.todayAge + ' days old');
+    if (!data.shippedToday) throw new Error('a story published today is not badged NEW');
 
-    // Default sort is by level, so the cards are in STORIES order.
+    // "By level" has to actually order by level — it used to be the identity,
+    // which silently meant directory-name order.
     const byLevel = await page.evaluate(() =>
       [...document.querySelectorAll('.lib-card')].map(c => c.dataset.storyId));
-    if (String(byLevel) !== String(await page.evaluate(() => STORIES.map(s => s.id))))
-      throw new Error('default sort is not the catalogue order');
+    const levels = await page.evaluate(ids => ids.map(id =>
+      STORIES.find(s => s.id === id).level), byLevel);
+    for (let i = 1; i < levels.length; i++)
+      if (levels[i] < levels[i - 1]) throw new Error('level sort is out of order: ' + levels);
     const badged = await page.evaluate(() => [...document.querySelectorAll('.lib-card')]
       .filter(c => [...c.querySelectorAll('.chip')].some(x => /NEW/.test(x.textContent)))
       .map(c => c.dataset.storyId));
@@ -1153,15 +1171,15 @@ if (!CHROME) {
     });
     if (empty !== 0) throw new Error('cloze drew ' + empty + ' items from unread sentences');
 
-    const i = await page.evaluate(() => STORIES.findIndex(s => s.id === 'yunus-wa-al-hut'));
-    await page.locator('.lib-card').nth(i).click();
+    await page.locator('.lib-card[data-story-id="yunus-wa-al-hut"]').click();
     await page.waitForSelector('.sentence .word', { timeout: 3000 });
     // Read the story, then the game has something to draw on.
     await page.evaluate(() => { STORIES[STORIES.findIndex(s => s.id === 'yunus-wa-al-hut')]
       .chapters.forEach(c => c.sentences.forEach(s => markRead(s.id))); });
     const items = await page.evaluate(() => {
       const out = [];
-      for (const it of clozeItems()) {
+      // clozeRound resolves the distractor pool, which clozeItems defers.
+      for (const it of clozeRound(50)) {
         const st = STORIES.find(s => s.id === it.storyId);
         // A distractor must never be a second right answer, so no lemma already
         // standing in the sentence may appear among them.
@@ -1183,8 +1201,9 @@ if (!CHROME) {
     if (!items.length) throw new Error('no cloze items after reading a whole story');
     const bad = items.filter(x => !x.read || !x.samePos || !x.enough || x.collides);
     if (bad.length) throw new Error(bad.length + '/' + items.length + ' bad items, e.g. ' + JSON.stringify(bad[0]));
-    if (items.some(x => !['noun', 'verb', 'propn', 'adv'].includes(x.pos)))
-      throw new Error('a particle was blanked out');
+    const offClass = await page.evaluate(() => clozeItems()
+      .filter(it => !CLOZE_POS.includes(it.entry.pos)).length);
+    if (offClass) throw new Error(offClass + ' items blank a word outside CLOZE_POS');
 
     await page.locator('#gamesOpen').click();
     await page.waitForSelector('#gCloze', { timeout: 3000 });
@@ -1213,11 +1232,14 @@ if (!CHROME) {
       for (const st of STORIES)
         for (const ch of st.chapters)
           for (const sen of ch.sentences) {
-            const text = sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' ');
-            tokenOffsets(sen).forEach(o => {
+            // sentenceText builds the string and the ranges together, so this
+            // proves they agree for every token rather than trusting that two
+            // descriptions of the format stayed in step.
+            const { text, offsets } = sentenceText(sen);
+            offsets.forEach((o, i) => {
               const got = text.slice(o.start, o.end);
-              if (got !== sen.tokens[o.ti].s.full)
-                out.push(st.id + ' ' + sen.id + ' [' + o.ti + '] ' + JSON.stringify(got));
+              if (got !== sen.tokens[i].s.full)
+                out.push(st.id + ' ' + sen.id + ' [' + i + '] ' + JSON.stringify(got));
             });
           }
       return out.slice(0, 5);
@@ -1271,7 +1293,8 @@ if (!CHROME) {
     // A card pointing at a note that no longer exists must never reach a review.
     const pruned = await page.evaluate(() => {
       state.deck.push({ type: 'note', noteId: 'no-such-note-xyz', srs: { due: 0, ivl: 0 } });
-      return state.deck.filter(c => c.type !== 'note' || GRAMMAR[c.noteId]).length;
+      pruneDeck();                       // the real thing, not a copy of its filter
+      return state.deck.length;
     });
     if (pruned !== 1) throw new Error('orphan note card survived the prune: ' + pruned);
     await page.evaluate(() => { state.deck.length = 0; persistDeck(); });

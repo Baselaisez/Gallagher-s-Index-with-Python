@@ -251,7 +251,6 @@
   }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .btn.saved { background: var(--ok); border-color: var(--ok); color: #fff; }
-  .btn.on { background: var(--ok); border-color: var(--ok); color: #fff; }
 
   /* ---------- grammar ---------- */
   .gnote h3 { font-size: 1.05rem; margin: .8rem 0 .4rem; }
@@ -755,8 +754,8 @@ const PREVIEW_SENTENCES = 3;
 // each week, so it walks the premium catalogue and every story comes round in
 // turn rather than the same two recurring.
 const FREE_ROTATION = 2;
-const WEEK_MS = 604800000;
 const DAY_MS = 86400000;
+const WEEK_MS = 7 * DAY_MS;
 const ROTATION_EPOCH = Date.UTC(2026, 0, 5); // a Monday — weeks start there
 
 // Midnight of the learner's own day, as a UTC instant, so the week turns over
@@ -769,29 +768,44 @@ function weekIndex(now){
   return Math.floor((localMidnight(now) - ROTATION_EPOCH) / WEEK_MS);
 }
 // Sorted by id, not by catalogue order: adding a story to the middle of the
-// library must not reshuffle which stories are free this week.
+// library must not reshuffle which stories are free this week. STORIES is a
+// build-time constant, so this is computed once.
+let _premiumIds = null;
 function premiumIds(){
-  return STORIES.filter(s => s.access === "premium").map(s => s.id).sort();
+  if (!_premiumIds) _premiumIds = STORIES.filter(s => s.access === "premium").map(s => s.id).sort();
+  return _premiumIds;
 }
+// Keyed on the week index and nothing else — the smoke test probes future weeks
+// through the `now` argument, so a flat cache would both break it and survive
+// the local-midnight rollover it is supposed to track.
+let _rotWeek = null, _rotSet = null;
 function rotatingFree(now){
-  const ids = premiumIds();
-  if (!ids.length) return new Set();
-  const n = Math.min(FREE_ROTATION, ids.length);
   const w = weekIndex(now);
-  const start = ((w * n) % ids.length + ids.length) % ids.length; // w is negative before the epoch
+  if (w === _rotWeek) return _rotSet;
+  const ids = premiumIds();
   const out = new Set();
-  for (let k = 0; k < n; k++) out.add(ids[(start + k) % ids.length]);
+  if (ids.length) {
+    const n = Math.min(FREE_ROTATION, ids.length);
+    const start = ((w * n) % ids.length + ids.length) % ids.length; // w is negative before the epoch
+    for (let k = 0; k < n; k++) out.add(ids[(start + k) % ids.length]);
+  }
+  _rotWeek = w; _rotSet = out;
   return out;
 }
-function isFreeThisWeek(st){
-  return !!st && st.access === "premium" && !state.premium && rotatingFree().has(st.id);
-}
 function daysLeftInRotation(now){
-  const next = ROTATION_EPOCH + (weekIndex(now) + 1) * WEEK_MS;
-  return Math.max(1, Math.round((next - localMidnight(now)) / DAY_MS));
+  // Both operands are exact UTC midnights and a week is exactly seven days,
+  // so this is already a whole number in 1..7 — nothing to round or clamp.
+  return (ROTATION_EPOCH + (weekIndex(now) + 1) * WEEK_MS - localMidnight(now)) / DAY_MS;
 }
 function storyLocked(st){
   return !!st && st.access === "premium" && !state.premium && !rotatingFree().has(st.id);
+}
+// Defined as the complement of storyLocked rather than as a second copy of the
+// same three clauses: the badge and the paywall are the one pair that must never
+// disagree, and writing the rule twice is what made a test necessary to prove
+// they don't.
+function isFreeThisWeek(st){
+  return !!st && st.access === "premium" && !state.premium && !storyLocked(st);
 }
 let CUR = null, GLOSSARY = {}, MORPH = {}, CHAPTERS = [];
 let SENTENCE_FLAT = []; // [{sen, sec}] in reading order, rebuilt by renderStory() — the
@@ -945,10 +959,15 @@ function accessLabel(st){
 // day a story entered the library, not the day the text was written), and the
 // library both badges and sorts on it.
 const NEW_FOR_DAYS = 14;
+// Both sides of the subtraction in daysSincePublished have to use ONE
+// convention: a civil date rendered as a UTC instant. Date.parse("…T00:00:00")
+// returns *local* midnight, which mixed against localMidnight()'s Date.UTC made
+// a story published today read as −1 days old anywhere west of UTC — so the NEW
+// badge never appeared on the day a story shipped for half the world.
 function publishedMs(st){
-  if (!st.published) return null;
-  const t = Date.parse(st.published + "T00:00:00");   // authored as a plain date
-  return Number.isNaN(t) ? null : t;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(st.published || "");
+  if (!m) return null;
+  return Date.UTC(+m[1], +m[2] - 1, +m[3]);
 }
 function daysSincePublished(st){
   const t = publishedMs(st);
@@ -959,18 +978,21 @@ function isNewStory(st){
   const d = daysSincePublished(st);
   return d !== null && d >= 0 && d < NEW_FOR_DAYS;
 }
-// Undated stories sort last under "Newest" rather than jumping to the top,
-// which is what an epoch-0 fallback would do.
-function storiesSorted(){
-  const list = STORIES.slice();
-  if (state.libSort !== "new") return list;
-  return list.sort((a, b) => {
+// Both orders are real sorts. "By level" used to be the identity, which quietly
+// meant *directory-name* order — the button was labelled for something it did
+// not do. Undated stories sort last under "Newest": null is treated as older
+// than any real date rather than as the epoch, so it cannot outrank a story.
+const LIB_SORTS = {
+  level: (a, b) => a.level - b.level || a.id.localeCompare(b.id),
+  new: (a, b) => {
     const x = publishedMs(a), y = publishedMs(b);
-    if (x === null && y === null) return 0;
-    if (x === null) return 1;
+    if (x === null) return y === null ? a.id.localeCompare(b.id) : 1;
     if (y === null) return -1;
-    return y - x;
-  });
+    return y - x || a.id.localeCompare(b.id);   // same-day releases keep a stable order
+  },
+};
+function storiesSorted(){
+  return STORIES.slice().sort(LIB_SORTS[state.libSort] || LIB_SORTS.level);
 }
 function setLibSort(v){
   state.libSort = v;
@@ -1286,23 +1308,30 @@ let speakGen = 0;
 // Clearing the word highlight is its own function because three things end a
 // utterance — finishing, erroring, and being superseded — and every one of them
 // has to leave the page without a stranded highlighted word.
+// Hold the highlighted element rather than re-querying for it: a boundary event
+// arrives several times a second, and `.word.speaking` is a compound selector
+// with no fast path, so the document-wide sweep walked hundreds of spans to
+// find the one element we had just put the class on ourselves.
+let spokenEl = null;
 function clearSpokenWord(){
-  document.querySelectorAll(".word.speaking").forEach(w => w.classList.remove("speaking"));
+  if (spokenEl) { spokenEl.classList.remove("speaking"); spokenEl = null; }
 }
 
-// The utterance is one string; the page is a row of spans. This maps the
-// character offset a boundary event reports back to the token that produced it,
-// by walking the same join speak() uses to build the string.
-function tokenOffsets(sen){
-  const out = [];
-  let at = 0;
+// One statement of what gets spoken. The utterance is a single string and the
+// page is a row of spans, so the boundary handler needs the character range of
+// each token — and deriving that separately from building the string meant two
+// descriptions of one format that had to be kept in step by a test.
+function sentenceText(sen){
+  const offsets = [];
+  let text = "";
+  // offsets[i] belongs to token i — the index is the token index, so nothing
+  // needs to carry it.
   sen.tokens.forEach((t, ti) => {
-    const w = t.s.full;
-    out.push({ ti, start: at, end: at + w.length });
-    at += w.length + (t.punctAfter || "").length;
-    if (ti < sen.tokens.length - 1) at += 1; // the space the join inserts
+    offsets.push({ start: text.length, end: text.length + t.s.full.length });
+    text += t.s.full + (t.punctAfter || "");
+    if (ti < sen.tokens.length - 1) text += " ";
   });
-  return out;
+  return { text, offsets };
 }
 
 function speak(sen, sec, onDone){
@@ -1322,7 +1351,7 @@ function speak(sen, sec, onDone){
   };
   if (!("speechSynthesis" in window)) { setTimeout(finish, 0); return; }
   speechSynthesis.cancel();
-  const text = sen.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ");
+  const { text, offsets } = sentenceText(sen);
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "ar-SA"; u.rate = state.rate || 1;
   if (arVoice) u.voice = arVoice;
@@ -1330,16 +1359,19 @@ function speak(sen, sec, onDone){
   // fires them, some engines never do, and none of them are contractual — so
   // this is written as pure enrichment: if nothing arrives, the sentence-level
   // highlight is exactly what it always was.
-  const offsets = tokenOffsets(sen);
+  // renderStory appends words in token order and stamps data-ti, so the NodeList
+  // index is the token index — hoisted out of the handler so a boundary event
+  // costs an array lookup rather than a selector match.
+  const words = sec.querySelectorAll(".word");
   u.onboundary = e => {
     if (gen !== speakGen) return;
     if (e.name && e.name !== "word") return;
-    const hit = offsets.find(o => e.charIndex >= o.start && e.charIndex < o.end)
-             || offsets.find(o => e.charIndex < o.end);
-    if (!hit) return;
+    const ti = offsets.findIndex(o => e.charIndex < o.end);
+    const el = ti >= 0 && words[ti];
+    if (!el || el === spokenEl) return;   // punctuation resolves back to the same word
     clearSpokenWord();
-    const el = sec.querySelector('.word[data-ti="' + hit.ti + '"]');
-    if (el) el.classList.add("speaking");
+    el.classList.add("speaking");
+    spokenEl = el;
   };
   u.onend = finish;
   // A TTS error (e.g. a browser with no voices installed) must not advance the
@@ -1419,7 +1451,7 @@ sheetInner.addEventListener("click", e => {
   const id = b.dataset.noteSave;
   toggleSaveNote(id);
   b.textContent = noteSaved(id) ? ui().noteAdded : ui().addNote;
-  b.classList.toggle("on", noteSaved(id));
+  b.classList.toggle("saved", noteSaved(id));
 });
 
 // The interlinear line has one word's width to work with. A gloss like
@@ -1586,7 +1618,7 @@ function openWord(tok, el, tab, ctx){
         return `<span class="seg-item">${sg.form}<small>${e ? T(e.gloss) : ""}</small></span>`;
       }).join("") + `</div>`;
     }
-    const saved = state.deck.some(d => d.lex === tok.lex);
+    const saved = cardSaved("word:" + tok.lex);
     html += `<div class="sheet-actions">
       <button class="btn ${saved ? "saved" : "primary"}" id="saveBtn">${saved ? ui().saved : ui().save}</button>
       ${hasGrammar ? `<button class="btn" id="toGrammar">${ui().gnote}</button>` : ""}
@@ -1613,7 +1645,7 @@ function openWord(tok, el, tab, ctx){
     html += `<p class="sarf-note">${sarfTense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${morph.note ? " " + morph.note : ""}</p>`;
     // Saving a verb adds a conjugation card, not a meaning card.
     if (muhtelife(morph)) {
-      const savedV = state.deck.some(d => d.lex === tok.lex && d.type === "verb");
+      const savedV = cardSaved("verb:" + tok.lex);
       html += `<div class="sheet-actions"><button class="btn ${savedV ? "" : "primary"}" id="saveConjBtn">${savedV ? ui().savedConj : ui().saveConj}</button></div>`;
     }
   } else if (mode === "irab" && tok.irab) {
@@ -1673,7 +1705,7 @@ function renderNote(gid){
   // Words and verb paradigms were already reviewable; the topics themselves
   // were not. Bound by delegation on sheetInner, because renderNote's output is
   // inlined in three different views.
-  html += `<div class="sheet-actions"><button class="btn ${noteSaved(gid) ? "on" : ""}" data-note-save="${gid}">${
+  html += `<div class="sheet-actions"><button class="btn ${noteSaved(gid) ? "saved" : ""}" data-note-save="${gid}">${
     noteSaved(gid) ? ui().noteAdded : ui().addNote}</button></div>`;
   return html + `</div>`;
 }
@@ -2010,7 +2042,7 @@ function updateStreakChip(){
 // deck yet — so "learn N new today" is a button and not a chore.
 function newWordsHere(limit){
   if (!CUR) return [];
-  const have = new Set(state.deck.filter(d => d.type !== "verb").map(d => d.lex));
+  const have = new Set(state.deck.filter(d => d.type === "word").map(d => d.lex));
   const out = [], seen = new Set();
   SENTENCE_FLAT.forEach(({ sen }) => sen.tokens.forEach(tok => {
     const e = GLOSSARY[tok.lex];
@@ -2040,54 +2072,65 @@ function learnNewHere(){
   renderDeck();
 }
 function dueCards(){ const now = Date.now(); return state.deck.filter(c => ensureSrs(c).srs.due <= now); }
-function persistDeck(){
-  localStorage.setItem("qissa-deck", JSON.stringify(state.deck));
+function updateDeckCount(){
   const c = document.getElementById("deckCount");
   const due = dueCards().length;
   c.hidden = due === 0;
   c.textContent = due;
 }
+function persistDeck(){
+  localStorage.setItem("qissa-deck", JSON.stringify(state.deck));
+  updateDeckCount();
+}
+// One statement of what makes two cards the same card. Every membership test
+// and every toggle goes through it, so a new card type declares its identity
+// once instead of adding a fourth hand-written findIndex predicate.
 function cardKey(c){
   if (c.type === "verb") return "verb:" + c.lex;
   if (c.type === "note") return "note:" + c.noteId;
-  return c.lex;
+  return "word:" + c.lex;
 }
-function toggleSave(tok){
-  const i = state.deck.findIndex(d => d.lex === tok.lex && d.type !== "verb");
+function findCard(key){ return state.deck.findIndex(d => cardKey(d) === key); }
+function cardSaved(key){ return findCard(key) >= 0; }
+// Remove if present, otherwise build and add. `make` is only called when the
+// card is actually going in, and may return null to decline.
+function toggleCard(key, make){
+  const i = findCard(key);
   if (i >= 0) state.deck.splice(i, 1);
   else {
-    const e = GLOSSARY[tok.lex];
-    state.deck.push({lex: tok.lex, type: "word", bare: tok.s.bare, lemma: e.lemma,
-                     gloss: {en: e.gloss.en, tr: e.gloss.tr}, srs: {due: 0, ivl: 0}});
+    const card = make();
+    if (!card) return;
+    state.deck.push({...card, srs: {due: 0, ivl: 0}});
   }
   persistDeck();
+}
+function toggleSave(tok){
+  toggleCard("word:" + tok.lex, () => {
+    const e = GLOSSARY[tok.lex];
+    return {lex: tok.lex, type: "word", bare: tok.s.bare, lemma: e.lemma,
+            gloss: {en: e.gloss.en, tr: e.gloss.tr}};
+  });
 }
 // A conjugation card asks for one cell of the Emsile-i Muhtelife rather than a
 // meaning — the drill a madrasah student actually does.
 function toggleSaveVerb(lex){
-  const i = state.deck.findIndex(d => d.lex === lex && d.type === "verb");
-  if (i >= 0) { state.deck.splice(i, 1); persistDeck(); return; }
-  const m = MORPH[lex], e = GLOSSARY[lex];
-  if (!m || !muhtelife(m)) return;
-  state.deck.push({lex, type: "verb", lemma: e ? e.lemma : m.mazi[0],
-                   gloss: e ? {en: e.gloss.en, tr: e.gloss.tr} : {en: "", tr: ""},
-                   srs: {due: 0, ivl: 0}});
-  persistDeck();
+  toggleCard("verb:" + lex, () => {
+    const m = MORPH[lex], e = GLOSSARY[lex];
+    if (!m || !muhtelife(m)) return null;
+    return {lex, type: "verb", lemma: e ? e.lemma : m.mazi[0],
+            gloss: e ? {en: e.gloss.en, tr: e.gloss.tr} : {en: "", tr: ""}};
+  });
 }
 // A grammar card asks the madrasah question: name the term, then give an
 // example of it. Only the note id is stored — the title and the example are
 // read from GRAMMAR at review time, so a note that is later corrected or
 // retranslated does not leave a stale copy sitting in someone's deck.
-function noteSaved(id){ return state.deck.some(d => d.type === "note" && d.noteId === id); }
+function noteSaved(id){ return cardSaved("note:" + id); }
 function toggleSaveNote(id){
-  const i = state.deck.findIndex(d => d.type === "note" && d.noteId === id);
-  if (i >= 0) state.deck.splice(i, 1);
-  else if (GRAMMAR[id]) state.deck.push({type: "note", noteId: id, srs: {due: 0, ivl: 0}});
-  persistDeck();
+  toggleCard("note:" + id, () => GRAMMAR[id] ? {type: "note", noteId: id} : null);
 }
 function notePrompt(card){
-  const g = GRAMMAR[card.noteId];
-  if (!g) return null;
+  const g = GRAMMAR[card.noteId];   // guaranteed by pruneDeck()
   const ex = (g.examples || [])[0];
   return { ar: g.title.ar, label: T(g.title), exAr: ex ? ex.ar : "", exGloss: ex ? T(ex.gloss) : "" };
 }
@@ -2237,9 +2280,9 @@ function renderDeck(){
   }
   html += `<ul class="deck-list">` + state.deck.map((d, i) => {
     const g = d.type === "note" ? GRAMMAR[d.noteId] : null;
-    const head = d.type === "note" ? (g ? g.title.ar : d.noteId) : d.lemma;
+    const head = g ? g.title.ar : d.lemma;
     const sub = d.type === "verb" ? ui().conjCard
-              : d.type === "note" ? (g ? ui().noteCard + " · " + T(g.title) : ui().noteCard)
+              : g ? ui().noteCard + " · " + T(g.title)
               : T(d.gloss);
     return `<li><span class="w" lang="ar">${head}</span><span class="g">${sub}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`;
   }).join("") + `</ul>`;
@@ -2429,10 +2472,28 @@ function renderSpot(){
 const CLOZE_POS = ["noun", "verb", "propn", "adv"];
 let CZ = null;
 
+// Candidate words are bucketed by part of speech ONCE per story. Filtering the
+// whole glossary per candidate token instead made the walk cost
+// tokens-read × glossary-size, so it got slower the more the reader had read —
+// 50,000 pair visits over this corpus to keep the eight items a round uses.
+// The two per-item exclusions are deferred to renderCloze, where they run for
+// eight items rather than five hundred.
+function glossaryByPos(st){
+  if (!st._byPos) {
+    const by = {};
+    for (const [lex, g] of Object.entries(st.glossary)) {
+      if (!g.lemma || !g.level || !g.pos) continue;
+      (by[g.pos] = by[g.pos] || []).push({ lex, ...g });
+    }
+    st._byPos = by;
+  }
+  return st._byPos;
+}
 function clozeItems(){
   const items = [];
   STORIES.forEach(st => {
     const prog = state.progress[st.id] || {};
+    const byPos = glossaryByPos(st);
     st.chapters.forEach(ch => ch.sentences.forEach(sen => {
       if (!prog[sen.id]) return;
       // Every lemma standing in this sentence is disqualified as a distractor:
@@ -2449,18 +2510,34 @@ function clozeItems(){
         // particles, which gives the answer away by shape alone.
         if (!CLOZE_POS.includes(e.pos)) return;
         if (phraseAt(sen, ti)) return;                       // do not gut an idiom
-        const pool = Object.entries(st.glossary).filter(([lex, g]) =>
-          g.pos === e.pos && g.lemma && g.level && !present.has(lex) && g.lemma !== e.lemma);
-        if (pool.length < 2) return;
-        items.push({ storyId: st.id, sen, ti, tok, entry: e, pool: pool.map(p => p[1]) });
+        const bucket = byPos[e.pos] || [];
+        // Cheap admission gate; the exact pool is cut in clozePool() below.
+        if (bucket.length < 3) return;
+        items.push({ storyId: st.id, sen, ti, tok, entry: e, bucket, present });
       });
     }));
   });
   return items;
 }
+// shuffle() is in-place, so this must return a fresh array — the bucket is
+// shared by every item of the same part of speech in the story.
+function clozePool(it){
+  return it.bucket.filter(g => !it.present.has(g.lex) && g.lemma !== it.entry.lemma);
+}
+// Resolve pools only for the items a round will actually use, walking the
+// shuffled candidates until enough of them turn out to be playable.
+function clozeRound(n){
+  const out = [];
+  for (const it of shuffle(clozeItems())) {
+    if (out.length >= n) break;
+    const pool = clozePool(it);
+    if (pool.length >= 2) out.push({ ...it, pool });
+  }
+  return out;
+}
 
 function startCloze(){
-  const items = shuffle(clozeItems()).slice(0, 8);
+  const items = clozeRound(8);
   if (!items.length) {
     sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
       <div class="tabs"><button class="on">${ui().clozeGame}</button></div>
@@ -2587,11 +2664,20 @@ renderLegend();
 updatePlayAllBtn();
 document.getElementById("backLib").addEventListener("click", renderLibrary);
 if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
-// A grammar card holds only a note id. If a note is ever renamed or retired,
-// the card would have nothing to show, so drop it here rather than render a
-// blank front in the middle of someone's review.
-state.deck = state.deck.filter(c => c.type !== "note" || GRAMMAR[c.noteId]);
-persistDeck();
+// The one place a deck loaded from storage is made safe to render. GRAMMAR is
+// baked into the file and never changes at runtime, so once this has run no
+// card can point at a note that is not there — which is why nothing downstream
+// carries a fallback for that case. Also normalises decks written before card
+// types existed.
+function pruneDeck(){
+  const before = state.deck.length;
+  state.deck.forEach(c => { if (!c.type) c.type = "word"; });
+  state.deck = state.deck.filter(c => c.type !== "note" || GRAMMAR[c.noteId]);
+  return state.deck.length !== before;
+}
+// persistDeck writes to localStorage synchronously, so only pay for it when the
+// prune actually removed something rather than on every single page load.
+if (pruneDeck()) persistDeck(); else updateDeckCount();
 
 // ---------- installable / offline ----------
 // Only over http(s): a service worker cannot register from file:// or inside a
