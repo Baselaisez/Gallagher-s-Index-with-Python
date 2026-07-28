@@ -162,7 +162,7 @@ if (!CHROME) {
     await page.locator('.opts button').first().click();
     await page.waitForSelector('.game-why', { timeout: 3000 });
     await page.waitForSelector('.opts button.right', { timeout: 3000 });
-    await page.locator('#sNext').click();
+    await page.locator('#qNext').click();
     await page.waitForSelector('.opts button:not([disabled])', { timeout: 3000 });
   });
 
@@ -171,7 +171,7 @@ if (!CHROME) {
     await page.locator('#gHarakat').click();
     await page.waitForSelector('.game-q', { timeout: 3000 });
     await page.locator('.opts button').first().click();
-    await page.waitForSelector('#hWhy .game-why', { timeout: 3000 });
+    await page.waitForSelector('#qWhy .game-why', { timeout: 3000 });
   });
 
   await check('games: match completes', async () => {
@@ -656,9 +656,9 @@ if (!CHROME) {
     await page.locator('#gBack').click();
     await page.locator('#gCase').click();
     await page.waitForSelector('.game-q .target', { timeout: 3000 });
-    const caseOpts = await page.locator('.opts [data-k]').count();
+    const caseOpts = await page.locator('.opts [data-o]').count();
     if (caseOpts !== 4) throw new Error('expected 4 case options, got ' + caseOpts);
-    await page.locator('.opts [data-k]').first().click();
+    await page.locator('.opts [data-o]').first().click();
     await page.waitForSelector('.opts .right', { timeout: 3000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
@@ -729,13 +729,13 @@ if (!CHROME) {
     await page.locator('#gamesOpen').click();
     await page.locator('.game-pick #gRole').click();
     await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
-    const opts = await page.locator('.opts [data-k]').count();
+    const opts = await page.locator('.opts [data-o]').count();
     if (opts !== 4) throw new Error('expected 4 options, got ' + opts);
     if (!(await page.locator('.game-q .target').count())) throw new Error('no word highlighted');
-    await page.locator('.opts [data-k]').first().click();
+    await page.locator('.opts [data-o]').first().click();
     if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
     // the explanation offers the full sentence sheet
-    await page.locator('#rgSheet').click();
+    await page.locator('#qX0').click();
     await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();

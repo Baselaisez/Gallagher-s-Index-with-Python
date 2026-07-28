@@ -1125,10 +1125,74 @@ function openStory(st){
 }
 
 
+// ---------- the quiz shell ----------
+// Six of the seven games are one machine: a round of items, one question at a
+// time, a row of options, a reveal that marks right / wrongpick and disables
+// the rest, a why panel, zero or one extra action, then next-or-replay. That
+// machine lives here ONCE; each game supplies its items and four hooks. The
+// copies had already drifted (data-o vs data-k, «____» vs «ـــــ») — which is
+// what six transcriptions of one idea do. Match stays outside the shell: a
+// pairing grid with no rounds, no reveal and no score-per-question is
+// genuinely a different game, not a seventh copy of this one.
+function emptyGame(title, msg){
+  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+    <div class="tabs"><button class="on">${title}</button></div>
+    <p class="empty">${msg}</p>`;
+  document.getElementById("gBack").addEventListener("click", openGames);
+}
+// cfg: { title, ask, items, restart, question(it), options(it) -> [{html, ok, ar?}],
+//        why(it), after?(it), extras?: [{label(it), run(it)}] }
+// options() is called once per question and must return the row pre-shuffled —
+// the shell deliberately knows nothing about how a game builds distractors.
+function runQuiz(cfg){
+  const G = { i: 0, score: 0 };
+  (function draw(){
+    const it = cfg.items[G.i];
+    const opts = cfg.options(it);
+    sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+      <div class="tabs"><button class="on">${cfg.title} · ${G.i + 1}/${cfg.items.length}</button></div>
+      <p class="ref-intro">${cfg.ask}</p>
+      ${cfg.question(it)}
+      <div class="opts">` + opts.map((o, oi) =>
+        `<button data-o="${oi}"${o.ar ? ' lang="ar"' : ""}>${o.html}</button>`).join("") + `</div>
+      <div class="game-meta"><span>${ui().score}: ${G.score}</span></div><div id="qWhy"></div>`;
+    document.getElementById("gBack").addEventListener("click", openGames);
+    sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
+      if (opts[+b.dataset.o].ok) G.score++;
+      sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
+        if (opts[+x.dataset.o].ok) x.classList.add("right");
+        else if (x === b) x.classList.add("wrongpick");
+        x.disabled = true;
+      });
+      const extras = cfg.extras || [];
+      document.getElementById("qWhy").innerHTML =
+        `<div class="game-why">${cfg.why(it)}</div>
+         ${cfg.after ? cfg.after(it) : ""}
+         <div class="sheet-actions">` +
+        extras.map((x, k) => `<button class="btn" id="qX${k}">${x.label(it)}</button>`).join("") +
+        `<button class="btn primary" id="qNext">${G.i + 1 < cfg.items.length ? ui().next : ui().replay}</button>
+         </div>`;
+      extras.forEach((x, k) =>
+        document.getElementById("qX" + k).addEventListener("click", () => x.run(it)));
+      document.getElementById("qNext").addEventListener("click", () => {
+        if (++G.i < cfg.items.length) draw(); else cfg.restart();
+      });
+    }));
+  })();
+}
+// The reading line with one token replaced — the question line the sentence
+// games share. Same join as the page renders, so the gap sits where the word did.
+function senWithSlot(sen, ti, slot){
+  return sen.tokens.map((t, k) => (k === ti ? slot(t) : t.s.full) + (t.punctAfter || "")).join(" ");
+}
+// A token's i'rab, shown as every reveal shows it: the Arabic line, then yours.
+function irabWhy(irab){
+  return `<span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${irab.ar}</span><br>${T(irab)}`;
+}
+
 // ---------- game: Emsile-i Muhtelife drill ----------
 // Name a cell of the fourteen, pick the form. The distractors are other cells
 // of the SAME verb, so the learner must know the sigha, not just the root.
-let SG = null;
 function sarfItems(){
   const out = [];
   STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
@@ -1141,38 +1205,18 @@ function sarfItems(){
 function startSarfGame(){
   const items = shuffle(sarfItems()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  SG = { items, i: 0, score: 0 };
-  renderSarfGame();
-}
-function renderSarfGame(){
-  const it = SG.items[SG.i];
-  const right = it.rows[it.ri];
-  const others = it.rows.filter((r, k) => k !== it.ri && r.ar !== right.ar);
-  const opts = shuffle([right.ar, ...shuffle(others).slice(0, 3).map(r => r.ar)]);
-  const label = state.uiLang === "tr" ? right.tr : right.en;
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().sarfGame} · ${SG.i + 1}/${SG.items.length}</button></div>
-    <p class="ref-intro">${ui().sarfGameAsk}</p>
-    <div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${it.lemma}</span>
-      <div class="sigha">${label}</div></div>
-    <div class="opts">` + opts.map((o, oi) => `<button data-o="${oi}" lang="ar">${o}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${SG.score}</span></div><div id="sgWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
-    if (opts[+b.dataset.o] === right.ar) SG.score++;
-    sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
-      if (opts[+x.dataset.o] === right.ar) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    document.getElementById("sgWhy").innerHTML =
-      `<div class="game-why">${it.m.bab} — ${it.m.wazn}${it.m.note ? "<br>" + it.m.note : ""}</div>
-       <div class="sheet-actions"><button class="btn primary" id="sgNext">${SG.i + 1 < SG.items.length ? ui().next : ui().replay}</button></div>`;
-    document.getElementById("sgNext").addEventListener("click", () => {
-      SG.i++;
-      if (SG.i < SG.items.length) renderSarfGame(); else startSarfGame();
-    });
-  }));
+  runQuiz({
+    title: ui().sarfGame, ask: ui().sarfGameAsk, items, restart: startSarfGame,
+    question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${it.lemma}</span>
+      <div class="sigha">${state.uiLang === "tr" ? it.rows[it.ri].tr : it.rows[it.ri].en}</div></div>`,
+    options: it => {
+      const right = it.rows[it.ri];
+      const others = it.rows.filter((r, k) => k !== it.ri && r.ar !== right.ar);
+      return shuffle([{ html: right.ar, ok: true, ar: true },
+        ...shuffle(others).slice(0, 3).map(r => ({ html: r.ar, ok: false, ar: true }))]);
+    },
+    why: it => `${it.m.bab} — ${it.m.wazn}${it.m.note ? "<br>" + it.m.note : ""}`,
+  });
 }
 
 // ---------- game: which case? ----------
@@ -1184,7 +1228,6 @@ const CASE_KEYS = [
   { k: "majrur", re: /مَجْرُور/ },
   { k: "majzum", re: /مَجْزُوم/ },
 ];
-let CG = null;
 function caseItems(){
   const out = [];
   STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
@@ -1199,37 +1242,18 @@ function caseItems(){
 function startCaseGame(){
   const items = shuffle(caseItems()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  CG = { items, i: 0, score: 0 };
-  renderCaseGame();
-}
-function renderCaseGame(){
-  const it = CG.items[CG.i];
-  const sentence = it.sen.tokens.map((t, ti) =>
-    (ti === it.ti ? `<b class="target">${t.s.full}</b>` : t.s.full) + (t.punctAfter || "")).join(" ");
-  const opts = ["marfu", "mansub", "majrur", "majzum"];
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().caseGame} · ${CG.i + 1}/${CG.items.length}</button></div>
-    <p class="ref-intro">${ui().caseGameAsk}</p>
-    <div class="game-q" lang="ar">${sentence}</div>
-    <div class="opts">` + opts.map(o =>
-      `<button data-k="${o}"><span lang="ar">${MAMUL_LABEL[o].ar}</span> · ${MAMUL_LABEL[o][state.uiLang === "tr" ? "tr" : "en"]}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${CG.score}</span></div><div id="cgWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-k]").forEach(b => b.addEventListener("click", () => {
-    if (b.dataset.k === it.key) CG.score++;
-    sheetInner.querySelectorAll(".opts [data-k]").forEach(x => {
-      if (x.dataset.k === it.key) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    document.getElementById("cgWhy").innerHTML =
-      `<div class="game-why"><span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.tok.irab.ar}</span><br>${it.tok.irab[state.uiLang] || it.tok.irab.en}</div>
-       <div class="sheet-actions"><button class="btn primary" id="cgNext">${CG.i + 1 < CG.items.length ? ui().next : ui().replay}</button></div>`;
-    document.getElementById("cgNext").addEventListener("click", () => {
-      CG.i++;
-      if (CG.i < CG.items.length) renderCaseGame(); else startCaseGame();
-    });
-  }));
+  runQuiz({
+    title: ui().caseGame, ask: ui().caseGameAsk, items, restart: startCaseGame,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
+      t => `<b class="target">${t.s.full}</b>`)}</div>`,
+    // The four cases in a fixed order, never shuffled: the learner should find
+    // marfu' in the same place every round, like the columns of the table.
+    options: it => ["marfu", "mansub", "majrur", "majzum"].map(k => ({
+      html: `<span lang="ar">${MAMUL_LABEL[k].ar}</span> · ${MAMUL_LABEL[k][state.uiLang === "tr" ? "tr" : "en"]}`,
+      ok: k === it.key,
+    })),
+    why: it => irabWhy(it.tok.irab),
+  });
 }
 
 // ---------- game: what is this word doing? ----------
@@ -1259,7 +1283,6 @@ const ROLE_KEYS = [
   { k: "matuf",     re: /مَعْطُوف/,         ar: "مَعْطُوف",         en: "ma'tuf",      tr: "matûf" },
 ];
 const ROLE_BY_KEY = Object.fromEntries(ROLE_KEYS.map(r => [r.k, r]));
-let RG = null;
 // Only nominals are eligible. A verb's i'rab routinely names the role of some
 // OTHER word — «فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il, and
 // «حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ فِي مَحَلِّ رَفْعٍ خَبَرٌ» is not a khabar.
@@ -1283,43 +1306,22 @@ function roleItems(){
 function startRoleGame(){
   const items = shuffle(roleItems()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  RG = { items, i: 0, score: 0 };
-  renderRoleGame();
-}
-function renderRoleGame(){
-  const it = RG.items[RG.i];
-  const sentence = it.sen.tokens.map((t, ti) =>
-    (ti === it.ti ? `<b class="target">${t.s.full}</b>` : t.s.full) + (t.punctAfter || "")).join(" ");
-  const others = shuffle(ROLE_KEYS.filter(r => r.k !== it.key)).slice(0, 3);
-  const opts = shuffle([ROLE_BY_KEY[it.key], ...others]);
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().roleGame} · ${RG.i + 1}/${RG.items.length}</button></div>
-    <p class="ref-intro">${ui().roleGameAsk}</p>
-    <div class="game-q" lang="ar">${sentence}</div>
-    <div class="opts">` + opts.map(o =>
-      `<button data-k="${o.k}"><span lang="ar">${o.ar}</span> · ${state.uiLang === "tr" ? o.tr : o.en}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${RG.score}</span></div><div id="rgWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-k]").forEach(b => b.addEventListener("click", () => {
-    if (b.dataset.k === it.key) RG.score++;
-    sheetInner.querySelectorAll(".opts [data-k]").forEach(x => {
-      if (x.dataset.k === it.key) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    document.getElementById("rgWhy").innerHTML =
-      `<div class="game-why"><span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.tok.irab.ar}</span><br>${T(it.tok.irab)}</div>
-       ${questionTestHtml(ROLE_BY_KEY[it.key].note)}
-       <div class="sheet-actions">
-         <button class="btn" id="rgSheet">${arSpan("إِعْرَاب")} ${ui().sheetTitle}</button>
-         <button class="btn primary" id="rgNext">${RG.i + 1 < RG.items.length ? ui().next : ui().replay}</button>
-       </div>`;
-    document.getElementById("rgSheet").addEventListener("click", () => openIrabSheet(it.sen));
-    document.getElementById("rgNext").addEventListener("click", () => {
-      RG.i++;
-      if (RG.i < RG.items.length) renderRoleGame(); else startRoleGame();
-    });
-  }));
+  runQuiz({
+    title: ui().roleGame, ask: ui().roleGameAsk, items, restart: startRoleGame,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
+      t => `<b class="target">${t.s.full}</b>`)}</div>`,
+    options: it => shuffle([ROLE_BY_KEY[it.key],
+        ...shuffle(ROLE_KEYS.filter(r => r.k !== it.key)).slice(0, 3)])
+      .map(o => ({
+        html: `<span lang="ar">${o.ar}</span> · ${state.uiLang === "tr" ? o.tr : o.en}`,
+        ok: o.k === it.key,
+      })),
+    why: it => irabWhy(it.tok.irab),
+    // The interrogative that would have given the answer away.
+    after: it => questionTestHtml(ROLE_BY_KEY[it.key].note),
+    extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`,
+               run: it => openIrabSheet(it.sen) }],
+  });
 }
 
 // ---------- audio ----------
@@ -2436,7 +2438,6 @@ function pickMatch(i){
 // distractors grammatically plausible (tanwin never belongs on a definite noun).
 const HARAKAT_SET = ["\u064E", "\u064F", "\u0650", "\u0652", "\u064B", "\u064C", "\u064D"].map(s => JSON.parse('"' + s + '"'));
 const TANWIN_SET = ["\u064B", "\u064C", "\u064D"].map(s => JSON.parse('"' + s + '"'));
-let H = null;
 function harakatItems(){
   const items = [];
   CHAPTERS.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
@@ -2450,81 +2451,35 @@ function harakatItems(){
 function startHarakat(){
   const items = shuffle(harakatItems()).slice(0, 8);
   if (!items.length) { openGames(); return; }
-  H = {items, i: 0, score: 0};
-  renderHarakat();
-}
-function renderHarakat(){
-  const it = H.items[H.i];
-  // Definite (ال-prefixed) nouns never take tanwin — keep distractors plausible
-  // by excluding tanwin marks as options for those bases. The correct mark
-  // (it.last) is always excluded from the distractor pool, and each candidate
-  // mark differs from it.last, so a distractor can never equal the correct form.
-  const definite = /^ال/.test(stripAr(it.base));
-  const candidates = HARAKAT_SET.filter(x => x !== it.last && !(definite && TANWIN_SET.includes(x)));
-  const opts = shuffle([it.full, ...shuffle(candidates).slice(0, 2).map(x => it.base + x)]);
-  const sentence = it.sen.tokens.map((t, ti) =>
-    (ti === it.ti ? "«____»" : t.s.full) + (t.punctAfter || "")).join(" ");
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().harakat} · ${H.i + 1}/${H.items.length}</button></div>
-    <p class="ref-intro">${ui().chooseForm}</p>
-    <div class="game-q" lang="ar">${sentence}</div>
-    <div class="opts">` + opts.map((o, oi) => `<button data-o="${oi}" lang="ar">${o}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${H.score}</span></div><div id="hWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
-    const pick = opts[+b.dataset.o];
-    if (pick === it.full) H.score++;
-    sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
-      if (opts[+x.dataset.o] === it.full) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    document.getElementById("hWhy").innerHTML =
-      `<div class="game-why"><span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.irab.ar}</span><br>${it.irab[state.uiLang] || it.irab.en}</div>
-       <div class="sheet-actions"><button class="btn primary" id="hNext">${H.i + 1 < H.items.length ? ui().next : ui().replay}</button></div>`;
-    document.getElementById("hNext").addEventListener("click", () => {
-      H.i++;
-      if (H.i < H.items.length) renderHarakat(); else startHarakat();
-    });
-  }));
+  runQuiz({
+    title: ui().harakat, ask: ui().chooseForm, items, restart: startHarakat,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
+    options: it => {
+      // Definite (ال-prefixed) nouns never take tanwin — keep distractors
+      // plausible by excluding tanwin marks for those bases. The correct mark
+      // is excluded from the pool, so a distractor can never equal the answer.
+      const definite = /^ال/.test(stripAr(it.base));
+      const candidates = HARAKAT_SET.filter(x => x !== it.last && !(definite && TANWIN_SET.includes(x)));
+      return shuffle([{ html: it.full, ok: true, ar: true },
+        ...shuffle(candidates).slice(0, 2).map(x => ({ html: it.base + x, ok: false, ar: true }))]);
+    },
+    why: it => irabWhy(it.irab),
+  });
 }
 
-let S = null;
 function startSpot(){
   const items = [];
   Object.entries(GRAMMAR).forEach(([id, g]) => (g.mistakes || []).forEach(m =>
     items.push({wrong: m.wrong, right: m.right, why: m.why, noteId: id, title: g.title})));
-  S = {items: shuffle(items).slice(0, 8), i: 0, score: 0};
-  renderSpot();
-}
-function renderSpot(){
-  const it = S.items[S.i];
-  const opts = shuffle([{t: it.right, ok: true}, {t: it.wrong, ok: false}]);
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().spot} · ${S.i + 1}/${S.items.length}</button></div>
-    <p class="ref-intro">${ui().whichCorrect}</p>
-    <div class="opts">` + opts.map((o, oi) => `<button data-k="${oi}" lang="ar">${o.t}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${S.score}</span></div><div id="sWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-k]").forEach(b => b.addEventListener("click", () => {
-    if (opts[+b.dataset.k].ok) S.score++;
-    sheetInner.querySelectorAll(".opts [data-k]").forEach(x => {
-      if (opts[+x.dataset.k].ok) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    document.getElementById("sWhy").innerHTML =
-      `<div class="game-why">${T(it.why)}</div>
-       <div class="sheet-actions">
-         <button class="btn" id="sNote">${arSpan(it.title.ar)} — ${ui().gnote}</button>
-         <button class="btn primary" id="sNext">${S.i + 1 < S.items.length ? ui().next : ui().replay}</button>
-       </div>`;
-    document.getElementById("sNote").addEventListener("click", () => openRef(it.noteId));
-    document.getElementById("sNext").addEventListener("click", () => {
-      S.i++;
-      if (S.i < S.items.length) renderSpot(); else startSpot();
-    });
-  }));
+  runQuiz({
+    title: ui().spot, ask: ui().whichCorrect, items: shuffle(items).slice(0, 8), restart: startSpot,
+    question: () => "",
+    options: it => shuffle([{ html: it.right, ok: true, ar: true },
+                            { html: it.wrong, ok: false, ar: true }]),
+    why: it => T(it.why),
+    extras: [{ label: it => `${arSpan(it.title.ar)} — ${ui().gnote}`,
+               run: it => openRef(it.noteId) }],
+  });
 }
 
 // ---------- game: fill the gap (cloze) ----------
@@ -2535,13 +2490,12 @@ function renderSpot(){
 // Options are all lemmas — never a mix of the inflected answer and citation
 // forms of the distractors, which would give the answer away by shape alone.
 const CLOZE_POS = ["noun", "verb", "propn", "adv"];
-let CZ = null;
 
 // Candidate words are bucketed by part of speech ONCE per story. Filtering the
 // whole glossary per candidate token instead made the walk cost
 // tokens-read × glossary-size, so it got slower the more the reader had read —
 // 50,000 pair visits over this corpus to keep the eight items a round uses.
-// The two per-item exclusions are deferred to renderCloze, where they run for
+// The two per-item exclusions are deferred to clozeRound, where they run for
 // eight items rather than five hundred.
 function glossaryByPos(st){
   if (!st._byPos) {
@@ -2603,58 +2557,20 @@ function clozeRound(n){
 
 function startCloze(){
   const items = clozeRound(8);
-  if (!items.length) {
-    sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-      <div class="tabs"><button class="on">${ui().clozeGame}</button></div>
-      <p class="empty">${ui().clozeNeedsReading}</p>`;
-    document.getElementById("gBack").addEventListener("click", openGames);
-    return;
-  }
-  CZ = { items, i: 0, score: 0 };
-  renderCloze();
+  if (!items.length) { emptyGame(ui().clozeGame, ui().clozeNeedsReading); return; }
+  runQuiz({
+    title: ui().clozeGame, ask: ui().clozeAsk, items, restart: startCloze,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
+    options: it => shuffle([{ html: it.entry.lemma, ok: true, ar: true },
+      ...shuffle(it.pool).slice(0, 3).map(g => ({ html: g.lemma, ok: false, ar: true }))]),
+    why: it => `<span lang="ar" style="font-family:var(--ar-font);font-size:1.3em">${it.tok.s.full}</span>
+         — ${T(it.entry.gloss)}
+         ${it.tok.irab ? "<br>" + irabWhy(it.tok.irab) : ""}`,
+    extras: [{ label: () => ui().seeInStory,
+               run: it => jumpTo(it.storyId, it.sen.id, it.ti) }],
+  });
 }
 
-function renderCloze(){
-  const it = CZ.items[CZ.i];
-  const opts = shuffle([
-    { t: it.entry.lemma, ok: true },
-    ...shuffle(it.pool).slice(0, 3).map(g => ({ t: g.lemma, ok: false })),
-  ]);
-  const sentence = it.sen.tokens.map((t, ti) =>
-    (ti === it.ti ? "«ـــــ»" : t.s.full) + (t.punctAfter || "")).join(" ");
-  sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
-    <div class="tabs"><button class="on">${ui().clozeGame} · ${CZ.i + 1}/${CZ.items.length}</button></div>
-    <p class="ref-intro">${ui().clozeAsk}</p>
-    <div class="game-q" lang="ar">${sentence}</div>
-    <div class="opts">` + opts.map((o, oi) => `<button data-o="${oi}" lang="ar">${o.t}</button>`).join("") + `</div>
-    <div class="game-meta"><span>${ui().score}: ${CZ.score}</span></div><div id="czWhy"></div>`;
-  document.getElementById("gBack").addEventListener("click", openGames);
-  sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
-    if (opts[+b.dataset.o].ok) CZ.score++;
-    sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
-      if (opts[+x.dataset.o].ok) x.classList.add("right");
-      else if (x === b) x.classList.add("wrongpick");
-      x.disabled = true;
-    });
-    const irab = it.tok.irab;
-    document.getElementById("czWhy").innerHTML =
-      `<div class="game-why">
-         <span lang="ar" style="font-family:var(--ar-font);font-size:1.3em">${it.tok.s.full}</span>
-         — ${T(it.entry.gloss)}
-         ${irab ? `<br><span lang="ar" style="font-family:var(--ar-font)">${irab.ar}</span>
-                   <br>${irab[state.uiLang] || irab.en}` : ""}
-       </div>
-       <div class="sheet-actions">
-         <button class="btn" id="czGo">${ui().seeInStory}</button>
-         <button class="btn primary" id="czNext">${CZ.i + 1 < CZ.items.length ? ui().next : ui().replay}</button>
-       </div>`;
-    document.getElementById("czGo").addEventListener("click", () => jumpTo(it.storyId, it.sen.id, it.ti));
-    document.getElementById("czNext").addEventListener("click", () => {
-      CZ.i++;
-      if (CZ.i < CZ.items.length) renderCloze(); else startCloze();
-    });
-  }));
-}
 
 // ---------- legend ----------
 function renderLegend(){
