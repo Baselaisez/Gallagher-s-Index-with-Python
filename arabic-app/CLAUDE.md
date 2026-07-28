@@ -187,6 +187,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   story shipped, for half the world, on a machine where the tests were green.
   The regression test asserts a story published *today* is zero days old, which
   holds in any timezone the suite happens to run in.
+- **First-run onboarding asks exactly one question.** `state.myLevel`
+  (`qissa-mylevel`, 0 = unset) feeds `LIB_SORTS.foryou`: distance from the
+  reader's level with easier breaking the tie — at-level, one easier, one
+  harder, two easier… newest first within a shelf. The picker's choices come
+  from `levelChoices()` (the levels actually on the shelf), never a hardcoded
+  list. `qissa-welcomed` guards the boot-time auto-open separately from the
+  answer: dismissing the sheet is an answer too, and must not re-nag on every
+  boot — the level chip and the "For you" button reopen the picker on demand,
+  and `setLibSort("foryou")` with no stored level opens the question instead
+  of sorting by a default. Every fresh-context test (smoke, PWA) pre-seeds
+  `qissa-welcomed=1` unless it is testing onboarding itself, or the sheet sits
+  over whatever the test clicks first.
 - **`cardKey()` is the only statement of card identity.** Membership tests and
   toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
   declares its key once instead of adding a fourth hand-written `findIndex`

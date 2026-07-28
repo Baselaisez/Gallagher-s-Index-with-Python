@@ -98,6 +98,10 @@
     margin: 0 0 .8rem; font-family: var(--ui-font);
   }
   .lib-sort .ls-lbl { font-size: .78rem; color: var(--ink-soft); }
+  .welcome-h { font-family: var(--ui-font); margin: .2rem 0 .4rem; }
+  .level-pick { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .8rem 0; font-family: var(--ui-font); }
+  .level-pick .btn { margin: 0; text-align: center; }
+  .btn.unsure { width: 100%; margin-top: .2rem; color: var(--ink-soft); }
   .qtest {
     display: flex; flex-wrap: wrap; align-items: center; gap: .35rem;
     margin: .5rem 0 .2rem; font-family: var(--ui-font);
@@ -726,6 +730,22 @@ Object.assign(L.tr, {
   noteStep2:"İşlenmiş bir misal için dokunun",
   noteStep3:"Biliyor muydunuz?"
 });
+Object.assign(L.en, {
+  welcomeTitle:"Welcome to Qissa",
+  welcomeBody:"Stories run from Level {a} (first words) to Level {b} (classical texts as they were written). Pick the level that fits you and the library will shelve the closest stories first — you can change it any time.",
+  welcomeUnsure:"Not sure? Start at Level {a}",
+  sortForYou:"For you",
+  yourLevel:"Your level: {n}",
+  yourLevelHint:"Tap to change your level"
+});
+Object.assign(L.tr, {
+  welcomeTitle:"Qissa'ya hoş geldiniz",
+  welcomeBody:"Hikâyeler {a}. seviyeden (ilk kelimeler) {b}. seviyeye (asıl klasik metinler) kadar uzanır. Size uyan seviyeyi seçin; kütüphane en yakın hikâyeleri öne dizsin — istediğiniz zaman değiştirebilirsiniz.",
+  welcomeUnsure:"Emin değil misiniz? {a}. seviyeden başlayın",
+  sortForYou:"Size göre",
+  yourLevel:"Seviyeniz: {n}",
+  yourLevelHint:"Seviyenizi değiştirmek için dokunun"
+});
 function ui(){ return L[state.uiLang] || L.en; }
 function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en || "") : (v || ""); }
 
@@ -754,6 +774,9 @@ const state = {
   goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
+  // 0 = never chosen. The picker asks once on first run; the level chip in the
+  // library reopens it, so a wrong first answer costs one tap.
+  myLevel: parseInt(localStorage.getItem("qissa-mylevel"), 10) || 0,
 };
 function setMode(m){
   state.mode = m;
@@ -1022,11 +1045,23 @@ const LIB_SORTS = {
     if (y === null) return -1;
     return y - x || a.id.localeCompare(b.id);   // same-day releases keep a stable order
   },
+  foryou: (a, b) => forYouRank(a) - forYouRank(b) || LIB_SORTS.new(a, b),
 };
+// "For you" is distance from the reader's own level, with easier breaking the
+// tie: at-level, one easier, one harder, two easier, two harder… A story just
+// above the reader is still closer to useful than one far below, which is why
+// the shelves interleave instead of exhausting everything easier first.
+// Within a shelf, newest first.
+function forYouRank(st){
+  const my = state.myLevel || 1;   // a cleared level degrades to the beginner shelf, not a crash
+  return st.level === my ? 0 : st.level < my ? 2 * (my - st.level) : 2 * (st.level - my) + 1;
+}
 function storiesSorted(){
   return STORIES.slice().sort(LIB_SORTS[state.libSort] || LIB_SORTS.level);
 }
 function setLibSort(v){
+  // "For you" before a level is stored is a question, not a sort.
+  if (v === "foryou" && !state.myLevel) { openLevelPicker(); return; }
   state.libSort = v;
   localStorage.setItem("qissa-libsort", v);
   renderLibrary();
@@ -1070,12 +1105,17 @@ function renderLibrary(){
   const fresh = STORIES.filter(isNewStory).length;
   sortBar.innerHTML = `<span class="ls-lbl">${ui().sortBy}</span>
     <div class="seg" role="group" aria-label="${escapeAttr(ui().sortBy)}">
+      <button data-sort="foryou" class="${state.libSort === "foryou" ? "on" : ""}">${ui().sortForYou}</button>
       <button data-sort="level" class="${state.libSort === "level" ? "on" : ""}">${ui().sortLevel}</button>
       <button data-sort="new" class="${state.libSort === "new" ? "on" : ""}">${ui().sortNewest}</button>
     </div>
+    ${state.myLevel ? `<button class="chip sib" id="myLevelChip" title="${escapeAttr(ui().yourLevelHint)}">${
+      ui().yourLevel.replace("{n}", state.myLevel)}</button>` : ""}
     ${fresh ? `<span class="chip newchip">${ui().newCount.replace("{n}", fresh).replace("{d}", NEW_FOR_DAYS)}</span>` : ""}`;
   sortBar.querySelectorAll("[data-sort]").forEach(b =>
     b.addEventListener("click", () => setLibSort(b.dataset.sort)));
+  const mlc = sortBar.querySelector("#myLevelChip");
+  if (mlc) mlc.addEventListener("click", () => openLevelPicker());
   storyEl.appendChild(sortBar);
   storiesSorted().forEach(st => {
     const {total, read} = storyStats(st);
@@ -1097,6 +1137,34 @@ function renderLibrary(){
     storyEl.appendChild(card);
   });
   closeSheet();
+}
+// ---------- first-run level picker ----------
+// The levels on offer come from the shelf itself, not a hardcoded list: a
+// library that has no Master story asks no Master question.
+function levelChoices(){
+  const seen = new Map();
+  STORIES.forEach(st => { if (!seen.has(st.level)) seen.set(st.level, st.levelName || ""); });
+  return [...seen.entries()].sort((a, b) => a[0] - b[0]);
+}
+function openLevelPicker(){
+  const lvls = levelChoices();
+  const lo = lvls[0][0], hi = lvls[lvls.length - 1][0];
+  sheetInner.innerHTML = `
+    <h3 class="welcome-h">${ui().welcomeTitle}</h3>
+    <p class="ref-intro">${ui().welcomeBody.replace("{a}", lo).replace("{b}", hi)}</p>
+    <div class="level-pick">
+      ${lvls.map(([lv, en]) => `<button class="btn ${state.myLevel === lv ? "saved" : ""}" data-pick-level="${lv}">
+        ${ui().level} ${lv} · ${levelLabel(en)}</button>`).join("")}
+    </div>
+    <button class="btn unsure" data-pick-level="${lo}">${ui().welcomeUnsure.replace("{a}", lo)}</button>`;
+  sheetInner.querySelectorAll("[data-pick-level]").forEach(b =>
+    b.addEventListener("click", () => setMyLevel(parseInt(b.dataset.pickLevel, 10))));
+  showSheet();
+}
+function setMyLevel(lv){
+  state.myLevel = lv;
+  localStorage.setItem("qissa-mylevel", String(lv));
+  setLibSort("foryou");   // persists the sort and re-renders; renderLibrary closes the sheet
 }
 // sen.id -> {src, span} for every sentence that has BOTH a chapter audio file
 // and its own [startMs, endMs]. One without the other plays nothing real —
@@ -1604,10 +1672,8 @@ const LEVEL_TR = {
   "Upper Intermediate": "Orta-İleri", "Advanced": "İleri", "Master": "Usta",
   "Mastery": "Ustalık",
 };
-function levelName(st){
-  const en = st.levelName || "";
-  return state.uiLang === "tr" ? (LEVEL_TR[en] || en) : en;
-}
+function levelLabel(en){ return state.uiLang === "tr" ? (LEVEL_TR[en] || en) : en; }
+function levelName(st){ return levelLabel(st.levelName || ""); }
 
 function chip(txt, cls){ return `<span class="chip ${cls||""}">${txt}</span>`; }
 function arSpan(t){ return `<span class="ar">${t}</span>`; }
@@ -2770,6 +2836,14 @@ renderLegend();
 updatePlayAllBtn();
 document.getElementById("backLib").addEventListener("click", renderLibrary);
 if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
+// A newcomer lands on a flat shelf where an L6 fiqh text sits beside an L1
+// story with nothing steering them. Ask once — the answer feeds "For you" —
+// and never ask again on boot: dismissing the sheet is also an answer, and
+// the level chip (or the "For you" button) reopens the picker on demand.
+if (!state.myLevel && STORIES.length > 1 && localStorage.getItem("qissa-welcomed") !== "1") {
+  localStorage.setItem("qissa-welcomed", "1");
+  openLevelPicker();
+}
 // The one place a deck loaded from storage is made safe to render. GRAMMAR is
 // baked into the file and never changes at runtime, so once this has run no
 // card can point at a note that is not there — which is why nothing downstream

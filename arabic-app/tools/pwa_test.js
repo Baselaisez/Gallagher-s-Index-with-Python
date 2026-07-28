@@ -42,6 +42,9 @@ const server = http.createServer((req, res) => {
   const base = 'http://127.0.0.1:' + server.address().port + '/';
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH });
   const ctx = await browser.newContext();
+  // Run as a returning reader: the first-run level picker (its own smoke check)
+  // would otherwise sit over the library card this test clicks while offline.
+  await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
   const page = await ctx.newPage();
   const errs = [];
   page.on('pageerror', e => errs.push(String(e)));

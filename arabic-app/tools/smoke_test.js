@@ -47,6 +47,9 @@ if (!CHROME) {
   page.on('console', m => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
 
   const url = pathToFileURL(path.resolve(__dirname, '..', 'prototype/reader.html')).href;
+  // The first-run level picker has its own fresh-context check below; the main
+  // page runs as a returning reader so its sheet cannot sit over every other check.
+  await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
   await page.goto(url);
   const check = async (name, fn) => {
     try { await fn(); console.log('PASS', name); }
@@ -1563,6 +1566,65 @@ if (!CHROME) {
     if (!probe) throw new Error('no locked premium story to probe');
     if (probe.preview !== true) throw new Error('a preview sentence should be jumpable');
     if (probe.behind !== false) throw new Error('a behind-paywall sentence should hide the jump');
+  });
+
+  await check('first run asks the level once, and "For you" shelves by it', async () => {
+    // A brand-new profile: nothing stored, so this is the first visit.
+    const ctx3 = await browser.newContext();
+    try {
+      const p3 = await ctx3.newPage();
+      await p3.goto(url);
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+      // The choices come from the shelf itself — every level present, no other.
+      const offered = await p3.evaluate(() =>
+        [...document.querySelectorAll('[data-pick-level]:not(.unsure)')].map(b => +b.dataset.pickLevel));
+      const shelved = await p3.evaluate(() => [...new Set(STORIES.map(s => s.level))].sort((a, b) => a - b));
+      if (offered.join() !== shelved.join())
+        throw new Error('picker offers ' + offered + ' but the library holds ' + shelved);
+      // Answer from the middle of whatever is on offer — the test must not
+      // assume any particular level exists in the corpus.
+      const mid = String(shelved[Math.floor(shelved.length / 2)]);
+
+      await p3.locator('.level-pick [data-pick-level="' + mid + '"]').click();
+      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      if (await p3.locator('.sheet.show').count()) throw new Error('the sheet stayed open after a choice');
+      const after = await p3.evaluate(() => ({
+        level: localStorage.getItem('qissa-mylevel'),
+        sort: state.libSort,
+        // The comparator's whole contract: walking the rendered shelf, the
+        // distance-rank must never decrease.
+        ranks: [...document.querySelectorAll('.lib-card')].map(c =>
+          forYouRank(STORIES.find(s => s.id === c.dataset.storyId))),
+        chip: (document.getElementById('myLevelChip') || {}).textContent || '',
+      }));
+      if (after.level !== mid) throw new Error('level not persisted: ' + after.level);
+      if (after.sort !== 'foryou') throw new Error('choosing a level did not select "For you"');
+      if (after.ranks.some((r, i) => i && r < after.ranks[i - 1]))
+        throw new Error('shelf order breaks the distance rank: ' + after.ranks);
+      if (!after.chip.includes(mid)) throw new Error('no level chip after choosing: ' + after.chip);
+
+      // Second visit: the question is not asked again, the shelf is remembered,
+      // and the chip reopens the picker for a reader who mis-answered.
+      await p3.reload();
+      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      if (await p3.locator('.sheet.show').count()) throw new Error('the picker came back on the second visit');
+      if (await p3.evaluate(() => state.libSort) !== 'foryou') throw new Error('the sort was forgotten');
+      await p3.locator('#myLevelChip').click();
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+      const marked = await p3.locator('.level-pick .btn.saved').getAttribute('data-pick-level');
+      if (marked !== mid) throw new Error('the reopened picker does not show the stored level');
+
+      // A reader who dismissed the first-run sheet is asked nothing on boot,
+      // but "For you" still opens the question instead of sorting by nothing.
+      await p3.evaluate(() => { localStorage.removeItem('qissa-mylevel'); });
+      await p3.reload();
+      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      if (await p3.locator('.sheet.show').count()) throw new Error('a dismissed picker must stay dismissed on boot');
+      await p3.locator('[data-sort="foryou"]').click();
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+    } finally {
+      await ctx3.close();
+    }
   });
 
   await check('no JS errors on page', async () => {
