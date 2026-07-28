@@ -190,7 +190,11 @@ def main() -> int:
         if source != current_source:
             current_source = source
             print(f"── research/sources/{source}")
-        covered = sum(1 for _, notes in items if notes)
+        # Covered means mapped AND every mapped id really exists — otherwise a
+        # typo'd id would overstate the headline number in the default run while
+        # only --strict noticed.
+        covered = sum(1 for _, notes in items
+                      if notes and all(n in existing for n in notes))
         grand_cov += covered
         grand_n += len(items)
         print(f"  {title}: {covered}/{len(items)} covered")

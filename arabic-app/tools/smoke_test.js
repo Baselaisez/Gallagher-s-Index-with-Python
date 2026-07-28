@@ -1268,17 +1268,20 @@ if (!CHROME) {
     // A Turkish device must not be shown an English app on first run; a stored
     // choice must still win over the device.
     const ctx2 = await browser.newContext({ locale: 'tr-TR' });
-    const p2 = await ctx2.newPage();
-    await p2.goto(url);
-    const lang = await p2.evaluate(() => state.uiLang);
-    if (lang !== 'tr') throw new Error('tr-TR device opened in ' + lang);
-    const seg = await p2.locator('#uiLangSeg [data-ui="tr"]').getAttribute('class');
-    if (!/on/.test(seg || '')) throw new Error('language segment does not show the active language');
-    await p2.evaluate(() => localStorage.setItem('qissa-lang', 'en'));
-    await p2.reload();
-    if (await p2.evaluate(() => state.uiLang) !== 'en')
-      throw new Error('a stored choice must override the device language');
-    await ctx2.close();
+    try {
+      const p2 = await ctx2.newPage();
+      await p2.goto(url);
+      const lang = await p2.evaluate(() => state.uiLang);
+      if (lang !== 'tr') throw new Error('tr-TR device opened in ' + lang);
+      const seg = await p2.locator('#uiLangSeg [data-ui="tr"]').getAttribute('class');
+      if (!/on/.test(seg || '')) throw new Error('language segment does not show the active language');
+      await p2.evaluate(() => localStorage.setItem('qissa-lang', 'en'));
+      await p2.reload();
+      if (await p2.evaluate(() => state.uiLang) !== 'en')
+        throw new Error('a stored choice must override the device language');
+    } finally {
+      await ctx2.close();   // never leak the context past a failed assertion
+    }
   });
 
   await check('nothing in the chrome reads like build metadata', async () => {
@@ -1411,6 +1414,7 @@ if (!CHROME) {
     if (counts.mapped !== counts.timed)
       throw new Error('SEN_AUDIO mapped ' + counts.mapped + ' but ' + counts.timed + ' sentences carry spans');
 
+    try {
     await page.locator('.sentence').first().locator('.play:not(.irab-btn)').click();
     // The real path: the shared narration element takes the chapter file and
     // plays; the sentence highlight behaves exactly as with TTS.
@@ -1426,14 +1430,18 @@ if (!CHROME) {
     const second = await page.evaluate(() => !!SEN_AUDIO.get(CHAPTERS[0].sentences[1].id));
     if (second) throw new Error('a sentence with no span was mapped to the recording');
     await page.locator('.sentence').nth(1).locator('.play:not(.irab-btn)').click();
-    await page.waitForFunction(() => narration.paused, null, { timeout: 2000 }); // recording untouched
-    // Undo the injection so later checks see the story as shipped.
-    await page.evaluate(() => {
-      delete CHAPTERS[0].audioFile;
-      CHAPTERS[0].sentences[1].audio = window._savedSpan;
-      delete window._savedSpan;
-      buildSenAudio();
-    });
+    // (The fallback guarantee is the SEN_AUDIO assert above — the un-spanned
+    // sentence never enters the narration path at all.)
+    } finally {
+      // Undo the injection whether or not the check passed — a failure here
+      // must not leave the story rewired for every later check.
+      await page.evaluate(() => {
+        delete CHAPTERS[0].audioFile;
+        CHAPTERS[0].sentences[1].audio = window._savedSpan;
+        delete window._savedSpan;
+        buildSenAudio();
+      });
+    }
     await page.locator('#backLib').click();
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });

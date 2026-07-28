@@ -138,9 +138,12 @@ def build_grammar(grammar_dir: Path):
         g = json.loads(path.read_text(encoding="utf-8"))
         note = {"title": g["title"], "level": g.get("level"),
                 "group": g.get("group", "nahw"),
-                # The jargon-free lede the reader meets before the classical account.
-                "plain": bilingual(g.get("plain")),
                 "explanation": bilingual(g.get("explanation"))}
+        # The jargon-free lede the reader meets before the classical account.
+        # Only when authored: bilingual(None) is {en:'',tr:''}, which is truthy
+        # in JS and would render an empty styled paragraph above the fold.
+        if g.get("plain"):
+            note["plain"] = bilingual(g["plain"])
         if g.get("amil"):
             note["amil"] = g["amil"]
         if g.get("mamul"):
@@ -175,7 +178,7 @@ def build_catalog(pkgs):
 
     Returns a catalog dict with packages sorted by level then id (stable/diff-friendly).
     Each package entry includes: id, title, level, levelName, version, access,
-    storyGroup, reviewStatus, chapters (count), rotationWindow (null).
+    storyGroup, reviewStatus, chapters (count).
     """
     catalog_packages = []
     for pkg in pkgs:

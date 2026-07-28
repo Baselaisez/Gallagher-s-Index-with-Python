@@ -27,7 +27,7 @@ import json
 import re
 import sys
 import unicodedata
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 # Arabic diacritics: tanwin/harakat/shadda/sukun (064B-0652), quranic marks
@@ -108,7 +108,11 @@ def check_manifest(pkg: Path, rep: Report):
             else:
                 # A future date makes the story permanently "not yet new" in the
                 # reader, which reads as a missing badge rather than as an error.
-                if when > date.today():
+                # One day of slack: date.today() is the VALIDATING machine's
+                # local date, and an author east of UTC legitimately writes a
+                # date a UTC CI runner has not reached yet — the same civil-date
+                # trap the reader hit with the NEW badge.
+                if when > date.today() + timedelta(days=1):
                     rep.error(f"manifest.json: published is in the future: {published}")
     for ch in manifest.get("chapters", []):
         n = ch.get("n")
@@ -119,8 +123,14 @@ def check_manifest(pkg: Path, rep: Report):
         # carry their slices. Naming a file that is not in the package would
         # ship a player pointing at a 404.
         audio_file = ch.get("audioFile")
-        if audio_file and not (pkg / audio_file).exists():
-            rep.error(f"manifest.json: chapter {n} audioFile '{audio_file}' not found in package")
+        if audio_file:
+            # Resolve and require containment: '../x' escapes the package and an
+            # absolute path discards pkg entirely — both would validate here and
+            # 404 in the shipped package, the exact failure this check exists for.
+            target = (pkg / audio_file).resolve()
+            if not (target.is_file() and pkg.resolve() in target.parents):
+                rep.error(f"manifest.json: chapter {n} audioFile '{audio_file}' "
+                          f"is not a file inside the package")
     attribution = manifest.get("attribution", {})
     if attribution.get("reviewStatus") != "approved":
         rep.warn(

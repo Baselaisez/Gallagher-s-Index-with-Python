@@ -137,6 +137,17 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   interpolating one would be a guess — the sentence highlight is the honest
   cue. To ship narration: record the chapter, time the sentences, add two
   fields, rebuild. Nothing else.
+- **A failed narration play() must never advance the queue.** The recorded
+  branch mirrors the TTS branch's contract: on refusal or failure, clear the
+  highlight and stop play-all — never call onDone, or a 404'd audio file races
+  through the story in microtasks marking everything read. The span deadline
+  timer re-checks `currentTime` and re-arms rather than truncating (buffering
+  makes wall-clock a lie), and same-source detection compares RESOLVED URLs
+  (`endsWith` both matched wrong files and missed percent-encoded ones).
+  Known gap, recorded deliberately: cloze's «see it in the story» on a story
+  that has rotated back behind the paywall lands in the search sheet — the
+  jumpTo fallback was written for search hits, and a game-aware fallback is a
+  shell feature to design, not a one-liner.
 - **Corpus search** (`buildCorpus`, `searchCorpus`): one lazily-built index over every
   token in every story, matched against the bare spelling, the lemma, the root (stored
   spaced ق و ل but indexed closed-up too, because that is how it gets typed) and both
