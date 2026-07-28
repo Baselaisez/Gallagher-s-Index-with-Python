@@ -41,6 +41,11 @@ def main():
         for i, m in enumerate(g.get("commonMistakes", [])):
             if not bilingual_ok(m.get("why")):
                 missing.append(f"grammar/{nid}: commonMistakes[{i}].why not bilingual")
+        # The question test is shown in whichever language the UI is in, so a
+        # note that has it in one language only would go silently blank.
+        q = g.get("question")
+        if q and not (q.get("tr") and q.get("en")):
+            missing.append(f"grammar/{nid}: question is not bilingual")
 
     for f in sorted(ROOT.glob("content/*/*/manifest.json")):
         m = json.loads(f.read_text(encoding="utf-8"))

@@ -1222,6 +1222,51 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('the question test identifies the role, in both languages', async () => {
+    await toLibrary();
+    const data = await page.evaluate(() => {
+      const withQ = Object.entries(GRAMMAR).filter(([, g]) => g.question);
+      return {
+        count: withQ.length,
+        // Both languages must be present and the same length — a note that has
+        // the test in one language goes silently blank in the other.
+        lopsided: withQ.filter(([, g]) => !g.question.tr || !g.question.en ||
+          g.question.tr.length !== g.question.en.length).map(([id]) => id),
+        // Every role the game can ask about must point at a note, and every
+        // note it points at must exist.
+        rolesMissingNote: ROLE_KEYS.filter(r => r.note && !GRAMMAR[r.note]).map(r => r.k),
+        fail: (GRAMMAR.fail.question || {}).tr,
+        mafulFih: (GRAMMAR['maful-fih'].question || {}).tr,
+      };
+    });
+    if (data.count < 10) throw new Error('only ' + data.count + ' notes carry a question test');
+    if (data.lopsided.length) throw new Error('question test not bilingual on: ' + data.lopsided);
+    if (data.rolesMissingNote.length)
+      throw new Error('role game points at missing notes: ' + data.rolesMissingNote);
+    // Spot-check the transcription against research/sources/edatlar-irab-soru-testi.txt.
+    if (!data.fail.includes('Kim?')) throw new Error("fa'il should answer «Kim?»: " + data.fail);
+    if (!data.mafulFih.includes('Ne zaman?'))
+      throw new Error("maf'ul fih should answer «Ne zaman?»: " + data.mafulFih);
+
+    // It renders, and it follows the UI language.
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.locator('.ref-list [data-note="hal"]').click();
+    await page.waitForSelector('.gnote .qtest', { timeout: 3000 });
+    const en = await page.locator('.gnote .qtest .qt').first().textContent();
+    if (!/In what state/.test(en)) throw new Error('EN question test: ' + en);
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="tr"]').click();
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.locator('.ref-list [data-note="hal"]').click();
+    await page.waitForSelector('.gnote .qtest', { timeout: 3000 });
+    const tr = await page.locator('.gnote .qtest .qt').first().textContent();
+    if (!/Ne olduğu halde/.test(tr)) throw new Error('TR question test: ' + tr);
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#uiLangSeg [data-ui="en"]').click();
+  });
+
   await check('playback offsets index the exact string that is spoken', async () => {
     // The word-following highlight maps a boundary event's charIndex back to a
     // token. That mapping is only as good as its agreement with the join speak()

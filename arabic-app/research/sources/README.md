@@ -169,3 +169,30 @@ was not used at all rather than reproduce it. The manifest states all of this,
 and adds that these are teaching definitions for reading practice, not a fatwa.
 
 The nikah section of the document is left for a later story.
+
+## Turkish i'rab tables and the edat (question) test — added 2026-07-28
+
+Five `.doc` uploads, decoded utf-16-le from the WordDocument stream:
+
+| file | contents |
+|---|---|
+| `edatlar-irab-soru-testi.txt` | **the question test** — which Turkish interrogative each i'rab role answers |
+| `amil-tablolari-turkce.txt` | the 'amil tables: 20 huruf jarr, inna's 8 sisters, ma/la mushabbaha bi-laysa, the 4 nawasib |
+| `mamul-tablolari-turkce.txt` | the 15 jawazim, 'amil qiyasi (9), 'amil ma'nawi (2), the mansubat (13) |
+| `irab-taksimat-tablolari-turkce.txt` | majrur, majzum, i'rab bi hasab al-dhat (haraka / harf / hazf), the five tawabi' |
+| `kafiya-turkce-sual-cevap.txt` | al-Kafiya in Turkish question-and-answer form |
+
+`edatlar` is the one that changed the app. It records the Ottoman madrasah's own
+answer to *how do I know which i'rab this is?* — you ask which question the word
+answers. Fa'il answers «Ne? Kim?»; maf'ul fih answers «Nerede? Ne zaman?»; hal
+answers «Ne olduğu halde?». It is now the `question` field on eleven nahw notes.
+
+The device works in Turkish because Turkish case endings line up with Arabic's.
+The English in those notes is therefore a **functional equivalent, not a
+translation** — English has no cases to line up, so «Neyi?» and «Neye?» both
+come out as some form of "what", and the note says so rather than pretending the
+mapping is exact.
+
+One line of the maf'ul fih entry is damaged in the original by binary noise
+(`... kadar, Ne zamana kadar`). Only the interrogatives that read cleanly were
+transcribed; the fragment was left out rather than guessed at.

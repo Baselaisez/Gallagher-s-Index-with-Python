@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         42 browser checks over file:// (Playwright)
+  smoke_test.js         43 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_irab_tr.py      finds i'rab strings with no Turkish yet
@@ -155,6 +155,20 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   undated stories sort *last*, not first, which an epoch-0 fallback would do.
   This exists because invisible content cadence is the single sharpest
   complaint about the app this one is modelled on — see `research/01-*.md` §7.2.
+- **The question test (`question` on a note).** The Ottoman madrasah's own
+  answer to *how do I know which i'rab this is?*: you ask which question the
+  word answers. Fa'il answers «Ne? Kim?», maf'ul fih «Nerede? Ne zaman?», hal
+  «Ne olduğu halde?». Eleven nahw notes carry it, from
+  `research/sources/edatlar-irab-soru-testi.txt`. It renders above the
+  explanation — a reader who has just tapped a word wants to recognise the role
+  before reading about it — and the role game shows it on reveal, since it is
+  the thing that would have given the answer away.
+  **The Turkish is the source and the English is a functional equivalent, not a
+  translation.** The device works because Turkish case endings line up with
+  Arabic's; English has none, so «Neyi?» and «Neye?» both collapse toward
+  "what". Say so rather than implying the mapping is exact. The validator
+  requires `tr` and `en` to be non-empty and the *same length*, because they are
+  read as corresponding lists.
 - **Cloze gates on the glossary's `pos`, not the token's.** They legitimately
   disagree — تَعَالَى is a verb in form but a formulaic particle in the lexicon —
   and since the options are citation forms, the lexical class has to govern both

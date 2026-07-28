@@ -276,6 +276,25 @@ def check_grammar_notes(grammar_dir: Path, rep: Report) -> set:
         title = note.get("title", {})
         if "ar" not in title or "en" not in title:
             rep.error(f"{path.name}: title must contain 'ar' and 'en'")
+        # The madrasah "edat" test: which interrogative the word answers. Both
+        # languages are required and both must be non-empty — a half-translated
+        # question test is worse than none, because the reader is told to ask a
+        # question that is not there.
+        q = note.get("question")
+        if q is not None:
+            if not isinstance(q, dict):
+                rep.error(f"{path.name}: question must be an object with 'tr' and 'en'")
+            else:
+                for lang in ("tr", "en"):
+                    vals = q.get(lang)
+                    if not isinstance(vals, list) or not vals or not all(
+                            isinstance(v, str) and v.strip() for v in vals):
+                        rep.error(f"{path.name}: question.{lang} must be a non-empty "
+                                  f"list of non-empty strings")
+                if isinstance(q.get("tr"), list) and isinstance(q.get("en"), list) \
+                        and len(q["tr"]) != len(q["en"]):
+                    rep.error(f"{path.name}: question.tr has {len(q['tr'])} entries "
+                              f"but question.en has {len(q['en'])} — they must correspond")
         if not note.get("examples"):
             rep.error(f"{path.name}: needs at least one example")
         elif not any(x.get("sourceStory") for x in note["examples"]):

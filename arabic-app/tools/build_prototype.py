@@ -139,6 +139,10 @@ def build_grammar(grammar_dir: Path):
             note["mamul"] = g["mamul"]
         if g.get("classicalSources"):
             note["sources"] = g["classicalSources"]
+        # The interrogative that identifies the role — the madrasah's own way of
+        # answering "how do I know which i'rab this is?".
+        if g.get("question"):
+            note["question"] = g["question"]
         # The worked example carries a TRANSLATED explanation, not just Arabic:
         # under TR UI an English gloss here was the last place the app still
         # spoke English to a Turkish reader.
