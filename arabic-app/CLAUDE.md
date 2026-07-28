@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         43 browser checks over file:// (Playwright)
+  smoke_test.js         46 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_irab_tr.py      finds i'rab strings with no Turkish yet
@@ -155,6 +155,23 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   undated stories sort *last*, not first, which an epoch-0 fallback would do.
   This exists because invisible content cadence is the single sharpest
   complaint about the app this one is modelled on — see `research/01-*.md` §7.2.
+- **Every note opens in plain language (`plain`, required).** One jargon-free
+  sentence, both languages, capped at 320 characters by the validator — a
+  summary as long as what it summarises is not one. It renders as the lede and
+  the classical `explanation` folds into a `<details>` whose open state is
+  remembered in `state.deepNotes`, so a beginner is not walled off by
+  «Badi' is the third of the three sciences of balagha…» and a student opens
+  the full text once rather than every time. `<details>`'s `toggle` event does
+  **not bubble** and is dispatched **asynchronously**: the listener is on
+  `sheetInner` in the capture phase, and anything reading the preference right
+  after a click has to wait for it rather than read it in the same tick.
+- **The chrome is copy, not build metadata.** The header used to read
+  `Qissa · app shell v0.6` and the footer named a repository path. A test now
+  fails on any version string, "prototype", or file path in the header or
+  footer. Ship-facing text belongs in `L.en`/`L.tr` like everything else.
+- **The app follows the device language on first run** (`navigator.language`),
+  with a stored choice always winning. Defaulting to English meant a Turkish
+  reader met an English app despite the whole content layer being bilingual.
 - **The question test (`question` on a note).** The Ottoman madrasah's own
   answer to *how do I know which i'rab this is?*: you ask which question the
   word answers. Fa'il answers «Ne? Kim?», maf'ul fih «Nerede? Ne zaman?», hal

@@ -37,7 +37,11 @@ ARABIC_ONLY = re.compile(r"^[؀-ۿ\s]+$")
 
 REQUIRED_MANIFEST = ["id", "title", "level", "version", "published", "access", "chapters"]
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-REQUIRED_NOTE = ["id", "title", "level", "group", "explanation", "examples", "commonMistakes"]
+REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examples",
+                 "commonMistakes"]
+# A "plain" summary longer than this is not a summary. The full account belongs
+# in `explanation`, which the reader shows behind a toggle.
+PLAIN_MAX = 320
 NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha"}
 
 
@@ -280,6 +284,17 @@ def check_grammar_notes(grammar_dir: Path, rep: Report) -> set:
         # languages are required and both must be non-empty — a half-translated
         # question test is worse than none, because the reader is told to ask a
         # question that is not there.
+        # The jargon-free lede. It is what a reader with no madrasah background
+        # sees first, so it has to exist, be bilingual, and stay short.
+        plain = note.get("plain")
+        if plain is not None:
+            if not isinstance(plain, dict) or not plain.get("en") or not plain.get("tr"):
+                rep.error(f"{path.name}: plain must have non-empty 'en' and 'tr'")
+            else:
+                for lang in ("en", "tr"):
+                    if len(plain[lang]) > PLAIN_MAX:
+                        rep.error(f"{path.name}: plain.{lang} is {len(plain[lang])} chars "
+                                  f"(max {PLAIN_MAX}) — put the detail in explanation")
         q = note.get("question")
         if q is not None:
             if not isinstance(q, dict):

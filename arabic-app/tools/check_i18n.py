@@ -33,6 +33,8 @@ def main():
         nid = g["id"]
         if not g["title"].get("tr"):
             missing.append(f"grammar/{nid}: title has no tr")
+        if not bilingual_ok(g.get("plain")):
+            missing.append(f"grammar/{nid}: plain summary not bilingual")
         if not bilingual_ok(g.get("explanation")):
             missing.append(f"grammar/{nid}: explanation not bilingual")
         for i, x in enumerate(g.get("examples", [])):

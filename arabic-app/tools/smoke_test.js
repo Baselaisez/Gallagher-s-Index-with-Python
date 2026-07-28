@@ -1222,6 +1222,78 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('every note opens with a plain summary, and the detail is one tap away', async () => {
+    await toLibrary();
+    const data = await page.evaluate(() => {
+      const all = Object.entries(GRAMMAR);
+      return {
+        total: all.length,
+        noPlain: all.filter(([, g]) => !g.plain || !g.plain.en || !g.plain.tr).map(([id]) => id),
+        // A summary as long as the thing it summarises is not a summary.
+        tooLong: all.filter(([, g]) => g.plain &&
+          (g.plain.en.length > 320 || g.plain.tr.length > 320)).map(([id]) => id),
+        // ...and it must actually be shorter than the full explanation.
+        notShorter: all.filter(([, g]) => g.plain && g.explanation &&
+          g.plain.en.length >= g.explanation.en.length).map(([id]) => id),
+      };
+    });
+    if (data.noPlain.length) throw new Error('no bilingual plain summary on: ' + data.noPlain.slice(0, 5));
+    if (data.tooLong.length) throw new Error('plain summary too long on: ' + data.tooLong);
+    if (data.notShorter.length) throw new Error('plain is not shorter than explanation on: ' + data.notShorter);
+
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.locator('.ref-list [data-note="tibaq"]').click();
+    await page.waitForSelector('.gnote p.plain', { timeout: 3000 });
+    const lede = await page.locator('.gnote p.plain').first().textContent();
+    if (!/opposite/.test(lede)) throw new Error('plain lede: ' + lede);
+    // The classical account is present but folded away by default.
+    const open = await page.locator('.gnote details.deep').first().evaluate(d => d.open);
+    if (open) throw new Error('the full explanation should start closed');
+    const deepText = await page.locator('.gnote details.deep p').first().textContent();
+    if (!/Badi/.test(deepText)) throw new Error('full explanation missing: ' + deepText.slice(0, 60));
+    // Opening it is remembered, so a reader who wants depth asks once.
+    await page.locator('.gnote details.deep summary').first().click();
+    // `toggle` is queued rather than dispatched synchronously, so wait for the
+    // preference to settle instead of reading it in the same tick as the click.
+    await page.waitForFunction(() => state.deepNotes === true, null, { timeout: 3000 })
+      .catch(() => { throw new Error('opening the detail was not remembered'); });
+    if (await page.evaluate(() => localStorage.getItem('qissa-deep')) !== '1')
+      throw new Error('the preference was not persisted');
+    await page.evaluate(() => { state.deepNotes = false; localStorage.setItem('qissa-deep', '0'); });
+    await page.evaluate(() => document.getElementById('scrim').click());
+  });
+
+  await check('the app opens in the language of the device', async () => {
+    // A Turkish device must not be shown an English app on first run; a stored
+    // choice must still win over the device.
+    const ctx2 = await browser.newContext({ locale: 'tr-TR' });
+    const p2 = await ctx2.newPage();
+    await p2.goto(url);
+    const lang = await p2.evaluate(() => state.uiLang);
+    if (lang !== 'tr') throw new Error('tr-TR device opened in ' + lang);
+    const seg = await p2.locator('#uiLangSeg [data-ui="tr"]').getAttribute('class');
+    if (!/on/.test(seg || '')) throw new Error('language segment does not show the active language');
+    await p2.evaluate(() => localStorage.setItem('qissa-lang', 'en'));
+    await p2.reload();
+    if (await p2.evaluate(() => state.uiLang) !== 'en')
+      throw new Error('a stored choice must override the device language');
+    await ctx2.close();
+  });
+
+  await check('nothing in the chrome reads like build metadata', async () => {
+    await toLibrary();
+    const txt = await page.evaluate(() => ({
+      eyebrow: (document.getElementById('eyebrow') || {}).textContent || '',
+      footer: document.querySelector('footer.note').textContent,
+    }));
+    for (const [where, s] of Object.entries(txt)) {
+      if (/v\d+\.\d+|app shell|prototype|content\/samples|\.json/i.test(s))
+        throw new Error(where + ' shows build metadata: ' + s.trim().slice(0, 80));
+    }
+    if (!txt.eyebrow.trim()) throw new Error('the eyebrow is empty');
+  });
+
   await check('the question test identifies the role, in both languages', async () => {
     await toLibrary();
     const data = await page.evaluate(() => {

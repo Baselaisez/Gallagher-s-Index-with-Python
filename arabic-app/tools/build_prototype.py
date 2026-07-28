@@ -132,6 +132,8 @@ def build_grammar(grammar_dir: Path):
         g = json.loads(path.read_text(encoding="utf-8"))
         note = {"title": g["title"], "level": g.get("level"),
                 "group": g.get("group", "nahw"),
+                # The jargon-free lede the reader meets before the classical account.
+                "plain": bilingual(g.get("plain")),
                 "explanation": bilingual(g.get("explanation"))}
         if g.get("amil"):
             note["amil"] = g["amil"]
