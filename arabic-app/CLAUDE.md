@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Twelve stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, two chapters so far) is the wasiyya to Yusuf b. Khalid al-Samti, growing chapter by chapter from the received text in research/sources/wasiyya-samti-arabic.txt. Grammar notes are **global**: a note authored once shows
+Twelve stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; its regenerating source is the scratchpad's author_samti.py and the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -96,12 +96,15 @@ semantics-free, so a verb authored in one package is copied into another after
 a lemma identity check. `author_samti.py` merges with the on-disk morphology
 instead of overwriting it, so regenerating the story keeps the bank.
 
-**A jamid verb is mazi-only by doctrine, not by omission.** `"jamid": true`
-on a morphology entry (لَيْسَ) means: 14 mazi cells, and NO mudari/amr/masdar/
-participles/governed forms — validator, builder, reader, Dart harness and the
-governed-forms smoke sweep all understand the flag. The sarf tab collapses to
-a single الماضي button; `muhtelife()` returns null so no drill, verb card or
-game ever picks it.
+**A jamid verb stores exactly the tenses that exist — absence is doctrine,
+not omission.** `"jamid": true` on a morphology entry means: 14 mazi cells
+always; a mudari (and governed forms) only if the verb really has them; never
+an amr, masdar or participles. لَيْسَ is mazi-only; زَالَ (أخت كان الملازمة
+للنفي) keeps its mudari and its real لَمْ يَزَلْ but has no imperative.
+Validator, builder, reader, Dart harness and the governed-forms smoke sweep
+all understand the flag. The sarf tab offers only the tenses present, and
+`muhtelife()` additionally requires a non-empty amr (the table has an
+imperative row), so no drill, verb card or game ever picks one.
 
 **Passive by wazn, not by letter count.** Form II verbs with three bare letters
 (وَدَّعَ, عَلَّمَ) fell through to the Form I branch and produced *وُدِعَ. Match the

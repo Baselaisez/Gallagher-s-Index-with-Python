@@ -63,12 +63,14 @@ def build_story(pkg: Path, irab_tr=None):
     if mpath.exists():
         for lex, m in json.loads(mpath.read_text(encoding="utf-8"))["verbs"].items():
             if m.get("jamid"):
-                # لَيْسَ and friends: mazi-only. The reader shows a single-tense
-                # sarf table and no muhtelife (no governed forms exist).
+                # Incompletely conjugating verbs carry exactly the tenses that
+                # exist: لَيْسَ is mazi-only, مَا زَالَ adds a mudari and governed
+                # forms but has no amr. The reader renders what is present.
                 entry = {"bab": m["bab"], "wazn": m["wazn"], "jamid": True,
                          "mazi": m["mazi"]}
-                if m.get("note"):
-                    entry["note"] = m["note"]
+                for key in ("mudari", "mansub", "majzum", "majzum2", "note"):
+                    if m.get(key):
+                        entry[key] = m[key]
                 morph[lex] = entry
                 continue
             entry = {"bab": m["bab"], "wazn": m["wazn"], "masdar": m["masdar"],

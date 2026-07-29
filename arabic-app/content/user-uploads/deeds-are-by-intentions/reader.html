@@ -2028,7 +2028,10 @@ function conjTable(forms, rows, highlight){
 // package data, never derived here, because hollow and defective verbs do not
 // follow the sound-verb rule (يَقُولُ → لَمْ يَقُلْ, يَرْمِي → لَمْ يَرْمِ).
 function muhtelife(morph){
-  if (!morph || !morph.majzum || !morph.mansub || !morph.majzum2) return null;
+  // The table needs the governed forms AND an amr row — مَا زَالَ has the
+  // first (لَمْ يَزَلْ is real) but no imperative exists, so no muhtelife.
+  if (!morph || !morph.majzum || !morph.mansub || !morph.majzum2
+      || !(morph.amr && morph.amr.length)) return null;
   const mazi = morph.mazi[0], mudari = morph.mudari[0], amr = morph.amr[0];
   return [
     { ar: mazi,                      tr: "Fiil-i mâzî",                en: "Past tense" },
@@ -2130,10 +2133,11 @@ function openWord(tok, el, tab, ctx){
       ${hasGrammar ? `<button class="btn" id="toGrammar">${ui().gnote}</button>` : ""}
     </div>`;
   } else if (mode === "sarf" && morph) {
-    // A jamid verb (لَيْسَ) conjugates in the mazi only — the data carries no
-    // mudari, amr, masdar or participles, so the tab collapses to one tense
-    // rather than rendering empty tables.
-    const tense = morph.jamid ? "mazi" : sarfTense;
+    // A jamid verb does not conjugate fully — the data carries exactly the
+    // tenses that exist (لَيْسَ: mazi only; مَا زَالَ: mazi + mudari, no amr),
+    // so the tab offers what is present rather than rendering empty tables.
+    const tense = morph.jamid && !(morph[sarfTense] && morph[sarfTense].length)
+      ? "mazi" : sarfTense;
     html += `<p class="lemma">${entry.lemma}</p>
       <p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
     if (!morph.jamid) html += `<div class="facts">
@@ -2143,8 +2147,9 @@ function openWord(tok, el, tab, ctx){
       </div>`;
     html += `<div class="seg tense-seg" role="group" aria-label="Tense">
         <button data-tense="mazi" class="${tense==="mazi"?"on":""}">الماضي</button>
+        ${!morph.jamid || morph.mudari ? `
+        <button data-tense="mudari" class="${tense==="mudari"?"on":""}">المضارع</button>` : ""}
         ${morph.jamid ? "" : `
-        <button data-tense="mudari" class="${tense==="mudari"?"on":""}">المضارع</button>
         <button data-tense="amr" class="${tense==="amr"?"on":""}">الأمر</button>
         ${muhtelife(morph) ? `<button data-tense="muhtelife" class="${tense==="muhtelife"?"on":""}">المُخْتَلِفَة</button>` : ""}`}
       </div>`;
