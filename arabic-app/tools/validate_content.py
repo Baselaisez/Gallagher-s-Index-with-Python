@@ -226,6 +226,18 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
                     rep.error(f"{where}: audio overlaps previous sentence "
                               f"(starts {start} < previous end {prev_end})")
                 prev_end = end
+        # Sentence-level i'rab (Qawa'id al-I'rab): each clause row must carry
+        # the clause text, the Arabic classification, and BOTH glosses — a
+        # half-translated row goes silently blank in one language.
+        jumal = sen.get("jumal")
+        if jumal is not None:
+            if not isinstance(jumal, list) or not jumal:
+                rep.error(f"{where}: jumal must be a non-empty list")
+            else:
+                for i, j in enumerate(jumal):
+                    for k in ("text", "ar", "en", "tr"):
+                        if not (isinstance(j, dict) and j.get(k)):
+                            rep.error(f"{where}: jumal[{i}] missing '{k}'")
         tokens = sen.get("tokens", [])
         if not tokens:
             rep.error(f"{where}: sentence has no tokens")

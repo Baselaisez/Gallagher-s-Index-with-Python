@@ -306,7 +306,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
 - **Chapter pills** (`.ch-nav`) render only when MORE THAN ONE `.chapter-head`
   actually rendered — built from the DOM after the paywall cut, never from the
   manifest, so a pill can never point at a chapter the preview dropped.
-- **Sentence i'rab sheet**: the إعراب button on each sentence opens the whole sentence
+- **Tarkib vs I'rab — two layers on one sheet.** The sentence button is
+  تركيب: the word-by-word table (unchanged). Below it, sentences that carry
+  authored `jumal` rows get an إِعْرَابُ الْجُمَلِ section: each CLAUSE named
+  and given — or denied — its mahall, per Ibn Hisham's Qawa'id al-I'rab
+  (7 with mahall / 7 without; `anwa-al-jumal` teaches the doctrine and is
+  auto-offered in the sheet's topics when jumal exist). `jumal` is optional
+  per sentence, authored trilingual {text, ar, en, tr}; builder forwards it,
+  the validator and the Dart harness reject half-translated rows. Where the
+  token layer and the clause layer meet (a bare jawab al-shart), the token
+  states the VERB's mahall and the clause row the CLAUSE's — the Qawa'id
+  distinction, not a contradiction.
+- **Sentence tarkib sheet**: the تركيب button on each sentence opens the whole sentence
   analysed at once — the exercise a madrasah student writes out. It needs nothing beyond
   per-token `irab`, so it comes free with any new chapter.
 - **Birgivi's ma'mul taxonomy** organizes the registry — every note carries `mamul`

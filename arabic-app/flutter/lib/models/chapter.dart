@@ -35,12 +35,16 @@ class Sentence {
   final AudioSpan? audio; // [startMs, endMs] against the chapter MP3; may be absent
   final LocalizedText translation; // {en, tr} — no `ar` (the Arabic *is* the tokens)
   final List<Token> tokens;
+  // Sentence-level i'rab (Qawa'id al-I'rab): each clause named and given —
+  // or denied — its mahall. Empty when the sentence is not yet analysed.
+  final List<JumlaNote> jumal;
 
   const Sentence({
     required this.id,
     required this.audio,
     required this.translation,
     required this.tokens,
+    required this.jumal,
   });
 
   factory Sentence.fromJson(Map<String, dynamic> json) {
@@ -52,6 +56,34 @@ class Sentence {
       tokens: (json['tokens'] as List<dynamic>? ?? const [])
           .map((e) => Token.fromJson(e as Map<String, dynamic>))
           .toList(growable: false),
+      jumal: (json['jumal'] as List<dynamic>? ?? const [])
+          .map((e) => JumlaNote.fromJson(e as Map<String, dynamic>))
+          .toList(growable: false),
+    );
+  }
+}
+
+/// One clause row of a sentence's i'rab section: the clause itself, its
+/// Arabic classification, and the two glosses.
+class JumlaNote {
+  final String text; // the clause, quoted from the sentence
+  final String ar; // the classification, madrasah-style
+  final String en;
+  final String tr;
+
+  const JumlaNote({
+    required this.text,
+    required this.ar,
+    required this.en,
+    required this.tr,
+  });
+
+  factory JumlaNote.fromJson(Map<String, dynamic> json) {
+    return JumlaNote(
+      text: json['text'] as String,
+      ar: json['ar'] as String,
+      en: json['en'] as String,
+      tr: json['tr'] as String,
     );
   }
 }

@@ -105,7 +105,7 @@ void main(List<String> args) {
   }
 
   // ---------- every package ----------
-  var stories = 0, tokens = 0, phrases = 0, recordedChapters = 0;
+  var stories = 0, tokens = 0, phrases = 0, recordedChapters = 0, jumalRows = 0;
   for (final pkg in pkgDirs..sort((a, b) => a.path.compareTo(b.path))) {
     final pkgName = pkg.path.split('/').last;
     final manifest =
@@ -152,6 +152,13 @@ void main(List<String> args) {
         if (sen.translation.en.isEmpty || sen.translation.tr.isEmpty) {
           fail('$pkgName/${sen.id}', 'translation missing a language');
         }
+        for (final j in sen.jumal) {
+          jumalRows++;
+          // A clause row half-translated goes silently blank in one language.
+          if (j.text.isEmpty || j.ar.isEmpty || j.en.isEmpty || j.tr.isEmpty) {
+            fail('$pkgName/${sen.id}', 'jumal row missing a field');
+          }
+        }
         final a = sen.audio;
         if (a != null && a.startMs >= a.endMs) {
           fail('$pkgName/${sen.id}', 'audio span start >= end');
@@ -196,7 +203,8 @@ void main(List<String> args) {
 
   stdout.writeln('parsed: $stories stories, $tokens tokens, '
       '${noteIds.length} grammar notes ($notesWithQuestion with a question test), '
-      '$phrases phrase-marked tokens, $recordedChapters recorded chapters');
+      '$phrases phrase-marked tokens, $recordedChapters recorded chapters, '
+      '$jumalRows clause-i\'rab rows');
   if (failures > 0) {
     stderr.writeln('\n$failures failure(s)');
     exit(1);

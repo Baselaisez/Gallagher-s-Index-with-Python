@@ -1783,6 +1783,46 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('tarkib and i\'rab: the sentence sheet reads words AND clauses', async () => {
+    await toLibrary();
+    await openStoryCard('wasiyyat-abi-hanifa-samti');
+    // The button is now تركيب, not إعراب.
+    const btn = await page.locator('.sentence .irab-btn').first().textContent();
+    if (!btn.includes('تركيب')) throw new Error('sentence button reads: ' + btn);
+    await page.locator('.sentence .irab-btn').first().click();
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    // Every Samti sentence carries authored clause rows; count must match data.
+    const exp = await page.evaluate(() => (CUR.chapters[0].sentences[0].jumal || []).length);
+    if (!exp) throw new Error('s1 has no authored jumal');
+    const rows = await page.locator('.jumla-row').count();
+    if (rows !== exp) throw new Error(rows + ' clause rows for ' + exp + ' authored');
+    // The clause layer teaches its doctrine: the jumal note is offered.
+    if (!(await page.locator('.sheet-topics [data-note="anwa-al-jumal"]').count()))
+      throw new Error('the jumal section does not link anwa-al-jumal');
+    // Every authored row is complete in both languages, corpus-wide.
+    const bad = await page.evaluate(() => {
+      const out = [];
+      for (const st of STORIES)
+        for (const ch of st.chapters)
+          for (const sen of ch.sentences)
+            (sen.jumal || []).forEach((j, i) => {
+              if (!j.text || !j.ar || !j.en || !j.tr) out.push(st.id + ' ' + sen.id + '[' + i + ']');
+            });
+      return out.slice(0, 5);
+    });
+    if (bad.length) throw new Error('incomplete jumal rows: ' + bad.join(', '));
+    // A sentence WITHOUT authored jumal shows no clause section.
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await toLibrary();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
+    await page.locator('.sentence .irab-btn').first().click();
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    if (await page.locator('.jumla-row').count())
+      throw new Error('an unanalysed sentence grew a clause section');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await toLibrary();
+  });
+
   await check('the progress page agrees with the shelf, the deck and today', async () => {
     await toLibrary();
     const exp = await page.evaluate(() => {

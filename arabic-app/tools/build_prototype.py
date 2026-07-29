@@ -106,6 +106,10 @@ def build_story(pkg: Path, irab_tr=None):
                         "tokens": tokens}
             if sen.get("audio"):
                 sentence["audio"] = sen["audio"]  # [startMs, endMs] — forward-prep for real narration
+            if sen.get("jumal"):
+                # Sentence-level i'rab (Qawa'id al-I'rab): each clause named and
+                # given — or denied — its mahall. Authored trilingual in place.
+                sentence["jumal"] = sen["jumal"]
             sentences.append(sentence)
         chapter = {"n": ch["n"], "title": ch["title"], "sentences": sentences}
         if ch.get("audioFile"):
