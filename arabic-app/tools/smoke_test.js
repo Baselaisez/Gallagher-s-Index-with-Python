@@ -1915,6 +1915,45 @@ if (!CHROME) {
     }
   });
 
+  await check('struggling cards come first, the deck exports, the reading bar tracks', async () => {
+    // The struggle model: a four-lapse card outranks a young one, whatever due says.
+    const r = await page.evaluate(() => {
+      const saved = state.deck;
+      state.deck = [
+        { lex: 'fresh1', type: 'word', bare: 'x', lemma: 'س', gloss: { en: 'a', tr: 'b' },
+          srs: { due: 0, ivl: 0, reps: 3, ease: 2.5, lapses: 0 } },
+        { lex: 'leechy', type: 'word', bare: 'x', lemma: 'ل', gloss: { en: 'a', tr: 'b' },
+          srs: { due: 5, ivl: 0, reps: 1, ease: 1.6, lapses: 4 } },
+        { lex: 'middle', type: 'word', bare: 'x', lemma: 'م', gloss: { en: 'a', tr: 'b' },
+          srs: { due: 1, ivl: 0, reps: 2, ease: 2.1, lapses: 1 } },
+      ];
+      const q = dueCards().map(c => c.lex);
+      const tsv = buildDeckExport();
+      state.deck = saved;
+      return { q, tsv };
+    });
+    if (r.q.join() !== 'leechy,middle,fresh1')
+      throw new Error('queue is not struggle-first: ' + r.q.join());
+    const lines = r.tsv.trim().split('\n');
+    if (lines.length !== 3) throw new Error('export has ' + lines.length + ' rows for 3 cards');
+    if (!lines.every(l => l.split('\t').length === 3))
+      throw new Error('export is not three-column TSV');
+    if (!/qissa vocab/.test(lines[0])) throw new Error('export rows carry no tag');
+
+    // The reading bar: absent from the library, grows with scroll in a story.
+    await toLibrary();
+    if (await page.locator('#readbar').isVisible())
+      throw new Error('the reading bar is visible in the library');
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
+    await page.evaluate(() => window.scrollTo(0, document.scrollingElement.scrollHeight));
+    await page.waitForFunction(() =>
+      parseFloat(document.querySelector('#readbar div').style.width) > 50,
+      null, { timeout: 3000 })
+      .catch(() => { throw new Error('the reading bar did not follow the scroll'); });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

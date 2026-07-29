@@ -371,6 +371,11 @@
   .deck-stats .st { padding: .2rem .55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-soft); }
   .deck-stats .fresh { color: var(--accent); border-color: var(--accent); }
   .deck-stats .leech { color: var(--danger); border-color: var(--danger); }
+  .deck-stats button.export { cursor: pointer; background: var(--panel); font: inherit; color: var(--accent); border-color: var(--accent); }
+  .deck-stats button.export:hover { background: var(--accent-soft); }
+  .readbar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 6; pointer-events: none; }
+  .readbar div { height: 100%; width: 0%; background: var(--accent); transition: width .1s linear; }
+  .lib-mode .readbar { display: none; }
   .grade-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; margin: .8rem 0; }
   .grade-row .btn.grade { display: flex; flex-direction: column; align-items: center; gap: .12rem; padding: .5rem .2rem; }
   .grade-row .btn.grade b { font-size: .8rem; }
@@ -563,6 +568,7 @@
   .backrow button { border: 0; background: none; color: var(--accent); cursor: pointer; font-family: var(--ui-font); font-size: .8rem; font-weight: 600; padding: 0; }
 </style>
 
+<div class="readbar" id="readbar" aria-hidden="true"><div></div></div>
 <div class="wrap">
   <header class="app">
     <div class="eyebrow" id="eyebrow"></div>
@@ -823,6 +829,7 @@ Object.assign(L.en, {
   continueReading:"Continue reading",
   finishedLbl:"Finished",
   newWordsChip:"{n} new words", reviewNudge:"{n} cards ready to review",
+  exportBtn:"⬇ Export (Anki)",
   vocabChip:"{n} words", vocabTitle:"Vocabulary of this story",
   vocabHint:"Every teachable word in this story, counted once, easiest first. Save the ones you want to drill.",
   statsBtn:"Progress", statsTitle:"Your progress",
@@ -840,6 +847,7 @@ Object.assign(L.tr, {
   continueReading:"Kaldığınız yerden devam",
   finishedLbl:"Tamamlandı",
   newWordsChip:"{n} yeni kelime", reviewNudge:"{n} kart tekrara hazır",
+  exportBtn:"⬇ Dışa aktar (Anki)",
   vocabChip:"{n} kelime", vocabTitle:"Bu hikâyenin kelimeleri",
   vocabHint:"Bu hikâyedeki bütün öğretilebilir kelimeler — bir kez, kolaydan zora. Çalışmak istediklerinizi desteye ekleyin.",
   statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
@@ -2554,7 +2562,45 @@ function learnNewHere(){
   picks.forEach(({ tok }) => { if (toggleSave(tok)) countActivity("learned"); });
   renderDeck();
 }
-function dueCards(){ const now = Date.now(); return state.deck.filter(c => ensureSrs(c).srs.due <= now); }
+// The on-device difficulty model. Every review already logs lapses and moves
+// ease; this folds both into one score so the queue serves the STRUGGLING
+// cards first, while attention is fresh — a card failed four times outranks a
+// merely young one. Two points per lapse, one per notch of lost ease.
+function struggleScore(c){
+  const s = ensureSrs(c).srs;
+  return (s.lapses || 0) * 2 + Math.max(0, (2.5 - (s.ease || 2.5)) * 2.5);
+}
+function dueCards(){
+  const now = Date.now();
+  return state.deck.filter(c => ensureSrs(c).srs.due <= now)
+    .sort((a, b) => struggleScore(b) - struggleScore(a) ||
+                    ensureSrs(a).srs.due - ensureSrs(b).srs.due);
+}
+// ---------- deck export ----------
+// Anki-importable TSV — Front, Back, Tags — so the learner's cards are THEIRS,
+// portable to any SRS app. Built live from the deck; GRAMMAR is global, so
+// note cards export their real title and plain lede anywhere.
+function buildDeckExport(){
+  const esc = v => String(v == null ? "" : v).replace(/[\t\n]/g, " ").trim();
+  return state.deck.map(c => {
+    if (c.type === "note") {
+      const g = GRAMMAR[c.noteId];
+      return [esc(g.title.ar), esc(T(g.title) + " — " + T(g.plain || {})), "qissa grammar"];
+    }
+    if (c.type === "verb")
+      return [esc(c.lemma || c.lex), esc(ui().conjCard), "qissa sarf"];
+    return [esc(c.lemma || c.bare), esc((c.gloss && c.gloss.en) || "") +
+      ((c.gloss && c.gloss.tr) ? " / " + esc(c.gloss.tr) : ""), "qissa vocab"];
+  }).map(r => r.join("\t")).join("\n");
+}
+function exportDeck(){
+  const blob = new Blob(["﻿" + buildDeckExport()], { type: "text/tab-separated-values" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "qissa-deck.tsv";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
 function updateDeckCount(){
   const c = document.getElementById("deckCount");
   const due = dueCards().length;
@@ -2786,6 +2832,7 @@ function renderDeck(){
       <span class="st learn">${st.learning} ${ui().stLearning}</span>
       <span class="st mature">${st.mature} ${ui().stMature}</span>
       ${st.leeches ? `<span class="st leech">${st.leeches} ${ui().stLeech}</span>` : ""}
+      ${state.deck.length ? `<button class="st export" id="deckExport">${ui().exportBtn}</button>` : ""}
     </div>`;
   if (!state.deck.length) {
     html += `<p class="empty">${ui().empty}</p>`;
@@ -2843,6 +2890,8 @@ function renderDeck(){
   if (le) le.addEventListener("click", learnNewHere);
   const ge = document.getElementById("goalEdit");
   if (ge) ge.addEventListener("click", editGoal);
+  const de = document.getElementById("deckExport");
+  if (de) de.addEventListener("click", exportDeck);
   sheetInner.querySelectorAll(".grade[data-q]").forEach(b =>
     b.addEventListener("click", () => {
       const c = dueCards()[0];
@@ -3153,6 +3202,23 @@ document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
 renderLegend();
 updatePlayAllBtn();
 document.getElementById("backLib").addEventListener("click", renderLibrary);
+// The reading bar: a 3px thread of accent along the top, tracking how far
+// through the story the reader is. rAF-throttled; hidden in the library.
+const readbarFill = document.querySelector("#readbar div");
+let rbPending = false;
+addEventListener("scroll", () => {
+  if (rbPending) return;
+  rbPending = true;
+  requestAnimationFrame(() => {
+    rbPending = false;
+    // scrollingElement, not documentElement: served without a doctype (file://,
+    // the PWA before the host injects one) the page is in quirks mode and the
+    // BODY is the scroller — documentElement.scrollTop stays 0 forever there.
+    const h = document.scrollingElement || document.documentElement;
+    const max = h.scrollHeight - innerHeight;
+    readbarFill.style.width = max > 0 ? (100 * h.scrollTop / max).toFixed(1) + "%" : "0%";
+  });
+}, { passive: true });
 if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
 // A newcomer lands on a flat shelf where an L6 fiqh text sits beside an L1
 // story with nothing steering them. Ask once — the answer feeds "For you" —
