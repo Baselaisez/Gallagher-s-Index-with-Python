@@ -1954,6 +1954,32 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('finishing a story raises the completion toast, exactly once', async () => {
+    await toLibrary();
+    const pick = await page.evaluate(() =>
+      STORIES.find(s => !storyLocked(s)).id);
+    await openStoryCard(pick);
+    const r = await page.evaluate(() => {
+      const flat = CUR.chapters.flatMap(c => c.sentences);
+      const prog = {};
+      flat.slice(0, -1).forEach(s => { prog[s.id] = 1; });
+      state.progress[CUR.id] = prog;
+      localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+      markRead(flat[flat.length - 1].id);           // the finishing read
+      const shown = !!document.querySelector('#toast.show');
+      const text = shown ? document.getElementById('toast').textContent : '';
+      markRead(flat[flat.length - 1].id);           // already read: no re-toast path
+      return { shown, text };
+    });
+    if (!r.shown) throw new Error('no toast on the finishing read');
+    if (!/finished|bitti/i.test(r.text)) throw new Error('toast says: ' + r.text);
+    await page.evaluate(() => {
+      delete state.progress[CUR.id];
+      localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
+    });
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

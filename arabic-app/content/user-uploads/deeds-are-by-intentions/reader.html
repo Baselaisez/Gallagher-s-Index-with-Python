@@ -234,6 +234,8 @@
     font-family: var(--ui-font); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
     color: var(--ink-soft); margin: 1.6rem 0 .4rem; display: flex; align-items: center; gap: .7rem;
   }
+  /* The rub' al-hizb ornament — serious, classical, and unmistakably ours. */
+  .chapter-head::before { content: "۞"; color: var(--accent); font-size: 1.1rem; letter-spacing: 0; }
   .chapter-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
   .chapter-title-ar { font-family: var(--ar-font); font-size: 1.15rem; color: var(--ink); letter-spacing: 0; text-transform: none; }
 
@@ -319,7 +321,11 @@
   }
   .tabs button .ar { font-family: var(--ar-font); font-size: 1.05rem; }
   .tabs button.on { color: var(--accent); border-bottom-color: var(--accent); }
-  .lemma { font-family: var(--ar-font); font-size: 2.2rem; direction: rtl; text-align: right; line-height: 1.5; margin: 0; }
+  .lemma {
+    font-family: var(--ar-font); font-size: 2.2rem; direction: rtl; text-align: right;
+    line-height: 1.5; margin: 0 0 .2rem; padding: .3rem .6rem;
+    background: linear-gradient(135deg, var(--accent-soft), transparent 75%); border-radius: 12px;
+  }
   .lemma .say {
     font-size: 1.1rem; line-height: 1; cursor: pointer; vertical-align: middle;
     border: 1px solid var(--line); background: var(--panel); border-radius: 999px;
@@ -376,6 +382,18 @@
   .readbar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 6; pointer-events: none; }
   .readbar div { height: 100%; width: 0%; background: var(--accent); transition: width .1s linear; }
   .lib-mode .readbar { display: none; }
+  ::selection { background: var(--accent-soft); }
+  .sheet::-webkit-scrollbar { width: 8px; }
+  .sheet::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  .empty { text-align: center; padding: 1.8rem 1rem; color: var(--ink-soft); }
+  #toast {
+    position: fixed; left: 50%; bottom: 1.4rem; transform: translate(-50%, 300%);
+    background: var(--ink); color: var(--ground); font-family: var(--ui-font);
+    font-size: .84rem; font-weight: 600; padding: .6rem 1.15rem; border-radius: 999px;
+    box-shadow: var(--shadow-sm); z-index: 20; transition: transform .25s ease; pointer-events: none;
+    max-width: min(90vw, 24rem); text-align: center;
+  }
+  #toast.show { transform: translate(-50%, 0); }
   .grade-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; margin: .8rem 0; }
   .grade-row .btn.grade { display: flex; flex-direction: column; align-items: center; gap: .12rem; padding: .5rem .2rem; }
   .grade-row .btn.grade b { font-size: .8rem; }
@@ -509,6 +527,11 @@
   .lib-card[data-lvlc="3"]::before { background: var(--lvl3); }
   .lib-card[data-lvlc="4"]::before { background: var(--lvl4); }
   .lib-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+  /* Quiet the card's secondary chips: level, NEW, ✓ and new-words keep their
+     colour and border; chapter/access/read counts become whispers. */
+  .lib-card .chip:not(.level):not(.newchip):not(.done):not(.newwords):not(.freeweek) {
+    border-color: transparent; background: transparent; padding-inline: .15rem;
+  }
   @media (prefers-reduced-motion: no-preference) {
     .lib-card:hover { transform: translateY(-1px); }
     .lib-card:active { transform: translateY(0); }
@@ -830,6 +853,7 @@ Object.assign(L.en, {
   finishedLbl:"Finished",
   newWordsChip:"{n} new words", reviewNudge:"{n} cards ready to review",
   exportBtn:"⬇ Export (Anki)",
+  storyDone:"✓ Story finished — marked on your shelf",
   vocabChip:"{n} words", vocabTitle:"Vocabulary of this story",
   vocabHint:"Every teachable word in this story, counted once, easiest first. Save the ones you want to drill.",
   statsBtn:"Progress", statsTitle:"Your progress",
@@ -848,6 +872,7 @@ Object.assign(L.tr, {
   finishedLbl:"Tamamlandı",
   newWordsChip:"{n} yeni kelime", reviewNudge:"{n} kart tekrara hazır",
   exportBtn:"⬇ Dışa aktar (Anki)",
+  storyDone:"✓ Hikâye bitti — rafında işaretlendi",
   vocabChip:"{n} kelime", vocabTitle:"Bu hikâyenin kelimeleri",
   vocabHint:"Bu hikâyedeki bütün öğretilebilir kelimeler — bir kez, kolaydan zora. Çalışmak istediklerinizi desteye ekleyin.",
   statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
@@ -1217,6 +1242,22 @@ function storyNewWords(st, have){
   })));
   return seen.size;
 }
+// A quiet toast for the moments worth marking — completion, never nagging.
+let toastTimer = null;
+function showToast(msg){
+  let t = document.getElementById("toast");
+  if (!t) {
+    t = document.createElement("div");
+    t.id = "toast";
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  // Force a reflow so back-to-back toasts restart the slide.
+  void t.offsetHeight;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
+}
 function markRead(senId){
   if (!CUR) return;
   const prog = state.progress[CUR.id] || (state.progress[CUR.id] = {});
@@ -1224,6 +1265,9 @@ function markRead(senId){
     prog[senId] = 1;
     localStorage.setItem("qissa-progress", JSON.stringify(state.progress));
     countActivity("read");
+    // The completion moment: exactly once, on the read that finishes the story.
+    const st = storyStats(CUR);
+    if (st.total && st.read === st.total) showToast(ui().storyDone);
   }
 }
 function setHeader(titleAr, sub, chipsHtml){
