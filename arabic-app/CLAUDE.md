@@ -207,6 +207,12 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   for ✓ instead. The card is a `.continue-card`, deliberately NOT a
   `.lib-card`: every test and sort walks `.lib-card`, and the hero must never
   count as a second copy of the story.
+- **Every story carries its word list.** `openVocab()` — the vocab chip in the
+  story header — lists the story's teachable words once, easiest first, each
+  saveable to the deck in place. Reads GLOSSARY live, stores nothing. The chip
+  is `.chip.vocab`, deliberately NOT `.sib`: the sibling switcher and its test
+  click `#metaRow .sib` positionally, and the vocab chip must never be the
+  button they land on.
 - **The library sells the deck, and the deck calls back.** Every unfinished
   card carries a live "{n} new words" chip (`storyNewWords`: unique token
   lexes with level ≥ 1 not already saved — segments don't count, the reader

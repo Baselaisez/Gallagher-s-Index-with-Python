@@ -269,7 +269,10 @@ if (!CHROME) {
     // Pick a query guaranteed to hit at least one note (its own English title),
     // but not necessarily all of them — derived from page data, not hardcoded.
     const sampleTitle = await page.evaluate(() => Object.values(GRAMMAR)[0].title.en);
-    const queryWord = sampleTitle.split(/\s+/)[0];
+    // Skip stopword-length openers ("The five verbs…") — a query of "The"
+    // matches every English title and narrows nothing.
+    const queryWord = sampleTitle.split(/\s+/).find(w => w.length >= 5) ||
+      sampleTitle.split(/\s+/)[0];
     await page.locator('#refSearch').fill(queryWord);
     const searchedCount = await page.locator('.ref-list li').count();
     if (searchedCount < 1) throw new Error('search for "' + queryWord + '" matched nothing');
@@ -1698,6 +1701,43 @@ if (!CHROME) {
       state.deck = window._savedDeck; delete window._savedDeck; persistDeck();
       document.getElementById('scrim').click();
     });
+    await toLibrary();
+  });
+
+  await check('the vocabulary sheet lists every teachable word of a story once', async () => {
+    await toLibrary();
+    // The newest story doubles as the fixture — this also proves the Samti
+    // package opens and its glossary resolves.
+    await openStoryCard('wasiyyat-abi-hanifa-samti');
+    const exp = await page.evaluate(() => {
+      const s = new Set();
+      CUR.chapters.forEach(c => c.sentences.forEach(x => x.tokens.forEach(t => {
+        const e = GLOSSARY[t.lex];
+        if (e && e.level >= 1) s.add(t.lex);
+      })));
+      return s.size;
+    });
+    if (!exp) throw new Error('fixture story has no teachable words');
+    await page.locator('#vocabChip').click();
+    await page.waitForSelector('.sheet.show .vocab-list', { timeout: 3000 });
+    const rows = await page.locator('.vocab-list li').count();
+    if (rows !== exp) throw new Error(rows + ' rows for ' + exp + ' unique teachable words');
+    const lv = await page.evaluate(() =>
+      [...document.querySelectorAll('.vocab-list .chip.level')].map(x => +x.textContent.replace('L', '')));
+    if (lv.some((v, i) => i && v < lv[i - 1])) throw new Error('not sorted easiest-first: ' + lv.join(','));
+    // Saving from the list lands a real word card, and the button flips.
+    const lex = await page.locator('.vocab-list [data-vocab-save]').first().getAttribute('data-vocab-save');
+    await page.locator('.vocab-list [data-vocab-save]').first().click();
+    const saved = await page.evaluate(l =>
+      state.deck.some(c => c.type === 'word' && c.lex === l), lex);
+    if (!saved) throw new Error('saving from the vocabulary list added no card');
+    if (!/In your deck|Destede/.test(await page.locator('.vocab-list [data-vocab-save]').first().textContent()))
+      throw new Error('the save button did not flip');
+    await page.evaluate(l => {
+      const i = state.deck.findIndex(c => c.type === 'word' && c.lex === l);
+      if (i >= 0) { state.deck.splice(i, 1); persistDeck(); }
+      document.getElementById('scrim').click();
+    }, lex);
     await toLibrary();
   });
 
