@@ -196,3 +196,22 @@ mapping is exact.
 One line of the maf'ul fih entry is damaged in the original by binary noise
 (`... kadar, Ne zamana kadar`). Only the interrogatives that read cleanly were
 transcribed; the fragment was left out rather than guessed at.
+
+## The 2026-07-29 uploads
+
+| file | contents |
+|---|---|
+| `kafiya-internet-digest.txt` | a compact modern-Turkish Kafiya digest: murab/mebni, gayr-ı munsarıf, precedence and hazf rules, tenâzu, mef'ul types, ef'âl-i kulûb/nâkısa/mukârebe, and the full particle taxonomy |
+| `emali-qasida-ottoman.txt` | Bed' al-Amali (Siraj al-Din al-Ushi) verse by verse, with an Ottoman-Turkish word-by-word parse, translation and Q&A after each verse |
+
+The digest closed the canon audit. The amil table's mystery `الا` in the إنّ
+row is أَلَا التنبيه — it habitually stands directly before إِنَّ (أَلَا إِنَّ
+زَيْدًا قَائِمٌ), which explains its seat in that row, and it governs nothing
+itself (`huruf-tanbih` says so). «Manayı Fiil» among the governors is the
+digest's third amil of hal — «mana fiildir, هذا زيد قائما gibi» — now
+`mana-al-fil`. With those two, `check_canon.py --strict` reports 81/81.
+
+The Emali file is future story material, not yet content: the Arabic verses
+are the received qasida text (good), but the commentary is Ottoman Turkish in
+Arabic script and must be converted to modern Turkish — and the verse i'rab
+authored from scratch — before any of it faces a reader.

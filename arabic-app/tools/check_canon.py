@@ -74,9 +74,12 @@ CANON = [
         ("لكن", ["inna-wa-akhawatuha"]),
         ("ليت", ["inna-wa-akhawatuha"]),
         ("لعل", ["inna-wa-akhawatuha"]),
-        # The table's eighth-but-one item; identity unclear in the
-        # transcription (أَلَا?) and no note teaches an الا of this class.
-        ("الا", []),
+        # The table's eighth-but-one item. kafiya-internet-digest.txt settles
+        # the identity: أَلَا التنبيه, which habitually stands directly before
+        # إِنَّ (أَلَا إِنَّ زَيْدًا قَائِمٌ) — which is why the Ottoman table
+        # seats it in the إِنَّ row. It governs nothing itself; the note says
+        # so explicitly, and that IS the received doctrine for this item.
+        ("الا", ["huruf-tanbih"]),
         # لا نافية للجنس — la-nafiya-lil-jins says it works like إِنَّ.
         ("لا", ["la-nafiya-lil-jins"]),
     ]),
@@ -122,7 +125,10 @@ CANON = [
         # The vague-but-complete noun (measures, weights, numbers) is the
         # governor tamyiz.json teaches the tamyiz after.
         ("İsmi Mübhemüt Tam", ["tamyiz"]),
-        ("Manayı Fiil", []),
+        # Resolved by kafiya-internet-digest.txt ("HAL'İN AMİLİ … 3. mana
+        # fiildir. هذا زيد قائما gibi"): the governor with verbal FORCE but no
+        # verbal form — ism al-ishara and its kin governing a hal.
+        ("Manayı Fiil", ["mana-al-fil"]),
     ]),
     ("mamul-tablolari-turkce.txt", "Amil-i ma'nevî (2)", [
         ("Mübteda – Haberi Raf eder", ["mubtada-khabar"]),

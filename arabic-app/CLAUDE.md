@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          78 global grammar notes — one JSON per topic, shared by every story
+  grammar/          82 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         49 browser checks over file:// (Playwright)
+  smoke_test.js         53 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -334,15 +334,24 @@ because the artifact host supplies one. Served standalone the browser guesses,
 and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
 test asserts `document.characterSet === "UTF-8"` for exactly this reason.
 
+**The verb card is a drill, not a flashcard.** `verbPrompt` returns
+`{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
+over the Muhtelife so the picks are spread AND distinct, deterministic per
+round (reps + pick). Asks show from step 0, answers at step 2, one grade for
+the round. The smoke check asserts 3 distinct answers, each a real cell of
+that verb's own paradigm.
+
 **The registry is audited against the canon, not just against itself.**
 `check_canon.py` holds the madrasah's own lists (from the Turkish table
 transcriptions in `research/sources/`) and maps each item to the note that
-teaches it. 79/81 covered. The tail of Birgivi's twenty harf-i cer is taught
+teaches it. 81/81 covered — the audit is closed. The tail of Birgivi's twenty harf-i cer is taught
 as ONE note (`huruf-jarr-nawadir`) because each rare letter is defined by its
 restriction, not by a story appearance; ism fa'il and ism maf'ul as GOVERNORS
 are `ism-fail` / `ism-maful`, anchored to real tokens (مُوَدِّعًا، عَامِلًا،
-الْمُخْرَجُ، مَشْرُوطٌ). The two remaining TODOs are honest: the الا of the inna
-table (identity unclear in the transcription) and Manayı Fiil. Two mapping
+الْمُخْرَجُ، مَشْرُوطٌ). The last two gaps fell to kafiya-internet-digest.txt: the inna-table الا is
+أَلَا التنبيه (`huruf-tanbih` — it precedes إِنَّ but governs nothing), and
+Manayı Fiil is the hal-governor with verbal force but no verbal form
+(`mana-al-fil`, هذا زيد قائما). Two mapping
 rules to keep: a particle counts as covered only if a note names it AND its
 government, and never stretch a neighbouring note over a gap — write the note
 or leave the TODO.

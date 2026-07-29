@@ -645,6 +645,22 @@ if (!CHROME) {
     await page.locator('#reviewCard').click();
     await page.locator('#reviewCard').click();
     if (!(await page.locator('.verb-answer').count())) throw new Error('verb card did not show a conjugated form');
+    // The drill asks several cells in one round — three distinct questions,
+    // three distinct answers, every answer a real cell of this verb's own
+    // paradigm (the müderris asks the sigha in one breath, not one per day).
+    const drill = await page.evaluate(() => ({
+      asks: [...document.querySelectorAll('#reviewCard .verb-ask')].map(x => x.textContent),
+      answers: [...document.querySelectorAll('#reviewCard .verb-answer')].map(x => x.textContent),
+    }));
+    if (drill.asks.length !== 3 || drill.answers.length !== 3)
+      throw new Error('drill shows ' + drill.asks.length + ' asks / ' + drill.answers.length + ' answers, expected 3+3');
+    if (new Set(drill.answers).size !== 3) throw new Error('the drill repeated a paradigm cell');
+    const legit = await page.evaluate(ans => {
+      const card = state.deck.find(c => c.type === 'verb');
+      const rows = muhtelife(MORPH[card.lex]);
+      return ans.every(a => rows.some(r => r.ar === a));
+    }, drill.answers);
+    if (!legit) throw new Error('a drill answer is not a cell of the paradigm');
 
     // Sarf drill: distractors come from the same verb's own paradigm.
     await page.evaluate(() => document.getElementById('scrim').click());
