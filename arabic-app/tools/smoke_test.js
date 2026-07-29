@@ -1622,6 +1622,69 @@ if (!CHROME) {
     }, target.id);
   });
 
+  await check('library cards count new words, and due cards nudge from the shelf', async () => {
+    await toLibrary();
+    // Independent hand-count for one story — walked here, not through
+    // storyNewWords, so agreement means something.
+    const exp = await page.evaluate(() => {
+      const st = STORIES[0];
+      const have = new Set(state.deck.filter(d => d.type === 'word').map(d => d.lex));
+      const seen = new Set();
+      st.chapters.forEach(c => c.sentences.forEach(s => s.tokens.forEach(t => {
+        const e = st.glossary[t.lex];
+        if (e && e.level >= 1 && !have.has(t.lex)) seen.add(t.lex);
+      })));
+      return { id: st.id, n: seen.size };
+    });
+    if (!exp.n) throw new Error('fixture story offers no new words — pick another');
+    const chip = await storyCard(exp.id).locator('.chip.newwords').textContent();
+    if (!chip.includes(String(exp.n)))
+      throw new Error('chip says "' + chip + '", hand count is ' + exp.n);
+    // Saving one of those words moves the count down — the chip is live.
+    const after = await page.evaluate(id => {
+      const st = STORIES.find(s => s.id === id);
+      const lex = st.chapters.flatMap(c => c.sentences.flatMap(s => s.tokens))
+        .filter(t => {
+          const e = st.glossary[t.lex];
+          // Must be a word the deck does NOT hold, or the toggle removes it.
+          return e && e.level >= 1 &&
+            !state.deck.some(d => d.type === 'word' && d.lex === t.lex);
+        })[0];
+      toggleCard('word:' + lex.lex, () => ({ lex: lex.lex, type: 'word', bare: lex.s.bare,
+        lemma: st.glossary[lex.lex].lemma, gloss: st.glossary[lex.lex].gloss }));
+      renderLibrary();
+      const c = document.querySelector('.lib-card[data-story-id="' + id + '"] .chip.newwords');
+      const out = c ? c.textContent : '';
+      toggleCard('word:' + lex.lex, () => null);   // put the deck back
+      return out;
+    }, exp.id);
+    if (!after.includes(String(exp.n - 1)))
+      throw new Error('saving a word did not move the chip: ' + after);
+
+    // The nudge appears exactly when something is due, and opens the review.
+    const r = await page.evaluate(() => {
+      const saved = state.deck;
+      state.deck = [];
+      renderLibrary();
+      const none = document.querySelectorAll('.review-nudge').length;
+      state.deck = [{ lex: 'zz-due', type: 'word', bare: 'x', lemma: 'x',
+                      gloss: { en: 'x', tr: 'x' }, srs: { due: 0, ivl: 0 } }];
+      renderLibrary();
+      const one = document.querySelectorAll('.review-nudge').length;
+      const txt = one ? document.querySelector('.review-nudge').textContent : '';
+      return { none, one, txt, savedLen: saved.length, _saved: void (window._savedDeck = saved) };
+    });
+    if (r.none !== 0) throw new Error('a nudge with an empty deck');
+    if (r.one !== 1 || !r.txt.includes('1')) throw new Error('no nudge while a card is due: ' + r.txt);
+    await page.locator('.review-nudge').click();
+    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 3000 });
+    await page.evaluate(() => {
+      state.deck = window._savedDeck; delete window._savedDeck; persistDeck();
+      document.getElementById('scrim').click();
+    });
+    await toLibrary();
+  });
+
   await check('the progress page agrees with the shelf, the deck and today', async () => {
     await toLibrary();
     const exp = await page.evaluate(() => {

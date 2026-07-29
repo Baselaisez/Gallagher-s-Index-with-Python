@@ -99,6 +99,13 @@
   }
   .lib-sort .ls-lbl { font-size: .78rem; color: var(--ink-soft); }
   .chip.done { color: var(--ok); border-color: var(--ok); font-weight: 700; }
+  .chip.newwords { color: var(--accent); border-color: var(--accent); }
+  .review-nudge {
+    display: block; width: 100%; text-align: left; cursor: pointer;
+    border: 1.5px dashed var(--accent); border-radius: 10px; background: transparent;
+    color: var(--accent); font-family: var(--ui-font); font-size: .82rem; font-weight: 600;
+    padding: .55rem .8rem; margin: 0 0 .8rem;
+  }
   .continue-card {
     display: block; width: 100%; text-align: inherit; cursor: pointer;
     border: 1.5px solid var(--accent); border-radius: 12px; background: var(--accent-soft);
@@ -758,6 +765,7 @@ Object.assign(L.tr, {
 Object.assign(L.en, {
   continueReading:"Continue reading",
   finishedLbl:"Finished",
+  newWordsChip:"{n} new words", reviewNudge:"{n} cards ready to review",
   statsBtn:"Progress", statsTitle:"Your progress",
   stStories:"stories finished", stSentences:"sentences read",
   stCards:"cards in deck", stKnown:"words known well", stTopics:"grammar topics saved",
@@ -772,6 +780,7 @@ Object.assign(L.en, {
 Object.assign(L.tr, {
   continueReading:"Kaldığınız yerden devam",
   finishedLbl:"Tamamlandı",
+  newWordsChip:"{n} yeni kelime", reviewNudge:"{n} kart tekrara hazır",
   statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
   stStories:"biten hikâye", stSentences:"okunan cümle",
   stCards:"destedeki kart", stKnown:"iyi bilinen kelime", stTopics:"kayıtlı gramer konusu",
@@ -1111,6 +1120,18 @@ function storyStats(st){
   const read = Object.keys(state.progress[st.id] || {}).length;
   return {total, read: Math.min(read, total)};
 }
+// Words this story would add to the deck: unique token lexes with a teachable
+// level (proper nouns are level 0) that are not already saved. The library
+// shows it so "what do I read next" can be answered by vocabulary payoff, not
+// only by level. Segments are not counted — the reader meets the whole token.
+function storyNewWords(st, have){
+  const seen = new Set();
+  st.chapters.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach(tok => {
+    const e = st.glossary[tok.lex];
+    if (e && e.level >= 1 && !have.has(tok.lex)) seen.add(tok.lex);
+  })));
+  return seen.size;
+}
 function markRead(senId){
   if (!CUR) return;
   const prog = state.progress[CUR.id] || (state.progress[CUR.id] = {});
@@ -1155,6 +1176,16 @@ function renderLibrary(){
     hero.addEventListener("click", () => openStory(lastSt, true));
     storyEl.appendChild(hero);
   }
+  // Cards waiting for review are surfaced where the reader already is, instead
+  // of hoping they think to open the deck.
+  const due = dueCards().length;
+  if (due) {
+    const nudge = document.createElement("button");
+    nudge.className = "review-nudge";
+    nudge.textContent = "\u{1F514} " + ui().reviewNudge.replace("{n}", due);
+    nudge.addEventListener("click", openDeck);
+    storyEl.appendChild(nudge);
+  }
   const sortBar = document.createElement("div");
   sortBar.className = "lib-sort";
   const fresh = STORIES.filter(isNewStory).length;
@@ -1172,8 +1203,10 @@ function renderLibrary(){
   const mlc = sortBar.querySelector("#myLevelChip");
   if (mlc) mlc.addEventListener("click", () => openLevelPicker());
   storyEl.appendChild(sortBar);
+  const have = new Set(state.deck.filter(d => d.type === "word").map(d => d.lex));
   storiesSorted().forEach(st => {
     const {total, read} = storyStats(st);
+    const nw = storyNewWords(st, have);
     const card = document.createElement("button");
     card.className = "lib-card";
     card.dataset.storyId = st.id; // the cards reorder; identity does not
@@ -1187,6 +1220,7 @@ function renderLibrary(){
         ${isFreeThisWeek(st) ? `<span class="chip freeweek">${ui().freeWeek}</span>` : ""}
         ${total && read === total ? `<span class="chip done">✓ ${ui().finishedLbl}</span>`
           : `<span class="chip">${read}/${total} ${ui().readLbl}</span>`}
+        ${nw ? `<span class="chip newwords">${ui().newWordsChip.replace("{n}", nw)}</span>` : ""}
       </div>
       <div class="progress"><div style="width:${total ? Math.round(100 * read / total) : 0}%"></div></div>`;
     card.addEventListener("click", () => openStory(st));

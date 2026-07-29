@@ -207,6 +207,13 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   for ✓ instead. The card is a `.continue-card`, deliberately NOT a
   `.lib-card`: every test and sort walks `.lib-card`, and the hero must never
   count as a second copy of the story.
+- **The library sells the deck, and the deck calls back.** Every unfinished
+  card carries a live "{n} new words" chip (`storyNewWords`: unique token
+  lexes with level ≥ 1 not already saved — segments don't count, the reader
+  meets the whole token), and a dashed review-nudge banner appears in the
+  library whenever `dueCards()` is non-empty. Both are computed at render;
+  the smoke check hand-counts one story independently rather than calling
+  `storyNewWords`, so agreement is evidence.
 - **The progress page computes, never stores.** `openStats()` reads everything
   live through `storyStats`/`deckStats`/`rollDay` — the same primitives the
   library and deck already trust — so the tiles cannot disagree with the shelf.
