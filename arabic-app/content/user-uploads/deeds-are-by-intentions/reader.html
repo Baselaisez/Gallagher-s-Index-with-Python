@@ -157,7 +157,8 @@
   .lvl-row .bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
   .lvl-row .n { color: var(--ink-soft); min-width: 3.2rem; text-align: right; }
   .level-pick { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .8rem 0; font-family: var(--ui-font); }
-  .level-pick .btn { margin: 0; text-align: center; }
+  .level-pick .btn { margin: 0; text-align: center; transition: border-color .12s, color .12s; }
+  .level-pick .btn:hover:not(.saved) { border-color: var(--accent); color: var(--accent); }
   .btn.unsure { width: 100%; margin-top: .2rem; color: var(--ink-soft); }
   .qtest {
     display: flex; flex-wrap: wrap; align-items: center; gap: .35rem;
@@ -185,8 +186,9 @@
 
   .upsell {
     margin: 1.4rem 0; padding: 1.2rem 1.4rem; border: 1.5px solid var(--accent);
-    border-radius: 14px; background: var(--accent-soft); text-align: center;
-    font-family: var(--ui-font);
+    border-radius: var(--radius); text-align: center; font-family: var(--ui-font);
+    background: linear-gradient(160deg, var(--accent-soft), transparent 70%) var(--panel);
+    box-shadow: var(--shadow-sm);
   }
   .upsell .ut { font-weight: 700; margin-bottom: .4rem; }
   .upsell p { color: var(--ink-soft); font-size: .9rem; margin: 0 0 .9rem; }
@@ -259,6 +261,7 @@
   .word {
     cursor: pointer; border-radius: 6px; padding: 0 .07em;
     text-decoration-thickness: 2px; text-underline-offset: 7px;
+    transition: background .12s, color .12s;
   }
   .word:hover { background: var(--accent-soft); }
   .word.active { background: var(--accent); color: var(--accent-ink); }
@@ -288,13 +291,16 @@
     transition: border-color .12s, background .12s;
   }
   .play:hover { border-color: var(--accent); background: var(--accent-soft); }
-  .trans { color: var(--ink-soft); font-size: .95rem; }
+  .trans {
+    color: var(--ink-soft); font-size: .95rem;
+    border-inline-start: 2px solid var(--line); padding-inline-start: .55rem;
+  }
   .trans[hidden] { display: none; }
 
   .legend { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: .8rem;
     font-family: var(--ui-font); font-size: .74rem; color: var(--ink-soft);
     display: flex; gap: 1rem; flex-wrap: wrap; }
-  .legend .sw { display: inline-block; width: .9em; height: 3px; border-radius: 2px; vertical-align: middle; margin-inline-end: .3em; }
+  .legend .sw { display: inline-block; width: .62em; height: .62em; border-radius: 50%; vertical-align: middle; margin-inline-end: .3em; }
   footer.note { margin-top: 1.2rem; font-family: var(--ui-font); font-size: .74rem; color: var(--ink-soft); }
 
   /* ---------- bottom sheet ---------- */
@@ -565,7 +571,9 @@
     border: 1px solid var(--line); border-radius: 10px; background: var(--ground);
     padding: .55rem .8rem; cursor: pointer; color: var(--ink);
     font-family: var(--ar-font); font-size: 1.45rem;
+    transition: border-color .12s, background .12s;
   }
+  .opts button:hover:not(.right):not(.wrongpick) { border-color: var(--accent); }
   .opts button.right { border-color: var(--ok); background: rgba(46,125,70,.12); }
   .opts button.wrongpick { border-color: var(--danger); background: rgba(178,59,59,.12); }
   .game-q { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.5rem;
