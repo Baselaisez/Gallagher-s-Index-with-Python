@@ -103,6 +103,12 @@
   .vocab-list button { white-space: nowrap; }
   .vocab-list button.saved { color: var(--ok); border-color: var(--ok); }
   .vocab-list .chip.level { flex-shrink: 0; }
+  .ch-nav { display: flex; gap: .4rem; flex-wrap: wrap; margin: 0 0 .8rem; font-family: var(--ui-font); }
+  .ch-pill {
+    border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft);
+    border-radius: 999px; padding: .25rem .7rem; font-size: .76rem; cursor: pointer;
+  }
+  .ch-pill:hover { color: var(--accent); border-color: var(--accent); }
   .review-nudge {
     display: block; width: 100%; text-align: left; cursor: pointer;
     border: 1.5px dashed var(--accent); border-radius: 10px; background: transparent;
@@ -954,6 +960,7 @@ function renderStory(){
   if (renderedSentences >= lockLimit) return;
   const head = document.createElement("div");
   head.className = "chapter-head";
+  head.dataset.ch = ch.n;   // the chapter pills scroll to this
   const cnum = document.createElement("span"); cnum.textContent = ui().chapter + " " + ch.n;
   const ctit = document.createElement("span"); ctit.className = "chapter-title-ar"; ctit.lang = "ar"; ctit.textContent = ch.title.ar;
   head.appendChild(cnum); head.appendChild(ctit);
@@ -1051,6 +1058,21 @@ function renderStory(){
       openStory(CUR); // re-render the full story and refresh the header chips
     });
     storyEl.appendChild(up);
+  }
+  // Chapter pills, built from the heads that actually RENDERED — a locked
+  // preview may cut chapters off, and a pill must never point at nothing.
+  const heads = storyEl.querySelectorAll(".chapter-head");
+  if (heads.length > 1) {
+    const nav = document.createElement("div");
+    nav.className = "ch-nav";
+    heads.forEach(h => {
+      const b = document.createElement("button");
+      b.className = "ch-pill";
+      b.textContent = ui().chapter + " " + h.dataset.ch;
+      b.addEventListener("click", () => h.scrollIntoView({ block: "start" }));
+      nav.appendChild(b);
+    });
+    storyEl.insertBefore(nav, storyEl.firstChild);
   }
 }
 

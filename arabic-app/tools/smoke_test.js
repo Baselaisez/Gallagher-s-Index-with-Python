@@ -1741,6 +1741,48 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('chapter pills jump through a long story, and never point past a paywall', async () => {
+    await toLibrary();
+    const pick = await page.evaluate(() => {
+      const st = STORIES.find(s => !storyLocked(s) && s.chapters.length > 1);
+      return st && { id: st.id, n: st.chapters.length };
+    });
+    if (!pick) throw new Error('no unlocked multi-chapter story on the shelf');
+    await openStoryCard(pick.id);
+    const pills = await page.locator('.ch-nav .ch-pill').count();
+    if (pills !== pick.n) throw new Error(pills + ' pills for ' + pick.n + ' chapters');
+    await page.locator('.ch-nav .ch-pill').last().click();
+    await page.waitForFunction(n => {
+      const el = document.querySelector('.chapter-head[data-ch="' + n + '"]');
+      return el && Math.abs(el.getBoundingClientRect().top) < 250;
+    }, pick.n, { timeout: 3000 }).catch(() => { throw new Error('the last pill did not land on its chapter'); });
+    // A single-chapter story must not grow a nav.
+    const single = await page.evaluate(() => {
+      const st = STORIES.find(s => s.chapters.length === 1 && !storyLocked(s));
+      return st && st.id;
+    });
+    if (single) {
+      await toLibrary();
+      await openStoryCard(single);
+      if (await page.locator('.ch-nav').count()) throw new Error('a single-chapter story grew a chapter nav');
+    }
+    // A locked preview renders fewer heads than the manifest has chapters —
+    // the pills must match the RENDERED heads, never the manifest.
+    const locked = await page.evaluate(() => {
+      const st = STORIES.find(s => storyLocked(s) && s.chapters.length > 1);
+      return st && st.id;
+    });
+    if (locked) {
+      await toLibrary();
+      await openStoryCard(locked);
+      const renderedHeads = await page.locator('.chapter-head').count();
+      const lockedPills = await page.locator('.ch-nav .ch-pill').count();
+      if (renderedHeads > 1 ? lockedPills !== renderedHeads : lockedPills !== 0)
+        throw new Error(lockedPills + ' pills for ' + renderedHeads + ' rendered heads behind the paywall');
+    }
+    await toLibrary();
+  });
+
   await check('the progress page agrees with the shelf, the deck and today', async () => {
     await toLibrary();
     const exp = await page.evaluate(() => {

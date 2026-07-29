@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Twelve stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5) is the wasiyya to Yusuf b. Khalid al-Samti, growing chapter by chapter from the received text in research/sources/wasiyya-samti-arabic.txt. Grammar notes are **global**: a note authored once shows
+Twelve stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, two chapters so far) is the wasiyya to Yusuf b. Khalid al-Samti, growing chapter by chapter from the received text in research/sources/wasiyya-samti-arabic.txt. Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -303,6 +303,9 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   retranslated note never leaves a stale copy in someone's deck — and an orphan
   id is pruned at boot rather than rendered blank. The card asks the madrasah
   question: name the term, then give an example.
+- **Chapter pills** (`.ch-nav`) render only when MORE THAN ONE `.chapter-head`
+  actually rendered — built from the DOM after the paywall cut, never from the
+  manifest, so a pill can never point at a chapter the preview dropped.
 - **Sentence i'rab sheet**: the إعراب button on each sentence opens the whole sentence
   analysed at once — the exercise a madrasah student writes out. It needs nothing beyond
   per-token `irab`, so it comes free with any new chapter.
