@@ -62,6 +62,15 @@ def build_story(pkg: Path, irab_tr=None):
     mpath = pkg / "morphology.json"
     if mpath.exists():
         for lex, m in json.loads(mpath.read_text(encoding="utf-8"))["verbs"].items():
+            if m.get("jamid"):
+                # لَيْسَ and friends: mazi-only. The reader shows a single-tense
+                # sarf table and no muhtelife (no governed forms exist).
+                entry = {"bab": m["bab"], "wazn": m["wazn"], "jamid": True,
+                         "mazi": m["mazi"]}
+                if m.get("note"):
+                    entry["note"] = m["note"]
+                morph[lex] = entry
+                continue
             entry = {"bab": m["bab"], "wazn": m["wazn"], "masdar": m["masdar"],
                      "fail": m["ismFail"], "mazi": m["mazi"], "mudari": m["mudari"],
                      "amr": m["amr"]}

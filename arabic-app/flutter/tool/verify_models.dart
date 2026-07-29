@@ -128,6 +128,14 @@ void main(List<String> args) {
         final where = '$pkgName/morphology:$lex';
         if (glossary[lex] == null) fail(where, 'verb lex not in glossary');
         if (v.mazi.length != 14) fail(where, 'mazi has ${v.mazi.length} cells');
+        // A jamid verb (لَيْسَ) is mazi-only by doctrine — mudari and amr are
+        // absent, not malformed.
+        if (v.jamid) {
+          if (v.mudari.isNotEmpty || v.amr.isNotEmpty) {
+            fail(where, 'jamid verb carries mudari/amr');
+          }
+          return;
+        }
         if (v.mudari.length != 14) {
           fail(where, 'mudari has ${v.mudari.length} cells');
         }

@@ -571,7 +571,9 @@ if (!CHROME) {
       const out = [];
       for (const st of STORIES)
         for (const [lex, m] of Object.entries(st.morph || {}))
-          if (!m.mansub || !m.majzum || !m.majzum2) out.push(st.id + ':' + lex);
+          // A jamid verb (لَيْسَ) has no mudari at all, hence no governed
+          // forms — that is doctrine, not missing data.
+          if (!m.jamid && (!m.mansub || !m.majzum || !m.majzum2)) out.push(st.id + ':' + lex);
       return out;
     });
     if (missing.length) throw new Error('verbs without governed forms: ' + missing.join(', '));
@@ -1978,6 +1980,63 @@ if (!CHROME) {
       localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
     });
     await toLibrary();
+  });
+
+  await check('every verb in every glossary owns a paradigm — no verb without tasrif', async () => {
+    // The complaint this guards against: a reader taps مَضَى and finds no
+    // Çekim tab. Sarf renders only when st.morph[lex] exists, so the sweep is
+    // exhaustive: a glossary verb with no paradigm anywhere in the catalogue
+    // fails the build.
+    const r = await page.evaluate(() => {
+      const missing = [];
+      let verbs = 0;
+      STORIES.forEach(st => Object.entries(st.glossary).forEach(([lex, e]) => {
+        if (e.pos !== 'verb') return;
+        verbs++;
+        if (!st.morph || !st.morph[lex]) missing.push(st.id + ':' + lex);
+      }));
+      const mada = STORIES.find(s => s.id === 'wasiyyat-abi-hanifa-samti').morph.mada;
+      return { verbs, missing, madaMajzum: mada && mada.majzum,
+               madaCells: mada ? mada.mazi.length : 0 };
+    });
+    if (r.missing.length) throw new Error(r.missing.length + ' verbs without paradigms: ' + r.missing.slice(0, 5).join(', '));
+    if (r.verbs < 150) throw new Error('sweep saw only ' + r.verbs + ' verbs — did the glossaries shrink?');
+    // The verb from the field report: مَضَى, defective — the stored jussive
+    // must be the shortened form, not a vowel swap.
+    if (r.madaCells !== 14 || r.madaMajzum !== 'يَمْضِ')
+      throw new Error('mada paradigm wrong: cells=' + r.madaCells + ' majzum=' + r.madaMajzum);
+  });
+
+  await check('لَيْسَ is jamid: a mazi-only sarf table, and no drill ever picks it', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.morph && s.morph.laysa);
+      const m = st && st.morph.laysa;
+      return { found: !!m, jamid: m && !!m.jamid, cells: m ? m.mazi.length : 0,
+               second: m && m.mazi[6],                      // لَسْتَ
+               muh: m ? muhtelife(m) : 'n/a',               // must be null — no governed forms
+               drilled: sarfItems().some(it => it.lex === 'laysa') };
+    });
+    if (!r.found) throw new Error('no story carries a laysa paradigm');
+    if (!r.jamid || r.cells !== 14) throw new Error('laysa entry malformed');
+    if (r.second !== 'لَسْتَ') throw new Error('laysa 2nd person is ' + r.second);
+    if (r.muh !== null) throw new Error('muhtelife built rows for a jamid verb');
+    if (r.drilled) throw new Error('the sarf game drilled a jamid verb');
+    // And the sheet itself: open the aqaid word sheet for a لَيْسَ token via
+    // the same path a tap takes, then assert one tense button, no empty table.
+    const ui = await page.evaluate(() => {
+      const st = STORIES.find(s => s.morph && s.morph.laysa);
+      const tok = { s: { full: 'لَيْسَ', smart: 'لَيْسَ', bare: 'ليس' }, lex: 'laysa', grammar: [] };
+      CUR = st; GLOSSARY = st.glossary; MORPH = st.morph; wordCtx = null;
+      openWord(tok, null, 'sarf');
+      const tenses = [...document.querySelectorAll('.tense-seg [data-tense]')].map(b => b.dataset.tense);
+      const cells = [...document.querySelectorAll('.conj td')].map(td => td.textContent).filter(Boolean);
+      closeSheet();
+      return { tenses, cellCount: cells.length, hasLasta: cells.includes('لَسْتَ') };
+    });
+    if (ui.tenses.join() !== 'mazi') throw new Error('jamid tense buttons: ' + ui.tenses.join());
+    if (!ui.hasLasta || ui.cellCount < 14) throw new Error('jamid mazi table incomplete');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('.lib-card');
   });
 
   await check('no JS errors on page', async () => {

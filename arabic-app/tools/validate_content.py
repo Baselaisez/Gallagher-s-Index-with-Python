@@ -261,6 +261,20 @@ def check_morphology(pkg: Path, glossary: dict, rep: Report):
         where = f"morphology.json:{lex}"
         if lex not in glossary:
             rep.error(f"{where}: verb not in glossary.json")
+        # A jamid verb (لَيْسَ) conjugates in the mazi only: it has no mudari,
+        # no amr, no masdar and no participles — requiring them would force us
+        # to invent Arabic that does not exist. mazi is still 14 cells.
+        if m.get("jamid"):
+            for field in ("bab", "wazn"):
+                if not m.get(field):
+                    rep.error(f"{where}: missing '{field}'")
+            forms = m.get("mazi")
+            if not isinstance(forms, list) or len(forms) != 14:
+                rep.error(f"{where}: jamid verb must still have 14 mazi forms")
+            for tense in ("mudari", "amr"):
+                if m.get(tense):
+                    rep.error(f"{where}: jamid verb must not carry '{tense}'")
+            continue
         for field in ("bab", "wazn", "masdar", "ismFail"):
             if not m.get(field):
                 rep.error(f"{where}: missing '{field}'")

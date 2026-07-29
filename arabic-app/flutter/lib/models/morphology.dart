@@ -38,6 +38,11 @@ class Morphology {
 class VerbParadigm {
   final String bab; // "مِنْ بَابِ ضَرَبَ يَضْرِبُ" — the verb's chapter/class
   final String wazn; // "فَعَلَ يَفْعِلُ" — the pattern
+
+  /// A jamid verb (لَيْسَ) conjugates in the mazi only: mudari/amr/masdar/
+  /// participles are absent BY DOCTRINE, not by omission. The UI renders a
+  /// single-tense table for these.
+  final bool jamid;
   final String masdar; // verbal noun, e.g. "رُجُوع"
   final String ismFail; // active participle, e.g. "رَاجِع"   (JSON key: ismFail)
   final String? ismMaful; // passive participle, e.g. "مَرْجُوع"; may be null (JSON key: ismMaful)
@@ -58,6 +63,7 @@ class VerbParadigm {
   const VerbParadigm({
     required this.bab,
     required this.wazn,
+    this.jamid = false,
     required this.masdar,
     required this.ismFail,
     required this.ismMaful,
@@ -81,6 +87,7 @@ class VerbParadigm {
     return VerbParadigm(
       bab: json['bab'] as String? ?? '',
       wazn: json['wazn'] as String? ?? '',
+      jamid: json['jamid'] as bool? ?? false,
       masdar: json['masdar'] as String? ?? '',
       ismFail: json['ismFail'] as String? ?? '',
       ismMaful: json['ismMaful'] as String?, // can be JSON null (e.g. takallama)

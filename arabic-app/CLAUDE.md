@@ -81,6 +81,28 @@ vowel-swap rule breaks on weak verbs — يَقُولُ → لَمْ يَقُل�
 قَالَ → قِيلَ. When a form is genuinely uncertain, omit it: the UI hides the row.
 **Never publish Arabic we aren't sure of.**
 
+**Every glossary verb owns a paradigm — a smoke check now sweeps the corpus
+for it.** The paradigms were bulk-authored by `sarf_gen.py` (scratchpad): two
+assembly engines (suffix-attach for sound/hollow/geminate, a naqis engine for
+the three defective endings) plus an explicit per-verb spec for everything
+lexical. The engines are trusted only because they reproduce the corpus's
+hand-authored paradigms cell-for-cell (qala, daa, baqiya, awsa, istaadda…) —
+that selftest is the correctness argument. Two traps the engines cannot see:
+NFC-normalize everything (the corpus stores fatha-before-shadda; naive
+concatenation produces the other order, visually identical, string-unequal),
+and idgham where the root's last radical meets an identical suffix letter
+(كَانَ → كُنَّ، مَاتَ → مُتَّ، اِمْتَحَنَ → اِمْتَحَنَّا — never كُنْنَ). Paradigms are
+semantics-free, so a verb authored in one package is copied into another after
+a lemma identity check. `author_samti.py` merges with the on-disk morphology
+instead of overwriting it, so regenerating the story keeps the bank.
+
+**A jamid verb is mazi-only by doctrine, not by omission.** `"jamid": true`
+on a morphology entry (لَيْسَ) means: 14 mazi cells, and NO mudari/amr/masdar/
+participles/governed forms — validator, builder, reader, Dart harness and the
+governed-forms smoke sweep all understand the flag. The sarf tab collapses to
+a single الماضي button; `muhtelife()` returns null so no drill, verb card or
+game ever picks it.
+
 **Passive by wazn, not by letter count.** Form II verbs with three bare letters
 (وَدَّعَ, عَلَّمَ) fell through to the Form I branch and produced *وُدِعَ. Match the
 `wazn` regex first.
