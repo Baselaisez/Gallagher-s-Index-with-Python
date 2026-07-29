@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Eleven stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts. Grammar notes are **global**: a note authored once shows
+Twelve stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5) is the wasiyya to Yusuf b. Khalid al-Samti, growing chapter by chapter from the received text in research/sources/wasiyya-samti-arabic.txt. Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
