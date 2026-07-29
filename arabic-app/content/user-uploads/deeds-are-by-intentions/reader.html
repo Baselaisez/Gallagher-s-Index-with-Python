@@ -400,6 +400,17 @@
     max-width: min(90vw, 24rem); text-align: center;
   }
   #toast.show { transform: translate(-50%, 0); }
+  /* A story should print like a worksheet: text and translations only. */
+  @media print {
+    nav.controls, .legend, footer.note, .readbar, .sent-tools .play,
+    .peek, .ch-nav, #toast, .scrim, .sheet { display: none !important; }
+    body { background: #fff; color: #000; }
+    section.sentence { break-inside: avoid; margin: .7rem 0; }
+    .wrap { max-width: none; padding: 0; }
+  }
+  .jumla-row { transition: border-color .12s; }
+  .jumla-row:hover { border-color: var(--accent); }
+  .ref-list button { border-radius: 8px; transition: background .12s; }
   .grade-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; margin: .8rem 0; }
   .grade-row .btn.grade { display: flex; flex-direction: column; align-items: center; gap: .12rem; padding: .5rem .2rem; }
   .grade-row .btn.grade b { font-size: .8rem; }
