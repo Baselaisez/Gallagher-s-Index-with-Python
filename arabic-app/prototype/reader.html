@@ -401,6 +401,70 @@
   }
   #toast.show { transform: translate(-50%, 0); }
   /* A story should print like a worksheet: text and translations only. */
+  /* ================= design wave 2 =======================================
+     The opened story gets the same cover treatment the shelf speaks: a
+     level-tinted hero band around the title. Sheet tabs become a soft
+     segmented pill; the sheet itself opens with a touch more spring and a
+     blurred backdrop; the games hub becomes a two-up hall of door-cards.
+     Everything degrades: no :has(), no color-mix, no backdrop-filter — the
+     older layout simply remains. */
+  body:not(.lib-mode) header.app {
+    margin: 0 -1.1rem; padding: 1.2rem 1.1rem 1rem; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    background: linear-gradient(160deg, var(--accent-soft), transparent 78%);
+    border-bottom: 1px solid var(--line);
+  }
+  body:not(.lib-mode) header.app[data-lvlc="1"] { background: linear-gradient(160deg, color-mix(in srgb, var(--lvl1) 15%, transparent), transparent 78%); }
+  body:not(.lib-mode) header.app[data-lvlc="2"] { background: linear-gradient(160deg, color-mix(in srgb, var(--lvl2) 15%, transparent), transparent 78%); }
+  body:not(.lib-mode) header.app[data-lvlc="3"] { background: linear-gradient(160deg, color-mix(in srgb, var(--lvl3) 15%, transparent), transparent 78%); }
+  body:not(.lib-mode) header.app[data-lvlc="4"] { background: linear-gradient(160deg, color-mix(in srgb, var(--lvl4) 15%, transparent), transparent 78%); }
+  body:not(.lib-mode) h1.story-title { text-align: center; }
+  body:not(.lib-mode) .story-sub { text-align: center; }
+  body:not(.lib-mode) #metaRow { justify-content: center; }
+
+  .scrim.show { backdrop-filter: blur(2.5px); }
+  .sheet { transition: transform .34s cubic-bezier(.22, 1.08, .36, 1); }
+  .grab { width: 3rem; opacity: .8; }
+
+  .tabs {
+    gap: .3rem; background: var(--accent-soft); padding: .28rem;
+    border-radius: 999px; width: max-content; max-width: 100%;
+  }
+  .tabs button { border-radius: 999px; padding: .38rem .85rem; border-bottom: 0; }
+  .tabs button.on {
+    background: var(--panel); color: var(--accent); border-bottom: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .game-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .7rem; }
+  .game-pick button {
+    position: relative; overflow: hidden; text-align: start;
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+    padding: .9rem 1rem; cursor: pointer; color: var(--ink);
+    transition: border-color .15s, box-shadow .15s, transform .15s;
+  }
+  .game-pick button::after {
+    content: "؟"; position: absolute; inset-inline-end: -.35rem; bottom: -1.3rem;
+    font-family: var(--ar-font); font-size: 4.2rem; line-height: 1;
+    color: var(--accent); opacity: .07; pointer-events: none;
+  }
+  .game-pick button:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+  @media (prefers-reduced-motion: no-preference) {
+    .game-pick button:hover { transform: translateY(-1px); }
+  }
+  .game-pick .gt { font-weight: 700; font-family: var(--ui-font); }
+  .game-pick .gd { color: var(--ink-soft); font-size: .82rem; margin-top: .15rem; }
+
+  /* The nakil table's two chapters: section rows read as headings, and the
+     verb's own bab glows the accent it earned. */
+  table.conj.nakil .nakil-sec th {
+    text-align: center; font-family: var(--ar-font); font-size: 1.02rem;
+    padding-top: .8rem; color: var(--ink-soft); border-bottom: 1px solid var(--line);
+  }
+  table.conj.nakil tr.own-bab td, table.conj.nakil tr.own-bab th {
+    background: var(--accent-soft);
+  }
+  table.conj.nakil tr.own-bab .nakil-out { color: var(--accent); }
+
   @media print {
     nav.controls, .legend, footer.note, .readbar, .sent-tools .play,
     .peek, .ch-nav, #toast, .scrim, .sheet { display: none !important; }
@@ -739,7 +803,7 @@ const L = {
         back:"← All grammar topics", refTitle:"Grammar reference",
         refIntro:"Organized after the madrasah primers: conjugation drills, verb classes, and the governors of i'rab (Birgivi's Awamil, with al-Kafiya and Qatr al-Nada). Every topic links to live examples in the stories.",
         sarfNote:"Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.",
-        nakilNote:"Bablara nakil — the transfer drill: the same root recited through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
+        nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
         sheetHint:"The whole sentence analysed the way it is written out in the madrasah: word, then its position in the sentence. Tap a word to open it.",
@@ -775,7 +839,7 @@ const L = {
         back:"← Tüm gramer konuları", refTitle:"Gramer başvurusu",
         refIntro:"Medrese temel kitaplarına göre düzenlendi: çekim talimleri (Emsile), fiil babları (Binâ) ve i'rab âmilleri (Birgivî'nin Avâmil'i; Kâfiye ve Katru'n-Nedâ ile). Her konu hikâyelerdeki canlı örneklere bağlıdır.",
         sarfNote:"Emsile tarzında tam çekim tablosu; vurgulu hücre bu hikâyede geçen sîgadır.",
-        nakilNote:"Bablara nakil — aynı kökün on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
+        nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
         sheetHint:"Cümlenin tamamı, medresede yazıldığı şekliyle tahlil edilmiştir: önce kelime, sonra cümledeki mahalli. Kelimeye dokununca açılır.",
@@ -1346,6 +1410,10 @@ function setHeader(titleAr, sub, chipsHtml){
   document.getElementById("storyTitle").textContent = titleAr;
   document.getElementById("storySub").textContent = sub;
   document.getElementById("metaRow").innerHTML = chipsHtml;
+  // The open story's level tints the hero, same scale as the shelf's covers.
+  const app = document.querySelector("header.app");
+  if (CUR) app.dataset.lvlc = Math.min(4, Math.max(1, CUR.level));
+  else delete app.dataset.lvlc;
 }
 function renderLibrary(){
   stopPlayAll();
@@ -2157,13 +2225,36 @@ function nakilRoot(entry){
   if (rs[1] === rs[2]) return null;   // geminates contract — the i'lal chapter, not this table
   return rs;
 }
-function nakilTable(rs){
+// The Bina's six mujarrad babs — the vowel pairs from the received 35-bab
+// table (research/sources/sarf-35-bab-tablosu.txt, the موزون column). The
+// same root is recited through all six; the verb's OWN bab is highlighted,
+// because that is the fact the drill exists to fix in memory.
+const MUJARRAD_BABS = [
+  { model: "نَصَرَ", tr: "1. bâb · fetha–damme", en: "Bab I · a–u",  v1: "َ", v2: "ُ" },
+  { model: "ضَرَبَ", tr: "2. bâb · fetha–kesre", en: "Bab II · a–i", v1: "َ", v2: "ِ" },
+  { model: "فَتَحَ", tr: "3. bâb · fethateyn",   en: "Bab III · a–a", v1: "َ", v2: "َ" },
+  { model: "عَلِمَ", tr: "4. bâb · kesre–fetha", en: "Bab IV · i–a", v1: "ِ", v2: "َ" },
+  { model: "حَسُنَ", tr: "5. bâb · dammeteyn",   en: "Bab V · u–u",  v1: "ُ", v2: "ُ" },
+  { model: "حَسِبَ", tr: "6. bâb · kesreteyn",   en: "Bab VI · i–i", v1: "ِ", v2: "ِ" },
+];
+function nakilTable(rs, morph){
+  const [f, a, l] = rs;
+  const ownWazn = (morph && morph.wazn ? morph.wazn : "").normalize("NFC");
   let h = `<div class="conj-wrap"><table class="conj nakil">
-    <tr><th class="person"></th><th>الْوَزْنُ</th><th>النَّقْلُ</th></tr>`;
+    <tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمُجَرَّدُ — السِّتَّةُ الْأَبْوَابُ</th></tr>`;
+  MUJARRAD_BABS.forEach(b => {
+    const wazn = `فَع${b.v1}لَ يَفْع${b.v2}لُ`.normalize("NFC");
+    const out = `${f}َ${a}${b.v1}${l}َ ي${"َ"}${f}ْ${a}${b.v2}${l}ُ`.normalize("NFC");
+    h += `<tr class="${wazn === ownWazn ? "own-bab" : ""}">
+      <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
+      <td lang="ar">${wazn}</td>
+      <td lang="ar" class="nakil-out">${out}</td></tr>`;
+  });
+  h += `<tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمَزِيدُ — النَّقْلُ إِلَى اثْنَيْ عَشَرَ بَابًا</th></tr>`;
   NAKIL_BABS.forEach(b => {
     h += `<tr><th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
       <td lang="ar">${b.wazn}</td>
-      <td lang="ar" class="nakil-out">${b.make(rs[0], rs[1], rs[2]).normalize("NFC")}</td></tr>`;
+      <td lang="ar" class="nakil-out">${b.make(f, a, l).normalize("NFC")}</td></tr>`;
   });
   return h + `</table></div>`;
 }
@@ -2258,7 +2349,7 @@ function openWord(tok, el, tab, ctx){
         ${nakil ? `<button data-tense="nakil" class="${tense==="nakil"?"on":""}">النَّقْل</button>` : ""}`}
       </div>`;
     const highlight = tok.s.full.replace(/[«»،:.]/g, "");
-    if (tense === "nakil" && nakil) html += nakilTable(nakil);
+    if (tense === "nakil" && nakil) html += nakilTable(nakil, morph);
     else if (tense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
     else if (tense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
     else if (tense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);

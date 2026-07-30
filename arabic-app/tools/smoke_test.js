@@ -2050,6 +2050,8 @@ if (!CHROME) {
       sarfTense = 'nakil';
       openWord(tokN, null, 'sarf');
       const rows = [...document.querySelectorAll('table.conj.nakil .nakil-out')].map(td => td.textContent);
+      const ownEl = document.querySelector('table.conj.nakil tr.own-bab .nakil-out');
+      const ownBab = ownEl ? ownEl.textContent : '';
       const note = document.querySelector('.sarf-note').textContent;
       // The ibdal rules the received table demonstrates, straight from the maker.
       const istabara = NAKIL_BABS.find(b => b.en === 'Form VIII').make('ص', 'ب', 'ر').normalize('NFC');
@@ -2059,10 +2061,15 @@ if (!CHROME) {
       const gem = nakilRoot({ form: 'I', root: 'ض م م' });
       const derived = nakilRoot({ form: 'IV', root: 'ك ر م' });
       closeSheet(); sarfTense = 'mazi';
-      return { hasBtn, rows, note, istabara, iddhahaba, hollow, gem, derived };
+      return { hasBtn, rows, ownBab, note, istabara, iddhahaba, hollow, gem, derived };
     });
     if (!r.hasBtn) throw new Error('نَصَرَ offers no nakil button');
-    if (r.rows.length !== 12) throw new Error(r.rows.length + ' nakil rows, want 12');
+    // Six mujarrad babs (the Bina's) + twelve augmented wazns.
+    if (r.rows.length !== 18) throw new Error(r.rows.length + ' nakil rows, want 18');
+    if (!r.rows.some(x => x.normalize('NFC') === 'نَصَرَ يَنْصُرُ'.normalize('NFC')))
+      throw new Error('the mujarrad section lacks نَصَرَ يَنْصُرُ');
+    if (!r.ownBab || !/نَصَرَ يَنْصُرُ/.test(r.ownBab.normalize('NFC')))
+      throw new Error('the verb\'s own bab is not highlighted: ' + r.ownBab);
     for (const f of ['نَصَّرَ', 'نَاصَرَ', 'أَنْصَرَ', 'اِنْتَصَرَ', 'اِسْتَنْصَرَ', 'اِنْصَوْصَرَ'])
       if (!r.rows.some(x => x.normalize('NFC') === f.normalize('NFC')))
         throw new Error('nakil table lacks ' + f + ' — has: ' + r.rows.join(' '));
