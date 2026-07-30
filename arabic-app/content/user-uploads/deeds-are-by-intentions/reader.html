@@ -556,6 +556,20 @@
   .card-ctx { cursor: pointer; border-radius: 8px; padding: .15rem .4rem; transition: background .12s; }
   .card-ctx:hover { background: var(--accent-soft); }
 
+  /* The Sarf Lab: one root box, two segmented rows, and the recitation. */
+  .conj-lab { display: flex; flex-direction: column; gap: .55rem; margin: .4rem 0 .8rem; }
+  .conj-lab input {
+    font-family: var(--ar-font); font-size: 1.6rem; text-align: center;
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--ground);
+    color: var(--ink); padding: .45rem .8rem; letter-spacing: .35em;
+  }
+  .conj-lab input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+  .conj-seg { flex-wrap: wrap; }
+  .conj-h {
+    text-align: center; font-family: var(--ar-font); font-weight: 600;
+    font-size: 1.05rem; margin: .9rem 0 .2rem; color: var(--ink-soft);
+  }
+
   .empty { position: relative; padding-top: 2.6rem; }
   .empty::before {
     content: "﴿ ﴾"; position: absolute; top: .7rem; left: 50%; transform: translateX(-50%);
@@ -853,6 +867,7 @@
     <button class="tbtn" id="statsOpen">Progress</button>
     <button class="tbtn" id="searchOpen">Search</button>
     <button class="tbtn" id="refOpen">Grammar</button>
+    <button class="tbtn" id="conjOpen">Sarf Lab</button>
     <button class="tbtn reader-only" id="gamesOpen">Games</button>
     <button class="tbtn deckbtn" id="deckOpen">Deck <span class="count" id="deckCount" hidden>0</span></button>
   </nav>
@@ -903,6 +918,14 @@ const L = {
         nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
         mercyUsed:"\u{1F6E1} A missed day was forgiven — your weekly mercy kept the streak.",
         ctxJump:"Open this sentence in its story",
+        conjBtn:"Sarf Lab",
+        conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
+        conjPh:"root — e.g. نصر or قول",
+        conjBad:"Enter a three-letter root.",
+        conjHamza:"Hamzated and doubly-weak roots are beyond letter substitution — hamza seats are orthography, and the lafif belongs wholly to the i'lal chapter.",
+        conjNoForm:"This class does not recite that bab.",
+        conjMasdarSamai:"The Form I masdar is sama'i — learned from the lexicon, never derived by rule.",
+        conjNote:"Derived live by the i'lal rules from the uploaded texts. The engine is audited against every stored, reviewed paradigm in the corpus — one mismatched cell fails the build.",
         ziyadeNote:"From the augmented babs no instrument-noun, diminutive or mubalagha is formed; the comparative and the wonder forms come by paraphrase with أَشَدّ — exactly as the recitation table has it.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
@@ -942,6 +965,14 @@ const L = {
         nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
         mercyUsed:"\u{1F6E1} Kaçan bir gün bağışlandı — haftalık müsamahan seriyi korudu.",
         ctxJump:"Bu cümleyi hikâyesinde aç",
+        conjBtn:"Sarf Atölyesi",
+        conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
+        conjPh:"kök — örn. نصر veya قول",
+        conjBad:"Üç harfli bir kök girin.",
+        conjHamza:"Hemzeli ve iki illetli (lefîf) kökler harf ikamesinin dışındadır — hemzenin kürsüsü imlâ işidir, lefîf ise bütünüyle i'lâl bahsinindir.",
+        conjNoForm:"Bu sınıf o bâbı okumaz.",
+        conjMasdarSamai:"Sülâsî mücerredin masdarı semâîdir — lugatten öğrenilir, kaideyle türetilmez.",
+        conjNote:"Yüklediğiniz metinlerdeki i'lâl kaideleriyle canlı türetilir. Motor, külliyattaki gözden geçirilmiş her paradigmaya karşı denetlenir — tek bir hücre uyuşmazsa derleme düşer.",
         ziyadeNote:"Ziyâde bablardan ism-i âlet, ism-i tasgîr ve mübâlağa ism-i fâil gelmez; ism-i tafdîl ile taaccüb, أَشَدّ üzerinden dolaylı yapılır — çekim cetvelinde olduğu gibi.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
@@ -2448,6 +2479,405 @@ function nakilTable(cls, morph){
   return h + `</table></div>`;
 }
 
+// ================= the Sarf Lab engine (المُصَرِّف) =====================
+// A full conjugator: any classifiable root, through Form I's six babs and
+// the working derived babs, with the i'lal rules applied class by class —
+// the JS port of the build-time engines whose output IS the corpus's stored
+// paradigms. The proof of correctness is sarfAudit(): the engine must
+// regenerate every stored paradigm it can classify, cell for cell; the
+// smoke suite fails on a single mismatched cell. Passives and Form I
+// masdars are NOT generated: the first are stored-only doctrine, the
+// second are sama'i — the lexicon's business, not a rule's.
+function sjN(x){ return typeof x === "string" ? x.normalize("NFC") : x; }
+function sjIdgham(s){
+  // Twin letters meeting across a seam contract (كُنْنَ ← كُنَّ، مُتْتَ ← مُتَّ).
+  // Only a SAKIN first twin contracts — مَرَرْنَ keeps its fakk, as it must.
+  return s.replace(/(.)ْ\1/g, (m, ch) => ch + "ّ").normalize("NFC");
+}
+function sjMazi14(v, c){
+  c = c === undefined ? v : c;
+  return [v+"َ", v+"َا", v+"ُوا", v+"َتْ", v+"َتَا", c+"ْنَ", c+"ْتَ", c+"ْتُمَا",
+          c+"ْتُمْ", c+"ْتِ", c+"ْتُمَا", c+"ْتُنَّ", c+"ْتُ", c+"ْنَا"].map(sjIdgham);
+}
+function sjMaziNaqis(b, glide){
+  const w = glide === "و";
+  const third = w ? b+"ا" : b+"ى", du = w ? b+"وَا" : b+"يَا",
+        fpl = w ? b+"وْنَ" : b+"يْنَ", c = w ? b+"وْ" : b+"يْ";
+  return [third, du, b+"وْا", b+"تْ", b+"تَا", fpl, c+"تَ", c+"تُمَا", c+"تُمْ",
+          c+"تِ", c+"تُمَا", c+"تُنَّ", c+"تُ", c+"نَا"].map(sjN);
+}
+function sjMaziKasra(b, pl3){
+  return [b+"يَ", b+"يَا", pl3, b+"يَتْ", b+"يَتَا", b+"ينَ", b+"يتَ", b+"يتُمَا",
+          b+"يتُمْ", b+"يتِ", b+"يتُمَا", b+"يتُنَّ", b+"يتُ", b+"ينَا"].map(sjN);
+}
+function sjMudari14(yv, L, S){
+  S = S === undefined ? L : S;
+  const y = "ي"+yv, t = "ت"+yv, a1 = "أ"+yv, n = "ن"+yv;
+  return [y+L+"ُ", y+L+"َانِ", y+L+"ُونَ", t+L+"ُ", t+L+"َانِ", y+S+"ْنَ", t+L+"ُ",
+          t+L+"َانِ", t+L+"ُونَ", t+L+"ِينَ", t+L+"َانِ", t+S+"ْنَ", a1+L+"ُ", n+L+"ُ"].map(sjIdgham);
+}
+const SJ_NAQ = {
+  i: { sg: "ِي", du: "ِيَانِ", pl: "ُونَ", fpl: "ِينَ", f2: "ِينَ", man: "ِيَ", maj: "ِ" },
+  u: { sg: "ُو", du: "ُوَانِ", pl: "ُونَ", fpl: "ُونَ", f2: "ِينَ", man: "ُوَ", maj: "ُ" },
+  a: { sg: "َى", du: "َيَانِ", pl: "َوْنَ", fpl: "َيْنَ", f2: "َيْنَ", man: "َى", maj: "َ" },
+};
+function sjMudariNaqis(yv, bb, typ){
+  const e = SJ_NAQ[typ], y = "ي"+yv, t = "ت"+yv, a1 = "أ"+yv, n = "ن"+yv;
+  return [y+bb+e.sg, y+bb+e.du, y+bb+e.pl, t+bb+e.sg, t+bb+e.du, y+bb+e.fpl, t+bb+e.sg,
+          t+bb+e.du, t+bb+e.pl, t+bb+e.f2, t+bb+e.du, t+bb+e.fpl, a1+bb+e.sg, n+bb+e.sg].map(sjN);
+}
+function sjAmr(L, S){
+  S = S === undefined ? L : S;
+  return [S+"ْ", L+"َا", L+"ُوا", L+"ِي", L+"َا", S+"ْنَ"].map(sjIdgham);
+}
+function sjAmrNaqis(bb, typ){
+  if (typ === "i") return [bb+"ِ", bb+"ِيَا", bb+"ُوا", bb+"ِي", bb+"ِيَا", bb+"ِينَ"].map(sjN);
+  if (typ === "u") return [bb+"ُ", bb+"ُوَا", bb+"ُوا", bb+"ِي", bb+"ُوَا", bb+"ُونَ"].map(sjN);
+  return [bb+"َ", bb+"َيَا", bb+"َوْا", bb+"َيْ", bb+"َيَا", bb+"َيْنَ"].map(sjN);
+}
+const SJ_BAB1 = {
+  1: { v1: "َ", v2: "ُ", model: "نَصَرَ يَنْصُرُ", tr: "fetha–damme", en: "a–u" },
+  2: { v1: "َ", v2: "ِ", model: "ضَرَبَ يَضْرِبُ", tr: "fetha–kesre", en: "a–i" },
+  3: { v1: "َ", v2: "َ", model: "فَتَحَ يَفْتَحُ", tr: "fethateyn",   en: "a–a" },
+  4: { v1: "ِ", v2: "َ", model: "سَمِعَ يَسْمَعُ", tr: "kesre–fetha", en: "i–a" },
+  5: { v1: "ُ", v2: "ُ", model: "حَسُنَ يَحْسُنُ", tr: "dammeteyn",   en: "u–u" },
+  6: { v1: "ِ", v2: "ِ", model: "حَسِبَ يَحْسِبُ", tr: "kesreteyn",   en: "i–i" },
+};
+function sjWasl(v){ return v === "ُ" ? "اُ" : "اِ"; }
+// governed forms from a sound-style core
+function sjGov(yv, L, S){
+  S = S === undefined ? L : S;
+  return { mansub: sjN("ي"+yv+L+"َ"), majzum: sjN("ي"+yv+S+"ْ"), majzum2: sjN("ت"+yv+S+"ْ") };
+}
+function sjGovNaqis(yv, bb, typ){
+  const e = SJ_NAQ[typ];
+  return { mansub: sjN("ي"+yv+bb+e.man), majzum: sjN("ي"+yv+bb+e.maj), majzum2: sjN("ت"+yv+bb+e.maj) };
+}
+function sjGovGem(yv, G){
+  return { mansub: sjN("ي"+yv+G+"َ"), majzum: sjN("ي"+yv+G+"َ"), majzum2: sjN("ت"+yv+G+"َ") };
+}
+// sarfDerive(cls, form, bab) → {ok, mazi, mudari, amr, mansub…, fail, maful?,
+// masdar?, wazn, note} or {ok:false, reason}. cls comes from nakilClass.
+function sarfDerive(cls, form, bab){
+  const [f, a, l] = cls.rs, t = cls.type;
+  const glide = t === "ajwaf" ? a : t === "naqis" ? (l === "ى" ? "ي" : l) : null;
+  const no = reason => ({ ok: false, reason });
+  const V = SJ_BAB1[bab] || SJ_BAB1[1];
+
+  if (form === "I") {
+    if (t === "sound") {
+      const v = f+"َ"+a+V.v1+l, core = f+"ْ"+a+V.v2+l, A = sjWasl(V.v2)+core;
+      return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَفْع${V.v2}لُ`),
+        mazi: sjMazi14(v), mudari: sjMudari14("َ", core), amr: sjAmr(A),
+        ...sjGov("َ", core), fail: sjN(f+"َا"+a+"ِ"+l), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l) };
+    }
+    if (t === "gem") {
+      if (![1, 2, 4].includes(bab)) return no("gem-bab");
+      const G = f+V.v2+a+"ّ", S = f+"ْ"+a+V.v2+l;
+      return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَفْع${V.v2}لُ — مُضَاعَفٌ`),
+        mazi: sjMazi14(f+"َ"+a+"ّ", f+"َ"+a+"َ"+l), mudari: sjMudari14("َ", G, S),
+        amr: [G+"َ", G+"َا", G+"ُوا", G+"ِي", G+"َا", sjWasl(V.v2)+S+"ْنَ"].map(sjN),
+        ...sjGovGem("َ", G), fail: sjN(f+"َا"+a+"ّ"), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l),
+        note: "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ." };
+    }
+    if (t === "ajwaf") {
+      if (bab === 1 && glide !== "و") return no("bab-glide");
+      if (bab === 2 && glide !== "ي") return no("bab-glide");
+      if (![1, 2, 4].includes(bab)) return no("ajwaf-bab");
+      const sv = bab === 1 ? "ُ" : "ِ";                 // قُلْتَ، بِعْتَ، خِفْتَ
+      const mid = bab === 1 ? "ُو" : bab === 2 ? "ِي" : "َا";
+      const L = f+mid+l, S = f+(bab === 4 ? "َ" : sv)+l;
+      return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَفْع${V.v2}لُ — أَجْوَفُ`),
+        mazi: sjMazi14(f+"َا"+l, f+(bab === 4 ? "ِ" : sv)+l),
+        mudari: sjMudari14("َ", L, S), amr: sjAmr(L, S), ...sjGov("َ", L, S),
+        fail: sjN(f+"َائِ"+l),
+        maful: sjN(glide === "و" ? "مَ"+f+"ُو"+l : "مَ"+f+"ِي"+l) };
+    }
+    if (t === "naqis") {
+      if (bab === 1 && glide !== "و") return no("bab-glide");
+      if (bab === 2 && glide !== "ي") return no("bab-glide");
+      if (![1, 2, 4].includes(bab)) return no("naqis-bab");
+      const b = f+"َ"+a, bb = f+"ْ"+a;
+      const typ = bab === 1 ? "u" : bab === 2 ? "i" : "a";
+      const mazi = bab === 4 ? sjMaziKasra(f+"َ"+a+"ِ", f+"َ"+a+"ُوا")
+                             : sjMaziNaqis(b + "َ", glide);
+      return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَفْع${V.v2}لُ — نَاقِصٌ`),
+        mazi, mudari: sjMudariNaqis("َ", bb, typ),
+        amr: sjAmrNaqis(sjWasl(typ === "u" ? "ُ" : "ِ") + bb, typ),
+        ...sjGovNaqis("َ", bb, typ), fail: sjN(f+"َا"+a+"ٍ"),
+        maful: sjN(typ === "u" ? "مَ"+bb+"ُوّ" : "مَ"+bb+"ِيّ") };
+    }
+    if (t === "mithal") {
+      if (glideOfMithal(f) === "ي" || ![2, 3, 4, 6].includes(bab)) {
+        if (f === "ي") return no("mithal-ya");        // keep scope honest
+        if (![2, 3, 4, 6].includes(bab)) return no("mithal-bab");
+      }
+      const drops = bab !== 4;                         // يَعِدُ يَقَعُ يَرِثُ — but يَوْجَلُ keeps
+      const v = f+"َ"+a+V.v1+l;
+      if (drops) {
+        const core = a+V.v2+l;
+        return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَع${V.v2}لُ — مِثَالٌ تُحْذَفُ وَاوُهُ`),
+          mazi: sjMazi14(v), mudari: sjMudari14("َ", core), amr: sjAmr(core),
+          ...sjGov("َ", core), fail: sjN(f+"َا"+a+"ِ"+l), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l),
+          note: "مِثَالٌ وَاوِيٌّ: تَسْقُطُ الْوَاوُ فِي الْمُضَارِعِ وَالْأَمْرِ." };
+      }
+      const core = f+"ْ"+a+"َ"+l;                      // يَوْجَلُ
+      return { ok: true, wazn: sjN("فَعِلَ يَفْعَلُ — مِثَالٌ"),
+        mazi: sjMazi14(v), mudari: sjMudari14("َ", core),
+        amr: sjAmr("اِي"+a+"َ"+l), ...sjGov("َ", core),
+        fail: sjN(f+"َا"+a+"ِ"+l), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l),
+        note: "مِثَالٌ يَبْقَى وَاوُهُ فِي الْمُضَارِعِ؛ وَفِي الْأَمْرِ اِوْ ← اِي." };
+    }
+    return no("class");
+  }
+
+  // ---- derived babs: II III IV V VI VII VIII X (the corpus's working set)
+  const D = {
+    II:  { pre: "", yv: "ُ" }, III: { pre: "", yv: "ُ" }, IV: { pre: "أَ", yv: "ُ" },
+    V:   { pre: "تَ", yv: "َ" }, VI: { pre: "تَ", yv: "َ" }, VII: { pre: "اِنْ", yv: "َ" },
+    VIII:{ pre: "", yv: "َ" }, X: { pre: "اِسْتَ", yv: "َ" },
+  }[form];
+  if (!D) return no("form");
+  const yv = D.yv;
+  const asm = (v, core, A, extra) => ({ ok: true, mazi: sjMazi14(v),
+    mudari: sjMudari14(yv, core), amr: sjAmr(A), ...sjGov(yv, core), ...extra });
+  const asmNaq = (bb, amrBb, typ, extra) => ({ ok: true, mazi: sjMaziNaqis(bb + "َ", "ي"),
+    mudari: sjMudariNaqis(yv, bb, typ), amr: sjAmrNaqis(amrBb, typ),
+    ...sjGovNaqis(yv, bb, typ), ...extra });
+  const P = (c, x) => ({ fail: sjN("مُ"+c), maful: x ? sjN("مُ"+x) : undefined });
+
+  if (form === "II" || form === "V") {
+    const p = form === "V" ? "تَ" : "";
+    const wazn = form === "V" ? "تَفَعَّلَ يَتَفَعَّلُ" : "فَعَّلَ يُفَعِّلُ";
+    if (t === "naqis") return { ...asmNaq(p+f+"َ"+a+"ّ", p+f+"َ"+a+"ّ",
+      form === "V" ? "a" : "i",
+      { wazn: sjN(wazn+" — نَاقِصٌ"),
+        masdar: sjN(form === "V" ? "تَ"+f+"َ"+a+"ٍّ" : "تَ"+f+"ْ"+a+"ِيَة"),
+        ...P(p+f+"َ"+a+"ٍّ") }) };
+    const v = p+f+"َ"+a+"َّ"+l, core = form === "V" ? v : p+f+"َ"+a+"ِّ"+l;
+    return { ...asm(v, core, core, { wazn: sjN(wazn),
+      masdar: sjN(form === "V" ? "تَ"+f+"َ"+a+"ُّ"+l : "تَ"+f+"ْ"+a+"ِي"+l),
+      ...P(core, p+f+"َ"+a+"َّ"+l) }) };
+  }
+  if (form === "III" || form === "VI") {
+    const p = form === "VI" ? "تَ" : "";
+    const wazn = form === "VI" ? "تَفَاعَلَ يَتَفَاعَلُ" : "فَاعَلَ يُفَاعِلُ";
+    if (t === "naqis") return { ...asmNaq(p+f+"َا"+a, p+f+"َا"+a,
+      form === "VI" ? "a" : "i",
+      { wazn: sjN(wazn+" — نَاقِصٌ"),
+        masdar: sjN(form === "VI" ? "تَ"+f+"َا"+a+"ٍ" : "مُ"+f+"َا"+a+"َاة"),
+        ...P(p+f+"َا"+a+"ٍ") }) };
+    if (t === "gem" && form === "III")
+      return { ok: true, wazn: sjN("فَاعَلَ يُفَاعِلُ — مُضَاعَفٌ"),
+        mazi: sjMazi14(f+"َا"+a+"ّ", f+"َا"+a+"َ"+l),
+        mudari: sjMudari14(yv, f+"َا"+a+"ّ", f+"َا"+a+"ِ"+l),
+        amr: [f+"َا"+a+"َّ", f+"َا"+a+"َّا", f+"َا"+a+"ُّوا", f+"َا"+a+"ِّي", f+"َا"+a+"َّا", f+"َا"+a+"ِ"+l+"ْنَ"].map(sjN),
+        ...sjGovGem(yv, f+"َا"+a+"ّ"), masdar: sjN("مُ"+f+"َا"+a+"َّة"), ...P(f+"َا"+a+"ّ") };
+    const v = p+f+"َا"+a+"َ"+l, core = form === "VI" ? v : p+f+"َا"+a+"ِ"+l;
+    return { ...asm(v, core, core, { wazn: sjN(wazn),
+      masdar: sjN(form === "VI" ? "تَ"+f+"َا"+a+"ُ"+l : "مُ"+f+"َا"+a+"َ"+l+"َة"),
+      ...P(core, p+f+"َا"+a+"َ"+l) }) };
+  }
+  if (form === "IV") {
+    if (t === "ajwaf") return { ok: true, wazn: sjN("أَفْعَلَ يُفْعِلُ — أَجْوَفُ"),
+      mazi: sjMazi14("أَ"+f+"َا"+l, "أَ"+f+"َ"+l),
+      mudari: sjMudari14(yv, f+"ِي"+l, f+"ِ"+l),
+      amr: sjAmr("أَ"+f+"ِي"+l, "أَ"+f+"ِ"+l),
+      mansub: sjN("يُ"+f+"ِي"+l+"َ"), majzum: sjN("يُ"+f+"ِ"+l+"ْ"), majzum2: sjN("تُ"+f+"ِ"+l+"ْ"),
+      masdar: sjN("إِ"+f+"َا"+l+"َة"), ...P(f+"ِي"+l, f+"َا"+l) };
+    if (t === "naqis") {
+      const r4 = asmNaq(f+"ْ"+a, "أَ"+f+"ْ"+a, "i",
+        { wazn: sjN("أَفْعَلَ يُفْعِلُ — نَاقِصٌ"), masdar: sjN("إِ"+f+"ْ"+a+"َاء"),
+          ...P(f+"ْ"+a+"ٍ") });
+      r4.mazi = sjMaziNaqis("أَ"+f+"ْ"+a+"َ", "ي");   // the mazi wears the hamza
+      return r4;
+    }
+    const v = "أَ"+f+"ْ"+a+"َ"+l, core = f+"ْ"+a+"ِ"+l;
+    return { ...asm(v, core, "أَ"+core, { wazn: sjN("أَفْعَلَ يُفْعِلُ"),
+      masdar: sjN("إِ"+f+"ْ"+a+"َا"+l), ...P(core, f+"ْ"+a+"َ"+l) }) };
+  }
+  if (form === "VII") {
+    if (t === "ajwaf") return { ok: true, wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ — أَجْوَفُ"),
+      mazi: sjMazi14("اِنْ"+f+"َا"+l, "اِنْ"+f+"َ"+l),
+      mudari: sjMudari14(yv, "نْ"+f+"َا"+l, "نْ"+f+"َ"+l),
+      amr: sjAmr("اِنْ"+f+"َا"+l, "اِنْ"+f+"َ"+l),
+      ...sjGov(yv, "نْ"+f+"َا"+l, "نْ"+f+"َ"+l),
+      masdar: sjN("اِنْ"+f+"ِيَا"+l), ...P("نْ"+f+"َا"+l) };
+    const v = "اِنْ"+f+"َ"+a+"َ"+l, core = "نْ"+f+"َ"+a+"ِ"+l;
+    return { ...asm(v, core, "اِ"+core, { wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ"),
+      masdar: sjN("اِنْ"+f+"ِ"+a+"َا"+l), ...P(core) }) };
+  }
+  if (form === "VIII") {
+    const tp = nakilT(f);                              // اِفْتَ with the ibdal applied
+    const tk = tp.replace(/َ$/, "ِ");                   // its kasra twin for the masdar
+    const md = "م" + tp.slice(2);                      // مُفْتَ… for the participles
+    if (t === "ajwaf") return { ok: true, wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ — أَجْوَفُ"),
+      mazi: sjMazi14(tp+"ا"+l, tp+l),
+      mudari: sjMudari14(yv, tp.slice(2)+"ا"+l, tp.slice(2)+l),
+      amr: sjAmr(tp+"ا"+l, tp+l),
+      ...sjGov(yv, tp.slice(2)+"ا"+l, tp.slice(2)+l),
+      masdar: sjN(tk+"يَا"+l), ...P(tp.slice(2)+"ا"+l) };
+    if (t === "naqis") {
+      const r8 = asmNaq(tp.slice(2)+a, tp+a, "i",
+        { wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ — نَاقِصٌ"), masdar: sjN(tk+a+"َاء"),
+          ...P(tp.slice(2)+a+"ٍ") });
+      r8.mazi = sjMaziNaqis(tp+a+"َ", "ي");
+      return r8;
+    }
+    if (t === "gem") {
+      const G = tp.slice(2)+a+"ّ", S = tp.slice(2)+a+"ِ"+l;   // مْتَدّ / مْتَدِد
+      return { ok: true, wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ — مُضَاعَفٌ"),
+        mazi: sjMazi14(tp+a+"ّ", tp+a+"َ"+l), mudari: sjMudari14(yv, G, S),
+        amr: ["اِ"+G+"َ", "اِ"+G+"َا", "اِ"+G+"ُوا", "اِ"+G+"ِي", "اِ"+G+"َا", "اِ"+S+"ْنَ"].map(sjN),
+        ...sjGovGem(yv, G), masdar: sjN(tk+a+"َا"+l), ...P(G),
+        note: "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ." };
+    }
+    if (t === "mithal") {
+      const v = "اِتَّ"+a+"َ"+l, core = "تَّ"+a+"ِ"+l;
+      return { ...asm(v, core, "اِ"+core, { wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ — مِثَالٌ"),
+        masdar: sjN("اِتِّ"+a+"َا"+l), ...P(core, "تَّ"+a+"َ"+l),
+        note: "قُلِبَتِ الْوَاوُ تَاءً وَأُدْغِمَتْ." }) };
+    }
+    const v = tp+a+"َ"+l, core = tp.slice(2)+a+"ِ"+l;
+    return { ...asm(v, core, "اِ"+core, { wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ"),
+      masdar: sjN(tk+a+"َا"+l), ...P(core, tp.slice(2)+a+"َ"+l) }) };
+  }
+  if (form === "X") {
+    if (t === "ajwaf") return { ok: true, wazn: sjN("اِسْتَفْعَلَ يَسْتَفْعِلُ — أَجْوَفُ"),
+      mazi: sjMazi14("اِسْتَ"+f+"َا"+l, "اِسْتَ"+f+"َ"+l),
+      mudari: sjMudari14(yv, "سْتَ"+f+"ِي"+l, "سْتَ"+f+"ِ"+l),
+      amr: sjAmr("اِسْتَ"+f+"ِي"+l, "اِسْتَ"+f+"ِ"+l),
+      ...sjGov(yv, "سْتَ"+f+"ِي"+l, "سْتَ"+f+"ِ"+l),
+      masdar: sjN("اِسْتِ"+f+"َا"+l+"َة"), ...P("سْتَ"+f+"ِي"+l, "سْتَ"+f+"َا"+l) };
+    if (t === "naqis") {
+      const rX = asmNaq("سْتَ"+f+"ْ"+a, "اِسْتَ"+f+"ْ"+a, "i",
+        { wazn: sjN("اِسْتَفْعَلَ يَسْتَفْعِلُ — نَاقِصٌ"), masdar: sjN("اِسْتِ"+f+"ْ"+a+"َاء"),
+          ...P("سْتَ"+f+"ْ"+a+"ٍ") });
+      rX.mazi = sjMaziNaqis("اِسْتَ"+f+"ْ"+a+"َ", "ي");
+      return rX;
+    }
+    if (t === "gem") {
+      const G = "سْتَ"+f+"ِ"+a+"ّ", S = "سْتَ"+f+"ْ"+a+"ِ"+l;
+      return { ok: true, wazn: sjN("اِسْتَفْعَلَ يَسْتَفْعِلُ — مُضَاعَفٌ"),
+        mazi: sjMazi14("اِسْتَ"+f+"َ"+a+"ّ", "اِسْتَ"+f+"ْ"+a+"َ"+l),
+        mudari: sjMudari14(yv, G, S),
+        amr: ["اِ"+G+"َ", "اِ"+G+"َا", "اِ"+G+"ُوا", "اِ"+G+"ِي", "اِ"+G+"َا", "اِ"+S+"ْنَ"].map(sjN),
+        ...sjGovGem(yv, G), masdar: sjN("اِسْتِ"+f+"ْ"+a+"َا"+l), ...P(G, "سْتَ"+f+"َ"+a+"ّ"),
+        note: "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ." };
+    }
+    const v = "اِسْتَ"+f+"ْ"+a+"َ"+l, core = "سْتَ"+f+"ْ"+a+"ِ"+l;
+    return { ...asm(v, core, "اِ"+core, { wazn: sjN("اِسْتَفْعَلَ يَسْتَفْعِلُ"),
+      masdar: sjN("اِسْتِ"+f+"ْ"+a+"َا"+l), ...P(core, "سْتَ"+f+"ْ"+a+"َ"+l) }) };
+  }
+  return no("form");
+}
+function glideOfMithal(f){ return f; }
+// The engine's oath: regenerate every stored paradigm it can classify and
+// compare cell for cell. The smoke suite fails on one mismatched cell — the
+// corpus (hand-authored, human-reviewed layer by layer) is the judge.
+function sarfAudit(){
+  const out = { checked: 0, skipped: 0, bad: [] };
+  const BAB1 = { "نَصَرَ": 1, "ضَرَبَ": 2, "فَتَحَ": 3, "سَمِعَ": 4, "حَسُنَ": 5, "حَسِبَ": 6 };
+  const FORMS = { "أَفْعَلَ": "IV", "فَعَّلَ": "II", "فَاعَلَ": "III", "تَفَعَّلَ": "V",
+                  "تَفَاعَلَ": "VI", "اِنْفَعَلَ": "VII", "اِفْتَعَلَ": "VIII",
+                  "اِسْتَفْعَلَ": "X", "اسْتَفْعَلَ": "X" };
+  const seen = new Set();
+  STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+    if (m.jamid || seen.has(lex)) return;
+    seen.add(lex);
+    const e = st.glossary[lex];
+    const cls = nakilClass(e);
+    if (!cls) { out.skipped++; return; }
+    const head = sjN((m.wazn || "").split(/\s+/)[0]);
+    let form = FORMS[head], bab = null;
+    if (!form) {
+      const key = Object.keys(BAB1).find(k => sjN(m.bab || "").includes(sjN(k)));
+      if (!key) { out.skipped++; return; }
+      form = "I"; bab = BAB1[key];
+    }
+    const g = sarfDerive(cls, form, bab);
+    if (!g.ok) { out.skipped++; return; }
+    out.checked++;
+    const diffs = [];
+    [["mazi", 14], ["mudari", 14], ["amr", 6]].forEach(([k, n]) => {
+      for (let i = 0; i < n; i++)
+        if (sjN(g[k][i]) !== sjN(m[k][i])) diffs.push(`${k}[${i}] ${g[k][i]}≠${m[k][i]}`);
+    });
+    ["mansub", "majzum", "majzum2"].forEach(k => {
+      if (m[k] && sjN(g[k]) !== sjN(m[k])) diffs.push(`${k} ${g[k]}≠${m[k]}`);
+    });
+    if (diffs.length) out.bad.push(lex + ": " + diffs.slice(0, 4).join("; "));
+  }));
+  return out;
+}
+
+// ---------- the Sarf Lab UI ----------
+let conjState = { root: "نصر", form: "I", bab: 1 };
+const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
+function conjClass(){
+  const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
+  if (letters.length !== 3) return { err: "len" };
+  const cls = nakilClass({ root: letters.join(" ") });
+  return cls ? cls : { err: "class" };
+}
+function renderConjOut(){
+  const out = document.getElementById("conjOut");
+  if (!out) return;
+  const cls = conjClass();
+  if (cls.err) {
+    out.innerHTML = `<p class="empty">${cls.err === "len" ? ui().conjBad : ui().conjHamza}</p>`;
+    return;
+  }
+  const r = sarfDerive(cls, conjState.form, conjState.bab);
+  if (!r.ok) { out.innerHTML = `<p class="empty">${ui().conjNoForm}</p>`; return; }
+  let h = `<p class="bab-line">${r.wazn}</p><div class="facts">
+    ${chip("اسم الفاعل: " + arSpan(r.fail))}
+    ${r.maful ? chip("اسم المفعول: " + arSpan(r.maful)) : ""}
+    ${r.masdar ? chip("المصدر: " + arSpan(r.masdar)) : ""}
+  </div>
+  ${conjState.form === "I" ? `<p class="sarf-note">${ui().conjMasdarSamai}</p>` : ""}
+  <h4 class="conj-h" lang="ar">الْمَاضِي</h4>${conjTable(r.mazi, PERSON_ROWS, "")}
+  <h4 class="conj-h" lang="ar">الْمُضَارِعُ</h4>${conjTable(r.mudari, PERSON_ROWS, "")}
+  <h4 class="conj-h" lang="ar">الْأَمْرُ</h4>${conjTable(r.amr, AMR_ROWS, "")}
+  <div class="facts">
+    ${chip("لَنْ " + arSpan(r.mansub))}${chip("لَمْ " + arSpan(r.majzum))}${chip("لَا " + arSpan(r.majzum2))}
+  </div>
+  ${r.note ? `<p class="sarf-note">${r.note}</p>` : ""}
+  <p class="sarf-note">${ui().conjNote}</p>`;
+  out.innerHTML = h;
+}
+function openConjugator(){
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().conjBtn}</button></div>
+    <p class="ref-intro">${ui().conjIntro}</p>
+    <div class="conj-lab">
+      <input id="conjRoot" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+             placeholder="${ui().conjPh}" value="${conjState.root}">
+      <div class="seg conj-seg" id="conjFormSeg">${CONJ_FORMS.map(fm =>
+        `<button data-cf="${fm}" class="${conjState.form === fm ? "on" : ""}">${fm}</button>`).join("")}</div>
+      <div class="seg conj-seg" id="conjBabSeg" ${conjState.form === "I" ? "" : "hidden"}>${[1,2,3,4,5,6].map(b =>
+        `<button data-cb="${b}" class="${conjState.bab === b ? "on" : ""}" lang="ar">${SJ_BAB1[b].model.split(" ")[0]}</button>`).join("")}</div>
+    </div>
+    <div id="conjOut"></div>`;
+  const root = document.getElementById("conjRoot");
+  root.addEventListener("input", () => { conjState.root = root.value; renderConjOut(); });
+  sheetInner.querySelectorAll("[data-cf]").forEach(b => b.addEventListener("click", () => {
+    conjState.form = b.dataset.cf;
+    sheetInner.querySelectorAll("[data-cf]").forEach(x => x.classList.toggle("on", x === b));
+    document.getElementById("conjBabSeg").hidden = conjState.form !== "I";
+    renderConjOut();
+  }));
+  sheetInner.querySelectorAll("[data-cb]").forEach(b => b.addEventListener("click", () => {
+    conjState.bab = +b.dataset.cb;
+    sheetInner.querySelectorAll("[data-cb]").forEach(x => x.classList.toggle("on", x === b));
+    renderConjOut();
+  }));
+  renderConjOut();
+  showSheet();
+}
+
+// Birgivi's five classes of governed form (Awamil, «معمول» tables).
+
 // Birgivi's five classes of governed form (Awamil, «معمول» tables).
 const MAMUL_LABEL = {
   marfu:  { ar: "مَعْمُولٌ مَرْفُوع", en: "governed in raf'",  tr: "merfû ma'mûl" },
@@ -3684,6 +4114,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x === b));
     renderModeSeg();   // the mode labels are localized too
     document.getElementById("refOpen").textContent = ui().grammarBtn;
+document.getElementById("conjOpen").textContent = ui().conjBtn;
     document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
     document.getElementById("statsOpen").textContent = ui().statsBtn;
@@ -3701,6 +4132,7 @@ document.getElementById("statsOpen").addEventListener("click", openStats);
 // The streak chip is the same numbers seen smaller — tapping it opens the page.
 document.getElementById("streakChip").addEventListener("click", openStats);
 document.getElementById("refOpen").addEventListener("click", () => openRef());
+document.getElementById("conjOpen").addEventListener("click", openConjugator);
 document.getElementById("gamesOpen").addEventListener("click", openGames);
 document.getElementById("searchOpen").addEventListener("click", () => openSearch(searchQuery));
 
@@ -3709,6 +4141,7 @@ renderModeSeg();
 document.querySelectorAll("#speedSeg [data-rate]").forEach(x => x.classList.toggle("on", parseFloat(x.dataset.rate) === state.rate));
 document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x.dataset.layer === state.layer));
 document.getElementById("refOpen").textContent = ui().grammarBtn;
+document.getElementById("conjOpen").textContent = ui().conjBtn;
 document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
     document.getElementById("statsOpen").textContent = ui().statsBtn;

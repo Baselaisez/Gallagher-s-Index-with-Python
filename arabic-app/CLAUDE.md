@@ -438,6 +438,21 @@ check that counts the fourteen core forms filters them, and the sarf-note
 adds the received rule: no instrument-noun, diminutive or mubalagha from the
 augmented babs.
 
+**The Sarf Lab (المُصَرِّف) is a live conjugator, and the corpus is its
+judge.** `sarfDerive(cls, form, bab)` conjugates any classifiable root —
+Form I through its six babs and the derived II/III/IV/V/VI/VII/VIII/X —
+across sound/mithal/ajwaf/naqis/geminate, with the i'lal rules applied
+(vowel-melt in ajwaf IV/VII/VIII/X, ى-endings in naqis, contraction in the
+geminate, waw-drop in mithal b2/3/6, the iftial ibdal via `nakilT`, and a
+general seam-idgham `sjIdgham` that contracts a SAKIN twin only — مَرَرْنَ
+keeps its fakk). Passives and Form I masdars are NOT generated: stored-only
+and sama'i respectively. `sarfAudit()` regenerates every stored paradigm it
+can classify (187 verbs at last count) and the smoke suite fails on ONE
+mismatched cell — this audit found and fixed three real data
+inconsistencies on arrival (صَانَ، أَمْكَنَ، تَهَاوَنَ missing the كُنَّ-style
+idgham). Hamzated and lafif roots are refused with the honest reason. The
+UI is `openConjugator` (nav: #conjOpen), state in `conjState`.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per

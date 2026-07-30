@@ -2270,6 +2270,50 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('the Sarf engine regenerates every stored paradigm it can classify', async () => {
+    const r = await page.evaluate(() => sarfAudit());
+    if (r.bad.length)
+      throw new Error(r.bad.length + ' paradigms mismatch: ' + r.bad.slice(0, 4).join(' || '));
+    // The audit must actually bite: a healthy corpus gives it dozens of verbs.
+    if (r.checked < 60)
+      throw new Error('audit covered only ' + r.checked + ' verbs — classification broke?');
+  });
+
+  await check('the Sarf Lab conjugates sound, hollow and defective roots live', async () => {
+    await toLibrary();
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    const sound = await page.evaluate(() => {
+      conjState.root = 'نصر'; conjState.form = 'I'; conjState.bab = 1; renderConjOut();
+      return document.getElementById('conjOut').textContent;
+    });
+    for (const f of ['نَصَرْتَ', 'يَنْصُرُونَ', 'اُنْصُرْ', 'نَاصِر', 'مَنْصُور'])
+      if (!sound.normalize('NFC').includes(f.normalize('NFC')))
+        throw new Error('sound tables lack ' + f);
+    const hollow = await page.evaluate(() => {
+      conjState.root = 'قول'; renderConjOut();
+      return document.getElementById('conjOut').textContent;
+    });
+    for (const f of ['قُلْتَ', 'يَقُلْنَ', 'قَائِل', 'مَقُول'])
+      if (!hollow.normalize('NFC').includes(f.normalize('NFC')))
+        throw new Error('hollow tables lack ' + f);
+    const naqisX = await page.evaluate(() => {
+      conjState.root = 'رمي'; conjState.form = 'X'; renderConjOut();
+      return document.getElementById('conjOut').textContent;
+    });
+    for (const f of ['اِسْتَرْمَى', 'يَسْتَرْمِي', 'اِسْتِرْمَاء'])
+      if (!naqisX.normalize('NFC').includes(f.normalize('NFC')))
+        throw new Error('derived-naqis tables lack ' + f);
+    const refusal = await page.evaluate(() => {
+      conjState.root = 'أخذ'; conjState.form = 'I'; renderConjOut();
+      const txt = document.getElementById('conjOut').textContent;
+      conjState.root = 'نصر'; closeSheet();
+      return txt;
+    });
+    if (!/hamza|Hemze|hemze/i.test(refusal))
+      throw new Error('a hamzated root was not honestly refused');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
