@@ -543,6 +543,17 @@
     border-radius: 0 var(--radius) var(--radius) 0; padding: .6rem .8rem; margin: .6rem 0;
   }
   #qWhy:empty, #qWhy[hidden] { display: none; }
+  /* A saved word's underline turns the deck's green in every story — the
+     page shows what is already yours (and flips live on save/remove). */
+  .underlines .word.in-deck { text-decoration-color: color-mix(in srgb, var(--ok) 62%, transparent); }
+  .word.in-deck:hover { background: color-mix(in srgb, var(--ok) 9%, transparent); }
+  /* The card's birth-sentence, shown on reveal: the word at home. */
+  .card-ctx {
+    font-family: var(--ar-font); font-size: 1.3rem; line-height: 2.1;
+    margin: .55rem auto 0; max-width: 32rem; color: var(--ink-soft);
+  }
+  .card-ctx b { color: var(--accent); font-weight: 700; }
+
   .empty { position: relative; padding-top: 2.6rem; }
   .empty::before {
     content: "﴿ ﴾"; position: absolute; top: .7rem; left: 50%; transform: translateX(-50%);
@@ -1246,6 +1257,10 @@ function renderStory(){
   storyEl.innerHTML = "";
   storyEl.classList.toggle("underlines", state.underlines);
   SENTENCE_FLAT = [];
+  // The deck is visible while reading (LingQ's most-loved idea): a word
+  // already saved wears its underline in the deck's green — the page itself
+  // shows what is already yours.
+  const deckLex = new Set(state.deck.map(d => d.lex).filter(Boolean));
   // Paywall: a locked premium story renders only the first PREVIEW_SENTENCES
   // sentences, then the upsell card. SENTENCE_FLAT shrinks with it, so the
   // "Play all" audiobook queue is gated by the same limit for free.
@@ -1292,6 +1307,8 @@ function renderStory(){
         w.textContent = tok.s[state.layer];
       }
       if (entry && entry.level > 0) w.dataset.lvl = levelBucket(entry.level);
+      w.dataset.lex = tok.lex;
+      if (deckLex.has(tok.lex)) w.classList.add("in-deck");
       w.addEventListener("click", () => { markRead(sen.id); openWord(tok, w, null, {sen, ti}); });
       w.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); markRead(sen.id); openWord(tok, w, null, {sen, ti}); } });
       line.appendChild(w);
@@ -2547,7 +2564,13 @@ function openWord(tok, el, tab, ctx){
   sheetInner.querySelectorAll("[data-tense]").forEach(b =>
     b.addEventListener("click", () => { sarfTense = b.dataset.tense; openWord(tok, el, "sarf"); }));
   const sb = document.getElementById("saveBtn");
-  if (sb) sb.addEventListener("click", () => { toggleSave(tok); openWord(tok, el, "word"); });
+  if (sb) sb.addEventListener("click", () => {
+    toggleSave(tok, wordCtx);
+    // The page's copies of this word flip their in-deck marking live.
+    document.querySelectorAll(`.word[data-lex="${CSS.escape(tok.lex)}"]`).forEach(x =>
+      x.classList.toggle("in-deck", cardSaved("word:" + tok.lex)));
+    openWord(tok, el, "word");
+  });
   const tg = document.getElementById("toGrammar");
   if (tg) tg.addEventListener("click", () => openWord(tok, el, "grammar"));
   sheetInner.querySelectorAll(".root-btn").forEach(b =>
@@ -3081,11 +3104,25 @@ function toggleCard(key, make){
   persistDeck();
   return true;
 }
-function toggleSave(tok){
+function toggleSave(tok, ctx){
   return toggleCard("word:" + tok.lex, () => {
     const e = GLOSSARY[tok.lex];
-    return {lex: tok.lex, type: "word", bare: tok.s.bare, lemma: e.lemma,
+    const card = {lex: tok.lex, type: "word", bare: tok.s.bare, lemma: e.lemma,
             gloss: {en: e.gloss.en, tr: e.gloss.tr}};
+    // The sentence snapshot (Satori Reader's most-loved idea): a card born in
+    // a sentence remembers it, and review shows the word at home instead of
+    // orphaned. Optional — vocab-sheet and daily-goal saves have no sentence,
+    // and old cards without one still render.
+    if (ctx && ctx.sen && CUR) {
+      const t = ctx.sen.tokens;
+      card.ctx = {
+        story: CUR.id, sen: ctx.sen.id,
+        pre: t.slice(0, ctx.ti).map(x => x.s.full + (x.punctAfter || "")).join(" "),
+        word: t[ctx.ti].s.full,
+        post: t.slice(ctx.ti + 1).map(x => x.s.full + (x.punctAfter || "")).join(" "),
+      };
+    }
+    return card;
   });
 }
 // A conjugation card asks for one cell of the Emsile-i Muhtelife rather than a
@@ -3299,7 +3336,10 @@ function renderDeck(){
         (reviewStep === 2 ? `<div class="verb-answer" lang="ar">${q.answer}</div>` : "")).join("");
     } else {
       front = reviewStep === 0 ? card.bare : card.lemma;
-      back = reviewStep === 2 ? `<div style="margin-top:.4rem">${T(card.gloss)}</div>` : "";
+      back = reviewStep === 2
+        ? `<div style="margin-top:.4rem">${T(card.gloss)}</div>`
+          + (card.ctx ? `<div class="card-ctx" lang="ar" dir="rtl">${card.ctx.pre} <b>${card.ctx.word}</b> ${card.ctx.post}</div>` : "")
+        : "";
     }
     html += `<div class="deck-card" id="reviewCard" style="cursor:pointer">
         <div class="front" lang="ar" dir="rtl">${front}</div>

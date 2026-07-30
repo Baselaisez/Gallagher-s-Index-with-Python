@@ -251,6 +251,18 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   The smoke check derives its expectations through those primitives too, which
   proves agreement rather than two copies of the same arithmetic. The streak
   chip is the same numbers seen smaller; tapping either opens the page.
+- **A word card born in a sentence carries a snapshot** (`card.ctx`:
+  story/sen ids + pre/word/post strings, captured in `toggleSave(tok, ctx)`
+  from `wordCtx`). Review's final reveal shows the sentence with the word
+  bolded — the Satori Reader pattern. The snapshot is OPTIONAL: vocab-sheet
+  and learn-goal saves have no sentence, old cards have none, and the render
+  guards on it. The smoke check asserts pre+word+post reassembles the exact
+  sentence — the only thing that can silently drift.
+- **The deck is visible while reading.** `renderStory` builds a Set of deck
+  lexes once and marks matching tokens `.in-deck` (underline turns the ok
+  green); every span carries `data-lex`, and the save button flips the
+  page's copies live in both directions. LingQ's known-word marking, in
+  Qissa's underline language.
 - **`cardKey()` is the only statement of card identity.** Membership tests and
   toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
   declares its key once instead of adding a fourth hand-written `findIndex`

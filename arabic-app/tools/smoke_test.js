@@ -2162,6 +2162,50 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('a saved card remembers its sentence, and the page marks deck words', async () => {
+    await toLibrary();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
+    // Save the first teachable word through the same path a tap takes.
+    await page.locator('.word[data-lvl]').first().click();
+    await page.waitForSelector('#saveBtn', { timeout: 3000 });
+    await page.locator('#saveBtn').click();
+    const r = await page.evaluate(() => {
+      const card = state.deck[state.deck.length - 1];
+      const span = document.querySelector(`.word[data-lex="${CSS.escape(card.lex)}"]`);
+      const sen = CUR.chapters.flatMap(c => c.sentences).find(s => s.id === (card.ctx && card.ctx.sen));
+      const rebuilt = sen ? sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' ') : '';
+      const snapshot = card.ctx ? [card.ctx.pre, card.ctx.word, card.ctx.post].filter(Boolean).join(' ') : '';
+      return { hasCtx: !!card.ctx, story: card.ctx && card.ctx.story,
+               marked: span && span.classList.contains('in-deck'),
+               agree: rebuilt === snapshot, lex: card.lex };
+    });
+    if (!r.hasCtx) throw new Error('the saved card carries no sentence snapshot');
+    if (r.story !== 'wasiyyat-abi-hanifa-L2') throw new Error('snapshot story is ' + r.story);
+    // pre + word + post must reassemble the exact sentence — no drift.
+    if (!r.agree) throw new Error('the snapshot does not reassemble its sentence');
+    if (!r.marked) throw new Error('the page did not mark the saved word in-deck');
+    // The review reveal shows the word at home, bolded.
+    const rev = await page.evaluate(lex => {
+      openDeck(); reviewStep = 2; renderDeck();
+      // walk the queue until our card is on top, or just inspect the DOM if it is
+      const ctxEl = document.querySelector('.card-ctx');
+      const shown = !!ctxEl && !!ctxEl.querySelector('b');
+      closeSheet();
+      return { shown, queueHasCtx: dueCards().some(c => c.lex === lex && c.ctx) };
+    }, r.lex);
+    if (!rev.queueHasCtx) throw new Error('the ctx card never reached the review queue');
+    // Removing the card un-marks the page copies live.
+    await page.locator('.word[data-lvl]').first().click();
+    await page.waitForSelector('#saveBtn', { timeout: 3000 });
+    await page.locator('#saveBtn').click();      // toggles off
+    const unmarked = await page.evaluate(lex =>
+      ![...document.querySelectorAll(`.word[data-lex="${CSS.escape(lex)}"]`)]
+        .some(x => x.classList.contains('in-deck')), r.lex);
+    if (!unmarked) throw new Error('removing the card left the page marked');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
