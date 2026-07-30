@@ -581,6 +581,18 @@
     font-family: var(--ui-font); font-size: .78rem; color: var(--accent);
     background: var(--accent-soft); border-radius: 8px; padding: .35rem .6rem; margin: .4rem 0;
   }
+  /* the form-in-the-text block: surface form beside the lemma, with the
+     cell's name and the meaning of THAT form */
+  .intext {
+    border: 1px solid var(--line); border-inline-start: 3px solid var(--accent);
+    border-radius: 10px; padding: .5rem .7rem; margin: .6rem 0; background: var(--panel);
+  }
+  .intext .it-head { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: .06em; margin-bottom: .2rem; }
+  .intext .it-row { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; }
+  .intext .it-ar { font-family: var(--ar-font); font-size: 1.5rem; color: var(--accent); }
+  .intext .it-gloss { font-family: var(--ui-font); font-size: .95rem; font-weight: 600; }
+  .intext .it-cell { font-family: var(--ui-font); font-size: .78rem; color: var(--ink-soft); margin-top: .15rem; }
   .game-pick .gd.fade { color: var(--accent); font-size: .76rem; }
   .conj-h {
     text-align: center; font-family: var(--ar-font); font-weight: 600;
@@ -1049,6 +1061,7 @@ Object.assign(L.en, {
   fadingHub:"{n} deck words are fading — this round rescues them first.",
   fadingNote:"The memory model seated {n} fading words from your deck in this round.",
   fadingCloze:"A fading word from your deck — catch it.",
+  inText:"فِي النَّصِّ · In the text",
   sarfGame:"Sarf drill", sarfGameDesc:"Name the sigha, pick the form — the Emsile-i Muhtelife.",
   sarfGameAsk:"Which form of this verb is being asked for?",
   caseGame:"Which case?", caseGameDesc:"A word in a real sentence — say how it is governed.",
@@ -1072,6 +1085,7 @@ Object.assign(L.tr, {
   fadingHub:"Destede {n} kelime solmak üzere — bu tur önce onları kurtarır.",
   fadingNote:"Bellek modeli bu tura destenizden solmakta olan {n} kelimeyi oturttu.",
   fadingCloze:"Destenizden solmakta olan bir kelime — yakalayın.",
+  inText:"فِي النَّصِّ · Metinde",
   sarfGame:"Sarf alıştırması", sarfGameDesc:"Sîgayı oku, şekli seç — Emsile-i Muhtelife.",
   sarfGameAsk:"Bu fiilin hangi sîgası isteniyor?",
   caseGame:"Hangi i'rab?", caseGameDesc:"Gerçek bir cümledeki kelime — nasıl amel görmüş?",
@@ -2293,7 +2307,7 @@ const AMR_ROWS = [
 ];
 
 function stripAr(s){ return (s || "").replace(/[ً-ٰٕ]/g, ""); }
-function conjTable(forms, rows, highlight){
+function conjTable(forms, rows, highlight, hlIdx){
   const hlBare = stripAr(highlight);
   let h = `<div class="conj-wrap"><table class="conj">
     <tr><th class="person"></th><th>المفرد</th><th>المثنى</th><th>الجمع</th></tr>`;
@@ -2301,13 +2315,134 @@ function conjTable(forms, rows, highlight){
     h += `<tr><th class="person">${r.label}</th>`;
     r.idx.forEach(i => {
       const f = forms[i] === undefined ? "" : forms[i];
-      const hit = f === highlight || (hlBare && stripAr(f) === hlBare);
+      const hit = i === hlIdx || f === highlight || (hlBare && stripAr(f) === hlBare);
       h += `<td class="${hit ? "hl" : ""}">${f}</td>`;
     });
     if (r.idx.length === 2) h += `<td></td>`;
     h += `</tr>`;
   });
   return h + `</table></div>`;
+}
+
+// ---------- which cell of the paradigm is this surface form? ----------
+// A token walks in wearing clitics — وَاعْفُ is the amr اعْفُ under a waw,
+// فَيَجْزِيهِمْ is يَجْزِي between a fa and an object pronoun. Candidates are
+// built by peeling proclitics and enclitic pronouns from the VOCALIZED
+// surface; an exact NFC pass runs first (it can tell قَضَيْتَ from قَضَيْتُ),
+// and a bare-letters pass follows for wasl-hamza changes the vowels hide.
+const AR_PROCLITIC = /^(وَ|فَ|سَ|لَ|لِ|بِ)/;
+const AR_ENCLITIC = /(هُمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|هَا|نَا|نِي|هُ|هِ|كَ|كِ|يَ)$/;
+function formCandidates(surface){
+  let s = (surface || "").replace(/[«»،:.!؟]/g, "").normalize("NFC");
+  const out = [s];
+  let p = s;
+  for (let i = 0; i < 2 && AR_PROCLITIC.test(p); i++) {
+    p = p.replace(AR_PROCLITIC, "");
+    out.push(p);
+  }
+  out.slice().forEach(c => {
+    const c2 = c.replace(AR_ENCLITIC, "");
+    if (c2 && c2 !== c) {
+      out.push(c2);
+      // the 3pl alif returns when its pronoun leaves: رَأَوْهُ → رَأَوْا
+      if (/وْ?$/.test(c2)) out.push(c2 + "ا");
+    }
+  });
+  return [...new Set(out)];
+}
+function findFormInParadigm(morph, surface){
+  if (!morph) return null;
+  const cands = formCandidates(surface);
+  const bares = cands.map(stripAr);
+  const slots = [["amr", morph.amr], ["mazi", morph.mazi], ["mudari", morph.mudari]];
+  for (const exact of [true, false]) {
+    for (const [tense, forms] of slots) {
+      if (!forms) continue;
+      for (let i = 0; i < forms.length; i++) {
+        const f = (forms[i] || "").normalize("NFC");
+        if (exact ? cands.includes(f) : bares.includes(stripAr(f)))
+          return { tense, i };
+      }
+    }
+    for (const k of ["mansub", "majzum", "majzum2"]) {
+      if (!morph[k]) continue;
+      const f = morph[k].normalize("NFC");
+      if (exact ? cands.includes(f) : bares.includes(stripAr(f)))
+        return { tense: k, i: 0 };
+    }
+  }
+  return null;
+}
+// The cell's name, madrasah-style: tense + person, in all three tongues.
+const CELL_TENSE = {
+  mazi:    { ar: "الْمَاضِي",             en: "past",              tr: "mâzî" },
+  mudari:  { ar: "الْمُضَارِعُ",           en: "present / future",  tr: "muzâri" },
+  amr:     { ar: "الْأَمْرُ",              en: "command",           tr: "emir" },
+  mansub:  { ar: "الْمُضَارِعُ الْمَنْصُوبُ", en: "subjunctive",     tr: "mansub muzâri" },
+  majzum:  { ar: "الْمُضَارِعُ الْمَجْزُومُ", en: "jussive",         tr: "meczum muzâri" },
+  majzum2: { ar: "الْمُضَارِعُ الْمَجْزُومُ", en: "jussive",         tr: "meczum muzâri" },
+};
+const CELL_PERSON = [
+  { en: "he",           tr: "o (eril)" },   { en: "they two (m)", tr: "o ikisi (eril)" },
+  { en: "they (m)",     tr: "onlar (eril)" },
+  { en: "she",          tr: "o (dişil)" },  { en: "they two (f)", tr: "o ikisi (dişil)" },
+  { en: "they (f)",     tr: "onlar (dişil)" },
+  { en: "you",          tr: "sen" },        { en: "you two",      tr: "ikiniz" },
+  { en: "you (pl)",     tr: "siz" },
+  { en: "you (f)",      tr: "sen (dişil)" },{ en: "you two (f)",  tr: "ikiniz (dişil)" },
+  { en: "you (pl, f)",  tr: "siz (dişil)" },
+  { en: "I",            tr: "ben" },        { en: "we",           tr: "biz" },
+];
+const CELL_PERSON_AMR = [
+  { en: "you",         tr: "sen" },         { en: "you two",      tr: "ikiniz" },
+  { en: "you (pl)",    tr: "siz" },
+  { en: "you (f)",     tr: "sen (dişil)" }, { en: "you two (f)",  tr: "ikiniz (dişil)" },
+  { en: "you (pl, f)", tr: "siz (dişil)" },
+];
+function formCellLabel(cell){
+  const t = CELL_TENSE[cell.tense];
+  const p = cell.tense === "amr" ? CELL_PERSON_AMR[cell.i]
+          : ["mansub", "majzum", "majzum2"].includes(cell.tense) ? CELL_PERSON[0]
+          : CELL_PERSON[cell.i];
+  return { ar: t.ar, en: t.en + " — " + p.en, tr: t.tr + " — " + p.tr };
+}
+// The meaning of the FORM, not the lemma: «affetmek» answers «affet!» for an
+// amr and «affetti» for a mazi. Turkish makes this honest work — imperative
+// is the bare stem, and the past is fully regular (vowel harmony + devoicing
+// after voiceless finals) — while English only trusts its imperative; every
+// other English cell keeps the label and stays silent rather than guess.
+function trStem(gloss){
+  const base = (gloss || "").split("(")[0].split(",")[0].trim();
+  if (!/(mek|mak)$/.test(base)) return null;
+  return base.slice(0, -3);
+}
+function trHarmony(stem){
+  const m = stem.match(/[aeıioöuü](?=[^aeıioöuü]*$)/i);
+  const v = m ? m[0].toLowerCase() : "e";
+  return { four: "aı".includes(v) ? "ı" : "ou".includes(v) ? "u" : "öü".includes(v) ? "ü" : "i",
+           two:  "aıou".includes(v) ? "a" : "e" };
+}
+function trPast(stem, i){
+  const h = trHarmony(stem);
+  const d = ("fstkçşhp".includes(stem.slice(-1).toLowerCase()) ? "t" : "d") + h.four;
+  const plural = h.two === "a" ? "lar" : "ler";
+  const P = ["", "", plural, "", "", plural, "n", "n" + h.four + "z", "n" + h.four + "z",
+             "n", "n" + h.four + "z", "n" + h.four + "z", "m", "k"];
+  const pre = (i === 1 || i === 4) ? "o ikisi " : (i === 7 || i === 10) ? "ikiniz " : "";
+  return pre + stem + d + (P[i] || "");
+}
+function formMeaning(cell, entry){
+  if (!entry || !entry.gloss) return null;
+  if (state.uiLang === "tr") {
+    const stem = trStem(entry.gloss.tr);
+    if (!stem) return null;
+    if (cell.tense === "amr") return cell.i === 0 || cell.i === 3 ? stem + "!" : null;
+    if (cell.tense === "mazi") return trPast(stem, cell.i);
+    return null;
+  }
+  if (cell.tense !== "amr") return null;
+  const base = (entry.gloss.en || "").replace(/^to /, "").split("(")[0].split(",")[0].trim();
+  return base ? base + "!" : null;
 }
 
 // ---------- Emsile-i Muhtelife ----------
@@ -2985,9 +3120,11 @@ const MAMUL_LABEL = {
 };
 
 let sarfTense = "mazi";
+let sarfUserPick = false;   // an explicit tense click outranks the auto-jump
 let wordCtx = null;
 function openWord(tok, el, tab, ctx){
   if (ctx) wordCtx = ctx;
+  if (tab !== "sarf") sarfUserPick = false;
   if (activeWordEl) activeWordEl.classList.remove("active");
   activeWordEl = el; if (el) el.classList.add("active");
   const entry = GLOSSARY[tok.lex] || {lemma: tok.s.full, gloss:{en:"—",tr:"—"}, pos:""};
@@ -3027,6 +3164,20 @@ function openWord(tok, el, tab, ctx){
     html += `</div>
       <p class="gloss"><small>EN</small>${entry.gloss.en}</p>
       <p class="gloss"><small>TR</small>${entry.gloss.tr}</p>`;
+    // The form in the text, beside the dictionary form: وَاعْفُ next to عَفَا,
+    // named (emir — sen) and translated as the FORM means («affet!»), so the
+    // reader never has to bridge lemma and text alone.
+    const cell = morph ? findFormInParadigm(morph, tok.s.full) : null;
+    if (cell) {
+      const lbl = formCellLabel(cell);
+      const meaning = formMeaning(cell, entry);
+      html += `<div class="intext">
+        <div class="it-head">${ui().inText}</div>
+        <div class="it-row"><span class="it-ar" lang="ar">${tok.s.full}</span>
+          ${meaning ? `<span class="it-gloss">«${meaning}»</span>` : ""}</div>
+        <div class="it-cell"><span lang="ar">${lbl.ar}</span> — ${state.uiLang === "tr" ? lbl.tr : lbl.en}</div>
+      </div>`;
+    }
     if (tok.segments) {
       html += `<div class="segrow">` + tok.segments.map(sg => {
         const e = GLOSSARY[sg.lex];
@@ -3048,6 +3199,13 @@ function openWord(tok, el, tab, ctx){
     let tense = morph.jamid && !(morph[sarfTense] && morph[sarfTense].length)
       ? "mazi" : sarfTense;
     if (tense === "nakil" && !nakil) tense = "mazi";
+    // Open on the tense that actually holds the tapped form — a reader who
+    // taps وَاعْفُ should land on the amr table with their cell lit, not on
+    // the mazi. Only the three plain tenses swap; muhtelife and nakil stay.
+    const cellS = findFormInParadigm(morph, tok.s.full);
+    if (!sarfUserPick && cellS && ["mazi", "mudari", "amr"].includes(tense)
+        && ["mazi", "mudari", "amr"].includes(cellS.tense) && cellS.tense !== tense
+        && morph[cellS.tense]) tense = cellS.tense;
     html += `<p class="lemma">${entry.lemma}</p>
       <p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
     if (!morph.jamid) html += `<div class="facts">
@@ -3065,11 +3223,12 @@ function openWord(tok, el, tab, ctx){
         ${nakil ? `<button data-tense="nakil" class="${tense==="nakil"?"on":""}">النَّقْل</button>` : ""}`}
       </div>`;
     const highlight = tok.s.full.replace(/[«»،:.]/g, "");
+    const hlIdx = cellS && cellS.tense === tense ? cellS.i : -1;
     if (tense === "nakil" && nakil) html += nakilTable(nakil, morph);
     else if (tense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
-    else if (tense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
+    else if (tense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight, hlIdx);
     else if (tense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);
-    else html += conjTable(morph[tense], PERSON_ROWS, highlight);
+    else html += conjTable(morph[tense], PERSON_ROWS, highlight, hlIdx);
     html += `<p class="sarf-note">${
       tense === "nakil" ? ui().nakilNote
       : tense === "muhtelife" ? ui().muhtelifeNote
@@ -3095,7 +3254,9 @@ function openWord(tok, el, tab, ctx){
   sheetInner.querySelectorAll("[data-tab]").forEach(b =>
     b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
   sheetInner.querySelectorAll("[data-tense]").forEach(b =>
-    b.addEventListener("click", () => { sarfTense = b.dataset.tense; openWord(tok, el, "sarf"); }));
+    b.addEventListener("click", () => {
+      sarfTense = b.dataset.tense; sarfUserPick = true; openWord(tok, el, "sarf");
+    }));
   const sb = document.getElementById("saveBtn");
   if (sb) sb.addEventListener("click", () => {
     toggleSave(tok, wordCtx);

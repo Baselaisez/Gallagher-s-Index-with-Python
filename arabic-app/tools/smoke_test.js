@@ -2409,6 +2409,43 @@ if (!CHROME) {
       throw new Error('match round did not seat the fading word: ' + JSON.stringify(r));
   });
 
+  await check('the sheet names the form in the text: وَاعْفُ answers «affet!»', async () => {
+    await page.evaluate(() => { state.premium = true; jumpTo('wasiyyat-abi-hanifa-samti', 's40'); });
+    await page.waitForTimeout(400);
+    await page.locator('.word', { hasText: 'وَاعْفُ' }).first().click();
+    await page.waitForSelector('.sheet.show .intext', { timeout: 3000 });
+    const it = await page.evaluate(() => ({
+      ar: document.querySelector('.intext .it-ar').textContent,
+      gloss: (document.querySelector('.intext .it-gloss') || {}).textContent || '',
+      cell: document.querySelector('.intext .it-cell').textContent,
+    }));
+    if (!it.ar.includes('وَاعْفُ')) throw new Error('surface form missing: ' + it.ar);
+    if (!it.gloss.includes('pardon!')) throw new Error('EN form meaning wrong: ' + it.gloss);
+    if (!/command|الْأَمْرُ/.test(it.cell)) throw new Error('cell label wrong: ' + it.cell);
+    // Turkish morphology: imperative = bare stem, past = harmony + devoicing.
+    const tr = await page.evaluate(() => {
+      const saveLang = state.uiLang; state.uiLang = 'tr';
+      const out = {
+        amr: formMeaning({ tense: 'amr', i: 0 }, GLOSSARY['afa']),
+        mazi3: formMeaning({ tense: 'mazi', i: 0 }, { gloss: { tr: 'affetmek (عن ile)' } }),
+        mazi2: formMeaning({ tense: 'mazi', i: 6 }, { gloss: { tr: 'yerine getirmek' } }),
+        maziPl: formMeaning({ tense: 'mazi', i: 2 }, { gloss: { tr: 'unutmak' } }),
+      };
+      state.uiLang = saveLang;
+      return out;
+    });
+    if (tr.amr !== 'affet!') throw new Error('TR imperative wrong: ' + tr.amr);
+    if (tr.mazi3 !== 'affetti') throw new Error('TR past devoicing wrong: ' + tr.mazi3);
+    if (tr.mazi2 !== 'yerine getirdin') throw new Error('TR past 2sg wrong: ' + tr.mazi2);
+    if (tr.maziPl !== 'unuttular') throw new Error('TR past 3pl harmony wrong: ' + tr.maziPl);
+    // The sarf tab lands on the amr table with the cell lit through the waw.
+    await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
+    await page.waitForSelector('.tense-seg button[data-tense="amr"].on', { timeout: 3000 });
+    if (!(await page.locator('table.conj td.hl').count()))
+      throw new Error('amr cell not highlighted through the clitic waw');
+    await page.evaluate(() => closeSheet());
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
