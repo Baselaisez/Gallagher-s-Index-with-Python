@@ -2374,6 +2374,41 @@ if (!CHROME) {
       throw new Error('jalasa did not snap to bab ضَرَبَ: ' + seg2);
   });
 
+  await check('the memory model seats fading words into the games', async () => {
+    await openStoryCard(wasiyyaStats.id);   // games and GLOSSARY are story-scoped
+    const r = await page.evaluate(() => {
+      const saved = state.deck;
+      // Two reviewed cards, 30 and 10 days past their last look at stability 5:
+      // retrievability ≈ 0.64 and 0.79 — both fading, the older one worse.
+      const picks = Object.entries(GLOSSARY)
+        .filter(([k, e]) => e.level > 0 && e.gloss && e.lemma.length > 1).slice(0, 2);
+      const mk = (lex, days) => ({ lex, type: 'word', bare: 'x', lemma: GLOSSARY[lex].lemma,
+        gloss: { en: 'x', tr: 'x' },
+        srs: { due: Date.now() + 864e5, ivl: 5, reps: 2, lapses: 0,
+               S: 5, D: 5, seen: Date.now() - days * 864e5 } });
+      state.deck = [mk(picks[1][0], 10), mk(picks[0][0], 30)];
+      const fade = fadingWords(3);
+      openGames();
+      const hubFade = document.querySelectorAll('.game-pick .gd.fade').length;
+      startMatch();
+      const note = !!document.querySelector('.fade-note');
+      const inGrid = [...document.querySelectorAll('.match-grid button')]
+        .some(b => b.textContent === GLOSSARY[picks[0][0]].lemma);
+      const fading = M.fading;
+      closeSheet();
+      state.deck = saved; persistDeck();
+      return { n: fade.length, worstFirst: fade.length === 2 && fade[0].r <= fade[1].r,
+               worstLex: fade[0] && fade[0].lex, expect: picks[0][0],
+               hubFade, note, inGrid, fading };
+    });
+    if (r.n !== 2) throw new Error('fadingWords found ' + r.n + ' of 2');
+    if (!r.worstFirst || r.worstLex !== r.expect)
+      throw new Error('fading not sorted worst-first: ' + r.worstLex);
+    if (r.hubFade !== 2) throw new Error('hub fade lines: ' + r.hubFade + ' expected 2 (match+cloze)');
+    if (!r.note || !r.inGrid || r.fading < 1)
+      throw new Error('match round did not seat the fading word: ' + JSON.stringify(r));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

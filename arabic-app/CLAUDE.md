@@ -481,6 +481,16 @@ when present, falls back to ease. The deck shows `fsrsNote` under the
 stats. The smoke suite asserts hard<good<easy previews, first-Good ivl=4
 (S0 = w[2] ≈ 3.71), and that a migrated SM-2 card's interval grows.
 
+**The memory model reaches into the games.** `fadingWords(n)` returns deck
+word-cards sorted by ascending FSRS retrievability (only cards with real
+memory state; R ≥ 0.95 is "fine", not fading). The match round seats up to
+3 fading words first (`M.fading`, `.fade-note` banner), `clozeRound` walks
+items that gap a fading lex first (each carries `fading: true` and the
+cloze question shows a rescue banner, key fadingCloze), and the games hub
+puts a `.gd.fade` line under Match and Cloze when any exist (fadingHub /
+fadingNote keys). Games are STORY-SCOPED — GLOSSARY is empty in the
+library, so any test touching them must open a story first.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per

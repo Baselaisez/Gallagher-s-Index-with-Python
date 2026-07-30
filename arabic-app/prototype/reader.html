@@ -577,6 +577,11 @@
   .conj-known b { font-family: var(--ar-font); font-size: 1.05rem; }
   .conj-known.other { color: var(--ink-soft); background: var(--accent-soft); }
   .fsrs-note { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); margin: -.2rem 0 .6rem; }
+  .fade-note {
+    font-family: var(--ui-font); font-size: .78rem; color: var(--accent);
+    background: var(--accent-soft); border-radius: 8px; padding: .35rem .6rem; margin: .4rem 0;
+  }
+  .game-pick .gd.fade { color: var(--accent); font-size: .76rem; }
   .conj-h {
     text-align: center; font-family: var(--ar-font); font-weight: 600;
     font-size: 1.05rem; margin: .9rem 0 .2rem; color: var(--ink-soft);
@@ -1041,6 +1046,9 @@ Object.assign(L.en, {
   hard:"Hard", easy:"Easy", tenMin:"10m", dayShort:"d", conjCard:"conjugation drill",
   stNew:"new", stLearning:"learning", stMature:"mature", stLeech:"leech",
   fsrsNote:"Intervals come from the FSRS memory model — weights machine-learned from millions of real reviews, then fitted to your own recall.",
+  fadingHub:"{n} deck words are fading — this round rescues them first.",
+  fadingNote:"The memory model seated {n} fading words from your deck in this round.",
+  fadingCloze:"A fading word from your deck — catch it.",
   sarfGame:"Sarf drill", sarfGameDesc:"Name the sigha, pick the form — the Emsile-i Muhtelife.",
   sarfGameAsk:"Which form of this verb is being asked for?",
   caseGame:"Which case?", caseGameDesc:"A word in a real sentence — say how it is governed.",
@@ -1061,6 +1069,9 @@ Object.assign(L.tr, {
   hard:"Zor", easy:"Kolay", tenMin:"10dk", dayShort:"g", conjCard:"çekim alıştırması",
   stNew:"yeni", stLearning:"öğreniliyor", stMature:"pekişmiş", stLeech:"takıldı",
   fsrsNote:"Aralıkları FSRS bellek modeli belirler — ağırlıkları milyonlarca gerçek tekrardan makine öğrenimiyle çıkarılmış, sonra sizin hatırlamanıza uydurulur.",
+  fadingHub:"Destede {n} kelime solmak üzere — bu tur önce onları kurtarır.",
+  fadingNote:"Bellek modeli bu tura destenizden solmakta olan {n} kelimeyi oturttu.",
+  fadingCloze:"Destenizden solmakta olan bir kelime — yakalayın.",
   sarfGame:"Sarf alıştırması", sarfGameDesc:"Sîgayı oku, şekli seç — Emsile-i Muhtelife.",
   sarfGameAsk:"Bu fiilin hangi sîgası isteniyor?",
   caseGame:"Hangi i'rab?", caseGameDesc:"Gerçek bir cümledeki kelime — nasıl amel görmüş?",
@@ -3622,6 +3633,23 @@ function dueCards(){
     .sort((a, b) => struggleScore(b) - struggleScore(a) ||
                     ensureSrs(a).srs.due - ensureSrs(b).srs.due);
 }
+// The memory model reaches into the games: word cards whose retrievability
+// has sunk lowest — the ones FSRS says are quietly fading — sorted worst
+// first. Only cards with real memory state qualify; a card still above 95%
+// is not fading, it is fine.
+function fadingWords(n){
+  const now = Date.now();
+  return state.deck
+    .filter(c => c.type === "word" && GLOSSARY[c.lex])
+    .map(c => {
+      const s = ensureSrs(c).srs;
+      if (s.S === undefined || !s.seen) return null;
+      return { lex: c.lex, r: fsrsR(Math.max(0, (now - s.seen) / DAY), Math.max(0.1, s.S)) };
+    })
+    .filter(x => x && x.r < 0.95)
+    .sort((a, b) => a.r - b.r)
+    .slice(0, n);
+}
 // ---------- deck export ----------
 // Anki-importable TSV — Front, Back, Tags — so the learner's cards are THEIRS,
 // portable to any SRS app. Built live from the deck; GRAMMAR is global, so
@@ -3965,11 +3993,15 @@ function renderDeck(){
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function openGames(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  // The memory model whispers into the hub: when deck words are fading, the
+  // two vocabulary games say so, and their rounds will seat those words first.
+  const nf = fadingWords(3).length;
+  const fadeLine = nf ? `<div class="gd fade">\u{1F9E0} ${ui().fadingHub.replace("{n}", nf)}</div>` : "";
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div><div class="game-pick">
-    <button id="gMatch"><div class="gt">${ui().match}</div><div class="gd">${ui().matchDesc}</div></button>
+    <button id="gMatch"><div class="gt">${ui().match}</div><div class="gd">${ui().matchDesc}</div>${fadeLine}</button>
     <button id="gHarakat"><div class="gt">${ui().harakat}</div><div class="gd">${ui().harakatDesc}</div></button>
     <button id="gSpot"><div class="gt">${ui().spot}</div><div class="gd">${ui().spotDesc}</div></button>
-    <button id="gCloze"><div class="gt">${ui().clozeGame}</div><div class="gd">${ui().clozeDesc}</div></button>
+    <button id="gCloze"><div class="gt">${ui().clozeGame}</div><div class="gd">${ui().clozeDesc}</div>${fadeLine}</button>
     <button id="gSarf"><div class="gt">${ui().sarfGame}</div><div class="gd">${ui().sarfGameDesc}</div></button>
     <button id="gCase"><div class="gt">${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
     <button id="gRole"><div class="gt">${ui().roleGame}</div><div class="gd">${ui().roleGameDesc}</div></button>
@@ -3985,18 +4017,25 @@ function openGames(){
 }
 
 let M = null;
+const matchable = ([k, e]) => e.level > 0 && e.gloss && e.lemma.length > 1;
 function startMatch(){
-  const pool = shuffle(Object.entries(GLOSSARY).filter(([k, e]) => e.level > 0 && e.gloss && e.lemma.length > 1)).slice(0, 6);
+  // Fading deck words take the seats first; random corpus words fill the rest.
+  const seeded = fadingWords(3).map(f => [f.lex, GLOSSARY[f.lex]]).filter(matchable);
+  const rest = shuffle(Object.entries(GLOSSARY).filter(p =>
+    matchable(p) && !seeded.some(([sk]) => sk === p[0]))).slice(0, 6 - seeded.length);
+  const pool = shuffle([...seeded, ...rest]);
   const cards = shuffle(pool.flatMap(([k, e], i) => [
     {pair: i, kind: "ar", label: e.lemma},
     {pair: i, kind: "gl", label: (state.uiLang === "tr" && e.gloss.tr) ? e.gloss.tr : e.gloss.en}
   ]));
-  M = {cards, first: null, found: 0, moves: 0, start: Date.now(), total: pool.length};
+  M = {cards, first: null, found: 0, moves: 0, start: Date.now(), total: pool.length,
+       fading: seeded.length};
   renderMatch();
 }
 function renderMatch(){
   let html = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
     <div class="tabs"><button class="on">${ui().match}</button></div>
+    ${M.fading ? `<div class="fade-note">\u{1F9E0} ${ui().fadingNote.replace("{n}", M.fading)}</div>` : ""}
     <div class="match-grid">` + M.cards.map((c, i) =>
       `<button class="${c.kind === "ar" ? "ar" : ""} ${c.matched ? "matched" : ""} ${M.first === i ? "sel" : ""}" data-i="${i}" ${c.kind === "ar" ? 'lang="ar"' : ""}>${c.label}</button>`).join("") + `</div>
     <div class="game-meta"><span>${ui().moves}: ${M.moves}</span></div><div id="mDone"></div>`;
@@ -4136,13 +4175,20 @@ function clozePool(it){
   return it.bucket.filter(g => !it.present.has(g.lex) && g.lemma !== it.entry.lemma);
 }
 // Resolve pools only for the items a round will actually use, walking the
-// shuffled candidates until enough of them turn out to be playable.
+// shuffled candidates until enough of them turn out to be playable. Items
+// that gap a FADING deck word walk first — the cloze becomes a rescue: the
+// memory model names the words about to slip, and the round drills exactly
+// those, in the sentences the learner already read them in.
 function clozeRound(n){
+  const fade = new Set(fadingWords(n).map(f => f.lex));
+  const all = shuffle(clozeItems());
+  const walk = [...all.filter(it => fade.has(it.tok.lex)),
+                ...all.filter(it => !fade.has(it.tok.lex))];
   const out = [];
-  for (const it of shuffle(clozeItems())) {
+  for (const it of walk) {
     if (out.length >= n) break;
     const pool = clozePool(it);
-    if (pool.length >= 2) out.push({ ...it, pool });
+    if (pool.length >= 2) out.push({ ...it, pool, fading: fade.has(it.tok.lex) });
   }
   return out;
 }
@@ -4152,7 +4198,8 @@ function startCloze(){
   if (!items.length) { emptyGame(ui().clozeGame, ui().clozeNeedsReading); return; }
   runQuiz({
     title: ui().clozeGame, ask: ui().clozeAsk, items, restart: startCloze,
-    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
+    question: it => `${it.fading ? `<div class="fade-note">\u{1F9E0} ${ui().fadingCloze}</div>` : ""}
+      <div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
     options: it => shuffle([{ html: it.entry.lemma, ok: true, ar: true },
       ...shuffle(it.pool).slice(0, 3).map(g => ({ html: g.lemma, ok: false, ar: true }))]),
     why: it => `<span lang="ar" style="font-family:var(--ar-font);font-size:1.3em">${it.tok.s.full}</span>
