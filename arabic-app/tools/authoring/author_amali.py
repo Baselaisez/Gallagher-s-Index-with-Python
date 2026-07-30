@@ -1223,6 +1223,300 @@ GLOSS4 = {
    "gloss": {"en": "likeness, model", "tr": "misal, örnek"}, "level": 3},
 }
 
+# ---------------------------------------------------------------- chapter 5 (verses 21-25)
+S5 = []
+
+S5.append({"id": "s21", "translation": {
+ "en": "Then they forget the bliss the moment they see Him — so O the loss of the people of I'tizal!",
+ "tr": "O'nu gördüklerinde bütün nimetleri unuturlar — vay Mu'tezile ehlinin hüsranına!"},
+ "tokens": [
+  tok("فَيَنْسَوْنَ","nasiya","verb",["atf-nasaq","afal-khamsa","naqis-verbs"],
+      "الْفَاءُ عَاطِفَةٌ، «يَنْسَوْنَ» مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ — مِنَ الْأَفْعَالِ الْخَمْسَةِ — وَالْوَاوُ فَاعِلٌ.",
+      "The fa joins; «they forget» keeps its nun for raf' — one of the five verbs — the waw its fa'il.",
+      "Fâ atıftır; «ينسون», nûnun sübutuyla merfû — ef'âl-i hamseden — vav fâildir."),
+  tok("النَّعِيمَ","naim","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ — النَّعِيمُ وَالنُّعْمَى وَالنِّعْمَةُ بِمَعْنًى.",
+      "Object in nasb — na'im, nu'ma and ni'ma all mean the one bliss.",
+      "Mensub mef'ûlün bih — naîm, nu'mâ ve nimet bir manayadır."),
+  tok("إِذَا","idha","part",["maful-fih"],
+      "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ، مُتَضَمِّنٌ مَعْنَى الشَّرْطِ، مُضَافٌ إِلَى جُمْلَتِهِ.",
+      "The adverbial of coming time, carrying a condition, mudaf to its own clause.",
+      "Gelecek zaman zarfıdır; şart manası taşır ve cümlesine muzâftır."),
+  tok("رَأَوْهُ","raa","verb",["fail","maful-bihi"],
+      "مَاضٍ مَبْنِيٌّ، وَالْوَاوُ فَاعِلٌ وَالْهَاءُ مَفْعُولٌ بِهِ — وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا».",
+      "A built past, the waw its fa'il, the ha its object — the clause sits in jarr under «idha».",
+      "Mebnî mâzî; vav fâil, هُ mef'ûlün bihtir — cümle «إذا»nın izâfetiyle mahallen mecrurdur.", punct="•"),
+  tok("فَيَا","ya-nida","part",["vocative-munada"],
+      "الْفَاءُ الْفَصِيحَةُ وَ«يَا» لِلنِّدَاءِ — نِدَاءُ تَعَجُّبٍ.",
+      "The disclosing fa, and the vocative «ya» — a cry of amazement.",
+      "Fâ-i fasîha ve nidâ «يا»sı — taaccüb nidâsıdır."),
+  tok("خُسْرَانَ","khusran","noun",["vocative-munada","idafa-definiteness","masdar"],
+      "مُنَادًى مُضَافٌ مَنْصُوبٌ — مَصْدَرُ خَسِرَ — يُتَعَجَّبُ مِنْ عِظَمِ خُسْرَانِهِمْ.",
+      "A mudaf munada in nasb — the masdar of «to lose» — amazement at how great their loss is.",
+      "Muzâf münâdâ; mensub — خَسِرَ'nin masdarı — hüsranlarının büyüklüğüne taaccübdür."),
+  tok("أَهْلِ","ahl","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ.",
+      "Mudaf ilayh in jarr, itself mudaf.",
+      "Mecrur muzâfun ileyh; kendisi de muzâftır."),
+  tok("الِاعْتِزَالِ","itizal","noun",["idafa-definiteness","masdar"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — مَصْدَرُ الِافْتِعَالِ مِنْ عَزَلَ — وَهُمُ الْمُعْتَزِلَةُ النَّافُونَ لِلرُّؤْيَةِ.",
+      "Mudaf ilayh in jarr — the Form VIII masdar of «to withdraw» — the Mu'tazila, deniers of the vision.",
+      "Mecrur muzâfun ileyh — عَزَلَ'nin iftiâl masdarı — rü'yeti inkâr eden Mu'tezile'dir.", punct="."),
+ ],
+ "jumal": [
+  J("فَيَنْسَوْنَ النَّعِيمَ إِذَا رَأَوْهُ",
+    "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا؛ وَجُمْلَةُ «رَأَوْهُ» فِي مَحَلِّ جَرٍّ.",
+    "A joined verbal sentence — i'rabless; the «they see Him» clause sits in jarr.",
+    "Matuf fiil cümlesi — mahalsiz; «رأوه» cümlesi mahallen mecrurdur."),
+  J("فَيَا خُسْرَانَ أَهْلِ الِاعْتِزَالِ",
+    "جُمْلَةُ نِدَاءٍ مُسْتَأْنَفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A fresh vocative sentence — i'rabless.",
+    "İsti'nâf nidâ cümlesi — mahalli yoktur."),
+ ]})
+
+S5.append({"id": "s22", "translation": {
+ "en": "And no deed — even the most fitting — is any obligation upon the Guide, the All-Holy, the possessor of exaltation.",
+ "tr": "En elverişli (aslah) fiil bile, yücelik sahibi ve mukaddes olan Hâdî üzerine farz değildir."},
+ "tokens": [
+  tok("وَمَا","ma-nafiya","part",["ma-la-mushabbaha"],
+      "«مَا» نَافِيَةٌ.","Negating «ma».","Nâfiye «ما»dır."),
+  tok("إِنْ","in-zaida","part",["tawkid"],
+      "زَائِدَةٌ بَعْدَ «مَا» تُؤَكِّدُ النَّفْيَ وَتَكُفُّهَا عَنِ الْعَمَلِ.",
+      "Extra after «ma» — pressing the negation, blocking its government.",
+      "«ما»dan sonra zâiddir — nefyi pekiştirir ve ameline engel olur."),
+  tok("فِعْلٌ","fil","noun",["mubtada-khabar"],
+      "مُبْتَدَأٌ مَرْفُوعٌ — وَسَوَّغَ الِابْتِدَاءَ بِالنَّكِرَةِ اعْتِمَادُهُ عَلَى النَّفْيِ.",
+      "Mubtada in raf' — the negation is what licenses an indefinite mubtada.",
+      "Merfû mübteda — nekreyle başlamayı nefye dayanması câiz kılmıştır."),
+  tok("أَصْلَحُ","aslah","noun",["naat-sifa","ism-tafdil","mamnu-min-sarf"],
+      "نَعْتٌ مَرْفُوعٌ — اسْمُ تَفْضِيلٍ مِنْ صَلُحَ، مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "A na't in raf' — the comparative of «to be fitting», barred from tanwin.",
+      "Merfû na't — صَلُحَ'dan ism-i tafdîldir; gayr-i munsariftir."),
+  tok("ذُو","dhu","noun",["five-nouns","mubtada-khabar","idafa-definiteness"],
+      "خَبَرٌ مَرْفُوعٌ بِالْوَاوِ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ — وَهُوَ مُضَافٌ.",
+      "The khabar, raf' by the waw — one of the five nouns — and mudaf.",
+      "Vav ile merfû haber — esmâ-i hamseden — muzâftır."),
+  tok("افْتِرَاضٍ","iftirad","noun",["idafa-definiteness","masdar"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — مَصْدَرُ الِافْتِعَالِ مِنْ فَرَضَ.",
+      "Mudaf ilayh in jarr — the Form VIII masdar of «to ordain».",
+      "Mecrur muzâfun ileyh — فَرَضَ'nin iftiâl masdarıdır.", punct="•"),
+  tok("عَلَى","ala","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ مُتَعَلِّقٌ بِـ«افْتِرَاضٍ».",
+      "Attached to «obligation».",
+      "«افتراض»a müteallik cer harfidir."),
+  tok("الْهَادِي","hadi","noun",["huruf-jarr","ism-fail","ism-maqsur-manqus"],
+      "مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ — اسْمُ فَاعِلٍ مِنْ هَدَى، مَنْقُوصٌ.",
+      "In jarr by an assumed kasra on the ya — the participle of «to guide», manqus.",
+      "Yâ üzerinde takdîrî kesreyle mecrur — هَدَى'nın ism-i fâili; menkûstur."),
+  tok("الْمُقَدَّسِ","muqaddas","noun",["naat-sifa","ism-maful"],
+      "نَعْتٌ مَجْرُورٌ — اسْمُ مَفْعُولِ التَّفْعِيلِ: الْمُنَزَّهُ عَنْ كُلِّ نَقْصٍ.",
+      "A na't in jarr — the Form II passive participle: hallowed above every lack.",
+      "Mecrur na't — tef'îlin ism-i mef'ûlü: her noksandan münezzeh demektir."),
+  tok("ذِي","dhu","noun",["five-nouns","naat-sifa","idafa-definiteness"],
+      "نَعْتٌ ثَانٍ مَجْرُورٌ بِالْيَاءِ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ — وَهُوَ مُضَافٌ.",
+      "A second na't, jarr by the ya — one of the five nouns — and mudaf.",
+      "İkinci na't; yâ ile mecrur — esmâ-i hamseden — muzâftır."),
+  tok("التَّعَالِ","taal-n","noun",["idafa-definiteness","ism-maqsur-manqus","masdar"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — مَصْدَرُ التَّفَاعُلِ، أَصْلُهُ التَّعَالِي حُذِفَتْ يَاؤُهُ لِلْقَافِيَةِ.",
+      "Mudaf ilayh by an assumed kasra — the Form VI masdar; its base al-ta'ali, the ya gone to the rhyme.",
+      "Takdîrî kesreyle mecrur muzâfun ileyh — tefâul masdarı; aslı التَّعَالِي olup yâsı kafiye için düşmüştür.", punct="."),
+ ],
+ "jumal": [
+  J("وَمَا إِنْ فِعْلٌ أَصْلَحُ ذُو افْتِرَاضٍ",
+    "جُمْلَةٌ اسْمِيَّةٌ مَنْفِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا؛ وَ«إِنْ» الزَّائِدَةُ كَفَّتْ «مَا» عَنِ الْعَمَلِ.",
+    "A negated nominal sentence, joined — i'rabless; the extra «in» blocks ma's government.",
+    "Matuf menfî isim cümlesi — mahalsiz; zâid «إنْ», «ما»yı amelden alıkoymuştur."),
+ ]})
+
+S5.append({"id": "s23", "translation": {
+ "en": "And a binding duty it is: assenting to the messengers — and to the noble angels, honored with the Bestowal.",
+ "tr": "Rasûlleri tasdik — ve ihsan ile ikram olunmuş kerîm melekleri tasdik — kesin (ayn olan) bir farzdır."},
+ "tokens": [
+  tok("وَفَرْضٌ","fard","noun",["mubtada-khabar","masdar"],
+      "خَبَرٌ مُقَدَّمٌ مَرْفُوعٌ — مَصْدَرٌ بِمَعْنَى الْمَفْرُوضِ.",
+      "A fronted khabar in raf' — a masdar meaning «what is made binding».",
+      "Mukaddem haber; merfû — «farz kılınan» manasında masdardır."),
+  tok("لَازِمٌ","lazim","noun",["naat-sifa","ism-fail"],
+      "نَعْتٌ مَرْفُوعٌ — اسْمُ فَاعِلٍ مِنْ لَزِمَ (بَابِ سَمِعَ) — أَيْ فَرْضُ عَيْنٍ.",
+      "A na't in raf' — the participle of «to cling» (bab sami'a) — that is, an individual duty.",
+      "Merfû na't — لَزِمَ'nin (semi'a bâbı) ism-i fâili — yani farz-ı ayn demektir."),
+  tok("تَصْدِيقُ","tasdiq","noun",["mubtada-khabar","masdar","idafa-definiteness"],
+      "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ — مَصْدَرُ التَّفْعِيلِ أُضِيفَ إِلَى مَفْعُولِهِ.",
+      "The delayed mubtada in raf' — the Form II masdar, mudaf to its own object.",
+      "Muahhar mübteda; merfû — tef'îl masdarı; mef'ûlüne muzâftır."),
+  tok("رُسْلٍ","rasul","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ «رَسُول»، سُكِّنَتْ سِينُهُ لِلْوَزْنِ.",
+      "Mudaf ilayh in jarr — the plural of «messenger», its sin stilled for the metre.",
+      "Mecrur muzâfun ileyh — «رسول»ün cem'i; sîni vezin için sâkin kılınmıştır.", punct="•"),
+  tok("وَأَمْلَاكٍ","malak","noun",["atf-nasaq"],
+      "مَعْطُوفٌ عَلَى «رُسْلٍ» مَجْرُورٌ — جَمْعُ «مَلَك».",
+      "Joined onto «messengers», in jarr — the plural of «angel».",
+      "«رسل»e matuf; mecrur — «ملك»in cem'idir."),
+  tok("كِرَامٍ","karim","noun",["naat-sifa"],
+      "نَعْتٌ مَجْرُورٌ — جَمْعُ «كَرِيم».",
+      "A na't in jarr — the plural of «noble».",
+      "Mecrur na't — «كريم»in cem'idir."),
+  tok("بِالنَّوَالِ","nawal","noun",["huruf-jarr"],
+      "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«كِرَامٍ» — النَّوَالُ: الْعَطَاءُ.",
+      "A jarr-phrase attached to «noble» — «nawal»: the bestowal.",
+      "«كرام»a müteallik câr-mecrûr — «nevâl»: atâ, ihsan demektir.", punct="."),
+ ],
+ "jumal": [
+  J("وَفَرْضٌ لَازِمٌ تَصْدِيقُ رُسْلٍ…",
+    "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا مُقَدَّمٌ، مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A joined nominal sentence with fronted khabar — i'rabless.",
+    "Haberi öne geçmiş matuf isim cümlesi — mahalli yoktur."),
+ ]})
+
+S5.append({"id": "s24", "translation": {
+ "en": "And the sealing of the messengers is by the exalted foremost one — a Prophet, a Hashimite, a possessor of beauty.",
+ "tr": "Rasûllerin hatmi (sonu), yüce bir sadr (önder) iledir — cemâl sahibi, Hâşimî bir peygamber."},
+ "tokens": [
+  tok("وَخَتْمُ","khatm","noun",["mubtada-khabar","masdar","idafa-definiteness"],
+      "مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — مَصْدَرُ خَتَمَ: الْإِتْمَامُ وَالطَّبْعُ.",
+      "Mubtada in raf', mudaf — the masdar of «to seal»: completing and stamping.",
+      "Merfû mübteda; muzâf — خَتَمَ'nin masdarı: tamamlamak ve mühürlemektir."),
+  tok("الرُّسُلِ","rasul","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Mecrur muzâfun ileyhtir."),
+  tok("بِالصَّدْرِ","sadr","noun",["huruf-jarr","mubtada-khabar"],
+      "الْبَاءُ جَارَّةٌ — وَالْجَارُّ وَالْمَجْرُورُ خَبَرٌ — الصَّدْرُ: الْمُقَدَّمُ فِي الشَّرَفِ.",
+      "The ba governs jarr — the phrase is the khabar — «al-sadr»: the one set foremost in honor.",
+      "بِ cer harfi — câr-mecrûr haberdir — «sadr»: şerefte en önde olan demektir."),
+  tok("الْمُعَلَّى","mualla","noun",["naat-sifa","ism-maful","ism-maqsur-manqus"],
+      "نَعْتٌ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ — اسْمُ مَفْعُولِ التَّفْعِيلِ، مَقْصُورٌ.",
+      "A na't by an assumed kasra on the alif — the Form II passive participle, maqsur.",
+      "Elif üzerinde takdîrî kesreyle mecrur na't — tef'îlin ism-i mef'ûlü; maksûrdur.", punct="•"),
+  tok("نَبِيٍّ","nabi","noun",["badal"],
+      "بَدَلٌ مِنَ «الصَّدْرِ» مَجْرُورٌ — أَصْلُهُ مَهْمُوزٌ مِنَ النَّبَإِ: الْخَبَرِ.",
+      "Badal of «the foremost», in jarr — originally hamzated, from «naba'»: tidings.",
+      "«الصدر»dan bedel; mecrur — aslı hemzelidir, «nebe'»: haber kökündendir."),
+  tok("هَاشِمِيٍّ","hashimi","noun",["naat-sifa"],
+      "نَعْتٌ مَجْرُورٌ — نِسْبَةٌ إِلَى هَاشِمٍ جَدِّهِ ﷺ.",
+      "A na't in jarr — the lineage-noun of Hashim, his forefather ﷺ.",
+      "Mecrur na't — dedesi Hâşim'e nisbettir ﷺ."),
+  tok("ذِي","dhu","noun",["five-nouns","naat-sifa","idafa-definiteness"],
+      "نَعْتٌ ثَانٍ مَجْرُورٌ بِالْيَاءِ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ — وَهُوَ مُضَافٌ.",
+      "A second na't, jarr by the ya — one of the five nouns — and mudaf.",
+      "İkinci na't; yâ ile mecrur — esmâ-i hamseden — muzâftır."),
+  tok("جَمَالِ","jamal","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَحُذِفَ التَّنْوِينُ لِلْقَافِيَةِ.",
+      "Mudaf ilayh in jarr — the tanwin gone to the rhyme.",
+      "Mecrur muzâfun ileyh — tenvin kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("وَخَتْمُ الرُّسُلِ بِالصَّدْرِ الْمُعَلَّى",
+    "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا؛ وَالْخَبَرُ الْجَارُّ وَالْمَجْرُورُ.",
+    "A joined nominal sentence — i'rabless; its khabar is the jarr-phrase.",
+    "Matuf isim cümlesi — mahalsiz; haberi câr-mecrûrdur."),
+ ]})
+
+S5.append({"id": "s25", "translation": {
+ "en": "The imam of the prophets, beyond any dispute — and the crown of the chosen pure, without any flaw.",
+ "tr": "İhtilafsız, peygamberlerin imamı — ve ihtilâlsiz (kusursuz), asfiyânın tacıdır."},
+ "tokens": [
+  tok("إِمَامُ","imam","noun",["mubtada-khabar","idafa-definiteness"],
+      "خَبَرٌ لِمُبْتَدَأٍ مَحْذُوفٍ: هُوَ — مَرْفُوعٌ وَهُوَ مُضَافٌ — الْإِمَامُ: مَنْ يُؤْتَمُّ بِهِ.",
+      "Khabar of a suppressed «He», in raf', mudaf — the imam: the one followed.",
+      "Mahzuf «هو» mübtedasının haberi; merfû ve muzâf — imam: kendisine uyulandır."),
+  tok("الْأَنْبِيَاءِ","nabi","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ «نَبِيّ».",
+      "Mudaf ilayh in jarr — the plural of «prophet».",
+      "Mecrur muzâfun ileyh — «نبيّ»in cem'idir."),
+  tok("بِلَا","bi-la","part",["huruf-jarr"],
+      "الْبَاءُ جَارَّةٌ وَ«لَا» بِمَعْنَى غَيْرٍ.",
+      "The ba governs jarr; «la» works as «without».",
+      "بِ cer harfi; «لا», «غير» manasındadır."),
+  tok("اخْتِلَافٍ","ikhtilaf","noun",["huruf-jarr","masdar"],
+      "مَجْرُورٌ — مَصْدَرُ الِافْتِعَالِ مِنْ خَلَفَ: عَدَمُ الِاتِّفَاقِ.",
+      "In jarr — the Form VIII masdar of «to differ»: absence of accord.",
+      "Mecrur — خَلَفَ'nin iftiâl masdarı: uyuşmazlık demektir.", punct="•"),
+  tok("وَتَاجُ","taj","noun",["atf-nasaq","idafa-definiteness","istiara"],
+      "مَعْطُوفٌ عَلَى «إِمَامُ» مَرْفُوعٌ وَهُوَ مُضَافٌ — اسْتِعَارَةٌ: التَّاجُ لِلرَّئِيسِ الْمُشَرَّفِ.",
+      "Joined onto «imam», in raf', mudaf — an isti'ara: the crown stands for the honored head.",
+      "«إمام»a matuf; merfû ve muzâf — istiâredir: taç, şereflendirilmiş baş yerine kullanılmıştır."),
+  tok("الْأَصْفِيَاءِ","safi","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ «صَفِيّ»: الْخَالِصُ الْمُصْطَفَى.",
+      "Mudaf ilayh in jarr — the plural of «safi»: the pure chosen friend.",
+      "Mecrur muzâfun ileyh — «صفيّ»in cem'i: hâlis, seçkin dost demektir."),
+  tok("بِلَا","bi-la","part",["huruf-jarr"],
+      "الْبَاءُ جَارَّةٌ وَ«لَا» بِمَعْنَى غَيْرٍ.",
+      "The ba governs jarr; «la» works as «without».",
+      "بِ cer harfi; «لا», «غير» manasındadır."),
+  tok("اخْتِلَالِ","ikhtilal","noun",["huruf-jarr","masdar"],
+      "مَجْرُورٌ — مَصْدَرُ الِافْتِعَالِ مِنْ خَلَّ: الِاضْطِرَابُ — وَحُذِفَ التَّنْوِينُ لِلْقَافِيَةِ.",
+      "In jarr — the Form VIII masdar of the geminate «khalla»: disorder — its tanwin gone to the rhyme.",
+      "Mecrur — muzâaf خَلَّ'nin iftiâl masdarı: bozukluk — tenvini kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("إِمَامُ الْأَنْبِيَاءِ بِلَا اخْتِلَافٍ…",
+    "جُمْلَةٌ اسْمِيَّةٌ حُذِفَ مُبْتَدَؤُهَا، مُسْتَأْنَفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A nominal sentence whose mubtada is suppressed, standing fresh — i'rabless.",
+    "Mübtedası mahzuf isti'nâf isim cümlesi — mahalli yoktur."),
+ ]})
+
+TITLE5 = {"ar": "خُسْرَانُ الْمُعْتَزِلَةِ وَالنُّبُوَّاتُ",
+          "en": "The Mu'tazila's Loss, and Prophethood",
+          "tr": "Mu'tezile'nin Hüsranı ve Nübüvvet"}
+
+GLOSS5 = {
+ "nasiya": {"lemma": "نَسِيَ", "root": "ن س ي", "pos": "verb", "form": "I",
+   "gloss": {"en": "to forget", "tr": "unutmak"}, "level": 2},
+ "naim": {"lemma": "نَعِيم", "root": "ن ع م", "pos": "noun",
+   "gloss": {"en": "bliss, delight", "tr": "naîm, nimet"}, "level": 3},
+ "idha": {"lemma": "إِذَا", "pos": "part",
+   "gloss": {"en": "when, whenever (adverb carrying a condition)", "tr": "-dığı zaman (şart manalı zarf)"}, "level": 1},
+ "khusran": {"lemma": "خُسْرَان", "root": "خ س ر", "pos": "noun",
+   "gloss": {"en": "utter loss", "tr": "hüsran"}, "level": 3},
+ "itizal": {"lemma": "اِعْتِزَال", "root": "ع ز ل", "pos": "noun",
+   "gloss": {"en": "withdrawal; the Mu'tazila's way (Form VIII masdar)", "tr": "i'tizâl; Mu'tezile mezhebi (iftiâl masdarı)"}, "level": 5},
+ "aslah": {"lemma": "أَصْلَح", "root": "ص ل ح", "pos": "noun",
+   "gloss": {"en": "most fitting (ism tafdil of صَالِح)", "tr": "en elverişli, aslah (ism-i tafdîl)"}, "level": 4},
+ "iftirad": {"lemma": "اِفْتِرَاض", "root": "ف ر ض", "pos": "noun",
+   "gloss": {"en": "being obligatory (Form VIII masdar)", "tr": "farz olma (iftiâl masdarı)"}, "level": 5},
+ "hadi": {"lemma": "هَادٍ (الْهَادِي)", "root": "هـ د ي", "pos": "noun",
+   "gloss": {"en": "guide (ism fa'il of هَدَى)", "tr": "Hâdî, hidayet eden"}, "level": 3},
+ "muqaddas": {"lemma": "مُقَدَّس", "root": "ق د س", "pos": "noun",
+   "gloss": {"en": "hallowed (Form II passive participle)", "tr": "mukaddes"}, "level": 3},
+ "taal-n": {"lemma": "تَعَالٍ (التَّعَالِي)", "root": "ع ل و", "pos": "noun",
+   "gloss": {"en": "exaltation (Form VI masdar)", "tr": "yücelik (tefâul masdarı)"}, "level": 5},
+ "fard": {"lemma": "فَرْض", "root": "ف ر ض", "pos": "noun", "plural": "فُرُوض",
+   "gloss": {"en": "obligatory duty", "tr": "farz"}, "level": 2},
+ "lazim": {"lemma": "لَازِم", "root": "ل ز م", "pos": "noun",
+   "gloss": {"en": "binding (ism fa'il of لَزِمَ)", "tr": "lâzım, kesin"}, "level": 3},
+ "tasdiq": {"lemma": "تَصْدِيق", "root": "ص د ق", "pos": "noun",
+   "gloss": {"en": "assenting belief (Form II masdar)", "tr": "tasdik"}, "level": 3},
+ "rasul": {"lemma": "رَسُول", "root": "ر س ل", "pos": "noun", "plural": "رُسُل",
+   "gloss": {"en": "messenger", "tr": "resûl"}, "level": 1},
+ "malak": {"lemma": "مَلَك", "root": "م ل ك", "pos": "noun", "plural": "أَمْلَاك",
+   "gloss": {"en": "angel", "tr": "melek"}, "level": 1},
+ "karim": {"lemma": "كَرِيم", "root": "ك ر م", "pos": "noun", "plural": "كِرَام",
+   "gloss": {"en": "noble, generous", "tr": "kerîm"}, "level": 2},
+ "nawal": {"lemma": "نَوَال", "root": "ن و ل", "pos": "noun",
+   "gloss": {"en": "bestowal, bounty", "tr": "nevâl, ihsan"}, "level": 5},
+ "khatm": {"lemma": "خَتْم", "root": "خ ت م", "pos": "noun",
+   "gloss": {"en": "sealing, closing", "tr": "hatm, mühürleme"}, "level": 3},
+ "sadr": {"lemma": "صَدْر", "root": "ص د ر", "pos": "noun", "plural": "صُدُور",
+   "gloss": {"en": "breast; the foremost one", "tr": "sadr; en önde olan"}, "level": 3},
+ "mualla": {"lemma": "مُعَلًّى", "root": "ع ل و", "pos": "noun",
+   "gloss": {"en": "raised high (Form II passive participle, maqsur)", "tr": "muallâ, yüceltilmiş"}, "level": 4},
+ "nabi": {"lemma": "نَبِيّ", "root": "ن ب أ", "pos": "noun", "plural": "أَنْبِيَاء",
+   "gloss": {"en": "prophet", "tr": "nebî, peygamber"}, "level": 1},
+ "hashimi": {"lemma": "هَاشِمِيّ", "root": "هـ ش م", "pos": "noun",
+   "gloss": {"en": "Hashimite — of Hashim's line", "tr": "Hâşimî — Hâşim soyundan"}, "level": 4},
+ "jamal": {"lemma": "جَمَال", "root": "ج م ل", "pos": "noun",
+   "gloss": {"en": "beauty", "tr": "cemâl"}, "level": 2},
+ "imam": {"lemma": "إِمَام", "root": "أ م م", "pos": "noun", "plural": "أَئِمَّة",
+   "gloss": {"en": "leader, imam", "tr": "imam, önder"}, "level": 2},
+ "ikhtilaf": {"lemma": "اِخْتِلَاف", "root": "خ ل ف", "pos": "noun",
+   "gloss": {"en": "disagreement (Form VIII masdar)", "tr": "ihtilâf"}, "level": 3},
+ "taj": {"lemma": "تَاج", "root": "ت و ج", "pos": "noun", "plural": "تِيجَان",
+   "gloss": {"en": "crown", "tr": "taç"}, "level": 2},
+ "safi": {"lemma": "صَفِيّ", "root": "ص ف و", "pos": "noun", "plural": "أَصْفِيَاء",
+   "gloss": {"en": "chosen pure friend", "tr": "safî, seçkin dost"}, "level": 4},
+ "ikhtilal": {"lemma": "اِخْتِلَال", "root": "خ ل ل", "pos": "noun",
+   "gloss": {"en": "disorder, flaw (Form VIII masdar)", "tr": "ihtilâl, bozukluk"}, "level": 4},
+}
+
 MANIFEST = {
  "id": "bad-al-amali",
  "storyGroup": "bad-al-amali",
@@ -1234,11 +1528,11 @@ MANIFEST = {
               "tr": "Ûşî'nin tevhid lâmiyyesi, beyit beyit tam i'râb ile — medresenin makamla okunan akaidi"},
  "level": 6,
  "levelName": "Master",
- "version": "0.2.0",
+ "version": "0.3.0",
  "published": "2026-07-29",
  "access": "premium",
  "chapters": [{"n": 1, "title": TITLE1}, {"n": 2, "title": TITLE2}, {"n": 3, "title": TITLE3},
-              {"n": 4, "title": TITLE4}],
+              {"n": 4, "title": TITLE4}, {"n": 5, "title": TITLE5}],
  "siblings": [],
  "attribution": {
   "ar": "قصيدة بدء الأمالي لسراج الدين علي بن عثمان الأوشي، بنصّها المتلقّى بيتًا بيتًا.",
@@ -1246,11 +1540,15 @@ MANIFEST = {
          "(research/sources/emali-qasida-ottoman.txt, an Ottoman-Turkish verse-by-verse commentary in the "
          "Ali al-Qari sharh tradition). Translations are informed by that commentary's Ottoman glosses, "
          "converted to modern Turkish; the English follows the same readings. The story carries "
-         "verses 1–20 so far; the remaining verses will be authored release by release. All word-level analysis is editorial."),
+         "verses 1–25 so far; the remaining verses will be authored release by release. All word-level analysis is editorial. "
+         "In verse 22 the upload reads فِعْلٌ أَصْلَحُ (aslah as an attribute); some prints carry the idafa فِعْلُ أَصْلَحَ — "
+         "the upload's reading is followed."),
   "tr": ("Arapça beyitler, proje sahibinin yüklediği kaynakta (research/sources/emali-qasida-ottoman.txt, "
          "Ali el-Kārî şerh geleneğinde Osmanlıca beyit beyit bir şerh) taşınan Bed'ü'l-Emâlî'nin gelen metnidir. "
          "Çeviriler o şerhin Osmanlıca karşılıklarından yararlanır ve günümüz Türkçesine aktarılmıştır; İngilizce de "
-         "aynı okuyuşları izler. Hikâye şimdilik 1–20. beyitleri taşır; kalan beyitler sürüm sürüm işlenecektir. "
+         "aynı okuyuşları izler. Hikâye şimdilik 1–25. beyitleri taşır; kalan beyitler sürüm sürüm işlenecektir. "
+         "22. beyitte yüklenen kaynak فِعْلٌ أَصْلَحُ (aslah sıfat olarak) okur; bazı baskılarda فِعْلُ أَصْلَحَ izâfeti vardır — "
+         "kaynağın okuyuşu esas alınmıştır. "
          "Kelime tahlilleri editoryaldir."),
   "reviewStatus": "pending-scholarly-review"
  }
@@ -1277,6 +1575,7 @@ def copy_verbs():
 GLOSS.update(GLOSS2)
 GLOSS.update(GLOSS3)
 GLOSS.update(GLOSS4)
+GLOSS.update(GLOSS5)
 
 MORPH = {"verbs": copy_verbs()}
 
@@ -1314,14 +1613,21 @@ MORPH["verbs"]["ahya"] = _sg.derived_naqis(
     "إِحْيَاء", "مُحْيٍ",
     note="نَاقِصٌ مِنَ الْإِفْعَالِ — وَتُكْتَبُ أَلِفُهُ بَعْدَ الْيَاءِ مَمْدُودَةً: أَحْيَا.")
 MORPH["verbs"]["ahya"]["mazi"][0] = "أَحْيَا"
+MORPH["verbs"]["nasiya"] = _sg.entry(
+    _sg.BABS["samia"][0] + " — نَاقِصٌ", _sg.BABS["samia"][1], "نِسْيَان", "نَاسٍ",
+    _sg.mazi_naqis_kasra("نَسِ", "نَسُوا"),
+    _sg.mudari_naqis("َ", "نْس", "a"), _sg.amr_naqis("اِنْس", "a"),
+    "يَنْسَى", "يَنْسَ", "تَنْسَ", "مَنْسِيّ", "نُسِيَ", "يُنْسَى",
+    note="نَاقِصٌ مِنْ بَابِ سَمِعَ: نَسِيَ يَنْسَى — مِثْلُ بَقِيَ يَبْقَى.")
 
-ALL = S + S2 + S3 + S4
+ALL = S + S2 + S3 + S4 + S5
 
 (PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/1.json").write_text(json.dumps({"chapter": 1, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/2.json").write_text(json.dumps({"chapter": 2, "sentences": S2}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/3.json").write_text(json.dumps({"chapter": 3, "sentences": S3}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/4.json").write_text(json.dumps({"chapter": 4, "sentences": S4}, ensure_ascii=False, indent=1), encoding="utf-8")
+(PKG / "chapters/5.json").write_text(json.dumps({"chapter": 5, "sentences": S5}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "morphology.json").write_text(json.dumps(MORPH, ensure_ascii=False, indent=1), encoding="utf-8")
 
