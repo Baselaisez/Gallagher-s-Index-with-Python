@@ -9,7 +9,7 @@
  * activate, so a stale build cannot outlive a deploy — which matters here more
  * than usual, because the content is baked into the file rather than fetched.
  */
-const CACHE = 'qissa-v42';
+const CACHE = 'qissa-v43';
 const ASSETS = [
   './reader.html',
   './manifest.webmanifest',

@@ -470,6 +470,85 @@
   table.conj.muhtelife tr:not(.ext) + tr.ext td, table.conj.muhtelife tr:not(.ext) + tr.ext th { border-top: 2px solid var(--line); }
   table.conj.muhtelife tr.ext th { font-style: italic; }
 
+  /* ================= design wave 3: the learning loop ====================
+     The review card becomes a CARD — a lifted face on a stacked deck, the
+     word held in the middle of a soft glow, the next cards peeking out
+     beneath. Grades speak in four colours (the SRS's own temperament:
+     again/hard/good/easy). Quiz options become cards that lift, and the
+     right answer rings instead of merely tinting. */
+  .deck-card {
+    position: relative; text-align: center;
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 2rem 1.2rem 0; margin: 1.1rem 2px .9rem;
+    background: radial-gradient(120% 95% at 50% 0%, var(--accent-soft), transparent 62%) var(--panel);
+    box-shadow: var(--shadow-sm);
+  }
+  .deck-card::before, .deck-card::after {
+    content: ""; position: absolute; z-index: -1; height: 16px;
+    border: 1px solid var(--line); background: var(--panel);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  }
+  .deck-card::before { inset: auto 5% -6px 5%; opacity: .8; }
+  .deck-card::after { inset: auto 10% -12px 10%; opacity: .5; }
+  .deck-card .front { font-size: 2.7rem; line-height: 1.9; }
+  .deck-card .step {
+    margin-top: 1.1rem; padding: .55rem 0 .7rem;
+    border-top: 1px dashed var(--line); font-size: .72rem; letter-spacing: .03em;
+  }
+  .deck-card .verb-answer, .deck-card .note-ex-gloss { margin-top: .3rem; }
+  .grade-row { gap: .45rem; }
+  .grade-row .btn.grade {
+    border-radius: 12px; border-width: 1.5px; padding: .6rem .2rem .55rem;
+    transition: transform .12s, box-shadow .12s, background .12s;
+  }
+  .grade-row .btn.grade:hover { box-shadow: var(--shadow-sm); }
+  @media (prefers-reduced-motion: no-preference) {
+    .grade-row .btn.grade:hover { transform: translateY(-1px); }
+  }
+  .grade-row .hard { border-color: var(--lvl3); color: var(--lvl3); }
+  .grade-row .good { border-color: var(--ok); color: var(--ok); }
+  .grade-row .again:hover { background: color-mix(in srgb, var(--danger) 8%, transparent); }
+  .grade-row .hard:hover  { background: color-mix(in srgb, var(--lvl3) 8%, transparent); }
+  .grade-row .good:hover  { background: color-mix(in srgb, var(--ok) 8%, transparent); }
+  .grade-row .easy:hover  { background: var(--accent-soft); }
+  .deck-list li { padding: .55rem .35rem; border-radius: 10px; border-bottom-color: transparent; transition: background .12s; }
+  .deck-list li + li { border-top: 1px solid var(--line); }
+  .deck-list li:hover { background: var(--accent-soft); }
+  .deck-list button {
+    border: 1px solid transparent; border-radius: 999px; padding: .15rem .55rem;
+    transition: border-color .12s, background .12s;
+  }
+  .deck-list button:hover { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 7%, transparent); }
+
+  .game-q {
+    text-align: center; background: var(--accent-soft);
+    border-radius: var(--radius); padding: .9rem .8rem; margin: .5rem 0 .8rem;
+  }
+  .opts button {
+    border-radius: 12px; padding: .7rem .9rem;
+    transition: border-color .12s, background .12s, transform .12s, box-shadow .12s;
+  }
+  .opts button:hover:not(.right):not(.wrongpick) { box-shadow: var(--shadow-sm); }
+  @media (prefers-reduced-motion: no-preference) {
+    .opts button:hover:not(.right):not(.wrongpick) { transform: translateY(-1px); }
+  }
+  .opts button.right {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 30%, transparent);
+  }
+  .opts button.wrongpick {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 22%, transparent);
+  }
+  #qWhy {
+    border-inline-start: 3px solid var(--accent); background: var(--accent-soft);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: .6rem .8rem; margin: .6rem 0;
+  }
+  #qWhy:empty, #qWhy[hidden] { display: none; }
+  .empty { position: relative; padding-top: 2.6rem; }
+  .empty::before {
+    content: "﴿ ﴾"; position: absolute; top: .7rem; left: 50%; transform: translateX(-50%);
+    letter-spacing: .35em; color: var(--accent); opacity: .45; font-size: .9rem;
+  }
+
   @media print {
     nav.controls, .legend, footer.note, .readbar, .sent-tools .play,
     .peek, .ch-nav, #toast, .scrim, .sheet { display: none !important; }
