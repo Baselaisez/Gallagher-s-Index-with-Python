@@ -2237,33 +2237,71 @@ function muhtelifeTable(morph, highlight){
 // weak radicals belong to the i'lal rules (research/sources/
 // ilal-kaideleri-turkce.txt), not to letter substitution. The iftial row
 // applies the ibdal the table demonstrates: اِضْطَرَبَ، اِذَّهَبَ، اِزْدَجَرَ.
-function nakilIftial(f, a, l){
-  if ("صضطظ".includes(f)) return `اِ${f}ْطَ${a}َ${l}َ`;
-  if (f === "ز") return `اِزْدَ${a}َ${l}َ`;
-  if ("دذ".includes(f)) return `اِ${f}َّ${a}َ${l}َ`;
-  return `اِ${f}ْتَ${a}َ${l}َ`;
+// The iftial ta after C1, with the ibdal the table demonstrates. The same
+// chunk serves every class: اِزْدَ + ادَ gives اِزْدَادَ, اِصْطَ + ادَ gives اِصْطَادَ.
+function nakilT(f){
+  if ("صضطظ".includes(f)) return `اِ${f}ْطَ`;
+  if (f === "ز") return `اِزْدَ`;
+  if ("دذ".includes(f)) return `اِ${f}َّ`;
+  return `اِ${f}ْتَ`;
 }
+// Each maker receives (f, a, l, type) and returns the bab's mazi — or null,
+// where the tradition recites no such form for that class. The weak-class
+// shapes are the i'lal rules' own outputs (ilal-kaideleri-turkce.txt) and
+// the received table's own rows (اِتَّجَلَ، اِيجَلَّ، اِيجَوْجَلَ for وجل):
+// mithal keeps its waw except iftial (اِتَّـ) and the اِفْـ babs (اِوْ ← اِي);
+// ajwaf melts to alif exactly in IV/VII/VIII/X and stays a sound letter in
+// the rest; naqis ends every mazi in ى; the geminate contracts wherever the
+// pattern brings its twins together.
 const NAKIL_BABS = [
-  { wazn: "أَفْعَلَ",     tr: "İf'âl",      en: "Form IV",   make: (f,a,l) => `أَ${f}ْ${a}َ${l}َ` },
-  { wazn: "فَعَّلَ",      tr: "Tef'îl",     en: "Form II",   make: (f,a,l) => `${f}َ${a}َّ${l}َ` },
-  { wazn: "فَاعَلَ",      tr: "Müfâale",    en: "Form III",  make: (f,a,l) => `${f}َا${a}َ${l}َ` },
-  { wazn: "اِنْفَعَلَ",   tr: "İnfiâl",     en: "Form VII",  make: (f,a,l) => `اِنْ${f}َ${a}َ${l}َ` },
-  { wazn: "اِفْتَعَلَ",   tr: "İftiâl",     en: "Form VIII", make: nakilIftial },
-  { wazn: "اِفْعَلَّ",    tr: "İf'ilâl",    en: "Form IX",   make: (f,a,l) => `اِ${f}ْ${a}َ${l}َّ` },
-  { wazn: "تَفَعَّلَ",    tr: "Tefe''ul",   en: "Form V",    make: (f,a,l) => `تَ${f}َ${a}َّ${l}َ` },
-  { wazn: "تَفَاعَلَ",    tr: "Tefâul",     en: "Form VI",   make: (f,a,l) => `تَ${f}َا${a}َ${l}َ` },
-  { wazn: "اِسْتَفْعَلَ", tr: "İstif'âl",   en: "Form X",    make: (f,a,l) => `اِسْتَ${f}ْ${a}َ${l}َ` },
-  { wazn: "اِفْعَوْعَلَ", tr: "İf'îâl",     en: "Form XII",  make: (f,a,l) => `اِ${f}ْ${a}َوْ${a}َ${l}َ` },
-  { wazn: "اِفْعَوَّلَ",  tr: "İf'ivvâl",   en: "Form XIII", make: (f,a,l) => `اِ${f}ْ${a}َوَّ${l}َ` },
-  { wazn: "اِفْعَالَّ",   tr: "İf'îlâl",    en: "Form XI",   make: (f,a,l) => `اِ${f}ْ${a}َا${l}َّ` },
+  { wazn: "أَفْعَلَ", tr: "İf'âl", en: "Form IV", make: (f,a,l,t) =>
+      t === "ajwaf" ? `أَ${f}َا${l}َ` : t === "naqis" ? `أَ${f}ْ${a}َى`
+      : t === "gem" ? `أَ${f}َ${a}َّ` : `أَ${f}ْ${a}َ${l}َ` },
+  { wazn: "فَعَّلَ", tr: "Tef'îl", en: "Form II", make: (f,a,l,t) =>
+      t === "naqis" ? `${f}َ${a}َّى` : `${f}َ${a}َّ${l}َ` },
+  { wazn: "فَاعَلَ", tr: "Müfâale", en: "Form III", make: (f,a,l,t) =>
+      t === "naqis" ? `${f}َا${a}َى` : t === "gem" ? `${f}َا${a}َّ` : `${f}َا${a}َ${l}َ` },
+  { wazn: "اِنْفَعَلَ", tr: "İnfiâl", en: "Form VII", make: (f,a,l,t) =>
+      t === "ajwaf" ? `اِنْ${f}َا${l}َ` : t === "naqis" ? `اِنْ${f}َ${a}َى`
+      : t === "gem" ? `اِنْ${f}َ${a}َّ` : `اِنْ${f}َ${a}َ${l}َ` },
+  { wazn: "اِفْتَعَلَ", tr: "İftiâl", en: "Form VIII", make: (f,a,l,t) =>
+      t === "mithal" ? `اِتَّ${a}َ${l}َ` : t === "ajwaf" ? nakilT(f) + `ا${l}َ`
+      : t === "naqis" ? nakilT(f) + `${a}َى` : t === "gem" ? nakilT(f) + `${a}َّ`
+      : nakilT(f) + `${a}َ${l}َ` },
+  { wazn: "اِفْعَلَّ", tr: "İf'ilâl", en: "Form IX", make: (f,a,l,t) =>
+      t === "naqis" || t === "gem" ? null
+      : t === "mithal" ? `اِي${a}َ${l}َّ` : `اِ${f}ْ${a}َ${l}َّ` },
+  { wazn: "تَفَعَّلَ", tr: "Tefe''ul", en: "Form V", make: (f,a,l,t) =>
+      t === "naqis" ? `تَ${f}َ${a}َّى` : `تَ${f}َ${a}َّ${l}َ` },
+  { wazn: "تَفَاعَلَ", tr: "Tefâul", en: "Form VI", make: (f,a,l,t) =>
+      t === "naqis" ? `تَ${f}َا${a}َى` : t === "gem" ? `تَ${f}َا${a}َّ` : `تَ${f}َا${a}َ${l}َ` },
+  { wazn: "اِسْتَفْعَلَ", tr: "İstif'âl", en: "Form X", make: (f,a,l,t) =>
+      t === "ajwaf" ? `اِسْتَ${f}َا${l}َ` : t === "naqis" ? `اِسْتَ${f}ْ${a}َى`
+      : t === "gem" ? `اِسْتَ${f}َ${a}َّ` : `اِسْتَ${f}ْ${a}َ${l}َ` },
+  { wazn: "اِفْعَوْعَلَ", tr: "İf'îâl", en: "Form XII", make: (f,a,l,t) =>
+      t === "mithal" ? `اِي${a}َوْ${a}َ${l}َ`
+      : t === "sound" ? `اِ${f}ْ${a}َوْ${a}َ${l}َ` : null },
+  { wazn: "اِفْعَوَّلَ", tr: "İf'ivvâl", en: "Form XIII", make: (f,a,l,t) =>
+      t === "mithal" ? `اِي${a}َوَّ${l}َ`
+      : t === "sound" ? `اِ${f}ْ${a}َوَّ${l}َ` : null },
+  { wazn: "اِفْعَالَّ", tr: "İf'îlâl", en: "Form XI", make: (f,a,l,t) =>
+      t === "naqis" || t === "gem" ? null
+      : t === "mithal" ? `اِي${a}َا${l}َّ` : `اِ${f}ْ${a}َا${l}َّ` },
 ];
-const NAKIL_WEAK = "اويءأإئؤى";
-function nakilRoot(entry){
-  if (!entry || entry.form !== "I" || !entry.root) return null;
+// Classify the root: any verb may ride the drill through ITS ROOT — Form II
+// عَلَّمَ still transfers ع ل م, with its own bab highlighted. Hamzated roots
+// stay out (hamza-seat orthography is not a substitution), and so do roots
+// with two weak radicals (the lafif belongs wholly to the i'lal chapter).
+function nakilClass(entry){
+  if (!entry || !entry.root) return null;
   const rs = entry.root.split(/\s+/).filter(Boolean);
-  if (rs.length !== 3 || rs.some(r => r.length !== 1 || NAKIL_WEAK.includes(r))) return null;
-  if (rs[1] === rs[2]) return null;   // geminates contract — the i'lal chapter, not this table
-  return rs;
+  if (rs.length !== 3 || rs.some(r => r.length !== 1)) return null;
+  const [f, a, l] = rs;
+  if ([f, a, l].some(r => "ءأإئؤا".includes(r))) return null;
+  const wf = "وي".includes(f), wa = "وي".includes(a), wl = "وي".includes(l) || l === "ى";
+  if (wf + wa + wl > 1) return null;
+  const type = wf ? "mithal" : wa ? "ajwaf" : wl ? "naqis" : a === l ? "gem" : "sound";
+  return { rs, type };
 }
 // The Bina's six mujarrad babs — the vowel pairs from the received 35-bab
 // table (research/sources/sarf-35-bab-tablosu.txt, the موزون column). The
@@ -2277,24 +2315,33 @@ const MUJARRAD_BABS = [
   { model: "حَسُنَ", tr: "5. bâb · dammeteyn",   en: "Bab V · u–u",  v1: "ُ", v2: "ُ" },
   { model: "حَسِبَ", tr: "6. bâb · kesreteyn",   en: "Bab VI · i–i", v1: "ِ", v2: "ِ" },
 ];
-function nakilTable(rs, morph){
-  const [f, a, l] = rs;
+function nakilTable(cls, morph){
+  const [f, a, l] = cls.rs;
   const ownWazn = (morph && morph.wazn ? morph.wazn : "").normalize("NFC");
-  let h = `<div class="conj-wrap"><table class="conj nakil">
-    <tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمُجَرَّدُ — السِّتَّةُ الْأَبْوَابُ</th></tr>`;
-  MUJARRAD_BABS.forEach(b => {
-    const wazn = `فَع${b.v1}لَ يَفْع${b.v2}لُ`.normalize("NFC");
-    const out = `${f}َ${a}${b.v1}${l}َ ي${"َ"}${f}ْ${a}${b.v2}${l}ُ`.normalize("NFC");
-    h += `<tr class="${wazn === ownWazn ? "own-bab" : ""}">
-      <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
-      <td lang="ar">${wazn}</td>
-      <td lang="ar" class="nakil-out">${out}</td></tr>`;
-  });
+  const ownHead = ownWazn.split(/\s+/)[0] || "";
+  let h = `<div class="conj-wrap"><table class="conj nakil">`;
+  // The six-bab recitation needs sound radicals in every slot — a weak root's
+  // mujarrad shapes are the i'lal chapter's business, so the section appears
+  // for sound roots only; the mazid drill below serves every class.
+  if (cls.type === "sound") {
+    h += `<tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمُجَرَّدُ — السِّتَّةُ الْأَبْوَابُ</th></tr>`;
+    MUJARRAD_BABS.forEach(b => {
+      const wazn = `فَع${b.v1}لَ يَفْع${b.v2}لُ`.normalize("NFC");
+      const out = `${f}َ${a}${b.v1}${l}َ ي${"َ"}${f}ْ${a}${b.v2}${l}ُ`.normalize("NFC");
+      h += `<tr class="${wazn === ownWazn ? "own-bab" : ""}">
+        <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
+        <td lang="ar">${wazn}</td>
+        <td lang="ar" class="nakil-out">${out}</td></tr>`;
+    });
+  }
   h += `<tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمَزِيدُ — النَّقْلُ إِلَى اثْنَيْ عَشَرَ بَابًا</th></tr>`;
   NAKIL_BABS.forEach(b => {
-    h += `<tr><th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
+    const out = b.make(f, a, l, cls.type);
+    if (!out) return;                     // no such form for this class — no row
+    h += `<tr class="${b.wazn.normalize("NFC") === ownHead ? "own-bab" : ""}">
+      <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
       <td lang="ar">${b.wazn}</td>
-      <td lang="ar" class="nakil-out">${b.make(f, a, l).normalize("NFC")}</td></tr>`;
+      <td lang="ar" class="nakil-out">${out.normalize("NFC")}</td></tr>`;
   });
   return h + `</table></div>`;
 }
@@ -2368,7 +2415,7 @@ function openWord(tok, el, tab, ctx){
     // A jamid verb does not conjugate fully — the data carries exactly the
     // tenses that exist (لَيْسَ: mazi only; مَا زَالَ: mazi + mudari, no amr),
     // so the tab offers what is present rather than rendering empty tables.
-    const nakil = morph.jamid ? null : nakilRoot(entry);
+    const nakil = morph.jamid ? null : nakilClass(entry);
     let tense = morph.jamid && !(morph[sarfTense] && morph[sarfTense].length)
       ? "mazi" : sarfTense;
     if (tense === "nakil" && !nakil) tense = "mazi";

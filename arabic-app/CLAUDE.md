@@ -379,16 +379,24 @@ because the artifact host supplies one. Served standalone the browser guesses,
 and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
 test asserts `document.characterSet === "UTF-8"` for exactly this reason.
 
-**Bablara nakil is a formal drill, and says so.** The النَّقْل phase in the
-sarf sheet carries a sound Form I root through the twelve augmented wazns,
-reproducing the received table (research/sources/bablara-nakil-12-wazn.txt)
-including its deliberately mechanical اِنْنَصَرَ and the iftial ibdal rules
-(ص ض ط ظ → ط، ز → زد، د ذ → idgham). Substitution is done at render time —
-the ONE derivation the repo allows, because sound-root wazn substitution is
-exact; anything weak or geminate is refused (`nakilRoot` returns null) and
-belongs to the i'lal rules (research/sources/ilal-kaideleri-turkce.txt).
-The note under the table says attestation is not claimed — the madrasah's
-own framing. NFC-normalize every generated form (fatha/shadda order).
+**Bablara nakil is a formal drill, and says so.** The النَّقْل phase carries
+ANY verb's root through the babs, class by class (`nakilClass`: sound,
+mithal, ajwaf, naqis, gem). Each maker takes (f, a, l, type): sound roots
+get the full received table (bablara-nakil-12-wazn.txt) including the
+mechanical اِنْنَصَرَ and iftial ibdal (ص ض ط ظ → ط، ز → زد، د ذ → idgham,
+via `nakilT` — which composes with the weak classes: اِزْدَ + ادَ =
+اِزْدَادَ). Weak classes ride the i'lal rules' own outputs: ajwaf melts to
+alif exactly in IV/VII/VIII/X (أَقَالَ، اِسْتَقَالَ) and stays a letter
+elsewhere (قَوَّلَ، اِقْوَلَّ); naqis ends every derived mazi in ى
+(اِرْتَمَى); the geminate contracts where its twins meet (اِمْتَدَّ، مَادَّ)
+but not in II/V (مَدَّدَ); mithal keeps its waw except iftial (اِتَّجَلَ)
+and the اِفْـ babs where اِوْ → اِي (اِيجَلَّ) — all of these are the
+received table's own rows for وجل. A maker returns null where the
+tradition recites no form (naqis/gem IX+XI, non-sound XII/XIII) — no row,
+never a guess. Hamzated roots (seat orthography) and doubly-weak lafif
+still refuse entirely. The six-bab mujarrad section renders for sound
+roots only; derived verbs get the drill through their root with their own
+mazid bab highlighted. NFC-normalize every generated form.
 
 **Poetry wears verse dress, driven by data.** A sentence whose token carries
 `punctAfter: "•"` renders centered with a ✽ hemistich ornament and takes

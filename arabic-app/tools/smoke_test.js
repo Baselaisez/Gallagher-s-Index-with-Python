@@ -2054,14 +2054,37 @@ if (!CHROME) {
       const ownBab = ownEl ? ownEl.textContent : '';
       const note = document.querySelector('.sarf-note').textContent;
       // The ibdal rules the received table demonstrates, straight from the maker.
-      const istabara = NAKIL_BABS.find(b => b.en === 'Form VIII').make('ص', 'ب', 'ر').normalize('NFC');
-      const iddhahaba = NAKIL_BABS.find(b => b.en === 'Form VIII').make('ذ', 'ه', 'ب').normalize('NFC');
-      // Weak and geminate roots must not offer the drill at all.
-      const hollow = nakilRoot({ form: 'I', root: 'ق و ل' });
-      const gem = nakilRoot({ form: 'I', root: 'ض م م' });
-      const derived = nakilRoot({ form: 'IV', root: 'ك ر م' });
+      const viii = NAKIL_BABS.find(b => b.en === 'Form VIII');
+      const istabara = viii.make('ص', 'ب', 'ر', 'sound').normalize('NFC');
+      const iddhahaba = viii.make('ذ', 'ه', 'ب', 'sound').normalize('NFC');
+      // Every class now rides its own i'lal: hollow, geminate, defective,
+      // mithal — while hamzated and doubly-weak roots still refuse.
+      const nfc = s => s && s.normalize('NFC');
+      const mk = (root, en, ty) => nfc(NAKIL_BABS.find(b => b.en === en).make(...root.split(' '), ty));
+      const weak = {
+        istaqala: mk('ق و ل', 'Form X', 'ajwaf'),      // اِسْتَقَالَ
+        izdada: mk('ز ي د', 'Form VIII', 'ajwaf'),     // اِزْدَادَ — ibdal + hollow at once
+        irtama: mk('ر م ي', 'Form VIII', 'naqis'),     // اِرْتَمَى
+        imtadda: mk('م د د', 'Form VIII', 'gem'),      // اِمْتَدَّ
+        ittajala: mk('و ج ل', 'Form VIII', 'mithal'),  // اِتَّجَلَ — the table's own row
+        ijalla: mk('و ج ل', 'Form IX', 'mithal'),      // اِيجَلَّ — the table's own row
+        naqisIX: NAKIL_BABS.find(b => b.en === 'Form IX').make('ر', 'م', 'ي', 'naqis'),
+        hollowXII: NAKIL_BABS.find(b => b.en === 'Form XII').make('ق', 'و', 'ل', 'ajwaf'),
+      };
+      const hollowCls = nakilClass({ root: 'ق و ل' });
+      const gemCls = nakilClass({ root: 'ض م م' });
+      const derivedCls = nakilClass({ form: 'IV', root: 'ك ر م' });
+      const hamzated = nakilClass({ root: 'أ خ ذ' });
+      const lafif = nakilClass({ root: 'و ص ي' });
+      // A derived verb's sheet must highlight its own mazid bab.
+      sarfTense = 'nakil';
+      openWord({ s: { full: 'عَرَّفَ', smart: 'عَرَّفَ', bare: 'عرف' }, lex: 'arrafa', grammar: [] }, null, 'sarf');
+      const ownDerivedEl = document.querySelector('table.conj.nakil tr.own-bab .nakil-out');
+      const ownDerived = ownDerivedEl ? ownDerivedEl.textContent : '';
+      const derivedMujarrad = document.body.innerHTML.includes('السِّتَّةُ الْأَبْوَابُ');
       closeSheet(); sarfTense = 'mazi';
-      return { hasBtn, rows, ownBab, note, istabara, iddhahaba, hollow, gem, derived };
+      return { hasBtn, rows, ownBab, note, istabara, iddhahaba, weak,
+               hollowCls, gemCls, derivedCls, hamzated, lafif, ownDerived, derivedMujarrad };
     });
     if (!r.hasBtn) throw new Error('نَصَرَ offers no nakil button');
     // Six mujarrad babs (the Bina's) + twelve augmented wazns.
@@ -2075,7 +2098,21 @@ if (!CHROME) {
         throw new Error('nakil table lacks ' + f + ' — has: ' + r.rows.join(' '));
     if (r.istabara !== 'اِصْطَبَرَ'.normalize('NFC')) throw new Error('sad ibdal wrong: ' + r.istabara);
     if (r.iddhahaba !== 'اِذَّهَبَ'.normalize('NFC')) throw new Error('dhal idgham wrong: ' + r.iddhahaba);
-    if (r.hollow || r.gem || r.derived) throw new Error('nakil offered where it must not be');
+    // The i'lal outputs, class by class — each checked against a real word.
+    const want = { istaqala: 'اِسْتَقَالَ', izdada: 'اِزْدَادَ', irtama: 'اِرْتَمَى',
+                   imtadda: 'اِمْتَدَّ', ittajala: 'اِتَّجَلَ', ijalla: 'اِيجَلَّ' };
+    for (const k of Object.keys(want))
+      if (r.weak[k] !== want[k].normalize('NFC'))
+        throw new Error(k + ' wrong: ' + r.weak[k] + ' want ' + want[k]);
+    // Where the tradition recites nothing, the maker returns nothing.
+    if (r.weak.naqisIX !== null || r.weak.hollowXII !== null)
+      throw new Error('a class was forced into a bab it does not have');
+    if (!r.hollowCls || r.hollowCls.type !== 'ajwaf') throw new Error('hollow root not classified');
+    if (!r.gemCls || r.gemCls.type !== 'gem') throw new Error('geminate root not classified');
+    if (!r.derivedCls) throw new Error('a derived verb was refused the drill');
+    if (r.hamzated || r.lafif) throw new Error('hamzated/lafif roots must still refuse');
+    if (r.ownDerived.normalize('NFC') !== 'عَرَّفَ'.normalize('NFC'))
+      throw new Error('derived verb\'s own bab not highlighted: ' + r.ownDerived);
     if (!/lugatte|lexicon/.test(r.note)) throw new Error('the formal-drill honesty note is missing');
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('.lib-card');
