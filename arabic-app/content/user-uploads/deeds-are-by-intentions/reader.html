@@ -465,6 +465,11 @@
   }
   table.conj.nakil tr.own-bab .nakil-out { color: var(--accent); }
 
+  /* The ziyade extension rows: set off from the fourteen by a rule and a
+     whisper of the accent — the recitation's second breath. */
+  table.conj.muhtelife tr:not(.ext) + tr.ext td, table.conj.muhtelife tr:not(.ext) + tr.ext th { border-top: 2px solid var(--line); }
+  table.conj.muhtelife tr.ext th { font-style: italic; }
+
   @media print {
     nav.controls, .legend, footer.note, .readbar, .sent-tools .play,
     .peek, .ch-nav, #toast, .scrim, .sheet { display: none !important; }
@@ -804,6 +809,7 @@ const L = {
         refIntro:"Organized after the madrasah primers: conjugation drills, verb classes, and the governors of i'rab (Birgivi's Awamil, with al-Kafiya and Qatr al-Nada). Every topic links to live examples in the stories.",
         sarfNote:"Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.",
         nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
+        ziyadeNote:"From the augmented babs no instrument-noun, diminutive or mubalagha is formed; the comparative and the wonder forms come by paraphrase with أَشَدّ — exactly as the recitation table has it.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
         sheetHint:"The whole sentence analysed the way it is written out in the madrasah: word, then its position in the sentence. Tap a word to open it.",
@@ -840,6 +846,7 @@ const L = {
         refIntro:"Medrese temel kitaplarına göre düzenlendi: çekim talimleri (Emsile), fiil babları (Binâ) ve i'rab âmilleri (Birgivî'nin Avâmil'i; Kâfiye ve Katru'n-Nedâ ile). Her konu hikâyelerdeki canlı örneklere bağlıdır.",
         sarfNote:"Emsile tarzında tam çekim tablosu; vurgulu hücre bu hikâyede geçen sîgadır.",
         nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
+        ziyadeNote:"Ziyâde bablardan ism-i âlet, ism-i tasgîr ve mübâlağa ism-i fâil gelmez; ism-i tafdîl ile taaccüb, أَشَدّ üzerinden dolaylı yapılır — çekim cetvelinde olduğu gibi.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
         sheetHint:"Cümlenin tamamı, medresede yazıldığı şekliyle tahlil edilmiştir: önce kelime, sonra cümledeki mahalli. Kelimeye dokununca açılır.",
@@ -2175,14 +2182,47 @@ function muhtelife(morph){
       { ar: morph.majhulMazi,   tr: "Fiil-i mâzî meçhûl",   en: "Past passive", majhul: true },
       { ar: morph.majhulMudari, tr: "Fiil-i muzâri meçhûl", en: "Present passive", majhul: true },
     ] : []),
+    ...ziyadeExt(morph),
   ];
+}
+// The ziyade-bab recitation's extension rows, from the received table
+// (research/sources/ziyade-bab-muhtelife-cekimi.txt, modelled on أَكْرَمَ):
+// mimi masdar (= the maf'ul form), the once- and manner-nouns, the relational
+// adjective, and the paraphrased comparative and wonder forms. All are exact
+// templates around the STORED masdar, so deriving them breaks nothing — and a
+// masdar the templates cannot carry (manqus, bracketed, multiword) simply
+// opts out, row by row, rather than being guessed at.
+const ZIYADE_HEADS = ["أَفْعَلَ", "فَعَّلَ", "فَاعَلَ", "تَفَعَّلَ", "تَفَاعَلَ",
+                      "اِنْفَعَلَ", "اِفْتَعَلَ", "اِسْتَفْعَلَ", "اسْتَفْعَلَ"]
+  .map(w => w.normalize("NFC"));
+function ziyadeExt(morph){
+  const head = (morph.wazn || "").split(/\s+/)[0].normalize("NFC");
+  if (!ZIYADE_HEADS.includes(head)) return [];
+  const m = (morph.masdar || "").normalize("NFC");
+  if (!/^[ء-ْ]+$/.test(m) || /[ىٍ]$/.test(m) || /ً/.test(m)) return [];
+  const taFinal = m.endsWith("ة");
+  const stemSuf = taFinal ? m.slice(0, -1) + "ت" : m;      // تَسْمِيَة ← تَسْمِيَت + ـهُ
+  const acc = taFinal || /[ءا]$/.test(m) ? m + "ً" : m + "ًا";
+  const merreBase = taFinal ? m + "ً" : m + "َةً";
+  const out = [
+    ...(morph.maful ? [{ ar: morph.maful + "ٌ",
+      tr: "Masdar-ı mîmî; ism-i zaman ve mekân", en: "Mimic masdar; noun of time and place", ext: true }] : []),
+    { ar: merreBase + " وَاحِدَةً", tr: "Binâ-i merre", en: "The once-noun", ext: true },
+    { ar: merreBase + " شَدِيدَةً", tr: "Binâ-i nev'", en: "The manner-noun", ext: true },
+    ...(!taFinal && !/[ءا]$/.test(m) ? [{ ar: m + "ِيٌّ",
+      tr: "İsm-i mensûb", en: "Relational adjective", ext: true }] : []),
+    { ar: "هُوَ أَشَدُّ مِنْهُ " + acc, tr: "İsm-i tafdîl (şedde ile)", en: "Comparative, paraphrased", ext: true },
+    { ar: "مَا أَشَدَّ " + stemSuf + "َهُ", tr: "Fiil-i taaccüb-i evvel", en: "The first wonder form", ext: true },
+    { ar: "وَأَشْدِدْ بِ" + stemSuf + "ِهِ", tr: "Fiil-i taaccüb-i sânî", en: "The second wonder form", ext: true },
+  ];
+  return out.map(r => ({ ...r, ar: r.ar.normalize("NFC") }));
 }
 function muhtelifeTable(morph, highlight){
   const hlBare = highlight ? stripAr(highlight) : "";
   let h = `<div class="conj-wrap"><table class="conj muhtelife">`;
   muhtelife(morph).forEach(row => {
     const hit = row.ar === highlight || (hlBare && stripAr(row.ar) === hlBare);
-    h += `<tr class="${row.majhul ? "majhul" : ""}"><th class="person">${state.uiLang === "tr" ? row.tr : row.en}</th>
+    h += `<tr class="${row.majhul ? "majhul" : ""}${row.ext ? " ext" : ""}"><th class="person">${state.uiLang === "tr" ? row.tr : row.en}</th>
           <td class="${hit ? "hl" : ""}" lang="ar">${row.ar}</td></tr>`;
   });
   return h + `</table></div>`;
@@ -2356,7 +2396,9 @@ function openWord(tok, el, tab, ctx){
     else html += conjTable(morph[tense], PERSON_ROWS, highlight);
     html += `<p class="sarf-note">${
       tense === "nakil" ? ui().nakilNote
-      : tense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${
+      : tense === "muhtelife" ? ui().muhtelifeNote
+        + (ziyadeExt(morph).length ? " " + ui().ziyadeNote : "")
+      : ui().sarfNote}${
       tense === "nakil" ? "" : morph.note ? " " + morph.note : ""}</p>`;
     // Saving a verb adds a conjugation card, not a meaning card.
     if (muhtelife(morph)) {

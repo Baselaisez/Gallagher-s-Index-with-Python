@@ -584,7 +584,7 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
     await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
-    const forms = await page.locator('table.conj.muhtelife tr:not(.majhul) td').allTextContents();
+    const forms = await page.locator('table.conj.muhtelife tr:not(.majhul):not(.ext) td').allTextContents();
     if (forms.length !== 14) throw new Error('expected 14 active forms, got ' + forms.length);
     // أَرَادَ is Form IV hollow: the jussive must shorten (لَمْ يُرِدْ), and the
     // naive damma->sukun derivation (لَمْ يُرِيدْ) must never appear.
@@ -2079,6 +2079,31 @@ if (!CHROME) {
     if (!/lugatte|lexicon/.test(r.note)) throw new Error('the formal-drill honesty note is missing');
     await page.reload({ waitUntil: 'load' });
     await page.waitForSelector('.lib-card');
+  });
+
+  await check('ziyade extensions: the muhtelife recites the akrama model\'s second breath', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'wasiyyat-abi-hanifa-samti');
+      const nfc = s => s.normalize('NFC');
+      const akrama = muhtelife(st.morph.akrama).filter(x => x.ext).map(x => nfc(x.ar));
+      const wassa = muhtelife(st.morph.wassa).filter(x => x.ext).map(x => nfc(x.ar));
+      const hajara = muhtelife(st.morph.hajara).filter(x => x.ext);
+      const taala = ziyadeExt(st.morph.taala);   // masdar تَعَالٍ — the templates must refuse it
+      return { akrama, wassa, hajaraN: hajara.length, taalaN: taala.length };
+    });
+    // The received model, cell for cell (ziyade-bab-muhtelife-cekimi.txt).
+    for (const f of ['مُكْرَمٌ', 'إِكْرَامَةً وَاحِدَةً', 'إِكْرَامِيٌّ',
+                     'هُوَ أَشَدُّ مِنْهُ إِكْرَامًا', 'مَا أَشَدَّ إِكْرَامَهُ', 'وَأَشْدِدْ بِإِكْرَامِهِ'])
+      if (!r.akrama.includes(f.normalize('NFC')))
+        throw new Error('akrama lacks ' + f + ' — has: ' + r.akrama.join(' | '));
+    // A ta-marbuta masdar bends correctly before suffixes: تَوْصِيَتَهُ, not تَوْصِيَةَهُ.
+    if (!r.wassa.some(x => x.includes('تَوْصِيَتَهُ'.normalize('NFC'))))
+      throw new Error('wassa wonder form wrong: ' + r.wassa.join(' | '));
+    if (!r.wassa.some(x => x.includes('تَوْصِيَةً وَاحِدَةً'.normalize('NFC'))))
+      throw new Error('wassa once-noun wrong');
+    // Form I verbs and untemplateable masdars get no extension rows at all.
+    if (r.hajaraN) throw new Error('a Form I verb grew ziyade rows');
+    if (r.taalaN) throw new Error('a manqus masdar was forced into the templates');
   });
 
   await check('poetry wears verse dress: the bayt centers and parts at the hemistich', async () => {

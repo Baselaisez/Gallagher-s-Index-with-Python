@@ -396,6 +396,18 @@ own framing. NFC-normalize every generated form (fatha/shadda order).
 bullet never reaches the DOM as text; the spoken string keeps it (symbols
 are TTS-silent), so playback offsets stay honest.
 
+**The ziyade muhtelife breathes twice.** For derived-bab verbs (`ziyadeExt`,
+gated on the wazn's head word) the Muhtelife table appends the recitation's
+extension rows from the received أَكْرَمَ model: mimi masdar (= the stored
+maf'ul form), binâ-i merre/nev', ism-i mensûb, and the paraphrased tafdil and
+taaccüb (مَا أَشَدَّ إِكْرَامَهُ) — all exact templates around the STORED masdar.
+A masdar the templates cannot carry (manqus, bracketed, ta-marbuta for the
+mensub row) opts out row by row rather than being guessed; ta-marbuta bends
+to ت before suffixes (تَوْصِيَتَهُ). The rows carry `ext: true` — the smoke
+check that counts the fourteen core forms filters them, and the sarf-note
+adds the received rule: no instrument-noun, diminutive or mubalagha from the
+augmented babs.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per
