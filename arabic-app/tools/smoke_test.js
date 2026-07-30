@@ -2206,6 +2206,70 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('the weekly mercy day forgives one missed day, once', async () => {
+    const r = await page.evaluate(() => {
+      const saved = { streak: { ...state.streak }, today: { ...state.today } };
+      const key = d => todayKey(d);
+      const dayBefore = () => { const d = new Date(); d.setDate(d.getDate() - 2); return key(d); };
+      // A 5-day streak, last studied the day BEFORE yesterday, shield unused:
+      state.streak = { days: 5, last: dayBefore() };
+      state.today = { date: 'reset', reviewed: 0, learned: 0, read: 0 };
+      countActivity('read');
+      const forgiven = { days: state.streak.days, shield: state.streak.shieldWeek };
+      // Same situation again in the SAME week — the shield is spent:
+      state.streak = { days: 9, last: dayBefore(), shieldWeek: state.streak.shieldWeek };
+      state.today = { date: 'reset', reviewed: 0, learned: 0, read: 0 };
+      countActivity('read');
+      const burned = state.streak.days;
+      // An ordinary yesterday-continuation never touches the shield:
+      const y = new Date(); y.setDate(y.getDate() - 1);
+      state.streak = { days: 3, last: key(y) };
+      state.today = { date: 'reset', reviewed: 0, learned: 0, read: 0 };
+      countActivity('read');
+      const normal = { days: state.streak.days, shield: state.streak.shieldWeek };
+      state.streak = saved.streak; state.today = saved.today;
+      localStorage.setItem('qissa-streak', JSON.stringify(state.streak));
+      localStorage.setItem('qissa-today', JSON.stringify(state.today));
+      return { forgiven, burned, normal };
+    });
+    if (r.forgiven.days !== 6 || !r.forgiven.shield)
+      throw new Error('the mercy day did not forgive: ' + JSON.stringify(r.forgiven));
+    if (r.burned !== 1) throw new Error('a spent shield still forgave: days=' + r.burned);
+    if (r.normal.days !== 4 || r.normal.shield)
+      throw new Error('an ordinary continuation touched the shield');
+  });
+
+  await check('the snapshot is a door: tapping it opens the story at that sentence', async () => {
+    await toLibrary();
+    const target = await page.evaluate(() => {
+      // A card whose ctx points at the L2 story's first sentence, honestly built.
+      const st = STORIES.find(s => s.id === 'wasiyyat-abi-hanifa-L2');
+      const sen = st.chapters[0].sentences[0];
+      const t = sen.tokens;
+      window.__savedDeck = state.deck;
+      state.deck = [{ lex: t[1].lex, type: 'word', bare: t[1].s.bare, lemma: t[1].s.full,
+        gloss: { en: 'x', tr: 'y' },
+        ctx: { story: st.id, sen: sen.id,
+               pre: t[0].s.full, word: t[1].s.full,
+               post: t.slice(2).map(x => x.s.full + (x.punctAfter || '')).join(' ') },
+        srs: { due: 0, ivl: 0, reps: 0, ease: 2.5, lapses: 0 } }];
+      openDeck(); reviewStep = 2; renderDeck();
+      return sen.id;
+    });
+    await page.waitForSelector('.card-ctx', { timeout: 3000 });
+    await page.locator('.card-ctx').click();
+    await page.waitForSelector(`section.sentence[data-id="${target}"]`, { timeout: 3000 });
+    const ok = await page.evaluate(id => {
+      const good = CUR && CUR.id === 'wasiyyat-abi-hanifa-L2'
+        && !!document.querySelector(`section.sentence[data-id="${id}"]`);
+      state.deck = window.__savedDeck; delete window.__savedDeck;
+      reviewStep = 0;
+      return good;
+    }, target);
+    if (!ok) throw new Error('the snapshot did not open its story');
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

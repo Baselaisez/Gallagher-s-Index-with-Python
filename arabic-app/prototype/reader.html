@@ -553,6 +553,8 @@
     margin: .55rem auto 0; max-width: 32rem; color: var(--ink-soft);
   }
   .card-ctx b { color: var(--accent); font-weight: 700; }
+  .card-ctx { cursor: pointer; border-radius: 8px; padding: .15rem .4rem; transition: background .12s; }
+  .card-ctx:hover { background: var(--accent-soft); }
 
   .empty { position: relative; padding-top: 2.6rem; }
   .empty::before {
@@ -899,6 +901,8 @@ const L = {
         refIntro:"Organized after the madrasah primers: conjugation drills, verb classes, and the governors of i'rab (Birgivi's Awamil, with al-Kafiya and Qatr al-Nada). Every topic links to live examples in the stories.",
         sarfNote:"Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.",
         nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
+        mercyUsed:"\u{1F6E1} A missed day was forgiven — your weekly mercy kept the streak.",
+        ctxJump:"Open this sentence in its story",
         ziyadeNote:"From the augmented babs no instrument-noun, diminutive or mubalagha is formed; the comparative and the wonder forms come by paraphrase with أَشَدّ — exactly as the recitation table has it.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
@@ -936,6 +940,8 @@ const L = {
         refIntro:"Medrese temel kitaplarına göre düzenlendi: çekim talimleri (Emsile), fiil babları (Binâ) ve i'rab âmilleri (Birgivî'nin Avâmil'i; Kâfiye ve Katru'n-Nedâ ile). Her konu hikâyelerdeki canlı örneklere bağlıdır.",
         sarfNote:"Emsile tarzında tam çekim tablosu; vurgulu hücre bu hikâyede geçen sîgadır.",
         nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
+        mercyUsed:"\u{1F6E1} Kaçan bir gün bağışlandı — haftalık müsamahan seriyi korudu.",
+        ctxJump:"Bu cümleyi hikâyesinde aç",
         ziyadeNote:"Ziyâde bablardan ism-i âlet, ism-i tasgîr ve mübâlağa ism-i fâil gelmez; ism-i tafdîl ile taaccüb, أَشَدّ üzerinden dolaylı yapılır — çekim cetvelinde olduğu gibi.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
@@ -2959,6 +2965,13 @@ function rollDay(){
 }
 // Called on any act of study. A day already counted does nothing; yesterday
 // extends the streak; anything older starts a new one.
+// The shield's calendar: one mercy per local week. Approximate week numbering
+// is fine — the shield is a kindness, not an accounting system.
+function weekKey(){
+  const d = new Date();
+  const jan1 = new Date(d.getFullYear(), 0, 1);
+  return d.getFullYear() + "-" + Math.floor(((d - jan1) / 86400000 + jan1.getDay()) / 7);
+}
 function countActivity(kind){
   const t = rollDay();
   t[kind] = (t[kind] || 0) + 1;
@@ -2966,8 +2979,20 @@ function countActivity(kind){
   const k = todayKey();
   if (state.streak.last !== k) {
     const y = new Date(); y.setDate(y.getDate() - 1);
-    state.streak = { days: state.streak.last === todayKey(y) ? state.streak.days + 1 : 1,
-                     last: k };
+    const y2 = new Date(); y2.setDate(y2.getDate() - 2);
+    let days = 1, shieldWeek = state.streak.shieldWeek;
+    if (state.streak.last === todayKey(y)) {
+      days = state.streak.days + 1;
+    } else if (state.streak.last === todayKey(y2) && shieldWeek !== weekKey()) {
+      // The mercy day: ONE missed day a week does not burn the chain — the
+      // shield does. Breaking a long streak over a single bad day is the
+      // sharpest quit-moment the habit apps know; forgiveness, rationed to
+      // once a week, keeps the chain honest without making it brittle.
+      days = state.streak.days + 1;
+      shieldWeek = weekKey();
+      showToast(ui().mercyUsed);
+    }
+    state.streak = { days, last: k, ...(shieldWeek ? { shieldWeek } : {}) };
     localStorage.setItem("qissa-streak", JSON.stringify(state.streak));
   }
   updateStreakChip();   // the percentage moves on every act, not only the first
@@ -3366,6 +3391,16 @@ function renderDeck(){
   sheetInner.innerHTML = html;
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
+  // The snapshot is a door: tap the birth-sentence to stand in it again.
+  const cx = sheetInner.querySelector(".card-ctx");
+  if (cx) {
+    cx.title = ui().ctxJump;
+    cx.addEventListener("click", e => {
+      e.stopPropagation();
+      const c = dueCards()[0];
+      if (c && c.ctx) { reviewStep = 0; jumpTo(c.ctx.story, c.ctx.sen); }
+    });
+  }
   const le = document.getElementById("learnHere");
   if (le) le.addEventListener("click", learnNewHere);
   const ge = document.getElementById("goalEdit");

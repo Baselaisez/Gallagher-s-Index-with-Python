@@ -263,6 +263,16 @@ glyphs. Render to images (`pdftoppm`) and transcribe from the page instead.
   green); every span carries `data-lex`, and the save button flips the
   page's copies live in both directions. LingQ's known-word marking, in
   Qissa's underline language.
+- **The streak forgives once a week.** `countActivity` grants a mercy day:
+  a last-studied of exactly two days ago continues the chain IF
+  `streak.shieldWeek` differs from the current `weekKey()` (approximate
+  local week — the shield is a kindness, not accounting). The shield is
+  consumed by stamping the week, a toast says so, and an ordinary
+  yesterday-continuation never touches it. Absent field = shield available
+  (backward compatible).
+- **The snapshot is a door.** `.card-ctx` on the review card is clickable —
+  `jumpTo(ctx.story, ctx.sen)` with no token index, so it scrolls to the
+  sentence without popping a word sheet; jumpTo's paywall fallback applies.
 - **`cardKey()` is the only statement of card identity.** Membership tests and
   toggles all route through `findCard`/`cardSaved`/`toggleCard`; a new card type
   declares its key once instead of adding a fourth hand-written `findIndex`
