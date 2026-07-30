@@ -2039,6 +2039,60 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card');
   });
 
+  await check('bablara nakil: a sound root rides the twelve wazns, weak roots decline', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'wasiyyat-abi-hanifa-samti');
+      CUR = st; GLOSSARY = st.glossary; MORPH = st.morph; wordCtx = null;
+      const tokN = { s: { full: 'نَصَرَ', smart: 'نَصَرَ', bare: 'نصر' }, lex: 'nasara', grammar: [] };
+      sarfTense = 'mazi';
+      openWord(tokN, null, 'sarf');
+      const hasBtn = !!document.querySelector('[data-tense="nakil"]');
+      sarfTense = 'nakil';
+      openWord(tokN, null, 'sarf');
+      const rows = [...document.querySelectorAll('table.conj.nakil .nakil-out')].map(td => td.textContent);
+      const note = document.querySelector('.sarf-note').textContent;
+      // The ibdal rules the received table demonstrates, straight from the maker.
+      const istabara = NAKIL_BABS.find(b => b.en === 'Form VIII').make('ص', 'ب', 'ر').normalize('NFC');
+      const iddhahaba = NAKIL_BABS.find(b => b.en === 'Form VIII').make('ذ', 'ه', 'ب').normalize('NFC');
+      // Weak and geminate roots must not offer the drill at all.
+      const hollow = nakilRoot({ form: 'I', root: 'ق و ل' });
+      const gem = nakilRoot({ form: 'I', root: 'ض م م' });
+      const derived = nakilRoot({ form: 'IV', root: 'ك ر م' });
+      closeSheet(); sarfTense = 'mazi';
+      return { hasBtn, rows, note, istabara, iddhahaba, hollow, gem, derived };
+    });
+    if (!r.hasBtn) throw new Error('نَصَرَ offers no nakil button');
+    if (r.rows.length !== 12) throw new Error(r.rows.length + ' nakil rows, want 12');
+    for (const f of ['نَصَّرَ', 'نَاصَرَ', 'أَنْصَرَ', 'اِنْتَصَرَ', 'اِسْتَنْصَرَ', 'اِنْصَوْصَرَ'])
+      if (!r.rows.some(x => x.normalize('NFC') === f.normalize('NFC')))
+        throw new Error('nakil table lacks ' + f + ' — has: ' + r.rows.join(' '));
+    if (r.istabara !== 'اِصْطَبَرَ'.normalize('NFC')) throw new Error('sad ibdal wrong: ' + r.istabara);
+    if (r.iddhahaba !== 'اِذَّهَبَ'.normalize('NFC')) throw new Error('dhal idgham wrong: ' + r.iddhahaba);
+    if (r.hollow || r.gem || r.derived) throw new Error('nakil offered where it must not be');
+    if (!/lugatte|lexicon/.test(r.note)) throw new Error('the formal-drill honesty note is missing');
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForSelector('.lib-card');
+  });
+
+  await check('poetry wears verse dress: the bayt centers and parts at the hemistich', async () => {
+    await toLibrary();
+    await openStoryCard('bad-al-amali');
+    const n = await page.locator('section.sentence.verse').count();
+    if (!n) throw new Error('no verse-dressed sentences in the qasida');
+    const hemi = await page.locator('section.sentence.verse .hemi').first().textContent();
+    if (hemi !== '✽') throw new Error('hemistich ornament is: ' + hemi);
+    // The raw bullet must never reach the reader's eye as text.
+    const raw = await page.evaluate(() =>
+      [...document.querySelectorAll('.ar-line')].some(l => l.textContent.includes('•')));
+    if (raw) throw new Error('a raw • leaked into the rendered line');
+    // Prose stories stay prose.
+    await toLibrary();
+    await openStoryCard('wasiyyat-abi-hanifa-L2');
+    if (await page.locator('section.sentence.verse').count())
+      throw new Error('a prose story took the verse layout');
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

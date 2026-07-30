@@ -558,6 +558,49 @@
   .progress { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; margin-top: .7rem; }
   .progress > div { height: 100%; background: var(--accent); border-radius: 2px; transition: width .4s ease; }
 
+  /* ---- the shelf as a shelf: cards become covers ------------------------
+     The Arabic title is the cover art — a centered display band tinted by
+     the card's level (the same four-colour scale the spine and the word
+     underlines already speak), with a faint ornament. On wide screens the
+     library becomes a two-up bookshelf grid; everything that is not a card
+     (the continue hero, shelf headers, the review nudge) spans the row. */
+  .lib-card .t {
+    text-align: center; font-size: 1.72rem; line-height: 2.1;
+    padding: .95rem .6rem .8rem; margin: -1rem -1.1rem .55rem -1.25rem;
+    border-bottom: 1px solid var(--line); position: relative;
+    background: linear-gradient(150deg, var(--accent-soft), transparent 72%);
+  }
+  .lib-card[data-lvlc="1"] .t { background: linear-gradient(150deg, color-mix(in srgb, var(--lvl1) 16%, transparent), transparent 72%); }
+  .lib-card[data-lvlc="2"] .t { background: linear-gradient(150deg, color-mix(in srgb, var(--lvl2) 16%, transparent), transparent 72%); }
+  .lib-card[data-lvlc="3"] .t { background: linear-gradient(150deg, color-mix(in srgb, var(--lvl3) 16%, transparent), transparent 72%); }
+  .lib-card[data-lvlc="4"] .t { background: linear-gradient(150deg, color-mix(in srgb, var(--lvl4) 16%, transparent), transparent 72%); }
+  .lib-card .t::after {
+    content: "﴾ ﴿"; position: absolute; inset-inline-end: .6rem; top: .35rem;
+    font-size: .55rem; letter-spacing: .3em; color: var(--ink-soft); opacity: .5;
+  }
+  @media (min-width: 720px) {
+    #story:has(.lib-card) { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: .95rem 1.05rem; align-items: stretch; }
+    #story:has(.lib-card) > :not(.lib-card) { grid-column: 1 / -1; }
+    #story:has(.lib-card) .lib-card { margin: 0; display: flex; flex-direction: column; }
+    #story:has(.lib-card) .lib-card .progress { margin-top: auto; padding-top: 0; }
+    #story:has(.lib-card) .lib-card .meta-row { margin-bottom: .55rem; }
+  }
+
+  /* ---- poetry wears verse dress -----------------------------------------
+     A sentence whose data carries a hemistich break («•») centers itself and
+     parts around an ornament — the bayt reads as a bayt, not as prose. */
+  section.sentence.verse .ar-line { text-align: center; }
+  section.sentence.verse .trans { text-align: center; }
+  section.sentence.verse { padding-block: .4rem; }
+  .hemi {
+    display: inline-block; margin: 0 clamp(.55rem, 4vw, 2rem);
+    color: var(--accent); opacity: .5; font-size: .72em; vertical-align: middle;
+    user-select: none;
+  }
+
+  /* The nakil table: the derived form is the payoff column. */
+  table.conj.nakil .nakil-out { font-weight: 600; }
+
   /* ---------- games ---------- */
   .game-pick { display: grid; gap: .7rem; margin: .5rem 0; }
   .game-pick button {
@@ -696,6 +739,7 @@ const L = {
         back:"← All grammar topics", refTitle:"Grammar reference",
         refIntro:"Organized after the madrasah primers: conjugation drills, verb classes, and the governors of i'rab (Birgivi's Awamil, with al-Kafiya and Qatr al-Nada). Every topic links to live examples in the stories.",
         sarfNote:"Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.",
+        nakilNote:"Bablara nakil — the transfer drill: the same root recited through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
         sheetHint:"The whole sentence analysed the way it is written out in the madrasah: word, then its position in the sentence. Tap a word to open it.",
@@ -731,6 +775,7 @@ const L = {
         back:"← Tüm gramer konuları", refTitle:"Gramer başvurusu",
         refIntro:"Medrese temel kitaplarına göre düzenlendi: çekim talimleri (Emsile), fiil babları (Binâ) ve i'rab âmilleri (Birgivî'nin Avâmil'i; Kâfiye ve Katru'n-Nedâ ile). Her konu hikâyelerdeki canlı örneklere bağlıdır.",
         sarfNote:"Emsile tarzında tam çekim tablosu; vurgulu hücre bu hikâyede geçen sîgadır.",
+        nakilNote:"Bablara nakil — aynı kökün on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
         sheetHint:"Cümlenin tamamı, medresede yazıldığı şekliyle tahlil edilmiştir: önce kelime, sonra cümledeki mahalli. Kelimeye dokununca açılır.",
@@ -1100,7 +1145,15 @@ function renderStory(){
       w.addEventListener("click", () => { markRead(sen.id); openWord(tok, w, null, {sen, ti}); });
       w.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); markRead(sen.id); openWord(tok, w, null, {sen, ti}); } });
       line.appendChild(w);
-      if (tok.punctAfter) line.appendChild(document.createTextNode(tok.punctAfter));
+      if (tok.punctAfter === "•") {
+        // A hemistich break: the bayt's two halves part around an ornament,
+        // and the whole sentence takes the verse layout.
+        const hemi = document.createElement("span");
+        hemi.className = "hemi"; hemi.setAttribute("aria-hidden", "true");
+        hemi.textContent = "✽";
+        line.appendChild(hemi);
+        sec.classList.add("verse");
+      } else if (tok.punctAfter) line.appendChild(document.createTextNode(tok.punctAfter));
       if (tok.quoteAfter) line.appendChild(document.createTextNode(tok.quoteAfter));
       if (ti < sen.tokens.length - 1) line.appendChild(document.createTextNode(" "));
     });
@@ -2067,6 +2120,54 @@ function muhtelifeTable(morph, highlight){
   return h + `</table></div>`;
 }
 
+// ---------- Diğer Bablara Nakil ----------
+// The madrasah transfer drill: one sound root recited through the twelve
+// augmented wazns, exactly as the received table does (research/sources/
+// bablara-nakil-12-wazn.txt). Deliberately FORMAL — the table itself recites
+// اِنْنَصَرَ uncontracted, and attestation in the lexicon is not claimed; the
+// point is command of the patterns. Only fully sound Form I roots qualify:
+// weak radicals belong to the i'lal rules (research/sources/
+// ilal-kaideleri-turkce.txt), not to letter substitution. The iftial row
+// applies the ibdal the table demonstrates: اِضْطَرَبَ، اِذَّهَبَ، اِزْدَجَرَ.
+function nakilIftial(f, a, l){
+  if ("صضطظ".includes(f)) return `اِ${f}ْطَ${a}َ${l}َ`;
+  if (f === "ز") return `اِزْدَ${a}َ${l}َ`;
+  if ("دذ".includes(f)) return `اِ${f}َّ${a}َ${l}َ`;
+  return `اِ${f}ْتَ${a}َ${l}َ`;
+}
+const NAKIL_BABS = [
+  { wazn: "أَفْعَلَ",     tr: "İf'âl",      en: "Form IV",   make: (f,a,l) => `أَ${f}ْ${a}َ${l}َ` },
+  { wazn: "فَعَّلَ",      tr: "Tef'îl",     en: "Form II",   make: (f,a,l) => `${f}َ${a}َّ${l}َ` },
+  { wazn: "فَاعَلَ",      tr: "Müfâale",    en: "Form III",  make: (f,a,l) => `${f}َا${a}َ${l}َ` },
+  { wazn: "اِنْفَعَلَ",   tr: "İnfiâl",     en: "Form VII",  make: (f,a,l) => `اِنْ${f}َ${a}َ${l}َ` },
+  { wazn: "اِفْتَعَلَ",   tr: "İftiâl",     en: "Form VIII", make: nakilIftial },
+  { wazn: "اِفْعَلَّ",    tr: "İf'ilâl",    en: "Form IX",   make: (f,a,l) => `اِ${f}ْ${a}َ${l}َّ` },
+  { wazn: "تَفَعَّلَ",    tr: "Tefe''ul",   en: "Form V",    make: (f,a,l) => `تَ${f}َ${a}َّ${l}َ` },
+  { wazn: "تَفَاعَلَ",    tr: "Tefâul",     en: "Form VI",   make: (f,a,l) => `تَ${f}َا${a}َ${l}َ` },
+  { wazn: "اِسْتَفْعَلَ", tr: "İstif'âl",   en: "Form X",    make: (f,a,l) => `اِسْتَ${f}ْ${a}َ${l}َ` },
+  { wazn: "اِفْعَوْعَلَ", tr: "İf'îâl",     en: "Form XII",  make: (f,a,l) => `اِ${f}ْ${a}َوْ${a}َ${l}َ` },
+  { wazn: "اِفْعَوَّلَ",  tr: "İf'ivvâl",   en: "Form XIII", make: (f,a,l) => `اِ${f}ْ${a}َوَّ${l}َ` },
+  { wazn: "اِفْعَالَّ",   tr: "İf'îlâl",    en: "Form XI",   make: (f,a,l) => `اِ${f}ْ${a}َا${l}َّ` },
+];
+const NAKIL_WEAK = "اويءأإئؤى";
+function nakilRoot(entry){
+  if (!entry || entry.form !== "I" || !entry.root) return null;
+  const rs = entry.root.split(/\s+/).filter(Boolean);
+  if (rs.length !== 3 || rs.some(r => r.length !== 1 || NAKIL_WEAK.includes(r))) return null;
+  if (rs[1] === rs[2]) return null;   // geminates contract — the i'lal chapter, not this table
+  return rs;
+}
+function nakilTable(rs){
+  let h = `<div class="conj-wrap"><table class="conj nakil">
+    <tr><th class="person"></th><th>الْوَزْنُ</th><th>النَّقْلُ</th></tr>`;
+  NAKIL_BABS.forEach(b => {
+    h += `<tr><th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
+      <td lang="ar">${b.wazn}</td>
+      <td lang="ar" class="nakil-out">${b.make(rs[0], rs[1], rs[2]).normalize("NFC")}</td></tr>`;
+  });
+  return h + `</table></div>`;
+}
+
 // Birgivi's five classes of governed form (Awamil, «معمول» tables).
 const MAMUL_LABEL = {
   marfu:  { ar: "مَعْمُولٌ مَرْفُوع", en: "governed in raf'",  tr: "merfû ma'mûl" },
@@ -2136,8 +2237,10 @@ function openWord(tok, el, tab, ctx){
     // A jamid verb does not conjugate fully — the data carries exactly the
     // tenses that exist (لَيْسَ: mazi only; مَا زَالَ: mazi + mudari, no amr),
     // so the tab offers what is present rather than rendering empty tables.
-    const tense = morph.jamid && !(morph[sarfTense] && morph[sarfTense].length)
+    const nakil = morph.jamid ? null : nakilRoot(entry);
+    let tense = morph.jamid && !(morph[sarfTense] && morph[sarfTense].length)
       ? "mazi" : sarfTense;
+    if (tense === "nakil" && !nakil) tense = "mazi";
     html += `<p class="lemma">${entry.lemma}</p>
       <p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
     if (!morph.jamid) html += `<div class="facts">
@@ -2151,14 +2254,19 @@ function openWord(tok, el, tab, ctx){
         <button data-tense="mudari" class="${tense==="mudari"?"on":""}">المضارع</button>` : ""}
         ${morph.jamid ? "" : `
         <button data-tense="amr" class="${tense==="amr"?"on":""}">الأمر</button>
-        ${muhtelife(morph) ? `<button data-tense="muhtelife" class="${tense==="muhtelife"?"on":""}">المُخْتَلِفَة</button>` : ""}`}
+        ${muhtelife(morph) ? `<button data-tense="muhtelife" class="${tense==="muhtelife"?"on":""}">المُخْتَلِفَة</button>` : ""}
+        ${nakil ? `<button data-tense="nakil" class="${tense==="nakil"?"on":""}">النَّقْل</button>` : ""}`}
       </div>`;
     const highlight = tok.s.full.replace(/[«»،:.]/g, "");
-    if (tense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
+    if (tense === "nakil" && nakil) html += nakilTable(nakil);
+    else if (tense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
     else if (tense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight);
     else if (tense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);
     else html += conjTable(morph[tense], PERSON_ROWS, highlight);
-    html += `<p class="sarf-note">${tense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${morph.note ? " " + morph.note : ""}</p>`;
+    html += `<p class="sarf-note">${
+      tense === "nakil" ? ui().nakilNote
+      : tense === "muhtelife" ? ui().muhtelifeNote : ui().sarfNote}${
+      tense === "nakil" ? "" : morph.note ? " " + morph.note : ""}</p>`;
     // Saving a verb adds a conjugation card, not a meaning card.
     if (muhtelife(morph)) {
       const savedV = cardSaved("verb:" + tok.lex);

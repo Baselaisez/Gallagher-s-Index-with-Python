@@ -379,6 +379,23 @@ because the artifact host supplies one. Served standalone the browser guesses,
 and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
 test asserts `document.characterSet === "UTF-8"` for exactly this reason.
 
+**Bablara nakil is a formal drill, and says so.** The النَّقْل phase in the
+sarf sheet carries a sound Form I root through the twelve augmented wazns,
+reproducing the received table (research/sources/bablara-nakil-12-wazn.txt)
+including its deliberately mechanical اِنْنَصَرَ and the iftial ibdal rules
+(ص ض ط ظ → ط، ز → زد، د ذ → idgham). Substitution is done at render time —
+the ONE derivation the repo allows, because sound-root wazn substitution is
+exact; anything weak or geminate is refused (`nakilRoot` returns null) and
+belongs to the i'lal rules (research/sources/ilal-kaideleri-turkce.txt).
+The note under the table says attestation is not claimed — the madrasah's
+own framing. NFC-normalize every generated form (fatha/shadda order).
+
+**Poetry wears verse dress, driven by data.** A sentence whose token carries
+`punctAfter: "•"` renders centered with a ✽ hemistich ornament and takes
+`.verse` — no manifest flag, no renderer special case per story. The raw
+bullet never reaches the DOM as text; the spoken string keeps it (symbols
+are TTS-silent), so playback offsets stay honest.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per
