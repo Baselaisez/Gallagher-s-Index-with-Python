@@ -135,26 +135,48 @@ if (!CHROME) {
     if (badge !== '1') throw new Error('badge=' + badge);
   });
 
-  await check('SRS review: four grades, SM-2 intervals, deck stats', async () => {
+  await check('SRS review: four grades, FSRS memory model, deck stats', async () => {
     await page.keyboard.press('Escape');
     await page.locator('#deckOpen').click();
     // Stats row is present before any review.
     await page.waitForSelector('.deck-stats .fresh', { timeout: 3000 });
     await page.locator('#reviewCard').click();
     await page.locator('#reviewCard').click();
-    // All four SM-2 grades, each showing the interval it would schedule.
+    // All four grades, each showing the interval it would schedule.
     const grades = await page.locator('.grade-row .grade').count();
     if (grades !== 4) throw new Error('expected 4 grade buttons, got ' + grades);
     const previews = await page.locator('.grade-row .grade i').allTextContents();
     if (!previews.every(t => t.trim())) throw new Error('a grade button has no interval preview');
     if (previews[0] !== '10m') throw new Error('Again should schedule 10m, got ' + previews[0]);
+    // FSRS: the previews must be strictly ordered hard < good < easy.
+    const days = previews.slice(1).map(t => parseInt(t, 10));
+    if (!(days[0] < days[1] && days[1] < days[2]))
+      throw new Error('previews not hard<good<easy: ' + previews.join(','));
     await page.locator('.grade-row .grade[data-q="good"]').click();
     const txt = await page.locator('.empty').textContent();
     if (!txt.includes('Next review')) throw new Error('no next-review text: ' + txt);
     if (!(await page.locator('#deckCount').isHidden())) throw new Error('badge should hide when nothing due');
-    // A card graded Good from new is due in a day, not ten minutes.
-    const ivl = await page.evaluate(() => state.deck[0].srs.ivl);
-    if (ivl !== 1) throw new Error('first Good should give ivl=1, got ' + ivl);
+    // A first Good seeds the machine-learned initial stability: w[2] ≈ 3.7,
+    // so the card is due in about four days — not SM-2's fixed one day.
+    const s = await page.evaluate(() => state.deck[0].srs);
+    if (s.ivl !== 4) throw new Error('first Good should give ivl=4 (S0≈3.71), got ' + s.ivl);
+    if (!(s.S > 3 && s.S < 5)) throw new Error('stability not seeded: ' + s.S);
+    if (!(s.D >= 1 && s.D <= 10)) throw new Error('difficulty out of range: ' + s.D);
+
+    // An SM-2-era card (ease/ivl, no memory state) migrates on its next grade:
+    // the survived interval floors the stability, so the interval grows.
+    const mig = await page.evaluate(() => {
+      const saved = state.deck;
+      const c = { lex: 'mig', type: 'word', bare: 'x', lemma: 'م', gloss: { en: 'a', tr: 'b' },
+                  srs: { due: 0, ivl: 10, ease: 2.0, reps: 3, lapses: 1 } };
+      state.deck = [c];
+      grade(c, 'good');
+      const out = { S: c.srs.S, D: c.srs.D, ivl: c.srs.ivl };
+      state.deck = saved; persistDeck();
+      return out;
+    });
+    if (!(mig.ivl > 10)) throw new Error('migrated card interval did not grow: ' + mig.ivl);
+    if (!(mig.D > 5)) throw new Error('lost ease should seed high difficulty, got ' + mig.D);
   });
 
   await check('games: spot-the-error round works', async () => {
@@ -2312,6 +2334,44 @@ if (!CHROME) {
     });
     if (!/hamza|Hemze|hemze/i.test(refusal))
       throw new Error('a hamzated root was not honestly refused');
+  });
+
+  await check('the Sarf Lab auto-detects the attested bab for a known root', async () => {
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    // حمد is attested in the corpus as bab سَمِعَ — typing it must answer
+    // حَمِدَ يَحْمَدُ, not the نَصَرَ default's حَمَدَ.
+    await page.fill('#conjRoot', 'حمد');
+    const out = await page.evaluate(() => document.getElementById('conjOut').textContent);
+    for (const f of ['حَمِدَ', 'يَحْمَدُ'])
+      if (!out.normalize('NFC').includes(f.normalize('NFC')))
+        throw new Error('auto-detected tables lack ' + f + ' — bab did not snap');
+    // The attested bab button carries the dot and is selected.
+    const seg = await page.evaluate(() => {
+      const b = document.querySelector('#conjBabSeg button.attested');
+      return b ? { txt: b.textContent, on: b.classList.contains('on') } : null;
+    });
+    if (!seg || !seg.txt.includes('سَمِعَ') || !seg.on)
+      throw new Error('attested marker wrong: ' + JSON.stringify(seg));
+    if (!(await page.locator('.conj-known:not(.other)').count()))
+      throw new Error('no attested hint shown');
+    // Wandering to another bab keeps the tool honest: re-vowelled output
+    // (bab ضرب gives mazi حَمَدَ) plus a nudge naming the attested verb.
+    await page.locator('#conjBabSeg button[data-cb="2"]').click();
+    const out2 = await page.evaluate(() => document.getElementById('conjOut').textContent);
+    if (!out2.normalize('NFC').includes('يَحْمِدُ'.normalize('NFC')))
+      throw new Error('bab 2 did not re-vowel the mudari');
+    if (!(await page.locator('.conj-known.other').count()))
+      throw new Error('no attested nudge when exploring another bab');
+    // A different known root moves the detection with it: جلس runs on ضرب's bab.
+    await page.fill('#conjRoot', 'جلس');
+    const seg2 = await page.evaluate(() => {
+      const b = document.querySelector('#conjBabSeg button.attested');
+      conjState.root = 'نصر'; closeSheet();
+      return b ? b.textContent : null;
+    });
+    if (!seg2 || !seg2.includes('ضَرَبَ'))
+      throw new Error('jalasa did not snap to bab ضَرَبَ: ' + seg2);
   });
 
   await check('no JS errors on page', async () => {

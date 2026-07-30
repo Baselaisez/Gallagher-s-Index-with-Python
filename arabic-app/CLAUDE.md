@@ -453,6 +453,34 @@ inconsistencies on arrival (صَانَ، أَمْكَنَ، تَهَاوَنَ m
 idgham). Hamzated and lafif roots are refused with the honest reason. The
 UI is `openConjugator` (nav: #conjOpen), state in `conjState`.
 
+**The Sarf Lab knows the corpus's own verbs.** `conjKnownMap()` (lazy,
+keyed by `conjKey` = radicals with ى→ي) maps every classifiable root to the
+form/bab the texts recite it in, via `sjAttested(m)` — the SAME
+wazn-head/bab-model tables the audit uses (`SJ_FORM_OF_HEAD`,
+`SJ_BAB1_OF_MODEL`), hoisted so lookup and audit can never disagree. A Form
+I attestation outranks a derived one. On every root keystroke
+`conjAutoPick()` snaps the controls to the attested form/bab (so typing
+حمد answers حَمِدَ of bab سَمِعَ, not the نَصَرَ default); `syncConjSeg()`
+keeps a green `●` on the attested buttons even while the learner explores
+other babs, and `renderConjOut` shows a green attested hint on the home bab
+or a nudge naming the real verb elsewhere (keys conjKnown/conjKnownOther).
+
+**Review scheduling is FSRS-4.5, not SM-2 — the one real ML model in the
+web build.** `fsrsNext(s, g)` is a pure step function over the card's
+memory state (S stability in days, D difficulty 1–10) with the seventeen
+published weights machine-learned from hundreds of millions of reviews
+(`FSRS_W`). Desired retention is 0.9 and the 19/81 factor makes
+R(S, S) = 0.9, so the next interval IS the stability (`s.ivl =
+round(s.S)`), which keeps `deckStats`'s mature threshold and `fmtDue`
+untouched. Elapsed time comes from `s.seen`; a card without one is assumed
+reviewed on time (elapsed = ivl ⇒ R = 0.9 exactly). SM-2-era cards migrate
+on their first FSRS grade: the survived interval floors S, lost ease seeds
+D (`5 + (2.5 − ease) × 3.5`). "Again" still requeues in ten minutes and the
+post-lapse stability sets the next real interval. `struggleScore` prefers D
+when present, falls back to ease. The deck shows `fsrsNote` under the
+stats. The smoke suite asserts hard<good<easy previews, first-Good ivl=4
+(S0 = w[2] ≈ 3.71), and that a migrated SM-2 card's interval grows.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per
