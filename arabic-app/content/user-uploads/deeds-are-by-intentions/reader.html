@@ -961,7 +961,18 @@ const L = {
         nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
         mercyUsed:"\u{1F6E1} A missed day was forgiven — your weekly mercy kept the streak.",
         ctxJump:"Open this sentence in its story",
-        conjBtn:"Sarf Lab",
+        conjBtn:"Workshop",
+        sarfLabTab:"Sarf",
+        jadhrTab:"Root Finder",
+        jadhrIntro:"Type any form — conjugated, augmented, or wearing its clitics — and the finder digs for the root. The corpus answers first with everything the lexicon knows; only then do the peeling rules run, reversing even the iftial ibdal (اِصْطَبَرَ → ص ب ر).",
+        jadhrPh:"e.g. استغفر or يَجْزِيهِمْ",
+        jadhrBad:"Type at least three Arabic letters.",
+        jadhrNone:"No root found — the form resists the rules; try the dictionary form.",
+        jadhrRoot:"الْجَذْر · Root:",
+        jadhrCorpus:"known to the corpus:",
+        jadhrSamai:"The Form I bab is SAMA'I — recited from the lexicon, never computed. It shows here because the corpus carries it.",
+        jadhrRules:"Derived by the peeling rules — the corpus does not carry this form.",
+        jadhrWeak:"A weak radical hides in the spelling: و/ي marks where only the lexicon can decide.",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
         conjPh:"root — e.g. نصر or قول",
         conjBad:"Enter a three-letter root.",
@@ -1024,7 +1035,18 @@ const L = {
         nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
         mercyUsed:"\u{1F6E1} Kaçan bir gün bağışlandı — haftalık müsamahan seriyi korudu.",
         ctxJump:"Bu cümleyi hikâyesinde aç",
-        conjBtn:"Sarf Atölyesi",
+        conjBtn:"Atölye",
+        sarfLabTab:"Sarf",
+        jadhrTab:"Kök Bulucu",
+        jadhrIntro:"Herhangi bir kalıp yazın — çekimli, mezîd veya öneki üzerinde — bulucu kökü çıkarsın. Önce külliyat, lugatın bildiği her şeyle cevap verir; ancak o susarsa soyma kaideleri çalışır, iftiâl ibdâlini bile geri çevirir (اِصْطَبَرَ → ص ب ر).",
+        jadhrPh:"örn. استغفر veya يَجْزِيهِمْ",
+        jadhrBad:"En az üç Arap harfi yazın.",
+        jadhrNone:"Kök bulunamadı — kalıp kaidelere direniyor; sözlük şeklini deneyin.",
+        jadhrRoot:"الْجَذْر · Kökü:",
+        jadhrCorpus:"külliyatta biliniyor:",
+        jadhrSamai:"Sülâsî bâb SEMÂÎDİR — lugatten okunur, kaideyle hesaplanmaz. Burada görünüyor; çünkü külliyat onu taşıyor.",
+        jadhrRules:"Soyma kaideleriyle türetildi — külliyat bu kalıbı taşımıyor.",
+        jadhrWeak:"Yazıda gizlenen illetli bir harf var: yalnız lugatın karar verebildiği yerde و/ي yazılır.",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
         conjPh:"kök — örn. نصر veya قول",
         conjBad:"Üç harfli bir kök girin.",
@@ -2885,6 +2907,16 @@ function sarfDerive(cls, form, bab){
       ...P(core, p+f+"َا"+a+"َ"+l) }) };
   }
   if (form === "IV") {
+    if (t === "gem") {
+      const G = f + "ِ" + a + "ّ", S = f + "ْ" + a + "ِ" + l;   // حِلّ / حْلِل
+      return { ok: true, wazn: sjN("أَفْعَلَ يُفْعِلُ — مُضَاعَفٌ"),
+        mazi: sjMazi14("أَ" + f + "َ" + a + "ّ", "أَ" + f + "ْ" + a + "َ" + l),
+        mudari: sjMudari14(yv, G, S),
+        amr: ["أَ"+G+"َ", "أَ"+G+"َا", "أَ"+G+"ُوا", "أَ"+G+"ِي", "أَ"+G+"َا", "أَ"+S+"ْنَ"].map(sjN),
+        ...sjGovGem(yv, G), masdar: sjN("إِ" + f + "ْ" + a + "َا" + l),
+        fail: sjN("مُ" + f + "ِ" + a + "ّ"), maful: sjN("مُ" + f + "َ" + a + "ّ"),
+        note: "مُضَاعَفٌ مِنَ الْإِفْعَالِ: الْجَزْمُ بِالْفَتْحِ — لَمْ يُحِلَّ وَنَحْوُهُ." };
+    }
     if (t === "ajwaf") return { ok: true, wazn: sjN("أَفْعَلَ يُفْعِلُ — أَجْوَفُ"),
       mazi: sjMazi14("أَ"+f+"َا"+l, "أَ"+f+"َ"+l),
       mudari: sjMudari14(yv, f+"ِي"+l, f+"ِ"+l),
@@ -3114,9 +3146,100 @@ function adadRuleText(rule){
   return ui()["adadRule_" + rule] || "";
 }
 
+// ---------- the Root Finder (كَاشِفُ الْجَذْرِ / Kök Bulucu) ----------
+// Corpus FIRST: if any stored paradigm contains the typed form, the answer
+// comes with everything the lexicon knows — root, form, and for Form I the
+// bab, which is SEMA'I: recited, never computed. Only when the corpus is
+// silent do the de-augmentation RULES run — they peel است/ان/ت/أ and the
+// iftial ta (reversing its ibdal: اصْطَبَرَ → صبر, اِزْدَجَرَ → زجر), and
+// where orthography hides a weak radical they say so honestly (و/ي)
+// instead of guessing.
+class RootFinder {
+  static _index = null;
+  static corpusIndex(){
+    if (this._index) return this._index;
+    this._index = [];
+    const seen = new Set();
+    STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+      if (seen.has(lex)) return;
+      seen.add(lex);
+      const e = st.glossary[lex];
+      if (!e || !e.root) return;
+      this._index.push({ lex, m, root: e.root, lemma: e.lemma, form: e.form || null,
+                         bab: m.bab || null, gloss: e.gloss });
+    }));
+    return this._index;
+  }
+  static fromCorpus(word){
+    for (const v of this.corpusIndex()) {
+      const cell = findFormInParadigm(v.m, word);
+      if (cell) return { root: v.root, via: "corpus", lemma: v.lemma,
+                         form: v.form, bab: v.bab, gloss: v.gloss, cell };
+    }
+    return null;
+  }
+  // candidate skeletons: the bare word, minus one clitic, minus the person
+  // prefixes and suffixes of a conjugated form
+  static candidates(word){
+    let s = stripAr((word || "").replace(/[«»،:.!؟\s]/g, ""));
+    const out = new Set([s]);
+    [s.replace(/^(و|ف|س|ل|ب)/, "")].forEach(x => out.add(x));
+    [...out].forEach(x => {
+      [x.replace(/(ون|ين|ان|وا|تم|تما|تن|نا|ات|ت|ن|ي|ا)$/, "")].forEach(y => out.add(y));
+    });
+    [...out].forEach(x => {
+      if (/^[يتأن]/.test(x)) out.add(x.slice(1));
+    });
+    return [...out].filter(x => x.length >= 3);
+  }
+  // one skeleton → {root, wazn} or null. Rules ordered longest-first.
+  static peel(s){
+    let m;
+    if ((m = s.match(/^مست(...)$/)) || (m = s.match(/^است(...)$/)) || (m = s.match(/^ست(...)$/)))
+      return { root: m[1], wazn: "اِسْتَفْعَلَ" };
+    if ((m = s.match(/^من(...)$/)) || (m = s.match(/^ان(...)$/)))
+      return { root: m[1], wazn: "اِنْفَعَلَ" };
+    // iftial with its ibdal: the ta shows as ط after ص/ض/ط/ظ and as د after ز/د/ذ
+    if ((m = s.match(/^[ما]([صضطظ])ط(..)$/))) return { root: m[1] + m[2], wazn: "اِفْتَعَلَ (ت ← ط)" };
+    if ((m = s.match(/^[ما]([زدذ])د(..)$/)))  return { root: m[1] + m[2], wazn: "اِفْتَعَلَ (ت ← د)" };
+    if ((m = s.match(/^[ما](.)ت(..)$/)))      return { root: m[1] + m[2], wazn: "اِفْتَعَلَ" };
+    if ((m = s.match(/^مت(.)ا(..)$/)) || (m = s.match(/^ت(.)ا(..)$/)))
+      return { root: m[1] + m[2], wazn: "تَفَاعَلَ" };
+    if ((m = s.match(/^مت(...)$/)) || (m = s.match(/^ت(...)$/)))
+      return { root: m[1], wazn: "تَفَعَّلَ" };
+    if ((m = s.match(/^أ(...)$/))) return { root: m[1], wazn: "أَفْعَلَ" };
+    if ((m = s.match(/^(.)ا(..)$/))) return { root: m[1] + m[2], wazn: "فَاعَلَ" };
+    if ((m = s.match(/^ن(...)$/))) return { root: m[1], wazn: "اِنْفَعَلَ" };
+    if (s.length === 3) return { root: s, wazn: "فَعَلَ / فَعَّلَ" };
+    return null;
+  }
+  // weak slots the skeleton cannot decide: name the possibilities
+  static weakNote(root){
+    const notes = [];
+    if (root[1] === "ا") notes.push("mid");
+    if (/[اى]$/.test(root)) notes.push("last");
+    return notes;
+  }
+  static find(word){
+    const hit = this.fromCorpus(word);
+    if (hit) return hit;
+    for (const c of this.candidates(word)) {
+      const r = this.peel(c);
+      if (r) {
+        const weak = this.weakNote(r.root);
+        let display = r.root.split("").join(" ");
+        if (weak.includes("mid")) display = display.replace(" ا ", " و/ي ");
+        if (weak.includes("last")) display = display.replace(/[اى]$/, "و/ي");
+        return { root: display, via: "rules", wazn: r.wazn, weak: weak.length > 0, skeleton: c };
+      }
+    }
+    return null;
+  }
+}
+
 // ---------- the Sarf Lab UI ----------
 let conjState = { root: "نصر", form: "I", bab: 1, known: null,
-                  lab: "sarf", adadN: 125, adadNoun: 0 };
+                  lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -3232,9 +3355,44 @@ function renderAdadOut(){
   h += `<p class="sarf-note">${ui().adadNote}</p>`;
   out.innerHTML = h;
 }
+function renderJadhrOut(){
+  const out = document.getElementById("jadhrOut");
+  if (!out) return;
+  const w = (conjState.jadhr || "").trim();
+  if (!w || stripAr(w).replace(/[^ء-ي]/g, "").length < 3) {
+    out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`;
+    return;
+  }
+  const r = RootFinder.find(w);
+  if (!r) { out.innerHTML = `<p class="empty">${ui().jadhrNone}</p>`; return; }
+  let h = `<div class="adad-phrase" lang="ar" dir="rtl">${ui().jadhrRoot} ${r.root}</div>`;
+  if (r.via === "corpus") {
+    const lbl = formCellLabel(r.cell);
+    h += `<p class="conj-known">✓ ${ui().jadhrCorpus} <b lang="ar" dir="rtl">${r.lemma}</b>${
+      r.gloss ? " — " + T(r.gloss) : ""}${r.form ? " · " + ui().formChip + " " + r.form : ""}</p>`;
+    if (r.bab) h += `<p class="bab-line">${r.bab}</p><p class="sarf-note">${ui().jadhrSamai}</p>`;
+    h += `<p class="it-cell"><span lang="ar">${lbl.ar}</span> — ${state.uiLang === "tr" ? lbl.tr : lbl.en}</p>`;
+  } else {
+    h += `<p class="bab-line" lang="ar">${r.wazn}</p>
+      <p class="sarf-note">${ui().jadhrRules}${r.weak ? " " + ui().jadhrWeak : ""}</p>`;
+  }
+  out.innerHTML = h;
+}
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "jadhr") {
+    body.innerHTML = `<p class="ref-intro">${ui().jadhrIntro}</p>
+      <div class="conj-lab">
+        <input id="jadhrIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${ui().jadhrPh}" value="${conjState.jadhr}">
+      </div>
+      <div id="jadhrOut"></div>`;
+    const inp = document.getElementById("jadhrIn");
+    inp.addEventListener("input", () => { conjState.jadhr = inp.value; renderJadhrOut(); });
+    renderJadhrOut();
+    return;
+  }
   if (conjState.lab === "adad") {
     body.innerHTML = `<p class="ref-intro">${ui().adadIntro}</p>
       <div class="conj-lab">
@@ -3285,8 +3443,9 @@ function renderLabBody(){
 function openConjugator(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   sheetInner.innerHTML = `<div class="tabs">
-      <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${ui().conjBtn}</button>
+      <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${arSpan("صَرْف")} ${ui().sarfLabTab}</button>
       <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
+      <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {

@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Thirteen stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). bad-al-amali (L6 Master, premium) carries the Ushi qasida **verses 1–40 in eight chapters** from research/sources/emali-qasida-ottoman.txt; the remaining verses go in release by release, five to a chapter (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
+Thirteen stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). kitab-al-sulh (L5 Advanced, premium) is **ORIGINAL graded Arabic** composed editorially from the user's Turkish sulh article (research/sources/sulh-fiqh-turkce.txt; the aya and hadith are received text, everything else editorial — the attribution says so and must keep saying so); its regenerator is tools/authoring/author_sulh.py. bad-al-amali (L6 Master, premium) carries the Ushi qasida **verses 1–45 in nine chapters** from research/sources/emali-qasida-ottoman.txt; the remaining verses go in release by release, five to a chapter (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -525,6 +525,20 @@ lab tabs (conjState.lab, `renderLabBody`) — Sarf Lab | Aded Lab
 gAdad) generates every round from the engine with the CLASSIC drill
 errors as distractors (polarity flip, wrong tamyiz shape); the smoke
 suite asserts every generated round is well-formed.
+
+**The Root Finder digs corpus-first.** `class RootFinder`: `fromCorpus`
+scans a lazy index of every stored paradigm with `findFormInParadigm`, so
+a typed form answers with the stored root AND the semai facts (Form I bab
+shows ONLY because the corpus carries it — never computed). Only when
+the corpus is silent do `candidates` (clitic + person-affix peeling) and
+`peel` (pattern table, longest-first: است/مست/ست، من/ان، iftial with its
+ibdal reversed ط←ت after صضطظ and د←ت after زدذ، مت/ت، أ، فاعل، then
+bare ن) run; hidden weak radicals render as و/ي with an honest note. The
+nav button is now **Atölye/Workshop** (key conjBtn) with THREE lab tabs:
+Sarf | Aded | Kök Bulucu (conjState.lab: sarf/adad/jadhr). The reader's
+sarfDerive also gained the **Form IV geminate** branch (أَحَلَّ يُحِلُّ,
+jazm bil-fath) — added because the Sulh story's أَحَلَّ made the audit
+demand it.
 
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`

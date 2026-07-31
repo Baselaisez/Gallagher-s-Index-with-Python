@@ -2518,6 +2518,44 @@ if (!CHROME) {
     if (!g) throw new Error('game items not well-formed');
   });
 
+  await check('the Root Finder digs: corpus first, peeling rules with ibdal after', async () => {
+    const r = await page.evaluate(() => {
+      const f = w => RootFinder.find(w);
+      const root = x => x ? stripAr(x.root).replace(/\s+/g, ' ').trim() : null;
+      return {
+        corpusVia: (f('يَجْزِيهِمْ') || {}).via, corpusRoot: root(f('يَجْزِيهِمْ')),
+        hamida: f('حَمِدَ'),
+        istaghfara: root(f('استغفر')),
+        istabara: root(f('اصطبر')), izdajara: root(f('ازدجر')),
+        inkasara: root(f('انكسر')), taallama: root(f('تعلم')),
+        akrama: root(f('أكرم')), qatala3: root(f('قاتل')),
+        mustaghfir: root(f('مستغفر')), conj: root(f('يستغفرون')),
+      };
+    });
+    if (r.corpusVia !== 'corpus' || r.corpusRoot !== 'ج ز ي')
+      throw new Error('corpus lookup failed: ' + r.corpusVia + ' / ' + r.corpusRoot);
+    // the Form I bab is SEMA'I: it may only appear because the corpus stores it
+    if (!r.hamida || r.hamida.via !== 'corpus' || !/سَمِعَ/.test(r.hamida.bab || ''))
+      throw new Error('hamida did not surface its stored sema-i bab');
+    const want = { istaghfara: 'غ ف ر', istabara: 'ص ب ر', izdajara: 'ز ج ر',
+                   inkasara: 'ك س ر', taallama: 'ع ل م', akrama: 'ك ر م',
+                   qatala3: 'ق ت ل', mustaghfir: 'غ ف ر', conj: 'غ ف ر' };
+    for (const [k, v] of Object.entries(want))
+      if (r[k] !== v) throw new Error(k + ': ' + r[k] + ' ≠ ' + v);
+    // the lab UI: third tab answers with the root
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.sheet .tabs button[data-lab="jadhr"]', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="jadhr"]').click();
+    await page.waitForSelector('#jadhrIn', { timeout: 3000 });
+    await page.fill('#jadhrIn', 'اصطبر');
+    const out = await page.evaluate(() => {
+      const t = document.getElementById('jadhrOut').textContent;
+      conjState.lab = 'sarf'; closeSheet();
+      return t;
+    });
+    if (!out.includes('ص ب ر')) throw new Error('lab output lacks the root: ' + out);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
