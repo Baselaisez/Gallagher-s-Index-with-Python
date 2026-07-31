@@ -576,6 +576,20 @@
   }
   .conj-known b { font-family: var(--ar-font); font-size: 1.05rem; }
   .conj-known.other { color: var(--ink-soft); background: var(--accent-soft); }
+  /* the Aded Lab: the composed number-name large, the counted phrase beneath */
+  .adad-big {
+    font-family: var(--ar-font); font-size: 1.7rem; text-align: center;
+    margin: .8rem 0 .3rem; color: var(--ink);
+  }
+  .adad-phrase {
+    font-family: var(--ar-font); font-size: 1.35rem; text-align: center;
+    color: var(--accent); background: var(--accent-soft);
+    border-radius: 10px; padding: .45rem .7rem; margin: .4rem 0 .6rem;
+  }
+  .adad-q b { font-size: 1.5em; margin-inline-end: .3rem; }
+  .conj-lab input[type="number"] {
+    font-family: var(--ui-font); letter-spacing: .1em; direction: ltr;
+  }
   .fsrs-note { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); margin: -.2rem 0 .6rem; }
   .fade-note {
     font-family: var(--ui-font); font-size: .78rem; color: var(--accent);
@@ -957,6 +971,20 @@ const L = {
         conjNote:"Derived live by the i'lal rules from the uploaded texts. The engine is audited against every stored, reviewed paradigm in the corpus — one mismatched cell fails the build.",
         conjKnown:"attested in Qissa's texts:",
         conjKnownOther:"You are exploring another bab — the texts recite this root as",
+        adadTab:"Numbers Lab",
+        adadIntro:"Type a figure and the lab recites its Arabic name, composed exactly as the أسماء عدد worksheets do — thousands, hundreds, units before tens. Pick a noun and the ma'dud rules apply.",
+        adadPh:"125",
+        adadNoNoun:"no noun",
+        adadBad:"Enter a number from 1 to 9999.",
+        adadNote:"Composed live by the Aded engine; the test suite replays the handwritten worksheet table against it, cell for cell.",
+        adadRule_u12:"1 and 2 follow the noun like an adjective and agree with it: كِتَابٌ وَاحِدٌ، جَنَّتَانِ اثْنَتَانِ.",
+        adadRule_u310:"3–10: polarity — a masculine noun takes the ta-form of the number, a feminine drops it; the counted noun is a PLURAL in jarr (mudaf ilayh).",
+        adadRule_teen:"11–19: one indeclinable block (12 declines like a dual); the counted noun is SINGULAR in nasb — tamyiz.",
+        adadRule_ten:"20–99: the tens have no gender; the counted noun is SINGULAR in nasb — tamyiz.",
+        adadRule_mia:"100 and 1000, and their multiples: the counted noun is SINGULAR in jarr — mudaf ilayh.",
+        adadGame:"Numbers (اَلْعَدَد)",
+        adadGameDesc:"Count the noun correctly — polarity, tamyiz and idafa, generated fresh by the engine every round.",
+        adadAsk:"Which counting phrase is correct?",
         ziyadeNote:"From the augmented babs no instrument-noun, diminutive or mubalagha is formed; the comparative and the wonder forms come by paraphrase with أَشَدّ — exactly as the recitation table has it.",
         irabNote:"Word-by-word i'rab is available on every word of this story — the Master-level treatment applies it to the original classical text.",
         sheetBtn:"تركيب", sheetTitle:"Tarkib — the sentence, word by word",
@@ -1006,6 +1034,20 @@ const L = {
         conjNote:"Yüklediğiniz metinlerdeki i'lâl kaideleriyle canlı türetilir. Motor, külliyattaki gözden geçirilmiş her paradigmaya karşı denetlenir — tek bir hücre uyuşmazsa derleme düşer.",
         conjKnown:"Qissa metinlerinde geçtiği şekli:",
         conjKnownOther:"Başka bir babı deniyorsunuz — metinlerde bu kök şöyle geçer:",
+        adadTab:"Esmâ-i Aded",
+        adadIntro:"Bir sayı yazın; atölye Arapça adını أسماء عدد cetvellerinin düzeniyle okusun — binler, yüzler, birler onlardan önce. Bir isim seçerseniz ma'dûd kaideleri uygulanır.",
+        adadPh:"125",
+        adadNoNoun:"isimsiz",
+        adadBad:"1 ile 9999 arasında bir sayı girin.",
+        adadNote:"Aded motoru canlı türetir; test takımı el yazması cetveli hücre hücre bu motora karşı sınar.",
+        adadRule_u12:"1 ve 2, sıfat gibi isimden sonra gelir ve ona uyar: كِتَابٌ وَاحِدٌ، جَنَّتَانِ اثْنَتَانِ.",
+        adadRule_u310:"3–10: polarite — ma'dûd müzekkerse sayı tâ'lı, müennesse tâ'sız olur; ma'dûd CEMİ ve mecrurdur (muzâfun ileyh).",
+        adadRule_teen:"11–19: tek blok, fetha üzere mebnî (12 tesniye gibi çekilir); ma'dûd MÜFRED ve mensubdur — temyizdir.",
+        adadRule_ten:"20–99: onlarda müzekkerlik-müenneslik yoktur; ma'dûd MÜFRED ve mensubdur — temyizdir.",
+        adadRule_mia:"100 ve 1000 (ve katları): ma'dûd MÜFRED ve mecrurdur — muzâfun ileyhtir.",
+        adadGame:"Sayılar (اَلْعَدَد)",
+        adadGameDesc:"İsmi doğru say — polarite, temyiz ve izâfet; her tur motor tarafından yeniden üretilir.",
+        adadAsk:"Hangi sayma ifadesi doğrudur?",
         ziyadeNote:"Ziyâde bablardan ism-i âlet, ism-i tasgîr ve mübâlağa ism-i fâil gelmez; ism-i tafdîl ile taaccüb, أَشَدّ üzerinden dolaylı yapılır — çekim cetvelinde olduğu gibi.",
         irabNote:"Bu hikâyenin her kelimesinde kelime kelime i'rab vardır — Master seviyesinde aynı işlem asıl klasik metne uygulanır.",
         sheetBtn:"تركيب", sheetTitle:"Terkib — cümle kelime kelime",
@@ -2980,8 +3022,101 @@ function sarfAudit(){
   return out;
 }
 
+// ---------- the Aded engine (أَسْمَاءُ الْعَدَدِ) ----------
+// The number chapter as a machine, specified by the uploaded أسماء عدد
+// worksheets (research/sources/esmai-aded-worksheets.txt — the smoke suite
+// replays the handwritten table against this class, cell for cell) and the
+// madrasah rules: composition order thousands، hundreds، UNITS، tens —
+// units before tens — joined by و; hundreds multiples written joined
+// (ثَلَاثُمِائَةٍ); 11–19 one block. Polarity: after 3–10 a masculine counted
+// noun takes the ta-form of the number and a feminine drops it. The ma'dud
+// follows the LAST number uttered: jam' majrur after 3–10, mufrad mansub
+// after 11–99, mufrad majrur in idafa after the hundreds and thousands.
+class AdadEngine {
+  static UNITS_M = ["وَاحِدٌ","اِثْنَانِ","ثَلَاثَةٌ","أَرْبَعَةٌ","خَمْسَةٌ","سِتَّةٌ","سَبْعَةٌ","ثَمَانِيَةٌ","تِسْعَةٌ","عَشَرَةٌ"];
+  static UNITS_F = ["وَاحِدَةٌ","اِثْنَتَانِ","ثَلَاثٌ","أَرْبَعٌ","خَمْسٌ","سِتٌّ","سَبْعٌ","ثَمَانٍ","تِسْعٌ","عَشْرٌ"];
+  static TEEN_M = ["أَحَدَ عَشَرَ","اِثْنَا عَشَرَ","ثَلَاثَةَ عَشَرَ","أَرْبَعَةَ عَشَرَ","خَمْسَةَ عَشَرَ",
+                   "سِتَّةَ عَشَرَ","سَبْعَةَ عَشَرَ","ثَمَانِيَةَ عَشَرَ","تِسْعَةَ عَشَرَ"];
+  static TEEN_F = ["إِحْدَى عَشْرَةَ","اِثْنَتَا عَشْرَةَ","ثَلَاثَ عَشْرَةَ","أَرْبَعَ عَشْرَةَ","خَمْسَ عَشْرَةَ",
+                   "سِتَّ عَشْرَةَ","سَبْعَ عَشْرَةَ","ثَمَانِيَ عَشْرَةَ","تِسْعَ عَشْرَةَ"];
+  static TENS = ["عِشْرُونَ","ثَلَاثُونَ","أَرْبَعُونَ","خَمْسُونَ","سِتُّونَ","سَبْعُونَ","ثَمَانُونَ","تِسْعُونَ"];
+  static HUNDREDS = ["مِائَةٌ","مِائَتَانِ","ثَلَاثُمِائَةٍ","أَرْبَعُمِائَةٍ","خَمْسُمِائَةٍ",
+                     "سِتُّمِائَةٍ","سَبْعُمِائَةٍ","ثَمَانِمِائَةٍ","تِسْعُمِائَةٍ"];
+  static THOUSANDS = ["أَلْفٌ","أَلْفَانِ","ثَلَاثَةُ آلَافٍ","أَرْبَعَةُ آلَافٍ","خَمْسَةُ آلَافٍ",
+                      "سِتَّةُ آلَافٍ","سَبْعَةُ آلَافٍ","ثَمَانِيَةُ آلَافٍ","تِسْعَةُ آلَافٍ"];
+  // the ordered components of n — each knows which ma'dud rule it carries
+  static parts(n, fem){
+    if (!Number.isInteger(n) || n < 1 || n > 9999) return null;
+    const out = [];
+    const th = Math.floor(n / 1000), hu = Math.floor((n % 1000) / 100), rest = n % 100;
+    if (th) out.push({ kind: th < 3 ? "alf" : "alf3", text: this.THOUSANDS[th - 1] });
+    if (hu) out.push({ kind: hu < 3 ? "mia" : "mia3", text: this.HUNDREDS[hu - 1] });
+    if (rest) {
+      const U = fem ? this.UNITS_F : this.UNITS_M;
+      if (rest <= 10) out.push({ kind: rest <= 2 ? "u12" : "u310", text: U[rest - 1] });
+      else if (rest < 20) out.push({ kind: "teen", text: (fem ? this.TEEN_F : this.TEEN_M)[rest - 11] });
+      else {
+        const u = rest % 10, t = Math.floor(rest / 10);
+        if (u) out.push({ kind: "u-comp", text: U[u - 1] });
+        out.push({ kind: "ten", text: this.TENS[t - 2] });
+      }
+    }
+    return out;
+  }
+  // the absolute number-name, exactly as the worksheets compose it
+  static name(n, fem){
+    const p = this.parts(n, !!fem);
+    return p ? p.map(x => x.text).join(" وَ").normalize("NFC") : null;
+  }
+  // a component's idafa (mudaf) form: the tanwin leaves, a dual drops its nun
+  static idafa(part){
+    return part.text
+      .replace(/مِائَتَانِ$/, "مِائَتَا").replace(/أَلْفَانِ$/, "أَلْفَا")
+      .replace(/ثَمَانٍ$/, "ثَمَانِي")
+      .replace(/ٌ$/, "ُ").replace(/ٍ$/, "ِ");
+  }
+  // the counted phrase: number + ma'dud with the rule of the LAST part
+  static phrase(n, noun){
+    const p = this.parts(n, noun.fem);
+    if (!p) return null;
+    if (n === 1) return { text: noun.sg + " " + (noun.fem ? "وَاحِدَةٌ" : "وَاحِدٌ"), rule: "u12" };
+    if (n === 2) return { text: noun.du + " " + (noun.fem ? "اِثْنَتَانِ" : "اِثْنَانِ"), rule: "u12" };
+    const last = p[p.length - 1], head = p.slice(0, -1).map(x => x.text).join(" وَ");
+    const join = head ? head + " وَ" : "";
+    let text, rule;
+    if (last.kind === "u310") { text = join + this.idafa(last) + " " + noun.plMajrur; rule = "u310"; }
+    else if (last.kind === "teen") { text = join + last.text + " " + noun.mansub; rule = "teen"; }
+    else if (last.kind === "ten") { text = join + last.text + " " + noun.mansub; rule = "ten"; }
+    else if (last.kind === "u12") {
+      // ‎101 books: the hundred takes the noun in idafa, the unit repeats it —
+      // مِائَةُ كِتَابٍ وَكِتَابٌ.
+      const prev = p[p.length - 2];
+      text = p.slice(0, -2).map(x => x.text).join(" وَ");
+      text = (text ? text + " وَ" : "") + this.idafa(prev) + " " + noun.majrur + " وَ" +
+             (last.text === (noun.fem ? "اِثْنَتَانِ" : "اِثْنَانِ") ? noun.du : noun.sg);
+      rule = "u12";
+    }
+    else { text = join + this.idafa(last) + " " + noun.majrur; rule = "mia"; }
+    return { text: text.normalize("NFC"), rule };
+  }
+}
+// The countable nouns of the Aded Lab — small, hand-verified, half feminine.
+// دَرَاهِم keeps its fatha in jarr: a diptote plural.
+const ADAD_NOUNS = [
+  { id: "kitab",  fem: false, sg: "كِتَابٌ",  du: "كِتَابَانِ",  mansub: "كِتَابًا",  majrur: "كِتَابٍ",  plMajrur: "كُتُبٍ",    plMansub: "كُتُبًا",    gloss: { en: "book",   tr: "kitap" } },
+  { id: "janna",  fem: true,  sg: "جَنَّةٌ",   du: "جَنَّتَانِ",   mansub: "جَنَّةً",   majrur: "جَنَّةٍ",   plMajrur: "جَنَّاتٍ",   plMansub: "جَنَّاتٍ",   gloss: { en: "garden", tr: "cennet" } },
+  { id: "yawm",   fem: false, sg: "يَوْمٌ",   du: "يَوْمَانِ",   mansub: "يَوْمًا",   majrur: "يَوْمٍ",   plMajrur: "أَيَّامٍ",   plMansub: "أَيَّامًا",   gloss: { en: "day",    tr: "gün" } },
+  { id: "sana",   fem: true,  sg: "سَنَةٌ",   du: "سَنَتَانِ",   mansub: "سَنَةً",   majrur: "سَنَةٍ",   plMajrur: "سَنَوَاتٍ",  plMansub: "سَنَوَاتٍ",  gloss: { en: "year",   tr: "yıl" } },
+  { id: "dirham", fem: false, sg: "دِرْهَمٌ",  du: "دِرْهَمَانِ",  mansub: "دِرْهَمًا",  majrur: "دِرْهَمٍ",  plMajrur: "دَرَاهِمَ",  plMansub: "دَرَاهِمَ",  gloss: { en: "dirham", tr: "dirhem" } },
+  { id: "aya",    fem: true,  sg: "آيَةٌ",    du: "آيَتَانِ",    mansub: "آيَةً",    majrur: "آيَةٍ",    plMajrur: "آيَاتٍ",    plMansub: "آيَاتٍ",    gloss: { en: "verse",  tr: "âyet" } },
+];
+function adadRuleText(rule){
+  return ui()["adadRule_" + rule] || "";
+}
+
 // ---------- the Sarf Lab UI ----------
-let conjState = { root: "نصر", form: "I", bab: 1, known: null };
+let conjState = { root: "نصر", form: "I", bab: 1, known: null,
+                  lab: "sarf", adadN: 125, adadNoun: 0 };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -3078,10 +3213,51 @@ function renderConjOut(){
   <p class="sarf-note">${ui().conjNote}</p>`;
   out.innerHTML = h;
 }
-function openConjugator(){
-  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
-  sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().conjBtn}</button></div>
-    <p class="ref-intro">${ui().conjIntro}</p>
+function renderAdadOut(){
+  const out = document.getElementById("adadOut");
+  if (!out) return;
+  const n = conjState.adadN;
+  const noun = conjState.adadNoun >= 0 ? ADAD_NOUNS[conjState.adadNoun] : null;
+  if (!Number.isInteger(n) || n < 1 || n > 9999) {
+    out.innerHTML = `<p class="empty">${ui().adadBad}</p>`;
+    return;
+  }
+  const abs = AdadEngine.name(n, false);
+  let h = `<div class="adad-big" lang="ar" dir="rtl">${abs}</div>`;
+  if (noun) {
+    const ph = AdadEngine.phrase(n, noun);
+    h += `<div class="adad-phrase" lang="ar" dir="rtl">${ph.text}</div>
+      <p class="sarf-note">${adadRuleText(ph.rule)}</p>`;
+  }
+  h += `<p class="sarf-note">${ui().adadNote}</p>`;
+  out.innerHTML = h;
+}
+function renderLabBody(){
+  const body = document.getElementById("labBody");
+  if (!body) return;
+  if (conjState.lab === "adad") {
+    body.innerHTML = `<p class="ref-intro">${ui().adadIntro}</p>
+      <div class="conj-lab">
+        <input id="adadN" type="number" inputmode="numeric" min="1" max="9999"
+               placeholder="${ui().adadPh}" value="${conjState.adadN}">
+        <div class="seg conj-seg" id="adadNounSeg">
+          <button data-an="-1" class="${conjState.adadNoun === -1 ? "on" : ""}">${ui().adadNoNoun}</button>
+          ${ADAD_NOUNS.map((x, i) =>
+            `<button data-an="${i}" class="${conjState.adadNoun === i ? "on" : ""}" lang="ar">${x.sg}</button>`).join("")}
+        </div>
+      </div>
+      <div id="adadOut"></div>`;
+    const inp = document.getElementById("adadN");
+    inp.addEventListener("input", () => { conjState.adadN = parseInt(inp.value, 10); renderAdadOut(); });
+    body.querySelectorAll("[data-an]").forEach(b => b.addEventListener("click", () => {
+      conjState.adadNoun = +b.dataset.an;
+      body.querySelectorAll("[data-an]").forEach(x => x.classList.toggle("on", x === b));
+      renderAdadOut();
+    }));
+    renderAdadOut();
+    return;
+  }
+  body.innerHTML = `<p class="ref-intro">${ui().conjIntro}</p>
     <div class="conj-lab">
       <input id="conjRoot" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
              placeholder="${ui().conjPh}" value="${conjState.root}">
@@ -3096,15 +3272,29 @@ function openConjugator(){
     conjState.root = root.value;
     conjAutoPick(); syncConjSeg(); renderConjOut();
   });
-  sheetInner.querySelectorAll("[data-cf]").forEach(b => b.addEventListener("click", () => {
+  body.querySelectorAll("[data-cf]").forEach(b => b.addEventListener("click", () => {
     conjState.form = b.dataset.cf;
     syncConjSeg(); renderConjOut();
   }));
-  sheetInner.querySelectorAll("[data-cb]").forEach(b => b.addEventListener("click", () => {
+  body.querySelectorAll("[data-cb]").forEach(b => b.addEventListener("click", () => {
     conjState.bab = +b.dataset.cb;
     syncConjSeg(); renderConjOut();
   }));
   conjAutoPick(); syncConjSeg(); renderConjOut();
+}
+function openConjugator(){
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  sheetInner.innerHTML = `<div class="tabs">
+      <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${ui().conjBtn}</button>
+      <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
+    </div>
+    <div id="labBody"></div>`;
+  sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
+    conjState.lab = b.dataset.lab;
+    sheetInner.querySelectorAll("[data-lab]").forEach(x => x.classList.toggle("on", x === b));
+    renderLabBody();
+  }));
+  renderLabBody();
   showSheet();
 }
 
@@ -4164,6 +4354,7 @@ function openGames(){
     <button id="gSpot"><div class="gt">${ui().spot}</div><div class="gd">${ui().spotDesc}</div></button>
     <button id="gCloze"><div class="gt">${ui().clozeGame}</div><div class="gd">${ui().clozeDesc}</div>${fadeLine}</button>
     <button id="gSarf"><div class="gt">${ui().sarfGame}</div><div class="gd">${ui().sarfGameDesc}</div></button>
+    <button id="gAdad"><div class="gt">${ui().adadGame}</div><div class="gd">${ui().adadGameDesc}</div></button>
     <button id="gCase"><div class="gt">${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
     <button id="gRole"><div class="gt">${ui().roleGame}</div><div class="gd">${ui().roleGameDesc}</div></button>
   </div>`;
@@ -4172,6 +4363,7 @@ function openGames(){
   document.getElementById("gSpot").addEventListener("click", startSpot);
   document.getElementById("gCloze").addEventListener("click", startCloze);
   document.getElementById("gSarf").addEventListener("click", startSarfGame);
+  document.getElementById("gAdad").addEventListener("click", startAdadGame);
   document.getElementById("gCase").addEventListener("click", startCaseGame);
   document.getElementById("gRole").addEventListener("click", startRoleGame);
   showSheet();
@@ -4352,6 +4544,60 @@ function clozeRound(n){
     if (pool.length >= 2) out.push({ ...it, pool, fading: fade.has(it.tok.lex) });
   }
   return out;
+}
+
+// ---------- the numbers game — every round composed by the Aded engine ----------
+// The distractors are the CLASSIC drill errors: polarity flipped, the wrong
+// ma'dud shape (plural where the tamyiz must be singular, singular where the
+// idafa wants the plural), the adjective-number set before its noun.
+function adadGameItems(count){
+  const pools = [
+    () => 3 + Math.floor(Math.random() * 8),
+    () => 11 + Math.floor(Math.random() * 9),
+    () => 20 + Math.floor(Math.random() * 80),
+    () => (1 + Math.floor(Math.random() * 9)) * 100,
+    () => 1 + Math.floor(Math.random() * 2),
+  ];
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    let n = pools[i % pools.length]();
+    while (n > 2 && n % 100 > 0 && n % 100 < 3) n += 3;   // keep the crisp rules
+    const noun = ADAD_NOUNS[Math.floor(Math.random() * ADAD_NOUNS.length)];
+    const right = AdadEngine.phrase(n, noun);
+    const wrongs = [];
+    if (n === 1) {
+      wrongs.push(noun.sg + " " + (noun.fem ? "وَاحِدٌ" : "وَاحِدَةٌ"));
+      wrongs.push((noun.fem ? "وَاحِدَةٌ" : "وَاحِدٌ") + " " + noun.sg);
+    } else if (n === 2) {
+      wrongs.push(noun.du + " " + (noun.fem ? "اِثْنَانِ" : "اِثْنَتَانِ"));
+      wrongs.push((noun.fem ? "اِثْنَتَانِ" : "اِثْنَانِ") + " " + noun.du);
+    } else {
+      const flip = AdadEngine.phrase(n, { ...noun, fem: !noun.fem }).text;
+      if (flip !== right.text) wrongs.push(flip);
+      if (right.rule === "u310") wrongs.push(right.text.replace(noun.plMajrur, noun.majrur));
+      else if (right.rule === "teen" || right.rule === "ten") {
+        if (noun.plMansub !== noun.mansub) wrongs.push(right.text.replace(noun.mansub, noun.plMansub));
+        wrongs.push(right.text.replace(noun.mansub, noun.majrur));
+      }
+      else if (right.rule === "mia") {
+        wrongs.push(right.text.replace(noun.majrur, noun.plMajrur));
+        wrongs.push(right.text.replace(noun.majrur, noun.mansub));
+      }
+    }
+    const distinct = [...new Set(wrongs)].filter(w => w !== right.text).slice(0, 2);
+    if (distinct.length < 2) { i--; continue; }
+    items.push({ n, noun, right, wrongs: distinct });
+  }
+  return items;
+}
+function startAdadGame(){
+  runQuiz({
+    title: ui().adadGame, ask: ui().adadAsk, items: adadGameItems(8), restart: startAdadGame,
+    question: it => `<div class="game-q adad-q"><b>${it.n}</b> × ${T(it.noun.gloss)}</div>`,
+    options: it => shuffle([{ html: it.right.text, ok: true, ar: true },
+      ...it.wrongs.map(w => ({ html: w, ok: false, ar: true }))]),
+    why: it => `<span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.right.text}</span><br>${adadRuleText(it.right.rule)}`,
+  });
 }
 
 function startCloze(){

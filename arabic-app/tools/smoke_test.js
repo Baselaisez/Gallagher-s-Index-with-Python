@@ -2446,6 +2446,78 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  await check('the Aded engine replays the أسماء عدد worksheets cell for cell', async () => {
+    const bad = await page.evaluate(() => {
+      // Transcribed from the two handwritten scans (research/sources/
+      // esmai-aded-worksheets.txt) — the engine must reproduce every pair.
+      const SHEET = {
+        125: 'مائة وخمسة وعشرون', 131: 'مائة وواحد وثلاثون', 146: 'مائة وستة وأربعون',
+        185: 'مائة وخمسة وثمانون', 245: 'مائتان وخمسة وأربعون', 355: 'ثلاثمائة وخمسة وخمسون',
+        368: 'ثلاثمائة وثمانية وستون', 462: 'أربعمائة واثنان وستون', 511: 'خمسمائة وأحد عشر',
+        512: 'خمسمائة واثنا عشر', 521: 'خمسمائة وواحد وعشرون', 622: 'ستمائة واثنان وعشرون',
+        745: 'سبعمائة وخمسة وأربعون', 822: 'ثمانمائة واثنان وعشرون', 921: 'تسعمائة وواحد وعشرون',
+        999: 'تسعمائة وتسعة وتسعون', 100: 'مائة', 1001: 'ألف وواحد', 1012: 'ألف واثنا عشر',
+        1013: 'ألف وثلاثة عشر', 1020: 'ألف وعشرون', 1023: 'ألف وثلاثة وعشرون',
+        1099: 'ألف وتسعة وتسعون', 1100: 'ألف ومائة', 1113: 'ألف ومائة وثلاثة عشر',
+        1122: 'ألف ومائة واثنان وعشرون', 1500: 'ألف وخمسمائة', 1800: 'ألف وثمانمائة',
+        1915: 'ألف وتسعمائة وخمسة عشر', 1921: 'ألف وتسعمائة وواحد وعشرون',
+        1999: 'ألف وتسعمائة وتسعة وتسعون', 2000: 'ألفان', 2011: 'ألفان وأحد عشر',
+        2020: 'ألفان وعشرون', 2101: 'ألفان ومائة وواحد',
+        2999: 'ألفان وتسعمائة وتسعة وتسعون', 3000: 'ثلاثة آلاف',
+      };
+      const bad = [];
+      for (const [n, want] of Object.entries(SHEET)) {
+        const got = stripAr(AdadEngine.name(+n) || '');
+        if (got !== want) bad.push(n + ': ' + got + ' ≠ ' + want);
+      }
+      return bad;
+    });
+    if (bad.length) throw new Error(bad.length + ' cells differ: ' + bad.slice(0, 4).join(' | '));
+  });
+
+  await check('the Aded Lab counts with polarity, and the numbers game drills the rules', async () => {
+    await toLibrary();
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="adad"]').click();
+    await page.waitForSelector('#adadN', { timeout: 3000 });
+    const r = await page.evaluate(() => {
+      conjState.adadN = 125; renderAdadOut();
+      const abs = document.querySelector('.adad-big').textContent;
+      // pick جَنَّة: the phrase must flip polarity (وَخَمْسٌ، not وَخَمْسَةٌ)
+      const j = [...document.querySelectorAll('#adadNounSeg [data-an]')]
+        .find(b => b.textContent.includes('جَنَّةٌ'));
+      j.click();
+      const phrase = document.querySelector('.adad-phrase').textContent;
+      const out = {
+        abs: stripAr(abs), phrase: stripAr(phrase),
+        p310: stripAr(AdadEngine.phrase(3, ADAD_NOUNS[0]).text),
+        p310f: stripAr(AdadEngine.phrase(3, ADAD_NOUNS[1]).text),
+        p11f: stripAr(AdadEngine.phrase(11, ADAD_NOUNS[1]).text),
+        p100: stripAr(AdadEngine.phrase(100, ADAD_NOUNS[0]).text),
+        p101: stripAr(AdadEngine.phrase(101, ADAD_NOUNS[0]).text),
+      };
+      conjState.lab = 'sarf';
+      closeSheet();
+      return out;
+    });
+    if (r.abs !== 'مائة وخمسة وعشرون') throw new Error('absolute name wrong: ' + r.abs);
+    if (r.phrase !== 'مائة وخمس وعشرون جنة') throw new Error('polarity phrase wrong: ' + r.phrase);
+    if (r.p310 !== 'ثلاثة كتب') throw new Error('3+masc wrong: ' + r.p310);
+    if (r.p310f !== 'ثلاث جنات') throw new Error('3+fem polarity wrong: ' + r.p310f);
+    if (r.p11f !== 'إحدى عشرة جنة') throw new Error('11+fem wrong: ' + r.p11f);
+    if (r.p100 !== 'مائة كتاب') throw new Error('100 idafa wrong: ' + r.p100);
+    if (r.p101 !== 'مائة كتاب وكتاب') throw new Error('101 repetition wrong: ' + r.p101);
+    // every generated game round: three distinct options, exactly one correct
+    const g = await page.evaluate(() => {
+      const items = adadGameItems(12);
+      return items.length === 12 && items.every(it =>
+        it.wrongs.length === 2 && !it.wrongs.includes(it.right.text) &&
+        new Set([it.right.text, ...it.wrongs]).size === 3);
+    });
+    if (!g) throw new Error('game items not well-formed');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

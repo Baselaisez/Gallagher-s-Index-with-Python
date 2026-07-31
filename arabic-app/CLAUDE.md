@@ -509,6 +509,23 @@ hlIdx — string matching alone cannot see through a clitic waw), and
 `sarfUserPick` stops the auto-jump from overriding an explicit tense
 click (reset whenever a non-sarf tab opens).
 
+**The Aded engine is the number chapter as a machine.** `class AdadEngine`
+(static tables + `parts/name/idafa/phrase`) composes 1–9999 exactly as the
+uploaded أسماء عدد worksheets do (research/sources/esmai-aded-worksheets.txt
+— the smoke suite replays the transcribed handwritten table against
+`name()`, bare-letters compare): thousands، hundreds، UNITS، tens, joined
+by و, hundreds multiples joined (ثَلَاثُمِائَةٍ). `phrase(n, noun)` applies
+the ma'dud rules by the LAST part: 1–2 adjective-agree, 3–10 polarity +
+jam' majrur, 11–99 mufrad mansub tamyiz, hundreds/thousands mufrad majrur
+idafa (duals drop the nun: مِائَتَا كِتَابٍ), and 101-type numbers repeat
+the noun (مِائَةُ كِتَابٍ وَكِتَابٌ). `ADAD_NOUNS` is a small hand-verified
+set (half feminine; دَرَاهِمَ diptote). UI: the Sarf Atölyesi sheet now has
+lab tabs (conjState.lab, `renderLabBody`) — Sarf Lab | Aded Lab
+(`renderAdadOut`). The numbers game (`startAdadGame` via runQuiz, hub id
+gAdad) generates every round from the engine with the CLASSIC drill
+errors as distractors (polarity flip, wrong tamyiz shape); the smoke
+suite asserts every generated round is well-formed.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per
