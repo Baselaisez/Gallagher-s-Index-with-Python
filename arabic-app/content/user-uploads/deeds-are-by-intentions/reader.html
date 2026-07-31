@@ -511,6 +511,12 @@
   body:not(.lib-mode) .story-sub { text-align: center; }
   body:not(.lib-mode) #metaRow { justify-content: center; }
 
+  /* focus mode: reading fades the chrome; scrolling back recalls it. The
+     header keeps its SPACE — collapsing it shifted the text under the
+     reader's finger mid-scroll (and made taps miss), so only the pixels go. */
+  body:not(.lib-mode) header.app { transition: opacity .3s ease, transform .3s ease; }
+  body.focus-hide:not(.lib-mode) header.app { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+
   .scrim.show { backdrop-filter: blur(2.5px); }
   .sheet { transition: transform .34s cubic-bezier(.22, 1.08, .36, 1); }
   .grab { width: 3rem; opacity: .8; }
@@ -1105,6 +1111,11 @@ const L = {
         nisbaLbl:"النِّسْبَة · Relation:",
         tasgirNone:"No diminutive rule reaches this shape — the classical patterns cover three and four letters.",
         ismSemai:"SEMA'I — recited from the stored table; the rule would have said otherwise.",
+        jumlaTab:"Analyzer",
+        jumlaIntro:"Paste ANY Arabic sentence — even one no story carries. The closed classes (jarr letters, inna's sisters, the jawazim…) are identified with certainty; word kinds are read off the morphology (article, tanwin, verb prefixes); the Root Finder and the Mizan dig what they can. Everything inferred wears a guess mark — the analyzer reads signals, it does not claim i'rab.",
+        jumlaPh:"e.g. لم يكتب الطالب في الدفتر",
+        jumlaGuess:"guess",
+        jumlaHonest:"Certainty lives only in the closed classes. For a word-by-word i'rab written by hand, read the stories — every token there is analyzed and reviewed.",
         ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
         conjPh:"root — e.g. نصر or قول",
@@ -1204,6 +1215,11 @@ const L = {
         nisbaLbl:"النِّسْبَة · Nisbe:",
         tasgirNone:"Bu şekle ulaşan tasgîr kaidesi yok — klasik kalıplar üç ve dört harfi kapsar.",
         ismSemai:"SEMÂÎ — ezber tablodan okunur; kaide başka söylerdi.",
+        jumlaTab:"Çözücü",
+        jumlaIntro:"HERHANGİ bir Arapça cümle yapıştırın — hiçbir hikâyede olmasa bile. Kapalı sınıflar (cer harfleri, inne'nin kardeşleri, cevâzım…) kesin olarak tanınır; kelime türleri morfolojiden okunur (harf-i tarif, tenvin, muzâri önekleri); Kök Bulucu ile Mîzan kazabildiğini kazar. Çıkarım olan her şey tahmin işareti taşır — çözücü işaretleri okur, i'râb iddia etmez.",
+        jumlaPh:"örn. لم يكتب الطالب في الدفتر",
+        jumlaGuess:"tahmin",
+        jumlaHonest:"Kesinlik yalnız kapalı sınıflardadır. Elle yazılmış kelime kelime i'râb için hikâyeleri okuyun — oradaki her kelime tahlilli ve gözden geçirilmiştir.",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
         conjPh:"kök — örn. نصر veya قول",
@@ -3718,10 +3734,117 @@ class IsmEngine {
   }
 }
 
+// ---------- the Sentence Analyzer: any Arabic, no stored data required ----------
+// Paste a sentence the corpus has never seen and get a best-effort parse.
+// Three layers, each honest about its certainty: (1) the PARTICLE TABLE —
+// closed-class words are finite, so identifying them is knowledge, not
+// guessing; (2) MORPHOLOGY — verb prefixes, the definite article, tanwin and
+// the ta marbuta betray the word kind; the Root Finder and the Mizan then dig
+// the root and wazn; (3) SEQUENCE — a jarr letter promises a majrur, لم/لن
+// promise a verb, يا promises a munada. Everything from layers 2-3 wears a
+// tentative mark: the analyzer READS signals, it does not claim i'rab.
+class SentenceAnalyzer {
+  static PARTICLES = {
+    "في": { k: "jarr" }, "من": { k: "jarr" }, "الى": { k: "jarr" }, "إلى": { k: "jarr" },
+    "عن": { k: "jarr" }, "على": { k: "jarr" }, "حتى": { k: "jarr" }, "رب": { k: "jarr" },
+    "مذ": { k: "jarr" }, "منذ": { k: "jarr" }, "بلا": { k: "jarr" },
+    "ان": { k: "inna" }, "إن": { k: "inna" }, "أن": { k: "nasb-verb" }, "لن": { k: "nasb-verb" },
+    "كي": { k: "nasb-verb" }, "اذن": { k: "nasb-verb" }, "إذن": { k: "nasb-verb" },
+    "لم": { k: "jazm" }, "لما": { k: "jazm" },
+    "لا": { k: "nafy" }, "ما": { k: "ma" }, "قد": { k: "qad" }, "سوف": { k: "sawfa" },
+    "يا": { k: "nida" }, "هل": { k: "istifham" }, "أ": { k: "istifham" },
+    "و": { k: "waw" }, "ف": { k: "fa" }, "ثم": { k: "atf" }, "او": { k: "atf" }, "أو": { k: "atf" },
+    "اذا": { k: "shart" }, "إذا": { k: "shart" }, "لو": { k: "shart" }, "لولا": { k: "shart" },
+    "كان": { k: "kana" }, "ليس": { k: "kana" }, "هو": { k: "pron" }, "هي": { k: "pron" },
+    "هم": { k: "pron" }, "انا": { k: "pron" }, "أنا": { k: "pron" }, "انت": { k: "pron" }, "أنت": { k: "pron" },
+    "هذا": { k: "ishara" }, "هذه": { k: "ishara" }, "ذلك": { k: "ishara" }, "تلك": { k: "ishara" },
+    "الذي": { k: "mawsul" }, "التي": { k: "mawsul" }, "الذين": { k: "mawsul" }, "الا": { k: "istithna" }, "إلا": { k: "istithna" },
+  };
+  static KIND_LBL = {
+    jarr:     { en: "jarr letter — the next noun should be majrur", tr: "cer harfi — sonraki isim mecrur olmalı" },
+    inna:     { en: "inna family — nasb on its noun, raf' on its khabar", tr: "inne ailesi — ismini nasb, haberini raf eder" },
+    "nasb-verb": { en: "nasb governor — awaits a mudari' verb", tr: "nâsıb — muzâri fiil bekler" },
+    jazm:     { en: "jazm governor — awaits a mudari' verb", tr: "câzim — muzâri fiil bekler" },
+    nafy:     { en: "negation la (or prohibition before a verb)", tr: "nefiy lâsı (fiilden önce nehiy de olabilir)" },
+    ma:       { en: "ma — negation, relative, or masdar-maker; context decides", tr: "mâ — nefiy, mevsûl veya masdariyye; bağlam belirler" },
+    qad:      { en: "qad — certainty with past, sometimes with mudari'", tr: "kad — mâzîyle tahkik, muzâriyle bazen" },
+    sawfa:    { en: "future marker", tr: "istikbal edatı" },
+    nida:     { en: "vocative — the next noun is a munada", tr: "nidâ — sonraki isim münâdâdır" },
+    istifham: { en: "question particle", tr: "istifham edatı" },
+    waw:      { en: "waw — joining, circumstance, oath or resumption; test with «while»", tr: "vav — atıf, hâl, kasem veya isti'nâf; «-iken» denemesi yapın" },
+    fa:       { en: "fa — joining, consequence or answer", tr: "fâ — atıf, tefrî' veya cevap" },
+    atf:      { en: "joining particle", tr: "atıf harfi" },
+    shart:    { en: "conditional", tr: "şart edatı" },
+    kana:     { en: "kana family — raf' on its noun, nasb on its khabar", tr: "kâne ailesi — ismini raf, haberini nasb eder" },
+    pron:     { en: "detached pronoun", tr: "munfasıl zamir" },
+    ishara:   { en: "demonstrative", tr: "ism-i işaret" },
+    mawsul:   { en: "relative noun", tr: "ism-i mevsûl" },
+    istithna: { en: "exception particle", tr: "istisnâ edatı" },
+  };
+  static analyze(text){
+    const words = (text || "").split(/[\s،.؛:!؟]+/).filter(w => stripAr(w).length);
+    const out = [];
+    let expect = null;
+    words.forEach(w => {
+      const bare = stripAr(w).replace(/[^ء-ي]/g, "");
+      const row = { w, notes: [], sure: false };
+      // clitic-aware particle lookup: whole word first, then behind و/ف
+      let core = bare, prefix = null;
+      // peel a joining و/ف ONLY when what remains is itself a particle or
+      // definite — a radical waw (وَصِيَّة، وَقَعَ) keeps its letter.
+      if (!this.PARTICLES[core] && /^[وف]/.test(core) && core.length > 1 &&
+          (this.PARTICLES[core.slice(1)] || /^ال/.test(core.slice(1)))) {
+        prefix = core[0]; core = core.slice(1);
+      }
+      if (prefix) row.notes.push(this.KIND_LBL[prefix === "و" ? "waw" : "fa"]);
+      const p = this.PARTICLES[core];
+      if (p) {
+        row.kind = "particle"; row.sure = true;
+        row.notes.push(this.KIND_LBL[p.k]);
+        expect = ["jarr"].includes(p.k) ? "majrur"
+               : ["jazm", "nasb-verb"].includes(p.k) ? "verb"
+               : p.k === "nida" ? "munada" : null;
+        out.push(row); return;
+      }
+      if (expect === "majrur") row.notes.push({ en: "after a jarr letter — likely majrur", tr: "cer harfinden sonra — muhtemelen mecrur" });
+      if (expect === "verb") row.notes.push({ en: "after a governor of verbs", tr: "fiile âmil olan edattan sonra" });
+      if (expect === "munada") row.notes.push({ en: "likely the munada", tr: "muhtemelen münâdâ" });
+      expect = null;
+      // morphology signals — tentative
+      const hasAl = /^ال/.test(core.replace(/^[وفبلك]/, ""));
+      const tanwin = /[ًٌٍ]/.test(w.normalize("NFC"));
+      const taM = /ة$/.test(core);
+      const verbish = /^[يتنأ]/.test(core) && core.length >= 3 && !hasAl;
+      if (hasAl || tanwin || taM) {
+        row.kind = "noun";
+        if (hasAl) row.notes.push({ en: "definite article — a noun", tr: "harf-i tarif — isimdir" });
+        if (tanwin) row.notes.push({ en: "tanwin — an indefinite noun", tr: "tenvin — nekre isimdir" });
+        if (taM) row.notes.push({ en: "ta marbuta — a noun, feminine", tr: "tâ-i merbûta — müennes isimdir" });
+      } else if (verbish) {
+        row.kind = "verb?";
+        row.notes.push({ en: "mudari'-like prefix — probably a verb", tr: "muzâri öneki — muhtemelen fiildir" });
+      } else {
+        row.kind = "noun?";
+      }
+      const r = RootFinder.find(w);
+      if (r) {
+        row.root = r.root;
+        if (r.via === "corpus") { row.lemma = r.lemma; row.gloss = r.gloss; row.sure = true; }
+        if (r.wazn) row.wazn = r.wazn;
+      }
+      const m = WaznEngine.of(w);
+      if (m && m.mizan) row.wazn = m.mizan;
+      out.push(row);
+    });
+    return out;
+  }
+}
+
 // ---------- the Sarf Lab UI ----------
 let conjState = { root: "نصر", form: "I", bab: 1, known: null,
                   lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر",
-                  mizan: "يستعملون", ism: "مدينة" };
+                  mizan: "يستعملون", ism: "مدينة",
+                  jumla: "لم يكتبِ الطالبُ في الدفترِ" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -3862,6 +3985,24 @@ function renderJadhrOut(){
   }
   out.innerHTML = h;
 }
+function renderJumlaOut(){
+  const out = document.getElementById("jumlaOut");
+  if (!out) return;
+  const rows = SentenceAnalyzer.analyze(conjState.jumla);
+  if (!rows.length) { out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`; return; }
+  const lang = state.uiLang === "tr" ? "tr" : "en";
+  let h = `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
+  rows.forEach(r => {
+    h += `<tr><td lang="ar">${r.w}</td><td>
+      ${r.sure ? "" : `<span class="chip">${ui().jumlaGuess}</span> `}${
+      r.lemma ? `<b lang="ar">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}<br>` : ""}${
+      r.root ? `<span lang="ar">${ui().jadhrRoot} ${r.root}</span> ` : ""}${
+      r.wazn ? `<span lang="ar">· ${r.wazn}</span><br>` : (r.root ? "<br>" : "")}${
+      r.notes.map(n => n[lang]).join(" · ")}</td></tr>`;
+  });
+  h += `</tbody></table></div><p class="sarf-note">${ui().jumlaHonest}</p>`;
+  out.innerHTML = h;
+}
 function renderIsmOut(){
   const out = document.getElementById("ismOut");
   if (!out) return;
@@ -3914,6 +4055,18 @@ function renderMizanOut(){
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "jumla") {
+    body.innerHTML = `<p class="ref-intro">${ui().jumlaIntro}</p>
+      <div class="conj-lab">
+        <input id="jumlaIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${ui().jumlaPh}" value="${escapeAttr(conjState.jumla)}">
+      </div>
+      <div id="jumlaOut"></div>`;
+    const inp = document.getElementById("jumlaIn");
+    inp.addEventListener("input", () => { conjState.jumla = inp.value; renderJumlaOut(); });
+    renderJumlaOut();
+    return;
+  }
   if (conjState.lab === "ism") {
     body.innerHTML = `<p class="ref-intro">${ui().ismIntro}</p>
       <div class="conj-lab">
@@ -4005,6 +4158,7 @@ function openConjugator(){
       <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
       <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
+      <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
@@ -5633,6 +5787,16 @@ document.getElementById("roleToggle").addEventListener("click", () => {
   updateRoleMode();
 });
 updateRoleMode();
+// Focus mode: while the reader scrolls DOWN through a story the header slides
+// away and the text owns the screen; a nudge upward — or nearing the top —
+// brings the controls back. Library mode never hides (the CSS scopes it out).
+let focusLastY = 0;
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+  if (y > focusLastY + 8 && y > 260) document.body.classList.add("focus-hide");
+  else if (y < focusLastY - 8 || y < 120) document.body.classList.remove("focus-hide");
+  focusLastY = y;
+}, { passive: true });
 // The reading bar: a 3px thread of accent along the top, tracking how far
 // through the story the reader is. rAF-throttled; hidden in the library.
 const readbarFill = document.querySelector("#readbar div");

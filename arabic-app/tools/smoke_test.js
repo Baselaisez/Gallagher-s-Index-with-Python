@@ -2824,10 +2824,66 @@ if (!CHROME) {
                salam: s17 && s17.tokens.some(t => t.s.bare === 'سلم'),
                kanaOwned: !!st.morph.kana && !!st.morph.kana.mazi };
     });
-    if (r.chapters !== 3) throw new Error('sulh should have 3 chapters, got ' + r.chapters);
+    if (r.chapters < 3) throw new Error('sulh should carry chapter 3, got ' + r.chapters + ' chapters');
     if (r.ids.join(',') !== 's13,s14,s15,s16,s17,s18') throw new Error('ch3 sentence ids: ' + r.ids);
     if (!r.salam) throw new Error('s17 must carry the salam token');
     if (!r.kanaOwned) throw new Error('kana paradigm must be copied into the sulh package');
+  });
+
+  await check('the Analyzer parses unseen Arabic: particles sure, the rest marked guess', async () => {
+    const r = await page.evaluate(() => {
+      const rows = SentenceAnalyzer.analyze('لم يكتبِ الطالبُ في الدفترِ');
+      const wow = SentenceAnalyzer.analyze('وَرَجَعَ وَفِي قَلْبِهِ وَصِيَّةٌ');
+      return {
+        n: rows.length,
+        lam: rows[0], verb: rows[1], talib: rows[2], fi: rows[3], daftar: rows[4],
+        wasiyya: wow[3],
+      };
+    });
+    if (r.n !== 5) throw new Error('expected 5 rows, got ' + r.n);
+    if (!r.lam.sure || r.lam.kind !== 'particle') throw new Error('lam must be a certain particle');
+    if (r.verb.kind !== 'verb?' && !r.verb.notes.length) throw new Error('yaktub should look verbal');
+    if (r.talib.kind !== 'noun') throw new Error('al-talib must read as a noun (article)');
+    if (!r.fi.sure) throw new Error('fi must be a certain particle');
+    if (r.daftar.kind !== 'noun' || !r.daftar.notes.some(n => n.en.includes('majrur')))
+      throw new Error('al-daftar should carry the after-jarr hint: ' + JSON.stringify(r.daftar.notes));
+    // a radical waw must NOT be peeled: وَصِيَّةٌ keeps its waw and reads as tanwin noun
+    if (r.wasiyya.kind !== 'noun') throw new Error('wasiyya should read as a noun, got ' + r.wasiyya.kind);
+    if (r.wasiyya.notes.some(n => /waw|vav/i.test(n.en))) throw new Error('wasiyya\'s radical waw was wrongly peeled');
+  });
+
+  await check('kitab-al-sulh chapter 4: the parties\' conditions with the five-nouns fa\'il', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-sulh');
+      const ch4 = st.chapters.find(c => c.n === 4);
+      const s22 = ch4 && ch4.sentences.find(s => s.id === 's22');
+      const abuhu = s22 && s22.tokens.find(t => t.s.full === 'أَبُوهُ');
+      return { chapters: st.chapters.length,
+               n: ch4 ? ch4.sentences.length : 0,
+               abuhu: abuhu && abuhu.irab.ar,
+               ishtarata: !!st.morph.ishtarata && st.morph.ishtarata.majhulMudari };
+    });
+    if (r.chapters !== 4) throw new Error('sulh should have 4 chapters, got ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch4 should carry 5 sentences, got ' + r.n);
+    if (!r.abuhu || !r.abuhu.normalize('NFC').includes('الْأَسْمَاءِ الْخَمْسَةِ'.normalize('NFC')))
+      throw new Error('abuhu must teach the five nouns: ' + r.abuhu);
+    if (r.ishtarata !== 'يُشْتَرَطُ') throw new Error('ishtarata passive: ' + r.ishtarata);
+  });
+
+  await check('focus mode hides the header on the way down, returns it on the way up', async () => {
+    await openStoryCard('wasiyyat-abi-hanifa-samti');
+    await page.waitForSelector('.word', { timeout: 3000 });
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(80);
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await page.waitForTimeout(200);
+    const hidden = await page.evaluate(() => document.body.classList.contains('focus-hide'));
+    if (!hidden) throw new Error('scrolling down should hide the chrome');
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(200);
+    const back = await page.evaluate(() => document.body.classList.contains('focus-hide'));
+    if (back) throw new Error('scrolling back up should return the chrome');
+    await toLibrary();
   });
 
   await check('no JS errors on page', async () => {
