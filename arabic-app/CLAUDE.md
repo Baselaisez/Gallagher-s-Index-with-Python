@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         83 browser checks over file:// (Playwright)
+  smoke_test.js         85 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Fourteen stories, Levels 1–6 (thirteen sample packages plus the deeds-are-by-intentions upload). Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). kitab-al-sulh (L5 Advanced, premium, **two chapters** — definition/legitimacy, then the kinds of sulh and their rulings) is **ORIGINAL graded Arabic** composed editorially from the user's Turkish sulh article (research/sources/sulh-fiqh-turkce.txt; the aya and hadith are received text, everything else editorial — the attribution says so and must keep saying so); its regenerator is tools/authoring/author_sulh.py. bad-al-amali (L6 Master, premium, version 1.0.0) carries the Ushi qasida **COMPLETE — all 67 verses in fourteen chapters** from research/sources/emali-qasida-ottoman.txt (ch14 is the two-verse khatima) (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
+Fourteen stories, Levels 1–6 (thirteen sample packages plus the deeds-are-by-intentions upload). Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). kitab-al-sulh (L5 Advanced, premium, **three chapters** — definition/legitimacy; kinds and rulings; the six contract-guises and the bedel's conditions) is **ORIGINAL graded Arabic** composed editorially from the user's Turkish sulh article (research/sources/sulh-fiqh-turkce.txt; the aya and hadith are received text, everything else editorial — the attribution says so and must keep saying so); its regenerator is tools/authoring/author_sulh.py. bad-al-amali (L6 Master, premium, version 1.0.0) carries the Ushi qasida **COMPLETE — all 67 verses in fourteen chapters** from research/sources/emali-qasida-ottoman.txt (ch14 is the two-verse khatima) (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -621,6 +621,15 @@ the learner answers. Elo area nahw; the coach's nahw action now points here.
 eight-point-star SVG lattice in the level's muted colour — data URI, no asset.
 Trap: encodeURIComponent leaves apostrophes, and the inline style wraps the URI
 in url('…') — replace ' with %27 or the style dies silently.
+
+**The Ism engine keeps the Root Finder's oath: table before rule.**
+`class IsmEngine` (fifth Atölye tab, conjState.lab "ism"): tasgir puts three
+sound letters on فُعَيْل (ta re-attached), four on فُعَيْعِل, the فَاعِل alif
+turns waw (شَاعِر → شُوَيْعِر), a weak last letter melts into the diminutive ya
+— shapes beyond the classical patterns REFUSE rather than guess. Nisba drops
+the ta and adds the doubled ya; maqsur alif and mamdud hamza turn waw; and
+SEMAI_NISBA (مَدِينَة → مَدَنِيّ، قُرَيْش → قُرَشِيّ، دُنْيَا → دُنْيَوِيّ…)
+answers before any rule runs. Extend the table, never special-case the rules.
 
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`

@@ -2775,6 +2775,56 @@ if (!CHROME) {
     if (!r.svg) throw new Error('cover background is not the generated svg');
   });
 
+  await check('the Ism engine: tasgir by pattern, nisba with the semai table first', async () => {
+    const nfc = s => (s || '').normalize('NFC');
+    const r = await page.evaluate(() => ({
+      jabal: IsmEngine.tasgir('جبل'), dirham: IsmEngine.tasgir('درهم'),
+      shair: IsmEngine.tasgir('شاعر'), qalb: IsmEngine.tasgir('قلب'),
+      makka: IsmEngine.nisba('مكة'), madina: IsmEngine.nisba('مدينة'),
+      ilm: IsmEngine.nisba('علم'), sahra: IsmEngine.nisba('صحراء'),
+      dunya: IsmEngine.nisba('دنيا'),
+    }));
+    if (nfc(r.jabal.out) !== nfc('جُبَيْل')) throw new Error('jabal: ' + r.jabal.out);
+    if (nfc(r.qalb.out) !== nfc('قُلَيْب')) throw new Error('qalb: ' + r.qalb.out);
+    if (nfc(r.dirham.out) !== nfc('دُرَيْهِم')) throw new Error('dirham: ' + r.dirham.out);
+    if (nfc(r.shair.out) !== nfc('شُوَيْعِر')) throw new Error('the fa\'il alif must turn waw: ' + r.shair.out);
+    if (r.makka.out !== 'مكِيّ' && !r.makka.out.includes('مكّ') && nfc(r.makka.out) !== nfc('مكِيّ'))
+      throw new Error('makka nisba: ' + r.makka.out);
+    if (!r.madina.semai || nfc(r.madina.out) !== nfc('مَدَنِيّ'))
+      throw new Error('madina must come from the SEMAI table: ' + JSON.stringify(r.madina));
+    if (nfc(r.ilm.out) !== nfc('علمِيّ')) throw new Error('ilm nisba: ' + r.ilm.out);
+    if (!nfc(r.sahra.out).endsWith(nfc('وِيّ'))) throw new Error('mamdud hamza must turn waw: ' + r.sahra.out);
+    if (!r.dunya.semai) throw new Error('dunya must be semai');
+    // the lab tab shows both machines
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="ism"]').click();
+    await page.waitForSelector('#ismIn', { timeout: 3000 });
+    await page.fill('#ismIn', 'مدينة');
+    const out = await page.evaluate(() => {
+      const t = document.getElementById('ismOut').textContent;
+      conjState.lab = 'sarf'; closeSheet();
+      return t;
+    });
+    if (!out.normalize('NFC').includes('مَدَنِيّ'.normalize('NFC'))) throw new Error('lab output lacks the semai nisba: ' + out);
+  });
+
+  await check('kitab-al-sulh carries chapter 3: six contract-guises and the bedel', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-sulh');
+      const ch3 = st.chapters.find(c => c.n === 3);
+      const ids = ch3 ? ch3.sentences.map(s => s.id) : [];
+      const s17 = ch3 && ch3.sentences.find(s => s.id === 's17');
+      return { chapters: st.chapters.length, ids,
+               salam: s17 && s17.tokens.some(t => t.s.bare === 'سلم'),
+               kanaOwned: !!st.morph.kana && !!st.morph.kana.mazi };
+    });
+    if (r.chapters !== 3) throw new Error('sulh should have 3 chapters, got ' + r.chapters);
+    if (r.ids.join(',') !== 's13,s14,s15,s16,s17,s18') throw new Error('ch3 sentence ids: ' + r.ids);
+    if (!r.salam) throw new Error('s17 must carry the salam token');
+    if (!r.kanaOwned) throw new Error('kana paradigm must be copied into the sulh package');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

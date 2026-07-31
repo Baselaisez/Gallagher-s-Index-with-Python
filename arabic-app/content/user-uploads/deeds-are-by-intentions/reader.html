@@ -1098,6 +1098,13 @@ const L = {
         tahlil:"Tahlil — guided i'rab",
         tahlilDesc:"One sentence, walked word by word — name each word's job, then see the full i'rab.",
         tahlilAsk:"Walk the sentence: what is the highlighted word doing?",
+        ismTab:"Tasgir · Nisba",
+        ismIntro:"Two noun machines. The DIMINUTIVE puts a word on فُعَيْل (four letters ride فُعَيْعِل, the فَاعِل alif turns waw). The RELATION drops the ta and adds the doubled ya — and where the Arabs said otherwise (مَدِينَة → مَدَنِيّ), the stored table answers before the rule, exactly like the Root Finder.",
+        ismPh:"e.g. مدينة or جبل or شاعر",
+        tasgirLbl:"التَّصْغِير · Diminutive:",
+        nisbaLbl:"النِّسْبَة · Relation:",
+        tasgirNone:"No diminutive rule reaches this shape — the classical patterns cover three and four letters.",
+        ismSemai:"SEMA'I — recited from the stored table; the rule would have said otherwise.",
         ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
         conjPh:"root — e.g. نصر or قول",
@@ -1190,6 +1197,13 @@ const L = {
         tahlil:"Tahlil — rehberli i'râb",
         tahlilDesc:"Tek cümle, kelime kelime — her kelimenin görevini söyle, sonra tam i'râbı gör.",
         tahlilAsk:"Cümleyi yürü: işaretli kelime ne iş görüyor?",
+        ismTab:"Tasgîr · Nisbe",
+        ismIntro:"İki isim makinesi. TASGÎR kelimeyi فُعَيْل'e koyar (dört harfli فُعَيْعِل'e biner, فَاعِل'in elifi vava döner). NİSBE tâyı düşürüp şeddeli yâyı ekler — Arapların başka söylediği yerde (مَدِينَة → مَدَنِيّ) kaideden önce ezber tablo cevap verir, tıpkı Kök Bulucu gibi.",
+        ismPh:"örn. مدينة veya جبل veya شاعر",
+        tasgirLbl:"التَّصْغِير · Tasgîr:",
+        nisbaLbl:"النِّسْبَة · Nisbe:",
+        tasgirNone:"Bu şekle ulaşan tasgîr kaidesi yok — klasik kalıplar üç ve dört harfi kapsar.",
+        ismSemai:"SEMÂÎ — ezber tablodan okunur; kaide başka söylerdi.",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
         conjPh:"kök — örn. نصر veya قول",
@@ -3656,10 +3670,54 @@ class WaznEngine {
   }
 }
 
+// ---------- the Tasgir & Nisba engine ----------
+// Two classical noun machines, both pure rule. TASGIR: three sound letters
+// ride فُعَيْل (plus the ta if the word wore one), four ride فُعَيْعِل, the
+// alif of فَاعِل turns waw (شَاعِر → شُوَيْعِر), and a weak last letter melts
+// into the diminutive ya. NISBA: drop the ta, then the doubled ya of
+// relation; the maqsur alif and the mamdud hamza turn waw. What the rules
+// cannot know — مَدِينَة → مَدَنِيّ, قُرَيْش → قُرَشِيّ — is STORED, not
+// computed: the semai table answers first, exactly like the Root Finder's
+// corpus-before-rules order.
+class IsmEngine {
+  static SEMAI_NISBA = {
+    "مدينة": "مَدَنِيّ", "قريش": "قُرَشِيّ", "دنيا": "دُنْيَوِيّ",
+    "أخ": "أَخَوِيّ", "اخ": "أَخَوِيّ", "أب": "أَبَوِيّ", "اب": "أَبَوِيّ",
+    "يد": "يَدَوِيّ", "سماء": "سَمَاوِيّ", "عيسى": "عِيسَوِيّ",
+    "بصرة": "بَصْرِيّ", "كوفة": "كُوفِيّ", "حنيفة": "حَنَفِيّ",
+  };
+  static parts(word){
+    const b = stripAr(word || "").replace(/[^ء-ي]/g, "").replace(/^ال/, "");
+    return { b, ta: /ة$/.test(b), core: b.replace(/ة$/, "") };
+  }
+  static tasgir(word){
+    const { ta, core } = this.parts(word);
+    const L = core.split("");
+    if (L.length === 3 && /[اوىي]/.test(L[2]))
+      return { out: L[0]+"ُ"+L[1]+"َيّ", rule: "فُعَيْل — أُدْغِمَتْ يَاءُ التَّصْغِيرِ فِي الْآخِرِ الْمُعْتَلِّ" };
+    if (L.length === 3)
+      return { out: L[0]+"ُ"+L[1]+"َيْ"+L[2]+(ta ? "َة" : ""), rule: "فُعَيْل" };
+    if (L.length === 4 && L[1] === "ا")
+      return { out: L[0]+"ُوَيْ"+L[2]+"ِ"+L[3]+(ta ? "َة" : ""), rule: "فُوَيْعِل — أَلِفُ فَاعِلٍ تُقْلَبُ وَاوًا" };
+    if (L.length === 4 && !/[اوىي]/.test(L[3]))
+      return { out: L[0]+"ُ"+L[1]+"َيْ"+L[2]+"ِ"+L[3]+(ta ? "َة" : ""), rule: "فُعَيْعِل" };
+    return null;
+  }
+  static nisba(word){
+    const { b, ta, core } = this.parts(word);
+    const s = this.SEMAI_NISBA[b] || this.SEMAI_NISBA[core];
+    if (s) return { out: s, rule: "سَمَاعِيٌّ — مِنَ الْجَدْوَلِ الْمَحْفُوظِ لَا مِنَ الْقَاعِدَةِ", semai: true };
+    if (ta) return { out: core + "ِيّ", rule: "تُحْذَفُ التَّاءُ ثُمَّ تُزَادُ يَاءُ النِّسْبَةِ" };
+    if (/اء$/.test(core)) return { out: core.slice(0, -1) + "وِيّ", rule: "هَمْزَةُ الْمَمْدُودِ تُقْلَبُ وَاوًا" };
+    if (/[اى]$/.test(core)) return { out: core.slice(0, -1) + "َوِيّ", rule: "أَلِفُ الْمَقْصُورِ تُقْلَبُ وَاوًا" };
+    return { out: core + "ِيّ", rule: "تُزَادُ يَاءُ النِّسْبَةِ الْمُشَدَّدَةُ" };
+  }
+}
+
 // ---------- the Sarf Lab UI ----------
 let conjState = { root: "نصر", form: "I", bab: 1, known: null,
                   lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر",
-                  mizan: "يستعملون" };
+                  mizan: "يستعملون", ism: "مدينة" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -3800,6 +3858,25 @@ function renderJadhrOut(){
   }
   out.innerHTML = h;
 }
+function renderIsmOut(){
+  const out = document.getElementById("ismOut");
+  if (!out) return;
+  const w = (conjState.ism || "").trim();
+  if (!w || stripAr(w).replace(/[^ء-ي]/g, "").length < 2) {
+    out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`;
+    return;
+  }
+  const t = IsmEngine.tasgir(w);
+  const n = IsmEngine.nisba(w);
+  let h = "";
+  if (t) h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().tasgirLbl} ${t.out}</div>
+    <p class="bab-line" lang="ar">${t.rule}</p>`;
+  else h += `<p class="empty">${ui().tasgirNone}</p>`;
+  if (n) h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().nisbaLbl} ${n.out}</div>
+    <p class="bab-line" lang="ar">${n.rule}</p>
+    ${n.semai ? `<p class="sarf-note">${ui().ismSemai}</p>` : ""}`;
+  out.innerHTML = h;
+}
 function renderMizanOut(){
   const out = document.getElementById("mizanOut");
   if (!out) return;
@@ -3833,6 +3910,18 @@ function renderMizanOut(){
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "ism") {
+    body.innerHTML = `<p class="ref-intro">${ui().ismIntro}</p>
+      <div class="conj-lab">
+        <input id="ismIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${ui().ismPh}" value="${conjState.ism}">
+      </div>
+      <div id="ismOut"></div>`;
+    const inp = document.getElementById("ismIn");
+    inp.addEventListener("input", () => { conjState.ism = inp.value; renderIsmOut(); });
+    renderIsmOut();
+    return;
+  }
   if (conjState.lab === "mizan") {
     body.innerHTML = `<p class="ref-intro">${ui().mizanIntro}</p>
       <div class="conj-lab">
@@ -3911,6 +4000,7 @@ function openConjugator(){
       <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
       <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
+      <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
