@@ -271,27 +271,41 @@
   .underlines .word[data-lvl="4"] { text-decoration: underline; text-decoration-color: var(--lvl4); }
   /* the role-color layer: paint FUNCTION, not difficulty — the RoleEngine's
      reading of each word's own i'rab. It overrides the level underlines. */
-  body.role-mode .word[data-role] { text-decoration: underline; text-decoration-thickness: 3px; }
+  /* one muted family, defined once — full-strength primaries proved tiring
+     over a page of text (the maful red especially), so every role sits at
+     the same soft chroma and the underline dropped from 3px to 2px. */
+  :root {
+    --role-fail:    #5a9e6f;
+    --role-maful:   #cd7f7a;
+    --role-mubtada: #6b93c4;
+    --role-khabar:  #55989b;
+    --role-mudaf:   #9a7fb8;
+    --role-hal:     #cf9f5d;
+    --role-tabi:    #a08878;
+    --role-jarr:    #b58bc0;
+  }
+  body.role-mode .word[data-role] { text-decoration: underline; text-decoration-thickness: 2px;
+    text-underline-offset: .18em; }
   body.role-mode .word:not([data-role]) { text-decoration: none; }
-  body.role-mode .word[data-role="fail"]    { text-decoration-color: #2e7d32; }
-  body.role-mode .word[data-role="maful"]   { text-decoration-color: #c62828; }
-  body.role-mode .word[data-role="mubtada"] { text-decoration-color: #1565c0; }
-  body.role-mode .word[data-role="khabar"]  { text-decoration-color: #00838f; }
-  body.role-mode .word[data-role="mudaf"]   { text-decoration-color: #6a1b9a; }
-  body.role-mode .word[data-role="hal"]     { text-decoration-color: #ef6c00; }
-  body.role-mode .word[data-role="tabi"]    { text-decoration-color: #8d6e63; }
-  body.role-mode .word[data-role="jarr"]    { text-decoration-color: #ab47bc; }
+  body.role-mode .word[data-role="fail"]    { text-decoration-color: var(--role-fail); }
+  body.role-mode .word[data-role="maful"]   { text-decoration-color: var(--role-maful); }
+  body.role-mode .word[data-role="mubtada"] { text-decoration-color: var(--role-mubtada); }
+  body.role-mode .word[data-role="khabar"]  { text-decoration-color: var(--role-khabar); }
+  body.role-mode .word[data-role="mudaf"]   { text-decoration-color: var(--role-mudaf); }
+  body.role-mode .word[data-role="hal"]     { text-decoration-color: var(--role-hal); }
+  body.role-mode .word[data-role="tabi"]    { text-decoration-color: var(--role-tabi); }
+  body.role-mode .word[data-role="jarr"]    { text-decoration-color: var(--role-jarr); }
   #roleLegend { display: flex; flex-wrap: wrap; gap: .3rem .7rem;
     font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); margin-top: .45rem; }
-  #roleLegend .rl { border-bottom: 3px solid; padding-bottom: 1px; }
-  #roleLegend .rl[data-role="fail"]    { border-color: #2e7d32; }
-  #roleLegend .rl[data-role="maful"]   { border-color: #c62828; }
-  #roleLegend .rl[data-role="mubtada"] { border-color: #1565c0; }
-  #roleLegend .rl[data-role="khabar"]  { border-color: #00838f; }
-  #roleLegend .rl[data-role="mudaf"]   { border-color: #6a1b9a; }
-  #roleLegend .rl[data-role="hal"]     { border-color: #ef6c00; }
-  #roleLegend .rl[data-role="tabi"]    { border-color: #8d6e63; }
-  #roleLegend .rl[data-role="jarr"]    { border-color: #ab47bc; }
+  #roleLegend .rl { border-bottom: 2px solid; padding-bottom: 1px; }
+  #roleLegend .rl[data-role="fail"]    { border-color: var(--role-fail); }
+  #roleLegend .rl[data-role="maful"]   { border-color: var(--role-maful); }
+  #roleLegend .rl[data-role="mubtada"] { border-color: var(--role-mubtada); }
+  #roleLegend .rl[data-role="khabar"]  { border-color: var(--role-khabar); }
+  #roleLegend .rl[data-role="mudaf"]   { border-color: var(--role-mudaf); }
+  #roleLegend .rl[data-role="hal"]     { border-color: var(--role-hal); }
+  #roleLegend .rl[data-role="tabi"]    { border-color: var(--role-tabi); }
+  #roleLegend .rl[data-role="jarr"]    { border-color: var(--role-jarr); }
   #roleToggle.on { background: var(--accent); color: var(--accent-ink); }
   /* Interlinear (medium mode): each word is a column — Arabic over its gloss. */
   .word.stacked { display: inline-flex; flex-direction: column; align-items: center;
