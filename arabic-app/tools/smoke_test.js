@@ -2653,6 +2653,69 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  await check('the Mizan weighs forms on ف ع ل — corpus cells exactly, asl for weak', async () => {
+    const nfc = s => (s || '').normalize('NFC');
+    const r = await page.evaluate(() => ({
+      sound: WaznEngine.of('يَسْتَعْمِلُونَ'),
+      weak: WaznEngine.of('يَقُولُ'),
+      rules: WaznEngine.of('اضطراب'),
+    }));
+    if (!r.sound || r.sound.via !== 'corpus' || nfc(r.sound.mizan) !== nfc('يَسْتَفْعِلُونَ'))
+      throw new Error('yasta3miluna should weigh yastaf3iluna, got ' + JSON.stringify(r.sound && r.sound.mizan));
+    if (!r.weak || !r.weak.mizan || !r.weak.asl)
+      throw new Error('yaqulu must weigh by the ASL with the asl flag set: ' + JSON.stringify(r.weak));
+    if (nfc(r.weak.mizan) !== nfc('يَفْعُلُ'))
+      throw new Error('yaqulu asl wazn should be yaf3ulu, got ' + r.weak.mizan);
+    if (!r.rules || r.rules.via !== 'rules' || !r.rules.wazn.normalize('NFC').includes('اِفْتِعَال'.normalize('NFC')))
+      throw new Error('idtirab should fall to the iftial masdar rule: ' + JSON.stringify(r.rules));
+    // the lab tab answers with the wazn
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.sheet .tabs button[data-lab="mizan"]', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="mizan"]').click();
+    await page.waitForSelector('#mizanIn', { timeout: 3000 });
+    await page.fill('#mizanIn', 'يستعملون');
+    const out = await page.evaluate(() => {
+      const t = document.getElementById('mizanOut').textContent;
+      conjState.lab = 'sarf'; closeSheet();
+      return t;
+    });
+    if (!out.includes('يَسْتَفْعِلُونَ'.normalize('NFC'))) throw new Error('lab output lacks the mizan: ' + out);
+  });
+
+  await check('the Elo model moves with the evidence and names a sane target', async () => {
+    const r = await page.evaluate(() => {
+      const before = state.elo.vocab;
+      EloModel.update('vocab', 3, true);
+      const up = state.elo.vocab;
+      EloModel.update('vocab', 3, false); EloModel.update('vocab', 3, false);
+      const down = state.elo.vocab;
+      const tgt = EloModel.targetLevel('vocab');
+      const exp = EloModel.expected(1200, EloModel.itemRating(3));
+      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 };
+      localStorage.removeItem('qissa-elo');
+      return { before, up, down, tgt, exp, weakestWorks: !!EloModel.weakest() };
+    });
+    if (!(r.up > r.before)) throw new Error('a correct answer must raise the rating');
+    if (!(r.down < r.up)) throw new Error('wrong answers must lower the rating');
+    if (r.tgt < 1 || r.tgt > 6) throw new Error('target level out of range: ' + r.tgt);
+    if (Math.abs(r.exp - 0.5) > 0.001) throw new Error('1200 vs L3 (1200) must be a coin flip, got ' + r.exp);
+    if (!r.weakestWorks) throw new Error('weakest() returned nothing');
+  });
+
+  await check('the coach reads the whole state and offers one next action', async () => {
+    await page.locator('#deckOpen').click();
+    await page.waitForSelector('.coach', { timeout: 3000 });
+    const r = await page.evaluate(() => ({
+      msg: document.querySelector('.coach .co-msg').textContent.trim().length > 0,
+      go: !!document.getElementById('coachGo'),
+      bars: document.querySelectorAll('.coach .co-row').length,
+    }));
+    await page.evaluate(() => closeSheet());
+    if (!r.msg) throw new Error('coach message is empty');
+    if (!r.go) throw new Error('coach CTA missing');
+    if (r.bars !== 4) throw new Error('expected 4 ability bars, got ' + r.bars);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

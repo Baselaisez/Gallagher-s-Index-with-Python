@@ -320,6 +320,19 @@
     background: none; color: inherit; padding: .6rem .8rem; margin: .6rem 0; cursor: pointer; font: inherit; }
   .avamil-card .ar { font-family: var(--ar-font); font-size: 1.05rem; }
   .avamil-card small { display: block; color: var(--ink-soft); font-family: var(--ui-font); }
+  /* the coach card */
+  .coach { border: 1px solid var(--line); border-radius: .8rem; padding: .7rem .8rem; margin: .6rem 0;
+    font-family: var(--ui-font); }
+  .coach .co-head { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+  .coach .co-msg { margin: .35rem 0 .5rem; font-size: .88rem; }
+  .coach .co-abil { margin-top: .6rem; }
+  .coach .co-lbl { display: block; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: .25rem; }
+  .coach .co-row { display: flex; align-items: center; gap: .5rem; font-size: .72rem; margin: .15rem 0; }
+  .coach .co-a { flex: 0 0 6.5rem; color: var(--ink-soft); }
+  .coach .co-bar { flex: 1; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
+  .coach .co-bar span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
+  .coach .co-n { flex: 0 0 2.6rem; text-align: end; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
   /* Interlinear (medium mode): each word is a column — Arabic over its gloss. */
   .word.stacked { display: inline-flex; flex-direction: column; align-items: center;
     vertical-align: top; line-height: 1.35; }
@@ -1061,6 +1074,20 @@ const L = {
         jadhrSamai:"The Form I bab is SAMA'I — recited from the lexicon, never computed. It shows here because the corpus carries it.",
         jadhrRules:"Derived by the peeling rules — the corpus does not carry this form.",
         jadhrWeak:"A weak radical hides in the spelling: و/ي marks where only the lexicon can decide.",
+        mizanTab:"Mizan",
+        mizanIntro:"Type any form and the scale weighs it: the word's letters mapped onto ف ع ل. A corpus form is weighed by conjugating ف ع ل itself through the same form, bab and cell — يَسْتَغْفِرُونَ answers يَسْتَفْعِلُونَ. For a weak verb the scale gives the wazn by the ASL, as the madrasah answers it.",
+        mizanLbl:"الْوَزْن · Wazn:",
+        mizanNone:"No wazn found — the form resists the rules; try the dictionary form.",
+        mizanAsl:"The verb is weak: this is the wazn by the ASL (قَالَ → فَعَلَ) — the i'lal chain in the Sarf tab explains the surface.",
+        mizanStored:"The corpus stores this form as recited (sema'i) — its wazn is not derived by rule.",
+        coachTitle:"Your coach",
+        coachReview:"{n} card(s) are due — reviewing them now is worth more than anything else.",
+        coachFading:"{n} word(s) are fading below the recall line — the games will seat them first.",
+        coachWeak:"Your weakest area is {a} — one round now, while it costs the least.",
+        coachFresh:"Nothing is due and nothing is fading — read on, or bank a round in your weakest area.",
+        coachGo:"Do it",
+        coachAreas:{vocab:"vocabulary", sarf:"sarf", nahw:"nahw / i'rab", adad:"numbers"},
+        coachAbility:"Ability (Elo)",
         ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
         conjPh:"root — e.g. نصر or قول",
@@ -1136,6 +1163,20 @@ const L = {
         jadhrSamai:"Sülâsî bâb SEMÂÎDİR — lugatten okunur, kaideyle hesaplanmaz. Burada görünüyor; çünkü külliyat onu taşıyor.",
         jadhrRules:"Soyma kaideleriyle türetildi — külliyat bu kalıbı taşımıyor.",
         jadhrWeak:"Yazıda gizlenen illetli bir harf var: yalnız lugatın karar verebildiği yerde و/ي yazılır.",
+        mizanTab:"Mîzan",
+        mizanIntro:"Herhangi bir kalıp yazın, terazi tartsın: kelimenin harfleri ف ع ل üzerine konur. Külliyattaki bir kalıp, ف ع ل'in kendisi aynı bâb, aynı sîga ve aynı hâne ile çekilerek tartılır — يَسْتَغْفِرُونَ'nin cevabı يَسْتَفْعِلُونَ'dir. İlletli fiilde terazi, medresenin cevapladığı gibi ASLA göre vezin verir.",
+        mizanLbl:"الْوَزْن · Vezni:",
+        mizanNone:"Vezin bulunamadı — kalıp kaidelere direniyor; sözlük şeklini deneyin.",
+        mizanAsl:"Fiil illetlidir: bu, ASLA göre vezindir (قَالَ → فَعَلَ) — yüzeydeki şekli Sarf sekmesindeki i'lâl zinciri açıklar.",
+        mizanStored:"Külliyat bu kalıbı okunduğu gibi (semâî) saklar — vezni kaideyle türetilmez.",
+        coachTitle:"Koçun",
+        coachReview:"{n} kart vadesinde — şimdi tekrarlamak her şeyden değerlidir.",
+        coachFading:"{n} kelime hatırlama çizgisinin altına düşüyor — oyunlar önce onları oturtacak.",
+        coachWeak:"En zayıf alanın: {a} — maliyeti en düşükken bir tur şimdi.",
+        coachFresh:"Vadesi gelen de sönen de yok — okumaya devam et, ya da en zayıf alanında bir tur biriktir.",
+        coachGo:"Başla",
+        coachAreas:{vocab:"kelime", sarf:"sarf", nahw:"nahiv / i'râb", adad:"sayılar"},
+        coachAbility:"Seviye (Elo)",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
         conjPh:"kök — örn. نصر veya قول",
@@ -1374,6 +1415,8 @@ const state = {
   today: JSON.parse(localStorage.getItem("qissa-today") || '{"date":"","reviewed":0,"learned":0,"read":0}'),
   goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
   retention: parseFloat(localStorage.getItem("qissa-retention")) || 0.9,
+  elo: JSON.parse(localStorage.getItem("qissa-elo") || "null")
+       || { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 },
   roles: localStorage.getItem("qissa-roles") === "1",
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
@@ -2003,6 +2046,45 @@ function emptyGame(title, msg){
 //        why(it), after?(it), extras?: [{label(it), run(it)}] }
 // options() is called once per question and must return the row pre-shuffled —
 // the shell deliberately knows nothing about how a game builds distractors.
+// ---------- ability model (Elo / IRT-lite) ----------
+// Online learning with no model file: the learner holds one rating per skill
+// area, every quiz item holds a rating from its difficulty level, and each
+// answer moves the learner's rating by K·(result − expected) — the same update
+// chess uses, which is logistic IRT fitted one observation at a time. The
+// point is not the number but what it buys: games can then serve items whose
+// expected success sits near 0.75 — hard enough to teach, easy enough to
+// keep going (the "desirable difficulty" band) — and the coach can name the
+// weakest area with evidence instead of a guess.
+class EloModel {
+  static K = 24;
+  static AREAS = ["vocab", "sarf", "nahw", "adad"];
+  static itemRating(level){ return 900 + Math.min(6, Math.max(1, level || 3)) * 100; }
+  static expected(rl, ri){ return 1 / (1 + Math.pow(10, (ri - rl) / 400)); }
+  static update(area, level, correct){
+    if (!this.AREAS.includes(area)) return;
+    const e = this.expected(state.elo[area], this.itemRating(level));
+    state.elo[area] = Math.round(state.elo[area] + this.K * ((correct ? 1 : 0) - e));
+    localStorage.setItem("qissa-elo", JSON.stringify(state.elo));
+  }
+  static weakest(){
+    return this.AREAS.reduce((a, b) => (state.elo[b] < state.elo[a] ? b : a));
+  }
+  // the level whose expected success is ~0.75 for this learner:
+  // solve expected(rl, ri) = t for ri, then map back to a 1-6 level.
+  static targetLevel(area, t = 0.75){
+    const ri = state.elo[area] + 400 * Math.log10(1 / t - 1);
+    return Math.min(6, Math.max(1, Math.round((ri - 900) / 100)));
+  }
+  // order candidates by closeness to the desirable-difficulty band, with a
+  // pinch of noise so rounds differ; fading words keep their reserved seats.
+  static rank(cands, area, lvlOf){
+    const tgt = this.targetLevel(area);
+    return [...cands].sort((a, b) =>
+      (Math.abs((lvlOf(a) || 3) - tgt) + Math.random() * 0.9) -
+      (Math.abs((lvlOf(b) || 3) - tgt) + Math.random() * 0.9));
+  }
+}
+
 function runQuiz(cfg){
   const G = { i: 0, score: 0 };
   (function draw(){
@@ -2018,6 +2100,9 @@ function runQuiz(cfg){
     document.getElementById("gBack").addEventListener("click", openGames);
     sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
       if (opts[+b.dataset.o].ok) G.score++;
+      // one Elo observation per answer — the game declares its skill area and
+      // how hard THIS item is; the harness never guesses either.
+      if (cfg.area) EloModel.update(cfg.area, cfg.lvl ? cfg.lvl(it) : 3, opts[+b.dataset.o].ok);
       sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
         if (opts[+x.dataset.o].ok) x.classList.add("right");
         else if (x === b) x.classList.add("wrongpick");
@@ -2068,6 +2153,7 @@ function startSarfGame(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().sarfGame, ask: ui().sarfGameAsk, items, restart: startSarfGame,
+    area: "sarf", lvl: () => 4,
     question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${it.lemma}</span>
       <div class="sigha">${state.uiLang === "tr" ? it.rows[it.ri].tr : it.rows[it.ri].en}</div></div>`,
     options: it => {
@@ -2105,6 +2191,7 @@ function startCaseGame(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().caseGame, ask: ui().caseGameAsk, items, restart: startCaseGame,
+    area: "nahw", lvl: () => 3,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
       t => `<b class="target">${t.s.full}</b>`)}</div>`,
     // The four cases in a fixed order, never shuffled: the learner should find
@@ -2169,6 +2256,7 @@ function startRoleGame(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().roleGame, ask: ui().roleGameAsk, items, restart: startRoleGame,
+    area: "nahw", lvl: () => 4,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
       t => `<b class="target">${t.s.full}</b>`)}</div>`,
     options: it => shuffle([ROLE_BY_KEY[it.key],
@@ -3449,9 +3537,52 @@ class RootFinder {
   }
 }
 
+// ---------- the Mizan (وزن) engine ----------
+// The classical exercise in reverse: given any form, say its wazn. Two paths,
+// both deterministic. CORPUS: if the form is a cell of a stored paradigm, the
+// mizan is computed by conjugating the root ف ع ل itself through the SAME
+// form, bab and cell with sarfDerive — so يَسْتَغْفِرُونَ answers يَسْتَفْعِلُونَ with
+// every harake earned, not templated. For a weak verb this yields the wazn
+// بِحَسَبِ الْأَصْلِ (قَالَ → فَعَلَ), which is the madrasah's answer — and the i'lal
+// chain is right there to explain the surface. RULES: when the corpus is
+// silent, the peel pattern that found the root already names the wazn.
+class WaznEngine {
+  static of(word){
+    const hit = RootFinder.fromCorpus(word);
+    if (hit) return this._corpus(word, hit);
+    const r = RootFinder.find(word);
+    return r ? { via: "rules", root: r.root, wazn: r.wazn, weak: r.weak } : null;
+  }
+  static _corpus(word, hit){
+    // find the entry again to reach its morphology (fromCorpus returns the cell)
+    let entry = null;
+    for (const v of RootFinder.corpusIndex())
+      if (v.lemma === hit.lemma && findFormInParadigm(v.m, word)) { entry = v; break; }
+    const out = { via: "corpus", root: hit.root, lemma: hit.lemma, cell: hit.cell,
+                  gloss: hit.gloss, form: hit.form, bab: hit.bab };
+    if (!entry) return out;
+    const att = sjAttested(entry.m);
+    if (!att) return out;                       // sema'i-only entry: no derivation
+    const cls = nakilClass({ root: "ف ع ل" });
+    const d = sarfDerive(cls, att.form, att.bab || 1);
+    if (!d.ok) return out;
+    const v = d[hit.cell.tense];
+    const mizan = Array.isArray(v) ? v[hit.cell.i] : v;
+    if (mizan) {
+      out.mizan = mizan;
+      out.headWazn = d.wazn;
+      // the verb's own class decides whether this is the surface or the asl
+      const vcls = nakilClass({ root: entry.root });
+      out.asl = !!(vcls && vcls.type !== "sound");
+    }
+    return out;
+  }
+}
+
 // ---------- the Sarf Lab UI ----------
 let conjState = { root: "نصر", form: "I", bab: 1, known: null,
-                  lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر" };
+                  lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر",
+                  mizan: "يستعملون" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -3592,9 +3723,51 @@ function renderJadhrOut(){
   }
   out.innerHTML = h;
 }
+function renderMizanOut(){
+  const out = document.getElementById("mizanOut");
+  if (!out) return;
+  const w = (conjState.mizan || "").trim();
+  if (!w || stripAr(w).replace(/[^ء-ي]/g, "").length < 3) {
+    out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`;
+    return;
+  }
+  const r = WaznEngine.of(w);
+  if (!r) { out.innerHTML = `<p class="empty">${ui().mizanNone}</p>`; return; }
+  let h = "";
+  if (r.via === "corpus" && r.mizan) {
+    const lbl = formCellLabel(r.cell);
+    h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().mizanLbl} ${r.mizan}</div>
+      <p class="conj-known">✓ <b lang="ar" dir="rtl">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}
+        · <span lang="ar">${ui().jadhrRoot} ${r.root}</span></p>
+      <p class="bab-line" lang="ar">${r.headWazn}</p>
+      <p class="it-cell"><span lang="ar">${lbl.ar}</span> — ${state.uiLang === "tr" ? lbl.tr : lbl.en}</p>`;
+    if (r.asl) h += `<p class="sarf-note">${ui().mizanAsl}</p>`;
+  } else if (r.via === "corpus") {
+    h += `<p class="conj-known">✓ <b lang="ar" dir="rtl">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}
+        · <span lang="ar">${ui().jadhrRoot} ${r.root}</span></p>
+      <p class="sarf-note">${ui().mizanStored}</p>`;
+  } else {
+    h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().mizanLbl} ${r.wazn}</div>
+      <p class="conj-known"><span lang="ar">${ui().jadhrRoot} ${r.root}</span></p>
+      <p class="sarf-note">${ui().jadhrRules}${r.weak ? " " + ui().jadhrWeak : ""}</p>`;
+  }
+  out.innerHTML = h;
+}
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "mizan") {
+    body.innerHTML = `<p class="ref-intro">${ui().mizanIntro}</p>
+      <div class="conj-lab">
+        <input id="mizanIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${ui().jadhrPh}" value="${conjState.mizan}">
+      </div>
+      <div id="mizanOut"></div>`;
+    const inp = document.getElementById("mizanIn");
+    inp.addEventListener("input", () => { conjState.mizan = inp.value; renderMizanOut(); });
+    renderMizanOut();
+    return;
+  }
   if (conjState.lab === "jadhr") {
     body.innerHTML = `<p class="ref-intro">${ui().jadhrIntro}</p>
       <div class="conj-lab">
@@ -3660,6 +3833,7 @@ function openConjugator(){
       <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${arSpan("صَرْف")} ${ui().sarfLabTab}</button>
       <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
       <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
+      <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
@@ -4724,6 +4898,54 @@ function verbPrompt(card){
   }
   return { qs, lemma: m.mazi[0] };
 }
+// ---------- the coach (learning facilitator) ----------
+// One deterministic read of the whole learning state — FSRS dues, fading
+// words, the Elo ability profile — turned into a single next action. No
+// generation, no guessing: every sentence traces to a number the page can
+// show. Priority order is the learning science's: due reviews beat
+// everything (spacing), fading words next (retrieval before forgetting),
+// then a round in the weakest area (desirable difficulty).
+const COACH_GAME = { vocab: () => startCloze(), sarf: () => startSarfGame(),
+                     nahw: () => startRoleGame(), adad: () => startAdadGame() };
+function coachPlan(st){
+  const nf = fadingWords(3).length;
+  if (st.due) return { msg: ui().coachReview.replace("{n}", st.due), act: "review" };
+  if (nf) return { msg: ui().coachFading.replace("{n}", nf), act: "game", area: "vocab" };
+  const weak = EloModel.weakest();
+  const msg = (state.deck.length ? ui().coachWeak : ui().coachFresh)
+    .replace("{a}", ui().coachAreas[weak]);
+  return { msg, act: "game", area: weak };
+}
+function coachHtml(st){
+  const plan = coachPlan(st);
+  const max = Math.max(...EloModel.AREAS.map(a => state.elo[a]), 1400);
+  const bars = EloModel.AREAS.map(a => {
+    const pct = Math.round(Math.min(100, Math.max(6, (state.elo[a] - 900) / (max - 900) * 100)));
+    return `<div class="co-row"><span class="co-a">${ui().coachAreas[a]}</span>
+      <span class="co-bar"><span style="width:${pct}%"></span></span>
+      <span class="co-n">${state.elo[a]}</span></div>`;
+  }).join("");
+  return `<div class="coach">
+    <div class="co-head">\u{1F9ED} ${ui().coachTitle}</div>
+    <p class="co-msg">${plan.msg}</p>
+    <button class="btn primary" id="coachGo" data-act="${plan.act}" data-area="${plan.area || ""}">${ui().coachGo}</button>
+    <div class="co-abil"><span class="co-lbl">${ui().coachAbility}</span>${bars}</div>
+  </div>`;
+}
+function bindCoach(){
+  const go = document.getElementById("coachGo");
+  if (!go) return;
+  go.addEventListener("click", () => {
+    if (go.dataset.act === "review") {
+      // the review card is already on this page — flip it open and go
+      if (reviewStep < 2) reviewStep++;
+      renderDeck();
+      const rc = document.getElementById("reviewCard");
+      if (rc) rc.scrollIntoView({ block: "center" });
+    } else (COACH_GAME[go.dataset.area] || COACH_GAME.vocab)();
+  });
+}
+
 function renderDeck(){
   const queue = dueCards();
   const st = deckStats();
@@ -4745,6 +4967,7 @@ function renderDeck(){
       ${canLearn ? `<button class="btn primary d-learn" id="learnHere">${ui().learnHere
         .replace("{n}", Math.min(newWordsHere(0).length, state.goal.newWords - t.learned))}</button>` : ""}
     </div>`;
+  html += coachHtml(st);
   html += `<div class="deck-stats">
       <span class="st fresh">${st.fresh} ${ui().stNew}</span>
       <span class="st learn">${st.learning} ${ui().stLearning}</span>
@@ -4823,6 +5046,7 @@ function renderDeck(){
       if (c && c.ctx) { reviewStep = 0; jumpTo(c.ctx.story, c.ctx.sen); }
     });
   }
+  bindCoach();
   const le = document.getElementById("learnHere");
   if (le) le.addEventListener("click", learnNewHere);
   const ge = document.getElementById("goalEdit");
@@ -4941,6 +5165,7 @@ function startHarakat(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().harakat, ask: ui().chooseForm, items, restart: startHarakat,
+    area: "vocab", lvl: it => (it.entry && it.entry.level) || 3,
     question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
     options: it => {
       // Definite (ال-prefixed) nouns never take tanwin — keep distractors
@@ -4962,6 +5187,7 @@ function startSpot(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().spot, ask: ui().whichCorrect, items: shuffle(items).slice(0, 8), restart: startSpot,
+    area: "vocab", lvl: it => (it.entry && it.entry.level) || 3,
     question: () => "",
     options: it => shuffle([{ html: it.right, ok: true, ar: true },
                             { html: it.wrong, ok: false, ar: true }]),
@@ -5040,8 +5266,11 @@ function clozePool(it){
 function clozeRound(n){
   const fade = new Set(fadingWords(n).map(f => f.lex));
   const all = shuffle(clozeItems());
-  const walk = [...all.filter(it => fade.has(it.tok.lex)),
-                ...all.filter(it => !fade.has(it.tok.lex))];
+  // fading words keep their reserved seats; everyone else queues by closeness
+  // to the learner's desirable-difficulty band (the Elo model's ~75% line).
+  const rest = EloModel.rank(all.filter(it => !fade.has(it.tok.lex)), "vocab",
+                             it => it.entry && it.entry.level);
+  const walk = [...all.filter(it => fade.has(it.tok.lex)), ...rest];
   const out = [];
   for (const it of walk) {
     if (out.length >= n) break;
@@ -5098,6 +5327,7 @@ function adadGameItems(count){
 function startAdadGame(){
   runQuiz({
     title: ui().adadGame, ask: ui().adadAsk, items: adadGameItems(8), restart: startAdadGame,
+    area: "adad", lvl: it => (it.n > 10 ? 4 : 2),
     question: it => `<div class="game-q adad-q"><b>${it.n}</b> × ${T(it.noun.gloss)}</div>`,
     options: it => shuffle([{ html: it.right.text, ok: true, ar: true },
       ...it.wrongs.map(w => ({ html: w, ok: false, ar: true }))]),
@@ -5110,6 +5340,7 @@ function startCloze(){
   if (!items.length) { emptyGame(ui().clozeGame, ui().clozeNeedsReading); return; }
   runQuiz({
     title: ui().clozeGame, ask: ui().clozeAsk, items, restart: startCloze,
+    area: "vocab", lvl: it => (it.entry && it.entry.level) || 3,
     question: it => `${it.fading ? `<div class="fade-note">\u{1F9E0} ${ui().fadingCloze}</div>` : ""}
       <div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
     options: it => shuffle([{ html: it.entry.lemma, ok: true, ar: true },
