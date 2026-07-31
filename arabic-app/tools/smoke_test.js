@@ -2863,7 +2863,7 @@ if (!CHROME) {
                abuhu: abuhu && abuhu.irab.ar,
                ishtarata: !!st.morph.ishtarata && st.morph.ishtarata.majhulMudari };
     });
-    if (r.chapters !== 4) throw new Error('sulh should have 4 chapters, got ' + r.chapters);
+    if (r.chapters < 4) throw new Error('sulh should carry chapter 4, got ' + r.chapters + ' chapters');
     if (r.n !== 5) throw new Error('ch4 should carry 5 sentences, got ' + r.n);
     if (!r.abuhu || !r.abuhu.normalize('NFC').includes('الْأَسْمَاءِ الْخَمْسَةِ'.normalize('NFC')))
       throw new Error('abuhu must teach the five nouns: ' + r.abuhu);
@@ -2884,6 +2884,42 @@ if (!CHROME) {
     const back = await page.evaluate(() => document.body.classList.contains('focus-hide'));
     if (back) throw new Error('scrolling back up should return the chrome');
     await toLibrary();
+  });
+
+  await check('Analyzer v2: the Izhar layer — inna chain, clitics, idafa, contradiction', async () => {
+    const r = await page.evaluate(() => ({
+      inna: SentenceAnalyzer.analyze('إن العلمَ نورٌ'),
+      clitic: SentenceAnalyzer.analyze('بالقلمِ كتابُه'),
+      idafa: SentenceAnalyzer.analyze('كتاب الطالبِ جديدٌ'),
+      shart: SentenceAnalyzer.analyze('مهما تفعلْ'),
+      contra: SentenceAnalyzer.analyze('الكتابٌ'),
+    }));
+    const en = ns => ns.map(n => n.en).join(' | ');
+    if (!en(r.inna[1].notes).includes('ISM')) throw new Error('after inna the ism expectation: ' + en(r.inna[1].notes));
+    if (!en(r.inna[2].notes).includes('KHABAR')) throw new Error('then the khabar expectation: ' + en(r.inna[2].notes));
+    if (!en(r.clitic[0].notes).includes('jarr clitic')) throw new Error('bi- must read as a jarr clitic: ' + en(r.clitic[0].notes));
+    if (!r.clitic[1].seg.includes('ه')) throw new Error('the ha of kitabuhu must be peeled: ' + JSON.stringify(r.clitic[1].seg));
+    if (!en(r.clitic[1].notes).includes('mudaf ilayh')) throw new Error('the peeled ha names itself: ' + en(r.clitic[1].notes));
+    if (!en(r.idafa[0].notes).includes('mudaf (idafa)')) throw new Error('kitab al-talib must read as idafa: ' + en(r.idafa[0].notes));
+    if (!en(r.shart[0].notes).includes('jawazim')) throw new Error('mahma is one of the fifteen jawazim: ' + en(r.shart[0].notes));
+    if (!en(r.contra[0].notes).includes('never combine')) throw new Error('al+tanwin must be flagged: ' + en(r.contra[0].notes));
+  });
+
+  await check('kitab-al-sulh chapter 5: the riba rules with lam-jazm on the hollow verb', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-sulh');
+      const ch5 = st.chapters.find(c => c.n === 5);
+      const s25 = ch5 && ch5.sentences.find(s => s.id === 's25');
+      const yajuz = s25 && s25.tokens.find(t => t.s.bare === 'يجز');
+      return { chapters: st.chapters.length, n: ch5 ? ch5.sentences.length : 0,
+               yajuz: yajuz && yajuz.irab.ar,
+               ikhtalafa: !!st.morph.ikhtalafa && st.morph.ikhtalafa.masdar };
+    });
+    if (r.chapters !== 5) throw new Error('sulh should have 5 chapters, got ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch5 should carry 5 sentences, got ' + r.n);
+    if (!r.yajuz || !r.yajuz.normalize('NFC').includes('السَّاكِنَيْنِ'.normalize('NFC')))
+      throw new Error('yajuz must teach the two-sukun drop: ' + r.yajuz);
+    if (r.ikhtalafa !== 'اِخْتِلَاف') throw new Error('ikhtalafa masdar: ' + r.ikhtalafa);
   });
 
   await check('no JS errors on page', async () => {

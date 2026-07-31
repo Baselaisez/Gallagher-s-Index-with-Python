@@ -3748,7 +3748,7 @@ class SentenceAnalyzer {
     "في": { k: "jarr" }, "من": { k: "jarr" }, "الى": { k: "jarr" }, "إلى": { k: "jarr" },
     "عن": { k: "jarr" }, "على": { k: "jarr" }, "حتى": { k: "jarr" }, "رب": { k: "jarr" },
     "مذ": { k: "jarr" }, "منذ": { k: "jarr" }, "بلا": { k: "jarr" },
-    "ان": { k: "inna" }, "إن": { k: "inna" }, "أن": { k: "nasb-verb" }, "لن": { k: "nasb-verb" },
+    "ان": { k: "inna" }, "إن": { k: "inna" }, "أن": { k: "an-amb" }, "لن": { k: "nasb-verb" },
     "كي": { k: "nasb-verb" }, "اذن": { k: "nasb-verb" }, "إذن": { k: "nasb-verb" },
     "لم": { k: "jazm" }, "لما": { k: "jazm" },
     "لا": { k: "nafy" }, "ما": { k: "ma" }, "قد": { k: "qad" }, "سوف": { k: "sawfa" },
@@ -3759,7 +3759,19 @@ class SentenceAnalyzer {
     "هم": { k: "pron" }, "انا": { k: "pron" }, "أنا": { k: "pron" }, "انت": { k: "pron" }, "أنت": { k: "pron" },
     "هذا": { k: "ishara" }, "هذه": { k: "ishara" }, "ذلك": { k: "ishara" }, "تلك": { k: "ishara" },
     "الذي": { k: "mawsul" }, "التي": { k: "mawsul" }, "الذين": { k: "mawsul" }, "الا": { k: "istithna" }, "إلا": { k: "istithna" },
+    // İzhar's fuller rolls: the rest of inna's sisters…
+    "كأن": { k: "inna" }, "لكن": { k: "inna" }, "ليت": { k: "inna" }, "لعل": { k: "inna" },
+    "لأن": { k: "inna" }, "لان": { k: "inna" },
+    // …kana's sisters beyond kana and laysa…
+    "صار": { k: "kana" }, "أصبح": { k: "kana" }, "اصبح": { k: "kana" }, "أمسى": { k: "kana" }, "ظل": { k: "kana" },
+    // …and the conditional NOUNS among the fifteen jawazim
+    "مهما": { k: "shart-jazim" }, "متى": { k: "shart-jazim" }, "أين": { k: "shart-jazim" }, "اين": { k: "shart-jazim" },
+    "أنى": { k: "shart-jazim" }, "انى": { k: "shart-jazim" }, "حيثما": { k: "shart-jazim" }, "اذما": { k: "shart-jazim" },
+    "إذما": { k: "shart-jazim" }, "أي": { k: "shart-jazim" },
   };
+  // enclitic pronouns, longest first — a peeled one names itself: mudaf ilayh
+  // behind a noun, maf'ul behind a verb (İzhar's own account of the ha).
+  static ENCLITICS = ["هما", "كما", "تما", "هم", "هن", "كم", "كن", "نا", "ها", "ه", "ك"];
   static KIND_LBL = {
     jarr:     { en: "jarr letter — the next noun should be majrur", tr: "cer harfi — sonraki isim mecrur olmalı" },
     inna:     { en: "inna family — nasb on its noun, raf' on its khabar", tr: "inne ailesi — ismini nasb, haberini raf eder" },
@@ -3776,6 +3788,8 @@ class SentenceAnalyzer {
     atf:      { en: "joining particle", tr: "atıf harfi" },
     shart:    { en: "conditional", tr: "şart edatı" },
     kana:     { en: "kana family — raf' on its noun, nasb on its khabar", tr: "kâne ailesi — ismini raf, haberini nasb eder" },
+    "shart-jazim": { en: "conditional noun — one of the fifteen jawazim, jazm on two verbs", tr: "şart ismi — on beş câzimden; iki fiili cezmeder" },
+    "an-amb": { en: "an — before a verb the masdar-maker (nasb); before a noun it is anna (inna family)", tr: "en — fiilden önce masdariyye (nasb eder); isimden önce enne'dir (inne ailesi)" },
     pron:     { en: "detached pronoun", tr: "munfasıl zamir" },
     ishara:   { en: "demonstrative", tr: "ism-i işaret" },
     mawsul:   { en: "relative noun", tr: "ism-i mevsûl" },
@@ -3784,37 +3798,70 @@ class SentenceAnalyzer {
   static analyze(text){
     const words = (text || "").split(/[\s،.؛:!؟]+/).filter(w => stripAr(w).length);
     const out = [];
-    let expect = null;
+    // the İzhar queue: every recognised amil pushes what it EXPECTS to govern;
+    // each following open-class word consumes one expectation.
+    let expect = [];
+    let afterVerb = false;
     words.forEach(w => {
       const bare = stripAr(w).replace(/[^ء-ي]/g, "");
-      const row = { w, notes: [], sure: false };
-      // clitic-aware particle lookup: whole word first, then behind و/ف
-      let core = bare, prefix = null;
-      // peel a joining و/ف ONLY when what remains is itself a particle or
-      // definite — a radical waw (وَصِيَّة، وَقَعَ) keeps its letter.
+      const row = { w, seg: [], notes: [], sure: false };
+      let core = bare;
+      // -- proclitics. و/ف only when what remains is a particle or definite
+      // (a radical waw — وَصِيَّة — keeps its letter); ب/ل/ك are jarr clitics,
+      // so the word that carries them IS the majrur; س marks the future.
       if (!this.PARTICLES[core] && /^[وف]/.test(core) && core.length > 1 &&
           (this.PARTICLES[core.slice(1)] || /^ال/.test(core.slice(1)))) {
-        prefix = core[0]; core = core.slice(1);
+        row.seg.push(core[0]);
+        row.notes.push(this.KIND_LBL[core[0] === "و" ? "waw" : "fa"]);
+        core = core.slice(1);
       }
-      if (prefix) row.notes.push(this.KIND_LBL[prefix === "و" ? "waw" : "fa"]);
+      // ب/ل/ك peel ONLY before a definite noun or a known particle — the
+      // kaf of كِتَاب and the ba of بَيْت are radicals, not prepositions.
+      if (!this.PARTICLES[core] && /^[بلك]/.test(core) && core.length > 2 &&
+          (/^.ال/.test(core) || this.PARTICLES[core.slice(1)])) {
+        row.seg.push(core[0]);
+        row.notes.push({ en: "jarr clitic — this very word is the majrur", tr: "cer öneki — mecrur olan bu kelimenin kendisidir" });
+        core = core.slice(1);
+      }
+      if (!this.PARTICLES[core] && /^س[يتنأ]/.test(core) && core.length > 3) {
+        row.seg.push("س");
+        row.notes.push({ en: "future sin — a mudari' follows", tr: "istikbal sîni — muzâri gelir" });
+        core = core.slice(1);
+      }
+      // -- the closed classes: knowledge, not guessing
       const p = this.PARTICLES[core];
       if (p) {
         row.kind = "particle"; row.sure = true;
+        row.seg.push(core);
         row.notes.push(this.KIND_LBL[p.k]);
-        expect = ["jarr"].includes(p.k) ? "majrur"
-               : ["jazm", "nasb-verb"].includes(p.k) ? "verb"
-               : p.k === "nida" ? "munada" : null;
+        if (p.k === "jarr") expect = [{ en: "after a jarr letter — likely majrur", tr: "cer harfinden sonra — muhtemelen mecrur" }];
+        else if (p.k === "jazm" || p.k === "nasb-verb" || p.k === "shart-jazim")
+          expect = [{ en: "after a governor of verbs — a verb should follow", tr: "fiile âmil edattan sonra — fiil gelmeli" }];
+        else if (p.k === "nida") expect = [{ en: "likely the munada", tr: "muhtemelen münâdâdır" }];
+        else if (p.k === "inna") expect = [
+          { en: "likely inna-family's ISM — mansub", tr: "muhtemelen innenin İSMİ — mensub" },
+          { en: "then its KHABAR — marfu'", tr: "sonra HABERİ — merfû" }];
+        else if (p.k === "kana") expect = [
+          { en: "likely kana-family's ISM — marfu'", tr: "muhtemelen kânenin İSMİ — merfû" },
+          { en: "then its KHABAR — mansub", tr: "sonra HABERİ — mensub" }];
+        else expect = [];
+        afterVerb = p.k === "kana";
         out.push(row); return;
       }
-      if (expect === "majrur") row.notes.push({ en: "after a jarr letter — likely majrur", tr: "cer harfinden sonra — muhtemelen mecrur" });
-      if (expect === "verb") row.notes.push({ en: "after a governor of verbs", tr: "fiile âmil olan edattan sonra" });
-      if (expect === "munada") row.notes.push({ en: "likely the munada", tr: "muhtemelen münâdâ" });
-      expect = null;
-      // morphology signals — tentative
-      const hasAl = /^ال/.test(core.replace(/^[وفبلك]/, ""));
+      // -- enclitic pronouns: peel from a long-enough remainder
+      let enc = null;
+      for (const e of this.ENCLITICS) {
+        if (core.length - e.length >= 3 && core.endsWith(e)) { enc = e; core = core.slice(0, -e.length); break; }
+      }
+      // -- morphology signals: tentative
+      const hasAl = /^ال/.test(core);
       const tanwin = /[ًٌٍ]/.test(w.normalize("NFC"));
       const taM = /ة$/.test(core);
       const verbish = /^[يتنأ]/.test(core) && core.length >= 3 && !hasAl;
+      row.seg.push(core);
+      if (enc) row.seg.push(enc);
+      if (hasAl && tanwin)
+        row.notes.push({ en: "⚠ definite article WITH tanwin — these never combine; check the vowelling", tr: "⚠ harf-i tarifle tenvin BİRLİKTE — asla birleşmez; harekeyi kontrol edin" });
       if (hasAl || tanwin || taM) {
         row.kind = "noun";
         if (hasAl) row.notes.push({ en: "definite article — a noun", tr: "harf-i tarif — isimdir" });
@@ -3826,6 +3873,15 @@ class SentenceAnalyzer {
       } else {
         row.kind = "noun?";
       }
+      if (enc) row.notes.push(row.kind.startsWith("verb")
+        ? { en: "attached pronoun — its maf'ul bihi", tr: "bitişik zamir — mef'ûlün bihidir" }
+        : { en: "attached pronoun — the mudaf ilayh", tr: "bitişik zamir — muzâfun ileyhtir" });
+      // -- consume one İzhar expectation, or inherit the verb's promise
+      if (expect.length) row.notes.push(expect.shift());
+      else if (afterVerb && row.kind === "noun" && (hasAl || !tanwin))
+        row.notes.push({ en: "first noun after the verb — likely the fa'il, marfu'", tr: "fiilden sonraki ilk isim — muhtemelen fâil, merfû" });
+      afterVerb = row.kind.startsWith("verb");
+      // -- dig with the other machines
       const r = RootFinder.find(w);
       if (r) {
         row.root = r.root;
@@ -3834,8 +3890,19 @@ class SentenceAnalyzer {
       }
       const m = WaznEngine.of(w);
       if (m && m.mizan) row.wazn = m.mizan;
+      row.al = hasAl; row.tanwin = tanwin;
       out.push(row);
     });
+    // -- idafa pass: a bare noun (no article, no tanwin) followed by a
+    // definite noun reads as mudaf + mudaf ilayh — İzhar's third noun state.
+    for (let i = 0; i + 1 < out.length; i++) {
+      const a = out[i], b = out[i + 1];
+      if (a.kind && a.kind.startsWith("noun") && !a.sure && !a.al && !a.tanwin &&
+          !a.seg.includes("ه") && b.kind === "noun" && b.al) {
+        a.notes.push({ en: "bare before a definite noun — likely mudaf (idafa)", tr: "harf-i tarifsiz ve tenvinsiz, ardından marife isim — muhtemelen muzâf (izâfet)" });
+        b.notes.push({ en: "likely the mudaf ilayh — majrur", tr: "muhtemelen muzâfun ileyh — mecrur" });
+      }
+    }
     return out;
   }
 }
@@ -3993,7 +4060,8 @@ function renderJumlaOut(){
   const lang = state.uiLang === "tr" ? "tr" : "en";
   let h = `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
   rows.forEach(r => {
-    h += `<tr><td lang="ar">${r.w}</td><td>
+    h += `<tr><td lang="ar">${r.w}${r.seg && r.seg.length > 1
+      ? `<br><span class="av-ex" lang="ar" dir="rtl">${r.seg.join(" + ")}</span>` : ""}</td><td>
       ${r.sure ? "" : `<span class="chip">${ui().jumlaGuess}</span> `}${
       r.lemma ? `<b lang="ar">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}<br>` : ""}${
       r.root ? `<span lang="ar">${ui().jadhrRoot} ${r.root}</span> ` : ""}${
