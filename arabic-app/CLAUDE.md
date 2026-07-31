@@ -8,7 +8,7 @@ Everything here is the *why*; the code is the *what*.
 
 ```
 content/
-  grammar/          82 global grammar notes — one JSON per topic, shared by every story
+  grammar/          87 global grammar notes — one JSON per topic, shared by every story
   i18n/irab-tr.json Turkish translation memory for i'rab strings, keyed by the English
   samples/<story>/  manifest.json · chapters/N.json · glossary.json · morphology.json
   user-uploads/     same shape; deeds-are-by-intentions ships its own standalone reader.html
@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         80 browser checks over file:// (Playwright)
+  smoke_test.js         83 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -601,6 +601,26 @@ pool by closeness to that band AFTER fading words take their reserved seats
 (FSRS outranks Elo). The deck's coach card (`coachPlan`/`coachHtml`) is a
 deterministic read of the whole state — dues beat fading beats weakest-area
 game — every sentence traces to a number; nothing is generated.
+
+**A user correction becomes doctrine, not just a patch.** The reader caught
+s18's waw (wasiyyat-abi-hanifa-L2) glossed as عاطفة when it is حالية — the fix
+went into the token AND into a new note (`anwa-al-waw`: atif, haliyya,
+isti'nafiyya, qasam, ma'iyya, plus the pronoun waw), anchored to that very
+sentence, with the «while/إذ»-substitution test and the جاء الطلاب والمعلمَ
+nasb-betrays-ma'iyya mistake. When a correction lands, always ask what NOTE
+teaches the distinction — and anchor it where the mistake lived. A smoke check
+pins s18's i'rab, its two jumal rows, and the note's anchor.
+
+**The Tahlil tutor walks, the role game samples.** `tahlilSentences()` groups
+roleItems by sentence (object identity — sentence ids repeat across stories)
+and keeps sentences with 3+ askable tokens, sorted by position; `startTahlil`
+then walks ONE sentence in order like a hoca, revealing each stored i'rab after
+the learner answers. Elo area nahw; the coach's nahw action now points here.
+
+**Covers are woven, not stored.** `coverArt(st)` hashes the story id into an
+eight-point-star SVG lattice in the level's muted colour — data URI, no asset.
+Trap: encodeURIComponent leaves apostrophes, and the inline style wraps the URI
+in url('…') — replace ' with %27 or the style dies silently.
 
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`

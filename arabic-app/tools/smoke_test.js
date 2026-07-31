@@ -2716,6 +2716,65 @@ if (!CHROME) {
     if (r.bars !== 4) throw new Error('expected 4 ability bars, got ' + r.bars);
   });
 
+  await check('the waw in s18 is haliyya, taught by the anwa-al-waw note', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'wasiyyat-abi-hanifa-L2');
+      let tok = null, sen = null;
+      st.chapters.forEach(ch => ch.sentences.forEach(s => s.tokens.forEach(t => {
+        if (s.id === 's18' && t.s.full === 'وَفِي') { tok = t; sen = s; }
+      })));
+      const note = GRAMMAR['anwa-al-waw'];
+      return {
+        irab: tok && tok.irab.ar,
+        grammar: tok && tok.grammar,
+        role: tok && RoleEngine.of(tok),
+        jumal: sen && sen.jumal && sen.jumal.length,
+        noteOk: !!note && note.examples.some(e => e.src === 'wasiyyat-abi-hanifa-L2'),
+      };
+    });
+    if (!r.irab || !r.irab.normalize('NFC').includes('حَالِيَّةٌ'.normalize('NFC')))
+      throw new Error('the waw must be named haliyya: ' + r.irab);
+    if (!r.grammar || !r.grammar.includes('anwa-al-waw') || !r.grammar.includes('hal'))
+      throw new Error('token must anchor anwa-al-waw and hal: ' + JSON.stringify(r.grammar));
+    if (r.role !== 'hal') throw new Error('RoleEngine should paint the haliyya waw as hal, got ' + r.role);
+    if (r.jumal !== 2) throw new Error('s18 needs its two jumal rows, got ' + r.jumal);
+    if (!r.noteOk) throw new Error('anwa-al-waw note must anchor its example to s18');
+  });
+
+  await check('the Tahlil tutor walks one sentence in order', async () => {
+    const r = await page.evaluate(() => {
+      const pools = tahlilSentences();
+      const ordered = pools.every(l => l.every((it, i) => i === 0 || l[i - 1].ti < it.ti));
+      const oneSen = pools.every(l => l.every(it => it.sen === l[0].sen));
+      return { n: pools.length, min: Math.min(...pools.map(l => l.length)), ordered, oneSen };
+    });
+    if (!r.n) throw new Error('no tahlil-eligible sentences in the corpus');
+    if (r.min < 3) throw new Error('a pool slipped under three askable words');
+    if (!r.ordered || !r.oneSen) throw new Error('a walk must stay inside one sentence, in order');
+    await page.evaluate(() => openGames());
+    await page.waitForSelector('#gTahlil', { timeout: 3000 });
+    await page.locator('#gTahlil').click();
+    await page.waitForSelector('.opts [data-o]', { timeout: 3000 });
+    const q = await page.evaluate(() => {
+      const t = document.querySelector('.game-q').textContent.trim();
+      closeSheet();
+      return t;
+    });
+    if (!q) throw new Error('tutor question is empty');
+  });
+
+  await check('every shelf card wears its woven cover', async () => {
+    await toLibrary();
+    const r = await page.evaluate(() => ({
+      cards: document.querySelectorAll('.lib-card').length,
+      covers: document.querySelectorAll('.lib-card .cover').length,
+      svg: (document.querySelector('.lib-card .cover') || {style:{backgroundImage:''}})
+             .style.backgroundImage.includes('data:image/svg'),
+    }));
+    if (r.cards !== r.covers) throw new Error(`covers=${r.covers} cards=${r.cards}`);
+    if (!r.svg) throw new Error('cover background is not the generated svg');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
