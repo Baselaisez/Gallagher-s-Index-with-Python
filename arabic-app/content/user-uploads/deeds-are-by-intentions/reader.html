@@ -3627,7 +3627,19 @@ class RootFinder {
     if (/[اى]$/.test(root)) notes.push("last");
     return notes;
   }
+  // find() runs on every keystroke of three labs and on every Analyzer word —
+  // and each miss walks the whole corpus. The memo makes repeat lookups free;
+  // 400 entries is far past anything one session types.
+  static _memo = new Map();
   static find(word){
+    const key = (word || "").normalize("NFC");
+    if (this._memo.has(key)) return this._memo.get(key);
+    const res = this._find(key);
+    if (this._memo.size > 400) this._memo.clear();
+    this._memo.set(key, res);
+    return res;
+  }
+  static _find(word){
     const hit = this.fromCorpus(word);
     if (hit) return hit;
     // corpus-first applies to the PEELED skeletons too: ورجع must find the
@@ -3661,11 +3673,16 @@ class RootFinder {
 // chain is right there to explain the surface. RULES: when the corpus is
 // silent, the peel pattern that found the root already names the wazn.
 class WaznEngine {
+  static _memo = new Map();
   static of(word){
-    const hit = RootFinder.fromCorpus(word);
-    if (hit) return this._corpus(word, hit);
-    const r = RootFinder.find(word);
-    return r ? { via: "rules", root: r.root, wazn: r.wazn, weak: r.weak } : null;
+    const key = (word || "").normalize("NFC");
+    if (this._memo.has(key)) return this._memo.get(key);
+    const hit = RootFinder.fromCorpus(key);
+    const res = hit ? this._corpus(key, hit)
+      : (r => r ? { via: "rules", root: r.root, wazn: r.wazn, weak: r.weak } : null)(RootFinder.find(key));
+    if (this._memo.size > 400) this._memo.clear();
+    this._memo.set(key, res);
+    return res;
   }
   static _corpus(word, hit){
     // find the entry again to reach its morphology (fromCorpus returns the cell)
@@ -3708,6 +3725,9 @@ class IsmEngine {
     "أخ": "أَخَوِيّ", "اخ": "أَخَوِيّ", "أب": "أَبَوِيّ", "اب": "أَبَوِيّ",
     "يد": "يَدَوِيّ", "سماء": "سَمَاوِيّ", "عيسى": "عِيسَوِيّ",
     "بصرة": "بَصْرِيّ", "كوفة": "كُوفِيّ", "حنيفة": "حَنَفِيّ",
+    // radical-ha words: the ha is a ROOT letter, so the silent-ha rule below
+    // must not touch them — the table answers first.
+    "فقه": "فِقْهِيّ", "وجه": "وَجْهِيّ", "له": "إِلَهِيّ", "اله": "إِلَهِيّ",
   };
   static parts(word){
     const b = stripAr(word || "").replace(/[^ء-ي]/g, "").replace(/^ال/, "");
@@ -3735,6 +3755,10 @@ class IsmEngine {
     const s = this.SEMAI_NISBA[b] || this.SEMAI_NISBA[core];
     if (s) return { out: s, rule: "سَمَاعِيٌّ — مِنَ الْجَدْوَلِ الْمَحْفُوظِ لَا مِنَ الْقَاعِدَةِ", semai: true };
     if (ta) return { out: core + "ِيّ", rule: "تُحْذَفُ التَّاءُ ثُمَّ تُزَادُ يَاءُ النِّسْبَةِ" };
+    // the silent final ha of foreign and Ottoman place-names turns waw:
+    // رِيزَه → رِيزَوِيّ، قُونِيَه → قُونَوِيّ. Radical-ha words (فقه، وجه)
+    // are shielded by the semai table above.
+    if (/ه$/.test(core)) return { out: core.slice(0, -1) + "وِيّ", rule: "الْهَاءُ السَّاكِنَةُ فِي آخِرِ الْأَعْلَامِ تُقْلَبُ وَاوًا — رِيزَه → رِيزَوِيّ" };
     if (/اء$/.test(core)) return { out: core.slice(0, -1) + "وِيّ", rule: "هَمْزَةُ الْمَمْدُودِ تُقْلَبُ وَاوًا" };
     if (/[اى]$/.test(core)) return { out: core.slice(0, -1) + "َوِيّ", rule: "أَلِفُ الْمَقْصُورِ تُقْلَبُ وَاوًا" };
     return { out: core + "ِيّ", rule: "تُزَادُ يَاءُ النِّسْبَةِ الْمُشَدَّدَةُ" };
@@ -3922,6 +3946,13 @@ class SentenceAnalyzer {
     }
     return out;
   }
+}
+
+// A shared debounce for the lab inputs: analysis runs when the typist
+// pauses, not on every keystroke — the phone stays smooth.
+function debounced(fn, ms = 140){
+  let t = null;
+  return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
 }
 
 // ---------- the Sarf Lab UI ----------
@@ -4177,7 +4208,7 @@ function renderLabBody(){
       </div>
       <div id="jumlaOut"></div>`;
     const inp = document.getElementById("jumlaIn");
-    inp.addEventListener("input", () => { conjState.jumla = inp.value; renderJumlaOut(); });
+    inp.addEventListener("input", debounced(() => { conjState.jumla = inp.value; renderJumlaOut(); }));
     renderJumlaOut();
     return;
   }
@@ -4189,7 +4220,7 @@ function renderLabBody(){
       </div>
       <div id="ismOut"></div>`;
     const inp = document.getElementById("ismIn");
-    inp.addEventListener("input", () => { conjState.ism = inp.value; renderIsmOut(); });
+    inp.addEventListener("input", debounced(() => { conjState.ism = inp.value; renderIsmOut(); }));
     renderIsmOut();
     return;
   }
@@ -4201,7 +4232,7 @@ function renderLabBody(){
       </div>
       <div id="mizanOut"></div>`;
     const inp = document.getElementById("mizanIn");
-    inp.addEventListener("input", () => { conjState.mizan = inp.value; renderMizanOut(); });
+    inp.addEventListener("input", debounced(() => { conjState.mizan = inp.value; renderMizanOut(); }));
     renderMizanOut();
     return;
   }
@@ -4213,7 +4244,7 @@ function renderLabBody(){
       </div>
       <div id="jadhrOut"></div>`;
     const inp = document.getElementById("jadhrIn");
-    inp.addEventListener("input", () => { conjState.jadhr = inp.value; renderJadhrOut(); });
+    inp.addEventListener("input", debounced(() => { conjState.jadhr = inp.value; renderJadhrOut(); }));
     renderJadhrOut();
     return;
   }

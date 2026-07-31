@@ -2560,6 +2560,7 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button[data-lab="jadhr"]').click();
     await page.waitForSelector('#jadhrIn', { timeout: 3000 });
     await page.fill('#jadhrIn', 'اصطبر');
+    await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
       const t = document.getElementById('jadhrOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -2674,6 +2675,7 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button[data-lab="mizan"]').click();
     await page.waitForSelector('#mizanIn', { timeout: 3000 });
     await page.fill('#mizanIn', 'يستعملون');
+    await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
       const t = document.getElementById('mizanOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -2800,12 +2802,20 @@ if (!CHROME) {
     if (nfc(r.ilm.out) !== nfc('علمِيّ')) throw new Error('ilm nisba: ' + r.ilm.out);
     if (!nfc(r.sahra.out).endsWith(nfc('وِيّ'))) throw new Error('mamdud hamza must turn waw: ' + r.sahra.out);
     if (!r.dunya.semai) throw new Error('dunya must be semai');
+    // the user's correction: a silent final ha turns waw — Rize → Rizevi;
+    // radical-ha words are shielded by the table.
+    const ha = await page.evaluate(() => ({
+      rize: IsmEngine.nisba('ريزه'), fiqh: IsmEngine.nisba('فقه'),
+    }));
+    if (nfc(ha.rize.out) !== nfc('ريزوِيّ')) throw new Error('Rize nisba must be Rizevi: ' + ha.rize.out);
+    if (!ha.fiqh.semai || nfc(ha.fiqh.out) !== nfc('فِقْهِيّ')) throw new Error('fiqh keeps its radical ha: ' + JSON.stringify(ha.fiqh));
     // the lab tab shows both machines
     await page.locator('#conjOpen').click();
     await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 3000 });
     await page.locator('.sheet .tabs button[data-lab="ism"]').click();
     await page.waitForSelector('#ismIn', { timeout: 3000 });
     await page.fill('#ismIn', 'مدينة');
+    await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
       const t = document.getElementById('ismOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -2949,6 +2959,25 @@ if (!CHROME) {
     if (r.noun !== 'ismiyya') throw new Error('al-ilm nur must be ismiyya, got ' + r.noun);
     if (r.wawVerb !== 'filiyya') throw new Error('the joining waw must be looked through, got ' + r.wawVerb);
     if (r.inna !== 'ismiyya') throw new Error('inna opens a nominal sentence, got ' + r.inna);
+  });
+
+  await check('kitab-al-waqf joins the shelf: definition, mithal verb, the qaida', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-waqf');
+      if (!st) return { missing: true };
+      const s5 = st.chapters[0].sentences.find(s => s.id === 's5');
+      return {
+        count: STORIES.length,
+        qaida: s5 && s5.tokens.some(t => t.s.bare === 'كنص'),
+        waqafa: st.morph.waqafa && st.morph.waqafa.mudari[0],
+        halla: st.morph['halla-lawful'] && st.morph['halla-lawful'].mudari[0],
+      };
+    });
+    if (r.missing) throw new Error('kitab-al-waqf is not in the library');
+    if (r.count !== 15) throw new Error('the shelf should hold 15 stories, got ' + r.count);
+    if (!r.qaida) throw new Error('s5 must carry the shart-al-waqif qaida');
+    if (r.waqafa !== 'يَقِفُ'.normalize('NFC')) throw new Error('waqafa mithal mudari: ' + r.waqafa);
+    if (r.halla !== 'يَحِلُّ'.normalize('NFC')) throw new Error('halla geminate mudari: ' + r.halla);
   });
 
   await check('no JS errors on page', async () => {
