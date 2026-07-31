@@ -317,6 +317,25 @@
     transition: transform .25s cubic-bezier(.3,.9,.35,1); max-height: 82vh; overflow-y: auto;
   }
   .sheet.show { transform: translate(-50%, 0); }
+  /* the glass sheet: frosted over the page where the browser can afford it */
+  @supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
+    .sheet {
+      background: color-mix(in srgb, var(--panel) 82%, transparent);
+      -webkit-backdrop-filter: blur(16px) saturate(1.25);
+      backdrop-filter: blur(16px) saturate(1.25);
+    }
+  }
+  /* the i'lal chain: asl ← result, with the rule as recited */
+  .ilal {
+    border: 1px solid var(--line); border-inline-start: 3px solid var(--lvl3, var(--accent));
+    border-radius: 10px; padding: .5rem .7rem; margin: .5rem 0; background: var(--panel);
+  }
+  .ilal .il-head { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: .06em; margin-bottom: .25rem; }
+  .ilal .il-line { font-family: var(--ar-font); font-size: 1.15rem; }
+  .ilal .il-why { font-size: .85rem; color: var(--ink-soft); margin: .1rem 0 .45rem; }
+  .ilal .il-why small { font-family: var(--ui-font); font-size: .74rem; }
+  .ilal .il-step:last-child .il-why { margin-bottom: 0; }
   @media (prefers-reduced-motion: reduce) { .sheet, .scrim { transition: none; } }
   .sheet-inner { padding: 1rem 1.2rem 1.4rem; }
   .grab { width: 2.4rem; height: 4px; border-radius: 2px; background: var(--line); margin: .6rem auto 0; }
@@ -591,6 +610,8 @@
     font-family: var(--ui-font); letter-spacing: .1em; direction: ltr;
   }
   .fsrs-note { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); margin: -.2rem 0 .6rem; }
+  .retention-seg { align-items: center; margin: 0 0 .7rem; font-size: .72rem; }
+  .retention-seg .ret-lbl { font-family: var(--ui-font); color: var(--ink-soft); padding: 0 .55rem; }
   .fade-note {
     font-family: var(--ui-font); font-size: .78rem; color: var(--accent);
     background: var(--accent-soft); border-radius: 8px; padding: .35rem .6rem; margin: .4rem 0;
@@ -608,6 +629,21 @@
   .intext .it-gloss { font-family: var(--ui-font); font-size: .95rem; font-weight: 600; }
   .intext .it-cell { font-family: var(--ui-font); font-size: .78rem; color: var(--ink-soft); margin-top: .15rem; }
   .game-pick .gd.fade { color: var(--accent); font-size: .76rem; }
+  /* design wave: the shelf breathes in — staggered card entrance, hover lift */
+  @media (prefers-reduced-motion: no-preference) {
+    .lib-card { animation: cardIn .45s cubic-bezier(.2,.7,.3,1) backwards; }
+    .lib-card:nth-child(2)  { animation-delay: .04s; }
+    .lib-card:nth-child(3)  { animation-delay: .08s; }
+    .lib-card:nth-child(4)  { animation-delay: .12s; }
+    .lib-card:nth-child(5)  { animation-delay: .16s; }
+    .lib-card:nth-child(6)  { animation-delay: .20s; }
+    .lib-card:nth-child(7)  { animation-delay: .24s; }
+    .lib-card:nth-child(8)  { animation-delay: .28s; }
+    .lib-card:nth-child(n+9){ animation-delay: .32s; }
+    .lib-card { transition: transform .18s ease, box-shadow .18s ease; }
+    .lib-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(14px); } }
   .conj-h {
     text-align: center; font-family: var(--ar-font); font-weight: 600;
     font-size: 1.05rem; margin: .9rem 0 .2rem; color: var(--ink-soft);
@@ -973,6 +1009,7 @@ const L = {
         jadhrSamai:"The Form I bab is SAMA'I — recited from the lexicon, never computed. It shows here because the corpus carries it.",
         jadhrRules:"Derived by the peeling rules — the corpus does not carry this form.",
         jadhrWeak:"A weak radical hides in the spelling: و/ي marks where only the lexicon can decide.",
+        ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
         conjPh:"root — e.g. نصر or قول",
         conjBad:"Enter a three-letter root.",
@@ -1047,6 +1084,7 @@ const L = {
         jadhrSamai:"Sülâsî bâb SEMÂÎDİR — lugatten okunur, kaideyle hesaplanmaz. Burada görünüyor; çünkü külliyat onu taşıyor.",
         jadhrRules:"Soyma kaideleriyle türetildi — külliyat bu kalıbı taşımıyor.",
         jadhrWeak:"Yazıda gizlenen illetli bir harf var: yalnız lugatın karar verebildiği yerde و/ي yazılır.",
+        ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
         conjPh:"kök — örn. نصر veya قول",
         conjBad:"Üç harfli bir kök girin.",
@@ -1122,6 +1160,7 @@ Object.assign(L.en, {
   hard:"Hard", easy:"Easy", tenMin:"10m", dayShort:"d", conjCard:"conjugation drill",
   stNew:"new", stLearning:"learning", stMature:"mature", stLeech:"leech",
   fsrsNote:"Intervals come from the FSRS memory model — weights machine-learned from millions of real reviews, then fitted to your own recall.",
+  retentionLbl:"Target recall",
   fadingHub:"{n} deck words are fading — this round rescues them first.",
   fadingNote:"The memory model seated {n} fading words from your deck in this round.",
   fadingCloze:"A fading word from your deck — catch it.",
@@ -1146,6 +1185,7 @@ Object.assign(L.tr, {
   hard:"Zor", easy:"Kolay", tenMin:"10dk", dayShort:"g", conjCard:"çekim alıştırması",
   stNew:"yeni", stLearning:"öğreniliyor", stMature:"pekişmiş", stLeech:"takıldı",
   fsrsNote:"Aralıkları FSRS bellek modeli belirler — ağırlıkları milyonlarca gerçek tekrardan makine öğrenimiyle çıkarılmış, sonra sizin hatırlamanıza uydurulur.",
+  retentionLbl:"Hedef hatırlama",
   fadingHub:"Destede {n} kelime solmak üzere — bu tur önce onları kurtarır.",
   fadingNote:"Bellek modeli bu tura destenizden solmakta olan {n} kelimeyi oturttu.",
   fadingCloze:"Destenizden solmakta olan bir kelime — yakalayın.",
@@ -1281,6 +1321,7 @@ const state = {
   streak: JSON.parse(localStorage.getItem("qissa-streak") || '{"days":0,"last":""}'),
   today: JSON.parse(localStorage.getItem("qissa-today") || '{"date":"","reviewed":0,"learned":0,"read":0}'),
   goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
+  retention: parseFloat(localStorage.getItem("qissa-retention")) || 0.9,
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
   // 0 = never chosen. The picker asks once on first run; the level chip in the
@@ -3146,6 +3187,67 @@ function adadRuleText(rule){
   return ui()["adadRule_" + rule] || "";
 }
 
+// ---------- the i'lal chain (silsilat al-i'lal) ----------
+// The derivation a Maksud student recites: the ASL, the rule, the result —
+// from research/sources/ilal-kaideleri-turkce.txt and maksut-sarf-ottoman.txt.
+// Form I only, and only where a rule actually fired; every step carries the
+// rule in the madrasah's own Arabic wording with EN/TR beneath.
+function ilalSteps(cls, bab, mazi, mudari){
+  if (!cls || !SJ_BAB1[bab]) return null;
+  const [f, a, l] = cls.rs, t = cls.type, V = SJ_BAB1[bab];
+  const qalb = {
+    ar: "تَحَرَّكَ حَرْفُ الْعِلَّةِ وَانْفَتَحَ مَا قَبْلَهُ فَقُلِبَ أَلِفًا.",
+    en: "The weak letter bore a vowel after a fatha, so it was turned to an alif.",
+    tr: "İllet harfi harekeli, öncesi fethalı olunca elife çevrildi.",
+  };
+  const S = [];
+  if (t === "ajwaf") {
+    S.push({ asl: sjN(f + "َ" + a + V.v1 + l + "َ"), now: mazi, ...qalb });
+    S.push({ asl: sjN("يَ" + f + "ْ" + a + V.v2 + l + "ُ"), now: mudari,
+      ar: "اسْتُثْقِلَتِ الْحَرَكَةُ عَلَى حَرْفِ الْعِلَّةِ فَنُقِلَتْ إِلَى السَّاكِنِ قَبْلَهُ.",
+      en: "The vowel sat heavy on the weak letter, so it was carried back to the quiescent letter before it.",
+      tr: "Hareke illet harfine ağır geldi; öncesindeki sâkine nakledildi." });
+  } else if (t === "naqis") {
+    const glide = l === "ى" ? "ي" : l;
+    if (bab !== 4)
+      S.push({ asl: sjN(f + "َ" + a + V.v1 + glide + "َ"), now: mazi, ...qalb });
+    if (bab === 4)
+      S.push({ asl: sjN("يَ" + f + "ْ" + a + "َ" + glide + "ُ"), now: mudari, ...qalb });
+    else
+      S.push({ asl: sjN("يَ" + f + "ْ" + a + V.v2 + glide + "ُ"), now: mudari,
+        ar: "اسْتُثْقِلَتِ الضَّمَّةُ عَلَى حَرْفِ الْعِلَّةِ فَحُذِفَتْ.",
+        en: "The damma sat heavy on the weak letter, so it was dropped.",
+        tr: "Damme illet harfine ağır geldi ve hazfedildi." });
+  } else if (t === "mithal") {
+    if (bab === 4 || f !== "و") return null;
+    S.push({ asl: sjN("يَوْ" + a + V.v2 + l + "ُ"), now: mudari,
+      ar: "وَقَعَتِ الْوَاوُ بَيْنَ الْيَاءِ الْمَفْتُوحَةِ وَالْكَسْرَةِ فَحُذِفَتْ.",
+      en: "The waw fell between the open ya and a kasra, so it was dropped.",
+      tr: "Vav, fethalı yâ ile kesre arasında kaldı ve düştü." });
+  } else if (t === "gem") {
+    S.push({ asl: sjN(f + "َ" + a + V.v1 + l + "َ"), now: mazi,
+      ar: "نُقِلَتْ حَرَكَةُ الْأَوَّلِ ثُمَّ أُدْغِمَ الْمِثْلَانِ.",
+      en: "The first twin's vowel was carried over, then the twins were fused (idgham).",
+      tr: "İlk harfin harekesi nakledildi, sonra iki mislî idgam edildi." });
+  } else return null;
+  return S.length ? S : null;
+}
+function ilalHtml(steps){
+  return `<div class="ilal"><div class="il-head">${ui().ilalHead}</div>` +
+    steps.map(s => `<div class="il-step">
+      <div class="il-line" lang="ar" dir="rtl">أَصْلُهُ ${s.asl} ← ${s.now}</div>
+      <div class="il-why"><span lang="ar">${s.ar}</span><br><small>${state.uiLang === "tr" ? s.tr : s.en}</small></div>
+    </div>`).join("") + `</div>`;
+}
+// Chain for a stored corpus verb: only Form I, bab known (it is sema'i).
+function ilalChain(entry, morph){
+  if (!morph || morph.jamid || !entry) return null;
+  const cls = nakilClass(entry);
+  const at = cls ? sjAttested(morph) : null;
+  if (!at || at.form !== "I" || !at.bab) return null;
+  return ilalSteps(cls, at.bab, morph.mazi[0], morph.mudari[0]);
+}
+
 // ---------- the Root Finder (كَاشِفُ الْجَذْرِ / Kök Bulucu) ----------
 // Corpus FIRST: if any stored paradigm contains the typed form, the answer
 // comes with everything the lexicon knows — root, form, and for Form I the
@@ -3192,9 +3294,21 @@ class RootFinder {
     });
     return [...out].filter(x => x.length >= 3);
   }
-  // one skeleton → {root, wazn} or null. Rules ordered longest-first.
+  // one skeleton → {root, wazn} or null. MASDARS first (they are longer and
+  // more specific), then the verb skeletons; hamza may be written plain (اكرم).
   static peel(s){
     let m;
+    // -- masdar patterns
+    if ((m = s.match(/^است(..)ا(.)$/)))       return { root: m[1] + m[2], wazn: "اِسْتِفْعَال — مَصْدَر" };
+    if ((m = s.match(/^ا([صضطظ])ط(.)ا(.)$/))) return { root: m[1] + m[2] + m[3], wazn: "اِفْتِعَال — مَصْدَر (ت ← ط)" };
+    if ((m = s.match(/^ا([زدذ])د(.)ا(.)$/)))  return { root: m[1] + m[2] + m[3], wazn: "اِفْتِعَال — مَصْدَر (ت ← د)" };
+    if ((m = s.match(/^ا(.)ت(.)ا(.)$/)))      return { root: m[1] + m[2] + m[3], wazn: "اِفْتِعَال — مَصْدَر" };
+    if ((m = s.match(/^ان(..)ا(.)$/)))        return { root: m[1] + m[2], wazn: "اِنْفِعَال — مَصْدَر" };
+    if ((m = s.match(/^[أاإ](..)ا(.)$/)))     return { root: m[1] + m[2], wazn: "إِفْعَال — مَصْدَر" };
+    if ((m = s.match(/^ت(..)ي(.)$/)))         return { root: m[1] + m[2], wazn: "تَفْعِيل — مَصْدَر" };
+    if ((m = s.match(/^م(..)ا(.)$/)))         return { root: m[1] + m[2], wazn: "مِفْعَال / مُفَاعَلَة" };
+    if ((m = s.match(/^م(.)ا(..)$/)))         return { root: m[1] + m[2], wazn: "مُفَاعِل / مَفَاعِل" };
+    // -- verb skeletons
     if ((m = s.match(/^مست(...)$/)) || (m = s.match(/^است(...)$/)) || (m = s.match(/^ست(...)$/)))
       return { root: m[1], wazn: "اِسْتَفْعَلَ" };
     if ((m = s.match(/^من(...)$/)) || (m = s.match(/^ان(...)$/)))
@@ -3207,8 +3321,11 @@ class RootFinder {
       return { root: m[1] + m[2], wazn: "تَفَاعَلَ" };
     if ((m = s.match(/^مت(...)$/)) || (m = s.match(/^ت(...)$/)))
       return { root: m[1], wazn: "تَفَعَّلَ" };
-    if ((m = s.match(/^أ(...)$/))) return { root: m[1], wazn: "أَفْعَلَ" };
+    if ((m = s.match(/^[أا](...)$/))) return { root: m[1], wazn: "أَفْعَلَ" };
     if ((m = s.match(/^(.)ا(..)$/))) return { root: m[1] + m[2], wazn: "فَاعَلَ" };
+    // -- noun shapes that still betray the root
+    if ((m = s.match(/^(..)ي(.)$/))) return { root: m[1] + m[2], wazn: "فَعِيل / تَصْغِير" };
+    if ((m = s.match(/^(..)ا(.)$/))) return { root: m[1] + m[2], wazn: "فِعَال — مَصْدَر / جَمْع" };
     if ((m = s.match(/^ن(...)$/))) return { root: m[1], wazn: "اِنْفَعَلَ" };
     if (s.length === 3) return { root: s, wazn: "فَعَلَ / فَعَّلَ" };
     return null;
@@ -3320,7 +3437,9 @@ function renderConjOut(){
       ? `<p class="conj-known">✓ ${ui().conjKnown} <b lang="ar" dir="rtl">${kn.mazi}</b>${gl}</p>`
       : `<p class="conj-known other">${ui().conjKnownOther} <b lang="ar" dir="rtl">${kn.mazi}</b></p>`;
   }
-  let h = `<p class="bab-line">${r.wazn}</p>${hint}<div class="facts">
+  const labChain = conjState.form === "I"
+    ? ilalSteps(cls, conjState.bab, r.mazi[0], r.mudari[0]) : null;
+  let h = `<p class="bab-line">${r.wazn}</p>${hint}${labChain ? ilalHtml(labChain) : ""}<div class="facts">
     ${chip("اسم الفاعل: " + arSpan(r.fail))}
     ${r.maful ? chip("اسم المفعول: " + arSpan(r.maful)) : ""}
     ${r.masdar ? chip("المصدر: " + arSpan(r.masdar)) : ""}
@@ -3557,6 +3676,8 @@ function openWord(tok, el, tab, ctx){
         && morph[cellS.tense]) tense = cellS.tense;
     html += `<p class="lemma">${entry.lemma}</p>
       <p class="bab-line">${morph.bab} — ${morph.wazn}</p>`;
+    const chain = ilalChain(entry, morph);
+    if (chain) html += ilalHtml(chain);
     if (!morph.jamid) html += `<div class="facts">
         ${chip("المصدر: " + arSpan(morph.masdar))}
         ${chip("اسم الفاعل: " + arSpan(morph.fail))}
@@ -3985,6 +4106,13 @@ const FSRS_W = [0.4872, 1.4003, 3.7145, 13.8206, 5.1618, 1.2298, 0.8975,
                 1.5870, 0.2272, 2.8755];
 const FSRS_Q = { again: 1, hard: 2, good: 3, easy: 4 };
 function fsrsR(t, S){ return Math.pow(1 + (19 / 81) * (t / S), -0.5); }
+// The interval that lets recall decay exactly to the learner's target: the
+// true FSRS inversion I(r) = S·(81/19)·(r^-2 − 1). At r = 0.9 this is S
+// itself; a 0.95 target reviews sooner, a 0.85 target stretches further.
+function fsrsInterval(S){
+  const r = state.retention || 0.9;
+  return Math.max(1, Math.round(S * (81 / 19) * (Math.pow(r, -2) - 1)));
+}
 function fsrsD0(g){ return Math.min(10, Math.max(1, FSRS_W[4] - (g - 3) * FSRS_W[5])); }
 // One review step: (memory state, grade) → next memory state. Pure — the
 // preview buttons call it speculatively, grade() calls it for real. A card
@@ -4293,7 +4421,7 @@ function grade(card, q){
   const next = fsrsNext(s, FSRS_Q[q]);
   s.S = +next.S.toFixed(4); s.D = +next.D.toFixed(4);
   s.seen = Date.now();
-  s.ivl = Math.max(1, Math.round(s.S));  // retention 0.9 ⇒ interval = stability
+  s.ivl = fsrsInterval(s.S);             // at the 0.9 default: interval = stability
   if (q === "again") {
     s.reps = 0; s.lapses++;
     s.due = Date.now() + 10 * 60000;     // relearn in ten minutes; the post-
@@ -4308,7 +4436,7 @@ function grade(card, q){
 function previewIvl(card, q){
   if (q === "again") return ui().tenMin;
   const s = ensureSrs(card).srs;
-  return Math.max(1, Math.round(fsrsNext(s, FSRS_Q[q]).S)) + ui().dayShort;
+  return fsrsInterval(fsrsNext(s, FSRS_Q[q]).S) + ui().dayShort;
 }
 function deckStats(){
   const now = Date.now();
@@ -4417,7 +4545,12 @@ function renderDeck(){
       ${st.leeches ? `<span class="st leech">${st.leeches} ${ui().stLeech}</span>` : ""}
       ${state.deck.length ? `<button class="st export" id="deckExport">${ui().exportBtn}</button>` : ""}
     </div>`;
-  if (state.deck.length) html += `<p class="fsrs-note">${ui().fsrsNote}</p>`;
+  if (state.deck.length) html += `<p class="fsrs-note">${ui().fsrsNote}</p>
+    <div class="seg conj-seg retention-seg" role="group" aria-label="retention">
+      <span class="ret-lbl">${ui().retentionLbl}</span>
+      ${[0.85, 0.9, 0.95].map(r =>
+        `<button data-ret="${r}" class="${Math.abs(state.retention - r) < 0.001 ? "on" : ""}">${Math.round(r * 100)}%</button>`).join("")}
+    </div>`;
   if (!state.deck.length) {
     html += `<p class="empty">${ui().empty}</p>`;
   } else if (!queue.length) {
@@ -4489,6 +4622,12 @@ function renderDeck(){
   if (ge) ge.addEventListener("click", editGoal);
   const de = document.getElementById("deckExport");
   if (de) de.addEventListener("click", exportDeck);
+  sheetInner.querySelectorAll(".retention-seg [data-ret]").forEach(b =>
+    b.addEventListener("click", () => {
+      state.retention = parseFloat(b.dataset.ret);
+      localStorage.setItem("qissa-retention", String(state.retention));
+      renderDeck();     // the grade previews re-quote at the new target
+    }));
   sheetInner.querySelectorAll(".grade[data-q]").forEach(b =>
     b.addEventListener("click", () => {
       const c = dueCards()[0];

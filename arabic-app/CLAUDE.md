@@ -526,6 +526,21 @@ gAdad) generates every round from the engine with the CLASSIC drill
 errors as distractors (polarity flip, wrong tamyiz shape); the smoke
 suite asserts every generated round is well-formed.
 
+**The i'lal chain recites asl → rule → result.** `ilalSteps(cls, bab,
+mazi, mudari)` (Form I, weak classes only; sound verbs return null) builds
+the Maksud-style derivation: ajwaf qalb-alif + naql, naqis qalb (bab≠4) +
+hadhf-of-damma (bab 4 gets qalb in the mudari instead), mithal
+waw-between-ya-and-kasra hadhf, geminate naql+idgham — each step
+{asl, now, ar, en, tr}. Rendered by `ilalHtml` in the word sheet's sarf
+tab (via `ilalChain(entry, morph)` — needs the sema'i bab from
+sjAttested) and in the Sarf Lab output for Form I. Sources:
+ilal-kaideleri-turkce.txt + maksut-sarf-ottoman.txt. FSRS gained a
+user-facing **target-recall control** (state.retention 0.85/0.9/0.95,
+qissa-retention key, `fsrsInterval(S)` = S·(81/19)·(r⁻²−1) — at 0.9 it
+degrades to S) shown under the deck stats. RootFinder.peel understands
+MASDAR shapes (استفعال، افتعال with ibdal، انفعال، إفعال with plain-alif
+hamza، تفعيل، مفعال، مفاعل، فعيل، فعال) tried before verb skeletons.
+
 **The Root Finder digs corpus-first.** `class RootFinder`: `fromCorpus`
 scans a lazy index of every stored paradigm with `findFormInParadigm`, so
 a typed form answers with the stored root AND the semai facts (Form I bab

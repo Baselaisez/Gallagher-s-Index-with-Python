@@ -2540,6 +2540,18 @@ if (!CHROME) {
     const want = { istaghfara: 'غ ف ر', istabara: 'ص ب ر', izdajara: 'ز ج ر',
                    inkasara: 'ك س ر', taallama: 'ع ل م', akrama: 'ك ر م',
                    qatala3: 'ق ت ل', mustaghfir: 'غ ف ر', conj: 'غ ف ر' };
+    // the user's three reported failures, and the masdar family they exposed
+    const masdars = await page.evaluate(() => {
+      const root = w => { const x = RootFinder.find(w); return x ? stripAr(x.root).replace(/\s+/g, ' ').trim() : null; };
+      return { talim: root('تعليم'), akramPlain: root('اكرم'), idtirab: root('اضطراب'),
+               ikram: root('اكرام'), istighfar: root('استغفار'), inkisar: root('انكسار'),
+               qital: root('قتال'), inkar: root('انكار') };
+    });
+    const wantM = { talim: 'ع ل م', akramPlain: 'ك ر م', idtirab: 'ض ر ب',
+                    ikram: 'ك ر م', istighfar: 'غ ف ر', inkisar: 'ك س ر',
+                    qital: 'ق ت ل', inkar: 'ن ك ر' };
+    for (const [k, v] of Object.entries(wantM))
+      if (masdars[k] !== v) throw new Error('masdar ' + k + ': ' + masdars[k] + ' ≠ ' + v);
     for (const [k, v] of Object.entries(want))
       if (r[k] !== v) throw new Error(k + ': ' + r[k] + ' ≠ ' + v);
     // the lab UI: third tab answers with the root
@@ -2554,6 +2566,31 @@ if (!CHROME) {
       return t;
     });
     if (!out.includes('ص ب ر')) throw new Error('lab output lacks the root: ' + out);
+  });
+
+  await check('the i\'lal chain recites asl, rule and result for every weak class', async () => {
+    const r = await page.evaluate(() => {
+      const run = (root, bab) => {
+        const cls = nakilClass({ root });
+        const d = sarfDerive(cls, 'I', bab);
+        const st = ilalSteps(cls, bab, d.mazi[0], d.mudari[0]);
+        return st ? st.map(s => stripAr(s.asl) + '>' + stripAr(s.now)) : null;
+      };
+      return {
+        qala: run('ق و ل', 1), rama: run('ر م ي', 2),
+        waada: run('و ع د', 2), madda: run('م د د', 1),
+        aslQala: (() => { const cls = nakilClass({ root: 'ق و ل' });
+          const d = sarfDerive(cls, 'I', 1);
+          return ilalSteps(cls, 1, d.mazi[0], d.mudari[0])[1].asl; })(),
+        sound: run('ن ص ر', 1),
+      };
+    });
+    if (!r.qala || r.qala[0] !== 'قول>قال') throw new Error('qala mazi chain wrong: ' + r.qala);
+    if (!r.aslQala.includes('قْوُ')) throw new Error('qala mudari asl lacks the heavy damma: ' + r.aslQala);
+    if (!r.rama || r.rama[0] !== 'رمي>رمى') throw new Error('rama chain wrong: ' + r.rama);
+    if (!r.waada || r.waada[0] !== 'يوعد>يعد') throw new Error('mithal chain wrong: ' + r.waada);
+    if (!r.madda || r.madda[0] !== 'مدد>مد') throw new Error('gem chain wrong: ' + r.madda);
+    if (r.sound !== null) throw new Error('a sound verb must have NO i\'lal chain');
   });
 
   await check('no JS errors on page', async () => {
