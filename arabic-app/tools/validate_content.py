@@ -140,6 +140,45 @@ def check_manifest(pkg: Path, rep: Report):
     return manifest
 
 
+# The harake auditor: what the orthography itself forbids, no dictionary
+# needed. Mirrors HarakeAuditor in the reader — keep the two rule sets in
+# step. Warnings, not errors: a deliberate poetic license (rhyme-bare tanwin)
+# is recorded in i'rab notes, not silently normalized away.
+_V = set("َُِ")
+_TANWIN = set("ًٌٍ")
+def audit_harakat(word: str):
+    w = unicodedata.normalize("NFC", word or "")
+    units = []
+    for ch in w:
+        if "ً" <= ch <= "ٰ" and units:
+            units[-1][1].append(ch)
+        elif "ء" <= ch <= "ي":
+            units.append([ch, []])
+    out = []
+    # the books' own exception: بْنُ between two names, alif elided
+    ibn = "".join(c for c, _ in units) in ("بن", "بني")
+    for i, (c, marks) in enumerate(units):
+        vowels = sum(1 for m in marks if m in _V)
+        tanwins = sum(1 for m in marks if m in _TANWIN)
+        sukun = "ْ" in marks
+        shadda = "ّ" in marks
+        if i == 0 and sukun and not ibn:
+            out.append("opens with sukun")
+        if i == 0 and shadda:
+            out.append("opens with shadda")
+        if c == "ا" and i > 0 and (vowels or sukun):
+            out.append("vowel on a plain medial alif")
+        if vowels + tanwins > 1:
+            out.append("two vowels on one letter")
+        if shadda and sukun:
+            out.append("shadda with sukun")
+        if tanwins and i < len(units) - 1 and not (
+                i == len(units) - 2 and units[i + 1][0] in "اى"):
+            out.append("tanwin before the end")
+        if sukun and i > 0 and "ْ" in units[i - 1][1]:
+            out.append("two sukuns meet")
+    return out
+
 def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
                 rep: Report, stats: dict):
     surface = tok.get("surface")
@@ -156,6 +195,8 @@ def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
         rep.error(f"{where}: strip(smart) '{strip_diacritics(smart)}' != bare '{bare}'")
     if DIACRITICS.search(bare):
         rep.error(f"{where}: bare layer '{bare}' still contains diacritics")
+    for issue in audit_harakat(full):
+        rep.warn(f"{where}: harakat — {issue} in '{full}'")
 
     lex = tok.get("lex")
     if not lex:

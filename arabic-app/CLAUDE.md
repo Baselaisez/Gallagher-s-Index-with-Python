@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         93 browser checks over file:// (Playwright)
+  smoke_test.js         96 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -26,6 +26,12 @@ tools/
                         every mapped note id really exists
   check_irab_tr.py      finds i'rab strings with no Turkish yet
   check_i18n.py         fails on ANY user-visible string that has en but no tr
+  release.py            ONE COMMAND from edited content to a shippable build:
+                        validates every package, rebuilds both readers, runs
+                        smoke+i18n+canon+dart+pwa, bumps sw.js. --check skips
+                        the bump; QISSA_SKIP=smoke,pwa,dart for browserless CI
+  authoring/new_story.py scaffolds a new story's regenerator (the stub
+                        INTENTIONALLY fails validation until TODOs are filled)
 flutter/                the mobile client: lib/models is a VERIFIED data layer
                         (tool/verify_models.dart proves it against content/);
                         main.dart + reader/ are still an unverified design spike
@@ -637,6 +643,25 @@ turns waw (شَاعِر → شُوَيْعِر), a weak last letter melts into t
 the ta and adds the doubled ya; maqsur alif and mamdud hamza turn waw; and
 SEMAI_NISBA (مَدِينَة → مَدَنِيّ، قُرَيْش → قُرَشِيّ، دُنْيَا → دُنْيَوِيّ…)
 answers before any rule runs. Extend the table, never special-case the rules.
+
+**The Harake Auditor is the musahhih with no dictionary.** `class
+HarakeAuditor` (reader) and `audit_harakat` (validate_content.py) apply only
+what orthography itself forbids: no initial sukun/shadda (except بْنُ between
+names — alif elided, the received exception), no vowel on a medial plain alif
+(word-initial alif+vowel IS hamzat al-wasl's spelling), one vowel per letter,
+no shadda+sukun, tanwin only word-final (or before final ا/ى), no two explicit
+sukuns meeting. The corpus swept clean on first run except the two legit بْنُ.
+KEEP THE TWO IMPLEMENTATIONS IN STEP — the validator warns, the Analyzer flags.
+
+**Elo is two-sided now.** When a game names its item (cfg.itemKey — a lex, a
+paradigm cell), the ITEM's rating learns opposite the learner (K_ITEM=16,
+qissa-elo-items, level stays the prior). Misses push an item up, hits pull it
+down — online IRT on both sides. Daily snapshots (qissa-elo-hist, 90 days)
+feed the coach's per-area sparkline.
+
+**AUTHORING.md is the content-ops contract.** Chapter loop, new-story
+scaffold, release.py, the honesty rules, and the where-knowledge-goes table.
+Content drops for weeks and months route through it — keep it current.
 
 **The Analyzer reads signals, it does not claim i'rab.** v2 is the İZHAR
 LAYER: every amil the book lists pushes what it EXPECTS to govern into a

@@ -32,6 +32,23 @@
     --body-font: Charter, Georgia, "Times New Roman", serif;
     --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
+  /* Manual theme override: html[data-theme] wins over the OS preference.
+     The two blocks below repeat the palettes verbatim — keep all three
+     var sets (light :root, the media query, these) in step. */
+  html[data-theme="light"] {
+    --ground: #FAF6EE; --panel: #FFFDF7; --ink: #22303A; --ink-soft: #5A6B76;
+    --line: #E4DCCB; --accent: #0E7C74; --accent-ink: #FFFFFF;
+    --accent-soft: rgba(14,124,116,.10); --danger: #B23B3B; --ok: #2E7D46;
+    --lvl1: #2E7D46; --lvl2: #0E7C74; --lvl3: #B07A1E; --lvl4: #B23B3B;
+    --shadow: 0 18px 50px rgba(34,48,58,.22); --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
+  }
+  html[data-theme="dark"] {
+    --ground: #101A20; --panel: #16232B; --ink: #E9E2D2; --ink-soft: #97A6AD;
+    --line: #27363F; --accent: #45C2B4; --accent-ink: #08221F;
+    --accent-soft: rgba(69,194,180,.14); --danger: #E07A7A; --ok: #7CC98F;
+    --lvl1: #7CC98F; --lvl2: #45C2B4; --lvl3: #D9A94E; --lvl4: #E07A7A;
+    --shadow: 0 18px 50px rgba(0,0,0,.55);
+  }
   @media (prefers-color-scheme: dark) {
     :root {
       --ground: #101A20;
@@ -333,6 +350,7 @@
   .coach .co-bar { flex: 1; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
   .coach .co-bar span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
   .coach .co-n { flex: 0 0 2.6rem; text-align: end; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .coach .co-spark { flex: 0 0 48px; opacity: .8; }
   /* woven cover band on the shelf */
   .lib-card .cover { height: 46px; border-radius: .55rem; margin-bottom: .5rem;
     background-size: 72px 72px; background-position: center;
@@ -1005,6 +1023,7 @@
       <button data-ui="en" class="on" style="font-family:var(--ui-font);font-size:.76rem" title="English interface">EN UI</button>
       <button data-ui="tr" style="font-family:var(--ui-font);font-size:.76rem" title="Türkçe arayüz">TR UI</button>
     </div>
+    <button class="tbtn" id="themeToggle" title="Theme">◐</button>
     <div class="seg reader-only" role="group" aria-label="Reading mode" id="modeSeg">
       <button data-mode="easy" class="on"><span class="m-ar" lang="ar">سَهْل</span><span class="m-en"></span></button>
       <button data-mode="medium"><span class="m-ar" lang="ar">وَسَط</span><span class="m-en"></span></button>
@@ -1460,6 +1479,9 @@ const state = {
   retention: parseFloat(localStorage.getItem("qissa-retention")) || 0.9,
   elo: JSON.parse(localStorage.getItem("qissa-elo") || "null")
        || { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 },
+  eloItems: JSON.parse(localStorage.getItem("qissa-elo-items") || "{}"),
+  eloHist: JSON.parse(localStorage.getItem("qissa-elo-hist") || "[]"),
+  theme: localStorage.getItem("qissa-theme") || "auto",
   roles: localStorage.getItem("qissa-roles") === "1",
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
@@ -2129,11 +2151,41 @@ class EloModel {
   static AREAS = ["vocab", "sarf", "nahw", "adad"];
   static itemRating(level){ return 900 + Math.min(6, Math.max(1, level || 3)) * 100; }
   static expected(rl, ri){ return 1 / (1 + Math.pow(10, (ri - rl) / 400)); }
-  static update(area, level, correct){
+  // TWO-SIDED: when the caller can name the item (a lex, a paradigm cell),
+  // the item's own rating learns too — a word everyone misses drifts up from
+  // its level's prior, one everyone aces drifts down. That is the item side
+  // of IRT, fitted online exactly like the learner side; the level stays the
+  // PRIOR, the plays are the evidence.
+  static K_ITEM = 16;
+  static update(area, level, correct, itemKey){
     if (!this.AREAS.includes(area)) return;
-    const e = this.expected(state.elo[area], this.itemRating(level));
-    state.elo[area] = Math.round(state.elo[area] + this.K * ((correct ? 1 : 0) - e));
+    const prior = this.itemRating(level);
+    let ri = prior;
+    if (itemKey) {
+      const k = area + "|" + itemKey;
+      ri = state.eloItems[k] != null ? state.eloItems[k] : prior;
+    }
+    const e = this.expected(state.elo[area], ri);
+    const s = correct ? 1 : 0;
+    state.elo[area] = Math.round(state.elo[area] + this.K * (s - e));
+    if (itemKey) {
+      const k = area + "|" + itemKey;
+      state.eloItems[k] = Math.round(ri - this.K_ITEM * (s - e));
+      const keys = Object.keys(state.eloItems);
+      if (keys.length > 1200) delete state.eloItems[keys[0]];
+      localStorage.setItem("qissa-elo-items", JSON.stringify(state.eloItems));
+    }
     localStorage.setItem("qissa-elo", JSON.stringify(state.elo));
+    this.snapshot();
+  }
+  // one point per day per area — the coach's sparkline reads this
+  static snapshot(){
+    const day = new Date().toISOString().slice(0, 10);
+    const last = state.eloHist[state.eloHist.length - 1];
+    if (last && last.d === day) Object.assign(last, state.elo, { d: day });
+    else state.eloHist.push({ d: day, ...state.elo });
+    if (state.eloHist.length > 90) state.eloHist.shift();
+    localStorage.setItem("qissa-elo-hist", JSON.stringify(state.eloHist));
   }
   static weakest(){
     return this.AREAS.reduce((a, b) => (state.elo[b] < state.elo[a] ? b : a));
@@ -2171,7 +2223,8 @@ function runQuiz(cfg){
       if (opts[+b.dataset.o].ok) G.score++;
       // one Elo observation per answer — the game declares its skill area and
       // how hard THIS item is; the harness never guesses either.
-      if (cfg.area) EloModel.update(cfg.area, cfg.lvl ? cfg.lvl(it) : 3, opts[+b.dataset.o].ok);
+      if (cfg.area) EloModel.update(cfg.area, cfg.lvl ? cfg.lvl(it) : 3, opts[+b.dataset.o].ok,
+        cfg.itemKey ? cfg.itemKey(it) : null);
       sheetInner.querySelectorAll(".opts [data-o]").forEach(x => {
         if (opts[+x.dataset.o].ok) x.classList.add("right");
         else if (x === b) x.classList.add("wrongpick");
@@ -2222,7 +2275,7 @@ function startSarfGame(){
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().sarfGame, ask: ui().sarfGameAsk, items, restart: startSarfGame,
-    area: "sarf", lvl: () => 4,
+    area: "sarf", lvl: () => 4, itemKey: it => it.lex + "#" + it.ri,
     question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${it.lemma}</span>
       <div class="sigha">${state.uiLang === "tr" ? it.rows[it.ri].tr : it.rows[it.ri].en}</div></div>`,
     options: it => {
@@ -3765,6 +3818,57 @@ class IsmEngine {
   }
 }
 
+// ---------- the Harake Auditor: vowelling proofread by pure rule ----------
+// No dictionary, no corpus — only what the orthography itself forbids.
+// A first letter cannot carry sukun or shadda (the shadda after ال lives on
+// the SECOND letter); a plain alif inside a word carries no vowel (word-
+// initial alif does: that is hamzat al-wasl's spelling); tanwin belongs to
+// the last letter (or the one before a final alif/ta); one letter never
+// carries two vowels, nor shadda together with sukun; and two explicit
+// sukuns cannot meet inside a word. These are the rules a musahhih applies
+// before ever opening a dictionary — which is why they need no data.
+class HarakeAuditor {
+  static V = "َُِ";      // fatha damma kasra
+  static TANWIN = "ًٌٍ";
+  static SUKUN = "ْ"; static SHADDA = "ّ";
+  static audit(word){
+    const w = (word || "").normalize("NFC");
+    // group marks under their base letter
+    const units = [];
+    for (const ch of w) {
+      if (/[ً-ْٰ]/.test(ch) && units.length) units[units.length - 1].m += ch;
+      else if (/[ء-يٱ-ۓ]/.test(ch)) units.push({ c: ch, m: "" });
+    }
+    const out = [];
+    const say = (en, tr) => out.push({ en, tr });
+    units.forEach((u, i) => {
+      const vowels = [...u.m].filter(c => this.V.includes(c)).length;
+      const tanwins = [...u.m].filter(c => this.TANWIN.includes(c)).length;
+      const hasSukun = u.m.includes(this.SUKUN), hasShadda = u.m.includes(this.SHADDA);
+      // exception the books themselves write: بْنُ between two names, its
+      // alif elided so the ba leans on the previous word's final vowel.
+      const ibn = units[0].c === "ب" && units.length <= 3 &&
+                  units.map(x => x.c).join("").match(/^بني?$/);
+      if (i === 0 && hasSukun && !ibn)
+        say("a word cannot OPEN with sukun", "kelime sükûnla BAŞLAYAMAZ");
+      if (i === 0 && hasShadda)
+        say("a word cannot open with shadda (after ال it sits on the SECOND letter)", "kelime şeddeyle başlayamaz (ال'dan sonra şedde İKİNCİ harfe oturur)");
+      if (u.c === "ا" && i > 0 && (vowels || hasSukun))
+        say("a plain alif inside the word carries no vowel — hamza intended?", "kelime içindeki düz elif hareke almaz — hemze mi kastedildi?");
+      if (vowels + tanwins > 1)
+        say("one letter cannot carry two vowels", "bir harf iki hareke taşıyamaz");
+      if (hasShadda && hasSukun)
+        say("shadda with sukun on one letter is impossible", "bir harfte şedde ile sükûn bir arada olamaz");
+      if (tanwins && i < units.length - 1 &&
+          !(i === units.length - 2 && (units[i + 1].c === "ا" || units[i + 1].c === "ى")))
+        say("tanwin belongs to the END of the word", "tenvin kelimenin SONUNA aittir");
+      if (hasSukun && i > 0 && units[i - 1].m.includes(this.SUKUN))
+        say("two sukuns meet inside the word (iltiqa al-sakinayn)", "kelime içinde iki sâkin buluşuyor (iltikâ-i sâkineyn)");
+    });
+    return out;
+  }
+}
+
 // ---------- the Sentence Analyzer: any Arabic, no stored data required ----------
 // Paste a sentence the corpus has never seen and get a best-effort parse.
 // Three layers, each honest about its certainty: (1) the PARTICLE TABLE —
@@ -3932,6 +4036,10 @@ class SentenceAnalyzer {
       const m = WaznEngine.of(w);
       if (m && m.mizan) row.wazn = m.mizan;
       row.al = hasAl; row.tanwin = tanwin;
+      // the proofreader rides along: impossible vowelling is flagged even
+      // when every other layer is happy.
+      HarakeAuditor.audit(w).forEach(a =>
+        row.notes.push({ en: "⚠ " + a.en, tr: "⚠ " + a.tr }));
       out.push(row);
     });
     // -- idafa pass: a bare noun (no article, no tanwin) followed by a
@@ -5391,8 +5499,17 @@ function coachHtml(st){
   const max = Math.max(...EloModel.AREAS.map(a => state.elo[a]), 1400);
   const bars = EloModel.AREAS.map(a => {
     const pct = Math.round(Math.min(100, Math.max(6, (state.elo[a] - 900) / (max - 900) * 100)));
+    // the last month of daily snapshots as a whisper of a line
+    const hist = state.eloHist.slice(-30).map(h => h[a]).filter(v => v != null);
+    let spark = "";
+    if (hist.length > 1) {
+      const lo = Math.min(...hist), hi = Math.max(...hist), span = Math.max(1, hi - lo);
+      const pts = hist.map((v, i) =>
+        `${(i / (hist.length - 1) * 46 + 1).toFixed(1)},${(13 - (v - lo) / span * 11).toFixed(1)}`).join(" ");
+      spark = `<svg class="co-spark" width="48" height="14" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="1.4"/></svg>`;
+    }
     return `<div class="co-row"><span class="co-a">${ui().coachAreas[a]}</span>
-      <span class="co-bar"><span style="width:${pct}%"></span></span>
+      <span class="co-bar"><span style="width:${pct}%"></span></span>${spark}
       <span class="co-n">${state.elo[a]}</span></div>`;
   }).join("");
   return `<div class="coach">
@@ -5813,6 +5930,7 @@ function startCloze(){
   runQuiz({
     title: ui().clozeGame, ask: ui().clozeAsk, items, restart: startCloze,
     area: "vocab", lvl: it => (it.entry && it.entry.level) || 3,
+    itemKey: it => it.tok && it.tok.lex,
     question: it => `${it.fading ? `<div class="fade-note">\u{1F9E0} ${ui().fadingCloze}</div>` : ""}
       <div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>`,
     options: it => shuffle([{ html: it.entry.lemma, ok: true, ar: true },
@@ -5935,6 +6053,20 @@ updateRoleMode();
 // Focus mode: while the reader scrolls DOWN through a story the header slides
 // away and the text owns the screen; a nudge upward — or nearing the top —
 // brings the controls back. Library mode never hides (the CSS scopes it out).
+// theme: auto follows the OS; light/dark pin it. The attribute lives on
+// <html> so the override outranks the media query.
+function applyTheme(){
+  if (state.theme === "auto") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = state.theme;
+  const b = document.getElementById("themeToggle");
+  if (b) b.textContent = state.theme === "auto" ? "\u25d0" : state.theme === "light" ? "\u2600" : "\u263e";
+}
+document.getElementById("themeToggle").addEventListener("click", () => {
+  state.theme = state.theme === "auto" ? "light" : state.theme === "light" ? "dark" : "auto";
+  localStorage.setItem("qissa-theme", state.theme);
+  applyTheme();
+});
+applyTheme();
 let focusLastY = 0;
 window.addEventListener("scroll", () => {
   const y = window.scrollY;

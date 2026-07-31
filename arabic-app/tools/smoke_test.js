@@ -2980,6 +2980,65 @@ if (!CHROME) {
     if (r.halla !== 'يَحِلُّ'.normalize('NFC')) throw new Error('halla geminate mudari: ' + r.halla);
   });
 
+  await check('the Harake Auditor proofreads by pure rule, with the ibn exception', async () => {
+    const r = await page.evaluate(() => ({
+      badStart: HarakeAuditor.audit('كْتَاب').length,
+      ibn: HarakeAuditor.audit('بْنُ').length,
+      medialAlif: HarakeAuditor.audit('كِتَاُب').length,
+      doubleVowel: HarakeAuditor.audit('كَُتب').length,
+      earlyTanwin: HarakeAuditor.audit('كتًاب').length,
+      okTanwinAlif: HarakeAuditor.audit('كِتَابًا').length,
+      clean: HarakeAuditor.audit('يَسْتَغْفِرُونَ').length,
+      shaddaSukun: HarakeAuditor.audit('مدّْ').length,
+    }));
+    if (!r.badStart) throw new Error('sukun-initial must be flagged');
+    if (r.ibn) throw new Error('bnu is the received exception — no flag');
+    if (!r.medialAlif) throw new Error('vowel on a medial plain alif must be flagged');
+    if (!r.doubleVowel) throw new Error('two vowels on one letter must be flagged');
+    if (!r.earlyTanwin) throw new Error('tanwin before the end must be flagged');
+    if (r.okTanwinAlif) throw new Error('tanwin before a final alif is the standard spelling');
+    if (r.clean) throw new Error('a clean word must not be flagged');
+    if (!r.shaddaSukun) throw new Error('shadda+sukun must be flagged');
+  });
+
+  await check('two-sided Elo: the item learns opposite the learner', async () => {
+    const r = await page.evaluate(() => {
+      localStorage.removeItem('qissa-elo-items');
+      state.eloItems = {};
+      const before = state.elo.vocab;
+      EloModel.update('vocab', 3, false, 'lex:hard-word');
+      const itemAfterMiss = state.eloItems['vocab|lex:hard-word'];
+      EloModel.update('vocab', 3, true, 'lex:hard-word');
+      const itemAfterHit = state.eloItems['vocab|lex:hard-word'];
+      const hist = state.eloHist.length;
+      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 };
+      state.eloItems = {};
+      localStorage.removeItem('qissa-elo-items'); localStorage.removeItem('qissa-elo');
+      return { before, itemAfterMiss, itemAfterHit, hist };
+    });
+    if (!(r.itemAfterMiss > 1200)) throw new Error('a missed item must drift UP from its prior: ' + r.itemAfterMiss);
+    if (!(r.itemAfterHit < r.itemAfterMiss)) throw new Error('a hit must bring the item back down');
+    if (r.hist < 1) throw new Error('updates must leave a daily snapshot for the sparkline');
+  });
+
+  await check('the theme toggle pins light and dark over the OS preference', async () => {
+    await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); });
+    const t0 = await page.evaluate(() => document.documentElement.dataset.theme || 'none');
+    if (t0 !== 'none') throw new Error('auto must leave no attribute, got ' + t0);
+    await page.locator('#themeToggle').click();
+    const t1 = await page.evaluate(() => document.documentElement.dataset.theme);
+    if (t1 !== 'light') throw new Error('first click pins light, got ' + t1);
+    await page.locator('#themeToggle').click();
+    const r = await page.evaluate(() => ({
+      theme: document.documentElement.dataset.theme,
+      ground: getComputedStyle(document.documentElement).getPropertyValue('--ground').trim(),
+    }));
+    if (r.theme !== 'dark') throw new Error('second click pins dark, got ' + r.theme);
+    if (r.ground !== '#101A20') throw new Error('dark vars must win: --ground=' + r.ground);
+    await page.locator('#themeToggle').click();
+    await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
