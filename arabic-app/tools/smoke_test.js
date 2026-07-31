@@ -2915,11 +2915,40 @@ if (!CHROME) {
                yajuz: yajuz && yajuz.irab.ar,
                ikhtalafa: !!st.morph.ikhtalafa && st.morph.ikhtalafa.masdar };
     });
-    if (r.chapters !== 5) throw new Error('sulh should have 5 chapters, got ' + r.chapters);
+    if (r.chapters < 5) throw new Error('sulh should carry chapter 5, got ' + r.chapters + ' chapters');
     if (r.n !== 5) throw new Error('ch5 should carry 5 sentences, got ' + r.n);
     if (!r.yajuz || !r.yajuz.normalize('NFC').includes('السَّاكِنَيْنِ'.normalize('NFC')))
       throw new Error('yajuz must teach the two-sukun drop: ' + r.yajuz);
     if (r.ikhtalafa !== 'اِخْتِلَاف') throw new Error('ikhtalafa masdar: ' + r.ikhtalafa);
+  });
+
+  await check('kitab-al-sulh is COMPLETE: six chapters, ring composition, v1.0.0', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'kitab-al-sulh');
+      const ch6 = st.chapters.find(c => c.n === 6);
+      const s33 = ch6 && ch6.sentences.find(s => s.id === 's33');
+      const last = s33 && s33.tokens.map(t => t.s.bare);
+      return { chapters: st.chapters.length, n: ch6 ? ch6.sentences.length : 0,
+               ring: last && last.includes('والصلح') && last.includes('خير'),
+               vii: !!st.morph.infasakha && st.morph.infasakha.masdar };
+    });
+    if (r.chapters !== 6) throw new Error('sulh should close at 6 chapters, got ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch6 should carry 5 sentences, got ' + r.n);
+    if (!r.ring) throw new Error('the close must ring back to wa-l-sulhu khayr');
+    if (r.vii !== 'اِنْفِسَاخ') throw new Error('infasakha masdar: ' + r.vii);
+  });
+
+  await check('the Analyzer names the sentence type before the walk', async () => {
+    const r = await page.evaluate(() => ({
+      verb: sentenceType(SentenceAnalyzer.analyze('رجع يوسف الى البصرة')),
+      noun: sentenceType(SentenceAnalyzer.analyze('العلم نور')),
+      wawVerb: sentenceType(SentenceAnalyzer.analyze('ورجع يوسف')),
+      inna: sentenceType(SentenceAnalyzer.analyze('إن العلم نور')),
+    }));
+    if (r.verb !== 'filiyya') throw new Error('raja\'a... must be fi\'liyya (corpus mazi), got ' + r.verb);
+    if (r.noun !== 'ismiyya') throw new Error('al-ilm nur must be ismiyya, got ' + r.noun);
+    if (r.wawVerb !== 'filiyya') throw new Error('the joining waw must be looked through, got ' + r.wawVerb);
+    if (r.inna !== 'ismiyya') throw new Error('inna opens a nominal sentence, got ' + r.inna);
   });
 
   await check('no JS errors on page', async () => {

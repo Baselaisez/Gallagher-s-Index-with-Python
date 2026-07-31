@@ -729,6 +729,44 @@ GLOSS = {
    "gloss": {"en": "demanding prompt payment (Form II masdar)", "tr": "ta'cîl — peşin isteme (tef'îl masdarı)"}, "level": 5},
  "akhar": {"lemma": "آخَر", "root": "أ خ ر", "pos": "noun",
    "gloss": {"en": "another (diptote)", "tr": "başka, diğer (gayr-ı munsarif)"}, "level": 2},
+ "muddaa": {"lemma": "مُدَّعًى (الْمُدَّعَى)", "root": "د ع و", "pos": "noun",
+   "gloss": {"en": "the thing claimed (Form VIII ism maf'ul)", "tr": "müddeâ — dava konusu (iftiâl ism-i mef'ûlü)"}, "level": 5},
+ "muddai": {"lemma": "مُدَّعٍ (الْمُدَّعِي)", "root": "د ع و", "pos": "noun",
+   "gloss": {"en": "the claimant (Form VIII ism fa'il)", "tr": "müddeî, davacı (iftiâl ism-i fâili)"}, "level": 4},
+ "abd-sulh": {"lemma": "عَبْد", "root": "ع ب د", "pos": "noun", "plural": "عِبَاد",
+   "gloss": {"en": "servant; (here) man as rights-bearer", "tr": "kul; (burada) hak sahibi insan"}, "level": 1},
+ "thabit": {"lemma": "ثَابِت", "root": "ث ب ت", "pos": "noun",
+   "gloss": {"en": "established (ism fa'il)", "tr": "sabit (ism-i fâil)"}, "level": 3},
+ "hadd": {"lemma": "حَدّ", "root": "ح د د", "pos": "noun", "plural": "حُدُود",
+   "gloss": {"en": "hadd — fixed punishment of the Law", "tr": "had — şer'î ceza"}, "level": 4},
+ "saqata": {"lemma": "سَقَطَ", "root": "س ق ط", "pos": "verb", "form": "I",
+   "gloss": {"en": "to fall away, lapse", "tr": "düşmek, sâkıt olmak"}, "level": 2},
+ "malaka": {"lemma": "مَلَكَ", "root": "م ل ك", "pos": "verb", "form": "I",
+   "gloss": {"en": "to own", "tr": "mâlik olmak"}, "level": 2},
+ "muawada": {"lemma": "مُعَاوَضَة", "root": "ع و ض", "pos": "noun",
+   "gloss": {"en": "exchange for value (Form III masdar)", "tr": "muâvaza (müfâale masdarı)"}, "level": 5},
+ "fida": {"lemma": "فِدَاء", "root": "ف د ي", "pos": "noun",
+   "gloss": {"en": "ransom", "tr": "fidye, fidâ"}, "level": 4},
+ "yamin": {"lemma": "يَمِين", "root": "ي م ن", "pos": "noun", "plural": "أَيْمَان",
+   "gloss": {"en": "oath", "tr": "yemin"}, "level": 3},
+ "infasakha": {"lemma": "اِنْفَسَخَ", "root": "ف س خ", "pos": "verb", "form": "VII",
+   "gloss": {"en": "to be dissolved", "tr": "feshedilmek, münfesih olmak"}, "level": 5},
+ "ada-return": {"lemma": "عَادَ", "root": "ع و د", "pos": "verb", "form": "I",
+   "gloss": {"en": "to return", "tr": "dönmek"}, "level": 2},
+ "ila-sulh": {"lemma": "إِلَى", "pos": "prep",
+   "gloss": {"en": "to, toward", "tr": "-e, -e doğru"}, "level": 1},
+ "asl": {"lemma": "أَصْل", "root": "أ ص ل", "pos": "noun", "plural": "أُصُول",
+   "gloss": {"en": "root, original state", "tr": "asıl"}, "level": 2},
+ "dawa-claim": {"lemma": "دَعْوَى", "root": "د ع و", "pos": "noun", "plural": "دَعَاوَى",
+   "gloss": {"en": "claim, suit", "tr": "dava"}, "level": 3},
+ "inqataa": {"lemma": "اِنْقَطَعَ", "root": "ق ط ع", "pos": "verb", "form": "VII",
+   "gloss": {"en": "to be cut off", "tr": "kesilmek, munkatı olmak"}, "level": 4},
+ "hasala": {"lemma": "حَصَلَ", "root": "ح ص ل", "pos": "verb", "form": "I",
+   "gloss": {"en": "to obtain, come about", "tr": "hâsıl olmak"}, "level": 2},
+ "amn": {"lemma": "أَمْن", "root": "أ م ن", "pos": "noun",
+   "gloss": {"en": "safety, security", "tr": "emniyet, güven"}, "level": 3},
+ "nas-sulh": {"lemma": "نَاس", "root": "ن و س", "pos": "noun",
+   "gloss": {"en": "people, mankind", "tr": "insanlar"}, "level": 1},
 }
 
 # ---------------------------------------------------------------- chapter 3 (s13-s18)
@@ -1534,6 +1572,273 @@ TITLE5 = {"ar": "أَحْكَامُ الْبَدَلِ وَالرِّبَا",
           "en": "The Consideration and Riba",
           "tr": "Bedel Hükümleri ve Ribâ"}
 
+# ---------------------------------------------------------------- chapter 6 (s29-s33) — the khatima
+S6 = []
+
+S6.append({"id": "s29", "translation": {
+ "en": "And it is stipulated that the disputed thing be a right of man, established for the claimant — there is no sulh over the rights of Allah, like the hadd punishments.",
+ "tr": "Dava konusunun, davacı için sabit bir kul hakkı olması şarttır — Allah haklarında, hadler gibi, sulh olmaz."},
+ "tokens": [
+  tok("وَيُشْتَرَطُ","ishtarata","verb",["naib-al-fail","form-viii-verbs","mudari-marfu"],
+      "مُضَارِعُ الِافْتِعَالِ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ.",
+      "The Form VIII passive mudari' in raf'.",
+      "İftiâlin meçhul muzârisi; merfûdur."),
+  tok("أَنْ","an-nasiba","part",["an-masdariyya"],
+      "«أَنْ» مَصْدَرِيَّةٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ نَائِبُ الْفَاعِلِ.",
+      "The masdar-maker — the derived masdar is the deputy fa'il.",
+      "Masdariyye «أن» — müevvel masdar, nâib-i fâildir."),
+  tok("يَكُونَ","kana","verb",["an-masdariyya","kana-wa-akhawatuha"],
+      "مُضَارِعُ «كَانَ» مَنْصُوبٌ.",
+      "Kana's mudari' in nasb.",
+      "«كان»ın muzârisi; mensubdur."),
+  tok("الْمُدَّعَى","muddaa","noun",["kana-wa-akhawatuha","ism-maful","ism-maqsur-manqus","form-viii-verbs"],
+      "اسْمُ «يَكُونَ» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — اسْمُ مَفْعُولِ الِافْتِعَالِ، مَقْصُورٌ.",
+      "Kana's noun in raf' by an assumed damma — the Form VIII passive participle, maqsur.",
+      "«يكون»un ismi; takdîrî zamme ile merfû — iftiâlin ism-i mef'ûlü, maksûrdur."),
+  tok("حَقًّا","haqq-sulh","noun",["kana-wa-akhawatuha"],
+      "خَبَرُ «يَكُونَ» مَنْصُوبٌ.",
+      "Kana's khabar in nasb.",
+      "«يكون»un haberi; mensubdur."),
+  tok("لِلْعَبْدِ","abd-sulh","noun",["huruf-jarr"],
+      "اللَّامُ جَارَّةٌ — أَيْ مِنْ حُقُوقِ الْعِبَادِ.",
+      "The lam governs — of the servants' rights.",
+      "Lâm cer harfi — kul haklarından demektir."),
+  tok("ثَابِتًا","thabit","noun",["naat-sifa","ism-fail"],
+      "نَعْتٌ لِـ«حَقًّا» مَنْصُوبٌ — اسْمُ فَاعِلٍ.",
+      "An attribute of «a right», in nasb — an active participle.",
+      "«حقًّا»nın sıfatı; mensub — ism-i fâildir."),
+  tok("لِلْمُدَّعِي","muddai","noun",["huruf-jarr","ism-fail","ism-maqsur-manqus"],
+      "اللَّامُ جَارَّةٌ وَ«الْمُدَّعِي» مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — اسْمُ فَاعِلِ الِافْتِعَالِ، مَنْقُوصٌ.",
+      "The lam governs; «the claimant» in jarr by an assumed kasra — the Form VIII active participle, manqus.",
+      "Lâm cer harfi; «المدّعي» takdîrî kesreyle mecrur — iftiâlin ism-i fâili, menkustur.", punct="•"),
+  tok("فَلَا","la-nafiya","part",[],
+      "الْفَاءُ لِلتَّفْرِيعِ وَ«لَا» نَافِيَةٌ.",
+      "The fa branches; «la» negates.",
+      "Tefrî' fâsı; «لا» nâfiyedir."),
+  tok("صُلْحَ","sulh","noun",["la-nafiya-lil-jins"],
+      "اسْمُ «لَا» النَّافِيَةِ لِلْجِنْسِ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ.",
+      "The noun of genus-negating la, built on fatha, in nasb position.",
+      "Cinsini nefyeden «لا»nın ismi; fetha üzere mebnî, mahallen mensubdur."),
+  tok("فِي","fi","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ — وَالْجَارُّ خَبَرُ «لَا».",
+      "A jarr particle — the phrase la's khabar.",
+      "Cer harfi — câr, «لا»nın haberidir."),
+  tok("حُقُوقِ","haqq-sulh","noun",["huruf-jarr","idafa-definiteness"],
+      "اسْمٌ مَجْرُورٌ مُضَافٌ — جَمْعُ «حَقّ».",
+      "In jarr, mudaf — the plural of «right».",
+      "Mecrur isim; muzâf — «حقّ»ın cem'idir."),
+  tok("اللَّهِ","allah","propn",["idafa-definiteness"],
+      "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "The name of majesty, mudaf ilayh in jarr.",
+      "Lafza-i celâl; mecrur muzâfun ileyhtir."),
+  tok("كَالْحُدُودِ","hadd","noun",["huruf-jarr","tashbih"],
+      "الْكَافُ لِلتَّمْثِيلِ وَ«الْحُدُودِ» مَجْرُورٌ — جَمْعُ «حَدّ».",
+      "The kaf of exemplification; «the hadds» in jarr — the plural of «hadd».",
+      "Temsil kâfı; «الحدود» mecrur — «حدّ»in cem'idir.", punct="."),
+ ],
+ "jumal": [
+  J("وَيُشْتَرَطُ أَنْ يَكُونَ…",
+    "جُمْلَةٌ فِعْلِيَّةٌ مُسْتَأْنَفَةٌ؛ نَائِبُ فَاعِلِهَا الْمَصْدَرُ الْمُؤَوَّلُ.",
+    "A resumed verbal clause; its deputy fa'il the derived masdar.",
+    "Müste'nefe fiil cümlesi; nâib-i fâili müevvel masdardır."),
+  J("فَلَا صُلْحَ فِي حُقُوقِ اللَّهِ",
+    "جُمْلَةُ «لَا» النَّافِيَةِ لِلْجِنْسِ — لَا مَحَلَّ لَهَا.",
+    "The genus-negating la clause — i'rabless.",
+    "Cinsini nefyeden «لا» cümlesi — mahalsizdir."),
+ ]})
+
+S6.append({"id": "s30", "translation": {
+ "en": "By sulh upon acknowledgment the dispute falls away, and the claimant comes to own the consideration.",
+ "tr": "İkrar üzerine sulh ile husumet düşer ve davacı bedele mâlik olur."},
+ "tokens": [
+  tok("فَبِالصُّلْحِ","sulh","noun",["huruf-jarr"],
+      "الْفَاءُ لِلتَّفْرِيعِ وَالْبَاءُ لِلسَّبَبِيَّةِ وَ«الصُّلْحِ» مَجْرُورٌ.",
+      "The fa branches, the ba of cause; «sulh» in jarr.",
+      "Tefrî' fâsı; sebep bildiren بِ; «الصلح» mecrurdur."),
+  tok("عَنْ","an-prep","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("إِقْرَارٍ","iqrar","noun",["huruf-jarr","masdar","form-iv-verbs"],
+      "اسْمٌ مَجْرُورٌ — مَصْدَرُ الْإِفْعَالِ.",
+      "In jarr — the Form IV masdar.",
+      "Mecrur isim — if'âlin masdarıdır."),
+  tok("تَسْقُطُ","saqata","verb",["fail","mudari-marfu"],
+      "مُضَارِعٌ مَرْفُوعٌ.","A mudari' in raf'.","Merfû muzâridir."),
+  tok("الْخُصُومَةُ","khusuma","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ.","The fa'il in raf'.","Merfû fâildir.", punct="•"),
+  tok("وَيَمْلِكُ","malaka","verb",["atf-nasaq","fail","mudari-marfu"],
+      "مَعْطُوفٌ مَرْفُوعٌ.","Joined, in raf'.","Matuf; merfûdur."),
+  tok("الْمُدَّعِي","muddai","noun",["fail","ism-maqsur-manqus"],
+      "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — مَنْقُوصٌ.",
+      "The fa'il in raf' by an assumed damma — manqus.",
+      "Takdîrî zamme ile merfû fâil — menkustur."),
+  tok("الْبَدَلَ","badal-iwad","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "The object in nasb.",
+      "Mensub mef'ûlün bihtir.", punct="."),
+ ],
+ "jumal": [
+  J("فَبِالصُّلْحِ… تَسْقُطُ الْخُصُومَةُ",
+    "جُمْلَةٌ فِعْلِيَّةٌ مُفَرَّعَةٌ — قُدِّمَ الْجَارُّ لِلِاهْتِمَامِ.",
+    "A verbal clause drawn as consequence — the jarr phrase fronted for weight.",
+    "Tefrî' edilen fiil cümlesi — câr, önem için öne alınmıştır."),
+ ]})
+
+S6.append({"id": "s31", "translation": {
+ "en": "And sulh upon denial is an exchange in the claimant's regard, and in the defendant's regard a ransom for the oath.",
+ "tr": "İnkâr üzerine sulh, davacı hakkında muâvaza; davalı hakkında ise yeminin fidyesidir."},
+ "tokens": [
+  tok("وَالصُّلْحُ","sulh","noun",["mubtada-khabar","atf-nasaq"],
+      "الْوَاوُ عَاطِفَةٌ وَ«الصُّلْحُ» مُبْتَدَأٌ.",
+      "The waw joins; «sulh» a mubtada.",
+      "Atıf vâvı; «الصلح» mübtedadır."),
+  tok("عَنْ","an-prep","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("إِنْكَارٍ","inkar","noun",["huruf-jarr","masdar","form-iv-verbs"],
+      "اسْمٌ مَجْرُورٌ — مَصْدَرُ الْإِفْعَالِ.",
+      "In jarr — the Form IV masdar.",
+      "Mecrur isim — if'âlin masdarıdır."),
+  tok("مُعَاوَضَةٌ","muawada","noun",["mubtada-khabar","masdar","form-iii-verbs"],
+      "خَبَرٌ مَرْفُوعٌ — مَصْدَرُ الْمُفَاعَلَةِ: مُبَادَلَةُ مَالٍ بِمَالٍ.",
+      "The khabar in raf' — the Form III masdar: exchanging value for value.",
+      "Merfû haber — müfâalenin masdarı: malı malla mübadeledir."),
+  tok("فِي","fi","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("حَقِّ","haqq-sulh","noun",["huruf-jarr","idafa-definiteness"],
+      "اسْمٌ مَجْرُورٌ مُضَافٌ.","In jarr, mudaf.","Mecrur isim; muzâftır."),
+  tok("الْمُدَّعِي","muddai","noun",["idafa-definiteness","ism-maqsur-manqus"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ.",
+      "Mudaf ilayh in jarr by an assumed kasra.",
+      "Takdîrî kesreyle mecrur muzâfun ileyhtir.", punct="•"),
+  tok("وَفِدَاءٌ","fida","noun",["atf-nasaq","mubtada-khabar"],
+      "مَعْطُوفٌ عَلَى «مُعَاوَضَةٌ» مَرْفُوعٌ.",
+      "Joined to «an exchange», in raf'.",
+      "«معاوضة»ye matuf; merfûdur."),
+  tok("لِلْيَمِينِ","yamin","noun",["huruf-jarr"],
+      "اللَّامُ جَارَّةٌ وَ«الْيَمِينِ» مَجْرُورٌ — فَدَى بِهِ يَمِينَهُ وَقَطَعَ الْخُصُومَةَ.",
+      "The lam governs; «the oath» in jarr — he ransomed his oath and cut the dispute.",
+      "Lâm cer harfi; «اليمين» mecrur — yeminini fidye ile kurtarıp husumeti kesmiştir."),
+  tok("فِي","fi","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("حَقِّ","haqq-sulh","noun",["huruf-jarr","idafa-definiteness"],
+      "اسْمٌ مَجْرُورٌ مُضَافٌ.","In jarr, mudaf.","Mecrur isim; muzâftır."),
+  tok("الْمُدَّعَى","muddaa","noun",["idafa-definiteness","ism-maful","ism-maqsur-manqus"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — وَ«عَلَيْهِ» مُتَعَلِّقٌ بِهِ.",
+      "Mudaf ilayh in jarr by an assumed kasra — «against whom» attaches to it.",
+      "Takdîrî kesreyle mecrur muzâfun ileyh — «عليه» ona müteallıktır."),
+  tok("عَلَيْهِ","alayhi","part",["huruf-jarr"],
+      "«عَلَى» جَارَّةٌ وَالْهَاءُ مَجْرُورٌ — تَمَامُ «الْمُدَّعَى عَلَيْهِ».",
+      "«Upon» governs the ha — completing «the one claimed against».",
+      "«على» cer harfi; hâ mecrur — «المدّعى عليه» tamamlanır.", punct="."),
+ ],
+ "jumal": [
+  J("وَالصُّلْحُ عَنْ إِنْكَارٍ مُعَاوَضَةٌ… وَفِدَاءٌ…",
+    "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — خَبَرَانِ بِاعْتِبَارَيْنِ: لِكُلِّ طَرَفٍ وَجْهٌ.",
+    "A joined nominal clause — two khabars from two regards: each party its own face.",
+    "Matuf isim cümlesi — iki itibarla iki haber: her taraf için ayrı vecih."),
+ ]})
+
+S6.append({"id": "s32", "translation": {
+ "en": "And when the sulh is dissolved, the claimant returns to the root of his claim.",
+ "tr": "Sulh feshedilince davacı, iddiasının aslına döner."},
+ "tokens": [
+  tok("وَإِذَا","idha","part",["idha-shartiyya"],
+      "الْوَاوُ عَاطِفَةٌ وَ«إِذَا» ظَرْفٌ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "The waw joins; «idha» a conditional adverbial.",
+      "Atıf vâvı; «إذا» şart mânalı zarftır."),
+  tok("انْفَسَخَ","infasakha","verb",["idha-shartiyya","fail","form-vii-verbs"],
+      "فِعْلُ الشَّرْطِ — مَاضِي الِانْفِعَالِ: طَاوَعَ «فَسَخَ».",
+      "The condition verb — the Form VII past: the passive-like mate of «to dissolve».",
+      "Şart fiili — infiâlin mâzîsi: «فسخ»in mutâvaatıdır."),
+  tok("الصُّلْحُ","sulh","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ.","The fa'il in raf'.","Merfû fâildir."),
+  tok("عَادَ","ada-return","verb",["idha-shartiyya","fail","hollow-verbs"],
+      "جَوَابُ «إِذَا» — مَاضٍ أَجْوَفُ.",
+      "Idha's answer — a hollow past verb.",
+      "«إذا»nın cevabı — ecvef mâzîdir."),
+  tok("الْمُدَّعِي","muddai","noun",["fail","ism-maqsur-manqus"],
+      "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ.",
+      "The fa'il in raf' by an assumed damma.",
+      "Takdîrî zamme ile merfû fâildir."),
+  tok("إِلَى","ila-sulh","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("أَصْلِ","asl","noun",["huruf-jarr","idafa-definiteness"],
+      "اسْمٌ مَجْرُورٌ مُضَافٌ.","In jarr, mudaf.","Mecrur isim; muzâftır."),
+  tok("دَعْوَاهُ","dawa-claim","noun",["idafa-definiteness","ism-maqsur-manqus"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — مَقْصُورٌ — وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "Mudaf ilayh in jarr by an assumed kasra — maqsur — the ha its mudaf ilayh.",
+      "Takdîrî kesreyle mecrur muzâfun ileyh — maksûr — hâ, muzâfun ileyhtir.", punct="."),
+ ],
+ "jumal": [
+  J("وَإِذَا انْفَسَخَ… عَادَ…",
+    "جُمْلَةُ شَرْطٍ غَيْرِ جَازِمٍ وَجَوَابُهَا.",
+    "A non-jazm conditional and its answer.",
+    "Cezmetmeyen şart cümlesi ve cevabıdır."),
+ ]})
+
+S6.append({"id": "s33", "translation": {
+ "en": "By sulh the strife is cut off and safety obtains among mankind — and Sulh is best, as Allah the Exalted said.",
+ "tr": "Sulh ile nizâ kesilir, insanlar arasında emniyet hâsıl olur — Allah Teâlâ'nın buyurduğu gibi: sulh daha hayırlıdır."},
+ "tokens": [
+  tok("وَبِالصُّلْحِ","sulh","noun",["huruf-jarr"],
+      "الْوَاوُ اسْتِئْنَافِيَّةٌ وَالْبَاءُ لِلسَّبَبِيَّةِ.",
+      "The waw resumes; the ba of cause.",
+      "İsti'nâf vâvı; sebep bildiren بِ."),
+  tok("يَنْقَطِعُ","inqataa","verb",["fail","form-vii-verbs","mudari-marfu"],
+      "مُضَارِعُ الِانْفِعَالِ مَرْفُوعٌ.",
+      "The Form VII mudari' in raf'.",
+      "İnfiâlin muzârisi; merfûdur."),
+  tok("النِّزَاعُ","niza","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ.","The fa'il in raf'.","Merfû fâildir."),
+  tok("وَيَحْصُلُ","hasala","verb",["atf-nasaq","fail","mudari-marfu"],
+      "مَعْطُوفٌ مَرْفُوعٌ.","Joined, in raf'.","Matuf; merfûdur."),
+  tok("الْأَمْنُ","amn","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ.","The fa'il in raf'.","Merfû fâildir."),
+  tok("بَيْنَ","bayna","noun",["maful-fih","idafa-definiteness"],
+      "ظَرْفُ مَكَانٍ مَنْصُوبٌ مُضَافٌ.",
+      "An adverbial of place in nasb, mudaf.",
+      "Mensub mekân zarfı; muzâftır."),
+  tok("النَّاسِ","nas-sulh","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Mecrur muzâfun ileyhtir.", punct="•"),
+  tok("وَالصُّلْحُ","sulh","noun",["mubtada-khabar"],
+      "الْوَاوُ اسْتِئْنَافِيَّةٌ وَ«الصُّلْحُ» مُبْتَدَأٌ — عَوْدٌ عَلَى بَدْءِ الْكِتَابِ.",
+      "The waw resumes; «sulh» a mubtada — the book's opening returns at its close.",
+      "İsti'nâf vâvı; «الصلح» mübteda — kitabın başı, sonunda geri döner."),
+  tok("خَيْرٌ","khayr","noun",["mubtada-khabar"],
+      "خَبَرٌ مَرْفُوعٌ — اقْتِبَاسٌ مِنَ الْآيَةِ.",
+      "The khabar in raf' — quoting the aya.",
+      "Merfû haber — âyetten iktibastır."),
+  tok("كَمَا","ma-mawsula","part",["huruf-jarr","ism-mawsul"],
+      "الْكَافُ جَارَّةٌ وَ«مَا» مَصْدَرِيَّةٌ.",
+      "The kaf governs; «ma» the masdar-maker.",
+      "Kâf cer harfi; «ما» masdariyyedir."),
+  tok("قَالَ","qala","verb",["fail","hollow-verbs","ism-mawsul"],
+      "مَاضٍ — وَالْجُمْلَةُ صِلَةُ «مَا».",
+      "A past verb — the clause ma's sila.",
+      "Mâzî — cümle, «ما»nın sılasıdır."),
+  tok("اللَّهُ","allah","propn",["fail"],
+      "لَفْظُ الْجَلَالَةِ فَاعِلٌ مَرْفُوعٌ.",
+      "The name of majesty, the fa'il in raf'.",
+      "Lafza-i celâl; merfû fâildir."),
+  tok("تَعَالَى","taala","verb",["fail","naqis-verbs"],
+      "مَاضٍ لِلتَّعْظِيمِ وَالْفَاعِلُ مُسْتَتِرٌ.",
+      "A past verb of exaltation, agent hidden.",
+      "Ta'zîm için mâzî; fâili gizlidir.", punct="."),
+ ],
+ "jumal": [
+  J("وَبِالصُّلْحِ يَنْقَطِعُ النِّزَاعُ…",
+    "جُمْلَةٌ فِعْلِيَّةٌ مُسْتَأْنَفَةٌ — خَاتِمَةُ الْكِتَابِ.",
+    "A resumed verbal clause — the book's close.",
+    "Müste'nefe fiil cümlesi — kitabın hâtimesidir."),
+  J("وَالصُّلْحُ خَيْرٌ",
+    "جُمْلَةٌ اسْمِيَّةٌ — رَدُّ الْعَجُزِ عَلَى الصَّدْرِ: بِهَا افْتُتِحَ وَبِهَا اخْتُتِمَ.",
+    "A nominal clause — the end answering the beginning: the book opened with it and closes with it.",
+    "İsim cümlesi — reddü'l-acüz ale's-sadr: kitap onunla açıldı, onunla kapanır."),
+ ]})
+
+TITLE6 = {"ar": "أَحْكَامُ الصُّلْحِ وَانْتِهَاؤُهُ",
+          "en": "The Effects of Sulh, and Its End",
+          "tr": "Sulhun Hükümleri ve Sona Ermesi"}
+
 MANIFEST = {
  "id": "kitab-al-sulh",
  "storyGroup": "kitab-al-sulh",
@@ -1545,10 +1850,10 @@ MANIFEST = {
               "tr": "Fıkıhta sulh — tarifi, nevileri ve hükümleri, kolaylaştırılmış Arapçayla"},
  "level": 5,
  "levelName": "Advanced",
- "version": "0.5.0",
+ "version": "1.0.0",
  "published": "2026-07-31",
  "access": "premium",
- "chapters": [{"n": 1, "title": TITLE1}, {"n": 2, "title": TITLE2}, {"n": 3, "title": TITLE3}, {"n": 4, "title": TITLE4}, {"n": 5, "title": TITLE5}],
+ "chapters": [{"n": 1, "title": TITLE1}, {"n": 2, "title": TITLE2}, {"n": 3, "title": TITLE3}, {"n": 4, "title": TITLE4}, {"n": 5, "title": TITLE5}, {"n": 6, "title": TITLE6}],
  "siblings": [],
  "attribution": {
   "ar": "عَرَبِيَّةٌ أَصْلِيَّةٌ مُيَسَّرَةٌ صِيغَتْ تَحْرِيرِيًّا مِنْ مَرْجِعٍ فِقْهِيٍّ تُرْكِيٍّ رَفَعَهُ صَاحِبُ الْمَشْرُوعِ.",
@@ -1556,13 +1861,13 @@ MANIFEST = {
          "reference on sulh (research/sources/sulh-fiqh-turkce.txt; Hanafi-centered, with classical "
          "citations). The Qur'anic clause (al-Nisa 4:128) and the hadith wording (Tirmidhi, Ahkam 17) "
          "are received text quoted as transmitted; all other Arabic is editorial composition in the "
-         "Hidaya register and must not be cited as a classical text. Chapters 1-5 cover the definition, "
-         "evidences, kinds, the six contract-guises and the bedel's conditions; further chapters follow release by release."),
+         "Hidaya register and must not be cited as a classical text. The treatise is COMPLETE in six chapters: definition and evidences, kinds, "
+         "the six contract-guises, the parties' conditions, the riba rules of the bedel, and the effects and end of sulh."),
   "tr": ("ÖZGÜN kolaylaştırılmış Arapça; proje sahibinin yüklediği Türkçe sulh maddesinden "
          "(research/sources/sulh-fiqh-turkce.txt) editoryal olarak telif edilmiştir. Âyet iktibası "
          "(en-Nisâ 4/128) ve hadis lafzı (Tirmizî, Ahkâm 17) nakledilen metindir; diğer bütün Arapça, "
-         "Hidâye üslûbunda editoryal telif olup klasik metin diye iktibas edilemez. 1-5. bölümler tarif, "
-         "deliller, neviler, altı akit kisvesi ve bedelin şartlarını kapsar; sonraki bölümler sürüm sürüm gelecektir."),
+         "Hidâye üslûbunda editoryal telif olup klasik metin diye iktibas edilemez. Risâle altı bölümde TAMAMLANMIŞTIR: tarif ve deliller, neviler, "
+         "altı akit kisvesi, tarafların şartları, bedelin ribâ hükümleri, sulhun hükümleri ve sona ermesi."),
   "reviewStatus": "pending-scholarly-review"
  }
 }
@@ -1620,6 +1925,23 @@ MORPH["verbs"]["asqata"] = _sg.derived(
 MORPH["verbs"]["ishtarata"] = _sg.derived(
     _sg.B8, _sg.W8, "َ", "اِشْتَرَط", "شْتَرِط", "اِشْتَرِط",
     "اِشْتِرَاط", "مُشْتَرِط", "مُشْتَرَط", "اُشْتُرِطَ", "يُشْتَرَطُ")
+MORPH["verbs"]["saqata"] = _sg.sound1(
+    "nasara", "سَقَط", "سْقُط", "اُسْقُط", "سُقُوط", "سَاقِط")
+MORPH["verbs"]["malaka"] = _sg.sound1(
+    "daraba", "مَلَك", "مْلِك", "اِمْلِك", "مِلْك", "مَالِك",
+    "مَمْلُوك", "مُلِكَ", "يُمْلَكُ")
+MORPH["verbs"]["hasala"] = _sg.sound1(
+    "nasara", "حَصَل", "حْصُل", "اُحْصُل", "حُصُول", "حَاصِل")
+MORPH["verbs"]["infasakha"] = _sg.derived(
+    _sg.B7, _sg.W7, "َ", "اِنْفَسَخ", "نْفَسِخ", "اِنْفَسِخ",
+    "اِنْفِسَاخ", "مُنْفَسِخ")
+MORPH["verbs"]["inqataa"] = _sg.derived(
+    _sg.B7, _sg.W7, "َ", "اِنْقَطَع", "نْقَطِع", "اِنْقَطِع",
+    "اِنْقِطَاع", "مُنْقَطِع")
+MORPH["verbs"]["ada-return"] = _sg.hollow1(
+    "nasara", "أَجْوَفُ وَاوِيٌّ", "عَاد", "عُد", "عُود", "عُد",
+    "عُود", "عُد", "عَوْد", "عَائِد",
+    note=_sg.HOLLOW_NOTE.format(ex="عُدْتَ"))
 MORPH["verbs"]["ikhtalafa"] = _sg.derived(
     _sg.B8, _sg.W8, "َ", "اِخْتَلَف", "خْتَلِف", "اِخْتَلِف",
     "اِخْتِلَاف", "مُخْتَلِف", "مُخْتَلَف", "اُخْتُلِفَ", "يُخْتَلَفُ")
@@ -1627,7 +1949,7 @@ MORPH["verbs"]["mayyaza"] = _sg.derived(
     _sg.B2, _sg.W2, "ُ", "مَيَّز", "مَيِّز", "مَيِّز",
     "تَمْيِيز", "مُمَيِّز", "مُمَيَّز", "مُيِّزَ", "يُمَيَّزُ")
 
-ALL = S + S2 + S3 + S4 + S5
+ALL = S + S2 + S3 + S4 + S5 + S6
 
 (PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/1.json").write_text(json.dumps({"chapter": 1, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -1635,6 +1957,7 @@ ALL = S + S2 + S3 + S4 + S5
 (PKG / "chapters/3.json").write_text(json.dumps({"chapter": 3, "sentences": S3}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/4.json").write_text(json.dumps({"chapter": 4, "sentences": S4}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/5.json").write_text(json.dumps({"chapter": 5, "sentences": S5}, ensure_ascii=False, indent=1), encoding="utf-8")
+(PKG / "chapters/6.json").write_text(json.dumps({"chapter": 6, "sentences": S6}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "morphology.json").write_text(json.dumps(MORPH, ensure_ascii=False, indent=1), encoding="utf-8")
 

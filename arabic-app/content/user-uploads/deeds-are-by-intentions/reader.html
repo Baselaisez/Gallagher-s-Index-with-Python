@@ -3630,7 +3630,14 @@ class RootFinder {
   static find(word){
     const hit = this.fromCorpus(word);
     if (hit) return hit;
-    for (const c of this.candidates(word)) {
+    // corpus-first applies to the PEELED skeletons too: ورجع must find the
+    // stored رَجَعَ before any pattern rule gets to guess at it.
+    const cands = this.candidates(word);
+    for (const c of cands) {
+      const h2 = this.fromCorpus(c);
+      if (h2) return h2;
+    }
+    for (const c of cands) {
       const r = this.peel(c);
       if (r) {
         const weak = this.weakNote(r.root);
@@ -3885,7 +3892,17 @@ class SentenceAnalyzer {
       const r = RootFinder.find(w);
       if (r) {
         row.root = r.root;
-        if (r.via === "corpus") { row.lemma = r.lemma; row.gloss = r.gloss; row.sure = true; }
+        if (r.via === "corpus") {
+          row.lemma = r.lemma; row.gloss = r.gloss; row.sure = true;
+          // the corpus knows WHICH cell matched — a mazi wears no prefix,
+          // but a stored paradigm outranks the morphology guess entirely.
+          if (r.cell) {
+            row.kind = "verb";
+            const lbl = formCellLabel(r.cell);
+            row.notes.push({ en: "a corpus verb — " + lbl.en, tr: "külliyat fiili — " + lbl.tr });
+            afterVerb = true;
+          }
+        }
         if (r.wazn) row.wazn = r.wazn;
       }
       const m = WaznEngine.of(w);
@@ -4052,13 +4069,42 @@ function renderJadhrOut(){
   }
   out.innerHTML = h;
 }
+// Qawa'id al-I'rab's first question about any sentence: what does it OPEN
+// with? A verb makes it fi'liyya (a fa'il is coming); a noun makes it
+// ismiyya (mubtada and khabar are coming). Joining و/ف and the closed
+// introducers are looked through to the first weight-bearing word.
+function sentenceType(rows){
+  for (const r of rows) {
+    if (r.kind === "particle") {
+      const note = r.notes.map(n => n.en).join(" ");
+      if (/kana family/.test(note)) return "filiyya";
+      if (/inna family/.test(note)) return "ismiyya";
+      if (/waw|fa —|joining|conditional|question|resum/i.test(note)) continue;
+      return null;
+    }
+    if (r.kind && r.kind.startsWith("verb")) return "filiyya";
+    if (r.kind && r.kind.startsWith("noun")) return "ismiyya";
+  }
+  return null;
+}
+const SENT_TYPE_LBL = {
+  ismiyya: { ar: "جُمْلَةٌ اسْمِيَّةٌ",
+             en: "opens with a noun — nominal: expect mubtada then khabar",
+             tr: "isimle açılıyor — isim cümlesi: mübteda, sonra haber beklenir" },
+  filiyya: { ar: "جُمْلَةٌ فِعْلِيَّةٌ",
+             en: "opens with a verb — verbal: expect the fa'il after it",
+             tr: "fiille açılıyor — fiil cümlesi: ardından fâil beklenir" },
+};
 function renderJumlaOut(){
   const out = document.getElementById("jumlaOut");
   if (!out) return;
   const rows = SentenceAnalyzer.analyze(conjState.jumla);
   if (!rows.length) { out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`; return; }
   const lang = state.uiLang === "tr" ? "tr" : "en";
-  let h = `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
+  let h = "";
+  const st = sentenceType(rows);
+  if (st) h += `<p class="conj-known"><span lang="ar">${SENT_TYPE_LBL[st].ar}</span> — ${SENT_TYPE_LBL[st][lang]}</p>`;
+  h += `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
   rows.forEach(r => {
     h += `<tr><td lang="ar">${r.w}${r.seg && r.seg.length > 1
       ? `<br><span class="av-ex" lang="ar" dir="rtl">${r.seg.join(" + ")}</span>` : ""}</td><td>
