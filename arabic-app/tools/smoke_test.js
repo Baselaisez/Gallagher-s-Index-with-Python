@@ -2788,6 +2788,11 @@ if (!CHROME) {
     if (nfc(r.qalb.out) !== nfc('قُلَيْب')) throw new Error('qalb: ' + r.qalb.out);
     if (nfc(r.dirham.out) !== nfc('دُرَيْهِم')) throw new Error('dirham: ' + r.dirham.out);
     if (nfc(r.shair.out) !== nfc('شُوَيْعِر')) throw new Error('the fa\'il alif must turn waw: ' + r.shair.out);
+    const madd = await page.evaluate(() => ({
+      kitab: IsmEngine.tasgir('كتاب'), madinaT: IsmEngine.tasgir('مدينة'),
+    }));
+    if (nfc(madd.kitab.out) !== nfc('كُتَيِّب')) throw new Error('kitab must melt the madda: ' + madd.kitab.out);
+    if (nfc(madd.madinaT.out) !== nfc('مُدَيِّنَة')) throw new Error('madina tasgir: ' + madd.madinaT.out);
     if (r.makka.out !== 'مكِيّ' && !r.makka.out.includes('مكّ') && nfc(r.makka.out) !== nfc('مكِيّ'))
       throw new Error('makka nisba: ' + r.makka.out);
     if (!r.madina.semai || nfc(r.madina.out) !== nfc('مَدَنِيّ'))
