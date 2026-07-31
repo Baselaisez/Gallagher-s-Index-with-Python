@@ -2661,6 +2661,304 @@ GLOSS9 = {
    "gloss": {"en": "slipping out unseen (Form VII masdar)", "tr": "insilâl, gizlice sıyrılıp çıkma (infiâl masdarı)"}, "level": 5},
 }
 
+# ---------------------------------------------------------------- chapter 10 (verses 46-50)
+S10 = []
+
+S10.append({"id": "s46", "translation": {
+ "en": "Uttering the word of unbelief — even without believing it, but by free choice — is a rejection of the religion, through heedlessness.",
+ "tr": "Küfür lafzını — itikatsız da olsa — kendi isteğiyle söylemek, gaflet sebebiyle dini reddir."},
+ "tokens": [
+  tok("وَلَفْظُ","lafz","noun",["mubtada-khabar","masdar","idafa-definiteness"],
+      "مُبْتَدَأٌ مَرْفُوعٌ مُضَافٌ — أَيِ التَّلَفُّظُ بِهِ.",
+      "Mubtada in raf', mudaf — the act of uttering it.",
+      "Merfû mübteda; muzâf — «onu telaffuz etmek» demektir."),
+  tok("الْكُفْرِ","kufr","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Mecrur muzâfun ileyhtir."),
+  tok("مِنْ","min","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("غَيْرِ","ghayr","noun",["huruf-jarr","idafa-definiteness"],
+      "مَجْرُورٌ مُضَافٌ.","In jarr, mudaf.","Mecrur; muzâftır."),
+  tok("اعْتِقَادٍ","itiqad","noun",["idafa-definiteness","masdar"],
+      "مُضَافٌ إِلَيْهِ — مَصْدَرُ الِافْتِعَالِ.",
+      "Mudaf ilayh — the Form VIII masdar.",
+      "Muzâfun ileyh — iftiâl masdarıdır."),
+  tok("بِطَوْعٍ","taw","noun",["huruf-jarr","masdar"],
+      "الْبَاءُ لِلْمُصَاحَبَةِ — أَيْ عَنِ اخْتِيَارٍ.",
+      "The ba of accompaniment — «by his own choosing».",
+      "Musâhabe بِ'si — «kendi ihtiyârıyla» demektir.", punct="•"),
+  tok("رَدُّ","radd","noun",["mubtada-khabar","masdar","idafa-definiteness"],
+      "خَبَرٌ مَرْفُوعٌ مُضَافٌ.",
+      "The khabar in raf', mudaf.",
+      "Merfû haber; muzâftır."),
+  tok("دِينٍ","din","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.","Mudaf ilayh in jarr.","Mecrur muzâfun ileyhtir."),
+  tok("بِاغْتِفَالِ","ightifal","noun",["huruf-jarr","masdar"],
+      "الْبَاءُ سَبَبِيَّةٌ — مَصْدَرُ الِافْتِعَالِ مِنَ الْغَفْلَةِ — وَحُذِفَ التَّنْوِينُ لِلْقَافِيَةِ.",
+      "The ba of cause — the Form VIII masdar of heedlessness — the tanwin gone to the rhyme.",
+      "Sebep بِ'si — gafletten iftiâl masdarı — tenvini kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("وَلَفْظُ الْكُفْرِ… رَدُّ دِينٍ",
+    "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A joined nominal sentence — i'rabless.",
+    "Matuf isim cümlesi — mahalli yoktur."),
+ ]})
+
+S10.append({"id": "s47", "translation": {
+ "en": "And let no unbelief be adjudged in drunkenness — for the raving and idle talk he blurts without reflection.",
+ "tr": "Sarhoşluk hâlinde — düşünmeden savurduğu hezeyan ve boş sözler sebebiyle — kimsenin küfrüne hükmolunmasın."},
+ "tokens": [
+  tok("وَلَا","la-nahiya","part",["la-nahiya"],
+      "«لَا» النَّاهِيَةُ — تَجْزِمُ الْمُضَارِعَ.",
+      "The prohibitive «la» — jazm on the mudari'.",
+      "Nehiy «لا»sı — muzâriyi cezm eder."),
+  tok("يُحْكَمْ","hakama","verb",["la-nahiya","naib-al-fail"],
+      "مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ.",
+      "A passive mudari' in jazm.",
+      "Meçhul muzâri; meczumdur."),
+  tok("بِكُفْرٍ","kufr","noun",["huruf-jarr","naib-al-fail"],
+      "الْجَارُّ وَالْمَجْرُورُ فِي مَوْضِعِ نَائِبِ الْفَاعِلِ.",
+      "The jarr-phrase standing as deputy-fa'il.",
+      "Câr-mecrûr, nâib-i fâil makamındadır."),
+  tok("حَالَ","hal-noun","noun",["maful-fih","idafa-definiteness"],
+      "ظَرْفٌ مَنْصُوبٌ مُضَافٌ.",
+      "An adverbial in nasb, mudaf.",
+      "Mensub zarf; muzâftır."),
+  tok("سَكْرٍ","sakr","noun",["idafa-definiteness","masdar"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "Mudaf ilayh in jarr.",
+      "Mecrur muzâfun ileyhtir.", punct="•"),
+  tok("بِمَا","ma-mawsula","pron",["huruf-jarr","ism-mawsul"],
+      "الْبَاءُ سَبَبِيَّةٌ وَ«مَا» مَوْصُولَةٌ فِي مَحَلِّ جَرٍّ.",
+      "The ba of cause; relative «ma» in jarr's position.",
+      "Sebep بِ'si; mevsûl «ما» mahallen mecrurdur."),
+  tok("يَهْذِي","hadha-verb","verb",["ism-mawsul","naqis-verbs"],
+      "صِلَةُ «مَا» — مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ: يَتَكَلَّمُ بِلَا مَعْنًى.",
+      "Ma's sila — a mudari' by an assumed damma: he raves.",
+      "«ما»nın sılası — takdîrî damme ile merfû muzâri: hezeyan eder."),
+  tok("وَيَلْغُو","lagha","verb",["atf-nasaq","naqis-verbs"],
+      "مَعْطُوفٌ — يَتَكَلَّمُ بِمَا لَا يُعْتَدُّ بِهِ.",
+      "Joined — he talks what carries no weight.",
+      "Matuf — itibar edilmez söz söyler."),
+  tok("بِارْتِجَالِ","irtijal","noun",["huruf-jarr","masdar"],
+      "الْبَاءُ لِلْحَالِ: مُرْتَجِلًا بِلَا رَوِيَّةٍ — وَحُذِفَ التَّنْوِينُ لِلْقَافِيَةِ.",
+      "The ba of manner: off-hand, without reflection — the tanwin gone to the rhyme.",
+      "Hâl bildiren بِ: düşünmeksizin, irticâlen — tenvini kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("وَلَا يُحْكَمْ بِكُفْرٍ حَالَ سَكْرٍ",
+    "جُمْلَةُ نَهْيٍ مَبْنِيَّةٌ لِلْمَجْهُولِ، مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A passive prohibition, joined — i'rabless.",
+    "Meçhul nehiy cümlesi; matuf — mahalli yoktur."),
+ ]})
+
+S10.append({"id": "s48", "translation": {
+ "en": "The non-existent is neither seen nor a «thing» — by a proof that shone in the blessing of the crescent.",
+ "tr": "Ma'dûm ne görülür ne de «şey»dir — hilâlin bereketinde parlayan bir delil ile."},
+ "tokens": [
+  tok("وَمَا","ma-hijaziyya","part",["ma-la-mushabbaha"],
+      "«مَا» الْحِجَازِيَّةُ.",
+      "The Hijazi «ma».",
+      "Hicaz «ما»sı."),
+  tok("الْمَعْدُومُ","madum","noun",["ma-la-mushabbaha","ism-maful"],
+      "اسْمُ «مَا» مَرْفُوعٌ — اسْمُ مَفْعُولٍ مِنْ عَدِمَ.",
+      "Ma's noun in raf' — the passive participle of «to lack».",
+      "«ما»nın ismi; merfû — عَدِمَ'nin ism-i mef'ûlüdür."),
+  tok("مَرْئِيًّا","mari","noun",["ma-la-mushabbaha","ism-maful"],
+      "خَبَرُ «مَا» مَنْصُوبٌ — اسْمُ مَفْعُولٍ مِنْ رَأَى.",
+      "Ma's khabar in nasb — the passive participle of «to see».",
+      "«ما»nın haberi; mensub — رَأَى'nın ism-i mef'ûlüdür."),
+  tok("وَشَيْئًا","shay","noun",["atf-nasaq"],
+      "مَعْطُوفٌ مَنْصُوبٌ.","Joined, in nasb.","Matuf; mensubdur.", punct="•"),
+  tok("لِفِقْهٍ","fiqh","noun",["huruf-jarr","lam-taleel"],
+      "اللَّامُ تَعْلِيلِيَّةٌ — الْفِقْهُ هُنَا: الدَّلِيلُ الْمَفْهُومُ.",
+      "The lam of ground — «fiqh» here: the understood proof.",
+      "Ta'lîl lâmı — buradaki «fıkh»: anlaşılan delildir."),
+  tok("لَاحَ","laha-verb","verb",["jumla-sifa","hollow-verbs"],
+      "مَاضٍ أَجْوَفُ — وَالْجُمْلَةُ صِفَةٌ لِـ«فِقْهٍ».",
+      "A hollow past — the clause describes «a proof».",
+      "Ecvef mâzî — cümle «فقه»in sıfatıdır."),
+  tok("فِي","fi","part",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.","A jarr particle.","Cer harfidir."),
+  tok("يُمْنِ","yumn","noun",["huruf-jarr","idafa-definiteness"],
+      "مَجْرُورٌ مُضَافٌ — مِنْ إِضَافَةِ الصِّفَةِ إِلَى الْمَوْصُوفِ: أَيْ فِي الْهِلَالِ الْمَيْمُونِ، كَمَا فِي الشَّرْحِ.",
+      "In jarr, mudaf — the quality mudaf to its bearer: «in the blessed crescent», as the sharh notes.",
+      "Mecrur; muzâf — sıfatın mevsûfuna izâfeti: şerhteki gibi «bereketli hilâlde» demektir."),
+  tok("الْهِلَالِ","hilal","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "Mudaf ilayh in jarr.",
+      "Mecrur muzâfun ileyhtir.", punct="."),
+ ],
+ "jumal": [
+  J("وَمَا الْمَعْدُومُ مَرْئِيًّا وَشَيْئًا",
+    "جُمْلَةُ «مَا» الْحِجَازِيَّةِ، مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا؛ وَجُمْلَةُ «لَاحَ» صِفَةٌ.",
+    "The Hijazi-ma clause, joined — i'rabless; «shone» its sifa clause.",
+    "Matuf Hicaz «ما»sı cümlesi — mahalsiz; «لاح» cümlesi sıfattır."),
+ ]})
+
+S10.append({"id": "s49", "translation": {
+ "en": "And the originated, with the Origination, are two distinct things — in nothing alike: take this, as kohl for the eye of insight.",
+ "tr": "Mükevven, Tekvîn ile bir şey gibi değildir — ayrı ayrıdır. Basiret gözüne sürme olsun diye bu sözü tut."},
+ "tokens": [
+  tok("وَغَيْرَانِ","ghayr","noun",["mubtada-khabar"],
+      "خَبَرٌ مُقَدَّمٌ مَرْفُوعٌ بِالْأَلِفِ — مُثَنًّى: أَيْ مُتَغَايِرَانِ.",
+      "A fronted khabar, raf' by the ALIF — a dual: «two distinct things».",
+      "Mukaddem haber; elif ile merfû — tesniye: «birbirinden ayrı iki şey»."),
+  tok("الْمُكَوَّنُ","mukawwan","noun",["mubtada-khabar","ism-maful"],
+      "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ — اسْمُ مَفْعُولِ التَّفْعِيلِ: الْمَخْلُوقُ.",
+      "The delayed mubtada — the Form II passive participle: the originated thing.",
+      "Muahhar mübteda — tef'îlin ism-i mef'ûlü: yaratılmış demektir."),
+  tok("لَا","la-nafiya","part",["tawkid"],
+      "نَافِيَةٌ.","Negating.","Nâfiyedir."),
+  tok("كَشَيْءٍ","shay","noun",["huruf-jarr","tashbih"],
+      "الْكَافُ لِلتَّشْبِيهِ — أَيْ لَا يُشْبِهُ أَحَدُهُمَا الْآخَرَ.",
+      "The kaf of likeness — «neither resembles the other».",
+      "Teşbih kâfı — «biri diğerine benzemez» demektir."),
+  tok("مَعَ","maa","noun",["maful-fih","idafa-definiteness"],
+      "ظَرْفٌ مَنْصُوبٌ مُضَافٌ.",
+      "An adverbial in nasb, mudaf.",
+      "Mensub zarf; muzâftır."),
+  tok("التَّكْوِينِ","takwin","noun",["idafa-definiteness","masdar"],
+      "مُضَافٌ إِلَيْهِ — صِفَةُ اللهِ الْأَزَلِيَّةُ عِنْدَ الْمَاتُرِيدِيَّةِ.",
+      "Mudaf ilayh — Allah's beginningless attribute, in the Maturidi school.",
+      "Muzâfun ileyh — Mâtürîdîlere göre Allah'ın ezelî sıfatıdır.", punct="•"),
+  tok("خُذْهُ","akhadha","verb",["imperative-amr","maful-bihi"],
+      "أَمْرٌ مَبْنِيٌّ عَلَى السُّكُونِ وَالْهَاءُ مَفْعُولٌ — حُذِفَتْ هَمْزَتُهُ شُذُوذًا لِكَثْرَةِ الِاسْتِعْمَالِ.",
+      "An imperative on sukun, the ha its object — its hamza dropped, by attested anomaly of frequent use.",
+      "Sükûn üzere mebnî emir; هُ mef'ûldür — hemzesi çok kullanımdan şâz olarak düşmüştür."),
+  tok("لِاكْتِحَالِ","iktihal","noun",["huruf-jarr","lam-taleel","masdar"],
+      "اللَّامُ تَعْلِيلِيَّةٌ — الِاكْتِحَالُ: تَنْوِيرُ عَيْنِ الْبَصِيرَةِ — وَحُذِفَ التَّنْوِينُ لِلْقَافِيَةِ.",
+      "The lam of purpose — «kohl-ing»: lighting the eye of insight — the tanwin gone to the rhyme.",
+      "Ta'lîl lâmı — «iktihâl»: basiret gözünü nurlandırmak — tenvini kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("وَغَيْرَانِ الْمُكَوَّنُ مَعَ التَّكْوِينِ",
+    "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا مُقَدَّمٌ، مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A joined nominal sentence with fronted khabar — i'rabless.",
+    "Haberi öne geçmiş matuf isim cümlesi — mahalli yoktur."),
+  J("خُذْهُ لِاكْتِحَالِ",
+    "جُمْلَةٌ طَلَبِيَّةٌ مُسْتَأْنَفَةٌ — لَا مَحَلَّ لَهَا.",
+    "A fresh command — i'rabless.",
+    "İsti'nâf emir cümlesi — mahalli yoktur."),
+ ]})
+
+S10.append({"id": "s50", "translation": {
+ "en": "Truly even the illicit is provision, like the lawful — though every detester detest my saying.",
+ "tr": "Şüphesiz haram (kazanç) da helâl gibi rızıktır — her buğzeden sözümü çirkin görse de."},
+ "tokens": [
+  tok("وَإِنَّ","inna","part",["inna-wa-akhawatuha"],
+      "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ.",
+      "The verb-like particle.",
+      "Fiile benzeyen harftir."),
+  tok("السُّحْتَ","suht","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ — السُّحْتُ: الْحَرَامُ.",
+      "Inna's noun in nasb — «suht»: the illicit.",
+      "«إنّ»nin ismi; mensub — «suht»: haramdır."),
+  tok("رِزْقٌ","rizq","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "Inna's khabar in raf'.",
+      "«إنّ»nin haberi; merfûdur."),
+  tok("مِثْلُ","mithl","noun",["naat-sifa","idafa-definiteness"],
+      "نَعْتٌ مَرْفُوعٌ مُضَافٌ.",
+      "A na't in raf', mudaf.",
+      "Merfû na't; muzâftır."),
+  tok("حِلٍّ","hill","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ — الْحِلُّ: الْحَلَالُ.",
+      "Mudaf ilayh — «hill»: the lawful.",
+      "Muzâfun ileyh — «hill»: helâl demektir.", punct="•"),
+  tok("وَإِنْ","in-shart","part",["in-shartiyya"],
+      "«إِنْ» الْوَصْلِيَّةُ — أَيْ وَلَوْ كَرِهَ.",
+      "The concessive «in» — «even should he detest it».",
+      "Vaslî «إنْ» — «çirkin görse de» demektir."),
+  tok("يَكْرَهْ","kariha","verb",["in-shartiyya"],
+      "مُضَارِعٌ مَجْزُومٌ بِـ«إِنْ» — وَجَوَابُهُ مَحْذُوفٌ دَلَّ عَلَيْهِ مَا قَبْلَهُ.",
+      "A mudari' in jazm under «in» — its answer suppressed, shown by what precedes.",
+      "«إنْ» ile meczum muzâri — cevabı mahzuftur; öncesi ona delâlet eder."),
+  tok("مَقَالِي","maqal","noun",["maful-bihi","idafa-definiteness"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ، مُضَافٌ إِلَى الْيَاءِ.",
+      "The object by an assumed fatha, mudaf to the speaker's ya.",
+      "Takdîrî fetha ile mensub mef'ûl; mütekellim yâsına muzâftır."),
+  tok("كُلُّ","kull","noun",["fail","idafa-definiteness"],
+      "فَاعِلٌ مَرْفُوعٌ مُضَافٌ.",
+      "The fa'il in raf', mudaf.",
+      "Merfû fâil; muzâftır."),
+  tok("قَالِ","qali","noun",["idafa-definiteness","ism-fail","ism-maqsur-manqus"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — اسْمُ فَاعِلٍ مِنْ قَلَى: أَبْغَضَ، مَنْقُوصٌ حُذِفَتْ يَاؤُهُ لِلْقَافِيَةِ.",
+      "Mudaf ilayh by an assumed kasra — the participle of «to detest», a manqus whose ya the rhyme took.",
+      "Takdîrî kesreyle mecrur muzâfun ileyh — قَلَى'nın (buğzetmek) ism-i fâili; menkûstur, yâsı kafiyeye gitmiştir.", punct="."),
+ ],
+ "jumal": [
+  J("وَإِنَّ السُّحْتَ رِزْقٌ مِثْلُ حِلٍّ",
+    "جُمْلَةُ «إِنَّ» مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا؛ رَدًّا عَلَى الْمُعْتَزِلَةِ.",
+    "The inna-clause, joined — i'rabless; a refutation of the Mu'tazila.",
+    "Matuf «إنّ» cümlesi — mahalsiz; Mu'tezile'ye reddir."),
+ ]})
+
+TITLE10 = {"ar": "أَحْكَامُ التَّكْفِيرِ وَالرِّزْقِ",
+           "en": "The Rulings of Takfir, and Provision",
+           "tr": "Tekfir Hükümleri ve Rızık"}
+
+GLOSS10 = {
+ "lafz": {"lemma": "لَفْظ", "root": "ل ف ظ", "pos": "noun", "plural": "أَلْفَاظ",
+   "gloss": {"en": "utterance, wording", "tr": "lafız, söz"}, "level": 3},
+ "itiqad": {"lemma": "اعْتِقَاد", "root": "ع ق د", "pos": "noun",
+   "gloss": {"en": "belief, conviction (Form VIII masdar)", "tr": "itikat (iftiâl masdarı)"}, "level": 3},
+ "taw": {"lemma": "طَوْع", "root": "ط و ع", "pos": "noun",
+   "gloss": {"en": "free choice, willingness", "tr": "tav', kendi isteği"}, "level": 5},
+ "radd": {"lemma": "رَدّ", "root": "ر د د", "pos": "noun",
+   "gloss": {"en": "rejection, turning back", "tr": "red, geri çevirme"}, "level": 3},
+ "ightifal": {"lemma": "اِغْتِفَال", "root": "غ ف ل", "pos": "noun",
+   "gloss": {"en": "heedlessness (Form VIII masdar)", "tr": "gaflete düşme (iftiâl masdarı)"}, "level": 5},
+ "hakama": {"lemma": "حَكَمَ", "root": "ح ك م", "pos": "verb", "form": "I",
+   "gloss": {"en": "to judge, adjudge (with بِ)", "tr": "hükmetmek (بِ ile)"}, "level": 2},
+ "sakr": {"lemma": "سَكْر", "root": "س ك ر", "pos": "noun",
+   "gloss": {"en": "drunkenness", "tr": "sarhoşluk, sekr"}, "level": 4},
+ "ma-mawsula": {"lemma": "مَا (الْمَوْصُولَة)", "pos": "pron",
+   "gloss": {"en": "that which (relative)", "tr": "şey ki (ism-i mevsûl)"}, "level": 3},
+ "hadha-verb": {"lemma": "هَذَى", "root": "هـ ذ ي", "pos": "verb", "form": "I",
+   "gloss": {"en": "to rave, talk deliriously", "tr": "hezeyan etmek, saçmalamak"}, "level": 5},
+ "lagha": {"lemma": "لَغَا", "root": "ل غ و", "pos": "verb", "form": "I",
+   "gloss": {"en": "to talk idly", "tr": "boş söz söylemek"}, "level": 4},
+ "irtijal": {"lemma": "اِرْتِجَال", "root": "ر ج ل", "pos": "noun",
+   "gloss": {"en": "speaking off-hand (Form VIII masdar)", "tr": "irticâl, düşünmeden söyleme"}, "level": 5},
+ "madum": {"lemma": "مَعْدُوم", "root": "ع د م", "pos": "noun",
+   "gloss": {"en": "the non-existent (ism maf'ul)", "tr": "ma'dûm, yok olan"}, "level": 4},
+ "mari": {"lemma": "مَرْئِيّ", "root": "ر أ ي", "pos": "noun",
+   "gloss": {"en": "seen, visible (ism maf'ul of رَأَى)", "tr": "mer'î, görülen"}, "level": 4},
+ "fiqh": {"lemma": "فِقْه", "root": "ف ق هـ", "pos": "noun",
+   "gloss": {"en": "understanding; (here) the understood proof", "tr": "fıkıh, anlayış; (burada) anlaşılan delil"}, "level": 2},
+ "laha-verb": {"lemma": "لَاحَ", "root": "ل و ح", "pos": "verb", "form": "I",
+   "gloss": {"en": "to shine forth, appear", "tr": "parlamak, zâhir olmak"}, "level": 4},
+ "yumn": {"lemma": "يُمْن", "root": "ي م ن", "pos": "noun",
+   "gloss": {"en": "blessing, auspiciousness", "tr": "yümn, bereket"}, "level": 5},
+ "hilal": {"lemma": "هِلَال", "root": "هـ ل ل", "pos": "noun", "plural": "أَهِلَّة",
+   "gloss": {"en": "crescent moon", "tr": "hilâl"}, "level": 2},
+ "mukawwan": {"lemma": "مُكَوَّن", "root": "ك و ن", "pos": "noun",
+   "gloss": {"en": "the originated (Form II passive participle)", "tr": "mükevven, yaratılmış"}, "level": 4},
+ "maa": {"lemma": "مَعَ", "pos": "noun",
+   "gloss": {"en": "with", "tr": "ile, beraber"}, "level": 1},
+ "takwin": {"lemma": "تَكْوِين", "root": "ك و ن", "pos": "noun",
+   "gloss": {"en": "the Origination — Allah's attribute (Maturidi)", "tr": "Tekvîn — Allah'ın sıfatı (Mâtürîdî)"}, "level": 4},
+ "akhadha": {"lemma": "أَخَذَ", "root": "أ خ ذ", "pos": "verb", "form": "I",
+   "gloss": {"en": "to take (its amr is خُذْ)", "tr": "almak, tutmak (emri خُذْ'dur)"}, "level": 1},
+ "iktihal": {"lemma": "اِكْتِحَال", "root": "ك ح ل", "pos": "noun",
+   "gloss": {"en": "applying kohl (Form VIII masdar)", "tr": "iktihâl, sürme çekme (iftiâl masdarı)"}, "level": 5},
+ "suht": {"lemma": "سُحْت", "root": "س ح ت", "pos": "noun", "plural": "أَسْحَات",
+   "gloss": {"en": "illicit gain", "tr": "suht — haram kazanç"}, "level": 5},
+ "rizq": {"lemma": "رِزْق", "root": "ر ز ق", "pos": "noun", "plural": "أَرْزَاق",
+   "gloss": {"en": "provision", "tr": "rızık"}, "level": 1},
+ "mithl": {"lemma": "مِثْل", "root": "م ث ل", "pos": "noun", "plural": "أَمْثَال",
+   "gloss": {"en": "like, similar to", "tr": "misil, gibi"}, "level": 2},
+ "hill": {"lemma": "حِلّ", "root": "ح ل ل", "pos": "noun",
+   "gloss": {"en": "the lawful", "tr": "hill — helâl olan"}, "level": 4},
+ "in-shart": {"lemma": "إِنْ (الشَّرْطِيَّة)", "pos": "part",
+   "gloss": {"en": "if; even if (concessive)", "tr": "eğer; -se de (vaslî)"}, "level": 2},
+ "kariha": {"lemma": "كَرِهَ", "root": "ك ر هـ", "pos": "verb", "form": "I",
+   "gloss": {"en": "to detest, find ugly", "tr": "çirkin görmek, kerih görmek"}, "level": 2},
+ "qali": {"lemma": "قَالٍ (الْقَالِي)", "root": "ق ل ي", "pos": "noun",
+   "gloss": {"en": "detester (ism fa'il of قَلَى)", "tr": "buğzeden (قَلَى'nın ism-i fâili)"}, "level": 5},
+}
+
 MANIFEST = {
  "id": "bad-al-amali",
  "storyGroup": "bad-al-amali",
@@ -2672,12 +2970,13 @@ MANIFEST = {
               "tr": "Ûşî'nin tevhid lâmiyyesi, beyit beyit tam i'râb ile — medresenin makamla okunan akaidi"},
  "level": 6,
  "levelName": "Master",
- "version": "0.7.0",
+ "version": "0.8.0",
  "published": "2026-07-29",
  "access": "premium",
  "chapters": [{"n": 1, "title": TITLE1}, {"n": 2, "title": TITLE2}, {"n": 3, "title": TITLE3},
               {"n": 4, "title": TITLE4}, {"n": 5, "title": TITLE5}, {"n": 6, "title": TITLE6},
-              {"n": 7, "title": TITLE7}, {"n": 8, "title": TITLE8}, {"n": 9, "title": TITLE9}],
+              {"n": 7, "title": TITLE7}, {"n": 8, "title": TITLE8}, {"n": 9, "title": TITLE9},
+              {"n": 10, "title": TITLE10}],
  "siblings": [],
  "attribution": {
   "ar": "قصيدة بدء الأمالي لسراج الدين علي بن عثمان الأوشي، بنصّها المتلقّى بيتًا بيتًا.",
@@ -2685,13 +2984,13 @@ MANIFEST = {
          "(research/sources/emali-qasida-ottoman.txt, an Ottoman-Turkish verse-by-verse commentary in the "
          "Ali al-Qari sharh tradition). Translations are informed by that commentary's Ottoman glosses, "
          "converted to modern Turkish; the English follows the same readings. The story carries "
-         "verses 1–45 so far; the remaining verses will be authored release by release. All word-level analysis is editorial. "
+         "verses 1–50 so far; the remaining verses will be authored release by release. All word-level analysis is editorial. "
          "In verse 22 the upload reads فِعْلٌ أَصْلَحُ (aslah as an attribute); some prints carry the idafa فِعْلُ أَصْلَحَ — "
          "the upload's reading is followed."),
   "tr": ("Arapça beyitler, proje sahibinin yüklediği kaynakta (research/sources/emali-qasida-ottoman.txt, "
          "Ali el-Kārî şerh geleneğinde Osmanlıca beyit beyit bir şerh) taşınan Bed'ü'l-Emâlî'nin gelen metnidir. "
          "Çeviriler o şerhin Osmanlıca karşılıklarından yararlanır ve günümüz Türkçesine aktarılmıştır; İngilizce de "
-         "aynı okuyuşları izler. Hikâye şimdilik 1–45. beyitleri taşır; kalan beyitler sürüm sürüm işlenecektir. "
+         "aynı okuyuşları izler. Hikâye şimdilik 1–50. beyitleri taşır; kalan beyitler sürüm sürüm işlenecektir. "
          "22. beyitte yüklenen kaynak فِعْلٌ أَصْلَحُ (aslah sıfat olarak) okur; bazı baskılarda فِعْلُ أَصْلَحَ izâfeti vardır — "
          "kaynağın okuyuşu esas alınmıştır. "
          "Kelime tahlilleri editoryaldir."),
@@ -2730,6 +3029,7 @@ GLOSS.update(GLOSS6)
 GLOSS.update(GLOSS7)
 GLOSS.update(GLOSS8)
 GLOSS.update(GLOSS9)
+GLOSS.update(GLOSS10)
 
 MORPH = {"verbs": copy_verbs()}
 
@@ -2797,7 +3097,36 @@ MORPH["verbs"]["nawa"] = _sg.naqis1(
     "daraba", "نَاقِصٌ يَائِيٌّ", "y", "نَوَ", "نْو", "i", "اِنْو",
     "نِيَّة", "نَاوٍ", "مَنْوِيّ", "نُوِيَ", "يُنْوَى")
 
-ALL = S + S2 + S3 + S4 + S5 + S6 + S7 + S8 + S9
+# chapter 10's verbs. hakama and kariha ride the sound engine; hadha the
+# رَمَى engine (ya-naqis) and lagha the وَاوِيّ naqis of نَصَرَ; laha the hollow
+# engine. akhadha is hand-authored: mazi/mudari are regular hamzated forms,
+# but the amr drops the hamza irregularly (خُذْ — shadh, like أَكَلَ ← كُلْ),
+# which no rule derives, so the cells are stored rather than generated.
+MORPH["verbs"]["hakama"] = _sg.sound1(
+    "nasara", "حَكَم", "حْكُم", "اُحْكُم", "حُكْم", "حَاكِم",
+    "مَحْكُوم", "حُكِمَ", "يُحْكَمُ")
+MORPH["verbs"]["hadha-verb"] = _sg.naqis1(
+    "daraba", "نَاقِصٌ يَائِيٌّ", "y", "هَذَ", "هْذ", "i", "اِهْذ",
+    "هَذَيَان", "هَاذٍ")
+MORPH["verbs"]["lagha"] = _sg.naqis1(
+    "nasara", "نَاقِصٌ وَاوِيٌّ", "w", "لَغَ", "لْغ", "u", "اُلْغ",
+    "لَغْو", "لَاغٍ")
+MORPH["verbs"]["laha-verb"] = _sg.hollow1(
+    "nasara", "أَجْوَفُ وَاوِيٌّ", "لَاح", "لُح", "لُوح", "لُح",
+    "لُوح", "لُح", "لَوْح", "لَائِح",
+    note=_sg.HOLLOW_NOTE.format(ex="لُحْتَ"))
+MORPH["verbs"]["kariha"] = _sg.sound1(
+    "samia", "كَرِه", "كْرَه", "اِكْرَه", "كُرْه", "كَارِه",
+    "مَكْرُوه", "كُرِهَ", "يُكْرَهُ")
+MORPH["verbs"]["akhadha"] = _sg.entry(
+    _sg.BABS["nasara"][0] + " — مَهْمُوزُ الْفَاءِ", _sg.BABS["nasara"][1],
+    "أَخْذ", "آخِذ",
+    _sg.mazi14("أَخَذ"), _sg.mudari14("َ", "أْخُذ"),
+    ["خُذْ", "خُذَا", "خُذُوا", "خُذِي", "خُذَا", "خُذْنَ"],
+    "يَأْخُذَ", "يَأْخُذْ", "تَأْخُذْ", "مَأْخُوذ", "أُخِذَ", "يُؤْخَذُ",
+    note="مَهْمُوزُ الْفَاءِ — وَأَمْرُهُ شَاذٌّ بِحَذْفِ الْهَمْزَةِ: خُذْ، مِثْلُ أَكَلَ ← كُلْ.")
+
+ALL = S + S2 + S3 + S4 + S5 + S6 + S7 + S8 + S9 + S10
 
 (PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/1.json").write_text(json.dumps({"chapter": 1, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -2809,6 +3138,7 @@ ALL = S + S2 + S3 + S4 + S5 + S6 + S7 + S8 + S9
 (PKG / "chapters/7.json").write_text(json.dumps({"chapter": 7, "sentences": S7}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/8.json").write_text(json.dumps({"chapter": 8, "sentences": S8}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "chapters/9.json").write_text(json.dumps({"chapter": 9, "sentences": S9}, ensure_ascii=False, indent=1), encoding="utf-8")
+(PKG / "chapters/10.json").write_text(json.dumps({"chapter": 10, "sentences": S10}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "morphology.json").write_text(json.dumps(MORPH, ensure_ascii=False, indent=1), encoding="utf-8")
 

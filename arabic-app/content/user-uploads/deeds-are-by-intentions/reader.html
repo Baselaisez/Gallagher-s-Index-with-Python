@@ -269,6 +269,30 @@
   .underlines .word[data-lvl="2"] { text-decoration: underline; text-decoration-color: var(--lvl2); }
   .underlines .word[data-lvl="3"] { text-decoration: underline; text-decoration-color: var(--lvl3); }
   .underlines .word[data-lvl="4"] { text-decoration: underline; text-decoration-color: var(--lvl4); }
+  /* the role-color layer: paint FUNCTION, not difficulty — the RoleEngine's
+     reading of each word's own i'rab. It overrides the level underlines. */
+  body.role-mode .word[data-role] { text-decoration: underline; text-decoration-thickness: 3px; }
+  body.role-mode .word:not([data-role]) { text-decoration: none; }
+  body.role-mode .word[data-role="fail"]    { text-decoration-color: #2e7d32; }
+  body.role-mode .word[data-role="maful"]   { text-decoration-color: #c62828; }
+  body.role-mode .word[data-role="mubtada"] { text-decoration-color: #1565c0; }
+  body.role-mode .word[data-role="khabar"]  { text-decoration-color: #00838f; }
+  body.role-mode .word[data-role="mudaf"]   { text-decoration-color: #6a1b9a; }
+  body.role-mode .word[data-role="hal"]     { text-decoration-color: #ef6c00; }
+  body.role-mode .word[data-role="tabi"]    { text-decoration-color: #8d6e63; }
+  body.role-mode .word[data-role="jarr"]    { text-decoration-color: #ab47bc; }
+  #roleLegend { display: flex; flex-wrap: wrap; gap: .3rem .7rem;
+    font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); margin-top: .45rem; }
+  #roleLegend .rl { border-bottom: 3px solid; padding-bottom: 1px; }
+  #roleLegend .rl[data-role="fail"]    { border-color: #2e7d32; }
+  #roleLegend .rl[data-role="maful"]   { border-color: #c62828; }
+  #roleLegend .rl[data-role="mubtada"] { border-color: #1565c0; }
+  #roleLegend .rl[data-role="khabar"]  { border-color: #00838f; }
+  #roleLegend .rl[data-role="mudaf"]   { border-color: #6a1b9a; }
+  #roleLegend .rl[data-role="hal"]     { border-color: #ef6c00; }
+  #roleLegend .rl[data-role="tabi"]    { border-color: #8d6e63; }
+  #roleLegend .rl[data-role="jarr"]    { border-color: #ab47bc; }
+  #roleToggle.on { background: var(--accent); color: var(--accent-ink); }
   /* Interlinear (medium mode): each word is a column — Arabic over its gloss. */
   .word.stacked { display: inline-flex; flex-direction: column; align-items: center;
     vertical-align: top; line-height: 1.35; }
@@ -945,6 +969,7 @@
     <button class="tbtn streak" id="streakChip" hidden></button>
     <button class="tbtn" id="statsOpen">Progress</button>
     <button class="tbtn" id="searchOpen">Search</button>
+    <button class="tbtn" id="roleToggle">🎨</button>
     <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn" id="conjOpen">Sarf Lab</button>
     <button class="tbtn reader-only" id="gamesOpen">Games</button>
@@ -1322,6 +1347,7 @@ const state = {
   today: JSON.parse(localStorage.getItem("qissa-today") || '{"date":"","reviewed":0,"learned":0,"read":0}'),
   goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
   retention: parseFloat(localStorage.getItem("qissa-retention")) || 0.9,
+  roles: localStorage.getItem("qissa-roles") === "1",
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
   // 0 = never chosen. The picker asks once on first run; the level chip in the
@@ -1492,6 +1518,8 @@ function renderStory(){
         w.textContent = tok.s[state.layer];
       }
       if (entry && entry.level > 0) w.dataset.lvl = levelBucket(entry.level);
+      const role = RoleEngine.of(tok);
+      if (role) w.dataset.role = role;
       w.dataset.lex = tok.lex;
       if (deckLex.has(tok.lex)) w.classList.add("in-deck");
       w.addEventListener("click", () => { markRead(sen.id); openWord(tok, w, null, {sen, ti}); });
@@ -3246,6 +3274,46 @@ function ilalChain(entry, morph){
   const at = cls ? sjAttested(morph) : null;
   if (!at || at.form !== "I" || !at.bab) return null;
   return ilalSteps(cls, at.bab, morph.mazi[0], morph.mudari[0]);
+}
+
+// ---------- the role parser (تَحْلِيلُ الْوَظَائِفِ) ----------
+// class RoleEngine READS each token's stored Arabic i'rab line the way a
+// student would, and names the word's FUNCTION in the sentence; the
+// reader's role-color layer paints from it. Precedence order: the first
+// test that matches wins, so «مُضَافٌ إِلَيْهِ مَجْرُورٌ» is mudaf-ilayh
+// before it is merely majrur, and a jarr-phrase serving as khabar reads
+// as khabar — function over form, as the i'rab itself teaches.
+class RoleEngine {
+  static ROLES = [
+    { id: "fail",    re: /فَاعِل|نَائِبُ الْفَاعِل/,       en: "fa'il / deputy",  tr: "fâil / nâib" },
+    { id: "maful",   re: /مَفْعُول|مُسْتَثْنًى|مُنَادًى/,  en: "object",          tr: "mef'ûl" },
+    { id: "mubtada", re: /مُبْتَدَأ|اسْمُ «/,              en: "mubtada / ism",   tr: "mübteda / isim" },
+    { id: "khabar",  re: /خَبَر/,                          en: "khabar",          tr: "haber" },
+    { id: "mudaf",   re: /مُضَافٌ إِلَيْهِ/,               en: "mudaf ilayh",     tr: "muzâfun ileyh" },
+    { id: "hal",     re: /حَال|تَمْيِيز|ظَرْف/,            en: "hal / adverbial", tr: "hâl / zarf" },
+    { id: "tabi",    re: /مَعْطُوف|نَعْت|بَدَل|تَوْكِيد/,   en: "follower",        tr: "tâbi'" },
+    { id: "jarr",    re: /مَجْرُور|جَارٌّ|حَرْفُ جَرٍّ/,     en: "jarr",            tr: "cer" },
+  ];
+  static of(tok){
+    if (!tok.irab || !tok.irab.ar) return null;
+    const ar = tok.irab.ar.normalize("NFC");
+    for (const r of this.ROLES) if (r.re.test(ar)) return r.id;
+    return null;
+  }
+}
+function updateRoleMode(){
+  document.body.classList.toggle("role-mode", !!state.roles);
+  const btn = document.getElementById("roleToggle");
+  if (btn) btn.classList.toggle("on", !!state.roles);
+  let leg = document.getElementById("roleLegend");
+  if (!state.roles) { if (leg) leg.remove(); return; }
+  if (!leg) {
+    leg = document.createElement("div");
+    leg.id = "roleLegend";
+    document.querySelector("header.app").appendChild(leg);
+  }
+  leg.innerHTML = RoleEngine.ROLES.map(r =>
+    `<span class="rl" data-role="${r.id}">${state.uiLang === "tr" ? r.tr : r.en}</span>`).join("");
 }
 
 // ---------- the Root Finder (كَاشِفُ الْجَذْرِ / Kök Bulucu) ----------
@@ -5016,6 +5084,12 @@ document.getElementById("deckOpen").childNodes[0].textContent = ui().deck + " ";
 renderLegend();
 updatePlayAllBtn();
 document.getElementById("backLib").addEventListener("click", renderLibrary);
+document.getElementById("roleToggle").addEventListener("click", () => {
+  state.roles = !state.roles;
+  localStorage.setItem("qissa-roles", state.roles ? "1" : "0");
+  updateRoleMode();
+});
+updateRoleMode();
 // The reading bar: a 3px thread of accent along the top, tracking how far
 // through the story the reader is. rAF-throttled; hidden in the library.
 const readbarFill = document.querySelector("#readbar div");

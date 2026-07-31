@@ -2593,6 +2593,42 @@ if (!CHROME) {
     if (r.sound !== null) throw new Error('a sound verb must have NO i\'lal chain');
   });
 
+  await check('role colors: RoleEngine reads i\'rab, toggle paints the text', async () => {
+    // the engine itself, on synthetic i'rab lines of every family
+    const eng = await page.evaluate(() => ({
+      fail:    RoleEngine.of({ irab: { ar: 'فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ' } }),
+      naib:    RoleEngine.of({ irab: { ar: 'نَائِبُ الْفَاعِلِ مَرْفُوعٌ' } }),
+      maful:   RoleEngine.of({ irab: { ar: 'مَفْعُولٌ بِهِ مَنْصُوبٌ' } }),
+      mudaf:   RoleEngine.of({ irab: { ar: 'مُضَافٌ إِلَيْهِ مَجْرُورٌ' } }),
+      jarr:    RoleEngine.of({ irab: { ar: 'اسْمٌ مَجْرُورٌ بِالْبَاءِ' } }),
+      none:    RoleEngine.of({ irab: { ar: 'فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ' } }),
+      noIrab:  RoleEngine.of({}),
+    }));
+    for (const [k, want] of [['fail', 'fail'], ['naib', 'fail'], ['maful', 'maful'],
+                             ['mudaf', 'mudaf'], ['jarr', 'jarr'], ['none', null], ['noIrab', null]]) {
+      if (eng[k] !== want) throw new Error(k + ': got ' + eng[k] + ' want ' + want);
+    }
+    // the layer in a real story: toggle on -> body class, legend, painted words
+    await openStoryCard('deeds-are-by-intentions');
+    await page.waitForSelector('.word', { timeout: 3000 });
+    await page.locator('#roleToggle').click();
+    const on = await page.evaluate(() => ({
+      mode: document.body.classList.contains('role-mode'),
+      legend: !!document.getElementById('roleLegend'),
+      painted: document.querySelectorAll('.word[data-role]').length,
+    }));
+    if (!on.mode) throw new Error('body.role-mode missing after toggle');
+    if (!on.legend) throw new Error('#roleLegend missing after toggle');
+    if (!on.painted) throw new Error('no .word[data-role] in the hadith story');
+    await page.locator('#roleToggle').click();
+    const off = await page.evaluate(() => ({
+      mode: document.body.classList.contains('role-mode'),
+      legend: !!document.getElementById('roleLegend'),
+    }));
+    if (off.mode || off.legend) throw new Error('toggle off left the layer behind');
+    await toLibrary();
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

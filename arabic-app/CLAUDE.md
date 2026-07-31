@@ -17,7 +17,7 @@ prototype/reader.html   the whole app: shell + generated data block
 tools/
   validate_content.py   the quality gate — run it before anything else
   build_prototype.py    splices JS constants between // __DATA_START__ / // __DATA_END__
-  smoke_test.js         53 browser checks over file:// (Playwright)
+  smoke_test.js         76 browser checks over file:// (Playwright)
   pwa_test.js           9 checks over http:// — manifest, icons, SW,actually-offline
   make_icons.js         regenerates prototype/icons from one HTML source
   check_canon.py        audits the registry against the madrasah's own lists
@@ -32,7 +32,7 @@ flutter/                the mobile client: lib/models is a VERIFIED data layer
 research/sources/       transcribed madrasah texts + README on provenance
 ```
 
-Thirteen stories, Levels 1–6. Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). kitab-al-sulh (L5 Advanced, premium) is **ORIGINAL graded Arabic** composed editorially from the user's Turkish sulh article (research/sources/sulh-fiqh-turkce.txt; the aya and hadith are received text, everything else editorial — the attribution says so and must keep saying so); its regenerator is tools/authoring/author_sulh.py. bad-al-amali (L6 Master, premium) carries the Ushi qasida **verses 1–45 in nine chapters** from research/sources/emali-qasida-ottoman.txt; the remaining verses go in release by release, five to a chapter (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
+Fourteen stories, Levels 1–6 (thirteen sample packages plus the deeds-are-by-intentions upload). Aqaid runs to four chapters, the Abu Yusuf wasiyya to five; Kitab al-Buyu and Kitab al-Kaffarat are the fiqh texts; wasiyyat-abi-hanifa-samti (L5, **eleven chapters — the received text is COMPLETE**, from the narrative frame through the counsel to al-Samti's epilogue at the Euphrates) carries the wasiyya to Yusuf b. Khalid al-Samti; the verbatim text lives in research/sources/wasiyya-samti-arabic.txt (one obscure clause, وانتقضت المجالس, is held back pending scholarly review — the manifest attribution lists every divergence). kitab-al-sulh (L5 Advanced, premium, **two chapters** — definition/legitimacy, then the kinds of sulh and their rulings) is **ORIGINAL graded Arabic** composed editorially from the user's Turkish sulh article (research/sources/sulh-fiqh-turkce.txt; the aya and hadith are received text, everything else editorial — the attribution says so and must keep saying so); its regenerator is tools/authoring/author_sulh.py. bad-al-amali (L6 Master, premium) carries the Ushi qasida **verses 1–50 in ten chapters** from research/sources/emali-qasida-ottoman.txt; the remaining verses go in release by release, five to a chapter (v22: the upload reads فِعْلٌ أَصْلَحُ as attribute, not the فِعْلُ أَصْلَحَ idafa of some prints — divergence recorded in the manifest attribution). The story-regenerating scripts are IN THE REPO: `tools/authoring/author_amali.py`, `author_samti.py` and the paradigm generator `sarf_gen.py` (selftest reproduces hand-authored corpus paradigms; run any author script from anywhere — paths are __file__-relative). Grammar notes are **global**: a note authored once shows
 up in every story that anchors a token to it. Never duplicate a note per story.
 
 ## The loop
@@ -555,6 +555,19 @@ sarfDerive also gained the **Form IV geminate** branch (أَحَلَّ يُحِ�
 jazm bil-fath) — added because the Sulh story's أَحَلَّ made the audit
 demand it.
 
+**The role layer paints i'rab, it never re-derives it.** `class RoleEngine`
+maps each token's STORED `irab.ar` line to one of eight functional roles
+(fail incl. naib, maful incl. mustathna/munada, mubtada incl. ism of the
+sisters, khabar, mudaf ilayh, hal/tamyiz/zarf, tabi, jarr) by regex over the
+NFC text — the analysis stays editorial, the engine only reads it. The 🎨
+header button (#roleToggle, qissa-roles key, state.roles) sets
+body.role-mode: words grow 3px colored underlines from `data-role` (stamped
+in renderStory) and `updateRoleMode` builds a #roleLegend in the header in
+the UI language. A token whose i'rab names no role stays unpainted — no
+guessing. Order matters in ROLES: mubtada's `اسْمُ «` must come after fail
+so نَائِبُ الْفَاعِلِ wins, and jarr is last because مَجْرُور appears
+inside mudaf-ilayh lines too.
+
 **The verb card is a drill, not a flashcard.** `verbPrompt` returns
 `{qs: [...], lemma}` — `VERB_DRILL_QS` (3) cells per round, stride `len/n`
 over the Muhtelife so the picks are spread AND distinct, deterministic per
@@ -604,7 +617,14 @@ grows:
   may carry both notes, because one of them would be wrong.
 Transcriptions live in `research/sources/` with provenance in its README. Teach from
 the books' own categories and wording — but generalize; do not overfit to one book's
-example sentences.
+example sentences. The awamil/izhar shelf now holds three layers that must agree:
+`avamil-curcani-slides.txt` (Jurjani's count — 100 amils: 91 semai lafzi in 13 kinds
++ 7 kiyasi + 2 manevi, opening with the 17 jarr letters and their MEANINGS),
+`izhar-tercume-full.txt` (Birgivi's full İzhar in Turkish — the kıyasi-9/semai/manevi-2
+split the registry's awamil group follows) and the Q&A pair — `izhar-sual-cevap.txt`
+(Ottoman script, reliable Arabic) with `izhar-sual-cevap-tafsilatli.txt` (modern
+Turkish; its Arabic is mojibake from the PDF font — quote ONLY its Turkish, and
+take Arabic wording from the tercume or Ottoman files instead).
 
 ## Process
 
