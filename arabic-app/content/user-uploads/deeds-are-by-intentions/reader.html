@@ -307,6 +307,19 @@
   #roleLegend .rl[data-role="tabi"]    { border-color: var(--role-tabi); }
   #roleLegend .rl[data-role="jarr"]    { border-color: var(--role-jarr); }
   #roleToggle.on { background: var(--accent); color: var(--accent-ink); }
+  /* Avamil-100 reference (the Curcani count) */
+  .av-counts { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0; font-family: var(--ui-font); font-size: .72rem; color: var(--ink-soft); }
+  .av-counts .avc { border: 1px solid var(--line); border-radius: .6rem; padding: .35rem .65rem; }
+  .av-counts .avc b { display: block; font-size: 1.1rem; color: var(--ink); }
+  table.av-table td:nth-child(2) { font-family: var(--ar-font); font-size: 1.2rem; white-space: nowrap; direction: rtl; }
+  table.av-table td:first-child { color: var(--ink-soft); font-size: .72rem; }
+  .av-mean { font-family: var(--ar-font); direction: rtl; display: block; margin-bottom: .15rem; }
+  .av-ex { display: block; color: var(--ink-soft); font-size: .78rem; }
+  .av-ex .ar { font-family: var(--ar-font); font-size: .95rem; direction: rtl; }
+  .avamil-card { display: block; width: 100%; text-align: start; border: 1px solid var(--line); border-radius: .8rem;
+    background: none; color: inherit; padding: .6rem .8rem; margin: .6rem 0; cursor: pointer; font: inherit; }
+  .avamil-card .ar { font-family: var(--ar-font); font-size: 1.05rem; }
+  .avamil-card small { display: block; color: var(--ink-soft); font-family: var(--ui-font); }
   /* Interlinear (medium mode): each word is a column — Arabic over its gloss. */
   .word.stacked { display: inline-flex; flex-direction: column; align-items: center;
     vertical-align: top; line-height: 1.35; }
@@ -4148,6 +4161,113 @@ function openIrabSheet(sen){
   showSheet();
 }
 
+// ---------- Avamil-100 reference (Jurjani) ----------
+// Abd al-Qahir al-Jurjani's count, as carried in the uploaded teaching deck
+// (research/sources/avamil-curcani-slides.txt): 100 governors — lafzi 98
+// (semai 91 in thirteen kinds + kiyasi 7) and manevi 2. Only KIND ONE, the
+// seventeen letters that put a single noun in jarr, is transcribed so far;
+// the panel says so instead of guessing the other twelve kinds' membership.
+// Every letter links to the registry note that already teaches it, so the
+// Jurjani count and the Birgivi tables stay one body of doctrine.
+const AVAMIL100 = [
+ {ar:"بِ", note:"huruf-jarr", m:"الْإِلْصَاقُ، الِاسْتِعَانَةُ، الْمُصَاحَبَةُ، الْمُقَابَلَةُ، التَّعْدِيَةُ، الظَّرْفِيَّةُ، الزِّيَادَةُ، التَّفْدِيَةُ",
+  mt:{en:"attachment, instrument, accompaniment, exchange, transitivity, location, extra, ransom", tr:"ilsâk, istiâne, musâhabe, mukabele, ta'diye, zarfiyet, zâid, tefdiye"},
+  ex:"مَرَرْتُ بِزَيْدٍ", ext:{en:"I passed by Zayd", tr:"Zeyd'e uğradım"}},
+ {ar:"مِنْ", note:"huruf-jarr", m:"ابْتِدَاءُ الْغَايَةِ، بَيَانُ الْجِنْسِ، التَّبْعِيضُ، بِمَعْنَى «فِي»، الزِّيَادَةُ",
+  mt:{en:"starting point, naming the kind, partitive, in the sense of «in», extra", tr:"ibtidâü'l-gāye, beyân-ı cins, teb'îz, «في» mânasında, zâid"},
+  ex:"سِرْتُ مِنَ الْبَصْرَةِ", ext:{en:"I set out from Basra", tr:"Basra'dan yola çıktım"}},
+ {ar:"إِلَى", note:"huruf-jarr", m:"انْتِهَاءُ الْغَايَةِ، بِمَعْنَى «مَعَ»",
+  mt:{en:"end point; in the sense of «with»", tr:"intihâü'l-gāye; «مع» mânasında"},
+  ex:"إِلَى الْكُوفَةِ", ext:{en:"…to Kufa", tr:"…Kûfe'ye kadar"}},
+ {ar:"فِي", note:"huruf-jarr", m:"الظَّرْفِيَّةُ حَقِيقَةً وَمَجَازًا",
+  mt:{en:"containment, literal and figurative", tr:"hakikî ve mecazî zarfiyet"},
+  ex:"الْمَاءُ فِي الْكُوزِ", ext:{en:"The water is in the jug", tr:"Su, testinin içindedir"}},
+ {ar:"لِ", note:"huruf-jarr", m:"الْمِلْكُ، التَّخْصِيصُ، التَّعْلِيلُ، بِمَعْنَى «عَنْ»، التَّوْقِيتُ، الزِّيَادَةُ",
+  mt:{en:"possession, appropriation, cause, in the sense of «about», timing, extra", tr:"mülkiyet, tahsis, ta'lîl, «عن» mânasında, vakit bildirme, zâid"},
+  ex:"الْمَالُ لِزَيْدٍ", ext:{en:"The wealth is Zayd's", tr:"Mal, Zeyd'indir"}},
+ {ar:"رُبَّ", note:"huruf-jarr", m:"التَّقْلِيلُ",
+  mt:{en:"scarcity", tr:"taklîl (azlık)"},
+  ex:"رُبَّ رَجُلٍ صَالِحٍ لَقِيتُهُ", ext:{en:"Few a righteous man have I met", tr:"Az sâlih adamla karşılaştım"}},
+ {ar:"عَلَى", note:"huruf-jarr", m:"الِاسْتِعْلَاءُ",
+  mt:{en:"being upon", tr:"isti'lâ (üzerindelik)"},
+  ex:"زَيْدٌ عَلَى السَّطْحِ", ext:{en:"Zayd is on the roof", tr:"Zeyd damın üzerindedir"}},
+ {ar:"عَنْ", note:"huruf-jarr", m:"الْمُجَاوَزَةُ وَالْبُعْدُ",
+  mt:{en:"passing beyond, distance", tr:"mücâveze ve bu'diyet (geçme, uzaklaşma)"},
+  ex:"رَمَيْتُ السَّهْمَ عَنِ الْقَوْسِ", ext:{en:"I shot the arrow from the bow", tr:"Oku yaydan attım"}},
+ {ar:"كَ", note:"huruf-jarr", m:"التَّشْبِيهُ، الزِّيَادَةُ",
+  mt:{en:"likening; extra", tr:"teşbih; zâid"},
+  ex:"زَيْدٌ كَالْأَسَدِ", ext:{en:"Zayd is like a lion", tr:"Zeyd aslan gibidir"}},
+ {ar:"مُذْ", note:"huruf-jarr-nawadir", m:"ابْتِدَاءُ الْغَايَةِ فِي الزَّمَانِ",
+  mt:{en:"starting point in time", tr:"zamanda ibtidâü'l-gāye"},
+  ex:"مَا رَأَيْتُهُ مُذْ يَوْمِ الْجُمُعَةِ", ext:{en:"I have not seen him since Friday", tr:"Onu cumadan beri görmedim"}},
+ {ar:"مُنْذُ", note:"huruf-jarr-nawadir", m:"ابْتِدَاءُ الْغَايَةِ فِي الزَّمَانِ",
+  mt:{en:"starting point in time", tr:"zamanda ibtidâü'l-gāye"},
+  ex:"مُنْذُ يَوْمِ الْجُمُعَةِ", ext:{en:"…since Friday", tr:"…cuma gününden beri"}},
+ {ar:"حَتَّى", note:"huruf-jarr", m:"انْتِهَاءُ الْغَايَةِ، بِمَعْنَى «مَعَ»",
+  mt:{en:"end point; in the sense of «with»", tr:"intihâü'l-gāye; «مع» mânasında"},
+  ex:"أَكَلْتُ السَّمَكَةَ حَتَّى رَأْسِهَا", ext:{en:"I ate the fish up to its very head", tr:"Balığı başına kadar yedim"}},
+ {ar:"وَاوُ الْقَسَمِ", note:"huruf-jarr", m:"الْقَسَمُ",
+  mt:{en:"the oath", tr:"kasem (yemin)"},
+  ex:"وَاللَّهِ", ext:{en:"By Allah!", tr:"Vallahi"}},
+ {ar:"تَاءُ الْقَسَمِ", note:"huruf-jarr", m:"الْقَسَمُ",
+  mt:{en:"the oath", tr:"kasem (yemin)"},
+  ex:"تَاللَّهِ", ext:{en:"By Allah!", tr:"Tallahi"}},
+ {ar:"حَاشَا", note:"huruf-jarr-nawadir", m:"الِاسْتِثْنَاءُ",
+  mt:{en:"exception", tr:"istisnâ"},
+  ex:"جَاءَ الْقَوْمُ حَاشَا زَيْدٍ", ext:{en:"The people came, Zayd excepted", tr:"Topluluk, Zeyd hariç, geldi"}},
+ {ar:"خَلَا", note:"huruf-jarr-nawadir", m:"الِاسْتِثْنَاءُ",
+  mt:{en:"exception", tr:"istisnâ"},
+  ex:"جَاءَ الْقَوْمُ خَلَا زَيْدٍ", ext:{en:"The people came, Zayd excepted", tr:"Topluluk, Zeyd hariç, geldi"}},
+ {ar:"عَدَا", note:"huruf-jarr-nawadir", m:"الِاسْتِثْنَاءُ",
+  mt:{en:"exception", tr:"istisnâ"},
+  ex:"جَاءَ الْقَوْمُ عَدَا زَيْدٍ", ext:{en:"The people came, Zayd excepted", tr:"Topluluk, Zeyd hariç, geldi"}},
+];
+
+const AVAMIL_UI = {
+ title: {en:"The Hundred Governors — Jurjani's Awamil", tr:"Yüz Âmil — Avâmil-i Cürcânî"},
+ intro: {en:"Abd al-Qahir al-Jurjani (d. 1078) counts every governor of Arabic: one hundred. The spoken ones divide into ninety-one heard from the Arabs (in thirteen kinds) and seven derived by rule; two govern with no word at all.",
+         tr:"Abdülkāhir el-Cürcânî (ö. 1078) Arapçanın bütün âmillerini sayar: yüz. Lafzî olanlar, Araplardan işitilen doksan bir semâî (on üç nevi) ile kıyasla bilinen yedi kıyâsîye ayrılır; iki âmil ise lafızsız, mânâ ile amel eder.",},
+ kind1: {en:"Kind one: the seventeen letters that put a single noun in jarr — each with the meanings it adds", tr:"Birinci nevi: tek ismi cer eden on yedi harf — her biri kattığı mânâlarla"},
+ colLetter: {en:"Letter", tr:"Harf"}, colMean: {en:"Meanings and example", tr:"Mânâlar ve misal"},
+ more: {en:"Kinds two to thirteen follow in the deck's later parts; until they are transcribed, Birgivi's tables in the Governors group teach the same doctrine — inna's sisters, the jawazim, the kiyasi governors and the rest.",
+        tr:"İkinci neviden on üçüncüye kadar olanlar kaynağın sonraki bölümlerindedir; onlar aktarılana dek aynı doktrini Âmiller grubundaki Birgivî tabloları öğretir — inne'nin kardeşleri, cevâzım, kıyâsî âmiller ve diğerleri.",},
+ counts: [
+  {n:"100", l:{en:"governors in all", tr:"âmilin tamamı"}},
+  {n:"91", l:{en:"heard (semai), in 13 kinds", tr:"semâî — 13 nevi"}},
+  {n:"7", l:{en:"by rule (kiyasi)", tr:"kıyâsî"}},
+  {n:"2", l:{en:"meaning-borne (manevi)", tr:"ma'nevî"}},
+ ],
+};
+
+function openAvamil100(){
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  const rows = AVAMIL100.map((a, i) => `<tr>
+    <td>${i + 1}</td>
+    <td lang="ar">${a.ar}</td>
+    <td><span class="av-mean" lang="ar">${a.m}</span>
+        <span class="av-ex">${T(a.mt)}</span>
+        <span class="av-ex"><span class="ar" lang="ar">${a.ex}</span> — ${T(a.ext)}</span>
+        <button class="btn" data-note="${a.note}" style="margin-top:.25rem">${arSpan(GRAMMAR[a.note].title.ar)}</button></td>
+  </tr>`).join("");
+  sheetInner.innerHTML = `<div class="backrow"><button id="refBack">${ui().back}</button></div>
+    <h2 class="sheet-word" lang="ar">اَلْعَوَامِلُ الْمِائَةُ</h2>
+    <p class="sheet-tr">${T(AVAMIL_UI.title)}</p>
+    <p class="ref-intro">${T(AVAMIL_UI.intro)}</p>
+    <div class="av-counts">${AVAMIL_UI.counts.map(c => `<span class="avc"><b>${c.n}</b>${T(c.l)}</span>`).join("")}</div>
+    <div class="ref-group"><span class="ar" lang="ar">حُرُوفُ الْجَرِّ السَّبْعَةَ عَشَرَ</span><span>${T(AVAMIL_UI.kind1)}</span></div>
+    <div style="overflow-x:auto">
+      <table class="irab-sheet av-table">
+        <thead><tr><th></th><th>${T(AVAMIL_UI.colLetter)}</th><th>${T(AVAMIL_UI.colMean)}</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="ref-intro">${T(AVAMIL_UI.more)}</p>`;
+  document.getElementById("refBack").addEventListener("click", () => openRef());
+  sheetInner.querySelectorAll("[data-note]").forEach(b =>
+    b.addEventListener("click", () => openRef(b.dataset.note)));
+  showSheet();
+}
+
 function openRef(noteId){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   if (noteId) {
@@ -4165,8 +4285,13 @@ function openRef(noteId){
         <button data-level="all" class="${refLevel === "all" ? "on" : ""}">${ui().allLevels}</button>
         ${levels.map(l => `<button data-level="${l}" class="${String(refLevel) === String(l) ? "on" : ""}">${l}</button>`).join("")}
       </div>
+      <button class="avamil-card" id="avamilOpen">
+        <span class="ar" lang="ar">اَلْعَوَامِلُ الْمِائَةُ لِلْجُرْجَانِيِّ</span>
+        <small>${T(AVAMIL_UI.title)} · ${T(AVAMIL_UI.kind1)}</small>
+      </button>
       <div id="refListWrap">${refListHtml()}</div>`;
     bindRefIndexEvents();
+    document.getElementById("avamilOpen").addEventListener("click", openAvamil100);
   }
   showSheet();
 }

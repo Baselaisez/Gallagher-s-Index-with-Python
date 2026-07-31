@@ -2629,6 +2629,30 @@ if (!CHROME) {
     await toLibrary();
   });
 
+  await check('the Avamil-100 panel counts Jurjani\'s governors and links the notes', async () => {
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('#avamilOpen', { timeout: 3000 });
+    await page.locator('#avamilOpen').click();
+    await page.waitForSelector('.av-table', { timeout: 3000 });
+    const r = await page.evaluate(() => ({
+      letters: document.querySelectorAll('.av-table tbody tr').length,
+      counts: [...document.querySelectorAll('.av-counts .avc b')].map(b => b.textContent),
+      dataLetters: AVAMIL100.length,
+      allNotesExist: AVAMIL100.every(a => !!GRAMMAR[a.note]),
+      firstLetter: document.querySelector('.av-table tbody tr td:nth-child(2)').textContent.trim(),
+    }));
+    if (r.letters !== 17 || r.dataLetters !== 17) throw new Error('expected 17 jarr letters, got ' + r.letters);
+    if (r.counts.join(',') !== '100,91,7,2') throw new Error('count tree wrong: ' + r.counts);
+    if (!r.allNotesExist) throw new Error('a letter links to a note id that is not in the registry');
+    if (r.firstLetter !== 'بِ') throw new Error('first letter should be the ba, got ' + r.firstLetter);
+    // the note link opens the registry note in place
+    await page.locator('.av-table [data-note]').first().click();
+    await page.waitForSelector('.gnote h3', { timeout: 3000 });
+    const h = await page.locator('.gnote h3').first().textContent();
+    if (!h.replace(/[ً-ْ]/g, '').includes('حروف الجر'.normalize('NFC'))) throw new Error('ba should open the huruf-jarr note, got: ' + h);
+    await page.evaluate(() => closeSheet());
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
