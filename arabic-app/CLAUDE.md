@@ -779,6 +779,24 @@ after it. Corpus growth also upgrades old heuristics: once kataba joined
 the drill garden, لم تكتب became corpus-certain and the governed-mudari
 note rightly stopped firing — the smoke check accepts either outcome.
 
+**The drill garden is five chapters now** (v1.1.0, 40 sentences / 158
+tokens): fi'liyya, ismiyya, inne-vs-enne, the OBJECTS FAMILY (maful mutlaq/
+fih/lah, naib al-fail, munada+amr) and SHART/ISTIFHAM (in + man with the
+iltiqa-sakinayn kasra, idha without jazm, la nahiya, lam of command, hal/
+madha/ayna). Aqaid runs to ch6 (takwin vs the mukawwan — the kasra/fatha
+minimal pair مُكَوِّن/مُكَوَّن — and ru'ya with فَيُرَى teaching naib
+al-fail on a passive naqis). IrabModel now trains on 1000+ labeled tokens.
+
+**The tenth game is the Hamza game** (`hamzaItems`/`startHamza`): sweeps
+ALL STORIES for stored إِنَّ/أَنَّ tokens (shadda required — إِنْ/أَنْ are
+different particles), blanks them, and lets Qatr al-Nada's rule pick; the
+stored i'rab line is the answer key and the extras button opens the
+inna-am-anna note via openRef. Games that teach a NOTE's rule should link
+the note in extras. Design wave 6: game cards wear .gi emblems and
+nth-child spine colors from the role palette; Atölye tabs carry ::before
+emblems (the smoke [data-lab] selectors still match); :focus-visible gets
+the accent ring globally.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

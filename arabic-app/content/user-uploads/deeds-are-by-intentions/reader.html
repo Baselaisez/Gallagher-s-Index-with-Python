@@ -574,6 +574,38 @@
   .game-pick .gt { font-weight: 700; font-family: var(--ui-font); }
   .game-pick .gd { color: var(--ink-soft); font-size: .82rem; margin-top: .15rem; }
 
+  /* ================= design wave 6: the hub finds its faces ==============
+     Every game card wears a small emblem and a colored spine — the muted
+     role palette reused as wayfinding, so the hub reads at a glance like a
+     shelf of distinct drills rather than a list of buttons. The Atölye tabs
+     carry the same emblems. Keyboard users get a visible ring everywhere:
+     the same accent the pointer already knows. */
+  .game-pick .gi {
+    display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem;
+    margin-inline-end: .45rem; border-radius: .55rem; font-size: .95rem;
+    background: var(--accent-soft); vertical-align: -.35rem;
+  }
+  .game-pick button { border-inline-start: 3px solid var(--line); }
+  .game-pick button:nth-child(8n+1) { border-inline-start-color: var(--role-fail); }
+  .game-pick button:nth-child(8n+2) { border-inline-start-color: var(--role-maful); }
+  .game-pick button:nth-child(8n+3) { border-inline-start-color: var(--role-mubtada); }
+  .game-pick button:nth-child(8n+4) { border-inline-start-color: var(--role-khabar); }
+  .game-pick button:nth-child(8n+5) { border-inline-start-color: var(--role-mudaf); }
+  .game-pick button:nth-child(8n+6) { border-inline-start-color: var(--role-hal); }
+  .game-pick button:nth-child(8n+7) { border-inline-start-color: var(--role-tabi); }
+  .game-pick button:nth-child(8n+8) { border-inline-start-color: var(--role-jarr); }
+  :is(button, [tabindex], input, select, a):focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+  }
+  .tabs [data-lab] .ar { opacity: .85; }
+  .tabs [data-lab]::before { font-size: .8rem; margin-inline-end: .25rem; }
+  .tabs [data-lab="sarf"]::before  { content: "⚙️"; }
+  .tabs [data-lab="adad"]::before  { content: "🔢"; }
+  .tabs [data-lab="jadhr"]::before { content: "🌱"; }
+  .tabs [data-lab="mizan"]::before { content: "⚖️"; }
+  .tabs [data-lab="ism"]::before   { content: "🏷️"; }
+  .tabs [data-lab="jumla"]::before { content: "🧠"; }
+
   /* The nakil table's two chapters: section rows read as headings, and the
      verb's own bab glows the accent it earned. */
   table.conj.nakil .nakil-sec th {
@@ -1175,6 +1207,8 @@ const L = {
         jumalHint:"Whole clauses take a case «by position» — or none at all. Each clause below is named after Ibn Hisham's Qawa'id al-I'rab.",
         colWord:"Word", colIrab:"Analysis", sheetTopics:"Topics in this sentence",
         roleGame:"What is it doing?", roleGameDesc:"Four words can all be marfu' — name the role, not the case.",
+        hamzaGame:"Inna or anna?", hamzaAsk:"Which particle fills the blank?",
+        hamzaGameDesc:"Kasra at the head, after qawl and the oath; fatha where a masdar hides.",
         roleGameAsk:"What is the highlighted word in this sentence?",
         mode_easy:"Easy", mode_medium:"Medium", mode_hard:"Hard",
         modeHint_easy:"Every sentence is translated underneath.",
@@ -1281,6 +1315,8 @@ const L = {
         jumalHint:"Bütün bir cümle «mahallen» i'rab alır — yahut hiç almaz. Aşağıdaki her cümle, İbn Hişâm'ın Kavâidü'l-İ'râb'ına göre adlandırılmıştır.",
         colWord:"Kelime", colIrab:"İ'rab", sheetTopics:"Bu cümledeki konular",
         roleGame:"Cümledeki görevi ne?", roleGameDesc:"Dört kelime birden merfû olabilir — i'rabı değil, görevi söyleyin.",
+        hamzaGame:"İnne mi enne mi?", hamzaAsk:"Boşluğa hangi harf gelir?",
+        hamzaGameDesc:"Söz başında, kavilden ve kasemden sonra kesra; masdar gizlenen yerde fetha.",
         roleGameAsk:"İşaretli kelime bu cümlede nedir?",
         mode_easy:"Kolay", mode_medium:"Orta", mode_hard:"Zor",
         modeHint_easy:"Her cümlenin altında tam tercümesi vardır.",
@@ -2402,6 +2438,42 @@ function startRoleGame(){
     after: it => questionTestHtml(ROLE_BY_KEY[it.key].note),
     extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`,
                run: it => openIrabSheet(it.sen) }],
+  });
+}
+
+// ---------- the Hamza game: inne or enne? ----------
+// Fed by the corpus itself: every stored إِنَّ / أَنَّ token whose i'rab
+// explains its own hamza. The blank hides the particle; the learner applies
+// Qatr al-Nada's rule (sentence head / qawl / oath → kasra; masdar → fatha)
+// and the stored i'rab line is the answer key.
+function hamzaItems(){
+  const items = [];
+  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+    sen.tokens.forEach((t, ti) => {
+      const b = t.s.bare;
+      if ((b === "إن" || b === "أن") && t.irab && /ّ/.test(t.s.full.normalize("NFC")) &&
+          sen.tokens.length >= 3)
+        items.push({ sen, ti, tok: t, inna: b === "إن", st });
+    }))));
+  return items;
+}
+function startHamza(){
+  const items = shuffle(hamzaItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  runQuiz({
+    title: ui().hamzaGame, ask: ui().hamzaAsk, items, restart: startHamza,
+    area: "nahw", lvl: () => 3,
+    itemKey: it => "hamza:" + it.sen.id + ":" + it.ti,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, () => "«ـــــ»")}</div>
+      <p class="ref-intro">${T(it.sen.translation)}</p>`,
+    options: it => shuffle([
+      { html: "إِنَّ", ok: it.inna, ar: true },
+      { html: "أَنَّ", ok: !it.inna, ar: true },
+    ]),
+    why: it => irabWhy(it.tok.irab),
+    extras: [{ label: () => `${arSpan("إِنَّ أَمْ أَنَّ؟")} ${state.uiLang === "tr" ? "kaide" : "the rule"}`,
+               show: () => !!GRAMMAR["inna-am-anna"],
+               run: () => openRef("inna-am-anna") }],
   });
 }
 
@@ -5900,15 +5972,16 @@ function openGames(){
   const nf = fadingWords(3).length;
   const fadeLine = nf ? `<div class="gd fade">\u{1F9E0} ${ui().fadingHub.replace("{n}", nf)}</div>` : "";
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div><div class="game-pick">
-    <button id="gMatch"><div class="gt">${ui().match}</div><div class="gd">${ui().matchDesc}</div>${fadeLine}</button>
-    <button id="gHarakat"><div class="gt">${ui().harakat}</div><div class="gd">${ui().harakatDesc}</div></button>
-    <button id="gSpot"><div class="gt">${ui().spot}</div><div class="gd">${ui().spotDesc}</div></button>
-    <button id="gCloze"><div class="gt">${ui().clozeGame}</div><div class="gd">${ui().clozeDesc}</div>${fadeLine}</button>
-    <button id="gSarf"><div class="gt">${ui().sarfGame}</div><div class="gd">${ui().sarfGameDesc}</div></button>
-    <button id="gAdad"><div class="gt">${ui().adadGame}</div><div class="gd">${ui().adadGameDesc}</div></button>
-    <button id="gCase"><div class="gt">${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
-    <button id="gRole"><div class="gt">${ui().roleGame}</div><div class="gd">${ui().roleGameDesc}</div></button>
-    <button id="gTahlil"><div class="gt">${ui().tahlil}</div><div class="gd">${ui().tahlilDesc}</div></button>
+    <button id="gMatch"><div class="gt"><span class="gi">🀄</span>${ui().match}</div><div class="gd">${ui().matchDesc}</div>${fadeLine}</button>
+    <button id="gHarakat"><div class="gt"><span class="gi">🎯</span>${ui().harakat}</div><div class="gd">${ui().harakatDesc}</div></button>
+    <button id="gSpot"><div class="gt"><span class="gi">🔍</span>${ui().spot}</div><div class="gd">${ui().spotDesc}</div></button>
+    <button id="gCloze"><div class="gt"><span class="gi">✏️</span>${ui().clozeGame}</div><div class="gd">${ui().clozeDesc}</div>${fadeLine}</button>
+    <button id="gSarf"><div class="gt"><span class="gi">⚙️</span>${ui().sarfGame}</div><div class="gd">${ui().sarfGameDesc}</div></button>
+    <button id="gAdad"><div class="gt"><span class="gi">🔢</span>${ui().adadGame}</div><div class="gd">${ui().adadGameDesc}</div></button>
+    <button id="gCase"><div class="gt"><span class="gi">🏷️</span>${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
+    <button id="gRole"><div class="gt"><span class="gi">🧭</span>${ui().roleGame}</div><div class="gd">${ui().roleGameDesc}</div></button>
+    <button id="gHamza"><div class="gt"><span class="gi">﴾؟﴿</span>${ui().hamzaGame}</div><div class="gd">${ui().hamzaGameDesc}</div></button>
+    <button id="gTahlil"><div class="gt"><span class="gi">🎓</span>${ui().tahlil}</div><div class="gd">${ui().tahlilDesc}</div></button>
   </div>`;
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
@@ -5918,6 +5991,7 @@ function openGames(){
   document.getElementById("gAdad").addEventListener("click", startAdadGame);
   document.getElementById("gCase").addEventListener("click", startCaseGame);
   document.getElementById("gRole").addEventListener("click", startRoleGame);
+  document.getElementById("gHamza").addEventListener("click", startHamza);
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
   showSheet();
 }

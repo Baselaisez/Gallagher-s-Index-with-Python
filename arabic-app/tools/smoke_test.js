@@ -904,6 +904,72 @@ if (!CHROME) {
       throw new Error('after alima the hamza takes fatha: ' + r.afterVerb);
   });
 
+  await check('the drill garden grows: objects family and shart chapters, 40 sentences', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'jumal-al-tadrib');
+      const sens = st.chapters.flatMap(c => c.sentences);
+      const toks = sens.flatMap(s => s.tokens);
+      const naib = toks.find(t => t.s.bare === 'الرسالة');
+      const mutlaq = toks.filter(t => (t.grammar || []).includes('maful-mutlaq')).length;
+      return {
+        chapters: st.chapters.length, sentences: sens.length,
+        trIrab: toks.filter(t => t.irab && t.irab.tr && t.irab.ar).length, tokens: toks.length,
+        naibRole: naib && RoleEngine.of(naib),
+        mutlaq,
+        trainSize: IrabModel.trainingSize(),
+        darasa: st.morph.darasa && st.morph.darasa.majzum,
+      };
+    });
+    if (info.chapters < 5 || info.sentences < 40)
+      throw new Error(`chapters=${info.chapters} sentences=${info.sentences}`);
+    if (info.trIrab !== info.tokens) throw new Error(`ar+tr i'rab ${info.trIrab}/${info.tokens}`);
+    if (info.naibRole !== 'fail') throw new Error('naib al-fail should read as the fail family: ' + info.naibRole);
+    if (info.mutlaq < 2) throw new Error('maful mutlaq drills missing: ' + info.mutlaq);
+    if (info.trainSize < 1000) throw new Error('the model should now train on 1000+ tokens: ' + info.trainSize);
+    if (info.darasa !== 'يَدْرُسْ') throw new Error('darasa jussive: ' + info.darasa);
+  });
+
+  await check('Aqaid ch6: takwin vs the mukawwan, and the vision without direction', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch6 = st.chapters.find(c => c.n === 6);
+      if (!ch6) return null;
+      const toks = ch6.sentences.flatMap(s => s.tokens);
+      const muk = toks.find(t => t.s.bare === 'المكون');
+      const yura = toks.find(t => t.s.bare === 'فيرى');
+      return {
+        sentences: ch6.sentences.length,
+        muk: muk && (muk.grammar || []).join(','),
+        yura: yura && (yura.grammar || []).includes('naib-al-fail'),
+        gloss: !!(st.glossary.takwin && st.glossary.ruya && st.glossary.jaiz),
+      };
+    });
+    if (!info) throw new Error('chapter 6 missing from aqaid-ahl-al-sunna');
+    if (info.sentences !== 4) throw new Error('ch6 sentences=' + info.sentences);
+    if (!/ism-maful/.test(info.muk || '') || !/form-ii-verbs/.test(info.muk || ''))
+      throw new Error('المكون must teach Form II ism maful: ' + info.muk);
+    if (!info.yura) throw new Error('فيرى must teach naib al-fail');
+    if (!info.gloss) throw new Error('ch6 glossary entries missing');
+  });
+
+  await check('games: the hamza game blanks inna/anna and the stored i\'rab answers', async () => {
+    const pool = await page.evaluate(() => hamzaItems().length);
+    if (pool < 8) throw new Error('hamza pool too small: ' + pool);
+    await page.locator('.lib-card').first().click();
+    await page.locator('#gamesOpen').click();
+    await page.locator('.game-pick #gHamza').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    const opts = await page.locator('.opts [data-o]').allTextContents();
+    const bare = opts.map(o => o.replace(/[ً-ٰ]/g, ''));
+    if (!(bare.some(o => o.includes('إن')) && bare.some(o => o.includes('أن'))))
+      throw new Error('options must be inna vs anna, got: ' + opts.join(' | '));
+    await page.locator('.opts [data-o]').first().click();
+    if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
