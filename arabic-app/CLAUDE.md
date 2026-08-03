@@ -751,6 +751,34 @@ shadda instead) and the word is labeled a governed mudari whose ta is the
 person prefix. The corpus gets one more try on the stem behind the prefix.
 The smoke check pins لم تكتب.
 
+**The drill garden feeds the model.** content/samples/jumal-al-tadrib
+(tools/authoring/author_tadrib.py) is a FREE 3-chapter package of ORIGINAL
+textbook sentences in the owner's question-chain style («Gâle = dedi, kim?»)
+— fi'liyya, ismiyya, and inne-vs-enne. Its second job is stated in its own
+attribution: every token is a labeled training example for the runtime
+IrabModel, so growing the drill garden IS growing the training set. The
+i'rab lines ride shared template helpers (FAIL/MAFUL/MUBT/KHAB…) so the
+madrasah wording — and therefore the RoleEngine labels — stay uniform.
+
+**The hamza of ان reads by position (Qatr al-Nada).** Note `inna-am-anna`:
+kasra sentence-initially, after the QAWL verbs (قَالَ إِنَّ — speech is
+quoted whole; the books except qawl from the after-a-verb fatha) and after
+the oath; fatha where the clause construes as a masdar (عَلِمْتُ أَنَّ =
+عَلِمْتُ قُدْرَةَ اللهِ; Turkish -dığını). The Analyzer teaches the same
+rule live: for bare ان/أن it walks BACK OVER NOUN ROWS to the nearest verb
+(the fa'il sits between قَالَ and إِنَّ; a particle wall stops the walk).
+Dart gate: gameSeeds is a MAP ({"spotTheError": true}), never a list — the
+Flutter model casts it.
+
+**RoleEngine blanks sarf phrases before matching.** «اسْمُ فَاعِلٍ مِنْ
+رَكِبَ» inside a hal's i'rab must not label the token fail — the role
+regexes run on a string with /اسْم[ُِ]\s*(الْ)?(فَاعِل|مَفْعُول)\S*/
+blanked. Keep the syntactic claim BEFORE any sarf commentary in authored
+i'rab, and never let a bare role-word (مَفْعُول as a wazn mention) trail
+after it. Corpus growth also upgrades old heuristics: once kataba joined
+the drill garden, لم تكتب became corpus-certain and the governed-mudari
+note rightly stopped firing — the smoke check accepts either outcome.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

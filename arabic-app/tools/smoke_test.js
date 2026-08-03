@@ -848,12 +848,60 @@ if (!CHROME) {
       const v = rows[1];
       return {
         wazn: v.wazn || null,
+        sure: v.sure, kind: v.kind,
         governed: v.notes.some(n => /governed mudari|âmilin çektiği muzâri/.test(n.en + n.tr)),
       };
     });
     if (r.wazn && /^تَفَ/.test(r.wazn.normalize('NFC')))
       throw new Error('Form V mizan survived after the jazim: ' + r.wazn);
-    if (!r.governed) throw new Error('the governed-mudari note is missing');
+    // either the corpus answered with certainty (kataba lives in the drill
+    // garden now) or the heuristic must have said its piece — never neither.
+    if (!(r.sure && r.kind === 'verb') && !r.governed)
+      throw new Error('neither a corpus-certain verb nor the governed-mudari note');
+  });
+
+  await check('the drill garden: 24 free hoca-style sentences feed the IrabModel', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'jumal-al-tadrib');
+      if (!st) return null;
+      const sens = st.chapters.flatMap(c => c.sentences);
+      const toks = sens.flatMap(s => s.tokens);
+      const rakib = toks.find(t => t.s.bare === 'راكبا');
+      return {
+        access: st.access, chapters: st.chapters.length, sentences: sens.length,
+        trIrab: toks.filter(t => t.irab && t.irab.tr && t.irab.ar).length,
+        tokens: toks.length,
+        halRole: rakib && RoleEngine.of(rakib),
+        trainSize: IrabModel.trainingSize(),
+        kataba: st.morph.kataba && st.morph.kataba.majzum,
+        note: !!GRAMMAR['inna-am-anna'] && !!GRAMMAR['inna-am-anna'].title.tr,
+      };
+    });
+    if (!info) throw new Error('jumal-al-tadrib missing from STORIES');
+    if (info.access !== 'free') throw new Error('the drill garden must be free: ' + info.access);
+    if (info.chapters < 3 || info.sentences < 24) throw new Error(`chapters=${info.chapters} sentences=${info.sentences}`);
+    if (info.trIrab !== info.tokens) throw new Error(`ar+tr i'rab ${info.trIrab}/${info.tokens}`);
+    if (info.halRole !== 'hal') throw new Error('راكبا must read as hal, got ' + info.halRole);
+    if (info.trainSize < 900) throw new Error('the model should train on the drills too: ' + info.trainSize);
+    if (info.kataba !== 'يَكْتُبْ') throw new Error('kataba jussive: ' + info.kataba);
+    if (!info.note) throw new Error('the inna-am-anna note is missing or untranslated');
+  });
+
+  await check('the analyzer reads the hamza of ان by position: initial and qawl kasra, verb fatha', async () => {
+    const r = await page.evaluate(() => {
+      const at = (text, i) => SentenceAnalyzer.analyze(text)[i].notes.map(n => n.en + n.tr).join(' ');
+      return {
+        initial: at('ان الدرس سهل', 0),
+        afterQawl: at('قال زيد ان الله قادر', 2),
+        afterVerb: at('علم زيد ان الله قادر', 2),
+      };
+    });
+    if (!/KASRA|KESRALI/.test(r.initial) || !/sentence-initial|cümle başı/.test(r.initial))
+      throw new Error('initial ان should read kasra: ' + r.initial);
+    if (!/qawl|kavil/.test(r.afterQawl) || !/KASRA|KESRALI/.test(r.afterQawl))
+      throw new Error('after qala the hamza keeps kasra: ' + r.afterQawl);
+    if (!/FATHA|FETHALI/.test(r.afterVerb))
+      throw new Error('after alima the hamza takes fatha: ' + r.afterVerb);
   });
 
   await check("sentence i'rab sheet lists every word and its topics", async () => {
@@ -3013,7 +3061,7 @@ if (!CHROME) {
       };
     });
     if (r.missing) throw new Error('kitab-al-waqf is not in the library');
-    if (r.count !== 15) throw new Error('the shelf should hold 15 stories, got ' + r.count);
+    if (r.count < 15) throw new Error("the shelf should hold at least 15 stories, got " + r.count);
     if (!r.qaida) throw new Error('s5 must carry the shart-al-waqif qaida');
     if (r.waqafa !== 'يَقِفُ'.normalize('NFC')) throw new Error('waqafa mithal mudari: ' + r.waqafa);
     if (r.halla !== 'يَحِلُّ'.normalize('NFC')) throw new Error('halla geminate mudari: ' + r.halla);

@@ -1,0 +1,712 @@
+# -*- coding: utf-8 -*-
+"""Author content/samples/jumal-al-tadrib — the drill-sentence corpus.
+
+ORIGINAL textbook-style sentences composed editorially in the question-chain
+drill style the project owner teaches by («Kâtebe = yazdı, kim? Zeydun…»).
+Three chapters: the verbal sentence, the nominal sentence, and inne-vs-enne
+(the hamza rule, with the qawl exception). Every token carries full
+trilingual i'rab, so the whole package doubles as TRAINING DATA for the
+runtime IrabModel — each sentence here is a labeled example the naive Bayes
+learns from, which is the package's second job.
+
+FREE access: the drill garden belongs to the Lite tier.
+Paradigms: copied where the corpus owns the verb (lemma identity), engine-
+built for kataba / qara'a / shahida.
+"""
+import json, pathlib, re, sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+PKG = ROOT / "content/samples/jumal-al-tadrib"
+(PKG / "chapters").mkdir(parents=True, exist_ok=True)
+
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+import sarf_gen as _sg
+
+DIA = re.compile("[ً-ٰ]")
+def bare(s): return DIA.sub("", s)
+
+def tok(full, lex, pos, grammar, ar, en, tr, punct=None, segments=None):
+    t = {"surface": {"full": full, "smart": full, "bare": bare(full)},
+         "lex": lex, "pos": pos}
+    if grammar: t["grammar"] = grammar
+    t["irab"] = {"ar": ar, "en": en, "tr": tr}
+    if segments: t["segments"] = segments
+    if punct: t["punctAfter"] = punct
+    return t
+
+def seg(form, lex, pos): return {"form": form, "lex": lex, "pos": pos}
+J = lambda text, ar, en, tr: {"text": text, "ar": ar, "en": en, "tr": tr}
+
+# ---- the recurring i'rab lines, written once so every drill teaches the
+# same wording the madrasah recites (and RoleEngine reads them uniformly)
+def MADI(lex, full, extra_g=None, **kw):
+    return tok(full, lex, "verb", ["thulathi-mujarrad-babs"] + (extra_g or []),
+        "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+        "Past verb, built on fatha.",
+        "Fetha üzere mebnî mâzî fiil.", **kw)
+def FAIL(lex, full, note_ar="", note_en="", note_tr="", **kw):
+    return tok(full, lex, "noun", ["fail"],
+        "فَاعِلٌ مَرْفُوعٌ." + note_ar,
+        "The fa'il, in raf'." + note_en,
+        "Merfû fâil." + note_tr, **kw)
+def MAFUL(lex, full, **kw):
+    return tok(full, lex, "noun", ["maful-bihi"],
+        "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+        "Direct object, in nasb.",
+        "Mensub mef'ûlün bih.", **kw)
+def MUBT(lex, full, **kw):
+    return tok(full, lex, "noun", ["mubtada-khabar"],
+        "مُبْتَدَأٌ مَرْفُوعٌ.",
+        "Mubtada in raf'.",
+        "Merfû mübteda.", **kw)
+def KHAB(lex, full, extra_g=None, **kw):
+    return tok(full, lex, "noun", ["mubtada-khabar"] + (extra_g or []),
+        "خَبَرٌ مَرْفُوعٌ.",
+        "Khabar in raf'.",
+        "Merfû haber.", **kw)
+def PREP(lex, full, **kw):
+    return tok(full, lex, "prep", ["huruf-jarr"],
+        "حَرْفُ جَرٍّ.",
+        "A jarr letter.",
+        "Cer harfi.", **kw)
+def MAJR(lex, full, seg_extra=None, **kw):
+    return tok(full, lex, "noun", ["huruf-jarr"],
+        "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+        "In jarr after the preposition.",
+        "Cer harfiyle mecrurdur.", segments=seg_extra, **kw)
+
+S1, S2, S3 = [], [], []
+
+# ============ Chapter 1 — the verbal sentence ============
+S1.append({"id": "s1", "translation": {
+ "en": "Zayd wrote a letter.", "tr": "Zeyd bir mektup yazdı."},
+ "tokens": [
+  MADI("kataba", "كَتَبَ"),
+  FAIL("zayd", "زَيْدٌ"),
+  MAFUL("risala", "رِسَالَةً", punct="."),
+ ],
+ "jumal": [J("كَتَبَ زَيْدٌ رِسَالَةً",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s2", "translation": {
+ "en": "The student read the book.", "tr": "Öğrenci kitabı okudu."},
+ "tokens": [
+  MADI("qaraa", "قَرَأَ"),
+  FAIL("talib", "الطَّالِبُ"),
+  MAFUL("kitab", "الْكِتَابَ", punct="."),
+ ],
+ "jumal": [J("قَرَأَ الطَّالِبُ الْكِتَابَ",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s3", "translation": {
+ "en": "The teacher entered the mosque.", "tr": "Muallim mescide girdi."},
+ "tokens": [
+  MADI("dakhala", "دَخَلَ"),
+  FAIL("muallim", "الْمُعَلِّمُ"),
+  MAFUL("masjid", "الْمَسْجِدَ", punct="."),
+ ],
+ "jumal": [J("دَخَلَ الْمُعَلِّمُ الْمَسْجِدَ",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s4", "translation": {
+ "en": "Zayd came riding.", "tr": "Zeyd binerek (binmiş hâlde) geldi."},
+ "tokens": [
+  tok("جَاءَ","jaa","verb",["thulathi-mujarrad-babs","hollow-verbs"],
+      "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — أَجْوَفُ مَهْمُوزٌ.",
+      "Past verb built on fatha — hollow with a hamza.",
+      "Fetha üzere mebnî mâzî fiil — ecvef ve mehmûzdur."),
+  FAIL("zayd", "زَيْدٌ"),
+  tok("رَاكِبًا","rakib","noun",["hal","ism-fail"],
+      "حَالٌ مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنْ «رَكِبَ».",
+      "A hal in nasb — the ism fa'il of رَكِبَ: in what state? riding.",
+      "Mensub hâl — «رَكِبَ» fiilinin ism-i fâili: ne hâlde? binmiş hâlde.", punct="."),
+ ],
+ "jumal": [J("جَاءَ زَيْدٌ رَاكِبًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s5", "translation": {
+ "en": "The boy returned to the house.", "tr": "Çocuk eve döndü."},
+ "tokens": [
+  MADI("rajaa", "رَجَعَ"),
+  FAIL("walad", "الْوَلَدُ"),
+  PREP("ila", "إِلَى"),
+  MAJR("bayt", "الْبَيْتِ", punct="."),
+ ],
+ "jumal": [J("رَجَعَ الْوَلَدُ إِلَى الْبَيْتِ",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s6", "translation": {
+ "en": "The student heard the lesson in the mosque.", "tr": "Öğrenci dersi mescitte dinledi."},
+ "tokens": [
+  MADI("samia", "سَمِعَ"),
+  FAIL("talib", "الطَّالِبُ"),
+  MAFUL("dars", "الدَّرْسَ"),
+  PREP("fi", "فِي"),
+  MAJR("masjid", "الْمَسْجِدِ", punct="."),
+ ],
+ "jumal": [J("سَمِعَ الطَّالِبُ الدَّرْسَ فِي الْمَسْجِدِ",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s7", "translation": {
+ "en": "Zayd did not write a letter.", "tr": "Zeyd bir mektup yazmadı."},
+ "tokens": [
+  tok("لَمْ","lam-jazima","part",["lam-jazim"],
+      "حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ.",
+      "The particle of negation, jazm and time-flip: it turns the mudari's meaning to the past.",
+      "Nefiy, cezm ve kalb harfi: muzârinin manasını mâzîye çevirir."),
+  tok("يَكْتُبْ","kataba","verb",["lam-jazim","mudari-marfu"],
+      "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ.",
+      "Mudari in jazm after لَمْ; its sign is the sukun.",
+      "«لَمْ» ile meczum muzâri; cezm alâmeti sükûndur."),
+  FAIL("zayd", "زَيْدٌ"),
+  MAFUL("risala", "رِسَالَةً", punct="."),
+ ],
+ "jumal": [J("لَمْ يَكْتُبْ زَيْدٌ رِسَالَةً",
+   "جُمْلَةٌ فِعْلِيَّةٌ مَنْفِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening negated verbal clause — i'rabless.",
+   "İbtidâiyye menfî fiil cümlesi — mahalsizdir.")]})
+
+S1.append({"id": "s8", "translation": {
+ "en": "The students left the lesson glad.", "tr": "Öğrenciler dersten sevinçli çıktılar."},
+ "tokens": [
+  MADI("kharaja", "خَرَجَ"),
+  tok("الطُّلَّابُ","tullab","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ — جَمْعُ تَكْسِيرٍ لِـ«طَالِب».",
+      "The fa'il in raf' — a broken plural of طَالِب.",
+      "Merfû fâil — «طَالِب» kelimesinin cem'-i mükesseri."),
+  PREP("min", "مِنَ"),
+  MAJR("dars", "الدَّرْسِ"),
+  tok("فَرِحِينَ","farih","noun",["hal","jam-mudhakkar-salim"],
+      "حَالٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ — جَمْعُ مُذَكَّرٍ سَالِمٌ.",
+      "A hal in nasb, its sign the ya — a sound masculine plural.",
+      "Mensub hâl; nasb alâmeti yâdır — cem'-i müzekker-i sâlim.", punct="."),
+ ],
+ "jumal": [J("خَرَجَ الطُّلَّابُ مِنَ الدَّرْسِ فَرِحِينَ",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+# ============ Chapter 2 — the nominal sentence ============
+S2.append({"id": "s1", "translation": {
+ "en": "Knowledge is light.", "tr": "İlim nurdur."},
+ "tokens": [MUBT("ilm", "الْعِلْمُ"), KHAB("nur", "نُورٌ", punct=".")],
+ "jumal": [J("الْعِلْمُ نُورٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s2", "translation": {
+ "en": "The book is new.", "tr": "Kitap yenidir."},
+ "tokens": [MUBT("kitab", "الْكِتَابُ"), KHAB("jadid", "جَدِيدٌ", punct=".")],
+ "jumal": [J("الْكِتَابُ جَدِيدٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s3", "translation": {
+ "en": "Zayd's book is new.", "tr": "Zeyd'in kitabı yenidir."},
+ "tokens": [
+  tok("كِتَابُ","kitab","noun",["mubtada-khabar","idafa-definiteness"],
+      "مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "Mubtada in raf', itself a mudaf.",
+      "Merfû mübteda ve muzâftır."),
+  tok("زَيْدٍ","zayd","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "Mudaf ilayh in jarr.",
+      "Mecrûr muzâfun ileyhtir."),
+  KHAB("jadid", "جَدِيدٌ", punct="."),
+ ],
+ "jumal": [J("كِتَابُ زَيْدٍ جَدِيدٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s4", "translation": {
+ "en": "The diligent student is beloved.", "tr": "Çalışkan öğrenci sevilendir."},
+ "tokens": [
+  MUBT("talib", "الطَّالِبُ"),
+  tok("الْمُجْتَهِدُ","mujtahid","noun",["naat-sifa","ism-fail","form-viii-verbs"],
+      "نَعْتٌ مَرْفُوعٌ — اسْمُ فَاعِلٍ مِنَ «اجْتَهَدَ».",
+      "Na't in raf' — the ism fa'il of اجْتَهَدَ (Form VIII).",
+      "Merfû na't — «اجْتَهَدَ» (iftiâl) fiilinin ism-i fâili."),
+  tok("مَحْبُوبٌ","mahbub","noun",["mubtada-khabar","ism-maful"],
+      "خَبَرٌ مَرْفُوعٌ — اسْمُ مَفْعُولٍ مِنْ «حَبَّ».",
+      "Khabar in raf' — an ism maf'ul.",
+      "Merfû haber — ism-i mef'ûldür.", punct="."),
+ ],
+ "jumal": [J("الطَّالِبُ الْمُجْتَهِدُ مَحْبُوبٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s5", "translation": {
+ "en": "In the house there is a man.", "tr": "Evde bir adam vardır."},
+ "tokens": [
+  tok("فِي","fi","prep",["huruf-jarr","mubtada-khabar"],
+      "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرٌ مُقَدَّمٌ.",
+      "Jarr letter; the phrase is a fronted khabar.",
+      "Cer harfi; câr-mecrûr öne geçmiş haberdir."),
+  tok("الْبَيْتِ","bayt","noun",["huruf-jarr"],
+      "مَجْرُورٌ بِـ«فِي».",
+      "In jarr after فِي.",
+      "«فِي» ile mecrurdur."),
+  tok("رَجُلٌ","rajul","noun",["mubtada-khabar"],
+      "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ.",
+      "The delayed mubtada, in raf'.",
+      "Sonraya bırakılmış merfû mübteda (mübteda-i muahhar).", punct="."),
+ ],
+ "jumal": [J("فِي الْبَيْتِ رَجُلٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ مِنْ خَبَرٍ مُقَدَّمٍ وَمُبْتَدَإٍ مُؤَخَّرٍ — لَا مَحَلَّ لَهَا.",
+   "A nominal clause of fronted khabar and delayed mubtada — i'rabless.",
+   "Haber-i mukaddem ile mübteda-i muahhardan kurulu isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s6", "translation": {
+ "en": "The mosque is the house of Allah.", "tr": "Mescid, Allah'ın evidir."},
+ "tokens": [
+  MUBT("masjid", "الْمَسْجِدُ"),
+  tok("بَيْتُ","bayt","noun",["mubtada-khabar","idafa-definiteness"],
+      "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "Khabar in raf', itself a mudaf.",
+      "Merfû haber ve muzâftır."),
+  tok("اللهِ","allah","noun",["idafa-definiteness"],
+      "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "The majestic name — mudaf ilayh in jarr.",
+      "Lafza-i celâl — mecrûr muzâfun ileyhtir.", punct="."),
+ ],
+ "jumal": [J("الْمَسْجِدُ بَيْتُ اللهِ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s7", "translation": {
+ "en": "Truly knowledge is beneficial.", "tr": "Şüphesiz ilim faydalıdır."},
+ "tokens": [
+  tok("إِنَّ","inna","part",["inna-wa-akhawatuha","inna-am-anna"],
+      "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ فِي صَدْرِ الْكَلَامِ.",
+      "The particle of emphasis and nasb; its hamza takes kasra because it opens the speech.",
+      "Te'kid ve nasb harfi; söz başında geldiği için hemzesi kesralıdır."),
+  tok("الْعِلْمَ","ilm","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("نَافِعٌ","nafi","noun",["inna-wa-akhawatuha","ism-fail"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ — اسْمُ فَاعِلٍ.",
+      "The khabar of إِنَّ in raf' — an ism fa'il.",
+      "«إِنَّ»nin merfû haberi — ism-i fâildir.", punct="."),
+ ],
+ "jumal": [J("إِنَّ الْعِلْمَ نَافِعٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ بِـ«إِنَّ» — لَا مَحَلَّ لَهَا.",
+   "A nominal clause emphasized by إِنَّ — i'rabless.",
+   "«إِنَّ» ile te'kid edilmiş isim cümlesi — mahalsizdir.")]})
+
+S2.append({"id": "s8", "translation": {
+ "en": "The lesson is not difficult.", "tr": "Ders zor değildir."},
+ "tokens": [
+  tok("لَيْسَ","laysa","verb",["kana-wa-akhawatuha"],
+      "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ «كَانَ».",
+      "Defective past verb of the kana family.",
+      "Kâne'nin kardeşlerinden nâkıs fiil."),
+  tok("الدَّرْسُ","dars","noun",["kana-wa-akhawatuha"],
+      "اسْمُ «لَيْسَ» مَرْفُوعٌ.",
+      "The ism of لَيْسَ, in raf'.",
+      "«لَيْسَ»nin merfû ismidir."),
+  tok("صَعْبًا","sab","noun",["kana-wa-akhawatuha"],
+      "خَبَرُ «لَيْسَ» مَنْصُوبٌ.",
+      "The khabar of لَيْسَ, in nasb.",
+      "«لَيْسَ»nin mensub haberidir.", punct="."),
+ ],
+ "jumal": [J("لَيْسَ الدَّرْسُ صَعْبًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ مَنْسُوخَةٌ بِـ«لَيْسَ» — لَا مَحَلَّ لَهَا.",
+   "A clause governed by لَيْسَ — i'rabless.",
+   "«لَيْسَ» ile mensuh cümle — mahalsizdir.")]})
+
+# ============ Chapter 3 — inne or enne? ============
+def INNA_KASR(why_ar, why_en, why_tr):
+    return tok("إِنَّ","inna","part",["inna-wa-akhawatuha","inna-am-anna"],
+        "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ " + why_ar,
+        "Particle of emphasis and nasb; the hamza takes KASRA " + why_en,
+        "Te'kid ve nasb harfi; hemzesi KESRALIDIR — " + why_tr)
+def ANNA_FATH(why_ar, why_en, why_tr):
+    return tok("أَنَّ","anna","part",["inna-wa-akhawatuha","inna-am-anna"],
+        "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، فُتِحَتْ هَمْزَتُهُ " + why_ar,
+        "Particle of emphasis and nasb; the hamza takes FATHA " + why_en,
+        "Te'kid ve nasb harfi; hemzesi FETHALIDIR — " + why_tr)
+
+# the tail names its OWN governing particle — s1's clause follows قَالَ so
+# its particle is إِنَّ, s2's follows عَلِمْتُ so it is أَنَّ; a shared
+# string here once mislabeled s2's khabar (caught by the pre-ship review).
+def QADIR_TAIL(ptcl):
+    return [
+      tok("قَادِرٌ","qadir","noun",["inna-wa-akhawatuha","ism-fail"],
+          f"خَبَرُ «{ptcl}» مَرْفُوعٌ — اسْمُ فَاعِلٍ.",
+          f"The khabar of {ptcl} in raf' — an ism fa'il: able.",
+          f"«{ptcl}»nin merfû haberi — ism-i fâil: kâdir."),
+      PREP("ala", "عَلَى"),
+      tok("كُلِّ","kull","noun",["huruf-jarr","idafa-definiteness"],
+          "مَجْرُورٌ بِـ«عَلَى» وَهُوَ مُضَافٌ.",
+          "In jarr after عَلَى, itself a mudaf.",
+          "«عَلَى» ile mecrur ve muzâftır."),
+      tok("شَيْءٍ","shay","noun",["idafa-definiteness"],
+          "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+          "Mudaf ilayh in jarr.",
+          "Mecrûr muzâfun ileyhtir.", punct="."),
+    ]
+
+S3.append({"id": "s1", "translation": {
+ "en": "Zayd said: truly Allah is able over everything.",
+ "tr": "Zeyd, Allah'ın her şeye kâdir olduğunu söyledi (Allah her şeye kâdirdir, dedi)."},
+ "tokens": [
+  MADI("qala", "قَالَ", extra_g=["hollow-verbs"]),
+  FAIL("zayd", "زَيْدٌ"),
+  INNA_KASR("لِوُقُوعِهِ بَعْدَ الْقَوْلِ — فَالْمَقُولُ يُحْكَى كَمَا هُوَ.",
+            "— it stands after قَالَ: the saying is quoted whole, not melted into a masdar.",
+            "«قَالَ»den sonra geldiği için; söz olduğu gibi nakledilir, masdara erimez."),
+  tok("اللهَ","allah","noun",["inna-wa-akhawatuha"],
+      "لَفْظُ الْجَلَالَةِ اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The majestic name — the ism of إِنَّ, in nasb.",
+      "Lafza-i celâl — «إِنَّ»nin mensub ismidir."),
+ ] + QADIR_TAIL("إِنَّ"),
+ "jumal": [
+  J("قَالَ زَيْدٌ...",
+    "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+    "An opening verbal clause — i'rabless.",
+    "İbtidâiyye fiil cümlesi — mahalsizdir."),
+  J("إِنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ",
+    "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+    "The quoted speech — in nasb position as the maqul al-qawl.",
+    "Makûlü'l-kavl — mahallen mensubdur.")]})
+
+S3.append({"id": "s2", "translation": {
+ "en": "I knew that Allah is able over everything.",
+ "tr": "Allah'ın her şeye kâdir olduğunu bildim."},
+ "tokens": [
+  tok("عَلِمْتُ","alima","verb",["thulathi-mujarrad-babs"],
+      "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "Past verb; the attached ت is its fa'il.",
+      "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir.",
+      segments=[seg("عَلِمْ","alima","verb"), seg("تُ","pron-1s","pron")]),
+  ANNA_FATH("لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= عَلِمْتُ قُدْرَةَ اللهِ).",
+            "— the clause melts into a masdar (= I knew Allah's ABILITY).",
+            "çünkü sonrası masdar hükmündedir (= Allah'ın kudretini bildim: -dığını)."),
+  tok("اللهَ","allah","noun",["inna-wa-akhawatuha"],
+      "لَفْظُ الْجَلَالَةِ اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "The majestic name — the ism of أَنَّ, in nasb.",
+      "Lafza-i celâl — «أَنَّ»nin mensub ismidir."),
+ ] + QADIR_TAIL("أَنَّ"),
+ "jumal": [
+  J("عَلِمْتُ...",
+    "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+    "An opening verbal clause — i'rabless.",
+    "İbtidâiyye fiil cümlesi — mahalsizdir."),
+  J("أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ",
+    "الْمَصْدَرُ الْمُؤَوَّلُ سَدَّ مَسَدَّ مَفْعُولَيْ «عَلِمَ».",
+    "The construed masdar stands in for the objects of عَلِمَ.",
+    "Müevvel masdar, «عَلِمَ»nin mef'ûllerinin yerini tutar.")]})
+
+S3.append({"id": "s3", "translation": {
+ "en": "I heard that the teacher is ill.", "tr": "Muallimin hasta olduğunu işittim."},
+ "tokens": [
+  tok("سَمِعْتُ","samia","verb",["thulathi-mujarrad-babs"],
+      "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "Past verb; the attached ت is its fa'il.",
+      "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir.",
+      segments=[seg("سَمِعْ","samia","verb"), seg("تُ","pron-1s","pron")]),
+  ANNA_FATH("لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= سَمِعْتُ مَرَضَهُ).",
+            "— the clause melts into a masdar (= I heard of his ILLNESS).",
+            "çünkü sonrası masdar hükmündedir (hasta olduğunu: -dığını)."),
+  tok("الْمُعَلِّمَ","muallim","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "The ism of أَنَّ, in nasb.",
+      "«أَنَّ»nin mensub ismidir."),
+  tok("مَرِيضٌ","marid","noun",["inna-wa-akhawatuha","sifa-mushabbaha"],
+      "خَبَرُ «أَنَّ» مَرْفُوعٌ — صِفَةٌ مُشَبَّهَةٌ.",
+      "The khabar in raf' — a sifa mushabbaha.",
+      "Merfû haberi — sıfat-ı müşebbehedir.", punct="."),
+ ],
+ "jumal": [J("أَنَّ الْمُعَلِّمَ مَرِيضٌ",
+   "الْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ «سَمِعَ».",
+   "The construed masdar is the object of سَمِعَ.",
+   "Müevvel masdar, «سَمِعَ»nin mef'ûlüdür.")]})
+
+S3.append({"id": "s4", "translation": {
+ "en": "Truly the lesson is easy.", "tr": "Şüphesiz ders kolaydır."},
+ "tokens": [
+  INNA_KASR("لِوُقُوعِهِ فِي صَدْرِ الْكَلَامِ.",
+            "— it opens the speech; nothing before it could absorb a masdar.",
+            "söz başında geldiği için."),
+  tok("الدَّرْسَ","dars","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("سَهْلٌ","sahl","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "The khabar of إِنَّ, in raf'.",
+      "«إِنَّ»nin merfû haberidir.", punct="."),
+ ],
+ "jumal": [J("إِنَّ الدَّرْسَ سَهْلٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ — لَا مَحَلَّ لَهَا.",
+   "An emphasized nominal clause — i'rabless.",
+   "Te'kidli isim cümlesi — mahalsizdir.")]})
+
+S3.append({"id": "s5", "translation": {
+ "en": "The girl said: truly the book is new.", "tr": "Kız, kitap yenidir, dedi."},
+ "tokens": [
+  tok("قَالَتِ","qala","verb",["thulathi-mujarrad-babs","hollow-verbs"],
+      "فِعْلٌ مَاضٍ، وَالتَّاءُ لِلتَّأْنِيثِ، كُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "Past verb; the ت marks the feminine, vowelled kasra to break the two sukuns.",
+      "Mâzî fiil; tâ te'nis içindir, iki sâkin karşılaştığı için kesralanmıştır."),
+  FAIL("bint", "الْبِنْتُ"),
+  INNA_KASR("لِوُقُوعِهِ بَعْدَ الْقَوْلِ.",
+            "— it stands after a qawl verb.",
+            "kavil fiilinden sonra geldiği için."),
+  tok("الْكِتَابَ","kitab","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("جَدِيدٌ","jadid","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "The khabar of إِنَّ, in raf'.",
+      "«إِنَّ»nin merfû haberidir.", punct="."),
+ ],
+ "jumal": [J("إِنَّ الْكِتَابَ جَدِيدٌ",
+   "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+   "In nasb position — the maqul al-qawl.",
+   "Makûlü'l-kavl — mahallen mensubdur.")]})
+
+S3.append({"id": "s6", "translation": {
+ "en": "By Allah, truly knowledge is beneficial.", "tr": "Vallahi, ilim elbette faydalıdır."},
+ "tokens": [
+  tok("وَاللهِ","allah","noun",["huruf-jarr","anwa-al-waw"],
+      "الْوَاوُ لِلْقَسَمِ حَرْفُ جَرٍّ، وَلَفْظُ الْجَلَالَةِ مَجْرُورٌ بِهَا.",
+      "The oath waw — a jarr letter; the majestic name in jarr after it.",
+      "Kasem vâvı — cer harfidir; lafza-i celâl onunla mecrurdur.",
+      segments=[seg("وَ","wa","part"), seg("اللهِ","allah","noun")]),
+  INNA_KASR("لِوُقُوعِهِ بَعْدَ الْقَسَمِ.",
+            "— it stands after the oath.",
+            "kasemden sonra geldiği için."),
+  tok("الْعِلْمَ","ilm","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("نَافِعٌ","nafi","noun",["inna-wa-akhawatuha","ism-fail"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "The khabar of إِنَّ, in raf'.",
+      "«إِنَّ»nin merfû haberidir.", punct="."),
+ ],
+ "jumal": [J("وَاللهِ إِنَّ الْعِلْمَ نَافِعٌ",
+   "جُمْلَةُ جَوَابِ الْقَسَمِ — لَا مَحَلَّ لَهَا.",
+   "The oath's answer clause — i'rabless.",
+   "Kasemin cevap cümlesi — mahalsizdir.")]})
+
+S3.append({"id": "s7", "translation": {
+ "en": "I bear witness that Muhammad is the Messenger of Allah.",
+ "tr": "Muhammed'in Allah'ın Rasûlü olduğuna şehadet ederim."},
+ "tokens": [
+  tok("أَشْهَدُ","shahida","verb",["mudari-marfu","thulathi-mujarrad-babs"],
+      "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَفَاعِلُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
+      "Mudari in raf'; its fa'il is a hidden أَنَا.",
+      "Merfû muzâri; fâili gizli «أَنَا» zamiridir."),
+  ANNA_FATH("لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= أَشْهَدُ بِرِسَالَتِهِ).",
+            "— the clause melts into a masdar (= I witness his MESSENGERSHIP).",
+            "çünkü sonrası masdar hükmündedir (Rasûl olduğuna: -dığına)."),
+  tok("مُحَمَّدًا","muhammad","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "The ism of أَنَّ, in nasb.",
+      "«أَنَّ»nin mensub ismidir."),
+  tok("رَسُولُ","rasul","noun",["inna-wa-akhawatuha","idafa-definiteness"],
+      "خَبَرُ «أَنَّ» مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "The khabar in raf', itself a mudaf.",
+      "«أَنَّ»nin merfû haberi ve muzâftır."),
+  tok("اللهِ","allah","noun",["idafa-definiteness"],
+      "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "The majestic name — mudaf ilayh in jarr.",
+      "Lafza-i celâl — mecrûr muzâfun ileyhtir.", punct="."),
+ ],
+ "jumal": [J("أَنَّ مُحَمَّدًا رَسُولُ اللهِ",
+   "الْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ «أَشْهَدُ».",
+   "The construed masdar is the object of أَشْهَدُ.",
+   "Müevvel masdar, «أَشْهَدُ»nün mef'ûlüdür.")]})
+
+S3.append({"id": "s8", "translation": {
+ "en": "Zayd did not say that the lesson is difficult.",
+ "tr": "Zeyd, ders zordur, demedi."},
+ "tokens": [
+  tok("لَمْ","lam-jazima","part",["lam-jazim"],
+      "حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ.",
+      "The particle of negation, jazm and time-flip.",
+      "Nefiy, cezm ve kalb harfi."),
+  tok("يَقُلْ","qala","verb",["lam-jazim","hollow-verbs"],
+      "فِعْلٌ مُضَارِعٌ مَجْزُومٌ، حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ — قَالَ يَقُولُ.",
+      "Mudari in jazm; the hollow middle dropped where two sukuns met — قَالَ يَقُولُ.",
+      "Meczum muzâri; iki sâkin karşılaşınca ecvefin ortası düşmüştür — قَالَ يَقُولُ."),
+  FAIL("zayd", "زَيْدٌ"),
+  INNA_KASR("لِوُقُوعِهِ بَعْدَ الْقَوْلِ وَلَوْ مَنْفِيًّا.",
+            "— after a qawl verb, even a negated one.",
+            "kavil fiilinden sonra geldiği için — fiil menfî olsa da."),
+  tok("الدَّرْسَ","dars","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("صَعْبٌ","sab","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "The khabar of إِنَّ, in raf'.",
+      "«إِنَّ»nin merfû haberidir.", punct="."),
+ ],
+ "jumal": [J("إِنَّ الدَّرْسَ صَعْبٌ",
+   "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+   "In nasb position — the maqul al-qawl.",
+   "Makûlü'l-kavl — mahallen mensubdur.")]})
+
+# ---- titles ---------------------------------------------------------------
+TITLES = [
+ {"ar": "الْجُمْلَةُ الْفِعْلِيَّةُ", "en": "The Verbal Sentence", "tr": "Fiil Cümlesi"},
+ {"ar": "الْجُمْلَةُ الِاسْمِيَّةُ", "en": "The Nominal Sentence", "tr": "İsim Cümlesi"},
+ {"ar": "إِنَّ أَمْ أَنَّ؟", "en": "Inna or Anna?", "tr": "İnne mi Enne mi?"},
+]
+
+# ---- glossary -------------------------------------------------------------
+def g(lemma, pos, en, tr, level, root=None):
+    e = {"lemma": lemma, "pos": pos, "gloss": {"en": en, "tr": tr}, "level": level}
+    if root: e["root"] = root
+    return e
+
+GLOSS = {
+ "zayd": g("زَيْد", "noun", "Zayd (the grammar books' everyman)", "Zeyd (gramer kitaplarının meşhur öznesi)", 1),
+ "risala": g("رِسَالَة", "noun", "letter, epistle", "mektup; risale", 2, "ر س ل"),
+ "talib": g("طَالِب", "noun", "student, seeker", "öğrenci; talebe", 1, "ط ل ب"),
+ "tullab": g("طُلَّاب", "noun", "students (broken plural)", "öğrenciler (cem'-i mükesser)", 2, "ط ل ب"),
+ "kitab": g("كِتَاب", "noun", "book", "kitap", 1, "ك ت ب"),
+ "muallim": g("مُعَلِّم", "noun", "teacher", "muallim; öğretmen", 1, "ع ل م"),
+ "masjid": g("مَسْجِد", "noun", "mosque", "mescid", 1, "س ج د"),
+ "walad": g("وَلَد", "noun", "boy, child", "çocuk; oğlan", 1, "و ل د"),
+ "bayt": g("بَيْت", "noun", "house", "ev", 1, "ب ي ت"),
+ "dars": g("دَرْس", "noun", "lesson", "ders", 1, "د ر س"),
+ "farih": g("فَرِح", "noun", "glad, joyful", "sevinçli", 2, "ف ر ح"),
+ "rakib": g("رَاكِب", "noun", "riding, rider (ism fa'il)", "binici; binmiş (ism-i fâil)", 2, "ر ك ب"),
+ "ilm": g("عِلْم", "noun", "knowledge", "ilim", 1, "ع ل م"),
+ "nur": g("نُور", "noun", "light", "nur; ışık", 1, "ن و ر"),
+ "jadid": g("جَدِيد", "noun", "new", "yeni", 1, "ج د د"),
+ "mujtahid": g("مُجْتَهِد", "noun", "diligent (ism fa'il, Form VIII)", "çalışkan; müctehid (ism-i fâil)", 3, "ج ه د"),
+ "mahbub": g("مَحْبُوب", "noun", "beloved (ism maf'ul)", "sevilen; mahbub (ism-i mef'ûl)", 2, "ح ب ب"),
+ "rajul": g("رَجُل", "noun", "man", "adam", 1, "ر ج ل"),
+ "allah": g("الله", "noun", "Allah", "Allah", 1),
+ "nafi": g("نَافِع", "noun", "beneficial (ism fa'il)", "faydalı; nâfi (ism-i fâil)", 2, "ن ف ع"),
+ "sab": g("صَعْب", "noun", "difficult", "zor", 2, "ص ع ب"),
+ "sahl": g("سَهْل", "noun", "easy", "kolay", 2, "س ه ل"),
+ "marid": g("مَرِيض", "noun", "ill, sick", "hasta", 2, "م ر ض"),
+ "bint": g("بِنْت", "noun", "girl, daughter", "kız", 1, "ب ن ت"),
+ "muhammad": g("مُحَمَّد", "noun", "Muhammad ﷺ", "Muhammed ﷺ", 1, "ح م د"),
+ "rasul": g("رَسُول", "noun", "messenger", "rasûl; elçi", 1, "ر س ل"),
+ "kull": g("كُلّ", "noun", "every, all", "her; bütün", 1, "ك ل ل"),
+ "shay": g("شَيْء", "noun", "thing", "şey", 1, "ش ي أ"),
+ "qadir": g("قَادِر", "noun", "able, powerful (ism fa'il)", "kâdir; güç yetiren (ism-i fâil)", 2, "ق د ر"),
+ # verbs
+ "kataba": g("كَتَبَ", "verb", "to write", "yazmak", 1, "ك ت ب"),
+ "qaraa": g("قَرَأَ", "verb", "to read, recite", "okumak", 1, "ق ر أ"),
+ "dakhala": g("دَخَلَ", "verb", "to enter", "girmek", 1, "د خ ل"),
+ "jaa": g("جَاءَ", "verb", "to come", "gelmek", 1, "ج ي أ"),
+ "rajaa": g("رَجَعَ", "verb", "to return", "dönmek", 1, "ر ج ع"),
+ "samia": g("سَمِعَ", "verb", "to hear, listen", "işitmek; dinlemek", 1, "س م ع"),
+ "kharaja": g("خَرَجَ", "verb", "to go out", "çıkmak", 1, "خ ر ج"),
+ "alima": g("عَلِمَ", "verb", "to know", "bilmek", 1, "ع ل م"),
+ "qala": g("قَالَ", "verb", "to say", "demek; söylemek", 1, "ق و ل"),
+ "shahida": g("شَهِدَ", "verb", "to bear witness", "şehadet etmek; tanık olmak", 2, "ش ه د"),
+ "laysa": g("لَيْسَ", "verb", "is not (defective)", "değildir (nâkıs fiil)", 2),
+ # particles & pronouns
+ "ila": g("إِلَى", "prep", "to, toward", "-e; -e doğru", 1),
+ "min": g("مِنْ", "prep", "from", "-den", 1),
+ "fi": g("فِي", "prep", "in", "-de; içinde", 1),
+ "ala": g("عَلَى", "prep", "upon, over", "üzerine; -e", 1),
+ "inna": g("إِنَّ", "part", "truly (emphasis; nasb on its noun)", "şüphesiz (te'kid; ismini nasb eder)", 2),
+ "anna": g("أَنَّ", "part", "that (turns its clause into a masdar)", "-dığı(nı) (cümlesini masdara çevirir)", 3),
+ "lam-jazima": g("لَمْ", "part", "did not (jazm + time-flip)", "-medi (cezm eder, manayı mâzîye çevirir)", 2),
+ "wa": g("وَ", "part", "and; oath waw", "ve; kasem vâvı", 1),
+ "pron-1s": g("ـتُ", "pron", "I (attached subject)", "ben (bitişik fâil zamiri)", 1),
+}
+
+# ---- manifest -------------------------------------------------------------
+MANIFEST = {
+ "id": "jumal-al-tadrib",
+ "storyGroup": "jumal-al-tadrib",
+ "title": {"ar": "جُمَلُ التَّدْرِيبِ", "en": "Practice Sentences", "tr": "Alıştırma Cümleleri"},
+ "subtitle": {"ar": "قِرَاءَةُ الْإِعْرَابِ جُمْلَةً جُمْلَةً",
+              "en": "Reading i'rab sentence by sentence, hoca-style",
+              "tr": "Hoca usulü, cümle cümle i'râb okuma"},
+ "level": 2,
+ "levelName": "Elementary",
+ "version": "1.0.0",
+ "published": "2026-08-03",
+ "access": "free",
+ "chapters": [{"n": i + 1, "title": t} for i, t in enumerate(TITLES)],
+ "siblings": [],
+ "attribution": {
+  "ar": "جُمَلٌ تَعْلِيمِيَّةٌ أَصْلِيَّةٌ صِيغَتْ تَحْرِيرِيًّا لِلتَّدْرِيبِ عَلَى الْإِعْرَابِ.",
+  "en": ("ORIGINAL textbook-style drill sentences, composed editorially in the "
+         "question-chain style supplied by the project owner (Gâle = said, who? "
+         "Zeydun…). Nothing here is a quotation of any classical text; the "
+         "sentences exist to be parsed. They also serve as labeled training "
+         "data for the app's on-device i'rab model."),
+  "tr": ("ÖZGÜN ders-kitabı tarzı alıştırma cümleleri; proje sahibinin verdiği "
+         "soru-zinciri üslûbuyla (Gâle = dedi, kim? Zeydun…) editoryal olarak "
+         "telif edilmiştir. Hiçbir cümle klasik bir metinden iktibas değildir; "
+         "cümleler i'râb edilmek için vardır. Aynı zamanda uygulamanın cihaz "
+         "içi i'râb modeline etiketli eğitim verisi sağlarlar."),
+  "reviewStatus": "pending-scholarly-review"
+ }
+}
+
+# ---- paradigms ------------------------------------------------------------
+def copy_verbs():
+    out = {}
+    for lex, src in (("qala", "aqaid-ahl-al-sunna"), ("alima", "aqaid-ahl-al-sunna"),
+                     ("dakhala", "aqaid-ahl-al-sunna"), ("kharaja", "aqaid-ahl-al-sunna"),
+                     ("laysa", "aqaid-ahl-al-sunna"),
+                     ("rajaa", "wasiyyat-abi-hanifa"), ("samia", "wasiyyat-abi-hanifa"),
+                     ("jaa", "yunus-wa-al-hut")):
+        verbs = json.loads((ROOT / "content/samples" / src / "morphology.json")
+                           .read_text(encoding="utf-8"))["verbs"]
+        out[lex] = verbs[lex]
+    return out
+
+MORPH = {"verbs": copy_verbs()}
+MORPH["verbs"]["kataba"] = _sg.sound1(
+    "nasara", "كَتَب", "كْتُب", "اُكْتُب", "كِتَابَة", "كَاتِب",
+    "مَكْتُوب", "كُتِبَ", "يُكْتَبُ")
+MORPH["verbs"]["qaraa"] = _sg.sound1(
+    "fataha", "قَرَأ", "قْرَأ", "اِقْرَأ", "قِرَاءَة", "قَارِئ",
+    "مَقْرُوء", "قُرِئَ", "يُقْرَأُ",
+    note="مَهْمُوزُ اللَّامِ: تَثْبُتُ هَمْزَتُهُ فِي التَّصْرِيفِ — قَرَأْتُ، يَقْرَأُ.")
+MORPH["verbs"]["shahida"] = _sg.sound1(
+    "samia", "شَهِد", "شْهَد", "اِشْهَد", "شَهَادَة", "شَاهِد",
+    "مَشْهُود", "شُهِدَ", "يُشْهَدُ")
+
+ALL = S1 + S2 + S3
+
+(PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
+for i, S in enumerate((S1, S2, S3), 1):
+    (PKG / f"chapters/{i}.json").write_text(
+        json.dumps({"chapter": i, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
+(PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")
+(PKG / "morphology.json").write_text(json.dumps(MORPH, ensure_ascii=False, indent=1), encoding="utf-8")
+
+used = set()
+for s in ALL:
+    for t in s["tokens"]:
+        used.add(t["lex"])
+        for sg2 in t.get("segments", []): used.add(sg2["lex"])
+dead = set(GLOSS) - used
+missing = used - set(GLOSS)
+print("sentences:", len(ALL), "tokens:", sum(len(s["tokens"]) for s in ALL),
+      "gloss:", len(GLOSS), "dead:", sorted(dead), "missing:", sorted(missing))
