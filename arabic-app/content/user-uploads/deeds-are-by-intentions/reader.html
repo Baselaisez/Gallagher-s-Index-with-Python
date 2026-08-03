@@ -4079,7 +4079,7 @@ class SentenceAnalyzer {
         row.notes.push(this.KIND_LBL[p.k]);
         if (p.k === "jarr") expect = [{ en: "after a jarr letter — likely majrur", tr: "cer harfinden sonra — muhtemelen mecrur" }];
         else if (p.k === "jazm" || p.k === "nasb-verb" || p.k === "shart-jazim")
-          expect = [{ en: "after a governor of verbs — a verb should follow", tr: "fiile âmil edattan sonra — fiil gelmeli" }];
+          expect = [{ en: "after a governor of verbs — a verb should follow", tr: "fiile âmil edattan sonra — fiil gelmeli", verb: true }];
         else if (p.k === "nida") expect = [{ en: "likely the munada", tr: "muhtemelen münâdâdır" }];
         else if (p.k === "inna") expect = [
           { en: "likely inna-family's ISM — mansub", tr: "muhtemelen innenin İSMİ — mensub" },
@@ -4120,7 +4120,8 @@ class SentenceAnalyzer {
         ? { en: "attached pronoun — its maf'ul bihi", tr: "bitişik zamir — mef'ûlün bihidir" }
         : { en: "attached pronoun — the mudaf ilayh", tr: "bitişik zamir — muzâfun ileyhtir" });
       // -- consume one İzhar expectation, or inherit the verb's promise
-      if (expect.length) row.notes.push(expect.shift());
+      let expVerb = false;
+      if (expect.length) { const e = expect.shift(); row.notes.push(e); expVerb = !!e.verb; }
       else if (afterVerb && row.kind === "noun" && (hasAl || !tanwin))
         row.notes.push({ en: "first noun after the verb — likely the fa'il, marfu'", tr: "fiilden sonraki ilk isim — muhtemelen fâil, merfû" });
       afterVerb = row.kind.startsWith("verb");
@@ -4143,6 +4144,26 @@ class SentenceAnalyzer {
       }
       const m = WaznEngine.of(w);
       if (m && m.mizan) row.wazn = m.mizan;
+      // -- the İzhar contract beats the pattern guess: after a governor of
+      // verbs a mazi cannot stand, so a ta-initial word there is a governed
+      // mudari' whose ta is the person prefix — NOT Form V/VI's ta. Retire
+      // the impossible mazi mizan (its realized masdar would lie) and try
+      // the corpus once more on the stem behind the prefix.
+      if (expVerb && verbish && !row.sure) {
+        // compare on the skeleton — NFC reorders fatha before shadda, so a
+        // literal تَفَعَّ never matches. Form V betrays itself by shadda,
+        // Form VI by its alif; a true mudari mizan (تَفْعُلُ) has neither.
+        const wb = row.wazn ? stripAr(row.wazn) : "";
+        if (row.wazn && ((wb.startsWith("تفعل") && row.wazn.includes("ّ")) || wb.startsWith("تفاعل")))
+          delete row.wazn;
+        const cr = RootFinder.fromCorpus(core.slice(1));
+        if (cr) {
+          row.root = cr.root; row.lemma = cr.lemma; row.gloss = cr.gloss;
+          row.sure = true; row.kind = "verb";
+        }
+        row.notes.push({ en: "a governed mudari' — the opening ta/ya is the person prefix, not Form V's ta",
+                         tr: "âmilin çektiği muzâri — baştaki tâ/yâ şahıs önekidir, tefe''ul tâsı değil" });
+      }
       row.al = hasAl; row.tanwin = tanwin;
       // the proofreader rides along: impossible vowelling is flagged even
       // when every other layer is happy.

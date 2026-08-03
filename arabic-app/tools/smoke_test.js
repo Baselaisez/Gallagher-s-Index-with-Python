@@ -788,7 +788,7 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
-  await check('Aqaid: four chapters, the creed definitions, new grammar notes', async () => {
+  await check('Aqaid: the creed definitions and their grammar notes', async () => {
     const info = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
       if (!st) return null;
@@ -809,12 +809,51 @@ if (!CHROME) {
       };
     });
     if (!info) throw new Error('aqaid-ahl-al-sunna missing from STORIES');
-    if (info.chapters !== 4) throw new Error('chapters=' + info.chapters);
+    if (info.chapters < 4) throw new Error('chapters=' + info.chapters);
     if (info.notes !== 10) throw new Error('new grammar notes present: ' + info.notes + '/10');
     if (info.irab !== info.tokens) throw new Error(`i'rab ${info.irab}/${info.tokens}`);
     if (info.trIrab !== info.tokens) throw new Error(`ar+tr i'rab ${info.trIrab}/${info.tokens}`);
     if (info.khalaJussive !== 'يَخْلُ') throw new Error('خَلَا jussive: ' + info.khalaJussive);
     if (info.istaaddaFakk !== 'اِسْتَعْدَدْتُ') throw new Error('doubled verb fakk al-idgham: ' + info.istaaddaFakk);
+  });
+
+  await check('Aqaid ch5: the sifat parade and the uncreated Qur\'an, from the full matn', async () => {
+    const info = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch5 = st.chapters.find(c => c.n === 5);
+      if (!ch5) return null;
+      const toks = ch5.sentences.flatMap(s => s.tokens);
+      return {
+        sentences: ch5.sentences.length,
+        ismMaful: toks.filter(t => (t.grammar || []).includes('ism-maful')).length,
+        diptote: toks.some(t => t.s.bare === 'مصاحفنا' &&
+                                (t.grammar || []).includes('mamnu-min-sarf')),
+        damirFasl: toks.some(t => (t.grammar || []).includes('damir-fasl')),
+        gloss: !!(st.glossary.quran && st.glossary.kalam && st.glossary.udhun),
+        ashbaha: st.morph.ashbaha && st.morph.ashbaha.mudari[0],
+      };
+    });
+    if (!info) throw new Error('chapter 5 missing from aqaid-ahl-al-sunna');
+    if (info.sentences !== 6) throw new Error('ch5 sentences=' + info.sentences);
+    if (info.ismMaful < 5) throw new Error('ism maful parade thin: ' + info.ismMaful);
+    if (!info.diptote) throw new Error('مصاحفنا must teach mamnu-min-sarf with the idafa kasra');
+    if (!info.damirFasl) throw new Error('the damir fasl in s1 is missing');
+    if (!info.gloss) throw new Error('new glossary entries missing');
+    if (info.ashbaha !== 'يُشْبِهُ') throw new Error('ashbaha paradigm: ' + info.ashbaha);
+  });
+
+  await check('after a jazim the analyzer reads a governed mudari, not Form V', async () => {
+    const r = await page.evaluate(() => {
+      const rows = SentenceAnalyzer.analyze('لم تكتب امرأة');
+      const v = rows[1];
+      return {
+        wazn: v.wazn || null,
+        governed: v.notes.some(n => /governed mudari|âmilin çektiği muzâri/.test(n.en + n.tr)),
+      };
+    });
+    if (r.wazn && /^تَفَ/.test(r.wazn.normalize('NFC')))
+      throw new Error('Form V mizan survived after the jazim: ' + r.wazn);
+    if (!r.governed) throw new Error('the governed-mudari note is missing');
   });
 
   await check("sentence i'rab sheet lists every word and its topics", async () => {

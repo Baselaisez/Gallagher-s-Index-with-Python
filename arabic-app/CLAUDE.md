@@ -730,6 +730,27 @@ feature skew, unlabeled ML questions, raw-interpolation XSS — all fixed
 before commit. Reviews that only confirm are wasted; wire the findings back
 in before shipping.
 
+**The full Nasafi matn is on the shelf now.** The project owner supplied the
+COMPLETE matn of al-'Aqa'id al-Nasafiyya (research/sources/
+aqaid-nasafi-matn-full.txt — its bracketed [أي ...] glosses are the
+supplier's notes, not matn). aqaid-ahl-al-sunna continues from it chapter by
+chapter via tools/authoring/author_aqaid_ch5.py-style ADD scripts (load
+existing package, write the new chapter, merge glossary/morph, bump
+version — idempotent). Sentences are VERBATIM CONTIGUOUS SPANS re-vowelled
+against the received text; stopping early at a list boundary is allowed,
+skipping words inside a span is not. Next in the matn after ch5: takwin,
+ru'yat Allah, khalq al-af'al, qada/qadar, sam'iyyat (qabr, mizan, hawd —
+ch1 already has the hawd hadith), iman, the prophets, the four caliphs.
+
+**After a governor of verbs, the mazi parse is impossible.** The Analyzer's
+jazm/nasb expectations carry verb:true; when the governed word is ta/ya-
+initial the İzhar contract outranks WaznEngine's pattern guess: a Form V/VI
+mizan is retired (detected on the SKELETON — NFC reorders fatha before
+shadda, so a literal تَفَعَّ regex never matches; test stripAr prefix +
+shadda instead) and the word is labeled a governed mudari whose ta is the
+person prefix. The corpus gets one more try on the stem behind the prefix.
+The smoke check pins لم تكتب.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height
