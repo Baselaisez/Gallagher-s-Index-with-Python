@@ -351,6 +351,12 @@
   .coach .co-bar span { display: block; height: 100%; border-radius: 3px; background: var(--accent); }
   .coach .co-n { flex: 0 0 2.6rem; text-align: end; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
   .coach .co-spark { flex: 0 0 48px; opacity: .8; }
+  .hoca { border: 1px solid var(--line); border-radius: .7rem; padding: .5rem .7rem; margin: .5rem 0;
+    font-family: var(--ui-font); font-size: .82rem; }
+  .hoca-line { padding: .12rem 0; }
+  .hoca-line b { font-family: var(--ar-font); font-size: 1.05rem; }
+  .hoca-q { color: var(--accent); font-weight: 600; }
+  .ml-vote { color: var(--ink-soft); font-size: .74rem; }
   /* woven cover band on the shelf */
   .lib-card .cover { height: 46px; border-radius: .55rem; margin-bottom: .5rem;
     background-size: 72px 72px; background-position: center;
@@ -1134,6 +1140,8 @@ const L = {
         jumlaIntro:"Paste ANY Arabic sentence — even one no story carries. The closed classes (jarr letters, inna's sisters, the jawazim…) are identified with certainty; word kinds are read off the morphology (article, tanwin, verb prefixes); the Root Finder and the Mizan dig what they can. Everything inferred wears a guess mark — the analyzer reads signals, it does not claim i'rab.",
         jumlaPh:"e.g. لم يكتب الطالب في الدفتر",
         jumlaGuess:"guess",
+        roughLbl:"Rough gloss:",
+        mlLbl:"\u{1F9E0} model:",
         jumlaHonest:"Certainty lives only in the closed classes. For a word-by-word i'rab written by hand, read the stories — every token there is analyzed and reviewed.",
         ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three-letter root and it recites the full paradigm — Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
@@ -1238,6 +1246,8 @@ const L = {
         jumlaIntro:"HERHANGİ bir Arapça cümle yapıştırın — hiçbir hikâyede olmasa bile. Kapalı sınıflar (cer harfleri, inne'nin kardeşleri, cevâzım…) kesin olarak tanınır; kelime türleri morfolojiden okunur (harf-i tarif, tenvin, muzâri önekleri); Kök Bulucu ile Mîzan kazabildiğini kazar. Çıkarım olan her şey tahmin işareti taşır — çözücü işaretleri okur, i'râb iddia etmez.",
         jumlaPh:"örn. لم يكتب الطالب في الدفتر",
         jumlaGuess:"tahmin",
+        roughLbl:"Kaba çeviri:",
+        mlLbl:"\u{1F9E0} model:",
         jumlaHonest:"Kesinlik yalnız kapalı sınıflardadır. Elle yazılmış kelime kelime i'râb için hikâyeleri okuyun — oradaki her kelime tahlilli ve gözden geçirilmiştir.",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı ve mezîd bablar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
@@ -3818,6 +3828,104 @@ class IsmEngine {
   }
 }
 
+// ---------- the I'rab Model: MACHINE-LEARNED from the corpus ----------
+// Every token in every story carries a hand-written i'rab, and RoleEngine
+// reads each one into a functional role — which makes the corpus a labeled
+// training set thousands of examples strong. This model trains on it AT
+// RUNTIME: naive Bayes with Laplace smoothing over cheap surface features
+// (article, tanwin, ta marbuta, attached pronoun, position, what came
+// before). No weights ship in the file; every content release retrains the
+// model on the enlarged corpus automatically. Predictions are labeled as
+// statistics, never as i'rab — the hand-written analyses stay the truth.
+class IrabModel {
+  static _model = null;
+  static ROLES = ["fail", "maful", "mubtada", "khabar", "mudaf", "hal", "tabi", "jarr"];
+  // features are computed from the FULL surface + neighbors
+  static features(full, i, n, prev){
+    const w = (full || "").normalize("NFC");
+    const bare = stripAr(w).replace(/[^ء-ي]/g, "");
+    const f = [];
+    if (/^ال/.test(bare) || /^[وفب]ال/.test(bare)) f.push("al");
+    if (/[ًٌٍ]/.test(w)) f.push("tanwin");
+    if (/ة$/.test(bare)) f.push("ta");
+    if (/(ه|ها|هم|هما|كم|نا|ك)$/.test(bare) && bare.length > 4) f.push("pron");
+    if (i === 0) f.push("first");
+    if (i === n - 1) f.push("last");
+    if (i <= 1) f.push("early"); else if (i >= n - 2) f.push("late"); else f.push("mid");
+    if (prev === "verb") f.push("after-verb");
+    if (prev === "jarr") f.push("after-jarr");
+    if (prev === "noun") f.push("after-noun");
+    if (/^[وف]/.test(bare)) f.push("waw-start");
+    return f;
+  }
+  static train(){
+    if (this._model) return this._model;
+    const m = { roleN: {}, feat: {}, total: 0 };
+    this.ROLES.forEach(r => { m.roleN[r] = 0; m.feat[r] = {}; });
+    STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+      let prev = null;
+      const n = sen.tokens.length;
+      sen.tokens.forEach((t, i) => {
+        const role = RoleEngine.of(t);
+        const isVerb = t.pos === "verb";
+        if (role) {
+          const fs = this.features(t.s.full, i, n, prev);
+          m.roleN[role]++; m.total++;
+          fs.forEach(f => { m.feat[role][f] = (m.feat[role][f] || 0) + 1; });
+        }
+        // non-sticky, mirroring the predict call site exactly: a particle
+        // that is not a jarr letter RESETS prev — training and inference
+        // must share one feature definition or the counts lie.
+        prev = isVerb ? "verb"
+             : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
+             : t.pos === "noun" ? "noun" : null;
+      });
+    })));
+    this._model = m;
+    return m;
+  }
+  // P(role | features) by naive Bayes; returns roles sorted by probability
+  static predict(full, i, n, prev){
+    const m = this.train();
+    if (!m.total) return [];
+    const fs = this.features(full, i, n, prev);
+    const scores = this.ROLES.map(r => {
+      let lp = Math.log((m.roleN[r] + 1) / (m.total + this.ROLES.length));
+      fs.forEach(f => {
+        lp += Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2));
+      });
+      return { r, lp };
+    });
+    const mx = Math.max(...scores.map(s => s.lp));
+    let z = 0;
+    scores.forEach(s => { s.p = Math.exp(s.lp - mx); z += s.p; });
+    scores.forEach(s => { s.p /= z; });
+    return scores.sort((a, b) => b.p - a.p);
+  }
+  static trainingSize(){ return this.train().total; }
+}
+
+// realize a FORM's masdar on a root — the rough-gloss line leans on this
+// when a verb is unknown: the user's rule, "just the masdar for now".
+const MASDAR_SHAPE = {
+  II:  (f, a, l) => "تَ" + f + "ْ" + a + "ِي" + l,
+  III: (f, a, l) => "مُ" + f + "َا" + a + "َ" + l + "َة",
+  IV:  (f, a, l) => "إِ" + f + "ْ" + a + "َا" + l,
+  V:   (f, a, l) => "تَ" + f + "َ" + a + "ُّ" + l,
+  VI:  (f, a, l) => "تَ" + f + "َا" + a + "ُ" + l,
+  VII: (f, a, l) => "اِنْ" + f + "ِ" + a + "َا" + l,
+  VIII:(f, a, l) => "اِ" + f + "ْتِ" + a + "َا" + l,
+  X:   (f, a, l) => "اِسْتِ" + f + "ْ" + a + "َا" + l,
+};
+const WAZN_FORM = { "أَفْعَلَ": "IV", "فَعَّلَ": "II", "فَاعَلَ": "III", "تَفَعَّلَ": "V",
+  "تَفَاعَلَ": "VI", "اِنْفَعَلَ": "VII", "اِفْتَعَلَ": "VIII", "اِسْتَفْعَلَ": "X" };
+function realizeMasdar(rootSpaced, waznHead){
+  const form = WAZN_FORM[(waznHead || "").normalize("NFC").split(" ")[0]];
+  const rs = (rootSpaced || "").split(/\s+/).filter(x => /^[ء-ي]$/.test(x));
+  if (!form || rs.length !== 3 || !MASDAR_SHAPE[form]) return null;
+  return MASDAR_SHAPE[form](rs[0], rs[1], rs[2]);
+}
+
 // ---------- the Harake Auditor: vowelling proofread by pure rule ----------
 // No dictionary, no corpus — only what the orthography itself forbids.
 // A first letter cannot carry sukun or shadda (the shadda after ال lives on
@@ -4040,6 +4148,16 @@ class SentenceAnalyzer {
       // when every other layer is happy.
       HarakeAuditor.audit(w).forEach(a =>
         row.notes.push({ en: "⚠ " + a.en, tr: "⚠ " + a.tr }));
+      // the corpus-trained model votes on open-class words — statistics,
+      // clearly labeled, never claimed as i'rab.
+      if (row.kind && row.kind.startsWith("noun")) {
+        const prevKind = out.length ? (out[out.length - 1].kind === "verb" || out[out.length - 1].kind === "verb?" ? "verb"
+          : (out[out.length - 1].kind === "particle" && out[out.length - 1].notes.some(x => /jarr letter|cer harfi/.test(x.en + x.tr))) ? "jarr"
+          : out[out.length - 1].kind === "noun" ? "noun" : null) : null;
+        const pred = IrabModel.predict(w, out.length, words.length, prevKind).slice(0, 2)
+          .filter(p => p.p >= 0.2);
+        if (pred.length) row.ml = pred.map(p => ({ r: p.r, pct: Math.round(p.p * 100) }));
+      }
       out.push(row);
     });
     // -- idafa pass: a bare noun (no article, no tanwin) followed by a
@@ -4234,6 +4352,67 @@ const SENT_TYPE_LBL = {
              en: "opens with a verb — verbal: expect the fa'il after it",
              tr: "fiille açılıyor — fiil cümlesi: ardından fâil beklenir" },
 };
+// the hoca's question chain: after each word, the question the NEXT word
+// answers — كِيمْ؟ نَه؟ نَاصِل؟ — exactly how the dershane walks a sentence.
+const ROLE_Q = {
+  fail:    { en: "who?",           tr: "kim?" },
+  maful:   { en: "what / whom?",   tr: "neyi / kimi?" },
+  mubtada: { en: "who/what is it about?", tr: "kimden/neden söz ediliyor?" },
+  khabar:  { en: "what about them?", tr: "onun nesi / ne imiş?" },
+  mudaf:   { en: "whose / of what?", tr: "kimin / neyin?" },
+  hal:     { en: "in what state?",  tr: "ne hâlde / nasıl?" },
+  jarr:    { en: "…?",              tr: "…?" },
+};
+const JARR_Q = {
+  "ل": { en: "to whom / for what?", tr: "kime / ne için?" },
+  "في": { en: "in what / where?", tr: "nede / nerede?" },
+  "الى": { en: "to where?", tr: "nereye?" }, "إلى": { en: "to where?", tr: "nereye?" },
+  "من": { en: "from what / than what?", tr: "neden / neyden?" },
+  "على": { en: "upon what?", tr: "neyin üzerine?" },
+  "عن": { en: "from / about what?", tr: "neyden / ne hakkında?" },
+  "ب": { en: "with what?", tr: "neyle?" },
+};
+function hocaChain(rows, lang){
+  const lines = [];
+  rows.forEach((r, i) => {
+    let gloss = "";
+    if (r.gloss) gloss = T(r.gloss);
+    else if (r.kind && r.kind.startsWith("verb") && r.root) {
+      const mas = r.wazn ? realizeMasdar(r.root, r.wazn) : null;
+      gloss = mas ? (lang === "tr" ? `masdarı: ${mas}` : `its masdar: ${mas}`)
+                  : (lang === "tr" ? "fiil (masdarı semâî)" : "a verb (masdar is sema'i)");
+    } else if (r.kind === "particle") gloss = r.notes.length ? r.notes[r.notes.length - 1][lang] : "";
+    // which question does the NEXT word answer?
+    let q = null, qMl = false;
+    const nxt = rows[i + 1];
+    if (nxt) {
+      if (r.kind && r.kind.startsWith("verb")) q = ROLE_Q.fail;
+      else if (r.kind === "particle" && r.seg && JARR_Q[r.seg[r.seg.length - 1]]) q = JARR_Q[r.seg[r.seg.length - 1]];
+      // the model's guess wears the model's badge — a statistical question
+      // must never dress as a rule-derived one.
+      else if (nxt.ml && nxt.ml.length && ROLE_Q[nxt.ml[0].r] && nxt.ml[0].pct >= 40) { q = ROLE_Q[nxt.ml[0].r]; qMl = true; }
+    }
+    lines.push(`<div class="hoca-line"><b lang="ar">${escapeAttr(r.w)}</b> — ${gloss || "·"}${
+      q ? ` <span class="hoca-q">${qMl ? "🧠 " : ""}${q[lang]}${qMl ? (lang === "tr" ? " (tahmin)" : " (model guess)") : ""}</span>` : ""}</div>`);
+  });
+  return lines.join("");
+}
+// the rough gloss — the user's «İmre'e kitabet etmedi bir mektub» line:
+// known words speak their gloss, unknown verbs their realized masdar,
+// everything else stays Arabic. Explicitly ROUGH; a bridge, not a claim.
+function roughGloss(rows, lang){
+  const bits = rows.map(r => {
+    if (r.gloss) return T(r.gloss).split(/[,;·]/)[0].trim();
+    if (r.kind && r.kind.startsWith("verb") && r.root && r.wazn) {
+      const mas = realizeMasdar(r.root, r.wazn);
+      if (mas) return mas + (lang === "tr" ? " etmek·" : " (to do)·");
+    }
+    if (r.kind === "particle") return null;
+    return r.seg ? r.seg[0] : r.w;
+  }).filter(Boolean);
+  return bits.length > 1 ? bits.join(" — ") : null;
+}
+
 function renderJumlaOut(){
   const out = document.getElementById("jumlaOut");
   if (!out) return;
@@ -4243,15 +4422,21 @@ function renderJumlaOut(){
   let h = "";
   const st = sentenceType(rows);
   if (st) h += `<p class="conj-known"><span lang="ar">${SENT_TYPE_LBL[st].ar}</span> — ${SENT_TYPE_LBL[st][lang]}</p>`;
+  const rough = roughGloss(rows, lang);
+  if (rough) h += `<p class="bab-line">${ui().roughLbl} ${rough}</p>`;
+  h += `<div class="hoca">${hocaChain(rows, lang)}</div>`;
   h += `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
   rows.forEach(r => {
-    h += `<tr><td lang="ar">${r.w}${r.seg && r.seg.length > 1
-      ? `<br><span class="av-ex" lang="ar" dir="rtl">${r.seg.join(" + ")}</span>` : ""}</td><td>
+    h += `<tr><td lang="ar">${escapeAttr(r.w)}${r.seg && r.seg.length > 1
+      ? `<br><span class="av-ex" lang="ar" dir="rtl">${escapeAttr(r.seg.join(" + "))}</span>` : ""}</td><td>
       ${r.sure ? "" : `<span class="chip">${ui().jumlaGuess}</span> `}${
       r.lemma ? `<b lang="ar">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}<br>` : ""}${
       r.root ? `<span lang="ar">${ui().jadhrRoot} ${r.root}</span> ` : ""}${
       r.wazn ? `<span lang="ar">· ${r.wazn}</span><br>` : (r.root ? "<br>" : "")}${
-      r.notes.map(n => n[lang]).join(" · ")}</td></tr>`;
+      r.notes.map(n => n[lang]).join(" · ")}${
+      r.ml ? `<br><span class="ml-vote">${ui().mlLbl} ${r.ml.map(m =>
+        `${(state.uiLang === "tr" ? {fail:"fâil",maful:"mef'ûl",mubtada:"mübteda",khabar:"haber",mudaf:"muzâf",hal:"hâl",tabi:"tâbi",jarr:"mecrur"}
+          : {fail:"fa'il",maful:"maf'ul",mubtada:"mubtada",khabar:"khabar",mudaf:"mudaf",hal:"hal",tabi:"tabi",jarr:"majrur"})[m.r]} %${m.pct}`).join(" · ")}</span>` : ""}</td></tr>`;
   });
   h += `</tbody></table></div><p class="sarf-note">${ui().jumlaHonest}</p>`;
   out.innerHTML = h;

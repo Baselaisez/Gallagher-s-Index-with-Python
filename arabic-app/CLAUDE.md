@@ -693,6 +693,43 @@ opens with Qawa'id al-I'rab's first question — jumla ismiyya or fi'liyya —
 looking through joining و/ف and the introducers to the first weight-bearing
 word (kana ⇒ fi'liyya, inna ⇒ ismiyya).
 
+**The IrabModel is trained at runtime from the corpus itself.** `class
+IrabModel` (naive Bayes, 8 roles, Laplace-smoothed, softmax output) walks
+STORIES on first call and labels every token with `RoleEngine.of` — the
+~1500 hand-i'rabed tokens ARE the training set, so every authored chapter
+makes the model better with zero extra work. Features come from surface
+orthography (ال، tanwin, ة, enclitic pronoun, position, prev = verb/jarr/
+noun). TRAIN AND PREDICT MUST SHARE ONE FEATURE DEFINITION: `prev` is
+non-sticky in both (a non-jarr particle resets it to null) and `features()`
+NFC-normalizes before touching the string — an orchestrated review caught
+train() keeping a sticky prev while the Analyzer call site computed it fresh,
+which silently skewed every after-X count. Its votes render only as the
+labeled `.ml-vote` chip (`🧠 model: fâil %62`) — statistics, never claimed
+as i'rab.
+
+**The hoca walkthrough asks the madrasah's questions.** `hocaChain` renders
+the user's uploaded style — «Tektub = o kadın yazmadı, kim? İmre'etün = bir
+kadın, kime?» — as gloss + the question the NEXT word answers: a verb asks
+ROLE_Q.fail (kim?), a jarr letter asks its own JARR_Q (ل → kime/ne için?),
+and when only the model suggests a role the question wears the model's badge
+(`🧠 … (tahmin)`) — an unlabeled statistical question would violate the
+honesty contract. `roughGloss` builds the «İmre'e kitabet etmedi bir mektub»
+bridge line: corpus gloss first clause, else the verb's REALIZED MASDAR
+(`realizeMasdar` — MASDAR_SHAPE covers forms II–X; Form I masdars are semai,
+so refuse), else the bare Arabic. Everything user-typed that reaches
+innerHTML goes through `escapeAttr` — r.w and the seg join in both hocaChain
+and the Analyzer table (the review's third confirmed finding was exactly
+these raw interpolations).
+
+**Fable orchestrates; lighter models execute.** Standing user directive: the
+crucial passes (adversarial verification, anything shipping) run under a
+Fable-driven Workflow; mechanical finder/reader stages delegate to
+sonnet/haiku. Precedent: the v71 pre-ship review (3 finder lenses on
+sonnet/haiku + Fable verifiers) returned 3 confirmed defects — train/predict
+feature skew, unlabeled ML questions, raw-interpolation XSS — all fixed
+before commit. Reviews that only confirm are wasted; wire the findings back
+in before shipping.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

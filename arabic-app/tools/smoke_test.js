@@ -3039,6 +3039,46 @@ if (!CHROME) {
     await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); });
   });
 
+  await check('the IrabModel trains on the corpus and votes sensibly', async () => {
+    const r = await page.evaluate(() => {
+      const size = IrabModel.trainingSize();
+      // a definite noun right after a verb — the corpus should have taught
+      // the model that this smells like the fa'il
+      const afterVerb = IrabModel.predict('الطَّالِبُ', 1, 4, 'verb');
+      const afterJarr = IrabModel.predict('الْبَيْتِ', 2, 4, 'jarr');
+      return { size,
+               topAfterVerb: afterVerb[0] && afterVerb[0].r,
+               inTop2Vf: afterVerb.slice(0, 2).map(x => x.r),
+               topAfterJarr: afterJarr.slice(0, 2).map(x => x.r),
+               probsSum: Math.round(afterVerb.reduce((s, x) => s + x.p, 0) * 100) };
+    });
+    if (r.size < 800) throw new Error('training set suspiciously small: ' + r.size);
+    if (!r.inTop2Vf.includes('fail')) throw new Error('after a verb, fail must be a top-2 vote: ' + r.inTop2Vf);
+    if (!r.topAfterJarr.some(x => x === 'jarr' || x === 'mudaf'))
+      throw new Error('after a jarr letter, majrur/mudaf should lead: ' + r.topAfterJarr);
+    if (Math.abs(r.probsSum - 100) > 1) throw new Error('probabilities must sum to 1, got ' + r.probsSum + '%');
+  });
+
+  await check('the hoca walkthrough asks the questions on the user\'s own sentence', async () => {
+    await page.evaluate(() => { conjState.lab = 'jumla'; conjState.jumla = 'لم تكتب امرأة لزوجها مكتوبة'; });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#jumlaOut', { timeout: 3000 });
+    await page.waitForTimeout(300);
+    const r = await page.evaluate(() => {
+      const t = document.getElementById('jumlaOut').textContent;
+      const html = document.getElementById('jumlaOut').innerHTML;
+      conjState.lab = 'sarf'; conjState.jumla = 'لم يكتبِ الطالبُ في الدفترِ'; closeSheet();
+      return { hasHoca: html.includes('hoca-line'),
+               asksWho: /who\?|kim\?/.test(t),
+               jazm: /jazm|cezm|câzim/i.test(t),
+               ml: html.includes('ml-vote') };
+    });
+    if (!r.hasHoca) throw new Error('the walkthrough panel is missing');
+    if (!r.asksWho) throw new Error('after the verb the chain must ask who?');
+    if (!r.jazm) throw new Error('lam must be named a jazm governor');
+    if (!r.ml) throw new Error('the model votes are missing from the rows');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
