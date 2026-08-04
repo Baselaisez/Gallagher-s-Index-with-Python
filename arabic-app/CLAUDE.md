@@ -797,6 +797,46 @@ nth-child spine colors from the role palette; Atölye tabs carry ::before
 emblems (the smoke [data-lab] selectors still match); :focus-visible gets
 the accent ring globally.
 
+**A game round survives a detour.** `runQuiz` keeps the whole round in G and
+repaints through one `draw()`; `QUIZ_RESUME = {redraw}` lets a grammar note
+or an i'rab sheet offer «back to the game» (`quizReturnHtml()` +
+`bindQuizReturn()` — call BOTH in any sheet a game can reach). Options are
+drawn once per question (`G.optsFor`), so a resume never reshuffles them and
+never re-scores: the Elo update fires only on the first answer. Closing the
+sheet or reopening the hub clears the resume.
+
+**A wrong answer must teach, not just mark.** `runQuiz` always prints the
+correct option; a game may add `whyNot(it, picked)` to refute the specific
+pick. The refutations are DERIVED, never canned: `caseSignOf` reads the
+actual ending sign off the word (damma/fatha/kasra/sukun + the waw/ya/alif
+of the plurals and duals) and says which cases it can carry; `roleWhyNot`
+names the picked role's own interrogative and the true one's (ROLE_KEYS
+carry a `q` field); the sarf drill names WHICH cell of the same paradigm the
+learner picked; the Hamza game refutes each of إِنَّ/أَنَّ/أَنْ on its own
+grounds.
+
+**The quadriliteral babs are the other seventeen doors.** `rubaiDerive`
+(RUBAI_BABS R1-R4) conjugates any four-letter root by rule alone —
+فَعْلَلَ يُفَعْلِلُ (the only bare verb whose mudari' prefix takes DAMMA),
+تَفَعْلَلَ, افْعَنْلَلَ, and افْعَلَلَّ, whose last radical contracts before a
+vowel and BREAKS before a consonant (اِقْشَعَرَّ / اِقْشَعْرَرْتُ — the sukun
+falls on the third radical). RUBAI_MULHAQ names the six attached shapes
+(حَوْقَلَ، بَيْطَرَ، جَهْوَرَ، عَثْيَرَ، جَلْبَبَ، سَلْقَى). A fourth letter in the
+Sarf Lab hands the controls over: the triliteral forms hide, the four
+quadriliteral babs appear, and `conjAutoPick` returns early because
+`conjKey` reads `cls.rs`, which the ruba'i shape has not got. Every derived
+form is proofread by HarakeAuditor in the smoke suite — that is how the
+broken-stem sukun was caught.
+
+**`hidden` loses to a later `display` rule.** The bab row had been failing
+to hide under a mazid form for as long as it existed; `[hidden] { display:
+none !important }` fixes it globally. Attribute-hiding needs the guard rule.
+
+**research/COVERAGE.md is the shelf audit.** Every file in research/sources/
+judged FULL/PARTIAL/UNTOUCHED against what the app consumes, with a
+prioritized backlog. Regenerate with the `sources-coverage-audit` workflow
+after each content wave. Current tally: 9 FULL, 19 PARTIAL, 6 UNTOUCHED.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

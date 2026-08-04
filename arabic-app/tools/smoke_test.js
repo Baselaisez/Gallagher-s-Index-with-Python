@@ -970,6 +970,176 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check('a game detour into the grammar comes home to the same question', async () => {
+    await page.locator('.lib-card').first().click();
+    await page.locator('#gamesOpen').click();
+    await page.locator('.game-pick #gHamza').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    const qBefore = await page.locator('.tabs .on').textContent();
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    const scoreBefore = await page.locator('.game-meta').textContent();
+    // detour: open the rule note from the extras
+    await page.locator('#qX0').click();
+    await page.waitForSelector('#quizReturn', { timeout: 3000 });
+    await page.locator('#quizReturn').click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    const qAfter = await page.locator('.tabs .on').textContent();
+    const scoreAfter = await page.locator('.game-meta').textContent();
+    if (qAfter !== qBefore) throw new Error(`resumed on a different question: ${qBefore} -> ${qAfter}`);
+    if (scoreAfter !== scoreBefore) throw new Error('resume must not change the score');
+    // the answered options stay revealed — no double answering
+    if (!(await page.locator('.opts [data-o][disabled]').count())) throw new Error('resume lost the answered state');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('a wrong pick is taught: the correct answer and why yours fails', async () => {
+    await page.locator('.lib-card').first().click();
+    await page.locator('#gamesOpen').click();
+    await page.locator('.game-pick #gHamza').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    // the sakin أَنْ option is ALWAYS wrong in this game — click it
+    const texts = await page.locator('.opts [data-o]').allTextContents();
+    const anIdx = texts.findIndex(t => t.replace(/[ً-ٰ]/g, '') === 'أن' && /ْ/.test(t.normalize('NFC')));
+    await page.locator('.opts [data-o]').nth(anIdx >= 0 ? anIdx : 0).click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    if (anIdx >= 0) {
+      if (!(await page.locator('.game-correct').count())) throw new Error('correct answer line missing after a wrong pick');
+      if (!(await page.locator('.game-wrongwhy').count())) throw new Error('the why-yours-fails line is missing');
+      const ww = await page.locator('.game-wrongwhy').textContent();
+      if (!/masdar|müşeddede|mudari|muzâri/i.test(ww)) throw new Error('wrong-pick refutation looks empty: ' + ww);
+    }
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('the qiyasi derivations: tafdil, zaman/makan and the semai instrument', async () => {
+    const r = await page.evaluate(() => {
+      const nfc = s => (s || '').normalize('NFC');
+      return {
+        kabir: nfc(IsmEngine.tafdil(['ك','ب','ر']).out),
+        shadd: nfc(IsmEngine.tafdil(['ش','د','د']).out),
+        ala: nfc(IsmEngine.tafdil(['ع','ل','و']).out),
+        jls: nfc(IsmEngine.zamanMakan(['ج','ل','س'], true).out),
+        ktb: nfc(IsmEngine.zamanMakan(['ك','ت','ب'], false).out),
+        qwm: nfc(IsmEngine.zamanMakan(['ق','و','م'], null).out),
+        wad: nfc(IsmEngine.zamanMakan(['و','ع','د'], null).out),
+        rmy: nfc(IsmEngine.zamanMakan(['ر','م','ي'], null).out),
+        miftah: nfc((IsmEngine.alat(['ف','ت','ح']) || {}).out),
+        unknownAlat: IsmEngine.alat(['ك','ب','ر']),
+      };
+    });
+    const N = s => s.normalize('NFC');
+    if (r.kabir !== N('أَكْبَرُ')) throw new Error('tafdil kabir: ' + r.kabir);
+    if (r.shadd !== N('أَشَدُّ')) throw new Error('tafdil geminate: ' + r.shadd);
+    if (r.ala !== N('أَعْلَى')) throw new Error('tafdil naqis: ' + r.ala);
+    if (r.jls !== N('مَجْلِس')) throw new Error('zaman/makan kasra bab: ' + r.jls);
+    if (r.ktb !== N('مَكْتَب')) throw new Error('zaman/makan fatha bab: ' + r.ktb);
+    if (r.qwm !== N('مَقَام')) throw new Error('zaman/makan hollow: ' + r.qwm);
+    if (r.wad !== N('مَوْعِد')) throw new Error('zaman/makan mithal: ' + r.wad);
+    if (r.rmy !== N('مَرْمًى')) throw new Error('zaman/makan naqis: ' + r.rmy);
+    if (r.miftah !== N('مِفْتَاح')) throw new Error('alat table: ' + r.miftah);
+    if (r.unknownAlat !== null) throw new Error('alat must REFUSE unknown roots');
+    // and the lab shows them for a typed root, bab read from the corpus
+    await page.locator('.lib-card').first().click();
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="ism"]').click();
+    await page.fill('#ismIn', 'جلس');
+    await page.waitForTimeout(300);
+    const out = await page.locator('#ismOut').textContent();
+    if (!out.includes('مَجْلِس'.normalize('NFC')) && !out.normalize('NFC').includes('مَجْلِس'.normalize('NFC')))
+      throw new Error('the lab must derive مَجْلِس from the corpus bab of جلس');
+    await page.evaluate(() => { conjState.ism = 'مدينة'; conjState.lab = 'sarf'; closeSheet(); });
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('the refutation reads the ending sign off the word itself', async () => {
+    const r = await page.evaluate(() => {
+      const of = w => { const s = caseSignOf(w); return s ? s.en + ':' + s.cases.join('/') : null; };
+      return {
+        damma: of('الْكِتَابُ'), tanwinDamm: of('كِتَابٌ'),
+        fatha: of('الْكِتَابَ'), kasra: of('الْكِتَابِ'),
+        sukun: of('يَكْتُبْ'),
+        waw: of('الْمُسْلِمُونَ'), ya: of('الْمُسْلِمِينَ'), alif: of('الْمُسْلِمَانِ'),
+        none: caseSignOf('كتاب'),
+      };
+    });
+    if (r.damma !== 'damma:marfu' || r.tanwinDamm !== 'damma:marfu') throw new Error('damma: ' + r.damma + ' / ' + r.tanwinDamm);
+    if (r.fatha !== 'fatha:mansub') throw new Error('fatha: ' + r.fatha);
+    if (r.kasra !== 'kasra:majrur') throw new Error('kasra: ' + r.kasra);
+    if (r.sukun !== 'sukun:majzum') throw new Error('sukun: ' + r.sukun);
+    if (r.waw !== 'the waw:marfu') throw new Error('sound plural raf sign: ' + r.waw);
+    if (r.ya !== 'the ya:mansub/majrur') throw new Error('sound plural nasb/jarr sign: ' + r.ya);
+    if (r.alif !== 'the alif:marfu') throw new Error('dual raf sign: ' + r.alif);
+    if (r.none !== null) throw new Error('an unvowelled word has no sign to read: ' + r.none);
+    // and the role drills refute by naming BOTH question tests
+    const rw = await page.evaluate(() => {
+      const it = roleItems().find(i => i.key === 'fail');
+      if (!it) return null;
+      return roleWhyNot(it, { k: 'maful', html: '' });
+    });
+    if (!rw || !/kim|who/i.test(rw)) throw new Error('role refutation must name the true test: ' + rw);
+    if (!/düştü|fall upon/i.test(rw)) throw new Error("role refutation must name the PICK's test too: " + rw);
+  });
+
+  await check('the quadriliteral babs: the other seventeen doors, by rule alone', async () => {
+    const r = await page.evaluate(() => {
+      const N = s => (s || '').normalize('NFC');
+      const d = (root, bab) => rubaiDerive(root.split(''), bab);
+      const R1 = d('دحرج', 'R1'), R2 = d('دحرج', 'R2');
+      const R3 = d('حرجم', 'R3'), R4 = d('قشعر', 'R4');
+      // every form the four babs can produce, proofread by the auditor
+      const all = ['R1', 'R2', 'R3', 'R4'].flatMap(b => ['دحرج', 'قشعر'].flatMap(rt => {
+        const x = d(rt, b);
+        return [...x.mazi, ...x.mudari, ...x.amr, x.masdar, x.fail, x.maful];
+      }));
+      return {
+        r1: [N(R1.mazi[0]), N(R1.mudari[0]), N(R1.amr[0]), N(R1.masdar), N(R1.fail), N(R1.maful)].join(' '),
+        r2: [N(R2.mazi[0]), N(R2.mudari[0]), N(R2.masdar)].join(' '),
+        r3: [N(R3.mazi[0]), N(R3.mudari[0]), N(R3.masdar)].join(' '),
+        r4: [N(R4.mazi[0]), N(R4.mazi[12]), N(R4.mudari[0]), N(R4.amr[0]), N(R4.masdar)].join(' '),
+        mulhaq: d('حوقل', 'R1').mulhaq,
+        triFails: rubaiDerive(['ك', 'ت', 'ب'], 'R1').ok,
+        flagged: all.filter(w => HarakeAuditor.audit(w).length),
+        note: !!GRAMMAR['rubai-babs'] && !!GRAMMAR['rubai-babs'].title.tr,
+      };
+    });
+    const N = s => s.normalize('NFC');
+    if (r.r1 !== N('دَحْرَجَ يُدَحْرِجُ دَحْرِجْ دَحْرَجَة مُدَحْرِج مُدَحْرَج'))
+      throw new Error('bare quadriliteral: ' + r.r1);
+    if (r.r2 !== N('تَدَحْرَجَ يَتَدَحْرَجُ تَدَحْرُج')) throw new Error('tafalala: ' + r.r2);
+    if (r.r3 !== N('اِحْرَنْجَمَ يَحْرَنْجِمُ اِحْرِنْجَام')) throw new Error('ifanlala: ' + r.r3);
+    if (r.r4 !== N('اِقْشَعَرَّ اِقْشَعْرَرْتُ يَقْشَعِرُّ اِقْشَعِرَّ اِقْشِعْرَار'))
+      throw new Error('ifalalla (idgham + fakk): ' + r.r4);
+    if (!/فَوْعَلَ/.test(r.mulhaq || '')) throw new Error('حوقل must be named a mulhaq: ' + r.mulhaq);
+    if (r.triFails !== false) throw new Error('a three-letter root must be REFUSED by the quadriliteral engine');
+    if (r.flagged.length) throw new Error('the auditor flags derived forms: ' + r.flagged.join(', '));
+    if (!r.note) throw new Error('the rubai-babs note is missing or untranslated');
+    // and the lab hands the controls over when a fourth letter is typed
+    await page.locator('.lib-card').first().click();
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.sheet .tabs button[data-lab="sarf"]', { timeout: 3000 });
+    await page.locator('.sheet .tabs button[data-lab="sarf"]').click();
+    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.fill('#conjRoot', 'دحرج');
+    await page.waitForTimeout(200);
+    if (await page.locator('#conjRubaiSeg').isHidden()) throw new Error('the quadriliteral babs stayed hidden');
+    if (!(await page.locator('#conjFormSeg').isHidden())) throw new Error('the triliteral forms should step aside');
+    const out = (await page.locator('#conjOut').textContent()).normalize('NFC');
+    if (!out.includes(N('يُدَحْرِجُ'))) throw new Error('the lab did not conjugate the quadriliteral');
+    await page.fill('#conjRoot', 'نصر');
+    await page.waitForTimeout(200);
+    if (!(await page.locator('#conjRubaiSeg').isHidden())) throw new Error('three letters must restore the triliteral controls');
+    await page.evaluate(() => { conjState.root = 'نصر'; closeSheet(); });
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
