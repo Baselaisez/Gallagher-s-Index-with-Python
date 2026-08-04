@@ -837,6 +837,41 @@ judged FULL/PARTIAL/UNTOUCHED against what the app consumes, with a
 prioritized backlog. Regenerate with the `sources-coverage-audit` workflow
 after each content wave. Current tally: 9 FULL, 19 PARTIAL, 6 UNTOUCHED.
 
+**مَا wears twelve faces, and the engine names the SIGNAL.** `class MaEngine`
+(WAJH table + `read(words, i, fulls, isVerb)`) applies Qawa'id al-I'rab's
+bab on مَا as pure surface rules: kaffa when it rides a fused governor
+(إِنَّمَا، رُبَّمَا، قَلَّمَا), zarfiyya before the دَامَ family (match the ROOT —
+دُمْتُ wears no dal-alif-mim), taajjub on أَفْعَلَ + a mansub noun, masdariyya
+/mawsula after a jarr letter, shartiyya on two verbs, hijaziyya when a noun
+follows and a later word is MANSUB — that accusative is the khabar this ma
+governs. (The Hijazi signal is the mansub khabar, NOT a ba: the ba of
+بَشَرًا is a radical. An early draft got this wrong.) Every reading prints
+with the neighbour that proposed it and the runners-up follow when the
+signal is weak — the app never says «it is X», it says «X, because Y».
+The fused spellings (مِمَّا، بِمَا، إِنَّمَا…) are registered in
+SentenceAnalyzer.PARTICLES so the branch is reached at all.
+
+**A bare mazi wears no prefix — pass the corpus in as an ORACLE.** MaEngine
+takes an optional `isVerb(k)`; the Analyzer supplies one backed by
+RootFinder.fromCorpus, so كَتَبَ is known to be a verb and مَا before it
+reads nafiya rather than hijaziyya. Standalone callers get the prefix test
+and the engine degrades honestly. Vowelling sharpens every reading: the
+taajjub and hijaziyya signals live in the tanwin, so unvowelled input
+legitimately returns a weaker shortlist.
+
+**Every reading in a table must be REACHABLE.** The ma review found three
+entries no signal could ever propose — dead data pretending to be coverage —
+and two spellings that reached no branch at all because they were absent
+from PARTICLES. The smoke suite now walks a sentence per wajh and fails if
+any defined reading is unreachable. Apply the same test to any future table:
+if `say(k)` is never called with a key, either give it a signal or delete it.
+
+**A duplicate key in PARTICLES silently deletes doctrine.** «لما» was
+registered twice — the later `{k:"ma"}` shadowed `{k:"jazm"}`, killing the
+jazim reading AND the v72 after-jazim mizan correction downstream. There is
+now a regression check; when adding to PARTICLES, grep for the key first.
+لَمَّا is told from لِمَا by its SHADDA, which is right there in the surface.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

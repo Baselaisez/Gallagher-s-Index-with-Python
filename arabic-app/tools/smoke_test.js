@@ -1140,6 +1140,75 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
+  await check("the twelve faces of ma, each named with the signal that proposed it", async () => {
+    const r = await page.evaluate(() => {
+      const first = t => {
+        const rows = SentenceAnalyzer.analyze(t);
+        const row = rows.find(x => /^(ما|مما|بما|انما|إنما)$/.test(stripAr(x.w)));
+        if (!row) return { k: '<no ma row>', n: 0 };
+        const wj = row.notes.map(n => n.en).filter(n => /مَا ا?ل/.test(n));
+        const tr = row.notes.map(n => n.tr).filter(n => /مَا ا?ل/.test(n));
+        return { k: wj[0] || '<none>', n: wj.length, tr: tr[0] || '' };
+      };
+      return {
+        wonder:  first('مَا أَحْسَنَ زَيْدًا'),
+        zarf:    first('مَا دُمْتُ حَيًّا'),
+        hijazi:  first('مَا هٰذَا بَشَرًا'),
+        nafiya:  first('مَا كَتَبَ الْوَلَدُ شَيْئًا'),
+        istifham:first('مَا هٰذَا'),
+        masdar:  first('عَجِبْتُ مِمَّا صَنَعْتَ'),
+        shart:   first('مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللهُ'),
+        kaffa:   first('إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ'),
+        note: !!GRAMMAR['anwa-ma'] && !!GRAMMAR['anwa-ma'].title.tr,
+        wajhCount: Object.keys(MaEngine.WAJH).length,
+      };
+    });
+    const want = {
+      wonder: 'wonder', zarf: 'as long as', hijazi: 'laysa', nafiya: 'negating ma',
+      istifham: 'interrogative', masdar: 'masdar-making', shart: 'conditional', kaffa: 'restraining',
+    };
+    for (const [k, needle] of Object.entries(want))
+      if (!r[k].k.includes(needle))
+        throw new Error(`${k}: expected «${needle}», got ${r[k].k}`);
+    // every reading must carry its SIGNAL, not a bare verdict — and Turkish too
+    if (!/:/.test(r.hijazi.k)) throw new Error('a reading must state the signal that proposed it');
+    if (!r.hijazi.tr || /\b(follows|the khabar|governs|negating|noun)\b/i.test(r.hijazi.tr))
+      throw new Error('the Turkish reading is missing or leaks English: ' + r.hijazi.tr);
+    // a weak signal offers runners-up rather than one verdict
+    if (r.masdar.n < 2) throw new Error('after a jarr letter both masdariyya and mawsula should stand');
+    if (r.wajhCount < 12) throw new Error('the wajh table is short: ' + r.wajhCount);
+    // EVERY defined reading must be reachable — a table entry no signal can
+    // propose is dead data pretending to be coverage.
+    const reach = await page.evaluate(() => {
+      const seen = new Set();
+      ['كَانَ مَا كَانَ', 'أَنَّمَا يُوحَى إِلَيَّ', 'عَمَّ يَتَسَاءَلُونَ', 'نِعِمَّا يَعِظُكُمْ بِهِ',
+       'فَبِمَا رَحْمَةٍ مِنَ اللهِ لِنْتَ لَهُمْ', 'رُبَّمَا رَجُلٍ كَرِيمٍ', 'مَا هٰذَا بَشَرًا',
+       'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ', 'مَا أَحْسَنَ زَيْدًا', 'مَا دُمْتُ حَيًّا',
+       'مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللهُ', 'عَجِبْتُ مِمَّا صَنَعْتَ', 'مَا هٰذَا'].forEach(t => {
+        SentenceAnalyzer.analyze(t).forEach(row => row.notes.forEach(n =>
+          Object.entries(MaEngine.WAJH).forEach(([k, v]) => { if (n.en.includes(v.ar)) seen.add(k); })));
+      });
+      return { seen: [...seen], missing: Object.keys(MaEngine.WAJH).filter(k => !seen.has(k)) };
+    });
+    if (reach.missing.length)
+      throw new Error('readings defined but unreachable: ' + reach.missing.join(', '));
+    // كَانَ is a sister of kana, never a kaffa host — the regression guard
+    const kana = await page.evaluate(() => {
+      const rows = SentenceAnalyzer.analyze('كَانَ مَا كَانَ');
+      const row = rows.find(x => stripAr(x.w) === 'ما');
+      return row && row.wajh ? row.wajh.ar : '<none>';
+    });
+    if (/الْكَافَّة/.test(kana)) throw new Error('كان must not propose the kaffa reading: ' + kana);
+    // لَمَّا keeps its jazm identity: the shadda is the whole difference
+    const lamma = await page.evaluate(() => {
+      const rows = SentenceAnalyzer.analyze('لَمَّا يَذُوقُوا عَذَابِ');
+      return { wajh: !!rows[0].wajh, jazm: rows[0].notes.some(n => /jazm|câzim/.test(n.en + n.tr)) };
+    });
+    if (lamma.wajh) throw new Error('لَمَّا with shadda is the jazim, not fused la + ma');
+    if (!lamma.jazm) throw new Error('لَمَّا lost its jazm reading');
+    if (!r.note) throw new Error('the anwa-ma note is missing or untranslated');
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
