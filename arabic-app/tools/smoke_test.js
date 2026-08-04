@@ -1209,6 +1209,95 @@ if (!CHROME) {
     if (!r.note) throw new Error('the anwa-ma note is missing or untranslated');
   });
 
+  await check("the verbs of defect and colour refuse i'lal", async () => {
+    const r = await page.evaluate(() => {
+      const N = x => (x || '').normalize('NFC');
+      const conj = (root, bab) => {
+        const cls = nakilClass({ root: root.split('').join(' ') });
+        const d = sarfDerive(cls, 'I', bab);
+        return d.ok ? { m: N(d.mazi[0]), u: N(d.mudari[0]), f: N(d.fail),
+                        s: N(d.masdar || ''), note: d.note || '',
+                        flagged: [...d.mazi, ...d.mudari, ...d.amr].filter(w => HarakeAuditor.audit(w).length) }
+                    : { err: d.reason };
+      };
+      const steps = (() => {
+        const cls = nakilClass({ root: 'ع و ر' });
+        const d = sarfDerive(cls, 'I', 4);
+        const st = ilalSteps(cls, 4, d.mazi[0], d.mudari[0]);
+        return st && st.length === 1 ? st[0].tr : '<none>';
+      })();
+      return { awira: conj('عور', 4), hawila: conj('حول', 4),
+               qala: conj('قول', 1), khafa: conj('خوف', 4), steps };
+    });
+    const N = x => x.normalize('NFC');
+    if (r.awira.m !== N('عَوِرَ') || r.awira.u !== N('يَعْوَرُ'))
+      throw new Error("عور must NOT undergo i'lal: " + r.awira.m + ' / ' + r.awira.u);
+    if (r.awira.f !== N('أَعْوَر')) throw new Error('its ism fa\'il rides أَفْعَل: ' + r.awira.f);
+    if (r.awira.s !== N('عَوَر')) throw new Error('its masdar is sound فَعَل: ' + r.awira.s);
+    if (!r.awira.note) throw new Error('the exception must state its reason');
+    if (r.awira.flagged.length) throw new Error('the auditor flags it: ' + r.awira.flagged.join(', '));
+    if (r.hawila.m !== N('حَوِلَ')) throw new Error('حول: ' + r.hawila.m);
+    // and the ordinary hollow verbs are untouched
+    if (r.qala.m !== N('قَالَ') || r.qala.u !== N('يَقُولُ')) throw new Error('قال regressed: ' + r.qala.m);
+    if (r.khafa.m !== N('خَافَ')) throw new Error('خاف regressed: ' + r.khafa.m);
+    if (!/i'lâl işlemez|uyûb/.test(r.steps)) throw new Error("the walkthrough must say WHY no i'lal runs: " + r.steps);
+  });
+
+  await check('Aqaid ch7 and the sixth drill chapter join the shelf', async () => {
+    const r = await page.evaluate(() => {
+      const aq = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch7 = aq.chapters.find(c => c.n === 7);
+      const dr = STORIES.find(s => s.id === 'jumal-al-tadrib');
+      const drToks = dr.chapters.flatMap(c => c.sentences).flatMap(s => s.tokens);
+      const ch7Toks = ch7 ? ch7.sentences.flatMap(s => s.tokens) : [];
+      return {
+        ch7: ch7 ? ch7.sentences.length : 0,
+        ch7Passive: ch7Toks.filter(t => (t.grammar || []).includes('naib-al-fail')).length,
+        ch7Tawkid: ch7Toks.some(t => (t.grammar || []).includes('tawkid')),
+        drChapters: dr.chapters.length,
+        drSentences: dr.chapters.flatMap(c => c.sentences).length,
+        tamyiz: drToks.filter(t => (t.grammar || []).includes('tamyiz')).length,
+        mufarragh: drToks.some(t => (t.grammar || []).includes('istithna-mufarragh')),
+        trIrab: drToks.filter(t => t.irab && t.irab.ar && t.irab.tr).length === drToks.length,
+        trainSize: IrabModel.trainingSize(),
+      };
+    });
+    if (r.ch7 !== 5) throw new Error('aqaid ch7 sentences: ' + r.ch7);
+    // fidelity guard: a span may stop early, never skip from the middle.
+    // s4 stops at the matn's comma; s5 begins the NEXT matn sentence, so its
+    // waw is isti'nafiyya — the splice that made it look like atf is gone.
+    const fid = await page.evaluate(() => {
+      const ch7 = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna').chapters.find(c => c.n === 7);
+      const s4 = ch7.sentences[3], s5 = ch7.sentences[4];
+      return {
+        s4len: s4.tokens.length,
+        s5first: s5.tokens[0].irab.ar,
+        s5grammar: (s5.tokens[0].grammar || []).join(','),
+      };
+    });
+    if (fid.s4len !== 3) throw new Error('s4 must stop at the comma: ' + fid.s4len + ' tokens');
+    if (!/اسْتِئْنَافِيَّةٌ/.test(fid.s5first))
+      throw new Error("s5's waw follows a full stop — it is isti'nafiyya: " + fid.s5first);
+    if (/atf-nasaq/.test(fid.s5grammar))
+      throw new Error('s5 waw must not claim atf across a sentence boundary');
+    // and the source divergence is recorded where the project records them.
+    // The attribution text never ships to the browser — only reviewStatus does —
+    // so this one is read off disk, where the scholar will read it.
+    const man = JSON.parse(fs.readFileSync(
+      path.join(__dirname, '..', 'content/samples/aqaid-ahl-al-sunna/manifest.json'), 'utf8'));
+    const attrib = (man.attribution.en || '') + (man.attribution.tr || '');
+    if (!/7:s2/.test(attrib))
+      throw new Error('the 7:s2 source divergence is undocumented in the attribution');
+    if (r.ch7Passive < 3) throw new Error('ch7 should drill the passive deputy: ' + r.ch7Passive);
+    if (!r.ch7Tawkid) throw new Error('كُلِّهَا must teach ma\'nawi tawkid');
+    if (r.drChapters < 6 || r.drSentences < 48)
+      throw new Error(`drills: ${r.drChapters} chapters, ${r.drSentences} sentences`);
+    if (r.tamyiz < 2) throw new Error('the tamyiz drills are missing: ' + r.tamyiz);
+    if (!r.mufarragh) throw new Error('the emptied-exception drill is missing');
+    if (!r.trIrab) throw new Error("every drill token needs ar+tr i'rab");
+    if (r.trainSize < 1100) throw new Error('the model should train on 1100+ tokens now: ' + r.trainSize);
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();

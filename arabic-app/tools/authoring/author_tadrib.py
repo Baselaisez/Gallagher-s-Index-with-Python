@@ -906,12 +906,183 @@ S5.append({"id": "s8", "translation": {
    "An interrogative nominal clause and a vocative — both i'rabless.",
    "İstifham bildiren isim cümlesi ve nidâ — mahalsizdirler.")]})
 
+S6 = []
+
+# ============ Chapter 6 — the two families, temyiz and istisna ============
+S6.append({"id": "s1", "translation": {
+ "en": "The lesson was easy.", "tr": "Ders kolaydı."},
+ "tokens": [
+  tok("كَانَ","kana","verb",["kana-wa-akhawatuha","hollow-verbs"],
+      "فِعْلٌ مَاضٍ نَاقِصٌ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "A defective past verb: raf' on its ism, nasb on its khabar.",
+      "Nâkıs mâzî fiil: ismini ref, haberini nasbeder."),
+  tok("الدَّرْسُ","dars","noun",["kana-wa-akhawatuha"],
+      "اسْمُ «كَانَ» مَرْفُوعٌ.",
+      "The ism of كَانَ, in raf'.",
+      "«كَانَ»nin merfû ismidir."),
+  tok("سَهْلًا","sahl","noun",["kana-wa-akhawatuha"],
+      "خَبَرُ «كَانَ» مَنْصُوبٌ.",
+      "The khabar of كَانَ, in nasb.",
+      "«كَانَ»nin mensub haberidir.", punct="."),
+ ],
+ "jumal": [J("كَانَ الدَّرْسُ سَهْلًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ نَاسِخَةٌ — لَا مَحَلَّ لَهَا.",
+   "A clause governed by kana — i'rabless.",
+   "Kâne ile mensuh cümle — mahalsizdir.")]})
+
+S6.append({"id": "s2", "translation": {
+ "en": "Truly the lesson is easy.", "tr": "Şüphesiz ders kolaydır."},
+ "tokens": [
+  tok("إِنَّ","inna","part",["inna-wa-akhawatuha","inna-am-anna"],
+      "حَرْفُ تَوْكِيدٍ وَنَصْبٍ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ — عَكْسُ «كَانَ».",
+      "A particle of emphasis: nasb on its ism, raf' on its khabar — the mirror of كَانَ.",
+      "Te'kid ve nasb harfi: ismini nasb, haberini ref eder — «كَانَ»nin tam tersi."),
+  tok("الدَّرْسَ","dars","noun",["inna-wa-akhawatuha"],
+      "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "The ism of إِنَّ, in nasb.",
+      "«إِنَّ»nin mensub ismidir."),
+  tok("سَهْلٌ","sahl","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "The khabar of إِنَّ, in raf'.",
+      "«إِنَّ»nin merfû haberidir.", punct="."),
+ ],
+ "jumal": [J("إِنَّ الدَّرْسَ سَهْلٌ",
+   "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ — لَا مَحَلَّ لَهَا.",
+   "An emphasized nominal clause — i'rabless.",
+   "Te'kidli isim cümlesi — mahalsizdir.")]})
+
+S6.append({"id": "s3", "translation": {
+ "en": "The student became diligent.", "tr": "Öğrenci çalışkan oldu."},
+ "tokens": [
+  tok("صَارَ","sara","verb",["kana-wa-akhawatuha","hollow-verbs"],
+      "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ «كَانَ» لِلتَّحَوُّلِ.",
+      "A defective past verb of the kana family, marking a change of state.",
+      "Kâne'nin kardeşlerinden nâkıs fiil; hâl değişimi bildirir."),
+  tok("الطَّالِبُ","talib","noun",["kana-wa-akhawatuha"],
+      "اسْمُ «صَارَ» مَرْفُوعٌ.",
+      "The ism of صَارَ, in raf'.",
+      "«صَارَ»nin merfû ismidir."),
+  tok("مُجْتَهِدًا","mujtahid","noun",["kana-wa-akhawatuha","ism-fail","form-viii-verbs"],
+      "خَبَرُ «صَارَ» مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنَ «اجْتَهَدَ».",
+      "The khabar of صَارَ in nasb — the ism fa'il of اجْتَهَدَ.",
+      "«صَارَ»nin mensub haberi — «اجْتَهَدَ» fiilinin ism-i fâili.", punct="."),
+ ],
+ "jumal": [J("صَارَ الطَّالِبُ مُجْتَهِدًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ نَاسِخَةٌ — لَا مَحَلَّ لَهَا.",
+   "A clause governed by sara — i'rabless.",
+   "Sâre ile mensuh cümle — mahalsizdir.")]})
+
+S6.append({"id": "s4", "translation": {
+ "en": "I bought twenty books.", "tr": "Yirmi kitap satın aldım."},
+ "tokens": [
+  tok("اشْتَرَيْتُ","ishtara","verb",["form-viii-verbs","naqis-verbs"],
+      "فِعْلٌ مَاضٍ نَاقِصٌ الْبِنَاءِ، وَالتَّاءُ فَاعِلٌ — «اشْتَرَى» مِنَ الِافْتِعَالِ.",
+      "A past verb with a weak last radical; the ta is its fa'il — اشْتَرَى, Form VIII.",
+      "Nâkıs binâlı mâzî fiil; tâ zamiri fâildir — «اشْتَرَى», iftiâldendir.",
+      segments=[seg("اشْتَرَيْ","ishtara","verb"), seg("تُ","pron-1s","pron")]),
+  tok("عِشْرِينَ","ishrin","noun",["tamyiz","jam-mudhakkar-salim"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ — مِنْ أَلْفَاظِ الْعُقُودِ.",
+      "Direct object in nasb, its sign the ya — one of the decade numerals.",
+      "Mensub mef'ûlün bih; nasb alâmeti yâdır — ukud lafızlarındandır."),
+  tok("كِتَابًا","kitab","noun",["tamyiz"],
+      "تَمْيِيزٌ مَنْصُوبٌ — يُفَسِّرُ الْعَدَدَ الْمُبْهَمَ، وَتَمْيِيزُ الْعُقُودِ مُفْرَدٌ مَنْصُوبٌ.",
+      "A tamyiz in nasb — it clears up the vague number; the decades take a SINGULAR mansub tamyiz.",
+      "Mensub temyiz — kapalı sayıyı açıklar; ukudun temyizi müfred ve mensubdur.", punct="."),
+ ],
+ "jumal": [J("اشْتَرَيْتُ عِشْرِينَ كِتَابًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S6.append({"id": "s5", "translation": {
+ "en": "The students came except Zayd.", "tr": "Zeyd hâriç öğrenciler geldi."},
+ "tokens": [
+  MADI("jaa", "جَاءَ", extra_g=["hollow-verbs"]),
+  tok("الطُّلَّابُ","tullab","noun",["fail"],
+      "فَاعِلٌ مَرْفُوعٌ.",
+      "The fa'il, in raf'.",
+      "Merfû fâildir."),
+  tok("إِلَّا","illa","part",["istithna"],
+      "أَدَاةُ اسْتِثْنَاءٍ.",
+      "The particle of exception.",
+      "İstisnâ edatıdır."),
+  tok("زَيْدًا","zayd","noun",["istithna"],
+      "مُسْتَثْنًى مَنْصُوبٌ — الْكَلَامُ تَامٌّ مُوجَبٌ فَوَجَبَ النَّصْبُ.",
+      "The excepted noun in nasb — the sentence is complete and affirmative, so nasb is obligatory.",
+      "Mensub müstesnâ — kelâm tâm ve mûcebdir, bu yüzden nasb vâcibdir.", punct="."),
+ ],
+ "jumal": [J("جَاءَ الطُّلَّابُ إِلَّا زَيْدًا",
+   "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening verbal clause — i'rabless.",
+   "İbtidâiyye fiil cümlesi — mahalsizdir.")]})
+
+S6.append({"id": "s6", "translation": {
+ "en": "No one came except Zayd.", "tr": "Zeyd'den başkası gelmedi."},
+ "tokens": [
+  tok("مَا","ma-nafiya","part",[],
+      "«مَا» نَافِيَةٌ.",
+      "The negating ma.",
+      "Nefiy mâsıdır."),
+  MADI("jaa", "جَاءَ", extra_g=["hollow-verbs"]),
+  tok("إِلَّا","illa","part",["istithna-mufarragh"],
+      "أَدَاةُ حَصْرٍ — الْكَلَامُ نَاقِصٌ مَنْفِيٌّ، فَالِاسْتِثْنَاءُ مُفَرَّغٌ.",
+      "A particle of restriction — the sentence is incomplete and negated, so the exception is «emptied».",
+      "Hasr edatı — kelâm nâkıs ve menfîdir; istisnâ müferrağdır."),
+  tok("زَيْدٌ","zayd","noun",["istithna-mufarragh","fail"],
+      "فَاعِلٌ مَرْفُوعٌ — فِي الِاسْتِثْنَاءِ الْمُفَرَّغِ يُعْرَبُ الِاسْمُ بِحَسَبِ مَوْقِعِهِ، لَا مُسْتَثْنًى.",
+      "The fa'il in raf' — in an «emptied» exception the noun takes the case its POSITION demands, not the nasb of an excepted noun.",
+      "Merfû fâil — müferrağ istisnâda isim, müstesnâ olarak değil, cümledeki yerine göre i'râb alır.", punct="."),
+ ],
+ "jumal": [J("مَا جَاءَ إِلَّا زَيْدٌ",
+   "جُمْلَةٌ فِعْلِيَّةٌ مَنْفِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "A negated verbal clause — i'rabless.",
+   "Menfî fiil cümlesi — mahalsizdir.")]})
+
+S6.append({"id": "s7", "translation": {
+ "en": "The teacher is more knowing than the student.", "tr": "Muallim öğrenciden daha bilgilidir."},
+ "tokens": [
+  MUBT("muallim", "الْمُعَلِّمُ"),
+  tok("أَعْلَمُ","alam-tafdil","noun",["ism-tafdil","mubtada-khabar","mamnu-min-sarf"],
+      "خَبَرٌ مَرْفُوعٌ — اسْمُ تَفْضِيلٍ عَلَى «أَفْعَلُ»، مَمْنُوعٌ مِنَ الصَّرْفِ لِلْوَصْفِيَّةِ وَوَزْنِ الْفِعْلِ.",
+      "Khabar in raf' — an ism tafdil on أَفْعَلُ, a diptote for being a description on a verbal pattern.",
+      "Merfû haber — «أَفْعَلُ» vezninde ism-i tafdîl; vasıflık ve fiil vezni sebebiyle gayr-i munsariftir."),
+  PREP("min", "مِنَ"),
+  MAJR("talib", "الطَّالِبِ", punct="."),
+ ],
+ "jumal": [J("الْمُعَلِّمُ أَعْلَمُ مِنَ الطَّالِبِ",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
+S6.append({"id": "s8", "translation": {
+ "en": "Zayd is the best of the students in understanding.", "tr": "Zeyd, anlayışça öğrencilerin en iyisidir."},
+ "tokens": [
+  MUBT("zayd", "زَيْدٌ"),
+  tok("أَفْضَلُ","afdal","noun",["ism-tafdil","mubtada-khabar","idafa-definiteness"],
+      "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — اسْمُ تَفْضِيلٍ أُضِيفَ فَلَزِمَ الْإِفْرَادَ.",
+      "Khabar in raf', itself a mudaf — an ism tafdil in idafa, which keeps it singular.",
+      "Merfû haber ve muzâf — izâfetle gelen ism-i tafdîl müfred kalır."),
+  tok("الطُّلَّابِ","tullab","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "Mudaf ilayh in jarr.",
+      "Mecrûr muzâfun ileyhtir."),
+  tok("فَهْمًا","fahm","noun",["tamyiz"],
+      "تَمْيِيزٌ مَنْصُوبٌ — يُبَيِّنُ جِهَةَ التَّفْضِيلِ: أَفْضَلُ مِنْ أَيِّ وَجْهٍ؟",
+      "A tamyiz in nasb — it names the respect in which he excels: better in WHAT?",
+      "Mensub temyiz — üstünlüğün hangi cihetten olduğunu bildirir: neyce üstün?", punct="."),
+ ],
+ "jumal": [J("زَيْدٌ أَفْضَلُ الطُّلَّابِ فَهْمًا",
+   "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An opening nominal clause — i'rabless.",
+   "İbtidâiyye isim cümlesi — mahalsizdir.")]})
+
 TITLES = [
  {"ar": "الْجُمْلَةُ الْفِعْلِيَّةُ", "en": "The Verbal Sentence", "tr": "Fiil Cümlesi"},
  {"ar": "الْجُمْلَةُ الِاسْمِيَّةُ", "en": "The Nominal Sentence", "tr": "İsim Cümlesi"},
  {"ar": "إِنَّ أَمْ أَنَّ؟", "en": "Inna or Anna?", "tr": "İnne mi Enne mi?"},
  {"ar": "الْمَفَاعِيلُ وَالنَّائِبُ", "en": "The Objects Family and the Deputy", "tr": "Mef'ûller ve Nâibü'l-Fâil"},
  {"ar": "الشَّرْطُ وَالِاسْتِفْهَامُ", "en": "Condition and Question", "tr": "Şart ve İstifham"},
+ {"ar": "الْعَامِلَانِ وَالتَّمْيِيزُ وَالِاسْتِثْنَاءُ", "en": "The Two Families, Tamyiz and Istithna", "tr": "İki Aile, Temyiz ve İstisnâ"},
 ]
 
 # ---- glossary -------------------------------------------------------------
@@ -1002,6 +1173,14 @@ GLOSS = {
  "jidar": g("جِدَار", "noun", "wall", "duvar", 2, "ج د ر"),
  "makan": g("مَكَان", "noun", "place", "yer; mekân", 1, "ك و ن"),
  "ayna": g("أَيْنَ", "pron", "where?", "nerede?", 1),
+ "kana": g("كَانَ", "verb", "to be, was", "olmak; idi", 1, "ك و ن"),
+ "sara": g("صَارَ", "verb", "to become", "olmak; hâline gelmek", 2, "ص ي ر"),
+ "ishtara": g("اشْتَرَى", "verb", "to buy", "satın almak", 2, "ش ر ي"),
+ "ishrin": g("عِشْرِين", "noun", "twenty", "yirmi", 2, "ع ش ر"),
+ "illa": g("إِلَّا", "part", "except; only (after a negation)", "hâriç; ancak (nefiyden sonra)", 2),
+ "alam-tafdil": g("أَعْلَم", "noun", "more/most knowing (ism tafdil)", "daha bilgili; en bilgili (ism-i tafdîl)", 3, "ع ل م"),
+ "afdal": g("أَفْضَل", "noun", "better, best (ism tafdil)", "daha iyi; en iyi (ism-i tafdîl)", 3, "ف ض ل"),
+ "fahm": g("فَهْم", "noun", "understanding", "anlayış; fehim", 2, "ف ه م"),
 }
 
 # ---- manifest -------------------------------------------------------------
@@ -1014,7 +1193,7 @@ MANIFEST = {
               "tr": "Hoca usulü, cümle cümle i'râb okuma"},
  "level": 2,
  "levelName": "Elementary",
- "version": "1.1.0",
+ "version": "1.2.0",
  "published": "2026-08-03",
  "access": "free",
  "chapters": [{"n": i + 1, "title": t} for i, t in enumerate(TITLES)],
@@ -1047,6 +1226,8 @@ def copy_verbs():
                      ("nasara", "wasiyyat-abi-hanifa-samti"),
                      ("talaba", "min-muqaddimat-al-maqsud"),
                      ("wajada", "kitab-al-kaffarat"),
+                     ("kana", "aqaid-ahl-al-sunna"), ("sara", "bad-al-amali"),
+                     ("ishtara", "kitab-al-buyu"),
                      ("jaa", "yunus-wa-al-hut")):
         verbs = json.loads((ROOT / "content/samples" / src / "morphology.json")
                            .read_text(encoding="utf-8"))["verbs"]
@@ -1070,10 +1251,10 @@ MORPH["verbs"]["darasa"] = _sg.sound1(
 MORPH["verbs"]["najaha"] = _sg.sound1(
     "fataha", "نَجَح", "نْجَح", "اِنْجَح", "نَجَاح", "نَاجِح")
 
-ALL = S1 + S2 + S3 + S4 + S5
+ALL = S1 + S2 + S3 + S4 + S5 + S6
 
 (PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
-for i, S in enumerate((S1, S2, S3, S4, S5), 1):
+for i, S in enumerate((S1, S2, S3, S4, S5, S6), 1):
     (PKG / f"chapters/{i}.json").write_text(
         json.dumps({"chapter": i, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")

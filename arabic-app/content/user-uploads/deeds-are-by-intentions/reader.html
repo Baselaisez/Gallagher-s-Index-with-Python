@@ -3434,6 +3434,30 @@ function rubaiDerive(letters, bab){
   return { ok: false, reason: "bab" };
 }
 
+// ---------- where i'lal must NOT run --------------------------------------
+// The engines apply qalb and hadhf wherever the shape invites them, and for
+// most roots that is right. But the books name a class where it is WRONG:
+// أَفْعَالُ الْعُيُوبِ وَالْأَلْوَانِ — a hollow verb of bab سَمِعَ meaning a defect
+// or a colour keeps its weak letter SOUND (عَوِرَ يَعْوَرُ, never عَارَ يَعَارُ),
+// because its ism fa'il rides أَفْعَل (أَعْوَر) rather than فَاعِل, and the
+// masdar فَعَل is sound. WHICH roots carry that meaning is lexical — nothing
+// derives it — so the table holds only the roots; the conjugation that
+// follows is pure rule. This is the project's line exactly: automate the
+// derivable, store only what cannot be derived.
+const SOUND_HOLLOW = {
+  "عور": { ar: "الْعَوَر", en: "one-eyedness", tr: "tek gözlülük" },
+  "حول": { ar: "الْحَوَل", en: "a squint", tr: "şaşılık" },
+  "صيد": { ar: "الصَّيَد", en: "a stiff neck", tr: "boyun tutukluğu" },
+  "غيد": { ar: "الْغَيَد", en: "softness of limb", tr: "endam yumuşaklığı" },
+  "هيف": { ar: "الْهَيَف", en: "slenderness of waist", tr: "ince bellilik" },
+  "حور": { ar: "الْحَوَر", en: "deep blackness of the eye", tr: "gözün siyahlığı" },
+};
+function soundHollowNote(key){
+  const e = SOUND_HOLLOW[key];
+  if (!e) return null;
+  return `أَفْعَالُ الْعُيُوبِ وَالْأَلْوَانِ لَا تُعَلُّ: ${e.ar} مَصْدَرٌ صَحِيحٌ، وَاسْمُ الْفَاعِلِ عَلَى أَفْعَلَ لَا عَلَى فَاعِلٍ.`;
+}
+
 // sarfDerive(cls, form, bab) → {ok, mazi, mudari, amr, mansub…, fail, maful?,
 // masdar?, wazn, note} or {ok:false, reason}. cls comes from nakilClass.
 function sarfDerive(cls, form, bab){
@@ -3459,6 +3483,17 @@ function sarfDerive(cls, form, bab){
         note: "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ." };
     }
     if (t === "ajwaf") {
+      // the defect-and-colour class refuses i'lal: conjugate it SOUND.
+      const shKey = cls.rs.join("").replace(/ى/g, "ي");
+      if (bab === 4 && SOUND_HOLLOW[shKey]) {
+        const v = f+"َ"+a+"ِ"+l, core = f+"ْ"+a+"َ"+l, A = "اِ"+core;
+        return { ok: true, wazn: sjN("فَعِلَ يَفْعَلُ — أَجْوَفُ لَا يُعَلُّ"),
+          mazi: sjMazi14(v), mudari: sjMudari14("َ", core), amr: sjAmr(A),
+          ...sjGov("َ", core),
+          fail: sjN("أَ"+f+"ْ"+a+"َ"+l), maful: null,
+          masdar: sjN(f+"َ"+a+"َ"+l),
+          note: soundHollowNote(shKey) };
+      }
       if (bab === 1 && glide !== "و") return no("bab-glide");
       if (bab === 2 && glide !== "ي") return no("bab-glide");
       if (![1, 2, 4].includes(bab)) return no("ajwaf-bab");
@@ -3810,6 +3845,14 @@ function ilalSteps(cls, bab, mazi, mudari){
     tr: "İllet harfi harekeli, öncesi fethalı olunca elife çevrildi.",
   };
   const S = [];
+  const shKey = cls.rs.join("").replace(/ى/g, "ي");
+  if (t === "ajwaf" && bab === 4 && SOUND_HOLLOW[shKey]) {
+    const e = SOUND_HOLLOW[shKey];
+    return [{ asl: sjN(cls.rs[0]+"َ"+cls.rs[1]+"ِ"+cls.rs[2]), now: mazi,
+      ar: soundHollowNote(shKey),
+      en: `No i'lal runs here: this is one of the verbs of defect and colour (${e.en}). Its masdar فَعَل is sound and its ism fa'il rides أَفْعَل, so the weak letter stays where it is.`,
+      tr: `Burada i'lâl işlemez: bu, uyûb ve elvân fiillerindendir (${e.tr}). Masdarı فَعَل sahihtir, ism-i fâili أَفْعَل vezninde gelir; bu yüzden illet harfi yerinde kalır.` }];
+  }
   if (t === "ajwaf") {
     S.push({ asl: sjN(f + "َ" + a + V.v1 + l + "َ"), now: mazi, ...qalb });
     S.push({ asl: sjN("يَ" + f + "ْ" + a + V.v2 + l + "ُ"), now: mudari,

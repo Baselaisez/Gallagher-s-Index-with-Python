@@ -872,6 +872,36 @@ jazim reading AND the v72 after-jazim mizan correction downstream. There is
 now a regression check; when adding to PARTICLES, grep for the key first.
 لَمَّا is told from لِمَا by its SHADDA, which is right there in the surface.
 
+**Some roots refuse i'lal, and the engine must know which.** SOUND_HOLLOW
+holds أَفْعَالُ الْعُيُوبِ وَالْأَلْوَانِ — a hollow verb of bab سَمِعَ meaning a
+defect or a colour keeps its weak letter SOUND (عَوِرَ يَعْوَرُ, never عَارَ),
+because its masdar فَعَل is sound and its ism fa'il rides أَفْعَل not فَاعِل.
+The engine had been over-applying qalb and producing wrong forms. WHICH
+roots carry that meaning is lexical and cannot be derived, so the table
+holds ONLY the roots; everything after that is rule. This is the project's
+line in one place: automate the derivable, store only what cannot be. The
+i'lal walkthrough returns a single step that says why NO step runs.
+
+**Aqaid runs to ch7** (khalq al-af'al, the servants' chosen acts, and
+al-istita'a ma'a al-fi'l — with three passive deputies and كُلِّهَا as
+ma'nawi tawkid). **The drill garden is six chapters / 48 sentences**: the
+newest contrasts كَانَ against إِنَّ on the SAME sentence (the mirror the
+books teach), the tamyiz of the decades (singular mansub), istithna tamm
+against mufarragh — where the noun takes the case its POSITION demands —
+and ism tafdil both as a diptote and in idafa. The model trains on 1100+
+labeled tokens.
+
+**A span may STOP EARLY; it may never skip from the middle.** The ch7 review
+caught me splicing two non-contiguous matn fragments with a comma — and the
+i'rab lied to cover it, calling a waw عاطفة that in the matn follows a full
+stop. The fix is always the same: split into two sentences, and let the
+second one's waw be استئنافية. There is now a smoke guard on exactly that
+sentence pair. And when the received wording beats the supplied
+transcription (7:s2 قَضَائِهِ against the file's قضيته), the received text
+wins AND the divergence goes into the manifest attribution — every story
+does this, and the smoke suite reads it OFF DISK, because the attribution
+text never ships to the browser (only reviewStatus does).
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height

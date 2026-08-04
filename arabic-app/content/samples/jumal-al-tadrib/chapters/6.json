@@ -1,0 +1,648 @@
+{
+ "chapter": 6,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "The lesson was easy.",
+    "tr": "Ders kolaydı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "A defective past verb: raf' on its ism, nasb on its khabar.",
+      "tr": "Nâkıs mâzî fiil: ismini ref, haberini nasbeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسُ",
+      "smart": "الدَّرْسُ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «كَانَ» مَرْفُوعٌ.",
+      "en": "The ism of كَانَ, in raf'.",
+      "tr": "«كَانَ»nin merfû ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَهْلًا",
+      "smart": "سَهْلًا",
+      "bare": "سهلا"
+     },
+     "lex": "sahl",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «كَانَ» مَنْصُوبٌ.",
+      "en": "The khabar of كَانَ, in nasb.",
+      "tr": "«كَانَ»nin mensub haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "كَانَ الدَّرْسُ سَهْلًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ نَاسِخَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A clause governed by kana — i'rabless.",
+     "tr": "Kâne ile mensuh cümle — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "Truly the lesson is easy.",
+    "tr": "Şüphesiz ders kolaydır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ — عَكْسُ «كَانَ».",
+      "en": "A particle of emphasis: nasb on its ism, raf' on its khabar — the mirror of كَانَ.",
+      "tr": "Te'kid ve nasb harfi: ismini nasb, haberini ref eder — «كَانَ»nin tam tersi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَهْلٌ",
+      "smart": "سَهْلٌ",
+      "bare": "سهل"
+     },
+     "lex": "sahl",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "en": "The khabar of إِنَّ, in raf'.",
+      "tr": "«إِنَّ»nin merfû haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّ الدَّرْسَ سَهْلٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An emphasized nominal clause — i'rabless.",
+     "tr": "Te'kidli isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "The student became diligent.",
+    "tr": "Öğrenci çalışkan oldu."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "صَارَ",
+      "smart": "صَارَ",
+      "bare": "صار"
+     },
+     "lex": "sara",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ «كَانَ» لِلتَّحَوُّلِ.",
+      "en": "A defective past verb of the kana family, marking a change of state.",
+      "tr": "Kâne'nin kardeşlerinden nâkıs fiil; hâl değişimi bildirir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطَّالِبُ",
+      "smart": "الطَّالِبُ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «صَارَ» مَرْفُوعٌ.",
+      "en": "The ism of صَارَ, in raf'.",
+      "tr": "«صَارَ»nin merfû ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُجْتَهِدًا",
+      "smart": "مُجْتَهِدًا",
+      "bare": "مجتهدا"
+     },
+     "lex": "mujtahid",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "ism-fail",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «صَارَ» مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنَ «اجْتَهَدَ».",
+      "en": "The khabar of صَارَ in nasb — the ism fa'il of اجْتَهَدَ.",
+      "tr": "«صَارَ»nin mensub haberi — «اجْتَهَدَ» fiilinin ism-i fâili."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "صَارَ الطَّالِبُ مُجْتَهِدًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ نَاسِخَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A clause governed by sara — i'rabless.",
+     "tr": "Sâre ile mensuh cümle — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "I bought twenty books.",
+    "tr": "Yirmi kitap satın aldım."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "اشْتَرَيْتُ",
+      "smart": "اشْتَرَيْتُ",
+      "bare": "اشتريت"
+     },
+     "lex": "ishtara",
+     "pos": "verb",
+     "grammar": [
+      "form-viii-verbs",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ الْبِنَاءِ، وَالتَّاءُ فَاعِلٌ — «اشْتَرَى» مِنَ الِافْتِعَالِ.",
+      "en": "A past verb with a weak last radical; the ta is its fa'il — اشْتَرَى, Form VIII.",
+      "tr": "Nâkıs binâlı mâzî fiil; tâ zamiri fâildir — «اشْتَرَى», iftiâldendir."
+     },
+     "segments": [
+      {
+       "form": "اشْتَرَيْ",
+       "lex": "ishtara",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عِشْرِينَ",
+      "smart": "عِشْرِينَ",
+      "bare": "عشرين"
+     },
+     "lex": "ishrin",
+     "pos": "noun",
+     "grammar": [
+      "tamyiz",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْيَاءُ — مِنْ أَلْفَاظِ الْعُقُودِ.",
+      "en": "Direct object in nasb, its sign the ya — one of the decade numerals.",
+      "tr": "Mensub mef'ûlün bih; nasb alâmeti yâdır — ukud lafızlarındandır."
+     }
+    },
+    {
+     "surface": {
+      "full": "كِتَابًا",
+      "smart": "كِتَابًا",
+      "bare": "كتابا"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "tamyiz"
+     ],
+     "irab": {
+      "ar": "تَمْيِيزٌ مَنْصُوبٌ — يُفَسِّرُ الْعَدَدَ الْمُبْهَمَ، وَتَمْيِيزُ الْعُقُودِ مُفْرَدٌ مَنْصُوبٌ.",
+      "en": "A tamyiz in nasb — it clears up the vague number; the decades take a SINGULAR mansub tamyiz.",
+      "tr": "Mensub temyiz — kapalı sayıyı açıklar; ukudun temyizi müfred ve mensubdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "اشْتَرَيْتُ عِشْرِينَ كِتَابًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "The students came except Zayd.",
+    "tr": "Zeyd hâriç öğrenciler geldi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "جَاءَ",
+      "smart": "جَاءَ",
+      "bare": "جاء"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطُّلَّابُ",
+      "smart": "الطُّلَّابُ",
+      "bare": "الطلاب"
+     },
+     "lex": "tullab",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâildir."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَّا",
+      "smart": "إِلَّا",
+      "bare": "إلا"
+     },
+     "lex": "illa",
+     "pos": "part",
+     "grammar": [
+      "istithna"
+     ],
+     "irab": {
+      "ar": "أَدَاةُ اسْتِثْنَاءٍ.",
+      "en": "The particle of exception.",
+      "tr": "İstisnâ edatıdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدًا",
+      "smart": "زَيْدًا",
+      "bare": "زيدا"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "istithna"
+     ],
+     "irab": {
+      "ar": "مُسْتَثْنًى مَنْصُوبٌ — الْكَلَامُ تَامٌّ مُوجَبٌ فَوَجَبَ النَّصْبُ.",
+      "en": "The excepted noun in nasb — the sentence is complete and affirmative, so nasb is obligatory.",
+      "tr": "Mensub müstesnâ — kelâm tâm ve mûcebdir, bu yüzden nasb vâcibdir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "جَاءَ الطُّلَّابُ إِلَّا زَيْدًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "No one came except Zayd.",
+    "tr": "Zeyd'den başkası gelmedi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-nafiya",
+     "pos": "part",
+     "irab": {
+      "ar": "«مَا» نَافِيَةٌ.",
+      "en": "The negating ma.",
+      "tr": "Nefiy mâsıdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَاءَ",
+      "smart": "جَاءَ",
+      "bare": "جاء"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَّا",
+      "smart": "إِلَّا",
+      "bare": "إلا"
+     },
+     "lex": "illa",
+     "pos": "part",
+     "grammar": [
+      "istithna-mufarragh"
+     ],
+     "irab": {
+      "ar": "أَدَاةُ حَصْرٍ — الْكَلَامُ نَاقِصٌ مَنْفِيٌّ، فَالِاسْتِثْنَاءُ مُفَرَّغٌ.",
+      "en": "A particle of restriction — the sentence is incomplete and negated, so the exception is «emptied».",
+      "tr": "Hasr edatı — kelâm nâkıs ve menfîdir; istisnâ müferrağdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "istithna-mufarragh",
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — فِي الِاسْتِثْنَاءِ الْمُفَرَّغِ يُعْرَبُ الِاسْمُ بِحَسَبِ مَوْقِعِهِ، لَا مُسْتَثْنًى.",
+      "en": "The fa'il in raf' — in an «emptied» exception the noun takes the case its POSITION demands, not the nasb of an excepted noun.",
+      "tr": "Merfû fâil — müferrağ istisnâda isim, müstesnâ olarak değil, cümledeki yerine göre i'râb alır."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَا جَاءَ إِلَّا زَيْدٌ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَنْفِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A negated verbal clause — i'rabless.",
+     "tr": "Menfî fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "The teacher is more knowing than the student.",
+    "tr": "Muallim öğrenciden daha bilgilidir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "الْمُعَلِّمُ",
+      "smart": "الْمُعَلِّمُ",
+      "bare": "المعلم"
+     },
+     "lex": "muallim",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَعْلَمُ",
+      "smart": "أَعْلَمُ",
+      "bare": "أعلم"
+     },
+     "lex": "alam-tafdil",
+     "pos": "noun",
+     "grammar": [
+      "ism-tafdil",
+      "mubtada-khabar",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — اسْمُ تَفْضِيلٍ عَلَى «أَفْعَلُ»، مَمْنُوعٌ مِنَ الصَّرْفِ لِلْوَصْفِيَّةِ وَوَزْنِ الْفِعْلِ.",
+      "en": "Khabar in raf' — an ism tafdil on أَفْعَلُ, a diptote for being a description on a verbal pattern.",
+      "tr": "Merfû haber — «أَفْعَلُ» vezninde ism-i tafdîl; vasıflık ve fiil vezni sebebiyle gayr-i munsariftir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطَّالِبِ",
+      "smart": "الطَّالِبِ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "الْمُعَلِّمُ أَعْلَمُ مِنَ الطَّالِبِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "Zayd is the best of the students in understanding.",
+    "tr": "Zeyd, anlayışça öğrencilerin en iyisidir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَفْضَلُ",
+      "smart": "أَفْضَلُ",
+      "bare": "أفضل"
+     },
+     "lex": "afdal",
+     "pos": "noun",
+     "grammar": [
+      "ism-tafdil",
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — اسْمُ تَفْضِيلٍ أُضِيفَ فَلَزِمَ الْإِفْرَادَ.",
+      "en": "Khabar in raf', itself a mudaf — an ism tafdil in idafa, which keeps it singular.",
+      "tr": "Merfû haber ve muzâf — izâfetle gelen ism-i tafdîl müfred kalır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطُّلَّابِ",
+      "smart": "الطُّلَّابِ",
+      "bare": "الطلاب"
+     },
+     "lex": "tullab",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrûr muzâfun ileyhtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَهْمًا",
+      "smart": "فَهْمًا",
+      "bare": "فهما"
+     },
+     "lex": "fahm",
+     "pos": "noun",
+     "grammar": [
+      "tamyiz"
+     ],
+     "irab": {
+      "ar": "تَمْيِيزٌ مَنْصُوبٌ — يُبَيِّنُ جِهَةَ التَّفْضِيلِ: أَفْضَلُ مِنْ أَيِّ وَجْهٍ؟",
+      "en": "A tamyiz in nasb — it names the respect in which he excels: better in WHAT?",
+      "tr": "Mensub temyiz — üstünlüğün hangi cihetten olduğunu bildirir: neyce üstün?"
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "زَيْدٌ أَفْضَلُ الطُّلَّابِ فَهْمًا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  }
+ ]
+}

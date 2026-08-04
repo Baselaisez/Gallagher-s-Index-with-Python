@@ -515,17 +515,17 @@
    "lemma": "ـهَا",
    "pos": "pron",
    "gloss": {
-    "en": "her / it (attached, fem.)",
-    "tr": "onu / onun (müennes bitişik zamir)"
+    "en": "her / its (attached)",
+    "tr": "onun (müennes, bitişik)"
    },
    "level": 1
   },
   "pron-3mp": {
-   "lemma": "ـهُمْ",
+   "lemma": "ـونَ",
    "pos": "pron",
    "gloss": {
-    "en": "them / their (attached, masc. pl.)",
-    "tr": "onları / onların (bitişik zamir)"
+    "en": "they (attached)",
+    "tr": "onlar (bitişik)"
    },
    "level": 1
   },
@@ -1195,8 +1195,8 @@
    "lemma": "أَفْعَال",
    "pos": "noun",
    "gloss": {
-    "en": "deeds, acts (plural of فِعْل)",
-    "tr": "fiiller, ameller"
+    "en": "deeds, acts (plural of fi'l)",
+    "tr": "fiiller (fi'lin cem'i)"
    },
    "level": 2,
    "root": "ف ع ل"
@@ -1757,6 +1757,224 @@
     "tr": "görmek"
    },
    "level": 2
+  },
+  "khaliq": {
+   "lemma": "خَالِق",
+   "pos": "noun",
+   "gloss": {
+    "en": "creator (ism fa'il)",
+    "tr": "yaratıcı; hâlik (ism-i fâil)"
+   },
+   "level": 3,
+   "root": "خ ل ق"
+  },
+  "ibad": {
+   "lemma": "عِبَاد",
+   "pos": "noun",
+   "gloss": {
+    "en": "servants (plural of abd)",
+    "tr": "kullar (abdin cem'i)"
+   },
+   "level": 2,
+   "root": "ع ب د"
+  },
+  "abd": {
+   "lemma": "عَبْد",
+   "pos": "noun",
+   "gloss": {
+    "en": "servant, slave",
+    "tr": "kul; abd"
+   },
+   "level": 1,
+   "root": "ع ب د"
+  },
+  "kufr": {
+   "lemma": "كُفْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "unbelief",
+    "tr": "küfür"
+   },
+   "level": 3,
+   "root": "ك ف ر"
+  },
+  "iman": {
+   "lemma": "إِيمَان",
+   "pos": "noun",
+   "gloss": {
+    "en": "faith",
+    "tr": "îman"
+   },
+   "level": 1,
+   "root": "أ م ن"
+  },
+  "taa": {
+   "lemma": "طَاعَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "obedience",
+    "tr": "tâat; itaat"
+   },
+   "level": 2,
+   "root": "ط و ع"
+  },
+  "isyan": {
+   "lemma": "عِصْيَان",
+   "pos": "noun",
+   "gloss": {
+    "en": "disobedience",
+    "tr": "isyan"
+   },
+   "level": 3,
+   "root": "ع ص ي"
+  },
+  "irada": {
+   "lemma": "إِرَادَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "will",
+    "tr": "irâde"
+   },
+   "level": 3,
+   "root": "ر و د"
+  },
+  "mashia": {
+   "lemma": "مَشِيئَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "volition",
+    "tr": "meşîet; dileme"
+   },
+   "level": 4,
+   "root": "ش ي أ"
+  },
+  "hukm": {
+   "lemma": "حُكْم",
+   "pos": "noun",
+   "gloss": {
+    "en": "judgement, ruling",
+    "tr": "hüküm"
+   },
+   "level": 2,
+   "root": "ح ك م"
+  },
+  "qada": {
+   "lemma": "قَضَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "decree",
+    "tr": "kazâ"
+   },
+   "level": 3,
+   "root": "ق ض ي"
+  },
+  "taqdir": {
+   "lemma": "تَقْدِير",
+   "pos": "noun",
+   "gloss": {
+    "en": "measuring-out, predestining (masdar)",
+    "tr": "takdir (masdar)"
+   },
+   "level": 4,
+   "root": "ق د ر"
+  },
+  "ikhtiyari": {
+   "lemma": "اخْتِيَارِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "chosen, voluntary (nisba)",
+    "tr": "ihtiyârî (nisbe)"
+   },
+   "level": 4,
+   "root": "خ ي ر"
+  },
+  "athaba": {
+   "lemma": "أَثَابَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to reward",
+    "tr": "sevap vermek; mükâfatlandırmak"
+   },
+   "level": 4,
+   "root": "ث و ب"
+  },
+  "aqaba": {
+   "lemma": "عَاقَبَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to punish",
+    "tr": "cezalandırmak"
+   },
+   "level": 3,
+   "root": "ع ق ب"
+  },
+  "istitaa": {
+   "lemma": "اسْتِطَاعَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "power, capacity (masdar)",
+    "tr": "istitâat; güç (masdar)"
+   },
+   "level": 4,
+   "root": "ط و ع"
+  },
+  "maa": {
+   "lemma": "مَعَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "with, together with",
+    "tr": "ile; beraber"
+   },
+   "level": 1
+  },
+  "fil": {
+   "lemma": "فِعْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "act, deed; verb",
+    "tr": "fiil"
+   },
+   "level": 1,
+   "root": "ف ع ل"
+  },
+  "kallafa": {
+   "lemma": "كَلَّفَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to charge with, oblige",
+    "tr": "mükellef tutmak"
+   },
+   "level": 3,
+   "root": "ك ل ف"
+  },
+  "wus": {
+   "lemma": "وُسْع",
+   "pos": "noun",
+   "gloss": {
+    "en": "capacity, what one can bear",
+    "tr": "vüs'; güç yetirilen"
+   },
+   "level": 4,
+   "root": "و س ع"
+  },
+  "pron-3fs-munfasil": {
+   "lemma": "هِيَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "she / it (detached)",
+    "tr": "o (müennes, munfasıl)"
+   },
+   "level": 1
+  },
+  "kull": {
+   "lemma": "كُلّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "all, every; the whole of it",
+    "tr": "hep; bütün; tamamı"
+   },
+   "level": 1,
+   "root": "ك ل ل"
   }
  }
 }
