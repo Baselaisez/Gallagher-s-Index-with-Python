@@ -1298,6 +1298,40 @@ if (!CHROME) {
     if (r.trainSize < 1100) throw new Error('the model should train on 1100+ tokens now: ' + r.trainSize);
   });
 
+  await check('Aqaid ch8: the sam\'iyyat, and the dual finally gets taught', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch8 = st.chapters.find(c => c.n === 8);
+      if (!ch8) return null;
+      const toks = ch8.sentences.flatMap(s => s.tokens);
+      const roll = ch8.sentences[3].tokens;
+      const dual = toks.filter(t => (t.grammar || []).includes('al-muthanna'));
+      const tafnayani = toks.find(t => t.s.bare === 'تفنيان');
+      return {
+        sentences: ch8.sentences.length,
+        rollPairs: roll.filter(t => t.s.bare === 'حق').length,
+        rollTokens: roll.length,
+        dual: dual.length,
+        fiveVerbs: tafnayani && (tafnayani.grammar || []).includes('afal-khamsa'),
+        note: !!GRAMMAR['al-muthanna'] && !!GRAMMAR['al-muthanna'].title.tr,
+        noteAnchored: (GRAMMAR['al-muthanna'].examples || []).filter(e => e.src).length,
+        // chapter 1 opened with the hawd hadith; chapter 8 names الحوض حق
+        ringClosed: roll.some(t => t.s.bare === 'والحوض'),
+        trIrab: toks.every(t => t.irab && t.irab.ar && t.irab.tr),
+      };
+    });
+    if (!r) throw new Error('chapter 8 missing from aqaid-ahl-al-sunna');
+    if (r.sentences !== 5) throw new Error('ch8 sentences: ' + r.sentences);
+    if (r.rollPairs !== 8) throw new Error('the roll must declare eight realities haqq: ' + r.rollPairs);
+    if (r.rollTokens !== 16) throw new Error('eight mubtada/khabar pairs = 16 tokens, got ' + r.rollTokens);
+    if (r.dual < 5) throw new Error('the dual tokens are not linked to the note: ' + r.dual);
+    if (!r.fiveVerbs) throw new Error('تفنيان must be taught as one of the five verbs');
+    if (!r.note) throw new Error('the al-muthanna note is missing or untranslated');
+    if (r.noteAnchored < 2) throw new Error('the dual note must be anchored in real story text: ' + r.noteAnchored);
+    if (!r.ringClosed) throw new Error('الحوض حق should close the ring chapter 1 opened');
+    if (!r.trIrab) throw new Error("every ch8 token needs ar+tr i'rab");
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();

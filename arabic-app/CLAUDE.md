@@ -902,6 +902,18 @@ wins AND the divergence goes into the manifest attribution — every story
 does this, and the smoke suite reads it OFF DISK, because the attribution
 text never ships to the browser (only reviewStatus does).
 
+**Aqaid reaches ch8, the sam'iyyat — and the story closes its own ring.**
+Chapter 1 opened this book with the hawd hadith; chapter 8's roll of eight
+realities names الْحَوْضُ حَقٌّ. That roll is also the cleanest possible
+mubtada/khabar drill: eight pairs, one pattern. Chapter 8 also forced a
+real gap into the open — the DUAL was taught nowhere. `al-muthanna` now
+covers it: alif in raf', ya in nasb and jarr, i'rab BY LETTERS (so it sits
+with the five nouns and the sound plural), the nun dropping in idafa, the
+five verbs taking raf' by the RETAINED nun, and the alif inside such a verb
+being the FA'IL rather than a sign of i'rab. Anchored to the chapter's own
+مَخْلُوقَتَانِ مَوْجُودَتَانِ بَاقِيَتَانِ لَا تَفْنَيَانِ, and contrasted with
+زَوَايَا from chapter 1, which merely looks dual.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height
