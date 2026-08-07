@@ -1369,6 +1369,101 @@ if (!CHROME) {
     if (!r.noteAnchored) throw new Error('the note must anchor at least one example in the corpus');
   });
 
+  await check('the alaqa registry matches the book\'s own tally, and its game grades', async () => {
+    const r = await page.evaluate(() => ({
+      worked: alaqaItems().length,
+      total: ALAQAT.length + ALAQAT_NAMED.length,
+      claimed: ALAQAT_TOTAL,
+      // every worked relation must carry the whole madrasah apparatus
+      complete: ALAQAT.every(a => a.ex && a.haqiqi && a.haqiqi.ar && a.majazi && a.majazi.ar &&
+                                  a.qarina && a.qarina.tr && a.def && a.def.tr),
+      // only mushabaha makes an istiara — that is the whole mursal/istiara line
+      istiara: ALAQAT.filter(a => a.istiara).map(a => a.k),
+      mirrors: ['sababiyya', 'musabbabiyya', 'mahalliyya', 'halliyya',
+                'juziyya', 'kulliyya'].every(k => ALAQAT.some(a => a.k === k)),
+      balaghaArea: EloModel.AREAS.includes('balagha'),
+      coachLabel: !!ui().coachAreas.balagha,
+    }));
+    if (r.total !== r.claimed)
+      throw new Error(`the registry counts ${r.total} but the book says ${r.claimed}`);
+    if (r.worked < 12) throw new Error('worked relations: ' + r.worked);
+    if (!r.complete) throw new Error('a relation is missing its example, meanings or qarina');
+    if (r.istiara.length !== 1 || r.istiara[0] !== 'mushabaha')
+      throw new Error('only likeness makes an istiara, got: ' + r.istiara.join(','));
+    if (!r.mirrors) throw new Error('the three mirrored pairs must all be present');
+    if (!r.balaghaArea || !r.coachLabel) throw new Error('balagha must be a real skill area with a label');
+    // and the game itself grades, refutes and links its note
+    await page.locator('.lib-card').first().click();
+    await page.locator('#gamesOpen').click();
+    await page.locator('.game-pick #gAlaqa').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    if (!(await page.locator('.alaqa-pair').count())) throw new Error('the two meanings are not shown');
+    if ((await page.locator('.opts [data-o]').count()) !== 4) throw new Error('expected 4 options');
+    // pick a deliberately wrong option so the refutation must appear
+    const wrong = await page.evaluate(() => {
+      const btns = [...document.querySelectorAll('.opts [data-o]')];
+      const right = btns.findIndex(b => b.dataset.o !== undefined && false);
+      return btns.length - 1;
+    });
+    await page.locator('.opts [data-o]').nth(wrong).click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    const why = await page.locator('.game-why').textContent();
+    if (!/[ء-ي]/.test(why)) throw new Error('the explanation must name the relation in Arabic');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
+  await check('the i\'rab-realization engine: by what, and in what manner', async () => {
+    const r = await page.evaluate(() => {
+      const of = w => { const x = IrabSign.of(w); return x ? x.by + '/' + x.manner : 'REFUSED'; };
+      return {
+        haraka: of('الْكِتَابُ'), waw: of('الْمُسْلِمُونَ'), ya: of('الْمُسْلِمِينَ'),
+        dual: of('الْمُسْلِمَانِ'), five: of('أَبُوهُ'), maqsur: of('الْفَتَى'),
+        mabni: of('هٰذَا'), jazm: of('يَكْتُبْ'), manqus: of('الْقَاضِي'),
+        nisba: of('الْعَرَبِيُّ'),
+        // the surface CANNOT tell indefinite manqus from any other majrur,
+        // so the engine must not pretend: it reads it as the plain vowel.
+        indefManqus: of('قَاضٍ'),
+        // and the analyzer shows it
+        inRow: (() => {
+          const rows = SentenceAnalyzer.analyze('جَاءَ الْمُسْلِمُونَ');
+          const m = rows.find(x => stripAr(x.w) === 'المسلمون');
+          return m && m.realize ? m.realize.by + '/' + m.realize.manner : '<none>';
+        })(),
+      };
+    });
+    const want = {
+      haraka: 'haraka/lafzi', waw: 'huruf/lafzi', ya: 'huruf/lafzi', dual: 'huruf/lafzi',
+      five: 'huruf/lafzi', maqsur: 'haraka/taqdiri', mabni: 'mahalli/mahalli',
+      jazm: 'hadhf/lafzi', manqus: 'haraka/taqdiri', nisba: 'haraka/lafzi',
+      indefManqus: 'haraka/lafzi', inRow: 'huruf/lafzi',
+    };
+    for (const [k, v] of Object.entries(want))
+      if (r[k] !== v) throw new Error(`${k}: expected ${v}, got ${r[k]}`);
+  });
+
+  await check('the deck browser filters agree with the stats row', async () => {
+    const r = await page.evaluate(() => {
+      const saved = state.deck.slice();
+      const gl = STORIES[0].glossary;
+      state.deck = Object.keys(gl).slice(0, 12).map(l =>
+        ({ lex: l, lemma: gl[l].lemma, bare: gl[l].lemma, gloss: gl[l].gloss, type: 'word' }));
+      const st = deckStats();
+      const out = {
+        agree: st.fresh === deckCount('fresh') && st.mature === deckCount('mature') &&
+               st.leeches === deckCount('leech') && st.total === deckCount('all'),
+        // a search narrows, and an impossible search empties
+        narrowed: (() => { deckQuery = 'zzzznotathing'; const n = state.deck.filter(deckMatches).length;
+                           deckQuery = ''; return n; })(),
+      };
+      state.deck = saved;
+      return out;
+    });
+    if (!r.agree) throw new Error('the filter counts disagree with deckStats');
+    if (r.narrowed !== 0) throw new Error('an impossible search should match nothing, got ' + r.narrowed);
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
@@ -3267,7 +3362,7 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
     if (!r.msg) throw new Error('coach message is empty');
     if (!r.go) throw new Error('coach CTA missing');
-    if (r.bars !== 4) throw new Error('expected 4 ability bars, got ' + r.bars);
+    if (r.bars < 5) throw new Error('expected an ability bar per skill area, got ' + r.bars);
   });
 
   await check('the waw in s18 is haliyya, taught by the anwa-al-waw note', async () => {

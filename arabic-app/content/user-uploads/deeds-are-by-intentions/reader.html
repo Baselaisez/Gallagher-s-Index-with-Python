@@ -583,6 +583,24 @@
   /* `hidden` is a display:none request; a later display rule silently wins,
      which is exactly how the bab row stayed visible under a mazid form. */
   .seg[hidden], [hidden] { display: none !important; }
+  .rz-badge {
+    display: inline-block; font-size: .74rem; padding: .05rem .4rem;
+    border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft);
+    background: var(--accent-soft);
+  }
+  .deck-browse { display: grid; gap: .4rem; margin: .6rem 0 .3rem; }
+  .deck-filter { flex-wrap: wrap; width: 100%; }
+  .deck-filter button { font-size: .78rem; padding: .3rem .6rem; }
+  .deck-filter button b { font-weight: 700; opacity: .6; margin-inline-start: .15rem; }
+  .deck-filter button.on b { opacity: 1; }
+  .alaqa-pair {
+    display: grid; gap: .3rem; margin: .5rem 0 .2rem;
+    border-inline-start: 3px solid var(--role-hal); padding: .5rem .7rem;
+    background: var(--panel); border-radius: var(--radius); font-size: .92rem;
+  }
+  .alaqa-pair .al-lbl { color: var(--ink-soft); font-size: .8rem; margin-inline-end: .3rem; }
+  .alaqa-pair b { font-family: var(--ar-font); font-size: 1.15em; }
+  .alaqa-pair .al-qar { color: var(--ink-soft); font-size: .85rem; border-top: 1px solid var(--line); padding-top: .3rem; }
   .game-correct { font-weight: 700; margin-bottom: .3rem; }
   .game-correct b { font-family: var(--ar-font); font-size: 1.25em; }
   .game-wrongwhy {
@@ -1139,6 +1157,7 @@ const L = {
         deck:"Deck", grammarBtn:"Grammar", levels:"Levels", chapter:"Chapter",
         yourDeck:"Your deck", empty:"No cards yet — tap a word in the story, then “Save to flashcards”.",
         step1:"Recall it, then tap to reveal the vowels", step2:"Tap to reveal the meaning", step3:"Did you know it?",
+        dfAll:"all", dfSearch:"Search your cards…", dfNone:"No card matches this filter.",
         again:"↻ Again", good:"✓ Good", card:"card", remove:"remove",
         mistakes:"أخطاء شائعة · Common mistakes", sources:"المصادر · Classical sources",
         back:"← All grammar topics", refTitle:"Grammar reference",
@@ -1171,7 +1190,7 @@ const L = {
         coachWeak:"Your weakest area is {a} — one round now, while it costs the least.",
         coachFresh:"Nothing is due and nothing is fading — read on, or bank a round in your weakest area.",
         coachGo:"Do it",
-        coachAreas:{vocab:"vocabulary", sarf:"sarf", nahw:"nahw / i'rab", adad:"numbers"},
+        coachAreas:{vocab:"vocabulary", sarf:"sarf", nahw:"nahw / i'rab", adad:"numbers", balagha:"balagha"},
         coachAbility:"Ability (Elo)",
         tahlil:"Tahlil — guided i'rab",
         tahlilDesc:"One sentence, walked word by word — name each word's job, then see the full i'rab.",
@@ -1226,6 +1245,11 @@ const L = {
         jumalHint:"Whole clauses take a case «by position» — or none at all. Each clause below is named after Ibn Hisham's Qawa'id al-I'rab.",
         colWord:"Word", colIrab:"Analysis", sheetTopics:"Topics in this sentence",
         roleGame:"What is it doing?", roleGameDesc:"Four words can all be marfu' — name the role, not the case.",
+        alaqaGame:"Which relation?", alaqaAsk:"What licenses this transfer of meaning?",
+        alaqaGameDesc:"A word says one thing and means another — name the relation between them.",
+        alaqaHaqiqi:"Literally:", alaqaMajazi:"Meant:", alaqaQarina:"What forbids the literal reading:",
+        alaqaIstiara:"This relation alone makes the majaz an ISTI'ARA rather than a mursal.",
+        alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
         hamzaGame:"Inna or anna?", hamzaAsk:"Which particle fills the blank?",
         correctWas:"✔ The correct answer:", backToGame:"Back to the game — where you left it",
         hamzaGameDesc:"Kasra at the head, after qawl and the oath; fatha where a masdar hides.",
@@ -1252,6 +1276,7 @@ const L = {
         deck:"Deste", grammarBtn:"Gramer", levels:"Seviye", chapter:"Bölüm",
         yourDeck:"Desteniz", empty:"Henüz kart yok — hikâyede bir kelimeye dokunun, sonra “Kart destesine ekle”.",
         step1:"Hatırlayın, sonra harekeleri görmek için dokunun", step2:"Anlamı görmek için dokunun", step3:"Biliyor muydunuz?",
+        dfAll:"hepsi", dfSearch:"Kartlarınızda arayın…", dfNone:"Bu süzgece uyan kart yok.",
         again:"↻ Tekrar", good:"✓ İyi", card:"kart", remove:"sil",
         mistakes:"أخطاء شائعة · Yaygın hatalar", sources:"المصادر · Klasik kaynaklar",
         back:"← Tüm gramer konuları", refTitle:"Gramer başvurusu",
@@ -1284,7 +1309,7 @@ const L = {
         coachWeak:"En zayıf alanın: {a} — maliyeti en düşükken bir tur şimdi.",
         coachFresh:"Vadesi gelen de sönen de yok — okumaya devam et, ya da en zayıf alanında bir tur biriktir.",
         coachGo:"Başla",
-        coachAreas:{vocab:"kelime", sarf:"sarf", nahw:"nahiv / i'râb", adad:"sayılar"},
+        coachAreas:{vocab:"kelime", sarf:"sarf", nahw:"nahiv / i'râb", adad:"sayılar", balagha:"belâgat"},
         coachAbility:"Seviye (Elo)",
         tahlil:"Tahlil — rehberli i'râb",
         tahlilDesc:"Tek cümle, kelime kelime — her kelimenin görevini söyle, sonra tam i'râbı gör.",
@@ -1339,6 +1364,11 @@ const L = {
         jumalHint:"Bütün bir cümle «mahallen» i'rab alır — yahut hiç almaz. Aşağıdaki her cümle, İbn Hişâm'ın Kavâidü'l-İ'râb'ına göre adlandırılmıştır.",
         colWord:"Kelime", colIrab:"İ'rab", sheetTopics:"Bu cümledeki konular",
         roleGame:"Cümledeki görevi ne?", roleGameDesc:"Dört kelime birden merfû olabilir — i'rabı değil, görevi söyleyin.",
+        alaqaGame:"Hangi alâka?", alaqaAsk:"Bu mana nakline ne izin veriyor?",
+        alaqaGameDesc:"Kelime bir şey söyler, başka bir şey kasteder — aradaki alâkayı adlandırın.",
+        alaqaHaqiqi:"Hakiki manası:", alaqaMajazi:"Kastedilen:", alaqaQarina:"Hakiki manayı engelleyen karîne:",
+        alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
+        alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
         hamzaGame:"İnne mi enne mi?", hamzaAsk:"Boşluğa hangi harf gelir?",
         correctWas:"✔ Doğru cevap:", backToGame:"Oyuna dön — kaldığın yerden",
         hamzaGameDesc:"Söz başında, kavilden ve kasemden sonra kesra; masdar gizlenen yerde fetha.",
@@ -1548,8 +1578,10 @@ const state = {
   today: JSON.parse(localStorage.getItem("qissa-today") || '{"date":"","reviewed":0,"learned":0,"read":0}'),
   goal: JSON.parse(localStorage.getItem("qissa-goal") || '{"reviews":20,"newWords":5}'),
   retention: parseFloat(localStorage.getItem("qissa-retention")) || 0.9,
-  elo: JSON.parse(localStorage.getItem("qissa-elo") || "null")
-       || { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 },
+  // a saved rating from an older build has no balagha key; fill it at the
+  // starting rating rather than dropping the learner's history.
+  elo: Object.assign({ vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 },
+                     JSON.parse(localStorage.getItem("qissa-elo") || "null") || {}),
   eloItems: JSON.parse(localStorage.getItem("qissa-elo-items") || "{}"),
   eloHist: JSON.parse(localStorage.getItem("qissa-elo-hist") || "[]"),
   theme: localStorage.getItem("qissa-theme") || "auto",
@@ -2219,7 +2251,7 @@ function emptyGame(title, msg){
 // weakest area with evidence instead of a guess.
 class EloModel {
   static K = 24;
-  static AREAS = ["vocab", "sarf", "nahw", "adad"];
+  static AREAS = ["vocab", "sarf", "nahw", "adad", "balagha"];
   static itemRating(level){ return 900 + Math.min(6, Math.max(1, level || 3)) * 100; }
   static expected(rl, ri){ return 1 / (1 + Math.pow(10, (ri - rl) / 400)); }
   // TWO-SIDED: when the caller can name the item (a lex, a paradigm cell),
@@ -2611,6 +2643,48 @@ function startHamza(){
     extras: [{ label: () => `${arSpan("إِنَّ أَمْ أَنَّ؟")} ${state.uiLang === "tr" ? "kaide" : "the rule"}`,
                show: () => !!GRAMMAR["inna-am-anna"],
                run: () => openRef("inna-am-anna") }],
+  });
+}
+
+// ---------- game: which alaqa licenses this majaz? ----------
+// The learner sees the sentence, what the word LITERALLY means, what is
+// MEANT, and the qarina that forbids the literal reading — everything the
+// madrasah gives — and must name the relation. Distractors are drawn from
+// the relations with worked examples, so every wrong option is a real one;
+// and each refutation states the DEFINITION the pick would have required.
+function alaqaItems(){
+  return ALAQAT.filter(a => a.ex && a.haqiqi && a.majazi);
+}
+function startAlaqa(){
+  const items = shuffle(alaqaItems()).slice(0, 8);
+  if (items.length < 4) { openGames(); return; }
+  const lang = () => state.uiLang === "tr" ? "tr" : "en";
+  runQuiz({
+    title: ui().alaqaGame, ask: ui().alaqaAsk, items, restart: startAlaqa,
+    area: "balagha", lvl: () => 5, itemKey: it => "alaqa:" + it.k,
+    question: it => `<div class="game-q" lang="ar" dir="rtl">${escapeAttr(it.ex)}</div>
+      <div class="alaqa-pair">
+        <div><span class="al-lbl">${ui().alaqaHaqiqi}</span>
+          <b lang="ar">${it.haqiqi.ar}</b> — ${it.haqiqi[lang()]}</div>
+        <div><span class="al-lbl">${ui().alaqaMajazi}</span>
+          <b lang="ar">${it.majazi.ar}</b> — ${it.majazi[lang()]}</div>
+        <div class="al-qar">${ui().alaqaQarina} ${it.qarina[lang()]}</div>
+      </div>`,
+    options: it => shuffle([it, ...shuffle(ALAQAT.filter(a => a.k !== it.k)).slice(0, 3)])
+      .map(o => ({ html: `<span lang="ar">${o.ar}</span> · ${o[lang()]}`, ok: o.k === it.k, k: o.k })),
+    whyNot: (it, picked) => {
+      const got = ALAQAT.find(a => a.k === picked.k);
+      if (!got) return "";
+      return state.uiLang === "tr"
+        ? `<b lang="ar">${got.ar}</b> şudur: ${got.def.tr} Burada durum bu değil.`
+        : `<b lang="ar">${got.ar}</b> means: ${got.def.en} That is not what happens here.`;
+    },
+    why: it => `<b lang="ar">${it.ar}</b> — ${it.def[lang()]}` +
+      (it.ifada ? `<br><span lang="ar" style="font-family:var(--ar-font)">${it.ifada}</span>` : "") +
+      (it.istiara ? `<br>${ui().alaqaIstiara}` : ""),
+    extras: [{ label: () => `${arSpan("أَنْوَاعُ الْمَجَازِ")} ${state.uiLang === "tr" ? "kaide" : "the rule"}`,
+               show: () => !!GRAMMAR["anwa-al-majaz"],
+               run: () => openRef("anwa-al-majaz") }],
   });
 }
 
@@ -4738,6 +4812,13 @@ class SentenceAnalyzer {
         row.notes.push({ en: "a governed mudari' — the opening ta/ya is the person prefix, not Form V's ta",
                          tr: "âmilin çektiği muzâri — baştaki tâ/yâ şahıs önekidir, tefe''ul tâsı değil" });
       }
+      // how is this word's case REALIZED? Pure rule, no corpus — and it
+      // refuses when the surface genuinely cannot decide.
+      const rz = IrabSign.of(w);
+      if (rz) {
+        row.realize = rz;
+        row.notes.push({ en: rz.why.en, tr: rz.why.tr });
+      }
       row.al = hasAl; row.tanwin = tanwin;
       // the proofreader rides along: impossible vowelling is flagged even
       // when every other layer is happy.
@@ -5066,6 +5147,11 @@ function renderJumlaOut(){
       r.root ? `<span lang="ar">${ui().jadhrRoot} ${r.root}</span> ` : ""}${
       r.wazn ? `<span lang="ar">· ${r.wazn}</span><br>` : (r.root ? "<br>" : "")}${
       r.notes.map(n => n[lang]).join(" · ")}${
+      r.realize ? `<br><span class="rz-badge">${
+        ({ haraka: "◌َ", huruf: "ا و ي", hadhf: "✂", mahalli: "▣" })[r.realize.by]} ${
+        (state.uiLang === "tr"
+          ? { lafzi: "lafzî", taqdiri: "takdîrî", mahalli: "mahallî" }
+          : { lafzi: "lafzi", taqdiri: "taqdiri", mahalli: "mahalli" })[r.realize.manner]}</span>` : ""}${
       r.ml ? `<br><span class="ml-vote">${ui().mlLbl} ${r.ml.map(m =>
         `${(state.uiLang === "tr" ? {fail:"fâil",maful:"mef'ûl",mubtada:"mübteda",khabar:"haber",mudaf:"muzâf",hal:"hâl",tabi:"tâbi",jarr:"mecrur"}
           : {fail:"fa'il",maful:"maf'ul",mubtada:"mubtada",khabar:"khabar",mudaf:"mudaf",hal:"hal",tabi:"tabi",jarr:"majrur"})[m.r]} %${m.pct}`).join(" · ")}</span>` : ""}</td></tr>`;
@@ -5767,6 +5853,186 @@ function openIrabSheet(sen){
   showSheet();
 }
 
+// ---------- the I'RAB REALIZATION engine: pure rule, no data ------------
+// Qawa'id al-I'rab and the Kafiya sort every declined word by TWO crossing
+// questions, and both are answerable from the surface alone. (1) By WHAT is
+// the case shown — a haraka, a letter, or the DROPPING of something? (2) In
+// WHAT MANNER — lafzi (written on the word), taqdiri (the letter cannot
+// carry it), or mahalli (the word is mabni and only its POSITION declines)?
+// Neither question needs a dictionary, so neither needs data. The engine
+// answers both, names the class that forces the answer, and refuses when the
+// surface genuinely cannot decide.
+class IrabSign {
+  static MABNI = ["هذا","هذه","هؤلاء","ذلك","تلك","الذي","التي","الذين","اللاتي",
+                  "من","ما","متى","اين","كيف","حيث","الان","امس","هو","هي","هم","انا",
+                  "انت","نحن","هما","هن","كم","اي"];
+  static of(word){
+    const w = (word || "").normalize("NFC").replace(/[«»،.:!؟\s]/g, "");
+    const bare = stripAr(w).replace(/[^ء-ي]/g, "");
+    if (!bare) return null;
+    // stripAr keeps the hamza SEAT (أ إ آ), so a plain-alif pattern would
+    // never match أَبُوهُ. Fold the seats for MATCHING only — never for display.
+    const flat = bare.replace(/[أإآ]/g, "ا").replace(/ى/g, "ي");
+    const R = (by, manner, cases, why) => ({ by, manner, cases, why, word: w });
+    // -- MABNI: the word itself never changes; only its place declines.
+    if (this.MABNI.includes(flat) || this.MABNI.includes(bare))
+      return R("mahalli", "mahalli", ["marfu", "mansub", "majrur"],
+        { ar: "اِسْمٌ مَبْنِيٌّ — لَا يَتَغَيَّرُ آخِرُهُ، فَإِعْرَابُهُ مَحَلِّيٌّ بِحَسَبِ مَوْقِعِهِ.",
+          en: "A mabni noun — its ending never changes, so its i'rab is MAHALLI: read off its position, not its last letter.",
+          tr: "Mebnî isim — sonu değişmez; i'râbı MAHALLÎDİR, son harfinden değil cümledeki yerinden okunur." });
+    // -- the five nouns in idafa: declined by LETTERS, waw/alif/ya
+    if (/^(ابو|اخو|حمو|ذو|ابا|اخا|حما|ذا|ابي|اخي|حمي|ذي)/.test(flat) && flat.length > 3)
+      return R("huruf", "lafzi", ["marfu", "mansub", "majrur"],
+        { ar: "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْوَاوِ رَفْعًا وَالْأَلِفِ نَصْبًا وَالْيَاءِ جَرًّا.",
+          en: "One of the five nouns — declined by the WAW in raf', the ALIF in nasb and the YA in jarr.",
+          tr: "Esmâ-i hamseden — ref'te vâv, nasbda elif, cerde yâ ile i'râb alır." });
+    // -- dual and sound plurals: letters again
+    if (/[َا]نِ$/.test(w) || /َيْنِ$/.test(w))
+      return R("huruf", "lafzi", /َيْنِ$/.test(w) ? ["mansub", "majrur"] : ["marfu"],
+        { ar: "مُثَنًّى — يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا.",
+          en: "A dual — the alif shows raf', the ya shows nasb and jarr.",
+          tr: "Tesniye — elif ref'i, yâ nasb ve cerri gösterir." });
+    if (/ُونَ$/.test(w)) return R("huruf", "lafzi", ["marfu"],
+      { ar: "جَمْعُ مُذَكَّرٍ سَالِمٌ — الْوَاوُ عَلَامَةُ رَفْعِهِ.",
+        en: "A sound masculine plural — the waw is its sign of raf'.",
+        tr: "Cem'-i müzekker-i sâlim — vâv ref alâmetidir." });
+    if (/ِينَ$/.test(w)) return R("huruf", "lafzi", ["mansub", "majrur"],
+      { ar: "جَمْعُ مُذَكَّرٍ سَالِمٌ — الْيَاءُ عَلَامَةُ نَصْبِهِ وَجَرِّهِ.",
+        en: "A sound masculine plural — the ya is its sign of nasb and jarr.",
+        tr: "Cem'-i müzekker-i sâlim — yâ nasb ve cer alâmetidir." });
+    // -- the maqsur: an alif that CANNOT carry a vowel, so all three cases
+    // are estimated on it. The most famous taqdiri case in the books.
+    if (/[ىا]$/.test(bare) && bare.length > 2)
+      return R("haraka", "taqdiri", ["marfu", "mansub", "majrur"],
+        { ar: "اِسْمٌ مَقْصُورٌ — تُقَدَّرُ عَلَى أَلِفِهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ.",
+          en: "A maqsur noun — all three vowels are ESTIMATED on its alif, which cannot bear them (ta'adhdhur).",
+          tr: "İsm-i maksûr — üç hareke de elifi üzerinde TAKDÎR edilir; elif onları taşıyamaz (teazzür)." });
+    // -- the manqus, but ONLY where its ya is on the page. Indefinite قَاضٍ
+    // is spelled like any other indefinite majrur, so the surface cannot
+    // decide it and the engine must not pretend otherwise.
+    if (/^ال/.test(flat) && /ِي$/.test(w) && !/ِيّ$/.test(w) && flat.length > 4)
+      return R("haraka", "taqdiri", ["marfu", "majrur"],
+        { ar: "اِسْمٌ مَنْقُوصٌ — تُقَدَّرُ الضَّمَّةُ وَالْكَسْرَةُ عَلَى يَائِهِ لِلثِّقَلِ، وَتَظْهَرُ الْفَتْحَةُ.",
+          en: "A manqus noun — damma and kasra are estimated on its ya as too heavy; only the fatha appears.",
+          tr: "İsm-i menkūs — damme ve kesra yâsı üzerinde ağırlık sebebiyle takdîr edilir; yalnız fetha zâhir olur." });
+    // -- the plain written vowel: lafzi, and CASE_SIGN already names it
+    const sign = caseSignOf(w);
+    if (sign && ["damma", "fatha", "kasra"].includes(sign.en))
+      return R("haraka", "lafzi", sign.cases,
+        { ar: `إِعْرَابٌ لَفْظِيٌّ بِالْحَرَكَةِ — ${sign.ar} ظَاهِرَةٌ فِي آخِرِهِ.`,
+          en: `A plainly written vowel — the ${sign.en} stands visible on its last letter.`,
+          tr: `Lafzî i'râb — ${sign.tr} son harfte açıkça görünür.` });
+    if (sign && sign.en === "sukun")
+      return R("hadhf", "lafzi", ["majzum"],
+        { ar: "الْجَزْمُ بِالسُّكُونِ — وَهُوَ إِعْرَابٌ بِالْحَذْفِ فِي حَقِيقَتِهِ: حُذِفَتِ الْحَرَكَةُ.",
+          en: "Jazm by the sukun — at bottom an i'rab BY REMOVAL: the vowel was taken away.",
+          tr: "Sükûnla cezm — hakikatte HAZİFLE i'râbdır: hareke kaldırılmıştır." });
+    return null;
+  }
+}
+
+// ---------- the ALAQAT of majaz mursal (Ottoman bayan notes) ------------
+// research/sources/alaka-ilm-bayan.txt works eleven relations right through:
+// definition, example, the literal meaning, the intended meaning, the QARINA
+// that forbids the literal reading, and the madrasah's own formula for what
+// the speaker did (ذِكْرُ السَّبَبِ إِرَادَةُ الْمُسَبَّبِ). That is a complete,
+// gradeable dataset, so it is stored as data — no rule derives which relation
+// licenses a given transfer; it is judged. The file counts TWENTY-EIGHT
+// relations in all and names the rest; those without a worked example are
+// listed but never quizzed, because the app quizzes only what it can teach.
+const ALAQAT = [
+ { k: "mushabaha", ar: "الْمُشَابَهَة", en: "likeness", tr: "müşâbehet",
+   def: { en: "The two meanings resemble each other — and THIS relation alone makes the majaz an isti'ara, not a mursal.",
+          tr: "İki mana birbirine benzer — ve YALNIZ bu alâka mecazı istiâre yapar, mürsel değil." },
+   ex: "رَأَيْتُ أَسَدًا فِي يَدِهِ سَيْفٌ", haqiqi: { ar: "الْحَيَوَانُ الْمُفْتَرِسُ", en: "the beast of prey", tr: "yırtıcı hayvan" },
+   majazi: { ar: "الرَّجُلُ الشُّجَاعُ", en: "the brave man", tr: "cesur adam" },
+   qarina: { en: "«with a sword in his hand» — a lion carries none", tr: "«elinde kılıç» — aslan kılıç taşımaz" },
+   istiara: true },
+ { k: "masdariyya", ar: "الْمَصْدَرِيَّة", en: "source", tr: "masdariyyet",
+   def: { en: "The literal meaning is the SOURCE from which the intended one issues.",
+          tr: "Hakiki mana, mecazi mananın kendisinden çıktığı KAYNAKTIR." },
+   ex: "لَهُ عَلَيَّ يَدٌ", haqiqi: { ar: "الْيَدُ", en: "the hand", tr: "el" },
+   majazi: { ar: "النِّعْمَةُ", en: "the favour", tr: "nimet" },
+   qarina: { en: "a favour is owed, not a limb", tr: "borç olan bir uzuv değil, bir nimettir" },
+   ifada: "ذِكْرُ الْمَصْدَرِ إِرَادَةُ الصَّادِرِ" },
+ { k: "mazhariyya", ar: "الْمَظْهَرِيَّة", en: "manifestation", tr: "mazhariyyet",
+   def: { en: "The literal meaning is where the intended one SHOWS ITSELF — and unlike masdariyya it does not leave that place.",
+          tr: "Hakiki mana, mecazi mananın KENDİNİ GÖSTERDİĞİ yerdir — masdariyyetten farkı, oradan ayrılmamasıdır." },
+   ex: "يَدُ اللهِ فَوْقَ أَيْدِيهِمْ", haqiqi: { ar: "الْيَدُ", en: "the hand", tr: "el" },
+   majazi: { ar: "الْقُدْرَةُ", en: "power", tr: "kudret" },
+   qarina: { en: "no limb is ascribed to Allah", tr: "Allah'a uzuv nispet edilmez" } },
+ { k: "mujawara", ar: "الْمُجَاوَرَة", en: "adjacency", tr: "mücâveret",
+   def: { en: "The literal meaning merely lies NEXT TO the intended one.",
+          tr: "Hakiki mana, mecazi mananın sadece YANINDADIR." },
+   ex: "شَرِبْتُ مِنَ الرَّاوِيَةِ", haqiqi: { ar: "الْبَعِيرُ الَّذِي يَحْمِلُ الْمَاءَ", en: "the camel that carries the water", tr: "suyu taşıyan deve" },
+   majazi: { ar: "الْقِرْبَةُ", en: "the waterskin", tr: "su tulumu" },
+   qarina: { en: "one drinks from a skin, not from a camel", tr: "deveden değil tulumdan içilir" } },
+ { k: "juziyya", ar: "الْجُزْئِيَّة", en: "part for whole", tr: "cüz'iyyet",
+   def: { en: "The literal meaning is a PART of the intended one.",
+          tr: "Hakiki mana, mecazi mananın bir PARÇASIDIR." },
+   ex: "اِطَّلَعَتِ الْعَيْنُ عَلَيْنَا", haqiqi: { ar: "الْعَيْنُ", en: "the eye", tr: "göz" },
+   majazi: { ar: "الْجَاسُوسُ", en: "the spy, the watcher", tr: "casus, gözetleyici" },
+   qarina: { en: "an eye does not spy; a person does", tr: "göz değil insan gözetler" },
+   ifada: "ذِكْرُ الْجُزْءِ إِرَادَةُ الْكُلِّ" },
+ { k: "kulliyya", ar: "الْكُلِّيَّة", en: "whole for part", tr: "külliyet",
+   def: { en: "The literal meaning is the WHOLE of which the intended one is a part.",
+          tr: "Hakiki mana, mecazi mananın parçası olduğu BÜTÜNDÜR." },
+   ex: "يَجْعَلُونَ أَصَابِعَهُمْ فِي آذَانِهِمْ", haqiqi: { ar: "الْأَصَابِعُ", en: "the fingers", tr: "parmaklar" },
+   majazi: { ar: "الْأَنَامِلُ", en: "the fingertips", tr: "parmak uçları" },
+   qarina: { en: "a whole finger does not go in an ear — the tip does", tr: "kulağa parmağın tamamı değil ucu tıkanır" },
+   ifada: "ذِكْرُ الْكُلِّ إِرَادَةُ الْجُزْءِ" },
+ { k: "sababiyya", ar: "السَّبَبِيَّة", en: "cause for effect", tr: "sebebiyyet",
+   def: { en: "The literal meaning is the CAUSE of the intended one.",
+          tr: "Hakiki mana, mecazi mananın SEBEBİDİR." },
+   ex: "رَعَيْنَا الْغَيْثَ", haqiqi: { ar: "الْمَطَرُ", en: "the rain", tr: "yağmur" },
+   majazi: { ar: "النَّبَاتُ", en: "the herbage", tr: "ot, bitki" },
+   qarina: { en: "cattle graze herbage, not rain", tr: "yağmur otlatılmaz, ot otlatılır" },
+   ifada: "ذِكْرُ السَّبَبِ إِرَادَةُ الْمُسَبَّبِ" },
+ { k: "musabbabiyya", ar: "الْمُسَبَّبِيَّة", en: "effect for cause", tr: "müsebbebiyyet",
+   def: { en: "The literal meaning is the EFFECT of the intended one — the mirror of sababiyya.",
+          tr: "Hakiki mana, mecazi mananın MÜSEBBEBİDİR — sebebiyyetin aynası." },
+   ex: "أَمْطَرَتِ السَّمَاءُ نَبَاتًا", haqiqi: { ar: "النَّبَاتُ", en: "the herbage", tr: "ot" },
+   majazi: { ar: "الْمَطَرُ", en: "the rain", tr: "yağmur" },
+   qarina: { en: "herbage does not fall from the sky; rain does", tr: "ot yağmaz, yağmur yağar" },
+   ifada: "ذِكْرُ الْمُسَبَّبِ إِرَادَةُ السَّبَبِ" },
+ { k: "kawn-sabiq", ar: "كَوْنٌ سَابِقٌ", en: "what it WAS", tr: "kevn-i sâbık",
+   def: { en: "The literal meaning is what the thing USED TO BE.",
+          tr: "Hakiki mana, o şeyin ÖNCEDEN olduğu hâldir." },
+   ex: "وَآتُوا الْيَتَامَى أَمْوَالَهُمْ", haqiqi: { ar: "الْيَتَامَى", en: "the orphans", tr: "yetimler" },
+   majazi: { ar: "الرِّجَالُ", en: "the grown men", tr: "rüşde ermiş kimseler" },
+   qarina: { en: "property is not handed to a minor — the rest of the verse says so", tr: "mal yetime verilmez; âyetin devamı bunu söyler" },
+   ifada: "ذِكْرُ الْمَاضِي إِرَادَةُ الْحَالِ" },
+ { k: "kawn-lahiq", ar: "كَوْنٌ لَاحِقٌ", en: "what it WILL BE", tr: "kevn-i lâhık",
+   def: { en: "The literal meaning is what the thing WILL BECOME.",
+          tr: "Hakiki mana, o şeyin SONRADAN olacağı hâldir." },
+   ex: "إِنِّي أَرَانِي أَعْصِرُ خَمْرًا", haqiqi: { ar: "الْخَمْرُ", en: "the wine", tr: "şarap" },
+   majazi: { ar: "الْعَصِيرُ", en: "the grape juice", tr: "üzüm suyu, şıra" },
+   qarina: { en: "one presses juice, not wine", tr: "şarap sıkılmaz, şıra sıkılır" },
+   ifada: "ذِكْرُ الِاسْتِقْبَالِ إِرَادَةُ الْحَالِ" },
+ { k: "mahalliyya", ar: "الْمَحَلِّيَّة", en: "place for its people", tr: "mahalliyyet",
+   def: { en: "The literal meaning is the PLACE that holds the intended one.",
+          tr: "Hakiki mana, mecazi mananın bulunduğu YERDİR." },
+   ex: "وَاسْأَلِ الْقَرْيَةَ", haqiqi: { ar: "الْقَرْيَةُ", en: "the village", tr: "köy" },
+   majazi: { ar: "أَهْلُ الْقَرْيَةِ", en: "the villagers", tr: "köy halkı" },
+   qarina: { en: "you cannot question a place; you question its people", tr: "köye sorulmaz, köy halkına sorulur" },
+   ifada: "ذِكْرُ الْمَحَلِّ إِرَادَةُ الْحَالِّ" },
+ { k: "halliyya", ar: "الْحَالِّيَّة", en: "content for its place", tr: "hâlliyyet",
+   def: { en: "The literal meaning is what RESIDES in the intended one — the mirror of mahalliyya.",
+          tr: "Hakiki mana, mecazi mananın İÇİNDE BULUNANDIR — mahalliyyetin aynası." },
+   ex: "فَفِي رَحْمَةِ اللهِ هُمْ فِيهَا خَالِدُونَ", haqiqi: { ar: "الرَّحْمَةُ", en: "the mercy", tr: "rahmet" },
+   majazi: { ar: "الْجَنَّةُ", en: "the garden", tr: "cennet" },
+   qarina: { en: "«in» asks for a place — one enters the garden mercy dwells in", tr: "«fî» zarfiyet ister — rahmete değil, rahmetin bulunduğu cennete girilir" },
+   ifada: "ذِكْرُ الْحَالِّ إِرَادَةُ الْمَحَلِّ" },
+];
+// the file counts twenty-eight in all; these seventeen it names without
+// working an example, so the panel lists them and the game never asks them.
+const ALAQAT_NAMED = ["الْآلِيَّة", "الْإِطْلَاق", "التَّقْيِيد", "الْعُمُوم", "الْخُصُوص",
+  "الْقُوَّة", "اللَّازِمِيَّة", "الْمَلْزُومِيَّة", "الْعِلِّيَّة", "الْمَعْلُولِيَّة",
+  "الْمُتَعَلِّقِيَّة", "الْمُتَعَلَّقِيَّة", "الشَّرْطِيَّة", "الْمَشْرُوطِيَّة",
+  "الدَّالِّيَّة", "الْمَدْلُولِيَّة"];
+// the book's own tally: twelve worked here + sixteen named = twenty-eight.
+const ALAQAT_TOTAL = 28;
+
 // ---------- Avamil-100 reference (Jurjani) ----------
 // Abd al-Qahir al-Jurjani's count, as carried in the uploaded teaching deck
 // (research/sources/avamil-curcani-slides.txt): 100 governors — lafzi 98
@@ -6389,6 +6655,41 @@ function bindCoach(){
   });
 }
 
+// ---- deck browser state. Kept out of `state` on purpose: a filter is a
+// view, not a preference, and it should not survive closing the sheet.
+let deckFilter = "all", deckQuery = "";
+const DECK_BROWSE_MIN = 8;
+// EXACTLY deckStats' rules — isLeech and the 21-day line — so the filter
+// counts can never disagree with the stats row above them. Leech is not
+// exclusive of the other three there, and it is not exclusive here either.
+function deckIsState(d, k){
+  const s = ensureSrs(d).srs;
+  if (k === "leech") return isLeech(d);
+  if (k === "fresh") return s.reps === 0;
+  if (k === "learning") return s.reps !== 0 && s.ivl < 21;
+  if (k === "mature") return s.reps !== 0 && s.ivl >= 21;
+  return true;
+}
+function deckMatches(d){
+  const g = d.type === "note" ? GRAMMAR[d.noteId] : null;
+  if (deckFilter !== "all") {
+    if (deckFilter === "due") { if (ensureSrs(d).srs.due > Date.now()) return false; }
+    else if (deckFilter === "verb" || deckFilter === "note") { if (d.type !== deckFilter) return false; }
+    else if (!deckIsState(d, deckFilter)) return false;
+  }
+  const q = stripAr(deckQuery).trim().toLowerCase();
+  if (!q) return true;
+  const hay = [d.lemma, d.bare, T(d.gloss || {}), g ? g.title.ar : "", g ? T(g.title) : ""]
+    .filter(Boolean).map(x => stripAr(String(x)).toLowerCase()).join(" ");
+  return hay.includes(q);
+}
+function deckCount(k){
+  const was = deckFilter, wasQ = deckQuery;
+  deckFilter = k; deckQuery = "";
+  const n = state.deck.filter(deckMatches).length;
+  deckFilter = was; deckQuery = wasQ;
+  return n;
+}
 function renderDeck(){
   const queue = dueCards();
   const st = deckStats();
@@ -6468,7 +6769,23 @@ function renderDeck(){
       </div>`;
     }
   }
-  html += `<ul class="deck-list">` + state.deck.map((d, i) => {
+  // ---- the deck browser: a big deck is useless if you cannot find a card.
+  // Filter by state (the same four the stats row counts) or by card type, and
+  // search across the Arabic, the gloss and the note title. The counts are
+  // computed on the WHOLE deck so a filter never hides how much there is.
+  if (state.deck.length > DECK_BROWSE_MIN) {
+    const kinds = [["all", ui().dfAll], ["due", ui().due], ["fresh", ui().stNew],
+                   ["learning", ui().stLearning], ["mature", ui().stMature],
+                   ["leech", ui().stLeech], ["verb", ui().conjCard], ["note", ui().noteCard]];
+    html += `<div class="deck-browse">
+      <input type="search" id="deckSearch" class="ref-search" placeholder="${escapeAttr(ui().dfSearch)}"
+             aria-label="${escapeAttr(ui().dfSearch)}" value="${escapeAttr(deckQuery)}">
+      <div class="seg deck-filter" role="group" aria-label="${escapeAttr(ui().dfAll)}">${
+        kinds.map(([k, lbl]) => `<button data-df="${k}" class="${deckFilter === k ? "on" : ""}">${lbl} <b>${deckCount(k)}</b></button>`).join("")}</div>
+    </div>`;
+  }
+  const shown = state.deck.map((d, i) => ({ d, i })).filter(x => deckMatches(x.d));
+  html += `<ul class="deck-list">` + shown.map(({ d, i }) => {
     const g = d.type === "note" ? GRAMMAR[d.noteId] : null;
     const head = g ? g.title.ar : d.lemma;
     const sub = d.type === "verb" ? ui().conjCard
@@ -6476,6 +6793,8 @@ function renderDeck(){
               : T(d.gloss);
     return `<li><span class="w" lang="ar">${head}</span><span class="g">${sub}</span><span class="due-tag">${fmtDue(d)}</span><button data-del="${i}">${ui().remove}</button></li>`;
   }).join("") + `</ul>`;
+  if (state.deck.length && !shown.length)
+    html += `<p class="empty">${ui().dfNone}</p>`;
   sheetInner.innerHTML = html;
   const rc = document.getElementById("reviewCard");
   if (rc) rc.addEventListener("click", () => { if (reviewStep < 2) { reviewStep++; renderDeck(); } });
@@ -6496,6 +6815,16 @@ function renderDeck(){
   if (ge) ge.addEventListener("click", editGoal);
   const de = document.getElementById("deckExport");
   if (de) de.addEventListener("click", exportDeck);
+  const ds = document.getElementById("deckSearch");
+  if (ds) {
+    ds.addEventListener("input", debounced(() => {
+      deckQuery = ds.value; renderDeck();
+      const again = document.getElementById("deckSearch");
+      if (again) { again.focus(); again.setSelectionRange(again.value.length, again.value.length); }
+    }));
+  }
+  sheetInner.querySelectorAll(".deck-filter [data-df]").forEach(b =>
+    b.addEventListener("click", () => { deckFilter = b.dataset.df; renderDeck(); }));
   sheetInner.querySelectorAll(".retention-seg [data-ret]").forEach(b =>
     b.addEventListener("click", () => {
       state.retention = parseFloat(b.dataset.ret);
@@ -6531,6 +6860,7 @@ function openGames(){
     <button id="gCase"><div class="gt"><span class="gi">🏷️</span>${ui().caseGame}</div><div class="gd">${ui().caseGameDesc}</div></button>
     <button id="gRole"><div class="gt"><span class="gi">🧭</span>${ui().roleGame}</div><div class="gd">${ui().roleGameDesc}</div></button>
     <button id="gHamza"><div class="gt"><span class="gi">﴾؟﴿</span>${ui().hamzaGame}</div><div class="gd">${ui().hamzaGameDesc}</div></button>
+    <button id="gAlaqa"><div class="gt"><span class="gi">🪢</span>${ui().alaqaGame}</div><div class="gd">${ui().alaqaGameDesc}</div></button>
     <button id="gTahlil"><div class="gt"><span class="gi">🎓</span>${ui().tahlil}</div><div class="gd">${ui().tahlilDesc}</div></button>
   </div>`;
   document.getElementById("gMatch").addEventListener("click", startMatch);
@@ -6542,6 +6872,7 @@ function openGames(){
   document.getElementById("gCase").addEventListener("click", startCaseGame);
   document.getElementById("gRole").addEventListener("click", startRoleGame);
   document.getElementById("gHamza").addEventListener("click", startHamza);
+  document.getElementById("gAlaqa").addEventListener("click", startAlaqa);
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
   showSheet();
 }

@@ -931,6 +931,35 @@ intercession, the non-eternity of sinning believers (لَا يَخْلُدُون
 verbs again), and the definition of iman as التَّصْدِيقُ وَالْإِقْرَار with a
 damir fasl and a relative مَا carrying its sila.
 
+**The eleventh game is «Which relation?»** `ALAQAT` holds the twelve
+relations the bayan file works right through — definition, example, literal
+meaning, intended meaning, the QARINA that forbids the literal reading, and
+the madrasah's own formula (ذِكْرُ السَّبَبِ إِرَادَةُ الْمُسَبَّبِ). Sixteen more
+it merely names; those are listed, never quizzed, because the app quizzes
+only what it can teach. The book's tally is 28 and a smoke check holds the
+registry to it. Only مُشَابَهَة makes an isti'ara — that single fact is the
+whole mursal/isti'ara line, and it is pinned. BALAGHA is a real Elo area
+now, with its own bar, sparkline and coach label; old saved ratings are
+BACKFILLED at 1200 rather than reset.
+
+**IrabSign is the i'rab-realization engine — pure rule, no data.** It
+answers the Kafiya's two crossing questions off the surface alone: BY WHAT
+is the case shown (haraka / letters / removal) and IN WHAT MANNER (lafzi /
+taqdiri / mahalli). Five nouns, dual, sound plurals, maqsur, definite
+manqus, mabni and jazm all fall out of it, and every Analyzer row now wears
+the badge. Two traps it taught: stripAr keeps the HAMZA SEAT, so أَبُوهُ
+never matches a plain-alif pattern — fold seats for MATCHING only, never
+for display; and indefinite قَاضٍ is spelled exactly like any other
+indefinite majrur, so the engine reads it as the plain vowel rather than
+pretending to know. Decide only what the surface can decide.
+
+**The deck has a browser.** Past eight cards, a search box and a filter row
+(due / fresh / learning / mature / leech / verb / note) sit above the list.
+The filter predicates use EXACTLY deckStats' rules — isLeech and the 21-day
+line — so the counts beside the buttons can never disagree with the stats
+row above them, and leech is non-exclusive in both. Filter state is a view,
+not a preference: it lives outside `state` and dies with the sheet.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height
