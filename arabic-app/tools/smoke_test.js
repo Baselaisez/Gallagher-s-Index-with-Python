@@ -1332,6 +1332,43 @@ if (!CHROME) {
     if (!r.trIrab) throw new Error("every ch8 token needs ar+tr i'rab");
   });
 
+  await check('Aqaid ch9 and the kinds of majaz — the bayan file finally read', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch9 = st.chapters.find(c => c.n === 9);
+      if (!ch9) return null;
+      const toks = ch9.sentences.flatMap(s => s.tokens);
+      const n = GRAMMAR['anwa-al-majaz'];
+      return {
+        chapters: st.chapters.length,
+        sentences: ch9.sentences.length,
+        // the five verbs turn up again, and the diptote under al
+        fiveVerbs: toks.some(t => (t.grammar || []).includes('afal-khamsa')),
+        diptote: toks.filter(t => t.s.bare === 'الكبائر' && (t.grammar || []).includes('mamnu-min-sarf')).length,
+        damirFasl: toks.some(t => (t.grammar || []).includes('damir-fasl')),
+        maRelative: toks.filter(t => (t.grammar || []).includes('anwa-ma')).length,
+        trIrab: toks.every(t => t.irab && t.irab.ar && t.irab.tr),
+        note: !!n && !!n.title.tr && n.group === 'balagha',
+        noteAqli: n && /أَنْبَتَ الرَّبِيعُ/.test(JSON.stringify(n)),
+        noteZiyada: n && /لَيْسَ كَمِثْلِهِ/.test(JSON.stringify(n)),
+        noteNuqsan: n && /وَاسْأَلِ الْقَرْيَةَ/.test(JSON.stringify(n)),
+        noteAnchored: (n.examples || []).some(e => e.src),
+      };
+    });
+    if (!r) throw new Error('chapter 9 missing from aqaid-ahl-al-sunna');
+    if (r.chapters < 9) throw new Error('aqaid chapters: ' + r.chapters);
+    if (r.sentences !== 4) throw new Error('ch9 sentences: ' + r.sentences);
+    if (!r.fiveVerbs) throw new Error('يخلدون must be taught as one of the five verbs');
+    if (r.diptote < 1) throw new Error('الكبائر must teach the diptote regaining its kasra under al');
+    if (!r.damirFasl) throw new Error('the damir fasl in the definition of iman is missing');
+    if (r.maRelative < 1) throw new Error('the relative ma in the definition of iman should link the anwa-ma note');
+    if (!r.trIrab) throw new Error("every ch9 token needs ar+tr i'rab");
+    if (!r.note) throw new Error('the anwa-al-majaz note is missing, untranslated, or misfiled');
+    if (!r.noteAqli) throw new Error('majaz aqli needs its worked example');
+    if (!r.noteZiyada || !r.noteNuqsan) throw new Error('the majaz of addition and omission need their Qur\'anic examples');
+    if (!r.noteAnchored) throw new Error('the note must anchor at least one example in the corpus');
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();

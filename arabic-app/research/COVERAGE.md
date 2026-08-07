@@ -13,7 +13,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | # | File | Verdict | One-line summary |
 |---|---|---|---|
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
-| 2 | `research/sources/alaka-ilm-bayan.txt` | **UNTOUCHED** | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
+| 2 | `research/sources/alaka-ilm-bayan.txt` | **PARTIAL** (was UNTOUCHED; first consumed in v79) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
 | 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes, but ~2,600 lines of ʿilm al-maʿānī (khabar/inshāʾ, iltifāt, faṣl-waṣl, ījāz-iṭnāb) and ~7 extra badīʿ figures remain unconsumed. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
@@ -116,3 +116,15 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
 - **`bablara-nakil-tablosu.txt`** — delete as a duplicate of `bablara-nakil-12-wazn.txt`.
 - **ʿAwāmil-100 kinds 2-13** — blocked on transcribing pages 10-80 of the Jurjānī deck; the in-app panel already says so.
 - **Small cleanup:** carry the Marāḥ al-Arwāḥ / ʿIzzī page citations from `misal-kaideleri-mesnedli.txt` into the `classicalSources` fields of the iʿlāl-adjacent notes (augmented-babs, doubled-verbs, hollow-verbs, naqis-verbs, mithal-verbs), and cross-check `izhar-tercume-full.txt`'s RTL-garbled Arabic against `izhar-full-corrected.txt`.
+
+
+---
+
+## Log
+
+- **v79** — `alaka-ilm-bayan.txt` first consumed: its vowelled Arabic
+  definitions of مجاز عقلي, مجاز بالزيادة and مجاز بالنقصان, together with the
+  majaz mursal ʿalaqa roll, became `content/grammar/anwa-al-majaz.json`. The
+  isti'ara subdivisions (tabaiyya / tahqiqiyya / takhyiliyya) and the
+  Sakkaki-vs-Khatib disagreement on makniyya remain unconsumed, as does the
+  70-question bank in `alaka-suallar.txt`.

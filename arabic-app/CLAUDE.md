@@ -914,6 +914,23 @@ being the FA'IL rather than a sign of i'rab. Anchored to the chapter's own
 مَخْلُوقَتَانِ مَوْجُودَتَانِ بَاقِيَتَانِ لَا تَفْنَيَانِ, and contrasted with
 زَوَايَا from chapter 1, which merely looks dual.
 
+**The bayan file is no longer untouched.** `alaka-ilm-bayan.txt` is Ottoman
+script, but its ARABIC definitions are vowelled and perfectly readable —
+that is the lesson for the rest of the Ottoman shelf: DO NOT write a file
+off because its prose is in Ottoman. `anwa-al-majaz` takes from it the
+lughawi/aqli division, the mursal ʿalaqa roll, and three kinds the app had
+never taught: مَجَازٌ عَقْلِيٌّ (أَنْبَتَ الرَّبِيعُ الْبَقْلَ — every word literal,
+the ATTRIBUTION moved), مَجَازٌ بِالزِّيَادَةِ (لَيْسَ كَمِثْلِهِ شَيْءٌ) and
+مَجَازٌ بِالنُّقْصَانِ (وَاسْأَلِ الْقَرْيَةَ) — where the i'rab itself is the
+evidence that a word was added or dropped. Still unconsumed there: the
+isti'ara subdivisions and the Sakkaki/Khatib disagreement. Update
+research/COVERAGE.md whenever a file's verdict changes — it has a Log now.
+
+**Aqaid reaches ch9** — the grave sin that does not unmake faith,
+intercession, the non-eternity of sinning believers (لَا يَخْلُدُونَ, the five
+verbs again), and the definition of iman as التَّصْدِيقُ وَالْإِقْرَار with a
+damir fasl and a relative مَا carrying its sila.
+
 **Focus mode fades, never collapses.** body.focus-hide (scroll down past
 260px → hide, scroll up or near top → show) fades the reader header via
 opacity+transform. It KEEPS ITS SPACE: the first version collapsed max-height
