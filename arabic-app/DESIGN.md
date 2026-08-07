@@ -1,0 +1,167 @@
+# Qissa — the design system
+
+One page. Read it before adding a surface; the app is a single HTML file and
+nothing stops you inventing a fifth radius, so the discipline has to be
+written down and gated.
+
+The smoke suite enforces the two claims a browser can check: every token
+below resolves, and a primary action never renders under 44px tall. The rest
+is on us.
+
+---
+
+## 1. What we borrowed, and why
+
+The reading apps people keep on their phones for years — Duolingo, DuChinese,
+LingQ, Readlang, Anki — do not agree on much. They agree on five things, and
+those five are the whole system here.
+
+| What they all do | What Qissa does with it |
+|---|---|
+| **One thing per screen.** The reader reads; the drill drills. No sidebar of options competing with the sentence. | The reader page holds text and nothing else; every tool opens in a sheet over it, and closing the sheet returns you exactly where you were. |
+| **Tap is the primitive.** Everything a finger reaches is big, round-cornered, and separated by real space. | `--tap: 44px` is a floor under `.btn`, and the smoke suite measures a live button rather than trusting the rule. |
+| **Progress is visible without being asked for.** Streak, due count, what is fading. | The deck badge, the streak row, the fading-words whisper in the games hub, and the model's own accuracy line in the Atölye. |
+| **Failure teaches.** A wrong answer is a lesson, not a buzzer. | Every game returns the right answer AND a refutation keyed to the specific wrong pick (`whyNot`). |
+| **Restraint in colour.** One accent, one danger, one success; everything else is ink on paper. | The palette is six roles and four level colours. The role-highlighting layer is the only place many colours appear at once, and it is opt-in. |
+
+What we deliberately did **not** borrow: gamified pressure. No hearts, no
+lost streaks, no "you're falling behind". The corpus is a madrasah curriculum
+and the tone stays a teacher's, not a slot machine's.
+
+---
+
+## 2. Tokens
+
+Defined once on `:root` in `prototype/reader.html`. **These are the only sizes
+the app may use.** A literal `padding: .9rem` in a new rule is a bug even if
+it looks right.
+
+### Space — a 4px grid
+
+```
+--s1 .25rem (4)   --s2 .5rem (8)    --s3 .75rem (12)   --s4 1rem (16)
+--s5 1.5rem (24)  --s6 2rem (32)    --s7 3rem (48)
+```
+
+`--s2` between related things, `--s3` inside a card, `--s4` between cards,
+`--s5`+ between sections. If you want something between two steps, you want
+one of the two steps.
+
+### Type — ratio ≈ 1.2
+
+```
+--t-xs .72   --t-sm .82   --t-md .94   --t-lg 1.1   --t-xl 1.35   --t-2xl 1.7   (rem)
+--lh-tight 1.25   --lh-body 1.6   --track-caps .1em
+```
+
+Arabic is **not** on this scale. It rides `--ar-font` at sizes chosen per
+surface, because naskh at 0.94rem is unreadable while Latin at 0.94rem is
+comfortable — a shared scale across scripts would be a false economy. Arabic
+display sizes in this app run 1.05rem (an inline rule) to 1.7rem (a headline
+form) and always carry `direction: rtl`.
+
+Small-caps labels (`.k`, `.if-lbl`, `.game-group`) are `--t-xs`, weight 600–700,
+`letter-spacing: --track-caps`, `text-transform: uppercase`, `opacity: .55–.6`.
+That combination is the app's one "label" voice; do not invent a second.
+
+### Radius
+
+```
+--r-sm 8px      inline chips, inset blocks
+--r-md 12px     buttons, list rows
+--radius 14px   cards (legacy name, still the card radius)
+--radius-lg 20px  sheets and large panels
+--r-full 999px  pills and toggles
+```
+
+### Elevation
+
+```
+--e1  hover lift on an interactive card
+--e2  a panel that floats over content
+--shadow / --shadow-sm  the sheet and the reader header (legacy, theme-aware)
+```
+
+Elevation is for *interaction*, never for decoration. A static card gets a
+border, not a shadow.
+
+### Motion
+
+```
+--dur-fast .12s   colour, border, opacity
+--dur-base .2s    transforms, lifts
+--dur-slow .34s   sheets, page-level transitions
+--ease cubic-bezier(.2, .8, .3, 1)
+```
+
+One easing curve for everything. Every transform-based effect sits inside
+`@media (prefers-reduced-motion: no-preference)` — nothing that moves is
+load-bearing.
+
+### Touch
+
+```
+--tap 44px
+```
+
+A floor, not a target. `.btn` enforces it with `min-height`. Header chips
+(`.tbtn`) sit at 34px by deliberate exception: they are a dense toolbar the
+pointer scans, not a primary action a thumb reaches for. Any NEW class a
+thumb hits takes the floor.
+
+---
+
+## 3. Components
+
+**Card** — `1px solid var(--line)`, `var(--radius)`, `var(--panel)`,
+`padding: var(--s4)`, `--e1` on hover only. Cards never nest more than two
+deep; a third level means the content wants its own sheet.
+
+**Sheet** — the app's one modal surface. `--radius-lg`, `--shadow`, a scrim,
+and a `.tabs` row at the top when it has more than one view. Everything that
+is not reading happens here.
+
+**Verdict block** — an engine's answer: the form large and centred, then
+labelled rows underneath (`.nida-verdict`, `.ilal-flow`). Arabic first at
+`--t-2xl`, the reading beneath it at `--t-sm`. The pattern is deliberate: the
+learner should see the Arabic before the explanation, every time.
+
+**Step list** — a derivation (`.ilal-steps`). Numbered circle in
+`--accent-soft`, the forms in Arabic, the rule in Arabic, the gloss in
+`--ink-soft`. Used wherever the app shows *work*, not just an answer.
+
+**Shelf heading** — `.game-group`: an Arabic word in `--accent`, a Latin
+label in the label voice, and a hairline rule filling the row. Used to break
+a long grid into disciplines.
+
+**Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
+ground. Only ever holds a sentence explaining why *your* answer fails.
+
+---
+
+## 4. Theme
+
+Three palettes, kept verbatim in step: `:root` (light), the
+`prefers-color-scheme: dark` media query, and `html[data-theme=...]` for the
+manual toggle. **Never define a colour in only one of the three.** The
+toggle cycles auto → light → dark, and the smoke suite asserts that an
+explicit choice beats the OS.
+
+## 5. Accessibility
+
+- Focus is visible everywhere: `2px solid var(--accent)`, `offset: 2px`.
+- Colour is never the only signal — the role layer pairs hue with a legend,
+  the games pair right/wrong colour with a ✔ and a written refutation.
+- Every string is bilingual EN/TR; the i18n gate fails the release if a key
+  exists in one language and not the other.
+- Wide content scrolls inside its own container; the body never scrolls
+  sideways.
+
+## 6. Adding a surface
+
+1. Sketch it with the tokens above. If you reach for a literal, stop.
+2. Arabic first, gloss second, in every block that shows a form.
+3. If a finger taps it, give it `min-height: var(--tap)`.
+4. If it moves, guard it with `prefers-reduced-motion`.
+5. If it teaches, say *why* — the app's whole voice is the reason, not the
+   verdict.

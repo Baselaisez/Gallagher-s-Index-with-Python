@@ -28,6 +28,25 @@
     --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
     --radius: 14px;
     --radius-lg: 20px;
+    /* ===== the design system: one scale for space, type, motion, touch =====
+       Colour was already tokenised; everything ELSE was ad-hoc rem literals,
+       which is why two panels built a week apart never quite lined up. These
+       are the only sizes the app is allowed to use. The steps are the ones
+       the language-learning apps people actually keep on their phones settle
+       on: a 4px space grid, a ~1.2 type ratio, one shared easing, and a 44px
+       floor under anything a thumb has to hit. */
+    --s1: .25rem;  --s2: .5rem;   --s3: .75rem;  --s4: 1rem;
+    --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;
+    --t-xs: .72rem; --t-sm: .82rem; --t-md: .94rem; --t-lg: 1.1rem;
+    --t-xl: 1.35rem; --t-2xl: 1.7rem;
+    --lh-tight: 1.25; --lh-body: 1.6;
+    --track-caps: .1em;                     /* the one letter-spacing for label caps */
+    --r-sm: 8px; --r-md: 12px; --r-full: 999px;
+    --e1: 0 1px 2px rgba(34,48,58,.06), 0 2px 8px rgba(34,48,58,.06);
+    --e2: 0 4px 12px rgba(34,48,58,.10);
+    --dur-fast: .12s; --dur-base: .2s; --dur-slow: .34s;
+    --ease: cubic-bezier(.2, .8, .3, 1);
+    --tap: 44px;                            /* the thumb floor — never smaller */
     --ar-font: "Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic", "Amiri", "Scheherazade New", serif;
     --body-font: Charter, Georgia, "Times New Roman", serif;
     --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -231,9 +250,15 @@
   .seg button.on { background: var(--accent); color: var(--accent-ink); }
   .tbtn {
     border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft);
-    border-radius: 999px; padding: .32rem .7rem; cursor: pointer;
-    font-family: var(--ui-font); font-size: .76rem; font-weight: 600;
-    transition: color .12s, border-color .12s, background .12s;
+    border-radius: var(--r-full); padding: var(--s2) var(--s3); cursor: pointer;
+    min-height: 34px;                 /* header chips sit in a dense row; the
+                                         44px floor applies to the primary
+                                         actions a thumb reaches for, not to
+                                         a toolbar the pointer scans */
+    display: inline-flex; align-items: center; gap: var(--s1);
+    font-family: var(--ui-font); font-size: var(--t-xs); font-weight: 600;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+                background var(--dur-fast) var(--ease);
   }
   .tbtn:hover:not(.on) { color: var(--accent); border-color: var(--accent); }
   .tbtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -464,9 +489,18 @@
   .segrow .seg-item small { display: block; font-family: var(--ui-font); font-size: .62rem; color: var(--ink-soft); direction: ltr; text-align: center; }
   .sheet-actions { display: flex; gap: .6rem; margin-top: 1rem; font-family: var(--ui-font); flex-wrap: wrap; }
   .btn {
-    border: 1px solid var(--line); border-radius: 10px; padding: .55rem .9rem; cursor: pointer;
-    font-family: var(--ui-font); font-weight: 600; font-size: .84rem; background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: var(--s3) var(--s4); cursor: pointer;
+    min-height: var(--tap);            /* the thumb floor, not a nice-to-have */
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+    font-family: var(--ui-font); font-weight: 600; font-size: var(--t-sm);
+    background: var(--panel); color: var(--ink);
+    transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
+                box-shadow var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
   }
+  .btn:hover { border-color: var(--accent); box-shadow: var(--e1); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) { .btn:active { transform: translateY(1px); } }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .btn.saved { background: var(--ok); border-color: var(--ok); color: #fff; }
 
@@ -555,12 +589,13 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .game-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .7rem; }
+  .game-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--s3); }
   .game-pick button {
     position: relative; overflow: hidden; text-align: start;
     border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
-    padding: .9rem 1rem; cursor: pointer; color: var(--ink);
-    transition: border-color .15s, box-shadow .15s, transform .15s;
+    padding: var(--s4); cursor: pointer; color: var(--ink); min-height: var(--tap);
+    transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease),
+                transform var(--dur-base) var(--ease);
   }
   .game-pick button::after {
     content: "؟"; position: absolute; inset-inline-end: -.35rem; bottom: -1.3rem;
@@ -572,7 +607,7 @@
     .game-pick button:hover { transform: translateY(-1px); }
   }
   .game-pick .gt { font-weight: 700; font-family: var(--ui-font); }
-  .game-pick .gd { color: var(--ink-soft); font-size: .82rem; margin-top: .15rem; }
+  .game-pick .gd { color: var(--ink-soft); font-size: var(--t-sm); margin-top: var(--s1); line-height: var(--lh-body); }
 
   /* ================= design wave 6: the hub finds its faces ==============
      Every game card wears a small emblem and a colored spine — the muted
@@ -640,6 +675,30 @@
   .tabs [data-lab="ism"]::before   { content: "🏷️"; }
   .tabs [data-lab="jumla"]::before { content: "🧠"; }
   .tabs [data-lab="nida"]::before  { content: "📣"; }
+  .tabs [data-lab="ilal"]::before  { content: "🧪"; }
+  /* the I'lal Lab: origin and outcome first, then the rules that got there */
+  .ilal-flow { display: flex; align-items: center; gap: .8rem; justify-content: center;
+    flex-wrap: wrap; margin: .8rem 0; padding: .8rem; border: 1px solid var(--line);
+    border-radius: 14px; background: var(--panel); }
+  .ilal-flow .if-end { text-align: center; }
+  .ilal-flow .if-lbl { display: block; font-size: .7rem; letter-spacing: .09em;
+    text-transform: uppercase; opacity: .55; margin-bottom: .15rem; }
+  .ilal-flow b { font-family: var(--ar-font); font-size: 1.7rem; direction: rtl; font-weight: 400; }
+  .ilal-flow .out b { color: var(--accent); font-weight: 700; }
+  .ilal-flow .if-arrow { font-size: 1.3rem; opacity: .45; }
+  .ilal-none { font-size: .9rem; opacity: .75; text-align: center; margin: .4rem 0; }
+  .ilal-steps { list-style: none; margin: .2rem 0 0; padding: 0; display: grid; gap: .5rem; }
+  .ilal-steps li { display: flex; gap: .6rem; border: 1px solid var(--line);
+    border-radius: 12px; padding: .55rem .7rem; background: var(--panel); }
+  .ilal-steps .is-n { flex: 0 0 1.6rem; height: 1.6rem; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent); font-weight: 700;
+    font-size: .8rem; display: grid; place-items: center; }
+  .ilal-steps .is-body { flex: 1; min-width: 0; }
+  .ilal-steps .is-forms { font-family: var(--ar-font); font-size: 1.25rem; }
+  .ilal-steps .is-to { opacity: .4; font-size: .85em; }
+  .ilal-steps .is-rule { font-family: var(--ar-font); font-size: 1.05rem; direction: rtl;
+    margin-top: .2rem; }
+  .ilal-steps .is-gloss { font-size: .84rem; color: var(--ink-soft); margin-top: .1rem; }
   /* the model's own score, stated where the model does its work */
   .ml-score { font-size: .82rem; line-height: 1.55; opacity: .8; margin: -.2rem 0 .7rem;
     padding: .5rem .65rem; border-inline-start: 3px solid var(--accent);
@@ -1299,6 +1358,9 @@ const L = {
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
         mlScore:"🧠 On the corpus it learned from, the model names the role of {n} words and gets {a}% right first try, {b}% within two guesses. That is a resubstitution score — an upper bound, shown so a change can be measured instead of believed.",
+        ilalTab:"I'lal", ilalAsl:"Its origin", ilalOutLbl:"What is said",
+        ilalIntro:"Type a three-letter root and pick a wazn. The lab assembles the ORIGIN the books start from, then runs the rules in their own order until none fires — and shows each firing with the rule that caused it. Nothing is looked up: قُلْ, مَكِيلٌ and مَرْمِيٌّ all fall out of the same ten rules.",
+        ilalNone:"No rule fires here — the root is sound, so the origin IS what is said.",
         nidaTab:"Vocative",
         nidaIntro:"Type a call and the engine reads its ruling off the letters — the kind, the sign, and why. Nothing is looked up: strip the particle and the shape of what is left decides everything.",
         nidaPh:"يَا عَبْدَ اللهِ",
@@ -1437,6 +1499,9 @@ const L = {
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
         mlScore:"🧠 Öğrendiği külliyat üzerinde model {n} kelimenin görevini adlandırıyor; ilk tahminde %{a}, ilk iki tahmin içinde %{b} isabet ediyor. Bu bir yeniden-yerine-koyma skorudur — üst sınırdır; bir değişiklik inanılsın diye değil ölçülsün diye gösterilir.",
+        ilalTab:"İ'lâl", ilalAsl:"Aslı", ilalOutLbl:"Söylenen",
+        ilalIntro:"Üç harfli bir kök yazın ve bir vezin seçin. Atölye, kitapların başladığı ASLI kurar; sonra kaideleri kendi sıralarıyla, hiçbiri işlemez hâle gelene dek uygular ve her işleyişi sebebiyle birlikte gösterir. Hiçbiri ezberden değildir: قُلْ, مَكِيلٌ ve مَرْمِيٌّ aynı on kaideden çıkar.",
+        ilalNone:"Burada hiçbir kaide işlemez — kök sahihtir; asıl, söylenenin ta kendisidir.",
         nidaTab:"Nidâ",
         nidaIntro:"Bir nidâ yazın; motor hükmü harflerden okusun — çeşidi, alâmeti ve sebebi. Hiçbir şey ezberden değildir: harf düşünce geriye kalanın şekli her şeyi tayin eder.",
         nidaPh:"يَا عَبْدَ اللهِ",
@@ -4066,6 +4131,272 @@ function ilalChain(entry, morph){
   return ilalSteps(cls, at.bab, morph.mazi[0], morph.mudari[0]);
 }
 
+// ---------- إعلال: the derivation, run as an ordered rule system --------
+// The books do not list finished forms; they list RULES and apply them in
+// order to an underlying form (الأصل) until nothing fires. That is an
+// algorithm, so it is written as one here. Each rule is a pure test/apply
+// pair over the word parsed into (letter, marks) units, and derive() records
+// every firing — the chain a Maksud student recites out loud.
+//
+// The order matters and is the books' own: naql before qalb, qalb before
+// the meeting of two sakins, and the vowel-harmony that PROVES what was
+// dropped comes last. Nothing here is a lookup: قُلْ and مَكِيلٌ and مَرْمِيٌّ
+// all fall out of the same seven rules.
+class IlalEngine {
+  static SHORT = "َُِ";              // fatha damma kasra
+  static TANWIN = "ًٌٍ";
+  static SUKUN = "ْ";
+  static SHADDA = "ّ";
+  static WEAK = "وياى";          // waw ya alif alif-maqsura
+  static parse(s){
+    const out = [];
+    for (const ch of (s || "").normalize("NFC")) {
+      if (/[ً-ْٰ]/.test(ch)) { if (out.length) out[out.length - 1].m += ch; }
+      else if (/\S/.test(ch)) out.push({ c: ch, m: "" });
+    }
+    return out;
+  }
+  // Marks are written in one canonical order — shadda first, then the vowel
+  // or tanwin — so two spellings of the same form compare equal.
+  static normMarks(m){
+    const set = [...new Set((m || "").split(""))];
+    const sh = set.filter(c => c === "\u0651");
+    const rest = set.filter(c => c !== "\u0651");
+    return sh.concat(rest).join("");
+  }
+  static join(u){ return u.map(x => x.c + this.normMarks(x.m)).join(""); }
+  static isShort(m){ return this.SHORT.includes((m || "").replace(this.SHADDA, "")[0] || ""); }
+  static vowel(m){ const v = (m || "").split("").find(c => this.SHORT.includes(c)); return v || ""; }
+  static isSakin(x){ return !x.m || x.m === this.SUKUN; }
+  static isWeak(c){ return "وي".includes(c); }
+
+  // ---- the rules, in the order the books apply them --------------------
+  static RULES = [
+    { id: "naql",
+      ar: "اسْتُثْقِلَتِ الْحَرَكَةُ عَلَى حَرْفِ الْعِلَّةِ فَنُقِلَتْ إِلَى السَّاكِنِ الصَّحِيحِ قَبْلَهُ.",
+      en: "The vowel sat heavy on the weak letter, so it was carried back to the sound quiescent letter before it.",
+      tr: "Hareke illet harfine ağır geldi; öncesindeki sahih sâkine nakledildi.",
+      run(u, E){
+        for (let i = 1; i < u.length; i++) {
+          if (!E.isWeak(u[i].c) || !E.isShort(u[i].m)) continue;
+          const p = u[i - 1];
+          if (E.isWeak(p.c) || !E.isSakin(p) || p.m === "") continue;   // must be a SOUND sakin
+          p.m = E.vowel(u[i].m); u[i].m = "";
+          return i;
+        }
+        return -1;
+      } },
+    { id: "qalb-alif",
+      ar: "تَحَرَّكَ حَرْفُ الْعِلَّةِ وَانْفَتَحَ مَا قَبْلَهُ فَقُلِبَ أَلِفًا.",
+      en: "The weak letter bore a vowel after a fatha, so it turned into an alif.",
+      tr: "İllet harfi harekeli, öncesi fethalı olunca elife çevrildi.",
+      run(u, E){
+        for (let i = 1; i < u.length; i++) {
+          if (!E.isWeak(u[i].c) || !E.isShort(u[i].m)) continue;
+          if (E.vowel(u[i - 1].m) !== "َ") continue;
+          const wasYa = u[i].c === "ي", last = i === u.length - 1;
+          const tail = u[i].m.replace(/[َُِ]/g, "");
+          // the alif REMEMBERS what it came from: قَوَلْتُ ends in a damma
+          // and بَيَعْتُ in a kasra, and only the origin knows which.
+          u[i] = { c: (wasYa && last) ? "ى" : "ا", m: tail, from: u[i].c };
+          return i;
+        }
+        return -1;
+      } },
+    { id: "qalb-waw-ya",
+      ar: "اجْتَمَعَتِ الْوَاوُ وَالْيَاءُ وَسُبِقَتْ إِحْدَاهُمَا بِالسُّكُونِ فَقُلِبَتِ الْوَاوُ يَاءً.",
+      en: "A waw and a ya met with the first of them quiescent, so the waw turned into a ya.",
+      tr: "Vav ile yâ bir araya geldi ve öncekisi sâkin oldu; vav yâya çevrildi.",
+      run(u, E){
+        for (let i = 0; i < u.length - 1; i++) {
+          if (u[i].c !== "و" || !E.isSakin(u[i])) continue;
+          if (u[i + 1].c !== "ي") continue;
+          u[i].c = "ي";
+          return i;
+        }
+        return -1;
+      } },
+    { id: "qalb-waw-kasra",
+      ar: "سَكَنَتِ الْوَاوُ وَانْكَسَرَ مَا قَبْلَهَا فَقُلِبَتْ يَاءً.",
+      en: "The waw fell quiescent after a kasra, so it turned into a ya.",
+      tr: "Vav sâkin oldu ve öncesi kesralı idi; yâya çevrildi.",
+      run(u, E){
+        for (let i = 1; i < u.length; i++) {
+          if (u[i].c !== "و" || !E.isSakin(u[i])) continue;
+          if (E.vowel(u[i - 1].m) !== "\u0650") continue;
+          u[i] = { c: "ي", m: "" };
+          return i;
+        }
+        return -1;
+      } },
+    { id: "qalb-waw-tarafiyya",
+      ar: "تَطَرَّفَتِ الْوَاوُ وَانْكَسَرَ مَا قَبْلَهَا فَقُلِبَتْ يَاءً.",
+      en: "The waw came at the very end after a kasra, so it turned into a ya.",
+      tr: "Vav kelimenin sonuna geldi ve öncesi kesralı idi; yâya çevrildi.",
+      run(u, E){
+        const i = u.length - 1;
+        if (i < 1 || u[i].c !== "\u0648") return -1;
+        if (E.vowel(u[i - 1].m) !== "\u0650") return -1;
+        u[i].c = "\u064A";
+        return i;
+      } },
+    { id: "idgham",
+      ar: "اِلْتَقَى الْمِثْلَانِ فَأُدْغِمَ الْأَوَّلُ فِي الثَّانِي.",
+      en: "Two of a kind met, so the first was fused into the second.",
+      tr: "İki mislî harf buluştu; birincisi ikinciye idgam edildi.",
+      run(u, E){
+        for (let i = 0; i < u.length - 1; i++) {
+          if (u[i].c !== u[i + 1].c || !E.isWeak(u[i].c)) continue;
+          // the first must be quiescent and the second must BEAR a vowel;
+          // where the second is quiescent too it is a meeting of sakins,
+          // and that chapter drops a letter instead of fusing them.
+          if (!E.isSakin(u[i]) || E.isSakin(u[i + 1])) continue;
+          const keep = u[i + 1].m;
+          u.splice(i, 2, { c: u[i].c, m: E.SHADDA + keep });
+          return i;
+        }
+        return -1;
+      } },
+    { id: "hadhf-sakinayn",
+      ar: "اِلْتَقَى سَاكِنَانِ فَحُذِفَ حَرْفُ الْعِلَّةِ.",
+      en: "Two quiescent letters met, so the weak one was dropped.",
+      tr: "İki sâkin buluştu; illet harfi hazfedildi.",
+      run(u, E){
+        for (let i = 0; i < u.length - 1; i++) {
+          if (!E.isSakin(u[i]) || !E.isSakin(u[i + 1])) continue;
+          const aW = E.WEAK.includes(u[i].c), bW = E.WEAK.includes(u[i + 1].c);
+          if (!aW && !bW) continue;
+          // Drop the weak one. Where BOTH are weak the wazn's letter goes,
+          // and the wazn's letter is the SECOND — مَقْوُول، مَكْيُول.
+          const at = (aW && bW) ? i + 1 : (aW ? i : i + 1);
+          const gone = u[at].from || u[at].c;
+          const tail = u[at].m.replace(E.SUKUN, "");
+          u.splice(at, 1);
+          if (tail && u[at]) u[at].m += tail; else if (tail && u.length) u[u.length - 1].m += tail;
+          // remember what vanished, and where its evidence must be written
+          E._pend = { gone, idx: at };
+          return at;
+        }
+        return -1;
+      } },
+    { id: "harmoniya",
+      ar: "حُرِّكَ مَا قَبْلَ حَرْفِ الْعِلَّةِ بِمَا يُجَانِسُهُ دَلَالَةً عَلَى الْمَحْذُوفِ.",
+      en: "The letter before was given the vowel that matches the weak letter — the evidence of what was dropped.",
+      tr: "Düşenin delili olsun diye, öncesindeki harf illet harfine uygun hareke ile harekelendi.",
+      run(u, E){
+        if (!E._pend) return -1;
+        const { gone, idx } = E._pend;
+        E._pend = null;
+        // A weak letter that SURVIVED the meeting outranks the one that fell:
+        // in مَكْيُولٌ the waw went but the ya stayed, and it is the ya the
+        // vowel must now match. Otherwise the dropped letter is the witness.
+        const prev = u[idx - 1];
+        const survived = prev && E.isWeak(prev.c) && E.isSakin(prev);
+        const seat = survived ? idx - 2 : idx - 1;
+        const near = survived ? prev.c : gone;
+        const want = near === "و" ? "ُ" : near === "ي" ? "ِ" : "";
+        if (!want || seat < 0 || !u[seat]) return -1;
+        if (E.vowel(u[seat].m) === want) return -1;
+        u[seat].m = u[seat].m.replace(/[َُِ]/g, "") + want;
+        return seat;
+      } },
+    { id: "munasaba",
+      ar: "ثَقُلَتِ الضَّمَّةُ قَبْلَ الْيَاءِ فَقُلِبَتْ كَسْرَةً لِمُنَاسَبَتِهَا.",
+      en: "A damma before a ya is heavy, so it turned into a kasra to suit it.",
+      tr: "Yâdan önceki damme ağır geldi; ona uygun düşsün diye kesraya çevrildi.",
+      run(u, E){
+        for (let i = 1; i < u.length; i++) {
+          if (u[i].c !== "ي") continue;
+          if (!E.isSakin(u[i]) && !u[i].m.includes(E.SHADDA)) continue;
+          if (E.vowel(u[i - 1].m) !== "\u064F") continue;
+          u[i - 1].m = u[i - 1].m.replace(/[َُِ]/g, "") + "\u0650";
+          return i - 1;
+        }
+        return -1;
+      } },
+    { id: "hamz-fail",
+      ar: "وَقَعَ حَرْفُ الْعِلَّةِ بَعْدَ أَلِفِ «فَاعِل» فَقُلِبَ هَمْزَةً.",
+      en: "The weak letter fell after the alif of fa'il, so it turned into a hamza.",
+      tr: "İllet harfi «fâil» elifinden sonra geldi ve hemzeye çevrildi.",
+      run(u, E){
+        for (let i = 1; i < u.length; i++) {
+          if (!E.isWeak(u[i].c) || !E.isShort(u[i].m)) continue;
+          const p = u[i - 1];
+          if (p.c !== "ا" || p.m !== "") continue;
+          u[i].c = "ئ";
+          return i;
+        }
+        return -1;
+      } },
+    { id: "hadhf-manqus",
+      ar: "اِجْتَمَعَ التَّنْوِينُ وَيَاءُ الْمَنْقُوصِ فَحُذِفَتِ الْيَاءُ.",
+      en: "The tanwin met the ya of a manqus noun, so the ya was dropped.",
+      tr: "Tenvin ile menkūsun yâsı buluştu; yâ hazfedildi.",
+      run(u, E){
+        const i = u.length - 1;
+        if (i < 1 || u[i].c !== "ي") return -1;
+        // a DOUBLED ya is no manqus: مَرْمِيٌّ keeps both, it is not غَازٍ
+        if (u[i].m.includes(E.SHADDA)) return -1;
+        if (!/[ٌٍ]/.test(u[i].m)) return -1;                 // ٌ or ٍ
+        if (E.vowel(u[i - 1].m) !== "ِ") return -1;
+        u.splice(i, 1);
+        u[u.length - 1].m = u[u.length - 1].m.replace(/[َُِ]/g, "") + "ٍ";
+        return u.length - 1;
+      } },
+    { id: "wasl-drop",
+      ar: "تَحَرَّكَ مَا بَعْدَ هَمْزَةِ الْوَصْلِ فَاسْتُغْنِيَ عَنْهَا.",
+      en: "The letter after hamzat al-wasl gained a vowel, so the hamza was no longer needed.",
+      tr: "Hemze-i vaslın ardındaki harf harekelendi; artık ona ihtiyaç kalmadı.",
+      run(u, E){
+        if (u.length < 2) return -1;
+        if (!/^[اأإ]$/.test(u[0].c)) return -1;
+        if (!E.isShort(u[0].m)) return -1;
+        if (!E.isShort(u[1].m)) return -1;         // it must now BEAR a vowel
+        u.splice(0, 1);
+        return 0;
+      } },
+  ];
+
+  // ---- the underlying forms the books start from ----------------------
+  // Nothing derived is stored: give a root and a shape and the ASL is
+  // assembled from the wazn, then handed to the rules.
+  static SHAPES = {
+    fail:   { ar: "فَاعِلٌ",   asl: (f, a, l) => f + "َا" + a + "ِ" + l + "ٌ" },
+    maful:  { ar: "مَفْعُولٌ", asl: (f, a, l) => "مَ" + f + "ْ" + a + "ُو" + l + "ٌ" },
+    alat:   { ar: "مِفْعَالٌ", asl: (f, a, l) => "مِ" + f + "ْ" + a + "َا" + l + "ٌ" },
+    zaman:  { ar: "مَفْعَلٌ",  asl: (f, a, l) => "مَ" + f + "ْ" + a + "َ" + l + "ٌ" },
+  };
+  static build(root, shape){
+    const rs = (root || "").normalize("NFC").replace(/[^ء-ي]/g, "").split("");
+    const S = this.SHAPES[shape];
+    if (!S || rs.length !== 3) return null;
+    const asl = S.asl(rs[0], rs[1], rs[2]);
+    const d = this.derive(asl);
+    return d && { shape, wazn: S.ar, ...d };
+  }
+  static derive(asl, opts = {}){
+    const only = opts.only || null;
+    let u = this.parse(asl);
+    if (!u.length) return null;
+    this._pend = null;
+    const steps = [];
+    for (let guard = 0; guard < 12; guard++) {
+      let fired = null;
+      for (const r of this.RULES) {
+        if (only && !only.includes(r.id)) continue;
+        const before = this.join(u);
+        const at = r.run(u, this);
+        if (at >= 0) { fired = { id: r.id, ar: r.ar, en: r.en, tr: r.tr, before, after: this.join(u), at }; break; }
+      }
+      if (!fired) break;
+      if (fired.before === fired.after) break;
+      steps.push(fired);
+    }
+    this._pend = null;
+    return { asl: this.parse(asl).map(x => x.c + x.m).join(""), out: this.join(u), steps };
+  }
+}
+
 // ---------- the role parser (تَحْلِيلُ الْوَظَائِفِ) ----------
 // class RoleEngine READS each token's stored Arabic i'rab line the way a
 // student would, and names the word's FUNCTION in the sentence; the
@@ -4553,6 +4884,13 @@ class IrabModel {
     if (sign) f.push("sign-" + sign.en);
     const is = IrabSign.of(w);
     if (is) f.push("by-" + is.by);
+    // Length, bucketed. It is a proxy for word CLASS that costs nothing: a
+    // two-letter word is almost always a particle, a six-letter one carries
+    // affixes. Kept because the ablation earned it (+1.8 pts on first guess);
+    // a mim-initial flag and a shadda flag were tried in the same pass and
+    // DROPPED — they measured as noise, and an unmeasured feature is a
+    // superstition. Re-run tools/ablate_features.js before adding another.
+    f.push("len-" + (bare.length <= 3 ? bare.length : bare.length <= 5 ? "45" : "6"));
     return f;
   }
   static train(){
@@ -4991,7 +5329,8 @@ let conjState = { root: "نصر", form: "I", bab: 1, rubai: "R1", known: null,
                   lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر",
                   mizan: "يستعملون", ism: "مدينة",
                   jumla: "لم يكتبِ الطالبُ في الدفترِ",
-                  nida: "يَا عَبْدَ اللهِ" };
+                  nida: "يَا عَبْدَ اللهِ",
+                  ilalRoot: "قول", ilalShape: "maful" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -5289,6 +5628,36 @@ function renderJumlaOut(){
   h += `</tbody></table></div><p class="sarf-note">${ui().jumlaHonest}</p>`;
   out.innerHTML = h;
 }
+// The I'lal Lab. The root and the wazn make an ASL; the rule engine does the
+// rest, and every firing is shown with the rule that fired it — the chain a
+// Maksud student recites. A root that needs no i'lal shows an empty chain and
+// says so: that is information too.
+function renderIlalOut(){
+  const out = document.getElementById("ilalOut");
+  if (!out) return;
+  const E = escapeAttr;
+  const raw = (conjState.ilalRoot || "").normalize("NFC").replace(/[^ء-ي]/g, "");
+  if (raw.length !== 3) { out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`; return; }
+  const b = IlalEngine.build(raw, conjState.ilalShape);
+  if (!b) { out.innerHTML = `<p class="empty">${ui().jadhrBad}</p>`; return; }
+  let h = `<div class="ilal-flow">
+    <div class="if-end"><span class="if-lbl">${ui().ilalAsl}</span><b lang="ar">${E(b.asl)}</b></div>
+    <div class="if-arrow">→</div>
+    <div class="if-end out"><span class="if-lbl">${ui().ilalOutLbl}</span><b lang="ar">${E(b.out)}</b></div>
+  </div>`;
+  if (!b.steps.length) {
+    h += `<p class="ilal-none">${ui().ilalNone}</p>`;
+  } else {
+    h += `<ol class="ilal-steps">` + b.steps.map((s, k) => `<li>
+      <div class="is-n">${k + 1}</div>
+      <div class="is-body">
+        <div class="is-forms" lang="ar" dir="rtl">${E(s.before)} <span class="is-to">←</span> ${E(s.after)}</div>
+        <div class="is-rule" lang="ar">${s.ar}</div>
+        <div class="is-gloss">${state.uiLang === "tr" ? s.tr : s.en}</div>
+      </div></li>`).join("") + `</ol>`;
+  }
+  out.innerHTML = h;
+}
 // The Nida Lab. Everything on screen is computed by NidaEngine from the call
 // as typed — the panel adds no knowledge of its own, it only lays the verdict out.
 function renderNidaOut(){
@@ -5438,6 +5807,25 @@ function renderLabBody(){
     renderJumlaOut();
     return;
   }
+  if (conjState.lab === "ilal") {
+    body.innerHTML = `<p class="ref-intro">${ui().ilalIntro}</p>
+      <div class="conj-lab">
+        <input id="ilalIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().jadhrPh)}" value="${escapeAttr(conjState.ilalRoot)}">
+      </div>
+      <div class="seg conj-seg" id="ilalSeg">${Object.keys(IlalEngine.SHAPES).map(k =>
+        `<button data-is="${k}" class="${conjState.ilalShape === k ? "on" : ""}" lang="ar">${IlalEngine.SHAPES[k].ar}</button>`).join("")}</div>
+      <div id="ilalOut"></div>`;
+    const inp = document.getElementById("ilalIn");
+    inp.addEventListener("input", debounced(() => { conjState.ilalRoot = inp.value; renderIlalOut(); }));
+    body.querySelectorAll("[data-is]").forEach(b2 => b2.addEventListener("click", () => {
+      conjState.ilalShape = b2.dataset.is;
+      body.querySelectorAll("[data-is]").forEach(x => x.classList.toggle("on", x === b2));
+      renderIlalOut();
+    }));
+    renderIlalOut();
+    return;
+  }
   if (conjState.lab === "nida") {
     body.innerHTML = `<p class="ref-intro">${ui().nidaIntro}</p>
       <div class="conj-lab">
@@ -5549,6 +5937,7 @@ function openConjugator(){
       <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
       <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
+      <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {

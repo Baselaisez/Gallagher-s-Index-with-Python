@@ -1489,7 +1489,9 @@ if (!CHROME) {
     });
     if (!r) throw new Error('chapter 10 missing');
     if (r.chapters < 10) throw new Error('aqaid chapters: ' + r.chapters);
-    if (r.sentences !== 4) throw new Error('ch10 sentences: ' + r.sentences);
+    // six since v83: the matn's own change-clause was restored between the
+    // saada/shaqawa verse and the closing denial it exists to set up.
+    if (r.sentences !== 6) throw new Error('ch10 sentences: ' + r.sentences);
     if (r.anCount !== 2 || !r.anSakin) throw new Error('both أَنْ must be the SAKIN masdar-maker');
     if (!r.taqdiri) throw new Error('يَشْقَى must teach the estimated damma on the alif');
     if (!r.laJins) throw new Error('the genus-denying la is missing');
@@ -3755,7 +3757,9 @@ if (!CHROME) {
 
   // The score is pinned so a feature change has to be MEASURED. Reading the
   // ending sign and the manner of i'rab off the rule engines lifted this from
-  // 42.7/62.9 to 49.3/71.0 when it was added; the floor sits just under that.
+  // 42.7/62.9 to 49.3/71.0; a bucketed word length took first guesses to
+  // 51.4. The floor sits just under whatever the last measured run gave.
+  // tools/ablate_features.js is how a candidate feature earns its place.
   await check('the model scores on the corpus, and the score is pinned', async () => {
     const a = await page.evaluate(() => {
       const x = IrabModel.accuracy();
@@ -3763,7 +3767,7 @@ if (!CHROME) {
                shown: (document.body.innerHTML.match(/ml-score/g) || []).length };
     });
     if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
-    if (a.top1 < 47) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
+    if (a.top1 < 50) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
     if (a.top2 < 68) throw new Error('two-guess accuracy regressed to ' + a.top2 + '%');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
@@ -3912,6 +3916,102 @@ if (!CHROME) {
     if (r.right !== 1) throw new Error('exactly one option is right, marked: ' + r.right);
     if (!r.taught) throw new Error('the reveal must teach');
     if (!/مُنَادًى/.test(r.why)) throw new Error('the reveal must name the kind: ' + r.why.slice(0, 80));
+    await page.evaluate(() => closeSheet());
+  });
+
+  // The i'lal engine is ten ordered rules over an underlying form. Every one
+  // of these is a worked derivation from the Maksud / ilal-kaideleri sources,
+  // and NONE of them is stored: قُلْ, مَكِيلٌ and مَرْمِيٌّ come out of the rules.
+  await check('the I\'lal engine derives every worked form the books recite', async () => {
+    const want = {
+      "قَوَلَ": "قَالَ", "بَيَعَ": "بَاعَ", "رَمَيَ": "رَمَى", "غَزَوَ": "غَزَا",
+      "يَقْوُلُ": "يَقُولُ", "يَبْيِعُ": "يَبِيعُ",
+      "قَوَلْتُ": "قُلْتُ", "بَيَعْتُ": "بِعْتُ",
+      "قَاوِلٌ": "قَائِلٌ", "بَايِعٌ": "بَائِعٌ",
+      "مَقْوُولٌ": "مَقُولٌ", "مَكْيُولٌ": "مَكِيلٌ",
+      "مَغْزُووٌ": "مَغْزُوٌّ", "مَرْمُويٌ": "مَرْمِيٌّ", "مَخْشُويٌ": "مَخْشِيٌّ",
+      "غَازِيٌ": "غَازٍ", "رَامِيٌ": "رَامٍ", "مِوْزَانٌ": "مِيزَانٌ", "اُقْوُلْ": "قُلْ",
+      // sound roots and a real word that LOOKS like an i'lal site must be left alone
+      "مُيَسَّرٌ": "مُيَسَّرٌ", "كَتَبَ": "كَتَبَ", "مَكْتُوبٌ": "مَكْتُوبٌ", "كَاتِبٌ": "كَاتِبٌ",
+    };
+    const got = await page.evaluate(w => {
+      const norm = s => IlalEngine.join(IlalEngine.parse(s));
+      const bad = [];
+      Object.keys(w).forEach(asl => {
+        const r = IlalEngine.derive(asl);
+        if (!r || norm(r.out) !== norm(w[asl])) bad.push(asl + ' -> ' + (r && r.out) + ' ≠ ' + w[asl]);
+      });
+      return bad;
+    }, want);
+    if (got.length) throw new Error(got.join('; '));
+  });
+
+  await check('the I\'lal engine builds the derived nouns from root and wazn alone', async () => {
+    const want = {
+      "قول|fail": "قَائِلٌ", "قول|maful": "مَقُولٌ",
+      "بيع|fail": "بَائِعٌ", "بيع|maful": "مَبِيعٌ",
+      "غزو|fail": "غَازٍ",   "غزو|maful": "مَغْزُوٌّ",
+      "رمي|fail": "رَامٍ",   "رمي|maful": "مَرْمِيٌّ",
+      "كيل|maful": "مَكِيلٌ", "دعو|maful": "مَدْعُوٌّ",
+      "نصر|fail": "نَاصِرٌ", "نصر|maful": "مَنْصُورٌ",
+    };
+    const bad = await page.evaluate(w => {
+      const norm = s => IlalEngine.join(IlalEngine.parse(s));
+      const out = [];
+      Object.keys(w).forEach(k => {
+        const [root, shape] = k.split('|');
+        const b = IlalEngine.build(root, shape);
+        if (!b || norm(b.out) !== norm(w[k])) out.push(k + ' -> ' + (b && b.out) + ' ≠ ' + w[k]);
+      });
+      return out;
+    }, want);
+    if (bad.length) throw new Error(bad.join('; '));
+  });
+
+  await check('the I\'lal Lab shows the origin, the outcome and every rule between', async () => {
+    await page.evaluate(() => { conjState.lab = 'ilal'; conjState.ilalRoot = 'كيل'; conjState.ilalShape = 'maful'; });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#ilalOut', { timeout: 3000 });
+    await page.waitForTimeout(200);
+    const r = await page.evaluate(() => {
+      const t = document.getElementById('ilalOut').textContent;
+      const steps = document.querySelectorAll('#ilalOut .ilal-steps li').length;
+      conjState.ilalRoot = 'نصر'; renderIlalOut();
+      const none = document.querySelectorAll('#ilalOut .ilal-none').length;
+      const soundSteps = document.querySelectorAll('#ilalOut .ilal-steps li').length;
+      conjState.lab = 'sarf'; closeSheet();
+      return { t, steps, none, soundSteps };
+    });
+    if (r.steps !== 3) throw new Error('مَكْيُولٌ takes three rules, panel shows ' + r.steps);
+    if (!r.t.includes('مَكِيلٌ')) throw new Error('the outcome is missing from the panel');
+    if (!r.t.includes('مَكْيُولٌ')) throw new Error('the origin is missing from the panel');
+    if (r.soundSteps !== 0 || !r.none) throw new Error('a sound root must show no rule and say so');
+  });
+
+  // A design system that is only written down is a document, not a system.
+  // These are the two claims DESIGN.md makes that a page can actually be
+  // held to: the scale resolves, and a thumb target never falls below 44px.
+  await check('the design tokens resolve, and primary actions clear the 44px thumb floor', async () => {
+    const r = await page.evaluate(() => {
+      const cs = getComputedStyle(document.documentElement);
+      const need = ['--s1', '--s2', '--s3', '--s4', '--s5', '--s6', '--s7',
+                    '--t-xs', '--t-sm', '--t-md', '--t-lg', '--t-xl', '--t-2xl',
+                    '--r-sm', '--r-md', '--r-full', '--e1', '--e2',
+                    '--dur-fast', '--dur-base', '--ease', '--tap'];
+      const missing = need.filter(k => !cs.getPropertyValue(k).trim());
+      return { missing, tap: cs.getPropertyValue('--tap').trim() };
+    });
+    if (r.missing.length) throw new Error('unset tokens: ' + r.missing.join(', '));
+    if (r.tap !== '44px') throw new Error('the thumb floor moved: ' + r.tap);
+    // measure a real .btn on a real sheet rather than trusting the rule
+    await page.evaluate(() => openGames());
+    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    await page.locator('#gNida').click();
+    await page.waitForSelector('.opts', { timeout: 3000 });
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('#qNext', { timeout: 3000 });
+    const h = await page.evaluate(() => Math.round(document.getElementById('qNext').getBoundingClientRect().height));
+    if (h < 44) throw new Error('the primary action is only ' + h + 'px tall');
     await page.evaluate(() => closeSheet());
   });
 

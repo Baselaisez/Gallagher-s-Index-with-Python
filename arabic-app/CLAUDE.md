@@ -1016,12 +1016,51 @@ the alif of grief and the ha of pause on the end. Four things to keep:
    fathatan, fathaTaqdiri — appear in real text; that is why the drill garden
    has a vocative chapter.
 
+**I'lal is an ALGORITHM, not a table.** `IlalEngine` holds ten ordered rules
+and a `derive(asl)` that applies the first matching one until nothing fires,
+recording every firing. `build(root, shape)` assembles the underlying form
+from a wazn and hands it over, so قَائِلٌ، مَقُولٌ، مَبِيعٌ، مَكِيلٌ، مَغْزُوٌّ،
+مَرْمِيٌّ، غَازٍ، دَاعٍ، مَدْعُوٌّ and قُلْ all come out of the same rules with
+nothing stored. Five things the rules taught us the hard way:
+
+1. **Order is doctrine.** naql before qalb; qalb before the meeting of two
+   sakins; the vowel-harmony that PROVES what was dropped comes after the
+   drop. Reorder the array and قُلْتُ becomes قَلْتُ.
+2. **The alif must remember what it came from.** After qalb, قَالْتُ and
+   بَاعْتُ look identical, but one ends in a damma and the other in a kasra.
+   `qalb-alif` stamps `from` on the unit, and `hadhf` reads it.
+3. **Idgham requires the SECOND letter to bear a vowel.** Where both are
+   quiescent it is a meeting of sakins, and that chapter drops a letter
+   instead of fusing them — this is the whole difference between مَغْزُوٌّ and
+   مَقُولٌ.
+4. **When two weak letters meet, the WAZN's letter goes** — it is the second.
+   Then the surviving weak letter, not the fallen one, decides the vowel:
+   مَكْيُولٌ loses its waw but harmonizes to the ya, giving مَكِيلٌ.
+5. **A doubled ya is no manqus.** `hadhf-manqus` must refuse a ya wearing a
+   shadda, or مَرْمِيٌّ collapses to مَرْمٍ.
+
+The smoke suite pins 23 worked derivations plus 12 root+wazn builds, and
+includes sound roots and مُيَسَّرٌ — a real word that LOOKS like an i'lal site
+— to prove the rules also know when to do nothing.
+
+**The design system is one page and two gates.** `DESIGN.md` documents the
+tokens, the components and what was borrowed from the reading apps people
+actually keep. The smoke suite enforces the two claims a browser can check:
+every token resolves, and a live primary action measures ≥ 44px tall. A
+literal `padding: .9rem` in a new rule is a bug even when it looks right.
+
 **The rule engines feed the statistical one.** `IrabModel.features()` now
 pushes `sign-<caseSignOf>` and `by-<IrabSign.of().by>` alongside the cheap
-surface flags. Measured, not asserted: first-guess accuracy over the 2488
-labeled corpus tokens went 42.7% → 49.3%, two-guess 62.9% → 71.0%.
+surface flags. A bucketed word length was added the
+same way. Measured, not asserted, over the labeled corpus tokens: first-guess
+accuracy went 42.7% → 49.3% (sign + manner) → 51.4% (length), two-guess
+62.9% → 71.0%. **`tools/ablate_features.js` is how a feature earns its
+place** — it monkeypatches `features()` in a live page and scores each
+candidate against the shipped set. A mim-initial flag and a shadda flag were
+tried in the same run and dropped as noise; an unmeasured feature is a
+superstition.
 `IrabModel.accuracy()` computes that score lazily and caches it, the Jumla
-Lab prints it (`.ml-score`), and the smoke suite pins the floor at 47/68 so
+Lab prints it (`.ml-score`), and the smoke suite pins the floor just under the last measured run so
 a feature change has to be measured instead of believed. The score is
 RESUBSTITUTION — an upper bound — and the panel says so.
 

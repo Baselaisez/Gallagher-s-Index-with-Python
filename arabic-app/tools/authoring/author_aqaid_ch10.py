@@ -7,7 +7,8 @@ wretched and the wretched happy, but the CHANGE falls on happiness and
 wretchedness, not on Allah's making-happy and making-wretched, for those are
 His attributes and no change touches Him or them. Verbatim contiguous spans
 re-vowelled against the received text; each sentence stops at a matn period
-and no clause is skipped from the middle.
+and no clause is skipped from the middle — the change-clause was
+restored as s4/s5 in v83 after an audit found it jumped.
 """
 import json, pathlib, re, sys
 ROOT = pathlib.Path('/home/user/Gallagher-s-Index-with-Python/arabic-app')
@@ -190,7 +191,80 @@ S.append({"id": "s3", "translation": {
     "A verbal clause standing as the khabar, in raf' position.",
     "Haber olarak mahallen merfû fiil cümlesi.")]})
 
+# The clause chapter 10 first skipped between «the wretched may turn happy»
+# and «no change comes upon Allah»: the matn itself explains WHERE the change
+# falls, and without it the closing denial has nothing to deny.
 S.append({"id": "s4", "translation": {
+ "en": "And the change falls upon happiness and wretchedness, not upon the making-happy and the making-wretched.",
+ "tr": "Değişme, saâdet ve şekāvet üzerinedir; is'âd ve işkā üzerine değildir."},
+ "tokens": [
+  tok("وَالتَّغْيِيرُ","taghyir","noun",["mubtada-khabar","form-ii-verbs","masdar"],
+      "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«التَّغْيِيرُ» مُبْتَدَأٌ مَرْفُوعٌ — مَصْدَرُ «غَيَّرَ».",
+      "Isti'naf waw; «the changing» is the mubtada in raf' — the masdar of غَيَّرَ (Form II).",
+      "İstinâf vâvı; «التَّغْيِيرُ» merfû mübtedâdır — «غَيَّرَ» (tef'îl) masdarıdır.",
+      segments=[seg("وَ","wa","conj"), seg("التَّغْيِيرُ","taghyir","noun")]),
+  tok("يَكُونُ","kana","verb",["mudari-marfu","hollow-verbs"],
+      "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ — تَامٌّ هُنَا بِمَعْنَى «يَقَعُ»، وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَإِ.",
+      "A mudari in raf' — COMPLETE here, meaning «falls, occurs»; the clause is the khabar.",
+      "Merfû muzâri — burada TAMDIR, «vâki olur» manasındadır; cümle haberdir."),
+  tok("عَلَى","ala","prep",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.", "A jarr letter.", "Cer harfi."),
+  tok("السَّعَادَةِ","saada","noun",["huruf-jarr"],
+      "مَجْرُورٌ بِالْكَسْرَةِ.", "In jarr by the kasra.", "Kesra ile mecrurdur."),
+  tok("وَالشَّقَاوَةِ","shaqawa","noun",["huruf-jarr","atf-nasaq"],
+      "مَعْطُوفٌ عَلَى «السَّعَادَةِ» مَجْرُورٌ.",
+      "Joined to «happiness», in jarr.",
+      "«السَّعَادَةِ»ye ma'tûf, mecrurdur.",
+      segments=[seg("وَ","wa","conj"), seg("الشَّقَاوَةِ","shaqawa","noun")]),
+  tok("دُونَ","duna","noun",["maful-fih","idafa-definiteness"],
+      "ظَرْفٌ مَنْصُوبٌ بِمَعْنَى «غَيْرِ»، وَهُوَ مُضَافٌ.",
+      "An adverb in nasb meaning «other than», and it is a mudaf.",
+      "«غَيْر» manasında mansub zarf ve muzâftır."),
+  tok("الْإِسْعَادِ","isad","noun",["idafa-definiteness","form-iv-verbs","masdar"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — مَصْدَرُ «أَسْعَدَ».",
+      "The mudaf ilayh in jarr — the masdar of أَسْعَدَ (Form IV).",
+      "Mecrûr muzâfun ileyh — «أَسْعَدَ» (if'âl) masdarıdır."),
+  tok("وَالْإِشْقَاءِ","ishqa","noun",["idafa-definiteness","atf-nasaq","form-iv-verbs","masdar"],
+      "مَعْطُوفٌ عَلَى «الْإِسْعَادِ» مَجْرُورٌ — مَصْدَرُ «أَشْقَى» مِنَ النَّاقِصِ.",
+      "Joined to «the making-happy», in jarr — the masdar of أَشْقَى, from a naqis root.",
+      "«الْإِسْعَادِ»ye ma'tûf, mecrur — nâkıs kökten «أَشْقَى» masdarıdır.",
+      segments=[seg("وَ","wa","conj"), seg("الْإِشْقَاءِ","ishqa","noun")], punct="،"),
+ ],
+ "jumal": [J("وَالتَّغْيِيرُ يَكُونُ عَلَى السَّعَادَةِ وَالشَّقَاوَةِ دُونَ الْإِسْعَادِ وَالْإِشْقَاءِ",
+   "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا، وَخَبَرُهَا جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ رَفْعٍ.",
+   "An isti'naf nominal clause — i'rabless; its khabar is a verbal clause in the position of raf'.",
+   "İstinâfî isim cümlesi — mahalsizdir; haberi mahallen merfû fiil cümlesidir.")]})
+
+S.append({"id": "s5", "translation": {
+ "en": "And these two are among the attributes of Allah the Exalted.",
+ "tr": "Bu ikisi ise Allah Teâlâ'nın sıfatlarındandır."},
+ "tokens": [
+  tok("وَهُمَا","pron-3du","pron",["mubtada-khabar","al-muthanna"],
+      "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«هُمَا» ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "Isti'naf waw; «they two» is a detached pronoun, fixed, in the position of raf' as mubtada.",
+      "İstinâf vâvı; «هُمَا» munfasıl zamir — mebnî, mahallen merfû mübtedâdır.",
+      segments=[seg("وَ","wa","conj"), seg("هُمَا","pron-3du","pron")]),
+  tok("مِنْ","min","prep",["huruf-jarr"],
+      "حَرْفُ جَرٍّ لِلتَّبْعِيضِ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ الْمُبْتَدَإِ.",
+      "A jarr letter of partition; the phrase is the khabar.",
+      "Teb'îz için cer harfi; câr-mecrûr haberdir."),
+  tok("صِفَاتِ","sifa","noun",["huruf-jarr","idafa-definiteness","jam-muannath-salim"],
+      "مَجْرُورٌ بِالْكَسْرَةِ — جَمْعُ مُؤَنَّثٍ سَالِمٌ، وَهُوَ مُضَافٌ.",
+      "In jarr by the kasra — a sound feminine plural, and it is a mudaf.",
+      "Kesra ile mecrur — cem'-i müennes-i sâlim ve muzâftır."),
+  tok("اللهِ","allah","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.", "The mudaf ilayh, in jarr.", "Mecrûr muzâfun ileyh."),
+  tok("تَعَالَى","taala","verb",["jumla-mutarida","naqis-verbs"],
+      "فِعْلٌ مَاضٍ، وَالْجُمْلَةُ مُعْتَرِضَةٌ لِلتَّعْظِيمِ.",
+      "Past verb; a parenthetic clause of exaltation.",
+      "Mâzî fiil; ta'zîm için mu'terizadır.", punct="."),
+ ],
+ "jumal": [J("وَهُمَا مِنْ صِفَاتِ اللهِ تَعَالَى",
+   "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
+   "An isti'naf nominal clause — i'rabless.",
+   "İstinâfî isim cümlesi — mahalsizdir.")]})
+
+S.append({"id": "s6", "translation": {
  "en": "And no change comes upon Allah the Exalted, nor upon His attributes.",
  "tr": "Allah Teâlâ üzerine de sıfatları üzerine de değişme yoktur."},
  "tokens": [
@@ -256,6 +330,13 @@ GLOSS_ADD = {
  "saida": g("سَعِدَ","س ع د","verb","to be happy, blessed","said olmak",3),
  "taghayyur": g("تَغَيُّر","غ ي ر","noun","change (masdar, Form V)","değişme; tagayyür (masdar)",4),
  "idha": g("إِذَا","","part","when (a time-adverb carrying conditional force)","-dığı zaman (şart manalı zaman zarfı)",2),
+ "taghyir": g("تَغْيِير","غ ي ر","noun","changing (masdar, Form II)","değiştirme; tağyîr (masdar)",4),
+ "saada": g("سَعَادَة","س ع د","noun","happiness, blessedness","saâdet",3),
+ "shaqawa": g("شَقَاوَة","ش ق و","noun","wretchedness","şekāvet",3),
+ "duna": g("دُونَ","د و ن","noun","other than, short of (adverb)","-den başka; dûn (zarf)",3),
+ "isad": g("إِسْعَاد","س ع د","noun","making happy (masdar, Form IV)","is'âd; mutlu kılma (masdar)",4),
+ "ishqa": g("إِشْقَاء","ش ق و","noun","making wretched (masdar, Form IV)","işkā; bedbaht kılma (masdar)",4),
+ "pron-3du": g("هُمَا","","pron","they two (detached)","o ikisi (munfasıl)",2),
  "in-shartiyya": g("إِنْ","","part","if (conditional, governs jazm)","eğer (câzim şart harfi)",2),
 }
 

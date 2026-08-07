@@ -128,3 +128,17 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   isti'ara subdivisions (tabaiyya / tahqiqiyya / takhyiliyya) and the
   Sakkaki-vs-Khatib disagreement on makniyya remain unconsumed, as does the
   70-question bank in `alaka-suallar.txt`.
+
+- **v83** — backlog #3 closed: the ism fa'il / ism maf'ul i'lal chain for weak
+  roots is no longer a display gap but a general engine. `IlalEngine` runs the
+  kalb/hadhf/naql/idgham rules of `ilal-kaideleri-turkce.txt` as an ORDERED
+  RULE SYSTEM over an underlying form, so the worked derivations that file
+  lists (قَائِل، مَقُول، مَكِيل، مَغْزُوّ، مَرْمِيّ، مَخْشِيّ، غَازٍ، رَامٍ) and the
+  irregular imperative قُلْ all fall out of the same ten rules with nothing
+  stored. Backlog #2's exception path is still open: عَوِرَ / اِسْتَوَى and the
+  wazn-preserving مِقْوَل family are held back by `SOUND_HOLLOW` inside
+  `sarfDerive` but have no path through `IlalEngine` yet.
+- **v83 (fidelity)** — an audit of Aqaid chapter 10 found the matn's own
+  change-clause («والتغيير يكون على السعادة والشقاوة دون الإسعاد والإشقاء،
+  وهما من صفات الله تعالى») skipped between s3 and the closing denial it
+  exists to set up. Restored as s4/s5; the closing sentence is now s6.
