@@ -156,3 +156,6 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   exactly why يَوْجَلُ keeps its waw. Aqaid reaches chapter 12 (the number of
   the prophets, with the quoted verse marked as a quotation in its own i'rab),
   completing the nubuwwa section of the matn.
+- **v86** — Aqaid reaches chapter 13 (angels, the books, the mi'raj). Games
+  are now scoped: the whole library at the front door, the open story once one
+  is open, with an automatic fallback when a story cannot feed a drill.

@@ -1069,6 +1069,23 @@ strip matches `deckStats()` exactly, and the phone layout is exercised at
 390×844. A literal `padding: .9rem` in a new rule is a bug even when it
 looks right.
 
+**Games are scoped to where you are.** `gameStories()` is the ONE place the
+decision is made: at the front door a round is drawn from the whole library,
+inside a story it is drawn from that story alone. Every item builder goes
+through it — a builder reaching for `STORIES` or `CHAPTERS` directly has
+escaped the scope. Two things learned wiring it: (1) **scope is a preference,
+not a cage** — a story that cannot feed a drill hands the round back to the
+library via `scopeFallback()`, because a dead button teaches nothing; (2) the
+smoke suite must MEASURE and PLAY in the same scope, or it will size a pool
+from the library and then open a story that holds none of it.
+
+**A known engine inconsistency, deliberately not papered over:** for a
+nun-final root, `sarf_gen.derived()` writes the feminine-plural boundary
+un-assimilated (بَيَّنْنَ) while the in-app Form II branch assimilates it
+(بَيَّنَّ); `sound1()` and the Form I branch agree on the un-assimilated
+أَمِنْنَ. `bayyana`'s four boundary cells are stored in the engine's spelling
+so the audit gate is honest. Settle the engine before harmonising the data.
+
 **Navigation exists twice and is implemented once.** Below 860px `.tabbar` is
 the app's navigation; above it the toolbar is, and the bar is hidden. Every
 tab DELEGATES to the toolbar handler that already owns that destination

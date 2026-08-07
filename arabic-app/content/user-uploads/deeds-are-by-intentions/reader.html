@@ -613,6 +613,8 @@
     color: var(--accent); opacity: .07; pointer-events: none;
   }
   .game-pick button:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+  .game-pick button[disabled] { opacity: .45; cursor: default; }
+  .game-pick button[disabled]:hover { border-color: var(--line); box-shadow: none; transform: none; }
   @media (prefers-reduced-motion: no-preference) {
     .game-pick button:hover { transform: translateY(-1px); }
   }
@@ -1112,6 +1114,15 @@
     body { padding-bottom: calc(var(--s7) + var(--s5)); }
   }
 
+  /* the scope banner: what THIS round will ask about */
+  .game-scope { display: flex; align-items: center; gap: var(--s2);
+    padding: var(--s2) var(--s3); margin: var(--s2) 0 var(--s3);
+    border: 1px solid var(--line); border-inline-start: 3px solid var(--accent);
+    border-radius: 0 var(--r-md) var(--r-md) 0; background: var(--accent-soft);
+    font-family: var(--ui-font); font-size: var(--t-sm); line-height: var(--lh-body); }
+  .game-scope.all { border-inline-start-color: var(--ink-soft); background: transparent; }
+  .game-scope .gs-i { font-size: 1.05rem; }
+
   /* ---------- library ---------- */
   /* the stat strip — three tiles, tokens only, one tap into the deck */
   .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2);
@@ -1304,7 +1315,7 @@
     <button class="tbtn" id="roleToggle">🎨</button>
     <button class="tbtn" id="refOpen">Grammar</button>
     <button class="tbtn" id="conjOpen">Sarf Lab</button>
-    <button class="tbtn reader-only" id="gamesOpen">Games</button>
+    <button class="tbtn" id="gamesOpen">Games</button>
     <button class="tbtn deckbtn" id="deckOpen">Deck <span class="count" id="deckCount" hidden>0</span></button>
   </nav>
 
@@ -1456,6 +1467,9 @@ const L = {
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
         mlScore:"🧠 On the corpus it learned from, the model names the role of {n} words and gets {a}% right first try, {b}% within two guesses. That is a resubstitution score — an upper bound, shown so a change can be measured instead of believed.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
+        scopeAll:"Playing from the whole library",
+        scopeStory:"Playing from «{s}» — every round is drawn from this story",
+        scopeEmpty:"This story has nothing to draw on for that game yet. Close it to play from the whole library.",
         nav_library:"Library", nav_deck:"Deck", nav_games:"Games",
         nav_atolye:"Atölye", nav_progress:"Progress",
         ilalTab:"I'lal", ilalAsl:"Its origin", ilalOutLbl:"What is said",
@@ -1603,6 +1617,9 @@ const L = {
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
         mlScore:"🧠 Öğrendiği külliyat üzerinde model {n} kelimenin görevini adlandırıyor; ilk tahminde %{a}, ilk iki tahmin içinde %{b} isabet ediyor. Bu bir yeniden-yerine-koyma skorudur — üst sınırdır; bir değişiklik inanılsın diye değil ölçülsün diye gösterilir.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
+        scopeAll:"Bütün kütüphaneden oynanıyor",
+        scopeStory:"«{s}» üzerinden oynanıyor — her soru bu hikâyeden çıkar",
+        scopeEmpty:"Bu hikâyede o oyuna yetecek malzeme henüz yok. Kütüphaneden oynamak için hikâyeyi kapatın.",
         nav_library:"Kütüphane", nav_deck:"Deste", nav_games:"Oyunlar",
         nav_atolye:"Atölye", nav_progress:"İlerleme",
         ilalTab:"İ'lâl", ilalAsl:"Aslı", ilalOutLbl:"Söylenen",
@@ -2593,6 +2610,37 @@ class EloModel {
 // come home: QUIZ_RESUME.redraw() repaints the very question, answered
 // exactly as it was left. Cleared when the round ends or the hub reopens.
 let QUIZ_RESUME = null;
+// ---------- the scope a round is drawn from ----------------------------
+// Entering the app you play the WHOLE library; opening a story narrows every
+// game to that story. The rule is one line and every builder obeys it, so a
+// round can never quietly mix a text you are reading with fifteen you are
+// not. gameStories() is the ONLY place the decision is made — a builder that
+// reaches for STORIES or CHAPTERS directly has escaped the scope.
+let GAME_SCOPE_FALLBACK = false;
+function gameStories(){ return (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES; }
+// A story that cannot feed a drill hands the round back to the whole library
+// rather than offering a dead button. Scope is a PREFERENCE, not a cage: you
+// play from what you are reading whenever that text can carry the question.
+function scopeFallback(fn){
+  return function(...a){
+    let r = fn.apply(this, a);
+    if ((!r || !r.length) && CUR) {
+      GAME_SCOPE_FALLBACK = true;
+      try { r = fn.apply(this, a); } finally { GAME_SCOPE_FALLBACK = false; }
+    }
+    return r;
+  };
+}
+function gameScopeName(){ return CUR ? (T(CUR.title) || CUR.title.ar) : null; }
+// The banner the hub wears, so the learner is never guessing what a round
+// will ask about.
+function gameScopeBanner(){
+  const n = gameScopeName();
+  return `<div class="game-scope ${n ? "story" : "all"}">
+    <span class="gs-i">${n ? "📖" : "📚"}</span>
+    <span class="gs-t">${n ? ui().scopeStory.replace("{s}", escapeAttr(n)) : ui().scopeAll}</span>
+  </div>`;
+}
 function runQuiz(cfg){
   const G = { i: 0, score: 0, answered: null, opts: null, optsFor: -1 };
   function draw(){
@@ -2661,7 +2709,7 @@ function irabWhy(irab){
 // of the SAME verb, so the learner must know the sigha, not just the root.
 function sarfItems(){
   const out = [];
-  STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+  gameStories().forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
     const rows = muhtelife(m);
     if (!rows || rows.length < 5) return;
     rows.forEach((row, ri) => out.push({ lex, m, ri, rows, lemma: m.mazi[0] }));
@@ -2707,7 +2755,7 @@ const CASE_KEYS = [
 ];
 function caseItems(){
   const out = [];
-  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
     sen.tokens.forEach((t, ti) => {
       if (!t.irab || !t.irab.ar) return;
       const hits = CASE_KEYS.filter(c => c.re.test(t.irab.ar));
@@ -2823,7 +2871,7 @@ const ROLE_BY_KEY = Object.fromEntries(ROLE_KEYS.map(r => [r.k, r]));
 const NOMINAL_POS = ["noun", "propn", "pron", "adv"];
 function roleItems(){
   const out = [];
-  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
     sen.tokens.forEach((t, ti) => {
       if (!t.irab || !t.irab.ar) return;
       if (!NOMINAL_POS.includes(t.pos)) return;
@@ -2882,7 +2930,7 @@ function startRoleGame(){
 // and the stored i'rab line is the answer key.
 function hamzaItems(){
   const items = [];
-  STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
     sen.tokens.forEach((t, ti) => {
       const b = t.s.bare;
       if ((b === "إن" || b === "أن") && t.irab && /ّ/.test(t.s.full.normalize("NFC")) &&
@@ -7922,9 +7970,7 @@ function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.flo
 // fail before this game could show a wrong answer.
 function nidaItems(){
   const out = [];
-  // corpus-wide, not just the open story: calls are scarce, and the chapter
-  // is worth drilling wherever the learner happens to be reading.
-  STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
+  gameStories().forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
     const f = NidaEngine.flat(t.s.full);
     if (!NidaEngine.PARTICLES.some(p => p.flat === f && f.length > 1)) return;
     const m = sen.tokens[ti + 1];
@@ -7988,10 +8034,32 @@ function openGames(){
   const fadeLine = nf ? `<div class="gd fade">\u{1F9E0} ${ui().fadingHub.replace("{n}", nf)}</div>` : "";
   // The hub is shelved by discipline — the same four the Elo model tracks —
   // so twelve drills read as a workshop rather than a list.
-  const gCard = (id, emblem, title, desc, extra) =>
-    `<button id="${id}"><div class="gt"><span class="gi">${emblem}</span>${title}</div><div class="gd">${desc}</div>${extra || ""}</button>`;
+  // How much THIS scope can feed each drill. A game with nothing to draw on
+  // is shown disabled with the reason, instead of opening and bouncing the
+  // learner straight back — the commonest way a scoped round used to fail.
+  const supply = {
+    gMatch:   () => Object.entries(gameGlossary()).filter(matchable).length ||
+                    Object.entries(STORIES.reduce((o, st) => Object.assign(o, st.glossary || {}), {})).filter(matchable).length,
+    gCloze:   () => clozeItems().length,
+    gSarf:    () => sarfItems().length,
+    gHarakat: () => harakatItems().length,
+    gCase:    () => caseItems().length,
+    gRole:    () => roleItems().length,
+    gNida:    () => nidaItems().length,
+    gHamza:   () => hamzaItems().length,
+    gTahlil:  () => tahlilSentences().length,
+  };
+  const gCard = (id, emblem, title, desc, extra) => {
+    let n = null;
+    try { n = supply[id] ? supply[id]() : null; } catch (e) { n = null; }
+    const dead = n !== null && n < 1;
+    return `<button id="${id}"${dead ? " disabled" : ""}${dead ? ' data-empty="1"' : ""}>` +
+      `<div class="gt"><span class="gi">${emblem}</span>${title}</div>` +
+      `<div class="gd">${dead ? ui().scopeEmpty : desc}</div>${dead ? "" : (extra || "")}</button>`;
+  };
   const gHead = (ar, label) => `<div class="game-group"><span class="ar" lang="ar">${ar}</span>${label}</div>`;
-  sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div><div class="game-pick">
+  sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div>
+    ${gameScopeBanner()}<div class="game-pick">
     ${gHead("مُفْرَدَات", ui().gGroupVocab)}
     ${gCard("gMatch", "🀄", ui().match, ui().matchDesc, fadeLine)}
     ${gCard("gCloze", "✏️", ui().clozeGame, ui().clozeDesc, fadeLine)}
@@ -8025,11 +8093,20 @@ function openGames(){
 }
 
 let M = null;
-const matchable = ([k, e]) => e.level > 0 && e.gloss && e.lemma.length > 1;
+const matchable = ([k, e]) => e && e.level > 0 && e.gloss && e.lemma && e.lemma.length > 1;
+// The lexicon a round draws on: the open story's own glossary, or every
+// story's merged when none is open. Same rule as gameStories(), one level up.
+function gameGlossary(){
+  if (CUR) return GLOSSARY;
+  const all = {};
+  STORIES.forEach(st => Object.assign(all, st.glossary || {}));
+  return all;
+}
 function startMatch(){
   // Fading deck words take the seats first; random corpus words fill the rest.
-  const seeded = fadingWords(3).map(f => [f.lex, GLOSSARY[f.lex]]).filter(matchable);
-  const rest = shuffle(Object.entries(GLOSSARY).filter(p =>
+  const LEX = gameGlossary();
+  const seeded = fadingWords(3).map(f => [f.lex, LEX[f.lex]]).filter(matchable);
+  const rest = shuffle(Object.entries(LEX).filter(p =>
     matchable(p) && !seeded.some(([sk]) => sk === p[0]))).slice(0, 6 - seeded.length);
   const pool = shuffle([...seeded, ...rest]);
   const cards = shuffle(pool.flatMap(([k, e], i) => [
@@ -8078,7 +8155,7 @@ const HARAKAT_SET = ["\u064E", "\u064F", "\u0650", "\u0652", "\u064B", "\u064C",
 const TANWIN_SET = ["\u064B", "\u064C", "\u064D"].map(s => JSON.parse('"' + s + '"'));
 function harakatItems(){
   const items = [];
-  CHAPTERS.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
+  gameStories().flatMap(st => st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
     const full = t.s.full;
     if (HARAKAT_SET.includes(full.slice(-1)) && t.irab && full.length > 3) {
       items.push({sen, ti, full, base: full.slice(0, -1), last: full.slice(-1), irab: t.irab});
@@ -8151,7 +8228,7 @@ function glossaryByPos(st){
 }
 function clozeItems(){
   const items = [];
-  STORIES.forEach(st => {
+  gameStories().forEach(st => {
     const prog = state.progress[st.id] || {};
     const byPos = glossaryByPos(st);
     st.chapters.forEach(ch => ch.sentences.forEach(sen => {
@@ -8375,7 +8452,7 @@ document.getElementById("searchOpen").addEventListener("click", () => openSearch
 const TAB_NAV = {
   library:  () => { if (CUR) renderLibrary(); else { closeSheet(); window.scrollTo({ top: 0, behavior: "smooth" }); } },
   deck:     () => openDeck(),
-  games:    () => { if (!CUR) { renderLibrary(); return; } openGames(); },
+  games:    () => openGames(),
   atolye:   () => openConjugator(),
   progress: () => openStats(),
 };
@@ -8386,9 +8463,9 @@ function syncTabbar(){
   bar.querySelectorAll("[data-nav]").forEach(b => {
     const k = b.dataset.nav;
     b.classList.toggle("on", k === "library" && inLib);
-    // Games need an open story; say so by dimming rather than by failing.
-    if (k === "games") b.disabled = inLib;
-    b.style.opacity = (k === "games" && inLib) ? ".4" : "";
+    // Games play from wherever you are — the whole library at the front door,
+    // this story once one is open — so the tab is always live.
+    b.disabled = false;
     const lbl = b.querySelector(".tb-l");
     if (lbl) lbl.textContent = ui()["nav_" + k];
     b.setAttribute("aria-label", ui()["nav_" + k]);
@@ -8396,6 +8473,10 @@ function syncTabbar(){
   const n = dueCards().length, badge = document.getElementById("navDeckCount");
   if (badge) { badge.hidden = !n; badge.textContent = n > 99 ? "99+" : String(n); }
 }
+["sarfItems", "caseItems", "roleItems", "hamzaItems", "nidaItems",
+ "harakatItems", "clozeItems", "tahlilSentences"].forEach(fn => {
+  if (typeof window[fn] === "function") window[fn] = scopeFallback(window[fn]);
+});
 document.querySelectorAll("#tabbar [data-nav]").forEach(b =>
   b.addEventListener("click", () => { const f = TAB_NAV[b.dataset.nav]; if (f) f(); syncTabbar(); }));
 // The bar repaints whenever the view or the deck can have changed. Rather than

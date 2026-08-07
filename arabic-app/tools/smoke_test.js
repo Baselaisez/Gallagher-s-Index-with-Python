@@ -98,7 +98,11 @@ if (!CHROME) {
     await page.waitForSelector('.lib-card', { timeout: 3000 });
     const cardCount = await page.locator('.lib-card').count();
     if (cardCount !== storyCount) throw new Error('cards=' + cardCount + ' expected=' + storyCount);
-    if (await page.locator('#gamesOpen').isVisible()) throw new Error('reader controls visible in library');
+    // Games is deliberately NOT a reader control any more: at the front door
+    // it plays from the whole library. The reading controls still hide.
+    for (const id of ['playAll', 'ulToggle', 'fontPlus'])
+      if (await page.locator('#' + id).isVisible()) throw new Error('reader control visible in library: ' + id);
+    if (!(await page.locator('#gamesOpen').isVisible())) throw new Error('Games must be reachable from the library');
   });
 
   await check('open story renders ' + wasiyyaStats.chapters + ' chapters', async () => {
@@ -953,10 +957,12 @@ if (!CHROME) {
   });
 
   await check('games: the hamza game blanks inna/anna and the stored i\'rab answers', async () => {
-    const pool = await page.evaluate(() => hamzaItems().length);
+    // Measured and played in the SAME scope — the library. Opening a story
+    // first would scope the round to that story, which may hold no inna at
+    // all; that is the point of the scope, not a bug to work around.
+    const pool = await page.evaluate(() => { renderLibrary(); return hamzaItems().length; });
     if (pool < 8) throw new Error('hamza pool too small: ' + pool);
-    await page.locator('.lib-card').first().click();
-    await page.locator('#gamesOpen').click();
+    await page.evaluate(() => openGames());
     await page.locator('.game-pick #gHamza').click();
     await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
     const opts = await page.locator('.opts [data-o]').allTextContents();
@@ -965,8 +971,8 @@ if (!CHROME) {
       throw new Error('options must be inna vs anna, got: ' + opts.join(' | '));
     await page.locator('.opts [data-o]').first().click();
     if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
-    await page.evaluate(() => document.getElementById('scrim').click());
-    await page.locator('#backLib').click();
+    // no story was opened, so there is nothing to come back FROM
+    await page.evaluate(() => { closeSheet(); renderLibrary(); });
     await page.waitForSelector('.lib-card', { timeout: 3000 });
   });
 
@@ -4052,7 +4058,7 @@ if (!CHROME) {
     if (short.length) throw new Error('a tab is under the thumb floor: ' + lib.heights);
     if (!lib.labelled) throw new Error('an icon-only tab is a guessing game — every tab needs a label');
     if (lib.active.join() !== 'library') throw new Error('in the library, Library is active: ' + lib.active);
-    if (!lib.gamesOff) throw new Error('Games needs an open story and must say so');
+    if (lib.gamesOff) throw new Error('Games plays from the library too — the tab must stay live');
     if (lib.toolbarDupes.length) throw new Error('duplicated in the toolbar: ' + lib.toolbarDupes);
 
     // it must really navigate, not merely look like it
@@ -4072,7 +4078,7 @@ if (!CHROME) {
       const b = document.querySelector('#tabbar [data-nav="games"]');
       return { off: b.disabled, active: [...document.querySelectorAll('#tabbar .on')].map(x => x.dataset.nav) };
     });
-    if (inStory.off) throw new Error('Games is still disabled inside a story');
+    if (inStory.off) throw new Error('Games must be live inside a story too');
     if (inStory.active.includes('library')) throw new Error('Library is still marked active inside a story');
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.evaluate(() => { renderLibrary(); closeSheet(); });

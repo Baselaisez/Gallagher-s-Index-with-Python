@@ -264,14 +264,14 @@
    "level": 2
   },
   "sama": {
-   "lemma": "السَّمَاء",
-   "root": "س م و",
+   "lemma": "سَمَاء",
    "pos": "noun",
    "gloss": {
-    "en": "sky, heaven",
-    "tr": "gökyüzü, sema"
+    "en": "heaven, sky",
+    "tr": "semâ; gök"
    },
-   "level": 1
+   "level": 1,
+   "root": "س م و"
   },
   "shariba": {
    "lemma": "شَرِبَ",
@@ -512,11 +512,11 @@
    "level": 3
   },
   "pron-3fs": {
-   "lemma": "ـهَا",
+   "lemma": "هَا",
    "pos": "pron",
    "gloss": {
-    "en": "her / its (attached)",
-    "tr": "onun (müennes, bitişik)"
+    "en": "her, it (fem., attached)",
+    "tr": "onu/onun (dişil, muttasıl)"
    },
    "level": 1
   },
@@ -862,10 +862,10 @@
    "lemma": "حَقّ",
    "pos": "noun",
    "gloss": {
-    "en": "truth; the real",
-    "tr": "hak, hakikat"
+    "en": "truth, true",
+    "tr": "hak; gerçek"
    },
-   "level": 2,
+   "level": 1,
    "root": "ح ق ق"
   },
   "alam": {
@@ -2859,6 +2859,147 @@
     "tr": "sen/senin (muttasıl, eril)"
    },
    "level": 1
+  },
+  "malak": {
+   "lemma": "مَلَك",
+   "pos": "noun",
+   "gloss": {
+    "en": "angel",
+    "tr": "melek"
+   },
+   "level": 1,
+   "root": "م ل ك",
+   "plural": "مَلَائِكَة"
+  },
+  "amil": {
+   "lemma": "عَامِل",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who acts, works",
+    "tr": "amel eden; işleyen"
+   },
+   "level": 2,
+   "root": "ع م ل"
+  },
+  "wasafa": {
+   "lemma": "وَصَفَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to describe",
+    "tr": "vasfetmek; nitelemek"
+   },
+   "level": 2,
+   "root": "و ص ف"
+  },
+  "dhukura": {
+   "lemma": "ذُكُورَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "maleness",
+    "tr": "erkeklik"
+   },
+   "level": 4,
+   "root": "ذ ك ر"
+  },
+  "unutha": {
+   "lemma": "أُنُوثَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "femaleness",
+    "tr": "dişilik"
+   },
+   "level": 4,
+   "root": "أ ن ث"
+  },
+  "anzala": {
+   "lemma": "أَنْزَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to send down",
+    "tr": "indirmek"
+   },
+   "level": 2,
+   "root": "ن ز ل"
+  },
+  "bayyana": {
+   "lemma": "بَيَّنَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to make plain",
+    "tr": "beyan etmek; açıklamak"
+   },
+   "level": 2,
+   "root": "ب ي ن"
+  },
+  "nahy": {
+   "lemma": "نَهْي",
+   "pos": "noun",
+   "gloss": {
+    "en": "prohibition (masdar)",
+    "tr": "nehiy; yasaklama (masdar)"
+   },
+   "level": 3,
+   "root": "ن ه ي"
+  },
+  "wad": {
+   "lemma": "وَعْد",
+   "pos": "noun",
+   "gloss": {
+    "en": "promise (masdar)",
+    "tr": "va'd; söz verme (masdar)"
+   },
+   "level": 2,
+   "root": "و ع د"
+  },
+  "waid": {
+   "lemma": "وَعِيد",
+   "pos": "noun",
+   "gloss": {
+    "en": "threat — a promise of evil",
+    "tr": "vaîd — şer va'di"
+   },
+   "level": 4,
+   "root": "و ع د"
+  },
+  "miraj": {
+   "lemma": "مِعْرَاج",
+   "pos": "noun",
+   "gloss": {
+    "en": "ascension (on the wazn mif'al)",
+    "tr": "mi'râc (mif'âl vezninde)"
+   },
+   "level": 3,
+   "root": "ع ر ج"
+  },
+  "salat": {
+   "lemma": "صَلَاة",
+   "pos": "noun",
+   "gloss": {
+    "en": "prayer, blessing",
+    "tr": "salât; namaz"
+   },
+   "level": 1,
+   "root": "ص ل و"
+  },
+  "yaqaza": {
+   "lemma": "يَقَظَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "wakefulness",
+    "tr": "uyanıklık"
+   },
+   "level": 4,
+   "root": "ي ق ظ"
+  },
+  "shakhs": {
+   "lemma": "شَخْص",
+   "pos": "noun",
+   "gloss": {
+    "en": "person, bodily self",
+    "tr": "şahıs; beden"
+   },
+   "level": 2,
+   "root": "ش خ ص"
   }
  }
 }
