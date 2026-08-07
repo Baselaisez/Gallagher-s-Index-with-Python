@@ -988,6 +988,43 @@ rules to keep: a particle counts as covered only if a note names it AND its
 government, and never stretch a neighbouring note over a gap — write the note
 or leave the TODO.
 
+**The vocative is computed, not stored.** `NidaEngine` (reader.html) takes a
+call as typed and derives everything: `read(text)` returns the particle, the
+kind, the ruling (`mabni` / `mansub` / `majrur`), the SIGN and the reason;
+`tarkhim(name)` lops the last letter off in both dialects; `nadb(name)` hangs
+the alif of grief and the ha of pause on the end. Four things to keep:
+
+1. **The engine reads the ENDING, never the meaning.** يَا زَيْدُ and يَا رَجُلُ
+   are one shape and one ruling, so the kind is named «مُفْرَدٌ عَلَمٌ أَوْ نَكِرَةٌ
+   مَقْصُودَةٌ» and it stops there. An unvowelled call returns
+   `{ok:false, reason:"unvowelled"}` — this whole chapter is decided by the
+   last vowel and by nothing else.
+2. **`nakiraOrShibh` exists because the surface cannot tell them apart.**
+   يَا رَجُلًا اِسْمَعْ and يَا طَالِعًا جَبَلًا look identical to any rule that
+   does not know whether the next word is GOVERNED by the munada. Both are
+   mansub, so the engine rules once and names both kinds. Do not "fix" this
+   into a definite `shibh`.
+3. **Tarkhim must NOT re-strip the stem after dropping the last letter.**
+   The vowel left standing IS the difference between لُغَةُ مَنْ يَنْتَظِرُ
+   (حَارِ) and لُغَةُ مَنْ لَا يَنْتَظِرُ (حَارُ). Taking the damma off for the
+   second dialect keeps the SHADDA (مُحَمَّ → مُحَمُّ, not مُحَمَُّ), and a
+   madda ending takes no damma at all, so both dialects fall together
+   (سُعَا، مَنْصُ).
+4. **The smoke suite runs the engine against every munada in the corpus** and
+   fails if a stored i'rab says مَبْنِيٌّ where the engine says mansub, or the
+   reverse. It also demands that all six signs — damma, alif, waw, fatha,
+   fathatan, fathaTaqdiri — appear in real text; that is why the drill garden
+   has a vocative chapter.
+
+**The rule engines feed the statistical one.** `IrabModel.features()` now
+pushes `sign-<caseSignOf>` and `by-<IrabSign.of().by>` alongside the cheap
+surface flags. Measured, not asserted: first-guess accuracy over the 2488
+labeled corpus tokens went 42.7% → 49.3%, two-guess 62.9% → 71.0%.
+`IrabModel.accuracy()` computes that score lazily and caches it, the Jumla
+Lab prints it (`.ml-score`), and the smoke suite pins the floor at 47/68 so
+a feature change has to be measured instead of believed. The score is
+RESUBSTITUTION — an upper bound — and the panel says so.
+
 ## Grammar sourcing
 
 Emsile, Bina, Maqsud, Birgivi's Awamil, Izhar, al-Kafiya (Ibn al-Hajib), Qatr al-Nada,

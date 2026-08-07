@@ -3753,6 +3753,26 @@ if (!CHROME) {
     if (Math.abs(r.probsSum - 100) > 1) throw new Error('probabilities must sum to 1, got ' + r.probsSum + '%');
   });
 
+  // The score is pinned so a feature change has to be MEASURED. Reading the
+  // ending sign and the manner of i'rab off the rule engines lifted this from
+  // 42.7/62.9 to 49.3/71.0 when it was added; the floor sits just under that.
+  await check('the model scores on the corpus, and the score is pinned', async () => {
+    const a = await page.evaluate(() => {
+      const x = IrabModel.accuracy();
+      return { n: x.n, top1: Math.round(x.top1 * 1000) / 10, top2: Math.round(x.top2 * 1000) / 10,
+               shown: (document.body.innerHTML.match(/ml-score/g) || []).length };
+    });
+    if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
+    if (a.top1 < 47) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
+    if (a.top2 < 68) throw new Error('two-guess accuracy regressed to ' + a.top2 + '%');
+    await page.evaluate(() => { conjState.lab = 'jumla'; });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('.ml-score', { timeout: 3000 });
+    const line = await page.locator('.ml-score').textContent();
+    if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
+    await page.evaluate(() => { conjState.lab = 'sarf'; closeSheet(); });
+  });
+
   await check('the hoca walkthrough asks the questions on the user\'s own sentence', async () => {
     await page.evaluate(() => { conjState.lab = 'jumla'; conjState.jumla = 'لم تكتب امرأة لزوجها مكتوبة'; });
     await page.locator('#conjOpen').click();
@@ -3771,6 +3791,156 @@ if (!CHROME) {
     if (!r.asksWho) throw new Error('after the verb the chain must ask who?');
     if (!r.jazm) throw new Error('lam must be named a jazm governor');
     if (!r.ml) throw new Error('the model votes are missing from the rows');
+  });
+
+  // The vocative engine derives its rulings; the stories state theirs. If the
+  // two ever drifted apart, the Nida game would be teaching against the text.
+  await check('the Nida engine agrees with every munada the corpus itself parses', async () => {
+    const r = await page.evaluate(() => {
+      const bad = [], seen = [], signs = new Set();
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
+        const f = NidaEngine.flat(t.s.full);
+        if (!NidaEngine.PARTICLES.some(p => p.flat === f && f.length > 1)) return;
+        const m = sen.tokens[ti + 1];
+        if (!m || !m.irab) return;
+        const call = [t, m, sen.tokens[ti + 2]].filter(Boolean).map(x => x.s.full).join(' ');
+        const v = NidaEngine.read(call);
+        seen.push(m.s.full);
+        if (!v || !v.ok) { bad.push(m.s.full + ': engine refused'); return; }
+        const said = m.irab.ar;
+        const storedMabni = /مَبْنِيٌّ عَلَى الضَّمِّ|مَبْنِيٌّ عَلَى الْأَلِفِ|مَبْنِيٌّ عَلَى الْوَاوِ/.test(said);
+        const storedMansub = /مَنْصُوب/.test(said);
+        if (storedMabni && v.ruling !== 'mabni') bad.push(m.s.full + ': text says mabni, engine says ' + v.ruling);
+        if (!storedMabni && storedMansub && v.ruling !== 'mansub')
+          bad.push(m.s.full + ': text says mansub, engine says ' + v.ruling);
+        signs.add(v.sign);
+      }))));
+      return { bad, n: seen.length, signs: [...signs] };
+    });
+    if (r.n < 15) throw new Error('too few corpus vocatives to be a real gate: ' + r.n);
+    if (r.bad.length) throw new Error(r.bad.join('; '));
+    // the drill garden exists so the rarer signs are exercised by real text
+    for (const s of ['damma', 'alif', 'waw', 'fatha', 'fathatan', 'fathaTaqdiri'])
+      if (!r.signs.includes(s)) throw new Error('no corpus call shows the sign ' + s + ': ' + r.signs);
+  });
+
+  await check('the Nida engine reads the kinds, and refuses what the surface cannot decide', async () => {
+    const r = await page.evaluate(() => {
+      const k = s => { const v = NidaEngine.read(s); return v && v.ok ? v.kind + '/' + v.sign : 'x:' + (v && v.reason); };
+      return {
+        mufrad:  k('يَا يُوسُفُ'),
+        mudaf:   k('يَا عَبْدَ اللهِ'),
+        nakira:  k('يَا رَجُلًا'),
+        shibh:   k('يَا طَالِعًا جَبَلًا'),
+        ayyuha:  k('يَا أَيُّهَا الطَّالِبُ'),
+        dual:    k('يَا مُسْلِمَانِ'),
+        plural:  k('يَا مُسْلِمُونَ'),
+        mutak:   k('يَا مُعَلِّمِي'),
+        lahumma: k('اللَّهُمَّ'),
+        istigh:  k('يَا لَلَّهِ'),
+        alAfter: k('يَا الطَّالِبُ'),
+        bareTan: k('يَا زَيْدٌ'),
+        naked:   k('يا زيد'),
+      };
+    });
+    const want = {
+      mufrad: 'mufrad/damma', mudaf: 'mudaf/fatha', nakira: 'nakira/fathatan',
+      shibh: 'nakiraOrShibh/fathatan', ayyuha: 'ayyuha/damma', dual: 'mufrad/alif',
+      plural: 'mufrad/waw', mutak: 'mudaf/fathaTaqdiri', lahumma: 'lahumma/damma',
+      istigh: 'istighatha/kasra', alAfter: 'x:alAfterYa', bareTan: 'x:tanwin',
+      naked: 'x:unvowelled',
+    };
+    const bad = Object.keys(want).filter(x => r[x] !== want[x]).map(x => `${x}: ${r[x]} ≠ ${want[x]}`);
+    if (bad.length) throw new Error(bad.join('; '));
+  });
+
+  // Tarkhim is pure letter-work, so it can be pinned exactly. The two dialects
+  // differ only in the vowel left standing, and a madda collapses both into one.
+  await check('tarkhim is derived letter by letter, in both dialects', async () => {
+    const r = await page.evaluate(() => {
+      const t = n => { const v = NidaEngine.tarkhim(n); return v.ok ? v.muntazir + '|' + v.ghayrMuntazir : 'x:' + v.reason; };
+      return { harith: t('حَارِثُ'), jafar: t('جَعْفَرُ'), fatima: t('فَاطِمَةُ'),
+               uthman: t('عُثْمَانُ'), suad: t('سُعَادُ'), mansur: t('مَنْصُورُ'),
+               zayd: t('زَيْدٌ'), nadb: NidaEngine.nadb('زَيْدٌ').call };
+    });
+    const want = { harith: 'حَارِ|حَارُ', jafar: 'جَعْفَ|جَعْفُ', fatima: 'فَاطِمَ|فَاطِمُ',
+                   uthman: 'عُثْمَ|عُثْمُ', suad: 'سُعَا|سُعَا', mansur: 'مَنْصُ|مَنْصُ',
+                   zayd: 'x:three', nadb: 'وَا زَيْدَاهْ' };
+    const bad = Object.keys(want).filter(x => r[x] !== want[x]).map(x => `${x}: ${r[x]} ≠ ${want[x]}`);
+    if (bad.length) throw new Error(bad.join('; '));
+  });
+
+  await check('the Nida Lab lays the verdict out and derives the two dialects', async () => {
+    await page.evaluate(() => { conjState.lab = 'nida'; conjState.nida = 'يَا يُوسُفُ'; });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#nidaOut', { timeout: 3000 });
+    await page.waitForTimeout(250);
+    const r = await page.evaluate(() => {
+      const t = document.getElementById('nidaOut').textContent;
+      const rows = document.querySelectorAll('#nidaOut .nida-row').length;
+      const derive = document.querySelectorAll('#nidaOut .nida-derive .d').length;
+      conjState.nida = 'يَا الطَّالِبُ'; renderNidaOut();
+      const bad = document.querySelectorAll('#nidaOut .nida-bad').length;
+      const fix = (document.querySelector('#nidaOut .fix') || {}).textContent || '';
+      conjState.lab = 'sarf'; conjState.nida = 'يَا عَبْدَ اللهِ'; closeSheet();
+      return { rows, derive, bad, fix, mabni: t.includes('مَبْنِيٌّ عَلَى الضَّمِّ'),
+               muntazir: t.includes('يُوسُ') };
+    });
+    if (r.rows < 3) throw new Error('the verdict needs particle, kind and sign: ' + r.rows);
+    if (r.derive !== 2) throw new Error('tarkhim and nadb must both derive: ' + r.derive);
+    if (!r.mabni) throw new Error('the ruling line is missing');
+    if (!r.muntazir) throw new Error('the tarkhim of يوسف should show');
+    if (!r.bad) throw new Error('يا before الـ must be refused');
+    if (!r.fix.includes('أَيُّهَا')) throw new Error('the refusal must offer ayyuha: ' + r.fix);
+  });
+
+  await check('the Nida game is played off the engine, and teaches the wrong pick', async () => {
+    await page.evaluate(() => openGames());
+    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    await page.locator('#gNida').click();
+    await page.waitForSelector('.opts', { timeout: 3000 });
+    const n = await page.locator('.opts [data-o]').count();
+    if (n !== 4) throw new Error('four rulings to choose from, got ' + n);
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('#qWhy', { timeout: 3000 });
+    const r = await page.evaluate(() => {
+      const html = document.getElementById('qWhy').innerHTML;
+      return { taught: html.includes('game-wrongwhy') || html.includes('game-why'),
+               right: document.querySelectorAll('.opts .right').length,
+               why: document.getElementById('qWhy').textContent };
+    });
+    if (r.right !== 1) throw new Error('exactly one option is right, marked: ' + r.right);
+    if (!r.taught) throw new Error('the reveal must teach');
+    if (!/مُنَادًى/.test(r.why)) throw new Error('the reveal must name the kind: ' + r.why.slice(0, 80));
+    await page.evaluate(() => closeSheet());
+  });
+
+  await check('the games hub is shelved by discipline, and every card still opens', async () => {
+    await page.evaluate(() => openGames());
+    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    const r = await page.evaluate(() => {
+      const kids = [...document.querySelector('.game-pick').children];
+      const heads = kids.filter(k => k.classList.contains('game-group')).map(k => k.textContent);
+      const cards = kids.filter(k => k.tagName === 'BUTTON').map(k => k.id);
+      // every heading must be followed by at least one card, and no card
+      // may sit above the first heading — an unshelved card is a bug.
+      const firstHead = kids.findIndex(k => k.classList.contains('game-group'));
+      let orphanHead = false;
+      kids.forEach((k, i) => {
+        if (k.classList.contains('game-group') &&
+            !(kids[i + 1] && kids[i + 1].tagName === 'BUTTON')) orphanHead = true;
+      });
+      return { heads, cards, firstHead, orphanHead };
+    });
+    if (r.heads.length !== 4) throw new Error('four disciplines expected, got ' + r.heads.length);
+    if (r.firstHead !== 0) throw new Error('a card sits above the first heading');
+    if (r.orphanHead) throw new Error('a heading has no card under it');
+    if (r.cards.length !== 12) throw new Error('twelve games expected, got ' + r.cards.length);
+    for (const id of r.cards) {
+      const wired = await page.evaluate(i => !!document.getElementById(i), id);
+      if (!wired) throw new Error('card ' + id + ' vanished');
+    }
+    await page.evaluate(() => closeSheet());
   });
 
   await check('no JS errors on page', async () => {

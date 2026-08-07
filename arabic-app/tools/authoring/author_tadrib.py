@@ -3,8 +3,9 @@
 
 ORIGINAL textbook-style sentences composed editorially in the question-chain
 drill style the project owner teaches by («Kâtebe = yazdı, kim? Zeydun…»).
-Three chapters: the verbal sentence, the nominal sentence, and inne-vs-enne
-(the hamza rule, with the qawl exception). Every token carries full
+Seven chapters: the verbal sentence, the nominal sentence, inne-vs-enne
+(the hamza rule, with the qawl exception), the objects family, condition and
+question, the two governing families with tamyiz and istithna, and the vocative. Every token carries full
 trilingual i'rab, so the whole package doubles as TRAINING DATA for the
 runtime IrabModel — each sentence here is a labeled example the naive Bayes
 learns from, which is the package's second job.
@@ -1076,6 +1077,189 @@ S6.append({"id": "s8", "translation": {
    "An opening nominal clause — i'rabless.",
    "İbtidâiyye isim cümlesi — mahalsizdir.")]})
 
+
+S7 = []
+
+# ============ Chapter 7 — the vocative, all five kinds ============
+# Every kind of munada the books count, in order, so the NidaEngine's ruling
+# can be read against a stored i'rab for each: two FIXED kinds, three really
+# mansub, and the way in to a noun that wears the article.
+S7.append({"id": "s1", "translation": {
+ "en": "Zayd, sit down.", "tr": "Zeyd, otur."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ نَائِبٌ عَنْ «أَدْعُو».",
+      "A particle of calling, standing in for «I call».",
+      "«Çağırıyorum» fiilinin yerini tutan nidâ harfi."),
+  tok("زَيْدُ","zayd","noun",["vocative-munada"],
+      "مُنَادًى مُفْرَدٌ عَلَمٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "A single proper name: fixed on the damma, in the position of nasb.",
+      "Müfred alem: damme üzere mebnî, mahallen mansub."),
+  tok("اِجْلِسْ","jalasa","verb",["imperative-amr"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+      "An imperative built on sukun; the fa'il is hidden, «you».",
+      "Sükûn üzere mebnî emir fiili; fâil müstetir «sen».", punct="."),
+ ],
+ "jumal": [J("يَا زَيْدُ اِجْلِسْ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ طَلَبِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then an imperative clause — neither takes a case.",
+   "Nidâ cümlesi, sonra talebî fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s2", "translation": {
+ "en": "Student, write the lesson.", "tr": "Öğrenci, dersi yaz."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("طَالِبُ","talib","noun",["vocative-munada"],
+      "مُنَادًى نَكِرَةٌ مَقْصُودَةٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "No proper name at all, yet MEANT of the one before you: a nakira maqsuda, fixed on the damma just the same.",
+      "Hiç alem değil, fakat önündekini KASTEDİYOR: nekire-i maksûde; o da damme üzere mebnîdir."),
+  tok("اُكْتُبِ","kataba","verb",["imperative-amr"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "An imperative on sukun, given a kasra where two sakins met.",
+      "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."),
+  tok("الدَّرْسَ","dars","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "Direct object, in nasb.", "Mansub mef'ûlün bih.", punct="."),
+ ],
+ "jumal": [J("يَا طَالِبُ اُكْتُبِ الدَّرْسَ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s3", "translation": {
+ "en": "You two students, write the lesson.", "tr": "Ey iki öğrenci, dersi yazın."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("طَالِبَانِ","talib","noun",["vocative-munada","al-muthanna"],
+      "مُنَادًى مُثَنًّى مَبْنِيٌّ عَلَى الْأَلِفِ فِي مَحَلِّ نَصْبٍ — يُبْنَى عَلَى مَا يُرْفَعُ بِهِ.",
+      "A dual munada: fixed on the ALIF, not the damma — it is built on whatever would RAISE it.",
+      "Tesniye münâdâ: damme üzere değil ELİF üzere mebnî — kendisiyle MERFÛ olacağı şey üzere bina edilir."),
+  tok("اُكْتُبَا","kataba","verb",["imperative-amr","afal-khamsa"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَأَلِفُ الِاثْنَيْنِ فَاعِلٌ.",
+      "An imperative built on the DROPPED nun; the dual alif inside it is the fa'il.",
+      "Nûnun hazfi üzere mebnî emir; içindeki elif-i isneyn fâildir."),
+  tok("الدَّرْسَ","dars","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "Direct object, in nasb.", "Mansub mef'ûlün bih.", punct="."),
+ ],
+ "jumal": [J("يَا طَالِبَانِ اُكْتُبَا الدَّرْسَ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s4", "translation": {
+ "en": "Muslims, listen.", "tr": "Ey Müslümanlar, dinleyin."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("مُسْلِمُونَ","muslim","noun",["vocative-munada","jam-mudhakkar-salim"],
+      "مُنَادًى جَمْعُ مُذَكَّرٍ سَالِمٌ مَبْنِيٌّ عَلَى الْوَاوِ فِي مَحَلِّ نَصْبٍ.",
+      "A sound masculine plural munada: fixed on the WAW — the very letter that raises it.",
+      "Cem'-i müzekker-i sâlim münâdâ: onu ref eden harfin ta kendisi olan VÂV üzere mebnî."),
+  tok("اِسْمَعُوا","samia","verb",["imperative-amr","afal-khamsa"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَوَاوُ الْجَمَاعَةِ فَاعِلٌ.",
+      "An imperative built on the dropped nun; the waw of the group is the fa'il.",
+      "Nûnun hazfi üzere mebnî emir; vâv-ı cemâat fâildir.", punct="."),
+ ],
+ "jumal": [J("يَا مُسْلِمُونَ اِسْمَعُوا",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s5", "translation": {
+ "en": "Abdullah, enter the house.", "tr": "Abdullah, eve gir."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("عَبْدَ","abd","noun",["vocative-munada","idafa-definiteness"],
+      "مُنَادًى مُضَافٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ — وَالْمُضَافُ لَا يُبْنَى.",
+      "A mudaf munada: really mansub by the fatha — a mudaf is never fixed.",
+      "Muzâf münâdâ: fetha ile gerçekten mansub — muzâf mebnî olmaz."),
+  tok("اللهِ","allah","propn",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ.", "The mudaf ilayh, in jarr.", "Mecrûr muzâfun ileyh."),
+  tok("اُدْخُلِ","dakhala","verb",["imperative-amr"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "An imperative on sukun, given a kasra where two sakins met.",
+      "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."),
+  tok("الْبَيْتَ","bayt","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "Direct object, in nasb.", "Mansub mef'ûlün bih.", punct="."),
+ ],
+ "jumal": [J("يَا عَبْدَ اللهِ اُدْخُلِ الْبَيْتَ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s6", "translation": {
+ "en": "Somebody — anybody — listen.", "tr": "Ey (herhangi) bir adam, dinle."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("رَجُلًا","rajul","noun",["vocative-munada"],
+      "مُنَادًى نَكِرَةٌ غَيْرُ مَقْصُودَةٍ مَنْصُوبٌ، وَبَقِيَ تَنْوِينُهُ لِأَنَّهُ نَكِرَةٌ.",
+      "An indefinite meant of nobody in particular: really mansub — and it alone KEEPS its tanwin.",
+      "Hiç kimseyi kastetmeyen nekire: gerçekten mansub — ve tenvinini KORUYAN yalnız odur."),
+  tok("اِسْمَعْ","samia","verb",["imperative-amr"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+      "An imperative built on sukun; the fa'il is hidden, «you».",
+      "Sükûn üzere mebnî emir fiili; fâil müstetir «sen».", punct="."),
+ ],
+ "jumal": [J("يَا رَجُلًا اِسْمَعْ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then an imperative clause — neither takes a case.",
+   "Nidâ cümlesi, sonra talebî fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s7", "translation": {
+ "en": "O student, seek knowledge.", "tr": "Ey talebe, ilmi taleb et."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("أَيُّهَا","ayyuha","noun",["vocative-munada","huruf-tanbih"],
+      "«أَيُّ» مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ، وَ«هَا» حَرْفُ تَنْبِيهٍ — وَهُوَ الْوُصْلَةُ إِلَى نِدَاءِ الْمُعَرَّفِ بِـ«الْ».",
+      "«ayy» is the munada, fixed on the damma; «ha» is a particle of drawing near — together they are the only way in to calling a noun that wears the article.",
+      "Münâdâ «eyy»dir, damme üzere mebnî; «hâ» tenbih harfidir — ال'lı bir isme seslenmenin yegâne yolu budur.",
+      segments=[seg("أَيُّ","ayyuha","noun"), seg("هَا","ha-tanbih","part")]),
+  tok("الطَّالِبُ","talib","noun",["naat-sifa"],
+      "نَعْتٌ لِـ«أَيُّ» مَرْفُوعٌ لَفْظًا.",
+      "A na't following «ayy» — and it is raf' on the page, not nasb.",
+      "«Eyy»in na'tı — sayfada mansub değil, merfûdur."),
+  tok("اُطْلُبِ","talaba","verb",["imperative-amr"],
+      "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "An imperative on sukun, given a kasra where two sakins met.",
+      "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."),
+  tok("الْعِلْمَ","ilm","noun",["maful-bihi"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "Direct object, in nasb.", "Mansub mef'ûlün bih.", punct="."),
+ ],
+ "jumal": [J("يَا أَيُّهَا الطَّالِبُ اُطْلُبِ الْعِلْمَ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
+S7.append({"id": "s8", "translation": {
+ "en": "My teacher, I heard your lesson.", "tr": "Hocam, dersini dinledim."},
+ "tokens": [
+  tok("يَا","ya-nida","part",["vocative-munada"],
+      "حَرْفُ نِدَاءٍ.", "A particle of calling.", "Nidâ harfi."),
+  tok("مُعَلِّمِي","muallim","noun",["vocative-munada","idafa-definiteness"],
+      "مُنَادًى مُضَافٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ فَتْحَةٌ مُقَدَّرَةٌ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "A mudaf to the speaker's ya: still mansub, but by an ESTIMATED fatha — nothing shows on the page.",
+      "Mütekellim yâsına muzâf: yine mansub, fakat TAKDÎRÎ fetha ile — sayfada görünen yoktur.",
+      segments=[seg("مُعَلِّمِ","muallim","noun"), seg("ي","pron-1s","pron")]),
+  tok("سَمِعْتُ","samia","verb",["thulathi-mujarrad-babs"],
+      "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ فَاعِلٌ.",
+      "A past verb built on sukun because the ta of the doer joined it; that ta is the fa'il.",
+      "Fâil tâsı bitiştiği için sükûn üzere mebnî mâzî; tâ fâildir.",
+      segments=[seg("سَمِعْ","samia","verb"), seg("تُ","pron-1s","pron")]),
+  tok("دَرْسَكَ","dars","noun",["maful-bihi","idafa-definiteness"],
+      "مَفْعُولٌ بِهِ مَنْصُوبٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+      "Direct object in nasb; the kaf is its mudaf ilayh.",
+      "Mansub mef'ûlün bih; kâf muzâfun ileyhtir.",
+      segments=[seg("دَرْسَ","dars","noun"), seg("كَ","pron-2ms","pron")], punct="."),
+ ],
+ "jumal": [J("يَا مُعَلِّمِي سَمِعْتُ دَرْسَكَ",
+   "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+   "A vocative, then a verbal clause — neither takes a case.",
+   "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir.")]})
+
 TITLES = [
  {"ar": "الْجُمْلَةُ الْفِعْلِيَّةُ", "en": "The Verbal Sentence", "tr": "Fiil Cümlesi"},
  {"ar": "الْجُمْلَةُ الِاسْمِيَّةُ", "en": "The Nominal Sentence", "tr": "İsim Cümlesi"},
@@ -1083,6 +1267,7 @@ TITLES = [
  {"ar": "الْمَفَاعِيلُ وَالنَّائِبُ", "en": "The Objects Family and the Deputy", "tr": "Mef'ûller ve Nâibü'l-Fâil"},
  {"ar": "الشَّرْطُ وَالِاسْتِفْهَامُ", "en": "Condition and Question", "tr": "Şart ve İstifham"},
  {"ar": "الْعَامِلَانِ وَالتَّمْيِيزُ وَالِاسْتِثْنَاءُ", "en": "The Two Families, Tamyiz and Istithna", "tr": "İki Aile, Temyiz ve İstisnâ"},
+ {"ar": "النِّدَاءُ وَأَقْسَامُ الْمُنَادَى", "en": "The Vocative and its Five Kinds", "tr": "Nidâ ve Münâdânın Beş Çeşidi"},
 ]
 
 # ---- glossary -------------------------------------------------------------
@@ -1151,6 +1336,10 @@ GLOSS = {
  "sabah": g("صَبَاح", "noun", "morning", "sabah", 1, "ص ب ح"),
  "ikram": g("إِكْرَام", "noun", "honoring (masdar, Form IV)", "ikram; hürmet (masdar)", 2, "ك ر م"),
  "ya-nida": g("يَا", "part", "O! (vocative)", "ey (nidâ)", 1),
+ "ayyuha": g("أَيُّ", "noun", "the one addressed (in أَيُّهَا)", "eyy (أَيُّهَا'daki münâdâ)", 3),
+ "ha-tanbih": g("هَا (لِلتَّنْبِيهِ)", "part", "ha of drawing attention", "tenbih hâsı", 3),
+ "muslim": g("مُسْلِم", "noun", "Muslim, one who submits", "müslüman", 1, "س ل م"),
+ "abd": g("عَبْد", "noun", "servant, slave", "kul, köle", 1, "ع ب د"),
  "ma-nafiya": g("مَا (النَّافِيَة)", "part", "not (negating ma)", "değil; -medi (nefiy mâsı)", 2),
  "mumin": g("مُؤْمِن", "noun", "believer", "mü'min", 1, "أ م ن"),
  "nasr": g("نَصْر", "noun", "help, victory (masdar)", "nusret; yardım (masdar)", 2, "ن ص ر"),
@@ -1193,7 +1382,7 @@ MANIFEST = {
               "tr": "Hoca usulü, cümle cümle i'râb okuma"},
  "level": 2,
  "levelName": "Elementary",
- "version": "1.2.0",
+ "version": "1.3.0",
  "published": "2026-08-03",
  "access": "free",
  "chapters": [{"n": i + 1, "title": t} for i, t in enumerate(TITLES)],
@@ -1251,10 +1440,10 @@ MORPH["verbs"]["darasa"] = _sg.sound1(
 MORPH["verbs"]["najaha"] = _sg.sound1(
     "fataha", "نَجَح", "نْجَح", "اِنْجَح", "نَجَاح", "نَاجِح")
 
-ALL = S1 + S2 + S3 + S4 + S5 + S6
+ALL = S1 + S2 + S3 + S4 + S5 + S6 + S7
 
 (PKG / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=1), encoding="utf-8")
-for i, S in enumerate((S1, S2, S3, S4, S5, S6), 1):
+for i, S in enumerate((S1, S2, S3, S4, S5, S6, S7), 1):
     (PKG / f"chapters/{i}.json").write_text(
         json.dumps({"chapter": i, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
 (PKG / "glossary.json").write_text(json.dumps({"entries": GLOSS}, ensure_ascii=False, indent=1), encoding="utf-8")
