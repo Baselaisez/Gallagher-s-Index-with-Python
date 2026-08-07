@@ -380,8 +380,8 @@
    "lemma": "بِ",
    "pos": "prep",
    "gloss": {
-    "en": "with, by; by means of",
-    "tr": "ile, -le"
+    "en": "with, by",
+    "tr": "ile"
    },
    "level": 1
   },
@@ -389,8 +389,8 @@
    "lemma": "لِ",
    "pos": "prep",
    "gloss": {
-    "en": "for, belonging to",
-    "tr": "için; -e ait"
+    "en": "for, to",
+    "tr": "için; -e"
    },
    "level": 1
   },
@@ -521,11 +521,11 @@
    "level": 1
   },
   "pron-3mp": {
-   "lemma": "ـونَ",
+   "lemma": "هُمْ",
    "pos": "pron",
    "gloss": {
-    "en": "they (attached)",
-    "tr": "onlar (bitişik)"
+    "en": "them (attached)",
+    "tr": "onları/onların (muttasıl)"
    },
    "level": 1
   },
@@ -2489,6 +2489,208 @@
     "tr": "o ikisi (munfasıl)"
    },
    "level": 2
+  },
+  "irsal": {
+   "lemma": "إِرْسَال",
+   "pos": "noun",
+   "gloss": {
+    "en": "sending (masdar, Form IV)",
+    "tr": "irsâl; gönderme (masdar)"
+   },
+   "level": 3,
+   "root": "ر س ل"
+  },
+  "hikma": {
+   "lemma": "حِكْمَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "wisdom",
+    "tr": "hikmet"
+   },
+   "level": 2,
+   "root": "ح ك م"
+  },
+  "arsala": {
+   "lemma": "أَرْسَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to send",
+    "tr": "göndermek"
+   },
+   "level": 2,
+   "root": "ر س ل"
+  },
+  "bashar": {
+   "lemma": "بَشَر",
+   "pos": "noun",
+   "gloss": {
+    "en": "human beings, mankind",
+    "tr": "beşer; insan"
+   },
+   "level": 2,
+   "root": "ب ش ر"
+  },
+  "mubashshir": {
+   "lemma": "مُبَشِّر",
+   "pos": "noun",
+   "gloss": {
+    "en": "bearer of good news",
+    "tr": "müjdeleyici"
+   },
+   "level": 3,
+   "root": "ب ش ر"
+  },
+  "mundhir": {
+   "lemma": "مُنْذِر",
+   "pos": "noun",
+   "gloss": {
+    "en": "warner",
+    "tr": "uyarıcı; münzir"
+   },
+   "level": 3,
+   "root": "ن ذ ر"
+  },
+  "mubayyin": {
+   "lemma": "مُبَيِّن",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who makes plain",
+    "tr": "açıklayıcı; mübeyyin"
+   },
+   "level": 3,
+   "root": "ب ي ن"
+  },
+  "nas": {
+   "lemma": "نَاس",
+   "pos": "noun",
+   "gloss": {
+    "en": "people",
+    "tr": "insanlar"
+   },
+   "level": 1,
+   "root": "ن و س"
+  },
+  "ihtaja": {
+   "lemma": "اِحْتَاجَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to need",
+    "tr": "muhtaç olmak"
+   },
+   "level": 3,
+   "root": "ح و ج"
+  },
+  "amr": {
+   "lemma": "أَمْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "matter, affair",
+    "tr": "iş; emir"
+   },
+   "level": 1,
+   "root": "أ م ر",
+   "plural": "أُمُور"
+  },
+  "dunya": {
+   "lemma": "الدُّنْيَا",
+   "pos": "noun",
+   "gloss": {
+    "en": "this world, the nearer life",
+    "tr": "dünya"
+   },
+   "level": 1,
+   "root": "د ن و"
+  },
+  "din": {
+   "lemma": "دِين",
+   "pos": "noun",
+   "gloss": {
+    "en": "religion",
+    "tr": "din"
+   },
+   "level": 1,
+   "root": "د ي ن"
+  },
+  "ayyada": {
+   "lemma": "أَيَّدَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to strengthen, support",
+    "tr": "desteklemek; te'yîd etmek"
+   },
+   "level": 4,
+   "root": "أ ي د"
+  },
+  "naqid": {
+   "lemma": "نَاقِض",
+   "pos": "noun",
+   "gloss": {
+    "en": "breaking, undoing (ism fa'il)",
+    "tr": "bozan; nâkız"
+   },
+   "level": 4,
+   "root": "ن ق ض"
+  },
+  "nabi": {
+   "lemma": "نَبِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "prophet",
+    "tr": "nebî; peygamber"
+   },
+   "level": 2,
+   "root": "ن ب أ",
+   "plural": "أَنْبِيَاء"
+  },
+  "awwal": {
+   "lemma": "أَوَّل",
+   "pos": "noun",
+   "gloss": {
+    "en": "first",
+    "tr": "ilk; evvel"
+   },
+   "level": 1,
+   "root": "أ و ل"
+  },
+  "akhir": {
+   "lemma": "آخِر",
+   "pos": "noun",
+   "gloss": {
+    "en": "last",
+    "tr": "son; âhir"
+   },
+   "level": 1,
+   "root": "أ خ ر"
+  },
+  "salam": {
+   "lemma": "سَلَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "peace",
+    "tr": "selâm"
+   },
+   "level": 1,
+   "root": "س ل م"
+  },
+  "salla": {
+   "lemma": "صَلَّى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to bless, pray upon",
+    "tr": "salât etmek"
+   },
+   "level": 3,
+   "root": "ص ل و"
+  },
+  "sallama": {
+   "lemma": "سَلَّمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to grant peace",
+    "tr": "selâm etmek"
+   },
+   "level": 3,
+   "root": "س ل م"
   }
  }
 }

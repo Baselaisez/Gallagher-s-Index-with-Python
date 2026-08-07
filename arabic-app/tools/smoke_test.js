@@ -3758,8 +3758,10 @@ if (!CHROME) {
   // The score is pinned so a feature change has to be MEASURED. Reading the
   // ending sign and the manner of i'rab off the rule engines lifted this from
   // 42.7/62.9 to 49.3/71.0; a bucketed word length took first guesses to
-  // 51.4. The floor sits just under whatever the last measured run gave.
-  // tools/ablate_features.js is how a candidate feature earns its place.
+  // 51.4, and damping the likelihoods by 1/sqrt(k) took them to 53.2. The
+  // floor sits just under whatever the last measured run gave.
+  // tools/ablate_features.js earns a FEATURE its place;
+  // tools/ablate_estimator.js earns an ESTIMATOR its place.
   await check('the model scores on the corpus, and the score is pinned', async () => {
     const a = await page.evaluate(() => {
       const x = IrabModel.accuracy();
@@ -3767,7 +3769,7 @@ if (!CHROME) {
                shown: (document.body.innerHTML.match(/ml-score/g) || []).length };
     });
     if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
-    if (a.top1 < 50) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
+    if (a.top1 < 52) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
     if (a.top2 < 68) throw new Error('two-guess accuracy regressed to ' + a.top2 + '%');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
@@ -3968,6 +3970,33 @@ if (!CHROME) {
     if (bad.length) throw new Error(bad.join('; '));
   });
 
+  // The rules over-apply unless told to stand down. Two kinds of refusal:
+  // one derivable from the wazn (coded), one lexical (stored) — and the panel
+  // must say which, because that distinction is the project's whole method.
+  await check('the I\'lal engine knows where the rules must stand down', async () => {
+    const r = await page.evaluate(() => {
+      const norm = s => IlalEngine.join(IlalEngine.parse(s));
+      const tafdil = IlalEngine.build('قول', 'tafdil');
+      const awar = IlalEngine.build('عور', 'fail');
+      const plain = IlalEngine.build('قول', 'fail');
+      return {
+        tafdilOut: tafdil && norm(tafdil.out), tafdilWhy: tafdil && tafdil.blocked && tafdil.blocked.why,
+        tafdilSteps: tafdil && tafdil.steps.length,
+        awarOut: awar && norm(awar.out), awarWhy: awar && awar.blocked && awar.blocked.why,
+        plainBlocked: !!(plain && plain.blocked), plainOut: plain && norm(plain.out),
+        want: { tafdil: norm('أَقْوَلُ'), awar: norm('عَاوِرٌ'), plain: norm('قَائِلٌ') },
+      };
+    });
+    if (r.tafdilWhy !== 'wazn') throw new Error('the elative must be refused by RULE, got ' + r.tafdilWhy);
+    if (r.tafdilSteps !== 0) throw new Error('a blocked derivation fires no rule');
+    if (r.tafdilOut !== r.want.tafdil) throw new Error('أَقْوَلُ must survive intact: ' + r.tafdilOut);
+    if (r.awarWhy !== 'lexical') throw new Error('a defect-verb must be refused by the LEXICON, got ' + r.awarWhy);
+    if (r.awarOut !== r.want.awar) throw new Error('عور must stay sound: ' + r.awarOut);
+    // and the guard must not swallow the ordinary case
+    if (r.plainBlocked) throw new Error('قول was wrongly blocked');
+    if (r.plainOut !== r.want.plain) throw new Error('قَائِلٌ regressed: ' + r.plainOut);
+  });
+
   await check('the I\'lal Lab shows the origin, the outcome and every rule between', async () => {
     await page.evaluate(() => { conjState.lab = 'ilal'; conjState.ilalRoot = 'كيل'; conjState.ilalShape = 'maful'; });
     await page.locator('#conjOpen').click();
@@ -3986,6 +4015,28 @@ if (!CHROME) {
     if (!r.t.includes('مَكِيلٌ')) throw new Error('the outcome is missing from the panel');
     if (!r.t.includes('مَكْيُولٌ')) throw new Error('the origin is missing from the panel');
     if (r.soundSteps !== 0 || !r.none) throw new Error('a sound root must show no rule and say so');
+  });
+
+  await check('the front door states where you are, and the numbers are the deck\'s own', async () => {
+    await page.evaluate(() => renderLibrary());
+    await page.waitForSelector('#statStrip', { timeout: 3000 });
+    const r = await page.evaluate(() => {
+      const tiles = [...document.querySelectorAll('#statStrip .st-tile')];
+      const d = deckStats();
+      return {
+        n: tiles.length,
+        heights: tiles.map(t => Math.round(t.getBoundingClientRect().height)),
+        keys: tiles.map(t => t.dataset.st),
+        shown: tiles.map(t => t.querySelector('.st-n').textContent),
+        real: [String(state.streak.days || 0), String(d.due), String(d.mature)],
+      };
+    });
+    if (r.n !== 3) throw new Error('three tiles, got ' + r.n);
+    if (r.keys.join() !== 'streak,due,known') throw new Error('tiles: ' + r.keys);
+    if (r.shown.join() !== r.real.join())
+      throw new Error('the strip disagrees with deckStats: ' + r.shown + ' vs ' + r.real);
+    const short = r.heights.filter(h => h < 44);
+    if (short.length) throw new Error('a tile is under the thumb floor: ' + r.heights);
   });
 
   // A design system that is only written down is a document, not a system.

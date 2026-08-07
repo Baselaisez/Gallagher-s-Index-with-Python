@@ -1043,6 +1043,20 @@ The smoke suite pins 23 worked derivations plus 12 root+wazn builds, and
 includes sound roots and مُيَسَّرٌ — a real word that LOOKS like an i'lal site
 — to prove the rules also know when to do nothing.
 
+**And the rules have to be told where to stand down.** `IlalEngine.blocked
+(root, shape)` runs before `build()` and returns a refusal with its reason.
+There are exactly two kinds, and the panel names which one fired, because the
+distinction IS the project's method: (1) a WAZN rule, derivable and therefore
+coded — the elative and the wonder-verb on أَفْعَل are never i'lal'd, since the
+shape is the meaning and i'lal would destroy it (أَقْوَلُ مِنْهُ); (2) a LEXICAL
+set, not derivable and therefore stored — whether a root means a defect or a
+colour is something you know, not something you compute (عَوِرَ، حَوِلَ، صَيِدَ،
+غَيِدَ، هَيِفَ، حَوِرَ). A blocked derivation still shows its ORIGIN, so the
+learner sees the form the rules would have eaten. Do not "simplify" the
+مِفْعَال case into a rule: مِيزَان comes from مِوْزَان and IS i'lal'd, while
+مِقْوَل is not — that split is sema'i and any rule you write for it will be
+wrong.
+
 **The design system is one page and two gates.** `DESIGN.md` documents the
 tokens, the components and what was borrowed from the reading apps people
 actually keep. The smoke suite enforces the two claims a browser can check:
@@ -1052,13 +1066,19 @@ literal `padding: .9rem` in a new rule is a bug even when it looks right.
 **The rule engines feed the statistical one.** `IrabModel.features()` now
 pushes `sign-<caseSignOf>` and `by-<IrabSign.of().by>` alongside the cheap
 surface flags. A bucketed word length was added the
-same way. Measured, not asserted, over the labeled corpus tokens: first-guess
-accuracy went 42.7% → 49.3% (sign + manner) → 51.4% (length), two-guess
-62.9% → 71.0%. **`tools/ablate_features.js` is how a feature earns its
-place** — it monkeypatches `features()` in a live page and scores each
+same way, and the likelihoods now carry a **1/sqrt(k) weight** where k is how
+many features the word fired — naive Bayes assumes independence and ours are
+plainly correlated (`al`, `sign-kasra` and `by-haraka` move together on one
+word), so an unweighted product counts one piece of evidence three times. Measured, not asserted, over the labeled corpus tokens: first-guess
+accuracy went 42.7% → 49.3% (sign + manner) → 51.4% (length) → 53.2% (weighted likelihoods); two-guess 62.9% → 71.2%.
+**`tools/ablate_features.js` earns a FEATURE its place and
+`tools/ablate_estimator.js` earns an ESTIMATOR its place** — it monkeypatches `features()` in a live page and scores each
 candidate against the shipped set. A mim-initial flag and a shadda flag were
-tried in the same run and dropped as noise; an unmeasured feature is a
-superstition.
+tried in the same run and dropped as noise, and complement naive Bayes was
+tried as an estimator and was far WORSE (42.8%). An unmeasured change is a
+superstition. **In `ablate_features.js`, `base` is the SHIPPED set** — every
+variant ADDS to it, so re-adding a shipped feature scores a double count and
+reads as a regression.
 `IrabModel.accuracy()` computes that score lazily and caches it, the Jumla
 Lab prints it (`.ml-score`), and the smoke suite pins the floor just under the last measured run so
 a feature change has to be measured instead of believed. The score is

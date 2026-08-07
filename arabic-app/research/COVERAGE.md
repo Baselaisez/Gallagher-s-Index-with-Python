@@ -142,3 +142,11 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   change-clause («والتغيير يكون على السعادة والشقاوة دون الإسعاد والإشقاء،
   وهما من صفات الله تعالى») skipped between s3 and the closing denial it
   exists to set up. Restored as s4/s5; the closing sentence is now s6.
+- **v84** — backlog #2 closed: `IlalEngine.blocked()` gives the rules an
+  exception path, split the way the project splits everything — the elative /
+  wonder-verb refusal is a WAZN rule and is coded; the defect-and-colour roots
+  are LEXICAL and are stored. The panel names which kind fired. The remaining
+  piece of that backlog item, the mithal mudari waw-drop attested set for babs
+  2/3/4/6, is still open. Aqaid reaches chapter 11 (the sending of the
+  messengers); the chapter STOPS EARLY before «وقد روي بيان عددهم», which with
+  the verse it quotes and «وأفضل الأنبياء» will be chapter 12.

@@ -1,4 +1,7 @@
-// Feature ablation for IrabModel. Run it BEFORE adding a feature and keep
+// Feature ablation for IrabModel. NOTE: `base` is the SHIPPED feature set, so
+// every variant here ADDS to it — never re-add a feature that already ships,
+// or the row scores a double count and reads as a regression.
+// Run it BEFORE adding a feature and keep
 // only what measurably helps — the length bucket earned its place this way,
 // and a mim-initial flag and a shadda flag were dropped by the same run.
 //   NODE_PATH=... CHROMIUM_PATH=... node tools/ablate_features.js

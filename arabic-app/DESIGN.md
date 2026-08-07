@@ -134,6 +134,12 @@ learner should see the Arabic before the explanation, every time.
 label in the label voice, and a hairline rule filling the row. Used to break
 a long grid into disciplines.
 
+**Stat strip** — `.stat-strip` + `.st-tile`: three tiles at the front door,
+never more. An Arabic word in `--accent`, the number at `--t-xl` in tabular
+figures, the label in the label voice. Every number is read live from
+`deckStats()` / `state.streak`, so the strip cannot disagree with the deck —
+the smoke suite compares the two. The whole row is one tap into the deck.
+
 **Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
 ground. Only ever holds a sentence explaining why *your* answer fails.
 

@@ -687,6 +687,16 @@
   .ilal-flow .out b { color: var(--accent); font-weight: 700; }
   .ilal-flow .if-arrow { font-size: 1.3rem; opacity: .45; }
   .ilal-none { font-size: .9rem; opacity: .75; text-align: center; margin: .4rem 0; }
+  .ilal-block { border: 1px solid var(--line); border-inline-start: 3px solid var(--lvl3);
+    border-radius: var(--r-md); padding: var(--s3); background: var(--panel); }
+  .ilal-block .ib-head { font-size: var(--t-xs); letter-spacing: var(--track-caps);
+    text-transform: uppercase; font-weight: 700; opacity: .6; margin-bottom: var(--s1); }
+  .ilal-block .ib-ar { font-family: var(--ar-font); font-size: var(--t-lg); direction: rtl;
+    line-height: var(--lh-body); }
+  .ilal-block .ib-gloss { font-size: var(--t-sm); color: var(--ink-soft); margin-top: var(--s1);
+    line-height: var(--lh-body); }
+  .ilal-block .ib-kind { font-size: var(--t-xs); margin-top: var(--s2); font-weight: 600;
+    color: var(--accent); }
   .ilal-steps { list-style: none; margin: .2rem 0 0; padding: 0; display: grid; gap: .5rem; }
   .ilal-steps li { display: flex; gap: .6rem; border: 1px solid var(--line);
     border-radius: 12px; padding: .55rem .7rem; background: var(--panel); }
@@ -1051,13 +1061,34 @@
   .ref-empty { font-size: .88rem; color: var(--ink-soft); font-family: var(--ui-font); margin: 1.2rem 0; text-align: center; }
 
   /* ---------- library ---------- */
+  /* the stat strip — three tiles, tokens only, one tap into the deck */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2);
+    margin: var(--s2) 0 var(--s4); }
+  .st-tile { display: flex; flex-direction: column; align-items: center; gap: var(--s1);
+    min-height: var(--tap); padding: var(--s3) var(--s2); cursor: pointer;
+    border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel);
+    color: var(--ink); font-family: var(--ui-font);
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease),
+                transform var(--dur-base) var(--ease); }
+  .st-tile:hover { border-color: var(--accent); box-shadow: var(--e1); }
+  .st-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) { .st-tile:hover { transform: translateY(-1px); } }
+  .st-tile .st-ar { font-family: var(--ar-font); font-size: var(--t-sm); color: var(--accent);
+    opacity: .8; direction: rtl; }
+  .st-tile .st-n { font-size: var(--t-xl); font-weight: 700; line-height: var(--lh-tight);
+    font-variant-numeric: tabular-nums; }
+  .st-tile .st-l { font-size: var(--t-xs); letter-spacing: var(--track-caps);
+    text-transform: uppercase; color: var(--ink-soft); text-align: center; }
+
   .lib-mode .reader-only { display: none !important; }
   .lib-card {
     border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
-    padding: 1rem 1.1rem 1rem 1.25rem; cursor: pointer; display: block; width: 100%; text-align: start;
-    margin: .8rem 0; color: var(--ink); font-family: var(--body-font);
-    position: relative; overflow: hidden;
-    transition: border-color .15s, box-shadow .15s, transform .15s;
+    padding: var(--s4); padding-inline-start: calc(var(--s4) + var(--s1));
+    cursor: pointer; display: block; width: 100%; text-align: start;
+    margin: var(--s3) 0; color: var(--ink); font-family: var(--body-font);
+    position: relative; overflow: hidden; min-height: var(--tap);
+    transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease),
+                transform var(--dur-base) var(--ease);
   }
   /* The level's colour, as a spine on the card — the same colour system the
      word underlines already speak. */
@@ -1080,9 +1111,9 @@
     .lib-card:active { transform: translateY(0); }
   }
   .lib-card .t { font-family: var(--ar-font); font-size: 1.6rem; direction: rtl; text-align: right; line-height: 1.6; }
-  .lib-card .s { color: var(--ink-soft); font-size: .85rem; margin: .15rem 0 .4rem; font-family: var(--ui-font); }
-  .progress { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; margin-top: .7rem; }
-  .progress > div { height: 100%; background: var(--accent); border-radius: 2px; transition: width .4s ease; }
+  .lib-card .s { color: var(--ink-soft); font-size: var(--t-sm); line-height: var(--lh-body); margin: var(--s1) 0 var(--s2); font-family: var(--ui-font); }
+  .progress { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; margin-top: var(--s3); }
+  .progress > div { height: 100%; background: var(--accent); border-radius: 2px; transition: width var(--dur-slow) var(--ease); }
 
   /* ---- the shelf as a shelf: cards become covers ------------------------
      The Arabic title is the cover art — a centered display band tinted by
@@ -1358,7 +1389,11 @@ const L = {
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
         mlScore:"🧠 On the corpus it learned from, the model names the role of {n} words and gets {a}% right first try, {b}% within two guesses. That is a resubstitution score — an upper bound, shown so a change can be measured instead of believed.",
+        stStreak:"day streak", stDue:"due now", stKnown:"words held",
         ilalTab:"I'lal", ilalAsl:"Its origin", ilalOutLbl:"What is said",
+        ilalBlocked:"The rules stand down here",
+        ilalByRule:"Refused by a RULE — derivable, so it is coded.",
+        ilalByLexicon:"Refused by the LEXICON — not derivable, so it is stored.",
         ilalIntro:"Type a three-letter root and pick a wazn. The lab assembles the ORIGIN the books start from, then runs the rules in their own order until none fires — and shows each firing with the rule that caused it. Nothing is looked up: قُلْ, مَكِيلٌ and مَرْمِيٌّ all fall out of the same ten rules.",
         ilalNone:"No rule fires here — the root is sound, so the origin IS what is said.",
         nidaTab:"Vocative",
@@ -1499,7 +1534,11 @@ const L = {
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
         mlScore:"🧠 Öğrendiği külliyat üzerinde model {n} kelimenin görevini adlandırıyor; ilk tahminde %{a}, ilk iki tahmin içinde %{b} isabet ediyor. Bu bir yeniden-yerine-koyma skorudur — üst sınırdır; bir değişiklik inanılsın diye değil ölçülsün diye gösterilir.",
+        stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
         ilalTab:"İ'lâl", ilalAsl:"Aslı", ilalOutLbl:"Söylenen",
+        ilalBlocked:"Kaideler burada işlemez",
+        ilalByRule:"KAİDE ile reddedilir — türetilebilir olduğu için kodlanmıştır.",
+        ilalByLexicon:"LUGAT ile reddedilir — türetilemediği için saklanmıştır.",
         ilalIntro:"Üç harfli bir kök yazın ve bir vezin seçin. Atölye, kitapların başladığı ASLI kurar; sonra kaideleri kendi sıralarıyla, hiçbiri işlemez hâle gelene dek uygular ve her işleyişi sebebiyle birlikte gösterir. Hiçbiri ezberden değildir: قُلْ, مَكِيلٌ ve مَرْمِيٌّ aynı on kaideden çıkar.",
         ilalNone:"Burada hiçbir kaide işlemez — kök sahihtir; asıl, söylenenin ta kendisidir.",
         nidaTab:"Nidâ",
@@ -2161,6 +2200,26 @@ function renderLibrary(){
   // The shelf remembers the reader: the last story they opened, resumable in
   // one tap, as long as it is unfinished. A finished story retires the card —
   // its ✓ chip records the achievement and the sorts suggest what is next.
+  // ============ design wave 9: the front door states where you are ========
+  // DESIGN.md's third borrowed principle — progress visible without being
+  // asked for. Three tiles, no more: the streak, what is due, what is known.
+  // Every number is read live from the same primitives the deck and the
+  // progress page use, so the strip can never disagree with them. The whole
+  // row is one tap into the deck, and it is built only from tokens.
+  const dStats = deckStats();
+  const strip = document.createElement("div");
+  strip.className = "stat-strip";
+  strip.id = "statStrip";
+  const tile = (k, n, lbl, ar) =>
+    `<button class="st-tile" data-st="${k}"><span class="st-ar" lang="ar">${ar}</span>` +
+    `<span class="st-n">${n}</span><span class="st-l">${lbl}</span></button>`;
+  strip.innerHTML =
+    tile("streak", state.streak.days || 0, ui().stStreak, "مُوَاظَبَة") +
+    tile("due", dStats.due, ui().stDue, "مُرَاجَعَة") +
+    tile("known", dStats.mature, ui().stKnown, "مَحْفُوظ");
+  strip.querySelectorAll("[data-st]").forEach(b2 =>
+    b2.addEventListener("click", () => openDeck()));
+  storyEl.appendChild(strip);
   const lastSt = continueStory();
   if (lastSt) {
     const { total, read } = storyStats(lastSt);
@@ -4365,12 +4424,53 @@ class IlalEngine {
     maful:  { ar: "مَفْعُولٌ", asl: (f, a, l) => "مَ" + f + "ْ" + a + "ُو" + l + "ٌ" },
     alat:   { ar: "مِفْعَالٌ", asl: (f, a, l) => "مِ" + f + "ْ" + a + "َا" + l + "ٌ" },
     zaman:  { ar: "مَفْعَلٌ",  asl: (f, a, l) => "مَ" + f + "ْ" + a + "َ" + l + "ٌ" },
+    tafdil: { ar: "أَفْعَلُ",   asl: (f, a, l) => "أَ" + f + "ْ" + a + "َ" + l + "ُ" },
   };
+  // ---- where the rules are told to stand down -------------------------
+  // The rules above are qiyasi and they over-apply. The books name places
+  // where a weak letter stays SOUND, and those places are of two kinds.
+  // (1) A WAZN rule, which is derivable: the elative and the wonder-verb on
+  // أَفْعَل are never i'lal'd, because the shape itself is the meaning and
+  // i'lal would destroy it — أَقْوَلُ مِنْهُ, مَا أَقْوَلَهُ. (2) A LEXICAL set,
+  // which is not: whether a root means a defect or a colour is something you
+  // know, not something you compute, and the same goes for the handful of
+  // Form VIII/X verbs the Arabs preserved (اِعْتَوَرَ، اِسْتَحْوَذَ). So the
+  // wazn rule is coded and the lexical set is stored — the project's line.
+  static SAHIH_SHAPES = { tafdil: true, taajjub: true };
+  static SAHIH_ROOTS = {
+    "عور": { ar: "الْعَوَر", en: "one-eyedness", tr: "tek gözlülük" },
+    "حول": { ar: "الْحَوَل", en: "a squint", tr: "şaşılık" },
+    "صيد": { ar: "الصَّيَد", en: "a stiff neck", tr: "boyun tutukluğu" },
+    "غيد": { ar: "الْغَيَد", en: "softness of limb", tr: "endam yumuşaklığı" },
+    "هيف": { ar: "الْهَيَف", en: "slenderness of waist", tr: "ince bellilik" },
+    "حور": { ar: "الْحَوَر", en: "deep blackness of the eye", tr: "gözün siyahlığı" },
+  };
+  // Would any rule fire on this root+shape, and SHOULD it? Returns a refusal
+  // with its reason, or null to let the rules run.
+  static blocked(root, shape){
+    const key = (root || "").normalize("NFC").replace(/[^ء-ي]/g, "").replace(/ى/g, "ي");
+    if (this.SAHIH_SHAPES[shape])
+      return { why: "wazn",
+        ar: "أَفْعَلُ التَّفْضِيلِ وَفِعْلُ التَّعَجُّبِ لَا يُعَلَّانِ — الصِّيغَةُ نَفْسُهَا هِيَ الْمَعْنَى، وَالْإِعْلَالُ يَهْدِمُهَا.",
+        en: "The elative and the wonder-verb are never i'lal'd: the SHAPE is the meaning here, and i'lal would destroy it — أَقْوَلُ مِنْهُ، مَا أَقْوَلَهُ.",
+        tr: "İsm-i tafdîl ile taaccüb fiili i'lâl edilmez: burada mana bizzat SÎGADIR, i'lâl onu yıkar — أَقْوَلُ مِنْهُ، مَا أَقْوَلَهُ." };
+    const e = this.SAHIH_ROOTS[key];
+    if (e && (shape === "fail" || shape === "maful"))
+      return { why: "lexical", entry: e,
+        ar: `أَفْعَالُ الْعُيُوبِ وَالْأَلْوَانِ لَا تُعَلُّ: ${e.ar} مَصْدَرٌ صَحِيحٌ، وَاسْمُ الْفَاعِلِ عَلَى أَفْعَلَ لَا عَلَى فَاعِلٍ.`,
+        en: `A verb of defect or colour keeps its weak letter SOUND (${e.en}): its masdar فَعَل is sound and its ism fa'il rides أَفْعَل, not فَاعِل. Which roots carry that meaning is lexical — nothing derives it.`,
+        tr: `Uyûb ve elvân fiilleri i'lâl edilmez (${e.tr}): masdarı فَعَل sahihtir, ism-i fâili فَاعِل değil أَفْعَل vezninde gelir. Hangi kökün bu manayı taşıdığı lugavîdir — hiçbir kaide onu türetmez.` };
+    return null;
+  }
   static build(root, shape){
     const rs = (root || "").normalize("NFC").replace(/[^ء-ي]/g, "").split("");
     const S = this.SHAPES[shape];
     if (!S || rs.length !== 3) return null;
     const asl = S.asl(rs[0], rs[1], rs[2]);
+    const stop = this.blocked(root, shape);
+    // A blocked derivation still SHOWS its origin — the learner needs to see
+    // the form the rules would have eaten, and the reason they were refused.
+    if (stop) return { shape, wazn: S.ar, asl, out: asl, steps: [], blocked: stop };
     const d = this.derive(asl);
     return d && { shape, wazn: S.ar, ...d };
   }
@@ -4919,15 +5019,26 @@ class IrabModel {
     this._model = m;
     return m;
   }
-  // P(role | features) by naive Bayes; returns roles sorted by probability
+  // P(role | features) by naive Bayes; returns roles sorted by probability.
+  //
+  // The likelihoods carry a 1/sqrt(k) weight, k being how many features the
+  // word fired. Naive Bayes assumes features are independent and ours plainly
+  // are not — «al» and «sign-kasra» and «by-haraka» all move together on the
+  // same word — so an unweighted product counts one piece of evidence three
+  // times and the posterior spikes on whichever class happens to own that
+  // cluster. Damping by the feature count is the cheapest correction that
+  // keeps the model interpretable. Measured with tools/ablate_estimator.js:
+  // 51.9% → 53.2% first guess. Complement NB was tried in the same run and
+  // was far WORSE (42.8%) — it is the wrong medicine for this skew.
   static predict(full, i, n, prev){
     const m = this.train();
     if (!m.total) return [];
     const fs = this.features(full, i, n, prev);
+    const w = 1 / Math.sqrt(Math.max(1, fs.length));
     const scores = this.ROLES.map(r => {
       let lp = Math.log((m.roleN[r] + 1) / (m.total + this.ROLES.length));
       fs.forEach(f => {
-        lp += Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2));
+        lp += w * Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2));
       });
       return { r, lp };
     });
@@ -5645,7 +5756,14 @@ function renderIlalOut(){
     <div class="if-arrow">→</div>
     <div class="if-end out"><span class="if-lbl">${ui().ilalOutLbl}</span><b lang="ar">${E(b.out)}</b></div>
   </div>`;
-  if (!b.steps.length) {
+  if (b.blocked) {
+    h += `<div class="ilal-block">
+      <div class="ib-head">${ui().ilalBlocked}</div>
+      <div class="ib-ar" lang="ar">${b.blocked.ar}</div>
+      <div class="ib-gloss">${state.uiLang === "tr" ? b.blocked.tr : b.blocked.en}</div>
+      <div class="ib-kind">${b.blocked.why === "wazn" ? ui().ilalByRule : ui().ilalByLexicon}</div>
+    </div>`;
+  } else if (!b.steps.length) {
     h += `<p class="ilal-none">${ui().ilalNone}</p>`;
   } else {
     h += `<ol class="ilal-steps">` + b.steps.map((s, k) => `<li>
