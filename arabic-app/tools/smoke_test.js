@@ -1464,6 +1464,53 @@ if (!CHROME) {
     if (r.narrowed !== 0) throw new Error('an impossible search should match nothing, got ' + r.narrowed);
   });
 
+  await check('Aqaid ch10 and the alaqa panel', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const ch10 = st.chapters.find(c => c.n === 10);
+      if (!ch10) return null;
+      const toks = ch10.sentences.flatMap(s => s.tokens);
+      // the note is on the governed VERBS too, rightly — count the particle
+      const an = toks.filter(t => t.lex === 'an-masdariyya');
+      const yashqa = toks.find(t => t.s.bare === 'يشقى');
+      return {
+        chapters: st.chapters.length, sentences: ch10.sentences.length,
+        // the SAKIN an twice — the very contrast the hamza rule teaches
+        anCount: an.length,
+        anSakin: an.every(t => /أَنْ$/.test(t.s.full.normalize('NFC'))),
+        // taqdiri raf on an alif, and the genus-denying la
+        taqdiri: yashqa && /مُقَدَّرَة/.test(yashqa.irab.ar),
+        laJins: toks.some(t => (t.grammar || []).includes('la-nafiya-lil-jins')),
+        mutlaq: toks.some(t => (t.grammar || []).includes('maful-mutlaq')),
+        trIrab: toks.every(t => t.irab && t.irab.ar && t.irab.tr),
+        // the engine agrees with the hand analysis on the maqsur verb
+        engine: yashqa && (() => { const x = IrabSign.of(yashqa.s.full); return x && x.manner; })(),
+      };
+    });
+    if (!r) throw new Error('chapter 10 missing');
+    if (r.chapters < 10) throw new Error('aqaid chapters: ' + r.chapters);
+    if (r.sentences !== 4) throw new Error('ch10 sentences: ' + r.sentences);
+    if (r.anCount !== 2 || !r.anSakin) throw new Error('both أَنْ must be the SAKIN masdar-maker');
+    if (!r.taqdiri) throw new Error('يَشْقَى must teach the estimated damma on the alif');
+    if (!r.laJins) throw new Error('the genus-denying la is missing');
+    if (!r.mutlaq) throw new Error('حَقًّا must be taught as an absolute object');
+    if (!r.trIrab) throw new Error("every ch10 token needs ar+tr i'rab");
+    if (r.engine !== 'taqdiri')
+      throw new Error('IrabSign should agree with the hand analysis on يَشْقَى: ' + r.engine);
+    // the panel opens from the grammar reference and lists every relation
+    await page.locator('.lib-card').first().click();
+    await page.locator('#refOpen').click();
+    await page.waitForSelector('#alaqatOpen', { timeout: 3000 });
+    await page.locator('#alaqatOpen').click();
+    await page.waitForSelector('.av-table', { timeout: 3000 });
+    const rows = await page.locator('.av-table tbody tr').count();
+    if (rows !== 12) throw new Error('the panel should show all twelve worked relations, got ' + rows);
+    if (!(await page.locator('#alaqaPlay').count())) throw new Error('the panel should offer its game');
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#backLib').click();
+    await page.waitForSelector('.lib-card', { timeout: 3000 });
+  });
+
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();

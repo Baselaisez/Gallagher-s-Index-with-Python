@@ -583,6 +583,7 @@
   /* `hidden` is a display:none request; a later display rule silently wins,
      which is exactly how the bab row stayed visible under a mazid form. */
   .seg[hidden], [hidden] { display: none !important; }
+  .alaqa-card { border-inline-start: 3px solid var(--role-hal); }
   .rz-badge {
     display: inline-block; font-size: .74rem; padding: .05rem .4rem;
     border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft);
@@ -3700,6 +3701,13 @@ function sarfDerive(cls, form, bab){
       amr: sjAmr("اِنْ"+f+"َا"+l, "اِنْ"+f+"َ"+l),
       ...sjGov(yv, "نْ"+f+"َا"+l, "نْ"+f+"َ"+l),
       masdar: sjN("اِنْ"+f+"ِيَا"+l), ...P("نْ"+f+"َا"+l) };
+    if (t === "naqis") {
+      const r7 = asmNaq("نْ"+f+"َ"+a, "اِنْ"+f+"َ"+a, "i",
+        { wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ — نَاقِصٌ"), masdar: sjN("اِنْ"+f+"ِ"+a+"َاء"),
+          ...P("نْ"+f+"َ"+a+"ٍ") });
+      r7.mazi = sjMaziNaqis("اِنْ"+f+"َ"+a+"َ", "ي");   // the mazi wears hamzat al-wasl
+      return r7;
+    }
     const v = "اِنْ"+f+"َ"+a+"َ"+l, core = "نْ"+f+"َ"+a+"ِ"+l;
     return { ...asm(v, core, "اِ"+core, { wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ"),
       masdar: sjN("اِنْ"+f+"ِ"+a+"َا"+l), ...P(core) }) };
@@ -6111,6 +6119,59 @@ const AVAMIL_UI = {
  ],
 };
 
+const ALAQA_UI = {
+ title: {en:"The relations of majaz mursal", tr:"Mecâz-ı mürselin alâkaları"},
+ intro: {en:"A word is used for other than what it was coined for. WHY that is allowed is the 'alaqa — the relation between the two meanings — and the books count twenty-eight. If the relation is LIKENESS the majaz is an isti'ara; every other relation makes it mursal. Twelve are worked here with the whole apparatus the madrasah gives: the literal sense, the intended sense, and the qarina that forbids reading it literally.",
+        tr:"Bir kelime, konulduğu mananın dışında kullanılır. Buna İZİN VEREN şey alâkadır — iki mana arasındaki bağ — ve kitaplar yirmi sekiz sayar. Alâka BENZERLİK ise mecaz istiâredir; başka her alâka onu mürsel yapar. On ikisi burada, medresenin verdiği bütün apparatla işlenmiştir: hakiki mana, kastedilen mana ve hakiki manayı engelleyen karîne."},
+ colName: {en:"Relation", tr:"Alâka"}, colWork: {en:"How it works, and on what", tr:"Nasıl işler, neyin üzerinde"},
+ named: {en:"Sixteen more the books name without working an example here. They are listed for completeness and never quizzed — the app asks only what it has taught.",
+         tr:"Kitapların adını sayıp burada örneklendirmediği on altı alâka. Tamlık için sıralanır, asla sorulmaz — uygulama yalnız öğrettiğini sorar."},
+ counts: [
+  {n:"28", l:{en:"relations in all", tr:"alâkanın tamamı"}},
+  {n:"12", l:{en:"worked with an example", tr:"örnekle işlenen"}},
+  {n:"1", l:{en:"makes an isti'ara, not a mursal", tr:"mürsel değil istiâre yapan"}},
+ ],
+};
+function openAlaqat(){
+  if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
+  const lang = state.uiLang === "tr" ? "tr" : "en";
+  const rows = ALAQAT.map((a, i) => `<tr${a.istiara ? ' class="own-bab"' : ""}>
+    <td>${i + 1}</td>
+    <td><span class="av-mean" lang="ar">${a.ar}</span><span class="av-ex">${a[lang]}</span></td>
+    <td><span class="av-ex">${a.def[lang]}</span>
+        <span class="av-ex"><span class="ar" lang="ar">${escapeAttr(a.ex)}</span></span>
+        <span class="av-ex">${ui().alaqaHaqiqi} <span lang="ar">${a.haqiqi.ar}</span> — ${a.haqiqi[lang]}
+          · ${ui().alaqaMajazi} <span lang="ar">${a.majazi.ar}</span> — ${a.majazi[lang]}</span>
+        <span class="av-ex">${ui().alaqaQarina} ${a.qarina[lang]}</span>
+        ${a.ifada ? `<span class="av-ex ar" lang="ar">${a.ifada}</span>` : ""}
+        ${a.istiara ? `<span class="av-ex"><b>${ui().alaqaIstiara}</b></span>` : ""}</td>
+  </tr>`).join("");
+  sheetInner.innerHTML = quizReturnHtml() +
+    `<div class="backrow"><button id="refBack">${ui().back}</button></div>
+    <h2 class="sheet-word" lang="ar">عَلَاقَاتُ الْمَجَازِ الْمُرْسَلِ</h2>
+    <p class="sheet-tr">${T(ALAQA_UI.title)}</p>
+    <p class="ref-intro">${T(ALAQA_UI.intro)}</p>
+    <div class="av-counts">${ALAQA_UI.counts.map(c => `<span class="avc"><b>${c.n}</b>${T(c.l)}</span>`).join("")}</div>
+    <div style="overflow-x:auto">
+      <table class="irab-sheet av-table">
+        <thead><tr><th></th><th>${T(ALAQA_UI.colName)}</th><th>${T(ALAQA_UI.colWork)}</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div class="ref-group"><span>${T(ALAQA_UI.named)}</span></div>
+    <p class="ref-intro" lang="ar" dir="rtl">${ALAQAT_NAMED.join(" · ")}</p>
+    <div class="sheet-actions">
+      <button class="btn" data-note="anwa-al-majaz">${arSpan("أَنْوَاعُ الْمَجَازِ")}</button>
+      <button class="btn primary" id="alaqaPlay">${ui().alaqaGame} →</button>
+    </div>`;
+  bindQuizReturn();
+  document.getElementById("refBack").addEventListener("click", () => openRef());
+  sheetInner.querySelectorAll("[data-note]").forEach(b =>
+    b.addEventListener("click", () => openRef(b.dataset.note)));
+  document.getElementById("alaqaPlay").addEventListener("click", startAlaqa);
+  showSheet();
+}
+
 function openAvamil100(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   const rows = AVAMIL100.map((a, i) => `<tr>
@@ -6163,9 +6224,14 @@ function openRef(noteId){
         <span class="ar" lang="ar">اَلْعَوَامِلُ الْمِائَةُ لِلْجُرْجَانِيِّ</span>
         <small>${T(AVAMIL_UI.title)} · ${T(AVAMIL_UI.kind1)}</small>
       </button>
+      <button class="avamil-card alaqa-card" id="alaqatOpen">
+        <span class="ar" lang="ar">عَلَاقَاتُ الْمَجَازِ الْمُرْسَلِ</span>
+        <small>${T(ALAQA_UI.title)} · ${T(ALAQA_UI.counts[1].l)}</small>
+      </button>
       <div id="refListWrap">${refListHtml()}</div>`;
     bindRefIndexEvents();
     document.getElementById("avamilOpen").addEventListener("click", openAvamil100);
+    document.getElementById("alaqatOpen").addEventListener("click", openAlaqat);
   }
   showSheet();
 }
