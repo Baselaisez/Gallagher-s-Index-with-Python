@@ -3768,20 +3768,31 @@ if (!CHROME) {
   // floor sits just under whatever the last measured run gave.
   // tools/ablate_features.js earns a FEATURE its place;
   // tools/ablate_estimator.js earns an ESTIMATOR its place.
-  await check('the model scores on the corpus, and the score is pinned', async () => {
+  await check('the model is graded held-out, and the honest number is the one shown', async () => {
     const a = await page.evaluate(() => {
+      const t0 = performance.now();
+      const cv = IrabModel.crossVal();
+      const ms = performance.now() - t0;
       const x = IrabModel.accuracy();
-      return { n: x.n, top1: Math.round(x.top1 * 1000) / 10, top2: Math.round(x.top2 * 1000) / 10,
-               shown: (document.body.innerHTML.match(/ml-score/g) || []).length };
+      return { n: cv.n, folds: cv.folds, ms: Math.round(ms),
+               cv1: Math.round(cv.top1 * 1000) / 10, cv2: Math.round(cv.top2 * 1000) / 10,
+               res1: Math.round(x.top1 * 1000) / 10 };
     });
     if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
-    if (a.top1 < 52) throw new Error('first-guess accuracy regressed to ' + a.top1 + '%');
-    if (a.top2 < 68) throw new Error('two-guess accuracy regressed to ' + a.top2 + '%');
+    if (a.folds < 10) throw new Error('too few folds to mean anything: ' + a.folds);
+    // The floors are on the CROSS-VALIDATED score, because that is the claim
+    // the app makes to the learner. Resubstitution is only the upper bound.
+    if (a.cv1 < 49) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    if (a.cv2 < 67) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    // and it must be an HONEST gap: memorising its own corpus always scores higher
+    if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
+    if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
     await page.waitForSelector('.ml-score', { timeout: 3000 });
     const line = await page.locator('.ml-score').textContent();
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
+    if (!line.includes(String(a.cv1).split('.')[0])) throw new Error('the panel must lead with the held-out score: ' + line);
     await page.evaluate(() => { conjState.lab = 'sarf'; closeSheet(); });
   });
 

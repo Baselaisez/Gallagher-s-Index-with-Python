@@ -1465,7 +1465,7 @@ const L = {
         alaqaIstiara:"This relation alone makes the majaz an ISTI'ARA rather than a mursal.",
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
-        mlScore:"🧠 On the corpus it learned from, the model names the role of {n} words and gets {a}% right first try, {b}% within two guesses. That is a resubstitution score — an upper bound, shown so a change can be measured instead of believed.",
+        mlScore:"🧠 Held out and re-tested: the model is trained on every story but one and asked about the one it has never seen, {k} times over, across {n} labelled words. It names the role right first try {a}% of the time, and within two guesses {b}%. Graded instead on the corpus it memorised it would claim {r}% — that gap is why the honest number is the one shown.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
         scopeAll:"Playing from the whole library",
         scopeStory:"Playing from «{s}» — every round is drawn from this story",
@@ -1615,7 +1615,7 @@ const L = {
         alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
-        mlScore:"🧠 Öğrendiği külliyat üzerinde model {n} kelimenin görevini adlandırıyor; ilk tahminde %{a}, ilk iki tahmin içinde %{b} isabet ediyor. Bu bir yeniden-yerine-koyma skorudur — üst sınırdır; bir değişiklik inanılsın diye değil ölçülsün diye gösterilir.",
+        mlScore:"🧠 Dışarıda bırakıp yeniden sınama: model, bir hikâye hariç bütün hikâyelerle eğitilip hiç görmediği o hikâyeden sorulur — {k} kez, toplam {n} etiketli kelime üzerinde. İlk tahminde %{a}, ilk iki tahmin içinde %{b} isabet eder. Ezberlediği külliyat üzerinde ölçülseydi %{r} iddia ederdi; gösterilen sayının dürüst olanı seçilmesinin sebebi bu farktır.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
         scopeAll:"Bütün kütüphaneden oynanıyor",
         scopeStory:"«{s}» üzerinden oynanıyor — her soru bu hikâyeden çıkar",
@@ -5090,6 +5090,13 @@ class MaEngine {
 class IrabModel {
   static _model = null;
   static ROLES = ["fail", "maful", "mubtada", "khabar", "mudaf", "hal", "tabi", "jarr"];
+  // How hard to damp correlated features. Chosen on HELD-OUT evidence, not on
+  // the training score: leave-one-story-out cross-validation puts 0.35 at
+  // 50.4% first-guess against 0.5's 49.2%. On the resubstitution score 0.35
+  // looked like a spike between two equal neighbours — which is exactly what
+  // a hyperparameter overfitted to its own training set looks like, and is
+  // why the cross-validator exists. Re-run tools/cv_eval.js before touching it.
+  static ALPHA = 0.35;
   // features are computed from the FULL surface + neighbors
   static features(full, i, n, prev){
     const w = (full || "").normalize("NFC");
@@ -5153,7 +5160,7 @@ class IrabModel {
   }
   // P(role | features) by naive Bayes; returns roles sorted by probability.
   //
-  // The likelihoods carry a 1/sqrt(k) weight, k being how many features the
+  // The likelihoods carry a 1/k^ALPHA weight, k being how many features the
   // word fired. Naive Bayes assumes features are independent and ours plainly
   // are not — «al» and «sign-kasra» and «by-haraka» all move together on the
   // same word — so an unweighted product counts one piece of evidence three
@@ -5166,7 +5173,7 @@ class IrabModel {
     const m = this.train();
     if (!m.total) return [];
     const fs = this.features(full, i, n, prev);
-    const w = 1 / Math.sqrt(Math.max(1, fs.length));
+    const w = 1 / Math.pow(Math.max(1, fs.length), this.ALPHA);
     const scores = this.ROLES.map(r => {
       let lp = Math.log((m.roleN[r] + 1) / (m.total + this.ROLES.length));
       fs.forEach(f => {
@@ -5185,6 +5192,56 @@ class IrabModel {
   // is a RESUBSTITUTION score, not a held-out one — it is honest about being
   // an upper bound, and it exists so a feature change can be measured instead
   // of merely believed. Computed once, lazily, and cached.
+  // ---- leave-one-story-out cross-validation --------------------------
+  // accuracy() below grades the model on the very corpus it memorised, which
+  // is an upper bound and nothing more. This trains on every story but one
+  // and tests on the one held out — the only number that says anything about
+  // a sentence the app has never seen. Computed once, lazily, and cached.
+  static _cv = null;
+  static crossVal(){
+    if (this._cv) return this._cv;
+    const R = this.ROLES, rows = [];
+    STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+      let prev = null;
+      const N = sen.tokens.length;
+      sen.tokens.forEach((t, i) => {
+        const role = RoleEngine.of(t);
+        if (role) rows.push({ st: st.id, fs: this.features(t.s.full, i, N, prev), role });
+        prev = t.pos === "verb" ? "verb"
+             : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
+             : t.pos === "noun" ? "noun" : null;
+      });
+    })));
+    const fit = subset => {
+      const m = { roleN: {}, feat: {}, total: 0 };
+      R.forEach(r => { m.roleN[r] = 0; m.feat[r] = {}; });
+      subset.forEach(x => { m.roleN[x.role]++; m.total++;
+        x.fs.forEach(f => { m.feat[x.role][f] = (m.feat[x.role][f] || 0) + 1; }); });
+      return m;
+    };
+    const two = (m, fs) => {
+      const w = 1 / Math.pow(Math.max(1, fs.length), this.ALPHA);
+      let b1 = null, l1 = -Infinity, b2 = null, l2 = -Infinity;
+      R.forEach(r => {
+        let lp = Math.log((m.roleN[r] + 1) / (m.total + R.length));
+        fs.forEach(f => { lp += w * Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2)); });
+        if (lp > l1) { l2 = l1; b2 = b1; l1 = lp; b1 = r; }
+        else if (lp > l2) { l2 = lp; b2 = r; }
+      });
+      return [b1, b2];
+    };
+    const ids = [...new Set(rows.map(x => x.st))];
+    let ok = 0, t2 = 0, n = 0;
+    ids.forEach(held => {
+      const m = fit(rows.filter(x => x.st !== held));
+      rows.filter(x => x.st === held).forEach(x => {
+        const [a, c] = two(m, x.fs);
+        n++; if (a === x.role) ok++; if (a === x.role || c === x.role) t2++;
+      });
+    });
+    this._cv = { n, folds: ids.length, top1: n ? ok / n : 0, top2: n ? t2 / n : 0 };
+    return this._cv;
+  }
   static _acc = null;
   static accuracy(){
     if (this._acc) return this._acc;
@@ -6043,10 +6100,11 @@ function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
   if (conjState.lab === "jumla") {
-    const acc = IrabModel.accuracy();
+    const acc = IrabModel.accuracy(), cv = IrabModel.crossVal();
     body.innerHTML = `<p class="ref-intro">${ui().jumlaIntro}</p>
-      <p class="ml-score">${ui().mlScore.replace("{n}", acc.n)
-        .replace("{a}", Math.round(acc.top1 * 100)).replace("{b}", Math.round(acc.top2 * 100))}</p>
+      <p class="ml-score">${ui().mlScore.replace("{n}", cv.n).replace("{k}", cv.folds)
+        .replace("{a}", Math.round(cv.top1 * 100)).replace("{b}", Math.round(cv.top2 * 100))
+        .replace("{r}", Math.round(acc.top1 * 100))}</p>
       <div class="conj-lab">
         <input id="jumlaIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
                placeholder="${ui().jumlaPh}" value="${escapeAttr(conjState.jumla)}">

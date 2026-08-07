@@ -159,3 +159,10 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
 - **v86** — Aqaid reaches chapter 13 (angels, the books, the mi'raj). Games
   are now scoped: the whole library at the front door, the open story once one
   is open, with an automatic fallback when a story cannot feed a drill.
+- **v87** — the i'rab model is now graded held-out (leave-one-story-out, 16
+  folds) rather than on the corpus it memorised, and the damping exponent was
+  re-chosen on that evidence (0.5 → 0.35, +1.2 points held-out). Four
+  alternatives — a Viterbi sequence layer, richer prev states, a predicted-
+  previous-role feature, and complement/Bernoulli estimators — were measured
+  and rejected; they are recorded in CLAUDE.md so the same ground is not
+  re-walked.

@@ -162,8 +162,14 @@ navigations cannot drift. (2) **No icon-only tabs.** Every tab carries a word
 under its glyph; an icon alone is a guessing game, and the smoke suite fails
 if a label is empty. (3) **State is derived, never stored.** The active item
 is computed from what is actually on screen at paint time, so there is no
-"current tab" to go stale. A destination that cannot work right now (Games,
-with no story open) is *dimmed and disabled*, not silently broken.
+"current tab" to go stale. Every destination stays live: Games plays from the
+whole library at the front door and from the open story once one is open, so
+there is nothing to disable.
+
+**Scope banner** — `.game-scope`: one line at the top of the games hub saying
+what the round will be drawn from — this story, or the whole library. A
+learner should never have to start a round to find out what it will ask
+about.
 
 **Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
 ground. Only ever holds a sentence explaining why *your* answer fails.

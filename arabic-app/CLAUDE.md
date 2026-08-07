@@ -1097,6 +1097,28 @@ checking whether one of those three already covers it. **Test the phone
 layout at a phone viewport** — everything else in the suite runs at 1280px,
 where the bar is correctly absent.
 
+**The model is graded HELD OUT.** `IrabModel.crossVal()` trains on every
+story but one and tests on the one held out, sixteen folds over ~2600 labelled
+tokens. That is the number the Jumla Lab leads with and the number the smoke
+suite floors, because it is the only one that says anything about a sentence
+the app has never seen; `accuracy()` (resubstitution) is shown beside it as
+the upper bound it is, and the suite asserts resubstitution BEATS held-out —
+if it ever does not, something is leaking. `ALPHA` (the feature-damping
+exponent) was chosen this way: on the training score 0.35 looked like a spike
+between two equal neighbours, which is what an overfitted hyperparameter looks
+like; cross-validation confirmed it as a real +1.2. Run `tools/cv_eval.js`
+before changing it.
+
+**Four ML ideas were tried and REJECTED on measurement.** Write them down so
+nobody spends the afternoon again: (1) a **Viterbi sequence layer** over role
+transitions — catastrophic, 52.9% → 40.6%; the role sequence in this corpus is
+not helpfully Markovian, and the transition counts just drag every token
+toward the frequent classes. (2) **Richer `prev` states** (nasikh, particle) —
+53.0% vs 52.9%, noise. (3) **The previous token's PREDICTED role as a feature**
+— 51.1%, worse; errors compound left to right. (4) **Complement and Bernoulli
+naive Bayes** — 42.8% and 52.1%, both worse than the shipped multinomial. The
+signal in this corpus lives in the word's own surface, not in its neighbours.
+
 **The rule engines feed the statistical one.** `IrabModel.features()` now
 pushes `sign-<caseSignOf>` and `by-<IrabSign.of().by>` alongside the cheap
 surface flags. A bucketed word length was added the
