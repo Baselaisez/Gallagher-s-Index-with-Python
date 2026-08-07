@@ -150,3 +150,9 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   2/3/4/6, is still open. Aqaid reaches chapter 11 (the sending of the
   messengers); the chapter STOPS EARLY before «وقد روي بيان عددهم», which with
   the verse it quotes and «وأفضل الأنبياء» will be chapter 12.
+- **v85** — backlog #2 fully closed: the mithal mudari waw-drop is now a RULE
+  in `IlalEngine` (`hadhf-waw-mithal`) rather than an attested set, because it
+  is derivable — the drop is licensed by the kasra after the waw, which is
+  exactly why يَوْجَلُ keeps its waw. Aqaid reaches chapter 12 (the number of
+  the prophets, with the quoted verse marked as a quotation in its own i'rab),
+  completing the nubuwwa section of the matn.

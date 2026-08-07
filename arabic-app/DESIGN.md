@@ -4,9 +4,11 @@ One page. Read it before adding a surface; the app is a single HTML file and
 nothing stops you inventing a fifth radius, so the discipline has to be
 written down and gated.
 
-The smoke suite enforces the two claims a browser can check: every token
-below resolves, and a primary action never renders under 44px tall. The rest
-is on us.
+The smoke suite enforces what a browser can check: every token below
+resolves, a primary action never renders under 44px tall, the front door's
+numbers match the deck's own, and **the phone layout is tested at 390×844** —
+the thumb bar does not exist at desktop width, which is exactly how a
+navigation bug ships unnoticed. The rest is on us.
 
 ---
 
@@ -18,6 +20,7 @@ those five are the whole system here.
 
 | What they all do | What Qissa does with it |
 |---|---|
+| **Destinations under the thumb.** A phone's navigation lives at the bottom, where the hand already is; the top is for context, not for choices. | `.tabbar` below 860px: Library · Deck · Games · Atölye · Progress. Above 860px it is gone and the toolbar is the navigation. |
 | **One thing per screen.** The reader reads; the drill drills. No sidebar of options competing with the sentence. | The reader page holds text and nothing else; every tool opens in a sheet over it, and closing the sheet returns you exactly where you were. |
 | **Tap is the primitive.** Everything a finger reaches is big, round-cornered, and separated by real space. | `--tap: 44px` is a floor under `.btn`, and the smoke suite measures a live button rather than trusting the rule. |
 | **Progress is visible without being asked for.** Streak, due count, what is fading. | The deck badge, the streak row, the fading-words whisper in the games hub, and the model's own accuracy line in the Atölye. |
@@ -98,6 +101,17 @@ One easing curve for everything. Every transform-based effect sits inside
 `@media (prefers-reduced-motion: no-preference)` — nothing that moves is
 load-bearing.
 
+### Measure
+
+```
+--measure 40rem
+```
+
+The reading column. Long enough to carry a matn line without breaking it in
+an ugly place, short enough that the eye finds the next line without hunting.
+Applied to `#story` only when it is NOT holding library cards — the shelf
+wants the full width, the text does not.
+
 ### Touch
 
 ```
@@ -139,6 +153,17 @@ never more. An Arabic word in `--accent`, the number at `--t-xl` in tabular
 figures, the label in the label voice. Every number is read live from
 `deckStats()` / `state.streak`, so the strip cannot disagree with the deck —
 the smoke suite compares the two. The whole row is one tap into the deck.
+
+**Thumb bar** — `.tabbar`: five destinations, fixed to the bottom, shown
+below 860px. Three rules it must keep. (1) **It owns no behaviour.** Every
+button delegates to the toolbar handler that already implements that
+destination, so there is one implementation per destination and the two
+navigations cannot drift. (2) **No icon-only tabs.** Every tab carries a word
+under its glyph; an icon alone is a guessing game, and the smoke suite fails
+if a label is empty. (3) **State is derived, never stored.** The active item
+is computed from what is actually on screen at paint time, so there is no
+"current tab" to go stale. A destination that cannot work right now (Games,
+with no story open) is *dimmed and disabled*, not silently broken.
 
 **Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
 ground. Only ever holds a sentence explaining why *your* answer fails.

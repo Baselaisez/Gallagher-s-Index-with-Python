@@ -1023,6 +1023,10 @@ from a wazn and hands it over, so قَائِلٌ، مَقُولٌ، مَبِيع
 مَرْمِيٌّ، غَازٍ، دَاعٍ، مَدْعُوٌّ and قُلْ all come out of the same rules with
 nothing stored. Five things the rules taught us the hard way:
 
+0. **The mithal waw-drop is licensed by the KASRA after it,** not by the waw
+   itself: يَوْعِدُ → يَعِدُ, but يَوْجَلُ keeps its waw because a fatha follows,
+   and يَوْمَ is not a verb at all. The rule tests the prefix, the sakin waw
+   and the following kasra together, and all three matter.
 1. **Order is doctrine.** naql before qalb; qalb before the meeting of two
    sakins; the vowel-harmony that PROVES what was dropped comes after the
    drop. Reorder the array and قُلْتُ becomes قَلْتُ.
@@ -1057,11 +1061,24 @@ learner sees the form the rules would have eaten. Do not "simplify" the
 مِقْوَل is not — that split is sema'i and any rule you write for it will be
 wrong.
 
-**The design system is one page and two gates.** `DESIGN.md` documents the
+**The design system is one page and four gates.** `DESIGN.md` documents the
 tokens, the components and what was borrowed from the reading apps people
-actually keep. The smoke suite enforces the two claims a browser can check:
-every token resolves, and a live primary action measures ≥ 44px tall. A
-literal `padding: .9rem` in a new rule is a bug even when it looks right.
+actually keep. The smoke suite enforces every claim a browser can check:
+tokens resolve, a live primary action measures ≥ 44px, the front door's stat
+strip matches `deckStats()` exactly, and the phone layout is exercised at
+390×844. A literal `padding: .9rem` in a new rule is a bug even when it
+looks right.
+
+**Navigation exists twice and is implemented once.** Below 860px `.tabbar` is
+the app's navigation; above it the toolbar is, and the bar is hidden. Every
+tab DELEGATES to the toolbar handler that already owns that destination
+(`TAB_NAV`), and `syncTabbar()` derives the active item from what is on
+screen — there is no stored "current tab". The bar repaints by wrapping
+`renderLibrary`, `openStory` and `grade`, the three functions that define
+which view is open and what is due; do not add a fourth wrapper without
+checking whether one of those three already covers it. **Test the phone
+layout at a phone viewport** — everything else in the suite runs at 1280px,
+where the bar is correctly absent.
 
 **The rule engines feed the statistical one.** `IrabModel.features()` now
 pushes `sign-<caseSignOf>` and `by-<IrabSign.of().by>` alongside the cheap

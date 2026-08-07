@@ -333,11 +333,11 @@
    "level": 1
   },
   "fa": {
-   "lemma": "فَـ",
-   "pos": "part",
+   "lemma": "فَ",
+   "pos": "conj",
    "gloss": {
-    "en": "so, then",
-    "tr": "o hâlde, hemen"
+    "en": "so, for (fa)",
+    "tr": "böylece; zira (fâ)"
    },
    "level": 1
   },
@@ -497,10 +497,10 @@
    "lemma": "مَنْ (الْمَوْصُولَة)",
    "pos": "pron",
    "gloss": {
-    "en": "the one who, whoever",
-    "tr": "olan kimse, -en kimse"
+    "en": "the one who (relative)",
+    "tr": "kimse; -en kimse (mevsûl)"
    },
-   "level": 3
+   "level": 2
   },
   "alladhi": {
    "lemma": "الَّذِي",
@@ -533,8 +533,8 @@
    "lemma": "هُوَ",
    "pos": "pron",
    "gloss": {
-    "en": "he, it (detached pronoun)",
-    "tr": "o (munfasıl zamir)"
+    "en": "he (detached)",
+    "tr": "o (munfasıl)"
    },
    "level": 1
   },
@@ -647,7 +647,7 @@
    "pos": "noun",
    "gloss": {
     "en": "truthful",
-    "tr": "doğru sözlü, sâdık"
+    "tr": "sâdık; doğru sözlü"
    },
    "level": 2,
    "root": "ص د ق"
@@ -1525,8 +1525,8 @@
    "lemma": "عَنْ",
    "pos": "prep",
    "gloss": {
-    "en": "from, away from, beyond",
-    "tr": "-den (aşarak); hakkında"
+    "en": "from, about",
+    "tr": "-den; hakkında"
    },
    "level": 1
   },
@@ -1663,8 +1663,8 @@
    "lemma": "نَا",
    "pos": "pron",
    "gloss": {
-    "en": "our / us (attached)",
-    "tr": "-imiz / bizi (bitişik)"
+    "en": "we, us (attached)",
+    "tr": "biz (muttasıl)"
    },
    "level": 1
   },
@@ -2011,7 +2011,7 @@
    "pos": "noun",
    "gloss": {
     "en": "some, a part of",
-    "tr": "bâzı; bir kısmı"
+    "tr": "bazı; bir kısmı"
    },
    "level": 1,
    "root": "ب ع ض"
@@ -2691,6 +2691,174 @@
    },
    "level": 3,
    "root": "س ل م"
+  },
+  "ruwiya": {
+   "lemma": "رُوِيَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be reported, narrated",
+    "tr": "rivayet edilmek"
+   },
+   "level": 3,
+   "root": "ر و ي"
+  },
+  "bayan": {
+   "lemma": "بَيَان",
+   "pos": "noun",
+   "gloss": {
+    "en": "a statement, making clear (masdar)",
+    "tr": "beyan; açıklama (masdar)"
+   },
+   "level": 3,
+   "root": "ب ي ن"
+  },
+  "hadith": {
+   "lemma": "حَدِيث",
+   "pos": "noun",
+   "gloss": {
+    "en": "hadith, report",
+    "tr": "hadis"
+   },
+   "level": 1,
+   "root": "ح د ث",
+   "plural": "أَحَادِيث"
+  },
+  "awla": {
+   "lemma": "الْأَوْلَى",
+   "pos": "noun",
+   "gloss": {
+    "en": "the better course (elative)",
+    "tr": "evlâ olan (ism-i tafdîl)"
+   },
+   "level": 4,
+   "root": "و ل ي"
+  },
+  "iqtasara": {
+   "lemma": "اِقْتَصَرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to confine oneself to",
+    "tr": "iktifâ etmek; yetinmek"
+   },
+   "level": 4,
+   "root": "ق ص ر"
+  },
+  "tasmiya": {
+   "lemma": "تَسْمِيَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "naming (masdar, Form II)",
+    "tr": "isimlendirme; tesmiye (masdar)"
+   },
+   "level": 4,
+   "root": "س م و"
+  },
+  "qassa": {
+   "lemma": "قَصَّ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to relate, narrate",
+    "tr": "anlatmak; kıssa etmek"
+   },
+   "level": 3,
+   "root": "ق ص ص"
+  },
+  "amina": {
+   "lemma": "أَمِنَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be safe from",
+    "tr": "emin olmak"
+   },
+   "level": 2,
+   "root": "أ م ن"
+  },
+  "dhikr": {
+   "lemma": "ذِكْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "mention, stating (masdar)",
+    "tr": "zikir; anma (masdar)"
+   },
+   "level": 2,
+   "root": "ذ ك ر"
+  },
+  "aw": {
+   "lemma": "أَوْ",
+   "pos": "part",
+   "gloss": {
+    "en": "or",
+    "tr": "yahut; veya"
+   },
+   "level": 1
+  },
+  "mukhbir": {
+   "lemma": "مُخْبِر",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who reports",
+    "tr": "haber veren; muhbir"
+   },
+   "level": 3,
+   "root": "خ ب ر"
+  },
+  "muballigh": {
+   "lemma": "مُبَلِّغ",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who conveys",
+    "tr": "tebliğ eden"
+   },
+   "level": 3,
+   "root": "ب ل غ"
+  },
+  "nasih": {
+   "lemma": "نَاصِح",
+   "pos": "noun",
+   "gloss": {
+    "en": "sincere adviser",
+    "tr": "nâsih; öğüt veren"
+   },
+   "level": 3,
+   "root": "ن ص ح"
+  },
+  "adad": {
+   "lemma": "عَدَد",
+   "pos": "noun",
+   "gloss": {
+    "en": "number, count",
+    "tr": "sayı; aded"
+   },
+   "level": 2,
+   "root": "ع د د"
+  },
+  "afdal": {
+   "lemma": "أَفْضَل",
+   "pos": "noun",
+   "gloss": {
+    "en": "best, most excellent (elative)",
+    "tr": "en faziletli (ism-i tafdîl)"
+   },
+   "level": 3,
+   "root": "ف ض ل"
+  },
+  "lam-jazima": {
+   "lemma": "لَمْ",
+   "pos": "part",
+   "gloss": {
+    "en": "did not (negates, jazm, turns the tense back)",
+    "tr": "-medi (nefiy, cezm, kalb)"
+   },
+   "level": 2
+  },
+  "pron-2ms": {
+   "lemma": "كَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "you (masc. sg., attached)",
+    "tr": "sen/senin (muttasıl, eril)"
+   },
+   "level": 1
   }
  }
 }

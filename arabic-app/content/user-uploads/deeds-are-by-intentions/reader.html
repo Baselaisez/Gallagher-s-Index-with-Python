@@ -47,6 +47,10 @@
     --dur-fast: .12s; --dur-base: .2s; --dur-slow: .34s;
     --ease: cubic-bezier(.2, .8, .3, 1);
     --tap: 44px;                            /* the thumb floor — never smaller */
+    --measure: 40rem;                       /* the reading column: long enough
+                                               to carry a matn line, short
+                                               enough that the eye finds the
+                                               next one without hunting */
     --ar-font: "Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic", "Amiri", "Scheherazade New", serif;
     --body-font: Charter, Georgia, "Times New Roman", serif;
     --ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -283,9 +287,13 @@
   .chapter-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
   .chapter-title-ar { font-family: var(--ar-font); font-size: 1.15rem; color: var(--ink); letter-spacing: 0; text-transform: none; }
 
+  /* The reading column. Arabic is set RTL and the sentence block bleeds a
+     little into the gutter so the hover ground reads as a band, not a box. */
+  #story:not(:has(.lib-card)) { max-width: var(--measure); margin-inline: auto; }
   section.sentence {
-    margin: 1.05rem -0.55rem; padding: .35rem .55rem; border-radius: var(--radius);
-    transition: background .15s;
+    margin: var(--s5) calc(var(--s2) * -1); padding: var(--s1) var(--s2);
+    border-radius: var(--radius);
+    transition: background var(--dur-fast) var(--ease);
   }
   section.sentence:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
   section.sentence.playing { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
@@ -298,7 +306,8 @@
   }
   .ar-line {
     direction: rtl; text-align: right; font-family: var(--ar-font);
-    font-size: var(--ar-size, 1.7rem); line-height: 2.15; padding: 0 .3rem;
+    font-size: var(--ar-size, 1.7rem); line-height: 2.3; padding: 0 var(--s1);
+    text-wrap: pretty;
   }
   .word {
     cursor: pointer; border-radius: 6px; padding: 0 .07em;
@@ -412,8 +421,9 @@
   }
   .play:hover { border-color: var(--accent); background: var(--accent-soft); }
   .trans {
-    color: var(--ink-soft); font-size: .95rem;
-    border-inline-start: 2px solid var(--line); padding-inline-start: .55rem;
+    color: var(--ink-soft); font-size: var(--t-md); line-height: var(--lh-body);
+    border-inline-start: 2px solid var(--line); padding-inline-start: var(--s2);
+    margin-top: var(--s2);
   }
   .trans[hidden] { display: none; }
 
@@ -1060,6 +1070,48 @@
   .ref-levels button { font-family: var(--ui-font); font-size: .78rem; padding: .3rem .7rem; }
   .ref-empty { font-size: .88rem; color: var(--ink-soft); font-family: var(--ui-font); margin: 1.2rem 0; text-align: center; }
 
+  /* ============ design wave 10: the thumb bar =============================
+     The single biggest thing separating a page from an app on a phone is
+     where navigation lives. Every reading app people keep — Duolingo,
+     DuChinese, LingQ — puts its destinations under the thumb and leaves the
+     top for context. Below 860px this bar IS the navigation; above it the
+     toolbar is, and the bar is gone. It stores no state of its own: the
+     active item is derived from the DOM, and every button delegates to the
+     handler the toolbar already owns. */
+  .tabbar {
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 40; display: none;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -1px 0 var(--line), var(--e2);
+  }
+  .tabbar button {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 2px; min-height: var(--tap); padding: var(--s2) var(--s1);
+    border: 0; background: none; cursor: pointer; color: var(--ink-soft);
+    font-family: var(--ui-font); transition: color var(--dur-fast) var(--ease);
+  }
+  .tabbar button .tb-i { font-size: 1.15rem; line-height: 1; }
+  .tabbar button .tb-l { font-size: .62rem; letter-spacing: .02em; }
+  .tabbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .tabbar button.on { color: var(--accent); }
+  .tabbar button.on::before {
+    content: ""; position: absolute; top: 0; inset-inline: 22%; height: 2px;
+    background: var(--accent); border-radius: 0 0 2px 2px;
+  }
+  .tabbar .tb-badge {
+    position: absolute; top: 3px; inset-inline-end: 22%;
+    min-width: 16px; height: 16px; padding: 0 4px; border-radius: var(--r-full);
+    background: var(--accent); color: var(--accent-ink);
+    font-size: .6rem; font-weight: 700; line-height: 16px; text-align: center;
+  }
+  @media (max-width: 860px) {
+    .tabbar { display: grid; }
+    /* the toolbar keeps the READING controls and gives up the destinations */
+    #statsOpen, #searchOpen, #refOpen, #conjOpen, #gamesOpen, #deckOpen { display: none; }
+    body { padding-bottom: calc(var(--s7) + var(--s5)); }
+  }
+
   /* ---------- library ---------- */
   /* the stat strip — three tiles, tokens only, one tap into the deck */
   .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2);
@@ -1258,6 +1310,20 @@
 
   <main id="story" class="underlines"></main>
 
+  <!-- The thumb bar. Below 860px this becomes the app's primary navigation:
+       five destinations, each one tap from anywhere, each clearing the 44px
+       floor. It DELEGATES to the same handlers the toolbar above already
+       owns, so there is exactly one implementation of every destination and
+       nothing can drift. Above 860px the toolbar is the navigation and this
+       is hidden — a phone wants a thumb bar, a desktop wants a menu. -->
+  <nav class="tabbar" id="tabbar" aria-label="Main">
+    <button data-nav="library" id="navLibrary"><span class="tb-i">📚</span><span class="tb-l"></span></button>
+    <button data-nav="deck" id="navDeck"><span class="tb-i">🃏</span><span class="tb-l"></span><span class="tb-badge" id="navDeckCount" hidden>0</span></button>
+    <button data-nav="games" id="navGames"><span class="tb-i">🎮</span><span class="tb-l"></span></button>
+    <button data-nav="atolye" id="navAtolye"><span class="tb-i">🛠️</span><span class="tb-l"></span></button>
+    <button data-nav="progress" id="navProgress"><span class="tb-i">📈</span><span class="tb-l"></span></button>
+  </nav>
+
   <div class="legend" id="legend">
     <span><span class="sw" style="background:var(--lvl1)"></span><span class="lvl-label" data-lvl="1">Level 1</span></span>
     <span><span class="sw" style="background:var(--lvl2)"></span><span class="lvl-label" data-lvl="2">Level 2</span></span>
@@ -1390,6 +1456,8 @@ const L = {
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
         mlScore:"🧠 On the corpus it learned from, the model names the role of {n} words and gets {a}% right first try, {b}% within two guesses. That is a resubstitution score — an upper bound, shown so a change can be measured instead of believed.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
+        nav_library:"Library", nav_deck:"Deck", nav_games:"Games",
+        nav_atolye:"Atölye", nav_progress:"Progress",
         ilalTab:"I'lal", ilalAsl:"Its origin", ilalOutLbl:"What is said",
         ilalBlocked:"The rules stand down here",
         ilalByRule:"Refused by a RULE — derivable, so it is coded.",
@@ -1535,6 +1603,8 @@ const L = {
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
         mlScore:"🧠 Öğrendiği külliyat üzerinde model {n} kelimenin görevini adlandırıyor; ilk tahminde %{a}, ilk iki tahmin içinde %{b} isabet ediyor. Bu bir yeniden-yerine-koyma skorudur — üst sınırdır; bir değişiklik inanılsın diye değil ölçülsün diye gösterilir.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
+        nav_library:"Kütüphane", nav_deck:"Deste", nav_games:"Oyunlar",
+        nav_atolye:"Atölye", nav_progress:"İlerleme",
         ilalTab:"İ'lâl", ilalAsl:"Aslı", ilalOutLbl:"Söylenen",
         ilalBlocked:"Kaideler burada işlemez",
         ilalByRule:"KAİDE ile reddedilir — türetilebilir olduğu için kodlanmıştır.",
@@ -4231,6 +4301,19 @@ class IlalEngine {
 
   // ---- the rules, in the order the books apply them --------------------
   static RULES = [
+    { id: "hadhf-waw-mithal",
+      ar: "وَقَعَتِ الْوَاوُ بَيْنَ يَاءٍ مَفْتُوحَةٍ وَكَسْرَةٍ فَحُذِفَتْ.",
+      en: "The waw fell between an open prefix and a kasra, so it was dropped — يَوْعِدُ becomes يَعِدُ.",
+      tr: "Vav, fethalı önek ile kesre arasında kaldı ve düştü — يَوْعِدُ, يَعِدُ olur.",
+      run(u, E){
+        if (u.length < 3) return -1;
+        if (!"يتنأا".includes(u[0].c) || E.vowel(u[0].m) !== "\u064E") return -1;
+        if (u[1].c !== "\u0648" || !E.isSakin(u[1])) return -1;
+        // the drop is licensed by the KASRA after it: يَوْجَلُ keeps its waw
+        if (E.vowel(u[2].m) !== "\u0650") return -1;
+        u.splice(1, 1);
+        return 1;
+      } },
     { id: "naql",
       ar: "اسْتُثْقِلَتِ الْحَرَكَةُ عَلَى حَرْفِ الْعِلَّةِ فَنُقِلَتْ إِلَى السَّاكِنِ الصَّحِيحِ قَبْلَهُ.",
       en: "The vowel sat heavy on the weak letter, so it was carried back to the sound quiescent letter before it.",
@@ -4425,6 +4508,7 @@ class IlalEngine {
     alat:   { ar: "مِفْعَالٌ", asl: (f, a, l) => "مِ" + f + "ْ" + a + "َا" + l + "ٌ" },
     zaman:  { ar: "مَفْعَلٌ",  asl: (f, a, l) => "مَ" + f + "ْ" + a + "َ" + l + "ٌ" },
     tafdil: { ar: "أَفْعَلُ",   asl: (f, a, l) => "أَ" + f + "ْ" + a + "َ" + l + "ُ" },
+    mudari: { ar: "يَفْعِلُ",   asl: (f, a, l) => "يَ" + f + "ْ" + a + "ِ" + l + "ُ" },
   };
   // ---- where the rules are told to stand down -------------------------
   // The rules above are qiyasi and they over-apply. The books name places
@@ -8282,6 +8366,48 @@ document.getElementById("refOpen").addEventListener("click", () => openRef());
 document.getElementById("conjOpen").addEventListener("click", openConjugator);
 document.getElementById("gamesOpen").addEventListener("click", openGames);
 document.getElementById("searchOpen").addEventListener("click", () => openSearch(searchQuery));
+
+// ---------- the thumb bar ----------
+// It owns no behaviour. Each destination DELEGATES to the toolbar button that
+// already implements it, so there is one implementation per destination and
+// the two navigations can never disagree. The active item is derived at paint
+// time from what is actually on screen — no stored "current tab" to go stale.
+const TAB_NAV = {
+  library:  () => { if (CUR) renderLibrary(); else { closeSheet(); window.scrollTo({ top: 0, behavior: "smooth" }); } },
+  deck:     () => openDeck(),
+  games:    () => { if (!CUR) { renderLibrary(); return; } openGames(); },
+  atolye:   () => openConjugator(),
+  progress: () => openStats(),
+};
+function syncTabbar(){
+  const bar = document.getElementById("tabbar");
+  if (!bar) return;
+  const inLib = !CUR;
+  bar.querySelectorAll("[data-nav]").forEach(b => {
+    const k = b.dataset.nav;
+    b.classList.toggle("on", k === "library" && inLib);
+    // Games need an open story; say so by dimming rather than by failing.
+    if (k === "games") b.disabled = inLib;
+    b.style.opacity = (k === "games" && inLib) ? ".4" : "";
+    const lbl = b.querySelector(".tb-l");
+    if (lbl) lbl.textContent = ui()["nav_" + k];
+    b.setAttribute("aria-label", ui()["nav_" + k]);
+  });
+  const n = dueCards().length, badge = document.getElementById("navDeckCount");
+  if (badge) { badge.hidden = !n; badge.textContent = n > 99 ? "99+" : String(n); }
+}
+document.querySelectorAll("#tabbar [data-nav]").forEach(b =>
+  b.addEventListener("click", () => { const f = TAB_NAV[b.dataset.nav]; if (f) f(); syncTabbar(); }));
+// The bar repaints whenever the view or the deck can have changed. Rather than
+// hunt every call site, wrap the two functions that DEFINE which view is open
+// and the one that changes the due count — anything else that matters goes
+// through one of these three.
+["renderLibrary", "openStory", "grade"].forEach(fn => {
+  const orig = window[fn];
+  if (typeof orig !== "function") return;
+  window[fn] = function(...a){ const r = orig.apply(this, a); try { syncTabbar(); } catch (e) {} return r; };
+});
+syncTabbar();
 
 document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x.dataset.ui === state.uiLang));
 renderModeSeg();

@@ -3933,6 +3933,9 @@ if (!CHROME) {
       "مَقْوُولٌ": "مَقُولٌ", "مَكْيُولٌ": "مَكِيلٌ",
       "مَغْزُووٌ": "مَغْزُوٌّ", "مَرْمُويٌ": "مَرْمِيٌّ", "مَخْشُويٌ": "مَخْشِيٌّ",
       "غَازِيٌ": "غَازٍ", "رَامِيٌ": "رَامٍ", "مِوْزَانٌ": "مِيزَانٌ", "اُقْوُلْ": "قُلْ",
+      // the mithal waw-drop, and the two shapes that must NOT lose their waw:
+      // يَوْجَلُ has a fatha after it, and يَوْمَ is no verb at all.
+      "يَوْعِدُ": "يَعِدُ", "يَوْصِلُ": "يَصِلُ", "يَوْجَلُ": "يَوْجَلُ", "يَوْمَ": "يَوْمَ",
       // sound roots and a real word that LOOKS like an i'lal site must be left alone
       "مُيَسَّرٌ": "مُيَسَّرٌ", "كَتَبَ": "كَتَبَ", "مَكْتُوبٌ": "مَكْتُوبٌ", "كَاتِبٌ": "كَاتِبٌ",
     };
@@ -3955,6 +3958,7 @@ if (!CHROME) {
       "غزو|fail": "غَازٍ",   "غزو|maful": "مَغْزُوٌّ",
       "رمي|fail": "رَامٍ",   "رمي|maful": "مَرْمِيٌّ",
       "كيل|maful": "مَكِيلٌ", "دعو|maful": "مَدْعُوٌّ",
+      "وعد|mudari": "يَعِدُ", "وصل|mudari": "يَصِلُ", "وعد|maful": "مَوْعُودٌ",
       "نصر|fail": "نَاصِرٌ", "نصر|maful": "مَنْصُورٌ",
     };
     const bad = await page.evaluate(w => {
@@ -4015,6 +4019,63 @@ if (!CHROME) {
     if (!r.t.includes('مَكِيلٌ')) throw new Error('the outcome is missing from the panel');
     if (!r.t.includes('مَكْيُولٌ')) throw new Error('the origin is missing from the panel');
     if (r.soundSteps !== 0 || !r.none) throw new Error('a sound root must show no rule and say so');
+  });
+
+  // The thumb bar only exists on a phone, so it has to be tested on one.
+  // Everything else in this suite runs at the desktop width, where the bar is
+  // correctly absent — which is exactly how a navigation bug ships unnoticed.
+  await check('on a phone the thumb bar is the navigation, and it delegates', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => { renderLibrary(); closeSheet(); });
+    await page.waitForTimeout(150);
+    const lib = await page.evaluate(() => {
+      const bar = document.getElementById('tabbar');
+      const btns = [...bar.querySelectorAll('[data-nav]')];
+      const vis = el => el && getComputedStyle(el).display !== 'none';
+      return {
+        barShown: getComputedStyle(bar).display === 'grid',
+        n: btns.length,
+        keys: btns.map(b => b.dataset.nav),
+        heights: btns.map(b => Math.round(b.getBoundingClientRect().height)),
+        labelled: btns.every(b => b.querySelector('.tb-l').textContent.trim().length > 0),
+        active: btns.filter(b => b.classList.contains('on')).map(b => b.dataset.nav),
+        gamesOff: btns.find(b => b.dataset.nav === 'games').disabled,
+        // the toolbar gives up the destinations it duplicates
+        toolbarDupes: ['statsOpen', 'refOpen', 'conjOpen', 'deckOpen']
+          .filter(id => vis(document.getElementById(id))),
+      };
+    });
+    if (!lib.barShown) throw new Error('no thumb bar at 390px');
+    if (lib.n !== 5) throw new Error('five destinations expected, got ' + lib.n);
+    if (lib.keys.join() !== 'library,deck,games,atolye,progress') throw new Error('order: ' + lib.keys);
+    const short = lib.heights.filter(h => h < 44);
+    if (short.length) throw new Error('a tab is under the thumb floor: ' + lib.heights);
+    if (!lib.labelled) throw new Error('an icon-only tab is a guessing game — every tab needs a label');
+    if (lib.active.join() !== 'library') throw new Error('in the library, Library is active: ' + lib.active);
+    if (!lib.gamesOff) throw new Error('Games needs an open story and must say so');
+    if (lib.toolbarDupes.length) throw new Error('duplicated in the toolbar: ' + lib.toolbarDupes);
+
+    // it must really navigate, not merely look like it
+    await page.locator('#tabbar [data-nav="atolye"]').click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    const lab = await page.evaluate(() => !!document.getElementById('labBody'));
+    if (!lab) throw new Error('the Atölye tab did not open the lab');
+    await page.evaluate(() => closeSheet());
+    await page.locator('#tabbar [data-nav="progress"]').click();
+    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.evaluate(() => closeSheet());
+
+    // and inside a story, Games comes alive
+    await page.evaluate(() => openStory(STORIES[0]));
+    await page.waitForTimeout(150);
+    const inStory = await page.evaluate(() => {
+      const b = document.querySelector('#tabbar [data-nav="games"]');
+      return { off: b.disabled, active: [...document.querySelectorAll('#tabbar .on')].map(x => x.dataset.nav) };
+    });
+    if (inStory.off) throw new Error('Games is still disabled inside a story');
+    if (inStory.active.includes('library')) throw new Error('Library is still marked active inside a story');
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.evaluate(() => { renderLibrary(); closeSheet(); });
   });
 
   await check('the front door states where you are, and the numbers are the deck\'s own', async () => {
