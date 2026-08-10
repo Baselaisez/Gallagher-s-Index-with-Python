@@ -13,7 +13,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | # | File | Verdict | One-line summary |
 |---|---|---|---|
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
-| 2 | `research/sources/alaka-ilm-bayan.txt` | **PARTIAL** (was UNTOUCHED; first consumed in v79) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
+| 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
 | 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes, but ~2,600 lines of ʿilm al-maʿānī (khabar/inshāʾ, iltifāt, faṣl-waṣl, ījāz-iṭnāb) and ~7 extra badīʿ figures remain unconsumed. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
@@ -207,6 +207,19 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v104** — the richest unconsumed file on the shelf is now consumed. The
+  ʿalaqa registry went from 12 relations to the source's full **28**, every one
+  with the worked example, the ḥaqīqī and majāzī meanings, the qarīna that
+  forbids the literal reading, and the madrasah's own ifāda formula. Seven of
+  the additions are MIRRORED PAIRS — itlaq/taqyid, umum/khusus,
+  lazimiyya/malzumiyya, illiyya/maluliyya, shartiyya/mashrutiyya,
+  daliyya/madluliyya, mutaalliqiyya/mutaallaqiyya — which is the whole
+  difficulty of the chapter: أَدَّبْتُ meaning «I struck» and ضَرَبْتُ meaning «I
+  taught him manners» are the same two words swapped, and only the qarīna says
+  which way the transfer ran. The suite asserts all 28, no duplicate keys or
+  examples, an ifāda on every one, that likeness ALONE makes an istiʿāra rather
+  than a mursal, and that each pair really does mirror. File #2 moves
+  PARTIAL → FULL.
 - **v101** — the statistical model starts learning from the RULE engines, not
   just from letters. Four rule-derived feature families were ablated
   leave-one-story-out on 2,801 labelled tokens and three were dropped as noise

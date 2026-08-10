@@ -1399,7 +1399,8 @@ if (!CHROME) {
     }));
     if (r.total !== r.claimed)
       throw new Error(`the registry counts ${r.total} but the book says ${r.claimed}`);
-    if (r.worked < 12) throw new Error('worked relations: ' + r.worked);
+    // twelve when only twelve carried an example; all twenty-eight do now
+    if (r.worked < 28) throw new Error('worked relations: ' + r.worked);
     if (!r.complete) throw new Error('a relation is missing its example, meanings or qarina');
     if (r.istiara.length !== 1 || r.istiara[0] !== 'mushabaha')
       throw new Error('only likeness makes an istiara, got: ' + r.istiara.join(','));
@@ -1519,7 +1520,7 @@ if (!CHROME) {
     await page.locator('#alaqatOpen').click();
     await page.waitForSelector('.av-table', { timeout: 3000 });
     const rows = await page.locator('.av-table tbody tr').count();
-    if (rows !== 12) throw new Error('the panel should show all twelve worked relations, got ' + rows);
+    if (rows !== 28) throw new Error('the panel should show all twenty-eight relations, got ' + rows);
     if (!(await page.locator('#alaqaPlay').count())) throw new Error('the panel should offer its game');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
@@ -4129,6 +4130,47 @@ if (!CHROME) {
     if (!/izâfet|idafa/.test(r.alword.notes)) throw new Error('the ال rule must be stated: ' + r.alword.notes);
     if (/zamir — muzâf|the mudaf ilayh/.test(r.alword.notes))
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
+  });
+
+  // alaka-ilm-bayan.txt counts TWENTY-EIGHT alaqas of majaz lughawi and works
+  // every one through: definition, example, literal meaning, intended meaning,
+  // the qarina that forbids the literal reading, and the madrasah's formula.
+  // The registry carried twelve. It carries all of them now.
+  await check('all twenty-eight alaqas are present, and every one is quizzable', async () => {
+    const r = await page.evaluate(() => {
+      const need = a => a.ex && a.haqiqi && a.majazi && a.qarina && a.def;
+      const pair = (x, y) => { const a = ALAQAT.find(z => z.k === x), b = ALAQAT.find(z => z.k === y);
+        return !!(a && b && a.haqiqi.ar === b.majazi.ar && a.majazi.ar === b.haqiqi.ar); };
+      return { total: ALAQAT.length,
+               thin: ALAQAT.filter(a => !need(a)).map(a => a.k),
+               dupK: ALAQAT.map(a => a.k).filter((k, i, z) => z.indexOf(k) !== i),
+               dupEx: ALAQAT.map(a => a.ex).filter((e, i, z) => z.indexOf(e) !== i),
+               noIfada: ALAQAT.filter(a => !a.ifada && !a.istiara).map(a => a.k),
+               istiara: ALAQAT.filter(a => a.istiara).map(a => a.k),
+               // the mirrored pairs are the whole difficulty of the chapter:
+               // the same two meanings swapped, told apart only by the qarina
+               // Only these three mirror LITERALLY — the source gives the same
+               // two meanings swapped. The other four pairs are mirrors in
+               // DOCTRINE but the book illustrates each direction with its own
+               // example (شفة/مشفر against مشافر/شفاه), so asserting a literal
+               // swap on them was my test being wrong, not the data.
+               mirrors: ['lazimiyya|malzumiyya', 'illiyya|maluliyya', 'daliyya|madluliyya']
+                 .filter(p2 => !pair(...p2.split('|'))),
+               // the doctrinal pairs must at least all be present and distinct
+               missingPairs: ['itlaq', 'taqyid', 'umum', 'khusus', 'shartiyya',
+                              'mashrutiyya', 'mutaalliqiyya', 'mutaallaqiyya']
+                 .filter(k => !ALAQAT.some(a => a.k === k)) };
+    });
+    if (r.total !== 28) throw new Error('the source counts twenty-eight, the registry has ' + r.total);
+    if (r.thin.length) throw new Error('these cannot be quizzed: ' + r.thin.join(','));
+    if (r.dupK.length) throw new Error('duplicate keys: ' + r.dupK.join(','));
+    if (r.dupEx.length) throw new Error('two alaqas share an example: ' + r.dupEx.join(' | '));
+    if (r.noIfada.length) throw new Error('no ifada formula on: ' + r.noIfada.join(','));
+    // exactly one relation makes the majaz an isti'ara rather than a mursal
+    if (r.istiara.join() !== 'mushabaha')
+      throw new Error('likeness alone makes an isti\'ara, got: ' + r.istiara.join(','));
+    if (r.mirrors.length) throw new Error('these pairs do not mirror: ' + r.mirrors.join(' '));
+    if (r.missingPairs.length) throw new Error('missing from the doctrinal pairs: ' + r.missingPairs.join(','));
   });
 
   // «Whenever a story is uploaded it should get games as good as the built
