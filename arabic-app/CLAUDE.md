@@ -131,6 +131,28 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**Feed the model the ENGINES' verdicts, but ablate every family.** `IrabModel`
+learned from letters and neighbours only. Four rule-derived feature families
+were built and measured leave-one-story-out on 2,801 labelled tokens, and
+**three of the four were noise or worse**:
+
+| family | held-out top-1 without it | verdict |
+|---|---|---|
+| the noun tagger's wazn | 49.6 vs 48.9 with | **HURT** — dropped |
+| the idafa test (`idafa-head`, `next-al`) | 49.3 / 68.3 vs 48.9 / 67.9 | **HURT** — dropped |
+| «preceded by a bare noun» | 48.6 vs 48.9 | noise — dropped |
+| **the GOVERNOR** (`gov-jarr`, `gov-verbal`) | 47.8 vs 48.9 | **+1.1 / +1.0** — kept |
+
+Final: **48.7 / 67.1 → 49.8 / 68.1** on the ablation harness, 50.7 / 68.7 in
+the app's own 16-fold crossVal, and both floors were raised to hold it.
+
+That the governor is the one to survive is not luck — it is the **Awamil
+doctrine itself**: what a word IS depends on what governs it. The model could
+already see `after-verb` but was blind to a masdar or a participle doing the
+same work, which is exactly what `TaalluqEngine.VERBAL_WAZN` knows. **More
+rule-derived features is not better; the right ones are.** Re-run
+`scratchpad/irab_ab.js`-style leave-one-story-out ablation before adding any.
+
 **Two classes of engine, and never blur them.** Some questions the surface
 settles completely and the engine's answer is EXACT — `IdafaEngine.build()`,
 `WaznEngine.mizan()`, `IlalEngine.derive()`, `AdadEngine`. Others the surface

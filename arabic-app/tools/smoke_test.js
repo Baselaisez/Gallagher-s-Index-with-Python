@@ -3797,8 +3797,10 @@ if (!CHROME) {
     if (a.folds < 10) throw new Error('too few folds to mean anything: ' + a.folds);
     // The floors are on the CROSS-VALIDATED score, because that is the claim
     // the app makes to the learner. Resubstitution is only the upper bound.
-    if (a.cv1 < 49) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
-    if (a.cv2 < 67) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    // raised when the GOVERNOR features landed: what precedes a word decides
+    // what it can be, and teaching the model that was worth a point on each.
+    if (a.cv1 < 50) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    if (a.cv2 < 68) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');

@@ -207,6 +207,15 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v101** — the statistical model starts learning from the RULE engines, not
+  just from letters. Four rule-derived feature families were ablated
+  leave-one-story-out on 2,801 labelled tokens and three were dropped as noise
+  or worse — the noun tagger's wazn and the idafa test both actively HURT. The
+  one that survived is the GOVERNOR, worth +1.1 first-guess and +1.0 two-guess,
+  and it is the Awamil doctrine in a feature: what a word is depends on what
+  governs it. Held-out 50.7% / 68.7%, both floors raised. Aqaid reaches chapter
+  24, closing the imamate: the imam is not unseated by his own wrongdoing, and
+  the prayer behind any man is valid.
 - **v100** — bab 2 of the same book follows bab 3: `TaalluqEngine` answers the
   question an i'rab is not finished without — «attached to WHAT?» — for every
   jarr-majrur and zarf. It knows Ibn Hisham's four exceptions (a zaid letter

@@ -5415,7 +5415,12 @@ class IrabModel {
   // why the cross-validator exists. Re-run tools/cv_eval.js before touching it.
   static ALPHA = 0.35;
   // features are computed from the FULL surface + neighbors
-  static features(full, i, n, prev){
+  // ctx (optional): { prevFull, nextFull } — the words on either side, so the
+  // RULE ENGINES can be asked about this position and their verdicts used as
+  // features. That is the point of the addition: the model stops learning only
+  // from letters and starts learning from what the qawaid derive. Every family
+  // below was ablated separately and kept only if it earned its place.
+  static features(full, i, n, prev, ctx){
     const w = (full || "").normalize("NFC");
     const bare = stripAr(w).replace(/[^ء-ي]/g, "");
     const f = [];
@@ -5447,6 +5452,29 @@ class IrabModel {
     // DROPPED — they measured as noise, and an unmeasured feature is a
     // superstition. Re-run tools/ablate_features.js before adding another.
     f.push("len-" + (bare.length <= 3 ? bare.length : bare.length <= 5 ? "45" : "6"));
+
+    // ---- what the ENGINES say about this position ------------------------
+    // Four rule-derived feature families were built and ablated, leave-one-
+    // story-out, on 2,801 labelled tokens. THREE OF THE FOUR MEASURED AS NOISE
+    // OR WORSE and are not here:
+    //   the noun tagger's wazn      49.6 without it vs 48.9 with — it HURT
+    //   the idafa test              49.3 / 68.3 without vs 48.9 / 67.9 — HURT
+    //   «preceded by a bare noun»   48.6 without vs 48.9 with — within noise
+    // Only the GOVERNOR survived, and it is worth +1.1 first-guess and +1.0
+    // two-guess over the model without it (48.7 / 67.1 → 49.8 / 68.1).
+    //
+    // That it is the one to survive is not an accident: it is the Awamil
+    // doctrine itself. What a word IS depends on what governs it, and until
+    // now the model could see «after-verb» but was blind to a masdar or a
+    // participle doing the same work. Now it is not.
+    if (ctx && ctx.prevFull) {
+      const pb = stripAr(ctx.prevFull).replace(/[^ء-ي]/g, "");
+      if (TaalluqEngine.JARR.has(pb)) f.push("gov-jarr");
+      try {
+        const pg = IsmTagger.tag(ctx.prevFull, 1)[0];
+        if (pg && pg.p >= 0.4 && TaalluqEngine.VERBAL_WAZN.test(pg.wazn)) f.push("gov-verbal");
+      } catch (e) {}
+    }
     return f;
   }
   static train(){
@@ -5460,7 +5488,9 @@ class IrabModel {
         const role = RoleEngine.of(t);
         const isVerb = t.pos === "verb";
         if (role) {
-          const fs = this.features(t.s.full, i, n, prev);
+          const fs = this.features(t.s.full, i, n, prev, {
+            prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
+            nextFull: i + 1 < n ? sen.tokens[i + 1].s.full : null });
           m.roleN[role]++; m.total++;
           fs.forEach(f => { m.feat[role][f] = (m.feat[role][f] || 0) + 1; });
         }
@@ -5486,10 +5516,10 @@ class IrabModel {
   // keeps the model interpretable. Measured with tools/ablate_estimator.js:
   // 51.9% → 53.2% first guess. Complement NB was tried in the same run and
   // was far WORSE (42.8%) — it is the wrong medicine for this skew.
-  static predict(full, i, n, prev){
+  static predict(full, i, n, prev, ctx){
     const m = this.train();
     if (!m.total) return [];
-    const fs = this.features(full, i, n, prev);
+    const fs = this.features(full, i, n, prev, ctx);
     const w = 1 / Math.pow(Math.max(1, fs.length), this.ALPHA);
     const scores = this.ROLES.map(r => {
       let lp = Math.log((m.roleN[r] + 1) / (m.total + this.ROLES.length));
@@ -5523,7 +5553,9 @@ class IrabModel {
       const N = sen.tokens.length;
       sen.tokens.forEach((t, i) => {
         const role = RoleEngine.of(t);
-        if (role) rows.push({ st: st.id, fs: this.features(t.s.full, i, N, prev), role });
+        if (role) rows.push({ st: st.id, role, fs: this.features(t.s.full, i, N, prev, {
+          prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
+          nextFull: i + 1 < N ? sen.tokens[i + 1].s.full : null }) });
         prev = t.pos === "verb" ? "verb"
              : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
              : t.pos === "noun" ? "noun" : null;
@@ -6188,7 +6220,9 @@ class SentenceAnalyzer {
         const prevKind = out.length ? (out[out.length - 1].kind === "verb" || out[out.length - 1].kind === "verb?" ? "verb"
           : (out[out.length - 1].kind === "particle" && out[out.length - 1].notes.some(x => /jarr letter|cer harfi/.test(x.en + x.tr))) ? "jarr"
           : out[out.length - 1].kind === "noun" ? "noun" : null) : null;
-        const pred = IrabModel.predict(w, out.length, words.length, prevKind).slice(0, 2)
+        const pred = IrabModel.predict(w, out.length, words.length, prevKind, {
+          prevFull: out.length > 0 ? words[out.length - 1] : null,
+          nextFull: out.length + 1 < words.length ? words[out.length + 1] : null }).slice(0, 2)
           .filter(p => p.p >= 0.2);
         if (pred.length) row.ml = pred.map(p => ({ r: p.r, pct: Math.round(p.p * 100) }));
       }
