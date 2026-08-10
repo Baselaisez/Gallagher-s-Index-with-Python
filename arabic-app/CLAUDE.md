@@ -131,6 +131,32 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**A fixed element cannot be cleared by body padding.** The thumb bar is
+`position: fixed; bottom: 0` and so is `.sheet` — so the sheet's last row sat
+UNDER the bar, unreachable by any amount of scrolling. «Save to flashcards» was
+rendered, in the DOM, and invisible. `body { padding-bottom }` does nothing for
+it, because a fixed element is not in the body's flow; the clearance has to go
+on `.sheet-inner`, inside the same media query that shows the bar. One rule
+fixes every sheet in the app. **The smoke suite now walks all four sheets at
+390×844 and fails if any button, link or input ends below the bar** — the
+reported bug was one instance of a whole class, and the class is what is
+guarded. When writing that check: **wait for the sheet's transform to finish**
+before measuring, or every child reads as below the bar because the sheet is
+still translated off-screen.
+
+**Derive on the card, never store on it.** A word card's answer side shows its
+root, its computed scale and the offices that scale can hold — all computed at
+RENDER from the card's lex, so nothing was added to the schema and every card
+already in a learner's deck gained it without a migration. Two guards, both
+earned by getting it wrong first:
+- **The root comes from the card's own glossary entry, never from the peeling
+  rules.** `RootFinder.find("مَكْتُوب")` returns ك و ب, and feeding that to the
+  scale produced **مَفْتُعل — a shape that does not exist**. A wrong wazn on a
+  flashcard is worse than none.
+- **The offices are shown only when the learned tagger AGREES with the computed
+  scale.** Two independent answers matching is the bar for putting a third
+  claim on top of them.
+
 **Feed the model the ENGINES' verdicts, but ablate every family.** `IrabModel`
 learned from letters and neighbours only. Four rule-derived feature families
 were built and measured leave-one-story-out on 2,801 labelled tokens, and

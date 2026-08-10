@@ -4131,6 +4131,100 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // The answer side of a word card now carries what the engines DERIVE — the
+  // root, the scale, and what that scale can be. None of it is stored: it is
+  // computed at render, so every card already in a deck gains it.
+  await check('a word card shows its derived sarf, and stays silent where it cannot be sure', async () => {
+    const r = await page.evaluate(() => {
+      const c = [...document.querySelectorAll('.lib-card')]
+        .find(x => x.dataset.storyId === 'aqaid-ahl-al-sunna');
+      if (c) c.click();
+      const strip = lex => (cardSarfStrip({ type: 'word', lex,
+        lemma: (GLOSSARY[lex] || {}).lemma || lex }) || '')
+        .replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      return { qadir: strip('qadir'), masum: strip('masum'), muntazar: strip('muntazar'),
+               allah: strip('allah'), unknown: strip('no-such-lex'),
+               // a card whose glossary entry has no root must show nothing at
+               // all rather than a guessed one
+               noRoot: cardSarfStrip({ type: 'word', lex: 'hadha', lemma: 'هَذَا' }),
+               notWord: cardSarfStrip({ type: 'verb', lex: 'qadir', lemma: 'قَادِر' }) };
+    });
+    if (!/ق د ر/.test(r.qadir) || !/فَاعِل/.test(r.qadir))
+      throw new Error('قَادِر should give its root and فَاعِل: ' + r.qadir);
+    if (!/مَفْعُول/.test(r.masum)) throw new Error('مَعْصُوم is مَفْعُول: ' + r.masum);
+    if (!/مُفْتَعَل/.test(r.muntazar)) throw new Error('مُنْتَظَر is مُفْتَعَل: ' + r.muntazar);
+    // A NAME stands in no scale, and a root guessed by the peeling rules is
+    // not good enough to build one from: feeding RootFinder's ك و ب for مَكْتُوب
+    // into the scale produced مَفْتُعل, a shape that does not exist.
+    if (r.allah) throw new Error('the name of Allah stands in no scale: ' + r.allah);
+    if (r.unknown) throw new Error('an unknown lex must produce nothing: ' + r.unknown);
+    if (r.noRoot) throw new Error('no root in the glossary means no strip: ' + r.noRoot);
+    if (r.notWord) throw new Error('only word cards carry this: ' + r.notWord);
+  });
+
+  // A reader reported «Save to flashcards» missing. It was not missing: it was
+  // rendered, in the DOM, and permanently UNDER the thumb bar, because a sheet
+  // is fixed at bottom:0 and so is the bar. Body padding cannot fix a fixed
+  // element. This check walks EVERY sheet the app opens at phone size and
+  // fails if any interactive thing ends up beneath the bar — the bug was one
+  // instance of a whole class, and the class is what gets guarded.
+  await check('no sheet hides a button under the thumb bar', async () => {
+    const was = page.viewportSize();
+    let bad = [];
+    try {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.evaluate(() => { try { closeSheet(); } catch (e) {} });
+      await page.waitForTimeout(200);
+      // open a story so the word sheet has something to open on
+      await page.evaluate(() => { const c = document.querySelector('.lib-card'); if (c) c.click(); });
+      await page.waitForSelector('.word', { timeout: 5000 });
+      const opens = ['word sheet', 'workshop', 'games hub', 'deck'];
+      for (const name of opens) {
+        // open, then WAIT for the sheet to finish sliding up. Measuring during
+        // the transform reads every child as below the bar, because the sheet
+        // is still translated off the bottom of the screen — the first version
+        // of this check failed on itself for exactly that reason.
+        const opened = await page.evaluate(n => {
+          try { closeSheet(); } catch (e) {}
+          const run = {
+            'word sheet': () => document.querySelector('.word').click(),
+            'workshop':   () => openConjugator(),
+            'games hub':  () => openGames(),
+            'deck':       () => openDeck(),
+          }[n];
+          try { run(); return true; } catch (e) { return false; }
+        }, name);
+        if (!opened) continue;
+        await page.waitForTimeout(600);
+        const r = await page.evaluate(() => {
+          const inner = document.getElementById('sheetInner');
+          const sheet = document.querySelector('.sheet.show');
+          const bar = document.querySelector('.tabbar');
+          if (!inner || !sheet || !bar || getComputedStyle(bar).display === 'none') return { skip: true };
+          // the SHEET is the scroller, not its inner div
+          sheet.scrollTop = sheet.scrollHeight;
+          const barTop = bar.getBoundingClientRect().top;
+          const hidden = [...inner.querySelectorAll('button, a, input, select')]
+            .filter(el => { const b2 = el.getBoundingClientRect();
+              return b2.height > 0 && b2.width > 0 && b2.bottom > barTop + 1; })
+            .map(el => (el.textContent || el.id || el.tagName).replace(/\s+/g, ' ').trim().slice(0, 30));
+          return { hidden, pad: getComputedStyle(inner).paddingBottom };
+        });
+        if (r.skip) continue;
+        if (r.hidden.length) bad.push(name + ': ' + r.hidden.join(' | '));
+        // and the clearance must clear the thumb floor, so the rule is present
+        // rather than accidentally satisfied by a short panel
+        if (parseFloat(r.pad) < 44) bad.push(name + ': clearance is only ' + r.pad);
+      }
+    } finally {
+      await page.evaluate(() => { try { closeSheet(); } catch (e) {} });
+      await page.setViewportSize(was);
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+      await toLibrary().catch(() => {});
+    }
+    if (bad.length) throw new Error('hidden under the thumb bar — ' + bad.join(' ;; '));
+  });
+
   // Qawa'id al-I'rab bab 2: every jarr-majrur attaches to a verb or to
   // something carrying a verb's meaning. Nothing hangs in the air.
   await check('the Ta\'alluq engine names what every jarr-majrur hangs on', async () => {

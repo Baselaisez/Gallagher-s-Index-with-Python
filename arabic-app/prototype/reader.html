@@ -432,6 +432,15 @@
   /* the emoji is decoration; the word underneath is the label, and on the
      narrowest phones the word is what survives */
   @media (max-width: 22rem) { .tabs.labrail button::before { display: none; } }
+  /* the derived facts on a card's answer side — root, scale, and what the
+     scale can be. Quiet: the gloss is still the answer, this is the machinery
+     behind it. */
+  .card-sarf { display: flex; flex-wrap: wrap; gap: var(--s1); justify-content: center;
+    margin-top: var(--s2); font-family: var(--ui-font); }
+  .cs-chip { font-size: var(--t-xs); border: 1px solid var(--line); border-radius: var(--r-full);
+    padding: .1rem .55rem; color: var(--ink-soft); white-space: nowrap; }
+  .cs-chip.ar { font-family: var(--ar-font); font-size: var(--t-sm); }
+  .cs-roles { flex-basis: 100%; font-size: var(--t-xs); color: var(--ink-soft); margin-top: 2px; }
   /* the Mizan lab's two answers: computed on one side, learned on the other,
      and never blended — the learner must be able to see which is which */
   .mz-ism { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
@@ -1265,6 +1274,16 @@
     /* the toolbar keeps the READING controls and gives up the destinations */
     #statsOpen, #searchOpen, #refOpen, #conjOpen, #gamesOpen, #deckOpen { display: none; }
     body { padding-bottom: calc(var(--s7) + var(--s5)); }
+    /* The thumb bar is FIXED over everything, and a sheet is fixed at bottom:0
+       too — so the sheet's last row ends up underneath it, and no amount of
+       scrolling brings it out. That is how «Save to flashcards» went missing:
+       the button was rendered, was in the DOM, and could never be reached.
+       Body padding cannot fix this, because a fixed element does not sit in
+       the body's flow. The sheet needs the clearance itself.
+       One rule covers every sheet in the app, since they all share this class. */
+    .sheet-inner {
+      padding-bottom: calc(var(--tap) + var(--s4) + env(safe-area-inset-bottom, 0px));
+    }
   }
 
   /* the ibare game: source large, then the amil/ma'mul walk */
@@ -8856,6 +8875,7 @@ function renderDeck(){
       front = reviewStep === 0 ? card.bare : card.lemma;
       back = reviewStep === 2
         ? `<div style="margin-top:.4rem">${T(card.gloss)}</div>`
+          + cardSarfStrip(card)
           + (card.ctx ? `<div class="card-ctx" lang="ar" dir="rtl">${card.ctx.pre} <b>${card.ctx.word}</b> ${card.ctx.post}</div>` : "")
         : "";
     }
@@ -8945,6 +8965,44 @@ function renderDeck(){
     b.addEventListener("click", () => { state.deck.splice(+b.dataset.del, 1); persistDeck(); renderDeck(); }));
 }
 
+// The derived facts on the back of a word card: its root, the SCALE it stands
+// in, and — for a noun — every office that scale can hold. A learner reviewing
+// «مَكْتُوب» should be told it is مَفْعُول and therefore an ism maf'ul, not just
+// that it means «written»; that is the difference between memorising a
+// vocabulary list and learning the language's machinery.
+//
+// Nothing is STORED on the card. All of it is derivable from the lemma, and
+// the standing rule here is to automate the derivable and store only what
+// cannot be — which has the happy consequence that every card already in a
+// learner's deck gains this without a migration.
+function cardSarfStrip(card){
+  if (!card || card.type !== "word" || !card.lemma) return "";
+  // The root comes from the card's OWN glossary entry, never from the peeling
+  // rules. Asking RootFinder to guess produced مَكْتُوب → ك و ب, and feeding that
+  // wrong root to the scale produced مَفْتُعل — a shape that does not exist. A
+  // wrong wazn on a flashcard is worse than no wazn at all, and the standing
+  // rule of this app is to publish no Arabic it is not sure of. Where the
+  // glossary has no root, the strip says nothing.
+  const e = (typeof GLOSSARY !== "undefined" && GLOSSARY[card.lex]) || null;
+  const root = e && e.root;
+  if (!root) return "";
+  if (/propn/.test(e.pos || "")) return "";     // a name stands in no scale
+  const bits = [`<span class="cs-chip ar" lang="ar" dir="rtl">${ui().jadhrRoot} ${escapeAttr(root)}</span>`];
+  let scale = null;
+  try { scale = WaznEngine.mizan(card.lemma, root); } catch (err) {}
+  if (scale) bits.push(`<span class="cs-chip ar" lang="ar" dir="rtl">${escapeAttr(scale)}</span>`);
+  // …and the offices that scale can hold, but ONLY when the learned tagger
+  // agrees with the scale the rules computed. Two independent answers matching
+  // is the bar for showing a third claim on top of them.
+  let roles = "";
+  try {
+    const g = IsmTagger.tag(card.lemma, 1)[0];
+    if (scale && g && g.p >= 0.4 && g.wazn === scale && g.roles.length)
+      roles = g.roles.map(x => T(x)).join(" · ");
+  } catch (err) {}
+  return `<div class="card-sarf">${bits.join("")}${
+    roles ? `<span class="cs-roles">${roles}</span>` : ""}</div>`;
+}
 // ---------- games ----------
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 // ---------- المُصَنِّف: a model DISTILLED from the conjugator -------------
