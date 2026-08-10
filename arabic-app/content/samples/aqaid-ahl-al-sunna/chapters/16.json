@@ -4,391 +4,173 @@
   {
    "id": "s1",
    "translation": {
-    "en": "And the best of mankind after our Prophet is Abu Bakr al-Siddiq,",
-    "tr": "Peygamberimizden sonra insanların en faziletlisi Ebû Bekir es-Sıddîk'tir,"
+    "en": "because it makes plain, through her, that he is a friend of Allah;",
+    "tr": "çünkü onunla, kendisinin velî olduğu zâhir olur;"
    },
    "tokens": [
     {
      "surface": {
-      "full": "وَأَفْضَلُ",
-      "smart": "وَأَفْضَلُ",
-      "bare": "وأفضل"
+      "full": "لِأَنَّهُ",
+      "smart": "لِأَنَّهُ",
+      "bare": "لأنه"
      },
-     "lex": "afdal",
-     "pos": "noun",
+     "lex": "inna",
+     "pos": "part",
      "grammar": [
-      "mubtada-khabar",
-      "ism-tafdil",
-      "idafa-definiteness"
+      "inna-wa-akhawatuha",
+      "inna-am-anna",
+      "lam-taleel"
      ],
      "irab": {
-      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«أَفْضَلُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — اسْمُ تَفْضِيلٍ.",
-      "en": "Isti'naf waw; «the best» is the mubtada in raf' and a mudaf — an elative.",
-      "tr": "İstinâf vâvı; «أَفْضَلُ» merfû mübtedâ ve muzâf — ism-i tafdîldir."
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَ«أَنَّ» حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ اسْمُهَا فِي مَحَلِّ نَصْبٍ — وَفُتِحَتْ هَمْزَتُهَا لِأَنَّهَا مَعَ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ مَجْرُورٍ بِاللَّامِ.",
+      "en": "The lam gives the REASON; «anna» is a particle like a verb and the ha is its ism, in the position of nasb — and its hamza takes a FATHA because the clause is read as a masdar in jarr after that lam.",
+      "tr": "Lâm ta'lîl içindir; «أَنَّ» fiile benzeyen harftir, hâ mahallen mansub ismidir — hemzesi FETHALIDIR, zira sonrasıyla birlikte lâm ile mecrûr bir masdar te'vilindedir."
      },
      "segments": [
       {
-       "form": "وَ",
-       "lex": "wa",
-       "pos": "conj"
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
       },
       {
-       "form": "أَفْضَلُ",
-       "lex": "afdal",
-       "pos": "noun"
-      }
-     ]
-    },
-    {
-     "surface": {
-      "full": "الْبَشَرِ",
-      "smart": "الْبَشَرِ",
-      "bare": "البشر"
-     },
-     "lex": "bashar",
-     "pos": "noun",
-     "grammar": [
-      "idafa-definiteness"
-     ],
-     "irab": {
-      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَإِضَافَةُ أَفْعَلِ التَّفْضِيلِ إِلَى الْجِنْسِ تُفِيدُ أَنَّهُ مِنْهُ.",
-      "en": "The mudaf ilayh in jarr — an elative joined to its KIND says the best is one OF them.",
-      "tr": "Mecrûr muzâfun ileyh — ism-i tafdîlin cinse izâfeti, onun o cinsten olduğunu bildirir."
-     }
-    },
-    {
-     "surface": {
-      "full": "بَعْدَ",
-      "smart": "بَعْدَ",
-      "bare": "بعد"
-     },
-     "lex": "bad",
-     "pos": "noun",
-     "grammar": [
-      "maful-fih",
-      "idafa-definiteness"
-     ],
-     "irab": {
-      "ar": "ظَرْفُ زَمَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ، مُتَعَلِّقٌ بِـ«أَفْضَلُ».",
-      "en": "A time-adverb in nasb and a mudaf, attaching to «the best».",
-      "tr": "Mansub zaman zarfı ve muzâf; «أَفْضَلُ»ye taalluk eder."
-     }
-    },
-    {
-     "surface": {
-      "full": "نَبِيِّنَا",
-      "smart": "نَبِيِّنَا",
-      "bare": "نبينا"
-     },
-     "lex": "nabi",
-     "pos": "noun",
-     "grammar": [
-      "idafa-definiteness"
-     ],
-     "irab": {
-      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَ«نَا» مُضَافٌ إِلَيْهِ ثَانٍ.",
-      "en": "The mudaf ilayh in jarr, itself a mudaf; «na» is a second mudaf ilayh.",
-      "tr": "Mecrûr muzâfun ileyh, kendisi de muzâf; «نَا» ikinci muzâfun ileyhtir."
-     },
-     "segments": [
-      {
-       "form": "نَبِيِّ",
-       "lex": "nabi",
-       "pos": "noun"
+       "form": "أَنَّ",
+       "lex": "inna",
+       "pos": "part"
       },
       {
-       "form": "نَا",
-       "lex": "pron-1p",
+       "form": "هُ",
+       "lex": "pron-3ms",
        "pos": "pron"
       }
      ]
     },
     {
      "surface": {
-      "full": "أَبُو",
-      "smart": "أَبُو",
-      "bare": "أبو"
+      "full": "يَظْهَرُ",
+      "smart": "يَظْهَرُ",
+      "bare": "يظهر"
      },
-     "lex": "abubakr",
-     "pos": "propn",
+     "lex": "zahara",
+     "pos": "verb",
      "grammar": [
-      "mubtada-khabar",
-      "five-nouns",
-      "idafa-definiteness"
+      "mudari-marfu"
      ],
      "irab": {
-      "ar": "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.",
-      "en": "The khabar in raf' by the WAW — one of the five nouns, and a mudaf.",
-      "tr": "VÂV ile merfû haber — esmâ-i hamseden ve muzâftır."
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "A mudari in raf' by the damma.",
+      "tr": "Damme ile merfû muzâri."
      }
     },
     {
      "surface": {
-      "full": "بَكْرٍ",
-      "smart": "بَكْرٍ",
-      "bare": "بكر"
+      "full": "بِهَا",
+      "smart": "بِهَا",
+      "bare": "بها"
      },
-     "lex": "abubakr",
-     "pos": "propn",
+     "lex": "bi",
+     "pos": "prep",
      "grammar": [
-      "idafa-definiteness"
+      "huruf-jarr"
      ],
      "irab": {
-      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَالْعَلَمُ هُنَا مُرَكَّبٌ إِضَافِيٌّ، يُعْرَبُ صَدْرُهُ وَيُجَرُّ عَجُزُهُ.",
-      "en": "The mudaf ilayh in jarr — the name is an IDAFA compound: its head declines, its tail stays in jarr.",
-      "tr": "Mecrûr muzâfun ileyh — alem, izâfî mürekkebdir: baş tarafı i'râb alır, sonu mecrûr kalır."
-     }
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«يَظْهَرُ»، وَ«هَا» يَعُودُ عَلَى الْكَرَامَةِ.",
+      "en": "A jarr phrase attaching to «becomes plain»; the «ha» returns to the karama.",
+      "tr": "«يَظْهَرُ»ye taalluk eden câr-mecrûr; «هَا» kerâmete döner."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
     },
     {
      "surface": {
-      "full": "الصِّدِّيقُ",
-      "smart": "الصِّدِّيقُ",
-      "bare": "الصديق"
+      "full": "أَنَّهُ",
+      "smart": "أَنَّهُ",
+      "bare": "أنه"
      },
-     "lex": "siddiq",
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ اسْمُهَا — وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْهَا وَمِنْ خَبَرِهَا فَاعِلُ «يَظْهَرُ».",
+      "en": "A particle like a verb, the ha its ism — and the masdar read out of it and its khabar is the FA'IL of «becomes plain»: what becomes plain is his being a wali.",
+      "tr": "Fiile benzeyen harf, hâ ismidir — ondan ve haberinden anlaşılan müevvel masdar, «يَظْهَرُ»in FÂİLİDİR: zâhir olan, onun velî oluşudur."
+     },
+     "segments": [
+      {
+       "form": "أَنَّ",
+       "lex": "inna",
+       "pos": "part"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَلِيٌّ",
+      "smart": "وَلِيٌّ",
+      "bare": "ولي"
+     },
+     "lex": "wali",
      "pos": "noun",
      "grammar": [
-      "naat-sifa",
-      "sighat-mubalagha"
+      "inna-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "نَعْتٌ لِـ«أَبُو» مَرْفُوعٌ بِالضَّمَّةِ — صِيغَةُ مُبَالَغَةٍ عَلَى فِعِّيلٍ.",
-      "en": "A na't of «Abu», in raf' by the damma — an intensive on the wazn فِعِّيل.",
-      "tr": "«أَبُو»nun na'tı, damme ile merfû — fi''îl vezninde mübâlağa sîgası."
+      "ar": "خَبَرُ «أَنَّ» مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The khabar of «anna», in raf' by the damma.",
+      "tr": "«أَنَّ»nin damme ile merfû haberi."
      },
      "punctAfter": "،"
     }
    ],
    "jumal": [
     {
-     "text": "وَأَفْضَلُ الْبَشَرِ بَعْدَ نَبِيِّنَا أَبُو بَكْرٍ الصِّدِّيقُ",
-     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
-     "en": "An isti'naf nominal clause — i'rabless.",
-     "tr": "İstinâfî isim cümlesi — mahalsizdir."
+     "text": "لِأَنَّهُ يَظْهَرُ بِهَا أَنَّهُ وَلِيٌّ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنَّ» وَمَا بَعْدَهَا مَجْرُورٌ بِلَامِ التَّعْلِيلِ — تَعْلِيلٌ لِمَا قَبْلَهُ.",
+     "en": "The masdar read out of «anna» and what follows it is in jarr after the lam of cause — it gives the reason for what came before.",
+     "tr": "«أَنَّ» ve sonrasından anlaşılan müevvel masdar, ta'lîl lâmıyla mecrûrdur — öncesinin sebebini bildirir."
     }
    ]
   },
   {
    "id": "s2",
    "translation": {
-    "en": "then Umar al-Faruq, then Uthman Dhu al-Nurayn, then Ali al-Murtada.",
-    "tr": "sonra Ömer el-Fârûk, sonra Osman Zü'n-nûreyn, sonra Ali el-Murtazâ."
+    "en": "and he will never be a friend of Allah except that he be truthful in his religion;",
+    "tr": "ve o, dininde muhik olmadıkça asla velî olmaz;"
    },
    "tokens": [
     {
      "surface": {
-      "full": "ثُمَّ",
-      "smart": "ثُمَّ",
-      "bare": "ثم"
+      "full": "وَلَنْ",
+      "smart": "وَلَنْ",
+      "bare": "ولن"
      },
-     "lex": "thumma",
+     "lex": "lan",
      "pos": "part",
      "grammar": [
-      "atf-nasaq"
+      "mudari-marfu"
      ],
      "irab": {
-      "ar": "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ مَعَ التَّرَاخِي — وَهُوَ هُنَا مَوْضِعُ الدَّلَالَةِ عَلَى التَّرْتِيبِ فِي الْفَضْلِ.",
-      "en": "A joining letter: in order, with an interval — and THAT is what carries the ranking here.",
-      "tr": "Tertîb ve terâhî bildiren atıf harfi — buradaki fazilet sıralamasını taşıyan odur."
-     }
-    },
-    {
-     "surface": {
-      "full": "عُمَرُ",
-      "smart": "عُمَرُ",
-      "bare": "عمر"
-     },
-     "lex": "umar",
-     "pos": "propn",
-     "grammar": [
-      "atf-nasaq",
-      "mamnu-min-sarf"
-     ],
-     "irab": {
-      "ar": "مَعْطُوفٌ عَلَى «أَبُو» مَرْفُوعٌ بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ — مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعَدْلِ عَنْ «عَامِر».",
-      "en": "Joined to «Abu», in raf' by a damma with NO tanwin — a diptote: a proper name TURNED ASIDE from عَامِر.",
-      "tr": "«أَبُو»ya ma'tûf, tenvinsiz damme ile merfû — alemlik ve «عَامِر»den udûl sebebiyle gayr-i munsariftir."
-     }
-    },
-    {
-     "surface": {
-      "full": "الْفَارُوقُ",
-      "smart": "الْفَارُوقُ",
-      "bare": "الفاروق"
-     },
-     "lex": "faruq",
-     "pos": "noun",
-     "grammar": [
-      "naat-sifa",
-      "sighat-mubalagha"
-     ],
-     "irab": {
-      "ar": "نَعْتٌ لِـ«عُمَرُ» مَرْفُوعٌ — صِيغَةُ مُبَالَغَةٍ عَلَى فَاعُولٍ، أَيِ الْفَارِقُ بَيْنَ الْحَقِّ وَالْبَاطِلِ.",
-      "en": "A na't of «Umar», in raf' — an intensive on فَاعُول: the one who parts truth from falsehood.",
-      "tr": "«عُمَرُ»nun na'tı, merfû — fâ'ûl vezninde mübâlağa: hak ile bâtılı ayıran."
-     }
-    },
-    {
-     "surface": {
-      "full": "ثُمَّ",
-      "smart": "ثُمَّ",
-      "bare": "ثم"
-     },
-     "lex": "thumma",
-     "pos": "part",
-     "grammar": [
-      "atf-nasaq"
-     ],
-     "irab": {
-      "ar": "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ.",
-      "en": "A joining letter of order.",
-      "tr": "Tertîb bildiren atıf harfi."
-     }
-    },
-    {
-     "surface": {
-      "full": "عُثْمَانُ",
-      "smart": "عُثْمَانُ",
-      "bare": "عثمان"
-     },
-     "lex": "uthman",
-     "pos": "propn",
-     "grammar": [
-      "atf-nasaq",
-      "mamnu-min-sarf"
-     ],
-     "irab": {
-      "ar": "مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ — مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَزِيَادَةِ الْأَلِفِ وَالنُّونِ.",
-      "en": "Joined, in raf' by a damma with no tanwin — a diptote: a proper name with the added alif and nun.",
-      "tr": "Ma'tûf, tenvinsiz damme ile merfû — alemlik ve elif-nûn ziyâdesi sebebiyle gayr-i munsarif."
-     }
-    },
-    {
-     "surface": {
-      "full": "ذُو",
-      "smart": "ذُو",
-      "bare": "ذو"
-     },
-     "lex": "dhu",
-     "pos": "noun",
-     "grammar": [
-      "naat-sifa",
-      "five-nouns",
-      "idafa-definiteness"
-     ],
-     "irab": {
-      "ar": "نَعْتٌ لِـ«عُثْمَانُ» مَرْفُوعٌ بِالْوَاوِ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ وَلَا يُسْتَعْمَلُ إِلَّا مُضَافًا.",
-      "en": "A na't of «Uthman», in raf' by the WAW — one of the five nouns, a mudaf, and it is NEVER used except as one.",
-      "tr": "«عُثْمَانُ»un na'tı, VÂV ile merfû — esmâ-i hamseden, muzâftır ve ancak muzâf olarak kullanılır."
-     }
-    },
-    {
-     "surface": {
-      "full": "النُّورَيْنِ",
-      "smart": "النُّورَيْنِ",
-      "bare": "النورين"
-     },
-     "lex": "nur",
-     "pos": "noun",
-     "grammar": [
-      "idafa-definiteness",
-      "al-muthanna"
-     ],
-     "irab": {
-      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ — مُثَنًّى ثَبَتَتْ نُونُهُ، لِأَنَّ النُّونَ إِنَّمَا تُحْذَفُ مِنَ الْمُضَافِ لَا مِنَ الْمُضَافِ إِلَيْهِ.",
-      "en": "The mudaf ilayh, in jarr by the YA — a dual. Its nun STAYS: the nun drops from a dual that IS a mudaf, and this one is the mudaf ilayh.",
-      "tr": "Mecrûr muzâfun ileyh, cer alâmeti YÂ — tesniyedir. Nûnu DURUR: nûn, muzâf olan tesniyeden düşer; bu ise muzâfun ileyhtir."
-     }
-    },
-    {
-     "surface": {
-      "full": "ثُمَّ",
-      "smart": "ثُمَّ",
-      "bare": "ثم"
-     },
-     "lex": "thumma",
-     "pos": "part",
-     "grammar": [
-      "atf-nasaq"
-     ],
-     "irab": {
-      "ar": "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ.",
-      "en": "A joining letter of order.",
-      "tr": "Tertîb bildiren atıf harfi."
-     }
-    },
-    {
-     "surface": {
-      "full": "عَلِيٌّ",
-      "smart": "عَلِيٌّ",
-      "bare": "علي"
-     },
-     "lex": "ali",
-     "pos": "propn",
-     "grammar": [
-      "atf-nasaq"
-     ],
-     "irab": {
-      "ar": "مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ — وَهُوَ مُنَوَّنٌ، فَلَيْسَ فِيهِ مَا يَمْنَعُ الصَّرْفَ.",
-      "en": "Joined, in raf' by the damma — and it KEEPS its tanwin: there is nothing in it to make it a diptote.",
-      "tr": "Ma'tûf, damme ile merfû — tenvinlidir; onda sarfı men edecek bir şey yoktur."
-     }
-    },
-    {
-     "surface": {
-      "full": "الْمُرْتَضَى",
-      "smart": "الْمُرْتَضَى",
-      "bare": "المرتضى"
-     },
-     "lex": "murtada",
-     "pos": "noun",
-     "grammar": [
-      "naat-sifa",
-      "ism-maful",
-      "form-viii-verbs",
-      "ism-maqsur-manqus"
-     ],
-     "irab": {
-      "ar": "نَعْتٌ لِـ«عَلِيٌّ» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ — اسْمُ مَفْعُولٍ مِنِ «ارْتَضَى» النَّاقِصِ.",
-      "en": "A na't of «Ali», in raf' by a damma ESTIMATED on its alif — the ism maf'ul of the naqis اِرْتَضَى.",
-      "tr": "«عَلِيٌّ»un na'tı, elifi üzerinde takdîrî damme ile merfû — nâkıs «ارْتَضَى»nın ism-i mef'ûlü."
-     },
-     "punctAfter": "."
-    }
-   ],
-   "jumal": [
-    {
-     "text": "ثُمَّ عُمَرُ الْفَارُوقُ ثُمَّ عُثْمَانُ ذُو النُّورَيْنِ ثُمَّ عَلِيٌّ الْمُرْتَضَى",
-     "ar": "مَعْطُوفَاتٌ عَلَى الْخَبَرِ — لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ إِذْ لَيْسَتْ بِجُمَلٍ.",
-     "en": "A chain joined to the khabar — not clauses, so no question of mahall arises.",
-     "tr": "Habere ma'tûflar — cümle olmadıkları için mahal söz konusu değildir."
-    }
-   ]
-  },
-  {
-   "id": "s3",
-   "translation": {
-    "en": "And their caliphate ran in this same order.",
-    "tr": "Hilâfetleri de bu sıra üzeredir."
-   },
-   "tokens": [
-    {
-     "surface": {
-      "full": "وَخِلَافَتُهُمْ",
-      "smart": "وَخِلَافَتُهُمْ",
-      "bare": "وخلافتهم"
-     },
-     "lex": "khilafa",
-     "pos": "noun",
-     "grammar": [
-      "mubtada-khabar",
-      "idafa-definiteness",
-      "masdar"
-     ],
-     "irab": {
-      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«خِلَافَةُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
-      "en": "Isti'naf waw; «their caliphate» is the mubtada in raf' and a mudaf; the ha is its mudaf ilayh.",
-      "tr": "İstinâf vâvı; «خِلَافَةُ» merfû mübtedâ ve muzâf; hâ muzâfun ileyhtir."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَنْ» حَرْفُ نَفْيٍ وَنَصْبٍ وَاسْتِقْبَالٍ — تَنْفِي الْمُسْتَقْبَلَ نَفْيًا مُؤَكَّدًا.",
+      "en": "Joining waw; «lan» negates, puts the verb in nasb, and throws it into the future — an emphatic never.",
+      "tr": "Atıf vâvı; «لَنْ» nefiy, nasb ve istikbâl harfidir — geleceği te'kidli olarak nefyeder."
      },
      "segments": [
       {
@@ -397,76 +179,316 @@
        "pos": "conj"
       },
       {
-       "form": "خِلَافَتُ",
-       "lex": "khilafa",
+       "form": "لَنْ",
+       "lex": "lan",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَكُونَ",
+      "smart": "يَكُونَ",
+      "bare": "يكون"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَنْصُوبٌ بِـ«لَنْ» وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَاسْمُهُ مُسْتَتِرٌ «هُوَ».",
+      "en": "A defective mudari in nasb by «lan», the fatha its sign; its ism is hidden, «he».",
+      "tr": "«لَنْ» ile mansub nâkıs muzâri, alâmeti fetha; ismi müstetir «o»."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَلِيًّا",
+      "smart": "وَلِيًّا",
+      "bare": "وليا"
+     },
+     "lex": "wali",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «يَكُونَ» مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The khabar of «he be», in nasb by the fatha.",
+      "tr": "«يَكُونَ»nin fetha ile mansub haberi."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَّا",
+      "smart": "إِلَّا",
+      "bare": "إلا"
+     },
+     "lex": "illa",
+     "pos": "part",
+     "grammar": [
+      "istithna"
+     ],
+     "irab": {
+      "ar": "أَدَاةُ اسْتِثْنَاءٍ — وَالِاسْتِثْنَاءُ هُنَا مُفَرَّغٌ، إِذْ سُبِقَتْ بِنَفْيٍ.",
+      "en": "A particle of exception — and the exception is MUFARRAGH here, since a negation came first.",
+      "tr": "İstisnâ edatı — nefiy geçtiği için istisnâ mufarragdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأَنْ",
+      "smart": "وَأَنْ",
+      "bare": "وأن"
+     },
+     "lex": "an-masdariyya",
+     "pos": "part",
+     "grammar": [
+      "an-masdariyya",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ زَائِدَةٌ لِلتَّأْكِيدِ، وَ«أَنْ» حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَهَمْزَتُهَا مَفْتُوحَةٌ سَاكِنَةُ النُّونِ، فَهِيَ الْمَصْدَرِيَّةُ لَا «أَنَّ».",
+      "en": "The waw is extra, for emphasis; «an» is the masdar-maker that puts the verb in nasb — its nun is QUIESCENT, so this is the masdar an, not «anna».",
+      "tr": "Vâv te'kid için zâiddir; «أَنْ» nasbeden masdar harfidir — nûnu SÂKİNDİR, yani «أَنَّ» değil masdariyyedir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنْ",
+       "lex": "an-masdariyya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَكُونَ",
+      "smart": "يَكُونَ",
+      "bare": "يكون"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَنْصُوبٌ بِـ«أَنْ»، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ عَلَى الِاسْتِثْنَاءِ.",
+      "en": "A defective mudari in nasb by «an»; the masdar read out of it stands in the position of nasb as the exception.",
+      "tr": "«أَنْ» ile mansub nâkıs muzâri; müevvel masdar, istisnâ üzere mahallen mansubdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُحِقًّا",
+      "smart": "مُحِقًّا",
+      "bare": "محقا"
+     },
+     "lex": "muhiqq",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "ism-fail",
+      "form-iv-verbs",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «يَكُونَ» مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنْ «أَحَقَّ» الْمُضَاعَفِ، أَيْ صَاحِبُ حَقٍّ.",
+      "en": "The khabar of «he be», in nasb — the ism fa'il of the doubled أَحَقَّ: one who holds the truth.",
+      "tr": "«يَكُونَ»nin mansub haberi — muzâaf «أَحَقَّ»nin ism-i fâili; hak sahibi."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "دِيَانَتِهِ",
+      "smart": "دِيَانَتِهِ",
+      "bare": "ديانته"
+     },
+     "lex": "diyana",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "In jarr by the kasra and a mudaf; the ha is its mudaf ilayh.",
+      "tr": "Kesra ile mecrur ve muzâf; hâ muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "دِيَانَتِ",
+       "lex": "diyana",
        "pos": "noun"
       },
       {
-       "form": "هُمْ",
-       "lex": "pron-3mp",
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَلَنْ يَكُونَ وَلِيًّا إِلَّا وَأَنْ يَكُونَ مُحِقًّا فِي دِيَانَتِهِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless.",
+     "tr": "Ma'tûf fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "and his religion is the profession of the messengership of His Messenger.",
+    "tr": "Dini ise, Resûlünün risâletini ikrar etmektir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَدِيَانَتُهُ",
+      "smart": "وَدِيَانَتُهُ",
+      "bare": "وديانته"
+     },
+     "lex": "diyana",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«دِيَانَةُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "Isti'naf waw; «his religion» is the mubtada in raf' and a mudaf; the ha is its mudaf ilayh.",
+      "tr": "İstinâf vâvı; «دِيَانَةُ» merfû mübtedâ ve muzâf; hâ muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "دِيَانَتُ",
+       "lex": "diyana",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
        "pos": "pron"
       }
      ]
     },
     {
      "surface": {
-      "full": "عَلَى",
-      "smart": "عَلَى",
-      "bare": "على"
+      "full": "الْإِقْرَارُ",
+      "smart": "الْإِقْرَارُ",
+      "bare": "الإقرار"
      },
-     "lex": "ala",
-     "pos": "prep",
-     "grammar": [
-      "huruf-jarr"
-     ],
-     "irab": {
-      "ar": "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ الْمُبْتَدَإِ.",
-      "en": "A jarr letter; the phrase is the khabar of the mubtada.",
-      "tr": "Cer harfi; câr-mecrûr mübtedânın haberidir."
-     }
-    },
-    {
-     "surface": {
-      "full": "هَذَا",
-      "smart": "هَذَا",
-      "bare": "هذا"
-     },
-     "lex": "hadha",
-     "pos": "pron",
-     "grammar": [
-      "ism-mawsul",
-      "huruf-jarr"
-     ],
-     "irab": {
-      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ بِـ«عَلَى».",
-      "en": "A demonstrative, fixed, in the position of jarr after «ala».",
-      "tr": "İsm-i işâret — mebnî, «عَلَى» ile mahallen mecrûr."
-     }
-    },
-    {
-     "surface": {
-      "full": "التَّرْتِيبِ",
-      "smart": "التَّرْتِيبِ",
-      "bare": "الترتيب"
-     },
-     "lex": "tartib",
+     "lex": "iqrar",
      "pos": "noun",
      "grammar": [
-      "badal",
-      "form-ii-verbs",
+      "mubtada-khabar",
+      "form-iv-verbs",
       "masdar"
      ],
      "irab": {
-      "ar": "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ مَجْرُورٌ — مَصْدَرُ «رَتَّبَ»، وَالْبَدَلُ يَتْبَعُ الْمُبْدَلَ مِنْهُ فِي إِعْرَابِهِ.",
-      "en": "A badal of the demonstrative, in jarr — the masdar of رَتَّبَ; a badal takes the case of what it replaces.",
-      "tr": "İsm-i işâretten mecrûr bedel — «رَتَّبَ»nin masdarı; bedel, mübdelün minhin i'râbına tâbi olur."
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — مَصْدَرُ «أَقَرَّ» عَلَى إِفْعَالٍ.",
+      "en": "The khabar in raf' by the damma — the masdar of أَقَرَّ on إِفْعَال.",
+      "tr": "Damme ile merfû haber — if'âl vezninde «أَقَرَّ» masdarı."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِرِسَالَةِ",
+      "smart": "بِرِسَالَةِ",
+      "bare": "برسالة"
      },
+     "lex": "risala",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَ«رِسَالَةِ» مَجْرُورٌ وَهُوَ مُضَافٌ، مُتَعَلِّقٌ بِـ«الْإِقْرَارُ».",
+      "en": "The ba is a jarr letter; «messengership» is in jarr and a mudaf, attaching to «the profession».",
+      "tr": "Bâ cer harfi; «رِسَالَةِ» mecrur ve muzâf, «الْإِقْرَارُ»a taalluk eder."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "رِسَالَةِ",
+       "lex": "risala",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَسُولِهِ",
+      "smart": "رَسُولِهِ",
+      "bare": "رسوله"
+     },
+     "lex": "rasul",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ ثَانٍ يَعُودُ عَلَى اللهِ.",
+      "en": "The mudaf ilayh in jarr, itself a mudaf; the ha is a second mudaf ilayh, returning to Allah.",
+      "tr": "Mecrûr muzâfun ileyh, kendisi de muzâf; hâ, Allah'a dönen ikinci muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "رَسُولِ",
+       "lex": "rasul",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
      "punctAfter": "."
     }
    ],
    "jumal": [
     {
-     "text": "وَخِلَافَتُهُمْ عَلَى هَذَا التَّرْتِيبِ",
+     "text": "وَدِيَانَتُهُ الْإِقْرَارُ بِرِسَالَةِ رَسُولِهِ",
      "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
      "en": "An isti'naf nominal clause — i'rabless.",
      "tr": "İstinâfî isim cümlesi — mahalsizdir."

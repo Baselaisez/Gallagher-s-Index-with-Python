@@ -391,6 +391,38 @@
   .hoca-line b { font-family: var(--ar-font); font-size: 1.05rem; }
   .hoca-q { color: var(--accent); font-weight: 600; }
   .ml-vote { color: var(--ink-soft); font-size: .74rem; }
+  /* The verdict stack. One card per word, so a phone never scrolls sideways
+     to read an i'rab. The rail on the inline-start carries the certainty:
+     accent when the engines settled it, lvl3 when the surface only guessed. */
+  .vlist { list-style: none; margin: var(--s3) 0 0; padding: 0; display: grid; gap: var(--s2); }
+  .vrow { position: relative; border: 1px solid var(--line); border-radius: var(--r-md);
+    background: var(--panel); padding: var(--s3); padding-inline-start: calc(var(--s3) + 4px);
+    overflow: hidden; font-family: var(--ui-font); }
+  .vrow::before { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0;
+    width: 4px; background: var(--accent); }
+  .vrow.guess::before { background: var(--lvl3); }
+  .vhead { display: flex; align-items: baseline; gap: var(--s2); flex-wrap: wrap; }
+  .vhead .vn { font-size: var(--t-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums;
+    min-width: 1.2rem; }
+  .vhead .vw { font-family: var(--ar-font); font-size: var(--t-xl); direction: rtl;
+    line-height: var(--lh-tight); }
+  .vhead .vseg { font-family: var(--ar-font); direction: rtl; font-size: var(--t-sm);
+    color: var(--ink-soft); }
+  .vlex { margin-top: var(--s1); font-size: var(--t-sm); color: var(--ink-soft); }
+  .vlex b { font-family: var(--ar-font); font-size: var(--t-md); font-weight: 400; color: var(--ink); }
+  .vmeta { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: var(--s1); }
+  .vchip { font-size: var(--t-xs); border: 1px solid var(--line); border-radius: var(--r-full);
+    padding: .1rem .5rem; color: var(--ink-soft); white-space: nowrap; }
+  .vchip.ar { font-family: var(--ar-font); direction: rtl; font-size: var(--t-sm); }
+  .vchip.ml { border-color: var(--lvl3); color: var(--lvl3); }
+  .vnote { margin: var(--s2) 0 0; font-size: var(--t-sm); line-height: var(--lh-body); }
+  .vtags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s2); align-items: center; }
+  /* the reading — what the whole sentence came out meaning, stated last */
+  .vread { margin-top: var(--s3); border: 1px solid var(--accent); border-radius: var(--r-md);
+    background: var(--accent-soft); padding: var(--s3); font-family: var(--ui-font); }
+  .vread .vr-lbl { display: block; font-size: var(--t-xs); letter-spacing: var(--track-caps);
+    text-transform: uppercase; color: var(--accent); margin-bottom: var(--s1); }
+  .vread p { margin: 0; font-size: var(--t-md); line-height: var(--lh-body); }
   /* woven cover band on the shelf */
   .lib-card .cover { height: 46px; border-radius: .55rem; margin-bottom: .5rem;
     background-size: 72px 72px; background-position: center;
@@ -1468,6 +1500,7 @@ const L = {
         jumlaGuess:"guess",
         roughLbl:"Rough gloss:",
         mlLbl:"\u{1F9E0} model:",
+        readLbl:"What it comes out meaning",
         jumlaHonest:"Certainty lives only in the closed classes. For a word-by-word i'rab written by hand, read the stories — every token there is analyzed and reviewed.",
         ilalHead:"الإِعْلَال · the i'lal chain",
         conjIntro:"The conjugator: give it a three- or FOUR-letter root and it recites the full paradigm — the quadriliteral babs for four letters, Form I through its six babs, and the augmented babs — with the i'lal rules applied for hollow, defective, assimilated and doubled roots.",
@@ -1632,6 +1665,7 @@ const L = {
         jumlaGuess:"tahmin",
         roughLbl:"Kaba çeviri:",
         mlLbl:"\u{1F9E0} model:",
+        readLbl:"Mânâsı nasıl çıkıyor",
         jumlaHonest:"Kesinlik yalnız kapalı sınıflardadır. Elle yazılmış kelime kelime i'râb için hikâyeleri okuyun — oradaki her kelime tahlilli ve gözden geçirilmiştir.",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
         conjIntro:"Çekim motoru: üç yahut DÖRT harfli bir kök verin, tam çekimi okusun — sülâsî mücerredin altı bâbı, mezîd bâblar ve dört harfli köklerde rubâî bâblar; ecvef, nâkıs, misâl ve muzâaf köklerde i'lâl kaideleri uygulanır.",
@@ -4913,6 +4947,41 @@ class WaznEngine {
     }
     return out;
   }
+  // Every augment letter in Arabic comes from سَأَلْتُمُونِيهَا — the Sarf
+  // books' own mnemonic. It is the gate on the scale below: if a letter
+  // survives the mapping and is NOT one of these, the scan was wrong.
+  // …plus the ta marbuta, which is not an augment of the root but rides the
+  // scale unchanged all the same: مَكْتُوبَة → مَفْعُولَة.
+  static ZIYADA = new Set("سألتمونيهاٱإأآة".split(""));
+  static HARAKA = /[ً-ْٰـ]/;
+  // The MIZAN proper. A mizan is not the name of a bab; it is the word with
+  // its root letters STOOD IN ف ع ل and everything else left exactly where it
+  // is — the augments, the sukuns, the harakat, the ta marbuta. That is the
+  // definition the books give, and it is wholly mechanical, so the app should
+  // COMPUTE it, never look it up: قَادِرٌ → فَاعِلٌ, مُسْتَغْفِرٌ → مُسْتَفْعِلٌ,
+  // مَكْتُوبَة → مَفْعُولَة. Before this, a noun borrowed a verb's bab and
+  // قَادِرٌ came out as فَاعَلَ — Form III past, which it is not.
+  //
+  // It answers only where it can be sure. A weak root whose letter has been
+  // turned or dropped no longer stands in the word (قَالَ shows no و), so the
+  // scan fails and the method returns null: that is the IlalEngine's work,
+  // not the scale's. It also declines when a root letter is ALSO prefixed as
+  // an augment (root ت ب ع behind a ta), because the surface alone cannot
+  // say which ta is which.
+  static mizan(word, root){
+    const R = (root || "").trim().split(/\s+/).filter(Boolean);
+    if (R.length < 3 || R.length > 4) return null;
+    const F = R.length === 3 ? ["ف", "ع", "ل"] : ["ف", "ع", "ل", "ل"];
+    const s = (word || "").normalize("NFC").replace(/^ال[َْ]?/, "");
+    let ri = 0, out = "";
+    for (const ch of s) {
+      if (this.HARAKA.test(ch)) { out += ch; continue; }
+      if (ri < R.length && ch === R[ri]) { out += F[ri]; ri++; continue; }
+      if (!this.ZIYADA.has(ch)) return null;     // a letter that cannot be an augment
+      out += ch;
+    }
+    return ri === R.length ? out : null;
+  }
 }
 
 // ---------- the Tasgir & Nisba engine ----------
@@ -5418,7 +5487,77 @@ class HarakeAuditor {
 // the root and wazn; (3) SEQUENCE — a jarr letter promises a majrur, لم/لن
 // promise a verb, يا promises a munada. Everything from layers 2-3 wears a
 // tentative mark: the analyzer READS signals, it does not claim i'rab.
+// ---------- the Reading engine ----------
+// What the sentence comes out MEANING — the last thing a hoca says after the
+// i'rab, and the thing a learner actually wanted. Nothing here is invented:
+// every slot is either a gloss the glossary owns or the Arabic word itself,
+// and the tissue that joins them (-dığını, «that …») is what the SYNTAX
+// dictates, not a guess about sense. It answers only for structures it can
+// name and stays silent otherwise, because a half-guessed translation teaches
+// worse than none at all.
+//
+// The first structure it knows is the one a reader asked for: أَنَّ after a
+// verb. The clause is not a second sentence — it becomes a MASDAR and stands
+// as that verb's object, which is why Turkish reaches for -dığını and English
+// for «that …».
+class ReadingEngine {
+  static AN = /^[أاإٱ]نّ?$/;
+  static gloss(r, lang){
+    if (!r.gloss) return null;
+    const g = (r.gloss[lang] || "").split(/[,;·(]/)[0].trim();
+    return g || null;
+  }
+  // A Turkish infinitive drops -mak/-mek to give the bare imperative stem
+  // (yazmak → yaz); an English gloss drops its «to ».
+  static imperative(g, lang){
+    if (!g) return null;
+    return lang === "tr" ? g.replace(/(mak|mek)$/, "") : g.replace(/^to\s+/, "");
+  }
+  // Turkish genitive by vowel harmony — the last vowel of the word decides the
+  // suffix, and a word ending in a vowel takes the buffer n. An Arabic word
+  // standing in for a missing gloss has no Turkish vowel to harmonise with, so
+  // it falls back on -ın, which is what a hoca says out loud anyway.
+  static TR_GEN = { "a":"ın", "ı":"ın", "e":"in", "i":"in",
+                    "o":"un", "u":"un", "ö":"ün", "ü":"ün" };
+  static genitive(s){
+    const plain = s.replace(/<[^>]+>/g, "");
+    const v = (plain.toLowerCase().match(/[aeıioöuü]/g) || []).pop();
+    const suf = this.TR_GEN[v] || "ın";
+    return s + (/[aeıioöuü]$/i.test(plain) ? "’n" + suf : "’" + suf);
+  }
+  static read(rows, lang){
+    if (!rows || rows.length < 4) return null;
+    const an = rows.findIndex(r => r.kind === "particle" &&
+      this.AN.test(stripAr(r.w).replace(/[^ء-ي]/g, "")));
+    if (an <= 0) return null;
+    const head = rows[an - 1];
+    if (!head.kind || !head.kind.startsWith("verb")) return null;
+    const tail = rows.slice(an + 1);
+    if (tail.length < 2) return null;
+    const ism = tail[0], rest = tail.slice(1);
+    const A = x => `<span lang="ar" dir="rtl">${x}</span>`;
+    const ismT = this.gloss(ism, lang) || A(ism.w);
+    const restT = rest.map(r => this.gloss(r, lang) || A(r.w)).join(" ");
+    const raw = this.gloss(head, lang);
+    const amr = !!(head.cell && head.cell.tense === "amr");
+    const verbT = (amr ? this.imperative(raw, lang) : raw) || A(head.w);
+    const cap = x => x.replace(/^([a-z])/, (m, c) => c.toUpperCase());
+    const text = lang === "tr"
+      ? `${this.genitive(ismT)} ${restT} olduğunu ${verbT}.`
+      : cap(`${verbT} that ${ismT} is ${restT}.`);
+    const why = lang === "tr"
+      ? `«أَنَّ» + mansub ismi + merfû haberi birlikte TEK bir müevvel masdardır; o masdar da «${head.w}» fiilinin mef'ûlün bihidir. Türkçede bunun karşılığı -dığını ekidir.`
+      : `«anna» + its ism in nasb + its khabar in raf' are together ONE masdar, and that masdar is the object of «${head.w}». English says it with «that …».`;
+    return { text, why, kind: "anna" };
+  }
+}
+
 class SentenceAnalyzer {
+  // The name itself, in the spellings it is written in — flattened, since
+  // this is compared against the bare core after harakat are stripped. It
+  // holds the ALAM only: إِلَه is the common noun «god», with a real root
+  // (أ ل ه) and a real wazn (فِعَال), and must keep going through the rules.
+  static JALALA = new Set(["الله", "اللّه"]);
   static PARTICLES = {
     "في": { k: "jarr" }, "من": { k: "jarr" }, "الى": { k: "jarr" }, "إلى": { k: "jarr" },
     "عن": { k: "jarr" }, "على": { k: "jarr" }, "حتى": { k: "jarr" }, "رب": { k: "jarr" },
@@ -5576,11 +5715,36 @@ class SentenceAnalyzer {
         afterVerb = p.k === "kana";
         out.push(row); return;
       }
-      // -- enclitic pronouns: peel from a long-enough remainder
-      let enc = null;
-      for (const e of this.ENCLITICS) {
-        if (core.length - e.length >= 3 && core.endsWith(e)) { enc = e; core = core.slice(0, -e.length); break; }
+      // -- lafz al-jalala. اللَّه is an ALAM. Its lam belongs to the name and
+      // is not the article you may peel; its final ha is a radical and not an
+      // attached pronoun. Left to the general machinery the commonest word in
+      // a creed text came out as «ال + له + ه», root ل ل ه, wazn أَفْعَلَ —
+      // three wrong rulings on one word. It is answered lexically because a
+      // proper name is precisely what no rule derives.
+      const jalala = this.JALALA.has(core);
+      if (jalala) {
+        row.kind = "noun"; row.sure = true; row.lemma = "اللَّه";
+        row.gloss = { en: "Allah", tr: "Allah" };
+        row.notes.push({
+          en: "lafz al-jalala — a PROPER NAME (alam). Its lam belongs to the name and does not strip like the article, and the final ha is a root letter, not an attached pronoun.",
+          tr: "lafza-i celâl — ALEM (özel isim). Lâmı ismin kendisindendir, harf-i tarif gibi ayrılmaz; sondaki hâ da bitişik zamir değil aslî harftir." });
       }
+      // -- enclitic pronouns: peel from a long-enough remainder
+      let enc = null, alBlocked = null;
+      const alDef = /^ال/.test(core);
+      for (const e of this.ENCLITICS) {
+        if (core.length - e.length >= 3 && core.endsWith(e)) {
+          // لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ. A noun already made
+          // definite by ال cannot ALSO be a mudaf, so a tail that looks like a
+          // pronoun here is a root letter. The rule is worth stating out loud:
+          // it is the reason the reading is refused.
+          if (alDef) { alBlocked = e; break; }
+          enc = e; core = core.slice(0, -e.length); break;
+        }
+      }
+      if (alBlocked && !jalala) row.notes.push({
+        en: "it ends in «" + alBlocked + "», but it already wears ال — and a noun is never definite by the article AND by idafa at once, so that is a root letter, not a pronoun.",
+        tr: "«" + alBlocked + "» ile bitiyor, fakat başında ال var — bir isim hem harf-i tarifle hem izâfetle marife olmaz; öyleyse bu bitişik zamir değil, aslî harftir." });
       // -- morphology signals: tentative
       const hasAl = /^ال/.test(core);
       const tanwin = /[ًٌٍ]/.test(w.normalize("NFC"));
@@ -5590,7 +5754,9 @@ class SentenceAnalyzer {
       if (enc) row.seg.push(enc);
       if (hasAl && tanwin)
         row.notes.push({ en: "⚠ definite article WITH tanwin — these never combine; check the vowelling", tr: "⚠ harf-i tarifle tenvin BİRLİKTE — asla birleşmez; harekeyi kontrol edin" });
-      if (hasAl || tanwin || taM) {
+      if (jalala) {
+        // already ruled on above; the article and tanwin talk does not apply
+      } else if (hasAl || tanwin || taM) {
         row.kind = "noun";
         if (hasAl) row.notes.push({ en: "definite article — a noun", tr: "harf-i tarif — isimdir" });
         if (tanwin) row.notes.push({ en: "tanwin — an indefinite noun", tr: "tenvin — nekre isimdir" });
@@ -5610,8 +5776,9 @@ class SentenceAnalyzer {
       else if (afterVerb && row.kind === "noun" && (hasAl || !tanwin))
         row.notes.push({ en: "first noun after the verb — likely the fa'il, marfu'", tr: "fiilden sonraki ilk isim — muhtemelen fâil, merfû" });
       afterVerb = row.kind.startsWith("verb");
-      // -- dig with the other machines
-      const r = RootFinder.find(w);
+      // -- dig with the other machines. A proper name has no root to find and
+      // no scale to stand in, so the machines are not asked about one.
+      const r = jalala ? null : RootFinder.find(w);
       if (r) {
         row.root = r.root;
         if (r.via === "corpus") {
@@ -5619,7 +5786,7 @@ class SentenceAnalyzer {
           // the corpus knows WHICH cell matched — a mazi wears no prefix,
           // but a stored paradigm outranks the morphology guess entirely.
           if (r.cell) {
-            row.kind = "verb";
+            row.kind = "verb"; row.cell = r.cell;
             const lbl = formCellLabel(r.cell);
             row.notes.push({ en: "a corpus verb — " + lbl.en, tr: "külliyat fiili — " + lbl.tr });
             afterVerb = true;
@@ -5627,8 +5794,16 @@ class SentenceAnalyzer {
         }
         if (r.wazn) row.wazn = r.wazn;
       }
-      const m = WaznEngine.of(w);
+      const m = jalala ? null : WaznEngine.of(w);
       if (m && m.mizan) row.wazn = m.mizan;
+      // A word wearing ال, tanwin or the ta marbuta cannot be a verb, so a
+      // verb's bab is not its wazn. Scale it properly instead — and if the
+      // scale declines (a weak root, an ambiguous augment), say nothing
+      // rather than leave a verb pattern standing over a noun.
+      if (row.kind === "noun" && row.root) {
+        const sc = WaznEngine.mizan(w, row.root);
+        if (sc) row.wazn = sc; else delete row.wazn;
+      }
       // -- the İzhar contract beats the pattern guess: after a governor of
       // verbs a mazi cannot stand, so a ta-initial word there is a governed
       // mudari' whose ta is the person prefix — NOT Form V/VI's ta. Retire
@@ -5683,6 +5858,24 @@ class SentenceAnalyzer {
         b.notes.push({ en: "likely the mudaf ilayh — majrur", tr: "muhtemelen muzâfun ileyh — mecrur" });
       }
     }
+    // ---- the LEARNED pass: name the cell and the wazn -------------------
+    // The distilled tagger knows every paradigm slot the conjugator can make,
+    // for roots it has never met — so a bare verb form can be named «Form I,
+    // imperative, you (m.)» on the wazn اُفْعُلْ even when nothing in the corpus
+    // carries it. This is the model feeding back into the analysis, and it is
+    // marked a guess like every other statistical claim in this app.
+    out.forEach(r => {
+      let g = null;
+      try { g = SarfTagger.tag(r.w, 1)[0]; } catch (e) { return; }
+      if (!g || g.p < 0.25) return;
+      const wz = SarfTagger.waznOf(g);
+      const tn = { mazi: { en: "past", tr: "mâzî" }, mudari: { en: "present", tr: "muzâri" },
+                   amr: { en: "imperative", tr: "emir" } }[g.tense] || { en: g.tense, tr: g.tense };
+      r.notes.push({
+        en: `${wz ? wz + " — " : ""}Form ${g.form} ${tn.en}, ${(g.text.en || "").split("·").pop().trim()}`,
+        tr: `${wz ? wz + " — " : ""}${g.form}. bâb ${tn.tr}, ${(g.text.tr || "").split("·").pop().trim()}`,
+        ml: true });
+    });
     return out;
   }
 }
@@ -5978,25 +6171,45 @@ function renderJumlaOut(){
   const rough = roughGloss(rows, lang);
   if (rough) h += `<p class="bab-line">${ui().roughLbl} ${rough}</p>`;
   h += `<div class="hoca">${hocaChain(rows, lang)}</div>`;
-  h += `<div style="overflow-x:auto"><table class="irab-sheet av-table"><tbody>`;
-  rows.forEach(r => {
-    h += `<tr><td lang="ar">${escapeAttr(r.w)}${r.seg && r.seg.length > 1
-      ? `<br><span class="av-ex" lang="ar" dir="rtl">${escapeAttr(r.seg.join(" + "))}</span>` : ""}</td><td>
-      ${r.sure ? "" : `<span class="chip">${ui().jumlaGuess}</span> `}${
-      r.lemma ? `<b lang="ar">${r.lemma}</b>${r.gloss ? " — " + T(r.gloss) : ""}<br>` : ""}${
-      r.root ? `<span lang="ar">${ui().jadhrRoot} ${r.root}</span> ` : ""}${
-      r.wazn ? `<span lang="ar">· ${r.wazn}</span><br>` : (r.root ? "<br>" : "")}${
-      r.notes.map(n => n[lang]).join(" · ")}${
-      r.realize ? `<br><span class="rz-badge">${
-        ({ haraka: "◌َ", huruf: "ا و ي", hadhf: "✂", mahalli: "▣" })[r.realize.by]} ${
-        (state.uiLang === "tr"
-          ? { lafzi: "lafzî", taqdiri: "takdîrî", mahalli: "mahallî" }
-          : { lafzi: "lafzi", taqdiri: "taqdiri", mahalli: "mahalli" })[r.realize.manner]}</span>` : ""}${
-      r.ml ? `<br><span class="ml-vote">${ui().mlLbl} ${r.ml.map(m =>
-        `${(state.uiLang === "tr" ? {fail:"fâil",maful:"mef'ûl",mubtada:"mübteda",khabar:"haber",mudaf:"muzâf",hal:"hâl",tabi:"tâbi",jarr:"mecrur"}
-          : {fail:"fa'il",maful:"maf'ul",mubtada:"mubtada",khabar:"khabar",mudaf:"mudaf",hal:"hal",tabi:"tabi",jarr:"majrur"})[m.r]} %${m.pct}`).join(" · ")}</span>` : ""}</td></tr>`;
+  // One CARD per word, not one table row. A table of i'rab needs a sideways
+  // scroll on a phone, and an i'rab you have to scroll sideways to read is one
+  // you do not read. The rail on the inline-start carries the certainty.
+  const RL = state.uiLang === "tr"
+    ? { fail:"fâil", maful:"mef'ûl", mubtada:"mübteda", khabar:"haber",
+        mudaf:"muzâf", hal:"hâl", tabi:"tâbi", jarr:"mecrur" }
+    : { fail:"fa'il", maful:"maf'ul", mubtada:"mubtada", khabar:"khabar",
+        mudaf:"mudaf", hal:"hal", tabi:"tabi", jarr:"majrur" };
+  const MAN = state.uiLang === "tr"
+    ? { lafzi: "lafzî", taqdiri: "takdîrî", mahalli: "mahallî" }
+    : { lafzi: "lafzi", taqdiri: "taqdiri", mahalli: "mahalli" };
+  h += `<ul class="vlist">`;
+  rows.forEach((r, i) => {
+    const chips = [];
+    if (r.root) chips.push(`<span class="vchip ar" lang="ar">${ui().jadhrRoot} ${escapeAttr(r.root)}</span>`);
+    if (r.wazn) chips.push(`<span class="vchip ar" lang="ar">${escapeAttr(r.wazn)}</span>`);
+    if (!r.sure) chips.push(`<span class="vchip">${ui().jumlaGuess}</span>`);
+    const tags = [];
+    if (r.realize) tags.push(`<span class="rz-badge">${
+      ({ haraka: "◌َ", huruf: "ا و ي", hadhf: "✂", mahalli: "▣" })[r.realize.by]} ${
+      MAN[r.realize.manner]}</span>`);
+    if (r.ml) tags.push(`<span class="vchip ml">${ui().mlLbl} ${
+      r.ml.map(m => `${RL[m.r]} %${m.pct}`).join(" · ")}</span>`);
+    h += `<li class="vrow${r.sure ? "" : " guess"}">
+      <div class="vhead"><span class="vn">${i + 1}</span>
+        <span class="vw" lang="ar" dir="rtl">${escapeAttr(r.w)}</span>${
+        r.seg && r.seg.length > 1
+          ? `<span class="vseg" lang="ar" dir="rtl">${escapeAttr(r.seg.join(" + "))}</span>` : ""}</div>${
+      r.lemma ? `<div class="vlex"><b lang="ar">${escapeAttr(r.lemma)}</b>${
+        r.gloss ? " — " + T(r.gloss) : ""}</div>` : ""}${
+      chips.length ? `<div class="vmeta">${chips.join("")}</div>` : ""}${
+      r.notes.length ? `<p class="vnote">${r.notes.map(n => n[lang]).join(" · ")}</p>` : ""}${
+      tags.length ? `<div class="vtags">${tags.join("")}</div>` : ""}</li>`;
   });
-  h += `</tbody></table></div><p class="sarf-note">${ui().jumlaHonest}</p>`;
+  h += `</ul>`;
+  const rd = ReadingEngine.read(rows, lang);
+  if (rd) h += `<div class="vread"><span class="vr-lbl">${ui().readLbl}</span>
+    <p>${rd.text}</p>${rd.why ? `<p class="vnote">${rd.why}</p>` : ""}</div>`;
+  h += `<p class="sarf-note">${ui().jumlaHonest}</p>`;
   out.innerHTML = h;
 }
 // The kernel panel. It lays out whatever the engines could settle, each row
@@ -6927,11 +7140,33 @@ class IrabSign {
         { ar: `إِعْرَابٌ لَفْظِيٌّ بِالْحَرَكَةِ — ${sign.ar} ظَاهِرَةٌ فِي آخِرِهِ.`,
           en: `A plainly written vowel — the ${sign.en} stands visible on its last letter.`,
           tr: `Lafzî i'râb — ${sign.tr} son harfte açıkça görünür.` });
-    if (sign && sign.en === "sukun")
+    // A final sukun is NOT automatically jazm. An imperative ends in sukun
+    // because it is MABNI on it — there is no governor and nothing was taken
+    // away — and the app read اُكْتُبْ as a majzum mudari until a reader caught
+    // it. The shape decides: an opening hamzat al-wasl (a bare alif carrying
+    // a vowel, which only a wasl hamza does word-initially) plus a quiescent
+    // ending is the اُفْعُلْ/اِفْعِلْ/اِفْعَلْ imperative, and Form VII–X keep the
+    // same opening. Jazm is what is left when the word does NOT look like one.
+    if (sign && sign.en === "sukun") {
+      // The seat may be written wrong — أُكْتُبْ for اُكْتُبْ is the commonest
+      // slip there is — and the shape is still an imperative. Recognise it,
+      // then say what the spelling should have been. The VOWEL is what
+      // separates the two readings: أُ / اُ / اِ open an imperative, while
+      // أَ is the first-person mudari prefix, so لَمْ أَكْتُبْ stays jazm.
+      const amr = /^[اٱأإ][ُِ]/.test(w) && bare.length >= 3;
+      const qat = /^[أإ]/.test(w);
+      if (amr) return R("bina", "lafzi", ["mabni"],
+        { ar: "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ — وَهَمْزَةُ الْوَصْلِ فِي أَوَّلِهِ عَلَامَتُهُ، وَلَيْسَ هَذَا جَزْمًا إِذْ لَا جَازِمَ لَهُ."
+            + (qat ? " وَتُكْتَبُ هَمْزَتُهُ وَصْلًا لَا قَطْعًا: اُكْتُبْ لَا أُكْتُبْ." : ""),
+          en: "An IMPERATIVE, built on the sukun — the hamzat al-wasl at its head is the sign of it. This is not jazm: there is no governor, and nothing was taken away."
+            + (qat ? " Its hamza is written as a WASL, not a qat': اُكْتُبْ, not أُكْتُبْ." : ""),
+          tr: "SÜKÛN üzere mebnî EMİR fiili — başındaki hemze-i vasl bunun alâmetidir. Bu cezm değildir: ne câzimi vardır ne de kaldırılmış bir hareke."
+            + (qat ? " Hemzesi kat' değil VASL yazılır: اُكْتُبْ, أُكْتُبْ değil." : "") });
       return R("hadhf", "lafzi", ["majzum"],
         { ar: "الْجَزْمُ بِالسُّكُونِ — وَهُوَ إِعْرَابٌ بِالْحَذْفِ فِي حَقِيقَتِهِ: حُذِفَتِ الْحَرَكَةُ.",
           en: "Jazm by the sukun — at bottom an i'rab BY REMOVAL: the vowel was taken away.",
           tr: "Sükûnla cezm — hakikatte HAZİFLE i'râbdır: hareke kaldırılmıştır." });
+    }
     return null;
   }
 }
@@ -8227,6 +8462,17 @@ class SarfTagger {
     sc.forEach(x => { x.p /= z; });
     return sc.sort((a, b) => b.p - a.p).slice(0, top).map(x => ({ ...x, ...this.label(x.y) }));
   }
+  // The wazn of a slot, earned rather than templated: conjugate ف ع ل itself
+  // through the same form and read the same cell — the Mizan's own method.
+  static waznOf(g){
+    try {
+      const cls = nakilClass({ root: "ف ع ل" });
+      const d = sarfDerive(cls, g.form, 1);
+      if (!d || !d.ok) return null;
+      const arr = d[g.tense];
+      return (arr && arr[g.cell]) || null;
+    } catch (e) { return null; }
+  }
   static label(y){
     const [form, tense, i] = y.split("|");
     const person = tense === "amr" ? CELL_PERSON_AMR[+i] : CELL_PERSON[+i];
@@ -8357,6 +8603,27 @@ class GrammarKernel {
       { ar: "النِّدَاءُ", en: "The call", tr: "Nidâ" },
       [[nida.kindLabel.ar, T(nida.kindLabel)], [nida.signLabel.ar, T(nida.signLabel)]]);
 
+    // أَنَّ after a verb does not merely "probably wear a fatha" — the whole
+    // clause it opens becomes that verb's OBJECT, read as a masdar. Turkish
+    // says it with -dığını, and a learner asking «why does the meaning come
+    // out like that» is asking exactly this. A reader caught the app naming
+    // the particle and stopping there.
+    const anAt = ws.findIndex((w, k) => k > 0 && /^[أا]ن/.test(stripAr(w).replace(/[^ء-ي]/g, "")));
+    if (anAt > 0) {
+      const head = ws[anAt - 1], tail = ws.slice(anAt + 1);
+      const headIsVerb = !!(RootFinder.fromCorpus && RootFinder.fromCorpus(head)) ||
+                         /^[يتنأا][ُِ]?/.test(head);
+      if (headIsVerb && tail.length >= 2) add("anna", "rule",
+        { ar: "أَنَّ بَعْدَ الْفِعْلِ — الْمَصْدَرُ الْمُؤَوَّلُ",
+          en: "«anna» after a verb — the clause read as a masdar",
+          tr: "Fiilden sonra «enne» — müevvel masdar" },
+        [[`«${head}» + أَنَّ ${tail.join(" ")}`,
+          T({ en: `The clause after «anna» is not a second sentence: it is turned into a MASDAR and stands as the object of «${head}». English says «that …»; Turkish says it with -dığını.`,
+              tr: `«enne»den sonraki cümle ikinci bir cümle değildir: MASDARA çevrilir ve «${head}» fiilinin mef'ûlü olur. Türkçesi -dığını ekiyle söylenir.` })],
+         ["أَنَّ + اسْمُهَا + خَبَرُهَا = مَفْعُولٌ بِهِ",
+          T({ en: "anna, its ism in nasb, its khabar in raf' — the three together are ONE object.",
+              tr: "enne, mansub ismi ve merfû haberi — üçü birden TEK bir mef'ûldür." })]]);
+    }
     const ma = ws.findIndex(w => stripAr(w).replace(/[^ء-ي]/g, "") === "ما");
     if (ma >= 0) {
       const r = MaEngine.read(ws, ma, ws, ws.map(x => /^[يتنأ]/.test(stripAr(x))));

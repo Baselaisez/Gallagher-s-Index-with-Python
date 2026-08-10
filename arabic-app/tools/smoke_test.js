@@ -53,7 +53,14 @@ if (!CHROME) {
   await page.goto(url);
   const check = async (name, fn) => {
     try { await fn(); console.log('PASS', name); }
-    catch (e) { console.log('FAIL', name, '—', e.message.split('\n')[0]); process.exitCode = 1; }
+    catch (e) {
+      console.log('FAIL', name, '—', e.message.split('\n')[0]); process.exitCode = 1;
+      // A check that throws part-way leaves whatever sheet it opened on screen,
+      // and the next check's click lands on the scrim and times out. One real
+      // failure then reads as three. Dismiss the sheet before moving on so the
+      // count of failures is the count of DEFECTS.
+      await page.evaluate(() => { try { closeSheet(); } catch (_) {} }).catch(() => {});
+    }
   };
 
   // Select a library card by the story it holds, never by position: the library
@@ -3776,6 +3783,9 @@ if (!CHROME) {
       const x = IrabModel.accuracy();
       return { n: cv.n, folds: cv.folds, ms: Math.round(ms),
                cv1: Math.round(cv.top1 * 1000) / 10, cv2: Math.round(cv.top2 * 1000) / 10,
+               // the panel's OWN rounding, so this check reads the number the
+               // learner reads rather than a tenth-place variant of it
+               shown: Math.round(cv.top1 * 100),
                res1: Math.round(x.top1 * 1000) / 10 };
     });
     if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
@@ -3792,7 +3802,10 @@ if (!CHROME) {
     await page.waitForSelector('.ml-score', { timeout: 3000 });
     const line = await page.locator('.ml-score').textContent();
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
-    if (!line.includes(String(a.cv1).split('.')[0])) throw new Error('the panel must lead with the held-out score: ' + line);
+    // and it must lead with the HELD-OUT figure, never the resubstitution one
+    if (!line.includes(String(a.shown))) throw new Error('the panel must lead with the held-out score: ' + line);
+    if (line.indexOf(String(a.shown)) > line.indexOf(String(Math.round(a.res1))))
+      throw new Error('resubstitution is quoted before the held-out score: ' + line);
     await page.evaluate(() => { conjState.lab = 'sarf'; closeSheet(); });
   });
 
@@ -3808,7 +3821,7 @@ if (!CHROME) {
       return { hasHoca: html.includes('hoca-line'),
                asksWho: /who\?|kim\?/.test(t),
                jazm: /jazm|cezm|câzim/i.test(t),
-               ml: html.includes('ml-vote') };
+               ml: html.includes('vchip ml') };
     });
     if (!r.hasHoca) throw new Error('the walkthrough panel is missing');
     if (!r.asksWho) throw new Error('after the verb the chain must ask who?');
@@ -4016,6 +4029,185 @@ if (!CHROME) {
     // and the guard must not swallow the ordinary case
     if (r.plainBlocked) throw new Error('قول was wrongly blocked');
     if (r.plainOut !== r.want.plain) throw new Error('قَائِلٌ regressed: ' + r.plainOut);
+  });
+
+  // A reader caught the app calling اُكْتُبْ a majzum mudari. It is an
+  // IMPERATIVE built on sukun — no governor, nothing removed — and the two
+  // are told apart by the opening vowel, not by the final one.
+  await check('an imperative on sukun is mabni, not jazm, and the wazn is named', async () => {
+    const r = await page.evaluate(() => {
+      const f = w => { const x = IrabSign.of(w); return x && x.by; };
+      const rows = SentenceAnalyzer.analyze('اُكْتُبْ ان الله قادر على كل شيء');
+      const first = rows[0].notes.map(n => n.tr).join(' | ');
+      const an = rows[1].notes.map(n => n.tr).join(' | ');
+      const k = GrammarKernel.ask('اُكْتُبْ ان الله قادر على كل شيء');
+      return {
+        wasl: f('اُكْتُبْ'), qat: f('أُكْتُبْ'), form7: f('اِسْتَغْفِرْ'),
+        // the first-person mudari prefix takes a FATHA and stays jazm
+        majzum: f('لَمْ أَكْتُبْ'), plainMajzum: f('يَكْتُبْ'),
+        qatNote: (IrabSign.of('أُكْتُبْ') || {}).why.tr,
+        first, an, kernelKeys: k.findings.map(x => x.k),
+        tag: SarfTagger.tag('اُكْتُبْ', 1)[0].y,
+        wazn: SarfTagger.waznOf(SarfTagger.tag('اُكْتُبْ', 1)[0]),
+      };
+    });
+    for (const k of ['wasl', 'qat', 'form7'])
+      if (r[k] !== 'bina') throw new Error(k + ' should be mabni, got ' + r[k]);
+    for (const k of ['majzum', 'plainMajzum'])
+      if (r[k] !== 'hadhf') throw new Error(k + ' should still be jazm, got ' + r[k]);
+    if (!/VASL|vasl/.test(r.qatNote)) throw new Error('the qat spelling must be corrected: ' + r.qatNote);
+    if (r.tag !== 'I|amr|0') throw new Error('the tagger read اُكْتُبْ as ' + r.tag);
+    if (r.wazn !== 'اُفْعُلْ') throw new Error('the wazn should be اُفْعُلْ, got ' + r.wazn);
+    if (!/اُفْعُلْ/.test(r.first) || !/emir/.test(r.first))
+      throw new Error('the analyzer must name the wazn and the cell: ' + r.first);
+    // and «anna» after a verb must say the clause BECOMES the object
+    if (!/masdar|dığını/.test(r.an)) throw new Error('anna row: ' + r.an);
+    if (!r.kernelKeys.includes('anna'))
+      throw new Error('the kernel must explain the anna clause: ' + r.kernelKeys);
+  });
+
+  // The commonest word in a creed text was being taken apart as if it were a
+  // derived noun: ال peeled as the article, the final ha peeled as a pronoun
+  // and called a mudaf ilayh, a root ل ل ه invented from the wreckage, and a
+  // verb's bab hung on it as a wazn. It is an ALAM, and the rule that refuses
+  // the pronoun reading is one worth stating: a noun is never definite by the
+  // article AND by idafa at once.
+  await check('the name of Allah is read as an alam, and ال refuses the idafa', async () => {
+    const r = await page.evaluate(() => {
+      const one = w => {
+        const x = SentenceAnalyzer.analyze(w)[0];
+        return { root: x.root || null, wazn: x.wazn || null, kind: x.kind,
+                 lemma: x.lemma || null, sure: x.sure,
+                 notes: x.notes.map(n => n.tr + ' ‖ ' + n.en).join(' | ') };
+      };
+      return { jalala: one('اللهَ'), bare: one('الله'),
+               // إِلَه is the common noun, NOT the name: it keeps its root
+               ilah: one('إِلَهٍ'),
+               // a genuine ال-word ending in a pronoun-shaped tail
+               alword: one('الْكِتَابُهُ') };
+    });
+    const j = r.jalala;
+    if (j.root) throw new Error('the name has no root to find, got ' + j.root);
+    if (j.wazn) throw new Error('the name stands in no scale, got ' + j.wazn);
+    if (j.lemma !== 'اللَّه') throw new Error('lemma: ' + j.lemma);
+    if (!j.sure || j.kind !== 'noun') throw new Error('it is a noun, and certain');
+    // match the CLAIMS, not the sentences that deny them — the alam note says
+    // both words out loud in order to refuse the reading
+    if (/zamir — muzâf|attached pronoun — the mudaf/.test(j.notes))
+      throw new Error('no pronoun may be peeled off it: ' + j.notes);
+    if (/harf-i tarif — isim|definite article — a noun/.test(j.notes))
+      throw new Error('its lam is not the article: ' + j.notes);
+    if (!/alam|ALEM/.test(j.notes)) throw new Error('it must be named an alam: ' + j.notes);
+    if (r.bare.lemma !== 'اللَّه') throw new Error('undiacritised too: ' + r.bare.lemma);
+    // إِلَه keeps a real root and a real wazn — it is the common noun, not the
+    // name. (The rules path spells the initial radical from the surface
+    // carrier, so it reads إ ل ه where the books write أ ل ه; that is a
+    // separate, pre-existing gap, logged in COVERAGE.)
+    if (!/ل ه$/.test(r.ilah.root || '')) throw new Error('إِلَه must keep its root: ' + r.ilah.root);
+    if (r.ilah.lemma === 'اللَّه') throw new Error('إِلَه is not the name of Allah');
+    if (!/izâfet|idafa/.test(r.alword.notes)) throw new Error('the ال rule must be stated: ' + r.alword.notes);
+    if (/zamir — muzâf|the mudaf ilayh/.test(r.alword.notes))
+      throw new Error('ال and idafa never combine: ' + r.alword.notes);
+  });
+
+  // A mizan is not the name of a bab. It is the word with its root letters
+  // stood in ف ع ل and everything else left where it is — wholly mechanical,
+  // so the app computes it. Before this, قَادِرٌ borrowed Form III's past.
+  await check('the mizan is computed by standing the root in ف ع ل, not looked up', async () => {
+    const r = await page.evaluate(() => ({
+      scale: [['قَادِرٌ', 'ق د ر'], ['مُسْتَغْفِرٌ', 'غ ف ر'], ['مَكْتُوبَة', 'ك ت ب'],
+              ['مُتَكَاتِبٌ', 'ك ت ب'], ['اسْتِغْفَار', 'غ ف ر'], ['كَتَّبَ', 'ك ت ب']]
+        .map(([w, k]) => WaznEngine.mizan(w, k)),
+      // a weak root no longer stands in the word, so the scale must decline
+      weak: WaznEngine.mizan('قَالَ', 'ق و ل'),
+      // and a letter that cannot be an augment kills the scan outright
+      bogus: WaznEngine.mizan('دَحْرَجَ', 'ك ت ب'),
+      analyzed: SentenceAnalyzer.analyze('قَادِرٌ')[0].wazn,
+    }));
+    const want = ['فَاعِلٌ', 'مُسْتَفْعِلٌ', 'مَفْعُولَة', 'مُتَفَاعِلٌ', 'اسْتِفْعَال', 'فَعَّلَ'];
+    r.scale.forEach((got, i) => {
+      if (got !== want[i]) throw new Error('scale ' + i + ': wanted ' + want[i] + ', got ' + got);
+    });
+    if (r.weak !== null) throw new Error('a weak root has no surface scale: ' + r.weak);
+    if (r.bogus !== null) throw new Error('a non-augment letter must kill the scan: ' + r.bogus);
+    if (r.analyzed !== 'فَاعِلٌ') throw new Error('the analyzer must scale a noun, not name a bab: ' + r.analyzed);
+  });
+
+  // The last thing a hoca says is what the sentence MEANS, and it is the thing
+  // the learner came for. It is assembled from what the engines settled — never
+  // invented — and it stays silent where it cannot name the structure.
+  await check('the reading states what the sentence comes out meaning', async () => {
+    const r = await page.evaluate(() => {
+      const strip = h => (h || '').replace(/<[^>]+>/g, '');
+      const of = (s, l) => {
+        const x = ReadingEngine.read(SentenceAnalyzer.analyze(s), l);
+        return x ? { text: strip(x.text), why: strip(x.why), kind: x.kind } : null;
+      };
+      return {
+        tr: of('اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ', 'tr'),
+        en: of('اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ', 'en'),
+        // no anna, no structure it can name — and then it must say nothing
+        quiet: of('ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ', 'tr'),
+        harmony: [ReadingEngine.genitive('Allah'), ReadingEngine.genitive('Peygamber'),
+                  ReadingEngine.genitive('Musa'), ReadingEngine.genitive('göz')],
+      };
+    });
+    if (!r.tr) throw new Error('the reading is missing');
+    if (!/Allah’ın/.test(r.tr.text)) throw new Error('the ism of anna leads it: ' + r.tr.text);
+    if (!/olduğunu/.test(r.tr.text)) throw new Error('Turkish says the masdar with -dığını: ' + r.tr.text);
+    if (!/yaz\.$/.test(r.tr.text)) throw new Error('the governing verb closes it, as an imperative: ' + r.tr.text);
+    if (!/^Write that Allah is/.test(r.en.text)) throw new Error('English: ' + r.en.text);
+    if (!/masdar/.test(r.tr.why) || !/mef'ûl/.test(r.tr.why))
+      throw new Error('it must say WHY the meaning comes out so: ' + r.tr.why);
+    if (r.quiet) throw new Error('it must stay silent on a structure it cannot name: ' + r.quiet.text);
+    const want = ['Allah’ın', 'Peygamber’in', 'Musa’nın', 'göz’ün'];
+    r.harmony.forEach((g, i) => {
+      if (g !== want[i]) throw new Error('vowel harmony: wanted ' + want[i] + ', got ' + g);
+    });
+  });
+
+  // A table of i'rab needs a sideways scroll on a phone, and an i'rab you must
+  // scroll sideways to read is one you do not read.
+  await check('the analyzer lays its verdicts out as cards a phone can read', async () => {
+    const was = page.viewportSize();
+    // Open the lab at the width it is opened from — on a phone the thumb bar
+    // takes over from #conjOpen, so clicking it at 390 waits forever. Narrow
+    // AFTER the panel is up: what is being measured is the layout, not the
+    // route to it.
+    await page.evaluate(() => {
+      conjState.lab = 'jumla'; conjState.jumla = 'اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ';
+    });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#jumlaOut .vrow', { timeout: 3000 });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(200);
+    let r;
+    try {
+    r = await page.evaluate(() => {
+      const out = document.getElementById('jumlaOut');
+      const rows = [...out.querySelectorAll('.vrow')];
+      const over = rows.filter(el => el.scrollWidth > el.clientWidth + 1).length;
+      const read = out.querySelector('.vread');
+      return { n: rows.length, over, table: !!out.querySelector('table'),
+               guess: out.querySelectorAll('.vrow.guess').length,
+               read: read ? read.textContent.replace(/\s+/g, ' ').trim() : null,
+               rail: rows[0] ? getComputedStyle(rows[0], '::before').width : null };
+    });
+    } finally {
+      // whatever happens above, hand the next check the width it expects — a
+      // narrow viewport left behind makes every later click land on the thumb
+      // bar, and one real failure reads as three
+      await page.evaluate(() => { try { conjState.lab = 'sarf'; conjState.jumla = 'لم يكتبِ الطالبُ في الدفترِ'; closeSheet(); } catch (_) {} });
+      await page.setViewportSize(was);
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+    }
+    if (r.n < 7) throw new Error('a card per word: ' + r.n);
+    if (r.table) throw new Error('the sideways table is still there');
+    if (r.over) throw new Error(r.over + ' cards overflow their own width on a 390px phone');
+    if (!r.guess) throw new Error('the guessed rows must still be marked as guesses');
+    if (r.rail !== '4px') throw new Error('the certainty rail is missing: ' + r.rail);
+    if (!r.read || !/olduğunu|that Allah/.test(r.read))
+      throw new Error('the reading must close the panel: ' + r.read);
   });
 
   // The rules write their own training set, and the only test that means

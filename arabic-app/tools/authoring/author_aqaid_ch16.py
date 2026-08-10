@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Author chapter 16 of aqaid-ahl-al-sunna — the best of mankind, and the order.
+"""Author chapter 16 of aqaid-ahl-al-sunna — why a karama proves a messenger.
 
-Continues the matn after the karamat: the best of mankind after our Prophet
-is Abu Bakr al-Siddiq, then Umar al-Faruq, then Uthman Dhu al-Nurayn, then
-Ali al-Murtada — and their caliphate ran in this same order.
+Closes the karamat argument that chapter 15 opened, and it belongs HERE: an
+earlier pass jumped from «لواحد من أمته» straight to «وأفضل البشر», leaving
+this passage out of the story altogether. The chapter numbers were shifted so
+the matn runs in its own order — the caliphs are chapter 17 now.
 
-DIVERGENCE, recorded in the manifest attribution: the supplied transcription
-reads «عثمان ذي النورين», with the epithet in jarr. عُثْمَانُ here is a na't of
-a marfu' chain running from أَفْضَلُ الْبَشَرِ, so the received grammatical
-wording ذُو النُّورَيْنِ is used. The divergence is stated rather than silently
-smoothed — the standing rule for this package.
+The argument: because the karama makes plain that the man is a friend of
+Allah; and he will not be a friend unless he is truthful in his religion; and
+his religion is the profession of the messengership of His Messenger.
+
+Verbatim contiguous span, re-vowelled against the received text.
 """
 import json, pathlib, re, sys
 ROOT = pathlib.Path('/home/user/Gallagher-s-Index-with-Python/arabic-app')
@@ -34,153 +35,132 @@ def g(lemma, root, pos, en, tr, level, plural=None):
     return e
 S = []
 
-TITLE16 = {"ar": "أَفْضَلُ الْبَشَرِ وَتَرْتِيبُ الْخِلَافَةِ",
-           "en": "The Best of Mankind, and the Order of the Caliphate",
-           "tr": "İnsanların En Faziletlisi ve Hilâfetin Sırası"}
+TITLE16 = {"ar": "لِمَ كَانَتِ الْكَرَامَةُ مُعْجِزَةً",
+           "en": "Why a Karama Proves a Messenger",
+           "tr": "Kerâmet Niçin Mu'cizedir"}
 
 S.append({"id": "s1", "translation": {
- "en": "And the best of mankind after our Prophet is Abu Bakr al-Siddiq,",
- "tr": "Peygamberimizden sonra insanların en faziletlisi Ebû Bekir es-Sıddîk'tir,"},
+ "en": "because it makes plain, through her, that he is a friend of Allah;",
+ "tr": "çünkü onunla, kendisinin velî olduğu zâhir olur;"},
  "tokens": [
-  tok("وَأَفْضَلُ","afdal","noun",["mubtada-khabar","ism-tafdil","idafa-definiteness"],
-      "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«أَفْضَلُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ — اسْمُ تَفْضِيلٍ.",
-      "Isti'naf waw; «the best» is the mubtada in raf' and a mudaf — an elative.",
-      "İstinâf vâvı; «أَفْضَلُ» merfû mübtedâ ve muzâf — ism-i tafdîldir.",
-      segments=[seg("وَ","wa","conj"), seg("أَفْضَلُ","afdal","noun")]),
-  tok("الْبَشَرِ","bashar","noun",["idafa-definiteness"],
-      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَإِضَافَةُ أَفْعَلِ التَّفْضِيلِ إِلَى الْجِنْسِ تُفِيدُ أَنَّهُ مِنْهُ.",
-      "The mudaf ilayh in jarr — an elative joined to its KIND says the best is one OF them.",
-      "Mecrûr muzâfun ileyh — ism-i tafdîlin cinse izâfeti, onun o cinsten olduğunu bildirir."),
-  tok("بَعْدَ","bad","noun",["maful-fih","idafa-definiteness"],
-      "ظَرْفُ زَمَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ، مُتَعَلِّقٌ بِـ«أَفْضَلُ».",
-      "A time-adverb in nasb and a mudaf, attaching to «the best».",
-      "Mansub zaman zarfı ve muzâf; «أَفْضَلُ»ye taalluk eder."),
-  tok("نَبِيِّنَا","nabi","noun",["idafa-definiteness"],
-      "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَ«نَا» مُضَافٌ إِلَيْهِ ثَانٍ.",
-      "The mudaf ilayh in jarr, itself a mudaf; «na» is a second mudaf ilayh.",
-      "Mecrûr muzâfun ileyh, kendisi de muzâf; «نَا» ikinci muzâfun ileyhtir.",
-      segments=[seg("نَبِيِّ","nabi","noun"), seg("نَا","pron-1p","pron")]),
-  tok("أَبُو","abubakr","propn",["mubtada-khabar","five-nouns","idafa-definiteness"],
-      "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الْوَاوُ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ.",
-      "The khabar in raf' by the WAW — one of the five nouns, and a mudaf.",
-      "VÂV ile merfû haber — esmâ-i hamseden ve muzâftır."),
-  tok("بَكْرٍ","abubakr","propn",["idafa-definiteness"],
-      "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَالْعَلَمُ هُنَا مُرَكَّبٌ إِضَافِيٌّ، يُعْرَبُ صَدْرُهُ وَيُجَرُّ عَجُزُهُ.",
-      "The mudaf ilayh in jarr — the name is an IDAFA compound: its head declines, its tail stays in jarr.",
-      "Mecrûr muzâfun ileyh — alem, izâfî mürekkebdir: baş tarafı i'râb alır, sonu mecrûr kalır."),
-  tok("الصِّدِّيقُ","siddiq","noun",["naat-sifa","sighat-mubalagha"],
-      "نَعْتٌ لِـ«أَبُو» مَرْفُوعٌ بِالضَّمَّةِ — صِيغَةُ مُبَالَغَةٍ عَلَى فِعِّيلٍ.",
-      "A na't of «Abu», in raf' by the damma — an intensive on the wazn فِعِّيل.",
-      "«أَبُو»nun na'tı, damme ile merfû — fi''îl vezninde mübâlağa sîgası.", punct="،"),
+  tok("لِأَنَّهُ","inna","part",["inna-wa-akhawatuha","inna-am-anna","lam-taleel"],
+      "اللَّامُ لِلتَّعْلِيلِ، وَ«أَنَّ» حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ اسْمُهَا فِي مَحَلِّ نَصْبٍ — وَفُتِحَتْ هَمْزَتُهَا لِأَنَّهَا مَعَ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ مَجْرُورٍ بِاللَّامِ.",
+      "The lam gives the REASON; «anna» is a particle like a verb and the ha is its ism, in the position of nasb — and its hamza takes a FATHA because the clause is read as a masdar in jarr after that lam.",
+      "Lâm ta'lîl içindir; «أَنَّ» fiile benzeyen harftir, hâ mahallen mansub ismidir — hemzesi FETHALIDIR, zira sonrasıyla birlikte lâm ile mecrûr bir masdar te'vilindedir.",
+      segments=[seg("لِ","li","prep"), seg("أَنَّ","inna","part"), seg("هُ","pron-3ms","pron")]),
+  tok("يَظْهَرُ","zahara","verb",["mudari-marfu"],
+      "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "A mudari in raf' by the damma.",
+      "Damme ile merfû muzâri."),
+  tok("بِهَا","bi","prep",["huruf-jarr"],
+      "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«يَظْهَرُ»، وَ«هَا» يَعُودُ عَلَى الْكَرَامَةِ.",
+      "A jarr phrase attaching to «becomes plain»; the «ha» returns to the karama.",
+      "«يَظْهَرُ»ye taalluk eden câr-mecrûr; «هَا» kerâmete döner.",
+      segments=[seg("بِ","bi","prep"), seg("هَا","pron-3fs","pron")]),
+  tok("أَنَّهُ","inna","part",["inna-wa-akhawatuha","inna-am-anna","an-masdariyya"],
+      "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْهَاءُ اسْمُهَا — وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْهَا وَمِنْ خَبَرِهَا فَاعِلُ «يَظْهَرُ».",
+      "A particle like a verb, the ha its ism — and the masdar read out of it and its khabar is the FA'IL of «becomes plain»: what becomes plain is his being a wali.",
+      "Fiile benzeyen harf, hâ ismidir — ondan ve haberinden anlaşılan müevvel masdar, «يَظْهَرُ»in FÂİLİDİR: zâhir olan, onun velî oluşudur.",
+      segments=[seg("أَنَّ","inna","part"), seg("هُ","pron-3ms","pron")]),
+  tok("وَلِيٌّ","wali","noun",["inna-wa-akhawatuha"],
+      "خَبَرُ «أَنَّ» مَرْفُوعٌ بِالضَّمَّةِ.",
+      "The khabar of «anna», in raf' by the damma.",
+      "«أَنَّ»nin damme ile merfû haberi.", punct="،"),
  ],
- "jumal": [J("وَأَفْضَلُ الْبَشَرِ بَعْدَ نَبِيِّنَا أَبُو بَكْرٍ الصِّدِّيقُ",
-   "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
-   "An isti'naf nominal clause — i'rabless.",
-   "İstinâfî isim cümlesi — mahalsizdir.")]})
+ "jumal": [J("لِأَنَّهُ يَظْهَرُ بِهَا أَنَّهُ وَلِيٌّ",
+   "الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنَّ» وَمَا بَعْدَهَا مَجْرُورٌ بِلَامِ التَّعْلِيلِ — تَعْلِيلٌ لِمَا قَبْلَهُ.",
+   "The masdar read out of «anna» and what follows it is in jarr after the lam of cause — it gives the reason for what came before.",
+   "«أَنَّ» ve sonrasından anlaşılan müevvel masdar, ta'lîl lâmıyla mecrûrdur — öncesinin sebebini bildirir.")]})
 
 S.append({"id": "s2", "translation": {
- "en": "then Umar al-Faruq, then Uthman Dhu al-Nurayn, then Ali al-Murtada.",
- "tr": "sonra Ömer el-Fârûk, sonra Osman Zü'n-nûreyn, sonra Ali el-Murtazâ."},
+ "en": "and he will never be a friend of Allah except that he be truthful in his religion;",
+ "tr": "ve o, dininde muhik olmadıkça asla velî olmaz;"},
  "tokens": [
-  tok("ثُمَّ","thumma","part",["atf-nasaq"],
-      "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ مَعَ التَّرَاخِي — وَهُوَ هُنَا مَوْضِعُ الدَّلَالَةِ عَلَى التَّرْتِيبِ فِي الْفَضْلِ.",
-      "A joining letter: in order, with an interval — and THAT is what carries the ranking here.",
-      "Tertîb ve terâhî bildiren atıf harfi — buradaki fazilet sıralamasını taşıyan odur."),
-  tok("عُمَرُ","umar","propn",["atf-nasaq","mamnu-min-sarf"],
-      "مَعْطُوفٌ عَلَى «أَبُو» مَرْفُوعٌ بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ — مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعَدْلِ عَنْ «عَامِر».",
-      "Joined to «Abu», in raf' by a damma with NO tanwin — a diptote: a proper name TURNED ASIDE from عَامِر.",
-      "«أَبُو»ya ma'tûf, tenvinsiz damme ile merfû — alemlik ve «عَامِر»den udûl sebebiyle gayr-i munsariftir."),
-  tok("الْفَارُوقُ","faruq","noun",["naat-sifa","sighat-mubalagha"],
-      "نَعْتٌ لِـ«عُمَرُ» مَرْفُوعٌ — صِيغَةُ مُبَالَغَةٍ عَلَى فَاعُولٍ، أَيِ الْفَارِقُ بَيْنَ الْحَقِّ وَالْبَاطِلِ.",
-      "A na't of «Umar», in raf' — an intensive on فَاعُول: the one who parts truth from falsehood.",
-      "«عُمَرُ»nun na'tı, merfû — fâ'ûl vezninde mübâlağa: hak ile bâtılı ayıran."),
-  tok("ثُمَّ","thumma","part",["atf-nasaq"],
-      "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ.",
-      "A joining letter of order.",
-      "Tertîb bildiren atıf harfi."),
-  tok("عُثْمَانُ","uthman","propn",["atf-nasaq","mamnu-min-sarf"],
-      "مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ مِنْ غَيْرِ تَنْوِينٍ — مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَزِيَادَةِ الْأَلِفِ وَالنُّونِ.",
-      "Joined, in raf' by a damma with no tanwin — a diptote: a proper name with the added alif and nun.",
-      "Ma'tûf, tenvinsiz damme ile merfû — alemlik ve elif-nûn ziyâdesi sebebiyle gayr-i munsarif."),
-  tok("ذُو","dhu","noun",["naat-sifa","five-nouns","idafa-definiteness"],
-      "نَعْتٌ لِـ«عُثْمَانُ» مَرْفُوعٌ بِالْوَاوِ — مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ وَلَا يُسْتَعْمَلُ إِلَّا مُضَافًا.",
-      "A na't of «Uthman», in raf' by the WAW — one of the five nouns, a mudaf, and it is NEVER used except as one.",
-      "«عُثْمَانُ»un na'tı, VÂV ile merfû — esmâ-i hamseden, muzâftır ve ancak muzâf olarak kullanılır."),
-  tok("النُّورَيْنِ","nur","noun",["idafa-definiteness","al-muthanna"],
-      "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ — مُثَنًّى ثَبَتَتْ نُونُهُ، لِأَنَّ النُّونَ إِنَّمَا تُحْذَفُ مِنَ الْمُضَافِ لَا مِنَ الْمُضَافِ إِلَيْهِ.",
-      "The mudaf ilayh, in jarr by the YA — a dual. Its nun STAYS: the nun drops from a dual that IS a mudaf, and this one is the mudaf ilayh.",
-      "Mecrûr muzâfun ileyh, cer alâmeti YÂ — tesniyedir. Nûnu DURUR: nûn, muzâf olan tesniyeden düşer; bu ise muzâfun ileyhtir."),
-  tok("ثُمَّ","thumma","part",["atf-nasaq"],
-      "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ.",
-      "A joining letter of order.",
-      "Tertîb bildiren atıf harfi."),
-  tok("عَلِيٌّ","ali","propn",["atf-nasaq"],
-      "مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ — وَهُوَ مُنَوَّنٌ، فَلَيْسَ فِيهِ مَا يَمْنَعُ الصَّرْفَ.",
-      "Joined, in raf' by the damma — and it KEEPS its tanwin: there is nothing in it to make it a diptote.",
-      "Ma'tûf, damme ile merfû — tenvinlidir; onda sarfı men edecek bir şey yoktur."),
-  tok("الْمُرْتَضَى","murtada","noun",["naat-sifa","ism-maful","form-viii-verbs","ism-maqsur-manqus"],
-      "نَعْتٌ لِـ«عَلِيٌّ» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ — اسْمُ مَفْعُولٍ مِنِ «ارْتَضَى» النَّاقِصِ.",
-      "A na't of «Ali», in raf' by a damma ESTIMATED on its alif — the ism maf'ul of the naqis اِرْتَضَى.",
-      "«عَلِيٌّ»un na'tı, elifi üzerinde takdîrî damme ile merfû — nâkıs «ارْتَضَى»nın ism-i mef'ûlü.", punct="."),
+  tok("وَلَنْ","lan","part",["mudari-marfu"],
+      "الْوَاوُ عَاطِفَةٌ، وَ«لَنْ» حَرْفُ نَفْيٍ وَنَصْبٍ وَاسْتِقْبَالٍ — تَنْفِي الْمُسْتَقْبَلَ نَفْيًا مُؤَكَّدًا.",
+      "Joining waw; «lan» negates, puts the verb in nasb, and throws it into the future — an emphatic never.",
+      "Atıf vâvı; «لَنْ» nefiy, nasb ve istikbâl harfidir — geleceği te'kidli olarak nefyeder.",
+      segments=[seg("وَ","wa","conj"), seg("لَنْ","lan","part")]),
+  tok("يَكُونَ","kana","verb",["kana-wa-akhawatuha","hollow-verbs"],
+      "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَنْصُوبٌ بِـ«لَنْ» وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَاسْمُهُ مُسْتَتِرٌ «هُوَ».",
+      "A defective mudari in nasb by «lan», the fatha its sign; its ism is hidden, «he».",
+      "«لَنْ» ile mansub nâkıs muzâri, alâmeti fetha; ismi müstetir «o»."),
+  tok("وَلِيًّا","wali","noun",["kana-wa-akhawatuha"],
+      "خَبَرُ «يَكُونَ» مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "The khabar of «he be», in nasb by the fatha.",
+      "«يَكُونَ»nin fetha ile mansub haberi."),
+  tok("إِلَّا","illa","part",["istithna"],
+      "أَدَاةُ اسْتِثْنَاءٍ — وَالِاسْتِثْنَاءُ هُنَا مُفَرَّغٌ، إِذْ سُبِقَتْ بِنَفْيٍ.",
+      "A particle of exception — and the exception is MUFARRAGH here, since a negation came first.",
+      "İstisnâ edatı — nefiy geçtiği için istisnâ mufarragdır."),
+  tok("وَأَنْ","an-masdariyya","part",["an-masdariyya","inna-am-anna"],
+      "الْوَاوُ زَائِدَةٌ لِلتَّأْكِيدِ، وَ«أَنْ» حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَهَمْزَتُهَا مَفْتُوحَةٌ سَاكِنَةُ النُّونِ، فَهِيَ الْمَصْدَرِيَّةُ لَا «أَنَّ».",
+      "The waw is extra, for emphasis; «an» is the masdar-maker that puts the verb in nasb — its nun is QUIESCENT, so this is the masdar an, not «anna».",
+      "Vâv te'kid için zâiddir; «أَنْ» nasbeden masdar harfidir — nûnu SÂKİNDİR, yani «أَنَّ» değil masdariyyedir.",
+      segments=[seg("وَ","wa","conj"), seg("أَنْ","an-masdariyya","part")]),
+  tok("يَكُونَ","kana","verb",["kana-wa-akhawatuha","hollow-verbs","an-masdariyya"],
+      "فِعْلٌ مُضَارِعٌ نَاقِصٌ مَنْصُوبٌ بِـ«أَنْ»، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ عَلَى الِاسْتِثْنَاءِ.",
+      "A defective mudari in nasb by «an»; the masdar read out of it stands in the position of nasb as the exception.",
+      "«أَنْ» ile mansub nâkıs muzâri; müevvel masdar, istisnâ üzere mahallen mansubdur."),
+  tok("مُحِقًّا","muhiqq","noun",["kana-wa-akhawatuha","ism-fail","form-iv-verbs","doubled-verbs"],
+      "خَبَرُ «يَكُونَ» مَنْصُوبٌ — اسْمُ فَاعِلٍ مِنْ «أَحَقَّ» الْمُضَاعَفِ، أَيْ صَاحِبُ حَقٍّ.",
+      "The khabar of «he be», in nasb — the ism fa'il of the doubled أَحَقَّ: one who holds the truth.",
+      "«يَكُونَ»nin mansub haberi — muzâaf «أَحَقَّ»nin ism-i fâili; hak sahibi."),
+  tok("فِي","fi","prep",["huruf-jarr"],
+      "حَرْفُ جَرٍّ.", "A jarr letter.", "Cer harfi."),
+  tok("دِيَانَتِهِ","diyana","noun",["huruf-jarr","idafa-definiteness"],
+      "مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "In jarr by the kasra and a mudaf; the ha is its mudaf ilayh.",
+      "Kesra ile mecrur ve muzâf; hâ muzâfun ileyhtir.",
+      segments=[seg("دِيَانَتِ","diyana","noun"), seg("هِ","pron-3ms","pron")], punct="،"),
  ],
- "jumal": [J("ثُمَّ عُمَرُ الْفَارُوقُ ثُمَّ عُثْمَانُ ذُو النُّورَيْنِ ثُمَّ عَلِيٌّ الْمُرْتَضَى",
-   "مَعْطُوفَاتٌ عَلَى الْخَبَرِ — لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ إِذْ لَيْسَتْ بِجُمَلٍ.",
-   "A chain joined to the khabar — not clauses, so no question of mahall arises.",
-   "Habere ma'tûflar — cümle olmadıkları için mahal söz konusu değildir.")]})
+ "jumal": [J("وَلَنْ يَكُونَ وَلِيًّا إِلَّا وَأَنْ يَكُونَ مُحِقًّا فِي دِيَانَتِهِ",
+   "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+   "A joined verbal clause — i'rabless.",
+   "Ma'tûf fiil cümlesi — mahalsizdir.")]})
 
 S.append({"id": "s3", "translation": {
- "en": "And their caliphate ran in this same order.",
- "tr": "Hilâfetleri de bu sıra üzeredir."},
+ "en": "and his religion is the profession of the messengership of His Messenger.",
+ "tr": "Dini ise, Resûlünün risâletini ikrar etmektir."},
  "tokens": [
-  tok("وَخِلَافَتُهُمْ","khilafa","noun",["mubtada-khabar","idafa-definiteness","masdar"],
-      "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«خِلَافَةُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
-      "Isti'naf waw; «their caliphate» is the mubtada in raf' and a mudaf; the ha is its mudaf ilayh.",
-      "İstinâf vâvı; «خِلَافَةُ» merfû mübtedâ ve muzâf; hâ muzâfun ileyhtir.",
-      segments=[seg("وَ","wa","conj"), seg("خِلَافَتُ","khilafa","noun"), seg("هُمْ","pron-3mp","pron")]),
-  tok("عَلَى","ala","prep",["huruf-jarr"],
-      "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ الْمُبْتَدَإِ.",
-      "A jarr letter; the phrase is the khabar of the mubtada.",
-      "Cer harfi; câr-mecrûr mübtedânın haberidir."),
-  tok("هَذَا","hadha","pron",["ism-mawsul","huruf-jarr"],
-      "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ بِـ«عَلَى».",
-      "A demonstrative, fixed, in the position of jarr after «ala».",
-      "İsm-i işâret — mebnî, «عَلَى» ile mahallen mecrûr."),
-  tok("التَّرْتِيبِ","tartib","noun",["badal","form-ii-verbs","masdar"],
-      "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ مَجْرُورٌ — مَصْدَرُ «رَتَّبَ»، وَالْبَدَلُ يَتْبَعُ الْمُبْدَلَ مِنْهُ فِي إِعْرَابِهِ.",
-      "A badal of the demonstrative, in jarr — the masdar of رَتَّبَ; a badal takes the case of what it replaces.",
-      "İsm-i işâretten mecrûr bedel — «رَتَّبَ»nin masdarı; bedel, mübdelün minhin i'râbına tâbi olur.", punct="."),
+  tok("وَدِيَانَتُهُ","diyana","noun",["mubtada-khabar","idafa-definiteness"],
+      "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«دِيَانَةُ» مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "Isti'naf waw; «his religion» is the mubtada in raf' and a mudaf; the ha is its mudaf ilayh.",
+      "İstinâf vâvı; «دِيَانَةُ» merfû mübtedâ ve muzâf; hâ muzâfun ileyhtir.",
+      segments=[seg("وَ","wa","conj"), seg("دِيَانَتُ","diyana","noun"), seg("هُ","pron-3ms","pron")]),
+  tok("الْإِقْرَارُ","iqrar","noun",["mubtada-khabar","form-iv-verbs","masdar"],
+      "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — مَصْدَرُ «أَقَرَّ» عَلَى إِفْعَالٍ.",
+      "The khabar in raf' by the damma — the masdar of أَقَرَّ on إِفْعَال.",
+      "Damme ile merfû haber — if'âl vezninde «أَقَرَّ» masdarı."),
+  tok("بِرِسَالَةِ","risala","noun",["huruf-jarr","idafa-definiteness"],
+      "الْبَاءُ حَرْفُ جَرٍّ، وَ«رِسَالَةِ» مَجْرُورٌ وَهُوَ مُضَافٌ، مُتَعَلِّقٌ بِـ«الْإِقْرَارُ».",
+      "The ba is a jarr letter; «messengership» is in jarr and a mudaf, attaching to «the profession».",
+      "Bâ cer harfi; «رِسَالَةِ» mecrur ve muzâf, «الْإِقْرَارُ»a taalluk eder.",
+      segments=[seg("بِ","bi","prep"), seg("رِسَالَةِ","risala","noun")]),
+  tok("رَسُولِهِ","rasul","noun",["idafa-definiteness"],
+      "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ ثَانٍ يَعُودُ عَلَى اللهِ.",
+      "The mudaf ilayh in jarr, itself a mudaf; the ha is a second mudaf ilayh, returning to Allah.",
+      "Mecrûr muzâfun ileyh, kendisi de muzâf; hâ, Allah'a dönen ikinci muzâfun ileyhtir.",
+      segments=[seg("رَسُولِ","rasul","noun"), seg("هِ","pron-3ms","pron")], punct="."),
  ],
- "jumal": [J("وَخِلَافَتُهُمْ عَلَى هَذَا التَّرْتِيبِ",
+ "jumal": [J("وَدِيَانَتُهُ الْإِقْرَارُ بِرِسَالَةِ رَسُولِهِ",
    "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
    "An isti'naf nominal clause — i'rabless.",
    "İstinâfî isim cümlesi — mahalsizdir.")]})
 
 GLOSS_ADD = {
- "abubakr": g("أَبُو بَكْرٍ", None, "propn", "Abu Bakr", "Ebû Bekir", 1),
- "siddiq":  g("صِدِّيق", "ص د ق", "noun", "the utterly truthful (intensive)", "sıddîk; pek doğru", 3),
- "umar":    g("عُمَرُ", None, "propn", "Umar", "Ömer", 1),
- "faruq":   g("فَارُوق", "ف ر ق", "noun", "the one who parts truth from falsehood", "fârûk; hak ile bâtılı ayıran", 3),
- "uthman":  g("عُثْمَانُ", None, "propn", "Uthman", "Osman", 1),
- "dhu":     g("ذُو", None, "noun", "possessor of (one of the five nouns)", "sahibi (esmâ-i hamseden)", 2),
- "nur":     g("نُور", "ن و ر", "noun", "light", "nûr; ışık", 1),
- "ali":     g("عَلِيّ", "ع ل و", "propn", "Ali", "Ali", 1),
- "murtada": g("الْمُرْتَضَى", "ر ض و", "noun", "the well-pleasing one (ism maf'ul, Form VIII)", "murtazâ; kendisinden razı olunan", 4),
- "khilafa": g("خِلَافَة", "خ ل ف", "noun", "caliphate, succession (masdar)", "hilâfet (masdar)", 3),
- "hadha":   g("هَذَا", None, "pron", "this (masc.)", "bu (eril)", 1),
- "tartib":  g("تَرْتِيب", "ر ت ب", "noun", "order, arrangement (masdar, Form II)", "tertîb; sıra (masdar)", 3),
+ "lan":    g("لَنْ", None, "part", "never (negates the future, governs nasb)", "asla (istikbâli nefyeder, nasbeder)", 2),
+ "muhiqq": g("مُحِقّ", "ح ق ق", "noun", "one who holds the truth", "muhik; hak sahibi", 4),
+ "diyana": g("دِيَانَة", "د ي ن", "noun", "religion, religious profession", "diyânet; din", 3),
+ "iqrar":  g("إِقْرَار", "ق ر ر", "noun", "profession, acknowledgement (masdar, Form IV)", "ikrâr (masdar)", 3),
+ "risala": g("رِسَالَة", "ر س ل", "noun", "messengership", "risâlet; elçilik", 3),
 }
 
 man = json.loads((PKG / "manifest.json").read_text(encoding="utf-8"))
 (PKG / "chapters/16.json").write_text(json.dumps({"chapter": 16, "sentences": S}, ensure_ascii=False, indent=1), encoding="utf-8")
 if not any(c["n"] == 16 for c in man["chapters"]):
     man["chapters"].append({"n": 16, "title": TITLE16})
-man["chapters"].sort(key=lambda c: c["n"]); man["version"] = "0.14.0"
-NOTE = ("Ch16 divergence: the supplied transcription reads «عثمان ذي النورين» with "
-        "the epithet in jarr; عُثْمَانُ stands in a marfu' chain of ma'tufat, so the "
-        "received grammatical wording ذُو النُّورَيْنِ is used here.")
-for lang in ("en", "tr"):
-    if NOTE not in man["attribution"].get(lang, ""):
-        man["attribution"][lang] = man["attribution"].get(lang, "") + " " + NOTE
+man["chapters"].sort(key=lambda c: c["n"])
 (PKG / "manifest.json").write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
 gl = json.loads((PKG / "glossary.json").read_text(encoding="utf-8")); gl["entries"].update(GLOSS_ADD)
 (PKG / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -180,6 +180,27 @@ about.
 **Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
 ground. Only ever holds a sentence explaining why *your* answer fails.
 
+**Verdict stack** — `.vlist` / `.vrow`: one card per word, replacing the
+analyzer's table. A table of i'rab needs a sideways scroll on a phone, and an
+i'rab you must scroll sideways to read is one you do not read; the smoke suite
+asserts no card overflows its own width at 390×844. Inside a card the order is
+always the same, and it is the order a hoca speaks in: the word (`--t-xl`,
+RTL, with its segmentation beside it), then the lemma and its gloss, then the
+chips that place it (root, wazn, and `guess` when the surface only inferred),
+then the ruling in prose, then the badges that say HOW the ruling was reached.
+
+The 4px rail on the inline-start carries **certainty**, and it is the one
+thing you can read from across the room: `--accent` when the engines settled
+it, `--lvl3` when they guessed. It is never the only signal — the guessed
+cards also carry the word for it in a chip.
+
+**Reading block** — `.vread`: `--accent` border on `--accent-soft`, always
+last, always after the verdicts. It holds what the sentence comes out
+*meaning* — the thing the learner came for — and beneath it, in `.vnote`, why
+the meaning comes out that way. It appears only when the engine can name the
+structure; there is no empty state, because a half-guessed translation teaches
+worse than none.
+
 ---
 
 ## 4. Theme

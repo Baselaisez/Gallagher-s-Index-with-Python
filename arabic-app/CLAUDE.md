@@ -112,6 +112,45 @@ all understand the flag. The sarf tab offers only the tenses present, and
 `muhtelife()` additionally requires a non-empty amr (the table has an
 imperative row), so no drill, verb card or game ever picks one.
 
+**An imperative on a sukun is MABNI, never majzum.** The app read `أُكْتُبْ` as
+"jazm by sukun" — a reader caught it. There is no jazm without a jazim, and no
+jazim is present; the sukun is the *bina* of the amr. `IrabSign` discriminates
+on the OPENING vowel, not on the ending: `[اٱأإ][ُِ]` with a bare stem of three
+or more is an amr, so `لَمْ أَكْتُبْ` (fatha on the prefix) stays majzum. Its
+hamza is written as a WASL: `اُكْتُبْ`, not `أُكْتُبْ`, and the app says so.
+
+**A mizan is not the name of a bab.** It is the word with its root letters
+stood in ف ع ل and everything else left exactly where it is — augments,
+sukuns, harakat, the ta marbuta. That is mechanical, so `WaznEngine.mizan()`
+computes it rather than looking it up: قَادِرٌ → فَاعِلٌ, مُسْتَغْفِرٌ →
+مُسْتَفْعِلٌ, مَكْتُوبَة → مَفْعُولَة. Before this a noun borrowed a verb's bab
+and قَادِرٌ came out as فَاعَلَ. It declines where it cannot be sure: a weak
+root whose letter has been turned no longer stands in the word (قَالَ shows no
+و — that is the IlalEngine's business), and any surviving letter outside
+سَأَلْتُمُونِيهَا plus the ta kills the scan. **A word wearing ال, tanwin or the
+ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
+a verb pattern standing over a noun.**
+
+**اللَّه is an ALAM and is answered lexically.** Left to the general machinery
+the commonest word in a creed text came apart as «ال + له + ه» — the article
+peeled, the radical ha called an attached pronoun and a mudaf ilayh, a root
+ل ل ه invented from the wreckage, and أَفْعَلَ hung on it. `SentenceAnalyzer.JALALA`
+short-circuits all of it. **إِلَه is NOT in that set**: it is the common noun,
+with a real root (أ ل ه) and a real wazn, and must keep going through the rules.
+
+**لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ.** A noun already made definite by ال
+cannot also be a mudaf, so a pronoun-shaped tail on an ال-word is a root
+letter. The enclitic peel is blocked there — and the block is *stated* in the
+notes, because the rule is the reason the reading is refused.
+
+**The reading is the last thing said, and it is assembled, never invented.**
+`ReadingEngine` fills every slot with a gloss the glossary owns or the Arabic
+word itself; only the joining tissue (-dığını, «that …») is supplied, and that
+comes from the syntax. It answers for structures it can name and is otherwise
+**silent** — a half-guessed translation teaches worse than none. Turkish
+genitive is by vowel harmony off the last vowel; an Arabic word standing in for
+a missing gloss falls back on -ın.
+
 **Passive by wazn, not by letter count.** Form II verbs with three bare letters
 (وَدَّعَ, عَلَّمَ) fell through to the Form I branch and produced *وُدِعَ. Match the
 `wazn` regex first.

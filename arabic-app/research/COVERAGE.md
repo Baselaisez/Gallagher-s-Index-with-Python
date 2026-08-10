@@ -107,6 +107,15 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
 
 ---
 
+### Known gap — hamza carriers in a rules-derived root
+
+`RootFinder`'s rules path spells the first radical from the surface carrier, so
+إِلَه reads back as إ ل ه where the books write أ ل ه. Corpus-backed words are
+unaffected (the glossary stores the root). The fix is a carrier normalisation
+(إ ٱ آ → أ) inside the rules path only — but root strings are keys into notes,
+games and the glossary, so it needs a sweep of every consumer before it moves,
+not a one-line change.
+
 ### Deferred / not backlogged (blocked on upstream work, not buildable today)
 
 - **`alaqat-al-majaz-balagha.txt`** — re-extract from the original .doc/.pdf; nothing is recoverable from the current bytes.
@@ -185,3 +194,21 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   measured too and buy under a point, so forty-five is where it stops paying.
   Aqaid reaches chapter 16 — the best of mankind and the order of the
   caliphate, with the ذُو النُّورَيْنِ divergence recorded in the attribution.
+- **v92** — three rulings a reader caught, and the engines behind them. An
+  imperative on a sukun is now MABNI rather than "jazm by sukun" (there is no
+  jazm without a jazim), discriminated on the opening vowel so `لَمْ أَكْتُبْ`
+  stays majzum; the hamza is corrected to the wasl spelling `اُكْتُبْ`. The
+  MIZAN is computed rather than looked up — the root letters stand in ف ع ل and
+  everything else stays put — so قَادِرٌ is فَاعِلٌ and no longer borrows Form
+  III's past. اللَّه is answered as an ALAM, ending a reading that peeled its
+  lam as the article and called its radical ha a mudaf ilayh; the rule that
+  refuses that peel (لا يجتمع الألف واللام والإضافة) is now stated out loud in
+  the notes wherever it fires. The `ReadingEngine` says, last, what the
+  sentence comes out meaning — assembled from settled glosses and the syntax,
+  silent where it cannot name the structure. The analyzer's verdicts became
+  CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v93** — a chapter-order defect: ch15 stopped before «لِأَنَّهُ يَظْهَرُ بِهَا
+  أَنَّهُ وَلِيٌّ» and the caliphs chapter resumed after it, skipping the passage
+  that explains WHY a karama proves a messenger. That passage is now chapter
+  16 in its own right and the caliphs moved to 17. Found, as twice before, by
+  writing the next chapter — the seam between chapters is where skips hide.
