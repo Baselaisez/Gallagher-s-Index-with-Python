@@ -174,14 +174,13 @@
   },
   "ma": {
    "lemma": "مَاء",
-   "root": "م و ه",
    "pos": "noun",
-   "plural": "مِيَاه",
    "gloss": {
     "en": "water",
     "tr": "su"
    },
-   "level": 1
+   "level": 1,
+   "root": "م و ه"
   },
   "abyad": {
    "lemma": "أَبْيَض",
@@ -423,12 +422,12 @@
   },
   "inda": {
    "lemma": "عِنْدَ",
-   "pos": "adv",
+   "pos": "noun",
    "gloss": {
-    "en": "with, in the view of",
-    "tr": "yanında, -e göre"
+    "en": "at, with (adverb of place and time)",
+    "tr": "yanında; -dığı zaman (zarf)"
    },
-   "level": 2
+   "level": 1
   },
   "qabl": {
    "lemma": "قَبْلَ",
@@ -800,12 +799,11 @@
    "lemma": "طَرِيق",
    "pos": "noun",
    "gloss": {
-    "en": "way, path",
-    "tr": "yol, tarîk"
+    "en": "way, road",
+    "tr": "yol; tarîk"
    },
    "level": 2,
-   "root": "ط ر ق",
-   "plural": "طُرُق"
+   "root": "ط ر ق"
   },
   "fayd": {
    "lemma": "فَيْض",
@@ -3000,6 +2998,187 @@
    },
    "level": 2,
    "root": "ش خ ص"
+  },
+  "thumma": {
+   "lemma": "ثُمَّ",
+   "pos": "part",
+   "gloss": {
+    "en": "then (in order, after an interval)",
+    "tr": "sonra (tertîb ve terâhî)"
+   },
+   "level": 1
+  },
+  "ula": {
+   "lemma": "الْعُلَى",
+   "pos": "noun",
+   "gloss": {
+    "en": "the heights (pl. of al-ulya)",
+    "tr": "yüce makamlar (el-ulyâ'nın cem'i)"
+   },
+   "level": 4,
+   "root": "ع ل و"
+  },
+  "karama": {
+   "lemma": "كَرَامَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a karama — an honour breaking custom",
+    "tr": "kerâmet"
+   },
+   "level": 3,
+   "root": "ك ر م",
+   "plural": "كَرَامَات"
+  },
+  "wali": {
+   "lemma": "وَلِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "a friend of Allah",
+    "tr": "velî"
+   },
+   "level": 3,
+   "root": "و ل ي",
+   "plural": "أَوْلِيَاء"
+  },
+  "zahara": {
+   "lemma": "ظَهَرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to appear, become manifest",
+    "tr": "zâhir olmak"
+   },
+   "level": 2,
+   "root": "ظ ه ر"
+  },
+  "naqd": {
+   "lemma": "نَقْض",
+   "pos": "noun",
+   "gloss": {
+    "en": "breaking, undoing (masdar)",
+    "tr": "nakz; bozma (masdar)"
+   },
+   "level": 4,
+   "root": "ن ق ض"
+  },
+  "qat": {
+   "lemma": "قَطْع",
+   "pos": "noun",
+   "gloss": {
+    "en": "cutting, crossing (masdar)",
+    "tr": "kat'; kesme (masdar)"
+   },
+   "level": 3,
+   "root": "ق ط ع"
+  },
+  "masafa": {
+   "lemma": "مَسَافَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "distance",
+    "tr": "mesafe"
+   },
+   "level": 2,
+   "root": "س و ف"
+  },
+  "baid": {
+   "lemma": "بَعِيد",
+   "pos": "noun",
+   "gloss": {
+    "en": "far, distant",
+    "tr": "uzak; baîd"
+   },
+   "level": 2,
+   "root": "ب ع د"
+  },
+  "mudda": {
+   "lemma": "مُدَّة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a span of time",
+    "tr": "müddet"
+   },
+   "level": 2,
+   "root": "م د د"
+  },
+  "qalil": {
+   "lemma": "قَلِيل",
+   "pos": "noun",
+   "gloss": {
+    "en": "few, little, short",
+    "tr": "az; kalîl"
+   },
+   "level": 2,
+   "root": "ق ل ل"
+  },
+  "zuhur": {
+   "lemma": "ظُهُور",
+   "pos": "noun",
+   "gloss": {
+    "en": "appearing (masdar)",
+    "tr": "zuhûr (masdar)"
+   },
+   "level": 3,
+   "root": "ظ ه ر"
+  },
+  "taam": {
+   "lemma": "طَعَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "food",
+    "tr": "yiyecek; taâm"
+   },
+   "level": 1,
+   "root": "ط ع م"
+  },
+  "sharab": {
+   "lemma": "شَرَاب",
+   "pos": "noun",
+   "gloss": {
+    "en": "drink",
+    "tr": "içecek; şarâb"
+   },
+   "level": 1,
+   "root": "ش ر ب"
+  },
+  "libas": {
+   "lemma": "لِبَاس",
+   "pos": "noun",
+   "gloss": {
+    "en": "clothing",
+    "tr": "giyecek; libâs"
+   },
+   "level": 2,
+   "root": "ل ب س"
+  },
+  "haja": {
+   "lemma": "حَاجَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "need",
+    "tr": "ihtiyaç; hâcet"
+   },
+   "level": 2,
+   "root": "ح و ج"
+  },
+  "mashy": {
+   "lemma": "مَشْي",
+   "pos": "noun",
+   "gloss": {
+    "en": "walking (masdar)",
+    "tr": "yürüme (masdar)"
+   },
+   "level": 3,
+   "root": "م ش ي"
+  },
+  "hawa": {
+   "lemma": "هَوَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "air",
+    "tr": "hava"
+   },
+   "level": 2,
+   "root": "ه و ي"
   }
  }
 }

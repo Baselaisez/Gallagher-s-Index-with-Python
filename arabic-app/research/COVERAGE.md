@@ -166,3 +166,9 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   previous-role feature, and complement/Bernoulli estimators — were measured
   and rejected; they are recorded in CLAUDE.md so the same ground is not
   re-walked.
+- **v89** — the GrammarKernel gives nine rule engines one entry point, with
+  every finding declaring whether it is known by rule, from the corpus, or as
+  a model guess, and with the undecidable listed out loud. Aqaid reaches
+  chapter 14 (the karamat of the awliya, stopping early inside the matn's
+  enumeration), and a mid-span skip in chapter 13's mi'raj sentence — «ثم إلى
+  ما شاء الله تعالى من العلى» — was found and restored.

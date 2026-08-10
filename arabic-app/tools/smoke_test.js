@@ -4018,6 +4018,66 @@ if (!CHROME) {
     if (r.plainOut !== r.want.plain) throw new Error('قَائِلٌ regressed: ' + r.plainOut);
   });
 
+  // Nine engines, one door. What the kernel may say is the point of it: each
+  // finding declares HOW it is known, a silent engine says nothing rather than
+  // shrugging, and what nothing settled is stated out loud.
+  await check('the grammar kernel routes to every engine and owns up to what it cannot decide', async () => {
+    const r = await page.evaluate(() => {
+      renderLibrary();
+      const shot = t => { const x = GrammarKernel.ask(t); return x && {
+        mode: x.mode, keys: x.findings.map(f => f.k), hows: [...new Set(x.findings.map(f => f.how))],
+        miss: x.undecided.length,
+        allRows: x.findings.every(f => f.rows.length && f.rows.every(row => row[0])) }; };
+      return {
+        verb:   shot('قَالَ'),
+        asl:    shot('مَقْوُولٌ'),
+        call:   shot('يَا عَبْدَ اللهِ'),
+        free:   shot('لم يكتبِ الطالبُ في الدفترِ'),
+        stored: shot('وَالْمَلَائِكَةُ عِبَادُ اللهِ'),
+        empty:  GrammarKernel.ask('   '),
+        hows:   Object.keys(GrammarKernel.HOW),
+      };
+    });
+    if (r.empty !== null) throw new Error('empty input must answer nothing, not a shrug');
+    if (r.hows.join() !== 'rule,corpus,model') throw new Error('the three ways of knowing: ' + r.hows);
+    if (r.verb.mode !== 'word' || r.call.mode !== 'phrase')
+      throw new Error('word/phrase routing is wrong');
+    // a known corpus verb reaches the lexicon AND the declension engine
+    for (const k of ['lex', 'irab', 'wazn'])
+      if (!r.verb.keys.includes(k)) throw new Error('قَالَ missed the ' + k + ' engine: ' + r.verb.keys);
+    // an underlying form must reach the i'lal rules
+    if (!r.asl.keys.includes('ilal')) throw new Error('مَقْوُولٌ missed the i\'lal engine');
+    // a corpus sentence must show the HAND analysis and its government
+    for (const k of ['stored', 'amil'])
+      if (!r.stored.keys.includes(k)) throw new Error('a corpus sentence missed ' + k);
+    // free text must NOT claim a stored i'rab, and must say so
+    if (r.free.keys.includes('stored')) throw new Error('free text must not claim a corpus i\'rab');
+    if (!r.free.miss) throw new Error('free text must own up to what it cannot settle');
+    // a guess must be badged as a guess, never as a rule
+    if (r.free.keys.includes('guess') && !r.free.hows.includes('model'))
+      throw new Error('an inferred row must wear the model badge');
+    for (const k of Object.keys(r)) {
+      if (k === 'empty' || k === 'hows') continue;
+      if (!r[k].allRows) throw new Error(k + ': a finding shipped an empty row');
+    }
+
+    await page.evaluate(() => { conjState.lab = 'kernel'; conjState.kernel = 'يَا عَبْدَ اللهِ'; });
+    await page.locator('#conjOpen').click();
+    await page.waitForSelector('#kernOut', { timeout: 3000 });
+    await page.waitForTimeout(260);
+    const ui = await page.evaluate(() => {
+      const cards = document.querySelectorAll('#kernOut .kn-card').length;
+      const badges = [...document.querySelectorAll('#kernOut .kn-how')].length;
+      conjState.kernel = 'لم يكتبِ الطالبُ في الدفترِ'; renderKernelOut();
+      const openBox = document.querySelectorAll('#kernOut .kn-open').length;
+      conjState.lab = 'sarf'; closeSheet();
+      return { cards, badges, openBox };
+    });
+    if (ui.cards < 2) throw new Error('the panel showed ' + ui.cards + ' cards');
+    if (ui.badges !== ui.cards) throw new Error('every finding must wear a how-badge');
+    if (!ui.openBox) throw new Error('free text must render the what-cannot-be-settled box');
+  });
+
   await check('the I\'lal Lab shows the origin, the outcome and every rule between', async () => {
     await page.evaluate(() => { conjState.lab = 'ilal'; conjState.ilalRoot = 'كيل'; conjState.ilalShape = 'maful'; });
     await page.locator('#conjOpen').click();

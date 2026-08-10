@@ -657,8 +657,8 @@
   {
    "id": "s5",
    "translation": {
-    "en": "And the ascension of the Messenger of Allah — upon him be prayer and peace — while awake and in his own person, to the heaven, is true.",
-    "tr": "Allah Resûlü'nün — aleyhi's-salâtü ve's-selâm — uyanık hâlde ve bizzat bedeniyle semâya mi'râcı haktır."
+    "en": "And the ascension of the Messenger of Allah — upon him be prayer and peace — while awake and in his own person, to the heaven, then to whatever of the heights Allah the Exalted willed, is true.",
+    "tr": "Allah Resûlü'nün — aleyhi's-salâtü ve's-selâm — uyanık hâlde ve bizzat bedeniyle semâya, sonra Allah Teâlâ'nın dilediği yüce makamlara mi'râcı haktır."
    },
    "tokens": [
     {
@@ -917,6 +917,146 @@
       "ar": "مَجْرُورٌ بِالْكَسْرَةِ.",
       "en": "In jarr by the kasra.",
       "tr": "Kesra ile mecrurdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "ثُمَّ",
+      "smart": "ثُمَّ",
+      "bare": "ثم"
+     },
+     "lex": "thumma",
+     "pos": "part",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ مَعَ التَّرَاخِي.",
+      "en": "A joining letter: in order, and with an interval between.",
+      "tr": "Tertîb ve terâhî bildiren atıf harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى الْجَارِّ وَالْمَجْرُورِ قَبْلَهُ.",
+      "en": "Joined to the preceding jarr phrase.",
+      "tr": "Öncesindeki câr-mecrûra ma'tûftur."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "anwa-ma"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ بِـ«إِلَى».",
+      "en": "A relative noun, fixed, in the position of jarr after «ila».",
+      "tr": "İsm-i mevsûl — mebnî, «إِلَى» ile mahallen mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَاءَ",
+      "smart": "شَاءَ",
+      "bare": "شاء"
+     },
+     "lex": "shaa",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا.",
+      "en": "A past verb; the clause is the sila — i'rabless.",
+      "tr": "Mâzî fiil; cümle sıladır, mahalsizdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهُ",
+      "smart": "اللهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The majestic name, the fa'il in raf'.",
+      "tr": "Lafza-i celâl — merfû fâildir."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَعَالَى",
+      "smart": "تَعَالَى",
+      "bare": "تعالى"
+     },
+     "lex": "taala",
+     "pos": "verb",
+     "grammar": [
+      "jumla-mutarida",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالْجُمْلَةُ مُعْتَرِضَةٌ لِلتَّعْظِيمِ.",
+      "en": "A past verb; a parenthetic clause of exaltation.",
+      "tr": "Mâzî fiil; ta'zîm için mu'terizadır."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ لِلْبَيَانِ.",
+      "en": "A jarr letter of explication.",
+      "tr": "Beyan için cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعُلَى",
+      "smart": "الْعُلَى",
+      "bare": "العلى"
+     },
+     "lex": "ula",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ — مَقْصُورٌ، جَمْعُ «الْعُلْيَا».",
+      "en": "In jarr by a kasra ESTIMATED on its alif — a maqsur noun, the plural of الْعُلْيَا.",
+      "tr": "Elifi üzerinde takdîrî kesra ile mecrur — maksûr; «الْعُلْيَا»nın cem'i."
      }
     },
     {

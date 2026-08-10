@@ -1069,6 +1069,26 @@ strip matches `deckStats()` exactly, and the phone layout is exercised at
 390×844. A literal `padding: .9rem` in a new rule is a bug even when it
 looks right.
 
+**`GrammarKernel` is one door for nine engines.** `ask(text)` routes a word to
+the form engines (lexicon, `IrabSign`, `WaznEngine`/`RootFinder`, `IsmEngine`,
+`IlalEngine`) and a phrase to the sentence engines (`NidaEngine`, `MaEngine`,
+the corpus's own i'rab plus `AmilEngine`, else `SentenceAnalyzer`). Three
+rules make it worth having, and they are what a grammar kernel IS:
+
+1. **Every finding declares HOW it is known** — `rule` (an engine derived it),
+   `corpus` (a human wrote it down) or `model` (a statistical guess, badged).
+   A guess that renders like a rule is the one failure mode that matters.
+2. **A silent engine says nothing.** No "could not determine" rows; if an
+   engine did not decide, it is simply absent.
+3. **What nothing settled is stated OUT LOUD**, last and visibly. The boundary
+   of the automatable is itself a thing worth teaching — meaning is never
+   derivable, an unvowelled ending cannot be read, and no rule settles every
+   word of open text.
+
+**It is not a language model and must not be sold as one.** It is the
+deterministic core such a model would need underneath it: everything in Arabic
+that is genuinely derivable, derived, with the honest edges marked.
+
 **`AmilEngine` reads the government out of the i'rab, it does not store it.**
 Every stored i'rab line already says what a word IS; nothing says which word
 GOVERNS which, and nothing needs to. `AmilEngine.pairs(sen)` walks the

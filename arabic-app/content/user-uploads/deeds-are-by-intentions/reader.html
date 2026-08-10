@@ -688,6 +688,29 @@
   .tabs [data-lab="jumla"]::before { content: "🧠"; }
   .tabs [data-lab="nida"]::before  { content: "📣"; }
   .tabs [data-lab="ilal"]::before  { content: "🧪"; }
+  .tabs [data-lab="kernel"]::before { content: "🜂"; }
+  /* the kernel: one card per engine that answered, and one for what none did */
+  .kn-mode { font-size: var(--t-xs); letter-spacing: var(--track-caps); text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 700; margin: var(--s2) 0; }
+  .kn-card { border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s3);
+    margin-bottom: var(--s2); background: var(--panel); }
+  .kn-card header { display: flex; align-items: baseline; gap: var(--s2); flex-wrap: wrap;
+    margin-bottom: var(--s2); }
+  .kn-card .kn-t { font-family: var(--ar-font); font-size: var(--t-lg); direction: rtl; }
+  .kn-card .kn-t2 { font-size: var(--t-sm); color: var(--ink-soft); }
+  .kn-how { margin-inline-start: auto; font-family: var(--ar-font); font-size: var(--t-sm);
+    border: 1px solid var(--line); border-radius: var(--r-full); padding: 1px var(--s2);
+    display: inline-flex; align-items: baseline; gap: var(--s1); }
+  .kn-how small { font-family: var(--ui-font); font-size: var(--t-xs); opacity: .7; }
+  .kn-rule { border-color: var(--accent); color: var(--accent); }
+  .kn-corpus { border-color: var(--ok); color: var(--ok); }
+  .kn-model { border-color: var(--lvl3); color: var(--lvl3); }
+  .kn-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+  .kn-card li { display: grid; gap: 2px; }
+  .kn-card li b { font-family: var(--ar-font); font-size: var(--t-lg); direction: rtl; font-weight: 400; }
+  .kn-card .kn-g { font-size: var(--t-sm); color: var(--ink-soft); line-height: var(--lh-body); }
+  .kn-open { border-inline-start: 3px solid var(--lvl3); }
+
   /* the I'lal Lab: origin and outcome first, then the rules that got there */
   .ilal-flow { display: flex; align-items: center; gap: .8rem; justify-content: center;
     flex-wrap: wrap; margin: .8rem 0; padding: .8rem; border: 1px solid var(--line);
@@ -1498,6 +1521,13 @@ const L = {
         scopeEmpty:"This story has nothing to draw on for that game yet. Close it to play from the whole library.",
         nav_library:"Library", nav_deck:"Deck", nav_games:"Games",
         nav_atolye:"Atölye", nav_progress:"Progress",
+        kernelTab:"Kernel",
+        kernelIntro:"One door for all of them. Type a word or a phrase and every engine that can decide something about it answers — root and measure, how it declines, what the i'lal rules do, which «ma» this is, the call, the government. Each answer says HOW it is known: by rule, from the corpus, or as a guess. What nothing could settle is listed at the end, because the edge of the derivable is worth seeing.",
+        kernelPh:"يَا عَبْدَ اللهِ",
+        kernelWord:"One word — the form engines answer",
+        kernelPhrase:"More than one word — the sentence engines answer",
+        kernelNone:"No engine can decide anything here. That is an answer too.",
+        kernelOpen:"What no rule settles",
         ilalTab:"I'lal", ilalAsl:"Its origin", ilalOutLbl:"What is said",
         ilalBlocked:"The rules stand down here",
         ilalByRule:"Refused by a RULE — derivable, so it is coded.",
@@ -1655,6 +1685,13 @@ const L = {
         scopeEmpty:"Bu hikâyede o oyuna yetecek malzeme henüz yok. Kütüphaneden oynamak için hikâyeyi kapatın.",
         nav_library:"Kütüphane", nav_deck:"Deste", nav_games:"Oyunlar",
         nav_atolye:"Atölye", nav_progress:"İlerleme",
+        kernelTab:"Çekirdek",
+        kernelIntro:"Hepsi için tek kapı. Bir kelime yahut bir ibâre yazın; hakkında bir şey tayin edebilen her motor cevap versin — kök ve vezin, nasıl i'râb aldığı, i'lâl kaidelerinin ona ne yaptığı, bunun hangi «mâ» olduğu, nidâ, âmil-ma'mûl. Her cevap NASIL bilindiğini söyler: kaide ile, külliyattan, yahut tahmin olarak. Hiçbirinin tayin edemediği şey sona yazılır; zira türetilebilirin sınırı görülmeye değer.",
+        kernelPh:"يَا عَبْدَ اللهِ",
+        kernelWord:"Tek kelime — sûret motorları cevap veriyor",
+        kernelPhrase:"Birden fazla kelime — cümle motorları cevap veriyor",
+        kernelNone:"Burada hiçbir motor bir şey tayin edemiyor. Bu da bir cevaptır.",
+        kernelOpen:"Hiçbir kaidenin tayin etmediği",
         ilalTab:"İ'lâl", ilalAsl:"Aslı", ilalOutLbl:"Söylenen",
         ilalBlocked:"Kaideler burada işlemez",
         ilalByRule:"KAİDE ile reddedilir — türetilebilir olduğu için kodlanmıştır.",
@@ -5663,7 +5700,8 @@ let conjState = { root: "نصر", form: "I", bab: 1, rubai: "R1", known: null,
                   mizan: "يستعملون", ism: "مدينة",
                   jumla: "لم يكتبِ الطالبُ في الدفترِ",
                   nida: "يَا عَبْدَ اللهِ",
-                  ilalRoot: "قول", ilalShape: "maful" };
+                  ilalRoot: "قول", ilalShape: "maful",
+                  kernel: "يَا عَبْدَ اللهِ" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -5961,6 +5999,32 @@ function renderJumlaOut(){
   h += `</tbody></table></div><p class="sarf-note">${ui().jumlaHonest}</p>`;
   out.innerHTML = h;
 }
+// The kernel panel. It lays out whatever the engines could settle, each row
+// wearing HOW it is known, and then — deliberately last and deliberately
+// visible — what none of them could decide.
+function renderKernelOut(){
+  const out = document.getElementById("kernOut");
+  if (!out) return;
+  const E = escapeAttr;
+  const r = GrammarKernel.ask(conjState.kernel || "");
+  if (!r) { out.innerHTML = ""; return; }
+  const badge = how => `<span class="kn-how kn-${how}">${GrammarKernel.HOW[how].ar}
+    <small>${T(GrammarKernel.HOW[how])}</small></span>`;
+  let h = `<div class="kn-mode">${r.mode === "word" ? ui().kernelWord : ui().kernelPhrase}</div>`;
+  h += r.findings.map(f => `<section class="kn-card">
+      <header><span class="kn-t" lang="ar">${f.title.ar}</span>
+        <span class="kn-t2">${T(f.title)}</span>${badge(f.how)}</header>
+      <ul>${f.rows.map(row => `<li><b lang="ar">${E(String(row[0]))}</b>${
+        row[1] ? `<span class="kn-g">${E(String(row[1]))}</span>` : ""}</li>`).join("")}</ul>
+    </section>`).join("");
+  if (!r.findings.length) h += `<p class="empty">${ui().kernelNone}</p>`;
+  if (r.undecided.length) h += `<section class="kn-card kn-open">
+      <header><span class="kn-t" lang="ar">مَا لَا يُقْطَعُ بِهِ</span>
+        <span class="kn-t2">${ui().kernelOpen}</span></header>
+      <ul>${r.undecided.map(u => `<li><b lang="ar">${u.ar}</b><span class="kn-g">${T(u)}</span></li>`).join("")}</ul>
+    </section>`;
+  out.innerHTML = h;
+}
 // The I'lal Lab. The root and the wazn make an ASL; the rule engine does the
 // rest, and every firing is shown with the rule that fired it — the chain a
 // Maksud student recites. A root that needs no i'lal shows an empty chain and
@@ -6148,6 +6212,18 @@ function renderLabBody(){
     renderJumlaOut();
     return;
   }
+  if (conjState.lab === "kernel") {
+    body.innerHTML = `<p class="ref-intro">${ui().kernelIntro}</p>
+      <div class="conj-lab">
+        <input id="kernIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().kernelPh)}" value="${escapeAttr(conjState.kernel)}">
+      </div>
+      <div id="kernOut"></div>`;
+    const inp = document.getElementById("kernIn");
+    inp.addEventListener("input", debounced(() => { conjState.kernel = inp.value; renderKernelOut(); }));
+    renderKernelOut();
+    return;
+  }
   if (conjState.lab === "ilal") {
     body.innerHTML = `<p class="ref-intro">${ui().ilalIntro}</p>
       <div class="conj-lab">
@@ -6279,6 +6355,7 @@ function openConjugator(){
       <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
       <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
+      <button data-lab="kernel" class="${conjState.lab === "kernel" ? "on" : ""}">${arSpan("نَوَاة")} ${ui().kernelTab}</button>
     </div>
     <div id="labBody"></div>`;
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
@@ -8054,6 +8131,139 @@ function renderDeck(){
 
 // ---------- games ----------
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+// ---------- the grammar kernel ------------------------------------------
+// Nine rule engines had grown up in this file, each excellent at one chapter
+// and each with its own front door. A learner with a word in hand should not
+// have to know which door to knock on, so the kernel knocks on all of them
+// and reports back.
+//
+// Three rules govern what it may say, and they are the point of the thing.
+// (1) Every finding declares HOW it is known: by RULE (an engine derived it),
+// from the CORPUS (a human wrote it down), or by the MODEL (a statistical
+// guess, always badged). (2) A finding is only shown when its engine actually
+// decided something — silence beats a shrug dressed as an answer. (3) What
+// nothing could decide is listed OUT LOUD, because the boundary of the
+// automatable is itself a thing worth teaching.
+//
+// This is not a language model. It is the deterministic core one would need
+// underneath it: everything in Arabic that is genuinely derivable, derived.
+class GrammarKernel {
+  static HOW = {
+    rule:   { ar: "بِالْقَاعِدَةِ", en: "by rule", tr: "kaide ile" },
+    corpus: { ar: "مِنَ الْمُدَوَّنَةِ", en: "from the corpus", tr: "külliyattan" },
+    model:  { ar: "تَخْمِينٌ", en: "a guess", tr: "tahmin" },
+  };
+  static words(text){
+    return (text || "").normalize("NFC").split(/[\s،.؛:!؟]+/).filter(w => stripAr(w).replace(/[^ء-ي]/g, ""));
+  }
+  static ask(text){
+    const ws = this.words(text);
+    if (!ws.length) return null;
+    return ws.length === 1 ? this.askWord(ws[0]) : this.askPhrase(ws, text);
+  }
+  // ---- one word: every engine that can say something about a single form
+  static askWord(w){
+    const F = [], miss = [];
+    const add = (k, how, title, rows) => F.push({ k, how, title, rows });
+    const bare = stripAr(w).replace(/[^ء-ي]/g, "");
+
+    // what the corpus already knows outranks anything derived
+    const lex = Object.entries(gameGlossary()).find(([, e]) =>
+      e.lemma && stripAr(e.lemma).replace(/[^ء-ي]/g, "") === bare);
+    if (lex) add("lex", "corpus",
+      { ar: "الْمَعْنَى", en: "What it means", tr: "Manası" },
+      [[lex[1].lemma, T(lex[1].gloss)]]);
+    else miss.push({ ar: "الْمَعْنَى", en: "its meaning — no lexicon entry, and meaning is never derivable",
+                     tr: "manası — sözlükte yok; mana hiçbir zaman türetilemez" });
+
+    const sign = IrabSign.of(w);
+    if (sign) add("irab", "rule",
+      { ar: "كَيْفَ يُعْرَبُ", en: "How it declines", tr: "Nasıl i'râb alır" },
+      [[sign.why.ar, T(sign.why)]]);
+    else miss.push({ ar: "الْإِعْرَابُ", en: "how it declines — the ending is not written",
+                     tr: "i'râbı — sonu harekelenmemiş" });
+
+    const wz = WaznEngine.of(w);
+    if (wz && wz.root) add("wazn", wz.via === "rules" ? "rule" : "corpus",
+      { ar: "الْجَذْرُ وَالْوَزْنُ", en: "Root and measure", tr: "Kök ve vezin" },
+      [[`${wz.root}${wz.wazn ? " — " + wz.wazn : ""}`, wz.weak || ""]]);
+    else miss.push({ ar: "الْجَذْرُ", en: "its root — the letters do not peel to three",
+                     tr: "kökü — harfler üçe inmiyor" });
+
+    const t = IsmEngine.tasgir(w), n = IsmEngine.nisba(w);
+    if (t || n) add("ism", "rule",
+      { ar: "التَّصْغِيرُ وَالنِّسْبَةُ", en: "Diminutive and nisba", tr: "Tasgîr ve nisbet" },
+      [t ? [t.out, "تَصْغِير"] : null, n ? [n.out, "نِسْبَة"] : null].filter(Boolean));
+
+    // does any i'lal rule fire on it, read AS an underlying form?
+    const il = IlalEngine.derive(w);
+    if (il && il.steps.length) add("ilal", "rule",
+      { ar: "الْإِعْلَالُ", en: "What the i'lal rules do to it", tr: "İ'lâl kaideleri" },
+      il.steps.map(x => [`${x.before} ← ${x.after}`, T(x)]));
+
+    if (bare === "ما" || bare === "مَا") miss.push(
+      { ar: "وَجْهُ «مَا»", en: "which of ma's twelve readings — that needs the sentence around it",
+        tr: "«mâ»nın hangi vechi — bunun için etrafındaki cümle gerekir" });
+    return { mode: "word", input: w, findings: F, undecided: miss };
+  }
+  // ---- more than one word: the sentence engines
+  static askPhrase(ws, text){
+    const F = [], miss = [];
+    const add = (k, how, title, rows) => F.push({ k, how, title, rows });
+
+    const nida = NidaEngine.read(text);
+    if (nida && nida.ok) add("nida", "rule",
+      { ar: "النِّدَاءُ", en: "The call", tr: "Nidâ" },
+      [[nida.kindLabel.ar, T(nida.kindLabel)], [nida.signLabel.ar, T(nida.signLabel)]]);
+
+    const ma = ws.findIndex(w => stripAr(w).replace(/[^ء-ي]/g, "") === "ما");
+    if (ma >= 0) {
+      const r = MaEngine.read(ws, ma, ws, ws.map(x => /^[يتنأ]/.test(stripAr(x))));
+      if (r && r.wajh) add("ma", "rule",
+        { ar: "وَجْهُ «مَا»", en: "Which «ma» this is", tr: "Bu «mâ» hangisi" },
+        [[r.wajh.ar, T(r.wajh)]]);
+    }
+    // the corpus outranks the analyzer: if this sentence is one we have
+    // parsed by hand, show the HAND analysis and the government inside it
+    const hit = this.findInCorpus(ws);
+    if (hit) {
+      add("stored", "corpus",
+        { ar: "إِعْرَابُ الْمُدَوَّنَةِ", en: "The corpus's own i'rab", tr: "Külliyatın kendi i'râbı" },
+        hit.sen.tokens.filter(t => t.irab).slice(0, 8).map(t => [t.s.full + " — " + t.irab.ar, T(t.irab)]));
+      const pairs = AmilEngine.pairs(hit.sen);
+      if (pairs.length) add("amil", "rule",
+        { ar: "الْعَامِلُ وَالْمَعْمُولُ", en: "Who governs whom", tr: "Âmil ve ma'mûl" },
+        pairs.map(p => [`${p.amil.s.full} ${p.gov.ar} → ${p.mamul.s.full} ${p.rel.ar}`,
+                        `${T(p.gov)} — ${T(p.rel)}`]));
+    } else {
+      const rows = SentenceAnalyzer.analyze(text) || [];
+      const sure = rows.filter(r => r.sure && r.notes.length);
+      if (sure.length) add("analyzer", "rule",
+        { ar: "مَا يُقْطَعُ بِهِ", en: "What can be settled with certainty", tr: "Kesin olarak söylenebilenler" },
+        sure.map(r => [r.w, T(r.notes[r.notes.length - 1])]));
+      const guessed = rows.filter(r => !r.sure && r.notes.length);
+      if (guessed.length) add("guess", "model",
+        { ar: "مَا يُسْتَأْنَسُ بِهِ", en: "What is only inferred", tr: "Yalnız çıkarım olanlar" },
+        guessed.slice(0, 6).map(r => [r.w, T(r.notes[r.notes.length - 1])]));
+      miss.push({ ar: "الْإِعْرَابُ التَّامُّ",
+                  en: "a full i'rab — this sentence is not in the corpus, and no rule settles every word of open text",
+                  tr: "tam i'râb — bu cümle külliyatta yok; açık metnin her kelimesini hiçbir kaide tayin etmez" });
+    }
+    return { mode: "phrase", input: text, findings: F, undecided: miss };
+  }
+  // Is this exact sequence a sentence we have parsed by hand?
+  static findInCorpus(ws){
+    const key = ws.map(w => stripAr(w).replace(/[^ء-ي]/g, "")).join(" ");
+    let hit = null;
+    STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+      if (hit) return;
+      const k = sen.tokens.map(t => stripAr(t.s.full).replace(/[^ء-ي]/g, "")).join(" ");
+      if (k === key || k.includes(key)) hit = { st, sen };
+    })));
+    return hit;
+  }
+}
+
 // ---------- عَامِل / مَعْمُول: who governs whom in a real sentence -------
 // Every stored i'rab line already names what a word IS; the pairing of an
 // AMIL with the MA'MUL it governs is not stored anywhere, and it does not
