@@ -777,9 +777,16 @@
     margin-top: .2rem; }
   .ilal-steps .is-gloss { font-size: .84rem; color: var(--ink-soft); margin-top: .1rem; }
   /* the model's own score, stated where the model does its work */
-  .ml-score { font-size: .82rem; line-height: 1.55; opacity: .8; margin: -.2rem 0 .7rem;
+  .ml-score, .ml-tag { font-size: .82rem; line-height: 1.55; opacity: .8; margin: -.2rem 0 .7rem;
     padding: .5rem .65rem; border-inline-start: 3px solid var(--accent);
     background: var(--accent-soft); border-radius: 0 10px 10px 0; }
+  /* the rule-trained pair reads as a sibling of the corpus-trained score, not
+     as the same claim — a different rail, and it stays out of the way until
+     the numbers exist */
+  .ml-tag { border-inline-start-color: var(--lvl3); background: none;
+    border: 1px solid var(--line); border-inline-start: 3px solid var(--lvl3);
+    border-radius: 0 10px 10px 0; }
+  .ml-tag:empty { display: none; }
   /* ============ design wave 8: the hub grows shelves ====================
      Twelve games is a list, not a hub. Grouping them by DISCIPLINE — the
      same four the Elo model already tracks — turns the flat grid back into
@@ -1540,6 +1547,7 @@ const L = {
         alaqaIstiara:"This relation alone makes the majaz an ISTI'ARA rather than a mursal.",
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
         gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha", gGroupIbara:"Rendering",
+        tagScore:"🔤 And the two engines trained on the RULES rather than on the corpus, both graded five-fold on roots they have never met. The VERB tagger reads a conjugated form back to its cell — {v}% first try, {v2}% within two, over {vn} examples the conjugator wrote itself from {vr} roots. The NOUN tagger reads a derived noun back to its scale — {i}% first try, {i2}% within two, over {in} examples from {ir} roots and {is} patterns. The scale is all it claims: what the scale is FOR is a second question, and the sentence answers that one.",
         mlScore:"🧠 Held out and re-tested: the model is trained on every story but one and asked about the one it has never seen, {k} times over, across {n} labelled words. It names the role right first try {a}% of the time, and within two guesses {b}%. Graded instead on the corpus it memorised it would claim {r}% — that gap is why the honest number is the one shown.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
         ibaraToTr:"The phrase — into Turkish", ibaraToAr:"The phrase — into Arabic",
@@ -1705,6 +1713,7 @@ const L = {
         alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
         gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
+        tagScore:"🔤 Külliyattan değil KAİDELERDEN eğitilen iki motor; ikisi de hiç görmedikleri kökler üzerinde beş katlı ölçüldü. FİİL etiketleyicisi, çekimli bir sîgayı kendi hânesine geri okur — ilk tahminde %{v}, ilk iki tahminde %{v2}; {vr} kökten çekim motorunun kendi ürettiği {vn} örnek üzerinde. İSİM etiketleyicisi, türemiş bir ismi kendi veznine geri okur — ilk tahminde %{i}, ilk iki tahminde %{i2}; {ir} kök ve {is} kalıptan {in} örnek üzerinde. İddiası yalnız vezindir: o veznin hangi vazîfede olduğu ayrı bir sorudur, onu da cümle söyler.",
         mlScore:"🧠 Dışarıda bırakıp yeniden sınama: model, bir hikâye hariç bütün hikâyelerle eğitilip hiç görmediği o hikâyeden sorulur — {k} kez, toplam {n} etiketli kelime üzerinde. İlk tahminde %{a}, ilk iki tahmin içinde %{b} isabet eder. Ezberlediği külliyat üzerinde ölçülseydi %{r} iddia ederdi; gösterilen sayının dürüst olanı seçilmesinin sebebi bu farktır.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
         ibaraToTr:"İbâre — Türkçeye", ibaraToAr:"İbâre — Arapçaya",
@@ -5558,6 +5567,24 @@ class SentenceAnalyzer {
   // holds the ALAM only: إِلَه is the common noun «god», with a real root
   // (أ ل ه) and a real wazn (فِعَال), and must keep going through the rules.
   static JALALA = new Set(["الله", "اللّه"]);
+  // …and the name behind a clitic letter. لِلَّهِ is written ل + الله with the
+  // alif of the article swallowed, so its bare form is ل ل ه — which the root
+  // finder was matching to a corpus IMPERATIVE. Each prefix is named, and what
+  // is left is the alam.
+  static JALALA_PRE = {
+    "لله":  { p: "لِ", ar: "اللَّامُ حَرْفُ جَرٍّ — وَأَلِفُ «الله» تُحْذَفُ خَطًّا مَعَهَا",
+              en: "the lam is a jarr letter — and the alif of «Allah» is dropped in writing after it",
+              tr: "lâm cer harfidir — «الله»ın elifi onunla birlikte yazıda düşer" },
+    "بالله": { p: "بِ", ar: "الْبَاءُ حَرْفُ جَرٍّ، وَقَدْ تَكُونُ لِلْقَسَمِ",
+              en: "the ba is a jarr letter, and may be the ba of an OATH",
+              tr: "bâ cer harfidir; KASEM bâsı da olabilir" },
+    "والله": { p: "وَ", ar: "الْوَاوُ لِلْقَسَمِ أَوْ لِلْعَطْفِ — وَاللَّفْظُ بَعْدَهَا مَجْرُورٌ بِهَا إِنْ كَانَتْ قَسَمًا",
+              en: "the waw is an OATH waw or a joining waw — after an oath waw the name is in jarr",
+              tr: "vâv kasem veya atıf vâvıdır — kasem vâvı ise lafz-ı celâl onunla mecrûrdur" },
+    "تالله": { p: "تَ", ar: "التَّاءُ لِلْقَسَمِ، وَلَا تَدْخُلُ إِلَّا عَلَى لَفْظِ الْجَلَالَةِ",
+              en: "the ta is an OATH letter, and it enters upon NO word but this one",
+              tr: "tâ kasem harfidir ve YALNIZ lafza-i celâle dâhil olur" },
+  };
   static PARTICLES = {
     "في": { k: "jarr" }, "من": { k: "jarr" }, "الى": { k: "jarr" }, "إلى": { k: "jarr" },
     "عن": { k: "jarr" }, "على": { k: "jarr" }, "حتى": { k: "jarr" }, "رب": { k: "jarr" },
@@ -5721,9 +5748,11 @@ class SentenceAnalyzer {
       // a creed text came out as «ال + له + ه», root ل ل ه, wazn أَفْعَلَ —
       // three wrong rulings on one word. It is answered lexically because a
       // proper name is precisely what no rule derives.
-      const jalala = this.JALALA.has(core);
+      const pre = this.JALALA_PRE[core];
+      const jalala = this.JALALA.has(core) || !!pre;
+      if (pre) row.notes.push({ ar: pre.ar, en: pre.en, tr: pre.tr });
       if (jalala) {
-        row.kind = "noun"; row.sure = true; row.lemma = "اللَّه";
+        row.kind = "noun"; row.sure = true; row.alam = true; row.lemma = "اللَّه";
         row.gloss = { en: "Allah", tr: "Allah" };
         row.notes.push({
           en: "lafz al-jalala — a PROPER NAME (alam). Its lam belongs to the name and does not strip like the article, and the final ha is a root letter, not an attached pronoun.",
@@ -5865,6 +5894,25 @@ class SentenceAnalyzer {
     // carries it. This is the model feeding back into the analysis, and it is
     // marked a guess like every other statistical claim in this app.
     out.forEach(r => {
+      // A word the surface has already settled as a NOUN goes to the noun
+      // tagger, and only there — asking the verb tagger about مُؤْمِنُونَ wastes
+      // a guess, and asking the noun tagger about كَتَبَ invents one.
+      // A proper name stands in no scale, so it is not offered one — the same
+      // reason WaznEngine is not asked about it either.
+      if (r.kind === "noun" && !r.alam) {
+        let g = null;
+        // The written word, harakat and all — the tagger peels its own clitics.
+        try { g = IsmTagger.tag(r.w, 1)[0]; } catch (e) { return; }
+        if (!g || g.p < 0.30 || !g.roles.length) return;
+        // The scale is one claim; the office is another. The surface hands
+        // over the wazn; the wazn hands over a LIST, and the list is shown
+        // whole rather than cut down to its first member.
+        r.notes.push({
+          en: `${g.wazn} — ${g.roles.map(x => x.en).join("; or ")}`,
+          tr: `${g.wazn} — ${g.roles.map(x => x.tr).join("; ya da ")}`,
+          ml: true });
+        return;
+      }
       let g = null;
       try { g = SarfTagger.tag(r.w, 1)[0]; } catch (e) { return; }
       if (!g || g.p < 0.25) return;
@@ -6415,6 +6463,7 @@ function renderLabBody(){
       <p class="ml-score">${ui().mlScore.replace("{n}", cv.n).replace("{k}", cv.folds)
         .replace("{a}", Math.round(cv.top1 * 100)).replace("{b}", Math.round(cv.top2 * 100))
         .replace("{r}", Math.round(acc.top1 * 100))}</p>
+      <p class="ml-tag" id="mlTagLine"></p>
       <div class="conj-lab">
         <input id="jumlaIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
                placeholder="${ui().jumlaPh}" value="${escapeAttr(conjState.jumla)}">
@@ -6423,6 +6472,21 @@ function renderLabBody(){
     const inp = document.getElementById("jumlaIn");
     inp.addEventListener("input", debounced(() => { conjState.jumla = inp.value; renderJumlaOut(); }));
     renderJumlaOut();
+    // Grading the two distilled taggers costs about two seconds of arithmetic,
+    // which is two seconds too many to spend before the panel paints. Paint
+    // first, measure after, fill the line in when the number exists.
+    setTimeout(() => {
+      const line = document.getElementById("mlTagLine");
+      if (!line) return;
+      let v, i;
+      try { v = SarfTagger.evalUnseen(); i = IsmTagger.evalUnseen(); } catch (e) { return; }
+      const pc = x => Math.round(x * 100);
+      line.textContent = ui().tagScore
+        .replace("{v}", pc(v.top1)).replace("{v2}", pc(v.top2))
+        .replace("{vn}", v.examples).replace("{vr}", v.roots)
+        .replace("{i}", pc(i.top1)).replace("{i2}", pc(i.top2))
+        .replace("{in}", i.examples).replace("{ir}", i.roots).replace("{is}", i.shapes);
+    }, 60);
     return;
   }
   if (conjState.lab === "kernel") {
@@ -8505,6 +8569,281 @@ class SarfTagger {
   }
 }
 
+// ---------- the Ism tagger: the noun half of the learned layer ------------
+// SarfTagger reads a conjugated VERB back to its cell. Nouns had no such
+// engine at all — the analyzer could say "tanwin, so indefinite" and stop.
+// This one is distilled the same way, from the derivational patterns
+// themselves: substitute a root into every derived-noun wazn the Bina and
+// Maksud teach, vary the case ending and the article the way real text does,
+// and let the surface predict the WAZN.
+//
+// It predicts the wazn, and ONLY the wazn — deliberately. The surface settles
+// which scale a noun stands in; the scale does NOT settle what the noun is
+// FOR. مَفْعَل is a place, a time and a masdar mimi at once; أَفْعَل is an
+// elative and a colour; فَعِيل is a sifa mushabbaha, an intensive, and
+// sometimes passive in sense. So the class is looked up from the wazn
+// deterministically and reported as a LIST, and the ambiguity is shown rather
+// than resolved by fiat. That boundary is the lesson.
+//
+// SOUND triliteral roots only. A weak root's letter is turned or dropped
+// before it ever reaches the surface, and teaching the model those surfaces
+// without running the i'lal would teach it wrong ones; that derivation is
+// IlalEngine's work, and the two engines meet in the kernel, not here.
+class IsmTagger {
+  static ALPHA = 0.5;
+  static ROOTS = ["نصر","ضرب","فتح","علم","كرم","حسب","كتب","جلس","شرب","سمع",
+                  "سكن","حمل","رجع","خرج","دخل","طلب","نظر","حكم","عبد","سجد",
+                  "غفر","صبر","شكر","ذكر","حفظ","بلغ","صدق","عدل","رزق","لبس",
+                  "طرق","كسب","جمع","حسن","ضمن","شهد","قدر","خلق","عمل","فهم"];
+  // Every template takes the three radicals and returns the STEM, without its
+  // case ending — the endings are added below, because a learner meets the
+  // same noun in raf', nasb and jarr, definite and indefinite.
+  // `mamnu` marks what is barred from tanwin: it never wears one, and in jarr
+  // it takes a FATHA unless the article is on it.
+  static SHAPES = [
+    { w: "فَاعِل",     t: (f,a,l) => f+"َا"+a+"ِ"+l, pl: true },
+    { w: "مَفْعُول",   t: (f,a,l) => "مَ"+f+"ْ"+a+"ُو"+l, pl: true },
+    { w: "مُفَعِّل",    t: (f,a,l) => "مُ"+f+"َ"+a+"ِّ"+l, pl: true },
+    { w: "مُفَعَّل",    t: (f,a,l) => "مُ"+f+"َ"+a+"َّ"+l, pl: true },
+    { w: "مُفَاعِل",   t: (f,a,l) => "مُ"+f+"َا"+a+"ِ"+l, pl: true },
+    { w: "مُفَاعَل",   t: (f,a,l) => "مُ"+f+"َا"+a+"َ"+l, pl: true },
+    { w: "مُفْعِل",    t: (f,a,l) => "مُ"+f+"ْ"+a+"ِ"+l, pl: true },
+    { w: "مُفْعَل",    t: (f,a,l) => "مُ"+f+"ْ"+a+"َ"+l, pl: true },
+    { w: "مُتَفَعِّل",  t: (f,a,l) => "مُتَ"+f+"َ"+a+"ِّ"+l, pl: true },
+    { w: "مُتَفَعَّل",  t: (f,a,l) => "مُتَ"+f+"َ"+a+"َّ"+l, pl: true },
+    { w: "مُتَفَاعِل",  t: (f,a,l) => "مُتَ"+f+"َا"+a+"ِ"+l, pl: true },
+    { w: "مُتَفَاعَل",  t: (f,a,l) => "مُتَ"+f+"َا"+a+"َ"+l, pl: true },
+    { w: "مُنْفَعِل",   t: (f,a,l) => "مُنْ"+f+"َ"+a+"ِ"+l, pl: true },
+    { w: "مُنْفَعَل",   t: (f,a,l) => "مُنْ"+f+"َ"+a+"َ"+l, pl: true },
+    { w: "مُفْتَعِل",   t: (f,a,l) => "مُ"+f+"ْتَ"+a+"ِ"+l, pl: true },
+    { w: "مُفْتَعَل",   t: (f,a,l) => "مُ"+f+"ْتَ"+a+"َ"+l, pl: true },
+    { w: "مُسْتَفْعِل",  t: (f,a,l) => "مُسْتَ"+f+"ْ"+a+"ِ"+l, pl: true },
+    { w: "مُسْتَفْعَل",  t: (f,a,l) => "مُسْتَ"+f+"ْ"+a+"َ"+l, pl: true },
+    { w: "تَفْعِيل",    t: (f,a,l) => "تَ"+f+"ْ"+a+"ِي"+l },
+    { w: "مُفَاعَلَة",  t: (f,a,l) => "مُ"+f+"َا"+a+"َ"+l+"َة" },
+    { w: "إِفْعَال",    t: (f,a,l) => "إِ"+f+"ْ"+a+"َا"+l },
+    { w: "تَفَعُّل",    t: (f,a,l) => "تَ"+f+"َ"+a+"ُّ"+l },
+    { w: "تَفَاعُل",    t: (f,a,l) => "تَ"+f+"َا"+a+"ُ"+l },
+    { w: "اِنْفِعَال",   t: (f,a,l) => "اِنْ"+f+"ِ"+a+"َا"+l },
+    { w: "اِفْتِعَال",   t: (f,a,l) => "اِ"+f+"ْتِ"+a+"َا"+l },
+    { w: "اِسْتِفْعَال",  t: (f,a,l) => "اِسْتِ"+f+"ْ"+a+"َا"+l },
+    { w: "مَفْعَل",    t: (f,a,l) => "مَ"+f+"ْ"+a+"َ"+l },
+    { w: "مَفْعِل",    t: (f,a,l) => "مَ"+f+"ْ"+a+"ِ"+l },
+    { w: "مِفْعَال",   t: (f,a,l) => "مِ"+f+"ْ"+a+"َا"+l },
+    { w: "مِفْعَل",    t: (f,a,l) => "مِ"+f+"ْ"+a+"َ"+l },
+    { w: "فَعَّال",     t: (f,a,l) => f+"َ"+a+"َّا"+l, pl: true },
+    { w: "فَعُول",     t: (f,a,l) => f+"َ"+a+"ُو"+l, pl: true },
+    { w: "فَعِيل",     t: (f,a,l) => f+"َ"+a+"ِي"+l, pl: true },
+    { w: "فِعَال",     t: (f,a,l) => f+"ِ"+a+"َا"+l },
+    // The two commonest broken plurals. أَفْعَال differs from the Form IV
+    // masdar إِفْعَال by its FIRST VOWEL alone, which is exactly the kind of
+    // distinction a vowelled surface can make and an unvowelled one cannot —
+    // the model should be able to make it, and to hedge when it cannot.
+    { w: "أَفْعَال",    t: (f,a,l) => "أَ"+f+"ْ"+a+"َا"+l },
+    { w: "فُعُول",     t: (f,a,l) => f+"ُ"+a+"ُو"+l },
+    { w: "أَفْعَل",     t: (f,a,l) => "أَ"+f+"ْ"+a+"َ"+l, mamnu: true },
+    { w: "فَعْلَان",    t: (f,a,l) => f+"َ"+a+"ْ"+l+"َان", mamnu: true },
+  ];
+  // What a wazn can BE. Several entries carry more than one, and that is the
+  // point: the surface hands you the scale, not the office.
+  static ROLES = {
+    "فَاعِل":    ["fail"],            "مَفْعُول":   ["maful"],
+    "مُفَعِّل":   ["fail2"],           "مُفَعَّل":    ["maful2"],
+    "مُفَاعِل":  ["fail3"],           "مُفَاعَل":   ["maful3"],
+    "مُفْعِل":   ["fail4"],           "مُفْعَل":    ["maful4"],
+    "مُتَفَعِّل": ["fail5"],           "مُتَفَعَّل":  ["maful5"],
+    "مُتَفَاعِل": ["fail6"],           "مُتَفَاعَل":  ["maful6"],
+    "مُنْفَعِل":  ["fail7"],           "مُنْفَعَل":   ["maful7"],
+    "مُفْتَعِل":  ["fail8"],           "مُفْتَعَل":   ["maful8"],
+    "مُسْتَفْعِل": ["fail10"],          "مُسْتَفْعَل":  ["maful10"],
+    "تَفْعِيل":   ["masdar2"],         "مُفَاعَلَة": ["masdar3"],
+    "إِفْعَال":   ["masdar4"],         "تَفَعُّل":   ["masdar5"],
+    "تَفَاعُل":   ["masdar6"],         "اِنْفِعَال":  ["masdar7"],
+    "اِفْتِعَال":  ["masdar8"],         "اِسْتِفْعَال": ["masdar10"],
+    "مَفْعَل":   ["makan", "zaman", "masdarMimi"],
+    "مَفْعِل":   ["makan", "zaman"],
+    "مِفْعَال":  ["alat", "mubalagha"],
+    "مِفْعَل":   ["alat"],
+    "فَعَّال":    ["mubalagha", "hirfa"],
+    "فَعُول":    ["mubalagha"],
+    "فَعِيل":    ["sifa", "mubalagha", "mafulMana"],
+    // فِعَال is the Form III masdar AND one of the busiest broken plurals
+    // (عَبْد → عِبَاد, رَجُل → رِجَال). Both, always, until the sentence says.
+    "فِعَال":    ["masdar3", "jamTaksir"],
+    "أَفْعَال":   ["jamTaksir"],
+    "فُعُول":    ["jamTaksir"],
+    "أَفْعَل":    ["tafdil", "sifa"],
+    "فَعْلَان":   ["sifa"],
+  };
+  static ROLE_TEXT = {
+    fail:   { ar: "اسْمُ فَاعِلٍ", en: "ism fa'il — the doer", tr: "ism-i fâil — işi yapan" },
+    maful:  { ar: "اسْمُ مَفْعُولٍ", en: "ism maf'ul — the one done to", tr: "ism-i mef'ûl — işe uğrayan" },
+    masdar2:  { ar: "مَصْدَرُ الْبَابِ الثَّانِي", en: "the masdar of Form II", tr: "II. bâbın masdarı" },
+    masdar3:  { ar: "مَصْدَرُ الْبَابِ الثَّالِثِ", en: "the masdar of Form III", tr: "III. bâbın masdarı" },
+    masdar4:  { ar: "مَصْدَرُ الْبَابِ الرَّابِعِ", en: "the masdar of Form IV", tr: "IV. bâbın masdarı" },
+    masdar5:  { ar: "مَصْدَرُ الْبَابِ الْخَامِسِ", en: "the masdar of Form V", tr: "V. bâbın masdarı" },
+    masdar6:  { ar: "مَصْدَرُ الْبَابِ السَّادِسِ", en: "the masdar of Form VI", tr: "VI. bâbın masdarı" },
+    masdar7:  { ar: "مَصْدَرُ الْبَابِ السَّابِعِ", en: "the masdar of Form VII", tr: "VII. bâbın masdarı" },
+    masdar8:  { ar: "مَصْدَرُ الْبَابِ الثَّامِنِ", en: "the masdar of Form VIII", tr: "VIII. bâbın masdarı" },
+    masdar10: { ar: "مَصْدَرُ الْبَابِ الْعَاشِرِ", en: "the masdar of Form X", tr: "X. bâbın masdarı" },
+    makan:  { ar: "اسْمُ مَكَانٍ", en: "ism makan — the place of it", tr: "ism-i mekân — yapıldığı yer" },
+    zaman:  { ar: "اسْمُ زَمَانٍ", en: "ism zaman — the time of it", tr: "ism-i zamân — yapıldığı vakit" },
+    masdarMimi: { ar: "مَصْدَرٌ مِيمِيٌّ", en: "masdar mimi — the act itself, on a mim", tr: "masdar-ı mîmî — mîm ile masdar" },
+    alat:   { ar: "اسْمُ آلَةٍ", en: "ism ala — the tool of it", tr: "ism-i âlet — yapıldığı âlet" },
+    mubalagha: { ar: "صِيغَةُ مُبَالَغَةٍ", en: "an intensive — does it much", tr: "mübâlağa sîgası — çokça yapan" },
+    hirfa:  { ar: "اسْمُ حِرْفَةٍ", en: "a trade name — does it for a living", tr: "meslek ismi — geçimi o iş olan" },
+    sifa:   { ar: "صِفَةٌ مُشَبَّهَةٌ", en: "sifa mushabbaha — a settled quality", tr: "sıfat-ı müşebbehe — sâbit vasıf" },
+    mafulMana: { ar: "فَعِيلٌ بِمَعْنَى مَفْعُولٍ", en: "fa'il in the SENSE of maf'ul (قَتِيل = مَقْتُول)", tr: "mef'ûl mânâsında fa'îl (قَتِيل = مَقْتُول)" },
+    tafdil: { ar: "اسْمُ تَفْضِيلٍ", en: "ism tafdil — the elative", tr: "ism-i tafdîl — üstünlük ismi" },
+    jamTaksir: { ar: "جَمْعُ تَكْسِيرٍ", en: "a broken plural", tr: "cemi teksîr — kırık çoğul" },
+  };
+  static _rows = null; static _model = null; static _eval = null;
+  // A form's label carries its bab where the wazn implies one, so "fail8"
+  // reads as the ism fa'il of Form VIII rather than a bare "doer".
+  static role(k){
+    const m = /^(fail|maful|masdar)(\d+)$/.exec(k);
+    if (!m) return this.ROLE_TEXT[k] || { ar: k, en: k, tr: k };
+    const base = this.ROLE_TEXT[m[1]] || this.ROLE_TEXT["masdar" + m[2]];
+    if (m[1] === "masdar") return this.ROLE_TEXT[k];
+    const R = { 2:"II", 3:"III", 4:"IV", 5:"V", 6:"VI", 7:"VII", 8:"VIII", 10:"X" }[+m[2]];
+    return { ar: base.ar + " مِنَ الْبَابِ " + m[2], en: base.en + " (Form " + R + ")",
+             tr: base.tr + " (" + R + ". bâb)" };
+  }
+  static roles(wazn){ return (this.ROLES[wazn] || []).map(k => ({ k, ...this.role(k) })); }
+  // ---- FEED
+  static rows(){
+    if (this._rows) return this._rows;
+    const out = [];
+    this.ROOTS.forEach(r => {
+      const [f, a, l] = r.split("");
+      this.SHAPES.forEach(sh => {
+        const stem = sh.t(f, a, l);
+        // the endings a learner actually meets: bare in each case, and with
+        // the article in each case. A mamnu' min al-sarf wears no tanwin, and
+        // in jarr it takes a fatha until the article puts the kasra back.
+        const forms = sh.mamnu
+          ? [stem + "ُ", stem + "َ", "الْ" + stem + "ُ", "الْ" + stem + "َ", "الْ" + stem + "ِ"]
+          : [stem + "ٌ", stem + "ً", stem + "ٍ", "الْ" + stem + "ُ", "الْ" + stem + "َ", "الْ" + stem + "ِ"];
+        // A participle is met in the plural at least as often as in the
+        // singular — الْمُؤْمِنُونَ, الْمُسْلِمِينَ, مُؤْمِنَاتٌ — and the plural
+        // ending is NOT part of the scale. Trained without them the model had
+        // to guess from a shape it had never met; الْمُؤْمِنُونَ came back
+        // مُسْتَفْعِل at 21%. Masdars, tools and places do not take these, so
+        // only the participles and adjectives carry the flag.
+        if (sh.pl) forms.push(
+          stem + "ُونَ", stem + "ِينَ", "الْ" + stem + "ُونَ", "الْ" + stem + "ِينَ",
+          stem + "َةٌ", stem + "َاتٌ", "الْ" + stem + "َةُ", "الْ" + stem + "َاتُ");
+        forms.forEach(w => out.push({ root: r, w, y: sh.w }));
+      });
+    });
+    this._rows = out;
+    return out;
+  }
+  // The same feature shape as the verb tagger, plus two the noun needs: where
+  // the long vowel sits, and whether a mim opens the word — the two things a
+  // Sarf student looks at first on an unfamiliar noun.
+  // The sound plural is INFLECTION, not scale. Trained with ون/ين/ات left on
+  // the word, those letters walked straight into the suffix features and the
+  // held-out singular score fell 92.5% → 86.1% — the model was reading the
+  // ending as evidence for a wazn. Peel the inflection, take the shape
+  // features off the STEM, and keep the ending as one feature of its own.
+  //
+  // The ta marbuta is NOT peeled: it belongs to مُفَاعَلَة's own scale, and
+  // مُفَاعَلَةٌ is genuinely both that masdar and the feminine of مُفَاعَل. The
+  // model should hedge there, and leaving the ta in place is what lets it.
+  static INFL = /(ون|ين|ات)$/;
+  // A clitic letter is peeled only when the article stands behind it — و in
+  // وَالْمُؤْمِنُونَ is a conjunction, but the و of وَاصِل is a RADICAL, and only
+  // the following ال tells the two apart without a lexicon.
+  static PROCLITIC = /^[وفبكل][ً-ْ]*(?=[اٱ][ً-ْ]*ل)/;
+  static ARTICLE = /^[اٱ][ً-ْ]*ل[ً-ْ]*/;
+  static feats(w){
+    // Strip on the VOWELLED string, not on a bare segment. Handing the tagger
+    // an undiacritised «المؤمنون» costs it every haraka it reasons from, and
+    // its confidence fell to 17% on a word it reads at 56% when vowelled.
+    const n = (w || "").normalize("NFC").replace(this.PROCLITIC, "").replace(this.ARTICLE, "");
+    const raw = stripAr(n).replace(/[^ء-ي]/g, "");
+    const tail = (this.INFL.exec(raw) || [null, "-"])[1];
+    const b = raw.replace(this.INFL, "");
+    // the harakat of the inflection are inflection too — cut the diacritised
+    // string back to the stem before reading its vowel pattern, or the
+    // plural's own ـُونَ walks into the mark features the same way its
+    // letters walked into the suffix ones
+    let ns = n;
+    if (tail !== "-") {
+      const i = ns.lastIndexOf(tail[0]);
+      if (i > 0) ns = ns.slice(0, i).replace(/[ً-ْ]+$/, "");
+    }
+    const marks = [...ns].filter(c => /[ً-ْ]/.test(c)).join("");
+    const madd = b.search(/[اوي]/);
+    return ["p1:" + b.slice(0, 1), "p2:" + b.slice(0, 2), "p3:" + b.slice(0, 3),
+            "s1:" + b.slice(-1), "s2:" + b.slice(-2), "s3:" + b.slice(-3),
+            "len:" + Math.min(9, b.length),
+            "m1:" + marks.slice(0, 3), "mlast:" + marks.slice(-2),
+            "sh:" + (/ّ/.test(n) ? 1 : 0),
+            "madd:" + (madd < 0 ? "-" : madd + ":" + b[madd]),
+            "mim:" + (/^م/.test(b) ? 1 : 0),
+            "ta:" + (/ة$/.test(b) ? 1 : 0),
+            "tail:" + tail];
+  }
+  static fit(subset){
+    const m = { n: {}, f: {}, total: 0, L: [] };
+    const seen = new Set();
+    subset.forEach(x => {
+      if (!seen.has(x.y)) { seen.add(x.y); m.L.push(x.y); }
+      m.n[x.y] = (m.n[x.y] || 0) + 1; m.total++;
+      m.f[x.y] = m.f[x.y] || {};
+      this.feats(x.w).forEach(k => { m.f[x.y][k] = (m.f[x.y][k] || 0) + 1; });
+    });
+    return m;
+  }
+  static train(){ return this._model || (this._model = this.fit(this.rows())); }
+  static tag(word, top = 3){
+    const m = this.train();
+    if (!m.L.length) return [];
+    const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);
+    const sc = m.L.map(y => {
+      let lp = Math.log((m.n[y] + 1) / (m.total + m.L.length));
+      fs.forEach(k => { lp += wt * Math.log(((m.f[y][k] || 0) + 1) / (m.n[y] + 2)); });
+      return { y, lp };
+    });
+    const mx = Math.max(...sc.map(x => x.lp));
+    let z = 0;
+    sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
+    sc.forEach(x => { x.p /= z; });
+    return sc.sort((a, b) => b.p - a.p).slice(0, top)
+             .map(x => ({ wazn: x.y, p: x.p, roles: this.roles(x.y) }));
+  }
+  // ---- GRADE, on roots it has never seen
+  static evalUnseen(folds = 5){
+    if (this._eval) return this._eval;
+    const rows = this.rows();
+    let ok = 0, two = 0, role = 0, n = 0;
+    for (let k = 0; k < folds; k++) {
+      const held = new Set(this.ROOTS.filter((_, i) => i % folds === k));
+      const m = this.fit(rows.filter(x => !held.has(x.root)));
+      const save = this._model; this._model = m;
+      rows.filter(x => held.has(x.root)).forEach(x => {
+        const g = this.tag(x.w, 2);
+        n++;
+        if (g[0] && g[0].wazn === x.y) ok++;
+        if (g.some(z => z.wazn === x.y)) two++;
+        // a softer, fairer question: did it land on a wazn that carries the
+        // SAME office? مَفْعَل and مَفْعِل are both a place and a time.
+        if (g[0]) {
+          const want = new Set(this.ROLES[x.y] || []);
+          if ((this.ROLES[g[0].wazn] || []).some(r => want.has(r))) role++;
+        }
+      });
+      this._model = save;
+    }
+    this._eval = { n, folds, roots: this.ROOTS.length, examples: rows.length,
+                   shapes: this.SHAPES.length,
+                   top1: n ? ok / n : 0, top2: n ? two / n : 0, role: n ? role / n : 0 };
+    return this._eval;
+  }
+}
+
 // ---------- the grammar kernel ------------------------------------------
 // Nine rule engines had grown up in this file, each excellent at one chapter
 // and each with its own front door. A learner with a word in hand should not
@@ -8581,6 +8920,22 @@ class GrammarKernel {
         tr: "Hangi sîga — kaidelerden öğrenilmiş" },
       tg.map(g => [g.y.split("|")[1] === "amr" ? "أَمْر" : g.y.split("|")[1] === "mazi" ? "مَاضٍ" : "مُضَارِع",
                    `${T(g.text)} — %${Math.round(g.p * 100)}`]));
+
+    // …and the noun half of the same learned layer. It answers the scale, and
+    // then hands over every office that scale can hold — مَفْعَل is a place, a
+    // time and a masdar mimi at once, and the app says all three rather than
+    // picking one and sounding certain.
+    const it = IsmTagger.tag(w, 2).filter(g => g.roles.length);
+    if (it.length && it[0].p > 0.15) {
+      add("ism-wazn", "model",
+        { ar: "عَلَى أَيِّ وَزْنٍ — بِالتَّعَلُّمِ", en: "Which noun scale — learned from the patterns",
+          tr: "Hangi vezinde — kalıplardan öğrenilmiş" },
+        it.map(g => [g.wazn, `%${Math.round(g.p * 100)} — ${g.roles.map(x => T(x)).join(" / ")}`]));
+      if (it[0].roles.length > 1) miss.push({
+        ar: "أَيُّ الْمَعَانِي أُرِيدَ",
+        en: `which of those «${it[0].wazn}» is here — the scale carries ${it[0].roles.length} offices at once, and only the sentence around it decides`,
+        tr: `bu «${it[0].wazn}»in hangisi olduğu — vezin aynı anda ${it[0].roles.length} vazîfe taşır, bunu ancak etrafındaki cümle tayin eder` });
+    }
 
     // does any i'lal rule fire on it, read AS an underlying form?
     const il = IlalEngine.derive(w);

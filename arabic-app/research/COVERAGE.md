@@ -207,6 +207,22 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v95** — the learned layer gets its noun half. `IsmTagger` is distilled from
+  the derivational patterns the way `SarfTagger` was distilled from the
+  conjugator: 38 awzan × 40 sound roots × the endings running text actually
+  shows = 15,760 examples, graded five-fold BY ROOT at **90.6% top-1 / 98.7%
+  top-2** on roots it has never met. It predicts the SCALE and stops there,
+  because the scale does not settle the office — مَفْعَل is a place, a time and
+  a masdar mimi at once — so the offices come back as a list and the leftover
+  choice is pushed into the kernel's `undecided`. Two measured findings are
+  recorded in CLAUDE.md: inflection must be peeled from the *diacritised*
+  string, not just the bare one (plurals 67.5% → 97.1%), and a uniform class
+  prior is worse. Wiring it exposed three defects — لِلَّهِ read as a corpus
+  imperative (the article's alif is swallowed, so its bare form is ل ل ه), the
+  tagger fed an undiacritised segment, and فِعَال missing its commonest office.
+  Aqaid reaches chapter 18: the caliphate's thirty years and the necessity of
+  an imam, with «مِنْ» in «لا بد … من إمام» recorded as DISPUTED rather than
+  settled by fiat.
 - **v93** — a chapter-order defect: ch15 stopped before «لِأَنَّهُ يَظْهَرُ بِهَا
   أَنَّهُ وَلِيٌّ» and the caliphs chapter resumed after it, skipping the passage
   that explains WHY a karama proves a messenger. That passage is now chapter

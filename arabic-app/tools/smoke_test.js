@@ -3806,6 +3806,20 @@ if (!CHROME) {
     if (!line.includes(String(a.shown))) throw new Error('the panel must lead with the held-out score: ' + line);
     if (line.indexOf(String(a.shown)) > line.indexOf(String(Math.round(a.res1))))
       throw new Error('resubstitution is quoted before the held-out score: ' + line);
+    // …and the panel must also show the two RULE-trained taggers, filled in
+    // after paint because grading them costs ~2s
+    await page.waitForFunction(() => {
+      const el = document.getElementById('mlTagLine');
+      return el && el.textContent.length > 40;
+    }, { timeout: 8000 });
+    const tag = await page.locator('#mlTagLine').textContent();
+    const nums = await page.evaluate(() => {
+      const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen();
+      return { v: Math.round(v.top1 * 100), i: Math.round(i.top1 * 100),
+               vn: v.examples, inn: i.examples };
+    });
+    for (const [k, n] of Object.entries(nums))
+      if (!tag.includes(String(n))) throw new Error('the tagger line omits ' + k + '=' + n + ': ' + tag);
     await page.evaluate(() => { conjState.lab = 'sarf'; closeSheet(); });
   });
 
@@ -4108,6 +4122,80 @@ if (!CHROME) {
     if (!/izâfet|idafa/.test(r.alword.notes)) throw new Error('the ال rule must be stated: ' + r.alword.notes);
     if (/zamir — muzâf|the mudaf ilayh/.test(r.alword.notes))
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
+  });
+
+  // The noun half of the learned layer. SarfTagger reads a conjugated verb back
+  // to its cell; this one reads a derived noun back to its SCALE — and stops
+  // there on purpose, because the scale does not settle the office.
+  await check('the Ism tagger is distilled from the noun patterns and graded on unseen roots', async () => {
+    const r = await page.evaluate(() => {
+      const t0 = performance.now();
+      const e = IsmTagger.evalUnseen();
+      const ms = Math.round(performance.now() - t0);
+      const one = w => { const g = IsmTagger.tag(w, 1)[0]; return g ? g.wazn : null; };
+      return { ...e, ms,
+               top1: Math.round(e.top1 * 1000) / 10, top2: Math.round(e.top2 * 1000) / 10,
+               // roots the training list has never seen
+               probe: { qadir: one('قَادِرٌ'), mustaghfir: one('مُسْتَغْفِرٌ'),
+                        maktub: one('مَكْتُوبٌ'), muminun: one('الْمُؤْمِنُونَ'),
+                        miftah: one('مِفْتَاحٌ'), alim: one('عَلِيمٌ'),
+                        akbar: one('أَكْبَرُ'), istighfar: one('اِسْتِغْفَارٌ'),
+                        // the proclitic must be peeled, and only before the article
+                        withWaw: one('وَالْمُؤْمِنُونَ'), withBa: one('بِالْمَكْتُوبِ') },
+               // the ambiguity is REPORTED, never resolved by fiat
+               mafal: IsmTagger.roles('مَفْعَل').map(x => x.k),
+               fail: IsmTagger.roles('فَاعِل').map(x => x.k),
+               fiaal: IsmTagger.roles('فِعَال').map(x => x.k) };
+    });
+    if (r.examples < 12000) throw new Error('the generated set shrank: ' + r.examples);
+    if (r.shapes < 30) throw new Error('too few patterns to be worth training: ' + r.shapes);
+    if (r.top1 < 86) throw new Error('unseen-root wazn accuracy regressed to ' + r.top1 + '%');
+    if (r.top2 < 96) throw new Error('two-guess accuracy regressed to ' + r.top2 + '%');
+    if (r.ms > 4000) throw new Error('grading took ' + r.ms + 'ms — too slow to run in the panel');
+    const want = { qadir: 'فَاعِل', mustaghfir: 'مُسْتَفْعِل', maktub: 'مَفْعُول',
+                   muminun: 'مُفْعِل', miftah: 'مِفْعَال', alim: 'فَعِيل',
+                   akbar: 'أَفْعَل', istighfar: 'اِسْتِفْعَال',
+                   withWaw: 'مُفْعِل', withBa: 'مَفْعُول' };
+    for (const k of Object.keys(want))
+      if (r.probe[k] !== want[k])
+        throw new Error(k + ': wanted ' + want[k] + ', got ' + r.probe[k]);
+    // مَفْعَل is a place, a time AND a masdar mimi — all three, or the app is lying
+    if (r.mafal.length !== 3) throw new Error('مَفْعَل carries three offices: ' + r.mafal);
+    if (!r.fiaal.includes('jamTaksir')) throw new Error('فِعَال is a broken plural too: ' + r.fiaal);
+    if (r.fail.length !== 1) throw new Error('فَاعِل is unambiguous: ' + r.fail);
+  });
+
+  // The two taggers must not be asked the wrong question, and the model's
+  // verdict must reach the analyzer and the kernel — a model nothing consults
+  // is a model that does not exist.
+  await check('the noun tagger reaches the analyzer and the kernel, and skips what has no scale', async () => {
+    const r = await page.evaluate(() => {
+      const notes = s => SentenceAnalyzer.analyze(s).map(x =>
+        ({ w: x.w, kind: x.kind, alam: !!x.alam, t: x.notes.map(n => n.tr).join(' | ') }));
+      const k = GrammarKernel.ask('مَسْجِدٌ');
+      return { rows: notes('وَالْمُؤْمِنُونَ عِبَادٌ لِلَّهِ وَالْمَسْجِدُ بَيْتُهُ'),
+               keys: k.findings.map(f => f.k),
+               hows: k.findings.filter(f => f.k === 'ism-wazn').map(f => f.how),
+               miss: k.undecided.map(u => u.tr).join(' | ') };
+    });
+    const by = w => r.rows.find(x => x.w === w) || { t: '' };
+    if (!/مُفْعِل/.test(by('وَالْمُؤْمِنُونَ').t))
+      throw new Error('the waw hid the scale: ' + by('وَالْمُؤْمِنُونَ').t);
+    if (!/مَفْعِل/.test(by('وَالْمَسْجِدُ').t))
+      throw new Error('مسجد should be scaled: ' + by('وَالْمَسْجِدُ').t);
+    if (!/kırık çoğul/.test(by('عِبَادٌ').t))
+      throw new Error('فِعَال must offer the broken plural too: ' + by('عِبَادٌ').t);
+    // لِلَّهِ: the lam is named, the name is an alam, and NO scale is offered
+    const jal = by('لِلَّهِ');
+    if (!jal.alam) throw new Error('لله must be read as the name: ' + jal.t);
+    if (!/cer harfi/.test(jal.t)) throw new Error('its lam must be named: ' + jal.t);
+    if (/vezn|بَاب|bâbın masdarı/.test(jal.t)) throw new Error('a name stands in no scale: ' + jal.t);
+    if (/külliyat fiili/.test(jal.t)) throw new Error('لله is not a verb: ' + jal.t);
+    // the kernel routes to it, badges it a guess, and owns the leftover doubt
+    if (!r.keys.includes('ism-wazn')) throw new Error('the kernel missed the noun tagger: ' + r.keys);
+    if (r.hows[0] !== 'model') throw new Error('a learned answer wears the model badge, got ' + r.hows[0]);
+    if (!/vazîfe taşır/.test(r.miss))
+      throw new Error('an ambiguous scale must leave its office undecided: ' + r.miss);
   });
 
   // A mizan is not the name of a bab. It is the word with its root letters

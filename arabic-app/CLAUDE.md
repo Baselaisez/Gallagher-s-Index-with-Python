@@ -131,12 +131,56 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**The learned layer has two halves, and each is asked only its own question.**
+`SarfTagger` reads a conjugated VERB back to its (form, tense, person);
+`IsmTagger` reads a derived NOUN back to its **wazn**. The analyzer routes on
+`row.kind` — asking the verb tagger about مُؤْمِنُونَ wastes a guess and asking
+the noun tagger about كَتَبَ invents one. Both are generated from the rules
+(38 patterns × 40 sound roots × the endings real text shows = 15,760 examples)
+and both are graded five-fold **by root**.
+
+**IsmTagger predicts the SCALE and stops there — deliberately.** The surface
+settles which wazn a noun stands in; the wazn does **not** settle what the noun
+is *for*. مَفْعَل is a place, a time and a masdar mimi at once; أَفْعَل is an
+elative and a colour; فَعِيل is a sifa mushabbaha, an intensive, and sometimes
+passive in sense; فِعَال is the Form III masdar **and** one of the busiest
+broken plurals. `ROLES` is a deterministic lookup returning a **list**, the UI
+shows the list whole, and the kernel pushes the leftover choice into
+`undecided`. Showing the ambiguity *is* the teaching.
+
+**Sound triliteral roots only in the noun generator.** A weak root's letter is
+turned or dropped before it reaches the surface; training on those surfaces
+without running the i'lal teaches wrong ones. That derivation is IlalEngine's
+work, and the two engines meet in the kernel, not in the generator.
+
+**Inflection is not scale — peel it before you featurise.** Adding sound-plural
+forms to the training set dropped held-out singular accuracy 92.5% → 86.1%,
+because ون/ين/ات walked into the suffix features *and their harakat walked into
+the mark features*. Peeling the tail from the bare string alone bought 0.2
+points; peeling it from the **diacritised** string too took plurals 67.5% →
+97.1%. The ta marbuta is deliberately NOT peeled — it belongs to مُفَاعَلَة's own
+scale, and مُفَاعَلَةٌ really is both that masdar and the feminine of مُفَاعَل.
+Final: **90.6% top-1, 98.7% top-2 on unseen roots.** A uniform class prior was
+measured and is worse (−1.5); α beyond 0.5 buys nothing.
+
+**Peel a proclitic only when the article stands behind it.** `PROCLITIC` is
+`/^[وفبكل][ً-ْ]*(?=[اٱ][ً-ْ]*ل)/`. The و of وَالْمُؤْمِنُونَ is a conjunction; the و
+of وَاصِل is a RADICAL, and without a lexicon only the following ال tells them
+apart. **Featurise the vowelled word, never a bare segment** — handing the
+tagger an undiacritised «المؤمنون» cost it every haraka it reasons from and
+dropped its confidence from 56% to 17%.
+
 **اللَّه is an ALAM and is answered lexically.** Left to the general machinery
 the commonest word in a creed text came apart as «ال + له + ه» — the article
 peeled, the radical ha called an attached pronoun and a mudaf ilayh, a root
 ل ل ه invented from the wreckage, and أَفْعَلَ hung on it. `SentenceAnalyzer.JALALA`
 short-circuits all of it. **إِلَه is NOT in that set**: it is the common noun,
 with a real root (أ ل ه) and a real wazn, and must keep going through the rules.
+`JALALA_PRE` covers the name behind a clitic — لِلَّهِ is ل + الله with the
+article's alif swallowed, so its bare form is ل ل ه, which the root finder was
+matching to a corpus **imperative**. The prefix is named (jarr lam, oath ba,
+oath waw, the ta that enters on no other word) and the rest is the alam.
+A row marked `alam` is offered no root, no wazn and no learned scale.
 
 **لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ.** A noun already made definite by ال
 cannot also be a mudaf, so a pronoun-shaped tail on an ال-word is a root
