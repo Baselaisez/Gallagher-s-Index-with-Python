@@ -131,6 +131,45 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**Two classes of engine, and never blur them.** Some questions the surface
+settles completely and the engine's answer is EXACT — `IdafaEngine.build()`,
+`WaznEngine.mizan()`, `IlalEngine.derive()`, `AdadEngine`. Others the surface
+cannot settle even in principle, and the honest deliverable is a ranked
+SHORTLIST with the signal that raised each — `MaEngine`, `WawEngine`,
+`TaalluqEngine`, both taggers. Claiming a single verdict for the second class
+is the failure mode to guard against; the app's promise there is that the right
+answer is *in the list* and that the reason is stated.
+
+**`TaalluqEngine` — Qawa'id al-I'rab bab 2.** Every jarr-majrur and every zarf
+attaches to a verb or to something carrying a verb's meaning; nothing hangs in
+the air, and an i'rab that names a jarr-majrur and stops has not finished. The
+rule the corpus confirms is **الأقرب أولى بالتعلق** — the nearest governor wins,
+which is why عَنْ حَوْزَةِ in Aqaid 23 hangs on the masdar الذَّبِّ beside it and does
+not reach back past it to قَادِرًا. Measured against the corpus's 111 answerable
+hand-written attachments: **33.1% → 48.0%**, and a five-way ablation confirmed
+nearest-wins beats verb-first (37.8%) and beats dropping the model (37.8%).
+Every point came from a correctness fix; none from tuning. Four things it must
+get right and now does:
+- **A majrur is not the letter that governs it.** The note test used to match
+  «AFTER a jarr letter — likely majrur», so every majrur noun was read as a
+  jarr letter and answered for a question it never asked.
+- **Ask the glossary which nouns carry a verb's meaning.** ذَبّ is a masdar on
+  فَعْل, a shape ten thousand ordinary nouns wear; no pattern test can find it,
+  but the glossary's own gloss says «(masdar)» and `nounIndex()` now carries
+  that as a `verbal` flag.
+- **لِلْخَلْقِ is لِ + الْخَلْق** with the article's alif swallowed — the letter is
+  there, it is simply not separable by eye.
+- **A jarr letter fused to an INDEFINITE noun** (بِقَائِمٍ, بِعِلْمِكَ) is never
+  peeled by the proclitic pass, so it has to be recognised here — guarded like
+  the waw, since a lemma opening with the same letter means it is RADICAL
+  (بَيْت, بَاب, لَيْل, كِتَاب). Worth 8 points on its own.
+
+The remaining 60% is not noise to be tuned away: the corpus often attaches a
+phrase across a clause boundary the analyzer is not holding, exactly as the
+opening waw's antecedent lies in the sentence above. **Do not chase that number
+by weakening the rule** — the ablation already shows every looser variant is
+worse.
+
 **Rank a many-faced word on MEASURED evidence, not on the books' order.**
 Ibn Hisham gives the waw eight faces (Qawa'id al-I'rab, bab 3): isti'naf, hal,
 atf, maf'ul ma'ah, jam', qasam, rubba, zaid. The first `WawEngine` reasoned

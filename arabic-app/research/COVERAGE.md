@@ -207,6 +207,17 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v100** — bab 2 of the same book follows bab 3: `TaalluqEngine` answers the
+  question an i'rab is not finished without — «attached to WHAT?» — for every
+  jarr-majrur and zarf. It knows Ibn Hisham's four exceptions (a zaid letter
+  attaches to nothing), it estimates the OMITTED amil as كائن / استقرّ where
+  nothing in the sentence can govern, and it follows الأقرب أولى بالتعلق.
+  Graded on the corpus's 111 answerable hand-written attachments: 33.1% →
+  48.0%, with a five-way ablation confirming nearest-wins over verb-first.
+  Backlog item #8 (ta'alluq / mahdhuf amil) moves from OPEN to PARTIAL.
+  Aqaid reaches chapter 23, written alongside the engine as its worked
+  example: four jarr-majrurs on four kinds of governor — an ism fa'il twice, a
+  masdar, and a masdar that is itself a mudaf — all four read correctly.
 - **v99** — Qawa'id al-I'rab bab 3 is implemented: `WawEngine` reads the waw's
   EIGHT faces and ranks them with the signal that raised each, closing one of
   the two open items on file #34. It is graded against the corpus's own

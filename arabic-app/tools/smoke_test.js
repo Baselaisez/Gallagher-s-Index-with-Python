@@ -4129,6 +4129,62 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // Qawa'id al-I'rab bab 2: every jarr-majrur attaches to a verb or to
+  // something carrying a verb's meaning. Nothing hangs in the air.
+  await check('the Ta\'alluq engine names what every jarr-majrur hangs on', async () => {
+    const r = await page.evaluate(() => {
+      const flat = x => stripAr(x || '').replace(/[^ء-ي]/g, '');
+      let n = 0, ok = 0, skipped = 0;
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+        const text = sen.tokens.map(t => t.s.full).join(' ');
+        let rows; try { rows = SentenceAnalyzer.analyze(text); } catch (e) { return; }
+        if (rows.length !== sen.tokens.length) return;
+        sen.tokens.forEach((t, i) => {
+          const m = /مُتَعَلِّقٌ\s+بِـ?«?([^»,.،]+)»?/.exec((t.irab || {}).ar || '');
+          if (!m) return;
+          const want = m[1].trim(), mahdhuf = /مَحْذُوف/.test(want);
+          // a target that is not a literal word of this sentence cannot be
+          // matched by any engine that names words — count it, but apart
+          const literal = rows.some(x => { const a = flat(x.w), w = flat(want).replace(/^ال/, '');
+            return w.length > 1 && (a.includes(w) || w.includes(a.replace(/^ال/, ''))); });
+          if (!mahdhuf && !literal) { skipped++; return; }
+          n++;
+          const got = TaalluqEngine.of(rows, i);
+          if (mahdhuf) { if (got && got.kind === 'mahdhuf') ok++; return; }
+          if (got && got.kind === 'found') {
+            const a = flat(got.word), w = flat(want).replace(/^ال/, '');
+            if (a.includes(w) || w.includes(a.replace(/^ال/, ''))) ok++;
+          }
+        });
+      })));
+      // chapter 23 was written as the engine's worked example: four jarr-
+      // majrurs on four different kinds of governor
+      const rows23 = SentenceAnalyzer.analyze('عَالِمًا بِالسِّيَاسَةِ وَإِقَامَةِ الْحُدُودِ قَادِرًا عَلَى الذَّبِّ عَنْ حَوْزَةِ الْإِسْلَامِ');
+      const ch23 = TaalluqEngine.all(rows23)
+        .map(x => x.w + '→' + (x.t.kind === 'found' ? x.t.word : x.t.kind));
+      // Ibn Hisham's exceptions: a zaid letter attaches to NOTHING
+      const zaid = TaalluqEngine.of(SentenceAnalyzer.analyze('مَا زَيْدٌ بِقَائِمٍ'), 2);
+      // and where nothing can govern it, the amil is omitted and estimated
+      const md = TaalluqEngine.of(SentenceAnalyzer.analyze('فِي الدَّارِ رَجُلٌ'), 0);
+      return { n, skipped, acc: Math.round(ok / n * 1000) / 10, ch23,
+               zaid: zaid && zaid.kind, md: md && md.kind,
+               mdText: md && md.text ? md.text.tr : '' };
+    });
+    if (r.n < 90) throw new Error('the graded set shrank: ' + r.n);
+    // 33.1% was the first version, before a majrur stopped being mistaken for
+    // the letter governing it, before the glossary was asked which nouns carry
+    // a verb's meaning, and before a jarr letter fused to an INDEFINITE noun
+    // (بِقَائِمٍ) was recognised at all. Each of those was a correctness fix; not
+    // one point of this came from tuning.
+    if (r.acc < 45) throw new Error('ta\'alluq accuracy regressed to ' + r.acc + '%');
+    const want23 = ['بِالسِّيَاسَةِ→عَالِمًا', 'عَلَى→قَادِرًا', 'عَنْ→الذَّبِّ'];
+    want23.forEach(w => { if (!r.ch23.includes(w))
+      throw new Error('the worked example broke: wanted ' + w + ', got ' + r.ch23.join(' ')); });
+    if (r.zaid !== 'exempt') throw new Error('a zaid ba attaches to nothing, got ' + r.zaid);
+    if (r.md !== 'mahdhuf') throw new Error('with no governor the amil is omitted, got ' + r.md);
+    if (!/kâin|istekarra/.test(r.mdText)) throw new Error('the omitted amil must be ESTIMATED: ' + r.mdText);
+  });
+
   // Ibn Hisham gives the waw eight faces. The engine proposes them ranked, and
   // is graded against every waw a human has already ruled on in the library —
   // the only honest scoreboard available for a question this open.

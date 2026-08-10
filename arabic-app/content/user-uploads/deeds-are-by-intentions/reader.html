@@ -4956,7 +4956,15 @@ class RootFinder {
         const e = gl[lex];
         if (!e || !e.gloss) return;
         if (e.pos && /verb/.test(e.pos)) return;      // verbs answer from their paradigm
-        const rec = { lemma: e.lemma, gloss: e.gloss, root: e.root, pos: e.pos, via: "corpus" };
+        // Does the glossary itself say this noun carries a verb's meaning? Its
+        // own glosses name them — «(masdar)», «(ism fa'il)», «(ism maf'ul)» —
+        // and the Ta'alluq engine needs exactly that fact for nouns whose
+        // pattern does not betray it (ذَبّ is a masdar on فَعْل, a shape ten
+        // thousand ordinary nouns also wear).
+        const gtxt = (e.gloss.en || "") + " " + (e.gloss.tr || "");
+        const verbal = /masdar|ism fa'il|ism maf'ul|ism-i fâil|ism-i mef'ûl/i.test(gtxt);
+        const rec = { lemma: e.lemma, gloss: e.gloss, root: e.root, pos: e.pos,
+                      verbal, via: "corpus" };
         put(e.lemma, rec);
         if (e.plural) String(e.plural).split(/[\/،,]/).forEach(pl => put(pl.trim(), rec));
       });
@@ -6127,6 +6135,7 @@ class SentenceAnalyzer {
         const nn = RootFinder.nounFromCorpus(w);
         if (nn) {
           row.lemma = nn.lemma; row.gloss = nn.gloss; row.sure = true;
+          if (nn.verbal) row.verbal = true;
           if (nn.root && !row.root) row.root = nn.root;
           if (!row.kind || row.kind === "noun?") row.kind = "noun";
         }
@@ -6185,6 +6194,21 @@ class SentenceAnalyzer {
       }
       out.push(row);
     });
+    // ---- the TA'ALLUQ pass: nothing hangs in the air ---------------------
+    // An i'rab that names a jarr-majrur and stops has not finished: «attached
+    // to WHAT?» is the rest of the answer, and Qawa'id al-I'rab bab 2 says
+    // there is always one.
+    try {
+      TaalluqEngine.all(out).forEach(x => {
+        const r = out[x.i], t = x.t;
+        if (t.kind === "found") r.notes.push({
+          en: `ATTACHES to «${t.word}» — ${t.lbl.en}. The nearest governor has the better claim, so it hangs on that and does not reach back past it.`,
+          tr: `«${t.word}»ya TAALLUK eder — ${t.lbl.tr}. Taallukta en yakın âmil evlâdır; geriye uzanmaz, ona asılır.`,
+          ml: t.how === "model" });
+        else r.notes.push({ en: t.text.en, tr: t.text.tr });
+      });
+    } catch (e) {}
+
     // ---- the WAW pass: eight faces, ranked, each with its signal ---------
     // The proclitic pass leaves a four-name shrug on every waw. The engine can
     // do better than that, and where it cannot it should say WHY it cannot —
@@ -9033,6 +9057,130 @@ class SarfTagger {
   }
 }
 
+// ---------- the Ta'alluq engine ------------------------------------------
+// Qawa'id al-I'rab, bab 2, in one sentence: EVERY jarr-majrur and every zarf
+// attaches to a verb or to something carrying a verb's meaning. Nothing hangs
+// in the air. An i'rab that names a jarr-majrur and stops has not finished the
+// job — the question «attached to WHAT?» is the rest of it, and the corpus
+// answers it 122 times by hand.
+//
+// What carries a verb's meaning: a verb, a MASDAR, an ism fa'il, an ism
+// maf'ul, a sifa mushabbaha, an ism tafdil. The noun tagger already reads
+// those off the surface, so the engine asks it rather than keeping a list —
+// which is the second time training that model has paid a rule's bill.
+//
+// Ibn Hisham's own exceptions: four things do NOT attach. A ZAID letter (the
+// ba of «مَا زَيْدٌ بِقَائِمٍ», the min of «مَا جَاءَنِي مِنْ أَحَدٍ»), the letter in
+// لَوْلَا, the kaf of comparison on one view, and rubba on another. The engine
+// names the exception instead of inventing a governor for it.
+//
+// And when nothing in the sentence can govern it, the amil is MAHDHUF and is
+// estimated — كَائِن or اسْتَقَرَّ — which is not a failure but the classical
+// answer, and the one an i'rab is supposed to give.
+class TaalluqEngine {
+  static JARR = new Set(["في", "من", "الى", "إلى", "عن", "على", "حتى", "الا", "ب", "ل", "ك",
+                         "مذ", "منذ", "رب", "بلا", "عند", "مع", "بين", "قبل", "بعد", "تحت", "فوق"]);
+  // the ism patterns that govern like the verb they come from
+  static VERBAL_WAZN = /^(فَاعِل|مَفْعُول|مُفَعِّل|مُفَعَّل|مُفَاعِل|مُفَاعَل|مُفْعِل|مُفْعَل|مُتَفَعِّل|مُتَفَعَّل|مُتَفَاعِل|مُتَفَاعَل|مُنْفَعِل|مُنْفَعَل|مُفْتَعِل|مُفْتَعَل|مُسْتَفْعِل|مُسْتَفْعَل|تَفْعِيل|مُفَاعَلَة|إِفْعَال|تَفَعُّل|تَفَاعُل|اِنْفِعَال|اِفْتِعَال|اِسْتِفْعَال|فَعِيل|فَعَّال|فَعُول|أَفْعَل)/;
+  static flatOf(w){ return stripAr(w || "").replace(/[^ء-ي]/g, ""); }
+  // Does this row carry a verb's meaning, and so govern a jarr after it?
+  static governs(row){
+    if (!row || !row.kind) return null;
+    if (row.kind.startsWith("verb")) return { how: "verb" };
+    if (!row.kind.startsWith("noun")) return null;
+    if (row.alam) return null;
+    // the glossary's own word first: it says outright which nouns are masdars
+    // and participles, and that is knowledge, not inference
+    if (row.verbal) return { how: "lex", lemma: row.lemma };
+    // then the stored wazn — derived, not guessed
+    if (row.wazn && this.VERBAL_WAZN.test(row.wazn)) return { how: "wazn", wazn: row.wazn };
+    // …then the learned tagger, badged as the guess it is
+    try {
+      const g = IsmTagger.tag(row.w, 1)[0];
+      if (g && g.p >= 0.35 && this.VERBAL_WAZN.test(g.wazn))
+        return { how: "model", wazn: g.wazn, p: g.p };
+    } catch (e) {}
+    return null;
+  }
+  static HOW_LBL = {
+    verb:  { ar: "فِعْلٌ", en: "a verb", tr: "fiil" },
+    lex:   { ar: "مَصْدَرٌ أَوْ وَصْفٌ — بِالنَّصِّ", en: "a masdar or a participle, by the glossary's own word", tr: "masdar yahut vasıf — sözlüğün kendi ifadesiyle" },
+    wazn:  { ar: "اسْمٌ عَامِلٌ عَمَلَ فِعْلِهِ", en: "a noun that governs as its verb does", tr: "fiili gibi amel eden isim" },
+    model: { ar: "اسْمٌ عَامِلٌ — بِالتَّعَلُّمِ", en: "a governing noun, read off the scale by the learned tagger", tr: "âmil isim — vezni öğrenmiş etiketleyiciden" },
+  };
+  // Is this letter one of the four that attach to nothing?
+  // Only the cases the SURFACE can settle are claimed; a zaid ba or min needs
+  // a negative or an interrogative in front of it, and that is checkable.
+  static exempt(rows, i){
+    const f = this.flatOf(rows[i].w);
+    const before = rows.slice(0, i);
+    const negated = before.some(r => /^(ما|لا|ليس|لم|لن|هل|أ)$/.test(this.flatOf(r.w)));
+    if (/^ب/.test(f) && negated && i > 0)
+      return { ar: "الْبَاءُ زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ فَلَا تَتَعَلَّقُ بِشَيْءٍ",
+               en: "after a negation this ba may be ZAID — added to strengthen the denial — and a zaid letter attaches to nothing at all",
+               tr: "nefiyden sonra bu bâ ZÂİD olabilir — nefyi te'kîd için gelir — ve zâid harf hiçbir şeye taalluk etmez" };
+    if (/^من/.test(f) && negated)
+      return { ar: "«مِنْ» زَائِدَةٌ بَعْدَ النَّفْيِ فَلَا تَتَعَلَّقُ",
+               en: "«min» after a negation with an indefinite after it is the ZAID min, and it attaches to nothing",
+               tr: "nefiyden sonra ve ardında nekre ile gelen «min» ZÂİDdir; taalluk etmez" };
+    if (/^لولا/.test(f))
+      return { ar: "لَامُ «لَوْلَا» لَا تَتَعَلَّقُ عَلَى قَوْلٍ",
+               en: "the letter in «lawla» does not attach, on one view",
+               tr: "«levlâ»daki harf, bir kavle göre taalluk etmez" };
+    if (/^رب/.test(f) && f.length <= 3)
+      return { ar: "«رُبَّ» لَا تَتَعَلَّقُ عَلَى قَوْلٍ",
+               en: "«rubba» does not attach, on one view",
+               tr: "«rubbe», bir görüşe göre taalluk etmez" };
+    return null;
+  }
+  // The answer for the jarr-majrur (or zarf) at index i.
+  static of(rows, i){
+    const row = rows[i];
+    if (!row) return null;
+    const f = this.flatOf(row.w);
+    // a jarr letter standing alone, or fused to what it governs
+    // A jarr letter, standing alone or fused to what it governs. The note test
+    // that used to be here matched «AFTER a jarr letter — likely majrur» too,
+    // so every majrur noun was being read as the letter that governs it, and
+    // the engine answered for words that ask no question.
+    const isJarr = this.JARR.has(f) ||
+      (row.seg && row.seg.length > 1 && this.JARR.has(this.flatOf(row.seg[0]))) ||
+      // لِلْخَلْقِ is لِ + الْخَلْق with the article's alif swallowed: the letter
+      // is there, it is simply not separable by eye.
+      (/^لل/.test(f) && f.length > 3) ||
+      (/^[بكل]ال/.test(f) && f.length > 3) ||
+      // …and fused to an INDEFINITE noun, which the proclitic peel leaves
+      // alone: بِقَائِمٍ, بِعِلْمِكَ. The letter is a jarr letter all the same.
+      // Guarded exactly as the waw is — a lemma that itself opens with the
+      // letter means the letter is RADICAL (بَيْت, بَاب, لَيْل, كِتَاب).
+      (/^[بكل]/.test(f) && f.length > 3 &&
+       !(row.lemma && /^[بكل]/.test(this.flatOf(row.lemma))) && !row.alam);
+    if (!isJarr) return null;
+    const ex = this.exempt(rows, i);
+    if (ex) return { kind: "exempt", text: ex };
+    // NEAREST first: «الْأَقْرَبُ أَوْلَى بِالتَّعَلُّقِ». Walking back from the
+    // letter, the first governor met is the one it hangs on — which is why
+    // «عَنْ حَوْزَةِ» in Aqaid 23 attaches to the masdar «الذَّبِّ» beside it and
+    // does not reach back past it to «قَادِرًا».
+    for (let k = i - 1; k >= 0; k--) {
+      const g = this.governs(rows[k]);
+      if (g) return { kind: "found", at: k, word: rows[k].w, ...g,
+                      lbl: this.HOW_LBL[g.how] };
+    }
+    // nothing governs it → the amil is omitted, and the books estimate it
+    return { kind: "mahdhuf", text: {
+      ar: "مُتَعَلِّقٌ بِمَحْذُوفٍ تَقْدِيرُهُ «كَائِنٌ» أَوِ «اسْتَقَرَّ»",
+      en: "nothing before it in this sentence can govern it, so it attaches to an OMITTED amil — the books estimate «kaʾin» (being) or «istaqarra» (came to rest). That is the classical answer, not a failure to find one: a jarr-majrur falling as a khabar, a sifa, a sila or a hal always hangs on an amil that is understood rather than written.",
+      tr: "bu cümlede kendisini amel edecek bir şey öncesinde yok; öyleyse MAHZÛF bir âmile taalluk eder — takdîri «kâin» yahut «istekarra»dır. Bu, âmil bulunamadı demek değildir: haber, sıfat, sıla yahut hâl olarak düşen câr-mecrûr dâimâ yazılmayan, takdîr edilen bir âmile asılır." } };
+  }
+  // every attachment in a sentence, for the panel and the kernel
+  static all(rows){
+    const out = [];
+    rows.forEach((r, i) => { const t = this.of(rows, i); if (t) out.push({ i, w: r.w, t }); });
+    return out;
+  }
+}
+
 // ---------- the Waw engine -----------------------------------------------
 // Ibn Hisham's Qawa'id al-I'rab, bab 3, sets the waw among the words that
 // carry EIGHT faces: isti'naf, hal, atf, maf'ul ma'ah, the waw of plurality,
@@ -9805,6 +9953,13 @@ class GrammarKernel {
       chains.map(c => [c.words.join(" "),
         T({ en: `«${c.words[0]}» is the mudaf: no tanwin, no ال, no nun of the dual or the sound plural — and «${c.words[c.words.length - 1]}» at the end is majrur. ${c.words.length > 2 ? "Every middle member is a mudaf AND a mudaf ilayh at once." : ""}`,
             tr: `«${c.words[0]}» muzâftır: tenvin yok, «أَلْ» yok, tesniye ve cemi sâlim nûnu yok — sondaki «${c.words[c.words.length - 1]}» ise mecrûrdur. ${c.words.length > 2 ? "Aradaki her halka hem muzâf hem muzâfun ileyhtir." : ""}` })]));
+
+    // every attachment in the phrase, named
+    const tal = TaalluqEngine.all(rows0);
+    if (tal.length) add("taalluq", "rule",
+      { ar: "التَّعَلُّقُ", en: "What each jarr-majrur attaches to", tr: "Her câr-mecrûr neye taalluk ediyor" },
+      tal.map(x => [x.w + (x.t.kind === "found" ? " → " + x.t.word : ""),
+        x.t.kind === "found" ? T(x.t.lbl) : T(x.t.text)]));
 
     // the waw's eight faces, for the first waw the phrase opens with or carries
     const wawAt = rows0.findIndex(r => WawEngine.separable(r));
