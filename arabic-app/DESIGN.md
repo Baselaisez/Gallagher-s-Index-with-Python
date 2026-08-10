@@ -166,6 +166,12 @@ is computed from what is actually on screen at paint time, so there is no
 whole library at the front door and from the open story once one is open, so
 there is nothing to disable.
 
+**Amil walk** — `.ibara-why` + `.ib-pairs`: the İbare game's reveal. Each row
+is one governor/governed pair, Arabic first at `--t-lg`, the naming of the
+relation in Arabic beside it, the reading beneath in `--ink-soft`. It is the
+Step list pattern applied to syntax rather than morphology: the app shows its
+WORK, not just its verdict.
+
 **Scope banner** — `.game-scope`: one line at the top of the games hub saying
 what the round will be drawn from — this story, or the whole library. A
 learner should never have to start a round to find out what it will ask

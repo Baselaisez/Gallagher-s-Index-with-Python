@@ -4144,6 +4144,58 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  // Translation is where grammar stops being a hobby, so the reveal has to
+  // do more than mark the answer: it walks the amil/ma'mul pairs, and those
+  // pairs are DERIVED from the stored i'rab rather than written a second time.
+  await check('the ibare game runs both ways and explains by amil and ma\'mul', async () => {
+    const r = await page.evaluate(() => {
+      renderLibrary();
+      const pool = ibaraItems();
+      // every item must carry at least one governor/governed pair, and the
+      // pairing must never hand a majrur to a verb
+      const bad = [];
+      pool.forEach(it => {
+        if (!it.pairs.length) bad.push(it.sen.id + ': no pair');
+        it.pairs.forEach(p => {
+          if (!p.rel.from.includes(p.gov.k))
+            bad.push(it.sen.id + ': ' + p.rel.k + ' governed by ' + p.gov.k);
+          if (p.amil === p.mamul) bad.push(it.sen.id + ': a word governing itself');
+        });
+      });
+      return { n: pool.length, bad: bad.slice(0, 5),
+               kinds: [...new Set(pool.flatMap(i => i.pairs.map(p => p.gov.k)))] };
+    });
+    if (r.n < 20) throw new Error('too few ibare items: ' + r.n);
+    if (r.bad.length) throw new Error(r.bad.join('; '));
+    for (const k of ['verb', 'jarr'])
+      if (!r.kinds.includes(k)) throw new Error('no ' + k + ' governor found in the pool');
+
+    for (const [id, arSide] of [['gIbaraTr', false], ['gIbaraAr', true]]) {
+      await page.evaluate(() => openGames());
+      await page.waitForSelector('.game-pick', { timeout: 3000 });
+      await page.locator('#' + id).click();
+      await page.waitForSelector('.opts', { timeout: 3000 });
+      const q = await page.locator('.game-q').innerHTML();
+      const arabic = /lang="ar"/.test(q);
+      if (arabic !== !arSide)
+        throw new Error(id + ': the prompt side is wrong (arabic prompt=' + arabic + ')');
+      const n = await page.locator('.opts [data-o]').count();
+      if (n !== 4) throw new Error(id + ': four renderings expected, got ' + n);
+      await page.locator('.opts [data-o]').first().click();
+      await page.waitForSelector('#qWhy', { timeout: 3000 });
+      const w = await page.evaluate(() => ({
+        pairs: document.querySelectorAll('#qWhy .ib-pairs li').length,
+        right: document.querySelectorAll('.opts .right').length,
+        text: document.getElementById('qWhy').textContent,
+      }));
+      if (w.right !== 1) throw new Error(id + ': exactly one right rendering');
+      if (!w.pairs) throw new Error(id + ': the reveal must walk the amil pairs');
+      if (!/عَامِل|âmil|amil|مَرْفُوع|مَنْصُوب|مَجْرُور/i.test(w.text))
+        throw new Error(id + ': the reveal must speak in amil/ma\'mul terms');
+      await page.evaluate(() => closeSheet());
+    }
+  });
+
   await check('the games hub is shelved by discipline, and every card still opens', async () => {
     await page.evaluate(() => openGames());
     await page.waitForSelector('.game-pick', { timeout: 3000 });
@@ -4161,10 +4213,10 @@ if (!CHROME) {
       });
       return { heads, cards, firstHead, orphanHead };
     });
-    if (r.heads.length !== 4) throw new Error('four disciplines expected, got ' + r.heads.length);
+    if (r.heads.length !== 5) throw new Error('five disciplines expected, got ' + r.heads.length);
     if (r.firstHead !== 0) throw new Error('a card sits above the first heading');
     if (r.orphanHead) throw new Error('a heading has no card under it');
-    if (r.cards.length !== 12) throw new Error('twelve games expected, got ' + r.cards.length);
+    if (r.cards.length !== 14) throw new Error('fourteen games expected, got ' + r.cards.length);
     for (const id of r.cards) {
       const wired = await page.evaluate(i => !!document.getElementById(i), id);
       if (!wired) throw new Error('card ' + id + ' vanished');

@@ -1069,6 +1069,16 @@ strip matches `deckStats()` exactly, and the phone layout is exercised at
 390×844. A literal `padding: .9rem` in a new rule is a bug even when it
 looks right.
 
+**`AmilEngine` reads the government out of the i'rab, it does not store it.**
+Every stored i'rab line already says what a word IS; nothing says which word
+GOVERNS which, and nothing needs to. `AmilEngine.pairs(sen)` walks the
+sentence keeping a stack of governors and pairs each governed word with the
+nearest governor that can give the case it wears — which is what the `from`
+list on each MA'MUL entry is for: **a majrur must never be handed to a verb**.
+The smoke suite asserts that constraint over the whole pool, and that no word
+governs itself. This is what the İbare game's reveal is built from, so the
+explanation can never drift from the analysis.
+
 **Games are scoped to where you are.** `gameStories()` is the ONE place the
 decision is made: at the front door a round is drawn from the whole library,
 inside a story it is drawn from that story alone. Every item builder goes

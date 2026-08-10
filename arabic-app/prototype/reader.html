@@ -1114,6 +1114,25 @@
     body { padding-bottom: calc(var(--s7) + var(--s5)); }
   }
 
+  /* the ibare game: source large, then the amil/ma'mul walk */
+  .ib-src { font-size: var(--t-lg); line-height: var(--lh-body); text-align: center; }
+  .ib-src.ar { font-family: var(--ar-font); font-size: var(--t-2xl); direction: rtl; line-height: 2.1; }
+  .ib-answer { text-align: center; margin-bottom: var(--s3); }
+  .ib-answer span[lang="ar"] { font-family: var(--ar-font); font-size: var(--t-xl); direction: rtl; }
+  .ib-answer .ib-tr { color: var(--ink-soft); font-size: var(--t-sm); margin-top: var(--s1); }
+  .ibara-why { border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: var(--s3); background: var(--panel); }
+  .ibara-why .ib-head { font-size: var(--t-xs); letter-spacing: var(--track-caps);
+    text-transform: uppercase; font-weight: 700; opacity: .6; margin-bottom: var(--s2); }
+  .ib-pairs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+  .ib-pairs li { border-inline-start: 3px solid var(--accent); padding-inline-start: var(--s2); }
+  .ib-pairs b { font-family: var(--ar-font); font-size: var(--t-lg); }
+  .ib-pairs .ib-g { font-family: var(--ar-font); font-size: var(--t-sm); opacity: .7; }
+  .ib-pairs .ib-arrow { opacity: .45; margin: 0 var(--s1); }
+  .ib-pairs .ib-gloss { font-size: var(--t-sm); color: var(--ink-soft); line-height: var(--lh-body); }
+  .ibara-why .ib-note { font-size: var(--t-sm); color: var(--ink-soft); margin-top: var(--s2);
+    line-height: var(--lh-body); }
+
   /* the scope banner: what THIS round will ask about */
   .game-scope { display: flex; align-items: center; gap: var(--s2);
     padding: var(--s2) var(--s3); margin: var(--s2) 0 var(--s3);
@@ -1464,9 +1483,16 @@ const L = {
         alaqaHaqiqi:"Literally:", alaqaMajazi:"Meant:", alaqaQarina:"What forbids the literal reading:",
         alaqaIstiara:"This relation alone makes the majaz an ISTI'ARA rather than a mursal.",
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
-        gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha",
+        gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha", gGroupIbara:"Rendering",
         mlScore:"🧠 Held out and re-tested: the model is trained on every story but one and asked about the one it has never seen, {k} times over, across {n} labelled words. It names the role right first try {a}% of the time, and within two guesses {b}%. Graded instead on the corpus it memorised it would claim {r}% — that gap is why the honest number is the one shown.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
+        ibaraToTr:"The phrase — into Turkish", ibaraToAr:"The phrase — into Arabic",
+        ibaraToTrDesc:"Read the ibare and pick what it says. The reveal shows which word governs which.",
+        ibaraToArDesc:"You are given the meaning; find the Arabic that carries it, then see why.",
+        ibaraAskTr:"What does this ibare say?",
+        ibaraAskAr:"Which ibare says this?",
+        ibaraWhy:"Why it means that — amil and ma'mul",
+        ibaraNote:"Every pair above is read off this sentence's own i'rab. Change the governor and you change the translation.",
         scopeAll:"Playing from the whole library",
         scopeStory:"Playing from «{s}» — every round is drawn from this story",
         scopeEmpty:"This story has nothing to draw on for that game yet. Close it to play from the whole library.",
@@ -1614,9 +1640,16 @@ const L = {
         alaqaHaqiqi:"Hakiki manası:", alaqaMajazi:"Kastedilen:", alaqaQarina:"Hakiki manayı engelleyen karîne:",
         alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
-        gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat",
+        gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
         mlScore:"🧠 Dışarıda bırakıp yeniden sınama: model, bir hikâye hariç bütün hikâyelerle eğitilip hiç görmediği o hikâyeden sorulur — {k} kez, toplam {n} etiketli kelime üzerinde. İlk tahminde %{a}, ilk iki tahmin içinde %{b} isabet eder. Ezberlediği külliyat üzerinde ölçülseydi %{r} iddia ederdi; gösterilen sayının dürüst olanı seçilmesinin sebebi bu farktır.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
+        ibaraToTr:"İbâre — Türkçeye", ibaraToAr:"İbâre — Arapçaya",
+        ibaraToTrDesc:"İbâreyi okuyun ve ne dediğini seçin. Cevapta hangi kelimenin hangisine amel ettiği gösterilir.",
+        ibaraToArDesc:"Mana verilir; onu taşıyan Arapçayı bulun, sonra sebebini görün.",
+        ibaraAskTr:"Bu ibâre ne diyor?",
+        ibaraAskAr:"Bunu hangi ibâre söylüyor?",
+        ibaraWhy:"Mana neden böyle — âmil ve ma'mûl",
+        ibaraNote:"Yukarıdaki her çift, bu cümlenin kendi i'râbından okunmuştur. Âmili değiştirin, tercüme değişir.",
         scopeAll:"Bütün kütüphaneden oynanıyor",
         scopeStory:"«{s}» üzerinden oynanıyor — her soru bu hikâyeden çıkar",
         scopeEmpty:"Bu hikâyede o oyuna yetecek malzeme henüz yok. Kütüphaneden oynamak için hikâyeyi kapatın.",
@@ -8021,6 +8054,149 @@ function renderDeck(){
 
 // ---------- games ----------
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+// ---------- عَامِل / مَعْمُول: who governs whom in a real sentence -------
+// Every stored i'rab line already names what a word IS; the pairing of an
+// AMIL with the MA'MUL it governs is not stored anywhere, and it does not
+// need to be — it can be read off those lines. The rule the books use is
+// positional and simple: a governor keeps governing until another governor
+// displaces it, and a governed word looks BACK to the nearest one that can
+// govern the case it wears. That is what this reads.
+class AmilEngine {
+  // What each i'rab line announces itself as. Order matters: the first test
+  // that matches wins, exactly as in RoleEngine.
+  static GOV = [
+    { k: "jarr",   re: /حَرْفُ جَرٍّ/,
+      ar: "حَرْفُ جَرٍّ", en: "a jarr letter", tr: "cer harfi",
+      gives: ["jarr"] },
+    { k: "nasikh", re: /حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ/,
+      ar: "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ", en: "a particle like a verb", tr: "fiile benzeyen harf",
+      gives: ["nasb-ism", "raf-khabar"] },
+    { k: "kana",   re: /فِعْلٌ مَاضٍ نَاقِصٌ|نَاقِصٌ يَرْفَعُ/,
+      ar: "فِعْلٌ نَاقِصٌ", en: "a defective verb", tr: "nâkıs fiil",
+      gives: ["raf-ism", "nasb-khabar"] },
+    { k: "verb",   re: /فِعْلٌ مَاضٍ|فِعْلٌ مُضَارِعٌ|فِعْلُ أَمْرٍ/,
+      ar: "فِعْلٌ", en: "a verb", tr: "fiil",
+      gives: ["raf-fail", "nasb-maful"] },
+    { k: "mudaf",  re: /وَهُوَ مُضَافٌ/,
+      ar: "الْمُضَافُ", en: "a mudaf", tr: "muzâf",
+      gives: ["jarr-idafa"] },
+  ];
+  static MAM = [
+    { k: "fail",   re: /فَاعِلٌ|نَائِبُ فَاعِلٍ/,   from: ["verb"],
+      ar: "فَاعِلٌ مَرْفُوعٌ بِهِ", en: "its fa'il, raised BY it", tr: "onunla merfû fâili" },
+    { k: "maful",  re: /مَفْعُولٌ بِهِ/,             from: ["verb"],
+      ar: "مَفْعُولٌ بِهِ مَنْصُوبٌ بِهِ", en: "its object, put in nasb BY it", tr: "onunla mansub mef'ûlü" },
+    { k: "majrur", re: /مَجْرُورٌ|مُضَافٌ إِلَيْهِ/, from: ["jarr", "mudaf"],
+      ar: "مَجْرُورٌ بِهِ", en: "put in jarr BY it", tr: "onunla mecrûru" },
+    { k: "ismInna", re: /اسْمُ «إِنَّ»|اسْمُ «إِنّ/,  from: ["nasikh"],
+      ar: "اسْمُهَا مَنْصُوبٌ بِهَا", en: "its ism, put in nasb by it", tr: "onunla mansub ismi" },
+    { k: "khabarInna", re: /خَبَرُ «إِنَّ»|خَبَرُ «إِنّ/, from: ["nasikh"],
+      ar: "خَبَرُهَا مَرْفُوعٌ بِهَا", en: "its khabar, raised by it", tr: "onunla merfû haberi" },
+    { k: "ismKana", re: /اسْمُ «كَانَ»|اسْمُ «كَان/,  from: ["kana"],
+      ar: "اسْمُهُ مَرْفُوعٌ بِهِ", en: "its ism, raised by it", tr: "onunla merfû ismi" },
+    { k: "khabarKana", re: /خَبَرُ «كَانَ»|خَبَرُ «كَان/, from: ["kana"],
+      ar: "خَبَرُهُ مَنْصُوبٌ بِهِ", en: "its khabar, put in nasb by it", tr: "onunla mansub haberi" },
+  ];
+  static govOf(tok){
+    const ar = ((tok.irab && tok.irab.ar) || "").normalize("NFC");
+    if (!ar) return null;
+    for (const g of this.GOV) if (g.re.test(ar)) return g;
+    return null;
+  }
+  static mamOf(tok){
+    const ar = ((tok.irab && tok.irab.ar) || "").normalize("NFC");
+    if (!ar) return null;
+    for (const m of this.MAM) if (m.re.test(ar)) return m;
+    return null;
+  }
+  // The governed pairs of one sentence, in reading order. A ma'mul looks BACK
+  // to the nearest governor that can give the case it is wearing — which is
+  // why the `from` list exists: a majrur never pairs with a verb.
+  static pairs(sen){
+    const out = [], seen = [];
+    sen.tokens.forEach(t => {
+      const g = this.govOf(t);
+      const m = this.mamOf(t);
+      if (m) {
+        for (let i = seen.length - 1; i >= 0; i--) {
+          if (m.from.includes(seen[i].g.k)) { out.push({ amil: seen[i].t, gov: seen[i].g, mamul: t, rel: m }); break; }
+        }
+      }
+      if (g) seen.push({ t, g });
+    });
+    return out;
+  }
+}
+
+// ---------- game: العِبَارَة — the phrase, both ways -------------------
+// Translation is where grammar stops being a hobby: you cannot render the
+// sentence until you know which word governs which. So the reveal does not
+// just mark the answer — it walks the amil/ma'mul pairs the sentence is
+// built from, and that walk is DERIVED from the stored i'rab, not written
+// a second time by hand.
+function ibaraItems(){
+  const out = [];
+  gameStories().forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+    if (!sen.translation || !sen.translation.tr || !sen.translation.en) return;
+    const words = sen.tokens.length;
+    if (words < 3 || words > 12) return;            // long enough to parse, short enough to hold
+    const pairs = AmilEngine.pairs(sen);
+    if (!pairs.length) return;                       // nothing to explain = nothing to teach
+    out.push({ st, sen, pairs,
+               ar: sen.tokens.map(t => t.s.full).join(" "),
+               tr: sen.translation.tr, en: sen.translation.en });
+  })));
+  return out;
+}
+function ibaraExplain(it){
+  const tr = state.uiLang === "tr";
+  const rows = it.pairs.slice(0, 4).map(p => `<li>
+    <b lang="ar">${p.amil.s.full}</b> <span class="ib-g">${p.gov.ar}</span>
+    <span class="ib-arrow">→</span>
+    <b lang="ar">${p.mamul.s.full}</b> <span class="ib-g">${p.rel.ar}</span>
+    <div class="ib-gloss">${tr ? `${p.gov.tr} — ${p.rel.tr}` : `${p.gov.en} — ${p.rel.en}`}</div>
+  </li>`).join("");
+  return `<div class="ibara-why">
+    <div class="ib-head">${ui().ibaraWhy}</div>
+    <ul class="ib-pairs">${rows}</ul>
+    <div class="ib-note">${ui().ibaraNote}</div>
+  </div>`;
+}
+function startIbara(dir){
+  const pool = ibaraItems();
+  if (pool.length < 4) { openGames(); return; }
+  const items = shuffle(pool).slice(0, 6);
+  const toAr = dir === "toAr";
+  runQuiz({
+    title: toAr ? ui().ibaraToAr : ui().ibaraToTr,
+    ask: toAr ? ui().ibaraAskAr : ui().ibaraAskTr,
+    items, restart: () => startIbara(dir),
+    area: "nahw", lvl: it => Math.min(5, 2 + it.pairs.length),
+    itemKey: it => "ibara#" + it.sen.id,
+    question: it => toAr
+      ? `<div class="game-q"><div class="ib-src">${escapeAttr(it.tr)}</div></div>`
+      : `<div class="game-q"><div class="ib-src ar" lang="ar">${it.ar}</div></div>`,
+    options: it => {
+      const others = shuffle(pool.filter(x => x.sen.id !== it.sen.id || x.st.id !== it.st.id)).slice(0, 3);
+      const mk = x => toAr
+        ? { html: `<span lang="ar">${x.ar}</span>`, ar: true, ok: x === it }
+        : { html: escapeAttr(x.tr), ok: x === it };
+      return shuffle([mk(it), ...others.map(mk)]);
+    },
+    whyNot: (it) => tr_ibaraWhyNot(it),
+    why: it => `<div class="ib-answer"><span lang="ar">${it.ar}</span>
+        <div class="ib-tr">${escapeAttr(it.tr)}</div></div>` + ibaraExplain(it),
+  });
+}
+function tr_ibaraWhyNot(it){
+  const tr = state.uiLang === "tr";
+  const p = it.pairs[0];
+  if (!p) return tr ? "Başka bir cümlenin tercümesini seçtiniz." : "That is another sentence's rendering.";
+  return tr
+    ? `Seçtiğiniz tercüme bu cümlenin değil. Bu cümlede <b lang="ar">${p.amil.s.full}</b> âmildir ve <b lang="ar">${p.mamul.s.full}</b> onun ma'mûlüdür — mana bu bağdan doğar.`
+    : `That rendering belongs to another sentence. Here <b lang="ar">${p.amil.s.full}</b> is the amil and <b lang="ar">${p.mamul.s.full}</b> is what it governs — the meaning comes out of that link.`;
+}
+
 // ---------- game: the vocative ----------
 // Every item is a real call out of the corpus, and the right answer is not
 // stored anywhere — NidaEngine derives it from the letters at play time. If
@@ -8106,6 +8282,8 @@ function openGames(){
     gNida:    () => nidaItems().length,
     gHamza:   () => hamzaItems().length,
     gTahlil:  () => tahlilSentences().length,
+    gIbaraTr: () => ibaraItems().length,
+    gIbaraAr: () => ibaraItems().length,
   };
   const gCard = (id, emblem, title, desc, extra) => {
     let n = null;
@@ -8132,6 +8310,9 @@ function openGames(){
     ${gCard("gHamza", "﴾؟﴿", ui().hamzaGame, ui().hamzaGameDesc)}
     ${gCard("gSpot", "🔍", ui().spot, ui().spotDesc)}
     ${gCard("gTahlil", "🎓", ui().tahlil, ui().tahlilDesc)}
+    ${gHead("عِبَارَة", ui().gGroupIbara)}
+    ${gCard("gIbaraTr", "🔤", ui().ibaraToTr, ui().ibaraToTrDesc)}
+    ${gCard("gIbaraAr", "✒️", ui().ibaraToAr, ui().ibaraToArDesc)}
     ${gHead("بَلَاغَة", ui().gGroupBalagha)}
     ${gCard("gAlaqa", "🪢", ui().alaqaGame, ui().alaqaGameDesc)}
   </div>`;
@@ -8146,6 +8327,8 @@ function openGames(){
   document.getElementById("gHamza").addEventListener("click", startHamza);
   document.getElementById("gAlaqa").addEventListener("click", startAlaqa);
   document.getElementById("gNida").addEventListener("click", startNida);
+  document.getElementById("gIbaraTr").addEventListener("click", () => startIbara("toTr"));
+  document.getElementById("gIbaraAr").addEventListener("click", () => startIbara("toAr"));
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
   showSheet();
 }
@@ -8532,7 +8715,7 @@ function syncTabbar(){
   if (badge) { badge.hidden = !n; badge.textContent = n > 99 ? "99+" : String(n); }
 }
 ["sarfItems", "caseItems", "roleItems", "hamzaItems", "nidaItems",
- "harakatItems", "clozeItems", "tahlilSentences"].forEach(fn => {
+ "harakatItems", "clozeItems", "tahlilSentences", "ibaraItems"].forEach(fn => {
   if (typeof window[fn] === "function") window[fn] = scopeFallback(window[fn]);
 });
 document.querySelectorAll("#tabbar [data-nav]").forEach(b =>
