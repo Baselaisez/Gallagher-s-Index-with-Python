@@ -394,6 +394,96 @@
   /* The verdict stack. One card per word, so a phone never scrolls sideways
      to read an i'rab. The rail on the inline-start carries the certainty:
      accent when the engines settled it, lvl3 when the surface only guessed. */
+  /* ---- the workshop rail -------------------------------------------------
+     Eleven tools do not fit on a phone as a wrapping row of text buttons; they
+     wrapped to three lines and pushed the actual panel below the fold. A rail
+     that scrolls sideways holds any number of them on one line, keeps the
+     current tool visible, and reads the way every tool-picker a learner has
+     ever used reads. The rail is the ONLY thing on this page allowed to scroll
+     sideways, and it says so by fading at both edges. */
+  .tabs.labrail {
+    flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+    width: auto; max-width: 100%; border-radius: var(--r-full);
+    scrollbar-width: none; gap: var(--s1);
+    /* fade the edges so a half-visible pill reads as "there is more", not as
+       a clipping bug */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 1.25rem,
+      #000 calc(100% - 1.25rem), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 1.25rem,
+      #000 calc(100% - 1.25rem), transparent);
+  }
+  .tabs.labrail::-webkit-scrollbar { display: none; }
+  .tabs.labrail button {
+    flex: 0 0 auto; scroll-snap-align: center;
+    display: inline-flex; align-items: center; gap: .35rem;
+    min-height: var(--tap); padding: var(--s2) var(--s3);
+    border: 1px solid transparent; border-radius: var(--r-full);
+    white-space: nowrap; transition: background var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .tabs.labrail button:hover { border-color: var(--line); }
+  .tabs.labrail button.on {
+    background: var(--accent); color: var(--accent-ink);
+    border-color: var(--accent); box-shadow: none;
+  }
+  .tabs.labrail button.on .ar { color: var(--accent-ink); }
+  .tabs.labrail button::before { font-size: .95rem; line-height: 1; }
+  /* the emoji is decoration; the word underneath is the label, and on the
+     narrowest phones the word is what survives */
+  @media (max-width: 22rem) { .tabs.labrail button::before { display: none; } }
+  /* the Mizan lab's two answers: computed on one side, learned on the other,
+     and never blended — the learner must be able to see which is which */
+  .mz-ism { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: var(--s2); margin-top: var(--s4); font-family: var(--ui-font); }
+  .mz-col { border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s3);
+    display: grid; gap: var(--s1); align-content: start; }
+  .mz-rule { border-inline-start: 3px solid var(--accent); }
+  .mz-model { border-inline-start: 3px solid var(--lvl3); }
+  .mz-lbl { font-size: var(--t-xs); letter-spacing: var(--track-caps); text-transform: uppercase; }
+  .mz-rule .mz-lbl { color: var(--accent); }
+  .mz-model .mz-lbl { color: var(--lvl3); }
+  .mz-col > b { font-family: var(--ar-font); font-size: var(--t-xl); font-weight: 400; }
+  .mz-why { font-size: var(--t-xs); color: var(--ink-soft); line-height: var(--lh-body); }
+  .mz-row { display: grid; grid-template-columns: auto auto; gap: var(--s2);
+    align-items: baseline; margin-top: var(--s1); }
+  .mz-row b { font-family: var(--ar-font); font-size: var(--t-lg); font-weight: 400; }
+  .mz-p { font-size: var(--t-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .mz-roles { grid-column: 1 / -1; font-size: var(--t-sm); color: var(--ink); }
+  /* the Idafa lab — two slots, one result, and the rules that made it */
+  /* stacked on a narrow phone, side by side once there is room — and the
+     specificity has to beat .conj-lab, which sets its own grid */
+  .conj-lab.idafa-lab { display: grid; gap: var(--s2); align-items: center;
+    grid-template-columns: 1fr; justify-items: stretch; }
+  @media (min-width: 26rem) {
+    .conj-lab.idafa-lab { grid-template-columns: 1fr auto 1fr; }
+  }
+  .idf-plus { color: var(--ink-soft); font-size: var(--t-lg); text-align: center; }
+  .idf-out { text-align: center; font-family: var(--ar-font); font-size: var(--t-2xl);
+    margin: var(--s4) 0 var(--s2); line-height: 1.9; }
+  .idf-head { color: var(--accent); font-weight: 400; }
+  .idf-tail { color: var(--lvl3); font-weight: 400; }
+  /* the chips sit UNDER the words they name, so they run right-to-left with
+     them — left-to-right put the mudaf's chip under the mudaf ilayh */
+  .idf-roles { display: flex; direction: rtl; justify-content: center; gap: var(--s3);
+    margin: 0 0 var(--s3); font-size: var(--t-xs); font-family: var(--ui-font); }
+  .idf-k { border-radius: var(--r-full); padding: .1rem .6rem; border: 1px solid; }
+  .idf-k1 { color: var(--accent); border-color: var(--accent); }
+  .idf-k2 { color: var(--lvl3); border-color: var(--lvl3); }
+  .idf-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2);
+    counter-reset: idf; font-family: var(--ui-font); }
+  .idf-steps li { display: grid; gap: 2px; border-inline-start: 3px solid var(--line);
+    padding-inline-start: var(--s3); position: relative; counter-increment: idf; }
+  .idf-steps li::before { content: counter(idf); position: absolute; inset-inline-start: -1.55rem;
+    top: 0; font-size: var(--t-xs); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .idf-steps { padding-inline-start: 1.6rem; }
+  .idf-rule { font-family: var(--ar-font); font-size: var(--t-lg); direction: rtl; }
+  .idf-why { font-size: var(--t-sm); color: var(--ink-soft); line-height: var(--lh-body); }
+  .idf-refuse { border: 1px solid var(--danger); border-radius: var(--r-md); padding: var(--s3);
+    margin-top: var(--s3); font-family: var(--ui-font); display: grid; gap: var(--s2); }
+  .idf-refuse .idf-x { color: var(--danger); font-size: var(--t-xl); line-height: 1; }
+  .idf-refuse .idf-ar { font-family: var(--ar-font); font-size: var(--t-lg); margin: 0; }
+  .idf-refuse p { margin: 0; font-size: var(--t-sm); line-height: var(--lh-body); }
   .vlist { list-style: none; margin: var(--s3) 0 0; padding: 0; display: grid; gap: var(--s2); }
   .vrow { position: relative; border: 1px solid var(--line); border-radius: var(--r-md);
     background: var(--panel); padding: var(--s3); padding-inline-start: calc(var(--s3) + 4px);
@@ -718,6 +808,7 @@
   .tabs [data-lab="mizan"]::before { content: "⚖️"; }
   .tabs [data-lab="ism"]::before   { content: "🏷️"; }
   .tabs [data-lab="jumla"]::before { content: "🧠"; }
+  .tabs [data-lab="idafa"]::before { content: "🔗"; }
   .tabs [data-lab="nida"]::before  { content: "📣"; }
   .tabs [data-lab="ilal"]::before  { content: "🧪"; }
   .tabs [data-lab="kernel"]::before { content: "🜂"; }
@@ -1507,6 +1598,20 @@ const L = {
         jumlaGuess:"guess",
         roughLbl:"Rough gloss:",
         mlLbl:"\u{1F9E0} model:",
+        mizanFromBab:"Derived from the bab ·",
+        mizanComputed:"Computed",
+        mizanComputedWhy:"the root letters stood in ف ع ل and everything else left where it was — no model, no lookup",
+        mizanLearned:"Learned",
+        mizanAmbiguous:"The scale is settled; the OFFICE is not. This one carries {n} at once, and only the sentence around the word decides which is meant.",
+        labRailLabel:"Workshop tools",
+        idafaTab:"Idafa",
+        idafaIntro:"Two nouns and a case. The lab builds the idafa and names every rule that fired — or refuses, and names the rule that forbids it.",
+        idafaPhA:"the mudaf — e.g. كِتَابٌ",
+        idafaPhB:"the mudaf ilayh — e.g. الْوَلَدُ",
+        idafaMudaf:"mudaf",
+        idafaIlayh:"mudaf ilayh — always majrur",
+        idafaNone:"Type two nouns to build an idafa.",
+        idafaNote:"Whether the second noun is barred from tanwin is asked of the learned tagger, so a مَمْنُوع مِنَ الصَّرْف takes its fatha in jarr without anyone having to list them.",
         readLbl:"What it comes out meaning",
         jumlaHonest:"Certainty lives only in the closed classes. For a word-by-word i'rab written by hand, read the stories — every token there is analyzed and reviewed.",
         ilalHead:"الإِعْلَال · the i'lal chain",
@@ -1673,6 +1778,20 @@ const L = {
         jumlaGuess:"tahmin",
         roughLbl:"Kaba çeviri:",
         mlLbl:"\u{1F9E0} model:",
+        mizanFromBab:"Türediği bâb ·",
+        mizanComputed:"Hesaplanan",
+        mizanComputedWhy:"kök harfleri ف ع ل'e oturtuldu, geri kalan her şey yerinde bırakıldı — ne model ne tablo",
+        mizanLearned:"Öğrenilen",
+        mizanAmbiguous:"Vezin bellidir; VAZÎFE değil. Bu vezin aynı anda {n} vazîfe taşır; hangisinin kastedildiğini ancak kelimenin etrafındaki cümle tayin eder.",
+        labRailLabel:"Atölye âletleri",
+        idafaTab:"İzâfet",
+        idafaIntro:"İki isim, bir i'râb. Atölye izâfeti kurar ve işleyen her kaideyi adıyla gösterir — yahut reddeder ve buna mâni olan kaideyi söyler.",
+        idafaPhA:"muzâf — meselâ كِتَابٌ",
+        idafaPhB:"muzâfun ileyh — meselâ الْوَلَدُ",
+        idafaMudaf:"muzâf",
+        idafaIlayh:"muzâfun ileyh — dâimâ mecrûr",
+        idafaNone:"İzâfet kurmak için iki isim yazın.",
+        idafaNote:"İkinci ismin gayr-i munsarif olup olmadığı öğrenmiş etiketleyiciye sorulur; böylece MEMNÛ' MİNE'S-SARF olan bir isim, kimsenin listesine bakmasına gerek kalmadan cerde fethasını alır.",
         readLbl:"Mânâsı nasıl çıkıyor",
         jumlaHonest:"Kesinlik yalnız kapalı sınıflardadır. Elle yazılmış kelime kelime i'râb için hikâyeleri okuyun — oradaki her kelime tahlilli ve gözden geçirilmiştir.",
         ilalHead:"الإِعْلَال · i'lâl zinciri",
@@ -5588,6 +5707,14 @@ class SentenceAnalyzer {
   // A jarr letter fused to a pronoun — بِهِ، لَهُ، عَلَيْهِ، مِنْهُمْ — is written as
   // one word and IS two: the letter governs, and the pronoun is its majrur in
   // position. Peeled by rule, not by listing the two dozen spellings.
+  // Which of the closed-class kinds name an ISM. A mabni ism is still an ism:
+  // هَذَا, الَّذِي, هُوَ and مَنْ are nouns in every book of nahw, and calling them
+  // particles cost forty-odd tokens against the corpus's own labels.
+  static ISM_KINDS = new Set(["pron", "ishara", "mawsul"]);
+  // Which faces of «ما» are nouns. The other six — nafiya, hijaziyya,
+  // masdariyya, zarfiyya, kaffa, zaida — are letters.
+  static MA_ISM = new Set(["mawsula", "shartiyya", "istifham", "taajjub",
+                           "mawsufa", "nakira"]);
   static JARR_HEAD = {
     "ب": "بِ", "ل": "لِ", "ك": "كَ", "من": "مِنْ", "عن": "عَنْ", "في": "فِي",
     "على": "عَلَى", "الى": "إِلَى", "إلى": "إِلَى", "حتى": "حَتَّى", "مع": "مَعَ",
@@ -5704,12 +5831,26 @@ class SentenceAnalyzer {
       // «مِنْهُ» is not read as a bare «مِنْ» with a stray ha. عَلَيْهِ and إِلَيْهِ
       // turn their alif maqsura into a ya before the pronoun, so the head is
       // looked up both ways.
-      let jarrPron = null;
+      let jarrPron = null, innaPron = null;
       for (const e of this.ENCLITICS) {
         if (core.length <= e.length || !core.endsWith(e)) continue;
         const h = core.slice(0, -e.length);
         const head = this.JARR_HEAD[h] || this.JARR_HEAD[h.replace(/ي$/, "ى")];
         if (head) { jarrPron = { head, pron: e }; break; }
+        // إِنَّهُ, أَنَّهُ, لِأَنَّهُ, فَإِنَّكَ — the particle stays a particle; the
+        // pronoun clinging to it is its ISM, mansub in position.
+        const ip = this.PARTICLES[h];
+        if (ip && (ip.k === "inna" || ip.k === "an-amb")) { innaPron = { head: h, pron: e }; break; }
+      }
+      if (innaPron) {
+        row.kind = "particle"; row.sure = true;
+        row.seg.push(innaPron.head, innaPron.pron);
+        row.notes.push({
+          en: `«${innaPron.head}» is a particle of the inna family and «${innaPron.pron}» clinging to it is its ISM, in the position of NASB — the khabar is still to come.`,
+          tr: `«${innaPron.head}» inne ailesinden bir harftir; ona bitişen «${innaPron.pron}» ise mahallen MANSUB İSMİdir — haber henüz gelmemiştir.` });
+        expect = [{ en: "then its KHABAR — marfu'", tr: "sonra HABERİ — merfû" }];
+        afterVerb = false;
+        out.push(row); return;
       }
       if (jarrPron) {
         row.kind = "particle"; row.sure = true;
@@ -5730,8 +5871,11 @@ class SentenceAnalyzer {
         // مَنْ is an ism in every one of its readings (mawsula, shartiyya,
         // istifhamiyya); it is never a harf at all. Calling all three
         // "particle" cost 50-odd tokens against the corpus's own labels.
+        // The demonstratives and the relatives are ASMA — mabni asma, but asma —
+        // and so are the pronouns and مَنْ. Only what is genuinely a HARF is a
+        // particle here. This table holds closed classes, not one class.
         row.kind = p.k === "kana" ? "verb"
-                 : (p.k === "pron" || manIsm) ? "noun" : "particle";
+                 : (this.ISM_KINDS.has(p.k) || manIsm) ? "noun" : "particle";
         row.sure = !manOpen;
         row.seg.push(core);
         if (manIsm) row.notes.push({
@@ -5756,6 +5900,16 @@ class SentenceAnalyzer {
           const wj = MaEngine.read(bares, out.length, words.map(x => x.normalize("NFC")),
             k => { const c = RootFinder.fromCorpus(bares[k]); return c && c.cell ? true : null; });
           if (wj.length) row.wajh = wj[0];
+          // مَا is not one word. Six of its twelve faces are ASMA — relative,
+          // conditional, interrogative, the ma of wonder, and the two
+          // indefinites — and six are HURUF. The engine has already ranked the
+          // faces; the class simply follows its verdict instead of calling
+          // every «ما» a particle, which cost twenty-two tokens by itself.
+          if (wj.length && this.MA_ISM.has(wj[0].k)) row.kind = "noun";
+          // …and where two faces of different CLASS are both live, the surface
+          // has not settled even that much.
+          if (wj.length > 1 && this.MA_ISM.has(wj[0].k) !== this.MA_ISM.has(wj[1].k))
+            row.sure = false;
           wj.slice(0, 3).forEach((r, ri) => row.notes.push({
             en: `${ri ? "or " : ""}${r.ar} — ${r.en}: ${r.why.en}`,
             tr: `${ri ? "yahut " : ""}${r.ar} — ${r.tr}: ${r.why.tr}`,
@@ -5931,16 +6085,28 @@ class SentenceAnalyzer {
       }
       out.push(row);
     });
-    // -- idafa pass: a bare noun (no article, no tanwin) followed by a
-    // definite noun reads as mudaf + mudaf ilayh — İzhar's third noun state.
-    for (let i = 0; i + 1 < out.length; i++) {
-      const a = out[i], b = out[i + 1];
-      if (a.kind && a.kind.startsWith("noun") && !a.sure && !a.al && !a.tanwin &&
-          !a.seg.includes("ه") && b.kind === "noun" && b.al) {
-        a.notes.push({ en: "bare before a definite noun — likely mudaf (idafa)", tr: "harf-i tarifsiz ve tenvinsiz, ardından marife isim — muhtemelen muzâf (izâfet)" });
-        b.notes.push({ en: "likely the mudaf ilayh — majrur", tr: "muhtemelen muzâfun ileyh — mecrur" });
+    // ---- the IDAFA pass: name the chains and their exact consequences ----
+    // The old note said "bare before a definite noun — likely mudaf" and
+    // stopped. But an idafa's consequences are not likely, they are exact, and
+    // the engine can name which of them are visible on this very word.
+    IdafaEngine.chain(out).forEach(ch => {
+      for (let i = ch.from; i < ch.to; i++) {
+        const r = out[i], w = r.w.normalize("NFC");
+        const said = [];
+        if (!/[ًٌٍ]/.test(w)) said.push({ en: "no tanwin on it", tr: "üzerinde tenvin yok" });
+        if (/(ُو|ِي|َا)$/.test(w) && !/[ًٌٍ]/.test(w))
+          said.push({ en: "and no nun after the waw/ya — dropped for the idafa",
+                      tr: "vâv/yâdan sonra nûn da yok — izâfet için düşmüş" });
+        r.notes.push({
+          en: `MUDAF — and its consequences are exact: ${said.map(x => x.en).join(", ")}, it cannot wear ال, and «${out[i + 1].w}» after it must be MAJRUR. Its own case comes from its place in the sentence, never from the idafa.`,
+          tr: `MUZÂF — ve neticeleri kat'îdir: ${said.map(x => x.tr).join(", ")}, «أَلْ» alamaz, ve ardındaki «${out[i + 1].w}» MECRÛR olmak zorundadır. Kendi harekesi ise izâfetten değil, cümledeki mevkiinden gelir.` });
       }
-    }
+      const last = out[ch.to];
+      if (last) last.notes.push({
+        en: `MUDAF ILAYH — in jarr, and the chain closes here: it is the only member that is not itself a mudaf.`,
+        tr: `MUZÂFUN İLEYH — mecrûrdur ve zincir burada kapanır: kendisi muzâf olmayan tek halkadır.` });
+    });
+
     // ---- the ARBITER: where the surface cannot decide, the models vote ---
     // The surface heuristics — tanwin, the article, the ta, a mudari' prefix —
     // leave 747 of the corpus's 3,331 hand-labelled tokens marked undecided,
@@ -6020,7 +6186,8 @@ function debounced(fn, ms = 140){
 }
 
 // ---------- the Sarf Lab UI ----------
-let conjState = { root: "نصر", form: "I", bab: 1, rubai: "R1", known: null,
+let conjState = { idafaA: "كِتَابٌ", idafaB: "الْوَلَدُ", idafaCase: "raf",
+                  root: "نصر", form: "I", bab: 1, rubai: "R1", known: null,
                   lab: "sarf", adadN: 125, adadNoun: 0, jadhr: "استغفر",
                   mizan: "يستعملون", ism: "مدينة",
                   jumla: "لم يكتبِ الطالبُ في الدفترِ",
@@ -6370,6 +6537,33 @@ function renderKernelOut(){
     </section>`;
   out.innerHTML = h;
 }
+// The Idafa Lab. It does not describe an idafa — it BUILDS one, and shows
+// every rule that fired on the way. Where the rules forbid the thing outright
+// it refuses and names the rule, because a refusal with a reason teaches more
+// than a wrong answer offered politely.
+function renderIdafaOut(){
+  const out = document.getElementById("idafaOut");
+  if (!out) return;
+  const E = escapeAttr;
+  const r = IdafaEngine.build(conjState.idafaA, conjState.idafaB, conjState.idafaCase);
+  if (!r) { out.innerHTML = `<p class="empty">${ui().idafaNone}</p>`; return; }
+  if (!r.ok) {
+    out.innerHTML = `<div class="idf-refuse">
+      <span class="idf-x" aria-hidden="true">✕</span>
+      <p lang="ar" dir="rtl" class="idf-ar">${r.refused.ar}</p>
+      <p>${T(r.refused)}</p></div>`;
+    return;
+  }
+  out.innerHTML = `<div class="idf-out" lang="ar" dir="rtl">
+      <b class="idf-head">${E(r.head)}</b> <b class="idf-tail">${E(r.tail)}</b></div>
+    <p class="idf-roles"><span class="idf-k idf-k1">${ui().idafaMudaf}</span>
+      <span class="idf-k idf-k2">${ui().idafaIlayh}</span></p>
+    <ol class="idf-steps">${r.steps.map(st => `<li>
+      <span lang="ar" dir="rtl" class="idf-rule">${st.ar}</span>
+      <span class="idf-why">${T(st)}</span></li>`).join("")}</ol>
+    <p class="sarf-note">${ui().idafaNote}</p>`;
+}
+
 // The I'lal Lab. The root and the wazn make an ASL; the rule engine does the
 // rest, and every firing is shown with the rule that fired it — the chain a
 // Maksud student recites. A root that needs no i'lal shows an empty chain and
@@ -6532,9 +6726,40 @@ function renderMizanOut(){
         · <span lang="ar">${ui().jadhrRoot} ${r.root}</span></p>
       <p class="sarf-note">${ui().mizanStored}</p>`;
   } else {
-    h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().mizanLbl} ${r.wazn}</div>
+    // For a NOUN the rules path hands back the bab the word derives FROM, not
+    // the scale the word itself stands in — مُسْتَغْفِرٌ is مُسْتَفْعِل and comes
+    // from اِسْتَفْعَلَ. Labelling that "wazn" was the same category error the
+    // analyzer used to make, so it is labelled for what it is.
+    const isNoun = !!(r.root && WaznEngine.mizan(w, r.root));
+    h += `<div class="adad-phrase" lang="ar" dir="rtl">${
+        isNoun ? ui().mizanFromBab : ui().mizanLbl} ${r.wazn}</div>
       <p class="conj-known"><span lang="ar">${ui().jadhrRoot} ${r.root}</span></p>
       <p class="sarf-note">${ui().jadhrRules}${r.weak ? " " + ui().jadhrWeak : ""}</p>`;
+  }
+  // …and then the NOUN side, which this lab used to have nothing to say about.
+  // Two answers, kept visibly apart. The scale on the left is COMPUTED — the
+  // root letters stood in ف ع ل, no model involved — and it is either right or
+  // absent. The scale on the right is LEARNED, wears its confidence, and hands
+  // back every office that scale can hold rather than choosing one of them.
+  const scale = r.root ? WaznEngine.mizan(w, r.root) : null;
+  let it = [];
+  try { it = IsmTagger.tag(w, 2).filter(g => g.roles.length); } catch (e) {}
+  if (scale || (it.length && it[0].p > 0.15)) {
+    h += `<div class="mz-ism">`;
+    if (scale) h += `<div class="mz-col mz-rule">
+        <span class="mz-lbl">${ui().mizanComputed}</span>
+        <b lang="ar" dir="rtl">${escapeAttr(scale)}</b>
+        <span class="mz-why">${ui().mizanComputedWhy}</span></div>`;
+    if (it.length && it[0].p > 0.15) h += `<div class="mz-col mz-model">
+        <span class="mz-lbl">${ui().mizanLearned}</span>
+        ${it.map(gg => `<div class="mz-row">
+          <b lang="ar" dir="rtl">${escapeAttr(gg.wazn)}</b>
+          <span class="mz-p">%${Math.round(gg.p * 100)}</span>
+          <span class="mz-roles">${gg.roles.map(x => T(x)).join(" · ")}</span></div>`).join("")}
+        ${it[0].roles.length > 1
+          ? `<span class="mz-why">${ui().mizanAmbiguous.replace("{n}", it[0].roles.length)}</span>` : ""}
+      </div>`;
+    h += `</div>`;
   }
   out.innerHTML = h;
 }
@@ -6602,6 +6827,30 @@ function renderLabBody(){
       renderIlalOut();
     }));
     renderIlalOut();
+    return;
+  }
+  if (conjState.lab === "idafa") {
+    body.innerHTML = `<p class="ref-intro">${ui().idafaIntro}</p>
+      <div class="conj-lab idafa-lab">
+        <input id="idfA" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().idafaPhA)}" value="${escapeAttr(conjState.idafaA)}">
+        <span class="idf-plus" aria-hidden="true">+</span>
+        <input id="idfB" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().idafaPhB)}" value="${escapeAttr(conjState.idafaB)}">
+      </div>
+      <div class="seg conj-seg" id="idfCase">${["raf", "nasb", "jarr"].map(k =>
+        `<button data-ic="${k}" class="${conjState.idafaCase === k ? "on" : ""}">
+           <span lang="ar">${IdafaEngine.CASE_LBL[k].ar}</span> ${T(IdafaEngine.CASE_LBL[k])}</button>`).join("")}</div>
+      <div id="idafaOut"></div>`;
+    const a = document.getElementById("idfA"), b3 = document.getElementById("idfB");
+    a.addEventListener("input", debounced(() => { conjState.idafaA = a.value; renderIdafaOut(); }));
+    b3.addEventListener("input", debounced(() => { conjState.idafaB = b3.value; renderIdafaOut(); }));
+    body.querySelectorAll("[data-ic]").forEach(btn => btn.addEventListener("click", () => {
+      conjState.idafaCase = btn.dataset.ic;
+      body.querySelectorAll("[data-ic]").forEach(x => x.classList.toggle("on", x === btn));
+      renderIdafaOut();
+    }));
+    renderIdafaOut();
     return;
   }
   if (conjState.lab === "nida") {
@@ -6707,25 +6956,34 @@ function renderLabBody(){
 }
 function openConjugator(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
-  sheetInner.innerHTML = `<div class="tabs">
+  sheetInner.innerHTML = `<div class="tabs labrail" role="tablist" aria-label="${escapeAttr(ui().labRailLabel)}">
       <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${arSpan("صَرْف")} ${ui().sarfLabTab}</button>
       <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
       <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
       <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
       <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
+      <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
       <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
       <button data-lab="kernel" class="${conjState.lab === "kernel" ? "on" : ""}">${arSpan("نَوَاة")} ${ui().kernelTab}</button>
     </div>
     <div id="labBody"></div>`;
+  // Bring the current tool into view. A rail whose selected item is scrolled
+  // off-screen is worse than a wrapping row: it looks like nothing is selected.
+  const railSync = () => {
+    const on = sheetInner.querySelector(".labrail button.on");
+    if (on && on.scrollIntoView) on.scrollIntoView({ inline: "center", block: "nearest" });
+  };
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
     conjState.lab = b.dataset.lab;
     sheetInner.querySelectorAll("[data-lab]").forEach(x => x.classList.toggle("on", x === b));
     renderLabBody();
+    railSync();
   }));
   renderLabBody();
   showSheet();
+  railSync();
 }
 
 // Birgivi's five classes of governed form (Awamil, «معمول» tables).
@@ -8658,6 +8916,181 @@ class SarfTagger {
   }
 }
 
+// ---------- the Idafa engine ---------------------------------------------
+// الْإِضَافَة is the most mechanical structure in nahw, and its consequences are
+// EXACT. Put a noun in front of another and four things happen to it, every
+// time, with no exceptions to remember:
+//
+//   1. it loses its TANWIN                  كِتَابٌ    → كِتَابُ الْوَلَدِ
+//   2. it loses the NUN of the dual and of  مُسْلِمُونَ → مُسْلِمُو الْمَدِينَةِ
+//      the sound masculine plural           كِتَابَانِ  → كِتَابَا الْوَلَدِ
+//   3. it may not wear ال                   *الْكِتَابُ الْوَلَدِ is impossible
+//   4. it takes its case from its OWN role, not from the idafa
+//
+// …and one thing happens to the second noun: it is majrur, always, whatever
+// the first one's case.
+//
+// Because the rules are exact, the engine does not merely describe an idafa it
+// is shown — it BUILDS one. Hand it two nouns and a case and it returns the
+// written result with every step that produced it, or refuses and names the
+// rule that forbids it. A describer can be vague; a builder cannot.
+class IdafaEngine {
+  static VOWEL = { raf: "ُ", nasb: "َ", jarr: "ِ" };
+  static TANWIN = { raf: "ٌ", nasb: "ً", jarr: "ٍ" };
+  // The five nouns decline by LETTER, not by vowel, and only when they are
+  // mudaf — which is exactly the case here. أَبُو بَكْرٍ, ذُو النُّورَيْنِ.
+  static FIVE = {
+    "اب": { raf: "أَبُو", nasb: "أَبَا", jarr: "أَبِي" },
+    "أب": { raf: "أَبُو", nasb: "أَبَا", jarr: "أَبِي" },
+    "اخ": { raf: "أَخُو", nasb: "أَخَا", jarr: "أَخِي" },
+    "أخ": { raf: "أَخُو", nasb: "أَخَا", jarr: "أَخِي" },
+    "حم": { raf: "حَمُو", nasb: "حَمَا", jarr: "حَمِي" },
+    "فو": { raf: "فُو",   nasb: "فَا",   jarr: "فِي" },
+    "ذو": { raf: "ذُو",   nasb: "ذَا",   jarr: "ذِي" },
+    "ذا": { raf: "ذُو",   nasb: "ذَا",   jarr: "ذِي" },
+  };
+  static CASE_LBL = {
+    raf:  { ar: "مَرْفُوعٌ", en: "in raf'", tr: "merfû" },
+    nasb: { ar: "مَنْصُوبٌ", en: "in nasb", tr: "mansub" },
+    jarr: { ar: "مَجْرُورٌ", en: "in jarr", tr: "mecrûr" },
+  };
+  static flat(w){ return stripAr(w || "").replace(/[^ء-ي]/g, ""); }
+  static hasAl(w){ return /^[اٱ][ً-ْ]*ل/.test((w || "").normalize("NFC")); }
+  // A noun already definite cannot take the tanwin of indefiniteness — by the
+  // article, by an idafa, or by being a name.
+  static isDefinite(w){
+    const f = this.flat(w);
+    return this.hasAl(w) || /(ه|ها|هم|هن|ك|كم|نا|ي)$/.test(f);
+  }
+  // Which patterns are barred from tanwin. The LEARNED tagger answers this,
+  // which is the point of having trained it: a rule that needed a lexicon now
+  // has a model to ask. Confidence below a half is treated as "don't know",
+  // and "don't know" falls back to the ordinary, munsarif reading.
+  static MAMNU_WAZN = new Set(["أَفْعَل", "فَعْلَان", "فَعَائِل", "أَفْعِلَاء"]);
+  static mamnu(w){
+    try {
+      const g = IsmTagger.tag(w, 1)[0];
+      return !!(g && g.p >= 0.5 && this.MAMNU_WAZN.has(g.wazn));
+    } catch (e) { return false; }
+  }
+  // Strip whatever case-ending a written noun is wearing, so a new one can be
+  // put on. Returns the stem and what came off, because what came off is
+  // itself a thing worth naming.
+  static strip(w){
+    let n = (w || "").normalize("NFC").trim();
+    const m = /([ًٌٍَُِ])$/.exec(n);
+    const off = m ? m[1] : "";
+    if (m) n = n.slice(0, -1);
+    return { stem: n, off };
+  }
+  // ---- BUILD. Two nouns and a case in, one written idafa out — or a refusal
+  // naming the rule that forbids it.
+  static build(first, second, kase = "raf"){
+    const A = (first || "").normalize("NFC").trim();
+    const B = (second || "").normalize("NFC").trim();
+    if (!A || !B) return null;
+    if (!this.VOWEL[kase]) kase = "raf";
+    const steps = [];
+    const step = (ar, en, tr) => steps.push({ ar, en, tr });
+
+    // rule 3 — the refusal, checked before anything is built
+    if (this.hasAl(A)) return { ok: false, refused: {
+      ar: "لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ — فَلَا يَصِحُّ أَنْ يَكُونَ الْمُضَافُ مُعَرَّفًا بِـ«أَلْ».",
+      en: "The article and an idafa never combine. A noun is made definite EITHER by ال OR by what follows it — never by both — so «" + A + "» cannot be a mudaf while it wears ال. Drop the article and try again.",
+      tr: "Harf-i tarif ile izâfet bir arada bulunmaz. Bir isim YA «أَلْ» ile YA da kendisinden sonrakiyle marife olur, ikisiyle birden olmaz; öyleyse «" + A + "» «أَلْ» ile iken muzâf olamaz. Harf-i tarifi düşürüp tekrar deneyin." } };
+
+    // ---- the first noun
+    const flatA = this.flat(A);
+    let head;
+    if (this.FIVE[flatA]) {
+      head = this.FIVE[flatA][kase];
+      step("مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ",
+           "one of the FIVE NOUNS: added to another noun it declines by a LETTER, not a vowel — waw in raf', alif in nasb, ya in jarr → " + head,
+           "ESMÂ-İ HAMSEden: izâfet hâlinde hareke ile değil HARF ile i'râb alır — ref'de vâv, nasbda elif, cerde yâ → " + head);
+    } else if (/(ُونَ|ِينَ|َانِ|َيْنِ)$/.test(A)) {
+      // rule 2 — the nun of the dual and of the sound masculine plural falls.
+      // Tested on the WORD, before any ending is stripped: strip first and the
+      // final vowel of ـُونَ is gone, the pattern no longer matches, and
+      // مُسْلِمُونَ walks out as *مُسْلِمُونُ.
+      head = A.replace(/(ُونَ|ِينَ|َانِ|َيْنِ)$/, m2 =>
+        ({ "ُونَ": "ُو", "ِينَ": "ِي", "َانِ": "َا", "َيْنِ": "َيْ" })[m2]);
+      {
+        step("تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ",
+             "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → " + head,
+             "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → " + head);
+      }
+    } else {
+      const s1 = this.strip(A);
+      const stem = s1.stem;
+      if (/[ىا]$/.test(stem)) {
+        // a maqsur mudaf shows nothing at all — the alif will not carry a vowel
+        head = stem;
+        step("الْمُضَافُ مَقْصُورٌ فَحَرَكَتُهُ مُقَدَّرَةٌ عَلَى الْأَلِفِ",
+             "the mudaf ends in a maqsur alif, which carries no vowel — its case is there but TAQDIRI, understood rather than written",
+             "Muzâf maksûrdur; elif hareke taşımaz — i'râbı vardır fakat yazılmaz, TAKDÎRÎdir.");
+      } else {
+        head = stem + this.VOWEL[kase];
+        if (/[ًٌٍ]/.test(s1.off))
+          step("يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ",
+               "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → " + head,
+               "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → " + head);
+        else
+          step("وَيَأْخُذُ الْمُضَافُ حَرَكَةَ مَوْقِعِهِ",
+               "the mudaf wears the case of its OWN place in the sentence, not a case handed to it by the idafa → " + head,
+               "Muzâf, izâfetin verdiği değil KENDİ mevkiinin harekesini alır → " + head);
+      }
+    }
+
+    // ---- the second noun: majrur, always
+    const s2 = this.strip(B);
+    let tail;
+    if (/[ىا]$/.test(s2.stem)) {
+      tail = s2.stem;
+      step("الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ",
+           "the mudaf ilayh is in jarr by a kasra that cannot be written — the alif will not carry one, so the case is TAQDIRI",
+           "Muzâfun ileyh, elif üzerinde TAKDÎRÎ kesra ile mecrûrdur — elif hareke taşımaz.");
+    } else if (this.hasAl(B) || this.isDefinite(B)) {
+      tail = s2.stem + "ِ";
+      step("الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+           "the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → " + tail,
+           "Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → " + tail);
+    } else if (this.mamnu(B)) {
+      tail = s2.stem + "َ";
+      step("الْمُضَافُ إِلَيْهِ مَمْنُوعٌ مِنَ الصَّرْفِ فَيُجَرُّ بِالْفَتْحَةِ",
+           "the mudaf ilayh is BARRED FROM TANWIN, and such a noun takes a FATHA in jarr, not a kasra — unless it wears ال or is itself a mudaf → " + tail,
+           "Muzâfun ileyh GAYR-İ MUNSARİFtir; böyle bir isim cerde kesra değil FETHA alır — «أَلْ» almadıkça yahut kendisi muzâf olmadıkça → " + tail);
+    } else {
+      tail = s2.stem + "ٍ";
+      step("الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+           "the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → " + tail,
+           "Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → " + tail);
+    }
+    return { ok: true, out: head + " " + tail, head, tail, kase, steps,
+             lbl: this.CASE_LBL[kase] };
+  }
+  // ---- READ. Walk an analyzed sentence and mark the idafa chains in it.
+  // A mudaf is a noun that is neither tanwined nor articled and is followed by
+  // a noun; the chain runs on for as long as that holds, and only its LAST
+  // member is not itself a mudaf.
+  static chain(rows){
+    const out = [];
+    const isNoun = r => r && (r.kind === "noun" || r.kind === "noun?");
+    for (let i = 0; i < rows.length; i++) {
+      if (!isNoun(rows[i])) continue;
+      const w = rows[i].w;
+      if (/[ًٌٍ]/.test(w.normalize("NFC")) || this.hasAl(w)) continue;
+      if (!isNoun(rows[i + 1])) continue;
+      // …and it must not already be closed by a pronoun of its own
+      if (/(ه|ها|هم|هن|ك|كم|نا)$/.test(this.flat(w)) && !isNoun(rows[i + 1])) continue;
+      let j = i;
+      while (isNoun(rows[j + 1]) &&
+             !/[ًٌٍ]/.test(rows[j].w.normalize("NFC")) && !this.hasAl(rows[j].w)) j++;
+      if (j > i) { out.push({ from: i, to: j, words: rows.slice(i, j + 1).map(r => r.w) }); i = j; }
+    }
+    return out;
+  }
+}
+
 // ---------- the Ism tagger: the noun half of the learned layer ------------
 // SarfTagger reads a conjugated VERB back to its cell. Nouns had no such
 // engine at all — the analyzer could say "tanwin, so indefinite" and stop.
@@ -8730,6 +9163,12 @@ class IsmTagger {
     // the model should be able to make it, and to hedge when it cannot.
     { w: "أَفْعَال",    t: (f,a,l) => "أَ"+f+"ْ"+a+"َا"+l },
     { w: "فُعُول",     t: (f,a,l) => f+"ُ"+a+"ُو"+l },
+    // The two ultimate-plural patterns Aqaid 20 brought in — الصَّغَائِر and
+    // الْغَنَائِم on فَعَائِل, أَوْلِيَاء on أَفْعِلَاء. Both are barred from tanwin:
+    // فَعَائِل because it is a sighat muntaha al-jumu', أَفْعِلَاء because of the
+    // extended alif of the feminine.
+    { w: "فَعَائِل",   t: (f,a,l) => f+"َ"+a+"َائِ"+l, mamnu: true },
+    { w: "أَفْعِلَاء",  t: (f,a,l) => "أَ"+f+"ْ"+a+"ِ"+l+"َاء", mamnu: true },
     { w: "أَفْعَل",     t: (f,a,l) => "أَ"+f+"ْ"+a+"َ"+l, mamnu: true },
     { w: "فَعْلَان",    t: (f,a,l) => f+"َ"+a+"ْ"+l+"َان", mamnu: true },
   ];
@@ -8754,13 +9193,17 @@ class IsmTagger {
     "مِفْعَال":  ["alat", "mubalagha"],
     "مِفْعَل":   ["alat"],
     "فَعَّال":    ["mubalagha", "hirfa"],
-    "فَعُول":    ["mubalagha"],
+    // Aqaid 20's «قَبُول» is a MASDAR on this scale, not an intensive, and so
+    // are وَضُوء and وَقُود. The wazn wears both offices; the app now says both.
+    "فَعُول":    ["mubalagha", "masdarSamai"],
     "فَعِيل":    ["sifa", "mubalagha", "mafulMana"],
     // فِعَال is the Form III masdar AND one of the busiest broken plurals
     // (عَبْد → عِبَاد, رَجُل → رِجَال). Both, always, until the sentence says.
     "فِعَال":    ["masdar3", "jamTaksir"],
     "أَفْعَال":   ["jamTaksir"],
     "فُعُول":    ["jamTaksir"],
+    "فَعَائِل":   ["jamTaksir"],
+    "أَفْعِلَاء":  ["jamTaksir"],
     "أَفْعَل":    ["tafdil", "sifa"],
     "فَعْلَان":   ["sifa"],
   };
@@ -8785,6 +9228,8 @@ class IsmTagger {
     mafulMana: { ar: "فَعِيلٌ بِمَعْنَى مَفْعُولٍ", en: "fa'il in the SENSE of maf'ul (قَتِيل = مَقْتُول)", tr: "mef'ûl mânâsında fa'îl (قَتِيل = مَقْتُول)" },
     tafdil: { ar: "اسْمُ تَفْضِيلٍ", en: "ism tafdil — the elative", tr: "ism-i tafdîl — üstünlük ismi" },
     jamTaksir: { ar: "جَمْعُ تَكْسِيرٍ", en: "a broken plural", tr: "cemi teksîr — kırık çoğul" },
+    masdarSamai: { ar: "مَصْدَرٌ سَمَاعِيٌّ", en: "a heard masdar — the act itself, on a pattern that must be learned",
+                   tr: "semâî masdar — işin kendisi; vezni kıyasla değil, işitmeyle bilinir" },
   };
   static _rows = null; static _model = null; static _eval = null;
   // A form's label carries its bab where the wazn implies one, so "fail8"
@@ -9073,6 +9518,17 @@ class GrammarKernel {
           T({ en: "anna, its ism in nasb, its khabar in raf' — the three together are ONE object.",
               tr: "enne, mansub ismi ve merfû haberi — üçü birden TEK bir mef'ûldür." })]]);
     }
+    // The idafa chains, with the consequences named rather than implied. This
+    // is the kernel's most RULE-ish finding: nothing here is a guess.
+    const rows0 = SentenceAnalyzer.analyze(text) || [];
+    const chains = IdafaEngine.chain(rows0);
+    if (chains.length) add("idafa", "rule",
+      { ar: "الْإِضَافَةُ وَلَوَازِمُهَا", en: "The idafa chains, and what they force",
+        tr: "İzâfet zincirleri ve gerektirdikleri" },
+      chains.map(c => [c.words.join(" "),
+        T({ en: `«${c.words[0]}» is the mudaf: no tanwin, no ال, no nun of the dual or the sound plural — and «${c.words[c.words.length - 1]}» at the end is majrur. ${c.words.length > 2 ? "Every middle member is a mudaf AND a mudaf ilayh at once." : ""}`,
+            tr: `«${c.words[0]}» muzâftır: tenvin yok, «أَلْ» yok, tesniye ve cemi sâlim nûnu yok — sondaki «${c.words[c.words.length - 1]}» ise mecrûrdur. ${c.words.length > 2 ? "Aradaki her halka hem muzâf hem muzâfun ileyhtir." : ""}` })]));
+
     const ma = ws.findIndex(w => stripAr(w).replace(/[^ء-ي]/g, "") === "ما");
     if (ma >= 0) {
       const r = MaEngine.read(ws, ma, ws, ws.map(x => /^[يتنأ]/.test(stripAr(x))));

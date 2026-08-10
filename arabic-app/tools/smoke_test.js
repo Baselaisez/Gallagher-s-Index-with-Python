@@ -3619,7 +3619,12 @@ if (!CHROME) {
     if (!en(r.clitic[0].notes).includes('jarr clitic')) throw new Error('bi- must read as a jarr clitic: ' + en(r.clitic[0].notes));
     if (!r.clitic[1].seg.includes('ه')) throw new Error('the ha of kitabuhu must be peeled: ' + JSON.stringify(r.clitic[1].seg));
     if (!en(r.clitic[1].notes).includes('mudaf ilayh')) throw new Error('the peeled ha names itself: ' + en(r.clitic[1].notes));
-    if (!en(r.idafa[0].notes).includes('mudaf (idafa)')) throw new Error('kitab al-talib must read as idafa: ' + en(r.idafa[0].notes));
+    // the note used to say "likely mudaf" and stop; it now states the exact
+    // consequences, so the check asserts the stronger claim
+    const idf = en(r.idafa[0].notes);
+    if (!/MUDAF/.test(idf)) throw new Error('kitab al-talib must read as idafa: ' + idf);
+    if (!/cannot wear/.test(idf) || !/MAJRUR/.test(idf))
+      throw new Error('the idafa note must state its consequences: ' + idf);
     if (!en(r.shart[0].notes).includes('jawazim')) throw new Error('mahma is one of the fifteen jawazim: ' + en(r.shart[0].notes));
     if (!en(r.contra[0].notes).includes('never combine')) throw new Error('al+tanwin must be flagged: ' + en(r.contra[0].notes));
   });
@@ -4122,6 +4127,113 @@ if (!CHROME) {
     if (!/izâfet|idafa/.test(r.alword.notes)) throw new Error('the ال rule must be stated: ' + r.alword.notes);
     if (/zamir — muzâf|the mudaf ilayh/.test(r.alword.notes))
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
+  });
+
+  // Idafa is the most mechanical structure in nahw, so the engine does not
+  // describe one — it BUILDS one, and a builder cannot be vague.
+  await check('the Idafa engine builds the idafa and names every rule that fired', async () => {
+    const r = await page.evaluate(() => {
+      const B = (a, b, k) => { const x = IdafaEngine.build(a, b, k); return x && x.ok ? x.out : null; };
+      const refused = IdafaEngine.build('الْكِتَابُ', 'الْوَلَدُ', 'raf');
+      const steps = IdafaEngine.build('مُسْلِمُونَ', 'الْمَدِينَةُ', 'raf');
+      return {
+        plain: B('كِتَابٌ', 'الْوَلَدُ', 'raf'),
+        jarr:  B('كِتَابٌ', 'الْوَلَدُ', 'jarr'),
+        // rule 2: the nun of the sound plural and of the dual falls
+        plural: B('مُسْلِمُونَ', 'الْمَدِينَةُ', 'raf'),
+        dual:   B('كِتَابَانِ', 'وَلَدٌ', 'nasb'),
+        // the five nouns decline by a LETTER, and only as mudaf
+        five:   B('أَبٌ', 'بَكْرٌ', 'raf'),
+        dhu:    B('ذُو', 'النُّورَيْنِ', 'raf'),
+        // a mamnu' min al-sarf mudaf ilayh takes a FATHA in jarr — and which
+        // nouns those are is asked of the LEARNED tagger, not of a list
+        mamnu:  B('قِسْمَةٌ', 'غَنَائِمُ', 'jarr'),
+        // maqsur on either side shows nothing at all
+        maqsurHead: B('فَتَى', 'الْقَوْمِ', 'raf'),
+        maqsurTail: B('بَيْتٌ', 'مُوسَى', 'raf'),
+        refusedOk: !!(refused && refused.ok === false && refused.refused),
+        refusedWhy: refused && refused.refused ? refused.refused.tr : '',
+        nSteps: steps ? steps.steps.length : 0,
+        stepTr: steps ? steps.steps.map(x => x.tr).join(' ‖ ') : '',
+        chain: IdafaEngine.chain(SentenceAnalyzer.analyze('وَقَبُولِ شَهَادَاتِ الْقَوْمِ'))
+                 .map(c => c.words.join(' ')),
+      };
+    });
+    const want = { plain: 'كِتَابُ الْوَلَدِ', jarr: 'كِتَابِ الْوَلَدِ',
+                   plural: 'مُسْلِمُو الْمَدِينَةِ', dual: 'كِتَابَا وَلَدٍ',
+                   five: 'أَبُو بَكْرٍ', dhu: 'ذُو النُّورَيْنِ',
+                   mamnu: 'قِسْمَةِ غَنَائِمَ',
+                   maqsurHead: 'فَتَى الْقَوْمِ', maqsurTail: 'بَيْتُ مُوسَى' };
+    for (const k of Object.keys(want))
+      if (r[k] !== want[k]) throw new Error(k + ': wanted ' + want[k] + ', got ' + r[k]);
+    if (!r.refusedOk) throw new Error('ال + idafa must be REFUSED, not built');
+    if (!/bir arada bulunmaz/.test(r.refusedWhy))
+      throw new Error('the refusal must name the rule: ' + r.refusedWhy);
+    if (r.nSteps < 2) throw new Error('a build must show its work: ' + r.nSteps + ' steps');
+    if (!/NÛNu düşer/.test(r.stepTr)) throw new Error('the nun rule must be named: ' + r.stepTr);
+    // the chain runs the whole length, and every middle member is both roles
+    if (r.chain.length !== 1 || r.chain[0].split(' ').length !== 3)
+      throw new Error('the three-member chain was not read whole: ' + JSON.stringify(r.chain));
+  });
+
+  // Ten workshop tools do not fit a phone as a wrapping row — they wrapped to
+  // five lines and pushed the tool itself below the fold.
+  await check('the workshop rail holds every tool on one scrolling line', async () => {
+    const was = page.viewportSize();
+    let r;
+    try {
+      await page.evaluate(() => { conjState.lab = 'idafa'; openConjugator(); });
+      await page.waitForSelector('#idafaOut .idf-out', { timeout: 4000 });
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.waitForTimeout(250);
+      r = await page.evaluate(() => {
+        const rail = document.querySelector('.labrail');
+        const on = rail.querySelector('button.on');
+        const rb = rail.getBoundingClientRect(), ob = on.getBoundingClientRect();
+        return { h: Math.round(rb.height), tabs: rail.querySelectorAll('button').length,
+                 scrolls: rail.scrollWidth > rail.clientWidth + 4,
+                 onInView: ob.left >= rb.left - 2 && ob.right <= rb.right + 2,
+                 tap: Math.round(ob.height),
+                 bodyNoSideScroll: document.body.scrollWidth <= window.innerWidth + 1,
+                 // every pill carries a word, not just a glyph
+                 labelled: [...rail.querySelectorAll('button')]
+                   .every(b => b.textContent.replace(/\s/g, '').length > 2),
+                 out: document.querySelector('.idf-out').textContent.replace(/\s+/g, ' ').trim() };
+      });
+    } finally {
+      await page.evaluate(() => { try { conjState.lab = 'sarf'; closeSheet(); } catch (_) {} });
+      await page.setViewportSize(was);
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+    }
+    if (r.tabs < 10) throw new Error('the rail lost a tool: ' + r.tabs);
+    if (r.h > 70) throw new Error('the rail is wrapping again: ' + r.h + 'px tall');
+    if (!r.scrolls) throw new Error('the rail must scroll, not clip');
+    if (!r.onInView) throw new Error('the selected tool is scrolled out of sight');
+    if (r.tap < 44) throw new Error('a rail pill is under the 44px thumb floor: ' + r.tap);
+    if (!r.bodyNoSideScroll) throw new Error('the page itself scrolls sideways');
+    if (!r.labelled) throw new Error('a pill carries only an icon');
+    if (!/كِتَابُ الْوَلَدِ/.test(r.out)) throw new Error('the lab did not build: ' + r.out);
+  });
+
+  // The Mizan lab used to fall silent on any noun the corpus does not carry.
+  await check('the Mizan lab answers a noun with both a computed scale and a learned one', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'mizan'; conjState.mizan = 'مُسْتَغْفِرٌ';
+      openConjugator();
+      const box = document.getElementById('mizanOut');
+      const t = box.textContent.replace(/\s+/g, ' ');
+      const out = { rule: !!box.querySelector('.mz-rule'), model: !!box.querySelector('.mz-model'),
+                    t, roles: box.querySelectorAll('.mz-roles').length };
+      conjState.lab = 'sarf'; closeSheet();
+      return out;
+    });
+    if (!r.rule) throw new Error('the computed scale is missing: ' + r.t);
+    if (!r.model) throw new Error('the learned scale is missing: ' + r.t);
+    if (!/مُسْتَفْعِلٌ/.test(r.t)) throw new Error('the computed scale is wrong: ' + r.t);
+    if (!r.roles) throw new Error('the offices the scale can hold are not shown');
+    // and the verb bab must not be labelled a wazn on a noun
+    if (/Wazn · اِسْتَفْعَلَ|الْوَزْن: اِسْتَفْعَلَ/.test(r.t))
+      throw new Error('a verb bab is being called this noun\'s wazn: ' + r.t);
   });
 
   // The one measurement that grades the analyzer against HUMAN labels rather

@@ -207,6 +207,22 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v97** — an engine that BUILDS. `IdafaEngine` constructs an idafa from two
+  nouns and a case and prints every rule that fired — the tanwin dropped, the
+  nun of the dual and sound plural dropped, the five nouns declining by a
+  letter, the mudaf ilayh's kasra or its fatha when mamnu' min al-sarf, the
+  taqdiri ending on a maqsur — or refuses and names the rule that forbids it.
+  Which nouns are barred from tanwin is asked of the LEARNED tagger, which is
+  what training it was for. It has its own Atölye lab, it replaces the
+  analyzer's old vague "likely mudaf" note with the exact consequences, and it
+  is the kernel's most rule-ish finding. POS accuracy 91.5% → 92.2% besides
+  (demonstratives and relatives are asma; inna + a pronoun is still a harf).
+  The Mizan lab, which used to fall silent on any noun the corpus does not
+  carry, now answers with a computed scale and a learned one side by side,
+  never blended. The Atölye's ten tools moved from a five-line wrapping row
+  into a one-line scrolling rail. Aqaid reaches chapter 20, closing the
+  imam's offices — and «قَبُول» on فَعُول is why the tagger learned that the
+  scale is a masdar as often as an intensive.
 - **v96** — the analyzer is graded against HUMAN labels for the first time:
   every hand-tagged token in the library, 3,331 of them, on the three classes
   it actually decides. It read **82.0%**, and four changes took it to **91.5%**,

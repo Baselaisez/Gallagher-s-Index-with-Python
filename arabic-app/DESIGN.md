@@ -180,6 +180,33 @@ about.
 **Refutation** — `.game-wrongwhy`: `--role-maful` spine, `--accent-soft`
 ground. Only ever holds a sentence explaining why *your* answer fails.
 
+**Workshop rail** — `.tabs.labrail`: the Atölye's tool picker. Ten tools do not
+fit a phone as a wrapping row of text buttons — they wrapped to five lines
+(248px) and pushed the tool itself below the fold. The rail is one line (53px),
+scrolls sideways, snaps, and fades at both edges so a half-visible pill reads as
+"there is more" rather than as a clipping bug. **It is the only element in the
+app allowed to scroll sideways**, and the smoke suite asserts the page body
+never does. Three rules: the selected pill is scrolled into view on open and on
+every change (a rail whose selection is off-screen looks like nothing is
+selected); every pill clears the 44px thumb floor; and every pill carries a
+**word**, not only a glyph — the emoji is the first thing dropped on the
+narrowest phones, never the label.
+
+**Two-answer block** — `.mz-ism`: where a surface has both a computed answer and
+a learned one, they sit side by side and are **never blended**. Accent rail and
+"COMPUTED" on the derived one, amber rail and "LEARNED" plus a percentage on the
+model's. A learner must always be able to see which kind of claim they are
+reading. Used by the Mizan lab; the pattern generalises to any rule/model pair.
+
+**Builder block** — `.idf-out` + `.idf-steps` + `.idf-refuse`: for engines that
+construct rather than describe. The result first and largest, its parts coloured
+by role, then role chips **running right-to-left underneath so each chip sits
+under the word it names** (left-to-right put the mudaf's chip under the mudaf
+ilayh), then a numbered step list of the rules that fired. The refusal is a
+sibling, not an error state: `--danger` border, the rule in Arabic, the reason in
+prose. A refusal that names its rule is a teaching surface, so it is designed
+like one.
+
 **Verdict stack** — `.vlist` / `.vrow`: one card per word, replacing the
 analyzer's table. A table of i'rab needs a sideways scroll on a phone, and an
 i'rab you must scroll sideways to read is one you do not read; the smoke suite

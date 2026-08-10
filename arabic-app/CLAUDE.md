@@ -131,6 +131,37 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**An engine whose rules are exact should BUILD, not describe.** `IdafaEngine`
+does not comment on an idafa it is shown — it constructs one from two nouns and
+a case, and prints every rule that fired: the tanwin dropped, the nun of the
+dual and the sound plural dropped, the five nouns declining by a LETTER, the
+mudaf ilayh's kasra (or its **fatha**, when it is mamnu' min al-sarf), the
+taqdiri ending on a maqsur at either end. Where the rules forbid the thing it
+**refuses and names the rule** — لا يجتمع الألف واللام والإضافة — because a
+refusal with a reason teaches more than a wrong answer offered politely. A
+describer can be vague; a builder cannot, which is the whole argument for
+writing it this way.
+
+Two traps inside it, both cost a wrong word before they were found:
+- **Test the nun BEFORE stripping the ending.** `strip()` takes the final vowel
+  off, so `ـُونَ` no longer matches and مُسْلِمُونَ walks out as *مُسْلِمُونُ.
+- **A maqsur head shows nothing.** فَتَى الْقَوْمِ, not *فَتَىُ.
+
+**Which nouns are barred from tanwin is asked of the LEARNED tagger.** That is
+what training it was for: a rule that used to need a lexicon now has a model to
+consult, so غَنَائِمُ takes its fatha in jarr without anyone listing the
+sighat muntaha al-jumu'. Below 50% confidence the answer is "don't know", and
+"don't know" falls back to the ordinary munsarif reading.
+
+**The closed-class table holds classes, not one class — continued.** The
+demonstratives and the relatives are ASMA too (mabni asma, but asma), and مَا is
+six nouns and six letters: `MA_ISM` names the six, and the class follows
+`MaEngine`'s own ranking instead of a blanket assumption. That last change was
+measured NEUTRAL on top-1 accuracy (it fixed six tokens and broke five) and was
+kept anyway, because it replaces a categorically wrong label with an
+engine-grounded one and marks the genuinely undecidable `sure: false`. Recorded
+as neutral — do not claim it as a gain.
+
 **Grade the analyzer against HUMAN labels, not against itself.** Every token in
 the library carries a hand-written `pos`. Scoring the analyzer's `kind` against
 those 3,331 labels on the three classes it decides is the only number here
