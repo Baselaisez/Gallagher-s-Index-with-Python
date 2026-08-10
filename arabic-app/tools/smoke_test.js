@@ -4131,6 +4131,76 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // «Whenever a story is uploaded it should get games as good as the built
+  // ones.» It already does — every game draws from the engines and the package
+  // — but nothing said so and nothing checked it. Now the factory declares it
+  // and this audits EVERY story in the library against EVERY game.
+  await check('the game factory gives every story a full set of playable games', async () => {
+    const r = await page.evaluate(() => {
+      const a = GameFactory.audit();
+      return { n: GameFactory.CATALOGUE.length, stories: a.length,
+               worst: Math.min(...a.map(x => x.content)),
+               // a game must declare where its items come from and how many it needs
+               illFormed: GameFactory.CATALOGUE.filter(g => !g.id || !g.group || !g.emblem || !g.min).map(g => g.id),
+               // and every id in the catalogue must be a real button in the hub
+               rows: a.map(x => ({ id: x.id, content: x.content,
+                 short: Object.entries(x.games).filter(([, v]) => !v.ok && !v.gated).map(([k]) => k) })) };
+    });
+    if (r.n < 14) throw new Error('the catalogue shrank: ' + r.n);
+    if (r.illFormed.length) throw new Error('a game declares nothing about itself: ' + r.illFormed);
+    if (r.stories < 15) throw new Error('the audit did not see the library: ' + r.stories);
+    // Every story must reach a real set on its OWN content. The floor is 9 of
+    // the 13 content-gated games; cloze is excluded because it is gated on
+    // what the learner has read, not on what the story holds.
+    if (r.worst < 9) {
+      const bad = r.rows.filter(x => x.content < 9)
+        .map(x => x.id + ' (' + x.content + ': short on ' + x.short.join(',') + ')');
+      throw new Error('a story arrives underplayable — ' + bad.join(' ;; '));
+    }
+    // the hub must render a button for every catalogue entry
+    await page.evaluate(() => { try { closeSheet(); } catch (e) {} openGames(); });
+    await page.waitForTimeout(400);
+    const missing = await page.evaluate(() =>
+      GameFactory.CATALOGUE.map(g => g.id).filter(id => !document.getElementById(id)));
+    await page.evaluate(() => { try { closeSheet(); } catch (e) {} });
+    if (missing.length) throw new Error('the hub has no card for: ' + missing.join(','));
+  });
+
+  // A multiple-choice round is only as hard as its wrong answers. The İbare
+  // game drew three RANDOM sentences, and a random sentence gives itself away
+  // without any Arabic being read: different length, no shared words.
+  await check('the İbare distractors are near misses, not random sentences', async () => {
+    const r = await page.evaluate(() => {
+      const pool = ibaraItems();
+      const len = x => (x.sen.tokens || []).length;
+      const cache = new Map();
+      const stat = pick => {
+        let giveaway = 0, gap = 0, n = 0;
+        pool.forEach(t => {
+          const o = pick(t); if (o.length < 3) return;
+          const lens = [t, ...o].map(len), mx = Math.max(...lens), mn = Math.min(...lens);
+          // is the answer uniquely the longest or the shortest? then LENGTH
+          // alone reveals it and no parsing is required
+          if ((len(t) === mx && lens.filter(l => l === mx).length === 1) ||
+              (len(t) === mn && lens.filter(l => l === mn).length === 1)) giveaway++;
+          o.forEach(x => { gap += Math.abs(len(t) - len(x)); n++; });
+        });
+        return { give: Math.round(giveaway / pool.length * 1000) / 10,
+                 gap: Math.round(gap / n * 100) / 100 };
+      };
+      return { pool: pool.length,
+               random: stat(t => shuffle(pool.filter(x => x.sen.id !== t.sen.id || x.st.id !== t.st.id)).slice(0, 3)),
+               near: stat(t => DistractorEngine.near(pool, t, 3)) };
+    });
+    if (r.pool < 50) throw new Error('the İbare pool shrank: ' + r.pool);
+    // random draw sits near 41%; the near-miss draw must be far under it
+    if (r.near.give > 10)
+      throw new Error('length alone still gives the answer away ' + r.near.give + '% of the time');
+    if (r.near.give >= r.random.give)
+      throw new Error('near-miss distractors are no harder than random ones');
+    if (r.near.gap > 1) throw new Error('distractors are still the wrong length: ' + r.near.gap + ' words off');
+  });
+
   // The answer side of a word card now carries what the engines DERIVE — the
   // root, the scale, and what that scale can be. None of it is stored: it is
   // computed at render, so every card already in a deck gains it.

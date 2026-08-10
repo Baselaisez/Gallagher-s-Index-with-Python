@@ -131,6 +131,39 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**`GameFactory` is the one declaration of what a game needs.** The supply map
+used to be a local `const` inside `openGames()`, so the question "what can THIS
+story actually play?" could not be asked from anywhere else — least of all from
+a test. It is now a class: one entry per game carrying its id, discipline,
+emblem, `supply()` and `min`. The hub renders from it (and shows the real item
+count on each card), and `GameFactory.audit()` scores **every story against
+every game**. The suite gates on it: a story must reach **9 of the 13
+content-gated games on its own content**, so a new upload cannot arrive
+underplayable without failing the build. `gCloze` is marked `needsProgress` and
+excluded from that floor — it quizzes only sentences the learner has READ, so
+zero on a fresh profile is correct, not broken.
+
+`forStory()` saves and restores `CUR` and `GAME_SCOPE_FALLBACK` in a `finally`:
+it must be able to score a story without opening it and without disturbing what
+the reader is looking at. Writing it found a real gap — `gameGlossary()`
+returned the render-time global `GLOSSARY`, which is empty until a story is
+*drawn*, so anything reasoning about a story it had not opened saw no lexicon
+at all. It falls back to `CUR.glossary` now.
+
+**A multiple-choice round is only as hard as its wrong answers.** İbare drew
+three RANDOM sentences, and a random sentence gives itself away with no Arabic
+read at all: different length, no shared words, plainly about something else.
+`DistractorEngine.near()` scores the pool for CLOSENESS — shared vocabulary
+(Jaccard, weight 3), length (2), number of amil pairs (1), same kind of clause
+(1) — and draws from the top of it. Measured on 338 items: the answer is
+uniquely the longest or shortest option **41.1% → 4.1%** of the time, and the
+mean length gap falls from 2.7 words to 0.39. Both are gated.
+**Never call `SentenceAnalyzer.analyze()` inside a scorer.** The first draft did,
+for both sides of every comparison — O(pool) analyses per question, seconds to
+draw one round, and it hung the measurement outright. The sentence type is
+already on the corpus tokens' own `pos`; read it there, once, when the pool is
+built.
+
 **A fixed element cannot be cleared by body padding.** The thumb bar is
 `position: fixed; bottom: 0` and so is `.sheet` — so the sheet's last row sat
 UNDER the bar, unreachable by any amount of scrolling. «Save to flashcards» was

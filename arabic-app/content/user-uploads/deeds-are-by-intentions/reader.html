@@ -432,6 +432,12 @@
   /* the emoji is decoration; the word underneath is the label, and on the
      narrowest phones the word is what survives */
   @media (max-width: 22rem) { .tabs.labrail button::before { display: none; } }
+  /* the item count a game can draw, and the note when a story is too thin */
+  .game-pick .g-n { margin-inline-start: auto; font-size: var(--t-xs); color: var(--ink-soft);
+    font-variant-numeric: tabular-nums; border: 1px solid var(--line);
+    border-radius: var(--r-full); padding: 0 .45rem; }
+  .game-pick .gt { display: flex; align-items: center; gap: var(--s2); }
+  .g-thin { font-size: var(--t-xs); color: var(--lvl3); margin-top: var(--s1); }
   /* the derived facts on a card's answer side — root, scale, and what the
      scale can be. Quiet: the gloss is still the answer, this is the machinery
      behind it. */
@@ -1623,6 +1629,7 @@ const L = {
         mizanLearned:"Learned",
         mizanAmbiguous:"The scale is settled; the OFFICE is not. This one carries {n} at once, and only the sentence around the word decides which is meant.",
         labRailLabel:"Workshop tools",
+        gameThin:"only {n} here — a full round wants {m}; it will draw from the library instead",
         idafaTab:"Idafa",
         idafaIntro:"Two nouns and a case. The lab builds the idafa and names every rule that fired — or refuses, and names the rule that forbids it.",
         idafaPhA:"the mudaf — e.g. كِتَابٌ",
@@ -1803,6 +1810,7 @@ const L = {
         mizanLearned:"Öğrenilen",
         mizanAmbiguous:"Vezin bellidir; VAZÎFE değil. Bu vezin aynı anda {n} vazîfe taşır; hangisinin kastedildiğini ancak kelimenin etrafındaki cümle tayin eder.",
         labRailLabel:"Atölye âletleri",
+        gameThin:"burada yalnız {n} tane var — tam bir tur {m} ister; eksiği kütüphaneden tamamlar",
         idafaTab:"İzâfet",
         idafaIntro:"İki isim, bir i'râb. Atölye izâfeti kurar ve işleyen her kaideyi adıyla gösterir — yahut reddeder ve buna mâni olan kaideyi söyler.",
         idafaPhA:"muzâf — meselâ كِتَابٌ",
@@ -10196,6 +10204,135 @@ class AmilEngine {
 // just mark the answer — it walks the amil/ma'mul pairs the sentence is
 // built from, and that walk is DERIVED from the stored i'rab, not written
 // a second time by hand.
+// ---------- the Game factory ---------------------------------------------
+// «Whenever a story is uploaded, it should get games as good as the built ones.»
+// It already does — every game draws from the engines and the package, not
+// from anything hand-written per story — but nothing SAID so, and nothing
+// checked it. A supply map lived as a local const inside openGames(), so the
+// question «what can this story actually play?» could not be asked from
+// anywhere else, least of all from a test.
+//
+// The factory is that map promoted to a first-class object: one entry per
+// game, each declaring where its items come from and how many it needs to be
+// worth opening. From that one declaration the hub renders its cards, the
+// counts on those cards are real, and the suite can audit EVERY story in the
+// library and fail if a new one would arrive unplayable.
+class GameFactory {
+  // id, discipline, the emblem, the two i18n keys, the supply, the floor.
+  // `min` is what the game needs to be worth starting — a matching round with
+  // three pairs is not a round.
+  static CATALOGUE = [
+    { id: "gMatch",   group: "vocab",   emblem: "🀄", min: 4,
+      supply: () => Object.entries(gameGlossary()).filter(matchable).length },
+    // progress-gated, not content-gated: cloze only ever quizzes sentences the
+    // learner has actually READ, so a fresh profile scores zero on every story
+    // and that is correct. The audit reports it and does not count it against
+    // a new upload.
+    { id: "gCloze",   group: "vocab",   emblem: "✏️", min: 4, needsProgress: true,
+      supply: () => clozeItems().length },
+    { id: "gSarf",    group: "sarf",    emblem: "⚙️", min: 4, supply: () => sarfItems().length },
+    { id: "gAdad",    group: "sarf",    emblem: "🔢", min: 1, supply: null },   // generated, never scarce
+    { id: "gHarakat", group: "nahw",    emblem: "🎯", min: 4, supply: () => harakatItems().length },
+    { id: "gCase",    group: "nahw",    emblem: "🏷️", min: 4, supply: () => caseItems().length },
+    { id: "gRole",    group: "nahw",    emblem: "🧭", min: 4, supply: () => roleItems().length },
+    { id: "gNida",    group: "nahw",    emblem: "📣", min: 3, supply: () => nidaItems().length },
+    { id: "gHamza",   group: "nahw",    emblem: "﴾؟﴿", min: 3, supply: () => hamzaItems().length },
+    { id: "gSpot",    group: "nahw",    emblem: "🔍", min: 1, supply: null },
+    { id: "gTahlil",  group: "nahw",    emblem: "🎓", min: 3, supply: () => tahlilSentences().length },
+    { id: "gIbaraTr", group: "ibara",   emblem: "🔤", min: 4, supply: () => ibaraItems().length },
+    { id: "gIbaraAr", group: "ibara",   emblem: "✒️", min: 4, supply: () => ibaraItems().length },
+    { id: "gAlaqa",   group: "balagha", emblem: "🪢", min: 1, supply: null },
+  ];
+  static get(id){ return this.CATALOGUE.find(g => g.id === id) || null; }
+  // How many items each game can draw RIGHT NOW, in whatever scope is open.
+  // A null supply means the game generates its own items and is never scarce.
+  static supplyOf(id){
+    const g = this.get(id);
+    if (!g || !g.supply) return null;
+    try { return g.supply(); } catch (e) { return 0; }
+  }
+  static playable(id){
+    const n = this.supplyOf(id);
+    return n === null || n >= (this.get(id) || {}).min;
+  }
+  // What a given STORY can play. Used by the audit; it opens no UI and leaves
+  // the reader's own scope exactly as it found it.
+  static forStory(story){
+    const savedCur = CUR, savedFb = GAME_SCOPE_FALLBACK;
+    CUR = story; GAME_SCOPE_FALLBACK = false;   // score this story alone, no library fallback
+    const out = { id: story.id, games: {}, playable: 0, content: 0 };
+    try {
+      this.CATALOGUE.forEach(g => {
+        const n = g.supply ? (() => { try { return g.supply(); } catch (e) { return 0; } })() : null;
+        const ok = n === null || n >= g.min;
+        out.games[g.id] = { n, min: g.min, ok, gated: !!g.needsProgress };
+        if (ok) out.playable++;
+        if (ok && !g.needsProgress) out.content++;
+      });
+    } finally { CUR = savedCur; GAME_SCOPE_FALLBACK = savedFb; }
+    return out;
+  }
+  // Every story against every game — the report a new upload should be run
+  // through, and the one the suite gates on.
+  static audit(){ return STORIES.map(st => this.forStory(st)); }
+}
+
+// ---------- the Distractor engine ----------------------------------------
+// A multiple-choice round is only as hard as its WRONG answers. The İbare game
+// drew its three distractors at random from the pool, and a random sentence
+// gives itself away without any Arabic being read at all: it is a different
+// length, it shares no words, it is plainly about something else. The learner
+// scores by elimination and learns nothing.
+//
+// This picks the NEAREST wrong answers instead — same shape, same vocabulary,
+// same structural weight — so the only way through is to actually parse. It
+// invents nothing: every distractor is a real sentence a human has already
+// analysed, which keeps the standing rule that the app publishes no Arabic it
+// is not sure of.
+class DistractorEngine {
+  static lexOf(item){
+    const s = new Set();
+    ((item.sen && item.sen.tokens) || []).forEach(t => { if (t.lex) s.add(t.lex); });
+    return s;
+  }
+  // How close is `x` to `target`? Higher is a better — that is, harder —
+  // distractor. The four terms are the four things a learner uses to cheat.
+  static score(target, x, cache){
+    const a = cache.get(target) || cache.set(target, this.lexOf(target)).get(target);
+    const b = cache.get(x) || cache.set(x, this.lexOf(x)).get(x);
+    let shared = 0;
+    b.forEach(k => { if (a.has(k)) shared++; });
+    const union = a.size + b.size - shared;
+    const jac = union ? shared / union : 0;                       // shared vocabulary
+    const la = (target.sen.tokens || []).length, lb = (x.sen.tokens || []).length;
+    const len = 1 - Math.min(1, Math.abs(la - lb) / Math.max(4, la));  // same length
+    const pa = (target.pairs || []).length, pb = (x.pairs || []).length;
+    const cplx = 1 - Math.min(1, Math.abs(pa - pb) / Math.max(2, pa));  // same weight
+    // Same kind of clause — read off the CORPUS's own pos labels, not by
+    // re-analysing. The first draft called SentenceAnalyzer.analyze() on both
+    // sentences inside this scorer, which is O(pool) analyses per question:
+    // seconds of work to draw one round, and it hung the measurement outright.
+    // The tokens already carry the answer.
+    const same = (target.kind && x.kind && target.kind === x.kind) ? 1 : 0;
+    return 3 * jac + 2 * len + 1 * cplx + 1 * same;
+  }
+  // The n hardest wrong answers. A little jitter keeps the same three from
+  // coming up every time the same item is drawn, without letting an easy one
+  // back in: the shortlist is the top 3n by score, and the n are drawn from it.
+  static near(pool, target, n = 3){
+    const cache = new Map();
+    const others = pool.filter(x => x !== target &&
+      (x.sen.id !== target.sen.id || x.st.id !== target.st.id));
+    if (others.length <= n) return others;
+    const ranked = others
+      .map(x => ({ x, s: this.score(target, x, cache) }))
+      .sort((p2, q) => q.s - p2.s)
+      .slice(0, Math.max(n, Math.min(others.length, n * 3)))
+      .map(r => r.x);
+    return shuffle(ranked).slice(0, n);
+  }
+}
+
 function ibaraItems(){
   const out = [];
   gameStories().forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
@@ -10204,7 +10341,11 @@ function ibaraItems(){
     if (words < 3 || words > 12) return;            // long enough to parse, short enough to hold
     const pairs = AmilEngine.pairs(sen);
     if (!pairs.length) return;                       // nothing to explain = nothing to teach
+    // ismiyya or fi'liyya, from the first open-class token's own pos label —
+    // computed ONCE here rather than per comparison in the scorer
+    const head = sen.tokens.find(t => t.pos && !/part|prep|conj/.test(t.pos));
     out.push({ st, sen, pairs,
+               kind: head ? (head.pos === "verb" ? "filiyya" : "ismiyya") : null,
                ar: sen.tokens.map(t => t.s.full).join(" "),
                tr: sen.translation.tr, en: sen.translation.en });
   })));
@@ -10239,7 +10380,8 @@ function startIbara(dir){
       ? `<div class="game-q"><div class="ib-src">${escapeAttr(it.tr)}</div></div>`
       : `<div class="game-q"><div class="ib-src ar" lang="ar">${it.ar}</div></div>`,
     options: it => {
-      const others = shuffle(pool.filter(x => x.sen.id !== it.sen.id || x.st.id !== it.st.id)).slice(0, 3);
+      // the three HARDEST wrong answers, not three random ones
+      const others = DistractorEngine.near(pool, it, 3);
       const mk = x => toAr
         ? { html: `<span lang="ar">${x.ar}</span>`, ar: true, ok: x === it }
         : { html: escapeAttr(x.tr), ok: x === it };
@@ -10333,27 +10475,21 @@ function openGames(){
   // How much THIS scope can feed each drill. A game with nothing to draw on
   // is shown disabled with the reason, instead of opening and bouncing the
   // learner straight back — the commonest way a scoped round used to fail.
-  const supply = {
-    gMatch:   () => Object.entries(gameGlossary()).filter(matchable).length ||
-                    Object.entries(STORIES.reduce((o, st) => Object.assign(o, st.glossary || {}), {})).filter(matchable).length,
-    gCloze:   () => clozeItems().length,
-    gSarf:    () => sarfItems().length,
-    gHarakat: () => harakatItems().length,
-    gCase:    () => caseItems().length,
-    gRole:    () => roleItems().length,
-    gNida:    () => nidaItems().length,
-    gHamza:   () => hamzaItems().length,
-    gTahlil:  () => tahlilSentences().length,
-    gIbaraTr: () => ibaraItems().length,
-    gIbaraAr: () => ibaraItems().length,
-  };
+  // The hub renders from the FACTORY, so there is exactly one declaration of
+  // what a game needs and the count on the card is the count the round will
+  // actually draw from. A card that cannot be played says how short it is
+  // rather than going quietly grey.
   const gCard = (id, emblem, title, desc, extra) => {
-    let n = null;
-    try { n = supply[id] ? supply[id]() : null; } catch (e) { n = null; }
+    const n = GameFactory.supplyOf(id);
+    const spec = GameFactory.get(id) || { min: 1 };
     const dead = n !== null && n < 1;
+    const thin = !dead && n !== null && n < spec.min;
     return `<button id="${id}"${dead ? " disabled" : ""}${dead ? ' data-empty="1"' : ""}>` +
-      `<div class="gt"><span class="gi">${emblem}</span>${title}</div>` +
-      `<div class="gd">${dead ? ui().scopeEmpty : desc}</div>${dead ? "" : (extra || "")}</button>`;
+      `<div class="gt"><span class="gi">${emblem}</span>${title}` +
+      (n !== null && !dead ? `<span class="g-n">${n}</span>` : "") + `</div>` +
+      `<div class="gd">${dead ? ui().scopeEmpty : desc}</div>` +
+      (thin ? `<div class="g-thin">${ui().gameThin.replace("{n}", n).replace("{m}", spec.min)}</div>` : "") +
+      `${dead ? "" : (extra || "")}</button>`;
   };
   const gHead = (ar, label) => `<div class="game-group"><span class="ar" lang="ar">${ar}</span>${label}</div>`;
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div>
@@ -10400,7 +10536,11 @@ const matchable = ([k, e]) => e && e.level > 0 && e.gloss && e.lemma && e.lemma.
 // The lexicon a round draws on: the open story's own glossary, or every
 // story's merged when none is open. Same rule as gameStories(), one level up.
 function gameGlossary(){
-  if (CUR) return GLOSSARY;
+  // GLOSSARY is populated when a story is RENDERED, not when it is selected —
+  // so anything that reasons about a story without opening it (the factory's
+  // audit) saw an empty lexicon and reported every vocabulary game dead. Fall
+  // back to the story's own glossary, which is the same data one step earlier.
+  if (CUR) return (GLOSSARY && Object.keys(GLOSSARY).length) ? GLOSSARY : (CUR.glossary || {});
   const all = {};
   STORIES.forEach(st => Object.assign(all, st.glossary || {}));
   return all;
