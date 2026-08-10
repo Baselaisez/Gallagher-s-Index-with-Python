@@ -4129,6 +4129,53 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // «an» wears two faces and they are not a guess apart: أَنَّ is followed by a
+  // NOUN and أَنْ by a VERB. The second turns its clause into a MASDAR that then
+  // fills a slot like any single noun.
+  await check('the reading engine tells the two «an» apart and names the masdar', async () => {
+    const r = await page.evaluate(() => {
+      const strip = h => (h || '').replace(/<[^>]+>/g, '');
+      const R = (t, l) => { const x = ReadingEngine.read(SentenceAnalyzer.analyze(t), l);
+        return x ? { k: x.kind, t: strip(x.text), w: strip(x.why) } : null; };
+      return { masdar: R('يَجِبُ أَنْ يَكُونَ الْإِمَامُ ظَاهِرًا', 'tr'),
+               masdarEn: R('يَجِبُ أَنْ يَكُونَ الْإِمَامُ ظَاهِرًا', 'en'),
+               anna: R('اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ', 'tr'),
+               quiet: R('ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ', 'tr') };
+    });
+    if (!r.masdar || r.masdar.k !== 'an-masdariyya')
+      throw new Error('أَنْ + a verb is the masdar structure, got ' + (r.masdar && r.masdar.k));
+    if (!/olması/.test(r.masdar.t)) throw new Error('Turkish says the masdar with -ması: ' + r.masdar.t);
+    if (!/fâilidir/.test(r.masdar.t)) throw new Error('it must name the slot the masdar fills: ' + r.masdar.t);
+    if (!/being/.test(r.masdarEn.t)) throw new Error('English: ' + r.masdarEn.t);
+    if (!/NASBEDER|nasb/i.test(r.masdar.w)) throw new Error('why: ' + r.masdar.w);
+    // أَنَّ followed by a noun must still route to the other structure
+    if (!r.anna || r.anna.k !== 'anna') throw new Error('أَنَّ + a noun is still the anna structure');
+    if (r.quiet) throw new Error('it must stay silent on a structure it cannot name');
+  });
+
+  // The glossary's several hundred NOUNS were invisible to open text: only verb
+  // paradigms were consulted, so الْإِمَامُ came back with no gloss at all.
+  await check('the noun lexicon answers open text, article and case ending and all', async () => {
+    const r = await page.evaluate(() => {
+      const one = w => { const x = SentenceAnalyzer.analyze(w)[0];
+        return { g: x.gloss ? x.gloss.tr : null, lemma: x.lemma || null, sure: x.sure, kind: x.kind }; };
+      return { bare: one('إِمَام'), withAl: one('الْإِمَامُ'), withCase: one('الْإِمَامِ'),
+               // a clitic in front, and the lam that swallows the article
+               clitic: one('وَالْإِمَامُ'), lam: one('لِلْإِمَامِ'),
+               // a stored PLURAL must reach its own head-word
+               plural: one('الْغَنَائِمِ'),
+               // and a verb must still answer from its paradigm, not from here
+               verb: one('يَجِبُ'),
+               size: RootFinder.nounIndex().size };
+    });
+    if (r.size < 200) throw new Error('the noun index is too small to be the glossary: ' + r.size);
+    for (const k of ['bare', 'withAl', 'withCase', 'clitic', 'lam'])
+      if (r[k].lemma !== 'إِمَام') throw new Error(k + ': wanted إِمَام, got ' + r[k].lemma);
+    if (!r.withAl.sure) throw new Error('a gloss the glossary owns is not a guess');
+    if (r.plural.lemma !== 'غَنِيمَة') throw new Error('a plural must reach its head-word: ' + r.plural.lemma);
+    if (!/vâcib/.test(r.verb.g || '')) throw new Error('a verb still answers from its paradigm: ' + r.verb.g);
+  });
+
   // Idafa is the most mechanical structure in nahw, so the engine does not
   // describe one — it BUILDS one, and a builder cannot be vague.
   await check('the Idafa engine builds the idafa and names every rule that fired', async () => {
@@ -4456,8 +4503,14 @@ if (!CHROME) {
     // AFTER the panel is up: what is being measured is the layout, not the
     // route to it.
     await page.evaluate(() => {
-      conjState.lab = 'jumla'; conjState.jumla = 'اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ';
+      // …with one word the glossary does NOT own, so a guessed row still
+      // exists to be marked. Once the noun lexicon was wired in, every word of
+      // the old sentence came back certain and the assertion below had nothing
+      // left to find — which was the analyzer improving, not the check failing.
+      conjState.lab = 'jumla';
+      conjState.jumla = 'اُكْتُبْ أَنَّ اللهَ قَادِرٌ عَلَى الْمِنْطَادِ';
     });
+    const conjWords = 6;
     await page.locator('#conjOpen').click();
     await page.waitForSelector('#jumlaOut .vrow', { timeout: 3000 });
     await page.setViewportSize({ width: 390, height: 844 });
@@ -4482,7 +4535,8 @@ if (!CHROME) {
       await page.setViewportSize(was);
       await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
     }
-    if (r.n < 7) throw new Error('a card per word: ' + r.n);
+    // one card per word — counted against the sentence, not a magic number
+    if (r.n !== conjWords) throw new Error('a card per word: ' + r.n + ' for ' + conjWords + ' words');
     if (r.table) throw new Error('the sideways table is still there');
     if (r.over) throw new Error(r.over + ' cards overflow their own width on a 390px phone');
     if (!r.guess) throw new Error('the guessed rows must still be marked as guesses');

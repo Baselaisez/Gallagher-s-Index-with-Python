@@ -131,6 +131,41 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**The glossary is a LEXICON, and open text may consult it.** `fromCorpus` walks
+the verb paradigms and nothing else, so for several hundred nouns the analyzer
+had no lookup at all — الْإِمَامُ came back with no gloss, and اللهَ got one only
+because a lexical branch handled it by name. `RootFinder.nounIndex()` indexes
+every non-verb glossary entry under its bare **lemma and its stored plural**,
+and `nounFromCorpus()` tries the written word, then without the article, then
+without one clitic letter (and the لِلْ that swallows the article). A gloss the
+glossary owns is not a guess, so the row becomes `sure`. Verbs still answer
+from their paradigm first — the noun index is only asked when nothing did.
+
+**«an» wears two faces and telling them apart is not a guess.** أَنَّ is followed
+by a NOUN, أَنْ by a VERB — the same discriminator the i'rab uses. `ReadingEngine`
+routes on it: `readAnna` bails the moment a verb follows, `readMasdar` requires
+one. أَنْ turns its clause into a **masdar** that then fills a slot like a single
+noun, and the reading is **labelled rather than dressed as fluent prose**: the
+app can be certain what the structure is and cannot be certain how a reader
+would idiomatically say it, so it states the first and stops.
+
+**A lex key is GLOBAL, not per-package.** `corpusIndex()` spans every story, so
+two packages using the same key for different verbs silently replace one
+another. Adding جَازَ to Aqaid as `jaza` wiped bad-al-amali's جَزَى and the
+smoke suite caught it as a *root-finder* failure two engines away from the
+cause. Check the key across `content/samples/*/morphology.json` before adding a
+verb; جَازَ is keyed `jaaza`. And note that these authoring scripts only ever
+ADD — renaming a key leaves the old one behind, so a rename must `pop()` the
+stale key explicitly or the collision survives the fix.
+
+**`amr_attach` appends the sukun itself.** Pass the stem WITHOUT one or the
+paradigm ships جِبْْ. For a hollow verb pass both stems — the long one before a
+vowel-initial ending (جُوزُوا), the short one before a sukun (جُزْ). And a
+**doubled verb needs both stems too**: the merge holds only while the second
+identical letter stays vowelled and breaks apart the moment a sukun-initial
+ending arrives — اِخْتَصَصْتُمَا, never *اِخْتَصّْتُمَا. Build those with `entry()`
+and explicit split stems, not with `derived()`.
+
 **An engine whose rules are exact should BUILD, not describe.** `IdafaEngine`
 does not comment on an idafa it is shown — it constructs one from two nouns and
 a case, and prints every rule that fired: the tanwin dropped, the nun of the

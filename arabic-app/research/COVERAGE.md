@@ -207,6 +207,18 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v98** — the glossary becomes a lexicon open text can consult. Only verb
+  paradigms were ever searched, so several hundred nouns were invisible to the
+  analyzer; every non-verb entry is now indexed under its lemma and its stored
+  plural, and looked up after the article, the case ending and a clitic come
+  off. The readings light up as a result: «imâm'ın zâhir olması». The
+  ReadingEngine also learned its second structure — أَنْ + a mansub mudari',
+  the masdar muawwal — and tells it from أَنَّ by what follows (a verb, or a
+  noun), which is the discriminator the i'rab itself uses. Aqaid reaches
+  chapter 21: the imam must be manifest, not hidden nor awaited, and of
+  Quraysh — with «قريش» recorded as DISPUTED (munsarif as the ancestor's name,
+  barred from tanwin as the tribe's). Three verbs gained paradigms, and fixing
+  them turned up three generator traps now written into CLAUDE.md.
 - **v97** — an engine that BUILDS. `IdafaEngine` constructs an idafa from two
   nouns and a case and prints every rule that fired — the tanwin dropped, the
   nun of the dual and sound plural dropped, the five nouns declining by a

@@ -4937,6 +4937,48 @@ class RootFinder {
     }
     return null;
   }
+  // ---- the NOUN lexicon ---------------------------------------------------
+  // fromCorpus walks the verb paradigms and nothing else, so for open text the
+  // glossary's several hundred NOUNS were invisible: the analyzer could give
+  // اللهَ a gloss only because a lexical branch handled it by name, and
+  // الْإِمَامُ got none at all. Every entry is indexed under its bare lemma AND
+  // its stored plural, and looked up after the article and the case ending
+  // come off — which is the only difference between the written word and the
+  // dictionary head.
+  static _nouns = null;
+  static nounIndex(){
+    if (this._nouns) return this._nouns;
+    const m = new Map();
+    const put = (k, v) => { const b = stripAr(k || "").replace(/[^ء-ي]/g, ""); if (b && !m.has(b)) m.set(b, v); };
+    (typeof STORIES === "undefined" ? [] : STORIES).forEach(st => {
+      const gl = st.glossary || {};
+      Object.keys(gl).forEach(lex => {
+        const e = gl[lex];
+        if (!e || !e.gloss) return;
+        if (e.pos && /verb/.test(e.pos)) return;      // verbs answer from their paradigm
+        const rec = { lemma: e.lemma, gloss: e.gloss, root: e.root, pos: e.pos, via: "corpus" };
+        put(e.lemma, rec);
+        if (e.plural) String(e.plural).split(/[\/،,]/).forEach(pl => put(pl.trim(), rec));
+      });
+    });
+    this._nouns = m;
+    return m;
+  }
+  static nounFromCorpus(word){
+    const m = this.nounIndex();
+    const raw = stripAr((word || "").replace(/[«»،:.!؟\s]/g, "")).replace(/[^ء-ي]/g, "");
+    // the written word, then without the article, then without one clitic
+    // letter (and its article), in that order — most specific first
+    const tries = [raw, raw.replace(/^ال/, "")];
+    if (/^[وفبلك]/.test(raw)) {
+      tries.push(raw.slice(1), raw.slice(1).replace(/^ال/, ""));
+      // لِلْإِمَامِ is لِ + الْإِمَام with the article's alif swallowed in writing,
+      // so the whole «لل» comes off and what is left is the head-word itself
+      if (/^لل/.test(raw)) tries.push(raw.slice(2), "ال" + raw.slice(2));
+    }
+    for (const t of tries) if (t.length >= 2 && m.has(t)) return m.get(t);
+    return null;
+  }
   // candidate skeletons: the bare word, minus one clitic, minus the person
   // prefixes and suffixes of a conjugated form
   static candidates(word){
@@ -5653,13 +5695,61 @@ class ReadingEngine {
     const suf = this.TR_GEN[v] || "ın";
     return s + (/[aeıioöuü]$/i.test(plain) ? "’n" + suf : "’" + suf);
   }
+  // Two structures now, tried in order of how much they can settle. Both are
+  // «an», and telling them apart is not a guess: أَنَّ is followed by a NOUN
+  // and أَنْ by a VERB, which is the same discriminator the i'rab uses.
   static read(rows, lang){
+    return this.readAnna(rows, lang) || this.readMasdar(rows, lang);
+  }
+  // أَنْ + a mansub mudari'. The clause does not stay a clause: it becomes a
+  // MASDAR and takes a slot in the sentence like any single noun — here the
+  // fa'il of «يَجِبُ». Turkish says it with -ması/-mesi, English with «that …».
+  // The reading is LABELLED rather than dressed up as fluent prose: the app
+  // can be certain what the structure is and cannot be certain how a reader
+  // would idiomatically say it, so it states the first and stops.
+  static KANA = /^[يتأن]كون$/;
+  static readMasdar(rows, lang){
+    if (!rows || rows.length < 4) return null;
+    const i = rows.findIndex((r, k) => k > 0 && r.kind === "particle" &&
+      this.AN.test(stripAr(r.w).replace(/[^ء-ي]/g, "")));
+    if (i <= 0) return null;
+    const head = rows[i - 1], verb = rows[i + 1];
+    if (!head.kind || !head.kind.startsWith("verb")) return null;
+    if (!verb || !verb.kind || !verb.kind.startsWith("verb")) return null;
+    const A = x => `<span lang="ar" dir="rtl">${x}</span>`;
+    const tail = rows.slice(i + 2);
+    if (!tail.length) return null;
+    let clause;
+    if (this.KANA.test(stripAr(verb.w).replace(/[^ء-ي]/g, "")) && tail.length >= 2) {
+      // kana takes an ism and a khabar, so the masdar reads «X's being Y»
+      const ismT = this.gloss(tail[0], lang) || A(tail[0].w);
+      const khT = tail.slice(1).map(r => this.gloss(r, lang) || A(r.w)).join(" ");
+      clause = lang === "tr" ? `${this.genitive(ismT)} ${khT} olması`
+                             : `${ismT} being ${khT}`;
+    } else {
+      const rest = tail.map(r => this.gloss(r, lang) || A(r.w)).join(" ");
+      const vT = this.gloss(verb, lang) || A(verb.w);
+      clause = lang === "tr" ? `${rest} ${vT}` : `${vT} ${rest}`;
+    }
+    const text = lang === "tr"
+      ? `«${clause}» — «أَنْ» ile fiilden te'vîl edilen bu MASDAR, «${head.w}» fiilinin fâilidir.`
+      : `«${clause}» — this MASDAR, read out of «an» plus the verb, is the fa'il of «${head.w}».`;
+    const why = lang === "tr"
+      ? `«أَنْ» kendisinden sonraki muzâriyi NASBEDER ve cümleyi tek bir masdara çevirir; o masdar da cümlede tıpkı bir isim gibi bir mevki tutar. Türkçede bunun karşılığı -ması/-mesi ekidir.`
+      : `«an» puts the mudari' after it in NASB and turns the clause into a single MASDAR, and that masdar then fills a slot in the sentence exactly as one noun would. English says it with «that …» or «-ing».`;
+    return { text, why, kind: "an-masdariyya" };
+  }
+  static readAnna(rows, lang){
     if (!rows || rows.length < 4) return null;
     const an = rows.findIndex(r => r.kind === "particle" &&
       this.AN.test(stripAr(r.w).replace(/[^ء-ي]/g, "")));
     if (an <= 0) return null;
     const head = rows[an - 1];
     if (!head.kind || !head.kind.startsWith("verb")) return null;
+    // أَنَّ is followed by a NOUN; a verb after it means this is أَنْ, and that
+    // is the other engine's structure entirely.
+    const nxt = rows[an + 1];
+    if (nxt && nxt.kind && nxt.kind.startsWith("verb")) return null;
     const tail = rows.slice(an + 1);
     if (tail.length < 2) return null;
     const ism = tail[0], rest = tail.slice(1);
@@ -6030,6 +6120,16 @@ class SentenceAnalyzer {
           }
         }
         if (r.wazn) row.wazn = r.wazn;
+      }
+      // …and if no verb paradigm claimed it, ask the noun lexicon. A gloss the
+      // glossary already owns is not a guess, so the row becomes `sure`.
+      if (!jalala && !row.gloss) {
+        const nn = RootFinder.nounFromCorpus(w);
+        if (nn) {
+          row.lemma = nn.lemma; row.gloss = nn.gloss; row.sure = true;
+          if (nn.root && !row.root) row.root = nn.root;
+          if (!row.kind || row.kind === "noun?") row.kind = "noun";
+        }
       }
       const m = jalala ? null : WaznEngine.of(w);
       if (m && m.mizan) row.wazn = m.mizan;
