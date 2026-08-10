@@ -5585,6 +5585,13 @@ class SentenceAnalyzer {
               en: "the ta is an OATH letter, and it enters upon NO word but this one",
               tr: "tâ kasem harfidir ve YALNIZ lafza-i celâle dâhil olur" },
   };
+  // A jarr letter fused to a pronoun — بِهِ، لَهُ، عَلَيْهِ، مِنْهُمْ — is written as
+  // one word and IS two: the letter governs, and the pronoun is its majrur in
+  // position. Peeled by rule, not by listing the two dozen spellings.
+  static JARR_HEAD = {
+    "ب": "بِ", "ل": "لِ", "ك": "كَ", "من": "مِنْ", "عن": "عَنْ", "في": "فِي",
+    "على": "عَلَى", "الى": "إِلَى", "إلى": "إِلَى", "حتى": "حَتَّى", "مع": "مَعَ",
+  };
   static PARTICLES = {
     "في": { k: "jarr" }, "من": { k: "jarr" }, "الى": { k: "jarr" }, "إلى": { k: "jarr" },
     "عن": { k: "jarr" }, "على": { k: "jarr" }, "حتى": { k: "jarr" }, "رب": { k: "jarr" },
@@ -5682,11 +5689,58 @@ class SentenceAnalyzer {
         core = core.slice(1);
       }
       // -- the closed classes: knowledge, not guessing
+      // مِنْ and مَنْ are one spelling and two different words — a harf of jarr
+      // and an ISM (mawsula, shartiyya or istifhamiyya, never a harf). The
+      // surface does tell them apart: the mim wears a KASRA in the letter and
+      // a FATHA in the noun. Undiacritised, nothing decides it, and the app
+      // keeps the jarr reading while saying the other is open.
+      let manIsm = false, manOpen = false;
+      if (core === "من") {
+        const v = (w.normalize("NFC").match(/م([ً-ْ])/) || [])[1];
+        if (v === "َ") manIsm = true;
+        else if (!v) manOpen = true;
+      }
+      // …the fused jarr + pronoun, tried before the closed-class table so that
+      // «مِنْهُ» is not read as a bare «مِنْ» with a stray ha. عَلَيْهِ and إِلَيْهِ
+      // turn their alif maqsura into a ya before the pronoun, so the head is
+      // looked up both ways.
+      let jarrPron = null;
+      for (const e of this.ENCLITICS) {
+        if (core.length <= e.length || !core.endsWith(e)) continue;
+        const h = core.slice(0, -e.length);
+        const head = this.JARR_HEAD[h] || this.JARR_HEAD[h.replace(/ي$/, "ى")];
+        if (head) { jarrPron = { head, pron: e }; break; }
+      }
+      if (jarrPron) {
+        row.kind = "particle"; row.sure = true;
+        row.seg.push(jarrPron.head, jarrPron.pron);
+        row.notes.push({
+          en: `«${jarrPron.head}» is a jarr letter and «${jarrPron.pron}» is a joined pronoun standing in the position of jarr after it — one word in writing, two in i'rab.`,
+          tr: `«${jarrPron.head}» cer harfi, «${jarrPron.pron}» ise onunla mahallen mecrûr muttasıl zamîrdir — yazıda tek kelime, i'râbda ikidir.` });
+        if (expect.length) { const e2 = expect.shift(); row.notes.push(e2); }
+        afterVerb = false;
+        out.push(row); return;
+      }
       const p = this.PARTICLES[core];
       if (p) {
-        row.kind = "particle"; row.sure = true;
+        // The table is a table of CLOSED CLASSES, not of harf. كَانَ وَأَخَوَاتُهَا
+        // sit in it because they govern like governors, but they are verbs —
+        // نَاقِصَة, but verbs — and لَيْسَ is a jamid verb, not a particle. The
+        // detached pronouns sit in it for the same reason and are ASMA. And
+        // مَنْ is an ism in every one of its readings (mawsula, shartiyya,
+        // istifhamiyya); it is never a harf at all. Calling all three
+        // "particle" cost 50-odd tokens against the corpus's own labels.
+        row.kind = p.k === "kana" ? "verb"
+                 : (p.k === "pron" || manIsm) ? "noun" : "particle";
+        row.sure = !manOpen;
         row.seg.push(core);
-        row.notes.push(this.KIND_LBL[p.k]);
+        if (manIsm) row.notes.push({
+          en: "the mim wears a FATHA — this is مَنْ the ISM (whoever / who?), not the jarr letter مِنْ. مَنْ is a noun in every one of its readings; it is never a harf.",
+          tr: "mîm FETHALIDIR — bu, cer harfi مِنْ değil, İSİM olan مَنْ'dir (her kim / kim?). مَنْ bütün vecihlerinde isimdir, asla harf olmaz." });
+        else if (manOpen) row.notes.push({
+          en: "unvowelled «من» — with a kasra it is the jarr letter, with a fatha the ism «whoever». Nothing on the surface settles which; the jarr reading is shown because it is the commoner.",
+          tr: "harekesiz «من» — kesralı ise cer harfi, fethalı ise «her kim» mânâsında isimdir. Yüzeyde bunu tayin eden bir şey yok; daha yaygın olduğu için cer okuyuşu gösterilmiştir." });
+        else row.notes.push(this.KIND_LBL[p.k]);
         // -- the hamza of ان reads by position (Qatr al-Nada): sentence-
         // initial and after the qawl verbs it is إِنَّ with kasra (speech is
         // quoted whole); after other verbs the clause melts into a masdar,
@@ -5887,6 +5941,36 @@ class SentenceAnalyzer {
         b.notes.push({ en: "likely the mudaf ilayh — majrur", tr: "muhtemelen muzâfun ileyh — mecrur" });
       }
     }
+    // ---- the ARBITER: where the surface cannot decide, the models vote ---
+    // The surface heuristics — tanwin, the article, the ta, a mudari' prefix —
+    // leave 747 of the corpus's 3,331 hand-labelled tokens marked undecided,
+    // and they are right about only 61.4% of those. Both distilled taggers can
+    // be asked the same word, and simply taking whichever comes back MORE
+    // CONFIDENT is right 75.5% of the time, measured leave-one-story-out.
+    //
+    // A sweep over a scale factor and a dead-band margin was run first, since
+    // the two models carry different label counts and their probabilities are
+    // not obviously comparable. The raw comparison — scale 1, margin 0 — won
+    // the sweep outright, and held-out (75.5%) matches resubstitution (75.9%),
+    // so there is no fitted constant here to overfit. That is why none appears.
+    //
+    // The row stays `sure: false`. A decision is not a certainty, and the UI
+    // goes on marking it a guess.
+    out.forEach(r => {
+      if (!r.kind || !r.kind.endsWith("?")) return;
+      let v = 0, m = 0;
+      try { v = (SarfTagger.tag(r.w, 1)[0] || {}).p || 0; } catch (e) {}
+      try { m = (IsmTagger.tag(r.w, 1)[0] || {}).p || 0; } catch (e) {}
+      if (!v && !m) return;
+      const win = v > m ? "verb" : "noun";
+      const hi = Math.round(Math.max(v, m) * 100), lo = Math.round(Math.min(v, m) * 100);
+      if (win !== r.kind.replace("?", "")) r.notes.push({
+        en: `the surface could not settle whether this is a noun or a verb; both learned taggers were asked and the ${win === "verb" ? "VERB" : "NOUN"} model answered the more confidently — ${hi}% against ${lo}%`,
+        tr: `yüzey bunun isim mi fiil mi olduğunu tayin edemedi; iki öğrenmiş etiketleyiciye de soruldu ve ${win === "verb" ? "FİİL" : "İSİM"} modeli daha yüksek güvenle cevap verdi — %${hi}'e karşı %${lo}`,
+        ml: true });
+      r.kind = win;
+    });
+
     // ---- the LEARNED pass: name the cell and the wazn -------------------
     // The distilled tagger knows every paradigm slot the conjugator can make,
     // for roots it has never met — so a bare verb form can be named «Form I,
@@ -8524,6 +8608,11 @@ class SarfTagger {
     let z = 0;
     sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
     sc.forEach(x => { x.p /= z; });
+    // NOT memoised. A word cache keyed on the model was built and measured: it
+    // saved two percent of a corpus-wide sweep, which is noise, and it carries
+    // a real hazard — evalUnseen swaps a fold's model in behind the caller's
+    // back, and a cache that outlived that swap would grade the folds against
+    // one another. Measured, rejected, recorded.
     return sc.sort((a, b) => b.p - a.p).slice(0, top).map(x => ({ ...x, ...this.label(x.y) }));
   }
   // The wazn of a slot, earned rather than templated: conjugate ف ع ل itself
@@ -8811,6 +8900,11 @@ class IsmTagger {
     let z = 0;
     sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
     sc.forEach(x => { x.p /= z; });
+    // NOT memoised. A word cache keyed on the model was built and measured: it
+    // saved two percent of a corpus-wide sweep, which is noise, and it carries
+    // a real hazard — evalUnseen swaps a fold's model in behind the caller's
+    // back, and a cache that outlived that swap would grade the folds against
+    // one another. Measured, rejected, recorded.
     return sc.sort((a, b) => b.p - a.p).slice(0, top)
              .map(x => ({ wazn: x.y, p: x.p, roles: this.roles(x.y) }));
   }

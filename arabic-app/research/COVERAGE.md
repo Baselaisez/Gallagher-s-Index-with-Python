@@ -207,6 +207,20 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v96** — the analyzer is graded against HUMAN labels for the first time:
+  every hand-tagged token in the library, 3,331 of them, on the three classes
+  it actually decides. It read **82.0%**, and four changes took it to **91.5%**,
+  each measured separately. The two distilled taggers now ARBITRATE what the
+  surface left undecided — 747 tokens the surface got 61.4% right, the vote
+  gets 75.5% right leave-one-story-out, with no threshold and no scaling
+  because the raw comparison won the sweep. كَانَ وَأَخَوَاتُهَا are verbs and the
+  detached pronouns are asma, not particles. مِنْ and مَنْ are split by the mim's
+  vowel — and left open, out loud, when the text is unvowelled. And a jarr
+  letter fused to a pronoun (بِهِ، لَهُ، عَلَيْهِ) is peeled by rule into the two
+  i'rabs it really is. A memoisation of the taggers was built, measured at 2%
+  (noise), and reverted rather than kept as a hazard. Aqaid reaches chapter 19,
+  the offices of the imam — a chain of masdars in jarr, and the best showcase
+  the package has for the new noun tagger.
 - **v95** — the learned layer gets its noun half. `IsmTagger` is distilled from
   the derivational patterns the way `SarfTagger` was distilled from the
   conjugator: 38 awzan × 40 sound roots × the endings running text actually

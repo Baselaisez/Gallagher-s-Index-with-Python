@@ -131,6 +131,36 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**Grade the analyzer against HUMAN labels, not against itself.** Every token in
+the library carries a hand-written `pos`. Scoring the analyzer's `kind` against
+those 3,331 labels on the three classes it decides is the only number here
+nobody can argue with, and it is a smoke gate (floor 90). It went **82.0% →
+91.5%** in one turn, and every point of that is traceable:
+- the **arbiter** (+3.2): the surface left 747 tokens marked `noun?`/`verb?` and
+  was right about only 61.4% of them. Asking BOTH distilled taggers and taking
+  whichever is more confident is right 75.5%, measured leave-one-story-out. A
+  sweep over a scale factor and a dead-band margin was run first — the raw
+  comparison (scale 1, margin 0) won outright, and held-out 75.5% matched
+  resubstitution 75.9%, so **there is no fitted constant** and none appears.
+- **the closed-class table is a table of closed classes, not of harf** (+2.9):
+  كَانَ وَأَخَوَاتُهَا live in it because they govern, but they are verbs; لَيْسَ is a
+  jamid verb; the detached pronouns are asma. Calling all three "particle" cost
+  ~50 tokens.
+- **مِنْ vs مَنْ** (part of the same +2.9): one spelling, two words, and the
+  surface *does* decide — kasra on the mim is the letter, fatha is the ism (and
+  مَنْ is an ism in every reading, never a harf). Undiacritised, neither wins:
+  the jarr reading is shown, `sure` is false, and the note says why.
+- **a jarr letter fused to a pronoun** (+3.4): بِهِ، لَهُ، عَلَيْهِ، مِنْهُمْ is one
+  word and two i'rabs. Peeled by RULE via `JARR_HEAD`, not by listing the two
+  dozen spellings; عَلَيْهِ and إِلَيْهِ turn their alif maqsura to ya before the
+  pronoun, so the head is looked up both ways.
+
+**The taggers are NOT memoised.** A word cache keyed on the model was built and
+measured: it saved two percent of a corpus sweep — noise — and carries a real
+hazard, since `evalUnseen` swaps a fold's model in behind the caller's back and
+a cache outliving that swap would grade the folds against one another. Measured,
+rejected, recorded; do not re-add it without a number.
+
 **The learned layer has two halves, and each is asked only its own question.**
 `SarfTagger` reads a conjugated VERB back to its (form, tense, person);
 `IsmTagger` reads a derived NOUN back to its **wazn**. The analyzer routes on

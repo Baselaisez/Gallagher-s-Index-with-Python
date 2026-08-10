@@ -4124,6 +4124,87 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // The one measurement that grades the analyzer against HUMAN labels rather
+  // than against itself: every hand-tagged token in the library, 3,331 of them,
+  // scored on the three classes the analyzer actually decides. It walks the
+  // whole corpus and takes about half a minute; that is the price of a number
+  // nobody can argue with.
+  await check('the analyzer names the part of speech, graded on every hand-labelled token', async () => {
+    const r = await page.evaluate(() => {
+      const t0 = performance.now();
+      const MAP = { noun: 'noun', propn: 'noun', pron: 'noun', num: 'noun',
+                    verb: 'verb', part: 'particle', prep: 'particle', conj: 'particle' };
+      let n = 0, ok = 0, misaligned = 0;
+      const confuse = {};
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+        const text = sen.tokens.map(t => t.s.full).join(' ');
+        let rows; try { rows = SentenceAnalyzer.analyze(text); } catch (e) { return; }
+        // the analyzer must split a sentence exactly as the corpus tokenised it
+        if (rows.length !== sen.tokens.length) { misaligned += sen.tokens.length; return; }
+        rows.forEach((row, i) => {
+          const gold = MAP[sen.tokens[i].pos];
+          if (!gold) return;
+          const got = (row.kind || '').replace('?', '');
+          n++;
+          if (got === gold) ok++;
+          else confuse[gold + '→' + got] = (confuse[gold + '→' + got] || 0) + 1;
+        });
+      })));
+      return { n, misaligned, ms: Math.round(performance.now() - t0),
+               acc: Math.round(ok / n * 1000) / 10,
+               worst: Object.entries(confuse).sort((a, b) => b[1] - a[1]).slice(0, 3) };
+    });
+    if (r.n < 3000) throw new Error('the labelled set shrank: ' + r.n);
+    if (r.misaligned) throw new Error(r.misaligned + ' tokens the analyzer split differently from the corpus');
+    // 82.0% before the arbiter and the closed-class fixes; the floor sits just
+    // under where it landed, so a regression fails and an improvement does not.
+    if (r.acc < 90) throw new Error('part-of-speech accuracy regressed to ' + r.acc +
+      '% — worst confusions: ' + JSON.stringify(r.worst));
+  });
+
+  // Where the surface cannot decide, the two distilled taggers vote and the
+  // more confident one wins. No threshold, no scaling — the raw comparison won
+  // the sweep, and held-out matched resubstitution, so there is nothing fitted.
+  await check('the two taggers arbitrate what the surface could not settle', async () => {
+    const r = await page.evaluate(() => {
+      const rows = SentenceAnalyzer.analyze('وَمَنْ قَالَ لَهُ ذَلِكَ فَقَدْ كَانَ صَادِقًا بِهِ');
+      const kinds = rows.map(x => x.w + ':' + x.kind + (x.sure ? '' : '?'));
+      // مِنْ against مَنْ — one spelling, two words, told apart by the mim's vowel
+      const man = SentenceAnalyzer.analyze('مَنْ')[0];
+      const min = SentenceAnalyzer.analyze('مِنْ')[0];
+      const open = SentenceAnalyzer.analyze('من')[0];
+      return { kinds,
+               man: { k: man.kind, t: man.notes.map(n => n.tr).join(' | ') },
+               min: { k: min.kind, t: min.notes.map(n => n.tr).join(' | ') },
+               open: { k: open.kind, sure: open.sure, t: open.notes.map(n => n.tr).join(' | ') },
+               kana: SentenceAnalyzer.analyze('كَانَ')[0].kind,
+               laysa: SentenceAnalyzer.analyze('لَيْسَ')[0].kind,
+               huwa: SentenceAnalyzer.analyze('هُوَ')[0].kind,
+               lahu: SentenceAnalyzer.analyze('لَهُ')[0],
+               alayhi: SentenceAnalyzer.analyze('عَلَيْهِ')[0],
+               // nothing may be left undecided once the arbiter has run
+               anyUnsure: rows.some(x => (x.kind || '').endsWith('?')) };
+    });
+    if (r.anyUnsure) throw new Error('the arbiter left a row undecided: ' + r.kinds);
+    // كان وأخواتها are VERBS, لَيْسَ is a jamid verb, هُوَ is an ism
+    if (r.kana !== 'verb') throw new Error('كان is a verb, got ' + r.kana);
+    if (r.laysa !== 'verb') throw new Error('ليس is a jamid verb, got ' + r.laysa);
+    if (r.huwa !== 'noun') throw new Error('a detached pronoun is an ism, got ' + r.huwa);
+    // مَنْ is an ism in every reading; مِنْ is the jarr letter; bare «من» is open
+    if (r.man.k !== 'noun') throw new Error('مَنْ is an ism, got ' + r.man.k);
+    if (!/FETHALI/.test(r.man.t)) throw new Error('the fatha must be the reason given: ' + r.man.t);
+    if (r.min.k !== 'particle') throw new Error('مِنْ is the jarr letter, got ' + r.min.k);
+    if (r.open.sure) throw new Error('undiacritised «من» cannot be settled, yet it claims certainty');
+    if (!/tayin eden bir şey yok/.test(r.open.t)) throw new Error('it must say so: ' + r.open.t);
+    // a jarr letter fused to a pronoun is one word and two i'rabs
+    for (const [w, x] of [['لَهُ', r.lahu], ['عَلَيْهِ', r.alayhi]]) {
+      if (x.kind !== 'particle') throw new Error(w + ' is a jarr phrase, got ' + x.kind);
+      if (x.seg.length !== 2) throw new Error(w + ' must split into letter + pronoun: ' + x.seg);
+      if (!/mecrûr muttasıl zamîr/.test(x.notes.map(n => n.tr).join(' ')))
+        throw new Error(w + ': the pronoun must be named the majrur');
+    }
+  });
+
   // The noun half of the learned layer. SarfTagger reads a conjugated verb back
   // to its cell; this one reads a derived noun back to its SCALE — and stops
   // there on purpose, because the scale does not settle the office.
