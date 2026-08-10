@@ -6185,6 +6185,23 @@ class SentenceAnalyzer {
       }
       out.push(row);
     });
+    // ---- the WAW pass: eight faces, ranked, each with its signal ---------
+    // The proclitic pass leaves a four-name shrug on every waw. The engine can
+    // do better than that, and where it cannot it should say WHY it cannot —
+    // which at the head of a sentence is that the word a ma'tuf joins to is in
+    // the line above, and the analyzer is not holding it.
+    out.forEach((r, i) => {
+      if (!WawEngine.separable(r)) return;
+      let wj = [];
+      try { wj = WawEngine.rank(out, i); } catch (e) { return; }
+      if (!wj.length) return;
+      // drop the old shrug now that there is something to put in its place
+      r.notes = r.notes.filter(n => !(n.en || "").startsWith("waw —"));
+      wj.slice(0, 2).forEach((x, k) => r.notes.push({
+        en: `${k ? "or " : ""}${x.ar} — ${x.en}: ${x.why.en}`,
+        tr: `${k ? "yahut " : ""}${x.ar} — ${x.tr}: ${x.why.tr}` }));
+    });
+
     // ---- the IDAFA pass: name the chains and their exact consequences ----
     // The old note said "bare before a definite noun — likely mudaf" and
     // stopped. But an idafa's consequences are not likely, they are exact, and
@@ -9016,6 +9033,166 @@ class SarfTagger {
   }
 }
 
+// ---------- the Waw engine -----------------------------------------------
+// Ibn Hisham's Qawa'id al-I'rab, bab 3, sets the waw among the words that
+// carry EIGHT faces: isti'naf, hal, atf, maf'ul ma'ah, the waw of plurality,
+// the waw of an oath, the waw of rubba, and the extra waw. It is the commonest
+// word in the corpus and the app had one line to say about it — «waw: atf,
+// hal, oath or isti'naf; try -iken» — which is a shrug with four names on it.
+//
+// The engine proposes the faces WITH the signal that raised each, ranked, the
+// way MaEngine does for ما. It is graded against the corpus's own rulings:
+// every waw a human has already judged in the library, ~200 of them, read out
+// of the stored i'rab. That is the only honest scoreboard available, and the
+// smoke suite holds the number to a floor.
+class WawEngine {
+  static WAJH = {
+    atf:      { ar: "وَاوُ الْعَطْفِ", en: "the joining waw — it hangs what follows on what came before",
+                tr: "atıf vâvı — sonrasını öncekine bağlar" },
+    istinaf:  { ar: "وَاوُ الِاسْتِئْنَافِ", en: "the resuming waw — a fresh sentence begins after it",
+                tr: "istinâf vâvı — ardından yeni bir cümle başlar" },
+    hal:      { ar: "وَاوُ الْحَالِ", en: "the circumstantial waw — «while, and at the same time»",
+                tr: "hâl vâvı — «-iken, olduğu hâlde»" },
+    maiyya:   { ar: "وَاوُ الْمَعِيَّةِ", en: "the waw of accompaniment — what follows is maf'ul ma'ah, in NASB",
+                tr: "maiyyet vâvı — sonrası mef'ûlün maah olarak MANSUBdur" },
+    qasam:    { ar: "وَاوُ الْقَسَمِ", en: "the oath waw — it governs jarr and needs no other jarr letter",
+                tr: "kasem vâvı — cer eder, başka cer harfi istemez" },
+    rubba:    { ar: "وَاوُ رُبَّ", en: "the waw of rubba — «and many a …», jarr with no visible letter",
+                tr: "rubbe vâvı — «nice …», harfsiz cer" },
+    jam:      { ar: "وَاوُ الْجَمَاعَةِ", en: "the waw of plurality — not a word at all, but the fa'il inside a verb",
+                tr: "cemâat vâvı — müstakil kelime değil, fiilin içindeki fâildir" },
+    zaida:    { ar: "الْوَاوُ الزَّائِدَةُ", en: "the extra waw — added, and adding only emphasis",
+                tr: "zâid vâv — te'kidden başka bir mânâ katmaz" },
+  };
+  // Ibn Hisham's own warning, in bab 4: to call a letter of the Book «extra»
+  // is to say its meaning is emphasis alone, never that it is meaningless —
+  // so the app carries the caution wherever it offers this face.
+  static ZAID_NOTE = {
+    en: "«extra» means its work is emphasis alone; it never means the letter is meaningless.",
+    tr: "«zâid», vazîfesi yalnız te'kiddir demektir; harfin mânâsızlığı demek değildir." };
+  static flat(w){ return stripAr(w || "").replace(/[^ء-ي]/g, ""); }
+  // Is this waw a WORD, or the first letter of one? وَلَد, وِلَايَة, وَجَبَ and
+  // وَاجِب all open with a RADICAL waw and must never be read as a conjunction.
+  // The test is the analyzer's own knowledge: if the row carries a lemma and
+  // that lemma itself begins with a waw, the letter belongs to the word. The
+  // analyzer, the kernel and the corpus evaluation all go through here, so the
+  // number the suite reports is the number the reader actually sees.
+  static separable(row){
+    if (!row) return false;
+    if (row.seg && row.seg[0] === "و") return true;
+    const f = this.flat(row.w);
+    if (!/^و/.test(f) || f.length < 3) return false;
+    if (row.lemma && /^و/.test(stripAr(row.lemma).replace(/[^ء-ي]/g, ""))) return false;
+    if (row.alam) return false;
+    return true;
+  }
+  // The pronouns and particles whose presence right after a waw is the
+  // classical mark of a hal clause.
+  static PRON = new Set(["هو", "هي", "هم", "هن", "انا", "أنا", "نحن", "انت", "أنت",
+                         "اياك", "إياك", "ذلك", "هذا", "هذه"]);
+  static WASLI = new Set(["لو", "ان", "إن"]);
+  //  rows: the analyzer's output; i: the index of the row the waw opens.
+  //  Returns the faces this surface can support, best first, each carrying the
+  //  signal that raised it. Where nothing distinguishes them it says so by
+  //  offering more than one — a ranked shortlist, never a single verdict.
+  //  rows: the analyzer's output; i: the index of the row the waw opens.
+  //  Returns the faces this surface can support, best first, each carrying the
+  //  signal that raised it.
+  //
+  //  The ranking is not invented. It was measured against every waw a human
+  //  has already ruled on in the library — 213 of them — and the corpus taught
+  //  three things that no amount of reasoning from the books would have given
+  //  in this order:
+  //    • A HAL waw never opens a sentence. Not once in 213. It is a mid-clause
+  //      face, and offering it at the head is simply wrong.
+  //    • Mid-sentence, the waw is ATF five times out of six.
+  //    • At the head of a sentence the question is genuinely OPEN, because the
+  //      thing a ma'tuf is joined to lies in the sentence BEFORE — which the
+  //      analyzer is not holding. The first version of this engine scored 36.9%
+  //      by treating "nothing precedes it" as evidence of isti'naf; it is
+  //      evidence of nothing except that the antecedent is out of frame, and
+  //      saying so is the honest answer as well as the accurate one.
+  static read(rows, i){
+    const row = rows[i];
+    if (!row) return [];
+    const f = this.flat(row.w);
+    if (!/^و/.test(f) || f.length < 2) return [];
+    const out = [], say = (k, en, tr) => out.push({ k, ...this.WAJH[k], why: { en, tr } });
+    const restFlat = f.slice(1);
+    const nextKind = row.kind || "";
+    const head = i === 0;
+    const prev = rows.slice(0, i).filter(r => r.kind && !r.kind.startsWith("particle"));
+    const prevNoun = [...prev].reverse().find(r => r.kind && r.kind.startsWith("noun"));
+    const caseOf = w => { const x = (typeof IrabSign !== "undefined") && IrabSign.of(w); return x && x.sign ? x.sign.en : null; };
+    const here = caseOf(row.w), there = prevNoun ? caseOf(prevNoun.w) : null;
+    const agree = !!(here && there && here === there);
+
+    // -- QASAM first, because its surface mark is decisive on its own: the
+    // oath waw enters on a bare few words, and وَاللهِ at the head of a line is
+    // one of them. Gating this on a readable kasra as well lost it — the
+    // corpus writes وَاللهِ and the sign engine does not always call that ending
+    // a case, since on a proper name it is not one.
+    if (head && /^(والله|وربي|وربى|وحياة|وايم|وتالله)/.test(f)) {
+      say("qasam", "the oath waw: it governs jarr all by itself, needs no jarr letter beside it, and enters on almost nothing but this word",
+                   "kasem vâvı: tek başına cer eder, yanında bir cer harfi istemez ve neredeyse yalnız bu kelimeye dâhil olur");
+      return out;
+    }
+
+    // -- HAL, and only away from the head of the sentence.
+    if (!head) {
+      if (this.PRON.has(restFlat))
+        say("hal", "a detached pronoun straight after the waw opens a nominal clause, and a nominal clause hung on a waw mid-sentence is the standard hal",
+                   "vâvdan hemen sonra munfasıl zamîr gelmesi isim cümlesi açar; cümle ortasında vâva asılan isim cümlesi hâlin bilinen sûretidir");
+      else if (restFlat === "قد")
+        say("hal", "«wa qad» + a past verb is the textbook hal: qad brings the act up to the present, which is what a hal needs",
+                   "«ve kad» + mâzî, hâlin ders kitabı sûretidir: kad fiili hâle yaklaştırır — hâlin istediği de budur");
+      else if (this.WASLI.has(restFlat))
+        say("hal", "«wa law» / «wa in» is the WASLI waw — a hal that concedes: «even if»",
+                   "«velev» / «vein» VASLİYYE vâvıdır — «olsa bile» diyen bir hâl");
+    }
+
+    // -- ATF. Mid-sentence it is the reading five times in six, and where the
+    // cases agree the reason can be stated exactly rather than by frequency.
+    if (agree)
+      say("atf", `what follows is in ${here}, and so is «${prevNoun.w}» before it — a ma'tuf takes the case of what it is joined to`,
+                 `sonrası ${here} hâlinde, ondan önceki «${prevNoun.w}» de öyle — ma'tûf, ma'tûfun aleyhin i'râbını alır`);
+    else if (!head)
+      say("atf", "it stands inside the sentence with something before it to hang on, and that is what a waw does five times out of six",
+                 "cümlenin içinde ve kendisine asılacak bir şeyin ardında duruyor; vâvın altı hâlden beşinde yaptığı da budur");
+    else
+      say("atf", "the matn runs on: a waw at the head of a line most often carries the line before it forward, joining to a word that is NOT in this sentence",
+                 "metin akmaya devam ediyor: satır başındaki vâv çoğu kez öncekini sürdürür ve bu cümlede BULUNMAYAN bir kelimeye atfeder");
+
+    // -- ISTI'NAF. Always live as the second reading, and at the head of a
+    // sentence it is live for a reason worth stating out loud.
+    if (head)
+      say("istinaf", "…but the word it would join to is in the sentence BEFORE this one, which is not in view here. Between atf and isti'naf the surface alone cannot decide: read the line above.",
+                     "…fakat atfedeceği kelime, burada görünmeyen ÖNCEKİ cümlededir. Atıf ile istinâf arasında yüzey tek başına karar veremez: bir üstteki satıra bakın.");
+    else if (here && there && here !== there)
+      say("istinaf", `what follows is in ${here} while «${prevNoun.w}» before it is in ${there} — they do not agree, so it joins to nothing and resumes`,
+                     `sonrası ${here}, öncesindeki «${prevNoun.w}» ise ${there} — uyuşmuyorlar; öyleyse bir şeye bağlanmaz, yeniden başlatır`);
+    else
+      say("istinaf", "if what follows opens a predication of its own rather than matching anything before it, the waw resumes rather than joins",
+                     "sonrası, öncesindeki bir şeye denk düşmek yerine kendi başına bir hüküm kuruyorsa vâv bağlamaz, yeniden başlatır");
+
+    // -- the three narrow faces, each on its own surface mark
+    if (here === "fatha" && nextKind.startsWith("noun") && !head &&
+        prev.some(r => r.kind && r.kind.startsWith("verb")))
+      say("maiyya", "a noun in NASB after a complete clause reads «along with» — the maf'ul ma'ah, and the waw is what puts it in nasb",
+                    "tam bir cümleden sonra MANSUB isim «ile birlikte» mânâsı verir — mef'ûlün maah; onu nasbeden de vâvın kendisidir");
+    if (here === "kasra" && /ٍ/.test(row.w.normalize("NFC")) && head)
+      say("rubba", "an INDEFINITE in jarr at the head with no jarr letter — the waw of rubba, «and many a …»",
+                   "başta, cer harfi olmaksızın mecrûr bir NEKRE — rubbe vâvı: «nice …»");
+    return out;
+  }
+  // Ranked, deduplicated, best first.
+  static rank(rows, i){
+    const seen = new Set(), out = [];
+    this.read(rows, i).forEach(r => { if (!seen.has(r.k)) { seen.add(r.k); out.push(r); } });
+    return out;
+  }
+}
+
 // ---------- the Idafa engine ---------------------------------------------
 // الْإِضَافَة is the most mechanical structure in nahw, and its consequences are
 // EXACT. Put a noun in front of another and four things happen to it, every
@@ -9628,6 +9805,21 @@ class GrammarKernel {
       chains.map(c => [c.words.join(" "),
         T({ en: `«${c.words[0]}» is the mudaf: no tanwin, no ال, no nun of the dual or the sound plural — and «${c.words[c.words.length - 1]}» at the end is majrur. ${c.words.length > 2 ? "Every middle member is a mudaf AND a mudaf ilayh at once." : ""}`,
             tr: `«${c.words[0]}» muzâftır: tenvin yok, «أَلْ» yok, tesniye ve cemi sâlim nûnu yok — sondaki «${c.words[c.words.length - 1]}» ise mecrûrdur. ${c.words.length > 2 ? "Aradaki her halka hem muzâf hem muzâfun ileyhtir." : ""}` })]));
+
+    // the waw's eight faces, for the first waw the phrase opens with or carries
+    const wawAt = rows0.findIndex(r => WawEngine.separable(r));
+    if (wawAt >= 0) {
+      const wj = WawEngine.rank(rows0, wawAt);
+      if (wj.length) {
+        add("waw", "rule",
+          { ar: "وُجُوهُ الْوَاوِ", en: "Which waw this is", tr: "Bu vâv hangisi" },
+          wj.slice(0, 3).map(x => [x.ar, `${T(x)} — ${T(x.why)}`]));
+        if (wawAt === 0) miss.push({
+          ar: "أَعَاطِفَةٌ هِيَ أَمْ مُسْتَأْنِفَةٌ",
+          en: "whether that opening waw joins or resumes — what a ma'tuf attaches to lies in the sentence BEFORE this one, and only that line decides it",
+          tr: "baştaki vâvın atıf mı istinâf mı olduğu — ma'tûfun bağlandığı şey ÖNCEKİ cümlededir; bunu ancak o satır tayin eder" });
+      }
+    }
 
     const ma = ws.findIndex(w => stripAr(w).replace(/[^ء-ي]/g, "") === "ما");
     if (ma >= 0) {

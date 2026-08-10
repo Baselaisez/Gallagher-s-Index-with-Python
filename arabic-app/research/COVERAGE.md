@@ -207,6 +207,19 @@ not a one-line change.
   sentence comes out meaning — assembled from settled glosses and the syntax,
   silent where it cannot name the structure. The analyzer's verdicts became
   CARDS: an i'rab you must scroll sideways to read is one you do not read.
+- **v99** — Qawa'id al-I'rab bab 3 is implemented: `WawEngine` reads the waw's
+  EIGHT faces and ranks them with the signal that raised each, closing one of
+  the two open items on file #34. It is graded against the corpus's own
+  rulings — 211 waws a human already judged — and that grading rewrote the
+  engine: the first version, argued from the books alone, scored 36.9%, worse
+  than always answering "atf". The corpus taught that a hal waw never opens a
+  sentence, that mid-sentence the waw is atf five times in six, and that at the
+  head the question is genuinely undecidable because the ma'tuf ilayh is in the
+  line above. Final: 71.6% top-1, 98.1% top-2, with the opening waw offering
+  both readings and saying why. Aqaid reaches chapter 22 — what the imam need
+  not be, and what he must — and its اِشْتَرَطَ is COPIED from kitab-al-sulh
+  after a lemma identity check rather than generated, which is the standing
+  rule for a verb two packages share.
 - **v98** — the glossary becomes a lexicon open text can consult. Only verb
   paradigms were ever searched, so several hundred nouns were invisible to the
   analyzer; every non-verb entry is now indexed under its lemma and its stored

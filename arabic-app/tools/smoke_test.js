@@ -4129,6 +4129,62 @@ if (!CHROME) {
       throw new Error('ال and idafa never combine: ' + r.alword.notes);
   });
 
+  // Ibn Hisham gives the waw eight faces. The engine proposes them ranked, and
+  // is graded against every waw a human has already ruled on in the library —
+  // the only honest scoreboard available for a question this open.
+  await check('the Waw engine ranks the eight faces, and is graded on the corpus\'s own rulings', async () => {
+    const r = await page.evaluate(() => {
+      const gold = ar =>
+        /الْوَاوُ\s*(عَاطِفَةٌ|حَرْفُ عَطْفٍ)/.test(ar) ? 'atf' :
+        /الْوَاوُ\s*(اسْتِئْنَافِيَّةٌ|لِلِاسْتِئْنَافِ)/.test(ar) ? 'istinaf' :
+        /الْوَاوُ\s*(حَالِيَّةٌ|لِلْحَالِ|وَصْلِيَّةٌ)/.test(ar) ? 'hal' :
+        /الْوَاوُ\s*(لِلْقَسَمِ|قَسَمِيَّةٌ)/.test(ar) ? 'qasam' : null;
+      let n = 0, t1 = 0, t2 = 0, silent = 0, headOpen = 0, headN = 0;
+      STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+        const text = sen.tokens.map(t => t.s.full).join(' ');
+        let rows; try { rows = SentenceAnalyzer.analyze(text); } catch (e) { return; }
+        if (rows.length !== sen.tokens.length) return;
+        sen.tokens.forEach((t, i) => {
+          const g = gold((t.irab || {}).ar || '');
+          if (!g || !WawEngine.separable(rows[i])) return;
+          const w = WawEngine.rank(rows, i);
+          n++;
+          if (!w.length) { silent++; return; }
+          if (w[0].k === g) t1++;
+          if (w.slice(0, 2).some(x => x.k === g)) t2++;
+          // at the head of a sentence it must OFFER both readings, because the
+          // ma'tuf ilayh is in the line above and is not in view
+          if (i === 0) { headN++; if (w.slice(0, 2).map(x => x.k).join() === 'atf,istinaf') headOpen++; }
+        });
+      })));
+      const one = (txt, k) => { const rows = SentenceAnalyzer.analyze(txt);
+        const w = WawEngine.rank(rows, k); return w.length ? w[0].k : null; };
+      return { n, silent, t1: Math.round(t1 / n * 1000) / 10, t2: Math.round(t2 / n * 1000) / 10,
+               headN, headOpen,
+               faces: Object.keys(WawEngine.WAJH).length,
+               oath: one('وَاللهِ إِنَّ الْعِلْمَ نَافِعٌ', 0),
+               hal: one('رَجَعَ يُوسُفُ وَقَدْ عَلِمَ', 2),
+               atf: one('جَاءَ زَيْدٌ وَعَمْرٌو', 2),
+               // a RADICAL waw is not a word and must never be read as one
+               radical: [SentenceAnalyzer.analyze('وَلَد')[0], SentenceAnalyzer.analyze('وِلَايَة')[0],
+                         SentenceAnalyzer.analyze('وَجَبَ')[0]].map(x => WawEngine.separable(x)) };
+    });
+    if (r.faces !== 8) throw new Error('Ibn Hisham counts eight faces, the engine has ' + r.faces);
+    if (r.n < 150) throw new Error('the graded set shrank: ' + r.n);
+    if (r.silent) throw new Error(r.silent + ' waws the engine had nothing at all to say about');
+    // 36.9% was the first version, which read "nothing precedes it" as evidence
+    // of isti'naf; 68% is what always answering «atf» would score.
+    if (r.t1 < 69) throw new Error('top-1 against the corpus regressed to ' + r.t1 + '%');
+    if (r.t2 < 96) throw new Error('the shortlist regressed to ' + r.t2 + '%');
+    if (r.oath !== 'qasam') throw new Error('وَاللهِ is the oath waw, got ' + r.oath);
+    if (r.hal !== 'hal') throw new Error('«wa qad» + a past verb is a hal, got ' + r.hal);
+    if (r.atf !== 'atf') throw new Error('a matching case mid-sentence is atf, got ' + r.atf);
+    if (r.radical.some(Boolean)) throw new Error('a radical waw was read as a word: ' + r.radical);
+    // and at the head it must own up rather than pick
+    if (r.headOpen < r.headN * 0.9)
+      throw new Error('an opening waw must offer both readings: only ' + r.headOpen + '/' + r.headN);
+  });
+
   // «an» wears two faces and they are not a guess apart: أَنَّ is followed by a
   // NOUN and أَنْ by a VERB. The second turns its clause into a MASDAR that then
   // fills a slot like any single noun.

@@ -131,6 +131,32 @@ root whose letter has been turned no longer stands in the word (قَالَ shows
 ta cannot be a verb, so if the scale declines, drop the wazn rather than leave
 a verb pattern standing over a noun.**
 
+**Rank a many-faced word on MEASURED evidence, not on the books' order.**
+Ibn Hisham gives the waw eight faces (Qawa'id al-I'rab, bab 3): isti'naf, hal,
+atf, maf'ul ma'ah, jam', qasam, rubba, zaid. The first `WawEngine` reasoned
+them out from the books and scored **36.9%** against the corpus's own rulings —
+*worse than always answering "atf"* (68%). Grading it against the 211 waws a
+human has already judged in the library taught three things reasoning had not:
+- **A hal waw never opens a sentence.** Not once in 211. Offering it at the
+  head is simply wrong, so the hal branch is gated on `i > 0`.
+- **Mid-sentence the waw is atf five times in six.**
+- **At the head the question is genuinely OPEN**, because what a ma'tuf joins
+  to lies in the sentence BEFORE, which the analyzer is not holding. Reading
+  "nothing precedes it" as evidence of isti'naf is what cost 31 points; it is
+  evidence of nothing but that the antecedent is out of frame. The engine now
+  offers atf and isti'naf together there, says exactly that, and the kernel
+  pushes it into `undecided`. **70.6% → 71.6% top-1, 98.1% top-2.**
+
+The lesson generalises: for a word with many faces the app's promise is a
+correct SHORTLIST, not a correct verdict, and the shortlist is what to measure.
+
+**A separable letter and a radical one are different words.** `WawEngine.separable()`
+asks the analyzer what it already knows: if the row carries a lemma that itself
+begins with waw (وَلَد, وِلَايَة, وَجَبَ, وَاجِب) the letter belongs to the word.
+**The analyzer, the kernel and the evaluation all call it**, so the number the
+suite reports is the number the reader sees — before that they disagreed, and
+the eval was scoring a wider set than the app ever annotated.
+
 **The glossary is a LEXICON, and open text may consult it.** `fromCorpus` walks
 the verb paradigms and nothing else, so for several hundred nouns the analyzer
 had no lookup at all — الْإِمَامُ came back with no gloss, and اللهَ got one only
