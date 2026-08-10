@@ -1,35 +1,52 @@
 {
-  "id": "mukhtasar-al-manar",
-  "storyGroup": "mukhtasar-al-manar",
-  "title": {
-    "ar": "مُخْتَصَرُ الْمَنَار: التَّعْرِيفَات",
-    "en": "Mukhtasar al-Manar: The Definitions",
-    "tr": "Muhtasaru'l-Menâr: Tarifler"
+ "id": "mukhtasar-al-manar",
+ "storyGroup": "mukhtasar-al-manar",
+ "title": {
+  "ar": "مُخْتَصَرُ الْمَنَار: التَّعْرِيفَاتُ وَالْأَدِلَّة",
+  "en": "Mukhtasar al-Manar: The Definitions and the Sources",
+  "tr": "Muhtasaru'l-Menâr: Tarifler ve Deliller"
+ },
+ "subtitle": {
+  "ar": "تعريفات أصول الفقه، ثم الأدلة الأربعة وبيان الكتاب والسنة",
+  "en": "The opening definitions, then the four sources with the Book and the Sunna set out",
+  "tr": "Açılış tarifleri, sonra dört delil ile Kitâb ve Sünnet'in beyânı"
+ },
+ "level": 6,
+ "levelName": "Mastery",
+ "version": "0.3.0",
+ "published": "2026-07-27",
+ "access": "premium",
+ "chapters": [
+  {
+   "n": 1,
+   "title": {
+    "ar": "التَّعْرِيفَات",
+    "en": "The Definitions",
+    "tr": "Tarifler"
+   }
   },
-  "subtitle": {
-    "ar": "تعريفات أصول الفقه والأصل والفقه",
-    "en": "The opening definitions: usul al-fiqh, asl, and fiqh",
-    "tr": "Açılış tarifleri: usûl-i fıkıh, asıl ve fıkıh"
+  {
+   "n": 2,
+   "title": {
+    "ar": "الْأَدِلَّةُ الْأَرْبَعَة",
+    "en": "The Four Sources",
+    "tr": "Dört Delil"
+   }
   },
-  "level": 6,
-  "levelName": "Mastery",
-  "version": "0.1.0",
-  "published": "2026-07-27",
-  "access": "premium",
-  "chapters": [
-    {
-      "n": 1,
-      "title": {
-        "ar": "التَّعْرِيفَات",
-        "en": "The Definitions",
-        "tr": "Tarifler"
-      }
-    }
-  ],
-  "siblings": [],
-  "attribution": {
-    "ar": "تعريفات منقولة من دروس مختصر المنار (الصحيفة ١)، وهو في أصول الفقه لقاسم بن قُطْلُوبُغَا الحنفي.",
-    "en": "Definitions quoted in the Mukhtasar al-Manar lesson notes supplied by the project owner (page 1) — a Hanafi usul al-fiqh abridgement by Qasim ibn Qutlubugha. Transcribed from the printed page; the surrounding exposition there is in Ottoman Turkish. Wording to be checked against a printed edition before publication.",
-    "reviewStatus": "pending-scholarly-review"
+  {
+   "n": 3,
+   "title": {
+    "ar": "الْإِجْمَاعُ وَالْقِيَاس",
+    "en": "Consensus and Analogy",
+    "tr": "İcmâ ve Kıyâs"
+   }
   }
+ ],
+ "siblings": [],
+ "attribution": {
+  "ar": "تعريفات منقولة من دروس مختصر المنار (الصحيفة ١)، وهو في أصول الفقه لقاسم بن قُطْلُوبُغَا الحنفي. وَمَا بَعْدَ الْبَابِ الْأَوَّلِ مَأْخُوذٌ مِنَ الْمَتْنِ الْمُتَدَاوَلِ عِنْدَ الْحَنَفِيَّةِ، لَا مِنَ الصَّحِيفَةِ الْمُسَلَّمَةِ؛ إِذْ لَمْ يُسَلَّمْ مِنْهَا إِلَّا الْأُولَى، وَهُوَ أَحْوَجُ مَا فِي هَذَا الْكِتَابِ إِلَى الْمُرَاجَعَةِ الْعِلْمِيَّةِ الْمُنْتَظَرَةِ. وَتَعْرِيفَا الْإِجْمَاعِ وَالْقِيَاسِ فِي الْبَابِ الثَّالِثِ هُمَا الْمُتَدَاوَلَانِ عِنْدَ أَهْلِ الْفَنِّ، وَأَمَّا الْجُمْلَةُ الْخَاتِمَةُ فَمِنْ إِنْشَائِنَا لَا مِنَ الْمَتْنِ، وُضِعَتْ لِلتَّخَلُّصِ لَا غَيْرُ.",
+  "en": "Definitions quoted in the Mukhtasar al-Manar lesson notes supplied by the project owner (page 1) — a Hanafi usul al-fiqh abridgement by Qasim ibn Qutlubugha. Transcribed from the printed page; the surrounding exposition there is in Ottoman Turkish. Wording to be checked against a printed edition before publication. Chapter 2 onward is set from the RECEIVED matn of the Hanafi usul tradition, not from the owner's supplied page — no transcription was supplied beyond page 1. It is the part of this package most in need of the scholarly review already pending. In chapter 3 the definitions of consensus and analogy are the received formulas of the tradition; the closing sentence («So these are the four principles upon which the rulings turn») is ORIGINAL — written for this reader as a bridge, and not part of the matn.",
+  "reviewStatus": "pending-scholarly-review",
+  "tr": "Proje sahibinin verdiği Muhtasaru'l-Menâr ders notlarından (1. sayfa) alınan tarifler; eser, Kāsım b. Kutlubuğa el-Hanefî'nin usûl-i fıkha dâir muhtasarıdır. Matbû sayfadan istinsah edilmiştir; oradaki şerh Osmanlı Türkçesiyledir. Neşirden önce matbû bir nüsha ile karşılaştırılmalıdır. İkinci bölümden itibaren metin, proje sahibinin verdiği sayfadan değil, Hanefî usûl geleneğinin MEŞHÛR matnından alınmıştır — birinci sayfanın ötesi için herhangi bir transkripsiyon verilmemiştir. Bu paketin, hâlihazırda beklemekte olan ilmî tashîhe en çok muhtaç olan kısmı burasıdır. Üçüncü bölümde icmâ ve kıyâs tarifleri geleneğin meşhûr ibâreleridir; kapanış cümlesi («İşte hükümlerin medârı olan dört asıl bunlardır») ise ORİJİNALdir — matnın parçası değil, bu okuyucu için yazılmış bir geçiş cümlesidir."
+ }
 }

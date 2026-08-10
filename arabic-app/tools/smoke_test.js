@@ -1684,6 +1684,29 @@ if (!CHROME) {
         .reduce((m, c) => m + c.sentences.reduce((k, x) => k + x.tokens.length, 0), 0), 0),
       spelled: searchCorpus('قول').length,       // root typed closed up
       spaced: searchCorpus('ق و ل').length,      // root typed as stored
+      // Closed-up must find EVERY spaced hit. It may find more: المنقول really
+      // does contain ق-و-ل, and a learner who typed those letters may have
+      // meant it. Superset, not equality — equality was a coincidence of the
+      // corpus, and the first word that broke it was a correct one.
+      spacedNotInSpelled: (() => {
+        const A = new Set(searchCorpus('قول'));
+        return searchCorpus('ق و ل').filter(r => !A.has(r)).length;
+      })(),
+      // …and the true root must still rank top, above the accidents.
+      topLex: (() => {
+        const hits = searchCorpus('ق و ل'), by = new Map();
+        hits.forEach(h => by.set(h.tok.lex, (by.get(h.tok.lex) || 0) + 1));
+        const best = searchCorpus('قول').slice()
+          .sort((a, b) => searchRank(b, 'قول') - searchRank(a, 'قول'))[0];
+        return best && best.entry.root;
+      })(),
+      // an incidental substring must score below a real root match
+      rankGap: (() => {
+        const rows = searchCorpus('قول');
+        const acc = rows.find(r => r.entry.root && r.entry.root !== 'ق و ل');
+        const real = rows.find(r => r.entry.root === 'ق و ل');
+        return acc && real ? searchRank(real, 'قول') - searchRank(acc, 'قول') : 0;
+      })(),
       unvowelled: searchCorpus('علم').length,
       english: searchCorpus('knowledge').length,
       turkish: searchCorpus('ilim').length,
@@ -1692,8 +1715,14 @@ if (!CHROME) {
     }));
     if (counts.corpus !== counts.tokens)
       throw new Error(`index ${counts.corpus} vs ${counts.tokens} tokens`);
-    if (counts.spelled !== counts.spaced)
-      throw new Error(`root closed-up ${counts.spelled} != spaced ${counts.spaced}`);
+    if (counts.spacedNotInSpelled)
+      throw new Error(`${counts.spacedNotInSpelled} spaced-root hits missing from the closed-up search`);
+    if (counts.spelled < counts.spaced)
+      throw new Error(`root closed-up ${counts.spelled} < spaced ${counts.spaced}`);
+    if (counts.topLex !== 'ق و ل')
+      throw new Error('closed-up root search does not rank the real root first: ' + counts.topLex);
+    if (!(counts.rankGap > 0))
+      throw new Error('an incidental substring ranks as high as the real root: gap ' + counts.rankGap);
     for (const k of ['spelled', 'unvowelled', 'english', 'turkish'])
       if (!counts[k]) throw new Error('no hits for ' + k);
     if (!counts.folded) throw new Error('alif folding does not match');
@@ -4508,7 +4537,14 @@ if (!CHROME) {
         jarr:  B('كِتَابٌ', 'الْوَلَدُ', 'jarr'),
         // rule 2: the nun of the sound plural and of the dual falls
         plural: B('مُسْلِمُونَ', 'الْمَدِينَةُ', 'raf'),
-        dual:   B('كِتَابَانِ', 'وَلَدٌ', 'nasb'),
+        dual:   B('كِتَابَانِ', 'وَلَدٌ', 'raf'),
+        // …and the LETTER is chosen by the case asked for, never read off the
+        // shape the user typed. Ask for jarr and the waw must become a ya.
+        dualNasb:   B('كِتَابَانِ', 'وَلَدٌ', 'nasb'),
+        pluralJarr: B('مُجْتَهِدُونَ', 'الْأُمَّةُ', 'jarr'),
+        pluralUp:   B('مُسْلِمِينَ', 'الْمَدِينَةُ', 'raf'),
+        // the chapter's own dual: دَفَّتَانِ asked for in jarr
+        daffa:      B('دَفَّتَانِ', 'الْمُصْحَفُ', 'jarr'),
         // the five nouns decline by a LETTER, and only as mudaf
         five:   B('أَبٌ', 'بَكْرٌ', 'raf'),
         dhu:    B('ذُو', 'النُّورَيْنِ', 'raf'),
@@ -4528,6 +4564,8 @@ if (!CHROME) {
     });
     const want = { plain: 'كِتَابُ الْوَلَدِ', jarr: 'كِتَابِ الْوَلَدِ',
                    plural: 'مُسْلِمُو الْمَدِينَةِ', dual: 'كِتَابَا وَلَدٍ',
+                   dualNasb: 'كِتَابَيْ وَلَدٍ', pluralJarr: 'مُجْتَهِدِي الْأُمَّةِ',
+                   pluralUp: 'مُسْلِمُو الْمَدِينَةِ', daffa: 'دَفَّتَيِ الْمُصْحَفِ',
                    five: 'أَبُو بَكْرٍ', dhu: 'ذُو النُّورَيْنِ',
                    mamnu: 'قِسْمَةِ غَنَائِمَ',
                    maqsurHead: 'فَتَى الْقَوْمِ', maqsurTail: 'بَيْتُ مُوسَى' };

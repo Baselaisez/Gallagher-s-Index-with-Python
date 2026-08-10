@@ -1573,6 +1573,51 @@ split the registry's awamil group follows) and the Q&A pair — `izhar-sual-ceva
 Turkish; its Arabic is mojibake from the PDF font — quote ONLY its Turkish, and
 take Arabic wording from the tercume or Ottoman files instead).
 
+## Traps found while setting Mukhtasar al-Manar chapters 2–3
+
+**When a correct word breaks a test, the test was wrong.** The corpus-search
+check asserted that searching a root closed up (`قول`) returns exactly as many
+hits as searching it spaced (`ق و ل`). It had passed for sixteen stories by
+coincidence. `الْمَنْقُولُ` broke it — and `م-ن-ق-و-ل` really does contain
+`ق-و-ل`, so the extra hit was not a bug. The assertion is now **superset**: the
+closed-up search must find every spaced hit and may find more. The right answer
+to an unwanted-but-legitimate hit is never to filter it out; it is to **rank**
+it. `searchRank()` scores root-identity 4, word-identity 3, prefix or gloss 2,
+incidental substring 1, and `openSearch` orders groups by rank before count.
+Same doctrine as everywhere else: the app owes a correct shortlist, and
+dropping a hit because a rule dislikes it is how a shortlist stops being
+correct.
+
+**A head that declines by a LETTER takes the case it was ASKED for, not the
+case it was TYPED in.** `IdafaEngine` dropped the nun of the dual and the sound
+masculine plural correctly, then kept whichever letter the input happened to
+carry — so `مُجْتَهِدُونَ` asked for in jarr came out `مُجْتَهِدُو`. The ending
+is now chosen from `kase`: plural waw/ya/ya, dual alif/ya/ya, and a second step
+is emitted whenever the letter actually changed, because that change is the
+lesson. The smoke check had *enshrined* the bug — it asked for `كِتَابَانِ` in
+nasb and expected `كِتَابَا وَلَدٍ`. A test that asserts the current output is
+not a test.
+
+**Two sukuns will not stand.** `دَفَّتَيْ` + `الْمُصْحَفِ` puts the sukun of the
+dual's ya against the silent alif of ال, so the ya is broken with a kasra:
+`دَفَّتَيِ الْمُصْحَفِ` — which is exactly what the matn writes. The engine now
+does this at the end of `build`, and the step says why. Any future
+letter-ending head followed by ال needs the same treatment.
+
+**Attribution is content, so it is bilingual too.** The chapter-2 script
+appended its English provenance note to `attribution.tr`, which had been empty
+— an English sentence sitting in the Turkish field of an app whose whole promise
+is EN–TR parity. Provenance is the one field a reader is most entitled to read
+in their own language. Write the note once per language; never let one language
+inherit another's.
+
+**Mark what is ours.** No transcription was supplied for this package past page
+1, so chapters 2–3 are set from the received matn of the Hanafi usul tradition
+and say so. The closing sentence of chapter 3 is not matn at all — it is an
+ORIGINAL bridge, and the manifest names it as one in all three languages. An
+unmarked original inside a quoted text is the single thing this content pipeline
+must never ship.
+
 ## Process
 
 - Branch: `claude/arabic-app-research-ozd58s`. Never push elsewhere.

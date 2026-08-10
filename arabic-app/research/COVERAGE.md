@@ -316,3 +316,21 @@ not a one-line change.
   that explains WHY a karama proves a messenger. That passage is now chapter
   16 in its own right and the caliphs moved to 17. Found, as twice before, by
   writing the next chapter — the seam between chapters is where skips hide.
+- **v105** — Mukhtasar al-Manar stops being the thin package. It had one
+  chapter and 24 tokens; it now has three and 86. Chapter 2 names the four
+  sources and defines the Book and the Sunna, chapter 3 defines consensus and
+  analogy. The package's provenance splits cleanly and says so in every
+  language: chapter 1 is the owner's transcribed page, chapters 2–3 are the
+  received matn of the Hanafi usul tradition, and the closing sentence of
+  chapter 3 is ORIGINAL and marked as one. `amma-tafsiliyya` joins the registry
+  as note 93 — أَمَّا's three jobs at once and the fa that its answer may never
+  do without. Two engine defects surfaced from the content, both now closed:
+  `IdafaEngine` read the case of a letter-declined head off the shape it was
+  TYPED in rather than the case it was ASKED for (مُجْتَهِدُونَ in jarr came out
+  مُجْتَهِدُو), and it had no iltiqa'-as-sakinayn step, so it could not produce
+  the matn's own دَفَّتَيِ الْمُصْحَفِ. The smoke check had enshrined the first
+  bug by asserting the current output. Corpus search learned to RANK: the
+  closed-up-root query is now a superset of the spaced one rather than an
+  equal, because الْمَنْقُولُ genuinely contains ق-و-ل, and `searchRank` sorts
+  root-identity above word-identity above prefix above incidental substring
+  instead of dropping the honest accident.
