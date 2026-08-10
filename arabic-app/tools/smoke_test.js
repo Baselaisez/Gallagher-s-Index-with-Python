@@ -4036,13 +4036,15 @@ if (!CHROME) {
                labelled: unseen.every(g => g.text && g.text.en && g.text.tr),
                probs: unseen.every(g => g.p > 0 && g.p <= 1) };
     });
-    if (r.examples < 8000) throw new Error('the rules generated only ' + r.examples + ' examples');
-    if (r.roots < 20) throw new Error('too few roots to fold by: ' + r.roots);
+    if (r.examples < 18000) throw new Error('the rules generated only ' + r.examples + ' examples');
+    if (r.roots < 40) throw new Error('too few roots to fold by: ' + r.roots);
     // held out BY ROOT — memorising a root cannot help here
-    if (r.top1 < 60) throw new Error('unseen-root accuracy regressed to ' + r.top1 + '%');
-    if (r.top2 < 80) throw new Error('unseen-root two-guess regressed to ' + r.top2 + '%');
-    if (r.form < 78) throw new Error('form accuracy regressed to ' + r.form + '%');
-    if (r.ms > 8000) throw new Error('generate+train+grade took ' + r.ms + 'ms');
+    if (r.top1 < 72) throw new Error('unseen-root accuracy regressed to ' + r.top1 + '%');
+    if (r.top2 < 88) throw new Error('unseen-root two-guess regressed to ' + r.top2 + '%');
+    if (r.form < 88) throw new Error('form accuracy regressed to ' + r.form + '%');
+        // the GRADE is expensive (five folds over the whole generated set) and is
+    // never on a user path — only training is, and that is one pass.
+    if (r.ms > 15000) throw new Error('generate+train+grade took ' + r.ms + 'ms');
     // it must actually work on a root outside its own list
     if (r.unseenForm !== 'X') throw new Error('اِسْتَغْفَرُوا read as Form ' + r.unseenForm);
     if (r.unseenTense !== 'mazi') throw new Error('اِسْتَغْفَرُوا read as ' + r.unseenTense);

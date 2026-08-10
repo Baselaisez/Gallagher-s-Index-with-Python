@@ -179,3 +179,9 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   (70.8% exact on unseen roots). It joins the GrammarKernel as its one learned
   engine, badged a guess. Aqaid reaches chapter 15, finishing the karamat
   enumeration and the mu'jiza argument.
+- **v91** — the tagger's training set grew from 30 roots to 45 on the evidence
+  of a learning curve (tools/tagger_curve.js), lifting unseen-root accuracy
+  70.8% → 75.0% and form accuracy 86.9% → 91.5%; sixty and seventy roots were
+  measured too and buy under a point, so forty-five is where it stops paying.
+  Aqaid reaches chapter 16 — the best of mankind and the order of the
+  caliphate, with the ذُو النُّورَيْنِ divergence recorded in the attribution.

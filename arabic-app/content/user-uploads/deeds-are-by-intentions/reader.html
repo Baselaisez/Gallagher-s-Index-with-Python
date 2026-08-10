@@ -8150,9 +8150,21 @@ function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.flo
 // exactly how evalUnseen() grades it (five folds, held out BY ROOT).
 class SarfTagger {
   static ALPHA = 0.5;               // chosen on the unseen-root score, not the fit
+  // Forty-five roots, not thirty, and not sixty. The learning curve
+  // (tools/tagger_curve.js, every point held out BY ROOT) reads:
+  //   10 roots  4,760 ex  73.9% — deceptive: two roots per fold is too small
+  //   20 roots  8,296 ex  69.6%
+  //   30 roots 12,750 ex  70.8%
+  //   45 roots 19,414 ex  75.0%   <- the jump
+  //   60 roots 23,154 ex  75.5%
+  //   70 roots 24,650 ex  75.7%   <- saturated; the extra cost buys 0.7 pts
+  // Generating more is free, so the only question is where it stops paying,
+  // and it stops at forty-five. Re-run the curve before changing this list.
   static ROOTS = ["نصر","ضرب","فتح","علم","كرم","حسب","كتب","جلس","شرب","سمع",
                   "قول","بيع","نوم","خوف","رمي","دعو","خشي","قضي","وعد","وصل",
-                  "مدد","فرر","حجج","سكن","حمل","رجع","خرج","دخل","طلب","نظر"];
+                  "مدد","فرر","حجج","سكن","حمل","رجع","خرج","دخل","طلب","نظر",
+                  "حكم","عبد","سجد","غفر","صبر","شكر","ذكر","حفظ","قرأ","بلغ",
+                  "صدق","عدل","رزق","لبس","طرق"];
   static FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
   static _rows = null; static _model = null; static _eval = null;
   // ---- FEED: the rules write their own training set

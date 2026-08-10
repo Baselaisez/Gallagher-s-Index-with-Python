@@ -1092,6 +1092,21 @@ Three things keep it honest:
    labels that are nonsense. The kernel shows it above 10%, which is where
    verbs stop and furniture begins — and it is always badged a GUESS.
 
+**More generated data is free, so the question is where it stops paying.**
+`tools/tagger_curve.js` scores the whole learning curve, every point held out
+by root: 10 roots 73.9%, 20 → 69.6%, 30 → 70.8%, **45 → 75.0%**, 60 → 75.5%,
+70 → 75.7%. Forty-five is where the jump happens and sixty is where it
+saturates, so the shipped list is forty-five. Two traps in reading that curve:
+the 10-root point looks great and is **deceptive** — two roots per fold is too
+small a test set to mean anything — and the curve is NOT monotonic between 10
+and 30, so a single extra point proves nothing on its own. Re-run the whole
+curve before changing the root list.
+
+`evalUnseen()` is expensive (five folds over the whole generated set, ~6s at
+forty-five roots) and is deliberately **never on a user path** — only
+`train()` is, and that is one pass. The smoke suite pays the cost; the app
+does not.
+
 Note that ALPHA here is 0.5 while `IrabModel.ALPHA` is 0.35. Different feature
 sets damp differently; both were chosen on held-out evidence, and neither
 number should be copied to the other model.
