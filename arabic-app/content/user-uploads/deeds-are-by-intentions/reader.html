@@ -8131,6 +8131,122 @@ function renderDeck(){
 
 // ---------- games ----------
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+// ---------- المُصَنِّف: a model DISTILLED from the conjugator -------------
+// Every other model in this file learns from what humans wrote down, which
+// caps it at the corpus. This one learns from the RULES: sarfDerive is run
+// over a spread of roots through every form and bab, and each cell it emits
+// becomes a labelled example — twelve thousand of them, generated in about
+// forty milliseconds, from nothing but the algorithm the app already trusts.
+//
+// What it buys is not speed. The conjugator maps (root, form, bab) → forms;
+// this maps a FORM BACK to its slot, for a root the app has never met, which
+// the rules can only do by exhaustive search. It is a real distillation: the
+// deterministic base is the teacher, the classifier is the student.
+//
+// Its features are character shape ONLY — first letters, last letters, the
+// sequence of harakat, length, whether a shadda is present. No root list, no
+// lexicon. That is deliberate: the model has to learn the PATTERN, and the
+// only test that shows whether it did is a test on unseen roots, which is
+// exactly how evalUnseen() grades it (five folds, held out BY ROOT).
+class SarfTagger {
+  static ALPHA = 0.5;               // chosen on the unseen-root score, not the fit
+  static ROOTS = ["نصر","ضرب","فتح","علم","كرم","حسب","كتب","جلس","شرب","سمع",
+                  "قول","بيع","نوم","خوف","رمي","دعو","خشي","قضي","وعد","وصل",
+                  "مدد","فرر","حجج","سكن","حمل","رجع","خرج","دخل","طلب","نظر"];
+  static FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
+  static _rows = null; static _model = null; static _eval = null;
+  // ---- FEED: the rules write their own training set
+  static rows(){
+    if (this._rows) return this._rows;
+    const out = [];
+    this.ROOTS.forEach(r => {
+      let cls = null;
+      try { cls = nakilClass({ root: r.split("").join(" ") }); } catch (e) { return; }
+      if (!cls || !cls.rs) return;
+      this.FORMS.forEach(f => (f === "I" ? [1, 2, 3, 4, 5, 6] : [1]).forEach(bab => {
+        let d = null;
+        try { d = sarfDerive(cls, f, bab); } catch (e) { return; }
+        if (!d || !d.ok) return;
+        [["mazi", d.mazi], ["mudari", d.mudari], ["amr", d.amr]].forEach(([tense, arr]) =>
+          (arr || []).forEach((cell, i) => {
+            if (cell) out.push({ root: r, w: cell, y: f + "|" + tense + "|" + i });
+          }));
+      }));
+    });
+    this._rows = out;
+    return out;
+  }
+  static feats(w){
+    const n = (w || "").normalize("NFC");
+    const b = stripAr(n).replace(/[^ء-ي]/g, "");
+    const marks = [...n].filter(c => /[ً-ْ]/.test(c)).join("");
+    return ["p1:" + b.slice(0, 1), "p2:" + b.slice(0, 2), "p3:" + b.slice(0, 3),
+            "s1:" + b.slice(-1), "s2:" + b.slice(-2), "s3:" + b.slice(-3),
+            "len:" + Math.min(9, b.length),
+            "m1:" + marks.slice(0, 2), "mlast:" + marks.slice(-2),
+            "sh:" + (/ّ/.test(n) ? 1 : 0),
+            "pv:" + (n.match(/^.[ً-ْ]?/) || [""])[0].slice(1)];
+  }
+  static fit(subset){
+    const m = { n: {}, f: {}, total: 0, L: [] };
+    const seen = new Set();
+    subset.forEach(x => {
+      if (!seen.has(x.y)) { seen.add(x.y); m.L.push(x.y); }
+      m.n[x.y] = (m.n[x.y] || 0) + 1; m.total++;
+      m.f[x.y] = m.f[x.y] || {};
+      this.feats(x.w).forEach(k => { m.f[x.y][k] = (m.f[x.y][k] || 0) + 1; });
+    });
+    return m;
+  }
+  static train(){ return this._model || (this._model = this.fit(this.rows())); }
+  // ---- ranked guesses, with probabilities so the UI can show its confidence
+  static tag(word, top = 3){
+    const m = this.train();
+    if (!m.L.length) return [];
+    const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);
+    const sc = m.L.map(y => {
+      let lp = Math.log((m.n[y] + 1) / (m.total + m.L.length));
+      fs.forEach(k => { lp += wt * Math.log(((m.f[y][k] || 0) + 1) / (m.n[y] + 2)); });
+      return { y, lp };
+    });
+    const mx = Math.max(...sc.map(x => x.lp));
+    let z = 0;
+    sc.forEach(x => { x.p = Math.exp(x.lp - mx); z += x.p; });
+    sc.forEach(x => { x.p /= z; });
+    return sc.sort((a, b) => b.p - a.p).slice(0, top).map(x => ({ ...x, ...this.label(x.y) }));
+  }
+  static label(y){
+    const [form, tense, i] = y.split("|");
+    const person = tense === "amr" ? CELL_PERSON_AMR[+i] : CELL_PERSON[+i];
+    const tn = CELL_TENSE[tense] || { en: tense, tr: tense };
+    return { form, tense, cell: +i,
+             text: { en: `Form ${form} · ${tn.en} · ${person ? person.en : "?"}`,
+                     tr: `${form}. bâb · ${tn.tr} · ${person ? person.tr : "?"}` } };
+  }
+  // ---- GRADE on roots it has never seen. Anything else would be theatre.
+  static evalUnseen(folds = 5){
+    if (this._eval) return this._eval;
+    const rows = this.rows();
+    let ok = 0, two = 0, form = 0, n = 0;
+    for (let k = 0; k < folds; k++) {
+      const held = new Set(this.ROOTS.filter((_, i) => i % folds === k));
+      const m = this.fit(rows.filter(x => !held.has(x.root)));
+      const save = this._model; this._model = m;
+      rows.filter(x => held.has(x.root)).forEach(x => {
+        const g = this.tag(x.w, 2);
+        n++;
+        if (g[0] && g[0].y === x.y) ok++;
+        if (g.some(z => z.y === x.y)) two++;
+        if (g[0] && g[0].form === x.y.split("|")[0]) form++;
+      });
+      this._model = save;
+    }
+    this._eval = { n, folds, roots: this.ROOTS.length, examples: rows.length,
+                   top1: n ? ok / n : 0, top2: n ? two / n : 0, form: n ? form / n : 0 };
+    return this._eval;
+  }
+}
+
 // ---------- the grammar kernel ------------------------------------------
 // Nine rule engines had grown up in this file, each excellent at one chapter
 // and each with its own front door. A learner with a word in hand should not
@@ -8194,6 +8310,19 @@ class GrammarKernel {
     if (t || n) add("ism", "rule",
       { ar: "التَّصْغِيرُ وَالنِّسْبَةُ", en: "Diminutive and nisba", tr: "Tasgîr ve nisbet" },
       [t ? [t.out, "تَصْغِير"] : null, n ? [n.out, "نِسْبَة"] : null].filter(Boolean));
+
+    // the LEARNED engine: it names a slot even for a root nothing else knows,
+    // and it is badged a guess because that is exactly what it is
+    // The confidence IS the part-of-speech filter here, and it separates
+    // cleanly: real verb forms come back at 40-48% and قَالَ at 11%, while
+    // مَدِينَة manages 5.6% and الْكِتَابُ 1.9% for labels that are nonsense.
+    // Ten percent is where verbs stop and furniture begins.
+    const tg = SarfTagger.tag(w, 2);
+    if (tg.length && tg[0].p > 0.10) add("tagger", "model",
+      { ar: "أَيُّ صِيغَةٍ — بِالتَّعَلُّمِ", en: "Which cell — learned from the rules",
+        tr: "Hangi sîga — kaidelerden öğrenilmiş" },
+      tg.map(g => [g.y.split("|")[1] === "amr" ? "أَمْر" : g.y.split("|")[1] === "mazi" ? "مَاضٍ" : "مُضَارِع",
+                   `${T(g.text)} — %${Math.round(g.p * 100)}`]));
 
     // does any i'lal rule fire on it, read AS an underlying form?
     const il = IlalEngine.derive(w);

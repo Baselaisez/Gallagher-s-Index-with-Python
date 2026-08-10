@@ -4018,6 +4018,50 @@ if (!CHROME) {
     if (r.plainOut !== r.want.plain) throw new Error('قَائِلٌ regressed: ' + r.plainOut);
   });
 
+  // The rules write their own training set, and the only test that means
+  // anything is on roots the model has never met. Everything else is theatre.
+  await check('the Sarf tagger is distilled from the rules and graded on unseen roots', async () => {
+    const r = await page.evaluate(() => {
+      const t0 = performance.now();
+      const e = SarfTagger.evalUnseen();
+      const ms = performance.now() - t0;
+      // a form from a root that is NOT in the training list at all
+      const unseen = SarfTagger.tag('اِسْتَغْفَرُوا', 2);
+      const mazi = SarfTagger.tag('كَتَبُوا', 1);
+      return { ...e, ms: Math.round(ms),
+               top1: Math.round(e.top1 * 1000) / 10, top2: Math.round(e.top2 * 1000) / 10,
+               form: Math.round(e.form * 1000) / 10,
+               unseenForm: unseen[0] && unseen[0].form, unseenTense: unseen[0] && unseen[0].tense,
+               maziTense: mazi[0] && mazi[0].tense, maziCell: mazi[0] && mazi[0].cell,
+               labelled: unseen.every(g => g.text && g.text.en && g.text.tr),
+               probs: unseen.every(g => g.p > 0 && g.p <= 1) };
+    });
+    if (r.examples < 8000) throw new Error('the rules generated only ' + r.examples + ' examples');
+    if (r.roots < 20) throw new Error('too few roots to fold by: ' + r.roots);
+    // held out BY ROOT — memorising a root cannot help here
+    if (r.top1 < 60) throw new Error('unseen-root accuracy regressed to ' + r.top1 + '%');
+    if (r.top2 < 80) throw new Error('unseen-root two-guess regressed to ' + r.top2 + '%');
+    if (r.form < 78) throw new Error('form accuracy regressed to ' + r.form + '%');
+    if (r.ms > 8000) throw new Error('generate+train+grade took ' + r.ms + 'ms');
+    // it must actually work on a root outside its own list
+    if (r.unseenForm !== 'X') throw new Error('اِسْتَغْفَرُوا read as Form ' + r.unseenForm);
+    if (r.unseenTense !== 'mazi') throw new Error('اِسْتَغْفَرُوا read as ' + r.unseenTense);
+    if (r.maziTense !== 'mazi' || r.maziCell !== 2)
+      throw new Error('كَتَبُوا read as ' + r.maziTense + ' cell ' + r.maziCell);
+    if (!r.labelled) throw new Error('every guess must carry a bilingual label');
+    // confidence must separate verbs from furniture — that separation is what
+    // the kernel uses instead of a part-of-speech test it does not have
+    const conf = await page.evaluate(() => {
+      const p = w => SarfTagger.tag(w, 1)[0].p;
+      return { verb: p('كَتَبُوا'), weak: p('قَالَ'), noun: p('مَدِينَة'), def: p('الْكِتَابُ') };
+    });
+    if (conf.verb < 0.3) throw new Error('a plain verb should be confident: ' + conf.verb);
+    if (conf.weak < 0.10) throw new Error('قَالَ fell under the kernel threshold: ' + conf.weak);
+    if (conf.noun > 0.10 || conf.def > 0.10)
+      throw new Error('a noun cleared the verb threshold: ' + JSON.stringify(conf));
+    if (!r.probs) throw new Error('probabilities must be real probabilities');
+  });
+
   // Nine engines, one door. What the kernel may say is the point of it: each
   // finding declares HOW it is known, a silent engine says nothing rather than
   // shrugging, and what nothing settled is stated out loud.
@@ -4045,6 +4089,9 @@ if (!CHROME) {
     // a known corpus verb reaches the lexicon AND the declension engine
     for (const k of ['lex', 'irab', 'wazn'])
       if (!r.verb.keys.includes(k)) throw new Error('قَالَ missed the ' + k + ' engine: ' + r.verb.keys);
+    // the LEARNED engine must appear, and must be badged a guess — never a rule
+    if (!r.verb.keys.includes('tagger')) throw new Error('the learned tagger did not answer');
+    if (!r.verb.hows.includes('model')) throw new Error('the tagger must wear the model badge');
     // an underlying form must reach the i'lal rules
     if (!r.asl.keys.includes('ilal')) throw new Error('مَقْوُولٌ missed the i\'lal engine');
     // a corpus sentence must show the HAND analysis and its government

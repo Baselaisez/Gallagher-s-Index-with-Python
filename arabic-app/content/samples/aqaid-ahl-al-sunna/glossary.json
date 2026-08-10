@@ -505,10 +505,10 @@
    "lemma": "الَّذِي",
    "pos": "pron",
    "gloss": {
-    "en": "who, which (masc. sing.)",
-    "tr": "ki o, -en (müzekker tekil)"
+    "en": "the one who, which (masc.)",
+    "tr": "ki o; -en (eril mevsûl)"
    },
-   "level": 3
+   "level": 2
   },
   "pron-3fs": {
    "lemma": "هَا",
@@ -1421,13 +1421,13 @@
   },
   "wahid": {
    "lemma": "وَاحِد",
-   "root": "و ح د",
    "pos": "noun",
    "gloss": {
-    "en": "one; the One",
-    "tr": "bir; Vâhid"
+    "en": "one",
+    "tr": "bir; vâhid"
    },
-   "level": 2
+   "level": 1,
+   "root": "و ح د"
   },
   "qadim": {
    "lemma": "قَدِيم",
@@ -1570,22 +1570,23 @@
   },
   "kalam": {
    "lemma": "كَلَام",
-   "root": "ك ل م",
    "pos": "noun",
    "gloss": {
-    "en": "speech",
-    "tr": "kelâm; söz"
+    "en": "speech (masdar)",
+    "tr": "kelâm; konuşma (masdar)"
    },
-   "level": 2
+   "level": 2,
+   "root": "ك ل م"
   },
   "ghayr": {
    "lemma": "غَيْر",
    "pos": "noun",
    "gloss": {
-    "en": "other than; non-",
-    "tr": "gayr; başka; olmayan"
+    "en": "other than",
+    "tr": "-den başkası; gayr"
    },
-   "level": 2
+   "level": 1,
+   "root": "غ ي ر"
   },
   "makhluq": {
    "lemma": "مَخْلُوق",
@@ -3179,6 +3180,115 @@
    },
    "level": 2,
    "root": "ه و ي"
+  },
+  "jamad": {
+   "lemma": "جَمَاد",
+   "pos": "noun",
+   "gloss": {
+    "en": "an inanimate thing",
+    "tr": "cansız; cemâd"
+   },
+   "level": 3,
+   "root": "ج م د"
+  },
+  "ajma": {
+   "lemma": "عَجْمَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "a dumb beast (fem. of a'jam)",
+    "tr": "dilsiz hayvan; acmâ"
+   },
+   "level": 4,
+   "root": "ع ج م"
+  },
+  "indifa": {
+   "lemma": "انْدِفَاع",
+   "pos": "noun",
+   "gloss": {
+    "en": "being warded off (masdar, Form VII)",
+    "tr": "def' olunma; indifâ (masdar)"
+   },
+   "level": 4,
+   "root": "د ف ع"
+  },
+  "mutawajjih": {
+   "lemma": "مُتَوَجِّه",
+   "pos": "noun",
+   "gloss": {
+    "en": "heading toward, oncoming",
+    "tr": "yönelen; müteveccih"
+   },
+   "level": 4,
+   "root": "و ج ه"
+  },
+  "bala": {
+   "lemma": "بَلَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "affliction, trial",
+    "tr": "belâ; imtihan"
+   },
+   "level": 2,
+   "root": "ب ل و"
+  },
+  "kifaya": {
+   "lemma": "كِفَايَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "sufficing (masdar)",
+    "tr": "kifâyet; yetme (masdar)"
+   },
+   "level": 3,
+   "root": "ك ف ي"
+  },
+  "muhimm": {
+   "lemma": "مُهِمّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "what matters, what weighs",
+    "tr": "mühim; önemli olan"
+   },
+   "level": 3,
+   "root": "ه م م"
+  },
+  "aduw": {
+   "lemma": "عَدُوّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "enemy",
+    "tr": "düşman; adüvv"
+   },
+   "level": 2,
+   "root": "ع د و",
+   "plural": "أَعْدَاء"
+  },
+  "dhalika": {
+   "lemma": "ذَلِكَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "that (masc.)",
+    "tr": "şu; o (eril)"
+   },
+   "level": 1
+  },
+  "hadhihi": {
+   "lemma": "هَذِهِ",
+   "pos": "pron",
+   "gloss": {
+    "en": "this (fem.)",
+    "tr": "bu (dişil)"
+   },
+   "level": 1
+  },
+  "umma": {
+   "lemma": "أُمَّة",
+   "pos": "noun",
+   "gloss": {
+    "en": "community, umma",
+    "tr": "ümmet"
+   },
+   "level": 2,
+   "root": "أ م م"
   }
  }
 }

@@ -172,3 +172,10 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
   chapter 14 (the karamat of the awliya, stopping early inside the matn's
   enumeration), and a mid-span skip in chapter 13's mi'raj sentence — «ثم إلى
   ما شاء الله تعالى من العلى» — was found and restored.
+- **v90** — the first model trained on the ALGORITHMIC base rather than on the
+  corpus: `SarfTagger` distils `sarfDerive` into a classifier that reads a
+  conjugated form back to its (form, tense, person) slot, trained on ~12,750
+  examples the rules generate themselves and graded five-fold BY ROOT
+  (70.8% exact on unseen roots). It joins the GrammarKernel as its one learned
+  engine, badged a guess. Aqaid reaches chapter 15, finishing the karamat
+  enumeration and the mu'jiza argument.

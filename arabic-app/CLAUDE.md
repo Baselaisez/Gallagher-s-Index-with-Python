@@ -1069,9 +1069,36 @@ strip matches `deckStats()` exactly, and the phone layout is exercised at
 390×844. A literal `padding: .9rem` in a new rule is a bug even when it
 looks right.
 
-**`GrammarKernel` is one door for nine engines.** `ask(text)` routes a word to
+**`SarfTagger` is DISTILLED from the conjugator — the rules write their own
+training set.** Every other model here learns from what humans wrote down,
+which caps it at the corpus. This one runs `sarfDerive` over thirty roots
+through every form and bab and turns each cell into a labelled example:
+~12,750 of them, generated in about 40ms, from nothing but the algorithm the
+app already trusts. What it buys is not speed — the conjugator maps
+(root, form, bab) → forms, and the tagger maps a FORM BACK to its slot, for a
+root the app has never met, which the rules can only do by exhaustive search.
+
+Three things keep it honest:
+
+1. **Character shape only.** First letters, last letters, the sequence of
+   harakat, length, shadda. No root list, no lexicon — so the model must learn
+   the PATTERN rather than memorise a root.
+2. **Graded on UNSEEN ROOTS.** `evalUnseen()` folds five ways *by root*:
+   70.8% exact (form + tense + person), 87.8% within two, 86.9% on the form
+   alone. A fit-on-itself number here would be meaningless, because the whole
+   question is whether it generalises to a root it was never given.
+3. **Its confidence IS its part-of-speech filter.** Real verb forms come back
+   at 40–48% and قَالَ at 11%, while مَدِينَة manages 5.6% and الْكِتَابُ 1.9% for
+   labels that are nonsense. The kernel shows it above 10%, which is where
+   verbs stop and furniture begins — and it is always badged a GUESS.
+
+Note that ALPHA here is 0.5 while `IrabModel.ALPHA` is 0.35. Different feature
+sets damp differently; both were chosen on held-out evidence, and neither
+number should be copied to the other model.
+
+**`GrammarKernel` is one door for ten engines.** `ask(text)` routes a word to
 the form engines (lexicon, `IrabSign`, `WaznEngine`/`RootFinder`, `IsmEngine`,
-`IlalEngine`) and a phrase to the sentence engines (`NidaEngine`, `MaEngine`,
+`IlalEngine`, and the learned `SarfTagger`) and a phrase to the sentence engines (`NidaEngine`, `MaEngine`,
 the corpus's own i'rab plus `AmilEngine`, else `SentenceAnalyzer`). Three
 rules make it worth having, and they are what a grammar kernel IS:
 
