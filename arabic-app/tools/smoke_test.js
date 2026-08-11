@@ -3054,6 +3054,41 @@ if (!CHROME) {
     for (const k of Object.keys(w4))
       if (m4[k].normalize('NFC') !== w4[k].normalize('NFC'))
         throw new Error(`Form IV mithal ${k}: wanted ${w4[k]}, got ${m4[k]}`);
+
+    // The ta of اِفْتِعَال, in TWO steps. First it takes the colour of the first
+    // radical — ط after the emphatics, د after ز ذ د. Then, and only where the
+    // two letters have come out IDENTICAL, they run together. ص and ض keep
+    // their ط standing apart; ز keeps its د apart, because ز is not د. The
+    // engine had step one and applied step two to د/ذ only, so اِطَّلَعَ came out
+    // right in the past tense and its own masdar came out *اِطْطِلَاع.
+    const t8 = await page.evaluate(() => {
+      const out = {};
+      [['ص ب ر', 'VIII'], ['ض ر ب', 'VIII'], ['ط ل ع', 'VIII'], ['ظ ل م', 'VIII'],
+       ['ز ي د', 'VIII'], ['د ع و', 'VIII'], ['ذ ك ر', 'VIII'], ['ح م ل', 'VIII'],
+       ['و ف ق', 'VIII'], ['س د د', 'VII']].forEach(([root, f]) => {
+        const d = sarfDerive(nakilClass({ root }), f, 1);
+        out[root] = d && d.ok ? [d.mazi[0], d.mazi[6], d.mudari[0], d.mudari[5], d.masdar, d.fail].join('|') : 'no';
+      });
+      return out;
+    });
+    const w8 = {
+      'ص ب ر': 'اِصْطَبَرَ|اِصْطَبَرْتَ|يَصْطَبِرُ|يَصْطَبِرْنَ|اِصْطِبَار|مُصْطَبِر',
+      'ض ر ب': 'اِضْطَرَبَ|اِضْطَرَبْتَ|يَضْطَرِبُ|يَضْطَرِبْنَ|اِضْطِرَاب|مُضْطَرِب',
+      'ط ل ع': 'اِطَّلَعَ|اِطَّلَعْتَ|يَطَّلِعُ|يَطَّلِعْنَ|اِطِّلَاع|مُطَّلِع',
+      'ظ ل م': 'اِظَّلَمَ|اِظَّلَمْتَ|يَظَّلِمُ|يَظَّلِمْنَ|اِظِّلَام|مُظَّلِم',
+      'ز ي د': 'اِزْدَادَ|اِزْدَدْتَ|يَزْدَادُ|يَزْدَدْنَ|اِزْدِيَاد|مُزْدَاد',
+      'د ع و': 'اِدَّعَى|اِدَّعَيْتَ|يَدَّعِي|يَدَّعِينَ|اِدِّعَاء|مُدَّعٍ',
+      'ذ ك ر': 'اِذَّكَرَ|اِذَّكَرْتَ|يَذَّكِرُ|يَذَّكِرْنَ|اِذِّكَار|مُذَّكِر',
+      'ح م ل': 'اِحْتَمَلَ|اِحْتَمَلْتَ|يَحْتَمِلُ|يَحْتَمِلْنَ|اِحْتِمَال|مُحْتَمِل',
+      'و ف ق': 'اِتَّفَقَ|اِتَّفَقْتَ|يَتَّفِقُ|يَتَّفِقْنَ|اِتِّفَاق|مُتَّفِق',
+      // Form VII of a doubled root had no branch and fell through to the sound
+      // path, so اِنْسَدَّ came out uncontracted. The uncontracted stem must still
+      // survive wherever the ending brings a sukun.
+      'س د د': 'اِنْسَدَّ|اِنْسَدَدْتَ|يَنْسَدُّ|يَنْسَدِدْنَ|اِنْسِدَاد|مُنْسَدّ',
+    };
+    for (const k of Object.keys(w8))
+      if (t8[k].normalize('NFC') !== w8[k].normalize('NFC'))
+        throw new Error(`iftial/gem ${k}: wanted ${w8[k]}, got ${t8[k]}`);
   });
 
   await check('the Sarf Lab conjugates sound, hollow and defective roots live', async () => {

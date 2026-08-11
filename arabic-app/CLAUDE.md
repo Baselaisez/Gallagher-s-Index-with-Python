@@ -1661,3 +1661,37 @@ The general lesson, and it will come round again: **the wazn is a template, not
 a derivation.** Substituting the root into the scale is the first step of a
 derivation whose remaining steps are i'lal. Wherever a weak letter lands next
 to a vowel that does not match it, expect one more rule after the substitution.
+
+## The ta of iftiʿāl happens in two steps, and the second one was missing
+
+Chapter 5's اِزْدَادَ sent me back through `nakilT`, and the table it encodes was
+half a rule. The ibdal is **two steps**:
+
+1. The ta takes the colour of the first radical — ط after the four emphatics
+   (ص ض ط ظ), د after ز ذ د.
+2. **Only where the two letters have come out identical** do they run together.
+
+So ص and ض keep their ط standing apart — اِصْطَبَرَ، اِضْطَرَبَ — because ص is not
+ط. ز keeps its د apart — اِزْدَادَ, never *اِزَّادَ — because ز is not د. But ط+ط،
+ظ+ط، د+د، ذ+د do meet, and idgham follows: اِطَّلَعَ، اِظَّلَمَ، اِدَّعَى، اِذَّكَرَ.
+The engine had step 1 and applied step 2 to د/ذ only, so `اِطَّلَعَ` came out
+right in the past tense while its own masdar came out `*اِطْطِلَاع` and ظ never
+assimilated at all.
+
+Two more defects fell out of the same visit:
+
+- **The masdar's kasra was skipped wherever the ibdal had already fired.**
+  `tp.replace(/َ$/, "ِ")` looks for a bare fatha at the end of the chunk, but an
+  assimilated chunk ends in a SHADDA — so the rule quietly did nothing and
+  اِدِّعَاء had been shipping as اِدَّعَاء since the engine was written. When a
+  string transformation is conditional on the last character, check what the
+  *other* branches leave there.
+- **Form VII had no geminate branch** and fell through to the sound path, so
+  اِنْسَدَّ came out `*اِنْسَدَدَ`. Forms IV and VIII both had one; VII was simply
+  never given it. The vowel that surfaces on the shadda is the mudari's own
+  (يَنْسَدُّ), because the letter before the ʿayn is already vowelled and has
+  nowhere to take a transferred haraka — unlike يَمْدُدُ → يَمُدُّ and
+  يُحْلِلُ → يُحِلُّ, where the fāʾ is sakin and does take it.
+
+All three are now gated by name in the smoke suite over a ten-root table, and
+250 stored paradigms regenerate from the engine.

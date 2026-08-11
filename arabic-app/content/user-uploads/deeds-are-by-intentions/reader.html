@@ -3858,10 +3858,21 @@ function muhtelifeTable(morph, highlight){
 // applies the ibdal the table demonstrates: اِضْطَرَبَ، اِذَّهَبَ، اِزْدَجَرَ.
 // The iftial ta after C1, with the ibdal the table demonstrates. The same
 // chunk serves every class: اِزْدَ + ادَ gives اِزْدَادَ, اِصْطَ + ادَ gives اِصْطَادَ.
+// The ibdal happens in TWO steps and the second one was missing. First the ta
+// takes the colour of the first radical: after the four emphatics it becomes ط,
+// after ز ذ د it becomes د. Then — and only where the two letters have come out
+// IDENTICAL — they run together. So ص and ض keep their ط standing apart
+// (اِصْطَبَرَ، اِضْطَرَبَ) because ص is not ط; but ط + ط and ظ + ط and د + د and
+// ذ + د do meet, and idgham follows: اِطَّلَعَ، اِظَّلَمَ، اِدَّعَى، اِذَّكَرَ. ز is the
+// instructive one: its ta becomes د and STAYS د, because ز is not د —
+// اِزْدَادَ, never *اِزَّادَ. The engine had the first step and applied the second
+// only to د and ذ, so اِطَّلَعَ came out right in the past tense and its own
+// masdar came out *اِطْطِلَاع.
 function nakilT(f){
-  if ("صضطظ".includes(f)) return `اِ${f}ْطَ`;
-  if (f === "ز") return `اِزْدَ`;
-  if ("دذ".includes(f)) return `اِ${f}َّ`;
+  if ("طظ".includes(f)) return `اِ${f}َّ`;      // ط/ظ + ط → idgham
+  if ("صض".includes(f)) return `اِ${f}ْطَ`;     // ص/ض + ط → two letters, no idgham
+  if (f === "ز") return `اِزْدَ`;                // ز + د → two letters, no idgham
+  if ("دذ".includes(f)) return `اِ${f}َّ`;      // د/ذ + د → idgham
   return `اِ${f}ْتَ`;
 }
 // Each maker receives (f, a, l, type) and returns the bab's mazi — or null,
@@ -4330,6 +4341,22 @@ function sarfDerive(cls, form, bab){
       amr: sjAmr("اِنْ"+f+"َا"+l, "اِنْ"+f+"َ"+l),
       ...sjGov(yv, "نْ"+f+"َا"+l, "نْ"+f+"َ"+l),
       masdar: sjN("اِنْ"+f+"ِيَا"+l), ...P("نْ"+f+"َا"+l) };
+    // Form VII of a MUDAAF. It had no branch of its own and fell through to the
+    // sound path, so اِنْسَدَّ came out uncontracted as *اِنْسَدَدَ / *يَنْسَدِدُ.
+    // The two identical letters meet and run together; the vowel that surfaces
+    // on the shadda is the mudari's own, because the letter before the ayn is
+    // already vowelled and has nowhere to take a transferred haraka. The
+    // uncontracted stem survives for the نَ persons, which is where the twins
+    // are pulled apart again: يَنْسَدِدْنَ.
+    if (t === "gem") {
+      const G = "نْ"+f+"َ"+a+"ّ", S = "نْ"+f+"َ"+a+"ِ"+l;
+      return { ok: true, wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ — مُضَاعَفٌ"),
+        mazi: sjMazi14("اِنْ"+f+"َ"+a+"ّ", "اِنْ"+f+"َ"+a+"َ"+l),
+        mudari: sjMudari14(yv, G, S),
+        amr: ["اِ"+G+"َ", "اِ"+G+"َا", "اِ"+G+"ُوا", "اِ"+G+"ِي", "اِ"+G+"َا", "اِ"+S+"ْنَ"].map(sjN),
+        ...sjGovGem(yv, G), masdar: sjN("اِنْ"+f+"ِ"+a+"َا"+l), ...P(G),
+        note: "مُضَاعَفٌ مِنَ الِانْفِعَالِ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ." };
+    }
     if (t === "naqis") {
       const r7 = asmNaq("نْ"+f+"َ"+a, "اِنْ"+f+"َ"+a, "i",
         { wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ — نَاقِصٌ"), masdar: sjN("اِنْ"+f+"ِ"+a+"َاء"),
@@ -4343,7 +4370,11 @@ function sarfDerive(cls, form, bab){
   }
   if (form === "VIII") {
     const tp = nakilT(f);                              // اِفْتَ with the ibdal applied
-    const tk = tp.replace(/َ$/, "ِ");                   // its kasra twin for the masdar
+    // The masdar is اِفْتِعَال, so the ta wears a KASRA. Where the ibdal has
+    // already run the two letters together the chunk ends in a SHADDA, and a
+    // rule that only looked for a bare fatha at the end quietly did nothing —
+    // اِدَّعَاء instead of اِدِّعَاء, and the same for every ط ظ ذ verb.
+    const tk = tp.replace(/َّ$/, "ِّ").replace(/َ$/, "ِ");
     const md = "م" + tp.slice(2);                      // مُفْتَ… for the participles
     if (t === "ajwaf") return { ok: true, wazn: sjN("اِفْتَعَلَ يَفْتَعِلُ — أَجْوَفُ"),
       mazi: sjMazi14(tp+"ا"+l, tp+l),

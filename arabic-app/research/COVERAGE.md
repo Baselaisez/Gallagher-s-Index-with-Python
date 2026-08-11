@@ -355,3 +355,18 @@ not a one-line change.
   guessed. The case it was built for is مَعَانٍ, which is barred from tanwin and
   written with one — see CLAUDE.md. Shipped with a workshop lab (`عَلَامَة` /
   Endings, the 11th tool on the rail) and a smoke gate over all fifteen rows.
+- **v107** — Manar reaches chapter 5, the four degrees of CLARITY: ẓāhir,
+  naṣṣ, mufassar, muḥkam. Five chapters, 174 tokens. The four are a LADDER,
+  not a list — each is defined as the one before it plus a degree — and the
+  matn makes that unmissable by using the same verb three times over,
+  اِزْدَادَ وُضُوحًا. Grammar chosen for the drill it gives: وُضُوحًا three times as
+  a tamyīz al-nisba; بِحَيْثُ, an adverb mabnī on the ḍamma taking a whole
+  CLAUSE for its muḍāf ilayh; اِنْسَدَّ, Form VII of a doubled root; and اِزْدَادَ
+  beside يَحْتَمِلُ in one chapter, which is the ibdāl rule teaching itself.
+  Three sarf-engine defects, all surfaced by that pair and all closed:
+  (1) the ta of iftiʿāl assimilates only where the two letters come out the
+  same, so ط ظ ذ needed the idgham the engine gave only to د; (2) the masdar's
+  kasra was skipped wherever the ibdāl had already produced a shadda, so
+  اِدِّعَاء had been shipping as اِدَّعَاء; (3) Form VII had no geminate branch and
+  اِنْسَدَّ came out uncontracted. Gated by name over a ten-root table; 250
+  stored paradigms regenerate from the engine.
