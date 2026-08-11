@@ -1595,6 +1595,18 @@ const L = {
         mizanNone:"No wazn found — the form resists the rules; try the dictionary form.",
         mizanAsl:"The verb is weak: this is the wazn by the ASL (قَالَ → فَعَلَ) — the i'lal chain in the Sarf tab explains the surface.",
         mizanStored:"The corpus stores this form as recited (sema'i) — its wazn is not derived by rule.",
+        alamaTab:"Endings",
+        alamaIntro:"Type a noun and see the three cases WRITTEN. Not every noun wears a damma, a fatha and a kasra: a dual and a sound masculine plural decline by a LETTER, a sound feminine plural takes a kasra where a fatha is expected, a maqsur writes nothing at all, and a noun barred from tanwin takes a fatha in jarr. Hand a manqus over with its ya — قَاضِي، مَعَانِي — because قَاضٍ and كِتَابٍ are spelled the same way and the page genuinely cannot tell them apart.",
+        alamaPh:"a noun — قَاضِي، مَعَانِي، فَتًى، مُسْلِمُونَ",
+        alamaDef:"definite",
+        alamaMudaf:"mudaf",
+        alamaMamnu:"barred from tanwin",
+        alamaNone:"Type a noun to see its three endings.",
+        alamaLafzi:"written",
+        alamaTaqdiri:"understood",
+        alamaShape:{ sahih:"sound-ending noun", maqsur:"maqsur", manqus:"manqus",
+                     muthanna:"dual", "jam-mudhakkar":"sound masculine plural",
+                     "jam-muannath":"sound feminine plural", khamsa:"one of the five nouns" },
         coachTitle:"Your coach",
         coachReview:"{n} card(s) are due — reviewing them now is worth more than anything else.",
         coachFading:"{n} word(s) are fading below the recall line — the games will seat them first.",
@@ -1776,6 +1788,18 @@ const L = {
         mizanNone:"Vezin bulunamadı — kalıp kaidelere direniyor; sözlük şeklini deneyin.",
         mizanAsl:"Fiil illetlidir: bu, ASLA göre vezindir (قَالَ → فَعَلَ) — yüzeydeki şekli Sarf sekmesindeki i'lâl zinciri açıklar.",
         mizanStored:"Külliyat bu kalıbı okunduğu gibi (semâî) saklar — vezni kaideyle türetilmez.",
+        alamaTab:"Alâmet",
+        alamaIntro:"Bir isim yazın, üç i'râbı YAZILMIŞ olarak görün. Her isim damme, fetha ve kesra almaz: tesniye ile cem'-i müzekker-i sâlim HARF ile i'râb alır, cem'-i müennes-i sâlim fetha beklenen yerde kesra alır, ism-i maksûr hiçbir şey yazmaz, gayr-i munsarif ise cerde fetha alır. Menkūsu yâsıyla birlikte yazın — قَاضِي، مَعَانِي — çünkü قَاضٍ ile كِتَابٍ aynı şekilde yazılır ve sayfa ikisini gerçekten ayırt edemez.",
+        alamaPh:"bir isim — قَاضِي، مَعَانِي، فَتًى، مُسْلِمُونَ",
+        alamaDef:"marife",
+        alamaMudaf:"muzâf",
+        alamaMamnu:"gayr-i munsarif",
+        alamaNone:"Üç i'râb alâmetini görmek için bir isim yazın.",
+        alamaLafzi:"lafzî",
+        alamaTaqdiri:"takdîrî",
+        alamaShape:{ sahih:"sahîhu'l-âhir isim", maqsur:"ism-i maksûr", manqus:"ism-i menkūs",
+                     muthanna:"tesniye", "jam-mudhakkar":"cem'-i müzekker-i sâlim",
+                     "jam-muannath":"cem'-i müennes-i sâlim", khamsa:"esmâ-i hamseden" },
         coachTitle:"Koçun",
         coachReview:"{n} kart vadesinde — şimdi tekrarlamak her şeyden değerlidir.",
         coachFading:"{n} kelime hatırlama çizgisinin altına düşüyor — oyunlar önce onları oturtacak.",
@@ -4120,6 +4144,20 @@ function soundHollowNote(key){
 
 // sarfDerive(cls, form, bab) → {ok, mazi, mudari, amr, mansub…, fail, maful?,
 // masdar?, wazn, note} or {ok:false, reason}. cls comes from nakilClass.
+// A weak first radical carrying a SUKUN takes the shape of the vowel before it:
+// after a damma it is a waw with no sukun written (يُوْجِبُ → يُوجِبُ, a madd
+// letter needs no sukun), and after a kasra it turns into a ya outright
+// (إِوْجَاب → إِيجَاب). One rule, two vowels, and it applies to every cell of the
+// paradigm at once — so it is run over the whole derived object rather than
+// spelled into each cell, and non-strings pass through untouched.
+function sjMithalWeakHead(r){
+  const fix = s => typeof s === "string"
+    ? s.normalize("NFC").replace(/ُ[وي]ْ/g, "ُو").replace(/ِ[وي]ْ/g, "ِي")
+    : s;
+  const out = {};
+  for (const k of Object.keys(r)) out[k] = Array.isArray(r[k]) ? r[k].map(fix) : fix(r[k]);
+  return out;
+}
 function sarfDerive(cls, form, bab){
   const [f, a, l] = cls.rs, t = cls.type;
   const glide = t === "ajwaf" ? a : t === "naqis" ? (l === "ى" ? "ي" : l) : null;
@@ -4276,8 +4314,14 @@ function sarfDerive(cls, form, bab){
       return r4;
     }
     const v = "أَ"+f+"ْ"+a+"َ"+l, core = f+"ْ"+a+"ِ"+l;
-    return { ...asm(v, core, "أَ"+core, { wazn: sjN("أَفْعَلَ يُفْعِلُ"),
+    const r4s = { ...asm(v, core, "أَ"+core, { wazn: sjN("أَفْعَلَ يُفْعِلُ"),
       masdar: sjN("إِ"+f+"ْ"+a+"َا"+l), ...P(core, f+"ْ"+a+"َ"+l) }) };
+    // A MITHAL run through أَفْعَلَ needs one more rule, and the wazn alone will
+    // never give it: the sukun-bearing first radical turns into the MADD letter
+    // that agrees with the vowel in front of it. The mazi keeps its waw
+    // (أَوْجَبَ — a fatha precedes), but يُوْجِبُ is written يُوجِبُ and إِوْجَاب comes
+    // out إِيجَاب. Substituting the root into the scale is not the last step.
+    return (f === "و" || f === "ي") ? sjMithalWeakHead(r4s) : r4s;
   }
   if (form === "VII") {
     if (t === "ajwaf") return { ok: true, wazn: sjN("اِنْفَعَلَ يَنْفَعِلُ — أَجْوَفُ"),
@@ -6395,6 +6439,7 @@ let conjState = { idafaA: "كِتَابٌ", idafaB: "الْوَلَدُ", idafaC
                   jumla: "لم يكتبِ الطالبُ في الدفترِ",
                   nida: "يَا عَبْدَ اللهِ",
                   ilalRoot: "قول", ilalShape: "maful",
+                  alama: "مَعَانِي", alamaDef: false, alamaMudaf: false, alamaMamnu: null,
                   kernel: "يَا عَبْدَ اللهِ" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
@@ -6766,6 +6811,39 @@ function renderIdafaOut(){
     <p class="sarf-note">${ui().idafaNote}</p>`;
 }
 
+// The Endings Lab. One noun in, three written endings out, each with the rule
+// that produced it. The tab exists because the three-vowel table every beginner
+// is taught is true of ONE class of noun out of seven, and the app was teaching
+// the other six only in passing.
+function renderAlamaOut(){
+  const out = document.getElementById("alamaOut");
+  if (!out) return;
+  const E = escapeAttr;
+  const w = (conjState.alama || "").trim();
+  if (!w || AlamaEngine.flat(w).length < 2) {
+    out.innerHTML = `<p class="empty">${ui().alamaNone}</p>`;
+    return;
+  }
+  const opt = { definite: conjState.alamaDef, mudaf: conjState.alamaMudaf };
+  if (conjState.alamaMamnu !== null) opt.mamnu = conjState.alamaMamnu;
+  const t = AlamaEngine.table(w, opt);
+  if (!t) { out.innerHTML = `<p class="empty">${ui().alamaNone}</p>`; return; }
+  const shapeLbl = (ui().alamaShape || {})[t.shape] || t.shape;
+  out.innerHTML = `<p class="conj-known"><b lang="ar" dir="rtl">${E(w)}</b> — ${shapeLbl}${
+      t.mamnu ? " · " + ui().alamaMamnu : ""}${t.definite ? " · " + ui().alamaDef : ""}</p>
+    <ul class="vlist">${t.rows.map(r => `<li class="vrow${r.manner === "taqdiri" ? " guess" : ""}">
+      <div class="vhead">
+        <span class="vn" lang="ar">${AlamaEngine.CASE_AR[r.kase]}</span>
+        <span class="vw">${E(r.out)}</span>
+        <span class="vseg">${r.sign.ar}</span>
+      </div>
+      <div class="vmeta">
+        <span class="vchip">${T(r.sign)}</span>
+        <span class="vchip">${r.manner === "taqdiri" ? ui().alamaTaqdiri : ui().alamaLafzi}</span>
+      </div>
+      <div class="vlex">${r.steps.map(s => T(s)).join(" ")}</div></li>`).join("")}</ul>`;
+}
+
 // The I'lal Lab. The root and the wazn make an ASL; the rule engine does the
 // rest, and every firing is shown with the rule that fired it — the chain a
 // Maksud student recites. A root that needs no i'lal shows an empty chain and
@@ -7079,6 +7157,34 @@ function renderLabBody(){
     renderIsmOut();
     return;
   }
+  if (conjState.lab === "alama") {
+    const chk = (id, on, lbl) => `<button data-al="${id}" class="${on ? "on" : ""}">${lbl}</button>`;
+    body.innerHTML = `<p class="ref-intro">${ui().alamaIntro}</p>
+      <div class="conj-lab">
+        <input id="alamaIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().alamaPh)}" value="${escapeAttr(conjState.alama)}">
+      </div>
+      <div class="seg conj-seg" id="alamaFlags">
+        ${chk("def", conjState.alamaDef, ui().alamaDef)}
+        ${chk("mudaf", conjState.alamaMudaf, ui().alamaMudaf)}
+        ${chk("mamnu", conjState.alamaMamnu === true, ui().alamaMamnu)}
+      </div>
+      <div id="alamaOut"></div>`;
+    const inp = document.getElementById("alamaIn");
+    inp.addEventListener("input", debounced(() => { conjState.alama = inp.value; renderAlamaOut(); }));
+    body.querySelectorAll("[data-al]").forEach(btn => btn.addEventListener("click", () => {
+      const k = btn.dataset.al;
+      // `mamnu` is a THREE-state field: unset means "ask the tagger", and only
+      // an explicit press overrides it. Definiteness and idafa are plain flags.
+      if (k === "mamnu") conjState.alamaMamnu = conjState.alamaMamnu === true ? null : true;
+      else if (k === "def") conjState.alamaDef = !conjState.alamaDef;
+      else conjState.alamaMudaf = !conjState.alamaMudaf;
+      btn.classList.toggle("on");
+      renderAlamaOut();
+    }));
+    renderAlamaOut();
+    return;
+  }
   if (conjState.lab === "mizan") {
     body.innerHTML = `<p class="ref-intro">${ui().mizanIntro}</p>
       <div class="conj-lab">
@@ -7165,6 +7271,7 @@ function openConjugator(){
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
       <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
       <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
+      <button data-lab="alama" class="${conjState.lab === "alama" ? "on" : ""}">${arSpan("عَلَامَة")} ${ui().alamaTab}</button>
       <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
       <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
@@ -9607,6 +9714,217 @@ class WawEngine {
 // is shown — it BUILDS one. Hand it two nouns and a case and it returns the
 // written result with every step that produced it, or refuses and names the
 // rule that forbids it. A describer can be vague; a builder cannot.
+// ---------- the Alama engine — عَلَامَاتُ الْإِعْرَابِ -----------------------
+// Given a noun and a case, WRITE its ending. Not a diagnostic — `IrabSign`
+// already reads an ending off a written word and says, honestly, that an
+// indefinite manqus cannot be told from any other indefinite. This runs the
+// other way: it is told what the word IS, and it writes what the books say it
+// must look like.
+//
+// It is an EXACT engine. Every row below is derivable from the lemma, the
+// case, and three facts about the word (is it definite, is it a mudaf, is it
+// barred from tanwin), so it decides rather than shortlists — and where a fact
+// cannot be read off the surface it is ASKED for rather than guessed.
+//
+// The case that makes it worth building is مَعَانٍ, which chapter 4 of the Manar
+// puts on the page. It is a مُنْتَهَى الْجُمُوعِ, so it is barred from tanwin — and
+// it is written WITH a tanwin. Both are true: as a MANQUS it drops its ya in
+// raf' and jarr, and the tanwin standing in that gap is a tanwin of
+// COMPENSATION for the dropped letter, not the tanwin of the indefinite. Put it
+// in nasb and the two facts separate: رَأَيْتُ مَعَانِيَ — the ya returns and the
+// fatha comes bare. A rule system that stores only "mamnu → fatha in jarr"
+// gets this word wrong three times out of three.
+class AlamaEngine {
+  static V  = { raf: "ُ", nasb: "َ", jarr: "ِ" };
+  static TN = { raf: "ٌ", nasb: "ً", jarr: "ٍ" };
+  static CASE_AR = { raf: "رَفْعًا", nasb: "نَصْبًا", jarr: "جَرًّا" };
+  static flat(w){ return stripAr(w || "").replace(/[^ء-ي]/g, ""); }
+  static hasAl(w){ return /^[اٱ][ً-ْ]*ل/.test((w || "").normalize("NFC")); }
+  static FIVE = {
+    "اب": ["أَبُو", "أَبَا", "أَبِي"], "أب": ["أَبُو", "أَبَا", "أَبِي"],
+    "اخ": ["أَخُو", "أَخَا", "أَخِي"], "أخ": ["أَخُو", "أَخَا", "أَخِي"],
+    "حم": ["حَمُو", "حَمَا", "حَمِي"], "فو": ["فُو", "فَا", "فِي"],
+    "ذو": ["ذُو", "ذَا", "ذِي"], "ذا": ["ذُو", "ذَا", "ذِي"],
+  };
+  // Manqus plurals on صِيغَةِ مُنْتَهَى الْجُمُوعِ. This is LEXICAL and is stored as
+  // such: the shape rule that bars مَفَاعِل from tanwin cannot be read off a
+  // word whose last letter has already fallen off. Anything not on the list is
+  // still asked of the learned tagger before being called munsarif.
+  static MAMNU_MANQUS = new Set(["معاني", "جواري", "غواشي", "ليالي", "اياد",
+                                 "ايادي", "مغازي", "مباني", "اعالي", "دواعي",
+                                 "عذاري", "سواقي", "قواف", "قوافي"]);
+  // What kind of ending does this word take? Everything here is decided by the
+  // written shape except the manqus, which must be handed over WITH its ya —
+  // قَاضِي, مَعَانِي — because قَاضٍ and كِتَابٍ are spelled the same way and the
+  // surface genuinely cannot tell them apart.
+  static shape(word, opt = {}){
+    const w = (word || "").normalize("NFC").trim();
+    const bare = this.flat(w);
+    if (!bare) return null;
+    if (opt.mudaf && this.FIVE[bare]) return "khamsa";
+    if (/(َانِ|َيْنِ)$/.test(w) || /(ان|ين)$/.test(bare) && opt.dual) return "muthanna";
+    if (/(ُونَ|ِينَ)$/.test(w)) return "jam-mudhakkar";
+    if (/ات$/.test(bare) && bare.length > 3) return "jam-muannath";
+    if (/[ىا]$/.test(bare) && bare.length > 2) return "maqsur";
+    if (/[^اوي]ِي$/.test(w) && !/ِيّ/.test(w)) return "manqus";
+    if (opt.manqus) return "manqus";
+    return "sahih";
+  }
+  static mamnu(word, opt = {}){
+    if (opt.mamnu !== undefined) return !!opt.mamnu;
+    const bare = this.flat(word);
+    if (this.MAMNU_MANQUS.has(bare)) return true;
+    try { return IdafaEngine.mamnu(word); } catch (e) { return false; }
+  }
+  static SIGN = {
+    damma:  { ar: "الضَّمَّةُ", en: "the damma", tr: "damme" },
+    fatha:  { ar: "الْفَتْحَةُ", en: "the fatha", tr: "fetha" },
+    kasra:  { ar: "الْكَسْرَةُ", en: "the kasra", tr: "kesra" },
+    waw:    { ar: "الْوَاوُ", en: "the waw", tr: "vâv" },
+    alif:   { ar: "الْأَلِفُ", en: "the alif", tr: "elif" },
+    ya:     { ar: "الْيَاءُ", en: "the ya", tr: "yâ" },
+    hadhf:  { ar: "حَذْفُ النُّونِ", en: "the falling of the nun", tr: "nûnun düşmesi" },
+  };
+  // ---- WRITE. One noun, one case, one written ending, and the reason.
+  static write(word, kase = "raf", opt = {}){
+    const w0 = (word || "").normalize("NFC").trim();
+    if (!w0) return null;
+    if (!this.V[kase]) kase = "raf";
+    const sh = this.shape(w0, opt);
+    if (!sh) return null;
+    const steps = [];
+    const step = (ar, en, tr) => steps.push({ ar, en, tr });
+    const def = this.hasAl(w0) || !!opt.mudaf || !!opt.definite;
+    const mamnu = sh === "khamsa" ? false : this.mamnu(w0, opt);
+    // Peel any case-mark the lemma was handed to us wearing — but peel it
+    // SHAPE-FIRST. The dual and the sound plurals end in a vowelled nun, so a
+    // blind peel of the last mark eats the ending's own vowel and the ending no
+    // longer matches: كِتَابَانِ becomes كِتَابَان and walks out as *كِتَابَانَانِ.
+    // The maqsur hides its tanwin BEFORE the alif, where a trailing peel never
+    // looks at all. Both were live bugs; both are the same mistake.
+    let stem = /(َانِ|َيْنِ|ُونَ|ِينَ)$/.test(w0) ? w0
+             : /[ىا]$/.test(this.flat(w0)) ? w0.replace(/ً(?=[ىا]$)/, "")
+             : w0.replace(/[ًٌٍَُِ]$/, "");
+    let out, sign, manner = "lafzi";
+
+    if (sh === "khamsa") {
+      out = this.FIVE[this.flat(w0)][["raf", "nasb", "jarr"].indexOf(kase)];
+      sign = ["waw", "alif", "ya"][["raf", "nasb", "jarr"].indexOf(kase)];
+      step("مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ",
+           "one of the FIVE NOUNS, and a mudaf: it declines by a LETTER — waw, alif, ya → " + out,
+           "ESMÂ-İ HAMSEden ve muzâf: HARF ile i'râb alır — vâv, elif, yâ → " + out);
+    } else if (sh === "muthanna") {
+      const base = stem.replace(/(َانِ|َيْنِ)$/, "");
+      out = base + (kase === "raf" ? "َا" : "َيْ") + (opt.mudaf ? "" : "نِ");
+      sign = kase === "raf" ? "alif" : "ya";
+      step("الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+           "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → " + out,
+           "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → " + out);
+      if (opt.mudaf) step("وَتُحْذَفُ نُونُهُ لِلْإِضَافَةِ",
+           "and its NUN falls for the idafa — the nun stands where a tanwin would → " + out,
+           "İzâfet sebebiyle NÛNu düşer — o nûn tenvînin yerini tutar → " + out);
+    } else if (sh === "jam-mudhakkar") {
+      const base = stem.replace(/(ُونَ|ِينَ)$/, "");
+      out = base + (kase === "raf" ? "ُو" : "ِي") + (opt.mudaf ? "" : "نَ");
+      sign = kase === "raf" ? "waw" : "ya";
+      step("جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+           "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → " + out,
+           "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → " + out);
+      if (opt.mudaf) step("وَتُحْذَفُ نُونُهُ لِلْإِضَافَةِ",
+           "and its NUN falls for the idafa → " + out,
+           "İzâfet sebebiyle NÛNu düşer → " + out);
+    } else if (sh === "jam-muannath") {
+      const mark = kase === "raf" ? "ُ" : "ِ";
+      out = stem + (def || mamnu ? mark : (kase === "raf" ? "ٌ" : "ٍ"));
+      sign = kase === "raf" ? "damma" : "kasra";
+      if (kase === "nasb")
+        step("جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُنْصَبُ بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ",
+             "a SOUND FEMININE PLURAL takes a KASRA in nasb, standing in for the fatha — the one place a mansub noun is not written with a fatha → " + out,
+             "CEM'-İ MÜENNES-İ SÂLİM nasb hâlinde fetha yerine KESRA alır — mansub bir ismin fetha ile yazılmadığı tek yer → " + out);
+      else
+        step("جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُجَرُّ بِالْكَسْرَةِ",
+             "a sound feminine plural takes the damma in raf' and the kasra in jarr → " + out,
+             "Cem'-i müennes-i sâlim ref'de damme, cerde kesra alır → " + out);
+    } else if (sh === "maqsur") {
+      manner = "taqdiri";
+      sign = { raf: "damma", nasb: "fatha", jarr: "kasra" }[kase];
+      out = (def || mamnu) ? stem : stem.replace(/([ىا])$/, "ً$1");
+      step("الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ",
+           "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written",
+           "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz.");
+      if (!def && !mamnu)
+        step("وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+             "and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → " + out,
+             "Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → " + out);
+    } else if (sh === "manqus") {
+      const noYa = stem.replace(/ِي$/, "");
+      if (def) {
+        out = kase === "nasb" ? stem + "َ" : stem;
+        manner = kase === "nasb" ? "lafzi" : "taqdiri";
+        sign = { raf: "damma", nasb: "fatha", jarr: "kasra" }[kase];
+        step("الِاسْمُ الْمَنْقُوصُ تُقَدَّرُ عَلَى يَائِهِ الضَّمَّةُ وَالْكَسْرَةُ لِلثِّقَلِ وَتَظْهَرُ الْفَتْحَةُ",
+             "a MANQUS noun ends in a ya: the damma and the kasra are too heavy for it and are only UNDERSTOOD, while the fatha is light enough to be written → " + out,
+             "İSM-İ MENKŪSun sonu yâdır: damme ve kesra ona ağır geldiği için TAKDÎR edilir, fetha ise hafif olduğu için yazılır → " + out);
+      } else if (mamnu) {
+        out = kase === "nasb" ? stem + "َ" : noYa + "ٍ";
+        manner = kase === "nasb" ? "lafzi" : "taqdiri";
+        sign = { raf: "damma", nasb: "fatha", jarr: "kasra" }[kase];
+        step("هَذَا مَنْقُوصٌ مَمْنُوعٌ مِنَ الصَّرْفِ — وَهُوَ أَدَقُّ مَا فِي الْبَابِ",
+             "this word is a MANQUS and BARRED FROM TANWIN at once — the hardest row in the table",
+             "Bu kelime hem MENKŪS hem GAYR-İ MUNSARİFtir — bâbın en ince yeri.");
+        if (kase === "nasb")
+          step("فَفِي النَّصْبِ تَعُودُ يَاؤُهُ وَتَظْهَرُ الْفَتْحَةُ بِلَا تَنْوِينٍ",
+               "in nasb its ya comes back and the fatha is written BARE — no tanwin, because the word is barred from it → " + out,
+               "Nasbda yâsı geri döner ve fetha TENVÎNSİZ yazılır; zira kelime tenvînden men edilmiştir → " + out);
+        else
+          step("وَفِي الرَّفْعِ وَالْجَرِّ تُحْذَفُ يَاؤُهُ وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ — تَنْوِينُ عِوَضٍ لَا تَنْوِينُ تَمْكِينٍ",
+               "in raf' and in jarr the ya is DROPPED and a tanwin stands in its place — a tanwin of COMPENSATION, not the tanwin of the indefinite. That is how a word barred from tanwin comes to be written with one → " + out,
+               "Ref' ve cerde yâsı DÜŞER, yerine tenvîn getirilir — temkin tenvîni değil İVAZ tenvîni. Tenvînden men edilmiş bir kelimenin tenvînle yazılmasının sebebi budur → " + out);
+      } else {
+        out = kase === "nasb" ? stem + "ًا" : noYa + "ٍ";
+        manner = kase === "nasb" ? "lafzi" : "taqdiri";
+        sign = { raf: "damma", nasb: "fatha", jarr: "kasra" }[kase];
+        step("الْمَنْقُوصُ النَّكِرَةُ تُحْذَفُ يَاؤُهُ رَفْعًا وَجَرًّا وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ",
+             "an INDEFINITE manqus drops its ya in raf' and in jarr and puts a tanwin in its place — قَاضٍ — and keeps it in nasb, where the fatha can be written: قَاضِيًا → " + out,
+             "NEKRE MENKŪSun yâsı ref' ve cerde düşer, yerine tenvîn gelir — قَاضٍ — nasbda ise fetha yazılabildiği için yâ kalır: قَاضِيًا → " + out);
+      }
+    } else {
+      sign = { raf: "damma", nasb: "fatha", jarr: "kasra" }[kase];
+      if (def) {
+        out = stem + this.V[kase];
+        step("مُعَرَّفٌ فَلَا يُنَوَّنُ، وَيَأْخُذُ حَرَكَةَ مَوْقِعِهِ",
+             "definite, so no tanwin — it simply wears the vowel of its place → " + out,
+             "Marife olduğu için tenvînlenmez; sadece mevkiinin harekesini alır → " + out);
+      } else if (mamnu) {
+        out = stem + (kase === "jarr" ? "َ" : this.V[kase]);
+        step("مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+             "BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → " + out,
+             "GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → " + out);
+      } else {
+        out = stem + this.TN[kase];
+        if (kase === "nasb" && !/(ة|ء|ا)$/.test(stem)) {
+          out = stem + "ًا";
+          step("وَتُزَادُ أَلِفٌ بَعْدَ تَنْوِينِ النَّصْبِ فِي غَيْرِ الْمُنْتَهِي بِتَاءٍ مَرْبُوطَةٍ أَوْ هَمْزَةٍ",
+               "and nasb's tanwin is followed by a written ALIF, unless the word already ends in a ta marbuta or a hamza → " + out,
+               "Nasb tenvîninden sonra bir ELİF yazılır; kelime tâ-i merbûta yahut hemze ile bitmiyorsa → " + out);
+        } else {
+          step("نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+               "indefinite and munsarif — it takes the tanwin of its own case → " + out,
+               "Nekre ve munsarif — kendi mevkiinin tenvînini alır → " + out);
+        }
+      }
+    }
+    return { ok: true, out, shape: sh, kase, manner, mamnu, definite: def,
+             sign: this.SIGN[sign], signKey: sign, steps };
+  }
+  // All three cases at once — the shape of the table the books print.
+  static table(word, opt = {}){
+    const rows = ["raf", "nasb", "jarr"].map(k => this.write(word, k, opt));
+    return rows[0] ? { shape: rows[0].shape, mamnu: rows[0].mamnu,
+                       definite: rows[0].definite, rows } : null;
+  }
+}
+
 class IdafaEngine {
   static VOWEL = { raf: "ُ", nasb: "َ", jarr: "ِ" };
   static TANWIN = { raf: "ٌ", nasb: "ً", jarr: "ٍ" };

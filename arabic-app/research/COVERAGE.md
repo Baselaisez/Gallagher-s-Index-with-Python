@@ -334,3 +334,24 @@ not a one-line change.
   equal, because الْمَنْقُولُ genuinely contains ق-و-ل, and `searchRank` sorts
   root-identity above word-identity above prefix above incidental substring
   instead of dropping the honest accident.
+- **v106** — Manar reaches chapter 4, the fourfold division of the LAFZ by
+  waḍʿ: khāṣṣ, ʿāmm, mushtarak, muʾawwal, each with its received definition.
+  Four chapters, 125 tokens, 39 of the 93 registry notes referenced. The
+  chapter was chosen for its grammar as much as its doctrine: أَرْبَعَةُ أَقْسَامٍ
+  puts the same numeral chapter 2 used as a khabar into the office of a mudāf;
+  لِمَعْنًى and لِمَعَانٍ set the maqṣūr beside the manqūṣ in one section; وُضِعَ
+  gives the majhūl of a mithāl, where the dropped waw comes back (يُوضَعُ) and
+  proves the drop was caused by its surroundings; and أَنْ يُوجِبَ gives a maṣdar
+  muʾawwal serving as a khabar.
+  New engine: **`AlamaEngine`** — عَلَامَاتُ الْإِعْرَابِ, and the generative
+  counterpart to `IrabSign`. `IrabSign` READS an ending off a written word and
+  says honestly that an indefinite manqūṣ cannot be told from any other
+  indefinite; `AlamaEngine` is told what the word is and WRITES what the books
+  say it must look like, across all seven classes — ṣaḥīḥ, maqṣūr, manqūṣ,
+  muthannā, jamʿ mudhakkar sālim, jamʿ muʾannath sālim, and the five nouns —
+  crossed with definite / muḍāf / mamnūʿ min al-ṣarf. It is an EXACT engine:
+  every row is derivable, and where a fact cannot be read off the surface (is
+  this ٍ a manqūṣ or an ordinary indefinite?) it is asked for rather than
+  guessed. The case it was built for is مَعَانٍ, which is barred from tanwin and
+  written with one — see CLAUDE.md. Shipped with a workshop lab (`عَلَامَة` /
+  Endings, the 11th tool on the rail) and a smoke gate over all fifteen rows.

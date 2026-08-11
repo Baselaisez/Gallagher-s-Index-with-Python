@@ -1611,6 +1611,24 @@ is EN–TR parity. Provenance is the one field a reader is most entitled to read
 in their own language. Write the note once per language; never let one language
 inherit another's.
 
+**Peel SHAPE-FIRST, never trailing-mark-first.** `AlamaEngine` was written with
+the IdafaEngine lesson in hand and made the same mistake twice more in one
+function. A blind `replace(/[ًٌٍَُِ]$/, "")` eats the vowel that belongs to the
+dual's own nun, so `كِتَابَانِ` becomes `كِتَابَان`, the `(َانِ)$` test no longer
+matches, and the word walks out as *`كِتَابَانَانِ`. And a maqsur keeps its tanwin
+BEFORE the alif, where a trailing peel never looks at all, so `فَتًى` came out
+`فَتًًى` with two. Decide the shape on the ORIGINAL string, then peel what that
+shape says is peelable.
+
+**`مَعَانٍ` is the row that separates a rule table from an engine.** It is a
+صِيغَةُ مُنْتَهَى الْجُمُوعِ, so it is barred from tanwin — and it is written *with*
+one. Both are true at once: as a منقوص it drops its ya in raf' and jarr, and
+the tanwin standing in that gap is a tanwin of ʿiwaḍ, compensation for the
+dropped letter, not the tanwin of the indefinite. Put it in nasb and the two
+facts separate: `رَأَيْتُ مَعَانِيَ`, ya restored, fatha bare. Anything that stores
+only "mamnuʿ → fatha in jarr" gets this word wrong in all three cases. The
+smoke suite gates every row of the table, not a sample of it.
+
 **Mark what is ours.** No transcription was supplied for this package past page
 1, so chapters 2–3 are set from the received matn of the Hanafi usul tradition
 and say so. The closing sentence of chapter 3 is not matn at all — it is an
@@ -1625,3 +1643,21 @@ must never ship.
 - `git push -u origin <branch>`; retry only on network errors (2s/4s/8s/16s).
 - Every story manifest carries `reviewStatus: pending-scholarly-review`. Keep it there
   until a human scholar signs off.
+
+## The Form IV mithal — substituting into the scale is not the last step
+
+Chapter 4's أَنْ يُوجِبَ broke the paradigm-regeneration gate, and it was the
+ENGINE that was wrong, not the stored form. `sarfDerive` builds a derived form
+by standing the root letters in the scale — أَفْعَلَ يُفْعِلُ with ف = و gives
+`يُوْجِبُ` and `إِوْجَاب`. Both are wrong on the page. A weak first radical
+carrying a sukun takes the shape of the vowel in front of it: after a DAMMA it
+is already a madd letter and no sukun is written (يُوجِبُ), and after a KASRA it
+turns into a ya outright (إِيجَاب). The mazi keeps its waw untouched, because a
+FATHA precedes it there — أَوْجَبَ. One rule, two vowels, and it applies to every
+cell at once, so `sjMithalWeakHead` is run over the whole derived object rather
+than spelled into each branch.
+
+The general lesson, and it will come round again: **the wazn is a template, not
+a derivation.** Substituting the root into the scale is the first step of a
+derivation whose remaining steps are i'lal. Wherever a weak letter lands next
+to a vowel that does not match it, expect one more rule after the substitution.

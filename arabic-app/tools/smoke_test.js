@@ -3038,6 +3038,22 @@ if (!CHROME) {
     // The audit must actually bite: a healthy corpus gives it dozens of verbs.
     if (r.checked < 60)
       throw new Error('audit covered only ' + r.checked + ' verbs — classification broke?');
+    // A MITHAL run through أَفْعَلَ needs a rule the wazn cannot supply: the
+    // sukun-bearing first radical becomes the madd letter that agrees with the
+    // vowel before it. Substituting the root into the scale gave *يُوْجِبُ and
+    // *إِوْجَاب; the mazi, where a FATHA precedes, must keep its waw untouched.
+    const m4 = await page.evaluate(() => {
+      const c = nakilClass({ root: 'و ج ب' });
+      const d = c && sarfDerive(c, 'IV', 1);
+      return d && d.ok ? { mazi: d.mazi[0], mudari: d.mudari[0], masdar: d.masdar,
+                           amr: d.amr[0], fail: d.fail } : null;
+    });
+    if (!m4) throw new Error('وجب would not classify for Form IV');
+    const w4 = { mazi: 'أَوْجَبَ', mudari: 'يُوجِبُ', masdar: 'إِيجَاب',
+                 amr: 'أَوْجِبْ', fail: 'مُوجِب' };
+    for (const k of Object.keys(w4))
+      if (m4[k].normalize('NFC') !== w4[k].normalize('NFC'))
+        throw new Error(`Form IV mithal ${k}: wanted ${w4[k]}, got ${m4[k]}`);
   });
 
   await check('the Sarf Lab conjugates sound, hollow and defective roots live', async () => {
@@ -4527,6 +4543,82 @@ if (!CHROME) {
 
   // Idafa is the most mechanical structure in nahw, so the engine does not
   // describe one — it BUILDS one, and a builder cannot be vague.
+  // The three-vowel table (damma / fatha / kasra) is true of ONE class of noun
+  // out of seven. This gates the other six, and above all the row where two
+  // rules meet: مَعَانٍ is barred from tanwin AND is a manqus, so it is written
+  // WITH a tanwin in raf' and jarr (a tanwin of compensation for the dropped
+  // ya) and BARE in nasb with the ya restored. A rule system that stores only
+  // "mamnu → fatha in jarr" gets this word wrong three times out of three.
+  await check('the Alama engine writes the ending every class of noun really takes', async () => {
+    const r = await page.evaluate(() => {
+      const T = (w, o) => { const t = AlamaEngine.table(w, o || {});
+        return t ? t.rows.map(x => x.out).join('|') : null; };
+      const maani = AlamaEngine.table('مَعَانِي', {});
+      return {
+        sahih:     T('كِتَاب'),
+        definite:  T('الْكِتَاب'),
+        mamnu:     T('مَسَاجِد', { mamnu: true }),
+        maqsur:    T('فَتًى'),
+        maqsurDef: T('الْفَتَى'),
+        manqus:    T('قَاضِي'),
+        manqusDef: T('الْقَاضِي'),
+        maani:     T('مَعَانِي'),
+        dual:      T('كِتَابَانِ'),
+        dualMudaf: T('كِتَابَانِ', { mudaf: true }),
+        plural:    T('مُسْلِمُونَ'),
+        pluralMudaf: T('مُسْلِمُونَ', { mudaf: true }),
+        fem:       T('مُسْلِمَات'),
+        femDef:    T('الطَّالِبَات'),
+        khamsa:    T('أَب', { mudaf: true }),
+        // the maqsur's case is never written, so all three must be TAQDIRI
+        maqsurManner: (AlamaEngine.table('فَتًى', {}).rows || []).map(x => x.manner).join(','),
+        // …and the manqus writes only the fatha
+        manqusManner: (AlamaEngine.table('الْقَاضِي', {}).rows || []).map(x => x.manner).join(','),
+        maaniMamnu: !!(maani && maani.mamnu),
+        maaniSteps: maani ? maani.rows[2].steps.map(s => s.tr).join(' ') : '',
+        // the fem plural's nasb must SAY it is a kasra standing in for a fatha
+        femNasbWhy: AlamaEngine.write('مُسْلِمَات', 'nasb').steps.map(s => s.en).join(' '),
+      };
+    });
+    const want = {
+      sahih:       'كِتَابٌ|كِتَابًا|كِتَابٍ',
+      definite:    'الْكِتَابُ|الْكِتَابَ|الْكِتَابِ',
+      mamnu:       'مَسَاجِدُ|مَسَاجِدَ|مَسَاجِدَ',
+      maqsur:      'فَتًى|فَتًى|فَتًى',
+      maqsurDef:   'الْفَتَى|الْفَتَى|الْفَتَى',
+      manqus:      'قَاضٍ|قَاضِيًا|قَاضٍ',
+      manqusDef:   'الْقَاضِي|الْقَاضِيَ|الْقَاضِي',
+      maani:       'مَعَانٍ|مَعَانِيَ|مَعَانٍ',
+      dual:        'كِتَابَانِ|كِتَابَيْنِ|كِتَابَيْنِ',
+      dualMudaf:   'كِتَابَا|كِتَابَيْ|كِتَابَيْ',
+      plural:      'مُسْلِمُونَ|مُسْلِمِينَ|مُسْلِمِينَ',
+      pluralMudaf: 'مُسْلِمُو|مُسْلِمِي|مُسْلِمِي',
+      fem:         'مُسْلِمَاتٌ|مُسْلِمَاتٍ|مُسْلِمَاتٍ',
+      femDef:      'الطَّالِبَاتُ|الطَّالِبَاتِ|الطَّالِبَاتِ',
+      khamsa:      'أَبُو|أَبَا|أَبِي',
+    };
+    for (const k of Object.keys(want))
+      if (r[k] !== want[k]) throw new Error(k + ': wanted ' + want[k] + ', got ' + r[k]);
+    if (r.maqsurManner !== 'taqdiri,taqdiri,taqdiri')
+      throw new Error('a maqsur writes no case at all: ' + r.maqsurManner);
+    if (r.manqusManner !== 'taqdiri,lafzi,taqdiri')
+      throw new Error('a manqus writes only the fatha: ' + r.manqusManner);
+    if (!r.maaniMamnu) throw new Error('مَعَانٍ must be read as barred from tanwin');
+    if (!/İVAZ|ivaz/i.test(r.maaniSteps))
+      throw new Error('the tanwin on مَعَانٍ must be named a tanwin of COMPENSATION: ' + r.maaniSteps);
+    if (!/standing in for the fatha/.test(r.femNasbWhy))
+      throw new Error('the feminine plural nasb must name its kasra: ' + r.femNasbWhy);
+
+    // …and the lab shows all three rows, in whichever language is on
+    await page.evaluate(() => { conjState.lab = 'alama'; openConjugator(); });
+    await page.waitForSelector('#alamaOut .vrow', { timeout: 4000 });
+    if (await page.locator('#alamaOut .vrow').count() !== 3)
+      throw new Error('the endings lab must show all three cases');
+    const shown = (await page.locator('#alamaOut .vrow .vw').allInnerTexts()).join('|');
+    if (shown !== want.maani) throw new Error('the lab disagrees with the engine: ' + shown);
+    await page.evaluate(() => { document.getElementById('scrim').click(); });
+  });
+
   await check('the Idafa engine builds the idafa and names every rule that fired', async () => {
     const r = await page.evaluate(() => {
       const B = (a, b, k) => { const x = IdafaEngine.build(a, b, k); return x && x.ok ? x.out : null; };
