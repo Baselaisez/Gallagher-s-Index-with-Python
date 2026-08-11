@@ -388,3 +388,22 @@ not a one-line change.
   divergence this package had introduced: `illa` keyed عِلَّة here while every
   other package keys إِلَّا that way; عِلَّة is now `illah`, cleared by an
   order-independent pop in the chapter-3 script.
+- **v109** — Manar reaches chapter 7, the four wujūh al-bayān: ʿibārat al-naṣṣ,
+  ishāratuhu, dalālatuhu, iqtiḍāʾuhu. Seven chapters, 256 tokens. Grammar:
+  سِيقَ, the majhūl of an ajwaf wāwī (قِيلَ، بِيعَ، سِيقَ on one qiyās); إِشَارَة,
+  the Form IV maṣdar of an ajwaf compensating with a tāʾ marbūṭa exactly as
+  تَعْدِيَة did for a weak lām; اقْتِضَاؤُهُ and the hamza-seat rule; and a second
+  istithnāʾ mufarragh deliberately echoing chapter 6's.
+  **The nakil drill became walkable** — the explicit ask. Every row the
+  conjugator can build is a button; tapping رَاجَعَ or اِنْرَجَعَ opens that bāb's
+  full paradigm with its own muhtelife, derived rather than stored and labelled
+  as such. Rows for the babs `sarfDerive` does not build (IX, XI, XII, XIII)
+  stay plain text.
+  **New: `content/drills/generated.json`** — 536 derived rows (endings × cases,
+  idafas including refusals, paradigms sampled at the rule-bearing cells,
+  scales), built by `tools/gen_drills.js` driving the app's own exact engines
+  and committed as a GOLDEN FILE. `--check` runs in the release gate and fails
+  on a one-cell drift. Six scales are dropped with their reason recorded: a
+  mizan is undecidable when one of the pattern's augment letters is also one of
+  the root's, and the round-trip cannot catch it because both orderings rebuild
+  the same word.

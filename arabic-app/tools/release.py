@@ -46,6 +46,10 @@ def main():
     # 3. browser suites
     if "smoke" not in SKIP:
         run("smoke suite", ["node", "tools/smoke_test.js"])
+        # The generated drill bank is a GOLDEN FILE: a pure function of the
+        # engines, committed so that any change moving a single derived cell
+        # shows up as a named diff rather than as silence.
+        run("drill bank", ["node", "tools/gen_drills.js", "--check"])
     else:
         print("\n!!! SKIPPED smoke suite (QISSA_SKIP)")
 

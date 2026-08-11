@@ -4584,6 +4584,63 @@ if (!CHROME) {
   // WITH a tanwin in raf' and jarr (a tanwin of compensation for the dropped
   // ya) and BARE in nasb with the ya restored. A rule system that stores only
   // "mamnu → fatha in jarr" gets this word wrong three times out of three.
+  // The nakil drill used to be a poster: it showed رَاجَعَ standing in the
+  // فَاعَلَ row and gave the reader no way to ask what THAT bab does through its
+  // own tenses. Every row the conjugator can build is now a button, and the
+  // bab it opens carries its own muhtelife.
+  await check('the nakil drill is walkable — every derivable bab opens its own paradigm', async () => {
+    await toLibrary();
+    const picked = await page.evaluate(() => {
+      let hit = null;
+      STORIES.forEach(st => st.chapters.forEach(c => c.sentences.forEach(sen => sen.tokens.forEach(t => {
+        const e = st.glossary[t.lex], m = st.morph && st.morph[t.lex];
+        if (!hit && m && !m.jamid && nakilClass(e) && nakilClass(e).type === 'sound')
+          hit = { lex: t.lex, root: e.root };
+      }))));
+      return hit;
+    });
+    if (!picked) throw new Error('no sound-rooted verb in the whole library?');
+    // The sheet reads the GLOBAL glossary and morphology, and those are filled
+    // when a story is opened. Calling openWord from the library renders the
+    // word tab, not the sarf tab, and the drill is simply not there.
+    const open = async (lex) => page.evaluate((lx) => {
+      const st = STORIES.find(s => s.morph && s.morph[lx]);
+      openStory(st);
+      let tok = null;
+      st.chapters.forEach(c => c.sentences.forEach(sen => sen.tokens.forEach(t => { if (!tok && t.lex === lx) tok = t; })));
+      sarfTense = 'nakil'; sarfUserPick = true; sarfNakilPick = null;
+      openWord(tok, null, 'sarf');
+    }, lex);
+    await open(picked.lex);
+    const rows = await page.locator('.nakil-go').count();
+    // six bare babs + the augmented ones a sound root really has
+    if (rows < 14) throw new Error('too few walkable rows: ' + rows);
+    // …and every one of them must actually derive, or it should not be a button
+    const allOk = await page.evaluate((root) => [...document.querySelectorAll('.nakil-go')]
+      .every(b => { const d = sarfDerive(nakilClass({ root }), b.dataset.nform,
+        Number(b.dataset.nbab)); return !!(d && d.ok); }), picked.root);
+    if (!allOk) throw new Error('a row is a button but the conjugator cannot build it');
+    await page.locator('.nakil-go').nth(6).click();
+    await page.waitForSelector('.nakil-head .nk-form', { timeout: 3000 });
+    const shown = await page.locator('.lemma').last().innerText();
+    if (!shown.trim()) throw new Error('the opened bab shows no lemma');
+    const tenses = await page.locator('[data-ntense]').count();
+    if (tenses < 4) throw new Error('the opened bab must offer its own muhtelife: ' + tenses);
+    // the derived paradigm must SAY it was derived, not stored
+    const note = await page.locator('.bab-line').last().innerText();
+    if (!/Derived|türet/i.test(note)) throw new Error('a derived bab must own up to it: ' + note);
+    await page.locator('[data-ntense="muhtelife"]').click();
+    await page.waitForTimeout(150);
+    if (await page.locator('table.conj tr').count() < 10)
+      throw new Error('the derived muhtelife came out empty');
+    await page.locator('#nakilBack').click();
+    await page.waitForTimeout(150);
+    if (await page.locator('.nakil-go').count() !== rows)
+      throw new Error('going back did not restore the table');
+    await page.evaluate(() => { sarfTense = 'mazi'; sarfNakilPick = null;
+      document.getElementById('scrim').click(); });
+  });
+
   await check('the Alama engine writes the ending every class of noun really takes', async () => {
     const r = await page.evaluate(() => {
       const T = (w, o) => { const t = AlamaEngine.table(w, o || {});

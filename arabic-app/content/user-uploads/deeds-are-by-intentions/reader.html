@@ -1415,8 +1415,19 @@
     user-select: none;
   }
 
-  /* The nakil table: the derived form is the payoff column. */
+  /* The nakil table: the derived form is the payoff column — and where the
+     conjugator can build that bab, the cell is a button that opens it. */
   table.conj.nakil .nakil-out { font-weight: 600; }
+  table.conj.nakil button.nakil-go {
+    font: inherit; font-weight: 600; color: var(--accent); background: none;
+    border: 0; border-bottom: 1px dashed var(--accent); border-radius: 0;
+    padding: 2px 0; cursor: pointer; direction: rtl; font-family: var(--ar-font);
+    min-height: var(--tap); }
+  table.conj.nakil button.nakil-go:hover { background: var(--accent-soft); }
+  .nakil-head { display: flex; align-items: center; gap: var(--s2);
+    flex-wrap: wrap; margin-bottom: var(--s2); }
+  .nakil-head .nk-form { font-family: var(--ar-font); color: var(--ink-soft); }
+  .btn.nakil-back { padding-inline: var(--s3); }
 
   /* ---------- games ---------- */
   .game-pick { display: grid; gap: .7rem; margin: .5rem 0; }
@@ -1574,6 +1585,9 @@ const L = {
         back:"← All grammar topics", refTitle:"Grammar reference",
         refIntro:"Organized after the madrasah primers: conjugation drills, verb classes, and the governors of i'rab (Birgivi's Awamil, with al-Kafiya and Qatr al-Nada). Every topic links to live examples in the stories.",
         sarfNote:"Full paradigm in the manner of the Emsile; the highlighted cell is the form used in this story.",
+        nakilBack:"← the whole table",
+        nakilDerived:"Derived by the conjugator — the corpus does not store this bab",
+        nakilDerivedNote:"This paradigm was BUILT, not looked up: the root was stood in the wazn and the i'lal rules were run over it, cell by cell. The same engine regenerates every stored paradigm in the library, which is how we know it can be trusted here. A form the tables can build is not automatically a form the lexicon uses.",
         nakilNote:"Bablara nakil — the transfer drill: the same root recited through the Bina's six bare babs (your verb's own bab is highlighted) and then through the twelve augmented wazns, as the madrasah's nakil table does. A formal exercise in the patterns; not every form is in use in the lexicon.",
         mercyUsed:"\u{1F6E1} A missed day was forgiven — your weekly mercy kept the streak.",
         ctxJump:"Open this sentence in its story",
@@ -1767,6 +1781,9 @@ const L = {
         back:"← Tüm gramer konuları", refTitle:"Gramer başvurusu",
         refIntro:"Medrese temel kitaplarına göre düzenlendi: çekim talimleri (Emsile), fiil babları (Binâ) ve i'rab âmilleri (Birgivî'nin Avâmil'i; Kâfiye ve Katru'n-Nedâ ile). Her konu hikâyelerdeki canlı örneklere bağlıdır.",
         sarfNote:"Emsile tarzında tam çekim tablosu; vurgulu hücre bu hikâyede geçen sîgadır.",
+        nakilBack:"← cetvelin tamamı",
+        nakilDerived:"Sarf motorunun türettiği — külliyat bu bâbı saklamıyor",
+        nakilDerivedNote:"Bu çekim SAKLANMADI, KURULDU: kök vezne oturtuldu ve i'lâl kaideleri hâne hâne işletildi. Kütüphanedeki bütün saklı çekimleri yeniden üreten motor aynı motordur; burada güvenilebilmesinin sebebi budur. Cetvelin kurabildiği her kalıp, lugatın kullandığı bir kalıp demek değildir.",
         nakilNote:"Bablara nakil — aynı kökün önce Binâ'nın altı mücerred bâbı (fiilin kendi bâbı vurgulu), sonra on iki mezîd bâb üzerinden okunması; medresenin nakil cetvelidir. Kalıplar üzerine sınâî bir alıştırmadır; her kalıp lugatte kullanılıyor değildir.",
         mercyUsed:"\u{1F6E1} Kaçan bir gün bağışlandı — haftalık müsamahan seriyi korudu.",
         ctxJump:"Bu cümleyi hikâyesinde aç",
@@ -3884,28 +3901,28 @@ function nakilT(f){
 // the rest; naqis ends every mazi in ى; the geminate contracts wherever the
 // pattern brings its twins together.
 const NAKIL_BABS = [
-  { wazn: "أَفْعَلَ", tr: "İf'âl", en: "Form IV", make: (f,a,l,t) =>
+  { wazn: "أَفْعَلَ", form: "IV", tr: "İf'âl", en: "Form IV", make: (f,a,l,t) =>
       t === "ajwaf" ? `أَ${f}َا${l}َ` : t === "naqis" ? `أَ${f}ْ${a}َى`
       : t === "gem" ? `أَ${f}َ${a}َّ` : `أَ${f}ْ${a}َ${l}َ` },
-  { wazn: "فَعَّلَ", tr: "Tef'îl", en: "Form II", make: (f,a,l,t) =>
+  { wazn: "فَعَّلَ", form: "II", tr: "Tef'îl", en: "Form II", make: (f,a,l,t) =>
       t === "naqis" ? `${f}َ${a}َّى` : `${f}َ${a}َّ${l}َ` },
-  { wazn: "فَاعَلَ", tr: "Müfâale", en: "Form III", make: (f,a,l,t) =>
+  { wazn: "فَاعَلَ", form: "III", tr: "Müfâale", en: "Form III", make: (f,a,l,t) =>
       t === "naqis" ? `${f}َا${a}َى` : t === "gem" ? `${f}َا${a}َّ` : `${f}َا${a}َ${l}َ` },
-  { wazn: "اِنْفَعَلَ", tr: "İnfiâl", en: "Form VII", make: (f,a,l,t) =>
+  { wazn: "اِنْفَعَلَ", form: "VII", tr: "İnfiâl", en: "Form VII", make: (f,a,l,t) =>
       t === "ajwaf" ? `اِنْ${f}َا${l}َ` : t === "naqis" ? `اِنْ${f}َ${a}َى`
       : t === "gem" ? `اِنْ${f}َ${a}َّ` : `اِنْ${f}َ${a}َ${l}َ` },
-  { wazn: "اِفْتَعَلَ", tr: "İftiâl", en: "Form VIII", make: (f,a,l,t) =>
+  { wazn: "اِفْتَعَلَ", form: "VIII", tr: "İftiâl", en: "Form VIII", make: (f,a,l,t) =>
       t === "mithal" ? `اِتَّ${a}َ${l}َ` : t === "ajwaf" ? nakilT(f) + `ا${l}َ`
       : t === "naqis" ? nakilT(f) + `${a}َى` : t === "gem" ? nakilT(f) + `${a}َّ`
       : nakilT(f) + `${a}َ${l}َ` },
   { wazn: "اِفْعَلَّ", tr: "İf'ilâl", en: "Form IX", make: (f,a,l,t) =>
       t === "naqis" || t === "gem" ? null
       : t === "mithal" ? `اِي${a}َ${l}َّ` : `اِ${f}ْ${a}َ${l}َّ` },
-  { wazn: "تَفَعَّلَ", tr: "Tefe''ul", en: "Form V", make: (f,a,l,t) =>
+  { wazn: "تَفَعَّلَ", form: "V", tr: "Tefe''ul", en: "Form V", make: (f,a,l,t) =>
       t === "naqis" ? `تَ${f}َ${a}َّى` : `تَ${f}َ${a}َّ${l}َ` },
-  { wazn: "تَفَاعَلَ", tr: "Tefâul", en: "Form VI", make: (f,a,l,t) =>
+  { wazn: "تَفَاعَلَ", form: "VI", tr: "Tefâul", en: "Form VI", make: (f,a,l,t) =>
       t === "naqis" ? `تَ${f}َا${a}َى` : t === "gem" ? `تَ${f}َا${a}َّ` : `تَ${f}َا${a}َ${l}َ` },
-  { wazn: "اِسْتَفْعَلَ", tr: "İstif'âl", en: "Form X", make: (f,a,l,t) =>
+  { wazn: "اِسْتَفْعَلَ", form: "X", tr: "İstif'âl", en: "Form X", make: (f,a,l,t) =>
       t === "ajwaf" ? `اِسْتَ${f}َا${l}َ` : t === "naqis" ? `اِسْتَ${f}ْ${a}َى`
       : t === "gem" ? `اِسْتَ${f}َ${a}َّ` : `اِسْتَ${f}ْ${a}َ${l}َ` },
   { wazn: "اِفْعَوْعَلَ", tr: "İf'îâl", en: "Form XII", make: (f,a,l,t) =>
@@ -3953,15 +3970,28 @@ function nakilTable(cls, morph){
   // The six-bab recitation needs sound radicals in every slot — a weak root's
   // mujarrad shapes are the i'lal chapter's business, so the section appears
   // for sound roots only; the mazid drill below serves every class.
+  // Every row the conjugator can actually derive is a BUTTON. The drill was
+  // read-only, and a reader who saw رَاجَعَ standing in the ف ا ع ل row had no
+  // way to ask the obvious next question — what does THIS bab do through its
+  // own tenses? Now the row answers it: tap it and the whole paradigm opens,
+  // muhtelife and all, without leaving the word.
+  const cell = (out, form, bab) => {
+    const can = form ? CONJ_FORMS.includes(form) : true;
+    const ok = can && sarfDerive(cls, form || "I", bab || 1).ok;
+    return ok
+      ? `<button type="button" class="nakil-out nakil-go" lang="ar"
+           data-nform="${form || "I"}" data-nbab="${bab || 1}">${out}</button>`
+      : `<span class="nakil-out">${out}</span>`;
+  };
   if (cls.type === "sound") {
     h += `<tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمُجَرَّدُ — السِّتَّةُ الْأَبْوَابُ</th></tr>`;
-    MUJARRAD_BABS.forEach(b => {
+    MUJARRAD_BABS.forEach((b, i) => {
       const wazn = `فَع${b.v1}لَ يَفْع${b.v2}لُ`.normalize("NFC");
       const out = `${f}َ${a}${b.v1}${l}َ ي${"َ"}${f}ْ${a}${b.v2}${l}ُ`.normalize("NFC");
       h += `<tr class="${wazn === ownWazn ? "own-bab" : ""}">
         <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
         <td lang="ar">${wazn}</td>
-        <td lang="ar" class="nakil-out">${out}</td></tr>`;
+        <td>${cell(out, "I", i + 1)}</td></tr>`;
     });
   }
   h += `<tr class="nakil-sec"><th colspan="3" lang="ar">الثُّلَاثِيُّ الْمَزِيدُ — النَّقْلُ إِلَى اثْنَيْ عَشَرَ بَابًا</th></tr>`;
@@ -3971,9 +4001,23 @@ function nakilTable(cls, morph){
     h += `<tr class="${b.wazn.normalize("NFC") === ownHead ? "own-bab" : ""}">
       <th class="person">${state.uiLang === "tr" ? b.tr : b.en}</th>
       <td lang="ar">${b.wazn}</td>
-      <td lang="ar" class="nakil-out">${out.normalize("NFC")}</td></tr>`;
+      <td>${cell(out.normalize("NFC"), b.form, 1)}</td></tr>`;
   });
   return h + `</table></div>`;
+}
+// A derived bab, dressed as a stored paradigm. `muhtelife`, `conjTable` and
+// `ziyadeExt` all read the same shape, so the conjugator's output is handed
+// back in it rather than teaching four functions a second format. The `bab`
+// line says out loud that these forms are DERIVED — the corpus does not carry
+// them, and a learner is entitled to know which of the two they are looking at.
+function nakilMorph(cls, form, bab){
+  const d = sarfDerive(cls, form, bab);
+  if (!d || !d.ok) return null;
+  return { bab: (form === "I" ? (MUJARRAD_BABS[bab - 1] || {}).model || "" : "") ,
+           wazn: d.wazn, masdar: d.masdar || "", fail: d.fail || "", maful: d.maful || null,
+           mazi: d.mazi, mudari: d.mudari, amr: d.amr,
+           mansub: d.mansub, majzum: d.majzum, majzum2: d.majzum2,
+           note: d.note || "", derived: true, form, babN: bab };
 }
 
 // ================= the Sarf Lab engine (المُصَرِّف) =====================
@@ -7345,6 +7389,10 @@ const MAMUL_LABEL = {
 
 let sarfTense = "mazi";
 let sarfUserPick = false;   // an explicit tense click outranks the auto-jump
+// Which bab of the nakil drill the reader has opened, and which of ITS tenses.
+// Null means the drill is showing its table rather than one bab's paradigm.
+let sarfNakilPick = null;   // { form, bab }
+let sarfNakilTense = "mazi";
 let wordCtx = null;
 function openWord(tok, el, tab, ctx){
   if (ctx) wordCtx = ctx;
@@ -7450,12 +7498,42 @@ function openWord(tok, el, tab, ctx){
       </div>`;
     const highlight = tok.s.full.replace(/[«»،:.]/g, "");
     const hlIdx = cellS && cellS.tense === tense ? cellS.i : -1;
-    if (tense === "nakil" && nakil) html += nakilTable(nakil, morph);
+    // The drill, one bab deep. A row was tapped, so the table steps aside and
+    // that bab conjugates in full — its own three tenses and its own muhtelife,
+    // built by the engine rather than stored, and labelled as such.
+    const nm = tense === "nakil" && nakil && sarfNakilPick
+      ? nakilMorph(nakil, sarfNakilPick.form, sarfNakilPick.bab) : null;
+    if (nm) {
+      let nt = sarfNakilTense;
+      if (nt === "muhtelife" && !muhtelife(nm)) nt = "mazi";
+      html += `<div class="nakil-head">
+          <button type="button" class="btn nakil-back" id="nakilBack">${ui().nakilBack}</button>
+          <span class="nk-form" lang="ar">${nm.wazn}</span>
+        </div>
+        <p class="lemma" lang="ar">${nm.mazi[0]}</p>
+        <p class="bab-line">${ui().nakilDerived}</p>
+        <div class="facts">
+          ${chip("المصدر: " + arSpan(nm.masdar))}
+          ${chip("اسم الفاعل: " + arSpan(nm.fail))}
+          ${nm.maful ? chip("اسم المفعول: " + arSpan(nm.maful)) : ""}
+        </div>
+        <div class="seg tense-seg" role="group">
+          <button data-ntense="mazi" class="${nt==="mazi"?"on":""}">الماضي</button>
+          <button data-ntense="mudari" class="${nt==="mudari"?"on":""}">المضارع</button>
+          <button data-ntense="amr" class="${nt==="amr"?"on":""}">الأمر</button>
+          ${muhtelife(nm) ? `<button data-ntense="muhtelife" class="${nt==="muhtelife"?"on":""}">المُخْتَلِفَة</button>` : ""}
+        </div>`;
+      html += nt === "muhtelife" ? muhtelifeTable(nm, "")
+            : nt === "amr" ? conjTable(nm.amr, AMR_ROWS, "")
+            : conjTable(nm[nt], PERSON_ROWS, "");
+      html += `<p class="sarf-note">${ui().nakilDerivedNote}${nm.note ? " " + nm.note : ""}</p>`;
+    }
+    else if (tense === "nakil" && nakil) html += nakilTable(nakil, morph);
     else if (tense === "muhtelife" && muhtelife(morph)) html += muhtelifeTable(morph, highlight);
     else if (tense === "amr") html += conjTable(morph.amr, AMR_ROWS, highlight, hlIdx);
     else if (tense === "muhtelife") html += conjTable(morph.mazi, PERSON_ROWS, highlight);
     else html += conjTable(morph[tense], PERSON_ROWS, highlight, hlIdx);
-    html += `<p class="sarf-note">${
+    if (!nm) html += `<p class="sarf-note">${
       tense === "nakil" ? ui().nakilNote
       : tense === "muhtelife" ? ui().muhtelifeNote
         + (ziyadeExt(morph).length ? " " + ui().ziyadeNote : "")
@@ -7481,8 +7559,24 @@ function openWord(tok, el, tab, ctx){
     b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
   sheetInner.querySelectorAll("[data-tense]").forEach(b =>
     b.addEventListener("click", () => {
-      sarfTense = b.dataset.tense; sarfUserPick = true; openWord(tok, el, "sarf");
+      sarfTense = b.dataset.tense; sarfUserPick = true;
+      sarfNakilPick = null;              // leaving the drill closes the open bab
+      openWord(tok, el, "sarf");
     }));
+  // The nakil drill, made walkable: a row opens that bab, and the back button
+  // returns to the table with nothing else in the sheet disturbed.
+  sheetInner.querySelectorAll(".nakil-go").forEach(b =>
+    b.addEventListener("click", () => {
+      sarfNakilPick = { form: b.dataset.nform, bab: Number(b.dataset.nbab) || 1 };
+      sarfNakilTense = "mazi";
+      openWord(tok, el, "sarf");
+    }));
+  sheetInner.querySelectorAll("[data-ntense]").forEach(b =>
+    b.addEventListener("click", () => {
+      sarfNakilTense = b.dataset.ntense; openWord(tok, el, "sarf");
+    }));
+  const nb = document.getElementById("nakilBack");
+  if (nb) nb.addEventListener("click", () => { sarfNakilPick = null; openWord(tok, el, "sarf"); });
   const sb = document.getElementById("saveBtn");
   if (sb) sb.addEventListener("click", () => {
     toggleSave(tok, wordCtx);

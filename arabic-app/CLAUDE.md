@@ -1736,3 +1736,45 @@ and `naqis1` wires up the first only — so a samiʿa-bab naqis authored through
 `naqis1` ships *خَفِى / *خَفِتْ. The regeneration gate caught it, which is what
 that gate is for: **when the generator and the engine disagree, one of them is
 wrong and the corpus is the thing that finds out.**
+
+## The nakil drill is walkable now, and the bank is a golden file
+
+**The transfer table was a poster.** It showed رَاجَعَ standing in the فَاعَلَ row
+and gave the reader nowhere to go with it. Every row the conjugator can build
+is now a button: tap it and that bab opens in full — its own three tenses and
+its own muhtelife — derived by `sarfDerive` and dressed in the same shape a
+stored paradigm has, so `muhtelife`, `conjTable` and `ziyadeExt` all read it
+without being taught a second format. Rows the conjugator cannot build (IX, XI,
+XII, XIII) stay plain text: a button that leads nowhere is worse than no button.
+The derived view SAYS it was derived — the corpus does not carry those babs, and
+the learner is entitled to know which of the two they are looking at.
+
+**`content/drills/generated.json` is a golden file, not content.** 536 derived
+rows — every ending class × three cases, thirty-six idafas including the refusals,
+forty-seven paradigms sampled at the cells where rules fire, and the scales.
+`tools/gen_drills.js` builds it by driving the app's own exact engines; nothing
+in it is authored, and `--check` in the release gate fails on a one-cell drift.
+Two rules govern it:
+
+- **Nothing invented.** Every root and lemma is one the corpus already carries
+  and a human has already checked; the explanation attached to each row is the
+  engine's own step list, not a paraphrase.
+- **No silent caps.** A scale is admitted only if it round-trips AND none of the
+  pattern's augment letters is also one of the root's. اِنْفَعَلَ on ن ص ر puts two
+  nuns side by side and nothing in the surface says which is the augment — both
+  orderings rebuild the same word, so the round-trip cannot catch it and the test
+  has to be on the LETTERS. The six dropped scales are written into the file with
+  the reason, so the gap is visible instead of quiet.
+
+**Chained `.replace()` cascades.** The round-trip check first read `فَاعِل` for
+ع ل م as broken, because ف→ع then ع→ل then ل→م turns it into مَامِم. One pass
+with a callback, always, when the replacements can feed each other.
+
+**Stems go into `sarf_gen` WITHOUT their sukun** — every maker appends its own,
+and `"سُقْ"` ships سُقْْتَ with two. And the hollow amr needs BOTH stems: the long
+one for the vowel-initial persons (سُوقُوا) and the short one for the bare and
+the نَ (سُقْ، سُقْنَ). Passing the short stem for both cost four cells.
+
+**A lam that matches the suffix contracts.** ثَبَتَ + تَ is ثَبَتَّ, not *ثَبَتْتَ;
+`sarf_gen.idgham` exists for exactly this and a verb whose last radical is
+ت ن or د must be put through it.

@@ -1,0 +1,2728 @@
+{
+ "generated": true,
+ "source": "tools/gen_drills.js",
+ "note": {
+  "en": "GENERATED, not authored. Every form here was computed by the reader's own exact engines from a root or lemma the corpus already carries. It is committed so that any engine change that moves a cell shows up as a diff on a named item. It is not a story and it is not scholarship: it is the engines' behaviour, written down.",
+  "tr": "YAZILMADI, ÜRETİLDİ. Buradaki her şekil, külliyatın hâlihazırda taşıdığı bir kök yahut lemmadan hareketle uygulamanın kendi kat'î motorlarınca hesaplanmıştır. Bir motor değişikliği tek bir hâneyi oynattığında adı belli bir madde üzerinde fark olarak görünsün diye depoya işlenir. Bu bir metin değildir, ilmî bir eser hiç değildir: motorların davranışının yazıya geçirilmiş hâlidir."
+ },
+ "counts": {
+  "endings": 20,
+  "idafa": 36,
+  "paradigms": 47,
+  "mizan": 17,
+  "mizanDropped": 6,
+  "rows": 536
+ },
+ "endings": [
+  {
+   "id": "end:كِتَاب",
+   "lemma": "كِتَاب",
+   "root": "ك ت ب",
+   "shape": "sahih",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "a book",
+    "tr": "kitap"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "كِتَابٌ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "indefinite and munsarif — it takes the tanwin of its own case → كِتَابٌ",
+      "tr": "Nekre ve munsarif — kendi mevkiinin tenvînini alır → كِتَابٌ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "كِتَابًا",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "وَتُزَادُ أَلِفٌ بَعْدَ تَنْوِينِ النَّصْبِ فِي غَيْرِ الْمُنْتَهِي بِتَاءٍ مَرْبُوطَةٍ أَوْ هَمْزَةٍ",
+      "en": "and nasb's tanwin is followed by a written ALIF, unless the word already ends in a ta marbuta or a hamza → كِتَابًا",
+      "tr": "Nasb tenvîninden sonra bir ELİF yazılır; kelime tâ-i merbûta yahut hemze ile bitmiyorsa → كِتَابًا"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "كِتَابٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "indefinite and munsarif — it takes the tanwin of its own case → كِتَابٍ",
+      "tr": "Nekre ve munsarif — kendi mevkiinin tenvînini alır → كِتَابٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:الْكِتَاب",
+   "lemma": "الْكِتَاب",
+   "root": "ك ت ب",
+   "shape": "sahih",
+   "mamnu": false,
+   "definite": true,
+   "gloss": {
+    "en": "the book",
+    "tr": "kitap (marife)"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "الْكِتَابُ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مُعَرَّفٌ فَلَا يُنَوَّنُ، وَيَأْخُذُ حَرَكَةَ مَوْقِعِهِ",
+      "en": "definite, so no tanwin — it simply wears the vowel of its place → الْكِتَابُ",
+      "tr": "Marife olduğu için tenvînlenmez; sadece mevkiinin harekesini alır → الْكِتَابُ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "الْكِتَابَ",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مُعَرَّفٌ فَلَا يُنَوَّنُ، وَيَأْخُذُ حَرَكَةَ مَوْقِعِهِ",
+      "en": "definite, so no tanwin — it simply wears the vowel of its place → الْكِتَابَ",
+      "tr": "Marife olduğu için tenvînlenmez; sadece mevkiinin harekesini alır → الْكِتَابَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "الْكِتَابِ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مُعَرَّفٌ فَلَا يُنَوَّنُ، وَيَأْخُذُ حَرَكَةَ مَوْقِعِهِ",
+      "en": "definite, so no tanwin — it simply wears the vowel of its place → الْكِتَابِ",
+      "tr": "Marife olduğu için tenvînlenmez; sadece mevkiinin harekesini alır → الْكِتَابِ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مَسَاجِد",
+   "lemma": "مَسَاجِد",
+   "root": "س ج د",
+   "shape": "sahih",
+   "mamnu": true,
+   "definite": false,
+   "gloss": {
+    "en": "mosques",
+    "tr": "mescitler"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مَسَاجِدُ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → مَسَاجِدُ",
+      "tr": "GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → مَسَاجِدُ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مَسَاجِدَ",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → مَسَاجِدَ",
+      "tr": "GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → مَسَاجِدَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مَسَاجِدَ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → مَسَاجِدَ",
+      "tr": "GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → مَسَاجِدَ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:فَتًى",
+   "lemma": "فَتًى",
+   "root": "ف ت ي",
+   "shape": "maqsur",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "a young man",
+    "tr": "delikanlı"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "فَتًى",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → فَتًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → فَتًى"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "فَتًى",
+     "manner": "taqdiri",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → فَتًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → فَتًى"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "فَتًى",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → فَتًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → فَتًى"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:الْفَتَى",
+   "lemma": "الْفَتَى",
+   "root": "ف ت ي",
+   "shape": "maqsur",
+   "mamnu": false,
+   "definite": true,
+   "gloss": {
+    "en": "the young man",
+    "tr": "delikanlı (marife)"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "الْفَتَى",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz."
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "الْفَتَى",
+     "manner": "taqdiri",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz."
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "الْفَتَى",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz."
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مَعْنًى",
+   "lemma": "مَعْنًى",
+   "root": "ع ن ي",
+   "shape": "maqsur",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "a meaning",
+    "tr": "bir mana"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مَعْنًى",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → مَعْنًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → مَعْنًى"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مَعْنًى",
+     "manner": "taqdiri",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → مَعْنًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → مَعْنًى"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مَعْنًى",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَقْصُورُ تُقَدَّرُ عَلَيْهِ الْحَرَكَاتُ الثَّلَاثُ لِلتَّعَذُّرِ وَيُكْتَبُ تَنْوِينُهُ فَتْحَةً قَبْلَ الْأَلِفِ فِي الْأَحْوَالِ الثَّلَاثَةِ",
+      "en": "a MAQSUR noun ends in an alif that cannot carry a vowel, so all three cases are UNDERSTOOD on it and none is written and its tanwin is written as a FATHATAN before the alif in all three cases alike — فَتًى is the same word whether it is the doer, the object or after a jarr letter → مَعْنًى",
+      "tr": "İSM-İ MAKSÛRun sonu hareke taşıyamayan eliftir; üç i'râb da onun üzerinde TAKDÎR edilir, hiçbiri yazılmaz. Tenvîni üç hâlde de elifin öncesine FETHATAN olarak yazılır — فَتًى, fâil de olsa mef'ûl de olsa cer harfinden sonra da olsa aynı yazılır → مَعْنًى"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:قَاضِي",
+   "lemma": "قَاضِي",
+   "root": "ق ض ي",
+   "shape": "manqus",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "a judge",
+    "tr": "kadı"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "قَاضٍ",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "الْمَنْقُوصُ النَّكِرَةُ تُحْذَفُ يَاؤُهُ رَفْعًا وَجَرًّا وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ",
+      "en": "an INDEFINITE manqus drops its ya in raf' and in jarr and puts a tanwin in its place — قَاضٍ — and keeps it in nasb, where the fatha can be written: قَاضِيًا → قَاضٍ",
+      "tr": "NEKRE MENKŪSun yâsı ref' ve cerde düşer, yerine tenvîn gelir — قَاضٍ — nasbda ise fetha yazılabildiği için yâ kalır: قَاضِيًا → قَاضٍ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "قَاضِيًا",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "الْمَنْقُوصُ النَّكِرَةُ تُحْذَفُ يَاؤُهُ رَفْعًا وَجَرًّا وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ",
+      "en": "an INDEFINITE manqus drops its ya in raf' and in jarr and puts a tanwin in its place — قَاضٍ — and keeps it in nasb, where the fatha can be written: قَاضِيًا → قَاضِيًا",
+      "tr": "NEKRE MENKŪSun yâsı ref' ve cerde düşer, yerine tenvîn gelir — قَاضٍ — nasbda ise fetha yazılabildiği için yâ kalır: قَاضِيًا → قَاضِيًا"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "قَاضٍ",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "الْمَنْقُوصُ النَّكِرَةُ تُحْذَفُ يَاؤُهُ رَفْعًا وَجَرًّا وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ",
+      "en": "an INDEFINITE manqus drops its ya in raf' and in jarr and puts a tanwin in its place — قَاضٍ — and keeps it in nasb, where the fatha can be written: قَاضِيًا → قَاضٍ",
+      "tr": "NEKRE MENKŪSun yâsı ref' ve cerde düşer, yerine tenvîn gelir — قَاضٍ — nasbda ise fetha yazılabildiği için yâ kalır: قَاضِيًا → قَاضٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:الْقَاضِي",
+   "lemma": "الْقَاضِي",
+   "root": "ق ض ي",
+   "shape": "manqus",
+   "mamnu": false,
+   "definite": true,
+   "gloss": {
+    "en": "the judge",
+    "tr": "kadı (marife)"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "الْقَاضِي",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَنْقُوصُ تُقَدَّرُ عَلَى يَائِهِ الضَّمَّةُ وَالْكَسْرَةُ لِلثِّقَلِ وَتَظْهَرُ الْفَتْحَةُ",
+      "en": "a MANQUS noun ends in a ya: the damma and the kasra are too heavy for it and are only UNDERSTOOD, while the fatha is light enough to be written → الْقَاضِي",
+      "tr": "İSM-İ MENKŪSun sonu yâdır: damme ve kesra ona ağır geldiği için TAKDÎR edilir, fetha ise hafif olduğu için yazılır → الْقَاضِي"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "الْقَاضِيَ",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَنْقُوصُ تُقَدَّرُ عَلَى يَائِهِ الضَّمَّةُ وَالْكَسْرَةُ لِلثِّقَلِ وَتَظْهَرُ الْفَتْحَةُ",
+      "en": "a MANQUS noun ends in a ya: the damma and the kasra are too heavy for it and are only UNDERSTOOD, while the fatha is light enough to be written → الْقَاضِيَ",
+      "tr": "İSM-İ MENKŪSun sonu yâdır: damme ve kesra ona ağır geldiği için TAKDÎR edilir, fetha ise hafif olduğu için yazılır → الْقَاضِيَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "الْقَاضِي",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "الِاسْمُ الْمَنْقُوصُ تُقَدَّرُ عَلَى يَائِهِ الضَّمَّةُ وَالْكَسْرَةُ لِلثِّقَلِ وَتَظْهَرُ الْفَتْحَةُ",
+      "en": "a MANQUS noun ends in a ya: the damma and the kasra are too heavy for it and are only UNDERSTOOD, while the fatha is light enough to be written → الْقَاضِي",
+      "tr": "İSM-İ MENKŪSun sonu yâdır: damme ve kesra ona ağır geldiği için TAKDÎR edilir, fetha ise hafif olduğu için yazılır → الْقَاضِي"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مَعَانِي",
+   "lemma": "مَعَانِي",
+   "root": "ع ن ي",
+   "shape": "manqus",
+   "mamnu": true,
+   "definite": false,
+   "gloss": {
+    "en": "meanings",
+    "tr": "manalar"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مَعَانٍ",
+     "manner": "taqdiri",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "هَذَا مَنْقُوصٌ مَمْنُوعٌ مِنَ الصَّرْفِ — وَهُوَ أَدَقُّ مَا فِي الْبَابِ وَفِي الرَّفْعِ وَالْجَرِّ تُحْذَفُ يَاؤُهُ وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ — تَنْوِينُ عِوَضٍ لَا تَنْوِينُ تَمْكِينٍ",
+      "en": "this word is a MANQUS and BARRED FROM TANWIN at once — the hardest row in the table in raf' and in jarr the ya is DROPPED and a tanwin stands in its place — a tanwin of COMPENSATION, not the tanwin of the indefinite. That is how a word barred from tanwin comes to be written with one → مَعَانٍ",
+      "tr": "Bu kelime hem MENKŪS hem GAYR-İ MUNSARİFtir — bâbın en ince yeri. Ref' ve cerde yâsı DÜŞER, yerine tenvîn getirilir — temkin tenvîni değil İVAZ tenvîni. Tenvînden men edilmiş bir kelimenin tenvînle yazılmasının sebebi budur → مَعَانٍ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مَعَانِيَ",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "هَذَا مَنْقُوصٌ مَمْنُوعٌ مِنَ الصَّرْفِ — وَهُوَ أَدَقُّ مَا فِي الْبَابِ فَفِي النَّصْبِ تَعُودُ يَاؤُهُ وَتَظْهَرُ الْفَتْحَةُ بِلَا تَنْوِينٍ",
+      "en": "this word is a MANQUS and BARRED FROM TANWIN at once — the hardest row in the table in nasb its ya comes back and the fatha is written BARE — no tanwin, because the word is barred from it → مَعَانِيَ",
+      "tr": "Bu kelime hem MENKŪS hem GAYR-İ MUNSARİFtir — bâbın en ince yeri. Nasbda yâsı geri döner ve fetha TENVÎNSİZ yazılır; zira kelime tenvînden men edilmiştir → مَعَانِيَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مَعَانٍ",
+     "manner": "taqdiri",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "هَذَا مَنْقُوصٌ مَمْنُوعٌ مِنَ الصَّرْفِ — وَهُوَ أَدَقُّ مَا فِي الْبَابِ وَفِي الرَّفْعِ وَالْجَرِّ تُحْذَفُ يَاؤُهُ وَيُعَوَّضُ عَنْهَا بِالتَّنْوِينِ — تَنْوِينُ عِوَضٍ لَا تَنْوِينُ تَمْكِينٍ",
+      "en": "this word is a MANQUS and BARRED FROM TANWIN at once — the hardest row in the table in raf' and in jarr the ya is DROPPED and a tanwin stands in its place — a tanwin of COMPENSATION, not the tanwin of the indefinite. That is how a word barred from tanwin comes to be written with one → مَعَانٍ",
+      "tr": "Bu kelime hem MENKŪS hem GAYR-İ MUNSARİFtir — bâbın en ince yeri. Ref' ve cerde yâsı DÜŞER, yerine tenvîn getirilir — temkin tenvîni değil İVAZ tenvîni. Tenvînden men edilmiş bir kelimenin tenvînle yazılmasının sebebi budur → مَعَانٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:خَفَاء",
+   "lemma": "خَفَاء",
+   "root": "خ ف ي",
+   "shape": "sahih",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "obscurity",
+    "tr": "hafâ"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "خَفَاءٌ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → خَفَاءٌ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → خَفَاءٌ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "خَفَاءً",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → خَفَاءً",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → خَفَاءً"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "خَفَاءٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → خَفَاءٍ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → خَفَاءٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:رَجَاء",
+   "lemma": "رَجَاء",
+   "root": "ر ج و",
+   "shape": "sahih",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "hope",
+    "tr": "recâ"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "رَجَاءٌ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → رَجَاءٌ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → رَجَاءٌ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "رَجَاءً",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → رَجَاءً",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → رَجَاءً"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "رَجَاءٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → رَجَاءٍ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → رَجَاءٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:صَحْرَاء",
+   "lemma": "صَحْرَاء",
+   "root": "ص ح ر",
+   "shape": "sahih",
+   "mamnu": true,
+   "definite": false,
+   "gloss": {
+    "en": "a desert",
+    "tr": "çöl"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "صَحْرَاءُ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مَمْدُودٌ آخِرُهُ هَمْزَةُ التَّأْنِيثِ — فَهُوَ مَمْنُوعٌ مِنَ الصَّرْفِ مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "this is a MAMDUD noun whose final hamza is the ALIF OF FEMINISATION — the root has only three letters and the hamza is not one of them — so it is barred from tanwin BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → صَحْرَاءُ",
+      "tr": "Sonu TE'NÎS HEMZESİ olan MEMDÛD isim — kök üç harftir ve hemze onlardan biri değildir — bu yüzden gayr-i munsariftir. GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → صَحْرَاءُ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "صَحْرَاءَ",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ آخِرُهُ هَمْزَةُ التَّأْنِيثِ — فَهُوَ مَمْنُوعٌ مِنَ الصَّرْفِ مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "this is a MAMDUD noun whose final hamza is the ALIF OF FEMINISATION — the root has only three letters and the hamza is not one of them — so it is barred from tanwin BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → صَحْرَاءَ",
+      "tr": "Sonu TE'NÎS HEMZESİ olan MEMDÛD isim — kök üç harftir ve hemze onlardan biri değildir — bu yüzden gayr-i munsariftir. GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → صَحْرَاءَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "صَحْرَاءَ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ آخِرُهُ هَمْزَةُ التَّأْنِيثِ — فَهُوَ مَمْنُوعٌ مِنَ الصَّرْفِ مَمْنُوعٌ مِنَ الصَّرْفِ — لَا يُنَوَّنُ، وَيُجَرُّ بِالْفَتْحَةِ",
+      "en": "this is a MAMDUD noun whose final hamza is the ALIF OF FEMINISATION — the root has only three letters and the hamza is not one of them — so it is barred from tanwin BARRED FROM TANWIN: it takes no tanwin, and in jarr it takes a FATHA in place of the kasra — unless it wears ال or becomes a mudaf, and then it is ordinary again → صَحْرَاءَ",
+      "tr": "Sonu TE'NÎS HEMZESİ olan MEMDÛD isim — kök üç harftir ve hemze onlardan biri değildir — bu yüzden gayr-i munsariftir. GAYR-İ MUNSARİF: tenvîn almaz ve cerde kesra yerine FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman yine normale döner → صَحْرَاءَ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:قُرَّاء",
+   "lemma": "قُرَّاء",
+   "root": "ق ر أ",
+   "shape": "sahih",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "reciters",
+    "tr": "kāriler"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "قُرَّاءٌ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → قُرَّاءٌ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → قُرَّاءٌ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "قُرَّاءً",
+     "manner": "lafzi",
+     "sign": "الْفَتْحَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → قُرَّاءً",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → قُرَّاءً"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "قُرَّاءٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "مَمْدُودٌ هَمْزَتُهُ مُنْقَلِبَةٌ عَنْ أَصْلٍ — فَهُوَ مُنْصَرِفٌ نَكِرَةٌ مُنْصَرِفَةٌ — تَأْخُذُ التَّنْوِينَ عَلَى حَرَكَةِ مَوْقِعِهَا",
+      "en": "this is a MAMDUD noun too, but its hamza is the root's own last letter turned into one — so it is ORDINARY and keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and decline differently, and only the root says which is which indefinite and munsarif — it takes the tanwin of its own case → قُرَّاءٍ",
+      "tr": "Bu da MEMDÛD bir isimdir, fakat hemzesi kökün son harfinden dönüşmüştür — bu yüzden MUNSARİFtir ve tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve farklı i'râb alır; hangisinin hangisi olduğunu yalnız kök söyler. Nekre ve munsarif — kendi mevkiinin tenvînini alır → قُرَّاءٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مُسْلِمُونَ",
+   "lemma": "مُسْلِمُونَ",
+   "root": "س ل م",
+   "shape": "jam-mudhakkar",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "Muslims",
+    "tr": "müslümanlar"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مُسْلِمُونَ",
+     "manner": "lafzi",
+     "sign": "الْوَاوُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُسْلِمُونَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُسْلِمُونَ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مُسْلِمِينَ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُسْلِمِينَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُسْلِمِينَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مُسْلِمِينَ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُسْلِمِينَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُسْلِمِينَ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مُجْتَهِدُونَ",
+   "lemma": "مُجْتَهِدُونَ",
+   "root": "ج ه د",
+   "shape": "jam-mudhakkar",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "mujtahids",
+    "tr": "müctehidler"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مُجْتَهِدُونَ",
+     "manner": "lafzi",
+     "sign": "الْوَاوُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُجْتَهِدُونَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُجْتَهِدُونَ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مُجْتَهِدِينَ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُجْتَهِدِينَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُجْتَهِدِينَ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مُجْتَهِدِينَ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "جَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْوَاوِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a SOUND MASCULINE PLURAL declines by a letter: waw in raf', ya in nasb and jarr → مُجْتَهِدِينَ",
+      "tr": "CEM'-İ MÜZEKKER-İ SÂLİM harf ile i'râb alır: ref'de vâv, nasb ve cerde yâ → مُجْتَهِدِينَ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:كِتَابَانِ",
+   "lemma": "كِتَابَانِ",
+   "root": "ك ت ب",
+   "shape": "muthanna",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "two books",
+    "tr": "iki kitap"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "كِتَابَانِ",
+     "manner": "lafzi",
+     "sign": "الْأَلِفُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → كِتَابَانِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → كِتَابَانِ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "كِتَابَيْنِ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → كِتَابَيْنِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → كِتَابَيْنِ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "كِتَابَيْنِ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → كِتَابَيْنِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → كِتَابَيْنِ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:دَفَّتَانِ",
+   "lemma": "دَفَّتَانِ",
+   "root": "د ف ف",
+   "shape": "muthanna",
+   "mamnu": true,
+   "definite": false,
+   "gloss": {
+    "en": "two covers",
+    "tr": "iki kapak"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "دَفَّتَانِ",
+     "manner": "lafzi",
+     "sign": "الْأَلِفُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → دَفَّتَانِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → دَفَّتَانِ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "دَفَّتَيْنِ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → دَفَّتَيْنِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → دَفَّتَيْنِ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "دَفَّتَيْنِ",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "الْمُثَنَّى يُعْرَبُ بِالْأَلِفِ رَفْعًا وَبِالْيَاءِ نَصْبًا وَجَرًّا",
+      "en": "a DUAL declines by a letter: alif in raf', ya in nasb and jarr → دَفَّتَيْنِ",
+      "tr": "TESNİYE harf ile i'râb alır: ref'de elif, nasb ve cerde yâ → دَفَّتَيْنِ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:مُسْلِمَات",
+   "lemma": "مُسْلِمَات",
+   "root": "س ل م",
+   "shape": "jam-muannath",
+   "mamnu": false,
+   "definite": false,
+   "gloss": {
+    "en": "Muslim women",
+    "tr": "müslüman kadınlar"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "مُسْلِمَاتٌ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُجَرُّ بِالْكَسْرَةِ",
+      "en": "a sound feminine plural takes the damma in raf' and the kasra in jarr → مُسْلِمَاتٌ",
+      "tr": "Cem'-i müennes-i sâlim ref'de damme, cerde kesra alır → مُسْلِمَاتٌ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "مُسْلِمَاتٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُنْصَبُ بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ",
+      "en": "a SOUND FEMININE PLURAL takes a KASRA in nasb, standing in for the fatha — the one place a mansub noun is not written with a fatha → مُسْلِمَاتٍ",
+      "tr": "CEM'-İ MÜENNES-İ SÂLİM nasb hâlinde fetha yerine KESRA alır — mansub bir ismin fetha ile yazılmadığı tek yer → مُسْلِمَاتٍ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "مُسْلِمَاتٍ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُجَرُّ بِالْكَسْرَةِ",
+      "en": "a sound feminine plural takes the damma in raf' and the kasra in jarr → مُسْلِمَاتٍ",
+      "tr": "Cem'-i müennes-i sâlim ref'de damme, cerde kesra alır → مُسْلِمَاتٍ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:الطَّالِبَات",
+   "lemma": "الطَّالِبَات",
+   "root": "ط ل ب",
+   "shape": "jam-muannath",
+   "mamnu": false,
+   "definite": true,
+   "gloss": {
+    "en": "the female students",
+    "tr": "kız talebeler"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "الطَّالِبَاتُ",
+     "manner": "lafzi",
+     "sign": "الضَّمَّةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُجَرُّ بِالْكَسْرَةِ",
+      "en": "a sound feminine plural takes the damma in raf' and the kasra in jarr → الطَّالِبَاتُ",
+      "tr": "Cem'-i müennes-i sâlim ref'de damme, cerde kesra alır → الطَّالِبَاتُ"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "الطَّالِبَاتِ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُنْصَبُ بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ",
+      "en": "a SOUND FEMININE PLURAL takes a KASRA in nasb, standing in for the fatha — the one place a mansub noun is not written with a fatha → الطَّالِبَاتِ",
+      "tr": "CEM'-İ MÜENNES-İ SÂLİM nasb hâlinde fetha yerine KESRA alır — mansub bir ismin fetha ile yazılmadığı tek yer → الطَّالِبَاتِ"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "الطَّالِبَاتِ",
+     "manner": "lafzi",
+     "sign": "الْكَسْرَةُ",
+     "why": {
+      "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُجَرُّ بِالْكَسْرَةِ",
+      "en": "a sound feminine plural takes the damma in raf' and the kasra in jarr → الطَّالِبَاتِ",
+      "tr": "Cem'-i müennes-i sâlim ref'de damme, cerde kesra alır → الطَّالِبَاتِ"
+     }
+    }
+   ]
+  },
+  {
+   "id": "end:أَب",
+   "lemma": "أَب",
+   "root": "أ ب و",
+   "shape": "khamsa",
+   "mamnu": false,
+   "definite": true,
+   "gloss": {
+    "en": "a father",
+    "tr": "baba"
+   },
+   "rows": [
+    {
+     "kase": "raf",
+     "out": "أَبُو",
+     "manner": "lafzi",
+     "sign": "الْوَاوُ",
+     "why": {
+      "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ",
+      "en": "one of the FIVE NOUNS, and a mudaf: it declines by a LETTER — waw, alif, ya → أَبُو",
+      "tr": "ESMÂ-İ HAMSEden ve muzâf: HARF ile i'râb alır — vâv, elif, yâ → أَبُو"
+     }
+    },
+    {
+     "kase": "nasb",
+     "out": "أَبَا",
+     "manner": "lafzi",
+     "sign": "الْأَلِفُ",
+     "why": {
+      "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ",
+      "en": "one of the FIVE NOUNS, and a mudaf: it declines by a LETTER — waw, alif, ya → أَبَا",
+      "tr": "ESMÂ-İ HAMSEden ve muzâf: HARF ile i'râb alır — vâv, elif, yâ → أَبَا"
+     }
+    },
+    {
+     "kase": "jarr",
+     "out": "أَبِي",
+     "manner": "lafzi",
+     "sign": "الْيَاءُ",
+     "why": {
+      "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ",
+      "en": "one of the FIVE NOUNS, and a mudaf: it declines by a LETTER — waw, alif, ya → أَبِي",
+      "tr": "ESMÂ-İ HAMSEden ve muzâf: HARF ile i'râb alır — vâv, elif, yâ → أَبِي"
+     }
+    }
+   ]
+  }
+ ],
+ "idafa": [
+  {
+   "id": "idf:كِتَابٌ+الْوَلَدُ:raf",
+   "first": "كِتَابٌ",
+   "second": "الْوَلَدُ",
+   "kase": "raf",
+   "out": "كِتَابُ الْوَلَدِ",
+   "head": "كِتَابُ",
+   "tail": "الْوَلَدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → كِتَابُ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْوَلَدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → كِتَابُ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْوَلَدِ"
+   }
+  },
+  {
+   "id": "idf:كِتَابٌ+الْوَلَدُ:nasb",
+   "first": "كِتَابٌ",
+   "second": "الْوَلَدُ",
+   "kase": "nasb",
+   "out": "كِتَابَ الْوَلَدِ",
+   "head": "كِتَابَ",
+   "tail": "الْوَلَدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → كِتَابَ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْوَلَدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → كِتَابَ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْوَلَدِ"
+   }
+  },
+  {
+   "id": "idf:كِتَابٌ+الْوَلَدُ:jarr",
+   "first": "كِتَابٌ",
+   "second": "الْوَلَدُ",
+   "kase": "jarr",
+   "out": "كِتَابِ الْوَلَدِ",
+   "head": "كِتَابِ",
+   "tail": "الْوَلَدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → كِتَابِ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْوَلَدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → كِتَابِ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْوَلَدِ"
+   }
+  },
+  {
+   "id": "idf:بَابٌ+الْمَسْجِدُ:raf",
+   "first": "بَابٌ",
+   "second": "الْمَسْجِدُ",
+   "kase": "raf",
+   "out": "بَابُ الْمَسْجِدِ",
+   "head": "بَابُ",
+   "tail": "الْمَسْجِدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → بَابُ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَسْجِدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → بَابُ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَسْجِدِ"
+   }
+  },
+  {
+   "id": "idf:بَابٌ+الْمَسْجِدُ:nasb",
+   "first": "بَابٌ",
+   "second": "الْمَسْجِدُ",
+   "kase": "nasb",
+   "out": "بَابَ الْمَسْجِدِ",
+   "head": "بَابَ",
+   "tail": "الْمَسْجِدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → بَابَ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَسْجِدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → بَابَ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَسْجِدِ"
+   }
+  },
+  {
+   "id": "idf:بَابٌ+الْمَسْجِدُ:jarr",
+   "first": "بَابٌ",
+   "second": "الْمَسْجِدُ",
+   "kase": "jarr",
+   "out": "بَابِ الْمَسْجِدِ",
+   "head": "بَابِ",
+   "tail": "الْمَسْجِدِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → بَابِ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَسْجِدِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → بَابِ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَسْجِدِ"
+   }
+  },
+  {
+   "id": "idf:أَبٌ+بَكْرٌ:raf",
+   "first": "أَبٌ",
+   "second": "بَكْرٌ",
+   "kase": "raf",
+   "out": "أَبُو بَكْرٍ",
+   "head": "أَبُو",
+   "tail": "بَكْرٍ",
+   "ok": true,
+   "why": {
+    "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "one of the FIVE NOUNS: added to another noun it declines by a LETTER, not a vowel — waw in raf', alif in nasb, ya in jarr → أَبُو the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → بَكْرٍ",
+    "tr": "ESMÂ-İ HAMSEden: izâfet hâlinde hareke ile değil HARF ile i'râb alır — ref'de vâv, nasbda elif, cerde yâ → أَبُو Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → بَكْرٍ"
+   }
+  },
+  {
+   "id": "idf:أَبٌ+بَكْرٌ:nasb",
+   "first": "أَبٌ",
+   "second": "بَكْرٌ",
+   "kase": "nasb",
+   "out": "أَبَا بَكْرٍ",
+   "head": "أَبَا",
+   "tail": "بَكْرٍ",
+   "ok": true,
+   "why": {
+    "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "one of the FIVE NOUNS: added to another noun it declines by a LETTER, not a vowel — waw in raf', alif in nasb, ya in jarr → أَبَا the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → بَكْرٍ",
+    "tr": "ESMÂ-İ HAMSEden: izâfet hâlinde hareke ile değil HARF ile i'râb alır — ref'de vâv, nasbda elif, cerde yâ → أَبَا Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → بَكْرٍ"
+   }
+  },
+  {
+   "id": "idf:أَبٌ+بَكْرٌ:jarr",
+   "first": "أَبٌ",
+   "second": "بَكْرٌ",
+   "kase": "jarr",
+   "out": "أَبِي بَكْرٍ",
+   "head": "أَبِي",
+   "tail": "بَكْرٍ",
+   "ok": true,
+   "why": {
+    "ar": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ عِنْدَ الْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "one of the FIVE NOUNS: added to another noun it declines by a LETTER, not a vowel — waw in raf', alif in nasb, ya in jarr → أَبِي the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → بَكْرٍ",
+    "tr": "ESMÂ-İ HAMSEden: izâfet hâlinde hareke ile değil HARF ile i'râb alır — ref'de vâv, nasbda elif, cerde yâ → أَبِي Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → بَكْرٍ"
+   }
+  },
+  {
+   "id": "idf:مُسْلِمُونَ+الْمَدِينَةُ:raf",
+   "first": "مُسْلِمُونَ",
+   "second": "الْمَدِينَةُ",
+   "kase": "raf",
+   "out": "مُسْلِمُو الْمَدِينَةِ",
+   "head": "مُسْلِمُو",
+   "tail": "الْمَدِينَةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُسْلِمُو the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَدِينَةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُسْلِمُو Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَدِينَةِ"
+   }
+  },
+  {
+   "id": "idf:مُسْلِمُونَ+الْمَدِينَةُ:nasb",
+   "first": "مُسْلِمُونَ",
+   "second": "الْمَدِينَةُ",
+   "kase": "nasb",
+   "out": "مُسْلِمِي الْمَدِينَةِ",
+   "head": "مُسْلِمِي",
+   "tail": "الْمَدِينَةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَجَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُسْلِمِي the sound masculine plural declines by a LETTER, so changing the case changes the letter: waw in raf', ya in nasb and jarr → مُسْلِمِي the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَدِينَةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُسْلِمِي Cemi müzekker sâlim HARF ile i'râb alır; mevki değişince harf de değişir: ref'de vâv, nasb ve cerde yâ → مُسْلِمِي Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَدِينَةِ"
+   }
+  },
+  {
+   "id": "idf:مُسْلِمُونَ+الْمَدِينَةُ:jarr",
+   "first": "مُسْلِمُونَ",
+   "second": "الْمَدِينَةُ",
+   "kase": "jarr",
+   "out": "مُسْلِمِي الْمَدِينَةِ",
+   "head": "مُسْلِمِي",
+   "tail": "الْمَدِينَةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَجَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُسْلِمِي the sound masculine plural declines by a LETTER, so changing the case changes the letter: waw in raf', ya in nasb and jarr → مُسْلِمِي the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَدِينَةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُسْلِمِي Cemi müzekker sâlim HARF ile i'râb alır; mevki değişince harf de değişir: ref'de vâv, nasb ve cerde yâ → مُسْلِمِي Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَدِينَةِ"
+   }
+  },
+  {
+   "id": "idf:مُجْتَهِدُونَ+الْأُمَّةُ:raf",
+   "first": "مُجْتَهِدُونَ",
+   "second": "الْأُمَّةُ",
+   "kase": "raf",
+   "out": "مُجْتَهِدُو الْأُمَّةِ",
+   "head": "مُجْتَهِدُو",
+   "tail": "الْأُمَّةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُجْتَهِدُو the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأُمَّةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُجْتَهِدُو Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأُمَّةِ"
+   }
+  },
+  {
+   "id": "idf:مُجْتَهِدُونَ+الْأُمَّةُ:nasb",
+   "first": "مُجْتَهِدُونَ",
+   "second": "الْأُمَّةُ",
+   "kase": "nasb",
+   "out": "مُجْتَهِدِي الْأُمَّةِ",
+   "head": "مُجْتَهِدِي",
+   "tail": "الْأُمَّةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَجَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُجْتَهِدِي the sound masculine plural declines by a LETTER, so changing the case changes the letter: waw in raf', ya in nasb and jarr → مُجْتَهِدِي the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأُمَّةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُجْتَهِدِي Cemi müzekker sâlim HARF ile i'râb alır; mevki değişince harf de değişir: ref'de vâv, nasb ve cerde yâ → مُجْتَهِدِي Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأُمَّةِ"
+   }
+  },
+  {
+   "id": "idf:مُجْتَهِدُونَ+الْأُمَّةُ:jarr",
+   "first": "مُجْتَهِدُونَ",
+   "second": "الْأُمَّةُ",
+   "kase": "jarr",
+   "out": "مُجْتَهِدِي الْأُمَّةِ",
+   "head": "مُجْتَهِدِي",
+   "tail": "الْأُمَّةِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَجَمْعُ الْمُذَكَّرِ السَّالِمِ يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → مُجْتَهِدِي the sound masculine plural declines by a LETTER, so changing the case changes the letter: waw in raf', ya in nasb and jarr → مُجْتَهِدِي the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأُمَّةِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → مُجْتَهِدِي Cemi müzekker sâlim HARF ile i'râb alır; mevki değişince harf de değişir: ref'de vâv, nasb ve cerde yâ → مُجْتَهِدِي Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأُمَّةِ"
+   }
+  },
+  {
+   "id": "idf:دَفَّتَانِ+الْمُصْحَفُ:raf",
+   "first": "دَفَّتَانِ",
+   "second": "الْمُصْحَفُ",
+   "kase": "raf",
+   "out": "دَفَّتَا الْمُصْحَفِ",
+   "head": "دَفَّتَا",
+   "tail": "الْمُصْحَفِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → دَفَّتَا the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمُصْحَفِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → دَفَّتَا Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمُصْحَفِ"
+   }
+  },
+  {
+   "id": "idf:دَفَّتَانِ+الْمُصْحَفُ:nasb",
+   "first": "دَفَّتَانِ",
+   "second": "الْمُصْحَفُ",
+   "kase": "nasb",
+   "out": "دَفَّتَيِ الْمُصْحَفِ",
+   "head": "دَفَّتَيِ",
+   "tail": "الْمُصْحَفِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَالْمُثَنَّى يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَكُسِرَتِ الْيَاءُ لِالْتِقَاءِ السَّاكِنَيْنِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → دَفَّتَيْ the dual declines by a LETTER, so changing the case changes the letter: alif in raf', ya in nasb and jarr → دَفَّتَيْ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمُصْحَفِ two SUKUNS have met — the ya of the dual and the silent alif of ال — and Arabic will not say two in a row, so the first is broken with a KASRA → دَفَّتَيِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → دَفَّتَيْ Tesniye HARF ile i'râb alır; mevki değişince harf de değişir: ref'de elif, nasb ve cerde yâ → دَفَّتَيْ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمُصْحَفِ İki SÂKİN karşılaştı — tesniyenin yâsı ile «أَلْ»in sâkin elifi — ve Arapça iki sâkini peş peşe söylemez; birincisi KESRA ile harekelenir → دَفَّتَيِ"
+   }
+  },
+  {
+   "id": "idf:دَفَّتَانِ+الْمُصْحَفُ:jarr",
+   "first": "دَفَّتَانِ",
+   "second": "الْمُصْحَفُ",
+   "kase": "jarr",
+   "out": "دَفَّتَيِ الْمُصْحَفِ",
+   "head": "دَفَّتَيِ",
+   "tail": "الْمُصْحَفِ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَالْمُثَنَّى يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَكُسِرَتِ الْيَاءُ لِالْتِقَاءِ السَّاكِنَيْنِ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → دَفَّتَيْ the dual declines by a LETTER, so changing the case changes the letter: alif in raf', ya in nasb and jarr → دَفَّتَيْ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمُصْحَفِ two SUKUNS have met — the ya of the dual and the silent alif of ال — and Arabic will not say two in a row, so the first is broken with a KASRA → دَفَّتَيِ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → دَفَّتَيْ Tesniye HARF ile i'râb alır; mevki değişince harf de değişir: ref'de elif, nasb ve cerde yâ → دَفَّتَيْ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمُصْحَفِ İki SÂKİN karşılaştı — tesniyenin yâsı ile «أَلْ»in sâkin elifi — ve Arapça iki sâkini peş peşe söylemez; birincisi KESRA ile harekelenir → دَفَّتَيِ"
+   }
+  },
+  {
+   "id": "idf:كِتَابَانِ+وَلَدٌ:raf",
+   "first": "كِتَابَانِ",
+   "second": "وَلَدٌ",
+   "kase": "raf",
+   "out": "كِتَابَا وَلَدٍ",
+   "head": "كِتَابَا",
+   "tail": "وَلَدٍ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → كِتَابَا the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → وَلَدٍ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → كِتَابَا Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → وَلَدٍ"
+   }
+  },
+  {
+   "id": "idf:كِتَابَانِ+وَلَدٌ:nasb",
+   "first": "كِتَابَانِ",
+   "second": "وَلَدٌ",
+   "kase": "nasb",
+   "out": "كِتَابَيْ وَلَدٍ",
+   "head": "كِتَابَيْ",
+   "tail": "وَلَدٍ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَالْمُثَنَّى يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → كِتَابَيْ the dual declines by a LETTER, so changing the case changes the letter: alif in raf', ya in nasb and jarr → كِتَابَيْ the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → وَلَدٍ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → كِتَابَيْ Tesniye HARF ile i'râb alır; mevki değişince harf de değişir: ref'de elif, nasb ve cerde yâ → كِتَابَيْ Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → وَلَدٍ"
+   }
+  },
+  {
+   "id": "idf:كِتَابَانِ+وَلَدٌ:jarr",
+   "first": "كِتَابَانِ",
+   "second": "وَلَدٌ",
+   "kase": "jarr",
+   "out": "كِتَابَيْ وَلَدٍ",
+   "head": "كِتَابَيْ",
+   "tail": "وَلَدٍ",
+   "ok": true,
+   "why": {
+    "ar": "تُحْذَفُ نُونُ التَّثْنِيَةِ وَجَمْعِ الْمُذَكَّرِ السَّالِمِ لِلْإِضَافَةِ وَالْمُثَنَّى يُعْرَبُ بِالْحُرُوفِ، فَتَغَيَّرَ الْحَرْفُ بِتَغَيُّرِ الْمَوْقِعِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ وَهُوَ نَكِرَةٌ فَيُنَوَّنُ",
+    "en": "the NUN of the dual and of the sound masculine plural is dropped for the idafa — that nun stands in the place of the tanwin, so it goes where the tanwin would have gone → كِتَابَيْ the dual declines by a LETTER, so changing the case changes the letter: alif in raf', ya in nasb and jarr → كِتَابَيْ the mudaf ilayh is in jarr and still indefinite, so it keeps its tanwin → وَلَدٍ",
+    "tr": "İzâfet sebebiyle TESNİYE ve CEMİ MÜZEKKER SÂLİM NÛNu düşer — o nûn tenvînin yerini tutar, tenvînin gittiği yerde o da gider → كِتَابَيْ Tesniye HARF ile i'râb alır; mevki değişince harf de değişir: ref'de elif, nasb ve cerde yâ → كِتَابَيْ Muzâfun ileyh mecrûrdur ve nekre kaldığı için tenvînini korur → وَلَدٍ"
+   }
+  },
+  {
+   "id": "idf:فَتَى+الْقَوْمِ:raf",
+   "first": "فَتَى",
+   "second": "الْقَوْمِ",
+   "kase": "raf",
+   "out": "فَتَى الْقَوْمِ",
+   "head": "فَتَى",
+   "tail": "الْقَوْمِ",
+   "ok": true,
+   "why": {
+    "ar": "الْمُضَافُ مَقْصُورٌ فَحَرَكَتُهُ مُقَدَّرَةٌ عَلَى الْأَلِفِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the mudaf ends in a maqsur alif, which carries no vowel — its case is there but TAQDIRI, understood rather than written the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْقَوْمِ",
+    "tr": "Muzâf maksûrdur; elif hareke taşımaz — i'râbı vardır fakat yazılmaz, TAKDÎRÎdir. Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْقَوْمِ"
+   }
+  },
+  {
+   "id": "idf:فَتَى+الْقَوْمِ:nasb",
+   "first": "فَتَى",
+   "second": "الْقَوْمِ",
+   "kase": "nasb",
+   "out": "فَتَى الْقَوْمِ",
+   "head": "فَتَى",
+   "tail": "الْقَوْمِ",
+   "ok": true,
+   "why": {
+    "ar": "الْمُضَافُ مَقْصُورٌ فَحَرَكَتُهُ مُقَدَّرَةٌ عَلَى الْأَلِفِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the mudaf ends in a maqsur alif, which carries no vowel — its case is there but TAQDIRI, understood rather than written the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْقَوْمِ",
+    "tr": "Muzâf maksûrdur; elif hareke taşımaz — i'râbı vardır fakat yazılmaz, TAKDÎRÎdir. Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْقَوْمِ"
+   }
+  },
+  {
+   "id": "idf:فَتَى+الْقَوْمِ:jarr",
+   "first": "فَتَى",
+   "second": "الْقَوْمِ",
+   "kase": "jarr",
+   "out": "فَتَى الْقَوْمِ",
+   "head": "فَتَى",
+   "tail": "الْقَوْمِ",
+   "ok": true,
+   "why": {
+    "ar": "الْمُضَافُ مَقْصُورٌ فَحَرَكَتُهُ مُقَدَّرَةٌ عَلَى الْأَلِفِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the mudaf ends in a maqsur alif, which carries no vowel — its case is there but TAQDIRI, understood rather than written the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْقَوْمِ",
+    "tr": "Muzâf maksûrdur; elif hareke taşımaz — i'râbı vardır fakat yazılmaz, TAKDÎRÎdir. Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْقَوْمِ"
+   }
+  },
+  {
+   "id": "idf:قِسْمَةٌ+غَنَائِمُ:raf",
+   "first": "قِسْمَةٌ",
+   "second": "غَنَائِمُ",
+   "kase": "raf",
+   "out": "قِسْمَةُ غَنَائِمَ",
+   "head": "قِسْمَةُ",
+   "tail": "غَنَائِمَ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَمْنُوعٌ مِنَ الصَّرْفِ فَيُجَرُّ بِالْفَتْحَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → قِسْمَةُ the mudaf ilayh is BARRED FROM TANWIN, and such a noun takes a FATHA in jarr, not a kasra — unless it wears ال or is itself a mudaf → غَنَائِمَ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → قِسْمَةُ Muzâfun ileyh GAYR-İ MUNSARİFtir; böyle bir isim cerde kesra değil FETHA alır — «أَلْ» almadıkça yahut kendisi muzâf olmadıkça → غَنَائِمَ"
+   }
+  },
+  {
+   "id": "idf:قِسْمَةٌ+غَنَائِمُ:nasb",
+   "first": "قِسْمَةٌ",
+   "second": "غَنَائِمُ",
+   "kase": "nasb",
+   "out": "قِسْمَةَ غَنَائِمَ",
+   "head": "قِسْمَةَ",
+   "tail": "غَنَائِمَ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَمْنُوعٌ مِنَ الصَّرْفِ فَيُجَرُّ بِالْفَتْحَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → قِسْمَةَ the mudaf ilayh is BARRED FROM TANWIN, and such a noun takes a FATHA in jarr, not a kasra — unless it wears ال or is itself a mudaf → غَنَائِمَ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → قِسْمَةَ Muzâfun ileyh GAYR-İ MUNSARİFtir; böyle bir isim cerde kesra değil FETHA alır — «أَلْ» almadıkça yahut kendisi muzâf olmadıkça → غَنَائِمَ"
+   }
+  },
+  {
+   "id": "idf:قِسْمَةٌ+غَنَائِمُ:jarr",
+   "first": "قِسْمَةٌ",
+   "second": "غَنَائِمُ",
+   "kase": "jarr",
+   "out": "قِسْمَةِ غَنَائِمَ",
+   "head": "قِسْمَةِ",
+   "tail": "غَنَائِمَ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَمْنُوعٌ مِنَ الصَّرْفِ فَيُجَرُّ بِالْفَتْحَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → قِسْمَةِ the mudaf ilayh is BARRED FROM TANWIN, and such a noun takes a FATHA in jarr, not a kasra — unless it wears ال or is itself a mudaf → غَنَائِمَ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → قِسْمَةِ Muzâfun ileyh GAYR-İ MUNSARİFtir; böyle bir isim cerde kesra değil FETHA alır — «أَلْ» almadıkça yahut kendisi muzâf olmadıkça → غَنَائِمَ"
+   }
+  },
+  {
+   "id": "idf:الْكِتَابُ+الْوَلَدُ:raf",
+   "first": "الْكِتَابُ",
+   "second": "الْوَلَدُ",
+   "kase": "raf",
+   "ok": false,
+   "why": {
+    "ar": "لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ — فَلَا يَصِحُّ أَنْ يَكُونَ الْمُضَافُ مُعَرَّفًا بِـ«أَلْ».",
+    "en": "The article and an idafa never combine. A noun is made definite EITHER by ال OR by what follows it — never by both — so «الْكِتَابُ» cannot be a mudaf while it wears ال. Drop the article and try again.",
+    "tr": "Harf-i tarif ile izâfet bir arada bulunmaz. Bir isim YA «أَلْ» ile YA da kendisinden sonrakiyle marife olur, ikisiyle birden olmaz; öyleyse «الْكِتَابُ» «أَلْ» ile iken muzâf olamaz. Harf-i tarifi düşürüp tekrar deneyin."
+   }
+  },
+  {
+   "id": "idf:الْكِتَابُ+الْوَلَدُ:nasb",
+   "first": "الْكِتَابُ",
+   "second": "الْوَلَدُ",
+   "kase": "nasb",
+   "ok": false,
+   "why": {
+    "ar": "لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ — فَلَا يَصِحُّ أَنْ يَكُونَ الْمُضَافُ مُعَرَّفًا بِـ«أَلْ».",
+    "en": "The article and an idafa never combine. A noun is made definite EITHER by ال OR by what follows it — never by both — so «الْكِتَابُ» cannot be a mudaf while it wears ال. Drop the article and try again.",
+    "tr": "Harf-i tarif ile izâfet bir arada bulunmaz. Bir isim YA «أَلْ» ile YA da kendisinden sonrakiyle marife olur, ikisiyle birden olmaz; öyleyse «الْكِتَابُ» «أَلْ» ile iken muzâf olamaz. Harf-i tarifi düşürüp tekrar deneyin."
+   }
+  },
+  {
+   "id": "idf:الْكِتَابُ+الْوَلَدُ:jarr",
+   "first": "الْكِتَابُ",
+   "second": "الْوَلَدُ",
+   "kase": "jarr",
+   "ok": false,
+   "why": {
+    "ar": "لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ — فَلَا يَصِحُّ أَنْ يَكُونَ الْمُضَافُ مُعَرَّفًا بِـ«أَلْ».",
+    "en": "The article and an idafa never combine. A noun is made definite EITHER by ال OR by what follows it — never by both — so «الْكِتَابُ» cannot be a mudaf while it wears ال. Drop the article and try again.",
+    "tr": "Harf-i tarif ile izâfet bir arada bulunmaz. Bir isim YA «أَلْ» ile YA da kendisinden sonrakiyle marife olur, ikisiyle birden olmaz; öyleyse «الْكِتَابُ» «أَلْ» ile iken muzâf olamaz. Harf-i tarifi düşürüp tekrar deneyin."
+   }
+  },
+  {
+   "id": "idf:رَجَاءٌ+الْمَعْرِفَةُ:raf",
+   "first": "رَجَاءٌ",
+   "second": "الْمَعْرِفَةُ",
+   "kase": "raf",
+   "out": "رَجَاءُ الْمَعْرِفَةِ",
+   "head": "رَجَاءُ",
+   "tail": "الْمَعْرِفَةِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → رَجَاءُ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَعْرِفَةِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → رَجَاءُ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَعْرِفَةِ"
+   }
+  },
+  {
+   "id": "idf:رَجَاءٌ+الْمَعْرِفَةُ:nasb",
+   "first": "رَجَاءٌ",
+   "second": "الْمَعْرِفَةُ",
+   "kase": "nasb",
+   "out": "رَجَاءَ الْمَعْرِفَةِ",
+   "head": "رَجَاءَ",
+   "tail": "الْمَعْرِفَةِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → رَجَاءَ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَعْرِفَةِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → رَجَاءَ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَعْرِفَةِ"
+   }
+  },
+  {
+   "id": "idf:رَجَاءٌ+الْمَعْرِفَةُ:jarr",
+   "first": "رَجَاءٌ",
+   "second": "الْمَعْرِفَةُ",
+   "kase": "jarr",
+   "out": "رَجَاءِ الْمَعْرِفَةِ",
+   "head": "رَجَاءِ",
+   "tail": "الْمَعْرِفَةِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → رَجَاءِ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْمَعْرِفَةِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → رَجَاءِ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْمَعْرِفَةِ"
+   }
+  },
+  {
+   "id": "idf:مَدَارٌ+الْأَحْكَامُ:raf",
+   "first": "مَدَارٌ",
+   "second": "الْأَحْكَامُ",
+   "kase": "raf",
+   "out": "مَدَارُ الْأَحْكَامِ",
+   "head": "مَدَارُ",
+   "tail": "الْأَحْكَامِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → مَدَارُ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأَحْكَامِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → مَدَارُ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأَحْكَامِ"
+   }
+  },
+  {
+   "id": "idf:مَدَارٌ+الْأَحْكَامُ:nasb",
+   "first": "مَدَارٌ",
+   "second": "الْأَحْكَامُ",
+   "kase": "nasb",
+   "out": "مَدَارَ الْأَحْكَامِ",
+   "head": "مَدَارَ",
+   "tail": "الْأَحْكَامِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → مَدَارَ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأَحْكَامِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → مَدَارَ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأَحْكَامِ"
+   }
+  },
+  {
+   "id": "idf:مَدَارٌ+الْأَحْكَامُ:jarr",
+   "first": "مَدَارٌ",
+   "second": "الْأَحْكَامُ",
+   "kase": "jarr",
+   "out": "مَدَارِ الْأَحْكَامِ",
+   "head": "مَدَارِ",
+   "tail": "الْأَحْكَامِ",
+   "ok": true,
+   "why": {
+    "ar": "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ الْمُضَافُ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ",
+    "en": "the TANWIN is dropped for the idafa — a mudaf is made definite by what follows it, and the tanwin is the mark of the indefinite → مَدَارِ the mudaf ilayh is in jarr by the kasra — already definite, so no tanwin → الْأَحْكَامِ",
+    "tr": "İzâfet sebebiyle TENVÎN düşer — muzâf kendisinden sonrakiyle marife olur, tenvîn ise nekrelik alâmetidir → مَدَارِ Muzâfun ileyh kesra ile mecrûrdur — hâlihazırda marife olduğu için tenvîn almaz → الْأَحْكَامِ"
+   }
+  }
+ ],
+ "paradigms": [
+  {
+   "id": "sarf:ن ص ر:I",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ",
+   "masdar": null,
+   "ismFail": "نَاصِر",
+   "ismMaful": "مَنْصُور",
+   "cells": {
+    "maziHe": "نَصَرَ",
+    "maziTheyF": "نَصَرْنَ",
+    "maziYouM": "نَصَرْتَ",
+    "mudariHe": "يَنْصُرُ",
+    "mudariTheyF": "يَنْصُرْنَ",
+    "amr": "اُنْصُرْ",
+    "amrTheyF": "اُنْصُرْنَ",
+    "mansub": "يَنْصُرَ",
+    "majzum": "يَنْصُرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:II",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "II",
+   "bab": null,
+   "wazn": "فَعَّلَ يُفَعِّلُ",
+   "masdar": "تَنْصِير",
+   "ismFail": "مُنَصِّر",
+   "ismMaful": "مُنَصَّر",
+   "cells": {
+    "maziHe": "نَصَّرَ",
+    "maziTheyF": "نَصَّرْنَ",
+    "maziYouM": "نَصَّرْتَ",
+    "mudariHe": "يُنَصِّرُ",
+    "mudariTheyF": "يُنَصِّرْنَ",
+    "amr": "نَصِّرْ",
+    "amrTheyF": "نَصِّرْنَ",
+    "mansub": "يُنَصِّرَ",
+    "majzum": "يُنَصِّرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:III",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "III",
+   "bab": null,
+   "wazn": "فَاعَلَ يُفَاعِلُ",
+   "masdar": "مُنَاصَرَة",
+   "ismFail": "مُنَاصِر",
+   "ismMaful": "مُنَاصَر",
+   "cells": {
+    "maziHe": "نَاصَرَ",
+    "maziTheyF": "نَاصَرْنَ",
+    "maziYouM": "نَاصَرْتَ",
+    "mudariHe": "يُنَاصِرُ",
+    "mudariTheyF": "يُنَاصِرْنَ",
+    "amr": "نَاصِرْ",
+    "amrTheyF": "نَاصِرْنَ",
+    "mansub": "يُنَاصِرَ",
+    "majzum": "يُنَاصِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:IV",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ",
+   "masdar": "إِنْصَار",
+   "ismFail": "مُنْصِر",
+   "ismMaful": "مُنْصَر",
+   "cells": {
+    "maziHe": "أَنْصَرَ",
+    "maziTheyF": "أَنْصَرْنَ",
+    "maziYouM": "أَنْصَرْتَ",
+    "mudariHe": "يُنْصِرُ",
+    "mudariTheyF": "يُنْصِرْنَ",
+    "amr": "أَنْصِرْ",
+    "amrTheyF": "أَنْصِرْنَ",
+    "mansub": "يُنْصِرَ",
+    "majzum": "يُنْصِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:V",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "V",
+   "bab": null,
+   "wazn": "تَفَعَّلَ يَتَفَعَّلُ",
+   "masdar": "تَنَصُّر",
+   "ismFail": "مُتَنَصَّر",
+   "ismMaful": "مُتَنَصَّر",
+   "cells": {
+    "maziHe": "تَنَصَّرَ",
+    "maziTheyF": "تَنَصَّرْنَ",
+    "maziYouM": "تَنَصَّرْتَ",
+    "mudariHe": "يَتَنَصَّرُ",
+    "mudariTheyF": "يَتَنَصَّرْنَ",
+    "amr": "تَنَصَّرْ",
+    "amrTheyF": "تَنَصَّرْنَ",
+    "mansub": "يَتَنَصَّرَ",
+    "majzum": "يَتَنَصَّرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:VI",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "VI",
+   "bab": null,
+   "wazn": "تَفَاعَلَ يَتَفَاعَلُ",
+   "masdar": "تَنَاصُر",
+   "ismFail": "مُتَنَاصَر",
+   "ismMaful": "مُتَنَاصَر",
+   "cells": {
+    "maziHe": "تَنَاصَرَ",
+    "maziTheyF": "تَنَاصَرْنَ",
+    "maziYouM": "تَنَاصَرْتَ",
+    "mudariHe": "يَتَنَاصَرُ",
+    "mudariTheyF": "يَتَنَاصَرْنَ",
+    "amr": "تَنَاصَرْ",
+    "amrTheyF": "تَنَاصَرْنَ",
+    "mansub": "يَتَنَاصَرَ",
+    "majzum": "يَتَنَاصَرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:VII",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "VII",
+   "bab": null,
+   "wazn": "اِنْفَعَلَ يَنْفَعِلُ",
+   "masdar": "اِنْنِصَار",
+   "ismFail": "مُنْنَصِر",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِنَّصَرَ",
+    "maziTheyF": "اِنَّصَرْنَ",
+    "maziYouM": "اِنَّصَرْتَ",
+    "mudariHe": "يَنَّصِرُ",
+    "mudariTheyF": "يَنَّصِرْنَ",
+    "amr": "اِنَّصِرْ",
+    "amrTheyF": "اِنَّصِرْنَ",
+    "mansub": "يَنْنَصِرَ",
+    "majzum": "يَنْنَصِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:VIII",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ",
+   "masdar": "اِنْتِصَار",
+   "ismFail": "مُنْتَصِر",
+   "ismMaful": "مُنْتَصَر",
+   "cells": {
+    "maziHe": "اِنْتَصَرَ",
+    "maziTheyF": "اِنْتَصَرْنَ",
+    "maziYouM": "اِنْتَصَرْتَ",
+    "mudariHe": "يَنْتَصِرُ",
+    "mudariTheyF": "يَنْتَصِرْنَ",
+    "amr": "اِنْتَصِرْ",
+    "amrTheyF": "اِنْتَصِرْنَ",
+    "mansub": "يَنْتَصِرَ",
+    "majzum": "يَنْتَصِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ن ص ر:X",
+   "root": "ن ص ر",
+   "type": "sound",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ",
+   "masdar": "اِسْتِنْصَار",
+   "ismFail": "مُسْتَنْصِر",
+   "ismMaful": "مُسْتَنْصَر",
+   "cells": {
+    "maziHe": "اِسْتَنْصَرَ",
+    "maziTheyF": "اِسْتَنْصَرْنَ",
+    "maziYouM": "اِسْتَنْصَرْتَ",
+    "mudariHe": "يَسْتَنْصِرُ",
+    "mudariTheyF": "يَسْتَنْصِرْنَ",
+    "amr": "اِسْتَنْصِرْ",
+    "amrTheyF": "اِسْتَنْصِرْنَ",
+    "mansub": "يَسْتَنْصِرَ",
+    "majzum": "يَسْتَنْصِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ع ل م:I",
+   "root": "ع ل م",
+   "type": "sound",
+   "form": "I",
+   "bab": 4,
+   "wazn": "فَعِلَ يَفْعَلُ",
+   "masdar": null,
+   "ismFail": "عَالِم",
+   "ismMaful": "مَعْلُوم",
+   "cells": {
+    "maziHe": "عَلِمَ",
+    "maziTheyF": "عَلِمْنَ",
+    "maziYouM": "عَلِمْتَ",
+    "mudariHe": "يَعْلَمُ",
+    "mudariTheyF": "يَعْلَمْنَ",
+    "amr": "اِعْلَمْ",
+    "amrTheyF": "اِعْلَمْنَ",
+    "mansub": "يَعْلَمَ",
+    "majzum": "يَعْلَمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ع ل م:II",
+   "root": "ع ل م",
+   "type": "sound",
+   "form": "II",
+   "bab": null,
+   "wazn": "فَعَّلَ يُفَعِّلُ",
+   "masdar": "تَعْلِيم",
+   "ismFail": "مُعَلِّم",
+   "ismMaful": "مُعَلَّم",
+   "cells": {
+    "maziHe": "عَلَّمَ",
+    "maziTheyF": "عَلَّمْنَ",
+    "maziYouM": "عَلَّمْتَ",
+    "mudariHe": "يُعَلِّمُ",
+    "mudariTheyF": "يُعَلِّمْنَ",
+    "amr": "عَلِّمْ",
+    "amrTheyF": "عَلِّمْنَ",
+    "mansub": "يُعَلِّمَ",
+    "majzum": "يُعَلِّمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ع ل م:IV",
+   "root": "ع ل م",
+   "type": "sound",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ",
+   "masdar": "إِعْلَام",
+   "ismFail": "مُعْلِم",
+   "ismMaful": "مُعْلَم",
+   "cells": {
+    "maziHe": "أَعْلَمَ",
+    "maziTheyF": "أَعْلَمْنَ",
+    "maziYouM": "أَعْلَمْتَ",
+    "mudariHe": "يُعْلِمُ",
+    "mudariTheyF": "يُعْلِمْنَ",
+    "amr": "أَعْلِمْ",
+    "amrTheyF": "أَعْلِمْنَ",
+    "mansub": "يُعْلِمَ",
+    "majzum": "يُعْلِمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ع ل م:V",
+   "root": "ع ل م",
+   "type": "sound",
+   "form": "V",
+   "bab": null,
+   "wazn": "تَفَعَّلَ يَتَفَعَّلُ",
+   "masdar": "تَعَلُّم",
+   "ismFail": "مُتَعَلَّم",
+   "ismMaful": "مُتَعَلَّم",
+   "cells": {
+    "maziHe": "تَعَلَّمَ",
+    "maziTheyF": "تَعَلَّمْنَ",
+    "maziYouM": "تَعَلَّمْتَ",
+    "mudariHe": "يَتَعَلَّمُ",
+    "mudariTheyF": "يَتَعَلَّمْنَ",
+    "amr": "تَعَلَّمْ",
+    "amrTheyF": "تَعَلَّمْنَ",
+    "mansub": "يَتَعَلَّمَ",
+    "majzum": "يَتَعَلَّمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ع ل م:X",
+   "root": "ع ل م",
+   "type": "sound",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ",
+   "masdar": "اِسْتِعْلَام",
+   "ismFail": "مُسْتَعْلِم",
+   "ismMaful": "مُسْتَعْلَم",
+   "cells": {
+    "maziHe": "اِسْتَعْلَمَ",
+    "maziTheyF": "اِسْتَعْلَمْنَ",
+    "maziYouM": "اِسْتَعْلَمْتَ",
+    "mudariHe": "يَسْتَعْلِمُ",
+    "mudariTheyF": "يَسْتَعْلِمْنَ",
+    "amr": "اِسْتَعْلِمْ",
+    "amrTheyF": "اِسْتَعْلِمْنَ",
+    "mansub": "يَسْتَعْلِمَ",
+    "majzum": "يَسْتَعْلِمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و ل:I",
+   "root": "ق و ل",
+   "type": "ajwaf",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ — أَجْوَفُ",
+   "masdar": null,
+   "ismFail": "قَائِل",
+   "ismMaful": "مَقُول",
+   "cells": {
+    "maziHe": "قَالَ",
+    "maziTheyF": "قُلْنَ",
+    "maziYouM": "قُلْتَ",
+    "mudariHe": "يَقُولُ",
+    "mudariTheyF": "يَقُلْنَ",
+    "amr": "قُلْ",
+    "amrTheyF": "قُلْنَ",
+    "mansub": "يَقُولَ",
+    "majzum": "يَقُلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و ل:IV",
+   "root": "ق و ل",
+   "type": "ajwaf",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ — أَجْوَفُ",
+   "masdar": "إِقَالَة",
+   "ismFail": "مُقِيل",
+   "ismMaful": "مُقَال",
+   "cells": {
+    "maziHe": "أَقَالَ",
+    "maziTheyF": "أَقَلْنَ",
+    "maziYouM": "أَقَلْتَ",
+    "mudariHe": "يُقِيلُ",
+    "mudariTheyF": "يُقِلْنَ",
+    "amr": "أَقِلْ",
+    "amrTheyF": "أَقِلْنَ",
+    "mansub": "يُقِيلَ",
+    "majzum": "يُقِلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و ل:VII",
+   "root": "ق و ل",
+   "type": "ajwaf",
+   "form": "VII",
+   "bab": null,
+   "wazn": "اِنْفَعَلَ يَنْفَعِلُ — أَجْوَفُ",
+   "masdar": "اِنْقِيَال",
+   "ismFail": "مُنْقَال",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِنْقَالَ",
+    "maziTheyF": "اِنْقَلْنَ",
+    "maziYouM": "اِنْقَلْتَ",
+    "mudariHe": "يَنْقَالُ",
+    "mudariTheyF": "يَنْقَلْنَ",
+    "amr": "اِنْقَلْ",
+    "amrTheyF": "اِنْقَلْنَ",
+    "mansub": "يَنْقَالَ",
+    "majzum": "يَنْقَلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و ل:VIII",
+   "root": "ق و ل",
+   "type": "ajwaf",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ — أَجْوَفُ",
+   "masdar": "اِقْتِيَال",
+   "ismFail": "مُقْتَال",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِقْتَالَ",
+    "maziTheyF": "اِقْتَلْنَ",
+    "maziYouM": "اِقْتَلْتَ",
+    "mudariHe": "يَقْتَالُ",
+    "mudariTheyF": "يَقْتَلْنَ",
+    "amr": "اِقْتَلْ",
+    "amrTheyF": "اِقْتَلْنَ",
+    "mansub": "يَقْتَالَ",
+    "majzum": "يَقْتَلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و ل:X",
+   "root": "ق و ل",
+   "type": "ajwaf",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ — أَجْوَفُ",
+   "masdar": "اِسْتِقَالَة",
+   "ismFail": "مُسْتَقِيل",
+   "ismMaful": "مُسْتَقَال",
+   "cells": {
+    "maziHe": "اِسْتَقَالَ",
+    "maziTheyF": "اِسْتَقَلْنَ",
+    "maziYouM": "اِسْتَقَلْتَ",
+    "mudariHe": "يَسْتَقِيلُ",
+    "mudariTheyF": "يَسْتَقِلْنَ",
+    "amr": "اِسْتَقِلْ",
+    "amrTheyF": "اِسْتَقِلْنَ",
+    "mansub": "يَسْتَقِيلَ",
+    "majzum": "يَسْتَقِلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ر م ي:I",
+   "root": "ر م ي",
+   "type": "naqis",
+   "form": "I",
+   "bab": 2,
+   "wazn": "فَعَلَ يَفْعِلُ — نَاقِصٌ",
+   "masdar": null,
+   "ismFail": "رَامٍ",
+   "ismMaful": "مَرْمِيّ",
+   "cells": {
+    "maziHe": "رَمَى",
+    "maziTheyF": "رَمَيْنَ",
+    "maziYouM": "رَمَيْتَ",
+    "mudariHe": "يَرْمِي",
+    "mudariTheyF": "يَرْمِينَ",
+    "amr": "اِرْمِ",
+    "amrTheyF": "اِرْمِينَ",
+    "mansub": "يَرْمِيَ",
+    "majzum": "يَرْمِ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ر م ي:II",
+   "root": "ر م ي",
+   "type": "naqis",
+   "form": "II",
+   "bab": null,
+   "wazn": "فَعَّلَ يُفَعِّلُ — نَاقِصٌ",
+   "masdar": "تَرْمِيَة",
+   "ismFail": "مُرَمٍّ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "رَمَّى",
+    "maziTheyF": "رَمَّيْنَ",
+    "maziYouM": "رَمَّيْتَ",
+    "mudariHe": "يُرَمِّي",
+    "mudariTheyF": "يُرَمِّينَ",
+    "amr": "رَمِّ",
+    "amrTheyF": "رَمِّينَ",
+    "mansub": "يُرَمِّيَ",
+    "majzum": "يُرَمِّ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ر م ي:IV",
+   "root": "ر م ي",
+   "type": "naqis",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ — نَاقِصٌ",
+   "masdar": "إِرْمَاء",
+   "ismFail": "مُرْمٍ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "أَرْمَى",
+    "maziTheyF": "أَرْمَيْنَ",
+    "maziYouM": "أَرْمَيْتَ",
+    "mudariHe": "يُرْمِي",
+    "mudariTheyF": "يُرْمِينَ",
+    "amr": "أَرْمِ",
+    "amrTheyF": "أَرْمِينَ",
+    "mansub": "يُرْمِيَ",
+    "majzum": "يُرْمِ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ر م ي:V",
+   "root": "ر م ي",
+   "type": "naqis",
+   "form": "V",
+   "bab": null,
+   "wazn": "تَفَعَّلَ يَتَفَعَّلُ — نَاقِصٌ",
+   "masdar": "تَرَمٍّ",
+   "ismFail": "مُتَرَمٍّ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "تَرَمَّى",
+    "maziTheyF": "تَرَمَّيْنَ",
+    "maziYouM": "تَرَمَّيْتَ",
+    "mudariHe": "يَتَرَمَّى",
+    "mudariTheyF": "يَتَرَمَّيْنَ",
+    "amr": "تَرَمَّ",
+    "amrTheyF": "تَرَمَّيْنَ",
+    "mansub": "يَتَرَمَّى",
+    "majzum": "يَتَرَمَّ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ر م ي:VIII",
+   "root": "ر م ي",
+   "type": "naqis",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ — نَاقِصٌ",
+   "masdar": "اِرْتِمَاء",
+   "ismFail": "مُرْتَمٍ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِرْتَمَى",
+    "maziTheyF": "اِرْتَمَيْنَ",
+    "maziYouM": "اِرْتَمَيْتَ",
+    "mudariHe": "يَرْتَمِي",
+    "mudariTheyF": "يَرْتَمِينَ",
+    "amr": "اِرْتَمِ",
+    "amrTheyF": "اِرْتَمِينَ",
+    "mansub": "يَرْتَمِيَ",
+    "majzum": "يَرْتَمِ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:م د د:I",
+   "root": "م د د",
+   "type": "gem",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ — مُضَاعَفٌ",
+   "masdar": null,
+   "ismFail": "مَادّ",
+   "ismMaful": "مَمْدُود",
+   "cells": {
+    "maziHe": "مَدَّ",
+    "maziTheyF": "مَدَدْنَ",
+    "maziYouM": "مَدَدْتَ",
+    "mudariHe": "يَمُدُّ",
+    "mudariTheyF": "يَمْدُدْنَ",
+    "amr": "مُدَّ",
+    "amrTheyF": "اُمْدُدْنَ",
+    "mansub": "يَمُدَّ",
+    "majzum": "يَمُدَّ"
+   },
+   "note": "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ."
+  },
+  {
+   "id": "sarf:م د د:IV",
+   "root": "م د د",
+   "type": "gem",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ — مُضَاعَفٌ",
+   "masdar": "إِمْدَاد",
+   "ismFail": "مُمِدّ",
+   "ismMaful": "مُمَدّ",
+   "cells": {
+    "maziHe": "أَمَدَّ",
+    "maziTheyF": "أَمْدَدْنَ",
+    "maziYouM": "أَمْدَدْتَ",
+    "mudariHe": "يُمِدُّ",
+    "mudariTheyF": "يُمْدِدْنَ",
+    "amr": "أَمِدَّ",
+    "amrTheyF": "أَمْدِدْنَ",
+    "mansub": "يُمِدَّ",
+    "majzum": "يُمِدَّ"
+   },
+   "note": "مُضَاعَفٌ مِنَ الْإِفْعَالِ: الْجَزْمُ بِالْفَتْحِ — لَمْ يُحِلَّ وَنَحْوُهُ."
+  },
+  {
+   "id": "sarf:م د د:VII",
+   "root": "م د د",
+   "type": "gem",
+   "form": "VII",
+   "bab": null,
+   "wazn": "اِنْفَعَلَ يَنْفَعِلُ — مُضَاعَفٌ",
+   "masdar": "اِنْمِدَاد",
+   "ismFail": "مُنْمَدّ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِنْمَدَّ",
+    "maziTheyF": "اِنْمَدَدْنَ",
+    "maziYouM": "اِنْمَدَدْتَ",
+    "mudariHe": "يَنْمَدُّ",
+    "mudariTheyF": "يَنْمَدِدْنَ",
+    "amr": "اِنْمَدَّ",
+    "amrTheyF": "اِنْمَدِدْنَ",
+    "mansub": "يَنْمَدَّ",
+    "majzum": "يَنْمَدَّ"
+   },
+   "note": "مُضَاعَفٌ مِنَ الِانْفِعَالِ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ."
+  },
+  {
+   "id": "sarf:م د د:VIII",
+   "root": "م د د",
+   "type": "gem",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ — مُضَاعَفٌ",
+   "masdar": "اِمْتِدَاد",
+   "ismFail": "مُمْتَدّ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِمْتَدَّ",
+    "maziTheyF": "اِمْتَدَدْنَ",
+    "maziYouM": "اِمْتَدَدْتَ",
+    "mudariHe": "يَمْتَدُّ",
+    "mudariTheyF": "يَمْتَدِدْنَ",
+    "amr": "اِمْتَدَّ",
+    "amrTheyF": "اِمْتَدِدْنَ",
+    "mansub": "يَمْتَدَّ",
+    "majzum": "يَمْتَدَّ"
+   },
+   "note": "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ."
+  },
+  {
+   "id": "sarf:م د د:X",
+   "root": "م د د",
+   "type": "gem",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ — مُضَاعَفٌ",
+   "masdar": "اِسْتِمْدَاد",
+   "ismFail": "مُسْتَمِدّ",
+   "ismMaful": "مُسْتَمَدّ",
+   "cells": {
+    "maziHe": "اِسْتَمَدَّ",
+    "maziTheyF": "اِسْتَمْدَدْنَ",
+    "maziYouM": "اِسْتَمْدَدْتَ",
+    "mudariHe": "يَسْتَمِدُّ",
+    "mudariTheyF": "يَسْتَمْدِدْنَ",
+    "amr": "اِسْتَمِدَّ",
+    "amrTheyF": "اِسْتَمْدِدْنَ",
+    "mansub": "يَسْتَمِدَّ",
+    "majzum": "يَسْتَمِدَّ"
+   },
+   "note": "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ."
+  },
+  {
+   "id": "sarf:و ع د:I",
+   "root": "و ع د",
+   "type": "mithal",
+   "form": "I",
+   "bab": 2,
+   "wazn": "فَعَلَ يَعِلُ — مِثَالٌ تُحْذَفُ وَاوُهُ",
+   "masdar": null,
+   "ismFail": "وَاعِد",
+   "ismMaful": "مَوْعُود",
+   "cells": {
+    "maziHe": "وَعَدَ",
+    "maziTheyF": "وَعَدْنَ",
+    "maziYouM": "وَعَدْتَ",
+    "mudariHe": "يَعِدُ",
+    "mudariTheyF": "يَعِدْنَ",
+    "amr": "عِدْ",
+    "amrTheyF": "عِدْنَ",
+    "mansub": "يَعِدَ",
+    "majzum": "يَعِدْ"
+   },
+   "note": "مِثَالٌ وَاوِيٌّ: تَسْقُطُ الْوَاوُ فِي الْمُضَارِعِ وَالْأَمْرِ."
+  },
+  {
+   "id": "sarf:و ع د:II",
+   "root": "و ع د",
+   "type": "mithal",
+   "form": "II",
+   "bab": null,
+   "wazn": "فَعَّلَ يُفَعِّلُ",
+   "masdar": "تَوْعِيد",
+   "ismFail": "مُوَعِّد",
+   "ismMaful": "مُوَعَّد",
+   "cells": {
+    "maziHe": "وَعَّدَ",
+    "maziTheyF": "وَعَّدْنَ",
+    "maziYouM": "وَعَّدْتَ",
+    "mudariHe": "يُوَعِّدُ",
+    "mudariTheyF": "يُوَعِّدْنَ",
+    "amr": "وَعِّدْ",
+    "amrTheyF": "وَعِّدْنَ",
+    "mansub": "يُوَعِّدَ",
+    "majzum": "يُوَعِّدْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:و ع د:IV",
+   "root": "و ع د",
+   "type": "mithal",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ",
+   "masdar": "إِيعَاد",
+   "ismFail": "مُوعِد",
+   "ismMaful": "مُوعَد",
+   "cells": {
+    "maziHe": "أَوْعَدَ",
+    "maziTheyF": "أَوْعَدْنَ",
+    "maziYouM": "أَوْعَدْتَ",
+    "mudariHe": "يُوعِدُ",
+    "mudariTheyF": "يُوعِدْنَ",
+    "amr": "أَوْعِدْ",
+    "amrTheyF": "أَوْعِدْنَ",
+    "mansub": "يُوعِدَ",
+    "majzum": "يُوعِدْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:و ع د:VIII",
+   "root": "و ع د",
+   "type": "mithal",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ — مِثَالٌ",
+   "masdar": "اِتِّعَاد",
+   "ismFail": "مُتَّعِد",
+   "ismMaful": "مُتَّعَد",
+   "cells": {
+    "maziHe": "اِتَّعَدَ",
+    "maziTheyF": "اِتَّعَدْنَ",
+    "maziYouM": "اِتَّعَدْتَ",
+    "mudariHe": "يَتَّعِدُ",
+    "mudariTheyF": "يَتَّعِدْنَ",
+    "amr": "اِتَّعِدْ",
+    "amrTheyF": "اِتَّعِدْنَ",
+    "mansub": "يَتَّعِدَ",
+    "majzum": "يَتَّعِدْ"
+   },
+   "note": "قُلِبَتِ الْوَاوُ تَاءً وَأُدْغِمَتْ."
+  },
+  {
+   "id": "sarf:و ع د:X",
+   "root": "و ع د",
+   "type": "mithal",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ",
+   "masdar": "اِسْتِوْعَاد",
+   "ismFail": "مُسْتَوْعِد",
+   "ismMaful": "مُسْتَوْعَد",
+   "cells": {
+    "maziHe": "اِسْتَوْعَدَ",
+    "maziTheyF": "اِسْتَوْعَدْنَ",
+    "maziYouM": "اِسْتَوْعَدْتَ",
+    "mudariHe": "يَسْتَوْعِدُ",
+    "mudariTheyF": "يَسْتَوْعِدْنَ",
+    "amr": "اِسْتَوْعِدْ",
+    "amrTheyF": "اِسْتَوْعِدْنَ",
+    "mansub": "يَسْتَوْعِدَ",
+    "majzum": "يَسْتَوْعِدْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ص ب ر:I",
+   "root": "ص ب ر",
+   "type": "sound",
+   "form": "I",
+   "bab": 2,
+   "wazn": "فَعَلَ يَفْعِلُ",
+   "masdar": null,
+   "ismFail": "صَابِر",
+   "ismMaful": "مَصْبُور",
+   "cells": {
+    "maziHe": "صَبَرَ",
+    "maziTheyF": "صَبَرْنَ",
+    "maziYouM": "صَبَرْتَ",
+    "mudariHe": "يَصْبِرُ",
+    "mudariTheyF": "يَصْبِرْنَ",
+    "amr": "اِصْبِرْ",
+    "amrTheyF": "اِصْبِرْنَ",
+    "mansub": "يَصْبِرَ",
+    "majzum": "يَصْبِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ص ب ر:VIII",
+   "root": "ص ب ر",
+   "type": "sound",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ",
+   "masdar": "اِصْطِبَار",
+   "ismFail": "مُصْطَبِر",
+   "ismMaful": "مُصْطَبَر",
+   "cells": {
+    "maziHe": "اِصْطَبَرَ",
+    "maziTheyF": "اِصْطَبَرْنَ",
+    "maziYouM": "اِصْطَبَرْتَ",
+    "mudariHe": "يَصْطَبِرُ",
+    "mudariTheyF": "يَصْطَبِرْنَ",
+    "amr": "اِصْطَبِرْ",
+    "amrTheyF": "اِصْطَبِرْنَ",
+    "mansub": "يَصْطَبِرَ",
+    "majzum": "يَصْطَبِرْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ط ل ع:I",
+   "root": "ط ل ع",
+   "type": "sound",
+   "form": "I",
+   "bab": 3,
+   "wazn": "فَعَلَ يَفْعَلُ",
+   "masdar": null,
+   "ismFail": "طَالِع",
+   "ismMaful": "مَطْلُوع",
+   "cells": {
+    "maziHe": "طَلَعَ",
+    "maziTheyF": "طَلَعْنَ",
+    "maziYouM": "طَلَعْتَ",
+    "mudariHe": "يَطْلَعُ",
+    "mudariTheyF": "يَطْلَعْنَ",
+    "amr": "اِطْلَعْ",
+    "amrTheyF": "اِطْلَعْنَ",
+    "mansub": "يَطْلَعَ",
+    "majzum": "يَطْلَعْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ط ل ع:VIII",
+   "root": "ط ل ع",
+   "type": "sound",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ",
+   "masdar": "اِطِّلَاع",
+   "ismFail": "مُطَّلِع",
+   "ismMaful": "مُطَّلَع",
+   "cells": {
+    "maziHe": "اِطَّلَعَ",
+    "maziTheyF": "اِطَّلَعْنَ",
+    "maziYouM": "اِطَّلَعْتَ",
+    "mudariHe": "يَطَّلِعُ",
+    "mudariTheyF": "يَطَّلِعْنَ",
+    "amr": "اِطَّلِعْ",
+    "amrTheyF": "اِطَّلِعْنَ",
+    "mansub": "يَطَّلِعَ",
+    "majzum": "يَطَّلِعْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ز ي د:I",
+   "root": "ز ي د",
+   "type": "ajwaf",
+   "form": "I",
+   "bab": 2,
+   "wazn": "فَعَلَ يَفْعِلُ — أَجْوَفُ",
+   "masdar": null,
+   "ismFail": "زَائِد",
+   "ismMaful": "مَزِيد",
+   "cells": {
+    "maziHe": "زَادَ",
+    "maziTheyF": "زِدْنَ",
+    "maziYouM": "زِدْتَ",
+    "mudariHe": "يَزِيدُ",
+    "mudariTheyF": "يَزِدْنَ",
+    "amr": "زِدْ",
+    "amrTheyF": "زِدْنَ",
+    "mansub": "يَزِيدَ",
+    "majzum": "يَزِدْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ز ي د:VIII",
+   "root": "ز ي د",
+   "type": "ajwaf",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ — أَجْوَفُ",
+   "masdar": "اِزْدِيَاد",
+   "ismFail": "مُزْدَاد",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِزْدَادَ",
+    "maziTheyF": "اِزْدَدْنَ",
+    "maziYouM": "اِزْدَدْتَ",
+    "mudariHe": "يَزْدَادُ",
+    "mudariTheyF": "يَزْدَدْنَ",
+    "amr": "اِزْدَدْ",
+    "amrTheyF": "اِزْدَدْنَ",
+    "mansub": "يَزْدَادَ",
+    "majzum": "يَزْدَدْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:س د د:I",
+   "root": "س د د",
+   "type": "gem",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ — مُضَاعَفٌ",
+   "masdar": null,
+   "ismFail": "سَادّ",
+   "ismMaful": "مَسْدُود",
+   "cells": {
+    "maziHe": "سَدَّ",
+    "maziTheyF": "سَدَدْنَ",
+    "maziYouM": "سَدَدْتَ",
+    "mudariHe": "يَسُدُّ",
+    "mudariTheyF": "يَسْدُدْنَ",
+    "amr": "سُدَّ",
+    "amrTheyF": "اُسْدُدْنَ",
+    "mansub": "يَسُدَّ",
+    "majzum": "يَسُدَّ"
+   },
+   "note": "مُضَاعَفٌ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ."
+  },
+  {
+   "id": "sarf:س د د:VII",
+   "root": "س د د",
+   "type": "gem",
+   "form": "VII",
+   "bab": null,
+   "wazn": "اِنْفَعَلَ يَنْفَعِلُ — مُضَاعَفٌ",
+   "masdar": "اِنْسِدَاد",
+   "ismFail": "مُنْسَدّ",
+   "ismMaful": null,
+   "cells": {
+    "maziHe": "اِنْسَدَّ",
+    "maziTheyF": "اِنْسَدَدْنَ",
+    "maziYouM": "اِنْسَدَدْتَ",
+    "mudariHe": "يَنْسَدُّ",
+    "mudariTheyF": "يَنْسَدِدْنَ",
+    "amr": "اِنْسَدَّ",
+    "amrTheyF": "اِنْسَدِدْنَ",
+    "mansub": "يَنْسَدَّ",
+    "majzum": "يَنْسَدَّ"
+   },
+   "note": "مُضَاعَفٌ مِنَ الِانْفِعَالِ: الْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ."
+  },
+  {
+   "id": "sarf:ق و م:I",
+   "root": "ق و م",
+   "type": "ajwaf",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ — أَجْوَفُ",
+   "masdar": null,
+   "ismFail": "قَائِم",
+   "ismMaful": "مَقُوم",
+   "cells": {
+    "maziHe": "قَامَ",
+    "maziTheyF": "قُمْنَ",
+    "maziYouM": "قُمْتَ",
+    "mudariHe": "يَقُومُ",
+    "mudariTheyF": "يَقُمْنَ",
+    "amr": "قُمْ",
+    "amrTheyF": "قُمْنَ",
+    "mansub": "يَقُومَ",
+    "majzum": "يَقُمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و م:IV",
+   "root": "ق و م",
+   "type": "ajwaf",
+   "form": "IV",
+   "bab": null,
+   "wazn": "أَفْعَلَ يُفْعِلُ — أَجْوَفُ",
+   "masdar": "إِقَامَة",
+   "ismFail": "مُقِيم",
+   "ismMaful": "مُقَام",
+   "cells": {
+    "maziHe": "أَقَامَ",
+    "maziTheyF": "أَقَمْنَ",
+    "maziYouM": "أَقَمْتَ",
+    "mudariHe": "يُقِيمُ",
+    "mudariTheyF": "يُقِمْنَ",
+    "amr": "أَقِمْ",
+    "amrTheyF": "أَقِمْنَ",
+    "mansub": "يُقِيمَ",
+    "majzum": "يُقِمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ق و م:X",
+   "root": "ق و م",
+   "type": "ajwaf",
+   "form": "X",
+   "bab": null,
+   "wazn": "اِسْتَفْعَلَ يَسْتَفْعِلُ — أَجْوَفُ",
+   "masdar": "اِسْتِقَامَة",
+   "ismFail": "مُسْتَقِيم",
+   "ismMaful": "مُسْتَقَام",
+   "cells": {
+    "maziHe": "اِسْتَقَامَ",
+    "maziTheyF": "اِسْتَقَمْنَ",
+    "maziYouM": "اِسْتَقَمْتَ",
+    "mudariHe": "يَسْتَقِيمُ",
+    "mudariTheyF": "يَسْتَقِمْنَ",
+    "amr": "اِسْتَقِمْ",
+    "amrTheyF": "اِسْتَقِمْنَ",
+    "mansub": "يَسْتَقِيمَ",
+    "majzum": "يَسْتَقِمْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ح م ل:I",
+   "root": "ح م ل",
+   "type": "sound",
+   "form": "I",
+   "bab": 1,
+   "wazn": "فَعَلَ يَفْعُلُ",
+   "masdar": null,
+   "ismFail": "حَامِل",
+   "ismMaful": "مَحْمُول",
+   "cells": {
+    "maziHe": "حَمَلَ",
+    "maziTheyF": "حَمَلْنَ",
+    "maziYouM": "حَمَلْتَ",
+    "mudariHe": "يَحْمُلُ",
+    "mudariTheyF": "يَحْمُلْنَ",
+    "amr": "اُحْمُلْ",
+    "amrTheyF": "اُحْمُلْنَ",
+    "mansub": "يَحْمُلَ",
+    "majzum": "يَحْمُلْ"
+   },
+   "note": null
+  },
+  {
+   "id": "sarf:ح م ل:VIII",
+   "root": "ح م ل",
+   "type": "sound",
+   "form": "VIII",
+   "bab": null,
+   "wazn": "اِفْتَعَلَ يَفْتَعِلُ",
+   "masdar": "اِحْتِمَال",
+   "ismFail": "مُحْتَمِل",
+   "ismMaful": "مُحْتَمَل",
+   "cells": {
+    "maziHe": "اِحْتَمَلَ",
+    "maziTheyF": "اِحْتَمَلْنَ",
+    "maziYouM": "اِحْتَمَلْتَ",
+    "mudariHe": "يَحْتَمِلُ",
+    "mudariTheyF": "يَحْتَمِلْنَ",
+    "amr": "اِحْتَمِلْ",
+    "amrTheyF": "اِحْتَمِلْنَ",
+    "mansub": "يَحْتَمِلَ",
+    "majzum": "يَحْتَمِلْ"
+   },
+   "note": null
+  }
+ ],
+ "mizan": [
+  {
+   "id": "mizan:ن ص ر:I",
+   "word": "نَاصِر",
+   "root": "ن ص ر",
+   "mizan": "فَاعِل"
+  },
+  {
+   "id": "mizan:ن ص ر:II",
+   "word": "مُنَصِّر",
+   "root": "ن ص ر",
+   "mizan": "مُفَعِّل"
+  },
+  {
+   "id": "mizan:ن ص ر:III",
+   "word": "مُنَاصِر",
+   "root": "ن ص ر",
+   "mizan": "مُفَاعِل"
+  },
+  {
+   "id": "mizan:ن ص ر:IV",
+   "word": "مُنْصِر",
+   "root": "ن ص ر",
+   "mizan": "مُفْعِل"
+  },
+  {
+   "id": "mizan:ن ص ر:V",
+   "word": "مُتَنَصَّر",
+   "root": "ن ص ر",
+   "mizan": "مُتَفَعَّل"
+  },
+  {
+   "id": "mizan:ن ص ر:VI",
+   "word": "مُتَنَاصَر",
+   "root": "ن ص ر",
+   "mizan": "مُتَفَاعَل"
+  },
+  {
+   "id": "mizan:ن ص ر:VIII",
+   "word": "مُنْتَصِر",
+   "root": "ن ص ر",
+   "mizan": "مُفْتَعِل"
+  },
+  {
+   "id": "mizan:ن ص ر:X",
+   "word": "مُسْتَنْصِر",
+   "root": "ن ص ر",
+   "mizan": "مُسْتَفْعِل"
+  },
+  {
+   "id": "mizan:ع ل م:I",
+   "word": "عَالِم",
+   "root": "ع ل م",
+   "mizan": "فَاعِل"
+  },
+  {
+   "id": "mizan:و ع د:I",
+   "word": "وَاعِد",
+   "root": "و ع د",
+   "mizan": "فَاعِل"
+  },
+  {
+   "id": "mizan:و ع د:II",
+   "word": "مُوَعِّد",
+   "root": "و ع د",
+   "mizan": "مُفَعِّل"
+  },
+  {
+   "id": "mizan:و ع د:IV",
+   "word": "مُوعِد",
+   "root": "و ع د",
+   "mizan": "مُفعِل"
+  },
+  {
+   "id": "mizan:و ع د:X",
+   "word": "مُسْتَوْعِد",
+   "root": "و ع د",
+   "mizan": "مُسْتَفْعِل"
+  },
+  {
+   "id": "mizan:ص ب ر:I",
+   "word": "صَابِر",
+   "root": "ص ب ر",
+   "mizan": "فَاعِل"
+  },
+  {
+   "id": "mizan:ط ل ع:I",
+   "word": "طَالِع",
+   "root": "ط ل ع",
+   "mizan": "فَاعِل"
+  },
+  {
+   "id": "mizan:ط ل ع:VIII",
+   "word": "مُطَّلِع",
+   "root": "ط ل ع",
+   "mizan": "مُفَّعِل"
+  },
+  {
+   "id": "mizan:ح م ل:I",
+   "word": "حَامِل",
+   "root": "ح م ل",
+   "mizan": "فَاعِل"
+  }
+ ],
+ "mizanDropped": [
+  {
+   "id": "mizan:ن ص ر:VII",
+   "word": "مُنْنَصِر",
+   "root": "ن ص ر",
+   "mizan": "مُفْنَعِل",
+   "rebuilt": "مُنْنَصِر",
+   "why": "augment-letter-is-also-a-radical"
+  },
+  {
+   "id": "mizan:ع ل م:II",
+   "word": "مُعَلِّم",
+   "root": "ع ل م",
+   "mizan": "مُفَعِّل",
+   "rebuilt": "مُعَلِّم",
+   "why": "augment-letter-is-also-a-radical"
+  },
+  {
+   "id": "mizan:ع ل م:IV",
+   "word": "مُعْلِم",
+   "root": "ع ل م",
+   "mizan": "مُفْعِل",
+   "rebuilt": "مُعْلِم",
+   "why": "augment-letter-is-also-a-radical"
+  },
+  {
+   "id": "mizan:ع ل م:V",
+   "word": "مُتَعَلَّم",
+   "root": "ع ل م",
+   "mizan": "مُتَفَعَّل",
+   "rebuilt": "مُتَعَلَّم",
+   "why": "augment-letter-is-also-a-radical"
+  },
+  {
+   "id": "mizan:ع ل م:X",
+   "word": "مُسْتَعْلِم",
+   "root": "ع ل م",
+   "mizan": "مُسْتَفْعِل",
+   "rebuilt": "مُسْتَعْلِم",
+   "why": "augment-letter-is-also-a-radical"
+  },
+  {
+   "id": "mizan:ح م ل:VIII",
+   "word": "مُحْتَمِل",
+   "root": "ح م ل",
+   "mizan": "مُفْتَعِل",
+   "rebuilt": "مُحْتَمِل",
+   "why": "augment-letter-is-also-a-radical"
+  }
+ ]
+}
