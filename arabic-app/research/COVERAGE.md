@@ -407,3 +407,20 @@ not a one-line change.
   mizan is undecidable when one of the pattern's augment letters is also one of
   the root's, and the round-trip cannot catch it because both orderings rebuild
   the same word.
+- **v110** — Manar reaches chapter 8, the COMMAND and the PROHIBITION: each
+  defined in the same frame, each with what it obliges when unqualified and
+  what it may drop to with an indication. Eight chapters, 301 tokens. Almost
+  every rule in it is one an earlier chapter set up, coming back on a new word
+  — مُوجِب is the ism fāʿil of the أَوْجَبَ whose mudāriʿ chapter 4 fixed in the
+  engine; الِاسْتِعْلَاء is chapter 6's mamdūd rule on a new root; الْإِبَاحَة is
+  chapter 7's tāʾ-marbūṭa compensation on a new verb; يَرِدُ is the mithāl waw
+  dropping under a kasra. The chapter closes on the two ṣīghas quoted as
+  ṣīghas, «افْعَلْ» and «لَا تَفْعَلْ», with the wasl alif on one and the jazm of
+  lā nāhiya on the other.
+  The generated bank went from 536 to **1,386 derived rows** and gained a
+  fourth section: WORKED SENTENCES. For every sentence of a named story it
+  records the human parse the corpus carries and the engines' reading of the
+  same words side by side, token by token, and counts the agreement — 91.7%
+  over Manar's 301 tokens, with the 25 disagreements left in the file by name.
+  Two normalisations were needed first and both are doctrine: prep/conj/part
+  are one class to the analyzer, and a pronoun is an ism.

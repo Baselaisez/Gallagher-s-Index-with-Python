@@ -61,6 +61,20 @@ const PLAN = {
     { w: 'مُسْلِمَات',    root: 'س ل م', en: 'Muslim women',      tr: 'müslüman kadınlar' },
     { w: 'الطَّالِبَات',  root: 'ط ل ب', en: 'the female students', tr: 'kız talebeler' },
     { w: 'أَب',        root: 'أ ب و', en: 'a father',          tr: 'baba', mudaf: true },
+    { w: 'أَخ',        root: 'أ خ و', en: 'a brother',         tr: 'kardeş', mudaf: true },
+    { w: 'ذُو',        root: 'ذ و و', en: 'the possessor of',  tr: 'sahibi', mudaf: true },
+    { w: 'دَاعِي',      root: 'د ع و', en: 'one who calls',     tr: 'davet eden' },
+    { w: 'جَوَارِي',     root: 'ج ر ي', en: 'flowing things',    tr: 'akanlar' },
+    { w: 'هُدًى',       root: 'ه د ي', en: 'guidance',          tr: 'hidayet' },
+    { w: 'مُصْطَفَى',    root: 'ص ف و', en: 'the chosen one',    tr: 'seçilmiş' },
+    { w: 'اِسْتِعْلَاء',  root: 'ع ل و', en: 'counting oneself above', tr: "isti'lâ" },
+    { w: 'دُعَاء',      root: 'د ع و', en: 'a supplication',    tr: 'dua' },
+    { w: 'بَيْضَاء',     root: 'ب ي ض', en: 'white (fem.)',      tr: 'beyaz (müennes)' },
+    { w: 'أَحْمَد',      root: 'ح م د', en: 'Ahmad (a name)',    tr: 'Ahmed', mamnu: true },
+    { w: 'مَفَاتِيح',    root: 'ف ت ح', en: 'keys',              tr: 'anahtarlar', mamnu: true },
+    { w: 'مُؤْمِنَات',   root: 'أ م ن', en: 'believing women',   tr: 'mümin kadınlar' },
+    { w: 'مُعَلِّمَانِ',  root: 'ع ل م', en: 'two teachers',      tr: 'iki muallim' },
+    { w: 'صَالِحُونَ',   root: 'ص ل ح', en: 'the righteous',     tr: 'salihler' },
   ],
   // idafa: a head, a tail and a case — including the ones that refuse
   idafas: [
@@ -84,11 +98,27 @@ const PLAN = {
     { root: 'س د د', forms: ['I', 'VII'], bab: 1 },
     { root: 'ق و م', forms: ['I', 'IV', 'X'], bab: 1 },
     { root: 'ح م ل', forms: ['I', 'VIII'], bab: 1 },
+    { root: 'ك ت ب', forms: ['I', 'II', 'III', 'IV', 'VIII', 'X'], bab: 1 },
+    { root: 'ف ت ح', forms: ['I', 'II', 'VII', 'VIII'], bab: 3 },
+    { root: 'ج ه د', forms: ['I', 'III', 'VIII'], bab: 3 },
+    { root: 'ش ر ك', forms: ['I', 'III', 'IV', 'VIII'], bab: 2 },
+    { root: 'ن ز ل', forms: ['I', 'II', 'IV', 'V', 'X'], bab: 1 },
+    { root: 'خ ر ج', forms: ['I', 'II', 'IV', 'X'], bab: 1 },
+    { root: 'ب ي ع', forms: ['I', 'IV', 'VII', 'VIII'], bab: 2 },
+    { root: 'د ع و', forms: ['I', 'VIII', 'X'], bab: 1 },
+    { root: 'ه د ي', forms: ['I', 'IV', 'VIII'], bab: 2 },
+    { root: 'ر د د', forms: ['I', 'IV', 'VIII', 'X'], bab: 1 },
+    { root: 'ط و ع', forms: ['I', 'IV', 'V', 'X'], bab: 4 },
+    { root: 'ع ر ف', forms: ['I', 'II', 'V', 'VIII'], bab: 2 },
+    { root: 'س ل م', forms: ['I', 'II', 'IV', 'V', 'X'], bab: 1 },
   ],
+  // Whole sentences the corpus has already had a human parse: the engines are
+  // run over them and BOTH readings are written down side by side.
+  analyseStories: ['mukhtasar-al-manar'],
 };
 
 const build = async (page) => page.evaluate((PLAN) => {
-  const out = { endings: [], idafa: [], paradigms: [], mizan: [], mizanDropped: [] };
+  const out = { endings: [], idafa: [], paradigms: [], mizan: [], mizanDropped: [], sentences: [] };
   const CASES = ['raf', 'nasb', 'jarr'];
 
   // ---- 1. THE ENDINGS. Every class of noun, every case, with the rule.
@@ -174,6 +204,54 @@ const build = async (page) => page.evaluate((PLAN) => {
       }
     });
   });
+  // ---- 4. THE WORKED SENTENCES. Every sentence of the named stories, with
+  // the HUMAN parse the corpus carries and the ENGINES' reading of the same
+  // words written next to it. This is the honest shape for an analysis set:
+  // the engines produce a SHORTLIST, not a verdict, so their reading is
+  // recorded as a claim to be judged against the human one, and the agreement
+  // is counted rather than asserted. Where they differ, the row is the lesson.
+  (PLAN.analyseStories || []).forEach(sid => {
+    const st = STORIES.find(x => x.id === sid);
+    if (!st) return;
+    st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+      const text = sen.tokens.map(t => t.s.full).join(' ');
+      let rows = [];
+      try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { rows = []; }
+      const HEAD = { noun: 'noun', 'noun?': 'noun', verb: 'verb', particle: 'part',
+                     part: 'part', pron: 'pron', propn: 'noun', conj: 'conj' };
+      let agree = 0, judged = 0;
+      const tokens = sen.tokens.map((t, i) => {
+        const r = rows[i] || {};
+        const said = HEAD[r.kind] || r.kind || null;
+        const human = t.pos === 'propn' ? 'noun' : t.pos;
+        // prep, conj and part are ONE class to the analyzer: it returns
+        // «particle» for all three and has never claimed to separate them.
+        // Scoring them apart would be scoring it on a question it does not
+        // answer, and would report a number that means nothing.
+        // …and a PRONOUN is an ism. That is the tradition's own ruling and it
+        // is written into CLAUDE.md: هُوَ and مَا are asma, not particles. The
+        // corpus tags them `pron` for the reader's sake; scoring them against
+        // the analyzer's «noun» as a miss would be marking the engine wrong for
+        // agreeing with the books.
+        const norm = x => (['conj', 'prep', 'part'].includes(x) ? 'part'
+                         : x === 'pron' ? 'noun' : x);
+        if (said && human) { judged++; if (norm(said) === norm(human)) agree++; }
+        return { w: t.s.full, lex: t.lex,
+                 human: { pos: t.pos, grammar: t.grammar || [], irab: t.irab.en },
+                 engine: { kind: r.kind || null, lemma: r.lemma || null,
+                           root: r.root || null, wazn: r.wazn || null,
+                           sure: r.sure === undefined ? null : r.sure },
+                 match: said && human ? norm(said) === norm(human) : null };
+      });
+      out.sentences.push({
+        id: `sen:${sid}:${ch.n}:${sen.id}`, story: sid, chapter: ch.n, sentence: sen.id,
+        text, translation: sen.translation,
+        jumal: (sen.jumal || []).map(j => ({ text: j.text, ar: j.ar, en: j.en })),
+        posAgreement: judged ? Math.round(agree / judged * 1000) / 10 : null,
+        judged, agree, tokens,
+      });
+    }));
+  });
   return out;
 }, PLAN);
 
@@ -197,8 +275,16 @@ const build = async (page) => page.evaluate((PLAN) => {
     counts: { endings: data.endings.length, idafa: data.idafa.length,
               paradigms: data.paradigms.length, mizan: data.mizan.length,
               mizanDropped: data.mizanDropped.length,
+              sentences: data.sentences.length,
+              sentenceTokens: data.sentences.reduce((n, s2) => n + s2.tokens.length, 0),
+              posAgreement: (() => {
+                const a = data.sentences.reduce((n, s2) => n + s2.agree, 0);
+                const j = data.sentences.reduce((n, s2) => n + s2.judged, 0);
+                return j ? Math.round(a / j * 1000) / 10 : null;
+              })(),
               rows: data.endings.reduce((n, e) => n + e.rows.length, 0)
-                    + data.idafa.length + data.paradigms.length * 9 + data.mizan.length },
+                    + data.idafa.length + data.paradigms.length * 9 + data.mizan.length
+                    + data.sentences.reduce((n, s2) => n + s2.tokens.length, 0) },
     ...data,
   };
   const text = JSON.stringify(bank, null, 1);
@@ -219,5 +305,7 @@ const build = async (page) => page.evaluate((PLAN) => {
   console.log(`wrote ${path.relative(ROOT, OUT)}: ${bank.counts.endings} nouns × 3 cases, ` +
               `${bank.counts.idafa} idafas, ${bank.counts.paradigms} paradigms, ` +
               `${bank.counts.mizan} scales — ${bank.counts.rows} derived rows` +
-              (bank.counts.mizanDropped ? `; ${bank.counts.mizanDropped} scales dropped as ambiguous` : ''));
+              (bank.counts.mizanDropped ? `; ${bank.counts.mizanDropped} scales dropped as ambiguous` : '') +
+              `\n  ${bank.counts.sentences} worked sentences, ${bank.counts.sentenceTokens} tokens ` +
+              `— engines agree with the human part-of-speech on ${bank.counts.posAgreement}%`);
 })();

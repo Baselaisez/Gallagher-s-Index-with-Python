@@ -1778,3 +1778,33 @@ the نَ (سُقْ، سُقْنَ). Passing the short stem for both cost four ce
 **A lam that matches the suffix contracts.** ثَبَتَ + تَ is ثَبَتَّ, not *ثَبَتْتَ;
 `sarf_gen.idgham` exists for exactly this and a verb whose last radical is
 ت ن or د must be put through it.
+
+## The bank now analyses as well as builds
+
+`content/drills/generated.json` grew from 536 to **1,386 derived rows**, and
+gained a fourth section that is different in kind from the other three.
+
+Sections 1–3 (endings, idafa, paradigms) are EXACT: the engine decides and the
+row is the answer. Section 4, the **worked sentences**, is not. For every
+sentence of a named story it writes down the HUMAN parse the corpus carries and
+the ENGINES' reading of the same words side by side, marks each token agree or
+disagree, and counts. Manar's eight chapters come out at **91.7% part-of-speech
+agreement over 301 tokens**, with 25 named disagreements left in the file —
+`مَا` read as a particle where the books call it an ism, `أَمَّا` read as a noun,
+`سِيقَ` read as a noun. Those rows are the point. A dataset that only contains
+what the engine already gets right teaches nothing.
+
+**Score a model only on the question it answers.** Two normalisations were
+needed before the number meant anything, and both are doctrine, not fudging:
+
+- prep, conj and part are ONE class to the analyzer — it returns «particle» for
+  all three and has never claimed to separate them. Scoring them apart reported
+  75%, which was a measurement of the scoring code, not of the engine.
+- **a pronoun is an ism.** That is the tradition's own ruling and it is already
+  written into this file. The corpus tags هُوَ and مَا as `pron` for the reader's
+  sake; marking the analyzer wrong for calling them nouns would be marking it
+  wrong for agreeing with the books.
+
+With both applied the figure lands at 91.7%, next to the 91.5% the smoke gate
+measures over the whole hand-labelled set — which is the check that the number
+is real.
