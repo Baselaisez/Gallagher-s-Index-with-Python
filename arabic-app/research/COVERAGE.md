@@ -440,3 +440,19 @@ not a one-line change.
   **93.7%** part-of-speech agreement, 25 → 19 disagreements. The gain came
   almost entirely from testing the preceding word as `/^[وفبلك]?ال/` rather
   than `/^ال/` — فَالْخَاصُّ and وَالنَّصُّ were hiding the article behind a clitic.
+- **v112** — Manar reaches chapter 10, the wording taken by its USE:
+  ḥaqīqa, majāz, ṣarīḥ, kināya. Ten chapters, 379 tokens. It is the fourth and
+  last of the book's divisions of the lafẓ, and the one that hands uṣūl over to
+  balāgha — the ʿalāqa it names in passing is the same ʿalāqa the app's
+  twenty-eight majāz relations are built on. Grammar: اسْتُعْمِلَ, the first Form X
+  MAJHŪL in the package, set against يُفْهَمُ in the same chapter so the past and
+  the present passive stand side by side (kasra before the last letter in one,
+  fatḥa in the other); فِيمَا, a jarr letter fused to مَا — one word written and
+  two in iʿrāb; غَيْرِ taking a whole ṣila for its muḍāf ilayh; ظُهُورًا بَيِّنًا, the
+  second mafʿūl muṭlaq carrying its own naʿt; and اسْتَتَرَ beside اِزْدَادَ and
+  اِطَّلَعَ — three verbs on one pattern where the first radical decides what
+  becomes of the tāʾ.
+  **`أَمَّا` added to the analyzer's particle table.** It was missing outright, so
+  every أما in the library read as an open-class noun. The bank went 93.8% →
+  **95%**; disagreements 19 → 17. Running total since the worked-sentence
+  section shipped: 92% → 95%, from two rules and one table row.

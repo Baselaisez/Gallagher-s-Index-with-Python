@@ -1839,3 +1839,25 @@ time that has cost real accuracy in this codebase.
 And the general lesson: a dataset that records where the engine is WRONG is
 worth more than one that records where it is right. Five disagreements went
 away because they were written down where they could be counted.
+
+## أَمَّا was not in the particle table at all
+
+The drill bank's second finding, and cheaper than the first: four of the named
+disagreements were `أَمَّا` read as an open-class NOUN. It was simply missing
+from `SentenceAnalyzer.PARTICLES` — a word the library uses in four chapters
+and has its own registry note, and the analyzer had never been told it is a
+harf. Adding one row moved the bank from **93.8% to 95%**.
+
+Two things follow from that, and they are worth stating separately:
+
+- **A closed-class table is only as good as its coverage, and nothing warns you
+  about what is missing from it.** The analyzer never errored; it confidently
+  read `أَمَّا` as an ordinary noun and moved on. Only a dataset that compares
+  the engine against a human label makes an omission visible at all.
+- Every entry in `PARTICLES` needs a `KIND_LBL` row beside it, or the note the
+  analyzer pushes is `undefined`. The table and the labels are two halves of
+  one thing and must be edited together.
+
+Running total on the worked-sentence section since it shipped: **92% → 95%**,
+25 named disagreements → 17, from two rules and one table row. The section has
+now paid for itself twice.

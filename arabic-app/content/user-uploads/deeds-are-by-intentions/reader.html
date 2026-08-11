@@ -6041,6 +6041,11 @@ class SentenceAnalyzer {
     "هم": { k: "pron" }, "انا": { k: "pron" }, "أنا": { k: "pron" }, "انت": { k: "pron" }, "أنت": { k: "pron" },
     "هذا": { k: "ishara" }, "هذه": { k: "ishara" }, "ذلك": { k: "ishara" }, "تلك": { k: "ishara" },
     "الذي": { k: "mawsul" }, "التي": { k: "mawsul" }, "الذين": { k: "mawsul" }, "الا": { k: "istithna" }, "إلا": { k: "istithna" },
+    // أَمَّا is a HARF — of condition, of detailing and of emphasis at once —
+    // and it was missing from this table entirely, so every «أما» in the
+    // library was read as an open-class noun. Four of the drill bank's named
+    // disagreements were this one omission.
+    "اما": { k: "amma" }, "أما": { k: "amma" },
     // İzhar's fuller rolls: the rest of inna's sisters…
     "كأن": { k: "inna" }, "لكن": { k: "inna" }, "ليت": { k: "inna" }, "لعل": { k: "inna" },
     "لأن": { k: "inna" }, "لان": { k: "inna" },
@@ -6078,6 +6083,8 @@ class SentenceAnalyzer {
     ishara:   { en: "demonstrative", tr: "ism-i işaret" },
     mawsul:   { en: "relative noun", tr: "ism-i mevsûl" },
     istithna: { en: "exception particle", tr: "istisnâ edatı" },
+    amma:     { en: "أَمَّا — condition, detailing and emphasis in one letter; its answer must carry the FA",
+                tr: "أَمَّا — tek harfte şart, tafsîl ve te'kîd; cevâbı mutlaka FÂ taşır" },
   };
   static analyze(text){
     const words = (text || "").split(/[\s،.؛:!؟]+/).filter(w => stripAr(w).length);
