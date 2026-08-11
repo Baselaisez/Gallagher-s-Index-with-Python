@@ -3089,6 +3089,40 @@ if (!CHROME) {
     for (const k of Object.keys(w8))
       if (t8[k].normalize('NFC') !== w8[k].normalize('NFC'))
         throw new Error(`iftial/gem ${k}: wanted ${w8[k]}, got ${t8[k]}`);
+
+    // The PARTICIPLE stem is not the conjugating stem. Forms V and VI run their
+    // mudari on a FATHA (يَتَفَعَّلُ، يَتَفَاعَلُ) but their ism fa'il takes a KASRA:
+    // مُتَعَلِّم، مُتَشَابِه. The engine handed the conjugating stem to the
+    // participle maker and shipped the two participles IDENTICAL — and the
+    // paradigm audit never saw it, because it compares tenses and not
+    // participles. The corpus's own مُتَشَابِه is the witness.
+    const part = await page.evaluate(() => {
+      const out = {};
+      [['ن ص ر', 'II'], ['ن ص ر', 'III'], ['ن ص ر', 'V'], ['ن ص ر', 'VI'],
+       ['ش ب ه', 'VI'], ['ع ل م', 'V']].forEach(([root, f]) => {
+        const d = sarfDerive(nakilClass({ root }), f, 1);
+        out[root + ' ' + f] = d && d.ok ? [d.fail, d.maful || '-'].join('|') : 'no';
+      });
+      return out;
+    });
+    const wp = {
+      'ن ص ر II':  'مُنَصِّر|مُنَصَّر',
+      'ن ص ر III': 'مُنَاصِر|مُنَاصَر',
+      'ن ص ر V':   'مُتَنَصِّر|مُتَنَصَّر',
+      'ن ص ر VI':  'مُتَنَاصِر|مُتَنَاصَر',
+      'ش ب ه VI':  'مُتَشَابِه|مُتَشَابَه',
+      'ع ل م V':   'مُتَعَلِّم|مُتَعَلَّم',
+    };
+    for (const k of Object.keys(wp))
+      if (part[k].normalize('NFC') !== wp[k].normalize('NFC'))
+        throw new Error(`participles ${k}: wanted ${wp[k]}, got ${part[k]}`);
+    // …and the ism fa'il must never equal the ism maf'ul: one kasra apart is
+    // the whole distinction, and equality means the distinction was lost.
+    for (const k of Object.keys(part)) {
+      const [fa, mf] = part[k].split('|');
+      if (mf !== '-' && fa.normalize('NFC') === mf.normalize('NFC'))
+        throw new Error(`${k}: ism fa'il and ism maf'ul came out identical (${fa})`);
+    }
   });
 
   await check('the Sarf Lab conjugates sound, hollow and defective roots live', async () => {

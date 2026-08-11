@@ -4321,9 +4321,15 @@ function sarfDerive(cls, form, bab){
         masdar: sjN(form === "V" ? "تَ"+f+"َ"+a+"ٍّ" : "تَ"+f+"ْ"+a+"ِيَة"),
         ...P(p+f+"َ"+a+"ٍّ") }) };
     const v = p+f+"َ"+a+"َّ"+l, core = form === "V" ? v : p+f+"َ"+a+"ِّ"+l;
+    // The PARTICIPLE stem is not the conjugating stem. In Form V the mudari
+    // runs on a FATHA (يَتَفَعَّلُ) but the ism fa'il takes a KASRA — مُتَعَلِّم, not
+    // *مُتَعَلَّم, which is the ism maf'ul. Handing `core` to P shipped the two
+    // participles identical, and the paradigm audit never saw it because it
+    // compares the tenses and not the participles.
+    const failStem = p+f+"َ"+a+"ِّ"+l;
     return { ...asm(v, core, core, { wazn: sjN(wazn),
       masdar: sjN(form === "V" ? "تَ"+f+"َ"+a+"ُّ"+l : "تَ"+f+"ْ"+a+"ِي"+l),
-      ...P(core, p+f+"َ"+a+"َّ"+l) }) };
+      ...P(failStem, p+f+"َ"+a+"َّ"+l) }) };
   }
   if (form === "III" || form === "VI") {
     const p = form === "VI" ? "تَ" : "";
@@ -4340,9 +4346,12 @@ function sarfDerive(cls, form, bab){
         amr: [f+"َا"+a+"َّ", f+"َا"+a+"َّا", f+"َا"+a+"ُّوا", f+"َا"+a+"ِّي", f+"َا"+a+"َّا", f+"َا"+a+"ِ"+l+"ْنَ"].map(sjN),
         ...sjGovGem(yv, f+"َا"+a+"ّ"), masdar: sjN("مُ"+f+"َا"+a+"َّة"), ...P(f+"َا"+a+"ّ") };
     const v = p+f+"َا"+a+"َ"+l, core = form === "VI" ? v : p+f+"َا"+a+"ِ"+l;
+    // Same in Form VI: يَتَفَاعَلُ conjugates on a fatha, مُتَفَاعِل is written with
+    // a kasra. مُتَشَابِه in chapter 6 is the corpus's own witness.
+    const failStem6 = p+f+"َا"+a+"ِ"+l;
     return { ...asm(v, core, core, { wazn: sjN(wazn),
       masdar: sjN(form === "VI" ? "تَ"+f+"َا"+a+"ُ"+l : "مُ"+f+"َا"+a+"َ"+l+"َة"),
-      ...P(core, p+f+"َا"+a+"َ"+l) }) };
+      ...P(failStem6, p+f+"َا"+a+"َ"+l) }) };
   }
   if (form === "IV") {
     if (t === "gem") {

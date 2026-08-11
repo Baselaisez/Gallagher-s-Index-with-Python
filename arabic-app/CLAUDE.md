@@ -1861,3 +1861,26 @@ Two things follow from that, and they are worth stating separately:
 Running total on the worked-sentence section since it shipped: **92% → 95%**,
 25 named disagreements → 17, from two rules and one table row. The section has
 now paid for itself twice.
+
+## The participle stem is not the conjugating stem
+
+Forms V and VI run their mudari on a FATHA — يَتَفَعَّلُ، يَتَفَاعَلُ — but their ism
+fa'il takes a KASRA: مُتَعَلِّم، مُتَشَابِه. `sarfDerive` handed the conjugating
+stem straight to the participle maker, so for those two forms the ism fa'il and
+the ism maf'ul came out IDENTICAL — `مُتَنَصَّر` for both. Forms II and III were
+fine only because their conjugating stem already carries the kasra.
+
+It had been wrong since the engine was written and nothing caught it, because
+**`sarfAudit` compares the tenses and not the participles.** A gate that checks
+mazi, mudari, amr and the two governed cells is a good gate and it was silent
+here for eleven versions. The corpus's own `مُتَشَابِه` — authored by hand in
+chapter 6 — disagreed with the engine the whole time and no test compared them.
+
+Two things now guard it: an explicit table of six root×form participles, and a
+structural check that **the ism fa'il may never equal the ism maf'ul**. One
+kasra apart is the entire distinction; equality means the distinction was lost,
+whatever the letters happen to be.
+
+The general form of the lesson: **a gate defines what "correct" means, and
+anything outside it is unverified by construction.** When an engine grows a new
+output, the gate has to grow with it or that output is folklore.

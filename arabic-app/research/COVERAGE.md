@@ -456,3 +456,21 @@ not a one-line change.
   every أما in the library read as an open-class noun. The bank went 93.8% →
   **95%**; disagreements 19 → 17. Running total since the worked-sentence
   section shipped: 92% → 95%, from two rules and one table row.
+- **v113** — Manar reaches chapter 11, the GENERAL and its takhṣīṣ: what a
+  general obliges (decisively, with us), the definition of specification, and
+  the two kinds of specifier — connected and separate. Eleven chapters, 417
+  tokens. Grammar: يُوجِبُ completes a paradigm assembled across three chapters
+  (أَنْ يُوجِبَ in ch4, مُوجِبُهُ in ch8, يُوجِبُ here); قِسْمَانِ is a dual as khabar
+  with its NUN standing, set against دَفَّتَيِ in ch2 where the same nun fell for
+  an iḍāfa; قَصْرُ الْعَامِّ عَلَى بَعْضِ أَفْرَادِهِ is a maṣdar governing exactly as its
+  verb would, heading a four-link chain; مُتَّصِل is the third iftiʿāl of a mithāl
+  in the package, set beside مُنْفَصِل whose sound first radical needs no repair;
+  and لَا يَسْتَقِلُّ is Form X of a doubled root.
+  **Engine: the Form V/VI participle stems.** Both forms conjugate on a fatḥa
+  and take a kasra in the ism fāʿil, and `sarfDerive` was handing the
+  conjugating stem to the participle maker — so ism fāʿil and ism mafʿūl came
+  out IDENTICAL for every Form V and VI verb. Wrong since the engine was
+  written, and invisible because `sarfAudit` compares tenses, not participles.
+  The corpus's own hand-authored مُتَشَابِه had disagreed with the engine the
+  whole time. Now gated by an explicit six-row table AND by a structural rule:
+  the ism fāʿil may never equal the ism mafʿūl.
