@@ -149,11 +149,11 @@ S.append({"id": "s2", "translation": {
       "مَجْرُورٌ بِـ«إِلَى» — وَهُوَ الْمَقِيسُ الَّذِي سَكَتَ عَنْهُ النَّصُّ.",
       "In jarr after «ila» — the case measured, the one the text was silent about.",
       "«إِلَى» ile mecrûr — nassın sükût ettiği, kıyas edilen taraftır."),
-  tok("بِعِلَّةٍ","illa","noun",["huruf-jarr"],
+  tok("بِعِلَّةٍ","illah","noun",["huruf-jarr"],
       "الْبَاءُ لِلسَّبَبِيَّةِ، وَالْمَجْرُورُ بِهَا «عِلَّةٍ» — وَهِيَ الْوَصْفُ الَّذِي عُلِّقَ بِهِ الْحُكْمُ.",
       "The BA of causation, and «a cause» in jarr after it — the property the ruling was hung upon.",
       "Sebebiyye bâsı ve onunla mecrûr «عِلَّةٍ» — hükmün kendisine bağlandığı vasıftır.",
-      segments=[seg("بِ","bi","prep"), seg("عِلَّةٍ","illa","noun")]),
+      segments=[seg("بِ","bi","prep"), seg("عِلَّةٍ","illah","noun")]),
   tok("جَامِعَةٍ","jamia","noun",["naat-sifa","ism-fail"],
       "نَعْتٌ لِـ«عِلَّةٍ» مَجْرُورٌ — اسْمُ فَاعِلٍ مِنْ «جَمَعَ»، وَبِهِ خَرَجَتِ الْعِلَّةُ الْقَاصِرَةُ الَّتِي لَا تَتَعَدَّى أَصْلَهَا.",
       "A na't of «a cause», in jarr — the ism fa'il of جَمَعَ, and by it the CONFINED cause is shut out: a cause that never reaches past its own case cannot carry a ruling anywhere.",
@@ -223,7 +223,7 @@ GLOSS_ADD = {
  "tadiya":   g("تَعْدِيَة", "ع د و", "noun", "carrying across, transfer (masdar, Form II)", "ta'diye; taşıma (masdar)", 5),
  "far":      g("فَرْع", "ف ر ع", "noun", "branch case — the one being measured", "fer'; kıyas edilen taraf", 3,
                plural="فُرُوع"),
- "illa":     g("عِلَّة", "ع ل ل", "noun", "cause, the property a ruling hangs on", "illet", 3, plural="عِلَل"),
+ "illah":    g("عِلَّة", "ع ل ل", "noun", "cause, the property a ruling hangs on", "illet", 3, plural="عِلَل"),
  "jamia":    g("جَامِعَة", "ج م ع", "noun", "gathering, joining two things (ism fa'il, fem.)", "câmia; iki tarafı toplayan", 3),
  "hadhihi":  g("هَذِهِ", None, "pron", "this (feminine)", "bu (müennes)", 1),
  "hiya":     g("هِيَ", None, "pron", "she, it (detached)", "o (müennes, munfasıl)", 1),
@@ -256,6 +256,13 @@ for lang, txt in ORIG.items():
     if txt not in cur:
         man["attribution"][lang] = (cur + " " + txt).strip()
 (PKG / "manifest.json").write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
-gl = json.loads((PKG / "glossary.json").read_text(encoding="utf-8")); gl["entries"].update(GLOSS_ADD)
+gl = json.loads((PKG / "glossary.json").read_text(encoding="utf-8"))
+# A lex key is GLOBAL across the library, and this package once keyed عِلَّة as
+# `illa` while every other package keys إِلَّا that way. The scripts only ADD, so
+# a rename has to clear the stale key by hand — and it must be safe to run in
+# any order, so it fires only when the entry really is the old one.
+if gl["entries"].get("illa", {}).get("lemma") == "عِلَّة":
+    gl["entries"].pop("illa")
+gl["entries"].update(GLOSS_ADD)
 (PKG / "glossary.json").write_text(json.dumps(gl, ensure_ascii=False, indent=1), encoding="utf-8")
 print("manar ch3:", len(S), "sentences,", sum(len(x["tokens"]) for x in S), "tokens; gloss +", len(GLOSS_ADD))

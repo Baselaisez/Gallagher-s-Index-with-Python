@@ -4605,6 +4605,18 @@ if (!CHROME) {
         fem:       T('مُسْلِمَات'),
         femDef:    T('الطَّالِبَات'),
         khamsa:    T('أَب', { mudaf: true }),
+        // ـَاء is two different endings wearing the same three letters, and only
+        // the ROOT tells them apart: صَحْرَاء has the alif of femininity and is
+        // barred from tanwin, خَفَاء has the ya of خ ف ي turned into a hamza and
+        // is perfectly ordinary. Hamza SEATS must fold — a root is written
+        // ق ر أ, not ق ر ء, and a bare-ء test read قُرَّاء as feminine.
+        sahra:     T('صَحْرَاء', { root: 'ص ح ر' }),
+        khafaa:    T('خَفَاء', { root: 'خ ف ي' }),
+        dua:       T('دُعَاء', { root: 'د ع و' }),
+        qurra:     T('قُرَّاء', { root: 'ق ر أ' }),
+        sahraDef:  T('الصَّحْرَاء', { root: 'ص ح ر' }),
+        // …and with no root the engine must NOT guess a verdict of its own
+        mamdudUndecided: AlamaEngine.mamdudVerdict('صَحْرَاء', ''),
         // the maqsur's case is never written, so all three must be TAQDIRI
         maqsurManner: (AlamaEngine.table('فَتًى', {}).rows || []).map(x => x.manner).join(','),
         // …and the manqus writes only the fatha
@@ -4631,6 +4643,12 @@ if (!CHROME) {
       fem:         'مُسْلِمَاتٌ|مُسْلِمَاتٍ|مُسْلِمَاتٍ',
       femDef:      'الطَّالِبَاتُ|الطَّالِبَاتِ|الطَّالِبَاتِ',
       khamsa:      'أَبُو|أَبَا|أَبِي',
+      sahra:       'صَحْرَاءُ|صَحْرَاءَ|صَحْرَاءَ',
+      khafaa:      'خَفَاءٌ|خَفَاءً|خَفَاءٍ',
+      dua:         'دُعَاءٌ|دُعَاءً|دُعَاءٍ',
+      qurra:       'قُرَّاءٌ|قُرَّاءً|قُرَّاءٍ',
+      // ال puts a mamnu' noun back on the ordinary kasra
+      sahraDef:    'الصَّحْرَاءُ|الصَّحْرَاءَ|الصَّحْرَاءِ',
     };
     for (const k of Object.keys(want))
       if (r[k] !== want[k]) throw new Error(k + ': wanted ' + want[k] + ', got ' + r[k]);
@@ -4639,6 +4657,8 @@ if (!CHROME) {
     if (r.manqusManner !== 'taqdiri,lafzi,taqdiri')
       throw new Error('a manqus writes only the fatha: ' + r.manqusManner);
     if (!r.maaniMamnu) throw new Error('مَعَانٍ must be read as barred from tanwin');
+    if (r.mamdudUndecided !== null)
+      throw new Error('with no root a mamdud must be left UNDECIDED, not guessed: ' + r.mamdudUndecided);
     if (!/İVAZ|ivaz/i.test(r.maaniSteps))
       throw new Error('the tanwin on مَعَانٍ must be named a tanwin of COMPENSATION: ' + r.maaniSteps);
     if (!/standing in for the fatha/.test(r.femNasbWhy))

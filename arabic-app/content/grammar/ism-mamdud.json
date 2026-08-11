@@ -1,0 +1,78 @@
+{
+  "id": "ism-mamdud",
+  "title": {
+    "ar": "الِاسْمُ الْمَمْدُودُ وَهَمْزَتُهُ",
+    "en": "The mamdud noun and where its hamza came from",
+    "tr": "İsm-i memdûd ve hemzesinin aslı"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — المقصور والممدود",
+    "قطر الندى (ابن هشام) — ما لا ينصرف",
+    "مراح الأرواح — المقصور والممدود"
+  ],
+  "plain": {
+    "en": "A مَمْدُود noun ends in an alif and then a hamza: صَحْرَاء، خَفَاء، رَجَاء، قُرَّاء. They all look the same and they do NOT all decline the same. Only the one whose hamza is the alif of FEMININITY is barred from tanwin. For the rest the hamza belongs to the root, and the noun is perfectly ordinary.",
+    "tr": "İSM-İ MEMDÛD, elif ve ardından hemze ile biter: صَحْرَاء، خَفَاء، رَجَاء، قُرَّاء. Hepsi aynı görünür, hepsi aynı i'râbı ALMAZ. Yalnız hemzesi TE'NÎS elifi olan tenvînden men edilir. Kalanlarda hemze kökten gelir ve isim tamamen normaldir."
+  },
+  "explanation": {
+    "en": "Four things can put a hamza at the end of a مَمْدُود noun, and the ending gives away none of them:\n\n1. **The root's own hamza** — قُرَّاء from ق ر أ. The hamza is a radical; the noun is munsarif.\n2. **A radical waw or ya turned into a hamza** — خَفَاء from خ ف ي, رَجَاء from ر ج و, دُعَاء from د ع و, بِنَاء from ب ن ي. The letter changed its shape, not its status: still a radical, still munsarif.\n3. **The alif of FEMININITY (أَلِفُ التَّأْنِيثِ الْمَمْدُودَة)** — صَحْرَاء، حَمْرَاء، بَيْضَاء، عُلَمَاء. Nothing in the root answers to it. This one, and only this one, is مَمْنُوعٌ مِنَ الصَّرْفِ: no tanwin, and a FATHA in jarr where a kasra would be expected — unless the noun wears ال or becomes a mudaf, and then it declines like anything else.\n4. **An added letter for lengthening (لِلْإِلْحَاقِ)** — عِلْبَاء، حِرْبَاء. Munsarif.\n\nSo the ending decides nothing and the ROOT decides everything. Count the radicals: if the hamza is one of them, or stands where one of them stood, the noun keeps its tanwin. صَحْرَاءُ and خَفَاءً end in the same three letters and are written differently in every case, and no reader can tell which is which without knowing the root.\n\nThe app's own ending engine works exactly this way: given the root it answers, and without one it declines to guess and lets the learned tagger take the question.",
+    "tr": "Bir memdûd ismin sonuna hemzeyi dört şey koyabilir ve son harfler bunların hiçbirini ele vermez:\n\n1. **Kökün kendi hemzesi** — ق ر أ kökünden قُرَّاء. Hemze aslî harftir; isim munsariftir.\n2. **Aslî bir vâv yahut yânın hemzeye kalbi** — خ ف ي'den خَفَاء, ر ج و'dan رَجَاء, د ع و'dan دُعَاء, ب ن ي'den بِنَاء. Harf şeklini değiştirmiştir, hükmünü değil: yine aslîdir, yine munsariftir.\n3. **TE'NÎS elifi (أَلِفُ التَّأْنِيثِ الْمَمْدُودَة)** — صَحْرَاء، حَمْرَاء، بَيْضَاء، عُلَمَاء. Kökte ona karşılık gelen hiçbir şey yoktur. Yalnız ve yalnız bu GAYR-İ MUNSARİFtir: tenvîn almaz ve kesra beklenen yerde cerde FETHA alır — «أَلْ» almadıkça yahut muzâf olmadıkça; o zaman her isim gibi i'râb alır.\n4. **İlhâk için zâid harf** — عِلْبَاء، حِرْبَاء. Munsariftir.\n\nDemek ki son harfler hiçbir şeye, KÖK ise her şeye karar verir. Aslî harfleri say: hemze onlardan biriyse yahut birinin yerinde duruyorsa isim tenvînini korur. صَحْرَاءُ ile خَفَاءً aynı üç harfle biter ve her hâlde farklı yazılır; kökü bilmeyen hiçbir okuyucu hangisinin hangisi olduğunu söyleyemez.\n\nUygulamanın alâmet motoru da tam böyle çalışır: kök verilirse cevap verir, verilmezse tahmin etmez ve soruyu öğrenilmiş etiketleyiciye bırakır."
+  },
+  "examples": [
+    {
+      "ar": "وَالْمُشْكِلُ مَا ازْدَادَ خَفَاءً.",
+      "en": "The difficult is that which has grown more obscure — خَفَاءً is a tamyiz in nasb and KEEPS its tanwin, because its hamza stands where the ya of خ ف ي stood.",
+      "tr": "Müşkil, kapalılığı artandır — خَفَاءً mansub temyîzdir ve tenvînini KORUR; zira hemzesi خ ف ي kökünün yâsının yerindedir.",
+      "sourceStory": "mukhtasar-al-manar",
+      "sentence": "s3",
+      "chapter": 6
+    },
+    {
+      "ar": "مَا انْقَطَعَ رَجَاءُ مَعْرِفَةِ مُرَادِهِ.",
+      "en": "…that whose hope of knowing its intended sense has been cut off — رَجَاء too is a mamdud from a waw (ر ج و), so it is munsarif; here it is definite by its idafa, so the question of a tanwin does not arise at all.",
+      "tr": "…murâdını bilme ümidi kesilen — رَجَاء da vâvdan (ر ج و) gelen bir memdûddur, munsariftir; burada izâfetle marife olduğu için tenvîn meselesi zaten doğmaz.",
+      "sourceStory": "mukhtasar-al-manar",
+      "sentence": "s5",
+      "chapter": 6
+    },
+    {
+      "ar": "نَزَلْنَا فِي صَحْرَاءَ وَاسِعَةٍ.",
+      "en": "We camped in a wide desert — صَحْرَاءَ is in jarr and takes a FATHA, because its hamza is the alif of femininity and the noun is barred from tanwin.",
+      "tr": "Geniş bir çölde konakladık — صَحْرَاءَ mecrûrdur ve FETHA alır; zira hemzesi te'nîs elifidir ve isim tenvînden men edilmiştir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اِزْدَادَ خَفَاءَ",
+      "right": "اِزْدَادَ خَفَاءً",
+      "why": {
+        "en": "خَفَاء is not barred from tanwin. Its hamza came from the ya of خ ف ي, so it is a radical and the noun is munsarif: نَصْبٌ بِالْفَتْحَةِ وَالتَّنْوِينِ. Giving it a bare fatha treats it as if it were صَحْرَاء, which it only resembles on the page.",
+        "tr": "خَفَاء tenvînden men edilmiş değildir. Hemzesi خ ف ي kökünün yâsından gelmiştir, dolayısıyla aslîdir ve isim munsariftir: fetha ve tenvînle nasb edilir. Ona çıplak fetha vermek, onu yalnızca yazıda benzediği صَحْرَاء gibi saymaktır."
+      }
+    },
+    {
+      "wrong": "نَزَلْنَا فِي صَحْرَاءٍ",
+      "right": "نَزَلْنَا فِي صَحْرَاءَ",
+      "why": {
+        "en": "صَحْرَاء has three radicals — ص ح ر — and the hamza is none of them: it is the alif of femininity. Such a noun takes no tanwin and is put into jarr by a fatha.",
+        "tr": "صَحْرَاء'in aslî harfleri üçtür — ص ح ر — ve hemze bunlardan biri değildir: te'nîs elifidir. Böyle bir isim tenvîn almaz ve cerde fetha ile i'râb edilir."
+      }
+    },
+    {
+      "wrong": "مَرَرْتُ بِالصَّحْرَاءَ",
+      "right": "مَرَرْتُ بِالصَّحْرَاءِ",
+      "why": {
+        "en": "The fatha of jarr belongs to a mamnu' noun only while it is INDEFINITE. Put ال on it, or make it a mudaf, and the reason for the substitute vanishes: it takes the ordinary kasra again.",
+        "tr": "Cerdeki fetha, gayr-i munsarif isme yalnız NEKRE iken aittir. Başına «أَلْ» gelirse yahut muzâf olursa bedelin sebebi ortadan kalkar: yine normal kesrayı alır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "ism-maqsur-manqus",
+    "mamnu-min-sarf",
+    "tamyiz",
+    "masdar"
+  ]
+}

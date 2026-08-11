@@ -1695,3 +1695,44 @@ Two more defects fell out of the same visit:
 
 All three are now gated by name in the smoke suite over a ten-root table, and
 250 stored paradigms regenerate from the engine.
+
+## ـَاء is two endings wearing the same three letters
+
+Chapter 6's خَفَاءً forced a rule the engine did not have. A مَمْدُود noun ends
+in an alif and a hamza, and four different things can put that hamza there:
+
+1. the root's own hamza — قُرَّاء from ق ر أ;
+2. a radical waw or ya turned into one — خَفَاء (خ ف ي)، رَجَاء (ر ج و)، دُعَاء (د ع و);
+3. the **alif of femininity** — صَحْرَاء، حَمْرَاء، عُلَمَاء;
+4. an added letter for lengthening — عِلْبَاء، حِرْبَاء.
+
+**Only the third is barred from tanwin.** صَحْرَاءُ and خَفَاءً end in the same
+three letters, decline differently in every case, and nothing on the page
+separates them — only the ROOT does. So `AlamaEngine.mamdudVerdict` answers from
+the root and returns `null` without one, and `renderAlamaOut` asks the corpus
+lexicon for the root before it asks anything else. Same doctrine as the manqūṣ:
+where the surface cannot decide, ask, and where nothing can be asked, say so.
+
+**Fold the hamza SEATS when reading a root.** Roots are written with the carrier
+the dictionary uses — ق ر أ, not ق ر ء — so a test for a bare `ء` as third
+radical read قُرَّاء as feminine and barred it from a tanwin it is entitled to.
+Any rule that inspects a root letter-by-letter has this bug waiting in it.
+
+The registry gained note 94, `ism-mamdud`, which is the same rule written for
+the reader — and it is the note the engine's behaviour is now gated against.
+
+**A near-miss note is worse than a general one.** خَفَاءً was first tagged
+`mamnu-min-sarf`, the note whose rule decides it — but the word is NOT barred
+from tanwin, and a learner tapping through would have read the opposite of what
+the word on the page does. Same call as ch5's لَا, which was nearly tagged
+`la-nafiya-lil-jins` when it is neither that lā nor governing anything. Tag what
+the word IS.
+
+**There are TWO naqis mazi patterns and `naqis1` builds only one.** رَمَى and
+دَعَا end their third person in an alif; بَقِيَ، رَضِيَ، خَفِيَ keep the ya, vowel
+it with a kasra, and contract only in the third-person plural (خَفُوا).
+`sarf_gen` has `mazi_naqis` for the first and `mazi_naqis_kasra` for the second,
+and `naqis1` wires up the first only — so a samiʿa-bab naqis authored through
+`naqis1` ships *خَفِى / *خَفِتْ. The regeneration gate caught it, which is what
+that gate is for: **when the generator and the engine disagree, one of them is
+wrong and the corpus is the thing that finds out.**

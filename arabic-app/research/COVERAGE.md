@@ -370,3 +370,21 @@ not a one-line change.
   اِدِّعَاء had been shipping as اِدَّعَاء; (3) Form VII had no geminate branch and
   اِنْسَدَّ came out uncontracted. Gated by name over a ten-root table; 250
   stored paradigms regenerate from the engine.
+- **v108** — Manar reaches chapter 6, the four degrees of OBSCURITY: khafī,
+  mushkil, mujmal, mutashābih. Six chapters, 217 tokens. It is the mirror of
+  chapter 5 and the matn says so in its own words, اِزْدَادَ خَفَاءً where it
+  said اِزْدَادَ وُضُوحًا — the two chapters are one table read from its two ends.
+  Grammar: لَا يُنَالُ … إِلَّا بِالطَّلَبِ, an istithnāʾ mufarragh whose mustathnā
+  takes its iʿrāb from the governor rather than from إِلَّا; الْمُجْمَل beside
+  الْمُجْمِل in one sentence, ism mafʿūl and ism fāʿil of the same Form IV verb
+  separated by a single vowel on which the whole definition turns; and
+  رَجَاءُ مَعْرِفَةِ مُرَادِهِ, an iḍāfa chain four links deep.
+  Engine: `AlamaEngine` learned the MAMDŪD. A noun ending in ـَاء is barred
+  from tanwīn only when the hamza is the alif of femininity, and nothing on
+  the page says which it is — so the verdict is taken from the ROOT, returns
+  `null` without one, and the lab now asks the corpus lexicon for the root
+  before deciding. Hamza seats fold (ق ر أ, not ق ر ء) or قُرَّاء is read as
+  feminine. New registry note (94): `ism-mamdud`. Also closed a global lex-key
+  divergence this package had introduced: `illa` keyed عِلَّة here while every
+  other package keys إِلَّا that way; عِلَّة is now `illah`, cleared by an
+  order-independent pop in the chapter-3 script.
