@@ -1808,3 +1808,34 @@ needed before the number meant anything, and both are doctrine, not fudging:
 With both applied the figure lands at 91.7%, next to the 91.5% the smoke gate
 measures over the whole hand-labelled set — which is the check that the number
 is real.
+
+## The `مَا` rule, and how the bank paid for itself immediately
+
+The worked-sentence section had barely shipped before it earned its keep. Ten
+of its 25 named disagreements were one word: `مَا` read as a HARF where the
+books call it an ism. `MaEngine` was returning a single face — `nafiya` — so
+the shortlist did not contain the true reading at all.
+
+The signal it was missing is syntactic and statable: **a definite noun stands
+immediately before the مَا, no verb has occurred yet, and a verb follows.**
+`الْخَاصُّ مَا وُضِعَ`, `وَالْمُشْكِلُ مَا ازْدَادَ`, `وَدَلَالَتُهُ مَا ثَبَتَ` — the mubtada
+is still waiting for a khabar, and a relative clause supplies one where a bare
+negation would leave it standing empty. The face is ranked above the negation
+in **that configuration and nowhere else**, because `زَيْدٌ مَا قَامَ` is a real
+sentence too and the negation stays on the list underneath it.
+
+Two measurements, both taken on the bank:
+
+- stating the rule for `i === 1` only: 92% → 92%, 25 → 24 disagreements. Nearly
+  nothing, because the frame's noun almost always wears a clitic.
+- testing the preceding word as `/^[وفبلك]?ال/` instead of `/^ال/`: **92% → 93.7%,
+  24 → 19**. `فَالْخَاصُّ`, `وَالنَّصُّ`, `وَالْمُقَيَّدُ` — the fa and the waw were
+  hiding the article from a rule that only knew how to look for it bare.
+
+**A clitic can hide the very feature a rule tests for.** Any rule that inspects
+the word BEFORE the one it is deciding must peel first, and this is the second
+time that has cost real accuracy in this codebase.
+
+And the general lesson: a dataset that records where the engine is WRONG is
+worth more than one that records where it is right. Five disagreements went
+away because they were written down where they could be counted.

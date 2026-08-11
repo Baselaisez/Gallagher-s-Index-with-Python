@@ -5520,6 +5520,27 @@ class MaEngine {
     if (nounNext && mansubLater)
       say("hijaziyya", "a noun follows and a later word is mansub — that accusative is the khabar this ma governs, exactly as laysa would",
                        "ardından isim geliyor ve sonraki bir kelime mensub — o mensub, bu mânın naspettiği haberdir; tıpkı leyse gibi");
+    // 6b. A DEFINITE noun opens the sentence, مَا comes straight after it, and a
+    // verb follows: الْخَاصُّ مَا وُضِعَ، الْمُشْكِلُ مَا ازْدَادَ، النَّهْيُ … مَا نَابَ.
+    // The mubtada is still waiting for a khabar, and a relative clause supplies
+    // one where a bare negation would leave it standing empty. This is the
+    // definitional frame every matn in the library is written in, and until it
+    // was stated the engine's shortlist did not contain the true reading at
+    // all — it said «negation» and stopped. It is ranked ABOVE the negation in
+    // this one configuration and nowhere else: زَيْدٌ مَا قَامَ is a real sentence
+    // too, so the negation stays on the list underneath.
+    // The signal is not «index 1» but «no khabar has been supplied yet»: a
+    // definite noun stands immediately before the ma and NO verb has occurred
+    // anywhere ahead of it. That covers وَأَمَّا السُّنَّةُ فَمَا صَدَرَ, where the ma
+    // sits third, and refuses to fire once a verb has already done the work.
+    const noVerbYet = !words.slice(0, i).some((w, k) => verbAt(k));
+    // …and the noun before it may be wearing a clitic: فَالْخَاصُّ، وَالنَّصُّ،
+    // بِالْحُكْمِ. Testing for a bare «ال» at the front missed every one of them,
+    // which is most of the frame this rule exists for.
+    const prevDef = i > 0 && /^[وفبلك]?ال/.test(bare(i - 1)) && noVerbYet;
+    if (prevDef && verbAt(i + 1))
+      say("mawsula", "a definite noun opens the sentence and a verb follows the ma: the mubtada has no khabar yet, and «that which …» supplies one where a bare negation would leave it standing empty",
+                     "cümleyi marife bir isim açıyor ve mâdan sonra fiil geliyor: mübtedâ henüz habersizdir; «o şey ki …» ona haber verir, sade nefiy ise onu habersiz bırakırdı");
     // 7. a verb right after — the plain negation. A pronoun, demonstrative or
     // relative is NOT a verb, so it must not be read as one.
     const nextIsClosed = !!SentenceAnalyzer.PARTICLES[next];

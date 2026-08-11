@@ -424,3 +424,19 @@ not a one-line change.
   over Manar's 301 tokens, with the 25 disagreements left in the file by name.
   Two normalisations were needed first and both are doctrine: prep/conj/part
   are one class to the analyzer, and a pronoun is an ism.
+- **v111** — Manar reaches chapter 9, the UNRESTRICTED and the RESTRICTED,
+  closing on the Hanafi position that the muṭlaq is not carried onto the
+  muqayyad without an indication. Nine chapters, 337 tokens. The chapter is
+  built almost entirely out of rules earlier chapters set up: زَائِد is the
+  third face of ز ي د in the package (اِزْدَادَ carried the ta's ibdāl, this
+  carries the ʿayn's iʿlāl); مَوْصُوف shows a mithāl KEEPING its waw where the
+  muḍāriʿ drops it; إِذَا takes its clause for a muḍāf ilayh exactly as حَيْثُ
+  did in chapter 5; and `إِلَّا بِدَلِيلٍ` is the third istithnāʾ mufarragh in four
+  chapters.
+  **`MaEngine` gained the definitional-frame rule**, and the drill bank paid
+  for itself: ten of its 25 named disagreements were `مَا` read as a ḥarf. A
+  definite noun immediately before, no verb yet, a verb after → the relative
+  is ranked first, and only in that configuration. Measured on the bank: 92% →
+  **93.7%** part-of-speech agreement, 25 → 19 disagreements. The gain came
+  almost entirely from testing the preceding word as `/^[وفبلك]?ال/` rather
+  than `/^ال/` — فَالْخَاصُّ and وَالنَّصُّ were hiding the article behind a clitic.

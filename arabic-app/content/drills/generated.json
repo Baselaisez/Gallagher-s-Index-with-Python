@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 35,
-  "sentenceTokens": 301,
-  "posAgreement": 92,
-  "rows": 1386
+  "sentences": 40,
+  "sentenceTokens": 337,
+  "posAgreement": 93.8,
+  "rows": 1422
  },
  "endings": [
   {
@@ -5842,7 +5842,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -6931,9 +6931,9 @@
      "en": "A verbal clause, the sila of the relative — i'rabless."
     }
    ],
-   "posAgreement": 85.7,
+   "posAgreement": 100,
    "judged": 7,
-   "agree": 6,
+   "agree": 7,
    "tokens": [
     {
      "w": "فَالْخَاصُّ",
@@ -6967,13 +6967,13 @@
       "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false
+     "match": true
     },
     {
      "w": "وُضِعَ",
@@ -7382,9 +7382,9 @@
      "en": "A nominal clause — i'rabless."
     }
    ],
-   "posAgreement": 80,
+   "posAgreement": 100,
    "judged": 5,
-   "agree": 4,
+   "agree": 5,
    "tokens": [
     {
      "w": "وَالْمُشْتَرَكُ",
@@ -7418,13 +7418,13 @@
       "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false
+     "match": true
     },
     {
      "w": "وُضِعَ",
@@ -7513,9 +7513,9 @@
      "en": "A verbal clause, the sila of the relative — i'rabless."
     }
    ],
-   "posAgreement": 85.7,
+   "posAgreement": 100,
    "judged": 7,
-   "agree": 6,
+   "agree": 7,
    "tokens": [
     {
      "w": "وَالْمُؤَوَّلُ",
@@ -7549,13 +7549,13 @@
       "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false
+     "match": true
     },
     {
      "w": "تَرَجَّحَ",
@@ -7945,7 +7945,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -8130,9 +8130,9 @@
      "en": "A nominal clause — i'rabless."
     }
    ],
-   "posAgreement": 88.9,
+   "posAgreement": 100,
    "judged": 9,
-   "agree": 8,
+   "agree": 9,
    "tokens": [
     {
      "w": "وَالنَّصُّ",
@@ -8166,13 +8166,13 @@
       "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false
+     "match": true
     },
     {
      "w": "ازْدَادَ",
@@ -8373,7 +8373,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -8598,7 +8598,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -8992,7 +8992,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -9195,7 +9195,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -9421,7 +9421,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true
     },
@@ -9627,9 +9627,9 @@
      "en": "A verbal clause, the sila of the relative — i'rabless."
     }
    ],
-   "posAgreement": 83.3,
+   "posAgreement": 100,
    "judged": 6,
-   "agree": 5,
+   "agree": 6,
    "tokens": [
     {
      "w": "وَالْمُتَشَابِهُ",
@@ -9663,13 +9663,13 @@
       "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false
+     "match": true
     },
     {
      "w": "انْقَطَعَ",
@@ -11697,6 +11697,837 @@
       "lemma": "فَعَلَ",
       "root": "ف ع ل",
       "wazn": "تَفْعَلْ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:9:s1",
+   "story": "mukhtasar-al-manar",
+   "chapter": 9,
+   "sentence": "s1",
+   "text": "ثُمَّ الْخَاصُّ يَنْقَسِمُ إِلَى مُطْلَقٍ وَمُقَيَّدٍ",
+   "translation": {
+    "en": "Then the specific divides into unrestricted and restricted.",
+    "tr": "Hâss, mutlak ve mukayyed olmak üzere ikiye ayrılır."
+   },
+   "jumal": [
+    {
+     "text": "الْخَاصُّ يَنْقَسِمُ إِلَى مُطْلَقٍ وَمُقَيَّدٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause whose khabar is a verbal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving sequence with an interval."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْخَاصُّ",
+     "lex": "khass",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il in raf' — the very khass that was defined in chapter 4, come back now to be divided. A term is defined once and then worked; that is how a matn is built."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَاصّ",
+      "root": "ل خ ص",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَنْقَسِمُ",
+     "lex": "inqasama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "form-vii-verbs"
+      ],
+      "irab": "A mudari in raf' on اِنْفَعَلَ — the MUTAWA'A of قَسَمَ: that verb divides something else, this one is the thing dividing of itself. Form VII is the whole difference, and the matn chose it deliberately: the division is in the wording's own nature, not something a jurist does to it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِنْقَسَمَ",
+      "root": "ق س م",
+      "wazn": "يَنْفَعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter — and it belongs to the verb's meaning: اِنْقَسَمَ does not stand without it. A verb whose preposition is part of it is learned WITH the preposition, never apart from it."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُطْلَقٍ",
+     "lex": "mutlaq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "ism-maful",
+       "form-iv-verbs"
+      ],
+      "irab": "In jarr after «ila» — the ism maf'ul of أَطْلَقَ on مُفْعَل, whose masdar الْإِطْلَاق stood in the chapter on the command. The pair is worth holding together: there the word named a STATE a command could be in, here it names a wording that is in it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُطْلَق",
+      "root": "ط ل ق",
+      "wazn": "مُفْعَلٍ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَمُقَيَّدٍ",
+     "lex": "muqayyad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "ism-maful",
+       "form-ii-verbs"
+      ],
+      "irab": "Joined, in jarr — the ism maf'ul of قَيَّدَ on مُفَعَّل: the wording that has had a fetter put on it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُقَيَّد",
+      "root": "م ق د",
+      "wazn": "وَفُعَيَّلٍ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:9:s2",
+   "story": "mukhtasar-al-manar",
+   "chapter": 9,
+   "sentence": "s2",
+   "text": "فَالْمُطْلَقُ مَا تَنَاوَلَ وَاحِدًا لَا بِعَيْنِهِ",
+   "translation": {
+    "en": "So the unrestricted is what takes in one instance, not one in particular.",
+    "tr": "Mutlak, muayyen olmayan bir ferdi kapsayandır."
+   },
+   "jumal": [
+    {
+     "text": "الْمُطْلَقُ مَا تَنَاوَلَ وَاحِدًا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "فَالْمُطْلَقُ",
+     "lex": "mutlaq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "atf-nasaq"
+      ],
+      "irab": "A fa joining for detail; «the unrestricted» is the mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُطْلَق",
+      "root": "ط ل ق",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of raf' as the khabar — and it is the mould every definition in this book is cast in. A definite noun, a مَا, and a clause: read that shape once and the rest of the matn reads itself."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "تَنَاوَلَ",
+     "lex": "tanawala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "jumla-sifa",
+       "form-vi-verbs"
+      ],
+      "irab": "A past verb on تَفَاعَلَ; the clause is the sila. Form VI is the form of MUTUALITY as a rule — but not here: تَنَاوَلَ means to reach out and take in, and the pattern has drifted from its own headline meaning. A wazn tells you where to look for a sense, not what the sense is."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَنَاوَلَ",
+      "root": "ن و ل",
+      "wazn": "تَفَاعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَاحِدًا",
+     "lex": "wahid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi"
+      ],
+      "irab": "The maf'ul bihi, in nasb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ح د و/ي",
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "«La» denying, and with what follows it stands as a NA'T of «one instance» — an adjectival phrase built out of a negation."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِعَيْنِهِ",
+     "lex": "ayn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness",
+       "naat-sifa"
+      ],
+      "irab": "A jarr-majrur, «the very self of» a mudaf and the HA its mudaf ilayh. The sense: ONE of the kind, but no one of them in particular — so any instance discharges the duty. «Free a slave» is unrestricted; any slave will do."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:9:s3",
+   "story": "mukhtasar-al-manar",
+   "chapter": 9,
+   "sentence": "s3",
+   "text": "وَالْمُقَيَّدُ مَا تَنَاوَلَ مَوْصُوفًا بِوَصْفٍ زَائِدٍ عَلَى أَصْلِ الْحَقِيقَةِ",
+   "translation": {
+    "en": "And the restricted is what takes in something described by a description over and above the bare reality.",
+    "tr": "Mukayyed, aslî hakikatin üzerine bir vasıfla vasıflanmış olanı kapsayandır."
+   },
+   "jumal": [
+    {
+     "text": "الْمُقَيَّدُ مَا تَنَاوَلَ مَوْصُوفًا بِوَصْفٍ زَائِدٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 77.8,
+   "judged": 9,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "وَالْمُقَيَّدُ",
+     "lex": "muqayyad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw; «the restricted» is the mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُقَيَّد",
+      "root": "ق ي د",
+      "wazn": "وَالْمُفَعَّلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَنَاوَلَ",
+     "lex": "tanawala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "jumla-sifa",
+       "form-vi-verbs"
+      ],
+      "irab": "A past verb; the clause is the sila. The verb is repeated word for word, so the difference between the two definitions lies wholly in the OBJECT: there وَاحِدًا, here مَوْصُوفًا."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَنَاوَلَ",
+      "root": "ن و ل",
+      "wazn": "تَفَاعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَوْصُوفًا",
+     "lex": "mawsuf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "ism-maful"
+      ],
+      "irab": "The maf'ul bihi in nasb — the ism maf'ul of وَصَفَ. The verb is a MITHAL, and its waw drops in the mudari (يَصِفُ); in the participle it stands, because there is no kasra behind it to push it out. The same letter, present in one cell and gone from another, and the reason is entirely local."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "بِوَصْفٍ",
+     "lex": "wasf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "masdar"
+      ],
+      "irab": "A jarr-majrur attaching to «described» — the masdar of وَصَفَ. A participle governs like its verb, which is why the phrase hangs on it rather than on anything further back."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَصَفَ",
+      "root": "و ص ف",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "زَائِدٍ",
+     "lex": "zaid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "ism-fail",
+       "hollow-verbs"
+      ],
+      "irab": "A na't of «a description», in jarr — the ism fa'il of زَادَ, an AJWAF YAI. Its middle radical turns into a HAMZA in the participle: زَايِد becomes زَائِد, exactly as قَالَ gives قَائِل and بَاعَ gives بَائِع. This is the third face of ز ي د in this package — اِزْدَادَ carried the ibdal of the ta, and here the same root shows the i'lal of the ayn."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَائِد",
+      "root": "ز ئ د",
+      "wazn": "فَاعِلٍ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «over and above»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَصْلِ",
+     "lex": "asl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness"
+      ],
+      "irab": "In jarr after «ala» and a mudaf — and «asl» is the very word the book opened with, in chapter 1. Nine chapters later it is still doing work."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَصَلَ",
+      "root": "و ص ل",
+      "wazn": "أَفْعِلُ",
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "الْحَقِيقَةِ",
+     "lex": "haqiqa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "haqiqa-majaz"
+      ],
+      "irab": "The mudaf ilayh in jarr — and haqiqa is a wording used for what it was set down for. Here what is meant is the bare NATURE of the thing before any description is added: «a slave» is the reality, «a believing slave» is the reality plus a fetter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَقِيقَة",
+      "root": "ح ق ق",
+      "wazn": "فَعِيلَةِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:9:s4",
+   "story": "mukhtasar-al-manar",
+   "chapter": 9,
+   "sentence": "s4",
+   "text": "وَلَا يُحْمَلُ الْمُطْلَقُ عَلَى الْمُقَيَّدِ عِنْدَنَا إِلَّا بِدَلِيلٍ",
+   "translation": {
+    "en": "And the unrestricted is not carried onto the restricted with us, except by an indication.",
+    "tr": "Bize göre mutlak, bir delil olmadıkça mukayyede hamledilmez."
+   },
+   "jumal": [
+    {
+     "text": "لَا يُحْمَلُ الْمُطْلَقُ عَلَى الْمُقَيَّدِ إِلَّا بِدَلِيلٍ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw, and «la» simply denying, governing nothing."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُحْمَلُ",
+     "lex": "hamala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naib-al-fail",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari built for the unnamed doer, in raf' — from ح م ل, the root that gave يَحْتَمِلُ on اِفْتِعَال in the chapter on the muhkam. Two babs of one root in one book, and the nakil drill will now show both."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَمَلَ",
+      "root": "ح م ل",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُطْلَقُ",
+     "lex": "mutlaq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail"
+      ],
+      "irab": "The naib al-fa'il, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُطْلَق",
+      "root": "ط ل ق",
+      "wazn": "مُفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «is carried» — and part of its meaning: a thing is carried ONTO something."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُقَيَّدِ",
+     "lex": "muqayyad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "In jarr after «ala»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُقَيَّد",
+      "root": "ق ي د",
+      "wazn": "مُفَعَّلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِنْدَنَا",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "An adverb in nasb and a mudaf, with «na» as its mudaf ilayh — and this is the word by which the matn declares WHOSE position it is stating. «With us» means the Hanafis; others hold otherwise, and the matn does not pretend the question is settled for everyone."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع ن د",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "istithna-mufarragh"
+      ],
+      "irab": "The particle of exception, the exception MUFARRAGH — the third in four chapters. By now the shape should be recognised before the words are read: a negation, an إِلَّا, and no mustathna minhu named."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِدَلِيلٍ",
+     "lex": "dalil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "istithna-mufarragh",
+       "huruf-jarr"
+      ],
+      "irab": "A jarr-majrur attaching to «is carried» — the emptied exception itself. And «dalil» is the word chapter 2 pluralised in its opening line: الْأَدِلَّةُ أَرْبَعَةٌ. The book has come round to its own first term."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَلِيل",
+      "root": "د ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:9:s5",
+   "story": "mukhtasar-al-manar",
+   "chapter": 9,
+   "sentence": "s5",
+   "text": "فَإِذَا ثَبَتَ الدَّلِيلُ حُمِلَ الْمُطْلَقُ عَلَى الْمُقَيَّدِ",
+   "translation": {
+    "en": "So when the indication is established, the unrestricted is carried onto the restricted.",
+    "tr": "Delil sâbit olduğunda mutlak, mukayyede hamledilir."
+   },
+   "jumal": [
+    {
+     "text": "إِذَا ثَبَتَ الدَّلِيلُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ لِـ«إِذَا».",
+     "en": "A verbal clause in the position of jarr, the mudaf ilayh of «idha»."
+    },
+    {
+     "text": "حُمِلَ الْمُطْلَقُ عَلَى الْمُقَيَّدِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ جَوَابُ الشَّرْطِ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause, the answer of the condition — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "فَإِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya"
+      ],
+      "irab": "A «telling» fa, and «idha» an adverb of TIME TO COME carrying the sense of a condition — it is not a pure particle but a zarf with a condition folded into it, which is why the books put it apart from إِنْ."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ثَبَتَ",
+     "lex": "thabata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "idha-shartiyya"
+      ],
+      "irab": "A past verb, in the position of JARR because «idha» is added to it — it is the condition-verb. «Idha» takes its clause for a mudaf ilayh exactly as حَيْثُ did in the chapter on the mufassar. Two words in one book that are added to whole sentences."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ثَبَتَ",
+      "root": "ث ب ت",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الدَّلِيلُ",
+     "lex": "dalil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَلِيل",
+      "root": "د ل ل",
+      "wazn": "فَّعِيلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حُمِلَ",
+     "lex": "hamala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naib-al-fail",
+       "idha-shartiyya"
+      ],
+      "irab": "A past verb built for the unnamed doer, and the clause is «idha»'s ANSWER — i'rabless. Note that no fa joins it: the answer of a condition takes a fa only when it could not otherwise stand as an answer, and a plain past verb can."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَمَلَ",
+      "root": "ح م ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُطْلَقُ",
+     "lex": "mutlaq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail"
+      ],
+      "irab": "The naib al-fa'il, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُطْلَق",
+      "root": "ط ل ق",
+      "wazn": "مُفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «is carried»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُقَيَّدِ",
+     "lex": "muqayyad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "In jarr after «ala» — and the chapter closes on what it opened with: two kinds, and then the ruling for what happens when they meet."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُقَيَّد",
+      "root": "ق ي د",
+      "wazn": "مُفَعَّلِ",
       "sure": true
      },
      "match": true
