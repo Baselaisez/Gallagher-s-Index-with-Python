@@ -114,7 +114,7 @@ const PLAN = {
   ],
   // Whole sentences the corpus has already had a human parse: the engines are
   // run over them and BOTH readings are written down side by side.
-  analyseStories: ['mukhtasar-al-manar'],
+  analyseStories: ['mukhtasar-al-manar', 'talkhis-al-miftah'],
 };
 
 const build = async (page) => page.evaluate((PLAN) => {
@@ -217,31 +217,22 @@ const build = async (page) => page.evaluate((PLAN) => {
       const text = sen.tokens.map(t => t.s.full).join(' ');
       let rows = [];
       try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { rows = []; }
-      const HEAD = { noun: 'noun', 'noun?': 'noun', verb: 'verb', particle: 'part',
-                     part: 'part', pron: 'pron', propn: 'noun', conj: 'conj' };
       let agree = 0, judged = 0;
       const tokens = sen.tokens.map((t, i) => {
         const r = rows[i] || {};
-        const said = HEAD[r.kind] || r.kind || null;
-        const human = t.pos === 'propn' ? 'noun' : t.pos;
-        // prep, conj and part are ONE class to the analyzer: it returns
-        // «particle» for all three and has never claimed to separate them.
-        // Scoring them apart would be scoring it on a question it does not
-        // answer, and would report a number that means nothing.
-        // …and a PRONOUN is an ism. That is the tradition's own ruling and it
-        // is written into CLAUDE.md: هُوَ and مَا are asma, not particles. The
-        // corpus tags them `pron` for the reader's sake; scoring them against
-        // the analyzer's «noun» as a miss would be marking the engine wrong for
-        // agreeing with the books.
-        const norm = x => (['conj', 'prep', 'part'].includes(x) ? 'part'
-                         : x === 'pron' ? 'noun' : x);
-        if (said && human) { judged++; if (norm(said) === norm(human)) agree++; }
+        // The APP defines what «agree» means — `posClass` in reader.html, which
+        // the in-app Tahqiq panel also calls. This file used to carry its own
+        // copy of the same two normalisations, and nothing stopped the two from
+        // drifting apart while both looked right. One definition, two readers.
+        const said = posClass(r.kind);
+        const human = posClass(t.pos);
+        if (said && human) { judged++; if (said === human) agree++; }
         return { w: t.s.full, lex: t.lex,
                  human: { pos: t.pos, grammar: t.grammar || [], irab: t.irab.en },
                  engine: { kind: r.kind || null, lemma: r.lemma || null,
                            root: r.root || null, wazn: r.wazn || null,
                            sure: r.sure === undefined ? null : r.sure },
-                 match: said && human ? norm(said) === norm(human) : null };
+                 match: said && human ? said === human : null };
       });
       out.sentences.push({
         id: `sen:${sid}:${ch.n}:${sen.id}`, story: sid, chapter: ch.n, sentence: sen.id,

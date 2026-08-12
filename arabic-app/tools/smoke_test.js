@@ -1531,8 +1531,11 @@ if (!CHROME) {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
     await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    // The sheet carries TWO tables of this class by design — the TARKIB table
+    // and the TAHQIQ comparison below it, which share their styling on purpose.
+    // This check is about the tarkib table, so it has to say so.
     const [rows, expected] = await Promise.all([
-      page.locator('.irab-sheet tbody tr').count(),
+      page.locator('.irab-sheet:not(.tahqiq) tbody tr').count(),
       page.evaluate(() => STORIES.find(s => s.id === 'aqaid-ahl-al-sunna')
         .chapters[0].sentences[0].tokens.length),
     ]);
@@ -5665,6 +5668,103 @@ if (!CHROME) {
     if (r.ch2sources.join(',') !== r.ch16sources.join(','))
       throw new Error('ch2 ' + r.ch2sources.join(',') + ' vs ch16 ' + r.ch16sources.join(','));
     if (r.ch16sources.length !== 4) throw new Error('four sources: ' + r.ch16sources.join(','));
+  });
+
+  // ---- Talkhis al-Miftah joins the shelf ----------------------------------
+  await check('talkhis: the Talkhis defines fasaha and balagha, and mirrors the Manar', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      if (!st) return { missing: true };
+      const sen = (c, id) => st.chapters.find(x => x.n === c).sentences.find(x => x.id === id);
+      const tk = (c, id, w) => sen(c, id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const mn = STORIES.find(s => s.id === 'mukhtasar-al-manar');
+      const kind = (t, w) => {
+        const row = SentenceAnalyzer.analyze(t).find(x => stripAr(x.w) === stripAr(w));
+        return row ? { kind: row.kind, sure: row.sure } : null;
+      };
+      // «عِلْمٌ يُعْرَفُ بِهِ» — the three words both books define themselves with
+      const frame = toks => {
+        const b = t => stripAr(t.s.full).replace(/^[وف]/, '');
+        // BOTH books say «عِلْم» twice in the line — once as a mudaf and once as
+        // the khabar — so the word alone does not locate the frame. What locates
+        // it is the VERB that follows: «عِلْمٌ يُعْرَفُ بِهِ».
+        const i = toks.findIndex((t, k) => b(t) === 'علم' && toks[k + 1] && b(toks[k + 1]) === 'يعرف');
+        return i < 0 ? '<absent>' : toks.slice(i, i + 3).map(b).join(' ');
+      };
+      return {
+        level: st.level, access: st.access, chapters: st.chapters.length,
+        tokens: st.chapters.reduce((n, c) => n + c.sentences.reduce((m, s) => m + s.tokens.length, 0), 0),
+        games: (GameFactory.audit().find(x => x.id === 'talkhis-al-miftah') || {}).content,
+        // the working masdar, once annexed to its FA'IL and once to its OBJECT
+        khulus: tk(1, 's2', 'خلوصه').grammar || [],
+        talif:  tk(2, 's2', 'تأليف').grammar || [],
+        // the idafa that does NOT make definite
+        zahir:  tk(1, 's4', 'ظاهر').grammar || [],
+        note1: !!GRAMMAR['idafa-lafziyya'] && !!GRAMMAR['idafa-lafziyya'].title.tr,
+        note2: !!GRAMMAR['khabar-insha'] && !!GRAMMAR['khabar-insha'].title.tr,
+        // the two books define themselves with ONE sentence shape
+        // find the frame by its CONTENT, not by a slice index — an index is a
+        // claim about where a word sits, which is not what is being asserted
+        talkhisFrame: frame(sen(2, 's3').tokens),
+        manarFrame: frame(mn.chapters[0].sentences[0].tokens),
+        // إِمَّا and أَمَّا are one skeleton and two words — read the hamza's vowel
+        imma: kind('لِخَلَلٍ إِمَّا فِي النَّظْمِ وَإِمَّا فِي الِانْتِقَالِ', 'إما'),
+        amma: kind('أَمَّا الْكِتَابُ فَهُوَ حُجَّةٌ', 'أما'),
+        bare: kind('اما الكتاب فهو حجة', 'اما'),
+        // مَعَانِي: manqus + definite, and a sighat muntaha al-jumu' underneath
+        maani: tk(2, 's3', 'المعاني').irab.ar,
+      };
+    });
+    if (r.missing) throw new Error('the Talkhis package did not load');
+    if (r.level !== 6 || r.access !== 'premium') throw new Error('level/access: ' + r.level + '/' + r.access);
+    if (r.chapters !== 2) throw new Error('chapters: ' + r.chapters);
+    if (r.tokens < 80) throw new Error('tokens: ' + r.tokens);
+    if (r.games < 9) throw new Error('a new story must arrive playable: ' + r.games);
+    if (!r.note1 || !r.note2) throw new Error('the two new notes are missing or untranslated');
+    if (!r.khulus.includes('imal-al-masdar')) throw new Error('خلوصه anchors the working masdar: ' + r.khulus);
+    if (!r.talif.includes('imal-al-masdar')) throw new Error('تأليف anchors the working masdar: ' + r.talif);
+    if (!r.zahir.includes('idafa-lafziyya')) throw new Error('ظاهر anchors the lafziyya note: ' + r.zahir);
+    // THE RING ACROSS TWO BOOKS: «عِلْمٌ يُعْرَفُ بِهِ» opens both definitions
+    if (r.talkhisFrame !== r.manarFrame)
+      throw new Error('the shared definitional frame drifted: «' + r.talkhisFrame + '» vs «' + r.manarFrame + '»');
+    // the minimal pair, all three states
+    if (r.imma.kind !== 'particle' || !r.imma.sure) throw new Error('إِمَّا: ' + JSON.stringify(r.imma));
+    if (r.amma.kind !== 'particle' || !r.amma.sure) throw new Error('أَمَّا: ' + JSON.stringify(r.amma));
+    if (r.bare.sure !== false) throw new Error('an unvowelled «اما» is genuinely undecided: ' + JSON.stringify(r.bare));
+    if (!/مُقَدَّرَة/.test(r.maani) || !/مُنْتَهَى الْجُمُوعِ/.test(r.maani))
+      throw new Error('الْمَعَانِي is a definite manqus AND a sighat muntaha al-jumu: ' + r.maani);
+  });
+
+  // ---- the Tahqiq panel: the engines set beside the corpus -----------------
+  // The app holds two analyses of every stored sentence and now shows both.
+  // What is gated is not the number but the CONTRACT: one definition of
+  // agreement shared with the offline bank, and an honest confidence badge.
+  await check('tahqiq: the engines are shown beside the human parse, on one definition', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'mukhtasar-al-manar');
+      openStory(st);
+      const sen = st.chapters[0].sentences[0];
+      const c = engineCheck(sen);
+      return {
+        judged: c.judged, pct: c.pct, rows: c.rows.length, tokens: sen.tokens.length,
+        // the two normalisations the whole project's number rests on
+        pronIsIsm: posClass('pron') === posClass('noun'),
+        oneParticle: posClass('prep') === posClass('conj') && posClass('conj') === posClass('part'),
+        verbStaysVerb: posClass('verb') === 'verb' && posClass('noun') === 'noun',
+        guessNotSure: posClass('noun?') === 'noun',
+        unknown: posClass(null),
+        html: (() => { openIrabSheet(sen); return sheetInner.innerHTML; })(),
+      };
+    });
+    if (r.rows !== r.tokens) throw new Error('a row per token: ' + r.rows + ' vs ' + r.tokens);
+    if (!r.judged) throw new Error('nothing was judged');
+    if (!r.pronIsIsm) throw new Error('a PRONOUN is an ism — the corpus pron and the analyzer noun must agree');
+    if (!r.oneParticle) throw new Error('prep, conj and part are ONE class to the analyzer');
+    if (!r.verbStaysVerb || !r.guessNotSure) throw new Error('posClass folded a class it should not have');
+    if (r.unknown !== null) throw new Error('an unknown class must stay null, not become a class');
+    if (!/تَحْقِيقُ الْآلَة/.test(r.html)) throw new Error('the tahqiq panel did not render');
+    if (!/tq-conf/.test(r.html)) throw new Error('every engine reading must carry its confidence badge');
+    if (!/generated\.json|generated/.test(r.html)) throw new Error('the panel must say where these rows are kept');
   });
 
   await check('no JS errors on page', async () => {

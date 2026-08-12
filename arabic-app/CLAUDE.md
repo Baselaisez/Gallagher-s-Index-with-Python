@@ -2137,3 +2137,62 @@ exercises it is worth more in the file than a rule tuned to one sentence.
 
 **Do not spend a rule to close the last point of a metric.** Check first whether
 the remaining gap is the engine being wrong or the engine being honest.
+
+## The Talkhīṣ is a story now, and an Ottoman source is not an unreadable one
+
+`content/samples/talkhis-al-miftah` (L6, premium, 2 chapters, 10 sentences,
+86 tokens; regenerator `tools/authoring/author_talkhis.py`) carries al-Qazwīnī's
+own matn — the faṣāḥa definitions, balāgha in the utterance and in the speaker,
+the ḥadd of ʿilm al-maʿānī, and the khabar/inshāʾ split.
+
+The source is `research/sources/talkhis-al-miftah-balagha.txt`, an Ottoman-Turkish
+sharḥ — and its ARABIC is vowelled and exact, which is the second time that has
+been true on this shelf. **Do not write a file off because its prose is Ottoman.**
+Chapter 1 s2–s4 are verbatim from it; everything else is the received matn,
+restored where the page carries only the Turkish, and the manifest says which is
+which line by line.
+
+**Pick the passage for what it lets a reader do.** The Talkhīṣ defines its
+science with the same frame Mukhtaṣar al-Manār uses for its own — عِلْمٌ يُعْرَفُ
+بِهِ أَحْوَالُ… — so a reader who has finished the Manār can read that line
+unaided. The smoke suite asserts the two token sequences match letter for letter,
+because a cross-book parallel that lives only in a comment will rot.
+
+## The app now shows its own working — تَحْقِيقُ الْآلَة
+
+Every stored sentence carries two analyses, and the iʿrāb sheet now shows both:
+the HUMAN parse the package was authored with, and the reading the engines derive
+live from the letters — token by token, ✓/✗, with a `sure`/`guess` badge on every
+engine row and a foot-note naming what is compared (part of speech, not iʿrāb),
+that a disagreement may be the engine reporting an undecidable surface, and where
+the rows are kept.
+
+The part worth keeping is not the panel, it is **`posClass()`**. Agreement is now
+defined ONCE in the reader — pronoun-is-an-ism; prep, conj and part are one class
+— and `tools/gen_drills.js` calls it through the page instead of holding its own
+copy. Those were two separate statements of the same doctrine, both correct, with
+nothing to stop one being edited. **The number in the golden file and the number
+on the screen are now the same number by construction.**
+
+Same rule as `fusedJarr`, one turn later: a definition that two call sites need
+gets a name.
+
+## Confidently wrong is worse than undecided
+
+The Talkhīṣ arrived at 99.6% with two disagreements, both `إِمَّا`, both marked
+`sure: true`. Two causes, and each has been recorded here before:
+
+- **`stripAr` keeps the hamza SEAT.** «إما» never matched the table's «اما» and
+  «أما», so the word reached no closed-class branch at all. This file has warned
+  about the seat since `IrabSign` was written; it caught the analyzer anyway.
+- **أَمَّا and إِمَّا are two words sharing four letters.** أَمَّا detaches a topic and
+  demands a fāʾ in its answer; إِمَّا offers a choice and is never used once — a
+  second إِمَّا always answers it. The hamza's vowel decides, which is precisely
+  the مِنْ / مَنْ shape the analyzer already implements, so the fix is the same
+  three lines: read the vowel, pick the entry, and where there is no vowel keep
+  the commoner reading with **`sure: false`** and a note naming both.
+
+The general form, and it is why a `sure` flag exists at all: **a wrong answer
+delivered with confidence costs more than a shortlist.** When a table lookup
+misses, the fall-through path should be the one that says "I don't know" — here
+it was the open-class path, which says "noun" and means it.

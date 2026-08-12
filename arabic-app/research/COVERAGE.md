@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes, but ~2,600 lines of ʿilm al-maʿānī (khabar/inshāʾ, iltifāt, faṣl-waṣl, ījāz-iṭnāb) and ~7 extra badīʿ figures remain unconsumed. |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the new `talkhis-al-miftah` story (10 sentences, 86 tokens: the faṣāḥa/balāgha definitions and the ḥadd of ʿilm al-maʿānī), plus `khabar-insha`. Still unconsumed: iltifāt's 6 kinds, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -680,3 +680,61 @@ not a one-line change.
   promise this class of engine makes. **A rule invented to move that one token
   would have been tuned to one sentence and would have broken the control**, so
   the honest 99.8% is the result and the row stays in the file as a named limit.
+
+- **v119 — the Talkhīṣ is on the shelf, and the app shows its own working.**
+  Two things this turn, and the second is the one that was asked for.
+
+  **1. A new story: `talkhis-al-miftah`** (L6 Master, premium, 2 chapters,
+  10 sentences, 86 tokens) — al-Qazwīnī's own matn, the opening of Fann 1.
+  Chapter 1 is faṣāḥa: predicated of the single word, of the utterance and of
+  the speaker; then each defined; then taʿqīd defined and divided. Chapter 2 is
+  balāgha in the utterance and in the speaker, the ḥadd of ʿilm al-maʿānī, and
+  the khabar/inshāʾ split the whole discipline rests on.
+
+  Provenance matters here more than usual and the manifest carries it line by
+  line: ch1 s2–s4 are **verbatim** from the supplied Ottoman commentary's own
+  vowelled Arabic; the rest is the **received matn**, restored where the page
+  gives only the Ottoman rendering. Nothing in the package is composed. The
+  lesson from the ʿalaqa file holds again — **an Ottoman-script source is not an
+  unreadable source**, because the Arabic it quotes is vowelled and exact.
+
+  The chapter was chosen for a reason a graded library can act on: **the Talkhīṣ
+  defines its science with the same sentence shape Mukhtaṣar al-Manār defines
+  its own** — عِلْمٌ يُعْرَفُ بِهِ أَحْوَالُ… Two disciplines, two centuries apart, one
+  frame. A reader who has finished the Manār can read that line before anyone
+  explains it, and the smoke suite asserts the two token sequences are letter
+  for letter identical, so the parallel cannot quietly rot.
+
+  Grammar: two new notes, **96 `imal-al-masdar`** (already earned by the Manār's
+  بَذْلُ الْفَقِيهِ وُسْعَهُ, now shown in both classical shapes four words apart —
+  خُلُوصُهُ annexed to its fāʿil, تَأْلِيفِ كَلَامٍ to its object) and **97
+  `idafa-lafziyya`**, the iḍāfa that does NOT make definite, without which
+  ظَاهِرَ الدَّلَالَةِ cannot be explained as a khabar at all; plus **98
+  `khabar-insha`**, which also states out loud that the balāgha *khabar* and the
+  naḥw *khabar* are two terms sharing a spelling.
+
+  **2. تَحْقِيقُ الْآلَة — the engines set beside the corpus, in the app.** Every
+  stored sentence now carries two analyses on one sheet: the HUMAN parse the
+  package was authored with, and the reading the engines derive live from the
+  letters, token by token, with ✓/✗ and a `sure`/`guess` badge on every engine
+  row. What the offline drill bank has been recording since v112 is now visible
+  where the sentence is.
+
+  The architectural half is the important one. Agreement is now defined **once**,
+  in `posClass()` in the reader — pronoun-is-an-ism, and prep/conj/part are one
+  class — and `tools/gen_drills.js` calls it instead of carrying its own copy.
+  The two had been separate statements of the same doctrine with nothing to stop
+  them drifting; the number in the file and the number on the screen are now the
+  same number by construction. The panel says in both languages what is being
+  compared (part of speech, not iʿrāb), that a disagreement may be the engine
+  reporting an undecidable surface, and where the rows are kept.
+
+  **The new chapter paid immediately**, as every chapter now does: 99.6% on
+  arrival, two disagreements, both `إِمَّا` — **read as an open-class noun with
+  `sure: true`**. Confidently wrong is worse than undecided, and the cause was
+  the hamza-seat trap this file already records: `stripAr` keeps the seat, so
+  «إما» never matched the table's «اما»/«أما». And they are not one word: أَمَّا
+  detaches a topic and demands a fāʾ in its answer, إِمَّا offers a choice and is
+  never used once. The hamza's vowel decides, exactly as it does for مِنْ / مَنْ,
+  and the unvowelled spelling is now reported as genuinely undecided with both
+  readings named. **99.6% → 99.9%**, 693 tokens over 85 worked sentences.
