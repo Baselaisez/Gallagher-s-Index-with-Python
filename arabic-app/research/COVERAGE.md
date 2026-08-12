@@ -474,3 +474,18 @@ not a one-line change.
   The corpus's own hand-authored مُتَشَابِه had disagreed with the engine the
   whole time. Now gated by an explicit six-row table AND by a structural rule:
   the ism fāʿil may never equal the ism mafʿūl.
+- **v114** — Manar reaches chapter 12, ABROGATION — and it closes a loop the
+  book opened seven chapters back. Chapter 5 named النَّسْخ once, in passing, to
+  define the muḥkam as the wording that cannot take it; here the matn says what
+  abrogation IS, and the Hanafi definition is chosen against a rival: نسخ is
+  the SHOWING that a ruling's term has run out (بَيَان), not the LIFTING of a
+  ruling that was going to last (رَفْع). The chapter names the other view and
+  refuses it in the same sentence. Twelve chapters, 456 tokens.
+  Grammar: بَيَانُ انْتِهَاءِ مُدَّةِ الْحُكْمِ الشَّرْعِيِّ is the longest iḍāfa in the
+  book, four links with a naʿt on the last, and every link narrows the one
+  before it; يَجْرِي shows the MANQŪṢ noun's rule appearing on a VERB — a damma
+  too heavy for a yāʾ, so it is understood — set one sentence away from يَدْخُلُ
+  where the same damma is written; لِأَنَّهُ stands three times with its noun a
+  clinging pronoun and once as لِأَنَّ الْخَبَرَ with its noun on the page; and
+  s4's reason IS chapter 5's definition, word for word, which makes it a
+  pointer back rather than a new argument.

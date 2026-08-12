@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 50,
-  "sentenceTokens": 417,
-  "posAgreement": 94.7,
-  "rows": 1502
+  "sentences": 55,
+  "sentenceTokens": 456,
+  "posAgreement": 95,
+  "rows": 1541
  },
  "endings": [
   {
@@ -14390,6 +14390,906 @@
       "kind": "noun",
       "lemma": "عَامّ",
       "root": "ل ع م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:12:s1",
+   "story": "mukhtasar-al-manar",
+   "chapter": 12,
+   "sentence": "s1",
+   "text": "ثُمَّ النَّسْخُ بَيَانُ انْتِهَاءِ مُدَّةِ الْحُكْمِ الشَّرْعِيِّ عِنْدَنَا لَا رَفْعُهُ",
+   "translation": {
+    "en": "Then abrogation, with us, is the showing that the term of a legal ruling has run out — not the lifting of it.",
+    "tr": "Nesih, bize göre şer'î hükmün müddetinin bittiğinin beyânıdır; onun kaldırılması değil."
+   },
+   "jumal": [
+    {
+     "text": "النَّسْخُ بَيَانُ انْتِهَاءِ مُدَّةِ الْحُكْمِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An isti'naf nominal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 90,
+   "judged": 10,
+   "agree": 9,
+   "tokens": [
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving sequence with an interval."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "النَّسْخُ",
+     "lex": "naskh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar"
+      ],
+      "irab": "The mubtada in raf' — and it stood in chapter 5 as a maf'ul bihi, in «does not admit ABROGATION». Seven chapters later it comes back as a mubtada to be defined. A term is used where it is needed and defined where it must be."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَسْخ",
+      "root": "ن س خ",
+      "wazn": "فَّعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بَيَانُ",
+     "lex": "bayan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "idafa-definiteness",
+       "form-ii-verbs"
+      ],
+      "irab": "The khabar in raf' and a mudaf — and the choice of the word BAYAN is the whole position. Abrogation is a SHOWING that a term has run out, not an undoing of a ruling that was going to last. God knew the term from the beginning; the abrogating text tells us where it ended. Choose «raf'» instead and you have said the ruling changed, which is a different doctrine."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَيَان",
+      "root": "ب ي ن",
+      "wazn": "فَعَالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "انْتِهَاءِ",
+     "lex": "intiha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "masdar",
+       "form-viii-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr and itself a mudaf — the masdar of اِنْتَهَى on اِفْتِعَال. The verb is NAQIS, and a naqis اِفْتِعَال makes its masdar mamdud: اِنْتِهَاء، اِقْتِضَاء، اِدِّعَاء. The hamza at the end is the weak lam turned into one, so the noun keeps its tanwin — chapter 6's rule, on a fourth root."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اِنْتِهَاء",
+      "root": "ن ه ء",
+      "wazn": "افْتِعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُدَّةِ",
+     "lex": "mudda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "doubled-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr and itself a mudaf — the third link."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُدَّة",
+      "root": "م د ة",
+      "wazn": "فُعَّلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْحُكْمِ",
+     "lex": "hukm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — and with it the chain closes at FOUR links: بَيَانُ ← انْتِهَاءِ ← مُدَّةِ ← الْحُكْمِ, every middle member a mudaf and a mudaf ilayh at once, and only the last not itself a mudaf. It is the longest idafa in the book, and it is not ornament: each link narrows the one before it, and dropping any of them would change the definition."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حُكْم",
+      "root": "ح ك م",
+      "wazn": "فُعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الشَّرْعِيِّ",
+     "lex": "shari",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa"
+      ],
+      "irab": "A na't of «the ruling», in jarr — a nisba noun. It stood INDEFINITE in the chapter on consensus, حُكْمٍ شَرْعِيٍّ, and here it is definite. The na't follows its noun in definiteness as in everything else, and the two occurrences show the rule from both sides."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَرْعِيّ",
+      "root": "ش ر ع",
+      "wazn": "فَّعْلِيِّ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِنْدَنَا",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "An adverb in nasb and a mudaf — the third time in the book, and each time it stands just where a known disagreement begins. When this matn says «with us» it is not padding: it is a footnote in two words."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع ن د",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "«La» joining and denying: it takes back from the second what was granted to the first. The matn does not merely state its own view; it names the other and refuses it in the same breath."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رَفْعُهُ",
+     "lex": "raf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "Joined, in raf' and a mudaf, with the HA as its mudaf ilayh — the masdar of رَفَعَ, and the rival position named: that abrogation LIFTS a ruling which was standing. Note that رَفْع is also the name of the very case this word is in; the science borrowed the word from the grammar, or the grammar from it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَفَعَ",
+      "root": "ر ف ع",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": false
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:12:s2",
+   "story": "mukhtasar-al-manar",
+   "chapter": 12,
+   "sentence": "s2",
+   "text": "وَلَا يَجْرِي إِلَّا فِي حَيَاةِ النَّبِيِّ لِأَنَّهُ بِالْوَحْيِ",
+   "translation": {
+    "en": "And it does not run except in the Prophet's lifetime, because it comes only by revelation.",
+    "tr": "Nesih, ancak Peygamber'in hayatında cereyan eder; zira o, vahiyle olur."
+   },
+   "jumal": [
+    {
+     "text": "لَا يَجْرِي إِلَّا فِي حَيَاةِ النَّبِيِّ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless."
+    },
+    {
+     "text": "أَنَّهُ بِالْوَحْيِ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنَّ» وَمَا بَعْدَهَا فِي مَحَلِّ جَرٍّ بِاللَّامِ.",
+     "en": "The masdar muawwal from «anna» and what follows it, in the position of jarr after the lam."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw, and «la» simply denying — and the condition for the emptied exception coming next."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَجْرِي",
+     "lex": "jara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "naqis-verbs"
+      ],
+      "irab": "A mudari in raf' by a damma ESTIMATED on the ya, which is too heavy to carry it — a naqis yai from ج ر ي. This is the manqus noun's own rule appearing on a VERB: the damma and the kasra are heavy on a ya and are only understood, while the fatha is light and is written. Put this verb after لَنْ and the fatha shows at once: لَنْ يَجْرِيَ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَرَى",
+      "root": "ج ر ي",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "istithna-mufarragh"
+      ],
+      "irab": "The particle of exception, the exception MUFARRAGH — the fifth in the book. Five negations, five إِلَّا, and not one mustathna minhu named."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "istithna-mufarragh"
+      ],
+      "irab": "A jarr letter attaching to «runs» — and the phrase after it is the emptied exception itself."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَيَاةِ",
+     "lex": "hayat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness"
+      ],
+      "irab": "In jarr after «fi» and a mudaf. Its alif is written as a YA in the codex spelling — حَيَاة — and pronounced as an alif all the same. Spelling and sound part company here, and only the tradition of the written text explains why."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَيَاة",
+      "root": "ح ي ة",
+      "wazn": "فَعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "النَّبِيِّ",
+     "lex": "nabi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — it stood in jarr after «an» in the chapter on the Sunna, and here it is a mudaf ilayh. Same case, two roads to it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَبِيّ",
+      "root": "ل ن ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لِأَنَّهُ",
+     "lex": "anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "inna-wa-akhawatuha",
+       "lam-taleel"
+      ],
+      "irab": "The LAM gives the reason, «anna» is one of inna's sisters — it puts its noun into NASB and its khabar into raf' — and the HA clinging to it is that noun, in the POSITION of nasb. One written word, three things in i'rab."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِالْوَحْيِ",
+     "lex": "wahy",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "A jarr-majrur standing in the POSITION of raf' as «anna»'s khabar. A khabar may be a shibh jumla, and then the raf' is not on any letter: an omitted «is» carries it, and the phrase stands where that word would have been."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَحْي",
+      "root": "ل و ح",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:12:s3",
+   "story": "mukhtasar-al-manar",
+   "chapter": 12,
+   "sentence": "s3",
+   "text": "وَلَا يَدْخُلُ الْأَخْبَارَ لِأَنَّ الْخَبَرَ لَا يَحْتَمِلُ التَّبْدِيلَ",
+   "translation": {
+    "en": "And it does not enter reports, because a report does not admit of alteration.",
+    "tr": "Nesih haberlere girmez; zira haber değiştirilmeye ihtimâl vermez."
+   },
+   "jumal": [
+    {
+     "text": "لَا يَدْخُلُ الْأَخْبَارَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless."
+    },
+    {
+     "text": "لَا يَحْتَمِلُ التَّبْدِيلَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ رَفْعٍ خَبَرُ «أَنَّ».",
+     "en": "A verbal clause in the position of raf', «anna»'s khabar."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw, and «la» simply denying."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَدْخُلُ",
+     "lex": "dakhala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "A mudari in raf' by a damma that is WRITTEN, its fa'il a hidden pronoun going back to «abrogation». Set it beside يَجْرِي in the sentence before: the same case, the same governor, and one damma written while the other is only understood. The difference is the last letter and nothing else."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَخَلَ",
+      "root": "د خ ل",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْأَخْبَارَ",
+     "lex": "akhbar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi"
+      ],
+      "irab": "The maf'ul bihi in nasb — the plural of «khabar», and دَخَلَ takes its object directly here, without a preposition."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَبَر",
+      "root": "خ ب ر",
+      "wazn": "أَفْعَالَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لِأَنَّ",
+     "lex": "anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "inna-wa-akhawatuha",
+       "lam-taleel"
+      ],
+      "irab": "The LAM of reason and «anna», the abrogating letter that puts its noun into nasb and its khabar into raf' — and here its noun is a WORD standing on the page, not a pronoun clinging to it as in لِأَنَّهُ before. The same particle, twice, with its noun shown two ways."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْخَبَرَ",
+     "lex": "khabar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«Anna»'s noun, in nasb by the fatha — and the nasb is WRITTEN here, which is what makes this the clearer of the two occurrences to learn from."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَبَر",
+      "root": "خ ب ر",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "«La» simply denying."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَحْتَمِلُ",
+     "lex": "ihtamala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "form-viii-verbs",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "A mudari in raf', and the clause stands in the POSITION of raf' as «anna»'s khabar. It is the very verb that defined the muhkam in chapter 5 — «what does not admit abrogation» — and here it defines why a report cannot be abrogated. One verb, two chapters, and the same idea of what a wording will and will not BEAR."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِحْتَمَلَ",
+      "root": "ح م ل",
+      "wazn": "يَفْتَعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "التَّبْدِيلَ",
+     "lex": "tabdil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "masdar",
+       "form-ii-verbs"
+      ],
+      "irab": "The maf'ul bihi in nasb — the masdar of بَدَّلَ on تَفْعِيل. The reasoning behind the word: a report is either true or false, and to abrogate one would be to turn a truth into a falsehood. Rulings have terms; facts do not."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَبْدِيل",
+      "root": "ب د ل",
+      "wazn": "تَّفْعِيلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:12:s4",
+   "story": "mukhtasar-al-manar",
+   "chapter": 12,
+   "sentence": "s4",
+   "text": "وَلَا يَدْخُلُ الْمُحْكَمَ لِأَنَّهُ لَا يَحْتَمِلُ النَّسْخَ",
+   "translation": {
+    "en": "And it does not enter the firm, because the firm does not admit of abrogation.",
+    "tr": "Muhkeme de girmez; zira muhkem nesih ihtimâli taşımaz."
+   },
+   "jumal": [
+    {
+     "text": "لَا يَدْخُلُ الْمُحْكَمَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "atf-nasaq",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw, and «la» denying."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَدْخُلُ",
+     "lex": "dakhala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "A mudari in raf', its fa'il a hidden pronoun."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَخَلَ",
+      "root": "د خ ل",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُحْكَمَ",
+     "lex": "muhkam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "ism-maful",
+       "form-iv-verbs"
+      ],
+      "irab": "The maf'ul bihi in nasb — the fourth rung of the clarity ladder, come back as an object after standing as a mubtada in chapter 5. The matn keeps its own vocabulary and moves each word through the offices as the argument needs."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُحْكَم",
+      "root": "ح ك م",
+      "wazn": "مُفْعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لِأَنَّهُ",
+     "lex": "anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "inna-wa-akhawatuha",
+       "lam-taleel"
+      ],
+      "irab": "The LAM gives the reason, «anna» is one of inna's sisters — it puts its noun into NASB and its khabar into raf' — and the HA clinging to it is that noun, in the POSITION of nasb. One written word, three things in i'rab."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "«La» simply denying."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَحْتَمِلُ",
+     "lex": "ihtamala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "form-viii-verbs",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "A mudari in raf', the clause standing as «anna»'s khabar in the position of raf'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِحْتَمَلَ",
+      "root": "ح م ل",
+      "wazn": "يَفْتَعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "النَّسْخَ",
+     "lex": "naskh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "masdar"
+      ],
+      "irab": "The maf'ul bihi in nasb — and this clause, word for word, IS the definition of the muhkam in chapter 5: «so that it does not admit abrogation». So the reason given here is not a new argument at all but a pointer back to the definition, and that is the strongest kind there is: the muhkam is not abrogated because a thing that could be abrogated would not have been a muhkam."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَسْخ",
+      "root": "ن س خ",
+      "wazn": "فَّعْلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:12:s5",
+   "story": "mukhtasar-al-manar",
+   "chapter": 12,
+   "sentence": "s5",
+   "text": "وَيَجُوزُ نَسْخُ الْكِتَابِ بِالْكِتَابِ وَالسُّنَّةِ بِالسُّنَّةِ",
+   "translation": {
+    "en": "And the abrogation of the Book by the Book is permitted, and of the Sunna by the Sunna.",
+    "tr": "Kitâb'ın Kitâb'la, Sünnet'in Sünnet'le neshi câizdir."
+   },
+   "jumal": [
+    {
+     "text": "يَجُوزُ نَسْخُ الْكِتَابِ بِالْكِتَابِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A joined verbal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "وَيَجُوزُ",
+     "lex": "jaaza",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "atf-nasaq",
+       "mudari-marfu",
+       "hollow-verbs"
+      ],
+      "irab": "A joining waw, and «yajuzu» a mudari in raf' — an AJWAF WAWI from ج و ز whose middle radical stays a waw in the mudari, because the letter before it carries a damma. Compare يَسْتَقِيمُ in chapter 7, where a kasra turned the same kind of waw into a ya: the vowel before the weak letter decides what it becomes."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَازَ",
+      "root": "ج و ز",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَسْخُ",
+     "lex": "naskh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "The fa'il in raf' and a mudaf — a masdar GOVERNING as its verb would: added to its object and then taking a jarr for what the verb takes. And it is the very word that stood as the mubtada at the head of this chapter, now standing as a fa'il at its close."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَسْخ",
+      "root": "ن س خ",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْكِتَابِ",
+     "lex": "kitab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr by its form, the masdar's OBJECT in meaning — the thing abrogated."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كِتَاب",
+      "root": "ك ت ب",
+      "wazn": "فِعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِالْكِتَابِ",
+     "lex": "kitab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr-majrur attaching to «the abrogation», the BA being of instrument: the thing BY which it happens. The same word twice in one line and in two offices — once in jarr by an idafa and once in jarr by a letter. Same ending, two entirely different reasons for it, and that is the whole of what i'rab teaches."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كِتَاب",
+      "root": "ك ت ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالسُّنَّةِ",
+     "lex": "sunna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "idafa-definiteness"
+      ],
+      "irab": "Joined to «the Book» as a mudaf ilayh, in jarr — the second term of the pair."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سُنَّة",
+      "root": "س ن ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِالسُّنَّةِ",
+     "lex": "sunna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A joined jarr-majrur — and the whole construction is a MUQABALA, a matched pair: Book by Book, Sunna by Sunna. The arrangement carries the ruling without a word of explanation, which is what balagha means by the figure. And the chapter closes on the two sources the book opened with, eleven chapters back."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سُنَّة",
+      "root": "س ن ن",
       "wazn": null,
       "sure": true
      },
