@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 55,
-  "sentenceTokens": 456,
-  "posAgreement": 95,
-  "rows": 1541
+  "sentences": 60,
+  "sentenceTokens": 498,
+  "posAgreement": 94.6,
+  "rows": 1583
  },
  "endings": [
   {
@@ -15291,6 +15291,972 @@
       "lemma": "سُنَّة",
       "root": "س ن ن",
       "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:13:s1",
+   "story": "mukhtasar-al-manar",
+   "chapter": 13,
+   "sentence": "s1",
+   "text": "ثُمَّ السُّنَّةُ ثَلَاثَةُ أَقْسَامٍ مُتَوَاتِرٌ وَمَشْهُورٌ وَآحَادٌ",
+   "translation": {
+    "en": "Then the Sunna is of three kinds: mass-transmitted, well-known and single-chain.",
+    "tr": "Sünnet üç kısımdır: mütevâtir, meşhur ve âhâd."
+   },
+   "jumal": [
+    {
+     "text": "السُّنَّةُ ثَلَاثَةُ أَقْسَامٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An isti'naf nominal clause — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving sequence with an interval — and the interval here is in the book itself: the Sunna was defined in chapter 2 and is divided only now, eleven chapters later. A matn defines a term where it must and works it where it can."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السُّنَّةُ",
+     "lex": "sunna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada in raf' — the second of the four sources, and the only one of them this matn divides. The Book needed no division by transmission: it came one way."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سُنَّة",
+      "root": "س ن ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ثَلَاثَةُ",
+     "lex": "thalatha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "idafa-definiteness",
+       "tamyiz"
+      ],
+      "irab": "The khabar in raf' and a MUDAF — from three to ten the number is joined to what it counts by an idafa, and it wears the TA because what it counts is masculine. The very rule أَرْبَعَةُ أَقْسَامٍ carried in chapter 4, on a different numeral and the same counted noun."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ثَلَاثَة",
+      "root": "ث ل ث",
+      "wazn": "فَعَالَةُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَقْسَامٍ",
+     "lex": "aqsam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "tamyiz"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the distinguisher in meaning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَقْسَام",
+      "root": "ق س م",
+      "wazn": "أَفْعَالٍ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُتَوَاتِرٌ",
+     "lex": "mutawatir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "badal",
+       "ism-fail",
+       "form-vi-verbs"
+      ],
+      "irab": "A badal of detail, in raf' — the ism fa'il of تَوَاتَرَ on مُتَفَاعِل. It stood in chapter 2 in NASB as a na't, in نَقْلًا مُتَوَاتِرًا, describing one transmission. Here it stands in RAF' as a badal and names a whole class. A word climbs from adjective to technical term as a science builds itself, and this is that climb caught in one book."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُتَوَاتِر",
+      "root": "و ت ر",
+      "wazn": "مُتَفَاعِلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَمَشْهُورٌ",
+     "lex": "mashhur",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "ism-maful"
+      ],
+      "irab": "Joined, in raf' — the ism maf'ul of شَهَرَ on مَفْعُول: the report that was MADE well known."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَشْهُور",
+      "root": "ش ه ر",
+      "wazn": "وَمَفْعُولٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَآحَادٌ",
+     "lex": "aahad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mamnu-min-sarf"
+      ],
+      "irab": "Joined, in raf' — the plural of أَحَد on أَفْعَال. The MADDA at its head is two hamzas run together: the pattern's own and the root's, meeting and written as one long stroke. آ is never a letter of its own; it is always two things at once."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آحَاد",
+      "root": "آ ح د",
+      "wazn": "وَفعَالٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:13:s2",
+   "story": "mukhtasar-al-manar",
+   "chapter": 13,
+   "sentence": "s2",
+   "text": "فَالْمُتَوَاتِرُ مَا رَوَاهُ قَوْمٌ لَا يُتَصَوَّرُ تَوَاطُؤُهُمْ عَلَى الْكَذِبِ",
+   "translation": {
+    "en": "So the mass-transmitted is what a body of people related, whose colluding upon a lie cannot be conceived.",
+    "tr": "Mütevâtir, yalan üzerinde birleşmeleri tasavvur edilemeyen bir topluluğun rivâyet ettiğidir."
+   },
+   "jumal": [
+    {
+     "text": "مَا رَوَاهُ قَوْمٌ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause, the sila of the relative — i'rabless."
+    },
+    {
+     "text": "لَا يُتَصَوَّرُ تَوَاطُؤُهُمْ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ رَفْعٍ نَعْتٌ لِـ«قَوْمٌ».",
+     "en": "A verbal clause in the position of raf', a na't of «a body of people»."
+    }
+   ],
+   "posAgreement": 88.9,
+   "judged": 9,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "فَالْمُتَوَاتِرُ",
+     "lex": "mutawatir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "atf-nasaq"
+      ],
+      "irab": "A fa joining for detail; «the mass-transmitted» is the mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُتَوَاتِر",
+      "root": "و ت ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "رَوَاهُ",
+     "lex": "rawa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "maful-bihi",
+       "jumla-sifa",
+       "naqis-verbs"
+      ],
+      "irab": "A past verb, a NAQIS from ر و ي, with the HA as its maf'ul bihi in the position of nasb — and that HA is the pronoun tying the sila to its relative. Note where the tie is: in the earlier definitions it hung on a jarr letter (مِنْهُ، بِهِ), and here it is the object itself. The alif of رَوَى is a ya in disguise, and رَوَيْتُ shows it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "wazn": "اِفْعَلُوا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "قَوْمٌ",
+     "lex": "qawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il in raf' with its tanwin, and INDEFINITE on purpose: any body of people that reaches this bar, not one named group — which is also why no NUMBER is given for them. The definition is by a property, not by a count, and that is the school's position."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَوْم",
+      "root": "ق و م",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "mudari-marfu",
+       "jumla-sifa"
+      ],
+      "irab": "«La» simply denying, and the clause after it stands in the position of raf' as a NA'T of «a body of people» — because what it describes is INDEFINITE. Had قَوْم carried ال, the very same clause would have been a hal instead. The tanwin decides."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُتَصَوَّرُ",
+     "lex": "tasawwara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naib-al-fail",
+       "form-v-verbs",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari built for the unnamed doer, in raf' — from تَصَوَّرَ on تَفَعَّلَ, and the present passive is made as always: a damma on the first letter, a fatha before the last. Note what separates this bab's two participles: مُتَصَوِّر with a kasra is the one who conceives, مُتَصَوَّر with a fatha the thing conceived. One vowel, and the app's own conjugator had them confused until this package's مُتَشَابِه caught it out."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَصَوَّرَ",
+      "root": "ص و ر",
+      "wazn": "يَتَفَعَّلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَوَاطُؤُهُمْ",
+     "lex": "tawatu",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail",
+       "masdar",
+       "form-vi-verbs",
+       "idafa-definiteness"
+      ],
+      "irab": "The naib al-fa'il in raf' and a mudaf, with «hum» as its mudaf ilayh — the masdar of تَوَاطَأَ on تَفَاعُل. Form VI is the form of MUTUALITY and that is exactly what is meant: not that each lied, but that they agreed together to. Its hamza rides a WAW because the vowel on it is a damma, the same seat rule اقْتِضَاؤُهُ carried in chapter 7."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «their colluding» — a masdar governs like its verb, so the phrase hangs on it."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْكَذِبِ",
+     "lex": "kadhib",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "In jarr after «ala» — and with it the definition closes. What is denied is not that any of them could lie, but that ALL of them could agree on ONE lie. The strength of a mutawatir report lies in the impossibility of the agreement, not in the honesty of the men."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَذِب",
+      "root": "ك ذ ب",
+      "wazn": "فَعِلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:13:s3",
+   "story": "mukhtasar-al-manar",
+   "chapter": 13,
+   "sentence": "s3",
+   "text": "وَالْمَشْهُورُ مَا كَانَ آحَادًا فِي الْأَصْلِ ثُمَّ اشْتَهَرَ فِي الْقَرْنِ الثَّانِي",
+   "translation": {
+    "en": "And the well-known is what was single-chain at its root, then became widely known in the second generation.",
+    "tr": "Meşhur, aslında âhâd iken ikinci asırda şöhret bulandır."
+   },
+   "jumal": [
+    {
+     "text": "كَانَ آحَادًا فِي الْأَصْلِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause, the sila of the relative — i'rabless."
+    },
+    {
+     "text": "ثُمَّ اشْتَهَرَ فِي الْقَرْنِ الثَّانِي",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ عَلَى الصِّلَةِ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause joined to the sila — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 11,
+   "agree": 11,
+   "tokens": [
+    {
+     "w": "وَالْمَشْهُورُ",
+     "lex": "mashhur",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw; «the well-known» is the mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَشْهُور",
+      "root": "ش ه ر",
+      "wazn": "وَالْمَفْعُولُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كَانَ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kana-wa-akhawatuha",
+       "hollow-verbs",
+       "jumla-sifa"
+      ],
+      "irab": "A past verb of the incomplete kind, its ISM a hidden pronoun going back to «that which»; the clause is the sila. كَانَ takes an ism in raf' and a khabar in nasb — it does not do the work of an ordinary verb, which is why the books call it naqis, «incomplete»: it gives a time and nothing else."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "آحَادًا",
+     "lex": "aahad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«Kana»'s khabar, in nasb — and it is the THIRD kind, named here before its own definition arrives, because the well-known cannot be described without it. A matn may reach forward when the argument needs it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "آ ح د",
+      "wazn": "فعَالًا",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter hanging on an omitted word standing as a hal."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْأَصْلِ",
+     "lex": "asl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "In jarr after «fi» — and «the root» here means the FIRST layer of the chain, the Companions' generation. The word opened the book meaning a foundation; here it means the earliest link of a transmission."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَصْل",
+      "root": "أ ص ل",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving sequence WITH AN INTERVAL — and it is exactly the right letter here, because a whole generation stands between the two layers. Had the matn written فَ instead, it would have said the fame followed at once, which is a different claim."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "اشْتَهَرَ",
+     "lex": "ishtahara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "form-viii-verbs"
+      ],
+      "irab": "A past verb on اِفْتَعَلَ from ش ه ر, its fa'il hidden — and the shin is not among the letters that force the ibdal, so the pattern's ta stands unchanged, exactly as in اسْتَتَرَ in chapter 10. Set the two beside اِزْدَادَ and اِطَّلَعَ and the whole table is on the page."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِشْتَهَرَ",
+      "root": "ش ه ر",
+      "wazn": "اِفْتَعِلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «became known»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْقَرْنِ",
+     "lex": "qarn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "In jarr after «fi»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَرْن",
+      "root": "ل ق ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الثَّانِي",
+     "lex": "thani",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "A na't of «the generation», in jarr by a kasra ESTIMATED on the ya, which is too heavy to carry it — a MANQUS made definite by ال, so its ya stands. Set it against the indefinite قَاضٍ of chapter 4: there the ya dropped and a tanwin took its place; here it holds. Same noun class, two states, and the article decides which face it shows."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ثَانِي",
+      "root": "ل ث ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:13:s4",
+   "story": "mukhtasar-al-manar",
+   "chapter": 13,
+   "sentence": "s4",
+   "text": "وَالْآحَادُ مَا رَوَاهُ الْوَاحِدُ أَوِ الِاثْنَانِ",
+   "translation": {
+    "en": "And the single-chain is what one man related, or two.",
+    "tr": "Âhâd, bir kişinin yahut iki kişinin rivâyet ettiğidir."
+   },
+   "jumal": [
+    {
+     "text": "مَا رَوَاهُ الْوَاحِدُ أَوِ الِاثْنَانِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause, the sila of the relative — i'rabless."
+    }
+   ],
+   "posAgreement": 83.3,
+   "judged": 6,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "وَالْآحَادُ",
+     "lex": "aahad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw; «the single-chain» is the mubtada in raf'. Now the article's own alif has joined the madda, so what stands at the head of this word is, in origin, three hamzas in a row reduced to one written stroke and one alif. Arabic never says three; it writes what it says."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آحَاد",
+      "root": "أ ح د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of raf' as the khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "رَوَاهُ",
+     "lex": "rawa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "maful-bihi",
+       "jumla-sifa",
+       "naqis-verbs"
+      ],
+      "irab": "A past verb, the HA its maf'ul bihi going back to «that which»; the clause is the sila. It is the SAME verb that defined the mutawatir, and the entire difference between the two classes sits in the fa'il: there an unnumbered قَوْم, here الْوَاحِدُ. The definitions are one sentence apart in wording and a whole science apart in consequence."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "wazn": "اِفْعَلُوا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْوَاحِدُ",
+     "lex": "wahid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il in raf' — and DEFINITE, unlike the indefinite قَوْم of the first definition, because what is meant is the known kind: the single transmitter as a type. Two fa'ils in two parallel sentences, one definite and one not, and each is right for what it names."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَاحِد",
+      "root": "و ح د",
+      "wazn": "فَاعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَوِ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf — and its WAW takes a kasra it does not own. The waw of أَوْ is silent, and the wasl hamza after it is silent too; two sukuns will not stand, so the first is broken with a kasra. The same law that turned دَفَّتَيْ into دَفَّتَيِ in chapter 2, here on a particle."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الِاثْنَانِ",
+     "lex": "ithnan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "al-muthanna"
+      ],
+      "irab": "Joined, in raf' by the ALIF because it is a DUAL, its nun standing because nothing is added to it — and its alif is a WASL alif, one of the very few NOUNS that begin with one. The count stops at two here not because three would be different in kind, but because the definition is by the absence of a property, not by a number."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اِثْنَانِ",
+      "root": "ث ن ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:13:s5",
+   "story": "mukhtasar-al-manar",
+   "chapter": 13,
+   "sentence": "s5",
+   "text": "وَالْمُتَوَاتِرُ يُوجِبُ عِلْمَ الْيَقِينِ وَالْمَشْهُورُ عِلْمَ الطُّمَأْنِينَةِ وَالْآحَادُ الْعَمَلَ",
+   "translation": {
+    "en": "And the mass-transmitted obliges the knowledge of certainty, the well-known the knowledge of settled confidence, and the single-chain, action.",
+    "tr": "Mütevâtir yakîn ilmini, meşhur tuma'nînet ilmini, âhâd ise ameli îcâb ettirir."
+   },
+   "jumal": [
+    {
+     "text": "الْمُتَوَاتِرُ يُوجِبُ عِلْمَ الْيَقِينِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause whose khabar is a verbal clause — i'rabless."
+    },
+    {
+     "text": "وَالْمَشْهُورُ عِلْمَ الطُّمَأْنِينَةِ",
+     "ar": "جُمْلَةٌ مَعْطُوفَةٌ حُذِفَ عَامِلُهَا لِدَلَالَةِ الْأَوَّلِ عَلَيْهِ.",
+     "en": "A joined clause whose governor is omitted, the first having pointed to it."
+    }
+   ],
+   "posAgreement": 77.8,
+   "judged": 9,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "وَالْمُتَوَاتِرُ",
+     "lex": "mutawatir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw; «the mass-transmitted» is the mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُتَوَاتِر",
+      "root": "و ت ر",
+      "wazn": "فَالْمُعَوَاتِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُوجِبُ",
+     "lex": "awjaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "form-iv-verbs",
+       "mithal-verbs"
+      ],
+      "irab": "A mudari in raf', the clause standing as the khabar in the position of raf' — and it is the verb on which the ruling of the command was built in chapter 8 and the ruling of the general in chapter 11. Here it carries the ruling of all three kinds at once. Four chapters have now shown four cells of this one paradigm."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَوْجَبَ",
+      "root": "و ج ب",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِلْمَ",
+     "lex": "ilm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The maf'ul bihi in nasb, and a mudaf."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "فَعِلَ",
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "الْيَقِينِ",
+     "lex": "yaqin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — and yaqin is the highest degree of knowledge, with no doubt mixed into it. The scale of this sentence runs downward from here."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَقِين",
+      "root": "ل ي ق",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالْمَشْهُورُ",
+     "lex": "mashhur",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A second mubtada in raf' — and its khabar is OMITTED, the first sentence having supplied it. From here to the end of the line the verb is never written again and is understood twice."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَشْهُور",
+      "root": "ش ه ر",
+      "wazn": "وَالْمَفْعُولُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِلْمَ",
+     "lex": "ilm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The maf'ul bihi in nasb — of an OMITTED verb, understood as «obliges». And its NASB is the proof that something was omitted: an accusative needs a governor, and there is none written. The i'rab of a word can testify to a word that is not there."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "فَعِلَ",
+      "sure": true
+     },
+     "match": false
+    },
+    {
+     "w": "الطُّمَأْنِينَةِ",
+     "lex": "tumanina",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "masdar"
+      ],
+      "irab": "The mudaf ilayh in jarr — and it stands below certainty: the settling of the soul while a faint possibility of the contrary remains. The word itself is unusually long for Arabic, and its shape is that of a quadriliteral's masdar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طُمَأْنِينَة",
+      "root": "ط م أ ن",
+      "wazn": "فُّعَلْلِينَةِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالْآحَادُ",
+     "lex": "aahad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "mubtada-khabar"
+      ],
+      "irab": "A third mubtada in raf' — its khabar omitted in the same way."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آحَاد",
+      "root": "أ ح د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْعَمَلَ",
+     "lex": "amal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi"
+      ],
+      "irab": "The maf'ul bihi in nasb of an omitted verb — and notice what is NOT said. For the single-chain report no knowledge is named at all: only action. The scale descends from the knowledge of certainty to the knowledge of confidence and then steps out of the category of knowledge altogether into deed. Three rulings, one written verb, and not a single wasted word. This is what the balagha books mean when they say that ellipsis can say more than statement."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمَل",
+      "root": "ع م ل",
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true

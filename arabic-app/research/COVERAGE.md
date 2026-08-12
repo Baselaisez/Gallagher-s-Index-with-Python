@@ -489,3 +489,21 @@ not a one-line change.
   clinging pronoun and once as لِأَنَّ الْخَبَرَ with its noun on the page; and
   s4's reason IS chapter 5's definition, word for word, which makes it a
   pointer back rather than a new argument.
+- **v115** — Manar reaches chapter 13, the SUNNA divided by transmission:
+  mutawātir, mashhūr, āḥād, and what each obliges. Thirteen chapters, 498
+  tokens. The chapter pays off مُتَوَاتِرًا, which stood in chapter 2 as a bare
+  naʿt in naṣb on one transmission and here stands in rafʿ as a badal naming a
+  whole class — a word climbing from adjective to technical term, caught inside
+  one book. Grammar: لَا يُتَصَوَّرُ is the majhūl of Form V, and its stored
+  participles (مُتَصَوِّر / مُتَصَوَّر) are the very pair the conjugator was getting
+  wrong until v113; تَوَاطُؤُهُمْ is a Form VI maṣdar with its hamza on a wāw for
+  the ḍamma, the seat rule اقْتِضَاؤُهُ taught in ch7; الثَّانِي is a MANQŪṢ made
+  definite — the yāʾ stands and the kasra is understood — set against ch4's
+  indefinite قَاضٍ where the yāʾ dropped and a tanwīn replaced it; أَوِ الِاثْنَانِ
+  puts the iltiqāʾ as-sākinayn rule on a PARTICLE, the same law that produced
+  دَفَّتَيِ in ch2.
+  The closing sentence writes its verb ONCE and lets two more clauses borrow
+  it, and the naṣb of the two orphaned objects is the only evidence the verb
+  was ever there. The scale it draws — ʿilm al-yaqīn, then ʿilm al-ṭumaʾnīna,
+  then out of the category of knowledge altogether into ʿamal — is carried by
+  the ellipsis, not stated.
