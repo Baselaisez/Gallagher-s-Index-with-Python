@@ -2012,3 +2012,67 @@ set has stopped generating work. **The next round of engine fixes has to come
 from NEW sentences.** A saturated benchmark is a retired benchmark, and keeping
 it as a regression gate — which is what it now is — is a different job from
 using it to find bugs.
+
+## A saturated benchmark saturates against its CORPUS, not against the language
+
+The previous entry closed by saying the drill bank had stopped generating work
+and that the next fixes would have to come from new sentences. Chapter 15 was
+written the same day; its five sentences produced **one** disagreement on
+arrival, and that disagreement was a real hole in a rule shipped hours earlier.
+
+So the prediction was right in form and wrong in tone. **Five sentences were
+enough.** The bank does not need a new dataset to keep finding things — it
+needs the next chapter, which the project writes anyway. That makes the worked-
+sentence section cheap to keep useful, and it is worth saying because the
+opposite conclusion (retire it, build something bigger) would have been the
+expensive one.
+
+## The ʿaid may be MUSTATIR — so test for the SEAT, not for the pronoun
+
+The v116 ʿaid rule looks for a pronoun in the sila that points back at the mā.
+`اسْمٌ لِمَا لَزِمَ الْعِبَادَ` has no such pronoun anywhere on the page, and the mā
+is still mawṣūla — the ʿaid is the hidden fāʿil inside لَزِمَ.
+
+What the page does show is the **vacancy**. A sila must leave a seat for the
+returning pronoun; a maṣdariyya's clause is complete, because it has become a
+maṣdar and has nothing to return to. And the vacancy is visible: **a verb that
+names an object in naṣb and no doer has an empty fāʿil position.** الْعِبَادَ
+wears a fatḥa, so it is not the doer, so something unwritten is — and after a
+relative, that something is the mā.
+
+The general shape, which has now come round three times in this codebase:
+**when the thing a rule looks for can be concealed, look for the hole it left.**
+The ʿaid can be hidden; the seat cannot. Same move as reading the case off the
+sign rather than off the meaning, and as reading a governor's expectation
+rather than the governed word's intent.
+
+`بِمَا صَبَرُوا` is the control and is gated: its verb carries its own fāʿil (the
+wāw), there is no seat, and it stays maṣdariyya.
+
+## Choose the two examples so they sit on either side of the boundary
+
+Chapter 15 uses تُدْرَكُ and يُقَاسُ within four sentences of each other, and that
+is not decoration. تُدْرَكُ is the feminine of a passive the package stores only
+in the masculine, so the majhūl **builder** has to make it — and can. يُقَاسُ is
+the passive of a hollow verb, where the middle radical changes letter as well
+as vowel (يَقِيسُ → يُقَاسُ), so no vowel rule reaches it and the paradigm must
+store it.
+
+The smoke check asserts both directions, including that the builder's output
+for يَقِيسُ does **not** equal the stored يُقَاسُ. That negative assertion is the
+valuable one: it fails the moment somebody "improves" the majhūl rule into
+guessing at hollow roots, which would be a plausible-looking change that
+silently starts inventing Arabic.
+
+**A content chapter can be a test fixture.** When an engine has a documented
+boundary, write a chapter that stands on both sides of it — the corpus then
+holds the counter-example permanently, in real text, instead of in a fixture
+somebody may prune.
+
+## `stripAr` lives in the PAGE, not in the test runner
+
+Twice in two turns a new smoke check called `stripAr` in Node scope and failed
+the whole release with `stripAr is not defined`. Everything the reader defines
+is available inside `page.evaluate` and nowhere else. Do the normalising **in
+the evaluate block** and return a boolean; the assertions outside it should be
+comparing already-computed values, not doing Arabic string work.

@@ -5536,6 +5536,66 @@ if (!CHROME) {
       throw new Error('بِمَا صَبَرُوا has no aid and must stay masdariyya: ' + r.masdar[0].wajh);
   });
 
+  // ---- Manar chapter 15: the two passives, and the seat of a hidden ʿaid ----
+  await check('manar ch15: azima and rukhsa, with the majhul on both sides of the rule', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'mukhtasar-al-manar');
+      const ch = st.chapters.find(c => c.n === 15);
+      const sen = id => ch.sentences.find(s => s.id === id);
+      const txt = id => sen(id).tokens.map(t => t.s.full).join(' ');
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const ma = t => SentenceAnalyzer.analyze(t)
+        .filter(x => /ما$/.test(stripAr(x.w).replace(/^[وف]/, '')))
+        .map(x => ({ kind: x.kind, wajh: x.wajh ? x.wajh.k : null }));
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // the sound feminine plural: majrur by a kasra in s1, MANSUB by a kasra in s2
+        jarr: tk('s1', 'والمقدرات').irab.ar,
+        nasb: tk('s2', 'المقدرات').irab.ar,
+        // the derived majhul vs the stored one
+        tudrak: findFormInParadigm(st.morph.adraka, 'تُدْرَكُ'),
+        shuria: findFormInParadigm(st.morph.sharaa, 'شُرِعَ'),
+        yuqas:  findFormInParadigm(st.morph.qasa, 'يُقَاسُ'),
+        builtHollow: sjMajhul('يَقِيسُ', false),
+        storedHollow: st.morph.qasa.majhulMudari,
+        hollowRuleReaches: stripAr(sjMajhul('يَقِيسُ', false) || '') === stripAr(st.morph.qasa.majhulMudari || ''),
+        // …and the hidden ʿaid: nothing on the page returns to this ma
+        lima: ma(txt('s3')),
+        sabaru: ma('جَزَيْتُهُمْ بِمَا صَبَرُوا'),
+        // the fa that announces a conditional mubtada
+        fa: tk('s5', 'فغيره').grammar || [],
+        note: !!GRAMMAR['fa-khabar-mubtada'] && !!GRAMMAR['fa-khabar-mubtada'].title.tr,
+        yuqasKind: SentenceAnalyzer.analyze(txt('s5')).slice(-1)[0].kind,
+      };
+    });
+    if (r.chapters !== 15) throw new Error('chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch15 sentences: ' + r.n);
+    // ONE plural, two cases, one mark — the point of putting them a sentence apart
+    if (!/مَجْرُور/.test(r.jarr)) throw new Error('s1 المقدرات should be majrur: ' + r.jarr);
+    if (!/مَنْصُوب/.test(r.nasb)) throw new Error('s2 المقدرات should be mansub: ' + r.nasb);
+    if (!/الْكَسْرَة/.test(r.nasb)) throw new Error('a sound fem plural takes its NASB by a kasra: ' + r.nasb);
+    // the majhul the rule can build, and the one it must not
+    if (!r.tudrak || r.tudrak.tense !== 'majhulMudari' || !r.tudrak.derived)
+      throw new Error('تُدْرَكُ must be BUILT from the active: ' + JSON.stringify(r.tudrak));
+    if (!r.shuria || r.shuria.tense !== 'majhulMazi')
+      throw new Error('شُرِعَ must resolve as the stored majhul mazi: ' + JSON.stringify(r.shuria));
+    if (!r.yuqas || r.yuqas.tense !== 'majhulMudari' || r.yuqas.derived)
+      throw new Error('يُقَاسُ must come from STORAGE, not from the rule: ' + JSON.stringify(r.yuqas));
+    if (r.hollowRuleReaches)
+      throw new Error('the vowel rule must not reach a hollow passive — it changes the LETTER too: '
+                      + r.builtHollow + ' vs ' + r.storedHollow);
+    if (r.yuqasKind !== 'verb') throw new Error('يُقَاسُ read as ' + r.yuqasKind);
+    // an ʿaid that is MUSTATIR still makes a relative, and a complete clause still makes a masdar
+    if (!r.lima.length || r.lima[0].wajh !== 'mawsula')
+      throw new Error('لِمَا لَزِمَ الْعِبَادَ: the empty fa\'il seat is the ʿaid — got ' + JSON.stringify(r.lima));
+    if (r.sabaru[0].wajh !== 'masdariyya')
+      throw new Error('بِمَا صَبَرُوا has its fa\'il and leaves no seat: ' + r.sabaru[0].wajh);
+    if (!r.note) throw new Error('the fa-khabar-mubtada note is missing or untranslated');
+    if (!r.fa.includes('fa-khabar-mubtada'))
+      throw new Error('فَغَيْرُهُ must anchor the note that explains its fa: ' + r.fa.join(','));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

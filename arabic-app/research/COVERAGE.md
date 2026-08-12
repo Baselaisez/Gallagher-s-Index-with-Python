@@ -573,3 +573,52 @@ not a one-line change.
   round of fixes will have to be driven by NEW sentences rather than by this
   set. Two of the fixes above were found only because a disagreement list
   existed at all, and one of them (#3) was hiding inside an apparent AGREEMENT.
+
+- **v117** — Manar reaches chapter 15, and the chapter is the fence around the
+  instrument chapter 14 built: **مَا لَا يَجْرِي فِيهِ الْقِيَاسُ** — the ḥudūd, the
+  kaffārāt, the divinely fixed amounts and the dispensations — with the reason
+  given in one line (a quantity is received, not reasoned to), and then the pair
+  that follows from it, ʿAZĪMA and RUKHṢA. Fifteen chapters, **571 tokens**.
+  A method that is never fenced is not a method, and this is the first chapter
+  in the book that says where its own tool may not be used.
+
+  Grammar, and every item is a payoff or a first:
+
+  - **الْمُقَدَّرَاتِ twice, one sentence apart, wearing the same kasra both times.**
+    In s1 it is majrūr and the kasra is ordinary. In s2 it is the ism of أَنَّ —
+    **manṣūb, and its sign is a KASRA**, because that is how the sound feminine
+    plural takes its naṣb. This is the one place in nahw where the case and the
+    mark disagree by RULE rather than by accident, and nothing on the surface
+    separates the two occurrences. Only the governor does.
+  - **تُدْرَكُ and يُقَاسُ — the majhūl on both sides of the rule.** The package
+    stores أَدْرَكَ's passive only in the masculine, so the FEMININE تُدْرَكُ has to
+    be built: ضُمَّ أَوَّلُهُ وَفُتِحَ مَا قَبْلَ آخِرِهِ, and the engine builds it. يُقَاسُ
+    cannot be built by any vowel rule at all, because a hollow verb's passive
+    changes the middle LETTER as well (يَقِيسُ → يُقَاسُ) — so it is stored, and
+    the smoke suite asserts that the builder's output does **not** equal the
+    stored form. Two verbs in one chapter, chosen to sit on either side of the
+    boundary the v116 majhūl builder draws.
+  - **فَغَيْرُهُ — الْفَاءُ الدَّاخِلَةُ عَلَى خَبَرِ الْمُبْتَدَإِ**, and registry note **95**
+    (`fa-khabar-mubtada`). A khabar does not normally take a fāʾ; when one
+    appears it is announcing that the mubtadaʾ is a mawṣūl carrying the sense of
+    a CONDITION. It is the only mark on the page that turns a relative sentence
+    into a maxim, which is why the qawāʿid of usūl are written in this shape.
+    The note refuses the nominal-ṣila case the books refuse, and its
+    commonMistakes separate this fāʾ from the fāʾ of ʿaṭf and of tafrīʿ.
+  - **لِمَا لَزِمَ الْعِبَادَ — an ʿaid that is MUSTATIR.** Chapter 14's work gave the
+    engine the ʿaid test; this sentence defeats it, because nothing on the page
+    points back at the mā. What the page does show is the SEAT: لَزِمَ names an
+    object in naṣb and no doer, so the fāʿil position is vacant, and after a
+    relative a vacant fāʿil position is exactly where the concealed ʿaid stands.
+    A maṣdariyya's clause is complete and leaves no seat — which is why بِمَا
+    صَبَرُوا is untouched by the new rule and is gated as maṣdariyya.
+
+  Measured on the drill bank: chapter 15's five sentences arrived at **99.8%**
+  with one disagreement, the seat rule took it back to **100%** (571 of 571
+  tokens judged). Worth stating plainly, because the previous entry predicted
+  the opposite: the saturated benchmark did NOT stop producing work — it
+  produced exactly one finding, immediately, from five new sentences, and that
+  finding was a real gap in a rule shipped the same day. **A benchmark saturates
+  against its corpus, not against the language.** The way to keep it useful is
+  to keep writing chapters, which is the thing this project was going to do
+  anyway.
