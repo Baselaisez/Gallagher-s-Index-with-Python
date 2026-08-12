@@ -622,3 +622,61 @@ not a one-line change.
   against its corpus, not against the language.** The way to keep it useful is
   to keep writing chapters, which is the thing this project was going to do
   anyway.
+
+- **v118 — Mukhtasar al-Manar is COMPLETE at sixteen chapters, 607 tokens.**
+  The last chapter is الِاجْتِهَادُ وَالتَّقْلِيد, and it is the only one in the book
+  that is about a PERSON rather than a text: what the effort is, what its doer
+  must know, what he may not say, what everyone else does instead, and which of
+  the two each reader belongs to. The matn ends by addressing its own audience.
+
+  **The ring closes and the gate proves it.** Chapter 2 listed الْكِتَابُ
+  وَالسُّنَّةُ وَالْإِجْمَاعُ وَالْقِيَاسُ in RAFʿ, as the things the Law is known BY.
+  Chapter 16 lists the same four, same order, in JARR, as the things the
+  mujtahid must know. The smoke check compares the two token lists letter for
+  letter after stripping their clitics, so the ring is asserted rather than
+  claimed. Everything between those two sentences is the detail of one of the
+  four.
+
+  Grammar: **إِعْمَالُ الْمَصْدَر** — registry note **96** — on بَذْلُ الْفَقِيهِ وُسْعَهُ,
+  where a whole verbal sentence is folded into a noun without losing a part:
+  the majrūr is the masdar's FĀʿIL and the manṣūb after it is its MAFʿŪL, and
+  that surviving fatḥa is the only evidence on the page that the masdar governed
+  anything. Change it to a kasra and the sentence stops describing what a jurist
+  does and starts naming a quantity. The same sentence then annexes a second
+  masdar to its OBJECT (طَلَبِ الْحُكْمِ), so both classical shapes stand four words
+  apart; and الْعِلْمُ بِالْكِتَابِ in s2 shows the third fact — **a masdar inherits
+  its verb's habits, not a licence**, so عَلِمَ's bāʾ comes with it.
+  Also: أَنْ يُفْتِيَ, a manqūṣ verb whose naṣb fatḥa is WRITTEN on the very letter
+  chapter 15's يَجْرِي could not carry a damma on — one letter, two cases, and
+  the whole difference between a written sign and an estimated one is the weight
+  of the vowel. And فَعَلَيْهِ التَّقْلِيدُ, the jawāb of a REAL condition where the
+  fāʾ is OBLIGATORY because the answer is nominal — set against chapter 15's
+  فَغَيْرُهُ, where a relative merely borrowed the conditional sense and the fāʾ
+  was permitted. Same letter, one licensed and one compulsory.
+
+  **Two engine bugs, both found by the new chapter, both structural:**
+
+  1. **A final kasra is a JARR sign, and no verb is ever majrūr.** فَعَل the
+     masdar and فَعَلَ the māḍī are spelled alike down to the last vowel — which
+     is precisely the vowel iʿrāb is allowed to move — so the v116 ṣarf test
+     cannot separate طَلَبِ from طَلَبَ and nothing else on the word can either.
+     The CASE can. This joins tanwīn, the article and the tāʾ marbūṭa in the
+     guard that outranks a corpus cell; the imperative's iltiqāʾ-as-sākinayn
+     kasra is the one exception and keeps its reading.
+  2. **A clitic must not hide a fused jarr + pronoun.** The wāw/fāʾ peel fired
+     only when what remained was in the closed-class TABLE — and عَلَيْهِ is not a
+     table entry, it is two words written as one. So فَعَلَيْهِ walked into the
+     noun path and came out with the root ع ل ه on the scale فَعَيْلِ, in the
+     closing sentence of the book. The peel now consults the same
+     `fusedJarr()` helper the reading uses, so the two cannot disagree about
+     what a fused jarr looks like.
+
+  Measured: **99.5% → 99.8%** on the bank (607 tokens). The one remaining
+  disagreement is kept ON PURPOSE. بِمَا لَا يَعْلَمُ is genuinely undecidable from
+  the surface: the ʿaid would be a dropped MAFʿŪL, and a maṣdariyya clause with
+  an unstated object looks exactly the same — عَجِبْتُ مِمَّا صَنَعْتَ is the books'
+  own example and is read the other way. The engine reports `sure: false` and
+  carries both readings, maṣdariyya first and mawṣūla second, which is the whole
+  promise this class of engine makes. **A rule invented to move that one token
+  would have been tuned to one sentence and would have broken the control**, so
+  the honest 99.8% is the result and the row stays in the file as a named limit.

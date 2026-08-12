@@ -5569,7 +5569,7 @@ if (!CHROME) {
         yuqasKind: SentenceAnalyzer.analyze(txt('s5')).slice(-1)[0].kind,
       };
     });
-    if (r.chapters !== 15) throw new Error('chapters: ' + r.chapters);
+    if (r.chapters < 15) throw new Error('chapter 15 is missing: ' + r.chapters);
     if (r.n !== 5) throw new Error('ch15 sentences: ' + r.n);
     // ONE plural, two cases, one mark — the point of putting them a sentence apart
     if (!/مَجْرُور/.test(r.jarr)) throw new Error('s1 المقدرات should be majrur: ' + r.jarr);
@@ -5594,6 +5594,77 @@ if (!CHROME) {
     if (!r.note) throw new Error('the fa-khabar-mubtada note is missing or untranslated');
     if (!r.fa.includes('fa-khabar-mubtada'))
       throw new Error('فَغَيْرُهُ must anchor the note that explains its fa: ' + r.fa.join(','));
+  });
+
+  // ---- Manar chapter 16: the book closes its own ring -----------------------
+  await check('manar ch16: the working masdar, the jarr sign, and the fa of a real jawab', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'mukhtasar-al-manar');
+      const ch = st.chapters.find(c => c.n === 16);
+      const sen = id => ch.sentences.find(s => s.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const kind = (t, w) => {
+        const rows = SentenceAnalyzer.analyze(t);
+        const row = rows.find(x => stripAr(x.w) === stripAr(w));
+        return row ? row.kind : '<absent>';
+      };
+      const ch2 = st.chapters.find(c => c.n === 2);
+      const sources = j => j.map(t => stripAr(t.s.full).replace(/^[وفبلك]/, '').replace(/^ال/, ''));
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // إعمال المصدر: the majrur is the fa'il, the mansub is the maf'ul
+        badhl: (tk('s1', 'بذل').grammar || []),
+        faqih: tk('s1', 'الفقيه').irab.ar,
+        wusah: tk('s1', 'وسعه').irab.ar,
+        note: !!GRAMMAR['imal-al-masdar'] && !!GRAMMAR['imal-al-masdar'].title.tr,
+        // a naqis in NASB writes its fatha where the same letter could not carry a damma
+        yufti: tk('s3', 'يفتي').irab.ar,
+        yajri: st.chapters.find(c => c.n === 15).sentences
+                 .find(s => s.id === 's1').tokens
+                 .find(t => stripAr(t.s.full) === 'يجري').irab.ar,
+        // a final KASRA is a jarr sign, and no verb is majrur
+        talab: kind('فِي طَلَبِ الْحُكْمِ الشَّرْعِيِّ', 'طلب'),
+        talabaVerb: kind('طَلَبَ الْفَقِيهُ الْحُكْمَ', 'طلب'),
+        // a waw/fa in front of a fused jarr+pronoun must come off
+        faalayhi: kind('فَعَلَيْهِ التَّقْلِيدُ', 'فعليه'),
+        walahu: kind('وَلَهُ الْحُكْمُ', 'وله'),
+        alayhi: kind('عَلَيْهِ الدَّيْنُ', 'عليه'),
+        // the fa of a REAL jawab, obligatory because the answer is nominal
+        fa: tk('s5', 'فعليه').grammar || [],
+        jumal: sen('s5').jumal.map(j => j.ar).join(' | '),
+        // the ring: chapter 2's four sources, same words, same order
+        ch2sources: sources(ch2.sentences[0].tokens.filter(t =>
+          ['kitab', 'sunna', 'ijma', 'qiyas'].includes(t.lex))),
+        ch16sources: sources(sen('s2').tokens.filter(t =>
+          ['kitab', 'sunna', 'ijma', 'qiyas'].includes(t.lex))),
+      };
+    });
+    if (r.chapters < 16) throw new Error('chapter 16 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch16 sentences: ' + r.n);
+    // the masdar governs: one word is its doer, the next is its object
+    if (!r.badhl.includes('imal-al-masdar')) throw new Error('بذل must anchor the note: ' + r.badhl.join(','));
+    if (!r.note) throw new Error('the imal-al-masdar note is missing or untranslated');
+    if (!/فَاعِل/.test(r.faqih)) throw new Error('الفقيه is the masdar\'s FA\'IL: ' + r.faqih);
+    if (!/مَفْعُول/.test(r.wusah) || !/مَنْصُوب/.test(r.wusah))
+      throw new Error('وسعه is the masdar\'s maf\'ul in NASB: ' + r.wusah);
+    // the same letter, two cases, one written and one estimated
+    if (!/الظَّاهِرَة/.test(r.yufti)) throw new Error('يفتي\'s fatha is WRITTEN on the ya: ' + r.yufti);
+    if (!/مُقَدَّرَة/.test(r.yajri)) throw new Error('يجري\'s damma is ESTIMATED: ' + r.yajri);
+    // a kasra is a case-ending, and cases belong to nouns
+    if (r.talab !== 'noun') throw new Error('طَلَبِ wears a kasra and no verb is majrur: ' + r.talab);
+    if (r.talabaVerb !== 'verb') throw new Error('طَلَبَ with a fatha is still the verb: ' + r.talabaVerb);
+    // …and a clitic must not hide a fused jarr+pronoun
+    for (const k of ['faalayhi', 'walahu', 'alayhi'])
+      if (r[k] !== 'particle') throw new Error(k + ' is a jarr letter with its pronoun, read as ' + r[k]);
+    if (!r.fa.includes('fa-khabar-mubtada'))
+      throw new Error('فعليه must anchor the fa note: ' + r.fa.join(','));
+    if (!/جَوَابُ الشَّرْطِ/.test(r.jumal) || !/وَاجِب/.test(r.jumal))
+      throw new Error('the nominal jawab must state that its fa is OBLIGATORY: ' + r.jumal);
+    // the ring closes: the same four sources, in the same order, sixteen chapters apart
+    if (r.ch2sources.join(',') !== r.ch16sources.join(','))
+      throw new Error('ch2 ' + r.ch2sources.join(',') + ' vs ch16 ' + r.ch16sources.join(','));
+    if (r.ch16sources.length !== 4) throw new Error('four sources: ' + r.ch16sources.join(','));
   });
 
   await check('no JS errors on page', async () => {

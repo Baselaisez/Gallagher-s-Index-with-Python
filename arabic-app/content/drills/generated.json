@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 70,
-  "sentenceTokens": 571,
-  "posAgreement": 100,
-  "rows": 1656
+  "sentences": 75,
+  "sentenceTokens": 607,
+  "posAgreement": 99.8,
+  "rows": 1692
  },
  "endings": [
   {
@@ -17953,6 +17953,843 @@
       "lemma": "قَاسَ",
       "root": "ق ي س",
       "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:16:s1",
+   "story": "mukhtasar-al-manar",
+   "chapter": 16,
+   "sentence": "s1",
+   "text": "وَالِاجْتِهَادُ بَذْلُ الْفَقِيهِ وُسْعَهُ فِي طَلَبِ الْحُكْمِ الشَّرْعِيِّ",
+   "translation": {
+    "en": "And ijtihad is the jurist's expending of his utmost capacity in seeking the ruling of the Law.",
+    "tr": "İctihâd, fakîhin şer'î hükmü aramakta bütün gücünü sarf etmesidir."
+   },
+   "jumal": [
+    {
+     "text": "الِاجْتِهَادُ بَذْلُ الْفَقِيهِ وُسْعَهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A resumed nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَالِاجْتِهَادُ",
+     "lex": "ijtihad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "form-viii-verbs"
+      ],
+      "irab": "A resuming waw, and «ijtihad» is the mubtada in raf' — the Form VIII masdar of اِجْتَهَدَ from ج ه د, the root of effort. The word stood in chapter 13 as a bare term; only here is it defined. Fifteen chapters have been about the TEXTS; this one is about the man reading them, and it is the last thing the book has to say."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اجْتِهَاد",
+      "root": "ج ه د",
+      "wazn": "ِافْتِعَالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بَذْلُ",
+     "lex": "badhl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "imal-al-masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "The khabar in raf' and a mudaf — and it is a masdar WORKING like its own verb. Watch the next two words: the majrur after it is not merely annexed to it, it is its FA'IL, and the word after that is its MAF'UL BIH in nasb. «بَذَلَ الْفَقِيهُ وُسْعَهُ» has been folded into a noun without losing a single one of its parts."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَذْل",
+      "root": "ب ذ ل",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْفَقِيهِ",
+     "lex": "faqih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "imal-al-masdar",
+       "fail"
+      ],
+      "irab": "The mudaf ilayh in jarr by its FORM, and the masdar's fa'il in MEANING — the one doing the expending is the jurist. Two i'rabs on one word, and neither cancels the other: this is the same double reading the phrase layer gives بَيْنَ يَدَيْهِ, but here it is the government that doubles rather than the sense."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فَقِيه",
+      "root": "ف ق ه",
+      "wazn": "فَعِيلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وُسْعَهُ",
+     "lex": "wus",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "imal-al-masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "The masdar's maf'ul bihi, in nasb by the fatha, itself a mudaf with the ha annexed to it — and THIS FATHA IS THE PROOF that «badhl» governed at all. Had the masdar merely been a noun, a second annexation would have followed: بَذْلُ الْفَقِيهِ وُسْعِهِ. The kasra would have been possible Arabic and a different sentence; the fatha is what makes this one a definition of an ACT."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "س ع ه",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «badhl» — and a jarr phrase hanging on a masdar is one more sign that the masdar is doing a verb's work. Nothing hangs in the air, and what this one hangs on is a noun with a verb's meaning."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "طَلَبِ",
+     "lex": "talab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "masdar"
+      ],
+      "irab": "Majrur by «fi» and itself a mudaf — a SECOND masdar in one sentence, and this one is annexed to its OBJECT rather than to its doer: what is sought is the ruling. Two masdars, two different annexations, side by side — which is exactly how the grammar books teach the distinction."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَلَبَ",
+      "root": "ط ل ب",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْحُكْمِ",
+     "lex": "hukm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the object of «seeking» in meaning: what is sought is the ruling. The word that opened the book's first sentence and has stood in every chapter since is the object of the last effort described in it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حُكْم",
+      "root": "ح ك م",
+      "wazn": "فُعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الشَّرْعِيِّ",
+     "lex": "shari",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa"
+      ],
+      "irab": "A na't of «the ruling», in jarr — a nisba noun built on الشَّرْع, and the very adjective chapter 1 attached to the same head word in its opening line. The book's last definition wears the same two words as its first."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَرْعِيّ",
+      "root": "ش ر ع",
+      "wazn": "فَّعْلِيِّ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:16:s2",
+   "story": "mukhtasar-al-manar",
+   "chapter": 16,
+   "sentence": "s2",
+   "text": "وَشَرْطُهُ الْعِلْمُ بِالْكِتَابِ وَالسُّنَّةِ وَالْإِجْمَاعِ وَالْقِيَاسِ",
+   "translation": {
+    "en": "And his condition is knowledge of the Book, the Sunna, consensus and analogy.",
+    "tr": "Şartı; Kitâb'ı, Sünnet'i, icmâ'ı ve kıyâsı bilmektir."
+   },
+   "jumal": [
+    {
+     "text": "وَشَرْطُهُ الْعِلْمُ بِالْكِتَابِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A joined nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "وَشَرْطُهُ",
+     "lex": "shart",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "idafa-definiteness",
+       "atf-nasaq"
+      ],
+      "irab": "A joining waw; «his condition» is the mubtada in raf' and a mudaf, the ha its mudaf ilayh — and the ha goes back to the MAN, not to the act. Chapter 14 used the same word for the ʿilla's condition and it referred to a thing; here it refers to a person, and the difference is the whole subject of this chapter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "الْعِلْمُ",
+     "lex": "ilm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar"
+      ],
+      "irab": "The khabar in raf' — a masdar again, but this one reaches its object through a BA rather than directly, so it puts nothing in nasb. Set it beside «بَذْلُ … وُسْعَهُ» one sentence back: a masdar governs exactly as its verb does, and عَلِمَ بِـ takes a jarr letter where بَذَلَ takes a bare object. The masdar inherits the verb's habits, not a general licence."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْعِلْم",
+      "root": "ع ل م",
+      "wazn": "فِعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِالْكِتَابِ",
+     "lex": "kitab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr-majrur attaching to «knowledge» — the first of the four sources, which chapter 2 listed in RAF' as the things the Law is known BY. Here the same four stand in JARR as the things the mujtahid must know. Same list, same order, opposite end of the book, and the case has turned over."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كِتَاب",
+      "root": "ك ت ب",
+      "wazn": "فِعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالسُّنَّةِ",
+     "lex": "sunna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "Joined, in jarr — divided by its transmission in chapter 13. The list is not a summary: every one of these four has had a chapter or more of its own, and naming them here is naming those chapters."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سُنَّة",
+      "root": "س ن ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالْإِجْمَاعِ",
+     "lex": "ijma",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "Joined, in jarr — defined in chapter 3."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِجْمَاع",
+      "root": "ج م ع",
+      "wazn": "إِفْعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالْقِيَاسِ",
+     "lex": "qiyas",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "Joined, in jarr — taken apart in chapters 14 and 15: its pillars, then its limits. The four sources are named twice in this book and nowhere else, once at the start and once at the end, and everything between them is the detail of one of the four."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قِيَاس",
+      "root": "ق ي س",
+      "wazn": "فِعَالِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:16:s3",
+   "story": "mukhtasar-al-manar",
+   "chapter": 16,
+   "sentence": "s3",
+   "text": "وَلَا يَجُوزُ لَهُ أَنْ يُفْتِيَ بِمَا لَا يَعْلَمُ",
+   "translation": {
+    "en": "And it is not permitted for him to give a ruling on what he does not know.",
+    "tr": "Bilmediği bir şey hakkında fetvâ vermesi ona câiz değildir."
+   },
+   "jumal": [
+    {
+     "text": "أَنْ يُفْتِيَ بِمَا لَا يَعْلَمُ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ رَفْعٍ فَاعِلُ «يَجُوزُ».",
+     "en": "The masdar muawwal, in the position of raf' as the fa'il of «is permitted»."
+    },
+    {
+     "text": "لَا يَعْلَمُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal clause, the sila of the relative — i'rabless."
+    }
+   ],
+   "posAgreement": 87.5,
+   "judged": 8,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw and a bare negation — the same pairing that opened chapter 15, and again the verb after it keeps its raf'."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَجُوزُ",
+     "lex": "jaaza",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "hollow-verbs"
+      ],
+      "irab": "A mudari in raf' with the damma written — a hollow verb of ج و ز, and its FA'IL is the masdar-clause that follows. The doer of «is permitted» has not appeared yet and is not a noun at all: it is «his giving a ruling»."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَازَ",
+      "root": "ج و ز",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr-majrur attaching to «is permitted», the ha going back to the mujtahid — who has never been named in this chapter by a noun of his own. He is carried entirely by pronouns: «his condition», «for him», «he does not know». The book describes the man without ever naming him."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَنْ",
+     "lex": "an-nasiba",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "an-masdariyya"
+      ],
+      "irab": "A masdar-making letter putting the mudari into nasb, and the masdar it forms with what follows stands in the position of RAF' as the fa'il of «is permitted». Chapter 14 used this particle to make a khabar and chapter 4 to make one too; this is the first time in the book it makes a FA'IL."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُفْتِيَ",
+     "lex": "afta",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "an-masdariyya",
+       "naqis-verbs",
+       "form-iv-verbs"
+      ],
+      "irab": "A mudari in nasb after «an», and its fatha is WRITTEN on the ya. Compare يَجْرِي in chapter 15, whose damma on the same letter had to be estimated: the damma is heavy and a ya will not carry it, the fatha is light and a ya carries it easily. One letter, two cases, and the difference between a written sign and an estimated one is nothing but the weight of the vowel."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَفْتَى",
+      "root": "ف ت و",
+      "wazn": "يُفْعِلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "huruf-jarr",
+       "anwa-ma"
+      ],
+      "irab": "The ba is a jarr letter hanging on «give a ruling», and «ma» is a relative noun in the position of jarr — and its ʿaid is DROPPED: the sense is «what he does not know IT». Chapter 15's ma had a concealed doer for its ʿaid; this one has a dropped OBJECT, which is the commoner case and the harder one to see, because a transitive verb standing with no object at all is the only sign that anything is missing."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": false
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "A bare negation, and the clause after it is the sila of the relative, with no position in i'rab."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَعْلَمُ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "fail"
+      ],
+      "irab": "A mudari in raf' with a hidden «he» for its fa'il — and its OBJECT is dropped, and that dropped object is the ʿaid. عَلِمَ is transitive; a transitive verb that names nothing is a verb whose object is somewhere else, and here it is the ma at the head of the clause. The whole sentence turns on a word that is not written."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:16:s4",
+   "story": "mukhtasar-al-manar",
+   "chapter": 16,
+   "sentence": "s4",
+   "text": "وَالتَّقْلِيدُ الْعَمَلُ بِقَوْلِ الْغَيْرِ مِنْ غَيْرِ حُجَّةٍ",
+   "translation": {
+    "en": "And taqlid is acting on another's word with no proof.",
+    "tr": "Taklîd, bir delîl olmaksızın başkasının sözüyle amel etmektir."
+   },
+   "jumal": [
+    {
+     "text": "وَالتَّقْلِيدُ الْعَمَلُ بِقَوْلِ الْغَيْرِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A resumed nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "وَالتَّقْلِيدُ",
+     "lex": "taqlid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "form-ii-verbs"
+      ],
+      "irab": "A resuming waw, and «taqlid» is the mubtada in raf' — the Form II masdar of قَلَّدَ on تَفْعِيل. Its root sense is putting a NECKLACE on a neck: the follower hangs the responsibility for the ruling round the neck of the one he follows. The word is not a slur and not a compliment; it is a description of where the liability sits."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَقْلِيد",
+      "root": "ق ل د",
+      "wazn": "تَّفْعِيلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْعَمَلُ",
+     "lex": "amal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar"
+      ],
+      "irab": "The khabar in raf' — the third masdar in this chapter to stand as a khabar, and like «knowledge» it reaches its object through a ba. Every definition in this chapter defines an ACT by naming the act: ijtihad is an expending, its condition is a knowing, taqlid is an acting. A discipline about texts ends by describing what people DO."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمَل",
+      "root": "ع م ل",
+      "wazn": "فَعَلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِقَوْلِ",
+     "lex": "qawl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness",
+       "masdar"
+      ],
+      "irab": "A jarr-majrur attaching to «acting», and «the word of» is a mudaf. What is acted upon is not evidence but SPEECH — and that single choice of noun is the whole definition."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَوْل",
+      "root": "ق و ل",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْغَيْرِ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — «al-ghayr» with the article, which the purest usage avoids and the technical writers permit. The matn is speaking as a jurist here, not as a poet, and the terminology wins."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «acting» — and here it names being APART from a thing, which is how «min ghayri» comes to mean «without». The two words are read together and neither carries the sense alone."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَيْرِ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "Majrur by «min» and itself a mudaf — and «ghayr» stands TWICE in this one sentence, first as a mudaf ilayh with the article and then as a mudaf without it. A word that is mudaf by its very nature cannot also wear ال when it is annexed, and the sentence shows both states four words apart."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حُجَّةٍ",
+     "lex": "hujja",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr with its tanwin — and an indefinite inside a negative frame is GENERAL: without any proof whatsoever. Had it been definite the definition would have excluded one proof and admitted the rest. This is the same reason chapter 15 left «an excuse» indefinite, and it is worth learning as a habit: in a definition, the tanwin is doing work."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حُجَّة",
+      "root": "ح ج ج",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:mukhtasar-al-manar:16:s5",
+   "story": "mukhtasar-al-manar",
+   "chapter": 16,
+   "sentence": "s5",
+   "text": "فَمَنْ لَمْ يَبْلُغْ رُتْبَةَ الِاجْتِهَادِ فَعَلَيْهِ التَّقْلِيدُ",
+   "translation": {
+    "en": "So whoever has not reached the rank of ijtihad — upon him is taqlid.",
+    "tr": "Kim ictihâd derecesine ulaşmamışsa, ona düşen taklîddir."
+   },
+   "jumal": [
+    {
+     "text": "لَمْ يَبْلُغْ رُتْبَةَ الِاجْتِهَادِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ جَزْمٍ فِعْلُ الشَّرْطِ.",
+     "en": "A verbal clause in the position of jazm, the verb of the condition."
+    },
+    {
+     "text": "فَعَلَيْهِ التَّقْلِيدُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ فِي مَحَلِّ جَزْمٍ جَوَابُ الشَّرْطِ، وَاقْتِرَانُهَا بِالْفَاءِ وَاجِبٌ لِأَنَّهَا اسْمِيَّةٌ.",
+     "en": "A nominal sentence in the position of jazm as the answer to the condition — and the fa is OBLIGATORY on it, because it is nominal."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "فَمَنْ",
+     "lex": "man-shartiyya",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "in-shartiyya",
+       "mubtada-khabar"
+      ],
+      "irab": "The fa draws a consequence from everything before it, and «man» is a CONDITIONAL NOUN that puts two verbs into jazm — mabni on sukun, in the position of raf' as the mubtada. It is one of the fifteen jawazim and it is an ISM, not a harf: the book's last sentence is governed by a noun."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazim",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "lam-jazim"
+      ],
+      "irab": "A letter of negation, jazm and TIME-REVERSAL — it turns a present form into a past sense. And note whose jazm the verb actually wears: «lam» is standing right there, so the sign belongs to it, while «man» governs the CLAUSE's position. Two governors, one verb, and no contradiction — this is the distinction Qawa'id al-I'rab makes between a word's i'rab and a clause's mahall."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَبْلُغْ",
+     "lex": "balagha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "lam-jazim"
+      ],
+      "irab": "A mudari in jazm by «lam», its sign the sukun, with a hidden «he» for its fa'il — and it is the CONDITION's verb. A sound root, so the jazm shows as a plain sukun and nothing is lost. Set it against chapter 14's لَمْ يَرِدْ, where the same jazm fell on a mithal and the waw stayed gone: the sign is the same, the damage differs entirely with the root."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَلَغَ",
+      "root": "ب ل غ",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رُتْبَةَ",
+     "lex": "rutba",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The maf'ul bihi in nasb by the fatha, and a mudaf — «the RANK of ijtihad», not ijtihad itself. A man may perform an act of ijtihad and not hold the rank; the noun the matn chose is the one that makes the distinction."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رُتْبَة",
+      "root": "ر ت ب",
+      "wazn": "فُعْلَةَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الِاجْتِهَادِ",
+     "lex": "ijtihad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — the word this chapter opened with, standing here inside its own condition. The chapter is a ring, as the book is."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اجْتِهَاد",
+      "root": "ج ه د",
+      "wazn": "ِافْتِعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَعَلَيْهِ",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "fa-khabar-mubtada",
+       "huruf-jarr",
+       "mubtada-khabar"
+      ],
+      "irab": "The FA links the answer to its condition, and here it is OBLIGATORY, because the answer is a nominal sentence — a nominal jawab can never stand bare. Set this against chapter 15's فَغَيْرُهُ: there a relative merely BORROWED the sense of a condition and the fa was permitted; here the condition is real and the fa is required. Same letter, one licensed and one compulsory, and the difference is what «man» is. «Alayhi» is a jarr-majrur standing as a FRONTED khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "التَّقْلِيدُ",
+     "lex": "taqlid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The DELAYED mubtada, in raf' — and the nominal sentence as a whole stands in the POSITION OF JAZM as the answer to the condition. A nominal clause cannot show jazm on any letter, so it is jazm in place only, which is precisely why the fa had to be there: without it nothing would mark the clause as an answer at all. And with this word the book closes. It opened by defining a science and it ends by naming what is owed by everyone who has not reached it — which is nearly everyone, and the matn says so without a word of apology."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَقْلِيد",
+      "root": "ق ل د",
+      "wazn": "تَّفْعِيلُ",
       "sure": true
      },
      "match": true

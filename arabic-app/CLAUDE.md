@@ -2076,3 +2076,64 @@ the whole release with `stripAr is not defined`. Everything the reader defines
 is available inside `page.evaluate` and nowhere else. Do the normalising **in
 the evaluate block** and return a boolean; the assertions outside it should be
 comparing already-computed values, not doing Arabic string work.
+
+## Mukhtasar al-Manar is complete — sixteen chapters, 607 tokens
+
+The last chapter, الِاجْتِهَادُ وَالتَّقْلِيد, is the only one in the book about a
+PERSON rather than a text, and it closes a ring the smoke suite now asserts:
+chapter 2 lists the four sources in RAFʿ as what the Law is known BY, chapter 16
+lists the same four, same order, in JARR as what the mujtahid must know. The
+gate compares the two token lists letter for letter after stripping clitics.
+**When a text has structure, gate the structure** — a claim in a comment that
+"the book is a ring" is worth nothing; a check that fails if someone reorders
+either list is worth something.
+
+## A final kasra is a jarr sign, and no verb is majrur
+
+فَعَل the masdar and فَعَلَ the māḍī are spelled alike down to the last vowel, and
+that is exactly the vowel the ṣarf test permits to move — so `طَلَبِ` matched a
+cell of `طَلَبَ` and nothing on the word could have stopped it. The CASE stops it:
+a kasra there is a case-ending, and cases belong to nouns.
+
+This is the **fourth** member of a guard that started with one: tanwīn, the
+article, the tāʾ marbūṭa, and now the jarr kasra all outrank a corpus cell
+match. Each was added after a real word was misread. The pattern worth naming:
+**when a comparison is deliberately blind to something, that blindness is where
+the next bug will be.** The ṣarf test ignores the last vowel by design; the
+misreadings it lets through are all decided by the last vowel, and they have to
+be caught by a rule that looks exactly there.
+
+The imperative keeps its reading — اِضْرِبِ الْوَلَدَ takes a kasra for the meeting
+of two sākins, not for a case — so the guard is restricted to the māḍī and the
+muḍāriʿ.
+
+## Name a shape once, or two call sites will disagree about it
+
+`فَعَلَيْهِ` — the last two words of the whole book — was read as a noun with the
+root ع ل ه. The wāw/fāʾ peel only fired when what remained was in the
+closed-class TABLE, and عَلَيْهِ is not a table entry: it is two words written as
+one, recognised twenty lines later by a *different* piece of code walking
+`ENCLITICS` against `JARR_HEAD`.
+
+Two call sites, one concept, one of them ignorant of it. The fix was to give the
+concept a name — `SentenceAnalyzer.fusedJarr(core)` — and have both the peel
+test and the reading call it. **A shape that is recognised by inline logic in
+one place will eventually be needed in another, and the second place will not
+know.** Extract it the first time it is used, not the second.
+
+## Leaving a disagreement in is sometimes the finding
+
+Chapter 16 produced three drill-bank disagreements. Two were bugs and are fixed.
+The third, `بِمَا لَا يَعْلَمُ`, is **kept**: the ʿaid would be a dropped MAFʿŪL, and
+a maṣdariyya clause with an unstated object looks exactly the same on the page —
+عَجِبْتُ مِمَّا صَنَعْتَ is the books' own example of the maṣdariyya and is read the
+other way round. Any rule that moved the Manar token would have moved the
+control too.
+
+The engine does the right thing already: `sure: false`, both readings on the
+shortlist, maṣdariyya first and mawṣūla second. That IS the promise this class
+of engine makes — a correct shortlist, not a correct verdict — and a token that
+exercises it is worth more in the file than a rule tuned to one sentence.
+
+**Do not spend a rule to close the last point of a metric.** Check first whether
+the remaining gap is the engine being wrong or the engine being honest.
