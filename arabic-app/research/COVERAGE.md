@@ -507,3 +507,69 @@ not a one-line change.
   was ever there. The scale it draws — ʿilm al-yaqīn, then ʿilm al-ṭumaʾnīna,
   then out of the category of knowledge altogether into ʿamal — is carried by
   the ellipsis, not stated.
+
+- **v116** — Manar reaches chapter 14, أَرْكَانُ الْقِيَاس — the four pillars of
+  analogy — and the engines have their best day of the project. Fourteen
+  chapters, 533 tokens. Grammar: `لَمْ يَرِدْ` puts the JAZM on chapter 8's mithāl
+  and the wāw stays gone, because one weakness does not repair another;
+  `عُلِّقَ` is the majhūl of Form II, the fourth passive class in the package;
+  `أَنْ تَكُونَ ظَاهِرَةً` sets two naṣbs in one clause for two unrelated reasons;
+  `لَا تَخْتَلِفُ` is a jumla ṣifa in the position of NAṢB, which completes
+  rafʿ/jarr/naṣb for clausal descriptions across the book; and `بِاخْتِلَافِ`
+  stands one word from `تَخْتَلِفُ` — a verb beside its own maṣdar.
+
+  Six engine fixes, and every one of them came from the drill bank's list of
+  disagreements rather than from a hunch:
+
+  1. **A corpus cell must agree with the word in SARF, not merely in letters.**
+     The loose match compared bare skeletons, so `حُكْمُ` — a maṣdar on فُعْل —
+     matched a cell of `حَكَمَ`, `عِلْمَ` matched `عَلِمَ`, `قَصْرُ` matched `قَصَرَ`.
+     Fourteen of twenty-six named disagreements were this one missing test.
+     The rule that fixes it is one sentence long: **the last letter's vowel is
+     iʿrāb and may move; every vowel before it is ṣarf and may not.** An
+     unvowelled word carries no evidence and is never refused on this ground.
+  2. **The oracle was being handed the stripped word.** `MaEngine` asks the
+     corpus «is this a verb?», and the analyzer was asking with the harakāt
+     already gone — so `رَوَاهُ` reached no paradigm and فَالْمُتَوَاتِرُ مَا رَوَاهُ,
+     the textbook relative, lost the reading it exists to teach.
+  3. **The alif maqṣūra is written full the moment a pronoun clings to it.**
+     رَوَى + هُ = رَوَاهُ. Without that spelling the candidate list never showed
+     the paradigm its own word, and the old match — رَأَى's imperative plural —
+     was a FALSE agreement: right class, wrong verb, and it had been scoring as
+     a hit.
+  4. **The majhūl is now DERIVED where it is not stored.** ضُمَّ أَوَّلُهُ وَكُسِرَ مَا
+     قَبْلَ آخِرِهِ in the māḍī, وَفُتِحَ مَا قَبْلَ آخِرِهِ in the muḍāriʿ — with the
+     madd alif skipped, since it bears no vowel of its own. `يُنَالُ` is a verb
+     again. Where a hollow root changes its LETTER too (يَقُولُ → يُقَالُ) the
+     build refuses rather than guesses.
+  5. **Tanwīn, the article and the tā marbūṭa outrank a corpus cell.** No verb
+     in the language wears any of the three, so `خَفِيٌّ` — the ṣifa mushabbaha
+     on فَعِيل — is not a cell of `خَفِيَ` however well the letters line up. The
+     rule was already retiring a wrong wazn; it decides the CLASS just as
+     firmly.
+  6. **A clitic is not part of the scale.** و ف ب ل ك are all augment letters,
+     so a leading one was copied into the mīzān verbatim and `وَالْفَرْعُ` weighed
+     «وَالْفَعْلُ» — a scale no book has written. It comes off first, unless it is
+     the root's own first radical: the wāw of وَصْف stays.
+
+  And four new rules for مَا, every one of them a shape the matn is written in:
+  the definitional frame widened to all THREE routes to definiteness (the
+  article, iḍāfa, or being a pronoun outright); الْمُضَافُ إِلَيْهِ لَا يَكُونُ إِلَّا
+  اسْمًا, so a مَا after كُلّ، بَعْض، جَمِيع، غَيْر settles its class outright; the
+  ṣila as a shibh jumla (مَا لَهَا وَمَا عَلَيْهَا), where a negation would need a
+  subject and a predicate and a relative needs only something to hang on; and
+  الْعَائِد — a relative's clause must contain a pronoun pointing back at it, and
+  a maṣdariyya's clause has nothing to point back at, which is what separates
+  فِيمَا وُضِعَ لَهُ from بِمَا صَبَرُوا. Readings are PROMOTED, never removed: every
+  face stays on the shortlist underneath.
+
+  Measured on the drill bank across this turn: **95.1% → 97.6% → 98.3% →
+  100%** part-of-speech agreement, 533 of 533 tokens judged, none skipped.
+  Said plainly, because the number invites more than it means: this is the
+  engines agreeing with the corpus's own part-of-speech tag, on the sixty-five
+  worked sentences they were measured against — it is not a claim that the
+  analyzer's iʿrāb is right, and it is not a claim about unseen text. It does
+  mean the named disagreement list is empty for the first time, so the next
+  round of fixes will have to be driven by NEW sentences rather than by this
+  set. Two of the fixes above were found only because a disagreement list
+  existed at all, and one of them (#3) was hiding inside an apparent AGREEMENT.

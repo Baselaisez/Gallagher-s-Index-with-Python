@@ -5456,6 +5456,86 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  // ---- the SARF test on a corpus match ------------------------------------
+  // The last letter's vowel is i'rab and may move; every vowel before it is
+  // sarf and may not. Without that test a bare-letters match read حُكْمُ as a
+  // cell of حَكَمَ and عِلْمَ as a cell of عَلِمَ — fourteen wrong readings from one
+  // missing comparison. Structural, not a list: the FRAME is what is gated.
+  await check('a corpus cell must agree with the word in sarf, not just in letters', async () => {
+    const r = await page.evaluate(() => ({
+      // interior differs → refused; ending differs → still the same cell
+      sarf:   sjSarfAgree('حُكْمُ', 'حَكَمَ'),
+      irab:   sjSarfAgree('يَعْلَمَ', 'يَعْلَمُ'),
+      ilm:    sjSarfAgree('عِلْمَ', 'عَلِمَ'),
+      bare:   sjSarfAgree('حكم', 'حَكَمَ'),          // unvowelled proves nothing
+      // …and end to end, through the analyzer
+      hukm:   SentenceAnalyzer.analyze('وَحُكْمُ الْأَصْلِ ثَابِتٌ')[0],
+      warada: SentenceAnalyzer.analyze('وَرَدَ النَّصُّ')[0],
+      nass:   SentenceAnalyzer.analyze('وَرَدَ النَّصُّ')[1],
+      // the passive, BUILT from the stored active
+      yunal:  SentenceAnalyzer.analyze('لَا يُنَالُ الْعِلْمُ بِرَاحَةِ الْجَسَدِ')[1],
+      // a noun's three marks outrank a corpus cell: خَفِيّ is a sifa mushabbaha
+      khafi:  SentenceAnalyzer.analyze('وَمِنْهُ خَفِيٌّ')[1],
+      // the alif maqsura written full before a pronoun
+      rawa:   SentenceAnalyzer.analyze('مَا رَوَاهُ قَوْمٌ')[1],
+      mizan:  stripAr(WaznEngine.mizan('وَالْفَرْعُ', 'ف ر ع') || ''),
+      radical: stripAr(WaznEngine.mizan('وَصْفٌ', 'و ص ف') || ''),   // a radical waw is not a clitic
+    }));
+    if (r.sarf !== false) throw new Error('حُكْمُ must not pass as a cell of حَكَمَ');
+    if (r.ilm !== false)  throw new Error('عِلْمَ must not pass as a cell of عَلِمَ');
+    if (r.irab !== true)  throw new Error('a moved ENDING is the same cell: يَعْلَمَ / يَعْلَمُ');
+    if (r.bare !== true)  throw new Error('an unvowelled word carries no evidence and must not be refused');
+    if (r.hukm.kind !== 'noun') throw new Error('وَحُكْمُ is a masdar, read as ' + r.hukm.kind);
+    if (r.warada.kind !== 'verb') throw new Error('وَرَدَ is a verb, read as ' + r.warada.kind);
+    if (r.nass.root !== 'ن ص ص') throw new Error('النَّصُّ root: ' + r.nass.root + ' — the article is not a radical');
+    if (r.yunal.kind !== 'verb') throw new Error('يُنَالُ is the majhul of نَالَ, read as ' + r.yunal.kind);
+    if (r.khafi.kind !== 'noun') throw new Error('خَفِيٌّ wears tanwin and no verb ever does; read as ' + r.khafi.kind);
+    if (r.rawa.kind !== 'verb') throw new Error('رَوَاهُ is a verb, read as ' + r.rawa.kind);
+    if (r.mizan !== 'فعل') throw new Error('a clitic is not part of the scale: ' + r.mizan);
+    if (r.radical !== 'فعل') throw new Error('a radical waw must not be peeled: ' + r.radical);
+  });
+
+  // ---- the definitional frame, widened ------------------------------------
+  // Every مَا in Mukhtasar al-Manar is mawsula, and the matn's own sentence
+  // shape is what says so. Each rule is gated by the SHAPE it reads, with a
+  // sentence the shape did not previously reach.
+  await check('the relative ma is found by frame, idafa, aid and atf', async () => {
+    const r = await page.evaluate(() => {
+      const ma = t => {
+        const rows = SentenceAnalyzer.analyze(t);
+        return rows.filter(x => /ما$/.test(stripAr(x.w).replace(/^[وف]/, '')))
+                   .map(x => ({ kind: x.kind, wajh: x.wajh ? x.wajh.k : null }));
+      };
+      return {
+        article: ma('فَالْخَاصُّ مَا وُضِعَ لِمَعْنًى'),          // ال — the original frame
+        idafa:   ma('وَدَلَالَتُهُ مَا ثَبَتَ بِمَعْنَى النَّظْمِ'),   // definite by a pronoun
+        pron:    ma('الْأَصْلُ وَهُوَ مَا يُبْتَنَى عَلَيْهِ غَيْرُهُ'), // definite by BEING a pronoun
+        mudaf:   ma('لِجَمِيعِ مَا يَصْلُحُ لَهُ'),               // مضاف إليه is never a harf
+        shibh:   ma('مَعْرِفَةُ النَّفْسِ مَا لَهَا وَمَا عَلَيْهَا'),  // sila as a shibh jumla + atf
+        aid:     ma('فَالْحَقِيقَةُ مَا اسْتُعْمِلَ فِيمَا وُضِعَ لَهُ'), // the returning pronoun
+        // …and the readings the widening must NOT swallow
+        nafiya:  ma('زَيْدٌ مَا قَامَ'),
+        masdar:  ma('جَزَيْتُهُمْ بِمَا صَبَرُوا'),
+      };
+    });
+    const isNoun = (k, at) => {
+      const rows = r[k];
+      if (!rows || !rows.length) throw new Error(k + ': no ma row found');
+      rows.slice(0, at === undefined ? rows.length : at + 1).forEach((x, i) => {
+        if (x.kind !== 'noun' || x.wajh !== 'mawsula')
+          throw new Error(`${k}[${i}]: expected the relative ism, got ${x.kind} / ${x.wajh}`);
+      });
+    };
+    ['article', 'idafa', 'pron', 'mudaf', 'shibh', 'aid'].forEach(k => isNoun(k));
+    // زَيْدٌ مَا قَامَ is a real sentence: the negation must survive the widening.
+    // Its subject is INDEFINITE, so the definitional frame does not hold.
+    if (r.nafiya[0].wajh !== 'nafiya')
+      throw new Error('an indefinite subject is not the definitional frame: ' + r.nafiya[0].wajh);
+    // …and a jarr clause with NO returning pronoun stays a masdar-maker
+    if (r.masdar[0].wajh !== 'masdariyya')
+      throw new Error('بِمَا صَبَرُوا has no aid and must stay masdariyya: ' + r.masdar[0].wajh);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

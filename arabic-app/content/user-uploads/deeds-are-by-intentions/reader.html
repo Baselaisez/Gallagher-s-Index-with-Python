@@ -3685,30 +3685,114 @@ function formCandidates(surface){
       out.push(c2);
       // the 3pl alif returns when its pronoun leaves: رَأَوْهُ → رَأَوْا
       if (/وْ?$/.test(c2)) out.push(c2 + "ا");
+      // …and the ALIF MAQSURA is written as a full alif the moment a pronoun
+      // clings to it: رَوَى + هُ = رَوَاهُ. Offer the dictionary spelling back, or
+      // the paradigm never sees its own word — رَوَاهُ was matching رَأَى’s
+      // imperative plural instead, right class and wrong verb.
+      if (/ا$/.test(c2)) out.push(c2.replace(/ا$/, "ى"));
     }
   });
   return [...new Set(out)];
+}
+// Letters with the marks that sit on them, one entry per letter. Written out
+// because the comparison below is per-LETTER, and a string comparison cannot
+// tell which letter a stray mark belongs to.
+function sjMarks(s){
+  const out = [];
+  for (const ch of (s || "").normalize("NFC")) {
+    if (/[ء-يٱ]/.test(ch)) out.push({ l: ch, m: "" });
+    else if (/[ً-ٰٕ]/.test(ch) && out.length) out[out.length - 1].m += ch;
+  }
+  return out;
+}
+// THE LAST LETTER'S VOWEL IS I'RAB AND MAY MOVE; EVERY VOWEL BEFORE IT IS
+// SARF AND MAY NOT. That one sentence is the whole rule, and skipping it is
+// what let a bare-letters match read حُكْمُ («ruling», a masdar on فُعْل) as a
+// cell of حَكَمَ, عِلْمَ as عَلِمَ, قَصْرُ as قَصَرَ — fourteen of the drill bank's
+// twenty-six named disagreements were this one missing test. A governor moves
+// the ending and nothing else: يَعْلَمُ → يَعْلَمَ is the same cell, حُكْم and
+// حَكَمَ are two different words that happen to share three letters.
+// Unvowelled input proves nothing, so a missing mark is never a mismatch.
+function sjSarfAgree(surface, cell){
+  const a = sjMarks(surface), b = sjMarks(cell);
+  if (a.length !== b.length) return true;   // different skeletons — not this test's question
+  for (let i = 0; i < a.length - 1; i++) {
+    if (a[i].l !== b[i].l) return true;      // …nor is a different letter
+    if (!a[i].m || !b[i].m) continue;
+    if (a[i].m !== b[i].m) return false;
+  }
+  return true;
+}
+// ---- الْمَبْنِيُّ لِلْمَجْهُولِ, derived rather than looked up -----------------
+// A paradigm stores the ACTIVE. The passive of the same verb is a different
+// word with the same letters — and once the sarf test above started reading
+// the harakat, يُنَالُ stopped matching يَنَالُ and the verb vanished from the
+// analyzer altogether. It is not looked up but BUILT, by the two rules every
+// Emsile student recites:
+//   الماضي:  ضُمَّ أَوَّلُهُ وَكُسِرَ مَا قَبْلَ آخِرِهِ      نَصَرَ → نُصِرَ ، عَلَّقَ → عُلِّقَ
+//   المضارع: ضُمَّ أَوَّلُهُ وَفُتِحَ مَا قَبْلَ آخِرِهِ      يَنْصُرُ → يُنْصَرُ ، يَنَالُ → يُنَالُ
+// A shadda is not a vowel and stays where it is; and when «ما قبل الآخر» is a
+// madd alif, the vowel it wants already sits on the letter before it. Where a
+// hollow verb changes its LETTER as well (يَقُولُ → يُقَالُ) the build refuses to
+// match rather than guess — a stored majhul cell answers those.
+function sjSetVowel(m, v){ return (m || "").replace(/[ًٌٍَُِْ]/g, "") + v; }
+function sjMajhul(cell, past){
+  const M = sjMarks(cell);
+  if (M.length < 3) return null;
+  M[0].m = sjSetVowel(M[0].m, "ُ");
+  let k = M.length - 2;
+  if (M[k].l === "ا" && k > 0) k--;              // the alif carries no vowel of its own
+  M[k].m = sjSetVowel(M[k].m, past ? "ِ" : "َ");
+  return M.map(x => x.l + x.m).join("").normalize("NFC");
 }
 function findFormInParadigm(morph, surface){
   if (!morph) return null;
   const cands = formCandidates(surface);
   const bares = cands.map(stripAr);
+  // a bare hit names the candidate it hit, so the sarf test compares the two
+  // words that actually matched rather than the first spelling in the list
+  const loose = f => {
+    const fb = stripAr(f);
+    for (let k = 0; k < bares.length; k++)
+      if (bares[k] === fb && sjSarfAgree(cands[k], f)) return true;
+    return false;
+  };
+  // the same word built into its passive — tried as an EXACT match, because a
+  // derived majhul is fully vowelled and has no business matching loosely
+  const majhul = (f, past) => {
+    const mj = sjMajhul((f || "").normalize("NFC"), past);
+    return !!mj && cands.includes(mj);
+  };
   const slots = [["amr", morph.amr], ["mazi", morph.mazi], ["mudari", morph.mudari]];
   for (const exact of [true, false]) {
     for (const [tense, forms] of slots) {
       if (!forms) continue;
       for (let i = 0; i < forms.length; i++) {
         const f = (forms[i] || "").normalize("NFC");
-        if (exact ? cands.includes(f) : bares.includes(stripAr(f)))
+        if (exact ? cands.includes(f) : loose(f))
           return { tense, i };
       }
     }
-    for (const k of ["mansub", "majzum", "majzum2"]) {
+    // …and the two MAJHUL cells. They were left out, so سِيقَ and يُبْتَنَى were
+    // invisible to the corpus lookup and the analyzer read them as NOUNS —
+    // three of the drill bank's named disagreements were exactly this. The
+    // passive is stored, not derived, which is why nothing else could find it.
+    for (const k of ["mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"]) {
       if (!morph[k]) continue;
       const f = morph[k].normalize("NFC");
-      if (exact ? cands.includes(f) : bares.includes(stripAr(f)))
+      if (exact ? cands.includes(f) : loose(f))
         return { tense: k, i: 0 };
     }
+  }
+  // …and LAST, the passive built from the active. A stored cell always wins;
+  // this only answers for the verbs whose majhul the package never wrote down,
+  // and it answers with the person it was built from, so the reader can still
+  // name the cell.
+  for (const [tense, forms, past] of [["mazi", morph.mazi, true], ["mudari", morph.mudari, false]]) {
+    if (!forms) continue;
+    for (let i = 0; i < forms.length; i++)
+      if (majhul(forms[i], past))
+        return { tense: past ? "majhulMazi" : "majhulMudari", i: 0, person: i, derived: true };
   }
   return null;
 }
@@ -3720,6 +3804,8 @@ const CELL_TENSE = {
   mansub:  { ar: "الْمُضَارِعُ الْمَنْصُوبُ", en: "subjunctive",     tr: "mansub muzâri" },
   majzum:  { ar: "الْمُضَارِعُ الْمَجْزُومُ", en: "jussive",         tr: "meczum muzâri" },
   majzum2: { ar: "الْمُضَارِعُ الْمَجْزُومُ", en: "jussive",         tr: "meczum muzâri" },
+  majhulMazi:   { ar: "الْمَاضِي الْمَجْهُولُ",   en: "past, passive",    tr: "meçhûl mâzî" },
+  majhulMudari: { ar: "الْمُضَارِعُ الْمَجْهُولُ", en: "present, passive", tr: "meçhûl muzâri" },
 };
 const CELL_PERSON = [
   { en: "he",           tr: "o (eril)" },   { en: "they two (m)", tr: "o ikisi (eril)" },
@@ -5211,15 +5297,30 @@ class RootFinder {
     this._memo.set(key, res);
     return res;
   }
+  // does any stored paradigm of this lemma own the word as it stands?
+  static corpusOwns(lemma, word){
+    for (const v of this.corpusIndex())
+      if (v.lemma === lemma && findFormInParadigm(v.m, word)) return true;
+    return false;
+  }
   static _find(word){
     const hit = this.fromCorpus(word);
     if (hit) return hit;
     // corpus-first applies to the PEELED skeletons too: ورجع must find the
     // stored رَجَعَ before any pattern rule gets to guess at it.
     const cands = this.candidates(word);
+    // …but candidates() strips the harakat to run its regexes, and a stripped
+    // word carries no evidence, so findFormInParadigm's sarf test has nothing
+    // to refuse with: وَحُكْمُ arrives as حكم and matches حَكَمَ's mazi. Ask the
+    // paradigms once more with the word AS WRITTEN, and drop the hit if none
+    // of them still owns it. Only a word that was vowelled to begin with can
+    // be judged this way — an unvowelled one is genuinely undecided.
+    const vowelled = /[ً-ٰ]/.test(word);
     for (const c of cands) {
       const h2 = this.fromCorpus(c);
-      if (h2) return h2;
+      if (!h2) continue;
+      if (vowelled && !this.corpusOwns(h2.lemma, word)) continue;
+      return h2;
     }
     for (const c of cands) {
       const r = this.peel(c);
@@ -5305,7 +5406,18 @@ class WaznEngine {
     const R = (root || "").trim().split(/\s+/).filter(Boolean);
     if (R.length < 3 || R.length > 4) return null;
     const F = R.length === 3 ? ["ف", "ع", "ل"] : ["ف", "ع", "ل", "ل"];
-    const s = (word || "").normalize("NFC").replace(/^ال[َْ]?/, "");
+    // A CLITIC IS NOT PART OF THE SCALE. و، ف، ب، ل، ك are all augment letters,
+    // so a leading one was copied into the mizan verbatim and وَالْفَرْعُ weighed
+    // «وَالْفَعْلُ» — a scale no book has ever written. It comes off first, but
+    // only when it is not this root’s own first radical: the waw of وَصْف and
+    // the kaf of كِتَاب are radicals and stay where they are.
+    let s = (word || "").normalize("NFC");
+    const cl = s.match(/^([وفبلك])[َُِ]?/);
+    if (cl && !String(R[0]).split("/").includes(cl[1])) {
+      s = s.slice(cl[0].length);
+      s = s.replace(/^لْ/, "");     // لِلْفَرْعِ: the article’s alif is swallowed in writing
+    }
+    s = s.replace(/^ال[َْ]?/, "");
     let ri = 0, out = "";
     for (const ch of s) {
       if (this.HARAKA.test(ch)) { out += ch; continue; }
@@ -5454,6 +5566,18 @@ class MaEngine {
   // alif ELIDED → interrogative only: عَمَّ يَتَسَاءَلُونَ، فِيمَ أَنْتَ، عَلَامَ، إِلَامَ
   static JARR_CONTRACTED = { "علام": "على", "الام": "الى", "إلام": "إلى",
                              "بم": "ب", "فيم": "في", "عم": "عن" };
+  // الْمُضَافُ إِلَيْهِ لَا يَكُونُ إِلَّا اسْمًا. These nouns are mudaf by nature — they
+  // mean nothing standing alone — so whatever follows one of them occupies the
+  // mudaf-ilayh seat, and no harf may sit there. لِجَمِيعِ مَا يَصْلُحُ and فِي غَيْرِ
+  // مَا وُضِعَ were both being read as negations for want of this one rule.
+  static ALWAYS_MUDAF = new Set(["كل", "بعض", "جميع", "غير", "مثل", "نحو", "سائر",
+                                 "سوى", "عين", "ذات", "قبل", "بعد", "دون", "عند",
+                                 "بين", "حين", "وقت", "اثناء", "امام", "خلال"]);
+  // a word wearing its clitics stripped down to the noun itself
+  static naked(w){ return (w || "").replace(/^[وفبلك]/, "").replace(/^ال/, ""); }
+  // which of the twelve faces name an ISM (the Analyzer keeps its own copy for
+  // the class it prints; this one is for the atf rule below)
+  static ISM_WAJH = new Set(["mawsula", "shartiyya", "istifham", "taajjub", "mawsufa", "nakira"]);
   static isVerbish(w){ return /^[يتنأ]/.test(w) && w.length >= 3 && !/^ال/.test(w); }
   static isAfal(w){ return /^أ/.test(w) && w.length === 4 && !/^ال/.test(w); }
   // words: bare surfaces; i: index of the ma token; isVerb: an optional
@@ -5471,7 +5595,13 @@ class MaEngine {
     const prev = bare(i - 1), next = bare(i + 1), next2 = bare(i + 2);
     const nextFull = (fulls && fulls[i + 1]) || "";
     const out = [];
-    const say = (k, en, tr) => out.push({ k, ...this.WAJH[k], why: { en, tr } });
+    // `top` puts a reading at the HEAD of the shortlist rather than the tail:
+    // a signal that names one wajh and excludes the rest outranks one that
+    // merely admits it. Everything else still stays on the list underneath.
+    const say = (k, en, tr, top) => {
+      const row = { k, ...this.WAJH[k], why: { en, tr } };
+      if (top) out.unshift(row); else out.push(row);
+    };
     // 1. fused into a governor, or riding qalla/kathura/tala — kaffa
     // one list serves both the standing host before ما and the fused spelling
     if (this.KAFFA_HOSTS.includes(prev) || this.KAFFA_HOSTS.includes(bare(i)))
@@ -5499,6 +5629,15 @@ class MaEngine {
                         "öncesinde cer harfi var; sonrasındaki cümle masdar hükmüne girer");
       say("mawsula", "the same position also admits the relative reading — «that which»",
                      "aynı yer mevsûl okumaya da açıktır — «o şey ki»");
+      // …and the two are told apart by the ʿAID. الْمَوْصُولَةُ لَا بُدَّ لَهَا مِنْ
+      // عَائِدٍ: a relative's clause must contain a pronoun pointing back at it,
+      // and a masdariyya's clause has nothing to point back at, because it has
+      // become a masdar. فِيمَا وُضِعَ لَهُ carries the ha; بِمَا صَبَرْتُمْ carries none.
+      const aid = (words || []).slice(i + 1, i + 4)
+        .some(x => /^(له|به|عليه|فيه|منه|عنه|اليه|لها|بها|عليها|فيها|منها|عنها|اليها)$/.test(x || ""));
+      if (aid && verbAt(i + 1))
+        say("mawsula", "a verb follows and a pronoun in its clause points back at the ma — that returning pronoun (الْعَائِد) is what a relative must have and a masdar-making ma can never have",
+                       "ardından fiil geliyor ve cümlesindeki bir zamir mâya dönüyor — bu ÂİD zamir mevsûlün olmazsa olmazıdır; masdariyye mâda ise dönecek bir şey yoktur", true);
     }
     // 4b. after a jarr letter the NEXT noun sometimes carries the jarr itself
     // (kasratan) — then the ma between them governed nothing: it is زَائِدَة.
@@ -5546,10 +5685,54 @@ class MaEngine {
     // …and the noun before it may be wearing a clitic: فَالْخَاصُّ، وَالنَّصُّ،
     // بِالْحُكْمِ. Testing for a bare «ال» at the front missed every one of them,
     // which is most of the frame this rule exists for.
-    const prevDef = i > 0 && /^[وفبلك]?ال/.test(bare(i - 1)) && noVerbYet;
+    // …and a noun is definite by THREE routes, not one: the article, IDAFA, or
+    // being a pronoun to begin with. وَدَلَالَتُهُ مَا ثَبَتَ is definite by the
+    // pronoun clinging to it and الْأَصْلُ وَهُوَ مَا يُبْتَنَى by هُوَ itself; both are
+    // the same sentence shape as فَالْخَاصُّ مَا وُضِعَ, and a test for ال alone saw
+    // neither. The idafa test asks for a real word under the pronoun — فِقْه
+    // and وَجْه end in a ha that is a RADICAL, and three letters is too short
+    // to have carried one.
+    const prevBare = bare(i - 1), prevNaked = this.naked(prevBare);
+    const prevPronoun = !!(SentenceAnalyzer.PARTICLES[prevNaked] &&
+                           SentenceAnalyzer.PARTICLES[prevNaked].k === "pron");
+    const prevIdafa = prevNaked.length >= 4 && /(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك)$/.test(prevNaked);
+    const prevDef = i > 0 && noVerbYet &&
+      (/^[وفبلك]?ال/.test(prevBare) || prevPronoun || prevIdafa);
     if (prevDef && verbAt(i + 1))
       say("mawsula", "a definite noun opens the sentence and a verb follows the ma: the mubtada has no khabar yet, and «that which …» supplies one where a bare negation would leave it standing empty",
-                     "cümleyi marife bir isim açıyor ve mâdan sonra fiil geliyor: mübtedâ henüz habersizdir; «o şey ki …» ona haber verir, sade nefiy ise onu habersiz bırakırdı");
+                     "cümleyi marife bir isim açıyor ve mâdan sonra fiil geliyor: mübtedâ henüz habersizdir; «o şey ki …» ona haber verir, sade nefiy ise onu habersiz bırakırdı", true);
+    // 6c. الْمُضَافُ إِلَيْهِ لَا يَكُونُ إِلَّا اسْمًا — the mudaf-ilayh seat is closed to
+    // the huruf. A word that is mudaf BY NATURE (كُلّ، بَعْض، جَمِيع، غَيْر، مِثْل …)
+    // standing immediately before مَا settles the class outright: whatever else
+    // this ma may be, it is an ISM, because that is the only thing that can
+    // stand where it is standing.
+    if (i > 0 && this.ALWAYS_MUDAF.has(prevNaked))
+      say("mawsula", `«${prev}» is mudaf by its very meaning, so this ma is its MUDAF ILAYH — and the mudaf ilayh is never anything but a noun, whatever else the context might have allowed`,
+                     `«${prev}» mânâsı gereği muzâftır; öyleyse bu mâ onun MUZÂFUN İLEYHİdir — muzâfun ileyh ise, bağlam ne kadar açık olursa olsun, isimden başkası olamaz`, true);
+    // 6d. the sila may be a SHIBH JUMLA. مَا لَهَا وَمَا عَلَيْهَا — a jarr letter with
+    // its pronoun follows and no verb does. A negation would need a subject and
+    // a predicate to negate; a relative needs only something to hang on, and a
+    // jarr phrase is exactly that.
+    const nextJarrPron = /^(له|لها|لهم|لهن|لك|لكم|به|بها|بهم|عليه|عليها|عليهم|فيه|فيها|منه|منها|عنه|عنها|لنا|بنا|عندنا|معه|معها)$/.test(next);
+    if (prevDef && nextJarrPron)
+      say("mawsula", "a jarr phrase follows and no verb does — a sila may be a shibh jumla, while a negation would need a subject and a predicate to work on",
+                     "ardından fiil değil, câr-mecrûr geliyor — sıla şibh-i cümle olabilir; nefiy ise üzerinde amel edeceği müsned ve müsnedün ileyh isterdi", true);
+    // 6e. وَمَا coupled to an earlier مَا. الْمَعْطُوفُ يَتْبَعُ الْمَعْطُوفَ عَلَيْهِ: the
+    // second ma of «مَا لَهَا وَمَا عَلَيْهَا» is read exactly as the first, and the
+    // engine settles that by asking itself about the first one.
+    // the waw is read off the word AS WRITTEN: the Analyzer peels its own
+    // proclitics before handing the token over, so by the time the engine
+    // sees it «وَمَا» is already «ما» and the joining letter is gone.
+    if (/^[وف]/.test(stripAr((fulls || [])[i] || ""))) {
+      for (let b = i - 1; b >= 0; b--) {
+        if (bare(b) !== "ما") continue;
+        const first = this.read(words, b, fulls, isVerb)[0];
+        if (first && this.ISM_WAJH.has(first.k))
+          say(first.k, `it is joined by the واو to the «${first.ar}» before it, and the ma'tuf follows the ma'tuf alayh`,
+                       `kendisinden önceki «${first.ar}»ya vâv ile atfedilmiştir; ma'tûf, ma'tûfun aleyhe tâbidir`, true);
+        break;
+      }
+    }
     // 7. a verb right after — the plain negation. A pronoun, demonstrative or
     // relative is NOT a verb, so it must not be read as one.
     const nextIsClosed = !!SentenceAnalyzer.PARTICLES[next];
@@ -6210,8 +6393,19 @@ class SentenceAnalyzer {
           // or the fused-jarr table and its signals will never match.
           const bares = words.map(x => stripAr(x).replace(/[^ء-ي]/g, ""));
           bares[out.length] = core;
-          const wj = MaEngine.read(bares, out.length, words.map(x => x.normalize("NFC")),
-            k => { const c = RootFinder.fromCorpus(bares[k]); return c && c.cell ? true : null; });
+          // The oracle was being handed the STRIPPED word, and a stripped word
+          // reaches no paradigm whose cell wears a pronoun: رَوَاهُ arrived as
+          // رواه, matched nothing, and «فَالْمُتَوَاتِرُ مَا رَوَاهُ» lost the relative
+          // reading it is the textbook example of. Ask with the word as
+          // written first; the bare form is the fallback for undiacritised
+          // input, which is the only place it was ever meant to serve.
+          const oracle = k => {
+            const full = (words[k] || "").normalize("NFC");
+            const c = RootFinder.fromCorpus(full) ||
+                      (/[ً-ٰ]/.test(full) ? null : RootFinder.fromCorpus(bares[k]));
+            return c && c.cell ? true : null;
+          };
+          const wj = MaEngine.read(bares, out.length, words.map(x => x.normalize("NFC")), oracle);
           if (wj.length) row.wajh = wj[0];
           // مَا is not one word. Six of its twelve faces are ASMA — relative,
           // conditional, interrogative, the ma of wonder, and the two
@@ -6335,7 +6529,20 @@ class SentenceAnalyzer {
           row.lemma = r.lemma; row.gloss = r.gloss; row.sure = true;
           // the corpus knows WHICH cell matched — a mazi wears no prefix,
           // but a stored paradigm outranks the morphology guess entirely.
-          if (r.cell) {
+          // …EXCEPT against the three marks that are the property of nouns
+          // alone. No verb in the language wears tanwin, the article, or the
+          // ta marbuta, so خَفِيٌّ — the sifa mushabbaha on فَعِيل — is not a cell
+          // of خَفِيَ however well the letters line up. The rule was already
+          // being used to retire a wrong WAZN a dozen lines down; it decides
+          // the CLASS just as firmly, and that is where it belongs.
+          if (r.cell && (hasAl || tanwin || taM)) row.notes.push({
+            en: "it shares its letters with the verb «" + r.lemma + "», but it wears " +
+                (tanwin ? "TANWIN" : hasAl ? "the ARTICLE" : "the TA MARBUTA") +
+                " — and no verb ever does. It is a noun from that root.",
+            tr: "«" + r.lemma + "» fiiliyle harfleri ortaktır, fakat üzerinde " +
+                (tanwin ? "TENVİN" : hasAl ? "HARF-İ TARİF" : "TÂ-İ MERBÛTA") +
+                " var — hiçbir fiil bunu taşımaz. Bu, o kökten bir isimdir." });
+          else if (r.cell) {
             row.kind = "verb"; row.cell = r.cell;
             const lbl = formCellLabel(r.cell);
             row.notes.push({ en: "a corpus verb — " + lbl.en, tr: "külliyat fiili — " + lbl.tr });
@@ -6351,7 +6558,12 @@ class SentenceAnalyzer {
         if (nn) {
           row.lemma = nn.lemma; row.gloss = nn.gloss; row.sure = true;
           if (nn.verbal) row.verbal = true;
-          if (nn.root && !row.root) row.root = nn.root;
+          // A root the GLOSSARY carries beats a root the peeler GUESSED. The
+          // rules path had already written ل ن ص over النَّصُّ — it read the
+          // article's lam as a radical — and because a root was now present
+          // the lexicon's own ن ص ص was refused. Knowledge outranks a guess
+          // even when the guess arrived first.
+          if (nn.root && (!row.root || !r || r.via !== "corpus")) row.root = nn.root;
           if (!row.kind || row.kind === "noun?") row.kind = "noun";
         }
       }

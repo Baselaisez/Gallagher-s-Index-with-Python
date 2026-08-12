@@ -1884,3 +1884,131 @@ whatever the letters happen to be.
 The general form of the lesson: **a gate defines what "correct" means, and
 anything outside it is unverified by construction.** When an engine grows a new
 output, the gate has to grow with it or that output is folklore.
+
+## The last letter's vowel is i'rab; every vowel before it is sarf
+
+`findFormInParadigm` matched a stored cell two ways: exactly, and — failing
+that — on the bare letters with the harakat stripped off both sides. The loose
+pass is there for undiacritised input, which is real and has to work.
+
+But the corpus is fully vowelled on both sides, and comparing it letter-only
+meant `حُكْمُ` (a masdar on فُعْل) matched a cell of `حَكَمَ`, `عِلْمَ` matched
+`عَلِمَ`, `قَصْرُ` matched `قَصَرَ`, `رَفْعُهُ` matched `رَفَعَ`. **Fourteen of the drill
+bank's twenty-six named disagreements were this one missing comparison** — the
+analyzer was calling masdars verbs all over the library.
+
+The rule that fixes it is one sentence and it is the whole of the matter:
+
+> **The last letter's vowel is i'rab and may move. Every vowel before it is
+> sarf and may not.**
+
+A governor moves the ending and nothing else, so `يَعْلَمُ` → `يَعْلَمَ` is the same
+cell, while `حُكْم` and `حَكَمَ` are two different words that happen to share three
+letters. Two corollaries fall out of it:
+
+- **Compare per LETTER, not per string.** A stray mark in a string comparison
+  belongs to nothing; the test has to know which letter each mark sits on.
+- **Missing evidence is not contrary evidence.** Where either side has no mark
+  on a letter, the letter proves nothing and the pair passes. That is what
+  keeps undiacritised input working.
+
+### …and the caller must not throw the vowels away first
+
+Fixing the comparison exposed the second half. `RootFinder.candidates()` strips
+the harakat to run its skeleton regexes, and `_find` was feeding those stripped
+skeletons back to the corpus — so the sarf test arrived with nothing to judge
+and `وَحُكْمُ` matched anyway. Same shape one layer up: `SentenceAnalyzer` passes
+`MaEngine` an oracle for "is word *k* a verb?", and was calling it with `bares`.
+
+**A test can only refuse what it is shown.** When you tighten a comparison, walk
+every caller and check what it is handing over — a caller that pre-strips its
+input silently restores the old behaviour and the new gate reports success.
+
+## An agreement can be wrong
+
+`رَوَاهُ` was scoring as a match: the human said verb, the engine said verb. It
+was matching **رَأَى's imperative plural** — right class, wrong root, wrong verb,
+wrong everything but the one field the score looked at.
+
+The real reading needed an orthographic rule the candidate builder did not have:
+**the alif maqsura is written as a full alif the moment a pronoun clings to it**
+(رَوَى + هُ = رَوَاهُ). Until that spelling was offered, the paradigm never saw its
+own word, and the accident stood in for it.
+
+Two things follow. First, **a metric that counts CLASS agreement cannot see a
+lemma error**, so a rising number is evidence about the metric before it is
+evidence about the engine. Second — the useful half — **the fixes that raise the
+score and the fixes that only correct the reasoning are the same work**: this one
+was found by chasing a genuine regression in a neighbouring row, not by chasing
+the number.
+
+## No verb wears tanwin, the article, or the ta marbuta
+
+The code already knew this: it was using the rule to retire a wrong *wazn*
+twelve lines below the place where it was writing a wrong *class*. `خَفِيٌّ` —
+the sifa mushabbaha on فَعِيل — was being read as a cell of `خَفِيَ` because the
+letters lined up and a stored paradigm outranked the morphology.
+
+**When a rule is decisive enough to overturn one output, ask what else it should
+be overturning.** A fact used in one place and ignored in another is not a
+subtle bug; it is the same bug written down twice.
+
+## The passive is derivable, so derive it
+
+Once the sarf test started reading harakat, `يُنَالُ` stopped matching `يَنَالُ` —
+correctly, they are different words — and the verb vanished, because that
+package never stored a majhul cell. Storing more cells is the fix that does not
+scale. The majhul is a RULE:
+
+- الماضي: ضُمَّ أَوَّلُهُ وَكُسِرَ مَا قَبْلَ آخِرِهِ — نَصَرَ → نُصِرَ، عَلَّقَ → عُلِّقَ
+- المضارع: ضُمَّ أَوَّلُهُ وَفُتِحَ مَا قَبْلَ آخِرِهِ — يَنْصُرُ → يُنْصَرُ، يَنَالُ → يُنَالُ
+
+Two details decide whether it works. A **shadda is not a vowel** and stays where
+it is while the vowel under it changes. And when «ما قبل الآخر» is a madd alif,
+the vowel it wants already sits on the letter before it — so the rule steps back
+one letter rather than trying to vowel an alif.
+
+Where a hollow root changes its LETTER as well (يَقُولُ → يُقَالُ) the build
+**refuses to match rather than guess**. A stored cell answers those, and the
+tightened test is what makes refusing safe: a miss costs a shortlist entry, a
+wrong match costs the reading.
+
+## Widening a frame is not the same as loosening it
+
+Every `مَا` in Mukhtasar al-Manar is mawsula, and nine were still being read as
+particles. The fixes were four separate rules, each naming the SHAPE it reads:
+
+- **Definiteness has three routes, not one.** The definitional frame tested for
+  `ال` and so missed `وَدَلَالَتُهُ مَا ثَبَتَ` (definite by idafa) and `وَهُوَ مَا
+  يُبْتَنَى` (definite by being a pronoun). Same sentence shape, three spellings.
+- **الْمُضَافُ إِلَيْهِ لَا يَكُونُ إِلَّا اسْمًا.** After a word that is mudaf by its very
+  meaning — كُلّ، بَعْض، جَمِيع، غَيْر، مِثْل — the class is settled by POSITION, and
+  no context can put a harf in that seat.
+- **A sila may be a shibh jumla.** `مَا لَهَا وَمَا عَلَيْهَا`: a jarr phrase follows
+  and no verb does. A negation would need a subject and a predicate to work on;
+  a relative needs only something to hang on.
+- **الْعَائِد.** A relative's clause must contain a pronoun pointing back at it; a
+  masdariyya's clause has nothing to point back at, because it has become a
+  masdar. That is the whole difference between `فِيمَا وُضِعَ لَهُ` and `بِمَا صَبَرُوا`,
+  and it is the classical test, not a heuristic.
+
+The discipline that keeps this honest: **promote, never remove.** Each rule
+unshifts its reading to the head of the shortlist and every other face stays
+underneath. `زَيْدٌ مَا قَامَ` is still a negation and is gated as one; `بِمَا
+صَبَرُوا` is still masdariyya and is gated as one. A rule that can only ever add
+a ranking cannot destroy a reading — which is why four of them could go in at
+once without arguing about interactions.
+
+## 100% means exactly what it measures
+
+The bank reached 533 of 533 tokens in part-of-speech agreement. Written out, so
+nobody reads it as more than it is: **the engines agree with the corpus's own
+part-of-speech tag, on the sixty-five worked sentences they were measured
+against.** It is not a claim that the analyzer's i'rab is right — i'rab is not
+what is being compared. It is not a claim about unseen text.
+
+What it does mean is operational: the named-disagreement list is empty, so this
+set has stopped generating work. **The next round of engine fixes has to come
+from NEW sentences.** A saturated benchmark is a retired benchmark, and keeping
+it as a regression gate — which is what it now is — is a different job from
+using it to find bugs.
