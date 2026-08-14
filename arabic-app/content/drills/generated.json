@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 90,
-  "sentenceTokens": 742,
+  "sentences": 95,
+  "sentenceTokens": 792,
   "posAgreement": 99.9,
-  "rows": 1827
+  "rows": 1877
  },
  "endings": [
   {
@@ -12324,9 +12324,9 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ع ن د",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "root": null,
+      "wazn": null,
+      "sure": true
      },
      "match": true
     },
@@ -13699,9 +13699,9 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ع ن د",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "root": null,
+      "wazn": null,
+      "sure": true
      },
      "match": true
     }
@@ -14572,9 +14572,9 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ع ن د",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "root": null,
+      "wazn": null,
+      "sure": true
      },
      "match": true
     },
@@ -21860,6 +21860,1147 @@
       "lemma": "ظَاهِر",
       "root": "ظ ه ر",
       "wazn": "فَّاعِلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:4:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 4,
+   "sentence": "s1",
+   "text": "وَقَدْ يُنَزَّلُ خَالِي الذِّهْنِ مَنْزِلَةَ السَّائِلِ إِذَا تَقَدَّمَ فِي الْكَلَامِ مَا يُشِيرُ إِلَى الْخَبَرِ",
+   "translation": {
+    "en": "A mind empty of the ruling is put in the place of one who asks, when something has come earlier in the speech that points to the report.",
+    "tr": "Zihni hükümden hâlî olan kimse, kelâmda daha önce habere işaret eden bir şey geçmişse, soran kimsenin yerine konur."
+   },
+   "jumal": [
+    {
+     "text": "إِذَا تَقَدَّمَ فِي الْكَلَامِ مَا يُشِيرُ إِلَى الْخَبَرِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا.",
+     "en": "A verbal clause, in the position of jarr as what «idha» is annexed to."
+    },
+    {
+     "text": "يُشِيرُ إِلَى الْخَبَرِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal clause, the sila of the relative — i'rabless."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 14,
+   "agree": 14,
+   "tokens": [
+    {
+     "w": "وَقَدْ",
+     "lex": "qad",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "qad-harf"
+      ],
+      "irab": "A resuming waw, and «qad» with a mudari means «sometimes» — the very letter chapter 3 closed on, so this chapter opens exactly where that one stopped. What was announced there as a possibility is now taken apart into its three cases."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُنَزَّلُ",
+     "lex": "nazzala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "naib-al-fail",
+       "mafulayn",
+       "form-ii-verbs",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari built for the unnamed doer, in raf' with the damma written — from نَزَّلَ on تَفْعِيل, and it reaches TWO objects. Nobody would call «to put down» doubly transitive at sight; the second object arrives two words later and its fatha is the proof. The doer is unnamed because the rule holds for any speaker at all."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَزَّلَ",
+      "root": "ن ز ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "خَالِي",
+     "lex": "khali",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail",
+       "ism-maqsur-manqus",
+       "idafa-lafziyya",
+       "idafa-definiteness"
+      ],
+      "irab": "The naib al-fa'il in raf' with a damma ESTIMATED on the ya for heaviness, and a mudaf — and it is the very phrase chapter 3 showed in JARR with an estimated kasra. A manqus estimates both its damma and its kasra and writes only its fatha, so the reader now has two of the three states in real text, on one phrase, one chapter apart."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ ل ي",
+      "wazn": "فَاعَلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "الذِّهْنِ",
+     "lex": "dhihn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "idafa-lafziyya"
+      ],
+      "irab": "The mudaf ilayh in jarr — the fa'il of «empty» in meaning, and the annexation is lafziyya, so nothing is made definite. That matters here: a definite naib al-fa'il would name one particular man, and the matn is stating a rule about a kind."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ذِهْن",
+      "root": "ذ ه ن",
+      "wazn": "فِّعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَنْزِلَةَ",
+     "lex": "manzila",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "mafulayn",
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The SECOND object of «is put», in nasb by the fatha and a mudaf — it kept its nasb because the first object had already taken the doer's seat. Third package in a row for this rule, and here it is doing real work: without the fatha the phrase would read as a place, and the sentence would be about furniture."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَنْزِلَة",
+      "root": "ن ز ل",
+      "wazn": "مَفْعِلَةَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السَّائِلِ",
+     "lex": "sail",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-fail"
+      ],
+      "irab": "The mudaf ilayh in jarr — the ism fa'il of سَأَلَ, and «the one who asks» is chapter 3's hesitating-and-seeking hearer under a shorter name. The matn is compressing a two-condition description into one word, which it can do only because the previous chapter did the work."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَائِل",
+      "root": "س أ ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya"
+      ],
+      "irab": "A zarf of future time carrying the sense of a condition — and it does NOT put its verbs in jazm, which is the whole difference between it and إِنْ two sentences back in chapter 3. The clause it opens is the TRIGGER, and everything this chapter permits depends on it: without the trigger the departure from the surface is not eloquence, it is a mistake."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَقَدَّمَ",
+     "lex": "taqaddama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "idha-shartiyya",
+       "fail",
+       "form-v-verbs"
+      ],
+      "irab": "A mazi, the condition's verb after «idha» — on تَفَعَّلَ from ق د م. What has «gone before» is the point: the trigger has to be already on the page when the report arrives, because a hearer cannot be made into an asker retroactively."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَقَدَّمَ",
+      "root": "ق د م",
+      "wazn": "تَفَعَّلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «has gone before»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْكَلَامِ",
+     "lex": "kalam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "Majrur by «fi» — and the restriction matters: the pointer is IN THE SPEECH, not in the hearer's circumstances. The second and third cases will locate their triggers elsewhere, and the three prepositions are how the matn keeps them apart."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَلَام",
+      "root": "ك ل م",
+      "wazn": "فَعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "fail",
+       "anwa-ma"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of RAF' as the fa'il of «has gone before» — indefinite in force («something that…»), which is what lets the rule cover every kind of pointer at once."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يُشِيرُ",
+     "lex": "ashaara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jumla-sifa",
+       "hollow-verbs",
+       "form-iv-verbs",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari in raf' with a hidden «it» going back to the «ma» — a hollow waw verb of Form IV. Its origin is يُشْوِرُ: the waw's kasra moved back onto the silent letter before it, and the waw itself, now quiescent after a kasra, turned into a ya. Two i'lal steps in one letter, and the clause is the sila with no position in i'rab."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَشَارَ",
+      "root": "ش و ر",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «points» — أَشَارَ reaches what it points at through an ila, and the paradigm's own preposition is part of knowing the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْخَبَرِ",
+     "lex": "khabar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "khabar-insha"
+      ],
+      "irab": "Majrur by «ila» — and the famous instance is «and do not address Me concerning those who did wrong: THEY ARE TO BE DROWNED» (al-Muʾminun 23:27). The prohibition itself pointed at the ruling, so Noah — who had asked nothing — was put in the asker's place and the report came emphasised. The surface called for هُمْ مُغْرَقُونَ; the situation called for إِنَّهُمْ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَبَر",
+      "root": "خ ب ر",
+      "wazn": "فَعَلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:4:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 4,
+   "sentence": "s2",
+   "text": "وَيُنَزَّلُ غَيْرُ الْمُنْكِرِ مَنْزِلَةَ الْمُنْكِرِ إِذَا ظَهَرَ عَلَيْهِ شَيْءٌ مِنْ أَمَارَاتِ الْإِنْكَارِ",
+   "translation": {
+    "en": "And one who is not denying is put in the place of a denier, when something of the marks of denial has appeared on him.",
+    "tr": "İnkâr etmeyen kimse, üzerinde inkâr alâmetlerinden bir şey belirdiğinde, münkirin yerine konur."
+   },
+   "jumal": [
+    {
+     "text": "إِذَا ظَهَرَ عَلَيْهِ شَيْءٌ مِنْ أَمَارَاتِ الْإِنْكَارِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا.",
+     "en": "A verbal clause, in the position of jarr as what «idha» is annexed to."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 12,
+   "agree": 12,
+   "tokens": [
+    {
+     "w": "وَيُنَزَّلُ",
+     "lex": "nazzala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "naib-al-fail",
+       "mafulayn",
+       "form-ii-verbs",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw and the same passive verb — the identical frame three times over, so that the difference falls only on WHO is put in WHOSE place. A matn that repeats a construction word for word is telling you to read the substitutions and nothing else."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَزَّلَ",
+      "root": "ن ز ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَيْرُ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail",
+       "idafa-definiteness"
+      ],
+      "irab": "The naib al-fa'il in raf' and a mudaf — and «ghayr» is mudaf by its very meaning: it says nothing until the word after it arrives. That is the same fact the Manar's relative-ma rule leans on, and here it is doing the ordinary work of building a phrase."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُنْكِرِ",
+     "lex": "munkir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-fail",
+       "form-iv-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr — the ism fa'il of أَنْكَرَ, chapter 3's third hearer. «Not-the-denier» is everyone but him: both the empty-minded man and the hesitating one, gathered by a single negating noun."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْكَر",
+      "root": "ن ك ر",
+      "wazn": "مُفْعِلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَنْزِلَةَ",
+     "lex": "manzila",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "mafulayn",
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The second object, in nasb and a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَنْزِلَة",
+      "root": "ن ز ل",
+      "wazn": "مَفْعِلَةَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُنْكِرِ",
+     "lex": "munkir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-fail"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the word stands TWICE in one line: once negated and once affirmed, with the whole ruling between them. «Not-a-denier is put in a denier's place» is a sentence that cannot be paraphrased shorter, and the repetition is not clumsiness."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْكَر",
+      "root": "ن ك ر",
+      "wazn": "مُفْعِلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya"
+      ],
+      "irab": "The same conditional zarf — and the same licence: no substitution without a cause. Three sentences, three إِذَا clauses, and the matn will not state a single one of these permissions bare."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ظَهَرَ",
+     "lex": "zahara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "idha-shartiyya",
+       "fail"
+      ],
+      "irab": "A mazi, the condition's verb — and the verb is APPEARING, not being. It is enough that something should show on him; he is not required to be a denier in himself. The whole discipline turns on what the speaker may reasonably read off the situation, and this verb says so."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ظَهَرَ",
+      "root": "ظ ه ر",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَيْهِ",
+     "lex": "ala",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr-majrur attaching to «appeared», and PUT BEFORE the fa'il — the fronting is for attention: on HIM, not somewhere in the air. The trigger of the first case was in the speech; this one is on the man."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "شَيْءٌ",
+     "lex": "shay",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il of «appeared», in raf' with its tanwin — and the indefinite is for SMALLNESS here: the least thing is enough. Compare chapter 3's «one emphasiser» and chapter 16 of the Manar's «any excuse whatsoever» — the same tanwin doing a third job, and only the context says which."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَيْء",
+      "root": "ش ي أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter of partition or of specification, attaching to an unsaid word describing «something» — «something OF the marks». A jarr phrase describing an indefinite is that indefinite's na't in position, and nothing is written to carry it."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَمَارَاتِ",
+     "lex": "amara",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "jam-muannath-salim"
+      ],
+      "irab": "Majrur by the kasra and a mudaf — a sound feminine plural of أَمَارَة, a SIGN. The word is chosen against عَلَامَة: an amara is what lets you infer, not what states. The speaker is reading evidence, not being told."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمَارَة",
+      "root": "أ م ر",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْإِنْكَارِ",
+     "lex": "inkar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "masdar",
+       "form-iv-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the famous instance is the verse of Ḥajl: «Shaqiq came holding his spear sideways — YOUR uncle's sons have spears among them too». Carrying the spear crosswise, as though the other side had none, was the mark; so the report was emphasised although the man had denied nothing aloud. The surface called for بَنُو عَمِّكَ; the situation called for إِنَّ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِنْكَار",
+      "root": "ن ك ر",
+      "wazn": "إِفْعَالِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:4:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 4,
+   "sentence": "s3",
+   "text": "وَيُنَزَّلُ الْمُنْكِرُ مَنْزِلَةَ غَيْرِ الْمُنْكِرِ إِذَا كَانَ مَعَهُ مَا إِنْ تَأَمَّلَهُ ارْتَدَعَ",
+   "translation": {
+    "en": "And a denier is put in the place of one who is not denying, when he has with him something which, if he considered it, he would desist.",
+    "tr": "Münkir olan kimse, yanında — düşündüğü takdirde inkârından döneceği — bir şey bulunduğunda, münkir olmayanın yerine konur."
+   },
+   "jumal": [
+    {
+     "text": "إِنْ تَأَمَّلَهُ ارْتَدَعَ",
+     "ar": "جُمْلَةٌ شَرْطِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A conditional sentence, the sila of the relative — i'rabless."
+    },
+    {
+     "text": "كَانَ مَعَهُ مَا إِنْ تَأَمَّلَهُ ارْتَدَعَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا» إِلَيْهَا.",
+     "en": "A verbal clause, in the position of jarr as what «idha» is annexed to."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 12,
+   "agree": 12,
+   "tokens": [
+    {
+     "w": "وَيُنَزَّلُ",
+     "lex": "nazzala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "naib-al-fail",
+       "mafulayn",
+       "form-ii-verbs",
+       "mudari-marfu"
+      ],
+      "irab": "A joining waw and the same passive verb — and this substitution runs the OTHER way. The first two took a weaker hearer and treated him as stronger; this one takes the strongest and treats him as though he had no objection at all."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَزَّلَ",
+      "root": "ن ز ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُنْكِرُ",
+     "lex": "munkir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naib-al-fail",
+       "ism-fail",
+       "form-iv-verbs"
+      ],
+      "irab": "The naib al-fa'il in raf' — and this word was a mudaf ilayh in jarr TWICE in the sentence before. Same word, three appearances, two cases, in two consecutive lines: the matn moves a term through its i'rab as it goes, which is the cheapest teaching there is."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْكَر",
+      "root": "ن ك ر",
+      "wazn": "مُفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَنْزِلَةَ",
+     "lex": "manzila",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khilaf-muqtada-al-zahir",
+       "mafulayn",
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The second object, in nasb and a mudaf — the third time in three sentences, and its fatha stands in all three. A rule seen once is a fact; seen three times in one frame it is a habit the reader can carry to a text nobody has annotated."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَنْزِلَة",
+      "root": "ن ز ل",
+      "wazn": "مَفْعِلَةَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَيْرِ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr and itself a mudaf — «ghayr» stands twice in this chapter, once in raf' as a deputy subject and once in jarr as a mudaf ilayh. A word that is annexed by its very meaning still takes whatever case its own position gives it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُنْكِرِ",
+     "lex": "munkir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-fail"
+      ],
+      "irab": "The mudaf ilayh in jarr — and with it the three cases are complete."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْكَر",
+      "root": "ن ك ر",
+      "wazn": "مُفْعِلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya"
+      ],
+      "irab": "The same conditional zarf, the third in three sentences."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كَانَ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kana-wa-akhawatuha",
+       "idha-shartiyya",
+       "hollow-verbs"
+      ],
+      "irab": "An incomplete mazi, the condition's verb — with its khabar FIRST and its ism LAST, because the ism is a relative whose sila runs on for four more words. Arabic front-loads the short half; a heavy subject waits."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَعَهُ",
+     "lex": "maa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "A zarf in nasb and a mudaf, the ha annexed to it — standing in the POSITION OF NASB as the FRONTED khabar of «kana». And note the third trigger's location: the first was in the speech, the second on the man, this one WITH him. Three prepositions, three places a speaker may look."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "kana-wa-akhawatuha",
+       "anwa-ma"
+      ],
+      "irab": "A relative noun, fixed in form, in the position of RAF' as the DELAYED ism of «kana» — «there is with him THAT WHICH…». Everything after it is its sila, and the sila is a whole conditional sentence, which is the hardest structure in the chapter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِنْ",
+     "lex": "in-shartiyya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "in-shartiyya"
+      ],
+      "irab": "A conditional LETTER that governs jazm — and the condition together with its answer is INSIDE the sila of «ma». A relative clause containing a full conditional sentence is the sort of nesting a reader has to hold two levels of at once, and it is exactly what the matn needed: the thing he has is not simply a proof, it is a proof-if-examined."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَأَمَّلَهُ",
+     "lex": "taammala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "in-shartiyya",
+       "form-v-verbs",
+       "maful-bihi"
+      ],
+      "irab": "A mazi in the POSITION of jazm as the condition's verb, and the ha is an attached pronoun in the position of nasb as its maf'ul bihi, returning to the «ma» — that pronoun is the ʿaid. On تَفَعَّلَ from أ م ل, and Form V here carries EFFORT: looking again and again. Not «if he sees it» but «if he works at it», which is why the man may still be denying in good faith."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَأَمَّلَ",
+      "root": "أ م ل",
+      "wazn": "تَفَعَّلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ارْتَدَعَ",
+     "lex": "irtadaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "in-shartiyya",
+       "form-viii-verbs"
+      ],
+      "irab": "A mazi in the position of jazm as the ANSWER to the condition, its fa'il hidden — on اِفْتَعَلَ from ر د ع, and its ta is unchanged because the ra is not one of the letters that colour it. The whole conditional sentence is the sila and has no position in i'rab, while its two halves each have one: three levels of clause on one line."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِرْتَدَعَ",
+      "root": "ر د ع",
+      "wazn": "اِفْتَعَلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:4:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 4,
+   "sentence": "s4",
+   "text": "وَاعْتِبَارَاتُ الْكَلَامِ الْمَنْفِيِّ كَاعْتِبَارَاتِ الْمُثْبَتِ",
+   "translation": {
+    "en": "And the considerations of negated speech are like the considerations of affirmed speech.",
+    "tr": "Menfî kelâmın itibarları, müsbet kelâmın itibarları gibidir."
+   },
+   "jumal": [
+    {
+     "text": "وَاعْتِبَارَاتُ الْكَلَامِ الْمَنْفِيِّ كَاعْتِبَارَاتِ الْمُثْبَتِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِئْنَافِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A resumed nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "وَاعْتِبَارَاتُ",
+     "lex": "itibar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "jam-muannath-salim",
+       "idafa-definiteness",
+       "form-viii-verbs"
+      ],
+      "irab": "A resuming waw, and «the considerations of» is the mubtada in raf' and a mudaf — a sound feminine plural of the Form VIII masdar of اِعْتَبَرَ. A masdar pluralised names the SEVERAL WAYS a thing may be regarded, which is exactly what this sentence claims transfers."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اعْتِبَار",
+      "root": "ع ب ر",
+      "wazn": "افْتِعَالَاتُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْكَلَامِ",
+     "lex": "kalam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَلَام",
+      "root": "ك ل م",
+      "wazn": "فَعَالِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمَنْفِيِّ",
+     "lex": "manfi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "ism-maful",
+       "naqis-verbs"
+      ],
+      "irab": "A na't of «speech», in jarr — the ism maf'ul of the DEFECTIVE verb نَفَى. Its origin is مَنْفُويٌ: waw and ya met with the first quiescent, so the waw turned ya and the two merged, and then the letter before them took a kasra so the ya could stand. Three i'lal steps, and the app's own engine derives every one of them from the bare pattern — the same chain that produces مَرْمِيّ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَنْفِيّ",
+      "root": "ن ف ي",
+      "wazn": "مَفْعِلِّ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كَاعْتِبَارَاتِ",
+     "lex": "itibar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "tashbih",
+       "idafa-definiteness"
+      ],
+      "irab": "The kaf is a jarr letter of LIKENING, and «the considerations of» is majrur by the kasra and a mudaf — the whole phrase standing in the position of raf' as the khabar. Two identical plurals in one sentence, one in raf' and one in jarr, and the kaf between them: the sentence is its own demonstration of what a comparison looks like."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اعْتِبَار",
+      "root": "ع ب ر",
+      "wazn": "افْتِعَالَاتِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُثْبَتِ",
+     "lex": "muthbat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-maful",
+       "form-iv-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr — the ism maf'ul of أَثْبَتَ on مُفْعَل, from the root ث ب ت that carried Mukhtasar al-Manar's definition of dalala. And the claim is worked out exactly as the affirmative was: مَا زَيْدٌ قَائِمًا for the empty mind, مَا زَيْدٌ بِقَائِمٍ for the hesitant, وَاللهِ مَا زَيْدٌ بِقَائِمٍ for the denier. The zaid ba is the negative sentence's own emphasiser, and it does the work إِنَّ did in the affirmative."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُثْبَت",
+      "root": "ث ب ت",
+      "wazn": "مُفْعَلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:4:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 4,
+   "sentence": "s5",
+   "text": "ثُمَّ الْإِسْنَادُ ضَرْبَانِ حَقِيقَةٌ عَقْلِيَّةٌ وَمَجَازٌ عَقْلِيٌّ",
+   "translation": {
+    "en": "Then predication is of two kinds: an intellectual truth, and an intellectual figure.",
+    "tr": "Sonra isnâd iki kısımdır: hakîkat-i akliyye ve mecâz-ı aklî."
+   },
+   "jumal": [
+    {
+     "text": "ثُمَّ الْإِسْنَادُ ضَرْبَانِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A joined nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving sequence with an interval — and with it the book turns from the states of the HEARER to the predication ITSELF. Four chapters have been about who is being spoken to; from here the question is what a sentence claims and whether the claim is literal."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْإِسْنَادُ",
+     "lex": "isnad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "form-iv-verbs"
+      ],
+      "irab": "The mubtada in raf' — the Form IV masdar of أَسْنَدَ, «to lean one thing on another», and that is exactly what a sentence does: it leans a predicate against a subject. The term names the ACT of predicating, not either of the two things predicated."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِسْنَاد",
+      "root": "س ن د",
+      "wazn": "إِفْعَالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ضَرْبَانِ",
+     "lex": "darb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "al-muthanna"
+      ],
+      "irab": "The khabar in raf', its sign the ALIF because it is a dual — and it is the very construction chapter 1 closed on: «obscurity is of two kinds». The book divides in twos and says so the same way each time, which is what makes a matn memorable rather than merely short."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ض ر ب",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "حَقِيقَةٌ",
+     "lex": "haqiqa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "badal"
+      ],
+      "irab": "A badal of «two kinds», in raf', or the khabar of an unspoken mubtada — and an intellectual TRUTH is attributing the act to the one it really belongs to, in the speaker's own belief. The word stood in Mukhtasar al-Manar for the literal sense of a WORD; here it is the literal sense of an ATTRIBUTION, which is a different question about the same sentence."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَقِيقَة",
+      "root": "ح ق ق",
+      "wazn": "فَعِيلَةٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَقْلِيَّةٌ",
+     "lex": "aqli",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa"
+      ],
+      "irab": "A na't of «truth», in raf' — a nisba noun on عَقْل with the ta of the feminine, agreeing with what it describes. It is called INTELLECTUAL because the judgement is made by the mind about the attribution, not by the ear about the word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "وَمَجَازٌ",
+     "lex": "majaz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "anwa-al-majaz"
+      ],
+      "irab": "Joined, in raf' — an intellectual FIGURE is attributing the act to something other than its true owner, for a relation and with a signal: «the spring made the herbage grow». Every single word there is literal; what has moved is the ATTRIBUTION. That is what makes this a different kind of majaz from the one the reader already knows, and the app's own note on it has been waiting for a story to anchor it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَجَاز",
+      "root": "ج و ز",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَقْلِيٌّ",
+     "lex": "aqli",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa"
+      ],
+      "irab": "A na't of «figure», in raf' — WITHOUT the ta, agreeing with its masculine head. The two nisbas stand four words apart, one feminine and one masculine, and between them they show the whole of adjectival agreement without a word of explanation. The chapter ends by opening the next one."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَقْلِيّ",
+      "root": "ع ق ل",
+      "wazn": "فَعْلِيٌّ",
       "sure": true
      },
      "match": true

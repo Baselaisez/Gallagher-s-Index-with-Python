@@ -785,3 +785,51 @@ not a one-line change.
   documented undecidable بِمَا. Worth saying plainly rather than claiming a win:
   the worked-sentence section found nothing here. **The finding came from the
   OTHER gate** — the paradigm audit — which is why the release runs both.
+
+### Talkhīṣ al-Miftāḥ, chapter 4 — خِلَافُ مُقْتَضَى الظَّاهِر (5 sentences, 50 tokens)
+
+  Chapter 3 laid down the rule: a bare report for an empty mind, one emphasis
+  for a doubter, two for a denier. **Chapter 4 is the chapter that breaks it on
+  purpose**, and the breaking has a name — تَنْزِيل, putting a listener DOWN in a
+  place that is not his. The matn gives three cases and the third is the one
+  that proves what the doctrine is: empty mind → questioner (emphasis added),
+  non-denier → denier (emphasis added), and **denier → non-denier, where the
+  emphasis is TAKEN AWAY** because the man already has with him the thing that
+  would stop him. Two of three add and the third subtracts, so tanzīl is not a
+  rule about being forceful; it is a rule about building for a state that is not
+  the state, and each case needs its own licence — a hint dropped earlier, a
+  sign shown, a possession held. Then s4 closes the door on a second doctrine
+  before anyone opens it: اعْتِبَارَاتُ الْكَلَامِ الْمَنْفِيِّ كَاعْتِبَارَاتِ الْمُثْبَتِ.
+
+  - **Registry note 100, `khilaf-muqtada-al-zahir`** (balāgha) — the three cases
+    with their licences, why the third is the test, and the negative parallel.
+    Its two examples are s1 and s3 of this chapter; the three passive verbs
+    carry the id, and the smoke suite asserts all three by name.
+
+  **Two engine findings, and the drill bank found both.** The chapter's 50
+  tokens dropped the part-of-speech agreement from 99.9% to 99.6%, which is what
+  that gate is for:
+
+  - **مَعَهُ was being read as a jarr letter with its majrūr.** `JARR_HEAD`
+    carried «مع» so that the fused peel would fire on it, and the peel then
+    printed the جار ومجرور reading. But مَعَ is a **ẓarf** — an ism, manṣūb on
+    the ẓarfiyya, and a **muḍāf** — so مَعَهُ is muḍāf + muḍāf ilayh, and neither
+    half is a ḥarf. The books prove the ism-hood twice: it takes tanwīn standing
+    alone (جَاءُوا مَعًا) and it is itself put in jarr (مِنْ مَعِهِ), and no ḥarf
+    does either. Fixed by keeping the shared peel and parting company on the
+    class: `ZARF_HEAD` names which heads are asmāʾ, `fusedJarr` returns the
+    flag, and the reading branches. عِنْدَ and لَدَى joined the table on the same
+    footing.
+  - **A مَا standing in a verb's empty fāʿil seat was read as a negation.**
+    إِذَا تَقَدَّمَ فِي الْكَلَامِ مَا يُشِيرُ إِلَى الْخَبَرِ — the verb is three words back
+    and the only noun between them is majrūr by فِي, so it cannot be the doer,
+    and the verb wears no doer on its own end. الْفِعْلُ لَا بُدَّ لَهُ مِنْ فَاعِلٍ:
+    the place the mā is standing in is the fāʿil's, and nothing but an ism
+    stands there. This is **the seat rule seen from the other side** — rule 4's
+    seat looks forward from the mā at a verb that named an object and no doer;
+    rule 6f looks backward at a verb that has not named a doer yet. Same
+    doctrine, opposite direction, and neither one covered the other's sentence.
+
+  Measured: **99.9% over 792 tokens** after the two fixes, the one remaining
+  disagreement still being ch16's documented undecidable بِمَا. 176 smoke checks,
+  sw at `qissa-v121`.

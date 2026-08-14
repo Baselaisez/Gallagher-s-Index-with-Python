@@ -2256,3 +2256,36 @@ The reason this keeps happening is worth naming: **when you write a gate for
 new content, the current total is sitting right there in front of you and is the
 easiest number to type.** It is also the only number that is guaranteed to be
 wrong later.
+
+## The same doctrine, seen from the other side, is a SECOND rule
+
+The `MaEngine` already had a "seat" rule: after a مَا, a verb that names a
+manṣūb object and no doer has left the fāʿil position empty, and after a
+relative an empty fāʿil position is where the concealed ʿāid stands. That rule
+looks FORWARD from the mā.
+
+Chapter 4 of the Talkhīṣ handed over the mirror image — إِذَا تَقَدَّمَ فِي
+الْكَلَامِ مَا يُشِيرُ — where the verb is BEHIND the mā, three words back, and the
+only noun between them is majrūr and so cannot be its doer. Same doctrine
+(الْفِعْلُ لَا بُدَّ لَهُ مِنْ فَاعِلٍ), same conclusion (a word in the fāʿil seat is an
+ism), and **the existing rule did not fire on it at all** — it was not looking
+in that direction.
+
+The lesson is not "add rule 6f". It is that when a rule is written from one
+sentence, it silently inherits that sentence's WORD ORDER. Before calling a
+qāʿida implemented, write the same doctrine backwards and check whether the code
+still recognises it. Half the time it is a different rule wearing the same name.
+
+## A peel is not a classification
+
+`fusedJarr` peels مِنْهُ, عَلَيْهِ, مَعَهُ into head + pronoun. It was also
+deciding, by the fact that it fired, that the head is a **ḥarf jarr** — and so
+مَعَهُ came out as a jarr letter with its majrūr. مَعَ is a ẓarf: an ism, manṣūb,
+and a muḍāf. The pronoun is its muḍāf ilayh, not a majrūr by a letter.
+
+The operation was right and the label was wrong, which is the failure mode to
+watch for whenever one function does both. The fix keeps the shared machinery
+(one table, one loop, so the two can never disagree about what a fused shape
+looks like) and returns a flag the caller branches on. **Share the mechanism,
+split the verdict** — the opposite mistake, giving the ẓurūf their own peel loop,
+would have been the "two call sites disagreeing about one shape" bug again.

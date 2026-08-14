@@ -5834,6 +5834,66 @@ if (!CHROME) {
     if (r.audit.checked < 270) throw new Error('the audit shrank: ' + r.audit.checked);
   });
 
+  await check('talkhis ch4: tanzil, the zarf that is not a jarr letter, and the fail seat', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 4);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      // مَعَهُ is written as one word and is TWO — and neither of them a harf
+      const maa = SentenceAnalyzer.analyze('كَانَ مَعَهُ كِتَابٌ')
+                    .find(x => stripAr(x.w) === 'معه');
+      // …and the ma of s1 stands in a verb's empty fa'il seat, three words back
+      const seat = SentenceAnalyzer.analyze('إِذَا تَقَدَّمَ فِي الْكَلَامِ مَا يُشِيرُ إِلَى الْخَبَرِ')
+                     .find(x => stripAr(x.w) === 'ما');
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // the three cases of tanzil, each on its own passive verb
+        tanzil: ['s1', 's2', 's3'].map(id => {
+          const t = sen(id).tokens.find(x => (x.grammar || []).includes('khilaf-muqtada-al-zahir') &&
+                                             x.pos === 'verb');
+          return t ? stripAr(t.s.full) : null;
+        }),
+        note: !!GRAMMAR['khilaf-muqtada-al-zahir'] &&
+              !!GRAMMAR['khilaf-muqtada-al-zahir'].title.tr &&
+              GRAMMAR['khilaf-muqtada-al-zahir'].group,
+        // the human reading of مَعَهُ: a zarf, and a mudaf
+        maahIrab: tk('s3', 'معه').irab.ar,
+        maahPos: tk('s3', 'معه').pos,
+        // the engine's reading of the same shape
+        maahKind: maa ? maa.kind : '<none>',
+        maahSeg: maa ? maa.seg.join('+') : '',
+        maahNote: maa ? maa.notes.map(n => n.en).join(' ') : '',
+        seatKind: seat ? seat.kind : '<none>',
+        seatWajh: seat && seat.wajh ? seat.wajh.ar : '<none>',
+        seatWhy: seat && seat.wajh ? seat.wajh.why.en : '',
+        // and the negative parallel, which is the chapter's fourth sentence
+        manfi: sen('s4').tokens.map(t => stripAr(t.s.full)).join(' '),
+      };
+    });
+    if (r.missing) throw new Error('chapter 4 did not load');
+    if (r.chapters < 4) throw new Error('chapter 4 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch4 sentences: ' + r.n);
+    if (r.note !== 'balagha') throw new Error('the tanzil note is missing, untranslated or misfiled: ' + r.note);
+    r.tanzil.forEach((w, i) => {
+      if (!w) throw new Error('sentence ' + (i + 1) + ' has no tanzil verb tagged');
+      if (!/ينزل$/.test(w)) throw new Error('the tanzil verb: ' + w);
+    });
+    // مَعَ takes tanwin standing alone and is itself put in jarr, so it is an ISM
+    if (!/ظَرْف/.test(r.maahIrab)) throw new Error('معه is a zarf in the human reading: ' + r.maahIrab);
+    if (r.maahPos !== 'noun') throw new Error('معه is tagged: ' + r.maahPos);
+    if (r.maahKind !== 'noun') throw new Error('the engine still calls معه a particle: ' + r.maahKind);
+    if (r.maahSeg !== 'مَعَ+ه') throw new Error('معه must peel into two: ' + r.maahSeg);
+    if (!/MUDAF ILAYH/.test(r.maahNote)) throw new Error('the pronoun is a mudaf ilayh: ' + r.maahNote);
+    // a verb, a jarr phrase, then ما — the fa'il seat is the one it is sitting in
+    if (r.seatKind !== 'noun') throw new Error('the ma in a fail seat is an ism: ' + r.seatKind);
+    if (!/الْمَوْصُولَة/.test(r.seatWajh)) throw new Error('the top reading: ' + r.seatWajh);
+    if (!/FA'IL/.test(r.seatWhy)) throw new Error("the seat rule did not name the fa'il: " + r.seatWhy);
+    if (!/كاعتبارات/.test(r.manfi)) throw new Error('s4 is the negative parallel: ' + r.manfi);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
