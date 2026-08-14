@@ -25,7 +25,7 @@
     "en": "in",
     "tr": "-de, içinde"
    },
-   "level": 0
+   "level": 1
   },
   "min": {
    "lemma": "مِنْ",
@@ -58,10 +58,10 @@
    "lemma": "لِ",
    "pos": "prep",
    "gloss": {
-    "en": "for, to",
-    "tr": "için, -e"
+    "en": "for, belonging to",
+    "tr": "için, -e âit"
    },
-   "level": 0
+   "level": 1
   },
   "maa": {
    "lemma": "مَعَ",
@@ -103,8 +103,8 @@
    "lemma": "مَا (المَوْصُولَة)",
    "pos": "pron",
    "gloss": {
-    "en": "that which, what",
-    "tr": "o şey ki"
+    "en": "that which, what (relative)",
+    "tr": "o şey ki (ism-i mevsûl)"
    },
    "level": 2
   },
@@ -410,10 +410,10 @@
    "lemma": "ظَاهِر",
    "pos": "noun",
    "gloss": {
-    "en": "clear, apparent (ism fa'il)",
-    "tr": "zâhir; açık (ism-i fâil)"
+    "en": "outward, apparent (ism fa'il)",
+    "tr": "zâhir, dıştan görünen (ism-i fâil)"
    },
-   "level": 2,
+   "level": 3,
    "root": "ظ ه ر"
   },
   "mutabaqa": {
@@ -600,7 +600,7 @@
     "en": "to, towards",
     "tr": "-e, -a doğru"
    },
-   "level": 0
+   "level": 1
   },
   "qad": {
    "lemma": "قَدْ",
@@ -1091,6 +1091,385 @@
    },
    "level": 3,
    "root": "ج و ز"
+  },
+  "hiya": {
+   "lemma": "هِيَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "she, it (feminine detached pronoun)",
+    "tr": "o (müennes munfasıl zamir)"
+   },
+   "level": 1
+  },
+  "huwa": {
+   "lemma": "هُوَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "he, it (detached pronoun)",
+    "tr": "o (munfasıl zamir)"
+   },
+   "level": 1
+  },
+  "fil": {
+   "lemma": "فِعْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "act, deed; a verb",
+    "tr": "fiil; iş"
+   },
+   "level": 1,
+   "root": "ف ع ل",
+   "plural": "أَفْعَال"
+  },
+  "aw": {
+   "lemma": "أَوْ",
+   "pos": "conj",
+   "gloss": {
+    "en": "or (here: giving a variety, not a doubt)",
+    "tr": "veya (burada: tenvî için, şek için değil)"
+   },
+   "level": 1
+  },
+  "mana": {
+   "lemma": "مَعْنًى",
+   "pos": "noun",
+   "gloss": {
+    "en": "meaning (a maqsur noun)",
+    "tr": "mânâ (ism-i maksûr)"
+   },
+   "level": 2,
+   "root": "ع ن ي",
+   "plural": "مَعَانٍ"
+  },
+  "inda": {
+   "lemma": "عِنْد",
+   "pos": "noun",
+   "gloss": {
+    "en": "with, in the view of (a zarf — a noun, not a letter)",
+    "tr": "yanında, indinde (zarf — harf değil, isim)"
+   },
+   "level": 2
+  },
+  "mulabas": {
+   "lemma": "مُلَابَس",
+   "pos": "noun",
+   "gloss": {
+    "en": "a thing associated with another (ism maf'ul, Form III)",
+    "tr": "mülâbes; bir şeyle alâkalı olan (ism-i mef'ûl, mufâale)"
+   },
+   "level": 5,
+   "root": "ل ب س"
+  },
+  "taawwul": {
+   "lemma": "تَأَوُّل",
+   "pos": "noun",
+   "gloss": {
+    "en": "an interpretation, a construing (masdar, Form V)",
+    "tr": "te'vîl, yorumlama (masdar, tefa'ul)"
+   },
+   "level": 5,
+   "root": "أ و ل"
+  },
+  "isha": {
+   "lemma": "عِيشَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a life, a way of living",
+    "tr": "hayat, yaşayış"
+   },
+   "level": 3,
+   "root": "ع ي ش"
+  },
+  "radi": {
+   "lemma": "رَاضٍ (الرَّاضِي)",
+   "pos": "noun",
+   "gloss": {
+    "en": "pleased, content (ism fa'il of a defective verb)",
+    "tr": "râzı olan (nâkıstan ism-i fâil)"
+   },
+   "level": 4,
+   "root": "ر ض و"
+  },
+  "sayl": {
+   "lemma": "سَيْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "a torrent, a flood",
+    "tr": "sel"
+   },
+   "level": 3,
+   "root": "س ي ل",
+   "plural": "سُيُول"
+  },
+  "mufam": {
+   "lemma": "مُفْعَم",
+   "pos": "noun",
+   "gloss": {
+    "en": "filled up (ism maf'ul of أَفْعَمَ)",
+    "tr": "doldurulmuş (أَفْعَمَ'den ism-i mef'ûl)"
+   },
+   "level": 5,
+   "root": "ف ع م"
+  },
+  "afama": {
+   "lemma": "أَفْعَمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to fill something to the brim",
+    "tr": "ağzına kadar doldurmak"
+   },
+   "level": 5,
+   "root": "ف ع م",
+   "form": "IV"
+  },
+  "waadi": {
+   "lemma": "وَادِي (وَادٍ)",
+   "pos": "noun",
+   "gloss": {
+    "en": "a valley, a watercourse (manqus)",
+    "tr": "vadi (menkūs)"
+   },
+   "level": 3,
+   "root": "و د ي",
+   "plural": "أَوْدِيَة"
+  },
+  "shir": {
+   "lemma": "شِعْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "poetry",
+    "tr": "şiir"
+   },
+   "level": 2,
+   "root": "ش ع ر",
+   "plural": "أَشْعَار"
+  },
+  "shair": {
+   "lemma": "شَاعِر",
+   "pos": "noun",
+   "gloss": {
+    "en": "a poet; composing poetry (ism fa'il)",
+    "tr": "şair; şiir söyleyen (ism-i fâil)"
+   },
+   "level": 2,
+   "root": "ش ع ر"
+  },
+  "nahar": {
+   "lemma": "نَهَار",
+   "pos": "noun",
+   "gloss": {
+    "en": "daytime",
+    "tr": "gündüz"
+   },
+   "level": 2,
+   "root": "ن ه ر"
+  },
+  "saim": {
+   "lemma": "صَائِم",
+   "pos": "noun",
+   "gloss": {
+    "en": "fasting (ism fa'il of a hollow verb)",
+    "tr": "oruçlu (ecvefden ism-i fâil)"
+   },
+   "level": 3,
+   "root": "ص و م"
+  },
+  "saama": {
+   "lemma": "صَامَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to fast",
+    "tr": "oruç tutmak"
+   },
+   "level": 2,
+   "root": "ص و م",
+   "form": "I"
+  },
+  "nahr": {
+   "lemma": "نَهْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "a river",
+    "tr": "nehir"
+   },
+   "level": 2,
+   "root": "ن ه ر",
+   "plural": "أَنْهَار"
+  },
+  "jari": {
+   "lemma": "جَارٍ (الْجَارِي)",
+   "pos": "noun",
+   "gloss": {
+    "en": "running, flowing (ism fa'il, manqus)",
+    "tr": "akan, câri (ism-i fâil, menkūs)"
+   },
+   "level": 3,
+   "root": "ج ر ي"
+  },
+  "bana": {
+   "lemma": "بَنَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to build",
+    "tr": "binâ etmek, yapmak"
+   },
+   "level": 2,
+   "root": "ب ن ي",
+   "form": "I"
+  },
+  "amir": {
+   "lemma": "أَمِير",
+   "pos": "noun",
+   "gloss": {
+    "en": "a commander, a prince",
+    "tr": "emîr, kumandan"
+   },
+   "level": 2,
+   "root": "أ م ر",
+   "plural": "أُمَرَاء"
+  },
+  "thiql": {
+   "lemma": "ثِقْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "a burden, a weight",
+    "tr": "yük, ağırlık"
+   },
+   "level": 4,
+   "root": "ث ق ل",
+   "plural": "أَثْقَال"
+  },
+  "walid": {
+   "lemma": "وَلِيد",
+   "pos": "noun",
+   "gloss": {
+    "en": "a newborn, a child",
+    "tr": "yeni doğmuş çocuk"
+   },
+   "level": 3,
+   "root": "و ل د",
+   "plural": "وِلْدَان"
+  },
+  "shayb": {
+   "lemma": "أَشْيَب",
+   "pos": "noun",
+   "gloss": {
+    "en": "grey-haired",
+    "tr": "ak saçlı"
+   },
+   "level": 4,
+   "root": "ش ي ب",
+   "plural": "شِيب"
+  },
+  "labasa": {
+   "lemma": "لَابَسَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be closely connected with",
+    "tr": "bir şeyle iç içe olmak, mülâbeset etmek"
+   },
+   "level": 5,
+   "root": "ل ب س",
+   "form": "III"
+  },
+  "radiya": {
+   "lemma": "رَضِيَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be content with, accept",
+    "tr": "razı olmak"
+   },
+   "level": 2,
+   "root": "ر ض ي",
+   "form": "I"
+  },
+  "rajul": {
+   "lemma": "رَجُل",
+   "pos": "noun",
+   "gloss": {
+    "en": "man",
+    "tr": "adam, er"
+   },
+   "level": 1,
+   "root": "ر ج ل",
+   "plural": "رِجَال"
+  },
+  "jara": {
+   "lemma": "جَرَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to flow, run its course",
+    "tr": "akmak, cereyan etmek"
+   },
+   "level": 3,
+   "root": "ج ر ي",
+   "form": "I"
+  },
+  "ma-water": {
+   "lemma": "مَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "water",
+    "tr": "su"
+   },
+   "level": 2,
+   "root": "م و ه",
+   "plural": "مِيَاه"
+  },
+  "madina": {
+   "lemma": "مَدِينَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "city",
+    "tr": "şehir"
+   },
+   "level": 1,
+   "root": "م د ن",
+   "plural": "مُدُن"
+  },
+  "ard": {
+   "lemma": "أَرْض",
+   "pos": "noun",
+   "gloss": {
+    "en": "land, earth",
+    "tr": "arazi, yer"
+   },
+   "level": 1,
+   "root": "أ ر ض",
+   "plural": "أَرَاضٍ"
+  },
+  "yawm": {
+   "lemma": "يَوْم",
+   "pos": "noun",
+   "gloss": {
+    "en": "day",
+    "tr": "gün"
+   },
+   "level": 1,
+   "root": "ي و م",
+   "plural": "أَيَّام"
+  },
+  "jaala": {
+   "lemma": "جَعَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to make, set",
+    "tr": "kılmak, yapmak"
+   },
+   "level": 2,
+   "root": "ج ع ل",
+   "form": "I"
+  },
+  "taawwala": {
+   "lemma": "تَأَوَّلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to construe, to interpret",
+    "tr": "te'vîl etmek, yorumlamak"
+   },
+   "level": 5,
+   "root": "أ و ل",
+   "form": "V"
   }
  }
 }

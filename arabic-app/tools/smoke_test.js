@@ -5894,6 +5894,85 @@ if (!CHROME) {
     if (!/كاعتبارات/.test(r.manfi)) throw new Error('s4 is the negative parallel: ' + r.manfi);
   });
 
+  await check('talkhis ch5: majaz aqli, mustaqarr vs laghw, and the manqus completed', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 5);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      // the two states of one jarr phrase, three words apart in the definition
+      const rows = SentenceAnalyzer.analyze('إِلَى مُلَابَسٍ لَهُ غَيْرِ مَا هُوَ لَهُ بِتَأَوُّلٍ');
+      const lah = rows.filter(x => stripAr(x.w) === 'له')
+                      .map(x => x.notes.map(n => n.en + ' ' + n.tr).join(' '));
+      // a mazi built on a SUKUN, wearing the iltiqa-as-sakinayn kasra
+      const akh = SentenceAnalyzer.analyze('وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا')[0];
+      // a masdariyya needs a VERB to turn into a masdar; a nominal sila leaves
+      // only the relative reading — while بِمَا لَا يَعْلَمُ stays ambiguous
+      const maN = SentenceAnalyzer.analyze('إِلَى مَا هُوَ لَهُ عِنْدَ الْمُتَكَلِّمِ')
+                    .find(x => stripAr(x.w) === 'ما');
+      const maV = SentenceAnalyzer.analyze('بِمَا لَا يَعْلَمُ')[0];
+      const wajhOf = row => (row && row.notes || []).map(n => n.en).join(' ');
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // the six mulabis, each tagged with the new note
+        mulabis: ['s3', 's4', 's5'].map(id =>
+          sen(id).tokens.filter(t => (t.grammar || []).includes('majaz-aqli')).length),
+        noteM: !!GRAMMAR['majaz-aqli'] && GRAMMAR['majaz-aqli'].group,
+        noteZ: !!GRAMMAR['zarf-mustaqarr-wa-laghw'] && GRAMMAR['zarf-mustaqarr-wa-laghw'].group,
+        noteZtr: !!(GRAMMAR['zarf-mustaqarr-wa-laghw'] || {}).title.tr,
+        lah,
+        // the manqus in the two states this chapter adds
+        wadi: tk('s3', 'الوادي').irab.ar,
+        jari: tk('s4', 'جار').irab.ar,
+        akhKind: akh.kind,
+        akhCell: akh.cell ? akh.cell.form : null,
+        maNkind: maN && maN.kind,
+        maNwhy: wajhOf(maN),
+        maVwhy: wajhOf(maV),
+        // أَفْعَمَ — the paradigm whose root is the mizan's own letters
+        afamRoot: (st.glossary.afama || {}).root,
+        afamMaful: (st.morph.afama || {}).maful,
+        // and لَابَسَ, shipped so both readings of the matn's key word are visible
+        labasFail: (st.morph.labasa || {}).fail,
+        labasMaful: (st.morph.labasa || {}).maful,
+      };
+    });
+    if (r.missing) throw new Error('chapter 5 did not load');
+    if (r.chapters < 5) throw new Error('chapter 5 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch5 sentences: ' + r.n);
+    if (r.mulabis.reduce((a, b) => a + b, 0) !== 6)
+      throw new Error('the six mulabis are not all tagged: ' + JSON.stringify(r.mulabis));
+    if (r.noteM !== 'balagha') throw new Error('the majaz-aqli note: ' + r.noteM);
+    if (r.noteZ !== 'nahw' || !r.noteZtr) throw new Error('the mustaqarr note: ' + r.noteZ);
+    // ONE sentence, the same two letters twice, opposite states
+    if (r.lah.length !== 2) throw new Error('«لَهُ» should occur twice: ' + r.lah.length);
+    if (!/لَغْو/.test(r.lah[0]) || /مُسْتَقَر/.test(r.lah[0]))
+      throw new Error('the first lahu hangs on مُلَابَسٍ and is LAGHW: ' + r.lah[0]);
+    if (!/مُسْتَقَر/.test(r.lah[1]) || /لَغْو/.test(r.lah[1]))
+      throw new Error('the second lahu is inside a sila and is MUSTAQARR: ' + r.lah[1]);
+    // the manqus: fatha WRITTEN in nasb, ya DELETED when indefinite
+    if (!/الظَّاهِرَةُ عَلَى الْيَاءِ/.test(r.wadi)) throw new Error('الوادي writes its fatha: ' + r.wadi);
+    if (!/مُقَدَّرَةٍ/.test(r.jari) || !/الْمَحْذُوفَةِ/.test(r.jari))
+      throw new Error('جارٍ estimates a damma on a deleted ya: ' + r.jari);
+    // a kasra on a cell built on sukun is a repair, not a case
+    if (r.akhKind !== 'verb') throw new Error('وأخرجتِ is a verb, kasra or no kasra: ' + r.akhKind);
+    if (r.akhCell !== 'أَخْرَجَتْ') throw new Error('the cell it matched: ' + r.akhCell);
+    // a masdar-maker needs a verb to work on
+    if (r.maNkind !== 'noun') throw new Error('«إلى ما هو له» — the ma is an ism: ' + r.maNkind);
+    if (/masdar-making ma — the clause becomes a masdar/.test(r.maNwhy))
+      throw new Error('a nominal sila admits no masdariyya: ' + r.maNwhy);
+    if (!/masdar-making ma — the clause becomes a masdar/.test(r.maVwhy))
+      throw new Error('بما لا يعلم must keep its masdariyya reading: ' + r.maVwhy);
+    // the two paradigms this chapter ships
+    if (r.afamRoot !== 'ف ع م') throw new Error('أفعم root: ' + r.afamRoot);
+    if (r.afamMaful !== 'مُفْعَم') throw new Error('its ism maful: ' + r.afamMaful);
+    if (r.labasFail !== 'مُلَابِس' || r.labasMaful !== 'مُلَابَس')
+      throw new Error('both readings of the matn word must be shipped: ' +
+                      r.labasFail + ' / ' + r.labasMaful);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

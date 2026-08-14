@@ -2289,3 +2289,44 @@ watch for whenever one function does both. The fix keeps the shared machinery
 looks like) and returns a flag the caller branches on. **Share the mechanism,
 split the verdict** — the opposite mistake, giving the ẓurūf their own peel loop,
 would have been the "two call sites disagreeing about one shape" bug again.
+
+## Ask the question the ORACLE can answer, not the one you want answered
+
+The rule was right: مَا الْمَصْدَرِيَّة needs a VERBAL ṣila, so with no verb after it
+the reading is impossible. The first implementation asked «does a verb follow?»
+and broke عَجِبْتُ مِمَّا صَنَعْتَ — not because the rule is wrong but because the
+verb oracle is a corpus lookup, and the corpus has never seen صَنَعَ. A bare māḍī
+wears no prefix, so «not a verb» and «I have never heard of this word» are the
+same answer.
+
+Rewritten as **«is what follows something that CANNOT open a verbal clause?»** —
+a pronoun, a demonstrative, a relative, a word wearing the article — the test
+answers from the surface every time, and it stays silent exactly where it should:
+a negation is not on the list, so بِمَا لَا يَعْلَمُ keeps its ambiguity.
+
+Before writing a test, ask which of its two answers the engine is entitled to
+give. If «no» can mean «I don't know», invert the test until the confident answer
+is the one that fires.
+
+## Name the two states you are already computing
+
+`TaalluqEngine` had branched for months on «is the ʿāmil written or omitted?» and
+returned two differently-shaped answers. Those two branches ARE ظَرْفٌ لَغْوٌ and
+ظَرْفٌ مُسْتَقَرٌّ — the distinction every nahw book draws, and the reason a bare
+jarr phrase can be a khabar. Nothing had to be derived; a label had to be
+attached to a fact already in hand.
+
+When a classical term turns out to be a name for a branch the code already takes,
+that is the cheapest teaching the app can buy. Go looking for those before
+building a new engine.
+
+## A wall in the grammar is a wall in the walk
+
+الصِّلَةُ سُورٌ: nothing inside a relative's clause attaches to anything outside it.
+The taʿalluq walk had no such wall and hung the لَهُ of a ṣila on the masdar that
+opened the sentence — a perfectly reasonable nearest-governor answer that no
+grammarian would accept. The same shape had already appeared once, in the أَنَّ
+search («a particle wall ends the search»), and was not generalised.
+
+Any search that walks backwards through a sentence needs to know which words are
+walls. Write them down as you meet them.

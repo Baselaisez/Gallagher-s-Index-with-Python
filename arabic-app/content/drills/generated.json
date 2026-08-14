@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 95,
-  "sentenceTokens": 792,
+  "sentences": 100,
+  "sentenceTokens": 847,
   "posAgreement": 99.9,
-  "rows": 1877
+  "rows": 1932
  },
  "endings": [
   {
@@ -23002,6 +23002,1253 @@
       "root": "ع ق ل",
       "wazn": "فَعْلِيٌّ",
       "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:5:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 5,
+   "sentence": "s1",
+   "text": "وَهِيَ إِسْنَادُ الْفِعْلِ أَوْ مَعْنَاهُ إِلَى مَا هُوَ لَهُ عِنْدَ الْمُتَكَلِّمِ فِي الظَّاهِرِ",
+   "translation": {
+    "en": "And it is attributing the act, or the meaning of the act, to the one it belongs to in the speaker's own view, outwardly.",
+    "tr": "O da, fiili yahut fiilin mânâsını, zâhirde ve mütekellimin kendi kanaatinde, kime âitse ona isnâd etmektir."
+   },
+   "jumal": [
+    {
+     "text": "هُوَ لَهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A nominal sentence, the sila of the relative — i'rabless."
+    },
+    {
+     "text": "وَهِيَ إِسْنَادُ الْفِعْلِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A joined nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 13,
+   "agree": 13,
+   "tokens": [
+    {
+     "w": "وَهِيَ",
+     "lex": "hiya",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw, and «hiya» is a detached pronoun, mabni, in the position of raf' as the mubtada — pointing back at «the intellectual truth» named in the last line of the previous chapter. The definition is not introduced; it is CONTINUED, and the feminine pronoun is the whole of the join."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِسْنَادُ",
+     "lex": "isnad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "imal-al-masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "The khabar in raf' and a mudaf — a masdar GOVERNING as its verb does, so «the act» is its object in meaning even though it is majrur in form. The definition of a science is a masdar because a science defines ACTS, and the eleventh chapter of the Manar defined ijtihad the same way."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِسْنَاد",
+      "root": "س ن د",
+      "wazn": "إِفْعَالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْفِعْلِ",
+     "lex": "fil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "imal-al-masdar"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the object in meaning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فِعْل",
+      "root": "ف ع ل",
+      "wazn": "فِعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving a VARIETY, not a doubt: it widens what is being defined rather than hesitating between two things."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَعْنَاهُ",
+     "lex": "mana",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "ism-maqsur-manqus",
+       "idafa-definiteness"
+      ],
+      "irab": "Joined to «the act», in jarr by a kasra ESTIMATED on the alif because the alif cannot take one — a maqsur noun — and it is a mudaf with the ha annexed to it. And «the meaning of the act» is the commentary's own list: a masdar, an ism fa'il, an ism maf'ul, a sifa mushabbaha, an ism tafdil and a settled zarf. That list is exactly what this app's ta'alluq engine asks for when it looks for something to hang a jarr phrase on — six items, named by a book of the seventh century."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع ن ه",
+      "wazn": "مِفْعَال / مُفَاعَلَة",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter — the phrase attaching to «attributing»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "anwa-ma"
+      ],
+      "irab": "A relative noun, mabni, in the position of jarr after «ila». It is the sixth of the twelve faces of ma, and here nothing else is possible: a harf cannot be governed by a jarr letter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "jumla-sifa"
+      ],
+      "irab": "A detached pronoun in the position of raf' as the mubtada — and the clause is the sila of the relative, with no position in i'rab."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "mubtada-khabar",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "The lam is a jarr letter and the ha is in the position of jarr — and the phrase attaches to an OMITTED khabar, which makes it MUSTAQARR. The estimated «kaʾin» carries a doer inside it, and that is why two letters and a pronoun can be a whole predicate. Watch this word: the next sentence has the identical two letters in the opposite state."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِنْدَ",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "A zarf of place in nasb and a mudaf, attaching to the omitted khabar — «established as his, IN THE SPEAKER'S VIEW». عِنْدَ is a noun, not a letter, and this app peels عِنْدَهُ into two the same way it peels مَعَهُ. Where this word is placed decides the whole definition: the truth of an attribution is measured against what the SPEAKER believes, not against the world, which is why a mistaken man still speaks a ḥaqiqa and a liar does not."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِنْدَ",
+      "root": "ع ن د",
+      "wazn": "فِعْلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُتَكَلِّمِ",
+     "lex": "mutakallim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "ism-fail",
+       "form-v-verbs"
+      ],
+      "irab": "The mudaf ilayh in jarr — the ism fa'il of تَكَلَّمَ on مُتَفَعِّل. The one DOING the speaking, named by the pattern rather than by a separate word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُتَكَلِّم",
+      "root": "ك ل م",
+      "wazn": "مُتَفَعِّلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الظَّاهِرِ",
+     "lex": "zahir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "ism-fail",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "Majrur by «fi» — and the phrase attaches to «attributing», which makes it LAGHW, unlike the «lahu» four words back. Two jarr phrases in one sentence, one hanging on a written governor and one on an estimated one, and the books have a name for each. And the restriction «outwardly» is doing real work: it lets in the man who believes what he says and is wrong, and keeps out the man who says it without believing it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ظَاهِر",
+      "root": "ظ ه ر",
+      "wazn": "فَّاعِلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:5:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 5,
+   "sentence": "s2",
+   "text": "وَهُوَ إِسْنَادُ الْفِعْلِ أَوْ مَعْنَاهُ إِلَى مُلَابَسٍ لَهُ غَيْرِ مَا هُوَ لَهُ بِتَأَوُّلٍ",
+   "translation": {
+    "en": "And it is attributing the act, or the meaning of the act, to something associated with it OTHER than the one it belongs to, by an interpretation.",
+    "tr": "O da, fiili yahut fiilin mânâsını, bir te'vîl ile, kendisine âit olandan BAŞKA fakat onunla alâkalı bir şeye isnâd etmektir."
+   },
+   "jumal": [
+    {
+     "text": "هُوَ لَهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A nominal sentence, the sila of the relative — i'rabless."
+    },
+    {
+     "text": "وَهُوَ إِسْنَادُ الْفِعْلِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A joined nominal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 13,
+   "agree": 13,
+   "tokens": [
+    {
+     "w": "وَهُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "A joining waw, and «huwa» is the mubtada, pointing back at «the intellectual figure». The two definitions are twins in wording — same masdar, same object, same أَوْ مَعْنَاهُ — and the entire difference between truth and figure sits after «ila». A reader who can name which half changed has read the chapter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِسْنَادُ",
+     "lex": "isnad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "masdar",
+       "imal-al-masdar",
+       "idafa-definiteness"
+      ],
+      "irab": "The khabar in raf' and a mudaf — a governing masdar, exactly as in the sentence before."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِسْنَاد",
+      "root": "س ن د",
+      "wazn": "إِفْعَالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْفِعْلِ",
+     "lex": "fil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "imal-al-masdar"
+      ],
+      "irab": "The mudaf ilayh in jarr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فِعْل",
+      "root": "ف ع ل",
+      "wazn": "فِعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq"
+      ],
+      "irab": "A letter of atf giving a variety."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَعْنَاهُ",
+     "lex": "mana",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "ism-maqsur-manqus",
+       "idafa-definiteness"
+      ],
+      "irab": "Joined, in jarr by an estimated kasra on the alif, and a mudaf. Because the two definitions repeat this word, the majaz reaches the participles too: عِيشَةٌ رَاضِيَةٌ has no verb in it at all."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع ن ه",
+      "wazn": "مِفْعَال / مُفَاعَلَة",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter attaching to «attributing»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُلَابَسٍ",
+     "lex": "mulabas",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "ism-maful",
+       "form-iii-verbs"
+      ],
+      "irab": "Majrur by «ila» — the ism maf'ul of لَابَسَ on مُفَاعَل: a thing that has a CONNECTION with the act. The source this package is built from vowels it with a fatha; printed editions commonly write مُلَابِسٍ with a kasra, the ism fa'il. One haraka apart and hardly any sense apart — «a thing associated with it» against «a thing having association with it» — and the paradigm this app ships for لَابَسَ shows the two cells one line apart, which is the only honest way to leave a divergence a reader can check."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُلَابَس",
+      "root": "ل ب س",
+      "wazn": "مُفَاعَلٍ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "naat-sifa",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "The lam is a jarr letter and the ha is in the position of jarr — attaching to «mulabas», the word standing immediately before it, which makes it LAGHW. In the previous sentence the very same two letters were MUSTAQARR because nothing there could govern them. The difference is not in the word; it is in what is standing next to it, and this is the clearest pair the library contains."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَيْرِ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "idafa-definiteness"
+      ],
+      "irab": "A na't of «mulabas», in jarr and a mudaf — and «ghayr» is one of the nouns that stay INDEFINITE however they are annexed, which is exactly why it may describe an indefinite. That is a rule the app's iḍāfa engine knows and most readers meet here for the first time."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "anwa-ma",
+       "idafa-definiteness"
+      ],
+      "irab": "A relative noun in the position of jarr as the mudaf ilayh — and the mudaf ilayh seat is closed to the particles. Whatever else this ma might be elsewhere, standing after «ghayr» it can only be a noun, and the app's ma engine settles it on exactly that ground."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "jumla-sifa"
+      ],
+      "irab": "The mubtada — and the clause is the sila of the relative."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "mubtada-khabar",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "A jarr and majrur attaching to an omitted khabar — MUSTAQARR. So this one sentence carries «lahu» twice: the first laghw, the second mustaqarr. Identical letters, identical order, opposite state — and nothing but the neighbouring word decides it."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِتَأَوُّلٍ",
+     "lex": "taawwul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "masdar",
+       "form-v-verbs"
+      ],
+      "irab": "The ba is a jarr letter and «an interpretation» is majrur — the Form V masdar of تَأَوَّلَ — the phrase attaching to «attributing», laghw. And this single restriction is what keeps the definition honest: a man who ascribes the growing to the SPRING and believes it has not made a figure, he has made a mistake. A majaz requires that the speaker know better, and that something in the situation shows he knows better."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَأَوُّل",
+      "root": "أ و ل",
+      "wazn": "تَفَعُّلٍ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:5:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 5,
+   "sentence": "s3",
+   "text": "عِيشَةٌ رَاضِيَةٌ رَضِيَ الرَّجُلُ عِيشَتَهُ سَيْلٌ مُفْعَمٌ أَفْعَمَ السَّيْلُ الْوَادِيَ",
+   "translation": {
+    "en": "«A pleased life» — the man was pleased with his life. «A filled torrent» — the torrent filled the valley.",
+    "tr": "«Râzı olan hayat» — adam hayatından râzı oldu. «Doldurulmuş sel» — sel vadiyi doldurdu."
+   },
+   "jumal": [
+    {
+     "text": "رَضِيَ الرَّجُلُ عِيشَتَهُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal sentence, with no position in i'rab."
+    },
+    {
+     "text": "أَفْعَمَ السَّيْلُ الْوَادِيَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "tokens": [
+    {
+     "w": "عِيشَةٌ",
+     "lex": "isha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada in raf' — and what licenses beginning with an indefinite is that it is DESCRIBED. An indefinite may not open a sentence bare, but an indefinite with a sifa may, and this two-word phrase is the standard example of the rule."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِيشَة",
+      "root": "ع ي ش",
+      "wazn": "فِعلَةٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رَاضِيَةٌ",
+     "lex": "radi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "naqis-verbs",
+       "majaz-aqli"
+      ],
+      "irab": "The khabar in raf' — the ism fa'il of the defective verb رَضِيَ, with the ta of the feminine. And the attribution is an INTELLECTUAL FIGURE: an active participle has been hung on the OBJECT. A life does not do any being-pleased; it is what somebody is pleased WITH. Every word here is literal — عِيشَة means a life and رَاضِيَة means pleased — and what has moved is the attribution alone. That is the whole difference between this majaz and the kind that moves a word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "رَضِيَ",
+     "lex": "radiya",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "naqis-verbs"
+      ],
+      "irab": "A mazi verb, mabni on the fatha — a defective verb whose lam is a ya. This is the sentence underneath the figure: same meaning, ordinary attribution, and four words instead of two."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَضِيَ",
+      "root": "ر ض ي",
+      "wazn": "فَعِلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الرَّجُلُ",
+     "lex": "rajul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il in raf' — and HE is the one really doing the being-pleased. Notice that he was absent from the figure altogether: «a pleased life» has nobody in it, and restoring him is what the literal sentence is for."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَجُل",
+      "root": "ر ج ل",
+      "wazn": "فَّعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عِيشَتَهُ",
+     "lex": "isha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The object in nasb, a mudaf with the ha annexed — and it is the very word that carried the description in the figure. The word that was the SUBJECT of the figure is the OBJECT of the truth; that swap is the mechanism."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "سَيْلٌ",
+     "lex": "sayl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada in raf' — a described indefinite, like the first one."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَيْل",
+      "root": "س ي ل",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُفْعَمٌ",
+     "lex": "mufam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-maful",
+       "form-iv-verbs",
+       "majaz-aqli"
+      ],
+      "irab": "The khabar in raf' — the ism maf'ul of أَفْعَمَ on مُفْعَل, and its ROOT IS ف ع م. Say the two aloud: the verb and the scale that measures it are spelled with the same three letters, which is the shortest proof available that a wazn is a MOULD and not a spelling. And the figure runs the OTHER WAY from the first: here a PASSIVE participle has been hung on the doer. A torrent does no being-filled; it fills. Two examples, one on each side of the boundary — that is why the books always give them as a pair."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُفْعَم",
+      "root": "ف ع م",
+      "wazn": "مُفْعَلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَفْعَمَ",
+     "lex": "afama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "maful-bihi",
+       "form-iv-verbs"
+      ],
+      "irab": "A mazi verb on أَفْعَلَ — and its scale and its letters coincide, because its root is ف ع م. The app's mizan engine still derives the scale from the root rather than reading it off the page, which is the only reason it does not report a coincidence as a discovery."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَفْعَمَ",
+      "root": "ف ع م",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السَّيْلُ",
+     "lex": "sayl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il in raf' — and it is the FILLER in reality, which is precisely the participle the figure refused to use."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَيْل",
+      "root": "س ي ل",
+      "wazn": "فَّعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْوَادِيَ",
+     "lex": "waadi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "The object in nasb, its sign the fatha WRITTEN on the ya — a manqus made definite by the article, so the ya stands. Three chapters have now shown this noun class in every state it has: خَالِي الذِّهْنِ in jarr with the kasra estimated, the same phrase in raf' with the damma estimated, and here the fatha alone, actually written. The rule is that a manqus writes only its fatha, and the library now demonstrates it rather than asserting it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ل و د",
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:5:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 5,
+   "sentence": "s4",
+   "text": "شِعْرٌ شَاعِرٌ نَهَارُهُ صَائِمٌ نَهْرٌ جَارٍ جَرَى مَاءُ النَّهْرِ",
+   "translation": {
+    "en": "«Poetry that composes.» «His daytime is fasting.» «A running river» — the river's water ran.",
+    "tr": "«Şiir söyleyen şiir.» «Gündüzü oruçludur.» «Akan nehir» — nehrin suyu aktı."
+   },
+   "jumal": [
+    {
+     "text": "جَرَى مَاءُ النَّهْرِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal sentence, with no position in i'rab."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 9,
+   "agree": 9,
+   "tokens": [
+    {
+     "w": "شِعْرٌ",
+     "lex": "shir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شِعْر",
+      "root": "ش ع ر",
+      "wazn": "فِعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "شَاعِرٌ",
+     "lex": "shair",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "majaz-aqli"
+      ],
+      "irab": "The khabar in raf' — an ism fa'il, and the attribution is to the MASDAR. Poetry does not compose; a man composes poetry. This is the third mulabis of the six, and notice that the figure is only two words long: the shorter it is, the more of the sentence the hearer has to supply."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَاعِر",
+      "root": "ش ع ر",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَهَارُهُ",
+     "lex": "nahar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "idafa-definiteness"
+      ],
+      "irab": "The mubtada in raf', a mudaf with the ha annexed to it. The pronoun is what makes it definite, and the sentence needs a definite mubtada because no sifa is coming to license an indefinite one."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ه ر ه",
+      "wazn": "فَاعَلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "صَائِمٌ",
+     "lex": "saim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "hollow-verbs",
+       "majaz-aqli"
+      ],
+      "irab": "The khabar in raf' — the ism fa'il of the HOLLOW verb صَامَ. Its origin is صَاوِمٌ: the middle radical fell after the alif of فَاعِل and turned into a HAMZA, which is the same step that gives قَائِل and بَائِع. And the attribution is to the TIME: a daytime does not fast, a man fasts during it. Fourth mulabis, and it is the one that most often passes unnoticed, because English says «a busy morning» without blinking."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَائِم",
+      "root": "ص و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَهْرٌ",
+     "lex": "nahr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada in raf' — a described indefinite."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَهْر",
+      "root": "ن ه ر",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "جَارٍ",
+     "lex": "jari",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "ism-maqsur-manqus",
+       "naqis-verbs",
+       "majaz-aqli"
+      ],
+      "irab": "The khabar in raf' by a damma estimated on a ya that IS NOT THERE — an indefinite manqus: the ya is deleted and the tanwin stands in its place. Set it beside الْوَادِيَ one sentence back and the class is complete: definite and in nasb, the ya and its fatha are both written; indefinite and in raf', the ya is gone and only a tanwin marks the spot. And the attribution is to the PLACE — a river does not run, its water runs in it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ج و/ي ر",
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "جَرَى",
+     "lex": "jara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "naqis-verbs"
+      ],
+      "irab": "A mazi verb, mabni on a fatha ESTIMATED on the alif because the alif cannot bear one — a defective verb whose lam is a ya. Its participle is the جَارٍ two words back: the reader has just seen the finished noun and now sees the verb it came from."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَرَى",
+      "root": "ج ر ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَاءُ",
+     "lex": "ma-water",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "idafa-definiteness"
+      ],
+      "irab": "The fa'il in raf' and a mudaf — and it is the thing that really runs."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَاء",
+      "root": "م و ه",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "النَّهْرِ",
+     "lex": "nahr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh in jarr — and the PLACE that was the subject of the figure has become a mudaf ilayh in the truth. In every one of these pairs the word that was raised in the figure is demoted in the literal sentence: that demotion is the figure, stated backwards."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَهْر",
+      "root": "ن ه ر",
+      "wazn": "فَّعْلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:5:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 5,
+   "sentence": "s5",
+   "text": "بَنَى الْأَمِيرُ الْمَدِينَةَ وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا يَوْمًا يَجْعَلُ الْوِلْدَانَ شِيبًا",
+   "translation": {
+    "en": "«The commander built the city.» «And the earth brought forth its burdens.» «A day that makes children grey-haired.»",
+    "tr": "«Emîr şehri binâ etti.» «Ve yer ağırlıklarını çıkardı.» «Çocukları ak saçlı kılan bir gün.»"
+   },
+   "jumal": [
+    {
+     "text": "بَنَى الْأَمِيرُ الْمَدِينَةَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal sentence, with no position in i'rab."
+    },
+    {
+     "text": "يَجْعَلُ الْوِلْدَانَ شِيبًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ نَصْبٍ نَعْتٌ لِـ«يَوْمًا».",
+     "en": "A verbal sentence in the position of nasb as the na't of «a day»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "tokens": [
+    {
+     "w": "بَنَى",
+     "lex": "bana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "maful-bihi",
+       "naqis-verbs"
+      ],
+      "irab": "A mazi verb, mabni on an estimated fatha — a defective verb whose lam is a ya. Second one in two sentences, and both write an alif where the ya belongs."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَنَى",
+      "root": "ب ن ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْأَمِيرُ",
+     "lex": "amir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "sifa-mushabbaha"
+      ],
+      "irab": "The fa'il in raf' — and attributing the building to HIM is an intellectual figure: the builders are the workmen, and he is the CAUSE, not the doer. This is the sixth and last mulabis, and it is the one that runs through ordinary speech unremarked in every language: «the government built a road». The figure is invisible precisely because it is so useful."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمِير",
+      "root": "أ م ر",
+      "wazn": "فَعِيلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمَدِينَةَ",
+     "lex": "madina",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi"
+      ],
+      "irab": "The object in nasb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَدِينَة",
+      "root": "م د ن",
+      "wazn": "فَعِيلَةَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَأَخْرَجَتِ",
+     "lex": "akhraja",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "maful-bihi",
+       "form-iv-verbs"
+      ],
+      "irab": "The waw as its context takes it, and «brought forth» is a mazi verb whose ta is the QUIESCENT ta of the feminine — vowelled with a kasra here only because the definite article's sukun follows it and two quiescents cannot meet. The kasra is not i'rab and not sarf; it is a repair, and the app's harakat auditor is built to tell the three apart."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَخْرَجَ",
+      "root": "خ ر ج",
+      "wazn": "أَفْعَلَتْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْأَرْضُ",
+     "lex": "ard",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "majaz-aqli"
+      ],
+      "irab": "The fa'il in raf' — and the attribution is to the PLACE, since the One who brings forth is Allah. The Qur'an is full of this figure, and naming it is not a hedge about the verse: it is the classical way of saying that the earth is where the bringing-forth happens, not the one who does it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَرْض",
+      "root": "أ ر ض",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَثْقَالَهَا",
+     "lex": "thiql",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The object in nasb, a mudaf with the ha annexed — a broken plural of ثِقْل on أَفْعَال."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يَوْمًا",
+     "lex": "yawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "jumla-sifa"
+      ],
+      "irab": "An adverbial object, a zarf of TIME in nasb — indefinite, and the clause after it stands in the position of nasb as its na't. A sentence describing an indefinite is a sifa; the same sentence after a definite would be a hal. One rule, and the tanwin decides which side of it you are on."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ي و م",
+      "wazn": "فَعْلًا",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يَجْعَلُ",
+     "lex": "jaala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mafulayn",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari' verb in raf', its fa'il concealed as «he» — and it is one of the verbs of MAKING-INTO, which take two objects. The fourth chapter in a row to hand the reader a doubly transitive verb, and the first to do it in the Qur'an."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَعَلَ",
+      "root": "ج ع ل",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْوِلْدَانَ",
+     "lex": "walid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mafulayn",
+       "maful-bihi"
+      ],
+      "irab": "The FIRST object in nasb — the plural of وَلِيد, a newborn."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَلِيد",
+      "root": "و ل د",
+      "wazn": "فِعْلَانَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "شِيبًا",
+     "lex": "shayb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mafulayn",
+       "maful-bihi"
+      ],
+      "irab": "The SECOND object in nasb — the plural of أَشْيَب, grey-haired. And the attribution is to the TIME, exactly as in «his daytime is fasting» two sentences back: a day is WHEN the greying happens, not what does it. The chapter ends by putting the plainest example of the doctrine and its Qur'anic parallel four lines apart, which is what a matn is for."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ش ي ب",
+      "wazn": "فِعلًا",
+      "sure": false
      },
      "match": true
     }

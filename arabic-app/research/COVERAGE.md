@@ -833,3 +833,78 @@ not a one-line change.
   Measured: **99.9% over 792 tokens** after the two fixes, the one remaining
   disagreement still being ch16's documented undecidable بِمَا. 176 smoke checks,
   sw at `qissa-v121`.
+
+### Talkhīṣ al-Miftāḥ, chapter 5 — الْحَقِيقَةُ الْعَقْلِيَّةُ وَالْمَجَازُ الْعَقْلِيُّ (5 sentences, 55 tokens)
+
+  The two most quoted lines of the first fann, and they are **twins in wording**:
+  إِسْنَادُ الْفِعْلِ أَوْ مَعْنَاهُ **إِلَى مَا هُوَ لَهُ** عِنْدَ الْمُتَكَلِّمِ فِي الظَّاهِرِ against
+  إِسْنَادُ الْفِعْلِ أَوْ مَعْنَاهُ **إِلَى مُلَابَسٍ لَهُ غَيْرِ مَا هُوَ لَهُ** بِتَأَوُّلٍ. Same masdar,
+  same object, same أَوْ مَعْنَاهُ; everything before إِلَى is identical and the whole
+  difference between truth and figure comes after it. Then the six mulābis, each
+  beside the plain sentence the commentary puts under it — عِيشَةٌ رَاضِيَةٌ /
+  رَضِيَ الرَّجُلُ عِيشَتَهُ (mafʿūl), سَيْلٌ مُفْعَمٌ / أَفْعَمَ السَّيْلُ الْوَادِيَ (fāʿil), شِعْرٌ
+  شَاعِرٌ (maṣdar), نَهَارُهُ صَائِمٌ (zamān), نَهْرٌ جَارٍ / جَرَى مَاءُ النَّهْرِ (makān),
+  بَنَى الْأَمِيرُ الْمَدِينَةَ (sabab), closing on two Qurʾānic parallels.
+
+  **No Arabic word in this chapter is composed.** The example sentences
+  juxtapose two of the source's own vowelled phrases with a dash between them —
+  the figure, then the sentence underneath it — rather than inventing a
+  connective to join them. One divergence is recorded in the manifest instead of
+  being hidden: the supplied commentary vowels the key word مُلَابَسٍ (ism mafʿūl)
+  and repeats that vowelling in its own question about the term, while printed
+  editions commonly write مُلَابِسٍ (ism fāʿil). The paradigm now shipped for
+  لَابَسَ carries **both cells**, one line apart.
+
+  - **Registry note 101, `majaz-aqli`** (balāgha) — the twin definitions side by
+    side, the table of six mulābis with their literal sentences, what a mulābis
+    is NOT (a ḥāl, a tamyīz, a mustathnā), and why بِتَأَوُّلٍ is the honest half
+    of the definition: a man who ascribes the growing to the spring and BELIEVES
+    it has not made a figure, he has made a mistake.
+  - **Registry note 102, `zarf-mustaqarr-wa-laghw`** (nahw) — closes the NOTE
+    half of backlog item 8. The distinction is not a label but a consequence:
+    only a mustaqarr can be a khabar, a ṣifa, a ḥāl or a ṣila, because only an
+    estimated ʿāmil carries a concealed doer.
+
+  **The engine now names the two states, and it derives them rather than storing
+  them.** `TaalluqEngine` already answered «written ʿāmil» or «omitted ʿāmil»;
+  those two branches WERE laghw and mustaqarr and simply had no names. Two
+  further fixes were needed before the naming was true:
+
+  - **الصِّلَةُ سُورٌ.** The walk-back for a governor sailed straight through a
+    mawṣūl, so the لَهُ inside a ṣila was hung on the masdar that opened the
+    sentence. The walk now stops at a relative.
+  - **A noun that is muḍāf by its meaning governs nothing.** The learned tagger
+    read a verbal wazn off غَيْرِ and swallowed a jarr phrase belonging to an
+    estimated ʿāmil three words on. `MaEngine.ALWAYS_MUDAF` is now consulted by
+    the taʿalluq engine too — one list, two engines, no chance of disagreement.
+
+  With both in place the definition of the majāz reads exactly as the human
+  analysis does: **لَهُ twice in one sentence, the first laghw and the second
+  mustaqarr**, three words apart, decided entirely by the neighbour.
+
+  **Two more findings, again raised by the drill bank's 0.3% drop:**
+
+  - **وَأَخْرَجَتِ الْأَرْضُ was read as a NOUN.** The corpus-cell guard added in
+    chapter 14 says a final kasra is a jarr sign and no verb is majrūr — but the
+    kasra on أَخْرَجَتِ is neither iʿrāb nor ṣarf, it is the iltiqāʾ-as-sākinayn
+    repair. The guard had exempted the imperative only by accident (its tense is
+    neither mazi nor muḍāriʿ). `findFormInParadigm` now returns the matched
+    cell's written form, and a cell **built on a sukūn** is exempt outright:
+    a cell that ends in a sukūn has no iʿrāb slot at its end at all.
+  - **مَا الْمَصْدَرِيَّة was offered over a NOMINAL ṣila.** صِلَةُ «مَا» الْمَصْدَرِيَّةِ
+    جُمْلَةٌ فِعْلِيَّةٌ — with no verb there is nothing to turn into a maṣdar. The
+    first attempt asked «does a verb follow?» and broke عَجِبْتُ مِمَّا صَنَعْتَ,
+    because the oracle has never seen صَنَعَ. The test now asks the question the
+    surface can always answer — «is what follows something that CANNOT open a
+    verbal clause?» — which is true of a pronoun, a demonstrative, a relative or
+    a word wearing the article, and false of a negation, so بِمَا لَا يَعْلَمُ keeps
+    its ambiguity.
+
+  Measured: **99.9% over 847 tokens**, the one remaining disagreement still
+  ch16's documented undecidable بِمَا. 177 smoke checks, sw at `qissa-v122`.
+
+  **The manqūṣ is now complete in real text, across three chapters:**
+  خَالِي الذِّهْنِ in jarr (kasra estimated, yāʾ standing because annexed), the same
+  phrase in rafʿ (ḍamma estimated), الْوَادِيَ in naṣb (**fatḥa written** on the
+  yāʾ), and جَارٍ indefinite (yāʾ **deleted**, tanwīn in its place). Four states,
+  no invented examples, and the smoke suite asserts the last two by name.
