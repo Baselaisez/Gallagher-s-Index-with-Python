@@ -105,6 +105,12 @@ BABS = {
     "daraba": ("مِنْ بَابِ ضَرَبَ يَضْرِبُ", "فَعَلَ يَفْعِلُ"),
     "fataha": ("مِنْ بَابِ فَتَحَ يَفْتَحُ", "فَعَلَ يَفْعَلُ"),
     "samia":  ("مِنْ بَابِ سَمِعَ يَسْمَعُ", "فَعِلَ يَفْعَلُ"),
+    # The FIFTH bab of the mujarrad. The reader's SJ_BAB1_OF_MODEL has known it
+    # by its model word since the audit was written; the generator did not, so a
+    # verb of this bab could not be authored through sound1() at all.
+    # Its ism fa'il is regularly a SIFA MUSHABBAHA (حَسَن، كَرِيم) rather than
+    # فَاعِل, so pass the shape you mean rather than letting the caller assume.
+    "karuma": ("مِنْ بَابِ حَسُنَ يَحْسُنُ", "فَعُلَ يَفْعُلُ"),
 }
 
 def sound1(bab, v, core, amr_stem, masdar, fail, maful=None, pmz=None, pmd=None, note=None, cls=""):

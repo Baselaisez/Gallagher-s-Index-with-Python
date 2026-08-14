@@ -2196,3 +2196,63 @@ The general form, and it is why a `sure` flag exists at all: **a wrong answer
 delivered with confidence costs more than a shortlist.** When a table lookup
 misses, the fall-through path should be the one that says "I don't know" — here
 it was the open-class path, which says "noun" and means it.
+
+## Two gates, and the quiet one is not the useless one
+
+Talkhīṣ chapter 3 produced **zero** new part-of-speech disagreements on arrival —
+the worked-sentence bank, which has found something in every chapter since it
+shipped, found nothing. The finding came from the **paradigm audit** instead:
+`حَسُنَ`'s lām is a nūn, so it meets the feminine plural's own nūn and contracts
+(حَسُنَّ), and `sarf_gen` wrote the fakk.
+
+Two gates that measure different things will take turns being the one that
+earns its keep. **Do not retire the quiet one** — on this turn the bank was the
+quiet one, and on the previous three it was the only thing finding anything.
+
+## The generator was missing the fifth bāb of the mujarrad
+
+`sarf_gen.BABS` held naṣara, ḍaraba, fataḥa and samiʿa. The reader's
+`SJ_BAB1_OF_MODEL` has known حَسُنَ (فَعُلَ يَفْعُلُ) by its model word since the
+audit was written — so the app could *recognise* a verb of that bāb and the
+authoring tool could not *build* one. Nobody noticed for a hundred versions
+because no chapter had needed one.
+
+**Two halves of one system can disagree about what exists, and the disagreement
+is silent until content demands the missing half.** When adding to either table,
+check the other.
+
+Its ism fāʿil is regularly the ṣifa mushabbaha (حَسَن، كَرِيم), not فَاعِل — the
+paradigm stores the mechanical حَاسِن because that is what the conjugator derives
+and the audit compares, and the entry's own note says which is which.
+
+## Choose the examples so the question completes
+
+Three verbs, three chapters, two books, one question — which vowel, on which
+letter, written or estimated:
+
+| | verb | vowel | letter | manner |
+|---|---|---|---|---|
+| Manār 15 | يَجْرِي | damma | yāʾ | **estimated** (too heavy) |
+| Manār 16 | يُفْتِيَ | fatḥa | yāʾ | **written** (light enough) |
+| Talkhīṣ 3 | يُلْقَى | fatḥa | alif | **estimated** (carries nothing) |
+
+None of these was chosen for its meaning. The smoke suite asserts all three in
+one check, reaching across two packages — which is the point: **a teaching
+sequence that spans stories has to be gated across stories, or the next author
+breaks it without seeing it.**
+
+## Never assert a RUNNING TOTAL — assert a floor
+
+Written up one turn ago after chapter 16 broke chapter 15's gate, and then
+repeated in the same session: the Talkhīṣ ch1/ch2 check asserted
+`chapters !== 2`, so chapter 3 broke it on arrival.
+
+A chapter check is about **the chapter it names**, never about how many exist.
+`if (r.chapters < N)` is right in every case; `!== N` is a claim that the book
+has stopped growing, which is false for every book in this library. Twelve
+chapter assertions in the suite are floors and that is now uniform.
+
+The reason this keeps happening is worth naming: **when you write a gate for
+new content, the current total is sitting right there in front of you and is the
+easiest number to type.** It is also the only number that is guaranteed to be
+wrong later.

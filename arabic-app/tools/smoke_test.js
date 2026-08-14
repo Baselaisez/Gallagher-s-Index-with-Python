@@ -5717,7 +5717,7 @@ if (!CHROME) {
     });
     if (r.missing) throw new Error('the Talkhis package did not load');
     if (r.level !== 6 || r.access !== 'premium') throw new Error('level/access: ' + r.level + '/' + r.access);
-    if (r.chapters !== 2) throw new Error('chapters: ' + r.chapters);
+    if (r.chapters < 2) throw new Error('the Talkhis lost a chapter: ' + r.chapters);
     if (r.tokens < 80) throw new Error('tokens: ' + r.tokens);
     if (r.games < 9) throw new Error('a new story must arrive playable: ' + r.games);
     if (!r.note1 || !r.note2) throw new Error('the two new notes are missing or untranslated');
@@ -5765,6 +5765,73 @@ if (!CHROME) {
     if (!/تَحْقِيقُ الْآلَة/.test(r.html)) throw new Error('the tahqiq panel did not render');
     if (!/tq-conf/.test(r.html)) throw new Error('every engine reading must carry its confidence badge');
     if (!/generated\.json|generated/.test(r.html)) throw new Error('the panel must say where these rows are kept');
+  });
+
+  // ---- Talkhis chapter 3: the three kinds of report ------------------------
+  await check('talkhis ch3: adrub al-khabar, the two-object passive, and the fifth bab', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 3);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const mn = STORIES.find(s => s.id === 'mukhtasar-al-manar');
+      const irab = (story, c, sid, w) => {
+        const t = story.chapters.find(x => x.n === c).sentences.find(x => x.id === sid)
+                    .tokens.find(x => stripAr(x.s.full) === stripAr(w));
+        return t ? t.irab.ar : '<absent>';
+      };
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // a verb of TWO objects, built for the unnamed doer, four times over
+        second: ['s1', 's2', 's3', 's4'].map(id => {
+          const t = sen(id).tokens.find(x => (x.grammar || []).includes('mafulayn') &&
+                                             (x.grammar || []).includes('maful-bihi'));
+          return t ? { w: stripAr(t.s.full), ar: t.irab.ar } : null;
+        }),
+        note: !!GRAMMAR['mafulayn'] && !!GRAMMAR['mafulayn'].title.tr,
+        // s4 puts the SAME masdar in both offices of that verb, four words apart
+        naib: tk('s4', 'إخراج').irab.ar,
+        maful: tk('s4', 'إخراجا').irab.ar,
+        // the three verbs that complete the vowel/letter/manner question
+        yulqa: irab(st, 3, 's1', 'يلقى'),
+        yufti: irab(mn, 16, 's3', 'يفتي'),
+        yajri: irab(mn, 15, 's1', 'يجري'),
+        // the FIFTH bab of the mujarrad, which the generator could not build
+        hasunaBab: st.morph.hasuna.bab,
+        hasunaWazn: st.morph.hasuna.wazn,
+        hasunaFem: st.morph.hasuna.mazi[5],
+        audit: (() => { const a = sarfAudit(); return { checked: a.checked, bad: a.bad.slice(0, 2) }; })(),
+      };
+    });
+    if (r.missing) throw new Error('chapter 3 did not load');
+    if (r.chapters < 3) throw new Error('chapter 3 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch3 sentences: ' + r.n);
+    if (!r.note) throw new Error('the mafulayn note is missing or untranslated');
+    // every one of the four names kept its FATHA: only one object can be the deputy
+    r.second.forEach((x, i) => {
+      if (!x) throw new Error('sentence ' + (i + 1) + ' has no second object tagged');
+      if (!/مَنْصُوب/.test(x.ar))
+        throw new Error(x.w + ' must stay MANSUB after the passive: ' + x.ar);
+    });
+    if (!/نَائِبُ الْفَاعِلِ/.test(r.naib)) throw new Error('s4 إخراج is the deputy: ' + r.naib);
+    if (!/مَنْصُوب/.test(r.maful)) throw new Error('s4 إخراجا stays mansub: ' + r.maful);
+    // one letter, three states — estimated damma, written fatha, estimated fatha
+    if (!/مُقَدَّرَة/.test(r.yajri) || !/الْيَاء/.test(r.yajri))
+      throw new Error('يجري: damma ESTIMATED on a ya — ' + r.yajri);
+    if (!/الظَّاهِرَة/.test(r.yufti) || !/الْيَاء/.test(r.yufti))
+      throw new Error('يفتي: fatha WRITTEN on a ya — ' + r.yufti);
+    if (!/مُقَدَّرَة/.test(r.yulqa) || !/الْأَلِف/.test(r.yulqa))
+      throw new Error('يلقى: fatha ESTIMATED on an alif — ' + r.yulqa);
+    // the fifth bab, and its nun-final idgham
+    if (!/حَسُنَ/.test(r.hasunaBab)) throw new Error('the fifth bab: ' + r.hasunaBab);
+    if (!/فَعُلَ يَفْعُلُ/.test(r.hasunaWazn)) throw new Error('its wazn: ' + r.hasunaWazn);
+    if (r.hasunaFem !== 'حَسُنَّ')
+      throw new Error('a nun-final lam meets the feminine nun and contracts: ' + r.hasunaFem);
+    // and the whole bank still regenerates
+    if (r.audit.bad.length) throw new Error('sarf audit: ' + JSON.stringify(r.audit.bad));
+    if (r.audit.checked < 270) throw new Error('the audit shrank: ' + r.audit.checked);
   });
 
   await check('no JS errors on page', async () => {

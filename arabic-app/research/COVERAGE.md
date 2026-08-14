@@ -738,3 +738,50 @@ not a one-line change.
   never used once. The hamza's vowel decides, exactly as it does for مِنْ / مَنْ,
   and the unvowelled spelling is now reported as genuinely undecided with both
   readings named. **99.6% → 99.9%**, 693 tokens over 85 worked sentences.
+
+- **v120 — Talkhīṣ chapter 3: أَضْرُبُ الْخَبَر**, the passage ʿilm al-maʿānī is
+  famous for. Three chapters, 135 tokens. The SAME ruling said three ways, and
+  what decides between them is neither the speaker nor the fact but **what the
+  hearer already believes**: empty-minded, he is told plainly (ibtidāʾī);
+  hesitating AND asking, the sentence is strengthened once (ṭalabī); denying, it
+  is strengthened as hard as he denies (inkārī). Then the name for all three
+  together — مُقْتَضَى الظَّاهِر — and the note that speech is sometimes put out
+  against it, which is the door to the rest of the book.
+
+  **The matn's grammar carries the doctrine.** حَسُنَ تَقْوِيَتُهُ بِمُؤَكِّدٍ against
+  وَجَبَ تَوْكِيدُهُ بِحَسَبِ الْإِنْكَارِ: a verb of RECOMMENDATION with an indefinite
+  naming ONE instrument, against a verb of OBLIGATION with a PROPORTION that has
+  no ceiling. Two sentences in the same frame, and every difference between them
+  is a word class. The reader who skims the verb has missed the chapter.
+
+  Grammar, and the chapter was laid out for it:
+
+  - **Registry note 99, `mafulayn`** — a verb of two objects built for the
+    unnamed doer surrenders only ONE of them: the other keeps its fatḥa exactly
+    where it was. يُسَمَّى … ابْتِدَائِيًّا happens four times in five sentences, and
+    s4 puts the SAME masdar in both offices four words apart — إِخْرَاجُ الْكَلَامِ
+    as the nāʾib and إِخْرَاجًا as the surviving manṣūb. One word, one clause, two
+    cases; there is no clearer demonstration available.
+  - **The vowel/letter/manner question is now complete in three verbs across two
+    books.** Manār ch15's يَجْرِي: damma ESTIMATED on a yāʾ (too heavy). Manār
+    ch16's يُفْتِيَ: fatḥa WRITTEN on a yāʾ (light enough). Talkhīṣ ch3's يُلْقَى:
+    fatḥa ESTIMATED on an ALIF, which carries nothing at all. The smoke suite
+    asserts all three by name, in one check, reaching across both packages.
+  - **خَالِي الذِّهْنِ** runs chapter 1's two notes at once: a manqūṣ whose yāʾ
+    stands because it is annexed, and an iḍāfa lafẓiyya that makes nothing
+    definite.
+
+  **The generator was missing the fifth bāb of the mujarrad.** `sarf_gen.BABS`
+  had naṣara, ḍaraba, fataḥa and samiʿa; the reader's `SJ_BAB1_OF_MODEL` has
+  known حَسُنَ by its model word since the audit was written, so a verb of
+  فَعُلَ يَفْعُلُ could not be authored through `sound1()` at all. Adding it took
+  four lines — and the audit immediately found the second half: **حَسُنَ's lām is
+  a NŪN**, so it meets the feminine plural's own nūn and contracts (حَسُنَّ), and
+  the generator wrote the fakk. `_sg.idgham` exists for exactly that and the
+  paradigm now goes through it. **273 paradigms regenerate clean.**
+
+  Measured: the chapter's 49 tokens produced **zero** new part-of-speech
+  disagreements — 99.9% over 742 tokens, the one remaining being ch16's
+  documented undecidable بِمَا. Worth saying plainly rather than claiming a win:
+  the worked-sentence section found nothing here. **The finding came from the
+  OTHER gate** — the paradigm audit — which is why the release runs both.
