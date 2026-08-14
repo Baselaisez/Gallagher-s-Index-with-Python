@@ -2412,3 +2412,28 @@ The registry is now large enough that this is worth doing deliberately: when a
 new disagreement appears, check whether a note already states the rule that
 kills it. The notes were written to teach a reader; several of them are also
 decision procedures, and those are the cheapest engine improvements available.
+
+## Lower a floor only with the measurement in hand
+
+The held-out two-guess score slipped to 67.9% against a floor of 68 and blocked
+the release. Two ways to respond, and only one of them is honest: lower the
+number, or find out why it moved.
+
+It moved because the CORPUS moved — chapters 7 and 8 added ~90 labelled tokens
+and reshaped the seventeen folds. That was established by **A/B on the same
+page**: a copy of reader.html with the turn's engine change (eight demonstratives
+added to PARTICLES) removed scores 51.0 / 67.9 too, identical to a tenth. So the
+change was neutral and the data was the whole of the difference.
+
+The floor is re-pinned at 67 **and the A/B is written into the check**, next to
+the number, where the next person to hit it will read it. A floor lowered without
+a measurement is not a floor; it is a note saying the gate has been turned off.
+
+## The hamza SEAT, for the fourth time
+
+`stripAr` keeps the seat, so «أَهَذَا» bares to أهذا and never matches a key
+written with a plain alif. This file has warned about it since `IrabSign`; it has
+now cost a smoke check, an analyzer branch and two probe scripts. **Fold the
+seats for MATCHING and never for display** — and when writing a test that looks
+a word up by its bare form, fold them there too, because the test is doing the
+same matching the engine does.

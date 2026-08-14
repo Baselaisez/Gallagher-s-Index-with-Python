@@ -1022,3 +1022,55 @@ not a one-line change.
 
   Measured: **99.9% over 925 tokens**, the one remaining disagreement still
   ch16's documented undecidable بِمَا. 179 smoke checks, sw at `qissa-v124`.
+
+### Talkhīṣ al-Miftāḥ, chapter 8 — تَعْرِيفُ الْمُسْنَدِ إِلَيْهِ (5 sentences, 47 tokens)
+
+  Chapter 7 asked WHETHER to say the subject; chapter 8 asks HOW. A definite
+  musnad ilayh can be made definite six ways and the choice is never neutral;
+  the Talkhīṣ works two of them right through, and the reasons are the least
+  mechanical thing in the fann because several are about the HEARER:
+
+  - **the relative** — when the ṣila is all the hearer knows (الَّذِي كَانَ مَعَنَا
+    أَمْسِ); when the name would be **ugly to say** (الَّذِي يَخْرُجُ مِنَ الْإِنْسَانِ
+    نَاقِضٌ لِلْوُضُوءِ — a fiqh book needing a definite subject and a clean page at
+    once); for **magnification**, where any noun would be smaller than the thing
+    (فَغَشِيَهُمْ مِنَ الْيَمِّ مَا غَشِيَهُمْ — refusing to name IS the figure); and to
+    announce **what kind of report is coming** (الَّذِينَ كَذَّبُوا شُعَيْبًا … before
+    the recompense arrives).
+  - **the demonstrative** — and its one non-obvious claim: **distance is rank**.
+    أَهَذَا الَّذِي يَذْكُرُ آلِهَتَكُمْ despises by pointing near; ذَلِكَ الْكِتَابُ honours
+    by pointing far. One letter of distance apart, and the attitude reversed.
+
+  - **Registry note 107, `tarif-al-musnad-ilayh`** (balāgha) — the six doors and
+    the two the book walks through.
+  - **Registry note 108, `asma-al-ishara`** (nahw) — the demonstratives had been
+    taught NOWHERE. Near/middle/far, the hāʾ of attention, the kāf of address and
+    the lām of distance, that every one is mabnī except the dual, and the
+    article's effect (هَذَا الرَّجُلُ is a phrase, هَذَا رَجُلٌ is a sentence).
+
+  **Engine work, all of it derived from what is already on the page:**
+
+  - **The interrogative hamza is a proclitic and was never peeled.** أَهَذَا
+    reached no closed-class branch at all. It is peeled under exactly the guard
+    the wāw and fāʾ use — only when what remains is a word the table knows — so
+    أَكْرَمَ keeps its Form IV hamza and أَنْتَ keeps its own.
+  - **A demonstrative's distance is written on it, and the app was not saying
+    so.** `isharaLbl` reads the grade off the letters — no lām and no kāf is
+    near, a kāf alone is middle, the lām of distance is far — and says the word
+    is MABNĪ, standing in the position of a case and never writing one.
+  - **The closed-class table held four demonstratives and the library uses
+    nine.** ذَاكَ and أُولَئِكَ were reaching the open-class path and getting their
+    class right only because the noun lexicon happened to carry them.
+
+  **And a floor was lowered — with the measurement that justifies it.** The
+  held-out two-guess score moved 68.x → **67.9%** as chapters 7 and 8 added ~90
+  labels and reshaped the seventeen folds. That this was the DATA and not the
+  engine was established by A/B rather than assumed: the same page with the
+  eight new demonstratives removed from PARTICLES scores **51.0 / 67.9**,
+  identical to a tenth. The floor is re-pinned at 67 and the A/B is recorded in
+  the check itself.
+
+  Measured: **99.9% over 972 tokens** — chapter 8 produced **no** new
+  part-of-speech disagreements, so the worked-sentence bank was the quiet gate
+  this time and the sarf audit (292 paradigms, clean) was the other one.
+  180 smoke checks, sw at `qissa-v125`.

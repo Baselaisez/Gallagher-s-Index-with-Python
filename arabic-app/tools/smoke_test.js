@@ -3923,7 +3923,14 @@ if (!CHROME) {
     // raised when the GOVERNOR features landed: what precedes a word decides
     // what it can be, and teaching the model that was worth a point on each.
     if (a.cv1 < 50) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
-    if (a.cv2 < 68) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
+    // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
+    // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
+    // the engine was established by A/B, not assumed: the same page with the
+    // eight new demonstratives removed from PARTICLES scores 51.0 / 67.9 as
+    // well — identical to a tenth. Lower a floor only with a measurement in
+    // hand and the measurement written down.
+    if (a.cv2 < 67) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
@@ -6143,6 +6150,96 @@ if (!CHROME) {
       if (!/بِالْكَسْرَةِ/.test(t) && !/كَسْرَة/.test(t))
         throw new Error('and the article restores their kasra: ' + t);
     });
+  });
+
+  await check('talkhis ch8: the relative, the three distances, and the plural in both cases', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 8);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const notes = t => {
+        const rows = SentenceAnalyzer.analyze(t);
+        // stripAr keeps the hamza SEAT, so «أَهَذَا» bares to أهذا and never
+        // matches a plain-alif key. Fold the seats for MATCHING only.
+        const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+        return rows.map(x => ({ w: key(x.w), kind: x.kind,
+                                seg: x.seg.join('+'), n: x.notes.map(y => y.en).join(' ') }));
+      };
+      const three = notes('هَذَا زَيْدٌ ذَاكَ زَيْدٌ ذَلِكَ زَيْدٌ');
+      const ah = notes('أَهَذَا الَّذِي يَذْكُرُ');
+      // chapter 7's plural in raf', chapter 8's in nasb — same class, one apart
+      const ch7 = st.chapters.find(c => c.n === 7);
+      const muflih = ch7.sentences.flatMap(s => s.tokens)
+        .find(t => stripAr(t.s.full) === stripAr('المفلحون'));
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // four relatives, four different shapes of sila
+        mawsul: ch.sentences.flatMap(s => s.tokens)
+          .filter(t => (t.grammar || []).includes('ism-mawsul')).length,
+        // every one tagged with the new balagha note names its REASON
+        reasons: ch.sentences.flatMap(s => s.tokens)
+          .filter(t => (t.grammar || []).includes('tarif-al-musnad-ilayh'))
+          .map(t => t.irab.ar),
+        // the three distances, read off the letters by the engine
+        near: (three.find(x => x.w === 'هذا') || {}).n,
+        mid: (three.find(x => x.w === 'ذاك') || {}).n,
+        far: (three.find(x => x.w === 'ذلك') || {}).n,
+        // the interrogative hamza is a proclitic and is now peeled
+        ahSeg: (ah.find(x => x.w === 'اهذا') || {}).seg,
+        ahKind: (ah.find(x => x.w === 'اهذا') || {}).kind,
+        // …and the guard holds: أَكْرَمَ keeps its own hamza
+        akram: (notes('أَكْرَمَ زَيْدٌ')[0] || {}).seg,
+        // the sound masculine plural in both cases, one chapter apart
+        khasir: tk('s3', 'الخاسرين').irab.ar,
+        muflih: muflih ? muflih.irab.ar : null,
+        // أَمْسِ, mabni on the kasra
+        ams: tk('s1', 'أمس').irab.ar,
+        // the madda, and the harakat auditor must pass it
+        madda: HarakeAuditor.check ? HarakeAuditor.check('آلِهَتَكُمْ') : null,
+        noteT: !!GRAMMAR['tarif-al-musnad-ilayh'] && GRAMMAR['tarif-al-musnad-ilayh'].group,
+        noteI: !!GRAMMAR['asma-al-ishara'] && GRAMMAR['asma-al-ishara'].group,
+        noteItr: !!(GRAMMAR['asma-al-ishara'] || {}).title.tr,
+        audit: (() => { const a = sarfAudit(); return { checked: a.checked, bad: a.bad.slice(0, 2) }; })(),
+      };
+    });
+    if (r.missing) throw new Error('chapter 8 did not load');
+    if (r.chapters < 8) throw new Error('chapter 8 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch8 sentences: ' + r.n);
+    if (r.noteT !== 'balagha') throw new Error('the tarif note: ' + r.noteT);
+    if (r.noteI !== 'nahw' || !r.noteItr) throw new Error('the ishara note: ' + r.noteI);
+    if (r.mawsul < 6) throw new Error('too few relatives tagged: ' + r.mawsul);
+    // a definite subject must say WHY it was made definite that way
+    if (r.reasons.length < 6) throw new Error('too few tarif tokens: ' + r.reasons.length);
+    r.reasons.forEach(t => {
+      if (!/وَعُرِّفَ بِهِ|وَالْإِشَارَةُ|الْإِشَارَةُ هُنَا/.test(t))
+        throw new Error('a definiteness choice must state its reason: ' + t);
+    });
+    // and the four the chapter turns on are all present, by name
+    const all = r.reasons.join(' ');
+    for (const [k, needle] of Object.entries({
+      ugliness: 'اسْتِقْبَاحًا', magnification: 'لِلتَّفْخِيمِ',
+      kindOfReport: 'وَجْهِ بِنَاءِ الْخَبَرِ', contempt: 'لِلتَّحْقِيرِ', honour: 'لِلتَّعْظِيمِ' }))
+      if (!all.includes(needle)) throw new Error('the chapter must name ' + k + ': ' + needle);
+    // three distances, derived from the letters and not stored
+    if (!/pointing NEAR/.test(r.near || '')) throw new Error('هَذَا points near: ' + r.near);
+    if (!/MIDDLE distance/.test(r.mid || '')) throw new Error('ذَاكَ points at a middle distance: ' + r.mid);
+    if (!/pointing FAR/.test(r.far || '')) throw new Error('ذَلِكَ points far: ' + r.far);
+    if (!/MABNI/.test(r.near || '')) throw new Error('and every one of them is mabni: ' + r.near);
+    // the interrogative hamza peels like the waw, under the same guard
+    if (r.ahSeg !== 'أ+هذا') throw new Error('أَهَذَا is a hamza and a demonstrative: ' + r.ahSeg);
+    if (r.ahKind !== 'noun') throw new Error('and what remains is an ism: ' + r.ahKind);
+    if (r.akram === 'أ+كرم') throw new Error('أَكْرَمَ keeps its own Form IV hamza');
+    // one plural, two cases, two chapters
+    if (!/الْيَاءُ/.test(r.khasir) || !/مَنْصُوبٌ/.test(r.khasir))
+      throw new Error('الخاسرين: nasb by the ya — ' + r.khasir);
+    if (!r.muflih || !/الْوَاوُ/.test(r.muflih) || !/مَرْفُوعٌ/.test(r.muflih))
+      throw new Error("ch7's المفلحون: raf' by the waw — " + r.muflih);
+    if (!/مَبْنِيٌّ عَلَى الْكَسْرِ/.test(r.ams)) throw new Error('أَمْسِ is mabni on the kasra: ' + r.ams);
+    if (r.audit.bad.length) throw new Error('sarf audit: ' + JSON.stringify(r.audit.bad));
+    if (r.audit.checked < 285) throw new Error('the audit shrank: ' + r.audit.checked);
   });
 
   await check('no JS errors on page', async () => {
