@@ -2330,3 +2330,48 @@ search («a particle wall ends the search»), and was not generalised.
 
 Any search that walks backwards through a sentence needs to know which words are
 walls. Write them down as you meet them.
+
+## New corpus data can make an old sentence genuinely ambiguous
+
+Chapter 6 shipped the paradigm for زَادَ, and a smoke check that had passed for a
+hundred versions began to fail: `قال زيد ان الله قادر` no longer found its qawl
+verb, because **زيد is now a real passive cell** (زِيدَ) as well as a name, and
+the sentence is unvowelled. The walk back to the verb stopped at what it took for
+one.
+
+Nothing was broken. The corpus got bigger and an accident stopped holding. The
+fix is to vowel the fixture — زَيْدٌ with its tanwīn, which no verb wears — not to
+weaken the lookup. **A test written on undiacritised Arabic is betting that no
+future verb will ever share those letters**, and this library adds verbs every
+chapter.
+
+## The guard that reads a final vowel needs two more guards
+
+«A mabnī cell's ending cannot move» is right, and it took three tries to state:
+
+1. **Compare the CELL, not the written word.** A clitic pronoun brings its own
+   vowel — رَوَاهُ ends in a ḍamma and رَوَى in nothing — and the match was made on
+   the peeled candidate. Compare skeletons first and stand down where they differ,
+   or every verb wearing an object pronoun is read as a noun.
+2. **Missing evidence is not contrary evidence.** Undiacritised «قال» carries no
+   final vowel at all, and the loose pass exists precisely for that input. Both
+   sides must actually bear a vowel before their difference means anything.
+
+Both are already written in this file, one for the ṣarf test and one for the
+candidate builder. **A new rule in an old neighbourhood inherits the old
+neighbourhood's traps** — read the entries around the code you are editing before
+adding a comparison of your own.
+
+## Rank on the evidence the DOCTRINE names, and emit in the old place
+
+مَا الشَّرْطِيَّة was outranking the negation whenever any verb stood later in the
+line. The doctrinal separator is JAZM — it is one of the jawāzim — so the fix was
+to demand a muḍāriʿ showing jazm or a fāʾ on the jawāb.
+
+The second half is a ranking discipline worth stating on its own: the weak reading
+is emitted AFTER the negation, and the strong one is emitted **where the rule
+always stood**, not unshifted to the head. Unshifting looked equivalent and was
+not: rules that had already promoted a reading — the ʿāid, the seat, the
+definitional frame — lost the head of their own shortlist to a shape that is
+merely common. **Promote by position in the rule order, not by a flag**, unless
+the rule really is the strongest evidence available.

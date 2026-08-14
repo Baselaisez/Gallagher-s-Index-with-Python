@@ -908,3 +908,61 @@ not a one-line change.
   phrase in rafʿ (ḍamma estimated), الْوَادِيَ in naṣb (**fatḥa written** on the
   yāʾ), and جَارٍ indefinite (yāʾ **deleted**, tanwīn in its place). Four states,
   no invented examples, and the smoke suite asserts the last two by name.
+
+### Talkhīṣ al-Miftāḥ, chapter 6 — الْقَرِينَةُ فِي الْمَجَازِ الْعَقْلِيِّ (5 sentences, 35 tokens)
+
+  Chapter 5's definition ended on بِتَأَوُّلٍ; this chapter is that word unpacked.
+  A majāz is not made by what the speaker privately meant — something must SHOW
+  that the literal reading is barred, and without it the sentence is not a figure
+  but an error. The commentary sorts the qarīna the way the whole fann sorts
+  everything, by what is on the page: **lafẓiyya**, where a word elsewhere in the
+  speech gives it away (Abū al-Najm hangs the greying on «the pull of the nights»
+  and the next line names Allah's word to the sun), and **maʿnawiyya**, where
+  nothing is written and the ascription is simply impossible — **ʿaqlan**
+  (مَحَبَّتُكَ جَاءَتْ بِي إِلَيْكَ: a love carries nobody) or merely **ʿādatan**
+  (هَزَمَ الْأَمِيرُ الْجُنْدَ: a mind can picture it; it does not happen). Then the
+  gradient: knowing the truth behind a figure is **ẓāhir** when the verb is rarely
+  hung on a figurative doer (فَمَا رَبِحَتْ تِجَارَتُهُمْ) and **khafī** when it is hung
+  there so often the ear has stopped noticing (سَرَّتْنِي رُؤْيَتُكَ, and Abū Nuwās's
+  يَزِيدُكَ وَجْهُهُ حُسْنًا). The chapter opens on يَا هَامَانُ ابْنِ لِي صَرْحًا, which
+  also settles that a figure can live inside an INSHĀʾ.
+
+  - **Registry note 103, `ya-al-mutakallim`** (nahw) — the speaker's yāʾ and the
+    nūn of protection, which are one topic: the yāʾ demands a kasra in front of
+    it, so a noun's whole iʿrāb goes taqdīrī and a verb needs a nūn interposed to
+    take the blow. أَكْرِمِي against أَكْرِمْنِي is the clearest case of what the
+    nūn protects.
+  - **Registry note 104, `qarinat-al-majaz`** (balāgha) — the two kinds, the two
+    grades of impossibility, the speaker's own belief as a third signal, and
+    الْأَصْلُ فِي الْكَلَامِ الْحَقِيقَةُ: with no qarīna the sentence is not a figure.
+
+  **Five engine findings, all raised by the drill bank's 0.7% drop.** Four are
+  fixes; the fifth is a test that was relying on an accident:
+
+  - **The speaker's yāʾ was missing from `ENCLITICS`.** بِي walked into the noun
+    path and **لِي matched وَلِيَ's feminine imperative exactly, vowel for vowel**,
+    and shipped as a verb. Adding it needed one guard: a spelling the closed-class
+    table already knows is one word, or كَيْ peels into a kāf and a yāʾ.
+  - **A MABNĪ cell's ending cannot move.** قِيلُ — the maṣdar on فِيل — was matching
+    قِيلَ, the passive māḍī, because the ṣarf test is blind to the last vowel by
+    design. The kasra guard added in ch14 was one instance of the general rule: a
+    māḍī and an amr are built on their ending, so a different final vowel means a
+    different word. Two refinements were needed on top, and both are old lessons
+    coming round: **compare skeletons first** (a clitic pronoun brings its own
+    vowel, so رَوَاهُ is not a counter-example) and **require both sides to bear a
+    vowel** (undiacritised «قال» has none, and reading its absence as disagreement
+    made every unvowelled māḍī a noun).
+  - **مَا after a conditional is ZĀʾIDA.** إِذَا مَا زِدْتَهُ نَظَرًا was read as a
+    negation, which turns the protasis inside out. Two conditions do not stack, so
+    the rule also rules the shart reading out there.
+  - **The two-verb conditional was outranking the negation on no evidence.**
+    فَمَا رَبِحَتْ تِجَارَتُهُمْ was called a conditional because a verb happened to
+    stand later in the line. مَا الشَّرْطِيَّة is one of the jawāzim, so the evidence
+    that separates it is JAZM — a muḍāriʿ showing it, or a fāʾ on the jawāb. With
+    that evidence the reading is proposed ahead of the negation; without it, after.
+  - **And a test broke on a legitimate number.** The ML panel's «resubstitution
+    must not be quoted first» check compared bare digits, and the corpus reaching
+    **3536** labelled words put «53» inside a number that is not a score.
+
+  Measured: **99.9% over 882 tokens**, the one remaining disagreement still
+  ch16's documented undecidable بِمَا. 178 smoke checks, sw at `qissa-v123`.

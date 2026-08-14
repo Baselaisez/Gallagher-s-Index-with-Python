@@ -903,8 +903,13 @@ if (!CHROME) {
       const at = (text, i) => SentenceAnalyzer.analyze(text)[i].notes.map(n => n.en + n.tr).join(' ');
       return {
         initial: at('ان الدرس سهل', 0),
-        afterQawl: at('قال زيد ان الله قادر', 2),
-        afterVerb: at('علم زيد ان الله قادر', 2),
+        // زَيْدٌ carries its tanwin here on purpose. Once the corpus learned
+        // زَادَ, the bare letters «زيد» became a real passive cell (زِيدَ) as
+        // well as a name, and an unvowelled sentence genuinely cannot tell
+        // them apart — so the walk back to the qawl verb stopped at what it
+        // took for a verb. The tanwin settles it, and no verb wears one.
+        afterQawl: at('قال زَيْدٌ ان الله قادر', 2),
+        afterVerb: at('علم زَيْدٌ ان الله قادر', 2),
       };
     });
     if (!/KASRA|KESRALI/.test(r.initial) || !/sentence-initial|cümle başı/.test(r.initial))
@@ -3929,7 +3934,10 @@ if (!CHROME) {
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
     // and it must lead with the HELD-OUT figure, never the resubstitution one
     if (!line.includes(String(a.shown))) throw new Error('the panel must lead with the held-out score: ' + line);
-    if (line.indexOf(String(a.shown)) > line.indexOf(String(Math.round(a.res1))))
+    // compare the PERCENTAGES, not the bare digits: the panel also prints the
+    // corpus size, and «3536 labelled words» contains «53», so a bare indexOf
+    // found the resubstitution figure inside a number that is not a score.
+    if (line.indexOf(String(a.shown) + "%") > line.indexOf(String(Math.round(a.res1)) + "%"))
       throw new Error('resubstitution is quoted before the held-out score: ' + line);
     // …and the panel must also show the two RULE-trained taggers, filled in
     // after paint because grading them costs ~2s
@@ -5971,6 +5979,92 @@ if (!CHROME) {
     if (r.labasFail !== 'مُلَابِس' || r.labasMaful !== 'مُلَابَس')
       throw new Error('both readings of the matn word must be shipped: ' +
                       r.labasFail + ' / ' + r.labasMaful);
+  });
+
+  await check("talkhis ch6: the qarina, the speaker's ya, and a mabni ending that cannot move", async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 6);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const row = (text, bare) => {
+        const rows = SentenceAnalyzer.analyze(text);
+        return rows.find(x => stripAr(x.w).replace(/[^ء-ي]/g, '') === bare) || null;
+      };
+      const li = row('يَا هَامَانُ ابْنِ لِي صَرْحًا', 'لي');
+      const bi = row('جَاءَتْ بِي إِلَيْكَ', 'بي');
+      const qil = row('أَفْنَاهُ قِيلُ اللهِ لِلشَّمْسِ', 'قيل');
+      const kay = row('جِئْتُ كَيْ أَتَعَلَّمَ', 'كي');
+      const idhaMa = row('إِذَا مَا زِدْتَهُ نَظَرًا', 'ما');
+      const shart = row('مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللهُ', 'ما');
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // the first vocative the library has ever carried in real text
+        hamanIrab: tk('s1', 'هامان').irab.ar,
+        nida: (() => { const v = NidaEngine.read('يَا هَامَانُ'); return v && v.ok ? v.ruling : '<no>'; })(),
+        // an imperative built on the DELETION of its weak letter
+        ibnIrab: tk('s1', 'ابن').irab.ar,
+        ibnCell: (st.morph.bana || {}).amr ? st.morph.bana.amr[0] : null,
+        // the speaker's ya peels like any other enclitic
+        liKind: li && li.kind, liSeg: li ? li.seg.join('+') : '',
+        biKind: bi && bi.kind, biSeg: bi ? bi.seg.join('+') : '',
+        // …but كَيْ is one word and must not be peeled into two
+        kayKind: kay && kay.kind,
+        kayNote: kay ? kay.notes.map(n => n.en).join(' ') : '',
+        // a masdar that shares its letters with a passive madi
+        qilKind: qil && qil.kind, qilNote: qil ? qil.notes.map(n => n.en).join(' ') : '',
+        // ma after a conditional is ZA'IDA; ma with jazm evidence is the shart
+        idhaWajh: idhaMa && idhaMa.wajh && idhaMa.wajh.ar,
+        shartWajh: shart && shart.wajh && shart.wajh.ar,
+        // the nun of protection, named in the human reading
+        sarratIrab: tk('s4', 'سرتني').irab.ar,
+        sarraFakk: (st.morph.sarra || {}).mazi ? st.morph.sarra.mazi[6] : null,
+        // two tamyiz in one hemistich, neither of them an object
+        tamyiz: sen('s5').tokens.filter(t => (t.grammar || []).includes('tamyiz'))
+                  .map(t => stripAr(t.s.full)),
+        noteY: !!GRAMMAR['ya-al-mutakallim'] && GRAMMAR['ya-al-mutakallim'].group,
+        noteYtr: !!(GRAMMAR['ya-al-mutakallim'] || {}).title.tr,
+        noteQ: !!GRAMMAR['qarinat-al-majaz'] && GRAMMAR['qarinat-al-majaz'].group,
+        // the chapter's six qarina-bearing tokens
+        qarina: ['s2', 's3', 's4', 's5'].map(id =>
+          sen(id).tokens.filter(t => (t.grammar || []).includes('qarinat-al-majaz')).length)
+          .reduce((a, b) => a + b, 0),
+      };
+    });
+    if (r.missing) throw new Error('chapter 6 did not load');
+    if (r.chapters < 6) throw new Error('chapter 6 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch6 sentences: ' + r.n);
+    if (r.noteY !== 'nahw' || !r.noteYtr) throw new Error('the speaker-ya note: ' + r.noteY);
+    if (r.noteQ !== 'balagha') throw new Error('the qarina note: ' + r.noteQ);
+    if (r.qarina !== 6) throw new Error('six qarina tokens expected, got ' + r.qarina);
+    // a munada that is a single proper name: mabni on the damma, in the POSITION of nasb
+    if (!/مَبْنِيٌّ عَلَى الضَّمِّ/.test(r.hamanIrab) || !/مَحَلِّ نَصْبٍ/.test(r.hamanIrab))
+      throw new Error('the munada: ' + r.hamanIrab);
+    if (r.nida !== 'mabni') throw new Error('NidaEngine rules it: ' + r.nida);
+    // the jazm sign is the DELETION — nothing on the page to point at
+    if (!/حَذْفِ حَرْفِ الْعِلَّةِ/.test(r.ibnIrab)) throw new Error('the naqis imperative: ' + r.ibnIrab);
+    if (r.ibnCell !== 'اِبْنِ') throw new Error("the stored amr cell: " + r.ibnCell);
+    // the speaker's ya is an enclitic like any other
+    if (r.liKind !== 'particle' || r.liSeg !== 'لِ+ي')
+      throw new Error('لِي is a jarr letter and a pronoun: ' + r.liKind + ' / ' + r.liSeg);
+    if (r.biKind !== 'particle' || r.biSeg !== 'بِ+ي')
+      throw new Error('بِي is a jarr letter and a pronoun: ' + r.biKind + ' / ' + r.biSeg);
+    // …and a table entry is ONE word: كَيْ must not peel into kaf + ya
+    if (r.kayKind !== 'particle' || !/nâsıb|nasb governor/.test(r.kayNote))
+      throw new Error('كَيْ must stay the nasb particle: ' + r.kayKind + ' — ' + r.kayNote);
+    // a mabni cell's ending cannot move, so قِيلُ is not قِيلَ
+    if (r.qilKind !== 'noun') throw new Error('قِيلُ is a masdar, not the passive madi: ' + r.qilKind);
+    if (!/mabni ending cannot move/.test(r.qilNote))
+      throw new Error('and the reason must name the rule: ' + r.qilNote);
+    // two faces of ma, told apart by what stands on either side
+    if (!/الزَّائِدَة/.test(r.idhaWajh || '')) throw new Error('إذا ما is zaida: ' + r.idhaWajh);
+    if (!/الشَّرْطِيَّة/.test(r.shartWajh || '')) throw new Error('the shart keeps its top rank on jazm evidence: ' + r.shartWajh);
+    // the protecting nun, and the doubled verb's fakk before a sukun
+    if (!/نُونُ الْوِقَايَةِ/.test(r.sarratIrab)) throw new Error('the nun of protection: ' + r.sarratIrab);
+    if (r.sarraFakk !== 'سَرَرْتَ') throw new Error('a doubled verb breaks before a sukun: ' + r.sarraFakk);
+    if (r.tamyiz.length !== 2) throw new Error('two tamyiz expected in s5: ' + r.tamyiz.join(', '));
   });
 
   await check('no JS errors on page', async () => {
