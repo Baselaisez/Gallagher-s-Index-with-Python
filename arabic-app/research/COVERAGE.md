@@ -966,3 +966,59 @@ not a one-line change.
 
   Measured: **99.9% over 882 tokens**, the one remaining disagreement still
   ch16's documented undecidable بِمَا. 178 smoke checks, sw at `qissa-v123`.
+
+### Talkhīṣ al-Miftāḥ, chapter 7 — أَحْوَالُ الْمُسْنَدِ إِلَيْهِ (5 sentences, 43 tokens)
+
+  Six chapters were about the sentence; from here the Talkhīṣ takes the PARTS,
+  and it starts with the musnad ilayh. Its first two states are the barest pair
+  there is — leave it out, or say it — and the whole art is in the reason. The
+  commentary lists ten motives for dropping it and nine for keeping it, and the
+  chapter is built around the two MIRRORS:
+
+  - **مُقَرِّرٌ لِلشَّرَائِعِ مُوضِحٌ لِلدَّلَائِلِ فَيَجِبُ اتِّبَاعُهُ** — the name (Muḥammad ﷺ)
+    dropped صِيَانَةً لِلِّسَانِ, out of reverence.
+  - **مُوَسْوِسٌ سَاعٍ فِي الْفَسَادِ فَتَجِبُ مُخَالَفَتُهُ** — the same omission, the same
+    formula, for the opposite reason: a name one does not care to say.
+
+  and on the dhikr side الْحَبِيبُ حَاضِرٌ against السَّارِقُ اللَّئِيمُ حَاضِرٌ — identical
+  syntax, pleasure and contempt. **The construction carries no intention at
+  all**, which is exactly why the states of the musnad ilayh are a science.
+
+  - **Registry note 105, `ahwal-al-musnad-ilayh`** (balāgha) — the two tables of
+    motives, with الذِّكْرُ هُوَ الْأَصْلُ stated first: mention is the default and
+    the art is in departing from it.
+  - **Registry note 106, `hadhf-wa-taqdir`** (nahw) — what may be dropped, the
+    two rules that govern all of it (الْحَذْفُ لَا بُدَّ لَهُ مِنْ دَلِيلٍ and
+    الْمَحْذُوفُ يَعْمَلُ عَمَلَ الْمَذْكُورِ), and that a taqdīr is a CLAIM which can be
+    disagreed with — which is the reason for naming it.
+
+  **The chapter's real payload is an engine gap it forced open.** Five of its
+  words are participles of derived forms, and `RootFinder.peel` had **no row for
+  any of them**: مُقَرِّرٌ (II), مُوضِحٌ (IV, of a mithāl), مُسْتَفَادٌ (X, hollow),
+  مُوَسْوِسٌ (of a QUADRILITERAL) and الْمُفْلِحُونَ (IV, sound plural) all came back
+  empty — one of the commonest word shapes in classical prose, invisible to the
+  root finder. Four fixes, and each is exact:
+
+  - **`م` + three letters is a participle of the mazīd**, and `م` + four is the
+    rubāʿī's. The answer NAMES BOTH faces (مُفْعِل / مُفَعِّل) rather than picking
+    one, because the skeleton genuinely cannot say which.
+  - **The mīm's own vowel is the classical discriminator, and peel now gets it.**
+    مَفْعُول and مُفْتَعِل are the same five letters — which is why
+    `RootFinder.find("مَكْتُوب")` has been returning **ك و ب** ever since the
+    flashcard work, a wrong answer this file has carried as known. A fatḥa on the
+    mīm settles it, and the documented bug is closed.
+  - **The ARTICLE was hiding every pattern from its own table** — الْمُفْلِحُونَ
+    reached no rule at all. It is added as a further candidate, never stripped in
+    place, so a real ا ل root is not robbed of its letters.
+  - **The tāʾ marbūṭa is an ending, not a radical** — مَدْرَسَة was answering
+    «د ر س ة» through the new rubāʿī row.
+
+  **And one more disagreement, with a classical test for its answer.** عَصَايَ
+  matched the māḍī of عَصَى, because the alif-maqṣūra candidate rule written for
+  رَوَاهُ offers عَصَى back. The refutation is note 103's own rule used as a TEST:
+  **a verb that reaches the speaker's yāʾ must show the nūn of protection** —
+  عَصَانِي, never عَصَايَ. So a bare speaker's yāʾ whose matched cell does not
+  contain it is not a verb cell, however well the letters line up.
+
+  Measured: **99.9% over 925 tokens**, the one remaining disagreement still
+  ch16's documented undecidable بِمَا. 179 smoke checks, sw at `qissa-v124`.

@@ -32,18 +32,18 @@
    "pos": "prep",
    "gloss": {
     "en": "from, of",
-    "tr": "-den"
+    "tr": "-den, -dan"
    },
-   "level": 0
+   "level": 1
   },
   "ala": {
    "lemma": "عَلَى",
    "pos": "prep",
    "gloss": {
     "en": "upon, over",
-    "tr": "üzerine"
+    "tr": "üzerine, üzere"
    },
-   "level": 0
+   "level": 1
   },
   "bi": {
    "lemma": "بِ",
@@ -1725,6 +1725,320 @@
    },
    "level": 2,
    "root": "ح س ن"
+  },
+  "kayfa": {
+   "lemma": "كَيْفَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "how? (an interrogative NOUN, not a letter)",
+    "tr": "nasıl? (istifham İSMİ, harf değil)"
+   },
+   "level": 2
+  },
+  "alil": {
+   "lemma": "عَلِيل",
+   "pos": "noun",
+   "gloss": {
+    "en": "ill, ailing (sifa mushabbaha)",
+    "tr": "hasta (sıfat-ı müşebbehe)"
+   },
+   "level": 3,
+   "root": "ع ل ل"
+  },
+  "sahar": {
+   "lemma": "سَهَر",
+   "pos": "noun",
+   "gloss": {
+    "en": "sleeplessness, wakefulness at night",
+    "tr": "uykusuzluk, gece uyanıklığı"
+   },
+   "level": 4,
+   "root": "س ه ر"
+  },
+  "daim": {
+   "lemma": "دَائِم",
+   "pos": "noun",
+   "gloss": {
+    "en": "lasting, unceasing (ism fa'il of a hollow verb)",
+    "tr": "dâim, sürekli (ecvefden ism-i fâil)"
+   },
+   "level": 3,
+   "root": "د و م"
+  },
+  "huzn": {
+   "lemma": "حُزْن",
+   "pos": "noun",
+   "gloss": {
+    "en": "grief, sorrow",
+    "tr": "hüzün, keder"
+   },
+   "level": 2,
+   "root": "ح ز ن",
+   "plural": "أَحْزَان"
+  },
+  "tawil-long": {
+   "lemma": "طَوِيل",
+   "pos": "noun",
+   "gloss": {
+    "en": "long (sifa mushabbaha)",
+    "tr": "uzun (sıfat-ı müşebbehe)"
+   },
+   "level": 2,
+   "root": "ط و ل"
+  },
+  "mustafad": {
+   "lemma": "مُسْتَفَاد",
+   "pos": "noun",
+   "gloss": {
+    "en": "drawn from, derived (ism maf'ul, Form X)",
+    "tr": "istifade edilmiş (ism-i mef'ûl, istif'âl)"
+   },
+   "level": 5,
+   "root": "ف ي د"
+  },
+  "istafada": {
+   "lemma": "اسْتَفَادَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to draw benefit from, to derive",
+    "tr": "istifade etmek, elde etmek"
+   },
+   "level": 4,
+   "root": "ف ي د",
+   "form": "X"
+  },
+  "muqarrir": {
+   "lemma": "مُقَرِّر",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who confirms and establishes (ism fa'il, Form II)",
+    "tr": "takrîr eden, yerleştiren (ism-i fâil, tef'îl)"
+   },
+   "level": 5,
+   "root": "ق ر ر"
+  },
+  "sharia": {
+   "lemma": "شَرِيعَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a revealed Law",
+    "tr": "şerîat"
+   },
+   "level": 3,
+   "root": "ش ر ع",
+   "plural": "شَرَائِع"
+  },
+  "mudih": {
+   "lemma": "مُوضِح",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who makes plain (ism fa'il, Form IV of a mithal)",
+    "tr": "açıklayan (ism-i fâil, if'âl — misâl kökten)"
+   },
+   "level": 5,
+   "root": "و ض ح"
+  },
+  "ittiba": {
+   "lemma": "اتِّبَاع",
+   "pos": "noun",
+   "gloss": {
+    "en": "following, adherence (masdar, Form VIII)",
+    "tr": "ittibâ, uyma (masdar, iftiâl)"
+   },
+   "level": 4,
+   "root": "ت ب ع"
+  },
+  "muwaswis": {
+   "lemma": "مُوَسْوِس",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who whispers evil (ism fa'il of a quadriliteral)",
+    "tr": "vesvese veren (rubâîden ism-i fâil)"
+   },
+   "level": 5,
+   "root": "و س و س"
+  },
+  "sai": {
+   "lemma": "سَاعٍ (السَّاعِي)",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who hurries or strives (ism fa'il, manqus)",
+    "tr": "koşan, sa'y eden (ism-i fâil, menkūs)"
+   },
+   "level": 4,
+   "root": "س ع ي"
+  },
+  "ulaika": {
+   "lemma": "أُولَئِكَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "those (plural demonstrative)",
+    "tr": "işte onlar (cemi ism-i işaret)"
+   },
+   "level": 2
+  },
+  "huda": {
+   "lemma": "هُدًى",
+   "pos": "noun",
+   "gloss": {
+    "en": "guidance (a maqsur noun)",
+    "tr": "hidâyet (ism-i maksûr)"
+   },
+   "level": 3,
+   "root": "ه د ي"
+  },
+  "muflih": {
+   "lemma": "مُفْلِح",
+   "pos": "noun",
+   "gloss": {
+    "en": "one who prospers, who attains (ism fa'il, Form IV)",
+    "tr": "felâh bulan, kurtuluşa eren (ism-i fâil, if'âl)"
+   },
+   "level": 4,
+   "root": "ف ل ح"
+  },
+  "aflaha": {
+   "lemma": "أَفْلَحَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to prosper, to attain what is sought",
+    "tr": "felâh bulmak, kurtuluşa ermek"
+   },
+   "level": 4,
+   "root": "ف ل ح",
+   "form": "IV"
+  },
+  "asa-staff": {
+   "lemma": "عَصًا",
+   "pos": "noun",
+   "gloss": {
+    "en": "a staff, a stick (a maqsur noun)",
+    "tr": "asâ, değnek (ism-i maksûr)"
+   },
+   "level": 3,
+   "root": "ع ص و",
+   "plural": "عِصِيّ"
+  },
+  "habib": {
+   "lemma": "حَبِيب",
+   "pos": "noun",
+   "gloss": {
+    "en": "a beloved one (sifa mushabbaha)",
+    "tr": "sevgili, habîb (sıfat-ı müşebbehe)"
+   },
+   "level": 2,
+   "root": "ح ب ب"
+  },
+  "sariq": {
+   "lemma": "سَارِق",
+   "pos": "noun",
+   "gloss": {
+    "en": "a thief (ism fa'il)",
+    "tr": "hırsız (ism-i fâil)"
+   },
+   "level": 2,
+   "root": "س ر ق"
+  },
+  "hadir": {
+   "lemma": "حَاضِر",
+   "pos": "noun",
+   "gloss": {
+    "en": "present, here (ism fa'il)",
+    "tr": "hazır, mevcut (ism-i fâil)"
+   },
+   "level": 2,
+   "root": "ح ض ر"
+  },
+  "qala": {
+   "lemma": "قَالَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to say",
+    "tr": "demek, söylemek"
+   },
+   "level": 1,
+   "root": "ق و ل",
+   "form": "I"
+  },
+  "anta": {
+   "lemma": "أَنْتَ",
+   "pos": "pron",
+   "gloss": {
+    "en": "you (masc. sg., detached)",
+    "tr": "sen (munfasıl, eril)"
+   },
+   "level": 1
+  },
+  "nur": {
+   "lemma": "نُور",
+   "pos": "noun",
+   "gloss": {
+    "en": "light",
+    "tr": "nur, ışık"
+   },
+   "level": 2,
+   "root": "ن و ر",
+   "plural": "أَنْوَار"
+  },
+  "hilal": {
+   "lemma": "هِلَال",
+   "pos": "noun",
+   "gloss": {
+    "en": "the new moon, a crescent",
+    "tr": "hilâl, yeni ay"
+   },
+   "level": 3,
+   "root": "ه ل ل"
+  },
+  "dalil": {
+   "lemma": "دَلَائِل",
+   "pos": "noun",
+   "gloss": {
+    "en": "proofs, indications",
+    "tr": "deliller"
+   },
+   "level": 3,
+   "root": "د ل ل"
+  },
+  "fasad": {
+   "lemma": "فَسَاد",
+   "pos": "noun",
+   "gloss": {
+    "en": "corruption, spoiling",
+    "tr": "fesad, bozgunculuk"
+   },
+   "level": 3,
+   "root": "ف س د"
+  },
+  "laim": {
+   "lemma": "لَئِيم",
+   "pos": "noun",
+   "gloss": {
+    "en": "base, ignoble",
+    "tr": "alçak, aşağılık"
+   },
+   "level": 4,
+   "root": "ل أ م"
+  },
+  "rabb": {
+   "lemma": "رَبّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "Lord, master",
+    "tr": "Rab"
+   },
+   "level": 1,
+   "root": "ر ب ب",
+   "plural": "أَرْبَاب"
+  },
+  "hum": {
+   "lemma": "هُمْ",
+   "pos": "pron",
+   "gloss": {
+    "en": "they (masc. pl.)",
+    "tr": "onlar (eril)"
+   },
+   "level": 1
   }
  }
 }

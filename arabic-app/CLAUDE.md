@@ -2375,3 +2375,40 @@ not: rules that had already promoted a reading — the ʿāid, the seat, the
 definitional frame — lost the head of their own shortlist to a shape that is
 merely common. **Promote by position in the rule order, not by a flag**, unless
 the rule really is the strongest evidence available.
+
+## The peel table had no row for the commonest shape in the language
+
+`RootFinder.peel` handled the maṣdars of the derived forms and the verb
+skeletons, and had **nothing at all** for their PARTICIPLES: مُقَرِّر, مُوضِح,
+مُسْتَفَاد, مُوَسْوِس, الْمُفْلِحُونَ all returned null. A table that has been extended
+a dozen times can still be missing an entire family, and nothing complains —
+`peel` returns null and the caller quietly shows no root.
+
+Three fixes went in with the row, and each is a lesson this file has already
+recorded in another neighbourhood:
+
+- **Give the discriminator to the code that needs it.** مَفْعُول and مُفْتَعِل are
+  the same five letters and the mīm's vowel decides — so `peel` takes the vowel
+  as an argument now. This is the documented **مَكْتُوب → ك و ب** bug, live since
+  the flashcard work, and it was never a missing pattern: it was a pattern
+  matching on evidence that had been thrown away before it arrived.
+- **A clitic can hide the feature a rule tests for** (the ما entry, again): the
+  ARTICLE hid every pattern from its own table.
+- **Inflection is not scale** (the IsmTagger entry, again): the tāʾ marbūṭa was
+  counted as a fourth radical by the brand-new rubāʿī row.
+
+**When you add a row to a mature table, re-run the words the table already
+handled.** Two of the three fixes above were regressions introduced by the first.
+
+## A rule you just wrote as a NOTE is a test you can run
+
+Note 103 says a verb reaching the speaker's yāʾ must put a nūn in between —
+عَصَانِي, never عَصَايَ. One chapter later عَصَايَ matched the māḍī of عَصَى, and the
+refutation was already written down: **a bare speaker's yāʾ whose matched cell
+does not contain it cannot be a verb cell.** No new doctrine, no heuristic — the
+note turned round and became a guard.
+
+The registry is now large enough that this is worth doing deliberately: when a
+new disagreement appears, check whether a note already states the rule that
+kills it. The notes were written to teach a reader; several of them are also
+decision procedures, and those are the cheapest engine improvements available.

@@ -6067,6 +6067,84 @@ if (!CHROME) {
     if (r.tamyiz.length !== 2) throw new Error('two tamyiz expected in s5: ' + r.tamyiz.join(', '));
   });
 
+  await check('talkhis ch7: hadhf and dhikr, and the derived participles the peel table lacked', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 7);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      const tk = (id, w) => sen(id).tokens.find(t => stripAr(t.s.full) === stripAr(w));
+      const root = w => { const f = RootFinder.find(w); return f ? f.root : null; };
+      const asa = SentenceAnalyzer.analyze('هِيَ عَصَايَ')
+                    .find(x => stripAr(x.w).replace(/[^ء-ي]/g, '') === 'عصاي');
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // every omitted mubtada names the word it is estimated as
+        taqdir: ch.sentences.flatMap(s => s.tokens)
+          .filter(t => (t.grammar || []).includes('hadhf-wa-taqdir'))
+          .map(t => t.irab.ar),
+        // the participles of the derived forms — none of these read before ch7
+        roots: {
+          muqarrir: root('مُقَرِّرٌ'), mudih: root('مُوضِحٌ'), mustafad: root('مُسْتَفَادٌ'),
+          muwaswis: root('مُوَسْوِسٌ'), muflih: root('الْمُفْلِحُونَ'),
+          maktub: root('مَكْتُوب'), madrasa: root('مَدْرَسَة'),
+        },
+        // …and a verb never reaches the speaker's ya without the nun
+        asaKind: asa && asa.kind,
+        asaNote: asa ? asa.notes.map(n => n.en).join(' ') : '',
+        // the maqsur with its tanwin, in a MUSTAQARR khabar
+        huda: tk('s4', 'هدى').irab.ar,
+        // two siyagh muntaha al-jumu', both restored to a kasra by the article
+        shara: tk('s3', 'للشرائع').irab.ar,
+        dala: tk('s3', 'للدلائل').irab.ar,
+        // the speaker's ya on a maqsur: the alif stands, the ya takes a fatha
+        asaIrab: tk('s5', 'عصاي').irab.ar,
+        noteM: !!GRAMMAR['ahwal-al-musnad-ilayh'] && GRAMMAR['ahwal-al-musnad-ilayh'].group,
+        noteH: !!GRAMMAR['hadhf-wa-taqdir'] && GRAMMAR['hadhf-wa-taqdir'].group,
+        noteHtr: !!(GRAMMAR['hadhf-wa-taqdir'] || {}).title.tr,
+      };
+    });
+    if (r.missing) throw new Error('chapter 7 did not load');
+    if (r.chapters < 7) throw new Error('chapter 7 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch7 sentences: ' + r.n);
+    if (r.noteM !== 'balagha') throw new Error('the musnad-ilayh note: ' + r.noteM);
+    if (r.noteH !== 'nahw' || !r.noteHtr) throw new Error('the hadhf note: ' + r.noteH);
+    // an analysis that says a word is missing must say WHICH word
+    if (r.taqdir.length < 4) throw new Error('too few omitted-mubtada tokens: ' + r.taqdir.length);
+    r.taqdir.forEach(t => {
+      if (!/مَحْذُوفٍ/.test(t)) throw new Error('this token is not about an omission: ' + t);
+      if (!/تَقْدِيرُهُ|أَيْ:/.test(t)) throw new Error('an omission must name its taqdir: ' + t);
+    });
+    // the mirror: the same omission, for reverence and for distaste
+    const rev = r.taqdir.find(t => /مُحَمَّدٌ/.test(t));
+    const dis = r.taqdir.find(t => /الشَّيْطَانُ/.test(t));
+    if (!rev || !dis) throw new Error('the reverence/distaste pair must both be tagged');
+    if (!/صِيَانَةً لِلِّسَانِ/.test(rev) || !/صِيَانَةً لِلِّسَانِ/.test(dis))
+      throw new Error('both must name the SAME device — keeping the tongue from the name');
+    // the peel table now has a row for the participles of the derived forms
+    const want = { muqarrir: 'ق ر ر', mudih: 'و ض ح', mustafad: 'ف و/ي د',
+                   muwaswis: 'و س و س', muflih: 'ف ل ح',
+                   maktub: 'ك ت ب', madrasa: 'د ر س' };
+    for (const [k, v] of Object.entries(want))
+      if (r.roots[k] !== v) throw new Error(`root of ${k}: expected ${v}, got ${r.roots[k]}`);
+    // نون الوقاية as a test: عَصَايَ cannot be a cell of عَصَى
+    if (r.asaKind !== 'noun') throw new Error('عَصَايَ is a noun with its mudaf ilayh: ' + r.asaKind);
+    if (!/SPEAKER'S YA with no nun of protection/.test(r.asaNote))
+      throw new Error('and the reason must name the nun: ' + r.asaNote);
+    if (!/تَثْبُتُ أَلِفُهُ/.test(r.asaIrab)) throw new Error('the maqsur keeps its alif: ' + r.asaIrab);
+    // a maqsur wearing tanwin, majrur by an estimated kasra, in a mustaqarr khabar
+    if (!/مُقَدَّرَةٍ عَلَى الْأَلِفِ/.test(r.huda) || !/مُسْتَقَرٌّ/.test(r.huda))
+      throw new Error('هُدًى: estimated kasra, mustaqarr khabar — ' + r.huda);
+    // the article restores the kasra a diptote would have lost
+    [r.shara, r.dala].forEach(t => {
+      if (!/مُنْتَهَى الْجُمُوعِ/.test(t) && !/صِيغَةُ مُنْتَهَى/.test(t))
+        throw new Error('both plurals are siyagh muntaha al-jumu: ' + t);
+      if (!/بِالْكَسْرَةِ/.test(t) && !/كَسْرَة/.test(t))
+        throw new Error('and the article restores their kasra: ' + t);
+    });
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
