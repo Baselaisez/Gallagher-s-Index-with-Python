@@ -6639,6 +6639,75 @@ if (!CHROME) {
     if (r.awamil[1] !== 'ر س ل') throw new Error('رَسَائِل is فَعَائِل of ر س ل: ' + r.awamil[1]);
   });
 
+  await check('talkhis ch14: iltifat — the six turnings, and the seven engine defects the probe forced', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 14);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const row = (text, w, nth) => { const rows = SentenceAnalyzer.analyze(text)
+        .filter(x => key(x.w) === key(w)); return rows[nth || 0] || {}; };
+      const inna = row('إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ', 'انا');
+      const iyyaka = row('إِيَّاكَ نَعْبُدُ', 'اياك');
+      const bihim = row('وَجَرَيْنَ بِهِمْ', 'بهم');
+      const muqirr = row('أَتَاكَا مُقِرًّا بِالذُّنُوبِ', 'مقرا');
+      const turja = row('وَإِلَيْهِ تُرْجَعُونَ', 'ترجعون');
+      const rt = w => { const x = RootFinder.find(w); return x ? { r: x.root, z: (x.wazn || x.lemma || '') } : x; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: GRAMMAR['iltifat'] && [GRAMMAR['iltifat'].group,
+              (GRAMMAR['iltifat'].question || {}).tr ? GRAMMAR['iltifat'].question.tr.length : 0,
+              (GRAMMAR['iltifat'].examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('iltifat')).length,
+        khilafTagged: toks.filter(t => (t.grammar || []).includes('khilaf-muqtada-al-zahir')).length,
+        // إِنَّا: the shadda decides, and NFC puts the fatha BEFORE the shadda
+        innaPk: inna.pk, innaSeg: (inna.seg || []).join('+'),
+        // إِيَّاكَ: the iyya family is closed-class, and a pronoun has no root
+        iyyakaNote: (iyyaka.notes || []).map(x => x.en).join(' ~ '),
+        iyyakaRoot: RootFinder.find('إِيَّاكَ'),
+        // بِهِمْ: the ب peel must refuse a pronoun remainder
+        bihimKind: bihim.kind, bihimSeg: (bihim.seg || []).length,
+        // أَتَاكَا / دَعَاكَا: the itlaq alif peels and the maqsura returns
+        ataka: (RootFinder.fromCorpus('أَتَاكَا') || {}).lemma || null,
+        daaka: (RootFinder.fromCorpus('دَعَاكَا') || {}).lemma || null,
+        // مُقِرًّا: the mim-prefix geminate row, and the tanwin's seat-alif
+        muqirrRoot: rt('مُقِرًّا'),
+        muqirrNote: (muqirr.notes || []).map(x => x.en).join(' ~ '),
+        // تُرْجَعُونَ: the derived majhul steps back over the five-verbs suffix
+        turjaNote: (turja.notes || []).map(x => x.en).join(' ~ '),
+        // the three new paradigms answer their chapter's cells
+        cells: ['وَانْحَرْ', 'أَعْبُدُ', 'فَطَرَنِي'].map(w => (RootFinder.fromCorpus(w) || {}).lemma || null),
+      };
+    });
+    if (r.missing) throw new Error('chapter 14 did not load');
+    if (r.chapters < 14) throw new Error('chapter 14 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch14 sentences: ' + r.n);
+    if (r.t !== 34) throw new Error('ch14 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the iltifat note with its question test and anchored examples: ' + JSON.stringify(r.note));
+    if (r.tagged < 5) throw new Error('too few iltifat tokens tagged: ' + r.tagged);
+    if (r.khilafTagged < 4) throw new Error('too few khilaf-muqtada-al-zahir tokens tagged: ' + r.khilafTagged);
+    if (r.innaPk !== 'inna' || !/إِنَّ/.test(r.innaSeg) || !/نَا/.test(r.innaSeg))
+      throw new Error('إِنَّا is إِنَّ + نَا by its shadda (NFC: fatha before shadda): ' + r.innaPk + ' / ' + r.innaSeg);
+    if (!/detached pronoun/i.test(r.iyyakaNote))
+      throw new Error('إِيَّاكَ is the detached object pronoun, not a فَعَّال intensive: ' + r.iyyakaNote);
+    if (r.iyyakaRoot !== null)
+      throw new Error('a closed-class word has no root to find: ' + JSON.stringify(r.iyyakaRoot));
+    if (r.bihimKind !== 'particle' || r.bihimSeg !== 2)
+      throw new Error('بِهِمْ is بِ + هم, fused jarr — the peel must refuse the pronoun remainder: ' + r.bihimKind + '/' + r.bihimSeg);
+    if (r.ataka !== 'أَتَى') throw new Error('أَتَاكَا reaches أَتَى through the itlaq peel: ' + r.ataka);
+    if (r.daaka !== 'دَعَا') throw new Error('دَعَاكَا reaches دَعَا through the itlaq peel: ' + r.daaka);
+    if (!r.muqirrRoot || r.muqirrRoot.r !== 'ق ر ر')
+      throw new Error('مُقِرًّا is the geminate ق ر ر — the shadda holds the third radical: ' + JSON.stringify(r.muqirrRoot));
+    if (!/tanwin's written seat|TANWIN of nasb/i.test(r.muqirrNote))
+      throw new Error('مُقِرًّا wears a written fathatan — the seat-alif is not a maqsur ending: ' + r.muqirrNote);
+    if (!/passive — you \(pl\)/.test(r.turjaNote))
+      throw new Error('تُرْجَعُونَ is the derived passive of the you-pl cell: ' + r.turjaNote);
+    if (r.cells.some(x => !x))
+      throw new Error('the three new paradigms must own their chapter cells: ' + JSON.stringify(r.cells));
+  });
+
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {
     const r = await page.evaluate(() => {
       const css = [...document.styleSheets].map(s => {

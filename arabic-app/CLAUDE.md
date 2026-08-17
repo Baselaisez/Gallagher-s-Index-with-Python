@@ -2819,3 +2819,55 @@ first person of every hamza-initial verb was unreachable from its written form
 equivalences live at the matching layer, never in the data and never in the
 display.** The stored paradigm stays in the engine's mechanical spelling
 because the audit regenerates it; the reader's eye never sees it.
+
+## The NFC order of a shadda and its vowel is not fixed — test both, every time
+
+The إِنَّا branch tested `/نّ/` and never fired: NFC sorts the fatha (ccc 30)
+BEFORE the shadda (ccc 33), so the written نَّ is nun+fatha+shadda and the
+letter is never adjacent to its doubling. The lammaJazim test three lines down
+had known this for two hundred versions (`/مَّ|مّ/`); the new branch had to
+relearn it. **Any regex that reads a shadda next to a letter must allow marks
+between them** — and when a branch you just wrote doesn't fire, diff it against
+the nearest working sibling before theorizing.
+
+## The closed-class table is also a refusal list — and the branch must be reachable
+
+Two halves of one ch14 lesson. (1) إِيَّاكَ answered فَعَّال — «an intensive or a
+trade» — because RootFinder had never been told that closed-class words are
+jamid: the fix is corpus-first, then REFUSE for any PARTICLES word, the same
+shape as the five-nouns table (a rule written from the surface cannot recover
+what the surface does not carry — here there is nothing to recover at all).
+(2) The إِنَّا fix lived INSIDE the particle branch, and the bare «إنا» (hamza
+seat kept by stripAr) was not a PARTICLES key — so the branch that decides was
+unreachable for exactly the spelling it was written for. **A fix inside a
+guarded branch is only as good as the guard's key set**: when a new sub-branch
+doesn't fire, check whether its parent branch is entered at all.
+
+## The blanket unfold failed where the narrow row succeeded — the bank drew the line
+
+مُقِرًّا answered ق ر و/ي: a guessed weak third radical where the surface
+carries the letter, in the shadda. The obvious fix — unfold every shadda into
+a doubled letter among the candidates — doubled the SUN LETTER of الدَّرَاهِمِ
+(article assimilation) and the AUGMENT of مُحَمَّد (form doubling), and the
+drill bank refused both within the minute. A shadda attests a geminate root
+only in a known shape; everywhere else it is assimilation or morphology. The
+shipped rule is the narrow one: mim prefix + two remaining letters + shadda
+attested on the second. **When a general principle and a narrow row disagree,
+the bank is the arbiter — and the narrow row that survives it teaches more
+than the principle that didn't.** (The failed attempt is recorded in the row's
+own comment, so nobody re-derives it.)
+
+## «What stands before the last» means the STEM's last — suffixes are not the word
+
+sjMajhul voweled يَرْجِعُونَ's wāw as «ما قبل الآخر» and the derived passive of
+every suffixed cell was garbage; تُرْجَعُونَ matched nothing and read as Form
+IV. The classical rule is stated on the singular base and the person suffixes
+ride outside it — the code now steps back over ونَ/انِ/ينَ before applying the
+vowel. Same family as the iṭlāq alif (أَتَاكَا = أَتَى + كَ + a metre-alif the
+grammar does not count) and the tanwīn's seat (مُقِرًّا's final alif is
+orthography for the fatḥatan, not a maqṣūr ending): **Arabic writes three
+kinds of tail the rules must not read as stem — person suffixes, the tanwīn's
+seat, and verse padding — and each one now has its explicit step-over.** The
+derived cell also keeps the PERSON of the active it was built from; a derived
+majhūl that reports «he» for a you-pl cell is a correct derivation wearing the
+wrong name.

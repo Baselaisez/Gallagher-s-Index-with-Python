@@ -96,7 +96,7 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
 **Why:** This is the rule that makes jarr-majrūr analysis mechanical rather than guessed — it turns an existing analyzer's blind spot into a derivable answer.
 
 ### 9. ʿIlm al-maʿānī expansion — khabar/inshāʾ, iltifāt, faṣl-waṣl, ījāz-iṭnāb — NOTE (batch)
-**What:** Four to six new balāgha notes from the largest untouched section of the Talkhīṣ: aḥwāl al-khabar (ibtidāʾī/ṭalabī/inkārī) and inshāʾ ṭalabī vs ghayr ṭalabī; iltifāt's 6 named kinds (lines ~1203-1251); faṣl wa waṣl with dawāʿī al-faṣl and kamāl al-inqiṭāʿ (lines ~2283-2430); ījāz/iṭnāb/musāwāt (line ~2641+). Explicitly disambiguate from the similarly-named nahw notes (`anwa-al-khabar.json` teaches syntax, not rhetoric).
+**What:** Four to six new balāgha notes from the largest untouched section of the Talkhīṣ: aḥwāl al-khabar (ibtidāʾī/ṭalabī/inkārī) and inshāʾ ṭalabī vs ghayr ṭalabī; ~~iltifāt's 6 named kinds (lines ~1203-1251)~~ **DONE — note 116 `iltifat` + Talkhīṣ chapter 14 (v0.14.0): all six kinds with their witnesses, the Sakkākī-vs-jumhūr khilāf (ʿumūm khuṣūṣ muṭlaq), and the Fātiḥa nukta; four kinds walked in the chapter itself**; faṣl wa waṣl with dawāʿī al-faṣl and kamāl al-inqiṭāʿ (lines ~2283-2430); ījāz/iṭnāb/musāwāt (line ~2641+). Explicitly disambiguate from the similarly-named nahw notes (`anwa-al-khabar.json` teaches syntax, not rhetoric).
 **From:** `talkhis-al-miftah-balagha.txt` fann 1 (~2,600 lines, roughly half the book)
 **Why:** Half the app's primary balāgha source is unread, and this is the section a reader most often needs to explain *why* a sentence is phrased as it is. Ranked below the rule systems because the notes are descriptive rather than derivable.
 
@@ -1358,3 +1358,55 @@ not a one-line change.
   disagreements are now the SAME undecidable twice — بِمَا with a dropped-object
   ʿāʾid (Manār 16's بِمَا لَا يَعْلَمُ and the bayt's بِمَا لَا تَشْتَهِي السُّفُنُ) —
   the honest-shortlist class, kept deliberately, now witnessed in two books.
+
+- **v131 — Talkhīṣ chapter 14: خِلَافُ مُقْتَضَى الظَّاهِرِ وَالِالْتِفَاتُ** — the
+  chapter that answers `khilaf-muqtada-al-zahir`'s promise in full. Two doors:
+  the ism ẓāhir set in the pronoun's place (Ibrāhīm b. Adham's عَبْدُكَ الْعَاصِي
+  for أَنَا — the muṣannif files the motive as لِطَلَبِ الشَّفَقَةِ), and ILTIFĀT,
+  the turning of the discourse between takallum, khiṭāb and ghayba. Four of the
+  six kinds walked in the chapter (al-Kawthar, Yā-Sīn 22, Yūnus 22, al-Fātiḥa);
+  note 116 `iltifat` carries all six with their witnesses, teaches the
+  Sakkākī-vs-jumhūr definitions as a khilāf (ʿumūm khuṣūṣ muṭlaq, with ʿAlqama's
+  تَطَاوَلَ لَيْلُكَ as the case the definitions split on — iltifāt for Sakkākī,
+  tajrīd for the jumhūr), and keeps the muṣannif's Fātiḥa nukta: the named
+  perfections gather until speech ABOUT Him must become speech TO Him. Three
+  new paradigms (عَبَدَ، فَطَرَ، نَحَرَ), أَتَى/دَعَا/صَلَّى/رَجَعَ copied in, and the
+  أفعال الخمسة note finally anchored by تُرْجَعُونَ.
+
+  **Engine wave — the probe found seven defects, and none of them was in
+  the metric:**
+
+  - **The iyyā family joined PARTICLES** — إِيَّاكَ was answering فَعَّال
+    (an intensive!) because no closed-class row owned it; fourteen spellings
+    of the detached naṣb pronoun now carry `k: "pron"`.
+  - **The ب/ل/ك peel refuses a pronoun remainder** — بِهِمْ read as one noun
+    because the peel accepted هم as a plausible stem; a remainder that is
+    itself a pronoun row can only be the jarr letter's object.
+  - **إِنَّا splits on its shadda — and NFC puts the fatha BEFORE the shadda**,
+    so the test that reads the doubling must accept both mark orders (the
+    lammaJazim test knew this; the new branch had to learn it). The bare
+    «إنا» also needed its own PARTICLES key: the hamza SEAT kept the vowelled
+    spelling out of the branch that decides.
+  - **The iṭlāq alif peels**: أَتَاكَا and دَعَاكَا are prose verbs wearing a
+    verse-final prolonging alif; `formCandidates` offers the كَا → كَ spelling
+    and the maqṣūra returns, so `corpusOwns` passes and both reach their
+    paradigms. A new gloss key `alif-itlaq` teaches the convention.
+  - **A closed-class word has no root to find** — RootFinder now refuses
+    (corpus first, then refusal) instead of letting the pattern rules read
+    a pronoun as a قَرَّاء-shaped trade noun.
+  - **The mim-prefix geminate row**: مُقِرًّا answered ق ر و/ي — a guessed weak
+    third where the surface CARRIES the letter, in the shadda. Kept narrow
+    deliberately: a blanket shadda-unfold doubled the sun letter of
+    الدَّرَاهِمِ and the augment of مُحَمَّد, and the drill bank refused both
+    within the minute. The bank is the reviewer that never sleeps.
+  - **The derived majhūl steps back over the five-verbs suffix**: sjMajhul
+    voweled the plural's wāw as «what stands before the last», so تُرْجَعُونَ
+    matched nothing; the rule now reads the stem, and the derived cell keeps
+    the PERSON of the active it was built from (it had been reporting «he»
+    for a you-pl cell). And IrabSign gained the TANWĪN-SEAT branch: a written
+    fatḥatan before a final alif is naṣb lafẓan (كِتَابًا) — only a true maqṣūr
+    (عَصًا) keeps the estimated reading, and the note says which decides.
+
+  Measured: **99.8% over 1,164 tokens** unchanged, with one strict bank
+  improvement (حُسْنًا null → ح س ن). The two standing disagreements remain the
+  same undecidable بِمَا, twice-witnessed, kept deliberately.

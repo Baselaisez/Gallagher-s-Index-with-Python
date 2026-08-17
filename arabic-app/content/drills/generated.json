@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 140,
-  "sentenceTokens": 1164,
+  "sentences": 145,
+  "sentenceTokens": 1198,
   "posAgreement": 99.8,
-  "rows": 2249
+  "rows": 2283
  },
  "endings": [
   {
@@ -25005,8 +25005,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": null,
-      "wazn": null,
+      "root": "ح س ن",
+      "wazn": "فُعْلًا",
       "sure": false
      },
      "match": true
@@ -31548,6 +31548,802 @@
       "lemma": "غَوْل",
       "root": "غ و ل",
       "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:14:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 14,
+   "sentence": "s1",
+   "text": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ فَصَلِّ لِرَبِّكَ وَانْحَرْ",
+   "translation": {
+    "en": "Truly WE have given you al-Kawthar — so pray to YOUR LORD and sacrifice. (al-Kawthar 108:1-2 — the discourse turns from the speaker to the third person.)",
+    "tr": "Muhakkak Bİz sana Kevser'i verdik — öyleyse RABBİN için namaz kıl ve kurban kes. (Kevser 108:1-2 — söz, birinci şahıstan üçüncü şahsa döner.)"
+   },
+   "jumal": [
+    {
+     "text": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ فَصَلِّ لِرَبِّكَ",
+     "ar": "اِلْتِفَاتٌ مِنَ التَّكَلُّمِ إِلَى الْغَيْبَةِ — مُقْتَضَى الظَّاهِرِ «فَصَلِّ لَنَا».",
+     "en": "Iltifat from first to third person: «We gave» … «so pray to your Lord» — where the surface demanded «pray to Us»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "إِنَّا",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "inna-wa-akhawatuha",
+       "iltifat"
+      ],
+      "irab": "إِنَّ with its ism already aboard: the shadda is the sign that this is the emphasis particle plus the fused «na» (mahallan mansub), not the speaker's أَنَا. The discourse opens in the FIRST person — «truly WE» — and holding that register in mind is the whole point: the turning, when it comes two words later, needs a fixed point to turn FROM."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَعْطَيْنَاكَ",
+     "lex": "aata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "inna-wa-akhawatuha",
+       "form-iv-verbs",
+       "mafulayn"
+      ],
+      "irab": "«We have given you» — mazi built on the sukun for the attached «na» of the doers; the kaf is the FIRST object (أَعْطَى governs two). The clause is inna's khabar, in the position of raf'. Note the persons standing shoulder to shoulder: WE give, YOU receive — takallum and khitab both on stage, the ghayba not yet entered."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَعْطَى",
+      "root": "ع ط و",
+      "wazn": "أَفْعَلْنَا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْكَوْثَرَ",
+     "lex": "kawthar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "mafulayn"
+      ],
+      "irab": "The SECOND object of the giving, in nasb by the plain fatha: al-Kawthar — the abundance, and the river of Paradise by that name."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْكَوْثَر",
+      "root": "ك ث ر",
+      "wazn": "فَوْعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَصَلِّ",
+     "lex": "salla",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "imperative-amr",
+       "naqis-verbs"
+      ],
+      "irab": "The fa of consequence — «so», the command growing out of the gift — and the amr of a naqis verb, built on the DROPPING of its weak letter: صَلِّ from صَلَّى, the kasra standing where the ya fell. The doer is «you», concealed."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "صَلَّى",
+      "root": "ص ل و",
+      "wazn": "فَعِّلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لِرَبِّكَ",
+     "lex": "rabb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness",
+       "iltifat",
+       "khilaf-muqtada-al-zahir"
+      ],
+      "irab": "«To your LORD» — and here the discourse TURNS. The Giver spoke as «We»; the surface therefore demanded «so pray to US» (فَصَلِّ لَنَا). Instead the third person enters: your LORD — the name that carries lordship, nurture, ownership. This is ILTIFAT from takallum to ghayba, and the turn is the rhetoric: the gift came intimately, from «Us»; the worship is owed to the Lord in His station."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ر ب ك",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "وَانْحَرْ",
+     "lex": "nahara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "imperative-amr",
+       "anwa-al-waw"
+      ],
+      "irab": "«And sacrifice» — the joining waw hangs a second command on the first: amr built on the sukun, its hamza a hamzat al-wasl that melts after the waw. Prayer and sacrifice, the two great acts of devotion, both turned toward the Lord the iltifat just named."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَحَرَ",
+      "root": "ن ح ر",
+      "wazn": "اِفْعَلْ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:14:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 14,
+   "sentence": "s2",
+   "text": "وَمَا لِيَ لَا أَعْبُدُ الَّذِي فَطَرَنِي وَإِلَيْهِ تُرْجَعُونَ",
+   "translation": {
+    "en": "And why should I not worship the One who created me — and to Him YOU will be returned? (Ya-Sin 36:22 — the discourse turns from the speaker to those addressed.)",
+    "tr": "Ben, beni yaratana neden ibadet etmeyeyim — ve SİZ O'na döndürüleceksiniz? (Yâsîn 36:22 — söz, birinci şahıstan muhataplara döner.)"
+   },
+   "jumal": [
+    {
+     "text": "وَمَا لِيَ لَا أَعْبُدُ الَّذِي فَطَرَنِي وَإِلَيْهِ تُرْجَعُونَ",
+     "ar": "اِلْتِفَاتٌ مِنَ التَّكَلُّمِ إِلَى الْخِطَابِ — مُقْتَضَى الظَّاهِرِ «وَإِلَيْهِ أُرْجَعُ».",
+     "en": "Iltifat from first to second person: the speaker proves the return for himself, then hands it to his hearers — «YOU will be returned» where the surface demanded «I»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَمَا",
+     "lex": "ma-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "anwa-ma",
+       "mubtada-khabar"
+      ],
+      "irab": "The interrogative «ma» as mubtada — «what is it to me…?», a question worn by wonder, not a request for information. The speaker is the believer of Ya-Sin, arguing for his own worship."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "لِيَ",
+     "lex": "li",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "«To me» — the jarr pair standing as the khabar, mustaqarr on an omitted amil: what is [there] to me. The lam wears its fatha before the pronoun, as it always does."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [],
+      "irab": "The negation over the coming verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَعْبُدُ",
+     "lex": "abada",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "hal"
+      ],
+      "irab": "«[that] I do not worship» — mudari' in raf', its doer the concealed «I»; the clause sits as HAL: what is it to me, in the state of not worshipping? Still the first person — the register the aya will turn away from at its close."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَبَدَ",
+      "root": "ع ب د",
+      "wazn": "أَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الَّذِي",
+     "lex": "alladhi",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "maful-bihi"
+      ],
+      "irab": "The relative, mabni, standing as the object of the worship: «the One who…» — and its sila comes to name Him by His act."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَطَرَنِي",
+     "lex": "fatara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ya-al-mutakallim"
+      ],
+      "irab": "«who CREATED me» — fatara, the primal origination, the verb of Ibrahim's فَطَرَنِي before it. The nun is the protective nun that spares the verb's ending from the ya's kasra; the ya of the speaker is the object. The clause is the sila, with no place in i'rab."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "فَطَرَ",
+      "root": "ف ط ر",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَإِلَيْهِ",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "qasr",
+       "taqdim-al-musnad-ilayh"
+      ],
+      "irab": "«And to HIM» — the jarr pair FRONTED over its verb, and the fronting is a qasr: to Him and to none other is the return. The pronoun still ghayba, the Creator just named by His act."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تُرْجَعُونَ",
+     "lex": "rajaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naib-al-fail",
+       "afal-khamsa",
+       "iltifat",
+       "khilaf-muqtada-al-zahir"
+      ],
+      "irab": "«YOU will be returned» — and the discourse has TURNED. The whole aya ran in the first person (what is it to ME… who created ME); the surface demanded «and to Him I shall be returned» (أُرْجَعُ). Instead the plural YOU: the speaker, having argued worship for himself, wheels on his people — the return he proved for himself is theirs too, whether they worship or not. Passive, one of the five verbs, its raf' the fixed nun; the waw is the deputy doer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَجَعَ",
+      "root": "ر ج ع",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:14:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 14,
+   "sentence": "s3",
+   "text": "حَتَّى إِذَا كُنْتُمْ فِي الْفُلْكِ وَجَرَيْنَ بِهِمْ",
+   "translation": {
+    "en": "…until, when YOU are aboard the ships, and they run with THEM… (Yunus 10:22 — the discourse turns from those addressed to the third person.)",
+    "tr": "…nihayet SİZ gemilerde olduğunuzda ve gemiler ONLARI götürdüğünde… (Yûnus 10:22 — söz, muhataplardan üçüncü şahsa döner.)"
+   },
+   "jumal": [
+    {
+     "text": "حَتَّى إِذَا كُنْتُمْ فِي الْفُلْكِ وَجَرَيْنَ بِهِمْ",
+     "ar": "اِلْتِفَاتٌ مِنَ الْخِطَابِ إِلَى الْغَيْبَةِ — مُقْتَضَى الظَّاهِرِ «بِكُمْ»: أُخْرِجُوا مِنَ الْخِطَابِ إِخْرَاجًا.",
+     "en": "Iltifat from second to third person: «when YOU were aboard… and they ran with THEM» — the ungrateful are turned out of the address, and the distancing is the rebuke."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "حَتَّى",
+     "lex": "hatta",
+     "human": {
+      "pos": "part",
+      "grammar": [],
+      "irab": "Here NOT the jarr letter: before إِذَا it is the hatta of COMMENCEMENT — it opens a new stretch of discourse and governs nothing."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya"
+      ],
+      "irab": "The zarf of future time carrying the sense of condition: «when…» — its clause is the mudaf-ilayh of the moment it names."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كُنْتُمْ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kana-wa-akhawatuha",
+       "hollow-verbs"
+      ],
+      "irab": "«when YOU were» — kana the incomplete sister, built on the sukun for the subject-ta; the ta-plus-mim is its ism. Mark the register: the aya is speaking TO them — second person, the mode it is about to leave."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "wazn": "فَعَلْتُمْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "The jarr letter; the pair is kana's khabar, mustaqarr."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْفُلْكِ",
+     "lex": "fulk",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "«The ships» — in jarr; and فُلْك is one of the words whose singular and plural share a single form. Here it is plural: the ships of the sea-farers."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فُلْك",
+      "root": "ف ل ك",
+      "wazn": "فُعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَجَرَيْنَ",
+     "lex": "jara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naqis-verbs",
+       "anwa-al-waw"
+      ],
+      "irab": "«and they RAN» — the feminine plural nun as doer, its pronoun the ships (a broken-plural sense takes the feminine). Mazi of the naqis جَرَى, its weak ya surfacing before the nun: جَرَيْنَ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَرَى",
+      "root": "ج ر ي",
+      "wazn": "فَعَلْنَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِهِمْ",
+     "lex": "bi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "iltifat",
+       "khilaf-muqtada-al-zahir"
+      ],
+      "irab": "«with THEM» — and the discourse has TURNED again. The aya was addressing them — «when YOU were aboard» — so the surface demanded «and they ran with YOU» (بِكُمْ). Instead the third person: with THEM. The classical reading of the turn: as the storm nears, the ungrateful are turned OUT of the divine address — spoken about, no longer spoken to — a distancing that is itself the rebuke."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:14:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 14,
+   "sentence": "s4",
+   "text": "مَالِكِ يَوْمِ الدِّينِ إِيَّاكَ نَعْبُدُ",
+   "translation": {
+    "en": "Master of the Day of Judgment. YOU alone we worship. (al-Fatiha 1:4-5 — the discourse turns from the third person to direct address.)",
+    "tr": "Din gününün sahibi. Yalnız SANA ibadet ederiz. (Fâtiha 1:4-5 — söz, üçüncü şahıstan doğrudan hitâba döner.)"
+   },
+   "jumal": [
+    {
+     "text": "مَالِكِ يَوْمِ الدِّينِ إِيَّاكَ نَعْبُدُ",
+     "ar": "اِلْتِفَاتٌ مِنَ الْغَيْبَةِ إِلَى الْخِطَابِ مَعَ قَصْرٍ بِتَقْدِيمِ الْمَفْعُولِ — مُقْتَضَى الظَّاهِرِ «إِيَّاهُ نَعْبُدُ».",
+     "en": "Iltifat from third person to direct address, carrying a qasr in the fronted object: the named perfections gather until speech about Him must become speech to Him."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "مَالِكِ",
+     "lex": "malik",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ism-fail",
+       "idafa-definiteness",
+       "tarif-bil-idafa"
+      ],
+      "irab": "«Master» — ism fail, a sifa of Allah in jarr, itself a mudaf. Count the register: from الْحَمْدُ لِلَّهِ the sura has spoken ABOUT Him — Lord of the worlds, the Merciful, Master of the Day — every attribute in the third person, each one building what the musannif calls the gathering strength."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَالِك",
+      "root": "م ل ك",
+      "wazn": "فَاعِلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَوْمِ",
+     "lex": "yawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh, itself a mudaf: the chain runs on."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَوْم",
+      "root": "ي و م",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الدِّينِ",
+     "lex": "din",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The chain closes: «of the Judgment» — din here is requital, the settling of accounts."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دِين",
+      "root": "د ي ن",
+      "wazn": "فِّعلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِيَّاكَ",
+     "lex": "iyyaka",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "maful-bihi",
+       "qasr",
+       "iltifat",
+       "khilaf-muqtada-al-zahir"
+      ],
+      "irab": "«YOU alone» — and the sura TURNS to face Him. Every attribute so far was ghayba; the surface demanded «HIM we worship» (إِيَّاهُ نَعْبُدُ). But the servant who has named the perfections one by one — the musannif's nukta — finds by the end of مَالِكِ يَوْمِ الدِّينِ that the gathered force can no longer speak ABOUT; it must speak TO. The detached pronoun, fronted, is also a QASR: You and none other. Iltifat and ikhtisas in one word — the most famous turning in the language."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَعْبُدُ",
+     "lex": "abada",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "«we worship» — mudari' in raf', its doer the concealed «we»: the single servant praying in the plural of the praying community."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَبَدَ",
+      "root": "ع ب د",
+      "wazn": "نَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:14:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 14,
+   "sentence": "s5",
+   "text": "إِلَهِي عَبْدُكَ الْعَاصِي أَتَاكَا مُقِرًّا بِالذُّنُوبِ وَقَدْ دَعَاكَا",
+   "translation": {
+    "en": "My God — Your disobedient SLAVE has come to You, confessing his sins, and he has called on You. (Ibrahim b. Adham's du'a — the plain sense demanded «I»; the servant names himself a slave to ask for mercy.)",
+    "tr": "İlâhî — âsi KULUN Sana geldi; günahlarını ikrar ederek, ve Sana dua etti. (İbrahim b. Edhem'in duası — zâhir «ben» isterdi; kul, merhamet dilemek için kendini «kulun» diye adlandırır.)"
+   },
+   "jumal": [
+    {
+     "text": "إِلَهِي عَبْدُكَ الْعَاصِي أَتَاكَا مُقِرًّا بِالذُّنُوبِ وَقَدْ دَعَاكَا",
+     "ar": "وَضْعُ الظَّاهِرِ مَوْضِعَ الضَّمِيرِ لِطَلَبِ الشَّفَقَةِ — مُقْتَضَى الظَّاهِرِ «أَنَا الْعَاصِي».",
+     "en": "An ism zahir in the pronoun's place, to call forth mercy: «Your disobedient slave has come» where the plain sense demanded «I». The plea renounces standing before it asks anything."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "إِلَهِي",
+     "lex": "ilah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "vocative-munada",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«My God» — a munada whose calling particle (يَا) is omitted, as du'a loves to do; the mudaf ilayh is the speaker's own ya. The most intimate address in the language opens the plea."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "إ ل ه",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "عَبْدُكَ",
+     "lex": "abd",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "khilaf-muqtada-al-zahir",
+       "idafa-definiteness"
+      ],
+      "irab": "«Your SLAVE» — the mubtada, and here is the chapter's FIRST door: an ism zahir set where the pronoun belonged. The speaker means himself; the surface demanded «I, the disobedient one» (أَنَا الْعَاصِي). But «I» claims standing, and this prayer wants none: he comes as a slave — Yours, owned, with no plea but the owning. The musannif files the motive precisely: لِطَلَبِ الشَّفَقَةِ وَالْمَرْحَمَةِ — to call forth tenderness and mercy."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَبْد",
+      "root": "ع ب د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْعَاصِي",
+     "lex": "aasi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ism-fail",
+       "naat-sifa",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«the disobedient» — sifa of the slave, a manqus whose damma is estimated on the ya (thiqal). The confession is built into the very NAME he gives himself: not a slave who happens to have sinned, but THE disobedient slave, article and all."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع ص ي",
+      "wazn": "فَاعِل",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "أَتَاكَا",
+     "lex": "ata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naqis-verbs",
+       "mubtada-khabar"
+      ],
+      "irab": "«has COME to You» — mazi of the naqis أَتَى, its kaf the object, and the final alif is the ALIF AL-ITLAQ: verse pads its rhyme-word with a prolonging alif the grammar does not count. The clause is the khabar of «Your slave». He does not send the plea; he brings it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَتَى",
+      "root": "أ ت ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُقِرًّا",
+     "lex": "muqirr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "hal",
+       "ism-fail",
+       "doubled-verbs"
+      ],
+      "irab": "«confessing» — hal in nasb by the plain fathatan (the final alif is only the tanwin's seat): in WHAT STATE did he come? Confessing. Ism fail of the geminate Form IV أَقَرَّ — the shadda holds the doubled ra that is the root's third letter."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ق ر ر",
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "بِالذُّنُوبِ",
+     "lex": "dhanb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "«of the sins» — the jarr pair hanging on the confessing: iqrar takes its object through bi. Plural: not one lapse but the whole ledger."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ذَنْب",
+      "root": "ذ ن ب",
+      "wazn": "فُّعُولِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَقَدْ",
+     "lex": "qad",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "qad-harf",
+       "anwa-al-waw",
+       "hal"
+      ],
+      "irab": "The waw of circumstance with qad of realization: «while he has already…» — a past verb after وَقَدْ reads as an accomplished state."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "دَعَاكَا",
+     "lex": "daa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "naqis-verbs",
+       "hal"
+      ],
+      "irab": "«and he has CALLED on You» — the second rhyme-word, the same anatomy as أَتَاكَا: naqis mazi, object kaf, itlaq alif. The bayt's two halves close on the same sound because the plea's two acts — coming and calling — end in the same You."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَعَا",
+      "root": "د ع و",
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true
