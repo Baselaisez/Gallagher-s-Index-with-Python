@@ -1410,3 +1410,48 @@ not a one-line change.
   Measured: **99.8% over 1,164 tokens** unchanged, with one strict bank
   improvement (حُسْنًا null → ح س ن). The two standing disagreements remain the
   same undecidable بِمَا, twice-witnessed, kept deliberately.
+
+- **v132 — Talkhīṣ chapter 15: أَحْوَالُ الْمُسْنَدِ opens with تَرْكُ الْمُسْنَدِ** —
+  the predicate's bāb begins as the subject's did, with omission, and the
+  chapter is really a course in QARĀʾIN: the spoken twin (زَيْدٌ مُنْطَلِقٌ
+  وَعَمْرٌو), the forward echo (Qays b. al-Khaṭīm's bayt, where the one رَاضٍ
+  said for «you» answers for «we»), the narrow maqam (خَرَجْتُ فَإِذَا زَيْدٌ —
+  the muṣannif's own word: ضَيِّق), the two-taqdīr case the books keep open
+  (فَصَبْرٌ جَمِيلٌ — musnad on one reconstruction, musnad ilayh on the other),
+  and the realized question as the strongest qarina of all (Luqmān 25's
+  لَيَقُولُنَّ اللَّهُ = اللَّهُ خَلَقَهُنَّ). Note 117 `tark-al-musnad`; خَلَقَ
+  paradigm new, سَأَلَ copied in.
+
+  **Engine wave — the probe found eight, and the bank vetoed none:**
+
+  - **إِذَا الْفُجَائِيَّة exists now** — the NEXT word's class decides: a noun
+    after إِذَا (and the fa riding it) is the surprise reading, taught with
+    its Akhfash-vs-Mubarrad khilaf; the conditional keeps the verb.
+  - **لَئِنْ splits** into the oath-paving lam + إِنْ, with the rule that the
+    jawab belongs to the earlier of qasam and shart.
+  - **The heavy nun is restored to its cell**: formCandidates reads the
+    vowel left before نَّ — a damma betrays the swallowed group's-waw
+    (يَقُولُنَّ → يَقُولُونَ), a kasra the feminine's ya, a fatha the singular —
+    and لَيَقُولُنَّ answers «a corpus verb — they (m)» through four fused
+    pieces.
+  - **نَحْنُ joined PARTICLES** (with هُمَا and أَنْتُمْ) — MaEngine's rule 6d
+    reads pronounhood off that table, and the bayt's first بِمَا had lost
+    its mawṣūla for the missing key; **the zarf-sila list completed** (عندك،
+    عنده، لدى forms) so the second بِمَا matches the first.
+  - **The sin of سَأَلَ is a radical** — the future-sin peel was reading
+    سَأَلْتَهُمْ as سَ + a 1sg mudari; the corpus decides: a paradigm whose
+    LEMMA begins with sin keeps its sin.
+  - **مَنْ with a fatha promises a verb** — the ism row was still handing the
+    next word the jarr letter's «likely majrur», and خَلَقَ was a mudaf noun.
+  - **رَاضٍ against بَابٍ**: the manqus and the hollow share one skeleton
+    (three letters, middle alif, kasratan) and no surface rule can split
+    them — the GLOSSARY decides, and a word the lexicon does not own keeps
+    the hollow guess as the honest commoner default.
+  - **فَعْل، فِعْل، فُعْل joined the IsmTagger** — the commonest nouns in the
+    corpus had no scale to answer, so صَبْر was forced into أَفْعَل; the
+    joining wa/fa is offered peeled and the model keeps the reading it
+    trusts more. Held-out top1 91.2% over 43 shapes (floor 86).
+
+  Measured: **99.8% over 1,223 tokens** (150 worked sentences), ch15's 25
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

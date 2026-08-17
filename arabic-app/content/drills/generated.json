@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 145,
-  "sentenceTokens": 1198,
+  "sentences": 150,
+  "sentenceTokens": 1223,
   "posAgreement": 99.8,
-  "rows": 2283
+  "rows": 2308
  },
  "endings": [
   {
@@ -32344,6 +32344,632 @@
       "lemma": "دَعَا",
       "root": "د ع و",
       "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:15:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 15,
+   "sentence": "s1",
+   "text": "زَيْدٌ مُنْطَلِقٌ وَعَمْرٌو",
+   "translation": {
+    "en": "Zayd is setting out — and ʿAmr [is too]. (The musnad of ʿAmr is omitted: the one already said is its qarina.)",
+    "tr": "Zeyd yola çıkıyor — Amr da [öyle]. (Amr'ın müsnedi hazfedilmiştir: söylenmiş olan, onun karînesidir.)"
+   },
+   "jumal": [
+    {
+     "text": "زَيْدٌ مُنْطَلِقٌ وَعَمْرٌو",
+     "ar": "حُذِفَ خَبَرُ الثَّانِي لِدَلَالَةِ الْأَوَّلِ عَلَيْهِ — اخْتِصَارًا وَاحْتِرَازًا عَنِ الْعَبَثِ.",
+     "en": "The second khabar dropped because the first one points to it — brevity, and the avoidance of saying what is already heard."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad"
+      ],
+      "irab": "The first mubtada, in raf' by the plain damma. His khabar is about to be SAID — hold it, because the sentence's second half will lean on it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": "ز ي د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُنْطَلِقٌ",
+     "lex": "muntaliq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "form-vii-verbs",
+       "tark-al-musnad"
+      ],
+      "irab": "The khabar, in raf' — ism fail of the Form VII اِنْطَلَقَ. And it does double duty: said once for Zayd, it becomes the QARINA for the same musnad omitted after ʿAmr. Every hadhf must leave such a witness behind, or the hearer is left guessing at what was never recoverable."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْطَلِق",
+      "root": "ط ل ق",
+      "wazn": "مُنْفَعِلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَعَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad",
+       "anwa-al-waw"
+      ],
+      "irab": "«And ʿAmr» — a second mubtada whose khabar is OMITTED: the full sentence is وَعَمْرٌو مُنْطَلِقٌ, and saying مُنْطَلِقٌ twice in one breath would be ʿabath — pointless repetition — when the first one still hangs in the air. This is the musnad's bab opening exactly as the musnad ilayh's did: with ikhtisar. (And the silent waw at the end is spelling, not sound: it tells عَمْرو from عُمَر on the page.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:15:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 15,
+   "sentence": "s2",
+   "text": "خَرَجْتُ فَإِذَا زَيْدٌ",
+   "translation": {
+    "en": "I went out — and there was Zayd! (The general musnad — «present, standing there» — is omitted: the maqam of surprise is too narrow for it.)",
+    "tr": "Çıktım — bir de ne göreyim, Zeyd! (Umûmî müsned — «mevcut, duruyor» — hazfedilmiştir: sürpriz makāmı ona dardır.)"
+   },
+   "jumal": [
+    {
+     "text": "خَرَجْتُ فَإِذَا زَيْدٌ",
+     "ar": "حُذِفَ الْمُسْنَدُ الْعَامُّ — مَوْجُودٌ — لِضِيقِ الْمَقَامِ عَنْ إِطَالَةِ الْكَلَامِ.",
+     "en": "The general musnad — «there, present» — omitted because the maqam of surprise is too narrow to stretch the speech."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "خَرَجْتُ",
+     "lex": "kharaja",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "tark-al-musnad"
+      ],
+      "irab": "«I went out» — mazi built on the sukun for the subject-ta; the ta is the doer. An ordinary report — until the fa turns the corner."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَرَجَ",
+      "root": "خ ر ج",
+      "wazn": "فَعَلْتُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَإِذَا",
+     "lex": "idha-fujaiyya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya",
+       "tark-al-musnad"
+      ],
+      "irab": "«and THERE was—» — this is NOT the conditional idha: a NOUN follows it, not a verb, and that class-change is the whole diagnosis. إِذَا الْفُجَائِيَّةُ, the idha of surprise, opens a nominal sentence and governs nothing; the books dispute its essence (a harf for al-Akhfash, a zarf for al-Mubarrad) and agree on its work. The fa rides it, as it loves to."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad",
+       "hadhf-wa-taqdir"
+      ],
+      "irab": "«Zayd!» — a mubtada whose khabar never comes, and the musannif names the reason with a picture: the maqam is NARROW (ضَيِّق). Surprise has no room in it for the general verb — «present», «standing there» — the fact of him is the whole news. The omitted musnad here is the colourless مَوْجُودٌ, and saying it would flatten the very jolt the fuja'iyya exists to carry."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": "ز ي د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:15:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 15,
+   "sentence": "s3",
+   "text": "نَحْنُ بِمَا عِنْدَنَا وَأَنْتَ بِمَا عِنْدَكَ رَاضٍ وَالرَّأْيُ مُخْتَلِفٌ",
+   "translation": {
+    "en": "We with what we hold, and you with what you hold, are content — and the two minds differ. (Qays b. al-Khatim; the first clause's musnad رَاضُونَ is omitted, heard from the رَاضٍ said in the second.)",
+    "tr": "Biz elimizdekinden, sen de elindekinden hoşnutsun — ve görüşler farklıdır. (Kays b. el-Hatîm; ilk cümlenin müsnedi رَاضُونَ hazfedilmiş, ikincide söylenen رَاضٍ'den işitilir.)"
+   },
+   "jumal": [
+    {
+     "text": "نَحْنُ بِمَا عِنْدَنَا وَأَنْتَ بِمَا عِنْدَكَ رَاضٍ",
+     "ar": "حُذِفَ مُسْنَدُ الْأَوَّلِ — رَاضُونَ — بِدَلَالَةِ سِيَاقِ الْكَلَامِ، احْتِرَازًا عَنِ الْعَبَثِ.",
+     "en": "The first clause's musnad — «we are content» — omitted on the strength of the siyaq: the one رَاضٍ spoken later answers for both."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 9,
+   "agree": 9,
+   "tokens": [
+    {
+     "w": "نَحْنُ",
+     "lex": "nahnu",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad"
+      ],
+      "irab": "«WE» — detached pronoun as mubtada, and its khabar is the one word this bayt never says for it: رَاضُونَ. The omission runs FORWARD — the qarina comes later, in the second clause's رَاضٍ — the mirror image of Zayd's sentence, where the said one preceded. Siyaq points both ways."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "anwa-ma",
+       "huruf-jarr",
+       "tark-al-musnad"
+      ],
+      "irab": "«with WHAT…» — the ba governs, and this ma is MAWSULA: the zarf عِنْدَنَا after it is its sila (a sila may be a shibh jumla — it needs only something to hang on, while a negation would need a whole clause to work on). «With that which is with us»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "عِنْدَنَا",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "«with us» — the zarf عِنْدَ, a noun and a mudaf, with the attached «na» as its mudaf ilayh; the whole zarf is the sila of the ma before it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَأَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "anwa-al-waw"
+      ],
+      "irab": "«and YOU» — the second mubtada, and THIS one gets the spoken khabar: the رَاضٍ still to come serves the second clause aloud and the first by echo."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "anwa-ma",
+       "huruf-jarr"
+      ],
+      "irab": "The second «with what» — read exactly as the first: the ma'tuf follows the ma'tuf alayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "عِنْدَكَ",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "«with you» — the same zarf-sila anatomy, the kaf now the mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رَاضٍ",
+     "lex": "radin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "ism-maqsur-manqus",
+       "tark-al-musnad"
+      ],
+      "irab": "«content» — the bayt's one spoken musnad, khabar of أَنْتَ. A MANQUS: ism fail of رَضِيَ whose ya has dropped against the tanwin, the damma estimated on the absent letter — the kasratan you see is all that remains of رَاضِي. And it is the QARINA: from this single رَاضٍ the hearer supplies رَاضُونَ for «we». One word, two clauses, and the omission is the eloquence."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَاضٍ",
+      "root": "ر ض ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالرَّأْيُ",
+     "lex": "ray",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "anwa-al-waw"
+      ],
+      "irab": "«and the opinion» — a closing nominal sentence: the waw opens it (isti'naf, or hal), and الرَّأْيُ is its mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَأْي",
+      "root": "ر أ ي",
+      "wazn": "فَّعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُخْتَلِفٌ",
+     "lex": "mukhtalif",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "ism-fail",
+       "form-viii-verbs"
+      ],
+      "irab": "«differing» — the khabar, ism fail of the Form VIII اِخْتَلَفَ: each side content, and the two contentments face opposite ways."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُخْتَلِف",
+      "root": "خ ل ف",
+      "wazn": "مُفْتَعِلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:15:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 15,
+   "sentence": "s4",
+   "text": "فَصَبْرٌ جَمِيلٌ",
+   "translation": {
+    "en": "So — a beautiful patience. (Yusuf 12:83. The omitted word may be the musnad — «is more beautiful» — or the musnad ilayh — «my course is…»: the books keep BOTH taqdirs.)",
+    "tr": "Artık — güzel bir sabır. (Yûsuf 12:83. Hazfedilen, müsned olabilir — «daha güzeldir» — yahut müsnedün ileyh — «benim işim…»: kitaplar İKİ takdiri de saklar.)"
+   },
+   "jumal": [
+    {
+     "text": "فَصَبْرٌ جَمِيلٌ",
+     "ar": "الْمَحْذُوفُ مُسْنَدٌ عَلَى تَقْدِيرٍ وَمُسْنَدٌ إِلَيْهِ عَلَى تَقْدِيرٍ — وَالْوَجْهَانِ مَحْفُوظَانِ فِي الْكُتُبِ.",
+     "en": "One aya, two reconstructions — the omitted word is the musnad on one taqdir and the musnad ilayh on the other, and the books keep both."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "tokens": [
+    {
+     "w": "فَصَبْرٌ",
+     "lex": "sabr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad",
+       "hadhf-wa-taqdir"
+      ],
+      "irab": "Yaʿqub's word over his torn son — and grammar's most honest fork. Read صَبْرٌ as MUBTADA and the omitted word is the MUSNAD: فَصَبْرٌ جَمِيلٌ أَجْمَلُ, «a beautiful patience is more beautiful». Read it as KHABAR and the omitted word is the MUSNAD ILAYH: فَأَمْرِي صَبْرٌ جَمِيلٌ, «my course is a beautiful patience». Nothing on the surface closes the fork, so the books carry both taqdirs side by side — and the musannif quotes the aya here precisely because it teaches that a mahdhuf is NAMED by reconstruction, not guessed at. The fa is the fasiha: it discloses an unspoken condition — «since this is so…»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَبْر",
+      "root": "ص ب ر",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "جَمِيلٌ",
+     "lex": "jamil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«beautiful» — sifa of the patience, in raf' — and note the economy: whichever taqdir you choose, this word's i'rab never moves. The fork is entirely in the unsaid."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَمِيل",
+      "root": "ج م ل",
+      "wazn": "فَعِيلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:15:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 15,
+   "sentence": "s5",
+   "text": "وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ",
+   "translation": {
+    "en": "And if you asked them who created the heavens and the earth, they would surely say: «Allah». (Luqman 31:25 — the answer omits the musnad خَلَقَهُنَّ: the realized question is its qarina.)",
+    "tr": "Onlara gökleri ve yeri kim yarattı diye sorsan, elbette «Allah» derler. (Lokmân 31:25 — cevap, müsned olan خَلَقَهُنَّ'yi hazfeder: gerçekleşmiş soru onun karînesidir.)"
+   },
+   "jumal": [
+    {
+     "text": "مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ — لَيَقُولُنَّ اللَّهُ",
+     "ar": "حُذِفَ الْمُسْنَدُ — خَلَقَهُنَّ — لِقِيَامِ السُّؤَالِ الْمُحَقَّقِ قَرِينَةً عَلَيْهِ.",
+     "en": "The answer's musnad — «created them» — omitted, because the realized question stands as its qarina: the verb still rings from the asking."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَلَئِنْ",
+     "lex": "lain",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "in-shartiyya",
+       "tark-al-musnad"
+      ],
+      "irab": "Two particles fused in the writing: the lam that PAVES for an omitted oath (اللَّامُ الْمُوَطِّئَةُ لِلْقَسَمِ), and إِنْ the conditional. Their meeting sets a rule in motion: when oath and shart share one sentence, the coming jawab belongs to the EARLIER of the two — watch لَيَقُولُنَّ arrive dressed for the oath, not for the shart."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "سَأَلْتَهُمْ",
+     "lex": "saala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "in-shartiyya",
+       "mafulayn"
+      ],
+      "irab": "«you asked them» — the shart verb, a mazi standing in the position of jazm; the ta is the doer, the fused «hum» the first object. And its sin is a RADICAL — سَأَلَ, not the future prefix: the root is س أ ل and the paradigm owns the word whole."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "wazn": "فَعَلْتَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَنْ",
+     "lex": "man-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad"
+      ],
+      "irab": "«WHO…?» — the interrogative man, mabni, as mubtada; the question-clause is the second object of the asking. The fatha on its mim is the diagnostic: this is the ISM, never the jarr letter مِنْ. Keep this question in hand — the aya's last word will lean its whole omission on it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "خَلَقَ",
+     "lex": "khalaqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "tark-al-musnad"
+      ],
+      "irab": "«created» — mazi, its doer concealed, returning upon man; the clause is man's khabar. This is the very verb the ANSWER will omit — said here in the question, it will not need saying again."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَلَقَ",
+      "root": "خ ل ق",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السَّمَاوَاتِ",
+     "lex": "samawat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "jam-muannath-salim"
+      ],
+      "irab": "«the heavens» — the object, and its nasb sign is the KASRA: a sound feminine plural takes kasra for fatha, one of the classical substitutions."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَمَاء",
+      "root": "س م و",
+      "wazn": "فَّعَالَاتِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالْأَرْضَ",
+     "lex": "ard",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "anwa-al-waw"
+      ],
+      "irab": "«and the earth» — joined to the heavens, in nasb by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَرْض",
+      "root": "أ ر ض",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَيَقُولُنَّ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "nun-tawkid",
+       "afal-khamsa",
+       "tark-al-musnad"
+      ],
+      "irab": "«they will SURELY say» — the aya's densest word, four pieces in one: the lam answers the paved-for OATH (this is the jawab al-qasam, which is why no jazm appears); the verb is يَقُولُونَ with its raf'-nun dropped and then the group's waw squeezed out against the heavy nun (تَوَالِي الْأَمْثَالِ); that omitted waw is still the FA'IL; and the doubled nun is the NUN OF EMPHASIS. Assemble it backwards and يَقُولُونَ stands whole again."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "يَفْعُلُونَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "اللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "mubtada-khabar",
+       "tark-al-musnad",
+       "hadhf-wa-taqdir"
+      ],
+      "irab": "«Allah.» — one word where a sentence stands. The mubtada, and its musnad is OMITTED: the full answer is اللَّهُ خَلَقَهُنَّ, «Allah created them». The qarina is a سُؤَالٌ مُحَقَّقٌ — a question actually asked and standing in the text — and against it the repetition would be ʿabath: the verb is already ringing in the air from مَنْ خَلَقَ. This is the chapter's rule in its purest state: every hadhf leans on a qarina, and the strongest qarina of all is the question the answer answers."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
       "sure": true
      },
      "match": true

@@ -2871,3 +2871,57 @@ seat, and verse padding — and each one now has its explicit step-over.** The
 derived cell also keeps the PERSON of the active it was built from; a derived
 majhūl that reports «he» for a you-pl cell is a correct derivation wearing the
 wrong name.
+
+## The next word's class is a diagnostic — إِذَا reads forward
+
+The table gave إِذَا one label («conditional») and the fuja'iyya did not
+exist: خَرَجْتُ فَإِذَا زَيْدٌ read its زَيْدٌ under a conditional's expectations.
+The two readings differ by exactly one observable — what follows: the shart
+idha demands its verb, the surprise idha opens a nominal sentence. Same
+method as the مَنْ fatha/kasra split and the إِنَّا shadda: **when a closed-class
+word wears two faces, find the single surface observable that splits them and
+write the branch on it** — and teach the essence-khilaf (harf for al-Akhfash,
+zarf for al-Mubarrad) instead of flattening it.
+
+## The vowel left behind names the letter that fell — the heavy nun edition
+
+يَقُولُونَ + نَّ loses its raf' nun, then its group's waw against the two sakins
+— and the damma stranded on the lam is the waw's headstone. formCandidates
+reads it: damma → restore ونَ, kasra → restore ينَ, fatha → the singular.
+Same family as the maqsura returning before a pronoun and the madda unfolding:
+**the surface never destroys information without leaving a receipt, and the
+matching layer's job is to read receipts.** The restoration is matching-only;
+the stored cell stays canonical.
+
+## A table the engines READ is a table that must be COMPLETE
+
+نَحْنُ was in three other pronoun lists but not in PARTICLES — and MaEngine's
+rule 6d reads pronounhood off PARTICLES alone, so the bayt's first بِمَا
+silently lost its mawsula. The lesson is not «add نحن»; it is that a
+closed-class table consulted by other engines is an INTERFACE, and a missing
+row is not a cosmetic gap but a wrong answer somewhere else. When adding a
+closed-class behavior, grep for every OTHER list that claims to enumerate the
+same class and reconcile them (هُمَا and أَنْتُمْ rode along; the zarf-sila
+list was missing عندك the same way).
+
+## Two words can share every letter AND every vowel — then only knowledge splits them
+
+Chapter 15 hit the limit twice. سَأَلْتَهُمْ vs سَيَقُولُ: the sin peel cannot
+know a radical from the future prefix, but the corpus can — a paradigm whose
+lemma begins with sin keeps its sin. رَاضٍ vs بَابٍ: the manqus and the hollow
+are surface-identical (three letters, middle alif, kasratan), and the
+glossary decides; where it is silent, keep the commoner class as the honest
+default rather than refuse both. **The escalation order is fixed: surface
+observable → corpus/glossary knowledge → honest default with the khilaf
+stated.** Never invert it — a rule that guesses where knowledge exists is a
+bug, and a refusal where an honest default exists is a worse teacher.
+
+## The model's missing shape is the model's confident error
+
+IsmTagger had no فَعْل/فِعْل/فُعْل — so صَبْر, the commonest noun shape in the
+corpus, was answered أَفْعَل at 0.30: a model without the right class does not
+abstain, it picks the nearest wrong one with conviction. After adding the
+shapes, held-out top1 ROSE (91.2 over 43 shapes vs the 86 floor) — coverage
+gaps hurt twice, on the missing class and on everything it steals from.
+Check the shape inventory against the corpus's commonest patterns, not
+against the derivational textbook order the inventory was first written in.

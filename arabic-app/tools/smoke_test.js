@@ -6708,6 +6708,94 @@ if (!CHROME) {
       throw new Error('the three new paradigms must own their chapter cells: ' + JSON.stringify(r.cells));
   });
 
+  await check('talkhis ch15: tark al-musnad — the qara\'in, the fuja\'iyya, and the heavy nun restored', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 15);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const rows = (text, w) => SentenceAnalyzer.analyze(text).filter(x => key(x.w) === key(w));
+      const row = (text, w, nth) => rows(text, w)[nth || 0] || {};
+      const idha = row('خَرَجْتُ فَإِذَا زَيْدٌ', 'فاذا');
+      const zayd2 = row('خَرَجْتُ فَإِذَا زَيْدٌ', 'زيد');
+      const lain = row('وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ', 'ولئن');
+      const saal = row('وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ', 'سالتهم');
+      const khalaq = row('وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ', 'خلق');
+      const yaqul = row('وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ', 'ليقولن');
+      const bayt = 'نَحْنُ بِمَا عِنْدَنَا وَأَنْتَ بِمَا عِنْدَكَ رَاضٍ وَالرَّأْيُ مُخْتَلِفٌ';
+      const bimas = rows(bayt, 'بما');
+      const nahnu = row(bayt, 'نحن');
+      const sabr = row('فَصَبْرٌ جَمِيلٌ', 'فصبر');
+      const rt = w => { const x = RootFinder.find(w); return x ? { r: x.root, z: (x.wazn || x.lemma || ''), v: x.via } : x; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: GRAMMAR['tark-al-musnad'] && [GRAMMAR['tark-al-musnad'].group,
+              (GRAMMAR['tark-al-musnad'].question || {}).tr ? GRAMMAR['tark-al-musnad'].question.tr.length : 0,
+              (GRAMMAR['tark-al-musnad'].examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('tark-al-musnad')).length,
+        // the fuja'iyya: the NEXT word's class decides against the table's one label
+        idhaNote: (idha.notes || []).map(x => x.en).join(' ~ '),
+        zaydNote: (zayd2.notes || []).map(x => x.en).join(' ~ '),
+        // لئن splits into the oath-paving lam + إِنْ
+        lainKind: lain.kind, lainSeg: (lain.seg || []).join('+'),
+        lainNote: (lain.notes || []).map(x => x.en).join(' ~ '),
+        // the radical sin: no future-sin peel on سَأَلْتَهُمْ
+        saalNote: (saal.notes || []).map(x => x.en).join(' ~ '),
+        saalSegN: (saal.seg || []).length,
+        // مَنْ the ism promises a verb, not a majrur — and خَلَقَ answers as one
+        khalaqKind: khalaq.kind,
+        khalaqNote: (khalaq.notes || []).map(x => x.en).join(' ~ '),
+        // the heavy nun restored to its cell
+        yaqulKind: yaqul.kind,
+        yaqulNote: (yaqul.notes || []).map(x => x.en).join(' ~ '),
+        yaqulLemma: (RootFinder.fromCorpus('لَيَقُولُنَّ') || {}).lemma || null,
+        // both بما of the bayt lead mawsula (rule 6d, with نحن now a pronoun)
+        bimaKs: bimas.map(x => (x.wajh || {}).k),
+        nahnuNote: (nahnu.notes || []).map(x => x.en).join(' ~ '),
+        // رَاضٍ: the glossary decides the manqus against the hollow guess
+        radin: rt('رَاضٍ'),
+        // فَصَبْرٌ: the primitive masdar shapes joined the tagger
+        sabrNote: (sabr.notes || []).map(x => x.en).join(' ~ '),
+        ismShapes: ['فَعْل', 'فِعْل', 'فُعْل'].every(w => IsmTagger.SHAPES.some(s => s.w === w)),
+        khalaqaCell: (RootFinder.fromCorpus('خَلَقَ') || {}).lemma || null,
+      };
+    });
+    if (r.missing) throw new Error('chapter 15 did not load');
+    if (r.n !== 5) throw new Error('ch15 sentences: ' + r.n);
+    if (r.t !== 25) throw new Error('ch15 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the tark-al-musnad note with its question test and anchored examples: ' + JSON.stringify(r.note));
+    if (r.tagged < 6) throw new Error('too few tark-al-musnad tokens tagged: ' + r.tagged);
+    if (!/SURPRISE|فُجَائِيَّة/i.test(r.idhaNote))
+      throw new Error('فَإِذَا before a noun is the idha of surprise: ' + r.idhaNote);
+    if (!/surprise/i.test(r.zaydNote))
+      throw new Error('the noun after the fuja\'iyya carries its expectation: ' + r.zaydNote);
+    if (r.lainKind !== 'particle' || r.lainSeg.indexOf('إِنْ') < 0)
+      throw new Error('لَئِنْ is the paving lam + إِنْ: ' + r.lainKind + ' / ' + r.lainSeg);
+    if (!/OATH|paves/i.test(r.lainNote))
+      throw new Error('…and its note names the oath: ' + r.lainNote);
+    if (/future sin/.test(r.saalNote) || r.saalSegN > 2)
+      throw new Error('the sin of سَأَلَ is a radical — the corpus outranks the peel: ' + r.saalNote);
+    if (!/corpus verb — past — you/.test(r.saalNote))
+      throw new Error('سَأَلْتَهُمْ answers from its paradigm: ' + r.saalNote);
+    if (r.khalaqKind !== 'verb' || !/corpus verb — past — he/.test(r.khalaqNote))
+      throw new Error('خَلَقَ after the ism مَنْ is a verb, not a promised majrur: ' + r.khalaqKind + ' / ' + r.khalaqNote);
+    if (r.yaqulKind !== 'verb' || !/they \(m\)/.test(r.yaqulNote))
+      throw new Error('لَيَقُولُنَّ is يَقُولُونَ under the heavy nun: ' + r.yaqulKind + ' / ' + r.yaqulNote);
+    if (r.yaqulLemma !== 'قَالَ') throw new Error('…and its lemma is قَالَ: ' + r.yaqulLemma);
+    if (!(r.bimaKs.length === 2 && r.bimaKs.every(k => k === 'mawsula')))
+      throw new Error('both بِمَا of the bayt lead mawsula (the zarf is the sila): ' + JSON.stringify(r.bimaKs));
+    if (!/detached pronoun/.test(r.nahnuNote))
+      throw new Error('نَحْنُ joined its family in PARTICLES: ' + r.nahnuNote);
+    if (!r.radin || r.radin.r !== 'ر ض ي' || r.radin.v !== 'corpus' || !/مَنْقُوص/.test(r.radin.z))
+      throw new Error('رَاضٍ is the manqus ر ض ي by the glossary\'s word: ' + JSON.stringify(r.radin));
+    if (!/فَعْل/.test(r.sabrNote) || /أَفْعَل/.test(r.sabrNote))
+      throw new Error('فَصَبْرٌ reads فَعْل off the peeled scale, not أَفْعَل: ' + r.sabrNote);
+    if (!r.ismShapes) throw new Error('the primitive masdar shapes are missing from IsmTagger');
+    if (r.khalaqaCell !== 'خَلَقَ') throw new Error('the خَلَقَ paradigm must own its mazi: ' + r.khalaqaCell);
+  });
+
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {
     const r = await page.evaluate(() => {
       const css = [...document.styleSheets].map(s => {
