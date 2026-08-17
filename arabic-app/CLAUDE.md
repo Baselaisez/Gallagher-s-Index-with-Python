@@ -2607,3 +2607,86 @@ the classical khilāf case, and the Talkhīṣ files those very words under BADA
 which is how this chapter tags them. Two notes quietly claiming the same words
 is the tibāq/muqābala failure mode; the note now names the disagreement and says
 what turns on it. **Where the books disagree, say they disagree.**
+
+## The closed-class key rides the row now — flattening it was costing doctrine
+
+Three of chapter 11's defects were one omission wearing three masks. The
+analyzer marked هُوَ, أَنَا and هٰذَا all `kind: "noun"` — correctly, they are
+asmāʾ — and threw away WHICH closed class put them there. Downstream, every
+pass that needed the distinction improvised or failed:
+
+- the idafa chain annexed هُوَ (الضَّمِيرُ الْمُنْفَصِلُ لَا يُضَافُ — a detached
+  pronoun takes neither seat; the demonstrative legitimately takes the second:
+  مِثْلُ هٰذَا is real);
+- the MaEngine's verb ORACLE passed أَنَا, because its bare letters match a
+  stored paradigm cell, and مَا أَنَا قُلْتُ هَذَا became a conditional whose
+  first "verb" was a pronoun;
+- nothing could ask «is this row a pronoun?» without re-deriving it.
+
+The fix is one line at the particle branch — `row.pk = p.k` — and then every
+consumer branches on knowledge instead of resemblance. **When a classifier
+collapses classes for one consumer's convenience, every OTHER consumer pays.**
+Same lesson as posClass, from the other side: there the collapse was the right
+definition of agreement; here it silently deleted the table's whole point.
+
+## The seam is a doctrine now, not a patch
+
+Chapter 10 read the seam vowel in ONE guard (أَكْثَرُهُمْ). Chapter 11 found the
+same blindness in IrabSign — إِلَهُنَا read as a MAQSUR because the نا's alif was
+taken for the word's last letter — and the fix was promoted from a guard to a
+rule: peel the enclitic pronoun, read the HOST, and say in the note that the
+sign sits at the seam. Three guards keep it honest, each bought by a word that
+would have broken it: the host must end in a WRITTEN vowel (مُلُوكَ's waw
+carries none), must keep three bare letters (وَجْهُ's ha is a radical), and the
+kaf tails are refused after a fatha (مُبَارَكَ) — refusal beats a wrong peel.
+
+The payoff was immediate and unplanned: the model feature `irc-` (below) is
+only informative BECAUSE the sign engine now answers correctly on
+pronoun-bearing words. **Fix the rule engine first and the statistical layer
+inherits the fix** — the reverse order would have taught the model the bug.
+
+## Ablate in pairs when the second feature depends on the first
+
+The v129 ML wave shipped two features measured together: `irc-` (IrabSign's
+settled case) and `pk-` (the closed-class key). Base 52.9/70.5 → both 55.0/72.9
+resubstitution — and held-out CONFIRMED it, 50.9/67.8 → 52.8/70.2 over 17
+folds, the largest single gain since the governor features. Floors raised to
+51.5/69 with the measurement written into the check.
+
+Two disciplines held: the held-out number is the one that moves floors
+(resubstitution alone flattered a Viterbi layer once, and it was catastrophic
+held-out); and the ablation ran on the SHIPPED base so neither feature was
+double-counted. Worth naming: `pk-` is the same closed-class key the analyzer
+fix landed this turn — **a fact taught to the rule layer for correctness
+reasons turned out to be worth two points to the statistical layer for free.**
+
+## The sixth guard reads the context, and only the context can read it
+
+دَارِ the majrur house and دَارِ the amr of دَارَى («humour him!») are the same
+letters and the SAME VOWELS. Five guards read the word — tanwin, article, ta
+marbuta, jarr-kasra, mabni-ending — and all five pass this pair, because
+nothing on the word separates them. The sentence does: لَا يَدْخُلُ حَرْفُ جَرٍّ
+عَلَى فِعْلٍ, and the İzhar layer had already computed «a jarr letter stands
+before this word» — the fact just wasn't written on the row where the
+corpus-cell branch could see it (`row.afterJarr`).
+
+**When every word-level guard passes and the reading is still wrong, the next
+guard is a context guard** — and the context is usually already computed
+somewhere upstream, waiting to be stamped on the row.
+
+## iOS Safari is a target, not a variant
+
+The reader ran "fine" in desktop Chrome and Playwright for 130 versions while
+carrying four defects every iPhone user would meet in the first minute: sheets
+sized in vh (which iOS measures with the toolbar RETRACTED, so the sheet's
+head hides under it — dvh fixes it and the vh line stays as fallback), inputs
+under 16px (iOS zooms the whole page on focus), no touch-action on buttons
+(the 350ms double-tap wait makes every quiz feel broken), and sheet overscroll
+chaining to the page behind. None of these is visible in any desktop test.
+
+The smoke suite now has an iOS-shell gate: viewport-fit, the apple metas, the
+touch icon, safe-area padding, dvh, text-size-adjust, overscroll containment,
+and a LIVE input measured at ≥16px. The rules are all in one commented block
+at the top of the stylesheet, each line naming the iOS behaviour it answers —
+because a safe-area inset with no explanation is the first thing a cleanup
+deletes.

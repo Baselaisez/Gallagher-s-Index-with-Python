@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 125,
-  "sentenceTokens": 1068,
+  "sentences": 130,
+  "sentenceTokens": 1102,
   "posAgreement": 99.9,
-  "rows": 2153
+  "rows": 2187
  },
  "endings": [
   {
@@ -23169,7 +23169,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -23522,7 +23522,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -29310,6 +29310,791 @@
       "root": null,
       "wazn": null,
       "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:11:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 11,
+   "sentence": "s1",
+   "text": "وَالَّذِي حَارَتِ الْبَرِيَّةُ فِيهِ حَيَوَانٌ مُسْتَحْدَثٌ مِنْ جَمَادٍ",
+   "translation": {
+    "en": "And the one over whom mankind stands bewildered — is a living thing brought forth from lifeless matter.",
+    "tr": "İnsanların hakkında hayrete düştüğü şey — cansız maddeden meydana getirilmiş bir canlıdır."
+   },
+   "jumal": [
+    {
+     "text": "حَارَتِ الْبَرِيَّةُ فِيهِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A verbal clause as the sila of the relative — no position in i'rab, and sealed: nothing inside it attaches to anything outside."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "وَالَّذِي",
+     "lex": "alladhi",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "ism-mawsul",
+       "mubtada-khabar"
+      ],
+      "irab": "The waw reads by what precedes it, and «the one who» is a relative, mabni, in the position of raf' as the mubtada — FRONTED to make the hearer crave the khabar. The whole first hemistich is spent describing a wonder without naming it; by the time the answer arrives the hearer has been made to want it. That is تَشْوِيق, and it is the second of the book's reasons for putting the subject first."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَارَتِ",
+     "lex": "hara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jumla-sifa",
+       "hollow-verbs"
+      ],
+      "irab": "A hollow mazi, mabni on the fatha; the ta is the ta of femininity, itself sakin and broken to a kasra for the meeting of two quiescents with the article after it. The clause is the sila and has no position. The app's peel table used to read this word as فَاعِل with the suffix standing in as a THIRD RADICAL (« ح ر ت») — a final ta on this skeleton is a suffix, and the middle radical is the turned weak letter."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَارَ",
+      "root": "ح ي ر",
+      "wazn": "فَعِلَتْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْبَرِيَّةُ",
+     "lex": "bariyya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "anwa-al-lam-al-tarif"
+      ],
+      "irab": "The fa'il, in raf' — «the created», mankind entire, its article the customary istighraq of chapter 9. All creation wonders; the totality is what makes the coming answer heavy."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَرِيَّة",
+      "root": "ب ر أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِيهِ",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "A jarr and its majrur attaching to «stands bewildered» — laghw, its governor written. And the ha is the ʿAID of the sila, pointing back at the relative: the thread that makes the clause a sila at all."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَيَوَانٌ",
+     "lex": "hayawan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "tankir-al-musnad-ilayh"
+      ],
+      "irab": "The khabar, in raf' — and indefinite for magnification: WHAT a living thing! The hemistich boundary falls exactly between subject and predicate, so the verse form itself performs the delay the fronting was chosen for."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَيَوَان",
+      "root": "ح ي ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُسْتَحْدَثٌ",
+     "lex": "mustahdath",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "ism-maful",
+       "form-x-verbs"
+      ],
+      "irab": "A na't of «a living thing», in raf' — the ism maf'ul of Form X اِسْتَحْدَثَ on مُسْتَفْعَل: brought newly into being. One fatha separates it from the ism fa'il مُسْتَحْدِث, and the fatha is the whole theology: the creature is made, not maker."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُسْتَحْدَث",
+      "root": "ح د ث",
+      "wazn": "مُسْتَفْعَلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter of origin — out of."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "جَمَادٍ",
+     "lex": "jamad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "tankir-al-musnad-ilayh"
+      ],
+      "irab": "Majrur by «min», attaching to «brought forth» — the participle governing exactly as its verb would. Indefinite for KIND: from lifeless matter as such. The line is about resurrection — life made new from decayed bones — and says so without one theological term."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَمَاد",
+      "root": "ج م د",
+      "wazn": "فَعَالٍ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:11:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 11,
+   "sentence": "s2",
+   "text": "سَعْدٌ فِي دَارِكَ السَّفَّاحُ فِي دَارِ صَدِيقِكَ",
+   "translation": {
+    "en": "Saʿd is at your house. — The Shedder-of-Blood is at your friend's house.",
+    "tr": "Sa'd senin evindedir. — Seffâh (kan dökücü) arkadaşının evindedir."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "سَعْدٌ",
+     "lex": "sad-name",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada, in raf' — fronted to HASTEN THE JOY. The name means good fortune, and the speaker puts the lucky word first so the gladness arrives before the sentence does. Nothing in the grammar requires the order; the kindness does."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَعْد",
+      "root": "س ع د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "A jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "دَارِكَ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness"
+      ],
+      "irab": "Majrur by «fi», a mudaf with the kaf annexed — the phrase standing in the position of raf' as the khabar, MUSTAQARR on an omitted amil."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَارَى",
+      "root": "د ر ي",
+      "wazn": "فَاعِلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السَّفَّاحُ",
+     "lex": "saffah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "sighat-mubalagha",
+       "anwa-al-lam-al-tarif"
+      ],
+      "irab": "The mubtada, in raf' — on فَعَّال, the intensive: not one who has shed blood but one who SHEDS it, by habit. Fronted to hasten the GRIEF: the dreadful word first, so the hearer braces before he learns where. The mirror of the sentence before it, and the same word order doing opposite work — which is this whole science in one pair. The app's scale-reader now says فَعَّال here: the shadda that decides it is on the vowelled word, though the bare skeleton loses it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَفَّاح",
+      "root": "س ف ح",
+      "wazn": "فَّعَّالُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "A jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "دَارِ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness"
+      ],
+      "irab": "Majrur by «fi» and a mudaf — the chain runs on into the next word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَارَى",
+      "root": "د ر ي",
+      "wazn": "فَاعِلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "صَدِيقِكَ",
+     "lex": "sadiq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh, in jarr — and itself a mudaf, the kaf annexed to it: a two-link chain, دَارِ صَدِيقِ كَ, each member majrur by the one before."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صِدِّيق",
+      "root": "ص د ق",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:11:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 11,
+   "sentence": "s3",
+   "text": "اللَّهُ إِلَهُنَا وَمُحَمَّدٌ نَبِيُّنَا حَبِيبِي يَجِيءُ",
+   "translation": {
+    "en": "Allah is our God, and Muhammad is our Prophet. — My beloved is coming.",
+    "tr": "Allah ilâhımızdır, Muhammed peygamberimizdir. — Sevgilim geliyor."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "اللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "The lafz al-jalala as mubtada, in raf' — fronted to say the subject NEVER LEAVES THE MIND. This is the fifth reason: some names stand first because for the speaker they are always already present, and the word order is a confession of that."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَهُنَا",
+     "lex": "ilah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "idafa-definiteness"
+      ],
+      "irab": "The khabar, in raf' by a damma WRITTEN PLAINLY on the ha — the sign sits at the seam, on the letter the pronoun hangs from, and the pronoun's own alif is not the word's ending. The app used to read this word as a maqsur for exactly that confusion. A mudaf, with «na» its mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِلَه",
+      "root": "أ ل ه",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَمُحَمَّدٌ",
+     "lex": "muhammad",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "atf-nasaq",
+       "taqdim-al-musnad-ilayh"
+      ],
+      "irab": "The waw joins clause to clause, and «Muhammad» is a second mubtada, in raf' — the same fronting for the same reason, and the parallel structure is itself part of the sentence's confession: both names stand first because both are always present."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُحَمَّد",
+      "root": "ح م د",
+      "wazn": "مُفَعَّلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَبِيُّنَا",
+     "lex": "nabi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "idafa-definiteness"
+      ],
+      "irab": "The khabar, in raf' by a damma on the doubled ya — again at the seam. نَبِيّ ends in a REAL doubled ya (ن ب ي with the nisba-like shadda), so the vowel is written, not estimated: a doubled ya is no manqus."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَبِيّ",
+      "root": "ن ب أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَبِيبِي",
+     "lex": "habib",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar",
+       "ya-al-mutakallim"
+      ],
+      "irab": "The mubtada, its raf' ESTIMATED behind the kasra the speaker's ya demands, annexed to that ya — and fronted for the PLEASURE OF SAYING IT. The sixth reason, and the most human: the speaker puts the word first because holding it back is a cost. No rule of syntax knows anything about that; only this science asks the question that finds it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ح ب ب",
+      "wazn": "فَعِيل / تَصْغِير",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يَجِيءُ",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fa-khabar-mubtada",
+       "mudari-marfu"
+      ],
+      "irab": "A mudari' in raf' with a concealed fa'il — the clause standing as the khabar. The verb held to the end is the same delay as the bayt's, in miniature."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:11:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 11,
+   "sentence": "s4",
+   "text": "زَيْدٌ هُوَ الْقَائِمُ",
+   "translation": {
+    "en": "Zayd — he, and no other — is the one standing.",
+    "tr": "Ayakta duran, Zeyd'dir — o, başkası değil."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "mubtada-khabar",
+       "damir-fasl"
+      ],
+      "irab": "The mubtada, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": "ز ي د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "damir-fasl",
+       "qasr"
+      ],
+      "irab": "The PRONOUN OF SEPARATION — and it has NO position in i'rab: not mubtada, not khabar, a word standing wholly outside the sentence's case structure. It does two things at once: announces that الْقَائِمُ is the KHABAR and not an adjective (زَيْدٌ الْقَائِمُ would be «the standing Zayd», still waiting for its news), and CONFINES the standing to Zayd — he and no one else. The analyzer now offers exactly this shortlist for a pronoun in this seat."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْقَائِمُ",
+     "lex": "qaim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "damir-fasl",
+       "mubtada-khabar",
+       "ism-fail"
+      ],
+      "irab": "The khabar, in raf' — the ism fa'il of a hollow root: قَاوِم became قَائِم, and the hamza IS the i'lal of the waw. The app's root finder used to keep that seat as a radical and answer «ق ئ م»; the seat is the scar the turned letter left, and the root is ق و م."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَائِم",
+      "root": "ق و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:11:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 11,
+   "sentence": "s5",
+   "text": "مَا أَنَا قُلْتُ هَذَا أَنَا سَعَيْتُ فِي حَاجَتِكَ لَا غَيْرِي",
+   "translation": {
+    "en": "It was not I who said this. — I — and no other — laboured in your need.",
+    "tr": "Bunu söyleyen ben değilim. — Senin işinde çalışan benim — başkası değil."
+   },
+   "jumal": [
+    {
+     "text": "مَا أَنَا قُلْتُ هَذَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَنْفِيَّةٌ، وَتَقْدِيمُ الْمُسْنَدِ إِلَيْهِ بَعْدَ النَّفْيِ لِلتَّخْصِيصِ.",
+     "en": "A negated nominal sentence — and the subject's fronting straight after the negation is what makes it a takhsis: the act is conceded, only the doer is removed."
+    },
+    {
+     "text": "قُلْتُ هَذَا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ.",
+     "en": "A verbal clause in the position of raf' as the khabar of the pronoun."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "ma-la-mushabbaha"
+      ],
+      "irab": "A letter of negation, governing nothing here — what is special in this sentence is not the ma but what the WORD ORDER does to it."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "أَنَا",
+     "lex": "ana",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "A detached pronoun, mabni, in the position of raf' as the mubtada — and its FRONTING DIRECTLY AFTER THE NEGATION is ʿAbd al-Qāhir's rule: the denial confines the act to the subject. «It was not I who said it» does not deny the saying — it CONCEDES the saying and removes only the speaker. That is why adding «and no one else» here would contradict the frame itself, and the books rule it invalid."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "قُلْتُ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "A mazi, mabni on the sukun for the doer's ta, and the ta is the fa'il — the clause standing in raf' as the khabar of the pronoun."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلْتُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هَذَا",
+     "lex": "hadha",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "maful-bihi",
+       "asma-al-ishara"
+      ],
+      "irab": "A demonstrative, mabni, in the position of nasb as the object."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَنَا",
+     "lex": "ana",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "The same pronoun, fronted — but NO negation stands before it, and that changes everything. Here the takhsis answers a hearer who credited the wrong man, or thought others shared the work: «I laboured in your need» — I, whatever you supposed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "سَعَيْتُ",
+     "lex": "saa-verb",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "fa-khabar-mubtada",
+       "naqis-verbs"
+      ],
+      "irab": "A defective mazi (س ع ي — the ya comes back before the doer's ta: سَعَى but سَعَيْتُ), mabni, its ta the fa'il — the clause the khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَعَى",
+      "root": "س ع ي",
+      "wazn": "فَعَلْتُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "A jarr letter; the phrase attaches to «laboured» — laghw, the governor written."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَاجَتِكَ",
+     "lex": "haja",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "idafa-definiteness"
+      ],
+      "irab": "Majrur by «fi», the kasra written plainly on the ta — at the seam again, before the pronoun — a mudaf with the kaf annexed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-atifa",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "atf-nasaq",
+       "taqdim-al-musnad-ilayh"
+      ],
+      "irab": "The joining la — and its very legitimacy here is the lesson: after the affirmative frame the takhsis MAY be confirmed, where after مَا أَنَا it could not be."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَيْرِي",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "atf-nasaq",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«Other than I» — annexed to the speaker's ya. The pair closes the chapter on the mirror it opened: the same three words that were a contradiction after the negation are its lawful confirmation here, and the only thing that moved was the word order."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "غ ي ر",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
      },
      "match": true
     }

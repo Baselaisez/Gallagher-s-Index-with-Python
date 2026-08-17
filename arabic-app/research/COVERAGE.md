@@ -1189,3 +1189,64 @@ not a one-line change.
   disagreement — أَكْثَرُهُمْ read as the verb أَكْثَرَ — was a real hole and is fixed:
   when a pronoun follows, the vowel that decides sits at the SEAM, not at the
   end of the word, and a māḍī is mabnī on the fatḥa whatever is hung on it.
+
+### Talkhīṣ al-Miftāḥ, chapter 11 — تَقْدِيمُ الْمُسْنَدِ إِلَيْهِ وَضَمِيرُ الْفَصْلِ (5 sentences, 34 tokens)
+
+  The chapter that CLOSES the musnad-ilayh bab. Everything before it chose the
+  word; this one chooses the PLACE. Fronting is the aṣl, and the book counts the
+  situations that lean on it: تَشْوِيق (Abū al-ʿAlāʾ's bayt keeps mankind's
+  bewilderment waiting a whole hemistich), hastening JOY (سَعْدٌ فِي دَارِكَ — the
+  lucky name first), hastening GRIEF (السَّفَّاحُ فِي دَارِ صَدِيقِكَ — its exact
+  mirror), never-out-of-mind (اللَّهُ إِلَهُنَا وَمُحَمَّدٌ نَبِيُّنَا), and the sheer
+  PLEASURE of the word (حَبِيبِي يَجِيءُ — the most human line in the fann). Then
+  ضَمِيرُ الْفَصْلِ (زَيْدٌ هُوَ الْقَائِمُ — no position in i'rab, announces the khabar,
+  confines it), and ʿAbd al-Qāhir's rule: fronted subject straight after مَا =
+  takhṣīṣ — the act CONCEDED, only the doer removed — with the mirror pair
+  مَا أَنَا قُلْتُ هَذَا (where لَا غَيْرِي is a contradiction) against
+  أَنَا سَعَيْتُ فِي حَاجَتِكَ لَا غَيْرِي (where it is the lawful seal).
+  Note 113 `taqdim-al-musnad-ilayh`; `damir-fasl` finally anchored to real text.
+
+  **Engine wave — the chapter's own doctrines became code:**
+
+  - **الضَّمِيرُ الْمُنْفَصِلُ لَا يُضَافُ.** The idafa chain admitted any noun-kind
+    row, so هُوَ came out a MUDAF with الْقَائِمُ its majrur, and أَنَا was annexed
+    to a verb. The closed-class KEY now rides every analyzer row (`pk`), and
+    the chain refuses pronouns in both seats.
+  - **The FASL pass**: a detached pronoun between a noun and an ال-definite is
+    offered the ḍamīr-al-faṣl / second-mubtada shortlist.
+  - **A closed-class word is never a verb**: أَنَا was passing the MaEngine's
+    verb ORACLE (its bare letters match a stored cell), so مَا أَنَا قُلْتُ هَذَا
+    read as a conditional whose first "verb" was a pronoun. The table now
+    outranks the paradigm walk in the oracle itself — and rule 5b names ʿAbd
+    al-Qāhir's frame: مَا + detached pronoun + verb promotes the negation with
+    the takhṣīṣ stated.
+  - **The seam generalized into IrabSign**: peel the enclitic, read the host —
+    إِلَهُنَا was «a maqṣūr» (the نا's alif taken for the word's ending); it is
+    marfūʿ by a written damma on the hāʾ. Guards each bought by a real word:
+    the host must end in a WRITTEN vowel (مُلُوكَ safe), keep three letters
+    (وَجْهُ safe), and the kāf tails are refused after a fatḥa (مُبَارَكَ safe).
+  - **لَا يَدْخُلُ حَرْفُ جَرٍّ عَلَى فِعْلٍ** — the sixth corpus-cell guard, and the
+    first to read CONTEXT: دَارِ (majrūr house) is spelled vowel-for-vowel like
+    دَارِ (amr of دَارَى), so no word-reading rule can split them; the İzhar
+    layer's after-jarr expectation now refuses the verb cell.
+  - **RootFinder**: حَارَتِ answered «ح ر ت» (the fem-ta as a radical — now a
+    hollow-māḍī row), الْقَائِمُ answered «ق ئ م» (the hamza SEAT as a radical —
+    it is the iʿlāl of the wāw), and السَّفَّاح upgraded from فِعَال to فَعَّال by
+    reading the shadda off the vowelled word.
+
+  **The ML wave — the biggest single held-out gain since the governor.** Two
+  features ablated on the shipped base: `irc-` (the IrabSign case, informative
+  only NOW that the sign is seam-aware) and `pk-` (the closed-class key).
+  Resubstitution 52.9/70.5 → 55.0/72.9; **held-out 50.9/67.8 → 52.8/70.2** over
+  17 folds, and both floors raised (51.5 / 69) with the measurement written in.
+
+  **The iOS Safari shell** (a new smoke gate holds all of it): viewport-fit
+  already covered; added `apple-mobile-web-app-capable`, `-webkit-text-size-
+  adjust`, transparent tap-highlight, `touch-action: manipulation` on all
+  actions (kills the 350ms double-tap wait), `max-height: 82dvh` on sheets
+  (vh lies under the dynamic toolbar), `overscroll-behavior: contain`, and a
+  16px floor on inputs (below it iOS zooms the page on focus).
+
+  Measured: **99.9% over 1,102 tokens** (130 worked sentences). Chapter 11's
+  own arrival found one new confidently-wrong pair (دَارِ as the amr of دَارَى)
+  and it became the sixth guard the same hour.
