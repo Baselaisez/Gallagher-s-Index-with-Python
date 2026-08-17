@@ -157,6 +157,10 @@ def audit_harakat(word: str):
     out = []
     # the books' own exception: بْنُ between two names, alif elided
     ibn = "".join(c for c, _ in units) in ("بن", "بني")
+    # …and وَاوُ عَمْرٍو, which is one word wide: the waw of عَمْرو is silent and
+    # written only to tell the name from عُمَر, so the tanwin sits on the ra
+    # with a letter still to come. KEEP IN STEP with HarakeAuditor in the reader.
+    amr_waw = "".join(c for c, _ in units) == "عمرو"
     for i, (c, marks) in enumerate(units):
         vowels = sum(1 for m in marks if m in _V)
         tanwins = sum(1 for m in marks if m in _TANWIN)
@@ -173,6 +177,7 @@ def audit_harakat(word: str):
         if shadda and sukun:
             out.append("shadda with sukun")
         if tanwins and i < len(units) - 1 and not (
+                amr_waw and i == len(units) - 2 and units[i + 1][0] == "و") and not (
                 i == len(units) - 2 and units[i + 1][0] in "اى"):
             out.append("tanwin before the end")
         if sukun and i > 0 and "ْ" in units[i - 1][1]:

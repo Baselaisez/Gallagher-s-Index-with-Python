@@ -6338,6 +6338,94 @@ if (!CHROME) {
       throw new Error('there is no jazm without a jazim: ' + JSON.stringify(r.sign));
   });
 
+  await check('talkhis ch10: the five tawabi, the nun of protection, and the geminate root', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 10);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const has = id => toks.filter(t => (t.grammar || []).includes(id)).length;
+      const row = (text, w) => SentenceAnalyzer.analyze(text)
+        .find(x => key(x.w) === key(w)) || {};
+      const jaa = row('جَاءَنِي زَيْدٌ', 'جاءني');
+      const akthar = row('جَاءَ الْقَوْمُ أَكْثَرُهُمْ', 'اكثرهم');
+      const taammal = row('تَأَمَّلَهُ زَيْدٌ', 'تأمله');
+      const rt = w => { const x = RootFinder.find(w); return x ? x.root : null; };
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        note: GRAMMAR['tawabi-al-musnad-ilayh'] &&
+              [GRAMMAR['tawabi-al-musnad-ilayh'].group, !!GRAMMAR['tawabi-al-musnad-ilayh'].plain.tr],
+        // all five tawabi' really occur, tagged
+        five: ['naat-sifa', 'tawkid', 'atf-bayan', 'badal', 'atf-nasaq'].map(has),
+        // نون الوقاية — note 103's own rule, turned into a peel
+        jaaSeg: (jaa.seg || []).join('+'),
+        jaaNote: (jaa.notes || []).map(y => y.en).join(' ~ '),
+        jaaKind: jaa.kind,
+        // the seam vowel decides where the pronoun hides the ending
+        aktharKind: akthar.kind,
+        taammalKind: taammal.kind,
+        // ال is not a radical, and a stripped shadda is not a missing letter
+        haqq: rt('الْحَقُّ'), liss: rt('اللِّصَّ'), kull: rt('كُلُّهُمْ'),
+        yad: rt('الْيَدُ'), rubba: rt('رُبَّ'),
+        akh: rt('أَخُوكَ'), fi: rt('فِي'),
+        tajir: rt('التَّاجِرُ'), tanazzal: rt('تَنَزَّلَ'),
+        // a pronoun's sukun is a bina, never jazm
+        kullSign: IrabSign.of('كُلُّهُمْ'), alayhim: IrabSign.of('عَلَيْهِمْ'),
+        jazm: IrabSign.of('يَذْهَبْ'),
+        // واو عمرو — the auditor's third exception
+        amr: HarakeAuditor.audit('عَمْرٌو').length,
+        amrNasb: HarakeAuditor.audit('عَمْرًا').length,
+        badTanwin: HarakeAuditor.audit('قَلًمٌ').length,
+        laLex: toks.filter(t => t.lex === 'la-atifa').length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 10 did not load');
+    if (r.chapters < 10) throw new Error('chapter 10 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch10 sentences: ' + r.n);
+    if (!r.note || r.note[0] !== 'balagha' || !r.note[1])
+      throw new Error('the tawabi note: ' + JSON.stringify(r.note));
+    if (r.five.some(n => n < 1))
+      throw new Error('all five tawabi must occur in the chapter: ' + JSON.stringify(r.five));
+    if (!r.laLex) throw new Error('the atif la must be lexed as one, not as a negation');
+    // نُونُ الْوِقَايَةِ: the whole «ني» comes off, and the ya is a MAF'UL
+    if (r.jaaSeg !== 'جاء+ني') throw new Error('جَاءَنِي peels into the verb and «ني»: ' + r.jaaSeg);
+    if (!/NUN AL-WIQAYA/.test(r.jaaNote) || !/MAF'UL BIHI/.test(r.jaaNote))
+      throw new Error('the nun of protection must be named, and the ya an object: ' + r.jaaNote);
+    if (/the mudaf ilayh/.test(r.jaaNote))
+      throw new Error('a verb is never a mudaf, so its ya is no mudaf ilayh: ' + r.jaaNote);
+    if (r.jaaKind !== 'verb') throw new Error('and it is still a verb: ' + r.jaaKind);
+    // the vowel that decides sits at the SEAM when a pronoun follows
+    if (r.aktharKind === 'verb') throw new Error('أَكْثَرُهُمْ: a madi is mabni on the fatha, and this is a damma');
+    if (!/verb/.test(r.taammalKind || ''))
+      throw new Error('…and تَأَمَّلَهُ must stay a verb: ' + r.taammalKind);
+    // the article is not a radical, and a stripped shadda is not a lost letter
+    if (r.haqq !== 'ح ق ق') throw new Error('الْحَقُّ is ح ق ق, not the article + a root: ' + r.haqq);
+    if (r.liss !== 'ل ص ص') throw new Error('اللِّصُّ is ل ص ص: ' + r.liss);
+    if (r.kull !== 'ك ل ل') throw new Error('كُلُّهُمْ is ك ل ل: ' + r.kull);
+    // …and the rule must REFUSE where the shadda is absent or the word is a particle
+    if (r.yad) throw new Error('الْيَد carries no shadda and must not be doubled: ' + r.yad);
+    if (r.rubba) throw new Error('رُبَّ is a particle and has no root: ' + r.rubba);
+    // the five nouns answer lexically; في is not one of them
+    if (r.akh !== 'أ خ و') throw new Error('أَخُوكَ is one of the five nouns: ' + r.akh);
+    if (r.fi === 'ف و ه') throw new Error('فِي is the preposition, not the mouth');
+    // an alif in the second slot means the head letter is not an augment
+    if (r.tajir !== 'ت ج ر') throw new Error('التَّاجِر is ت ج ر, not تَفَعَّلَ on ا ج ر: ' + r.tajir);
+    if (r.tanazzal !== 'ن ز ل') throw new Error('…and تَنَزَّلَ is still Form V: ' + r.tanazzal);
+    // a pronoun's sukun is a bina, and jazm belongs to verbs
+    if (!r.kullSign || r.kullSign.cases[0] !== 'mabni' || r.kullSign.manner !== 'mahalli')
+      throw new Error('كُلُّهُمْ ends in a pronoun, not a jazm: ' + JSON.stringify(r.kullSign));
+    if (!r.alayhim || r.alayhim.cases[0] !== 'mabni')
+      throw new Error('عَلَيْهِمْ is a jarr phrase and was being called majzum: ' + JSON.stringify(r.alayhim));
+    if (!r.jazm || r.jazm.cases[0] !== 'majzum')
+      throw new Error('…and a real majzum must still read as one: ' + JSON.stringify(r.jazm));
+    // واو عمرو is the books' own spelling, in raf' and jarr only
+    if (r.amr) throw new Error('عَمْرٌو must pass the harakat auditor — its waw is silent');
+    if (r.amrNasb) throw new Error('عَمْرًا must pass too');
+    if (!r.badTanwin) throw new Error('…and a real mid-word tanwin must still be flagged');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

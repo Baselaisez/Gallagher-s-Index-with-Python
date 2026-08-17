@@ -1,81 +1,88 @@
 {
-  "id": "sifa-mushabbaha",
-  "title": {
-    "ar": "الصِّفَةُ الْمُشَبَّهَة",
-    "en": "The sifa mushabbaha (adjective of permanent quality)",
-    "tr": "Sıfat-ı müşebbehe"
+ "id": "sifa-mushabbaha",
+ "title": {
+  "ar": "الصِّفَةُ الْمُشَبَّهَة",
+  "en": "The sifa mushabbaha (adjective of permanent quality)",
+  "tr": "Sıfat-ı müşebbehe"
+ },
+ "level": 6,
+ "group": "nahw",
+ "mamul": "marfu",
+ "classicalSources": [
+  "أوزان صفة مشبهة (جدول المدرسة)",
+  "الفوائد الضيائية (ملا جامي)",
+  "الكافية (ابن الحاجب)",
+  "قطر الندى (ابن هشام)"
+ ],
+ "plain": {
+  "en": "An adjective for a settled quality rather than something happening right now: «beautiful», as against «striking (at this moment)».",
+  "tr": "Geçici bir işi değil, yerleşik bir vasfı bildiren sıfat: «güzel», «(şu anda) vuran»ın karşısında."
+ },
+ "explanation": {
+  "en": "The sifa mushabbaha is «likened» to the ism fail because it too is derived and governs like a verb — but it names a SETTLED quality rather than a passing act: حَسَن «beautiful» as against ضَارِب «striking (now)». Like its verb it needs a doer, and here is the whole difficulty: the noun after it (وَجْه, «face») may be read in raf', nasb or jarr, and the sifa itself may be bare or carry ال. That is eighteen possible constructions, and the tradition grades each as أَحْسَن (best), حَسَن (good), قَبِيح (poor) or مُمْتَنِع (not permitted).\n\nOne rule explains almost all of them: COUNT THE PRONOUNS. If the noun after the sifa is marfu', it IS the doer, and no hidden pronoun exists; in nasb or jarr the doer is a hidden pronoun inside the sifa. Add to that any pronoun attached to the noun itself (وَجْهُهُ). A construction carrying exactly ONE pronoun is best; TWO is merely good; NONE is poor — a derived word governing with no doer at all in sight is weak Arabic. Separately, a sifa carrying ال may only be made mudaf to a noun that also carries ال, which is why الْحَسَنُ وَجْهِهِ and الْحَسَنُ وَجْهٍ are simply not said.\n\nThat rule settles seventeen of the eighteen. The one it leaves open — حَسَنُ وَجْهِهِ — is precisely the case the tables mark اخْتِلَاف, disputed among the grammarians.",
+  "tr": "Sıfat-ı müşebbehe, ism-i fâile «benzetilmiştir»; çünkü o da müştaktır ve fiil gibi amel eder — fakat geçici bir işi değil, SABİT bir vasfı bildirir: حَسَن «güzel», ضَارِب «(şimdi) vuran»ın karşısında. Fiili gibi bir fâile ihtiyaç duyar ve bütün güçlük buradadır: ardından gelen isim (وَجْه) ref, nasb veya cer ile okunabilir; sıfatın kendisi de ال'lı veya ال'sız olabilir. Bu on sekiz vecih eder ve gelenek her birini اَحْسَن (en güzel), حَسَن (güzel), قَبِيح (çirkin) veya مُمْتَنِع (caiz değil) diye derecelendirir.\n\nNeredeyse hepsini tek bir kural açıklar: ZAMİRLERİ SAY. Sıfattan sonraki isim merfû ise fâilin kendisidir ve gizli zamir yoktur; nasb veya cer ile okunursa fâil, sıfatın içindeki gizli zamirdir. Buna ismin kendisine bitişen zamiri ekle (وَجْهُهُ). Tam BİR zamir taşıyan vecih en güzeldir; İKİ taşıyan yalnızca güzeldir; HİÇ taşımayan çirkindir — ortada hiçbir fâil görünmeden amel eden müştak kelime zayıf Arapçadır. Ayrıca ال taşıyan bir sıfat, yalnızca yine ال taşıyan bir isme muzâf olabilir; الْحَسَنُ وَجْهِهِ ve الْحَسَنُ وَجْهٍ'in söylenmemesinin sebebi budur.\n\nBu kural on sekizden on yedisini çözer. Açık bıraktığı tek vecih — حَسَنُ وَجْهِهِ — tam da cetvellerin اِخْتِلَاف, yani gramerciler arasında ihtilaflı diye işaretlediği vecihtir."
+ },
+ "examples": [
+  {
+   "ar": "زَيْدٌ حَسَنٌ وَجْهُهُ.",
+   "en": "Zayd is beautiful of face — أَحْسَن: the noun is marfu' as the doer, and carries one pronoun.",
+   "tr": "Zeyd yüzü güzeldir — أَحْسَن: isim fâil olarak merfûdur ve bir zamir taşır."
   },
-  "level": 6,
-  "group": "nahw",
-  "mamul": "marfu",
-  "classicalSources": [
-    "أوزان صفة مشبهة (جدول المدرسة)",
-    "الفوائد الضيائية (ملا جامي)",
-    "الكافية (ابن الحاجب)",
-    "قطر الندى (ابن هشام)"
-  ],
-  "plain": {
-    "en": "An adjective for a settled quality rather than something happening right now: «beautiful», as against «striking (at this moment)».",
-    "tr": "Geçici bir işi değil, yerleşik bir vasfı bildiren sıfat: «güzel», «(şu anda) vuran»ın karşısında."
+  {
+   "ar": "زَيْدٌ حَسَنٌ الْوَجْهَ.",
+   "en": "Same sense, the noun in nasb — also أَحْسَن: the doer is a hidden pronoun, one pronoun in all.",
+   "tr": "Aynı mana, isim nasb hâlinde — yine أَحْسَن: fâil müstetir zamirdir, toplamda bir zamir."
   },
-  "explanation": {
-    "en": "The sifa mushabbaha is «likened» to the ism fail because it too is derived and governs like a verb — but it names a SETTLED quality rather than a passing act: حَسَن «beautiful» as against ضَارِب «striking (now)». Like its verb it needs a doer, and here is the whole difficulty: the noun after it (وَجْه, «face») may be read in raf', nasb or jarr, and the sifa itself may be bare or carry ال. That is eighteen possible constructions, and the tradition grades each as أَحْسَن (best), حَسَن (good), قَبِيح (poor) or مُمْتَنِع (not permitted).\n\nOne rule explains almost all of them: COUNT THE PRONOUNS. If the noun after the sifa is marfu', it IS the doer, and no hidden pronoun exists; in nasb or jarr the doer is a hidden pronoun inside the sifa. Add to that any pronoun attached to the noun itself (وَجْهُهُ). A construction carrying exactly ONE pronoun is best; TWO is merely good; NONE is poor — a derived word governing with no doer at all in sight is weak Arabic. Separately, a sifa carrying ال may only be made mudaf to a noun that also carries ال, which is why الْحَسَنُ وَجْهِهِ and الْحَسَنُ وَجْهٍ are simply not said.\n\nThat rule settles seventeen of the eighteen. The one it leaves open — حَسَنُ وَجْهِهِ — is precisely the case the tables mark اخْتِلَاف, disputed among the grammarians.",
-    "tr": "Sıfat-ı müşebbehe, ism-i fâile «benzetilmiştir»; çünkü o da müştaktır ve fiil gibi amel eder — fakat geçici bir işi değil, SABİT bir vasfı bildirir: حَسَن «güzel», ضَارِب «(şimdi) vuran»ın karşısında. Fiili gibi bir fâile ihtiyaç duyar ve bütün güçlük buradadır: ardından gelen isim (وَجْه) ref, nasb veya cer ile okunabilir; sıfatın kendisi de ال'lı veya ال'sız olabilir. Bu on sekiz vecih eder ve gelenek her birini اَحْسَن (en güzel), حَسَن (güzel), قَبِيح (çirkin) veya مُمْتَنِع (caiz değil) diye derecelendirir.\n\nNeredeyse hepsini tek bir kural açıklar: ZAMİRLERİ SAY. Sıfattan sonraki isim merfû ise fâilin kendisidir ve gizli zamir yoktur; nasb veya cer ile okunursa fâil, sıfatın içindeki gizli zamirdir. Buna ismin kendisine bitişen zamiri ekle (وَجْهُهُ). Tam BİR zamir taşıyan vecih en güzeldir; İKİ taşıyan yalnızca güzeldir; HİÇ taşımayan çirkindir — ortada hiçbir fâil görünmeden amel eden müştak kelime zayıf Arapçadır. Ayrıca ال taşıyan bir sıfat, yalnızca yine ال taşıyan bir isme muzâf olabilir; الْحَسَنُ وَجْهِهِ ve الْحَسَنُ وَجْهٍ'in söylenmemesinin sebebi budur.\n\nBu kural on sekizden on yedisini çözer. Açık bıraktığı tek vecih — حَسَنُ وَجْهِهِ — tam da cetvellerin اِخْتِلَاف, yani gramerciler arasında ihtilaflı diye işaretlediği vecihtir."
+  {
+   "ar": "زَيْدٌ حَسَنٌ الْوَجْهُ.",
+   "en": "قَبِيح: the noun is marfu' as doer and carries no pronoun, so nothing pronominal remains anywhere.",
+   "tr": "قَبِيح: isim fâil olarak merfûdur ve zamir taşımaz, dolayısıyla hiçbir yerde zamir kalmaz."
   },
-  "examples": [
-    {
-      "ar": "زَيْدٌ حَسَنٌ وَجْهُهُ.",
-      "en": "Zayd is beautiful of face — أَحْسَن: the noun is marfu' as the doer, and carries one pronoun.",
-      "tr": "Zeyd yüzü güzeldir — أَحْسَن: isim fâil olarak merfûdur ve bir zamir taşır."
-    },
-    {
-      "ar": "زَيْدٌ حَسَنٌ الْوَجْهَ.",
-      "en": "Same sense, the noun in nasb — also أَحْسَن: the doer is a hidden pronoun, one pronoun in all.",
-      "tr": "Aynı mana, isim nasb hâlinde — yine أَحْسَن: fâil müstetir zamirdir, toplamda bir zamir."
-    },
-    {
-      "ar": "زَيْدٌ حَسَنٌ الْوَجْهُ.",
-      "en": "قَبِيح: the noun is marfu' as doer and carries no pronoun, so nothing pronominal remains anywhere.",
-      "tr": "قَبِيح: isim fâil olarak merfûdur ve zamir taşımaz, dolayısıyla hiçbir yerde zamir kalmaz."
-    },
-    {
-      "ar": "زَيْدٌ الْحَسَنُ وَجْهِهِ.",
-      "en": "مُمْتَنِع: a sifa carrying ال cannot be mudaf to a noun made definite by a pronoun.",
-      "tr": "مُمْتَنِع: ال taşıyan bir sıfat, zamirle marife olmuş bir isme muzâf olamaz."
-    }
-  ],
-  "commonMistakes": [
-    {
-      "wrong": "زيدٌ حسنٌ الوجهُ",
-      "right": "زَيْدٌ حَسَنٌ الْوَجْهَ / حَسَنُ الْوَجْهِ",
-      "why": {
-        "en": "Reading the noun in raf' after a bare sifa leaves the construction with no pronoun at all — the grammarians call this qabih. Put it in nasb or make it mudaf instead.",
-        "tr": "ال'sız bir sıfattan sonra ismi merfû okumak, terkibi hiç zamirsiz bırakır — gramerciler buna kabîh der. Onun yerine nasb ile oku veya muzâf yap."
-      }
-    },
-    {
-      "wrong": "زيدٌ الحسنُ وجهٍ",
-      "right": "زَيْدٌ الْحَسَنُ الْوَجْهِ",
-      "why": {
-        "en": "Once the sifa carries ال, whatever it is mudaf to must carry ال too. Otherwise the idafa is not permitted at all.",
-        "tr": "Sıfat ال aldıysa, muzâf olduğu isim de ال almalıdır. Aksi hâlde izafet hiç caiz olmaz."
-      }
-    },
-    {
-      "wrong": "عَدُّ الصِّفَةِ الْمُشَبَّهَةِ كَاسْمِ الْفَاعِلِ فِي الدَّلَالَةِ",
-      "right": "الصِّفَةُ الْمُشَبَّهَةُ لِلثُّبُوتِ وَاسْمُ الْفَاعِلِ لِلْحُدُوثِ",
-      "why": {
-        "en": "They are not interchangeable: حَسَن states a settled quality, حَاسِن would state an act in progress. The sifa mushabbaha is also built only from an intransitive verb.",
-        "tr": "Birbirinin yerine geçmezler: حَسَن sabit bir vasfı, حَاسِن ise sürmekte olan bir işi bildirir. Ayrıca sıfat-ı müşebbehe yalnız lâzım fiilden yapılır."
-      }
-    }
-  ],
-  "relatedNotes": [
-    "ism-tafdil",
-    "naat-sifa",
-    "mubtada-khabar"
-  ],
-  "gameSeeds": {
-    "spotTheError": true
+  {
+   "ar": "زَيْدٌ الْحَسَنُ وَجْهِهِ.",
+   "en": "مُمْتَنِع: a sifa carrying ال cannot be mudaf to a noun made definite by a pronoun.",
+   "tr": "مُمْتَنِع: ال taşıyan bir sıfat, zamirle marife olmuş bir isme muzâf olamaz."
+  },
+  {
+   "ar": "الْجِسْمُ الطَّوِيلُ الْعَرِيضُ الْعَمِيقُ.",
+   "en": "Three sifa mushabbahas in a row, all on فَعِيل — length, breadth and depth are not things a body DOES, and the pattern says so before the meaning does.",
+   "tr": "Peş peşe üç sıfat-ı müşebbehe, üçü de FA'ÎL vezninde — uzunluk, genişlik ve derinlik cismin YAPTIĞI şeyler değildir; vezin bunu mânâdan önce söyler.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s1"
   }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "زيدٌ حسنٌ الوجهُ",
+   "right": "زَيْدٌ حَسَنٌ الْوَجْهَ / حَسَنُ الْوَجْهِ",
+   "why": {
+    "en": "Reading the noun in raf' after a bare sifa leaves the construction with no pronoun at all — the grammarians call this qabih. Put it in nasb or make it mudaf instead.",
+    "tr": "ال'sız bir sıfattan sonra ismi merfû okumak, terkibi hiç zamirsiz bırakır — gramerciler buna kabîh der. Onun yerine nasb ile oku veya muzâf yap."
+   }
+  },
+  {
+   "wrong": "زيدٌ الحسنُ وجهٍ",
+   "right": "زَيْدٌ الْحَسَنُ الْوَجْهِ",
+   "why": {
+    "en": "Once the sifa carries ال, whatever it is mudaf to must carry ال too. Otherwise the idafa is not permitted at all.",
+    "tr": "Sıfat ال aldıysa, muzâf olduğu isim de ال almalıdır. Aksi hâlde izafet hiç caiz olmaz."
+   }
+  },
+  {
+   "wrong": "عَدُّ الصِّفَةِ الْمُشَبَّهَةِ كَاسْمِ الْفَاعِلِ فِي الدَّلَالَةِ",
+   "right": "الصِّفَةُ الْمُشَبَّهَةُ لِلثُّبُوتِ وَاسْمُ الْفَاعِلِ لِلْحُدُوثِ",
+   "why": {
+    "en": "They are not interchangeable: حَسَن states a settled quality, حَاسِن would state an act in progress. The sifa mushabbaha is also built only from an intransitive verb.",
+    "tr": "Birbirinin yerine geçmezler: حَسَن sabit bir vasfı, حَاسِن ise sürmekte olan bir işi bildirir. Ayrıca sıfat-ı müşebbehe yalnız lâzım fiilden yapılır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "ism-tafdil",
+  "naat-sifa",
+  "mubtada-khabar"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
 }

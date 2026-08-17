@@ -1126,3 +1126,66 @@ not a one-line change.
   Manār 16's documented undecidable بِمَا. The finding came from probing the
   chapter's own words through the engines BEFORE authoring, which is the third
   distinct way this project has found engine defects and the cheapest so far.
+
+### Talkhīṣ al-Miftāḥ, chapter 10 — التَّوَابِعُ بَعْدَ الْمُسْنَدِ إِلَيْهِ (5 sentences, 52 tokens)
+
+  Chapters 7-9 asked whether to say the subject and how to make it definite.
+  Chapter 10 asks what may be hung on it afterwards — the five tawābiʿ the naḥw
+  books already name, each with its own balāgha reasons. The syntax is settled
+  and the choice is not, which is the shape this whole fann keeps returning to.
+
+  A ṣifa may **explain** (الْجِسْمُ الطَّوِيلُ الْعَرِيضُ الْعَمِيقُ — the adjectives ARE
+  the definition), **narrow**, **praise**, **blame**, or merely **confirm**
+  (أَمْسِ الدَّابِرُ, which adds nothing). Praise and blame carry a condition that
+  is the chapter's finest point: **an adjective that tells the hearer something
+  new is identifying; one that tells him nothing new is evaluating.** Taʾkīd has
+  four reasons and three are the removal of a named suspicion — of a figure
+  (قَطَعَ اللِّصَّ الْأَمِيرُ **نَفْسُهُ**: not by his men), of a slip, of incomplete
+  coverage (جَاءَنِي الْقَوْمُ **كُلُّهُمْ**). ʿAṭf bayān clarifies with a jāmid name;
+  badal is ziyādat taqrīr in its three kinds; and ʿaṭf nasaq details, corrects
+  (زَيْدٌ **لَا** عَمْرٌو), or leaves the hearer unsure — **shakk** if the speaker
+  does not know, **tashkīk** if he does, and nothing in the sentence separates
+  them. Registry note 112: `tawabi-al-musnad-ilayh`.
+
+  **Seven engine defects, all found by probing the chapter's words before
+  authoring — the practice chapter 9 started, and it paid far better here.**
+
+  - **نُونُ الْوِقَايَةِ was never in the peel.** جَاءَنِي came apart as «جاءن + ي»
+    and the speaker's yāʾ was called a **muḍāf ilayh — on a verb**. Note 103
+    states the rule; the peel now takes the whole «ني» and names the yāʾ a
+    mafʿūl. The oracle is asked the answerable question: peel only when the
+    corpus knows the remainder as a verb.
+  - **The lexicon was never asked with the pronoun off.** نَفْسُهُ and أَخُوكَ
+    reached no glossary entry, so a word the corpus owns by name was read off
+    its first letter as «probably a verb». A dictionary entry now outranks a
+    muḍāriʿ-prefix guess, and says so in the note.
+  - **الْحَقُّ answered ل ح ق** — library-wide. A geminate's third radical IS the
+    shadda, and `stripAr` takes it off with the harakat, so what is left is two
+    letters and every alif-initial peel row read the article's own lām as a
+    radical. Both halves are fixed: the article is read off the VOWELLED word
+    (its alif carries no vowel; أَلْزَمَ's hamza carries a fatḥa), and a two-letter
+    remainder with a shadda on the second radical is the doubled root.
+  - **الْيَدُ is refused** by the same rule — no shadda, no doubling — and رُبَّ by
+    the closed-class table.
+  - **The five nouns answer lexically.** أَخُوكَ gave root «خ و ك»: the word's own
+    case-LETTER and somebody else's pronoun. فَا/فِي/ذَا/ذِي are deliberately left
+    out of the table, because they are spelled like the commonest preposition
+    and demonstratives in the language.
+  - **التَّاجِرُ answered ا ج ر on تَفَعَّلَ.** In every scale whose head letter is an
+    augment, the letter after it is the first radical — and a bare alif is never
+    one, so an alif in that slot means the word is فَاعِل.
+  - **كُلُّهُمْ and عَلَيْهِمْ were called MAJZUM.** A pronoun's sukūn is a bināʾ, not
+    a sign; jazm belongs to verbs and needs a governor, and neither was present.
+  - **وَاوُ عَمْرٍو** — the silent wāw of distinction — was flagged by both harakat
+    auditors as a mid-word tanwīn. It is the books' own spelling, like بْنُ, and
+    the exception is now in the reader AND in `validate_content.py`.
+
+  Three long-standing "no example is sourced from a story" warnings retired:
+  `tawkid`, `atf-bayan` and `sifa-mushabbaha` now anchor to real chapter-10
+  tokens. The ʿaṭf-bayān note's «جَاءَ أَخُوكَ زَيْدٌ» is the classical KHILĀF case
+  and now says so instead of quietly claiming words this chapter files as badal.
+
+  Measured: **99.9% over 1,068 tokens** (125 worked sentences). The one new
+  disagreement — أَكْثَرُهُمْ read as the verb أَكْثَرَ — was a real hole and is fixed:
+  when a pronoun follows, the vowel that decides sits at the SEAM, not at the
+  end of the word, and a māḍī is mabnī on the fatḥa whatever is hung on it.

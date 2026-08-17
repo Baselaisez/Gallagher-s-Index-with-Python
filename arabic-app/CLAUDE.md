@@ -2502,3 +2502,108 @@ was to extend chapter 8's `tarif-al-musnad-ilayh`, whose title names the
 relative and the demonstrative — and a note whose title no longer covers its
 contents is how a registry stops being navigable. **Extend a note when the new
 material is the same question; write a new one when it is the next question.**
+
+## The probe found seven defects, and none of them was in the metric
+
+Chapter 9 introduced the practice of running a chapter's own sentences through
+the engines before authoring them. Chapter 10 did it again and the yield was
+seven, where the drill bank — run on the same words afterwards — reported ONE.
+
+That gap is the entry. **The bank compares part of speech and nothing else.**
+Every one of these got the part of speech right and was wrong underneath it:
+
+| word | the bank saw | what was actually wrong |
+|---|---|---|
+| جَاءَنِي | verb ✓ | the speaker's yāʾ called a **muḍāf ilayh on a verb** |
+| نَفْسُهُ | noun ✓ | reached no lexicon entry; read as «probably a verb» |
+| الْحَقُّ | noun ✓ | root **ل ح ق** — the article's lām as a radical |
+| التَّاجِرُ | noun ✓ | root **ا ج ر** on تَفَعَّلَ |
+| أَخُوكَ | noun ✓ | root **خ و ك** — a case-letter and a pronoun |
+| كُلُّهُمْ | noun ✓ | **«jazm by the sukun»**, on a noun |
+| عَمْرٌو | noun ✓ | flagged by both harakat auditors as a bad tanwīn |
+
+A benchmark is a floor, not a mirror. Reading five sentences of engine output by
+eye, once per chapter, costs ten minutes and sees the other fields.
+
+## نُونُ الْوِقَايَةِ — the note was right, the peel had never been told
+
+Note 103 has said since it was written that a verb reaching the speaker's yāʾ
+puts a nūn between them. The enclitic peel listed «ي» and not «ني», so جَاءَنِي
+came apart as «جاءن + ي» and the yāʾ was named a **muḍāf ilayh — on a verb**,
+which is impossible twice over.
+
+This is the second time a registry note has turned round and become a guard
+(عَصَايَ was the first, one chapter earlier). The registry is now large enough
+that this is worth doing on purpose: **when a note states a rule about a SHAPE,
+grep the code for the place that reads that shape.**
+
+The peel asks the oracle the answerable question — «is what remains a verb the
+corpus knows?» — and where the corpus is silent the old peel runs. مَبَانِي must
+not lose two letters because it happens to end in a nūn and a yāʾ.
+
+## A geminate's third radical is the SHADDA, and `stripAr` eats it
+
+`RootFinder.find("الْحَقُّ")` answered **ل ح ق** — and had done since the peel
+table existed, for every definite geminate noun in the library: الرَّبُّ، اللِّصُّ،
+الْجِنُّ، كُلّ. Two separate facts have to be in hand before the word can be read
+at all, and neither was:
+
+1. **Is it definite?** The vowel says so and nothing else does: the article's
+   alif is a hamzat al-waṣl and carries nothing, while أَلْزَمَ opens on a hamza
+   SEAT with a fatḥa. Read off the bare letters the two are the same word.
+2. **Is it doubled?** Strip the harakat and حَقّ is two letters. Every other noun
+   leaves three, so a two-letter remainder is itself the signal — but only when
+   the shadda is really there, which is why الْيَد is refused rather than doubled
+   into «ي د د».
+
+The rule that follows is the project's own line again: the shadda is read off
+the VOWELLED word, and the doubling is then a fact rather than a guess.
+
+**And the `stem` chain that reads the mīm's vowel is not a general stripper.**
+It takes a bare lām and a bare kāf off unconditionally, which is harmless when
+all you want is one character of evidence and fatal when you want the letters:
+it ate the assimilated radical lām of اللِّصّ and the kāf of كُلّ, and both words
+then had no geminate left to find. **A helper written for one question will be
+wrong for the next one — read what it actually does before reusing it.**
+
+## The vowel that decides may be at the SEAM
+
+`أَكْثَرُهُمْ` matched the Form IV verb أَكْثَرَ and the mabnī-ending guard could not
+see why not: the word ends in a sukun on the mīm, because it ends in a pronoun.
+The vowel that settles it is on the letter the pronoun was hung on — a ḍamma,
+where a māḍī is mabnī on the fatḥa and cannot move.
+
+Three separate mistakes were made getting this right, and all three are variants
+of entries already in this file:
+
+- **the pronoun's own vowel is not the host's** — using it made every verb
+  wearing an object read as a noun;
+- **compare skeletons with the pronoun off on BOTH sides**, or the guard never
+  fires at all;
+- **a literal «هم» never matches a vowelled word**, because it is ه + damma + م +
+  sukun. The pattern has to allow a mark between the pronoun's own letters —
+  the fatha-before-shadda trap, one layer along.
+
+## A silent letter is an exception, not an error
+
+`عَمْرٌو` was flagged by both harakat auditors as a tanwīn before the end of the
+word. It is: the wāw of عَمْرو is silent and is written for exactly one reason —
+to tell the name from عُمَر in an unpointed text — and it appears in rafʿ and
+jarr only, because in naṣb the alif of the fatḥa already distinguishes them
+(عَمْرًا). This is the books' own spelling, like the بْنُ the auditor already
+knew, and the exception went into the reader AND into `validate_content.py` in
+the same edit. **KEEP THE TWO IMPLEMENTATIONS IN STEP** is written above; this
+is the second time it has been paid.
+
+## Retire a warning by writing the content that answers it
+
+`tawkid`, `atf-bayan` and `sifa-mushabbaha` had carried «no example is sourced
+from a story» since they were written, because no chapter had used them in real
+text. Chapter 10 uses all three, so the warnings were retired by ANCHORING —
+not by silencing the check.
+
+One of the three needed more than an anchor. `atf-bayan`'s «جَاءَ أَخُوكَ زَيْدٌ» is
+the classical khilāf case, and the Talkhīṣ files those very words under BADAL —
+which is how this chapter tags them. Two notes quietly claiming the same words
+is the tibāq/muqābala failure mode; the note now names the disagreement and says
+what turns on it. **Where the books disagree, say they disagree.**
