@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 130,
-  "sentenceTokens": 1102,
+  "sentences": 135,
+  "sentenceTokens": 1129,
   "posAgreement": 99.9,
-  "rows": 2187
+  "rows": 2214
  },
  "endings": [
   {
@@ -24914,8 +24914,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": null,
-      "wazn": null,
+      "root": "ر ؤ ي",
+      "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
      },
      "match": true
@@ -30052,8 +30052,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": null,
-      "wazn": null,
+      "root": "ح و/ي ج",
+      "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
      },
      "match": true
@@ -30095,6 +30095,656 @@
       "root": "غ ي ر",
       "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:12:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 12,
+   "sentence": "s1",
+   "text": "هُوَ يُعْطِي الْجَزِيلَ",
+   "translation": {
+    "en": "HE gives abundantly. (Strengthened — and no claim at all that others do not.)",
+    "tr": "O, bol bol verir. (Hüküm kuvvetlenmiştir — başkaları vermez, denmemiştir.)"
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "mubtada-khabar"
+      ],
+      "irab": "A detached pronoun, mabni, in the position of raf' as the mubtada — and its fronting here STRENGTHENS the ruling without confining it. «He gives abundantly» does not whisper that others give little; the sentence simply lands twice. This is the reading takhsis-hunters miss, and the book opens the chapter with it for exactly that reason."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُعْطِي",
+     "lex": "aata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fa-khabar-mubtada",
+       "form-iv-verbs",
+       "naqis-verbs"
+      ],
+      "irab": "A Form IV naqis mudari', its raf' a damma ESTIMATED on the ya as too heavy; the fa'il concealed — and the clause is the khabar. Here is the machinery of taqwiya laid bare: the sentence now carries TWO isnads — the clause to the pronoun, the verb to its own fa'il — and a ruling ascribed twice sits harder than one ascribed once. (And that final ya is a RADICAL, the third letter of ع ط و; the app's peel once took it for an object pronoun.)"
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَعْطَى",
+      "root": "ع ط و",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْجَزِيلَ",
+     "lex": "jazil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "sifa-mushabbaha"
+      ],
+      "irab": "The object, in nasb — an adjective on فَعِيل standing in for its dropped noun: «the abundant [gift]». The ellipsis is itself a small taqwiya — the quality is so known it needs no bearer named."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَزِيل",
+      "root": "ج ز ل",
+      "wazn": "فَعِيلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:12:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 12,
+   "sentence": "s2",
+   "text": "أَنْتَ مَا سَعَيْتَ فِي حَاجَتِي",
+   "translation": {
+    "en": "It was not YOU who laboured in my need. (The pronoun stands before the negation: a takhsis — of reversal or of singling-out.)",
+    "tr": "Benim işimde çalışan SEN değildin. (Zamir nefiyden öncedir: kalb yahut ifrâd kasrıyla tahsîs.)"
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "أَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "taqdim-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada, fronted with the negation AFTER it — ʿAbd al-Qāhir's second frame, the mirror of مَا أَنَا قُلْتُ. Because the pronoun does not follow the ma, the takhsis reads the other way: «it was not YOU who laboured» — qasr QALB if the hearer credited you instead of the true worker, qasr IFRAD if he believed you both laboured. Which of the two is meant, only the hearer's prior belief decides."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ma-la-mushabbaha",
+       "taqwiyat-al-hukm"
+      ],
+      "irab": "The negation — and note what the analyzer now reads off the surface: the verb after it AGREES IN PERSON with the pronoun (the ta of سَعَيْتَ is the same «you»), so the clause is the khabar, not a sila. A relative's clause carries a third-person ʿaid; a second-person verb has no seat for one."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "سَعَيْتَ",
+     "lex": "saa-verb",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "The mazi, mabni on the sukun, its ta the fa'il — the clause standing in raf' as the khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَعَى",
+      "root": "س ع ي",
+      "wazn": "فَعَلْتَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "A jarr letter; the phrase attaches to «laboured» — laghw."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "حَاجَتِي",
+     "lex": "haja",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr",
+       "ya-al-mutakallim",
+       "idafa-definiteness"
+      ],
+      "irab": "Majrur by a kasra written on the ta, annexed to the speaker's ya — and that ta is the MARBUTA unrolled before the pronoun (حَاجَة ← حَاجَتِي). A verb's feminine-ta can never stand here: a verb reaching the speaker's ya takes the nun of protection first, so a ta before a bare possessive ya is always the noun's."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:12:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 12,
+   "sentence": "s3",
+   "text": "أَنْتَ لَا تَكْذِبُ لَا تَكْذِبُ أَنْتَ",
+   "translation": {
+    "en": "YOU do not lie. — Do not lie, you. (The first is the strongest of the three ways to say it: it carries two ascriptions.)",
+    "tr": "SEN yalan söylemezsin. — Yalan söylemezsin, sen. (Birincisi üç söyleyişin en kuvvetlisidir: iki isnâd taşır.)"
+   },
+   "jumal": [
+    {
+     "text": "أَنْتَ لَا تَكْذِبُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ، خَبَرُهَا جُمْلَةٌ فِعْلِيَّةٌ — فَفِيهَا إِسْنَادَانِ.",
+     "en": "A nominal sentence whose khabar is itself a verbal clause — so it carries TWO ascriptions, and that arithmetic is the whole doctrine of taqwiya."
+    },
+    {
+     "text": "لَا تَكْذِبُ أَنْتَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ، وَ«أَنْتَ» تَوْكِيدٌ لِلْفَاعِلِ الْمُسْتَتِرِ — إِسْنَادٌ وَاحِدٌ.",
+     "en": "A verbal sentence; the trailing pronoun is a tawkid of the concealed fa'il — one ascription only, so no taqwiya however emphatic it sounds."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "أَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada — and here the fronting STRENGTHENS: «YOU do not lie» denies the lying harder than لَا تَكْذِبُ alone, because it carries TWO isnads where the bare verb carries one. The negation is ascribed to you twice: once as the clause to its mubtada, once as the verb to its fa'il. Count the isnads and the gradation of the three sentences falls out by arithmetic."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "la-nahiya",
+       "taqwiyat-al-hukm"
+      ],
+      "irab": "The negating la, governing nothing in the mudari'."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَكْذِبُ",
+     "lex": "kadhaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "A mudari' in raf', its fa'il the concealed «you» — the clause standing as the khabar, and the second of the two isnads."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَذَبَ",
+      "root": "ك ذ ب",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "la-nahiya"
+      ],
+      "irab": "The negating la again — and now watch the same three words in the other order."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَكْذِبُ",
+     "lex": "kadhaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "taqwiyat-al-hukm"
+      ],
+      "irab": "The same verb — but standing first, it is the WHOLE predication: one isnad, no more. This is the middle strength."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَذَبَ",
+      "root": "ك ذ ب",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "tawkid",
+       "taqwiyat-al-hukm"
+      ],
+      "irab": "NOT a mubtada this time: the sentence was already complete at تَكْذِبُ, so this anta only CONFIRMS the pronoun concealed in the verb — a tawkid of the mahkum-alayh, not a second ascription of the ruling. One isnad plus an emphasis is weaker than two isnads: the book's gradation, read off the syntax alone."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:12:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 12,
+   "sentence": "s4",
+   "text": "رَجُلٌ جَاءَنِي وَأَسَرُّوا النَّجْوَى الَّذِينَ ظَلَمُوا",
+   "translation": {
+    "en": "A man came to me. — And they whispered — those who do wrong — their secret talk.",
+    "tr": "Bana bir adam geldi. — Gizlediler — o zulmedenler — fısıltılarını."
+   },
+   "jumal": [
+    {
+     "text": "وَأَسَرُّوا النَّجْوَى الَّذِينَ ظَلَمُوا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ، وَفِيهَا بَدَلُ الظَّاهِرِ مِنَ الضَّمِيرِ.",
+     "en": "A verbal sentence carrying the badal of a plain noun from a pronoun — Sakkaki's model for every fronted indefinite subject."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "tokens": [
+    {
+     "w": "رَجُلٌ",
+     "lex": "rajul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "tankir-al-musnad-ilayh",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada, in raf' — INDEFINITE, and licensed to open the sentence by the very takhsis it performs. Fronted before its verb it confines the GENUS or the UNIT: against a hearer who believed a woman came, the taqdir is رَجُلٌ جَاءَنِي لَا امْرَأَةٌ (qasr qalb); against one who believed two men came, لَا رَجُلَانِ (qasr ifrad). One sentence, two corrections, and the hearer's error picks between them."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَجُل",
+      "root": "ر ج ل",
+      "wazn": "فَعُلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "جَاءَنِي",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ya-al-mutakallim",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "The mazi with the nun of protection and the speaker's ya as object — the clause the khabar. And here Sakkākī enters: for him the fronting only confines if the subject can be ESTIMATED as a delayed fa'il, so he reads رَجُلٌ as a BADAL from the pronoun concealed in جَاءَنِي — on the model of the aya that follows. ʿAbd al-Qāhir needs no such machinery; the khilaf is real and the chapter shows both."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَأَسَرُّوا",
+     "lex": "asarra",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "form-iv-verbs",
+       "doubled-verbs"
+      ],
+      "irab": "«And they hid» — a Form IV geminate mazi, built on the damm for the group's waw, and that waw is the fa'il on the common reading. The alif after it is the silent alif of separation, which the app's sign engine once read as a maqsur's ending."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَسَرَّ",
+      "root": "س ر ر",
+      "wazn": "أَفْعَلُوا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "النَّجْوَى",
+     "lex": "najwa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "The object, its fatha ESTIMATED on the alif — and that alif is the feminine alif of فَعْلَى (root ن ج و), which is why the word finally has its own row in the peel table instead of answering «Form VII»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَجْوَى",
+      "root": "ن ج و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الَّذِينَ",
+     "lex": "alladhina",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "badal",
+       "ism-mawsul",
+       "taqwiyat-al-hukm"
+      ],
+      "irab": "The relative, mabni, in the position of raf' as a BADAL FROM THE WAW — a plain noun standing in apposition to a PRONOUN, the kind chapter 10's three examples could not show. This aya is Sakkākī's model: the fa'il appears first as a pronoun, then again as the noun that unpacks it, and he reads رَجُلٌ جَاءَنِي the same way."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ظَلَمُوا",
+     "lex": "zalama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jumla-sifa",
+       "fail"
+      ],
+      "irab": "«Did wrong» — mabni on the damm, its waw the fa'il, the clause the sila with no position."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ظَلَمَ",
+      "root": "ظ ل م",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:12:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 12,
+   "sentence": "s5",
+   "text": "شَرٌّ أَهَرَّ ذَا نَابٍ مِثْلُكَ لَا يَبْخَلُ",
+   "translation": {
+    "en": "Evil — and only evil — makes the fanged one snarl. — One like you is not stingy.",
+    "tr": "Dişli olanı ancak bir ŞER hırlatır. — Senin gibi biri cimrilik etmez."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "tokens": [
+    {
+     "w": "شَرٌّ",
+     "lex": "sharr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "qasr",
+       "tankir-al-musnad-ilayh"
+      ],
+      "irab": "The mubtada, indefinite and fronted — and the ʿArabs' own proverb is the chapter's test case. The nahw scholars read it as a QASR outright, with the taʾwil مَا أَهَرَّ ذَا نَابٍ إِلَّا شَرٌّ: nothing makes the fanged one snarl but an evil. Sakkākī, whose two conditions the sentence strains, saves his rule by reading the TANWIN as taʿẓīm — «a mighty evil» — confining the KIND where the genus and the unit resist. One proverb, two schools, and the divergence is stated rather than smoothed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَرّ",
+      "root": "ش ر ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَهَرَّ",
+     "lex": "aharra",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fa-khabar-mubtada",
+       "form-iv-verbs",
+       "doubled-verbs"
+      ],
+      "irab": "«Made snarl» — a Form IV geminate (أَهَرَّ يُهِرُّ, the أَحَلَّ pattern), its fa'il concealed, the clause the khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَهَرَّ",
+      "root": "ه ر ر",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ذَا",
+     "lex": "dhu",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "five-nouns",
+       "maful-bihi",
+       "idafa-definiteness"
+      ],
+      "irab": "The object, in nasb BY THE ALIF — one of the five nouns (ذُو، ذَا، ذِي: «possessor of»), and a mudaf by its very nature: it never stands without an annexation. Not the demonstrative, though the letters match — a demonstrative is never mudaf, and the bare majrur after this word is the annexation's own signature."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "نَابٍ",
+     "lex": "nab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "five-nouns"
+      ],
+      "irab": "The mudaf ilayh, in jarr — «possessor of a fang»: the dog and its kin, named by the tooth rather than the species, which is half the proverb's bite."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَابَ",
+      "root": "ن و ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِثْلُكَ",
+     "lex": "mithl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "taqwiyat-al-hukm",
+       "mubtada-khabar",
+       "idafa-definiteness"
+      ],
+      "irab": "The mubtada, a mudaf with the kaf annexed — and the person meant is the HEARER himself: «one like you is not stingy» is التَّعْرِيض, saying it slant. The construction lets the speaker praise (or warn) without the bluntness of أَنْتَ, and the books file it here because the fronting is what carries the slant. (Root م ث ل — the mim is RADICAL; the app's peel table once answered «ث ل ك».)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مِثْل",
+      "root": "م ث ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "la-nahiya"
+      ],
+      "irab": "The negating la."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَبْخَلُ",
+     "lex": "bakhila",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "«Is not stingy» — a mudari' in raf', its fa'il concealed, the clause the khabar. Said of «one like you», meant of you: the sentence teaches that word order can carry even a courtesy."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَخِلَ",
+      "root": "ب خ ل",
+      "wazn": "يَفْعَلُ",
+      "sure": true
      },
      "match": true
     }

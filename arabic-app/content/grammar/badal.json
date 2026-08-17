@@ -1,70 +1,77 @@
 {
-  "id": "badal",
-  "title": {
-    "ar": "الْبَدَل",
-    "en": "Badal (apposition / substitution)",
-    "tr": "Bedel"
+ "id": "badal",
+ "title": {
+  "ar": "الْبَدَل",
+  "en": "Badal (apposition / substitution)",
+  "tr": "Bedel"
+ },
+ "level": 2,
+ "group": "nahw",
+ "classicalSources": [
+  "الآجُرُّومِيَّة (ابن آجُرُّوم)",
+  "الكافية (ابن الحاجب)",
+  "قطر الندى (ابن هشام)"
+ ],
+ "plain": {
+  "en": "A word that steps in for the one before it and takes over its job: «the causes are three — sense, report, intellect».",
+  "tr": "Kendinden öncekinin yerine geçip onun vazifesini üstlenen kelime: «sebepler üçtür: havâss, haber, akıl»."
+ },
+ "explanation": {
+  "en": "The badal is one of the four followers (التوابع): a noun that follows the word before it (the مُبْدَل مِنْه) and takes the very same case — raf', nasb, or jarr. It is \"the intended one\": you could delete the first noun and the badal alone would carry the meaning. The commonest kind is بَدَل كُلٍّ مِنْ كُلٍّ (total apposition), where the two words name the same thing — «مَدِينَتِهِ الْبَصْرَةِ» (his city, [namely] Basra) and «مُعَلِّمِهِ أَبِي حَنِيفَةَ» (his teacher, [namely] Abu Hanifa). Because the badal merely follows, whatever case the first noun has, the badal copies: both majrur here. Other kinds are بَدَل بَعْضٍ مِنْ كُلٍّ (part from whole) and بَدَل اشْتِمَال (of inclusion). Ibn Hisham treats the badal among the التوابع in Qatr al-Nada, as does Ibn Ajurrum in the Ajurrumiyya.",
+  "tr": "Bedel, dört tâbiden (uyanlar) biridir: kendinden önceki kelimeye (mübdelün minh) uyan ve onun i'rabını (ref, nasb, cer) aynen alan isimdir. Bedel asıl kastedilen kelimedir; birinciyi silsen, bedel tek başına manayı taşır. En yaygın türü bedel-i küll min küll'dür (mutabık bedel): iki kelime aynı şeyi gösterir — «مَدِينَتِهِ الْبَصْرَةِ» (şehri, yani Basra) ve «مُعَلِّمِهِ أَبِي حَنِيفَةَ» (hocası, yani Ebu Hanife). Bedel tâbi olduğu için, birinci ismin i'rabı ne ise onu alır: burada her ikisi de mecrurdur. Diğer türleri bedel-i ba'z min küll ve bedel-i iştimâldir. İbn Hişâm Katru'n-Nedâ'da bedeli tevâbi arasında ele alır."
+ },
+ "examples": [
+  {
+   "ar": "أَرَادَ أَنْ يَرْجِعَ إِلَى مَدِينَتِهِ الْبَصْرَةِ.",
+   "en": "He wanted to return to his city, Basra — الْبَصْرَةِ is badal of مَدِينَتِهِ, majrur like it.",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s1",
+   "tr": "Şehri Basra'ya dönmek istedi — الْبَصْرَةِ, مَدِينَتِهِ'nin bedelidir, onun gibi mecrûrdur."
   },
-  "level": 2,
-  "group": "nahw",
-  "classicalSources": [
-    "الآجُرُّومِيَّة (ابن آجُرُّوم)",
-    "الكافية (ابن الحاجب)",
-    "قطر الندى (ابن هشام)"
-  ],
-  "plain": {
-    "en": "A word that steps in for the one before it and takes over its job: «the causes are three — sense, report, intellect».",
-    "tr": "Kendinden öncekinin yerine geçip onun vazifesini üstlenen kelime: «sebepler üçtür: havâss, haber, akıl»."
+  {
+   "ar": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ.",
+   "en": "He went to his teacher, Abu Hanifa — أَبِي is badal of مُعَلِّمِهِ, in jarr (shown by ي, a five-noun).",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s2",
+   "tr": "Hocası Ebû Hanîfe'ye gitti — أَبِي, مُعَلِّمِهِ'nin bedelidir, cerri yâ iledir (esmâ-i hamse)."
   },
-  "explanation": {
-    "en": "The badal is one of the four followers (التوابع): a noun that follows the word before it (the مُبْدَل مِنْه) and takes the very same case — raf', nasb, or jarr. It is \"the intended one\": you could delete the first noun and the badal alone would carry the meaning. The commonest kind is بَدَل كُلٍّ مِنْ كُلٍّ (total apposition), where the two words name the same thing — «مَدِينَتِهِ الْبَصْرَةِ» (his city, [namely] Basra) and «مُعَلِّمِهِ أَبِي حَنِيفَةَ» (his teacher, [namely] Abu Hanifa). Because the badal merely follows, whatever case the first noun has, the badal copies: both majrur here. Other kinds are بَدَل بَعْضٍ مِنْ كُلٍّ (part from whole) and بَدَل اشْتِمَال (of inclusion). Ibn Hisham treats the badal among the التوابع in Qatr al-Nada, as does Ibn Ajurrum in the Ajurrumiyya.",
-    "tr": "Bedel, dört tâbiden (uyanlar) biridir: kendinden önceki kelimeye (mübdelün minh) uyan ve onun i'rabını (ref, nasb, cer) aynen alan isimdir. Bedel asıl kastedilen kelimedir; birinciyi silsen, bedel tek başına manayı taşır. En yaygın türü bedel-i küll min küll'dür (mutabık bedel): iki kelime aynı şeyi gösterir — «مَدِينَتِهِ الْبَصْرَةِ» (şehri, yani Basra) ve «مُعَلِّمِهِ أَبِي حَنِيفَةَ» (hocası, yani Ebu Hanife). Bedel tâbi olduğu için, birinci ismin i'rabı ne ise onu alır: burada her ikisi de mecrurdur. Diğer türleri bedel-i ba'z min küll ve bedel-i iştimâldir. İbn Hişâm Katru'n-Nedâ'da bedeli tevâbi arasında ele alır."
+  {
+   "ar": "جَاءَ الْخَلِيفَةُ عُمَرُ.",
+   "en": "The caliph Umar came — عُمَرُ is badal of الْخَلِيفَةُ, marfu' like it.",
+   "tr": "Halife Ömer geldi — عُمَرُ, الْخَلِيفَةُ'nun bedelidir, onun gibi merfûdur."
   },
-  "examples": [
-    {
-      "ar": "أَرَادَ أَنْ يَرْجِعَ إِلَى مَدِينَتِهِ الْبَصْرَةِ.",
-      "en": "He wanted to return to his city, Basra — الْبَصْرَةِ is badal of مَدِينَتِهِ, majrur like it.",
-      "sourceStory": "wasiyyat-abi-hanifa-L2",
-      "sentence": "s1",
-      "tr": "Şehri Basra'ya dönmek istedi — الْبَصْرَةِ, مَدِينَتِهِ'nin bedelidir, onun gibi mecrûrdur."
-    },
-    {
-      "ar": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ.",
-      "en": "He went to his teacher, Abu Hanifa — أَبِي is badal of مُعَلِّمِهِ, in jarr (shown by ي, a five-noun).",
-      "sourceStory": "wasiyyat-abi-hanifa-L2",
-      "sentence": "s2",
-      "tr": "Hocası Ebû Hanîfe'ye gitti — أَبِي, مُعَلِّمِهِ'nin bedelidir, cerri yâ iledir (esmâ-i hamse)."
-    },
-    {
-      "ar": "جَاءَ الْخَلِيفَةُ عُمَرُ.",
-      "en": "The caliph Umar came — عُمَرُ is badal of الْخَلِيفَةُ, marfu' like it.",
-      "tr": "Halife Ömer geldi — عُمَرُ, الْخَلِيفَةُ'nun bedelidir, onun gibi merfûdur."
-    }
-  ],
-  "commonMistakes": [
-    {
-      "wrong": "إِلَى مَدِينَتِهِ الْبَصْرَةُ",
-      "right": "إِلَى مَدِينَتِهِ الْبَصْرَةِ",
-      "why": {
-        "en": "The badal must copy the case of the word it follows. Since مَدِينَتِهِ is majrur after إلى, الْبَصْرَة must be majrur too — kasra, not the raf' damma learners default to.",
-        "tr": "Bedel, uyduğu kelimenin i'rabını almalıdır. مَدِينَتِهِ, إلى'den sonra mecrur olduğu için الْبَصْرَة da mecrur olmalı — kesre, öğrencilerin alışkanlıkla verdiği ref ötresi değil."
-      }
-    },
-    {
-      "wrong": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبُو حَنِيفَةَ",
-      "right": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ",
-      "why": {
-        "en": "أب as a badal here is majrur, so among the five nouns its jarr sign is ي (أَبِي), never the raf' و (أَبُو). Mistaking the badal for a fresh subject produces أبو.",
-        "tr": "Buradaki bedel olan أب mecrurdur; esmâ-i hamseden olduğu için cer alâmeti ي'dir (أَبِي), ref و'ı (أَبُو) değil. Bedeli yeni bir özne sanmak أبو hatasına yol açar."
-      }
-    }
-  ],
-  "relatedNotes": [
-    "idafa-definiteness",
-    "five-nouns"
-  ],
-  "gameSeeds": {
-    "spotTheError": true
+  {
+   "ar": "وَأَسَرُّوا النَّجْوَى الَّذِينَ ظَلَمُوا.",
+   "en": "A badal from a PRONOUN: the plain noun الَّذِينَ stands in apposition to the group's waw — the fa'il said twice, first as a pronoun and then as the noun that unpacks it. Sakkaki's model for every fronted indefinite subject.",
+   "tr": "ZAMİRDEN bedel: açık isim «الَّذِينَ», cemâat vâvına bedel durur — fâil iki kere söylenir; önce zamir, sonra onu açan isim olarak. Sekkâkî'nin öne alınmış her nekre özne için modeli.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s4"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "إِلَى مَدِينَتِهِ الْبَصْرَةُ",
+   "right": "إِلَى مَدِينَتِهِ الْبَصْرَةِ",
+   "why": {
+    "en": "The badal must copy the case of the word it follows. Since مَدِينَتِهِ is majrur after إلى, الْبَصْرَة must be majrur too — kasra, not the raf' damma learners default to.",
+    "tr": "Bedel, uyduğu kelimenin i'rabını almalıdır. مَدِينَتِهِ, إلى'den sonra mecrur olduğu için الْبَصْرَة da mecrur olmalı — kesre, öğrencilerin alışkanlıkla verdiği ref ötresi değil."
+   }
   },
-  "mamul": "tabai"
+  {
+   "wrong": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبُو حَنِيفَةَ",
+   "right": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ",
+   "why": {
+    "en": "أب as a badal here is majrur, so among the five nouns its jarr sign is ي (أَبِي), never the raf' و (أَبُو). Mistaking the badal for a fresh subject produces أبو.",
+    "tr": "Buradaki bedel olan أب mecrurdur; esmâ-i hamseden olduğu için cer alâmeti ي'dir (أَبِي), ref و'ı (أَبُو) değil. Bedeli yeni bir özne sanmak أبو hatasına yol açar."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "idafa-definiteness",
+  "five-nouns"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ },
+ "mamul": "tabai"
 }

@@ -1250,3 +1250,62 @@ not a one-line change.
   Measured: **99.9% over 1,102 tokens** (130 worked sentences). Chapter 11's
   own arrival found one new confidently-wrong pair (دَارِ as the amr of دَارَى)
   and it became the sixth guard the same hour.
+
+### Talkhīṣ al-Miftāḥ, chapter 12 — تَقْوِيَةُ الْحُكْمِ وَالتَّخْصِيصُ (5 sentences, 27 tokens)
+
+  The second half of taqdīm, and the finest distinction in the bāb: the SAME
+  word order sometimes confines (takhṣīṣ) and sometimes merely strengthens
+  (taqwiyat al-ḥukm), and the books give real tests. هُوَ يُعْطِي الْجَزِيلَ
+  strengthens without confining. أَنْتَ مَا سَعَيْتَ فِي حَاجَتِي (pronoun BEFORE
+  the negation) is ʿAbd al-Qāhir's second frame — qasr qalb or ifrād, picked by
+  the hearer's prior belief. The graded triple is the chapter's arithmetic:
+  أَنْتَ لَا تَكْذِبُ carries TWO isnāds (strongest), لَا تَكْذِبُ one, and
+  لَا تَكْذِبُ أَنْتَ one plus a mere tawkīd of the hidden pronoun — count the
+  isnāds and the gradation falls out of the syntax. Then رَجُلٌ جَاءَنِي with its
+  two taqdīrs, **Sakkākī's khilāf** (the badal-from-a-pronoun model of
+  وَأَسَرُّوا النَّجْوَى الَّذِينَ ظَلَمُوا), the ʿArabs' proverb شَرٌّ أَهَرَّ ذَا نَابٍ
+  with the nahw scholars' taʾwīl against Sakkākī's tanwīn-of-taʿẓīm — the
+  divergence STATED, not smoothed — and مِثْلُكَ لَا يَبْخَلُ, the taʿrīḍ.
+
+  **Feeding and teaching, the turn's brief:** note 114 `taqwiyat-al-hukm`
+  (level 6, with a four-question madrasah test — where does the negation
+  stand, how many isnāds); `qasr` anchored with the proverb and its taʾwīl (a
+  qasr carried by word order alone, no إِلَّا on the page); `badal` anchored
+  with the badal-from-a-PRONOUN kind chapter 10 could not show; four new
+  paradigms (أَسَرَّ and أَهَرَّ generated from أَحَلَّ's stored Form IV geminate by
+  one-pass root substitution; كَذَبَ and بَخِلَ built sound); and the chapter gate
+  asserts the question test EXISTS — the teaching apparatus is now load-bearing.
+
+  **Engine wave — eight defects, all found by the pre-authoring probe, and
+  the drill bank confirmed the sweep: chapter 12 arrived with ZERO new
+  disagreements.**
+
+  - **يُعْطِي peeled its own radical yāʾ as an object pronoun.** Note 103 read
+    backwards is the guard: a verb's object-yāʾ only ever arrives as «ني», so
+    a bare yāʾ that completes a stored verb cell is a RADICAL.
+  - **أَسَرُّوا and ظَلَمُوا were called maqṣūr nouns** — the group-wāw's silent
+    alif read as a maqṣūr's ending. IrabSign now reads وا-final words as what
+    they are: a māḍī mabnī on the ḍamm, or a governed muḍāriʿ by the dropped
+    nūn — and the prefix class is يت ONLY, because the first persons never
+    take the group's wāw (أَسَرُّوا's hamza is Form IV's own).
+  - **أَنْتَ wore the wazn أَفْعَل** — a derivational scale on a closed-class
+    word. The pk guard now covers the tagger pass, as alam already did.
+  - **أَنْتَ مَا سَعَيْتَ read as mawṣūla** — the definitional frame fired over a
+    pronoun. The verb AGREES IN PERSON with the pronoun (its tāʾ is the same
+    «you»), so the clause is the khabar: a ṣila carries a third-person ʿāid,
+    and a second-person verb has no seat for one. MaEngine names this as ʿAbd
+    al-Qāhir's second frame.
+  - **نَجْوَى answered اِنْفَعَلَ** — no فَعْلَى row existed; the feminine-alif
+    nouns (نَجْوَى، دَعْوَى، تَقْوَى) now have one.
+  - **مِثْلُكَ answered «ث ل ك»** — the م(...) row claimed مُفْعِل over a
+    kasra-mīm. A مِ word there is the instrument or a radical mīm, two
+    readings the skeleton cannot split: the row now REFUSES, and the
+    enclitic candidates (bare ك added) find م ث ل.
+  - **حَاجَتِي answered «ماضٍ أجوف»** — the ch11 hollow-māḍī row fired on a
+    candidate produced by stripping the possessive yāʾ, where the tāʾ is
+    always the unrolled marbūṭa. Stripped candidates now refuse that row.
+
+  Measured: **99.9% over 1,129 tokens** (135 worked sentences), the one
+  standing disagreement still Manār 16's documented بِمَا. The probe-first
+  practice has now paid three chapters running: 2, 7, and 8 defects, none of
+  which the class-agreement metric could have seen.

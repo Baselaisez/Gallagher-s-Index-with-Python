@@ -6507,6 +6507,78 @@ if (!CHROME) {
     if (!r.verse) throw new Error('the bayt wears verse dress');
   });
 
+  await check('talkhis ch12: taqwiya vs takhsis, the isnad count, and the group\'s waw', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 12);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const row = (text, w, nth) => { const rows = SentenceAnalyzer.analyze(text)
+        .filter(x => key(x.w) === key(w)); return rows[nth || 0] || {}; };
+      const maRow = row('أَنْتَ مَا سَعَيْتَ فِي حَاجَتِي', 'ما');
+      const yuti = row('هُوَ يُعْطِي الْجَزِيلَ', 'يعطي');
+      const anta = row('أَنْتَ لَا تَكْذِبُ', 'انت');
+      const rt = w => { const x = RootFinder.find(w); return x ? { r: x.root, z: x.wazn || x.lemma || '' } : null; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length,
+        note: GRAMMAR['taqwiyat-al-hukm'] &&
+              [GRAMMAR['taqwiyat-al-hukm'].group, !!GRAMMAR['taqwiyat-al-hukm'].plain.tr,
+               (GRAMMAR['taqwiyat-al-hukm'].question || {}).tr ? GRAMMAR['taqwiyat-al-hukm'].question.tr.length : 0],
+        tagged: toks.filter(t => (t.grammar || []).includes('taqwiyat-al-hukm')).length,
+        // the two FEEDING anchors landed in the baked registry
+        qasrAnchor: (GRAMMAR['qasr'].examples || []).some(e => e.src === 'talkhis-al-miftah'),
+        badalAnchor: (GRAMMAR['badal'].examples || []).some(e => e.src === 'talkhis-al-miftah'),
+        // Abd al-Qahir's second frame: person agreement kills the sila
+        maNote: (maRow.notes || []).map(x => x.en).join(' ~ '),
+        // the naqis radical ya is not an object pronoun
+        yutiSeg: (yuti.seg || []).join('+'), yutiKind: yuti.kind,
+        // no derivational scale on a closed-class word
+        antaNote: (anta.notes || []).map(x => x.en).join(' ~ '),
+        // the group's waw and its silent alif, both tenses
+        zalamu: IrabSign.of('ظَلَمُوا'), yazlimu: IrabSign.of('لَمْ يَظْلِمُوا'.split(' ')[1]),
+        asarru: IrabSign.of('أَسَرُّوا'),
+        // the roots the probe fixed
+        najwa: rt('النَّجْوَى'), mithluk: rt('مِثْلُكَ'),
+        asarraRt: rt('أَسَرَّ'), aharraRt: rt('أَهَرَّ'), takdhibu: rt('تَكْذِبُ'),
+        // the new paradigms are real corpus verbs with the ahalla jazm note
+        asarraCell: (RootFinder.fromCorpus('يُسِرُّ') || {}).lemma,
+        aharraCell: (RootFinder.fromCorpus('أَهَرَّ') || {}).lemma,
+      };
+    });
+    if (r.missing) throw new Error('chapter 12 did not load');
+    if (r.chapters < 12) throw new Error('chapter 12 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch12 sentences: ' + r.n);
+    if (!r.note || r.note[0] !== 'balagha' || !r.note[1])
+      throw new Error('the taqwiya note: ' + JSON.stringify(r.note));
+    // the note carries the madrasah QUESTION TEST — the teaching apparatus
+    if (r.note[2] < 3) throw new Error('the taqwiya note must carry its question test: ' + r.note[2]);
+    if (r.tagged < 6) throw new Error('too few taqwiya tokens tagged: ' + r.tagged);
+    if (!r.qasrAnchor) throw new Error('qasr must anchor the proverb');
+    if (!r.badalAnchor) throw new Error('badal must anchor the badal-from-a-pronoun aya');
+    if (!/agrees in PERSON/.test(r.maNote)) throw new Error('أَنْتَ مَا سَعَيْتَ: person agreement names the khabar: ' + r.maNote);
+    if (/الْمَوْصُولَة/.test((r.maNote.split('~')[1] || '')) && !/النَّافِيَة/.test(r.maNote.split('~')[1] || ''))
+      throw new Error('the negation must lead over the sila: ' + r.maNote);
+    if (r.yutiSeg.includes('+')) throw new Error('يُعْطِي must not peel its radical ya: ' + r.yutiSeg);
+    if (r.yutiKind !== 'verb') throw new Error('يُعْطِي is a corpus verb: ' + r.yutiKind);
+    if (/tafdil|فْعَل/.test(r.antaNote)) throw new Error('no derivational scale on a pronoun: ' + r.antaNote);
+    // the group's waw: mazi mabni on the damm; governed mudari by nun-drop
+    if (!r.zalamu || r.zalamu.cases[0] !== 'mabni' || !/DAMMA/.test(r.zalamu.why.en))
+      throw new Error('ظَلَمُوا is mabni on the damm for the waw: ' + JSON.stringify(r.zalamu));
+    if (!r.yazlimu || r.yazlimu.by !== 'hadhf')
+      throw new Error('يَظْلِمُوا reads by the dropped nun: ' + JSON.stringify(r.yazlimu));
+    if (!r.asarru || r.asarru.cases[0] !== 'mabni')
+      throw new Error('أَسَرُّوا: the Form IV hamza is not a person prefix: ' + JSON.stringify(r.asarru));
+    if (!r.najwa || r.najwa.r !== 'ن ج و' || !/فَعْلَى/.test(r.najwa.z))
+      throw new Error('نَجْوَى is فَعْلَى of ن ج و: ' + JSON.stringify(r.najwa));
+    if (!r.mithluk || r.mithluk.r !== 'م ث ل')
+      throw new Error('مِثْلُكَ: the mim is radical: ' + JSON.stringify(r.mithluk));
+    if (!r.asarraCell || !r.aharraCell)
+      throw new Error('the Form IV geminates must be corpus verbs: ' + r.asarraCell + '/' + r.aharraCell);
+    if (!r.takdhibu || r.takdhibu.r !== 'ك ذ ب')
+      throw new Error('تَكْذِبُ answers from the new paradigm: ' + JSON.stringify(r.takdhibu));
+  });
+
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {
     const r = await page.evaluate(() => {
       const css = [...document.styleSheets].map(s => {

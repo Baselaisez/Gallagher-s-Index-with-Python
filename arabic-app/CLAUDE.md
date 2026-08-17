@@ -2690,3 +2690,78 @@ and a LIVE input measured at ≥16px. The rules are all in one commented block
 at the top of the stylesheet, each line naming the iOS behaviour it answers —
 because a safe-area inset with no explanation is the first thing a cleanup
 deletes.
+
+## A note's rule, read backwards, is a guard — third time, so it is a method
+
+Note 103 says a verb reaching the speaker's yāʾ puts نُونُ الْوِقَايَةِ between
+them. Chapter 10 used it forwards (peel «ني» whole); chapter 11 used it as a
+refutation (عَصَايَ cannot be a verb cell); chapter 12 used it BACKWARDS: a bare
+final yāʾ that completes a stored verb cell must be a RADICAL, because if it
+were the object pronoun the nun would be standing in front of it. That closed
+the يُعْطِي defect — the peel was taking a naqis verb's third radical for «its
+maf'ul bihi».
+
+Three uses, one sentence of doctrine. When a registry note states a rule about
+a SHAPE, it is worth actively asking all three questions: what does the rule
+peel, what does it refuse, and what does its absence prove.
+
+## The first persons never take the group's waw
+
+أَسَرُّوا was read as «one of the five verbs with its nun dropped» — the وا
+branch tested for a person prefix with /^[يتنأ]/, and the hamza of Form IV
+passed it. But the class is يت ONLY: أَفْعَلُ (1s) and نَفْعَلُ (1p) have no
+plural-waw forms at all, so an opening hamza before وا is always the verb's
+own. A person-prefix class copied from another rule brought along two members
+that are impossible in THIS position. **A closed class is closed per POSITION,
+not per concept** — the five-verbs prefix set and the group's-waw prefix set
+overlap without being equal.
+
+## Refuse the row when the skeleton cannot split the readings
+
+مِثْلُكَ answered «ث ل ك»: the م(...) row read the radical mīm of مِثْل as the
+participle prefix. The kasra on the mīm disqualifies the whole participle
+family (they open مَ/مُ, never مِ) — but what remains is TWO readings, the
+instrument (مِبْرَد) and the radical mīm (مِثْل، مِلْك), and nothing in the
+skeleton separates them. The row now returns null there, and the enclitic
+candidate (bare ك, newly added) lets مِثْلُكَ find م ث ل on the next try.
+
+The discipline: **a rule that cannot name the right answer should step aside
+rather than name a wrong one** — refusal costs a shortlist entry; a wrong
+answer costs the reading. Same call as the hollow-passive builder refusing
+يَقُولُ, now applied to a peel row.
+
+## The provenance of a candidate is evidence about the candidate
+
+حَاجَتِي lost its possessive yāʾ in the candidate builder and the remainder
+حاجت matched the ch11 hollow-māḍī row (قَالَت-shaped). But that candidate was
+PRODUCED BY STRIPPING a possessive pronoun — and a verb's feminine-tāʾ never
+stands before a possessive yāʾ (the verb would take نِي). So the tāʾ in a
+stripped candidate is always the unrolled marbūṭa, and the row must refuse it.
+`peel` now receives a `sub` flag: candidate-was-stripped. **A candidate list
+flattens away how each candidate was made, and sometimes the making is the
+discriminator.** Fourth parameter, same lesson as the mīm's vowel — evidence
+was being thrown away before the rule that needed it ran.
+
+## Teach the khilaf as a khilaf
+
+Chapter 12 carries a real disagreement: the nahw scholars read شَرٌّ أَهَرَّ
+ذَا نَابٍ as an outright qasr (taʾwīl: مَا أَهَرَّ ذَا نَابٍ إِلَّا شَرٌّ) and Sakkākī
+saves his two-condition rule by reading the tanwīn as taʿẓīm. The Talkhīṣ
+records three objections and keeps both schools on the page — so the token,
+the note and the anchors all STATE the divergence instead of picking a winner.
+This is the second khilaf the registry teaches by name (the atf-bayan/badal
+reading of جَاءَ أَخُوكَ زَيْدٌ was the first). A teaching that hides a khilaf
+teaches less than the books do — and a data model that can only store one
+verdict per token would have forced the hiding. The i'rab prose is where the
+both-schools answer lives; keep it prose.
+
+## Count the isnads — a gradation that is pure syntax
+
+The chapter's centerpiece teaches something rare: a BALAGHA gradation that
+falls out of NAHW arithmetic. أَنْتَ لَا تَكْذِبُ (two isnads: khabar→mubtada,
+verb→fāʿil) beats لَا تَكْذِبُ (one) beats nothing, and لَا تَكْذِبُ أَنْتَ is NOT
+a second ascription — the sentence was complete before the pronoun arrived, so
+the trailing anta is a tawkid of the hidden fāʿil, one isnad plus an emphasis.
+The jumal rows carry the count explicitly. When a rhetorical claim can be
+grounded in a countable syntactic fact, ground it — the learner can check
+arithmetic; they can only believe an assertion.
