@@ -6242,6 +6242,102 @@ if (!CHROME) {
     if (r.audit.checked < 285) throw new Error('the audit shrank: ' + r.audit.checked);
   });
 
+  await check('talkhis ch9: four lams, the lam that is not a jarr clitic, and one word twice', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 9);
+      if (!ch) return { missing: true };
+      const sen = id => ch.sentences.find(x => x.id === id);
+      // fold the hamza SEATS for matching — stripAr keeps them, and this file
+      // has now paid for that four times
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const tk = (id, w) => sen(id).tokens.find(t => key(t.s.full) === key(w));
+      const lafi = SentenceAnalyzer.analyze('إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ')
+        .find(x => key(x.w) === key('لفي')) || {};
+      const bil = SentenceAnalyzer.analyze('بِالْقَلَمِ')[0] || {};
+      return {
+        chapters: st.chapters.length,
+        n: ch.sentences.length,
+        // every token tagged with the new nahw note names WHICH lam it is
+        lams: ch.sentences.flatMap(s => s.tokens)
+          .filter(t => (t.grammar || []).includes('anwa-al-lam-al-tarif'))
+          .map(t => t.irab.ar),
+        // the lam of ibtida: peeled, but NOT called a jarr clitic
+        lafiSeg: (lafi.seg || []).join('+'),
+        lafiNote: (lafi.notes || []).map(y => y.en).join(' ~ '),
+        // …and the definite case keeps the old verdict, because there the
+        // word itself really is the majrur
+        bilNote: (bil.notes || []).map(y => y.en).join(' ~ '),
+        // the article is never a radical: الصَّاغَة used to answer ل ص غ
+        sagha: RootFinder.find('الصَّاغَةَ'),
+        marah: RootFinder.find('الْمَرْأَةِ'),
+        hajib: RootFinder.find('حَاجِبٌ'),
+        // the singular's istighraq against the plural's
+        rajul: tk('s3', 'رجل').irab.ar,
+        rijal: tk('s3', 'رجال').irab.ar,
+        // one word, two tanwins, opposite readings
+        hajibs: sen('s5').tokens.filter(t => key(t.s.full) === key('حاجب')).map(t => t.irab.ar),
+        // the amr on a wasl hamza, its sukun broken for the two sakins
+        udkhul: tk('s1', 'ادخل').irab.ar,
+        // and the app's own sign engine agrees the imperative is MABNI
+        sign: IrabSign.of ? IrabSign.of('اُدْخُلِ') : null,
+        notes: ['anwa-al-lam-al-tarif', 'tarif-bil-idafa', 'tankir-al-musnad-ilayh']
+          .map(id => GRAMMAR[id] && [GRAMMAR[id].group, !!GRAMMAR[id].title.tr, !!GRAMMAR[id].plain.tr]),
+      };
+    });
+    if (r.missing) throw new Error('chapter 9 did not load');
+    if (r.chapters < 9) throw new Error('chapter 9 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch9 sentences: ' + r.n);
+    // the three notes exist, in the right groups, bilingual
+    const [nl, ni, nt] = r.notes;
+    if (!nl || nl[0] !== 'nahw' || !nl[1] || !nl[2]) throw new Error('the lam note: ' + JSON.stringify(nl));
+    if (!ni || ni[0] !== 'balagha') throw new Error('the idafa note: ' + JSON.stringify(ni));
+    if (!nt || nt[0] !== 'balagha') throw new Error('the tankir note: ' + JSON.stringify(nt));
+    // FOUR faces of one letter, and every tagged token says which it is
+    if (r.lams.length < 8) throw new Error('too few lam tokens tagged: ' + r.lams.length);
+    const all = r.lams.join(' ');
+    for (const [k, needle] of Object.entries({
+      genus: 'لَامُ الْجِنْسِ', mental: 'لِلْعَهْدِ الذِّهْنِيِّ',
+      external: 'لِلْعَهْدِ الْخَارِجِيِّ', real: 'لِلِاسْتِغْرَاقِ الْحَقِيقِيِّ',
+      customary: 'لِلِاسْتِغْرَاقِ الْعُرْفِيِّ' }))
+      if (!all.includes(needle)) throw new Error('the chapter must name the ' + k + ' lam: ' + needle);
+    // A JARR LETTER NEVER GOVERNS ANOTHER PARTICLE. لَفِي is the lam of
+    // ibtida, and the analyzer used to call it a jarr clitic over في.
+    if (r.lafiSeg !== 'ل+في') throw new Error('لَفِي peels into two: ' + r.lafiSeg);
+    // match the VERDICT, not the word «jarr clitic» — the corrected note says
+    // «not a jarr clitic» in so many words, and a bare /jarr clitic/ test
+    // matches the refutation as happily as the claim
+    const CLITIC = 'jarr clitic — this very word is the majrur';
+    if (!/lam of ibtida/.test(r.lafiNote) || r.lafiNote.includes(CLITIC))
+      throw new Error('لَفِي is not a jarr clitic: ' + r.lafiNote);
+    // the lam of ibtida enters on the khabar only, so the phrase is MUSTAQARR
+    // and must not be handed to inna's ism by the nearest-governor rule
+    if (!/MUSTAQARR/.test(r.lafiNote) || /ATTACHES to/.test(r.lafiNote))
+      throw new Error('لَفِي is the khabar of inna, on an omitted amil: ' + r.lafiNote);
+    // …and the split did not cost the definite case its correct verdict
+    if (!r.bilNote.includes(CLITIC)) throw new Error('بِالْقَلَمِ is still a jarr clitic: ' + r.bilNote);
+    // the article is not a radical, and the ta marbuta is not a fourth one
+    if (!r.sagha || !/^ص و\/ي غ$/.test(r.sagha.root))
+      throw new Error('الصَّاغَة is a hollow root, not ل ص غ: ' + JSON.stringify(r.sagha));
+    if (!r.marah || r.marah.root !== 'م ر أ')
+      throw new Error('الْمَرْأَة is م ر أ: ' + JSON.stringify(r.marah));
+    // فَاعِل and فَاعَلَ are one skeleton, so the answer names BOTH
+    if (!r.hajib || !/فَاعِل/.test(r.hajib.wazn) || !/فَاعَلَ/.test(r.hajib.wazn))
+      throw new Error('حَاجِب: the skeleton cannot choose, so it names both: ' + JSON.stringify(r.hajib));
+    // the singular's totality begins at one, the plural's at three
+    if (!/يَبْدَأُ مِنَ الْوَاحِدِ/.test(r.rajul)) throw new Error('لَا رَجُلَ starts at one: ' + r.rajul);
+    if (!/يَبْدَأُ مِنَ الثَّلَاثَةِ/.test(r.rijal)) throw new Error('لَا رِجَالَ starts at three: ' + r.rijal);
+    // the same word twice: one tanwin for ta'zim and one for tahqir
+    if (r.hajibs.length !== 2) throw new Error('the bayt says حَاجِبٌ twice: ' + r.hajibs.length);
+    if (!/لِلتَّعْظِيمِ/.test(r.hajibs[0]) || !/لِلتَّحْقِيرِ/.test(r.hajibs[1]))
+      throw new Error('one magnifies and the other belittles: ' + JSON.stringify(r.hajibs));
+    // the imperative is MABNI on a sukun broken to a kasra — never majzum
+    if (!/مَبْنِيٌّ عَلَى السُّكُونِ/.test(r.udkhul) || !/لِالْتِقَاءِ السَّاكِنَيْنِ/.test(r.udkhul))
+      throw new Error('اُدْخُلِ: mabni, its sukun broken for two sakins — ' + r.udkhul);
+    if (r.sign && /مَجْزُوم/.test(JSON.stringify(r.sign)))
+      throw new Error('there is no jazm without a jazim: ' + JSON.stringify(r.sign));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -1074,3 +1074,55 @@ not a one-line change.
   part-of-speech disagreements, so the worked-sentence bank was the quiet gate
   this time and the sarf audit (292 paradigms, clean) was the other one.
   180 smoke checks, sw at `qissa-v125`.
+
+### Talkhīṣ al-Miftāḥ, chapter 9 — تَعْرِيفُ الْمُسْنَدِ إِلَيْهِ بِاللَّامِ وَبِالْإِضَافَةِ، وَتَنْكِيرُهُ (5 sentences, 44 tokens)
+
+  Chapter 8 took two of the six doors to definiteness. Chapter 9 takes the other
+  two that carry any weight — the ARTICLE and the IḌĀFA — and then turns the
+  question round and asks why a subject would be left INDEFINITE at all. The
+  source (lines ~805-870) carries every example vowelled; nothing is composed.
+
+  **الرَّجُلُ، السُّوقَ، الْأَمِيرُ، الْإِنْسَانَ — the same two letters four times, four
+  different meanings, and nothing on the page to tell them apart.** That is the
+  chapter, and it is the sharpest case in the language of a meaning the
+  orthography does not carry: ʿahd khārijī (plainly, by allusion, or by
+  presence), ʿahd dhihnī (which leaves the word INDEFINITE IN MEANING, and so may
+  take an indefinite adjective — the one testable consequence), lām al-jins, and
+  istighrāq, itself splitting into ḥaqīqī (عَالِمُ الْغَيْبِ وَالشَّهَادَةِ) and ʿurfī
+  (جَمَعَ الْأَمِيرُ الصَّاغَةَ — every goldsmith in his own country, not alive).
+
+  **And the singular's totality is WIDER than the plural's** — لَا رَجُلَ فِي الدَّارِ
+  is false the moment one man is inside, while لَا رِجَالَ فِي الدَّارِ is still true
+  with one or two, because a plural's totality begins at three. A proof you can
+  check by walking into a room.
+
+  Three registry notes (109-111): `anwa-al-lam-al-tarif` (nahw — the four faces
+  with the istighrāq subdivision and the singular-adjective rule),
+  `tarif-bil-idafa` (balagha — the shortest road to the hearer's mind, and rank
+  travelling forward to three possible targets in two directions), and
+  `tankir-al-musnad-ilayh` (balagha — ifrād, nawʿiyya, taʿẓīm, taḥqīr, takthīr,
+  taqlīl, and takthīr-with-taʿẓīm).
+
+  **Engine work, both defects found by probing the chapter before writing it:**
+
+  - **A jarr letter never governs another particle.** The ب/ل/ك proclitic pass
+    peeled and CLASSIFIED in one step, so «لَفِي» in إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ came
+    out as a jarr clitic whose own word is the majrūr. The peel is right and the
+    verdict was wrong: what remains decides. A definite noun really is the
+    majrūr; a PARTICLE never is, so the lām is لَامُ الِابْتِدَاءِ الْمُزَحْلَقَة.
+  - **ال is never a radical, and every ا-initial row of the peel table reads its
+    first letter as one.** الصَّاغَة matched إِفْعَال on الصاغ and answered **ل ص غ** —
+    the article's own lām standing in as a radical. The candidate still wearing
+    the article is now tried LAST; sorting rather than dropping keeps a real
+    ا ل root (إِلَه) whole.
+  - Two more fell out of the same visit: the tāʾ-marbūṭa recursion's guard was
+    `length > 4` when a four-letter word ending in the tāʾ leaves exactly a
+    three-letter root (صَاغَة → «ص غ ة», the tāʾ as a radical), and فَاعِل / فَاعَلَ
+    are one skeleton with the ʿayn's vowel stripped off, so حَاجِبٌ was answering
+    with a Form III VERB. The row names both now.
+
+  Measured: **99.9% over 1,016 tokens** (120 worked sentences) — chapter 9
+  produced no new part-of-speech disagreements; the single remaining one is
+  Manār 16's documented undecidable بِمَا. The finding came from probing the
+  chapter's own words through the engines BEFORE authoring, which is the third
+  distinct way this project has found engine defects and the cheapest so far.

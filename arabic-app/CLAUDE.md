@@ -2437,3 +2437,68 @@ now cost a smoke check, an analyzer branch and two probe scripts. **Fold the
 seats for MATCHING and never for display** — and when writing a test that looks
 a word up by its bare form, fold them there too, because the test is doing the
 same matching the engine does.
+
+## Probe the chapter's own words BEFORE authoring it
+
+Chapter 9's two engine defects were both found by running its sentences through
+`SentenceAnalyzer` and `RootFinder` in a throwaway script, before a single token
+was written. Neither would have shown up in the drill bank afterwards: the bank
+compares PART OF SPEECH, and both bugs got the part of speech right —
+«لَفِي» was correctly a particle and «الصَّاغَة» was correctly a noun. What was
+wrong was the label under it (a jarr clitic governing another jarr letter) and
+the root beside it (ل ص غ, the article's own lām standing in as a radical).
+
+**A metric that scores one field is blind to every other field**, and this file
+has said so once already about lemma errors hiding behind class agreement. The
+cheap countermeasure is not a better metric: it is to read the engine's whole
+output for five sentences by eye, once per chapter, while the sentences are
+still cheap to change.
+
+## A peel is not a classification — the same lesson, one layer down
+
+Chapter 4 split `fusedJarr`'s operation from its verdict because مَعَ is an ism.
+The ب/ل/ك proclitic pass had the identical shape and was not looked at: it
+peeled correctly and then asserted «this very word is the majrur» whatever
+remained. **لَا يَدْخُلُ حَرْفُ جَرٍّ عَلَى حَرْفٍ** — a jarr letter never governs
+another particle — so a lām before في is لَامُ الِابْتِدَاءِ الْمُزَحْلَقَة, not a jarr
+clitic, and «إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ» is the textbook case.
+
+The general form: **when one function both transforms and labels, the label is
+where the bug is.** The transform is usually driven by the surface and is right;
+the label is driven by an assumption about why the transform fired. When you fix
+one such pair, grep for the others in the same file the same day — this one sat
+four chapters after its twin was fixed.
+
+## ال is never a radical
+
+Every ا-initial row of `RootFinder.peel` reads its first letter as a radical or
+as the augment of إِفْعَال / اِفْتِعَال / اِنْفِعَال. Hand it a word still wearing the
+article and it will happily read the article's own lām as a root letter:
+الصَّاغَة → إِفْعَال on الصاغ → **ل ص غ**.
+
+The fix is a sort, not a filter: candidates that still carry ال are tried LAST.
+Dropping them would have robbed a genuine ا ل root (إِلَه) of its letters — and a
+three-letter word is never article-peeled in the first place, so the sort costs
+nothing and cannot lose a reading. **Reorder before you remove**, wherever a
+candidate list is involved; this is the same discipline as «promote, never
+remove» in the مَا rules.
+
+Two more defects fell out of the same table on the same visit, and both are
+entries this file already contains, in another neighbourhood:
+
+- **The tāʾ marbūṭa is an ending, not a radical** — but its recursion guard was
+  `length > 4`, and a four-letter word ending in the tāʾ leaves exactly a
+  three-letter root. صَاغَة fell through to فَاعَلَ and answered «ص غ ة».
+- **فَاعِل and فَاعَلَ are one skeleton** once the ʿayn's vowel is stripped, and
+  the row picked the rarer of the two, so every ism fāʿil in the language came
+  back as a Form III verb. Same shape as مَفْعُول / مُفْتَعِل, which was fixed by
+  passing the mīm's vowel in — here the honest fix is cheaper: **name both.**
+
+## Three chapters, three notes, one letter
+
+The registry gained `anwa-al-lam-al-tarif`, `tarif-bil-idafa` and
+`tankir-al-musnad-ilayh` rather than one note on «definiteness». The temptation
+was to extend chapter 8's `tarif-al-musnad-ilayh`, whose title names the
+relative and the demonstrative — and a note whose title no longer covers its
+contents is how a registry stops being navigable. **Extend a note when the new
+material is the same question; write a new one when it is the next question.**
