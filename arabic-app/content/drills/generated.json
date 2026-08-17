@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 135,
-  "sentenceTokens": 1129,
-  "posAgreement": 99.9,
-  "rows": 2214
+  "sentences": 140,
+  "sentenceTokens": 1164,
+  "posAgreement": 99.8,
+  "rows": 2249
  },
  "endings": [
   {
@@ -8373,7 +8373,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -8598,7 +8598,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -9195,7 +9195,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -9421,7 +9421,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -12045,7 +12045,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
      "match": true
     },
@@ -15770,8 +15770,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "آ ح د",
-      "wazn": "فعَالًا",
+      "root": "آ ح د و/ي",
+      "wazn": null,
       "sure": false
      },
      "match": true
@@ -20630,8 +20630,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ذ ت ه",
-      "wazn": "فَاعِل / فَاعَلَ — اسْمُ الْفَاعِلِ أَوِ الْمُفَاعَلَةُ",
+      "root": "ل ذ ت ه",
+      "wazn": "فَعَالِل — جَمْعُ الرُّبَاعِيِّ (صِيغَةُ مُنْتَهَى الْجُمُوعِ)",
       "sure": false
      },
      "match": true
@@ -27177,8 +27177,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "آ ب ئ",
-      "wazn": "فِعَال — مَصْدَر / جَمْع",
+      "root": "آ ب ي",
+      "wazn": "فَعَائِل — جَمْعُ تَكْسِيرٍ",
       "sure": false
      },
      "match": true
@@ -30744,6 +30744,810 @@
       "lemma": "بَخِلَ",
       "root": "ب خ ل",
       "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:13:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 13,
+   "sentence": "s1",
+   "text": "كُلُّ إِنْسَانٍ لَمْ يَقُمْ لَمْ يَقُمْ كُلُّ إِنْسَانٍ",
+   "translation": {
+    "en": "No man at all stood. — Not all men stood (so some did).",
+    "tr": "Hiçbir insan kalkmadı. — İnsanların hepsi kalkmadı (demek ki bâzısı kalktı)."
+   },
+   "jumal": [
+    {
+     "text": "كُلُّ إِنْسَانٍ لَمْ يَقُمْ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — الْمُسْنَدُ إِلَيْهِ خَارِجَ حَيِّزِ النَّفْيِ، فَالسَّلْبُ عَامٌّ.",
+     "en": "A nominal sentence with the subject OUTSIDE the negation's reach — so the denial is universal."
+    },
+    {
+     "text": "لَمْ يَقُمْ كُلُّ إِنْسَانٍ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ — كُلٌّ مَعْمُولُ الْفِعْلِ الْمَنْفِيِّ، فَالْمَنْفِيُّ هُوَ الْعُمُومُ.",
+     "en": "A verbal sentence with kull as the negated verb's own ma'mul — so what is denied is the totality, and the part survives."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "كُلُّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "mubtada-khabar",
+       "idafa-definiteness"
+      ],
+      "irab": "The mubtada, in raf', a mudaf — and standing BEFORE the negation. Ibn Malik's rule reads the order: kull fronted over the negation is ʿUMUM AL-SALB — the denial reaches every single member, «no man at all stood». Hold this sentence against the next one; the pair differs only in order, and the order is the whole meaning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِنْسَانٍ",
+     "lex": "insan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "umum-al-salb"
+      ],
+      "irab": "The mudaf ilayh, in jarr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِنْسَان",
+      "root": "أ ن س",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazima",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "lam-jazim"
+      ],
+      "irab": "The letter that negates, puts the mudari' in jazm, and turns its sense to the past."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَقُمْ",
+     "lex": "qama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "lam-jazim",
+       "hollow-verbs",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "The mudari' in jazm by lam, its sign the sukun — and the hollow middle DROPS for the meeting of two quiescents: يَقُومُ → يَقُمْ. The clause is the khabar of كُلُّ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَامَ",
+      "root": "ق و م",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazima",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "lam-jazim",
+       "umum-al-salb"
+      ],
+      "irab": "The same lam — but this time the subject stands AFTER it, inside the negation's reach, and everything changes."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَقُمْ",
+     "lex": "qama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "lam-jazim",
+       "hollow-verbs"
+      ],
+      "irab": "The same jussive verb."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَامَ",
+      "root": "ق و م",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كُلُّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "fail"
+      ],
+      "irab": "The fa'il now, still marfu', still mudaf — but DELAYED under the negation: SALB AL-ʿUMUM. What is denied is the totality, not each member — «not all of them stood», and the sentence thereby concedes that some did. One word moved; the logic inverted."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِنْسَانٍ",
+     "lex": "insan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "The mudaf ilayh, in jarr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِنْسَان",
+      "root": "أ ن س",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:13:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 13,
+   "sentence": "s2",
+   "text": "مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ تَجْرِي الرِّيَاحُ بِمَا لَا تَشْتَهِي السُّفُنُ",
+   "translation": {
+    "en": "Not all that a man wishes does he attain — the winds blow contrary to what the ships desire.",
+    "tr": "Kişi her arzu ettiğine nâil olamaz — rüzgârlar, gemilerin istemediği yönden eser."
+   },
+   "jumal": [
+    {
+     "text": "مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ",
+     "ar": "كُلٌّ فِي حَيِّزِ النَّفْيِ — سَلْبُ الْعُمُومِ: نُفِيَ الشُّمُولُ وَثَبَتَ الْبَعْضُ.",
+     "en": "Kull inside the negation's reach — salb al-umum: the totality denied, the part affirmed. The consolation is grammatical before it is poetic."
+    }
+   ],
+   "posAgreement": 91.7,
+   "judged": 12,
+   "agree": 11,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "umum-al-salb",
+       "ma-la-mushabbaha"
+      ],
+      "irab": "The negation — with كل directly inside its reach, so by ʿAbd al-Qāhir's rule the denial strikes the TOTALITY alone: «not ALL he wishes» — and the bayt's whole consolation lives in what that leaves standing: some of it he does attain."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "كُلُّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada, in raf' — annexed to the RELATIVE ma that follows: «all THAT a man wishes». Two ma's four words apart, one a letter and one a noun, and the chapter uses the pair on purpose."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "idafa-definiteness"
+      ],
+      "irab": "A relative noun, mabni, in the position of jarr as the mudaf ilayh — and the mudaf-ilayh seat is closed to particles, which settles this ma's class by POSITION alone. (The app's rule for exactly this had been silently dead for كل since it was written: the clitic-peel was eating the kaf. This chapter revived it.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يَتَمَنَّى",
+     "lex": "tamanna",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jumla-sifa",
+       "form-v-verbs",
+       "naqis-verbs"
+      ],
+      "irab": "A Form V naqis mudari', its damma ESTIMATED on the weak alif — the clause is the sila, and the ʿaid is a DROPPED object: يَتَمَنَّاهُ, «that he wishes [it]». The seat doctrine again, from the object's side."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَمَنَّى",
+      "root": "م ن ي",
+      "wazn": "يَتَفَعَّلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمَرْءُ",
+     "lex": "mar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "anwa-al-lam-al-tarif"
+      ],
+      "irab": "The fa'il of «wishes», its article the lam of the genus: man as such."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَرْء",
+      "root": "م ر أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يُدْرِكُهُ",
+     "lex": "adraka",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fa-khabar-mubtada",
+       "form-iv-verbs"
+      ],
+      "irab": "«Does he attain it» — Form IV, the ha its object pointing back at the mubtada's ma — and the clause is the KHABAR of كُلُّ, in raf'. The bayt's grammar closes exactly where its logic does."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَدْرَكَ",
+      "root": "د ر ك",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَجْرِي",
+     "lex": "jara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "naqis-verbs"
+      ],
+      "irab": "«Blow» — the damma estimated on the ya as too heavy. The second hemistich is the proverb the first earns."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَرَى",
+      "root": "ج ر ي",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الرِّيَاحُ",
+     "lex": "rih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il — the plural of رِيح, wind."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رِيح",
+      "root": "ر و ح",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul",
+       "huruf-jarr"
+      ],
+      "irab": "The ba governs, and the ma is a relative in its jarr: «contrary to WHAT the ships desire»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": false
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "la-nahiya"
+      ],
+      "irab": "A negation inside the sila — the clause it negates is still the relative's own."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَشْتَهِي",
+     "lex": "ishtaha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jumla-sifa",
+       "form-viii-verbs",
+       "naqis-verbs"
+      ],
+      "irab": "A Form VIII naqis, its final ya a RADICAL (ش ه و → تَشْتَهِي) — the app's peel once took exactly this shape's ya for an object pronoun — and the ʿaid is again a dropped object: تَشْتَهِيهِ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِشْتَهَى",
+      "root": "ش ه و",
+      "wazn": "تَفْتَعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السُّفُنُ",
+     "lex": "safina",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il — the plural of سَفِينَة, ship."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَفِينَة",
+      "root": "س ف ن",
+      "wazn": "فُّعُلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:13:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 13,
+   "sentence": "s3",
+   "text": "مَا جَاءَنِي الْقَوْمُ كُلُّهُمْ لَمْ آخُذْ كُلَّ الدَّرَاهِمِ",
+   "translation": {
+    "en": "The people did not come to me — not all of them. — I did not take all the dirhams.",
+    "tr": "Kavim bana gelmedi — hepsi değil. — Dirhemlerin tamamını almadım."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ma-la-mushabbaha"
+      ],
+      "irab": "The negation."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "جَاءَنِي",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ya-al-mutakallim",
+       "fail"
+      ],
+      "irab": "The mazi with its nun of protection, the ya the object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْقَوْمُ",
+     "lex": "qawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The fa'il, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَوْم",
+      "root": "ق و م",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كُلُّهُمْ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "tawkid"
+      ],
+      "irab": "The ma'nawi tawkid — and because the whole sentence stands under مَا, this كل falls inside the negation's REACH: what is denied is the totality, «they did not come — ALL of them», and the part survives: some came. Chapter 10 taught this word as emphasis; this chapter teaches what negation does to it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لَهُمْ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazima",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "lam-jazim"
+      ],
+      "irab": "The jazm-negation."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "آخُذْ",
+     "lex": "akhadha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "lam-jazim",
+       "umum-al-salb"
+      ],
+      "irab": "«I did not take» — jussive, and the MADDA is two hamzas in one letter: the speaker's prefix أَ fused with the root's own hamza (أَ + أْخُذُ = آخُذُ). The app read this word as a noun — and a mudaf! — until the madda was unfolded for matching; the first person of every hamza-initial verb was unreachable from its written form."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَخَذَ",
+      "root": "أ خ ذ",
+      "wazn": "أَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كُلَّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "maful-bihi"
+      ],
+      "irab": "The object, in nasb, a mudaf — the negated verb's own MA'MUL, so inside the hayyiz: «not all the dirhams did I take» — I took some. Abd al-Qahir's second route into the hayyiz: not after the particle, but governed by the negated verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الدَّرَاهِمِ",
+     "lex": "dirham",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness",
+       "mamnu-min-sarf"
+      ],
+      "irab": "The mudaf ilayh, in jarr — the plural of دِرْهَم on فَعَالِل, a sighat muntaha al-jumu' (diptote when indefinite; the article restores its kasra here). Its four radicals are د ر ه م — the app's peel table lost the ha to a person-affix strip until this chapter gave the quadriliteral plurals their row."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دِرْهَم",
+      "root": "د ر ه م",
+      "wazn": "فَّعَالِلِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:13:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 13,
+   "sentence": "s4",
+   "text": "كُلُّ ذَلِكَ لَمْ يَكُنْ",
+   "translation": {
+    "en": "«None of that happened.» (The Prophet's answer to Dhu al-Yadayn — kull BEFORE the negation: every member denied.)",
+    "tr": "«Bunların hiçbiri olmadı.» (Peygamber Efendimizin Zülyedeyn'e cevabı — küll nefiyden ÖNCE: her bir ferd nefyedilmiştir.)"
+   },
+   "jumal": [
+    {
+     "text": "كُلُّ ذَلِكَ لَمْ يَكُنْ",
+     "ar": "الْمُسْنَدُ إِلَيْهِ خَارِجَ حَيِّزِ النَّفْيِ — عُمُومُ السَّلْبِ: نُفِيَ كُلُّ فَرْدٍ.",
+     "en": "The subject outside the negation's reach — umum al-salb: each member denied on its own. Both the shortening and the forgetting, severally."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "كُلُّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "umum-al-salb",
+       "mubtada-khabar"
+      ],
+      "irab": "The mubtada, a mudaf — OUTSIDE the negation's reach and not the negated verb's ma'mul, so the denial covers every single member: «NONE of that happened». The Prophet ﷺ was asked «did the prayer shorten, or did you forget?» — and the answer denies both at once, each individually. The hadith is the doctrine's cleanest witness, and the books cite it for exactly this."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ذَلِكَ",
+     "lex": "dhalika",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "asma-al-ishara",
+       "idafa-definiteness"
+      ],
+      "irab": "The far demonstrative, mabni, in the position of jarr as the mudaf ilayh — a demonstrative CAN take this seat, where a detached pronoun never could."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazima",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "lam-jazim"
+      ],
+      "irab": "The jazm-negation."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَكُنْ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "lam-jazim",
+       "hollow-verbs",
+       "fa-khabar-mubtada"
+      ],
+      "irab": "«Happened» — kana used COMPLETE (tamm), not as the incomplete sister: it means «to occur» and needs no khabar of its own. Jussive, its waw dropped for the two quiescents. The clause is the khabar of كُلُّ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:13:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 13,
+   "sentence": "s5",
+   "text": "لَا فِيهَا غَوْلٌ",
+   "translation": {
+    "en": "No intoxication is in it (the drink of Paradise) — the subject delayed, because the maqam fronted the musnad for qasr.",
+    "tr": "Onda (cennet şarabında) sersemletme yoktur — müsned kasr için öne alınınca, müsnedün ileyh geciktirilmiştir."
+   },
+   "jumal": [],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "umum-al-salb"
+      ],
+      "irab": "The negation — and note it is NOT the genus-denying la of لَا رَجُلَ: the noun does not follow it directly, and غَوْلٌ keeps its tanwin and its raf'."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فِيهَا",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "zarf-mustaqarr-wa-laghw",
+       "taqdim-al-musnad-ilayh"
+      ],
+      "irab": "The FRONTED khabar — mustaqarr on an omitted amil — and the fronting is a QASR: in IT, and only in it, is there no intoxication; the wines of this world are thereby indicted. When the maqam fronts the musnad, the musnad ilayh must wait: the bab of the subject closes by handing the pen to the bab of the predicate."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "غَوْلٌ",
+     "lex": "ghawl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "mubtada-khabar",
+       "tankir-al-musnad-ilayh",
+       "taqdim-al-musnad-ilayh"
+      ],
+      "irab": "The DELAYED mubtada, indefinite (licensed by the fronted khabar, as chapter 9's bayt taught) — and with it the musnad-ilayh bab ends: every state of the subject has now been walked, and the last state was to stand aside."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَوْل",
+      "root": "غ و ل",
+      "wazn": "فَعْلٌ",
       "sure": true
      },
      "match": true

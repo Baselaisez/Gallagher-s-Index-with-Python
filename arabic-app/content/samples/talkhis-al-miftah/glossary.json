@@ -49,8 +49,8 @@
    "lemma": "بِ",
    "pos": "prep",
    "gloss": {
-    "en": "with, by; (with جَاءَ) to bring",
-    "tr": "ile; (جَاءَ ile) getirmek"
+    "en": "with, by, in",
+    "tr": "ile, -de"
    },
    "level": 1
   },
@@ -100,13 +100,13 @@
    "level": 4
   },
   "ma-mawsula": {
-   "lemma": "مَا (المَوْصُولَة)",
+   "lemma": "مَا (الْمَوْصُولَة)",
    "pos": "pron",
    "gloss": {
     "en": "that which, what (relative)",
-    "tr": "o şey ki (ism-i mevsûl)"
+    "tr": "o şey ki (ism-i mevsûl mâ)"
    },
-   "level": 2
+   "level": 3
   },
   "allati": {
    "lemma": "الَّتِي",
@@ -130,10 +130,10 @@
    "lemma": "ـهَا",
    "pos": "pron",
    "gloss": {
-    "en": "her, it (fem.)",
-    "tr": "onun, onu (müennes)"
+    "en": "her, its (attached, fem.)",
+    "tr": "onu, onun (muttasıl, müennes)"
    },
-   "level": 0
+   "level": 1
   },
   "pron-3d": {
    "lemma": "ـهُمَا",
@@ -3085,6 +3085,122 @@
     "tr": "sâhibi (esmâ-i hamseden; dâima muzâf)"
    },
    "level": 3
+  },
+  "mar": {
+   "lemma": "مَرْء",
+   "pos": "noun",
+   "gloss": {
+    "en": "a man, a person",
+    "tr": "kişi, insan"
+   },
+   "level": 4,
+   "root": "م ر أ"
+  },
+  "ghawl": {
+   "lemma": "غَوْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "intoxication, what steals the mind",
+    "tr": "sersemletme, aklı çalan şey"
+   },
+   "level": 5,
+   "root": "غ و ل"
+  },
+  "dirham": {
+   "lemma": "دِرْهَم",
+   "pos": "noun",
+   "gloss": {
+    "en": "dirham (a silver coin)",
+    "tr": "dirhem (gümüş sikke)"
+   },
+   "level": 2,
+   "plural": "دَرَاهِم"
+  },
+  "tamanna": {
+   "lemma": "تَمَنَّى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to wish for, to long for",
+    "tr": "temennî etmek, arzulamak"
+   },
+   "level": 3,
+   "root": "م ن ي",
+   "form": "V"
+  },
+  "ishtaha": {
+   "lemma": "اِشْتَهَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to desire, to crave",
+    "tr": "iştahlanmak, arzu etmek"
+   },
+   "level": 4,
+   "root": "ش ه و",
+   "form": "VIII"
+  },
+  "qama": {
+   "lemma": "قَامَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to stand, to rise",
+    "tr": "kalkmak, ayağa durmak"
+   },
+   "level": 1,
+   "root": "ق و م",
+   "form": "I"
+  },
+  "adraka": {
+   "lemma": "أَدْرَكَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to attain, to reach",
+    "tr": "idrâk etmek, nâil olmak"
+   },
+   "level": 3,
+   "root": "د ر ك",
+   "form": "IV"
+  },
+  "akhadha": {
+   "lemma": "أَخَذَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to take",
+    "tr": "almak"
+   },
+   "level": 1,
+   "root": "أ خ ذ",
+   "form": "I"
+  },
+  "lam-jazima": {
+   "lemma": "لَمْ",
+   "pos": "part",
+   "gloss": {
+    "en": "did not (jazm + past sense)",
+    "tr": "-medi (cezmedip mâzîye çeviren lem)"
+   },
+   "level": 2
+  },
+  "rih": {
+   "lemma": "رِيح",
+   "pos": "noun",
+   "gloss": {
+    "en": "wind",
+    "tr": "rüzgâr"
+   },
+   "level": 2,
+   "root": "ر و ح",
+   "plural": "رِيَاح"
+  },
+  "safina": {
+   "lemma": "سَفِينَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "ship",
+    "tr": "gemi"
+   },
+   "level": 2,
+   "root": "س ف ن",
+   "plural": "سُفُن"
   }
  }
 }

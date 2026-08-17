@@ -1309,3 +1309,52 @@ not a one-line change.
   standing disagreement still Manār 16's documented بِمَا. The probe-first
   practice has now paid three chapters running: 2, 7, and 8 defects, none of
   which the class-agreement metric could have seen.
+
+### Talkhīṣ al-Miftāḥ, chapter 13 — عُمُومُ السَّلْبِ وَسَلْبُ الْعُمُومِ (5 sentences, 35 tokens)
+
+  The musnad-ilayh bāb closes on its most logical chapter: كُلّ under negation.
+  Ibn Mālik reads the ORDER (كُلُّ إِنْسَانٍ لَمْ يَقُمْ = no one at all; لَمْ يَقُمْ
+  كُلُّ إِنْسَانٍ = not all, so some did); the muṣannif prefers ʿAbd al-Qāhir's
+  ḥayyiz: كُلّ inside the negation's reach → only the TOTALITY is denied and the
+  part is thereby AFFIRMED. Al-Mutanabbī carries the first half — consolation by
+  grammar — and the Prophet's ﷺ answer to Dhū al-Yadayn (كُلُّ ذَلِكَ لَمْ يَكُنْ)
+  the second: the books chose a ḥadīth whose meaning collapses if the rule is
+  misread. The bāb ends on لَا فِيهَا غَوْلٌ — the subject DELAYED because the
+  maqām fronted the musnad for qasr: the door to the musnad's own bāb. Note 115
+  `umum-al-salb`, whose question test asks for the TRANSLATION («hepsi …-medi»
+  or «hiçbiri …-medi») — a learner who picks right has applied the ḥayyiz rule.
+
+  **Engine wave — five probe finds, one long-dead rule revived, and one
+  honest regression traced to its root:**
+
+  - **The madda is two hamzas.** آخُذْ was read as a noun — and a MUDAF — because
+    the stored cell spells أَأْخُذُ while the books print آخُذُ; the first person
+    of every hamza-initial verb was unreachable from its written form.
+    `formCandidates` unfolds آ → أَأْ for matching only, and آ joined the
+    person-prefix classes.
+  - **`naked()` had been eating كل and بعض since rule 6c was written** — the
+    clitic-peel stripped their first letters as proclitics, so «the mudaf-ilayh
+    seat after كل is closed to particles» never fired for its two commonest
+    triggers. The peel now asks first whether the word as written is a table
+    word. The oldest trap in the codebase, eating a rule's own triggers.
+  - **«Showing jazm» must mean SHOWING it**: يَتَمَنَّى ends in ى and passed the
+    old not-damma test, so a naqis muḍāriʿ in plain rafʿ read as a conditional's
+    jazm evidence. Fixing it exposed a genuinely missing rule: وَمَا نَابَ عَنْهَا
+    (the matns' list-frame) had been surviving on the ACCIDENT of that spurious
+    shart sharing the right class — the fix took the accident away and rule 6f
+    now holds the frame for the right reason (a joining wāw, a noun to hang on,
+    the fāʿil seat concealed).
+  - **دَرَاهِم answered a weak triliteral** — the فَعَالِل row now reads the
+    quadriliteral plurals, with فَوَاعِل (عَوَامِل → ع م ل) and فَعَائِل (رَسَائِل →
+    ر س ل) as letter-keyed sub-shapes.
+  - **MaEngine gained the chapter's own rule**: مَا + كُلّ → salb al-ʿumūm named
+    outright, with the كُلُّ ذَلِكَ لَمْ يَكُنْ mirror in the note text.
+  - **The naqis stem trap, generator edition**: تَشْتَهِِي shipped with a DOUBLE
+    kasra — the muḍāriʿ stem goes into `derived_naqis` WITHOUT its final vowel,
+    exactly as amr stems go in without their sukūn. Caught by the bank the same
+    hour it was authored.
+
+  Measured: **99.8% over 1,164 tokens** (140 worked sentences). The two standing
+  disagreements are now the SAME undecidable twice — بِمَا with a dropped-object
+  ʿāʾid (Manār 16's بِمَا لَا يَعْلَمُ and the bayt's بِمَا لَا تَشْتَهِي السُّفُنُ) —
+  the honest-shortlist class, kept deliberately, now witnessed in two books.

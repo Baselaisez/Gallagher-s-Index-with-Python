@@ -2765,3 +2765,57 @@ the trailing anta is a tawkid of the hidden fāʿil, one isnad plus an emphasis.
 The jumal rows carry the count explicitly. When a rhetorical claim can be
 grounded in a countable syntactic fact, ground it — the learner can check
 arithmetic; they can only believe an assertion.
+
+## The clitic-peel ate the rule's own triggers — for two hundred versions
+
+`MaEngine.naked()` strips a leading و/ف/ب/ل/ك before the table lookup, and كل
+begins with a kaf, بعض with a ba. So rule 6c — «the mudaf-ilayh seat after
+كل/بعض is closed to particles», written in v116 and credited in this file with
+real accuracy — had NEVER FIRED for its two commonest triggers: the lookup saw
+ل and عض. It kept passing every gate because the gated sentences used غير and
+مثل, whose first letters are not proclitics.
+
+The fix asks before peeling: if the word as written is already a table word,
+it IS the word. The general form has been in this file since the ما entry («a
+clitic can hide the very feature a rule tests for») — this is its sharpest
+instance yet, because the hidden feature was the rule's own trigger list, and
+because the gate's example sentences happened to dodge it. **When a rule is
+keyed on a closed set, test the rule against EVERY member of the set once** —
+a five-line loop in the suite would have caught this the day it shipped.
+
+## An accident can hold a reading up — fixing the bug underneath exposes it
+
+Tightening the jazm-shape test (a naqis ى is not «showing jazm») broke a bank
+row that had agreed for twenty versions: وَمَا نَابَ عَنْهَا. On investigation the
+agreement was STANDING ON the bug — the spurious shartiyya (an ism reading)
+happened to share the human label's class, so the metric said ✓ while the
+doctrine underneath was wrong. The fix took the accident away and the TRUE
+reading (the matns' list-frame mawsula) turned out to have no rule at all;
+rule 6f now states it: a joining waw carries the ma, a noun before it to hang
+on, and the verb's fa'il seat concealed.
+
+This is «an agreement can be wrong» meeting «when every word-level guard
+passes, the next guard is a context guard». The practical rule: **when a fix
+breaks an old agreement, do not restore the old behaviour — find out what the
+agreement was standing on.** Twice now the answer was: an accident.
+
+## The naqis stem goes in bare — the generator trap has a naqis edition
+
+تَشْتَهِِي shipped with a doubled kasra: `derived_naqis` takes the mudari stem
+WITHOUT its final vowel (جْز, not جْزِ — the maker appends the ending), exactly
+as `amr_attach` appends its own sukun. The mazi stem DOES carry its vowel
+(جَزَ). One signature, two conventions, and the ch8 precedent (غَشِيَ built
+through `entry` by hand) had hidden the asymmetry. The bank caught it within
+the hour — تَشْتَهِي failed its own corpus lookup because the stored cell was
+one codepoint wrong and visually identical. **NFC-invisible corruption is what
+the exact-match layers exist to catch; trust the failed lookup, not your eyes.**
+
+## The madda is two hamzas, and the corpus spells it the engine's way
+
+آخُذُ is what the books print; أَأْخُذُ is what the conjugator assembles; and the
+first person of every hamza-initial verb was unreachable from its written form
+— لَمْ آخُذْ parsed as a jarr-less MUDAF. The fix is a matching-only unfold
+(آ → أَأْ in formCandidates), the same doctrine as folding hamza seats: **spelling
+equivalences live at the matching layer, never in the data and never in the
+display.** The stored paradigm stays in the engine's mechanical spelling
+because the audit regenerates it; the reader's eye never sees it.

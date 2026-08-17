@@ -6579,6 +6579,66 @@ if (!CHROME) {
       throw new Error('تَكْذِبُ answers from the new paradigm: ' + JSON.stringify(r.takdhibu));
   });
 
+  await check('talkhis ch13: kull under negation — the hayyiz, the madda, and the revived rule', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 13);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const row = (text, w, nth) => { const rows = SentenceAnalyzer.analyze(text)
+        .filter(x => key(x.w) === key(w)); return rows[nth || 0] || {}; };
+      const maKull = row('مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ', 'ما', 0);
+      const maAfterKull = row('مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ', 'ما', 1);
+      const akhudh = row('لَمْ آخُذْ كُلَّ الدَّرَاهِمِ', 'اخذ');
+      const listMa = row('وَصِيغَةُ الْأَمْرِ افْعَلْ وَمَا نَابَ عَنْهَا وَصِيغَةُ النَّهْيِ لَا تَفْعَلْ', 'وما');
+      const rt = w => { const x = RootFinder.find(w); return x ? { r: x.root, z: (x.wazn || x.lemma || '') } : null; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length,
+        note: GRAMMAR['umum-al-salb'] && [GRAMMAR['umum-al-salb'].group,
+              (GRAMMAR['umum-al-salb'].question || {}).tr ? GRAMMAR['umum-al-salb'].question.tr.length : 0],
+        tagged: toks.filter(t => (t.grammar || []).includes('umum-al-salb')).length,
+        // مَا + كُلّ: the salb-al-umum rule leads
+        maKullNote: ((maKull.wajh || {}).why || {}).en || '',
+        // the ma AFTER kull: rule 6c, revived — the mudaf-ilayh seat
+        maAfterKullK: (maAfterKull.wajh || {}).k,
+        // the madda unfolds for matching: آخُذْ is a corpus verb, first person
+        akhudhKind: akhudh.kind,
+        akhudhNote: (akhudh.notes || []).map(x => x.en).join(' ~ '),
+        // the list-frame rule 6f holds the Manar sentence for the RIGHT reason
+        listMaK: (listMa.wajh || {}).k,
+        // the quadriliteral plural and the jazm-shape fix
+        darahim: rt('الدَّرَاهِمِ'), tamanna: rt('يَتَمَنَّى'), tashtahi: rt('تَشْتَهِي'),
+        // the corrupt naqis stems would have failed here: exact cells
+        cells: ['يَتَمَنَّى', 'تَشْتَهِي'].map(w => (RootFinder.fromCorpus(w) || {}).lemma || null),
+        awamil: ['عَوَامِل', 'رَسَائِل'].map(w => (RootFinder.find(w) || {}).root),
+      };
+    });
+    if (r.missing) throw new Error('chapter 13 did not load');
+    if (r.chapters < 13) throw new Error('chapter 13 is missing: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch13 sentences: ' + r.n);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 3)
+      throw new Error('the umum-al-salb note with its question test: ' + JSON.stringify(r.note));
+    if (r.tagged < 6) throw new Error('too few umum-al-salb tokens tagged: ' + r.tagged);
+    if (!/SALB AL-UMUM|TOTALITY/.test(r.maKullNote))
+      throw new Error('مَا كُلُّ must name salb al-umum: ' + r.maKullNote);
+    if (r.maAfterKullK !== 'mawsula')
+      throw new Error('the ma after kull sits in the mudaf-ilayh seat — rule 6c was dead for كل until v131: ' + r.maAfterKullK);
+    if (r.akhudhKind !== 'verb') throw new Error('آخُذْ is the first person of أَخَذَ: ' + r.akhudhKind);
+    if (!/corpus verb — .*I\b/.test(r.akhudhNote) && !/jussive — I/.test(r.akhudhNote))
+      throw new Error('…found through the unfolded madda: ' + r.akhudhNote);
+    if (r.listMaK !== 'mawsula')
+      throw new Error('وَمَا نَابَ عَنْهَا is the matns\' list-frame, mawsula by rule 6f — not by the old shart accident: ' + r.listMaK);
+    if (!r.darahim || r.darahim.r !== 'د ر ه م' || !/فَعَالِل/.test(r.darahim.z))
+      throw new Error('دَرَاهِم is the quadriliteral plural: ' + JSON.stringify(r.darahim));
+    if (!r.tamanna || r.tamanna.z !== 'تَمَنَّى') throw new Error('يَتَمَنَّى answers from its paradigm: ' + JSON.stringify(r.tamanna));
+    if (!r.tashtahi || r.tashtahi.z !== 'اِشْتَهَى') throw new Error('تَشْتَهِي answers from its paradigm: ' + JSON.stringify(r.tashtahi));
+    if (r.cells.some(x => !x)) throw new Error('the naqis stems must be clean (no doubled vowel): ' + JSON.stringify(r.cells));
+    // the فعالل row's two sub-shapes must not regress
+    if (r.awamil[0] !== 'ع م ل') throw new Error('عَوَامِل is فَوَاعِل of ع م ل: ' + r.awamil[0]);
+    if (r.awamil[1] !== 'ر س ل') throw new Error('رَسَائِل is فَعَائِل of ر س ل: ' + r.awamil[1]);
+  });
+
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {
     const r = await page.evaluate(() => {
       const css = [...document.styleSheets].map(s => {
