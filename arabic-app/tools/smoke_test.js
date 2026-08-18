@@ -3935,7 +3935,13 @@ if (!CHROME) {
     // v134: the ppk- feature (previous word's closed-class key) measured
     // held-out 52.6/70.5 -> 54.7/72.1 over 17 folds on 3,867 tokens, A/B on
     // the same page (scratchpad cvab17 protocol). Floors raised to hold it.
-    if (a.cv1 < 53.5) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    // v138: the corpus reached 3,936 labelled tokens and the held-out score
+    // rose with it — 54.6/72.1 measured, floors raised to hold the gain. An
+    // npk- feature (NEXT word's closed-class key) was A/B'd the same day and
+    // REJECTED as noise (54.6/72.1 -> 54.4/72.0): government flows FORWARD
+    // from the governor before the word, which is why ppk- paid and npk-
+    // does not. Recorded so nobody spends the afternoon again.
+    if (a.cv1 < 54) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
     // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
     // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
     // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
@@ -3943,7 +3949,7 @@ if (!CHROME) {
     // eight new demonstratives removed from PARTICLES scores 51.0 / 67.9 as
     // well — identical to a tenth. Lower a floor only with a measurement in
     // hand and the measurement written down.
-    if (a.cv2 < 71) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    if (a.cv2 < 71.5) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
@@ -7155,6 +7161,84 @@ if (!CHROME) {
       throw new Error('نَسْتَعِينُ answers from its hollow Form X paradigm: ' + JSON.stringify(r.nastain));
     if (!r.lawF || r.lawF.k !== 'law' || r.lawF.mark !== 'lam' || r.lawF.jw < 0)
       throw new Error('وَلَوْ شَاءَ لَهَدَاكُمْ: the law frame with its lam-marked jawab: ' + JSON.stringify(r.lawF));
+  });
+
+  await check('talkhis ch21: the qasr bab — the QasrEngine frame, the nearest-negation pairing, and the reading surface', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 21);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['aqsam-al-qasr'];
+      const Q = s => QasrEngine.read(SentenceAnalyzer.analyze(s));
+      const q1 = Q('لَا إِلَهَ إِلَّا اللهُ'), q2 = Q('مَا فِي الدَّارِ إِلَّا زَيْدٌ'),
+            q3 = Q('مَا زَيْدٌ إِلَّا كَاتِبٌ'), q0 = Q('زَيْدٌ كَاتِبٌ'),
+            qGuard = Q('وَالْمُشْكِلُ مَا ازْدَادَ خَفَاءً بِحَيْثُ لَا يُنَالُ الْمُرَادُ إِلَّا بِالطَّلَبِ');
+      const kindOf = q => q[0] && q[0].kind ? q[0].kind.ar : null;
+      const maHouse = SentenceAnalyzer.analyze('مَا فِي الدَّارِ إِلَّا زَيْدٌ')[0];
+      const maManar = SentenceAnalyzer.analyze('وَاقْتِضَاؤُهُ مَا لَا يَسْتَقِيمُ الْكَلَامُ إِلَّا بِهِ')
+        .find(x => x.w === 'مَا');
+      // the reading surface: tint + size through the ONE arSize state
+      const st0 = STORIES.find(s => s.chapters && s.chapters.length);
+      localStorage.setItem('qissa-welcomed', '1');
+      setArSizeStep(3); openStory(st0);
+      const line = document.querySelector('#story .ar-line');
+      const fsBig = line ? getComputedStyle(line).fontSize : null;
+      setArSizeStep(1);
+      const fsDef = document.querySelector('#story .ar-line')
+        ? getComputedStyle(document.querySelector('#story .ar-line')).fontSize : null;
+      setReadTheme('sepia');
+      const bgSepia = getComputedStyle(document.getElementById('story')).backgroundColor;
+      setReadTheme('auto');
+      const aa = !!document.getElementById('readCtrlChip');
+      // the continue-card ring
+      localStorage.setItem('qissa-lastread', st0.id); state.lastRead = st0.id;
+      CUR = null; renderLibrary();
+      const ring = !!document.querySelector('.continue-card .cc-ring .rfg');
+      const pctEl = document.querySelector('.continue-card .cc-pct');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('aqsam-al-qasr')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        k1: kindOf(q1), k2: kindOf(q2), k3: kindOf(q3),
+        n0: q0.length, nGuard: qGuard.length,
+        docN: Object.keys(QasrEngine.DOC).length,
+        maHouse: maHouse && maHouse.kind,
+        maManar: maManar && maManar.kind,
+        fsBig, fsDef, bgSepia, aa, ring, pct: pctEl && /%$/.test(pctEl.textContent),
+      };
+    });
+    if (r.missing) throw new Error('chapter 21 did not load');
+    if (r.chapters < 21) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch21 sentences: ' + r.n);
+    if (r.t !== 21) throw new Error('ch21 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the aqsam-al-qasr note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 12) throw new Error('too few aqsam-al-qasr tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch21 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!/الصِّفَةِ عَلَى الْمَوْصُوفِ/.test(r.k1 || ''))
+      throw new Error('لَا إِلَهَ إِلَّا اللهُ: sifa confined to mawsuf: ' + r.k1);
+    if (!/الصِّفَةِ عَلَى الْمَوْصُوفِ/.test(r.k2 || ''))
+      throw new Error('مَا فِي الدَّارِ إِلَّا زَيْدٌ: the jarr phrase is the sifa side: ' + r.k2);
+    if (!/الْمَوْصُوفِ عَلَى الصِّفَةِ/.test(r.k3 || ''))
+      throw new Error('مَا زَيْدٌ إِلَّا كَاتِبٌ: the propn before the illa is the mawsuf: ' + r.k3);
+    if (r.n0 !== 0) throw new Error('a plain jumla opens no qasr frame: ' + r.n0);
+    if (r.nGuard !== 0)
+      throw new Error('the illa pairs with the NEAREST negation — the Manar definitional frame opens none: ' + r.nGuard);
+    if (r.docN < 8) throw new Error('the QasrEngine doctrine table: ' + r.docN);
+    if (r.maHouse !== 'particle')
+      throw new Error('مَا فِي الدَّارِ: the frame ma is the negation, a particle: ' + r.maHouse);
+    if (r.maManar !== 'noun')
+      throw new Error('…and the Manar mawsula keeps its ism reading: ' + r.maManar);
+    if (r.fsBig !== '35.2px' || r.fsDef !== '27.2px')
+      throw new Error('the Aa steps drive the one arSize state: ' + r.fsBig + '/' + r.fsDef);
+    if (!/245, 237, 218/.test(r.bgSepia || ''))
+      throw new Error('the sepia tint paints the story column: ' + r.bgSepia);
+    if (!r.aa) throw new Error('the Aa chip stands in the story header');
+    if (!r.ring || !r.pct) throw new Error('the continue card wears its progress ring');
   });
 
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {

@@ -3139,3 +3139,39 @@ in its own jawab. The authoring rule that follows: a demoted verb's i'rab
 must SAY no taqdir exists (لَا حَذْفَ وَلَا تَقْدِيرَ), an omitted object's
 i'rab must NAME the taqdir — the two are different claims, and flattening
 them into «object omitted» teaches the bab's own commonMistake.
+
+## The illa pairs with the NEAREST negation — the bank drew the line in minutes
+
+Rule 6h's first draft promoted the negation for ANY ما with an إِلَّا later
+in the line, and four Manar definitional mawsulas broke on arrival: in
+وَالْمُشْكِلُ مَا ازْدَادَ … لَا يُنَالُ إِلَّا بِالطَّلَبِ the إِلَّا answers the inner
+لَا, not the mawsula four words back. The discriminator is the pairing rule
+the grammar itself uses: an exception attaches to the nearest preceding
+negation, so a second lā/mā between the ma and the illa hands the illa away
+— and BOTH engines that read the frame (MaEngine 6h, QasrEngine) must carry
+the same guard, or they will pair differently on one sentence. Same family
+as «a promoted rule needs its anchor named»: when a frame rule reaches over
+intervening words, name what may NOT intervene.
+
+## One preference, one storage key — unify before you duplicate
+
+The Aa sheet's four size steps were first built as a parallel scale
+(state.arScale + body attribute + new CSS variable) — and the probe showed
+the size not moving, because renderStory was already stamping an inline
+--ar-size from a state.arSize the header's A−/A+ buttons had owned for a
+hundred versions. The shipped fix drives the EXISTING state from the new
+control (AR_SIZE_STEPS → setArSizeStep → the same qissa-arsize key), so two
+controls move one preference and neither can drift. Before adding any
+user-visible setting, grep for the state it would duplicate — the app is
+old enough now that most preferences already exist somewhere.
+
+## The reading surface is a preference, not a theme
+
+The sepia/night tint scopes to the story COLUMN (body[data-rt] +
+:not(:has(.lib-card)) + CSS variables redefined on the column), never to
+the app chrome — the Kindle convention: a reader chooses a page color the
+way they choose a type size, independently of the app's light/dark. The
+mechanism is variables-only, so a tap repaints with no re-render; the
+sepia palette deliberately commits to one look in both app themes, which
+is what choosing sepia means. Everything that reads --ink/--line inside
+the column inherits the tint for free.

@@ -1661,3 +1661,40 @@ not a one-line change.
   Measured: **99.9% over 1,353 tokens** (175 worked sentences), ch20's 26
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v138 — Talkhīṣ chapter 21: الْقَصْرُ — the taxonomy on one frame, the
+  QasrEngine, and the reading-surface wave** — the qasr bāb opens (source
+  lines ~1790-1840): the ḥadd (تَخْصِيصُ شَيْءٍ بِشَيْءٍ بِطَرِيقٍ مَخْصُوصٍ), the
+  essence split (ḥaqīqī/iḍāfī), the ends split with its central asymmetry
+  (sifa-on-mawsuf plentiful and sometimes literal — لَا إِلَهَ إِلَّا اللهُ its
+  throne text, مَا فِي الدَّارِ إِلَّا زَيْدٌ its everyday one; mawsuf-on-sifa
+  almost never literal), and the three addressee kinds (ifrād/qalb/taʿyīn
+  with their mirrored conditions) taught on ONE mold filled three ways —
+  مَا زَيْدٌ/كَاتِبٌ/شَاعِرٌ إِلَّا… Note 123 `aqsam-al-qasr`.
+  - **QasrEngine (new)**: the nafy+istithnāʾ frame read exactly — maqṣūr ←
+    maqṣūr ʿalayh — with the ends settled by the lexicon (a propn/alam is
+    the mawsuf side; a jarr phrase can only be the sifa side) and the
+    addressee kinds a DOC shortlist (8 rows); rendered as a frame card in
+    the Jumla lab. MaEngine rule 6h: an إِلَّا later promotes the negation
+    — and the bank immediately arbitrated the broad version (four Manar
+    mawsulas stolen): the إِلَّا pairs with the NEAREST negation, so a
+    second lā/mā between hands it away; both engines carry the same
+    pairing guard, and the Manar definitional frames are gated silent.
+  - **Design — the reading-surface wave**: the Aa sheet (story-header
+    chip) with four type-size steps driving the SAME state.arSize the
+    header's A−/A+ buttons own (one preference, two controls — a parallel
+    scale was built first and unified when the existing control surfaced),
+    a paper/sepia/night tint scoped to the story column only (the Kindle
+    convention; qissa-readtheme, body[data-rt], CSS-variable repaint, no
+    re-render), a progress RING on the continue card beside the linear
+    bar, and the unwān chapter rule doubled.
+  - **ML**: npk- (next word's closed-class key) A/B'd on the scratchpad
+    protocol and REJECTED as noise (54.6/72.1 → 54.4/72.0 held-out over
+    17 folds) — government flows forward from the governor BEFORE the
+    word; ppk- paid, npk- cannot. The corpus grew to 3,936 labelled
+    tokens and the held-out base rose to 54.6/72.1; floors raised
+    53.5/71 → 54/71.5 with the measurement written into the check.
+
+  Measured: **99.9% over 1,374 tokens** (180 worked sentences), ch21's 21
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

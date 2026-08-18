@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 175,
-  "sentenceTokens": 1353,
+  "sentences": 180,
+  "sentenceTokens": 1374,
   "posAgreement": 99.9,
-  "rows": 2438
+  "rows": 2459
  },
  "endings": [
   {
@@ -36155,6 +36155,552 @@
       "lemma": "اِسْتَعَانَ",
       "root": "ع و ن",
       "wazn": "نَسْتَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:21:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 21,
+   "sentence": "s1",
+   "text": "لَا إِلَهَ إِلَّا اللهُ",
+   "translation": {
+    "en": "There is no god but Allah. (The frame's throne text: the attribute of ilah-hood confined, haqiqatan, to Allah — negation + exception, the first tariq of qasr.)",
+    "tr": "Allah'tan başka ilah yoktur. (Çatının taht metni: ilahlık vasfı, hakikaten, Allah'a hasredilmiş — nefiy + istisnâ, kasrın ilk yolu.)"
+   },
+   "jumal": [
+    {
+     "text": "لَا إِلَهَ إِلَّا اللهُ",
+     "ar": "قَصْرُ الصِّفَةِ عَلَى الْمَوْصُوفِ — حَقِيقَةً: وَصْفُ الْأُلُوهِيَّةِ مَقْصُورٌ عَلَى اللهِ تَعَالَى.",
+     "en": "SIFA confined to MAWSUF, haqiqatan: ilah-hood belongs to Allah and to no other, in reality — not merely against a hearer's belief. The source cites this very kalima as the haqiqi qasr's example."
+    },
+    {
+     "text": "لَا إِلَهَ إِلَّا اللهُ",
+     "ar": "وَالطَّرِيقُ: النَّفْيُ وَالِاسْتِثْنَاءُ — أَقْوَى طُرُقِ الْقَصْرِ.",
+     "en": "And the route: negation + exception — the strongest of the qasr's turuq, because it states the denial and the exception in separate words the ear cannot miss. (إِنَّمَا, the fronting, and عطف بلا are its gentler siblings — the qasr note walks all four.)"
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "لَا",
+     "lex": "la-nafiya-lil-jins",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«no … at all» — the genus-la, denying every instance of what follows: the negation half of the qasr frame."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَهَ",
+     "lex": "ilah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«god» — the la's ism on the fath, and the MAQSUR: what is being confined is the ATTRIBUTE of ilah-hood itself. The khabar (مَوْجُودٌ, «exists») is omitted, as this frame always omits it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِلَه",
+      "root": "أ ل ه",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr",
+       "qasr"
+      ],
+      "irab": "«but, except» — the exception particle; with the negation before it, the FIRST TARIQ of qasr. Everything between the la and the illa is confined to what follows the illa."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "اللهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«Allah» — in raf', a badal from the la's ism read in its POSITION (the position of a mubtada), and the MAQSUR ALAYH: the one bearer the attribute is confined to. This qasr is ḤAQĪQĪ — true in all reality, not merely against some hearer's belief — the strongest sentence the frame ever carries."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:21:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 21,
+   "sentence": "s2",
+   "text": "مَا فِي الدَّارِ إِلَّا زَيْدٌ",
+   "translation": {
+    "en": "No one is in the house but Zayd. (The attribute of being-in-the-house confined to Zayd — the everyday haqiqi qasr of a sifa to its mawsuf.)",
+    "tr": "Evde Zeyd'den başkası yok. (Evde-bulunma vasfı Zeyd'e hasredilmiş — bir sıfatın mevsûfuna gündelik hakikî kasrı.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا فِي الدَّارِ إِلَّا زَيْدٌ",
+     "ar": "قَصْرُ الصِّفَةِ عَلَى الْمَوْصُوفِ — وَهُوَ الْكَثِيرُ، وَقَدْ يَقَعُ حَقِيقَةً.",
+     "en": "Sifa on mawsuf again — the PLENTIFUL direction, and it can be literally true: survey the house and the claim checks out. Its mirror (one bearer confined to one attribute) almost never can — no census covers all a man's attributes."
+    },
+    {
+     "text": "مَا فِي الدَّارِ إِلَّا زَيْدٌ",
+     "ar": "وَبَعْضُ الْأَحْيَانِ يُقْصَدُ بِهِ الْمُبَالَغَةُ: يُعَدُّ غَيْرُ الْمَذْكُورِ كَلَا شَيْءٍ.",
+     "en": "And sometimes even this direction is exaggeration: others ARE in the house, and the speaker counts them as nothing — the iddi'a the ch18 jins-lam already taught, wearing the illa frame now."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr",
+       "anwa-ma"
+      ],
+      "irab": "«not» — and the illa standing later is this ma's own signature: negation-plus-exception, so the ma of the frame is always the NEGATION, whatever stands between them."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr",
+       "aqsam-al-qasr"
+      ],
+      "irab": "«in» — the jarr phrase it opens is the MAQSUR: the attribute of being-in-the-house. A jarr phrase can only ever be the sifa side of a qasr — an attribute, never a bearer."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الدَّارِ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "«the house» — majrur under fi. (The same letters spell the amr of دَارَى — only the jarr letter before this word settles which it is.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَار",
+      "root": "د و ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«but» — the exception, mufarragh: the negation left the sentence empty-handed, so what follows takes the case the sentence itself demands."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«Zayd» — the mubtada mu'akhkhar in raf' (the fronted jarr-khabar's old rule), and the MAQSUR ALAYH: the one bearer being-in-the-house is confined to. Haqiqatan possible here — a house CAN really hold only Zayd — which is why the sifa-to-mawsuf direction is the plentiful one."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:21:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 21,
+   "sentence": "s3",
+   "text": "مَا زَيْدٌ إِلَّا كَاتِبٌ",
+   "translation": {
+    "en": "Zayd is nothing but a writer. (The bearer confined to one attribute — and which KIND of qasr this is, only the addressee's state decides.)",
+    "tr": "Zeyd kâtipten başka bir şey değildir. (Sahip tek vasfa hasredilmiş — ve bunun HANGİ kasr olduğuna yalnız muhatabın hâli karar verir.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا زَيْدٌ إِلَّا كَاتِبٌ",
+     "ar": "قَصْرُ الْمَوْصُوفِ عَلَى الصِّفَةِ — حَقِيقَةً يَكَادُ لَا يُوجَدُ، فَهُوَ إِضَافِيٌّ أَوِ ادِّعَاءٌ.",
+     "en": "MAWSUF on SIFA: the direction that haqiqatan almost does not exist — encircling ALL a bearer's attributes is beyond speech — so it lives as idafi qasr, or as deliberate exaggeration. The taxonomy's asymmetry is the chapter's first surprise."
+    },
+    {
+     "text": "مَا زَيْدٌ إِلَّا كَاتِبٌ",
+     "ar": "وَبِحَسَبِ الْمُخَاطَبِ: إِفْرَادٌ لِمَنِ اعْتَقَدَ الشَّرِكَةَ، قَلْبٌ لِمَنِ اعْتَقَدَ الْعَكْسَ، تَعْيِينٌ لِلْمُتَرَدِّدِ.",
+     "en": "One sentence, three kinds, and only the ADDRESSEE picks: said to one who thought Zayd both writes and makes verse, it is IFRAD (cutting the partnership); to one who thought him no writer at all, QALB (flipping the ruling); to one who could not decide, TAYIN (appointing). The words never change — the hearer does."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr",
+       "anwa-ma"
+      ],
+      "irab": "«not» — Hijazi (working like laysa) or bare: the schools differ on its government here, and the QASR stands on either reading — the frame's meaning does not hang on the i'rab khilaf."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«Zayd» — the MAQSUR this time: the bearer himself, about to be confined to a single attribute. Note the direction flipped from s2 — the propn stands BEFORE the illa now."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«but» — the same mufarragh exception."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "كَاتِبٌ",
+     "lex": "katib",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "aqsam-al-qasr",
+       "ism-fail"
+      ],
+      "irab": "«a writer» — the khabar, and the MAQSUR ALAYH: the one attribute Zayd is confined to. Haqiqatan this is nearly impossible (a man has countless attributes), so the qasr is IDAFI — relative to an addressee — or exaggeration. And the sifa here is the balagha's: a meaning standing in another, not the nahw's adjective."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَاتِب",
+      "root": "ك ت ب",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:21:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 21,
+   "sentence": "s4",
+   "text": "مَا كَاتِبٌ إِلَّا زَيْدٌ",
+   "translation": {
+    "en": "No one is a writer but Zayd. (Said to one who believed both Zayd and Amr write: qasr IFRAD — the partnership cut.)",
+    "tr": "Zeyd'den başka kâtip yok. (Hem Zeyd'in hem Amr'ın kâtip olduğuna inanana söylenmiş: İFRAD kasrı — ortaklık kesilmiş.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا كَاتِبٌ إِلَّا زَيْدٌ",
+     "ar": "قَصْرُ إِفْرَادٍ: الْمُخَاطَبُ اعْتَقَدَ الشَّرِكَةَ، وَالْقَصْرُ يَقْطَعُهَا — وَشَرْطُهُ أَلَّا يَتَضَادَّ الْوَصْفَانِ.",
+     "en": "IFRAD: the hearer held BOTH claims at once (Zayd writes; Amr writes), which is only possible when the two do not contradict — the ifrad's own condition. The qasr does not flip his belief; it prunes it."
+    },
+    {
+     "text": "مَا كَاتِبٌ إِلَّا زَيْدٌ",
+     "ar": "وَعَكْسُ اعْتِقَادِهِ: «مَا شَاعِرٌ إِلَّا زَيْدٌ» لِمَنِ اعْتَقَدَ أَنَّ الشَّاعِرَ عَمْرٌو — قَصْرُ قَلْبٍ.",
+     "en": "And the next sentence turns the addressee around: said to one who held the OPPOSITE (the poet is Amr, not Zayd), the same frame becomes qasr QALB — it flips his ruling whole. Contradiction between the beliefs is qalb's condition, exactly where ifrad forbade it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«no one is» — the frame's negation again."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "كَاتِبٌ",
+     "lex": "katib",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«a writer» — the MAQSUR: the attribute side, and a nakira under negation reads as ALL: no writer whatsoever. The direction is s2's again (sifa on mawsuf), but this time the claim is plainly false in reality — other writers exist —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَاتِب",
+      "root": "ك ت ب",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«but» — the exception."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«Zayd» — the maqsur alayh; and because the claim is not literally true, the qasr is IDAFI, aimed at THIS addressee: he believed Zayd AND Amr both write, and the sentence cuts Amr away — qasr IFRAD, the partnership-cutter. Its condition: the two beliefs must not be contradictories, merely companions."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:21:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 21,
+   "sentence": "s5",
+   "text": "مَا شَاعِرٌ إِلَّا زَيْدٌ",
+   "translation": {
+    "en": "No one is a poet but Zayd. (Said to one who believed the poet is Amr: qasr QALB — the ruling flipped; said to one undecided between the two: TAYIN.)",
+    "tr": "Zeyd'den başka şair yok. (Şairin Amr olduğuna inanana söylenmiş: KALB kasrı — hüküm çevrilmiş; ikisi arasında kararsıza söylenirse: TAYİN.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا شَاعِرٌ إِلَّا زَيْدٌ",
+     "ar": "قَصْرُ قَلْبٍ: الْمُخَاطَبُ اعْتَقَدَ الْعَكْسَ، وَالْقَصْرُ يَقْلِبُ حُكْمَهُ — وَشَرْطُهُ التَّضَادُّ.",
+     "en": "QALB: the addressee's belief and the sentence cannot both stand — that contradiction is qalb's condition, the exact mirror of ifrad's. One taxonomy, two complementary conditions: the books' symmetry, worth showing whole."
+    },
+    {
+     "text": "مَا شَاعِرٌ إِلَّا زَيْدٌ",
+     "ar": "وَقَصْرُ التَّعْيِينِ: لِمَنِ اسْتَوَى عِنْدَهُ الْأَمْرَانِ — يُعَيِّنُ الْقَصْرُ أَحَدَهُمَا.",
+     "en": "And TAYIN: to the hearer for whom the two stood level, the qasr appoints one. The three kinds exhaust the addressee's possible states — partnership, opposition, indecision — which is why the books' list stops at three."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«no one is» — the same negation, third time: the frame is a MOLD, and the chapter fills it three ways."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "شَاعِرٌ",
+     "lex": "shair",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "aqsam-al-qasr",
+       "ism-fail"
+      ],
+      "irab": "«a poet» — the maqsur: the attribute of poetry, denied of everyone —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَاعِر",
+      "root": "ش ع ر",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "aqsam-al-qasr"
+      ],
+      "irab": "«but» — the exception."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "aqsam-al-qasr",
+       "qasr"
+      ],
+      "irab": "«Zayd» — the maqsur alayh, and the addressee names the kind: to one convinced the poet is AMR, this is QALB — his ruling reversed outright; to one who stood undecided between the two men, TAYIN — the wavering resolved. Three sentences, one frame, and the whole taxonomy taught by whom you say them to."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
       "sure": true
      },
      "match": true
