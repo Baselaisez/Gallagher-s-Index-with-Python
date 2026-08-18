@@ -3036,3 +3036,33 @@ noise, and the reader column stays plain. One neutral half-grey tile serves
 both themes; a colored tile would need two and could drift. The combo chip
 follows the same restraint: feedback, not score — it renders only from ×2 up,
 resets on a miss, and its animation sits behind prefers-reduced-motion.
+
+## A global lex key must agree with itself across packages
+
+`nounFromCorpus` reads every package's glossary as one corpus, so a key that
+lives in two packages with two different claims is a bug the engines will
+surface in whichever order the packages load: `zayd` was propn in the Talkhīṣ
+glossary and plain noun in jumal-al-tadrib, and the propn guard on the
+learned scale silently stopped firing after a rebuild. When a lex key already
+exists elsewhere, the new entry must MATCH it — and when a guard keys on a
+pos, check every package that owns the key, not the one you are authoring.
+
+## The article strip owns the sun-letter shadda
+
+Stripping ال must take the assimilated lām's shadda with it: الشُّجَاعُ minus
+the article is شُجَاع, not شُّجَاع, and the leftover mark walked straight into
+IsmTagger's sh:/m1: features and sold فَعَّال over فُعَال. The license is
+absolute — no Arabic word begins with a doubled consonant, so a word-initial
+shadda after an article strip is always the article's. Remember NFC puts the
+vowel BEFORE the shadda: the strip regex must let the mark group ride between
+the letter and the shadda (`/^([ء-ي])([ً-ٰ]*)ّ/`).
+
+## The wajh is the content, so it ships as data
+
+«Put detailed explanations in the chapter» does not mean longer prose: the
+Belâgat vecihleri went in as NAMED jumal rows — two per sentence, each
+carrying its wajh (no-ḥaṣr, tafkhīm, taḥqīr, takhsis, qaṣr in both
+strengths, the Rāzī khilaf) — plus one catalogue note the rows point into.
+A layer the user asked for gets a floor in the smoke gate (every ch18
+sentence ≥2 jumal rows), so a later regeneration cannot quietly flatten it
+back to prose.

@@ -975,7 +975,7 @@
    "lemma": "شَيْء",
    "pos": "noun",
    "gloss": {
-    "en": "a thing",
+    "en": "thing",
     "tr": "şey"
    },
    "level": 1,
@@ -1248,8 +1248,8 @@
    "lemma": "شَاعِر",
    "pos": "noun",
    "gloss": {
-    "en": "a poet; composing poetry (ism fa'il)",
-    "tr": "şair; şiir söyleyen (ism-i fâil)"
+    "en": "poet (ism fail)",
+    "tr": "şair (ism-i fâil)"
    },
    "level": 2,
    "root": "ش ع ر"
@@ -1388,7 +1388,7 @@
    "pos": "noun",
    "gloss": {
     "en": "man",
-    "tr": "adam, er"
+    "tr": "adam, er kişi"
    },
    "level": 1,
    "root": "ر ج ل",
@@ -1881,10 +1881,10 @@
    "lemma": "هُدًى",
    "pos": "noun",
    "gloss": {
-    "en": "guidance (a maqsur noun)",
-    "tr": "hidâyet (ism-i maksûr)"
+    "en": "guidance",
+    "tr": "hidayet"
    },
-   "level": 3,
+   "level": 2,
    "root": "ه د ي"
   },
   "muflih": {
@@ -2182,7 +2182,7 @@
    "lemma": "عَالِم",
    "pos": "noun",
    "gloss": {
-    "en": "learned, a scholar (ism fa'il)",
+    "en": "learned, a scholar (ism fail)",
     "tr": "âlim (ism-i fâil)"
    },
    "level": 2,
@@ -3919,6 +3919,58 @@
    "level": 2,
    "root": "ر س ل",
    "form": "IV"
+  },
+  "katib": {
+   "lemma": "كَاتِب",
+   "pos": "noun",
+   "gloss": {
+    "en": "writer, scribe (ism fail)",
+    "tr": "kâtip, yazıcı (ism-i fâil)"
+   },
+   "level": 2,
+   "root": "ك ت ب"
+  },
+  "muttaqi": {
+   "lemma": "مُتَّقٍ",
+   "pos": "noun",
+   "gloss": {
+    "en": "God-fearing (ism fail of اِتَّقَى)",
+    "tr": "müttakî (اِتَّقَى'nın ism-i fâili)"
+   },
+   "level": 3,
+   "root": "و ق ي",
+   "plural": "مُتَّقِينَ",
+   "form": "VIII"
+  },
+  "shujaa": {
+   "lemma": "شُجَاع",
+   "pos": "noun",
+   "gloss": {
+    "en": "brave, courageous (on فُعَال)",
+    "tr": "cesur, şecaatli (فُعَال vezninde)"
+   },
+   "level": 3,
+   "root": "ش ج ع"
+  },
+  "ghulam": {
+   "lemma": "غُلَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "boy, servant",
+    "tr": "oğlan, hizmetkâr"
+   },
+   "level": 3,
+   "root": "غ ل م",
+   "plural": "غِلْمَان"
+  },
+  "ma-hijaziyya": {
+   "lemma": "مَا (الْحِجَازِيَّة)",
+   "pos": "part",
+   "gloss": {
+    "en": "the Hijazi negation — governs like laysa",
+    "tr": "Hicâzî mâ — leyse gibi amel eder"
+   },
+   "level": 4
   }
  }
 }

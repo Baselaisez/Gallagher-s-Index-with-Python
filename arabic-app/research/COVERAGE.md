@@ -1554,3 +1554,35 @@ not a one-line change.
   Measured: **99.8% over 1,289 tokens** (160 worked sentences), ch17's 23
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v135 — Talkhīṣ chapter 18: تَنْكِيرُ الْمُسْنَدِ وَتَعْرِيفُهُ — the Belâgat
+  vecihleri, each named** — the musnad's dress catalogued wajh by wajh, and
+  (on the user's ask) every wajh delivered as a NAMED jumal row, two per
+  sentence, not prose alone: indefinite because neither ḥaṣr nor ʿahd is
+  meant (زَيْدٌ كَاتِبٌ وَعَمْرٌو شَاعِرٌ — the honest default), indefinite for
+  tafkhīm (هُدًى لِلْمُتَّقِينَ, Baqara 2:2, riding on last bāb's omitted
+  mubtadāʾ), indefinite for taḥqīr (مَا زَيْدٌ شَيْئًا — with the Hijazi مَا's
+  naṣb signature on شَيْئًا), the nakira narrowed by adjective and by iḍāfa
+  (زَيْدٌ رَجُلٌ عَالِمٌ / زَيْدٌ غُلَامُ رَجُلٍ — takhsis stopping short of
+  taʿrīf), and the jins-lām closing into qaṣr in both strengths — ḥaqīqatan
+  (زَيْدٌ الْأَمِيرُ) and mubālaghatan/iddiʿāʾan (عَمْرٌو الشُّجَاعُ) — with
+  al-Rāzī's khilaf on the reversed الْمُنْطَلِقُ زَيْدٌ taught as a khilaf.
+  Note 120 `wujuh-al-musnad` (group balagha, the full vecih catalogue in EN
+  and TR). Glossary +10 (incl. مُتَّقٍ as a manqūṣ Form VIII ism fāʿil and
+  the ma-hijaziyya key).
+  - **Engine fixes the probe forced**: (1) the learned scale pass now asks
+    the corpus before offering a wazn — a propn stands in no scale, and the
+    fix surfaced a DATA bug: the GLOBAL `zayd` key lived in two packages,
+    propn in one and noun in the other (jumal-al-tadrib corrected); (2) the
+    IsmTagger's article strip now takes the sun-letter shadda back with it —
+    الشُّجَاعُ was selling فَعَّال over فُعَال because the assimilated lām
+    walked into the sh:/m1: features (no Arabic word begins doubled, so a
+    word-initial shadda after ال is always the article's); held-out steady
+    at 91.5/98.8; (3) RootFinder gained a LAST-RESORT nounFromCorpus tail,
+    so لِلْمُتَّقِينَ answers و ق ي from the glossary where every rule-path
+    refused a manqūṣ plural; (4) فُعَال/فَعَال joined the IsmTagger SHAPES
+    (شُجَاع the sifa-mushabbaha pattern, 45 shapes).
+
+  Measured: **99.8% over 1,303 tokens** (165 worked sentences), ch18's 14
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

@@ -6420,8 +6420,13 @@ if (!CHROME) {
     if (r.haqq !== 'ح ق ق') throw new Error('الْحَقُّ is ح ق ق, not the article + a root: ' + r.haqq);
     if (r.liss !== 'ل ص ص') throw new Error('اللِّصُّ is ل ص ص: ' + r.liss);
     if (r.kull !== 'ك ل ل') throw new Error('كُلُّهُمْ is ك ل ل: ' + r.kull);
-    // …and the rule must REFUSE where the shadda is absent or the word is a particle
-    if (r.yad) throw new Error('الْيَد carries no shadda and must not be doubled: ' + r.yad);
+    // …and the rule must REFUSE where the shadda is absent or the word is a
+    // particle. The geminate DOUBLING (ي د د) stays forbidden forever; but
+    // once the corpus tail landed, the glossary's own lexical answer for
+    // يَد — the weak root ي د ي the lexica record — is knowledge, not a
+    // doubling, and the gate that pinned the honest refusal widens to it.
+    if (r.yad && r.yad !== 'ي د ي')
+      throw new Error('الْيَد must never be doubled — refusal or the glossary\'s ي د ي: ' + r.yad);
     if (r.rubba) throw new Error('رُبَّ is a particle and has no root: ' + r.rubba);
     // the five nouns answer lexically; في is not one of them
     if (r.akh !== 'أ خ و') throw new Error('أَخُوكَ is one of the five nouns: ' + r.akh);
@@ -6946,6 +6951,52 @@ if (!CHROME) {
       throw new Error('law + mudari must carry the istimrar nukta and still find its jawab: ' + JSON.stringify(r.law2));
     if (r.kullamaK !== 'kullama') throw new Error('كُلَّمَا behind its hamza still frames: ' + r.kullamaK);
     if (r.fujaN !== 0) throw new Error('the fuja\'iyya opens no conditional frame: ' + r.fujaN);
+  });
+
+  await check('talkhis ch18: tankir and tarif of the musnad — the Belagat wujuh, each named', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 18);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['wujuh-al-musnad'];
+      const rowsMa = SentenceAnalyzer.analyze('مَا زَيْدٌ شَيْئًا');
+      const maRow = rowsMa.find(x => x.w === 'مَا');
+      const zayd = rowsMa.find(x => x.w === 'زَيْدٌ');
+      const shuj = IsmTagger.tag('الشُّجَاعُ', 1)[0];
+      const mtq = RootFinder.find('لِلْمُتَّقِينَ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('wujuh-al-musnad')).length,
+        // the user's asked-for layer: every sentence delivers its balagha
+        // wajh as NAMED jumal rows, two per sentence, not as prose alone
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        hijazi: maRow ? maRow.notes.some(n => /الْحِجَازِيَّة|Hijazi/.test((n.ar || '') + (n.en || ''))) : false,
+        // a propn stands in no scale — the corpus guard, through the GLOBAL
+        // zayd key (it lives in two packages; both must say propn)
+        zaydScale: zayd ? zayd.notes.some(n => /فَعْل —/.test(n.en || '')) : true,
+        // the article strip takes its sun-letter shadda back with it
+        shujWazn: shuj && shuj.wazn,
+        mtq: mtq && { root: mtq.root, via: mtq.via },
+      };
+    });
+    if (r.missing) throw new Error('chapter 18 did not load');
+    if (r.chapters < 18) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch18 sentences: ' + r.n);
+    if (r.t !== 14) throw new Error('ch18 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the wujuh-al-musnad note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 6) throw new Error('too few wujuh-al-musnad tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch18 sentence carries its named-wajh jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.hijazi) throw new Error('مَا زَيْدٌ شَيْئًا reads the Hijazi ma');
+    if (r.zaydScale) throw new Error('زَيْدٌ is a propn and is offered no scale note');
+    if (r.shujWazn !== 'فُعَال')
+      throw new Error('الشُّجَاعُ answers فُعَال once the article takes back its shadda: ' + r.shujWazn);
+    if (!r.mtq || r.mtq.root !== 'و ق ي' || r.mtq.via !== 'corpus')
+      throw new Error('لِلْمُتَّقِينَ reaches و ق ي through the glossary: ' + JSON.stringify(r.mtq));
   });
 
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
