@@ -1503,3 +1503,54 @@ not a one-line change.
   Measured: **99.8% over 1,266 tokens** (155 worked sentences), ch16's 43
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v134 — Talkhīṣ chapter 17: لَوْ وَحِكَايَةُ الْحَالِ — the tense against its
+  time** — the shart bāb closes on لَوْ (imtināʿ li-imtināʿ, both clauses māḍī,
+  the jawāb's lām) and then teaches its licensed violations, each with its
+  nukta: لَوْ + muḍāriʿ for continuity (Ḥujurāt 7, with عَنِتُّمْ's idgham as
+  the sarf jewel), muḍāriʿ where an ism fāʿil was expected (Baqara 15 —
+  ch16's tajaddud doctrine wielded as rhetoric), the future shown as present
+  by the Speaker who cannot miss (Anʿām 27, with إِذْ the past-time zarf
+  pointing forward and the jawāb omitted تهويلًا), and the muḍāriʿ set
+  between two māḍīs to make the wondrous image present (Fāṭir 9 — the same
+  aya that carried iltifāt kind 5 in note 116). Note 119 `hikayat-al-hal`.
+  Paradigms: عَنِتَ (idgham cells), اِسْتَهْزَأَ (Form X, hamza-final on the
+  قَرَأُوا precedent), أَثَارَ (hollow IV on the أَشَارَ model); five copied in.
+
+  **The five-axis development wave (user-directed):**
+
+  - **OOP/qawāʿid — the ShartEngine**: the conditional frame as an exact
+    engine. ADAT table (إِنْ، إِذَا، لَوْ، لَوْلَا، كُلَّمَا، لَئِنْ) with each
+    adat's doctrine; frame detection off analyzer rows (adat → shart verb →
+    jawāb with its lām/fāʾ mark); the fujāʾiyya opens NO frame; and the
+    TENSE-NUKTA is named where the surface runs against the adat's asl
+    (لَوْ + muḍāriʿ → istimrar/istihdar; إِنْ + māḍī → the five nukat). The
+    Jumla lab renders the frame as a card — adat, doctrine, numbered
+    shart/jawāb chips, nukta — so the existing Atölye tab got better, not a
+    new tab.
+  - **ML — the ppk- feature**: the PREVIOUS word's closed-class key handed
+    to IrabModel (the İzhar doctrine as a feature: after inna, after kana,
+    after a jarr letter, after a shart adat). Resubstitution 56.1/72.5 →
+    58.2/74.6; **held-out A/B on the same corpus: 52.6/70.5 → 54.7/72.1**
+    over 17 folds on 3,867 tokens. Floors raised 51.5/69 → 53.5/71 with the
+    measurement written into the check.
+  - **Games — the twelfth game, «Which conditional?» (gShart)**: real corpus
+    adat tokens blanked (guards: no doubled إِنَّ, no fujāʾiyya), options the
+    four teachable adats, refutations drawn from ShartEngine.DOC so the game
+    can never disagree with the lab; extras open note 118. Supply ~50 items.
+    And the quiz shell gained the COMBO streak chip (🔥 ×N from 2 up,
+    consecutive-right, reset on miss, resume-safe) with reduced-motion-safe
+    animation.
+  - **Design — the arabesque wave**: one eight-fold star-and-cross SVG tile
+    (inline data-URI, neutral half-grey at 13% alpha so one tile serves both
+    themes) laid behind the chrome that frames content — header, continue
+    card, stat strip, shart-frame card — and never behind running Arabic;
+    the quiz reveal slides in; option cards keep their hover lift.
+  - **Engine fixes the probe forced**: إِذْ joined the closed classes as
+    `zarf-idh` (an ISM, like عِنْد — the bank arbitrated the token's own pos
+    within the minute), sjMajhul steps back over the māḍī's group-wāw
+    (وُقِفُوا), and nounFromCorpus learned the tanwin's seat-alif (سَحَابًا).
+
+  Measured: **99.8% over 1,289 tokens** (160 worked sentences), ch17's 23
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

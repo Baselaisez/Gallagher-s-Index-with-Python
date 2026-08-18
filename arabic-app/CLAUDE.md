@@ -2989,3 +2989,50 @@ raw peel root still carries the hamza seat), fires only where the lexicon
 actually disagrees, and keeps the rules' wazn where both name the same
 radicals — the override corrects roots; it must not strip the scale off
 answers that were already right.
+
+## The ShartEngine reads the FRAME, and the adat's asl is what makes nukta legible
+
+The conditional bab was scattered: the analyzer knew the adats as table rows,
+the notes taught the doctrine, and nothing connected an adat to ITS shart and
+ITS jawab. `ShartEngine.read(rows)` builds the frame as an exact engine — and
+the design decision worth recording is that the TENSE-CHECK emits a NUKTA,
+never an error: لَوْ + muḍāriʿ is not a violation to flag but the istimrar
+reading to name, because the asl is precisely what makes the shift legible as
+rhetoric. An exact engine over a rule system should encode the rule AND the
+licensed departures, each with its classical name — the departures are where
+the balagha lives, and an engine that only validates would erase them. (Also:
+the adat may hide behind its own peels — read it off the analyzer's LAST
+segment, which is already undressed; أَوَكُلَّمَا taught that within the hour.)
+
+## The governor's key is worth two points held-out — the İzhar doctrine, again
+
+The v129 pk- feature gave the model the word's OWN closed-class key; v134's
+ppk- hands it the PREVIOUS word's. Resubstitution 56.1/72.5 → 58.2/74.6,
+held-out A/B on the same corpus 52.6/70.5 → 54.7/72.1 over 17 folds — the
+largest gain since pk- itself, and the same lesson from one seat over: what a
+word IS depends on what GOVERNS it, and the governor's identity is cheap
+surface knowledge the closed-class table already holds. Note the harness trap:
+the shipped ablate_features.js predict-loop predates ctx and never passes
+prevFull, so any ctx-based feature reads as noise there — the scratchpad
+protocol passes ctx in BOTH train and predict, and cv_eval/crossVal confirm
+held-out. When a feature needs context, check the measurement rig hands the
+context over on both sides, or the rig will veto a real gain.
+
+## A game that teaches a rule must read the rule's OWN table
+
+gShart's refutations are ShartEngine.DOC lines — the same object the Jumla
+lab renders — so the game can never drift from the engine. This is posClass
+and fusedJarr again, at the game layer: the moment a drill paraphrases a
+doctrine that lives in an engine, the paraphrase and the engine begin to
+diverge, and the learner meets two versions of one rule. Wire the game to the
+table; write the table once.
+
+## Pattern behind chrome, never behind tashkeel
+
+The arabesque tile is one inline SVG at 13% neutral alpha, laid behind the
+surfaces that FRAME content (header, continue card, stat strip, frame cards)
+and deliberately never behind running Arabic — pattern under harakat is
+noise, and the reader column stays plain. One neutral half-grey tile serves
+both themes; a colored tile would need two and could drift. The combo chip
+follows the same restraint: feedback, not score — it renders only from ×2 up,
+resets on a miss, and its animation sits behind prefers-reduced-motion.

@@ -3926,7 +3926,10 @@ if (!CHROME) {
     // closed-class key (pk-) were ablated on the shipped base — 52.9/70.5 ->
     // 55.0/72.9 resubstitution — and CONFIRMED held-out: 50.9/67.8 -> 52.8/70.2
     // over 17 folds. Both floors moved up to hold the gain.
-    if (a.cv1 < 51.5) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    // v134: the ppk- feature (previous word's closed-class key) measured
+    // held-out 52.6/70.5 -> 54.7/72.1 over 17 folds on 3,867 tokens, A/B on
+    // the same page (scratchpad cvab17 protocol). Floors raised to hold it.
+    if (a.cv1 < 53.5) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
     // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
     // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
     // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
@@ -3934,7 +3937,7 @@ if (!CHROME) {
     // eight new demonstratives removed from PARTICLES scores 51.0 / 67.9 as
     // well — identical to a tenth. Lower a floor only with a measurement in
     // hand and the measurement written down.
-    if (a.cv2 < 69) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    if (a.cv2 < 71) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
@@ -5470,7 +5473,9 @@ if (!CHROME) {
     if (r.heads.length !== 5) throw new Error('five disciplines expected, got ' + r.heads.length);
     if (r.firstHead !== 0) throw new Error('a card sits above the first heading');
     if (r.orphanHead) throw new Error('a heading has no card under it');
-    if (r.cards.length !== 14) throw new Error('fourteen games expected, got ' + r.cards.length);
+    // a game count is a FLOOR, not a total — the shart game arrived as the
+    // fifteenth and broke the pinned fourteen, the running-total trap again.
+    if (r.cards.length < 15) throw new Error('at least fifteen games expected, got ' + r.cards.length);
     for (const id of r.cards) {
       const wired = await page.evaluate(i => !!document.getElementById(i), id);
       if (!wired) throw new Error('card ' + id + ' vanished');
@@ -6882,6 +6887,104 @@ if (!CHROME) {
     if (r.tawassam !== 'تَوَسَّمَ') throw new Error('يَتَوَسَّمُ answers from its paradigm: ' + r.tawassam);
     if (!r.refusals.every(x => x === null))
       throw new Error('the four fused/propn shapes must refuse a root: ' + JSON.stringify(r.refusals));
+  });
+
+  await check('talkhis ch17: law and hikayat al-hal — the tense against its time, and the ShartEngine', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 17);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const F = t => ShartEngine.read(SentenceAnalyzer.analyze(t));
+      const law1 = F('لَوْ جِئْتَنِي لَأَكْرَمْتُكَ');
+      const law2 = F('لَوْ يُطِيعُكُمْ فِي كَثِيرٍ مِنَ الْأَمْرِ لَعَنِتُّمْ');
+      const kullama = F('أَوَكُلَّمَا وَرَدَتْ عُكَاظَ قَبِيلَةٌ بَعَثُوا إِلَيَّ عَرِيفَهُمْ يَتَوَسَّمُ');
+      const fuja = F('خَرَجْتُ فَإِذَا زَيْدٌ');
+      const rt = w => { const x = RootFinder.find(w); return x ? x.root : x; };
+      const cell = w => { const x = RootFinder.fromCorpus(w); return x ? x.lemma : null; };
+      const idh = SentenceAnalyzer.analyze('وَلَوْ تَرَى إِذْ وُقِفُوا عَلَى النَّارِ')
+        .find(x => (x.pk || '') === 'zarf-idh');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: GRAMMAR['hikayat-al-hal'] && [GRAMMAR['hikayat-al-hal'].group,
+              (GRAMMAR['hikayat-al-hal'].question || {}).tr ? GRAMMAR['hikayat-al-hal'].question.tr.length : 0,
+              (GRAMMAR['hikayat-al-hal'].examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('hikayat-al-hal')).length,
+        // the paradigms: the idgham cell, the passive over the group's waw,
+        // the hamza-final Form X, the hollow Form IV, the tanwin-seat noun
+        anit: cell('لَعَنِتُّمْ'), anitR: rt('لَعَنِتُّمْ'),
+        wuqifu: cell('وُقِفُوا'),
+        istahza: cell('يَسْتَهْزِئُ'), tuthir: cell('فَتُثِيرُ'),
+        sahabR: rt('سَحَابًا'),
+        idhKind: idh ? idh.kind : null,
+        // the ShartEngine: law's asl (lam-marked jawab), law's nukta on a
+        // mudari shart, kullama behind its hamza, and the fuja'iyya opening
+        // NO frame at all
+        law1: law1[0] && { k: law1[0].key, mark: law1[0].mark, jw: law1[0].jawab, nk: !!law1[0].nukta },
+        law2: law2[0] && { k: law2[0].key, nk: !!law2[0].nukta, jw: law2[0].jawab },
+        kullamaK: kullama[0] && kullama[0].key,
+        fujaN: fuja.length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 17 did not load');
+    if (r.n !== 5) throw new Error('ch17 sentences: ' + r.n);
+    if (r.t !== 23) throw new Error('ch17 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the hikayat-al-hal note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 8) throw new Error('too few hikayat-al-hal tokens tagged: ' + r.tagged);
+    if (r.anit !== 'عَنِتَ' || r.anitR !== 'ع ن ت')
+      throw new Error('لَعَنِتُّمْ reaches عَنِتَ through the jawab lam and the idgham: ' + r.anit + '/' + r.anitR);
+    if (r.wuqifu !== 'وَقَفَ')
+      throw new Error('وُقِفُوا derives from وَقَفُوا with the kasra on the stem: ' + r.wuqifu);
+    if (r.istahza !== 'اِسْتَهْزَأَ') throw new Error('يَسْتَهْزِئُ answers from its Form X paradigm: ' + r.istahza);
+    if (r.tuthir !== 'أَثَارَ') throw new Error('فَتُثِيرُ answers from its hollow Form IV paradigm: ' + r.tuthir);
+    if (r.sahabR !== 'س ح ب') throw new Error('سَحَابًا answers the glossary through the tanwin seat: ' + r.sahabR);
+    if (r.idhKind !== 'noun') throw new Error('إِذْ is a mabni zarf — an ISM: ' + r.idhKind);
+    if (!r.law1 || r.law1.k !== 'law' || r.law1.mark !== 'lam' || r.law1.jw < 0 || r.law1.nk)
+      throw new Error('the law asl: mazi shart, lam-marked jawab, no nukta: ' + JSON.stringify(r.law1));
+    if (!r.law2 || !r.law2.nk || r.law2.jw < 0)
+      throw new Error('law + mudari must carry the istimrar nukta and still find its jawab: ' + JSON.stringify(r.law2));
+    if (r.kullamaK !== 'kullama') throw new Error('كُلَّمَا behind its hamza still frames: ' + r.kullamaK);
+    if (r.fujaN !== 0) throw new Error('the fuja\'iyya opens no conditional frame: ' + r.fujaN);
+  });
+
+  await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
+    const r = await page.evaluate(() => {
+      const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });
+      const gf = GameFactory.CATALOGUE.find(g => g.id === 'gShart');
+      const css = [...document.styleSheets].map(s => {
+        try { return [...s.cssRules].map(x => x.cssText).join('\n'); } catch (e) { return ''; }
+      }).join('\n');
+      // supply is scoped — measure it from the library, not whatever story
+      // an earlier check left open
+      const saveCUR = typeof CUR !== 'undefined' ? CUR : null;
+      try { CUR = null; } catch (e) {}
+      // the frame card renders in the Jumla lab's own pipeline
+      let frameHtml = '';
+      try {
+        const d = document.createElement('div'); d.id = 'jumlaOut'; document.body.appendChild(d);
+        conjState.jumla = 'لَوْ يُطِيعُكُمْ فِي كَثِيرٍ مِنَ الْأَمْرِ لَعَنِتُّمْ';
+        renderJumlaOut(); frameHtml = d.innerHTML; d.remove();
+      } catch (e) { frameHtml = 'ERR ' + e.message; }
+      const supply = typeof shartItems === 'function' ? shartItems().length : -1;
+      try { CUR = saveCUR; } catch (e) {}
+      return {
+        ppk: fs.some(f => f === 'ppk-inna'),
+        supply,
+        gfOk: !!gf, gfMin: gf ? gf.min : -1,
+        comboCss: /\.combo\s*\{/.test(css),
+        pattern: /data:image\/svg/.test(getComputedStyle(document.querySelector('header.app')).backgroundImage),
+        frame: /shart-frame/.test(frameHtml) && /sf-nukta/.test(frameHtml),
+        doc6: Object.keys(ShartEngine.DOC).length === 6,
+      };
+    });
+    if (!r.ppk) throw new Error('the ppk- feature must fire after a closed-class governor');
+    if (!r.gfOk) throw new Error('gShart is not registered in GameFactory');
+    if (r.supply < r.gfMin) throw new Error('the shart game lacks supply: ' + r.supply);
+    if (!r.comboCss) throw new Error('the combo chip has no CSS rule');
+    if (!r.pattern) throw new Error('the arabesque must dress the header');
+    if (!r.frame) throw new Error('the Jumla lab must render the shart frame with its nukta: check renderJumlaOut');
+    if (!r.doc6) throw new Error('ShartEngine.DOC must carry all six adats');
   });
 
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {
