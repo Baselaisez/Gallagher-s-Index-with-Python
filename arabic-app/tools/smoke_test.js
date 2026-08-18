@@ -6134,11 +6134,16 @@ if (!CHROME) {
     if (!/صِيَانَةً لِلِّسَانِ/.test(rev) || !/صِيَانَةً لِلِّسَانِ/.test(dis))
       throw new Error('both must name the SAME device — keeping the tongue from the name');
     // the peel table now has a row for the participles of the derived forms
-    const want = { muqarrir: 'ق ر ر', mudih: 'و ض ح', mustafad: 'ف و/ي د',
+    // مُسْتَفَاد: the rules could only hedge the hidden radical (ف و/ي د);
+    // since v133 the glossary's own ف ي د outranks the hedge — accept both,
+    // the exact answer first.
+    const want = { muqarrir: 'ق ر ر', mudih: 'و ض ح', mustafad: ['ف ي د', 'ف و/ي د'],
                    muwaswis: 'و س و س', muflih: 'ف ل ح',
                    maktub: 'ك ت ب', madrasa: 'د ر س' };
-    for (const [k, v] of Object.entries(want))
-      if (r.roots[k] !== v) throw new Error(`root of ${k}: expected ${v}, got ${r.roots[k]}`);
+    for (const [k, v] of Object.entries(want)) {
+      const ok = Array.isArray(v) ? v.includes(r.roots[k]) : r.roots[k] === v;
+      if (!ok) throw new Error(`root of ${k}: expected ${v}, got ${r.roots[k]}`);
+    }
     // نون الوقاية as a test: عَصَايَ cannot be a cell of عَصَى
     if (r.asaKind !== 'noun') throw new Error('عَصَايَ is a noun with its mudaf ilayh: ' + r.asaKind);
     if (!/SPEAKER'S YA with no nun of protection/.test(r.asaNote))
@@ -6321,7 +6326,9 @@ if (!CHROME) {
     // …and the split did not cost the definite case its correct verdict
     if (!r.bilNote.includes(CLITIC)) throw new Error('بِالْقَلَمِ is still a jarr clitic: ' + r.bilNote);
     // the article is not a radical, and the ta marbuta is not a fourth one
-    if (!r.sagha || !/^ص و\/ي غ$/.test(r.sagha.root))
+    // v133: the glossary's exact ص و غ outranks the rules' honest hedge —
+    // accept either, never the article's lam as a radical.
+    if (!r.sagha || !/^ص (و\/ي|و) غ$/.test(r.sagha.root))
       throw new Error('الصَّاغَة is a hollow root, not ل ص غ: ' + JSON.stringify(r.sagha));
     if (!r.marah || r.marah.root !== 'م ر أ')
       throw new Error('الْمَرْأَة is م ر أ: ' + JSON.stringify(r.marah));
@@ -6493,7 +6500,9 @@ if (!CHROME) {
     if (r.saaytKind !== 'verb') throw new Error('سَعَيْتُ is corpus-certain now: ' + r.saaytKind);
     if (r.dariKind === 'verb') throw new Error('دَارِ after في is the house, not the amr of دَارَى');
     if (!/AFTER A JARR LETTER/.test(r.dariNote)) throw new Error('and the refusal names the doctrine: ' + r.dariNote);
-    if (!r.qaim || r.qaim.r !== 'ق و/ي م') throw new Error('قَائِم: the hamza seat is the i\'lal of the waw: ' + JSON.stringify(r.qaim));
+    // v133: the glossary answers the exact ق و م where the rules could only
+    // hedge the seat — accept either.
+    if (!r.qaim || !/^ق (و\/ي|و) م$/.test(r.qaim.r)) throw new Error('قَائِم: the hamza seat is the i\'lal of the waw: ' + JSON.stringify(r.qaim));
     // the chapter ships حَارَ's paradigm, so the corpus answers the EXACT root
     // (ح ي ر); the rules-path و/ي hedge is the accepted fallback for the day
     // someone prunes the verb. Either way the fem-ta must not be a radical.
@@ -6794,6 +6803,85 @@ if (!CHROME) {
       throw new Error('فَصَبْرٌ reads فَعْل off the peeled scale, not أَفْعَل: ' + r.sabrNote);
     if (!r.ismShapes) throw new Error('the primitive masdar shapes are missing from IsmTagger');
     if (r.khalaqaCell !== 'خَلَقَ') throw new Error('the خَلَقَ paradigm must own its mazi: ' + r.khalaqaCell);
+  });
+
+  await check('talkhis ch16: tajaddud vs thubut — the sukun-nun split, the merged ya, and the swallowed ta', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 16);
+      if (!ch) return { missing: true };
+      const key = z => stripAr(z).replace(/[^ء-ي]/g, '').replace(/[أإآ]/g, 'ا');
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const row = (text, w, nth) => { const rows = SentenceAnalyzer.analyze(text)
+        .filter(x => key(x.w) === key(w)); return rows[nth || 0] || {}; };
+      const bayt1 = 'أَوَكُلَّمَا وَرَدَتْ عُكَاظَ قَبِيلَةٌ بَعَثُوا إِلَيَّ عَرِيفَهُمْ يَتَوَسَّمُ';
+      const aya = 'فَإِذَا جَاءَتْهُمُ الْحَسَنَةُ قَالُوا لَنَا هَذِهِ وَإِنْ تُصِبْهُمْ سَيِّئَةٌ يَطَّيَّرُوا بِمُوسَى وَمَنْ مَعَهُ';
+      const kullama = row(bayt1, 'اوكلما');
+      const ilayya = row(bayt1, 'الي');
+      const jaat = row(aya, 'جاءتهم');
+      const wain = row(aya, 'وان');
+      const lakin = row('لَكِنْ يَمُرُّ عَلَيْهَا وَهْوَ مُنْطَلِقٌ', 'لكن');
+      const afama = row('أَفْعَمَ الْإِنَاءَ', 'افعم');
+      const sayyia = row(aya, 'سيئة');
+      const rt = w => { const x = RootFinder.find(w); return x ? { r: x.root, v: x.via } : x; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: GRAMMAR['tajaddud-wa-thubut'] && [GRAMMAR['tajaddud-wa-thubut'].group,
+              (GRAMMAR['tajaddud-wa-thubut'].question || {}).tr ? GRAMMAR['tajaddud-wa-thubut'].question.tr.length : 0,
+              (GRAMMAR['tajaddud-wa-thubut'].examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('tajaddud-wa-thubut')).length,
+        // the interrogative hamza rides over the joining waw — with the fatha guard
+        kullamaKind: kullama.kind, kullamaSeg: (kullama.seg || []).join('+'),
+        afamaKind: afama.kind,
+        afamaNote: (afama.notes || []).map(x => x.en).join(' ~ '),
+        // إِلَيَّ: the merged speaker's ya, read off the shadda
+        ilayyaSeg: (ilayya.seg || []).join('+'),
+        // the wasl-vowelled pronoun reaches its paradigm
+        jaatNote: (jaat.notes || []).map(x => x.en).join(' ~ '),
+        // the sukun-nun split, and the popped table label
+        wainNote: (wain.notes || []).map(x => x.en).join(' ~ '),
+        lakinNote: (lakin.notes || []).map(x => x.en).join(' ~ '),
+        // the future-sin peel refuses the noun's clothes
+        sayyiaSeg: (sayyia.seg || []).length,
+        // roots: the geminate under the opened ta, the swallowed ta of Form V,
+        // the glossary overriding the hedged rules, and the four refusals
+        surra: rt('صُرَّتَنَا'), sayyiaR: rt('سَيِّئَةٌ'), amirR: rt('الْأَمِيرِ'),
+        tayr: (RootFinder.fromCorpus('يَطَّيَّرُوا') || {}).lemma || null,
+        daraba: (RootFinder.fromCorpus('ضَرَبَ') || {}).lemma || null,
+        tawassam: (RootFinder.fromCorpus('يَتَوَسَّمُ') || {}).lemma || null,
+        refusals: ['بِمُوسَى', 'وَهْوَ', 'مَعَهُ', 'إِلَيَّ'].map(w => RootFinder.find(w)),
+      };
+    });
+    if (r.missing) throw new Error('chapter 16 did not load');
+    if (r.n !== 5) throw new Error('ch16 sentences: ' + r.n);
+    if (r.t !== 43) throw new Error('ch16 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the tajaddud-wa-thubut note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 8) throw new Error('too few tajaddud-wa-thubut tokens tagged: ' + r.tagged);
+    if (r.kullamaKind !== 'particle' || r.kullamaSeg.split('+').length < 3)
+      throw new Error('أَوَكُلَّمَا is أ + و + كلما: ' + r.kullamaKind + ' / ' + r.kullamaSeg);
+    if (r.afamaKind !== 'verb' || /question particle/.test(r.afamaNote))
+      throw new Error('أَفْعَمَ keeps its radical fa — the joiner must wear a fatha: ' + r.afamaKind + ' / ' + r.afamaNote);
+    if (r.ilayyaSeg.indexOf('إِلَى') < 0)
+      throw new Error('إِلَيَّ is إِلَى + the merged speaker\'s ya: ' + r.ilayyaSeg);
+    if (!/corpus verb — past — she/.test(r.jaatNote))
+      throw new Error('جَاءَتْهُمُ reaches its paradigm under the wasl vowel: ' + r.jaatNote);
+    if (!/CONDITIONAL/.test(r.wainNote) || /nasb on its noun/.test(r.wainNote))
+      throw new Error('إِنْ with a sukun nun is the conditional, and the inna label is popped: ' + r.wainNote);
+    if (!/LIGHT istidrak/.test(r.lakinNote) || /nasb on its noun/.test(r.lakinNote))
+      throw new Error('لَكِنْ with a sukun nun governs nothing: ' + r.lakinNote);
+    if (r.sayyiaSeg > 1) throw new Error('سَيِّئَةٌ must not peel a future sin: ' + r.sayyiaSeg);
+    if (!r.surra || r.surra.r !== 'ص ر ر')
+      throw new Error('صُرَّتَنَا is the geminate under the opened ta: ' + JSON.stringify(r.surra));
+    if (!r.sayyiaR || r.sayyiaR.r !== 'س و أ' || r.sayyiaR.v !== 'corpus')
+      throw new Error('سَيِّئَةٌ answers س و أ from the glossary: ' + JSON.stringify(r.sayyiaR));
+    if (!r.amirR || r.amirR.r !== 'أ م ر' || r.amirR.v !== 'corpus')
+      throw new Error('أَمِير answers أ م ر from the glossary over the hedged أَفْعَل guess: ' + JSON.stringify(r.amirR));
+    if (r.tayr !== 'تَطَيَّرَ') throw new Error('يَطَّيَّرُوا unfolds its swallowed ta to تَطَيَّرَ: ' + r.tayr);
+    if (r.daraba !== 'ضَرَبَ') throw new Error('the ضَرَبَ paradigm must own its mazi: ' + r.daraba);
+    if (r.tawassam !== 'تَوَسَّمَ') throw new Error('يَتَوَسَّمُ answers from its paradigm: ' + r.tawassam);
+    if (!r.refusals.every(x => x === null))
+      throw new Error('the four fused/propn shapes must refuse a root: ' + JSON.stringify(r.refusals));
   });
 
   await check('the iOS Safari shell: safe areas, dvh, and no zoom-on-focus', async () => {

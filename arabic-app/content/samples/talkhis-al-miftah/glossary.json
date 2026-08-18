@@ -38,10 +38,10 @@
   },
   "ala": {
    "lemma": "عَلَى",
-   "pos": "prep",
+   "pos": "part",
    "gloss": {
-    "en": "upon, over",
-    "tr": "üzerine, üzere"
+    "en": "on, over",
+    "tr": "üzerinde, üzerine"
    },
    "level": 1
   },
@@ -624,8 +624,8 @@
    "lemma": "هَذِهِ",
    "pos": "pron",
    "gloss": {
-    "en": "this (fem.)",
-    "tr": "bu (müennes)"
+    "en": "this (feminine demonstrative)",
+    "tr": "bu (müennes ism-i işâret)"
    },
    "level": 1
   },
@@ -2143,13 +2143,13 @@
    "root": "ر ي ب"
   },
   "hamza-istifham": {
-   "lemma": "أَ (هَمْزَةُ الِاسْتِفْهَام)",
+   "lemma": "أَ (هَمْزَةُ الاِسْتِفْهَامِ)",
    "pos": "part",
    "gloss": {
-    "en": "the interrogative hamza",
-    "tr": "istifham hemzesi"
+    "en": "the interrogative hamza — is it that…?",
+    "tr": "istifhâm hemzesi — …mı?"
    },
-   "level": 2
+   "level": 3
   },
   "an": {
    "lemma": "عَنْ",
@@ -3536,6 +3536,233 @@
    "level": 1,
    "root": "س أ ل",
    "form": "I"
+  },
+  "kullama": {
+   "lemma": "كُلَّمَا",
+   "pos": "part",
+   "gloss": {
+    "en": "every time that… (zarf of repetition with a shart's sense)",
+    "tr": "her ne zaman… (şart mânâlı tekrar zarfı)"
+   },
+   "level": 4
+  },
+  "ukaz": {
+   "lemma": "عُكَاظ",
+   "pos": "propn",
+   "gloss": {
+    "en": "ʿUkaz — the great pre-Islamic fair near Ta'if",
+    "tr": "Ukâz — Tâif yakınındaki büyük câhiliye panayırı"
+   },
+   "level": 5
+  },
+  "qabila-n": {
+   "lemma": "قَبِيلَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "tribe",
+    "tr": "kabile"
+   },
+   "level": 2,
+   "root": "ق ب ل",
+   "plural": "قَبَائِل"
+  },
+  "arif": {
+   "lemma": "عَرِيف",
+   "pos": "noun",
+   "gloss": {
+    "en": "the tribe's knower / identifier (intensive of عَارِف)",
+    "tr": "arîf — kabilenin tanıma işini bilen adamı (عَارِف'in mübâlağası)"
+   },
+   "level": 5,
+   "root": "ع ر ف"
+  },
+  "tawassama": {
+   "lemma": "تَوَسَّمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to scan for marks, examine closely",
+    "tr": "alâmet aramak, dikkatle incelemek"
+   },
+   "level": 5,
+   "root": "و س م",
+   "form": "V"
+  },
+  "tatayyara": {
+   "lemma": "تَطَيَّرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to take ill omen (from the birds)",
+    "tr": "uğursuz saymak (kuşlardan fal tutmak)"
+   },
+   "level": 5,
+   "root": "ط ي ر",
+   "form": "V"
+  },
+  "daraba": {
+   "lemma": "ضَرَبَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to strike; to mint (a coin)",
+    "tr": "vurmak, dövmek; (sikke) basmak"
+   },
+   "level": 1,
+   "root": "ض ر ب",
+   "form": "I"
+  },
+  "madrub": {
+   "lemma": "مَضْرُوب",
+   "pos": "noun",
+   "gloss": {
+    "en": "struck; minted (ism maf'ul)",
+    "tr": "vurulmuş; basılı (ism-i mef'ûl)"
+   },
+   "level": 3,
+   "root": "ض ر ب"
+  },
+  "surra": {
+   "lemma": "صُرَّة",
+   "pos": "noun",
+   "gloss": {
+    "en": "money-pouch, purse",
+    "tr": "para kesesi"
+   },
+   "level": 4,
+   "root": "ص ر ر",
+   "plural": "صُرَر"
+  },
+  "juma": {
+   "lemma": "جُمُعَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "Friday",
+    "tr": "cuma"
+   },
+   "level": 1,
+   "root": "ج م ع"
+  },
+  "hasana": {
+   "lemma": "حَسَنَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a good thing, good fortune",
+    "tr": "iyilik, güzellik"
+   },
+   "level": 2,
+   "root": "ح س ن",
+   "plural": "حَسَنَات"
+  },
+  "sayyia": {
+   "lemma": "سَيِّئَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "an evil, a misfortune",
+    "tr": "kötülük, fenalık"
+   },
+   "level": 2,
+   "root": "س و أ",
+   "plural": "سَيِّئَات"
+  },
+  "musa": {
+   "lemma": "مُوسَى",
+   "pos": "propn",
+   "gloss": {
+    "en": "Musa (the prophet Moses)",
+    "tr": "Mûsâ (aleyhisselâm)"
+   },
+   "level": 1
+  },
+  "man-mawsula": {
+   "lemma": "مَنْ (الْمَوْصُولَة)",
+   "pos": "pron",
+   "gloss": {
+    "en": "the one(s) who (relative man)",
+    "tr": "o kimse(ler) ki (ism-i mevsûl men)"
+   },
+   "level": 3
+  },
+  "warada": {
+   "lemma": "وَرَدَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to arrive at, come to (water, a place)",
+    "tr": "varmak, gelmek (suya, bir yere)"
+   },
+   "level": 3,
+   "root": "و ر د",
+   "form": "I"
+  },
+  "baatha": {
+   "lemma": "بَعَثَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to send; to raise up",
+    "tr": "göndermek; diriltmek"
+   },
+   "level": 2,
+   "root": "ب ع ث",
+   "form": "I"
+  },
+  "alifa": {
+   "lemma": "أَلِفَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to grow familiar with, befriend",
+    "tr": "alışmak, ünsiyet etmek"
+   },
+   "level": 4,
+   "root": "أ ل ف",
+   "form": "I"
+  },
+  "marra": {
+   "lemma": "مَرَّ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to pass, pass by",
+    "tr": "geçmek, uğramak"
+   },
+   "level": 2,
+   "root": "م ر ر",
+   "form": "I"
+  },
+  "asaba": {
+   "lemma": "أَصَابَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to strike, befall; to hit the mark",
+    "tr": "isâbet etmek, dokunmak"
+   },
+   "level": 3,
+   "root": "ص و ب",
+   "form": "IV"
+  },
+  "lakin": {
+   "lemma": "لَكِنْ",
+   "pos": "part",
+   "gloss": {
+    "en": "but (light — governs nothing)",
+    "tr": "fakat, lâkin (hafif — amel etmez)"
+   },
+   "level": 2
+  },
+  "amama": {
+   "lemma": "أَمَامَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "before, in front of (a zarf)",
+    "tr": "önünde (zarf)"
+   },
+   "level": 2,
+   "root": "أ م م"
+  },
+  "shadid": {
+   "lemma": "شَدِيد",
+   "pos": "noun",
+   "gloss": {
+    "en": "severe, intense",
+    "tr": "şiddetli"
+   },
+   "level": 2,
+   "root": "ش د د"
   }
  }
 }

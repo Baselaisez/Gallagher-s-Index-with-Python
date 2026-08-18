@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 150,
-  "sentenceTokens": 1223,
+  "sentences": 155,
+  "sentenceTokens": 1266,
   "posAgreement": 99.8,
-  "rows": 2308
+  "rows": 2351
  },
  "endings": [
   {
@@ -24308,7 +24308,7 @@
      "engine": {
       "kind": "noun",
       "lemma": "هَامَان",
-      "root": "ه و/ي م",
+      "root": null,
       "wazn": null,
       "sure": true
      },
@@ -24414,8 +24414,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ح ب ت ك",
-      "wazn": "مُفَعْلِل — مِنَ الرُّبَاعِيِّ",
+      "root": "ح ب ب",
+      "wazn": "مَفْعَل — مِنَ الْمُضَاعَفِ",
       "sure": false
      },
      "match": true
@@ -24594,8 +24594,8 @@
      "engine": {
       "kind": "noun",
       "lemma": null,
-      "root": "ح ب ت ك",
-      "wazn": "مُفَعْلِل — مِنَ الرُّبَاعِيِّ",
+      "root": "ح ب ب",
+      "wazn": "مَفْعَل — مِنَ الْمُضَاعَفِ",
       "sure": false
      },
      "match": true
@@ -32968,6 +32968,971 @@
      "engine": {
       "kind": "noun",
       "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:16:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 16,
+   "sentence": "s1",
+   "text": "أَوَكُلَّمَا وَرَدَتْ عُكَاظَ قَبِيلَةٌ بَعَثُوا إِلَيَّ عَرِيفَهُمْ يَتَوَسَّمُ",
+   "translation": {
+    "en": "And is it that every time a tribe arrived at ʿUkaz, they sent me their discerner — examining me anew? (Tarif b. Tamim; the musnad يَتَوَسَّمُ is a VERB, for renewal.)",
+    "tr": "Her ne zaman Ukâz'a bir kabile gelse, en bilgilisini — beni yeniden inceleyip dururken — bana mı gönderirler? (Tarîf b. Temîm; müsned olan يَتَوَسَّمُ FİİLdir, teceddüt için.)"
+   },
+   "jumal": [
+    {
+     "text": "أَوَكُلَّمَا وَرَدَتْ عُكَاظَ قَبِيلَةٌ بَعَثُوا إِلَيَّ عَرِيفَهُمْ يَتَوَسَّمُ",
+     "ar": "الْمُسْنَدُ فِعْلٌ — لِإِفَادَةِ التَّجَدُّدِ وَالتَّقْيِيدِ بِأَحَدِ الْأَزْمِنَةِ الثَّلَاثَةِ عَلَى أَخْصَرِ وَجْهٍ.",
+     "en": "The musnad as a VERB: renewal — the examining happens afresh each time — and time-binding by the shortest route, the tense riding in the verb's own letters."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "أَوَكُلَّمَا",
+     "lex": "kullama",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tajaddud-wa-thubut",
+       "maful-fih"
+      ],
+      "irab": "Three pieces fused: the interrogative hamza riding OVER the joining waw, and كُلَّمَا — the zarf of REPETITION carrying a shart's sense: «every single time…». Repetition is this bayt's whole engine: the poet is famous enough that the examining happens again with every arriving tribe — and that repeated happening is exactly what will demand a VERB for its musnad."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَرَدَتْ",
+     "lex": "warada",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "in-shartiyya"
+      ],
+      "irab": "«arrived» — the shart verb of كُلَّمَا (which takes only a MAZI), the ta marking its feminine doer, who is still to come: the sentence runs verb–object–subject."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَرَدَ",
+      "root": "و ر د",
+      "wazn": "فَعَلَتْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عُكَاظَ",
+     "lex": "ukaz",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "maful-bihi",
+       "mamnu-min-sarf"
+      ],
+      "irab": "ʿUkaz — the great fair of the Jahiliyya, where the tribes met and the poets were judged. The object of the arriving, and a proper name BARRED from tanwin: no tanwin ever, and a fatha where others take kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عُكَاظ",
+      "root": "ع ك ظ",
+      "wazn": "فُعَالَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "قَبِيلَةٌ",
+     "lex": "qabila-n",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "«a tribe» — the delayed doer, indefinite: ANY tribe, which is what lets كُلَّمَا mean every one of them."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَبِيلَة",
+      "root": "ق ب ل",
+      "wazn": "فَعِيلَةٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بَعَثُوا",
+     "lex": "baatha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "«they sent» — the jawab, a mazi on the damma of the group's waw; the alif after it is silent spelling."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَعَثَ",
+      "root": "ب ع ث",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَيَّ",
+     "lex": "ila",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "huruf-jarr",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«to ME» — one written ya where two words meet: the maqsura of إِلَى turns ya before its pronoun, and the speaker's own ya then merges with it under the shadda. The bare skeleton cannot see the seam; the shadda is its receipt."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَرِيفَهُمْ",
+     "lex": "arif",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "sighat-mubalagha",
+       "idafa-definiteness"
+      ],
+      "irab": "«their DISCERNER» — the object of the sending, mudaf to their pronoun. عَرِيف is فَعِيل in the intensive office: not one who merely knows but the tribe's professional knower — the one they trust to identify a famous face."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَرِيف",
+      "root": "ع ر ف",
+      "wazn": "فَعِيلَهُمْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَتَوَسَّمُ",
+     "lex": "tawassama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tajaddud-wa-thubut",
+       "form-v-verbs",
+       "hal"
+      ],
+      "irab": "«examining anew» — the bayt's teaching word. Form V of و س م: to search a face for its marks, again and again. The musannif's rule: a musnad comes as a VERB to say TAJADDUD — the act renews, happens afresh with every tribe — while binding itself to a time by the SHORTEST route, for a verb carries its tense in its own letters, no extra word spent. Say مُتَوَسِّمٌ instead and the examining freezes into a standing quality; the bayt's whole complaint — that it keeps happening — dies."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَوَسَّمَ",
+      "root": "و س م",
+      "wazn": "يَتَفَعَّلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:16:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 16,
+   "sentence": "s2",
+   "text": "لَا يَأْلَفُ الدِّرْهَمُ الْمَضْرُوبُ صُرَّتَنَا لَكِنْ يَمُرُّ عَلَيْهَا وَهْوَ مُنْطَلِقٌ",
+   "translation": {
+    "en": "The minted dirham never befriends our purse — it only passes over it, and it is GONE. (Juwayya b. al-Nadr; the musnad مُنْطَلِقٌ is an ISM, for permanence.)",
+    "tr": "Basılı para bizim keseye alışmaz — ona yalnız uğrar, ve o hep GİDİCİDİR. (Cüveyye b. en-Nadr; müsned olan مُنْطَلِقٌ İSİMdir, sübût için.)"
+   },
+   "jumal": [
+    {
+     "text": "لَا يَأْلَفُ الدِّرْهَمُ الْمَضْرُوبُ صُرَّتَنَا — وَهْوَ مُنْطَلِقٌ",
+     "ar": "الْمُسْنَدُ اسْمٌ — لِإِفَادَةِ الثُّبُوتِ وَالدَّوَامِ مِنْ غَيْرِ تَقْيِيدٍ بِزَمَانٍ.",
+     "en": "The musnad as an ISM: permanence — the coin's leaving is what it IS, bound to no tense — set against the verbs around it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "tokens": [
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [],
+      "irab": "The negation over the mudari."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَأْلَفُ",
+     "lex": "alifa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu"
+      ],
+      "irab": "«never befriends» — أَلِفَ, to grow familiar with, bab سَمِعَ, its first radical a hamza. Generosity in a poet's boast: money never stays long enough to make friends."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَلِفَ",
+      "root": "أ ل ف",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الدِّرْهَمُ",
+     "lex": "dirham",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "«the dirham» — the doer, generic by its article: coin as such."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دِرْهَم",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمَضْرُوبُ",
+     "lex": "madrub",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "ism-maful"
+      ],
+      "irab": "«the MINTED» — sifa of the dirham, ism maf'ul of ضَرَبَ in its coining sense: struck at the mint. The same root this chapter conjugates in its next sentence — one verb, two trades."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَضْرُوب",
+      "root": "ض ر ب",
+      "wazn": "مَفْعُولُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "صُرَّتَنَا",
+     "lex": "surra",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-bihi",
+       "doubled-verbs",
+       "idafa-definiteness"
+      ],
+      "irab": "«our PURSE» — the object of the befriending; صُرَّة, the tied money-pouch, its ta marbuta opening into a plain ta before the pronoun. A geminate root — ص ر ر, the tying — with the shadda holding the doubled letter the skeleton alone would lose."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ص ر ر",
+      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "لَكِنْ",
+     "lex": "lakin",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«but» — the LIGHT lakin, its nun on sukun: pure istidrak, governing nothing. Only the doubled لَكِنَّ joins the inna family; what follows here keeps its own i'rab."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَمُرُّ",
+     "lex": "marra",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "mudari-marfu",
+       "doubled-verbs"
+      ],
+      "irab": "«it passes» — the geminate مَرَّ, its twin letters fused under the shadda. Still a verb, still renewal: each coin passes once."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "مَرَّ",
+      "root": "م ر ر",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَلَيْهَا",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "«over it» — hanging on the passing; the pronoun is the purse."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَهْوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar",
+       "anwa-al-waw",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«while IT—» — the waw of circumstance opening a nominal sentence; هُوَ its mubtada, the ha resting on a sukun after the waw (a licensed lightening: وَهْوَ for وَهُوَ). The nominal frame is the point: the bayt shifts from what the coin DOES to what the coin IS."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُنْطَلِقٌ",
+     "lex": "muntaliq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tajaddud-wa-thubut",
+       "mubtada-khabar",
+       "ism-fail",
+       "form-vii-verbs"
+      ],
+      "irab": "«GONE» — the teaching word of the second bayt, and chapter 15's مُنْطَلِقٌ returned with its office changed. The musnad comes as an ISM to say THUBUT: leaving is not something this coin happens to do, it is what the coin IS — a settled, durable quality, unbound to any tense. Say يَنْطَلِقُ instead and it becomes one more event; the ism is what makes the poet's poverty a permanent boast."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْطَلِق",
+      "root": "ط ل ق",
+      "wazn": "مُنْفَعِلٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:16:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 16,
+   "sentence": "s3",
+   "text": "ضَرَبَ زَيْدٌ عَمْرًا يَوْمَ الْجُمُعَةِ أَمَامَ الْأَمِيرِ ضَرْبًا شَدِيدًا",
+   "translation": {
+    "en": "Zayd struck ʿAmr — on Friday, before the commander, a severe striking. (The matn's own ladder: every added qayd multiplies the news.)",
+    "tr": "Zeyd Amr'ı dövdü — cuma günü, emîrin önünde, şiddetli bir dövüşle. (Metnin kendi merdiveni: eklenen her kayıt haberi çoğaltır.)"
+   },
+   "jumal": [
+    {
+     "text": "ضَرَبَ زَيْدٌ عَمْرًا يَوْمَ الْجُمُعَةِ أَمَامَ الْأَمِيرِ ضَرْبًا شَدِيدًا",
+     "ar": "تَقْيِيدُ الْمُسْنَدِ بِالْمَفْعُولِ وَنَحْوِهِ — لِتَرْبِيَةِ الْفَائِدَةِ.",
+     "en": "The musnad bound by the maf'ul family: each qayd multiplies the news — whom, when, where, how — from one bare verb."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 9,
+   "agree": 9,
+   "tokens": [
+    {
+     "w": "ضَرَبَ",
+     "lex": "daraba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«struck» — the Emsile's own first verb, standing as the musnad. Alone with its doer it reports one bare fact; the musannif's word for what the coming words do to it is تَرْبِيَةُ الْفَائِدَةِ — they RAISE the yield, qayd by qayd."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ضَرَبَ",
+      "root": "ض ر ب",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "The doer, in raf'. So far: someone struck."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": "ز ي د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "عَمْرًا",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "maful-bihi"
+      ],
+      "irab": "«ʿAmr» — the first qayd: WHOM. And note the spelling lesson: the silent waw that guards عَمْرو from عُمَر in raf' and jarr DROPS in nasb, because the tanwin's alif already tells the two names apart."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ع م ر",
+      "wazn": "فَعْلًا",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "يَوْمَ",
+     "lex": "yawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "«on the day of…» — the second qayd: WHEN. A zarf of time, mudaf to what names the day."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَوْم",
+      "root": "ي و م",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْجُمُعَةِ",
+     "lex": "juma",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "«Friday» — the mudaf ilayh closing the time."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جُمُعَة",
+      "root": "ج م ع",
+      "wazn": "فُعُلَةِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَمَامَ",
+     "lex": "amama",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "«before…» — the third qayd: WHERE. A zarf of place — a NOUN, root أ م م, for all that it works like a preposition."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمَامَ",
+      "root": "أ م م",
+      "wazn": "فَعَالَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْأَمِيرِ",
+     "lex": "amir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "idafa-definiteness"
+      ],
+      "irab": "«the commander» — closing the place, and raising the stakes: a public striking, before authority."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمِير",
+      "root": "أ م ر",
+      "wazn": "فَعِيلِ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "ضَرْبًا",
+     "lex": "darb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-mutlaq"
+      ],
+      "irab": "«a striking» — the fourth qayd: the verb's OWN masdar returned to it, the maf'ul mutlaq, here as the peg for the coming HOW."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ض ر ب",
+      "wazn": "فَعْلًا",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "شَدِيدًا",
+     "lex": "shadid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«severe» — the sifa on the masdar answers HOW, and the ladder is complete: one verb, and the hearer now knows whom, when, where and how. That growth — and nothing mystical — is why a speaker binds the musnad; and the TARK of these qayds has its reasons too: no time, no knowledge, or no wish to tell."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ش د د",
+      "wazn": "فَعِيلًا",
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:16:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 16,
+   "sentence": "s4",
+   "text": "كَانَ زَيْدٌ مُنْطَلِقًا",
+   "translation": {
+    "en": "Zayd WAS setting out. (It is كَانَ that binds — muqayyid — and the khabar that is bound: the going is tied to past time.)",
+    "tr": "Zeyd yola çıkıyorDU. (Kayıtlayan — mukayyid — كَانَ'dir; kayıtlanan haberdir: gidiş, geçmiş zamana bağlanmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "كَانَ زَيْدٌ مُنْطَلِقًا",
+     "ar": "كَانَ مُقَيِّدٌ وَالْخَبَرُ مُقَيَّدٌ — قُيِّدَ الِانْطِلَاقُ بِالزَّمَانِ الْمَاضِي.",
+     "en": "Kana is the binder and the khabar the bound: the going is tied to past time."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "كَانَ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kana-wa-akhawatuha",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«was» — and the matn stops to fix a direction: in كَانَ زَيْدٌ مُنْطَلِقًا it is NOT the khabar that binds kana; كَانَ is the MUQAYYID and the setting-out is the MUQAYYAD — the sister ties Zayd's going to past time. The binder is the incomplete verb; the bound is the news itself."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "Kana's ism, in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": "ز ي د",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُنْطَلِقًا",
+     "lex": "muntaliq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kana-wa-akhawatuha",
+       "tajaddud-wa-thubut",
+       "ism-fail"
+      ],
+      "irab": "«setting out» — kana's khabar in nasb, and the MUQAYYAD: the same ism that carried permanence in the dirham bayt, here handed to a sister that stamps a TENSE on it. The pair of sentences is the chapter in miniature: the ism says what a thing is; kana says when it was so."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ط ل ق",
+      "wazn": "مُنْفَعِلًا",
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:16:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 16,
+   "sentence": "s5",
+   "text": "فَإِذَا جَاءَتْهُمُ الْحَسَنَةُ قَالُوا لَنَا هَذِهِ وَإِنْ تُصِبْهُمْ سَيِّئَةٌ يَطَّيَّرُوا بِمُوسَى وَمَنْ مَعَهُ",
+   "translation": {
+    "en": "So when the good came to them, they said: «this is ours» — and if an evil struck them, they took ill omen from Musa and those with him. (al-A'raf 7:131 — إِذَا with the definite and the mazi for the certain; إِنْ with the indefinite and the mudari for the rare.)",
+    "tr": "Onlara iyilik geldiğinde «bu bizimdir» dediler — ve eğer bir kötülük dokunursa, Mûsâ ile beraberindekileri uğursuz sayarlardı. (A'râf 7:131 — kesin olana marife ve mâzî ile إِذَا; nâdir olana nekre ve muzâri ile إِنْ.)"
+   },
+   "jumal": [
+    {
+     "text": "فَإِذَا جَاءَتْهُمُ الْحَسَنَةُ … وَإِنْ تُصِبْهُمْ سَيِّئَةٌ",
+     "ar": "إِذَا مَعَ الْمُعَرَّفِ وَالْمَاضِي لِلْقَطْعِيِّ، وَإِنْ مَعَ الْمُنَكَّرِ وَالْمُضَارِعِ لِلنَّادِرِ — فِي آيَةٍ وَاحِدَةٍ.",
+     "en": "One aya, both settings: إِذَا with the definite and the mazi for what certainly comes; إِنْ with the indefinite and the mudari for what rarely strikes."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 13,
+   "agree": 13,
+   "tokens": [
+    {
+     "w": "فَإِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "idha-shartiyya",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«so WHEN…» — this side of the aya uses إِذَا, the conditional of the CERTAIN: good arriving is treated as a thing that assuredly comes. Watch the two halves of this one aya run the whole doctrine against each other."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "جَاءَتْهُمُ",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«came to them» — a MAZI with إِذَا, and that pairing is deliberate: the past tense speaks of a thing as done, so it suits what certainly happens. The pronoun's mim takes a helping damma before the article's resting alif — the wasl vowel that let this very word hide from the paradigms until the engine learned to hear it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَتْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْحَسَنَةُ",
+     "lex": "hasana",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«THE good» — definite, by the lam of GENUS: good as such, any of it — rain, harvest, ease. Definiteness sits on the certain side of the aya: what surely comes is spoken of as a known thing."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَسَنَة",
+      "root": "ح س ن",
+      "wazn": "فَعَلَةُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "قَالُوا",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "fail"
+      ],
+      "irab": "«they said» — the jawab of idha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَنَا",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "huruf-jarr",
+       "mubtada-khabar"
+      ],
+      "irab": "«ours» — the fronted khabar of the coming demonstrative: this is FOR US — merit claimed, gratitude refused."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هَذِهِ",
+     "lex": "hadhihi",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "mubtada-khabar"
+      ],
+      "irab": "«this» — the delayed mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَإِنْ",
+     "lex": "in-shartiyya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "in-shartiyya",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«and IF…» — the aya turns to إِنْ, the conditional of the DOUBTFUL and the rare: evil, next to the flood of good, is the exception. The nun's sukun is the whole diagnosis — only the doubled nun would make the inna family."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تُصِبْهُمْ",
+     "lex": "asaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "in-shartiyya",
+       "form-iv-verbs",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«should strike them» — a MUDARI in jazm with إِنْ, and again the pairing teaches: the unfinished tense suits the uncertain event. Form IV of the hollow ص و ب, its middle letter gone in the jussive: أَصَابَ → تُصِبْ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَصَابَ",
+      "root": "ص و ب",
+      "wazn": "تُفْعِلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "سَيِّئَةٌ",
+     "lex": "sayyia",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "fail",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«an evil» — INDEFINITE, where its sister wore the article: some evil, now and then. The tanwin is the rarity made visible — one aya, and every knob of the doctrine turned to its opposite setting: إِذَا/إِنْ, definite/indefinite, mazi/mudari."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَيِّئَة",
+      "root": "س و أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَطَّيَّرُوا",
+     "lex": "tatayyara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "form-v-verbs",
+       "in-shartiyya"
+      ],
+      "irab": "«they took ill omen» — the jawab, jussive by its dropped nun; and underneath, Form V of ط ي ر with its ta SWALLOWED into the ṭa: يَتَطَيَّرُوا spoken as يَطَّيَّرُوا. From the birds (طَيْر) the pagans read for luck — they blamed their rare misfortunes on the Prophet in their midst."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَطَيَّرَ",
+      "root": "ط ي ر",
+      "wazn": "يَتَفَعَّلُونَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بِمُوسَى",
+     "lex": "musa",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "huruf-jarr",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«from Musa» — the omen's target in jarr, its kasra estimated on the maqsur alif of the name."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُوسَى",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَمَنْ",
+     "lex": "man-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ism-mawsul"
+      ],
+      "irab": "«and those who…» — man the relative, joined to Musa under the ba."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مَعَهُ",
+     "lex": "maa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "maful-fih",
+       "idafa-definiteness"
+      ],
+      "irab": "«with him» — the zarf مَعَ (a noun, mudaf to the pronoun), standing whole as the sila of man."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
       "root": null,
       "wazn": null,
       "sure": true

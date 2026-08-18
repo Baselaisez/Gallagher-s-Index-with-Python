@@ -1455,3 +1455,51 @@ not a one-line change.
   Measured: **99.8% over 1,223 tokens** (150 worked sentences), ch15's 25
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v133 — Talkhīṣ chapter 16: ذِكْرُ الْمُسْنَدِ — فِعْلًا لِلتَّجَدُّدِ وَاسْمًا لِلثُّبُوتِ،
+  وَتَقْيِيدُهُ** — the said musnad and its three questions. Ṭarīf b. Tamīm's
+  يَتَوَسَّمُ carries renewal (freeze it into مُتَوَسِّم and the bayt's complaint
+  dies); Juwayya b. al-Naḍr's وَهْوَ مُنْطَلِقٌ carries permanence — ch15's
+  مُنْطَلِق returned with its office changed. The matn's taqyīd ladder
+  (ضَرَبَ زَيْدٌ عَمْرًا يَوْمَ الْجُمُعَةِ أَمَامَ الْأَمِيرِ ضَرْبًا شَدِيدًا) teaches the
+  whole mafʿūl family as تَرْبِيَةُ الْفَائِدَةِ, and كَانَ زَيْدٌ مُنْطَلِقًا fixes the
+  muqayyid/muqayyad direction. Al-Aʿrāf 131 runs the إِنْ/إِذَا doctrine's
+  every knob in one aya: إِذَا + definite + māḍī for the certain against
+  إِنْ + indefinite + muḍāriʿ for the rare. Note 118 `tajaddud-wa-thubut`
+  (with the five nukta-exceptions and Sakkākī's taʿrīḍ reading of لَئِنْ
+  أَشْرَكْتَ). Three new paradigms (ضَرَبَ، تَوَسَّمَ، تَطَيَّرَ), five copied in.
+
+  **Engine wave — nine probe finds, one bank veto honored:**
+
+  - **The sukun-nun split**: إِنْ and لَكِنْ against their heavy sisters —
+    the table's one key promised a mansub ism that never comes; the sukun
+    decides, the contradicted table label is POPPED (not refined), and
+    لَكِنْ الْخَفِيفَة governs nothing.
+  - **The interrogative hamza rides over the joining waw** (أَوَكُلَّمَا =
+    أ + و + كلما) — with the fatha guard the bank demanded within the hour:
+    أَفْعَمَ's sukun-fa is a radical, and the unguarded peel read it as
+    أ + فَ + عَمَّ. كُلَّمَا joined PARTICLES.
+  - **إِلَيَّ، عَلَيَّ، لَدَيَّ**: the maqsura turns ya and the speaker's ya
+    merges with it under the shadda — one written ya, two words; the lam's
+    fatha tells عَلَيَّ from the name عَلِيّ.
+  - **The wasl vowel on the plural pronoun** (جَاءَتْهُمُ الْحَسَنَةُ) — the
+    sukun-only enclitic spellings left the verb unmatched by its own
+    paradigm.
+  - **Form V/VI assimilation unfolds** (يَطَّيَّرُوا → يَتَطَيَّرُوا) and the
+    five-verbs jussive restores its nun for matching (وا → ونَ).
+  - **The geminate under the opened ta marbuta**: صُرَّتَنَا strips its
+    pronoun, then the ta the idafa opened, and the shadda's ص ر ر stands.
+  - **The future-sin peel gained the noun's-clothes guard** (سَيِّئَةٌ was
+    peeling into سَ + يئة past a ta marbuta and a tanwin).
+  - **The glossary outranks every HEDGED rules-root**: a rules answer with
+    a weak letter among its radicals consults the noun lexicon (أَمِير was
+    م ي ر off the أَفْعَل row; سَيِّئَة was س ي ئ), and a rootless proper
+    name refuses (بِمُوسَى wore a participle wazn).
+  - **Three more closed-class dresses refuse roots**: a joining wa/fa over
+    a particle (وَهْوَ was «و ه و»), a fused jarr/zarf head with its pronoun
+    (مَعَهُ was «م ع ه»), and the merged-ya shapes — with the tanwin/shadda
+    guard keeping وَفِيٌّ, a real noun, out of the first door.
+
+  Measured: **99.8% over 1,266 tokens** (155 worked sentences), ch16's 43
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

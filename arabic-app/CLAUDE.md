@@ -2925,3 +2925,67 @@ shapes, held-out top1 ROSE (91.2 over 43 shapes vs the 86 floor) — coverage
 gaps hurt twice, on the missing class and on everything it steals from.
 Check the shape inventory against the corpus's commonest patterns, not
 against the derivational textbook order the inventory was first written in.
+
+## The sukun is the shadda's other half — one observable, four splits now
+
+مِنْ/مَنْ split on the mim's vowel, إِنَّا on its shadda, إِذَا on the next word's
+class — and now إِنْ/إِنَّ and لَكِنْ/لَكِنَّ split on the nun: sukun is the
+conditional (or the light istidrak, governing NOTHING), shadda the inna
+family. Two disciplines rode along. First, the table's generic label was
+POPPED, not left standing: «inna family — nasb on its noun» followed by
+«governs nothing» is not a refinement, it is a contradiction, and a reader
+keeps whichever they read first. When a branch OVERRIDES the table rather than
+narrowing it, remove the table's note. Second, the promised expectation moved
+with the reading — the next word had been awaiting a mansub ism that never
+comes; it now awaits the shart verb.
+
+## A peel that rides over another peel must re-check the second peel's guard
+
+The interrogative hamza peel was extended to ride over a joining waw
+(أَوَكُلَّمَا = أ + و + كلما) — and the bank refused it within the hour: أَفْعَمَ
+read as أ + فَ + عَمَّ, because the extension tested only the LETTERS. The
+original wa/fa peel never fires without its own guards; a compound peel
+re-implements the inner peel and silently drops them. The missing one was the
+vowel: **a joining letter always wears the joiner's fatha**, and أَفْعَمَ's fa
+carries a sukun — a radical's dress. When peel A learns to ride over peel B,
+copy B's guard list into A's condition, or the bank will do it for you.
+
+## The refusal list grows by DRESSES, not by words
+
+RootFinder's closed-class refusal began as one check (the bare word in
+PARTICLES) and chapter 16 added three more dresses the same closed class
+hides in: a joining wa/fa over a particle (وَهْوَ), a fused jarr/zarf head with
+its pronoun (مَعَهُ), and the merged speaker's-ya (إِلَيَّ, told from the name
+عَلِيّ by the lam's fatha). Each dress needed its own guard against a REAL
+word wearing the same letters — وَفِيٌّ is saved by its tanwin and shadda.
+The pattern: **a jamid word has as many spellings as the orthography has
+fusions, and every fusion the analyzer learns to READ, the root finder must
+learn to REFUSE.** The two engines walk the same list in opposite directions.
+
+## A hedge is evidence-shaped, not position-shaped
+
+The glossary-override for rules-roots first fired only on the GUESSED
+positions (the weak-note flags) — and أَمِير answered م ي ر with no flag at
+all, because the peel's error was reading the hamza as أَفْعَل's augment, not
+guessing a weak seat. The shipped trigger is any rules-root carrying a weak
+letter ANYWHERE: that is where the peel's confusions live (augment-vs-radical,
+turned letters, seats), and it is exactly where a lexicographer's entry
+outranks a table. The bank held at 99.8% through the widening — the arbiter
+again — and the corpus/verb path is untouched, so a sound rules answer is
+never displaced. **Write the trigger from where the errors come from, not
+from where the flags happen to be.**
+
+## A gate that pins the honest hedge will block the exact answer
+
+Three old gates failed the v133 release: مُسْتَفَاد expected «ف و/ي د», قَائِم
+expected «ق و/ي م», الصَّاغَة expected the same hedge shape — and the engine now
+answers ف ي د, ق و م, ص و غ exactly, from the glossary. The hedge was the
+honest BEST at the time it was pinned, and the checks enshrined it as the
+truth. When an escalation layer is added (surface → lexicon), every gate that
+pinned the lower layer's honest uncertainty must be widened to accept the
+higher layer's certainty — exact first, hedge still allowed. And the reverse
+guard matters equally: the override compares against the DISPLAYED root (the
+raw peel root still carries the hamza seat), fires only where the lexicon
+actually disagrees, and keeps the rules' wazn where both name the same
+radicals — the override corrects roots; it must not strip the scale off
+answers that were already right.
