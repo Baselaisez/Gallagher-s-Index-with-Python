@@ -1586,3 +1586,43 @@ not a one-line change.
   Measured: **99.8% over 1,303 tokens** (165 worked sentences), ch18's 14
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v136 — Talkhīṣ chapter 19: تَأْخِيرُ الْمُسْنَدِ وَتَقْدِيمُهُ — the four wujuh
+  of fronting, and the TaqdimEngine** — the musnad bāb closes on order:
+  taʾkhīr as the asl, and taqdim licensed by four named wujuh, each shipped
+  as jumal rows (the ch18 pattern held as a floor): takhsis/qaṣr (Ṣāffāt
+  37:47 لَا فِيهَا غَوْلٌ — with the naḥw receipt on the last letter: the
+  fronted khabar VOIDS the genus-lā and غَوْلٌ takes rafʿ, against Baqara
+  2:2's لَا رَيْبَ فِيهِ where the lā works and رَيْبَ stands on the fatḥ; the
+  withheld fronting taught as itself a wajh — لَا فِيهِ رَيْبٌ would seat the
+  doubt in the other Books), tanbīh-it-is-a-khabar (Ḥassān's لَهُ هِمَمٌ —
+  with the wujūb rule: a nakira mubtada is licensed only under a fronted
+  jarr-khabar), tafāʾul (سَعِدَتْ بِغُرَّةِ وَجْهِكَ الْأَيَّامُ), and tashwīq
+  (Ibn Wuhayb's bayt — the reveal held a whole hemistich, verse-dressed
+  with the hemistich bullet). Note 121 `taqdim-al-musnad`. Glossary +12
+  (5 verbatim copies — himma, kabir, thalatha, dunya, saida — and 7 new
+  incl. the ajami propn إِسْحَاق with no root, by design); أَشْرَقَ Form IV
+  paradigm authored, سَعِدَ copied in.
+  - **OOP/qawāʿid — TaqdimEngine**: the khabar-muqaddam frame (fronted
+    jarr/zarf + late indefinite marfūʿ noun; wājib flagged on the nakira)
+    and the lā-jins frame (lā + bare fatḥa-final noun directly after),
+    both exact off the surface; the four semantic wujuh stay a SHORTLIST
+    in the DOC table (7 entries), rendered as a frame card in the Jumla
+    lab beside the shart frame. The engine claims order; it never claims
+    intent.
+  - **Engine fixes the probe forced**: (1) IrabSign learned the tāʾ
+    al-taʾnīth — a māḍī ending …َتْ is mabni, never «jazm by the sukun»,
+    with the muḍāriʿ shapes (prefix+sākin, damma prefix, V/VI prefix
+    pair) keeping their jazm; (2) a PROPN answers from the lexicon before
+    any rule — إِسْحَاقَ was selling إِفْعَال «grinding», and an ajami alam
+    now refuses honestly; (3) the glossary override widened to
+    clitic-provenance — a rules answer built on a peeled candidate (or one
+    still wearing a peelable letter) is hedged, so وَجْهِكَ answers و ج ه
+    and بِغُرَّةِ answers غ ر ر; (4) nounFromCorpus runs the pronoun strip
+    over EVERY try, so لِكِبَارِهَا sees through clitic+plural+pronoun to
+    كِبَار; (5) مُنْتَهَى answers ن ه ي from its new gloss (the VIII-infix
+    vs VII-nun trap recorded in the token itself).
+
+  Measured: **99.8% over 1,327 tokens** (170 worked sentences), ch19's 24
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

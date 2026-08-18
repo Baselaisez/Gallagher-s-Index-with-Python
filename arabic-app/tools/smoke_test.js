@@ -3914,7 +3914,13 @@ if (!CHROME) {
                // the panel's OWN rounding, so this check reads the number the
                // learner reads rather than a tenth-place variant of it
                shown: Math.round(cv.top1 * 100),
-               res1: Math.round(x.top1 * 1000) / 10 };
+               res1: Math.round(x.top1 * 1000) / 10,
+               // the panel's rounding for the RESUBSTITUTION figure too:
+               // rounding the already-once-rounded res1 turned 58.46 into
+               // 58.5 into 59, a percent the panel never prints — and the
+               // -1 from indexOf then failed the order comparison. Round
+               // once, from the raw value, exactly as the panel does.
+               resShown: Math.round(x.top1 * 100) };
     });
     if (a.n < 2000) throw new Error('the labeled set shrank: ' + a.n);
     if (a.folds < 10) throw new Error('too few folds to mean anything: ' + a.folds);
@@ -3951,7 +3957,9 @@ if (!CHROME) {
     // compare the PERCENTAGES, not the bare digits: the panel also prints the
     // corpus size, and «3536 labelled words» contains «53», so a bare indexOf
     // found the resubstitution figure inside a number that is not a score.
-    if (line.indexOf(String(a.shown) + "%") > line.indexOf(String(Math.round(a.res1)) + "%"))
+    if (line.indexOf(String(a.resShown) + "%") < 0)
+      throw new Error('the resubstitution figure is missing from the panel: ' + line);
+    if (line.indexOf(String(a.shown) + "%") > line.indexOf(String(a.resShown) + "%"))
       throw new Error('resubstitution is quoted before the held-out score: ' + line);
     // …and the panel must also show the two RULE-trained taggers, filled in
     // after paint because grading them costs ~2s
@@ -6997,6 +7005,80 @@ if (!CHROME) {
       throw new Error('الشُّجَاعُ answers فُعَال once the article takes back its shadda: ' + r.shujWazn);
     if (!r.mtq || r.mtq.root !== 'و ق ي' || r.mtq.via !== 'corpus')
       throw new Error('لِلْمُتَّقِينَ reaches و ق ي through the glossary: ' + JSON.stringify(r.mtq));
+  });
+
+  await check('talkhis ch19: the fronted musnad — four wujuh, the la-order doctrine, and the TaqdimEngine', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 19);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['taqdim-al-musnad'];
+      const T = s => TaqdimEngine.read(SentenceAnalyzer.analyze(s));
+      const f1 = T('لَا فِيهَا غَوْلٌ'), f2 = T('لَا رَيْبَ فِيهِ'),
+            f3 = T('لَهُ هِمَمٌ لَا مُنْتَهَى لِكِبَارِهَا'), f0 = T('زَيْدٌ كَاتِبٌ');
+      const rt = w => { const x = RootFinder.find(w); return x ? { root: x.root, via: x.via } : null; };
+      const said = IrabSign.of('سَعِدَتْ'), jz = IrabSign.of('يَكْتُبْ');
+      // the frame card renders in the Jumla lab's own pipeline
+      let frameHtml = '';
+      try {
+        const d = document.createElement('div'); d.id = 'jumlaOut'; document.body.appendChild(d);
+        conjState.jumla = 'لَهُ هِمَمٌ لَا مُنْتَهَى لِكِبَارِهَا';
+        renderJumlaOut(); frameHtml = d.innerHTML; d.remove();
+      } catch (e) { frameHtml = 'ERR ' + e.message; }
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('taqdim-al-musnad')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        // the engine's two exact frames — and its silence on a plain jumla
+        f1: f1[0] && [f1[0].kind, f1[0].la], f2: f2[0] && [f2[0].kind, f2[0].ism],
+        f3: f3[0] && [f3[0].kind, f3[0].wajib], f0n: f0.length,
+        docN: Object.keys(TaqdimEngine.DOC).length,
+        // the probe's five root fixes, each through its own door
+        wajh: rt('وَجْهِكَ'), kibar: rt('لِكِبَارِهَا'), ghurra: rt('بِغُرَّةِ'),
+        muntaha: rt('مُنْتَهَى'), ishaq: rt('إِسْحَاقَ'),
+        tushriq: (RootFinder.fromCorpus('تُشْرِقُ') || {}).lemma,
+        // a madi's ta of femininity is bina; a governed mudari keeps jazm
+        saidCase: said && said.cases.join(','), jzCase: jz && jz.cases.join(','),
+        frame: /tq-frame/.test(frameHtml) && /مُنْتَهَى|هِمَمٌ/.test(frameHtml),
+      };
+    });
+    if (r.missing) throw new Error('chapter 19 did not load');
+    if (r.chapters < 19) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch19 sentences: ' + r.n);
+    if (r.t !== 24) throw new Error('ch19 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the taqdim-al-musnad note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 8) throw new Error('too few taqdim-al-musnad tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch19 sentence carries its named-wajh jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.f1 || r.f1[0] !== 'khabar-muqaddam' || !r.f1[1])
+      throw new Error('لَا فِيهَا غَوْلٌ: the fronted khabar with the la voided: ' + JSON.stringify(r.f1));
+    if (!r.f2 || r.f2[0] !== 'lajins' || r.f2[1] !== 1)
+      throw new Error('لَا رَيْبَ فِيهِ: the working genus-la with its ism: ' + JSON.stringify(r.f2));
+    if (!r.f3 || r.f3[0] !== 'khabar-muqaddam' || !r.f3[1])
+      throw new Error('لَهُ هِمَمٌ: khabar muqaddam, and WAJIB on the nakira: ' + JSON.stringify(r.f3));
+    if (r.f0n !== 0) throw new Error('a plain jumla ismiyya opens no taqdim frame: ' + r.f0n);
+    if (r.docN < 7) throw new Error('the TaqdimEngine doctrine table: ' + r.docN);
+    if (!r.wajh || r.wajh.root !== 'و ج ه' || r.wajh.via !== 'corpus')
+      throw new Error('وَجْهِكَ answers و ج ه through the clitic-provenance override: ' + JSON.stringify(r.wajh));
+    if (!r.kibar || r.kibar.root !== 'ك ب ر')
+      throw new Error('لِكِبَارِهَا sees through three dresses to كِبَار: ' + JSON.stringify(r.kibar));
+    if (!r.ghurra || r.ghurra.root !== 'غ ر ر')
+      throw new Error('بِغُرَّةِ peels its ba before the geminate: ' + JSON.stringify(r.ghurra));
+    if (!r.muntaha || r.muntaha.root !== 'ن ه ي')
+      throw new Error('مُنْتَهَى is Form VIII of ن ه ي — the nun is a radical: ' + JSON.stringify(r.muntaha));
+    if (r.ishaq !== null)
+      throw new Error('إِسْحَاقَ is an ajami alam and REFUSES a root: ' + JSON.stringify(r.ishaq));
+    if (r.tushriq !== 'أَشْرَقَ')
+      throw new Error('تُشْرِقُ answers from its Form IV paradigm: ' + r.tushriq);
+    if (r.saidCase !== 'mabni')
+      throw new Error('سَعِدَتْ: the ta of femininity is a bina, never jazm: ' + r.saidCase);
+    if (r.jzCase !== 'majzum')
+      throw new Error('…and يَكْتُبْ keeps its jazm: ' + r.jzCase);
+    if (!r.frame) throw new Error('the taqdim frame card renders in the Jumla lab');
   });
 
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {

@@ -3066,3 +3066,40 @@ strengths, the Rāzī khilaf) — plus one catalogue note the rows point into.
 A layer the user asked for gets a floor in the smoke gate (every ch18
 sentence ≥2 jumal rows), so a later regeneration cannot quietly flatten it
 back to prose.
+
+## An exact engine claims the ORDER; intent stays a shortlist
+
+TaqdimEngine reads two frames the surface settles completely — a fronted
+jarr/zarf before its indefinite marfūʿ noun is a khabar muqaddam (and WAJIB
+when the mubtada is a nakira), and lā + a bare fatḥa-final noun directly
+after is the genus-lā with its ism — but WHY the speaker fronted (qaṣr,
+tanbīh, tafāʾul, tashwīq) is semantic, so the four wujuh ship as a DOC
+shortlist, never a verdict. Same split as ShartEngine's nukta: the engine
+encodes the rule and NAMES the licensed departures; it does not adjudicate
+motive. And the frame pair teaches by CONTRAST: the same lā is voided in
+لَا فِيهَا غَوْلٌ and working in لَا رَيْبَ فِيهِ, and the visible endings
+(damma/fatḥ) are the receipts — gate both directions, never one.
+
+## Jazm belongs to the muḍāriʿ — the ending alone cannot say so
+
+IrabSign read سَعِدَتْ as «jazm by the sukun»: the final ـَتْ is the tāʾ
+al-taʾnīth and the word is a mabni māḍī, but no rule that looks only at the
+last letter can know that. The discriminator lives at the OTHER end — a
+muḍāriʿ shows its person prefix ([يتنأ] + a sākin letter, the damma prefix
+of the derived forms, the V/VI prefix pair) — so the bina branch fires only
+where no prefix shape stands. This is the seam doctrine's sibling: when the
+ending underdetermines, the evidence is elsewhere ON THE SAME WORD, and the
+gate must pin both directions (سَعِدَتْ mabni AND يَكْتُبْ still majzum).
+
+## The candidate's dress is part of the evidence — the override reads it now
+
+The glossary override fired only on weak-letter roots, and وَجْهِكَ answered
+ج ه ك — a sound-LOOKING root built on a waw-peeled candidate. The trigger now
+includes provenance: a rules answer matched on a peeled candidate (c !==
+cands[0]) or on one still wearing a peelable letter (/^[وفبلك]/) is hedged,
+and the lexicon outranks it exactly where they disagree. Pair this with the
+noun lexicon running its pronoun strip over EVERY try (clitic + plural +
+pronoun stack on one word: لِكِبَارِهَا), and with the propn-first guard —
+the lexicon is asked about proper names BEFORE the rules, because a rule
+CANNOT refuse what it was never told is jamid (إِسْحَاقَ as «grinding»).
+Agreement always keeps the rules answer whole, wazn included.
