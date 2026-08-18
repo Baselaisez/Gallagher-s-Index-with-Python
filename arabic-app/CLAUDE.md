@@ -3103,3 +3103,39 @@ pronoun stack on one word: لِكِبَارِهَا), and with the propn-first g
 the lexicon is asked about proper names BEFORE the rules, because a rule
 CANNOT refuse what it was never told is jamid (إِسْحَاقَ as «grinding»).
 Agreement always keeps the rules answer whole, wazn included.
+
+## The iyya family's case is its spelling — three engines had to be told
+
+إِيَّا exists for one purpose: the detached NASB pronoun. Three consequences
+landed in one chapter, each in a different engine: a clause opening إِيَّاكَ
+is a VERBAL clause with its object fronted, so WawEngine's hal branch (which
+had listed اياك among its nominal-clause openers since it was written) was
+offering an impossible reading; TaqdimEngine reads the fronted object off
+the spelling alone — no case sign needed, the word IS its case; and the
+detection regex must admit the hamza SEAT (إياك, fifth occurrence of the
+trap). When a closed-class word encodes its i'rab in its very letters,
+every engine that reasons about order or case around it inherits a fact —
+walk them all the day the word enters the corpus.
+
+## A promoted rule needs its ANCHOR named, or a twin frame will steal it
+
+MaEngine's list-frame (6f: wa+ma, noun before, seat concealed) fired on
+مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى and sold mawsula where the aya is negation
+joined on negation. Both frames share every surface test; they differ only
+in what the waw HANGS ON — a noun list, or an earlier negation clause. The
+fix names the anchor: an earlier bare مَا directly before its own verb hands
+the wa+ma exactly the clause the list-frame's refutation says a negation
+lacks, and where that anchor stands the negation wins. When two readings
+share a trigger shape, the discriminator is the antecedent, not the shape —
+and the control sentence (وَمَا نَابَ عَنْهَا, anchored on a noun) must be
+gated through the same change.
+
+## Demotion is not omission — and the difference is whether taqdir EXISTS
+
+The mutaallaqat bab divides on one question: can the missing object be
+named back? يَعْلَمُونَ (Zumar 9) predicates knowing AS SUCH — reconstruct
+an object and the aya's point dies; لَهَدَاكُمْ names its dropped هِدَايَتَكُمْ
+in its own jawab. The authoring rule that follows: a demoted verb's i'rab
+must SAY no taqdir exists (لَا حَذْفَ وَلَا تَقْدِيرَ), an omitted object's
+i'rab must NAME the taqdir — the two are different claims, and flattening
+them into «object omitted» teaches the bab's own commonMistake.

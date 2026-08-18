@@ -7081,6 +7081,82 @@ if (!CHROME) {
     if (!r.frame) throw new Error('the taqdim frame card renders in the Jumla lab');
   });
 
+  await check('talkhis ch20: the object dropped and fronted — and the maful-muqaddam frame', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 20);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['hadhf-al-maful'];
+      const T = s => TaqdimEngine.read(SentenceAnalyzer.analyze(s));
+      const fat = T('إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ');
+      const zayd = T('زَيْدًا عَرَفْتُ');
+      const plain = T('عَرَفْتُ زَيْدًا');
+      const rows5 = SentenceAnalyzer.analyze('إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ');
+      const wIyya = rows5.find(x => /^وَإِ/.test(x.w));
+      const rows4 = SentenceAnalyzer.analyze('مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى');
+      const wMa = rows4.find(x => /^وَمَا/.test(x.w));
+      const rt = w => { const x = RootFinder.find(w); return x ? { root: x.root, via: x.via } : null; };
+      const law = ShartEngine.read(SentenceAnalyzer.analyze('وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ'));
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('hadhf-al-maful')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        // the maful-muqaddam frame: both iyyas, the fathatan noun, and the
+        // engine's SILENCE when the verb comes first
+        fatN: fat.filter(f => f.kind === 'maful-muqaddam').length,
+        zaydN: zayd.filter(f => f.kind === 'maful-muqaddam').length,
+        plainN: plain.length,
+        docN: Object.keys(TaqdimEngine.DOC).length,
+        // the iyya family opens a VERBAL clause — never a hal
+        iyyaTop: wIyya && wIyya.notes.some(n => /الْعَطْف/.test(n.ar || '') || /joining waw/.test(n.en || '')),
+        iyyaHal: wIyya && wIyya.notes.some(n => /الْحَال|circumstantial/.test((n.ar || '') + (n.en || ''))),
+        // negation joined on negation outranks the list-frame — the
+        // MaEngine's note carries the Arabic name inside its en/tr text,
+        // so both fields are searched
+        maNaf: wMa && wMa.notes.some(n => /النَّافِيَة|negation joined/.test((n.ar || '') + (n.en || ''))),
+        maKind: wMa && wMa.kind,
+        // the four verbs the chapter's paradigms unlocked
+        istawi: rt('يَسْتَوِي'), hadakum: rt('لَهَدَاكُمْ'),
+        qala2: rt('قَلَى'), nastain: rt('نَسْتَعِينُ'),
+        qalaKind: (rows4.find(x => x.w === 'قَلَى') || {}).kind,
+        // and the law frame still reads its lam-marked jawab through the verb
+        lawF: law[0] && { k: law[0].key, mark: law[0].mark, jw: law[0].jawab },
+      };
+    });
+    if (r.missing) throw new Error('chapter 20 did not load');
+    if (r.chapters < 20) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch20 sentences: ' + r.n);
+    if (r.t !== 26) throw new Error('ch20 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the hadhf-al-maful note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 7) throw new Error('too few hadhf-al-maful tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch20 sentence carries its named-wajh jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.fatN !== 2) throw new Error('both iyyas of the Fatiha open maful-muqaddam frames: ' + r.fatN);
+    if (r.zaydN !== 1) throw new Error('زَيْدًا عَرَفْتُ: the fathatan noun before its verb frames: ' + r.zaydN);
+    if (r.plainN !== 0) throw new Error('عَرَفْتُ زَيْدًا: verb first, no taqdim frame: ' + r.plainN);
+    if (r.docN < 9) throw new Error('the TaqdimEngine doctrine table grew to the maful rows: ' + r.docN);
+    if (!r.iyyaTop || r.iyyaHal)
+      throw new Error('وَإِيَّاكَ: atf offered, hal NEVER — the iyya family opens a verbal clause: ' +
+        JSON.stringify([r.iyyaTop, r.iyyaHal]));
+    if (!r.maNaf || r.maKind !== 'particle')
+      throw new Error('وَمَا قَلَى: negation joined on negation outranks the list-frame: ' +
+        JSON.stringify([r.maNaf, r.maKind]));
+    if (!r.istawi || r.istawi.root !== 'س و ي' || r.istawi.via !== 'corpus')
+      throw new Error('يَسْتَوِي answers from its Form VIII naqis paradigm: ' + JSON.stringify(r.istawi));
+    if (!r.hadakum || r.hadakum.root !== 'ه د ي')
+      throw new Error('لَهَدَاكُمْ reaches هَدَى through the jawab lam and the pronoun: ' + JSON.stringify(r.hadakum));
+    if (!r.qala2 || r.qala2.root !== 'ق ل ي' || r.qalaKind !== 'verb')
+      throw new Error('قَلَى is the naqis verb, not a maqsur noun: ' + JSON.stringify([r.qala2, r.qalaKind]));
+    if (!r.nastain || r.nastain.root !== 'ع و ن')
+      throw new Error('نَسْتَعِينُ answers from its hollow Form X paradigm: ' + JSON.stringify(r.nastain));
+    if (!r.lawF || r.lawF.k !== 'law' || r.lawF.mark !== 'lam' || r.lawF.jw < 0)
+      throw new Error('وَلَوْ شَاءَ لَهَدَاكُمْ: the law frame with its lam-marked jawab: ' + JSON.stringify(r.lawF));
+  });
+
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
     const r = await page.evaluate(() => {
       const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });

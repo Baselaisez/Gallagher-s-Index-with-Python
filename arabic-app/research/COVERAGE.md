@@ -1626,3 +1626,38 @@ not a one-line change.
   Measured: **99.8% over 1,327 tokens** (170 worked sentences), ch19's 24
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v137 — Talkhīṣ chapter 20: أَحْوَالُ مُتَعَلِّقَاتِ الْفِعْلِ — the object
+  dropped and fronted** — a new bāb opens on five ayat, each the source's
+  own citation for its doctrine, all received text quoted exactly:
+  the DEMOTION to intransitive rank (Zumar 39:9 — no taqdir exists, and
+  the bāb's dividing line: demotion is not omission), ibhām-then-bayān
+  (Anʿām 6:149 — the mashīʾa left dark one clause, with the gharāba
+  counter-witnesses in the jumal rows: Abū Yaʿqūb's blood-weeping spoken
+  BECAUSE strange, al-Jawharī's excluded from the bāb), taʿmīm with
+  brevity (Yūnus 10:25 — drop جَمِيعَ عِبَادِهِ and no hearer escapes the
+  call), the fāṣila (Ḍuḥā 93:3 — the bāb's cleanest minimal pair: one
+  verse, the kāf spoken then dropped, only the rhyme differing), and
+  taqdim al-mafʿūl lil-takhsis (Fātiḥa 1:4 — with the aksariyya rule and
+  the refused مَا زَيْدًا ضَرَبْتُ وَلَا غَيْرَهُ as the doctrine's boundary).
+  Note 122 `hadhf-al-maful` (all eight wujuh + the fronting). Glossary
+  +10 (5 copies, 5 new); four paradigms authored: هَدَى and قَلَى (yāʾ-naqis
+  on the جَزَى model), اِسْتَوَى (VIII naqis), اِسْتَعَانَ (X hollow on the
+  اِسْتَقَالَ model), plus عَلِمَ/شَاءَ/وَدَّعَ copied in.
+  - **TaqdimEngine grew the maful-muqaddam frame**: the iyya family (its
+    case IS its spelling) or a fathatan noun with the verb DIRECTLY after
+    — adjacency keeps the claim exact — with the takhsis doctrine and the
+    aksariyya hedge in DOC (9 rows). Both Fātiḥa frames render in the
+    Jumla lab.
+  - **Engine fixes the probe forced**: (1) WawEngine's PRON set carried
+    اياك since it was written — the iyya family opens a VERBAL clause, so
+    hal was offered where it is impossible; removed with the doctrine in
+    the comment; (2) MaEngine rule 6f learned its anchor: negation joined
+    on negation (مَا وَدَّعَكَ … وَمَا قَلَى) outranks the list-frame when the
+    sentence opened on a nafiya ma before its own verb — the Manar
+    list-frame control held through the change; (3) the iyya test hit the
+    hamza-SEAT trap (fifth occurrence) — إياك bares with its seat kept.
+
+  Measured: **99.9% over 1,353 tokens** (175 worked sentences), ch20's 26
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

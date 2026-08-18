@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 170,
-  "sentenceTokens": 1327,
-  "posAgreement": 99.8,
-  "rows": 2412
+  "sentences": 175,
+  "sentenceTokens": 1353,
+  "posAgreement": 99.9,
+  "rows": 2438
  },
  "endings": [
   {
@@ -35532,6 +35532,629 @@
       "lemma": "قَمَر",
       "root": "ق م ر",
       "wazn": "فَعَلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:20:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 20,
+   "sentence": "s1",
+   "text": "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+   "translation": {
+    "en": "Say: are those who know and those who do not know equal? (al-Zumar 39:9 — the transitive verb DEMOTED to intransitive rank: no object is meant; knowing itself is the whole predicate.)",
+    "tr": "De ki: hiç bilenlerle bilmeyenler bir olur mu? (Zümer 39:9 — müteaddî fiil lâzım menzilesine indirilmiş: mef'ûl kastedilmemiştir; bilmenin kendisi yüklemin tamamıdır.)"
+   },
+   "jumal": [
+    {
+     "text": "هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+     "ar": "الْوَجْهُ الْأَوَّلُ: تَنْزِيلُ الْمُتَعَدِّي مَنْزِلَةَ اللَّازِمِ — لَا حَذْفَ وَلَا تَقْدِيرَ.",
+     "en": "WAJH 1 — the demotion: when the speaker's purpose is to affirm the act of its doer absolutely (or deny it), the transitive is SET AT the intransitive's rank. No object is reconstructed — a taqdir here would ruin the point, which is knowing as such."
+    },
+    {
+     "text": "هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+     "ar": "وَفَرْقُ الْبَابِ: هَذَا غَيْرُ الْحَذْفِ — الْمَحْذُوفُ مُقَدَّرٌ، وَالْمُنَزَّلُ لَا مَفْعُولَ لَهُ أَصْلًا.",
+     "en": "And the bab's dividing line: DEMOTION is not OMISSION. An omitted object can be named back (the coming ayat name theirs); a demoted verb never had one in view. Confusing the two is the chapter's own commonMistake."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "tokens": [
+    {
+     "w": "قُلْ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [],
+      "irab": "«Say» — the amr of قَالَ, its hollow middle dropped against the sukun."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "اُفْعُلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هَلْ",
+     "lex": "hal-istifham",
+     "human": {
+      "pos": "part",
+      "grammar": [],
+      "irab": "«are…?» — the question letter, and the question here DENIES: of course they are not equal."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَسْتَوِي",
+     "lex": "istawa",
+     "human": {
+      "pos": "verb",
+      "grammar": [],
+      "irab": "«are equal» — Form VIII of س و ي, a naqis: its damma is estimated on the ya, too heavy to sound. The ya is the RADICAL, not a pronoun — the corpus paradigm is what settles that."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِسْتَوَى",
+      "root": "س و ي",
+      "wazn": "يَفْتَعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الَّذِينَ",
+     "lex": "alladhina",
+     "human": {
+      "pos": "pron",
+      "grammar": [],
+      "irab": "«those who» — the relative, standing as fa'il of the equality-verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَعْلَمُونَ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful"
+      ],
+      "irab": "«who KNOW» — and the teaching is what is NOT there: عَلِمَ takes an object, and none is meant. The verb is set at the rank of an intransitive: the claim is not «they know something particular» but that knowing is their state. Nothing is reconstructed, because nothing was dropped — the object was never intended."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "يَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَالَّذِينَ",
+     "lex": "alladhina",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "anwa-al-waw"
+      ],
+      "irab": "«and those who» — joined to the first relative."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [],
+      "irab": "«not» — plain negation over the mudari."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَعْلَمُونَ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful"
+      ],
+      "irab": "«do not know» — the twin, demoted the same way: not-knowing as a state, no object in view. Sakkaki adds: in a KHATABI maqam the generalized verb affirms knowing of the one and denies it of the other, blocking any arbitrary escape."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "يَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:20:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 20,
+   "sentence": "s2",
+   "text": "وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ",
+   "translation": {
+    "en": "And had He willed, He would have guided you all. (al-An'am 6:149 — mashi'a's object dropped for IBHAM then BAYAN: the jawab names what the shart left dark.)",
+    "tr": "Dileseydi hepinizi hidayete erdirirdi. (En'âm 6:149 — meşîet fiilinin mef'ûlü İBHÂM sonra BEYÂN için hazfedilmiş: şartın karanlık bıraktığını cevap adlandırır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ",
+     "ar": "الْوَجْهُ الثَّانِي: حَذْفُ مَفْعُولِ الْمَشِيئَةِ لِلْإِبْهَامِ ثُمَّ الْبَيَانِ.",
+     "en": "WAJH 2 — IBHAM then BAYAN: leave the willing unspecified, then let the jawab specify it. The suspense is one clause long, and the drop is licensed because a mashi'a-object is expected — only a GHARIB object (weeping blood) must be spoken."
+    },
+    {
+     "text": "وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ",
+     "ar": "وَشَاهِدُ الْعَكْسِ: «وَلَوْ شِئْتُ أَنْ أَبْكِيَ دَمًا لَبَكَيْتُهُ» — ذُكِرَ لِغَرَابَتِهِ.",
+     "en": "And the counter-witness, kept in the note: Abu Yaqub SPEAKS his object because weeping blood is strange; al-Jawhari's second bakaytu tafakkuran is excluded from this bab — there the mention is for want of a qarina, not for gharaba. The books split hairs here on purpose; so do we."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "وَلَوْ",
+     "lex": "law",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "in-shartiyya"
+      ],
+      "irab": "«and had» — law: the shart certainly did not happen, so neither did the jawab."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "شَاءَ",
+     "lex": "shaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful"
+      ],
+      "irab": "«He willed» — and willed WHAT? The object (هِدَايَتَكُمْ, your guidance) is dropped, and the drop is a technique: the mashi'a is left DARK for one beat, and the jawab lights it. The rule beneath: a mashi'a-object drops when it is nothing strange; Abu Yaqub's «had I wished to weep BLOOD» keeps its object precisely because weeping blood is gharib."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَاءَ",
+      "root": "ش ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لَهَدَاكُمْ",
+     "lex": "hada",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful"
+      ],
+      "irab": "«He would have guided you» — the jawab wearing law's beloved lam, and it IS the bayan: the guiding named here tells the hearer what the willing was about. One clause holds the dark word and the lamp."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "هَدَى",
+      "root": "ه د ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَجْمَعِينَ",
+     "lex": "ajmain",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawkid"
+      ],
+      "irab": "«all of you» — the ma'nawi tawkid riding the object pronoun, its nasb shown by the ya: had He willed, not one would be left unguided."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ج م ع",
+      "wazn": "أَفْعَلَ",
+      "sure": false
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:20:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 20,
+   "sentence": "s3",
+   "text": "وَاللَّهُ يَدْعُو إِلَى دَارِ السَّلَامِ",
+   "translation": {
+    "en": "And Allah calls to the Abode of Peace. (Yunus 10:25 — the object جَمِيعَ عِبَادِهِ dropped for TA'MIM with brevity: the call is to everyone.)",
+    "tr": "Allah selâmet yurduna çağırır. (Yûnus 10:25 — mef'ûl جَمِيعَ عِبَادِهِ, kısaltmayla birlikte TAMİM için hazfedilmiş: çağrı herkesedir.)"
+   },
+   "jumal": [
+    {
+     "text": "وَاللَّهُ يَدْعُو إِلَى دَارِ السَّلَامِ",
+     "ar": "الْوَجْهُ الثَّالِثُ: حَذْفُ الْمَفْعُولِ لِلتَّعْمِيمِ مَعَ الِاخْتِصَارِ.",
+     "en": "WAJH 3 — TA'MIM: the unnamed object is every servant. Naming any set would fence the call; silence fences nothing. And it comes with brevity for free — the rare case where saying less asserts more."
+    },
+    {
+     "text": "وَاللَّهُ يَدْعُو إِلَى دَارِ السَّلَامِ",
+     "ar": "وَأُخْتَاهُ فِي النَّوْعِ: الِاخْتِصَارُ الْمُجَرَّدُ مَعَ الْقَرِينَةِ، وَرِعَايَةُ الْفَاصِلَةِ.",
+     "en": "Its two sisters in kind, kept in the note: mere brevity where a qarina stands (أَصْغَيْتُ إِلَيْهِ — the ear goes unsaid; أَرِنِي — the second object ذَاتَكَ unsaid), and the fasila — which the next aya shows."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "وَاللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "anwa-al-waw",
+       "mubtada-khabar"
+      ],
+      "irab": "«And Allah» — a fresh sentence; the Name as mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَدْعُو",
+     "lex": "daa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful",
+       "tajaddud-wa-thubut"
+      ],
+      "irab": "«calls» — and calls WHOM? Everyone: drop the object and no listener can read himself out of the call. The named-object sentence (He calls His servants) is LONGER and says LESS — the drop generalizes and abbreviates in one stroke. The mudari adds renewal: the calling stands open now."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَعَا",
+      "root": "د ع و",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "prep",
+      "grammar": [
+       "huruf-jarr"
+      ],
+      "irab": "«to» — the endpoint letter: the call has a destination."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "دَارِ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tarif-bil-idafa"
+      ],
+      "irab": "«the Abode» — majrur under ila, and a mudaf: definite through what follows. (The same letters spell the amr of دَارَى — «humour him!» — and only the jarr letter before this word settles which it is.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَارَى",
+      "root": "د ر ي",
+      "wazn": "فَاعِلْ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "السَّلَامِ",
+     "lex": "salam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tarif-bil-idafa"
+      ],
+      "irab": "«of Peace» — the mudaf ilayh: Paradise named by what is found there."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَلَام",
+      "root": "س ل م",
+      "wazn": "فَّعَالِ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:20:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 20,
+   "sentence": "s4",
+   "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى",
+   "translation": {
+    "en": "Your Lord has not forsaken you, nor does He hate. (al-Duha 93:3 — the kaf of قَلَاكَ dropped for the FASILA: the sura's verses end on the same letter.)",
+    "tr": "Rabbin seni terk etmedi ve darılmadı. (Duhâ 93:3 — قَلَاكَ'nın kâfı FÂSILA için hazfedilmiş: sûrenin âyet sonları aynı harfte biter.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى",
+     "ar": "الْوَجْهُ الرَّابِعُ: حَذْفُ الْمَفْعُولِ رِعَايَةً لِلْفَاصِلَةِ.",
+     "en": "WAJH 4 — the FASILA: one verse, the object spoken in its first verb and dropped from its second, and the only difference is the rhyme. The pair is the cleanest minimal contrast the bab owns — nothing else changed."
+    },
+    {
+     "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى",
+     "ar": "وَمِنْ إِخْوَتِهِ: الْحَذْفُ لِلِاسْتِهْجَانِ — «مَا رَأَيْتُ مِنْهُ وَلَا رَأَى مِنِّي».",
+     "en": "And its remaining brothers, carried in the note: the mustahjan drop (Aisha's «I saw not from him, nor he from me» — the object unfit to speak), and concealment — dropping so the object CAN be denied at need. Eight wujuh in all; the chapter walks five in real text."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "anwa-ma"
+      ],
+      "irab": "«not» — plain negation over the madi."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "وَدَّعَكَ",
+     "lex": "waddaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [],
+      "irab": "«forsaken YOU» — Form II of و د ع, and its object kaf is SPOKEN: hold this against its twin at the verse's end."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَدَّعَ",
+      "root": "و د ع",
+      "wazn": "فَعَّلَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رَبُّكَ",
+     "lex": "rabb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tarif-bil-idafa"
+      ],
+      "irab": "«your Lord» — the fa'il, made definite by the kaf of the addressed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ر ب ب",
+      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "وَمَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "anwa-ma",
+       "anwa-al-waw"
+      ],
+      "irab": "«nor» — the joined second negation."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "قَلَى",
+     "lex": "qalaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "hadhf-al-maful"
+      ],
+      "irab": "«nor does He hate [you]» — and the kaf is GONE. Not for generality this time: for the FASILA, the rhyme the sura's verses close on (سَجَى، قَلَى، فَتَرْضَى…). قَلَاكَ would break the cadence; the ear supplies the object from وَدَّعَكَ beside it. Orthography note: قَلَى's alif is the ya-naqis third radical — the same shape as هَدَى."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَلَى",
+      "root": "ق ل ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:20:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 20,
+   "sentence": "s5",
+   "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+   "translation": {
+    "en": "You alone we worship, and You alone we ask for help. (al-Fatiha 1:4 — the object FRONTED before its verb: takhsis, worship confined to Him.)",
+    "tr": "Yalnız Sana ibadet eder ve yalnız Senden yardım isteriz. (Fâtiha 1:4 — mef'ûl fiilinin ÖNÜNE alınmış: tahsis, ibadet O'na hasredilmiş.)"
+   },
+   "jumal": [
+    {
+     "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+     "ar": "الْوَجْهُ الْخَامِسُ: تَقْدِيمُ الْمَفْعُولِ لِلتَّخْصِيصِ — وَالْأَكْثَرِيَّةُ: أَكْثَرُ التَّقْدِيمِ لِلتَّخْصِيصِ لَا كُلُّهُ.",
+     "en": "WAJH 5 — TAQDIM of the object: worship and help-seeking confined to Him alone. And the honest rule rides with it: MOST fronting restricts, not all — some is mere care, blessing or savour (بِسْمِ اللهِ… أَقْرَأُ, the basmala's deferred verb), which is why the books argue the case verse by verse."
+    },
+    {
+     "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+     "ar": "وَحَدُّ الدَّعْوَى: «مَا زَيْدًا ضَرَبْتُ وَلَا غَيْرَهُ» لَا يُقَالُ — لِأَنَّ التَّقْدِيمَ يُثْبِتُ الْوُقُوعَ.",
+     "en": "And the claim's edge, kept exact: مَا زَيْدًا ضَرَبْتُ means «it was not ZAYD I struck» — the striking itself stands. So «wa-la ghayrahu» after it is a contradiction, and the books REFUSE the sentence. A fronting that denies must deny the choice of object, never the act — the doctrine's own boundary, taught as a boundary."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "إِيَّاكَ",
+     "lex": "iyyaka",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "hadhf-al-maful",
+       "taqdim-al-musnad"
+      ],
+      "irab": "«You alone» — the detached NASB pronoun (its case is its very spelling: iyya exists for nothing else), standing as the object FRONTED. The order is the meaning: نَعْبُدُكَ says «we worship You»; إِيَّاكَ نَعْبُدُ says «You and none other do we worship». Most fronting restricts — the aksariyya rule — and this is its throne verse."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَعْبُدُ",
+     "lex": "abada",
+     "human": {
+      "pos": "verb",
+      "grammar": [],
+      "irab": "«we worship» — the verb arriving AFTER its object, its «we» concealed within."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَبَدَ",
+      "root": "ع ب د",
+      "wazn": "نَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "وَإِيَّاكَ",
+     "lex": "iyyaka",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "hadhf-al-maful",
+       "anwa-al-waw"
+      ],
+      "irab": "«and You alone» — the frame repeated whole: the waw joins two VERBAL clauses, each with its object fronted. (Not a hal waw — the iyya family opens a verbal clause, never the nominal clause a hal needs.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "نَسْتَعِينُ",
+     "lex": "istaana",
+     "human": {
+      "pos": "verb",
+      "grammar": [],
+      "irab": "«we ask for help» — Form X of ع و ن, hollow: the waw melted to a ya-sound alif in the mazi (اِسْتَعَانَ) and stands as a ya here — the i'lal of أَقَالَ/اِسْتَقَالَ. Repeating إِيَّاكَ rather than saying وَنَسْتَعِينُ keeps the takhsis on BOTH acts."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِسْتَعَانَ",
+      "root": "ع و ن",
+      "wazn": "نَسْتَفْعِلُ",
       "sure": true
      },
      "match": true
