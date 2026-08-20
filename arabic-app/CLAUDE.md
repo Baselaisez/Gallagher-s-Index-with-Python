@@ -3175,3 +3175,36 @@ mechanism is variables-only, so a tap repaints with no re-render; the
 sepia palette deliberately commits to one look in both app themes, which
 is what choosing sepia means. Everything that reads --ink/--line inside
 the column inherits the tint for free.
+
+## The sukun-إن wears a THIRD face — the illa is the observable
+
+The sukūn-nūn split (إِنْ shartiyya vs إِنَّ nasiba) gained a third branch
+in ch22: sukūn-إن with an إِلَّا later in the sentence and NO other
+negation between them is إِنْ النَّافِيَة (equivalent to مَا) — the same
+nearest-negation pairing that guards MaEngine 6h and the QasrEngine
+decides this face too. The observable stays mechanical (scan forward,
+break on لَا/مَا, match الا/إِلَّا), the ShartEngine stands down for it,
+and the QasrEngine's negation opener accepts pk==="nafy" on إن so the
+frame reads. When a closed-class word grows a new face, every engine that
+keyed on the OLD faces must be re-checked — the control sentence
+(إِنْ جِئْتَنِي أَكْرَمْتُكَ still opens a shart frame) is what keeps the
+new branch from stealing the old ones.
+
+## ألا before إنّ is one particle — a peel must not split what a table lists whole
+
+The hamza-peel read أَلَا as interrogative-hamza + لَا and shipped a wrong
+negation. أَلَا التَّنْبِيه (alerting "lo!") is a single particle the
+classical tables list whole, and its one reliable observable is إِنَّ
+directly after it. The branch fires BEFORE the hamza peel — the same
+ordering doctrine as the inna-table: multi-letter closed-class entries
+outrank the letter-by-letter decomposition that would consume them.
+
+## The five-nouns table outranks the prefix guess under a pronoun
+
+أَخُوكَ was read as verbish (its alif looked like a muḍāriʿ prefix) and
+its kāf labelled a mafʿūl bihi. A five-nouns entry hosting an attached
+pronoun is a muḍāf with its muḍāf ilayh — that is WHY it shows the wāw
+(its case shows as a LETTER because it is annexed). The guard sits before
+the verbish branch: membership in a closed lexical table is a stronger
+signal than any affix-shape heuristic, which is the RootFinder doctrine
+(the lexicon eats first) applied one row down.

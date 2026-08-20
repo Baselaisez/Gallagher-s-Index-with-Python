@@ -7241,6 +7241,65 @@ if (!CHROME) {
     if (!r.ring || !r.pct) throw new Error('the continue card wears its progress ring');
   });
 
+  await check('talkhis ch22: the routes compared — the negating in, the alerting ala, and the five-nouns host', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 22);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['turuq-al-qasr'];
+      const rows2 = SentenceAnalyzer.analyze('إِنْ أَنْتُمْ إِلَّا بَشَرٌ مِثْلُنَا');
+      const inRow = rows2[0];
+      const shNaf = ShartEngine.read(rows2).length;
+      const qNaf = QasrEngine.read(rows2);
+      // the CONTROL: a real conditional keeps its frame
+      const shCtl = ShartEngine.read(SentenceAnalyzer.analyze('إِنْ جِئْتَنِي أَكْرَمْتُكَ'));
+      const rows4 = SentenceAnalyzer.analyze('أَلَا إِنَّهُمْ هُمُ الْمُفْسِدُونَ');
+      const alaRow = rows4[0];
+      const rows5 = SentenceAnalyzer.analyze('إِنَّمَا هُوَ أَخُوكَ');
+      const akh = rows5.find(x => /أَخُو/.test(x.w));
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('turuq-al-qasr')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        // the negating in: pk nafy, no shart frame, and the qasr frame reads it
+        inPk: inRow && inRow.pk, inKind: inRow && inRow.kind,
+        shNaf, qNafKind: qNaf[0] && qNaf[0].kind ? qNaf[0].kind.ar : null,
+        shCtlKey: shCtl[0] && shCtl[0].key,
+        // the alerting ala before inna: one particle, tanbih
+        alaPk: alaRow && alaRow.pk,
+        alaNote: alaRow && alaRow.notes.some(n => /التَّنْبِيه|ALERTING/.test((n.ar || '') + (n.en || ''))),
+        // the five-nouns host under its pronoun: a noun by table, kaf = mudaf ilayh
+        akhKind: akh && akh.kind,
+        akhFive: akh && akh.notes.some(n => /FIVE NOUNS|الْأَسْمَاء/.test((n.ar || '') + (n.en || ''))),
+        akhMaful: akh && akh.notes.some(n => /maf'ul bihi/.test(n.en || '')),
+      };
+    });
+    if (r.missing) throw new Error('chapter 22 did not load');
+    if (r.chapters < 22) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch22 sentences: ' + r.n);
+    if (r.t !== 19) throw new Error('ch22 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the turuq-al-qasr note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 15) throw new Error('too few turuq-al-qasr tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch22 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.inPk !== 'nafy' || r.inKind !== 'particle')
+      throw new Error('the sukun-in before an illa is the NEGATION: ' + JSON.stringify([r.inPk, r.inKind]));
+    if (r.shNaf !== 0) throw new Error('the negating in opens no shart frame: ' + r.shNaf);
+    if (!/الْمَوْصُوفِ عَلَى الصِّفَةِ/.test(r.qNafKind || ''))
+      throw new Error('…and the qasr engine reads the in-frame (the pronoun is the mawsuf): ' + r.qNafKind);
+    if (r.shCtlKey !== 'in') throw new Error('the REAL conditional keeps its frame: ' + r.shCtlKey);
+    if (r.alaPk !== 'tanbih' || !r.alaNote)
+      throw new Error('أَلَا before إِنَّ is the alerting particle, one word: ' + JSON.stringify([r.alaPk, r.alaNote]));
+    if (r.akhKind !== 'noun' || !r.akhFive)
+      throw new Error('أَخُوكَ is a five-nouns host, a noun by table: ' + JSON.stringify([r.akhKind, r.akhFive]));
+    if (r.akhMaful)
+      throw new Error('…and its kaf is never «its maf\'ul bihi»');
+  });
+
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
     const r = await page.evaluate(() => {
       const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });

@@ -1698,3 +1698,37 @@ not a one-line change.
   Measured: **99.9% over 1,374 tokens** (180 worked sentences), ch21's 21
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v139 — Talkhīṣ chapter 22: طُرُقُ الْقَصْرِ — the routes compared, and
+  the negating إِنْ joins the closed class** — the qasr bāb continues
+  (source lines ~1880-1935): the four routes (nafy+istithnāʾ, إِنَّمَا,
+  ʿaṭf with لَا/بَلْ/لَكِنْ, taqdīm) with the disputed fifth (ḍamīr
+  al-faṣl), إِنَّمَا unpacked as مَا+إِلَّا (Farazdaq's detached أَنَا as
+  the witness), and the FOUR differences between the first two routes:
+  fahwā-vs-waḍʿ (إِنَّمَا carries qasr by implication, the frame by
+  coinage), both-sides-vs-affirmative-only, combinability with the لَا
+  ʿaṭf (the Sakkākī/ʿAbd-al-Qāhir khilāf taught as khilāf — his view
+  "nearer the truth"), and the addressee aṣl (the frame's aṣl is the
+  denier, إِنَّمَا's the one who knows). Tanzīl both ways closes the
+  chapter: the knower treated as denier (3:144 at Uḥud) and the denier
+  treated as knower (14:10 → 2:11/2:12, four stacked emphases answering
+  mockery). Note 124 `turuq-al-qasr`. Five sentences all on received
+  Qurʾānic text; glossary +8 (rasūl/bashar/innamā copied, in-nāfiya /
+  ala-tanbīh / antum / muṣliḥ / mufsid new).
+  - **The negating إِنْ (new closed-class face)**: sukūn-إن with an إِلَّا
+    later and NO negation between = إِنْ النَّافِيَة — the third face of
+    the sukūn-nūn split, settled by one observable exactly like the
+    first two; the ShartEngine stands down (its جِئْتَنِي control held),
+    and the QasrEngine's negation opener learned to accept it, so
+    إِنْ أَنْتُمْ إِلَّا بَشَرٌ reads as a qaṣr frame (qalb).
+  - **أَلَا التَّنْبِيه**: directly before إِنَّ it is ONE alerting
+    particle — the peel was splitting it hamza+lā; the inna-table lists
+    it whole, so the branch fires before the hamza peel.
+  - **Five-nouns host guard**: أَخُوكَ carried "mudari-like prefix" and
+    labelled its kāf a mafʿūl bihi — a noun of the five-nouns table
+    hosting a pronoun is a muḍāf and the pronoun its muḍāf ilayh; the
+    table outranks the prefix guess.
+
+  Measured: **99.9% over 1,393 tokens** (185 worked sentences), ch22's 19
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

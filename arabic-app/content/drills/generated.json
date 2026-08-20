@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 180,
-  "sentenceTokens": 1374,
+  "sentences": 185,
+  "sentenceTokens": 1393,
   "posAgreement": 99.9,
-  "rows": 2459
+  "rows": 2478
  },
  "endings": [
   {
@@ -28932,8 +28932,8 @@
       "kind": "noun",
       "lemma": null,
       "root": "أ خ و",
-      "wazn": "مِنَ الْأَسْمَاءِ الْخَمْسَةِ — تُعْرَبُ بِالْحُرُوفِ",
-      "sure": false
+      "wazn": null,
+      "sure": true
      },
      "match": true
     },
@@ -36700,6 +36700,523 @@
       "kind": "noun",
       "lemma": "زَيْد",
       "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:22:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 22,
+   "sentence": "s1",
+   "text": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ",
+   "translation": {
+    "en": "And Muhammad is only a messenger. (Al Imran 3:144 — nafy+istithna is for what the hearer DENIES; the companions' magnifying of his death was set at denial's rank, and the qasr is ifrad.)",
+    "tr": "Muhammed ancak bir resuldür. (Âl-i İmrân 3:144 — nefiy+istisnâ, dinleyenin İNKÂR ettiği içindir; sahâbenin vefatını büyütmesi inkâr menzilesine indirildi ve kasr ifraddır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ",
+     "ar": "الْفَرْقُ الرَّابِعُ: النَّفْيُ وَالِاسْتِثْنَاءُ لِحُكْمٍ يُنْكِرُهُ الْمُخَاطَبُ — وَهُنَا نُزِّلَ الْمَعْلُومُ مَنْزِلَةَ الْمُنْكَرِ.",
+     "en": "DIFFERENCE 4 between the routes: nafy+istithna is for what the hearer denies. Here nobody denied — so the aya DEMOTES the known to denial's rank: grief so great it acted like denial is answered as denial. The tanzil doctrine, on the frame's own choice of route."
+    },
+    {
+     "text": "وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ",
+     "ar": "وَهُوَ قَصْرُ إِفْرَادٍ: قُطِعَتْ شَرِكَةُ «رَسُولٌ وَبَاقٍ لَا يَمُوتُ».",
+     "en": "And it is IFRAD: the companions' state held two claims in partnership — messenger, and one who stays. The qasr prunes the second. Ch21's addressee taxonomy, now working on revelation's own text."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "وَمَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "anwa-ma"
+      ],
+      "irab": "«and not» — the frame's negation, its illa standing two words on. The route chosen is the TELL: nafy+istithna is kept for a hukm the addressee denies or does not know."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "مُحَمَّدٌ",
+     "lex": "muhammad",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«Muhammad» ﷺ — the maqsur: the bearer, about to be confined to his messengerhood."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُحَمَّد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«only» — the mufarragh exception."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "رَسُولٌ",
+     "lex": "rasul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "aqsam-al-qasr"
+      ],
+      "irab": "«a messenger» — the maqsur alayh. Every companion KNEW he was a messenger — so why the denial-route? Because their magnifying of his death was SET AT the rank of denying it: he is a messenger ONLY, not exempt from passing as the messengers before him passed. Qasr IFRAD, cutting «messenger AND deathless» down to the first — and the route itself carries the rebuke."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَسُول",
+      "root": "ر س ل",
+      "wazn": "فَعُولٌ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:22:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 22,
+   "sentence": "s2",
+   "text": "إِنْ أَنْتُمْ إِلَّا بَشَرٌ مِثْلُنَا",
+   "translation": {
+    "en": "You are only human beings like us. (Ibrahim 14:10 — the deniers to the prophets: qasr QALB by the deniers' own creed; and the إِنْ here is the NEGATING in, working exactly as ما.)",
+    "tr": "Siz ancak bizim gibi birer beşersiniz. (İbrâhîm 14:10 — inkârcılar peygamberlere: inkârcıların kendi inancına göre KALB kasrı; buradaki إِنْ, tıpkı mâ gibi çalışan NEFİY in'idir.)"
+   },
+   "jumal": [
+    {
+     "text": "إِنْ أَنْتُمْ إِلَّا بَشَرٌ مِثْلُنَا",
+     "ar": "إِنِ النَّافِيَةُ — أُخْتُ «مَا» فِي هَذَا الْبَابِ: نَفْيٌ وَاسْتِثْنَاءٌ بِأَدَاةٍ ثَالِثَةٍ.",
+     "en": "The NEGATING in — ma's sister in this bab: the same nafy+istithna route through a third particle. One spelling, three faces (conditional, negation, the light mukhaffafa) — and the illa is the surface observable that picks this one."
+    },
+    {
+     "text": "إِنْ أَنْتُمْ إِلَّا بَشَرٌ مِثْلُنَا",
+     "ar": "قَصْرُ قَلْبٍ عَلَى مُعْتَقَدِ الْمُخَاطَبِ — وَجَوَابُ الْأَنْبِيَاءِ مِنْ بَابِ مُجَارَاةِ الْخَصْمِ.",
+     "en": "QALB against the prophets' pressed claim — and when the prophets answer in the SAME frame, it is not concession of prophethood but مُجَارَاةُ الْخَصْمِ: adopting the foe's idiom where silencing him is the aim. The books read the pair together; so do we."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "tokens": [
+    {
+     "w": "إِنْ",
+     "lex": "in-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "in-shartiyya"
+      ],
+      "irab": "«not» — and the nun wears sukun, which usually says CONDITIONAL. The tell is the إِلَّا standing later: إِنْ…إِلَّا is a negation frame exactly like مَا…إِلَّا, and the shart reading falls away — a conditional demands its verb, and this in opens on a pronoun and closes on an exception."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَنْتُمْ",
+     "lex": "antum",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«you» — the detached pronoun as mubtada, and the maqsur: the prophets themselves, about to be confined (in their deniers' mouths) to bare humanity."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«only» — the exception closing the in-frame."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "بَشَرٌ",
+     "lex": "bashar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "aqsam-al-qasr"
+      ],
+      "irab": "«human beings» — the maqsur alayh, and by the deniers' own creed this is QALB: the prophets pressed their claim, the deniers held its opposite (a prophet cannot be a mere man), and the sentence flips — «you are ONLY men». The prophets' reply in the next aya (إِنْ نَحْنُ إِلَّا بَشَرٌ مِثْلُكُمْ) concedes the frame to silence the foe — مُجَارَاةُ الْخَصْمِ, not a denial of their own mission."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَشَر",
+      "root": "ب ش ر",
+      "wazn": "فَعَلٌ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِثْلُنَا",
+     "lex": "mithl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "tarif-bil-idafa"
+      ],
+      "irab": "«like us» — the sifa sealing the demotion: not merely human, but human OUR way — nothing above us."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مِثْل",
+      "root": "م ث ل",
+      "wazn": "فِعْلُنَا",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:22:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 22,
+   "sentence": "s3",
+   "text": "إِنَّمَا نَحْنُ مُصْلِحُونَ",
+   "translation": {
+    "en": "We are only reformers. (al-Baqara 2:11 — the munafiqs choose إِنَّمَا: they CLAIM their goodness is obvious, demoting the unknown to the rank of the known.)",
+    "tr": "Biz ancak ıslah edicileriz. (Bakara 2:11 — münafıklar إِنَّمَا'yı seçer: iyiliklerinin apaçık olduğunu İDDİA ederler; meçhulü malum menzilesine indirirler.)"
+   },
+   "jumal": [
+    {
+     "text": "إِنَّمَا نَحْنُ مُصْلِحُونَ",
+     "ar": "أَصْلُ «إِنَّمَا»: حُكْمٌ يَعْلَمُهُ الْمُخَاطَبُ وَلَا يُنْكِرُهُ — وَهُنَا نُزِّلَ الْمَجْهُولُ مَنْزِلَةَ الْمَعْلُومِ ادِّعَاءً.",
+     "en": "Innama's asl: the known, undenied hukm (إِنَّمَا هُوَ أَخُوكَ — said to one who knows, to move him to mercy). The munafiqs invert it by CLAIM: they speak as if their virtue were common knowledge. The tanzil doctrine again — mirror-image of s1's."
+    },
+    {
+     "text": "إِنَّمَا نَحْنُ مُصْلِحُونَ",
+     "ar": "وَمِنْ فُرُوقِ الطُّرُقِ: «لَا» الْعَاطِفَةُ تُجَامِعُ إِنَّمَا وَالتَّقْدِيمَ، لَا النَّفْيَ وَالِاسْتِثْنَاءَ.",
+     "en": "And difference 3 between the routes: the atf-la may follow innama and the fronting (إِنَّمَا أَنَا تَمِيمِيٌّ لَا قَيْسِيٌّ) but never the illa-frame — مَا زَيْدٌ إِلَّا قَائِمٌ لَا قَاعِدٌ is refused, for the atf-la demands a sentence not already negated. Sakkaki adds a condition, Abd al-Qahir softens it to «not beautiful» — and the books judge his view nearer the truth."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "إِنَّمَا",
+     "lex": "innama",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "innama-kaffa"
+      ],
+      "irab": "«only» — inna with the restraining ma: the second great route, and its asl is the OPPOSITE of the illa-frame's — innama is for a hukm the hearer knows and does not deny. The munafiqs know their claim is NOT known; they use innama anyway, CLAIMING obviousness — the unknown demoted to the known's rank. The route itself is their bluff."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true
+    },
+    {
+     "w": "نَحْنُ",
+     "lex": "nahnu",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«we» — the detached pronoun as mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مُصْلِحُونَ",
+     "lex": "muslih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "ism-fail",
+       "jam-mudhakkar-salim"
+      ],
+      "irab": "«reformers» — Form IV's ism fail in the sound plural, raf' by its waw: مُصْلِح, one who sets things right. The qasr says «reformers and nothing else» — and the next aya will flip every word of it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُصْلِح",
+      "root": "ص ل ح",
+      "wazn": "مُفْعِلُونَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:22:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 22,
+   "sentence": "s4",
+   "text": "أَلَا إِنَّهُمْ هُمُ الْمُفْسِدُونَ",
+   "translation": {
+    "en": "Truly, it is they who are the corrupters. (al-Baqara 2:12 — the reply stacks its emphases: the alerting أَلَا, then إِنَّ, then the damir al-fasl, then the article — because a claimed-obvious lie needs a fortified refutation.)",
+    "tr": "Gözünü aç: onlar bozguncuların ta kendileridir. (Bakara 2:12 — cevap te'kidlerini yığar: tenbih أَلَا'sı, sonra إِنَّ, sonra fasıl zamiri, sonra harf-i tarif — çünkü apaçıklık iddia eden yalana tahkim edilmiş bir reddiye gerekir.)"
+   },
+   "jumal": [
+    {
+     "text": "أَلَا إِنَّهُمْ هُمُ الْمُفْسِدُونَ",
+     "ar": "رَدٌّ مُؤَكَّدٌ بِأَرْبَعٍ: أَلَا، وَإِنَّ، وَضَمِيرُ الْفَصْلِ، وَلَامُ الْجِنْسِ.",
+     "en": "A refutation fortified four ways — the alerting ala, inna, the damir al-fasl, the jins-lam — because the claim it answers was dressed as the obvious. The strength of a denial is calibrated to the hearer's entrenchment: the inkari maqam doctrine, working at full stretch."
+    },
+    {
+     "text": "أَلَا إِنَّهُمْ هُمُ الْمُفْسِدُونَ",
+     "ar": "وَضَمِيرُ الْفَصْلِ نَفْسُهُ طَرِيقُ قَصْرٍ خَامِسٌ عِنْدَ قَوْمٍ.",
+     "en": "And the damir al-fasl is itself counted a fifth qasr-route by some — it welds subject to predicate and shuts the door on any third party. The routes' list, like most of the books' lists, has a disputed tail; we teach the four and name the fifth."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "أَلَا",
+     "lex": "ala-tanbih",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "huruf-tanbih"
+      ],
+      "irab": "«truly, mark it» — the ALERTING ala, one particle: it precedes إِنَّ, wakes the hearer, and governs nothing. Not the question-hamza plus a negation — the inna-table lists it beside إِنَّ itself, and here it is the first stone of the reply's fortification."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "إِنَّهُمْ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "inna-am-anna"
+      ],
+      "irab": "«truly they» — inna with its clinging ism: the second emphasis in the stack."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هُمُ",
+     "lex": "hum",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "turuq-al-qasr",
+       "damir-fasl"
+      ],
+      "irab": "«they and none other» — the DAMIR AL-FASL, standing between ism and khabar with no seat of its own: it welds the two, excludes a third, and adds its own shade of qasr. Third emphasis. (Its wasl-damma before the article: هُمُ الْـ.)"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الْمُفْسِدُونَ",
+     "lex": "mufsid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "ism-fail",
+       "jam-mudhakkar-salim",
+       "anwa-al-lam-al-tarif"
+      ],
+      "irab": "«THE corrupters» — Form IV's ism fail again (مُفْسِد, the exact inverse of s3's مُصْلِح), and the article is the FOURTH emphasis: the jins-lam confines corrupting to them, ch18's qasr device closing the ring. Four fortifications on one sentence — measured against the size of the lie they answer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُفْسِد",
+      "root": "ف س د",
+      "wazn": "مُفْعِلُونَ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:22:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 22,
+   "sentence": "s5",
+   "text": "إِنَّمَا هُوَ أَخُوكَ",
+   "translation": {
+    "en": "He is only your brother. (Innama's home ground: said to one who KNOWS and does not deny — to move him to act on what he knows.)",
+    "tr": "O ancak senin kardeşindir. (İnnemâ'nın kendi zemini: BİLEN ve inkâr etmeyene söylenir — bildiğinin gereğini yapmaya sevk için.)"
+   },
+   "jumal": [
+    {
+     "text": "إِنَّمَا هُوَ أَخُوكَ",
+     "ar": "أَصْلُ إِنَّمَا: تَذْكِيرُ الْعَالِمِ لِيَعْمَلَ بِعِلْمِهِ — لَا إِعْلَامُ الْجَاهِلِ.",
+     "en": "Innama's asl in one line: reminding the knower so he acts on his knowledge — not informing the ignorant. Set beside s1 the symmetry completes: the illa-frame for the denier (real or demoted), innama for the acknowledger (real or claimed)."
+    },
+    {
+     "text": "إِنَّمَا هُوَ أَخُوكَ",
+     "ar": "وَمَزِيَّةُ إِنَّمَا عَلَى الْعَطْفِ: يُفْهَمُ مِنْهَا الْحُكْمَانِ مَعًا.",
+     "en": "And innama's edge over the atf-route: both rulings — the affirmation and the exclusion — are heard AT ONCE in one particle, where the atf spells them out in two clauses. Its finest use, the books add, is ta'rid: saying one thing to intend another — the door the next chapters open."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "إِنَّمَا",
+     "lex": "innama",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "turuq-al-qasr",
+       "innama-kaffa"
+      ],
+      "irab": "«only» — innama on its own home ground at last: the hearer knows this man is his brother and denies nothing. The qasr is not teaching him a fact; it is pressing the fact he owns into his conduct — be merciful to him."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "turuq-al-qasr"
+      ],
+      "irab": "«he» — the detached pronoun as mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَخُوكَ",
+     "lex": "akh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "turuq-al-qasr",
+       "five-nouns"
+      ],
+      "irab": "«your brother» — one of the FIVE NOUNS, its raf' shown by the waw itself, the kaf its required mudaf ilayh. The sentence every reader can parse by now — and the bab's quiet close: which route you choose tells the hearer what you think he believes."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ خ و",
       "wazn": null,
       "sure": true
      },
