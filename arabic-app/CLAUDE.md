@@ -3208,3 +3208,37 @@ pronoun is a muḍāf with its muḍāf ilayh — that is WHY it shows the wāw
 the verbish branch: membership in a closed lexical table is a stronger
 signal than any affix-shape heuristic, which is the RootFinder doctrine
 (the lexicon eats first) applied one row down.
+
+## The borrowing leaves a receipt — read the nasb, not the heart
+
+Chapter 23's doctrine and its engine are one lesson: لَوْ and لَعَلَّ
+borrowed for the wish LOOK like the conditional and the hope, and the
+discriminator is not the speaker's heart but a fatha — the fa-verb's naṣb
+by a hidden أَنْ follows the six talab things and never a shart. The
+InshaEngine claims exactly the frames that carry the receipt (reading the
+host's last vowel at the seam, past the object pronoun) and leaves هَلْ's
+wish a labelled shortlist, because there the converting despair really is
+in the heart. When the books say a particle «acquires» another's meaning,
+ask what the acquisition does to the GOVERNMENT downstream — that is
+where the surface records it.
+
+## A fa-initial verb gets its enclitic label before its class — rewrite on upgrade
+
+The enclitic pass labels a pronoun by the host's kind, and a fa-initial
+verb (فَأَزُورَكَ) fails the muḍāriʿ-prefix test — so the label was written
+against a noun-guess and said «mudaf ilayh». The corpus dig upgrades the
+class twenty lines later; it must also rewrite what the earlier pass said
+under the old class. When a later stage OVERTURNS an earlier stage's
+classification, grep for every note the earlier stage wrote off that
+classification — the row carries its history, and a reader reads all of it.
+
+## The tahdid family is one particle per row, four rows, one observable
+
+هَلَّا، أَلَّا، لَوْلَا، لَوْمَا: Sakkaki derives them (hal/law + a
+tamanni-laden zaida), the tables list them whole, and the tense after
+them decides tandim (madi — reproach) against tahdid (mudari — urging).
+لَوْلَا is the interesting row: it was already in PARTICLES as shart
+(imtina'), and the verb face did not need a second key — the NEXT WORD'S
+CLASS routes it (noun = imtina' frame, verb = tahdid frame), the same
+next-word observable as إِذَا's two faces. A closed-class word's new face
+does not always need a new table row; sometimes it needs a router.

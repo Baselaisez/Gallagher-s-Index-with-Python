@@ -1732,3 +1732,50 @@ not a one-line change.
   Measured: **99.9% over 1,393 tokens** (185 worked sentences), ch22's 19
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v140 — Talkhīṣ chapter 23: الْإِنْشَاءُ وَالتَّمَنِّي — the insha bāb
+  opens, and the InshaEngine reads the wish off its receipts** — (source
+  lines ~1945-1990, sahifa 68-69): the inshāʾ definition (no external
+  nisba — truth and falsehood cannot touch it), the talabī/ghayr-talabī
+  split, and TAMANNI in full: لَيْتَ coined for it with possibility no
+  condition (لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا), هَلْ borrowed where the asker
+  despairs (هَلْ لِي مِنْ شَفِيعٍ, the zaida min teaching lafẓan/maḥallan
+  on one word), لَوْ borrowed and PROVEN on the page (لَوْ تَأْتِينِي
+  فَتُحَدِّثَنِي — the fa-verb's hidden-an naṣb never follows a shart:
+  the source's own istidlāl), لَعَلَّ given layta's ḥukm when the hoped
+  thing is remote (لَعَلِّي أَحُجُّ فَأَزُورَكَ, أَزُورَ the witness), and
+  Sakkākī's هَلَّا family split by ONE observable — the next verb's
+  tense: māḍī = tandīm, muḍāriʿ = taḥḍīḍ. Note 125 `insha-wa-tamanni`.
+  Six sentences, all the source's own examples verbatim (Ottoman
+  plain-alif normalized, recorded); glossary +9 (ada-return / zara /
+  shabab / laalla copied; layta, halla, shafi, hajja, haddatha new);
+  paradigms: حَجَّ (geminate of naṣara on the صَحَّ template), حَدَّثَ
+  (Form II), عَادَ and زَارَ copied whole.
+  - **InshaEngine (new)**: layta frame (exact), law/laʿalla wish-frames
+    exact ON THE RECEIPT (a fa-verb whose host ends in the hidden-an
+    fatha, read at the seam past the object pronoun), the tahdid family
+    split by the corpus verb's tense (honest both-named row where the
+    corpus is silent), and hal-for-tamanni as a SHORTLIST with an exact
+    trigger (hal + li-pronoun + zaida min + no verb) that a plain
+    nominal question must not fire. Renders as `.tm-frame` cards; the
+    four frame families now wear distinct spine colors (design).
+  - **Closed class**: هَلَّا and لَوْمَا join PARTICLES as `tahdid` rows
+    (one particle — the peel must not split them); لَوْلَا's verb face
+    stands the ShartEngine down (a verb directly after = tahdid, a noun
+    = the imtina' lawla, which keeps its frame); the borrowed لَوْ
+    stands it down on the naṣb witness while لَوْ جِئْتَنِي keeps its
+    conditional.
+  - **Analyzer fix the probe forced**: a fa-initial word fails the
+    muḍāriʿ-prefix test, so its enclitic note was written while the row
+    was still a noun-guess — فَأَزُورَكَ's kāf labelled «mudaf ilayh».
+    The corpus-verb upgrade now rewrites the stale label to maf'ul bihi
+    (a verb is never a muḍāf, stated once more, one layer later).
+
+  - **ML**: the corpus grew to 3,965 labelled tokens and held-out
+    measured 54.8/72.0 over 17 folds — above the 54/71.5 floors, the
+    top-1 up a tenth and the top-2 down a tenth on pure data movement;
+    floors unchanged (a floor moves on a measured gain, not on noise).
+
+  Measured: **99.9% over 1,412 tokens** (191 worked sentences), ch23's 19
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

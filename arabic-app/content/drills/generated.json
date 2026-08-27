@@ -11,10 +11,10 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 185,
-  "sentenceTokens": 1393,
+  "sentences": 191,
+  "sentenceTokens": 1412,
   "posAgreement": 99.9,
-  "rows": 2478
+  "rows": 2497
  },
  "endings": [
   {
@@ -37218,6 +37218,548 @@
       "lemma": null,
       "root": "أ خ و",
       "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s1",
+   "text": "لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا",
+   "translation": {
+    "en": "Would that youth returned one day! (The wished-for need not even be possible — layta is tamanni's own particle, and insha admits no true or false.)",
+    "tr": "Keşke gençlik bir gün geri dönse! (Temennî edilenin mümkün olması bile gerekmez — لَيْتَ temennînin asıl edatıdır; inşâya doğru-yanlış işlemez.)"
+   },
+   "jumal": [
+    {
+     "text": "لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا",
+     "ar": "الْجُمْلَةُ إِنْشَائِيَّةٌ طَلَبِيَّةٌ: لَا نِسْبَةَ لَهَا فِي الْخَارِجِ تُطَابِقُ أَوْ تُخَالِفُ.",
+     "en": "INSHA TALABI: the sentence has no external nisba for its words to match or miss — that is why true/false cannot touch it — and it is TALABI because the wanted thing is not in hand at the moment of asking."
+    },
+    {
+     "text": "لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا",
+     "ar": "تَمَنِّي الْمُسْتَحِيلِ صَحِيحٌ: لَا يُشْتَرَطُ إِمْكَانُ الْمُتَمَنَّى.",
+     "en": "The wish for the IMPOSSIBLE is sound: youth does not return, and is wished for anyway — possibility is no condition of tamanni, which is what separates it from tarajji's hope for the attainable."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "لَيْتَ",
+     "lex": "layta",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "khabar-insha"
+      ],
+      "irab": "«would that» — the particle COINED for tamanni, an inna-sister in government. And the sentence it opens is INSHA: it sets up a wish rather than reporting a fact, so no one can call it true or false — that impossibility is insha's very definition."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "الشَّبَابَ",
+     "lex": "shabab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«youth» — layta's ism, mansub by the inna-family government."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَبَاب",
+      "root": "ش ب ب",
+      "wazn": "فَّعَالَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَعُودُ",
+     "lex": "ada-return",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "mudari-marfu"
+      ],
+      "irab": "«returns» — a marfu' mudari; the verbal clause stands as layta's khabar, in the position of raf'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَادَ",
+      "root": "ع و د",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "يَوْمًا",
+     "lex": "yawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«one day» — a mansub time-zarf, maf'ul fih."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَوْم",
+      "root": "ي و م",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s2",
+   "text": "هَلْ لِي مِنْ شَفِيعٍ",
+   "translation": {
+    "en": "Have I any intercessor? (Said where none is known to exist: the question form carries the wish — hal borrowed for tamanni.)",
+    "tr": "Bana bir şefaatçi var mı? (Şefaatçinin olmadığı bilinen yerde söylenir: soru kalıbı temennî taşır — هَلْ temennî için ödünç alınmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "هَلْ لِي مِنْ شَفِيعٍ",
+     "ar": "اسْتِفْهَامٌ أُشْرِبَ مَعْنَى التَّمَنِّي — لِتَعَذُّرِ الْمَسْؤُولِ عَنْهُ.",
+     "en": "The BORROWED question: where the asked-about thing is known absent, asking after it can only be wishing for it. The form is istifham; the despair converts it — and because the despair is in the heart, the reading is an offered wajh, never a surface verdict."
+    },
+    {
+     "text": "هَلْ لِي مِنْ شَفِيعٍ",
+     "ar": "«مِنْ» الزَّائِدَةُ تَجُرُّ اللَّفْظَ وَيَبْقَى الْمَحَلُّ رَفْعًا.",
+     "en": "The zaida min governs the LETTER and leaves the PLACE alone: shafi' is majrur lafzan, marfu' mahallan as the mubtada — the same two-layer reading every mahalli i'rab trains."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "tokens": [
+    {
+     "w": "هَلْ",
+     "lex": "hal",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«have…?» — the question particle, here made to drink tamanni's meaning: the asker knows no intercessor exists, so the question is a wish wearing a question's dress. Istifham stays the asl — the despair that turns it lives in the heart, not on the page."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "لِي",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "huruf-jarr"
+      ],
+      "irab": "«for me» — لِ opened to لَ's shape before the ya; the jarr-phrase as khabar muqaddam, fronted before its indefinite mubtada."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "huruf-jarr"
+      ],
+      "irab": "«any» — the ZAIDA min: after a question (as after a negation) it stresses the sweep — «any intercessor at all» — and governs the word's letter, not its place."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "شَفِيعٍ",
+     "lex": "shafi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«intercessor» — the deferred mubtada: majrur in LETTER by the zaida min, marfu' in PLACE — the lafzan/mahallan split on one word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَفِيع",
+      "root": "ش ف ع",
+      "wazn": "فَعِيلٍ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s3",
+   "text": "لَوْ تَأْتِينِي فَتُحَدِّثَنِي",
+   "translation": {
+    "en": "Would that you came to me and talked with me! (The fa-verb's nasb by a hidden an is the PROOF that this law is tamanni — that nasb never follows a conditional.)",
+    "tr": "Keşke bana gelsen de benimle konuşsan! (Fâ fiilinin gizli bir en ile nasbı, bu لَوْ'in temennî olduğunun DELİLİdir — o nasb şarttan sonra asla gelmez.)"
+   },
+   "jumal": [
+    {
+     "text": "لَوْ تَأْتِينِي فَتُحَدِّثَنِي",
+     "ar": "لَوْ لِلتَّمَنِّي — وَالدَّلِيلُ نَصْبُ الْمُضَارِعِ بَعْدَ الْفَاءِ.",
+     "en": "LAW FOR THE WISH, argued from the surface: nasb by a hidden an happens after six things — tamanni among them — and never after a shart. Since the fa-verb IS mansub, the law cannot be conditional; the fitting reading left standing is tamanni. The source's own istidlal, complete on three words."
+    },
+    {
+     "text": "فَتُحَدِّثَنِي",
+     "ar": "الْفَاءُ السَّبَبِيَّةُ: مَا بَعْدَهَا مُسَبَّبٌ عَمَّا قَبْلَهَا.",
+     "en": "The FA SABABIYYA names the causal chain: the talking would flow from the coming. The an + verb melt into a masdar coordinated to a masdar understood from the wish — the classical taqdir behind the fatha."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "لَوْ",
+     "lex": "law",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "in-shartiyya"
+      ],
+      "irab": "«would that» — لَوْ borrowed for the WISH, and the page itself proves the borrowing: the fa-verb two words on wears nasb by a hidden أَنْ, and a mudari's nasb after the fa never follows a conditional — it follows one of the six talab things. The conditional frame stands down."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَأْتِينِي",
+     "lex": "ata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "mudari-marfu"
+      ],
+      "irab": "«you come to me» — the wished act, a marfu' mudari (the wish itself does not govern it); the nun is the nun of protection and the speaker's ya its maf'ul bihi."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَتَى",
+      "root": "أ ت ي",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَتُحَدِّثَنِي",
+     "lex": "haddatha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "an-masdariyya"
+      ],
+      "irab": "«and talked with me» — the FA SABABIYYA: what follows is the fruit of what was wished. The mudari after it is MANSUB by an obligatorily hidden أَنْ — the fatha on the tha is the receipt — and that construction follows tamanni and its five talab siblings, never a shart. This one fatha is the whole dalil."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَدَّثَ",
+      "root": "ح د ث",
+      "wazn": "تُفَعِّلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s4",
+   "text": "هَلَّا أَكْرَمْتَ زَيْدًا",
+   "translation": {
+    "en": "If only you had honoured Zayd! (halla before a MADI is tandim — making the addressee regret what he left undone.)",
+    "tr": "Keşke Zeyd'e ikram etseydin! (Mâzîden önce هَلَّا tendîmdir — muhâtabı yapmadığına pişman etmek.)"
+   },
+   "jumal": [
+    {
+     "text": "هَلَّا أَكْرَمْتَ زَيْدًا",
+     "ar": "التَّنْدِيمُ: تَوْبِيخُ الْمُخَاطَبِ عَلَى تَرْكِ الْفِعْلِ فِي الْمَاضِي.",
+     "en": "TANDIM: the speaker's aim is to make the addressee REGRET the omission — the act lay in his power and he left it. A wish-shaped rebuke, aimed backward."
+    },
+    {
+     "text": "هَلَّا أَكْرَمْتَ زَيْدًا",
+     "ar": "عِنْدَ السَّكَّاكِيِّ: «هَلْ» أَوْ «لَوْ» + «مَا/لَا» زَائِدَةٌ مُضَمَّنَةٌ مَعْنَى التَّمَنِّي.",
+     "en": "Sakkaki's derivation covers the whole family at once — هَلَّا، أَلَّا، لَوْلَا، لَوْمَا are hal/law wearing a tamanni-laden extra ma/la, which is why all four give tandim with a madi and tahdid with a mudari."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "هَلَّا",
+     "lex": "halla",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "huruf-tanbih"
+      ],
+      "irab": "«if only you had…!» — ONE particle: Sakkaki reads it as hal compounded with a zaida la that drank tamanni's meaning, which is why a madi after it yields TANDIM — reproach for the thing left undone. The peel must never split it into a question-hamza's family."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَكْرَمْتَ",
+     "lex": "akrama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«you had honoured» — a MADI, and its pastness is the whole switch: what is already past cannot be urged, only regretted, so the particle reads tandim."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَكْرَمَ",
+      "root": "ك ر م",
+      "wazn": "أَفْعَلْتَ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "زَيْدًا",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "insha-wa-tamanni"
+      ],
+      "irab": "«Zayd» — the maf'ul bihi, mansub."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s5",
+   "text": "هَلَّا تَقُومُ",
+   "translation": {
+    "en": "Why don't you stand? (The same particle before a MUDARI is tahdid — urging the act on.)",
+    "tr": "Kalksana! (Aynı edat MUZÂRİ önünde tahzîzdir — fiile teşvik.)"
+   },
+   "jumal": [
+    {
+     "text": "هَلَّا تَقُومُ",
+     "ar": "التَّحْضِيضُ: طَلَبُ الْفِعْلِ بِحَثٍّ وَإِزْعَاجٍ.",
+     "en": "TAHDID: asking for the act with a push — sharper than a plain amr, softer than a threat. The mudari is what licenses it: only the still-possible can be urged."
+    },
+    {
+     "text": "هَلَّا تَقُومُ",
+     "ar": "زَمَنُ الْفِعْلِ هُوَ الْمُشَاهَدُ الْوَاحِدُ الْفَاصِلُ بَيْنَ التَّنْدِيمِ وَالتَّحْضِيضِ.",
+     "en": "One observable splits the pair: s4 and s5 share their particle letter for letter, and only the tense after it decides — madi = tandim, mudari = tahdid. The closed-class method the app has used since مِنْ/مَنْ, here inside balagha itself."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "tokens": [
+    {
+     "w": "هَلَّا",
+     "lex": "halla",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "huruf-tanbih"
+      ],
+      "irab": "«why don't you…?» — the SAME particle as s4, and the verb's TENSE is the entire divider: a mudari can still be done, so the particle spurs instead of reproaching."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "تَقُومُ",
+     "lex": "qama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "mudari-marfu"
+      ],
+      "irab": "«you stand» — a marfu' mudari; its openness to the future flips the particle to TAHDID: the act can still happen, so it is urged."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَامَ",
+      "root": "ق و م",
+      "wazn": "تَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:23:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 23,
+   "sentence": "s6",
+   "text": "لَعَلِّي أَحُجُّ فَأَزُورَكَ",
+   "translation": {
+    "en": "Would that I could make the pilgrimage and visit you! (la'alla's hope, spoken of a REMOTE thing, is given layta's hukm — and the nasb of the fa-verb is again the receipt.)",
+    "tr": "Keşke hac edebilsem de seni ziyaret etsem! (Uzak bir şey için söylenen لَعَلَّ ümidine لَيْتَ hükmü verilir — fâ fiilinin nasbı yine makbuzdur.)"
+   },
+   "jumal": [
+    {
+     "text": "لَعَلِّي أَحُجُّ فَأَزُورَكَ",
+     "ar": "لَعَلَّ بِمَنْزِلَةِ لَيْتَ — لِبُعْدِ الْمَرْجُوِّ.",
+     "en": "LA'ALLA AT LAYTA'S RANK: hope's particle, aimed at a thing too far for hope, becomes a wish — and the grammar follows the heart, giving the fa-verb the nasb that only the talab six license."
+    },
+    {
+     "text": "لَعَلِّي أَحُجُّ فَأَزُورَكَ",
+     "ar": "حَدُّ التَّرَجِّي وَالتَّمَنِّي: الْمُمْكِنُ الْقَرِيبُ يُرْجَى، وَالْبَعِيدُ أَوِ الْمُسْتَحِيلُ يُتَمَنَّى.",
+     "en": "The tarajji/tamanni border drawn once: the near-possible is HOPED for, the remote or impossible is WISHED for — and the border shows on the page only through the fa-verb's ending, which is why this sentence and s3 close the chapter as a pair."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "tokens": [
+    {
+     "w": "لَعَلِّي",
+     "lex": "laalla",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "insha-wa-tamanni",
+       "khabar-insha"
+      ],
+      "irab": "«would that I» — la'alla, whose asl is TARAJJI (hope for the attainable); the hajj stands remote from the speaker, so the particle is run layta's course. The clinging ya is its ism in the position of nasb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "أَحُجُّ",
+     "lex": "hajja",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "mudari-marfu"
+      ],
+      "irab": "«I make the pilgrimage» — a marfu' mudari (the doubled jim carries its shadda whole); the clause is la'alla's khabar in the position of raf'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَجَّ",
+      "root": "ح ج ج",
+      "wazn": "أَفْعُلُ",
+      "sure": true
+     },
+     "match": true
+    },
+    {
+     "w": "فَأَزُورَكَ",
+     "lex": "zara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "insha-wa-tamanni",
+       "an-masdariyya"
+      ],
+      "irab": "«and visit you» — the fa sababiyya again, the mudari mansub by the hidden an, the kaf its maf'ul bihi. The fatha on the ra is the WITNESS that this la'alla got layta's hukm: after a plain tarajji the books do not give the fa this nasb."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "زَارَ",
+      "root": "ز و ر",
+      "wazn": "أَفْعُلُ",
       "sure": true
      },
      "match": true

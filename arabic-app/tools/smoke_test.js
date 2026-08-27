@@ -7300,6 +7300,104 @@ if (!CHROME) {
       throw new Error('…and its kaf is never «its maf\'ul bihi»');
   });
 
+  await check('talkhis ch23: insha and the wish — the InshaEngine, the borrowed law, and the tahdid split', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 23);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['insha-wa-tamanni'];
+      // the coined particle: the layta frame with its ism
+      const tmLayta = InshaEngine.read(SentenceAnalyzer.analyze('لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا'));
+      // the borrowed law: the shart frame stands down, the wish-frame reads,
+      // and the fa-verb is a corpus VERB whose ya is a maf'ul, never a mudaf ilayh
+      const rows3 = SentenceAnalyzer.analyze('لَوْ تَأْتِينِي فَتُحَدِّثَنِي');
+      const faV = rows3[2];
+      const sh3 = ShartEngine.read(rows3).length;
+      const tm3 = InshaEngine.read(rows3);
+      // the CONTROL: a real law keeps its conditional frame
+      const shCtl = ShartEngine.read(SentenceAnalyzer.analyze('لَوْ جِئْتَنِي لَأَكْرَمْتُكَ'));
+      // the tahdid pair: one particle, split by the verb's tense
+      const rows4 = SentenceAnalyzer.analyze('هَلَّا أَكْرَمْتَ زَيْدًا');
+      const rows5 = SentenceAnalyzer.analyze('هَلَّا تَقُومُ');
+      const tm4 = InshaEngine.read(rows4), tm5 = InshaEngine.read(rows5);
+      // لولا's verb face: tahdid, and no imtina frame — while the NOUN face keeps it
+      const rowsLw = SentenceAnalyzer.analyze('لَوْلَا تَقُومُ');
+      const shLw = ShartEngine.read(rowsLw).length;
+      const tmLw = InshaEngine.read(rowsLw);
+      const shLwCtl = ShartEngine.read(SentenceAnalyzer.analyze('لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو'));
+      // la'alla with layta's hukm: the geminate mudari is a corpus verb and
+      // the fa-verb's stale «mudaf ilayh» label was rewritten on upgrade
+      const rows6 = SentenceAnalyzer.analyze('لَعَلِّي أَحُجُّ فَأَزُورَكَ');
+      const tm6 = InshaEngine.read(rows6);
+      // hal's wish is a SHORTLIST with an exact trigger: the textbook shape
+      // fires it and a plain nominal question must not
+      const tmHal = InshaEngine.read(SentenceAnalyzer.analyze('هَلْ لِي مِنْ شَفِيعٍ'));
+      const tmHalCtl = InshaEngine.read(SentenceAnalyzer.analyze('هَلْ زَيْدٌ قَائِمٌ'));
+      // the tm-frame card renders in the Jumla lab's own pipeline
+      let frameHtml = '';
+      try {
+        const d = document.createElement('div'); d.id = 'jumlaOut'; document.body.appendChild(d);
+        conjState.jumla = 'هَلَّا تَقُومُ';
+        renderJumlaOut(); frameHtml = d.innerHTML; d.remove();
+      } catch (e) { frameHtml = 'ERR ' + e.message; }
+      const css = [...document.styleSheets].map(s => {
+        try { return [...s.cssRules].map(x => x.cssText).join('\n'); } catch (e) { return ''; }
+      }).join('\n');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('insha-wa-tamanni')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        layta: tmLayta[0] && [tmLayta[0].key, (tmLayta[0].pieces[0] || {}).idx],
+        sh3, tm3Key: tm3[0] && tm3[0].key,
+        faVKind: faV && faV.kind,
+        faVMudaf: faV && faV.notes.some(n => n.en === 'attached pronoun — the mudaf ilayh'),
+        faVWiqaya: faV && faV.notes.some(n => /MAF'UL BIHI/.test(n.en || '')),
+        shCtlKey: shCtl[0] && shCtl[0].key,
+        halla4: rows4[0] && rows4[0].pk, tm4Ar: tm4[0] && tm4[0].ar,
+        tm5Ar: tm5[0] && tm5[0].ar,
+        shLw, tmLwAr: tmLw[0] && tmLw[0].ar, shLwCtlKey: shLwCtl[0] && shLwCtl[0].key,
+        hajjKind: rows6[1] && rows6[1].kind, tm6Key: tm6[0] && tm6[0].key,
+        zurMudaf: rows6[2] && rows6[2].notes.some(n => n.en === 'attached pronoun — the mudaf ilayh'),
+        halKey: tmHal[0] && tmHal[0].key, halCtl: tmHalCtl.length,
+        frameOk: /tm-frame/.test(frameHtml) && /التَّحْضِيض/.test(frameHtml),
+        cssOk: /\.shart-frame\.tm-frame/.test(css),
+      };
+    });
+    if (r.missing) throw new Error('chapter 23 did not load');
+    if (r.chapters < 23) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch23 sentences: ' + r.n);
+    if (r.t !== 19) throw new Error('ch23 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the insha-wa-tamanni note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 15) throw new Error('too few insha-wa-tamanni tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch23 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.layta || r.layta[0] !== 'layta' || r.layta[1] !== 1)
+      throw new Error('the layta frame with its ism: ' + JSON.stringify(r.layta));
+    if (r.sh3 !== 0) throw new Error('the borrowed law opens no shart frame: ' + r.sh3);
+    if (r.tm3Key !== 'lawT') throw new Error('…and the wish-frame reads it: ' + r.tm3Key);
+    if (r.faVKind !== 'verb') throw new Error('فَتُحَدِّثَنِي is a corpus verb: ' + r.faVKind);
+    if (r.faVMudaf) throw new Error('…whose ya is never a «mudaf ilayh»');
+    if (!r.faVWiqaya) throw new Error('…the nun of protection note names the ya a MAF\'UL BIHI');
+    if (r.shCtlKey !== 'law') throw new Error('the REAL law keeps its conditional frame: ' + r.shCtlKey);
+    if (r.halla4 !== 'tahdid') throw new Error('هَلَّا is a closed-class tahdid particle: ' + r.halla4);
+    if (!/التَّنْدِيم/.test(r.tm4Ar || '')) throw new Error('halla + madi = TANDIM: ' + r.tm4Ar);
+    if (!/التَّحْضِيض/.test(r.tm5Ar || '')) throw new Error('halla + mudari = TAHDID: ' + r.tm5Ar);
+    if (r.shLw !== 0) throw new Error('لولا before a verb opens no imtina frame: ' + r.shLw);
+    if (!/التَّحْضِيض/.test(r.tmLwAr || '')) throw new Error('…the tahdid face reads it: ' + r.tmLwAr);
+    if (r.shLwCtlKey !== 'lawla') throw new Error('لولا before a NOUN keeps imtina: ' + r.shLwCtlKey);
+    if (r.hajjKind !== 'verb') throw new Error('أَحُجُّ is a corpus verb (the geminate mudari): ' + r.hajjKind);
+    if (r.tm6Key !== 'laalla') throw new Error('la\'alla with the nasb witness gets layta\'s hukm: ' + r.tm6Key);
+    if (r.zurMudaf) throw new Error('فَأَزُورَكَ\'s kaf is never a «mudaf ilayh» — the stale label is rewritten');
+    if (r.halKey !== 'halT') throw new Error('the hal wish-shortlist fires on the textbook shape: ' + r.halKey);
+    if (r.halCtl !== 0) throw new Error('…and never on a plain nominal question: ' + r.halCtl);
+    if (!r.frameOk) throw new Error('the tm-frame card renders in the Jumla lab');
+    if (!r.cssOk) throw new Error('the tm-frame wears its own spine color');
+  });
+
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
     const r = await page.evaluate(() => {
       const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });
