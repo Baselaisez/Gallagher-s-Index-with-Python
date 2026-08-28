@@ -7470,6 +7470,116 @@ if (!CHROME) {
       throw new Error('أُمُّهُ is the mother, never the connective: ' + JSON.stringify([r.c2kind, r.c2pk]));
   });
 
+  await check('talkhis ch25: hal basita/murakkaba, ma and man — and the nominal-hal frames', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 25);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['hal-ma-man'];
+      const ist = s => IstifhamEngine.read(SentenceAnalyzer.analyze(s));
+      const f1 = ist('فَهَلْ أَنْتُمْ شَاكِرُونَ');
+      const f2 = ist('هَلِ الْحَرَكَةُ مَوْجُودَةٌ');
+      const f3 = ist('هَلِ الْحَرَكَةُ دَائِمَةٌ');
+      const f4 = ist('مَا الْعَنْقَاءُ');
+      const rows5 = SentenceAnalyzer.analyze('مَنْ فِي الدَّارِ');
+      const f5 = IstifhamEngine.read(rows5);
+      const f6 = ist('مَا عِنْدَكَ');
+      // مَنْ the ISM carries its OWN key now — the jarr letter's key must
+      // not ride the fatha-mim row (the ML and the case layer read it)
+      const manPk = rows5[0] && rows5[0].pk;
+      const minPk = (SentenceAnalyzer.analyze('مِنْ زَيْدٍ')[0] || {}).pk;
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('hal-ma-man')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        k1: f1[0] && f1[0].key, k2: f2[0] && f2[0].key, k3: f3[0] && f3[0].key,
+        k4: f4[0] && f4[0].key, k5: f5[0] && f5[0].key, k6: f6[0] && f6[0].key,
+        manPk, minPk,
+      };
+    });
+    if (r.missing) throw new Error('chapter 25 did not load');
+    if (r.chapters < 25) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch25 sentences: ' + r.n);
+    if (r.t !== 16) throw new Error('ch25 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the hal-ma-man note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 13) throw new Error('too few hal-ma-man tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch25 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.k1 !== 'halFil') throw new Error('the aya reads the fi\'l-affinity nominal frame: ' + r.k1);
+    if (r.k2 !== 'halBasita') throw new Error('a mawjud-khabar is BASITA: ' + r.k2);
+    if (r.k3 !== 'halMurakkaba') throw new Error('any other khabar is MURAKKABA: ' + r.k3);
+    if (r.k4 !== 'maAsk') throw new Error('ma before a definite noun asks name-or-essence: ' + r.k4);
+    if (r.k5 !== 'manAsk') throw new Error('man asks the person: ' + r.k5);
+    if (r.k6 !== 'maJins') throw new Error('ma before a bare zarf asks the JINS: ' + r.k6);
+    if (r.manPk !== 'man') throw new Error('مَنْ the ism carries its own pk: ' + r.manPk);
+    if (r.minPk !== 'jarr') throw new Error('…and مِنْ the letter keeps jarr: ' + r.minPk);
+  });
+
+  await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
+    const r = await page.evaluate(() => {
+      const claims = {};
+      const claim = s => {
+        const rows = SentenceAnalyzer.analyze(s);
+        return rows.map((x, i) => { const c = CaseEngine.claim(rows, i); return c ? c.k : null; });
+      };
+      // pinned claims, one per branch the engine owns
+      claims.nominal = claim('زَيْدٌ قَائِمٌ');                      // raf raf
+      claims.nasb = claim('رَأَيْتُ زَيْدًا');                        // …tanwin nasb
+      claims.jarr = claim('فِي الدَّارِ');                           // harf jarr
+      claims.jazm = claim('لَمْ يَكْتُبْ زَيْدٌ');                    // harf jazm raf
+      claims.mabni = claim('هُوَ أَخُوكَ');                           // mabni …
+      claims.seam = claim('كِتَابُهُ حَسَنٌ');                        // raf (seam) raf
+      claims.silent = claim('مَعْنَاهُ حَسَنٌ');                      // null (unmarked seam) raf
+      claims.hollow = claim('لَنْ تَكُونَ');                          // harf nasb — not the five verbs
+      // the corpus-wide number, computed exactly as the bank computes it
+      let agree = 0, judged = 0;
+      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+        const text = sen.tokens.map(t => t.s.full).join(' ');
+        let rows = [];
+        try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) {}
+        sen.tokens.forEach((t, i) => {
+          try {
+            const r2 = rows[i] || {};
+            const aligned = r2.w && stripAr(r2.w).replace(/[^\u0621-\u064a]/g, '') ===
+                            stripAr(t.s.full).replace(/[^\u0621-\u064a]/g, '');
+            const c = aligned ? CaseEngine.claim(rows, i) : null;
+            const h = CaseEngine.humanCase((t.irab || {}).ar);
+            if (c && h) { judged++; if (c.k === h) agree++; }
+          } catch (e) {}
+        });
+      })));
+      const pct = judged ? Math.round(agree / judged * 1000) / 10 : 0;
+      // …and the tahqiq panel renders the case column from the same object
+      const sen0 = STORIES.find(s => s.id === 'talkhis-al-miftah').chapters[0].sentences[0];
+      const html = tahqiqHtml(sen0);
+      return { claims, judged, pct,
+               panel: /tq-case/.test(html) && /tahqiq/.test(html) };
+    });
+    const c = r.claims;
+    if (c.nominal[0] !== 'raf' || c.nominal[1] !== 'raf')
+      throw new Error('damma-tanwin claims raf: ' + JSON.stringify(c.nominal));
+    if (c.nasb[1] !== 'nasb') throw new Error('fathatan claims nasb: ' + JSON.stringify(c.nasb));
+    if (c.jarr[0] !== 'harf' || c.jarr[1] !== 'jarr')
+      throw new Error('the jarr letter and its majrur: ' + JSON.stringify(c.jarr));
+    if (c.jazm[1] !== 'jazm') throw new Error('the majzum mudari: ' + JSON.stringify(c.jazm));
+    if (c.mabni[0] !== 'mabni') throw new Error('a pronoun is mabni: ' + JSON.stringify(c.mabni));
+    if (c.seam[0] !== 'raf') throw new Error('the marked seam reads the host: ' + JSON.stringify(c.seam));
+    if (c.silent[0] !== null) throw new Error('the UNMARKED seam stays silent: ' + JSON.stringify(c.silent));
+    if (c.hollow[1] !== 'nasb') throw new Error('تَكُونَ is no five-verb — its fatha is nasb: ' + JSON.stringify(c.hollow));
+    // the corpus floor: measured 97.4 over 3,547 double-decided tokens at
+    // pinning — ALL stories, eight triage rounds from the first run's 83.7
+    // (bank-subset) / 96.6 (corpus-wide). The ~90 standing disagreements
+    // are boundary rows: undecided ما faces, mahall-vs-lafz phrasings,
+    // deep-context bina the surface alone cannot read.
+    if (r.judged < 3000) throw new Error('the case layer judges too few tokens: ' + r.judged);
+    if (r.pct < 96.5) throw new Error('case agreement regressed to ' + r.pct + '%');
+    if (!r.panel) throw new Error('the tahqiq panel renders the case column');
+  });
+
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
     const r = await page.evaluate(() => {
       const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });

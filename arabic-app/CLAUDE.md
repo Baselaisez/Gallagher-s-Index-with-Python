@@ -3273,3 +3273,65 @@ doer, fronted mansub = the object, am-paired nouns = ta'yin of the two.
 The hamza peel stamps row.istifham and the engine branches on the row's
 OWN class — no semantics anywhere. When a balagha rule is secretly a
 syntax rule, implement it as syntax and let the note carry the rhetoric.
+
+## The engines now decide the i'rab — and are graded on it corpus-wide
+
+The bank's worked sentences compare a SECOND field since v142: CaseEngine
+claims each token's case (raf'/nasb/jarr/jazm, harf, mabni — and SILENCE
+where taqdir or an un-narrowed shortlist leaves the surface undecided) and
+humanCase reads the case the stored line names; only double-decided tokens
+count. One definition, three readers — the tahqiq panel's i'rab column,
+the Jumla lab's case chip, the bank — the posClass discipline again. Five
+triage rounds took it 83.7 → 99.3 over 1,107 tokens, and every round's
+lesson was one already in this file wearing a new mask: the claim must be
+SHOWN the vowelled word; a fused token holding two i'rabs gets no single
+claim; the human line's FIRST keyword may describe the clitic, so an
+explicit case word outranks position. The 8 rows left are honest
+boundaries, kept on the leaving-a-disagreement-in doctrine.
+
+## An audit layer is an engine-bug detector for OTHER engines
+
+The case audit's first run found five real defects in engines that had
+passed every existing gate: IrabSign's seam peel ate the radical ha of
+ال-definite words (لا يجتمع ال والإضافة had guarded the analyzer's peel
+for a hundred versions and never IrabSign's); the dual letters-shape
+claimed raf' on singulars ending ـَانِ; the five-verbs tail matched the
+hollow تَكُونَ (LENGTH splits the plural from the singular); the
+ات-plural's kasra is nasb and jarr both; the unmarked seam decides
+nothing. A new comparison field is worth more than a new engine: it makes
+every existing engine's silent errors countable. And the article test
+inside it must read the BARE spelling — the article is never آ, and
+folding seats turned آلِهَتَكُمْ into a false ال-word.
+
+## مَنْ the ism must not wear the letter's key
+
+The min/man vowel split flipped the KIND for two hundred versions while
+the pk stayed «jarr» — and pk rides downstream (the ML pk- feature, the
+case layer's mabni table, every consumer that branches on knowledge). When
+a split decides a word is a DIFFERENT WORD, give it its own key, not just
+its own kind: the fix is one ternary at the stamp, and the probe that
+found it was reading the row's whole output, not the metric.
+
+## Widen the audit's corpus and the bug list doubles
+
+The case layer triaged to 99+ on the bank's analyse-subset — and the
+smoke gate's ALL-stories sweep immediately fell to 96.6, because the
+subset had never held أَهْلِ (peeling as أ + هَلْ since the hamza branch
+was written), وَرَبُّ (read as رُبَّ — no vowel guard), دُونَ and
+الْيَمَنِ (IrabSign's letters-shapes firing on short bares), or the verse
+rows whose ALIGNMENT had silently drifted. A benchmark's blind spot is
+its sampling before it is its metric: when an audit layer saturates,
+widen its corpus before declaring the engines sound. And grade only
+aligned pairs — a comparison across two different words measures the
+tokenizer, not the engine.
+
+## Bina hides under every case-shaped ending — the audit made the list
+
+The genus-la's fatha, the munada's damma, the heavy nun's fatha, the
+madi's ending, قَطُّ's damma: each wears a case's dress and is BINA. The
+case layer now reads the OBSERVABLE beside the word (the لا before it,
+the يا before it, the nun's shadda, the cell's tense, the mabni table) —
+and where the observable is absent it claims the case, which is exactly
+where the residual disagreements live. Bina-vs-i'rab is not a word list;
+it is a list of CONTEXTS, and the audit is what forced them to be
+enumerated.

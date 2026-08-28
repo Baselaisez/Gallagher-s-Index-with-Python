@@ -217,7 +217,7 @@ const build = async (page) => page.evaluate((PLAN) => {
       const text = sen.tokens.map(t => t.s.full).join(' ');
       let rows = [];
       try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { rows = []; }
-      let agree = 0, judged = 0;
+      let agree = 0, judged = 0, agreeC = 0, judgedC = 0;
       const tokens = sen.tokens.map((t, i) => {
         const r = rows[i] || {};
         // The APP defines what «agree» means — `posClass` in reader.html, which
@@ -227,19 +227,33 @@ const build = async (page) => page.evaluate((PLAN) => {
         const said = posClass(r.kind);
         const human = posClass(t.pos);
         if (said && human) { judged++; if (said === human) agree++; }
+        // the CASE layer — CaseEngine in reader.html, the same object the
+        // tahqiq panel and the Jumla lab read: the engines' own i'rab claim,
+        // graded against the case the stored line names. Both sides may stay
+        // silent; only double-decided tokens are counted.
+        let cSaid = null, cHuman = null, cMatch = null;
+        try {
+          const aligned = r.w && stripAr(r.w).replace(/[^\u0621-\u064a]/g, '') ===
+                          stripAr(t.s.full).replace(/[^\u0621-\u064a]/g, '');
+          const cc = aligned ? CaseEngine.claim(rows, i) : null;
+          cSaid = cc ? cc.k : null;
+          cHuman = CaseEngine.humanCase((t.irab || {}).ar);
+          if (cSaid && cHuman) { judgedC++; cMatch = cSaid === cHuman; if (cMatch) agreeC++; }
+        } catch (e) {}
         return { w: t.s.full, lex: t.lex,
                  human: { pos: t.pos, grammar: t.grammar || [], irab: t.irab.en },
                  engine: { kind: r.kind || null, lemma: r.lemma || null,
                            root: r.root || null, wazn: r.wazn || null,
                            sure: r.sure === undefined ? null : r.sure },
-                 match: said && human ? said === human : null };
+                 match: said && human ? said === human : null,
+                 caseSaid: cSaid, caseHuman: cHuman, caseMatch: cMatch };
       });
       out.sentences.push({
         id: `sen:${sid}:${ch.n}:${sen.id}`, story: sid, chapter: ch.n, sentence: sen.id,
         text, translation: sen.translation,
         jumal: (sen.jumal || []).map(j => ({ text: j.text, ar: j.ar, en: j.en })),
         posAgreement: judged ? Math.round(agree / judged * 1000) / 10 : null,
-        judged, agree, tokens,
+        judged, agree, judgedC, agreeC, tokens,
       });
     }));
   });
@@ -273,6 +287,12 @@ const build = async (page) => page.evaluate((PLAN) => {
                 const j = data.sentences.reduce((n, s2) => n + s2.judged, 0);
                 return j ? Math.round(a / j * 1000) / 10 : null;
               })(),
+              caseJudged: data.sentences.reduce((n, s2) => n + (s2.judgedC || 0), 0),
+              caseAgreement: (() => {
+                const a = data.sentences.reduce((n, s2) => n + (s2.agreeC || 0), 0);
+                const j = data.sentences.reduce((n, s2) => n + (s2.judgedC || 0), 0);
+                return j ? Math.round(a / j * 1000) / 10 : null;
+              })(),
               rows: data.endings.reduce((n, e) => n + e.rows.length, 0)
                     + data.idafa.length + data.paradigms.length * 9 + data.mizan.length
                     + data.sentences.reduce((n, s2) => n + s2.tokens.length, 0) },
@@ -299,4 +319,5 @@ const build = async (page) => page.evaluate((PLAN) => {
               (bank.counts.mizanDropped ? `; ${bank.counts.mizanDropped} scales dropped as ambiguous` : '') +
               `\n  ${bank.counts.sentences} worked sentences, ${bank.counts.sentenceTokens} tokens ` +
               `— engines agree with the human part-of-speech on ${bank.counts.posAgreement}%`);
+  console.log(`  i'rab CASE layer: ${bank.counts.caseAgreement}% agreement over ${bank.counts.caseJudged} double-decided tokens`);
 })();

@@ -1820,3 +1820,77 @@ not a one-line change.
   Measured: **99.9% over 1,431 tokens** (197 worked sentences), ch24's 19
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v142 — Talkhīṣ chapter 25 AND the CASE AUDIT: the engines decide the
+  iʿrāb and are graded on the whole corpus** — the turn's centerpiece is a
+  NEW audit layer beside the bank's part-of-speech comparison:
+  `CaseEngine.claim` reads each token's case off the analyzer's own row
+  (rafʿ/naṣb/jarr/jazm where the surface settles it, `harf` for the
+  closed-class letters, `mabni` where bina rules, SILENCE elsewhere) and
+  `CaseEngine.humanCase` reads the case the stored iʿrāb line names
+  (explicit case word > bina-class > harf — the earliest-keyword draft
+  let a clitic's description steal the host's ruling, 96 rows). One
+  definition, three readers: the tahqiq panel (new iʿrāb column with its
+  own score), the Jumla lab (a case chip per row), and the drill bank
+  (per-token caseSaid/caseHuman/caseMatch + the corpus number).
+  - **The loop paid immediately**: first run 83.7% → five triage rounds →
+    **99.3% over 1,107 double-decided tokens**, and every point was a
+    REAL fix on one side or the other. Engine side: IrabSign's seam peel
+    ate the radical ه of ال-definite words (وَالْمُتَشَابِهُ majrūr,
+    اللَّهُ manṣūb — لا يجتمع ال والإضافة written into IrabSign at last,
+    on the bare spelling since the article is never آ); the dual's
+    letters-shape claimed rafʿ on singulars ending ـَانِ (الْإِنْسَانِ);
+    the five-verbs ـُونَ test false-fired on the hollow تَكُونَ (length
+    splits them); the ات-plural's kasra is naṣb AND jarr; the naqiṣ
+    muḍāriʿ's ى and the unmarked seam (مَعْنَاهُ) now stay silent; the
+    manqūṣ kasratan stands down where the lexicon owns the lemma; a
+    diptote name's fatḥa (إِسْحَاقَ) defers to the propn knowledge.
+    Human side: the fixed phrase الْجَارُّ وَالْمَجْرُورُ is blanked
+    before the scan (the RoleEngine's own move). The 8 standing
+    disagreements are HONEST boundary rows — maḥall claims, lines
+    describing another word's case, the kept بِمَا — and the smoke gate
+    floors the number at 98.5 with the triage recorded beside it.
+  - **Chapter 25** (source lines ~2044-2085, sahifa 71-72): هَلْ's
+    fiʿl-affinity proven on the aya's three-wording ladder (فَهَلْ
+    أَنْتُمْ شَاكِرُونَ, Anbiya 21:80 — received text), هَلْ basīṭa vs
+    murakkaba as a minimal pair (مَوْجُودَةٌ / دَائِمَةٌ — one khabar
+    swaps the kind), مَا's name/essence/jins asks with the four-question
+    ladder, مَنْ's person-ask, and the هَلِ iltiqāʾ-as-sākinayn kasra
+    taught as repair-not-iʿrāb. Note 127 `hal-ma-man`; 6 sentences, 16
+    tokens; glossary +4.
+  - **Engines for ch25**: IstifhamEngine grew the NOMINAL-هل frames
+    (basīṭa on the mawjūd-khabar, murakkaba otherwise, the fiʿl-affinity
+    frame on a pronoun subject — and the fa-fold that had hidden فَهَلْ
+    from the frame test), the مَا/مَنْ ask-frames read off the analyzer's
+    own ism-face decision, and MaEngine rule 8b (sentence-initial مَا
+    before a bare zarf/jarr phrase that ENDS the sentence asks — nothing
+    stands for a negation to deny). And مَنْ the ISM now carries pk
+    `man` — the jarr letter's key had ridden the fatḥa-mim row into the
+    ML features and the case layer.
+  - **ML**: held-out 54.7/72.1 over 3,993 labelled tokens through the
+    pk change (54/71.5 floors hold); the case-audit number itself is a
+    new floored metric (98.5) — a rule-layer "model" graded corpus-wide.
+
+  - **…and the corpus-wide sweep doubled the yield**: the smoke gate
+    grades ALL seventeen stories (3,547 double-decided tokens), not the
+    bank's analyse-subset — and its first run (96.6%) surfaced a second
+    seam of engine bugs the subset never held: أَهْلِ had peeled as
+    question-hamza + هَلْ for as long as that branch existed (the
+    whole-word lexicon guard now protects it), وَرَبُّ read as رُبَّ (the
+    ra's vowel decides — the min/man shape again), دُونَ as a sound
+    plural and الْيَمَنِ as a dual (IrabSign's letters-shapes now defer
+    to a short bare), يَكُونَ as the five verbs (the group's waw wears
+    its SUKUN; the hollow's is a bare madd), فَيَجْزِيهِمْ read jazm off
+    the pronoun's sukun (kasra-variant tails), إِلٰهُ's radical ha eaten
+    at the seam (the lemma knows its own last radical — note 103's
+    method one letter over), the لا-jins ism and the munada and the
+    heavy nun claimed as cases where they are BINA, and مَبْنِيٌّ
+    لِلْمَجْهُولِ stealing the human reading (a voice, not a ruling —
+    blanked). Verse-row ALIGNMENT is now a precondition of grading:
+    a drifted row is not the same word. Final: **97.4% corpus-wide**,
+    floored at 96.5 with the triage recorded beside the number.
+
+  Measured: **99.9% POS over 1,447 tokens** (203 worked sentences),
+  **98.6% CASE on the bank subset** and **97.4% CASE corpus-wide over
+  3,547**; the two standing POS disagreements remain the twice-witnessed
+  undecidable بِمَا.
