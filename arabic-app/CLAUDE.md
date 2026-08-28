@@ -3388,3 +3388,60 @@ by its sukun. The sweep now requires the particle's dress — the fifth
 member of the min/man family (one spelling, two words, one vowel), and
 the second time a flat fold threw away the very evidence a closed-class
 split needed.
+
+## The question that already holds its answer — receipts before rhetoric
+
+Chapter 27's bab is semantic (istibta', tahakkum, tahwil…), yet four of
+its wujuh carry MECHANICAL receipts, and only those four became frames:
+the hamza OVER a negation (أَلَيْسَ — nafy-of-nafy, claimed before the
+class branches eat the verb-row), a FIRST-PERSON madi after كَمْ (a man
+cannot ask the count of his own deed), the مَا لِـ frame (a bare
+li-pronoun khabar gives the nafiya nothing to deny — structure, not
+taste), and the fronted mudaf object (plain fatha, verb past the idafa
+chain). The other six wujuh live in the note. The line to hold: a frame
+engine claims what the SURFACE settles; rhetoric that needs the context's
+knowledge ships as DOC and note, never as a verdict.
+
+## A widened frame ships WITH its control — both directions, same check
+
+hamzaMaful's first draft demanded a tanwin and verb-adjacency, and
+أَغَيْرَ اللَّهِ تَدْعُونَ (plain fatha — the idafa took the tanwin; the
+verb past the mudaf-ilayh) read as tasdiq. The widening accepts both
+dresses and walks over intervening NOUNS only — and the gate pins the
+control (أَزَيْدًا ضَرَبْتَ) in the same check that pins the new shape.
+Same for kamIstibta: the third-person كَمْ آتَيْنَاهُمْ keeps kamAdad in
+the same gate. A frame widened without its control pinned is a frame
+about to steal its neighbour.
+
+## لَيْسَ wears the shapes of three wrong readings
+
+The jamid nasikh is a MAZI with no mudari — and every engine that reads
+shapes found a wrong one on it: its opening hamza-dress (أَلَيْسَ) passes
+the mudari-prefix test, so CaseEngine claimed nasb off its bina-fatha;
+its khabar wears the ZAIDA BA (majrur in letter, mansub in place — word
+the i'rab with the lafzi case first, and humanCase agrees with the
+engine's honest jarr). A closed-class VERB needs its own guards exactly
+as the closed-class nouns did — the bare-ليس test now sits in the case
+engine's verb branch, before the prefix heuristic.
+
+## The doer may already be in the cell — expectations must read the person
+
+«First noun after the verb — likely the fa'il» was wrong after every أَرَى
+and سَلْ in the corpus: a 1st/2nd-person cell (and every amr) carries its
+doer as its own pronoun, so the following noun can only be the maf'ul.
+The flag is computed at the END of the analyzer's iteration — the corpus
+dig stamps the cell AFTER the expectation code runs, and reading row.cell
+where it does not yet exist is the in-iteration ordering trap: set state
+for the NEXT word where this word is finished.
+
+## The stored majhul is a singular — its plural is rebuilt IN the cell loop
+
+يُوصَفُونَ reached no cell twice over: the mithal's returned waw blocks
+the vowel-rule derivation from يَصِفُونَ, and the package stores only
+يُوصَفُ. The general fix (offer the singular as a candidate) was WRONG —
+every active plural would resolve to its singular cell, person lost,
+because the slots loop meets mudari[0] before mudari[2]. The safe home is
+inside the majhulMudari branch itself: build stored-singular + ونَ and
+test THAT, so the fallback exists only where no plural cell can. Where a
+candidate could match many cells, put the derivation next to the one cell
+it is FOR — not in the shared candidate list.

@@ -277,7 +277,7 @@ S.append({"id": "s7", "translation": {
       "اللَّامُ حَرْفُ جَرٍّ وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ — وَشِبْهُ الْجُمْلَةِ حَالٌ مِنَ الْإِشَارَةِ.",
       "«for you» — the jarr lam with the attached feminine kaf in jarr position; the phrase stands as hal of the pointed-at provision.",
       "«sana» — cer lâmı ile dişil muttasıl kâf, cer mevkiinde; öbek, işaret edilen rızkın hâli olarak durur.",
-      segments=[seg("لَ","li","part"), seg("كِ","ka","pron")]),
+      segments=[seg("لَ","li","part"), seg("كِ","pron-2fs","pron")]),
   tok("هَذَا","hadha","pron",["adawat-al-tasawwur"],
       "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ مُؤَخَّرٌ.",
       "«this» — the demonstrative as deferred mubtada in raf' position: the out-of-season provision itself, pointed at.",

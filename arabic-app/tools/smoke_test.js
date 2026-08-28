@@ -7589,6 +7589,68 @@ if (!CHROME) {
     if (r.aataCell !== 'أ ت ي') throw new Error('آتَيْنَاهُمْ resolves to the stored آتَى: ' + r.aataCell);
   });
 
+  await check('talkhis ch27: the question leaving its asl — hamzaNafy, kamIstibta, the ma-li frame', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 27);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['khuruj-al-istifham'];
+      const ist = s => IstifhamEngine.read(SentenceAnalyzer.analyze(s));
+      const k = s => { const f = ist(s); return f[0] && f[0].key; };
+      const laysaRows = SentenceAnalyzer.analyze('أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ');
+      const huphup = SentenceAnalyzer.analyze('مَا لِيَ لَا أَرَى الْهُدْهُدَ');
+      const wsf = SentenceAnalyzer.analyze('لَا يُوصَفُونَ بِالذُّكُورَةِ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('khuruj-al-istifham')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        // the frames — and the CONTROLS that keep the old readings standing:
+        // a THIRD-person kam keeps the plain count-ask, and the tanwin-object
+        // control keeps the original hamzaMaful shape.
+        kIstibta: k('كَمْ دَعَوْتُكَ'), kAdadCtrl: k('كَمْ آتَيْنَاهُمْ مِنْ آيَةٍ بَيِّنَةٍ'),
+        kMaLi: k('مَا لِيَ لَا أَرَى الْهُدْهُدَ'),
+        kNafy: k('أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ'),
+        kInkar: k('أَغَيْرَ اللَّهِ تَدْعُونَ'), kMafulCtrl: k('أَزَيْدًا ضَرَبْتَ'),
+        kIstibad: k('أَنَّى لَهُمُ الذِّكْرَى'),
+        // لَيْسَ is a jamid MAZI — its bina-fatha must not be claimed as nasb
+        laysaCase: (CaseEngine.claim(laysaRows, 0) || {}).k,
+        // the مَا لِـ row is promoted to the ism face → mabni claim
+        maCase: (CaseEngine.claim(huphup, 0) || {}).k,
+        // a 1st-person verb carries its doer in the cell — the noun after it
+        // expects the MAF'UL, not the fa'il
+        mafulNote: (huphup[4] && (huphup[4].notes || []).some(n => /likely the MAF'UL/.test(n.en || ''))) || false,
+        // the stored majhul singular answers for its group's-waw plural
+        wsfKind: wsf[1] && wsf[1].kind, wsfTense: wsf[1] && wsf[1].cell && wsf[1].cell.tense,
+        wsfCase: (CaseEngine.claim(wsf, 1) || {}).k,
+      };
+    });
+    if (r.missing) throw new Error('chapter 27 did not load');
+    if (r.chapters < 27) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 7) throw new Error('ch27 sentences: ' + r.n);
+    if (r.t !== 21) throw new Error('ch27 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the khuruj-al-istifham note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 15) throw new Error('too few khuruj-al-istifham tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch27 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.kIstibta !== 'kamIstibta') throw new Error('a first-person madi after kam is ISTIBTA: ' + r.kIstibta);
+    if (r.kAdadCtrl !== 'kamAdad') throw new Error('…and the third-person kam keeps the count-ask: ' + r.kAdadCtrl);
+    if (r.kMaLi !== 'maLiTaajjub') throw new Error('the ma-li frame reads TA\'AJJUB: ' + r.kMaLi);
+    if (r.kNafy !== 'hamzaNafy') throw new Error('the hamza over a negation is TAQRIR: ' + r.kNafy);
+    if (r.kInkar !== 'hamzaMaful') throw new Error('the fronted mudaf object reads hamzaMaful: ' + r.kInkar);
+    if (r.kMafulCtrl !== 'hamzaMaful') throw new Error('…and the tanwin control keeps its frame: ' + r.kMafulCtrl);
+    if (r.kIstibad !== 'annaAyna') throw new Error('anna before a nominal keeps min-ayna: ' + r.kIstibad);
+    if (r.laysaCase !== 'mabni') throw new Error('لَيْسَ is a jamid mazi, mabni — not nasb: ' + r.laysaCase);
+    if (r.maCase !== 'mabni') throw new Error('the promoted ma-li ma claims mabni: ' + r.maCase);
+    if (!r.mafulNote) throw new Error('a 1st-person verb\'s following noun expects the MAF\'UL');
+    if (r.wsfKind !== 'verb' || r.wsfTense !== 'majhulMudari' || r.wsfCase !== 'raf')
+      throw new Error('يُوصَفُونَ answers from the stored majhul singular: ' +
+        r.wsfKind + '/' + r.wsfTense + '/' + r.wsfCase);
+  });
+
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
     const r = await page.evaluate(() => {
       const claims = {};

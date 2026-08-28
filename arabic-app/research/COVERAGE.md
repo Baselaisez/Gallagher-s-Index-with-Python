@@ -1923,3 +1923,36 @@ not a one-line change.
   over 3,573** (up from 97.4); ML held-out 54.8/71.9 over 4,017 (floors
   54/71.5). The two standing POS disagreements remain the بِمَا pair;
   no new case disagreements arrived with the chapter.
+
+- **v144 — Talkhīṣ ch27: the question leaving its aṣl.** Sahifa 73-74 of
+  talkhis-al-miftah-balagha.txt: the ten ghayr-ḥaqīqī wujūh, seven in real
+  text — istibṭāʾ (كَمْ دَعَوْتُكَ), taʿajjub (مَا لِيَ لَا أَرَى الْهُدْهُدَ,
+  al-Naml 27:20), tanbīh on straying (فَأَيْنَ تَذْهَبُونَ, 81:26), inkār
+  (أَغَيْرَ اللَّهِ تَدْعُونَ, 6:40), taqrīr by nafy-of-nafy with the zaida
+  ba (أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ, 39:36), taḥqīr (مَنْ هَذَا) and
+  istibʿād (أَنَّى لَهُمُ الذِّكْرَى, 44:13) — wa'īd, tawbīkh/takdhīb,
+  tahakkum and tahwīl carried in note 129 `khuruj-al-istifham` with the
+  source's own ayat. Engine wave, probe-first: hamzaNafy (the hamza over
+  لَيْسَ/لَمْ — two negatives birth an affirmation, claimed BEFORE the class
+  branches eat the row), kamIstibta (a first-person madi after كم is the
+  mechanical receipt; the third-person control keeps kamAdad), the مَا لِـ
+  frame (MaEngine rule 8c promotes the question — a bare li-pronoun khabar
+  gives the nafiya nothing to deny — and maLiTaajjub names it), hamzaMaful
+  widened to the fronted MUDAF's plain fatha with the verb past the idafa
+  chain (أَغَيْرَ اللَّهِ تَدْعُونَ had read as tasdiq; the tanwin control
+  keeps its frame), CaseEngine's laysa-mabni guard (the jamid mazi's
+  bina-fatha was claimed as nasb — the question-hamza dress opens on the
+  very letter the mudari-prefix test reads), the stored-majhul singular
+  answering for its group's-waw plural (يُوصَفُونَ, built inside the
+  majhul-cells loop only so an active plural can never fall back to a
+  wrong person — the mabni-vs-raf residual bucket closed), the
+  doer-in-the-cell expectation (a 1st/2nd-person verb's fa'il is its own
+  pronoun; the noun after it expects the MAF'UL), and the weak-final
+  mudari's «maqsur noun» note corrected to taqdiri raf. Also fixed: ch26's
+  لَكِ segment lex (ka is the jarr kaf — new key pron-2fs, the corpus
+  convention's missing member).
+
+  Measured: **99.9% POS over 1,495 tokens** (217 worked sentences),
+  **98.6% CASE on the bank subset (1,171)**; the two standing POS
+  disagreements remain the بِمَا pair; no new case disagreements arrived
+  with the chapter.

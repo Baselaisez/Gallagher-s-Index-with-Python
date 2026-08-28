@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 210,
-  "sentenceTokens": 1474,
+  "sentences": 217,
+  "sentenceTokens": 1495,
   "posAgreement": 99.9,
-  "caseJudged": 1154,
+  "caseJudged": 1171,
   "caseAgreement": 98.6,
-  "rows": 2559
+  "rows": 2580
  },
  "endings": [
   {
@@ -31186,8 +31186,8 @@
    "posAgreement": 100,
    "judged": 12,
    "agree": 12,
-   "judgedC": 9,
-   "agreeC": 9,
+   "judgedC": 10,
+   "agreeC": 10,
    "tokens": [
     {
      "w": "لَهُ",
@@ -31345,9 +31345,9 @@
       "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "لَهُ",
@@ -35533,7 +35533,7 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
      "caseSaid": "mabni",
@@ -44357,6 +44357,690 @@
      "caseSaid": "mabni",
      "caseHuman": "mabni",
      "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s1",
+   "text": "كَمْ دَعَوْتُكَ",
+   "translation": {
+    "en": "How often have I called you! (The asker knows the count — the question decays to ISTIBTA': reproach at the other's slowness.)",
+    "tr": "Kaç kere çağırdım seni! (Soran sayıyı bilir — soru İSTİBTÂ'a düşer: karşı tarafın ağırdan almasına sitem.)"
+   },
+   "jumal": [
+    {
+     "text": "كَمْ دَعَوْتُكَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا — وَالطَّلَبُ فِيهَا صُورِيٌّ.",
+     "en": "The clause is insha'i and owns no mahall — and its «request» is a shell: nothing is really asked. The istifham machinery runs, but the answer-slot is already filled by the asker's own knowledge."
+    },
+    {
+     "text": "كَمْ دَعَوْتُكَ",
+     "ar": "الْوَجْهُ: الِاسْتِبْطَاءُ — سُؤَالُ الْمَرْءِ عَنْ فِعْلِ نَفْسِهِ لَا يَكُونُ حَقِيقِيًّا.",
+     "en": "THE WAJH: istibta'. The mechanical receipt is the person: a man cannot genuinely ask the count of his own past deed, so the first-person madi hands the reading over — reproach at slowness, «رَغْمًا: for all my calling, you did not answer»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "كَمْ",
+     "lex": "kam",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham",
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«how often» — كَمْ, mabni, in NASB position deputizing for the maf'ul mutlaq (how many a CALLING). And the question is no question: the caller knows the count, so the frame decays to istibta' — «all this calling, and still you are slow»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "دَعَوْتُكَ",
+     "lex": "daa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«I called you» — the madi of دَعَا, mabni on the sukun for the doer's ta; the ta is the fa'il and the kaf the object. A FIRST-PERSON madi after كَمْ is the engine's receipt for the istibta' reading."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَعَا",
+      "root": "د ع و",
+      "wazn": "فَعَلْتُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s2",
+   "text": "مَا لِيَ لَا أَرَى الْهُدْهُدَ",
+   "translation": {
+    "en": "What is it to me that I do not see the hoopoe? (al-Naml 27:20 — the ma-li frame: wonder wearing a question.)",
+    "tr": "Bana ne oluyor ki hüdhüdü göremiyorum? (Neml 27:20 — mâ-li kalıbı: soru kılığında hayret.)"
+   },
+   "jumal": [
+    {
+     "text": "مَا لِيَ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ ابْتِدَائِيَّةٌ — مُبْتَدَأٌ وَخَبَرُهُ شِبْهُ جُمْلَةٍ.",
+     "en": "The frame-clause: an asking mubtada with a bare jarr-phrase khabar. The negation cannot be this ma — the phrase gives it nothing to deny — so the question owns the head by structure, not by taste."
+    },
+    {
+     "text": "لَا أَرَى الْهُدْهُدَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+     "en": "The negated seeing stands as HAL in nasb position: «what is to me, BEING one who does not see the hoopoe?» — the state is the thing marvelled at."
+    },
+    {
+     "text": "مَا لِيَ لَا أَرَى الْهُدْهُدَ",
+     "ar": "الْوَجْهُ: التَّعَجُّبُ.",
+     "en": "THE WAJH: ta'ajjub. The aya's asker rules the birds — the absence should be impossible, and the question-shape carries the impossibility better than any exclamation would."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "مَا",
+     "lex": "ma-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham",
+       "anwa-ma"
+      ],
+      "irab": "«what» — the interrogative ma as mubtada; and the question is WONDER: Sulayman marvels at the state, he does not request news. The مَا لِـ frame is the receipt."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لِيَ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«to me» — the jarr lam with the speaker's ya in jarr position; the phrase is the khabar. مَا لِيَ، مَا لَكَ، مَا لَهُمْ — one frame, declined through the persons."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "لَا",
+     "lex": "la",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«not» — the negation opening the hal-clause: the state marvelled at is itself negative."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَرَى",
+     "lex": "raa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«I (do not) see» — the mudari of رَأَى, its raf' a damma ESTIMATED on the alif (ta'adhdhur); the doer is the concealed «I», and the clause stands as hal. Its own doer being in the cell, the noun after it can only be the object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "wazn": "أَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "الْهُدْهُدَ",
+     "lex": "hudhud",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«the hoopoe» — the object, mansub by the plain fatha: the missing bird the whole marvel turns on."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "هُدْهُد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s3",
+   "text": "فَأَيْنَ تَذْهَبُونَ",
+   "translation": {
+    "en": "So where are you going? (al-Takwir 81:26 — not geography: a waking-cry at straying.)",
+    "tr": "Peki nereye gidiyorsunuz? (Tekvîr 81:26 — coğrafya değil: sapıklığa karşı bir uyandırma nidâsı.)"
+   },
+   "jumal": [
+    {
+     "text": "فَأَيْنَ تَذْهَبُونَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ اسْتِئْنَافِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "A resumed verbal clause, no mahall — the fa turns from the description of the Qur'an to the men walking away from it."
+    },
+    {
+     "text": "فَأَيْنَ تَذْهَبُونَ",
+     "ar": "الْوَجْهُ: التَّنْبِيهُ عَلَى الضَّلَالِ.",
+     "en": "THE WAJH: tanbih on straying. The question presupposes a road worth naming and dares the hearer to name his — the failure to answer IS the awakening."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "فَأَيْنَ",
+     "lex": "ayna",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham",
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«so where» — the resuming fa, then أَيْنَ in its nasb position on the zarfiyya. No place is really asked: the aya shakes the strayer awake — TANBIH on the straying — by making him look for his own road and find none."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "تَذْهَبُونَ",
+     "lex": "dhahaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«you are going» — a five-verbs mudari, marfu' by the RETAINED nun, its waw the doer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ذَهَبَ",
+      "root": "ذ ه ب",
+      "wazn": "تَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s4",
+   "text": "أَغَيْرَ اللَّهِ تَدْعُونَ",
+   "translation": {
+    "en": "Is it other than Allah you would call? (al-An'am 6:40 — the fronted object is the denial's address: INKAR.)",
+    "tr": "Allah'tan başkasına mı yalvarırsınız? (En'âm 6:40 — öne alınmış mef'ûl, inkârın adresidir: İNKÂR.)"
+   },
+   "jumal": [
+    {
+     "text": "أَغَيْرَ اللَّهِ تَدْعُونَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ — قُدِّمَ الْمَفْعُولُ لِإِفَادَةِ الِاخْتِصَاصِ بِالْإِنْكَارِ.",
+     "en": "A verbal clause with its object thrown to the front: the fronting narrows the denial to the ADDRESS — «calling is fine; calling OTHER THAN HIM is what cannot stand». Taqdim doctrine and istifham doctrine in one machine."
+    },
+    {
+     "text": "أَغَيْرَ اللَّهِ تَدْعُونَ",
+     "ar": "الْوَجْهُ: الْإِنْكَارُ الْإِبْطَالِيُّ — مَا بَعْدَ الْهَمْزَةِ غَيْرُ وَاقِعٍ وَمُدَّعِيهِ كَاذِبٌ.",
+     "en": "THE WAJH: inkar ibtali — what stands after the hamza is claimed NOT TO HAPPEN rightly at all; the question-shape makes the hearer himself condemn it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أَغَيْرَ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khuruj-al-istifham",
+       "al-istifham"
+      ],
+      "irab": "«is it OTHER than…» — the hamza of denial, and غَيْرَ the FRONTED object, mansub by a plain fatha (the idafa took its tanwin), itself mudaf. What follows the hamza is what is asked — and here what is denied: not the calling, but its ADDRESS."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "اللَّهِ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«than Allah» — the Name as mudaf ilayh, majrur by the kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "تَدْعُونَ",
+     "lex": "daa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«you would call» — the five-verbs mudari of دَعَا, marfu' by the retained nun, the waw its doer — and its object stands two words BEFORE it, past the Name it annexes."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَعَا",
+      "root": "د ع و",
+      "wazn": "تَفْعُلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s5",
+   "text": "أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ",
+   "translation": {
+    "en": "Is Allah not sufficient for His servant? (al-Zumar 39:36 — two negatives birth an affirmation: TAQRIR.)",
+    "tr": "Allah kuluna yetmez mi? (Zümer 39:36 — iki menfîden bir müsbet doğar: TAKRÎR.)"
+   },
+   "jumal": [
+    {
+     "text": "أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ",
+     "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا — وَالتَّقْرِيرُ حَمْلُ الْمُخَاطَبِ عَلَى الْإِقْرَارِ.",
+     "en": "The taqrir machine whole: laysa denies, the ba rivets the denial, the hamza overturns both — and the hearer is carried to CONCEDE the sufficiency in his own voice. The strongest yes in the language is manufactured from two no's."
+    },
+    {
+     "text": "بِكَافٍ",
+     "ar": "الْبَاءُ الزَّائِدَةُ فِي خَبَرِ لَيْسَ — تَوْكِيدٌ لَا تَعَلُّقَ لَهَا.",
+     "en": "THE ZAIDA BA: it governs a real jarr yet attaches to nothing — added purely to press the negation. Drop it and the sentence stands (أَلَيْسَ اللَّهُ كَافِيًا); keep it and the denial-to-be-overturned is louder."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أَلَيْسَ",
+     "lex": "laysa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khuruj-al-istifham",
+       "al-istifham"
+      ],
+      "irab": "«is it not…» — the hamza riding the NEGATION: two negatives birth an affirmation, so the question extracts a yes stronger than any statement. لَيْسَ itself is the jamid nasikh, a mazi mabni on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "اللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«Allah» — laysa's ism, marfu' by the damma."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِكَافٍ",
+     "lex": "kafin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khuruj-al-istifham",
+       "huruf-jarr"
+      ],
+      "irab": "«sufficient» — laysa's khabar wearing the ZAIDA BA: majrur in letter, mansub in place, the extra letter fastening the negation the hamza will then overturn. And the word is a manqus ism fa'il of كَفَى — its tanwin the 'iwad for the dropped ya."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَافٍ",
+      "root": "ك ف ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "عَبْدَهُ",
+     "lex": "abd",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«His servant» — the OBJECT of the participle كَافٍ (an ism fa'il governs like its verb), mansub by the fatha, the ha its mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَبْد",
+      "root": "ع ب د",
+      "wazn": "فَعْلَهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s6",
+   "text": "مَنْ هَذَا",
+   "translation": {
+    "en": "Who is THIS? (Said of one present and known — the question belittles: TAHQIR.)",
+    "tr": "Kim BU? (Orada olan ve bilinen biri için — soru küçümser: TAHKÎR.)"
+   },
+   "jumal": [
+    {
+     "text": "مَنْ هَذَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "Two mabni words, a complete sentence — the smallest clause in the chapter carries the sharpest edge."
+    },
+    {
+     "text": "مَنْ هَذَا",
+     "ar": "الْوَجْهُ: التَّحْقِيرُ — وَبِعَكْسِهِ التَّهْوِيلُ: مَنْ فِرْعَوْنُ.",
+     "en": "THE WAJH: tahqir — and its mirror is TAHWIL: in Ibn 'Abbas's reading مَنْ فِرْعَوْنُ, the same shape aggrandizes the named terror. One frame, and the context alone decides whether it shrinks or enlarges."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "مَنْ",
+     "lex": "man-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«who» — the person-ask as mubtada; but the speaker SEES the man and knows him. A question with its answer standing in the room is no question — it belittles."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "هَذَا",
+     "lex": "hadha",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«this one» — the demonstrative as khabar: the pointing finger does the belittling, reducing a named man to a «this»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:27:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 27,
+   "sentence": "s7",
+   "text": "أَنَّى لَهُمُ الذِّكْرَى",
+   "translation": {
+    "en": "Whence, for them, the remembering? (al-Dukhan 44:13 — the reminder came and was refused: ISTIB'AD, the thing placed beyond reach.)",
+    "tr": "Nereden olacak onlara öğüt almak? (Duhân 44:13 — hatırlatıcı geldi ve reddedildi: İSTİB'ÂD; şey erişilmezliğe konur.)"
+   },
+   "jumal": [
+    {
+     "text": "أَنَّى لَهُمُ الذِّكْرَى",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The structural face is ch26's أَنَّى لَكِ هَذَا exactly — nominal, verbless, min-ayna. The RHETORIC flips it: Maryam's question had an answer (من عند الله); this one is asked because none is left."
+    },
+    {
+     "text": "أَنَّى لَهُمُ الذِّكْرَى",
+     "ar": "الْوَجْهُ: الِاسْتِبْعَادُ — وَقَدْ جَاءَهُمْ رَسُولٌ مُبِينٌ ثُمَّ تَوَلَّوْا عَنْهُ.",
+     "en": "THE WAJH: istib'ad. The aya's own next clause is the proof — the clear Messenger CAME and they turned away; asking «whence now?» places the remembering beyond their reach forever."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "أَنَّى",
+     "lex": "anna-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "khuruj-al-istifham",
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«whence» — أَنَّى in its min-ayna face (a nominal follows), fronted khabar — and the ask is ISTIB'AD: no source is sought; the remembering is declared to have none left."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَهُمُ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«for them» — the jarr lam with the plural pronoun; the mim takes a damma where its sukun met the article's silent alif — the iltiqa repair, worn on a pronoun."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "الذِّكْرَى",
+     "lex": "dhikra",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khuruj-al-istifham"
+      ],
+      "irab": "«the remembering» — deferred mubtada, its damma ESTIMATED on the maqsur alif (ta'adhdhur). The aya continues: a clear Messenger had already come — and they turned away."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ذِكْرَى",
+      "root": "ذ ك ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
     }
    ]
   }
