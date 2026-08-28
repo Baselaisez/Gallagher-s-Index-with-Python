@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 203,
-  "sentenceTokens": 1447,
+  "sentences": 210,
+  "sentenceTokens": 1474,
   "posAgreement": 99.9,
-  "caseJudged": 1129,
+  "caseJudged": 1154,
   "caseAgreement": 98.6,
-  "rows": 2532
+  "rows": 2559
  },
  "endings": [
   {
@@ -27974,8 +27974,8 @@
    "posAgreement": 100,
    "judged": 10,
    "agree": 10,
-   "judgedC": 6,
-   "agreeC": 6,
+   "judgedC": 7,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "قَالَ",
@@ -28035,15 +28035,15 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "كَيْف",
-      "root": "ك ي ف",
-      "wazn": "فَعْلَ",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
       "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "أَنْتَ",
@@ -43524,6 +43524,839 @@
      "caseSaid": null,
      "caseHuman": "nasb",
      "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s1",
+   "text": "أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا",
+   "translation": {
+    "en": "Which of the two camps is better in station? (Maryam 19:73 — ayy asks what separates two partners in a shared matter.)",
+    "tr": "İki zümreden hangisi makamca daha hayırlıdır? (Meryem 19:73 — eyy, ortak bir işte iki ortağı ayıranı sorar.)"
+   },
+   "jumal": [
+    {
+     "text": "أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The question-sentence itself: nominal, insha'i, opening its discourse — no mahall. The istifham noun OWNS the sentence's head (the sadara right), which is why every question in this chapter fronts its adat."
+    },
+    {
+     "text": "أَيُّ الْفَرِيقَيْنِ",
+     "ar": "أَيٌّ مُعْرَبَةٌ لِمُلَازَمَةِ الْإِضَافَةِ — إِعْرَابُهَا هُوَ الدَّرْسُ.",
+     "en": "THE WAJH: among the interrogative nouns — all mabni — أَيّ alone declines, and the reason is doctrine in one line: it never leaves the idafa, so the idafa's anchor kept its ending alive. One damma carries the whole lesson."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "أَيُّ",
+     "lex": "ayy",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«which» — the interrogative أَيّ, and the ONE that DECLINES: it never leaves the idafa, so it never lost its i'rab — here mubtada, marfu' by a plainly written damma, and mudaf. Its ask is the ta'yin: what separates one of two partners in a matter both share."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْفَرِيقَيْنِ",
+     "lex": "fariq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-muthanna"
+      ],
+      "irab": "«of the two camps» — mudaf ilayh, majrur by the YA of the dual. The dual is no accident: أَيّ's ask needs a shared pool of exactly-known members to divide."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ف ر ق",
+      "wazn": "فَعِيلَيْنِ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "خَيْرٌ",
+     "lex": "khayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«better» — the khabar, marfu' by the plain damma; at bottom an ism tafdil whose hamza the language wore away (أَخْيَر → خَيْر)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَيْر",
+      "root": "خ ي ر",
+      "wazn": "فَعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مَقَامًا",
+     "lex": "maqam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "tamyiz"
+      ],
+      "irab": "«in station» — tamyiz, mansub by the plain fatha: it names the RESPECT in which the two camps are weighed. The aya is the disbelievers' boast — and the question-machine works even in a boasting mouth."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَقَام",
+      "root": "ق و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s2",
+   "text": "سَلْ بَنِي إِسْرَائِيلَ كَمْ آتَيْنَاهُمْ مِنْ آيَةٍ بَيِّنَةٍ",
+   "translation": {
+    "en": "Ask the Children of Israel how many a clear sign We gave them. (al-Baqara 2:211 — kam asks the number, its counted kind behind min.)",
+    "tr": "İsrâiloğullarına sor: onlara nice açık âyet verdik. (Bakara 2:211 — kem sayıyı sorar; sayılan türü min arkasındadır.)"
+   },
+   "jumal": [
+    {
+     "text": "سَلْ بَنِي إِسْرَائِيلَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The command-frame: verbal, insha'i, no mahall. Its verb سَلْ then does something rare — it stops governing what it most wants (its second object) the moment a question begins."
+    },
+    {
+     "text": "كَمْ آتَيْنَاهُمْ مِنْ آيَةٍ بَيِّنَةٍ",
+     "ar": "جُمْلَةُ الِاسْتِفْهَامِ فِي مَحَلِّ نَصْبٍ سَدَّتْ مَسَدَّ الْمَفْعُولِ الثَّانِي لِسَلْ — عُلِّقَ الْفِعْلُ لِصَدَارَةِ الِاسْتِفْهَامِ.",
+     "en": "THE TA'LIQ: the whole question-clause stands in nasb position filling سَلْ's second-object seat — the verb is SUSPENDED (mu'allaq) because the istifham owns its sentence's head and no outside governor may reach past it. The question is handed over whole, never word by word."
+    },
+    {
+     "text": "كَمْ … مِنْ آيَةٍ",
+     "ar": "كَمْ: سُؤَالُ الْعَدَدِ — وَتَمْيِيزُهَا بِمِنْ.",
+     "en": "THE WAJH: kam = the number-ask, and its counted kind rides behind مِنْ. The twin kam KHABARIYYA tells («many a sign») instead of asking — and where مِنْ is absent, the tamyiz's case splits them: the asker's mansub, the teller's majrur."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "سَلْ",
+     "lex": "saala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«ask!» — the amr of سَأَلَ, mabni on the sukun, its 'ayn-hamza dropped by the received takhfif (the full اِسْأَلْ is equally sound; sentence-initially the Qur'an prefers the light form). The doer is the concealed «you»."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "wazn": "اِفْعَلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بَنِي",
+     "lex": "banu",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«the Children of» — first object, mansub by the YA (it is attached to the sound masculine plural's i'rab), its nun dropped for the idafa, and itself mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ب ن ي",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "إِسْرَائِيلَ",
+     "lex": "israil",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "mamnu-min-sarf"
+      ],
+      "irab": "«Israel» — mudaf ilayh, majrur by a FATHA standing in for the kasra: a proper name of foreign origin is barred from tanwin and bends its jarr to the fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِسْرَائِيل",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "كَمْ",
+     "lex": "kam",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "tamyiz"
+      ],
+      "irab": "«how many» — the interrogative كَمْ, mabni on the sukun, standing in NASB position as the fronted second object of آتَيْنَا: the question word claims the sentence's head (sadara), so the object walks to the front."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "آتَيْنَاهُمْ",
+     "lex": "aataa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«We gave them» — the madi of آتَى (Form IV: to GRANT, taking two objects), mabni on the sukun for the attached doers' نَا; «هُمْ» is its first object, and كَمْ before it the second."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "آتَى",
+      "root": "أ ت ي",
+      "wazn": "أَفْعَلْنَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "huruf-jarr"
+      ],
+      "irab": "«of» — the jarr letter that carries كَمْ's tamyiz: the number was asked bare, and مِنْ opens the phrase that names WHAT was counted."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "آيَةٍ",
+     "lex": "aya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "tamyiz"
+      ],
+      "irab": "«sign» — كَمْ's tamyiz, majrur by the explicit مِنْ; with the letter written out this jarr is the Qur'an's favoured shape. Absent the مِنْ, the asker's tamyiz would stand MANSUB — and that case-split is what tells the asking كَمْ from the telling one."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آيَة",
+      "root": "أ ي ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بَيِّنَةٍ",
+     "lex": "bayyina",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«clear» — na't to آيَةٍ, majrur like it by the plain kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَيِّنَة",
+      "root": "ب ي ن",
+      "wazn": "فَعِّلَةٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s3",
+   "text": "كَيْفَ أَنْتَ",
+   "translation": {
+    "en": "How are you? (kayfa asks the STATE — a hal-word answers, never a yes.)",
+    "tr": "Nasılsın? (keyfe HÂLİ sorar — bir hâl kelimesi cevaplar, asla evet değil.)"
+   },
+   "jumal": [
+    {
+     "text": "كَيْفَ أَنْتَ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ — وَتَقْدِيمُ الْخَبَرِ وَاجِبٌ لِصَدَارَةِ الِاسْتِفْهَامِ.",
+     "en": "The smallest complete question in the bab: khabar + mubtada, and the fronting is WAJIB — an istifham noun may not stand anywhere but first. The taqdim chapter's rule, met here as a hard constraint rather than a choice."
+    },
+    {
+     "text": "كَيْفَ أَنْتَ",
+     "ar": "كَيْفَ: سُؤَالُ الْحَالِ — وَجَوَابُهُ حَالٌ لَا «نَعَمْ».",
+     "en": "THE WAJH: kayfa = the state-ask. Its answer-shape is its diagnosis — a hal-word where ayna takes a place, mata a time, man a name. The tasawwur adawat divide the world of answers between them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "كَيْفَ",
+     "lex": "kayfa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«how» — a mabni interrogative NOUN on the fatha, standing in RAF' position as fronted khabar: the state is asked, and the answer must be a state-word (صَالِحٌ، مَرِيضٌ), never yes."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«you» — the detached pronoun, deferred mubtada in raf' position; the question word took the head-seat its sadara demands."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s4",
+   "text": "أَيْنَ زَيْدٌ",
+   "translation": {
+    "en": "Where is Zayd? (ayna asks the PLACE — a mabni noun in nasb position on the zarfiyya.)",
+    "tr": "Zeyd nerede? (eyne YERİ sorar — zarfiyye üzere nasb mevkiinde mebnî bir isim.)"
+   },
+   "jumal": [
+    {
+     "text": "أَيْنَ زَيْدٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ — لَا فِعْلَ فِيهَا أَصْلًا فَلَا شَرْطَ.",
+     "en": "No verb stands anywhere in the sentence — so the conditional reading is not weak, it is IMPOSSIBLE: a jazim with nothing to jazm. The question is what remains, and the engine-room rule is the chapter's: count the verbs before naming the face."
+    },
+    {
+     "text": "أَيْنَ زَيْدٌ",
+     "ar": "أَيْنَ: سُؤَالُ الْمَكَانِ — وَهِيَ مِنْ أَخَوَاتِ مَتَى فِي الشَّرْطِ أَيْضًا.",
+     "en": "THE WAJH: ayna = the place-ask — and the same noun serves among the jawazim. One word, two offices, and its case-position (nasb on the zarfiyya) holds in both."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَيْنَ",
+     "lex": "ayna",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«where» — the place-ask, mabni on the fatha, in NASB position on the zarfiyya, standing as fronted khabar. The same written word jazms two verbs as a conditional noun — the FRAME, not the word, decides the face."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«Zayd» — deferred mubtada, marfu' by the plain damma, waiting for a PLACE as his answer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s5",
+   "text": "مَتَى جِئْتَ",
+   "translation": {
+    "en": "When did you come? (mata asks the TIME — one verb and the sentence ends: a question, not a condition.)",
+    "tr": "Ne zaman geldin? (metâ ZAMANI sorar — tek fiille cümle biter: şart değil, soru.)"
+   },
+   "jumal": [
+    {
+     "text": "مَتَى جِئْتَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ — فِعْلٌ وَاحِدٌ فَلَا جَوَابَ يُنْتَظَرُ.",
+     "en": "One verb, no jawab in sight: the conditional مَتَى needs two clauses to bind and finds one. The minimal pair is the teaching — مَتَى جِئْتَ asks; مَتَى جِئْتَنِي أَكْرَمْتُكَ conditions."
+    },
+    {
+     "text": "مَتَى جِئْتَ",
+     "ar": "مَتَى: سُؤَالُ الزَّمَانِ الْمُطْلَقِ — مَاضِيهِ وَمُسْتَقْبَلِهِ.",
+     "en": "THE WAJH: mata = the time-ask, indifferent to past or future — where its rare sister أَيَّانَ (next sentence) is kept for the future alone, and for great things."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "مَتَى",
+     "lex": "mata-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«when» — the time-ask, mabni on the sukun, in nasb position on the temporal zarfiyya, attached to جِئْتَ. Write a second, jazmed verb after it and the SAME word becomes a conditional noun — the frame decides."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "جِئْتَ",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«you came» — the madi of جَاءَ, mabni on the sukun for the doer's ta; the ta is the fa'il. One verb, and the sentence closes — which is exactly what rules the condition out."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلْتَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s6",
+   "text": "يَسْأَلُ أَيَّانَ يَوْمُ الْقِيَامَةِ",
+   "translation": {
+    "en": "He asks: when is the Day of Rising? (al-Qiyama 75:6 — ayyan, the future-ask kept for great things.)",
+    "tr": "Sorar: kıyâmet günü ne zaman? (Kıyâme 75:6 — eyyâne: büyük şeylere saklanan istikbâl sorusu.)"
+   },
+   "jumal": [
+    {
+     "text": "يَسْأَلُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The report-frame: someone asks. What he asks arrives as a WHOLE clause — see the next row — because a question cannot be handed over in pieces."
+    },
+    {
+     "text": "أَيَّانَ يَوْمُ الْقِيَامَةِ",
+     "ar": "جُمْلَةُ الِاسْتِفْهَامِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِيَسْأَلُ — بِالتَّعْلِيقِ.",
+     "en": "The question-clause stands whole in nasb position as يَسْأَلُ's object, by TA'LIQ: the asking verb reports the question, it does not govern inside it. Same machine as سَلْ … كَمْ, one sentence over."
+    },
+    {
+     "text": "أَيَّانَ يَوْمُ الْقِيَامَةِ",
+     "ar": "أَيَّانَ فِي مَوْضِعِ التَّفْخِيمِ — لِلْمُعَظَّمَاتِ.",
+     "en": "THE WAJH: tafkhim by particle-choice. The scoffer's own mouth is made to ask with the awe-word — أَيَّانَ, never a plain مَتَى — and the choice of adat carries the Day's weight before the answer comes."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "يَسْأَلُ",
+     "lex": "saala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«he asks» — the mudari of سَأَلَ, marfu' by the plain damma, its doer the concealed «he» (the denier of the Rising); and it is SUSPENDED from the clause after it — the istifham's sadara shields its sentence from outside government."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَيَّانَ",
+     "lex": "ayyan",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«when» — the FUTURE-ask, mabni on the fatha, nasb position on the zarfiyya, fronted khabar. The books keep it for GREAT things — the rarity of the word is part of the awe."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "يَوْمُ",
+     "lex": "yawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«the Day» — deferred mubtada, marfu' by the damma, and mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَوْم",
+      "root": "ي و م",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْقِيَامَةِ",
+     "lex": "qiyama",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«of the Rising» — mudaf ilayh, majrur by the plain kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْقِيَامَة",
+      "root": "ق و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:26:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 26,
+   "sentence": "s7",
+   "text": "يَا مَرْيَمُ أَنَّى لَكِ هَذَا",
+   "translation": {
+    "en": "O Maryam, whence is this for you? (Al 'Imran 3:37 — anna in its min-ayna face: the SOURCE is asked.)",
+    "tr": "Ey Meryem, bu sana nereden? (Âl-i İmrân 3:37 — enna, min-eyne yüzünde: KAYNAK sorulur.)"
+   },
+   "jumal": [
+    {
+     "text": "يَا مَرْيَمُ",
+     "ar": "جُمْلَةُ النِّدَاءِ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The call-clause: insha'i, no mahall — and its munada wears the bina-damma the case-audit lists among the endings that only LOOK like i'rab."
+    },
+    {
+     "text": "أَنَّى لَكِ هَذَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ إِنْشَائِيَّةٌ — وَلَا فِعْلَ فِيهَا فَتَعَيَّنَ مَعْنَى مِنْ أَيْنَ.",
+     "en": "No verb anywhere in the clause — so the كَيْفَ face has nothing to attach to and the مِنْ أَيْنَ face is SETTLED by structure: the same verb-counting that split متى's condition from its question splits أَنَّى's two meanings."
+    },
+    {
+     "text": "أَنَّى لَكِ هَذَا",
+     "ar": "أَنَّى تَعْدِلُ كَيْفَ تَارَةً وَمِنْ أَيْنَ أُخْرَى.",
+     "en": "THE WAJH: one particle, two equivalences — the books say «sometimes» in both directions, and the aya-pair carries them: أَنَّى شِئْتُمْ (= however), أَنَّى لَكِ هَذَا (= from where). Maryam's answer names a SOURCE — هُوَ مِنْ عِنْدِ اللَّهِ — proving which face was asked."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "يَا",
+     "lex": "ya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "vocative-munada"
+      ],
+      "irab": "«O» — the vocative letter; Zakariyya calls before he asks."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "مَرْيَمُ",
+     "lex": "maryam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "vocative-munada"
+      ],
+      "irab": "«Maryam» — a single proper-name munada, BUILT on the damma in nasb position: the call's classic shape, the damma worn as bina, never as raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَرْيَم",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَنَّى",
+     "lex": "anna-istifham",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur",
+       "al-istifham"
+      ],
+      "irab": "«whence» — the interrogative أَنَّى, mabni, here in its مِنْ أَيْنَ face (before a nominal, the SOURCE is asked); in nasb position on the zarfiyya as fronted khabar. Before a verb it reads as كَيْفَ instead — أَنَّى شِئْتُمْ, «in whatever manner»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَكِ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«for you» — the jarr lam with the attached feminine kaf in jarr position; the phrase stands as hal of the pointed-at provision."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "هَذَا",
+     "lex": "hadha",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«this» — the demonstrative as deferred mubtada in raf' position: the out-of-season provision itself, pointed at."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
     }
    ]
   }

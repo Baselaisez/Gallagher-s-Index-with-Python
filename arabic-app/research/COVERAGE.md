@@ -1894,3 +1894,32 @@ not a one-line change.
   **98.6% CASE on the bank subset** and **97.4% CASE corpus-wide over
   3,547**; the two standing POS disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v143 — Talkhīṣ ch26: the taṣawwur adawāt, and the interrogatives
+  filed as NOUNS.** Sahifa 72-73 of talkhis-al-miftah-balagha.txt:
+  أَيّ (ta'yin between two partners — أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا,
+  Maryam 19:73), كَمْ with its مِنْ-tamyiz (سَلْ بَنِي إِسْرَائِيلَ…,
+  al-Baqara 2:211 — the source's Taha citations for both ayat corrected
+  against the mushaf, recorded), كَيْفَ / أَيْنَ / مَتَى (the source's own
+  worked pairs), أَيَّانَ in the tafkhim seat (al-Qiyama 75:6), and أَنَّى's
+  two faces (the min-ayna aya, Al 'Imran 3:37, in the text; the kayfa aya
+  in note 128). Note 128 `adawat-al-tasawwur`. Engine wave, probe-first:
+  the conditional nouns joined ISM_KINDS (they were kind "particle" —
+  the closed-class table's oldest flattening), the istifham-face ROUTER
+  reads the frame (fewer than two verbs after متى/أين/أنى/أي = question;
+  the two-verb control keeps its shart), أَيّ alone declines (removed from
+  IrabSign.MABNI; CaseEngine reads its own vowel), كم/كيف/أيان landed as
+  istif-ism rows, IstifhamEngine gained the seven matlub-frames, the
+  LIGHT IMPERATIVE سَلْ reads its receipt at the matching layer
+  (TAKHFIF_AMR → اِسْأَلْ), an EXACT cell now beats a LOOSE hit across the
+  whole corpus walk (سَلْ had bare-matched سَلِّ by package order), the
+  mabni-ending guard learned the shadda-last and explicit-sukun endings,
+  and formCandidates is memoized (the two-pass walk made the rebuild-per-
+  verb cost a real stall). New paradigm: آتَى (aataa — mahmuz fa + naqis,
+  hand-stored on the أَعْطَى shape).
+
+  Measured: **99.9% POS over 1,474 tokens** (210 worked sentences),
+  **98.6% CASE on the bank subset (1,154)** and **97.6% CASE corpus-wide
+  over 3,573** (up from 97.4); ML held-out 54.8/71.9 over 4,017 (floors
+  54/71.5). The two standing POS disagreements remain the بِمَا pair;
+  no new case disagreements arrived with the chapter.

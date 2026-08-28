@@ -4012,6 +4012,10 @@ if (!CHROME) {
       STORIES.forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
         const f = NidaEngine.flat(t.s.full);
         if (!NidaEngine.PARTICLES.some(p => p.flat === f && f.length > 1)) return;
+        // أَيْ the calling particle wears a SUKUN on its ya; أَيُّ with a
+        // vowelled ya is the interrogative noun (ch26). The flat fold threw
+        // that vowel away and read أَيُّ الْفَرِيقَيْنِ as a call.
+        if (f === 'اي' && /ي[ًٌٍَُِ]/.test(t.s.full.normalize('NFC'))) return;
         const m = sen.tokens[ti + 1];
         if (!m || !m.irab) return;
         const call = [t, m, sen.tokens[ti + 2]].filter(Boolean).map(x => x.s.full).join(' ');
@@ -7517,6 +7521,72 @@ if (!CHROME) {
     if (r.k6 !== 'maJins') throw new Error('ma before a bare zarf asks the JINS: ' + r.k6);
     if (r.manPk !== 'man') throw new Error('مَنْ the ism carries its own pk: ' + r.manPk);
     if (r.minPk !== 'jarr') throw new Error('…and مِنْ the letter keeps jarr: ' + r.minPk);
+  });
+
+  await check('talkhis ch26: the tasawwur adawat — frames, the mu\'rab ayy, and the istifham-face router', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 26);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['adawat-al-tasawwur'];
+      const ist = s => IstifhamEngine.read(SentenceAnalyzer.analyze(s));
+      const k = s => { const f = ist(s); return f[0] && f[0].key; };
+      const rows1 = SentenceAnalyzer.analyze('أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا');
+      const rows4 = SentenceAnalyzer.analyze('أَيْنَ زَيْدٌ');
+      const rows5 = SentenceAnalyzer.analyze('مَتَى جِئْتَ');
+      // the FRAME decides the face: two verbs after the adat keep the shart
+      const ctrl = SentenceAnalyzer.analyze('مَتَى جِئْتَنِي أَكْرَمْتُكَ');
+      const sal = SentenceAnalyzer.analyze('سَلْ بَنِي إِسْرَائِيلَ كَمْ آتَيْنَاهُمْ مِنْ آيَةٍ بَيِّنَةٍ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('adawat-al-tasawwur')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        kAyy: k('أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا'), kKam: k('كَمْ آتَيْنَاهُمْ مِنْ آيَةٍ بَيِّنَةٍ'),
+        kKayfa: k('كَيْفَ أَنْتَ'), kAyna: k('أَيْنَ زَيْدٌ'), kMata: k('مَتَى جِئْتَ'),
+        kAyyan: k('يَسْأَلُ أَيَّانَ يَوْمُ الْقِيَامَةِ'), kAnna: k('يَا مَرْيَمُ أَنَّى لَكِ هَذَا'),
+        // أَيّ is the ONE declining interrogative: raf claimed off its damma;
+        // its sisters claim mabni; and the shart engine stands down where no
+        // two-verb frame follows — but keeps the real condition.
+        cAyy: (CaseEngine.claim(rows1, 0) || {}).k,
+        cAyna: (CaseEngine.claim(rows4, 0) || {}).k,
+        mataPk: rows5[0] && rows5[0].pk,
+        aynaKind: rows4[0] && rows4[0].kind,
+        shartQuiet: ShartEngine.read(rows4).length + ShartEngine.read(rows5).length,
+        ctrlPk: ctrl[0] && ctrl[0].pk,
+        ctrlShart: ShartEngine.read(ctrl).length,
+        // the LIGHT imperative reads its receipt: سَلْ answers from سَأَلَ,
+        // never from salla's bare-matched سَلِّ (exact beats loose corpus-wide)
+        salRoot: sal[0] && sal[0].root,
+        salMabni: /MABNI|MEBN/i.test((sal[0].notes || []).map(n => n.en + n.tr).join(' ')),
+        aataCell: sal[4] && sal[4].kind === 'verb' && sal[4].root,
+      };
+    });
+    if (r.missing) throw new Error('chapter 26 did not load');
+    if (r.chapters < 26) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 7) throw new Error('ch26 sentences: ' + r.n);
+    if (r.t !== 27) throw new Error('ch26 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the adawat-al-tasawwur note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 20) throw new Error('too few adawat-al-tasawwur tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch26 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    const want = { kAyy: 'ayyTayin', kKam: 'kamAdad', kKayfa: 'kayfaHal', kAyna: 'aynaMakan',
+                   kMata: 'mataZaman', kAyyan: 'ayyanTafkhim', kAnna: 'annaAyna' };
+    for (const [key, val] of Object.entries(want))
+      if (r[key] !== val) throw new Error(key + ' expected ' + val + ', got ' + r[key]);
+    if (r.cAyy !== 'raf') throw new Error('أَيّ declines — its damma is read as raf: ' + r.cAyy);
+    if (r.cAyna !== 'mabni') throw new Error('its sisters stay mabni: ' + r.cAyna);
+    if (r.aynaKind !== 'noun') throw new Error('the interrogatives are NOUNS: ' + r.aynaKind);
+    if (r.mataPk !== 'istif-ism') throw new Error('one verb = the istifham face: ' + r.mataPk);
+    if (r.shartQuiet !== 0) throw new Error('no shart frame without a two-verb frame: ' + r.shartQuiet);
+    if (r.ctrlPk !== 'shart-jazim' || r.ctrlShart < 1)
+      throw new Error('…and مَتَى with two verbs KEEPS the condition: ' + r.ctrlPk + '/' + r.ctrlShart);
+    if (r.salRoot !== 'س أ ل') throw new Error('سَلْ answers from سَأَلَ: ' + r.salRoot);
+    if (!r.salMabni) throw new Error('…and its sukun is named BINA, not jazm');
+    if (r.aataCell !== 'أ ت ي') throw new Error('آتَيْنَاهُمْ resolves to the stored آتَى: ' + r.aataCell);
   });
 
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {

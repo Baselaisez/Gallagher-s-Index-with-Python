@@ -3335,3 +3335,56 @@ and where the observable is absent it claims the case, which is exactly
 where the residual disagreements live. Bina-vs-i'rab is not a word list;
 it is a list of CONTEXTS, and the audit is what forced them to be
 enumerated.
+
+## The frame router is one decision, written once — متى asks OR conditions
+
+مَتَى أَيْنَ أَنَّى أَيّ are shart nouns AND interrogative nouns, and the
+discriminator is arithmetic: a jazim binds TWO clauses, so fewer than two
+verbs after the adat is a question. The router runs as a POST-pass over
+the analyzer's rows (swap pk to istif-ism, swap the table note, withdraw
+the dangling verb-expectation) — and because ShartEngine and CaseEngine
+both branch on pk, ONE swap retargets every consumer. When a face-split
+needs context the stamp-time walk hasn't seen yet, do it in a post-pass
+on the row's pk rather than teaching each engine the frame test.
+
+## The interrogatives are ASMA — and أَيّ alone declines
+
+The conditional nouns sat in ISM_KINDS' blind spot as kind "particle"
+for two hundred versions (the closed-class-table flattening, again), and
+IrabSign listed أي among the mabni asma. Every book says the opposite on
+both counts: they are nouns, and أَيّ is the ONE that declines — it never
+leaves the idafa, so it never lost its ending. CaseEngine now reads
+أَيّ's own written vowel and claims mabni for its sisters; the note, the
+KIND_LBL and the case layer all state the exception with its reason.
+
+## The light imperative is a receipt, and the receipt is lexical
+
+سَلْ خُذْ كُلْ مُرْ are the received takhfif amrs — a CLOSED set the books
+recite. The matching layer offers the regular spelling (سَلْ → اِسْأَلْ)
+exactly as the madda unfolds: never stored, never displayed. And the
+first attempt surfaced two deeper defects: (1) **an EXACT cell anywhere
+in the corpus outranks a LOOSE hit anywhere else** — fromCorpus was
+first-hit-wins over package order, so سَلْ bare-matched سَلِّ (salla's
+amr, alphabetically earlier) while its own exact cell sat unasked; the
+walk is two-pass now. (2) The mabni-ending guard's endVowel read only
+the LAST character — a doubled ending (سَلِّ) shows its shadda last and
+answered «no evidence», and an explicit sukun wasn't in the vowel class
+at all. Both halves of the NFC-shadda trap, in one pair of words.
+
+## A doubled walk needs a memo — measure the stall before shipping the pass
+
+The exact-beats-loose second pass doubled fromCorpus, and the corpus-wide
+case audit went from minutes to a timeout — because findFormInParadigm
+rebuilds formCandidates once PER VERB for the same surface. The one-entry
+memo (callers only read the array) restored the runtime. When a
+correctness fix multiplies a walk, profile the walk's inner loop first:
+the redundancy was always there, the fix just made it visible.
+
+## The nida أَيْ and the interrogative أَيُّ split on the ya's vowel
+
+The munada sweep read أَيُّ الْفَرِيقَيْنِ as a CALL: NidaEngine.flat folds
+the marks away, and the calling particle أَيْ differs from the noun only
+by its sukun. The sweep now requires the particle's dress — the fifth
+member of the min/man family (one spelling, two words, one vowel), and
+the second time a flat fold threw away the very evidence a closed-class
+split needed.
