@@ -7398,6 +7398,78 @@ if (!CHROME) {
     if (!r.cssOk) throw new Error('the tm-frame wears its own spine color');
   });
 
+  await check('talkhis ch24: istifham — the hamza peeled before open words, and the IstifhamEngine frames', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 24);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['al-istifham'];
+      const ist = s => IstifhamEngine.read(SentenceAnalyzer.analyze(s));
+      // the hamza before an open-class word comes OFF, and what follows it
+      // is the asked-about — the four hamza frames
+      const rows1 = SentenceAnalyzer.analyze('أَزَيْدٌ قَائِمٌ');
+      const f1 = ist('أَزَيْدٌ قَائِمٌ');
+      const f2 = ist('أَدِبْسٌ فِي الْإِنَاءِ أَمْ عَسَلٌ');
+      const rows2 = SentenceAnalyzer.analyze('أَدِبْسٌ فِي الْإِنَاءِ أَمْ عَسَلٌ');
+      const f3 = ist('أَزَيْدًا ضَرَبْتَ');
+      const rows7 = SentenceAnalyzer.analyze('أَتَضْرِبُ زَيْدًا وَهُوَ أَخُوكَ');
+      const f7 = ist('أَتَضْرِبُ زَيْدًا وَهُوَ أَخُوكَ');
+      // hal's three faces on one minimal pair
+      const f4 = ist('هَلْ قَامَ زَيْدٌ');
+      const f5 = ist('هَلْ زَيْدًا ضَرَبْتَ');
+      const f6 = ist('هَلْ زَيْدًا ضَرَبْتَهُ');
+      // CONTROLS: a real hamza-initial verb keeps its hamza; أُمّ stays a noun
+      const rowsC1 = SentenceAnalyzer.analyze('أَكْرَمْتَ زَيْدًا');
+      const fC1 = ist('أَكْرَمْتَ زَيْدًا');
+      const rowsC2 = SentenceAnalyzer.analyze('أُمُّهُ كَرِيمَةٌ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('al-istifham')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        q1: rows1[0] && !!rows1[0].istifham, seg1: rows1[0] && rows1[0].seg[0],
+        k1: f1[0] && f1[0].key,
+        amPk: rows2[3] && rows2[3].pk, k2: f2[0] && f2[0].key,
+        k2ends: f2[0] && f2[0].pieces.map(p => p.idx),
+        k3: f3[0] && f3[0].key,
+        k7: f7[0] && f7[0].key, v7: rows7[0] && rows7[0].kind,
+        akh7: rows7[3] && rows7[3].notes.some(n => /FIVE NOUNS/.test(n.en || '')),
+        k4: f4[0] && f4[0].key, k5: f5[0] && f5[0].key, k6: f6[0] && f6[0].key,
+        c1q: rowsC1[0] && !!rowsC1[0].istifham, c1n: fC1.length,
+        c2kind: rowsC2[0] && rowsC2[0].kind, c2pk: rowsC2[0] && (rowsC2[0].pk || null),
+      };
+    });
+    if (r.missing) throw new Error('chapter 24 did not load');
+    if (r.chapters < 24) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch24 sentences: ' + r.n);
+    if (r.t !== 19) throw new Error('ch24 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the al-istifham note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 15) throw new Error('too few al-istifham tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch24 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.q1 || r.seg1 !== 'أ')
+      throw new Error('the question hamza comes off before an open word: ' + JSON.stringify([r.q1, r.seg1]));
+    if (r.k1 !== 'hamzaTasdiq') throw new Error('hamza on a plain nominal = tasdiq: ' + r.k1);
+    if (r.amPk !== 'am') throw new Error('أَمْ is a closed-class row: ' + r.amPk);
+    if (r.k2 !== 'hamzaTayin') throw new Error('hamza + am = ta\'yin: ' + r.k2);
+    if (!r.k2ends || r.k2ends[0] !== 0 || r.k2ends[1] !== 4)
+      throw new Error('…with the TWO candidates as its ends: ' + JSON.stringify(r.k2ends));
+    if (r.k3 !== 'hamzaMaful') throw new Error('hamza + fronted mansub = the object asked: ' + r.k3);
+    if (r.k7 !== 'hamzaVerb' || r.v7 !== 'verb')
+      throw new Error('hamza + mudari reads the deed (and the peel finds the corpus verb): ' + JSON.stringify([r.k7, r.v7]));
+    if (!r.akh7) throw new Error('أَخُوكَ keeps its five-nouns reading inside the question');
+    if (r.k4 !== 'halTasdiq') throw new Error('hal + verb = tasdiq only: ' + r.k4);
+    if (r.k5 !== 'halQabih') throw new Error('hal + fronted mansub = the qabih doctrine: ' + r.k5);
+    if (r.k6 !== 'halRescue') throw new Error('…and the object pronoun lifts it (mufassar): ' + r.k6);
+    if (r.c1q || r.c1n !== 0)
+      throw new Error('أَكْرَمْتَ keeps its own hamza — no question invented: ' + JSON.stringify([r.c1q, r.c1n]));
+    if (r.c2kind !== 'noun' || r.c2pk === 'am')
+      throw new Error('أُمُّهُ is the mother, never the connective: ' + JSON.stringify([r.c2kind, r.c2pk]));
+  });
+
   await check('the v134 wave: the ppk feature, the shart game, the combo, and the arabesque', async () => {
     const r = await page.evaluate(() => {
       const fs = IrabModel.features('زَيْدٌ', 1, 3, null, { prevFull: 'إِنَّ', nextFull: null });

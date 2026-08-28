@@ -1779,3 +1779,44 @@ not a one-line change.
   Measured: **99.9% over 1,412 tokens** (191 worked sentences), ch23's 19
   all agreeing; the two standing disagreements remain the twice-witnessed
   undecidable بِمَا.
+
+- **v141 — Talkhīṣ chapter 24: الِاسْتِفْهَام — the hamza and هَلْ, and the
+  question read off adjacency** — (source lines ~2000-2043, sahifa 70-71):
+  istifhām defined (seeking the FORM of a thing in the mind), the eleven
+  particles, and the three-way split — the hamza serves taṣdīq AND
+  taṣawwur, هَلْ taṣdīq only, the rest taṣawwur only. Taṣdīq offers the
+  whole nisba for yes/no (أَزَيْدٌ قَائِمٌ); taṣawwur demands a NAME
+  (أَدِبْسٌ فِي الْإِنَاءِ أَمْ عَسَلٌ, the أَمْ muttasila pairing two
+  candidates). The hamza's mechanics: what FOLLOWS it is what is asked
+  (أَزَيْدًا ضَرَبْتَ — the fronted object). From هَلْ's restriction the
+  three consequences: the mumtaniʿ am-pairing, the qabīḥ fronted mansub
+  vs its mufassar rescue (هَلْ زَيْدًا ضَرَبْتَ / ضَرَبْتَهُ — one pronoun
+  is the minimal pair), and هَلْ pinning the muḍāriʿ to the future
+  (أَتَضْرِبُ زَيْدًا وَهُوَ أَخُوكَ stands with the hamza, falls with هَلْ
+  — the ḥāl-clause dates the verb). The Sakkākī/qad khilāf on هَلْ's
+  ugliness recorded as khilāf. Note 126 `al-istifham`; six sentences, all
+  the source's own examples verbatim; glossary +5 (dibs, inaa, asal, am,
+  hamza-istifham).
+  - **The interrogative hamza peeled before OPEN-CLASS words**: the peel
+    asks the lexicon both questions with the VOWELLED word on both sides
+    (bare «أزيد» matched زَادَ's أَزِيدُ with nothing to refuse on — «a
+    test can only refuse what it is shown», paid a third time): it fires
+    only when the remainder answers and the whole word does not, only at
+    the sentence head — أَكْرَمْتَ and أَحُجُّ keep their hamzas, أَخُوكَ
+    answers whole through the five-nouns strip.
+  - **أَمْ split from أُمّ** on the hamza's vowel and the mim's shadda
+    (the min/man shape), with the muttasila/munqatiʿa doctrine in its
+    table row.
+  - **IstifhamEngine (new)**: four hamza frames read off adjacency
+    (deed / doer / fronted object / am-paired taʿyīn, with plain-nominal
+    taṣdīq), and three هَلْ frames (taṣdīq-only, the qabīḥ refusal, the
+    mufassar rescue keyed on the verb's object pronoun) — the refusals
+    ARE the teaching, rendered as frame cards.
+
+  - **ML**: corpus 3,980 labelled tokens; held-out 54.8/72.0 over 17
+    folds — steady above the 54/71.5 floors through the peel change and
+    the new tokens; floors unchanged.
+
+  Measured: **99.9% over 1,431 tokens** (197 worked sentences), ch24's 19
+  all agreeing; the two standing disagreements remain the twice-witnessed
+  undecidable بِمَا.

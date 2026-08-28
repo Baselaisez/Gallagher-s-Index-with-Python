@@ -3242,3 +3242,34 @@ them decides tandim (madi — reproach) against tahdid (mudari — urging).
 CLASS routes it (noun = imtina' frame, verb = tahdid frame), the same
 next-word observable as إِذَا's two faces. A closed-class word's new face
 does not always need a new table row; sometimes it needs a router.
+
+## The question hamza rides an invented word until the lexicon splits them
+
+أَزَيْدٌ read as an «indefinite noun أزيد» for two hundred versions: the
+interrogative hamza was peeled only before closed-class remainders. The
+open-class peel is lexicon-guarded BOTH WAYS — the remainder must answer
+(corpus or glossary) and the whole word must not — and both lookups get
+the VOWELLED word, because bare أزيد matched زَادَ's أَزِيدُ with nothing
+to refuse on («a test can only refuse what it is shown», third payment).
+Sentence-head only: that is where the question hamza stands, and the
+narrow claim is what keeps أَكْرَمْتَ، أَحُجُّ، أَخُوكَ whole. When a peel's
+guard is a lexicon question, ask it with every mark the page carries.
+
+## The refusals are the frame — an engine may teach what a sentence may NOT do
+
+The IstifhamEngine's هَلْ rows are mostly REFUSALS: the mumtani am-pairing,
+the qabih fronted mansub, the futurity clash with a hal-clause — and the
+mufassar rescue that lifts one of them on a single pronoun. A frame engine
+over a bab whose doctrine is restrictions should render the restriction
+WITH its reason and its minimal pair (ضَرَبْتَ / ضَرَبْتَهُ), because the
+boundary is the teaching — the same doctrine as IdafaEngine's refusals,
+lifted from government to word order.
+
+## What follows the hamza is what is asked — adjacency as an exact claim
+
+The istifham bab's core rule is pure word order, so the engine claims it
+exactly: verb after the hamza = the deed asked, detached pronoun = the
+doer, fronted mansub = the object, am-paired nouns = ta'yin of the two.
+The hamza peel stamps row.istifham and the engine branches on the row's
+OWN class — no semantics anywhere. When a balagha rule is secretly a
+syntax rule, implement it as syntax and let the note carry the rhetoric.
