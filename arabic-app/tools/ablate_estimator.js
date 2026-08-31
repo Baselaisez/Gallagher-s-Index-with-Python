@@ -1,7 +1,11 @@
-// Estimator comparison for IrabModel. `multinomial` is whatever predict()
-// currently ships; the others are candidates scored against it on the same
-// labeled corpus. The 1/sqrt(k) feature weighting was adopted this way
-// (51.9 -> 53.2 first guess) and complement naive Bayes was rejected (42.8).
+// Estimator ablation for IrabModel: the shipped averaged perceptron against
+// the estimator it replaced (naive Bayes with 1/k^0.35 damping), and against
+// the perceptron's own settings, all leave-one-story-out on the SAME rows.
+// This is the run that decided v146: NB 54.5/71.9 → AP 60.2/74.5, flat
+// across epochs 5-20 and three seeds. Re-run it before touching EPOCHS or
+// SEED, or before proposing another estimator; complement NB was tried in
+// an earlier round and was far worse (42.8) — it is the wrong medicine for
+// this skew.
 //   NODE_PATH=... CHROMIUM_PATH=... node tools/ablate_estimator.js
 const { chromium } = require('playwright-core');
 const { pathToFileURL } = require('url'); const path = require('path');
@@ -10,55 +14,55 @@ const { pathToFileURL } = require('url'); const path = require('path');
   const p = await b.newPage();
   await p.goto(pathToFileURL(path.resolve('prototype/reader.html')).href);
   const r = await p.evaluate(() => {
-    const NB = IrabModel.predict.bind(IrabModel);
-    // Complement naive Bayes: score a class by how POORLY its complement
-    // explains the features. Known to beat multinomial NB on skewed classes.
-    const CNB = function(full, i, n, prev){
-      const m = IrabModel.train(); if (!m.total) return [];
-      const fs = IrabModel.features(full, i, n, prev);
-      const R = IrabModel.ROLES;
-      const scores = R.map(r => {
+    const R = IrabModel.ROLES;
+    const rows = IrabModel.rows();
+    // ---- the retired estimator, kept here as the yardstick ----
+    const ALPHA = 0.35;
+    const nbFit = subset => {
+      const m = { roleN: {}, feat: {}, total: 0 };
+      R.forEach(r => { m.roleN[r] = 0; m.feat[r] = {}; });
+      subset.forEach(x => { m.roleN[x.role]++; m.total++;
+        x.fs.forEach(f => { m.feat[x.role][f] = (m.feat[x.role][f] || 0) + 1; }); });
+      return m;
+    };
+    const nbTwo = (m, fs) => {
+      const w = 1 / Math.pow(Math.max(1, fs.length), ALPHA);
+      let b1 = null, l1 = -Infinity, b2 = null, l2 = -Infinity;
+      R.forEach(r => {
         let lp = Math.log((m.roleN[r] + 1) / (m.total + R.length));
-        fs.forEach(f => {
-          let cNot = 0, nNot = 0;
-          R.forEach(o => { if (o !== r) { cNot += (m.feat[o][f] || 0); nNot += m.roleN[o]; } });
-          lp -= Math.log((cNot + 1) / (nNot + 2));      // complement: subtract
-        });
-        return { r, lp };
-      });
-      const mx = Math.max(...scores.map(s => s.lp)); let z = 0;
-      scores.forEach(s => { s.p = Math.exp(s.lp - mx); z += s.p; });
-      scores.forEach(s => { s.p /= z; });
-      return scores.sort((a, b) => b.p - a.p);
-    };
-    // NB with a length-normalised feature weight — damps correlated features
-    const WNB = function(full, i, n, prev){
-      const m = IrabModel.train(); if (!m.total) return [];
-      const fs = IrabModel.features(full, i, n, prev);
-      const w = 1 / Math.sqrt(Math.max(1, fs.length));
-      const scores = IrabModel.ROLES.map(r => {
-        let lp = Math.log((m.roleN[r] + 1) / (m.total + IrabModel.ROLES.length));
         fs.forEach(f => { lp += w * Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2)); });
-        return { r, lp };
+        if (lp > l1) { l2 = l1; b2 = b1; l1 = lp; b1 = r; }
+        else if (lp > l2) { l2 = lp; b2 = r; }
       });
-      const mx = Math.max(...scores.map(s => s.lp)); let z = 0;
-      scores.forEach(s => { s.p = Math.exp(s.lp - mx); z += s.p; });
-      scores.forEach(s => { s.p /= z; });
-      return scores.sort((a, b) => b.p - a.p);
+      return [b1, b2];
     };
-    const run = () => { let ok=0,n=0,t2=0;
-      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
-        let prev=null; const N=sen.tokens.length;
-        sen.tokens.forEach((t,i) => { const role = RoleEngine.of(t);
-          if (role) { const pr = IrabModel.predict(t.s.full,i,N,prev); n++;
-            if (pr[0] && pr[0].r===role) ok++; if (pr.slice(0,2).some(x=>x.r===role)) t2++; }
-          prev = t.pos==='verb'?'verb':(t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar||''))?'jarr':t.pos==='noun'?'noun':null; });
-      }))); return { n, top1: Math.round(ok/n*1000)/10, top2: Math.round(t2/n*1000)/10 }; };
-    const out = {};
-    IrabModel.predict = NB;  out.multinomial = run();
-    IrabModel.predict = CNB; out.complement  = run();
-    IrabModel.predict = WNB; out.weighted    = run();
-    IrabModel.predict = NB;
+    const cv = (fit, two) => {
+      const ids = [...new Set(rows.map(x => x.st))];
+      let ok = 0, t2 = 0, n = 0;
+      ids.forEach(h => {
+        const m = fit(rows.filter(x => x.st !== h));
+        rows.filter(x => x.st === h).forEach(x => {
+          const [a, c] = two(m, x.fs);
+          n++; if (a === x.role) ok++; if (a === x.role || c === x.role) t2++;
+        });
+      });
+      return { top1: Math.round(ok / n * 1000) / 10, top2: Math.round(t2 / n * 1000) / 10 };
+    };
+    const apTwo = (m, fs) => {
+      const pr = IrabModel.rank(m, fs);
+      return [pr[0] && pr[0].r, pr[1] && pr[1].r];
+    };
+    const withSettings = (epochs, seed, fn) => {
+      const e0 = IrabModel.EPOCHS, s0 = IrabModel.SEED;
+      IrabModel.EPOCHS = epochs; IrabModel.SEED = seed;
+      try { return fn(); } finally { IrabModel.EPOCHS = e0; IrabModel.SEED = s0; }
+    };
+    const out = { n: rows.length };
+    out.nbDamped = cv(nbFit, nbTwo);
+    out.shipped = cv(s => IrabModel.fit(s), apTwo);
+    out.ap5  = withSettings(5,  IrabModel.SEED, () => cv(s => IrabModel.fit(s), apTwo));
+    out.ap20 = withSettings(20, IrabModel.SEED, () => cv(s => IrabModel.fit(s), apTwo));
+    out.seedB = withSettings(IrabModel.EPOCHS, 987654321, () => cv(s => IrabModel.fit(s), apTwo));
     return out;
   });
   console.log(JSON.stringify(r, null, 1));

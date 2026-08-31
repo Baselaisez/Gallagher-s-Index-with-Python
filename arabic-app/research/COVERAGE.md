@@ -1987,3 +1987,36 @@ not a one-line change.
   **98.6% CASE over 1,185 double-decided**; the two standing POS
   disagreements remain the بِمَا pair; no new case disagreements arrived
   with the chapter.
+
+- **v146 — the ML wave: the averaged perceptron, the duel, the Model lab.**
+  No new chapter — the standing directive («develop better engines, let
+  them understand the text, then self-check») turned on the statistical
+  layer itself. The IrabModel's estimator is replaced: the damped naive
+  Bayes (1/k^0.35 correlated-feature hack) gives way to an AVERAGED
+  PERCEPTRON over the same features and the same folds — leave-one-story-
+  out **54.5/71.9 → 60.2/74.5** first/two-guess over 4,049 labelled
+  tokens, flat across epochs 5-20 and three shuffle seeds (60.0-60.3 /
+  74.5-74.7); resubstitution 65.2/79.8 keeps the leak alarm honest. The
+  npk- follower feature was re-A/B'd under the new estimator and is STILL
+  noise. crossVal now trains and ranks through the same rows()/fit()/
+  rank() the shipped predict uses, so the validator cannot drift from the
+  estimator; cv_eval.js became a thin runner and ablate_estimator.js the
+  NB-vs-AP comparator. Floors raised to 59/73.5.
+
+  The model then went to work in the app: **gDuel «Modele Karşı»** (16th
+  game, 🤖) has the learner and the model answer the same role question
+  on the model's own 4,049 training labels — the model's ranked
+  misreadings ARE the distractors, its pick + percentage + verdict render
+  in the reveal with a running Sen-X-Model-Y tally, and the stored hand
+  i'rab stays the referee. The **Model lab** (12th atölye tool, نَمُوذَج)
+  shows the layer's hand on any typed sentence: per open noun the ranked
+  roles as probability bars in the role palette, the fired features as
+  plain-language evidence chips, and an honest stand-down line on verbs
+  and closed-class words; the panel leads with the held-out score.
+  Design wave 7 gives the statistical voice one visual language (.mbar,
+  .feat-chip, .duel-banner — DESIGN.md §7). runQuiz gained the onAnswer
+  hook (shell feature, lands for every game).
+
+  Measured: bank held at **99.9% POS / 1,514** and **98.6% CASE / 1,185**
+  (no engine that feeds the bank changed); ML held-out **60.2/74.5**,
+  floors 59/73.5.

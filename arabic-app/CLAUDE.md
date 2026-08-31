@@ -3496,3 +3496,54 @@ swallows لِيَحْضُرْ and walks a VERB toward an "omitted amil" — wron
 grammar published on the very sentence ch28 teaches. Any row that
 resolved with a paradigm cell and kind verb exits of() before the
 letter tests run: the lam it opens on belongs to the lam-amr pass.
+
+## The estimator is replaceable — the harness is what made it safe to replace
+
+v146 swapped naive Bayes for an AVERAGED PERCEPTRON inside IrabModel and
+the whole app followed for free, because every consumer reads predict()'s
+{r, p} contract and every grader now routes through the same three
+methods: rows() materialises the labelled corpus once, fit() trains,
+rank() scores — train(), predict(), accuracy(), crossVal(), cv_eval.js
+and ablate_estimator.js all call THOSE. The old crossVal carried a
+private naive-Bayes copy; one algorithm change away from grading a model
+that no longer shipped. A validator that owns a twin of the estimator is
+drift waiting to happen — give the estimator one home and make the
+validator call it.
+
+## The perceptron needs no damping apology — mistake-driven kills the double count
+
+Naive Bayes multiplied correlated evidence («al», «sign-kasra»,
+«by-haraka» move together) and needed the 1/k^ALPHA hack. The averaged
+perceptron updates ONLY on mistakes: once one cue of a cluster carries
+the decision, its twins stop accumulating weight — the correlation is
+learned away, not damped away. Same features, same folds: 54.5/71.9 →
+60.2/74.5 held-out, flat across epochs 5-20 and three seeds. A flat
+sweep is what a real gain looks like; a spike on one setting is a
+hyperparameter overfitted to its folds. Determinism matters for gates:
+fixed LCG seed, fixed epochs, and the averaging is O(1) per touched
+weight (back-rent accumulators), so 17-fold crossVal stays under 3s.
+
+## The model is an OPPONENT the learner can beat — and its errors are the drill
+
+gDuel pits the learner against IrabModel on the model's own training
+labels: the hand analysis is the answer key, the model's ranked WRONG
+readings are the distractors (the confusions a statistical reader
+actually makes — near misses by construction), and the reveal shows the
+model's pick, its percentage and the running tally. The shell grew ONE
+hook for it (onAnswer, fired beside the Elo update, resume-safe) — a
+game that needs shell changes is a shell feature and lands for all
+sixteen at once. The model's guess wears 🤖 everywhere; the honest
+framing (statistics, never i'rab) is in the game's own ask line.
+
+## The Model lab shows the hand, not just the verdict
+
+The atölye's نَمُوذَج tab renders, per open noun, the ranked roles as
+bars AND the evidence — every fired feature named in plain language
+(modelFeatLbl) — while verbs and closed-class words get a stand-down
+line: the rules decide those, the model only votes where rules cannot.
+Two disciplines: the lab computes prev/ctx EXACTLY as the analyzer's
+predict site does (a lab showing a twin model is the crossVal bug at the
+UI layer), and a runner-up below 3% belief draws no bar — a %0 bar is
+furniture, not honesty. Design wave 7 (DESIGN.md §7): belief is a bar in
+the role palette, evidence is a chip row, the statistical voice keeps
+the lvl3 amber.

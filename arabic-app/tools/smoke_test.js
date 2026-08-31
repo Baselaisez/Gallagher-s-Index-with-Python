@@ -3941,7 +3941,12 @@ if (!CHROME) {
     // REJECTED as noise (54.6/72.1 -> 54.4/72.0): government flows FORWARD
     // from the governor before the word, which is why ppk- paid and npk-
     // does not. Recorded so nobody spends the afternoon again.
-    if (a.cv1 < 54) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    // v146: the ESTIMATOR changed — averaged perceptron over the same
+    // features, same folds: 54.5/71.9 -> 60.2/74.5 over 4,049 tokens, flat
+    // across epochs 5-20 and three seeds (60.0-60.3 / 74.5-74.7). The npk-
+    // feature was re-A/B'd under the perceptron and is STILL noise
+    // (60.2/74.5 -> 60.0/74.6). Floors raised to hold the gain.
+    if (a.cv1 < 59) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
     // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
     // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
     // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
@@ -3949,7 +3954,7 @@ if (!CHROME) {
     // eight new demonstratives removed from PARTICLES scores 51.0 / 67.9 as
     // well — identical to a tenth. Lower a floor only with a measurement in
     // hand and the measurement written down.
-    if (a.cv2 < 71.5) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    if (a.cv2 < 73.5) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
@@ -7721,6 +7726,69 @@ if (!CHROME) {
     if (r.lamGhost) throw new Error('a resolved verb must not be walked as a jarr phrase');
     if (r.maWajh !== 'mawsula') throw new Error('the open object seat promotes مَا to mawsula: ' + r.maWajh);
     if (r.mimWajh !== 'masdariyya') throw new Error('…while مِمَّا with no aid keeps masdariyya: ' + r.mimWajh);
+  });
+
+  await check('the duel and the model lab: the perceptron plays with its hand open', async () => {
+    const r = await page.evaluate(() => {
+      renderLibrary();
+      const spec = GameFactory.get('gDuel');
+      const items = duelItems();
+      const it = items[0];
+      const pred = modelPredictFor(it.sen, it.ti);
+      const okDesc = pred.every((p, k) => k === 0 || pred[k - 1].p >= p.p);
+      const sum = pred.reduce((a, p) => a + p.p, 0);
+      return { supply: items.length, gf: !!spec,
+               playable: GameFactory.playable('gDuel'),
+               roleKnown: !!DUEL_ROLES[it.key],
+               okDesc, sum: Math.round(sum * 100) / 100,
+               modelRoles: IrabModel.ROLES.every(k => !!DUEL_ROLES[k]) };
+    });
+    if (!r.gf) throw new Error('gDuel is not registered in GameFactory');
+    // the duel pool IS the labeled corpus — the same floor the ML gate holds
+    if (!r.playable || r.supply < 2000) throw new Error('the duel pool shrank: ' + r.supply);
+    if (!r.roleKnown || !r.modelRoles) throw new Error('every model role needs its duel label');
+    if (!r.okDesc || Math.abs(r.sum - 1) > 0.01)
+      throw new Error('rank must return a sorted distribution, got sum ' + r.sum);
+    // play one question through the hub: the model is badged in the reveal,
+    // the tally runs, and the stored i'rab — never the model — answers.
+    await page.evaluate(() => openGames());
+    await page.locator('.game-pick #gDuel').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 5000 });
+    const nOpts = await page.locator('.opts [data-o]').count();
+    if (nOpts < 2 || nOpts > 4) throw new Error('duel options: ' + nOpts);
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('.duel-banner', { timeout: 3000 });
+    const banner = await page.locator('.duel-banner').textContent();
+    if (!/🤖/.test(banner)) throw new Error('the model must wear its badge in the reveal');
+    if (!(await page.locator('.duel-tally').count())) throw new Error('the running tally is missing');
+    if (!(await page.locator('.game-why').count()))
+      throw new Error("the stored i'rab must answer, not the model");
+    await page.evaluate(() => { closeSheet(); renderLibrary(); });
+    // the Model lab: belief bars in the role palette, evidence chips, and
+    // the honest stand-down on verbs and closed-class words.
+    await page.evaluate(() => {
+      conjState.lab = 'model';
+      conjState.model = 'كَتَبَ الْوَلَدُ الدَّرْسَ فِي الْبَيْتِ';
+      openConjugator();
+    });
+    await page.waitForSelector('#modelOut', { timeout: 3000 });
+    await page.waitForTimeout(300);
+    const lab = await page.evaluate(() => ({
+      bars: document.querySelectorAll('.mbar').length,
+      fills: [...document.querySelectorAll('.mbar-fill')].every(f =>
+        /var\(--role-/.test(f.getAttribute('style') || '')),
+      chips: document.querySelectorAll('.feat-chip').length,
+      skips: document.querySelectorAll('.model-skip').length,
+      score: (document.querySelector('.ml-score') || {}).textContent || '',
+      heldout: Math.round(IrabModel.crossVal().top1 * 100),
+    }));
+    if (lab.bars < 3) throw new Error('the model lab must draw belief bars: ' + lab.bars);
+    if (!lab.fills) throw new Error('a belief bar wears its role color from the palette, not a literal');
+    if (lab.chips < 5) throw new Error('the evidence chips are missing: ' + lab.chips);
+    if (lab.skips < 1) throw new Error('a verb must get the stand-down line, not a guess');
+    if (!lab.score.includes(String(lab.heldout)))
+      throw new Error('the lab must lead with the held-out score: ' + lab.score);
+    await page.evaluate(() => { closeSheet(); renderLibrary(); });
   });
 
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {

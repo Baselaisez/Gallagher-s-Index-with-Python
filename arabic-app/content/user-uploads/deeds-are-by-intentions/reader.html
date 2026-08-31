@@ -845,6 +845,41 @@
   .tabs [data-lab="nida"]::before  { content: "📣"; }
   .tabs [data-lab="ilal"]::before  { content: "🧪"; }
   .tabs [data-lab="kernel"]::before { content: "🜂"; }
+  .tabs [data-lab="model"]::before { content: "🤖"; }
+  /* ==== design wave 7: the model shows its hand ==========================
+     The duel reveal and the Model lab share one visual language: the
+     model's belief is a BAR (the muted role palette, width = probability),
+     its evidence is a row of quiet chips, and everything statistical keeps
+     the lvl3 amber the 🧠 chip already taught — a learner should recognise
+     "this is the model talking" from the color alone. */
+  .duel-banner { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center;
+    justify-content: space-between; border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--lvl3); border-radius: var(--r-md);
+    padding: var(--s2) var(--s3); margin: var(--s3) 0; font-size: var(--t-sm);
+    background: var(--panel); }
+  .duel-banner.model-right { border-inline-start-color: var(--ok); }
+  .duel-banner .duel-pct { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .duel-banner b[lang="ar"] { font-family: var(--ar-font); font-size: 1.1em; }
+  .duel-tally { font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .model-card { border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: var(--s3); margin: var(--s2) 0; background: var(--panel); box-shadow: var(--e1); }
+  .model-word { font-family: var(--ar-font); font-size: var(--t-xl); margin-bottom: var(--s2); }
+  .mbar { display: flex; align-items: center; gap: var(--s2); margin: var(--s1) 0;
+    font-size: var(--t-sm); }
+  .mbar-lbl { flex: 0 0 34%; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; }
+  .mbar-lbl [lang="ar"] { font-family: var(--ar-font); }
+  .mbar-track { flex: 1; height: 8px; border-radius: var(--r-full);
+    background: var(--accent-soft); overflow: hidden; }
+  .mbar-fill { display: block; height: 100%; border-radius: var(--r-full);
+    transition: width var(--dur-slow) var(--ease); }
+  .mbar-p { flex: 0 0 2.4rem; text-align: end; color: var(--ink-soft);
+    font-variant-numeric: tabular-nums; font-size: var(--t-xs); }
+  .feat-chips { display: flex; flex-wrap: wrap; gap: var(--s1); margin-top: var(--s2); }
+  .feat-chip { font-size: var(--t-xs); border: 1px solid var(--line);
+    border-radius: var(--r-full); padding: .05rem var(--s2); color: var(--ink-soft); }
+  .model-skip { color: var(--ink-soft); font-size: var(--t-sm); margin: var(--s2) 0; }
+  .model-skip b { font-family: var(--ar-font); font-size: 1.1em; color: var(--ink); }
   /* the kernel: one card per engine that answered, and one for what none did */
   .kn-mode { font-size: var(--t-xs); letter-spacing: var(--track-caps); text-transform: uppercase;
     color: var(--ink-soft); font-weight: 700; margin: var(--s2) 0; }
@@ -1851,6 +1886,16 @@ const L = {
         tahqiqFoot:"A disagreement does not mean one side is wrong: in some places the engine is reporting that the surface cannot decide. Every one of these rows is kept in content/drills/generated.json, which is the training and measurement set for the algorithms.",
         colWord:"Word", colIrab:"Analysis", sheetTopics:"Topics in this sentence",
         roleGame:"What is it doing?", roleGameDesc:"Four words can all be marfu' — name the role, not the case.",
+        duelGame:"Beat the Model", duelGameDesc:"The app's statistical reader answers the same question you do — its wrong guesses are your distractors. Outscore it.",
+        duelAsk:"Name the highlighted word's role — the model has already made its guess.",
+        duelModelSaid:"the model read it as", duelModelRight:"it was right.", duelModelWrong:"it was wrong — the hand analysis wins.",
+        duelTally:"You {y} — Model {m}",
+        modelTab:"Model",
+        modelIntro:"The statistical layer, hand open. Type a sentence: for every open noun the model ranks the roles it believes in, as bars — and shows its evidence, every feature the word fired, named in plain language. Verbs and closed-class words get a stand-down line instead: the rules decide those, and the model only votes where the rules cannot.",
+        modelScore:"🤖 An averaged perceptron trained at runtime on {n} hand-labelled words. Held out story by story it names the role first try {a}% of the time, within two guesses {b}% — statistics, never i'rab.",
+        modelSkipVerb:"a verb — its cell and person come from the paradigms, and the model stands down.",
+        modelSkipClosed:"closed class or undecided — the tables answer here, not statistics.",
+        modelHonest:"Bars are the model's belief, not a ruling: the stored hand analyses stay the truth, and the reader always says which one is talking.",
         alaqaGame:"Which relation?", alaqaAsk:"What licenses this transfer of meaning?",
         alaqaGameDesc:"A word says one thing and means another — name the relation between them.",
         alaqaHaqiqi:"Literally:", alaqaMajazi:"Meant:", alaqaQarina:"What forbids the literal reading:",
@@ -2072,6 +2117,16 @@ const L = {
         tahqiqFoot:"Uyuşmama, birinin hatalı olduğu anlamına gelmez: motor bâzı yerlerde yüzeyin tayin edemediğini bildirir. Bu satırların tamamı content/drills/generated.json dosyasında saklanır ve algoritmaların eğitim/ölçüm kümesini oluşturur.",
         colWord:"Kelime", colIrab:"İ'rab", sheetTopics:"Bu cümledeki konular",
         roleGame:"Cümledeki görevi ne?", roleGameDesc:"Dört kelime birden merfû olabilir — i'rabı değil, görevi söyleyin.",
+        duelGame:"Modele Karşı", duelGameDesc:"Uygulamanın istatistik okuyucusu aynı soruya cevap verir — yanlış tahminleri sizin çeldiricilerinizdir. Onu geçin.",
+        duelAsk:"İşaretli kelimenin görevini söyleyin — model tahminini çoktan yaptı.",
+        duelModelSaid:"model şöyle okudu:", duelModelRight:"bildi.", duelModelWrong:"bilemedi — el ile yazılmış tahlil kazanır.",
+        duelTally:"Sen {y} — Model {m}",
+        modelTab:"Model",
+        modelIntro:"İstatistik katmanı, eli açık. Bir cümle yazın: model her açık isim için inandığı görevleri çubuklar hâlinde sıralar — ve delilini gösterir: kelimenin ateşlediği her özellik, açık dille adlandırılmış. Fiiller ve kapalı sınıf kelimeler ise dürüst bir çekilme satırı alır: onları kaideler karara bağlar, model yalnız kaidelerin karar veremediği yerde oy kullanır.",
+        modelScore:"🤖 Çalışma anında {n} el ile etiketlenmiş kelime üzerinde eğitilen ortalamalı perceptron. Hikâye hikâye dışarıda bırakılarak sınandığında görevi ilk tahminde %{a}, ilk iki tahminde %{b} bilir — istatistiktir, i'râb değildir.",
+        modelSkipVerb:"fiil — kalıbı ve şahsı çekim cetvellerinden gelir; model geri çekilir.",
+        modelSkipClosed:"kapalı sınıf yahut belirsiz — burada cetveller cevap verir, istatistik değil.",
+        modelHonest:"Çubuklar modelin kanaatidir, hüküm değil: saklanan el tahlilleri hakikat olarak kalır ve okuyucu hangisinin konuştuğunu dâimâ söyler.",
         alaqaGame:"Hangi alâka?", alaqaAsk:"Bu mana nakline ne izin veriyor?",
         alaqaGameDesc:"Kelime bir şey söyler, başka bir şey kasteder — aradaki alâkayı adlandırın.",
         alaqaHaqiqi:"Hakiki manası:", alaqaMajazi:"Kastedilen:", alaqaQarina:"Hakiki manayı engelleyen karîne:",
@@ -3218,6 +3273,10 @@ function runQuiz(cfg){
         // never lands here, so nothing double-counts.
         if (cfg.area) EloModel.update(cfg.area, cfg.lvl ? cfg.lvl(it) : 3, opts[G.answered].ok,
           cfg.itemKey ? cfg.itemKey(it) : null);
+        // a game may keep its own running state off the answer — the duel's
+        // tally lives on this hook. A resume never lands here (same guarantee
+        // as the Elo line above), so nothing double-counts.
+        if (cfg.onAnswer) try { cfg.onAnswer(it, opts[G.answered].ok); } catch (e) {}
         draw();
       }));
       return;
@@ -3469,6 +3528,107 @@ function startRoleGame(){
     why: it => irabWhy(it.tok.irab),
     // The interrogative that would have given the answer away.
     after: it => questionTestHtml(ROLE_BY_KEY[it.key].note),
+    extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`,
+               run: it => openIrabSheet(it.sen) }],
+  });
+}
+
+// ---------- the Duel: beat the model ----------
+// The learner and the runtime IrabModel answer the SAME question — which
+// role does this word carry — and the reveal shows both verdicts side by
+// side. The items are the model's own training labels (RoleEngine over the
+// stored i'rab), so the answer key is the hand analysis, never the model;
+// the model is the OPPONENT, and its wrong guesses are the distractors —
+// the confusions a statistical reader actually makes, which is exactly what
+// makes them near misses. Its guess is always badged 🤖 and its honest
+// held-out score is stated in the hub card, because a learner who beats it
+// should know what they beat: statistics, never i'rab.
+const DUEL_ROLES = {
+  fail:    { ar: "الْفَاعِل",         en: "fa'il",            tr: "fâil" },
+  maful:   { ar: "الْمَفْعُول",       en: "maf'ul",           tr: "mef'ûl" },
+  mubtada: { ar: "الْمُبْتَدَأ",      en: "mubtada",          tr: "mübteda" },
+  khabar:  { ar: "الْخَبَر",          en: "khabar",           tr: "haber" },
+  mudaf:   { ar: "الْمُضَافُ إِلَيْهِ", en: "mudaf ilayh",      tr: "muzâfun ileyh" },
+  hal:     { ar: "الْحَال",           en: "hal / zarf / tamyiz", tr: "hâl / zarf / temyiz" },
+  tabi:    { ar: "التَّابِع",         en: "tabi (sifa / atf)", tr: "tâbi (sıfat / atf)" },
+  jarr:    { ar: "الْمَجْرُور",       en: "majrur",           tr: "mecrur" },
+};
+// the model's reading of one stored token — prev and ctx computed EXACTLY as
+// IrabModel.rows() computes them, or the game would quiz a different model
+// than the one that was trained.
+function modelPredictFor(sen, ti){
+  let prev = null;
+  for (let k = 0; k < ti; k++) {
+    const t = sen.tokens[k];
+    prev = t.pos === "verb" ? "verb"
+         : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
+         : t.pos === "noun" ? "noun" : null;
+  }
+  const n = sen.tokens.length;
+  return IrabModel.predict(sen.tokens[ti].s.full, ti, n, prev, {
+    prevFull: ti > 0 ? sen.tokens[ti - 1].s.full : null,
+    nextFull: ti + 1 < n ? sen.tokens[ti + 1].s.full : null });
+}
+function duelItems(){
+  const out = [];
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+    sen.tokens.forEach((t, ti) => {
+      if (!t.irab || !t.irab.ar) return;
+      const role = RoleEngine.of(t);
+      if (role && sen.tokens.length >= 2) out.push({ sen, ti, tok: t, key: role });
+    }))));
+  return out;
+}
+function duelOptHtml(k){
+  const r = DUEL_ROLES[k];
+  return `<span lang="ar">${r.ar}</span> · ${state.uiLang === "tr" ? r.tr : r.en}`;
+}
+function duelBanner(it, duel){
+  const p = it.pred[0];
+  const R = DUEL_ROLES[p ? p.r : ""] || {};
+  const ok = !!p && p.r === it.key;
+  return `<div class="duel-banner${ok ? " model-right" : ""}">
+    <span class="duel-model">🤖 ${ui().duelModelSaid} <b lang="ar">${R.ar || "—"}</b>
+      <span class="duel-pct">%${p ? Math.round(p.p * 100) : 0}</span> — ${
+        ok ? ui().duelModelRight : ui().duelModelWrong}</span>
+    <span class="duel-tally">${ui().duelTally.replace("{y}", duel.you).replace("{m}", duel.model)}</span>
+  </div>`;
+}
+function startDuel(){
+  const items = shuffle(duelItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  items.forEach(it => { it.pred = modelPredictFor(it.sen, it.ti); });
+  const duel = { you: 0, model: 0 };
+  runQuiz({
+    title: ui().duelGame, ask: ui().duelAsk, items, restart: startDuel,
+    area: "nahw", lvl: () => 4, itemKey: it => "duel:" + it.sen.id + ":" + it.ti,
+    onAnswer: (it, ok) => {
+      if (ok) duel.you++;
+      if (it.pred[0] && it.pred[0].r === it.key) duel.model++;
+    },
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti,
+      t => `<b class="target">${t.s.full}</b>`)}</div>`,
+    // the distractors are the model's own runners-up: the wrong readings a
+    // statistical reader finds most plausible for THIS word, ranked.
+    options: it => {
+      const wrongs = it.pred.filter(p => p.r !== it.key).slice(0, 3);
+      return shuffle([{ html: duelOptHtml(it.key), ok: true, k: it.key },
+        ...wrongs.map(p => ({ html: duelOptHtml(p.r), ok: false, k: p.r }))]);
+    },
+    whyNot: (it, picked) => {
+      const tr = state.uiLang === "tr";
+      // tabi has no interrogative and jarr's is the placeholder «…?» —
+      // both fall back to naming the true role alone.
+      const q0 = ROLE_Q[picked.k];
+      const q = q0 && q0.en !== "…?" ? q0 : null;
+      const right = DUEL_ROLES[it.key];
+      const nm = `<b lang="ar">${right.ar}</b> (${tr ? right.tr : right.en})`;
+      return q ? (tr ? `${DUEL_ROLES[picked.k].tr} «${q.tr}» sorusuna cevap verir — bu kelime ona cevap vermiyor. Buradaki görev ${nm}.`
+                     : `${DUEL_ROLES[picked.k].en} answers «${q.en}» — this word does not. Its job here is ${nm}.`)
+               : (tr ? `Buradaki görev ${nm}.` : `Its job here is ${nm}.`);
+    },
+    why: it => irabWhy(it.tok.irab),
+    after: it => duelBanner(it, duel),
     extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`,
                run: it => openIrabSheet(it.sen) }],
   });
@@ -6710,21 +6870,33 @@ class MaEngine {
 // Every token in every story carries a hand-written i'rab, and RoleEngine
 // reads each one into a functional role — which makes the corpus a labeled
 // training set thousands of examples strong. This model trains on it AT
-// RUNTIME: naive Bayes with Laplace smoothing over cheap surface features
-// (article, tanwin, ta marbuta, attached pronoun, position, what came
-// before). No weights ship in the file; every content release retrains the
-// model on the enlarged corpus automatically. Predictions are labeled as
-// statistics, never as i'rab — the hand-written analyses stay the truth.
+// RUNTIME over cheap surface features (article, tanwin, ta marbuta, attached
+// pronoun, position, what came before) plus what the rule engines derive.
+// No weights ship in the file; every content release retrains the model on
+// the enlarged corpus automatically. Predictions are labeled as statistics,
+// never as i'rab — the hand-written analyses stay the truth.
+//
+// The estimator is an AVERAGED PERCEPTRON (v146). Its predecessor was naive
+// Bayes with a 1/k^0.35 damping hack for correlated features — the honest
+// medicine for a model whose independence assumption our features plainly
+// violate («al», «sign-kasra» and «by-haraka» move together on one word).
+// The perceptron needs no such apology: it LEARNS the correlations away,
+// because a weight update only fires where the current weights are wrong.
+// Measured leave-one-story-out on the same folds and the same features:
+// 54.5/71.9 (damped NB) → 60.2/74.5 first/two-guess over 4,049 tokens — and
+// the number is FLAT across epochs 5-20 and three shuffle seeds (60.0-60.3 /
+// 74.5-74.7), which is what a real gain looks like; a spike on one setting
+// is a hyperparameter overfitted to its folds. Averaging is what makes the
+// perceptron honest: the raw final weights are whatever the last mistakes
+// left behind, the running average is the whole training history voting.
 class IrabModel {
   static _model = null;
   static ROLES = ["fail", "maful", "mubtada", "khabar", "mudaf", "hal", "tabi", "jarr"];
-  // How hard to damp correlated features. Chosen on HELD-OUT evidence, not on
-  // the training score: leave-one-story-out cross-validation puts 0.35 at
-  // 50.4% first-guess against 0.5's 49.2%. On the resubstitution score 0.35
-  // looked like a spike between two equal neighbours — which is exactly what
-  // a hyperparameter overfitted to its own training set looks like, and is
-  // why the cross-validator exists. Re-run tools/cv_eval.js before touching it.
-  static ALPHA = 0.35;
+  // Fixed for determinism: the same corpus must train the same model in
+  // every session, or a gate number would wobble. The sweep above says the
+  // choice is not delicate; re-run tools/ablate_estimator.js before touching.
+  static EPOCHS = 10;
+  static SEED = 1234567;
   // features are computed from the FULL surface + neighbors
   // ctx (optional): { prevFull, nextFull } — the words on either side, so the
   // RULE ENGINES can be asked about this position and their verdicts used as
@@ -6749,8 +6921,8 @@ class IrabModel {
     // The single strongest cue a reader actually uses: what the LAST letter
     // shows. This is where the rule engines feed the statistical one —
     // caseSignOf names the vowel, IrabSign names the MANNER of i'rab (a
-    // mabni word declines by position, a dual by letters), and the naive
-    // Bayes learns which roles live behind each. Nothing is hard-coded:
+    // mabni word declines by position, a dual by letters), and the model
+    // learns which roles live behind each. Nothing is hard-coded:
     // the association is counted off the corpus like every other feature.
     const sign = caseSignOf(w);
     if (sign) f.push("sign-" + sign.en);
@@ -6809,62 +6981,98 @@ class IrabModel {
     }
     return f;
   }
-  static train(){
-    if (this._model) return this._model;
-    const m = { roleN: {}, feat: {}, total: 0 };
-    this.ROLES.forEach(r => { m.roleN[r] = 0; m.feat[r] = {}; });
+  // every labeled token, featurised once — train(), crossVal() and the
+  // ablation tools all draw from THIS materialiser, so there is exactly one
+  // definition of what an example is. prev is non-sticky, mirroring the
+  // predict call site exactly: a particle that is not a jarr letter RESETS
+  // it — training and inference must share one feature definition or the
+  // counts lie.
+  static rows(){
+    const out = [];
     STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
       let prev = null;
       const n = sen.tokens.length;
       sen.tokens.forEach((t, i) => {
         const role = RoleEngine.of(t);
-        const isVerb = t.pos === "verb";
-        if (role) {
-          const fs = this.features(t.s.full, i, n, prev, {
-            prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
-            nextFull: i + 1 < n ? sen.tokens[i + 1].s.full : null });
-          m.roleN[role]++; m.total++;
-          fs.forEach(f => { m.feat[role][f] = (m.feat[role][f] || 0) + 1; });
-        }
-        // non-sticky, mirroring the predict call site exactly: a particle
-        // that is not a jarr letter RESETS prev — training and inference
-        // must share one feature definition or the counts lie.
-        prev = isVerb ? "verb"
+        if (role) out.push({ st: st.id, role, fs: this.features(t.s.full, i, n, prev, {
+          prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
+          nextFull: i + 1 < n ? sen.tokens[i + 1].s.full : null }) });
+        prev = t.pos === "verb" ? "verb"
              : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
              : t.pos === "noun" ? "noun" : null;
       });
     })));
-    this._model = m;
-    return m;
+    return out;
   }
-  // P(role | features) by naive Bayes; returns roles sorted by probability.
-  //
-  // The likelihoods carry a 1/k^ALPHA weight, k being how many features the
-  // word fired. Naive Bayes assumes features are independent and ours plainly
-  // are not — «al» and «sign-kasra» and «by-haraka» all move together on the
-  // same word — so an unweighted product counts one piece of evidence three
-  // times and the posterior spikes on whichever class happens to own that
-  // cluster. Damping by the feature count is the cheapest correction that
-  // keeps the model interpretable. Measured with tools/ablate_estimator.js:
-  // 51.9% → 53.2% first guess. Complement NB was tried in the same run and
-  // was far WORSE (42.8%) — it is the wrong medicine for this skew.
+  // the averaged perceptron. Deterministic: a fixed LCG shuffles the same
+  // way every session. The averaging is O(1) per touched weight — each
+  // weight remembers WHEN it last changed and pays its back-rent into the
+  // accumulator on the next touch, so 10 epochs over the corpus cost
+  // milliseconds, not the naive O(weights) sweep per example.
+  static fit(rows){
+    const R = this.ROLES;
+    const w = {}, acc = {}, last = {};
+    R.forEach(r => { w[r] = {}; acc[r] = {}; last[r] = {}; });
+    let t = 1, seed = this.SEED;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x80000000;
+    const upd = (r, f, d) => {
+      acc[r][f] = (acc[r][f] || 0) + (w[r][f] || 0) * (t - (last[r][f] || 0));
+      last[r][f] = t; w[r][f] = (w[r][f] || 0) + d;
+    };
+    const ord = rows.map((_, i) => i);
+    for (let e = 0; e < this.EPOCHS; e++) {
+      for (let i = ord.length - 1; i > 0; i--) {
+        const j = Math.floor(rnd() * (i + 1));
+        const tmp = ord[i]; ord[i] = ord[j]; ord[j] = tmp;
+      }
+      ord.forEach(ix => {
+        const x = rows[ix];
+        let best = null, bs = -Infinity;
+        R.forEach(r => {
+          let s = w[r].__b || 0;
+          x.fs.forEach(f => { s += w[r][f] || 0; });
+          if (s > bs) { bs = s; best = r; }
+        });
+        // mistake-driven: a correct guess changes nothing, which is exactly
+        // how the correlated-feature double count dies — once one cue of a
+        // cluster carries the decision, its twins stop accumulating weight.
+        if (best !== x.role) {
+          x.fs.forEach(f => { upd(x.role, f, 1); upd(best, f, -1); });
+          upd(x.role, "__b", 1); upd(best, "__b", -1);
+        }
+        t++;
+      });
+    }
+    const avg = {};
+    R.forEach(r => { avg[r] = {}; Object.keys(w[r]).forEach(f => {
+      avg[r][f] = ((acc[r][f] || 0) + w[r][f] * (t - (last[r][f] || 0))) / t; }); });
+    return { w: avg, total: rows.length };
+  }
+  // score every role for one feature vector; softmax turns the margins into
+  // the shortlist's percentages. They are RANKS wearing probability clothes —
+  // labeled as statistics in the UI, never as i'rab.
+  static rank(m, fs){
+    const scores = this.ROLES.map(r => {
+      const wr = m.w[r] || {};
+      let s = wr.__b || 0;
+      fs.forEach(f => { s += wr[f] || 0; });
+      return { r, s };
+    });
+    const mx = Math.max(...scores.map(x => x.s));
+    let z = 0;
+    scores.forEach(x => { x.p = Math.exp(x.s - mx); z += x.p; });
+    scores.forEach(x => { x.p /= z; });
+    return scores.sort((a, b) => b.p - a.p);
+  }
+  static train(){
+    if (this._model) return this._model;
+    this._model = this.fit(this.rows());
+    return this._model;
+  }
   static predict(full, i, n, prev, ctx){
     const m = this.train();
     if (!m.total) return [];
-    const fs = this.features(full, i, n, prev, ctx);
-    const w = 1 / Math.pow(Math.max(1, fs.length), this.ALPHA);
-    const scores = this.ROLES.map(r => {
-      let lp = Math.log((m.roleN[r] + 1) / (m.total + this.ROLES.length));
-      fs.forEach(f => {
-        lp += w * Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2));
-      });
-      return { r, lp };
-    });
-    const mx = Math.max(...scores.map(s => s.lp));
-    let z = 0;
-    scores.forEach(s => { s.p = Math.exp(s.lp - mx); z += s.p; });
-    scores.forEach(s => { s.p /= z; });
-    return scores.sort((a, b) => b.p - a.p);
+    return this.rank(m, this.features(full, i, n, prev, ctx));
   }
   static trainingSize(){ return this.train().total; }
   // How often the model is right about the very corpus it learned from. This
@@ -6879,45 +7087,19 @@ class IrabModel {
   static _cv = null;
   static crossVal(){
     if (this._cv) return this._cv;
-    const R = this.ROLES, rows = [];
-    STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
-      let prev = null;
-      const N = sen.tokens.length;
-      sen.tokens.forEach((t, i) => {
-        const role = RoleEngine.of(t);
-        if (role) rows.push({ st: st.id, role, fs: this.features(t.s.full, i, N, prev, {
-          prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
-          nextFull: i + 1 < N ? sen.tokens[i + 1].s.full : null }) });
-        prev = t.pos === "verb" ? "verb"
-             : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
-             : t.pos === "noun" ? "noun" : null;
-      });
-    })));
-    const fit = subset => {
-      const m = { roleN: {}, feat: {}, total: 0 };
-      R.forEach(r => { m.roleN[r] = 0; m.feat[r] = {}; });
-      subset.forEach(x => { m.roleN[x.role]++; m.total++;
-        x.fs.forEach(f => { m.feat[x.role][f] = (m.feat[x.role][f] || 0) + 1; }); });
-      return m;
-    };
-    const two = (m, fs) => {
-      const w = 1 / Math.pow(Math.max(1, fs.length), this.ALPHA);
-      let b1 = null, l1 = -Infinity, b2 = null, l2 = -Infinity;
-      R.forEach(r => {
-        let lp = Math.log((m.roleN[r] + 1) / (m.total + R.length));
-        fs.forEach(f => { lp += w * Math.log(((m.feat[r][f] || 0) + 1) / (m.roleN[r] + 2)); });
-        if (lp > l1) { l2 = l1; b2 = b1; l1 = lp; b1 = r; }
-        else if (lp > l2) { l2 = lp; b2 = r; }
-      });
-      return [b1, b2];
-    };
+    // the SAME rows(), the SAME fit(), the SAME rank() as the shipped model —
+    // a validator that grades a private copy of the estimator drifts the
+    // moment the estimator changes, and its number quietly stops meaning
+    // anything. This one cannot drift.
+    const rows = this.rows();
     const ids = [...new Set(rows.map(x => x.st))];
     let ok = 0, t2 = 0, n = 0;
     ids.forEach(held => {
-      const m = fit(rows.filter(x => x.st !== held));
+      const m = this.fit(rows.filter(x => x.st !== held));
       rows.filter(x => x.st === held).forEach(x => {
-        const [a, c] = two(m, x.fs);
-        n++; if (a === x.role) ok++; if (a === x.role || c === x.role) t2++;
+        const pr = this.rank(m, x.fs);
+        n++; if (pr[0] && pr[0].r === x.role) ok++;
+        if (pr.slice(0, 2).some(y => y.r === x.role)) t2++;
       });
     });
     this._cv = { n, folds: ids.length, top1: n ? ok / n : 0, top2: n ? t2 / n : 0 };
@@ -8445,7 +8627,8 @@ let conjState = { idafaA: "كِتَابٌ", idafaB: "الْوَلَدُ", idafaC
                   nida: "يَا عَبْدَ اللهِ",
                   ilalRoot: "قول", ilalShape: "maful",
                   alama: "مَعَانِي", alamaDef: false, alamaMudaf: false, alamaMamnu: null,
-                  kernel: "يَا عَبْدَ اللهِ" };
+                  kernel: "يَا عَبْدَ اللهِ",
+                  model: "كَتَبَ الْوَلَدُ الدَّرْسَ فِي الْبَيْتِ" };
 const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
@@ -9141,9 +9324,106 @@ function renderMizanOut(){
   }
   out.innerHTML = h;
 }
+// ---------- the Model lab: the statistical layer shows its hand ----------
+// Type any sentence and watch the runtime IrabModel read it: for every open
+// noun, its ranked roles as bars, and the EVIDENCE — the features the word
+// fired, each named in plain language. Verbs and closed-class words get an
+// honest stand-down line instead: the rules already decide those, and the
+// model only votes where the rules cannot. The panel leads with the held-out
+// score, because a learner reading probability bars should know how often
+// this reader is right on a sentence it has never seen.
+function modelFeatLbl(f){
+  const tr = state.uiLang === "tr";
+  const L2 = (en, t) => (tr ? t : en);
+  if (f === "al") return L2("wears ال", "harf-i tarifli");
+  if (f === "tanwin") return "tanwin";
+  if (f === "ta") return L2("ta marbuta", "tâ-i merbûta");
+  if (f === "pron") return L2("attached pronoun", "bitişik zamir");
+  if (f === "first") return L2("sentence-initial", "cümle başı");
+  if (f === "last") return L2("sentence-final", "cümle sonu");
+  if (f === "early") return L2("early in the sentence", "cümlenin başlarında");
+  if (f === "mid") return L2("mid-sentence", "cümle ortası");
+  if (f === "late") return L2("late in the sentence", "cümlenin sonlarında");
+  if (f === "after-verb") return L2("after a verb", "fiilden sonra");
+  if (f === "after-jarr") return L2("after a jarr letter", "cer harfinden sonra");
+  if (f === "after-noun") return L2("after a noun", "isimden sonra");
+  if (f === "waw-start") return L2("opens with و/ف", "و/ف ile başlar");
+  if (f === "gov-jarr") return L2("a jarr governor before it", "önünde cer âmili");
+  if (f === "gov-verbal") return L2("a verbal-force governor before it", "önünde fiil kuvvetli âmil");
+  if (f.startsWith("sign-")) return L2("ending sign: ", "son alâmet: ") + f.slice(5);
+  if (f.startsWith("by-")) return L2("i'rab shown by ", "i'râb yolu: ") + f.slice(3);
+  if (f.startsWith("irc-")) return L2("settled case: ", "belirlenen hâl: ") + f.slice(4);
+  if (f.startsWith("ppk-")) return L2("governor's class: ", "âmilin sınıfı: ") + f.slice(4);
+  if (f.startsWith("pk-")) return L2("closed class: ", "kapalı sınıf: ") + f.slice(3);
+  if (f.startsWith("len-")) return L2("length ", "uzunluk ") + f.slice(4);
+  return f;
+}
+function renderModelOut(){
+  const out = document.getElementById("modelOut");
+  if (!out) return;
+  const text = (conjState.model || "").trim();
+  if (!text) { out.innerHTML = ""; return; }
+  let rows = [];
+  try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { out.innerHTML = ""; return; }
+  if (!rows.length) { out.innerHTML = ""; return; }
+  const words = rows.map(r => r.w);
+  const m = IrabModel.train();
+  let prev = null, h = "";
+  rows.forEach((r, i) => {
+    const kind = r.kind || "";
+    const isNoun = kind.startsWith("noun");
+    if (isNoun) {
+      // features and prev computed EXACTLY as the analyzer's predict site
+      // computes them — the lab must show the model that ships, not a twin.
+      const fs = IrabModel.features(r.w, i, rows.length, prev, {
+        prevFull: i > 0 ? words[i - 1] : null,
+        nextFull: i + 1 < rows.length ? words[i + 1] : null });
+      // the leader always shows; a runner-up earns its bar at 3% belief —
+      // a %0 bar is not honesty, it is furniture.
+      const pred = IrabModel.rank(m, fs).slice(0, 3)
+        .filter((p, k) => k === 0 || p.p >= 0.03);
+      h += `<div class="model-card">
+        <div class="model-word" lang="ar" dir="rtl">${escapeAttr(r.w)}</div>
+        <div class="mbars">${pred.map(p => {
+          const R = DUEL_ROLES[p.r];
+          return `<div class="mbar">
+            <span class="mbar-lbl"><span lang="ar">${R.ar}</span> · ${state.uiLang === "tr" ? R.tr : R.en}</span>
+            <span class="mbar-track"><span class="mbar-fill" style="width:${
+              Math.max(2, Math.round(p.p * 100))}%;background:var(--role-${p.r})"></span></span>
+            <span class="mbar-p">%${Math.round(p.p * 100)}</span></div>`;
+        }).join("")}</div>
+        <div class="feat-chips">${fs.map(f =>
+          `<span class="feat-chip">${escapeAttr(modelFeatLbl(f))}</span>`).join("")}</div>
+      </div>`;
+    } else {
+      h += `<div class="model-skip"><b lang="ar" dir="rtl">${escapeAttr(r.w)}</b> — ${
+        kind.startsWith("verb") ? ui().modelSkipVerb : ui().modelSkipClosed}</div>`;
+    }
+    prev = kind.startsWith("verb") ? "verb"
+         : (kind === "particle" && (r.notes || []).some(x =>
+             /jarr letter|cer harfi/.test((x.en || "") + (x.tr || "")))) ? "jarr"
+         : isNoun ? "noun" : null;
+  });
+  out.innerHTML = h + `<p class="sarf-note">${ui().modelHonest}</p>`;
+}
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "model") {
+    const cv = IrabModel.crossVal();
+    body.innerHTML = `<p class="ref-intro">${ui().modelIntro}</p>
+      <p class="ml-score">${ui().modelScore.replace("{n}", IrabModel.trainingSize())
+        .replace("{a}", Math.round(cv.top1 * 100)).replace("{b}", Math.round(cv.top2 * 100))}</p>
+      <div class="conj-lab">
+        <input id="modelIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().jumlaPh)}" value="${escapeAttr(conjState.model)}">
+      </div>
+      <div id="modelOut"></div>`;
+    const inp = document.getElementById("modelIn");
+    inp.addEventListener("input", debounced(() => { conjState.model = inp.value; renderModelOut(); }));
+    renderModelOut();
+    return;
+  }
   if (conjState.lab === "jumla") {
     const acc = IrabModel.accuracy(), cv = IrabModel.crossVal();
     body.innerHTML = `<p class="ref-intro">${ui().jumlaIntro}</p>
@@ -9369,6 +9649,7 @@ function openConjugator(){
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
       <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
       <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
+      <button data-lab="model" class="${conjState.lab === "model" ? "on" : ""}">${arSpan("نَمُوذَج")} ${ui().modelTab}</button>
       <button data-lab="alama" class="${conjState.lab === "alama" ? "on" : ""}">${arSpan("عَلَامَة")} ${ui().alamaTab}</button>
       <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
@@ -14145,6 +14426,7 @@ class GameFactory {
     { id: "gShart",   group: "nahw",    emblem: "إِنْ", min: 3, supply: () => shartItems().length },
     { id: "gSpot",    group: "nahw",    emblem: "🔍", min: 1, supply: null },
     { id: "gTahlil",  group: "nahw",    emblem: "🎓", min: 3, supply: () => tahlilSentences().length },
+    { id: "gDuel",    group: "nahw",    emblem: "🤖", min: 4, supply: () => duelItems().length },
     { id: "gIbaraTr", group: "ibara",   emblem: "🔤", min: 4, supply: () => ibaraItems().length },
     { id: "gIbaraAr", group: "ibara",   emblem: "✒️", min: 4, supply: () => ibaraItems().length },
     { id: "gAlaqa",   group: "balagha", emblem: "🪢", min: 1, supply: null },
@@ -14415,6 +14697,7 @@ function openGames(){
     ${gCard("gShart", "إِنْ", ui().shartGame, ui().shartGameDesc)}
     ${gCard("gSpot", "🔍", ui().spot, ui().spotDesc)}
     ${gCard("gTahlil", "🎓", ui().tahlil, ui().tahlilDesc)}
+    ${gCard("gDuel", "🤖", ui().duelGame, ui().duelGameDesc)}
     ${gHead("عِبَارَة", ui().gGroupIbara)}
     ${gCard("gIbaraTr", "🔤", ui().ibaraToTr, ui().ibaraToTrDesc)}
     ${gCard("gIbaraAr", "✒️", ui().ibaraToAr, ui().ibaraToArDesc)}
@@ -14436,6 +14719,7 @@ function openGames(){
   document.getElementById("gIbaraTr").addEventListener("click", () => startIbara("toTr"));
   document.getElementById("gIbaraAr").addEventListener("click", () => startIbara("toAr"));
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
+  document.getElementById("gDuel").addEventListener("click", startDuel);
   showSheet();
 }
 

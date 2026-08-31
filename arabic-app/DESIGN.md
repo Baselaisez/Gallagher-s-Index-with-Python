@@ -256,3 +256,23 @@ explicit choice beats the OS.
 4. If it moves, guard it with `prefers-reduced-motion`.
 5. If it teaches, say *why* — the app's whole voice is the reason, not the
    verdict.
+
+## 7. The statistical voice (wave 7)
+
+Everything the machine-learned layer says wears one visual language, so a
+learner recognises "this is the model talking" before reading a word:
+
+- **Belief is a bar.** `.mbar` — role-palette fill, width = probability,
+  tabular-nums percentage. Bars are the model's kanaat, never a ruling; a
+  runner-up below 3% belief draws no bar at all, because a %0 bar is
+  furniture, not honesty.
+- **Evidence is a chip row.** `.feat-chip` — the features the word fired,
+  each named in plain language. The model never asserts without showing
+  what it saw.
+- **The model's color is the lvl3 amber** the 🧠/🤖 chips already taught;
+  a correct model verdict may relax to `--ok`, but the badge stays.
+- **The duel banner** (`.duel-banner`) puts the learner and the model side
+  by side: the model's pick, its percentage, its verdict, and the running
+  tally — statistics racing a human, with the hand analysis as referee.
+- Every surface that quotes the model leads with its **held-out** score,
+  never the resubstitution one.
