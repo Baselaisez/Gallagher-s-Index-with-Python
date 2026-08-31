@@ -3619,3 +3619,86 @@ boot-idle setTimeout warms the library scope so the exact number is the
 common case. Options and reveals quote InshaEngine.DOC/IstifhamEngine.DOC
 verbatim; distractors are the same bab's other wujuh — what a madrasah
 exam would offer.
+
+## The chapter's doctrine became a post-pass — jawab al-talab is engine gold
+
+Ch29's rule IS a detector: a jazm-shaped verb after a TALAB (an amr
+cell, a nahy, a question row, a layta, an أَلَا offer) with no written
+jazim anywhere before it is the JAWAB of an estimated shart, and the
+post-pass names it with the taqdir. Three controls pin the boundary
+(لَمْ real jazim, إِنْ real shart, a plain amr with a noun after). The
+nahy's OWN verb is part of the talab, not the jawab — talab advances to
+i+1 there. The jazm shape must read the SEAM too (أُكْرِمْكَ hides its
+sukun before the object pronoun), and the pronoun letters carry marks —
+the vowelled-هم trap, again.
+
+## لَا النَّاهِيَة rides a flag, never a new pk
+
+The prohibiting la is split from the negating la by the NEXT word's
+dress (jazm shape) — the إِذَا method. But pk "nafy" feeds QasrEngine's
+negation openers, MaEngine 6h's nearest-negation pairing and the ML
+pk-feature: renaming it would re-key three engines for one note. The
+nahy fact rides r.nahy, the note swaps in beside the generic one, and
+every downstream consumer keeps reading the pk it always read.
+
+## One engine's frame is another's stand-down — the receipt decides
+
+أَلَا over a RAF' mudari with a bare majzum later is the ARD, and
+InshaEngine claims it on the jawab receipt. IstifhamEngine's hamza
+chain must stand down for that exact shape — the WHOLE chain (a single
+suppressed branch let the row fall through to hamzaMaful within the
+minute). أَلَيْسَ keeps hamzaNafy because its core is a nafy VERB, and
+أَلَا with NO jawab keeps its question face: both readings are real, and
+the receipt is what splits them. Also the SEVENTH hamza-seat payment:
+bare(أَلَا) is «ألا».
+
+## The hollow first person rebuilds INSIDE the majzum branch
+
+أَزُرْكَ was unreachable twice over: the stored majzum cells are the
+third and second persons (يَزُرْ، تَزُرْ) and the hollow's jazm changed
+the letters, so أَزُورُ never bare-matches أَزُرْ. The rebuild swaps the
+stored cell's person prefix (أ → person 12, نَ → 13) and lives inside
+the majzum branch only — the stored-majhul-plural doctrine again: a
+derivation sits next to the ONE cell it is for, never in the shared
+candidate list.
+
+## Rewrite-on-upgrade has a noun edition
+
+The enclitic pass labels a clinging pronoun by the host's kind AT THAT
+MOMENT; a host the arbiter later settles as a NOUN kept a verb-branch
+«maf'ul bihi» on its ya (أَمْرِي). A noun's pronoun is annexed, never
+acted on — the post-pass rewrites the label wherever kind ends up noun.
+The fa-initial verb taught this rule for verbs (ch23); the nouns needed
+their own edition.
+
+## An inconclusive probe is recorded, not shipped
+
+The mubtada↔khabar seam was probed with a definite-opener feature
+(HURT, −0.5) and a definite-before/tanwin-here khabar frame (mixed:
++0.4 top1, −0.3 top2 across seeds). Neither shipped. A top1 gain that
+pays with top2 across seeds is not a gain — the residual there is
+genuine word-order ambiguity (both halves of a nominal sentence are
+marfu'), and no surface feature reads intent. Recorded so the afternoon
+is not respent.
+
+## A boot warmup must drip, never sweep
+
+The wajh pool's warmup first ran wajhItems() synchronously at boot+2.5s
+— an 8-second main-thread freeze exactly when a user takes their first
+taps, and a smoke check caught it as a lab that stopped answering. The
+drip builds the same pool one sentence per 120ms timeout slice, checks
+WAJH_CACHE before every step (a synchronous call that got there first
+wins), and the item-builder is ONE named function (wajhItemOf) shared
+by both paths — the fusedJarr rule at the scheduling layer: two builders
+of one pool will disagree about an item the day one is edited.
+
+## A rebuilt cell must carry its person THROUGH the label
+
+formCellLabel hard-coded «he» for the governed cells — right for the
+stored third-person cells, wrong the moment a rebuild carries person 12
+(أَزُرْ، آخُذْ): the row's cell said «I» while the printed note said
+«he», and the ch13 gate caught the split. The label now honours
+cell.person wherever it exists — the derived-majhul rule extended to
+every rebuild. When a matching-layer derivation adds a field, walk the
+PRINTERS the same day: a field the label ignores is a fact the reader
+never hears.

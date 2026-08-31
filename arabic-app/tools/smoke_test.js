@@ -7874,6 +7874,81 @@ if (!CHROME) {
     await page.evaluate(() => { closeSheet(); renderLibrary(); });
   });
 
+  await check('talkhis ch29: the nahy, the five doors of jawab al-talab, and the call beyond calling', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 29);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const jawab = (s, i) => (an(s)[i].notes || []).some(n => /جَوَابُ الطَّلَبِ/.test(n.en || ''));
+      const nahiya = (s, i) => (an(s)[i].notes || []).some(n => /النَّاهِيَة/.test(n.en || ''));
+      const ins = s => (InshaEngine.read(an(s)) || []).map(f => f.key);
+      const ist = s => (IstifhamEngine.read(an(s)) || []).map(f => f.key);
+      const r3 = an('أَيْنَ بَيْتُكَ أَزُرْكَ');
+      const r2 = an('لَيْتَ لِي مَالًا أُنْفِقْهُ');
+      const rA = an('لَا تَمْتَثِلْ أَمْرِي');
+      const r9 = an('أَنَا أَفْعَلُ كَذَا أَيُّهَا الرَّجُلُ');
+      const g131 = GRAMMAR['al-nahy-wa-wujuhuh'], g132 = GRAMMAR['jawab-al-talab'],
+            g133 = GRAMMAR['ighra-wa-ikhtisas'];
+      const anchored = g => (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length;
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        notes: [g131 && g131.group, g132 && g132.group, g133 && g133.group],
+        anchors: [g131 && anchored(g131), g132 && anchored(g132), g133 && anchored(g133)],
+        // the five doors — each named on the ANSWERING verb's own row
+        doors: [jawab('لَيْتَ لِي مَالًا أُنْفِقْهُ', 3), jawab('أَيْنَ بَيْتُكَ أَزُرْكَ', 2),
+                jawab('أَكْرِمْنِي أُكْرِمْكَ', 1), jawab('لَا تَشْتِمْ يَكُنْ خَيْرًا لَكَ', 2),
+                jawab('أَلَا تَنْزِلُ تُصِبْ خَيْرًا', 2)],
+        // …and the controls: a REAL jazim, a real shart, a plain amr — silent
+        ctrls: [jawab('لَمْ يَكْتُبْ زَيْدٌ', 1), jawab('إِنْ تَدْرُسْ تَنْجَحْ', 2),
+                jawab('أَكْرِمْ عَمْرًا', 1)],
+        nahy: [nahiya('لَا تَمْتَثِلْ أَمْرِي', 0), nahiya('لَا تَشْتِمْ يَكُنْ خَيْرًا لَكَ', 0)],
+        nahyCtrl: nahiya('لَا يَعْلَمُ الْغَيْبَ', 0),
+        ard: ins('أَلَا تَنْزِلُ تُصِبْ خَيْرًا'), ardIstif: ist('أَلَا تَنْزِلُ تُصِبْ خَيْرًا'),
+        laysaKeeps: ist('أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ'),
+        // the hollow FIRST person rebuilt from the stored majzum cell
+        azur: r3[2].cell && r3[2].cell.tense + '/' + r3[2].cell.person,
+        azurCase: (CaseEngine.claim(r3, 2) || {}).k,
+        // layta's deferred ism named, not called a khabar
+        laytaIsm: (r2[2].notes || []).some(n => /ISM, DEFERRED/.test(n.en || '')),
+        // the noun edition of rewrite-on-upgrade
+        amri: [(rA[2].kind || '').startsWith('noun'),
+               (rA[2].notes || []).some(n => /MUDAF ILAYH/.test(n.en || '')),
+               !(rA[2].notes || []).some(n => /its maf'ul bihi/.test(n.en || ''))],
+        // ayyuha: the closed-class compound, mabni
+        ayyuha: [r9[3].pk, (CaseEngine.claim(r9, 3) || {}).k, (CaseEngine.claim(r9, 4) || {}).k],
+      };
+    });
+    if (r.missing) throw new Error('chapter 29 did not load');
+    if (r.chapters < 29) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 9) throw new Error('ch29 sentences: ' + r.n);
+    if (r.t !== 31) throw new Error('ch29 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch29 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.notes.join() !== 'balagha,nahw,balagha')
+      throw new Error('the three notes with their groups: ' + r.notes.join());
+    if (r.anchors.some(a => a < 2))
+      throw new Error('each note needs >=2 talkhis anchors: ' + r.anchors.join());
+    if (!r.doors.every(Boolean))
+      throw new Error('every door must name its jawab: ' + r.doors.join());
+    if (r.ctrls.some(Boolean))
+      throw new Error('a control leaked a jawab note: ' + r.ctrls.join());
+    if (!r.nahy.every(Boolean)) throw new Error('the prohibiting la must be named: ' + r.nahy.join());
+    if (r.nahyCtrl) throw new Error('a plain negation must not wear the nahiya note');
+    if (!r.ard.includes('ardTalab')) throw new Error('the ard frame must read: ' + r.ard.join());
+    if (r.ardIstif.length) throw new Error('the hamza chain must stand down for the ard: ' + r.ardIstif.join());
+    if (!r.laysaKeeps.includes('hamzaNafy')) throw new Error('أَلَيْسَ keeps hamzaNafy: ' + r.laysaKeeps.join());
+    if (r.azur !== 'majzum/12') throw new Error('the hollow first person rebuilds from the stored majzum: ' + r.azur);
+    if (r.azurCase !== 'jazm') throw new Error('…and claims jazm: ' + r.azurCase);
+    if (!r.laytaIsm) throw new Error("layta's deferred ism must be named, not sold as a khabar");
+    if (!r.amri.every(Boolean))
+      throw new Error('a noun host rewrites its enclitic label to mudaf ilayh: ' + r.amri.join());
+    if (r.ayyuha[0] !== 'ayyuha' || r.ayyuha[1] !== 'mabni' || r.ayyuha[2] !== 'raf')
+      throw new Error('ayyuha mabni with its sifa in raf: ' + r.ayyuha.join());
+  });
+
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
     const r = await page.evaluate(() => {
       const claims = {};

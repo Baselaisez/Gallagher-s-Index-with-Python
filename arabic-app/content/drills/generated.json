@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 224,
-  "sentenceTokens": 1514,
+  "sentences": 233,
+  "sentenceTokens": 1545,
   "posAgreement": 99.9,
-  "caseJudged": 1185,
-  "caseAgreement": 98.6,
-  "rows": 2599
+  "caseJudged": 1211,
+  "caseAgreement": 98.7,
+  "rows": 2630
  },
  "endings": [
   {
@@ -35067,7 +35067,7 @@
       "kind": "verb",
       "lemma": "أَخَذَ",
       "root": "أ خ ذ",
-      "wazn": "أَفْعُلُ",
+      "wazn": "يَفْعُلْ",
       "sure": true
      },
      "match": true,
@@ -45676,6 +45676,970 @@
      "caseSaid": null,
      "caseHuman": "mabni",
      "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s1",
+   "text": "لَا تَمْتَثِلْ أَمْرِي",
+   "translation": {
+    "en": "Disobey my order! (said to the defiant slave — the NAHY worn for THREAT: «and you will see».)",
+    "tr": "Emrimi tutma! (isyan eden köleye — TEHDİT için giyilmiş NEHİY: «tutmazsan görürsün».)"
+   },
+   "jumal": [
+    {
+     "text": "لَا تَمْتَثِلْ أَمْرِي",
+     "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ — نَهْيٌ خَرَجَ إِلَى التَّهْدِيدِ — لَا مَحَلَّ لَهَا.",
+     "en": "An insha clause with no mahall: the nahy's letters, the threat's meaning."
+    },
+    {
+     "text": "لَا تَمْتَثِلْ أَمْرِي",
+     "ar": "وَجْهُ التَّهْدِيدِ — نَهْيٌ لَا يُرَادُ بِهِ الْكَفُّ.",
+     "en": "THE TAHDID WAJH: a prohibition whose leaving is not wanted at all — the master wants obedience, and dresses the warning as its opposite."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "لَا",
+     "lex": "la-nahiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«do not» — the PROHIBITING la, the nahy's one and only harf, and a jazim: the sukun on the verb after it is its government."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَمْتَثِلْ",
+     "lex": "imtathala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«you comply» — a mudari jazmed by the prohibiting la, the sukun its sign; the doer is the concealed «you». The shape is a plain nahy — the RANK makes it a threat: a master who says «disobey me!» promises the consequence."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِمْتَثَلَ",
+      "root": "م ث ل",
+      "wazn": "تَفْتَعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "أَمْرِي",
+     "lex": "amr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«my order» — the object, mansub by a fatha ESTIMATED on the letter before the speaker's ya; the ya is the mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "م ر ي",
+      "wazn": "أَفْعَلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s2",
+   "text": "لَيْتَ لِي مَالًا أُنْفِقْهُ",
+   "translation": {
+    "en": "Would that I had wealth I would spend! (the first door: after the WISH, a bare majzum answers an unwritten «if».)",
+    "tr": "Keşke malım olsa da infak etsem! (ilk kapı: TEMENNÎDEN sonra yalın bir meczum, yazılmamış bir «eğer»e cevap verir.)"
+   },
+   "jumal": [
+    {
+     "text": "لَيْتَ لِي مَالًا",
+     "ar": "جُمْلَةُ التَّمَنِّي — إِنْشَاءٌ لَا مَحَلَّ لَهُ، وَالْخَبَرُ مُقَدَّمٌ.",
+     "en": "The wish clause: insha with no mahall — and its khabar walks in front of its ism."
+    },
+    {
+     "text": "أُنْفِقْهُ",
+     "ar": "جَوَابُ الطَّلَبِ — مَجْزُومٌ بِشَرْطٍ مُقَدَّرٍ.",
+     "en": "THE ANSWER OF THE REQUEST: the books estimate «if…» and the jazm on the page is that hidden clause's receipt — the first of the four doors."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "لَيْتَ",
+     "lex": "layta",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "jawab-al-talab",
+       "insha-wa-tamanni"
+      ],
+      "irab": "«would that» — the coined wish particle, of inna's sisters: nasb on its ism, raf' on its khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "لِي",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«to me» — a jarr phrase hanging on an omitted amil: layta's KHABAR, brought forward."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "مَالًا",
+     "lex": "mal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«wealth» — layta's ISM, deferred, mansub by the plain fatha: the jarr phrase before it stood in as the khabar, so the noun that follows is the ism."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَال",
+      "root": "م و ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "أُنْفِقْهُ",
+     "lex": "anfaqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«I would spend it» — a mudari MAJZUM in the wish's answer, by an ESTIMATED shart: «if I have wealth, I spend it». No written jazim stands anywhere; the sukun is the hidden shart's receipt. The ha is its object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَنْفَقَ",
+      "root": "ن ف ق",
+      "wazn": "يُفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s3",
+   "text": "أَيْنَ بَيْتُكَ أَزُرْكَ",
+   "translation": {
+    "en": "Where is your house, that I may visit you? (the second door: after the QUESTION.)",
+    "tr": "Evin nerede, ziyaret edeyim seni? (ikinci kapı: SORUDAN sonra.)"
+   },
+   "jumal": [
+    {
+     "text": "أَيْنَ بَيْتُكَ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِفْهَامِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The question clause — nominal, no mahall: khabar fronted, mubtada deferred."
+    },
+    {
+     "text": "أَزُرْكَ",
+     "ar": "جَوَابُ الطَّلَبِ الثَّانِي — الِاسْتِفْهَامُ بَابٌ لِلشَّرْطِ الْمُقَدَّرِ.",
+     "en": "The second door: a real question carries a hidden bargain — «tell me, and I will come» — and the jazm records it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أَيْنَ",
+     "lex": "ayna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab",
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«where» — an interrogative NOUN, mabni on the fatha, in the position of raf': the khabar, fronted (question words own the sentence head)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بَيْتُكَ",
+     "lex": "bayt",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«your house» — the mubtada, deferred, marfu' by the damma; the kaf is the mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَيْت",
+      "root": "ب ي ت",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَزُرْكَ",
+     "lex": "zara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«I would visit you» — majzum in the question's answer, by the estimated «if you tell me where, I visit you»; the sukun is the sign, the kaf the object. (زَارَ is hollow: the waw already fell to the jazm's sukun — أَزُورُ → أَزُرْ.)"
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "زَارَ",
+      "root": "ز و ر",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s4",
+   "text": "أَكْرِمْنِي أُكْرِمْكَ",
+   "translation": {
+    "en": "Honour me, and I will honour you. (the third door: after the AMR.)",
+    "tr": "Bana ikram et, sana ikram edeyim. (üçüncü kapı: EMİRDEN sonra.)"
+   },
+   "jumal": [
+    {
+     "text": "أَكْرِمْنِي",
+     "ar": "جُمْلَةُ الطَّلَبِ — أَمْرٌ لَا مَحَلَّ لَهُ.",
+     "en": "The request half: an amr clause, no mahall."
+    },
+    {
+     "text": "أُكْرِمْكَ",
+     "ar": "جَوَابُ الطَّلَبِ الثَّالِثُ — فِي تَقْدِيرِ شَرْطٍ وَجَوَابِهِ.",
+     "en": "The third door: the amr and its answer construe as a full conditional — request above, reward below, one implied «if» between them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَكْرِمْنِي",
+     "lex": "akrama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab",
+       "imperative-amr"
+      ],
+      "irab": "«honour me» — the amr, mabni on the sukun; the nun is the GUARDING nun and the ya the speaker-object; the doer is the concealed «you»."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَكْرَمَ",
+      "root": "ك ر م",
+      "wazn": "أَفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أُكْرِمْكَ",
+     "lex": "akrama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«I will honour you» — majzum in the amr's answer: «if you honour me, I honour you». The two verbs are one root wearing the bargain's two halves; the sukun is the estimated shart's receipt."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَكْرَمَ",
+      "root": "ك ر م",
+      "wazn": "يُفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s5",
+   "text": "لَا تَشْتِمْ يَكُنْ خَيْرًا لَكَ",
+   "translation": {
+    "en": "Do not revile, and it will be better for you. (the fourth door: after the NAHY.)",
+    "tr": "Sövme, senin için hayırlı olur. (dördüncü kapı: NEHİYDEN sonra.)"
+   },
+   "jumal": [
+    {
+     "text": "لَا تَشْتِمْ",
+     "ar": "جُمْلَةُ النَّهْيِ — إِنْشَاءٌ لَا مَحَلَّ لَهُ.",
+     "en": "The nahy clause: insha, no mahall — and this one means its own leaving."
+    },
+    {
+     "text": "يَكُنْ خَيْرًا لَكَ",
+     "ar": "جَوَابُ الطَّلَبِ الرَّابِعُ — النَّهْيُ بَابٌ لِلشَّرْطِ الْمُقَدَّرِ أَيْضًا.",
+     "en": "The fourth door: even a prohibition opens the hidden «if» — «if you leave it, it will be better»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "لَا",
+     "lex": "la-nahiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "jawab-al-talab",
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«do not» — the prohibiting, jazming la."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تَشْتِمْ",
+     "lex": "shatama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab",
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«you revile» — jazmed by the prohibiting la, its doer the concealed «you»: a true nahy this time, wanting the leaving itself."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَتَمَ",
+      "root": "ش ت م",
+      "wazn": "تَفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "يَكُنْ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«it will be» — the defective kana, MAJZUM in the nahy's answer: «if you do not revile, it will be». Its ism is concealed, returning to the LEAVING itself; the hollow waw already fell to the sukun (يَكُونُ → يَكُنْ)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "خَيْرًا",
+     "lex": "khayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«better» — yakun's khabar, mansub by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَيْر",
+      "root": "خ ي ر",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَكَ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«for you» — the jarr phrase, hanging on «better»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s6",
+   "text": "أَلَا تَنْزِلُ تُصِبْ خَيْرًا",
+   "translation": {
+    "en": "Won't you dismount? You would meet with good. (the ARD — asking with gentleness, born of the question.)",
+    "tr": "İnmez misin? Hayra erersin. (ARZ — tatlılıkla istemek; sorudan doğmuştur.)"
+   },
+   "jumal": [
+    {
+     "text": "أَلَا تَنْزِلُ",
+     "ar": "جُمْلَةُ الْعَرْضِ — اسْتِفْهَامٌ خَرَجَ إِلَى الطَّلَبِ بِلِينٍ.",
+     "en": "The offer clause: a question's letters, a gentle request's meaning — the ard is the istifham's own child."
+    },
+    {
+     "text": "تُصِبْ خَيْرًا",
+     "ar": "جَوَابُ الطَّلَبِ — وَالْجَزْمُ هُوَ الْقَرِينَةُ عَلَى الْعَرْضِ.",
+     "en": "The answer again — and this time the jazm is also the PROOF: only a request, never a plain negation, earns an answer in jazm."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "أَلَا",
+     "lex": "ala-ard",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "jawab-al-talab",
+       "khuruj-al-istifham"
+      ],
+      "irab": "«won't you» — ALA of the OFFER: the hamza over la, become one tool of gentle asking. The receipt that this is no plain negation-question stands two words on: the bare majzum."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَنْزِلُ",
+     "lex": "nazala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«you dismount» — marfu' by the plain damma (the ala governs nothing); its doer the concealed «you»."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَزَلَ",
+      "root": "ن ز ل",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تُصِبْ",
+     "lex": "asaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«you would meet» — majzum in the offer's answer: «if you dismount, you meet with good»; the hollow ya already fell to the sukun (تُصِيبُ → تُصِبْ)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَصَابَ",
+      "root": "ص و ب",
+      "wazn": "تُفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "خَيْرًا",
+     "lex": "khayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«good» — the object, mansub by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَيْر",
+      "root": "خ ي ر",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s7",
+   "text": "فَاللَّهُ هُوَ الْوَلِيُّ",
+   "translation": {
+    "en": "So Allah — He is the true Friend. (al-Shura 42:9: outside the doors, the shart is estimated only with a QARINA — here the fa.)",
+    "tr": "İşte Allah — asıl Dost O'dur. (Şûrâ 42:9: kapıların dışında şart ancak KARÎNE ile takdir edilir — burada fâ.)"
+   },
+   "jumal": [
+    {
+     "text": "فَاللَّهُ هُوَ الْوَلِيُّ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — جَوَابُ شَرْطٍ مُقَدَّرٍ دَلَّتْ عَلَيْهِ الْفَاءُ.",
+     "en": "A nominal clause standing as the answer of an estimated shart — and the FA on its brow is the evidence the books demand."
+    },
+    {
+     "text": "هُوَ الْوَلِيُّ",
+     "ar": "ضَمِيرُ الْفَصْلِ — تَوْكِيدٌ وَقَصْرٌ.",
+     "en": "The separating pronoun: emphasis and restriction in one word — outside the four doors, only such a qarina licenses the hidden shart."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "فَاللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«so Allah» — the FA is the qarina of the estimated shart: «if they want protectors, then Allah…». The Name is the mubtada, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "هُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "jawab-al-talab",
+       "damir-fasl"
+      ],
+      "irab": "«He» — the pronoun of SEPARATION, no mahall: it walls the khabar off from being read as a sifa, and restricts — the Friend is He, none else."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْوَلِيُّ",
+     "lex": "wali",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "jawab-al-talab"
+      ],
+      "irab": "«the Friend» — the khabar, marfu' by the plain damma."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَلِيّ",
+      "root": "و ل ي",
+      "wazn": "فَعِلُّ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s8",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s8",
+   "text": "يَا مَظْلُومُ",
+   "translation": {
+    "en": "O wronged one! (the call's sigha worn for IGHRA — urging the hearer to his own cause.)",
+    "tr": "Ey mazlum! (nidâ sîgası İĞRÂ için giyilmiş — muhatabı kendi davasına teşvik.)"
+   },
+   "jumal": [
+    {
+     "text": "يَا مَظْلُومُ",
+     "ar": "جُمْلَةُ نِدَاءٍ — إِنْشَاءٌ لَا مَحَلَّ لَهُ.",
+     "en": "A call clause: insha, no mahall."
+    },
+    {
+     "text": "يَا مَظْلُومُ",
+     "ar": "وَجْهُ الْإِغْرَاءِ — نِدَاءٌ يُرَادُ بِهِ التَّشْوِيقُ.",
+     "en": "THE IGHRA WAJH: the caller does not summon — he stirs: «you are wronged; act!»"
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "يَا",
+     "lex": "ya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighra-wa-ikhtisas",
+       "vocative-munada"
+      ],
+      "irab": "«O» — the calling particle."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "مَظْلُومُ",
+     "lex": "mazlum",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighra-wa-ikhtisas",
+       "vocative-munada"
+      ],
+      "irab": "«wronged one» — the munada, an intended indefinite, mabni on the damm in the position of nasb. The call is real in letter, IGHRA in aim: it spurs the wronged man to speak up for his own right."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَظْلُوم",
+      "root": "ظ ل م",
+      "wazn": "مَفْعُولُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:29:s9",
+   "story": "talkhis-al-miftah",
+   "chapter": 29,
+   "sentence": "s9",
+   "text": "أَنَا أَفْعَلُ كَذَا أَيُّهَا الرَّجُلُ",
+   "translation": {
+    "en": "I — of all men — do such-and-such. (the IKHTISAS: the call's shape with no call in it.)",
+    "tr": "Ben — erler içinde — şunu şunu yaparım. (İHTİSAS: içinde nidâ olmayan nidâ kalıbı.)"
+   },
+   "jumal": [
+    {
+     "text": "أَنَا أَفْعَلُ كَذَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The frame sentence: a plain nominal report."
+    },
+    {
+     "text": "أَيُّهَا الرَّجُلُ",
+     "ar": "وَجْهُ الِاخْتِصَاصِ — صِيغَةُ النِّدَاءِ بِلَا نِدَاءٍ.",
+     "en": "THE IKHTISAS WAJH: the call's dress with no calling in it — «I, and among men precisely I, do this». The speaker singles himself out."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "أَنَا",
+     "lex": "ana",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ighra-wa-ikhtisas"
+      ],
+      "irab": "«I» — the detached pronoun, mabni, in the position of raf': the mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَفْعَلُ",
+     "lex": "faala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighra-wa-ikhtisas"
+      ],
+      "irab": "«I do» — a marfu' mudari, its doer concealed; the clause is the khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "فَعَلَ",
+      "root": "ف ع ل",
+      "wazn": "أَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَذَا",
+     "lex": "kadha",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ighra-wa-ikhtisas"
+      ],
+      "irab": "«such-and-such» — a kinaya standing in for the object, mabni, in the position of nasb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَذَا",
+      "root": "ك ذ و/ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "أَيُّهَا",
+     "lex": "ayyuha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighra-wa-ikhtisas"
+      ],
+      "irab": "«of all» — AYY, mabni on the damm, in the position of NASB on the ikhtisas: an estimated «I single out» governs it. The ha only alerts. No one is being called."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الرَّجُلُ",
+     "lex": "rajul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighra-wa-ikhtisas"
+      ],
+      "irab": "«men» — the sifa of ayy, marfu' in LETTER, following the damm the bina wears — the classical i'rab of the ikhtisas frame."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَجُل",
+      "root": "ر ج ل",
+      "wazn": "فَّعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
     }
    ]
   }

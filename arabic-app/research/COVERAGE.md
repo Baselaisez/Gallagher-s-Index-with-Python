@@ -2081,3 +2081,48 @@ not a one-line change.
 
   Measured: ML held-out **63.3/76.8** (epochs 5, shipped seed), floors
   62/76. Release v148.
+
+- **v149 — Talkhīṣ ch29: the nahy, the five doors of jawāb al-ṭalab, and
+  the call beyond calling.** Sahifa 76-77 (lines ~2186-2215), three babs
+  as the source runs them: the NAHY (طلب الترك على الاستعلاء, its one
+  harf the jazming لا, kaff vs tark, the tahdid face لَا تَمْتَثِلْ
+  أَمْرِي), the JAWAB AL-TALAB (the implied shart after tamannī/istifhām/
+  amr/nahy — لَيْتَ لِي مَالًا أُنْفِقْهُ، أَيْنَ بَيْتُكَ أَزُرْكَ،
+  أَكْرِمْنِي أُكْرِمْكَ، لَا تَشْتِمْ يَكُنْ خَيْرًا لَكَ — plus the ʿarḍ
+  أَلَا تَنْزِلُ تُصِبْ خَيْرًا, and elsewhere only with a qarīna:
+  فَاللَّهُ هُوَ الْوَلِيُّ, al-Shūrā 42:9, the fa), and the NIDĀʾ's
+  departures — ighrāʾ (يَا مَظْلُومُ) and ikhtiṣāṣ (أَنَا أَفْعَلُ كَذَا
+  أَيُّهَا الرَّجُلُ). Nine sentences / 31 tokens; notes 131-133
+  (al-nahy-wa-wujuhuh, jawab-al-talab, ighra-wa-ikhtisas). One recorded
+  divergence: the source vowels لا تشتُم on bab nasara; the corpus's
+  received paradigm recites شَتَمَ يَشْتِمُ (daraba) and the chapter
+  follows the corpus.
+
+  Engine wave, probe-first — the chapter's own doctrine as code:
+  the JAWAB AL-TALAB post-pass (a jazm-shaped verb after a talab — amr
+  cell, nahy, question, layta, أَلَا — with no written jazim anywhere
+  before it is named the jawab of the estimated shart; three controls
+  pinned), لَا النَّاهِيَة named by the NEXT word's jazm dress (the إذا
+  method — pk stays nafy, the fact rides a flag), the layta repair (a
+  fused-jarr consumed the ism expectation and the deferred ISM was sold
+  as a khabar), InshaEngine's ardTalab frame (light-lam أَلَا + raf
+  mudari + the jawab receipt; the WHOLE hamza chain stands down for it —
+  أَلَيْسَ keeps hamzaNafy), the ayyuha closed-class row (mabni damm,
+  its sifa raf), the hollow FIRST person rebuilt from the stored majzum
+  cell by prefix swap (أَزُورُ never bare-matches أَزُرْ — the derivation
+  lives inside the majzum branch, the majhul-plural doctrine again), and
+  rewrite-on-upgrade's noun edition (a host settled as a NOUN rewrites
+  its verb-branch «maf'ul bihi» ya to MUDAF ILAYH). Seventh hamza-seat
+  payment: bare(أَلَا) is «ألا», never «الا».
+
+  ML: the mubtada↔khabar seam was probed (definite-opener, def-indef
+  frame): fdef HURT (−0.5), kframe mixed across seeds (+0.4 top1 /
+  −0.3 top2) — recorded INCONCLUSIVE, not shipped; the residual there is
+  genuinely order-ambiguous. Design wave 8: the rule voice in the reveal
+  (.frame-reveal — accent spine, the wajh's Arabic name as heading; the
+  learner reads WHO is talking from the spine's color).
+
+  Measured: bank **99.9% POS over 1,545 tokens** (233 worked sentences;
+  the two بِمَا only), **98.7% CASE over 1,211** — zero new case
+  disagreements; the one POS arrival was the chapter's own كَذَا tagged
+  part where the kinaya is an ism (fixed as pron). Release v149.

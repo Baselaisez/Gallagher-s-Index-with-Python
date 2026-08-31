@@ -551,14 +551,14 @@
   },
   "kana": {
    "lemma": "كَانَ",
-   "pos": "verb",
-   "gloss": {
-    "en": "to be (an incomplete verb)",
-    "tr": "olmak, idi (nâkıs fiil)"
-   },
-   "level": 1,
    "root": "ك و ن",
-   "form": "I"
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to be",
+    "tr": "olmak, idi"
+   },
+   "level": 1
   },
   "ihtamala": {
    "lemma": "اِحْتَمَلَ",
@@ -1385,14 +1385,14 @@
   },
   "rajul": {
    "lemma": "رَجُل",
+   "root": "ر ج ل",
    "pos": "noun",
+   "plural": "رِجَال",
    "gloss": {
     "en": "man",
-    "tr": "adam, er kişi"
+    "tr": "adam, er"
    },
-   "level": 1,
-   "root": "ر ج ل",
-   "plural": "رِجَال"
+   "level": 1
   },
   "jara": {
    "lemma": "جَرَى",
@@ -2436,13 +2436,13 @@
   },
   "khayr": {
    "lemma": "خَيْر",
+   "root": "خ ي ر",
    "pos": "noun",
    "gloss": {
-    "en": "good; better (an ism tafdil with its hamza dropped)",
-    "tr": "hayır; daha hayırlı (hemzesi düşmüş ism-i tafdîl)"
+    "en": "good, goodness",
+    "tr": "hayır, iyilik"
    },
-   "level": 1,
-   "root": "خ ي ر"
+   "level": 1
   },
   "dar": {
    "lemma": "دَار",
@@ -3867,14 +3867,14 @@
   },
   "akrama": {
    "lemma": "أَكْرَمَ",
+   "root": "ك ر م",
    "pos": "verb",
+   "form": "IV",
    "gloss": {
-    "en": "to honor, treat generously",
+    "en": "to honour",
     "tr": "ikram etmek"
    },
-   "level": 2,
-   "root": "ك ر م",
-   "form": "IV"
+   "level": 3
   },
   "ataa": {
    "lemma": "أَطَاعَ",
@@ -4745,6 +4745,137 @@
    "gloss": {
     "en": "let… (the lam of command)",
     "tr": "-sin (emir lâmı)"
+   },
+   "level": 4
+  },
+  "la-nahiya": {
+   "lemma": "لَا (النَّاهِيَة)",
+   "pos": "part",
+   "gloss": {
+    "en": "do not (prohibition; governs the jussive)",
+    "tr": "-me/-ma (nehiy edatı)"
+   },
+   "level": 1
+  },
+  "imtathala": {
+   "lemma": "اِمْتَثَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to comply, obey (an order)",
+    "tr": "uymak, (emri) tutmak"
+   },
+   "level": 5,
+   "root": "م ث ل",
+   "form": "VIII"
+  },
+  "anfaqa": {
+   "lemma": "أَنْفَقَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to spend (wealth)",
+    "tr": "infak etmek, harcamak"
+   },
+   "level": 3,
+   "root": "ن ف ق",
+   "form": "IV"
+  },
+  "nazala": {
+   "lemma": "نَزَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to descend, dismount",
+    "tr": "inmek"
+   },
+   "level": 2,
+   "root": "ن ز ل",
+   "form": "I"
+  },
+  "shatama": {
+   "lemma": "شَتَمَ",
+   "root": "ش ت م",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to revile, insult",
+    "tr": "sövmek"
+   },
+   "level": 4
+  },
+  "faala": {
+   "lemma": "فَعَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to do — the verb the grammarians conjugate as their model",
+    "tr": "yapmak — gramercilerin örnek fiili"
+   },
+   "level": 1,
+   "root": "ف ع ل"
+  },
+  "mal": {
+   "lemma": "مَال",
+   "root": "م و ل",
+   "pos": "noun",
+   "plural": "أَمْوَال",
+   "gloss": {
+    "en": "property, wealth",
+    "tr": "mal"
+   },
+   "level": 1
+  },
+  "wali": {
+   "lemma": "وَلِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "a friend of Allah",
+    "tr": "velî"
+   },
+   "level": 3,
+   "root": "و ل ي",
+   "plural": "أَوْلِيَاء"
+  },
+  "mazlum": {
+   "lemma": "مَظْلُوم",
+   "pos": "noun",
+   "gloss": {
+    "en": "one wronged (ism maf'ul)",
+    "tr": "mazlûm; haksızlığa uğrayan"
+   },
+   "level": 3,
+   "root": "ظ ل م"
+  },
+  "kadha": {
+   "lemma": "كَذَا",
+   "pos": "part",
+   "gloss": {
+    "en": "such-and-such",
+    "tr": "şöyle şöyle"
+   },
+   "level": 3
+  },
+  "ayyuha": {
+   "lemma": "أَيُّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "the one addressed (in أَيُّهَا)",
+    "tr": "eyy (أَيُّهَا'daki münâdâ)"
+   },
+   "level": 3
+  },
+  "ala-ard": {
+   "lemma": "أَلَا (لِلْعَرْضِ)",
+   "pos": "part",
+   "gloss": {
+    "en": "won't you…? (the gentle offer, born of the question)",
+    "tr": "-mez misin? (sorudan doğan tatlı isteyiş: arz)"
+   },
+   "level": 5
+  },
+  "ha-tanbih": {
+   "lemma": "هَا (التَّنْبِيه)",
+   "pos": "part",
+   "gloss": {
+    "en": "the alerting ha (as in أَيُّهَا)",
+    "tr": "tenbih hâsı (أَيُّهَا'daki gibi)"
    },
    "level": 4
   }
