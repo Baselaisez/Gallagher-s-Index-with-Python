@@ -3547,3 +3547,38 @@ UI layer), and a runner-up below 3% belief draws no bar — a %0 bar is
 furniture, not honesty. Design wave 7 (DESIGN.md §7): belief is a bar in
 the role palette, evidence is a chip row, the statistical voice keeps
 the lvl3 amber.
+
+## Conjunctions are the perceptron's dividend — and each pair is doctrine
+
+v147 shipped four feature conjunctions (ppk×sign, after-verb×sign,
+al×irc, tanwin×after-verb): under naive Bayes a conjunction is maximally
+correlated with both parents and the damping taxes it twice, so the
+family was unaffordable; the mistake-driven perceptron learns exactly
+the RESIDUAL the pair carries beyond its parents. Held-out 60.2/74.5 →
+61.2/76.5 across three seeds. Each shipped pair states a rule the single
+features blur — after إِنَّ the SIGN decides ism-vs-khabar, after a verb
+it decides fa'il-vs-maf'ul: the İzhar doctrine needs both halves in one
+feature. The fifth candidate (governor-key×position) was noise alone AND
+in the ensemble — a conjunction inherits no right to ship from its
+parents' pedigree. The Model lab labels a conjunction chip «parent ×
+parent» via the labeller calling itself on the halves.
+
+## The ablation harness became a UI — withholding evidence teaches government
+
+The Model lab's chips are buttons: tap to drop that one feature from the
+card's vector and re-rank with the SAME shipped weights — no retraining,
+so the second tap restores byte-identically, and the gate asserts
+exactly that roundtrip. This is ablate_features.js handed to the
+learner, and the lesson it animates is the Awamil doctrine: withhold the
+governor's key and watch the belief collapse. Per-card state lives in
+MODEL_CARDS (rebuilt on input, toggles repaint one card's bars only);
+bars and first paint share one modelBarsHtml so they can never disagree.
+
+## A beatable round is a designed round — seat the model's failures
+
+startDuel predicts over a 40-item draw and seats up to three model-WRONG
+questions per round of eight. A round the model aces teaches only
+respect; the fumbled questions are where the learner can win — and the
+revealed misreading (ranked, with its percentage) is the most instructive
+distractor the app owns. The seating is shuffle-blind after selection,
+so the learner cannot tell which kind they are on until the reveal.

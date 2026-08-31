@@ -2020,3 +2020,30 @@ not a one-line change.
   Measured: bank held at **99.9% POS / 1,514** and **98.6% CASE / 1,185**
   (no engine that feeds the bank changed); ML held-out **60.2/74.5**,
   floors 59/73.5.
+
+- **v147 — the conjunction wave: the perceptron's dividend, live ablation,
+  the beatable duel.** The ML directive's second pass. Four feature
+  CONJUNCTIONS shipped in IrabModel.features — the pairs naive Bayes could
+  never carry (a conjunction is maximally correlated with both parents;
+  the damping would have paid for each twice): the GOVERNOR'S KEY × the
+  ENDING SIGN (after إِنَّ a fatha is the ism and a damma the khabar —
+  neither feature alone can say which), after-verb × sign (damma = fa'il,
+  fatha = maf'ul), the article × the settled case, tanwin × after-verb.
+  Held-out, three seeds: **60.2/74.5 → 61.2/76.5** (61.2-61.3 /
+  75.4-76.5); a fifth pair (governor-key × position) measured noise alone
+  and nothing in the ensemble — dropped and recorded. Floors 60/75.
+
+  The Model lab became an instrument: every evidence chip is a BUTTON —
+  tap to withhold that one feature and the card's belief bars recompute
+  from what remains (nothing retrained: the shipped weights answer a
+  smaller question), tap again and the restore is byte-identical, gated
+  as such. The ablate_features.js discipline, handed to the reader —
+  watching the bars collapse when the governor's key is withheld is the
+  Awamil doctrine, animated. Conjunction chips render as «parent × parent»
+  in both languages. The duel seats BEATABLE rounds: predictions run over
+  a 40-item draw and up to three model-wrong questions are seated per
+  round — the questions the model fumbles are where the learner can win,
+  and where its misreading, revealed, teaches the most.
+
+  Measured: ML held-out **61.2/76.5** (resub 67.3 keeps the leak alarm);
+  bank untouched (IrabModel feeds no bank field). Release v147.

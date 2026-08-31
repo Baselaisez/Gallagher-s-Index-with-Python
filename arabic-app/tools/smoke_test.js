@@ -3946,7 +3946,12 @@ if (!CHROME) {
     // across epochs 5-20 and three seeds (60.0-60.3 / 74.5-74.7). The npk-
     // feature was re-A/B'd under the perceptron and is STILL noise
     // (60.2/74.5 -> 60.0/74.6). Floors raised to hold the gain.
-    if (a.cv1 < 59) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    // v147: four feature CONJUNCTIONS (governor-key×sign, after-verb×sign,
+    // al×settled-case, tanwin×after-verb) — what the perceptron made
+    // affordable: 60.2/74.5 -> 61.2/76.5, stable across three seeds
+    // (61.2-61.3 / 75.4-76.5). A fifth pair (governor-key×position) was
+    // noise alone and nothing in the ensemble — dropped. Floors raised.
+    if (a.cv1 < 60) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
     // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
     // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
     // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
@@ -3954,7 +3959,7 @@ if (!CHROME) {
     // eight new demonstratives removed from PARTICLES scores 51.0 / 67.9 as
     // well — identical to a tenth. Lower a floor only with a measurement in
     // hand and the measurement written down.
-    if (a.cv2 < 73.5) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
+    if (a.cv2 < 75) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
@@ -7788,6 +7793,32 @@ if (!CHROME) {
     if (lab.skips < 1) throw new Error('a verb must get the stand-down line, not a guess');
     if (!lab.score.includes(String(lab.heldout)))
       throw new Error('the lab must lead with the held-out score: ' + lab.score);
+    // live ablation (v147): withholding a chip must move the belief, mark the
+    // chip, and a second tap must restore the card EXACTLY — nothing is
+    // retrained, so the roundtrip is byte-identical.
+    const abl = await page.evaluate(() => {
+      const chips = [...document.querySelectorAll('.feat-chip[data-mc="0"]')];
+      const target = chips.find(c => c.textContent.includes('×')) || chips[chips.length - 1];
+      const b0 = document.getElementById('mbars0').innerHTML;
+      target.click();
+      const b1 = document.getElementById('mbars0').innerHTML;
+      const off = target.classList.contains('off');
+      target.click();
+      const b2 = document.getElementById('mbars0').innerHTML;
+      return { hint: !!document.querySelector('.model-hint'),
+               changed: b0 !== b1, off, roundtrip: b0 === b2,
+               restored: !target.classList.contains('off') };
+    });
+    if (!abl.hint) throw new Error('the ablation hint is missing');
+    if (!abl.changed) throw new Error('withholding evidence must move the belief bars');
+    if (!abl.off || !abl.restored) throw new Error('the chip must mark itself withheld and restore on the second tap');
+    if (!abl.roundtrip) throw new Error('restore must reproduce the original bars exactly');
+    // …and the shipped conjunction features fire where their parents meet
+    const conj = await page.evaluate(() =>
+      IrabModel.features('زَيْدًا', 1, 3, 'verb', { prevFull: 'رَأَيْتُ', nextFull: null })
+        .filter(f => f.includes('*')));
+    if (!conj.includes('av*sign-fatha') || !conj.includes('tw*av'))
+      throw new Error('the v147 conjunctions must fire on their type case: ' + conj.join(','));
     await page.evaluate(() => { closeSheet(); renderLibrary(); });
   });
 
