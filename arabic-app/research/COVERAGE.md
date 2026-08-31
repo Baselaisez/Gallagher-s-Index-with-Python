@@ -1956,3 +1956,34 @@ not a one-line change.
   **98.6% CASE on the bank subset (1,171)**; the two standing POS
   disagreements remain the بِمَا pair; no new case disagreements arrived
   with the chapter.
+
+- **v145 — Talkhīṣ ch28: the amr bāb.** Sahifa 75 of
+  talkhis-al-miftah-balagha.txt: al-amr is the request of an act on
+  istiʿlāʾ, and it wears three dresses — the lam (لِيَحْضُرْ زَيْدٌ), the
+  bare ṣīgha (أَكْرِمْ عَمْرًا), and the ism al-fiʿl (رُوَيْدَ بَكْرًا) —
+  with the khilāf on its mawḍūʿ-lah (wujūb vs the qadr mushtarak) and
+  Sakkākī's fawr claim taught AS khilāf in note 130 `al-amr-wa-wujuhuh`.
+  The wujūh in real text: taḥdīd (اِعْمَلُوا مَا شِئْتُمْ, Fuṣṣilat
+  41:40), taskhīr (كُونُوا قِرَدَةً خَاسِئِينَ, 2:65), taswiya
+  (اِصْبِرُوا أَوْ لَا تَصْبِرُوا, al-Ṭūr 52:16) and duʿāʾ (رَبِّ
+  اغْفِرْ لِي, 7:151) — ibāḥa, taʿjīz, ihāna, tamannī and iltimās carried
+  in the note with the source's own shawāhid. Engine wave, probe-first:
+  the ism-fiʿl closed-class row (رُوَيْدَ pk=ism-fil, mabni, its maf'ul
+  in plain nasb), the lam-amr post-pass (a majzum cell opening on bare
+  ل + mudari prefix with no earlier jazim names its لَامُ الْأَمْرِ on the
+  row), InshaEngine's three amr frames with exact receipts — amrDua
+  (the amr aimed at رَبِّ/اللَّهُمَّ), amrTaswiya (amr + أَوْ + nafy +
+  the same root again; the hamza SEAT paid a sixth time — bare(أَوْ) is
+  «أو», never «او»), amrTahdid (amr + مَا شِئْتَ) — with the plain-amr
+  control wearing none, MaEngine rule 6i (a bare مَا between two verbs,
+  the first with an OPEN object seat, is the mawṣūla — the definiteness
+  route through the seat, while jarr-fused مِمَّا keeps masdariyya), the
+  trimmed-vocative CaseEngine guard (رَبِّ before a verb is a munada
+  with its ya cut — silence beats a wrong jarr), and TaalluqEngine's
+  verb bail (a resolved verb with its cell is no fused jarr phrase —
+  لِيَحْضُرْ was being walked toward an omitted amil).
+
+  Measured: **99.9% POS over 1,514 tokens** (224 worked sentences),
+  **98.6% CASE over 1,185 double-decided**; the two standing POS
+  disagreements remain the بِمَا pair; no new case disagreements arrived
+  with the chapter.

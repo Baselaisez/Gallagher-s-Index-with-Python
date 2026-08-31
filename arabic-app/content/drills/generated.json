@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 217,
-  "sentenceTokens": 1495,
+  "sentences": 224,
+  "sentenceTokens": 1514,
   "posAgreement": 99.9,
-  "caseJudged": 1171,
+  "caseJudged": 1185,
   "caseAgreement": 98.6,
-  "rows": 2580
+  "rows": 2599
  },
  "endings": [
   {
@@ -45040,6 +45040,641 @@
      "match": true,
      "caseSaid": null,
      "caseHuman": "raf",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s1",
+   "text": "لِيَحْضُرْ زَيْدٌ",
+   "translation": {
+    "en": "Let Zayd be present! (The amr's first dress: the LAM of command jazming its mudari.)",
+    "tr": "Zeyd hazır olsun! (Emrin ilk kılığı: muzârisini cezmeden emir LÂMI.)"
+   },
+   "jumal": [
+    {
+     "text": "لِيَحْضُرْ زَيْدٌ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The bab opens: a verbal insha'i clause, no mahall — and the DEFINITION rides it: amr is demanding the deed عَلَى وَجْهِ الِاسْتِعْلَاءِ, from one who counts himself above."
+    },
+    {
+     "text": "لِيَحْضُرْ",
+     "ar": "الْمُصَنِّفُ: الصِّيغَةُ — بِلَامٍ أَوْ بِغَيْرِ لَامٍ — مَوْضُوعَةٌ لِطَلَبِ الْفِعْلِ اسْتِعْلَاءً.",
+     "en": "THE MAWDU'-LAH: the scholars differed over what the sigha is COINED for; the musannif answers that with the lam or without it, the mind runs straight (سُرْعَةً) to demand-on-isti'la the moment it is heard — the speed of the understanding is his evidence."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "لِيَحْضُرْ",
+     "lex": "hadara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "lam-amr"
+      ],
+      "irab": "«let him be present» — the LAM OF COMMAND, and its mudari jazmed by it, the sukun its sign. The request rides a letter: this is the amr's dress for the third person, where the bare sigha cannot reach."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَضَرَ",
+      "root": "ح ض ر",
+      "wazn": "يَفْعُلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«Zayd» — the doer, marfu' by the plain damma: the commanded one, named in the third person."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s2",
+   "text": "أَكْرِمْ عَمْرًا",
+   "translation": {
+    "en": "Honour 'Amr! (The bare sigha — and 'Amr's silent waw drops in nasb, where the tanwin's alif already tells him from 'Umar.)",
+    "tr": "Amr'a ikram et! (Yalın sîga — ve Amr'ın sessiz vâvı nasbda düşer: tenvin elifi onu Ömer'den zaten ayırır.)"
+   },
+   "jumal": [
+    {
+     "text": "أَكْرِمْ عَمْرًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The second dress: the bare sigha, mabni, its doer concealed — one word carrying the whole demand."
+    },
+    {
+     "text": "أَكْرِمْ عَمْرًا",
+     "ar": "سُقُوطُ الْوَاوِ فِي النَّصْبِ — الرَّسْمُ يَكْتُبُ مَا يَحْتَاجُهُ فَقَطْ.",
+     "en": "THE ORTHOGRAPHIC WAJH: the script writes only what it needs. The silent waw exists to split two names the consonants confuse; where the tanwin's alif splits them already, the waw is not written — عَمْرًا, never عَمْرًوا."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَكْرِمْ",
+     "lex": "akrama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "imperative-amr"
+      ],
+      "irab": "«honour!» — the amr of أَكْرَمَ, MABNI on the sukun (no jazim stands anywhere), its doer the concealed «you»: the sigha without the lam, the second person's own dress."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَكْرَمَ",
+      "root": "ك ر م",
+      "wazn": "أَفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَمْرًا",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«'Amr» — the object, mansub by the plain fatha. And the name's SILENT WAW is gone: it is written only in raf' and jarr, to tell عَمْرو from عُمَر in an unpointed text — in nasb the tanwin's alif already does that work."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عُمَرُ",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s3",
+   "text": "رُوَيْدَ بَكْرًا",
+   "translation": {
+    "en": "Respite Bakr! (The third dress: رُوَيْدَ, an ISM with a verb's force — it governs the nasb and conjugates nothing.)",
+    "tr": "Bekir'e mühlet ver! (Üçüncü kılık: رُوَيْدَ — fiil kuvvetinde bir İSİM; nasb eder, hiç çekilmez.)"
+   },
+   "jumal": [
+    {
+     "text": "رُوَيْدَ بَكْرًا",
+     "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ — صَدْرُهَا اسْمٌ يَعْمَلُ عَمَلَ الْفِعْلِ.",
+     "en": "The third dress completes the musannif's roll: lam-verb, bare sigha, and now an ism doing a verb's work — three spellings, one mawdu'-lah, and the mind runs to the same demand at each."
+    },
+    {
+     "text": "رُوَيْدَ",
+     "ar": "أَسْمَاءُ الْأَفْعَالِ — قُوَّةُ الْفِعْلِ بِلَا جِسْمِهِ.",
+     "en": "THE CLASS: asma' al-af'al (صَهْ «hush!», مَهْ «stop!», هَيْهَاتَ «how far!») — nouns coined to carry a verb's meaning and government whole, while refusing every verbal inflection. The nasb on بَكْرًا is their signature."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "رُوَيْدَ",
+     "lex": "ruwayd",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«grant respite!» — an ISM FI'L: a noun meaning أَمْهِلْ, mabni on the fatha, its doer concealed. It has a verb's FORCE — it governs its object's nasb — and none of a verb's body: no tenses, no doer's ta, no jazim can touch it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بَكْرًا",
+     "lex": "bakr",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«Bakr» — the object, mansub by the plain fatha — and what governed it is the NOUN before it: the proof that رُوَيْدَ carries a verb's amal."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَكْر",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s4",
+   "text": "اِعْمَلُوا مَا شِئْتُمْ",
+   "translation": {
+    "en": "Do what you willed. (Fussilat 41:40 — the whole choice surrendered to the hearer: not permission, THREAT.)",
+    "tr": "Dilediğinizi işleyin. (Fussilet 41:40 — bütün seçim muhataba teslim: izin değil, TEHDİT.)"
+   },
+   "jumal": [
+    {
+     "text": "اِعْمَلُوا مَا شِئْتُمْ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ لَا مَحَلَّ لَهَا — وَالْأَمْرُ لِلتَّهْدِيدِ.",
+     "en": "THE WAJH: tahdid. The aya's own close is the proof — إِنَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ follows it: «He sees what you do». Freedom offered under a watching eye is a warning wearing permission's letters."
+    },
+    {
+     "text": "مَا شِئْتُمْ",
+     "ar": "صِلَةُ الْمَوْصُولِ فِي مَحَلِّ نَصْبٍ مَعَ مَوْصُولِهَا — وَالْعَائِدُ مَحْذُوفٌ.",
+     "en": "The sila-clause with its ma fills the object seat whole; the returning pronoun is dropped and the seat it left is the visible receipt — the ch15-16 'aid doctrine, here inside an amr."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "اِعْمَلُوا",
+     "lex": "amila",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "khuruj-al-istifham"
+      ],
+      "irab": "«do!» — the amr, mabni on the DROPPED NUN (its mudari was one of the five verbs), the waw its doer. And the command commands nothing: a commander who names no deed has stopped commanding."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَمِلَ",
+      "root": "ع م ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "ism-mawsul"
+      ],
+      "irab": "«what» — the relative, mabni, standing in the OBJECT SEAT the verb left open: the fourth road to definiteness, by position."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "شِئْتُمْ",
+     "lex": "shaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«you willed» — the sila's madi, mabni for its doer's ta; the 'aid is DROPPED (مَا شِئْتُمُوهُ) — the commonest concealment, and the surrendered choice is the whole threat."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَاءَ",
+      "root": "ش ي أ",
+      "wazn": "فَعَلْتُمْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s5",
+   "text": "كُونُوا قِرَدَةً خَاسِئِينَ",
+   "translation": {
+    "en": "Be apes, despised! (al-Baqara 2:65 — no one can obey «become an ape»: the amr is TASKHIR, the subduing word.)",
+    "tr": "Aşağılık maymunlar olun! (Bakara 2:65 — «maymun ol» emrine kimse itaat edemez: emir TESHÎRdir, boyun eğdiren söz.)"
+   },
+   "jumal": [
+    {
+     "text": "كُونُوا قِرَدَةً خَاسِئِينَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ إِنْشَائِيَّةٌ — وَالْأَمْرُ لِلتَّسْخِيرِ.",
+     "en": "THE WAJH: taskhir. Its test is ABILITY — an amr whose deed lies outside the hearer's power cannot seek compliance; it manufactures the outcome. Beside it the note sets ihana (كُونُوا حِجَارَةً أَوْ حَدِيدًا) — the same shape bent to contempt."
+    },
+    {
+     "text": "كُونُوا قِرَدَةً",
+     "ar": "كَانَ لَهَا أَمْرٌ كَسَائِرِ الْأَفْعَالِ — وَاسْمُهَا الْوَاوُ وَخَبَرُهَا مَنْصُوبٌ.",
+     "en": "The nasikh conjugates like any verb: its amr keeps its government whole — the waw is its ism in raf' position and the khabar wears the nasb. One more proof that كان's sisterhood is about GOVERNMENT, not tense."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "كُونُوا",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«be!» — kana's own amr, mabni on the dropped nun, the waw its ISM. And no one is being asked to comply: a deed no creature can perform is commanded so that it simply HAPPENS — taskhir, the word that subdues."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "wazn": "اُفْعُلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "قِرَدَةً",
+     "lex": "qird",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«apes» — kana's khabar, mansub by the plain fatha: the broken plural of قِرْد."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قِرْد",
+      "root": "ق ر د",
+      "wazn": "فِعَلَةً",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "خَاسِئِينَ",
+     "lex": "khasi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«despised» — a second khabar (or a na't to the apes), mansub by the YA of the sound plural: the ism fa'il of خَسَأَ, «driven off in contempt»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ س ئ",
+      "wazn": "فَاعِل / فَاعَلَ — اسْمُ الْفَاعِلِ أَوِ الْمُفَاعَلَةُ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s6",
+   "text": "اِصْبِرُوا أَوْ لَا تَصْبِرُوا",
+   "translation": {
+    "en": "Endure, or do not endure. (al-Tur 52:16 — the deed and its absence offered as equals: TASWIYA.)",
+    "tr": "Sabredin yahut sabretmeyin. (Tûr 52:16 — fiil ve yokluğu eşit sunulmuş: TESVİYE.)"
+   },
+   "jumal": [
+    {
+     "text": "اِصْبِرُوا أَوْ لَا تَصْبِرُوا",
+     "ar": "جُمْلَتَانِ إِنْشَائِيَّتَانِ سُوِّيَ بَيْنَهُمَا بِأَوْ — وَالْمُرَادُ: سَوَاءٌ عَلَيْكُمْ.",
+     "en": "THE WAJH: taswiya, and the receipt is fully mechanical — amr + أَوْ + لَا + the very verb just commanded. The aya's close spells the meaning out: سَوَاءٌ عَلَيْكُمْ, «it is all one for you»."
+    },
+    {
+     "text": "لَا تَصْبِرُوا",
+     "ar": "جُمْلَةُ النَّهْيِ مَعْطُوفَةٌ عَلَى جُمْلَةِ الْأَمْرِ — لَا مَحَلَّ لَهُمَا.",
+     "en": "The nahy-clause joined onto the amr-clause: the next bab's particle (لَا الْجَازِمَة) makes its first appearance INSIDE this one — the tie the source itself draws between amr and nahy."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "اِصْبِرُوا",
+     "lex": "sabara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«endure!» — the amr, mabni on the dropped nun, the waw its doer — and the next three words will unsay it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "صَبَرَ",
+      "root": "ص ب ر",
+      "wazn": "اِفْعِلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«or» — the joining letter that sets the deed and its abandonment side by side as EQUALS: the hinge of the taswiya."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«do not» — the prohibiting la, jazming what follows."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تَصْبِرُوا",
+     "lex": "sabara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«(do not) endure» — the SAME verb back as a jazmed mudari, its nun dropped by the prohibition: command and prohibition of one deed in one breath, which is how the sentence commands nothing."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "صَبَرَ",
+      "root": "ص ب ر",
+      "wazn": "تَفْعِلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jazm",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:28:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 28,
+   "sentence": "s7",
+   "text": "رَبِّ اغْفِرْ لِي",
+   "translation": {
+    "en": "My Lord, forgive me. (al-A'raf 7:151 — an amr aimed upward cannot command: DU'A.)",
+    "tr": "Rabbim, beni bağışla. (A'râf 7:151 — yukarıya yöneltilmiş emir buyuramaz: DUÂ.)"
+   },
+   "jumal": [
+    {
+     "text": "رَبِّ اغْفِرْ لِي",
+     "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ — نِدَاءٌ مَحْذُوفُ الْحَرْفِ ثُمَّ طَلَبٌ خَرَجَ إِلَى الدُّعَاءِ.",
+     "en": "THE WAJH: du'a — the receipt is the ADDRESSEE. The wujuh sort by rank: aimed above, the sigha is du'a; at an equal, iltimas («do this» between friends, no isti'la); below, and only below, true amr. One scale, three names."
+    },
+    {
+     "text": "رَبِّ",
+     "ar": "حَذْفُ حَرْفِ النِّدَاءِ وَحَذْفُ الْيَاءِ — وَالْكَسْرَةُ شَاهِدَةٌ.",
+     "en": "Two drops in one word — the call-letter and the possessive ya — and the kasra stands as the witness of the second. The plea's URGENCY lives in the trimming: no time for particles."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "رَبِّ",
+     "lex": "rabb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "vocative-munada"
+      ],
+      "irab": "«my Lord» — the TRIMMED vocative: يَا dropped, and the speaker's ya dropped too, its kasra left as the dalil. Mansub by an estimated fatha as a mudaf munada — the whole call worn down to one word, as pleas are."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَبّ",
+      "root": "ر ب ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "اغْفِرْ",
+     "lex": "ghafara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-amr-wa-wujuhuh",
+       "imperative-amr"
+      ],
+      "irab": "«forgive» — the amr sigha, mabni on the sukun — and it cannot be a command: isti'la toward one's Lord is impossible, so the sigha decays to DU'A. Musa's word on the mountain, after the calf."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "غَفَرَ",
+      "root": "غ ف ر",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لِي",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-amr-wa-wujuhuh"
+      ],
+      "irab": "«me» — the jarr lam with the speaker's ya, hanging on the plea."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
      "caseMatch": null
     }
    ]

@@ -7651,6 +7651,78 @@ if (!CHROME) {
         r.wsfKind + '/' + r.wsfTense + '/' + r.wsfCase);
   });
 
+  await check('talkhis ch28: the amr bab — three dresses, and the wujuh it leaves for', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 28);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const g = GRAMMAR['al-amr-wa-wujuhuh'];
+      const ins = s => (InshaEngine.read(SentenceAnalyzer.analyze(s)) || []).map(f => f.key);
+      const lam = SentenceAnalyzer.analyze('لِيَحْضُرْ زَيْدٌ');
+      const lamCtrl = SentenceAnalyzer.analyze('لَمْ يَحْضُرْ زَيْدٌ');
+      const ruwayd = SentenceAnalyzer.analyze('رُوَيْدَ بَكْرًا');
+      const rabbi = SentenceAnalyzer.analyze('رَبِّ اغْفِرْ لِي');
+      const maRow = SentenceAnalyzer.analyze('اِعْمَلُوا مَا شِئْتُمْ')[1];
+      const mimRow = SentenceAnalyzer.analyze('عَجِبْتُ مِمَّا صَنَعْتَ')[1];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        note: g && [g.group, (g.question || {}).tr ? g.question.tr.length : 0,
+              (g.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        tagged: toks.filter(t => (t.grammar || []).includes('al-amr-wa-wujuhuh')).length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        // the three wujuh frames — and the control that a PLAIN amr, with no
+        // qarina beside it, wears none of them: the asl needs no receipt.
+        fDua: ins('رَبِّ اغْفِرْ لِي'), fTaswiya: ins('اِصْبِرُوا أَوْ لَا تَصْبِرُوا'),
+        fTahdid: ins('اِعْمَلُوا مَا شِئْتُمْ'), fPlain: ins('أَكْرِمْ عَمْرًا'),
+        // رُوَيْدَ is the third dress: a mabni NOUN with a verb's force, and
+        // the noun after it is its maf'ul in plain nasb
+        ruwaydPk: ruwayd[0] && ruwayd[0].pk,
+        ruwaydCase: (CaseEngine.claim(ruwayd, 0) || {}).k,
+        bakrCase: (CaseEngine.claim(ruwayd, 1) || {}).k,
+        // the trimmed vocative: رَبِّ before a verb is a munada with its ya
+        // cut — the kasra is the ya's trace, not a jarr, so the engine is
+        // silent rather than wrong
+        rabbiClaim: CaseEngine.claim(rabbi, 0),
+        // the lam of command is NAMED on the row — and the note walks the
+        // letter, so لَمْ (no ل-initial verb) must stay clean
+        lamNote: (lam[0].notes || []).some(n => /لَامُ الْأَمْرِ/.test(n.en || '')),
+        lamCtrl: lamCtrl.flatMap(x => (x.notes || []).map(n => n.en || ''))
+                        .some(e => /لَامُ الْأَمْرِ/.test(e)),
+        // …and the verb resolved with its cell must not ALSO be read as a
+        // fused jarr phrase hunting for an omitted amil
+        lamGhost: (lam[0].notes || []).some(n => /OMITTED amil/.test(n.en || '')),
+        // rule 6i: a bare ma between two verbs, the first with an open object
+        // seat, is the mawsula — while the jarr-fused مِمَّا keeps masdariyya
+        maWajh: maRow && maRow.wajh && maRow.wajh.k,
+        mimWajh: mimRow && mimRow.wajh && mimRow.wajh.k,
+      };
+    });
+    if (r.missing) throw new Error('chapter 28 did not load');
+    if (r.chapters < 28) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 7) throw new Error('ch28 sentences: ' + r.n);
+    if (r.t !== 19) throw new Error('ch28 tokens: ' + r.t);
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 4 || r.note[2] < 3)
+      throw new Error('the al-amr-wa-wujuhuh note with its question test and anchors: ' + JSON.stringify(r.note));
+    if (r.tagged < 12) throw new Error('too few al-amr-wa-wujuhuh tokens tagged: ' + r.tagged);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch28 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.fDua.includes('amrDua')) throw new Error('the amr aimed UP is du\'a: ' + r.fDua);
+    if (!r.fTaswiya.includes('amrTaswiya')) throw new Error('amr + أَوْ + its own negation is TASWIYA: ' + r.fTaswiya);
+    if (!r.fTahdid.includes('amrTahdid')) throw new Error('«do what you wish» is TAHDID: ' + r.fTahdid);
+    if (r.fPlain.some(k => /^amr/.test(k)))
+      throw new Error('a plain amr with no qarina wears no wajh frame: ' + r.fPlain);
+    if (r.ruwaydPk !== 'ism-fil') throw new Error('رُوَيْدَ is filed as the ism al-fi\'l: ' + r.ruwaydPk);
+    if (r.ruwaydCase !== 'mabni') throw new Error('…and it is mabni: ' + r.ruwaydCase);
+    if (r.bakrCase !== 'nasb') throw new Error('…and its maf\'ul wears nasb: ' + r.bakrCase);
+    if (r.rabbiClaim !== null) throw new Error('the trimmed vocative stays silent: ' + JSON.stringify(r.rabbiClaim));
+    if (!r.lamNote) throw new Error('لِيَحْضُرْ names its لَامُ الْأَمْرِ on the row');
+    if (r.lamCtrl) throw new Error('…but لَمْ يَحْضُرْ carries no lam-amr note');
+    if (r.lamGhost) throw new Error('a resolved verb must not be walked as a jarr phrase');
+    if (r.maWajh !== 'mawsula') throw new Error('the open object seat promotes مَا to mawsula: ' + r.maWajh);
+    if (r.mimWajh !== 'masdariyya') throw new Error('…while مِمَّا with no aid keeps masdariyya: ' + r.mimWajh);
+  });
+
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
     const r = await page.evaluate(() => {
       const claims = {};

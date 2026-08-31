@@ -3445,3 +3445,54 @@ inside the majhulMudari branch itself: build stored-singular + ونَ and
 test THAT, so the fallback exists only where no plural cell can. Where a
 candidate could match many cells, put the derivation next to the one cell
 it is FOR — not in the shared candidate list.
+
+## The amr's wujuh are surface-settled — its frames carry exact receipts
+
+Ch28's three amr frames each hold a mechanical qarina: amrDua fires on
+the amr aimed at رَبِّ / رَبَّنَا / اللَّهُمَّ before it; amrTaswiya on
+amr + أَوْ + a nafy + THE SAME ROOT again (do or don't — the same to me);
+amrTahdid on amr + مَا شِئْتَ. The plain amr wears NO frame — the asl
+needs no receipt, and the control that أَكْرِمْ عَمْرًا fires nothing is
+pinned in the gate beside the frames it guards. Rank-dependent wujuh
+(ibaha, ta'jiz, ihana, tamanni, iltimas) live in note 130, not in code:
+receipts before rhetoric.
+
+## The hamza seat is a standing tax — أَوْ bares to «أو», never «او»
+
+Sixth payment. stripAr strips harakat but keeps the hamza SEAT, so every
+bare() comparison against a hamza-opening particle must write the seat:
+the amrTaswiya branch compared against plain-alif «او» and never fired
+on its own type sentence. Grep for bare-string literals opening with alif
+whenever a branch mysteriously stays silent.
+
+## The ism al-fi'l is a closed-class NOUN with a verb's force
+
+رُوَيْدَ enters PARTICLES with pk "ism-fil", joins ISM_KINDS and
+CaseEngine.MABNI_PK: a mabni noun that governs a maf'ul (بَكْرًا in plain
+nasb). The row must SAY what it is — the KIND_LBL entry names the class
+and the note explains the paradox (a noun that commands), because the
+learner's first question on رُوَيْدَ بَكْرًا is why a "noun" takes an
+object.
+
+## The open object seat is a definiteness route — MaEngine rule 6i
+
+مَا between two verbs where the FIRST still owes its maf'ul (no object
+enclitic on it) is the mawsula filling that seat: اِعْمَلُوا مَا شِئْتُمْ.
+The seat itself supplies what the definitional frame usually demands —
+a definite before ما — so the rule sits with the definiteness routes,
+guarded by the jarr-fused control (مِمَّا with no aid keeps masdariyya).
+
+## The trimmed vocative: silence beats a wrong claim
+
+رَبِّ sentence-initial before a verb is يَا رَبِّي with the ya cut — its
+kasra is the trace of the pronoun, not a jarr. CaseEngine returns null
+there (bare رب, kasra-final, no tanwin, verb next): the NFC trap again —
+the word ends kasra+shadda, so the test is /ِّ?$/, never /ِ$/.
+
+## A resolved verb is never a jarr phrase — TaalluqEngine bails on cells
+
+The fused-jarr heuristic (ل-initial, length > 3, lemma not ل-initial)
+swallows لِيَحْضُرْ and walks a VERB toward an "omitted amil" — wrong
+grammar published on the very sentence ch28 teaches. Any row that
+resolved with a paradigm cell and kind verb exits of() before the
+letter tests run: the lam it opens on belongs to the lam-amr pass.
