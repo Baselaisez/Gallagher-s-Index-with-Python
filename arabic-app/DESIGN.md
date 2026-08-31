@@ -276,3 +276,19 @@ learner recognises "this is the model talking" before reading a word:
   tally — statistics racing a human, with the hand analysis as referee.
 - Every surface that quotes the model leads with its **held-out** score,
   never the resubstitution one.
+
+## 8. The balagha door (wave 9)
+
+A sentence carrying a named-clause layer says so where the reader is —
+in the margin, not three taps deep:
+
+- **`.jml-chip`** — a quiet pill beside the play/tarkib buttons: `✦ بَلَاغَة`,
+  sized to the 1.7rem tool-row rhythm, colored in the tabi hue
+  (`--role-tabi`) so it reads as "layer", not "action". It is a DOOR:
+  tapping it opens the same tarkib sheet the layer lives in — never a
+  second copy of the content.
+- Chips render only from data (`sen.jumal`), never from a manifest flag,
+  and hide in print with the other tools.
+- Restraint rule: one chip per sentence, no count, no color escalation —
+  the layer's richness is inside the sheet; the margin only says the
+  door exists.

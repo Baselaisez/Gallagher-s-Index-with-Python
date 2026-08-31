@@ -7949,6 +7949,95 @@ if (!CHROME) {
       throw new Error('ayyuha mabni with its sifa in raf: ' + r.ayyuha.join());
   });
 
+  await check('talkhis ch30: khabar worn for insha — the frame, its controls, and the honest twins', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 30);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const ins = s => (InshaEngine.read(an(s)) || []).map(f => f.key);
+      const g134 = GRAMMAR['khabar-fi-mana-al-insha'];
+      const rz = an('رَزَقَنِيَ اللهُ لِقَاءَكَ');
+      const ta = an('تَأْتِينِي غَدًا');
+      const yz = an('يَنْظُرُ الْمَوْلَى إِلَيَّ سَاعَةً');
+      const note = r2 => ((r2.notes || []).find(n => /corpus verb/.test(n.en || '')) || {}).en || '';
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        note: g134 && [g134.group, (g134.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        // the frame: the mazi du'a claimed on its receipt (enc + jalala)…
+        frames: [ins('وَفَّقَكَ اللهُ لِلتَّقْوَى'), ins('رَزَقَنِيَ اللهُ لِقَاءَكَ')],
+        // …and its controls: a 3rd-person object, no enclitic at all, and the
+        // two MUDARI examples — rank and context read those, never a receipt.
+        ctrls: [ins('نَصَرَهُمُ اللهُ'), ins('تَرَكَ اللهُ'),
+                ins('يَنْظُرُ الْمَوْلَى إِلَيَّ سَاعَةً'), ins('تَأْتِينِي غَدًا')],
+        // the iltiqa fatha on the wiqaya-ya (رَزَقَنِيَ) must not hide the peel
+        razaqa: [(rz[0].kind || ''), rz[0].cell && rz[0].cell.tense, rz[0].enc || null],
+        // twin cells: one spelling, two persons — the label says both; and a
+        // verb with ONE cell must not grow the suffix
+        twin: note(ta[0]), single: note(yz[0]),
+        // the idafa pass's two refusals, with the real idafa as control
+        idafaRefused: IdafaEngine.chain(an('وَفَّقَكَ اللهُ لِلتَّقْوَى')).length,
+        idafaKept: IdafaEngine.chain(an('وَجْهُ اللهِ')).length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 30 did not load');
+    if (r.chapters < 30) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 4) throw new Error('ch30 sentences: ' + r.n);
+    if (r.t !== 12) throw new Error('ch30 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch30 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 2)
+      throw new Error('note 134 balagha with >=2 talkhis anchors: ' + JSON.stringify(r.note));
+    if (!r.frames.every(f => f.includes('khabarDua')))
+      throw new Error('the khabarDua frame must claim both mazi du\'as: ' + JSON.stringify(r.frames));
+    if (r.ctrls.some(f => f.includes('khabarDua')))
+      throw new Error('a control leaked the frame: ' + JSON.stringify(r.ctrls));
+    if (r.razaqa[0] !== 'verb' || r.razaqa[1] !== 'mazi' || r.razaqa[2] !== 'ني')
+      throw new Error('رَزَقَنِيَ must resolve as a mazi with its wiqaya peel: ' + r.razaqa.join('/'));
+    if (!/she — or you/.test(r.twin))
+      throw new Error('the twin cells must both be named: ' + r.twin);
+    if (/ — or /.test(r.single))
+      throw new Error('a single-cell verb must not grow a twin: ' + r.single);
+    if (r.idafaRefused !== 0)
+      throw new Error('a pronoun-closed head must refuse the idafa (وَفَّقَكَ اللهُ)');
+    if (r.idafaKept !== 1)
+      throw new Error('the real idafa must survive the refusals (وَجْهُ اللهِ)');
+  });
+
+  await check('the balagha door: a sentence carrying jumal rows says so in the margin', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => !storyLocked(s) &&
+        s.chapters[0].sentences.some(x => x.jumal && x.jumal.length));
+      if (!st) return { none: true };
+      openStory(st);
+      const secs = [...document.querySelectorAll('section.sentence')];
+      const chips = document.querySelectorAll('.jml-chip').length;
+      // count rendered sentences that carry jumal, independently of the chip
+      let want = 0;
+      st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+        if (sen.jumal && sen.jumal.length) want++;
+      }));
+      // a free story renders whole, so the counts must MATCH; and a chip must
+      // open the tarkib sheet (the layer's one home — the chip is a door)
+      const chip = document.querySelector('.jml-chip');
+      let opened = false;
+      if (chip) {
+        chip.click();
+        opened = sheet.classList.contains('show') &&
+                 /إِعْرَابُ الْجُمَلِ|jumal|Jumal|cümle/i.test(sheetInner.textContent || '');
+        closeSheet();
+      }
+      renderLibrary();
+      return { chips, want, opened, rendered: secs.length };
+    });
+    if (r.none) throw new Error('no free story with jumal in chapter 1 — pick another fixture');
+    if (r.chips !== r.want)
+      throw new Error('chip count must equal jumal-bearing sentences: ' + r.chips + ' vs ' + r.want);
+    if (!r.opened) throw new Error('the chip must open the tarkib sheet');
+  });
+
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
     const r = await page.evaluate(() => {
       const claims = {};

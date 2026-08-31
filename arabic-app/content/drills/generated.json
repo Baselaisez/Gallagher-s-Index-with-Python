@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 233,
-  "sentenceTokens": 1545,
+  "sentences": 237,
+  "sentenceTokens": 1557,
   "posAgreement": 99.9,
-  "caseJudged": 1211,
+  "caseJudged": 1218,
   "caseAgreement": 98.7,
-  "rows": 2630
+  "rows": 2642
  },
  "endings": [
   {
@@ -46639,6 +46639,390 @@
      "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:30:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 30,
+   "sentence": "s1",
+   "text": "وَفَّقَكَ اللهُ لِلتَّقْوَى",
+   "translation": {
+    "en": "May Allah grant you success toward taqwa! (the FIRST reason — TAFA'UL: the du'a spoken as already done, for the good omen in it.)",
+    "tr": "Allah seni takvâya muvaffak kılsın! (BİRİNCİ sebep — TEFE'ÜL: hayra yormak için, olmuş gibi söylenen duâ.)"
+   },
+   "jumal": [
+    {
+     "text": "وَفَّقَكَ اللهُ لِلتَّقْوَى",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا إِنْشَائِيَّةٌ مَعْنًى — دُعَاءٌ — لَا مَحَلَّ لَهَا.",
+     "en": "KHABAR in letter, INSHA in meaning: a du'a wearing a report's dress, no mahall."
+    },
+    {
+     "text": "وَفَّقَكَ اللهُ",
+     "ar": "وَجْهُ التَّفَاؤُلِ — الدُّعَاءُ بِصِيغَةِ الْمَاضِي تَيَمُّنًا بِوُقُوعِهِ.",
+     "en": "THE TAFA'UL WAJH: the first of the four reasons — the mazi makes an omen of the wish, speaking it as if fallen due."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "وَفَّقَكَ",
+     "lex": "waffaqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«He granted you success» — a mazi, mabni on the fatha; the kaf is the attached pronoun, in the position of nasb: the maf'ul bihi. The PAST tense is the whole point: the asker speaks the wish as a thing already done."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَفَّقَ",
+      "root": "و ف ق",
+      "wazn": "فَعَّلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "اللهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«Allah» — the Name, the fa'il, marfu' by the plain damma: the One asked, seated as the doer of a deed already ascribed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "لِلتَّقْوَى",
+     "lex": "taqwa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«toward taqwa» — the lam is a jarr letter (its alif of ال swallowed); taqwa is majrur by a kasra ESTIMATED on the alif, and the phrase hangs on the verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَقْوَى",
+      "root": "و ق ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:30:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 30,
+   "sentence": "s2",
+   "text": "رَزَقَنِيَ اللهُ لِقَاءَكَ",
+   "translation": {
+    "en": "May Allah bless me with meeting you! (the SECOND reason — showing EAGERNESS for the thing's occurrence; and the source rules a mazi du'a open to both readings.)",
+    "tr": "Allah beni sana kavuşmakla rızıklandırsın! (İKİNCİ sebep — vukuuna DÜŞKÜNLÜĞÜ göstermek; kaynak, mâzî duâyı iki okumaya da açık sayar.)"
+   },
+   "jumal": [
+    {
+     "text": "رَزَقَنِيَ اللهُ لِقَاءَكَ",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا إِنْشَائِيَّةٌ مَعْنًى — دُعَاءٌ — لَا مَحَلَّ لَهَا.",
+     "en": "Again khabar in letter, du'a in force — no mahall."
+    },
+    {
+     "text": "رَزَقَنِيَ اللهُ",
+     "ar": "وَجْهُ إِظْهَارِ الْحِرْصِ — وَالْمَاضِي فِي الدُّعَاءِ يَحْتَمِلُ الْوَجْهَيْنِ.",
+     "en": "THE HIRS WAJH: eagerness for the meeting shown by reporting it granted — and the source's tanbih: a mazi du'a from the eloquent is OPEN TO BOTH this and the tafa'ul."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "رَزَقَنِيَ",
+     "lex": "razaqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«He provided me» — a mazi on the fatha; the nun is the GUARDING nun and the speaker's ya the FIRST object (رَزَقَ gives two). The ya wears a fatha only because the Name's wasl-alif follows."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَزَقَ",
+      "root": "ر ز ق",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "اللهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«Allah» — the Name, the fa'il, marfu' by the plain damma."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "لِقَاءَكَ",
+     "lex": "liqa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«meeting you» — the SECOND object, mansub by the plain fatha; the kaf is the mudaf ilayh. A mamdud noun: its hamza is a turned radical (ل ق ي), so the tanwin it would carry elsewhere is lawful — here the idafa takes it instead."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لِقَاء",
+      "root": "ل ق ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:30:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 30,
+   "sentence": "s3",
+   "text": "يَنْظُرُ الْمَوْلَى إِلَيَّ سَاعَةً",
+   "translation": {
+    "en": "My master looks at me for a moment. (the THIRD reason — the slave cannot COMMAND his master, so the request flees the amr's shape into a report.)",
+    "tr": "Efendim bana bir an bakar. (ÜÇÜNCÜ sebep — köle efendisine EMREDEMEZ; istek, emir kalıbından kaçıp haber kılığına girer.)"
+   },
+   "jumal": [
+    {
+     "text": "يَنْظُرُ الْمَوْلَى إِلَيَّ سَاعَةً",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا طَلَبِيَّةٌ مَعْنًى — لَا مَحَلَّ لَهَا.",
+     "en": "A report in letter, a plea in force — no mahall."
+    },
+    {
+     "text": "يَنْظُرُ الْمَوْلَى",
+     "ar": "وَجْهُ التَّحَرُّزِ عَنْ صُورَةِ الْأَمْرِ.",
+     "en": "THE THIRD REASON: shunning the amr's very shape — the low may not command the high, so the wish is worded as what the master simply does."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "يَنْظُرُ",
+     "lex": "nazara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«he looks» — a mudari, marfu' by the plain damma. No amr stands anywhere: isti'la toward one's master is impossible, so the asking hides in the report."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَظَرَ",
+      "root": "ن ظ ر",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمَوْلَى",
+     "lex": "mawla",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«the master» — the fa'il, marfu' by a damma ESTIMATED on the maqsur alif."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَوْلَى",
+      "root": "و ل ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "إِلَيَّ",
+     "lex": "ila",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«at me» — ila with the speaker's ya (the maqsura turned to ya before the pronoun), hanging on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "سَاعَةً",
+     "lex": "saa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«for a moment» — a zarf of time, mansub by the plain fatha: the maf'ul fih."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "س و/ي ع",
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:30:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 30,
+   "sentence": "s4",
+   "text": "تَأْتِينِي غَدًا",
+   "translation": {
+    "en": "You come to me tomorrow. (the FOURTH reason — the addressee who will not let the speaker stand a liar is CARRIED to the deed by the report itself.)",
+    "tr": "Yarın bana gelirsin. (DÖRDÜNCÜ sebep — konuşanı yalancı durumuna düşürmek istemeyen muhatap, haberin kendisiyle işe SEVK edilir.)"
+   },
+   "jumal": [
+    {
+     "text": "تَأْتِينِي غَدًا",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا إِنْشَائِيَّةٌ مَعْنًى — لَا مَحَلَّ لَهَا.",
+     "en": "The fourth dress: a flat report of tomorrow's visit — that IS the request."
+    },
+    {
+     "text": "تَأْتِينِي غَدًا",
+     "ar": "وَجْهُ حَمْلِ الْمُخَاطَبِ عَلَى الْمَطْلُوبِ.",
+     "en": "THE FOURTH REASON: the hearer is pressed to the deed — refusing now would make the speaker a liar, and a hearer who will not allow that must come."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "تَأْتِينِي",
+     "lex": "ata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«you come to me» — a mudari, its damma estimated on the naqis ya; the doer is the concealed «YOU» (the same letters spell «she comes» — the frame settles the person); the nun guards, and the speaker's ya is the maf'ul."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَتَى",
+      "root": "أ ت ي",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "غَدًا",
+     "lex": "ghad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«tomorrow» — a zarf of time, mansub by the plain fatha (the fathatan written before its seat-alif)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَد",
+      "root": "غ د و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
      "caseMatch": true
     }
    ]

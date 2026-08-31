@@ -2135,3 +2135,24 @@ not a one-line change.
   resumes on close; probe confirms zero slices run against an open
   sheet and the pool still completes (33 items). No content change;
   release v150.
+
+- **v151 — talkhis ch30: the khabar worn for insha.** Four sentences /
+  12 tokens (sahifa 77, lines ~2216-2222) — the four reasons: tafa'ul
+  (وَفَّقَكَ اللهُ لِلتَّقْوَى), izhar al-hirs (رَزَقَنِيَ اللهُ لِقَاءَكَ,
+  with the source's mazi-open-to-both tanbih), fleeing the amr's shape
+  (يَنْظُرُ الْمَوْلَى إِلَيَّ سَاعَةً), pressing the addressee
+  (تَأْتِينِي غَدًا). Note 134 khabar-fi-mana-al-insha (balagha). Engine
+  gold, all pre-authoring-probe finds: the khabarDua frame (mazi +
+  1st/2nd enclitic read off row.enc + the jalala fa'il — the shortlist
+  in its DOC line IS the source's own two-ways ruling); the idafa
+  pass's two refusals (a pronoun-closed head, a raf'-marked ilayh) with
+  وَجْهُ اللهِ pinned as the surviving control; the twin-cell shortlist
+  (تَأْتِي = «she — or you» — one spelling, two persons, in every
+  paradigm of the language); the AR_ENCLITIC نِيَ row (the iltiqa fatha
+  on the wiqaya-ya hid the peel). Wajh pool grew by the new tag. Design
+  wave 9: the balagha door (.jml-chip) — a sentence carrying named
+  jumal rows says so in the reader margin. ML: confusion re-measured at
+  4,080 rows (63.1/76.9 base); fi'liyya-context candidates (verb-before,
+  sentence-opens-verbal, ×sign conjunctions) all NOISE across two seeds
+  — recorded, not shipped; jarr↔mudaf (121) and fail↔mubtada (60)
+  remain the leading seams.

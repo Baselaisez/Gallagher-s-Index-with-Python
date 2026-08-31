@@ -3715,3 +3715,40 @@ root. The drip now polls without computing while sheet.classList holds
 background loop must yield to the FOREGROUND SURFACE it can starve,
 and "open sheet" is that surface here — pacing alone only shrinks the
 collision window, it never closes it.
+
+## The frame's receipt is the peel, never the letter-tail
+
+The khabarDua frame (mazi + speaker/addressee object + the jalala as
+fa'il — وَفَّقَكَ اللهُ) first tested the word's ENDING for a pronoun
+shape, and every mazi that merely ends in a kaf (تَرَكَ اللهُ) would
+have prayed. The analyzer had already peeled the enclitic; the fix was
+to stamp the peel on the row (row.enc) and read THAT — the closed-class
+key lesson one field over. And the peel itself had a hole the chapter
+exposed: رَزَقَنِيَ wears an iltiqa fatha ON the wiqaya-ya, and the
+$-anchored نِي row never matched — the vowelled-pronoun trap, at the
+enclitic table this time. A frame's receipt must be knowledge a pass
+already established, and every enclitic row must be tried in the
+dresses the orthography actually writes.
+
+## One spelling, two cells — the label says both or it lies
+
+تَأْتِي is «she» AND «you» in every mudari of the language; the
+matching layer answered whichever index came first and printed it with
+full confidence. findFormInParadigm now scans the tense array for
+IDENTICAL twin forms and carries them on the cell (cell.also);
+formCellLabel prints «she — or you». The honest-shortlist doctrine at
+the cell-matching layer: where the paradigm itself cannot split two
+readings, a first-hit answer is a guess dressed as knowledge.
+
+## A dead guard is worse than no guard — it documents an intention nobody checks
+
+IdafaEngine.chain's pronoun-closed test was `tail-regex && !isNoun(next)`
+— unreachable, because the line above had already `continue`d on
+!isNoun(next). It sat there looking like protection for two hundred
+versions while وَفَّقَكَ اللهُ annexed the jalala over a visible damma.
+The live rule reads row.enc (knowledge, not letter-tails — a radical
+kaf in مَلِك would break real idafas), and the chain gained its sign
+guard: it may not CLOSE on a word showing raf'. When a guard's
+condition contains the negation of a condition already handled above
+it, the guard is dead — read the control flow before trusting a test
+that has never failed.
