@@ -2047,3 +2047,37 @@ not a one-line change.
 
   Measured: ML held-out **61.2/76.5** (resub 67.3 keeps the leak alarm);
   bank untouched (IrabModel feeds no bank field). Release v147.
+
+- **v148 — the confusion wave: aimed features, a retrial, the wajh game.**
+  The held-out confusion matrix aimed this pass: jarr↔mudaf first (165
+  errors — both wear kasra), the tabi classes next. Three neighbourhood
+  features shipped: **prev-bare** (the word before carries no article, no
+  tanwin, and is no closed-class word — the idafa HEAD shape, so this
+  word sits in the mudaf-ilayh seat), **agree-sign** (this word's ending
+  sign equals the previous word's — the tawabi' follow their head in
+  i'rab, and the agreement IS the doctrine's signal), **next-al** (the
+  word after wears the article). prev-bare is a RETRIAL: the NB-era
+  ablation rejected the family as noise (48.6 vs 48.9); under the
+  perceptron it is worth +1.8 alone — an estimator change voids old
+  feature verdicts. Held-out, three seeds: **61.2/76.5 → 63.2/77.0**
+  (62.5-63.5 / 77.0); resub 69.2/82.5 keeps the leak alarm. Floors 62/76.
+  The role model has climbed **54.5 → 63.2** top-1 across three sessions.
+
+  The **Wajh game** (gWajh 🎭, 17th game — the balagha shelf's second):
+  real corpus sentences whose analyzed rows fire EXACTLY ONE
+  insha/istifham frame become «name the wajh» questions — 30 items over
+  26 distinct frames, options and reveals quoting the engines' own
+  trilingual DOC lines verbatim (the game reads the rule's table, never
+  a paraphrase), distractors drawn from the same bab's other wujuh,
+  extras opening the catalogue note. The analyze sweep costs seconds, so
+  the hub's supply is a cheap honest pool count until the cache exists,
+  and a boot-idle warmup makes the exact number the common case; the
+  gate holds the pool ≥20 items / ≥12 distinct frames.
+
+  The neighbourhood features pushed the 17-fold crossVal past its 4s
+  budget, and the fix was measured, not bought: EPOCHS 10 → 5 scores
+  62.9-63.4 / 76.8-77.1 over three seeds — statistically identical — at
+  half the training cost (crossVal ~2.2s).
+
+  Measured: ML held-out **63.3/76.8** (epochs 5, shipped seed), floors
+  62/76. Release v148.

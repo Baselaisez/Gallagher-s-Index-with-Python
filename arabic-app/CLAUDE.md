@@ -3582,3 +3582,40 @@ respect; the fumbled questions are where the learner can win — and the
 revealed misreading (ranked, with its percentage) is the most instructive
 distractor the app owns. The seating is shuffle-blind after selection,
 so the learner cannot tell which kind they are on until the reveal.
+
+## An estimator change voids old feature verdicts — retry the rejected
+
+The NB-era ablation table in this file rejected «preceded by a bare
+noun» as noise and the idafa family as harmful. Under the perceptron the
+first is worth +1.8 held-out alone and the second's next-al half is
+additive — the old verdicts measured the ESTIMATOR's inability to carry
+correlated context, not the features' worth. When the estimator changes,
+the rejection table is unproven again: re-run it before trusting any
+recorded «dropped as noise». (The reverse holds too — npk- was re-A/B'd
+under the perceptron and is STILL noise; a retrial is a measurement, not
+an amnesty.)
+
+## Aim features with the confusion matrix, then ship the doctrine pair
+
+v148's features came from reading the held-out confusion table, not from
+brainstorming: jarr↔mudaf leads (both wear kasra — the discriminator is
+the word BEFORE: a jarr letter vs a bare idafa head), the tabi classes
+next (the tawabi' follow their head in i'rab — sign agreement IS the
+classical signal). prev-bare, agree-sign, next-al: +2.0 top-1 together,
+stable over three seeds. Ship the feature in the EXACT form the probe
+measured — the shipped prev-bare guard reuses the probe's own
+hamza-folded closed-class lookup, because a feature that drifts from its
+measurement is an unmeasured feature.
+
+## A frame quiz draws from analyzed corpus, and its supply must not charge for it
+
+gWajh analyzes only sentences anchored to the wajh-bearing notes and
+keeps sentences firing EXACTLY ONE insha/istifham frame — one
+unambiguous answer; a sentence firing two would quiz a khilaf. The
+sweep costs seconds, so GameFactory's supply() answers with the tagged
+POOL count until the cache exists (a cheap honest upper bound — it
+counts what the builder will analyze) and the exact count after; a
+boot-idle setTimeout warms the library scope so the exact number is the
+common case. Options and reveals quote InshaEngine.DOC/IstifhamEngine.DOC
+verbatim; distractors are the same bab's other wujuh — what a madrasah
+exam would offer.

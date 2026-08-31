@@ -1899,6 +1899,9 @@ const L = {
         duelAsk:"Name the highlighted word's role — the model has already made its guess.",
         duelModelSaid:"the model read it as", duelModelRight:"it was right.", duelModelWrong:"it was wrong — the hand analysis wins.",
         duelTally:"You {y} — Model {m}",
+        wajhGame:"Name the wajh", wajhGameDesc:"A real sentence, one frame the engines read off its surface — name which wajh it carries.",
+        wajhAsk:"Which wajh does this sentence carry? The frame engines read it off the surface; name it before the reveal.",
+        wajhNote:"the catalogue note",
         modelTab:"Model",
         modelIntro:"The statistical layer, hand open. Type a sentence: for every open noun the model ranks the roles it believes in, as bars — and shows its evidence, every feature the word fired, named in plain language. Verbs and closed-class words get a stand-down line instead: the rules decide those, and the model only votes where the rules cannot.",
         modelScore:"🤖 An averaged perceptron trained at runtime on {n} hand-labelled words. Held out story by story it names the role first try {a}% of the time, within two guesses {b}% — statistics, never i'rab.",
@@ -2131,6 +2134,9 @@ const L = {
         duelAsk:"İşaretli kelimenin görevini söyleyin — model tahminini çoktan yaptı.",
         duelModelSaid:"model şöyle okudu:", duelModelRight:"bildi.", duelModelWrong:"bilemedi — el ile yazılmış tahlil kazanır.",
         duelTally:"Sen {y} — Model {m}",
+        wajhGame:"Hangi vecih?", wajhGameDesc:"Gerçek bir cümle, motorların yüzeyden okuduğu tek bir kalıp — hangi vechi taşıdığını söyleyin.",
+        wajhAsk:"Bu cümle hangi vechi taşıyor? Kalıp motorları bunu yüzeyden okur; açılıştan önce siz adlandırın.",
+        wajhNote:"katalog notu",
         modelTab:"Model",
         modelIntro:"İstatistik katmanı, eli açık. Bir cümle yazın: model her açık isim için inandığı görevleri çubuklar hâlinde sıralar — ve delilini gösterir: kelimenin ateşlediği her özellik, açık dille adlandırılmış. Fiiller ve kapalı sınıf kelimeler ise dürüst bir çekilme satırı alır: onları kaideler karara bağlar, model yalnız kaidelerin karar veremediği yerde oy kullanır.",
         modelScore:"🤖 Çalışma anında {n} el ile etiketlenmiş kelime üzerinde eğitilen ortalamalı perceptron. Hikâye hikâye dışarıda bırakılarak sınandığında görevi ilk tahminde %{a}, ilk iki tahminde %{b} bilir — istatistiktir, i'râb değildir.",
@@ -3650,6 +3656,88 @@ function startDuel(){
     after: it => duelBanner(it, duel),
     extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`,
                run: it => openIrabSheet(it.sen) }],
+  });
+}
+
+// ---------- the Wajh game: name the frame ----------
+// The balagha shelf held one game; the frame engines earned it a second.
+// Real corpus sentences whose analyzed rows fire EXACTLY ONE insha/istifham
+// frame become questions: name the wajh. The options are the engines' own
+// DOC lines — the game reads the rule's table, never a paraphrase — and the
+// distractors are the OTHER wujuh of the same bab, which is what a madrasah
+// exam would offer. Only sentences anchored to the wajh-bearing notes are
+// analyzed (a corpus-wide analyze() sweep would stall the hub), and the
+// result is cached per scope.
+const WAJH_TAGS = ["khuruj-al-istifham", "al-amr-wa-wujuhuh", "insha-wa-tamanni",
+                   "adawat-al-tasawwur", "al-istifham"];
+let WAJH_CACHE = { scope: null, items: null };
+function wajhItems(){
+  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
+  if (WAJH_CACHE.scope === scope && WAJH_CACHE.items) return WAJH_CACHE.items;
+  const out = [];
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+    const note = sen.tokens.flatMap(t => t.grammar || []).find(g => WAJH_TAGS.includes(g));
+    if (!note) return;
+    const text = sen.tokens.map(t => t.s.full).join(" ");
+    let rows = [];
+    try { rows = SentenceAnalyzer.analyze(text) || []; } catch (e) { return; }
+    const frames = [];
+    try { (InshaEngine.read(rows) || []).forEach(f => f.key && InshaEngine.DOC[f.key] &&
+      frames.push({ key: f.key, doc: InshaEngine.DOC[f.key], eng: "insha" })); } catch (e) {}
+    try { (IstifhamEngine.read(rows) || []).forEach(f => f.key && IstifhamEngine.DOC[f.key] &&
+      frames.push({ key: f.key, doc: IstifhamEngine.DOC[f.key], eng: "istifham" })); } catch (e) {}
+    // one frame = one unambiguous answer; a sentence firing two would make
+    // both readings defensible, and a quiz question must not carry a khilaf
+    if (frames.length === 1)
+      out.push({ sen, key: frames[0].key, doc: frames[0].doc, eng: frames[0].eng, note });
+  })));
+  WAJH_CACHE = { scope, items: out };
+  return out;
+}
+// the hub's count: the analyze sweep costs seconds and a card may not
+// charge that on open, so the COLD answer is the tagged-sentence pool the
+// builder will draw from (a cheap, honest upper bound — the card's number
+// is the pool being analyzed), replaced by the exact item count the moment
+// the cache exists. A boot-idle warmup makes the exact number the common
+// case before the first tap.
+function wajhSupply(){
+  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
+  if (WAJH_CACHE.scope === scope && WAJH_CACHE.items) return WAJH_CACHE.items.length;
+  let n = 0;
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+    if (sen.tokens.some(t => (t.grammar || []).some(g => WAJH_TAGS.includes(g)))) n++;
+  })));
+  return n;
+}
+setTimeout(() => { try { wajhItems(); } catch (e) {} }, 2500);
+function startWajh(){
+  const items = shuffle(wajhItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const others = it => {
+    const tbl = it.eng === "insha" ? InshaEngine.DOC : IstifhamEngine.DOC;
+    return Object.keys(tbl).filter(k => k !== it.key).map(k => ({ k, doc: tbl[k] }));
+  };
+  runQuiz({
+    title: ui().wajhGame, ask: ui().wajhAsk, items, restart: startWajh,
+    area: "balagha", lvl: () => 5, itemKey: it => "wajh:" + it.sen.id,
+    question: it => `<div class="game-q" lang="ar">${it.sen.tokens.map(t =>
+        t.s.full + (t.punctAfter || "")).join(" ")}</div>
+      <p class="ref-intro">${T(it.sen.translation)}</p>`,
+    options: it => shuffle([
+      { html: `<span lang="ar">${it.doc.ar}</span>`, ok: true, k: it.key },
+      ...shuffle(others(it)).slice(0, 3).map(o =>
+        ({ html: `<span lang="ar">${o.doc.ar}</span>`, ok: false, k: o.k, doc: o.doc })),
+    ]),
+    // the refutation IS the picked wajh's own DOC line: reading what the
+    // picked frame demands is what shows this sentence does not carry it
+    whyNot: (it, picked) => picked.doc ? (state.uiLang === "tr" ? picked.doc.tr : picked.doc.en) : "",
+    why: it => `<span lang="ar" style="font-family:var(--ar-font);font-size:1.15em">${it.doc.ar}</span><br>${
+      state.uiLang === "tr" ? it.doc.tr : it.doc.en}`,
+    extras: [
+      { label: () => `📖 ${ui().wajhNote}`, run: it => openRef(it.note),
+        show: it => !!(it.note && GRAMMAR[it.note]) },
+      { label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`, run: it => openIrabSheet(it.sen) },
+    ],
   });
 }
 
@@ -6914,7 +7002,11 @@ class IrabModel {
   // Fixed for determinism: the same corpus must train the same model in
   // every session, or a gate number would wobble. The sweep above says the
   // choice is not delicate; re-run tools/ablate_estimator.js before touching.
-  static EPOCHS = 10;
+  // v148: dropped 10 → 5 when the neighbourhood features pushed the 17-fold
+  // crossVal past its 4s budget — measured on the CURRENT feature set first:
+  // epochs 5 scores 62.9-63.4 / 76.8-77.1 over three seeds against epochs
+  // 10's 63.2/77.0, statistically identical, at half the training cost.
+  static EPOCHS = 5;
   static SEED = 1234567;
   // features are computed from the FULL surface + neighbors
   // ctx (optional): { prevFull, nextFull } — the words on either side, so the
@@ -6997,7 +7089,37 @@ class IrabModel {
       const ppb = pb.replace(/^[وف]/, "");
       const ppk = SentenceAnalyzer.PARTICLES[ppb] || SentenceAnalyzer.PARTICLES[pb];
       if (ppk) f.push("ppk-" + ppk.k);
+      // ---- the neighbourhood features (v148) — aimed by the confusion
+      // matrix, and one of them is a RETRIAL. The held-out confusion table
+      // put jarr<->mudaf first (165 errors — both wear kasra) and the tabi
+      // classes next, so three features were built at those seams:
+      //   prev-bare  — the word before carries no article, no tanwin and is
+      //                no closed-class word: the idafa's HEAD shape, so this
+      //                word sits in the mudaf-ilayh seat. This is the very
+      //                family the NB-era ablation REJECTED as noise (48.6 vs
+      //                48.9); under the perceptron it is worth +1.8 alone.
+      //                An estimator change voids old feature verdicts —
+      //                re-measure before trusting a recorded rejection.
+      //   agree-sign — this word's ending sign equals the previous word's:
+      //                the tawabi' follow their head in i'rab, and the
+      //                agreement IS the doctrine's own signal.
+      // the exact test the probe MEASURED — hamza seats folded for the
+      // closed-class lookup, the written word tested for tanwin. A shipped
+      // feature that drifts from its measurement is an unmeasured feature.
+      if (pb.length >= 3 && !/^[وف]?ال/.test(pb) && !/[ًٌٍ]/.test(ctx.prevFull) &&
+          !SentenceAnalyzer.PARTICLES[pb.replace(/[أإآ]/g, "ا")])
+        f.push("prev-bare");
+      try {
+        const mySign = caseSignOf(w), pSign = caseSignOf(ctx.prevFull);
+        if (mySign && pSign && mySign.en === pSign.en) f.push("agree-sign");
+      } catch (e) {}
     }
+    //   next-al    — the word AFTER wears the article: this word heads an
+    //                idafa or precedes its na't's noun. Measured +0.5 alone
+    //                and additive in the ensemble (61.2/76.5 -> 63.2/77.0
+    //                for the three together, stable across three seeds).
+    if (ctx && ctx.nextFull && /^[وف]?ال/.test(stripAr(ctx.nextFull).replace(/[^ء-ي]/g, "")))
+      f.push("next-al");
     // ---- conjunctions (v147) — what the perceptron made affordable ------
     // Naive Bayes could never carry these: a conjunction is maximally
     // correlated with both parents, and the damping that kept the product
@@ -9398,6 +9520,9 @@ function modelFeatLbl(f){
   if (f === "waw-start") return L2("opens with و/ف", "و/ف ile başlar");
   if (f === "gov-jarr") return L2("a jarr governor before it", "önünde cer âmili");
   if (f === "gov-verbal") return L2("a verbal-force governor before it", "önünde fiil kuvvetli âmil");
+  if (f === "prev-bare") return L2("a bare noun before it (idafa head shape)", "önünde yalın isim (izâfet başı)");
+  if (f === "next-al") return L2("the next word wears ال", "sonraki kelime harf-i tarifli");
+  if (f === "agree-sign") return L2("its sign agrees with the word before", "alâmeti öncekiyle uyuşuyor");
   if (f.startsWith("sign-")) return L2("ending sign: ", "son alâmet: ") + f.slice(5);
   if (f.startsWith("by-")) return L2("i'rab shown by ", "i'râb yolu: ") + f.slice(3);
   if (f.startsWith("irc-")) return L2("settled case: ", "belirlenen hâl: ") + f.slice(4);
@@ -14505,6 +14630,7 @@ class GameFactory {
     { id: "gIbaraTr", group: "ibara",   emblem: "🔤", min: 4, supply: () => ibaraItems().length },
     { id: "gIbaraAr", group: "ibara",   emblem: "✒️", min: 4, supply: () => ibaraItems().length },
     { id: "gAlaqa",   group: "balagha", emblem: "🪢", min: 1, supply: null },
+    { id: "gWajh",   group: "balagha", emblem: "🎭", min: 3, supply: () => wajhSupply() },
   ];
   static get(id){ return this.CATALOGUE.find(g => g.id === id) || null; }
   // How many items each game can draw RIGHT NOW, in whatever scope is open.
@@ -14778,6 +14904,7 @@ function openGames(){
     ${gCard("gIbaraAr", "✒️", ui().ibaraToAr, ui().ibaraToArDesc)}
     ${gHead("بَلَاغَة", ui().gGroupBalagha)}
     ${gCard("gAlaqa", "🪢", ui().alaqaGame, ui().alaqaGameDesc)}
+    ${gCard("gWajh", "🎭", ui().wajhGame, ui().wajhGameDesc)}
   </div>`;
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
@@ -14795,6 +14922,7 @@ function openGames(){
   document.getElementById("gIbaraAr").addEventListener("click", () => startIbara("toAr"));
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
   document.getElementById("gDuel").addEventListener("click", startDuel);
+  document.getElementById("gWajh").addEventListener("click", startWajh);
   showSheet();
 }
 

@@ -7822,6 +7822,58 @@ if (!CHROME) {
     await page.evaluate(() => { closeSheet(); renderLibrary(); });
   });
 
+  await check('the wajh game reads the frame tables, and the confusion matrix aimed the features', async () => {
+    const r = await page.evaluate(() => {
+      renderLibrary();
+      const items = wajhItems();   // also warms the cache for the play below
+      const keys = new Set(items.map(x => x.key));
+      // the v148 neighbourhood features, each on its type shape: the idafa
+      // head before a mudaf-ilayh, the sign-agreement of a na't with its
+      // head, the article on the word AFTER an idafa's head
+      const fsMudaf = IrabModel.features('الْوَلَدِ', 1, 2, 'noun', { prevFull: 'كِتَابُ', nextFull: null });
+      const fsTabi = IrabModel.features('الْكَرِيمُ', 1, 2, null, { prevFull: 'الرَّجُلُ', nextFull: null });
+      const fsNext = IrabModel.features('كِتَابُ', 0, 2, null, { prevFull: null, nextFull: 'الْوَلَدِ' });
+      return {
+        n: items.length, distinct: keys.size,
+        gf: !!GameFactory.get('gWajh'), playable: GameFactory.playable('gWajh'),
+        supply: GameFactory.supplyOf('gWajh'),
+        docWhole: items.every(x => x.doc && x.doc.ar && x.doc.en && x.doc.tr),
+        noted: items.every(x => !!GRAMMAR[x.note]),
+        prevBare: fsMudaf.includes('prev-bare'),
+        agree: fsTabi.includes('agree-sign'),
+        nextAl: fsNext.includes('next-al'),
+      };
+    });
+    if (!r.gf || !r.playable) throw new Error('gWajh is not registered/playable');
+    // the pool is real corpus sentences with exactly one frame each — and it
+    // must stay RICH: many distinct wujuh, not one frame quizzed thirty ways
+    if (r.n < 20) throw new Error('the wajh pool shrank: ' + r.n);
+    if (r.distinct < 12) throw new Error('the wajh pool lost its variety: ' + r.distinct);
+    if (r.supply < 3) throw new Error('the hub count undercuts the floor: ' + r.supply);
+    if (!r.docWhole) throw new Error('every item must carry its engine DOC line in all three languages');
+    if (!r.noted) throw new Error('every item must anchor a real catalogue note');
+    if (!r.prevBare) throw new Error('prev-bare must fire on the idafa head shape');
+    if (!r.agree) throw new Error('agree-sign must fire on the na\'t agreement shape');
+    if (!r.nextAl) throw new Error('next-al must fire before an article-wearing word');
+    // play one question: the reveal is the engine's OWN DOC line
+    await page.evaluate(() => openGames());
+    await page.locator('.game-pick #gWajh').click();
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 8000 });
+    const nOpts = await page.locator('.opts [data-o]').count();
+    if (nOpts !== 4) throw new Error('wajh options: ' + nOpts);
+    await page.locator('.opts [data-o]').first().click();
+    await page.waitForSelector('.game-why', { timeout: 3000 });
+    const why = await page.evaluate(() => {
+      const el = document.querySelector('.game-why');
+      const ar = el && el.querySelector('[lang="ar"], span');
+      const all = Object.assign({}, InshaEngine.DOC, IstifhamEngine.DOC);
+      const txt = el ? el.textContent : '';
+      return Object.values(all).some(d => txt.includes(d.ar));
+    });
+    if (!why) throw new Error('the reveal must quote a frame table DOC line verbatim');
+    await page.evaluate(() => { closeSheet(); renderLibrary(); });
+  });
+
   await check('the CASE layer: the engines decide the i\'rab and are graded on the corpus', async () => {
     const r = await page.evaluate(() => {
       const claims = {};
