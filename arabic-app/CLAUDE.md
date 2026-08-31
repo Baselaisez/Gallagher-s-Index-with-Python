@@ -3702,3 +3702,16 @@ cell.person wherever it exists — the derived-majhul rule extended to
 every rebuild. When a matching-layer derivation adds a field, walk the
 PRINTERS the same day: a field the label ignores is a fact the reader
 never hears.
+
+## A drip must also YIELD: stand down while a sheet is up
+
+The drip fixed the sweep's freeze, but each slice still costs one full
+analyze() — milliseconds locally, ~a second on a slow runner. CI caught
+the residue: the jadhr lab's 140ms-debounced input was filled, the
+check read the output 260ms later, and a drip slice sat on the main
+thread inside that window — the output still showed the DEFAULT word's
+root. The drip now polls without computing while sheet.classList holds
+"show" (350ms re-check) and resumes on close. The general rule: a
+background loop must yield to the FOREGROUND SURFACE it can starve,
+and "open sheet" is that surface here — pacing alone only shrinks the
+collision window, it never closes it.

@@ -3740,6 +3740,11 @@ setTimeout(function warmWajh(){
     (function step(){
       if (WAJH_CACHE.items) return;
       if (k >= sens.length) { WAJH_CACHE = { scope, items: out }; return; }
+      // stand down while a sheet is up: one slice costs real milliseconds on
+      // a slow device, and the labs debounce their input — a slice landing
+      // inside that window blocks the re-render and the reader sees a stale
+      // answer. The pool can wait; the open sheet cannot.
+      if (sheet.classList.contains("show")) { setTimeout(step, 350); return; }
       const { sen, note } = sens[k++];
       try { const it = wajhItemOf(sen, note); if (it) out.push(it); } catch (e) {}
       setTimeout(step, 120);

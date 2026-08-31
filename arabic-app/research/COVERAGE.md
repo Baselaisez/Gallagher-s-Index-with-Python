@@ -2126,3 +2126,12 @@ not a one-line change.
   the two بِمَا only), **98.7% CASE over 1,211** — zero new case
   disagreements; the one POS arrival was the chapter's own كَذَا tagged
   part where the kinaya is an ism (fixed as pron). Release v149.
+
+- **v150 — the drip yields to the open sheet.** CI (slow runner) failed
+  the Kök Bulucu lab check on v149: the wajh drip's per-slice analyze()
+  blocked the main thread inside the lab's 140ms debounce window, so a
+  fill was answered with the previous word's render. The drip now
+  defers (350ms poll, no compute) while the sheet carries "show" and
+  resumes on close; probe confirms zero slices run against an open
+  sheet and the pool still completes (33 items). No content change;
+  release v150.
