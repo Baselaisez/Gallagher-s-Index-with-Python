@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 245,
-  "sentenceTokens": 1598,
+  "sentences": 251,
+  "sentenceTokens": 1622,
   "posAgreement": 99.9,
-  "caseJudged": 1254,
+  "caseJudged": 1274,
   "caseAgreement": 98.7,
-  "rows": 2683
+  "rows": 2707
  },
  "endings": [
   {
@@ -48167,6 +48167,729 @@
      "caseSaid": null,
      "caseHuman": null,
      "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s1",
+   "text": "ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ",
+   "translation": {
+    "en": "That is the Book — no doubt at all in it — a guidance for the godfearing. (al-Baqara 2:2: three jumlas, and not one atf letter between them.)",
+    "tr": "İşte o Kitap — onda hiçbir şüphe yok — müttakîler için bir hidayettir. (Bakara 2:2: üç cümle ve aralarında tek bir atıf harfi yok.)"
+   },
+   "jumal": [
+    {
+     "text": "ذَلِكَ الْكِتَابُ",
+     "ar": "جُمْلَةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The first jumla: the praise that opens the Book."
+    },
+    {
+     "text": "لَا رَيْبَ فِيهِ",
+     "ar": "فُصِلَتْ لِكَمَالِ الِاتِّصَالِ — بِمَنْزِلَةِ التَّوْكِيدِ الْمَعْنَوِيِّ، مَرْتَبَةُ نَفْسِهِ فِي جَاءَنِي زَيْدٌ نَفْسُهُ.",
+     "en": "Cut loose by KAMAL AL-ITTISAL: it stands from the first jumla as a TAWKID MA'NAWI — the rank of نَفْسُهُ in «Zayd himself came» — crushing the suspicion that such praise was thrown out carelessly. What is one with you takes no joining letter."
+    },
+    {
+     "text": "هُدًى لِلْمُتَّقِينَ",
+     "ar": "فُصِلَتْ لِكَمَالِ الِاتِّصَالِ — بِمَنْزِلَةِ التَّوْكِيدِ اللَّفْظِيِّ، مَرْتَبَةُ زَيْدٍ الثَّانِي فِي جَاءَنِي زَيْدٌ زَيْدٌ.",
+     "en": "Cut loose again: «that complete Book» MEANS «guidance beyond measure», so this jumla restates the first in other letters — a TAWKID LAFZI, the rank of the second زَيْدٌ — and again no waw may stand between a thing and itself."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "ذَلِكَ",
+     "lex": "dhalika",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "kamal-al-ittisal",
+       "asma-al-ishara"
+      ],
+      "irab": "«that» — the demonstrative, mabni, in the position of raf': the mubtada. The FAR pointer honours the Book's rank."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْكِتَابُ",
+     "lex": "kitab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«the Book» — the khabar, marfu': that is THE Book, the complete one — and such praise invites the doubter's whisper the next jumla will crush."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كِتَاب",
+      "root": "ك ت ب",
+      "wazn": "فِعَالُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya-lil-jins",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal",
+       "la-nafiya-lil-jins"
+      ],
+      "irab": "«no … at all» — the genus-denying la, governing as inna does."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "رَيْبَ",
+     "lex": "rayb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "la-nafiya-lil-jins"
+      ],
+      "irab": "«doubt» — la's ism, mabni on the fatha in the position of nasb: the whole genus of doubt is denied at once."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَيْب",
+      "root": "ر ي ب",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "فِيهِ",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«in it» — the jarr phrase hanging on an omitted amil: la's khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "هُدًى",
+     "lex": "huda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«a guidance» — the khabar of an omitted mubtada (it is: هُوَ هُدًى), its damma estimated on the maqsur ending the tanwin rides."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "هُدًى",
+      "root": "ه د ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "لِلْمُتَّقِينَ",
+     "lex": "muttaqi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«for the godfearing» — the lam of jarr; the sound plural declines by its YA; the phrase hangs on «guidance»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُتَّقٍ",
+      "root": "و ق ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s2",
+   "text": "جَاءَنِي زَيْدٌ نَفْسُهُ",
+   "translation": {
+    "en": "Zayd himself came to me. (the mufrad ruler: نَفْسُهُ measures the rank لَا رَيْبَ فِيهِ holds among jumlas.)",
+    "tr": "Zeyd bana bizzat geldi. (müfred cetvel: نَفْسُهُ, cümleler içinde لَا رَيْبَ فِيهِ'nin tuttuğu mertebeyi ölçer.)"
+   },
+   "jumal": [
+    {
+     "text": "جَاءَنِي زَيْدٌ نَفْسُهُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "A verbal sentence, no mahall — the ruler recited for measuring, not for its news."
+    },
+    {
+     "text": "نَفْسُهُ",
+     "ar": "مَرْتَبَةُ التَّوْكِيدِ الْمَعْنَوِيِّ — وَبِهَا تُوزَنُ جُمْلَةُ لَا رَيْبَ فِيهِ.",
+     "en": "THE RANK: what نَفْسُهُ is to Zayd, the whole jumla لَا رَيْبَ فِيهِ is to ذَلِكَ الْكِتَابُ — the source's own scale for the fasl."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "جَاءَنِي",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«came to me» — a mazi on the fatha; the guarding nun shields it from the speaker's ya, the maf'ul."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«Zayd» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "نَفْسُهُ",
+     "lex": "nafs",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "tawkid"
+      ],
+      "irab": "«himself» — the TAWKID MA'NAWI, marfu' in pursuit of Zayd; the pronoun is its mudaf ilayh. It kills the guess that someone came on his behalf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَفْس",
+      "root": "ن ف س",
+      "wazn": "فَعْلُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s3",
+   "text": "جَاءَنِي زَيْدٌ زَيْدٌ",
+   "translation": {
+    "en": "Zayd — Zayd came to me. (the second ruler: the repeated زَيْدٌ measures the rank of هُدًى لِلْمُتَّقِينَ.)",
+    "tr": "Zeyd — Zeyd geldi bana. (ikinci cetvel: tekrarlanan زَيْدٌ, هُدًى لِلْمُتَّقِينَ'in mertebesini ölçer.)"
+   },
+   "jumal": [
+    {
+     "text": "جَاءَنِي زَيْدٌ زَيْدٌ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The second ruler, recited whole."
+    },
+    {
+     "text": "زَيْدٌ",
+     "ar": "مَرْتَبَةُ التَّوْكِيدِ اللَّفْظِيِّ — وَبِهَا تُوزَنُ جُمْلَةُ هُدًى لِلْمُتَّقِينَ.",
+     "en": "THE RANK: what the second زَيْدٌ is to the first, هُدًى لِلْمُتَّقِينَ is to ذَلِكَ الْكِتَابُ — the same meaning walking in new letters."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "جَاءَنِي",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«came to me» — the same mazi with its guarding nun."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«Zayd» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal",
+       "tawkid"
+      ],
+      "irab": "«Zayd» — the TAWKID LAFZI: the very word said again, marfu' in pursuit of the first. Nothing new arrives; the arrival itself is pressed home."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s4",
+   "text": "أَعْجَبَنِي زَيْدٌ وَجْهُهُ",
+   "translation": {
+    "en": "Zayd pleased me — his face. (the third ruler: وَجْهُهُ, a part for the whole — the badal ba'd rank the next slice's aya will hang on.)",
+    "tr": "Zeyd hoşuma gitti — yüzü. (üçüncü cetvel: وَجْهُهُ, bütünün yerine parça — bir sonraki dilimin âyetinin asılacağı bedel-i ba'z mertebesi.)"
+   },
+   "jumal": [
+    {
+     "text": "أَعْجَبَنِي زَيْدٌ وَجْهُهُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The third ruler."
+    },
+    {
+     "text": "وَجْهُهُ",
+     "ar": "مَرْتَبَةُ بَدَلِ الْبَعْضِ — وَبِهَا تُوزَنُ جُمْلَةُ التَّفْصِيلِ بَعْدَ الْإِجْمَالِ.",
+     "en": "THE RANK: a second jumla that details PART of what the first said whole (the ni'am aya, 26:132-133, in the next slice) stands from it as وَجْهُهُ stands from Zayd."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أَعْجَبَنِي",
+     "lex": "aajaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«pleased me» — the Form IV mazi with the guarding nun; the speaker's ya is the object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَعْجَبَ",
+      "root": "ع ج ب",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«Zayd» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَجْهُهُ",
+     "lex": "wajh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "badal"
+      ],
+      "irab": "«his face» — BADAL BA'D MIN KULL: the part swapped in for the whole, marfu' in Zayd's case; the pronoun is the tether back to him. What pleased was not all of Zayd but this of him."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَجْه",
+      "root": "و ج ه",
+      "wazn": "فَعْلُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s5",
+   "text": "أَعْجَبَنِي الدَّارُ حُسْنُهَا",
+   "translation": {
+    "en": "The house pleased me — its beauty. (the fourth ruler: حُسْنُهَا, a quality the whole contains — the badal ishtimal rank.)",
+    "tr": "Ev hoşuma gitti — güzelliği. (dördüncü cetvel: حُسْنُهَا, bütünün kapsadığı bir nitelik — bedel-i iştimâl mertebesi.)"
+   },
+   "jumal": [
+    {
+     "text": "أَعْجَبَنِي الدَّارُ حُسْنُهَا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The fourth ruler."
+    },
+    {
+     "text": "حُسْنُهَا",
+     "ar": "مَرْتَبَةُ بَدَلِ الِاشْتِمَالِ — وَبِهَا يُوزَنُ الْإِيضَاحُ الَّذِي لَيْسَ بَعْضًا وَلَا عَيْنًا.",
+     "en": "THE RANK: a second jumla that unfolds what the first CONTAINED without being a part of it (the bayt of ارْحَلْ, next slice) stands as حُسْنُهَا stands from the house."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أَعْجَبَنِي",
+     "lex": "aajaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«pleased me» — the same Form IV mazi."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَعْجَبَ",
+      "root": "ع ج ب",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الدَّارُ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«the house» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَار",
+      "root": "د و ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "حُسْنُهَا",
+     "lex": "husn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "badal"
+      ],
+      "irab": "«its beauty» — BADAL ISHTIMAL: not a physical part but a quality the house CONTAINS, marfu' in its case with the pronoun tether. A part you could cut off is ba'd; a beauty you cannot is ishtimal."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حُسْن",
+      "root": "ح س ن",
+      "wazn": "فُعْلُهَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:32:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 32,
+   "sentence": "s6",
+   "text": "أَقْسَمَ بِاللهِ أَبُو حَفْصٍ عُمَرُ",
+   "translation": {
+    "en": "Abu Hafs — Umar — swore by Allah. (the fifth ruler: عُمَرُ unveils who the kunya named — the atf bayan rank.)",
+    "tr": "Ebû Hafs — Ömer — Allah'a yemin etti. (beşinci cetvel: عُمَرُ, künyenin kimi adlandırdığını açar — atf-ı beyân mertebesi.)"
+   },
+   "jumal": [
+    {
+     "text": "أَقْسَمَ بِاللهِ أَبُو حَفْصٍ عُمَرُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The fifth ruler — the books' own atf-bayan verse-line."
+    },
+    {
+     "text": "عُمَرُ",
+     "ar": "مَرْتَبَةُ عَطْفِ الْبَيَانِ — وَبِهَا تُوزَنُ الْجُمْلَةُ الَّتِي تَكْشِفُ إِبْهَامَ الْأُولَى.",
+     "en": "THE RANK: a second jumla that lifts the first one's obscurity (قَالَ يَا آدَمُ after فَوَسْوَسَ — 20:120, next slice) stands as عُمَرُ stands from أَبُو حَفْصٍ."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "أَقْسَمَ",
+     "lex": "aqsama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«swore» — a Form IV mazi on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَقْسَمَ",
+      "root": "ق س م",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بِاللهِ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«by Allah» — the ba of the oath; the Name in jarr, the phrase hanging on the verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَبُو",
+     "lex": "ab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "five-nouns"
+      ],
+      "irab": "«the father of» — the fa'il, marfu' by its WAW: one of the five nouns, annexed as they must be."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ ب و",
+      "wazn": "فَعُل",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "حَفْصٍ",
+     "lex": "hafs",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«Hafs» — the mudaf ilayh, majrur: the kunya is complete, and still a veil."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَفْص",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عُمَرُ",
+     "lex": "umar",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal",
+       "atf-bayan",
+       "mamnu-min-sarf"
+      ],
+      "irab": "«Umar» — the ATF BAYAN: the plain name unveiling whom the kunya wrapped, marfu' with NO tanwin — barred from full declension by name-hood plus the deflected pattern فُعَل."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عُمَرُ",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
     }
    ]
   }

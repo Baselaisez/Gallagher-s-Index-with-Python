@@ -8058,6 +8058,56 @@ if (!CHROME) {
     if (!r.doc) throw new Error('every WaslEngine DOC line must be trilingual');
   });
 
+  await check('talkhis ch32: the martaba ladder, and the five nouns stand bare', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 32);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const g136 = GRAMMAR['kamal-al-ittisal'];
+      const at = (s, i) => {
+        const rows = an(s); const r0 = rows[i];
+        return { kind: r0.kind, sure: !!r0.sure,
+                 k: (CaseEngine.claim(rows, i) || {}).k || null,
+                 five: (r0.notes || []).some(n => /FIVE NOUNS/.test(n.en || '')) };
+      };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        note: g136 && [g136.group, (g136.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        // the five nouns BARE: the letter is the case (the atf-bayan verse
+        // shipped «noun or verb?» before this branch existed)…
+        abu: at('أَقْسَمَ بِاللهِ أَبُو حَفْصٍ عُمَرُ', 2),
+        aba: at('رَأَيْتُ أَبَا حَفْصٍ', 1),
+        // …with the enc form and the tanwin form as controls on either side
+        akhuka: at('هُوَ أَخُوكَ', 1),
+        abTanwin: at('لَهُ أَبٌ', 1),
+        // the aya's genus-la ism keeps its bina claim, and the diptote's raf
+        rayb: (CaseEngine.claim(an('ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ'), 3) || {}).k,
+        umar: (CaseEngine.claim(an('أَقْسَمَ بِاللهِ أَبُو حَفْصٍ عُمَرُ'), 4) || {}).k,
+      };
+    });
+    if (r.missing) throw new Error('chapter 32 did not load');
+    if (r.chapters < 32) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch32 sentences: ' + r.n);
+    if (r.t !== 24) throw new Error('ch32 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch32 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 3)
+      throw new Error('note 136 balagha with >=3 talkhis anchors: ' + JSON.stringify(r.note));
+    if (r.abu.kind !== 'noun' || !r.abu.sure || r.abu.k !== 'raf' || !r.abu.five)
+      throw new Error('bare أَبُو must be a sure five-noun in raf: ' + JSON.stringify(r.abu));
+    if (r.aba.k !== 'nasb' || !r.aba.five)
+      throw new Error('bare أَبَا must claim nasb by its alif: ' + JSON.stringify(r.aba));
+    if (r.akhuka.kind !== 'noun' || !r.akhuka.five)
+      throw new Error('the enc five-noun branch must keep its claim: ' + JSON.stringify(r.akhuka));
+    if (r.abTanwin.five)
+      throw new Error('a tanwin أَبٌ must keep the ordinary path, never the table');
+    if (r.rayb !== 'mabni') throw new Error('the genus-la ism claims bina: ' + r.rayb);
+    if (r.umar !== 'raf') throw new Error('the diptote atf-bayan claims raf: ' + r.umar);
+  });
+
   await check('the balagha door: a sentence carrying jumal rows says so in the margin', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => !storyLocked(s) &&

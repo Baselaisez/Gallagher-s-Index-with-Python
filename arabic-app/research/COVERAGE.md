@@ -2178,3 +2178,23 @@ not a one-line change.
   dawa'i al-fasl and two dawa'i al-wasl with their worked cases (kamal
   inqita'/ittisal and the shibh pair — lines ~2300-2430) — the next
   slice.
+
+- **v153 — talkhis ch32: kamal al-ittisal, the martaba ladder.** Six
+  sentences / 24 tokens (sahifa 79-82, lines ~2297-2345): al-Baqara 2:2
+  quoted exactly with its THREE jumlas held apart — the tawkid-ma'nawi
+  rank on لَا رَيْبَ فِيهِ, the tawkid-lafzi rank on هُدًى لِلْمُتَّقِينَ
+  — plus the five mufrad rank-fixtures the source recites (نَفْسُهُ, the
+  second زَيْدٌ, وَجْهُهُ, حُسْنُهَا, and عُمَرُ after أَبُو حَفْصٍ). Note
+  136 kamal-al-ittisal (balagha) — the tawabi' lifted to clauses, each
+  grade with its ruler; atf-bayan finally gets its canonical anchor in
+  real text, beside the five nouns, the diptote and the genus-la in one
+  chapter. Engine (eye-probe find): the five-nouns table now answers
+  BARE — أَبُو حَفْصٍ reached no branch at all («noun or verb?») because
+  the branch keyed on the enclitic; the declined letter-forms claim the
+  class and CaseEngine claims the case by the LETTER (waw=raf, alif=
+  nasb; the ya-forms stay silent — أَبِي is jarr AND «my father» in any
+  case). Controls: the enc form, the tanwin form. Bank: 251 worked
+  sentences / 1,622 tokens, 99.9% POS / 98.7% CASE — ch32 zero
+  disagreements. Next slice: 26:132-133, the ارْحَلْ bayt, 20:120 — the
+  ayat that hang on the ladder — then shibh kamal inqita' (the Salma
+  bayt) and the wasl's own two dawa'i.

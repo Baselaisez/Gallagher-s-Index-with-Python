@@ -3776,3 +3776,16 @@ majority reading (بَعْض, samti's entry verbatim), which adds no new
 disagreement; the amali collision remains on the books and is noted
 here so the eventual rename (amali's بَدْء wants its own key) is done
 deliberately, with the stale-key pop the rename rule demands.
+
+## The five-nouns table answered only half its own words
+
+The enc-guarded branch (v-ch22) read أَخُوكَ and stood silent on أَبُو
+حَفْصٍ — the five nouns annexed to a NOUN never carry an enclitic, so
+the books' own atf-bayan verse shipped «noun or verb?». The table now
+answers bare for the declined letter-forms (length ≥3 keeps the
+two-letter heads out), and CaseEngine claims the case by the LETTER for
+the waw and alif forms only — أَبِي is the jarr form AND «my father» in
+any case, so the ya-forms stay silent. A closed lexical table must be
+asked in EVERY dress its words wear (the refusal-list lesson, walked in
+the claiming direction): keying the branch on one accident of the first
+example (the pronoun) hid half the class for two hundred versions.
