@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 268,
-  "sentenceTokens": 1704,
+  "sentences": 275,
+  "sentenceTokens": 1733,
   "posAgreement": 99.9,
-  "caseJudged": 1333,
+  "caseJudged": 1358,
   "caseAgreement": 98.9,
-  "rows": 2789
+  "rows": 2818
  },
  "endings": [
   {
@@ -9433,7 +9433,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "خَفِيَ",
+      "lemma": "خَفِيّ",
       "root": "خ ف ي",
       "wazn": "فَعِلٌّ",
       "sure": true
@@ -51227,6 +51227,864 @@
       "lemma": "هَامَ",
       "root": "ه ي م",
       "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s1",
+   "text": "يُخَادِعُونَ اللهَ وَهُوَ خَادِعُهُمْ",
+   "translation": {
+    "en": "They would deceive Allah — and He is their requiter. (fi'liyya joined to ismiyya: the jiha is the tadayuf of deceit, which is always between two.)",
+    "tr": "Allah'ı aldatmaya kalkışırlar — O da onların karşılığını verendir. (isim cümlesine bağlanan fiil cümlesi: cihet, hep iki taraf isteyen aldatışın tezâyüfüdür.)"
+   },
+   "jumal": [
+    {
+     "text": "يُخَادِعُونَ اللهَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The verbal clause — their attempt."
+    },
+    {
+     "text": "وَهُوَ خَادِعُهُمْ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — الْجِهَةُ الْجَامِعَةُ التَّضَايُفُ فِي الْمُخَادَعَةِ.",
+     "en": "The nominal clause, JOINED: both clauses stand in one mukhada'a, and a deceit's two sides need each other to exist — tadayuf, the source's own jiha for this aya."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "يُخَادِعُونَ",
+     "lex": "khadaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "afal-khamsa"
+      ],
+      "irab": "«they would deceive» — a Form III mudari of the five verbs, raf' by the RETAINED nun, the waw its doer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَادَعَ",
+      "root": "خ د ع",
+      "wazn": "يُفَاعِلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "اللهَ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«Allah» — the jalala as the object, mansub."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "وَهُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and He» — THE waw of this chapter: the wasl of tawassut. Then the detached pronoun as mubtada, mabni in a raf' position."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "خَادِعُهُمْ",
+     "lex": "khadi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«their requiter» — the khabar, marfu'; the ism fa'il annexed to its own object. Deceit needs two parties — that mutual need IS the jihat jamia here."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَادَعَ",
+      "root": "خ د ع",
+      "wazn": "فَاعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s2",
+   "text": "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ",
+   "translation": {
+    "en": "Indeed the righteous are surely in bliss —",
+    "tr": "Şüphesiz iyiler, elbette nimet içindedirler —"
+   },
+   "jumal": [
+    {
+     "text": "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ بِإِنَّ وَاللَّامِ.",
+     "en": "The first report, doubly emphasized — bliss for the righteous."
+    },
+    {
+     "text": "لَفِي نَعِيمٍ",
+     "ar": "شِبْهُ جُمْلَةٍ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+     "en": "The jarr phrase doing a khabar's work."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "إِنَّ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«indeed» — the nasikh: nasb on its ism, raf' on its khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْأَبْرَارَ",
+     "lex": "abrar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«the righteous» — inna's ism, mansub by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَبْرَار",
+      "root": "ب ر ر",
+      "wazn": "أَفْعَالَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَفِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«surely in» — the sliding lam of emphasis riding the jarr letter: the khabar arrives as a shibh jumla."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "نَعِيمٍ",
+     "lex": "naim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«bliss» — majrur; the phrase stands in raf' position as inna's khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَعِيم",
+      "root": "ن ع م",
+      "wazn": "فَعِيلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s3",
+   "text": "وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ",
+   "translation": {
+    "en": "— and indeed the wicked are surely in a blaze. (two ismiyyas joined: the jiha is TADAD — bliss against blaze, righteous against wicked.)",
+    "tr": "— ve şüphesiz kötüler, elbette alevli ateş içindedirler. (bağlanmış iki isim cümlesi: cihet TEZÂDDIR — nimete karşı ateş, iyiye karşı kötü.)"
+   },
+   "jumal": [
+    {
+     "text": "وَإِنَّ الْفُجَّارَ لَفِي جَحِيمٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — الْجِهَةُ الْجَامِعَةُ التَّضَادُّ.",
+     "en": "The second report, JOINED to the first: both are khabari, both emphatic, and their subjects and predicates stand in opposition — tadad is a lawful jiha."
+    },
+    {
+     "text": "لَفِي جَحِيمٍ",
+     "ar": "شِبْهُ جُمْلَةٍ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+     "en": "The mirrored khabar phrase."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَإِنَّ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«and indeed» — the tawassut waw again, then the nasikh."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْفُجَّارَ",
+     "lex": "fujjar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«the wicked» — inna's ism, mansub."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فُجَّار",
+      "root": "ف ج ر",
+      "wazn": "فُعَّالَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَفِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«surely in» — the same sliding lam: the two halves mirror each other clause for clause."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "جَحِيمٍ",
+     "lex": "jahim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«a blaze» — majrur, the phrase inna's khabar. Opposites MEET in the mind — that meeting is a jiha, and the waw is due."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ج ح م",
+      "wazn": "فَعِيلٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s4",
+   "text": "وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا",
+   "translation": {
+    "en": "And eat and drink, and do not be wasteful. (three inshas joined: one addressee throughout, and the musnads are next of kin.)",
+    "tr": "Yiyin, için; israf da etmeyin. (bağlanmış üç inşâ: baştan sona tek muhatap ve müsnedler birbirine akraba.)"
+   },
+   "jumal": [
+    {
+     "text": "كُلُوا … اشْرَبُوا … لَا تُسْرِفُوا",
+     "ar": "ثَلَاثُ جُمَلٍ إِنْشَائِيَّةٍ مَعْطُوفَةٍ.",
+     "en": "Three commands on one thread: the eaters, the drinkers and the would-be wasters are the same people, and the deeds are next of kin."
+    },
+    {
+     "text": "لَا تُسْرِفُوا",
+     "ar": "جُمْلَةُ نَهْيٍ مَعْطُوفَةٌ عَلَى الْأَمْرَيْنِ.",
+     "en": "The prohibition joined onto the two commands — insha with insha."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "وَكُلُوا",
+     "lex": "akala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "imperative-amr"
+      ],
+      "irab": "«and eat» — the amr of أَكَلَ with its hamza cut away (كُلْ, one of the received light imperatives), mabni on the dropped nun, the waw its doer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَكَلَ",
+      "root": "أ ك ل",
+      "wazn": "اُفْعُلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "وَاشْرَبُوا",
+     "lex": "shariba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "imperative-amr"
+      ],
+      "irab": "«and drink» — a second amr joined to the first: same addressee, neighbouring deed."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَرِبَ",
+      "root": "ش ر ب",
+      "wazn": "اِفْعَلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "وَلَا",
+     "lex": "la-nahiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and do not» — the joining waw with the prohibiting la."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تُسْرِفُوا",
+     "lex": "asrafa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«be wasteful» — a Form IV mudari, majzum by the la, its sign the dropped nun. All three clauses are insha in word and sense — agreement, plus one addressee: the wasl is due."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَسْرَفَ",
+      "root": "س ر ف",
+      "wazn": "تُفْعِلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jazm",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s5",
+   "text": "زَيْدٌ شَاعِرٌ وَعَمْرٌو كَاتِبٌ",
+   "translation": {
+    "en": "Zayd is a poet and 'Amr is a writer. (Zayd and 'Amr are two of a kind, poetry and writing are neighbours: the jiha holds in both seats, so the waw is right.)",
+    "tr": "Zeyd şairdir, Amr da yazardır. (Zeyd ile Amr birbirinin dengi, şiirle yazı komşudur: cihet iki makamda da tutar, vâv yerindedir.)"
+   },
+   "jumal": [
+    {
+     "text": "زَيْدٌ شَاعِرٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The first report."
+    },
+    {
+     "text": "وَعَمْرٌو كَاتِبٌ",
+     "ar": "مَعْطُوفَةٌ — تَمَاثُلُ الْمُسْنَدِ إِلَيْهِمَا وَتَنَاسُبُ الْمُسْنَدَيْنِ.",
+     "en": "Joined lawfully: the subjects are two of a kind (tamathul) and the predicates two crafts of one family."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«Zayd» — the mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "شَاعِرٌ",
+     "lex": "shair",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«a poet» — the khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَاعِر",
+      "root": "ش ع ر",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَعَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and 'Amr» — the joining waw is LAWFUL here; a second mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَاتِبٌ",
+     "lex": "katib",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«a writer» — the second khabar. Two comparable men, two neighbouring crafts: the jiha stands in the musnads AND the musnad-ilayhs — the books' condition for the wasl."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَاتِب",
+      "root": "ك ت ب",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s6",
+   "text": "زَيْدٌ شَاعِرٌ وَعَمْرٌو طَوِيلٌ",
+   "translation": {
+    "en": "«Zayd is a poet and 'Amr is tall.» (the books' counter-example: poet-hood and tallness never meet, so THIS atf is wrong — a waw cannot buy a jiha.)",
+    "tr": "«Zeyd şairdir ve Amr uzundur.» (kitapların karşı-örneği: şairlikle uzunluk buluşmaz; BU atıf yanlıştır — vâv, cihet satın alamaz.)"
+   },
+   "jumal": [
+    {
+     "text": "زَيْدٌ شَاعِرٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The first report — blameless."
+    },
+    {
+     "text": "وَعَمْرٌو طَوِيلٌ",
+     "ar": "مَعْطُوفَةٌ عَطْفًا غَيْرَ صَحِيحٍ — الْمُسْنَدَانِ لَا يَتَنَاسَبَانِ.",
+     "en": "The rejected joining: with related subjects but unrelated predicates the waw hangs on half a jiha, and half a jiha is none."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«Zayd» — the mubtada, as before."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "شَاعِرٌ",
+     "lex": "shair",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«a poet» — the khabar, as before."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَاعِر",
+      "root": "ش ع ر",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَعَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and 'Amr» — the same waw, and the ma'ani scholars REJECT it here: the letters are fine, the joining is not."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "طَوِيلٌ",
+     "lex": "tawil-long",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«tall» — grammatical in every letter, and still wrong: Zayd and 'Amr relate, but poetry and tallness do not, and the jiha must hold in BOTH seats."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَوِيل",
+      "root": "ط و ل",
+      "wazn": "فَعِيلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:36:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 36,
+   "sentence": "s7",
+   "text": "أَبُو زَيْدٍ يَشْعُرُ وَابْنُهُ يَكْتُبُ",
+   "translation": {
+    "en": "Abu Zayd writes poetry and his son writes prose. (the jiha is TADAYUF: no father without a son, no son without a father.)",
+    "tr": "Ebû Zeyd şiir söyler, oğlu da yazı yazar. (cihet TEZÂYÜFTÜR: oğulsuz baba, babasız oğul olmaz.)"
+   },
+   "jumal": [
+    {
+     "text": "أَبُو زَيْدٍ يَشْعُرُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا جُمْلَةٌ فِعْلِيَّةٌ.",
+     "en": "The father's sentence."
+    },
+    {
+     "text": "وَابْنُهُ يَكْتُبُ",
+     "ar": "مَعْطُوفَةٌ — الْجِهَةُ الْجَامِعَةُ تَضَايُفُ الْأُبُوَّةِ وَالْبُنُوَّةِ.",
+     "en": "Joined by the tadayuf of fatherhood and sonship: each term is defined by the other, and the mind holds them as one pair."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "أَبُو",
+     "lex": "ab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "five-nouns"
+      ],
+      "irab": "«Abu (father of)» — a five-nouns head: mubtada, its raf' shown by the WAW, and a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ ب و",
+      "wazn": "فَعُل",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٍ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«of Zayd» — the mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "يَشْعُرُ",
+     "lex": "shaara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«writes poetry» — the mudari clause standing as the khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَعَرَ",
+      "root": "ش ع ر",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَابْنُهُ",
+     "lex": "ibn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and his son» — the joined second mubtada with its pronoun annexed. Father and son EXIST through each other — the tadayuf that licenses this waw."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَنَى",
+      "root": "ب ن ي",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يَكْتُبُ",
+     "lex": "kataba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«writes» — the second khabar clause; the two crafts are neighbours, so the musnads relate too."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَتَبَ",
+      "root": "ك ت ب",
+      "wazn": "يَفْعُلُ",
       "sure": true
      },
      "match": true,

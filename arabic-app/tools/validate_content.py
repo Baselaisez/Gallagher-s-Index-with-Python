@@ -160,7 +160,11 @@ def audit_harakat(word: str):
     # …and وَاوُ عَمْرٍو, which is one word wide: the waw of عَمْرو is silent and
     # written only to tell the name from عُمَر, so the tanwin sits on the ra
     # with a letter still to come. KEEP IN STEP with HarakeAuditor in the reader.
-    amr_waw = "".join(c for c, _ in units) == "عمرو"
+    # …seen also through one joining clitic (وَعَمْرٌو، فَعَمْرٌو، لِعَمْرٍو):
+    # the clitic must not hide the exception's own word — the documented trap.
+    _bare_amr = "".join(c for c, _ in units)
+    amr_waw = _bare_amr == "عمرو" or (len(_bare_amr) == 5 and _bare_amr[0] in "وفبلك"
+                                       and _bare_amr[1:] == "عمرو")
     for i, (c, marks) in enumerate(units):
         vowels = sum(1 for m in marks if m in _V)
         tanwins = sum(1 for m in marks if m in _TANWIN)

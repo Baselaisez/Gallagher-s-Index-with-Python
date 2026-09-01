@@ -8275,6 +8275,67 @@ if (!CHROME) {
       throw new Error('the nun-lam geminate contracts against the pronoun nun: ' + JSON.stringify(r.zannaCells));
   });
 
+  await check('talkhis ch36: tawassut bayna l-kamalayn — the wasl earns its waw', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 36);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const g140 = GRAMMAR['tawassut-bayna-al-kamalayn'];
+      const rows1 = an('يُخَادِعُونَ اللهَ وَهُوَ خَادِعُهُمْ');
+      const rows4 = an('وَكُلُوا وَاشْرَبُوا وَلَا تُسْرِفُوا');
+      const rows7 = an('أَبُو زَيْدٍ يَشْعُرُ وَابْنُهُ يَكْتُبُ');
+      const amrCtl = an('اِضْرِبْهُ الْآنَ')[0];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n140: g140 ? { group: g140.group, anchors: (g140.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the five-verbs raf resolves from the new Form III paradigm; the
+        // ism fa'il with its mudaf ilayh must NOT match that paradigm's
+        // sukun-built amr (the damma at the pronoun seam refutes it)
+        khadiun: [rows1[0].kind, rows1[0].cell && rows1[0].cell.tense],
+        khadi: rows1[3].kind,
+        amrCtl: [amrCtl.kind, amrCtl.cell && amrCtl.cell.tense],
+        // the received takhfif amr of أَكَلَ, and the la-nahiya jazm
+        kulu: [rows4[0].kind, rows4[0].cell && rows4[0].cell.tense],
+        tusrifu: [rows4[3].kind, rows4[3].cell && rows4[3].cell.tense],
+        // وَابْنُهُ is the annexed noun, never بَنَى's amr — the seam damma
+        // refuted the kasra-built cell through the joining waw
+        ibnuhu: rows7[3].kind,
+        // the joining-waw'd عَمْرو keeps its silent-waw exception in the
+        // harakat auditor (no tanwin-before-the-end flag on وَعَمْرٌو)
+        amrFlagged: (() => { try {
+          return (HarakeAuditor.audit ? HarakeAuditor.audit('وَعَمْرٌو')
+                  : HarakeAuditor.check ? HarakeAuditor.check('وَعَمْرٌو') : []).length;
+        } catch (e) { return 'ERR ' + e.message; } })(),
+      };
+    });
+    if (r.missing) throw new Error('chapter 36 did not load');
+    if (r.chapters < 36) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 7) throw new Error('ch36 sentences: ' + r.n);
+    if (r.t !== 29) throw new Error('ch36 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch36 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n140 || r.n140.group !== 'balagha' || r.n140.anchors < 4)
+      throw new Error('note 140 must be balagha with its four witnesses: ' + JSON.stringify(r.n140));
+    if (r.khadiun[0] !== 'verb' || r.khadiun[1] !== 'mudari')
+      throw new Error('يُخَادِعُونَ resolves from the Form III paradigm: ' + r.khadiun.join('/'));
+    if (r.khadi !== 'noun')
+      throw new Error('خَادِعُهُمْ is the annexed ism fail, never the amr: ' + r.khadi);
+    if (r.amrCtl[0] !== 'verb' || r.amrCtl[1] !== 'amr')
+      throw new Error('the genuine amr + pronoun keeps its cell: ' + r.amrCtl.join('/'));
+    if (r.kulu[0] !== 'verb' || r.kulu[1] !== 'amr')
+      throw new Error('كُلُوا resolves as the received takhfif amr: ' + r.kulu.join('/'));
+    if (r.tusrifu[0] !== 'verb' || r.tusrifu[1] !== 'mudari')
+      throw new Error('تُسْرِفُوا is the majzum mudari: ' + r.tusrifu.join('/'));
+    if (r.ibnuhu !== 'noun')
+      throw new Error('وَابْنُهُ is the annexed noun: ' + r.ibnuhu);
+    if (r.amrFlagged !== 0)
+      throw new Error('the silent waw of عَمْرو is seen through the clitic: ' + r.amrFlagged);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

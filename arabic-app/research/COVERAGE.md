@@ -2274,3 +2274,39 @@ not a one-line change.
   doctrine — ittihad/tamathul/tadayuf, Sakkaki's aqli/wahmi/khayali;
   lines ~2427-2490) closes the wasl half; then the bab's 17-question
   catechism, then ijaz/itnab (~2641+).
+
+- **v157 — talkhis ch36: tawassut bayna l-kamalayn — the wasl earns its
+  waw.** Seven sentences / 29 tokens (sahifa 84-85, lines ~2434-2470):
+  the mukhada'a aya (4:142 — fi'liyya joined to ismiyya by TADAYUF),
+  the abrar/fujjar mirror (82:13-14 — joined across TADAD, with the
+  muzahlaqa lam riding فِي in both halves), the three-insha thread
+  (7:31, with أَكَلَ's received takhfif amr كُلُوا), and the source's
+  own drill trio: the lawful زَيْدٌ شَاعِرٌ وَعَمْرٌو كَاتِبٌ, the
+  REJECTED زَيْدٌ شَاعِرٌ وَعَمْرٌو طَوِيلٌ (half a jiha is none —
+  taught as the counter-example), and the tadayuf of أَبُو زَيْدٍ
+  يَشْعُرُ وَابْنُهُ يَكْتُبُ. Note 140 tawassut-bayna-al-kamalayn
+  (both conditions + Sakkaki's aqli/wahmi/khayali division — the wahmi
+  witnesses arrive next chapter). Paradigms: خَادَعَ (III), أَكَلَ
+  (hamza-fa on the akhadha road), أَسْرَفَ (IV); شَرِبَ copied. Engine
+  (eye-probe + the bank as arbiter, three rounds): the mabni-ending
+  seam guard now sees through a JOINING CLITIC (وَابْنُهُ was matching
+  بَنَى's amr), refutes a sukun-built cell on any explicit vowel but
+  the iltiqa kasra (خَادِعُهُمْ and the whole كُلّ family were falling
+  to أَكَلَ's new amr كُلْ — the bank caught 7 rows in minutes), and
+  demands a REAL cell remainder after the enc-strip (كُنْ stripped to
+  nothing and فَكُنْ went noun — empty skeletons are absent evidence,
+  not equal evidence). The joining-clitic'd عَمْرو keeps its
+  silent-waw exception in BOTH harakat auditors (وَعَمْرٌو flagged —
+  the clitic hid the exception's own word). Bank: 275 worked
+  sentences / 1,733 tokens, 99.9% POS / 98.9% CASE — ch36 zero
+  disagreements, zero regressions kept. A fourth fix closed the wave:
+  sjSarfAgree now reads the LAST letter's SHADDA (its vowel is i'rab
+  and may move; its doubling is a letter-level fact and may not), so
+  كُلُّهُمْ keeps its geminate root ك ل ل and the fused بِكُلِّ can
+  never be أَكَلَ's amr — the ch10 gate caught the root regression
+  and the shadda rule closed the fused hole with it. Next: ch37 —
+  the wahmi/khayali jiha
+  witnesses (the Muhammad b. Wuhayb bayt with its THIRD five-noun,
+  أَبُو جَهْلٍ كَافِرٌ وَابْنُهُ مُؤْمِنٌ, السَّمَاءُ مَرْفُوعَةٌ
+  وَالْأَرْضُ مُنْحَطَّةٌ) + the wasl-beautifiers; then the bab's
+  17-question catechism; then ijaz/itnab (~2641+).

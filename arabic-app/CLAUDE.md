@@ -3899,3 +3899,21 @@ layer: when a transformation is applied by mapping a shared helper,
 every INLINE list that bypasses the helper silently opts out of every
 rule the helper carries — build cell lists through one road, or audit
 the roads against each other.
+
+## A new paradigm is a new PREDATOR — sweep the corpus for its prey
+
+Storing أَكَلَ gave the corpus a two-letter amr (كُلْ), and within one
+bank run seven stored rows fell to it: every كُلُّ، كُلَّ، فَكُلُّ in
+the library matched the new cell. The mabni-ending guard took three
+refinements in one wave, each a doctrine already in this file wearing a
+new mask: (1) see through a JOINING CLITIC on the written side
+(وَابْنُهُ vs بَنَى's amr — the match was made on the peeled candidate);
+(2) a sukun-built cell is refuted by any explicit vowel EXCEPT the
+iltiqa kasra (خَادِعُهُمْ's seam damma, كُلُّ's damma — nothing ever
+puts a damma on a sukun-mabni amr); (3) the enc-strip must leave a REAL
+remainder on the cell side, or كُنْ strips to nothing and empty equals
+empty (فَكُنْ went noun — missing evidence is not contrary evidence,
+fourth payment). The meta-rule: when a short verb enters the lexicon,
+run the bank BEFORE trusting the eye-probe — a two- or three-letter
+cell shares its skeleton with half the closed classes, and only the
+corpus-wide sweep sees the collisions.
