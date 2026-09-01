@@ -8006,6 +8006,58 @@ if (!CHROME) {
       throw new Error('the real idafa must survive the refusals (وَجْهُ اللهِ)');
   });
 
+  await check('talkhis ch31: fasl and wasl — the frames, the jihat jamia, and the aya cut loose', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 31);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const ws = s => WaslEngine.read(an(s)).map(f => f.key);
+      const g135 = GRAMMAR['al-fasl-wa-al-wasl'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        note: g135 && [g135.group, (g135.examples || []).filter(e => e.src === 'talkhis-al-miftah').length],
+        // the four frames on the bab's own examples…
+        wasl3: ws('زَيْدٌ يَكْتُبُ وَيَشْعُرُ'),
+        wasl4: ws('زَيْدٌ يُعْطِي وَيَمْنَعُ'),
+        fa: ws('دَخَلَ زَيْدٌ فَخَرَجَ عَمْرٌو'),
+        thumma: ws('دَخَلَ زَيْدٌ ثُمَّ خَرَجَ عَمْرٌو'),
+        // …and the stand-downs: the aya of the FASL fires nothing (no atf
+        // letter stands — the absence is the lesson), the shart-fa belongs to
+        // ShartEngine, the talab context to the jawab pass, the amr bab to
+        // InshaEngine. A frame widened without its controls pinned is a
+        // frame about to steal its neighbour.
+        ctrls: [ws('اللَّهُ يَسْتَهْزِئُ بِهِمْ'), ws('إِنْ تَدْرُسْ تَنْجَحْ'),
+                ws('أَكْرِمْنِي أُكْرِمْكَ')],
+        // the aya rows: قَالُوا mabni-damm verb, the sound plural khabar by
+        // the waw, and the FASL row's jumal names the isti'naf
+        istihza: (an('اللَّهُ يَسْتَهْزِئُ بِهِمْ')[1] || {}).kind,
+        // the DOC lines are trilingual — the frames render in both tongues
+        doc: Object.values(WaslEngine.DOC).every(d => d.ar && d.en && d.tr),
+      };
+    });
+    if (r.missing) throw new Error('chapter 31 did not load');
+    if (r.chapters < 31) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 8) throw new Error('ch31 sentences: ' + r.n);
+    if (r.t !== 41) throw new Error('ch31 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch31 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.note || r.note[0] !== 'balagha' || r.note[1] < 2)
+      throw new Error('note 135 balagha with >=2 talkhis anchors: ' + JSON.stringify(r.note));
+    if (!r.wasl3.includes('waslWaw') || !r.wasl3.includes('matufKhabar'))
+      throw new Error('the wasl frames must read يَكْتُبُ وَيَشْعُرُ: ' + r.wasl3.join());
+    if (!r.wasl4.includes('waslWaw'))
+      throw new Error('the opposed-musnads wasl must read: ' + r.wasl4.join());
+    if (!r.fa.includes('faTaqib')) throw new Error('the fa of ta\'qib must read: ' + r.fa.join());
+    if (!r.thumma.includes('thummaMuhla')) throw new Error('thumma\'s muhla must read: ' + r.thumma.join());
+    if (r.ctrls.some(f => f.length))
+      throw new Error('a control leaked a wasl frame: ' + JSON.stringify(r.ctrls));
+    if (r.istihza !== 'verb') throw new Error('يَسْتَهْزِئُ must resolve as a corpus verb: ' + r.istihza);
+    if (!r.doc) throw new Error('every WaslEngine DOC line must be trilingual');
+  });
+
   await check('the balagha door: a sentence carrying jumal rows says so in the margin', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => !storyLocked(s) &&

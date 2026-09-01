@@ -292,3 +292,13 @@ in the margin, not three taps deep:
 - Restraint rule: one chip per sentence, no count, no color escalation —
   the layer's richness is inside the sheet; the margin only says the
   door exists.
+
+## 9. The joining voice (wave 10)
+
+The frame family now reads by spine color, one hue per discipline of
+claim: the shart frames keep the accent, the insha/istifham frames the
+teal (`--lvl2`), and the new fasl–wasl frames wear the TABI hue
+(`--role-tabi`) — atf is the tawabi' doctrine lifted from words to
+jumlas, and the color says so before the title is read. Rule: a new
+frame engine picks its spine from the role palette by the DOCTRINE it
+teaches, never a novel color.

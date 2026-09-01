@@ -3752,3 +3752,27 @@ guard: it may not CLOSE on a word showing raf'. When a guard's
 condition contains the negation of a condition already handled above
 it, the guard is dead — read the control flow before trusting a test
 that has never failed.
+
+## The atf letters are a TABLE, so the frame engine claims them — the waw is the exception
+
+WaslEngine (ch31) is the receipts-before-rhetoric split applied to the
+fasl-wasl bab: fa = ta'qib and thumma = muhla are table facts and the
+frames say so outright; the WAW is the one atf letter with no meaning
+beyond joining, so its frame names the PRICE (the jihat jamia) rather
+than a verdict on whether the price was paid — and whether joining
+would have been BETTER (the dawa'i) is semantic and lives in the note.
+The engine's stand-down list is longer than its claim list: any
+shart/talab/amr/istifham context hands the letter to the bab that owns
+it, because the same fa is the jawab's fa after a shart and the
+hidden-an fa after a talab. One letter, four owners — the context
+decides which engine may speak, and the controls pin each boundary.
+
+## A pre-existing key collision is recorded, not inherited silently
+
+The ch31 glossary needed بَعْض, and «bad» already means بَعْض in three
+packages AND بَدْء in bad-al-amali — a standing violation of the
+global-key rule that predates this chapter. The new entry copies the
+majority reading (بَعْض, samti's entry verbatim), which adds no new
+disagreement; the amali collision remains on the books and is noted
+here so the eventual rename (amali's بَدْء wants its own key) is done
+deliberately, with the stale-key pop the rename rule demands.

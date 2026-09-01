@@ -880,8 +880,8 @@
    "lemma": "إِذَا",
    "pos": "part",
    "gloss": {
-    "en": "when, if (a conditional zarf; it does NOT govern jazm)",
-    "tr": "-dığı zaman, eğer (şart zarfı; cezmetmez)"
+    "en": "when, whenever",
+    "tr": "…-dığı zaman"
    },
    "level": 2
   },
@@ -1048,8 +1048,8 @@
    "lemma": "ثُمَّ",
    "pos": "conj",
    "gloss": {
-    "en": "then (sequence with an interval)",
-    "tr": "sonra (terâhî ile tertîb)"
+    "en": "then, thereafter",
+    "tr": "sonra"
    },
    "level": 1
   },
@@ -1951,14 +1951,14 @@
   },
   "qala": {
    "lemma": "قَالَ",
+   "root": "ق و ل",
    "pos": "verb",
+   "form": "I",
    "gloss": {
     "en": "to say",
     "tr": "demek, söylemek"
    },
-   "level": 1,
-   "root": "ق و ل",
-   "form": "I"
+   "level": 1
   },
   "anta": {
    "lemma": "أَنْتَ",
@@ -2191,14 +2191,14 @@
   },
   "kharaja": {
    "lemma": "خَرَجَ",
+   "root": "خ ر ج",
    "pos": "verb",
+   "form": "I",
    "gloss": {
-    "en": "to go out, to come out",
+    "en": "to go out",
     "tr": "çıkmak"
    },
-   "level": 1,
-   "root": "خ ر ج",
-   "form": "I"
+   "level": 1
   },
   "insan": {
    "lemma": "إِنْسَان",
@@ -2529,14 +2529,14 @@
   },
   "dakhala": {
    "lemma": "دَخَلَ",
+   "root": "د خ ل",
    "pos": "verb",
+   "form": "I",
    "gloss": {
-    "en": "to enter, to go in",
+    "en": "to enter",
     "tr": "girmek"
    },
-   "level": 1,
-   "root": "د خ ل",
-   "form": "I"
+   "level": 1
   },
   "jamaa": {
    "lemma": "جَمَعَ",
@@ -4961,6 +4961,121 @@
     "tr": "takvâ"
    },
    "level": 2
+  },
+  "wasl": {
+   "lemma": "وَصْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "joining, connection (of jumlas by atf)",
+    "tr": "vasl, bağlama (cümlelerin atfı)"
+   },
+   "level": 6,
+   "root": "و ص ل"
+  },
+  "fasl": {
+   "lemma": "فَصْل",
+   "pos": "noun",
+   "gloss": {
+    "en": "separation; leaving the joining",
+    "tr": "fasl, ayırma; atfı terk"
+   },
+   "level": 6,
+   "root": "ف ص ل"
+  },
+  "atf": {
+   "lemma": "عَطْف",
+   "pos": "noun",
+   "gloss": {
+    "en": "joining, coordination (atf)",
+    "tr": "atıf, bağlama"
+   },
+   "level": 5,
+   "root": "ع ط ف"
+  },
+  "tark": {
+   "lemma": "تَرْك",
+   "pos": "noun",
+   "gloss": {
+    "en": "leaving, abandoning (masdar)",
+    "tr": "terk, bırakma (masdar)"
+   },
+   "level": 4,
+   "root": "ت ر ك"
+  },
+  "jumla": {
+   "lemma": "جُمْلَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "sentence, clause",
+    "tr": "cümle"
+   },
+   "level": 3,
+   "root": "ج م ل",
+   "plural": "جُمَل"
+  },
+  "shaytan": {
+   "lemma": "شَيْطَان",
+   "pos": "noun",
+   "gloss": {
+    "en": "satan, devil",
+    "tr": "şeytan"
+   },
+   "level": 2,
+   "root": "ش ط ن",
+   "plural": "شَيَاطِين"
+  },
+  "shaara": {
+   "lemma": "شَعَرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to feel, perceive",
+    "tr": "hissetmek, sezmek"
+   },
+   "level": 4,
+   "root": "ش ع ر",
+   "form": "I"
+  },
+  "manaa": {
+   "lemma": "مَنَعَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to withhold, prevent",
+    "tr": "esirgemek, engellemek"
+   },
+   "level": 3,
+   "root": "م ن ع",
+   "form": "I"
+  },
+  "bad": {
+   "lemma": "بَعْض",
+   "root": "ب ع ض",
+   "pos": "noun",
+   "gloss": {
+    "en": "some, one of",
+    "tr": "bazı, biri"
+   },
+   "level": 2
+  },
+  "kataba": {
+   "lemma": "كَتَبَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to write",
+    "tr": "yazmak"
+   },
+   "level": 1,
+   "root": "ك ت ب"
+  },
+  "khala": {
+   "lemma": "خَلَا",
+   "root": "خ ل و",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to be devoid, pass away; (خَلَا إِلَى) to withdraw to be alone with",
+    "tr": "boş kalmak, geçip gitmek; (خَلَا إِلَى) biriyle baş başa kalmak"
+   },
+   "level": 4
   }
  }
 }

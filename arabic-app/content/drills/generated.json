@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 237,
-  "sentenceTokens": 1557,
+  "sentences": 245,
+  "sentenceTokens": 1598,
   "posAgreement": 99.9,
-  "caseJudged": 1218,
+  "caseJudged": 1254,
   "caseAgreement": 98.7,
-  "rows": 2642
+  "rows": 2683
  },
  "endings": [
   {
@@ -47024,6 +47024,1149 @@
      "caseSaid": "nasb",
      "caseHuman": "nasb",
      "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s1",
+   "text": "الْوَصْلُ عَطْفُ بَعْضِ الْجُمَلِ عَلَى بَعْضٍ",
+   "translation": {
+    "en": "WASL is the joining of some jumlas onto others.",
+    "tr": "VASL, cümlelerin bir kısmının bir kısmı üzerine atfıdır."
+   },
+   "jumal": [
+    {
+     "text": "الْوَصْلُ عَطْفُ بَعْضِ الْجُمَلِ عَلَى بَعْضٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The bab's opening definition: a nominal sentence, no mahall."
+    },
+    {
+     "text": "الْوَصْلُ عَطْفُ",
+     "ar": "حَدُّ الْوَصْلِ — وَمَوْضُوعُهُ الْجُمَلُ لَا الْمُفْرَدَاتُ.",
+     "en": "THE HADD OF WASL: its subject is JUMLAS, not single words — the whole bab asks when two sentences may share one atf letter."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "الْوَصْلُ",
+     "lex": "wasl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«the wasl» — the mubtada, marfu' by the plain damma."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَصْل",
+      "root": "و ص ل",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَطْفُ",
+     "lex": "atf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«the joining» — the khabar, marfu'; and a mudaf, so it wears no tanwin."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَطْف",
+      "root": "ع ط ف",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بَعْضِ",
+     "lex": "bad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«some of» — mudaf ilayh in jarr, and itself a mudaf: the chain runs on."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَعْض",
+      "root": "ب ع ض",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْجُمَلِ",
+     "lex": "jumla",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«the jumlas» — the chain's last mudaf ilayh, majrur by the plain kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جُمْلَة",
+      "root": "ج م ل",
+      "wazn": "فُعَلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«onto» — a jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "بَعْضٍ",
+     "lex": "bad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«others» — majrur by ala, the kasra its sign; the phrase hangs on «the joining»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَعْض",
+      "root": "ب ع ض",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s2",
+   "text": "وَالْفَصْلُ تَرْكُ عَطْفِ بَعْضِ الْجُمَلِ عَلَى بَعْضٍ",
+   "translation": {
+    "en": "And FASL is the leaving of that joining.",
+    "tr": "FASL ise o atfın terkidir."
+   },
+   "jumal": [
+    {
+     "text": "وَالْفَصْلُ تَرْكُ عَطْفِ بَعْضِ الْجُمَلِ عَلَى بَعْضٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ عَلَى جُمْلَةِ التَّعْرِيفِ الْأُولَى لَا مَحَلَّ لَهَا.",
+     "en": "The mirror definition, joined onto the first — two definitions of one bab share the waw lawfully."
+    },
+    {
+     "text": "وَالْفَصْلُ تَرْكُ",
+     "ar": "حَدُّ الْفَصْلِ — تَرْكٌ مَقْصُودٌ، لَا إِهْمَالٌ.",
+     "en": "THE HADD OF FASL: a DELIBERATE leaving, never neglect — the bab's four dawa'i name when silence beats the letter."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "وَالْفَصْلُ",
+     "lex": "fasl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«and the fasl» — the waw joins definition onto definition (one bab is their jihat jamia); al-fasl is the mubtada, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فَصْل",
+      "root": "ف ص ل",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَرْكُ",
+     "lex": "tark",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«the leaving» — the khabar, marfu', and a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَرْك",
+      "root": "ت ر ك",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَطْفِ",
+     "lex": "atf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«of the joining» — mudaf ilayh in jarr, itself a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَطْف",
+      "root": "ع ط ف",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بَعْضِ",
+     "lex": "bad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«some of» — mudaf ilayh, and again a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَعْض",
+      "root": "ب ع ض",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْجُمَلِ",
+     "lex": "jumla",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«the jumlas» — majrur by the plain kasra."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جُمْلَة",
+      "root": "ج م ل",
+      "wazn": "فُعَلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«onto» — a jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "بَعْضٍ",
+     "lex": "bad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«others» — majrur by ala, hanging on «the joining»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَعْض",
+      "root": "ب ع ض",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s3",
+   "text": "زَيْدٌ يَكْتُبُ وَيَشْعُرُ",
+   "translation": {
+    "en": "Zayd writes and feels. (the WASL: two khabar jumlas on one subject, joined — the jihat jamia is the kinship of the two predicates.)",
+    "tr": "Zeyd yazar ve hisseder. (VASL: tek özne üzerinde iki haber cümlesi, atfedilmiş — cihet-i câmia, iki yüklemin yakınlığıdır.)"
+   },
+   "jumal": [
+    {
+     "text": "يَكْتُبُ",
+     "ar": "جُمْلَةُ الْخَبَرِ — فِي مَحَلِّ رَفْعٍ.",
+     "en": "The khabar clause, mahallan marfu'."
+    },
+    {
+     "text": "وَيَشْعُرُ",
+     "ar": "مَعْطُوفَةٌ عَلَى الْخَبَرِ فِي مَحَلِّ رَفْعٍ — وَالْجِهَةُ الْجَامِعَةُ تَنَاسُبُ الْمُسْنَدَيْنِ مَعَ اتِّحَادِ الْمُسْنَدِ إِلَيْهِ.",
+     "en": "Joined onto the khabar, sharing its raf' mahall — and the waw is LAWFUL because a jihat jamia stands: kindred predicates (writing, perceiving) on one and the same subject."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Zayd» — the mubtada, marfu' by the plain damma: the ONE musnad ilayh both jumlas will lean on."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يَكْتُبُ",
+     "lex": "kataba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«he writes» — a marfu' mudari, its doer concealed; the JUMLA is the khabar, mahallan marfu'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَتَبَ",
+      "root": "ك ت ب",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَيَشْعُرُ",
+     "lex": "shaara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«and feels» — the waw joins JUMLA onto JUMLA: this clause is ma'tuf on the khabar clause and takes its mahall — raf' — exactly as a mufrad would."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَعَرَ",
+      "root": "ش ع ر",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s4",
+   "text": "زَيْدٌ يُعْطِي وَيَمْنَعُ",
+   "translation": {
+    "en": "Zayd gives and withholds. (the same waw — but here the jihat jamia is OPPOSITION between the two predicates, on one subject.)",
+    "tr": "Zeyd verir ve esirger. (aynı vâv — fakat burada cihet-i câmia, tek özne üzerinde iki yüklemin ZITLIĞIDIR.)"
+   },
+   "jumal": [
+    {
+     "text": "يُعْطِي",
+     "ar": "جُمْلَةُ الْخَبَرِ — فِي مَحَلِّ رَفْعٍ.",
+     "en": "The khabar clause, mahallan marfu'."
+    },
+    {
+     "text": "وَيَمْنَعُ",
+     "ar": "مَعْطُوفَةٌ فِي مَحَلِّ رَفْعٍ — وَالْجِهَةُ الْجَامِعَةُ التَّضَادُّ مَعَ اتِّحَادِ الْمُسْنَدِ إِلَيْهِ.",
+     "en": "Joined, sharing the raf' — the jihat jamia here is TADADD: opposition between the musnads with one musnad ilayh. The mind holds a thing and its opposite side by side, so the waw may bind them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Zayd» — the mubtada, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يُعْطِي",
+     "lex": "aata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«he gives» — a mudari whose damma is ESTIMATED on the heavy ya; the clause is the khabar, mahallan marfu'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَعْطَى",
+      "root": "ع ط و",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "وَيَمْنَعُ",
+     "lex": "manaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«and withholds» — joined onto the khabar clause, its equal in raf'. Giving against withholding: the OPPOSITION itself is a uniting direction — didd stands next to didd in the mind."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "مَنَعَ",
+      "root": "م ن ع",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s5",
+   "text": "دَخَلَ زَيْدٌ فَخَرَجَ عَمْرٌو",
+   "translation": {
+    "en": "Zayd entered, and Amr left at once. (no mahall on the first jumla — the FA joins by its own meaning: immediate sequence.)",
+    "tr": "Zeyd girdi, Amr hemen çıktı. (ilk cümlenin mahalli yok — FÂ kendi mânâsıyla bağlar: hemen ardından.)"
+   },
+   "jumal": [
+    {
+     "text": "دَخَلَ زَيْدٌ",
+     "ar": "جُمْلَةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The opening jumla — no mahall."
+    },
+    {
+     "text": "فَخَرَجَ عَمْرٌو",
+     "ar": "مَعْطُوفَةٌ بِالْفَاءِ عَلَى الِابْتِدَائِيَّةِ لَا مَحَلَّ لَهَا — وَالْفَاءُ لِلتَّعْقِيبِ.",
+     "en": "Joined by the FA onto a clause with no mahall — so it shares only the LETTER's meaning: sequence at once, which is what the speaker chose the fa to say."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "دَخَلَ",
+     "lex": "dakhala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«entered» — a mazi, mabni on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَخَلَ",
+      "root": "د خ ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Zayd» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "فَخَرَجَ",
+     "lex": "kharaja",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«and at once left» — the FA of TA'QIB: the second deed follows the first with no interval, and that immediacy is the letter's own meaning."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَرَجَ",
+      "root": "خ ر ج",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Amr» — the fa'il, marfu'; its waw is SILENT, written only to tell عَمْرو from عُمَر."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s6",
+   "text": "دَخَلَ زَيْدٌ ثُمَّ خَرَجَ عَمْرٌو",
+   "translation": {
+    "en": "Zayd entered; then, after a while, Amr left. (same two deeds — THUMMA writes the pause between them.)",
+    "tr": "Zeyd girdi; sonra, bir süre geçince, Amr çıktı. (aynı iki fiil — ثُمَّ aradaki mühleti yazar.)"
+   },
+   "jumal": [
+    {
+     "text": "دَخَلَ زَيْدٌ",
+     "ar": "جُمْلَةٌ ابْتِدَائِيَّةٌ لَا مَحَلَّ لَهَا.",
+     "en": "The opening jumla — no mahall."
+    },
+    {
+     "text": "ثُمَّ خَرَجَ عَمْرٌو",
+     "ar": "مَعْطُوفَةٌ بِثُمَّ لَا مَحَلَّ لَهَا — وَثُمَّ لِلْمُهْلَةِ.",
+     "en": "Joined by THUMMA: one letter apart from s5, and the whole difference is the pause — choose the letter, and the interval is said without a word for it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "دَخَلَ",
+     "lex": "dakhala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«entered» — a mazi, mabni on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَخَلَ",
+      "root": "د خ ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Zayd» — the fa'il, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«then» — the atf letter of ordered sequence WITH an interval: the muhla is thumma's own meaning."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "خَرَجَ",
+     "lex": "kharaja",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«left» — a mazi, mabni on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَرَجَ",
+      "root": "خ ر ج",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Amr» — the fa'il, marfu'; the silent waw again."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s7",
+   "text": "وَإِذَا خَلَوْا إِلَى شَيَاطِينِهِمْ قَالُوا إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِئُونَ",
+   "translation": {
+    "en": "And when they are alone with their satans they say: we are with you; we were only mocking. (al-Baqara 2:14)",
+    "tr": "Şeytanlarıyla baş başa kaldıklarında ise derler ki: biz sizinleyiz; biz yalnızca alay ediyorduk. (Bakara 2:14)"
+   },
+   "jumal": [
+    {
+     "text": "وَإِذَا خَلَوْا إِلَى شَيَاطِينِهِمْ قَالُوا",
+     "ar": "جُمْلَةُ الشَّرْطِ وَجَوَابِهِ — مَعْطُوفَةٌ عَلَى مَا قَبْلَهَا فِي الْآيَاتِ.",
+     "en": "The idha frame with its jawab, joined onto the ayat before it."
+    },
+    {
+     "text": "إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِئُونَ",
+     "ar": "مَقُولُ الْقَوْلِ — فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+     "en": "THE QUOTED SPEECH: everything inside the munafiqun's mouths, in the position of nasb as the object of «they say» — mark where it ENDS, for the next sentence stands outside it."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "وَإِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«and when» — the waw joins the aya's clauses; idha is the zarf carrying a shart's meaning, its jawab the qawl to come."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "خَلَوْا",
+     "lex": "khala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«they are alone» — a naqis mazi, mabni on a damm ESTIMATED on the alif the two sakins deleted; the group's waw is the fa'il."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "خَلَا",
+      "root": "خ ل و",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "إِلَى",
+     "lex": "ila",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«with (toward)» — a jarr letter: خَلَا إِلَى is the idiom of withdrawing to be alone with."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "شَيَاطِينِهِمْ",
+     "lex": "shaytan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«their satans» — majrur; the pronoun is the mudaf ilayh; the phrase hangs on the verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَيْطَان",
+      "root": "ش ط ن",
+      "wazn": "فَيَاعِيلِهِمْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "قَالُوا",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«they say» — mabni on the damm for the group's waw; the clause is IDHA's jawab."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "إِنَّا",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«indeed we» — inna with its ism fused on: the na, in the position of nasb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "مَعَكُمْ",
+     "lex": "maa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«with you» — the zarf, hanging on an omitted amil that is inna's KHABAR; the pronoun is its mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "إِنَّمَا",
+     "lex": "innama",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl",
+       "qasr"
+      ],
+      "irab": "«only» — inna with the restraining ma: a qasr tool; the government is stopped and the restriction remains."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "نَحْنُ",
+     "lex": "nahnu",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«we» — the detached pronoun, mabni, in the position of raf': the mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "مُسْتَهْزِئُونَ",
+     "lex": "istahzaa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«mockers» — the khabar, marfu' by the WAW: a sound masculine plural declines by letters."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ه ز ئ",
+      "wazn": "اِسْتَفْعَلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:31:s8",
+   "story": "talkhis-al-miftah",
+   "chapter": 31,
+   "sentence": "s8",
+   "text": "اللَّهُ يَسْتَهْزِئُ بِهِمْ",
+   "translation": {
+    "en": "Allah mocks them. (al-Baqara 2:15 — NOT joined onto their speech: the fasl, because these are not the munafiqun's words.)",
+    "tr": "Allah onlarla alay eder. (Bakara 2:15 — sözlerinin üzerine atfedilmemiştir: FASL; çünkü bu, münafıkların sözü değildir.)"
+   },
+   "jumal": [
+    {
+     "text": "اللَّهُ يَسْتَهْزِئُ بِهِمْ",
+     "ar": "جُمْلَةٌ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا — فُصِلَتْ وَلَمْ تُعْطَفْ.",
+     "en": "AN ISTI'NAF, no mahall — the FASL itself: had a waw joined it onto إِنَّا مَعَكُمْ, it would read as the munafiqun's own words. The silence protects the meaning."
+    },
+    {
+     "text": "يَسْتَهْزِئُ بِهِمْ",
+     "ar": "جُمْلَةُ الْخَبَرِ — فِي مَحَلِّ رَفْعٍ.",
+     "en": "The khabar clause, mahallan marfu'."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "اللَّهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«Allah» — the Name, the mubtada, marfu' — and NO atf letter stands before it: the absence is the bab's whole lesson."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يَسْتَهْزِئُ",
+     "lex": "istahzaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«mocks» — a marfu' mudari, its doer concealed; the clause is the khabar, mahallan marfu'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِسْتَهْزَأَ",
+      "root": "ه ز أ",
+      "wazn": "يَسْتَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِهِمْ",
+     "lex": "bi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "al-fasl-wa-al-wasl"
+      ],
+      "irab": "«at them» — the jarr phrase, hanging on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
     }
    ]
   }

@@ -2156,3 +2156,25 @@ not a one-line change.
   sentence-opens-verbal, ×sign conjunctions) all NOISE across two seeds
   — recorded, not shipped; jarr↔mudaf (121) and fail↔mubtada (60)
   remain the leading seams.
+
+- **v152 — talkhis ch31: fasl and wasl, first slice.** Eight sentences /
+  41 tokens (sahifa 78-79, lines ~2245-2300): the two definitions (the
+  matn's wording, restored from the source's headings — recorded), the
+  jumla-atf rule with its mahall-sharing (زَيْدٌ يَكْتُبُ وَيَشْعُرُ), the
+  jihat jamia in both faces (kinship and TADADD — يُعْطِي وَيَمْنَعُ), the
+  fa/thumma table pair, and the aya of the fasl — al-Baqara 2:14-15
+  quoted exactly, with اللَّهُ يَسْتَهْزِئُ بِهِمْ cut loose from the
+  munafiqun's speech because a waw would have put it in their mouths.
+  Note 135 al-fasl-wa-al-wasl (balagha). Engine: **WaslEngine** — four
+  frames (waslWaw with the jihat-jamia shart, matufKhabar's mahall
+  inheritance, faTaqib, thummaMuhla), rendered beside the shart/insha
+  frames in the wasl-frame dress (wave 10: the joining voice wears the
+  tabi hue); stands down for shart/talab/amr/istifham contexts — three
+  controls pinned. istahzaa's paradigm already lived in the package;
+  aata (Form IV naqis on the awsa road), shaara, manaa authored; khala's
+  gloss broadened in BOTH packages that own the key (خَلَا إِلَى). Bank:
+  245 worked sentences / 1,598 tokens, 99.9% POS / 98.7% CASE — ch31
+  arrived with ZERO disagreements. Still unconsumed in the bab: the four
+  dawa'i al-fasl and two dawa'i al-wasl with their worked cases (kamal
+  inqita'/ittisal and the shibh pair — lines ~2300-2430) — the next
+  slice.
