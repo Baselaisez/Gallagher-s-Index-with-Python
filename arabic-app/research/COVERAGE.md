@@ -2217,3 +2217,32 @@ not a one-line change.
   Bank: 257 worked sentences / 1,656 tokens, 99.9% POS. Next: shibh
   kamal inqita' (the Salma bayt) + the wasl's two dawa'i — the bab's
   closing slice.
+
+- **v155 — the Murib, the red ink, and talkhis ch34: the isti'naf.**
+  The automatic mu'rib: `class Murib` composes the full classical
+  i'rab line per row — «فِعْلٌ مَاضٍ، مَبْنِيٌّ…», «اسْمٌ، مَجْرُورٌ
+  وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ الظَّاهِرَةُ، مُضَافٌ إِلَيْهِ» —
+  trilingual, from verdicts the engines already own (composition +
+  provenance + a consistency veto; it derives NOTHING new). Rendered on
+  the Jumla-lab cards in the muhaqqiq's red (`--irab-ink`, design wave
+  11); the model's office stays outside the Arabic as the 🧠 chip. The
+  probe surfaced three ANALYZER defects, all fixed at source: the
+  verbal expectation pass offered fa'il/maf'ul seats to fused-jarr rows
+  (بِاللهِ «likely the MAF'UL» — the row is its own majrur; guarded on
+  row.fusedJarr/afterJarr), the idafa chain annexed the jalala over its
+  own na't (بِاللهِ الْعَظِيمِ — the clitic hid the ال from hasAl; and
+  the jalala never annexes, while عَبْدُ اللهِ keeps it annexed-TO), and
+  the noun lexicon's pronoun strip lacked the bare speaker's ya
+  (نَفْسِي answered root ف س ي off the infi'al row; a noun takes the
+  possessive ya directly — note 103's mirror). ML: the nasikh
+  seat-memory feature (previous fulls' seat-inna/kana keys, fires on
+  230/4159 rows) measured +0.3/+0.4/−0.2 across three seeds — noise,
+  recorded, not shipped. Chapter 34 (sahifa 82-83): five sentences /
+  21 tokens — the عليل bayt split at its hemistich (the fasl falls
+  there; the whole bayt stands in ch7 s1, reuse recorded), Yusuf 12:53
+  with the sliding lam as a SEGMENT, Hud 11:69's treasured pair
+  (سَلَامًا the deed that passes, سَلَامٌ the state that abides — both
+  claims pinned), note 137 shibh kamal al-ittisal (three kinds by what
+  the bred question asks + Sakkaki's nukta), and بَرَّأَ (Form II,
+  hamza lam). Two new gates (211 → 213). Next: shibh kamal inqita'
+  (the Salma bayt) + kamal inqita' bila iham + the wasl's two dawa'i.

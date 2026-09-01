@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 257,
-  "sentenceTokens": 1656,
+  "sentences": 262,
+  "sentenceTokens": 1677,
   "posAgreement": 99.9,
-  "caseJudged": 1297,
-  "caseAgreement": 98.8,
-  "rows": 2741
+  "caseJudged": 1314,
+  "caseAgreement": 98.9,
+  "rows": 2762
  },
  "endings": [
   {
@@ -23176,10 +23176,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "خ ل ي",
-      "wazn": "فَاعِل / فَاعَلَ — اسْمُ الْفَاعِلِ أَوِ الْمُفَاعَلَةُ",
-      "sure": false
+      "lemma": "خَال",
+      "root": "خ و ل",
+      "wazn": null,
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -24365,10 +24365,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "خ ل ي",
-      "wazn": "فَاعِل / فَاعَلَ — اسْمُ الْفَاعِلِ أَوِ الْمُفَاعَلَةُ",
-      "sure": false
+      "lemma": "خَال",
+      "root": "خ و ل",
+      "wazn": null,
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -27314,10 +27314,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "ف س ي",
-      "wazn": "اِنْفَعَلَ",
-      "sure": false
+      "lemma": "نَفْس",
+      "root": "ن ف س",
+      "wazn": "فَعْلِي",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -30985,10 +30985,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "عَبْد",
       "root": "ع ب د",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "wazn": "فَعْلِي",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -33283,10 +33283,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "حَبِيب",
       "root": "ح ب ب",
-      "wazn": "فَعِيل / تَصْغِير",
-      "sure": false
+      "wazn": "فَعِيلِي",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -33656,10 +33656,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "غَيْر",
       "root": "غ ي ر",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "wazn": "فَعْلِي",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -36060,10 +36060,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "إ ل ه",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "lemma": "إِلَه",
+      "root": "أ ل ه",
+      "wazn": null,
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -36108,10 +36108,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "عَاصٍ",
       "root": "ع ص ي",
       "wazn": "فَاعِل",
-      "sure": false
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -45763,10 +45763,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "م ر ي",
-      "wazn": "أَفْعَلَ",
-      "sure": false
+      "lemma": "أَمْر",
+      "root": "أ م ر",
+      "wazn": "فَعْلِي",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -49832,6 +49832,622 @@
      "caseSaid": null,
      "caseHuman": "raf",
      "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:34:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 34,
+   "sentence": "s1",
+   "text": "قَالَ لِي كَيْفَ أَنْتَ قُلْتُ عَلِيلٌ",
+   "translation": {
+    "en": "He said to me: how are you? I said: ill —",
+    "tr": "Bana dedi ki: nasılsın? Dedim ki: hastayım —"
+   },
+   "jumal": [
+    {
+     "text": "كَيْفَ أَنْتَ",
+     "ar": "مَقُولُ الْقَوْلِ الْأَوَّلِ — فِي مَحَلِّ نَصْبٍ.",
+     "en": "The friend's question, quoted — in nasb as what he said."
+    },
+    {
+     "text": "قُلْتُ عَلِيلٌ",
+     "ar": "الْجَوَابُ الْمُجْمَلُ — وَهُوَ يُوَلِّدُ سُؤَالًا جَدِيدًا: مَا سَبَبُ عِلَّتِكَ؟",
+     "en": "The summary answer — and «ill» BREEDS a new question: what is the cause of your illness? The unasked question is the fasl's whole machinery."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "قَالَ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«he said» — a mazi on the fatha, its doer concealed."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لِي",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«to me» — the jarr phrase on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "كَيْفَ",
+     "lex": "kayfa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal",
+       "adawat-al-tasawwur"
+      ],
+      "irab": "«how» — the interrogative noun of STATE, mabni, fronted as the khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَنْتَ",
+     "lex": "anta",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«you» — the detached pronoun, the deferred mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "قُلْتُ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«I said» — mabni on the sukun for the doer's ta; the ta is the fa'il."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلْتُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلِيلٌ",
+     "lex": "alil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«ill» — the khabar of an omitted mubtada (I am: أَنَا عَلِيلٌ), marfu'. And the word ILL provokes the question the next hemistich will answer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَلِيل",
+      "root": "ع ل ل",
+      "wazn": "فَعِيلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:34:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 34,
+   "sentence": "s2",
+   "text": "سَهَرٌ دَائِمٌ وَحُزْنٌ طَوِيلٌ",
+   "translation": {
+    "en": "— constant sleeplessness and a long sorrow. (the ISTI'NAF, kind 1: it answers the general-cause question the first jumla provoked, so no letter joins them.)",
+    "tr": "— sürekli uykusuzluk ve uzun bir hüzün. (İSTİ'NÂF, 1. kısım: ilk cümlenin doğurduğu genel-sebep sorusunu cevaplar; araya harf girmez.)"
+   },
+   "jumal": [
+    {
+     "text": "سَهَرٌ دَائِمٌ وَحُزْنٌ طَوِيلٌ",
+     "ar": "جُمْلَةٌ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا — فُصِلَتْ لِشِبْهِ كَمَالِ الِاتِّصَالِ.",
+     "en": "THE ISTI'NAF: the first jumla was lowered to a question's rank, and an answer is never JOINED to its question — kind 1: the question asks the general cause of the hukm."
+    },
+    {
+     "text": "سَهَرٌ",
+     "ar": "خَبَرٌ حُذِفَ مُبْتَدَؤُهُ — سَبَبُ عِلَّتِي سَهَرٌ.",
+     "en": "Sakkaki's nukta rides the hadhf: the speaker leaves no room for the asking — the answer arrives before the question is spoken."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "سَهَرٌ",
+     "lex": "sahar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«sleeplessness» — the khabar of an OMITTED mubtada the source itself names: «the cause of my illness is…». The answer wears the question's frame with the question rubbed out."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَهَر",
+      "root": "س ه ر",
+      "wazn": "فَعَلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "دَائِمٌ",
+     "lex": "daim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«constant» — sahar's sifa, following it in raf'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَائِم",
+      "root": "د و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَحُزْنٌ",
+     "lex": "huzn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«and a sorrow» — joined onto «sleeplessness» (a mufrad join inside the answer — the bab's shart binds jumlas, not these)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حُزْن",
+      "root": "ح ز ن",
+      "wazn": "فُعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "طَوِيلٌ",
+     "lex": "tawil-long",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«long» — huzn's sifa."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَوِيل",
+      "root": "ط و ل",
+      "wazn": "فَعِيلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:34:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 34,
+   "sentence": "s3",
+   "text": "وَمَا أُبَرِّئُ نَفْسِي",
+   "translation": {
+    "en": "And I do not absolve my own nafs. (Yusuf 12:53 — the hukm; it provokes: does every nafs so command evil?)",
+    "tr": "Ben nefsimi temize çıkarmam. (Yûsuf 12:53 — hüküm; şu soruyu doğurur: her nefis kötülüğü böyle mi emreder?)"
+   },
+   "jumal": [
+    {
+     "text": "وَمَا أُبَرِّئُ نَفْسِي",
+     "ar": "جُمْلَةٌ مَنْفِيَّةٌ — الْحُكْمُ الَّذِي يُوَلِّدُ السُّؤَالَ الْخَاصَّ.",
+     "en": "The refusal to self-absolve — and it provokes the SPECIFIC question: is the nafs really such a commander of evil?"
+    },
+    {
+     "text": "نَفْسِي",
+     "ar": "مَفْعُولٌ بِهِ مُضَافٌ إِلَى يَاءِ الْمُتَكَلِّمِ.",
+     "en": "The speaker's own nafs — the honesty that makes the coming ta'kid necessary."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "وَمَا",
+     "lex": "ma-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«and not» — the waw joins the aya's train; ma negates and governs nothing."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "أُبَرِّئُ",
+     "lex": "barraa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«I absolve» — a Form II mudari (its lam a hamza), marfu'; the doer is the concealed I."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَرَّأَ",
+      "root": "ب ر أ",
+      "wazn": "أُفَعِّلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "نَفْسِي",
+     "lex": "nafs",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«my nafs» — the object, its fatha estimated before the speaker's ya; the ya is the mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَفْس",
+      "root": "ن ف س",
+      "wazn": "فَعْلِي",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:34:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 34,
+   "sentence": "s4",
+   "text": "إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ",
+   "translation": {
+    "en": "Indeed the nafs commands evil incessantly. (the ISTI'NAF, kind 2: answering the specific-cause question — and this kind DEMANDS the ta'kid: inna and the sliding lam.)",
+    "tr": "Şüphesiz nefis, kötülüğü durmadan emreder. (İSTİ'NÂF, 2. kısım: özel-sebep sorusunun cevabı — ve bu kısım TE'KÎD ister: inne ve kayan lâm.)"
+   },
+   "jumal": [
+    {
+     "text": "إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ",
+     "ar": "جُمْلَةٌ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا — فُصِلَتْ لِشِبْهِ كَمَالِ الِاتِّصَالِ، وَفِيهَا التَّوْكِيدُ الَّذِي يَقْتَضِيهِ هَذَا الْقِسْمُ.",
+     "en": "THE ISTI'NAF, kind 2 — and the source's own rule shows on its face: an answer to a doubting question arrives ARMED, inna at its head and the lam slid onto its khabar."
+    },
+    {
+     "text": "لَأَمَّارَةٌ",
+     "ar": "اللَّامُ الْمُزَحْلَقَةُ عَلَى الْخَبَرِ.",
+     "en": "The lam wanted the ism's head; inna took that seat, so the lam SLID to the khabar — two emphases stacked on one clause."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "إِنَّ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-ittisal",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«indeed» — the emphasizing nasikh: nasb on its ism, raf' on its khabar. Kind-2 isti'naf carries emphasis, because the unasked question doubted."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "النَّفْسَ",
+     "lex": "nafs",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«the nafs» — inna's ism, mansub by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَفْس",
+      "root": "ن ف س",
+      "wazn": "فَّعْلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَأَمَّارَةٌ",
+     "lex": "ammara",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«surely a commander» — the SLIDING LAM of emphasis (pushed off the ism onto the khabar), then inna's khabar, marfu' — a mubalagha on فَعَّالَة: not one that commands, one that COMMANDS AND COMMANDS."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمَارَة",
+      "root": "أ م ر",
+      "wazn": "فَعَّالَةٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِالسُّوءِ",
+     "lex": "su",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«evil» — the jarr phrase hanging on the mubalagha itself."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سُوء",
+      "root": "س و أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:34:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 34,
+   "sentence": "s5",
+   "text": "قَالُوا سَلَامًا قَالَ سَلَامٌ",
+   "translation": {
+    "en": "They said: peace. He said: peace. (Hud 11:69 — the ISTI'NAF, kind 3: «what did he answer?» — and the raf' of his reply outlasts the nasb of their greeting.)",
+    "tr": "«Selâm» dediler. O da «selâm» dedi. (Hûd 11:69 — İSTİ'NÂF, 3. kısım: «ne cevap verdi?» — ve cevabının ref'i, selâmlarının nasbından uzun ömürlüdür.)"
+   },
+   "jumal": [
+    {
+     "text": "قَالَ سَلَامٌ",
+     "ar": "جُمْلَةٌ مُسْتَأْنَفَةٌ لَا مَحَلَّ لَهَا — جَوَابُ: فَمَاذَا قَالَ؟",
+     "en": "THE ISTI'NAF, kind 3: the question asks neither cause — only «and what did he say?» — and the answer is cut loose from the telling."
+    },
+    {
+     "text": "سَلَامًا … سَلَامٌ",
+     "ar": "النَّصْبُ لِلْحُدُوثِ وَالرَّفْعُ لِلثُّبُوتِ.",
+     "en": "The pair the mufassirun treasure: their nasb is a deed that happens and ends; his raf' is a state that stands — the reply outranks the greeting by one damma."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "قَالُوا",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«they said» — mabni on the damm for the group's waw; the waw is the doer (the angel guests)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "سَلَامًا",
+     "lex": "salam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«peace» — MANSUB by an omitted verb (we greet: سَلَّمْنَا سَلَامًا): the passing greeting of travellers, an event that ends."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَلَام",
+      "root": "س ل م",
+      "wazn": "فَعَالًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "قَالَ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«he said» — Ibrahim's reply, and NO atf letter stands before it: the fasl of the answered question."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "سَلَامٌ",
+     "lex": "salam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-ittisal"
+      ],
+      "irab": "«peace» — MARFU', the khabar of an omitted mubtada (my state IS peace): the nominal clause abides where their verbal greeting passed. One tanwin apart, a whole ranking of hospitality."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَلَام",
+      "root": "س ل م",
+      "wazn": "فَعَالٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
     }
    ]
   }

@@ -8158,6 +8158,108 @@ if (!CHROME) {
     if (r.verse !== 2) throw new Error('the bayt\'s two hemistichs wear the verse bullet: ' + r.verse);
   });
 
+  await check('talkhis ch34: the isti\'naf — the unasked question and its answers', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 34);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const g137 = GRAMMAR['shibh-kamal-al-ittisal'];
+      // the mufassirun's pair: their greeting a deed (nasb), his reply a state (raf)
+      const salam = an('قَالُوا سَلَامًا قَالَ سَلَامٌ')
+        .map((x, i, a) => { const c = CaseEngine.claim(a, i); return c ? c.k : null; });
+      // the new verb resolves from its stored Form II paradigm, and the
+      // possessed نَفْسِي answers from the LEXICON (نَفْس + the speaker's ya),
+      // never from the peel's infi'al guess
+      const rows3 = an('وَمَا أُبَرِّئُ نَفْسِي');
+      const amm = ch.sentences.find(s => s.tokens.some(t => (t.s.full || '').includes('أَمَّارَةٌ')));
+      const ammTok = amm && amm.tokens.find(t => (t.s.full || '').includes('أَمَّارَةٌ'));
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        note: g137 ? { group: g137.group, anchors: (g137.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        salam,
+        barraa: [rows3[1] && rows3[1].kind, rows3[1] && rows3[1].root,
+                 rows3[2] && rows3[2].kind, rows3[2] && rows3[2].root],
+        kayfa: k('قَالَ لِي كَيْفَ أَنْتَ', 2),
+        // the sliding lam ships as a SEGMENT on the khabar, not as prose alone
+        ammSegs: ammTok && ammTok.segments ? ammTok.segments.length : 0,
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 34 did not load');
+    if (r.chapters < 34) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch34 sentences: ' + r.n);
+    if (r.t !== 21) throw new Error('ch34 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch34 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.note || r.note.group !== 'balagha' || r.note.anchors < 3)
+      throw new Error('note 137 must be balagha and anchor its own kinds: ' + JSON.stringify(r.note));
+    if (r.salam[1] !== 'nasb' || r.salam[3] !== 'raf')
+      throw new Error('سَلَامًا nasb against سَلَامٌ raf is the chapter\'s pair: ' + r.salam.join('/'));
+    if (r.barraa[0] !== 'verb' || r.barraa[1] !== 'ب ر أ')
+      throw new Error('أُبَرِّئُ must resolve from its stored paradigm: ' + r.barraa.join('/'));
+    if (r.barraa[2] !== 'noun' || r.barraa[3] !== 'ن ف س')
+      throw new Error('نَفْسِي answers from the lexicon as نَفْس + ي: ' + r.barraa.join('/'));
+    if (r.kayfa !== 'mabni') throw new Error('كَيْفَ is a mabni ism: ' + r.kayfa);
+    if (r.ammSegs !== 2) throw new Error('لَأَمَّارَةٌ carries its lam as a segment: ' + r.ammSegs);
+    if (r.verse !== 2) throw new Error('the split bayt\'s hemistichs wear the verse bullet: ' + r.verse);
+  });
+
+  await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
+    const r = await page.evaluate(() => {
+      const an = s => SentenceAnalyzer.analyze(s);
+      const lines = s => { const rows = an(s); return rows.map((x, i) => Murib.line(rows, i)); };
+      const zayd = lines('دَخَلَ زَيْدٌ فَخَرَجَ عَمْرٌو');
+      const hafs = lines('قَالَ أَبُو حَفْصٍ');
+      const billah = lines('أُقْسِمُ بِاللهِ الْعَظِيمِ');
+      const abd = lines('جَاءَ عَبْدُ اللهِ');
+      // a corpus-sample sweep: every row of real stored sentences composes a
+      // line without a throw, and the model's voice never enters the Arabic
+      let swept = 0, badged = 0, thrown = null, inline = 0;
+      outer: for (const st of STORIES) {
+        for (const ch of st.chapters || []) {
+          for (const sen of ch.sentences.slice(0, 2)) {
+            const words = sen.tokens.map(t => t.s.full || t.s).join(' ');
+            let rows;
+            try { rows = an(words); } catch (e) { thrown = 'analyze: ' + e.message; break outer; }
+            for (let i = 0; i < rows.length; i++) {
+              let mb;
+              try { mb = Murib.line(rows, i); } catch (e) { thrown = e.message; break outer; }
+              if (!mb || !mb.ar || !mb.en || !mb.tr) { thrown = 'empty line at ' + rows[i].w; break outer; }
+              if (/🧠/.test(mb.ar)) inline++;
+              if (mb.ml) badged++;
+              swept++;
+            }
+          }
+          break; // two sentences of the first chapter per story is plenty
+        }
+        if (swept > 220) break;
+      }
+      const ink = getComputedStyle(document.documentElement).getPropertyValue('--irab-ink').trim();
+      return {
+        zayd1: zayd[1] && zayd[1].ar, hafsLast: hafs[hafs.length - 1] && hafs[hafs.length - 1].ar,
+        billah1: billah[1] && billah[1].ar, abdLast: abd[abd.length - 1] && abd[abd.length - 1].ar,
+        swept, badged, thrown, inline, ink,
+      };
+    });
+    if (r.thrown) throw new Error('the sweep must not throw: ' + r.thrown);
+    if (r.swept < 100) throw new Error('the sweep must cover real corpus rows: ' + r.swept);
+    if (r.inline) throw new Error('the model\'s voice never enters the Arabic line: ' + r.inline);
+    if (!/مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ/.test(r.zayd1 || ''))
+      throw new Error('زَيْدٌ composes the full classical raf clause: ' + r.zayd1);
+    if (!/مُضَافٌ إِلَيْهِ/.test(r.hafsLast || ''))
+      throw new Error('حَفْصٍ carries its office: ' + r.hafsLast);
+    if (/فَاعِل|مُضَاف/.test(r.billah1 || ''))
+      throw new Error('a fused-jarr row takes no verbal office and no mudaf claim: ' + r.billah1);
+    if (!/مُضَافٌ إِلَيْهِ/.test(r.abdLast || ''))
+      throw new Error('the jalala guard must not kill عَبْدُ اللهِ: ' + r.abdLast);
+    if (!r.ink) throw new Error('--irab-ink must resolve — the muhaqqiq\'s red ink is a token');
+  });
+
   await check('the balagha door: a sentence carrying jumal rows says so in the margin', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => !storyLocked(s) &&

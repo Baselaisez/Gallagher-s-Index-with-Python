@@ -3815,3 +3815,46 @@ on them alone collides; the fix keys on the AR text as well. The same
 looseness lives in the example-jump itself (an anchor's sN resolves to
 the first chapter that has one) — a standing schema property to keep
 in mind, not a bug to fix by renaming three hundred sentence ids.
+
+## The Murib composes; it never decides — and its probe audits the deciders
+
+`class Murib` (after CaseEngine) writes the full classical i'rab line per
+analyzer row — class+tasrif, bina/case+sign, office — assembled ENTIRELY
+from verdicts other engines already made (formCellLabel, CaseEngine.claim,
+IrabSign.realize, the analyzer's own notes read through an OFFICES regex
+table). Three rules keep it honest: every clause has a provenance (a null
+verdict composes the honest «undecided» clause, never silence dressed as
+knowledge); the model's office NEVER enters the Arabic line (it rides after
+the translation as the badged 🧠 chip); and a consistency veto drops an
+office that contradicts the case claim (a «likely the fa'il» note on a row
+CaseEngine reads as jarr is a wrong note, not a wrong composition). The
+veto is a smoke detector, not a fix: each time it fires in a probe, chase
+the note to its source — that is how three standing analyzer defects fell
+in one wave (below).
+
+## A composer's probe reads every field, and the sources get the fixes
+
+The Murib probe re-read whole rows and caught what the POS/CASE metrics
+never could: (1) the verbal expectation pass offered fa'il/maf'ul seats to
+FUSED-JARR rows — the row is its own majrur; the peel now stamps
+`row.fusedJarr` and the after-verb guess skips it (and `row.afterJarr`).
+(2) IdafaEngine.chain annexed the jalala over its own na't (بِاللهِ
+الْعَظِيمِ): the clitic hid the ال from hasAl — the documented trap, at a
+third call site — and the jalala itself never annexes (it stands to be
+annexed TO; عَبْدُ اللهِ is the control and is gated). (3) The noun
+lexicon's pronoun strip had every attached pronoun EXCEPT the bare
+speaker's ya — نَفْسِي answered ف س ي off the infi'al row. A noun takes
+the possessive ya directly (the wiqaya nun is a verb's dress — note 103
+read backwards, fourth use); the ≥3-letter guard keeps نبي، سعي، رأي
+whole, and the ya-final control row is gated.
+
+## The seat-memory feature is noise — the nasikh's expectation is already spent
+
+Tried for v155 and rejected on measurement: remembering the nasikh's OPEN
+seat across fulls (seat-inna1/2, seat-kana1/2 from the previous rows'
+pk) fires on 230/4159 rows and scores +0.3/+0.4/−0.2 held-out across
+three seeds — noise. The İzhar queue already hands the model that fact
+where it matters (ppk-, the consumed-expectation notes); a second copy
+arriving two words late carries no residual. Same verdict family as the
+richer-prev states under naive Bayes — recorded so the afternoon is not
+respent.

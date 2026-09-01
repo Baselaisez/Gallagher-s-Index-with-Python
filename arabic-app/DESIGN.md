@@ -302,3 +302,21 @@ teal (`--lvl2`), and the new fasl–wasl frames wear the TABI hue
 jumlas, and the color says so before the title is read. Rule: a new
 frame engine picks its spine from the role palette by the DOCTRINE it
 teaches, never a novel color.
+
+## 10. The muhaqqiq's red ink (wave 11)
+
+The composed i'rab is a SCHOLAR'S VOICE, and it gets a scholar's color:
+`--irab-ink` (#96402F light / #D08A73 dark — the muhaqqiq's red of
+critical editions) defined in all six theme blocks, worn by `.murib`
+(the Murib's Arabic line), `.murib-x` stays in the soft UI ink, and
+`.irab-ar` — the stored human i'rab — now shares the same red, so the
+two voices that both speak i'rab read as one register. Rules:
+
+- The red is for I'RAB PROSE only — never for the corpus text, never
+  for UI chrome. A third user of the token must be another line that
+  states an i'rab.
+- `.murib::before` prints «إِعْرَابُهُ:» at 60% — the label is furniture,
+  the claim is the content.
+- The model's office never enters the red line: it rides after the
+  translation as the badged 🧠 chip in the standing amber. Statistics
+  keep their color; rules keep theirs.
