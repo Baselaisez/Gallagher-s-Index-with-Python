@@ -8336,6 +8336,60 @@ if (!CHROME) {
       throw new Error('the silent waw of عَمْرو is seen through the clitic: ' + r.amrFlagged);
   });
 
+  await check('talkhis ch37: the wahmi jiha, the khayali, and the wasl\'s beautifiers', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 37);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const g140 = GRAMMAR['tawassut-bayna-al-kamalayn'];
+      const g141 = GRAMMAR['muhassin-al-wasl'];
+      // the bayt stands WHOLE in ch19 — the recorded reuse must really hold
+      const ch19 = st.chapters.find(c => c.n === 19);
+      const whole = ch19 && ch19.sentences.some(s =>
+        s.tokens.map(t => t.s.bare).join(' ').includes('ثلاثة تشرق الدنيا'));
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        anchors140: g140 ? (g140.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length : 0,
+        n141: g141 ? { group: g141.group, anchors: (g141.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        whole,
+        // the five-nouns letter claim sees أَبُو through its joining waw now,
+        // and the bare forms keep their claims
+        waAbu: k('شَمْسُ الضُّحَى وَأَبُو إِسْحَاقَ وَالْقَمَرُ', 2),
+        abu: k('أَبُو جَهْلٍ كَافِرٌ', 0),
+        // the geminate Form VII participle resolves as a noun in raf'
+        munhatta: k('السَّمَاءُ مَرْفُوعَةٌ وَالْأَرْضُ مُنْحَطَّةٌ', 3),
+        // the beautifier pair: mazi beside ism fa'il, both readable
+        qama: an('قَامَ زَيْدٌ وَعَمْرٌو قَاعِدٌ').map(x => x.kind),
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 37 did not load');
+    if (r.chapters < 37) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch37 sentences: ' + r.n);
+    if (r.t !== 22) throw new Error('ch37 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch37 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.anchors140 < 7)
+      throw new Error('note 140 must gain its three wahmi witnesses: ' + r.anchors140);
+    if (!r.n141 || r.n141.group !== 'balagha' || r.n141.anchors < 1)
+      throw new Error('note 141 must be balagha and anchored: ' + JSON.stringify(r.n141));
+    if (!r.whole) throw new Error('the Wuhayb bayt must still stand whole in ch19 — the recorded reuse');
+    if (r.waAbu !== 'raf')
+      throw new Error('وَأَبُو claims raf by the letter through its joining waw: ' + r.waAbu);
+    if (r.abu !== 'raf') throw new Error('bare أَبُو keeps its claim: ' + r.abu);
+    if (r.munhatta !== 'raf')
+      throw new Error('مُنْحَطَّةٌ is a noun in raf: ' + r.munhatta);
+    if (r.qama[0] !== 'verb' || r.qama[3] !== 'noun')
+      throw new Error('the beautifier pair reads verb beside noun: ' + r.qama.join('/'));
+    if (r.verse !== 2) throw new Error('the bayt\'s hemistichs wear the verse bullet: ' + r.verse);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

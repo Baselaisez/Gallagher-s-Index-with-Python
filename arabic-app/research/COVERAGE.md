@@ -2310,3 +2310,26 @@ not a one-line change.
   أَبُو جَهْلٍ كَافِرٌ وَابْنُهُ مُؤْمِنٌ, السَّمَاءُ مَرْفُوعَةٌ
   وَالْأَرْضُ مُنْحَطَّةٌ) + the wasl-beautifiers; then the bab's
   17-question catechism; then ijaz/itnab (~2641+).
+
+- **v158 — talkhis ch37: the wahmi jiha, the khayali, and the wasl's
+  beautifiers — the fasl-wasl bab closes.** Five sentences / 22 tokens
+  (sahifa 85-86, lines ~2470-2492): the Muhammad b. Wuhayb bayt split
+  at its hemistich (shibh tamathul — the caliph seated between sun and
+  moon; the bayt stands whole in ch19, a recorded reuse, and its
+  vocabulary was already in the lexicon), أَبُو جَهْلٍ كَافِرٌ
+  وَابْنُهُ مُؤْمِنٌ (tadad — and the ch36 engine fix's own fixture
+  entering real text), السَّمَاءُ مَرْفُوعَةٌ وَالْأَرْضُ مُنْحَطَّةٌ
+  (shibh tadad — the wahm lowers opposition to tadayuf's rank), and
+  قَامَ زَيْدٌ وَعَمْرٌو قَاعِدٌ (the beautifier's mani': event meant
+  of one, state of the other). Note 140 gains its three wahmi
+  witnesses (AR-keyed dedupe); note 141 muhassin-al-wasl (the
+  beautifiers yield to intent — with the 4:142 commonMistake: the
+  Qur'an's own fi'liyya-ismiyya join carries the theology). Engine
+  (eye-probe): the five-nouns LETTER claim now sees أَبُو through a
+  joining waw (وَأَبُو claimed nothing — the clitic hid the table's
+  word, at the CaseEngine claimer this time). Bank: 280 worked
+  sentences / 1,755 tokens, 99.9% POS / 98.9% CASE — ch37 zero
+  disagreements. The fasl-wasl bab is COMPLETE (chs 31, 33-37: the
+  four fasl dawa'i, the two wasl dawa'i, the jiha in all three kinds,
+  the beautifiers). Next: the bab's 17-question catechism as drill
+  content, or ijaz/itnab/musawat (~2513+) — the maani's last third.

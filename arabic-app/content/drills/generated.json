@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 275,
-  "sentenceTokens": 1733,
+  "sentences": 280,
+  "sentenceTokens": 1755,
   "posAgreement": 99.9,
-  "caseJudged": 1358,
+  "caseJudged": 1377,
   "caseAgreement": 98.9,
-  "rows": 2818
+  "rows": 2840
  },
  "endings": [
   {
@@ -39653,8 +39653,8 @@
    "posAgreement": 100,
    "judged": 9,
    "agree": 9,
-   "judgedC": 4,
-   "agreeC": 4,
+   "judgedC": 5,
+   "agreeC": 5,
    "tokens": [
     {
      "w": "ثَلَاثَةٌ",
@@ -39810,9 +39810,9 @@
       "sure": false
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "raf",
      "caseHuman": "raf",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "إِسْحَاقَ",
@@ -52085,6 +52085,651 @@
       "lemma": "كَتَبَ",
       "root": "ك ت ب",
       "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:37:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 37,
+   "sentence": "s1",
+   "text": "ثَلَاثَةٌ تُشْرِقُ الدُّنْيَا بِبَهْجَتِهَا",
+   "translation": {
+    "en": "Three there are by whose splendour the world is lit —",
+    "tr": "Üç şey vardır ki dünya onların güzelliğiyle aydınlanır —"
+   },
+   "jumal": [
+    {
+     "text": "ثَلَاثَةٌ تُشْرِقُ الدُّنْيَا بِبَهْجَتِهَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ قُدِّمَ خَبَرُهَا — وَجُمْلَةُ الصِّفَةِ فِي مَحَلِّ رَفْعٍ.",
+     "en": "The promise: three things, held back for one hemistich — the fronting chapter 19 taught, now serving the wahmi list to come."
+    },
+    {
+     "text": "تُشْرِقُ الدُّنْيَا بِبَهْجَتِهَا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ صِفَةٌ لِثَلَاثَةٌ.",
+     "en": "The sifa clause that lets a nakira stand as mubtada-material."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "ثَلَاثَةٌ",
+     "lex": "thalatha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "taqdim-al-musnad"
+      ],
+      "irab": "«three» — the fronted khabar (chapter 19 read this very bayt for that fronting); the delay makes the hearer wait for WHICH three."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ثَلَاثَة",
+      "root": "ث ل ث",
+      "wazn": "فَعَالَةٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تُشْرِقُ",
+     "lex": "ashraqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«is lit» — the Form IV mudari; the clause is a sifa on the three."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَشْرَقَ",
+      "root": "ش ر ق",
+      "wazn": "تُفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الدُّنْيَا",
+     "lex": "dunya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«the world» — the doer, its damma estimated on the maqsur alif."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الدُّنْيَا",
+      "root": "د ن و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "بِبَهْجَتِهَا",
+     "lex": "bahja",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«by their splendour» — the jarr phrase; the «ha» points back at the three."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ب ه ج",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:37:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 37,
+   "sentence": "s2",
+   "text": "شَمْسُ الضُّحَى وَأَبُو إِسْحَاقَ وَالْقَمَرُ",
+   "translation": {
+    "en": "— the morning sun, Abu Ishaq, and the moon. (SHIBH TAMATHUL: the wahm presents caliph and luminaries as likes, so gathering them under one waw is beautiful.)",
+    "tr": "— kuşluk güneşi, Ebû İshâk ve ay. (ŞİBH-İ TEMÂSÜL: vehim, halifeyle iki ışık kaynağını birbirinin dengi gibi gösterir; onları tek vâv altında toplamak bu yüzden güzeldir.)"
+   },
+   "jumal": [
+    {
+     "text": "شَمْسُ الضُّحَى وَأَبُو إِسْحَاقَ وَالْقَمَرُ",
+     "ar": "الْمُبْتَدَأُ الْمُؤَخَّرُ وَمَعْطُوفَاهُ — الْجِهَةُ الْجَامِعَةُ وَهْمِيَّةٌ: شِبْهُ التَّمَاثُلِ.",
+     "en": "The list itself is the lesson: three unlikes the wahm gathers as likes — which is exactly why the madh works."
+    },
+    {
+     "text": "وَأَبُو إِسْحَاقَ",
+     "ar": "مَعْطُوفٌ بَيْنَ الشَّمْسِ وَالْقَمَرِ.",
+     "en": "The caliph seated between sun and moon — praise by position alone."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "شَمْسُ",
+     "lex": "shams",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«the sun» — the delayed mubtada arrives at last, a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَمْس",
+      "root": "ش م س",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الضُّحَى",
+     "lex": "duha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«of the morning» — the mudaf ilayh, its kasra estimated on the maqsur alif."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ضُحًى",
+      "root": "ض ح و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "وَأَبُو",
+     "lex": "ab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "five-nouns"
+      ],
+      "irab": "«and Abu» — joined; a five-nouns head showing its raf' by the WAW. The caliph stands BETWEEN the two luminaries — the wahm's likeness, written into the word order."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ ب و",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "إِسْحَاقَ",
+     "lex": "ishaq",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "mamnu-min-sarf"
+      ],
+      "irab": "«Ishaq» — the mudaf ilayh in jarr by a FATHA: barred from tanwin as a foreign proper name (al-Mu'tasim's kunya)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِسْحَاق",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "وَالْقَمَرُ",
+     "lex": "qamar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and the moon» — the third of the three, joined: sun, caliph and moon share no aqli bond, but the WAHM shows them as one kind of shining thing, and that estimative likeness licenses the waws."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَمَر",
+      "root": "ق م ر",
+      "wazn": "فَعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:37:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 37,
+   "sentence": "s3",
+   "text": "أَبُو جَهْلٍ كَافِرٌ وَابْنُهُ مُؤْمِنٌ",
+   "translation": {
+    "en": "Abu Jahl is an unbeliever, and his son ('Ikrima) is a believer. (TADAD in the musnads, tadayuf in the musnad-ilayhs — opposites meet in the mind, so the waw is due.)",
+    "tr": "Ebû Cehil kâfirdir, oğlu (İkrime) ise mümindir. (müsnedlerde TEZÂD, müsnedün-ileyhlerde tezâyüf — zıtlar zihinde buluşur, vâv hak olur.)"
+   },
+   "jumal": [
+    {
+     "text": "أَبُو جَهْلٍ كَافِرٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The father's sentence."
+    },
+    {
+     "text": "وَابْنُهُ مُؤْمِنٌ",
+     "ar": "مَعْطُوفَةٌ — تَضَادُّ الْمُسْنَدَيْنِ وَتَضَايُفُ الْمُسْنَدِ إِلَيْهِمَا.",
+     "en": "Joined across the starkest tadad the sira offers — and the mind holds the pair as one household."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "أَبُو",
+     "lex": "ab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "five-nouns"
+      ],
+      "irab": "«Abu (father of)» — the five-nouns mubtada, raf' by the waw, a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ ب و",
+      "wazn": "فَعُل",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "جَهْلٍ",
+     "lex": "jahl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«of Jahl» — the mudaf ilayh; a kunya that condemns: father of ignorance itself."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَهْل",
+      "root": "ج هـ ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "كَافِرٌ",
+     "lex": "kafir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«an unbeliever» — the first khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَافِر",
+      "root": "ك ف ر",
+      "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَابْنُهُ",
+     "lex": "ibn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and his son» — the joined second mubtada ('Ikrima, who embraced Islam after the conquest), the pronoun annexed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَنَى",
+      "root": "ب ن ي",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مُؤْمِنٌ",
+     "lex": "mumin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«a believer» — the second khabar. Kufr against iman in the predicates, father against son in the subjects: BOTH seats hold their jiha, and the waw stands firm."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُؤْمِن",
+      "root": "أ م ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:37:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 37,
+   "sentence": "s4",
+   "text": "السَّمَاءُ مَرْفُوعَةٌ وَالْأَرْضُ مُنْحَطَّةٌ",
+   "translation": {
+    "en": "The heaven is raised high and the earth is laid low. (SHIBH TADAD: not true opposites — but the wahm lowers opposition and its semblance to the rank of tadayuf, and a thing is found quickest beside its counterpart.)",
+    "tr": "Gök yükseltilmiştir, yer ise alçaktır. (ŞİBH-İ TEZÂD: gerçek zıtlar değil — fakat vehim, zıddı ve benzerini tezâyüf mertebesine indirir; bir şey en çabuk karşılığının yanında bulunur.)"
+   },
+   "jumal": [
+    {
+     "text": "السَّمَاءُ مَرْفُوعَةٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The height."
+    },
+    {
+     "text": "وَالْأَرْضُ مُنْحَطَّةٌ",
+     "ar": "مَعْطُوفَةٌ — شِبْهُ التَّضَادِّ يَنْزِلُ مَنْزِلَةَ التَّضَايُفِ.",
+     "en": "Joined by the semblance: you recall a thing fastest beside its counterpart — the wahm's own arithmetic, and the source says exactly that."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "السَّمَاءُ",
+     "lex": "sama",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«the heaven» — the first mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَمَاء",
+      "root": "س م و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مَرْفُوعَةٌ",
+     "lex": "marfua",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-maful"
+      ],
+      "irab": "«raised» — the khabar, an ism maf'ul: raised BY its Maker."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَرْفُوعَة",
+      "root": "ر ف ع",
+      "wazn": "مَفْعُولَةٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْأَرْضُ",
+     "lex": "ard",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn"
+      ],
+      "irab": "«and the earth» — the joined second mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَرْض",
+      "root": "أ ر ض",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مُنْحَطَّةٌ",
+     "lex": "munhatta",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tawassut-bayna-al-kamalayn",
+       "ism-fail"
+      ],
+      "irab": "«laid low» — the second khabar (Form VII participle of a geminate). Heaven and earth are not black-and-white opposites — the wahm merely SEATS them so, and that estimative opposition is jiha enough."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُنْحَطَّة",
+      "root": "ح ط ط",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:37:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 37,
+   "sentence": "s5",
+   "text": "قَامَ زَيْدٌ وَعَمْرٌو قَاعِدٌ",
+   "translation": {
+    "en": "Zayd stood up — and 'Amr is seated. (the beautifier: matching ismiyya to ismiyya adorns a wasl. HERE the mismatch is deliberate: an EVENT is meant of Zayd, a STATE of 'Amr.)",
+    "tr": "Zeyd kalktı — Amr ise oturmaktadır. (güzelleştirici: isim cümlesini isim cümlesine denk getirmek vaslı süsler. BURADA uyumsuzluk kasıtlıdır: Zeyd'den HUDÛS, Amr'dan SÜBUT kastedilir.)"
+   },
+   "jumal": [
+    {
+     "text": "قَامَ زَيْدٌ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ — لِلْحُدُوثِ.",
+     "en": "The verbal half: something happened."
+    },
+    {
+     "text": "وَعَمْرٌو قَاعِدٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — خُولِفَ الشَّكْلُ لِأَنَّ الْمَعْنَى أَرَادَ الثُّبُوتَ.",
+     "en": "The nominal half, joined: the forms disagree because the MEANINGS do — the beautifier yields to the intent."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "قَامَ",
+     "lex": "qama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "muhassin-al-wasl"
+      ],
+      "irab": "«stood up» — a mazi, CHOSEN as a verb because a verb says something HAPPENED."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَامَ",
+      "root": "ق و م",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "muhassin-al-wasl"
+      ],
+      "irab": "«Zayd» — the doer of the event."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَعَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "muhassin-al-wasl"
+      ],
+      "irab": "«and 'Amr» — joined, but as a MUBTADA: the second half goes nominal on purpose."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "قَاعِدٌ",
+     "lex": "qaid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "muhassin-al-wasl",
+       "ism-fail"
+      ],
+      "irab": "«seated» — an ism fa'il, because a noun says something IS. Matching the shapes would have beautified the wasl; here the speaker WANTS event against state, and the mani' outranks the ornament."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَاعِد",
+      "root": "ق ع د",
+      "wazn": "فَاعِلٌ",
       "sure": true
      },
      "match": true,
