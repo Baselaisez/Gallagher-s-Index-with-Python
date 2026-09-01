@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 262,
-  "sentenceTokens": 1677,
+  "sentences": 268,
+  "sentenceTokens": 1704,
   "posAgreement": 99.9,
-  "caseJudged": 1314,
+  "caseJudged": 1333,
   "caseAgreement": 98.9,
-  "rows": 2762
+  "rows": 2789
  },
  "endings": [
   {
@@ -50442,6 +50442,791 @@
       "lemma": "سَلَام",
       "root": "س ل م",
       "wazn": "فَعَالٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s1",
+   "text": "وَقَالَ رَائِدُهُمْ أَرْسُوا نُزَاوِلُهَا",
+   "translation": {
+    "en": "And their scout said: halt — we engage it! (insha beside khabar: the FASL of kamal inqita' falls between the command and the report.)",
+    "tr": "Öncüleri dedi ki: durun — savaşa girişiyoruz! (haber yanında inşâ: emirle haber arasına kemâl-i inkıtâ FASLI düşer.)"
+   },
+   "jumal": [
+    {
+     "text": "أَرْسُوا",
+     "ar": "جُمْلَةٌ إِنْشَائِيَّةٌ لَفْظًا وَمَعْنًى — مَقُولُ الْقَوْلِ فِي مَحَلِّ نَصْبٍ.",
+     "en": "The command — insha in word and sense, standing as what was said (nasb position)."
+    },
+    {
+     "text": "نُزَاوِلُهَا",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا وَمَعْنًى — فُصِلَتْ لِكَمَالِ الِانْقِطَاعِ بِلَا إِيهَامٍ.",
+     "en": "The report — khabar in word and sense. Insha and khabar cannot share a waw: the fasl is KAMAL INQITA', with no misreading to fear."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَقَالَ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«and said» — the waw joins to what precedes the bayt; a mazi on the fatha."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "رَائِدُهُمْ",
+     "lex": "raid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita",
+       "ism-fail"
+      ],
+      "irab": "«their scout» — the doer, marfu'; a mudaf with the pronoun annexed to it. The ra'id rides ahead to find water and ground — his word carries the camp."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَائِد",
+      "root": "ر و د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَرْسُوا",
+     "lex": "arsa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita",
+       "imperative-amr"
+      ],
+      "irab": "«halt!» — the amr of أَرْسَى (anchor!), mabni on the DROPPED NUN, the waw its doer; what the scout said, insha in word and sense."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَرْسَى",
+      "root": "ر س و",
+      "wazn": "أَفْعِلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "نُزَاوِلُهَا",
+     "lex": "zawala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«we engage it» — Form III mudari, marfu', doer «we», the pronoun (the battle) its object: khabar in word and sense, so NO waw may join it to the amr — kamal inqita' bila iham."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "زَاوَلَ",
+      "root": "ز و ل",
+      "wazn": "نُفَاعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s2",
+   "text": "فَكُلُّ حَتْفِ امْرِئٍ يَجْرِي بِمِقْدَارٍ",
+   "translation": {
+    "en": "— for every man's doom runs by a measure. (the fa joins the REASON to the command it justifies.)",
+    "tr": "— çünkü her kişinin eceli bir ölçüyle akar. (fâ, SEBEBİ gerekçelendirdiği emre bağlar.)"
+   },
+   "jumal": [
+    {
+     "text": "فَكُلُّ حَتْفِ امْرِئٍ يَجْرِي بِمِقْدَارٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ بِفَاءِ التَّعْلِيلِ.",
+     "en": "The scout's reason, joined by the fa — the joining is fine HERE, because reason and command share their jiha."
+    },
+    {
+     "text": "يَجْرِي بِمِقْدَارٍ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ فِي مَحَلِّ رَفْعٍ خَبَرُ كُلُّ.",
+     "en": "The khabar clause of kull — raf' position."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "فَكُلُّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«for every» — the fa of REASON (this clause justifies the daring), then kull as mubtada, a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "حَتْفِ",
+     "lex": "hatf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita",
+       "idafa-definiteness"
+      ],
+      "irab": "«doom» — mudaf ilayh in jarr, itself annexed to the next word: the chain runs two links."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَتْف",
+      "root": "ح ت ف",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "امْرِئٍ",
+     "lex": "imru",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita",
+       "idafa-definiteness"
+      ],
+      "irab": "«of a man» — the second mudaf ilayh, and the famous chameleon: its MIDDLE vowel follows its ENDING — امْرُؤٌ in raf', امْرَأً in nasb, امْرِئٍ in jarr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "م ر ئ",
+      "wazn": "افْعِلٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "يَجْرِي",
+     "lex": "jara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«runs» — mudari, marfu' by a damma ESTIMATED on the ya (too heavy to say); the clause is the khabar of kull."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَرَى",
+      "root": "ج ر ي",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "بِمِقْدَارٍ",
+     "lex": "miqdar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«by a measure» — the jarr phrase hanging on the running: no death arrives unmeasured."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مِقْدَار",
+      "root": "ق د ر",
+      "wazn": "مِفْعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s3",
+   "text": "مَاتَ فُلَانٌ رَحِمَهُ اللهُ",
+   "translation": {
+    "en": "So-and-so died — Allah have mercy on him. (khabar in word, DUA in sense: the difference severs.)",
+    "tr": "Falanca öldü — Allah ona rahmet etsin. (lafzan haber, mânen DUÂ: fark, keser.)"
+   },
+   "jumal": [
+    {
+     "text": "مَاتَ فُلَانٌ",
+     "ar": "جُمْلَةٌ خَبَرِيَّةٌ لَفْظًا وَمَعْنًى.",
+     "en": "The report — khabar through and through."
+    },
+    {
+     "text": "رَحِمَهُ اللهُ",
+     "ar": "خَبَرِيَّةٌ لَفْظًا إِنْشَائِيَّةٌ مَعْنًى — فَالْفَصْلُ لِكَمَالِ الِانْقِطَاعِ.",
+     "en": "Khabar in word, prayer in sense — the sense decides, and the fasl is kamal inqita'."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "مَاتَ",
+     "lex": "mata-die",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«died» — a mazi on the fatha; khabar in word and in sense."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "مَاتَ",
+      "root": "م و ت",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "فُلَانٌ",
+     "lex": "fulan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«so-and-so» — the doer, marfu'; the word that stands in for ANY proper name."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فُلَان",
+      "root": "ف ل ن",
+      "wazn": "فُعَالٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "رَحِمَهُ",
+     "lex": "rahima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-inqita",
+       "khabar-fi-mana-al-insha"
+      ],
+      "irab": "«have mercy on him» — a mazi with the object pronoun aboard; its WORD is a report, its SENSE a prayer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَحِمَ",
+      "root": "ر ح م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "اللهُ",
+     "lex": "allah",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«Allah» — the jalala as doer, marfu'. The prayer-clause is cut from the report: khabar and insha take no waw between them."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "اللَّه",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s4",
+   "text": "زَيْدٌ طَوِيلٌ عَمْرٌو نَائِمٌ",
+   "translation": {
+    "en": "Zayd is tall. 'Amr is asleep. (both khabari — but no jihat jamia joins tallness to sleep: fasl.)",
+    "tr": "Zeyd uzundur. Amr uyuyor. (ikisi de haber — fakat uzunlukla uykuyu birleştiren cihet-i câmia yok: fasl.)"
+   },
+   "jumal": [
+    {
+     "text": "زَيْدٌ طَوِيلٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ.",
+     "en": "The first nominal sentence — about Zayd's build."
+    },
+    {
+     "text": "عَمْرٌو نَائِمٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرِيَّةٌ — لَا جِهَةَ جَامِعَةَ بَيْنَهُمَا فَامْتَنَعَ الْعَطْفُ.",
+     "en": "The second — about 'Amr's nap. Agreement in FORM is not a jiha: the topics never meet, so the atf is refused."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«Zayd» — the first mubtada, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "طَوِيلٌ",
+     "lex": "tawil-long",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«tall» — its khabar. A complete, true sentence."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَوِيل",
+      "root": "ط و ل",
+      "wazn": "فَعِيلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَمْرٌو",
+     "lex": "amr-alam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-inqita"
+      ],
+      "irab": "«'Amr» — a second mubtada, marfu'; its silent waw only tells it from 'Umar on the page."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَمْرو",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "نَائِمٌ",
+     "lex": "naaim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-inqita",
+       "ism-fail"
+      ],
+      "irab": "«asleep» — the second khabar. Both sentences are khabari, both true — but no jihat jamia relates tallness to sleeping, so the waw is FORBIDDEN: kamal inqita'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَائِم",
+      "root": "ن و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s5",
+   "text": "وَتَظُنُّ سَلْمَى أَنَّنِي أَبْغِي بِهَا بَدَلًا",
+   "translation": {
+    "en": "And Salma supposes that I seek a substitute for her —",
+    "tr": "Selmâ, ona bir bedel aradığımı sanıyor —"
+   },
+   "jumal": [
+    {
+     "text": "وَتَظُنُّ سَلْمَى أَنَّنِي أَبْغِي بِهَا بَدَلًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ — ظَنُّ سَلْمَى، وَفِيهِ مَا تَظُنُّهُ هِيَ.",
+     "en": "Salma's supposition, with its content folded inside the anna-clause: this whole hemistich is HER thought."
+    },
+    {
+     "text": "أَنَّنِي أَبْغِي بِهَا بَدَلًا",
+     "ar": "مَصْدَرٌ مُؤَوَّلٌ سَدَّ مَسَدَّ الْمَفْعُولَيْنِ.",
+     "en": "The rolled-up masdar standing where zanna's two objects would stand."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "وَتَظُنُّ",
+     "lex": "zanna",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-inqita",
+       "doubled-verbs"
+      ],
+      "irab": "«and supposes» — a geminate mudari, marfu'; a HEART-verb that governs two objects."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ظَنَّ",
+      "root": "ظ ن ن",
+      "wazn": "تَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "سَلْمَى",
+     "lex": "salma",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "shibh-kamal-al-inqita",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«Salma» — the doer, her damma estimated on the maqsur alif that can carry nothing."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَلْمَى",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "أَنَّنِي",
+     "lex": "anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-inqita",
+       "inna-wa-akhawatuha",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«that I» — anna with the WIQAYA NUN and the speaker's ya as its ism (nasb position); the masdar-clause fills BOTH of zanna's object seats."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "harf",
+     "caseMatch": null
+    },
+    {
+     "w": "أَبْغِي",
+     "lex": "bagha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«I seek» — mudari, marfu' by the estimated damma on its ya, doer the concealed I; the clause is anna's khabar."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَغَى",
+      "root": "ب غ ي",
+      "wazn": "أَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "بِهَا",
+     "lex": "bi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«for her» — the jarr phrase on the seeking; the BA OF EXCHANGE: a substitute in her place."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "بَدَلًا",
+     "lex": "badal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«a substitute» — the object of the seeking, plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَدَل",
+      "root": "ب د ل",
+      "wazn": "فَعَلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:35:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 35,
+   "sentence": "s6",
+   "text": "أُرَاهَا فِي الضَّلَالِ تَهِيمُ",
+   "translation": {
+    "en": "I deem HER the one wandering in error. (a waw here would hang this on «I seek» — INSIDE her thought; the fasl kills that misreading.)",
+    "tr": "Ben ise ONUN dalâlet içinde şaşkın dolaştığını sanıyorum. (buradaki bir vâv bunu «ararım»a — onun düşüncesinin İÇİNE — asardı; fasl o yanlış okumayı öldürür.)"
+   },
+   "jumal": [
+    {
+     "text": "أُرَاهَا فِي الضَّلَالِ تَهِيمُ",
+     "ar": "جُمْلَةٌ مَفْصُولَةٌ لِشِبْهِ كَمَالِ الِانْقِطَاعِ — الْعَطْفُ يُوهِمُ عَطْفَهَا عَلَى أَبْغِي.",
+     "en": "The poet's answer, CUT LOOSE: a waw would be read as joining to «I seek» — making Salma think both thoughts. Meant on «she supposes», mis-read into it: shibh kamal inqita'."
+    },
+    {
+     "text": "تَهِيمُ",
+     "ar": "فِي مَحَلِّ نَصْبٍ مَفْعُولٌ ثَانٍ لِأُرَى، وَقِيلَ حَالٌ مِنَ الضَّمِيرِ.",
+     "en": "Nasb position — the deeming's second object; or, on the other reading, a hal of «her»."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "أُرَاهَا",
+     "lex": "raa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-inqita",
+       "naib-al-fail"
+      ],
+      "irab": "«I deem her» — the PASSIVE mudari of رَأَى in the heart-sense («it is shown me» = I hold the view), the concealed I its deputy-doer, «her» the object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَأَى",
+      "root": "ر أ ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«in» — the jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الضَّلَالِ",
+     "lex": "dalal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«error» — majrur by fi, hanging forward on the wandering."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ضَلَال",
+      "root": "ض ل ل",
+      "wazn": "فَّعَالِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "تَهِيمُ",
+     "lex": "hama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "shibh-kamal-al-inqita"
+      ],
+      "irab": "«wandering» — a hollow mudari, marfu', doer «she»; the clause is the second object of the deeming — some read it a hal. Both readings are in the books."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "هَامَ",
+      "root": "ه ي م",
+      "wazn": "تَفْعِلُ",
       "sure": true
      },
      "match": true,

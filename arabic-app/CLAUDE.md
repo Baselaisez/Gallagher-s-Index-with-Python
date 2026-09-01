@@ -3858,3 +3858,44 @@ where it matters (ppk-, the consumed-expectation notes); a second copy
 arriving two words late carries no residual. Same verdict family as the
 richer-prev states under naive Bayes — recorded so the afternoon is not
 respent.
+
+## The joining letter wears the joiner's fatha — at EVERY peel site
+
+The أَفْعَمَ lesson (a compound peel must re-check the inner peel's
+guards) had a sibling hiding in the BASE peel itself: the plain wa/fa
+peel tested only the letters, so فُلَانٌ — whose fa carries a DAMMA —
+peeled to ف + لان and matched the لِأَنَّ table row: an inna-sister
+verdict on an ordinary noun, pushing a phantom ism-nasb expectation
+onto the next word. The guard is one test on the VOWELLED word
+(`!/^[وف][ًٌٍُِّْ]/`): a joining letter always wears the joiner's
+fatha, and any other mark on it proves it radical. When a guard is
+added to a derived rule, grep for the base rule it was derived FROM —
+the base had the hole first, and for two hundred versions.
+
+## A closed-class fusion has as many table rows as it has spellings
+
+أَنَّنِي is إِنَّ's family wearing the wiqaya nun — and it reached no
+branch at all, answering «noun, its ya a mudaf ilayh» (a HARF takes
+the speaker's ya through the nun exactly as a verb does: note 103's
+family, fourth appearance). The إِنَّا branch could not see it because
+that branch keys on its own two spellings. All four nun-wiqaya
+spellings (أنني إنني أننا إننا) now sit in PARTICLES and a refinement
+branch reads the attached pronoun as the ISM with only the khabar
+still owed. Same lesson as إيّاك's row: the table is looked up with
+seats intact, so every spelling the orthography writes must be a key.
+
+## The seam-idgham must ride EVERY cell list — the amr was the odd one out
+
+sjMazi14, sjMudari14 and sjAmr all map sjIdgham — but the GEMINATE
+branches build their amr lists inline, and those mapped only sjN. So the
+engine contracted ظَنَنَّا (mazi seam) and يَظْنُنَّ (mudari seam) and
+shipped اُظْنُنْنَ (amr seam) from the same rule system, and nothing
+noticed until the corpus stored a nun-lam geminate and the paradigm
+audit compared the two spellings. All seven inline amr lists now run the
+seam-idgham; it is a no-op except on a sakin twin, which is exactly
+where the contraction is mandatory (a vowelled first twin keeps its
+fakk: أَمْدِدْنَ). The general form is the fusedJarr rule at the maker
+layer: when a transformation is applied by mapping a shared helper,
+every INLINE list that bypasses the helper silently opts out of every
+rule the helper carries — build cell lists through one road, or audit
+the roads against each other.

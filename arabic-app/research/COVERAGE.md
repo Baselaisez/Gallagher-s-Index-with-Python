@@ -2246,3 +2246,31 @@ not a one-line change.
   the bred question asks + Sakkaki's nukta), and بَرَّأَ (Form II,
   hamza lam). Two new gates (211 → 213). Next: shibh kamal inqita'
   (the Salma bayt) + kamal inqita' bila iham + the wasl's two dawa'i.
+
+- **v156 — talkhis ch35: kamal inqita' and its semblance — the fasl
+  ledger closes.** Six sentences / 27 tokens (sahifa 83-84, lines
+  ~2283-2295 + ~2361-2371): al-Akhtal's bayt in verse dress (أَرْسُوا
+  insha beside نُزَاوِلُهَا khabar — the atf refused between them, the
+  ta'lil fa welcome after), مَاتَ فُلَانٌ رَحِمَهُ اللهُ (the prayer in
+  a report's dress), زَيْدٌ طَوِيلٌ عَمْرٌو نَائِمٌ (no jihat jamia),
+  and the Salma bayt split at its hemistich (a waw before أُرَاهَا
+  would be read onto أَبْغِي — inside Salma's thought). Notes 138
+  kamal-al-inqita (both halves: bila iham = fasl wajib; ma'a iham =
+  WASL wajib, the لَا وَأَيَّدَكَ اللهُ bad-dua guard — plus the
+  catalogue: four fasl dawa'i, two wasl dawa'i) and 139
+  shibh-kamal-al-inqita (the wrong-hookup iham, with the source's own
+  khilaf: أُرَاهَا as isti'naf makes it shibh kamal ITTISAL). Five new
+  paradigms: ظَنَّ (nun-lam geminate through idgham() — ظَنَنَّا),
+  أَرْسَى (IV naqis), زَاوَلَ (III hollow, sound road), بَغَى (naqis
+  ya), هَامَ (hollow ya, lazim); مَاتَ and رَحِمَ copied from samti.
+  امْرُؤ enters the lexicon with its follow-the-ending 'ayn. Engine
+  (eye-probe finds, both at source): the joining wa/fa peel lacked the
+  joiner's-fatha guard — فُلَانٌ peeled to فَ + لان and read as
+  لِأَنَّ (an inna-sister!); and أَنَّنِي reached no closed-class
+  branch (the nun-wiqaya spellings أنني/إنني/أننا/إننا now sit in
+  PARTICLES with a branch that reads the attached ism). Bank: 268
+  worked sentences / 1,704 tokens, 99.9% POS / 98.9% CASE — ch35 zero
+  disagreements. Next: tawassut bayna l-kamalayn (the jihat jamia
+  doctrine — ittihad/tamathul/tadayuf, Sakkaki's aqli/wahmi/khayali;
+  lines ~2427-2490) closes the wasl half; then the bab's 17-question
+  catechism, then ijaz/itnab (~2641+).

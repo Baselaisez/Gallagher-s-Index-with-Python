@@ -8209,6 +8209,72 @@ if (!CHROME) {
     if (r.verse !== 2) throw new Error('the split bayt\'s hemistichs wear the verse bullet: ' + r.verse);
   });
 
+  await check('talkhis ch35: kamal inqita\' and its semblance — the fasl ledger closes', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 35);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const g138 = GRAMMAR['kamal-al-inqita'], g139 = GRAMMAR['shibh-kamal-al-inqita'];
+      const rows1 = an('وَقَالَ رَائِدُهُمْ أَرْسُوا نُزَاوِلُهَا');
+      const rows5 = an('وَتَظُنُّ سَلْمَى أَنَّنِي أَبْغِي بِهَا بَدَلًا');
+      const rows6 = an('أُرَاهَا فِي الضَّلَالِ تَهِيمُ');
+      const rows3 = an('مَاتَ فُلَانٌ رَحِمَهُ اللهُ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n138: g138 ? { group: g138.group, anchors: (g138.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        n139: g139 ? { group: g139.group, anchors: (g139.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the amr of أَرْسَى resolves from its stored IV-naqis paradigm, and
+        // the Form III of the hollow root conjugates on the sound road
+        arsu: [rows1[2].kind, rows1[2].cell && rows1[2].cell.tense, rows1[2].root],
+        zawil: [rows1[3].kind, rows1[3].cell && rows1[3].cell.tense, rows1[3].enc || null],
+        // the geminate ظَنَّ resolves (its يَظُنُّ was ch33's control), the
+        // NUN-WIQAYA spelling of أَنَّ is a closed-class particle, and the
+        // majhul-of-the-heart أُرَاهَا keeps its passive cell
+        zunn: [rows5[0].kind, rows5[0].root],
+        annani: [rows5[2].kind, rows5[2].pk],
+        uraha: [rows6[0].kind, rows6[0].cell && rows6[0].cell.tense],
+        // فُلَانٌ is a NOUN — its fa carries a damma, so the joining peel
+        // must not read it as فَ + لان (the لِأَنَّ table row)
+        fulan: rows3[1].kind,
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+        // the stored idgham: the geminate whose lam is a nun contracts
+        // against the pronoun nun in its own stored cells
+        zannaCells: (() => { const m = st.morph && st.morph['zanna'];
+          return m ? [m.mazi[13], m.mazi[5]] : null; })(),
+      };
+    });
+    if (r.missing) throw new Error('chapter 35 did not load');
+    if (r.chapters < 35) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch35 sentences: ' + r.n);
+    if (r.t !== 27) throw new Error('ch35 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch35 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n138 || r.n138.group !== 'balagha' || r.n138.anchors < 3)
+      throw new Error('note 138 must be balagha with its three witnesses: ' + JSON.stringify(r.n138));
+    if (!r.n139 || r.n139.group !== 'balagha' || r.n139.anchors < 2)
+      throw new Error('note 139 must be balagha with the Salma pair: ' + JSON.stringify(r.n139));
+    if (r.arsu[0] !== 'verb' || r.arsu[1] !== 'amr')
+      throw new Error('أَرْسُوا must resolve as the stored amr: ' + r.arsu.join('/'));
+    if (r.zawil[0] !== 'verb' || r.zawil[1] !== 'mudari' || r.zawil[2] !== 'ها')
+      throw new Error('نُزَاوِلُهَا is the Form III mudari with its object: ' + r.zawil.join('/'));
+    if (r.zunn[0] !== 'verb' || r.zunn[1] !== 'ظ ن ن')
+      throw new Error('تَظُنُّ resolves from the stored geminate: ' + r.zunn.join('/'));
+    if (r.annani[0] !== 'particle' || r.annani[1] !== 'inna')
+      throw new Error('أَنَّنِي is the nasikh wearing its wiqaya nun: ' + r.annani.join('/'));
+    if (r.uraha[0] !== 'verb' || r.uraha[1] !== 'majhulMudari')
+      throw new Error('أُرَاهَا keeps its majhul cell: ' + r.uraha.join('/'));
+    if (r.fulan !== 'noun')
+      throw new Error('فُلَانٌ is a noun — its damma-fa is no joiner: ' + r.fulan);
+    if (r.verse !== 4) throw new Error('both bayts wear the verse bullet: ' + r.verse);
+    if (!r.zannaCells || r.zannaCells[0] !== 'ظَنَنَّا' || !/^ظَنَنَّ$/.test(r.zannaCells[1]))
+      throw new Error('the nun-lam geminate contracts against the pronoun nun: ' + JSON.stringify(r.zannaCells));
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);
