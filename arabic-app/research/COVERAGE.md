@@ -2198,3 +2198,22 @@ not a one-line change.
   disagreements. Next slice: 26:132-133, the ارْحَلْ bayt, 20:120 — the
   ayat that hang on the ladder — then shibh kamal inqita' (the Salma
   bayt) and the wasl's own two dawa'i.
+
+- **v154 — talkhis ch33: the ladder's witnesses.** Six sentences / 34
+  tokens (sahifa 80-82): al-Shu'ara 26:132-133 (the badal-ba'd pair —
+  summary cut loose from detail), the ارْحَلْ bayt in verse dress (badal
+  ishtimal on لَا تُقِيمَنَّ, with the سِرّ/جَهْر tibaq riding along),
+  and Ta-Ha 20:120 split at the fasl (the qawl unveiling the whisper —
+  atf bayan at عُمَرُ's rank). Note 136 gains its three sourced
+  witnesses; rubai-babs retires its standing no-anchor warning on
+  فَوَسْوَسَ — the corpus's FIRST quadriliteral in real text. Six new
+  paradigms: أَمَدَّ (IV geminate), دَلَّ (I geminate), أَقَامَ (IV
+  hollow), بَلِيَ (naqis kasra), رَحَلَ, وَسْوَسَ. Engine (eye-probe):
+  the HEAVY NUN's bina was claimed as nasb — the old test demanded the
+  word END on the shadda and NFC leaves the nun's fatha after it; the
+  live rule reads any shadda-nun tail and asks the ROOT (a nun-final
+  geminate keeps its own endings — يَظُنُّ raf, لَنْ أَدُلَّ nasb, both
+  pinned). CASE ticked 98.7 → 98.8 as the fix repaired standing rows.
+  Bank: 257 worked sentences / 1,656 tokens, 99.9% POS. Next: shibh
+  kamal inqita' (the Salma bayt) + the wasl's two dawa'i — the bab's
+  closing slice.

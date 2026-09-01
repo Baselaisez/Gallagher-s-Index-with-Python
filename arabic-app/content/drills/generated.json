@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 251,
-  "sentenceTokens": 1622,
+  "sentences": 257,
+  "sentenceTokens": 1656,
   "posAgreement": 99.9,
-  "caseJudged": 1274,
-  "caseAgreement": 98.7,
-  "rows": 2707
+  "caseJudged": 1297,
+  "caseAgreement": 98.8,
+  "rows": 2741
  },
  "endings": [
   {
@@ -36757,7 +36757,7 @@
    "judged": 8,
    "agree": 8,
    "judgedC": 5,
-   "agreeC": 4,
+   "agreeC": 5,
    "tokens": [
     {
      "w": "وَلَئِنْ",
@@ -36917,9 +36917,9 @@
       "sure": true
      },
      "match": true,
-     "caseSaid": "nasb",
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "اللَّهُ",
@@ -48890,6 +48890,948 @@
      "caseSaid": "raf",
      "caseHuman": "raf",
      "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s1",
+   "text": "أَمَدَّكُمْ بِمَا تَعْلَمُونَ",
+   "translation": {
+    "en": "He has aided you with what you know. (al-Shu'ara 26:132 — the summary, referred to the hearers' own knowledge.)",
+    "tr": "Size bildiğiniz şeylerle yardım etti. (Şuarâ 26:132 — özet; dinleyenlerin kendi bilgisine havale edilmiş.)"
+   },
+   "jumal": [
+    {
+     "text": "أَمَدَّكُمْ بِمَا تَعْلَمُونَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ — الْإِجْمَالُ الَّذِي سَيُفَصَّلُ.",
+     "en": "The SUMMARY: the aid named only as «what you know» — a whole handed to the hearers' memory, awaiting its detail."
+    },
+    {
+     "text": "بِمَا تَعْلَمُونَ",
+     "ar": "صِلَةُ الْمَوْصُولِ — لَا مَحَلَّ لَهَا.",
+     "en": "The sila clause, no mahall — and its vagueness is the very ibham the next aya will repair."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَمَدَّكُمْ",
+     "lex": "amadda",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "doubled-verbs"
+      ],
+      "irab": "«He aided you» — a Form IV geminate mazi; the doer is the concealed He, and the fused كُمْ is the object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَمَدَّ",
+      "root": "م د د",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«with what» — the ba of jarr over the relative ma, in the position of jarr; the phrase hangs on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "تَعْلَمُونَ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«you know» — one of the five verbs, marfu' by the RETAINED nun, the group's waw its doer; the clause is the sila, no mahall."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "تَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s2",
+   "text": "أَمَدَّكُمْ بِأَنْعَامٍ وَبَنِينَ وَجَنَّاتٍ وَعُيُونٍ",
+   "translation": {
+    "en": "He has aided you with livestock and sons, and gardens and springs. (26:133 — the detail: badal ba'd, at the rank of وَجْهُهُ, and no atf letter joins the two ayat.)",
+    "tr": "Size davarlar ve oğullarla, bahçeler ve pınarlarla yardım etti. (26:133 — ayrıntı: bedel-i ba'z, وَجْهُهُ mertebesinde; iki âyeti hiçbir atıf harfi bağlamaz.)"
+   },
+   "jumal": [
+    {
+     "text": "أَمَدَّكُمْ بِأَنْعَامٍ وَبَنِينَ وَجَنَّاتٍ وَعُيُونٍ",
+     "ar": "بَدَلُ بَعْضٍ مِنْ جُمْلَةِ الْإِجْمَالِ — فُصِلَتْ لِكَمَالِ الِاتِّصَالِ، مَرْتَبَةُ وَجْهِهِ.",
+     "en": "THE BADAL BA'D: the detailed ni'am re-deliver part of «what you know» more tellingly than the summary did — the rank of وَجْهُهُ in أَعْجَبَنِي زَيْدٌ وَجْهُهُ — so the aya is CUT LOOSE from its sister: what re-delivers needs no letter."
+    },
+    {
+     "text": "وَبَنِينَ وَجَنَّاتٍ وَعُيُونٍ",
+     "ar": "مَعْطُوفَاتٌ بِالْوَاوِ عَلَى أَنْعَامٍ — عَطْفُ الْمُفْرَدَاتِ لَا الْجُمَلِ.",
+     "en": "INSIDE the jumla the waws join freely — these are mufrad joins on one ba, not jumla joins, and the bab's shart does not touch them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَمَدَّكُمْ",
+     "lex": "amadda",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "doubled-verbs"
+      ],
+      "irab": "«He aided you» — the SAME verb said again, opening the jumla that stands from the first as its BADAL."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَمَدَّ",
+      "root": "م د د",
+      "wazn": "أَفْعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بِأَنْعَامٍ",
+     "lex": "anam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«with livestock» — jarr, hanging on the verb: the first of the named ni'am."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَنْعَام",
+      "root": "ن ع م",
+      "wazn": "أَفْعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "وَبَنِينَ",
+     "lex": "ibn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«and sons» — joined by the waw, majrur by the YA: بَنُونَ is attached to the sound plural and declines by letters."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ب ن ن",
+      "wazn": "فَعِيل / تَصْغِير",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "وَجَنَّاتٍ",
+     "lex": "janna",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«and gardens» — joined, majrur by the kasra of the sound feminine plural."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَنَّة",
+      "root": "ج ن ن",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَعُيُونٍ",
+     "lex": "ayn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«and springs» — the last of the joined ni'am, majrur."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "و ع ي",
+      "wazn": "فَعُلُونٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s3",
+   "text": "أَقُولُ لَهُ اِرْحَلْ لَا تُقِيمَنَّ عِنْدَنَا",
+   "translation": {
+    "en": "I say to him: depart! — do not ever stay among us —",
+    "tr": "Ona derim ki: göç, git! — sakın yanımızda kalma —"
+   },
+   "jumal": [
+    {
+     "text": "اِرْحَلْ",
+     "ar": "مَقُولُ الْقَوْلِ — فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+     "en": "The quoted amr: the departure demanded whole, in nasb as what «I say» says."
+    },
+    {
+     "text": "لَا تُقِيمَنَّ عِنْدَنَا",
+     "ar": "بَدَلُ اشْتِمَالٍ مِنْ جُمْلَةِ اِرْحَلْ — فُصِلَتْ لِكَمَالِ الِاتِّصَالِ، مَرْتَبَةُ حُسْنِهَا.",
+     "en": "THE BADAL ISHTIMAL: not-staying is not a piece of departing — it is what departing CONTAINS, said with the emphasis the amr could not carry: the rank of حُسْنُهَا in أَعْجَبَنِي الدَّارُ حُسْنُهَا — so no letter joins them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "أَقُولُ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«I say» — a marfu' mudari, its doer the concealed I."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "أَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«to him» — the jarr phrase on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "اِرْحَلْ",
+     "lex": "rahala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "imperative-amr"
+      ],
+      "irab": "«depart!» — the amr, mabni on the sukun, opening the quoted speech."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "رَحَلَ",
+      "root": "ر ح ل",
+      "wazn": "اِفْعَلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nahiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal",
+       "al-nahy-wa-wujuhuh"
+      ],
+      "irab": "«do not» — the prohibiting, jazming la."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تُقِيمَنَّ",
+     "lex": "aqama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "nun-tawkid"
+      ],
+      "irab": "«ever stay» — jazmed by the la yet MABNI on the fatha: the HEAVY NUN of emphasis fuses to it and takes the ending for itself."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَقَامَ",
+      "root": "ق و م",
+      "wazn": "تُفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عِنْدَنَا",
+     "lex": "inda",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«among us» — the zarf of place on the verb; نَا its mudaf ilayh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s4",
+   "text": "وَإِلَّا فَكُنْ فِي السِّرِّ وَالْجَهْرِ مُسْلِمًا",
+   "translation": {
+    "en": "— and if not, then be, in secret and in the open, one who submits.",
+    "tr": "— yok eğer gitmeyeceksen, gizlide ve açıkta tam bir müslüman ol."
+   },
+   "jumal": [
+    {
+     "text": "وَإِلَّا فَكُنْ فِي السِّرِّ وَالْجَهْرِ مُسْلِمًا",
+     "ar": "جُمْلَةٌ شَرْطِيَّةٌ مَعْطُوفَةٌ بِالْوَاوِ — هُنَا الْعَطْفُ مَقْصُودٌ.",
+     "en": "Here the waw IS wanted: a new demand, not a restatement — the alternative joins the speech lawfully, and the contrast with the fasl before it is the lesson."
+    },
+    {
+     "text": "فِي السِّرِّ وَالْجَهْرِ",
+     "ar": "طِبَاقٌ بَيْنَ الضِّدَّيْنِ.",
+     "en": "The badi' rides along: secret against open, the pair that leaves no third place."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَإِلَّا",
+     "lex": "illa-shartiyya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«and if not» — the waw joins; إِلَّا here is the conditional إِنْ fused into لَا, its shart verb OMITTED: «if you will not depart…»."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "فَكُنْ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«then be» — the fa binds the jawab; the defective kun carries its concealed you as its ism."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَانَ",
+      "root": "ك و ن",
+      "wazn": "اُفْعُلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«in» — a jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "السِّرِّ",
+     "lex": "sirr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "tibaq"
+      ],
+      "irab": "«the secret» — majrur; the phrase hangs on «one who submits»."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سِرّ",
+      "root": "س ر ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْجَهْرِ",
+     "lex": "jahr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal",
+       "tibaq"
+      ],
+      "irab": "«and the open» — joined, majrur — and against «the secret» it stands in TIBAQ: the pair closes every door."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَهْر",
+      "root": "ج ه ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "مُسْلِمًا",
+     "lex": "muslim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«one who submits» — kun's khabar, mansub by the plain fatha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُسْلِم",
+      "root": "س ل م",
+      "wazn": "مُفْعِلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s5",
+   "text": "فَوَسْوَسَ إِلَيْهِ الشَّيْطَانُ",
+   "translation": {
+    "en": "Then Satan whispered to him… (Ta-Ha 20:120 — the first jumla, and its whisper is left unnamed: the ibham.)",
+    "tr": "Derken şeytan ona vesvese verdi… (Tâhâ 20:120 — ilk cümle; fısıltının ne olduğu söylenmez: ibhâm.)"
+   },
+   "jumal": [
+    {
+     "text": "فَوَسْوَسَ إِلَيْهِ الشَّيْطَانُ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَعْطُوفَةٌ بِالْفَاءِ عَلَى مَا قَبْلَهَا فِي الْآيَاتِ.",
+     "en": "The whisper reported — but WHAT was whispered stays dark: the jumla carries an ibham only its neighbour can lift."
+    },
+    {
+     "text": "فَوَسْوَسَ",
+     "ar": "الْفِعْلُ الرُّبَاعِيُّ — فَعْلَلَ يُفَعْلِلُ.",
+     "en": "The corpus's first quadriliteral in real text: فَعْلَلَ, whose mudari alone among bare verbs opens on a DAMMA prefix (يُوَسْوِسُ)."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "فَوَسْوَسَ",
+     "lex": "waswasa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "rubai-babs"
+      ],
+      "irab": "«then whispered» — the fa joins the aya's train; وَسْوَسَ is a QUADRILITERAL mazi on فَعْلَلَ — the doubled syllable is the whisper's own sound."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَسْوَسَ",
+      "root": "و س و س",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "إِلَيْهِ",
+     "lex": "ila",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«to him» — the jarr phrase on the verb."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "الشَّيْطَانُ",
+     "lex": "shaytan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«Satan» — the fa'il, deferred past the jarr phrase, marfu'."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَيْطَان",
+      "root": "ش ط ن",
+      "wazn": "فَّيْعَالُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:33:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 33,
+   "sentence": "s6",
+   "text": "قَالَ يَا آدَمُ هَلْ أَدُلُّكَ عَلَى شَجَرَةِ الْخُلْدِ وَمُلْكٍ لَا يَبْلَى",
+   "translation": {
+    "en": "He said: O Adam, shall I show you the tree of eternity and a dominion that never decays? (the unveiling — atf bayan at the rank of عُمَرُ, and no letter joins it to the whisper.)",
+    "tr": "Dedi ki: Ey Âdem, sana sonsuzluk ağacını ve hiç eskimeyen bir saltanatı göstereyim mi? (perdenin açılışı — عُمَرُ mertebesinde atf-ı beyân; fısıltıya hiçbir harf bağlamaz.)"
+   },
+   "jumal": [
+    {
+     "text": "قَالَ يَا آدَمُ هَلْ أَدُلُّكَ عَلَى شَجَرَةِ الْخُلْدِ وَمُلْكٍ لَا يَبْلَى",
+     "ar": "عَطْفُ بَيَانٍ مِنْ جُمْلَةِ فَوَسْوَسَ — فُصِلَتْ لِكَمَالِ الِاتِّصَالِ، مَرْتَبَةُ عُمَرَ.",
+     "en": "THE UNVEILING: the qawl says WHAT the whisper was, as عُمَرُ says who أَبُو حَفْصٍ is — atf bayan between jumlas, so the aya cuts it loose: no letter stands between a veil and its lifting."
+    },
+    {
+     "text": "لَا يَبْلَى",
+     "ar": "جُمْلَةُ الصِّفَةِ — فِي مَحَلِّ جَرٍّ.",
+     "en": "The sifa clause on the indefinite مُلْكٍ, in jarr's position — the lure polished to its last word."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 11,
+   "agree": 11,
+   "judgedC": 9,
+   "agreeC": 9,
+   "tokens": [
+    {
+     "w": "قَالَ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«he said» — a mazi with NO atf letter before it: the absence is the fasl the bab teaches."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "يَا",
+     "lex": "ya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal",
+       "vocative-munada"
+      ],
+      "irab": "«O» — the calling particle."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "آدَمُ",
+     "lex": "aadam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "kamal-al-ittisal",
+       "vocative-munada",
+       "mamnu-min-sarf"
+      ],
+      "irab": "«Adam» — the munada, a single alam, mabni on the damm in nasb's position; the name itself is diptote, barred by name-hood and foreign origin."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آدَم",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "هَلْ",
+     "lex": "hal-istifham",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal",
+       "al-istifham"
+      ],
+      "irab": "«shall…?» — hal, asking assent in letter; in aim the tempter OFFERS — the question dress on the lure."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَدُلُّكَ",
+     "lex": "dalla",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal",
+       "doubled-verbs"
+      ],
+      "irab": "«I show you» — a geminate mudari, its doer I, the kaf its object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَلَّ",
+      "root": "د ل ل",
+      "wazn": "أَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«upon» — a jarr letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "شَجَرَةِ",
+     "lex": "shajara",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«the tree of» — majrur, and a mudaf; the phrase hangs on the verb."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَجَرَة",
+      "root": "ش ج ر",
+      "wazn": "فَعَلَةِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْخُلْدِ",
+     "lex": "khuld",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«eternity» — the mudaf ilayh, majrur."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خُلْد",
+      "root": "خ ل د",
+      "wazn": "فُعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَمُلْكٍ",
+     "lex": "mulk",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«and a dominion» — joined onto «the tree», majrur."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَلَك",
+      "root": "م ل ك",
+      "wazn": "فُعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«never» — the negating la, governing nothing."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يَبْلَى",
+     "lex": "balia",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "kamal-al-ittisal"
+      ],
+      "irab": "«decays» — a naqis mudari, its damma estimated on the alif; the clause is مُلْكٍ's SIFA, in the position of jarr."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "بَلِيَ",
+      "root": "ب ل ي",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
     }
    ]
   }

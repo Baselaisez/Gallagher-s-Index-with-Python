@@ -103,8 +103,8 @@
    "lemma": "مَا (الْمَوْصُولَة)",
    "pos": "pron",
    "gloss": {
-    "en": "that which, what (relative)",
-    "tr": "o şey ki (ism-i mevsûl mâ)"
+    "en": "that which (relative)",
+    "tr": "şey ki (ism-i mevsûl)"
    },
    "level": 3
   },
@@ -1142,13 +1142,13 @@
    "plural": "مَعَانٍ"
   },
   "inda": {
-   "lemma": "عِنْد",
+   "lemma": "عِنْدَ",
    "pos": "noun",
    "gloss": {
-    "en": "with, in the view of (a zarf — a noun, not a letter)",
-    "tr": "yanında, indinde (zarf — harf değil, isim)"
+    "en": "with, in the view of",
+    "tr": "yanında; -e göre"
    },
-   "level": 2
+   "level": 1
   },
   "mulabas": {
    "lemma": "مُلَابَس",
@@ -5116,6 +5116,194 @@
     "tr": "Ömer"
    },
    "level": 1
+  },
+  "amadda": {
+   "lemma": "أَمَدَّ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to aid, supply, reinforce",
+    "tr": "yardım etmek, desteklemek"
+   },
+   "level": 5,
+   "root": "م د د",
+   "form": "IV"
+  },
+  "anam": {
+   "lemma": "أَنْعَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "livestock, cattle (pl. of نَعَم)",
+    "tr": "davarlar, en'âm (نَعَم'in çoğulu)"
+   },
+   "level": 4,
+   "root": "ن ع م"
+  },
+  "rahala": {
+   "lemma": "رَحَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to depart, set out",
+    "tr": "göçmek, yola çıkmak"
+   },
+   "level": 3,
+   "root": "ر ح ل",
+   "form": "I"
+  },
+  "aqama": {
+   "lemma": "أَقَامَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to stay, reside; to establish",
+    "tr": "kalmak, ikamet etmek; ikame etmek"
+   },
+   "level": 3,
+   "root": "ق و م",
+   "form": "IV"
+  },
+  "jahr": {
+   "lemma": "جَهْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "the open, public utterance",
+    "tr": "açık, âşikâre"
+   },
+   "level": 4,
+   "root": "ج ه ر"
+  },
+  "waswasa": {
+   "lemma": "وَسْوَسَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to whisper (temptation)",
+    "tr": "vesvese vermek, fısıldamak"
+   },
+   "level": 4,
+   "root": "و س و س",
+   "form": "Q1"
+  },
+  "aadam": {
+   "lemma": "آدَم",
+   "pos": "propn",
+   "gloss": {
+    "en": "Adam (the prophet; a diptote name)",
+    "tr": "Âdem (peygamber; gayr-i munsarif isim)"
+   },
+   "level": 2
+  },
+  "dalla": {
+   "lemma": "دَلَّ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to show, point (to)",
+    "tr": "göstermek, delâlet etmek"
+   },
+   "level": 3,
+   "root": "د ل ل",
+   "form": "I"
+  },
+  "shajara": {
+   "lemma": "شَجَرَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "tree",
+    "tr": "ağaç"
+   },
+   "level": 2,
+   "root": "ش ج ر",
+   "plural": "أَشْجَار"
+  },
+  "khuld": {
+   "lemma": "خُلْد",
+   "pos": "noun",
+   "gloss": {
+    "en": "eternity, everlastingness",
+    "tr": "sonsuzluk, hulûd"
+   },
+   "level": 4,
+   "root": "خ ل د"
+  },
+  "balia": {
+   "lemma": "بَلِيَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to decay, wear out",
+    "tr": "eskimek, çürümek"
+   },
+   "level": 4,
+   "root": "ب ل ي",
+   "form": "I"
+  },
+  "illa-shartiyya": {
+   "lemma": "إِلَّا (= إِنْ لَا)",
+   "pos": "part",
+   "gloss": {
+    "en": "otherwise; if not (the conditional in fused into la)",
+    "tr": "yoksa; değilse (şart إِنْ'i لَا'ya idgamlı)"
+   },
+   "level": 5
+  },
+  "ibn": {
+   "lemma": "ابْن",
+   "root": "ب ن و",
+   "pos": "noun",
+   "plural": "أَبْنَاء",
+   "gloss": {
+    "en": "son",
+    "tr": "oğul"
+   },
+   "level": 1
+  },
+  "janna": {
+   "lemma": "الْجَنَّة",
+   "root": "ج ن ن",
+   "pos": "noun",
+   "gloss": {
+    "en": "the Garden, Paradise",
+    "tr": "cennet"
+   },
+   "level": 2
+  },
+  "ayn": {
+   "lemma": "عَيْن",
+   "pos": "noun",
+   "gloss": {
+    "en": "a thing itself, the corpus of property",
+    "tr": "ayn, malın kendisi"
+   },
+   "level": 4,
+   "root": "ع ي ن"
+  },
+  "sirr": {
+   "lemma": "سِرّ",
+   "root": "س ر ر",
+   "pos": "noun",
+   "plural": "أَسْرَار",
+   "gloss": {
+    "en": "secret",
+    "tr": "sır"
+   },
+   "level": 3
+  },
+  "muslim": {
+   "lemma": "مُسْلِم",
+   "root": "س ل م",
+   "pos": "noun",
+   "plural": "مُسْلِمُون",
+   "gloss": {
+    "en": "Muslim (Form IV participle)",
+    "tr": "Müslüman"
+   },
+   "level": 1
+  },
+  "mulk": {
+   "lemma": "مُلْك",
+   "pos": "noun",
+   "gloss": {
+    "en": "kingship, dominion",
+    "tr": "mülk; saltanat"
+   },
+   "level": 3,
+   "root": "م ل ك"
   }
  }
 }

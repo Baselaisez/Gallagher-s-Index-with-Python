@@ -3789,3 +3789,29 @@ any case, so the ya-forms stay silent. A closed lexical table must be
 asked in EVERY dress its words wear (the refusal-list lesson, walked in
 the claiming direction): keying the branch on one accident of the first
 example (the pronoun) hid half the class for two hundred versions.
+
+## The heavy nun hid its bina behind the NFC tail — and the root splits the twins
+
+CaseEngine's heavy-nun branch normalized the shadda forward and then
+demanded the word END on it — but NFC writes تُقِيمَنَّ as nun + fatha
++ shadda, and after the swap the string ends on the nun's own fatha:
+the branch never fired and the bina shipped as nasb. The widened tail
+(/ن[ً-ٰ]*ّ[ً-ٰ]*$/) then met the OTHER twin: a nun-final geminate wears
+the same letters as its own ending (يَظُنُّ raf, لَنْ يَظُنَّ nasb), and
+only the ROOT tells the tawkid nun from the lam — root known and not
+nun-final claims bina; anything else falls through to the marks scan,
+which reads the geminate honestly. The NFC-shadda trap's sixth payment,
+and the escalation-order doctrine in one branch: surface first, then
+knowledge, then the honest fallback.
+
+## Sentence ids restart every chapter — a note-example key must carry the text
+
+The ch33 script appended three witnesses to note 136 with a dedupe
+keyed on (sourceStory, sentence) — and ch32's own s2/s6 examples
+already held those ids, so two witnesses were silently dropped and the
+gate counted 4 where 6 were intended. Sentence ids are PER-CHAPTER
+(every chapter restarts s1…), so any cross-chapter registry that keys
+on them alone collides; the fix keys on the AR text as well. The same
+looseness lives in the example-jump itself (an anchor's sN resolves to
+the first chapter that has one) — a standing schema property to keep
+in mind, not a bug to fix by renaming three hundred sentence ids.

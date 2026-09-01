@@ -8108,6 +8108,56 @@ if (!CHROME) {
     if (r.umar !== 'raf') throw new Error('the diptote atf-bayan claims raf: ' + r.umar);
   });
 
+  await check('talkhis ch33: the ladder\'s witnesses — the ayat, the bayt, and the heavy nun\'s bina', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 33);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const g136 = GRAMMAR['kamal-al-ittisal'];
+      const gr = GRAMMAR['rubai-babs'];
+      const ws = an('فَوَسْوَسَ إِلَيْهِ الشَّيْطَانُ')[0];
+      const bl = an('وَمُلْكٍ لَا يَبْلَى')[2];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        anchors136: (g136.examples || []).filter(e => e.src === 'talkhis-al-miftah').length,
+        rubaiAnchored: (gr.examples || []).some(e => e.src === 'talkhis-al-miftah'),
+        // the HEAVY NUN claims bina — and the nun-final geminate keeps its
+        // own endings on both sides (the root is the discriminator)
+        heavyNun: k('لَا تُقِيمَنَّ عِنْدَنَا', 1),
+        gemRaf: k('هُوَ يَظُنُّ', 1),
+        gemNasb: k('لَنْ أَدُلَّ عَلَيْهِ', 1),
+        // the corpus's first QUADRILITERAL resolves from its stored paradigm
+        waswasa: [ws.kind, ws.cell && ws.cell.tense, ws.root],
+        // the naqis mudari stays silent (taqdiri), and resolves its cell
+        balia: [bl.kind, bl.cell && bl.cell.tense, k('وَمُلْكٍ لَا يَبْلَى', 2)],
+        // the bayt wears verse dress: both hemistich tokens carry the bullet
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 33 did not load');
+    if (r.chapters < 33) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch33 sentences: ' + r.n);
+    if (r.t !== 34) throw new Error('ch33 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch33 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.anchors136 < 6)
+      throw new Error('note 136 must anchor the witnesses too: ' + r.anchors136);
+    if (!r.rubaiAnchored) throw new Error('rubai-babs must be anchored by فَوَسْوَسَ');
+    if (r.heavyNun !== 'mabni')
+      throw new Error('the heavy nun\'s fatha is bina, not nasb: ' + r.heavyNun);
+    if (r.gemRaf !== 'raf' || r.gemNasb !== 'nasb')
+      throw new Error('the nun-final geminate keeps its own endings: ' + r.gemRaf + '/' + r.gemNasb);
+    if (r.waswasa[0] !== 'verb' || r.waswasa[1] !== 'mazi')
+      throw new Error('وَسْوَسَ must resolve from its stored quadriliteral: ' + r.waswasa.join('/'));
+    if (r.balia[0] !== 'verb' || r.balia[2] !== null)
+      throw new Error('يَبْلَى resolves as a verb and keeps its taqdiri silence: ' + r.balia.join('/'));
+    if (r.verse !== 2) throw new Error('the bayt\'s two hemistichs wear the verse bullet: ' + r.verse);
+  });
+
   await check('the balagha door: a sentence carrying jumal rows says so in the margin', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => !storyLocked(s) &&
