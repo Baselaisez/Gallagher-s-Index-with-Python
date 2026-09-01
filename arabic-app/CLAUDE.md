@@ -3917,3 +3917,18 @@ fourth payment). The meta-rule: when a short verb enters the lexicon,
 run the bank BEFORE trusting the eye-probe — a two- or three-letter
 cell shares its skeleton with half the closed classes, and only the
 corpus-wide sweep sees the collisions.
+
+## كم joined the min/man family — one spelling, two words, one vowel
+
+The ب/ل proclitic peel refuses a PRONOUN remainder (the بِهِمْ rule) by
+asking the closed-class table — and the table says كم is the
+interrogative, so لَكُمْ peeled as the muzahlaqa lam over «how many»
+and the fused-jarr path never saw it. The kaf's vowel decides: fatha is
+كَمْ the interrogative, damma is كُمْ the plural pronoun — the same
+one-observable split as مِنْ/مَنْ, إِنْ/إِنَّ, أَيْ/أَيُّ, now at the
+peel guard. The general lesson doubles the closed-class-interface rule:
+a table consulted as an ORACLE answers for the spelling, not the word,
+and every guard that keys on table membership inherits the table's
+homographs — walk the enclitic list against the particle list once and
+every shared spelling needs its discriminating vowel written into the
+guard (كن beside كُنَّ rode along).

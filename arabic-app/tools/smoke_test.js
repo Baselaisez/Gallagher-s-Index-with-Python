@@ -8390,6 +8390,56 @@ if (!CHROME) {
     if (r.verse !== 2) throw new Error('the bayt\'s hemistichs wear the verse bullet: ' + r.verse);
   });
 
+  await check('talkhis ch38: ijaz, itnab and musawat — the definitions and their guards', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 38);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const g142 = GRAMMAR['ijaz-itnab-musawat'];
+      const rows1 = an('بِلَفْظٍ نَاقِصٍ عَنْهُ وَافٍ بِأَدَاءِ الْمُرَادِ');
+      const wafi = rows1.find(x => /وَافٍ/.test(x.w));
+      const rows4 = an('وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ');
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n142: g142 ? { group: g142.group, anchors: (g142.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the indefinite manqus resolves from the lexicon and keeps its
+        // honest SILENCE on the case (the iwad tanwin shows no ending)
+        wafi: wafi ? [wafi.kind, wafi.root,
+          (CaseEngine.claim(rows1, rows1.indexOf(wafi)) || {}).k || null] : null,
+        // the new hollow paradigm answers يَحِيقُ, and the aya's claims hold
+        yahiq: [rows4[1].kind, rows4[1].cell && rows4[1].cell.tense, rows4[1].root],
+        makr: k('وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ', 2),
+        ahl: k('وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ', 5),
+        // the crown witness: the delayed mubtada keeps its raf
+        hayat: k('وَلَكُمْ فِي الْقِصَاصِ حَيَاةٌ', 3),
+        // the ijaz term answers its LEXICAL root, not the peel's ya-guess
+        ijazRoot: (RootFinder.find('الْإِيجَازُ') || {}).root,
+      };
+    });
+    if (r.missing) throw new Error('chapter 38 did not load');
+    if (r.chapters < 38) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch38 sentences: ' + r.n);
+    if (r.t !== 35) throw new Error('ch38 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch38 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n142 || r.n142.group !== 'balagha' || r.n142.anchors < 3)
+      throw new Error('note 142 must be balagha with its witnesses: ' + JSON.stringify(r.n142));
+    if (!r.wafi || r.wafi[0] !== 'noun' || r.wafi[1] !== 'و ف ي' || r.wafi[2] !== null)
+      throw new Error('وَافٍ is the lexicon\'s manqus and stays silent on case: ' + JSON.stringify(r.wafi));
+    if (r.yahiq[0] !== 'verb' || r.yahiq[1] !== 'mudari' || r.yahiq[2] !== 'ح ي ق')
+      throw new Error('يَحِيقُ resolves from the stored hollow paradigm: ' + r.yahiq.join('/'));
+    if (r.makr !== 'raf' || r.ahl !== 'jarr')
+      throw new Error('the Fatir aya keeps its claims: ' + r.makr + '/' + r.ahl);
+    if (r.hayat !== 'raf') throw new Error('حَيَاةٌ keeps its raf: ' + r.hayat);
+    if (r.ijazRoot !== 'و ج ز')
+      throw new Error('الْإِيجَازُ answers its lexical root: ' + r.ijazRoot);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

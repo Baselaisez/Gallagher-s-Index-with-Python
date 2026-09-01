@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 280,
-  "sentenceTokens": 1755,
+  "sentences": 285,
+  "sentenceTokens": 1790,
   "posAgreement": 99.9,
-  "caseJudged": 1377,
+  "caseJudged": 1400,
   "caseAgreement": 98.9,
-  "rows": 2840
+  "rows": 2875
  },
  "endings": [
   {
@@ -52730,6 +52730,938 @@
       "lemma": "قَاعِد",
       "root": "ق ع د",
       "wazn": "فَاعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:38:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 38,
+   "sentence": "s1",
+   "text": "الْإِيجَازُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ نَاقِصٍ عَنْهُ وَافٍ بِأَدَاءِ الْمُرَادِ",
+   "translation": {
+    "en": "IJAZ is conveying the intended meaning's core by wording LESS than it — yet sufficient to deliver it. («sufficient» bars ikhlal: brevity that starves the meaning is no virtue.)",
+    "tr": "ÎCÂZ, murâdın aslını ondan DAHA AZ — fakat murâdı edâya YETER — bir lafızla getirmektir. («yeter» kaydı ihlâli dışarır: mânâyı aç bırakan kısalık fazilet değildir.)"
+   },
+   "jumal": [
+    {
+     "text": "الْإِيجَازُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ نَاقِصٍ عَنْهُ وَافٍ بِأَدَاءِ الْمُرَادِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — حَدُّ الْإِيجَازِ عِنْدَ الْمُصَنِّفِ.",
+     "en": "The musannif's definition — offered where Sakkaki declined to define, holding ijaz merely relative to the middling speaker's custom."
+    },
+    {
+     "text": "نَاقِصٍ عَنْهُ وَافٍ بِأَدَاءِ الْمُرَادِ",
+     "ar": "صِفَتَانِ مُتَعَاقِبَتَانِ — الثَّانِيَةُ احْتِرَازٌ عَنِ الْإِخْلَالِ.",
+     "en": "Two sifas in file: LESS, yet SUFFICIENT — the second word is the guard, for brevity that fails the meaning (ikhlal) is rejected outright."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "الْإِيجَازُ",
+     "lex": "ijaz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«brevity» — the bab's first term, as mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِيجَاز",
+      "root": "و ج ز",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَأْدِيَةُ",
+     "lex": "tadiya-ada",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«conveying» — the khabar, a mudaf: the masdar of أَدَّى."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَأْدِيَة",
+      "root": "أ د ي",
+      "wazn": "تَفْعِلَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَصْلِ",
+     "lex": "asl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "idafa-definiteness"
+      ],
+      "irab": "«the core of» — the chain's middle link."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَصْل",
+      "root": "أ ص ل",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُرَادِ",
+     "lex": "murad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the intended» — the chain closes."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُرَاد",
+      "root": "ر و د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بِلَفْظٍ",
+     "lex": "lafz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«by wording» — the instrument, hanging on the masdar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لَفْظ",
+      "root": "ل ف ظ",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "نَاقِصٍ",
+     "lex": "naqis",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "ism-fail"
+      ],
+      "irab": "«less» — the first sifa on the wording: fewer words than the meaning's own measure."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَاقِص",
+      "root": "ن ق ص",
+      "wazn": "فَاعِلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَنْهُ",
+     "lex": "an",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«than it» — less THAN the meaning's measure."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "وَافٍ",
+     "lex": "wafin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«sufficient» — the second sifa, and the INDEFINITE MANQUS in the flesh: its ya is dropped, its kasra estimated on the absent letter, and the tanwin standing in the gap is the tanwin of COMPENSATION."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَافٍ",
+      "root": "و ف ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "بِأَدَاءِ",
+     "lex": "adaa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«to the delivery of» — hanging on «sufficient»: sufficient FOR delivering."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَدَاء",
+      "root": "أ د ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "الْمُرَادِ",
+     "lex": "murad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the meaning» — what must still arrive whole."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُرَاد",
+      "root": "ر و د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:38:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 38,
+   "sentence": "s2",
+   "text": "وَالْإِطْنَابُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ زَائِدٍ عَلَيْهِ لِفَائِدَةٍ",
+   "translation": {
+    "en": "And ITNAB is conveying the intended meaning's core by wording MORE than it — for a benefit. («for a benefit» bars tatwil and hashw: padding is not amplification.)",
+    "tr": "ITNÂB ise murâdın aslını ondan DAHA ÇOK bir lafızla — bir FAYDA İÇİN — getirmektir. («fayda için» kaydı tatvîli ve haşvi dışarır: dolgu, ıtnâb değildir.)"
+   },
+   "jumal": [
+    {
+     "text": "وَالْإِطْنَابُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ زَائِدٍ عَلَيْهِ لِفَائِدَةٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — حَدُّ الْإِطْنَابِ.",
+     "en": "The itnab definition, joined: the two terms share one frame word for word, and only نَاقِص/زَائِد and the guards differ — the bab teaches by minimal pair."
+    },
+    {
+     "text": "لِفَائِدَةٍ",
+     "ar": "الِاحْتِرَازُ الَّذِي يُخْرِجُ التَّطْوِيلَ وَالْحَشْوَ.",
+     "en": "One prepositional phrase carrying the whole boundary between eloquent fullness and padding."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَالْإِطْنَابُ",
+     "lex": "itnab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«and amplification» — the second term, joined to the first (one bab, one fabric)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِطْنَاب",
+      "root": "ط ن ب",
+      "wazn": "إِفْعَالُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَأْدِيَةُ",
+     "lex": "tadiya-ada",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«conveying» — the same khabar frame."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَأْدِيَة",
+      "root": "أ د ي",
+      "wazn": "تَفْعِلَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَصْلِ",
+     "lex": "asl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the core of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَصْل",
+      "root": "أ ص ل",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُرَادِ",
+     "lex": "murad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the intended» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُرَاد",
+      "root": "ر و د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بِلَفْظٍ",
+     "lex": "lafz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«by wording» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لَفْظ",
+      "root": "ل ف ظ",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "زَائِدٍ",
+     "lex": "zaid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "ism-fail"
+      ],
+      "irab": "«more» — the mirror of نَاقِصٍ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَائِد",
+      "root": "ز ي د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَيْهِ",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«than it» — more THAN the meaning's measure."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "لِفَائِدَةٍ",
+     "lex": "faida",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«for a benefit» — the definition's guard: excess WITHOUT benefit is tatwil (the surplus word unfixable) or hashw (the surplus word nameable), and both are rejected."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فَائِدَة",
+      "root": "ف ي د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:38:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 38,
+   "sentence": "s3",
+   "text": "وَالْمُسَاوَاةُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ مُسَاوٍ لَهُ",
+   "translation": {
+    "en": "And MUSAWAT is conveying the intended meaning's core by wording EQUAL to it.",
+    "tr": "MÜSÂVÂT ise murâdın aslını kendisine EŞİT bir lafızla getirmektir."
+   },
+   "jumal": [
+    {
+     "text": "وَالْمُسَاوَاةُ تَأْدِيَةُ أَصْلِ الْمُرَادِ بِلَفْظٍ مُسَاوٍ لَهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — حَدُّ الْمُسَاوَاةِ.",
+     "en": "The even measure: neither guard is needed, for equality can neither starve the meaning nor pad it."
+    },
+    {
+     "text": "بِلَفْظٍ مُسَاوٍ لَهُ",
+     "ar": "الْجَارُّ وَصِفَتُهُ — مِيزَانُ الْبَابِ كُلِّهِ.",
+     "en": "The measuring phrase the whole bab weighs against."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَالْمُسَاوَاةُ",
+     "lex": "musawat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«and the even measure» — the third term, masdar of Form III."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُسَاوَاة",
+      "root": "س و ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَأْدِيَةُ",
+     "lex": "tadiya-ada",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«conveying» — the frame a third time."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَأْدِيَة",
+      "root": "أ د ي",
+      "wazn": "تَفْعِلَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَصْلِ",
+     "lex": "asl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the core of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَصْل",
+      "root": "أ ص ل",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُرَادِ",
+     "lex": "murad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the intended» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُرَاد",
+      "root": "ر و د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بِلَفْظٍ",
+     "lex": "lafz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«by wording» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لَفْظ",
+      "root": "ل ف ظ",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "مُسَاوٍ",
+     "lex": "musawin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "ism-maqsur-manqus",
+       "ism-fail"
+      ],
+      "irab": "«equal» — a second indefinite manqus in one chapter: the ism fa'il of سَاوَى with its ya dropped and the compensation tanwin in its place."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُسَاوٍ",
+      "root": "س و ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«to it» — equal TO the meaning's own measure."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:38:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 38,
+   "sentence": "s4",
+   "text": "وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ",
+   "translation": {
+    "en": "And evil scheming besets none but its own people. (the MUSAWAT witness: wording and meaning weigh even — and the sentence rides a mufarragh qasr.)",
+    "tr": "Kötü tuzak, ancak sahibinin başına iner. (MÜSÂVÂT şahidi: lafızla mânâ denk tartılır — ve cümle, müferrağ kasr üzerinde durur.)"
+   },
+   "jumal": [
+    {
+     "text": "وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَنْفِيَّةٌ بِقَصْرٍ مُفَرَّغٍ — وَهِيَ شَاهِدُ الْمُسَاوَاةِ.",
+     "en": "The musawat witness: read it slower or faster and nothing spills — word and meaning sit level."
+    },
+    {
+     "text": "إِلَّا بِأَهْلِهِ",
+     "ar": "أُسْلُوبُ الْقَصْرِ: النَّفْيُ وَالِاسْتِثْنَاءُ.",
+     "en": "The qasr pair from chapter 21, met again in open text."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَلَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "qasr"
+      ],
+      "irab": "«and not» — the waw joins the ayat's train; the la opens the qasr's first arm."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يَحِيقُ",
+     "lex": "haqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "hollow-verbs"
+      ],
+      "irab": "«besets» — the hollow mudari of حَاقَ."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَاقَ",
+      "root": "ح ي ق",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمَكْرُ",
+     "lex": "makr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«the scheming» — the doer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَكْر",
+      "root": "م ك ر",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "السَّيِّئُ",
+     "lex": "sayyi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«evil» — its sifa."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَيِّئ",
+      "root": "س و أ",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "qasr"
+      ],
+      "irab": "«except» — the qasr's second arm: what precedes is emptied for what follows."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِأَهْلِهِ",
+     "lex": "ahl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "qasr"
+      ],
+      "irab": "«but its own people» — the jarr phrase the qasr saves the verb for. Nothing here could be cut, nothing added: the source's own musawat witness."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَهْل",
+      "root": "أ ه ل",
+      "wazn": "فَعْلِهِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:38:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 38,
+   "sentence": "s5",
+   "text": "وَلَكُمْ فِي الْقِصَاصِ حَيَاةٌ",
+   "translation": {
+    "en": "And for you, in just retribution, is LIFE. (IJAZ AL-QASR: eleven letters that outweigh the Arabs' proudest maxim — the note counts the seven superiorities.)",
+    "tr": "Kısasta sizin için HAYAT vardır. (ÎCÂZ-I KASR: Arapların en gururlu vecizesini geride bırakan on bir harf — not, yedi üstünlüğü sayar.)"
+   },
+   "jumal": [
+    {
+     "text": "وَلَكُمْ فِي الْقِصَاصِ حَيَاةٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ قُدِّمَ خَبَرُهَا — شَاهِدُ إِيجَازِ الْقَصْرِ.",
+     "en": "The bab's crown witness: much meaning, easy wording, and NOTHING omitted — brevity with no hadhf at all."
+    },
+    {
+     "text": "حَيَاةٌ",
+     "ar": "مُبْتَدَأٌ مُؤَخَّرٌ نُكِّرَ لِلتَّعْظِيمِ.",
+     "en": "One indefinite word carrying awe, kind, and the whole argument against the blood-feud."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "وَلَكُمْ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "taqdim-al-musnad"
+      ],
+      "irab": "«and for you» — the jarr phrase fronted as khabar, OBLIGATORILY: the coming mubtada is indefinite."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«in» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْقِصَاصِ",
+     "lex": "qisas",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat"
+      ],
+      "irab": "«just retribution» — the majrur: the very thing that looks like death."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قِصَاص",
+      "root": "ق ص ص",
+      "wazn": "فِعَالِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "حَيَاةٌ",
+     "lex": "hayat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-itnab-musawat",
+       "tankir-al-musnad-ilayh"
+      ],
+      "irab": "«LIFE» — the delayed mubtada, and its tanwin does double work: a life of great worth, and a KIND of life (the would-be killer spared, the would-be victim spared). Meaning heaped on eleven letters: ijaz al-qasr."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَيَاة",
+      "root": "ح ي ي",
+      "wazn": null,
       "sure": true
      },
      "match": true,

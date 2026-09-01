@@ -2333,3 +2333,24 @@ not a one-line change.
   four fasl dawa'i, the two wasl dawa'i, the jiha in all three kinds,
   the beautifiers). Next: the bab's 17-question catechism as drill
   content, or ijaz/itnab/musawat (~2513+) — the maani's last third.
+
+- **v159 — talkhis ch38: ijaz, itnab, musawat — the bab of measure
+  opens.** Five sentences / 35 tokens (sahifa 91-93, lines ~2640-2700):
+  the musannif's three definitions in their shared frame (the minimal
+  pair نَاقِصٍ/زَائِدٍ with the guards وَافٍ and لِفَائِدَةٍ — and
+  وَافٍ puts the INDEFINITE MANQUS with its iwad tanwin into real text
+  at last, مُسَاوٍ beside it), the musawat witness (Fatir 35:43,
+  riding a mufarragh qasr), and the crown witness of ijaz al-qasr
+  (2:179 — the note counts its superiorities over أَلْقَتْلُ أَنْفَى
+  لِلْقَتْلِ). Note 142 carries the three accepted and three rejected
+  roads (ikhlal/tatwil/hashw with the source's own bayts) and the
+  Sakkaki/musannif khilaf on definability. Paradigm: حَاقَ يَحِيقُ
+  (hollow ya). Engine (the bank as arbiter): كُمْ joined the min/man
+  family — لَكُمْ peeled as the muzahlaqa lam over the INTERROGATIVE
+  كَمْ, but the kaf's damma is the pronoun's dress; the ب/ل peel guard
+  now reads the vowel (كَمْ istifham and لَفِي خُسْرٍ pinned as
+  controls), and لَكُمْ answers as the fused jarr + pronoun. Bank: 285
+  worked sentences / 1,790 tokens, 99.9% POS / 98.9% CASE — ch38 zero
+  disagreements. Next: ijaz al-hadhf's kinds (the omitted mudaf
+  وَاسْأَلِ الْقَرْيَةَ, the omitted mawsuf, whole omitted jumlas —
+  sahifa 94+), then itnab's kinds.
