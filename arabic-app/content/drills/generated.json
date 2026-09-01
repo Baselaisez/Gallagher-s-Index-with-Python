@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 285,
-  "sentenceTokens": 1790,
+  "sentences": 290,
+  "sentenceTokens": 1815,
   "posAgreement": 99.9,
-  "caseJudged": 1400,
+  "caseJudged": 1423,
   "caseAgreement": 98.9,
-  "rows": 2875
+  "rows": 2900
  },
  "endings": [
   {
@@ -40245,7 +40245,7 @@
       "sure": true
      },
      "match": true,
-     "caseSaid": "raf",
+     "caseSaid": null,
      "caseHuman": null,
      "caseMatch": null
     },
@@ -53667,6 +53667,738 @@
      "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:39:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 39,
+   "sentence": "s1",
+   "text": "وَاسْأَلِ الْقَرْيَةَ",
+   "translation": {
+    "en": "«And ask the town» (12:82) — that is, ask the town's PEOPLE: the mudaf is omitted, and what it leaned on steps into its case.",
+    "tr": "«Köye sor» (12:82) — yani köyün HALKINA sor: muzâf hazfedilmiş, dayandığı kelime onun i'râbına geçmiştir."
+   },
+   "jumal": [
+    {
+     "text": "وَاسْأَلِ الْقَرْيَةَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ طَلَبِيَّةٌ — شَاهِدُ حَذْفِ الْمُضَافِ.",
+     "en": "The mudaf-omission witness: a town cannot answer, so the mind supplies its people — brevity that trusts the hearer."
+    },
+    {
+     "text": "الْقَرْيَةَ",
+     "ar": "قَامَ الْمُضَافُ إِلَيْهِ مَقَامَ الْمُضَافِ الْمَحْذُوفِ وَأَخَذَ إِعْرَابَهُ.",
+     "en": "One word wearing another's case: the surest fingerprint that something fell."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "وَاسْأَلِ",
+     "lex": "saala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "imperative-amr"
+      ],
+      "irab": "«and ask» — the amr, its resting sukun moved to a kasra against the coming hamzat al-wasl."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "wazn": "اِفْعَلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْقَرْيَةَ",
+     "lex": "qarya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "hadhf-wa-taqdir"
+      ],
+      "irab": "«the town» — nasb, but not its own: the omitted mudaf أَهْلَ owned this case, and the word left behind inherited it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَرْيَة",
+      "root": "ق ر ي",
+      "wazn": "فَعْلَةَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:39:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 39,
+   "sentence": "s2",
+   "text": "أَنَا ابْنُ جَلَا وَطَلَّاعُ الثَّنَايَا",
+   "translation": {
+    "en": "I am the son of one-who-cleared-the-heights, and the ever-scaler of the passes — that is, the son of A MAN who cleared them: the mawsuf is omitted and its sifa stands alone.",
+    "tr": "Ben, zirveleri aşmış birinin oğluyum ve geçitlerin dâimî tırmanıcısıyım — yani aşmış BİR ADAMIN oğlu: mevsuf hazfedilmiş, sıfatı tek başına durur."
+   },
+   "jumal": [
+    {
+     "text": "أَنَا ابْنُ جَلَا وَطَلَّاعُ الثَّنَايَا",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — شَاهِدُ حَذْفِ الْمَوْصُوفِ، وَالتَّقْدِيرُ: ابْنُ رَجُلٍ جَلَا.",
+     "en": "The mawsuf-omission witness: Suhaym's boast rides faster for the missing word — fame needs no naming."
+    },
+    {
+     "text": "ابْنُ جَلَا",
+     "ar": "مُضَافٌ إِلَى جُمْلَةِ الصِّفَةِ بَعْدَ حَذْفِ مَوْصُوفِهَا.",
+     "en": "An idafa leaning on a verb-clause: the grammar's scar where the noun was cut away."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "أَنَا",
+     "lex": "ana",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«I» — the boast opens on the speaker himself."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "ابْنُ",
+     "lex": "ibn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "idafa-definiteness"
+      ],
+      "irab": "«son of» — the khabar, leaning on what follows."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَنَى",
+      "root": "ب ن ي",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "جَلَا",
+     "lex": "jala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "naqis-verbs",
+       "jumla-sifa",
+       "hadhf-wa-taqdir"
+      ],
+      "irab": "«who cleared» — a mazi verb sitting where a noun should: the mawsuf رَجُلٍ fell, and its sifa-clause holds the annexation alone. Ijaz al-hadhf."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَلَا",
+      "root": "ج ل و",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "وَطَلَّاعُ",
+     "lex": "tallaa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "sighat-mubalagha"
+      ],
+      "irab": "«and the ever-scaler of» — فَعَّال, the intensive mould: not one who climbed once, but whose habit is the heights."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَلَّاع",
+      "root": "ط ل ع",
+      "wazn": "فَعَّالُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الثَّنَايَا",
+     "lex": "thanaya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«the mountain passes» — jarr estimated on the alif; the source itself footnotes: plural of ثَنِيَّة."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ثَنِيَّة",
+      "root": "ث ن ي",
+      "wazn": "فَّعَالَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:39:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 39,
+   "sentence": "s3",
+   "text": "مَتَى أَضَعِ الْعِمَامَةَ تَعْرِفُونِي",
+   "translation": {
+    "en": "Whenever I set down the turban, you know me. (the shart-noun مَتَى gives jazm to both verbs; the five-verbs jawab drops its nun and takes the guarding nun before the speaker's ya.)",
+    "tr": "Sarığımı ne zaman koysam beni tanırsınız. (Şart ismi مَتَى iki fiile de cezm verir; ef'âl-i hamseden cevap fiili nûnunu düşürür ve mütekellim yâsından önce vikaye nûnunu alır.)"
+   },
+   "jumal": [
+    {
+     "text": "مَتَى أَضَعِ الْعِمَامَةَ تَعْرِفُونِي",
+     "ar": "جُمْلَةُ شَرْطٍ وَجَوَابُهُ — وَكِلَا الْفِعْلَيْنِ مَجْزُومٌ بِمَتَى.",
+     "en": "One shart-noun, two jazms: the condition by sukun-turned-kasra, the answer by a dropped nun."
+    },
+    {
+     "text": "تَعْرِفُونِي",
+     "ar": "فِعْلٌ وَفَاعِلٌ وَنُونُ وِقَايَةٍ وَمَفْعُولٌ — أَرْبَعَةُ أَجْزَاءٍ فِي كَلِمَةٍ.",
+     "en": "Four grammatical persons folded into one written word — the opposite pole of this chapter's omissions."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "مَتَى",
+     "lex": "mata",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "in-shartiyya",
+       "maful-fih"
+      ],
+      "irab": "«whenever» — the shart-noun of time: it binds two verbs in jazm, condition and answer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَضَعِ",
+     "lex": "wadaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "in-shartiyya",
+       "mithal-verbs"
+      ],
+      "irab": "«I set down» — the shart verb, jazm by sukun, moved to a kasra against the coming sakin; the mithal wawi has already dropped its waw (وَضَعَ → أَضَعُ)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَضَعَ",
+      "root": "و ض ع",
+      "wazn": "يَفْعَلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "الْعِمَامَةَ",
+     "lex": "imama",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«the turban» — the disguise of rank: set it down and the face is proof enough."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِمَامَة",
+      "root": "ع م م",
+      "wazn": "فِعَالَةَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "تَعْرِفُونِي",
+     "lex": "arafa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "afal-khamsa",
+       "ya-al-mutakallim",
+       "in-shartiyya"
+      ],
+      "irab": "«you know me» — the jawab: a five-verbs form whose raf' nun fell to jazm, then the GUARDING nun stepped in to shield the verb from the speaker's ya."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَرَفَ",
+      "root": "ع ر ف",
+      "wazn": "تَفْعِلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:39:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 39,
+   "sentence": "s4",
+   "text": "وَكَانَ وَرَاءَهُمْ مَلِكٌ يَأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا",
+   "translation": {
+    "en": "«And beyond them was a king seizing every ship by force» (18:79) — every SOUND ship: the sifa is omitted, and what came before points to it.",
+    "tr": "«Onların ilerisinde her gemiyi zorla alan bir kral vardı» (18:79) — her SAĞLAM gemiyi: sıfat hazfedilmiş, öncesi ona delâlet eder."
+   },
+   "jumal": [
+    {
+     "text": "وَكَانَ وَرَاءَهُمْ مَلِكٌ يَأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا",
+     "ar": "جُمْلَةُ كَانَ — وَفِيهَا شَاهِدُ حَذْفِ الصِّفَةِ.",
+     "en": "The sifa-omission witness: the verse withholds «sound», and Khidr's chisel supplies the commentary."
+    },
+    {
+     "text": "يَأْخُذُ كُلَّ سَفِينَةٍ غَصْبًا",
+     "ar": "جُمْلَةُ الصِّفَةِ — وَالْمَحْذُوفُ صِفَةُ سَفِينَةٍ: صَحِيحَةٍ.",
+     "en": "Inside the sifa-clause, another sifa is missing: omission nested in description."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "وَكَانَ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«and there was» — kana opens the scene Khidr explains."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "وَرَاءَهُمْ",
+     "lex": "waraa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "maful-fih",
+       "zarf-mustaqarr-wa-laghw"
+      ],
+      "irab": "«beyond them» — the place-zarf as kana's fronted khabar; and the source notes the sense: AHEAD of them, on their road."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَرَاء",
+      "root": "و ر ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "مَلِكٌ",
+     "lex": "malik-king",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«a king» — kana's delayed ism (and a different word from مَالِك, «owner»: one vowel apart, a throne apart)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَلَك",
+      "root": "م ل ك",
+      "wazn": "فَعِلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يَأْخُذُ",
+     "lex": "akhadha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "jumla-sifa"
+      ],
+      "irab": "«seizing» — the verb-clause as sifa of the king."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَخَذَ",
+      "root": "أ خ ذ",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كُلَّ",
+     "lex": "kull",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«every» — always a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كُلّ",
+      "root": "ك ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "سَفِينَةٍ",
+     "lex": "safina",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "hadhf-wa-taqdir",
+       "naat-sifa"
+      ],
+      "irab": "«ship» — its omitted sifa is صَحِيحَةٍ, «sound»: that is why Khidr scuttled the boat — a holed ship the king would not take."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَفِينَة",
+      "root": "س ف ن",
+      "wazn": "فَعِيلَةٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "غَصْبًا",
+     "lex": "ghasb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "hal",
+       "maful-mutlaq"
+      ],
+      "irab": "«by force» — a masdar standing as hal («seizing-wise»), or a maf'ul mutlaq naming the taking's kind: both readings are received."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَصْب",
+      "root": "غ ص ب",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:39:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 39,
+   "sentence": "s5",
+   "text": "وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ",
+   "translation": {
+    "en": "«And if they call you a liar — messengers before you were called liars» (35:4). The omitted jawab is «so do not grieve, and endure»; what is written STANDS IN its place.",
+    "tr": "«Seni yalanlarlarsa — senden önceki nice resuller de yalanlandı» (35:4). Hazfedilen cevap «üzülme ve sabret»tir; yazılı olan, onun YERİNE geçmiştir."
+   },
+   "jumal": [
+    {
+     "text": "وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ",
+     "ar": "جُمْلَةُ شَرْطٍ حُذِفَ جَوَابُهَا وَأُقِيمَ غَيْرُهُ مَقَامَهُ.",
+     "en": "The stand-in witness: hadhf's second wajh — the gap is not left open but filled with the reason for patience."
+    },
+    {
+     "text": "فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ",
+     "ar": "قَائِمٌ مَقَامَ الْجَوَابِ — وَالتَّقْدِيرُ: فَلَا تَحْزَنْ وَاصْبِرْ.",
+     "en": "What consoles is written; what commands is understood — one clause doing the other's work."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "وَإِنْ",
+     "lex": "in-shart",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "in-shartiyya"
+      ],
+      "irab": "«and if» — the shart harf that will bend two verbs."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "يُكَذِّبُوكَ",
+     "lex": "kadhdhaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "afal-khamsa",
+       "in-shartiyya",
+       "form-ii-verbs"
+      ],
+      "irab": "«they call you a liar» — the five-verbs jazm again: the nun fell, the group's waw stays as fail, the kaf clings as object."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَذَّبَ",
+      "root": "ك ذ ب",
+      "wazn": "يُفَعِّلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    },
+    {
+     "w": "فَقَدْ",
+     "lex": "qad",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "qad-harf"
+      ],
+      "irab": "«then indeed» — the fa of the jawab, but the true jawab fell: «do not grieve, endure» — and this clause was set in its place. The second wajh of hadhf."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "كُذِّبَتْ",
+     "lex": "kadhdhaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "naib-al-fail",
+       "form-ii-verbs"
+      ],
+      "irab": "«were called liars» — the majhul mazi with the ta of tanith: the deniers are not worth naming."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَذَّبَ",
+      "root": "ك ذ ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "رُسُلٌ",
+     "lex": "rusul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf",
+       "naib-al-fail",
+       "tankir-al-musnad-ilayh"
+      ],
+      "irab": "«messengers» — the deputy-subject, indefinite for MANY: you walk a crowded road."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَسُول",
+      "root": "ر س ل",
+      "wazn": "فُعُلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«from» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "قَبْلِكَ",
+     "lex": "qabl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ijaz-al-hadhf"
+      ],
+      "irab": "«before you» — the consolation's whole geography in one jarr phrase."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَبْلَ",
+      "root": "ق ب ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
      "caseMatch": true
     }
    ]

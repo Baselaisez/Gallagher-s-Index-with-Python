@@ -2354,3 +2354,30 @@ not a one-line change.
   disagreements. Next: ijaz al-hadhf's kinds (the omitted mudaf
   وَاسْأَلِ الْقَرْيَةَ, the omitted mawsuf, whole omitted jumlas —
   sahifa 94+), then itnab's kinds.
+
+- **v160 — talkhis ch39: ijaz al-hadhf — omission with a dalil.** Five
+  sentences / 25 tokens (sahifa 94-95, lines ~2714-2775): the omitted
+  MUDAF (Yusuf 12:82 — الْقَرْيَةَ wearing أَهْلَ's inherited nasb),
+  the omitted MAWSUF (Suhaym's bayt, split at the hemistich per the
+  ch19/37 precedent: أَنَا ابْنُ جَلَا = ابْنُ رَجُلٍ جَلَا, with
+  مَتَى jazming both verbs in the second hemistich), the omitted SIFA
+  (Kahf 18:79 — كُلَّ سَفِينَةٍ صَحِيحَةٍ), and the STAND-IN wajh
+  (Fatir 35:4 — فَقَدْ كُذِّبَتْ رُسُلٌ standing where فَلَا تَحْزَنْ
+  وَاصْبِرْ fell). Note 143 carries the six omitted-juz' kinds, the
+  three omitted-jumla kinds (8:8/2:60 with its jaiz alternate/51:48's
+  two qawls), the several-jumlas example (12:45-46), the two wajhs,
+  and the dalils. Paradigm: جَلَا يَجْلُو (naqis wawi); وَضَعَ copied
+  from manar. Engine (four fixes, the bank as arbiter): the FIVE-VERBS
+  nun now restores at the enclitic seam (يُكَذِّبُوكَ، تَعْرِفُونِي
+  reached no cell — and the restore excludes the five nouns' closed
+  waw-construct after أَخُوكَ walked into خَانَ), the derived majhul
+  mazi SHE-cell (كُذِّبَتْ read as a noun; the active she keeps her
+  own cell), the ILTIQA jussive claimed exactly before the loose pass
+  could hand it to the jarr-sign guard (مَتَى أَضَعِ — stored cells
+  and the first-person rebuild both), and CaseEngine reads the
+  damma'd bare waw at the seam as nasb-or-jazm (jazm when a
+  shart/jazim stands before, silence otherwise — raf' would have kept
+  the nun). The متى istifham-router now sees both verbs and keeps the
+  shart face. Bank: 290 worked sentences / 1,815 tokens, 99.9% POS /
+  98.9% CASE — ch39 zero disagreements. Next: itnab's kinds (~2775+),
+  or the hadhf dalils as drill content.

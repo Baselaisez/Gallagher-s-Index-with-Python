@@ -3932,3 +3932,37 @@ and every guard that keys on table membership inherits the table's
 homographs — walk the enclitic list against the particle list once and
 every shared spelling needs its discriminating vowel written into the
 guard (كن beside كُنَّ rode along).
+
+## The restored nun and the seam the two classes share (ch39, v160)
+
+A jazm or nasb drops the five-verbs nun; a clinging pronoun then takes
+the alif's place — and the leftover stem (يُكَذِّبُو، تَعْرِفُو) is a
+spelling NO cell stores, so the corpus went silent and the analyzer
+read nouns. The candidate list now restores ونَ onto a damma'd bare
+group-waw, exactly as it already restored the وا spelling — which nun
+fell is IrabSign's news, not the paradigm's. But the FIVE NOUNS wear
+the same seam from the other class: أَخُوكَ peels to أَخُو, and the
+restored أَخُونَ walked straight into خَانَ's first person (three bank
+regressions in one line of engine). Their waw-construct is a closed
+set (أَبُو أَخُو حَمُو فُو ذُو) and the restore excludes it by name.
+Corollary at the CASE layer: a damma'd bare waw at the seam is ALREADY
+nasb-or-jazm — raf' would have kept its nun — so the marks scan must
+not read the stem's own damma as an ending; a shart/jazim earlier in
+the clause names jazm, and anything less is silence.
+
+## The iltiqa kasra must be claimed EXACTLY or the guards eat it
+
+مَتَى أَضَعِ الْعِمَامَةَ writes a kasra where the jussive cell holds a
+sukun (iltiqa al-sakinayn). The loose pass matched the RAF' cell first
+(أَضَعُ — last vowel may move), whereupon the jarr-sign guard read the
+written kasra as a case and the verb became a noun; the majzum rebuild
+that knew better sat later in the walk. The fix is ordering, not
+tolerance: the majzum branch claims the iltiqa spelling as an EXACT
+candidate (stored cells and the first-person rebuild both), so the
+exact pass answers before the loose pass can hand the word to a guard
+built for nouns. And the claim closes the loop at the case layer: a
+kasra-final word whose matched cell is majzum is jazm, not silence —
+the paradigm decided, the kasra only repairs the meeting of sakins.
+Rider: the متى istifham-router counts FOLLOWING VERBS to pick the
+shart face, so a verb the engine misreads as a noun flips متى to the
+question face too — one wrong kind can cost the row before it.

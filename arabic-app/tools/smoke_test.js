@@ -8440,6 +8440,78 @@ if (!CHROME) {
       throw new Error('الْإِيجَازُ answers its lexical root: ' + r.ijazRoot);
   });
 
+  await check('talkhis ch39: ijaz al-hadhf — omissions, jussives and the guarded nun', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 39);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const g143 = GRAMMAR['ijaz-al-hadhf'];
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.cell && x.cell.person, x.root || null]; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n143: g143 ? { group: g143.group, anchors: (g143.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the iltiqa jussive: the shart verb's kasra is a moved sukun, not jarr
+        ada: cell('مَتَى أَضَعِ الْعِمَامَةَ تَعْرِفُونِي', 1),
+        // the five-verbs form under its wiqaya nun answers from the raf' cell
+        tarifuni: cell('مَتَى أَضَعِ الْعِمَامَةَ تَعْرِفُونِي', 3),
+        // …and under a plain object pronoun too
+        yukadhdhibuka: cell('وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ', 1),
+        // the derived majhul-mazi she-cell — and the ACTIVE she stays active
+        kudhdhibat: cell('فَقَدْ كُذِّبَتْ رُسُلٌ', 1),
+        kadhdhabat: cell('كَذَّبَتِ الْقَوْمُ', 0),
+        // the stored jussive meets the same iltiqa kasra in open text
+        lamYada: cell('لَمْ يَضَعِ الْكِتَابَ', 1),
+        // …and a REAL majrur from the same root stays a noun
+        mawdi: an('فِي مَوْضِعِ الْجَرِّ')[1].kind,
+        // the mudaf-omission witness keeps the inherited nasb; the deputy its raf
+        qarya: k('وَاسْأَلِ الْقَرْيَةَ', 1),
+        rusul: k('وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ', 4),
+        // the new naqis paradigm answers the bayt's naked sifa-verb
+        jala: cell('أَنَا ابْنُ جَلَا وَطَلَّاعُ الثَّنَايَا', 2),
+        // the zarf claims its word back from the verb guess
+        waraa: an('وَكَانَ وَرَاءَهُمْ مَلِكٌ')[1].kind,
+        // the king and the owner are two words, one vowel and a throne apart
+        maliks: [ (st.glossary['malik-king'] || {}).lemma,
+                  (st.glossary['malik'] || {}).lemma ],
+      };
+    });
+    if (r.missing) throw new Error('chapter 39 did not load');
+    if (r.chapters < 39) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch39 sentences: ' + r.n);
+    if (r.t !== 25) throw new Error('ch39 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch39 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n143 || r.n143.group !== 'balagha' || r.n143.anchors < 4)
+      throw new Error('note 143 must be balagha with its witnesses: ' + JSON.stringify(r.n143));
+    if (r.ada[0] !== 'verb' || r.ada[1] !== 'majzum' || r.ada[2] !== 12)
+      throw new Error('أَضَعِ is the first-person jussive under iltiqa: ' + r.ada.join('/'));
+    if (r.tarifuni[0] !== 'verb' || r.tarifuni[1] !== 'mudari' || r.tarifuni[3] !== 'ع ر ف')
+      throw new Error('تَعْرِفُونِي answers through the restored nun: ' + r.tarifuni.join('/'));
+    if (r.yukadhdhibuka[0] !== 'verb' || r.yukadhdhibuka[3] !== 'ك ذ ب')
+      throw new Error('يُكَذِّبُوكَ answers through the restored nun: ' + r.yukadhdhibuka.join('/'));
+    if (r.kudhdhibat[0] !== 'verb' || r.kudhdhibat[1] !== 'majhulMazi' || r.kudhdhibat[2] !== 3)
+      throw new Error('كُذِّبَتْ is the derived majhul she-cell: ' + r.kudhdhibat.join('/'));
+    if (r.kadhdhabat[0] !== 'verb' || r.kadhdhabat[1] !== 'mazi')
+      throw new Error('the ACTIVE كَذَّبَتِ keeps its own cell: ' + r.kadhdhabat.join('/'));
+    if (r.lamYada[0] !== 'verb' || r.lamYada[1] !== 'majzum')
+      throw new Error('لَمْ يَضَعِ answers the stored jussive under iltiqa: ' + r.lamYada.join('/'));
+    if (r.mawdi !== 'noun')
+      throw new Error('مَوْضِعِ under a jarr letter stays a noun: ' + r.mawdi);
+    if (r.qarya !== 'nasb') throw new Error('الْقَرْيَةَ inherits the omitted mudaf\'s nasb: ' + r.qarya);
+    if (r.rusul !== 'raf') throw new Error('رُسُلٌ keeps the deputy\'s raf: ' + r.rusul);
+    if (r.jala[0] !== 'verb' || r.jala[1] !== 'mazi' || r.jala[3] !== 'ج ل و')
+      throw new Error('جَلَا answers the new naqis paradigm: ' + r.jala.join('/'));
+    if (r.waraa !== 'noun') throw new Error('وَرَاءَهُمْ is the zarf, not a verb: ' + r.waraa);
+    if (r.maliks[0] !== 'مَلِك' || r.maliks[1] !== 'مَالِك')
+      throw new Error('the king and the owner stay two words: ' + JSON.stringify(r.maliks));
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);
