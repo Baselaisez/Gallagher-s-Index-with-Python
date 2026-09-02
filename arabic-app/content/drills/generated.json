@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 290,
-  "sentenceTokens": 1815,
+  "sentences": 295,
+  "sentenceTokens": 1840,
   "posAgreement": 99.9,
-  "caseJudged": 1423,
-  "caseAgreement": 98.9,
-  "rows": 2900
+  "caseJudged": 1441,
+  "caseAgreement": 99,
+  "rows": 2925
  },
  "endings": [
   {
@@ -54399,6 +54399,726 @@
      "match": true,
      "caseSaid": "jarr",
      "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:40:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 40,
+   "sentence": "s1",
+   "text": "رَبِّ اشْرَحْ لِي صَدْرِي",
+   "translation": {
+    "en": "My Lord, lay open for me — my breast (20:25). The request comes veiled, then صَدْرِي unveils it: the meaning seen twice settles deeper — idah after ibham.",
+    "tr": "Rabbim, benim için aç — göğsümü (20:25). İstek önce örtülü gelir, sonra صَدْرِي örtüyü kaldırır: iki kez görülen mânâ daha derin yerleşir — ibhâmdan sonra îzâh."
+   },
+   "jumal": [
+    {
+     "text": "رَبِّ اشْرَحْ لِي صَدْرِي",
+     "ar": "جُمْلَةٌ دُعَائِيَّةٌ — شَاهِدُ الْإِيضَاحِ بَعْدَ الْإِبْهَامِ.",
+     "en": "Musa's prayer before Pharaoh: the model witness of idah after ibham."
+    },
+    {
+     "text": "صَدْرِي",
+     "ar": "تَفْسِيرُ الْمُبْهَمِ — وَبِهِ تَمَّ الْإِطْنَابُ.",
+     "en": "One word carrying the unveiling — and the whole reason the sentence is longer than its core."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "رَبِّ",
+     "lex": "rabb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "vocative-munada",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«my Lord» — the trimmed vocative: the ya is gone and its kasra stands witness."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَبّ",
+      "root": "ر ب ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "اشْرَحْ",
+     "lex": "sharaha",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "imperative-amr"
+      ],
+      "irab": "«lay open» — the amr of supplication: a request for the opening of… something, as yet unnamed."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَرَحَ",
+      "root": "ش ر ح",
+      "wazn": "اِفْعَلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لِي",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«for me» — and up to here the speech is veiled: WHAT is to be opened?"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "صَدْرِي",
+     "lex": "sadr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«my breast» — the tafsir of the veiled request: itnab, because the meaning heard twice — sought, then given — sits firm in the soul."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَدْر",
+      "root": "ص د ر",
+      "wazn": "فَعْلِي",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:40:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 40,
+   "sentence": "s2",
+   "text": "يَشِيبُ ابْنُ آدَمَ وَيَشِبُّ فِيهِ خَصْلَتَانِ الْحِرْصُ وَطُولُ الْأَمَلِ",
+   "translation": {
+    "en": "The son of Adam grows old, and two traits grow young in him: greed, and long hope. (TAWSHI': the speech seals with a dual, then two nouns unfold it, the second joined to the first.)",
+    "tr": "Âdemoğlu yaşlanır ve onda iki haslet gençleşir: hırs ve tûl-i emel. (TEVŞÎ': söz bir tesniye ile mühürlenir, sonra iki isim onu açar — ikincisi birincisine atfedilmiş.)"
+   },
+   "jumal": [
+    {
+     "text": "يَشِيبُ ابْنُ آدَمَ وَيَشِبُّ فِيهِ خَصْلَتَانِ",
+     "ar": "جُمْلَتَانِ مُتَعَاطِفَتَانِ — وَفِي عَجُزِ الْكَلَامِ الْمُثَنَّى الْمُبْهَمُ.",
+     "en": "Aging and growing-young set side by side, and the dual left veiled at the seat: the tawshi' frame."
+    },
+    {
+     "text": "الْحِرْصُ وَطُولُ الْأَمَلِ",
+     "ar": "الِاسْمَانِ الْمُفَسِّرَانِ — ثَانِيهِمَا مَعْطُوفٌ عَلَى الْأَوَّلِ.",
+     "en": "The two nouns that open the dual — the definition of tawshi' enacted word by word."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 9,
+   "agree": 9,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "يَشِيبُ",
+     "lex": "shaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "hollow-verbs"
+      ],
+      "irab": "«grows grey» — the hollow ya verb of aging."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَابَ",
+      "root": "ش ي ب",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "ابْنُ",
+     "lex": "ibn",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "idafa-definiteness"
+      ],
+      "irab": "«the son of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بَنَى",
+      "root": "ب ن ي",
+      "wazn": "اِفْعِلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "آدَمَ",
+     "lex": "aadam",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "asbab-al-itnab",
+       "mamnu-min-sarf"
+      ],
+      "irab": "«Adam» — jarr worn as a fatha: the diptote name."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "آدَم",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "وَيَشِبُّ",
+     "lex": "shabba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "doubled-verbs"
+      ],
+      "irab": "«and grows young» — the geminate verb, set against يَشِيبُ letter for letter: the hadith's own tibaq."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "شَبَّ",
+      "root": "ش ب ب",
+      "wazn": "يَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "فِيهِ",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«in him» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "خَصْلَتَانِ",
+     "lex": "khasla",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "al-muthanna"
+      ],
+      "irab": "«two traits» — the dual at the speech's seat: tawshi's veiled word, waiting to be unfolded."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "الْحِرْصُ",
+     "lex": "hirs",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "badal"
+      ],
+      "irab": "«greed» — the first of the two unfolding nouns."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حِرْص",
+      "root": "ح ر ص",
+      "wazn": "فِعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَطُولُ",
+     "lex": "tul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "atf-nasaq"
+      ],
+      "irab": "«and the length of» — the second noun, JOINED to the first exactly as tawshi's definition demands."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طُول",
+      "root": "ط و ل",
+      "wazn": "فُعلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْأَمَلِ",
+     "lex": "amal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«hope» — hope that outlives the strength to chase it."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمَل",
+      "root": "أ م ل",
+      "wazn": "فَعَلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:40:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 40,
+   "sentence": "s3",
+   "text": "حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَى",
+   "translation": {
+    "en": "Guard the prayers — and the MIDDLE prayer (2:238): the special named after the general, to alert to its excellence, as if it were of another kind altogether.",
+    "tr": "Namazları koruyun — ve ORTA namazı (2:238): husûsî olan, umûmîden sonra anılır ki faziletine dikkat çekilsin — sanki başka bir cinstenmiş gibi."
+   },
+   "jumal": [
+    {
+     "text": "حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَى",
+     "ar": "جُمْلَةٌ طَلَبِيَّةٌ — شَاهِدُ ذِكْرِ الْخَاصِّ بَعْدَ الْعَامِّ.",
+     "en": "The khass-after-'amm witness: the change in description is lowered to the rank of a change in essence."
+    },
+    {
+     "text": "وَالصَّلَاةِ الْوُسْطَى",
+     "ar": "الْخَاصُّ الْمَعْطُوفُ — كَأَنَّهُ لَيْسَ مِنْ جِنْسِ الْعَامِّ.",
+     "en": "As if the middle prayer were not of the prayers' own kind — that is the alerting."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "حَافِظُوا",
+     "lex": "hafaza",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "form-iii-verbs",
+       "imperative-amr"
+      ],
+      "irab": "«guard» — Form III's amr to the community: keep up, persistently."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "حَافَظَ",
+      "root": "ح ف ظ",
+      "wazn": "فَاعِلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«over» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الصَّلَوَاتِ",
+     "lex": "salat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "jam-muannath-salim"
+      ],
+      "irab": "«the prayers» — ALL of them: the general word."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَلَاة",
+      "root": "ص ل و",
+      "wazn": "فَّعَلَاتِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالصَّلَاةِ",
+     "lex": "salat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "atf-nasaq"
+      ],
+      "irab": "«and the prayer» — already inside «the prayers», yet named again: the khass joined to the 'amm is itnab with a purpose."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَلَاة",
+      "root": "ص ل و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْوُسْطَى",
+     "lex": "wusta",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "asbab-al-itnab",
+       "naat-sifa",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«the middle» — the maqsura hides its kasra; and the scholars differ on which prayer is meant: fajr, said some; 'asr, said others."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وُسْطَى",
+      "root": "و س ط",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:40:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 40,
+   "sentence": "s4",
+   "text": "كَلَّا سَوْفَ تَعْلَمُونَ",
+   "translation": {
+    "en": "No indeed — you shall come to know (102:3).",
+    "tr": "Hayır — ileride bileceksiniz (102:3)."
+   },
+   "jumal": [
+    {
+     "text": "كَلَّا سَوْفَ تَعْلَمُونَ",
+     "ar": "زَجْرٌ وَوَعِيدٌ — الْإِنْذَارُ الْأَوَّلُ.",
+     "en": "The first warning, complete in three words."
+    },
+    {
+     "text": "كَلَّا",
+     "ar": "حَرْفُ الرَّدْعِ — وَبِهِ يَنْقَطِعُ التَّفَاخُرُ.",
+     "en": "One letter against the whole contest of piling up."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "كَلَّا",
+     "lex": "kalla",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«no indeed» — the letter that throws the boast back."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "سَوْفَ",
+     "lex": "sawfa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«shall» — the far future's letter."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَعْلَمُونَ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "afal-khamsa"
+      ],
+      "irab": "«you will know» — the five-verbs raf', its nun standing firm."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "تَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:40:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 40,
+   "sentence": "s5",
+   "text": "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ",
+   "translation": {
+    "en": "Then no indeed — you shall come to know (102:4). The repetition is itnab for a point: the warning doubled — and ثُمَّ says the second is the weightier.",
+    "tr": "Sonra hayır — ileride bileceksiniz (102:4). Tekrar, bir nükte için ıtnâbdır: inzâr katlanmış — ve ثُمَّ, ikincisinin daha ağır olduğunu söyler."
+   },
+   "jumal": [
+    {
+     "text": "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ",
+     "ar": "تَكْرِيرُ الْإِنْذَارِ — إِطْنَابٌ لِنُكْتَةٍ.",
+     "en": "The takrir witness: the same words again, and the again IS the meaning."
+    },
+    {
+     "text": "ثُمَّ",
+     "ar": "لِلدَّلَالَةِ عَلَى أَنَّ الثَّانِيَ أَبْلَغُ.",
+     "en": "Not mere sequence: a step up in severity."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "ثُمَّ",
+     "lex": "thumma",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab",
+       "atf-nasaq"
+      ],
+      "irab": "«then» — the joining letter that grades the two warnings: the second outweighs."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَلَّا",
+     "lex": "kalla",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«no indeed» — repeated: takrir with its nukta, not padding."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "سَوْفَ",
+     "lex": "sawfa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "asbab-al-itnab"
+      ],
+      "irab": "«shall» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَعْلَمُونَ",
+     "lex": "alima",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "asbab-al-itnab",
+       "afal-khamsa"
+      ],
+      "irab": "«you will know» — word for word the first warning: the takrir is exact."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَلِمَ",
+      "root": "ع ل م",
+      "wazn": "تَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
      "caseMatch": true
     }
    ]

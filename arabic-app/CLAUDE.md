@@ -3966,3 +3966,39 @@ the paradigm decided, the kasra only repairs the meeting of sakins.
 Rider: the متى istifham-router counts FOLLOWING VERBS to pick the
 shart face, so a verb the engine misreads as a noun flips متى to the
 question face too — one wrong kind can cost the row before it.
+
+## The geminate's twin cells and the governor that names them (ch40, v161)
+
+A geminate writes its jussive as a FATHA (لَمْ يَشِبَّ، لَمْ يَظُنَّ),
+so its stored mansub and majzum are one spelling — and the cell walk
+answers «mansub» merely because that shelf stands first. No reading of
+the word alone can split the twins; the GOVERNOR does: a jazim
+immediately before renames the matched cell to majzum (doubled endings
+only, so لَنْ يَشِبَّ keeps its true name), and the case layer then
+reads the final fatha as jazm ONLY on a renamed cell. Same family as
+the iltiqa-kasra rule one wave earlier: when orthography collapses two
+cells into one spelling, the paradigm has already decided everything
+except which twin — and which twin is the CONTEXT's to say, never the
+marks scan's. The first cut trusted `tense === majzum` alone at the
+case layer and the ch33 gate caught it within the hour: the
+first-person REBUILD also stamps «majzum» (it derives from the
+majzum2 shelf) while being twin-agnostic, so لَنْ أَدُلَّ — a true
+nasb wearing the rebuilt cell — read as jazm. The rename now carries
+an explicit `gov: "jazim"` stamp and the case layer trusts only the
+stamp; the same rename applied over a rebuilt cell under لم turned
+لَمْ أَدُلَّ from a silent nasb-guess into an honest jazm. Meta-rule:
+a tense name on a cell is a SHELF label, not a verdict — two shelves
+can hold one spelling, and only a stamp written at the moment context
+decided is evidence downstream.
+
+## كَلَّا joined the table — and brought its dual along
+
+The rebuke harf had no entry, so the ب/ك/ل peel read كَلَّا as kaf +
+لا and stamped a two-segment i'rab on a one-word harf. Adding the
+entry inherits the homograph (the standing table doctrine): كِلَا
+«both of» wears the same bare letters, so the KAF'S KASRA sends the
+word down the open-class path whole, and an unvowelled كلا keeps the
+table's rad' reading UNSURE (no harf claim) instead of walking into a
+verb cell — the manOpen pattern, one particle over. Every new table
+entry pays this toll: name the homograph, write its discriminating
+vowel into the guard, and keep the unvowelled face honest.

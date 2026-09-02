@@ -8512,6 +8512,70 @@ if (!CHROME) {
       throw new Error('the king and the owner stay two words: ' + JSON.stringify(r.maliks));
   });
 
+  await check('talkhis ch40: the occasions of itnab — tawshi\', the middle prayer, the doubled warning', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 40);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.root || null, x.pk || null]; };
+      const g144 = GRAMMAR['asbab-al-itnab'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n144: g144 ? { group: g144.group, anchors: (g144.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the trimmed vocative stays silent; the new sound amr answers
+        rabbi: k('رَبِّ اشْرَحْ لِي صَدْرِي', 0),
+        ishrah: cell('رَبِّ اشْرَحْ لِي صَدْرِي', 1),
+        // the aging pair: hollow ya against its geminate opposite
+        yashibu: cell('يَشِيبُ ابْنُ آدَمَ وَيَشِبُّ فِيهِ خَصْلَتَانِ', 0),
+        yashibbu: cell('يَشِيبُ ابْنُ آدَمَ وَيَشِبُّ فِيهِ خَصْلَتَانِ', 3),
+        // the geminate's jazm is a FATHA — and only under a jazim
+        lamYashibba: cell('لَمْ يَشِبَّ الْوَلَدُ', 1).concat(k('لَمْ يَشِبَّ الْوَلَدُ', 1)),
+        lanYashibba: cell('لَنْ يَشِبَّ الْوَلَدُ', 1).concat(k('لَنْ يَشِبَّ الْوَلَدُ', 1)),
+        // كَلَّا wears its own rad' face; كِلَا stays an open-class noun
+        kalla: an('كَلَّا سَوْفَ تَعْلَمُونَ')[0].pk,
+        kila: an('كِلَا الرَّجُلَيْنِ قَائِمٌ')[0].kind,
+        // the Form III amr and the sound-fem-plural's jarr
+        hafizu: cell('حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَى', 0),
+        salawat: k('حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَى', 2),
+        // the geminate cells never eat the masdar under its jarr letter
+        shabab: an('بِالشَّبَابِ فَخْرٌ')[0].kind,
+        talamun: k('كَلَّا سَوْفَ تَعْلَمُونَ', 2),
+      };
+    });
+    if (r.missing) throw new Error('chapter 40 did not load');
+    if (r.chapters < 40) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 5) throw new Error('ch40 sentences: ' + r.n);
+    if (r.t !== 25) throw new Error('ch40 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch40 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n144 || r.n144.group !== 'balagha' || r.n144.anchors < 4)
+      throw new Error('note 144 must be balagha with its witnesses: ' + JSON.stringify(r.n144));
+    if (r.rabbi !== null) throw new Error('the trimmed vocative رَبِّ stays silent: ' + r.rabbi);
+    if (r.ishrah[0] !== 'verb' || r.ishrah[1] !== 'amr' || r.ishrah[2] !== 'ش ر ح')
+      throw new Error('اشْرَحْ answers the new paradigm: ' + r.ishrah.join('/'));
+    if (r.yashibu[0] !== 'verb' || r.yashibu[1] !== 'mudari' || r.yashibu[2] !== 'ش ي ب')
+      throw new Error('يَشِيبُ answers the hollow paradigm: ' + r.yashibu.join('/'));
+    if (r.yashibbu[0] !== 'verb' || r.yashibbu[1] !== 'mudari' || r.yashibbu[2] !== 'ش ب ب')
+      throw new Error('يَشِبُّ answers the geminate paradigm: ' + r.yashibbu.join('/'));
+    if (r.lamYashibba[1] !== 'majzum' || r.lamYashibba[4] !== 'jazm')
+      throw new Error('the geminate jazm wears its fatha under لم: ' + r.lamYashibba.join('/'));
+    if (r.lanYashibba[1] !== 'mansub' || r.lanYashibba[4] !== 'nasb')
+      throw new Error('the twin keeps nasb under لن: ' + r.lanYashibba.join('/'));
+    if (r.kalla !== 'rad') throw new Error('كَلَّا wears the rad\' face: ' + r.kalla);
+    if (r.kila !== 'noun') throw new Error('كِلَا stays an open-class noun: ' + r.kila);
+    if (r.hafizu[0] !== 'verb' || r.hafizu[1] !== 'amr' || r.hafizu[2] !== 'ح ف ظ')
+      throw new Error('حَافِظُوا answers the Form III amr: ' + r.hafizu.join('/'));
+    if (r.salawat !== 'jarr') throw new Error('الصَّلَوَاتِ keeps its jarr: ' + r.salawat);
+    if (r.shabab !== 'noun') throw new Error('بِالشَّبَابِ stays a noun: ' + r.shabab);
+    if (r.talamun !== 'raf') throw new Error('تَعْلَمُونَ keeps the five-verbs raf\': ' + r.talamun);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

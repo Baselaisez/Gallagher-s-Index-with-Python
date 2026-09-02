@@ -2381,3 +2381,24 @@ not a one-line change.
   shart face. Bank: 290 worked sentences / 1,815 tokens, 99.9% POS /
   98.9% CASE — ch39 zero disagreements. Next: itnab's kinds (~2775+),
   or the hadhf dalils as drill content.
+
+- **v161 — talkhis ch40: the occasions of itnab.** Five sentences /
+  25 tokens (sahifa 96-98, lines ~2800-2845): idah after ibham (Ta-Ha
+  20:25 — the trimmed vocative رَبِّ, the veiled request, صَدْرِي the
+  tafsir; the ni'ma-bab remark), TAWSHI' with its verbatim definition
+  (the hadith of the son of Adam's two ever-young traits — the sealing
+  dual خَصْلَتَانِ unfolded by الْحِرْصُ وَطُولُ الْأَمَلِ, and the
+  hadith's own yashibu/yashibbu tibaq), the khass after the 'amm
+  (2:238 with the fajr/'asr khilaf), and takrir for the doubled
+  warning (102:3-4, ثُمَّ grading the second). Note 144. Paradigms:
+  شَرَحَ (sound), شَابَ (hollow ya), شَبَّ (geminate — bank before
+  trust, per doctrine), حَافَظَ copied from samti. Engine: كَلَّا got
+  its own rad'-wa-zajr face (the kaf's kasra names كِلَا the dual,
+  unvowelled stays unsure — the min/man shape at the table itself);
+  and the geminate's JAZM-AS-FATHA: the mansub/majzum twin cells share
+  one spelling, so the governor renames the cell (لَمْ يَشِبَّ majzum/
+  jazm, لَنْ يَشِبَّ untouched) and the case layer reads the fatha as
+  jazm only on a renamed cell. Bank: 295 worked sentences / 1,840
+  tokens, 99.9% POS / 99.0% CASE — ch40 zero disagreements, CASE up
+  a tenth. Next: ighal (Khansa's bayt, Imru' al-Qays), then the
+  remaining itnab occasions (~2850+).
