@@ -4035,3 +4035,20 @@ ya WITH its letter (يَا مُعَلِّمِي) but not the commoner trimmed wa
 the corpus-agreement gate rightly called the refusal a failure: the
 gate walks every munada the corpus parses, so shipping the chapter
 that uses a wajh IS the test of the engine that reads it.
+
+## The corpus index dedupes by LEX — a key name is a global claim (ch43, v164)
+
+RootFinder.corpusIndex walks stories in order and keeps the FIRST
+paradigm per lex key. Authoring talkhis's سَقَى («to water») under the
+key 'saqa' silently lost it: manar already owns 'saqa' for سَاقَ («to
+drive»), so the corpus-wide walk saw only the driver, and فَسَقَى
+walked into the فِسْق noun. The in-app popup masks the collision —
+per-story morph lookup is keyed locally, so the token LOOKED right —
+but every corpus-wide engine (open-text analyze, the bank's engine
+side, RootFinder) answered with the other story's verb. Rule: a lex
+key is a GLOBAL name; before authoring one, grep every package's
+glossary AND morphology for it (the ch39 key-check missed morphology),
+and when the word differs, mint a suffixed key (malik-king,
+saqa-water) — never share a spelling between two words. The eye-probe
+caught it only because the probe reads the BUILT corpus, which is one
+more reason the pre-authoring probe is mandatory.

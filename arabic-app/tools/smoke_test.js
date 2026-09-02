@@ -8709,6 +8709,65 @@ if (!CHROME) {
     if (r.verse !== 2) throw new Error('the two hemistich sentences wear verse dress: ' + r.verse);
   });
 
+  await check('talkhis ch43: takmil and tatmim — the hinge, the guard, and the two waterers', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 43);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.root || null]; };
+      const g147 = GRAMMAR['takmil-wa-tatmim'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+        n147: g147 ? { group: g147.group, anchors: (g147.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the two waterers stay two words: talkhis's سَقَى and manar's سَاقَ
+        fasaqa: cell('فَسَقَى دِيَارَكِ غَيْرَ مُفْسِدِهَا', 0),
+        saaqa: cell('سَاقَ الرَّاعِي الْغَنَمَ', 0),
+        // the naqis and passive stay honestly taqdiri
+        tahmi: cell('وَدِيمَةٌ تَهْمِي', 1).concat(k('وَدِيمَةٌ تَهْمِي', 1)),
+        yuta: cell('أَنْ يُؤْتَى فِي كَلَامٍ', 1).concat(k('أَنْ يُؤْتَى فِي كَلَامٍ', 1)),
+        // the definition's working verbs
+        yuhimu: cell('يُوهِمُ خِلَافَ الْمَقْصُودِ', 0).concat(k('يُوهِمُ خِلَافَ الْمَقْصُودِ', 0)),
+        yadfauhu: cell('بِمَا يَدْفَعُهُ', 1),
+        // the tatmim witness and the plural-index resolution
+        yutimun: k('وَيُطْعِمُونَ الطَّعَامَ عَلَى حُبِّهِ', 0),
+        diyar: an('فَسَقَى دِيَارَكِ غَيْرَ مُفْسِدِهَا')[1].root,
+        mubalagha: [an('لِنُكْتَةٍ كَالْمُبَالَغَةِ')[1].root, k('لِنُكْتَةٍ كَالْمُبَالَغَةِ', 1)],
+      };
+    });
+    if (r.missing) throw new Error('chapter 43 did not load');
+    if (r.chapters < 43) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch43 sentences: ' + r.n);
+    if (r.t !== 40) throw new Error('ch43 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch43 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.verse !== 2) throw new Error('the two hemistich sentences wear verse dress: ' + r.verse);
+    if (!r.n147 || r.n147.group !== 'balagha' || r.n147.anchors < 3)
+      throw new Error('note 147 must be balagha with its witnesses: ' + JSON.stringify(r.n147));
+    if (r.fasaqa[0] !== 'verb' || r.fasaqa[1] !== 'mazi' || r.fasaqa[2] !== 'س ق ي')
+      throw new Error('فَسَقَى answers its own key past the manar shadow: ' + r.fasaqa.join('/'));
+    if (r.saaqa[0] !== 'verb' || r.saaqa[2] !== 'س و ق')
+      throw new Error('manar\'s سَاقَ keeps its own word: ' + r.saaqa.join('/'));
+    if (r.tahmi[0] !== 'verb' || r.tahmi[1] !== 'mudari' || r.tahmi[3] !== null)
+      throw new Error('تَهْمِي answers the naqis and stays taqdiri: ' + r.tahmi.join('/'));
+    if (r.yuta[1] !== 'majhulMudari' || r.yuta[3] !== null)
+      throw new Error('يُؤْتَى is the passive, honestly silent: ' + r.yuta.join('/'));
+    if (r.yuhimu[0] !== 'verb' || r.yuhimu[2] !== 'و ه م' || r.yuhimu[3] !== 'raf')
+      throw new Error('يُوهِمُ answers the IV paradigm: ' + r.yuhimu.join('/'));
+    if (r.yadfauhu[0] !== 'verb' || r.yadfauhu[1] !== 'mudari')
+      throw new Error('يَدْفَعُهُ answers under its pronoun: ' + r.yadfauhu.join('/'));
+    if (r.yutimun !== 'raf') throw new Error('يُطْعِمُونَ keeps the five-verbs raf\': ' + r.yutimun);
+    if (r.diyar !== 'د و ر') throw new Error('دِيَارَكِ resolves through dar\'s stored plural: ' + r.diyar);
+    if (r.mubalagha[0] !== 'ب ل غ' || r.mubalagha[1] !== 'jarr')
+      throw new Error('كَالْمُبَالَغَةِ answers its key under the kaf: ' + r.mubalagha.join('/'));
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

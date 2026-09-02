@@ -2442,3 +2442,24 @@ not a one-line change.
   sentences / 1,899 tokens, 99.9% POS / 99.0% CASE — ch42 zero
   disagreements. Next: takmil (ihtiras — Tarafa's bayt, 5:54) and
   tatmim (76:8), then i'tirad (~2870+).
+
+- **v164 — talkhis ch43: takmil and tatmim — the guard and the
+  topping.** Six sentences / 40 tokens (sahifa 99, lines ~2870-2890):
+  the two definitions verbatim in the package's definitional frame
+  (يُؤْتَى the passive mudari with taqdiri nasb, يُوهِمُ the Form IV
+  hinge, بِفَضْلَةٍ لِنُكْتَةٍ the nahw's own terms), Tarafa's
+  rain-prayer with its mid-speech guard (غَيْرَ مُفْسِدِهَا — a hal
+  thrown forward of its own delayed fail صَوْبُ الرَّبِيعِ), Ma'ida
+  5:54's end-of-speech guard (أَعِزَّةٍ عَلَى الْكَافِرِينَ), and
+  Insan 76:8's tatmim (عَلَى حُبِّهِ with the pronoun to the food).
+  Note 147 with the seat map (ighal seals the end; tadhyil follows
+  with a jumla; takmil/tatmim ride anywhere, parted by the lurking
+  misreading). Paradigms: أَوْهَمَ (IV mithal-wawi), دَفَعَ, سَقَى,
+  هَمَى (naqis yai pair); أَطْعَمَ copied from kaffarat. KEY
+  COLLISION caught by eye-probe: manar already owned lex 'saqa' =
+  سَاقَ (to drive), and the corpus index dedupes by lex — talkhis's
+  waterer shipped as 'saqa-water' (the malik/malik-king precedent),
+  with BOTH waterers gated. Bank: 313 worked sentences / 1,939
+  tokens, 99.9% POS / 99.0% CASE — ch43 zero disagreements. Next:
+  i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
+  then the closing remarks of the bab.

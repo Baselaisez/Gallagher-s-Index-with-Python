@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 307,
-  "sentenceTokens": 1899,
+  "sentences": 313,
+  "sentenceTokens": 1939,
   "posAgreement": 99.9,
-  "caseJudged": 1489,
+  "caseJudged": 1520,
   "caseAgreement": 99,
-  "rows": 2984
+  "rows": 3024
  },
  "endings": [
   {
@@ -56833,6 +56833,1089 @@
      "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s1",
+   "text": "التَّكْمِيلُ أَنْ يُؤْتَى فِي كَلَامٍ يُوهِمُ خِلَافَ الْمَقْصُودِ بِمَا يَدْفَعُهُ",
+   "translation": {
+    "en": "TAKMIL — also called ihtiras, «taking guard» — is bringing, in speech that SUGGESTS the contrary of what is meant, that which repels it.",
+    "tr": "TEKMÎL — ihtirâs, «sakınma» da denir — maksûdun zıddını AKLA GETİREN sözde, o zıddı def edeni getirmektir."
+   },
+   "jumal": [
+    {
+     "text": "التَّكْمِيلُ أَنْ يُؤْتَى فِي كَلَامٍ يُوهِمُ خِلَافَ الْمَقْصُودِ بِمَا يَدْفَعُهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — حَدُّ التَّكْمِيلِ (الِاحْتِرَاسِ).",
+     "en": "The definition: where the words could be read against you, post a guard."
+    },
+    {
+     "text": "يُوهِمُ خِلَافَ الْمَقْصُودِ",
+     "ar": "قَيْدُ الْبَابِ — بِهِ يَفْتَرِقُ التَّكْمِيلُ عَنِ التَّتْمِيمِ.",
+     "en": "Five words that split this chapter's pair."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 10,
+   "agree": 10,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "التَّكْمِيلُ",
+     "lex": "takmil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«completion» — the sixth occasion, as mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَكْمِيل",
+      "root": "ك م ل",
+      "wazn": "تَّفْعِيلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَنْ",
+     "lex": "an-nasiba",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "an-masdariyya"
+      ],
+      "irab": "«that» — the masdar-maker: the definition rolls into one noun."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يُؤْتَى",
+     "lex": "ata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "naib-al-fail"
+      ],
+      "irab": "«there be brought» — the passive mudari, its nasb estimated on the maqsura."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَتَى",
+      "root": "أ ت ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«in» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَلَامٍ",
+     "lex": "kalam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«speech» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَلَام",
+      "root": "ك ل م",
+      "wazn": "فَعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "يُوهِمُ",
+     "lex": "awhama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "form-iv-verbs",
+       "jumla-sifa"
+      ],
+      "irab": "«that suggests» — Form IV of وَهْم: makes the hearer imagine. This sifa is the whole hinge between the pair."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَوْهَمَ",
+      "root": "و ه م",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "خِلَافَ",
+     "lex": "khilaf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«the contrary of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خِلَاف",
+      "root": "خ ل ف",
+      "wazn": "فِعَالَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمَقْصُودِ",
+     "lex": "maqsud",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "ism-maful"
+      ],
+      "irab": "«what is meant» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَقْصُود",
+      "root": "ق ص د",
+      "wazn": "مَفْعُولِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "anwa-ma"
+      ],
+      "irab": "«that which» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يَدْفَعُهُ",
+     "lex": "dafaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«repels it» — the guard-word's whole job in one sila."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "دَفَعَ",
+      "root": "د ف ع",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s2",
+   "text": "فَسَقَى دِيَارَكِ غَيْرَ مُفْسِدِهَا",
+   "translation": {
+    "en": "So may they water your dwellings — WITHOUT RUINING THEM —",
+    "tr": "Yurtlarını sulasın — ONLARI HARAP ETMEDEN —"
+   },
+   "jumal": [
+    {
+     "text": "فَسَقَى دِيَارَكِ غَيْرَ مُفْسِدِهَا",
+     "ar": "الدُّعَاءُ وَحَالُهُ الْمُحْتَرِسَةُ — وَالْفَاعِلُ فِي الْعَجُزِ.",
+     "en": "The prayer with its guard already up, its subject still to come."
+    },
+    {
+     "text": "غَيْرَ مُفْسِدِهَا",
+     "ar": "الِاحْتِرَاسُ فِي وَسَطِ الْكَلَامِ.",
+     "en": "The takmil mid-speech: blessing, not flood."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "فَسَقَى",
+     "lex": "saqa-water",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "naqis-verbs"
+      ],
+      "irab": "«so may … water» — a mazi worn as a prayer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَقَى",
+      "root": "س ق ي",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "دِيَارَكِ",
+     "lex": "dar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«your dwellings» — the beloved's abodes, object before its subject."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَار",
+      "root": "د و ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "غَيْرَ",
+     "lex": "ghayr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "hal"
+      ],
+      "irab": "«without» — a hal thrown FORWARD of its subject: the guard posted mid-speech, before the rain is even named."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غَيْر",
+      "root": "غ ي ر",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "مُفْسِدِهَا",
+     "lex": "mufsid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "ism-fail",
+       "form-iv-verbs"
+      ],
+      "irab": "«ruining them» — for a prayed-for rain can still drown: the contrary the takmil repels."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُفْسِد",
+      "root": "ف س د",
+      "wazn": "مُفْعِلِهَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s3",
+   "text": "صَوْبُ الرَّبِيعِ وَدِيمَةٌ تَهْمِي",
+   "translation": {
+    "en": "— the spring rain, and a steady downpour streaming. (the source's own note: صَوْب is the spring's rain, دِيمَة the long soft rain.)",
+    "tr": "— bahar yağmuru ve boşanan dâimî yağmur. (kaynağın kendi notu: صَوْب bahar yağmuru, دِيمَة uzun süren yumuşak yağmurdur.)"
+   },
+   "jumal": [
+    {
+     "text": "صَوْبُ الرَّبِيعِ وَدِيمَةٌ تَهْمِي",
+     "ar": "الْفَاعِلُ وَمَعْطُوفُهُ — عَجُزُ بَيْتِ طَرَفَةَ.",
+     "en": "The rains named at last — already sworn harmless."
+    },
+    {
+     "text": "تَهْمِي",
+     "ar": "صِفَةُ الدِّيمَةِ — الْمُضَارِعُ النَّاقِصُ التَّقْدِيرِيُّ.",
+     "en": "One taqdiri verb closing the bayt."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "صَوْبُ",
+     "lex": "sawb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«the pouring of» — the delayed subject arrives."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَوْب",
+      "root": "ص و ب",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الرَّبِيعِ",
+     "lex": "rabi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«the spring» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَبِيع",
+      "root": "ر ب ع",
+      "wazn": "فَّعِيلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَدِيمَةٌ",
+     "lex": "dima",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "atf-nasaq"
+      ],
+      "irab": "«and a steady rain» — the gentle kind that soaks and never smashes."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دِيمَة",
+      "root": "د و م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَهْمِي",
+     "lex": "hamaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "naqis-verbs",
+       "jumla-sifa"
+      ],
+      "irab": "«streaming» — the naqis mudari of هَمَى, its damma hidden on the ya."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "هَمَى",
+      "root": "ه م ي",
+      "wazn": "تَفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s4",
+   "text": "أَذِلَّةٍ عَلَى الْمُؤْمِنِينَ أَعِزَّةٍ عَلَى الْكَافِرِينَ",
+   "translation": {
+    "en": "…humble toward the believers, MIGHTY AGAINST THE DISBELIEVERS (5:54). The guard stands at the speech's END: humility must not be read as weakness.",
+    "tr": "…müminlere karşı alçak gönüllü, KÂFİRLERE KARŞI İZZETLİ (5:54). Nöbetçi sözün SONUNDA durur: tevazu, zaaf diye okunmasın."
+   },
+   "jumal": [
+    {
+     "text": "أَذِلَّةٍ عَلَى الْمُؤْمِنِينَ أَعِزَّةٍ عَلَى الْكَافِرِينَ",
+     "ar": "صِفَتَانِ مُتَقَابِلَتَانِ — وَالثَّانِيَةُ تَكْمِيلٌ فِي آخِرِ الْكَلَامِ.",
+     "en": "The takmil at the end: without it, «humble» could shade into «weak»."
+    },
+    {
+     "text": "أَعِزَّةٍ عَلَى الْكَافِرِينَ",
+     "ar": "دَفْعُ إِيهَامِ الضَّعْفِ.",
+     "en": "Four words repelling one dangerous misreading."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "أَذِلَّةٍ",
+     "lex": "dhalil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«humble» — plural of ذَلِيل, here tenderness, not disgrace."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ذَلِيل",
+      "root": "ذ ل ل",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«toward» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُؤْمِنِينَ",
+     "lex": "mumin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "jam-mudhakkar-salim"
+      ],
+      "irab": "«the believers» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ؤ م ن",
+      "wazn": "مُفْعِلِينَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَعِزَّةٍ",
+     "lex": "aziz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«mighty» — the second sifa IS the takmil: gentleness at home, iron at the gate."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "أ ع ز",
+      "wazn": "فَعِلَّةٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«against» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْكَافِرِينَ",
+     "lex": "kafir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "jam-mudhakkar-salim"
+      ],
+      "irab": "«the disbelievers» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ك ف ر",
+      "wazn": "فَاعِلِينَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s5",
+   "text": "وَالتَّتْمِيمُ أَنْ يُؤْتَى فِي كَلَامٍ لَا يُوهِمُ خِلَافَ الْمَقْصُودِ بِفَضْلَةٍ لِنُكْتَةٍ كَالْمُبَالَغَةِ",
+   "translation": {
+    "en": "And TATMIM is bringing, in speech that does NOT suggest the contrary, a surplus word (fadla) for a point — such as mubalagha.",
+    "tr": "TETMÎM ise, zıddı akla GETİRMEYEN sözde, bir nükte için — mübâlağa gibi — fazla bir kelime (fazla) getirmektir."
+   },
+   "jumal": [
+    {
+     "text": "وَالتَّتْمِيمُ أَنْ يُؤْتَى فِي كَلَامٍ لَا يُوهِمُ خِلَافَ الْمَقْصُودِ بِفَضْلَةٍ لِنُكْتَةٍ",
+     "ar": "حَدُّ التَّتْمِيمِ — يُفَارِقُ التَّكْمِيلَ بِلَا النَّافِيَةِ.",
+     "en": "The tatmim definition: the same frame as takmil, parted by one negating la."
+    },
+    {
+     "text": "بِفَضْلَةٍ لِنُكْتَةٍ",
+     "ar": "الْفَضْلَةُ الْمَشْرُوطَةُ بِالنُّكْتَةِ.",
+     "en": "Surplus, licensed by its point."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 12,
+   "agree": 12,
+   "judgedC": 8,
+   "agreeC": 8,
+   "tokens": [
+    {
+     "w": "وَالتَّتْمِيمُ",
+     "lex": "tatmim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«and completion-topping» — the seventh occasion, joined to the sixth."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَتْمِيم",
+      "root": "ت م م",
+      "wazn": "فَّتْعِيلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَنْ",
+     "lex": "an-nasiba",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "an-masdariyya"
+      ],
+      "irab": "«that» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يُؤْتَى",
+     "lex": "ata",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "naib-al-fail"
+      ],
+      "irab": "«there be brought» —"
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَتَى",
+      "root": "أ ت ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«in» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَلَامٍ",
+     "lex": "kalam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«speech» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَلَام",
+      "root": "ك ل م",
+      "wazn": "فَعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«not» — one letter, and the pair parts ways."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "يُوهِمُ",
+     "lex": "awhama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "form-iv-verbs",
+       "jumla-sifa"
+      ],
+      "irab": "«suggests» —"
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَوْهَمَ",
+      "root": "و ه م",
+      "wazn": "يُفْعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "خِلَافَ",
+     "lex": "khilaf",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«the contrary of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خِلَاف",
+      "root": "خ ل ف",
+      "wazn": "فِعَالَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمَقْصُودِ",
+     "lex": "maqsud",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "ism-maful"
+      ],
+      "irab": "«what is meant» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَقْصُود",
+      "root": "ق ص د",
+      "wazn": "مَفْعُولِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "بِفَضْلَةٍ",
+     "lex": "fadla",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«a surplus word» — the nahw's own term: what the sentence stands without."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "فَضْلَة",
+      "root": "ف ض ل",
+      "wazn": "فَعْلَةٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "لِنُكْتَةٍ",
+     "lex": "nukta",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«for a point» — no surplus without its earning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نُكْتَة",
+      "root": "ن ك ت",
+      "wazn": "فُعْلَةٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "كَالْمُبَالَغَةِ",
+     "lex": "mubalagha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«such as mubalagha» — the worked example follows."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُبَالَغَة",
+      "root": "ب ل غ",
+      "wazn": "مُفَاعَلَةِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:43:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 43,
+   "sentence": "s6",
+   "text": "وَيُطْعِمُونَ الطَّعَامَ عَلَى حُبِّهِ",
+   "translation": {
+    "en": "And they feed with food — DESPITE THEIR LOVE OF IT (76:8). Read the pronoun to the food, and عَلَى حُبِّهِ is the tatmim: giving away what you crave outweighs giving your surplus.",
+    "tr": "Ve yemeği yedirirler — ONU SEVDİKLERİ HÂLDE (76:8). Zamir yemeğe gönderilirse عَلَى حُبِّهِ tetmîmdir: canının çektiğini vermek, artanı vermekten ağırdır."
+   },
+   "jumal": [
+    {
+     "text": "وَيُطْعِمُونَ الطَّعَامَ عَلَى حُبِّهِ",
+     "ar": "الْفِعْلُ وَمَفْعُولُهُ وَالْحَالُ الْمُتَمِّمَةُ.",
+     "en": "The sentence stands without the hal — and the praise stands taller with it."
+    },
+    {
+     "text": "عَلَى حُبِّهِ",
+     "ar": "الْفَضْلَةُ لِنُكْتَةِ الْمُبَالَغَةِ — شَاهِدُ التَّتْمِيمِ.",
+     "en": "The tatmim witness: no contrary lurked; the surplus only heaps."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَيُطْعِمُونَ",
+     "lex": "atama",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "form-iv-verbs",
+       "afal-khamsa"
+      ],
+      "irab": "«and they feed» — Form IV, the five-verbs raf'."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "أَطْعَمَ",
+      "root": "ط ع م",
+      "wazn": "يُفْعِلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الطَّعَامَ",
+     "lex": "taam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«the food» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَعَام",
+      "root": "ط ع م",
+      "wazn": "فَّعَالَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "takmil-wa-tatmim"
+      ],
+      "irab": "«despite» — the ala of accompaniment."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "حُبِّهِ",
+     "lex": "hubb",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "takmil-wa-tatmim",
+       "hal"
+      ],
+      "irab": "«their love of it» — the jarr phrase as hal: they give while craving. The fadla that heaps the praise higher — tatmim."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ح ب ب",
+      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
      "caseMatch": true
     }
    ]
