@@ -2422,3 +2422,23 @@ not a one-line change.
   Bank: 301 worked sentences / 1,872 tokens, 99.9% POS / 99.0% CASE —
   ch41 zero disagreements. Next: takmil (ihtiras) and tatmim
   (Tarafa's bayt, 5:54, 76:8), then i'tirad (~2870+).
+
+- **v163 — talkhis ch42: tadhyil — the confirming train.** Six
+  sentences / 27 tokens (sahifa 98-99, lines ~2855-2870): the two
+  darbs (Saba 34:17 — the train that leans on its neighbour, in the
+  source's printed qira'a نُجَازِي…الْكَفُورَ, recorded in the
+  attribution; Isra 17:81 — the train coined into a proverb), and the
+  mantuq/mafhum split with the poet Ziyad's (al-Nabigha's) bayt
+  وَلَسْتَ بِمُسْتَبْقٍ أَخًا لَا تَلُمُّهُ • عَلَى شَعَثٍ أَيُّ
+  الرِّجَالِ الْمُهَذَّبُ. Note 146 with the definition verbatim and
+  the tadhyil-vs-ighal seat rule. Paradigms: جَازَى (III naqis),
+  كَفَرَ, زَهَقَ, لَمَّ (geminate — the twin/governor doctrine holds
+  for it unchanged); جَزَى copied from bad-al-amali. Grammar riches:
+  the zaida ba on laysa's khabar (بِمُسْتَبْقٍ jarr in wording, nasb
+  in place — the engine honestly SILENT on the manqus), the declining
+  أَيُّ as mubtada earning its damma in verse, and the masdar
+  mu'awwal under the ba of cause. No engine changes needed — every
+  token resolved on the first built probe. Bank: 307 worked
+  sentences / 1,899 tokens, 99.9% POS / 99.0% CASE — ch42 zero
+  disagreements. Next: takmil (ihtiras — Tarafa's bayt, 5:54) and
+  tatmim (76:8), then i'tirad (~2870+).

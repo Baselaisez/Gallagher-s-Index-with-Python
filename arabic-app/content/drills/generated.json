@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 301,
-  "sentenceTokens": 1872,
+  "sentences": 307,
+  "sentenceTokens": 1899,
   "posAgreement": 99.9,
-  "caseJudged": 1468,
+  "caseJudged": 1489,
   "caseAgreement": 99,
-  "rows": 2957
+  "rows": 2984
  },
  "endings": [
   {
@@ -56030,6 +56030,804 @@
       "lemma": "مُهْتَدٍ",
       "root": "ه د ي",
       "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s1",
+   "text": "ذٰلِكَ جَزَيْنَاهُمْ بِمَا كَفَرُوا",
+   "translation": {
+    "en": "Thus We repaid them for their disbelief — (34:17)",
+    "tr": "İşte onları, küfürleri sebebiyle böyle cezalandırdık — (34:17)"
+   },
+   "jumal": [
+    {
+     "text": "ذٰلِكَ جَزَيْنَاهُمْ بِمَا كَفَرُوا",
+     "ar": "الْجُمْلَةُ الْأُولَى — وَسَيَتْبَعُهَا ذَيْلُهَا.",
+     "en": "The sentence a train is about to follow."
+    },
+    {
+     "text": "بِمَا كَفَرُوا",
+     "ar": "الْبَاءُ السَّبَبِيَّةُ وَالْمَصْدَرُ الْمُؤَوَّلُ.",
+     "en": "Cause folded into two words."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "ذٰلِكَ",
+     "lex": "dhalika",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "tadhyil",
+       "asma-al-ishara"
+      ],
+      "irab": "«thus» — the demonstrative fronted: THAT repayment, no other."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "جَزَيْنَاهُمْ",
+     "lex": "jaza",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«We repaid them» — the naqis mazi with both its pronouns aboard."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَزَى",
+      "root": "ج ز ي",
+      "wazn": "فَعَلْنَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "بِمَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil",
+       "anwa-ma"
+      ],
+      "irab": "«for that» — the ba of cause over the masdar-maker ma."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "كَفَرُوا",
+     "lex": "kafara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«they disbelieved» — rolled up with ma into «their disbelief», the cause under the ba."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "كَفَرَ",
+      "root": "ك ف ر",
+      "wazn": "فَعَلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s2",
+   "text": "وَهَلْ نُجَازِي إِلَّا الْكَفُورَ",
+   "translation": {
+    "en": "— and do We repay but the ingrate? The train (tadhyil) restates the sentence before it, but leans on it: the FIRST darb, not brought to proverb-hood.",
+    "tr": "— biz nankörden başkasını mı cezalandırırız? Kuyruk (tezyîl) önceki cümleyi yeniden söyler, ama ona yaslanır: darb-ı mesel hâline getirilmemiş BİRİNCİ darb."
+   },
+   "jumal": [
+    {
+     "text": "وَهَلْ نُجَازِي إِلَّا الْكَفُورَ",
+     "ar": "التَّذْيِيلُ — ضَرْبٌ لَمْ يُجْعَلْ مَثَلًا: لَا يَسْتَقِلُّ عَمَّا قَبْلَهُ.",
+     "en": "The first darb: read alone, «do We repay but the ingrate?» still asks — repay WHAT? The train needs its engine."
+    },
+    {
+     "text": "إِلَّا الْكَفُورَ",
+     "ar": "الْقَصْرُ فِي ذَيْلِ الْآيَةِ.",
+     "en": "The qasr pair inside the train."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "وَهَلْ",
+     "lex": "hal-istifham",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil",
+       "khuruj-al-istifham"
+      ],
+      "irab": "«and do…?» — a question worn as denial: We do NOT repay but…"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "نُجَازِي",
+     "lex": "jazaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil",
+       "form-iii-verbs",
+       "naqis-verbs"
+      ],
+      "irab": "«do We repay» — Form III's naqis mudari, its damma estimated on the ya (the printed qira'a)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَازَى",
+      "root": "ج ز ي",
+      "wazn": "نُفَاعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "إِلَّا",
+     "lex": "illa",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil",
+       "istithna-mufarragh",
+       "qasr"
+      ],
+      "irab": "«but» — the emptied exception: only the ingrate."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْكَفُورَ",
+     "lex": "kafur",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil",
+       "sighat-mubalagha"
+      ],
+      "irab": "«the ingrate» — the فَعُول intensive: not one lapse, a habit of denial."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَفُور",
+      "root": "ك ف ر",
+      "wazn": "فَعُولَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s3",
+   "text": "وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ",
+   "translation": {
+    "en": "And say: truth has come, and falsehood has perished — (17:81)",
+    "tr": "De ki: Hak geldi, bâtıl yok oldu — (17:81)"
+   },
+   "jumal": [
+    {
+     "text": "جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ",
+     "ar": "جُمْلَتَانِ مُتَعَاطِفَتَانِ — إِعْلَانُ مَكَّةَ يَوْمَ الْفَتْحِ.",
+     "en": "The proclamation recited at the smashing of the idols."
+    },
+    {
+     "text": "وَقُلْ",
+     "ar": "الْأَمْرُ بِالْإِعْلَانِ.",
+     "en": "Truth is not only to happen; it is to be SAID."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَقُلْ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil",
+       "imperative-amr",
+       "hollow-verbs"
+      ],
+      "irab": "«and say» — the hollow amr, its middle letter gone."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "اُفْعُلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "جَاءَ",
+     "lex": "jaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«has come» —"
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "جَاءَ",
+      "root": "ج ي أ",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْحَقُّ",
+     "lex": "haqq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«truth» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْحَقّ",
+      "root": "ح ق ق",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَزَهَقَ",
+     "lex": "zahaqa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«and has perished» — breathed its last, like a departing soul."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "زَهَقَ",
+      "root": "ز ه ق",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْبَاطِلُ",
+     "lex": "batil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«falsehood» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْبَاطِل",
+      "root": "ب ط ل",
+      "wazn": "فَاعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s4",
+   "text": "إِنَّ الْبَاطِلَ كَانَ زَهُوقًا",
+   "translation": {
+    "en": "— truly falsehood was ever perishing (17:81). The SECOND darb: a train coined into a proverb — cut it loose and it still speaks.",
+    "tr": "— şüphesiz bâtıl her zaman yok olucudur (17:81). İKİNCİ darb: darb-ı mesel hâline getirilmiş kuyruk — koparın, yine konuşur."
+   },
+   "jumal": [
+    {
+     "text": "إِنَّ الْبَاطِلَ كَانَ زَهُوقًا",
+     "ar": "التَّذْيِيلُ الْجَارِي مَجْرَى الْمَثَلِ — يَسْتَقِلُّ بِنَفْسِهِ.",
+     "en": "The second darb: lift it out of the aya and it is a complete proverb, quotable at any grave of any falsehood."
+    },
+    {
+     "text": "زَهُوقًا",
+     "ar": "صِيغَةُ الْمُبَالَغَةِ فِي مَقْعَدِ الْخَبَرِ.",
+     "en": "One intensive word carrying the whole verdict."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "إِنَّ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«truly» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْبَاطِلَ",
+     "lex": "batil",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«falsehood» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْبَاطِل",
+      "root": "ب ط ل",
+      "wazn": "فَاعِلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "كَانَ",
+     "lex": "kana",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«was ever» — kana of standing habit: always was, always will be."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "زَهُوقًا",
+     "lex": "zahuq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil",
+       "sighat-mubalagha",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«ever-perishing» — the فَعُول mould again: perishing is falsehood's very nature."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَهُوق",
+      "root": "ز ه ق",
+      "wazn": "فَعُولًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s5",
+   "text": "وَلَسْتَ بِمُسْتَبْقٍ أَخًا لَا تَلُمُّهُ",
+   "translation": {
+    "en": "You will keep no brother whose disarray you never gather —",
+    "tr": "Dağınıklığını toparlamadığın hiçbir kardeşi tutamazsın —"
+   },
+   "jumal": [
+    {
+     "text": "وَلَسْتَ بِمُسْتَبْقٍ أَخًا لَا تَلُمُّهُ",
+     "ar": "لَيْسَ وَخَبَرُهَا الْمَجْرُورُ بِالْبَاءِ الزَّائِدَةِ — صَدْرُ الْبَيْتِ.",
+     "en": "The claim: keep no friend you will not pardon."
+    },
+    {
+     "text": "بِمُسْتَبْقٍ",
+     "ar": "الْبَاءُ الزَّائِدَةُ عَلَى خَبَرِ لَيْسَ — جَرٌّ فِي اللَّفْظِ وَنَصْبٌ فِي الْمَحَلِّ.",
+     "en": "The classic zaida ba: two i'rabs on one word, both true."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "وَلَسْتَ",
+     "lex": "laysa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil",
+       "kana-wa-akhawatuha"
+      ],
+      "irab": "«you are not» — the jamid laysa with its ta as ism."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": null,
+      "root": "ل س ت",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "mabni",
+     "caseMatch": null
+    },
+    {
+     "w": "بِمُسْتَبْقٍ",
+     "lex": "mustabqin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil",
+       "ism-maqsur-manqus",
+       "form-x-verbs",
+       "ism-fail"
+      ],
+      "irab": "«keeping» — laysa's khabar under the EXTRA ba: jarr in wording, nasb in place; the Form X manqus."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُسْتَبْقٍ",
+      "root": "ب ق ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "أَخًا",
+     "lex": "akh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil",
+       "five-nouns"
+      ],
+      "irab": "«a brother» — the ism fa'il governs its object; and أَخ here is bare and tanwined, off the five-nouns rail."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَخ",
+      "root": "أ خ و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«never» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تَلُمُّهُ",
+     "lex": "lamma-verb",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "tadhyil",
+       "doubled-verbs",
+       "jumla-sifa"
+      ],
+      "irab": "«you gather» — the geminate لَمَّ: to gather what scattered — a friend's faults forgiven, his disarray set right."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "لَمَّ",
+      "root": "ل م م",
+      "wazn": "تَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:42:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 42,
+   "sentence": "s6",
+   "text": "عَلَى شَعَثٍ أَيُّ الرِّجَالِ الْمُهَذَّبُ",
+   "translation": {
+    "en": "— over some disarray: WHICH of men is flawless? (the tadhyil confirming the UNDERSTOOD sense: pardon, for perfection is nowhere.)",
+    "tr": "— bir dağınıklık yüzünden: insanların HANGİSİ kusursuz ki? (MEFHÛMU pekiştiren tezyîl: bağışla, çünkü kusursuzluk hiçbir yerde yok.)"
+   },
+   "jumal": [
+    {
+     "text": "أَيُّ الرِّجَالِ الْمُهَذَّبُ",
+     "ar": "التَّذْيِيلُ الْمُقَرِّرُ لِلْمَفْهُومِ — جَارٍ مَجْرَى الْمَثَلِ.",
+     "en": "The mafhum-confirming train — itself coined into a proverb the Arabs still quote."
+    },
+    {
+     "text": "أَيُّ",
+     "ar": "الْمُعْرَبُ الْوَحِيدُ بَيْنَ أَسْمَاءِ الِاسْتِفْهَامِ.",
+     "en": "Chapter 26's declining ayy, earning its damma in verse."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«over» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "شَعَثٍ",
+     "lex": "shaath",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«disarray» — the scattering every friendship must forgive."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَعَث",
+      "root": "ش ع ث",
+      "wazn": "فَعَلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَيُّ",
+     "lex": "ayy",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "tadhyil",
+       "khuruj-al-istifham"
+      ],
+      "irab": "«which» — the one interrogative that DECLINES, here as mubtada; and the question denies: none is."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الرِّجَالِ",
+     "lex": "rajul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil"
+      ],
+      "irab": "«of men» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَجُل",
+      "root": "ر ج ل",
+      "wazn": "فِّعَالِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُهَذَّبُ",
+     "lex": "muhadhdhab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "tadhyil",
+       "ism-maful",
+       "form-ii-verbs"
+      ],
+      "irab": "«the flawless one» — the ism maf'ul of هَذَّبَ; and the whole question is the train, confirming what the first hemistich left UNDERSTOOD."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُهَذَّب",
+      "root": "ه ذ ب",
+      "wazn": "مُفَعَّلُ",
       "sure": true
      },
      "match": true,

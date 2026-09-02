@@ -8640,6 +8640,75 @@ if (!CHROME) {
     if (r.uyun !== 'nasb') throw new Error('عُيُونَ keeps kaanna\'s nasb: ' + r.uyun);
   });
 
+  await check('talkhis ch42: tadhyil — the two darbs, the zaida ba, and the declining ayy', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 42);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.root || null]; };
+      const g146 = GRAMMAR['tadhyil'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        n146: g146 ? { group: g146.group, anchors: (g146.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the III naqis answers as ONE segment, case honestly estimated
+        nujazi: (() => { const x = an('وَهَلْ نُجَازِي إِلَّا الْكَفُورَ')[1];
+          return [x.kind, x.cell && x.cell.tense, x.root, x.seg.length,
+                  k('وَهَلْ نُجَازِي إِلَّا الْكَفُورَ', 1)]; })(),
+        kafur: [an('وَهَلْ نُجَازِي إِلَّا الْكَفُورَ')[3].root,
+                k('وَهَلْ نُجَازِي إِلَّا الْكَفُورَ', 3)],
+        // the hollow amr and the new sound mazis
+        qul: cell('وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ', 0),
+        zahaqa: cell('وَقُلْ جَاءَ الْحَقُّ وَزَهَقَ الْبَاطِلُ', 3),
+        zahuq: [an('إِنَّ الْبَاطِلَ كَانَ زَهُوقًا')[3].root, k('إِنَّ الْبَاطِلَ كَانَ زَهُوقًا', 3)],
+        // the geminate لَمَّ under its pronoun keeps raf — and its root
+        talummuhu: cell('لَا تَلُمُّهُ عَلَى شَعَثٍ', 1).concat(k('لَا تَلُمُّهُ عَلَى شَعَثٍ', 1)),
+        // the twin obeys the governor for the new geminate too
+        lamYalumma: cell('لَمْ يَلُمَّ شَعَثَهُ', 1).concat(k('لَمْ يَلُمَّ شَعَثَهُ', 1)),
+        // the manqus khabar under the zaida ba stays honestly silent
+        mustabqin: [an('وَلَسْتَ بِمُسْتَبْقٍ أَخًا')[1].root, k('وَلَسْتَ بِمُسْتَبْقٍ أَخًا', 1)],
+        // the declining ayy earns its damma as mubtada
+        ayyu: k('عَلَى شَعَثٍ أَيُّ الرِّجَالِ الْمُهَذَّبُ', 2),
+        muhadhdhab: k('عَلَى شَعَثٍ أَيُّ الرِّجَالِ الْمُهَذَّبُ', 4),
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+      };
+    });
+    if (r.missing) throw new Error('chapter 42 did not load');
+    if (r.chapters < 42) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch42 sentences: ' + r.n);
+    if (r.t !== 27) throw new Error('ch42 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch42 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.n146 || r.n146.group !== 'balagha' || r.n146.anchors < 3)
+      throw new Error('note 146 must be balagha with its witnesses: ' + JSON.stringify(r.n146));
+    if (r.nujazi[0] !== 'verb' || r.nujazi[1] !== 'mudari' || r.nujazi[2] !== 'ج ز ي' ||
+        r.nujazi[3] !== 1 || r.nujazi[4] !== null)
+      throw new Error('نُجَازِي answers the III naqis whole and stays taqdiri: ' + r.nujazi.join('/'));
+    if (r.kafur[0] !== 'ك ف ر' || r.kafur[1] !== 'nasb')
+      throw new Error('الْكَفُورَ keeps its root and nasb: ' + r.kafur.join('/'));
+    if (r.qul[0] !== 'verb' || r.qul[1] !== 'amr')
+      throw new Error('وَقُلْ answers the hollow amr: ' + r.qul.join('/'));
+    if (r.zahaqa[0] !== 'verb' || r.zahaqa[1] !== 'mazi' || r.zahaqa[2] !== 'ز ه ق')
+      throw new Error('وَزَهَقَ answers the new paradigm: ' + r.zahaqa.join('/'));
+    if (r.zahuq[0] !== 'ز ه ق' || r.zahuq[1] !== 'nasb')
+      throw new Error('زَهُوقًا keeps its root and nasb: ' + r.zahuq.join('/'));
+    if (r.talummuhu[0] !== 'verb' || r.talummuhu[1] !== 'mudari' || r.talummuhu[2] !== 'ل م م' ||
+        r.talummuhu[3] !== 'raf')
+      throw new Error('تَلُمُّهُ answers the geminate under its pronoun: ' + r.talummuhu.join('/'));
+    if (r.lamYalumma[1] !== 'majzum' || r.lamYalumma[3] !== 'jazm')
+      throw new Error('لَمْ يَلُمَّ obeys the governor: ' + r.lamYalumma.join('/'));
+    if (r.mustabqin[0] !== 'ب ق ي' || r.mustabqin[1] !== null)
+      throw new Error('بِمُسْتَبْقٍ answers its lemma and stays silent: ' + r.mustabqin.join('/'));
+    if (r.ayyu !== 'raf') throw new Error('أَيُّ earns its damma: ' + r.ayyu);
+    if (r.muhadhdhab !== 'raf') throw new Error('الْمُهَذَّبُ keeps its raf: ' + r.muhadhdhab);
+    if (r.verse !== 2) throw new Error('the two hemistich sentences wear verse dress: ' + r.verse);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);
