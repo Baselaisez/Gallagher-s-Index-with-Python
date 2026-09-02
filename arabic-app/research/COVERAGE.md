@@ -2463,3 +2463,31 @@ not a one-line change.
   tokens, 99.9% POS / 99.0% CASE — ch43 zero disagreements. Next:
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
+
+- **v165 — talkhis ch44: i'tirad — the parenthetic sentence.** Seven
+  sentences / 48 tokens (sahifa 99-100, lines ~2890-2915): the
+  definition verbatim in two clauses (كَلَامَيْنِ مُتَّصِلَيْنِ
+  مَعْنًى — dual jarr, dual sifa, maqsur tamyiz; لَا مَحَلَّ لَهَا —
+  la-nafiya-lil-jins's mabni ism; سِوَى دَفْعِ الْإِيهَامِ carving
+  takmil out), the tanzih parenthesis (16:57 — سُبْحَانَهُ the
+  maf'ul mutlaq of an unspoken verb; الْبَنَاتِ nasb as a kasra; the
+  first standalone مَا mawsula in the corpus), the du'a bayt ('Awf b.
+  Muhallim — إِنَّ الثَّمَانِينَ وَبُلِّغْتَهَا, the mulhaq-plural
+  numeral and the majhul YOU-cell; تَرْجُمَانْ under its printed
+  rhyme sukun), and the tanbih bayt (وَاعْلَمْ … أَنْ سَوْفَ يَأْتِي
+  — the lightened anna with its sawfa buffer; قُدِرَا under the itlaq
+  alif). Note 148 with the nuktas, the multi-jumla 2:222-223, and the
+  closing khilafs. Paradigms: بَلَّغَ (II), أَحْوَجَ (IV, sound
+  hollow), قَدَرَ; نَفَعَ copied. Engine (four, bank-arbitrated): the
+  SEVENTH verb-demotion guard — a ma'tuf on a majrur shares its
+  governor, so أَوْ أَكْثَرَ refuses the Form IV mazi when the lexicon
+  owns the noun (وَقَامَ after بِزَيْدٍ keeps its verb); the majhul
+  mazi YOU-cell (بُلِّغْتَ) and the verse ITLAQ alif (قُدِرَا) built
+  beside the she-cell; and MaEngine's khabar-frame — a fused jarr-
+  pronoun (or the jalala) before ما with a clause after names the
+  delayed MUBTADA (وَلَهُمْ مَا يَشْتَهُونَ، لِلّٰهِ مَا فِي
+  السَّمَاوَاتِ). Key hygiene: two collisions caught by the global
+  check — talkhis's own 'daf' (ضَعْف) and 'ilm' — restored from HEAD,
+  the repelling masdar shipped as 'daf-repel'. Bank: see the commit.
+  Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
+  (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).

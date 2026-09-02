@@ -8768,6 +8768,73 @@ if (!CHROME) {
       throw new Error('كَالْمُبَالَغَةِ answers its key under the kaf: ' + r.mubalagha.join('/'));
   });
 
+  await check('talkhis ch44: i\'tirad — the placeless jumla, the you-cell, and the khabar-frame ma', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 44);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.cell && x.cell.person, x.root || null]; };
+      const g148 = GRAMMAR['itirad'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+        n148: g148 ? { group: g148.group, anchors: (g148.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the ma'tuf on a majrur refuses the Form IV mazi…
+        akthara: an('بِجُمْلَةٍ أَوْ أَكْثَرَ لَا مَحَلَّ لَهَا')[2].kind,
+        // …while a real verb after a majrur's waw keeps its claim
+        qamaCtl: an('مَرَّ بِزَيْدٍ وَقَامَ عَمْرٌو')[2].kind,
+        // la-nafiya-lil-jins's ism is bina on the fatha
+        mahalla: k('بِجُمْلَةٍ أَوْ أَكْثَرَ لَا مَحَلَّ لَهَا', 4),
+        // the khabar-frame ma is the delayed mubtada (a noun), and nafy stays nafy
+        maKhabar: cell('وَلَهُمْ مَا يَشْتَهُونَ', 1).concat(k('وَلَهُمْ مَا يَشْتَهُونَ', 1)),
+        maNafyCtl: an('مَا قَامَ زَيْدٌ')[0].kind,
+        // the majhul-mazi YOU-cell under its pronoun, and the she-cell control
+        bullighta: cell('إِنَّ الثَّمَانِينَ وَبُلِّغْتَهَا', 2).concat(k('إِنَّ الثَّمَانِينَ وَبُلِّغْتَهَا', 2)),
+        kudhdhibatCtl: cell('فَقَدْ كُذِّبَتْ رُسُلٌ', 1),
+        // the verse itlaq-alif on the majhul he-cell — and a stored 3md keeps its own cell
+        qudira: cell('كُلُّ مَا قُدِرَا', 2),
+        qalaCtl: cell('قَالَا الْحَقَّ', 0),
+        // the sound-hollow Form IV and the rhyme-sukun noun
+        ahwajat: cell('قَدْ أَحْوَجَتْ سَمْعِي', 1),
+        tarjuman: an('إِلَى تَرْجُمَانْ')[1].kind,
+        // the maf'ul mutlaq of the unspoken verb keeps its nasb
+        subhanahu: k('وَيَجْعَلُونَ لِلّٰهِ الْبَنَاتِ سُبْحَانَهُ', 3),
+      };
+    });
+    if (r.missing) throw new Error('chapter 44 did not load');
+    if (r.chapters < 44) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 7) throw new Error('ch44 sentences: ' + r.n);
+    if (r.t !== 48) throw new Error('ch44 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch44 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.verse !== 4) throw new Error('the four hemistich sentences wear verse dress: ' + r.verse);
+    if (!r.n148 || r.n148.group !== 'balagha' || r.n148.anchors < 3)
+      throw new Error('note 148 must be balagha with its witnesses: ' + JSON.stringify(r.n148));
+    if (r.akthara !== 'noun') throw new Error('أَوْ أَكْثَرَ after a majrur is the tafdil: ' + r.akthara);
+    if (r.qamaCtl !== 'verb') throw new Error('وَقَامَ after a majrur keeps its verb: ' + r.qamaCtl);
+    if (r.mahalla !== 'mabni') throw new Error('مَحَلَّ is la\'s ism, mabni: ' + r.mahalla);
+    if (r.maKhabar[0] !== 'noun' || r.maKhabar[4] !== 'mabni')
+      throw new Error('وَلَهُمْ مَا is the delayed mubtada: ' + r.maKhabar.join('/'));
+    if (r.maNafyCtl !== 'particle') throw new Error('مَا قَامَ keeps the nafy face: ' + r.maNafyCtl);
+    if (r.bullighta[0] !== 'verb' || r.bullighta[1] !== 'majhulMazi' || r.bullighta[2] !== 6 || r.bullighta[4] !== 'mabni')
+      throw new Error('بُلِّغْتَهَا is the majhul you-cell: ' + r.bullighta.join('/'));
+    if (r.kudhdhibatCtl[1] !== 'majhulMazi' || r.kudhdhibatCtl[2] !== 3)
+      throw new Error('the she-cell keeps person 3: ' + r.kudhdhibatCtl.join('/'));
+    if (r.qudira[0] !== 'verb' || r.qudira[1] !== 'majhulMazi' || r.qudira[2] !== 0)
+      throw new Error('قُدِرَا is the majhul he-cell under the itlaq alif: ' + r.qudira.join('/'));
+    if (r.qalaCtl[1] !== 'mazi') throw new Error('قَالَا keeps its stored dual cell: ' + r.qalaCtl.join('/'));
+    if (r.ahwajat[0] !== 'verb' || r.ahwajat[1] !== 'mazi' || r.ahwajat[3] !== 'ح و ج')
+      throw new Error('أَحْوَجَتْ answers the sound-hollow IV: ' + r.ahwajat.join('/'));
+    if (r.tarjuman !== 'noun') throw new Error('تَرْجُمَانْ is the noun under its rhyme sukun: ' + r.tarjuman);
+    if (r.subhanahu !== 'nasb') throw new Error('سُبْحَانَهُ keeps the maf\'ul mutlaq\'s nasb: ' + r.subhanahu);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

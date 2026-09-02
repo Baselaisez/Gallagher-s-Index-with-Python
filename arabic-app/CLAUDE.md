@@ -4052,3 +4052,46 @@ and when the word differs, mint a suffixed key (malik-king,
 saqa-water) — never share a spelling between two words. The eye-probe
 caught it only because the probe reads the BUILT corpus, which is one
 more reason the pre-authoring probe is mandatory.
+
+## The key check must cover the package's OWN glossary too (ch44, v165)
+
+The ch43 lesson said: grep every OTHER package before minting a lex
+key. Ch44 showed the nearer trap — talkhis itself already owned 'daf'
+(ضَعْف, from the fasl chapters) and 'ilm', and `GLOSS_ADD.update()`
+overwrote both without a sound: the validator saw a valid entry either
+way, and only a diff against HEAD would have shown ضَعْف turning into
+دَفْع under every older token that pointed at it. Rule: the author
+script's key list is checked against the CURRENT package's glossary
+and morphology FIRST (a hit there is either «reuse the existing key»
+or «mint a suffixed one», never «overwrite»), then against every other
+package; and after the script runs, `git diff` the glossary and read
+every CHANGED (not added) entry — an author script may only ADD.
+
+## The seventh demotion guard reads the atf, not the word (ch44)
+
+أَكْثَرَ is one spelling for the diptote tafdil and the Form IV mazi,
+and no vowel splits them — the mabniMoved family is helpless. What
+splits them is the ATF: بِجُمْلَةٍ أَوْ أَكْثَرَ joins the word onto a
+majrur, and الْمَعْطُوفُ يَشْتَرِكُ مَعَ الْمَعْطُوفِ عَلَيْهِ فِي
+الْعَامِلِ, so the jarr letter reaches it and «nothing a jarr letter
+governs is a verb». The guard is narrow by design: previous row an
+atf particle, the row before it a majrur noun, AND the lexicon owning
+the noun lemma — because وَقَامَ after بِزَيْدٍ is a real verb (a
+hal/isti'naf waw), and قام is nobody's noun. A context guard without
+the lexicon test would have demoted every verb after a majrur's waw.
+
+## A stored paradigm is a claim the regenerator will test (ch44, أَحْوَجَ)
+
+Storing أَحْوَجَ يُحْوِجُ sound (the received form — 'Awf's bayt has
+أَحْوَجَتْ) tripped the Sarf regeneration gate: the engine's Form IV
+hollow branch melts every waw (أَحَاجَ), because no RULE says which
+hollows refuse i'lal in a derived bab. The fix is the same shape as
+the defects-and-colours class in Form I: a recited closed list
+(SOUND_HOLLOW_IV = حوج, with اِسْتَحْوَذَ waiting for bab X) that makes
+the i'lal rule stand down and conjugates the root sound. Two lessons:
+every sama'i exception the corpus witnesses must be written into the
+ENGINE, not only into the stored cells, or the audit will rightly call
+the stored cells wrong; and the audit gate is exactly why paradigms may
+be authored by hand at all — hand cells that the engine cannot rebuild
+are either a bug in the engine or a bug in the hand, and the gate makes
+you say which.
