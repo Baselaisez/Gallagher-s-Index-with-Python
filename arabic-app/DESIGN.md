@@ -320,3 +320,42 @@ two voices that both speak i'rab read as one register. Rules:
 - The model's office never enters the red line: it rides after the
   translation as the badged 🧠 chip in the standing amber. Statistics
   keep their color; rules keep theirs.
+
+## 11. The rule ledger, the arc map, and the sky (wave 12)
+
+Three new surfaces, and each one is the app's existing register applied
+to a new object, not a new register:
+
+- **The rule ledger** (`.qw-ledger`) lists the nahw rules a sentence
+  must keep, one row each: a ✓ in `--ok` or a ✗ in `--danger` on the
+  inline-start rail (the same rail the verdict cards use for certainty),
+  the word in the Arabic face, the rule's Arabic in the muhaqqiq's red
+  (`--irab-ink` — it is i'rab prose, so it wears i'rab's ink), its EN/TR
+  gloss in the soft ink, and a `§` pill that opens the grammar note the
+  rule cites. A broken row tints its panel 6% toward `--danger` — the
+  only place the danger token colours a background, because a broken
+  rule is the one thing on this page that must be seen before it is
+  read. The seeded errors sit under the ledger as dashed pills: they
+  are invitations, not content, and the dashed border says so.
+- **The arc map** (`.shajara`) draws the sentence right-to-left as
+  rounded boxes on one baseline and every settled relation as an arc
+  above them. It is the second thing on the page allowed to scroll
+  sideways, and like the rail it scrolls inside its own box. Verbs get
+  the accent stroke, particles a dashed one, nouns the line colour; the
+  case under each box is red because it is a claim. Arcs are red by
+  default, accent for ta'alluq (the Ta'alluq engine's own colour in the
+  kernel), and the shart pair wears `--lvl3` — the frame palette's
+  standing amber. Arc height grows with the level of nesting, and the
+  label sits at the apex; two arcs never share an apex height.
+- **The atlas** (`.atlas`) is the reference list as a sky. The four
+  level tokens colour the stars exactly as they colour the level chips
+  everywhere else; star radius is the number of corpus sentences that
+  anchor the note, so an unanchored note is visibly the smallest thing
+  on the map; links are the accent at 28%, rings and sector lines the
+  line colour, sector names the soft ink. The list/atlas toggle is a
+  segmented pair in the sheet's own pill idiom. Nothing on the map is
+  placed by hand: a new note takes its seat the day it is authored.
+
+Rule: a diagram is a **restatement**. Every arc, every star size and
+every ledger row repeats a verdict some engine already made, so a wrong
+picture is a wrong engine, and the gate can say which one.

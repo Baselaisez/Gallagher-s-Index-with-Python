@@ -180,6 +180,9 @@ def build_grammar(grammar_dir: Path):
         note["mistakes"] = [{"wrong": m["wrong"], "right": m["right"],
                              "why": bilingual(m.get("why"))}
                             for m in g.get("commonMistakes", [])]
+        # The dependency links the atlas draws — ids only, resolved in the reader.
+        if g.get("relatedNotes"):
+            note["related"] = list(g["relatedNotes"])
         notes[g["id"]] = note
     return notes
 

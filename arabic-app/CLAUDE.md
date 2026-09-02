@@ -4095,3 +4095,65 @@ the stored cells wrong; and the audit gate is exactly why paradigms may
 be authored by hand at all — hand cells that the engine cannot rebuild
 are either a bug in the engine or a bug in the hand, and the gate makes
 you say which.
+
+## Rules as a ledger; the corpus as the negative set (wave 12, v166)
+
+Every engine decides; none of them had said WHICH RULE its decision
+obeys. QawaidEngine names the nahw rules (what follows a jarr letter is
+majrur, the ism of inna is mansub, a mudari after a jazim is majzum…),
+reads the CaseEngine's claims against them, and writes a ledger. Two
+disciplines make it honest. (1) A rule can only be broken by a case the
+surface SETTLED — a silent claim is never a violation, because missing
+evidence is not contrary evidence; and the analyzer's «likely the
+fa'il» is a shortlist, so a lost seat is never a violation either, only
+a kept one is written. (2) The corpus is the NEGATIVE test set: every
+stored sentence is correct Arabic, so a ✗ on it is a false alarm — an
+engine wrong somewhere, and the gate names where — while twelve seeded
+errors are the positive set. The first sweep raised 147 alarms on 1,166
+checks and every one was an engine truth, not a corpus error: the
+fused-jarr flag only stamped on definite hosts; kana's ism may be
+hidden (كَانَ مُتَرَدِّدًا is one nasb noun, the error is two); a jawab
+may stay raf' after a MAZI shart; the idafa chain links by shape and
+must not turn every link into a rule; لِمَا with a kasra is two words
+and kept the jazim's key; the jalala under a fused lam read its own ha
+as a pronoun; a sentence that OPENS on a joined majrur continues a list
+the corpus cut. Meta-rule: a rule checker built on the engines' own
+claims is the cheapest audit of those engines there is — run it on the
+corpus before trusting any of them, and treat every alarm as a bug
+report with the sentence attached.
+
+The second sweep (46 → 0 across all seventeen stories, 2,287 checks) paid
+in the same coin, and four of its lessons are general:
+- **A bracketed lemma is a dead key.** «خَالٍ (الْخَالِي)» indexed WHOLE
+  answered nobody, so the manqus fell to the rules' hollow guess. Index the
+  head word — for NOUNS only: the closed classes carry bracketed lemmas too
+  («مَا (الْمَوْصُولَة)», «أَلَا (التَّنْبِيه)»), and the first cut let every
+  one of them into the noun index, where the lexicon-first paths read them
+  as nouns (the bank caught أَلَا within the hour).
+- **A ب/ك/ل strip may not land on a PARTICLE.** كُلُّهُمْ found لَهُمْ behind
+  its kaf and wore a prep's lemma; no jarr letter enters on a harf, so the
+  clitic-stripped tries refuse part/prep/conj hits.
+- **The fused letter must wear the JARR vowel.** The lemma test alone read
+  لَأَمَّارَةٌ (lam of ibtida', fatha) and بَصْرَةَ (radical ba, fatha) as
+  jarr-fused; kasra on ب/ل and fatha on ك are the receipt.
+- **حَتَّى before a mudari is the nasib, not the jarr letter.** Stamping
+  «after a jarr letter» on تَمْتَحِنَهُ made the demotion guard turn a verb
+  into a noun — the İzhar expectation must read the NEXT word's class
+  before it is consumed, the إِذَا method one letter over.
+And the rule that asks for a governor walks BACK: a na't, a badal or a
+ma'tuf takes its governor from a head several words up (over a maqsur that
+settles no case, over a hal, over a fused لَهُ), while a sentence that OPENS
+on a majrur is governed from the line above and is never an error.
+
+## The sarf ledger narrates; the sarf engine rebuilds; they must agree
+
+SarfLedger takes a written verb — through the analyzer, so the
+governor's rename (لَمْ يَشِبَّ) and the clitic peel come with it — and
+narrates the root's class, the bab and wazn, the cell with the letters
+that mark it, the phonology by class (idgham/fakk, qalb/naql/hadhf, the
+mithal's waw, the ta of iftial), the augment of a derived bab, the
+passive vowelling, the mood sign, the fallen five-verbs nun and the
+riding clitic — in the books' own words, each step citing its note —
+and LAST rebuilds the cell from the root with sarfDerive and says
+whether the two agree. The narration is not a second engine: it is the
+existing engines' facts in the Emsile lesson's order.

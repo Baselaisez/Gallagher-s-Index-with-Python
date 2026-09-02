@@ -8835,6 +8835,147 @@ if (!CHROME) {
     if (r.subhanahu !== 'nasb') throw new Error('سُبْحَانَهُ keeps the maf\'ul mutlaq\'s nasb: ' + r.subhanahu);
   });
 
+  await check('the Qawaid engine: every seeded error is caught, and the corpus raises no alarm', async () => {
+    const r = await page.evaluate(() => {
+      const seeds = QawaidEngine.seedCheck();
+      // the corpus is the NEGATIVE set: every stored sentence is correct
+      // Arabic, so a violation on it is a false alarm — an engine that is
+      // wrong somewhere, and the gate names where
+      const fa = []; let n = 0, checks = 0, kept = {};
+      ['talkhis-al-miftah', 'aqaid-ahl-al-sunna', 'wasiyyat-abi-hanifa-samti', 'bad-al-amali'].forEach(sid => {
+        const st = STORIES.find(s => s.id === sid);
+        st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+          const text = sen.tokens.map(t => t.s.full).join(' ');
+          let rows = []; try { rows = SentenceAnalyzer.analyze(text); } catch (e) { return; }
+          const a = QawaidEngine.audit(rows); n++; checks += a.checks.length;
+          a.checks.forEach(c => { kept[c.rule] = (kept[c.rule] || 0) + 1; });
+          a.violations.forEach(v => fa.push(sid.slice(0, 6) + ' ' + ch.n + ':' + sen.id + ' ' + v.rule + ' ' + v.w));
+        }));
+      });
+      return { seeds: seeds.map(s => (s.caught ? '✓' : '✗') + s.rule), missed: seeds.filter(s => !s.caught).length,
+               n, checks, fa, rulesFired: Object.keys(kept).length,
+               notes: Object.values(QawaidEngine.RULES).map(x => x.note).filter(x => !GRAMMAR[x]) };
+    });
+    if (r.missed) throw new Error('seeded errors not caught: ' + r.seeds.join(' '));
+    if (r.notes.length) throw new Error('rules cite missing notes: ' + r.notes.join(','));
+    // floors under the measured run (499 sentences / 1,425 checks after the
+    // sentence-initial and soft-chain checks were retired as non-rules)
+    if (r.n < 400 || r.checks < 1300) throw new Error('the negative set shrank: ' + r.n + ' sentences / ' + r.checks + ' checks');
+    if (r.rulesFired < 8) throw new Error('too few rules fire on the corpus: ' + r.rulesFired);
+    if (r.fa.length) throw new Error(r.fa.length + ' false alarms on correct Arabic: ' + r.fa.slice(0, 6).join(' | '));
+  });
+
+  await check('the Sarf ledger narrates every cell it is handed, and names the rule that made it', async () => {
+    const r = await page.evaluate(() => {
+      const has = (w, re) => { const x = SarfLedger.read(w); return x ? x.steps.some(s => re.test(s.ar)) : null; };
+      const out = { walk: 0, thin: [], threw: [], disagree: [] };
+      const seen = new Set();
+      STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+        if (m.jamid || seen.has(lex) || !st.glossary[lex] || !st.glossary[lex].root) return;
+        seen.add(lex);
+        if (out.walk >= 120) return;
+        for (const w of [m.mazi && m.mazi[0], m.mudari && m.mudari[2], m.amr && m.amr[0]].filter(Boolean)) {
+          let x = null; try { x = SarfLedger.read(w); } catch (e) { out.threw.push(lex + ':' + w); continue; }
+          out.walk++;
+          if (!x || x.steps.length < 4) out.thin.push(lex + ':' + w);
+          else if (x.verified === false) out.disagree.push(lex + ':' + w);
+        }
+      }));
+      return { ...out,
+        naql: has('يَقُولُ', /نُقِلَتْ حَرَكَةُ الْعَيْنِ/), fakk: has('ظَنَنَّا', /فُكَّ الْإِدْغَامُ/),
+        fath: has('لَمْ يَشِبَّ', /الْجَزْمُ بِالْفَتْحِ/), iftial: has('اِتَّبِعُوا', /تَاءُ الِافْتِعَالِ|تَاءً وَأُدْغِمَتْ/),
+        wiqaya: has('تَعْرِفُونِي', /نُونُ الْوِقَايَةِ/), illa: has('لَمْ يَقْضِ', /حَذْفِ حَرْفِ الْعِلَّةِ/),
+        waw: has('يَقِفُ', /حُذِفَتِ الْوَاوُ/), majhul: has('كُذِّبَتْ', /ضُمَّ أَوَّلُهُ وَكُسِرَ/),
+        nun: has('يُكَذِّبُوكَ', /حُذِفَتِ النُّونُ/), none: SarfLedger.read('كِتَابٌ') };
+    });
+    if (r.threw.length) throw new Error('the ledger threw on: ' + r.threw.slice(0, 4).join(', '));
+    if (r.walk < 100) throw new Error('the ledger walk covered only ' + r.walk + ' cells');
+    if (r.thin.length > 6) throw new Error(r.thin.length + ' cells narrated in under four steps: ' + r.thin.slice(0, 5).join(', '));
+    if (r.disagree.length) throw new Error('the rebuild disagrees with the stored cell: ' + r.disagree.slice(0, 5).join(', '));
+    for (const k of ['naql', 'fakk', 'fath', 'iftial', 'wiqaya', 'illa', 'waw', 'majhul', 'nun'])
+      if (r[k] !== true) throw new Error('the ledger must name the rule for ' + k + ': ' + r[k]);
+    if (r.none !== null) throw new Error('a noun must get no verb ledger');
+  });
+
+  await check('the Shajara draws every corpus sentence, and its arcs repeat the engines\' seats', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      let n = 0, edges = 0, bad = [], nan = 0;
+      st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+        const text = sen.tokens.map(t => t.s.full).join(' ');
+        let rows = []; try { rows = SentenceAnalyzer.analyze(text); } catch (e) { return; }
+        let s = null; try { s = Shajara.svg(rows, 'en'); } catch (e) { bad.push(ch.n + ':' + sen.id + ' ' + e); return; }
+        n++; edges += s.edges;
+        if (s.nodes !== rows.length) bad.push(ch.n + ':' + sen.id + ' nodes');
+        if (/NaN/.test(s.svg)) nan++;
+      }));
+      const k = s => Shajara.build(SentenceAnalyzer.analyze(s)).edges.map(e => e.from + '>' + e.to + ':' + e.kind);
+      return { n, edges, bad, nan, seats: k('ضَرَبَ زَيْدٌ عَمْرًا فِي الدَّارِ'),
+               shart: k('وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ'),
+               idafa: k('جَاءَ عَبْدُ اللهِ'), inna: k('إِنَّ زَيْدًا قَائِمٌ') };
+    });
+    if (r.bad.length) throw new Error('the shajara failed: ' + r.bad.slice(0, 4).join(' | '));
+    if (r.nan) throw new Error(r.nan + ' diagrams carry NaN coordinates');
+    if (r.n < 200 || r.edges < r.n) throw new Error('too few arcs across the corpus: ' + r.edges + ' over ' + r.n);
+    const need = (list, kind) => { if (!list.some(x => x.endsWith(':' + kind))) throw new Error('missing ' + kind + ' arc in ' + JSON.stringify(list)); };
+    need(r.seats, 'fail'); need(r.seats, 'maful'); need(r.seats, 'taalluq'); need(r.seats, 'jarr');
+    need(r.shart, 'shart'); need(r.shart, 'jawab'); need(r.idafa, 'idafa'); need(r.inna, 'ism');
+  });
+
+  await check('the Qawaid Atlas maps every note, links resolve, and a star opens its note', async () => {
+    const r = await page.evaluate(() => {
+      const svg = QawaidAtlas.svg('');
+      const ids = [...svg.matchAll(/data-note="([^"]+)"/g)].map(m => m[1]);
+      const d = QawaidAtlas.data();
+      return { stars: ids.length, notes: Object.keys(GRAMMAR).length, unknown: ids.filter(i => !GRAMMAR[i]).length,
+               links: (svg.match(/class="at-link/g) || []).length, sectors: d.order.length,
+               dimmed: (QawaidAtlas.svg('idafa').match(/at-star [^"]*dim/g) || []).length };
+    });
+    if (r.stars !== r.notes) throw new Error('stars ' + r.stars + ' ≠ notes ' + r.notes);
+    if (r.unknown) throw new Error(r.unknown + ' stars point at no note');
+    if (r.links < 300) throw new Error('too few links drawn: ' + r.links);
+    if (r.sectors < 3) throw new Error('the sky has too few sectors: ' + r.sectors);
+    if (r.dimmed < 100) throw new Error('the search must dim what it does not match: ' + r.dimmed);
+    // the UI: the reference sheet's atlas view, and a star that opens
+    await page.evaluate(() => { refView = 'atlas'; refQuery = ''; openRef(); });
+    await page.waitForSelector('#refListWrap .atlas-svg', { timeout: 4000 });
+    const opened = await page.evaluate(() => {
+      const star = document.querySelector('#refListWrap .at-star[data-note="idafa-definiteness"]');
+      if (!star) return 'no star';
+      star.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      return !!document.querySelector('.sheet [data-note-save="idafa-definiteness"]');
+    });
+    if (opened !== true) throw new Error('a star must open its note: ' + opened);
+    await page.evaluate(() => { refView = 'list'; closeSheet(); });
+  });
+
+  await check('the Qawaid and Sarf-ledger labs render on a phone, one tap from a seeded error', async () => {
+    await page.evaluate(() => { conjState.lab = 'qawaid'; conjState.qawaid = 'لَمْ يَكْتُبُونَ الدَّرْسَ'; openConjugator(); });
+    await page.waitForSelector('#qawaidOut .qw-ledger', { timeout: 6000 });
+    const r = await page.evaluate(() => ({
+      bad: document.querySelectorAll('#qawaidOut .qw-row.bad').length,
+      ok: document.querySelectorAll('#qawaidOut .qw-row.ok').length,
+      map: !!document.querySelector('#qawaidOut .shajara-svg'),
+      seeds: document.querySelectorAll('#qawaidOut .qw-seed').length,
+      note: !!document.querySelector('#qawaidOut .qw-note'),
+      tabs: [...document.querySelectorAll('.labrail [data-lab]')].map(b => b.dataset.lab),
+    }));
+    if (r.bad < 1) throw new Error('the seeded five-verbs error must show a broken rule');
+    if (!r.map) throw new Error('the lab must draw the i\'rab map');
+    if (r.seeds < 10 || !r.note) throw new Error('the seeds and the note links must render: ' + r.seeds + '/' + r.note);
+    if (!r.tabs.includes('qawaid') || !r.tabs.includes('sledger')) throw new Error('the rail lacks the new labs: ' + r.tabs.join(','));
+    await page.evaluate(() => { conjState.lab = 'sledger'; conjState.sledger = 'لَمْ يَقُولُوا'; renderLabBody(); });
+    await page.waitForSelector('#sledgerOut .sl-steps li', { timeout: 6000 });
+    const s = await page.evaluate(() => ({
+      steps: document.querySelectorAll('#sledgerOut .sl-steps li').length,
+      verified: !!document.querySelector('#sledgerOut .sl-verify.ok'),
+      word: (document.querySelector('#sledgerOut .if-end.out b') || {}).textContent,
+    }));
+    if (s.steps < 4 || !s.verified) throw new Error('the ledger must narrate and verify: ' + JSON.stringify(s));
+    if (!/يَقُولُوا/.test(s.word || '')) throw new Error('the ledger shows the written word: ' + s.word);
+    await page.evaluate(() => closeSheet());
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

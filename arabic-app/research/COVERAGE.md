@@ -2464,6 +2464,38 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v166 — wave 12: the rule ledger, the sarf ledger, the arc map and
+  the atlas.** No new chapter; a showcase of automation and design on
+  the existing 5,400 tokens. QawaidEngine names thirteen nahw rules
+  (jarr, mudaf ilayh, jazm, the five verbs, nasb after a nasib, inna's
+  and kana's ism, the fa'il, the genus-la, the munada, the shart frame,
+  ال+tanwin, a majrur's governor), reads the CaseEngine's claims against
+  them and writes a ✓/✗ ledger per sentence with the note each rule
+  cites; twelve seeded errors are the positive set (12/12 caught), the
+  corpus is the negative set — the first sweep raised 147 alarms on
+  1,166 checks and every one was an engine defect: the fused-jarr flag
+  on indefinite hosts, kana's hidden ism, the raf' jawab after a mazi
+  shart, the soft idafa chain, لِمَا, the jalala under a lam, sentence-
+  initial joined majrurs, the manqus behind a bracketed glossary lemma,
+  a ب/ك/ل strip landing on a particle, the diptote after a jarr letter,
+  إِذْنِ read as إِذَنْ, لِفِقْهٍ losing its ha to the pronoun peel, the
+  first-person jussive rebuild (أَرْضَ) with no jazim in frame, حَتَّى's
+  nasib face, the naqis jussive's fatha, مَالِكِ split at its kaf — all
+  fixed at source; the final sweep is **0 alarms over 778 sentences /
+  2,287 checks across all seventeen stories**, gated. SarfLedger narrates
+  any written verb (class, bab, wazn, cell, phonology by class, augment,
+  passive vowelling, mood sign, the fallen nun, the clitic) in the books'
+  words, each step citing its note, and rebuilds the cell with sarfDerive
+  to verify itself (120-cell walk, zero disagreements). Shajara draws
+  every sentence as an RTL arc map from the engines' own seats (ta'alluq,
+  jarr, idafa, ism/khabar, fa'il/maf'ul, atf, shart/jawab, qasr, sila,
+  nida) — in the Jumla lab, the Qawaid lab and every corpus sentence's
+  tahqiq panel. QawaidAtlas lays the 148 notes as a sky (fan layout per
+  group, 574 links from `relatedNotes`, search dims what it does not
+  match, a star opens its note) behind a list/atlas toggle in the
+  reference sheet. Five new smoke gates; DESIGN.md §11. Bank: see the
+  commit. Next: ch45 (multi-jumla i'tirad 2:222-223, the other sababs
+  40:7, the bab's closing ~2915-2940).
 - **v165 — talkhis ch44: i'tirad — the parenthetic sentence.** Seven
   sentences / 48 tokens (sahifa 99-100, lines ~2890-2915): the
   definition verbatim in two clauses (كَلَامَيْنِ مُتَّصِلَيْنِ
