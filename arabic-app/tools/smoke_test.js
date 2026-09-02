@@ -8576,6 +8576,70 @@ if (!CHROME) {
     if (r.talamun !== 'raf') throw new Error('تَعْلَمُونَ keeps the five-verbs raf\': ' + r.talamun);
   });
 
+  await check('talkhis ch41: ighal — the two bayts\' seals, and the munada\'s endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 41);
+      if (!ch) return { missing: true };
+      const toks = ch.sentences.flatMap(s => s.tokens);
+      const an = s => SentenceAnalyzer.analyze(s);
+      const k = (s, i) => { const rows = an(s); return (CaseEngine.claim(rows, i) || {}).k || null; };
+      const cell = (s, i) => { const x = an(s)[i]; return [x.kind, x.cell && x.cell.tense,
+        x.root || null] ; };
+      const g145 = GRAMMAR['ighal'];
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: toks.length,
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        verse: ch.sentences.filter(s => s.tokens.some(t => t.punctAfter === '•')).length,
+        n145: g145 ? { group: g145.group, anchors: (g145.examples || [])
+          .filter(e => e.src === 'talkhis-al-miftah').length } : null,
+        // the VIII geminate answers through the muzahlaqa lam…
+        tatammu: cell('وَإِنَّ صَخْرًا لَتَأْتَمُّ الْهُدَاةُ بِهِ', 2)
+          .concat(k('وَإِنَّ صَخْرًا لَتَأْتَمُّ الْهُدَاةُ بِهِ', 2)),
+        // …and its twin cells obey the governor
+        lamYatamma: cell('لَمْ يَأْتَمَّ بِهِ أَحَدٌ', 1).concat(k('لَمْ يَأْتَمَّ بِهِ أَحَدٌ', 1)),
+        // the manqus plural keeps its raf and its root
+        hudat: [an('لَتَأْتَمُّ الْهُدَاةُ بِهِ')[1].root, k('لَتَأْتَمُّ الْهُدَاةُ بِهِ', 1)],
+        // the passive jussive under لم
+        yuthaqqab: cell('الْجَزْعُ الَّذِي لَمْ يُثَقَّبْ', 3)
+          .concat(k('الْجَزْعُ الَّذِي لَمْ يُثَقَّبْ', 3)),
+        // the VIII amr with the group's waw
+        ittabiu: cell('اتَّبِعُوا الْمُرْسَلِينَ', 0),
+        // the munada reads its ending: قَوْمِ silent, عَبْدَ nasb, زَيْدُ mabni
+        qawmi: k('يَا قَوْمِ اتَّبِعُوا الْمُرْسَلِينَ', 1),
+        abda: k('يَا عَبْدَ اللهِ أَقْبِلْ', 1),
+        zaydu: k('يَا زَيْدُ أَقْبِلْ', 1),
+        // the aya's seal keeps its raf, and the eyes their nasb
+        muhtadun: k('وَهُمْ مُهْتَدُونَ', 1),
+        uyun: k('كَأَنَّ عُيُونَ الْوَحْشِ حَوْلَ خِبَائِنَا', 1),
+      };
+    });
+    if (r.missing) throw new Error('chapter 41 did not load');
+    if (r.chapters < 41) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 6) throw new Error('ch41 sentences: ' + r.n);
+    if (r.t !== 32) throw new Error('ch41 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 2))
+      throw new Error('every ch41 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (r.verse !== 4) throw new Error('the four hemistich sentences wear verse dress: ' + r.verse);
+    if (!r.n145 || r.n145.group !== 'balagha' || r.n145.anchors < 3)
+      throw new Error('note 145 must be balagha with its witnesses: ' + JSON.stringify(r.n145));
+    if (r.tatammu[0] !== 'verb' || r.tatammu[1] !== 'mudari' || r.tatammu[2] !== 'أ م م' || r.tatammu[3] !== 'raf')
+      throw new Error('لَتَأْتَمُّ answers the VIII geminate through the lam: ' + r.tatammu.join('/'));
+    if (r.lamYatamma[1] !== 'majzum' || r.lamYatamma[3] !== 'jazm')
+      throw new Error('the VIII geminate\'s twin obeys the governor: ' + r.lamYatamma.join('/'));
+    if (r.hudat[0] !== 'ه د ي' || r.hudat[1] !== 'raf')
+      throw new Error('الْهُدَاةُ answers its manqus lemma: ' + r.hudat.join('/'));
+    if (r.yuthaqqab[1] !== 'majhulMudari' || r.yuthaqqab[3] !== 'jazm')
+      throw new Error('لَمْ يُثَقَّبْ is the passive jussive: ' + r.yuthaqqab.join('/'));
+    if (r.ittabiu[0] !== 'verb' || r.ittabiu[1] !== 'amr' || r.ittabiu[2] !== 'ت ب ع')
+      throw new Error('اتَّبِعُوا answers the VIII amr: ' + r.ittabiu.join('/'));
+    if (r.qawmi !== null) throw new Error('يَا قَوْمِ stays silent (the dropped ya): ' + r.qawmi);
+    if (r.abda !== 'nasb') throw new Error('يَا عَبْدَ اللهِ is the mudaf\'s nasb: ' + r.abda);
+    if (r.zaydu !== 'mabni') throw new Error('يَا زَيْدُ keeps the bina: ' + r.zaydu);
+    if (r.muhtadun !== 'raf') throw new Error('مُهْتَدُونَ keeps its raf: ' + r.muhtadun);
+    if (r.uyun !== 'nasb') throw new Error('عُيُونَ keeps kaanna\'s nasb: ' + r.uyun);
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

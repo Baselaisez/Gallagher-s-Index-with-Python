@@ -2402,3 +2402,23 @@ not a one-line change.
   tokens, 99.9% POS / 99.0% CASE — ch40 zero disagreements, CASE up
   a tenth. Next: ighal (Khansa's bayt, Imru' al-Qays), then the
   remaining itnab occasions (~2850+).
+
+- **v162 — talkhis ch41: ighal — the far-reaching seal.** Six
+  sentences / 32 tokens (sahifa 98, lines ~2843-2855): al-Khansa's
+  bayt on Sakhr (the beacon-fire seal — mubalagha heaped after the
+  likening is complete; the muzahlaqa lam over the Form VIII geminate
+  لَتَأْتَمُّ), Imru' al-Qays's onyx-eyes bayt (the unpierced bead —
+  ighal for TAHQIQ; the passive jussive لَمْ يُثَقَّبْ), and Ya-Sin
+  36:20-21 for those who let ighal into prose (يَا قَوْمِ — the
+  dropped speaker's-ya munada; وَهُمْ مُهْتَدُونَ the sealing hal).
+  Note 145 with the definition verbatim and the seat rule (ighal
+  lives at the END; takmil/tatmim sit mid-speech — next chapter).
+  Paradigms: اِئْتَمَّ (VIII geminate — the twin-cell doctrine's
+  newest predator, bank-checked clean), ثَقَّبَ (II), اِتَّبَعَ
+  (VIII). Engine: the MUNADA now reads its own ending at the case
+  layer — يَا زَيْدُ mabni (mufrad ma'rifa), يَا عَبْدَ اللهِ nasb
+  (the mudaf is mu'rab; the old flat «mabni» was wrong exactly
+  there), يَا قَوْمِ silence (the dropped ya's estimated nasb).
+  Bank: 301 worked sentences / 1,872 tokens, 99.9% POS / 99.0% CASE —
+  ch41 zero disagreements. Next: takmil (ihtiras) and tatmim
+  (Tarafa's bayt, 5:54, 76:8), then i'tirad (~2870+).

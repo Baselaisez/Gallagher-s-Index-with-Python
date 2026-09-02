@@ -4002,3 +4002,36 @@ table's rad' reading UNSURE (no harf claim) instead of walking into a
 verb cell — the manOpen pattern, one particle over. Every new table
 entry pays this toll: name the homograph, write its discriminating
 vowel into the guard, and keep the unvowelled face honest.
+
+## The munada reads its own ending — a flat rule was hiding a wrong one (ch41, v162)
+
+«After يا: mabni» was one line and one lie: the bina-on-damm belongs
+to the MUFRAD MA'RIFA alone; a mudaf munada is mu'rab and mansub
+(يَا عَبْدَ اللهِ), and the flat rule was claiming bina against the
+written fatha. The refined claim reads the munada's ending exactly as
+NidaEngine's five kinds teach: damm → mabni, fatha (tanwin included)
+→ nasb, bare kasra → the dropped speaker's-ya construct (يَا قَوْمِ،
+يَا رَبِّ) whose nasb is estimated before an absent letter — silence,
+not a guess; unmarked input keeps the old mabni default. The lesson
+generalizes: a case rule keyed on a GOVERNOR ALONE (after يا, after
+لا, after a jarr letter) is only as true as its least common
+follower — enumerate the follower's own shapes before shipping the
+rule, because the corpus will eventually put every shape after every
+governor.
+
+## Two gate catches in one wave: the builder that skipped idgham, the reader that refused a wajh
+
+The v162 release run failed twice before green, both engine truths.
+(1) sjGov — the one cell-builder among five that never ran sjIdgham —
+regenerated اِتَّبَعَ's governed cells as يَتْتَبِعَ against the stored
+يَتَّبِعَ; the tense builders had the contraction, the audit compared
+all of them, and a ta-initial root under bab iftial was the first
+corpus verb to expose the odd one out. When a rule (twin-seam idgham)
+belongs to a CLASS of builders, grep every builder in the class the
+day the rule lands — one omitted call site is invisible until a root
+arrives whose letters need it. (2) NidaEngine.read had the speaker's
+ya WITH its letter (يَا مُعَلِّمِي) but not the commoner trimmed wajh
+(يَا قَوْمِ, bare kasra, no tanwin) — it answered «unvowelled», and
+the corpus-agreement gate rightly called the refusal a failure: the
+gate walks every munada the corpus parses, so shipping the chapter
+that uses a wajh IS the test of the engine that reads it.

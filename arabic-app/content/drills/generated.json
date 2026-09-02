@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 295,
-  "sentenceTokens": 1840,
+  "sentences": 301,
+  "sentenceTokens": 1872,
   "posAgreement": 99.9,
-  "caseJudged": 1441,
+  "caseJudged": 1468,
   "caseAgreement": 99,
-  "rows": 2925
+  "rows": 2957
  },
  "endings": [
   {
@@ -2308,8 +2308,8 @@
     "mudariTheyF": "يَنَّصِرْنَ",
     "amr": "اِنَّصِرْ",
     "amrTheyF": "اِنَّصِرْنَ",
-    "mansub": "يَنْنَصِرَ",
-    "majzum": "يَنْنَصِرْ"
+    "mansub": "يَنَّصِرَ",
+    "majzum": "يَنَّصِرْ"
    },
    "note": null
   },
@@ -49119,10 +49119,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "و ع ي",
-      "wazn": "فَعُلُونٍ",
-      "sure": false
+      "lemma": "عَيْن",
+      "root": "ع ي ن",
+      "wazn": "فُعُولٍ",
+      "sure": true
      },
      "match": true,
      "caseSaid": null,
@@ -55114,6 +55114,922 @@
       "lemma": "عَلِمَ",
       "root": "ع ل م",
       "wazn": "تَفْعَلُونَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s1",
+   "text": "وَإِنَّ صَخْرًا لَتَأْتَمُّ الْهُدَاةُ بِهِ",
+   "translation": {
+    "en": "Truly Sakhr — the guides take him for their leader,",
+    "tr": "Gerçekten Sahr — hidayet rehberleri ona uyarlar,"
+   },
+   "jumal": [
+    {
+     "text": "وَإِنَّ صَخْرًا لَتَأْتَمُّ الْهُدَاةُ بِهِ",
+     "ar": "جُمْلَةُ إِنَّ وَاسْمُهَا وَخَبَرُهَا الْفِعْلِيُّ — صَدْرُ بَيْتِ الْخَنْسَاءِ.",
+     "en": "The claim the bayt will now magnify: the guides themselves are guided by him."
+    },
+    {
+     "text": "لَتَأْتَمُّ",
+     "ar": "اللَّامُ الْمُزَحْلَقَةُ عَلَى خَبَرِ إِنَّ.",
+     "en": "The emphasis lam slid from inna's ism onto its khabar — the old muzahlaqa rule in verse."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَإِنَّ",
+     "lex": "inna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«truly» — the lament opens on certainty."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "صَخْرًا",
+     "lex": "sakhr",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«Sakhr» — inna's ism: al-Khansa's brother, whom she mourns."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَخْر",
+      "root": "ص خ ر",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "لَتَأْتَمُّ",
+     "lex": "itamma",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal",
+       "form-viii-verbs",
+       "doubled-verbs"
+      ],
+      "irab": "«surely take for leader» — the slid-down lam over the Form VIII geminate of أَمَّ: to follow as one follows an imam."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِئْتَمَّ",
+      "root": "أ م م",
+      "wazn": "تَفْتَعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْهُدَاةُ",
+     "lex": "hadin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«the guides» — even those who guide need his lead: plural of the manqus هَادٍ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "هَادٍ",
+      "root": "ه د ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِهِ",
+     "lex": "bi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«by him» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s2",
+   "text": "كَأَنَّهُ عَلَمٌ فِي رَأْسِهِ نَارٌ",
+   "translation": {
+    "en": "as if he were a mountain — with a FIRE at its summit. (the likening was complete at «mountain»; the fire is IGHAL: mubalagha heaped higher, and the rhyme earned.)",
+    "tr": "sanki bir dağ — ZİRVESİNDE ATEŞ yanan. (teşbih «dağ»da tamamdı; ateş ÎGĀLDİR: mübâlağa bir kat daha, kafiye de kazanılmış.)"
+   },
+   "jumal": [
+    {
+     "text": "كَأَنَّهُ عَلَمٌ فِي رَأْسِهِ نَارٌ",
+     "ar": "جُمْلَةُ التَّشْبِيهِ — وَفِي عَجُزِهَا الْإِيغَالُ.",
+     "en": "The ighal witness: strike the fire and the meaning stands; keep it and the praise blazes."
+    },
+    {
+     "text": "فِي رَأْسِهِ نَارٌ",
+     "ar": "خَتْمُ الْبَيْتِ بِمَا يُفِيدُ نُكْتَةً يَتِمُّ الْمَعْنَى بِدُونِهَا.",
+     "en": "The definition of ighal, enacted: a seal the meaning did not need — and the point it adds."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "كَأَنَّهُ",
+     "lex": "ka-anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal",
+       "inna-wa-akhawatuha",
+       "tashbih"
+      ],
+      "irab": "«as if he» — the likening harf with its pronoun ism."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "harf",
+     "caseMatch": null
+    },
+    {
+     "w": "عَلَمٌ",
+     "lex": "alam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "tashbih"
+      ],
+      "irab": "«a mountain» — and here the likening is COMPLETE: what follows is surplus, and earns."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِلْم",
+      "root": "ع ل م",
+      "wazn": "فَعَلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«at» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "رَأْسِهِ",
+     "lex": "ras",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«its summit» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَأْس",
+      "root": "ر أ س",
+      "wazn": "فَعْلِهِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "نَارٌ",
+     "lex": "nar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "taqdim-al-musnad"
+      ],
+      "irab": "«a fire» — the beacon-fire that makes the mountain a LANDMARK by night: the ighal, added after completeness for more mubalagha."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَار",
+      "root": "ن و ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s3",
+   "text": "كَأَنَّ عُيُونَ الْوَحْشِ حَوْلَ خِبَائِنَا وَأَرْحُلِنَا",
+   "translation": {
+    "en": "As if the eyes of the wild deer, around our tents and our saddles,",
+    "tr": "Sanki yaban geyiklerinin gözleri, çadırlarımızın ve semerlerimizin etrafında,"
+   },
+   "jumal": [
+    {
+     "text": "كَأَنَّ عُيُونَ الْوَحْشِ حَوْلَ خِبَائِنَا وَأَرْحُلِنَا",
+     "ar": "صَدْرُ بَيْتِ امْرِئِ الْقَيْسِ — اسْمُ كَأَنَّ وَظَرْفُهُ، وَالْخَبَرُ فِي الْعَجُزِ.",
+     "en": "The scene set: dark eyes scattered on the ground, the khabar held back for the second hemistich."
+    },
+    {
+     "text": "حَوْلَ خِبَائِنَا وَأَرْحُلِنَا",
+     "ar": "الظَّرْفُ وَمَا عُطِفَ عَلَيْهِ.",
+     "en": "The camp's geography in one zarf phrase."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "كَأَنَّ",
+     "lex": "ka-anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal",
+       "inna-wa-akhawatuha",
+       "tashbih"
+      ],
+      "irab": "«as if» — Imru' al-Qays surveys the morning after the hunt."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "عُيُونَ",
+     "lex": "ayn-eye",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«the eyes of» — kaanna's ism, a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَيْن",
+      "root": "ع ي ن",
+      "wazn": "فُعُولَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "الْوَحْشِ",
+     "lex": "wahsh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«the wild deer» — the oryx and gazelle taken in the night's hunt."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَحْش",
+      "root": "و ح ش",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "حَوْلَ",
+     "lex": "hawl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "maful-fih"
+      ],
+      "irab": "«around» — the place-zarf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَوْل",
+      "root": "ح و ل",
+      "wazn": "فَعْلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "خِبَائِنَا",
+     "lex": "khiba",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«our tents» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ ب ئ",
+      "wazn": "فِعَال — مَصْدَر / جَمْع",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَأَرْحُلِنَا",
+     "lex": "rahl",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "atf-nasaq"
+      ],
+      "irab": "«and our saddles» — plural of رَحْل."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رَحْل",
+      "root": "ر ح ل",
+      "wazn": "أَفْعُلِنَا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s4",
+   "text": "الْجَزْعُ الَّذِي لَمْ يُثَقَّبْ",
+   "translation": {
+    "en": "were onyx beads — that have NOT BEEN PIERCED. (the likening was complete at «onyx»; the unpierced is IGHAL: tahqiq — a pierced bead loses its water, and living eyes shine whole.)",
+    "tr": "delinmemiş göz boncukları olsun. (teşbih «boncuk»ta tamamdı; delinmemişlik ÎGĀLDİR: tahkîk — delinen boncuğun suyu kaçar, canlı göz bütün parlar.)"
+   },
+   "jumal": [
+    {
+     "text": "الْجَزْعُ الَّذِي لَمْ يُثَقَّبْ",
+     "ar": "خَبَرُ كَأَنَّ وَصِفَتُهُ — وَفِي الصِّفَةِ الْإِيغَالُ.",
+     "en": "The ighal witness again — this time the surplus VERIFIES rather than magnifies."
+    },
+    {
+     "text": "لَمْ يُثَقَّبْ",
+     "ar": "قَيْدُ التَّحْقِيقِ — نُكْتَةُ الْإِيغَالِ هُنَا.",
+     "en": "Two words the meaning could spare, and the whole image sharpens by them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "الْجَزْعُ",
+     "lex": "jaz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "tashbih"
+      ],
+      "irab": "«onyx beads» — the black-and-white Yemeni bead: the likening is complete here."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جَزْع",
+      "root": "ج ز ع",
+      "wazn": "فَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الَّذِي",
+     "lex": "alladhi",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ighal",
+       "ism-mawsul"
+      ],
+      "irab": "«that» — the relative opening the ighal clause."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَمْ",
+     "lex": "lam-jazima",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal",
+       "lam-jazim"
+      ],
+      "irab": "«not» — jazm incoming."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "يُثَقَّبْ",
+     "lex": "thaqqaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal",
+       "form-ii-verbs",
+       "naib-al-fail"
+      ],
+      "irab": "«been pierced» — the passive jussive: piercing drains a bead's lustre, and these eyes are alive and whole. The seal verifies the likeness — ighal for tahqiq."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "ثَقَّبَ",
+      "root": "ث ق ب",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jazm",
+     "caseHuman": "jazm",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s5",
+   "text": "قَالَ يَا قَوْمِ اتَّبِعُوا الْمُرْسَلِينَ",
+   "translation": {
+    "en": "He said: O my people, follow the messengers! (36:20)",
+    "tr": "Dedi: Ey kavmim, gönderilenlere uyun! (36:20)"
+   },
+   "jumal": [
+    {
+     "text": "يَا قَوْمِ اتَّبِعُوا الْمُرْسَلِينَ",
+     "ar": "نِدَاءٌ وَأَمْرٌ — الدَّعْوَةُ بِأَوْجَزِ لَفْظٍ.",
+     "en": "The call at its shortest: my people, follow."
+    },
+    {
+     "text": "قَوْمِ",
+     "ar": "مُنَادًى حُذِفَتْ يَاؤُهُ وَبَقِيَتِ الْكَسْرَةُ.",
+     "en": "One kasra doing a dropped letter's work."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 5,
+   "agree": 5,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "قَالَ",
+     "lex": "qala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«he said» — the man who came running from the city's far side."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَالَ",
+      "root": "ق و ل",
+      "wazn": "فَعَلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "يَا",
+     "lex": "ya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal",
+       "vocative-munada"
+      ],
+      "irab": "«O» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "قَوْمِ",
+     "lex": "qawm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "vocative-munada",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«my people» — the trimmed construct: the speaker's ya is gone and its kasra stands witness — the رَبِّ shape, one noun over."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "قَوْم",
+      "root": "ق و م",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    },
+    {
+     "w": "اتَّبِعُوا",
+     "lex": "ittabaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal",
+       "form-viii-verbs",
+       "imperative-amr"
+      ],
+      "irab": "«follow» — Form VIII's amr to the group."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِتَّبَعَ",
+      "root": "ت ب ع",
+      "wazn": "اِفْتَعِلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُرْسَلِينَ",
+     "lex": "mursal",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "jam-mudhakkar-salim",
+       "ism-maful"
+      ],
+      "irab": "«the messengers» — nasb worn as a ya: the sound masculine plural."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ر س ل",
+      "wazn": "مُفْعَلِينَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "nasb",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:41:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 41,
+   "sentence": "s6",
+   "text": "اتَّبِعُوا مَنْ لَا يَسْأَلُكُمْ أَجْرًا وَهُمْ مُهْتَدُونَ",
+   "translation": {
+    "en": "Follow those who ask you no wage — and THEY ARE RIGHTLY GUIDED (36:21). The argument was complete at «no wage»; the seal adds the second urging: ighal, say those who deny it is poetry's alone.",
+    "tr": "Sizden ücret istemeyenlere uyun — VE ONLAR HİDÂYET ÜZEREDİRLER (36:21). Delil «ücret istemez»de tamamdı; mühür ikinci teşviki ekler: îgāl şiire mahsus değildir diyenlerin şahidi."
+   },
+   "jumal": [
+    {
+     "text": "اتَّبِعُوا مَنْ لَا يَسْأَلُكُمْ أَجْرًا وَهُمْ مُهْتَدُونَ",
+     "ar": "أَمْرٌ وَصِلَتُهُ وَحَالٌ — وَفِي الْحَالِ الْإِيغَالُ.",
+     "en": "The aya's argument, complete without its seal — and stronger with it."
+    },
+    {
+     "text": "وَهُمْ مُهْتَدُونَ",
+     "ar": "خَتْمُ الْكَلَامِ بِزِيَادَةِ التَّرْغِيبِ — شَاهِدُ مَنْ عَمَّمَ الْإِيغَالَ.",
+     "en": "For urging on top of proof: the witness that ighal is not poetry's alone."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "اتَّبِعُوا",
+     "lex": "ittabaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal",
+       "form-viii-verbs",
+       "imperative-amr"
+      ],
+      "irab": "«follow» — repeated from the last aya: the urging climbs."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "اِتَّبَعَ",
+      "root": "ت ب ع",
+      "wazn": "اِفْتَعِلُوا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "مَنْ",
+     "lex": "man-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ighal",
+       "ism-mawsul"
+      ],
+      "irab": "«those who» — the relative as object."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَا",
+     "lex": "la-nafiya",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ighal"
+      ],
+      "irab": "«not» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "يَسْأَلُكُمْ",
+     "lex": "saala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ighal",
+       "mafulayn"
+      ],
+      "irab": "«asks you» — the sila clause; سَأَلَ takes two objects and «you» is the first."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَأَلَ",
+      "root": "س أ ل",
+      "wazn": "يَفْعَلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَجْرًا",
+     "lex": "ajr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "mafulayn"
+      ],
+      "irab": "«a wage» — the second object: sincerity's proof."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَجْر",
+      "root": "أ ج ر",
+      "wazn": "فَعْلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "وَهُمْ",
+     "lex": "hum",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ighal",
+       "anwa-al-waw",
+       "hal"
+      ],
+      "irab": "«while they» — the hal waw opens the sealing clause."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "مُهْتَدُونَ",
+     "lex": "muhtadin",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ighal",
+       "jam-mudhakkar-salim",
+       "ism-fail"
+      ],
+      "irab": "«rightly guided» — the aya's seal: follow them for their honesty — and besides, they are guided. The scholars who let ighal into prose point here."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُهْتَدٍ",
+      "root": "ه د ي",
+      "wazn": null,
       "sure": true
      },
      "match": true,
