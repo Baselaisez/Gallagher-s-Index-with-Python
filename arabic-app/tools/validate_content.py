@@ -42,7 +42,7 @@ REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examp
 # A "plain" summary longer than this is not a summary. The full account belongs
 # in `explanation`, which the reader shows behind a toggle.
 PLAIN_MAX = 320
-NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha"}
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan"}
 
 
 def strip_diacritics(text: str) -> str:

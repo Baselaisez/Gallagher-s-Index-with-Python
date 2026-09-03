@@ -11,12 +11,12 @@
   "paradigms": 100,
   "mizan": 47,
   "mizanDropped": 13,
-  "sentences": 338,
-  "sentenceTokens": 2110,
+  "sentences": 360,
+  "sentenceTokens": 2215,
   "posAgreement": 99.9,
-  "caseJudged": 1651,
+  "caseJudged": 1739,
   "caseAgreement": 99.1,
-  "rows": 3195
+  "rows": 3300
  },
  "endings": [
   {
@@ -62532,6 +62532,2998 @@
      "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s1",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s1",
+   "text": "وَهُوَ عِلْمٌ يُعْرَفُ بِهِ إِيرَادُ الْمَعْنَى الْوَاحِدِ",
+   "translation": {
+    "en": "And it is a science by which is known the bringing of ONE meaning",
+    "tr": "O, BİR mânâyı getirmenin kendisiyle bilindiği bir ilimdir"
+   },
+   "jumal": [
+    {
+     "text": "يُعْرَفُ بِهِ إِيرَادُ الْمَعْنَى الْوَاحِدِ",
+     "ar": "جُمْلَةٌ فِي مَحَلِّ رَفْعٍ صِفَةٌ لِعِلْمٍ.",
+     "en": "The clause-sifa that makes «a science» THIS science."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَهُوَ",
+     "lex": "huwa",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar"
+      ],
+      "irab": "«and it» — the mubtada, pointing back to the science just named."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عِلْمٌ",
+     "lex": "ilm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar"
+      ],
+      "irab": "«a science» — the khabar; the definition's genus."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِلْم",
+      "root": "ع ل م",
+      "wazn": "فِعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يُعْرَفُ",
+     "lex": "arafa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ilm-al-bayan",
+       "naib-al-fail",
+       "jumla-sifa"
+      ],
+      "irab": "«is known» — the passive; its clause is the sifa of عِلْمٌ (a science BY WHICH…)."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "عَرَفَ",
+      "root": "ع ر ف",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِهِ",
+     "lex": "bi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«by it» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "إِيرَادُ",
+     "lex": "irad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "naib-al-fail",
+       "masdar"
+      ],
+      "irab": "«the bringing of» — the deputy doer, a Form IV masdar, a mudaf."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "إِيرَاد",
+      "root": "و ر د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمَعْنَى",
+     "lex": "mana",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«the meaning» — a maqsur."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَعْنًى",
+      "root": "ع ن ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    },
+    {
+     "w": "الْوَاحِدِ",
+     "lex": "wahid",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "naat-sifa"
+      ],
+      "irab": "«one» — ONE meaning: the science is about many roads to one place."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَاحِد",
+      "root": "و ح د",
+      "wazn": "فَاعِلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s2",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s2",
+   "text": "بِطُرُقٍ مُخْتَلِفَةٍ فِي وُضُوحِ الدَّلَالَةِ عَلَيْهِ",
+   "translation": {
+    "en": "by DIFFERENT roads, in the clarity of the indication of it.",
+    "tr": "— ona delâletin açıklığında FARKLI yollarla."
+   },
+   "jumal": [
+    {
+     "text": "بِطُرُقٍ مُخْتَلِفَةٍ فِي وُضُوحِ الدَّلَالَةِ عَلَيْهِ",
+     "ar": "مُتَعَلِّقُ الْمَصْدَرِ وَصِفَتُهُ — قَيْدُ التَّعْرِيفِ.",
+     "en": "The definition's restriction: not any roads — roads that differ in how clearly they point."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 6,
+   "agree": 6,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "بِطُرُقٍ",
+     "lex": "tariq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«by roads» — the masdar's own complement: the bringing is done BY roads."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "طَرِيق",
+      "root": "ط ر ق",
+      "wazn": "فُعُلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "مُخْتَلِفَةٍ",
+     "lex": "mukhtalif",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "naat-sifa",
+       "ism-fail",
+       "form-viii-verbs"
+      ],
+      "irab": "«different» — Form VIII's ism fa'il."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ ل ف",
+      "wazn": "مُفْتَعِلَةٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«in» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "وُضُوحِ",
+     "lex": "wuduh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "masdar"
+      ],
+      "irab": "«the clarity of» — the roads differ IN CLARITY: that is the whole science."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وُضُوح",
+      "root": "و ض ح",
+      "wazn": "فُعُولِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "الدَّلَالَةِ",
+     "lex": "dalala",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan"
+      ],
+      "irab": "«the indication» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَلَالَة",
+      "root": "د ل ل",
+      "wazn": "فَّعَالَةِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَيْهِ",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«of it» — the indication OF that one meaning."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s3",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s3",
+   "text": "وَمَوْضُوعُهُ التَّشْبِيهُ وَالْمَجَازُ وَالْكِنَايَةُ",
+   "translation": {
+    "en": "And its subject is tashbih, majaz and kinaya. (Restored from the source's question-and-answer.)",
+    "tr": "Mevzuu teşbih, mecaz ve kinayedir. (Kaynağın soru-cevabından geri yazılmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَمَوْضُوعُهُ التَّشْبِيهُ وَالْمَجَازُ وَالْكِنَايَةُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ — أَبْوَابُ الْفَنِّ الثَّلَاثَةُ.",
+     "en": "The three doors of the second fann, in the order the book will walk them."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَمَوْضُوعُهُ",
+     "lex": "mawdu",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar",
+       "ism-maful"
+      ],
+      "irab": "«and its subject» — the mubtada, an ism maf'ul."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَوْضُوع",
+      "root": "و ض ع",
+      "wazn": "فَمَوْعُولُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "التَّشْبِيهُ",
+     "lex": "tashbih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«tashbih» — the first of the three doors, and this chapter's."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَشْبِيه",
+      "root": "ش ب ه",
+      "wazn": "تَّفْعِيلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْمَجَازُ",
+     "lex": "majaz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«and majaz» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَجَاز",
+      "root": "ج و ز",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْكِنَايَةُ",
+     "lex": "kinaya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«and kinaya» — majaz before kinaya, the source says, because majaz's meaning is like a PART of kinaya's."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كِنَايَة",
+      "root": "ك ن ي",
+      "wazn": "فِعَالَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s4",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s4",
+   "text": "وَدَلَالَةُ اللَّفْظِ إِمَّا عَلَى تَمَامِ مَا وُضِعَ لَهُ أَوْ عَلَى جُزْئِهِ أَوْ عَلَى خَارِجٍ عَنْهُ",
+   "translation": {
+    "en": "And a word's indication is either of the whole of what it was coined for, or of a part of it, or of something outside it. (Restored.)",
+    "tr": "Lafzın delâleti ya vaz' olunduğu şeyin tamamına, ya bir cüz'üne, ya da onun dışındaki bir şeyedir. (Geri yazılmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَدَلَالَةُ اللَّفْظِ إِمَّا عَلَى تَمَامِ مَا وُضِعَ لَهُ أَوْ عَلَى جُزْئِهِ أَوْ عَلَى خَارِجٍ عَنْهُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ خَبَرُهَا شِبْهُ جُمْلَةٍ — التَّقْسِيمُ الثُّلَاثِيُّ.",
+     "en": "The three-way division on which the whole science rests."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 15,
+   "agree": 15,
+   "judgedC": 13,
+   "agreeC": 13,
+   "tokens": [
+    {
+     "w": "وَدَلَالَةُ",
+     "lex": "dalala",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar"
+      ],
+      "irab": "«and the indication of» — the mubtada."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَلَالَة",
+      "root": "د ل ل",
+      "wazn": "فَعَالَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "اللَّفْظِ",
+     "lex": "lafz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan"
+      ],
+      "irab": "«a word» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "لَفْظ",
+      "root": "ل ف ظ",
+      "wazn": "فَّعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "إِمَّا",
+     "lex": "imma",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan"
+      ],
+      "irab": "«either» — the particle that opens a division."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«of» — the jarr phrase is the khabar."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَمَامِ",
+     "lex": "tamam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan"
+      ],
+      "irab": "«the whole of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَمَام",
+      "root": "ت م م",
+      "wazn": "فَعَالِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "مَا",
+     "lex": "ma-mawsula",
+     "human": {
+      "pos": "pron",
+      "grammar": [
+       "ilm-al-bayan",
+       "ism-mawsul"
+      ],
+      "irab": "«what» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "وُضِعَ",
+     "lex": "wadaa",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ilm-al-bayan",
+       "naib-al-fail",
+       "mithal-verbs"
+      ],
+      "irab": "«it was coined» — the passive of وَضَعَ: the wadʿ, the assignment of a word to a meaning."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "وَضَعَ",
+      "root": "و ض ع",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "لَهُ",
+     "lex": "li",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«for» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«or» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«of» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "جُزْئِهِ",
+     "lex": "juz",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan"
+      ],
+      "irab": "«a part of it» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ج ز ئ",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«or» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«of» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "خَارِجٍ",
+     "lex": "kharij",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "ism-fail"
+      ],
+      "irab": "«something outside» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَارِج",
+      "root": "خ ر ج",
+      "wazn": "فَاعِلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "عَنْهُ",
+     "lex": "an",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "ilm-al-bayan",
+       "huruf-jarr"
+      ],
+      "irab": "«it» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s5",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s5",
+   "text": "وَالْأُولَى وَضْعِيَّةٌ وَالْأُخْرَيَانِ عَقْلِيَّتَانِ",
+   "translation": {
+    "en": "The first is called wadʿiyya, the other two ʿaqliyya. (Restored.)",
+    "tr": "İlkine vaz'iyye, öteki ikisine akliyye denir. (Geri yazılmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَالْأُولَى وَضْعِيَّةٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — الْمُطَابَقَةُ وَحْدَهَا مِنَ الْوَضْعِ.",
+     "en": "Only the first indication is the coinage's own."
+    },
+    {
+     "text": "وَالْأُخْرَيَانِ عَقْلِيَّتَانِ",
+     "ar": "مَعْطُوفَةٌ — وَبِهِمَا يَقَعُ الْإِيرَادُ بِطُرُقٍ مُخْتَلِفَةٍ.",
+     "en": "And through these two the «different roads» become possible at all."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 1,
+   "agreeC": 1,
+   "tokens": [
+    {
+     "w": "وَالْأُولَى",
+     "lex": "ula-first",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«and the first» — the mubtada, a maqsur."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْأَوْلَى",
+      "root": "و ل ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "وَضْعِيَّةٌ",
+     "lex": "wadiyya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar"
+      ],
+      "irab": "«coinage-borne» — a nisba to the wadʿ."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَضْعِيَّة",
+      "root": "و ض ع",
+      "wazn": "فَعْلِيَّةٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْأُخْرَيَانِ",
+     "lex": "ukhra",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar",
+       "al-muthanna"
+      ],
+      "irab": "«and the other two» — the dual of أُخْرَى, raf' in the alif."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ ر ي",
+      "wazn": "أُفْعَلَانِ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "عَقْلِيَّتَانِ",
+     "lex": "aqli",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mubtada-khabar",
+       "al-muthanna"
+      ],
+      "irab": "«reason-borne» — the mind supplies the part and the concomitant."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s6",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s6",
+   "text": "وَتُسَمَّى الْأُولَى مُطَابَقَةً وَالثَّانِيَةُ تَضَمُّنًا وَالثَّالِثَةُ الْتِزَامًا",
+   "translation": {
+    "en": "And the first is named mutabaqa, the second tadammun, the third iltizam. (Restored.)",
+    "tr": "İlkine mutâbakat, ikincisine tazammun, üçüncüsüne iltizam adı verilir. (Geri yazılmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَتُسَمَّى الْأُولَى مُطَابَقَةً",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَجْهُولَةٌ — الْمَفْعُولُ الثَّانِي بَاقٍ عَلَى نَصْبِهِ.",
+     "en": "A passive of a two-object verb: the first object turns deputy doer, the second keeps its nasb."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 5,
+   "agreeC": 5,
+   "tokens": [
+    {
+     "w": "وَتُسَمَّى",
+     "lex": "samma",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "ilm-al-bayan",
+       "naib-al-fail",
+       "form-ii-verbs",
+       "naqis-verbs",
+       "mafulayn"
+      ],
+      "irab": "«is named» — Form II's passive on a naqis root; its first object becomes the deputy doer."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "سَمَّى",
+      "root": "س م و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "الْأُولَى",
+     "lex": "ula-first",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "naib-al-fail"
+      ],
+      "irab": "«the first» — the deputy doer."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْأَوْلَى",
+      "root": "و ل ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "مُطَابَقَةً",
+     "lex": "mutabaqa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mafulayn"
+      ],
+      "irab": "«mutabaqa» — the second object of سَمَّى: the name given."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُطَابَقَة",
+      "root": "ط ب ق",
+      "wazn": "مُفَاعَلَةً",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالثَّانِيَةُ",
+     "lex": "thaniya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«and the second» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الثَّانِيَة",
+      "root": "ث ن ي",
+      "wazn": "فَّاعِلَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَضَمُّنًا",
+     "lex": "tadammun",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mafulayn"
+      ],
+      "irab": "«tadammun» — inclusion: the part inside the whole."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَضَمُّن",
+      "root": "ض م ن",
+      "wazn": "تَفَعُّلًا",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالثَّالِثَةُ",
+     "lex": "thalitha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "atf-nasaq"
+      ],
+      "irab": "«and the third» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الثَّالِثَة",
+      "root": "ث ل ث",
+      "wazn": "فَّاعِلَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْتِزَامًا",
+     "lex": "iltizam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "ilm-al-bayan",
+       "mafulayn",
+       "form-viii-verbs"
+      ],
+      "irab": "«iltizam» — concomitance: what the mind cannot help attaching."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْتِزَام",
+      "root": "ل ز م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s7",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s7",
+   "text": "التَّشْبِيهُ الدَّلَالَةُ عَلَى مُشَارَكَةِ أَمْرٍ لِأَمْرٍ فِي مَعْنًى",
+   "translation": {
+    "en": "TASHBIH is the indication that one thing shares another thing in a meaning.",
+    "tr": "TEŞBİH, bir şeyin başka bir şeye bir mânâda ortak olduğuna delâlettir."
+   },
+   "jumal": [
+    {
+     "text": "التَّشْبِيهُ الدَّلَالَةُ عَلَى مُشَارَكَةِ أَمْرٍ لِأَمْرٍ فِي مَعْنًى",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — وَفِي التَّعْرِيفِ ثَلَاثَةُ أَرْكَانٍ، وَالرَّابِعُ الْأَدَاةُ.",
+     "en": "Three arkan hide in the definition itself; the fourth, the adat, is the DALALA's own instrument."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 8,
+   "agree": 8,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "التَّشْبِيهُ",
+     "lex": "tashbih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "ilm-al-bayan",
+       "mubtada-khabar"
+      ],
+      "irab": "«tashbih» — the mubtada: the thing defined."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَشْبِيه",
+      "root": "ش ب ه",
+      "wazn": "تَّفْعِيلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الدَّلَالَةُ",
+     "lex": "dalala",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«the indication» — the genus of the definition: tashbih is a POINTING, not a saying."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "دَلَالَة",
+      "root": "د ل ل",
+      "wazn": "فَّعَالَةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«that» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "مُشَارَكَةِ",
+     "lex": "musharaka",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "masdar",
+       "form-iii-verbs"
+      ],
+      "irab": "«the sharing of» — Form III's masdar: two parties in one act."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُشَارَكَة",
+      "root": "ش ر ك",
+      "wazn": "مُفَاعَلَةِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَمْرٍ",
+     "lex": "amr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«a thing» — the MUSHABBAH, the definition's first rukn."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمْر",
+      "root": "أ م ر",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "لِأَمْرٍ",
+     "lex": "amr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«another thing» — the MUSHABBAH BIHI, the second rukn, behind its lam."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَمْر",
+      "root": "أ م ر",
+      "wazn": "فَعْلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "فِي",
+     "lex": "fi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«in» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "مَعْنًى",
+     "lex": "mana",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "ism-maqsur-manqus"
+      ],
+      "irab": "«a meaning» — the WAJH AL-SHABAH, the third rukn: the meaning the two share."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَعْنًى",
+      "root": "ع ن ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s8",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s8",
+   "text": "زَيْدٌ أَسَدٌ",
+   "translation": {
+    "en": "Zayd is a lion — the adat and the wajh both dropped, and still a tashbih by the definition.",
+    "tr": "Zeyd bir aslandır — edat da vech de düşmüş; tarife göre yine teşbih."
+   },
+   "jumal": [
+    {
+     "text": "زَيْدٌ أَسَدٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — تَشْبِيهٌ بَلِيغٌ: حُذِفَتِ الْأَدَاةُ وَالْوَجْهُ.",
+     "en": "A tashbih baligh: the two ends stand as if one thing."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "زَيْدٌ",
+     "lex": "zayd",
+     "human": {
+      "pos": "propn",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«Zayd» — the mubtada and the mushabbah."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَيْد",
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَسَدٌ",
+     "lex": "asad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«a lion» — the khabar and the mushabbah bihi; no كَ, no «in courage»: the BALIGH shape."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَسَد",
+      "root": "أ س د",
+      "wazn": "فَعَلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s9",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s9",
+   "text": "صُمٌّ بُكْمٌ عُمْيٌ",
+   "translation": {
+    "en": "Deaf, dumb, blind (2:18) — the adat, the wajh AND the mushabbah dropped; still inside the definition.",
+    "tr": "Sağırdırlar, dilsizdirler, kördürler (2:18) — edat, vech VE müşebbeh düşmüş; yine tarifin içinde."
+   },
+   "jumal": [
+    {
+     "text": "صُمٌّ بُكْمٌ عُمْيٌ",
+     "ar": "أَخْبَارٌ ثَلَاثَةٌ لِمُبْتَدَأٍ مَحْذُوفٍ — تَشْبِيهٌ حُذِفَ مِنْهُ الْمُشَبَّهُ وَالْأَدَاةُ وَالْوَجْهُ.",
+     "en": "Three khabars of a dropped mubtada: they are LIKE the deaf, the dumb, the blind — with three of the four arkan unspoken."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "صُمٌّ",
+     "lex": "summ",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«deaf» — the khabar of an unspoken «they»: the mushabbah itself is dropped."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صُمّ",
+      "root": "ص م م",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بُكْمٌ",
+     "lex": "bukm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«dumb» — a second khabar."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "بُكْم",
+      "root": "ب ك م",
+      "wazn": "فُعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "عُمْيٌ",
+     "lex": "umy",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«blind» — a third; the three plurals of the أَفْعَل defect-adjectives on فُعْل."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عُمْي",
+      "root": "ع م ي",
+      "wazn": "فُعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s10",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s10",
+   "text": "وَأَرْكَانُهُ أَرْبَعَةٌ الْمُشَبَّهُ وَالْمُشَبَّهُ بِهِ وَوَجْهُ الشَّبَهِ وَأَدَاةُ التَّشْبِيهِ",
+   "translation": {
+    "en": "And its arkan are four: the mushabbah, the mushabbah bihi, the wajh al-shabah and the adat of tashbih. (Restored from the source's question-and-answer.)",
+    "tr": "Rükünleri dörttür: müşebbeh, müşebbehün bih, vech-i şebeh ve teşbih edatı. (Kaynağın soru-cevabından geri yazılmıştır.)"
+   },
+   "jumal": [
+    {
+     "text": "وَأَرْكَانُهُ أَرْبَعَةٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ — وَمَا بَعْدَهَا بَدَلُ تَفْصِيلٍ.",
+     "en": "The count, then the four named as its badal."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 9,
+   "agree": 9,
+   "judgedC": 7,
+   "agreeC": 7,
+   "tokens": [
+    {
+     "w": "وَأَرْكَانُهُ",
+     "lex": "arkan",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«and its pillars» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رُكْن",
+      "root": "ر ك ن",
+      "wazn": "أَفْعَالُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "أَرْبَعَةٌ",
+     "lex": "arbaa",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«four» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَرْبَعَة",
+      "root": "ر ب ع",
+      "wazn": "أَفْعَلَةٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الْمُشَبَّهُ",
+     "lex": "mushabbah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "badal",
+       "ism-maful",
+       "form-ii-verbs"
+      ],
+      "irab": "«the mushabbah» — a badal spelling out «four»; Form II's ism maf'ul: the thing LIKENED."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُشَبَّه",
+      "root": "ش ب ه",
+      "wazn": "مُفَعَّلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْمُشَبَّهُ",
+     "lex": "mushabbah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "atf-nasaq",
+       "ism-maful"
+      ],
+      "irab": "«and the mushabbah» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُشَبَّه",
+      "root": "ش ب ه",
+      "wazn": "مُفَعَّلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "بِهِ",
+     "lex": "bi",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«bihi» — the phrase completes the term: the thing likened TO."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "وَوَجْهُ",
+     "lex": "wajh",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "atf-nasaq"
+      ],
+      "irab": "«and the face of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَجْه",
+      "root": "و ج ه",
+      "wazn": "فَوَعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    },
+    {
+     "w": "الشَّبَهِ",
+     "lex": "shabah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«the likeness» — the wajh al-shabah: the shared meaning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَبَه",
+      "root": "ش ب ه",
+      "wazn": "فَّعَلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "وَأَدَاةُ",
+     "lex": "adat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "atf-nasaq"
+      ],
+      "irab": "«and the tool of» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "أَدَاة",
+      "root": "أ د و",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "التَّشْبِيهِ",
+     "lex": "tashbih",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«likening» — كَ، كَأَنَّ، مِثْل، and the verbs of likening."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "تَشْبِيه",
+      "root": "ش ب ه",
+      "wazn": "تَّفْعِيلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s11",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s11",
+   "text": "خَدُّهُ كَالْوَرْدِ",
+   "translation": {
+    "en": "His cheek is like the rose — seen: both ends sensory (sight).",
+    "tr": "Yanağı gül gibi — görülen: iki taraf da hissî (görme)."
+   },
+   "jumal": [
+    {
+     "text": "خَدُّهُ كَالْوَرْدِ",
+     "ar": "تَشْبِيهٌ مُرْسَلٌ مُجْمَلٌ — طَرَفَاهُ حِسِّيَّانِ بِالْبَصَرِ.",
+     "en": "Mursal (the kaf spoken), mujmal (the wajh unspoken); both ends things seen."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "خَدُّهُ",
+     "lex": "khadd",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«his cheek» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "خ د د",
+      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْوَرْدِ",
+     "lex": "ward",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like the rose» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Redness is the unspoken wajh: MUJMAL."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "وَرْد",
+      "root": "و ر د",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s12",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s12",
+   "text": "صَوْتُهُ الضَّعِيفُ كَالْهَمْسِ",
+   "translation": {
+    "en": "His weak voice is like a whisper — heard.",
+    "tr": "Zayıf sesi fısıltı gibi — işitilen."
+   },
+   "jumal": [
+    {
+     "text": "صَوْتُهُ الضَّعِيفُ كَالْهَمْسِ",
+     "ar": "تَشْبِيهٌ حِسِّيٌّ بِالسَّمْعِ — وَالصِّفَةُ مِنَ الْمُشَبَّهِ.",
+     "en": "Both ends heard; the sifa belongs to the mushabbah, not to the likeness."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "صَوْتُهُ",
+     "lex": "sawt",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«his voice» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "صَوْت",
+      "root": "ص و ت",
+      "wazn": "فَعْلُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "الضَّعِيفُ",
+     "lex": "daif",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«weak» — a sifa of the mubtada, part of the mushabbah."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "ضَعِيف",
+      "root": "ض ع ف",
+      "wazn": "فَّعِيلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْهَمْسِ",
+     "lex": "hams",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like a whisper» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Faintness is the wajh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "هَمْس",
+      "root": "ه م س",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s13",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s13",
+   "text": "نَكْهَتُهُ كَالْعَنْبَرِ",
+   "translation": {
+    "en": "The scent of his mouth is like ambergris — smelled.",
+    "tr": "Ağzının kokusu amber gibi — koklanan."
+   },
+   "jumal": [
+    {
+     "text": "نَكْهَتُهُ كَالْعَنْبَرِ",
+     "ar": "تَشْبِيهٌ حِسِّيٌّ بِالشَّمِّ.",
+     "en": "Both ends smelled."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "نَكْهَتُهُ",
+     "lex": "nakha",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«the scent of his mouth» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "ن ك ه",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْعَنْبَرِ",
+     "lex": "anbar",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like ambergris» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Fragrance is the wajh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَنْبَر",
+      "root": "ع ن ب ر",
+      "wazn": "فَعْلَلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s14",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s14",
+   "text": "رِيقُهُ كَالْخَمْرِ",
+   "translation": {
+    "en": "His saliva is like wine — tasted.",
+    "tr": "Tükürüğü şarap gibi — tadılan."
+   },
+   "jumal": [
+    {
+     "text": "رِيقُهُ كَالْخَمْرِ",
+     "ar": "تَشْبِيهٌ حِسِّيٌّ بِالذَّوْقِ.",
+     "en": "Both ends tasted."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "رِيقُهُ",
+     "lex": "riq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«his saliva» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رِيق",
+      "root": "ر ي ق",
+      "wazn": "فِعلُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْخَمْرِ",
+     "lex": "khamr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like wine» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Sweetness is the wajh."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَمْر",
+      "root": "خ م ر",
+      "wazn": "فَعْلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s15",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s15",
+   "text": "جِلْدُهُ النَّاعِمُ كَالْحَرِيرِ",
+   "translation": {
+    "en": "His soft skin is like silk — touched.",
+    "tr": "Yumuşak teni ipek gibi — dokunulan."
+   },
+   "jumal": [
+    {
+     "text": "جِلْدُهُ النَّاعِمُ كَالْحَرِيرِ",
+     "ar": "تَشْبِيهٌ حِسِّيٌّ بِاللَّمْسِ — الْحَوَاسُّ الْخَمْسُ تَمَّتْ.",
+     "en": "Both ends touched: the five senses complete."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "جِلْدُهُ",
+     "lex": "jild",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«his skin» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "جِلْد",
+      "root": "ج ل د",
+      "wazn": "فِعْلُهُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "النَّاعِمُ",
+     "lex": "naim-soft",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«soft» — a sifa of the mubtada, part of the mushabbah."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَاعِم",
+      "root": "ن ع م",
+      "wazn": "فَّاعِلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْحَرِيرِ",
+     "lex": "harir",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like silk» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Softness is the wajh — and it is spoken on the mushabbah's sifa, yet the tashbih stays MUJMAL: the wajh is not stated AS the shared meaning."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَرِير",
+      "root": "ح ر ر",
+      "wazn": "فَعِيلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s16",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s16",
+   "text": "الْعِلْمُ كَالْحَيَاةِ",
+   "translation": {
+    "en": "Knowledge is like life — both ends rational (ʿaqli).",
+    "tr": "İlim hayat gibi — iki taraf da aklî."
+   },
+   "jumal": [
+    {
+     "text": "الْعِلْمُ كَالْحَيَاةِ",
+     "ar": "تَشْبِيهٌ عَقْلِيٌّ — لَا يُدْرَكُ طَرَفَاهُ بِحَاسَّةٍ.",
+     "en": "Both ends rational."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "الْعِلْمُ",
+     "lex": "ilm",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«knowledge» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "الْعِلْم",
+      "root": "ع ل م",
+      "wazn": "فِعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالْحَيَاةِ",
+     "lex": "hayat",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like life» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. Neither end is grasped by a sense."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "حَيَاة",
+      "root": "ح ي ي",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s17",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s17",
+   "text": "الْمَنِيَّةُ كَالسَّبُعِ",
+   "translation": {
+    "en": "Death is like a beast of prey — a rational mushabbah, a sensory mushabbah bihi.",
+    "tr": "Ölüm yırtıcı hayvan gibi — aklî müşebbeh, hissî müşebbehün bih."
+   },
+   "jumal": [
+    {
+     "text": "الْمَنِيَّةُ كَالسَّبُعِ",
+     "ar": "تَشْبِيهٌ مُخْتَلِفُ الطَّرَفَيْنِ — الْمُشَبَّهُ عَقْلِيٌّ وَالْمُشَبَّهُ بِهِ حِسِّيٌّ.",
+     "en": "Mixed ends: death is grasped by the mind, the beast by the eye."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 2,
+   "agree": 2,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "الْمَنِيَّةُ",
+     "lex": "maniyya",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«death» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَنِيَّة",
+      "root": "م ن ي",
+      "wazn": "فَعِلَّةُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَالسَّبُعِ",
+     "lex": "sabu",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like a beast of prey» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. The two ends DIFFER in kind."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "سَبُع",
+      "root": "س ب ع",
+      "wazn": "فَّعُلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s18",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s18",
+   "text": "الْعِطْرُ كَخُلُقٍ كَرِيمٍ",
+   "translation": {
+    "en": "Perfume is like a generous character — a sensory mushabbah, a rational mushabbah bihi.",
+    "tr": "Güzel koku kerem sahibi bir huy gibi — hissî müşebbeh, aklî müşebbehün bih."
+   },
+   "jumal": [
+    {
+     "text": "الْعِطْرُ كَخُلُقٍ كَرِيمٍ",
+     "ar": "تَشْبِيهٌ مُخْتَلِفُ الطَّرَفَيْنِ عَكْسُ الَّذِي قَبْلَهُ — وَالصِّفَةُ مِنَ الْمُشَبَّهِ بِهِ.",
+     "en": "The mirror of the last: the perfume is smelled, the character is thought; the sifa belongs to the bihi."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 3,
+   "agreeC": 3,
+   "tokens": [
+    {
+     "w": "الْعِطْرُ",
+     "lex": "itr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar"
+      ],
+      "irab": "«perfume» — the mubtada and the MUSHABBAH."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عِطْر",
+      "root": "ع ط ر",
+      "wazn": "فِعْلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَخُلُقٍ",
+     "lex": "khuluq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like a character» — the kaf of likening (the ADAT) with the mushabbah bihi; the phrase is the khabar. "
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "خَلْق",
+      "root": "خ ل ق",
+      "wazn": "فُعُلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "كَرِيمٍ",
+     "lex": "karim",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«generous» — the sifa of خُلُق, inside the mushabbah bihi."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "كَرِيم",
+      "root": "ك ر م",
+      "wazn": "فَعِيلٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s19",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s19",
+   "text": "وَكَأَنَّ مُحْمَرَّ الشَّقِيقِ إِذَا تَصَوَّبَ أَوْ تَصَعَّدْ",
+   "translation": {
+    "en": "And as if the red of the anemones, when they dip or rise, —",
+    "tr": "Kırmızı lâleler, aşağı yukarı salındığında sanki —"
+   },
+   "jumal": [
+    {
+     "text": "وَكَأَنَّ مُحْمَرَّ الشَّقِيقِ",
+     "ar": "كَأَنَّ وَاسْمُهَا — الْمُشَبَّهُ، وَالْخَبَرُ فِي الْمِصْرَاعِ الثَّانِي.",
+     "en": "The adat and the mushabbah; the mushabbah bihi waits in the second hemistich."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "وَكَأَنَّ",
+     "lex": "ka-anna",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«and as if» — كَأَنَّ, an inna-sister and the ADAT: its ism is the mushabbah, its khabar the bihi."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "مُحْمَرَّ",
+     "lex": "muhmarr",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "inna-wa-akhawatuha",
+       "ism-fail",
+       "doubled-verbs"
+      ],
+      "irab": "«the red of» — كَأَنَّ's ism, the mushabbah; the ism fa'il of اِحْمَرَّ (Form IX)."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُحْمَرّ",
+      "root": "ح م ر",
+      "wazn": "مُفْعَلَّ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "nasb",
+     "caseHuman": "nasb",
+     "caseMatch": true
+    },
+    {
+     "w": "الشَّقِيقِ",
+     "lex": "shaqiq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«the anemones» — the mushabbah is seen: sensory."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "شَقِيق",
+      "root": "ش ق ق",
+      "wazn": "فَّعِيلِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "إِذَا",
+     "lex": "idha",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "idha-shartiyya",
+       "maful-fih"
+      ],
+      "irab": "«when» — hanging on كَأَنَّ's khabar, which the next line brings."
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": null,
+     "caseMatch": null
+    },
+    {
+     "w": "تَصَوَّبَ",
+     "lex": "tasawwaba",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "arkan-al-tashbih",
+       "form-v-verbs"
+      ],
+      "irab": "«they dip» — Form V."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَصَوَّبَ",
+      "root": "ص و ب",
+      "wazn": "تَفَعَّلَ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "أَوْ",
+     "lex": "aw",
+     "human": {
+      "pos": "conj",
+      "grammar": [
+       "arkan-al-tashbih",
+       "atf-nasaq"
+      ],
+      "irab": "«or» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "تَصَعَّدْ",
+     "lex": "tasaada",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "arkan-al-tashbih",
+       "form-v-verbs"
+      ],
+      "irab": "«rise» — Form V; its final letter quiesced for the rhyme, as the source prints it."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "تَصَعَّدَ",
+      "root": "ص ع د",
+      "wazn": "تَفَعَّلْ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s20",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s20",
+   "text": "أَعْلَامُ يَاقُوتٍ نُشِرْنَ عَلَى رِمَاحٍ مِنْ زَبَرْجَدْ",
+   "translation": {
+    "en": "— are banners of ruby unfurled upon lances of chrysolite. The mushabbah bihi is KHAYALI: never seen assembled, but assembled from things seen.",
+    "tr": "— zeberced mızraklar üstüne açılmış yakut sancaklardır. Müşebbehün bih HAYÂLÎDİR: toplu hâlde hiç görülmemiş, ama görülen şeylerden toplanmış."
+   },
+   "jumal": [
+    {
+     "text": "أَعْلَامُ يَاقُوتٍ نُشِرْنَ عَلَى رِمَاحٍ مِنْ زَبَرْجَدْ",
+     "ar": "خَبَرُ كَأَنَّ وَصِفَتُهُ — الْمُشَبَّهُ بِهِ الْخَيَالِيُّ.",
+     "en": "The khabar with its clause-sifa: the imagined picture, built from rubies, banners and green lances each seen apart."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 7,
+   "agree": 7,
+   "judgedC": 6,
+   "agreeC": 6,
+   "tokens": [
+    {
+     "w": "أَعْلَامُ",
+     "lex": "alam",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "inna-wa-akhawatuha"
+      ],
+      "irab": "«banners of» — كَأَنَّ's khabar and the mushabbah bihi."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "عَلَم",
+      "root": "ع ل م",
+      "wazn": "أَفْعَالُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "يَاقُوتٍ",
+     "lex": "yaqut",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«ruby» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "يَاقُوت",
+      "root": "ي ق ت",
+      "wazn": "فَاعُولٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "نُشِرْنَ",
+     "lex": "nashara",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "arkan-al-tashbih",
+       "naib-al-fail",
+       "jumla-sifa"
+      ],
+      "irab": "«unfurled» — the passive on the nun of the feminine plural; the clause is the sifa of the banners."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "نَشَرَ",
+      "root": "ن ش ر",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "mabni",
+     "caseHuman": "mabni",
+     "caseMatch": true
+    },
+    {
+     "w": "عَلَى",
+     "lex": "ala",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«upon» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "رِمَاحٍ",
+     "lex": "rimah",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«lances» —"
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "رُمْح",
+      "root": "ر م ح",
+      "wazn": "فِعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "مِنْ",
+     "lex": "min",
+     "human": {
+      "pos": "part",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«of» —"
+     },
+     "engine": {
+      "kind": "particle",
+      "lemma": null,
+      "root": null,
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "harf",
+     "caseHuman": "harf",
+     "caseMatch": true
+    },
+    {
+     "w": "زَبَرْجَدْ",
+     "lex": "zabarjad",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«chrysolite» — its ending quiesced for the rhyme, as printed."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زَبَرْجَد",
+      "root": "ز ب ر ج د",
+      "wazn": null,
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "jarr",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s21",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s21",
+   "text": "أَيَقْتُلُنِي وَالْمَشْرَفِيُّ مُضَاجِعِي",
+   "translation": {
+    "en": "Will he kill me, while the Mashrafi sword shares my bed —",
+    "tr": "Meşrefî kılıç yatak arkadaşım iken o beni öldürecek mi —"
+   },
+   "jumal": [
+    {
+     "text": "وَالْمَشْرَفِيُّ مُضَاجِعِي",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+     "en": "The hal clause: HOW could he — with a sword at my side?"
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 3,
+   "agree": 3,
+   "judgedC": 2,
+   "agreeC": 2,
+   "tokens": [
+    {
+     "w": "أَيَقْتُلُنِي",
+     "lex": "qatala",
+     "human": {
+      "pos": "verb",
+      "grammar": [
+       "arkan-al-tashbih",
+       "al-istifham",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«will he kill me?» — the hamza of denial; the wiqaya nun guards the verb before the speaker's ya."
+     },
+     "engine": {
+      "kind": "verb",
+      "lemma": "قَتَلَ",
+      "root": "ق ت ل",
+      "wazn": "يَفْعُلُ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "وَالْمَشْرَفِيُّ",
+     "lex": "mashrafi",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "hal",
+       "mubtada-khabar"
+      ],
+      "irab": "«while the Mashrafi» — the waw of hal opens a nominal clause: the sword named for the Syrian borderlands."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مَشْرَفِيّ",
+      "root": "ش ر ف",
+      "wazn": "مَفْعَلِيُّ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "مُضَاجِعِي",
+     "lex": "mudaji",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "mubtada-khabar",
+       "ism-fail",
+       "form-iii-verbs",
+       "ya-al-mutakallim"
+      ],
+      "irab": "«my bedfellow» — Form III's ism fa'il with the speaker's ya: the sword lies beside him."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "مُضَاجِع",
+      "root": "ض ج ع",
+      "wazn": "مُفَاعِلِي",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": null,
+     "caseHuman": "raf",
+     "caseMatch": null
+    }
+   ]
+  },
+  {
+   "id": "sen:talkhis-al-miftah:46:s22",
+   "story": "talkhis-al-miftah",
+   "chapter": 46,
+   "sentence": "s22",
+   "text": "وَمَسْنُونَةٌ زُرْقٌ كَأَنْيَابِ أَغْوَالٍ",
+   "translation": {
+    "en": "— and sharpened blue-grey [arrowheads], like the fangs of ghouls. The mushabbah bihi is WAHMI: no sense has met a ghoul's fang, yet had it been met, the eye would have met it.",
+    "tr": "— ve bilenmiş mavimsi [temrenler], gulyabani dişleri gibi. Müşebbehün bih VEHMÎDİR: gulyabani dişini hiçbir duyu görmemiştir; görülseydi göz görürdü."
+   },
+   "jumal": [
+    {
+     "text": "وَمَسْنُونَةٌ زُرْقٌ كَأَنْيَابِ أَغْوَالٍ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مَعْطُوفَةٌ عَلَى جُمْلَةِ الْحَالِ — تَشْبِيهٌ مُشَبَّهُهُ حِسِّيٌّ وَمُشَبَّهُهُ بِهِ وَهْمِيٌّ.",
+     "en": "Joined to the hal clause: a sensory mushabbah (the blades) likened to a wahmi bihi (the fangs) — and the wahmi counts as rational."
+    }
+   ],
+   "posAgreement": 100,
+   "judged": 4,
+   "agree": 4,
+   "judgedC": 4,
+   "agreeC": 4,
+   "tokens": [
+    {
+     "w": "وَمَسْنُونَةٌ",
+     "lex": "masnun",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "atf-nasaq",
+       "ism-maful",
+       "mubtada-khabar"
+      ],
+      "irab": "«and sharpened [blades]» — a second mubtada joined to the first; the noun (arrowheads) is left to the adjective."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": null,
+      "root": "س ن ن",
+      "wazn": "مَفْعُولَةٌ",
+      "sure": false
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "زُرْقٌ",
+     "lex": "zurq",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "naat-sifa",
+       "sifa-mushabbaha"
+      ],
+      "irab": "«blue-grey» — the plural of أَزْرَق on فُعْل, a sifa; with the first it is the mushabbah."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "زُرْق",
+      "root": "ز ر ق",
+      "wazn": "فُعْلٌ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "raf",
+     "caseHuman": "raf",
+     "caseMatch": true
+    },
+    {
+     "w": "كَأَنْيَابِ",
+     "lex": "nab",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih",
+       "huruf-jarr"
+      ],
+      "irab": "«like the fangs of» — the kaf of likening (the ADAT) and the mushabbah bihi's head."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "نَاب",
+      "root": "ن ي ب",
+      "wazn": "أَفْعَالِ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
+     "caseMatch": true
+    },
+    {
+     "w": "أَغْوَالٍ",
+     "lex": "ghul",
+     "human": {
+      "pos": "noun",
+      "grammar": [
+       "arkan-al-tashbih"
+      ],
+      "irab": "«ghouls» — the mushabbah bihi completed: a thing no sense has met — WAHMI."
+     },
+     "engine": {
+      "kind": "noun",
+      "lemma": "غُول",
+      "root": "غ و ل",
+      "wazn": "أَفْعَالٍ",
+      "sure": true
+     },
+     "match": true,
+     "caseSaid": "jarr",
+     "caseHuman": "jarr",
      "caseMatch": true
     }
    ]

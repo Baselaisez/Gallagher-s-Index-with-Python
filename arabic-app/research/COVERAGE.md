@@ -2464,6 +2464,38 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v168 — wave 14: the bayan door — TashbihEngine, the arkan diagram,
+  talkhis ch46.** Fann 2 opens. TashbihEngine reads the four arkan of a
+  likening off the nahw seats DabtEngine already fills (the fused kaf,
+  كَأَنَّ's ism/khabar, an annexed مِثْل, a verb of likening; the wajh as
+  tamyiz or فِي-phrase; the baligh shape only where the lexicon vouches
+  for the khabar as a stock likeness) and names the kind (mursal /
+  mu'akkad, mufassal / mujmal, baligh). Surfaces: the arkan diagram in
+  every sentence sheet (two ends, the adat as the arc, the wajh beneath,
+  agreement with the authored frame), a تَشْبِيه lab in the Atölye with
+  seeds, the ✦ chip renamed on a likening, and the atlas's fifth sector
+  الْبَيَان. Chapter 46 (22 sentences / 105 tokens, sahifa 102-104): the
+  definition of ʿilm al-bayan (matn), its subject and the dalala triad
+  and the four arkan RESTORED from the paraphrase and marked so, the
+  definition of tashbih (matn), زَيْدٌ أَسَدٌ, 2:18, the five senses and
+  the ʿaqli and mixed pairs, the khayali bayt and Imru' al-Qays's wahmi
+  bayt; every likening carries an authored frame — 11/11 read back by
+  the engine. Notes 150 `ilm-al-bayan` and 151 `arkan-al-tashbih` (group
+  bayan); paradigms قَتَلَ، تَصَوَّبَ، تَصَعَّدَ، سَمَّى (naqis II), نَشَرَ
+  copied. Nahw truths the chapter forced (all gated): the فَعِيل na't
+  behind a shadda and a case ending; مُفَاعَلَة is a masdar, not a
+  participle; joined() accepts lemmas that begin with waw; an ال-head
+  never annexes; an indefinite before an ال-noun annexes it; the
+  two-object verb's second object under the passive; the women's-nun
+  and naqis passives; the radical alif-lam (الْتِزَام); a tanwin word is
+  never بِكُمْ; the atf across an object to the subject seat; the dual of
+  a maqsur. Measured (endings): jumal 99.5, talkhis 92.1 (incl. ch46 at
+  98.1), samti 94.6, aqaid 89.6 (up from 93.9 and 86.5 on the ال-head,
+  annexation and joined-word rules); drill sentences from bare letters
+  97.7. Three
+  smoke gates; DESIGN.md §13; CLAUDE.md one entry. Bank: see the
+  commit. Next: the wajh al-shabah (~3028-3080): تَحْقِيقًا أَوْ تَخْيِيلًا,
+  the نُجُوم/سُنَن bayt, the hadith on the Qur'an, the salt bayt.
 - **v167 — wave 13: the dabt engine, the sarf corrector, and talkhis
   ch45.** Two automations the earlier waves only judged, now WRITTEN:
   DabtEngine strips a sentence's endings and rewrites them from the

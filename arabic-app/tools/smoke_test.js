@@ -9124,6 +9124,80 @@ if (!CHROME) {
     }
   });
 
+  // ---------------------------------------------------------------- wave 14: the bayan door
+  await check('the TashbihEngine names the four arkan off the nahw seats — seeds', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => { const f = TashbihEngine.readText(s).frames[0]; return f ? f.kind + '|' + f.text(f.mushabbah) + '|' + (f.adat === null ? '∅' : f.adatText) + '|' + f.text(f.bihi) + '|' + (f.wajh.length ? f.text(f.wajh) : '∅') : 'none'; };
+      return {
+        kaf: one('خَدُّهُ كَالْوَرْدِ'), sifa: one('صَوْتُهُ الضَّعِيفُ كَالْهَمْسِ'), wajhT: one('زَيْدٌ كَالْبَحْرِ كَرَمًا'), wajhFi: one('زَيْدٌ كَالْأَسَدِ فِي الشَّجَاعَةِ'),
+        kaanna: one('كَأَنَّ الْعِلْمَ نُورٌ'), mithl: one('عِلْمُهُ مِثْلُ الْبَحْرِ'), fil: one('يُشْبِهُ زَيْدٌ الْأَسَدَ'), baligh: one('زَيْدٌ أَسَدٌ'),
+        qual: one('النَّحْوُ فِي الْكَلَامِ كَالْمِلْحِ فِي الطَّعَامِ'), none1: one('كَتَبَ زَيْدٌ رِسَالَةً'), none2: one('ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ'),
+      };
+    });
+    const N = x => (x || '').normalize('NFC');
+    const want = {
+      kaf: 'mursal-mujmal|خَدُّهُ|كَ|كَالْوَرْدِ|∅', sifa: 'mursal-mujmal|صَوْتُهُ الضَّعِيفُ|كَ|كَالْهَمْسِ|∅', wajhT: 'mursal-mufassal|زَيْدٌ|كَ|كَالْبَحْرِ|كَرَمًا',
+      wajhFi: 'mursal-mufassal|زَيْدٌ|كَ|كَالْأَسَدِ|فِي الشَّجَاعَةِ', kaanna: 'mursal-mujmal|الْعِلْمَ|كَأَنَّ|نُورٌ|∅', mithl: 'mursal-mujmal|عِلْمُهُ|مِثْلُ|الْبَحْرِ|∅',
+      fil: 'mursal-mujmal|زَيْدٌ|يُشْبِهُ|الْأَسَدَ|∅', baligh: 'baligh|زَيْدٌ|∅|أَسَدٌ|∅', qual: 'mursal-mujmal|النَّحْوُ فِي الْكَلَامِ|كَ|كَالْمِلْحِ فِي الطَّعَامِ|∅', none1: 'none', none2: 'none',
+    };
+    for (const [k, v] of Object.entries(want)) if (N(r[k]) !== N(v)) throw new Error(k + ': ' + r[k] + ' (want ' + v + ')');
+  });
+
+  await check('talkhis ch46: the bayan door — every authored likening read back by the engine', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 46);
+      if (!ch) return { missing: true };
+      const an = s => SentenceAnalyzer.analyze(s);
+      const framed = ch.sentences.filter(s => s.tashbih);
+      const bad = [];
+      framed.forEach(s => { const fr = TashbihEngine.read(an(s.tokens.map(t => (t.s || t.surface).full).join(' '))); const a = TashbihEngine.agree(s, fr); if (!a || !a.ok) bad.push(s.id + ':' + JSON.stringify(a)); });
+      let hit = 0, n = 0, alarms = 0; ch.sentences.forEach(s => { const g = DabtEngine.grade(s, 'endings'); hit += g.hit; n += g.n; alarms += QawaidEngine.audit(an(s.tokens.map(t => (t.s || t.surface).full).join(' '))).violations.length; });
+      const kinds = framed.map(s => s.tashbih.kind);
+      return { chapters: st.chapters.length, n: ch.sentences.length, t: ch.sentences.reduce((a, s) => a + s.tokens.length, 0), framed: framed.length, bad, dabt: Math.round(1000 * hit / n) / 10, alarms,
+               notes: ['ilm-al-bayan', 'arkan-al-tashbih'].filter(k => !GRAMMAR[k] || GRAMMAR[k].group !== 'bayan'), group: REF_GROUPS.some(g => g.id === 'bayan'), baligh: kinds.includes('baligh'),
+               morph: ['qatala', 'tasawwaba', 'tasaada', 'samma', 'nashara'].filter(k => !st.morph[k]),
+               nushirna: (an('أَعْلَامُ يَاقُوتٍ نُشِرْنَ')[2] || {}).kind, tusamma: (an('وَتُسَمَّى الْأُولَى مُطَابَقَةً')[0] || {}).kind };
+    });
+    if (r.missing) throw new Error('chapter 46 did not load');
+    if (r.chapters < 46) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 22 || r.t !== 105) throw new Error('ch46 shape: ' + r.n + ' sentences / ' + r.t + ' tokens');
+    if (r.framed !== 11) throw new Error('ch46 authored likenings: ' + r.framed);
+    if (r.bad.length) throw new Error('the engine disagrees with the authored arkan: ' + r.bad.join(' '));
+    if (!r.baligh) throw new Error('the baligh shape (زَيْدٌ أَسَدٌ) must be among the authored kinds');
+    if (r.notes.length) throw new Error('bayan notes missing or mis-grouped: ' + r.notes.join(','));
+    if (!r.group) throw new Error('the reference groups lack the bayan sector');
+    if (r.morph.length) throw new Error('paradigms missing: ' + r.morph.join(','));
+    if (r.nushirna !== 'verb') throw new Error('نُشِرْنَ is the passive on the women\'s nun: ' + r.nushirna);
+    if (r.tusamma !== 'verb') throw new Error('تُسَمَّى is the naqis passive of سَمَّى: ' + r.tusamma);
+    if (r.alarms) throw new Error('the Qawaid ledger raises ' + r.alarms + ' alarm(s) on chapter 46');
+    if (r.dabt < 93) throw new Error('chapter 46 endings rebuilt: ' + r.dabt + '% < 93');
+  });
+
+  await check('the Tashbih lab and the sheet diagram render on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    try {
+      await page.evaluate(() => { conjState.lab = 'tashbih'; conjState.tashbih = 'زَيْدٌ كَالْبَحْرِ كَرَمًا'; openConjugator(); });
+      await page.waitForSelector('#tashbihOut .ts-svg', { timeout: 6000 });
+      const r = await page.evaluate(() => ({
+        rail: !!document.querySelector('.labrail [data-lab="tashbih"].on'), rows: document.querySelectorAll('#tashbihOut .ts-row').length,
+        chips: document.querySelectorAll('#tashbihOut .ts-chip').length, seeds: document.querySelectorAll('#tashbihOut .qw-seed').length,
+        fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
+        adat: (document.querySelector('#tashbihOut .ts-adat') || {}).textContent, wajh: (document.querySelector('#tashbihOut .ts-wajh') || {}).textContent,
+      }));
+      if (!r.rail || r.rows !== 4 || r.chips !== 2 || r.seeds < 5) throw new Error('the tashbih lab: ' + JSON.stringify(r));
+      if (!/كَ/.test(r.adat) || !/كَرَمًا/.test(r.wajh)) throw new Error('the diagram names the adat and the wajh: ' + JSON.stringify(r));
+      if (!r.fits) throw new Error('the tashbih lab scrolls sideways on a phone');
+      await page.evaluate(() => { closeSheet(); const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st); openIrabSheet(st.chapters.find(c => c.n === 46).sentences.find(s => s.id === 's22')); });
+      await page.waitForSelector('.tashbih .ts-svg', { timeout: 6000 });
+      const s = await page.evaluate(() => ({ agree: !!document.querySelector('.ts-agree.ok'), chip: [...document.querySelectorAll('.jml-chip')].some(x => /تَشْبِيه/.test(x.textContent)) }));
+      if (!s.agree) throw new Error('the sheet must say the engine agrees with the authored arkan on s22');
+      if (!s.chip) throw new Error('a sentence with a likening wears the تَشْبِيه chip');
+      await page.evaluate(() => closeSheet());
+    } finally { await page.setViewportSize(was); }
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);

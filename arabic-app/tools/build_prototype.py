@@ -121,6 +121,8 @@ def build_story(pkg: Path, irab_tr=None):
                 # Sentence-level i'rab (Qawa'id al-I'rab): each clause named and
                 # given — or denied — its mahall. Authored trilingual in place.
                 sentence["jumal"] = sen["jumal"]
+            if sen.get("tashbih"):
+                sentence["tashbih"] = sen["tashbih"]
             sentences.append(sentence)
         chapter = {"n": ch["n"], "title": ch["title"], "sentences": sentences}
         if ch.get("audioFile"):
@@ -268,6 +270,9 @@ def main():
             {"id": "balagha", "ar": "الْبَلَاغَة",
              "label": {"en": "Rhetoric — after al-Qazwini's Talkhis",
                        "tr": "Belâgat — Kazvînî'nin Telhîs'ine göre"}},
+            {"id": "bayan", "ar": "الْبَيَان",
+             "label": {"en": "Figuration — the Talkhis, Fann 2: tashbih, majaz, kinaya",
+                       "tr": "Beyân — Telhîs'in ikinci fenni: teşbih, mecaz, kinaye"}},
         ]),
         END,
     ])

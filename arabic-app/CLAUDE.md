@@ -4240,3 +4240,32 @@ the author first. The same run caught real engine gaps — حَيْثُ losing i
 bina after مِنْ, عَنَّ read as the jarr letter, the hamzated amr behind a
 fa (فَأْتُوهُنَّ) reaching no cell, the sifa after «X بن Y» agreeing with
 Y — and each became a rule with a gate.
+
+## A bayan rukn is a nahw seat wearing a new name (wave 14, v168)
+
+The first bayan engine was built in an afternoon because it never
+analyses: TashbihEngine reads DabtEngine's own decisions — the fused kaf
+(a majrur), كَأَنَّ's ism and khabar, مِثْل and its mudaf ilayh, a verb's
+fa'il and maf'ul — and only NAMES them mushabbah, mushabbah bihi, adat,
+wajh. The wajh is a tamyiz or a فِي-phrase after the bihi; the kind
+(mursal/mu'akkad, mufassal/mujmal, baligh) is what is spoken and what is
+not. Three disciplines: (1) a rukn is a cluster, never a word — the na't
+and the mudaf ilayh ride with their head (صَوْتُهُ الضَّعِيفُ، كَخُلُقٍ كَرِيمٍ),
+so every chain fix in nahw is a tashbih fix for free; (2) a likeness
+without an adat is asserted only where the lexicon vouches for the khabar
+as a stock likeness — a metaphor the lexicon cannot ground is not the
+engine's to claim; (3) the AUTHORED frame is the negative-and-positive set
+in one: chapter 46 stores each likening's arkan by token index, the sheet
+shows agreement, the gate refuses disagreement. Eleven of eleven agree —
+and every one of the disagreements on the way was a NAHW defect the
+chapter surfaced: the na't after a pronoun-bearing head (الضَّعِيف's
+shadda hid its فَعِيل), the Form III masdar read as a participle by its
+mim (مُشَارَكَة), joined() refusing lemmas that begin with waw (وَجْه), an
+ال-head annexing, the two-object passive's second object (تُسَمَّى الْأُولَى
+مُطَابَقَةً), the women's-nun passive (نُشِرْنَ), the naqis passive behind
+a shadda (تُسَمَّى), the radical alif-lam (الْتِزَام is no article: the
+article before a sun letter always doubles it), a tanwin word read as
+بِكُمْ (بُكْمٌ). Meta-rule: build a balagha engine as a reader of the nahw
+engines' verdicts, and use its authored frames to audit the nahw — the
+chapter that teaches a figure is the sharpest test of the grammar
+underneath it.

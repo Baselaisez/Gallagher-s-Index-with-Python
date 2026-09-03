@@ -411,3 +411,45 @@ word is not red because it is wrong; it is red only where the learner's
 own mark and the rules disagree, and the source colour under it still
 says who decided. The learner should always be able to answer «who wrote
 this ending?» before asking «is it right?».
+
+## 13. The bayan door: the tashbih diagram (wave 14)
+
+Fann 2 of the Talkhis begins with tashbih, and the app's first bayan
+surface is a diagram of its four arkan — drawn, like the arc map, as a
+**restatement** of seats the nahw engines already filled:
+
+- **The two ends** are boxes on one baseline, the mushabbah on the
+  right (reading direction) in the accent stroke, the mushabbah bihi on
+  the left in `--lvl3` amber — the same pair of colours the ḍabṭ line uses
+  for «nahw» and «paradigm», because a tashbih is a nahw seat (mubtada,
+  majrur, inna's ism and khabar) wearing a bayan name.
+- **The adat** is the arc between them, in the muhaqqiq's red
+  (`--irab-ink`), its text (كَ، كَأَنَّ، مِثْلُ، the verb) at the apex. Where
+  no adat is spoken the arc is dashed in the soft ink and reads «بِلَا
+  أَدَاةٍ» — the baligh shape is a likeness with the tool withdrawn, and a
+  dashed line is how this app has always drawn a thing understood but not
+  written (the arc map's unspoken governors, the dabt line's undecided
+  word).
+- **The wajh** sits under the arc in `--lvl2`: the shared meaning when it
+  is spoken (كَرَمًا، فِي الشَّجَاعَةِ), or «مُجْمَلٌ — وَجْهُ الشَّبَهِ مَحْذُوفٌ» when
+  it is not. The kind chips beneath (مُرْسَل/مُؤَكَّد · مُفَصَّل/مُجْمَل ·
+  بَلِيغ) are the sheet's pill idiom; the rukn list under them repeats the
+  diagram as rows with the four colour dots, for the reader who wants
+  words rather than a picture.
+- **The authored frame** is the gate. A chapter that teaches tashbih
+  stores each likening's arkan by token index; the sheet says in `--ok`
+  green when the engine's reading agrees and in `--danger` when it does
+  not, and the smoke suite refuses a chapter whose engine and author
+  disagree. The ✦ chip in the reader's margin says «تَشْبِيه» instead of
+  «بَلَاغَة» on such a sentence — the door is named for what is behind it.
+- **The atlas** gained a fifth sector, الْبَيَان, laid out by the same fan
+  as the other four; its two first stars (ʿilm al-bayan, the arkan) take
+  their seats without a line of layout code.
+
+Rule: the engine never asserts a likeness it cannot ground in a seat. A
+fused kaf, كَأَنَّ, an annexed مِثْل, or a verb of likening is a seat; a
+bare nominal sentence is one only when the lexicon vouches for the khabar
+as a stock likeness (أَسَد، بَحْر، بَدْر…). Everything else is silence, and
+the note — not the diagram — teaches the hissi/ʿaqli/khayali/wahmi
+sorting, because that sorting is a judgement of the world, not of the
+sentence.
