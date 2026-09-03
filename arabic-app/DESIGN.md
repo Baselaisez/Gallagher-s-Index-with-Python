@@ -359,3 +359,55 @@ to a new object, not a new register:
 Rule: a diagram is a **restatement**. Every arc, every star size and
 every ledger row repeats a verdict some engine already made, so a wrong
 picture is a wrong engine, and the gate can say which one.
+
+## 12. The dabt lab, the corrector's red pen, and the engine's own hand (wave 13)
+
+Wave 12 made the engines *say* which rule a sentence obeys. Wave 13 makes
+them *write*: the DabtEngine strips a sentence's endings and puts them
+back from the governors alone, and the SarfMusahhih rebuilds a wrong verb
+from its root. Three surfaces carry that, each in the register the app
+already owns:
+
+- **The dabt lab** (`.dabt-line`, `.dabt-w`) sets the sentence right-to-
+  left in the Arabic face, large, and underlines every word with the
+  colour of the thing that decided it: the accent for **nahw** (a
+  governor wrote this ending), `--lvl3` amber for a **paradigm cell**,
+  `--lvl2` for the **lexicon** (a stored head-word), the line colour for a
+  **closed-class** word kept as it stands, and a dotted soft-ink line for
+  a word the rules left **undecided**. The legend under the line repeats
+  those five strokes; nothing on the line is coloured by any other logic.
+  A tapped word opens a detail card on the accent rail — the word large
+  and in the accent, the rule's Arabic in the muhaqqiq's red
+  (`--irab-ink`, it is i'rab prose), its EN/TR gloss, «annexed to word n»
+  when a chain decided it, and the `§` pill of the grammar note the rule
+  cites. When the learner types a sentence WITH its marks, the lab checks
+  it: a word whose ending the rules write differently is tinted 12%
+  toward `--danger` with the learner's own form struck through beside it,
+  and a one-line verdict above the line counts the disagreements — the
+  same red pen as the muhaqqiq's, on the learner's page. Two pills switch
+  the mode (endings only / every mark) in the sheet's segmented idiom; a
+  «grade the engine on the corpus» button writes one bar per story and
+  never runs until asked, because a full-corpus grade is work the phone
+  should do on request.
+- **The corrector** appears in two places and looks the same in both. In
+  the Qawaid ledger a ✗ row now ends with «the rules write ‹word›» in
+  `--ok` green — the correction is the good news on a bad row, and green
+  is the only colour good news wears. In the Sarf ledger a word no
+  paradigm owns, or a narration that ends «differs», gets a card on a
+  `--danger` rail: the written form struck, an arrow, the rebuilt cell in
+  bold `--ok`, one sentence saying WHY (the asl matched — the i'lal was
+  skipped — or the nearest buildable cell), and the i'lal steps of that
+  cell only, numbered exactly as the I'lal lab numbers them.
+- **The tahqiq strip** (`.tq-dabt`) sits under the tahqiq table of every
+  corpus sentence: the sentence re-vowelled by the engine, in the dabt
+  line's own colours, with the stored ending struck beside any word the
+  engine wrote differently, and a «n/N endings rebuilt exactly» line. It
+  is the same restatement discipline as the arc map: every underline
+  repeats a decision the ledger already lists, so a wrong colour is a bug
+  in an engine, never in the strip.
+
+Rule: the engine's hand is **coloured by source, never by verdict**. A
+word is not red because it is wrong; it is red only where the learner's
+own mark and the rules disagree, and the source colour under it still
+says who decided. The learner should always be able to answer «who wrote
+this ending?» before asking «is it right?».

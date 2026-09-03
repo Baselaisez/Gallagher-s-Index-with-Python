@@ -4157,3 +4157,86 @@ riding clitic — in the books' own words, each step citing its note —
 and LAST rebuilds the cell from the root with sarfDerive and says
 whether the two agree. The narration is not a second engine: it is the
 existing engines' facts in the Emsile lesson's order.
+
+## Dabt is the test of nahw automation (wave 13, v167)
+
+A rule engine that only JUDGES can hide behind the surface: it reads the
+mark and says the mark is right. The DabtEngine cannot — it strips every
+ending, decides each word's case from the governors alone (the verb and
+its seats, the jarr letter, inna and kana, the idafa chain, the shart
+frame, the tawabi'), and WRITES the ending through AlamaEngine; the stored
+text is the answer key. Measured against the corpus in wave 13: drill
+sentences 99.5%, the Talkhis 91.4%, al-Samti 93.9%, the Nasafi creed
+86.5% of endings rebuilt exactly (coverage 92-99%; the creed's long
+definitional chains are the hard case), and 97.7% of the drill sentences
+rebuilt from BARE letters — every internal mark too — from the paradigm
+cells and the lexicon. Lessons the sweeps forced, each a rule now:
+
+- **Closed classes keep their marks.** إِنَّ / إِنْ / أَنْ share letters,
+  and stripping their endings destroyed the analyzer's only evidence; a
+  closed-class word is never stripped in endings mode, and in full mode
+  its vowels are DECIDED first (a verb after it → إِنْ or أَنْ; a noun →
+  إِنَّ; after a verb other than قَالَ → أَنَّ) and handed to the analyzer
+  as marks, never spelled afterwards from a lexicon that would pick the
+  first lemma.
+- **A pronoun tail belongs to the word that owns its host.** Splitting
+  هُ/كُمْ off every word ate اللَّهُ and الْفُلْكِ; the split happens only
+  when the lexicon or a paradigm owns the host, and a two-letter host
+  (رَبّ) needs the lexicon to vouch for it.
+- **Ambiguity is resolved by adjacency, not by state.** A subject known
+  three words back is not the doer of this verb; the «doer stands right
+  before the verb» rule fires only at i-1, and the twin persons of a bare
+  mazi (عَلِمَتْ / عَلِمْتَ / عَلِمْتُ) are picked by the noun beside it, the
+  addressee in the line, or the speaker — and only when the twin shares
+  the LETTERS (قَالَتْ is never قُلْتُ).
+- **A shape guess loses to a lemma's own marks.** أَمَركُم read as أَمْر +
+  كم by bare letters; the marks on the host contradict that lemma and
+  agree with the stored أَمَرَ, so the paradigm wins. The same rescue makes
+  شَيَّعُونِي a verb after حَتَّى, where the analyzer's «majrur expected»
+  had bent it into a noun.
+- **A cut in the chain must be earned twice.** The wave-12 cut «a
+  definite member after a khabar head is not annexed» lost five chains
+  (مُحَمَّدٌ رَسُولُ اللهِ) for every one it saved; removing it raised every
+  story. The cut that stayed is narrower: an INDEFINITE head right after
+  a TRANSITIVE verb, before a definite word, is the fa'il (جَوَّزَ قَوْمٌ
+  الِاعْتِرَاضَ) — and a head that starts with a peeled jarr letter is
+  never that fa'il.
+- **The five verbs' jazm is a deletion, not a mark.** The ledger's
+  correction for لَمْ يَكْتُبُونَ was writing يَكْتُبُون with nothing on
+  the nun; the nun goes.
+
+Meta-rule: measure ḍabṭ per story and per rule before and after every
+engine change, and refuse any change that lowers a story it was not
+aimed at. The gate holds floors under the measured numbers, never the
+numbers themselves.
+
+## The sarf corrector matches on the ASL, not the surface (wave 13)
+
+A learner who writes يَقْوُلُ has not misspelled يَقُولُ by one letter;
+they have written the cell on the scale ف ع ل with the root's letters
+stood into it and NO i'lal run. Distance from the surface put يَقْوُلُ
+nearer to يَقُلْ than to its own cell. The corrector therefore builds,
+for every candidate cell, the same cell on the template root and
+substitutes the letters — the asl — and a match on the asl is exact
+evidence of which cell was meant; the correction is the real cell and the
+i'lal chain of THAT tense is its reason. Ten seeded errors (hollow, naqis,
+geminate, mithal) are corrected 10/10; the 11,451 stored cells of the
+corpus are the negative set and none is «corrected». Two truths the
+build forced: sarfDerive counts its babs (1-6), and passing bab NAMES
+silently produced ok:false for every geminate and mithal root — the
+seeds were 6/10 until the number was passed; and a corrector must narrate
+only the corrected cell's own i'lal, not both tenses' (يَقُولُ's card
+carries the naql step, not the mazi's qalb).
+
+## A tagged token is a claim the engines will test (ch45, v165→v167)
+
+Chapter 45's first engine run showed seven «noun/part» disagreements —
+all mine: I had tagged the fused بِ-words (بِغَيْرِ، بِحَمْدِ، بِاعْتِبَارِ…)
+with the particle's lex and pos, against the package's own precedent
+(لِلّٰهِ carries the noun's lex with segments). The tahqiq panel is the
+authoring gate as much as the reader's: run every new chapter through
+engineCheck before committing, and read a disagreement as a question to
+the author first. The same run caught real engine gaps — حَيْثُ losing its
+bina after مِنْ, عَنَّ read as the jarr letter, the hamzated amr behind a
+fa (فَأْتُوهُنَّ) reaching no cell, the sifa after «X بن Y» agreeing with
+Y — and each became a rule with a gate.

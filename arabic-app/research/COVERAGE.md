@@ -2464,6 +2464,45 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v167 — wave 13: the dabt engine, the sarf corrector, and talkhis
+  ch45.** Two automations the earlier waves only judged, now WRITTEN:
+  DabtEngine strips a sentence's endings and rewrites them from the
+  governors alone (verb seats, jarr, inna/kana, the idafa chain, shart,
+  the tawabi', zarf, tamyiz, the maf'ul mutlaq, the munada, the genus-la,
+  the mabni words), realised through AlamaEngine; in full mode it also
+  rebuilds every internal mark from the paradigm cells and the lexicon
+  (twin persons by adjacency, active over passive, the amr/mazi twins by
+  clause position, the pre-vowelled إِنْ/أَنْ/إِنَّ/أَنَّ and مِنْ/مَنْ).
+  Measured (endings rebuilt exactly): jumal 99.5% (cov 96.8), talkhis
+  91.4% (96.9), samti 93.9% (91.9), aqaid 86.5% (98.6); full re-vowelling
+  of the drill sentences 97.7%. SarfMusahhih rebuilds a wrong verb from its
+  root, matching the learner's form on the ASL (the ف ع ل cell with the
+  root's letters, no i'lal) — 10/10 seeds (يَقْوُلُ، قَوَلَ، مَدَدَ، يَوْعِدُ،
+  بَيَعَ…), 0 false corrections on the 11,451 stored cells. Surfaces: the
+  Dabt lab (words coloured by source, tap for the rule, a marked sentence
+  is CHECKED with the learner's form struck, the corpus graded on
+  request), the Qawaid ledger's ✗ rows propose the corrected word, the
+  Sarf ledger gets the corrector's card with the cell's own i'lal steps,
+  and every corpus sentence's tahqiq panel carries the engine's dabt
+  strip. Chapter 45 (18 sentences / 123 tokens, sahifa 100-101): the
+  two-jumla i'tirad of 2:222-223 split at its three speeches, the three
+  closing khilafs and the 40:7 lead-in RESTORED from the Turkish
+  paraphrase and marked so, 40:7, the matn on relative ijaz/itnab, Abu
+  Tammam's and 'Abd al-Samad's bayts, 21:23 and al-Hamasi's bayt; note
+  149 `ijaz-itnab-nisbi`; paradigms أَمَرَ، أَحَبَّ (IV geminate from
+  أَحَلَّ), جَوَّزَ، سَبَّحَ، شَمِلَ، بَرَزَ، صَدَّ (from سَرَّ), عَنَّ (from
+  شَبَّ); حَمَلَ، آمَنَ، أَنْكَرَ، وَلِيَ copied. Engine truths the chapter
+  forced (all gated): حَيْثُ keeps its bina after مِنْ and annexes a
+  CLAUSE; عَنَّ with a shadda is the verb; the hamzated amr behind a
+  clitic (فَأْتُوهُنَّ ← اِئْتُوا) and a bare wasl alif (وَارْفِقْ) reach
+  their cells; a kana/inna frame closes on a jarr-phrase khabar; the
+  فُعْلَى / آخَر diptote sifas and the lexicon's own «ism fa'il» glosses
+  cut the chain; «X بن Y» — بن is X's badal, the sifa after Y agrees with
+  X; the compound numbers 11-19 on fath; a name after a pronoun-bearing
+  noun is its badal; the five-noun ya before a name is the jarr letter.
+  Five smoke gates; DESIGN.md §12; CLAUDE.md three entries. Bank: see the
+  commit. Next: the bayan door — فَنُّ الْبَيَانِ opens at line ~2960
+  (the definition, tashbih's four arkan).
 - **v166 — wave 12: the rule ledger, the sarf ledger, the arc map and
   the atlas.** No new chapter; a showcase of automation and design on
   the existing 5,400 tokens. QawaidEngine names thirteen nahw rules

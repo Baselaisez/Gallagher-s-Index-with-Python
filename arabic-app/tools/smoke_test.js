@@ -8976,6 +8976,154 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  // ---------------------------------------------------------------- wave 13: the dabt engine, the sarf corrector, chapter 45
+  await check('the dabt engine rewrites the corpus endings from the governors alone — floors per story', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      for (const id of ['jumal-al-tadrib', 'talkhis-al-miftah', 'wasiyyat-abi-hanifa-samti', 'aqaid-ahl-al-sunna']) {
+        const g = DabtEngine.corpus('endings', [id], 0); out[id] = { acc: g.acc, cov: g.cov, n: g.n, unaligned: g.unaligned };
+      }
+      const f = DabtEngine.corpus('full', ['jumal-al-tadrib'], 0); out.full = { acc: f.acc, cov: f.cov, n: f.n };
+      return out;
+    });
+    const floors = { 'jumal-al-tadrib': [97, 94], 'talkhis-al-miftah': [89, 94], 'wasiyyat-abi-hanifa-samti': [91, 89], 'aqaid-ahl-al-sunna': [84, 96] };
+    for (const [id, [acc, cov]] of Object.entries(floors)) {
+      if (r[id].acc < acc) throw new Error(id + ' endings accuracy fell: ' + r[id].acc + ' < ' + acc + ' (' + r[id].n + ' endings)');
+      if (r[id].cov < cov) throw new Error(id + ' endings coverage fell: ' + r[id].cov + ' < ' + cov);
+      if (r[id].unaligned) throw new Error(id + ': ' + r[id].unaligned + ' sentences did not align word for word');
+    }
+    if (r.full.acc < 95) throw new Error('full re-vowelling of the drill sentences fell: ' + r.full.acc + ' < 95');
+  });
+
+  await check('the dabt engine: the seeded decisions the rules must make', async () => {
+    const r = await page.evaluate(() => {
+      const w = (s, mode) => DabtEngine.vowel(s, mode || 'endings').words.map(x => x.out).join(' ');
+      return {
+        jarr: w('ذهب الطالب الى المدرسة', 'full'),
+        inna: w('ان الله غفور رحيم', 'full'),
+        shart: w('من يطلب العلم يجده', 'full'),
+        kana: w('كان المعلم في البيت', 'full'),
+        jazm: w('لم يكتب الطالب درسه', 'full'),
+        idafa: w('قرأت كتاب زيد الجديد', 'full'),
+        five: w('لَمْ يَكْتُبُونَ الدَّرْسَ'),
+        hayth: w('فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ اللهُ'),
+        anna: w('يَصُدُّ عَنِ الدُّنْيَا إِذَا عَنَّ سُودَدٌ'),
+        akhar: w('إِلَى كَلَامٍ آخَرَ مُسَاوٍ لَهُ فِي أَصْلِ الْمَعْنَى'),
+        ibn: w('قَالَ يُوسُفُ بْنُ خَالِدٍ السَّمْتِيُّ'),
+        srcs: DabtEngine.vowel('ذهب الطالب الى المدرسة', 'endings').words.map(x => x.src),
+      };
+    });
+    const N = x => (x || '').normalize('NFC');
+    const has = (x, lit) => N(x).includes(N(lit));
+    if (N(r.jarr) !== N('ذَهَبَ الطَّالِبُ الى المدرسةِ')) throw new Error('the seed sentence: ' + r.jarr);
+    if (!/^إِنَّ اللَّهَ \S+ٌ \S+ٌ$/.test(N(r.inna))) throw new Error('inna from bare letters: ' + r.inna);
+    if (N(r.shart) !== N('مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ')) throw new Error('the shart frame from bare letters: ' + r.shart);
+    if (N(r.kana) !== N('كَانَ الْمُعَلِّمُ فِي الْبَيْتِ')) throw new Error('kana from bare letters: ' + r.kana);
+    if (N(r.jazm) !== N('لَمْ يَكْتُبِ الطَّالِبُ دَرْسَهُ')) throw new Error('the jazim from bare letters: ' + r.jazm);
+    if (N(r.idafa) !== N('قَرَأْتُ كِتَابَ زَيْدٍ الْجَدِيدَ')) throw new Error('the idafa and its na\'t from bare letters: ' + r.idafa);
+    if (!has(r.five, 'يَكْتُبُوا')) throw new Error('the five verbs drop their nun under the jazim: ' + r.five);
+    if (!has(r.hayth, 'حَيْثُ أَمَرَكُمُ اللهُ')) throw new Error('حَيْثُ keeps its bina and annexes the clause: ' + r.hayth);
+    if (!has(r.anna, 'عَنَّ سُودَدٌ')) throw new Error('عَنَّ the verb is not the jarr letter: ' + r.anna);
+    if (!has(r.akhar, 'كَلَامٍ آخَرَ مُسَاوٍ')) throw new Error('آخَرَ the diptote sifa: ' + r.akhar);
+    if (!has(r.ibn, 'بْنُ خَالِدٍ السَّمْتِيُّ')) throw new Error('the sifa after «X بن Y» agrees with X: ' + r.ibn);
+    if (r.srcs.join(',') !== 'cell,nahw,lexicon,nahw') throw new Error('every word names its source: ' + r.srcs.join(','));
+  });
+
+  await check('the sarf corrector: ten seeded errors caught, the stored cells never "corrected"', async () => {
+    const r = await page.evaluate(() => {
+      const seeds = SarfMusahhih.seedCheck();
+      const forms = new Set();
+      STORIES.forEach(st => Object.values(st.morph || {}).forEach(m => { if (m.jamid) return; ['mazi', 'mudari', 'amr'].forEach(t => (m[t] || []).forEach(f => f && forms.add(f.normalize('NFC')))); }));
+      const arr = [...forms].filter((_, i) => i % 9 === 0);
+      const bad = []; let ok = 0;
+      arr.forEach(f => { const c = SarfMusahhih.check(f); if (c && c.ok === false) bad.push(f + '→' + c.corrected); else if (c && c.ok) ok++; });
+      const asl = SarfMusahhih.check('يَقْوُلُ');
+      return { seeds: seeds.filter(s => !s.ok).map(s => s.ar + '→' + s.got), sampled: arr.length, ok, bad: bad.slice(0, 8), asl: asl && asl.viaAsl && asl.steps.length };
+    });
+    if (r.seeds.length) throw new Error('seeds not corrected: ' + r.seeds.join(' '));
+    if (r.bad.length) throw new Error('stored cells "corrected" (' + r.bad.length + '): ' + r.bad.join(' '));
+    if (r.ok < r.sampled * 0.95) throw new Error('the corrector must vouch for the stored cells: ' + r.ok + '/' + r.sampled);
+    if (!r.asl) throw new Error('يَقْوُلُ must be matched on its asl and narrated with its i\'lal steps');
+  });
+
+  await check('talkhis ch45: the two-jumla parenthesis, the khilafs, 40:7 and the relative ijaz/itnab', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.n === 45);
+      if (!ch) return { missing: true };
+      const an = s => SentenceAnalyzer.analyze(s);
+      const kind = (s, i) => (an(s)[i] || {}).kind;
+      const cell = (s, i) => { const r0 = an(s)[i]; return r0 && r0.cell ? r0.cell.tense : null; };
+      return {
+        chapters: st.chapters.length, n: ch.sentences.length, t: ch.sentences.reduce((a, s) => a + s.tokens.length, 0),
+        jumal: ch.sentences.map(s => (s.jumal || []).length),
+        note: !!GRAMMAR['ijaz-itnab-nisbi'], noteEx: (GRAMMAR['ijaz-itnab-nisbi'] || {}).examples.length,
+        amrAta: kind('فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ اللهُ', 0) + '/' + cell('فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ اللهُ', 0),
+        amara: kind('فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ اللهُ', 3),
+        anna: kind('يَصُدُّ عَنِ الدُّنْيَا إِذَا عَنَّ سُودَدٌ', 4),
+        sadda: cell('يَصُدُّ عَنِ الدُّنْيَا إِذَا عَنَّ سُودَدٌ', 0),
+        yuhibbu: cell('إِنَّ اللهَ يُحِبُّ التَّوَّابِينَ', 2),
+        morph: ['amara-v', 'ahabba', 'jawwaza', 'sabbaha', 'shamila', 'baraza', 'sadda', 'anna-verb', 'waliya', 'hamala', 'amana', 'ankara'].filter(k => !st.morph[k]),
+        audit: (() => { let bad = 0; ch.sentences.forEach(s => { const a = QawaidEngine.audit(an(s.tokens.map(t => (t.s || t.surface).full).join(' '))); bad += a.violations.length; }); return bad; })(),
+        dabt: (() => { let hit = 0, n = 0; ch.sentences.forEach(s => { const g = DabtEngine.grade(s, 'endings'); hit += g.hit; n += g.n; }); return Math.round(1000 * hit / n) / 10; })(),
+      };
+    });
+    if (r.missing) throw new Error('chapter 45 did not load');
+    if (r.chapters < 45) throw new Error('talkhis chapters: ' + r.chapters);
+    if (r.n !== 18) throw new Error('ch45 sentences: ' + r.n);
+    if (r.t !== 123) throw new Error('ch45 tokens: ' + r.t);
+    if (r.jumal.some(n => n < 1)) throw new Error('every ch45 sentence carries its jumal rows: ' + JSON.stringify(r.jumal));
+    if (!r.note || r.noteEx < 3) throw new Error('note 149 (ijaz-itnab-nisbi) with three anchored examples');
+    if (r.amrAta !== 'verb/amr') throw new Error('فَأْتُوهُنَّ is the amr of أَتَى behind its fa: ' + r.amrAta);
+    if (r.amara !== 'verb') throw new Error('أَمَرَكُمُ after حَيْثُ is the verb: ' + r.amara);
+    if (r.anna !== 'verb') throw new Error('عَنَّ with its shadda is the verb: ' + r.anna);
+    if (r.sadda !== 'mudari') throw new Error('يَصُدُّ reaches its geminate paradigm: ' + r.sadda);
+    if (r.yuhibbu !== 'mudari') throw new Error('يُحِبُّ reaches the Form IV geminate built from أَحَلَّ: ' + r.yuhibbu);
+    if (r.morph.length) throw new Error('paradigms missing: ' + r.morph.join(','));
+    if (r.audit) throw new Error('the Qawaid ledger raises ' + r.audit + ' alarm(s) on chapter 45');
+    if (r.dabt < 93) throw new Error('chapter 45 endings rebuilt: ' + r.dabt + '% < 93');
+  });
+
+  await check('the Dabt lab, the ledger corrections and the tahqiq strip render on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    try {
+      await page.evaluate(() => { conjState.lab = 'dabt'; conjState.dabt = 'ذَهَبَ الطَّالِبَ إِلَى الْمَدْرَسَةِ'; conjState.dabtPick = -1; openConjugator(); });
+      await page.waitForSelector('#dabtOut .dabt-line', { timeout: 6000 });
+      const r = await page.evaluate(() => ({
+        rail: !!document.querySelector('.labrail [data-lab="dabt"].on'),
+        words: document.querySelectorAll('#dabtOut .dabt-w').length,
+        diff: document.querySelectorAll('#dabtOut .dabt-w.diff').length,
+        verdict: (document.querySelector('#dabtOut .dabt-verdict.bad') || {}).textContent || '',
+        legend: document.querySelectorAll('#dabtOut .dabt-legend span').length,
+        modes: document.querySelectorAll('.dabt-modes [data-dm]').length,
+        seeds: document.querySelectorAll('#dabtOut .qw-seed').length,
+        fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
+      }));
+      if (!r.rail || r.words !== 4) throw new Error('the dabt lab must render its four words on the rail: ' + JSON.stringify(r));
+      if (r.diff !== 1 || !r.verdict) throw new Error('the checked sentence must flag exactly its one wrong ending: ' + JSON.stringify(r));
+      if (r.legend < 5 || r.modes !== 2 || r.seeds < 5) throw new Error('legend, modes and seeds: ' + JSON.stringify(r));
+      if (!r.fits) throw new Error('the dabt lab scrolls sideways on a phone');
+      await page.evaluate(() => document.querySelectorAll('#dabtOut .dabt-w')[1].click());
+      await page.waitForSelector('#dabtOut .dabt-detail', { timeout: 4000 });
+      const d = await page.evaluate(() => ({ rule: (document.querySelector('#dabtOut .dabt-detail .dd-rule') || {}).textContent || '', was: !!document.querySelector('#dabtOut .dabt-detail .dd-was') }));
+      if (!/فَاعِلٌ/.test(d.rule) || !d.was) throw new Error('the tapped word names its rule and the learner\'s form: ' + JSON.stringify(d));
+      await page.evaluate(() => { conjState.lab = 'qawaid'; conjState.qawaid = 'لَمْ يَكْتُبُونَ الدَّرْسَ'; renderLabBody(); });
+      await page.waitForSelector('#qawaidOut .qw-row.bad', { timeout: 6000 });
+      const q = await page.evaluate(() => (document.querySelector('#qawaidOut .qw-row.bad .qw-fix') || {}).textContent || '');
+      if (!/يَكْتُبُوا/.test(q)) throw new Error('the broken rule proposes the corrected word: ' + q);
+      await page.evaluate(() => { conjState.lab = 'sledger'; conjState.sledger = 'يَقْوُلُ'; renderLabBody(); });
+      await page.waitForSelector('#sledgerOut .sl-fix', { timeout: 6000 });
+      const s = await page.evaluate(() => ({ pair: (document.querySelector('#sledgerOut .sl-fix .sf-pair') || {}).textContent || '', steps: document.querySelectorAll('#sledgerOut .sl-fix .sl-steps li').length }));
+      if (!/يَقُولُ/.test(s.pair) || s.steps < 1) throw new Error('the sarf corrector card: ' + JSON.stringify(s));
+      const t = await page.evaluate(() => { const st = STORIES.find(x => x.id === 'jumal-al-tadrib'); const h = tahqiqHtml(st.chapters[0].sentences[0]); return { strip: /tq-dabt/.test(h), score: /ضَبْطُ الْآلَة/.test(h) }; });
+      if (!t.strip || !t.score) throw new Error('the tahqiq panel carries the engine\'s dabt strip');
+      await page.evaluate(() => closeSheet());
+    } finally {
+      await page.setViewportSize(was);
+    }
+  });
+
   await check('the Murib: composed i\'rab lines carry provenance and never over-claim', async () => {
     const r = await page.evaluate(() => {
       const an = s => SentenceAnalyzer.analyze(s);
