@@ -4269,3 +4269,144 @@ article before a sun letter always doubles it), a tanwin word read as
 engines' verdicts, and use its authored frames to audit the nahw — the
 chapter that teaches a figure is the sharpest test of the grammar
 underneath it.
+
+## One word, two offices — the annexed letter-nouns (wave 15, v169)
+
+USER RULE (2026-09-04): «سَلْ بَنِي — بَنِي is a mudaf AND a maf'ul; the
+engines must understand that kind of detail.» The word carries its CASE
+from the verb (nasb) and shows it by a LETTER (the ya, because بَنُونَ is
+attached to the sound plural), has DROPPED its nun for the idafa, and is
+the mudaf of إِسْرَائِيلَ — three facts on one word, and the app was reading
+the ya as the speaker's pronoun («my son»). Nothing on the word decides
+it: بَنِي and كِتَابِي («my book») are spelled alike. The discriminator is
+the NEXT word — a possessive ya CLOSES its host, so a noun that can only
+be a mudaf ilayh standing right after (jarr written on it, a name, an
+ال-word not showing raf'/nasb) proves the ya is the plural's letter. The
+rule now rides every layer: the analyzer stamps `row.construct` and
+refuses the enclitic peel; `CaseEngine` reads the letter and lets the
+GOVERNOR split the ya's nasb from its jarr; the Murib line writes both
+offices (وَعَلَامَةُ نَصْبِهِ الْيَاءُ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ،
+وَحُذِفَتِ النُّونُ لِلْإِضَافَةِ، وَالظَّاهِرُ أَنَّهُ مَفْعُولٌ بِهِ، وَهُوَ مُضَافٌ);
+DabtEngine WRITES the letter (بَنُو / بَنِي, كِتَابَا / كِتَابَيْ), never a
+vowel; the Qawaid ledger names the rule kept. The mulhaqat (بَنُونَ، أُولُو،
+ذَوُو، عَالَمُونَ، أَهْلُونَ، سِنُونَ) answer from a table, because their
+singular is not the word with the letter taken off. Three traps paid on
+the way: a MANQUS the lexicon owns whole (خَالِي الذِّهْنِ) keeps its ya
+and must be refused first; a diptote NAME in the mudaf-ilayh seat wears
+a FATHA for its jarr (إِسْرَائِيلَ) and that is now a claim, not silence;
+and a name closes the chain it is annexed TO (كَمْ was being annexed to
+إِسْرَائِيلَ) — but a name may still HEAD one: the first cut refused every
+name the head seat and the kunya أَبُو حَفْصٍ lost its idafa (the Murib gate
+caught it), so the refusal is lifted for a five-noun letter-form and for a
+construct row. Likewise the interrogative nouns are refused the ANNEXED seat
+(كَمْ, مَنْ) but أَيّ — the one that declines because it never leaves the
+idafa — must keep the HEAD seat, or أَيُّ الْفَرِيقَيْنِ raises a jarr-with-
+no-governor alarm in the Qawaid ledger. And a whole word the corpus stores
+as a verb cell with agreeing marks is that verb (قَالَا «they two said»),
+never a dual construct of the manqus قَالٍ — a manqus singular spells its
+bare form without the ya, so its bare letters equal a stem by accident;
+its dual takes the ya back (قَالِيَانِ). Also: the Murib used to print ONE
+office per word; a word with two (maf'ul + mudaf) now gets both, in that
+order.
+
+## A plural key is a WEAK key in the noun index
+
+أُسُود (lions) and أَسْوَد (black) bare to the same letters, and the noun
+index — which files every entry under its lemma AND its plural — was
+answering «lion» for the colour because the plural walked first. A lemma
+anywhere in the corpus now wins the key over any entry's plural. When two
+different words share a bare spelling, the one that IS that word (its
+lemma) outranks the one that merely inflects to it.
+
+## The bayan's second door: the wajh has a SHAPE the syntax settles
+
+TashbihEngine now claims what the sentence itself decides about the
+wajh and the two ends — and offers the rest as a shortlist. CLAIMED: each
+end is mufrad (a bare noun cluster), muqayyad (the cluster with a
+jarr-phrase or zarf hanging on it: النَّحْوُ فِي الْكَلَامِ), or murakkab
+(the noun with the clause that describes it: سُنَنٌ لَاحَ بَيْنَهُنَّ
+ابْتِدَاعٌ — the indefinite khabar + a verb clause with a returning
+pronoun); a spoken wajh is one meaning or a hay'a (an idafa chain, an
+AND-joined list — أَوْ-alternatives stay one). NOT claimed: tahqiqi vs
+takhyili, and whether the shared quality is inside the essences, sensed,
+of the mind, or relational — those are knowledge of the two THINGS, so
+`WAJH_DOC` prints them as a shortlist with the note. Two more adats
+entered: the masdar تَشْبِيه itself (تَشْبِيهُ الْحُجَّةِ بِالشَّمْسِ — its mudaf
+ilayh the mushabbah, its بِ-phrase the bihi, a فِي-phrase after it the
+wajh) and the verb شَبَّهَ active or passive (شُبِّهَتِ السُّنَّةُ بِالنُّورِ). And
+the kaf has a face that is NOT a likening: كَافُ التَّمْثِيلِ («for
+instance») — كَقَوْلِهِ، كَمَا، and a kaf after a nisba-with-tanwin in an
+أَوْ/إِمَّا list (أَوْ إِضَافِيَّةٌ كَإِزَالَةِ الْحِجَابِ) — which the engine
+refuses, so the masdar frame beside it can be read. `agree()` compares
+the authored frame with the engine frame that shares its adat, so a
+sentence holding two likenings is graded on the one the author meant.
+
+## Ch47's disagreements were nine nahw truths, and the chapter paid for all of them
+
+The wajh chapter arrived at 82% ḍabṭ and left at 96.7%, and every point
+was a rule: (1) a derived PASSIVE mudari under a governor (أَنْ تُشَبَّهَ)
+reaches its cell with the governor's vowel, and with NO final vowel at
+all (the endings strip); (2) inna's family with ANY attached pronoun
+(فَإِنَّهُ، أَنَّهَا، لَكِنَّهُمْ، كَأَنَّهُ) is one table row, and the wa/fa peel
+must see through it and through a jarr clitic on a particle (وَلِهٰذَا);
+(3) بَلْ is a particle; (4) the ATF joins by SHAPE PARITY — a mudaf
+parallels a mudaf (عَيْشَ السُّعَدَاءِ وَمَوْتَ الشُّهَدَاءِ), a bare indefinite a
+bare indefinite (وَاحِدٌ أَوْ بِمَنْزِلَتِهِ أَوْ مُتَعَدِّدٌ), a pronoun-bearing
+word a pronoun-bearing word (وُجُودَهُ … وَعَدَمَهُ) — and only where no shape
+agrees does the nearest noun win; (5) kana's khabar never rides a waw: a
+joined noun after kana's ism is a second ISM; (6) a bare noun right after
+a detached pronoun is that pronoun's khabar (مَا هُوَ جَهْلٌ); (7) a subject
+named earlier in the clause (kana's ism, inna's ism, a mubtada) owns the
+verb after it — the fa'il is the returning pronoun and the next noun is
+the OBJECT (يَجْعَلُ صَاحِبَهُ، لَا يَحْتَمِلُ الْقِلَّةَ) — unless a pronoun-
+bearing zarf stands right after the verb, for then the pronoun is there
+and the seat is open (لَاحَ بَيْنَهُنَّ ابْتِدَاعٌ); (8) a na't reaches over a
+shibh jumla only from an INDEFINITE head (مُلَابَسٍ لَهُ غَيْرِ) — a definite
+head + jarr phrase + ال-noun is mubtada and khabar (وَجْهُ الشَّبَهِ فِيهِ
+الْهَيْئَةُ); (9) a cell reached only by PEELING a joining wa/fa (فَسَادُ ~
+فَ + سَادَ) loses to a noun the lexicon owns WHOLE. Rider: the five
+verbs' DUAL ends in a kasra of its own (يَشْتَرِكَانِ) — the jarr-sign
+guard must exempt a cell written ـانِ, and the ḍabṭ writes the dual's
+nun with a kasra, the plural's with a fatha.
+
+## The nisba's doubled ya is written vowel-then-shadda — third payment
+
+sifaShape tested `ِيّ` and the exemplifying-kaf test copied it: in NFC the
+nisba ya carries its vowel BEFORE the shadda (حَقِيقِيَّةٌ = ي + fatha +
+shadda + ة), so neither ever matched, صِفَةٌ حَقِيقِيَّةٌ was read as an
+idafa and a category list as a likening. Any regex that reads a shadda
+next to a letter must allow marks between them — this file has said so
+twice; the nisba is the third place it cost real rows.
+
+## The Atlas shows the boundary of the automatable — and that is its point
+
+`QawaidAtlas.ENGINE_OF` maps every note-id family to the lab whose exact
+engine computes its rule; a ringed star is a note the app COMPUTES, a
+plain star one it still only teaches, and the coverage line prints the
+count (88 of 154 at v169). The map is honest by construction: badi' has
+no engine and wears no ring, and the gate asserts it. A note sheet on a
+ringed note grows «open in the lab», hovering a star lights its links
+and neighbours while the rest recedes, and a star anchored in a sentence
+the reader has actually read glows. The design rule: the sky is a
+progress map twice over — the app's (what is automated) and the
+reader's (what was read) — and both must be computed from data at
+render, never stored.
+
+## The dual and the sound plurals are the qiyasi half of the plural chapter
+
+`IsmEngine.dual` and `jamSalim` build them by rule: the singular stays
+whole and only the last letter's fate needs a rule — the ta returns as a
+ta (مَدْرَسَتَانِ) and drops before ات; a three-letter maqsur's alif
+returns to its origin (عَصَوَانِ، فَتَيَانِ) and a longer one turns ya
+(مُصْطَفَيَانِ) or, in the masculine plural, falls with its fatha left as
+the receipt (مُصْطَفَوْنَ / مُصْطَفَيْنَ); the manqus keeps its ya in the dual
+(قَاضِيَانِ) and loses it in the plural (قَاضُونَ / قَاضِينَ); the alif of
+femininity's hamza turns waw (صَحْرَاوَانِ) and a radical hamza stays
+(قُرَّاءَانِ); فَعْلَة of a NOUN opens its ayn in the feminine plural
+(تَمَرَات) and a sifa does not (ضَخْمَات). The masculine sound plural is
+REFUSED where the shape cannot vouch for a rational male, because the
+alternative — a broken plural — is heard, not derived (note 153
+`jam-taksir` says so). Two traps: the tanwin of a maqsur sits BEFORE its
+alif (عَصًا), so «strip the final tanwin» must look one letter in; and the
+ending-strip must never eat a SHADDA (عَرَبِيّ → عَرَبِيُّونَ), or the nisba
+loses its doubled ya.

@@ -9124,6 +9124,164 @@ if (!CHROME) {
     }
   });
 
+  // ---------------------------------------------------------------- wave 15: the annexed letter-nouns, the wajh, the atlas
+  await check('the annexed dual / sound plural: بَنِي is the maf\'ul BY THE YA and a mudaf at once (user rule)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => (x || '').normalize('NFC');
+      const one = (s, i) => { const rows = SentenceAnalyzer.analyze(s); const r = rows[i]; const c = CaseEngine.claim(rows, i) || {}; const m = Murib.line(rows, i) || {};
+        return { c: r.construct ? r.construct.num + '/' + r.construct.letter : null, k: c.k || null, by: c.by || null, enc: r.enc || null, kind: r.kind, sure: r.sure, murib: N(m.ar),
+                 chain: IdafaEngine.chain(rows).map(x => x.words.join(' ')), qw: (QawaidEngine.audit(rows).checks || []).filter(x => x.rule === 'mudafHuruf').map(x => x.w + ':' + (x.ok ? 'ok' : 'bad')) }; };
+      const dabt = (s, mode) => DabtEngine.vowel(s, mode).words.map(x => N(x.out)).join(' ');
+      return {
+        bani: one('سَلْ بَنِي إِسْرَائِيلَ كَمْ آتَيْنَاهُمْ', 1), israil: one('سَلْ بَنِي إِسْرَائِيلَ كَمْ آتَيْنَاهُمْ', 2),
+        banu: one('جَاءَ بَنُو زَيْدٍ', 1), fused: one('مَرَرْتُ بِمُسْلِمِي الْقَرْيَةِ', 1), inna: one('إِنَّ مُؤْمِنِي الْقَرْيَةِ صَادِقُونَ', 1),
+        dual: one('رَأَيْتُ كِتَابَيْ زَيْدٍ', 1), ulu: one('أُولُو الْأَلْبَابِ يَذْكُرُونَ', 0),
+        ctrlMy: one('كِتَابِي الْجَدِيدُ عِنْدِي', 0), ctrlVerb: one('يَدْعُو الرَّجُلُ رَبَّهُ', 0),
+        dabtE: dabt('سَلْ بَنِي إِسْرَائِيلَ كَمْ آتَيْنَاهُمْ', 'endings'), dabtF: dabt('سل بني إسرائيل', 'full'), dabtDual: dabt('رَأَيْتُ كِتَابَيْ زَيْدٍ', 'endings'),
+      };
+    });
+    const N = x => (x || '').normalize('NFC');
+    const has = (s, t) => N(s).includes(N(t));
+    if (r.bani.c !== 'jam/ya' || r.bani.k !== 'nasb' || r.bani.enc) throw new Error('بَنِي: construct jam/ya, nasb, no pronoun — got ' + JSON.stringify(r.bani));
+    for (const t of ['وَعَلَامَةُ نَصْبِهِ الْيَاءُ', 'مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ', 'وَحُذِفَتِ النُّونُ لِلْإِضَافَةِ', 'مَفْعُولٌ بِهِ', 'وَهُوَ مُضَافٌ'])
+      if (!has(r.bani.murib, t)) throw new Error('the Murib line on بَنِي lacks «' + t + '»: ' + r.bani.murib);
+    if (r.bani.chain.join('|') !== 'بَنِي إِسْرَائِيلَ' && !has(r.bani.chain.join('|'), 'بَنِي إِسْرَائِيلَ')) throw new Error('the chain must be بَنِي إِسْرَائِيلَ and close on the name: ' + r.bani.chain.join('|'));
+    if (has(r.bani.chain.join('|'), 'كَمْ')) throw new Error('كَمْ is never a mudaf ilayh');
+    if (r.bani.qw.join() !== 'بَنِي:ok') throw new Error('the Qawaid ledger names the mudafHuruf rule kept on بَنِي: ' + r.bani.qw.join());
+    if (r.israil.k !== 'jarr' || r.israil.by !== 'fatha-niyaba' || !has(r.israil.murib, 'الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ')) throw new Error('إِسْرَائِيلَ: jarr by a fatha standing in for the kasra — ' + JSON.stringify(r.israil));
+    if (r.banu.c !== 'jam/waw' || r.banu.k !== 'raf' || !has(r.banu.murib, 'الْوَاوُ') || !has(r.banu.murib, 'فَاعِلٌ')) throw new Error('بَنُو: raf by the waw, the fa\'il — ' + JSON.stringify(r.banu));
+    if (r.fused.c !== 'jam/ya' || r.fused.k !== 'jarr' || r.fused.enc || !has(r.fused.murib, 'وَهُوَ مُضَافٌ') || !r.fused.chain.length) throw new Error('بِمُسْلِمِي الْقَرْيَةِ: jarr by the ya, a mudaf, no «my» — ' + JSON.stringify(r.fused));
+    if (r.inna.c !== 'jam/ya' || r.inna.k !== 'nasb') throw new Error('إِنَّ مُؤْمِنِي: nasb by the ya — ' + JSON.stringify(r.inna));
+    if (r.dual.c !== 'muthanna/ya' || r.dual.k !== 'nasb' || !has(r.dual.murib, 'مُثَنًّى')) throw new Error('كِتَابَيْ زَيْدٍ: the dual in construct — ' + JSON.stringify(r.dual));
+    if (r.ulu.c !== 'jam/waw' || r.ulu.k !== 'raf') throw new Error('أُولُو: the mulhaq — ' + JSON.stringify(r.ulu));
+    if (r.ctrlMy.c || r.ctrlMy.enc !== 'ي') throw new Error('كِتَابِي الْجَدِيدُ keeps the speaker\'s ya — ' + JSON.stringify(r.ctrlMy));
+    if (r.ctrlVerb.c || r.ctrlVerb.kind !== 'verb') throw new Error('يَدْعُو stays a verb — ' + JSON.stringify(r.ctrlVerb));
+    if (!has(r.dabtE, 'بَنِي إِسْرَائِيلَ')) throw new Error('the Dabt engine writes the construct letter, not a vowel: ' + r.dabtE);
+    if (!has(r.dabtF, 'بَنِي إِسْرَائِيلَ')) throw new Error('the Dabt engine dresses بَنِي from bare letters: ' + r.dabtF);
+    if (!has(r.dabtDual, 'كِتَابَيْ زَيْدٍ')) throw new Error('the Dabt engine writes the dual\'s ya-sukun in construct: ' + r.dabtDual);
+  });
+
+  await check('the TashbihEngine reads the wajh chapter: shapes of the ends, the masdar and شَبَّهَ frames, the exemplifying kaf refused', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => { const f = TashbihEngine.readText(s).frames[0]; return f ? f.adatKind + '|' + f.text(f.mushabbah) + '|' + f.text(f.bihi) + '|' + (f.wajh.length ? f.text(f.wajh) : '∅') + '|' + f.shape.mushabbah + '/' + f.shape.bihi + '/' + f.shape.wajh : 'none'; };
+      return {
+        bayt: one('وَكَأَنَّ النُّجُومَ بَيْنَ دُجَاهَا سُنَنٌ لَاحَ بَيْنَهُنَّ ابْتِدَاعٌ'), milh: one('النَّحْوُ فِي الْكَلَامِ كَالْمِلْحِ فِي الطَّعَامِ'),
+        masdar: one('تَشْبِيهُ الْحُجَّةِ بِالشَّمْسِ'), thawb: one('كَمَا فِي تَشْبِيهِ ثَوْبٍ بِآخَرَ فِي نَوْعِهِ أَوْ جِنْسِهِ'), pass: one('شُبِّهَتِ السُّنَّةُ بِالنُّورِ'),
+        act: one('شَبَّهَ الشَّاعِرُ الْعِلْمَ بِالنُّورِ'), kaannahu: one('كَأَنَّهُ أَسَدٌ'),
+        tamthil: one('أَوْ إِضَافِيَّةٌ كَإِزَالَةِ الْحِجَابِ فِي تَشْبِيهِ الْحُجَّةِ بِالشَّمْسِ'), tamthil2: one('أَوْ خَارِجٌ عَنْهُمَا صِفَةٌ حَقِيقِيَّةٌ حِسِّيَّةٌ كَالْكَيْفِيَّاتِ الْجِسْمَانِيَّةِ'),
+        qawl: one('وَالثَّانِي كَقَوْلِهِ'), khadd: one('خَدُّهُ كَالْوَرْدِ'), docs: TashbihEngine.WAJH_DOC.length, counts: TashbihEngine.WAJH_COUNT.length,
+      };
+    });
+    const N = x => (x || '').normalize('NFC');
+    const eq = (k, want) => { if (N(r[k]) !== N(want)) throw new Error(k + ': ' + r[k] + ' ≠ ' + want); };
+    eq('bayt', 'harf|النُّجُومَ بَيْنَ دُجَاهَا|سُنَنٌ لَاحَ بَيْنَهُنَّ ابْتِدَاعٌ|∅|muqayyad/murakkab/null');
+    eq('milh', 'harf|النَّحْوُ فِي الْكَلَامِ|كَالْمِلْحِ فِي الطَّعَامِ|∅|muqayyad/muqayyad/null');
+    eq('masdar', 'masdar|الْحُجَّةِ|بِالشَّمْسِ|∅|mufrad/mufrad/null');
+    eq('thawb', 'masdar|ثَوْبٍ|بِآخَرَ|فِي نَوْعِهِ أَوْ جِنْسِهِ|mufrad/mufrad/mufrad');
+    eq('pass', 'shabbaha|السُّنَّةُ|بِالنُّورِ|∅|mufrad/mufrad/null');
+    eq('act', 'shabbaha|الْعِلْمَ|بِالنُّورِ|∅|mufrad/mufrad/null');
+    if (!/^harf\|\|أَسَدٌ/.test(N(r.kaannahu))) throw new Error('كَأَنَّهُ: the pronoun is the ism — ' + r.kaannahu);
+    if (!/^masdar\|الْحُجَّةِ\|بِالشَّمْسِ/.test(N(r.tamthil))) throw new Error('the exemplifying kaf is refused and the masdar read — ' + r.tamthil);
+    if (r.tamthil2 !== 'none' || r.qawl !== 'none') throw new Error('كَالْكَيْفِيَّاتِ / كَقَوْلِهِ are no likening — ' + r.tamthil2 + ' / ' + r.qawl);
+    eq('khadd', 'harf|خَدُّهُ|كَالْوَرْدِ|∅|mufrad/mufrad/null');
+    if (r.docs !== 6 || r.counts !== 4) throw new Error('the wajh shortlist carries six divisions and four counts');
+  });
+
+  await check('Talkhis ch47 (the wajh al-shabah): every authored frame read back, no frame on the example-kaf sentences, the dabt floor', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.chapter === 47 || c.n === 47);
+      if (!ch) return { none: true };
+      let hit = 0, n = 0; const bad = [], unexpected = [], frames = [];
+      for (const sen of ch.sentences) {
+        const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+        const fr = TashbihEngine.read(rows);
+        if (sen.tashbih) { frames.push(sen.id); const ag = TashbihEngine.agree(sen, fr); if (!ag || !ag.ok) bad.push(sen.id + ':' + JSON.stringify(ag)); }
+        else if (fr.length) unexpected.push(sen.id);
+        let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+        if (g && g.aligned) { hit += g.hit; n += g.n; }
+      }
+      return { chapters: st.chapters.length, sentences: ch.sentences.length, frames, bad, unexpected, pct: n ? Math.round(1000 * hit / n) / 10 : 0, n };
+    });
+    if (r.none) throw new Error('chapter 47 is missing');
+    if (r.chapters < 47) throw new Error('the Talkhis carries at least 47 chapters');
+    if (r.sentences < 22) throw new Error('ch47 has 22 sentences');
+    if (r.frames.length < 6) throw new Error('ch47 authors six likening frames — got ' + r.frames.length);
+    if (r.bad.length) throw new Error('authored frames the engine does not read back: ' + r.bad.join(' | '));
+    if (r.unexpected.length) throw new Error('a likening was asserted where the author wrote none (the kaf of example): ' + r.unexpected.join(','));
+    if (r.pct < 92) throw new Error('ch47 dabt (endings) fell below the floor: ' + r.pct + '% over ' + r.n);
+  });
+
+  await check('IsmEngine builds the dual and the sound plurals by rule — the weak endings, the ta, the refusals', async () => {
+    const r = await page.evaluate(() => {
+      const D = w => { const d = IsmEngine.dual(w); return d ? d.raf + ' ' + d.nasb + ' ' + d.mudafRaf + ' ' + d.mudafNasb : null; };
+      const J = (w, o) => { const j = IsmEngine.jamSalim(w, o); return j ? (j.fem.raf + ' ' + j.fem.nasb + ' | ' + (j.masc ? j.masc.raf + ' ' + j.masc.nasb + ' ' + j.masc.mudafRaf + ' ' + j.masc.mudafNasb : 'REFUSE')) : null; };
+      return { d1: D('كِتَاب'), d2: D('عَصًا'), d3: D('فَتًى'), d4: D('صَحْرَاء'), d5: D('قَاضٍ'), d6: D('مَدْرَسَة'), d7: D('مُصْطَفًى'), d8: D('قُرَّاء'),
+               j1: J('مُسْلِم'), j2: J('قَاضٍ', { rational: true }), j3: J('مُصْطَفًى', { rational: true }), j4: J('مُسْلِمَة'), j5: J('تَمْرَة'), j6: J('ضَخْمَة', { sifa: true }), j7: J('كِتَاب'), j9: J('عَرَبِيّ') };
+    });
+    const N = x => (x || '').normalize('NFC');
+    const want = { d1: 'كِتَابَانِ كِتَابَيْنِ كِتَابَا كِتَابَيْ', d2: 'عَصَوَانِ عَصَوَيْنِ عَصَوَا عَصَوَيْ', d3: 'فَتَيَانِ فَتَيَيْنِ فَتَيَا فَتَيَيْ', d4: 'صَحْرَاوَانِ صَحْرَاوَيْنِ صَحْرَاوَا صَحْرَاوَيْ',
+      d5: 'قَاضِيَانِ قَاضِيَيْنِ قَاضِيَا قَاضِيَيْ', d6: 'مَدْرَسَتَانِ مَدْرَسَتَيْنِ مَدْرَسَتَا مَدْرَسَتَيْ', d7: 'مُصْطَفَيَانِ مُصْطَفَيَيْنِ مُصْطَفَيَا مُصْطَفَيَيْ', d8: 'قُرَّاءَانِ قُرَّاءَيْنِ قُرَّاءَا قُرَّاءَيْ',
+      j1: 'مُسْلِمَاتٌ مُسْلِمَاتٍ | مُسْلِمُونَ مُسْلِمِينَ مُسْلِمُو مُسْلِمِي', j2: 'قَاضِيَاتٌ قَاضِيَاتٍ | قَاضُونَ قَاضِينَ قَاضُو قَاضِي', j3: 'مُصْطَفَيَاتٌ مُصْطَفَيَاتٍ | مُصْطَفَوْنَ مُصْطَفَيْنَ مُصْطَفَوْ مُصْطَفَيْ',
+      j4: 'مُسْلِمَاتٌ مُسْلِمَاتٍ | REFUSE', j5: 'تَمَرَاتٌ تَمَرَاتٍ | REFUSE', j6: 'ضَخْمَاتٌ ضَخْمَاتٍ | REFUSE', j7: 'كِتَابَاتٌ كِتَابَاتٍ | REFUSE', j9: 'عَرَبِيَّاتٌ عَرَبِيَّاتٍ | عَرَبِيُّونَ عَرَبِيِّينَ عَرَبِيُّو عَرَبِيِّي' };
+    for (const k of Object.keys(want)) if (N(r[k]) !== N(want[k])) throw new Error(k + ': ' + r[k] + ' ≠ ' + want[k]);
+    // …and every generated form passes the harakat auditor
+    const bad = await page.evaluate(() => {
+      const out = [];
+      ['كِتَاب', 'عَصًا', 'فَتًى', 'صَحْرَاء', 'قَاضٍ', 'مَدْرَسَة', 'مُصْطَفًى', 'مُسْلِم', 'عَرَبِيّ'].forEach(w => {
+        const d = IsmEngine.dual(w), j = IsmEngine.jamSalim(w, { rational: true });
+        [d && d.raf, d && d.nasb, j && j.fem.raf, j && j.masc && j.masc.raf, j && j.masc && j.masc.nasb].filter(Boolean).forEach(x => { const a = HarakeAuditor.audit ? HarakeAuditor.audit(x) : []; if (a && a.length) out.push(x + ':' + JSON.stringify(a).slice(0, 60)); });
+      });
+      return out;
+    });
+    if (bad.length) throw new Error('the auditor flags a generated form: ' + bad.join(' | '));
+  });
+
+  await check('the Atlas: engine rings and their count, the read glow, the neighbourhood focus, the lab door on a ringed note', async () => {
+    await page.evaluate(() => openRef());
+    await page.waitForTimeout(300);
+    await page.click('.ref-view [data-view="atlas"]');
+    await page.waitForTimeout(400);
+    const a = await page.evaluate(() => {
+      const cv = QawaidAtlas.coverage();
+      return { stars: document.querySelectorAll('#refListWrap .at-star').length, rings: document.querySelectorAll('#refListWrap .at-star.eng').length, eng: cv.eng, total: cv.total, pct: cv.pct,
+               stat: (document.getElementById('atStat') || {}).textContent || '', links: document.querySelectorAll('#refListWrap .at-link[data-a][data-b]').length,
+               wajhRing: !!document.querySelector('#refListWrap .at-star.eng[data-note="wajh-al-shabah"][data-lab="tashbih"]'), jinasRing: !!document.querySelector('#refListWrap .at-star.eng[data-note="jinas"]') };
+    });
+    if (a.stars !== a.total || a.rings !== a.eng) throw new Error('every note is a star and every engine-note a ring: ' + JSON.stringify(a));
+    if (a.eng < 80 || a.pct < 50) throw new Error('at least eighty notes are engine-computed: ' + a.eng + ' (' + a.pct + '%)');
+    if (!a.stat.includes(String(a.eng)) || !a.stat.includes(String(a.total))) throw new Error('the coverage line names the numbers: ' + a.stat);
+    if (!a.wajhRing) throw new Error('wajh-al-shabah is ringed and opens the tashbih lab');
+    if (a.jinasRing) throw new Error('jinas has no engine and wears no ring — the remainder is honest');
+    if (a.links < 300) throw new Error('the links carry their ends: ' + a.links);
+    await page.hover('#refListWrap .at-star[data-note="idafa-definiteness"]');
+    await page.waitForTimeout(150);
+    const h = await page.evaluate(() => ({ focus: document.querySelector('#refListWrap .atlas').classList.contains('at-focus'), lit: document.querySelectorAll('#refListWrap .at-link.lit').length, nb: document.querySelectorAll('#refListWrap .at-star.nb').length }));
+    if (!h.focus || h.lit < 3 || h.nb < 3) throw new Error('hovering a star lights its links and neighbours: ' + JSON.stringify(h));
+    await page.click('#refListWrap [data-atlas=eng]');
+    await page.waitForTimeout(150);
+    if (!(await page.evaluate(() => document.querySelector('#refListWrap .atlas').classList.contains('eng-only')))) throw new Error('the engine toggle keeps the ringed stars');
+    // the read glow: mark one anchoring sentence read and the star glows
+    const glow = await page.evaluate(() => {
+      const g = GRAMMAR['wajh-al-shabah']; const ex = (g.examples || []).find(e => (e.src || e.sourceStory) && (e.sen || e.sentence));
+      if (!ex) return 'no anchored example';
+      const st = ex.src || ex.sourceStory, sn = ex.sen || ex.sentence;
+      state.progress[st] = state.progress[st] || {}; state.progress[st][sn] = 1;
+      const svg = QawaidAtlas.svg(''); const on = /class="at-star [^"]*read[^"]*" data-note="wajh-al-shabah"/.test(svg);
+      delete state.progress[st][sn];
+      return on;
+    });
+    if (!glow) throw new Error('a star anchored in a sentence the reader has read glows');
+    await page.evaluate(() => openRef('wajh-al-shabah'));
+    await page.waitForTimeout(300);
+    const door = await page.$('#sheetInner [data-note-lab="tashbih"]');
+    if (!door) throw new Error('the note sheet offers «open in the lab» on a ringed note');
+    await door.click();
+    await page.waitForTimeout(400);
+    if (!(await page.evaluate(() => conjState.lab === 'tashbih' && !!document.getElementById('tashbihIn')))) throw new Error('the lab door opens the tashbih lab');
+    await page.evaluate(() => closeSheet());
+  });
+
   // ---------------------------------------------------------------- wave 14: the bayan door
   await check('the TashbihEngine names the four arkan off the nahw seats — seeds', async () => {
     const r = await page.evaluate(() => {
@@ -9182,7 +9340,7 @@ if (!CHROME) {
       await page.waitForSelector('#tashbihOut .ts-svg', { timeout: 6000 });
       const r = await page.evaluate(() => ({
         rail: !!document.querySelector('.labrail [data-lab="tashbih"].on'), rows: document.querySelectorAll('#tashbihOut .ts-row').length,
-        chips: document.querySelectorAll('#tashbihOut .ts-chip').length, seeds: document.querySelectorAll('#tashbihOut .qw-seed').length,
+        chips: document.querySelectorAll('#tashbihOut .ts-chip:not(.ts-shape-chip)').length, seeds: document.querySelectorAll('#tashbihOut .qw-seed').length,
         fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
         adat: (document.querySelector('#tashbihOut .ts-adat') || {}).textContent, wajh: (document.querySelector('#tashbihOut .ts-wajh') || {}).textContent,
       }));

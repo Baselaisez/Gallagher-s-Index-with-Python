@@ -2464,6 +2464,58 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v169 — wave 15: the annexed letter-nouns, the wajh al-shabah, the
+  sky that knows what it computes, talkhis ch47.** USER RULE (سَلْ بَنِي:
+  «both mudaf and maf'ul»): the construct dual / sound plural / mulhaqat
+  now ride every layer — the analyzer stamps `row.construct` (the NEXT
+  word is the evidence: a possessive ya closes its host, a mudaf ilayh
+  after it proves the plural's letter), CaseEngine reads the case by the
+  LETTER and lets the governor split the ya's nasb from its jarr, the
+  Murib writes BOTH offices on one word (وَعَلَامَةُ نَصْبِهِ الْيَاءُ لِأَنَّهُ
+  مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتِ النُّونُ لِلْإِضَافَةِ، وَالظَّاهِرُ
+  أَنَّهُ مَفْعُولٌ بِهِ، وَهُوَ مُضَافٌ), DabtEngine writes the letter forms
+  (بَنُو / بَنِي، كِتَابَا / كِتَابَيْ), the Qawaid ledger names the rule, a
+  diptote name in the mudaf-ilayh seat claims jarr by its fatha. The
+  bayan's second door: TashbihEngine claims the SHAPE of each end
+  (mufrad / muqayyad / murakkab — the qualifier and the describing clause
+  read off the seats) and of a spoken wajh (one meaning or a hay'a),
+  reads the masdar تَشْبِيه and the verb شَبَّهَ (active and passive) as
+  adats, refuses the kaf of exemplification (كَقَوْلِهِ، كَمَا، the kaf
+  after a nisba in an أَوْ-list), and prints tahqiqi/takhyili and the
+  inside/outside/relational sorting as a shortlist (`WAJH_DOC`), never a
+  verdict; the diagram wears the shape badges, the lab the shortlist.
+  Design: the Atlas rings every note an exact engine computes
+  (`ENGINE_OF`, 88 of 154 = 57%, printed), fades the rest on a toggle,
+  glows the stars anchored in sentences the reader has read, lights a
+  hovered star's links and neighbours, and a ringed note's sheet opens
+  the lab («⚙ open in the lab»). Sarf: `IsmEngine.dual` / `jamSalim`
+  build the dual and the two sound plurals by rule (عَصَوَانِ، فَتَيَانِ،
+  صَحْرَاوَانِ، قَاضِيَانِ، مُصْطَفَوْنَ / مُصْطَفَيْنَ، قَاضُونَ، تَمَرَات vs ضَخْمَات,
+  the construct forms beside) and REFUSE the masculine plural where the
+  shape cannot vouch for a rational male; notes 153 `jam-taksir` and 154
+  `ism-mansub`. Chapter 47 (22 sentences / 186 tokens, sahifa 105-106):
+  the definition (matn), Abu l-Qasim's bayt, the Ruh al-Bayan hadith
+  (three sentences), أَتَيْتُكُمْ بِالْحَنِيفِيَّةِ الْبَيْضَاءِ, شَاهَدْتُ سَوَادَ
+  الْكُفْرِ, the النَّحْوُ كَالْمِلْحِ saying and its khilaf, the divisions of
+  the wajh; s2-s3, s5-s6, s12-s14, s16-s18 RESTORED and marked; six
+  authored frames with shapes, 6/6 read back; note 152 `wajh-al-shabah`;
+  paradigms اِشْتَرَكَ، شَاهَدَ، شَبَّهَ، أَصْلَحَ، أَفْسَدَ، مَشَى (+ أَرَادَ، دَرَسَ،
+  لَاحَ، لَزِمَ copied). Nahw truths the chapter forced (all gated): the
+  derived passive mudari under a governor; inna's family with ANY
+  pronoun as one row; بَلْ; atf by SHAPE PARITY; kana's khabar never
+  rides a waw; a bare noun after a detached pronoun is its khabar; a
+  subject named earlier owns the verb (the next noun is the object)
+  unless a pronoun-bearing zarf follows the verb; a na't reaches over a
+  shibh jumla only from an indefinite head; a joiner-peeled cell loses
+  to a whole-word noun; the five verbs' dual kasra; the plural key is
+  weak in the noun index (أُسُود vs أَسْوَد); the fused كَمَا before a verb
+  is masdariyya. Measured (endings rebuilt exactly): jumal 99.5 (cov
+  96.8), talkhis 92.9 (97.1; ch47 96.7 from 82.2 on arrival), samti 94.6
+  (91.8), aqaid 90.8 (97.6) — every story up or level. Bank 382
+  sentences, 99.9% POS / 99.2% CASE, no new disagreement. Five smoke gates; DESIGN.md §14;
+  CLAUDE.md six entries. Next: the tashbih's aims and kinds by the
+  tarafayn (~3090-3140: مُفْرَد/مُرَكَّب pairs, the seven kinds of wajh
+  hissi/aqli, tashbih al-tamthil), then majaz.
 - **v168 — wave 14: the bayan door — TashbihEngine, the arkan diagram,
   talkhis ch46.** Fann 2 opens. TashbihEngine reads the four arkan of a
   likening off the nahw seats DabtEngine already fills (the fused kaf,

@@ -453,3 +453,43 @@ as a stock likeness (أَسَد، بَحْر، بَدْر…). Everything else i
 the note — not the diagram — teaches the hissi/ʿaqli/khayali/wahmi
 sorting, because that sorting is a judgement of the world, not of the
 sentence.
+
+## 14. The sky that knows what it computes, and the wajh with a shape (wave 15)
+
+**The Atlas grew two overlays and a hand.** Every star is a grammar note;
+wave 15 rings the stars an exact engine computes (`QawaidAtlas.ENGINE_OF`
+— the note-id family → the lab that owns it) and prints the count above
+the sky: *88 of 154 notes are computed by an engine (57%) — the ringed
+stars; the rest the app still only teaches.* The ring is the accent
+stroke at 1.1px, 2.6px outside the star, so it reads as an orbit rather
+than a second star; a toggle (`⚙ engines`) fades everything unringed to
+12% and the links to 6%, which turns the sky into a coverage map of the
+automation itself. The second overlay is the reader's: a star anchored
+in a sentence they have actually read wears a soft amber halo
+(`--lvl3` at 22% alpha, radius +5) and an amber stroke — the Progress
+page's numbers, seen as constellations. Both overlays are computed at
+render from `GRAMMAR` and `state.progress`; nothing is stored. The hand:
+hovering or focusing a star adds `.at-focus` to the sky — its links go to
+95% and 1.6px, its neighbours keep full opacity and bold labels, the
+rest of the sky recedes to 25% (stars) and 5% (lines). Every link carries
+`data-a`/`data-b`, so the lighting is a class toggle, no re-render. A
+ringed note's sheet grows a second action, **⚙ open in the lab**, which
+sets `conjState.lab` and opens the Atölye on that tab — the sky is now a
+door into the engines, not only into the notes.
+
+**The tashbih diagram wears the SHAPE of each end.** Under the word in
+each box a small `--ink-soft` badge names it — مُفْرَدٌ / مُقَيَّدٌ / مُرَكَّبٌ —
+and the wajh line adds «— هَيْئَةٌ» when the spoken wajh is a composite.
+The kinds row gains dashed chips for the shapes (dashed = a claim about
+form, solid = a claim about presence). In the lab a ruled block,
+**أَقْسَامُ وَجْهِ الشَّبَهِ**, lists the six divisions the surface cannot
+settle as a two-column shortlist (Arabic term, then the gloss in the UI
+language) with the counts line beneath and the note's § — the same
+«claimed / not claimed» split as the Sarf ledger, rendered as a list
+rather than dressed as a verdict.
+
+**The Ism lab stacks the qiyasi plurals under the diminutive and the
+nisba** in the same phrase-and-rule rhythm as the Aded lab: the dual and
+its construct forms on one line (small print: «in construct — the nun
+dropped»), the feminine plural, the masculine plural or its refusal in
+the sarf-note colour. A refusal is a sentence, never a blank.
