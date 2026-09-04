@@ -1,0 +1,78 @@
+{
+  "id": "lam-jazim",
+  "title": {
+    "ar": "لَمْ الْجَازِمَة",
+    "en": "«Lam»: negation, jussive, and the flip to past",
+    "tr": "لَمْ — nefy, cezm ve zamanı çevirme"
+  },
+  "level": 2,
+  "group": "awamil",
+  "mamul": "majzum",
+  "amil": "تَجْزِمُ الْمُضَارِعَ وَتَقْلِبُ زَمَانَهُ إِلَى الْمُضِيِّ — it puts the present verb in the jussive and turns its time into the past",
+  "classicalSources": [
+    "العوامل (البيركوي) — الجوازم",
+    "الأمثلة المختلفة",
+    "إظهار الأسرار (البيركوي)"
+  ],
+  "plain": {
+    "en": "لَمْ negates a present-tense verb and flips its meaning into the past: «he did not…».",
+    "tr": "لَمْ muzâriyi nefyeder ve manasını mâzîye çevirir: «…-madı»."
+  },
+  "explanation": {
+    "en": "«Lam» does three things at once, which is why the grammarians call it حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ: it NEGATES, it puts the following present verb in the JUSSIVE, and it FLIPS the verb's time from present to past. So لَمْ يَطْلُبْهُ means «he did not seek it» — a past meaning carried by a present-tense form. Birgivi lists it first among the fifteen jawazim, those governors that put one present verb in the jussive. In the Emsile-i Muhtelife this is the row called جَحْدُ الْمُطْلَق (cahd-i mutlak), the absolute denial of the past, and its neighbour لَمَّا is the same construction denying the past up to the present moment.",
+    "tr": "«Lem» aynı anda üç iş yapar; bu yüzden gramerciler ona «harf-i nefy, cezm ve kalb» derler: NEFYEDER, ardından gelen muzari fiili CEZMEDER ve fiilin zamanını maziye ÇEVİRİR. Böylece لَمْ يَطْلُبْهُ «onu talep etmedi» demektir — muzari kalıbıyla taşınan mazi mânâsı. Birgivî onu, bir muzari fiili cezmeden on beş cezm edatının başında sayar. Emsile-i Muhtelife'de bu sîgaya «cahd-ı mutlak» denir; komşusu لَمَّا ise aynı yapının şimdiye kadar uzanan olumsuzluğudur (cahd-ı müstağrak)."
+  },
+  "examples": [
+    {
+      "ar": "أَمْكَنَهُ طَلَبُ الْعِلْمِ فِي الدُّنْيَا فَلَمْ يَطْلُبْهُ.",
+      "en": "Seeking knowledge was within his reach in this world, and he did not seek it — present form, past meaning, jussive ending.",
+      "sourceStory": "min-muqaddimat-al-maqsud",
+      "sentence": "s1",
+      "tr": "Dünyada ilim talebi elinin altındaydı da o talep etmedi — muzâri şekli, mâzi manası, meczûm sonu."
+    },
+    {
+      "ar": "لَمْ يَذْهَبْ.",
+      "en": "He did not go — compare مَا ذَهَبَ, which negates the past verb directly.",
+      "tr": "Gitmedi — doğrudan mâziyi nefyeden مَا ذَهَبَ ile karşılaştırın."
+    },
+    {
+      "ar": "لَمَّا يَذْهَبْ.",
+      "en": "He has not gone yet — لَمَّا denies right up to the present and implies it may still happen.",
+      "tr": "Henüz gitmedi — لَمَّا nefyi şimdiye kadar sürdürür ve hâlâ olabileceğini ima eder."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "لَمْ يَذْهَبُ",
+      "right": "لَمْ يَذْهَبْ",
+      "why": {
+        "en": "«Lam» governs the jussive: the final damma must go. Leaving it is the single most common jussive error.",
+        "tr": "«Lem» cezmeder: sondaki damme düşmelidir. Onu bırakmak en sık yapılan cezm hatasıdır."
+      }
+    },
+    {
+      "wrong": "لَمْ ذَهَبَ",
+      "right": "لَمْ يَذْهَبْ",
+      "why": {
+        "en": "«Lam» enters only on a PRESENT verb, never a past one — it supplies the past meaning itself. To negate a past verb directly, use مَا.",
+        "tr": "«Lem» yalnız MUZARİ fiilin başına gelir, maziye gelmez — mazi mânâsını kendisi verir. Maziyi doğrudan olumsuzlamak için مَا kullanılır."
+      }
+    },
+    {
+      "wrong": "لَمْ يَذْهَبْ أَمْسِ وَسَيَذْهَبُ (بمعنى: لم يذهب بعدُ)",
+      "right": "لَمَّا يَذْهَبْ",
+      "why": {
+        "en": "For «has not yet» — a denial reaching the present with the act still expected — the word is لَمَّا, not لَمْ.",
+        "tr": "«Henüz gitmedi» — şimdiye kadar süren ve devamı beklenen olumsuzluk — için لَمَّا kullanılır, لَمْ değil."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "la-nahiya",
+    "an-masdariyya",
+    "imperative-amr"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

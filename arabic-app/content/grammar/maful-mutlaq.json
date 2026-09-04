@@ -1,0 +1,77 @@
+{
+  "id": "maful-mutlaq",
+  "title": {
+    "ar": "الْمَفْعُولُ الْمُطْلَق",
+    "en": "The maf'ul mutlaq (cognate accusative)",
+    "tr": "Mef'ûl-i mutlak"
+  },
+  "level": 4,
+  "group": "nahw",
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "Saying the action again as a noun, to strengthen or qualify it: «they covet it utterly».",
+    "tr": "İşi bir de isim olarak söyleyip pekiştirmek yahut nitelemek: «ona son derece tamah ederler»."
+  },
+  "explanation": {
+    "en": "Defined in the Mansubat as «هُوَ اسْمُ مَا فَعَلَهُ فَاعِلُ فِعْلٍ مَذْكُورٍ بِمَعْنَاهُ» — the masdar of the very verb that governs it, put in nasb. English has no equivalent; it is the Arabic way of intensifying or specifying an action. The Mansubat divides it into three: (1) تَأْكِيدِيّ, which merely emphasizes — ضَرَبْتُ ضَرْبًا «I struck a striking» = I really struck; (2) نَوْعِيّ, which specifies the KIND, and then it is normally described or made mudaf — ضَرَبْتُ ضَرْبًا شَدِيدًا, يَطْمَعُونَ غَايَةَ الطَّمَعِ; (3) عَدَدِيّ, which counts the times — ضَرَبْتُ ضَرْبَتَيْنِ.",
+    "tr": "Mensûbât'ta şöyle tanımlanır: «هُوَ اسْمُ مَا فَعَلَهُ فَاعِلُ فِعْلٍ مَذْكُورٍ بِمَعْنَاهُ» — kendisini amel eden fiilin masdarıdır, mansub gelir. Türkçede tam karşılığı yoktur; fiili pekiştirmenin veya belirlemenin Arapça yoludur. Mensûbât üçe ayırır: (1) te'kîdî, sadece pekiştirir — ضَرَبْتُ ضَرْبًا «vurdum da vurdum»; (2) nev'î, çeşidini belirtir, çoğunlukla sıfatlanır veya muzâf olur — ضَرَبْتُ ضَرْبًا شَدِيدًا, يَطْمَعُونَ غَايَةَ الطَّمَعِ; (3) adedî, kaç kez olduğunu sayar — ضَرَبْتُ ضَرْبَتَيْنِ."
+  },
+  "examples": [
+    {
+      "ar": "يَأْخُذُونَ أَمْوَالَكَ وَيَطْمَعُونَ فِيهَا غَايَةَ الطَّمَعِ.",
+      "en": "They take your wealth and covet it utterly — غَايَةَ الطَّمَعِ is a maf'ul mutlaq of the naw'i kind, mudaf to the masdar of the governing verb.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s10",
+      "tr": "Malını alırlar ve son derece tamah ederler — غَايَةَ الطَّمَعِ nev'î mef'ûl-i mutlaktır, âmil fiilin masdarına muzâftır."
+    },
+    {
+      "ar": "ضَرَبْتُ ضَرْبًا شَدِيدًا.",
+      "en": "I struck a severe striking — naw'i, specified by an adjective.",
+      "tr": "Şiddetli bir vuruşla vurdum — nev'î, sıfatla belirtilmiş."
+    },
+    {
+      "ar": "ضَرَبْتُ ضَرْبَتَيْنِ.",
+      "en": "I struck twice — adadi, counting the occurrences.",
+      "tr": "İki kere vurdum — adedî, tekrarı sayar."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "ضربتُ ضربٌ شديدٌ",
+      "right": "ضربتُ ضربًا شديدًا",
+      "why": {
+        "en": "The maf'ul mutlaq is mansub, and its adjective follows it in nasb. It is not a second subject.",
+        "tr": "Mef'ûl-i mutlak mansubdur, sıfatı da nasbda ona uyar. İkinci bir fâil değildir."
+      }
+    },
+    {
+      "wrong": "ضربتُ بِضَرْبٍ شديدٍ",
+      "right": "ضربتُ ضربًا شديدًا",
+      "why": {
+        "en": "No preposition is used: the masdar goes straight into nasb. Adding بِ turns it into an ordinary prepositional phrase and loses the emphasis.",
+        "tr": "Harf-i cer kullanılmaz: masdar doğrudan nasb alır. بِ eklenirse sıradan bir câr-mecrûr olur ve pekiştirme kaybolur."
+      }
+    },
+    {
+      "wrong": "جلستُ قُعُودًا",
+      "right": "جلستُ جُلُوسًا",
+      "why": {
+        "en": "The maf'ul mutlaq must be the masdar of the SAME verb that governs it — بِمَعْنَاهُ in the definition. A synonym's masdar does not qualify.",
+        "tr": "Mef'ûl-i mutlak, kendisini amel eden fiilin AYNI masdarı olmalıdır — tanımdaki بِمَعْنَاهُ kaydı budur. Eş anlamlı bir fiilin masdarı olmaz."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-bihi",
+    "maful-fih",
+    "tamyiz"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

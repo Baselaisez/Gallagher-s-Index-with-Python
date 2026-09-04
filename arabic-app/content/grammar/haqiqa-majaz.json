@@ -1,0 +1,66 @@
+{
+  "id": "haqiqa-majaz",
+  "title": {
+    "ar": "الْحَقِيقَةُ وَالْمَجَاز",
+    "en": "Literal and figurative",
+    "tr": "Hakikat ve mecaz"
+  },
+  "level": 5,
+  "group": "balagha",
+  "classicalSources": [
+    "تلخيص المفتاح (القزويني) — علم البيان",
+    "علاقات المجاز",
+    "مختصر السعد"
+  ],
+  "plain": {
+    "en": "Using a word for what it actually means, or for something connected to it.",
+    "tr": "Bir kelimeyi ya kendi manasında ya da onunla alâkalı bir manada kullanmak."
+  },
+  "explanation": {
+    "en": "A word used for what it was coined for is حَقِيقَة. Used for something else it is مَجَاز, and the tradition defines it tightly: لَفْظٌ مُسْتَعْمَلٌ فِي غَيْرِ مَا وُضِعَ لَهُ بِعَلَاقَةٍ بَيْنَهُمَا مَعَ قَرِينَةٍ مَانِعَةٍ عَنْ إِرَادَةِ الْمَوْضُوعِ لَهُ — a word used for other than what it was coined for, by a RELATION between the two, with a CLUE that blocks the literal reading. Four things are therefore always present: what the word was coined for, what it is being used for, the relation, and the blocking clue. The textbook case: رَأَيْتُ أَسَدًا فِي يَدِهِ سَيْفٌ. أَسَد was coined for the beast; it is used here for a brave man; the relation is resemblance; and the clue that stops you reading «lion» is فِي يَدِهِ سَيْفٌ — lions do not carry swords. When the relation IS resemblance the majaz has its own name, اِسْتِعَارَة. When it is anything else — the part for the whole, the container for the contained, the cause for the effect, what a thing used to be or will become — it is مَجَازٌ مُرْسَل. بَيْنَ يَدَيْهِ is that second kind: the hands stand for the presence, part for whole.",
+    "tr": "Bir kelime konulduğu mana için kullanılırsa hakikattir. Başka bir mana için kullanılırsa mecazdır ve gelenek onu şöyle tarif eder: لَفْظٌ مُسْتَعْمَلٌ فِي غَيْرِ مَا وُضِعَ لَهُ بِعَلَاقَةٍ بَيْنَهُمَا مَعَ قَرِينَةٍ مَانِعَةٍ عَنْ إِرَادَةِ الْمَوْضُوعِ لَهُ — aralarındaki bir ALÂKA ile, hakikî manayı murad etmeye engel olan bir KARÎNE ile birlikte, konulduğu mananın dışında kullanılan lafız. Böylece dört şey daima bulunur: mâ vuzia leh, müsta'melün fîh, alâka ve karîne-i mânia. Ders kitabı örneği: رَأَيْتُ أَسَدًا فِي يَدِهِ سَيْفٌ. أَسَد yırtıcı hayvan için konulmuştur; burada cesur adam için kullanılmıştır; alâka müşâbehettir; «aslan» diye okumayı engelleyen karîne ise فِي يَدِهِ سَيْفٌ'dir — aslanın elinde kılıç olmaz. Alâka müşâbehet ise mecazın adı istiâredir. Başka bir şey ise — cüz-kül, zarf-mazrûf, sebep-müsebbep, olduğu yahut olacağı hâl — mecâz-ı mürseldir. بَيْنَ يَدَيْهِ bu ikinci türdendir: eller huzurun yerini tutar, cüz külün."
+  },
+  "examples": [
+    {
+      "ar": "وَإِيَّاكَ وَالْكَذِبَ بَيْنَ يَدَيْهِ.",
+      "en": "Beware of lying in his presence — «between his two hands» stands for being before him: majaz mursal, the part for the whole.",
+      "tr": "Onun huzurunda yalandan sakın — «iki eli arasında», huzurunda bulunmanın yerini tutar: cüz-kül alâkasıyla mecâz-ı mürsel.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 1,
+      "sentence": "s2"
+    },
+    {
+      "ar": "رَأَيْتُ أَسَدًا فِي يَدِهِ سَيْفٌ.",
+      "en": "I saw a lion with a sword in his hand — the sword is the clue that blocks the literal lion.",
+      "tr": "Elinde kılıç olan bir aslan gördüm — kılıç, hakikî aslanı engelleyen karînedir."
+    },
+    {
+      "ar": "وَاسْأَلِ الْقَرْيَةَ.",
+      "en": "Ask the town — the place for its people: the container for what it contains.",
+      "tr": "Köye sor — mahal ehli için: zarf, mazrûf yerine."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "رَأَيْتُ أَسَدًا — مَجَازٌ بِلَا قَرِينَةٍ",
+      "right": "لَا مَجَازَ بِلَا قَرِينَةٍ مَانِعَةٍ",
+      "why": {
+        "en": "Without something in the sentence that blocks the literal reading, «I saw a lion» just means a lion. The clue is part of the definition, not an optional extra.",
+        "tr": "Cümlede hakikî manayı engelleyen bir şey yoksa «bir aslan gördüm» gerçekten aslandır. Karîne tarifin parçasıdır, fazladan bir süs değildir."
+      }
+    },
+    {
+      "wrong": "كُلُّ مَجَازٍ اسْتِعَارَةٌ",
+      "right": "الِاسْتِعَارَةُ مَجَازٌ عَلَاقَتُهُ الْمُشَابَهَة، وَغَيْرُهَا مُرْسَلٌ",
+      "why": {
+        "en": "Only a resemblance-relation makes an isti'ara. Part-for-whole, cause-for-effect and the rest are majaz mursal.",
+        "tr": "İstiâre yalnız müşâbehet alâkasıyla olur. Cüz-kül, sebep-müsebbep ve benzerleri mecâz-ı mürseldir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "istiara",
+    "tashbih",
+    "kinaya"
+  ]
+}

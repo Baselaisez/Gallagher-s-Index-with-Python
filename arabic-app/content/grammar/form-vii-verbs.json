@@ -1,0 +1,66 @@
+{
+  "id": "form-vii-verbs",
+  "title": {
+    "ar": "بَابُ الِانْفِعَال: اِنْفَعَلَ يَنْفَعِلُ",
+    "en": "Form VII — the verb that happens to you",
+    "tr": "İnfiâl bâbı: اِنْفَعَلَ — sana olan fiil"
+  },
+  "level": 4,
+  "group": "sarf",
+  "classicalSources": [
+    "بناء الأفعال",
+    "مراح الأرواح",
+    "المقصود"
+  ],
+  "plain": {
+    "en": "The verb that happens to you, with nobody named as doing it: كَسَرَ «to break» becomes اِنْكَسَرَ «to get broken».",
+    "tr": "Yapanı anılmayan, size olan fiil: كَسَرَ «kırmak» → اِنْكَسَرَ «kırılmak»."
+  },
+  "explanation": {
+    "en": "Prefix اِنْ to the bare verb and you get Form VII, whose whole business is مُطَاوَعَة — «responding». Someone breaks the glass, and the glass ANSWERS by breaking: كَسَرْتُ الزُّجَاجَ فَانْكَسَرَ. Someone ties the contract, and the contract answers by being tied: عَقَدَهُ فَانْعَقَدَ. Two consequences follow from the meaning and are worth holding onto. First, Form VII is ALWAYS intransitive — the object of the first verb has become the subject of this one, so there is nothing left for it to govern, and it therefore has no passive. Second, it is close to a passive in sense but is not one: the passive names an unspoken doer, while Form VII says the thing simply gave way. Its hamza is a connecting hamza, so it vanishes in continuous speech (فَانْكَسَرَ), and its masdar is اِنْفِعَال.",
+    "tr": "Mücerred fiilin başına اِنْ getirilirse infiâl bâbı olur; bu bâbın bütün işi mutâvaattır — «cevap verme». Biri camı kırar, cam da kırılarak CEVAP verir: كَسَرْتُ الزُّجَاجَ فَانْكَسَرَ. Biri akdi bağlar, akit de bağlanarak cevap verir: عَقَدَهُ فَانْعَقَدَ. Manadan iki netice çıkar. Birincisi, infiâl bâbı DAİMA lâzımdır — birinci fiilin mef'ûlü bunun fâili olmuştur, dolayısıyla amel edeceği bir şey kalmaz ve meçhulü de olmaz. İkincisi, mana bakımından meçhule yakındır ama meçhul değildir: meçhul söylenmemiş bir fâili ima eder, infiâl ise şeyin kendiliğinden boyun eğdiğini söyler. Hemzesi vasıl hemzesidir, kelâmın ortasında düşer (فَانْكَسَرَ); masdarı اِنْفِعَال'dir."
+  },
+  "examples": [
+    {
+      "ar": "وَيَنْعَقِدُ بِالْإِيجَابِ وَالْقَبُولِ.",
+      "en": "It is concluded by offer and acceptance — the contract is not «concluded by someone» here; it simply comes to be tied.",
+      "sourceStory": "kitab-al-buyu",
+      "chapter": 1,
+      "sentence": "s2",
+      "tr": "İcap ve kabul ile in'ikad eder — akit burada «biri tarafından bağlanmaz», kendiliğinden bağlanmış olur."
+    },
+    {
+      "ar": "كَسَرْتُ الزُّجَاجَ فَانْكَسَرَ.",
+      "en": "I broke the glass and it broke — the pattern case of muta'awa'a, given in the Bina itself.",
+      "tr": "Camı kırdım, o da kırıldı — Binâ'nın kendi verdiği mutâvaat örneği."
+    },
+    {
+      "ar": "قَلَبَهُ فَانْقَلَبَ.",
+      "en": "He turned it over and it turned over.",
+      "tr": "Onu çevirdi, o da çevrildi."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اِنْكَسَرَ الْوَلَدُ الزُّجَاجَ",
+      "right": "كَسَرَ الْوَلَدُ الزُّجَاجَ",
+      "why": {
+        "en": "Form VII cannot take an object. If there is a doer acting on something, the bare verb is what you want.",
+        "tr": "İnfiâl bâbı mef'ûl almaz. Bir şeye tesir eden fâil varsa mücerred fiil kullanılır."
+      }
+    },
+    {
+      "wrong": "اُنْعُقِدَ الْعَقْدُ",
+      "right": "اِنْعَقَدَ الْعَقْدُ",
+      "why": {
+        "en": "There is no passive of Form VII — it is already intransitive, and the sense it would carry is the sense it already has.",
+        "tr": "İnfiâl bâbının meçhulü yoktur; zaten lâzımdır ve meçhulden beklenen manayı kendisi taşır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "form-viii-verbs",
+    "naib-al-fail",
+    "augmented-babs"
+  ]
+}

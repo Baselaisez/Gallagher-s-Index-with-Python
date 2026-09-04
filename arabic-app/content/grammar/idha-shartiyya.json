@@ -1,0 +1,60 @@
+{
+  "id": "idha-shartiyya",
+  "title": {
+    "ar": "إِذَا الشَّرْطِيَّة",
+    "en": "Conditional idha",
+    "tr": "إِذَا şartiyye"
+  },
+  "level": 2,
+  "group": "nahw",
+  "classicalSources": [
+    "قطر الندى (ابن هشام)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "«When…» — used for something you expect to happen.",
+    "tr": "«…-dığı zaman» — olması beklenen bir şey için."
+  },
+  "explanation": {
+    "en": "إِذَا is an adverb of future time carrying conditional meaning (\"when/whenever\"): ظرف لما يستقبل من الزمان متضمن معنى الشرط. Unlike إِنْ, it does not put verbs in jazm in standard prose — its verb is usually a past form understood as future: إِذَا دَخَلْتَ الْبَصْرَةَ (when you enter Basra). When the answer clause is a future statement, request, or nominal sentence, it is introduced by ف: فَسَيَأْتِيكَ النَّاسُ. Ibn Hisham treats إذا at length in Qatr al-Nada.",
+    "tr": "إِذَا gelecek zaman zarfıdır ve şart anlamı taşır. إِنْ'den farklı olarak nesirde cezmetmez; fiili çoğu kez gelecek anlamlı mazidir: إِذَا دَخَلْتَ الْبَصْرَةَ. Cevap cümlesi gelecek, talep veya isim cümlesi ise ف ile bağlanır: فَسَيَأْتِيكَ النَّاسُ. İbn Hişâm Katru'n-Nedâ'da إذا'yı genişçe işler."
+  },
+  "examples": [
+    {
+      "ar": "إِذَا دَخَلْتَ الْبَصْرَةَ فَسَيَأْتِيكَ النَّاسُ.",
+      "en": "When you enter Basra, the people will come to you.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s4",
+      "tr": "Basra'ya girdiğinde insanlar sana gelecek."
+    },
+    {
+      "ar": "إِذَا جَاءَ نَصْرُ اللهِ وَالْفَتْحُ.",
+      "en": "When Allah's help and the victory come… (Quran 110:1)",
+      "tr": "Allah'ın yardımı ve fetih geldiğinde… (Nasr 110:1)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "إذا تدخلْ البصرةَ",
+      "right": "إذا دخلتَ البصرةَ",
+      "why": {
+        "en": "Treating إذا like إنْ and jazming the verb. In prose إذا does not govern jazm; it prefers a past-tense verb with future meaning.",
+        "tr": "إذا, إنْ gibi cezmetmez; nesirde gelecek anlamlı mazi fiil tercih edilir."
+      }
+    },
+    {
+      "wrong": "إذا دخلتَ البصرةَ سيأتيك الناسُ",
+      "right": "إذا دخلتَ البصرةَ فسيأتيك الناسُ",
+      "why": {
+        "en": "When the answer clause starts with س/سوف (or is a command or nominal sentence), it must be tied with the answer ف.",
+        "tr": "Cevap س/سوف ile, emirle veya isim cümlesiyle başlıyorsa cevap fâsı (ف) gerekir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "la-nahiya"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

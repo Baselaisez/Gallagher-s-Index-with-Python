@@ -1,0 +1,76 @@
+{
+  "id": "jam-mudhakkar-salim",
+  "title": {
+    "ar": "جَمْعُ الْمُذَكَّرِ السَّالِم",
+    "en": "The sound masculine plural",
+    "tr": "Cem-i müzekker-i sâlim"
+  },
+  "level": 3,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — المعربات بالحروف",
+    "قطر الندى (ابن هشام)",
+    "بناء الأفعال — للمقارنة مع جمع التكسير"
+  ],
+  "plain": {
+    "en": "The regular masculine plural in ـُونَ and ـِينَ.",
+    "tr": "ـُونَ ve ـِينَ ile yapılan düzenli müzekker çoğul."
+  },
+  "explanation": {
+    "en": "Nouns pluralized with ـُونَ / ـِينَ take their i'rab BY LETTERS, not vowels: raf' with و (الصَّالِحُونَ) and both nasb AND jarr with ي (الصَّالِحِينَ). So one form covers two cases — the sentence position tells you which. In this story: اصْحَبِ الصَّالِحِينَ — object in nasb, marked by ي. The final نَ drops in idafa: مُعَلِّمُو الْمَدْرَسَةِ. Only rational masculine nouns (and their adjectives) form this plural; broken plurals (كِبَار، عُلَمَاء) decline with ordinary vowels instead.",
+    "tr": "ـُونَ / ـِينَ ile yapılan çoğullar i'rabını harekelerle değil HARFLERLE alır: ref hali و ile (الصَّالِحُونَ), nasb VE cer halleri ي ile (الصَّالِحِينَ). Tek şekil iki hali karşılar — hangisi olduğunu cümledeki konum belirler. Hikâyede: اصْحَبِ الصَّالِحِينَ — mef'ûlün bih, nasb alâmeti ي. İzafette sondaki نَ düşer: مُعَلِّمُو الْمَدْرَسَةِ. Bu çoğul yalnız akıllı müzekker isimlerde kurulur; mükesser çoğullar (كِبَار، عُلَمَاء) normal harekelerle i'rablanır."
+  },
+  "examples": [
+    {
+      "ar": "اصْحَبِ الصَّالِحِينَ.",
+      "en": "Keep the company of the righteous — nasb marked by ي.",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "sentence": "s4",
+      "tr": "Sâlihlerle arkadaşlık et — nasb alâmeti yâdır."
+    },
+    {
+      "ar": "جَاءَ الصَّالِحُونَ.",
+      "en": "The righteous came — raf' marked by و.",
+      "tr": "Sâlihler geldi — ref alâmeti vâvdır."
+    },
+    {
+      "ar": "مَرَرْتُ بِالْمُعَلِّمِينَ.",
+      "en": "I passed by the teachers — jarr with the same ي form as nasb.",
+      "tr": "Hocalara uğradım — cerde de nasbdaki gibi yâ gelir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اصحبِ الصالحونَ",
+      "right": "اصحبِ الصالحينَ",
+      "why": {
+        "en": "Learners freeze the raf' form ـُونَ everywhere. As a direct object the plural must switch to ـِينَ.",
+        "tr": "Öğrenciler ref şekli ـُونَ'yi her yerde dondurur. Mef'ûl konumunda çoğul ـِينَ'ye dönmelidir."
+      }
+    },
+    {
+      "wrong": "جاء الصالحينَ",
+      "right": "جاء الصالحونَ",
+      "why": {
+        "en": "The reverse error: as subject (fa'il) the plural must show و, not the ي of nasb/jarr.",
+        "tr": "Tersi hata: fâil konumunda çoğul و almalıdır, nasb/cer yâsı değil."
+      }
+    },
+    {
+      "wrong": "معلمونَ المدرسةِ",
+      "right": "معلمو المدرسةِ",
+      "why": {
+        "en": "In idafa the final نَ drops — it stands in for tanwin, and mudaf nouns take neither.",
+        "tr": "İzafette sondaki نَ düşer — o tenvin yerine geçer; muzâf isim ikisini de almaz."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "fail",
+    "maful-bihi",
+    "idafa-definiteness"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

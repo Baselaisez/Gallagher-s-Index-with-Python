@@ -1,0 +1,88 @@
+{
+  "id": "mubtada-khabar",
+  "title": {
+    "ar": "الْمُبْتَدَأُ وَالْخَبَر",
+    "en": "The nominal sentence (mubtada and khabar)",
+    "tr": "Mübteda ve haber"
+  },
+  "level": 2,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Nedir?",
+      "Kimdir?",
+      "Ne iledir?",
+      "Kim iledir?",
+      "Ne sebebiyledir?",
+      "Niçindir?",
+      "Nerededir?"
+    ],
+    "en": [
+      "What is it?",
+      "Who is it?",
+      "With what is it?",
+      "With whom is it?",
+      "By what cause is it?",
+      "What for is it?",
+      "Where is it?"
+    ]
+  },
+  "plain": {
+    "en": "A sentence with no verb in it: a topic, and what you say about it.",
+    "tr": "İçinde fiil bulunmayan cümle: bir konu ve o konu hakkında söylenen."
+  },
+  "explanation": {
+    "en": "A nominal sentence (الجملة الاسمية) opens with a noun and is built from two marfu' parts: the مُبْتَدَأ (the topic you start with) and the خَبَر (what you say about it). Both are in raf'. Unusually, the governor that raises them is not a spoken word but a meaning — الابتداء, the very act of beginning — which is why grammarians call it an عامل معنوي. The khabar can be a single word (مفرد: زَيْدٌ قَائِمٌ), a phrase (شبه جملة — a jar-majrur or adverb), or a whole sentence. In this story «الْأَعْمَالُ بِالنِّيَّاتِ»: الْأَعْمَالُ is the mubtada (marfu'), and the prepositional phrase بِالنِّيَّاتِ stands in the place of the khabar (attaching to an omitted خبر such as «كائنةٌ» / «معتبرةٌ»). Note too that once إِنَّ or كَانَ enters such a sentence the pair is renamed (ism/khabar) and one of them changes case — but underneath it is still this mubtada–khabar structure. Ibn Ajurrum devotes a chapter to it; Ibn Hisham details the kinds of khabar in Qatr al-Nada.",
+    "tr": "İsim cümlesi (الجملة الاسمية) bir isimle başlar ve iki merfu ögeden kurulur: mübteda (başladığın konu) ve haber (onun hakkında söylenen). Her ikisi de merfudur. İlginç olan, bunları ref eden âmilin söylenen bir kelime değil, bir mana olmasıdır — ibtidâ, yani başlama fiili; bu yüzden gramerciler ona âmil-i manevî der. Haber tek kelime (müfred: زَيْدٌ قَائِمٌ), bir öbek (şibh-i cümle — car-mecrur ya da zarf) veya tam bir cümle olabilir. Bu hikâyede «الْأَعْمَالُ بِالنِّيَّاتِ»: الْأَعْمَالُ mübtedadır (merfu) ve بِالنِّيَّاتِ car-mecruru haberin yerini tutar (hazfedilmiş bir habere, mesela «كائنةٌ» / «معتبرةٌ», müteallik). Ayrıca إِنَّ veya كَانَ bu cümleye girince çift yeniden adlandırılır (ism/haber) ve birinin i'rabı değişir — ama alttaki yapı yine bu mübteda–haber yapısıdır."
+  },
+  "classicalSources": [
+    "الآجُرُّومِيَّة (ابن آجُرُّوم)",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "examples": [
+    {
+      "ar": "الْأَعْمَالُ بِالنِّيَّاتِ.",
+      "en": "Deeds are by intentions — الْأَعْمَالُ is the mubtada (marfu'); the jar-majrur بِالنِّيَّاتِ takes the place of the khabar.",
+      "sourceStory": "deeds-are-by-intentions",
+      "sentence": "s1",
+      "tr": "Ameller niyetlerledir — الْأَعْمَالُ merfû mübtedadır; بِالنِّيَّاتِ câr-mecrûru haberin yerini tutar."
+    },
+    {
+      "ar": "الْعِلْمُ نَافِعٌ.",
+      "en": "Knowledge is beneficial — الْعِلْمُ mubtada, نَافِعٌ khabar, both marfu'.",
+      "tr": "İlim faydalıdır — الْعِلْمُ mübteda, نَافِعٌ haber, ikisi de merfû."
+    },
+    {
+      "ar": "الطَّالِبُ مُجْتَهِدٌ.",
+      "en": "The student is diligent — the khabar مُجْتَهِدٌ agrees with the mubtada in gender and number.",
+      "tr": "Talebe çalışkandır — haber مُجْتَهِدٌ, mübtedaya cinsiyet ve sayıda uyar."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "الْعِلْمُ نَافِعًا",
+      "right": "الْعِلْمُ نَافِعٌ",
+      "why": {
+        "en": "The khabar of a plain nominal sentence is marfu', not mansub. Learners give it nasb by confusing it with the khabar of كان (which really is mansub).",
+        "tr": "Sıradan bir isim cümlesinde haber merfudur, mansub değil. Öğrenciler bunu kânenin haberi (ki o gerçekten mansubdur) ile karıştırarak nasb verir."
+      }
+    },
+    {
+      "wrong": "الْأَعْمَالَ بِالنِّيَّاتِ",
+      "right": "الْأَعْمَالُ بِالنِّيَّاتِ",
+      "why": {
+        "en": "The mubtada is marfu' — الْأَعْمَالُ with a damma. Putting it in nasb (الأعمالَ) treats it as an object, but nothing here governs it in nasb.",
+        "tr": "Mübteda merfudur — ötreli الْأَعْمَالُ. Nasb vermek (الأعمالَ) onu nesne saymak olur, oysa burada onu nasb edecek bir âmil yoktur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "inna-wa-akhawatuha",
+    "kana-wa-akhawatuha"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  },
+  "mamul": "marfu"
+}

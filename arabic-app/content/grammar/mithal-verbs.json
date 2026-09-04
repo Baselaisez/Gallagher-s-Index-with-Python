@@ -1,0 +1,96 @@
+{
+  "id": "mithal-verbs",
+  "title": {
+    "ar": "الْفِعْلُ الْمِثَال",
+    "en": "Assimilated verbs (initial و or ي)",
+    "tr": "Misal fiil (başı و veya ي)"
+  },
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "مراح الأرواح (ص ٨٣-٨٤)",
+    "العزّي (ص ١٤٨-١٥٠)",
+    "المقصود (ص ١٨٣، ٢٠٥)",
+    "ملخّص الصرف العربي (ص ٦٦)",
+    "بناء الأفعال — الأقسام السبعة"
+  ],
+  "plain": {
+    "en": "Verbs that start with و or ي. The و often drops out in the present and the command: وَقَفَ «he stood» gives قِفْ «stop!».",
+    "tr": "Başı و veya ي olan fiiller. و çoğu zaman muzâri ve emirde düşer: وَقَفَ «durdu» → قِفْ «dur!»."
+  },
+  "explanation": {
+    "en": "A mithal verb has و or ي as its FIRST radical: وَعَدَ, وَصَلَ, يَسَرَ. The past tense is completely regular — وَعَدْتُ, وَصَلَتْ, conjugated exactly like a sound verb, active and passive alike. Everything interesting happens in the present. The rule is precise: a و caught between the fatha-bearing prefix يَ and an original kasra is dropped. يَوْعِدُ becomes يَعِدُ, يَوْصِلُ becomes يَصِلُ. It disappears from everything built on that present too — لَمْ يَعِدْ, لَنْ يَعِدَ, لِيَعِدْ, and the imperative عِدْ, which is one letter long. Note the two conditions: the vowel after the و must be an original KASRA (so bab 4's يَوْجَلُ keeps its و), and the passive restores it, because there the vowel is damma: يُوعَدُ. A mithal with ي behaves quite differently — the ي is never dropped in any bab: يَيْسِرُ, يَيْمُنُ, يَيْئَسُ. Two further habits: masdars on فِعْلَة shed the و and compensate with a ة (وِعْدَة → عِدَة), and in bab VIII the و or ي turns into ت and merges with the bab's own ت — اِوْتَعَدَ → اِتَّعَدَ.",
+    "tr": "Misal fiilin BİRİNCİ harfi و veya ي'dir: وَعَدَ، وَصَلَ، يَسَرَ. Mâzisi tamamen düzgündür — وَعَدْتُ، وَصَلَتْ; malum ve meçhulüyle sahih fiil gibi çekilir. Bütün mesele muzâridedir. Kaide nettir: fethalı يَ ile aslî bir kesre arasında kalan و düşer. يَوْعِدُ → يَعِدُ، يَوْصِلُ → يَصِلُ. Muzâriye tâbi olan her sîgada da düşer — لَمْ يَعِدْ، لَنْ يَعِدَ، لِيَعِدْ ve tek harflik emir عِدْ. İki şarta dikkat: و'dan sonraki hareke aslî KESRE olmalıdır (bu yüzden dördüncü babın يَوْجَلُ'ü و'ını korur) ve meçhulde و geri döner, çünkü orada hareke dammedir: يُوعَدُ. Misal-i yâî ise bambaşkadır — ي hiçbir babda düşmez: يَيْسِرُ، يَيْمُنُ، يَيْئَسُ. İki âdet daha: فِعْلَة vezinli masdarlarda و düşer ve yerine tâ gelir (وِعْدَة → عِدَة); iftiâl bâbında ise و/ي, تا'ya kalbolup bâbın tâsına idgam edilir — اِوْتَعَدَ → اِتَّعَدَ."
+  },
+  "examples": [
+    {
+      "ar": "وَقَفَ الْفِيلُ أَمَامَ مَكَّةَ.",
+      "en": "The elephant stopped before Mecca — وَقَفَ is sound in the past; its present is يَقِفُ, with the و gone.",
+      "sourceStory": "ashab-al-fil",
+      "chapter": 1,
+      "sentence": "s5",
+      "tr": "Fil Mekke'nin önünde durdu — وَقَفَ mâzide sahihtir; muzârisi يَقِفُ'dur, vâv düşmüştür."
+    },
+    {
+      "ar": "مَا وَصَلَ الْجَيْشُ إِلَى مَكَّةَ.",
+      "en": "The army did not reach Mecca — وَصَلَ / يَصِلُ, another mithal wawi.",
+      "sourceStory": "ashab-al-fil",
+      "chapter": 1,
+      "sentence": "s6",
+      "tr": "Ordu Mekke'ye ulaşmadı — وَصَلَ / يَصِلُ, bir başka misal-i vâvî."
+    },
+    {
+      "ar": "وَقَعَ يُونُسُ فِي الْبَحْرِ.",
+      "en": "Yunus fell into the sea — وَقَعَ / يَقَعُ: bab IV, so the vowel is fatha, yet the و still drops.",
+      "sourceStory": "yunus-wa-al-hut",
+      "tr": "Yunus denize düştü — وَقَعَ / يَقَعُ: dördüncü bâb, hareke fethadır, yine de vâv düşer."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "لَمْ يَوْصِلْ إِلَى مَكَّةَ",
+      "right": "لَمْ يَصِلْ إِلَى مَكَّةَ",
+      "why": {
+        "en": "Whatever is built on the present inherits the dropped و — jussive, subjunctive, imperative and prohibition all lose it.",
+        "tr": "Muzâriden türeyen her sîga düşen و'ı da devralır: cezm, nasb, emir ve nehiy hepsinde و yoktur."
+      }
+    },
+    {
+      "wrong": "اِوْصِلْ",
+      "right": "صِلْ",
+      "why": {
+        "en": "The imperative of a mithal is built from the jussive, which has already lost the و — so no connecting hamza is needed and the word is one letter plus its ending.",
+        "tr": "Misalin emri meczumdan yapılır ve orada و zaten düşmüştür; bu yüzden vasıl hemzesine gerek kalmaz."
+      }
+    },
+    {
+      "wrong": "يَسَرَ – يَسِرُ",
+      "right": "يَسَرَ – يَيْسِرُ",
+      "why": {
+        "en": "The rule is for و only. A mithal ya'i keeps its ي in every bab — nothing is dropped.",
+        "tr": "Kaide yalnız و içindir. Misal-i yâînin يا'sı hiçbir babda düşmez."
+      }
+    },
+    {
+      "wrong": "يُعَدُ (مَجْهُولُ يَعِدُ)",
+      "right": "يُوعَدُ",
+      "why": {
+        "en": "The و was dropped because it stood before a kasra. The passive has damma there instead, so the condition fails and the و comes back.",
+        "tr": "و, kesreden önce bulunduğu için düşmüştü. Meçhulde orada damme vardır, şart bozulur ve و geri döner."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hollow-verbs",
+    "naqis-verbs",
+    "imperative-amr"
+  ],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": [
+      "يَقِفُ",
+      "يَصِلُ",
+      "عِدْ"
+    ]
+  }
+}

@@ -1,0 +1,775 @@
+{
+  "chapter": 3,
+  "sentences": [
+    {
+      "id": "s1",
+      "translation": {
+        "en": "Hire is a contract upon usufructs for a consideration.",
+        "tr": "İcâre, bir bedel karşılığında menfaatler üzerine yapılan akittir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "الْإِجَارَةُ",
+            "smart": "الْإِجَارَةُ",
+            "bare": "الإجارة"
+          },
+          "lex": "ijara",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "form-iv-verbs"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' with damma.",
+            "tr": "Damme ile merfû mübteda."
+          }
+        },
+        {
+          "surface": {
+            "full": "عَقْدٌ",
+            "smart": "عَقْدٌ",
+            "bare": "عقد"
+          },
+          "lex": "aqd",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "masdar"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ.",
+            "en": "Khabar in raf'.",
+            "tr": "Merfû haber."
+          }
+        },
+        {
+          "surface": {
+            "full": "عَلَى",
+            "smart": "عَلَى",
+            "bare": "على"
+          },
+          "lex": "ala",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ مُتَعَلِّقٌ بِـ«عَقْدٌ».",
+            "en": "Preposition attached to عَقْد.",
+            "tr": "«عَقْدٌ»a mütealliḳ cer harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْمَنَافِعِ",
+            "smart": "الْمَنَافِعِ",
+            "bare": "المنافع"
+          },
+          "lex": "manafi",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr",
+            "mamnu-min-sarf"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ بِالْكَسْرَةِ، وَهُوَ جَمْعُ «مَنْفَعَةٍ» عَلَى صِيغَةِ مُنْتَهَى الْجُمُوعِ، وَإِنَّمَا جُرَّ بِالْكَسْرَةِ لِدُخُولِ «أَلْ».",
+            "en": "Noun in jarr with kasra: it is a «broken plural of the final pattern», normally barred from tanwin — but ال restores the kasra.",
+            "tr": "Kesre ile mecrûr isim; sîga-i müntehe'l-cumû'dandır, fakat «أل» girdiği için kesre alır."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِعِوَضٍ",
+            "smart": "بِعِوَضٍ",
+            "bare": "بعوض"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«عَقْدٌ».",
+            "en": "Preposition + noun attached to عَقْد.",
+            "tr": "«عَقْدٌ»a mütealliḳ câr-mecrûr."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "عِوَضٍ",
+              "lex": "iwad",
+              "pos": "noun"
+            }
+          ],
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "translation": {
+        "en": "A pledge is the holding of a thing against a right that can be recovered from it.",
+        "tr": "Rehin, kendisinden istifa edilmesi mümkün olan bir hak sebebiyle bir şeyi hapsetmektir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالرَّهْنُ",
+            "smart": "وَالرَّهْنُ",
+            "bare": "والرهن"
+          },
+          "lex": "rahn",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' with damma.",
+            "tr": "Damme ile merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الرَّهْنُ",
+              "lex": "rahn",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "حَبْسُ",
+            "smart": "حَبْسُ",
+            "bare": "حبس"
+          },
+          "lex": "habs",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness",
+            "masdar"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، مَصْدَرُ «حَبَسَ».",
+            "en": "Khabar in raf' and a mudaf; the masdar of حَبَسَ.",
+            "tr": "Merfû haber ve muzâf; «حَبَسَ» fiilinin masdarıdır."
+          }
+        },
+        {
+          "surface": {
+            "full": "شَيْءٍ",
+            "smart": "شَيْءٍ",
+            "bare": "شيء"
+          },
+          "lex": "shay",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra.",
+            "tr": "Kesre ile mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِحَقٍّ",
+            "smart": "بِحَقٍّ",
+            "bare": "بحق"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "jumla-sifa"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ، وَ«حَقٍّ» نَكِرَةٌ مَوْصُوفَةٌ بِالْجُمْلَةِ بَعْدَهَا.",
+            "en": "Preposition + noun; حَقّ is indefinite and described by the clause that follows.",
+            "tr": "Câr-mecrûr; «حَقٍّ» sonraki cümle ile sıfatlanmış nekredir."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "حَقٍّ",
+              "lex": "haqq",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "يُمْكِنُ",
+            "smart": "يُمْكِنُ",
+            "bare": "يمكن"
+          },
+          "lex": "amkana",
+          "pos": "verb",
+          "grammar": [
+            "jumla-sifa",
+            "mudari-marfu",
+            "form-iv-verbs"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ صِفَةٌ لِـ«حَقٍّ».",
+            "en": "Mudari' in raf'; the clause stands in jarr as the sifa of «حَقٍّ».",
+            "tr": "Merfû muzâri; cümle «حَقٍّ»in sıfatı olarak cer mahallindedir."
+          }
+        },
+        {
+          "surface": {
+            "full": "اسْتِيفَاؤُهُ",
+            "smart": "اسْتِيفَاؤُهُ",
+            "bare": "استيفاؤه"
+          },
+          "lex": "istifa",
+          "pos": "noun",
+          "grammar": [
+            "fail",
+            "idafa-definiteness",
+            "masdar",
+            "form-x-verbs"
+          ],
+          "irab": {
+            "ar": "فَاعِلٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ وَهُوَ الْعَائِدُ، وَهُوَ مَصْدَرُ «اسْتَوْفَى».",
+            "en": "Fa'il in raf' and a mudaf; the ه is its mudaf ilayh and the ‘aid. It is the masdar of اسْتَوْفَى, Form X.",
+            "tr": "Merfû fâil ve muzâf; hâ muzâfun ileyh ve âiddir. İstif'âl bâbından «اسْتَوْفَى» masdarıdır."
+          },
+          "segments": [
+            {
+              "form": "اسْتِيفَاؤُ",
+              "lex": "istifa",
+              "pos": "noun"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مِنْهُ",
+            "smart": "مِنْهُ",
+            "bare": "منه"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "jumla-sifa"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«اسْتِيفَاء»، وَالْهَاءُ الْعَائِدُ عَلَى «شَيْءٍ».",
+            "en": "Preposition + pronoun attached to اسْتِيفَاء; the ه returns to «شَيْءٍ».",
+            "tr": "«اسْتِيفَاء»a mütealliḳ câr-mecrûr; hâ «شَيْءٍ»e döner."
+          },
+          "segments": [
+            {
+              "form": "مِنْ",
+              "lex": "min",
+              "pos": "prep"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "translation": {
+        "en": "Agency is putting another in one's own place in a known transaction.",
+        "tr": "Vekâlet, malum bir tasarrufta başkasını kendi yerine geçirmektir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْوَكَالَةُ",
+            "smart": "وَالْوَكَالَةُ",
+            "bare": "والوكالة"
+          },
+          "lex": "wakala",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' with damma.",
+            "tr": "Damme ile merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْوَكَالَةُ",
+              "lex": "wakala",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "إِقَامَةُ",
+            "smart": "إِقَامَةُ",
+            "bare": "إقامة"
+          },
+          "lex": "iqama",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness",
+            "masdar",
+            "form-iv-verbs",
+            "hollow-verbs"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، مَصْدَرُ «أَقَامَ»، وَالتَّاءُ عِوَضٌ عَنِ الْوَاوِ الْمَحْذُوفَةِ (أَصْلُهُ إِقْوَامٌ).",
+            "en": "Khabar in raf' and a mudaf; the masdar of أَقَامَ. Its ة stands in for the dropped و — the original is إِقْوَام.",
+            "tr": "Merfû haber ve muzâf; «أَقَامَ» masdarıdır. Tâ, düşen vâvın yerine gelmiştir (aslı إِقْوَام)."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْغَيْرِ",
+            "smart": "الْغَيْرِ",
+            "bare": "الغير"
+          },
+          "lex": "ghayr",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra.",
+            "tr": "Kesre ile mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "مَقَامَ",
+            "smart": "مَقَامَ",
+            "bare": "مقام"
+          },
+          "lex": "maqam",
+          "pos": "noun",
+          "grammar": [
+            "maful-fih",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ.",
+            "en": "Adverb of place in nasb; a mudaf.",
+            "tr": "Mansub mekân zarfı ve muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "نَفْسِهِ",
+            "smart": "نَفْسِهِ",
+            "bare": "نفسه"
+          },
+          "lex": "nafs",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Mudaf ilayh in jarr, itself a mudaf; the ه is its mudaf ilayh.",
+            "tr": "Mecrûr muzâfun ileyh ve muzâf; hâ muzâfun ileyhtir."
+          },
+          "segments": [
+            {
+              "form": "نَفْسِ",
+              "lex": "nafs",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "فِي",
+            "smart": "فِي",
+            "bare": "في"
+          },
+          "lex": "fi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ.",
+            "en": "Preposition.",
+            "tr": "Cer harfi."
+          }
+        },
+        {
+          "surface": {
+            "full": "تَصَرُّفٍ",
+            "smart": "تَصَرُّفٍ",
+            "bare": "تصرف"
+          },
+          "lex": "tasarruf",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr",
+            "masdar",
+            "form-v-verbs"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ، مَصْدَرُ «تَصَرَّفَ» عَلَى بَابِ التَّفَعُّلِ.",
+            "en": "Noun in jarr; the masdar of تَصَرَّفَ, Form V.",
+            "tr": "Mecrûr isim; tefe'ul bâbından «تَصَرَّفَ» masdarıdır."
+          }
+        },
+        {
+          "surface": {
+            "full": "مَعْلُومٍ",
+            "smart": "مَعْلُومٍ",
+            "bare": "معلوم"
+          },
+          "lex": "malum",
+          "pos": "noun",
+          "grammar": [
+            "naat-sifa"
+          ],
+          "irab": {
+            "ar": "نَعْتٌ مَجْرُورٌ، وَهُوَ اسْمُ مَفْعُولٍ مِنْ «عَلِمَ».",
+            "en": "Na't in jarr; the ism maf'ul of عَلِمَ.",
+            "tr": "Mecrûr na't; «عَلِمَ» fiilinin ism-i mef'ûlüdür."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "translation": {
+        "en": "A gift is conveying ownership of a thing without consideration.",
+        "tr": "Hibe, bir malı bedelsiz olarak temlik etmektir."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْهِبَةُ",
+            "smart": "وَالْهِبَةُ",
+            "bare": "والهبة"
+          },
+          "lex": "hiba",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' with damma.",
+            "tr": "Damme ile merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْهِبَةُ",
+              "lex": "hiba",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "تَمْلِيكُ",
+            "smart": "تَمْلِيكُ",
+            "bare": "تمليك"
+          },
+          "lex": "tamlik",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness",
+            "masdar",
+            "form-ii-verbs"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، مَصْدَرُ «مَلَّكَ» عَلَى بَابِ التَّفْعِيلِ.",
+            "en": "Khabar in raf' and a mudaf; the masdar of مَلَّكَ, Form II — the causative of «to own».",
+            "tr": "Merfû haber ve muzâf; tef'îl bâbından «مَلَّكَ» masdarıdır."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْعَيْنِ",
+            "smart": "الْعَيْنِ",
+            "bare": "العين"
+          },
+          "lex": "ayn",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra.",
+            "tr": "Kesre ile mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِلَا",
+            "smart": "بِلَا",
+            "bare": "بلا"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "الْبَاءُ حَرْفُ جَرٍّ وَ«لَا» زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ.",
+            "en": "بِ is a preposition and لَا is added to strengthen the negation.",
+            "tr": "بِ cer harfi, «لَا» nefyi te'kid için zâiddir."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "لَا",
+              "lex": "la-nafiya",
+              "pos": "part"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عِوَضٍ",
+            "smart": "عِوَضٍ",
+            "bare": "عوض"
+          },
+          "lex": "iwad",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ.",
+            "en": "Noun in jarr.",
+            "tr": "Mecrûr isim."
+          },
+          "punctAfter": "."
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "translation": {
+        "en": "Usurpation is taking a protected thing of value without the owner's permission.",
+        "tr": "Gasp, sahibinin izni olmaksızın kıymetli ve korunmuş bir malı almaktır."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَالْغَصْبُ",
+            "smart": "وَالْغَصْبُ",
+            "bare": "والغصب"
+          },
+          "lex": "ghasb",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+            "en": "Mubtada in raf' with damma.",
+            "tr": "Damme ile merfû mübteda."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْغَصْبُ",
+              "lex": "ghasb",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "أَخْذُ",
+            "smart": "أَخْذُ",
+            "bare": "أخذ"
+          },
+          "lex": "akhdh",
+          "pos": "noun",
+          "grammar": [
+            "mubtada-khabar",
+            "idafa-definiteness",
+            "masdar"
+          ],
+          "irab": {
+            "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ، مَصْدَرُ «أَخَذَ».",
+            "en": "Khabar in raf' and a mudaf; the masdar of أَخَذَ.",
+            "tr": "Merfû haber ve muzâf; «أَخَذَ» fiilinin masdarıdır."
+          }
+        },
+        {
+          "surface": {
+            "full": "مَالٍ",
+            "smart": "مَالٍ",
+            "bare": "مال"
+          },
+          "lex": "mal",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra.",
+            "tr": "Kesre ile mecrûr muzâfun ileyh."
+          }
+        },
+        {
+          "surface": {
+            "full": "مُتَقَوِّمٍ",
+            "smart": "مُتَقَوِّمٍ",
+            "bare": "متقوم"
+          },
+          "lex": "mutaqawwim",
+          "pos": "noun",
+          "grammar": [
+            "naat-sifa",
+            "form-v-verbs"
+          ],
+          "irab": {
+            "ar": "نَعْتٌ مَجْرُورٌ، اسْمُ فَاعِلٍ مِنْ «تَقَوَّمَ».",
+            "en": "Na't in jarr; the ism fa'il of تَقَوَّمَ — property the law counts as having value.",
+            "tr": "Mecrûr na't; «تَقَوَّمَ» fiilinin ism-i fâilidir."
+          }
+        },
+        {
+          "surface": {
+            "full": "مُحْتَرَمٍ",
+            "smart": "مُحْتَرَمٍ",
+            "bare": "محترم"
+          },
+          "lex": "muhtaram",
+          "pos": "noun",
+          "grammar": [
+            "naat-sifa",
+            "form-viii-verbs"
+          ],
+          "irab": {
+            "ar": "نَعْتٌ ثَانٍ مَجْرُورٌ، اسْمُ مَفْعُولٍ مِنْ «احْتَرَمَ».",
+            "en": "A second na't in jarr; the ism maf'ul of احْتَرَمَ — property the law protects.",
+            "tr": "Mecrûr ikinci na't; «احْتَرَمَ» fiilinin ism-i mef'ûlüdür."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِغَيْرِ",
+            "smart": "بِغَيْرِ",
+            "bare": "بغير"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«أَخْذُ»، وَ«غَيْرِ» مُضَافٌ.",
+            "en": "Preposition + noun attached to أَخْذ; غَيْر is a mudaf.",
+            "tr": "«أَخْذُ»a mütealliḳ câr-mecrûr; «غَيْرِ» muzâftır."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "غَيْرِ",
+              "lex": "ghayr",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "إِذْنِ",
+            "smart": "إِذْنِ",
+            "bare": "إذن"
+          },
+          "lex": "idhn",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ.",
+            "en": "Mudaf ilayh in jarr; itself a mudaf.",
+            "tr": "Mecrûr muzâfun ileyh, kendisi de muzâftır."
+          }
+        },
+        {
+          "surface": {
+            "full": "الْمَالِكِ",
+            "smart": "الْمَالِكِ",
+            "bare": "المالك"
+          },
+          "lex": "malik",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra.",
+            "tr": "Kesre ile mecrûr muzâfun ileyh."
+          },
+          "punctAfter": "."
+        }
+      ]
+    }
+  ]
+}

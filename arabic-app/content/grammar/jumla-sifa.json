@@ -1,0 +1,84 @@
+{
+  "id": "jumla-sifa",
+  "title": {
+    "ar": "الْجُمْلَةُ الْوَاقِعَةُ صِفَةً",
+    "en": "A clause standing as an adjective",
+    "tr": "Sıfat olan cümle"
+  },
+  "level": 5,
+  "group": "nahw",
+  "mamul": "tabai",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — التوابع",
+    "إظهار الأسرار (البركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "A whole clause used as an adjective. After an indefinite noun it describes it; after a definite one it tells you a state instead.",
+    "tr": "Sıfat olarak kullanılan tam cümle. Nekreden sonra sıfat, marifeden sonra hâl olur."
+  },
+  "explanation": {
+    "en": "An adjective need not be a single word. A whole clause can describe a noun, and the tradition states the rule in one line: الْجُمَلُ بَعْدَ النَّكِرَاتِ صِفَاتٌ وَبَعْدَ الْمَعَارِفِ أَحْوَالٌ — clauses after indefinite nouns are adjectives, after definite nouns they are hal. So in «صِفَةٌ يَتَجَلَّى بِهَا الْمَذْكُورُ» the indefinite صِفَةٌ is described by the verbal clause that follows: «an attribute by which the named thing becomes manifest». Three things to hold on to. The clause must contain a pronoun linking it to the noun (the same عَائِد as in a relative clause) — here بِهَا. The clause takes the case POSITION of the noun it describes, which is why we say «فِي مَحَلِّ رَفْعٍ صِفَةٌ» after a marfu' noun and «فِي مَحَلِّ جَرٍّ صِفَةٌ» after a majrur one. And the noun must genuinely be indefinite: قَوْمٍ in «قَوْمٍ لَا يُتَصَوَّرُ تَوَاطُؤُهُمْ» is indefinite, so the clause is its sifa; make the noun definite and the same clause becomes a hal.",
+    "tr": "Sıfatın tek kelime olması şart değildir; bir cümle de ismi niteleyebilir. Kaide tek satırdır: الْجُمَلُ بَعْدَ النَّكِرَاتِ صِفَاتٌ وَبَعْدَ الْمَعَارِفِ أَحْوَالٌ — nekrelerden sonraki cümleler sıfat, marifelerden sonrakiler hâldir. «صِفَةٌ يَتَجَلَّى بِهَا الْمَذْكُورُ» ifadesinde nekre olan صِفَةٌ, kendisinden sonraki fiil cümlesiyle nitelenir. Üç noktayı unutmayın. Cümlede ismi bağlayan bir zamir (âid) bulunmalıdır — burada بِهَا. Cümle, nitelediği ismin i'rab MAHALLİNİ alır; merfû isimden sonra «ref mahallinde sıfat», mecrûr isimden sonra «cer mahallinde sıfat» denir. Ve isim gerçekten nekre olmalıdır: «قَوْمٍ لَا يُتَصَوَّرُ تَوَاطُؤُهُمْ» ifadesinde قَوْمٍ nekredir, dolayısıyla cümle sıfattır; isim marife olsaydı aynı cümle hâl olurdu."
+  },
+  "examples": [
+    {
+      "ar": "الْعِلْمُ صِفَةٌ يَتَجَلَّى بِهَا الْمَذْكُورُ.",
+      "en": "Knowledge is an attribute by which the named thing becomes manifest — the clause stands in raf', describing the indefinite صِفَةٌ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s1",
+      "chapter": 2,
+      "tr": "İlim, kendisiyle mezkûrun açığa çıktığı bir sıfattır — cümle, nekre olan صِفَةٌ'yi niteleyerek ref mahallindedir."
+    },
+    {
+      "ar": "عَلَى أَلْسِنَةِ قَوْمٍ لَا يُتَصَوَّرُ تَوَاطُؤُهُمْ عَلَى الْكَذِبِ.",
+      "en": "…of a people whose collusion upon a lie cannot be conceived — the clause stands in jarr, following قَوْمٍ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 2,
+      "tr": "…yalan üzerinde birleşmeleri düşünülemeyen bir topluluğun — cümle قَوْمٍ'den sonra cer mahallindedir."
+    },
+    {
+      "ar": "الرَّسُولُ إِنْسَانٌ بَعَثَهُ اللهُ تَعَالَى إِلَى الْخَلْقِ.",
+      "en": "A messenger is a human being whom Allah has sent to creation — the ‘aid is the ـهُ of بَعَثَهُ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s1",
+      "chapter": 4,
+      "tr": "Resul, Allah'ın mahlukata gönderdiği bir insandır — âid, بَعَثَهُ'deki هُ'dir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "رَأَيْتُ الرَّجُلَ يَقْرَأُ — «يَقْرَأُ» صِفَةٌ",
+      "right": "«يَقْرَأُ» جُمْلَةٌ حَالِيَّةٌ، لِأَنَّ «الرَّجُلَ» مَعْرِفَةٌ",
+      "why": {
+        "en": "After a definite noun the clause is a hal, not a sifa — «I saw the man while he was reading», not «the man who reads».",
+        "tr": "Marife isimden sonra gelen cümle sıfat değil hâldir: «adamı okurken gördüm», «okuyan adamı gördüm» değil."
+      }
+    },
+    {
+      "wrong": "جَاءَ رَجُلٌ يَقْرَأُ الْكِتَابَ — «يَقْرَأُ» مَرْفُوعَةٌ صِفَةً",
+      "right": "الْجُمْلَةُ فِي مَحَلِّ رَفْعٍ صِفَةٌ لِـ«رَجُلٌ»",
+      "why": {
+        "en": "A clause has no ending to inflect, so it is never itself marfu'. It occupies the POSITION of raf' — say «فِي مَحَلِّ رَفْعٍ».",
+        "tr": "Cümlenin çekilecek bir sonu yoktur, kendisi merfû olmaz; ref MAHALLİNDE bulunur — «فِي مَحَلِّ رَفْعٍ» denir."
+      }
+    },
+    {
+      "wrong": "هَذَا كِتَابٌ قَرَأْتُ",
+      "right": "هَذَا كِتَابٌ قَرَأْتُهُ",
+      "why": {
+        "en": "A describing clause needs its ‘aid just as a relative clause does; without ـهُ the clause floats free of the noun.",
+        "tr": "Sıfat cümlesi de sıla gibi âide muhtaçtır; ـهُ olmadan cümle isimle bağını kurmaz."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "ism-mawsul",
+    "naat-sifa",
+    "hal"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

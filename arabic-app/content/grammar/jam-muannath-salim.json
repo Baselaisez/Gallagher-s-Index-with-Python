@@ -1,0 +1,72 @@
+{
+  "id": "jam-muannath-salim",
+  "title": {
+    "ar": "جَمْعُ الْمُؤَنَّثِ السَّالِم",
+    "en": "The sound feminine plural",
+    "tr": "Cem-i müennes-i sâlim"
+  },
+  "level": 3,
+  "group": "nahw",
+  "classicalSources": [
+    "العوامل (البيركوي)",
+    "الكافية (ابن الحاجب)",
+    "مراح الأرواح"
+  ],
+  "plain": {
+    "en": "The regular feminine plural in ـَات — and it takes kasra where you would expect fatha.",
+    "tr": "ـَات ile yapılan düzenli müennes çoğul; fetha beklediğiniz yerde kesre alır."
+  },
+  "explanation": {
+    "en": "Add ـَات to the singular and you have the sound feminine plural: إِدْرَاك → إِدْرَاكَات, مَوْجُود → مَوْجُودَات. Its i'rab has one peculiarity that must be memorised: it takes damma in raf' as expected, but KASRA in nasb — not fatha. So «رَأَيْتُ الْمُؤْمِنَاتِ» and «مَرَرْتُ بِالْمُؤْمِنَاتِ» look identical at the ending, and only the governor tells you which case it is. That makes this plural the mirror image of the sound masculine plural, which uses ـُونَ for raf' and ـِينَ for both nasb and jarr. Note also that the plural does not require a feminine singular — حَمَّامَات and إِدْرَاكَات are built on masculine words; what makes it «feminine» is the ending, not the sense.",
+    "tr": "Tekile ـَات eklenerek yapılır: إِدْرَاك → إِدْرَاكَات، مَوْجُود → مَوْجُودَات. İ'rabında ezberlenmesi gereken bir özellik vardır: ref hâlinde beklendiği gibi damme alır, fakat NASB hâlinde fetha değil KESRE alır. Bu yüzden «رَأَيْتُ الْمُؤْمِنَاتِ» ile «مَرَرْتُ بِالْمُؤْمِنَاتِ» sonlarında aynı görünür; hangi i'rabda olduğunu ancak âmil belirler. Böylece bu cemi, ref için ـُونَ, nasb ve cer için ـِينَ kullanan cem-i müzekker-i sâlimin aynadaki görüntüsüdür. Ayrıca tekilinin müennes olması şart değildir: حَمَّامَات ve إِدْرَاكَات müzekker kelimelerden yapılmıştır; «müennes» sayılmasının sebebi manası değil, ekidir."
+  },
+  "examples": [
+    {
+      "ar": "بِهَا تَسْتَعِدُّ لِلْعُلُومِ وَالْإِدْرَاكَاتِ.",
+      "en": "…is made ready for the sciences and the perceptions — kasra here is the mark of jarr.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s4",
+      "chapter": 2,
+      "tr": "…ilimlere ve idraklere hazır hâle gelir — buradaki kesre cer alâmetidir."
+    },
+    {
+      "ar": "مَا سِوَى اللهِ تَعَالَى مِنَ الْمَوْجُودَاتِ.",
+      "en": "…among the existent things.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s1",
+      "chapter": 3,
+      "tr": "…mevcudat arasından."
+    },
+    {
+      "ar": "إِنَّ الْمُسْلِمَاتِ وَالْمُؤْمِنَاتِ.",
+      "en": "Indeed the Muslim women and the believing women — after إِنَّ the case is nasb, but the mark is kasra.",
+      "tr": "Muhakkak Müslüman ve mümin kadınlar — إِنَّ'den sonra i'rab nasbdır, fakat alâmeti kesredir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "رَأَيْتُ الْمُسْلِمَاتَ",
+      "right": "رَأَيْتُ الْمُسْلِمَاتِ",
+      "why": {
+        "en": "The sound feminine plural never takes fatha in nasb. Kasra stands in for it — this is the single rule that governs the form.",
+        "tr": "Cem-i müennes-i sâlim nasb hâlinde asla fetha almaz; onun yerine kesre gelir. Bu şeklin tek kuralı budur."
+      }
+    },
+    {
+      "wrong": "جَاءَتِ الْمُسْلِمَاتِ",
+      "right": "جَاءَتِ الْمُسْلِمَاتُ",
+      "why": {
+        "en": "In raf' it is perfectly ordinary — damma. The kasra substitution applies to nasb only.",
+        "tr": "Ref hâlinde tamamen olağandır: damme. Kesre ikamesi yalnız nasb hâline mahsustur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "jam-mudhakkar-salim",
+    "huruf-jarr",
+    "inna-wa-akhawatuha"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}
