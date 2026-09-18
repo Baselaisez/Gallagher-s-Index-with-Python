@@ -4410,3 +4410,123 @@ alternative — a broken plural — is heard, not derived (note 153
 alif (عَصًا), so «strip the final tanwin» must look one letter in; and the
 ending-strip must never eat a SHADDA (عَرَبِيّ → عَرَبِيُّونَ), or the nisba
 loses its doubled ya.
+
+## The tashbih's kinds and the majaz — the engines graded on four chapters (wave 16, v170)
+
+Chapters 48–51 of the Talkhīṣ carry 91 sentences, 49 authored **tashbih
+frames** (now with `taaddud` and `rank`) and 13 authored **majaz frames**
+(`{word, kind, alaqa, haqiqa, murad}`), and the engines are graded on all
+of them: every frame read back, no frame where none was authored, ḍabṭ
+floors per chapter (endings-mode ḍabṭ at v170: ch48 94.4, ch49 91.9, ch50 97.2, ch51 95.4 — floors 92/88/94/91). The wave's rule, in one line: **the
+authored frame is an assertion, and every layer that reads it must be
+able to refuse it.** The validator now range-checks every frame index
+against the sentence's own token count — ch51 shipped EIGHT majaz frames
+pointing one token off (a `word` past the end, or at the فِي before the
+word) and nothing complained until the engine was graded against them.
+An index the reader cannot resolve is silent on the page and wrong in the
+audit; both are worse than an error.
+
+**The pronoun's own vowel is not the host's — the chain's closing test read
+the strip's هُ.** In endings mode the ending-strip normalises a clinging
+pronoun to هُ, and `IdafaEngine.chain`'s guard «the chain may not close on
+a word showing raf'» read that damma as the HOST's — so every «bare noun +
+pronoun-bearing member» idafa (بَيَانُ إِمْكَانِهِ، بِاسْمِ سَبَبِهِ، seven of them in
+ch51 alone) fell apart in endings mode while holding in full mode. The
+test now strips the enclitic first and reads the seam. The seam doctrine
+(ch10, ch11) had been paid at the analyzer and at IrabSign; the chain was
+its third payment.
+
+**The lam of command is SAKIN after فَ/وَ, and a lam of purpose never is.**
+فَلْيَدْعُ read as a nasb-lam (فَلِيَدْعُ) because the lam-amr test only fired at a
+clause head. The sukun on the lam is an internal mark — it survives the
+endings strip — and it is the receipt: the writer keeps it, the mood is
+jazm. And the word after it, نَادِيَهُ, was «the 2fs amr نَادِي with an object»:
+a cell that ENDS in a madd letter (ِي، ُو، َا) cannot carry a haraka on that
+letter, so a fatha on the ya refutes the cell — the manqūs noun in nasb
+with its pronoun. Eighth guard on the corpus-cell match, and the first
+that reads the cell's own last LETTER rather than its last vowel.
+
+**The seat-alif of the tanwīn survives an endings strip.** رَطْبًا → رَطْبا:
+the fathatan goes, the alif stays, and an indefinite noun whose lemma does
+not end in an alif but whose written form does is wearing the tanwīn's
+SEAT — nasb, decided by the letter the strip cannot take
+(`DabtEngine.alifSeat`). It rides the hal-on-inna's-ism rule, so
+كَأَنَّ قُلُوبَ الطَّيْرِ رَطْبًا وَيَابِسًا reads its two hals in both modes, and
+the owed khabar then refuses the na't reading: **an ال-noun after a zarf's
+mudaf ilayh while inna's khabar is still owed IS the khabar** (لَدَى وَكْرِهَا
+الْعُنَّابُ), and inna's family with an attached pronoun (كَأَنَّهَا) opens with
+its ism already given — the intransitive-verb guard that names the next
+noun innaKhabar now sets the rule itself instead of re-opening the state
+for a later branch that never came.
+
+**The jawāb of a shart may open on a NOUN.** إِنْ كَانَتِ الْعَلَاقَةُ غَيْرَ
+الْمُشَابَهَةِ فَمُرْسَلٌ — the fa is the jawāb's fa and the noun after it is
+marfūʿ: a mubtada when definite (فَالْأَحْسَنُ تَرْكُ التَّشْبِيهِ), the khabar of
+an omitted هُوَ when not. The state is two fields (`st.shartAt`,
+`st.jawabDone`), armed by the shart particles including the sukūn-إن and
+وَإِلَّا (= وَإِنْ لَا, whose jawāb stands right beside it), disarmed by a
+fa-verb. Before this every such noun was joined onto the nearest majrūr.
+
+**A joined noun followed by its OWN verb joins the earlier SUBJECT** —
+فَالْعَلَاقَةُ تُخْرِجُ الْغَلَطَ وَالْقَرِينَةُ تُخْرِجُ الْكِنَايَةَ is a sentence joined to a
+sentence, and the parity walk (which stops at a verb) could only reach
+الْغَلَطَ. When the next row is a verb, the walk crosses the earlier verb to
+the earlier mubtada/fāʿil of the same shape, and the joined noun becomes the
+new subject so its verb's next noun is the OBJECT. Two more parity facts
+from the same bayt of ch50: **a pronoun-bearing word and a noun-annexed
+head are one shape — both are mudafs** (صُدْغُ الْحَبِيبِ وَحَالِي), and
+**كِلَاهُمَا after the pair it follows is the TAWKĪD**, never a khabar — its
+`k` is «keep» (it declines by its own letter) and the TashbihEngine's
+shape rule already excluded tawkīd from the nominal-clause test, which is
+how the bayt's shape came back mufrad and its taʿaddud taswiya.
+
+**Two more nahw rules the chapters paid for:** a na't across a na't's own
+mudaf ilayh — لَدَى أَسَدٍ شَاكِي السِّلَاحِ مُقَذَّفٍ qualifies أَسَدٍ, not السِّلَاحِ
+(agreement then holds: indefinite with indefinite); and a sifa-SHAPED head
+the lexicon owns as a plain noun keeps its chain — قَرِينَةُ عَدَمِ إِرَادَتِهِ was
+cut by the «sifa before a bare noun» rule because قَرِينَة wears فَعِيلَة, and
+the lexicon (pos noun, gloss «clue») outranks the shape.
+
+**MajazEngine reads receipts and stores the rest.** The received pairs are a
+TABLE (رَعَى الْغَيْثَ، أَمْطَرَتِ السَّمَاءُ نَبَاتًا، آتُوا الْيَتَامَى، عَصَرَ خَمْرًا،
+فَلْيَدْعُ نَادِيَهُ، لِسَانَ صِدْقٍ، فِي رَحْمَةِ اللهِ) and the istiʿāras the books
+recite joined it (اهْدِنَا الصِّرَاطَ، فِي أَيْمَانِنَا نِيرَانَا — keyed on a
+NEIGHBOUR, not a verb) — stored, never derived, because the likeness is
+knowledge of the two things. Three things the chapter taught: the object
+test must read the lemma OR the surface, because the lexicon's lemma is
+the SINGULAR (يَتِيم) and the pair names the plural (يَتَامَى); the prev-word
+test must peel the joining fa (فَفِي رَحْمَةِ); and the books' own CITATION
+frame — «كَالْيَدِ فِي النِّعْمَةِ», a word under the kaf of «for instance», then
+فِي and the meaning it is used for — is read as a mursal whose ʿalaqa is the
+one the sentence itself just NAMED (بِاسْمِ جُزْئِهِ كَالْعَيْنِ → juzʾiyya,
+بِاسْمِ كُلِّهِ كَالْأَصَابِعِ → kulliyya) or, failing that, the received table
+(يد/نعمة → sababiyya; راوية/مزادة → mujāwara); with neither it stays a
+candidate. The frame is refused wherever the TashbihEngine already read the
+kaf as a likening (زَيْدٌ كَالْأَسَدِ فِي الشَّجَاعَةِ is a tashbih with its wajh).
+
+**TashbihEngine, four more shapes:** the masdar with RELATIVE ends
+(تَشْبِيهِ مَنْ لَا يَحْصُلُ … بِمَنْ يَرْقُمُ — مَنْ joins the relative set and
+بِمَنْ/بِمَا is a بِ-group), a fused particle-with-pronoun inside a nominal
+clause (فَحْمٍ فِيهِ جَمْرٌ مُوقَدٌ — فِيهِ is not a wall), the majrūr of a SKIPPED
+governing letter is the end itself (كَأَنَّمَا يَبْسِمُ عَنْ لُؤْلُؤٍ: mufrad, not
+muqayyad), and **a mushabbah never reaches past its own adat** — the atf
+head's cluster is filtered to indices before the kaf, or the second
+likening of a bayt swallows the first (كِلَاهُمَا كَاللَّيَالِي وَثَغْرُهُ …).
+
+**The plural in the glossary must be the plural the corpus witnesses.**
+وَأَدْمُعِي was read as a NA'T of صَفَاءٍ: `joined()` asks the lexicon whether
+the remainder behind the waw is a word, the entry for دَمْع carried دُمُوع,
+and أَدْمُع (the paucity plural — exactly the qiyāsī أَفْعُل of a فَعْل noun)
+answered nobody. The entry now stores the attested plural. A lexicon field
+nobody reads can hold anything; this one is read by the atf rule, so it
+must hold what the text actually says.
+
+**The five verbs drop their nun in the DUAL too — and a dropped nun is a receipt the writer must not erase.** تَرَيَا and تُتْعِبَا (the dual muḍāriʿ after a talab and a nahy) reached no cell: the candidate builder restored ونَ onto a bare group-waw since ch39 and never انِ onto a bare fatḥa-alif. It offers the dual's nun now, for matching only. Two things followed. The jawāb-al-talab detector reads the fallen nun as the jazm SHAPE (a muḍāriʿ cell ending انِ/ونَ/ينَ whose written form has no nun), and DabtEngine names the jazm after a talab from the same fact. And the ḍabṭ writer, handed a raf' verdict on such a word, used to append the nun's KASRA to the alif (تَرَيَاِ): where the page has already dropped the nun the letters say nasb-or-jazm and raf' is impossible — the writer keeps the nun-less form and, under a raf' verdict, withdraws as undecided rather than dress the word with a nun the text does not carry (تَرَيَا opening a sentence whose talab stands in the sentence before). A verdict the letters refute is not written; it is withdrawn.
+
+**A context rule needs its own controls before it ships — the arbiter's clause-head rule cost دَارِكَ within the hour.** «A clause-head word on a final fatḥa before an ال-noun on a ḍamma is a māḍī and its fāʿil» is true (أَنْبَتَ الرَّبِيعُ) and the bank refused it at once: سَعْدٌ فِي دَارِكَ السَّفَّاحُ — the fatḥa is the PRONOUN's, and the particle before the word is a JARR letter, and nothing a jarr letter governs is a verb. Both guards were already doctrine elsewhere in this file (the seam; the sixth demotion guard); the new rule had to be told. And the construct dual behind a pronoun (نَظَرَيْكُمَا) was refused by a person-prefix guard written for bare words — a verb host before an object pronoun never ends in a bare يْ, so behind a pronoun that guard stands down and the lexicon-owned stem and the corpus-cell test do the refusing.
+
+**Progress is keyed by CHAPTER and sentence id — a bare id could never finish a book.** Sentence ids restart every chapter (s1, s2… in each), and `markRead` stored the bare id: reading chapter 1's s3 marked every chapter's s3 read, `storyStats` could count at most one chapter's worth of ids, and no multi-chapter story could ever raise its completion toast or retire its continue card. The release gate found it only because this week's Lite rotation put a nine-chapter story first on the shelf — the check had picked a one-chapter story for 130 versions. `progKey(sen, ch)` writes `n:id`, `senRead` reads it (and honours a legacy bare key only in a one-chapter story, where it cannot collide), `SENTENCE_FLAT` carries the chapter, and the Atlas's read-glow matches an anchor's bare id against any chapter's key, because anchors carry no chapter. The tests that seeded progress by bare id were wrong for the same reason and seed by `progKey` now. Two lessons: a rotation-dependent pick is a test that runs a different test each week, and a store keyed on something that repeats is a bug waiting for the first record that repeats.
+
+**The corpus walk is the analyzer's whole cost — memoise the WORD, not the model.** Timed at v170 on twelve creed sentences: 97% of `analyze()` sat in `RootFinder.fromCorpus` — 58–67 ms a call, thirty-odd calls a sentence, each call re-walking ~270 paradigms and every cell of each. The Taʿalluq gate analyses the whole corpus (2,200 sentences) and was reading as a hang at 98% CPU eighteen minutes in; it was not hung, it was slow, and it had been slow since the walk was written (v169: 1.7 s a sentence, v170 before the memo: 2.3 s). The answer for a written word depends on nothing but the corpus, so `fromCorpus` now memoises per word (bounded, dropped whenever the corpus index object changes) — 1.26 s a sentence cold, far less warm. This is NOT the rejected tagger memo: that one was keyed on a model that `evalUnseen` swaps behind the caller's back; nothing swaps the corpus. The lesson underneath: when a gate «hangs», measure before killing it — two release runs were killed inside a check that would have finished — and when a helper is 97% of the cost, the memo goes on the helper.
+
+**What the full release found that the measured gates had not — four regressions, each a wave-16 rule reaching one word too far.** The wave's engines were measured on their own chapters before the release; the release then ran every gate, and four earlier ones FAILed — the record, so the next wave measures the neighbours too. (1) `mudafHuruf` false alarm on أَهْلُوهُمَا (bad-al-amali 4:s19): the new pronoun-annexed construct (`enc`) is a mudaf whose mudaf ilayh is ON the word, so the next word owes it nothing — the Qawaid rule now reads `c.enc` and leaves the neighbour alone. (2) The memo hands out COPIES: a caller may annotate the cell it gets back, and a shared object would carry that annotation into the next sentence — `fromCorpus` copies on the way in and on the way out. (3) كَلَامِ آخَرَ: the chain adoption's «a masdar head keeps a sifa-shaped member» guard (`!masdarHead`) had grown teeth once `masdarShape` learned فَعَال (كَلَام), and swallowed the diptote sifa; the diptote sifas (آخَر، أُخْرَى، كُبْرَى…) now cut the chain whatever the head. (4) زَيْدٌ كَالْبَحْرِ كَرَمًا lost its wajh twice over: the wajh reader's «no fused jarr letter» test was a bare-letter regex that read the kaf OF كَرَمًا as a clitic (it now asks `fused()` first), and the ḍabṭ ladder, having correctly learnt that a fused-kaf phrase after the mubtada IS the khabar, left the fathatan noun after it with no rule at all — a fathatan noun after a finished nominal sentence is now its tamyiz (a masdar) or its hal, never nothing. And the idafa-tashbih frame (4c) read حُمْرِ الْيَوَاقِيتِ as «the donkeys of the rubies»: the colour plural فُعْل annexed to its own noun is a sifa on its mawsuf, and its bare letters spelling a stock word (حُمُر) is no evidence — the rule now refuses the فُعْل shape and any sifa-shaped head. Two more surfaced on the rerun: the qulub frame (عَلِمْتُ زَيْدًا أَسَدًا) took a second object from ANYWHERE after the first — تَرَيَا وُجُوهَ الْأَرْضِ كَيْفَ تَصَوَّرُ handed it the verb behind كَيْفَ; the second object now stands right after the first's cluster and is never a verb cell. And the lab gate counted two chips where the v170 design draws three (the rank chip is a claim, not decoration) — the gate reads the design, not the other way round.

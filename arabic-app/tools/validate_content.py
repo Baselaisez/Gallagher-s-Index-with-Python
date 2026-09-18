@@ -296,6 +296,37 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
             ph = tok.get("phrase")
             if ph and isinstance(ph.get("span"), int) and i + ph["span"] > len(tokens):
                 rep.error(f"{where}[{i}]: phrase span {ph['span']} runs past the end of the sentence")
+        # Authored bayan frames point at tokens BY INDEX; an index past the end
+        # (or a half-translated gloss) is silent in the reader and wrong in the
+        # engine audit — ch51 shipped eight such frames before this check.
+        ts = sen.get("tashbih")
+        if ts is not None:
+            if not isinstance(ts, dict):
+                rep.error(f"{where}: tashbih must be an object")
+            else:
+                idx = list(ts.get("mushabbah") or []) + list(ts.get("bihi") or []) + list(ts.get("wajh") or [])
+                if ts.get("adat") is not None:
+                    idx.append(ts["adat"])
+                for k in idx:
+                    if not isinstance(k, int) or k < 0 or k >= len(tokens):
+                        rep.error(f"{where}: tashbih index {k!r} is out of range (sentence has {len(tokens)} tokens)")
+                if not ts.get("kind"):
+                    rep.error(f"{where}: tashbih frame needs a 'kind'")
+        mj = sen.get("majaz")
+        if mj is not None:
+            frames = mj if isinstance(mj, list) else [mj]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or not isinstance(fr.get("word"), int):
+                    rep.error(f"{where}: majaz[{n_}] needs an integer 'word'")
+                    continue
+                if fr["word"] < 0 or fr["word"] >= len(tokens):
+                    rep.error(f"{where}: majaz[{n_}] word {fr['word']} is out of range (sentence has {len(tokens)} tokens)")
+                if fr.get("kind") not in ("mursal", "istiara", "aqli", "ziyada", "nuqsan", "makniyya"):
+                    rep.error(f"{where}: majaz[{n_}] kind {fr.get('kind')!r} unknown")
+                for g in ("haqiqa", "murad"):
+                    v = fr.get(g)
+                    if v is not None and not (isinstance(v, dict) and v.get("en") and v.get("tr")):
+                        rep.error(f"{where}: majaz[{n_}].{g} must carry both en and tr")
 
 
 def check_morphology(pkg: Path, glossary: dict, rep: Report):

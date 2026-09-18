@@ -1980,7 +1980,7 @@ if (!CHROME) {
           .map(t => (st.glossary[t.lex] || {}).lemma).filter(Boolean));
         out.push({
           story: it.storyId,
-          read: !!(state.progress[it.storyId] || {})[it.sen.id],
+          read: senRead(state.progress[it.storyId], it.sen, null, st),
           pos: it.entry.pos,
           // No option may be identifiable by its class: the answer and every
           // distractor share one part of speech.
@@ -2366,12 +2366,13 @@ if (!CHROME) {
       // A free multi-sentence story, so the resume point really renders.
       const st = STORIES.find(s => s.access === 'free' &&
         s.chapters.reduce((n, c) => n + c.sentences.length, 0) >= 4);
-      const sens = st.chapters.flatMap(c => c.sentences).map(x => x.id);
+      const flat = st.chapters.flatMap(c => c.sentences.map(x => ({ x, c })));
+      const sens = flat.map(({ x, c }) => progKey(x, c));           // progress is keyed by chapter AND id — ids restart every chapter
       // The reader stopped after the first two sentences.
       state.progress[st.id] = { [sens[0]]: 1, [sens[1]]: 1 };
       localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
       renderLibrary();
-      return { id: st.id, resumeAt: sens[2] };
+      return { id: st.id, resumeAt: flat[2].x.id };
     });
     // Progress alone earns no card — only a story actually opened does.
     if (await page.locator('.continue-card').count())
@@ -2393,7 +2394,7 @@ if (!CHROME) {
     const done = await page.evaluate(id => {
       const st = STORIES.find(s => s.id === id);
       const all = {};
-      st.chapters.forEach(c => c.sentences.forEach(x => { all[x.id] = 1; }));
+      st.chapters.forEach(c => c.sentences.forEach(x => { all[progKey(x, c)] = 1; }));
       state.progress[id] = all;
       localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
       renderLibrary();
@@ -2731,15 +2732,16 @@ if (!CHROME) {
       STORIES.find(s => !storyLocked(s)).id);
     await openStoryCard(pick);
     const r = await page.evaluate(() => {
-      const flat = CUR.chapters.flatMap(c => c.sentences);
+      const flat = CUR.chapters.flatMap(c => c.sentences.map(s => ({ s, c })));
       const prog = {};
-      flat.slice(0, -1).forEach(s => { prog[s.id] = 1; });
+      flat.slice(0, -1).forEach(({ s, c }) => { prog[progKey(s, c)] = 1; });   // keyed by chapter AND id: ids restart every chapter
       state.progress[CUR.id] = prog;
       localStorage.setItem('qissa-progress', JSON.stringify(state.progress));
-      markRead(flat[flat.length - 1].id);           // the finishing read
+      const last = flat[flat.length - 1];
+      markRead(last.s, last.c);                     // the finishing read
       const shown = !!document.querySelector('#toast.show');
       const text = shown ? document.getElementById('toast').textContent : '';
-      markRead(flat[flat.length - 1].id);           // already read: no re-toast path
+      markRead(last.s, last.c);                     // already read: no re-toast path
       return { shown, text };
     });
     if (!r.shown) throw new Error('no toast on the finishing read');
@@ -9212,6 +9214,92 @@ if (!CHROME) {
     if (r.pct < 92) throw new Error('ch47 dabt (endings) fell below the floor: ' + r.pct + '% over ' + r.n);
   });
 
+  // ---- wave 16: the tashbih kinds and the majaz — chapters 48-51 of the Talkhis, the engines graded on the authored frames
+  const W16_FLOOR = { 48: 92, 49: 88, 50: 94, 51: 91 };       // measured 94.4 / 91.9 / 96.8 / 94.8 at v170 — floors, never the numbers
+  await check('Talkhis ch48-50 (the wajh kinds, the aims, the kinds by number and rank): every authored frame read back, the ta\'addud and rank kinds present, the dabt floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const out = {};
+      for (const N of [48, 49, 50]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = [], unexpected = [], frames = [], ta = new Set(), rank = new Set(), engTa = new Set(), engRank = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          const fr = TashbihEngine.read(rows);
+          if (sen.tashbih) { frames.push(sen.id); const ag = TashbihEngine.agree(sen, fr); if (!ag || !ag.ok) bad.push(sen.id + ':' + JSON.stringify(ag));
+            if (sen.tashbih.taaddud) ta.add(sen.tashbih.taaddud); if (sen.tashbih.rank) rank.add(sen.tashbih.rank);
+            fr.forEach(f => { if (f.taaddud) engTa.add(f.taaddud); if (f.rank) engRank.add(f.rank); }); }
+          else if (fr.length) unexpected.push(sen.id);
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { sentences: ch.sentences.length, frames: frames.length, bad, unexpected, pct: n ? Math.round(1000 * hit / n) / 10 : 0, n, ta: [...ta], rank: [...rank], engTa: [...engTa], engRank: [...engRank] };
+      }
+      return out;
+    }, W16_FLOOR);
+    const need = { 48: 11, 49: 12, 50: 13 };
+    for (const N of [48, 49, 50]) {
+      const x = r[N];
+      if (!x || x.none) throw new Error('chapter ' + N + ' is missing');
+      if (x.sentences < 22) throw new Error('ch' + N + ' has at least 22 sentences');
+      if (x.frames < need[N]) throw new Error('ch' + N + ' authors ' + need[N] + ' likening frames — got ' + x.frames);
+      if (x.bad.length) throw new Error('ch' + N + ' authored frames the engine does not read back: ' + x.bad.join(' | '));
+      if (x.unexpected.length) throw new Error('ch' + N + ': a likening was asserted where the author wrote none: ' + x.unexpected.join(','));
+      if (x.pct < W16_FLOOR[N]) throw new Error('ch' + N + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n);
+    }
+    // ch50 carries the four kinds by number and all three ranks — authored AND read by the engine
+    for (const k of ['malfuf', 'mafruq', 'taswiya', 'jam']) { if (!r[50].ta.includes(k)) throw new Error('ch50 authors the ' + k + ' kind'); if (!r[50].engTa.includes(k)) throw new Error('the engine reads the ' + k + ' kind in ch50 — got ' + r[50].engTa.join(',')); }
+    for (const k of ['ala', 'mid', 'adna']) { if (!r[50].rank.includes(k)) throw new Error('ch50 authors the ' + k + ' rank'); if (!r[50].engRank.includes(k)) throw new Error('the engine reads the ' + k + ' rank in ch50 — got ' + r[50].engRank.join(',')); }
+  });
+
+  await check('Talkhis ch51 (haqiqa and majaz): every authored majaz frame read back by the MajazEngine — the received pairs, the citation frame, the isti\'aras; the seeds; the dabt floor', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const ch = st.chapters.find(c => c.chapter === 51 || c.n === 51);
+      if (!ch) return { none: true };
+      let hit = 0, n = 0; const bad = [], frames = [], kinds = new Set(), alaqas = new Set();
+      for (const sen of ch.sentences) {
+        const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+        if (sen.majaz) { const fr = MajazEngine.read(rows); const ag = MajazEngine.agree(sen, fr); frames.push(sen.id); if (!ag || !ag.ok) bad.push(sen.id + ':' + JSON.stringify(ag));
+          (Array.isArray(sen.majaz) ? sen.majaz : [sen.majaz]).forEach(h => { kinds.add(h.kind); if (h.alaqa) alaqas.add(h.alaqa); }); }
+        let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+        if (g && g.aligned) { hit += g.hit; n += g.n; }
+      }
+      const seeds = MajazEngine.SEEDS.map(s0 => { const f = MajazEngine.readText(s0).frames; return f.length ? f.map(x => x.kind + (x.alaqa ? ':' + x.alaqa : '')).join(',') : 'none'; });
+      return { chapters: st.chapters.length, sentences: ch.sentences.length, frames: frames.length, bad, pct: n ? Math.round(1000 * hit / n) / 10 : 0, n, kinds: [...kinds], alaqas: [...alaqas], seeds };
+    });
+    if (r.none) throw new Error('chapter 51 is missing');
+    if (r.chapters < 51) throw new Error('the Talkhis carries at least 51 chapters');
+    if (r.sentences < 22) throw new Error('ch51 has 22 sentences');
+    if (r.frames < 13) throw new Error('ch51 authors thirteen majaz frames — got ' + r.frames);
+    if (r.bad.length) throw new Error('authored majaz frames the engine does not read back: ' + r.bad.join(' | '));
+    for (const k of ['mursal', 'istiara']) if (!r.kinds.includes(k)) throw new Error('ch51 authors the ' + k + ' kind');
+    for (const a of ['sababiyya', 'musabbabiyya', 'ma-kana', 'ma-yaul', 'mahalliyya', 'halliyya', 'aliyya', 'juziyya', 'kulliyya']) if (!r.alaqas.includes(a)) throw new Error('ch51 authors the ' + a + ' relation');
+    const wantSeeds = ['ziyada', 'nuqsan', 'aqli', 'istiara', 'mursal:sababiyya', 'mursal:musabbabiyya', 'mursal:ma-yaul', 'mursal:mahalliyya', 'makniyya'];
+    wantSeeds.forEach((w, i) => { if (!(r.seeds[i] || '').includes(w)) throw new Error('majaz seed ' + i + ' reads ' + r.seeds[i] + ', wanted ' + w); });
+    if (r.pct < W16_FLOOR[51]) throw new Error('ch51 dabt (endings) fell below the floor: ' + r.pct + '% over ' + r.n);
+  });
+
+  await check('JamEngine: the muntaha shapes are recognised by SHAPE (diptote), the qiyasi plurals build by rule, and the corpus audit holds', async () => {
+    const r = await page.evaluate(() => {
+      const R = w => { const x = JamEngine.recognize(w); return x ? x.shape.key + '|' + (x.diptote ? 'dip' : 'sarf') + '|' + (x.sure ? 'sure' : 'guess') : 'none'; };
+      const B = w => { const x = JamEngine.build(w); return x ? (x.kind === 'refuse' ? 'refuse' : x.out) : 'none'; };
+      const a = JamEngine.audit();
+      return { r1: R('مَسَاجِد'), r2: R('مَفَاتِيح'), r3: R('عَصَافِير'), r4: R('قَبَائِل'), r5: R('كِتَاب'), r6: R('مَدْرَسَة'),
+               b1: B('كِتَاب'), b2: B('دِرْهَم'), b3: B('مَسْجِد'), b4: B('صَحِيفَة'), b5: B('كَاتِب'), b6: B('رَجُل'),
+               plurals: a.plurals, muntaha: a.muntaha, built: a.built, agree: a.agree, disagree: a.disagree.length, refused: a.refused, dis: a.disagree.slice(0, 6) };
+    });
+    if (!r.r1.startsWith('mafail|dip') || !r.r2.startsWith('mafaeel|dip') || !r.r3.startsWith('faaleel|dip') || !r.r4.startsWith('faail|dip')) throw new Error('the muntaha shapes: ' + JSON.stringify(r));
+    if (r.r5 !== 'none' || r.r6 !== 'none') throw new Error('a singular is no muntaha: ' + r.r5 + ' ' + r.r6);
+    // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
+    // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
+    if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
+    if (r.disagree > 130) throw new Error('the qiyasi builder disagrees with more stored plurals than at v170: ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
+    if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
+  });
+
   await check('IsmEngine builds the dual and the sound plurals by rule — the weak endings, the ta, the refusals', async () => {
     const r = await page.evaluate(() => {
       const D = w => { const d = IsmEngine.dual(w); return d ? d.raf + ' ' + d.nasb + ' ' + d.mudafRaf + ' ' + d.mudafNasb : null; };
@@ -9344,10 +9432,10 @@ if (!CHROME) {
         fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
         adat: (document.querySelector('#tashbihOut .ts-adat') || {}).textContent, wajh: (document.querySelector('#tashbihOut .ts-wajh') || {}).textContent,
       }));
-      if (!r.rail || r.rows !== 4 || r.chips !== 2 || r.seeds < 5) throw new Error('the tashbih lab: ' + JSON.stringify(r));
+      if (!r.rail || r.rows !== 4 || r.chips < 2 || r.chips > 4 || r.seeds < 5) throw new Error('the tashbih lab: ' + JSON.stringify(r));   // two kind chips + the rank chip (v170)
       if (!/كَ/.test(r.adat) || !/كَرَمًا/.test(r.wajh)) throw new Error('the diagram names the adat and the wajh: ' + JSON.stringify(r));
       if (!r.fits) throw new Error('the tashbih lab scrolls sideways on a phone');
-      await page.evaluate(() => { closeSheet(); const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st); openIrabSheet(st.chapters.find(c => c.n === 46).sentences.find(s => s.id === 's22')); });
+      await page.evaluate(() => { closeSheet(); state.premium = true; const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st); openIrabSheet(st.chapters.find(c => c.n === 46).sentences.find(s => s.id === 's22')); });   // premium: the Lite rotation must not hide ch46 behind the paywall
       await page.waitForSelector('.tashbih .ts-svg', { timeout: 6000 });
       const s = await page.evaluate(() => ({ agree: !!document.querySelector('.ts-agree.ok'), chip: [...document.querySelectorAll('.jml-chip')].some(x => /تَشْبِيه/.test(x.textContent)) }));
       if (!s.agree) throw new Error('the sheet must say the engine agrees with the authored arkan on s22');

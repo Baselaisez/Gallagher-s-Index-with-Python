@@ -819,8 +819,11 @@ S.append({"id": "s20", "translation": {
 S.append({"id": "s21", "translation": {
  "en": "or relational — like the removing of the veil, in likening the proof to the sun.",
  "tr": "yahut izâfî — hücceti güneşe benzetmekte perdeyi kaldırmak gibi."},
- "tashbih": {"mushabbah": [6], "adat": 5, "bihi": [7], "wajh": [], "kind": "mursal-mujmal",
-             "shape": {"mushabbah": "mufrad", "bihi": "mufrad", "wajh": None}},
+ # wave 16: the kaf-group BEFORE the masdar is the wajh spoken early (كَإِزَالَةِ
+ # الْحِجَابِ فِي تَشْبِيهِ…) — the engine reads it so, and the book says the
+ # relational quality IS the wajh of this likening
+ "tashbih": {"mushabbah": [6], "adat": 5, "bihi": [7], "wajh": [2, 3], "kind": "mursal-mufassal",
+             "shape": {"mushabbah": "mufrad", "bihi": "mufrad", "wajh": "murakkab"}},
  "tokens": [
   tok("أَوْ","aw","conj",[W,"atf-nasaq"],
       "حَرْفُ عَطْفٍ.", "«or» —", "«yahut» —"),

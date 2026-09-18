@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the new `talkhis-al-miftah` story (10 sentences, 86 tokens: the faṣāḥa/balāgha definitions and the ḥadd of ʿilm al-maʿānī), plus `khabar-insha`. Still unconsumed: iltifāt's 6 kinds, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (51 chapters at v170 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire and the haqīqa/majāz opening), plus `khabar-insha`. Still unconsumed: the istiʿāra subdivisions past its arkān, kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2463,6 +2463,36 @@ not a one-line change.
   tokens, 99.9% POS / 99.0% CASE — ch43 zero disagreements. Next:
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
+
+- **v170 — wave 16: the tashbih's kinds and the majaz, talkhis ch48-51,
+  the JamEngine and the MajazEngine.** Four chapters from
+  talkhis-al-miftah-balagha.txt (~2960-3120): ch48 the seven divisions of
+  the wajh (تَحْقِيقِيّ/تَخْيِيلِيّ, dakhili/khariji, hissi/aqli, idafi —
+  the bid'a-darkness bayt, the mirror in the paralysed hand, Bashshar's
+  dust and swords), ch49 the aims (imkan, hal, miqdar, taqrir, tazyin,
+  tashwih, istitraf — al-Mutanabbi's musk bayt, the coal as a sea of musk,
+  the reversed tashbih of the dawn and the caliph, the hungry man's
+  loaf, the tashabuh bayt), ch50 the kinds by number (malfuf, mafruq,
+  taswiya, jam' — the four verses), by the wajh (tamthil) and by the
+  adat's absence, and the three RANKS; ch51 haqiqa and majaz (the
+  definitions, the 'alaqa and the qarina, the mursal's nine relations with
+  the Qur'anic examples, the istiara's four arkan, the qarina of one thing
+  or more). 91 sentences, 878 tokens, 49 tashbih frames (with `taaddud`
+  and `rank`) and 13 majaz frames, all read back by the engines; new notes
+  aqsam-wajh-al-shabah, aghrad-al-tashbih, aqsam-al-tashbih, majaz-mursal,
+  arkan-al-istiara. Engines: TashbihEngine counts the ends and names the
+  four kinds and the three ranks; MajazEngine reads the surface-settled
+  kinds (ziyada, nuqsan, 'aqli, makniyya candidates), the received pairs
+  and istiaras, and the books' own citation frame (كَالْيَدِ فِي النِّعْمَةِ);
+  JamEngine recognises the muntaha shapes by form and builds the qiyasi
+  plurals. Nahw paid for by the chapters: the chain's seam test, the sakin
+  lam of command, the madd-letter cell guard, the tanwin's seat-alif, the
+  noun jawab of a shart, the joined subject with its own verb, the
+  tawkid كِلَاهُمَا, the owed khabar of inna after a zarf, the na't across
+  a na't's mudaf ilayh, the plain-noun head in فَعِيلَة. Dabt (endings):
+  ch48 94.4, ch49 91.9, ch50 97.2, ch51 95.4. Still unconsumed in the
+  fann: the istiara's subdivisions past the arkan (~3120-3300), the
+  kinaya, and the fasl-wasl/ijaz-itnab babs of the maani.
 
 - **v169 — wave 15: the annexed letter-nouns, the wajh al-shabah, the
   sky that knows what it computes, talkhis ch47.** USER RULE (سَلْ بَنِي:

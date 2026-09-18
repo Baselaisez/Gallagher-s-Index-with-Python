@@ -123,6 +123,10 @@ def build_story(pkg: Path, irab_tr=None):
                 sentence["jumal"] = sen["jumal"]
             if sen.get("tashbih"):
                 sentence["tashbih"] = sen["tashbih"]
+            if sen.get("majaz"):
+                # the authored majaz frame (wave 16): the word, its literal and intended
+                # meanings, the qarina and the 'alaqa — the MajazEngine's answer key
+                sentence["majaz"] = sen["majaz"]
             sentences.append(sentence)
         chapter = {"n": ch["n"], "title": ch["title"], "sentences": sentences}
         if ch.get("audioFile"):

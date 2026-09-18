@@ -493,3 +493,41 @@ nisba** in the same phrase-and-rule rhythm as the Aded lab: the dual and
 its construct forms on one line (small print: «in construct — the nun
 dropped»), the feminine plural, the masculine plural or its refusal in
 the sarf-note colour. A refusal is a sentence, never a blank.
+
+## 15. The badges of a likening, and the bridge of a majaz (wave 16)
+
+**The tashbih diagram now says how many, and how much is left unsaid.**
+Two small labels ride the top edge of the diagram: on the reading side a
+**rank ribbon** (`.ts-rank` — أَعْلَى / مُتَوَسِّطُ / أَدْنَى الْمَرَاتِبِ), solid
+because it is a claim about what was DROPPED — adat, wajh, or both — and
+the highest rank fills with `--accent-soft` so a bare «زَيْدٌ أَسَدٌ» is
+visibly the summit; on the far side a **taʿaddud tag** (`.ts-ta`, dashed
+`--lvl2` stroke, the dashed = a claim about form convention of §14) that
+names مَلْفُوفٌ / مَفْرُوقٌ / تَسْوِيَةٌ / جَمْعٌ. When an end holds several things
+the box corner wears a `--accent` count badge (`.ts-num`, ×2, ×3 — the
+count is taken off the joined members, never guessed), and the wajh line
+adds «— هَيْئَةٌ (تَمْثِيلٌ)» where the wajh is a picture. The chips row
+mirrors all of it: rank solid, taʿaddud and tamthil dashed. In the lab
+two ruled blocks follow the wajh divisions: **أَقْسَامُ التَّشْبِيهِ وَمَرَاتِبُهُ**
+(a two-column legend of the engine's own claims, with its §) and
+**أَغْرَاضُ التَّشْبِيهِ** — the eight aims as a shortlist, because why a
+speaker likens is knowledge of the speaker, not of the sentence.
+
+**The majaz bridge.** `majazSvg` draws the literal meaning on the right
+(الْحَقِيقَةُ, the word itself under it, and beneath the box the QARINA that
+bars the literal reading, underlined by a bar in `--lvl3`), the intended
+meaning on the left (الْمُرَادُ), and the ʿalaqa as the arch between them —
+the same arc as the tashbih adat, dashed when the engine offers the
+frame as a candidate rather than a receipt. A frame the AUTHOR wrote and
+the engine did not read is still drawn, wearing a dotted «authored»
+chip: the answer key is the content, and the panel grades the engine on
+it in the open. The Atölye tab **مَجَاز** carries the seeds the books
+recite (لَيْسَ كَمِثْلِهِ، وَاسْأَلِ الْقَرْيَةَ، أَنْبَتَ الرَّبِيعُ الْبَقْلَ …) so a
+learner can see the four surface-settled kinds fire one after another.
+
+**Density rule, restated for the badges.** Nothing in this wave added a
+row to the diagram; every new fact is a badge, a tag or a chip on a
+surface that already existed, and each is ≤ 11px SVG text in an existing
+colour role. If a badge cannot be read as a *claim* (solid) or a *reading
+of form* (dashed) it does not belong on the diagram — it belongs in the
+lab's shortlist blocks.
