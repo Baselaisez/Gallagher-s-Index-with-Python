@@ -321,8 +321,30 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
                     continue
                 if fr["word"] < 0 or fr["word"] >= len(tokens):
                     rep.error(f"{where}: majaz[{n_}] word {fr['word']} is out of range (sentence has {len(tokens)} tokens)")
-                if fr.get("kind") not in ("mursal", "istiara", "aqli", "ziyada", "nuqsan", "makniyya"):
+                if fr.get("kind") not in ("mursal", "istiara", "aqli", "ziyada", "nuqsan", "makniyya", "takhyiliyya", "murakkab"):
                     rep.error(f"{where}: majaz[{n_}] kind {fr.get('kind')!r} unknown")
+                ist = fr.get("istiara")
+                if ist is not None:
+                    if not isinstance(ist, dict):
+                        rep.error(f"{where}: majaz[{n_}].istiara must be an object")
+                    else:
+                        ENUMS = {"lafz": ("asliyya", "tabaiyya", "makniyya", "takhyiliyya", "murakkab"),
+                                 "ends": ("wifaqiyya", "inadiyya"), "jami": ("dakhil", "kharij", "ammiyya", "khassiyya"),
+                                 "qarinaSeat": ("fail", "maful", "maful2", "majrur"), "mulaim": ("mutlaqa", "mujarrada", "murashshaha", "both")}
+                        for k_, allowed in ENUMS.items():
+                            if k_ in ist and ist[k_] not in allowed:
+                                rep.error(f"{where}: majaz[{n_}].istiara.{k_} {ist[k_]!r} not in {allowed}")
+                        if "hissi" in ist:
+                            h = ist["hissi"]
+                            if not isinstance(h, list) or len(h) != 3 or any(x not in ("hissi", "aqli", "mukhtalif") for x in h):
+                                rep.error(f"{where}: majaz[{n_}].istiara.hissi must be [minhu, lahu, jami] of hissi|aqli|mukhtalif")
+                        for k_ in ("mulaimMinhu", "mulaimLahu"):
+                            for j in ist.get(k_, []) or []:
+                                if not isinstance(j, int) or j < 0 or j >= len(tokens):
+                                    rep.error(f"{where}: majaz[{n_}].istiara.{k_} index {j!r} out of range")
+                        for k_ in ist:
+                            if k_ not in ENUMS and k_ not in ("hissi", "mulaimMinhu", "mulaimLahu"):
+                                rep.error(f"{where}: majaz[{n_}].istiara has an unknown field {k_!r}")
                 for g in ("haqiqa", "murad"):
                     v = fr.get(g)
                     if v is not None and not (isinstance(v, dict) and v.get("en") and v.get("tr")):

@@ -9370,6 +9370,71 @@ if (!CHROME) {
     await page.evaluate(() => closeSheet());
   });
 
+  // ---- wave 17: the istiʿara's kinds — chapters 52-54 of the Talkhis, the IstiaraEngine graded on the authored fields
+  const W17_FLOOR = { 52: 97, 53: 96, 54: 96 };       // measured 99.5 / 98.7 / 98.6 at v171 — floors, never the numbers
+  await check('Talkhis ch52-54 (the istiʿara by the ends, the jamiʿ, the six kinds; asliyya/tabaʿiyya and the seat; the mulaʾim; the makniyya and the takhyiliyya): every authored frame read back with its istiara fields, the dabt floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const out = {};
+      for (const N of [52, 53, 54]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = [], frames = [], lafz = new Set(), seats = new Set(), mul = new Set(), kinds = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          const fr = MajazEngine.read(rows);
+          if (sen.majaz) { frames.push(sen.id); const ag = MajazEngine.agree(sen, fr); if (!ag || !ag.ok) bad.push(sen.id + ':' + JSON.stringify(ag && ag.per.filter(p => !p.ok)));
+            (Array.isArray(sen.majaz) ? sen.majaz : [sen.majaz]).forEach(h => { kinds.add(h.kind); const i = h.istiara || {}; if (i.lafz) lafz.add(i.lafz); if (i.qarinaSeat) seats.add(i.qarinaSeat); if (i.mulaim) mul.add(i.mulaim); }); }
+          if (sen.tashbih) { const tf = TashbihEngine.read(rows); const ag = TashbihEngine.agree(sen, tf); if (!ag || !ag.ok) bad.push(sen.id + ':ts:' + JSON.stringify(ag)); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { frames: frames.length, bad, lafz: [...lafz], seats: [...seats], mul: [...mul], kinds: [...kinds], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W17_FLOOR);
+    for (const N of [52, 53, 54]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.slice(0, 3).join(' | '));
+      if (o.dabt !== null && o.dabt < W17_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W17_FLOOR[N]);
+    }
+    if (!r[52].lafz.includes('asliyya') || !r[52].lafz.includes('tabaiyya')) throw new Error('ch52 must carry both lafz kinds');
+    if (!['fail', 'maful', 'maful2', 'majrur'].every(k => r[53].seats.includes(k))) throw new Error('ch53 must carry the four seats: ' + r[53].seats.join(','));
+    if (!['mutlaqa', 'mujarrada', 'murashshaha', 'both'].every(k => r[53].mul.includes(k))) throw new Error('ch53 must carry the mulaʾim kinds: ' + r[53].mul.join(','));
+    if (!r[54].kinds.includes('makniyya') || !r[54].kinds.includes('takhyiliyya')) throw new Error('ch54 must carry makniyya and takhyiliyya frames');
+    console.log('    DABT52 ' + r[52].dabt + ' DABT53 ' + r[53].dabt + ' DABT54 ' + r[54].dabt);
+  });
+  await check('the IstiaraEngine — seeds: the lafz off the class, the seat off the verb, the mulaʾim off the field, the ends off the contrary, the takhyiliyya beside the makniyya', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => { const f = MajazEngine.readText(s).frames.find(x => ['istiara', 'makniyya', 'takhyiliyya'].includes(x.kind)); return f ? { kind: f.kind, w: f.text([f.word]), i: f.istiara || null } : null; };
+      return { bashshir: one('فَبَشِّرْهُمْ بِعَذَابٍ أَلِيمٍ'), zuhayr: one('لَدَى أَسَدٍ شَاكِي السِّلَاحِ مُقَذَّفٍ لَهُ لِبَدٌ أَظْفَارُهُ لَمْ تُقَلَّمِ'),
+               anqa: one('رَأَيْتُ الْعَنْقَاءَ'), maniyya: MajazEngine.readText('وَإِذَا الْمَنِيَّةُ أَنْشَبَتْ أَظْفَارَهَا').frames.map(f => f.kind + '@' + f.word),
+               ishtara: one('أُولَئِكَ الَّذِينَ اشْتَرَوُا الضَّلَالَةَ بِالْهُدَى فَمَا رَبِحَتْ تِجَارَتُهُمْ'), inda: one('عِنْدِي أَسَدٌ') };
+    });
+    const i = k => (r[k] && r[k].i) || {};
+    if (i('bashshir').lafz !== 'tabaiyya' || i('bashshir').qarinaSeat !== 'majrur' || i('bashshir').ends !== 'inadiyya') throw new Error('بَشِّرْهُمْ: ' + JSON.stringify(r.bashshir));
+    if (i('zuhayr').mulaim !== 'both') throw new Error('Zuhayr: ' + JSON.stringify(r.zuhayr));
+    if (i('anqa').ends !== 'inadiyya') throw new Error('العنقاء: ' + JSON.stringify(r.anqa));
+    if (!r.maniyya.includes('makniyya@1') || !r.maniyya.includes('takhyiliyya@3')) throw new Error('المنية: ' + JSON.stringify(r.maniyya));
+    if (i('ishtara').mulaim !== 'murashshaha' || i('ishtara').qarinaSeat !== 'maful') throw new Error('اشتروا: ' + JSON.stringify(r.ishtara));
+    if (i('inda').mulaim !== 'mutlaqa') throw new Error('عندي أسد: ' + JSON.stringify(r.inda));
+  });
+  await check('the majaz bridge wears the istiʿara badges and the mulaʾim chips, and the lab shows the six-kinds grid, on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    try {
+      await page.evaluate(() => { conjState.lab = 'majaz'; conjState.majaz = 'لَدَى أَسَدٍ شَاكِي السِّلَاحِ مُقَذَّفٍ لَهُ لِبَدٌ أَظْفَارُهُ لَمْ تُقَلَّمِ'; openConjugator(); });
+      await page.waitForSelector('#majazOut .mj-svg', { timeout: 6000 });
+      const r = await page.evaluate(() => ({
+        ist: document.querySelectorAll('#majazOut .mj-ist .ts-chip').length, minhu: (document.querySelector('#majazOut .mj-minhu') || {}).textContent || '',
+        lahu: (document.querySelector('#majazOut .mj-lahu') || {}).textContent || '', six: document.querySelectorAll('#majazOut .mj-six-cell').length,
+        fits: document.documentElement.scrollWidth <= window.innerWidth + 1 }));
+      if (r.ist < 2) throw new Error('the istiʿara badges: ' + JSON.stringify(r));
+      if (!/لِبَدٌ/.test(r.minhu) || !/شَاكِي/.test(r.lahu)) throw new Error('the mulaʾim chips: ' + JSON.stringify(r));
+      if (r.six !== 6) throw new Error('the six-kinds grid: ' + JSON.stringify(r));
+      if (!r.fits) throw new Error('the majaz lab scrolls sideways on a phone');
+    } finally { await page.setViewportSize(was); }
+  });
   // ---------------------------------------------------------------- wave 14: the bayan door
   await check('the TashbihEngine names the four arkan off the nahw seats — seeds', async () => {
     const r = await page.evaluate(() => {

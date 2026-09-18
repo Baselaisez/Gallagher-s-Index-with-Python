@@ -531,3 +531,42 @@ surface that already existed, and each is ≤ 11px SVG text in an existing
 colour role. If a badge cannot be read as a *claim* (solid) or a *reading
 of form* (dashed) it does not belong on the diagram — it belongs in the
 lab's shortlist blocks.
+
+## 16. The istiʿara's badges, and the six-kinds grid (wave 17)
+
+**What the surface settles wears a solid chip; what the chapter names
+wears a dashed one.** Under every istiʿara frame on the majaz bridge a
+second chip row (`.mj-ist`) carries the IstiaraEngine's reading: the
+**lafz** (أَصْلِيَّةٌ / تَبَعِيَّةٌ / مَكْنِيَّةٌ / تَخْيِيلِيَّةٌ) as a rank-style solid
+chip, because the lent word's class is the word's own and the engine is
+never in doubt about it; the **seat of the clue** («الْقَرِينَةُ فِي الْمَفْعُولِ»)
+solid when DabtEngine's own seats settled it, dashed when only the author
+named it; the **mulaʾim kind** (مُطْلَقَةٌ / مُجَرَّدَةٌ / مُرَشَّحَةٌ, or both)
+solid, since it is read off a stored field table; the **ends** (وِفَاقِيَّةٌ /
+عِنَادِيَّةٌ, with تَهَكُّمِيَّةٌ beside it when the contrary table fired) solid only
+for the word that does not exist and the verb that mocks; and the
+**sensory-mental triple** («حِسِّيٌّ · حِسِّيٌّ · عَقْلِيٌّ» — minhu · lahu · jamiʿ)
+always dashed, because two of its three are the reader's knowledge. The
+convention is §14's, unchanged: solid = a claim the engine will defend,
+dashed = a claim it shows.
+
+**The mulaʾim words are named, not merely counted.** A third row
+(`.mj-mulaim`) prints the words the engine ties to the lent word's field
+(«مُلَائِمُ الْمُسْتَعَارِ مِنْهُ: لِبَدٌ أَظْفَارُهُ», underlined in `--accent`) and the
+words that hang on the lent word without belonging to it («مُلَائِمُ
+الْمُسْتَعَارِ لَهُ: شَاكِي السِّلَاحِ مُقَذَّفٍ», dotted `--lvl3`). The two underline
+weights are the tarshih and the tajrid made visible: the solid one feeds
+the borrowed word with its own sense, the dotted one strips it back
+toward the thing meant. They live in the frame rather than on the
+sentence itself, so that a bayt with two istiʿaras (Zuhayr's lion beside
+the tongue of a state) keeps each set of underlines with its own bridge.
+
+**The six-kinds grid.** The Majaz lab gains a 3 × 2 table
+(`.mj-six-grid`, two columns on a phone) — one cell per kind of the
+Talkhis's sixfold division by what is sensed: the cell number, the
+triple in `--irab-ink`, the lent word large in `--accent`, and the aya
+or example under it. Every cell is a seed button: tapping it runs the
+sentence through the engine, so the reader moves from the chapter's
+table to the engine's reading of the same words in one touch. The grid
+follows the seeds, not the frame, because it is a map of the chapter,
+not a claim about the sentence typed.

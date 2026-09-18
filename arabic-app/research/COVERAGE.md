@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (51 chapters at v170 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire and the haqīqa/majāz opening), plus `khabar-insha`. Still unconsumed: the istiʿāra subdivisions past its arkān, kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (54 chapters at v171 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire, haqīqa/majāz and the istiʿāra with all its kinds), plus `khabar-insha`. Still unconsumed: kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2464,6 +2464,39 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v171 — wave 17: the istiʿara's kinds, talkhis ch52-54, the
+  IstiaraEngine.** Three chapters from talkhis-al-miftah-balagha.txt
+  (~3570-3900): ch52 the istiʿara by its two ends (wifaqiyya /
+  ʿinadiyya, the tahakkum and the tamlih — 6:122, 9:34, the ʿanqa), by
+  the jamiʿ (inside or outside the two meanings — the hadith of the rein
+  and the alarm; ʿammiyya / khassiyya — Yazid b. Maslama's saddle-bow,
+  Kuthayyir's flowing torrent-beds) and the six kinds by what is sensed
+  (20:88, 36:37, رَأَيْتُ شَمْسًا, 36:52, 15:94, 69:11); ch53 the asliyya and
+  the tabaʿiyya (نَطَقَتِ الْحَالُ, the lam of outcome in 28:8), the four seats
+  of the tabaʿiyya's clue (faʿil, mafʿul — قَتَلَ الْبُخْلَ, second mafʿul —
+  نَقْرِيهِمْ لَهْذَمِيَّاتٍ, majrur — 9:34), the mutlaqa / mujarrada / murashshaha
+  (عِنْدِي أَسَدٌ, غَمْرُ الرِّدَاءِ, 2:16, Zuhayr's lion with both), the tanasi
+  (وَيَصْعَدُ حَتَّى يَظُنَّ الْجَهُولُ), the branch on the acknowledged root (هِيَ
+  الشَّمْسُ) and the compound majaz with the mathal; ch54 the istiʿara by
+  kinaya and the takhyiliyya (Abu Dhuʾayb's claws, the tongue of the
+  state, Zuhayr's unsaddled horses of youth), Sakkaki's division and the
+  two replies, the beauty of the istiʿara (no scent of the likening, the
+  jamiʿ plain — the riddle of the foul-breathed lion, the hundred camels
+  and the hadith they are drawn from). 68 sentences, 692 tokens,
+  37 majaz frames carrying an `istiara` object (lafz, the clue's seat,
+  the ends, the jamiʿ, the sensory-mental triple, the mulaʾim words by
+  index), 7 tashbih frames; new notes aqsam-al-istiara,
+  istiara-tabaiyya, tarshih-wa-tajrid, majaz-murakkab, istiara-makniyya,
+  husn-al-istiara. Engine: the IstiaraEngine settles the lafz off the lent
+  word's class, the clue's seat off DabtEngine's own seats (the
+  farthest-reaching NOUN dependent, a pronoun never a clue), the mulaʾim
+  off a stored field table (tarshih) and off what hangs on the lent word
+  without belonging to it (tajrid), the ends off the word that does not
+  exist and the verb with its contrary (the tahakkum receipt); it draws a
+  takhyiliyya frame beside every makniyya and refuses to find a compound
+  majaz unaided. Nahw paid for by the chapters: the author's-voice verbs (شَبَّهَ، جَعَلَ، فَسَّرَ) whose object is the thing explained; the citation reset at كَقَوْلِ and كَمَا فِي decided before any open seat; the article before a sun letter must double it (فَالْتَقَطَهُ is a verb); a whole stored cell is never split into host and pronoun (أَخَذْنَا); the relative's verb carries its ʿāʾid as the concealed doer (وَمَا يُشْتَقُّ مِنْهُ، بِمَا يُلَائِمُ الْمُسْتَعَارَ); kana under a lam of purpose (لِيَكُونَ لَهُمْ عَدُوًّا); a bare noun before a demonstrative is its mudaf (إِثْبَاتُ ذَلِكَ الْأَمْرِ); the atf's definite family, a fused candidate skipped; the two-object passive's seat reopened by its ma'tuf; the clause-initial shibh jumla as khabar muqaddam (وَعِنْدَ السَّكَّاكِيِّ الِاسْتِعَارَةُ، لَهُ لِبَدٌ، وَآيَةٌ لَهُمُ اللَّيْلُ); the delayed fa'il after a jarr phrase (سَالَتْ بِأَعْنَاقِ الْمَطِيِّ الْأَبَاطِحُ); إِمَّا … أَوْ pairing the alternatives; a LEMMA never wears a joining clitic (the strip that cut a radical off فَسَّرَ، وَجَدَ، وَهَبَ before every seat test); the physical verb with an abstract object (قَتَلَ الْبُخْلَ); the hal after an intransitive shape (تَبَسَّمَ ضَاحِكًا); the shart verb after a finished nominal sentence and the jawab sharing the shart's named doer; أَيْ the explaining particle told from أَيّ by the ya's sukun; آلُ فِرْعَوْنَ the family; عَابِرُ سَبِيلٍ annexed (a participle head, a plain noun after it); the zarf with the speaker's ya (عِنْدِي) ruled and annexing nothing; the manqus with its ya restored in idafa (شَاكِي السِّلَاحِ); the iltiqa kasra on the feminine ta (نَطَقَتِ الْحَالُ) and the iltiqa damma on the group's waw (اشْتَرَوُا الضَّلَالَةَ); the number after a noun never its mudaf ilayh (إِبِلًا مِائَةً); the symbol row written as it stands. Endings-mode
+  ḍabṭ: ch52 100, ch53 98.8, ch54 98.6 (floors 97/96/96). Bank
+  541 worked sentences / 3,971 tokens, 99.6% POS / 99.1% CASE.
 - **v170 — wave 16: the tashbih's kinds and the majaz, talkhis ch48-51,
   the JamEngine and the MajazEngine.** Four chapters from
   talkhis-al-miftah-balagha.txt (~2960-3120): ch48 the seven divisions of
