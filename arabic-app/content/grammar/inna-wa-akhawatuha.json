@@ -1,0 +1,89 @@
+{
+  "id": "inna-wa-akhawatuha",
+  "title": {
+    "ar": "إِنَّ وَأَخَوَاتُهَا",
+    "en": "Inna and its sisters",
+    "tr": "إِنَّ ve kardeşleri"
+  },
+  "level": 2,
+  "group": "awamil",
+  "amil": "تَنْصِبُ الِاسْمَ وَتَرْفَعُ الْخَبَرَ — governors that put the subject in nasb and keep the predicate in raf'",
+  "classicalSources": [
+    "العوامل (البيركوي)",
+    "إظهار الأسرار (البيركوي)",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "إِنَّ and its family put the topic in the accusative and leave the predicate alone — the mirror image of كَانَ.",
+    "tr": "إِنَّ ve kardeşleri mübtedayı nasb eder, haberi olduğu gibi bırakır — كَانَ'nin tam tersi."
+  },
+  "question": {
+    "tr": [
+      "Nedir? Kimdir?",
+      "Ne iledir? Nerededir?"
+    ],
+    "en": [
+      "What is it? Who is it?",
+      "With what — or where — is it?"
+    ]
+  },
+  "explanation": {
+    "en": "The six particles resembling verbs (الحروف المشبهة بالفعل): إِنَّ، أَنَّ، كَأَنَّ، لَكِنَّ، لَيْتَ، لَعَلَّ. They enter a nominal sentence and reverse كان's work: the subject (now the ism) takes nasb, the predicate (khabar) stays in raf'. In this story: إِنَّ الْعِلْمَ أَمَانَةٌ — knowledge (nasb) is a trust (raf'). Birgivi counts them among the strongest of the sixty governors; Ibn Hisham devotes a chapter of Qatr al-Nada to them.",
+    "tr": "Fiile benzeyen altı harf: إِنَّ، أَنَّ، كَأَنَّ، لَكِنَّ، لَيْتَ، لَعَلَّ. İsim cümlesine girer, ismini nasbeder, haberini ref eder. Hikâyede: إِنَّ الْعِلْمَ أَمَانَةٌ — ilim (mansub) bir emanettir (merfu). Birgivî bunları avâmilin en güçlülerinden sayar; İbn Hişâm Katru'n-Nedâ'da ayrı bab ayırır."
+  },
+  "examples": [
+    {
+      "ar": "إِنَّ الْعِلْمَ أَمَانَةٌ.",
+      "en": "Indeed knowledge is a trust.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s7",
+      "tr": "Muhakkak ilim bir emanettir."
+    },
+    {
+      "ar": "وَإِنَّ النَّاسَ يَنْظُرُونَ إِلَيْكَ.",
+      "en": "And people are watching you — the khabar can be a whole verbal clause.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s7",
+      "tr": "Ve insanlar seni gözetliyor — haber tam bir fiil cümlesi olabilir."
+    },
+    {
+      "ar": "لَعَلَّ الطَّالِبَ نَاجِحٌ.",
+      "en": "Perhaps the student will succeed.",
+      "tr": "Umulur ki talebe başarır."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "إنّ العلمُ أمانةٌ",
+      "right": "إنّ العلمَ أمانةٌ",
+      "why": {
+        "en": "The ism of إنّ must be mansub — learners keep the mubtada's damma out of habit.",
+        "tr": "إنّ'nin ismi mansub olmalıdır — mübtedanın ötresi alışkanlıkla bırakılıyor."
+      }
+    },
+    {
+      "wrong": "إنّ العلمَ أمانةً",
+      "right": "إنّ العلمَ أمانةٌ",
+      "why": {
+        "en": "Over-correction: only the ism takes nasb; the khabar stays marfu'. Double nasb is the classic second-stage error.",
+        "tr": "Aşırı düzeltme: yalnız isim nasb alır; haber merfu kalır. Çift nasb klasik ikinci aşama hatasıdır."
+      }
+    },
+    {
+      "wrong": "إنّ يذهبُ الطالبُ",
+      "right": "إنّ الطالبَ يذهبُ",
+      "why": {
+        "en": "إنّ enters nominal sentences — a noun must follow it, never a verb directly.",
+        "tr": "إنّ isim cümlesine girer — hemen ardından fiil gelmez; önce isim gelmelidir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "an-masdariyya"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  },
+  "mamul": "marfu"
+}

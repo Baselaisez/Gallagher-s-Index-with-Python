@@ -1,0 +1,58 @@
+{
+  "id": "mana-al-fil",
+  "title": {
+    "ar": "مَعْنَى الْفِعْلِ (الْعَامِلُ الْمَعْنَوِيُّ فِي الْحَالِ)",
+    "en": "Verbal force without a verb (ma'na al-fi'l)",
+    "tr": "Mana-yı fiil (fiil manası taşıyan âmil)"
+  },
+  "level": 5,
+  "group": "awamil",
+  "mamul": "mansub",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — عامل الحال",
+    "العوامل (البيركوي)"
+  ],
+  "plain": {
+    "en": "Some words are not verbs but carry a verb's meaning — «this is…» secretly says «I point at…». That hidden verbal force can govern a hal.",
+    "tr": "Bazı kelimeler fiil değildir ama fiil manası taşır — «işte bu…» gizlice «işaret ederim» der. O gizli fiil kuvveti bir hâli nasb edebilir."
+  },
+  "explanation": {
+    "en": "The governor of a HAL is usually a verb (ضَرَبْتُ زَيْدًا قَائِمًا) or a quasi-verb like an ism fa'il (زَيْدٌ فِي الدَّارِ قَائِمًا has the sense of «being»). The Kafiya adds a third class: مَعْنَى الْفِعْلِ — a word with no verbal form at all whose meaning performs an act. In هٰذَا زَيْدٌ قَائِمًا («here is Zayd, standing»), nothing looks like a verb, yet قَائِمًا stands in nasb as hal: the pointing word هٰذَا carries the force of أُشِيرُ «I point», and that hidden act is the governor. The same account covers the tanbih and tamanni particles and expressions like كَأَنَّ (تَشْبِيه = «I liken»). This is the item the Ottoman ma'mul tables list as «manayı fiil» among the governors: a reminder that government needs an act — but the act may live inside a meaning, not a conjugation.",
+    "tr": "HÂL'in âmili çoğu zaman bir fiildir (ضَرَبْتُ زَيْدًا قَائِمًا) yahut ism-i fâil gibi bir şibh-i fiildir (زَيْدٌ فِي الدَّارِ قَائِمًا «bulunma» manası taşır). Kâfiye üçüncü bir sınıf ekler: مَعْنَى الْفِعْلِ — şeklen fiil olmayan fakat manasıyla bir iş gören kelime. هٰذَا زَيْدٌ قَائِمًا («işte Zeyd, ayakta») cümlesinde fiile benzer hiçbir şey yoktur; yine de قَائِمًا hâl olarak mensubtur: işaret kelimesi هٰذَا, أُشِيرُ «işaret ederim» kuvvetini taşır ve âmil o gizli iştir. Tenbih ve temenni harfleri ile كَأَنَّ (teşbih = «benzetirim») gibi ifadeler de aynı hesaba girer. Osmanlı ma'mûl cetvellerinin âmiller arasında «manayı fiil» diye yazdığı madde budur: amel bir iş ister — fakat o iş bir çekimde değil, bir manada da yaşayabilir."
+  },
+  "examples": [
+    {
+      "ar": "هٰذَا زَيْدٌ قَائِمًا.",
+      "en": "Here is Zayd, standing — قَائِمًا is hal, governed by the pointing force inside هٰذَا.",
+      "tr": "İşte Zeyd, ayakta — قَائِمًا hâldir; âmili هٰذَا'nın içindeki işaret kuvvetidir."
+    },
+    {
+      "ar": "كَأَنَّكَ شَمْسٌ طَالِعَةً.",
+      "en": "As if you were a sun, rising — the likening force of كَأَنَّ governs the hal.",
+      "tr": "Sanki doğan bir güneşsin — hâli, كَأَنَّ'deki benzetme kuvveti nasb eder."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "هٰذَا زَيْدٌ قَائِمٌ (مُرَادًا بِهِ الْحَال)",
+      "right": "هٰذَا زَيْدٌ قَائِمًا",
+      "why": {
+        "en": "If «standing» describes the state of the act of pointing, it is hal and must be mansub. Raf' would make it a second khabar instead.",
+        "tr": "«Ayakta» işaret etme ânındaki hâli anlatıyorsa hâldir, mensub olmalıdır. Merfû okunursa ikinci haber olur."
+      }
+    },
+    {
+      "wrong": "قَائِمًا هٰذَا زَيْدٌ",
+      "right": "هٰذَا زَيْدٌ قَائِمًا",
+      "why": {
+        "en": "A hal governed by mere verbal force may not precede its governor — that licence belongs to real verbs.",
+        "tr": "Âmili yalnız mana-yı fiil olan hâl, âmilinin önüne geçemez — o ruhsat gerçek fiillere aittir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hal",
+    "huruf-tanbih",
+    "ism-fail"
+  ]
+}

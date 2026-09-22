@@ -1,0 +1,105 @@
+{
+  "id": "maful-fih",
+  "title": {
+    "ar": "الْمَفْعُولُ فِيهِ (الظَّرْف)",
+    "en": "The maf'ul fih (adverb of time or place)",
+    "tr": "Mef'ûl fîh (zarf)"
+  },
+  "level": 3,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Nerede?",
+      "Ne zaman?",
+      "Hangi mekânda?",
+      "Kim indinde?",
+      "Nereye?",
+      "Ne zamana kadar?"
+    ],
+    "en": [
+      "Where?",
+      "When?",
+      "In which place?",
+      "In whose presence?",
+      "To where?",
+      "Until when?"
+    ]
+  },
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "إظهار الأسرار (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "Where, or when.",
+    "tr": "Nerede yahut ne zaman."
+  },
+  "explanation": {
+    "en": "Defined in the Mansubat as «هُوَ مَا فُعِلَ فِيهِ فِعْلٌ مَذْكُورٌ مِنْ زَمَانٍ أَوْ مَكَانٍ» — the noun of the time or place IN WHICH the stated action happened. It answers «when?» or «where?» and takes nasb. The condition for nasb is that the sense «فِي» be intended without the preposition being written: صُمْتُ يَوْمَ الِاثْنَيْنِ = «I fasted ON Monday». Most zarfs are mudaf, and the following noun is in jarr: أَمَامَ مَكَّةَ, بَيْنَ يَدَيْهِ, عِنْدَهُ. Some are indeclinable (مَبْنِيّ) — حَيْثُ, and قَبْلُ / بَعْدُ when cut off from what they govern.",
+    "tr": "Mensûbât'ta şöyle tanımlanır: «هُوَ مَا فُعِلَ فِيهِ فِعْلٌ مَذْكُورٌ مِنْ زَمَانٍ أَوْ مَكَانٍ» — zikredilen işin İÇİNDE yapıldığı zaman veya mekânın ismidir. «Ne zaman?» «Nerede?» sorularına cevap verir ve nasb alır. Nasb olmasının şartı, «فِي» mânâsının kastedilip harfin yazılmamasıdır: صُمْتُ يَوْمَ الِاثْنَيْنِ = «Pazartesi GÜNÜ oruç tuttum». Zarfların çoğu muzâftır, sonrası mecrûr olur: أَمَامَ مَكَّةَ, بَيْنَ يَدَيْهِ, عِنْدَهُ. Bazıları mebnîdir — حَيْثُ ile, izafetten kesildiğinde قَبْلُ / بَعْدُ gibi."
+  },
+  "examples": [
+    {
+      "ar": "وَقَفَ الْفِيلُ أَمَامَ مَكَّةَ.",
+      "en": "The elephant stopped before Mecca — zarf of place, in nasb, and mudaf.",
+      "sourceStory": "ashab-al-fil",
+      "sentence": "s4",
+      "tr": "Fil Mekke'nin önünde durdu — mekân zarfı, mansub ve muzâf."
+    },
+    {
+      "ar": "وَإِيَّاكَ وَالْكَذِبَ بَيْنَ يَدَيْهِ.",
+      "en": "Beware of lying in his presence — بَيْنَ is a zarf of place in nasb.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s2",
+      "tr": "Onun huzurunda yalandan sakın — بَيْنَ mansub mekân zarfıdır."
+    },
+    {
+      "ar": "وَصَغُرَتْ مَنْزِلَتُكَ عِنْدَهُ.",
+      "en": "And your standing with him shrank — عِنْدَ is a zarf, mudaf to the pronoun.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s3",
+      "tr": "Ve onun yanında mevkiin küçüldü — عِنْدَ zarftır, zamire muzâftır."
+    },
+    {
+      "ar": "صُمْتُ يَوْمَ الِاثْنَيْنِ.",
+      "en": "I fasted on Monday — zarf of time; the sense of «on» is carried without فِي.",
+      "tr": "Pazartesi günü oruç tuttum — zaman zarfı; «-de» manası فِي olmadan taşınır."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "وقف الفيلُ أمامُ مكةَ",
+      "right": "وقف الفيلُ أمامَ مكةَ",
+      "why": {
+        "en": "The zarf is mansub. Learners give it a damma because it is not the object of the verb in the ordinary sense — but maf'ul fih is one of the thirteen mansubat.",
+        "tr": "Zarf mansubdur. Öğrenciler onu alışılmış mânâda mef'ûl saymadıkları için ötre verir — hâlbuki mef'ûl fîh, on üç mensûbâttan biridir."
+      }
+    },
+    {
+      "wrong": "جلستُ في أمامِ البيتِ",
+      "right": "جلستُ أمامَ البيتِ",
+      "why": {
+        "en": "Do not write فِي before a zarf: the zarf already carries that sense, which is exactly why it takes nasb. Writing فِي makes the noun majrur instead.",
+        "tr": "Zarfın önüne فِي yazılmaz: zarf o mânâyı zaten taşır, nasb almasının sebebi de budur. فِي yazılırsa isim mecrûr olur."
+      }
+    },
+    {
+      "wrong": "أمامَ الْبَيْتُ",
+      "right": "أمامَ الْبَيْتِ",
+      "why": {
+        "en": "A zarf is normally mudaf, so what follows it is in jarr — nasb on the zarf, jarr on its mudaf ilayh.",
+        "tr": "Zarf çoğunlukla muzâftır; ardından geleni mecrûr yapar — zarf mansub, muzâfun ileyh mecrûrdur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-bihi",
+    "idafa-definiteness",
+    "hal"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

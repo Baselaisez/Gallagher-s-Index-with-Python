@@ -1,0 +1,74 @@
+{
+ "id": "amma-tafsiliyya",
+ "title": {
+  "ar": "أَمَّا التَّفْصِيلِيَّةُ وَفَاءُ الْجَوَابِ",
+  "en": "«amma», the particle of detailing, and the fa that must answer it",
+  "tr": "Tafsîl edatı «emmâ» ve cevabındaki fâ"
+ },
+ "level": 5,
+ "group": "awamil",
+ "mamul": "marfu",
+ "classicalSources": [
+  "مغني اللبيب (ابن هشام) — حرف الهمزة",
+  "قطر الندى (ابن هشام)",
+  "الكافية (ابن الحاجب)"
+ ],
+ "plain": {
+  "en": "«As for X — it is Y.» It takes a list apart item by item, and the answer must carry فَ.",
+  "tr": "«X'e gelince — o Y'dir.» Bir listeyi tek tek ayırır; cevabı mutlaka فَ taşır."
+ },
+ "explanation": {
+  "en": "أَمَّا is a letter of THREE jobs at once, and the books name all three: it is a conditional (حَرْفُ شَرْطٍ), it DETAILS a list item by item (تَفْصِيل), and it EMPHASISES what follows it (تَوْكِيد). The grammarians' paraphrase is مَهْمَا يَكُنْ مِنْ شَيْءٍ — «whatever may be of the matter…» — which is why it behaves like a condition even though no verb appears after it.\n\nIts one hard rule is the FA. Because أَمَّا stands in for an omitted conditional clause, what follows is the ANSWER of that condition, and an answer needs فَ: أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ. Drop the fa and the sentence is broken, not merely plainer. The fa may never sit straight against أَمَّا either — something must come between them, which is exactly the word being singled out.\n\nWhat comes between them is normally the MUBTADA, and the fa introduces its khabar; the whole is a nominal sentence and nothing is in nasb. أَمَّا is also the standard way a matn moves from an enumeration to its items: the list is given whole first (الْأَدِلَّةُ أَرْبَعَةٌ), then أَمَّا … فَ takes them up one at a time, and وَأَمَّا carries the series on.",
+  "tr": "أَمَّا aynı anda ÜÇ vazife gören bir harftir ve kitaplar üçünü de sayar: şart harfidir, bir listeyi tek tek AYIRIR (tafsîl), ve kendisinden sonrakini TE'KÎD eder. Nahivcilerin takdiri مَهْمَا يَكُنْ مِنْ شَيْءٍ'dir — «her ne olursa olsun» — arkasında fiil görünmediği hâlde şart gibi davranmasının sebebi budur.\n\nTek katı kuralı FÂ'dır. أَمَّا mahzûf bir şart cümlesinin yerini tuttuğu için sonrası o şartın CEVABIdır ve cevap فَ ister: أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ. Fâ düşerse cümle sadeleşmez, bozulur. Fâ, أَمَّا'ya bitişik de olamaz: aralarına mutlaka bir şey girer — o giren şey de zaten ayrılıp öne çıkarılan kelimedir.\n\nAraya giren normalde MÜBTEDÂdır, fâ da onun haberini getirir; bütünü isim cümlesidir ve nasb yoktur. أَمَّا ayrıca bir metnin sayımdan maddelere geçmesinin standart yoludur: liste önce toptan verilir (الْأَدِلَّةُ أَرْبَعَةٌ), sonra أَمَّا … فَ onları teker teker ele alır, وَأَمَّا ile seri sürdürülür."
+ },
+ "examples": [
+  {
+   "ar": "أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ الْمَنْقُولُ إِلَيْنَا بَيْنَ دَفَّتَيِ الْمُصْحَفِ.",
+   "en": "As for the Book, it is the Qur'an transmitted to us between the two covers of the codex — أَمَّا, then the mubtada, then the fa carrying the khabar.",
+   "tr": "Kitâb'a gelince, o bize mushafın iki kapağı arasında nakledilen Kur'ân'dır — أَمَّا, sonra mübtedâ, sonra haberi getiren fâ.",
+   "sourceStory": "mukhtasar-al-manar",
+   "chapter": 2,
+   "sentence": "s2"
+  },
+  {
+   "ar": "وَأَمَّا السُّنَّةُ فَمَا صَدَرَ عَنِ النَّبِيِّ مِنْ قَوْلٍ أَوْ فِعْلٍ أَوْ تَقْرِيرٍ.",
+   "en": "And as for the Sunna, it is what issued from the Prophet by way of word, deed or tacit approval — وَأَمَّا carries the enumeration on to its next item.",
+   "tr": "Sünnet'e gelince, o Peygamber'den söz, fiil yahut takrîr olarak sâdır olandır — وَأَمَّا sayımı bir sonraki maddeye taşır.",
+   "sourceStory": "mukhtasar-al-manar",
+   "chapter": 2,
+   "sentence": "s3"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "أَمَّا الْكِتَابُ هُوَ الْقُرْآنُ",
+   "right": "أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ",
+   "why": {
+    "en": "The fa is not optional decoration. أَمَّا stands in for a conditional clause, and what follows is its ANSWER — an answer without فَ is not tied on to anything.",
+    "tr": "Fâ süs değildir. أَمَّا mahzûf bir şart cümlesinin yerindedir ve sonrası onun CEVABIdır — فَ'sız cevap hiçbir şeye bağlanmamış olur."
+   }
+  },
+  {
+   "wrong": "أَمَّا فَالْكِتَابُ هُوَ الْقُرْآنُ",
+   "right": "أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ",
+   "why": {
+    "en": "The fa may never touch أَمَّا. Something must stand between them — and that something is the very word being singled out.",
+    "tr": "Fâ, أَمَّا'ya bitişemez. Aralarına bir şey girmelidir — o giren de zaten ayrılıp öne çıkarılan kelimedir."
+   }
+  },
+  {
+   "wrong": "أَمَّا الْكِتَابَ فَهُوَ الْقُرْآنُ",
+   "right": "أَمَّا الْكِتَابُ فَهُوَ الْقُرْآنُ",
+   "why": {
+    "en": "أَمَّا governs nothing. What follows it is a mubtada in RAF'; the nasb has no source.",
+    "tr": "أَمَّا amel etmez. Sonrası MERFÛ mübtedâdır; nasbın hiçbir âmili yoktur."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "in-shartiyya",
+  "idha-shartiyya",
+  "mubtada-khabar",
+  "anwa-al-jumal"
+ ]
+}

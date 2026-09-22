@@ -1,0 +1,42 @@
+{"id": "al-muthanna",
+ "title": {"ar": "الْمُثَنَّى وَإِعْرَابُهُ",
+           "en": "The dual and how it is declined",
+           "tr": "Tesniye ve i'râbı"},
+ "level": 2,
+ "group": "nahw",
+ "classicalSources": ["الكافية (ابن الحاجب)", "قطر الندى (ابن هشام)", "العوامل (البيركوي)"],
+ "plain": {
+  "en": "Arabic counts to two with a form of its own. The dual takes ALIF in raf' and YA in nasb and jarr — never a haraka.",
+  "tr": "Arapça ikiyi kendine mahsus bir kalıpla sayar. Tesniye ref hâlinde ELİF, nasb ve cer hâlinde YÂ alır — asla hareke almaz."},
+ "question": {
+  "tr": ["Kelime ـَانِ mi ـَيْنِ mi ile bitiyor? Tesniyedir.", "Fiilin sonunda nûn var mı? Ef'âl-i hamseden olabilir."],
+  "en": ["Does it end in ـَانِ or ـَيْنِ? Then it is a dual.", "Does the verb keep a final nun? It may be one of the five verbs."]},
+ "explanation": {
+  "en": "The dual (الْمُثَنَّى) is formed by adding ـَانِ to the singular for raf' and ـَيْنِ for nasb and jarr: مُسْلِمٌ → مُسْلِمَانِ، مُسْلِمَيْنِ. Its i'rab is by LETTERS, not by vowels — which is why it belongs with the five nouns and the sound masculine plural in the chapter on الْإِعْرَابُ بِالْحُرُوفِ. A feminine singular keeps its ta before the ending: مَخْلُوقَةٌ → مَخْلُوقَتَانِ. In idafa the nun DROPS (كِتَابَا الطَّالِبِ, not كِتَابَانِ الطَّالِبِ), exactly as the sound masculine plural's nun drops. The dual VERB works the same way: يَفْنَيَانِ belongs to الْأَفْعَالُ الْخَمْسَةُ — the five verbs that take raf' by the RETAINED NUN and nasb or jazm by DROPPING it (لَنْ يَفْنَيَا، لَمْ يَفْنَيَا). The dual alif inside such a verb is not a letter of i'rab but the FA'IL itself: أَلِفُ الِاثْنَيْنِ. Beside the true dual stand words dual in form only — اثْنَانِ، كِلَا، كِلْتَا — which the books treat with the dual's endings though they have no singular of that shape.",
+  "tr": "Tesniye, müfrede ref hâlinde ـَانِ, nasb ve cer hâlinde ـَيْنِ eklenerek yapılır: مُسْلِمٌ → مُسْلِمَانِ، مُسْلِمَيْنِ. İ'râbı harekeyle değil HARFLE olur; bu yüzden esmâ-i hamse ve cem'-i müzekker-i sâlim ile birlikte «harfle i'râb» bahsinde yer alır. Müennes müfred, tâsını koruyarak eki alır: مَخْلُوقَةٌ → مَخْلُوقَتَانِ. İzâfette nûn DÜŞER (كِتَابَا الطَّالِبِ, كِتَابَانِ الطَّالِبِ değil) — tıpkı cem'-i müzekker-i sâlimin nûnu gibi. Tesniye FİİL de aynı yolu tutar: يَفْنَيَانِ, EF'ÂL-İ HAMSE'dendir; bunlar nûnun SÜBÛTUYLA merfû, nûnun HAZFİYLE mansub yahut meczum olurlar (لَنْ يَفْنَيَا، لَمْ يَفْنَيَا). Böyle bir fiildeki tesniye elifi i'râb harfi değil, bizzat FÂİLDİR: elif-i isneyn. Gerçek tesniyenin yanında bir de sadece şeklen tesniye olanlar vardır — اثْنَانِ، كِلَا، كِلْتَا — ki kitaplar bunları, o vezinde müfredleri bulunmasa da tesniye ekleriyle ele alır."},
+ "examples": [
+  {"ar": "وَهُمَا مَخْلُوقَتَانِ مَوْجُودَتَانِ بَاقِيَتَانِ.",
+   "en": "Three duals in a row, all in raf' by the ALIF — the feminine ta is kept before the ending.",
+   "tr": "Peş peşe üç tesniye, hepsi ELİF ile merfû — müenneslik tâsı ekten önce korunur.",
+   "sourceStory": "aqaid-ahl-al-sunna", "sentence": "s5"},
+  {"ar": "لَا تَفْنَيَانِ وَلَا يَفْنَى أَهْلُهُمَا.",
+   "en": "The dual VERB: raf' by the retained nun, and the alif inside it is the fa'il, not a sign of i'rab.",
+   "tr": "Tesniye FİİL: nûnun sübûtuyla merfû; içindeki elif i'râb alâmeti değil, fâilin ta kendisidir.",
+   "sourceStory": "aqaid-ahl-al-sunna", "sentence": "s5"},
+  {"ar": "حَوْضِي مَسِيرَةُ شَهْرٍ وَزَوَايَاهُ سَوَاءٌ.",
+   "en": "Contrast: زَوَايَا is a broken PLURAL, not a dual — the alif here is part of the pattern, and it declines by estimated vowels.",
+   "tr": "Karşılaştırın: زَوَايَا tesniye değil cem'-i mükesserdir — buradaki elif vezindendir ve takdîrî hareke ile i'râb alır.",
+   "sourceStory": "aqaid-ahl-al-sunna", "sentence": "s2"}
+ ],
+ "commonMistakes": [
+  {"wrong": "رَأَيْتُ الْمُسْلِمَانِ",
+   "right": "رَأَيْتُ الْمُسْلِمَيْنِ",
+   "why": {"en": "The dual takes the alif ONLY in raf'. After a verb that governs an object, it is mansub — and its nasb sign is the ya.",
+           "tr": "Tesniye elifi YALNIZ ref hâlinde alır. Mef'ûl alan bir fiilden sonra mansubdur ve nasb alâmeti yâdır."}},
+  {"wrong": "كِتَابَانِ الطَّالِبِ",
+   "right": "كِتَابَا الطَّالِبِ",
+   "why": {"en": "In idafa the dual's nun drops, just as the sound masculine plural's does. Keeping it is the commonest slip in the chapter.",
+           "tr": "İzâfette tesniyenin nûnu düşer; cem'-i müzekker-i sâlimde olduğu gibi. Nûnu bırakmak bu bahsin en yaygın hatasıdır."}}
+ ],
+ "relatedNotes": ["jam-mudhakkar-salim", "jam-muannath-salim", "five-nouns", "afal-khamsa", "idafa-definiteness"],
+ "gameSeeds": {"spotTheError": true}}

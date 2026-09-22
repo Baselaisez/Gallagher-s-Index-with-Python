@@ -1,0 +1,87 @@
+{
+ "id": "zarf-mustaqarr-wa-laghw",
+ "title": {
+  "ar": "الظَّرْفُ الْمُسْتَقَرُّ وَالظَّرْفُ اللَّغْوُ",
+  "en": "The settled jarr phrase and the idle one",
+  "tr": "Zarf-ı müstakar ve zarf-ı lağv"
+ },
+ "level": 4,
+ "group": "nahw",
+ "amil": "الْمُسْتَقَرُّ عَامِلُهُ مَحْذُوفٌ تَقْدِيرُهُ «كَائِنٌ» أَوِ «اسْتَقَرَّ»، وَاللَّغْوُ عَامِلُهُ مَذْكُورٌ — the settled one hangs on an ESTIMATED amil, the idle one on a written amil",
+ "classicalSources": [
+  "قواعد الإعراب (ابن هشام) — الباب الثاني: في تعلق الجار والمجرور",
+  "مغني اللبيب (ابن هشام) — الباب الخامس",
+  "الكافية (ابن الحاجب) — باب الظرف"
+ ],
+ "question": {
+  "tr": [
+   "Bu câr-mecrûrun âmili cümlede YAZILI mı?",
+   "Yazılıysa LAĞVdır: mevcut bir isnâdı tamamlar.",
+   "Yazılı değil de takdîr ediliyorsa MÜSTAKARdır: kendi isnâdı vardır ve haber, sıfat, hâl yahut sıla olabilir."
+  ],
+  "en": [
+   "Is the governor of this jarr phrase actually WRITTEN in the sentence?",
+   "If it is, the phrase is LAGHW: it completes a predication that is already there.",
+   "If nothing is written and an amil has to be estimated, the phrase is MUSTAQARR: it holds a predication of its own, and can serve as a khabar, a sifa, a hal or a sila."
+  ]
+ },
+ "plain": {
+  "en": "Every jarr phrase hangs on something. When that something is written — جَلَسَ فِي الدَّارِ — the phrase is LAGHW and merely completes the verb. When nothing in the sentence can govern it, an amil is estimated (كَائِنٌ / اسْتَقَرَّ), and the phrase becomes MUSTAQARR: زَيْدٌ فِي الدَّارِ is a whole sentence.",
+  "tr": "Her câr-mecrûr bir şeye asılır. Asıldığı şey yazılıysa — جَلَسَ فِي الدَّارِ — terkîb LAĞVdır, sadece fiili tamamlar. Cümlede onu amel edecek bir şey yoksa bir âmil takdîr edilir (كَائِنٌ / اسْتَقَرَّ) ve terkîb MÜSTAKAR olur: زَيْدٌ فِي الدَّارِ bütün bir cümledir."
+ },
+ "explanation": {
+  "en": "**One question, asked of every jarr phrase.** Ibn Hishām opens the second bāb of Qawāʿid al-Iʿrāb with the rule that a jarr-majrūr and a ẓarf must attach to something, and that the something is either written or estimated. The two names follow from the answer:\n\n- **لَغْو** — «idle», because the phrase adds no new predication. Its governor is on the page: جَلَسَ **فِي الدَّارِ**, مَرَرْتُ **بِزَيْدٍ**. Remove the phrase and a sentence remains.\n- **مُسْتَقَرّ** — «settled», because an ʿāmil has come to REST inside it. Nothing on the page governs it, so the books estimate كَائِنٌ or اسْتَقَرَّ; that estimated word carries a concealed ḍamīr, and a governor with a doer inside it is a predication. زَيْدٌ **فِي الدَّارِ** — remove the phrase and nothing remains.\n\n**Why the distinction is not a label but a consequence.** Only a mustaqarr can be a **khabar**, a **ṣifa**, a **ḥāl** or a **ṣila**, because each of those four positions requires something with a predication in it. That is the whole reason two letters and a pronoun can stand where a sentence is required. A laghw in any of those four positions is simply a mistake in parsing.\n\n**The clearest pair in the library sits in one sentence.** The Talkhīṣ's definition of the intellectual figure contains لَهُ **twice**:\n\n> إِلَى مُلَابَسٍ **لَهُ** غَيْرِ مَا هُوَ **لَهُ** بِتَأَوُّلٍ\n\nThe first attaches to مُلَابَسٍ standing immediately in front of it — an ism mafʿūl, which carries a verb's meaning — so it is **laghw**. The second has nothing before it that could govern it, so its ʿāmil is estimated and it is the **khabar** of هُوَ — **mustaqarr**. Identical letters, identical order, three words apart, opposite states. Nothing about the word decides it; the neighbour decides it.\n\n**What may govern a jarr phrase.** A verb, or a word carrying a verb's meaning: a maṣdar, an ism fāʿil, an ism mafʿūl, a ṣifa mushabbaha, an ism tafḍīl. That list is the same six the Talkhīṣ gives for «the meaning of the act», and this app's taʿalluq engine asks for exactly it — reading the maṣdars and participles off the glossary first, then the stored wazn, and only then guessing.\n\n**And four letters attach to nothing at all.** A zāʾid bāʾ (مَا زَيْدٌ **بِ**قَائِمٍ), a zāʾid min (مَا جَاءَنِي **مِنْ** أَحَدٍ), the letter of لَوْلَا, and rubba on one view. Naming the exception is better than inventing a governor for it.",
+  "tr": "**Her câr-mecrûra sorulan tek suâl.** İbn Hişâm, Kavâidü'l-İ'râb'ın ikinci bâbını şu kāide ile açar: câr-mecrûr ile zarf mutlaka bir şeye taalluk eder; o şey ya yazılıdır ya takdîr edilir. İki isim de bu cevaptan doğar:\n\n- **LAĞV** — «boş», çünkü terkîb yeni bir isnâd katmaz. Âmili sayfadadır: جَلَسَ **فِي الدَّارِ**, مَرَرْتُ **بِزَيْدٍ**. Terkîbi kaldırın, geriye bir cümle kalır.\n- **MÜSTAKAR** — «yerleşmiş», çünkü içine bir âmil YERLEŞMİŞTİR. Sayfada onu amel edecek bir şey yoktur; kitaplar كَائِنٌ yahut اسْتَقَرَّ takdîr eder. Takdîr edilen o kelime müstetir bir zamir taşır; ve içinde fâili olan âmil, bir isnâddır. زَيْدٌ **فِي الدَّارِ** — terkîbi kaldırın, geriye hiçbir şey kalmaz.\n\n**Bu ayrım bir etiket değil, bir netîcedir.** Yalnız müstakar; **haber**, **sıfat**, **hâl** yahut **sıla** olabilir, zira bu dört mevkiin her biri içinde isnâd bulunan bir şey ister. İki harf ile bir zamirin, cümle istenen yerde durabilmesinin bütün sebebi budur. Lağvın bu dört yerden birinde bulunması ise sadece bir i'râb hatasıdır.\n\n**Kütüphanenin en berrak çifti tek cümlededir.** Telhîs'in mecâz-ı aklî tarifinde «لَهُ» **iki defa** geçer:\n\n> إِلَى مُلَابَسٍ **لَهُ** غَيْرِ مَا هُوَ **لَهُ** بِتَأَوُّلٍ\n\nBirincisi hemen önünde duran «مُلَابَسٍ»e taalluk eder — fiilin mânâsını taşıyan bir ism-i mef'ûl — öyleyse **LAĞV**dır. İkincisinin önünde onu amel edecek hiçbir şey yoktur; âmili takdîr edilir ve o, «هُوَ»nun **haberi**dir — **MÜSTAKAR**. Harfleri aynı, sırası aynı, aralarında üç kelime, hâlleri zıt. Kararı veren kelime değil, komşusudur.\n\n**Câr-mecrûru ne amel eder.** Fiil; yahut fiilin mânâsını taşıyan bir kelime: masdar, ism-i fâil, ism-i mef'ûl, sıfat-ı müşebbehe, ism-i tafdîl. Bu liste, Telhîs'in «fiilin mânâsı» için saydığı altı şeyin aynısıdır; ve uygulamanın taalluk motoru tam bunu sorar — önce sözlükten masdar ve vasıfları okur, sonra kayıtlı vezne bakar, ancak ondan sonra tahmin eder.\n\n**Ve dört harf hiçbir şeye taalluk etmez.** Zâid bâ (مَا زَيْدٌ **بِ**قَائِمٍ), zâid min (مَا جَاءَنِي **مِنْ** أَحَدٍ), «لَوْلَا»nın harfi ve bir görüşe göre «رُبَّ». İstisnâyı adlandırmak, ona bir âmil uydurmaktan iyidir."
+ },
+ "examples": [
+  {
+   "ar": "إِلَى مُلَابَسٍ لَهُ غَيْرِ مَا هُوَ لَهُ بِتَأَوُّلٍ.",
+   "en": "«…to something associated with it, other than the one it belongs to, by an interpretation.» The first «lahu» is laghw (it hangs on مُلَابَسٍ); the second is mustaqarr (it is the khabar of هُوَ).",
+   "tr": "İlk «لَهُ» lağvdır («مُلَابَسٍ»e asılır); ikincisi müstakardır («هُوَ»nun haberidir).",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s2"
+  },
+  {
+   "ar": "وَهِيَ إِسْنَادُ الْفِعْلِ أَوْ مَعْنَاهُ إِلَى مَا هُوَ لَهُ عِنْدَ الْمُتَكَلِّمِ فِي الظَّاهِرِ.",
+   "en": "Here «lahu» is mustaqarr — the khabar of a sila — while «fi al-zahir» is laghw, hanging on the masdar إِسْنَاد. Both kinds, one sentence.",
+   "tr": "Burada «لَهُ» müstakardır — bir sılanın haberi; «فِي الظَّاهِرِ» ise lağvdır, «إِسْنَاد» masdarına asılır. Tek cümlede iki nevi.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s1"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«زَيْدٌ فِي الدَّارِ — mübtedâ var, haber yok»",
+   "right": "«فِي الدَّارِ» müstakardır ve haberdir",
+   "why": {
+    "en": "The estimated amil (كَائِنٌ) carries a concealed pronoun, so the phrase holds a predication and can be the khabar. A sentence is not missing a half just because the half is unwritten.",
+    "tr": "Takdîr edilen âmil (كَائِنٌ) müstetir bir zamir taşır; öyleyse terkîbin kendi isnâdı vardır ve haber olabilir. Yazılmamış olması, yarısının eksik olması demek değildir."
+   }
+  },
+  {
+   "wrong": "«لَهُ» dâima müstakardır",
+   "right": "Önünde onu amel edecek bir kelime varsa lağvdır",
+   "why": {
+    "en": "The very same two letters are laghw and mustaqarr three words apart in the Talkhis's definition. The state belongs to the position, not to the word.",
+    "tr": "Telhîs'in tarifinde aynı iki harf, üç kelime arayla bir lağv bir müstakardır. Hâl, kelimenin değil, mevkiin vasfıdır."
+   }
+  },
+  {
+   "wrong": "«Âmil bulunamadı» = i'râb eksik kaldı",
+   "right": "«Âmili mahzûftur, takdîri كَائِنٌ» = i'râbın klasik cevabı",
+   "why": {
+    "en": "An estimated amil is the answer the books give, not a confession of failure. Every khabar, sifa, hal and sila that is a bare jarr phrase has one.",
+    "tr": "Mahzûf âmil, kitapların verdiği cevaptır; bir başarısızlık itirafı değil. Çıplak câr-mecrûr olan her haber, sıfat, hâl ve sılanın böyle bir âmili vardır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "huruf-jarr",
+  "mubtada-khabar",
+  "imal-al-masdar",
+  "majaz-aqli"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
+}

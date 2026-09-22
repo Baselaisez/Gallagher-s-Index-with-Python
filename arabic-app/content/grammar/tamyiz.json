@@ -1,0 +1,90 @@
+{
+  "id": "tamyiz",
+  "title": {
+    "ar": "التَّمْيِيز",
+    "en": "The tamyiz (accusative of specification)",
+    "tr": "Temyîz"
+  },
+  "level": 4,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Ne cihetten?"
+    ],
+    "en": [
+      "In what respect?"
+    ]
+  },
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "Answers «in what respect?»: «the greatest of people in regret».",
+    "tr": "«Hangi cihetten?» sorusuna cevap verir: «insanların hasret bakımından en şiddetlisi»."
+  },
+  "explanation": {
+    "en": "Defined in the Mansubat as «مَا يَرْفَعُ الْإِبْهَامَ الْمُسْتَقِرَّ عَنْ ذَاتٍ مَذْكُورَةٍ أَوْ مُقَدَّرَةٍ» — the indefinite noun in nasb that clears up an ambiguity already settled in the sentence. It answers «in what respect?». The Mansubat divides it in two: (1) tamyiz of a STATED thing (مَذْكُورَة) — after measures, weights and numbers: رِطْلٌ زَيْتًا, عِشْرُونَ كِتَابًا; (2) tamyiz of an IMPLIED thing (مُقَدَّرَة), which resolves a whole sentence: طَابَ الرَّجُلُ نَفْسًا «the man was good — in soul». The tamyiz is always indefinite and always mansub.",
+    "tr": "Mensûbât'ta şöyle tanımlanır: «مَا يَرْفَعُ الْإِبْهَامَ الْمُسْتَقِرَّ عَنْ ذَاتٍ مَذْكُورَةٍ أَوْ مُقَدَّرَةٍ» — cümlede yerleşmiş bir kapalılığı gideren, nekre ve mansub isimdir. «Hangi bakımdan?» sorusuna cevap verir. Mensûbât ikiye ayırır: (1) ZİKREDİLMİŞ bir zâtın temyizi — ölçü, tartı ve sayılardan sonra: رِطْلٌ زَيْتًا, عِشْرُونَ كِتَابًا; (2) MUKADDER bir zâtın temyizi, ki bütün cümlenin kapalılığını giderir: طَابَ الرَّجُلُ نَفْسًا «adam hoş oldu — nefis bakımından». Temyiz daima nekre ve daima mansubdur."
+  },
+  "examples": [
+    {
+      "ar": "أَشَدُّ النَّاسِ حَسْرَةً يَوْمَ الْقِيَامَةِ.",
+      "en": "The people of greatest regret on the Day of Resurrection — حَسْرَةً is the tamyiz after an ism tafdil, naming the respect in which «greatest» holds.",
+      "sourceStory": "min-muqaddimat-al-maqsud",
+      "sentence": "s1",
+      "tr": "Kıyamet günü pişmanlığı en büyük olan insanlar — حَسْرَةً, ism-i tafdîlden sonra gelen temyîzdir; «en büyük»ün hangi cihetten olduğunu belirtir."
+    },
+    {
+      "ar": "طَابَ الرَّجُلُ نَفْسًا.",
+      "en": "The man was contented — in respect of soul. Tamyiz of an implied thing.",
+      "tr": "Adam gönlü hoş oldu — nefis cihetinden. Mukadder bir şeyin temyîzi."
+    },
+    {
+      "ar": "اِشْتَرَيْتُ رِطْلًا زَيْتًا.",
+      "en": "I bought a pound — of oil. Tamyiz after a measure.",
+      "tr": "Bir rıtl satın aldım — yağdan. Ölçüden sonra temyîz."
+    },
+    {
+      "ar": "عِشْرُونَ كِتَابًا.",
+      "en": "Twenty books — the counted noun after 11-99 is a singular mansub tamyiz.",
+      "tr": "Yirmi kitap — 11-99 arasında ma'dûd, mansub müfred temyîzdir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "عشرون كُتُبٍ",
+      "right": "عشرون كِتَابًا",
+      "why": {
+        "en": "After the numbers 11-99 the counted noun is a SINGULAR tamyiz in nasb, not a plural in jarr. This is the most frequent tamyiz error.",
+        "tr": "11-99 sayılarından sonra sayılan isim, mecrûr çoğul değil, mansub TEKİL temyizdir. En sık yapılan temyiz hatasıdır."
+      }
+    },
+    {
+      "wrong": "طاب الرجلُ النفسَ",
+      "right": "طاب الرجلُ نفسًا",
+      "why": {
+        "en": "The tamyiz must stay indefinite — definiteness would make it an object or an apposition instead.",
+        "tr": "Temyiz nekre kalmalıdır — marife yapılırsa mef'ûl veya bedel hâline gelir."
+      }
+    },
+    {
+      "wrong": "طاب الرجلُ نفسٌ",
+      "right": "طاب الرجلُ نفسًا",
+      "why": {
+        "en": "The tamyiz is mansub; giving it raf' makes it read as a second subject of the verb.",
+        "tr": "Temyiz mansubdur; ref verilirse fiilin ikinci fâili gibi okunur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hal",
+    "maful-mutlaq",
+    "naat-sifa"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

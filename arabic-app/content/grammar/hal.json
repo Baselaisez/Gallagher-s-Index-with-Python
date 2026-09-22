@@ -1,0 +1,86 @@
+{
+  "id": "hal",
+  "title": {
+    "ar": "الْحَال",
+    "en": "The hal (circumstantial accusative)",
+    "tr": "Hâl"
+  },
+  "level": 4,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Ne olduğu halde?"
+    ],
+    "en": [
+      "In what state?"
+    ]
+  },
+  "classicalSources": [
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)",
+    "إظهار الأسرار (البيركوي)"
+  ],
+  "plain": {
+    "en": "Describes the state someone was in while doing the thing: «he left thankful».",
+    "tr": "İşi yaparken kişinin hâlini bildirir: «şükrederek çıktı»."
+  },
+  "explanation": {
+    "en": "The hal is an indefinite, derived noun in nasb that describes the STATE of its owner (صاحب الحال) at the moment of the action — it answers «how?». Ibn al-Hajib defines it in the Kafiya as «ما يبين هيئة الفاعل أو المفعول». In this story: أَتَى أَبَا حَنِيفَةَ مُوَدِّعًا — he came «in the state of bidding farewell». The hal is typically an ism fail or ism maful, stays indefinite, and its owner is typically definite. Several hals can stack without a conjunction: خَرَجَ شَاكِرًا عَامِلًا.",
+    "tr": "Hâl; işin yapıldığı andaki DURUMU bildiren, nekre ve müştak, mansub bir isimdir — «nasıl?» sorusuna cevap verir. İbnü'l-Hâcib Kâfiye'de «fâilin veya mef'ûlün heyetini açıklayan» diye tanımlar. Hikâyede: أَتَى أَبَا حَنِيفَةَ مُوَدِّعًا — «vedalaşır hâlde» geldi. Hâl çoğunlukla ism-i fâil veya ism-i mef'ûldür, nekre kalır; sahibi (zü'l-hâl) çoğunlukla marifedir. Birden çok hâl atıfsız arka arkaya gelebilir: خَرَجَ شَاكِرًا عَامِلًا."
+  },
+  "examples": [
+    {
+      "ar": "أَتَى أَبَا حَنِيفَةَ مُوَدِّعًا.",
+      "en": "He came to Abu Hanifa to bid him farewell (lit. «in a farewelling state»).",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "sentence": "s1",
+      "tr": "Ona veda ederek geldi (lafzen «veda eder hâlde»)."
+    },
+    {
+      "ar": "فَخَرَجَ يُوسُفُ شَاكِرًا عَامِلًا بِوَصِيَّةِ إِمَامِهِ.",
+      "en": "Yusuf left thankful, acting on his imam's testament — two stacked hals.",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "sentence": "s6",
+      "tr": "Yusuf şükrederek ve imamının vasiyetiyle amel ederek ayrıldı — üst üste iki hâl."
+    },
+    {
+      "ar": "جَاءَ الطَّالِبُ مُسْرِعًا.",
+      "en": "The student came hurrying.",
+      "tr": "Talebe koşarak geldi."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "جاء الطالبُ مسرعٌ",
+      "right": "جاء الطالبُ مسرعًا",
+      "why": {
+        "en": "The hal is always mansub — learners let it agree with the marfu' subject as if it were an adjective.",
+        "tr": "Hâl daima mansubdur — öğrenciler onu sıfat sanıp merfu fâile uydurur."
+      }
+    },
+    {
+      "wrong": "جاء الطالبُ المسرعَ (بمعنى الحال)",
+      "right": "جاء الطالبُ مُسْرِعًا",
+      "why": {
+        "en": "A definite word after a definite noun is a na't (adjective), not a hal. The hal must stay indefinite: definite owner + indefinite state.",
+        "tr": "Marife isimden sonra gelen marife kelime sıfattır, hâl değil. Hâl nekre kalmalıdır: sahibi marife, hâl nekre."
+      }
+    },
+    {
+      "wrong": "جاء مسرعًا الطالبُ… (والصاحب نكرة)",
+      "right": "صاحِبُ الحالِ الأصلُ فيه أن يكون معرفةً",
+      "why": {
+        "en": "The owner of the hal should normally be definite; with an indefinite owner, classical usage prefers fronting the hal or reading the phrase as a na't.",
+        "tr": "Zü'l-hâlin aslı marife olmasıdır; nekre olursa klasik kullanım hâli öne almayı veya terkibi sıfat saymayı tercih eder."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "naat-sifa",
+    "maful-bihi"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  },
+  "mamul": "mansub"
+}

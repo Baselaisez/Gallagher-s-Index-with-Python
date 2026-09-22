@@ -1,0 +1,920 @@
+{
+ "chapter": 10,
+ "sentences": [
+  {
+   "id": "s64",
+   "translation": {
+    "en": "Accept from them what you would accept for your own self.",
+    "tr": "Onlardan, kendi nefsin için razı olacağın şeye razı ol."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَارْضَ",
+      "smart": "وَارْضَ",
+      "bare": "وارض"
+     },
+     "lex": "radiya",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "أَمْرٌ مَبْنِيٌّ عَلَى حَذْفِ الْأَلِفِ الْمَقْصُورَةِ: يَرْضَى ← اِرْضَ.",
+      "en": "A command built on dropping the final alif: yarda becomes irda.",
+      "tr": "Maksûr elifin hazfi üzere mebnî emir: يَرْضَى ← اِرْضَ."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنْهُمْ",
+      "smart": "مِنْهُمْ",
+      "bare": "منهم"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«ارْضَ».",
+      "en": "Jarr-phrase attached to the command.",
+      "tr": "«ارضَ»ye müteallik câr-mecrûrdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "A relative in nasb's position as the object.",
+      "tr": "İsm-i mevsûl; mahallen mensub mef'ûlün bihtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَرْضَى",
+      "smart": "تَرْضَى",
+      "bare": "ترضى"
+     },
+     "lex": "radiya",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ، وَالْجُمْلَةُ صِلَةٌ لَا مَحَلَّ لَهَا.",
+      "en": "A mudari' in raf' by an assumed damma on the alif; the clause is the sila, i'rabless.",
+      "tr": "Elif üzerinde takdîrî damme ile merfû muzâri; cümle sıladır, mahalli yoktur."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِنَفْسِكَ",
+      "smart": "لِنَفْسِكَ",
+      "bare": "لنفسك"
+     },
+     "lex": "nafs",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اللَّامُ جَارَّةٌ وَ«نَفْسِ» مَجْرُورٌ مُضَافٌ إِلَى الْكَافِ.",
+      "en": "The lam governs jarr; «self» is mudaf to the kaf.",
+      "tr": "لِ cer harfidir; «نفس» ك'e muzâf olarak mecrurdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "تَرْضَى لِنَفْسِكَ",
+     "ar": "صِلَةُ الْمَوْصُولِ «مَا» — لَا مَحَلَّ لَهَا.",
+     "en": "The sila of the relative «ma» — i'rabless.",
+     "tr": "«ما» mevsûlünün sılası — mahalli yoktur."
+    }
+   ]
+  },
+  {
+   "id": "s65",
+   "translation": {
+    "en": "Listen to whoever listens to you, and do not burden people with what they do not burden you.",
+    "tr": "Seni dinleyeni dinle; insanlara, sana yüklemediklerini yükleme."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَاسْتَمِعْ",
+      "smart": "وَاسْتَمِعْ",
+      "bare": "واستمع"
+     },
+     "lex": "istamaa",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "أَمْرٌ مِنَ الِافْتِعَالِ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "A Form VIII command built on sukun.",
+      "tr": "İftiâl bâbından sükûn üzere mebnî emirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِمَنْ",
+      "smart": "لِمَنْ",
+      "bare": "لمن"
+     },
+     "lex": "man-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "ism-mawsul"
+     ],
+     "irab": {
+      "ar": "اللَّامُ جَارَّةٌ وَ«مَنْ» مَوْصُولٌ فِي مَحَلِّ جَرٍّ.",
+      "en": "The lam governs jarr; the relative «man» sits in jarr's position.",
+      "tr": "لِ cer harfidir; mevsûl «مَنْ» mahallen mecrurdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَسْتَمِعُ",
+      "smart": "يَسْتَمِعُ",
+      "bare": "يستمع"
+     },
+     "lex": "istamaa",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "مُضَارِعٌ مَرْفُوعٌ، وَالْجُمْلَةُ صِلَةٌ لَا مَحَلَّ لَهَا.",
+      "en": "A mudari' in raf'; the clause is the sila, i'rabless.",
+      "tr": "Merfû muzâri; cümle sıladır, mahalli yoktur."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنْكَ",
+      "smart": "مِنْكَ",
+      "bare": "منك"
+     },
+     "lex": "min",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ.",
+      "en": "A jarr-phrase.",
+      "tr": "Câr-mecrûrdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nahiya-lex",
+     "pos": "part",
+     "grammar": [
+      "la-nahiya"
+     ],
+     "irab": {
+      "ar": "عَاطِفَةٌ وَنَاهِيَةٌ.",
+      "en": "Joining, then prohibiting.",
+      "tr": "Atıf, sonra nehiydir."
+     }
+    },
+    {
+     "surface": {
+      "full": "تُكَلِّفِ",
+      "smart": "تُكَلِّفِ",
+      "bare": "تكلف"
+     },
+     "lex": "kallafa",
+     "pos": "verb",
+     "grammar": [
+      "la-nahiya",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "مُضَارِعٌ مَجْزُومٌ بِالسُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "In jazm by sukun, given kasra where two sukuns meet.",
+      "tr": "Sükûnla meczum; iki sâkin sebebiyle kesre almıştır."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّاسَ",
+      "smart": "النَّاسَ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ أَوَّلُ — «كَلَّفَ» يَتَعَدَّى إِلَى مَفْعُولَيْنِ.",
+      "en": "The first object — «kallafa» takes two.",
+      "tr": "Birinci mef'ûlün bih — «كلّف» iki mef'ûl alır."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَوْصُولٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ ثَانٍ.",
+      "en": "The relative, in nasb's position as the second object.",
+      "tr": "Mevsûl; mahallen mensub ikinci mef'ûldür."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "ma-la-mushabbaha"
+     ],
+     "irab": {
+      "ar": "نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "Negating, with no government.",
+      "tr": "Nâfiyedir; ameli yoktur."
+     }
+    },
+    {
+     "surface": {
+      "full": "يُكَلِّفُونَكَ",
+      "smart": "يُكَلِّفُونَكَ",
+      "bare": "يكلفونك"
+     },
+     "lex": "kallafa",
+     "pos": "verb",
+     "grammar": [
+      "afal-khamsa",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ — مِنَ الْأَفْعَالِ الْخَمْسَةِ — وَالْكَافُ مَفْعُولٌ، وَالْجُمْلَةُ صِلَةٌ.",
+      "en": "In raf' by the RETAINED nun — one of the five verbs — the kaf its object; the clause is the sila.",
+      "tr": "Nûnun sübûtuyla merfû — ef'âl-i hamsedendir — ك mef'ûl; cümle sıladır."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَسْتَمِعُ مِنْكَ",
+     "ar": "صِلَةُ «مَنْ» — لَا مَحَلَّ لَهَا.",
+     "en": "The sila of «man» — i'rabless.",
+     "tr": "«مَنْ»in sılası — mahalli yoktur."
+    },
+    {
+     "text": "لَا يُكَلِّفُونَكَ",
+     "ar": "صِلَةُ «مَا» — لَا مَحَلَّ لَهَا.",
+     "en": "The sila of «ma» — i'rabless.",
+     "tr": "«ما»nın sılası — mahalli yoktur."
+    }
+   ]
+  },
+  {
+   "id": "s66",
+   "translation": {
+    "en": "Lead with good intention, employ truthfulness, and cast pride aside.",
+    "tr": "Hüsn-i niyeti öne al, doğruluğu kullan ve kibri bir yana at."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَقَدِّمْ",
+      "smart": "وَقَدِّمْ",
+      "bare": "وقدم"
+     },
+     "lex": "qaddama",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "أَمْرٌ مِنَ التَّفْعِيلِ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "A Form II command built on sukun.",
+      "tr": "Tef'îl bâbından sükûn üzere mebnî emirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "حُسْنَ",
+      "smart": "حُسْنَ",
+      "bare": "حسن"
+     },
+     "lex": "husn",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَهُوَ مُضَافٌ.",
+      "en": "Object in nasb, mudaf.",
+      "tr": "Mensub mef'ûlün bih, muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "النِّيَّةِ",
+      "smart": "النِّيَّةِ",
+      "bare": "النية"
+     },
+     "lex": "niyya",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrur muzâfun ileyhtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَاسْتَعْمِلِ",
+      "smart": "وَاسْتَعْمِلِ",
+      "bare": "واستعمل"
+     },
+     "lex": "istamala",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "imperative-amr",
+      "form-x-verbs"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — أَمْرٌ مِنَ الِاسْتِفْعَالِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "Joined — a Form X command, given kasra where two sukuns meet.",
+      "tr": "Matuf — istif'âl bâbından emir; iki sâkin sebebiyle kesre almıştır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الصِّدْقَ",
+      "smart": "الصِّدْقَ",
+      "bare": "الصدق"
+     },
+     "lex": "sidq",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Object in nasb.",
+      "tr": "Mensub mef'ûlün bihtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَاطْرَحِ",
+      "smart": "وَاطْرَحِ",
+      "bare": "واطرح"
+     },
+     "lex": "taraha",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — أَمْرٌ كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "Joined — a command given kasra where two sukuns meet.",
+      "tr": "Matuf — iki sâkin sebebiyle kesre alan emirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكِبْرَ",
+      "smart": "الْكِبْرَ",
+      "bare": "الكبر"
+     },
+     "lex": "kibr",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Object in nasb.",
+      "tr": "Mensub mef'ûlün bihtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَانِبًا",
+      "smart": "جَانِبًا",
+      "bare": "جانبا"
+     },
+     "lex": "janib",
+     "pos": "noun",
+     "grammar": [
+      "maful-fih"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ — أَيْ: فِي جَانِبٍ.",
+      "en": "A place-adverbial in nasb — «to one side».",
+      "tr": "Mensub mekân zarfı — «bir yana» demektir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s67",
+   "translation": {
+    "en": "And live with the people of the creeds according to how they live with you.",
+    "tr": "Din ehliyle, onların seninle muaşeretine göre muaşeret et."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَعَاشِرْ",
+      "smart": "وَعَاشِرْ",
+      "bare": "وعاشر"
+     },
+     "lex": "ashara",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "form-iii-verbs"
+     ],
+     "irab": {
+      "ar": "أَمْرٌ مِنَ الْمُفَاعَلَةِ — وَبَابُهُ الْمُشَارَكَةُ: عِشْرَةٌ مِنَ الْجَانِبَيْنِ.",
+      "en": "A Form III command — the bab of sharing: company from both sides.",
+      "tr": "Müfâale bâbından emir — bâbı müşârekettir: iki taraflı geçim."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَهْلَ",
+      "smart": "أَهْلَ",
+      "bare": "أهل"
+     },
+     "lex": "ahl",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَهُوَ مُضَافٌ.",
+      "en": "Object in nasb, mudaf.",
+      "tr": "Mensub mef'ûlün bih, muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَدْيَانِ",
+      "smart": "الْأَدْيَانِ",
+      "bare": "الأديان"
+     },
+     "lex": "din",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — جَمْعُ «دِين».",
+      "en": "Mudaf ilayh in jarr — the plural of «din».",
+      "tr": "Mecrur muzâfun ileyh — «دين»in cem'idir."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَسَبَ",
+      "smart": "حَسَبَ",
+      "bare": "حسب"
+     },
+     "lex": "hasaba",
+     "pos": "noun",
+     "grammar": [
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ مَنْصُوبٌ بِمَعْنَى «عَلَى مِقْدَارِ» وَهُوَ مُضَافٌ.",
+      "en": "An adverbial in nasb — «according to the measure of» — and mudaf.",
+      "tr": "Mensub zarftır — «ölçüsünce» demektir — muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُعَاشَرَتِهِمْ",
+      "smart": "مُعَاشَرَتِهِمْ",
+      "bare": "معاشرتهم"
+     },
+     "lex": "muashara",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — مَصْدَرُ الْمُفَاعَلَةِ مُضَافًا إِلَى فَاعِلِهِ.",
+      "en": "Mudaf ilayh in jarr — the bab's masdar, mudaf to its doer.",
+      "tr": "Mecrur muzâfun ileyh — bâbın masdarı, fâiline muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَكَ",
+      "smart": "لَكَ",
+      "bare": "لك"
+     },
+     "lex": "li",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِالْمَصْدَرِ.",
+      "en": "A jarr-phrase attached to the masdar.",
+      "tr": "Masdara müteallik câr-mecrûrdur."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s68",
+   "translation": {
+    "en": "Then truly, parting from you grieves me, and knowing you has been my comfort.",
+    "tr": "Sonra, senden ayrılmak beni gerçekten hüzünlendiriyor; seni tanımak ise bana ünsiyet veriyor."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "ثُمَّ",
+      "smart": "ثُمَّ",
+      "bare": "ثم"
+     },
+     "lex": "thumma",
+     "pos": "part",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ لِلتَّرْتِيبِ مَعَ التَّرَاخِي.",
+      "en": "The joining particle of ordered delay.",
+      "tr": "Terâhî ile tertip bildiren atıf harfidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِنَّهُ",
+      "smart": "إِنَّهُ",
+      "bare": "إنه"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "damir-fasl"
+     ],
+     "irab": {
+      "ar": "«إِنَّ» نَاصِبَةٌ وَالْهَاءُ ضَمِيرُ الشَّأْنِ اسْمُهَا — يُفَسِّرُهُ مَا بَعْدَهُ.",
+      "en": "«Inna» governs; the ha is the PRONOUN OF THE MATTER, its noun — explained by what follows.",
+      "tr": "«إنّ» âmildir; هُ zamîru'ş-şe'ndir, ismidir — onu, ardından gelen açıklar."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَيَحْزُنُنِي",
+      "smart": "لَيَحْزُنُنِي",
+      "bare": "ليحزنني"
+     },
+     "lex": "hazana",
+     "pos": "verb",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "mudari-marfu",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "اللَّامُ الْمُزَحْلَقَةُ لِلتَّوْكِيدِ، وَ«يَحْزُنُ» مَرْفُوعٌ وَالنُّونُ لِلْوِقَايَةِ وَالْيَاءُ مَفْعُولٌ — وَالْجُمْلَةُ خَبَرُ «إِنَّ».",
+      "en": "The slid-along lam of emphasis; the verb in raf', the nun protective, the ya its object — the clause is inna's khabar.",
+      "tr": "Lâm-ı müzahlaka te'kîd içindir; fiil merfû, nûn vikaye nûnu, yâ mef'ûldür — cümle «إنّ»nin haberidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُفَارَقَتُكَ",
+      "smart": "مُفَارَقَتُكَ",
+      "bare": "مفارقتك"
+     },
+     "lex": "mufaraqa",
+     "pos": "noun",
+     "grammar": [
+      "fail",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — مَصْدَرُ الْمُفَاعَلَةِ مُضَافًا إِلَى مَفْعُولِهِ.",
+      "en": "Fa'il in raf' — the bab's masdar, mudaf to its object.",
+      "tr": "Merfû fâil — bâbın masdarı, mef'ûlüne muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَتُؤْنِسُنِي",
+      "smart": "وَتُؤْنِسُنِي",
+      "bare": "وتؤنسني"
+     },
+     "lex": "anasa",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "form-iv-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — مُضَارِعٌ مِنَ الْإِفْعَالِ، وَالنُّونُ لِلْوِقَايَةِ وَالْيَاءُ مَفْعُولٌ.",
+      "en": "Joined — a Form IV mudari'; protective nun, the ya its object.",
+      "tr": "Matuf — if'âl bâbından muzâri; nûn vikaye içindir, yâ mef'ûldür."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَعْرِفَتُكَ",
+      "smart": "مَعْرِفَتُكَ",
+      "bare": "معرفتك"
+     },
+     "lex": "marifa",
+     "pos": "noun",
+     "grammar": [
+      "fail",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ — مَصْدَرٌ مُضَافٌ إِلَى مَفْعُولِهِ.",
+      "en": "Fa'il in raf' — a masdar mudaf to its object.",
+      "tr": "Merfû fâil — mef'ûlüne muzâf masdardır."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَيَحْزُنُنِي مُفَارَقَتُكَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ خَبَرُ «إِنَّ» — فِي مَحَلِّ رَفْعٍ، وَهِيَ الْمُفَسِّرَةُ لِضَمِيرِ الشَّأْنِ.",
+     "en": "A verbal clause as inna's khabar — in raf's position, and it is what unfolds the pronoun of the matter.",
+     "tr": "Fiil cümlesi, «إنّ»nin haberi — mahallen merfûdur; zamîru'ş-şe'ni açıklayan da odur."
+    }
+   ]
+  },
+  {
+   "id": "s69",
+   "translation": {
+    "en": "So keep reaching me with your letters, and make your needs known to me.",
+    "tr": "Mektuplarınla bana ulaşmayı sürdür ve hâcetlerini bana bildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَوَاصِلْنِي",
+      "smart": "فَوَاصِلْنِي",
+      "bare": "فواصلني"
+     },
+     "lex": "wasala-iii",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "form-iii-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ فَصِيحَةٌ وَ«وَاصِلْ» أَمْرٌ مِنَ الْمُفَاعَلَةِ، وَالنُّونُ لِلْوِقَايَةِ وَالْيَاءُ مَفْعُولٌ.",
+      "en": "The fa draws the consequence; a Form III command — protective nun, the ya its object.",
+      "tr": "Fâ-i fasîha; müfâale bâbından emir — nûn vikaye, yâ mef'ûldür."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِكُتُبِكَ",
+      "smart": "بِكُتُبِكَ",
+      "bare": "بكتبك"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ جَارَّةٌ وَ«كُتُبِ» جَمْعُ «كِتَاب» مَجْرُورٌ مُضَافٌ إِلَى الْكَافِ.",
+      "en": "The ba governs jarr; the plural of «book/letter», mudaf to the kaf.",
+      "tr": "بِ cer harfi; «كتاب»ın cem'i, ك'e muzâf olarak mecrurdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَعَرِّفْنِي",
+      "smart": "وَعَرِّفْنِي",
+      "bare": "وعرفني"
+     },
+     "lex": "arrafa",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "imperative-amr",
+      "form-ii-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ — أَمْرٌ مِنَ التَّفْعِيلِ، وَالنُّونُ لِلْوِقَايَةِ وَالْيَاءُ مَفْعُولٌ.",
+      "en": "Joined — a Form II command; protective nun, the ya its object.",
+      "tr": "Matuf — tef'îl bâbından emir; nûn vikaye, yâ mef'ûldür."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِحَوَائِجِكَ",
+      "smart": "بِحَوَائِجِكَ",
+      "bare": "بحوائجك"
+     },
+     "lex": "haja",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ — وَجُرَّ «حَوَائِج» بِالْكَسْرَةِ لِإِضَافَتِهِ.",
+      "en": "A jarr-phrase — «hawa'ij» takes kasra because the idafa restores it.",
+      "tr": "Câr-mecrûr — «حوائج» izâfet sebebiyle kesreyle cer almıştır."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s70",
+   "translation": {
+    "en": "And be to me as a son — for I am to you as a father.",
+    "tr": "Bana bir oğul gibi ol — çünkü ben sana bir baba gibiyim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكُنْ",
+      "smart": "وَكُنْ",
+      "bare": "وكن"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "أَمْرٌ مِنْ «كَانَ» النَّاقِصَةِ، وَاسْمُهَا مُسْتَتِرٌ: أَنْتَ.",
+      "en": "The command of defective kana; its noun the concealed «you».",
+      "tr": "Nâkıs «كان»ın emri; ismi gizli «sen»dir."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِي",
+      "smart": "لِي",
+      "bare": "لي"
+     },
+     "lex": "li",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ.",
+      "en": "A jarr-phrase.",
+      "tr": "Câr-mecrûrdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَابْنٍ",
+      "smart": "كَابْنٍ",
+      "bare": "كابن"
+     },
+     "lex": "ibn",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "anwa-al-khabar",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "الْكَافُ جَارَّةٌ لِلتَّشْبِيهِ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ «كُنْ» فِي مَحَلِّ نَصْبٍ.",
+      "en": "The kaf of likeness governs jarr; the phrase is kun's khabar, in nasb's position.",
+      "tr": "Teşbih kâfı cer eder; câr-mecrûr «كن»un haberi olarak mahallen mensubdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَإِنِّي",
+      "smart": "فَإِنِّي",
+      "bare": "فإني"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ تَعْلِيلِيَّةٌ وَ«إِنَّ» نَاصِبَةٌ وَالْيَاءُ اسْمُهَا.",
+      "en": "The fa gives the reason; «inna» governs, the ya its noun.",
+      "tr": "Fâ ta'lîl içindir; «إنّ» âmildir, yâ ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَكَ",
+      "smart": "لَكَ",
+      "bare": "لك"
+     },
+     "lex": "li",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ.",
+      "en": "A jarr-phrase.",
+      "tr": "Câr-mecrûrdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَأَبٍ",
+      "smart": "كَأَبٍ",
+      "bare": "كأب"
+     },
+     "lex": "ab",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "anwa-al-khabar",
+      "tashbih"
+     ],
+     "irab": {
+      "ar": "الْكَافُ لِلتَّشْبِيهِ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ «إِنَّ» فِي مَحَلِّ رَفْعٍ.",
+      "en": "The kaf of likeness; the phrase is inna's khabar, in raf's position.",
+      "tr": "Teşbih kâfı; câr-mecrûr «إنّ»nin haberi olarak mahallen merfûdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "فَإِنِّي لَكَ كَأَبٍ",
+     "ar": "جُمْلَةٌ تَعْلِيلِيَّةٌ — لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
+     "en": "A reason-giving clause — i'rabless.",
+     "tr": "Ta'lîl cümlesidir — mahalli yoktur."
+    }
+   ]
+  }
+ ]
+}

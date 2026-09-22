@@ -1,0 +1,406 @@
+{
+ "chapter": 18,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Zayd is a writer, and ʿAmr is a poet. (Both musnads indefinite: neither confinement nor a known referent is meant — the plainest setting of the dial.)",
+    "tr": "Zeyd bir kâtiptir, Amr bir şairdir. (İki müsned de nekre: ne hasr ne ahd kastedilmiştir — ayarın en yalın konumu.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar",
+      "tankir-al-musnad-ilayh"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "The mubtada — definite by being a name; the interest of this frame is entirely in what follows.",
+      "tr": "Mübtedâ — ad olmakla marife; bu kalıbın bütün ilgisi ardından gelendedir."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَاتِبٌ",
+      "smart": "كَاتِبٌ",
+      "bare": "كاتب"
+     },
+     "lex": "katib",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-fail",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — نُكِّرَ لِعَدَمِ إِرَادَةِ الْحَصْرِ وَالْعَهْدِ.",
+      "en": "«a writer» — the khabar, and its TANWIN is the teaching: indefinite because neither of the two things a definite musnad would claim is meant. No ḤAṢR — writing is not confined to Zayd, others write too; and no ʿAHD — no particular known writer («THE writer you know of») is intended. The nakira is the honest default: it ascribes the craft and claims nothing more.",
+      "tr": "«bir kâtip» — haber; ve TENVİNİ dersin kendisidir: nekredir, çünkü marife bir müsnedin iddia edeceği iki şeyden hiçbiri kastedilmemiştir. HASR yok — kâtiplik Zeyd'e hasredilmiş değildir, başkaları da yazar; AHD de yok — bilinen belli bir kâtip («hani o kâtip») kastedilmemiştir. Nekre dürüst varsayılandır: zanaatı isnâd eder, fazlasını iddia etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَعَمْرٌو",
+      "smart": "وَعَمْرٌو",
+      "bare": "وعمرو"
+     },
+     "lex": "amr-alam",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«عَمْرٌو» مُبْتَدَأٌ ثَانٍ.",
+      "en": "«and ʿAmr» — the second mubtada, silent waw and all.",
+      "tr": "«ve Amr» — ikinci mübtedâ; sessiz vâvıyla birlikte."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "عَمْرٌو",
+       "lex": "amr-alam",
+       "pos": "propn"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَاعِرٌ",
+      "smart": "شَاعِرٌ",
+      "bare": "شاعر"
+     },
+     "lex": "shair",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-fail",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — نُكِّرَ كَذَلِكَ.",
+      "en": "«a poet» — the twin khabar, indefinite for the same two absences. The matn pairs the frames so the eye sees the SETTING, not the sentence: this is what a musnad looks like when the speaker wants nothing but the ascription.",
+      "tr": "«bir şair» — ikiz haber; aynı iki yokluk için nekre. Metin kalıpları çiftler ki göz cümleyi değil AYARI görsün: konuşan isnâddan başka bir şey istemediğinde müsned böyle görünür."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "زَيْدٌ كَاتِبٌ وَعَمْرٌو شَاعِرٌ",
+     "ar": "الْوَجْهُ الْأَوَّلُ: تَنْكِيرُ الْمُسْنَدِ لِعَدَمِ إِرَادَةِ الْحَصْرِ.",
+     "en": "VECH 1 — no ḥaṣr: being-a-writer is NOT confined to Zayd. Had the speaker meant «Zayd and none other writes», the musnad would have worn the article (زَيْدٌ الْكَاتِبُ). The tanwin explicitly declines that claim.",
+     "tr": "1. VECİH — hasr yok: kâtiplik Zeyd'e HASREDİLMİŞ değildir. Konuşan «Zeyd'den başkası yazmaz» demek isteseydi müsned harf-i tarif giyerdi (زَيْدٌ الْكَاتِبُ). Tenvin bu iddiayı açıkça reddeder."
+    },
+    {
+     "text": "زَيْدٌ كَاتِبٌ وَعَمْرٌو شَاعِرٌ",
+     "ar": "الْوَجْهُ الثَّانِي: تَنْكِيرُهُ لِعَدَمِ الْعَهْدِ.",
+     "en": "VECH 2 — no ʿahd: nor is a KNOWN writer meant — «that writer we spoke of is Zayd» would again demand the article, this time the lam of ʿahd. Two absences, one tanwin: the indefinite musnad is defined by what it refuses to claim.",
+     "tr": "2. VECİH — ahd yok: BİLİNEN bir kâtip de kastedilmemiştir — «sözünü ettiğimiz o kâtip Zeyd'dir» yine harf-i tarif isterdi; bu kez ahd lâmını. İki yokluk, tek tenvin: nekre müsned, iddia etmeyi reddettikleriyle tanımlanır."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "…a guidance for the God-fearing. (al-Baqara 2:2 — the musnad indefinite for TAFKHIM: a guidance so great that no description would reach its limit.)",
+    "tr": "…müttakîler için bir hidayettir. (Bakara 2:2 — müsned TAFHÎM için nekre: hiçbir tavsifin sınırına eremeyeceği kadar büyük bir hidayet.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "هُدًى",
+      "smart": "هُدًى",
+      "bare": "هدى"
+     },
+     "lex": "huda",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-maqsur-manqus",
+      "wujuh-al-musnad",
+      "hadhf-wa-taqdir"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — نُكِّرَ لِلتَّفْخِيمِ — وَفِي مُبْتَدَئِهِ تَقْدِيرَانِ: «هُوَ هُدًى» أَوْ «ذَلِكَ الْكِتَابُ» مُبْتَدَأٌ وَ«هُدًى» خَبَرُهُ.",
+      "en": "«a GUIDANCE» — a maqsur, its damma estimated on the alif; and the tanwin here is not the plain default of s1 but TAFKHIM, magnification: guidance whose ultimate reach cannot be grasped nor its description completed — as if to say «a guidance beyond telling what guidance». And the mubtada is a two-taqdir case, as chapter 15 taught to expect: read هُوَ هُدًى with the mubtada omitted, or read ذَلِكَ الْكِتَابُ as the mubtada and هُدًى its khabar — the books keep both.",
+      "tr": "«bir HİDAYET» — maksûr; dammesi elif üzerinde takdîr edilir. Ve buradaki tenvin, s1'in yalın varsayılanı değil, TAFHÎMdir — büyütme: nihayetine vâkıf olunamayacak, hakkıyla tavsif edilemeyecek bir hidayet — sanki «ne hidayet olduğu anlatılamaz bir hidayet» der. Mübtedâsı da, 15. bâbın beklemeyi öğrettiği gibi iki takdirlidir: هُوَ هُدًى diye mübtedâ hazfiyle oku, yahut ذَلِكَ الْكِتَابُ mübtedâ ve هُدًى haberi olsun — kitaplar ikisini de saklar."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِلْمُتَّقِينَ",
+      "smart": "لِلْمُتَّقِينَ",
+      "bare": "للمتقين"
+     },
+     "lex": "muttaqi",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "jam-mudhakkar-salim",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ — اللَّامُ لِلِاخْتِصَاصِ وَ«الْمُتَّقِينَ» جَمْعُ مُذَكَّرٍ سَالِمٌ مَجْرُورٌ بِالْيَاءِ.",
+      "en": "«for the God-fearing» — لِ + الْمُتَّقِينَ with the article's alif swallowed in writing; a sound masculine plural in jarr by its YA. The ism fail of اِتَّقَى (Form VIII of و ق ي, its waw assimilated into the ta): those who shield themselves. The guidance is magnified, and then aimed.",
+      "tr": "«müttakîler için» — لِ + الْمُتَّقِينَ; harf-i tarifin elifi yazıda yutulmuş. Cem'-i müzekker-i sâlim; YÂ ile mecrûr. اِتَّقَى'nın ism-i fâili (و ق ي'nin VIII. bâbı; vâvı tâya idgam edilmiş): kendilerini koruyanlar. Hidayet önce büyütülür, sonra nişanlanır."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "الْمُتَّقِينَ",
+       "lex": "muttaqi",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "هُدًى لِلْمُتَّقِينَ",
+     "ar": "الْوَجْهُ الثَّالِثُ: تَنْكِيرُ الْمُسْنَدِ لِلتَّفْخِيمِ — هُدًى لَا يُكْتَنَهُ كُنْهُهُ.",
+     "en": "VECH 3 — TAFKHIM: the same tanwin that declined every claim in s1 here makes the largest claim of all. Indefiniteness can say «one among many» or «one beyond counting» — context decides, and here the Book's own majesty decides it upward: a guidance whose essence cannot be fathomed.",
+     "tr": "3. VECİH — TAFHÎM: s1'de her iddiayı reddeden aynı tenvin, burada iddiaların en büyüğünü yapar. Nekrelik «birçoklarından biri» de diyebilir, «sayıya sığmaz bir» de — bağlam belirler; burada Kitâb'ın kendi azameti yukarı doğru belirler: künhüne varılamaz bir hidayet."
+    },
+    {
+     "text": "هُدًى لِلْمُتَّقِينَ",
+     "ar": "وَفِي الْمُبْتَدَإِ تَقْدِيرَانِ مَحْفُوظَانِ — هُوَ هُدًى، أَوْ ذَلِكَ الْكِتَابُ هُدًى.",
+     "en": "And the omitted-mubtada fork is kept open, exactly as فَصَبْرٌ جَمِيلٌ taught: «it is a guidance», or «THAT Book — is a guidance». Two reconstructions, both classical, neither flattened.",
+     "tr": "Ve hazfedilmiş mübtedâ çatalı açık tutulur; tıpkı فَصَبْرٌ جَمِيلٌ'in öğrettiği gibi: «o bir hidayettir», yahut «İŞTE O KİTAP — bir hidayettir». İki kuruluş, ikisi de klasik; hiçbiri teke indirilmemiş."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "Zayd is not a thing. (The matn's frame for TAHQIR: the musnad indefinite to belittle — not even worth calling a «thing».)",
+    "tr": "Zeyd bir şey değildir. (Metnin TAHKÎR kalıbı: müsned küçültmek için nekre — «şey» demeye bile değmez.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-hijaziyya",
+     "pos": "part",
+     "grammar": [
+      "anwa-ma",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "«مَا» الْحِجَازِيَّةُ — تَعْمَلُ عَمَلَ لَيْسَ: تَرْفَعُ الِاسْمَ وَتَنْصِبُ الْخَبَرَ.",
+      "en": "The HIJAZI ma — the negation that governs like لَيْسَ: raf' on its ism, nasb on its khabar. The mansub شَيْئًا three words on is its signature; the Tamimi reading would leave the khabar marfu'.",
+      "tr": "HİCÂZÎ mâ — لَيْسَ gibi amel eden nefiy: ismini ref, haberini nasb eder. Üç kelime ötedeki mansûb شَيْئًا onun imzasıdır; Temîmî okuyuş haberi merfû bırakırdı."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "anwa-ma"
+     ],
+     "irab": {
+      "ar": "اسْمُ «مَا» مَرْفُوعٌ.",
+      "en": "Ma's ism, in raf'.",
+      "tr": "Mânın ismi; merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَيْئًا",
+      "smart": "شَيْئًا",
+      "bare": "شيئا"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "anwa-ma",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «مَا» مَنْصُوبٌ — نُكِّرَ لِلتَّحْقِيرِ.",
+      "en": "«a THING» — ma's khabar in nasb, and the tanwin's third face: TAHQIR. شَيْء is the widest word in the language — everything that is, is a thing — so to deny even THAT, indefinite and minimal, is to deny Zayd the least rank there is. The same three letters that magnified هُدًى here grind to dust.",
+      "tr": "«bir ŞEY» — mânın mansûb haberi; ve tenvinin üçüncü yüzü: TAHKÎR. شَيْء dilin en geniş kelimesidir — var olan her şey bir şeydir — öyleyse EN AZI bile, nekre ve asgarî hâliyle nefyetmek, Zeyd'e mertebelerin en küçüğünü bile tanımamaktır. هُدًى'yı büyüten aynı üç harf, burada toz eder."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَا زَيْدٌ شَيْئًا",
+     "ar": "الْوَجْهُ الرَّابِعُ: تَنْكِيرُ الْمُسْنَدِ لِلتَّحْقِيرِ.",
+     "en": "VECH 4 — TAHQIR: the indefinite at its floor. One tanwin, three offices now — the plain default (s1), magnification (s2), and here contempt. The vech is never in the letters; it is in what the maqam does with them.",
+     "tr": "4. VECİH — TAHKÎR: nekrenin tabanı. Tek tenvin, artık üç vazife — yalın varsayılan (s1), büyütme (s2) ve burada hor görme. Vecih hiçbir zaman harflerde değildir; makāmın onlarla yaptığındadır."
+    },
+    {
+     "text": "مَا زَيْدٌ شَيْئًا",
+     "ar": "وَالنَّصْبُ عَلَامَةُ الْحِجَازِيَّةِ — وَبِهَا نَزَلَ التَّنْزِيلُ: مَا هَذَا بَشَرًا.",
+     "en": "And the nasb on the khabar is the Hijazi ma's own signature — the dialect the Revelation came down in (مَا هَذَا بَشَرًا). One accusative fatha carries a whole dialectology.",
+     "tr": "Haberdeki nasb, Hicâzî mânın kendi imzasıdır — Tenzîl'in indiği lehçe (مَا هَذَا بَشَرًا). Tek bir nasb fethası, koca bir lehçe bilgisini taşır."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Zayd is a learned man. (TAKHSIS by the sifa: «man» alone says little; «learned» multiplies the yield — the twin of the idafa's takhsis, زَيْدٌ غُلَامُ رَجُلٍ.)",
+    "tr": "Zeyd âlim bir adamdır. (Sıfatla TAHSÎS: yalnız «adam» az söyler; «âlim» faydayı çoğaltır — izâfet tahsîsinin ikizi: زَيْدٌ غُلَامُ رَجُلٍ.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "The mubtada again — the constant of every frame in this chapter, so that only the musnad's dress changes.",
+      "tr": "Yine mübtedâ — bu bâbın her kalıbının sabiti; değişen yalnız müsnedin kıyafeti olsun diye."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَجُلٌ",
+      "smart": "رَجُلٌ",
+      "bare": "رجل"
+     },
+     "lex": "rajul",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — وَحْدَهُ قَلِيلُ الْفَائِدَةِ.",
+      "en": "«a man» — the khabar, and by itself nearly empty: that Zayd is a man is hardly news. The frame sets it up to be completed.",
+      "tr": "«bir adam» — haber; ve tek başına nerdeyse boş: Zeyd'in adam olduğu pek haber değildir. Kalıp onu tamamlanmak üzere kurar."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَالِمٌ",
+      "smart": "عَالِمٌ",
+      "bare": "عالم"
+     },
+     "lex": "alim",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "ism-fail",
+      "wujuh-al-musnad"
+     ],
+     "irab": {
+      "ar": "صِفَةٌ لِ«رَجُلٌ» مَرْفُوعَةٌ — وَبِهَا تَخَصَّصَ الْمُسْنَدُ وَتَمَّتِ الْفَائِدَةُ.",
+      "en": "«LEARNED» — the sifa on the khabar, and the yield arrives with it: not merely a man but a man of knowledge. This is تَخْصِيصُ الْمُسْنَدِ بِالْوَصْفِ, and the matn pairs it with its idafa twin — زَيْدٌ غُلَامُ رَجُلٍ, «Zayd is a man's servant» — where the mudaf-ilayh does the same narrowing work the sifa does here. And the TARK of both has its reasons: no opportunity, no knowledge, or no wish to tell — the same three that excused the maf'ul qayds in chapter 16.",
+      "tr": "«ÂLİM» — haberin sıfatı; fayda onunla gelir: yalnız bir adam değil, ilim sahibi bir adam. Bu, تَخْصِيصُ الْمُسْنَدِ بِالْوَصْفِ'tir; ve metin onu izâfet ikiziyle çiftler — زَيْدٌ غُلَامُ رَجُلٍ, «Zeyd bir adamın hizmetkârıdır» — orada muzâfun ileyh, burada sıfatın yaptığı daraltmayı yapar. Ve ikisinin de TERKİ sebepsiz değildir: fırsat yok, bilgi yok, yahut söyleme isteği yok — 16. bâbda mef'ûl kayıtlarını mâzur gösteren aynı üçlü."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "زَيْدٌ رَجُلٌ عَالِمٌ",
+     "ar": "الْوَجْهُ الْخَامِسُ: تَخْصِيصُ الْمُسْنَدِ بِالْوَصْفِ — لِكَوْنِ الْفَائِدَةِ أَتَمَّ.",
+     "en": "VECH 5 — TAKHSIS by the sifa: the description narrows the musnad and the news multiplies, exactly as the maf'ul family multiplied the verb's news in chapter 16 — one doctrine, nominal edition.",
+     "tr": "5. VECİH — sıfatla TAHSÎS: vasıf müsnedi daraltır ve haber çoğalır; tıpkı 16. bâbda mef'ûl ailesinin fiilin haberini çoğalttığı gibi — tek kāide, isim tarafı."
+    },
+    {
+     "text": "زَيْدٌ رَجُلٌ عَالِمٌ",
+     "ar": "وَتَوْأَمُهُ التَّخْصِيصُ بِالْإِضَافَةِ: زَيْدٌ غُلَامُ رَجُلٍ.",
+     "en": "And its twin, takhsis by IDAFA — زَيْدٌ غُلَامُ رَجُلٍ: the annexation narrows «servant» to «a man's servant» just as the sifa narrowed «man» to «learned man». Two grammatical routes, one rhetorical office.",
+     "tr": "Ve ikizi, İZÂFETLE tahsîs — زَيْدٌ غُلَامُ رَجُلٍ: izâfet «hizmetkâr»ı «bir adamın hizmetkârı»na daraltır; sıfatın «adam»ı «âlim adam»a daralttığı gibi. İki gramer yolu, tek belâgat vazifesi."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "ʿAmr is THE brave one. (The jins-lam musnad confines the genus: courage, beside ʿAmr's, counts for nothing — qasr by EXAGGERATION; and when the fact matches, the qasr is literal: زَيْدٌ الْأَمِيرُ.)",
+    "tr": "Amr, cesûrun ta kendisidir. (Cins lâmlı müsned cinsi hasreder: Amr'ınkinin yanında cesaret sayılmaz — MÜBÂLAĞA yoluyla kasr; vâkıa uyarsa kasr hakikî olur: زَيْدٌ الْأَمِيرُ.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "عَمْرٌو",
+      "smart": "عَمْرٌو",
+      "bare": "عمرو"
+     },
+     "lex": "amr-alam",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "ʿAmr as mubtada, his silent waw guarding the spelling.",
+      "tr": "Mübtedâ olarak Amr; sessiz vâvı imlâyı korur."
+     }
+    },
+    {
+     "surface": {
+      "full": "الشُّجَاعُ",
+      "smart": "الشُّجَاعُ",
+      "bare": "الشجاع"
+     },
+     "lex": "shujaa",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "anwa-al-lam-al-tarif",
+      "wujuh-al-musnad",
+      "qasr"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ مُعَرَّفٌ بِلَامِ الْجِنْسِ — لِقَصْرِ الْجِنْسِ عَلَى الْمُبْتَدَإِ مُبَالَغَةً.",
+      "en": "«THE brave one» — the khabar wearing the lam of GENUS, and the definite musnad's great office: QASR. Literally it says «the genus of courage IS ʿAmr» — and since other brave men exist, the confinement is مُبَالَغَةً, by exaggeration: beside his courage, theirs is as if it were not. Where the fact matches the claim — زَيْدٌ الْأَمِيرُ said when none but Zayd commands — the same lam makes a qasr حَقِيقَةً, literal. One article, two strengths, and the world decides which. (On فُعَال, no shadda: the intensive lives in the LAM here, not the pattern.)",
+      "tr": "«cesûrun ta kendisi» — CİNS lâmını giymiş haber; ve marife müsnedin büyük vazifesi: KASR. Harfiyen «cesaret cinsi Amr'DIR» der — başka cesurlar da var olduğuna göre hasr مُبَالَغَةً'dir, abartıyladır: onun cesareti yanında ötekilerinki yok hükmündedir. İddia vâkıayla örtüşünce — Zeyd'den başka emîr yokken söylenen زَيْدٌ الْأَمِيرُ — aynı lâm kasrı حَقِيقَةً, hakikî yapar. Tek harf-i tarif, iki kuvvet; hangisi olduğuna dünya karar verir. (Vezin فُعَال'dir, şeddesiz: buradaki mübâlağa kalıpta değil, LÂMdadır.)"
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "عَمْرٌو الشُّجَاعُ",
+     "ar": "الْوَجْهُ السَّادِسُ: تَعْرِيفُ الْمُسْنَدِ بِلَامِ الْجِنْسِ لِقَصْرِ الْجِنْسِ مُبَالَغَةً — وَحَقِيقَةً فِي زَيْدٌ الْأَمِيرُ.",
+     "en": "VECH 6 — the jins-lam qasr, in both strengths: mubalaghatan here (others' courage discounted, not denied), haqiqatan in زَيْدٌ الْأَمِيرُ when no other amir exists. The claim's letter is identical; its warrant differs — teach the pair together or the learner will read every such lam as literal.",
+     "tr": "6. VECİH — cins lâmı kasrı, iki kuvvetiyle: burada mübâlağaten (başkalarının cesareti inkâr değil, iskonto edilir), زَيْدٌ الْأَمِيرُ'de hakikaten — başka emîr yokken. İddianın harfi aynıdır; senedi farklıdır — çifti birlikte öğret, yoksa öğrenci her böyle lâmı hakikî okur."
+    },
+    {
+     "text": "عَمْرٌو الشُّجَاعُ",
+     "ar": "وَخِلَافُ الرَّازِيِّ فِي «الْمُنْطَلِقُ زَيْدٌ»: قِيلَ الِاسْمُ مُبْتَدَأٌ أَبَدًا لِدَلَالَتِهِ عَلَى الذَّاتِ — وَرُدَّ بِأَنَّ الْمُتَقَدِّمَ هُوَ الْمُبْتَدَأُ.",
+     "en": "And al-Razi's khilaf rides this frame: he argued the NAME is always the mubtada (it points at the essence) and the sifa always the khabar, even in الْمُنْطَلِقُ زَيْدٌ. The refutation: that sentence means «the one leaving is THE BEARER OF THIS NAME» — so what comes first is the mubtada, and order wins. A khilaf taught as a khilaf, with the winning argument stated.",
+     "tr": "Ve Râzî'nin hilâfı bu kalıba biner: İSİM (zâta delâlet ettiği için) her zaman mübtedâ, sıfat her zaman haberdir dedi — الْمُنْطَلِقُ زَيْدٌ'de bile. Reddi: o cümle «giden, BU ADIN SAHİBİdir» demektir — öyleyse önce gelen mübtedâdır ve sıra kazanır. Hilâf, hilâf olarak; kazanan delil söylenerek öğretilmiş."
+    }
+   ]
+  }
+ ]
+}
