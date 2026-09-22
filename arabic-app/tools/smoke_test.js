@@ -1831,7 +1831,7 @@ if (!CHROME) {
       };
     });
     if (info.present !== 5) throw new Error('balagha notes present: ' + info.present + '/5');
-    if (info.group.some(g => g !== 'balagha')) throw new Error('wrong group: ' + info.group);
+    if (info.group.some(g => !['balagha', 'bayan', 'badi'].includes(g))) throw new Error('wrong group: ' + info.group);   // the balagha family: balagha, bayan (wave 14), badi (wave 18)
     if (!info.inRefGroups) throw new Error('balagha missing from REF_GROUPS');
     if (info.untranslated.length) throw new Error('no Turkish on: ' + info.untranslated);
     for (const id of ['haqiqa-majaz', 'tashbih', 'istiara', 'kinaya', 'qasr'])
@@ -1869,7 +1869,7 @@ if (!CHROME) {
         }))));
       return {
         missing: ids.filter(id => !GRAMMAR[id]),
-        wrongGroup: ids.filter(id => GRAMMAR[id] && GRAMMAR[id].group !== 'balagha'),
+        wrongGroup: ids.filter(id => GRAMMAR[id] && !['balagha', 'badi'].includes(GRAMMAR[id].group)),   // badi is the registry's own group since wave 18
         unanchored: ids.filter(id => !anchored[id]),
         bothOnOneToken,
       };
@@ -9434,6 +9434,137 @@ if (!CHROME) {
       if (r.six !== 6) throw new Error('the six-kinds grid: ' + JSON.stringify(r));
       if (!r.fits) throw new Error('the majaz lab scrolls sideways on a phone');
     } finally { await page.setViewportSize(was); }
+  });
+  // ---------------------------------------------------------------- wave 18: the kinaya, the tibaq, the ghosts
+  const W18_FLOOR = { 55: 95, 56: 92, 57: 97 };       // measured 98.0 / 96.0 / 100 at v172 — floors, never the numbers
+  await check('Talkhis ch55-57 (majaz by omission and addition; the kinaya, its three kinds, near and far, Sakkaki\'s four; the badiʿ opens with the tibaq): every authored frame read back — majaz, tashbih, kinaya, badi — and the dabt floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [55, 56, 57]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let kn = 0, bd = 0, mj = 0, ts = 0; const kinds = new Set(), subs = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.majaz) { mj++; const ag = MajazEngine.agree(sen, MajazEngine.read(rows)); if (!ag || !ag.ok) bad.push(sen.id + ':mj:' + JSON.stringify(ag && ag.per.filter(p => !p.ok))); }
+          if (sen.tashbih) { ts++; const ag = TashbihEngine.agree(sen, TashbihEngine.read(rows)); if (!ag || !ag.ok) bad.push(sen.id + ':ts'); }
+          if (sen.kinaya) { const hs = Array.isArray(sen.kinaya) ? sen.kinaya : [sen.kinaya]; kn += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); }); const ag = KinayaEngine.agree(sen, KinayaEngine.read(rows)); if (!ag || !ag.ok) bad.push(sen.id + ':kn:' + JSON.stringify(ag && ag.per.filter(p => !p.ok))); }
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => subs.add(h.sub)); const ag = BadiEngine.agree(sen, BadiEngine.read(rows)); if (!ag || !ag.ok) bad.push(sen.id + ':bd:' + JSON.stringify(ag && ag.per.filter(p => !p.ok))); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, kn, bd, mj, ts, kinds: [...kinds], subs: [...subs], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W18_FLOOR);
+    for (const N of [55, 56, 57]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engines do not read: ' + o.bad.join(' | ').slice(0, 400));
+      if (o.dabt !== null && o.dabt < W18_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W18_FLOOR[N]);
+    }
+    if (r[55].mj < 3) throw new Error('ch55 carries the majaz by omission and by addition: ' + r[55].mj);
+    if (r[56].kn < 8 || !['sifa', 'mawsuf', 'nisba'].every(k => r[56].kinds.includes(k))) throw new Error('ch56 carries the three kinds of kinaya: ' + r[56].kn + ' ' + r[56].kinds);
+    if (!['qariba-wadiha', 'qariba-khafiyya', 'baida'].every(k => r[56].subs.includes(k))) throw new Error('ch56 carries near-plain, near-hidden and far: ' + r[56].subs);
+    if (r[57].bd < 6 || !r[57].subs.includes('ijab') || !r[57].subs.includes('salb')) throw new Error('ch57 carries the tibaq of affirmation and of negation: ' + r[57].bd + ' ' + r[57].subs);
+  });
+
+  await check('the KinayaEngine — seeds: the kind off the shape, the pronoun test (طَوِيلٌ نِجَادُهُ the pure kinaya, طَوِيلُ النِّجَادِ a shade of tasrih), the ladder off the authored rungs (near / far, Sakkaki\'s name), no kinaya on an elative annexed or on plain prose', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => { const f = KinayaEngine.readText(s).frames[0]; return f ? f.kind + '|' + f.shape + '|' + f.tasrih + '|' + f.span.join('-') : '∅'; };
+      const seeds = KinayaEngine.SEEDS.map(s => [s, KinayaEngine.readText(s).frames.length]);
+      const far = KinayaEngine.corpusFrame('وَإِمَّا بَعِيدَةٌ إِنْ كَانَ الِانْتِقَالُ بِوَاسِطَةٍ كَقَوْلِهِمْ كِنَايَةً عَنِ الْمِضْيَافِ هُوَ كَثِيرُ الرَّمَادِ');
+      const lad = far ? KinayaEngine.ladder((Array.isArray(far.kinaya) ? far.kinaya : [far.kinaya])[0]) : null;
+      return { seeds, sababi: one('طَوِيلٌ نِجَادُهُ'), idafa: one('طَوِيلُ النِّجَادِ'), nisba: one('الْمَجْدُ بَيْنَ ثَوْبَيْهِ'), marks: one('حَيٌّ مُسْتَوِي الْقَامَةِ عَرِيضُ الْأَظْفَارِ'), received: one('وَالطَّاعِنِينَ مَجَامِعَ الْأَضْغَانِ'),
+               tarid: one('الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ'), elative: one('وَلَكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ'), plain: one('كَتَبَ زَيْدٌ رِسَالَةً'), near: KinayaEngine.ladder({ wasait: [] }), lad, farFound: !!far };
+    });
+    const empty = r.seeds.filter(([, n]) => !n).map(([s]) => s); if (empty.length) throw new Error('seeds with no frame: ' + empty.join(' | '));
+    if (r.sababi !== 'sifa|sababi|false|0-1') throw new Error('طَوِيلٌ نِجَادُهُ is the pure kinaya (the belt is the doer): ' + r.sababi);
+    if (r.idafa !== 'sifa|idafa|true|0-1') throw new Error('طَوِيلُ النِّجَادِ folds the doer into the idafa (a shade of tasrih): ' + r.idafa);
+    if (!/^nisba\|zarf/.test(r.nisba)) throw new Error('الْمَجْدُ بَيْنَ ثَوْبَيْهِ is a nisba sought: ' + r.nisba);
+    if (!/^mawsuf\|marks\|.*\|0-4$/.test(r.marks)) throw new Error('the run of marks with no head noun is a mawsuf sought: ' + r.marks);
+    if (!/^mawsuf\|received/.test(r.received)) throw new Error('مَجَامِعَ الْأَضْغَانِ is the received mawsuf: ' + r.received);
+    if (!/^nisba\|tarid/.test(r.tarid)) throw new Error('the definition by exclusion is the taʿrid candidate: ' + r.tarid);
+    if (r.elative !== '∅' || r.plain !== '∅') throw new Error('no kinaya on an elative annexed or on plain prose: ' + r.elative + ' ' + r.plain);
+    if (!r.near.near || r.near.sub !== 'qariba' || r.near.sakkaki !== 'ima') throw new Error('no rung: near, and imaʾ: ' + JSON.stringify(r.near));
+    if (!r.farFound || !r.lad || r.lad.count !== 4 || r.lad.sub !== 'baida' || r.lad.sakkaki !== 'talwih') throw new Error('كَثِيرُ الرَّمَادِ climbs four rungs to talwih: ' + JSON.stringify(r.lad));
+  });
+
+  await check('the BadiEngine — seeds: the tibaq of affirmation off the stored contraries (two nouns, two verbs, two particles, one of each), of negation off one verb denied and affirmed; the copula denied and affirmed is no tibaq', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => BadiEngine.readText(s).frames.map(f => f.sub + '|' + f.class + '|' + f.pair.join('-')).join(';') || '∅';
+      return { seeds: BadiEngine.SEEDS.map(s => [s, BadiEngine.readText(s).frames.length]), fil: one('يُحْيِي وَيُمِيتُ'), ism: one('وَتَحْسَبُهُمْ أَيْقَاظًا وَهُمْ رُقُودٌ'), harf: one('لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ'), mixed: one('أَوَمَنْ كَانَ مَيْتًا فَأَحْيَيْنَاهُ'),
+               salb: one('وَلَكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ يَعْلَمُونَ ظَاهِرًا'), kana: one('مَا لَمْ يَكُنْ مَلْزُومًا لَمْ يَنْتَقِلْ مِنْهُ فَيَكُونُ الِانْتِقَالُ'), plain: one('كَتَبَ زَيْدٌ رِسَالَةً') };
+    });
+    const empty = r.seeds.filter(([, n]) => !n).map(([s]) => s); if (empty.length) throw new Error('seeds with no frame: ' + empty.join(' | '));
+    if (r.fil !== 'ijab|fil|0-1') throw new Error('يُحْيِي وَيُمِيتُ: two verbs affirmed: ' + r.fil);
+    if (!/ijab\|ism\|1-3/.test(r.ism)) throw new Error('أَيْقَاظًا … رُقُودٌ: two nouns: ' + r.ism);
+    if (!/ijab\|harf\|0-3/.test(r.harf)) throw new Error('لَهَا … وَعَلَيْهَا: two particles: ' + r.harf);
+    if (!/ijab\|mixed\|2-3/.test(r.mixed)) throw new Error('مَيْتًا فَأَحْيَيْنَاهُ: a noun against a verb: ' + r.mixed);
+    if (!/salb\|fil\|4-5/.test(r.salb)) throw new Error('لَا يَعْلَمُونَ يَعْلَمُونَ: the tibaq of negation: ' + r.salb);
+    if (r.kana !== '∅' || r.plain !== '∅') throw new Error('the copula and plain prose carry no tibaq: ' + r.kana + ' ' + r.plain);
+  });
+
+  await check('the TaqdirEngine — the ghosts graded against the stored مُسْتَتِر lines (recall, the pronoun named, no false ghost), the seeds, and the stored-line reader over the corpus', async () => {
+    const r = await page.evaluate(() => {
+      const c = TaqdirEngine.corpus(null, 80);
+      const one = s => TaqdirEngine.readText(s).ghosts.map(g => g.kind + ':' + g.text + (g.wujub ? '!' : '')).join(';') || '∅';
+      let lines = 0; STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach(t => { if (TaqdirEngine.fromLine(t)) lines++; }))));
+      return { recall: c.recall, textAcc: c.textAcc, n: c.n, false: c.false, miss: c.miss.slice(0, 4).map(m => m.w + '→' + (m.got || '∅')), amr: one('اكْتُبْ'), qarya: one('وَاسْأَلِ الْقَرْيَةَ'), zarf: one('زَيْدٌ فِي الدَّارِ'), subhan: one('سُبْحَانَ اللهِ'), mazi: one('كَتَبَ الدَّرْسَ'), named: one('قَامَتْ هِنْدٌ'), written: one('قُلْتُ الْحَقَّ'), lines };
+    });
+    if (r.n < 50) throw new Error('the graded set is too small: ' + r.n);
+    if (r.recall < 90) throw new Error('ghost recall ' + r.recall + '% < 90 (measured 97.8 at v172): ' + r.miss.join(' '));
+    if (r.textAcc < 95) throw new Error('the pronoun named ' + r.textAcc + '% < 95');
+    if (r.false > 1) throw new Error('false ghosts on the corpus: ' + r.false);
+    if (r.amr !== 'mustatir:أَنْتَ!') throw new Error('the amr conceals «you» of necessity: ' + r.amr);
+    if (!/mudaf:أَهْلَ/.test(r.qarya) || !/mustatir:أَنْتَ!/.test(r.qarya)) throw new Error('وَاسْأَلِ الْقَرْيَةَ: the dropped mudaf and the concealed doer: ' + r.qarya);
+    if (!/mutaalliq:كَائِنٌ/.test(r.zarf)) throw new Error('the jarr-phrase khabar hangs on an estimated كَائِنٌ: ' + r.zarf);
+    if (!/amil:أُسَبِّحُ/.test(r.subhan)) throw new Error('سُبْحَانَ has its governor never written: ' + r.subhan);
+    if (r.mazi !== 'mustatir:هُوَ') throw new Error('the bare mazi conceals «he» by leave: ' + r.mazi);
+    if (r.named !== '∅' || r.written !== '∅') throw new Error('a named doer and a written doer leave no ghost: ' + r.named + ' ' + r.written);
+    if (r.lines < 300) throw new Error('the stored lines name their ghosts: ' + r.lines);
+  });
+
+  await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
+    const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
+      return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });
+    if (r.entries < 250) throw new Error('the audit reaches the glossary: ' + r.entries);
+    if (r.pct < 95) throw new Error('audit ' + r.pct + '% < 95 (measured 98.9 at v172): ' + r.disagree.join(' | '));
+    const want = { karim: 'فَعِيل:sifa-mushabbaha/sighat-mubalagha', allam: 'فَعَّال:sighat-mubalagha', midyaf: 'مِفْعَال:sighat-mubalagha/ism-ala', akhass: 'أَفَلّ:ism-tafdil', ahmar: 'أَفْعَل:ism-tafdil/colour', atshan: 'فَعْلَان:sifa-mushabbaha', maktub: 'مَفْعُول:ism-maful', muallim: 'مُفْعِل:ism-fail', muallam: 'مُفْعَل:ism-maful', qadin: 'فَاعٍ:ism-fail', mikhdham: 'مِفْعَل:ism-ala', mukhtafin: 'مُفْعٍ:ism-fail', marii: 'مَفْعُول:ism-maful', dunya: 'فُعْلَى:ism-tafdil', murid: 'مُفِيل:ism-fail', murad: 'مُفَال:ism-maful', mulabas: 'مُفْعَل:ism-maful', kitab: '—:unknown' };
+    const N = x => (x || '').normalize('NFC');
+    for (const [k, v] of Object.entries(want)) if (N(r[k]) !== N(v)) throw new Error(k + ': ' + r[k] + ' (want ' + v + ')');
+  });
+
+  await check('the kinaya ladder, the tibaq poles and the doors strip in the sheet; the taqdir toggle and its ghost pills; the Kinaya lab with the chapters\' own sentences; the Atlas rings — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const r1 = await page.evaluate(() => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st);
+        const c = [...document.querySelectorAll('.jml-chip')].find(x => /كِنَايَة/.test(x.textContent) && /نِجَادُهُ/.test((x.closest('.sentence') || {}).textContent || '')); if (!c) return { noChip: true }; c.click(); return { ok: true }; });
+      if (r1.noChip) throw new Error('no كِنَايَة chip on the sentence of the two belts');
+      await page.waitForSelector('.sheet.show .kn-svg', { state: 'attached', timeout: 8000 });
+      const r2 = await page.evaluate(() => ({ svg: document.querySelectorAll('.sheet .kn-svg').length, doors: [...document.querySelectorAll('.sheet .bayan-doors .door.lit')].map(d => d.dataset.door), agree: !!document.querySelector('.sheet .kinaya .ts-agree.ok'), ghost: document.querySelectorAll('.sheet .kn-ghost').length, chips: document.querySelectorAll('.sheet .kn-ladder-chips .ts-chip').length, fits: document.documentElement.scrollWidth <= window.innerWidth + 1 }));
+      if (r2.svg < 2 || !r2.doors.includes('kn') || !r2.agree || r2.ghost < 1 || r2.chips < 6) throw new Error('the kinaya panel: ' + JSON.stringify(r2));
+      if (!r2.fits) throw new Error('the sheet scrolls sideways on a phone');
+      await page.evaluate(() => closeSheet()); await page.waitForTimeout(400);
+      await page.evaluate(() => { const c = [...document.querySelectorAll('.jml-chip')].find(x => /طِبَاق/.test(x.textContent) && /أَيْقَاظًا/.test((x.closest('.sentence') || {}).textContent || '')); if (!c) throw new Error('no طِبَاق chip'); c.click(); });
+      await page.waitForSelector('.sheet.show .bd-pole', { timeout: 8000 });
+      const r3 = await page.evaluate(() => ({ poles: document.querySelectorAll('.sheet .bd-pole').length, agree: !!document.querySelector('.sheet .badi .ts-agree.ok') }));
+      if (r3.poles !== 2 || !r3.agree) throw new Error('the tibaq poles: ' + JSON.stringify(r3));
+      await page.evaluate(() => closeSheet()); await page.waitForTimeout(300);
+      const r4 = await page.evaluate(() => { const vis = () => [...document.querySelectorAll('.ghost')].filter(g => g.offsetParent !== null).length; if (state.taqdir) document.getElementById('taqdirToggle').click();
+        const before = vis(); document.getElementById('taqdirToggle').click(); const on = document.body.classList.contains('taqdir-mode'); const after = vis(); const legend = !!document.getElementById('ghostLegend'); document.getElementById('taqdirToggle').click();
+        return { before, on, after, legend, off: !document.body.classList.contains('taqdir-mode'), total: document.querySelectorAll('.ghost').length }; });
+      if (r4.before !== 0 || !r4.on || r4.after < 20 || !r4.legend || !r4.off) throw new Error('the taqdir toggle: ' + JSON.stringify(r4));
+      await page.evaluate(() => { conjState.lab = 'kinaya'; conjState.kinaya = ''; openConjugator(); });
+      await page.waitForSelector('#kinayaOut .kn-corpus .qw-seed', { timeout: 6000 });
+      await page.evaluate(() => { const s0 = [...document.querySelectorAll('#kinayaOut .kn-corpus .qw-seed')].find(x => /كَثِيرُ الرَّمَادِ/.test(x.textContent)); s0.click(); });
+      await page.waitForSelector('#kinayaOut .kn-rung', { state: 'attached', timeout: 8000 });
+      const r5 = await page.evaluate(() => ({ rungs: document.querySelectorAll('#kinayaOut .kn-rung').length, far: /بَعِيدَةٌ/.test((document.querySelector('#kinayaOut .kn-ladder-chips') || {}).textContent || ''), fits: document.documentElement.scrollWidth <= window.innerWidth + 1, ring: (QawaidAtlas.engineOf('kinaya') || {}).lab, tibaq: (QawaidAtlas.engineOf('tibaq') || {}).lab }));
+      if (r5.rungs !== 4 || !r5.far) throw new Error('the far ladder in the lab: ' + JSON.stringify(r5));
+      if (!r5.fits) throw new Error('the Kinaya lab scrolls sideways on a phone');
+      if (r5.ring !== 'kinaya' || r5.tibaq !== 'kinaya') throw new Error('the Atlas rings the kinaya and the tibaq: ' + JSON.stringify(r5));
+    } finally { await page.setViewportSize(was); await page.evaluate((p0) => { try { closeSheet(); } catch (e) {} setPremium(p0); }, prem); }
   });
   // ---------------------------------------------------------------- wave 14: the bayan door
   await check('the TashbihEngine names the four arkan off the nahw seats — seeds', async () => {

@@ -570,3 +570,55 @@ sentence through the engine, so the reader moves from the chapter's
 table to the engine's reading of the same words in one touch. The grid
 follows the seeds, not the frame, because it is a map of the chapter,
 not a claim about the sentence typed.
+
+## 17. The kinaya ladder, the tibaq poles, and the ghost layer (wave 18)
+
+**A kinaya is a climb, so it is drawn as one.** Under every kinaya frame in
+the sheet and the lab, `kinayaLadderSvg` stands two rails between the SAID
+at the foot (الْمَكْنِيُّ بِهِ — the words themselves, in the reading face) and
+the MEANT at the top (الْمَكْنِيُّ عَنْهُ — the chapter's `lazim`, in the UI face
+on the accent-soft ground), and the chapter's own `wasait` become the
+rungs, numbered from the bottom, each carrying its EN/TR gloss. No rung
+means the near kinaya, and the space between the rails says so in the ok
+colour (قَرِيبَةٌ · near); four rungs is the far one, and the chip row under
+the ladder repeats the count and Sakkaki's name for it (إِيمَاءٌ / رَمْزٌ /
+تَلْوِيحٌ — solid when the chapter names it, dashed when the count alone
+proposes it). The engine never knows the rungs: they are content, and the
+ladder is content drawn; what the engine adds is the KIND (a chip in the
+Arabic face) and the pronoun test — on the taṣrīḥ frame the sifa carries
+its doer folded in, and the ladder shows it as **[هُوَ]** after the head word,
+the same glyph the taqdir layer uses, because it is the same fact.
+
+**The tibaq is two poles facing.** `badiHtml` draws the pair as two bordered
+words with ⇄ between them; a pole under a negation wears a dashed border
+and its particle in the danger colour, so the tibaq of negation is visibly
+«the same word, once denied». The chips name the sub-kind, the class
+(اسْمَانِ / فِعْلَانِ / حَرْفَانِ / مِنْ نَوْعَيْنِ) and the receipt — the stored table
+or the surface alone.
+
+**The doors strip says which of the four bayan doors a sentence opens.**
+Above the panels, four small doors (🪞 تَشْبِيه · 🌉 مَجَاز · 🪜 كِنَايَة · ⇄ طِبَاق)
+sit in a row; a lit door is solid on the accent-soft ground, an unlit one
+dashed and faded. It is computed from the authored frames OR the engines'
+reading, at open, on the one sentence — never at render of the page.
+
+**The ghost layer is a toggle, not a mode.** The header button **[هُوَ]**
+(`#taqdirToggle`, `qissa-taqdir`) turns `body.taqdir-mode` on, and every
+word whose STORED i'rab line names a ghost grows a dashed pill beside it:
+the concealed pronoun the line names (هُوَ / هِيَ / أَنْتَ / أَنَا / نَحْنُ), the
+deputy, the estimated كَائِنٌ a jarr phrase hangs on, the dropped mudaf
+before the word it left. The pills are in the DOM always and shown only
+under the toggle — one CSS rule, no re-render — and they come from
+`TaqdirEngine.fromLine`, a regex over the human line, never from the
+engine: a story renders hundreds of words at once, and the engine's own
+ghosts (graded 97.8% against those lines) belong to the sheet and the
+lab, where one sentence is analysed. A legend line under the header says
+what the dashes mean, in the UI language.
+
+**The Kinaya lab (🪜) has three seed shelves.** The engine's own seeds, the
+tibaq seeds, and — new — the chapters' own sentences (مِنَ الْمَتْنِ): a seed
+from the corpus is looked up by its bare letters (`KinayaEngine.corpusFrame`)
+and its authored frame lends the ladder its rungs, so the lab can show the
+far kinaya climbing exactly as the sheet does. The Atlas rings the kinaya
+and the tibaq notes now (`ENGINE_OF` → the kinaya lab), and the chip on a
+sentence says كِنَايَة or طِبَاق where the authored frame is one.

@@ -127,6 +127,13 @@ def build_story(pkg: Path, irab_tr=None):
                 # the authored majaz frame (wave 16): the word, its literal and intended
                 # meanings, the qarina and the 'alaqa — the MajazEngine's answer key
                 sentence["majaz"] = sen["majaz"]
+            if sen.get("kinaya"):
+                # the authored kinaya frame (wave 18): the span, its kind (sifa / mawsuf /
+                # nisba), the lazim it stands for and the wasait — the KinayaEngine's answer key
+                sentence["kinaya"] = sen["kinaya"]
+            if sen.get("badi"):
+                # the authored badi frame (wave 18): a tibaq pair with its sub-kind — the BadiEngine's key
+                sentence["badi"] = sen["badi"]
             sentences.append(sentence)
         chapter = {"n": ch["n"], "title": ch["title"], "sentences": sentences}
         if ch.get("audioFile"):
@@ -277,6 +284,9 @@ def main():
             {"id": "bayan", "ar": "الْبَيَان",
              "label": {"en": "Figuration — the Talkhis, Fann 2: tashbih, majaz, kinaya",
                        "tr": "Beyân — Telhîs'in ikinci fenni: teşbih, mecaz, kinaye"}},
+            {"id": "badi", "ar": "الْبَدِيع",
+             "label": {"en": "Embellishment — the Talkhis, Fann 3: tibaq, muqabala, jinas",
+                       "tr": "Bedî' — Telhîs'in üçüncü fenni: tıbâk, mukabele, cinas"}},
         ]),
         END,
     ])

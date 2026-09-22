@@ -4553,3 +4553,102 @@ Chapters 52–54 of the Talkhīṣ carry 68 sentences and 37 majaz frames, and e
 - **The bank's first run after the wave named the rest:** the seven تَعَالَى of ch52 tagged «part» against every other chapter's «verb» (retagged — one token, one convention); ﷺ read as a noun by the analyzer (a symbol row is a particle for every reader of the rows, not only the ḍabṭ); كَذَا with a root guess (a closed-class kināya now, mabni); two paradigms the release audit refused — قَرَنَ and أَثْبَتَ, a lām that is ن or ت meeting the same suffix letter, written with the fakk because the author script skipped the `idgham` wrapper this file already prescribes; and two iʿrāb lines whose FIRST case keyword belonged to a neighbour (وَسَالَتْ read as «jarr» off its clue's مَجْرُور, كَاللُّغْزِ as «harf» off its kāf) — the case reader takes the first keyword, so the token's own case is stated first.
 - **What the full release found after the measured gates were green — six regressions, each a new rule reaching one word too far.** (1) The strict seam-tail pattern refused the WASL vowel on a pronoun's mim (جَاءَتْهُمُ الْبَيِّنَاتُ، أَمَرَكُمُ اللهُ) — the pronoun wears its own vowel, and the letter after it may wear the meeting-of-sakins damma. (2) The author's-voice rule overrode a WRITTEN damma: شَبَّهَ الشَّاعِرُ الْعِلْمَ names its doer, and a noun wearing raf' is never the author's object. (3) The كَمَا فِي exemption dropped the jarr on a cited NOUN (كَمَا فِي تَشْبِيهِ ثَوْبٍ): the flag now only stands the verb guard down; the word keeps its afterJarr. (4) The إِمَّا … أَوْ pairing stole a pronoun-bearing ma'tuf from the parity walk (فِي نَوْعِهِ أَوْ جِنْسِهِ) — it applies to a bare ma'tuf only. (5) Fixing the speaker's-ya guard took away an accident the annexed-masdar frame had leaned on: يُقْعِي جُلُوسَ الْبَدَوِيِّ had «found» its mushabbah in a phantom pronoun; the frame now names the hidden doer of a third-person verb on its own. (6) Two Qawaid alarms on the new chapters were old holes the content exposed: IrabSign's seam peel and the CASE layer's did not know لِلْ as the article (لِلْمُشَبَّهِ lost its ha and read nasb), and the governor walk broke at a verb before reaching the jarr phrase a joined majrur joins (وَمَا يُشْتَقُّ مِنْهُ وَالْحَرْفِ). Meta-rule, restated with a cost attached: measure the neighbours BEFORE the release — the full run costs two hours per pass and this wave paid three.
 - **The git checkout that ate a wave.** `git checkout -- prototype/reader.html` restored the committed v170 shell and discarded every uncommitted wave-17 patch; the shell was rebuilt from the patch scripts in the scratchpad plus two inline edits recovered from the session transcript. Keep every engine edit in a numbered patch script (patch17a…), never inline, so a lost working tree is a replay and not a loss.
+
+## The kinaya's kinds, the tibaq, and the ghost layer — four engines graded on their own chapters (wave 18, v172)
+
+Chapters 55–57 of the Talkhīṣ carry the majāz by omission and addition, the
+kināya's three kinds and Sakkākī's four names, and the opening of the badīʿ
+with the ṭibāq. Four engines arrived with them, and every one is graded on
+something a human wrote down: **KinayaEngine** (10/10 authored frames),
+**BadiEngine** (6/6), **TaqdirEngine** (97.8% recall against the corpus's
+own «ضَمِيرٌ مُسْتَتِرٌ» lines, every named pronoun right, no false ghost),
+**SifaEngine** (98.9% against the glossary's own kinds over 271 entries).
+Endings-mode ḍabṭ: ch55 98.0, ch56 96.0, ch57 100 (floors 95/92/97). The
+lessons, each paid for by a named token:
+
+- **A helper's name is not its contract — read it before you lean on it.**
+  The kināya's article test was `MajazEngine.core(w)` + `/^ال/`, and
+  `MajazEngine.core` STRIPS the article (and a leading ب/ل/ك: بَيْنَ came
+  back as «ين»). `hasAl` was never true and the nisba rule never saw its
+  zarf; nine authored frames failed on one borrowed function. The fix reads
+  the bare word. This is the `stem`-chain lesson (v130) again: a helper
+  written for one question is wrong for the next.
+- **A regex skeleton that deletes the sukūn cannot match a pattern that
+  asks for one.** `SifaEngine.classify` stripped `[ًٌٍْ]` and then tested
+  `مَفْعُول` with an explicit ْ — 46.9% on the audit, and مَوْجُود «unknown».
+  Keep the sukūn in the skeleton and make it optional in the patterns
+  (unvowelled input); the NFC shadda rides between a letter and its vowel,
+  so the mim-forms test a shadda-less copy. 46.9 → 98.9 in one patch.
+- **The cell's form is the paradigm's spelling, never the written word's.**
+  The whole-word match learnt to see through a joining wāw (وَأُعْطِيَ) and
+  returned `form: "وَقَتَلَ"` — so `joined()` compared the cell against itself
+  and every «قَتَلَ الْبُخْلَ وَأَحْيَا السَّمَاحَا» lost its inherited doer. The
+  neighbour sweep caught it in ch53; the fix is one line.
+- **A rule for one word stands down while a larger frame is open.** «وَاحِد
+  after an indefinite is its naʿt» (نَوْعٍ وَاحِدٍ) stole the first item of a
+  number's list (سَبْعَةُ أَقْسَامٍ وَاحِدٌ حِسِّيٌّ …) from badal al-tafṣīl and
+  dropped ch48 below its floor. `!(st.tafsil && !st.tafsil.used)`.
+- **The full-mode readers may read the marks; the rebuilder may not.**
+  `DabtEngine.writtenCase` reads a written ending (through a shadda, past
+  the tanwīn's seat, not on the dual's kasra-nūn or the plural's fatḥa-nūn)
+  and in FULL mode only: a written fatḥa on the first noun after a verb
+  says the doer is concealed (يُمِيتُ الْخَلْقَ), after كَانَ that its ism is
+  (كَانَ مُتَرَدِّدًا), after a passive it is the ḥāl or the second object
+  (لَمْ يُعْرَفْ نَبِيًّا, يُسَمَّى ابْتِدَائِيًّا), a written kasra is never kāna's
+  ism (الْكَامِلَةِ is a naʿt) and after وَلَا joins the majrūr (لَيْسَ بِعَرَضٍ
+  وَلَا جِسْمٍ). In endings mode nothing is written and nothing changes —
+  the ḍabṭ numbers are untouched, the ghost recall went 75 → 98.
+- **The mazi's first and second persons WRITE their doer.** `PRON.mazi`
+  offered أَنَا for قُلْتُ and the corpus refused it as a false ghost within
+  the minute; only the third persons conceal in the māḍī.
+- **The named-doer scan stops at the next clause.** A doer found anywhere
+  later in the sentence is not this verb's; the scan breaks on a verb, a
+  clause particle (inna, shart, istifhām, nidāʾ, ʿaṭf), or a seat that
+  comes after the doer's (any khabar, a new mubtada).
+- **A negated assertion is not the assertion.** «نَائِبُ الْفَاعِلِ هُنَا مَذْكُورٌ لَا
+  مُسْتَتِرٌ» matched `/مُسْتَتِر/` and was graded as a ghost the engine missed.
+  Strip «لَا / لَيْسَ / غَيْرُ + مُسْتَتِر» before testing.
+- **The ghost layer on the page reads the STORED line; the engine's ghosts
+  live in the sheet.** `TaqdirEngine.fromLine` is a regex over the human
+  iʿrāb (334 ghosts over the corpus, 0 ms); the engine analyses one sentence
+  in the sheet and the lab. A story renders hundreds of words at once — the
+  jml-chip lesson, one layer over.
+- **Two engines that read the same seats must be graded together.** The
+  chapter probe printed `KN:` lines only when the builder forwarded the
+  `kinaya` field — it had not — so the first run showed engine reads
+  (`KN-UNEXPECTED`) and no agreements at all. When a new authored field
+  enters a chapter, the builder's forwarding list is the first thing to
+  check, before the engine.
+- **A table that «outranks every reading below» must be TESTED before them.** The
+  received mursal pairs sat under the omission rule with a comment promising
+  precedence; nothing enforced it, and the moment the nahw got نَادِيَهُ right
+  (its written fatḥa: the object) the omission rule reached it first and
+  فَلْيَدْعُ نَادِيَهُ stopped being the table's mursal. A precedence stated in a
+  comment is a precedence that does not exist.
+- **A rule tightened with a state the previous line resets is a dead rule.**
+  «The clause verb is spent, the noun is inna's khabar» gained `st.innaOpen`
+  in wave 18 — and the verb branch closes inna two hundred lines earlier, so
+  the rule never fired again and كَأَنَّهَا … ضَعُفْنَ بِهَا أَوَائِلُ lost its
+  khabar. When adding a state test to an old rule, grep for where that state
+  is written between the two.
+- **«The pronoun ism does the khabar's act» only where the cell conceals its
+  doer.** أَنَّهَا تُخَالِفُ is a 3fs cell; ضَعُفْنَ writes its own doer in the nūn.
+  Guard on cell 0/3 — the same «read the person» lesson as the after-verb
+  expectations (v155).
+- **الدُّنْيَا writes فُعْلَى with a plain alif.** The gender bar on an ال-naʿt read
+  «no tāʾ» as masculine and refused الْحَيَاةِ الدُّنْيَا; a maqṣūr or mamdūd
+  ending (ى, يا, اء) cannot tell gender, so it does not bar.
+- **`naqis1` builds the alif-type māḍī and nothing warns you** — the ch8
+  lesson, paid again on خَشِيَ (*خَشِى، *خَشِوْا shipped to the regeneration
+  gate). A samiʿa-bāb nāqiṣ goes through `entry()` with `mazi_naqis_kasra`;
+  and `put_morph` only ADDS, so a wrong stored paradigm must be deleted
+  before the script can replace it.
+- **A new registry GROUP breaks every gate that pinned the old one.** Moving
+  ṭibāq/muqābala to `badi` and kināya to `bayan` failed the wave-2 «fourth
+  group» gates and the plain-lede check keyed on the word «opposite»; widen
+  the gates to the balāgha family, and reword the lede, on the day the group
+  is added — before the two-hour run finds them.
+- **Measure the neighbours BEFORE the release, in the background.** A
+  named-gate sweep (the ḍabṭ floors, the wave-14/16/17 chapter gates) runs
+  in ~25 minutes under nohup and found both regressions above while the
+  design work went on; the release run costs two hours per pass.

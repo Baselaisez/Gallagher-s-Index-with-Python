@@ -42,7 +42,7 @@ REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examp
 # A "plain" summary longer than this is not a summary. The full account belongs
 # in `explanation`, which the reader shows behind a toggle.
 PLAIN_MAX = 320
-NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan"}
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi"}
 
 
 def strip_diacritics(text: str) -> str:
@@ -312,6 +312,51 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
                         rep.error(f"{where}: tashbih index {k!r} is out of range (sentence has {len(tokens)} tokens)")
                 if not ts.get("kind"):
                     rep.error(f"{where}: tashbih frame needs a 'kind'")
+        # Authored KINAYA frames (wave 18): the said as a span [first, last],
+        # the kind by what is sought, the meant, the rungs; and BADIʿ frames:
+        # a figure joining two token indexes.
+        kf = sen.get("kinaya")
+        if kf is not None:
+            frames = kf if isinstance(kf, list) else [kf]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or not isinstance(fr.get("span"), list) or len(fr["span"]) != 2 \
+                        or not all(isinstance(x, int) for x in fr["span"]):
+                    rep.error(f"{where}: kinaya[{n_}] needs a 'span' of two integers")
+                    continue
+                a_, b_ = fr["span"]
+                if a_ < 0 or b_ >= len(tokens) or a_ > b_:
+                    rep.error(f"{where}: kinaya[{n_}] span {fr['span']} is out of range (sentence has {len(tokens)} tokens)")
+                if fr.get("kind") not in ("sifa", "mawsuf", "nisba"):
+                    rep.error(f"{where}: kinaya[{n_}] kind {fr.get('kind')!r} not in sifa|mawsuf|nisba")
+                if "sub" in fr and fr["sub"] not in ("qariba-wadiha", "qariba-khafiyya", "baida"):
+                    rep.error(f"{where}: kinaya[{n_}] sub {fr['sub']!r} unknown")
+                if "sakkaki" in fr and fr["sakkaki"] not in ("tarid", "talwih", "ramz", "ima"):
+                    rep.error(f"{where}: kinaya[{n_}] sakkaki {fr['sakkaki']!r} unknown")
+                lz = fr.get("lazim")
+                if not (isinstance(lz, dict) and lz.get("en") and lz.get("tr")):
+                    rep.error(f"{where}: kinaya[{n_}].lazim must carry both en and tr")
+                for r_ in fr.get("wasait", []) or []:
+                    if not (isinstance(r_, dict) and r_.get("en") and r_.get("tr")):
+                        rep.error(f"{where}: kinaya[{n_}] every rung must carry both en and tr")
+                if "head" in fr and (not isinstance(fr["head"], int) or fr["head"] < a_ or fr["head"] > b_):
+                    rep.error(f"{where}: kinaya[{n_}] head {fr.get('head')!r} must lie inside the span")
+                for k_ in fr:
+                    if k_ not in ("span", "kind", "sub", "lazim", "wasait", "sakkaki", "tasrih", "head", "mawsuf"):
+                        rep.error(f"{where}: kinaya[{n_}] has an unknown field {k_!r}")
+        bf = sen.get("badi")
+        if bf is not None:
+            frames = bf if isinstance(bf, list) else [bf]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or fr.get("kind") not in ("tibaq", "muqabala", "muraat-al-nazir"):
+                    rep.error(f"{where}: badi[{n_}] kind {fr.get('kind') if isinstance(fr, dict) else fr!r} unknown")
+                    continue
+                pr = fr.get("pair")
+                if not (isinstance(pr, list) and len(pr) == 2 and all(isinstance(x, int) and 0 <= x < len(tokens) for x in pr)):
+                    rep.error(f"{where}: badi[{n_}] needs a 'pair' of two token indexes inside the sentence")
+                if "sub" in fr and fr["sub"] not in ("ijab", "salb"):
+                    rep.error(f"{where}: badi[{n_}] sub {fr['sub']!r} not in ijab|salb")
+                if "class" in fr and fr["class"] not in ("ism", "fil", "harf", "mixed"):
+                    rep.error(f"{where}: badi[{n_}] class {fr['class']!r} unknown")
         mj = sen.get("majaz")
         if mj is not None:
             frames = mj if isinstance(mj, list) else [mj]

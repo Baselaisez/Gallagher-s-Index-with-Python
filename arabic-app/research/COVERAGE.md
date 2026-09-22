@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (54 chapters at v171 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire, haqīqa/majāz and the istiʿāra with all its kinds), plus `khabar-insha`. Still unconsumed: kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (57 chapters at v172 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire, haqīqa/majāz and the istiʿāra with all its kinds), plus `khabar-insha`. Still unconsumed: kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2464,6 +2464,43 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v172 — wave 18: the majaz by omission and addition, the kinaya and
+  its kinds, the badiʿ opens; the KinayaEngine, the BadiEngine, the
+  TaqdirEngine, the SifaEngine.** Three chapters from
+  talkhis-al-miftah-balagha.txt (~3874-3975): ch55 the majaz by DROPPING
+  a word (وَجَاءَ رَبُّكَ = أَمْرُ رَبِّكَ, وَاسْأَلِ الْقَرْيَةَ) and by ADDING one
+  (لَيْسَ كَمِثْلِهِ شَيْءٌ), the kinaya's definition and how it differs from
+  the majaz (the literal reading survives), the objection and its reply;
+  ch56 the three kinds — a MAWSUF sought (مَجَامِعَ الْأَضْغَانِ, the marks of
+  the human being), a SIFA sought near-plain (طَوِيلٌ نِجَادُهُ the pure kinaya,
+  طَوِيلُ النِّجَادِ a shade of tasrih), near-hidden (عَرِيضُ الْقَفَا) and far
+  (كَثِيرُ الرَّمَادِ up four rungs), a NISBA sought (الْمَجْدُ بَيْنَ ثَوْبَيْهِ,
+  Ziyad al-Aʿjam's dome over Ibn al-Hashraj) — the mawsuf unspoken, and
+  Sakkaki's four (taʿrid, talwih, ramz, imaʾ); ch57 why majaz and kinaya
+  outrank haqiqa and tasrih, the badiʿ defined and divided, and the tibaq
+  (يُحْيِي وَيُمِيتُ, 18:18, 2:286, 30:7, 5:44 — ijab and salb, two nouns, two
+  verbs, two particles, one of each). 44 sentences, 448 tokens, 10 kinaya
+  frames (kind, sub, lazim, rungs, Sakkaki's name, the pronoun test), 6
+  badi frames, 4 majaz frames; new notes majaz-ziyada-nuqsan,
+  farq-al-kinaya-wal-majaz, aqsam-al-kinaya, kinaya-qariba-baida,
+  tarid-talwih-ramz, fadl-al-majaz-wal-kinaya, ilm-al-badi; the registry's
+  sixth group, badi. Engines: the KinayaEngine reads the kind off the nahw
+  seats (a quality annexed to a thing; a quality-noun seated on a place or
+  a garment of someone's; a run of marks with no head; a definition by
+  exclusion) and runs the pronoun test, 10/10 authored frames agreed; the
+  BadiEngine reads the tibaq of negation off one verb denied and affirmed
+  and the tibaq of affirmation off a stored contrary table, 6/6; the
+  TaqdirEngine restores the ghosts (the concealed doer by cell, the copula's
+  hidden ism, the estimated كَائِنٌ, the dropped mudaf, the never-written
+  governor of سُبْحَانَ / إِيَّاكَ) and is graded against the corpus's own
+  مُسْتَتِر lines — 97.8% recall, every named pronoun right, no false ghost;
+  the SifaEngine classifies a written noun by its scale (36 shapes) and
+  audits itself against the glossary's own kinds — 98.9% over 271
+  entries. Nahw paid for by the chapters: ~35 rules (the citation
+  formulas كَقَوْلِهِ / نَحْوَ / قَوْلُهُمْ open a fresh clause, the sound plural's
+  waw is the doer, the mim-form na't after a diptote mudaf ilayh, the
+  written-marks oracle for the full-mode readers). ḍabṭ: ch55 98.0, ch56
+  96.0, ch57 100 (floors 95/92/97).
 - **v171 — wave 17: the istiʿara's kinds, talkhis ch52-54, the
   IstiaraEngine.** Three chapters from talkhis-al-miftah-balagha.txt
   (~3570-3900): ch52 the istiʿara by its two ends (wifaqiyya /
