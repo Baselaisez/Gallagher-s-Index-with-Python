@@ -4652,3 +4652,221 @@ lessons, each paid for by a named token:
   named-gate sweep (the ḍabṭ floors, the wave-14/16/17 chapter gates) runs
   in ~25 minutes under nohup and found both regressions above while the
   design work went on; the release run costs two hours per pass.
+
+## The badiʿ read whole, the letters aligned, and a learned layer that is graded against the rules (wave 19, v173)
+
+Chapters 58–60 of the Talkhīṣ carry fifteen more figures of the badīʿ — the
+muqābala, murāʿāt al-naẓīr, tashābuh al-aṭrāf, īhām al-tanāsub, the irṣād,
+mushākala, muzāwaja, ʿaks, rujūʿ, tawriya, istikhdām, laff wa-nashr — and the
+two lafẓī figures the notes had only described, the jinās and the sajʿ, now
+have engines. Every figure is graded on something a human wrote: 40 authored
+badīʿ frames (ch58 19/19, ch59 12/12, ch60 9/9 read back), the notes' own
+jinās examples 4/4 and sajʿ examples 3/3, and the corpus's sarf and iʿrāb
+labels for the learned layer. Endings-mode ḍabṭ: ch58 98.3, ch59 97.0,
+ch60 99.5 (floors 96/95/97). The lessons, each paid for by a named
+token or a named afternoon:
+
+- **A figure's frame is a SHAPE, and the validator learns the shape before
+  the engine does.** The badīʿ block in `validate_content.py` was one
+  `{kind, pair}` test; the fifteen kinds need `first/second`, `set`, `pairs`,
+  `word/companion`, `refs`, `near/far`, `murad/other`, `field`, `asl` — so
+  the block is now generic (`BADI_KINDS / BADI_FIELDS / BADI_SUBS`), with
+  the one structural rule the books state (a laff-nashr ijmālī has ONE first
+  and two or more seconds) written in as a check. And the probe harness has
+  the same contract: `probe18` crashed on `f.pair.join` the moment a frame
+  without `pair` arrived, and — subtler — it grades `BadiEngine.read(rows)`
+  WITHOUT the sentence, so the HINTED figures (mushākala, tawriya, istikhdām:
+  the frame names the word, the engine reads the rest) report `none` there
+  and `ok` in `probe19`. Read a probe's `BAD` against what the probe was
+  handed before reading it against the engine.
+- **The hinted figure is the honest half of the badīʿ engine.** Whether
+  اطْبُخُوا was said for خِيطُوا is knowledge of the two things; the engine
+  claims only what the surface settles — the companion word that shares a
+  stem (taḥqīq vs taqdīr), the pronouns that return to an istikhdām's word
+  (lafẓ-ḍamīr vs ḍamīrayn), the furnishing that makes a tawriya murashshaḥa
+  — and the tawriya's FURNISH table lost عرش under استوى because a stored
+  furnishing that the books do not recite is a guess dressed as a table.
+- **The ʿaks is read by LEMMA KEY, and the pronoun is its own key.** عَادَاتُ
+  السَّادَاتِ سَادَاتُ الْعَادَاتِ is (A,B)(B,A) by lemma; لَهَا مَا كَسَبَتْ وَعَلَيْهَا
+  is (pronoun, particle)(particle, pronoun) — so a fused jarr+pronoun yields
+  the PRONOUN as key and the ṭarafayn shape is two pronouns around two
+  particles. And a muqābala whose four words are exactly an ʿaks IS the ʿaks:
+  the muqābala reader is run first and its frame withdrawn when the ʿaks
+  reader claims the same four indexes.
+- **The negation the tashābuh and the rujūʿ need must not be a relative.**
+  `negBefore` read every مَا as a negation; after a jarr letter or a mawṣūl
+  it is the relative, and the rujūʿ's «negated clause, then بَلَى» fired on
+  the wrong clause. Same lesson as MaEngine's whole bab, at a new consumer.
+- **`joined()` must open on a hamza.** The lexicon test behind the wāw refused
+  every hamza-initial remainder (وَأَقْبَحَ), because the regex that guessed a
+  word from its letters started at ب; the segment/lexicon route now runs
+  first and the regex only for five-letter-plus remainders.
+- **Jinās is read by ROOT first, then by letters.** الْمَالِ / بِمَالٍ is no
+  jinās muḥarraf — the clitic is not a letter of the word — so `vowels()`
+  strips و/ف and ب/ل/ك before comparing, and the article's shadda with them;
+  ishtiqāq is decided by `rootOf` (memoised: the corpus sweep in the jinās
+  game walked every pair's lexicon roots and timed out until it was) before
+  any letter test; sameKey by lemma + class refuses a word against itself.
+  The letter-true oddities the sweep still shows (الْبَشَرِ بَكْرٍ) are what
+  the books call jinās too — leave them.
+- **Sajʿ is clauses, not words.** The first cut rhymed coordinated single
+  words and sound plurals (every ـِينَ rhymes with every ـِينَ). Clauses are
+  cut only at wāw joiners that open a clause (a verb, a particle, a fresh
+  mubtada, noun+noun), each must be two words or more, the pausal form drops
+  ًا and ة before the rhyme is read, and a sound-plural rhyme is refused.
+  The near-miss the sajʿ note already teaches (كَشَجَرٍ بِلَا ثَمَرٍ — two
+  fawāṣil on different letters) is the control.
+- **A model trained on the rules' own labels is graded against the rules.**
+  `BabModel` (multinomial LR on `content/models/bab_model.json`, trained by
+  `tools/ml/train_bab.py` on the corpus's 265 Form-I verbs) predicts the
+  samāʿī bāb of a root the corpus has never met: 57.0% held-out top-1, 76.2%
+  top-2 against a 35.5% majority — ablations with class features and bigrams
+  were WORSE, so the base features ship. `SeatModel` (naive Bayes over
+  `RuleMiner.feats`) is evaluated by story parity against DabtEngine on the
+  same tokens: engine 65.0% (19% undecided), model 51.9% — the model loses to
+  the rules, which is the finding: on its CONFIDENT subset (204 of 675) it
+  reaches 81.4%, and that is the only place the app lets it speak. The miner
+  writes 59 rules of the form `p=jarr & e=0 → majrur (111, 100%)` — the
+  Awāmil doctrine re-derived from labels — and the Learning lab prints them
+  with their support. Two traps: the first name (`IrabModel`) collided with
+  the perceptron the app already has — grep for a class name before minting
+  it; and a full-corpus evaluation ran past fifteen minutes and closed the
+  Playwright target — cap per story (40) and gather in slices.
+- **The Sarf lab wears the model's badge only where the paradigm is silent.**
+  A root the corpus recites gets its bāb from the corpus; the 🧠 badge with
+  a percentage appears only when no stored paradigm answers, and the
+  percentage is rendered `dir="ltr"` so the number does not flip.
+- **The nahw the badīʿ chapters forced (patch19g–l), each rule named by its
+  token:** the mufarragh exception (لَنْ يَدْخُلَ الْجَنَّةَ إِلَّا مَنْ — the noun
+  before إِلَّا is the object, the word after it the doer); the verb of wonder
+  conceals its doer (مَا أَحْسَنَ الدِّينَ … وَأَقْبَحَ الْكُفْرَ, a TAAJJUB set); a
+  transitive verb right after a relative carries the relative as doer and a
+  plain definite noun after it is the object (بِمَا يُنَاسِبُ ابْتِدَاءَهُ، مِمَّا
+  يُلَائِمُ الْقَرِيبَ) — guarded three ways, each by a regression the baseline
+  sweep caught: never an intransitive verb (مَا تَعَدَّدَ طَرَفَاهُ، مَا امْتَنَعَ
+  اجْتِمَاعُ), never a construct or a chain head as the "object", and never a
+  clause-initial مَا before a verb, which is the negation (فَمَا رَبِحَتْ
+  تِجَارَتُهُمْ); the dual after a fronted jarr phrase is the delayed mubtada and
+  the two indefinites after it its badal of detail (لَهُ مَعْنَيَانِ قَرِيبٌ وَبَعِيدٌ
+  — even after a passive whose naib is already seated); a wāw-joined jarr
+  particle after a complete nominal clause opens a new one; a clause-initial
+  jarr phrase fronts the khabar and the DEFINITE noun after it is the mubtada,
+  a bare indefinite after that its ḥāl (فَفِي الْأَوَّلَيْنِ مُرَاعَاةُ النَّظِيرِ
+  حَقِيقَةً — the lexicon's plain masdar outranks the فَعِيلَة / مُفَاعَلَة shapes);
+  a noun after ثُمَّ that repeats an earlier noun takes its case and annexes
+  even a relative (ثُمَّ ذِكْرُ مَا لِكُلٍّ); after ثُمَّ and a jarr phrase a
+  definite noun repeats the earlier clause's raf seat with the verb elided
+  (ثُمَّ بِضَمِيرِهِ الْآخَرُ); غَيْر annexes ONE noun and a bare indefinite after its
+  member is the ḥāl (مِنْ غَيْرِ تَعْيِينٍ ثِقَةً); the noun after بَلْ takes the last
+  head's case and an indefinite sifa after it is the ḥāl (بَلِ الْأَسْهُمِ
+  مَبْرِيَّةً); a sentence opening وَقَوْلِ + a name continues the citation list
+  (وَقَوْلِ الْبُحْتُرِيِّ), and the citation is a WALL for the atf walk; the five
+  nouns the analyzer called particles (أَبِي دُلَامَةَ), ابن between two nouns is
+  never the amr of بَنَى and the saying is annexed to the son (قَوْلُ ابْنِ
+  حَيُّوسٍ), the dual annexed by its yāʾ (طَرَفَيْ جُمْلَةٍ); a kasra'd ب/ل on a
+  word the lexicon owns as a noun is that noun whatever verb cell its letters
+  reach (بِأَرْضِ قَوْمٍ ~ لَمْ أَرْضَ); the wāw-joined passive of a two-object
+  verb whose clause already named its subject takes its SECOND object
+  (وَتُسَمَّى التَّنَاسُبَ وَالتَّوْفِيقَ) while the fa-joined one before a definite
+  noun and an indefinite names its own naib (فَسُمِّيَ الْإِيمَانُ صِبْغَةً); a
+  two-object verb wearing its first object as a pronoun takes the next noun as
+  its second (يُسَمُّونَهُ الْمَعْمُودِيَّةَ); the mood reaches over ثُمَّ and أَوْ onto
+  a verb of the SAME VOICE (ثُمَّ يُؤَخَّرَ؛ أَوْ يُرَادَ) and a voice shift opens a
+  new clause (وَيَقَعُ عَلَى وُجُوهٍ) — the copula excepted (فَتَكُونَ); a joined
+  ال-noun opening a clause before a verb whose object pronoun returns to it is
+  the ishtighāl (وَالسَّمَاءَ بَنَيْنَاهَا); the speaker's 1s muḍāriʿ and the
+  passive māḍī share their letters, and after a relative the doer is its
+  ʿāʾid (وَمَا أُضِيفَ إِلَيْهِ); a lām-clitic verb is not a joined noun's OWN verb
+  (اللَّيْلَ وَالنَّهَارَ لِتَسْكُنُوا); the writer writes the annexed dual by its letter
+  and the five verbs' nūn behind a shadda (يُسَمُّونَهُ، يَحِلُّونَ — NFC writes
+  vowel, shadda, wāw, and the old regex asked for the vowel beside the wāw);
+  a diptote name before ابن loses its tanwīn and KEEPS its jarr fatḥa
+  (مُعَاوِيَةَ بْنِ مَالِكٍ). Endings-mode ḍabṭ went ch58 93.1 → 98.3, ch59 92.9
+  → 97.0, ch60 89.7 → 99.5 across the patches, and the regression sweep of
+  ch48–57 came back to its baseline.
+- **A twin candidate offered to EVERY word steals every word's person.** The
+  hollow's shortened majzūm is stored for the 3ms only (يُجِدْ), so patch19h
+  offered the yāʾ-prefixed twin of any نـ/أـ/تـ word as a matching candidate —
+  and the exact pass met the 3ms cell FIRST for every ordinary verb: فَتَكُونَ
+  read as يَكُونُ, نَقْرِيهِمْ as يَقْرِي, أُرِيدَ as يُرِيدُ, تَجِدُ as «he». Five
+  chapters lost a point each and nothing in the new chapters' numbers said so.
+  The twin now lives in `findFormInParadigm` as a LAST resort, on the three
+  governed cells only, after every stored cell has refused. **A candidate that
+  can match a commoner cell than the one it was written for must be tried after
+  that cell, not beside it** — and the baseline diff (every chapter, before and
+  after, sentence by sentence) is what found it; the per-chapter totals alone
+  read as «−1, probably noise».
+- **`joined()` must see a verb the analyzer guessed by its prefix.** With no
+  cell and no lemma, وَتُسَمَّى was «not joined», so it inherited nothing from its
+  clause; no verb opens on wāw + a person letter, so the wāw is a joiner.
+- **The vowelled-word rewrite block runs only on UNMARKED input.** Three rules
+  written into it (بِأَرْضِ, the amr after a pronoun, the annexed pairs) never
+  fired in endings mode, because the block's first line is «if the word carries
+  a mark, return». Read a block's guard before adding a rule to it; the rules
+  moved to the pre-pass that sees every row.
+- **Stems go into the generator WITHOUT their sukūn — fourth payment, five
+  verbs at once.** The ch59 script passed «أَجَدْ», «جَاوَزْ», «لَجِجْ» and every cell
+  shipped a doubled sukūn (invisible on the page, refused by the audit); the
+  amr of a wasl-alif verb stores its VOWEL (اِبْكِ، اُسْلُ، اِسْتَغْنَى — the engine's
+  spelling, which the audit compares); a nūn-final lām needs the `idgham`
+  wrapper (سَكَنَّ). And the engine had its own hole: a bāb-سَمِعَ geminate breaks
+  its stem with the bāb's OWN vowel (لَجِجْتُ، عَضِضْتُ), and the Form-I geminate
+  branch had written the fatḥa for every bāb. The audit is what makes any of
+  this visible; `sarfAudit()` is now pinned empty in the wave's own gate.
+- **A glossary lemma is ONE word.** «مُعَاوِيَةُ بْنُ مَالِكٍ» as the lemma of the
+  token مُعَاوِيَةَ hid the name from every lookup that compares the lemma against
+  the host, and the diptote's fatḥa went with it; the rest of the name belongs
+  in the gloss.
+- **The ʿaks is adjacent and never runs through a joiner.** عَقْلِيٌّ وَمُرَكَّبٌ …
+  وَمُرَكَّبٌ عَقْلِيٌّ is a list; السَّوَادِ لِبَيَانِ … لِبَيَانِ سَوَادِهِ is a phrase
+  repeated four words apart. Both read as ʿaks until the corpus sweep printed
+  them; the real ones (عَادَاتُ السَّادَاتِ، هُنَّ لَهُمْ … هُمْ لَهُنَّ) are gated
+  beside the refusals.
+- **A trace field that reads a `const` declared later kills the whole engine.**
+  Widening the debug push with `copyMood` before its declaration threw a
+  ReferenceError inside `decide()` for every sentence, and the probe that
+  filtered for one line printed nothing at all. When a probe goes silent, run
+  it unfiltered first.
+- **A `//` comment appended to the FIRST line of a multi-line object literal
+  comments out the rest of the object.** The diptote-before-ابن fix put its
+  note at the end of `const opt = { definite: …,` and silently dropped
+  `mudaf`, `dual`, `pron` and every field after — the writer put a tanwīn on
+  every idafa head, dual and ẓarf in the corpus, and the pin that guarded the
+  edit tested only the one word the edit was for. Three chapters fell ten
+  points in the sweep before it was seen. Put the note on its own line, and
+  pin a SENTENCE the change should not touch beside the word it should.
+- **What the full release found after the measured gates were green — thirteen
+  FAILs, four lessons.** (1) The twin's ونَ restoration (patch19a) made
+  أَخُوكَ into أَخُونَ ~ خَانَ through the enclitic peel's alif-restored
+  candidate: three old chapter gates, the Wāw engine's corpus score and the
+  learned layer's engine accuracy all moved, and NONE of the wave's own
+  measurements said so — a candidate rule must name the closed sets it may
+  not touch (the five nouns' wāw), and the old gates are the neighbours'
+  measurement. (2) **A glossary that grows can flip a rule that asks it.**
+  The question-hamza peel accepts أَ + remainder when the lexicon owns the
+  remainder; chapter 58 added the noun نَبْت, and the seed أَنْبَتَ الرَّبِيعُ
+  became «is the plant…?» — the lookup answered by letters. The oracle is now
+  asked with the MARKS (نَبْت is not نَبَتَ). (3) Old gates pin the old shape:
+  the wave-18 Atlas gate asserted «jinās has no ring», the phone gate that the
+  ṭibāq opens the kināya lab, the wave-18 seeds gate read `f.pair` on every
+  frame — each true until this wave; widen the gate the day the engine grows,
+  or the two-hour run finds it. (4) Three engines read one rule three ways:
+  the citation نَحْوَ was cut in DabtEngine's chain, and QawaidEngine's own
+  refused-head rule and the analyzer's dig still annexed it; the jarr clitic
+  on a lexicon noun (بِأَرْضِ) and ابن were decided in DabtEngine's pre-pass
+  while the ANALYZER still called them verbs, so the Qawāʿid ledger raised
+  «majrūr with no governor». A fact about a WORD's class belongs in the
+  analyzer, where every engine reads it; a fact about a SEAT belongs in
+  DabtEngine. And `SMOKE_ONLY=<regex>` now runs a named subset of the suite
+  for triage — the release still runs everything.
+- **Self-kill, third AND fourth time.** `pgrep -f '[p]robe19.js sweep'` killed
+  the shell that ran it because the SAME command line held a heredoc with the
+  literal `probe19.js sweep`; a day later `pgrep -f "[d]abt19f"` killed its
+  shell because a `sed … dabt19f.sh` stood three commands further along the
+  same line. The bracket trick protects against the pgrep's OWN text and
+  nothing else. A kill goes in a command of its own, with nothing after it.
+- **An edit that is not written is not an edit.** The SeatModel rename was
+  applied to the in-memory string and the file re-read before the write; the
+  syntax error survived a whole design probe (`setPremium is not defined` was
+  the script block failing to parse). When a probe reports an undefined global
+  the reader has always defined, run the parse check first.

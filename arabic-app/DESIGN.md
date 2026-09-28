@@ -622,3 +622,88 @@ and its authored frame lends the ladder its rungs, so the lab can show the
 far kinaya climbing exactly as the sheet does. The Atlas rings the kinaya
 and the tibaq notes now (`ENGINE_OF` → the kinaya lab), and the chip on a
 sentence says كِنَايَة or طِبَاق where the authored frame is one.
+
+## 18. Every figure in its own shape, the letters aligned, and the learned layer badged (wave 19)
+
+**A figure of the badiʿ is not a chip — it is a shape.** `badiFrameHtml`
+gives each figure its own drawing, and the reader learns to tell them
+apart by silhouette before reading a chip: the **tibaq** keeps its two
+poles and ⇄; the **muqabala** is two rows with a ⇅ tie under each
+counterpart, so «laugh a little / weep much» reads as two columns; the
+**laff wa-nashr** is the same two rows with ⇣ ties — and when the spread
+runs backwards (Ibn Hayyus: dune, bough, gazelle / glance, figure, haunch)
+the ties turn to crossed ⤨ in the danger colour, so «unordered» is seen,
+not announced; **muraʿat al-nazir** is a set on one row under a dashed
+field label (أَجْرَامُ السَّمَاءِ · the sky), and the **iham al-tanasub** is the
+same set with the borrowed member dashed in the accent, its two senses
+listed under it (الْمُرَادُ / الْمَعْنَى الْآخَرُ); **tashabuh al-atraf** is a
+column of arcs — each closing epithet on the accent ground with ⟵ back to
+the clause it answers, numbered in order; the **irsad** is the forecaster
+in a dotted border, ⋯⟶, the close on the accent ground; the **mushakala**
+shows companion ⟶ word with the word that would have been said hanging
+beside it as a dashed ghost (خِيطُوا behind اطْبُخُوا); the **muzawaja** is
+two rows, each shart/jaza verb ⟶ its yoke; the **ʿaks** is two rows with ⤭
+between them and the two words coloured so the swap is visible; the
+**rujuʿ** strikes the retracted word through in the danger colour and lights
+بَلَى; the **tawriya** puts the word (and its furnishing companion, dashed)
+over two faces, the near sense plain and the far sense — the meant — on the
+accent ground; the **istikhdam** chains the word ⟶ its pronouns, each
+pronoun pole dashed, the two senses under them. The chip row under every
+shape keeps the wave-18 contract (the figure, the sub-kind, the class, the
+receipt — table / surface / *the word from the frame, the rest read*), and
+the § button opens that figure's own note. A frame the engine did not read
+is still drawn, grey, as the chapter's claim; the agree line now counts
+(2/2).
+
+**The jinas is drawn letter by letter.** `jinasAlignSvg` lays the two
+words in two rows of cells, right to left, a lit cell for a shared letter
+with a short link between the rows, a dashed danger cell for the letter
+that differs (سَبَإٍ / نَبَإٍ: three lit, one dashed). Nothing is written
+that the engine did not compare: the kind chip is what the letters say
+(تَامٌّ · مُحَرَّفٌ · مُطَرَّفٌ · مُضَارِعٌ · لَاحِقٌ · قَلْبٌ) and the ishtiqaq what the
+roots say, with the root itself as a chip. The panel shows four pairs and
+counts the rest — the ishtiqaq is the figure prose lives on, and a
+definition sentence can carry six.
+
+**The sajʿ is two clauses with their fawasil ringed.** `sajHtml` prints
+the clauses on two lines in the reading face, the last word of each in a
+ring on the accent ground, and lifts the rhyme letter out into a dashed
+circle at the margin between them (ع for مَرْفُوعَةٌ / مَوْضُوعَةٌ). The chips
+give the kind by the fawasil's wazn and the Talkhis's length note (equal
+clauses the finest; a longer second allowed; a much shorter second held
+ugly).
+
+**Five doors now.** The doors strip gained a fifth: 🔡 لَفْظِيّ, lit when the
+sentence carries a jinas other than the plain ishtiqaq or any sajʿ; the
+badiʿ door reads ⇄ بَدِيع and lights for any figure of meaning. The chip on
+the sentence line names the figure the chapter authored — مُقَابَلَةٌ, إِرْصَادٌ,
+عَكْسٌ, تَوْرِيَةٌ — from the same label table the panel uses.
+
+**The Badiʿ lab (✨) and the Learning lab (🧠).** The Badiʿ lab takes any
+sentence and shows doors + figures + jinas + sajʿ under it, with four seed
+shelves (the figures of meaning, the jinas, the sajʿ, and the chapters'
+own sentences, whose authored frames lend the hinted figures their word).
+The Learning lab is the one place in the Atolye that is not an exact rule,
+and it says so in its first line. Two cards: the **bab of a Form-I root**
+— the held-out accuracy, the top-2 and the majority baseline as three stat
+pills, a root input whose answer is the same 🧠 badge the Sarf lab shows
+when the corpus has no paradigm for a root (two chips: the best bab and
+the runner-up with their percentages, and the training size under them);
+and the **seats of iʿrab** — a button that trains on this device (half the
+stories) and grades on the other half, then prints the exact engine's
+accuracy beside the model's, the model's accuracy when ≥85% sure, the
+count of seats the rules left undecided that the model would fill, a
+per-seat table (rules vs 🧠), and the mined governor→seat rules with their
+support and confidence. The badge is the rule of the layer: **wherever a
+statistical guess speaks, 🧠 is beside it**, and it never wears the
+reading face.
+
+**Four games.** 👻 *The ghost* shows a sentence with one verb marked and
+`[؟]` after it, and asks for the concealed pronoun the stored line names;
+✨ *Name the figure* shows a Talkhis sentence and asks which figure of the
+badiʿ it carries (the distractors are other figures from the same table);
+🔡 *Two words, one sound* shows a jinas pair over its sentence and asks the
+kind, and the reveal is the letter grid; 🪜 *What is sought?* marks a
+kinaya's span and asks sifa / mawsuf / nisba, the reveal naming near or
+far. All four ride `runQuiz` and Elo (nahw for the ghost, balagha for the
+rest), and the hub cards carry their supply counts like every other game.

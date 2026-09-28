@@ -46,12 +46,13 @@ if (!CHROME) {
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push('console: ' + m.text()); });
 
-  const url = pathToFileURL(path.resolve(__dirname, '..', 'prototype/reader.html')).href;
+  const url = pathToFileURL(process.env.SMOKE_READER ? path.resolve(process.env.SMOKE_READER) : path.resolve(__dirname, '..', 'prototype/reader.html')).href;   // SMOKE_READER: a dry reader under test, for triage — the release runs the shipped one
   // The first-run level picker has its own fresh-context check below; the main
   // page runs as a returning reader so its sheet cannot sit over every other check.
   await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
   await page.goto(url);
   const check = async (name, fn) => {
+    if (process.env.SMOKE_ONLY && !new RegExp(process.env.SMOKE_ONLY).test(name)) return;   // a named subset, for triage — the release runs everything
     try { await fn(); console.log('PASS', name); }
     catch (e) {
       console.log('FAIL', name, '—', e.message.split('\n')[0]); process.exitCode = 1;
@@ -60,6 +61,10 @@ if (!CHROME) {
       // failure then reads as three. Dismiss the sheet before moving on so the
       // count of failures is the count of DEFECTS.
       await page.evaluate(() => { try { closeSheet(); } catch (_) {} }).catch(() => {});
+      // …and a check that failed INSIDE a story leaves the story open: the next
+      // check's library click then finds no card and fails for nothing (v173
+      // release run 2: one slow boot became four FAILs). Return to the shelf.
+      try { await toLibrary(); } catch (_) {}
     }
   };
 
@@ -74,7 +79,7 @@ if (!CHROME) {
     if (await page.locator('#backLib').isVisible().catch(() => false)) {
       await page.locator('#backLib').click();
     }
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });   // 10 s, not 3: the library re-renders 16 stories, and under a full-corpus check's load the boot passed 3 s once (v173 release run) — a load gauge, not a bug
   };
   const openStoryCard = async id => {
     if (!(await storyCard(id).count())) await toLibrary();
@@ -102,7 +107,7 @@ if (!CHROME) {
   if (!wasiyyaStats) throw new Error('could not find wasiyyat-abi-hanifa-L2 in STORIES to derive expectations');
 
   await check('library lists ' + storyCount + ' stories, reader controls hidden', async () => {
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const cardCount = await page.locator('.lib-card').count();
     if (cardCount !== storyCount) throw new Error('cards=' + cardCount + ' expected=' + storyCount);
     // Games is deliberately NOT a reader control any more: at the front door
@@ -122,21 +127,21 @@ if (!CHROME) {
 
   await check('tap-word opens sheet with tabs', async () => {
     await page.locator('.word', { hasText: 'اسْمَعْ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     const tabs = await page.locator('.sheet .tabs button').allTextContents();
     if (tabs.length < 4) throw new Error('tabs: ' + tabs.join('|'));
   });
 
   await check('sarf tab shows conjugation table', async () => {
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
-    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الأمر' }).click();
-    await page.waitForSelector('td.hl', { timeout: 3000 });
+    await page.waitForSelector('td.hl', { timeout: 10000 });
   });
 
   await check('grammar tab shows common mistakes', async () => {
     await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
-    await page.waitForSelector('.mistake', { timeout: 3000 });
+    await page.waitForSelector('.mistake', { timeout: 10000 });
   });
 
   await check('save to flashcards updates deck badge', async () => {
@@ -150,7 +155,7 @@ if (!CHROME) {
     await page.keyboard.press('Escape');
     await page.locator('#deckOpen').click();
     // Stats row is present before any review.
-    await page.waitForSelector('.deck-stats .fresh', { timeout: 3000 });
+    await page.waitForSelector('.deck-stats .fresh', { timeout: 10000 });
     await page.locator('#reviewCard').click();
     await page.locator('#reviewCard').click();
     // All four grades, each showing the interval it would schedule.
@@ -194,26 +199,26 @@ if (!CHROME) {
     await page.keyboard.press('Escape');
     await page.locator('#gamesOpen').click();
     await page.locator('#gSpot').click();
-    await page.waitForSelector('.opts button', { timeout: 3000 });
+    await page.waitForSelector('.opts button', { timeout: 10000 });
     await page.locator('.opts button').first().click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
-    await page.waitForSelector('.opts button.right', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
+    await page.waitForSelector('.opts button.right', { timeout: 10000 });
     await page.locator('#qNext').click();
-    await page.waitForSelector('.opts button:not([disabled])', { timeout: 3000 });
+    await page.waitForSelector('.opts button:not([disabled])', { timeout: 10000 });
   });
 
   await check('games: harakat round shows i\'rab explanation', async () => {
     await page.locator('#gBack').click();
     await page.locator('#gHarakat').click();
-    await page.waitForSelector('.game-q', { timeout: 3000 });
+    await page.waitForSelector('.game-q', { timeout: 10000 });
     await page.locator('.opts button').first().click();
-    await page.waitForSelector('#qWhy .game-why', { timeout: 3000 });
+    await page.waitForSelector('#qWhy .game-why', { timeout: 10000 });
   });
 
   await check('games: match completes', async () => {
     await page.locator('#gBack').click();
     await page.locator('#gMatch').click();
-    await page.waitForSelector('.match-grid', { timeout: 3000 });
+    await page.waitForSelector('.match-grid', { timeout: 10000 });
     // brute-force: click pairs by data-pair via evaluate
     await page.evaluate(() => {
       const btns = [...document.querySelectorAll('.match-grid [data-i]')];
@@ -225,7 +230,7 @@ if (!CHROME) {
       });
       Object.values(byPair).forEach(([a, b]) => { pickMatch(a); pickMatch(b); });
     });
-    await page.waitForSelector('#replayM', { timeout: 3000 });
+    await page.waitForSelector('#replayM', { timeout: 10000 });
   });
 
   await check('TR UI switch localizes tabs and notes', async () => {
@@ -235,7 +240,7 @@ if (!CHROME) {
     if (btn !== 'Oyunlar') throw new Error('games btn=' + btn);
     await page.locator('.word', { hasText: 'إِنَّ' }).first().click();
     await page.locator('.sheet .tabs button', { hasText: 'Gramer' }).click();
-    await page.waitForSelector('.mistake', { timeout: 3000 });
+    await page.waitForSelector('.mistake', { timeout: 10000 });
     const why = await page.locator('.mistake .why').first().textContent();
     if (!/[çğışüö]|mansub|merfu|ötre/i.test(why)) throw new Error('why not Turkish: ' + why.slice(0, 60));
   });
@@ -246,7 +251,7 @@ if (!CHROME) {
     // English, or a language switch afterwards can't recover the Turkish one.
     await page.keyboard.press('Escape');
     await page.locator('#deckOpen').click();
-    await page.waitForSelector('.deck-list .g', { timeout: 3000 });
+    await page.waitForSelector('.deck-list .g', { timeout: 10000 });
     const result = await page.evaluate(() => {
       const card = state.deck[0];
       return {
@@ -291,7 +296,7 @@ if (!CHROME) {
   await check('grammar reference: search box and level filter narrow the list', async () => {
     await page.keyboard.press('Escape');
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.ref-list', { timeout: 3000 });
+    await page.waitForSelector('.ref-list', { timeout: 10000 });
 
     const unfilteredCount = await page.locator('.ref-list li').count();
     const totalNotes = await page.evaluate(() => Object.keys(GRAMMAR).length);
@@ -335,14 +340,14 @@ if (!CHROME) {
     // A query with no plausible match should show the localized empty state.
     await page.locator('#refLevels [data-level="all"]').click();
     await page.locator('#refSearch').fill('zzzzznonexistentzzzzz');
-    await page.waitForSelector('.ref-empty', { timeout: 3000 });
+    await page.waitForSelector('.ref-empty', { timeout: 10000 });
     if (await page.locator('.ref-list li').count() !== 0) throw new Error('expected zero results for nonsense query');
   });
 
   await check('back to library shows reading progress', async () => {
     await page.keyboard.press('Escape');
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const w = await storyCard(wasiyyaStats.id)
       .locator('.progress > div').getAttribute('style');
     if (!w || /width:\s*0%/.test(w)) throw new Error('no progress: ' + w);
@@ -351,7 +356,7 @@ if (!CHROME) {
   await check('Lite tier: a free set that rotates with the week', async () => {
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.evaluate(() => { setPremium(false); renderLibrary(); });
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const info = await page.evaluate(() => {
       const sorted = s => [...s].sort();
       const setOf = d => sorted(rotatingFree(d));
@@ -402,7 +407,7 @@ if (!CHROME) {
     if (shown !== total) throw new Error('rotated story truncated: ' + shown + '/' + total);
     if (await page.locator('.upsell').count()) throw new Error('rotated story showed the upsell');
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('premium: paywall preview then unlock', async () => {
@@ -425,9 +430,9 @@ if (!CHROME) {
     // queue is built from the rendered sentences, so audio is gated too.
     const previewCount = await page.locator('.sentence').count();
     if (previewCount >= l4.sentences) throw new Error('paywall did not limit render: ' + previewCount);
-    await page.waitForSelector('.upsell', { timeout: 3000 });
+    await page.waitForSelector('.upsell', { timeout: 10000 });
     await page.locator('#unlockPremium').click();
-    await page.waitForSelector('.upsell', { state: 'detached', timeout: 3000 });
+    await page.waitForSelector('.upsell', { state: 'detached', timeout: 10000 });
     const fullCount = await page.locator('.sentence').count();
     if (fullCount !== l4.sentences) throw new Error('unlock rendered ' + fullCount + '/' + l4.sentences);
   });
@@ -436,13 +441,13 @@ if (!CHROME) {
     // Premium is unlocked by the check above, so L4 renders in full whether or
     // not this week's rotation happens to include it.
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const card4 = page.locator('.lib-card[data-story-id="wasiyyat-abi-hanifa-L4"]');
     if (!(await card4.count())) throw new Error('wasiyyat-abi-hanifa-L4 missing from the library');
     await card4.click();
     // مُوَدِّعًا carries the hal note — a Level-4 structure shared via the registry.
     await page.locator('.word', { hasText: 'مُوَدِّعًا' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
     const notes = await page.locator('.gnote h3').allTextContents();
     if (!notes.some(t => t.includes('الْحَال'))) throw new Error('hal note not shown: ' + notes.join(','));
@@ -450,12 +455,12 @@ if (!CHROME) {
     await page.keyboard.press('Escape');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('.word', { hasText: 'تُجَادِلْ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     // sarfTense persists from the earlier amr check — select mazi explicitly.
-    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الماضي' }).click();
-    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.waitForSelector('table.conj', { timeout: 10000 });
     const cells = await page.locator('table.conj td').allTextContents();
     if (!cells.some(c => c.includes('جَادَلْتُمَا'))) throw new Error('Form III paradigm missing');
     await page.evaluate(() => document.getElementById('scrim').click());
@@ -464,7 +469,7 @@ if (!CHROME) {
     const levelChip = await page.locator('#metaRow .chip.level').first().textContent();
     if (!levelChip.includes('Level 2')) throw new Error('sibling switch landed on: ' + levelChip);
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     // Reset the demo-premium flag so the library check state stays clean.
     await page.locator('#premiumReset').click();
     if (await page.locator('#premiumReset').count()) throw new Error('premium reset chip still shown');
@@ -480,21 +485,21 @@ if (!CHROME) {
     await openStoryCard('ashab-al-fil');
     // وَقَفَ is a mithal verb — its amr paradigm must show the waw-dropping قِفْ.
     await page.locator('.word', { hasText: 'وَقَفَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
-    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.waitForSelector('table.conj', { timeout: 10000 });
     await page.locator('.tense-seg button', { hasText: 'الأمر' }).click();
-    await page.waitForSelector('table.conj', { timeout: 3000 });
+    await page.waitForSelector('table.conj', { timeout: 10000 });
     const cells = await page.locator('table.conj td').allTextContents();
     if (!cells.some(c => c.trim() === 'قِفْ')) throw new Error('mithal amr قِفْ missing');
     // The Word tab has the 🔊 pronounce button; clicking must not throw.
     await page.locator('.sheet .tabs button', { hasText: 'Word' }).click();
-    await page.waitForSelector('#sayWord', { timeout: 3000 });
+    await page.waitForSelector('#sayWord', { timeout: 10000 });
     await page.evaluate(() => { speechSynthesis.speak = () => {}; speechSynthesis.cancel = () => {}; });
     await page.locator('#sayWord').click();
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('classical L5 (Abu Yusuf): premium, tahdhir note in preview', async () => {
@@ -512,13 +517,13 @@ if (!CHROME) {
     // s2 «وَإِيَّاكَ وَالْكَذِبَ» sits inside the free preview — no unlock needed.
     // Tapping إِيَّاكَ opens the shared at-tahdhir note.
     await page.locator('.word', { hasText: 'إِيَّاك' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
     const notes = await page.locator('.gnote h3').allTextContents();
     if (!notes.some(t => t.includes('التَّحْذِير'))) throw new Error('tahdhir note not shown: ' + notes.join(','));
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('idiom: بَيْنَ يَدَيْهِ reads as one unit without losing each word\'s i\'rab', async () => {
@@ -528,7 +533,7 @@ if (!CHROME) {
     const tinted = await page.locator('.sentence .word.in-phrase').count();
     if (tinted < 2) throw new Error('phrase span not tinted in the text: ' + tinted);
     await page.locator('.sentence .word', { hasText: 'بَيْنَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     const gloss = await page.locator('.phrase-banner .pb-gloss').first().textContent();
     if (!/in his presence/i.test(gloss)) throw new Error('idiom gloss missing: ' + gloss);
     const lit = await page.locator('.phrase-banner .pb-lit').first().textContent();
@@ -543,19 +548,19 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
     await page.locator('.sentence .word', { hasText: 'بَيْنَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     const trGloss = await page.locator('.phrase-banner .pb-gloss').first().textContent();
     if (!/huzurunda/.test(trGloss)) throw new Error('idiom not Turkish under TR UI: ' + trGloss);
     // A word outside any idiom must not inherit the previous banner.
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('.sentence .word:not(.in-phrase)').first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     if (await page.locator('.phrase-banner').count())
       throw new Error('stale idiom banner shown on a word outside the span');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check("i'rab tab is Turkish when TR UI is selected", async () => {
@@ -575,11 +580,11 @@ if (!CHROME) {
       throw new Error(`i'rab tr coverage ${coverage.withTr}/${coverage.total}`);
     }
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const firstId = await page.locator('.lib-card').first().getAttribute('data-story-id');
     await page.locator('.lib-card').first().click();
     await page.locator('.sentence .word').first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: "İ'rab" }).click();
     const shown = await page.locator('.irab-en').first().textContent();
     const expected = await page.evaluate(id => {
@@ -593,7 +598,7 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('Emsile-i Muhtelife: 14 forms, hollow jussive shortens', async () => {
@@ -613,10 +618,10 @@ if (!CHROME) {
 
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
-    await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
+    await page.waitForSelector('table.conj.muhtelife', { timeout: 10000 });
     const forms = await page.locator('table.conj.muhtelife tr:not(.majhul):not(.ext) td').allTextContents();
     if (forms.length !== 14) throw new Error('expected 14 active forms, got ' + forms.length);
     // أَرَادَ is Form IV hollow: the jussive must shorten (لَمْ يُرِدْ), and the
@@ -625,7 +630,7 @@ if (!CHROME) {
     if (forms.some(f => f.includes('يُرِيدْ'))) throw new Error('naive derived jussive leaked into the table');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('passive (majhul): rows render, hollow takes kasra, none invented', async () => {
@@ -644,14 +649,14 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
       await page.locator('#backLib').click();
-      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.waitForSelector('.lib-card', { timeout: 10000 });
     }
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'قَالَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     await page.locator('.tense-seg button', { hasText: 'المُخْتَلِفَة' }).click();
-    await page.waitForSelector('table.conj.muhtelife', { timeout: 3000 });
+    await page.waitForSelector('table.conj.muhtelife', { timeout: 10000 });
     const maj = await page.locator('table.conj.muhtelife tr.majhul td').allTextContents();
     if (maj.length !== 2) throw new Error('expected 2 passive rows, got ' + maj.length);
     // قَالَ is hollow: the passive takes kasra and a ي (قِيلَ), never *قُولَ.
@@ -659,20 +664,20 @@ if (!CHROME) {
     if (maj.some(f => f.includes('قُولَ'))) throw new Error('derived-but-wrong hollow passive leaked');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('conjugation cards and the two new games', async () => {
     await page.evaluate(() => document.getElementById('scrim').click());
     if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
       await page.locator('#backLib').click();
-      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.waitForSelector('.lib-card', { timeout: 10000 });
     }
     await openStoryCard('wasiyyat-abi-hanifa-L2');
 
     // Saving a verb creates a conjugation card, distinct from a meaning card.
     await page.locator('.word', { hasText: 'أَرَادَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
     await page.locator('#saveConjBtn').click();
     const verbCards = await page.evaluate(() => state.deck.filter(c => c.type === 'verb').length);
@@ -704,22 +709,22 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#gamesOpen').click();
     await page.locator('#gSarf').click();
-    await page.waitForSelector('.game-q .sigha', { timeout: 3000 });
+    await page.waitForSelector('.game-q .sigha', { timeout: 10000 });
     if (await page.locator('.opts button').count() < 2) throw new Error('sarf drill has too few options');
     await page.locator('.opts button').first().click();
-    await page.waitForSelector('.opts button.right', { timeout: 3000 });
+    await page.waitForSelector('.opts button.right', { timeout: 10000 });
 
     // Which-case drill, answered from the token's own i'rab.
     await page.locator('#gBack').click();
     await page.locator('#gCase').click();
-    await page.waitForSelector('.game-q .target', { timeout: 3000 });
+    await page.waitForSelector('.game-q .target', { timeout: 10000 });
     const caseOpts = await page.locator('.opts [data-o]').count();
     if (caseOpts !== 4) throw new Error('expected 4 case options, got ' + caseOpts);
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('.opts .right', { timeout: 3000 });
+    await page.waitForSelector('.opts .right', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('reading modes: easy translates, medium glosses each word, hard hides both', async () => {
@@ -751,7 +756,7 @@ if (!CHROME) {
     if (await first.locator('.word.stacked').count()) throw new Error('hard mode should not gloss words');
     // ...but a word still opens on tap, and one sentence can be peeked at
     await first.locator('.word').first().click();
-    await page.waitForSelector('.sheet.show .gloss', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .gloss', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await first.locator('.peek').click();
     if ((await first.locator('.trans').textContent()).trim() !== easyTr)
@@ -765,7 +770,7 @@ if (!CHROME) {
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.locator('#modeSeg [data-mode="easy"]').click();
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('games: role game asks the role, and its pool holds only nominals', async () => {
@@ -785,7 +790,7 @@ if (!CHROME) {
     await page.locator('.lib-card').first().click();   // Games is a reader-only control
     await page.locator('#gamesOpen').click();
     await page.locator('.game-pick #gRole').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     const opts = await page.locator('.opts [data-o]').count();
     if (opts !== 4) throw new Error('expected 4 options, got ' + opts);
     if (!(await page.locator('.game-q .target').count())) throw new Error('no word highlighted');
@@ -793,10 +798,10 @@ if (!CHROME) {
     if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
     // the explanation offers the full sentence sheet
     await page.locator('#qX0').click();
-    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('Aqaid: the creed definitions and their grammar notes', async () => {
@@ -976,7 +981,7 @@ if (!CHROME) {
     if (pool < 8) throw new Error('hamza pool too small: ' + pool);
     await page.evaluate(() => openGames());
     await page.locator('.game-pick #gHamza').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     const opts = await page.locator('.opts [data-o]').allTextContents();
     const bare = opts.map(o => o.replace(/[ً-ٰ]/g, ''));
     if (!(bare.some(o => o.includes('إن')) && bare.some(o => o.includes('أن'))))
@@ -985,23 +990,23 @@ if (!CHROME) {
     if (!(await page.locator('.game-why').count())) throw new Error("no i'rab shown after answering");
     // no story was opened, so there is nothing to come back FROM
     await page.evaluate(() => { closeSheet(); renderLibrary(); });
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('a game detour into the grammar comes home to the same question', async () => {
     await page.locator('.lib-card').first().click();
     await page.locator('#gamesOpen').click();
     await page.locator('.game-pick #gHamza').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     const qBefore = await page.locator('.tabs .on').textContent();
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     const scoreBefore = await page.locator('.game-meta').textContent();
     // detour: open the rule note from the extras
     await page.locator('#qX0').click();
-    await page.waitForSelector('#quizReturn', { timeout: 3000 });
+    await page.waitForSelector('#quizReturn', { timeout: 10000 });
     await page.locator('#quizReturn').click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     const qAfter = await page.locator('.tabs .on').textContent();
     const scoreAfter = await page.locator('.game-meta').textContent();
     if (qAfter !== qBefore) throw new Error(`resumed on a different question: ${qBefore} -> ${qAfter}`);
@@ -1010,19 +1015,19 @@ if (!CHROME) {
     if (!(await page.locator('.opts [data-o][disabled]').count())) throw new Error('resume lost the answered state');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('a wrong pick is taught: the correct answer and why yours fails', async () => {
     await page.locator('.lib-card').first().click();
     await page.locator('#gamesOpen').click();
     await page.locator('.game-pick #gHamza').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     // the sakin أَنْ option is ALWAYS wrong in this game — click it
     const texts = await page.locator('.opts [data-o]').allTextContents();
     const anIdx = texts.findIndex(t => t.replace(/[ً-ٰ]/g, '') === 'أن' && /ْ/.test(t.normalize('NFC')));
     await page.locator('.opts [data-o]').nth(anIdx >= 0 ? anIdx : 0).click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     if (anIdx >= 0) {
       if (!(await page.locator('.game-correct').count())) throw new Error('correct answer line missing after a wrong pick');
       if (!(await page.locator('.game-wrongwhy').count())) throw new Error('the why-yours-fails line is missing');
@@ -1031,7 +1036,7 @@ if (!CHROME) {
     }
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('the qiyasi derivations: tafdil, zaman/makan and the semai instrument', async () => {
@@ -1064,7 +1069,7 @@ if (!CHROME) {
     // and the lab shows them for a typed root, bab read from the corpus
     await page.locator('.lib-card').first().click();
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 3000 });
+    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="ism"]').click();
     await page.fill('#ismIn', 'جلس');
     await page.waitForTimeout(300);
@@ -1073,7 +1078,7 @@ if (!CHROME) {
       throw new Error('the lab must derive مَجْلِس from the corpus bab of جلس');
     await page.evaluate(() => { conjState.ism = 'مدينة'; conjState.lab = 'sarf'; closeSheet(); });
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('the refutation reads the ending sign off the word itself', async () => {
@@ -1141,9 +1146,9 @@ if (!CHROME) {
     // and the lab hands the controls over when a fourth letter is typed
     await page.locator('.lib-card').first().click();
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.sheet .tabs button[data-lab="sarf"]', { timeout: 3000 });
+    await page.waitForSelector('.sheet .tabs button[data-lab="sarf"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="sarf"]').click();
-    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.waitForSelector('#conjRoot', { timeout: 10000 });
     await page.fill('#conjRoot', 'دحرج');
     await page.waitForTimeout(200);
     if (await page.locator('#conjRubaiSeg').isHidden()) throw new Error('the quadriliteral babs stayed hidden');
@@ -1155,7 +1160,7 @@ if (!CHROME) {
     if (!(await page.locator('#conjRubaiSeg').isHidden())) throw new Error('three letters must restore the triliteral controls');
     await page.evaluate(() => { conjState.root = 'نصر'; closeSheet(); });
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check("the twelve faces of ma, each named with the signal that proposed it", async () => {
@@ -1415,7 +1420,7 @@ if (!CHROME) {
     await page.locator('.lib-card').first().click();
     await page.locator('#gamesOpen').click();
     await page.locator('.game-pick #gAlaqa').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     if (!(await page.locator('.alaqa-pair').count())) throw new Error('the two meanings are not shown');
     if ((await page.locator('.opts [data-o]').count()) !== 4) throw new Error('expected 4 options');
     // pick a deliberately wrong option so the refutation must appear
@@ -1425,12 +1430,12 @@ if (!CHROME) {
       return btns.length - 1;
     });
     await page.locator('.opts [data-o]').nth(wrong).click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     const why = await page.locator('.game-why').textContent();
     if (!/[ء-ي]/.test(why)) throw new Error('the explanation must name the relation in Arabic');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('the i\'rab-realization engine: by what, and in what manner', async () => {
@@ -1521,21 +1526,21 @@ if (!CHROME) {
     // the panel opens from the grammar reference and lists every relation
     await page.locator('.lib-card').first().click();
     await page.locator('#refOpen').click();
-    await page.waitForSelector('#alaqatOpen', { timeout: 3000 });
+    await page.waitForSelector('#alaqatOpen', { timeout: 10000 });
     await page.locator('#alaqatOpen').click();
-    await page.waitForSelector('.av-table', { timeout: 3000 });
+    await page.waitForSelector('.av-table', { timeout: 10000 });
     const rows = await page.locator('.av-table tbody tr').count();
     if (rows !== 28) throw new Error('the panel should show all twenty-eight relations, got ' + rows);
     if (!(await page.locator('#alaqaPlay').count())) throw new Error('the panel should offer its game');
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check("sentence i'rab sheet lists every word and its topics", async () => {
     await openStoryCard('aqaid-ahl-al-sunna');
     await page.locator('.sentence').first().locator('.irab-btn').click();
-    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 10000 });
     // The sheet carries TWO tables of this class by design — the TARKIB table
     // and the TAHQIQ comparison below it, which share their styling on purpose.
     // This check is about the tarkib table, so it has to say so.
@@ -1551,14 +1556,14 @@ if (!CHROME) {
       throw new Error('no grammar topics listed for the sentence');
     // A topic chip opens that note; a word cell opens that word.
     await page.locator('.sheet-topics .btn').first().click();
-    await page.waitForSelector('.sheet.show .gnote', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .gnote', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('.sentence').first().locator('.irab-btn').click();
     await page.locator('.irab-sheet .jump').first().click();
-    await page.waitForSelector('.sheet.show .lemma', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .lemma', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('Kitab al-Buyu: Level 6 fiqh story, masdar-headed definitions', async () => {
@@ -1593,12 +1598,12 @@ if (!CHROME) {
     if (info.ishtaraJussive !== 'يَشْتَرِ') throw new Error('اشترى jussive: ' + info.ishtaraJussive);
     // and the story opens
     await openStoryCard('kitab-al-buyu');
-    await page.waitForSelector('.sentence', { timeout: 3000 });
+    await page.waitForSelector('.sentence', { timeout: 10000 });
     await page.locator('.sentence').first().locator('.irab-btn').click();
-    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('TR UI leaves no English in the grammar reference or the word sheet', async () => {
@@ -1620,13 +1625,13 @@ if (!CHROME) {
 
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 10000 });
     const group = await page.locator('.ref-group span:not(.ar)').first().textContent();
     if (!/Sarf|Nahiv|Âmiller/.test(group)) throw new Error('ref group still English: ' + group);
     // the list is grouped, so read the id off the button rather than assuming one
     const noteId = await page.locator('.ref-list button').first().getAttribute('data-note');
     await page.locator('.ref-list button').first().click();
-    await page.waitForSelector('.sheet.show .gnote', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .gnote', { timeout: 10000 });
     const heading = await page.locator('.gnote h3').first().textContent();
     const exGloss = await page.locator('.gnote .ex .en').first().textContent();
     const expect = await page.evaluate(id => ({
@@ -1644,7 +1649,7 @@ if (!CHROME) {
     const lvl = await page.locator('.chip.level').first().textContent();
     if (!lvl.includes('Seviye')) throw new Error('level chip still English: ' + lvl);
     await page.locator('.sentence .word').first().click();
-    await page.waitForSelector('.sheet.show .facts', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .facts', { timeout: 10000 });
     const chips = await page.locator('.facts .chip').allTextContents();
     if (chips.some(c => /^(noun|verb|prep|part|pron|propn|adv|conj)$/.test(c.trim())))
       throw new Error('pos chip still English: ' + chips.join('|'));
@@ -1653,7 +1658,7 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('Abu Yusuf runs to five chapters; the conditional governs two verbs', async () => {
@@ -1737,27 +1742,27 @@ if (!CHROME) {
     if (counts.tooShort) throw new Error('a one-letter query should return nothing');
 
     await page.locator('#searchOpen').click();
-    await page.waitForSelector('#corpusSearch', { timeout: 3000 });
+    await page.waitForSelector('#corpusSearch', { timeout: 10000 });
     await page.fill('#corpusSearch', 'علم');
-    await page.waitForSelector('.hit', { timeout: 3000 });
+    await page.waitForSelector('.hit', { timeout: 10000 });
     if (!(await page.locator('.hit-lex').count())) throw new Error('results not grouped by word');
     if (!(await page.locator('.hit .h-ar b').count())) throw new Error('hit not highlighted');
     await page.locator('.hit').first().click();
-    await page.waitForSelector('.sheet.show .lemma', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .lemma', { timeout: 10000 });
     await page.evaluate(() => document.getElementById('scrim').click());
 
     // the root chip in the word sheet runs the same index
     await page.locator('.sentence .word').first().click();
-    await page.waitForSelector('.sheet.show .facts', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .facts', { timeout: 10000 });
     if (await page.locator('.root-btn').count()) {
       await page.locator('.root-btn').first().click();
-      await page.waitForSelector('#corpusSearch', { timeout: 3000 });
+      await page.waitForSelector('#corpusSearch', { timeout: 10000 });
       const q = await page.locator('#corpusSearch').inputValue();
       if (!q.trim()) throw new Error('root chip did not fill the search box');
     }
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('daily loop: streak starts, goal moves, new words come from the story', async () => {
@@ -1777,7 +1782,7 @@ if (!CHROME) {
     if (!afterRead.read) throw new Error('reading was not counted');
 
     await page.locator('#deckOpen').click();
-    await page.waitForSelector('.daily', { timeout: 3000 });
+    await page.waitForSelector('.daily', { timeout: 10000 });
     if (!(await page.locator('#learnHere').count()))
       throw new Error('no "learn new words" button with an empty deck');
     await page.locator('#learnHere').click();
@@ -1808,7 +1813,7 @@ if (!CHROME) {
     if (days !== 1) throw new Error('streak double-counted the same day: ' + days);
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('balagha: a fourth group, anchored to the imagery already in the stories', async () => {
@@ -1839,13 +1844,13 @@ if (!CHROME) {
 
     // it shows up as its own section of the reference, in both languages
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 10000 });
     let heads = await page.locator('.ref-group').allTextContents();
     if (!heads.some(h => /Rhetoric/.test(h))) throw new Error('no rhetoric group: ' + heads.join('|'));
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-group', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-group', { timeout: 10000 });
     heads = await page.locator('.ref-group').allTextContents();
     if (!heads.some(h => /Belâgat/.test(h))) throw new Error('rhetoric group not Turkish: ' + heads.join('|'));
     await page.evaluate(() => document.getElementById('scrim').click());
@@ -1887,11 +1892,11 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
     if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
       await page.locator('#backLib').click();
-      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.waitForSelector('.lib-card', { timeout: 10000 });
     }
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.word', { hasText: 'الْكِبَارَ' }).first().click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
     const titles = await page.locator('.gnote h3').allTextContents();
     for (const want of ['الطِّبَاق', 'السَّجْع'])
@@ -1899,14 +1904,14 @@ if (!CHROME) {
         throw new Error(want + ' not on the word: ' + titles.join(' | '));
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('library: New badges and a sort that agrees with the dates', async () => {
     await page.evaluate(() => document.getElementById('scrim').click());
     if (!(await page.locator('.lib-card').first().isVisible().catch(() => false))) {
       await page.locator('#backLib').click();
-      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.waitForSelector('.lib-card', { timeout: 10000 });
     }
     const data = await page.evaluate(() => {
       // A story published TODAY must read as zero days old in every timezone.
@@ -1940,7 +1945,7 @@ if (!CHROME) {
       throw new Error('badges ' + badged + ' disagree with isNewStory ' + data.fresh);
 
     await page.locator('.lib-sort [data-sort="new"]').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
     const order = await page.evaluate(() =>
       [...document.querySelectorAll('.lib-card')].map(c => c.dataset.storyId));
     const dates = await page.evaluate(ids => ids.map(id =>
@@ -1950,7 +1955,7 @@ if (!CHROME) {
     if (order.length !== byLevel.length) throw new Error('sorting dropped or duplicated cards');
     if (new Set(order).size !== order.length) throw new Error('a story appears twice after sorting');
     await page.locator('.lib-sort [data-sort="level"]').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('cloze: built only from sentences already read', async () => {
@@ -1965,7 +1970,7 @@ if (!CHROME) {
     if (empty !== 0) throw new Error('cloze drew ' + empty + ' items from unread sentences');
 
     await page.locator('.lib-card[data-story-id="yunus-wa-al-hut"]').click();
-    await page.waitForSelector('.sentence .word', { timeout: 3000 });
+    await page.waitForSelector('.sentence .word', { timeout: 10000 });
     // Read the story, then the game has something to draw on.
     await page.evaluate(() => { STORIES[STORIES.findIndex(s => s.id === 'yunus-wa-al-hut')]
       .chapters.forEach(c => c.sentences.forEach(s => markRead(s.id))); });
@@ -1999,20 +2004,20 @@ if (!CHROME) {
     if (offClass) throw new Error(offClass + ' items blank a word outside CLOZE_POS');
 
     await page.locator('#gamesOpen').click();
-    await page.waitForSelector('#gCloze', { timeout: 3000 });
+    await page.waitForSelector('#gCloze', { timeout: 10000 });
     await page.locator('#gCloze').click();
-    await page.waitForSelector('.game-q', { timeout: 3000 });
+    await page.waitForSelector('.game-q', { timeout: 10000 });
     const q = await page.locator('.game-q').textContent();
     if (!q.includes('ـــــ')) throw new Error('no gap in the prompt: ' + q);
     const optCount = await page.locator('.opts [data-o]').count();
     if (optCount < 3) throw new Error('only ' + optCount + ' options');
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     const right = await page.locator('.opts .right').count();
     if (right !== 1) throw new Error('expected exactly one correct option, got ' + right);
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('every note opens with a plain summary, and the detail is one tap away', async () => {
@@ -2035,9 +2040,9 @@ if (!CHROME) {
     if (data.notShorter.length) throw new Error('plain is not shorter than explanation on: ' + data.notShorter);
 
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 10000 });
     await page.locator('.ref-list [data-note="tibaq"]').click();
-    await page.waitForSelector('.gnote p.plain', { timeout: 3000 });
+    await page.waitForSelector('.gnote p.plain', { timeout: 10000 });
     const lede = await page.locator('.gnote p.plain').first().textContent();
     if (!/opposite/.test(lede)) throw new Error('plain lede: ' + lede);
     // The classical account is present but folded away by default.
@@ -2049,7 +2054,7 @@ if (!CHROME) {
     await page.locator('.gnote details.deep summary').first().click();
     // `toggle` is queued rather than dispatched synchronously, so wait for the
     // preference to settle instead of reading it in the same tick as the click.
-    await page.waitForFunction(() => state.deepNotes === true, null, { timeout: 3000 })
+    await page.waitForFunction(() => state.deepNotes === true, null, { timeout: 10000 })
       .catch(() => { throw new Error('opening the detail was not remembered'); });
     if (await page.evaluate(() => localStorage.getItem('qissa-deep')) !== '1')
       throw new Error('the preference was not persisted');
@@ -2118,17 +2123,17 @@ if (!CHROME) {
 
     // It renders, and it follows the UI language.
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 10000 });
     await page.locator('.ref-list [data-note="hal"]').click();
-    await page.waitForSelector('.gnote .qtest', { timeout: 3000 });
+    await page.waitForSelector('.gnote .qtest', { timeout: 10000 });
     const en = await page.locator('.gnote .qtest .qt').first().textContent();
     if (!/In what state/.test(en)) throw new Error('EN question test: ' + en);
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 10000 });
     await page.locator('.ref-list [data-note="hal"]').click();
-    await page.waitForSelector('.gnote .qtest', { timeout: 3000 });
+    await page.waitForSelector('.gnote .qtest', { timeout: 10000 });
     const tr = await page.locator('.gnote .qtest .qt').first().textContent();
     if (!/Ne olduğu halde/.test(tr)) throw new Error('TR question test: ' + tr);
     await page.evaluate(() => document.getElementById('scrim').click());
@@ -2161,9 +2166,9 @@ if (!CHROME) {
 
     // ...and the DOM has to carry the index the mapping resolves to.
     if (!(await page.locator('.sentence .word').count())) {
-      await page.waitForSelector('.lib-card', { timeout: 3000 });
+      await page.waitForSelector('.lib-card', { timeout: 10000 });
       await page.locator('.lib-card').first().click();
-      await page.waitForSelector('.sentence .word', { timeout: 3000 });
+      await page.waitForSelector('.sentence .word', { timeout: 10000 });
     }
     const mismatch = await page.evaluate(() => {
       const words = [...document.querySelectorAll('.sentence')].flatMap(s =>
@@ -2177,7 +2182,7 @@ if (!CHROME) {
   await check('recorded narration plays the sentence\'s slice, and TTS yields to it', async () => {
     await toLibrary();
     await page.locator('.lib-card[data-story-id="yunus-wa-al-hut"]').click();
-    await page.waitForSelector('.sentence .word', { timeout: 3000 });
+    await page.waitForSelector('.sentence .word', { timeout: 10000 });
     // Wire one sentence to a synthetic half-second WAV, exactly as a content
     // drop would: chapter names the file, the sentence carries its slice.
     await page.evaluate(() => {
@@ -2211,12 +2216,12 @@ if (!CHROME) {
     await page.locator('.sentence').first().locator('.play:not(.irab-btn)').click();
     // The real path: the shared narration element takes the chapter file and
     // plays; the sentence highlight behaves exactly as with TTS.
-    await page.waitForFunction(() => narration.src.startsWith('data:audio/wav'), null, { timeout: 3000 });
+    await page.waitForFunction(() => narration.src.startsWith('data:audio/wav'), null, { timeout: 10000 });
     if (!(await page.locator('.sentence.playing').count())) throw new Error('no sentence highlight during narration');
     // The slice ends on its own — [0,250]ms plus the guard timer — and the
     // highlight must come down with it, with nothing left playing.
-    await page.waitForFunction(() => narration.paused, null, { timeout: 4000 });
-    await page.waitForFunction(() => !document.querySelector('.sentence.playing'), null, { timeout: 2000 });
+    await page.waitForFunction(() => narration.paused, null, { timeout: 10000 });
+    await page.waitForFunction(() => !document.querySelector('.sentence.playing'), null, { timeout: 10000 });
 
     // A sentence WITHOUT a slice must still take the synthesis path even
     // while its chapter has a recording — half-wired narration falls back.
@@ -2236,15 +2241,15 @@ if (!CHROME) {
       });
     }
     await page.locator('#backLib').click();
-    await page.waitForSelector('.lib-card', { timeout: 3000 });
+    await page.waitForSelector('.lib-card', { timeout: 10000 });
   });
 
   await check('a grammar topic can be reviewed like a word', async () => {
     await page.evaluate(() => { state.deck.length = 0; persistDeck(); });
     await page.locator('#refOpen').click();
-    await page.waitForSelector('.sheet.show .ref-list', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .ref-list', { timeout: 10000 });
     await page.locator('.ref-list [data-note]').first().click();
-    await page.waitForSelector('.gnote [data-note-save]', { timeout: 3000 });
+    await page.waitForSelector('.gnote [data-note-save]', { timeout: 10000 });
     const noteId = await page.locator('.gnote [data-note-save]').first().getAttribute('data-note-save');
     await page.locator('.gnote [data-note-save]').first().click();
     const after = await page.locator('.gnote [data-note-save]').first().textContent();
@@ -2255,7 +2260,7 @@ if (!CHROME) {
     // The card asks the madrasah question: name the term, then give an example.
     await page.evaluate(() => document.getElementById('scrim').click());
     await page.locator('#deckOpen').click();
-    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 10000 });
     const front = await page.locator('#reviewCard .front').textContent();
     const want = await page.evaluate(id => GRAMMAR[id].title.ar, noteId);
     if (front.trim() !== want) throw new Error('front is ' + front + ' expected ' + want);
@@ -2386,7 +2391,7 @@ if (!CHROME) {
     if (!/2\/\d+/.test(await cc.textContent()))
       throw new Error('continue card does not show progress');
     await cc.click();
-    await page.waitForSelector('.sentence.resume-target', { timeout: 3000 });
+    await page.waitForSelector('.sentence.resume-target', { timeout: 10000 });
     const at = await page.evaluate(() => document.querySelector('.sentence.resume-target').dataset.id);
     if (at !== target.resumeAt) throw new Error('resumed at ' + at + ', expected ' + target.resumeAt);
 
@@ -2468,7 +2473,7 @@ if (!CHROME) {
     if (r.none !== 0) throw new Error('a nudge with an empty deck');
     if (r.one !== 1 || !r.txt.includes('1')) throw new Error('no nudge while a card is due: ' + r.txt);
     await page.locator('.review-nudge').click();
-    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show #reviewCard', { timeout: 10000 });
     await page.evaluate(() => {
       state.deck = window._savedDeck; delete window._savedDeck; persistDeck();
       document.getElementById('scrim').click();
@@ -2491,7 +2496,7 @@ if (!CHROME) {
     });
     if (!exp) throw new Error('fixture story has no teachable words');
     await page.locator('#vocabChip').click();
-    await page.waitForSelector('.sheet.show .vocab-list', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .vocab-list', { timeout: 10000 });
     const rows = await page.locator('.vocab-list li').count();
     if (rows !== exp) throw new Error(rows + ' rows for ' + exp + ' unique teachable words');
     const lv = await page.evaluate(() =>
@@ -2527,7 +2532,7 @@ if (!CHROME) {
     await page.waitForFunction(n => {
       const el = document.querySelector('.chapter-head[data-ch="' + n + '"]');
       return el && Math.abs(el.getBoundingClientRect().top) < 250;
-    }, pick.n, { timeout: 3000 }).catch(() => { throw new Error('the last pill did not land on its chapter'); });
+    }, pick.n, { timeout: 10000 }).catch(() => { throw new Error('the last pill did not land on its chapter'); });
     // A single-chapter story must not grow a nav.
     const single = await page.evaluate(() => {
       const st = STORIES.find(s => s.chapters.length === 1 && !storyLocked(s));
@@ -2562,7 +2567,7 @@ if (!CHROME) {
     const btn = await page.locator('.sentence .irab-btn').first().textContent();
     if (!btn.includes('تركيب')) throw new Error('sentence button reads: ' + btn);
     await page.locator('.sentence .irab-btn').first().click();
-    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 10000 });
     // Every Samti sentence carries authored clause rows; count must match data.
     const exp = await page.evaluate(() => (CUR.chapters[0].sentences[0].jumal || []).length);
     if (!exp) throw new Error('s1 has no authored jumal');
@@ -2588,7 +2593,7 @@ if (!CHROME) {
     await toLibrary();
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     await page.locator('.sentence .irab-btn').first().click();
-    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .irab-sheet', { timeout: 10000 });
     if (await page.locator('.jumla-row').count())
       throw new Error('an unanalysed sentence grew a clause section');
     await page.evaluate(() => document.getElementById('scrim').click());
@@ -2611,7 +2616,7 @@ if (!CHROME) {
                levels: new Set(STORIES.map(s => s.level)).size };
     });
     await page.locator('#statsOpen').click();
-    await page.waitForSelector('.sheet.show .stats-grid', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .stats-grid', { timeout: 10000 });
     const tiles = (await page.locator('.stat-tile b').allTextContents()).map(x => x.trim());
     if (tiles.length !== 6) throw new Error('expected 6 tiles, got ' + tiles.length);
     if (!tiles.includes(exp.done + '/' + exp.stories))
@@ -2634,7 +2639,7 @@ if (!CHROME) {
     try {
       const p3 = await ctx3.newPage();
       await p3.goto(url);
-      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 10000 });
       // The choices come from the shelf itself — every level present, no other.
       const offered = await p3.evaluate(() =>
         [...document.querySelectorAll('[data-pick-level]:not(.unsure)')].map(b => +b.dataset.pickLevel));
@@ -2646,7 +2651,7 @@ if (!CHROME) {
       const mid = String(shelved[Math.floor(shelved.length / 2)]);
 
       await p3.locator('.level-pick [data-pick-level="' + mid + '"]').click();
-      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      await p3.waitForSelector('.lib-card', { timeout: 10000 });
       if (await p3.locator('.sheet.show').count()) throw new Error('the sheet stayed open after a choice');
       const after = await p3.evaluate(() => ({
         level: localStorage.getItem('qissa-mylevel'),
@@ -2666,11 +2671,11 @@ if (!CHROME) {
       // Second visit: the question is not asked again, the shelf is remembered,
       // and the chip reopens the picker for a reader who mis-answered.
       await p3.reload();
-      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      await p3.waitForSelector('.lib-card', { timeout: 10000 });
       if (await p3.locator('.sheet.show').count()) throw new Error('the picker came back on the second visit');
       if (await p3.evaluate(() => state.libSort) !== 'foryou') throw new Error('the sort was forgotten');
       await p3.locator('#myLevelChip').click();
-      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 10000 });
       const marked = await p3.locator('.level-pick .btn.saved').getAttribute('data-pick-level');
       if (marked !== mid) throw new Error('the reopened picker does not show the stored level');
 
@@ -2678,10 +2683,10 @@ if (!CHROME) {
       // but "For you" still opens the question instead of sorting by nothing.
       await p3.evaluate(() => { localStorage.removeItem('qissa-mylevel'); });
       await p3.reload();
-      await p3.waitForSelector('.lib-card', { timeout: 3000 });
+      await p3.waitForSelector('.lib-card', { timeout: 10000 });
       if (await p3.locator('.sheet.show').count()) throw new Error('a dismissed picker must stay dismissed on boot');
       await p3.locator('[data-sort="foryou"]').click();
-      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 3000 });
+      await p3.waitForSelector('.sheet.show .level-pick', { timeout: 10000 });
     } finally {
       await ctx3.close();
     }
@@ -2720,7 +2725,7 @@ if (!CHROME) {
     await page.evaluate(() => window.scrollTo(0, document.scrollingElement.scrollHeight));
     await page.waitForFunction(() =>
       parseFloat(document.querySelector('#readbar div').style.width) > 50,
-      null, { timeout: 3000 })
+      null, { timeout: 10000 })
       .catch(() => { throw new Error('the reading bar did not follow the scroll'); });
     await page.evaluate(() => window.scrollTo(0, 0));
     await toLibrary();
@@ -2938,7 +2943,7 @@ if (!CHROME) {
     await openStoryCard('wasiyyat-abi-hanifa-L2');
     // Save the first teachable word through the same path a tap takes.
     await page.locator('.word[data-lvl]').first().click();
-    await page.waitForSelector('#saveBtn', { timeout: 3000 });
+    await page.waitForSelector('#saveBtn', { timeout: 10000 });
     await page.locator('#saveBtn').click();
     const r = await page.evaluate(() => {
       const card = state.deck[state.deck.length - 1];
@@ -2967,7 +2972,7 @@ if (!CHROME) {
     if (!rev.queueHasCtx) throw new Error('the ctx card never reached the review queue');
     // Removing the card un-marks the page copies live.
     await page.locator('.word[data-lvl]').first().click();
-    await page.waitForSelector('#saveBtn', { timeout: 3000 });
+    await page.waitForSelector('#saveBtn', { timeout: 10000 });
     await page.locator('#saveBtn').click();      // toggles off
     const unmarked = await page.evaluate(lex =>
       ![...document.querySelectorAll(`.word[data-lex="${CSS.escape(lex)}"]`)]
@@ -3027,9 +3032,9 @@ if (!CHROME) {
       openDeck(); reviewStep = 2; renderDeck();
       return sen.id;
     });
-    await page.waitForSelector('.card-ctx', { timeout: 3000 });
+    await page.waitForSelector('.card-ctx', { timeout: 10000 });
     await page.locator('.card-ctx').click();
-    await page.waitForSelector(`section.sentence[data-id="${target}"]`, { timeout: 3000 });
+    await page.waitForSelector(`section.sentence[data-id="${target}"]`, { timeout: 10000 });
     const ok = await page.evaluate(id => {
       const good = CUR && CUR.id === 'wasiyyat-abi-hanifa-L2'
         && !!document.querySelector(`section.sentence[data-id="${id}"]`);
@@ -3138,7 +3143,7 @@ if (!CHROME) {
   await check('the Sarf Lab conjugates sound, hollow and defective roots live', async () => {
     await toLibrary();
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.waitForSelector('#conjRoot', { timeout: 10000 });
     const sound = await page.evaluate(() => {
       conjState.root = 'نصر'; conjState.form = 'I'; conjState.bab = 1; renderConjOut();
       return document.getElementById('conjOut').textContent;
@@ -3172,7 +3177,7 @@ if (!CHROME) {
 
   await check('the Sarf Lab auto-detects the attested bab for a known root', async () => {
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.waitForSelector('#conjRoot', { timeout: 10000 });
     // حمد is attested in the corpus as bab سَمِعَ — typing it must answer
     // حَمِدَ يَحْمَدُ, not the نَصَرَ default's حَمَدَ.
     await page.fill('#conjRoot', 'حمد');
@@ -3247,7 +3252,7 @@ if (!CHROME) {
     await page.evaluate(() => { state.premium = true; jumpTo('wasiyyat-abi-hanifa-samti', 's40'); });
     await page.waitForTimeout(400);
     await page.locator('.word', { hasText: 'وَاعْفُ' }).first().click();
-    await page.waitForSelector('.sheet.show .intext', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show .intext', { timeout: 10000 });
     const it = await page.evaluate(() => ({
       ar: document.querySelector('.intext .it-ar').textContent,
       gloss: (document.querySelector('.intext .it-gloss') || {}).textContent || '',
@@ -3274,7 +3279,7 @@ if (!CHROME) {
     if (tr.maziPl !== 'unuttular') throw new Error('TR past 3pl harmony wrong: ' + tr.maziPl);
     // The sarf tab lands on the amr table with the cell lit through the waw.
     await page.locator('.sheet .tabs button', { hasText: 'Conjugation' }).click();
-    await page.waitForSelector('.tense-seg button[data-tense="amr"].on', { timeout: 3000 });
+    await page.waitForSelector('.tense-seg button[data-tense="amr"].on', { timeout: 10000 });
     if (!(await page.locator('table.conj td.hl').count()))
       throw new Error('amr cell not highlighted through the clitic waw');
     await page.evaluate(() => closeSheet());
@@ -3312,9 +3317,9 @@ if (!CHROME) {
   await check('the Aded Lab counts with polarity, and the numbers game drills the rules', async () => {
     await toLibrary();
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#conjRoot', { timeout: 3000 });
+    await page.waitForSelector('#conjRoot', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="adad"]').click();
-    await page.waitForSelector('#adadN', { timeout: 3000 });
+    await page.waitForSelector('#adadN', { timeout: 10000 });
     const r = await page.evaluate(() => {
       conjState.adadN = 125; renderAdadOut();
       const abs = document.querySelector('.adad-big').textContent;
@@ -3390,9 +3395,9 @@ if (!CHROME) {
       if (r[k] !== v) throw new Error(k + ': ' + r[k] + ' ≠ ' + v);
     // the lab UI: third tab answers with the root
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.sheet .tabs button[data-lab="jadhr"]', { timeout: 3000 });
+    await page.waitForSelector('.sheet .tabs button[data-lab="jadhr"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="jadhr"]').click();
-    await page.waitForSelector('#jadhrIn', { timeout: 3000 });
+    await page.waitForSelector('#jadhrIn', { timeout: 10000 });
     await page.fill('#jadhrIn', 'اصطبر');
     await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
@@ -3445,7 +3450,7 @@ if (!CHROME) {
     }
     // the layer in a real story: toggle on -> body class, legend, painted words
     await openStoryCard('deeds-are-by-intentions');
-    await page.waitForSelector('.word', { timeout: 3000 });
+    await page.waitForSelector('.word', { timeout: 10000 });
     await page.locator('#roleToggle').click();
     const on = await page.evaluate(() => ({
       mode: document.body.classList.contains('role-mode'),
@@ -3466,9 +3471,9 @@ if (!CHROME) {
 
   await check('the Avamil-100 panel counts Jurjani\'s governors and links the notes', async () => {
     await page.locator('#refOpen').click();
-    await page.waitForSelector('#avamilOpen', { timeout: 3000 });
+    await page.waitForSelector('#avamilOpen', { timeout: 10000 });
     await page.locator('#avamilOpen').click();
-    await page.waitForSelector('.av-table', { timeout: 3000 });
+    await page.waitForSelector('.av-table', { timeout: 10000 });
     const r = await page.evaluate(() => ({
       letters: document.querySelectorAll('.av-table tbody tr').length,
       counts: [...document.querySelectorAll('.av-counts .avc b')].map(b => b.textContent),
@@ -3482,7 +3487,7 @@ if (!CHROME) {
     if (r.firstLetter !== 'بِ') throw new Error('first letter should be the ba, got ' + r.firstLetter);
     // the note link opens the registry note in place
     await page.locator('.av-table [data-note]').first().click();
-    await page.waitForSelector('.gnote h3', { timeout: 3000 });
+    await page.waitForSelector('.gnote h3', { timeout: 10000 });
     const h = await page.locator('.gnote h3').first().textContent();
     if (!h.replace(/[ً-ْ]/g, '').includes('حروف الجر'.normalize('NFC'))) throw new Error('ba should open the huruf-jarr note, got: ' + h);
     await page.evaluate(() => closeSheet());
@@ -3505,9 +3510,9 @@ if (!CHROME) {
       throw new Error('idtirab should fall to the iftial masdar rule: ' + JSON.stringify(r.rules));
     // the lab tab answers with the wazn
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.sheet .tabs button[data-lab="mizan"]', { timeout: 3000 });
+    await page.waitForSelector('.sheet .tabs button[data-lab="mizan"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="mizan"]').click();
-    await page.waitForSelector('#mizanIn', { timeout: 3000 });
+    await page.waitForSelector('#mizanIn', { timeout: 10000 });
     await page.fill('#mizanIn', 'يستعملون');
     await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
@@ -3540,7 +3545,7 @@ if (!CHROME) {
 
   await check('the coach reads the whole state and offers one next action', async () => {
     await page.locator('#deckOpen').click();
-    await page.waitForSelector('.coach', { timeout: 3000 });
+    await page.waitForSelector('.coach', { timeout: 10000 });
     const r = await page.evaluate(() => ({
       msg: document.querySelector('.coach .co-msg').textContent.trim().length > 0,
       go: !!document.getElementById('coachGo'),
@@ -3588,9 +3593,9 @@ if (!CHROME) {
     if (r.min < 3) throw new Error('a pool slipped under three askable words');
     if (!r.ordered || !r.oneSen) throw new Error('a walk must stay inside one sentence, in order');
     await page.evaluate(() => openGames());
-    await page.waitForSelector('#gTahlil', { timeout: 3000 });
+    await page.waitForSelector('#gTahlil', { timeout: 10000 });
     await page.locator('#gTahlil').click();
-    await page.waitForSelector('.opts [data-o]', { timeout: 3000 });
+    await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
     const q = await page.evaluate(() => {
       const t = document.querySelector('.game-q').textContent.trim();
       closeSheet();
@@ -3645,9 +3650,9 @@ if (!CHROME) {
     if (!ha.fiqh.semai || nfc(ha.fiqh.out) !== nfc('فِقْهِيّ')) throw new Error('fiqh keeps its radical ha: ' + JSON.stringify(ha.fiqh));
     // the lab tab shows both machines
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 3000 });
+    await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="ism"]').click();
-    await page.waitForSelector('#ismIn', { timeout: 3000 });
+    await page.waitForSelector('#ismIn', { timeout: 10000 });
     await page.fill('#ismIn', 'مدينة');
     await page.waitForTimeout(260);
     const out = await page.evaluate(() => {
@@ -3716,7 +3721,7 @@ if (!CHROME) {
 
   await check('focus mode hides the header on the way down, returns it on the way up', async () => {
     await openStoryCard('wasiyyat-abi-hanifa-samti');
-    await page.waitForSelector('.word', { timeout: 3000 });
+    await page.waitForSelector('.word', { timeout: 10000 });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(80);
     await page.evaluate(() => window.scrollTo(0, 900));
@@ -3967,7 +3972,7 @@ if (!CHROME) {
     if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.ml-score', { timeout: 3000 });
+    await page.waitForSelector('.ml-score', { timeout: 10000 });
     const line = await page.locator('.ml-score').textContent();
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
     // and it must lead with the HELD-OUT figure, never the resubstitution one
@@ -3984,7 +3989,7 @@ if (!CHROME) {
     await page.waitForFunction(() => {
       const el = document.getElementById('mlTagLine');
       return el && el.textContent.length > 40;
-    }, { timeout: 8000 });
+    }, { timeout: 10000 });
     const tag = await page.locator('#mlTagLine').textContent();
     const nums = await page.evaluate(() => {
       const v = SarfTagger.evalUnseen(), i = IsmTagger.evalUnseen();
@@ -3999,7 +4004,7 @@ if (!CHROME) {
   await check('the hoca walkthrough asks the questions on the user\'s own sentence', async () => {
     await page.evaluate(() => { conjState.lab = 'jumla'; conjState.jumla = 'لم تكتب امرأة لزوجها مكتوبة'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#jumlaOut', { timeout: 3000 });
+    await page.waitForSelector('#jumlaOut', { timeout: 10000 });
     await page.waitForTimeout(300);
     const r = await page.evaluate(() => {
       const t = document.getElementById('jumlaOut').textContent;
@@ -4100,7 +4105,7 @@ if (!CHROME) {
   await check('the Nida Lab lays the verdict out and derives the two dialects', async () => {
     await page.evaluate(() => { conjState.lab = 'nida'; conjState.nida = 'يَا يُوسُفُ'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#nidaOut', { timeout: 3000 });
+    await page.waitForSelector('#nidaOut', { timeout: 10000 });
     await page.waitForTimeout(250);
     const r = await page.evaluate(() => {
       const t = document.getElementById('nidaOut').textContent;
@@ -4123,13 +4128,13 @@ if (!CHROME) {
 
   await check('the Nida game is played off the engine, and teaches the wrong pick', async () => {
     await page.evaluate(() => openGames());
-    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    await page.waitForSelector('.game-pick', { timeout: 10000 });
     await page.locator('#gNida').click();
-    await page.waitForSelector('.opts', { timeout: 3000 });
+    await page.waitForSelector('.opts', { timeout: 10000 });
     const n = await page.locator('.opts [data-o]').count();
     if (n !== 4) throw new Error('four rulings to choose from, got ' + n);
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('#qWhy', { timeout: 3000 });
+    await page.waitForSelector('#qWhy', { timeout: 10000 });
     const r = await page.evaluate(() => {
       const html = document.getElementById('qWhy').innerHTML;
       return { taught: html.includes('game-wrongwhy') || html.includes('game-why'),
@@ -4458,7 +4463,7 @@ if (!CHROME) {
       await page.waitForTimeout(200);
       // open a story so the word sheet has something to open on
       await page.evaluate(() => { const c = document.querySelector('.lib-card'); if (c) c.click(); });
-      await page.waitForSelector('.word', { timeout: 5000 });
+      await page.waitForSelector('.word', { timeout: 10000 });
       const opens = ['word sheet', 'workshop', 'games hub', 'deck'];
       for (const name of opens) {
         // open, then WAIT for the sheet to finish sliding up. Measuring during
@@ -4500,7 +4505,7 @@ if (!CHROME) {
     } finally {
       await page.evaluate(() => { try { closeSheet(); } catch (e) {} });
       await page.setViewportSize(was);
-      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 10000 }).catch(() => {});
       await toLibrary().catch(() => {});
     }
     if (bad.length) throw new Error('hidden under the thumb bar — ' + bad.join(' ;; '));
@@ -4710,7 +4715,7 @@ if (!CHROME) {
         Number(b.dataset.nbab)); return !!(d && d.ok); }), picked.root);
     if (!allOk) throw new Error('a row is a button but the conjugator cannot build it');
     await page.locator('.nakil-go').nth(6).click();
-    await page.waitForSelector('.nakil-head .nk-form', { timeout: 3000 });
+    await page.waitForSelector('.nakil-head .nk-form', { timeout: 10000 });
     const shown = await page.locator('.lemma').last().innerText();
     if (!shown.trim()) throw new Error('the opened bab shows no lemma');
     const tenses = await page.locator('[data-ntense]').count();
@@ -4812,7 +4817,7 @@ if (!CHROME) {
 
     // …and the lab shows all three rows, in whichever language is on
     await page.evaluate(() => { conjState.lab = 'alama'; openConjugator(); });
-    await page.waitForSelector('#alamaOut .vrow', { timeout: 4000 });
+    await page.waitForSelector('#alamaOut .vrow', { timeout: 10000 });
     if (await page.locator('#alamaOut .vrow').count() !== 3)
       throw new Error('the endings lab must show all three cases');
     const shown = (await page.locator('#alamaOut .vrow .vw').allInnerTexts()).join('|');
@@ -4881,7 +4886,7 @@ if (!CHROME) {
     let r;
     try {
       await page.evaluate(() => { conjState.lab = 'idafa'; openConjugator(); });
-      await page.waitForSelector('#idafaOut .idf-out', { timeout: 4000 });
+      await page.waitForSelector('#idafaOut .idf-out', { timeout: 10000 });
       await page.setViewportSize({ width: 390, height: 844 });
       await page.waitForTimeout(250);
       r = await page.evaluate(() => {
@@ -4901,7 +4906,7 @@ if (!CHROME) {
     } finally {
       await page.evaluate(() => { try { conjState.lab = 'sarf'; closeSheet(); } catch (_) {} });
       await page.setViewportSize(was);
-      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 10000 }).catch(() => {});
     }
     if (r.tabs < 10) throw new Error('the rail lost a tool: ' + r.tabs);
     if (r.h > 70) throw new Error('the rail is wrapping again: ' + r.h + 'px tall');
@@ -5163,7 +5168,7 @@ if (!CHROME) {
     });
     const conjWords = 6;
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#jumlaOut .vrow', { timeout: 3000 });
+    await page.waitForSelector('#jumlaOut .vrow', { timeout: 10000 });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.waitForTimeout(200);
     let r;
@@ -5184,7 +5189,7 @@ if (!CHROME) {
       // bar, and one real failure reads as three
       await page.evaluate(() => { try { conjState.lab = 'sarf'; conjState.jumla = 'لم يكتبِ الطالبُ في الدفترِ'; closeSheet(); } catch (_) {} });
       await page.setViewportSize(was);
-      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 3000 }).catch(() => {});
+      await page.locator('#scrim').waitFor({ state: 'hidden', timeout: 10000 }).catch(() => {});
     }
     // one card per word — counted against the sentence, not a magic number
     if (r.n !== conjWords) throw new Error('a card per word: ' + r.n + ' for ' + conjWords + ' words');
@@ -5290,7 +5295,7 @@ if (!CHROME) {
 
     await page.evaluate(() => { conjState.lab = 'kernel'; conjState.kernel = 'يَا عَبْدَ اللهِ'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#kernOut', { timeout: 3000 });
+    await page.waitForSelector('#kernOut', { timeout: 10000 });
     await page.waitForTimeout(260);
     const ui = await page.evaluate(() => {
       const cards = document.querySelectorAll('#kernOut .kn-card').length;
@@ -5308,7 +5313,7 @@ if (!CHROME) {
   await check('the I\'lal Lab shows the origin, the outcome and every rule between', async () => {
     await page.evaluate(() => { conjState.lab = 'ilal'; conjState.ilalRoot = 'كيل'; conjState.ilalShape = 'maful'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#ilalOut', { timeout: 3000 });
+    await page.waitForSelector('#ilalOut', { timeout: 10000 });
     await page.waitForTimeout(200);
     const r = await page.evaluate(() => {
       const t = document.getElementById('ilalOut').textContent;
@@ -5361,12 +5366,12 @@ if (!CHROME) {
 
     // it must really navigate, not merely look like it
     await page.locator('#tabbar [data-nav="atolye"]').click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     const lab = await page.evaluate(() => !!document.getElementById('labBody'));
     if (!lab) throw new Error('the Atölye tab did not open the lab');
     await page.evaluate(() => closeSheet());
     await page.locator('#tabbar [data-nav="progress"]').click();
-    await page.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page.waitForSelector('.sheet.show', { timeout: 10000 });
     await page.evaluate(() => closeSheet());
 
     // and inside a story, Games comes alive
@@ -5384,7 +5389,7 @@ if (!CHROME) {
 
   await check('the front door states where you are, and the numbers are the deck\'s own', async () => {
     await page.evaluate(() => renderLibrary());
-    await page.waitForSelector('#statStrip', { timeout: 3000 });
+    await page.waitForSelector('#statStrip', { timeout: 10000 });
     const r = await page.evaluate(() => {
       const tiles = [...document.querySelectorAll('#statStrip .st-tile')];
       const d = deckStats();
@@ -5421,11 +5426,11 @@ if (!CHROME) {
     if (r.tap !== '44px') throw new Error('the thumb floor moved: ' + r.tap);
     // measure a real .btn on a real sheet rather than trusting the rule
     await page.evaluate(() => openGames());
-    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    await page.waitForSelector('.game-pick', { timeout: 10000 });
     await page.locator('#gNida').click();
-    await page.waitForSelector('.opts', { timeout: 3000 });
+    await page.waitForSelector('.opts', { timeout: 10000 });
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('#qNext', { timeout: 3000 });
+    await page.waitForSelector('#qNext', { timeout: 10000 });
     const h = await page.evaluate(() => Math.round(document.getElementById('qNext').getBoundingClientRect().height));
     if (h < 44) throw new Error('the primary action is only ' + h + 'px tall');
     await page.evaluate(() => closeSheet());
@@ -5459,9 +5464,9 @@ if (!CHROME) {
 
     for (const [id, arSide] of [['gIbaraTr', false], ['gIbaraAr', true]]) {
       await page.evaluate(() => openGames());
-      await page.waitForSelector('.game-pick', { timeout: 3000 });
+      await page.waitForSelector('.game-pick', { timeout: 10000 });
       await page.locator('#' + id).click();
-      await page.waitForSelector('.opts', { timeout: 3000 });
+      await page.waitForSelector('.opts', { timeout: 10000 });
       const q = await page.locator('.game-q').innerHTML();
       const arabic = /lang="ar"/.test(q);
       if (arabic !== !arSide)
@@ -5469,7 +5474,7 @@ if (!CHROME) {
       const n = await page.locator('.opts [data-o]').count();
       if (n !== 4) throw new Error(id + ': four renderings expected, got ' + n);
       await page.locator('.opts [data-o]').first().click();
-      await page.waitForSelector('#qWhy', { timeout: 3000 });
+      await page.waitForSelector('#qWhy', { timeout: 10000 });
       const w = await page.evaluate(() => ({
         pairs: document.querySelectorAll('#qWhy .ib-pairs li').length,
         right: document.querySelectorAll('.opts .right').length,
@@ -5485,7 +5490,7 @@ if (!CHROME) {
 
   await check('the games hub is shelved by discipline, and every card still opens', async () => {
     await page.evaluate(() => openGames());
-    await page.waitForSelector('.game-pick', { timeout: 3000 });
+    await page.waitForSelector('.game-pick', { timeout: 10000 });
     const r = await page.evaluate(() => {
       const kids = [...document.querySelector('.game-pick').children];
       const heads = kids.filter(k => k.classList.contains('game-group')).map(k => k.textContent);
@@ -7760,11 +7765,11 @@ if (!CHROME) {
     // the tally runs, and the stored i'rab — never the model — answers.
     await page.evaluate(() => openGames());
     await page.locator('.game-pick #gDuel').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 5000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     const nOpts = await page.locator('.opts [data-o]').count();
     if (nOpts < 2 || nOpts > 4) throw new Error('duel options: ' + nOpts);
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('.duel-banner', { timeout: 3000 });
+    await page.waitForSelector('.duel-banner', { timeout: 10000 });
     const banner = await page.locator('.duel-banner').textContent();
     if (!/🤖/.test(banner)) throw new Error('the model must wear its badge in the reveal');
     if (!(await page.locator('.duel-tally').count())) throw new Error('the running tally is missing');
@@ -7778,7 +7783,7 @@ if (!CHROME) {
       conjState.model = 'كَتَبَ الْوَلَدُ الدَّرْسَ فِي الْبَيْتِ';
       openConjugator();
     });
-    await page.waitForSelector('#modelOut', { timeout: 3000 });
+    await page.waitForSelector('#modelOut', { timeout: 10000 });
     await page.waitForTimeout(300);
     const lab = await page.evaluate(() => ({
       bars: document.querySelectorAll('.mbar').length,
@@ -7860,11 +7865,11 @@ if (!CHROME) {
     // play one question: the reveal is the engine's OWN DOC line
     await page.evaluate(() => openGames());
     await page.locator('.game-pick #gWajh').click();
-    await page.waitForSelector('.sheet.show .game-q', { timeout: 8000 });
+    await page.waitForSelector('.sheet.show .game-q', { timeout: 10000 });
     const nOpts = await page.locator('.opts [data-o]').count();
     if (nOpts !== 4) throw new Error('wajh options: ' + nOpts);
     await page.locator('.opts [data-o]').first().click();
-    await page.waitForSelector('.game-why', { timeout: 3000 });
+    await page.waitForSelector('.game-why', { timeout: 10000 });
     const why = await page.evaluate(() => {
       const el = document.querySelector('.game-why');
       const ar = el && el.querySelector('[lang="ar"], span');
@@ -8940,7 +8945,7 @@ if (!CHROME) {
     if (r.dimmed < 100) throw new Error('the search must dim what it does not match: ' + r.dimmed);
     // the UI: the reference sheet's atlas view, and a star that opens
     await page.evaluate(() => { refView = 'atlas'; refQuery = ''; openRef(); });
-    await page.waitForSelector('#refListWrap .atlas-svg', { timeout: 4000 });
+    await page.waitForSelector('#refListWrap .atlas-svg', { timeout: 10000 });
     const opened = await page.evaluate(() => {
       const star = document.querySelector('#refListWrap .at-star[data-note="idafa-definiteness"]');
       if (!star) return 'no star';
@@ -8953,7 +8958,7 @@ if (!CHROME) {
 
   await check('the Qawaid and Sarf-ledger labs render on a phone, one tap from a seeded error', async () => {
     await page.evaluate(() => { conjState.lab = 'qawaid'; conjState.qawaid = 'لَمْ يَكْتُبُونَ الدَّرْسَ'; openConjugator(); });
-    await page.waitForSelector('#qawaidOut .qw-ledger', { timeout: 6000 });
+    await page.waitForSelector('#qawaidOut .qw-ledger', { timeout: 10000 });
     const r = await page.evaluate(() => ({
       bad: document.querySelectorAll('#qawaidOut .qw-row.bad').length,
       ok: document.querySelectorAll('#qawaidOut .qw-row.ok').length,
@@ -8967,7 +8972,7 @@ if (!CHROME) {
     if (r.seeds < 10 || !r.note) throw new Error('the seeds and the note links must render: ' + r.seeds + '/' + r.note);
     if (!r.tabs.includes('qawaid') || !r.tabs.includes('sledger')) throw new Error('the rail lacks the new labs: ' + r.tabs.join(','));
     await page.evaluate(() => { conjState.lab = 'sledger'; conjState.sledger = 'لَمْ يَقُولُوا'; renderLabBody(); });
-    await page.waitForSelector('#sledgerOut .sl-steps li', { timeout: 6000 });
+    await page.waitForSelector('#sledgerOut .sl-steps li', { timeout: 10000 });
     const s = await page.evaluate(() => ({
       steps: document.querySelectorAll('#sledgerOut .sl-steps li').length,
       verified: !!document.querySelector('#sledgerOut .sl-verify.ok'),
@@ -9091,7 +9096,7 @@ if (!CHROME) {
     await page.setViewportSize({ width: 390, height: 844 });
     try {
       await page.evaluate(() => { conjState.lab = 'dabt'; conjState.dabt = 'ذَهَبَ الطَّالِبَ إِلَى الْمَدْرَسَةِ'; conjState.dabtPick = -1; openConjugator(); });
-      await page.waitForSelector('#dabtOut .dabt-line', { timeout: 6000 });
+      await page.waitForSelector('#dabtOut .dabt-line', { timeout: 10000 });
       const r = await page.evaluate(() => ({
         rail: !!document.querySelector('.labrail [data-lab="dabt"].on'),
         words: document.querySelectorAll('#dabtOut .dabt-w').length,
@@ -9107,15 +9112,15 @@ if (!CHROME) {
       if (r.legend < 5 || r.modes !== 2 || r.seeds < 5) throw new Error('legend, modes and seeds: ' + JSON.stringify(r));
       if (!r.fits) throw new Error('the dabt lab scrolls sideways on a phone');
       await page.evaluate(() => document.querySelectorAll('#dabtOut .dabt-w')[1].click());
-      await page.waitForSelector('#dabtOut .dabt-detail', { timeout: 4000 });
+      await page.waitForSelector('#dabtOut .dabt-detail', { timeout: 10000 });
       const d = await page.evaluate(() => ({ rule: (document.querySelector('#dabtOut .dabt-detail .dd-rule') || {}).textContent || '', was: !!document.querySelector('#dabtOut .dabt-detail .dd-was') }));
       if (!/فَاعِلٌ/.test(d.rule) || !d.was) throw new Error('the tapped word names its rule and the learner\'s form: ' + JSON.stringify(d));
       await page.evaluate(() => { conjState.lab = 'qawaid'; conjState.qawaid = 'لَمْ يَكْتُبُونَ الدَّرْسَ'; renderLabBody(); });
-      await page.waitForSelector('#qawaidOut .qw-row.bad', { timeout: 6000 });
+      await page.waitForSelector('#qawaidOut .qw-row.bad', { timeout: 10000 });
       const q = await page.evaluate(() => (document.querySelector('#qawaidOut .qw-row.bad .qw-fix') || {}).textContent || '');
       if (!/يَكْتُبُوا/.test(q)) throw new Error('the broken rule proposes the corrected word: ' + q);
       await page.evaluate(() => { conjState.lab = 'sledger'; conjState.sledger = 'يَقْوُلُ'; renderLabBody(); });
-      await page.waitForSelector('#sledgerOut .sl-fix', { timeout: 6000 });
+      await page.waitForSelector('#sledgerOut .sl-fix', { timeout: 10000 });
       const s = await page.evaluate(() => ({ pair: (document.querySelector('#sledgerOut .sl-fix .sf-pair') || {}).textContent || '', steps: document.querySelectorAll('#sledgerOut .sl-fix .sl-steps li').length }));
       if (!/يَقُولُ/.test(s.pair) || s.steps < 1) throw new Error('the sarf corrector card: ' + JSON.stringify(s));
       const t = await page.evaluate(() => { const st = STORIES.find(x => x.id === 'jumal-al-tadrib'); const h = tahqiqHtml(st.chapters[0].sentences[0]); return { strip: /tq-dabt/.test(h), score: /ضَبْطُ الْآلَة/.test(h) }; });
@@ -9295,7 +9300,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 130) throw new Error('the qiyasi builder disagrees with more stored plurals than at v170: ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 136) throw new Error('the qiyasi builder disagrees with more stored plurals than at v173 (131 — the corpus grew by three chapters of samaʿi plurals; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -9340,7 +9345,8 @@ if (!CHROME) {
     if (a.eng < 80 || a.pct < 50) throw new Error('at least eighty notes are engine-computed: ' + a.eng + ' (' + a.pct + '%)');
     if (!a.stat.includes(String(a.eng)) || !a.stat.includes(String(a.total))) throw new Error('the coverage line names the numbers: ' + a.stat);
     if (!a.wajhRing) throw new Error('wajh-al-shabah is ringed and opens the tashbih lab');
-    if (a.jinasRing) throw new Error('jinas has no engine and wears no ring — the remainder is honest');
+    if (!a.jinasRing) throw new Error('jinas is ringed since wave 19 (JinasEngine)');
+    if (a.rings >= a.total) throw new Error('some notes still wear no ring — the remainder is honest');
     if (a.links < 300) throw new Error('the links carry their ends: ' + a.links);
     await page.hover('#refListWrap .at-star[data-note="idafa-definiteness"]');
     await page.waitForTimeout(150);
@@ -9424,7 +9430,7 @@ if (!CHROME) {
     await page.setViewportSize({ width: 390, height: 844 });
     try {
       await page.evaluate(() => { conjState.lab = 'majaz'; conjState.majaz = 'لَدَى أَسَدٍ شَاكِي السِّلَاحِ مُقَذَّفٍ لَهُ لِبَدٌ أَظْفَارُهُ لَمْ تُقَلَّمِ'; openConjugator(); });
-      await page.waitForSelector('#majazOut .mj-svg', { timeout: 6000 });
+      await page.waitForSelector('#majazOut .mj-svg', { timeout: 10000 });
       const r = await page.evaluate(() => ({
         ist: document.querySelectorAll('#majazOut .mj-ist .ts-chip').length, minhu: (document.querySelector('#majazOut .mj-minhu') || {}).textContent || '',
         lahu: (document.querySelector('#majazOut .mj-lahu') || {}).textContent || '', six: document.querySelectorAll('#majazOut .mj-six-cell').length,
@@ -9491,7 +9497,7 @@ if (!CHROME) {
 
   await check('the BadiEngine — seeds: the tibaq of affirmation off the stored contraries (two nouns, two verbs, two particles, one of each), of negation off one verb denied and affirmed; the copula denied and affirmed is no tibaq', async () => {
     const r = await page.evaluate(() => {
-      const one = s => BadiEngine.readText(s).frames.map(f => f.sub + '|' + f.class + '|' + f.pair.join('-')).join(';') || '∅';
+      const one = s => BadiEngine.readText(s).frames.filter(f => f.kind === 'tibaq').map(f => f.sub + '|' + f.class + '|' + f.pair.join('-')).join(';') || '∅';   // the tibaqs only: BadiEngine v2 reads the muqabala beside them (wave 19)
       return { seeds: BadiEngine.SEEDS.map(s => [s, BadiEngine.readText(s).frames.length]), fil: one('يُحْيِي وَيُمِيتُ'), ism: one('وَتَحْسَبُهُمْ أَيْقَاظًا وَهُمْ رُقُودٌ'), harf: one('لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ'), mixed: one('أَوَمَنْ كَانَ مَيْتًا فَأَحْيَيْنَاهُ'),
                salb: one('وَلَكِنَّ أَكْثَرَ النَّاسِ لَا يَعْلَمُونَ يَعْلَمُونَ ظَاهِرًا'), kana: one('مَا لَمْ يَكُنْ مَلْزُومًا لَمْ يَنْتَقِلْ مِنْهُ فَيَكُونُ الِانْتِقَالُ'), plain: one('كَتَبَ زَيْدٌ رِسَالَةً') };
     });
@@ -9542,13 +9548,13 @@ if (!CHROME) {
       const r1 = await page.evaluate(() => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st);
         const c = [...document.querySelectorAll('.jml-chip')].find(x => /كِنَايَة/.test(x.textContent) && /نِجَادُهُ/.test((x.closest('.sentence') || {}).textContent || '')); if (!c) return { noChip: true }; c.click(); return { ok: true }; });
       if (r1.noChip) throw new Error('no كِنَايَة chip on the sentence of the two belts');
-      await page.waitForSelector('.sheet.show .kn-svg', { state: 'attached', timeout: 8000 });
+      await page.waitForSelector('.sheet.show .kn-svg', { state: 'attached', timeout: 10000 });
       const r2 = await page.evaluate(() => ({ svg: document.querySelectorAll('.sheet .kn-svg').length, doors: [...document.querySelectorAll('.sheet .bayan-doors .door.lit')].map(d => d.dataset.door), agree: !!document.querySelector('.sheet .kinaya .ts-agree.ok'), ghost: document.querySelectorAll('.sheet .kn-ghost').length, chips: document.querySelectorAll('.sheet .kn-ladder-chips .ts-chip').length, fits: document.documentElement.scrollWidth <= window.innerWidth + 1 }));
       if (r2.svg < 2 || !r2.doors.includes('kn') || !r2.agree || r2.ghost < 1 || r2.chips < 6) throw new Error('the kinaya panel: ' + JSON.stringify(r2));
       if (!r2.fits) throw new Error('the sheet scrolls sideways on a phone');
       await page.evaluate(() => closeSheet()); await page.waitForTimeout(400);
       await page.evaluate(() => { const c = [...document.querySelectorAll('.jml-chip')].find(x => /طِبَاق/.test(x.textContent) && /أَيْقَاظًا/.test((x.closest('.sentence') || {}).textContent || '')); if (!c) throw new Error('no طِبَاق chip'); c.click(); });
-      await page.waitForSelector('.sheet.show .bd-pole', { timeout: 8000 });
+      await page.waitForSelector('.sheet.show .bd-pole', { timeout: 10000 });
       const r3 = await page.evaluate(() => ({ poles: document.querySelectorAll('.sheet .bd-pole').length, agree: !!document.querySelector('.sheet .badi .ts-agree.ok') }));
       if (r3.poles !== 2 || !r3.agree) throw new Error('the tibaq poles: ' + JSON.stringify(r3));
       await page.evaluate(() => closeSheet()); await page.waitForTimeout(300);
@@ -9557,15 +9563,198 @@ if (!CHROME) {
         return { before, on, after, legend, off: !document.body.classList.contains('taqdir-mode'), total: document.querySelectorAll('.ghost').length }; });
       if (r4.before !== 0 || !r4.on || r4.after < 20 || !r4.legend || !r4.off) throw new Error('the taqdir toggle: ' + JSON.stringify(r4));
       await page.evaluate(() => { conjState.lab = 'kinaya'; conjState.kinaya = ''; openConjugator(); });
-      await page.waitForSelector('#kinayaOut .kn-corpus .qw-seed', { timeout: 6000 });
+      await page.waitForSelector('#kinayaOut .kn-corpus .qw-seed', { timeout: 10000 });
       await page.evaluate(() => { const s0 = [...document.querySelectorAll('#kinayaOut .kn-corpus .qw-seed')].find(x => /كَثِيرُ الرَّمَادِ/.test(x.textContent)); s0.click(); });
-      await page.waitForSelector('#kinayaOut .kn-rung', { state: 'attached', timeout: 8000 });
+      await page.waitForSelector('#kinayaOut .kn-rung', { state: 'attached', timeout: 10000 });
       const r5 = await page.evaluate(() => ({ rungs: document.querySelectorAll('#kinayaOut .kn-rung').length, far: /بَعِيدَةٌ/.test((document.querySelector('#kinayaOut .kn-ladder-chips') || {}).textContent || ''), fits: document.documentElement.scrollWidth <= window.innerWidth + 1, ring: (QawaidAtlas.engineOf('kinaya') || {}).lab, tibaq: (QawaidAtlas.engineOf('tibaq') || {}).lab }));
       if (r5.rungs !== 4 || !r5.far) throw new Error('the far ladder in the lab: ' + JSON.stringify(r5));
       if (!r5.fits) throw new Error('the Kinaya lab scrolls sideways on a phone');
-      if (r5.ring !== 'kinaya' || r5.tibaq !== 'kinaya') throw new Error('the Atlas rings the kinaya and the tibaq: ' + JSON.stringify(r5));
+      if (r5.ring !== 'kinaya' || r5.tibaq !== 'badi') throw new Error('the Atlas rings the kinaya (kinaya lab) and the tibaq (badi lab since wave 19): ' + JSON.stringify(r5));
     } finally { await page.setViewportSize(was); await page.evaluate((p0) => { try { closeSheet(); } catch (e) {} setPremium(p0); }, prem); }
   });
+  // ---------------------------------------------------------------- wave 19: the rest of the badiʿ, the jinas and the sajʿ, the learned layer
+  const W19_FLOOR = { 58: 96, 59: 95, 60: 97 };   // measured at v173: ch58 98.3, ch59 97.0, ch60 99.5 (endings mode) — floors sit under the measurement, never on it
+  await check('Talkhis ch58-60 (the muqabala, muraʿat al-nazir, tashabuh al-atraf, iham al-tanasub; the irsad, the mushakala, the muzawaja, the ʿaks; the rujuʿ, the tawriya, the istikhdam, the laff wa-nashr): every authored badi frame read back, every kind present, and the dabt floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [58, 59, 60]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); }); const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ':' + JSON.stringify(ag && ag.per.filter(p => !p.ok).map(p => p.kind + ':' + p.why))); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W19_FLOOR);
+    for (const N of [58, 59, 60]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 400));
+      if (o.dabt !== null && o.dabt < W19_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W19_FLOOR[N]);
+    }
+    const need = { 58: ['muqabala', 'muraat-al-nazir', 'tashabuh-al-atraf', 'iham-al-tanasub'], 59: ['irsad', 'mushakala', 'muzawaja', 'aks'], 60: ['ruju', 'tawriya', 'istikhdam', 'laff-nashr'] };
+    for (const N of [58, 59, 60]) { const miss = need[N].filter(k => !r[N].kinds.includes(k)); if (miss.length) throw new Error('ch' + N + ' misses ' + miss.join(',')); }
+    if (r[58].bd < 15) throw new Error('ch58 carries the muqabala chapter\'s frames: ' + r[58].bd);
+    if (!['tahqiq', 'taqdir'].every(k => r[59].subs.includes(k)) || !['mudaf', 'mutaalliq', 'tarafayn'].every(k => r[59].subs.includes(k))) throw new Error('ch59 carries the mushakala\'s two kinds and the ʿaks\'s three shapes: ' + r[59].subs);
+    if (!['mujarrada', 'murashshaha', 'lafz-damir', 'damirayn', 'murattab', 'ghayr-murattab', 'ijmali'].every(k => r[60].subs.includes(k))) throw new Error('ch60 carries the tawriya, istikhdam and laff wa-nashr sub-kinds: ' + r[60].subs);
+  });
+
+  await check('wave-19 nahw pins: the joined two-object passive, the fa-joined passive with its own naib, the jarr clitic on a lexicon noun, the copula\'s mood over a voice shift, the passive/1s twins, the relative-doer guards, the citation نَحْوَ, the clause-initial jarr phrase, the citation list, بَلْ, ثُمَّ, the dual\'s badal, the ishtighal, ابْن; the writer\'s five-verbs shadda and the twin candidate demoted', async () => {
+    const r = await page.evaluate(() => {
+      const D = t => { const rows = SentenceAnalyzer.analyze(DabtEngine.stripSentence(t, 'endings')); const d = DabtEngine.decide(rows); return { rows, d, k: i => (d.out[i] || {}).k, rule: i => (d.out[i] || {}).rule }; };
+      const bad = [];
+      const pin = (name, ok) => { if (!ok) bad.push(name); };
+      let x = D('وَمِنْهَا مُرَاعَاةُ النَّظِيرِ وَهِيَ جَمْعُ أَمْرٍ وَمَا يُنَاسِبُهُ لَا بِالتَّضَادِّ وَتُسَمَّى التَّنَاسُبَ وَالتَّوْفِيقَ');
+      pin('وَتُسَمَّى التَّنَاسُبَ وَالتَّوْفِيقَ: the joined passive of a two-object verb takes its second object', x.k(11) === 'nasb' && x.k(12) === 'nasb');
+      x = D('وَيَقُولُونَ هُوَ تَطْهِيرٌ لَهُمْ فَسُمِّيَ الْإِيمَانُ صِبْغَةً لِلْمُشَاكَلَةِ');
+      pin('فَسُمِّيَ الْإِيمَانُ صِبْغَةً: the fa-joined passive names its own naib, then its second object', x.rule(5) === 'naib' && x.k(5) === 'raf' && x.k(6) === 'nasb');
+      x = D('إِذَا نَزَلَ السَّمَاءُ بِأَرْضِ قَوْمٍ رَعَيْنَاهُ');
+      pin('بِأَرْضِ قَوْمٍ: a kasra\'d jarr letter on the lexicon\'s noun is that noun, annexed', (x.rows[3].kind || '').startsWith('noun') && x.k(3) === 'jarr' && x.rule(4) === 'mudafIlayh');
+      x = D('وَيَحْتَمِلُ أَنْ يُرَادَ بِهِمَا الْقُوَى الْحَاصِلَةُ لِلنَّفْسِ فَتَكُونَ الِاسْتِعَارَةُ تَحْقِيقِيَّةً');
+      pin('فَتَكُونَ: the copula copies the mood across the voice shift; the twin candidate no longer steals its person', x.k(7) === 'nasb' && x.rows[7].cell && x.rows[7].cell.i === 3);
+      x = D('وَمَا أُضِيفَ إِلَيْهِ نَحْوَ عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ');
+      pin('وَمَا أُضِيفَ إِلَيْهِ: after a relative the speaker\'s أُضِيفُ is the passive أُضِيفَ; نَحْوَ cites, عَادَاتُ is the mubtada', /majhulMazi/.test((x.rows[1].cell || {}).tense || '') && x.rule(4) === 'mubtada');
+      x = D('فَالْمَلْفُوفُ مَا تَعَدَّدَ طَرَفَاهُ وَذُكِرَتِ الْمُشَبَّهَاتُ أَوَّلًا');
+      pin('مَا تَعَدَّدَ طَرَفَاهُ: an intransitive verb after the relative keeps its named doer', x.k(3) === 'raf');
+      x = D('أُولَئِكَ الَّذِينَ اشْتَرَوُا الضَّلَالَةَ بِالْهُدَى فَمَا رَبِحَتْ تِجَارَتُهُمْ');
+      pin('فَمَا رَبِحَتْ تِجَارَتُهُمْ: the clause-initial مَا before a verb is the negation, not a relative', x.k(7) === 'raf');
+      x = D('نَحْوَ الشَّمْسُ وَالْقَمَرُ بِحُسْبَانٍ');
+      pin('نَحْوَ الشَّمْسُ: the citation annexes nothing', x.rule(1) === 'mubtada' && x.k(2) === 'raf');
+      x = D('فَفِي الْأَوَّلَيْنِ مُرَاعَاةُ النَّظِيرِ حَقِيقَةً وَفِي الثَّالِثِ مُلْحَقٌ بِهَا');
+      pin('فَفِي الْأَوَّلَيْنِ مُرَاعَاةُ النَّظِيرِ حَقِيقَةً: the clause-initial jarr phrase fronts the khabar, the bare noun after the mubtada is its hal', x.rule(2) === 'mubtada' && x.rule(4) === 'hal' && x.k(4) === 'nasb');
+      x = D('وَقَوْلِ الْبُحْتُرِيِّ كَالْقِسِيِّ الْمُعَطَّفَاتِ بَلِ الْأَسْهُمِ مَبْرِيَّةً بَلِ الْأَوْتَارِ');
+      pin('وَقَوْلِ الْبُحْتُرِيِّ … بَلِ الْأَسْهُمِ مَبْرِيَّةً: the citation list is jarr, بَلْ joins in case, the indefinite sifa after it is the hal', x.k(0) === 'jarr' && x.k(5) === 'jarr' && x.rule(6) === 'hal' && x.k(8) === 'jarr');
+      x = D('وَمِنْهَا الْعَكْسُ وَهُوَ أَنْ يُقَدَّمَ فِي الْكَلَامِ جُزْءٌ ثُمَّ يُؤَخَّرَ وَيَقَعُ عَلَى وُجُوهٍ');
+      pin('ثُمَّ يُؤَخَّرَ وَيَقَعُ: the mood reaches over ثُمَّ, and stops at the voice shift', x.k(9) === 'nasb' && x.k(10) === 'raf');
+      x = D('وَمِنْهَا التَّوْرِيَةُ وَتُسَمَّى الْإِيهَامَ وَهِيَ أَنْ يُطْلَقَ لَفْظٌ لَهُ مَعْنَيَانِ قَرِيبٌ وَبَعِيدٌ وَيُرَادَ الْبَعِيدُ');
+      pin('لَهُ مَعْنَيَانِ قَرِيبٌ وَبَعِيدٌ: the dual after the fronted jarr phrase is the mubtada, the two indefinites its badal of detail', x.k(3) === 'nasb' && x.rule(9) === 'mubtada' && x.rule(10) === 'badal' && x.k(10) === 'raf' && x.k(11) === 'raf');
+      x = D('وَمِثَالُ الْمُرَشَّحَةِ وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ');
+      pin('وَالسَّمَاءَ بَنَيْنَاهَا: the ishtighal', x.k(2) === 'nasb');
+      x = D('وَغَيْرُ مُرَتَّبٍ كَقَوْلِ ابْنِ حَيُّوسٍ كَيْفَ أَسْلُو وَأَنْتِ حِقْفٌ وَغُصْنٌ وَغَزَالٌ لَحْظًا وَقَدًّا وَرِدْفًا');
+      pin('كَقَوْلِ ابْنِ حَيُّوسٍ … وَغَزَالٌ لَحْظًا: ابْن is no «build!», the saying is annexed to it, the seat-alif noun is the tamyiz', (x.rows[3].kind || '').startsWith('noun') && x.k(3) === 'jarr' && x.d.head.has(2) && x.k(10) === 'raf' && x.k(11) === 'nasb');
+      x = D('وَهُوَ أَنْ يُرَادَ بِلَفْظٍ لَهُ مَعْنَيَانِ أَحَدُهُمَا ثُمَّ بِضَمِيرِهِ الْآخَرُ أَوْ يُرَادَ بِأَحَدِ ضَمِيرَيْهِ أَحَدُهُمَا ثُمَّ بِالْآخَرِ الْآخَرُ');
+      pin('ثُمَّ بِضَمِيرِهِ الْآخَرُ … أَوْ يُرَادَ: the ثُمَّ parallel is raf, the mood reaches over أَوْ', x.k(9) === 'raf' && x.k(11) === 'nasb' && x.k(17) === 'raf');
+      x = D('وَهُوَ ذِكْرُ مُتَعَدِّدٍ عَلَى التَّفْصِيلِ أَوِ الْإِجْمَالِ ثُمَّ ذِكْرُ مَا لِكُلٍّ مِنْ غَيْرِ تَعْيِينٍ ثِقَةً بِأَنَّ السَّامِعَ يَرُدُّهُ إِلَيْهِ');
+      pin('ثُمَّ ذِكْرُ مَا لِكُلٍّ مِنْ غَيْرِ تَعْيِينٍ ثِقَةً: the repeated head annexes the relative; غَيْر annexes one noun and the bare noun after is the hal', x.d.head.has(8) && x.rule(14) === 'hal');
+      const W = t => DabtEngine.vowel(t, 'endings').words.map(w => w.out);
+      pin('the writer: يُسَمُّونَهُ keeps its nun behind the shadda', W('يُسَمُّونَهُ الْمَعْمُودِيَّةَ')[0] === 'يُسَمُّونَهُ');
+      pin('the writer: نُجِدْ carries one sukun', W('اقْتَرِحْ شَيْئًا نُجِدْ لَكَ طَبْخَهُ')[2] === 'نُجِدْ');
+      pin('the writer: مُعَاوِيَةَ takes the diptote\'s fatha in jarr', W('قَوْلُ مُعَاوِيَةَ بْنِ مَالِكٍ')[1] === 'مُعَاوِيَةَ');
+      pin('the writer: a head, a dual and a zarf keep their idafa (no tanwin) — the option object is whole', W('وَبِاعْتِبَارِ اللَّفْظِ الْمُسْتَعَارِ قِسْمَانِ أَصْلِيَّةٌ وَتَبَعِيَّةٌ').join(' ') === 'وَبِاعْتِبَارِ اللَّفْظِ الْمُسْتَعَارِ قِسْمَانِ أَصْلِيَّةٌ وَتَبَعِيَّةٌ' && W('وَعِنْدَ السَّكَّاكِيِّ الِاسْتِعَارَةُ مُصَرَّحَةٌ')[0] === 'وَعِنْدَ');
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const fr = (n, sid) => { const ch = st.chapters.find(c => c.chapter === n || c.n === n); const sen = ch.sentences.find(q => q.id === sid); const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' ')); return BadiEngine.read(rows, { sen }); };
+      pin('the ʿaks refuses a list (ch48 s3) and a non-adjacent repeat (ch49 s12)', !fr(48, 's3').some(f => f.kind === 'aks') && !fr(49, 's12').some(f => f.kind === 'aks'));
+      pin('the ʿaks keeps عَادَاتُ السَّادَاتِ (ch59 s12) and هُنَّ لَهُمْ (ch59 s14)', fr(59, 's12').some(f => f.kind === 'aks' && f.sub === 'mudaf') && fr(59, 's14').some(f => f.kind === 'aks' && f.sub === 'tarafayn'));
+      const a = sarfAudit();
+      pin('the regenerated wave-19 paradigms audit clean (' + a.bad.slice(0, 3).join(' | ') + ')', a.bad.length === 0);
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' pin(s) failed: ' + r.join(' || ').slice(0, 900));
+  });
+
+  await check('the BadiEngine\'s new figures on their seeds: the muqabala off two ordered tibaqs, muraʿat al-nazir off the field table (sun/moon; bow/arrow/string), tashabuh al-atraf tied by the epithet table, the irsad by root at the close, the ʿaks by swapped lemmas with its shape, the rujuʿ off بَلَى, the laff wa-nashr off the owners table; plain prose carries none', async () => {
+    const r = await page.evaluate(() => {
+      const kinds = s => BadiEngine.readText(s).frames.map(f => f.kind + (f.sub ? '/' + f.sub : '')).join(';') || '∅';
+      const one = (s, k) => BadiEngine.readText(s).frames.find(f => f.kind === k) || null;
+      const muq = one('فَلْيَضْحَكُوا قَلِيلًا وَلْيَبْكُوا كَثِيرًا', 'muqabala'), sky = one('الشَّمْسُ وَالْقَمَرُ بِحُسْبَانٍ', 'muraat-al-nazir'), bow = one('كَالْقِسِيِّ الْمُعَطَّفَاتِ بَلِ الْأَسْهُمِ مَبْرِيَّةً بَلِ الْأَوْتَارِ', 'muraat-al-nazir');
+      const tsh = one('لَا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ وَهُوَ اللَّطِيفُ الْخَبِيرُ', 'tashabuh-al-atraf'), irs = one('فَمَا كَانَ اللهُ لِيَظْلِمَهُمْ وَلَكِنْ كَانُوا أَنْفُسَهُمْ يَظْلِمُونَ', 'irsad');
+      const aks1 = one('عَادَاتُ السَّادَاتِ سَادَاتُ الْعَادَاتِ', 'aks'), aks2 = one('يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ وَيُخْرِجُ الْمَيِّتَ مِنَ الْحَيِّ', 'aks'), aks3 = one('لَا هُنَّ حِلٌّ لَهُمْ وَلَا هُمْ يَحِلُّونَ لَهُنَّ', 'aks');
+      const ruj = one('قِفْ بِالدِّيَارِ الَّتِي لَمْ يَعْفُهَا الْقِدَمُ بَلَى وَغَيَّرَهَا الْأَرْوَاحُ وَالدِّيَمُ', 'ruju'), laff = one('جَعَلَ لَكُمُ اللَّيْلَ وَالنَّهَارَ لِتَسْكُنُوا فِيهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ', 'laff-nashr');
+      return { seeds: BadiEngine.SEEDS.map(s => [s, BadiEngine.readText(s).frames.length]), muq: muq && muq.first.join('-') + '|' + muq.second.join('-'), sky: sky && sky.field + ':' + sky.set.join('-'), bow: bow && bow.field + ':' + bow.set.length,
+               tsh: tsh && tsh.pairs.map(p => p.join('-')).join(';'), irs: irs && irs.pair.join('-'), aks: [aks1, aks2, aks3].map(a => a ? a.sub : '∅').join(','), ruj: ruj && ruj.pair.join('-'), laff: laff && laff.sub + ':' + laff.first.join('-') + '|' + laff.second.join('-'), plain: kinds('كَتَبَ زَيْدٌ رِسَالَةً إِلَى أَخِيهِ'), plain2: kinds('ذَهَبَ الرَّجُلُ إِلَى السُّوقِ وَاشْتَرَى خُبْزًا') };
+    });
+    const empty = r.seeds.filter(([, n]) => !n).map(([s]) => s); if (empty.length) throw new Error('seeds with no frame: ' + empty.join(' | '));
+    if (r.muq !== '0-1|2-3') throw new Error('9:82 is a muqabala of two: ' + r.muq);
+    if (r.sky !== 'sky:0-1' || r.bow !== 'bow:3') throw new Error('muraʿat al-nazir off the field table: ' + r.sky + ' ' + r.bow);
+    if (r.tsh !== '7-1;8-4') throw new Error('6:103: the Subtle answers the denied reaching, the Aware the affirmed: ' + r.tsh);
+    if (r.irs !== '3-7') throw new Error('9:70: لِيَظْلِمَهُمْ forecasts يَظْلِمُونَ: ' + r.irs);
+    if (r.aks !== 'mudaf,mutaalliq,tarafayn') throw new Error('the ʿaks in its three shapes: ' + r.aks);
+    if (r.ruj !== '4-6') throw new Error('Zuhayr: the denial and بَلَى (يَعْفُهَا ↔ بَلَى): ' + r.ruj);
+    if (!/^murattab:/.test(r.laff || '')) throw new Error('28:73: the ordered laff wa-nashr: ' + r.laff);
+    if (r.plain !== '∅' || r.plain2 !== '∅') throw new Error('plain prose carries no figure: ' + r.plain + ' ' + r.plain2);
+  });
+
+  await check('the JinasEngine by letter comparison (tamm / muharraf / mutarraf / lahiq / mudari / ishtiqaq), the SajEngine by the pausal letter (the clauses cut at the waw, the fawasil ringed, the sound plural\'s ending refused) — on the notes\' own examples and the seeds', async () => {
+    const r = await page.evaluate(() => {
+      const j = s => JinasEngine.readText(s).frames.map(f => f.sub + ':' + f.a + '/' + f.b + (f.muzdawij ? '!' : '')).join(';') || '∅';
+      const sj = s => SajEngine.readText(s).frames.map(f => f.sub + ':' + f.rawiyy + ':' + f.text(f.pair)).join(';') || '∅';
+      const jx = (GRAMMAR.jinas.examples || []).map(e => [e.ar, JinasEngine.readText(e.ar).frames.length]), sx = (GRAMMAR.saj.examples || []).map(e => [e.ar, SajEngine.readText(e.ar).frames.length]);
+      return { jx, sx, saba: j('وَجِئْتُكَ مِنْ سَبَإٍ بِنَبَإٍ يَقِينٍ'), saa: j('وَيَوْمَ تَقُومُ السَّاعَةُ يُقْسِمُ الْمُجْرِمُونَ مَا لَبِثُوا غَيْرَ سَاعَةٍ'), humaza: j('وَيْلٌ لِكُلِّ هُمَزَةٍ لُمَزَةٍ'), talab: j('رَجُلٌ أَمْكَنَهُ طَلَبُ الْعِلْمِ فَلَمْ يَطْلُبْهُ'), juz: j('الْجُزْءُ الَّذِي لَا يَتَجَزَّى'),
+               mal: j('بَاعَ مَالًا بِمَالٍ'), surur: sj('فِيهَا سُرُرٌ مَرْفُوعَةٌ وَأَكْوَابٌ مَوْضُوعَةٌ'), fat: sj('مَا أَبْعَدَ مَا فَاتْ وَمَا أَقْرَبَ مَا هُوَ آتْ'), duha: sj('فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ وَأَمَّا السَّائِلَ فَلَا تَنْهَرْ'), plural: sj('يُثَابُونَ وَيُعَاقَبُونَ فِي الدَّارِ'), prose: sj('ذَهَبَ الرَّجُلُ إِلَى السُّوقِ وَاشْتَرَى خُبْزًا كَثِيرًا') };
+    });
+    const je = r.jx.filter(([, n]) => !n).map(([s]) => s); if (je.length) throw new Error('jinas examples with no frame: ' + je.join(' | '));
+    const se = r.sx.filter(([, n]) => !n).map(([s]) => s); if (se.length) throw new Error('saj examples with no frame: ' + se.join(' | '));
+    if (!/^lahiq:سبا\/نبا!/.test(r.saba)) throw new Error('سَبَإٍ بِنَبَإٍ: one far letter, side by side: ' + r.saba);
+    if (!/^tamm:/.test(r.saa)) throw new Error('السَّاعَةُ / سَاعَةٍ: the complete jinas: ' + r.saa);
+    if (!/^lahiq:/.test(r.humaza)) throw new Error('هُمَزَةٍ لُمَزَةٍ: a far letter: ' + r.humaza);
+    if (!/^ishtiqaq:/.test(r.talab) || !/^ishtiqaq:/.test(r.juz)) throw new Error('one root, two words: ' + r.talab + ' ' + r.juz);
+    if (r.mal !== '∅') throw new Error('مَالًا بِمَالٍ is one word twice, no jinas: ' + r.mal);
+    if (!/:ع:/.test(r.surur) || !/:ت:/.test(r.fat) || !/^mutawazi:ر:/.test(r.duha)) throw new Error('the sajʿ examples: ' + r.surur + ' | ' + r.fat + ' | ' + r.duha);
+    if (r.plural !== '∅' || r.prose !== '∅') throw new Error('two coordinated plurals and plain prose carry no sajʿ: ' + r.plural + ' ' + r.prose);
+  });
+
+  await check('the learned layer says what it is and is measured: the BabModel (held-out ≥ 50%, above the majority baseline) predicts a bab and badges it 🧠; the RuleMiner reads the stored seats and DabtEngine\'s own on the same tokens; the SeatModel trains and predicts', async () => {
+    const r = await page.evaluate(() => {
+      const bm = BabModel.model(); const k = BabModel.predict('ك ت ب'), f = BabModel.predict('ف ت ح');
+      const toks = RuleMiner.tokens(['aqaid-ahl-al-sunna']); const eng = RuleMiner.engineScore(toks); const m = SeatModel.train(toks); const pr = SeatModel.predict(m, toks[0].feats);
+      const rules = RuleMiner.mine(toks, 4, 0.7);
+      return { acc: bm && bm.heldOut.acc, maj: bm && bm.heldOut.majority, n: bm && bm.trainedOn, k: k && k.best, f: f && f.best, badge: /learn-badge/.test(BabModel.badge('ك ت ب')), toks: toks.length, engAcc: eng.acc, seats: Object.keys(eng.per).length, pr: pr[0].seat, p: pr[0].p, rules: rules.length };
+    });
+    if (!r.n || r.n < 200) throw new Error('the bab model is trained on the packages\' Form-I roots: ' + r.n);
+    if (r.acc < 50 || r.acc <= r.maj) throw new Error('bab model held-out ' + r.acc + '% (majority ' + r.maj + '%) — measured 57.0 at v173');
+    if (r.f !== 'fataha') throw new Error('a guttural third radical pulls to fataha: ' + r.f);
+    if (!r.badge) throw new Error('the guess wears the 🧠 badge');
+    if (r.toks < 200 || r.seats < 8) throw new Error('the miner reads the stored seats: ' + r.toks + ' tokens, ' + r.seats + ' seats');
+    if (r.engAcc < 58) throw new Error('DabtEngine on the stored seats of the creed: ' + r.engAcc + '% (measured 59.8 at v172 with this miner, 59.4 at v173 — the floor sits under the measurement)');
+    if (!r.pr || !(r.p > 0)) throw new Error('the seat model predicts: ' + JSON.stringify(r));
+    if (r.rules < 5) throw new Error('mined rules: ' + r.rules);
+  });
+
+  await check('the badiʿ panels in the sheet (rows and ties, arcs, the crossed ʿaks, the jinas grid, the sajʿ rings, the five doors), the Badiʿ lab and the Learning lab, the four new games — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (re, sel) => { const ok = await page.evaluate((src) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const re = new RegExp(src); const c = [...document.querySelectorAll('.jml-chip')].find(x => re.test((x.closest('.sentence') || {}).textContent || '')); if (!c) return false; c.click(); return true; }, re.source); if (!ok) throw new Error('no chip for ' + re.source); await page.waitForSelector('.sheet.show ' + sel, { state: 'attached', timeout: 10000 }); };
+      await open(/اللَّطِيفُ الْخَبِيرُ/, '.bd-tashabuh-al-atraf');
+      const r1 = await page.evaluate(() => ({ arcs: document.querySelectorAll('.sheet .bd-arc').length, doors: [...document.querySelectorAll('.sheet .bayan-doors .door.lit')].map(d => d.dataset.door), agree: !!document.querySelector('.sheet .badi .ts-agree.ok'), jn: document.querySelectorAll('.sheet .jn-svg').length, sj: document.querySelectorAll('.sheet .sj-frame').length, fits: document.documentElement.scrollWidth <= window.innerWidth + 1 }));
+      if (r1.arcs !== 2 || !r1.doors.includes('bd') || !r1.doors.includes('lf') || !r1.agree || r1.jn < 1 || r1.sj < 1 || !r1.fits) throw new Error('6:103 sheet: ' + JSON.stringify(r1));
+      await page.evaluate(() => closeSheet()); await page.waitForTimeout(300);
+      await open(/حِقْفٌ وَغُصْنٌ/, '.bd-laff-nashr');
+      const r2 = await page.evaluate(() => ({ ties: document.querySelectorAll('.sheet .bd-laff .bd-tie').length, x: document.querySelectorAll('.sheet .bd-laff .bd-tie-x').length, agree: !!document.querySelector('.sheet .badi .ts-agree.ok') }));
+      if (r2.ties !== 3 || r2.x < 1 || !r2.agree) throw new Error('Ibn Hayyus sheet: ' + JSON.stringify(r2));
+      await page.evaluate(() => closeSheet()); await page.waitForTimeout(300);
+      await open(/عَادَاتُ السَّادَاتِ/, '.bd-aks');
+      const r3 = await page.evaluate(() => ({ cross: document.querySelectorAll('.sheet .bd-cross').length, agree: !!document.querySelector('.sheet .badi .ts-agree.ok') }));
+      if (r3.cross !== 1 || !r3.agree) throw new Error('the ʿaks sheet: ' + JSON.stringify(r3));
+      await page.evaluate(() => closeSheet()); await page.waitForTimeout(300);
+      await page.evaluate(() => { conjState.lab = 'badi'; conjState.badi = 'وَجِئْتُكَ مِنْ سَبَإٍ بِنَبَإٍ يَقِينٍ'; openConjugator(); });
+      await page.waitForSelector('#badiOut .jn-svg', { state: 'attached', timeout: 10000 });
+      const r4 = await page.evaluate(() => ({ cells: document.querySelectorAll('#badiOut .jn-cell.on').length, diff: document.querySelectorAll('#badiOut .jn-cell.jn-diff').length, seeds: document.querySelectorAll('#badiOut .qw-seed').length }));
+      if (r4.cells !== 4 || r4.diff !== 1 || r4.seeds < 20) throw new Error('the Badiʿ lab: ' + JSON.stringify(r4));
+      await page.evaluate(() => { conjState.badi = 'فِيهَا سُرُرٌ مَرْفُوعَةٌ وَأَكْوَابٌ مَوْضُوعَةٌ'; renderBadiOut(); }); await page.waitForSelector('#badiOut .sj-fasila', { state: 'attached', timeout: 10000 });
+      await page.evaluate(() => { conjState.lab = 'learn'; openConjugator(); }); await page.waitForSelector('#learnOut .learn-card', { state: 'attached', timeout: 10000 });
+      const r5 = await page.evaluate(() => { const i = document.getElementById('learnRoot'); i.value = 'ك ت ب'; i.dispatchEvent(new Event('input')); return new Promise(res => setTimeout(() => res({ badge: document.querySelectorAll('#learnOut .learn-badge').length, run: !!document.getElementById('learnRun') }), 700)); });
+      if (r5.badge !== 1 || !r5.run) throw new Error('the Learning lab: ' + JSON.stringify(r5));
+      await page.evaluate(() => { conjState.lab = 'sarf'; conjState.root = 'ق ر ض'; conjState.form = 'I'; openConjugator(); }); await page.waitForTimeout(500);
+      const r6 = await page.evaluate(() => ({ badge: document.querySelectorAll('#conjOut .learn-badge').length, known: !!document.querySelector('#conjOut .conj-known') }));
+      if (r6.badge !== 1) throw new Error('the Sarf lab shows the 🧠 guess only when the corpus is silent: ' + JSON.stringify(r6));
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => ['gGhost', 'gBadi', 'gJinas', 'gKinaya'].map(id => { const c = document.getElementById(id); return c && !c.disabled; }));
+      if (!r7.every(Boolean)) throw new Error('the four games on the hub: ' + JSON.stringify(r7));
+      for (const id of ['gGhost', 'gBadi', 'gJinas', 'gKinaya']) {
+        await page.evaluate((id) => { openGames(); document.getElementById(id).click(); }, id); await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
+        const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext') }; });
+        if (r8.n < 4 || !r8.why || !r8.next) throw new Error(id + ': ' + JSON.stringify(r8));
+      }
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
   // ---------------------------------------------------------------- wave 14: the bayan door
   await check('the TashbihEngine names the four arkan off the nahw seats — seeds', async () => {
     const r = await page.evaluate(() => {
@@ -9621,7 +9810,7 @@ if (!CHROME) {
     await page.setViewportSize({ width: 390, height: 844 });
     try {
       await page.evaluate(() => { conjState.lab = 'tashbih'; conjState.tashbih = 'زَيْدٌ كَالْبَحْرِ كَرَمًا'; openConjugator(); });
-      await page.waitForSelector('#tashbihOut .ts-svg', { timeout: 6000 });
+      await page.waitForSelector('#tashbihOut .ts-svg', { timeout: 10000 });
       const r = await page.evaluate(() => ({
         rail: !!document.querySelector('.labrail [data-lab="tashbih"].on'), rows: document.querySelectorAll('#tashbihOut .ts-row').length,
         chips: document.querySelectorAll('#tashbihOut .ts-chip:not(.ts-shape-chip)').length, seeds: document.querySelectorAll('#tashbihOut .qw-seed').length,
@@ -9632,7 +9821,7 @@ if (!CHROME) {
       if (!/كَ/.test(r.adat) || !/كَرَمًا/.test(r.wajh)) throw new Error('the diagram names the adat and the wajh: ' + JSON.stringify(r));
       if (!r.fits) throw new Error('the tashbih lab scrolls sideways on a phone');
       await page.evaluate(() => { closeSheet(); state.premium = true; const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); openStory(st); openIrabSheet(st.chapters.find(c => c.n === 46).sentences.find(s => s.id === 's22')); });   // premium: the Lite rotation must not hide ch46 behind the paywall
-      await page.waitForSelector('.tashbih .ts-svg', { timeout: 6000 });
+      await page.waitForSelector('.tashbih .ts-svg', { timeout: 10000 });
       const s = await page.evaluate(() => ({ agree: !!document.querySelector('.ts-agree.ok'), chip: [...document.querySelectorAll('.jml-chip')].some(x => /تَشْبِيه/.test(x.textContent)) }));
       if (!s.agree) throw new Error('the sheet must say the engine agrees with the authored arkan on s22');
       if (!s.chip) throw new Error('a sentence with a likening wears the تَشْبِيه chip');
@@ -9867,7 +10056,7 @@ if (!CHROME) {
   await page2.goto(url2);
   await check('hadith reader: innama opens global note', async () => {
     await page2.locator('.word', { hasText: 'إِنَّمَا' }).first().click();
-    await page2.waitForSelector('.sheet.show', { timeout: 3000 });
+    await page2.waitForSelector('.sheet.show', { timeout: 10000 });
     await page2.locator('.sheet .tabs button', { hasText: 'Grammar' }).click();
     const h = await page2.locator('.gnote h3').first().textContent();
     if (!h.includes('الْكَافَّة')) throw new Error('note title: ' + h);

@@ -268,6 +268,7 @@ def main():
         f"// Packages: {', '.join(p.name for p in pkgs)}",
         js("STORIES", stories),
         js("GRAMMAR", grammar),
+        js("BAB_MODEL", json.loads((ROOT / "content/models/bab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/bab_model.json").exists() else None),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

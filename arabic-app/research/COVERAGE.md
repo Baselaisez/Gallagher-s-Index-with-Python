@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (57 chapters at v172 — from the faṣāḥa definitions through the maʿānī babs to the bayān: the tashbīh entire, haqīqa/majāz and the istiʿāra with all its kinds), plus `khabar-insha`. Still unconsumed: kināya, faṣl-waṣl, ījāz-iṭnāb, and ~7 extra badīʿ figures. |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (60 chapters at v173 — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya — and fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2464,6 +2464,49 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v173 — wave 19: the badiʿ read whole (fifteen figures), the jinas
+  and sajʿ engines, the learned layer (BabModel, RuleMiner, SeatModel),
+  four games.** Three chapters from talkhis-al-miftah-balagha.txt
+  (~3976-4100): ch58 the muqabala (فَلْيَضْحَكُوا قَلِيلًا وَلْيَبْكُوا كَثِيرًا,
+  the two-against-two and three-against-three), muraʿat al-nazir
+  (الشَّمْسُ وَالْقَمَرُ بِحُسْبَانٍ — haqiqi and mulhaq, the bow that is «not
+  a bow» as Buhturi's arrows), tashabuh al-atraf (the sentence's end
+  answers its head — 6:103) and iham al-tanasub (a word chosen for its
+  OTHER sense's fellows); ch59 the irsad (the rhyme foretold — 10:44,
+  the lion of ʿAmr b. Maʿdikarib), the mushakala (اطْبُخُوا لِي جُبَّةً said
+  with the neighbour's word, صِبْغَةَ اللهِ by estimation), the muzawaja
+  (one act answering another in shart and jawab) and the ʿaks (عَادَاتُ
+  السَّادَاتِ سَادَاتُ الْعَادَاتِ — by mudaf, by mutaʿalliq, by the two ends);
+  ch60 the rujuʿ (قِفْ بِالدِّيَارِ … بَلَى), the tawriya (mujarrada and
+  murashshaha, with its near and far senses), the istikhdam (a word then
+  two pronouns each returning to a different sense) and laff wa-nashr
+  (murattab, ghayr murattab, ijmali — 28:73, 2:111). 41 sentences, 569
+  tokens, 40 badi frames in twelve kinds with their subs; ten new notes
+  (tashabuh-al-atraf, iham-al-tanasub, irsad, mushakala, muzawaja, aks,
+  ruju, tawriya, istikhdam, laff-wa-nashr) and muqabala / muraat-al-nazir
+  / jinas / saj rewritten to say what the engine now claims. Engines:
+  BadiEngine v2 reads all fifteen figures off the seats, the stored
+  contrary/field/polysemy tables and the frame's hint (40/40 authored
+  frames agree); JinasEngine aligns two words letter by letter and names
+  the kind (tamm / muharraf / naqis / mutarraf / mudariʿ / lahiq /
+  ishtiqaq / qalb, muzdawij flagged — the notes' 4 examples read);
+  SajEngine cuts clauses at the joiners and reads the fawasil (mutarraf /
+  mutawazi / murassaʿ, the length rule — 3/3, the note's near-miss
+  refused). Learned layer: BabModel (57.0% held-out, 76.2% top-2, 35.5%
+  majority; tools/ml/train_bab.py → content/models/bab_model.json),
+  RuleMiner (59 iʿrab rules mined from the corpus's own seats with their
+  support), SeatModel graded against DabtEngine by story parity (engine
+  65.0 with 19% undecided, model 51.9, confident subset 81.4 over 204).
+  Games: the Ghost game (name the concealed pronoun), the Badiʿ game, the
+  Jinas game, the Kinaya game. Nahw paid for by the chapters (patch19g/h,
+  ~20 rules — the mufarragh exception, the verb of wonder, the relative's
+  doer, the dual's badal of detail, the hal after a fronted khabar, the
+  five nouns / ibn / annexed-dual pre-pass, the two-object passive's
+  second object, the hollow majzum's twin persons). ḍabṭ: ch58 98.3,
+  ch59 97.0, ch60 99.5 (floors 96/95/97). Next in the source:
+  the remaining badiʿ figures (tajahul al-ʿarif, the qawl bil-mujab, the
+  lafzi figures beyond jinas and sajʿ), then the sariqat and the khatima
+  (~4100+).
 - **v172 — wave 18: the majaz by omission and addition, the kinaya and
   its kinds, the badiʿ opens; the KinayaEngine, the BadiEngine, the
   TaqdirEngine, the SifaEngine.** Three chapters from

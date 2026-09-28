@@ -1,0 +1,81 @@
+{
+ "id": "laff-wa-nashr",
+ "title": {
+  "ar": "اللَّفُّ وَالنَّشْرُ — مُرَتَّبٌ، وَغَيْرُ مُرَتَّبٍ، وَإِجْمَالِيٌّ",
+  "en": "The laff wa-nashr — fold and spread: ordered, unordered, summed",
+  "tr": "Leff ü neşr — dürme ve yayma: mürettep, gayr-i mürettep, icmâlî"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — اللف والنشر: ذكر متعدد على التفصيل أو الإجمال ثم ذكر ما لكل من غير تعيين ثقة بأن السامع يرده إليه"
+ ],
+ "question": {
+  "en": [
+   "Are SEVERAL things named first, and then what belongs to EACH — without saying which is whose? «He made for you the NIGHT and the DAY, that you may REST in it and SEEK of His bounty» (28:73). That is the LAFF WA-NASHR: the fold, then the spread.",
+   "Does the spread keep the fold's ORDER? Night → rest, day → seek: ORDERED. Ibn Hayyus: dune, bough, gazelle — in glance, figure, haunch: the spread runs BACKWARDS, UNORDERED.",
+   "Is the fold one word? «THEY said: none shall enter but a Jew or a Christian» (2:111): the Jews and the Christians are folded into one «they said», then spread. SUMMED (ijmali) — trusting the hearer to sort them."
+  ],
+  "tr": [
+   "Önce BİRDEN ÇOK şey, sonra — hangisi kiminki denmeden — HER BİRİNE ait olan mı anılıyor? «Size GECEYİ ve GÜNDÜZÜ yarattı ki onda DİNLENESİNİZ ve lütfundan ARAYASINIZ» (Kasas 28:73). LEFF Ü NEŞR budur: dürme, sonra yayma.",
+   "Yayma dürmenin SIRASINI koruyor mu? Gece → dinlenme, gündüz → arama: MÜRETTEP. İbn Hayyûs: kum tepesi, dal, ceylan — bakışta, boyda, kalçada: yayma TERSİNE gider, GAYR-İ MÜRETTEP.",
+   "Dürme tek kelime mi? «DEDİLER: Yahudi yahut Hristiyandan başkası girmeyecek» (Bakara 2:111): Yahudiler ve Hristiyanlar tek «dediler»de dürülmüş, sonra yayılmış. İCMÂLÎ — dinleyenin ayırt edeceğine güvenerek."
+  ]
+ },
+ "plain": {
+  "en": "Several things are named, then what belongs to each, without saying which is whose — the hearer sorts them. Night and day, then rest and seek: ordered. Dune, bough, gazelle, then glance, figure, haunch: unordered. Two sects folded into one «they said»: summed. The engine matches fold to spread and reports the order.",
+  "tr": "Birden çok şey anılır, sonra hangisi kiminki denmeden her birine ait olan — dinleyen ayırt eder. Gece ve gündüz, sonra dinlenme ve arama: mürettep. Kum tepesi, dal, ceylan, sonra bakış, boy, kalça: gayr-i mürettep. İki fırka tek «dediler»de dürülmüş: icmâlî. Motor dürmeyi yaymaya sahayla eşler, sırayı bildirir."
+ },
+ "explanation": {
+  "en": "The LAFF WA-NASHR (folding and spreading) is ذِكْرُ مُتَعَدِّدٍ عَلَى التَّفْصِيلِ أَوِ الْإِجْمَالِ ثُمَّ ذِكْرُ مَا لِكُلٍّ مِنْ غَيْرِ تَعْيِينٍ ثِقَةً بِأَنَّ السَّامِعَ يَرُدُّهُ إِلَيْهِ — the mention of SEVERAL things, in detail or in sum, then the mention of what belongs to EACH, without specifying, trusting that the hearer will return each to its owner. The DETAILED fold is of two kinds. ORDERED (مُرَتَّب), the spread in the fold's order: وَمِنْ رَحْمَتِهِ جَعَلَ لَكُمُ اللَّيْلَ وَالنَّهَارَ لِتَسْكُنُوا فِيهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ (28:73) — night and day, then rest (for the night) and seek (for the day). UNORDERED (غَيْرُ مُرَتَّب): Ibn Hayyus, كَيْفَ أَسْلُو وَأَنْتِ حِقْفٌ وَغُصْنٌ * وَغَزَالٌ لَحْظًا وَقَدًّا وَرِدْفًا — dune, bough, gazelle; then glance (the gazelle's), figure (the bough's), haunch (the dune's): the spread runs backwards. The SUMMED fold (إِجْمَالِيّ): وَقَالُوا لَنْ يَدْخُلَ الْجَنَّةَ إِلَّا مَنْ كَانَ هُودًا أَوْ نَصَارَى (2:111) — the Jews said «none but the Jews», the Christians «none but the Christians»; the two sects are folded into one «they said» and spread in «a Jew or a Christian», since each sect's charging the other with error is known and no confusion follows. WHAT THE ENGINE CLAIMS: the BadiEngine reads the laff wa-nashr when a sentence carries a LIST of two or more coordinated words (the fold) followed by a second list of the same count (the spread), and it matches each spread member to a fold member by the stored FIELD table (night → rest/dwell, day → seek/work; gazelle → glance, bough → figure, dune → haunch) or, failing that, by position; it reports the matching and whether the surface order is kept (ordered / unordered). The summed kind has a one-word fold, so the engine takes its members from the frame and only checks the spread list. It grades itself against the authored `laff-nashr` frames of ch60.",
+  "tr": "LEFF Ü NEŞR (dürme ve yayma) ذِكْرُ مُتَعَدِّدٍ عَلَى التَّفْصِيلِ أَوِ الْإِجْمَالِ ثُمَّ ذِكْرُ مَا لِكُلٍّ مِنْ غَيْرِ تَعْيِينٍ ثِقَةً بِأَنَّ السَّامِعَ يَرُدُّهُ إِلَيْهِ'dir — BİRDEN ÇOK şeyin tafsîlen yahut icmâlen anılması, sonra tayin etmeksizin HER BİRİNE ait olanın anılması; dinleyenin her birini sahibine döndüreceğine güvenerek. TAFSÎLÎ dürme iki kısımdır. MÜRETTEP (مُرَتَّب), yayma dürmenin sırasında: وَمِنْ رَحْمَتِهِ جَعَلَ لَكُمُ اللَّيْلَ وَالنَّهَارَ لِتَسْكُنُوا فِيهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ (Kasas 28:73) — gece ve gündüz, sonra dinlenme (gece için) ve arama (gündüz için). GAYR-İ MÜRETTEP (غَيْرُ مُرَتَّب): İbn Hayyûs, كَيْفَ أَسْلُو وَأَنْتِ حِقْفٌ وَغُصْنٌ * وَغَزَالٌ لَحْظًا وَقَدًّا وَرِدْفًا — kum tepesi, dal, ceylan; sonra bakış (ceylanın), boy (dalın), kalça (kum tepesinin): yayma tersine gider. İCMÂLÎ dürme (إِجْمَالِيّ): وَقَالُوا لَنْ يَدْخُلَ الْجَنَّةَ إِلَّا مَنْ كَانَ هُودًا أَوْ نَصَارَى (Bakara 2:111) — Yahudiler «Yahudilerden başkası», Hristiyanlar «Hristiyanlardan başkası» dedi; iki fırka tek «dediler»de dürülüp «Yahudi yahut Hristiyan»da yayılmıştır, çünkü her fırkanın öbürünü dalâletle suçladığı bilinir ve karışıklık doğmaz. MOTORUN İDDİASI: BadiEngine leff ü neşri, bir cümle iki yahut daha çok atıflı kelimelik bir LİSTE (dürme) ve ardından aynı sayıda ikinci bir liste (yayma) taşıdığında okur; her yayma üyesini yerleşik SAHA tablosuyla (gece → dinlenme/sükûn, gündüz → arama/çalışma; ceylan → bakış, dal → boy, kum tepesi → kalça) yahut olmazsa konumla bir dürme üyesine eşler; eşlemeyi ve yüzey sırasının korunup korunmadığını (mürettep / gayr-i mürettep) bildirir. İcmâlî kısmın dürmesi tek kelimedir; motor üyelerini çerçeveden alır, yalnız yayma listesini denetler. Kendini 60. bâbın müellif `laff-nashr` çerçevelerine karşı sınar."
+ },
+ "examples": [
+  {
+   "ar": "جَعَلَ لَكُمُ اللَّيْلَ وَالنَّهَارَ لِتَسْكُنُوا فِيهِ وَلِتَبْتَغُوا مِنْ فَضْلِهِ",
+   "en": "ordered (28:73).",
+   "tr": "mürettep (Kasas 28:73).",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s11"
+  },
+  {
+   "ar": "كَيْفَ أَسْلُو وَأَنْتِ حِقْفٌ وَغُصْنٌ * وَغَزَالٌ لَحْظًا وَقَدًّا وَرِدْفًا",
+   "en": "unordered: Ibn Hayyus.",
+   "tr": "gayr-i mürettep: İbn Hayyûs.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s12"
+  },
+  {
+   "ar": "وَقَالُوا لَنْ يَدْخُلَ الْجَنَّةَ إِلَّا مَنْ كَانَ هُودًا أَوْ نَصَارَى",
+   "en": "summed (2:111).",
+   "tr": "icmâlî (Bakara 2:111).",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s13"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«لَحْظًا وَقَدًّا وَرِدْفًا sırasıyla kum tepesi, dal, ceylana aittir»",
+   "right": "«Tersine: bakış ceylanın, boy dalın, kalça kum tepesinin — gayr-i mürettep leff ü neşr»",
+   "why": {
+    "en": "The hearer returns each to its owner by sense, not by position; the poet trusted that.",
+    "tr": "Dinleyen her birini konumla değil mânâyla sahibine döndürür; şair buna güvendi."
+   }
+  },
+  {
+   "wrong": "«2:111'de leff ü neşr yoktur, çünkü iki fırka ayrı ayrı anılmamıştır»",
+   "right": "«İcmâlî leff ü neşirdir: iki fırka tek «dediler»de dürülmüş, «Yahudi yahut Hristiyan»da yayılmıştır»",
+   "why": {
+    "en": "The definition allows the fold to be in sum; the spread still returns each to its sect.",
+    "tr": "Tarif dürmenin icmâlen olmasına izin verir; yayma yine her birini fırkasına döndürür."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "muqabala",
+  "muraat-al-nazir",
+  "atf-nasaq",
+  "tibaq",
+  "ilm-al-badi"
+ ]
+}

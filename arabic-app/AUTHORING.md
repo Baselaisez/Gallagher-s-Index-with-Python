@@ -71,3 +71,36 @@ It stops at the first failure and names it. When it prints ALL GATES GREEN,
 | Rules with no data (orthography, wazn, tasgir…) | engine classes in the reader (HarakeAuditor, WaznEngine, IsmEngine, SentenceAnalyzer…) + a smoke check per rule |
 | Sema'i exceptions | the engines' stored tables (SEMAI_NISBA, corpus paradigms) |
 | Process lessons | CLAUDE.md "Rules learned the hard way" |
+
+## The balagha frames — an assertion the engines will test
+
+A sentence may carry `tashbih`, `majaz`, `kinaya` and `badi` frames (lists of
+objects, token indexes zero-based within the sentence). Each frame is a CLAIM:
+the validator range-checks every index, the matching engine reads the sentence
+and `agree()` grades itself against the frame, and the wave's smoke gate
+refuses a chapter whose frames the engine cannot read back. Author the frame
+from the book's own analysis, never from what the engine happens to say.
+
+The badiʿ frames (`tools/validate_content.py`: `BADI_KINDS`, `BADI_FIELDS`,
+`BADI_SUBS`) take the shape of the figure:
+
+| kind | fields | subs |
+|---|---|---|
+| tibaq | `pair` | ijab, salb |
+| muqabala | `first`, `second` (ordered, equal length) | — |
+| muraat-al-nazir | `set` | haqiqi, mulhaq |
+| tashabuh-al-atraf | `pairs` (`[[end, head], …]`) | — |
+| iham-al-tanasub | `set`, `word`, `murad`, `other` | — |
+| irsad, ruju | `pair` | — |
+| mushakala | `word`, `companion` (taḥqīq) or none (taqdīr), `asl` | tahqiq, taqdir |
+| muzawaja | `first`, `second` | — |
+| aks | `first`, `second` | mudaf, mutaalliq, tarafayn |
+| tawriya | `word`, `near`, `far`, `companion` | mujarrada, murashshaha |
+| istikhdam | `word`, `refs`, `murad`, `other` | lafz-damir, damirayn |
+| laff-nashr | `first`, `second` (ijmālī: one first, two or more seconds) | murattab, ghayr-murattab, ijmali |
+
+Three of them are HINTED figures (mushakala, tawriya, istikhdam): the frame
+names the word, and the engine reads the rest off the surface — the companion
+that shares a stem, the pronouns that return, the furnishing that makes a
+tawriya murashshaḥa. A probe that calls `BadiEngine.read(rows)` without the
+sentence cannot read those; pass `{ sen }`.

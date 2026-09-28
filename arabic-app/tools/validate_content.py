@@ -44,6 +44,14 @@ REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examp
 PLAIN_MAX = 320
 NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi"}
 
+BADI_KINDS = ("tibaq", "muqabala", "muraat-al-nazir", "tashabuh-al-atraf", "iham-al-tanasub", "irsad", "mushakala",
+              "muzawaja", "aks", "ruju", "tawriya", "istikhdam", "laff-nashr", "jam", "tafriq", "taqsim", "jinas", "saj")
+BADI_FIELDS = ("kind", "pair", "first", "second", "set", "pairs", "word", "companion", "refs", "sub", "class",
+               "near", "far", "murad", "other", "field", "asl")
+BADI_SUBS = {"tibaq": ("ijab", "salb"), "muraat-al-nazir": ("haqiqi", "mulhaq"), "mushakala": ("tahqiq", "taqdir"),
+             "aks": ("mudaf", "mutaalliq", "tarafayn"), "tawriya": ("mujarrada", "murashshaha"),
+             "istikhdam": ("lafz-damir", "damirayn"), "laff-nashr": ("murattab", "ghayr-murattab", "ijmali"),
+             "jinas": ("tamm", "naqis", "mudari", "lahiq", "qalb", "ishtiqaq", "muharraf", "murakkab"), "saj": ("mutarraf", "murassa", "mutawazi")}
 
 def strip_diacritics(text: str) -> str:
     return DIACRITICS.sub("", unicodedata.normalize("NFC", text))
@@ -347,14 +355,45 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
         if bf is not None:
             frames = bf if isinstance(bf, list) else [bf]
             for n_, fr in enumerate(frames):
-                if not isinstance(fr, dict) or fr.get("kind") not in ("tibaq", "muqabala", "muraat-al-nazir"):
+                if not isinstance(fr, dict) or fr.get("kind") not in BADI_KINDS:
                     rep.error(f"{where}: badi[{n_}] kind {fr.get('kind') if isinstance(fr, dict) else fr!r} unknown")
                     continue
-                pr = fr.get("pair")
-                if not (isinstance(pr, list) and len(pr) == 2 and all(isinstance(x, int) and 0 <= x < len(tokens) for x in pr)):
+                kind = fr["kind"]
+                def _ix(x): return isinstance(x, int) and 0 <= x < len(tokens)
+                for k_ in fr:
+                    if k_ not in BADI_FIELDS:
+                        rep.error(f"{where}: badi[{n_}] has an unknown field {k_!r}")
+                if "pair" in fr and not (isinstance(fr["pair"], list) and len(fr["pair"]) == 2 and all(_ix(x) for x in fr["pair"])):
                     rep.error(f"{where}: badi[{n_}] needs a 'pair' of two token indexes inside the sentence")
-                if "sub" in fr and fr["sub"] not in ("ijab", "salb"):
-                    rep.error(f"{where}: badi[{n_}] sub {fr['sub']!r} not in ijab|salb")
+                for k_ in ("first", "second", "set", "refs"):
+                    if k_ in fr and not (isinstance(fr[k_], list) and len(fr[k_]) >= 1 and all(_ix(x) for x in fr[k_])):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' must be a list of token indexes inside the sentence")
+                if "pairs" in fr and not (isinstance(fr["pairs"], list) and all(isinstance(q, list) and len(q) == 2 and all(_ix(x) for x in q) for q in fr["pairs"])):
+                    rep.error(f"{where}: badi[{n_}] 'pairs' must be a list of [i, j] token pairs")
+                for k_ in ("word", "companion"):
+                    if k_ in fr and not _ix(fr[k_]):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' must be a token index inside the sentence")
+                for k_ in ("near", "far", "murad", "other"):
+                    if k_ in fr and not (isinstance(fr[k_], dict) and fr[k_].get("en") and fr[k_].get("tr")):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' needs both en and tr")
+                if kind == "laff-nashr" and fr.get("sub") == "ijmali":
+                    if not ("first" in fr and "second" in fr and len(fr["first"]) == 1 and len(fr["second"]) >= 2):
+                        rep.error(f"{where}: badi[{n_}] laff-nashr ijmali needs one summary word in 'first' and two or more in 'second'")
+                elif kind in ("muqabala", "aks", "laff-nashr", "muzawaja"):
+                    if not ("first" in fr and "second" in fr and len(fr["first"]) == len(fr["second"])):
+                        rep.error(f"{where}: badi[{n_}] {kind} needs 'first' and 'second' of the same length")
+                    elif kind == "muqabala" and len(fr["first"]) < 2:
+                        rep.error(f"{where}: badi[{n_}] muqabala needs at least two on each side")
+                if kind in ("tibaq", "irsad", "ruju") and "pair" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'pair'")
+                if kind in ("muraat-al-nazir", "iham-al-tanasub") and not ("set" in fr and len(fr["set"]) >= 2):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'set' of two or more")
+                if kind == "tashabuh-al-atraf" and "pairs" not in fr:
+                    rep.error(f"{where}: badi[{n_}] tashabuh-al-atraf needs 'pairs'")
+                if kind in ("mushakala", "tawriya", "istikhdam", "iham-al-tanasub") and "word" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word'")
+                if "sub" in fr and fr["sub"] not in BADI_SUBS.get(kind, ()):
+                    rep.error(f"{where}: badi[{n_}] sub {fr['sub']!r} not allowed for {kind}")
                 if "class" in fr and fr["class"] not in ("ism", "fil", "harf", "mixed"):
                     rep.error(f"{where}: badi[{n_}] class {fr['class']!r} unknown")
         mj = sen.get("majaz")
