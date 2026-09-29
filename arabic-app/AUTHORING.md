@@ -98,6 +98,14 @@ The badiʿ frames (`tools/validate_content.py`: `BADI_KINDS`, `BADI_FIELDS`,
 | tawriya | `word`, `near`, `far`, `companion` | mujarrada, murashshaha |
 | istikhdam | `word`, `refs`, `murad`, `other` | lafz-damir, damirayn |
 | laff-nashr | `first`, `second` (ijmālī: one first, two or more seconds) | murattab, ghayr-murattab, ijmali |
+| jam | `set` (the gathered things), `word` (the one ruling) | atf, fail, inna, amm, ishara |
+| tafriq | `first`, `second` (the two things of one kind, each as its word or its head + annex) | nafy-tashbih, bayan, partition |
+| taqsim | `first`, `second` (equal length: the things and their rulings, or the rulings and the things) | tayin, ahwal, istifa, amma |
+| jam-tafriq | `set`, `word` (the shared mushabbah bihi), `pairs` (`[[thing, its side], …]`) | — |
+| jam-taqsim, jam-tafriq-taqsim | `with` (the partner sentence's id — the compound is read across sentences by `BadiEngine.compoundsOf`) | jam-first, taqsim-first |
+| tajrid | `word` (the drawn-out figure), `companion` (the mark it is drawn from) | min, bi, bi-musahaba, fi, bila-harf, kinaya, nafs |
+| mubalagha | `sub` (the degree — the author's judgement), `receipt` (kada, law, hatta, khayyal, hazl, none), `word` | tabligh, ighraq, ghuluww |
+| kalami | `word` (the premise), `companion` (the consequence) | law, qasam, lain, qiyas |
 
 Three of them are HINTED figures (mushakala, tawriya, istikhdam): the frame
 names the word, and the engine reads the rest off the surface — the companion

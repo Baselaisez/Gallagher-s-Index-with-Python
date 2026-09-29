@@ -4870,3 +4870,172 @@ token or a named afternoon:
   syntax error survived a whole design probe (`setPremium is not defined` was
   the script block failing to parse). When a probe reports an undefined global
   the reader has always defined, run the parse check first.
+
+## The list figures read off the seats, the tajrid by its letter, the mubalagha as a dial and a receipt, the kalami by its shape — and a learned shortlist graded by chapter (wave 20, v174)
+
+Chapters 61–64 of the Talkhīṣ close the maʿnawī badīʿ: the jamʿ, the tafrīq,
+the taqsīm and their three compounds (ch61–62), the tajrīd and its seven ways
+(ch63), the accepted mubālagha with its three degrees and four accepted
+ghuluww kinds, and the madhhab kalāmī (ch64). 38 authored badīʿ frames
+are read back (5 / 14 / 7 / 12 by chapter), the three compounds across sentences too
+(`BadiEngine.compoundsOf`), and the FigurePredictor — the first learned thing
+that guesses a FIGURE — is graded with every chapter held out in turn:
+top-3 26.6%. Endings-mode ḍabṭ: ch61 99.1, ch62 96.0, ch63 98.3,
+ch64 98.3 (floors 97 / 94 / 96 / 96). The lessons:
+
+- **The jamʿ, the tafrīq and the taqsīm are nahw before they are badīʿ.** «Many
+  things under one ruling» is a wāw-list standing in ONE seat — a mubtada with
+  its atf members and one khabar, the ism of إِنَّ, a doer-run behind one verb
+  — so section 11 of `BadiEngine.read` is a walk over `DabtEngine.decide`'s
+  seats, not a word table: `listFrom(i)` gathers the atf run (skipping each
+  member's annex), the ruling is the khabar after it or the verb before it.
+  The tafrīq is two constructs sharing a HEAD and differing in the annex
+  (نَوَالُ الْغَمَامِ … كَنَوَالِ الْأَمِيرِ) under a negation and a kāf, or two
+  mubtadas of that shape each with its khabar; the taqsīm is a list and as
+  many pointers, or «jarr-noun + مَا + verb» repeated, or «إِذَا + verb … verb»
+  repeated, or «indefinite ṣifa + إِذَا + verb» repeated, or one verb-head over
+  three objects. Every one of these is a count of seats; none is a guess about
+  meaning. What IS meaning — «is the count exhaustive?» (istīfāʾ) — stays the
+  author's sub.
+- **A compound across sentences is read across sentences, once, and the
+  sentences remember.** The jamʿ-then-taqsīm of al-Mutanabbī and the
+  taqsīm-then-jamʿ of Ḥassān live in two bayts each, and Hūd 105–108 in three
+  āyas; a frame cannot index another sentence's tokens, so the authored claim
+  is `{"kind": "jam-taqsim", "sub": "jam-first", "with": "s5"}` and the reading
+  is `compoundsOf(chapter)`: it reads every sentence's single figures in order
+  (handing each the previous sentence's frames, so سَجِيَّةٌ تِلْكَ is a SURE
+  ishāra-jamʿ only after a taqsīm) and composes; `agree()` on a `with`-frame
+  asks the chapter, not the sentence. The gate names the three compounds it
+  expects in ch62 by their sentence ids.
+- **The degree of a mubālagha is not the engine's to claim.** Whether the
+  neighbour's honour «following him wherever he goes» is possible by custom is
+  a judgement about the world; the engine shows the three stops as a dial and
+  lights the author's, and reads only what the surface carries — the RECEIPT
+  of acceptance: كَادَ, the unreal لَوْ with its لَ-answer (ShartEngine's frame),
+  حَتَّى opening an إِنَّ clause, يُخَيَّلُ, the jest's tibāq of أَمْس and غَد.
+  `MubalaghaEngine` returns nothing on free text that carries no receipt — it
+  does not name a mubālagha it cannot show.
+- **The kalāmī is a shape, and its shapes are the frames of other engines.**
+  لَوْ كَانَ … إِلَّا … لَفَسَدَتَا is ShartEngine's `law` frame with an إِلَّا
+  inside the premise and a لَ on the answer; the oath is a verb of swearing
+  followed by a negation; the لَئِنْ argument is the wave-20 `__lamJawab` noun
+  (the لَ on لَمُبْلِغُكَ is the OATH's, not a jarr letter — the pre-pass sees
+  لَئِنْ, then a verb, then a fused-lām noun the lexicon owns, and un-jarrs it);
+  the analogy is a clause opened by كَ + a masdar of doing with a pronoun
+  (كَفِعْلِكَ).
+- **The rhyme is a rule, not a miss.** The Ottoman print writes the rhyme word
+  by the iṭlāq — أَحَدُ, كَرِيمُ, مَذْهَبُ, سَخَاءِ, مَاءِ without tanwīn; فَيُغْسَلِ
+  and تُخْلَقِ with a kasra on the jussive; بَخِلَا, مَالَا, لَأَمْكَنَا with the
+  alif after a verb's fatḥa; and وَقَمِيصًا, غِضَابًا, وَرِدْفًا (ch59–60) keep
+  their ًا. So `grade()` marks the rhyme positions (the last token of a
+  sentence that carries a hemistich `*`, and a token closed by `؛` inside it)
+  and `rhymeForm` rewrites the writer's answer there: ٌ→ُ, ٍ→ِ, a jussive's
+  ْ→ِ, a verb's َ→َا, a verb misread as a noun (بَخِلَا) told by its corpus cell
+  without the alif. Free text with a `*` ends on a rhyme too. Fourteen misses
+  in the probe were this one rule.
+- **Two writer bugs that were tables being trusted past their meaning.** The
+  sound masculine plural declined by its letters was skipped whenever the
+  plural INDEX listed the word — the index exists to catch عُيُون/فُنُون (a
+  broken plural in ون that takes tanwīn), and it caught بَنُونَ too (وَالْبَنُونُ):
+  the sound plurals the index also lists (بنون، سنون، أهلون، عالمون، أرضون)
+  are named past it. And the أَفْعَل diptote test excluded every word ending in
+  ل/ب/ن (meant for أَرْنَب) — أَكْذَبُ took a tanwīn; the exclusion is now the
+  named nouns (أرنب، أفكل، أثمد، أجدل، أخدع، أنمل، أصبع) or a lexicon gloss that
+  is a plain noun, and every elative/colour keeps its bar. A -اء noun is judged
+  by SHAPE first (فَعْلَاء, فُعَلَاء, أَفْعِلَاء barred; فَعَال + ء free unless the
+  root says otherwise), so عَطَاءً and سَخَاءِ no longer wait on a root the
+  lexicon may not have; and a plural the lexicon lists (ذُكْرَان under ذَكَر) is
+  never read as a dual.
+- **The seat rules the texts forced, each one word long.** `لَا تَكَلَّمُ نَفْسٌ`:
+  a ت-verb after لَا followed by a bare FEMININE noun is the negation with that
+  noun its doer, not a prohibition; `إِنَّهُ لَتَخَافُكَ`: the lām on a verb after
+  إِنَّ is the slid lām of ibtidāʾ — raf, and the writer dresses it لَ (`lamFath`);
+  `لَأَرْحَلَنَّ … أَوْ يَمُوتَ`: after a verb built on the heavy nūn, أَوْ hides an
+  أَنْ (`awAn`); `لِلسَّبْيِ مَا نَكَحُوا وَالْقَتْلِ مَا وَلَدُوا`: a joined ال-noun that
+  opens «مَا + verb» again is joined to the noun that opened that shape before
+  it — the parallel clause is an atf across a clause; `عَطَاءً غَيْرَ مَجْذُوذٍ`:
+  a bare lexicon-masdar closing a verb clause already closed by its doer is
+  the mafʿūl muṭlaq of the verb the sense supplies; `يَكَادُ زَيْتُهَا`, `مَا
+  دَامَتِ السَّمَاوَاتُ`: كَادَ and دَامَ join the nawāsikh's trigger lists; and the
+  delayed mubtada after a fronted shibh-jumla may be a فَعِيل NOUN (زَفِيرٌ,
+  صَدِيقٌ) when the lexicon says noun and not adjective — the shape is not the
+  last word.
+- **The regression round is the method, and it found the engine reading copies.**
+  The wave-20 rules were written in twelve numbered patches against a DRY
+  reader (the package copied under the scratchpad, `build_prototype --packages`
+  with the copy, every patch a script that asserts its anchors), each probed on
+  ch61–64 and then swept over ch48–60 and every other story against the
+  shipped reader — a per-sentence diff, not a floor. The sweep caught what the
+  new chapters could not: the `jarrClit` test that took بِرِّكَ for a clitic on
+  رِّك (a pronoun alone proves no clitic — the rest must be a headword); the
+  ladder rule that gave a jarr clitic its case BEFORE the citation rule and so
+  silenced كَقَوْلِهِ's clause (it now serves بِ and لِ only, after the
+  citations); the dual test that stopped at a sun letter's shadda (الطَّرَفَانِ)
+  and at the maqṣūr's alif (مَعْنَيَانِ); the masdar-over-mazi rule that took
+  قَتَلَ for قَتْل (the lemma's own marks must match); and the seat alif on a
+  participle (مُرِيدًا إِنْسَانًا) that is a ḥāl whose object follows. And the
+  deepest one: `BadiEngine.read`, `TajridEngine`, `SajEngine` and `RuleMiner`
+  decided the seats on COPIES of the rows, so the pre-pass corrections
+  (تَكَلَّمُ turned into the she-verb, دَارُ into a noun, أَرَاكَ into a verb)
+  never reached the figure rules — the copies are kept now, and the figure
+  rules read them. Vetoes on the annexation chain (a chain's members all point
+  at its ROOT: undoing one link makes the next word the root of the rest) undo
+  what the seats forbid — ذِي as a naʿt, a dual keeping its nūn, آخَرُ, a
+  demonstrative after a sentence-initial nakira, a participle plural after a
+  nakira, the passive's owed deputy, a stop between two words, a zarf with its
+  pronoun, a jarr clitic.
+- **A learned figure-guesser is graded the only honest way: by chapter.** The
+  FigurePredictor is one-vs-rest logistic regression over 43 features the
+  engines already compute (`FigurePredictor.feats` lives in the page; the
+  trainer's table is dumped BY the page through Playwright, so there is one
+  feature function, never a copy), trained on the 64 framed sentences and
+  192 without a figure, and its floor is the leave-one-chapter-out top-3
+  rate — a chapter's figures are one author's one afternoon, and a split by
+  sentence would leak the afternoon into the test. It is a 🧠 shortlist above
+  the engine's frames in the Badiʿ lab and a third card in the Learning lab;
+  the frames stay the claim.
+- **Key hygiene, again: a key is a global claim, and the check runs before the
+  write.** `ahwal` already meant أَحْوَال (the plural as lemma), `inath` إِنَاث,
+  `sadiq` صَدِيق in the Talkhīṣ but صَادِق elsewhere, `kaff` the masdar not the
+  hand, `khalid` the name not the participle, `amma` الْعَامَّة in one package and
+  أَمَّا in ours — so the scripts build `GLOSS_ADD` through `need()` (nothing
+  the package already owns is re-asserted) and reuse by `find_gloss` for what
+  another package owns with the same word; the collisions were caught by `G()`'s
+  assertion at dry-run, in a package COPY under the scratchpad with the
+  validator run against it, before a byte of the repo moved. And a verb copied
+  in from another package brings its paradigm with it — the release gate wants
+  every glossary verb conjugated (`adkhala`, `azama`, `baqiya`, `khafa`,
+  `shaqiya`, `takallama` arrived bare).
+- **The source has slips of the press, and the manifest says so.** حرشنة for
+  خَرْشَنَة, ولارض for وَالْأَرْضُ — printed here in their known form and named in
+  the attribution; al-Nābigha's three bayts are given by the source in Turkish
+  only, so their Arabic is RESTORED (the received text the Talkhīṣ cites) and
+  marked as such, sentence by sentence.
+- **The harness's 3-second boot wait is a load gauge.** One check in the v173
+  release run failed on `waitForSelector('.lib-card', 3000)` — the page boots
+  in under a second on an idle box, but a full-corpus check before it had left
+  Chromium at 90 % — and passed alone. With v173 every appearance wait is 10 s, a failed check returns the page to the library, and `SMOKE_READER` points the suite at a dry reader for triage — the second v173 run had lost four checks to the 3-second waits at load average 1.1, two of them cascades from one slow boot.
+- **A wave's patches are bisected against the previous release before the
+  release runs again.** v174's first release run showed four engine
+  regressions that no wave-20 probe had watched (the bare shart seed, ch45,
+  a ch47 tashbih frame, a ch51 majaz frame). Rebuilding the v173 reader with
+  the repo content and applying the seventeen wave-20 patches one by one
+  (`$SCR/bisect20.sh`, then the exact failing smoke bodies replayed on each
+  variant) named the four culprits in one pass: the آخر veto (F5) fired on
+  آخِرِ «last», the mawsul guard (L1) swallowed مَنْ of the shart, the
+  ثُمَّ/أَوْ-joins-the-khabar rule (F9) pulled the third member of a jarr chain
+  up to the khabar, and a jarr-clitic test (P1) that took كُلِّهِ for ك + لّ + ه
+  vetoed بِاسْمِ كُلِّهِ — which let the TashbihEngine assert a likening on
+  كَالْأَصَابِعِ. Each fix keeps the marks in view: the veto asks for آخَر's
+  fatha, the clitic test asks the lexicon for the host whole. The hollow amr
+  stems (دُومَا, مِيلُوا) and the twin-nun seams (تَضَمَّنَّ) are stored the way the
+  SarfEngine regenerates them; `put_morph` never overwrites, so a paradigm
+  fix is a fix to the stored file, not a re-run. A `SMOKE_ONLY` subset run
+  on the patched reader then caught what the probes had not watched: the
+  Qawaid audit alarming on a jarr letter the analyzer left on its noun
+  (بِبَاءِ), and the bare-masdar rule taking a chain member (فَسَادُ جَعْلِ) — a
+  false likening the ch47 gate had reported only after its first failure
+  was fixed. A gate that throws on its first finding hides its second. The full run
+  then found the last one: the manqus twin (جَارٍ beside جَار) must be preferred
+  only over a key whose own word is no manqus — رَاضٍ keeps the glossary's
+  entry with its root.

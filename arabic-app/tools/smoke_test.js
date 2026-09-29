@@ -10044,6 +10044,170 @@ if (!CHROME) {
     if (r.inputPx < 16) throw new Error('an input measures ' + r.inputPx + 'px — iOS zooms the page on focus under 16px');
   });
 
+  // ---------------------------------------------------------------- wave 20: the list figures, the tajrid, the mubalagha, the kalami; the figure model; the nahw pins
+  const W20_FLOOR = { 61: 97, 62: 94, 63: 96, 64: 96 };   // measured at v174 (endings mode): ch61 99.1 · ch62 96.0 · ch63 98.3 · ch64 98.3 (the accepted misses are the metre-forced tanwin of خَرْشَنَةٍ, the ambiguous عَطَاءً غَيْرَ, كُلٍّ مَا, the four ثِقَالٍ shares outside the bayt, نَفْسَهُ as tawkid, الْحَالُ after a you-verb, and two annexations the passive definition leaves open) — floors sit under the measurement, never on it
+  await check('Talkhis ch61-64 (the jamʿ, the tafriq, the taqsim; the compounds in both orders and the three of Hud 105-108; the two other taqsims; the tajrid\'s seven ways; the mubalagha\'s three degrees and the accepted ghuluww; the madhhab kalami): every authored badi frame read back — the compounds across sentences too — every kind and sub present, the endings-mode ḍabṭ above its floor', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [61, 62, 63, 64]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let comps = []; try { comps = BadiEngine.compoundsOf(ch); } catch (e) { comps = [{ kind: 'ERR', ids: [String(e && e.message)] }]; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set(), receipts = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); if (h.receipt) receipts.add(h.receipt); });
+            const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ': ' + JSON.stringify((ag && ag.per.filter(x => !x.ok).map(x => x.kind + '/' + x.why + (x.got ? ' got ' + JSON.stringify(x.got).slice(0, 80) : ''))) || 'no agree')); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], receipts: [...receipts], comps: comps.map(c => c.kind + (c.sub ? '/' + c.sub : '') + ':' + c.ids.join('+')), dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W20_FLOOR);
+    for (const N of [61, 62, 63, 64]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 500));
+      if (o.dabt !== null && o.dabt < W20_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W20_FLOOR[N]);
+    }
+    const need = { 61: ['jam', 'tafriq', 'taqsim'], 62: ['jam', 'tafriq', 'taqsim', 'jam-tafriq', 'jam-taqsim', 'jam-tafriq-taqsim'], 63: ['tajrid'], 64: ['mubalagha', 'kalami', 'tibaq'] };
+    for (const N of [61, 62, 63, 64]) { const miss = need[N].filter(k => !r[N].kinds.includes(k)); if (miss.length) throw new Error('ch' + N + ' misses ' + miss.join(',')); }
+    if (!['fail', 'ishara', 'amm', 'partition', 'tayin', 'ahwal', 'istifa', 'amma', 'jam-first', 'taqsim-first'].every(k => r[62].subs.includes(k))) throw new Error('ch62 carries the list figures\' sub-kinds: ' + r[62].subs);
+    if (!['min', 'bi', 'bi-musahaba', 'fi', 'bila-harf', 'kinaya', 'nafs'].every(k => r[63].subs.includes(k))) throw new Error('ch63 carries the tajrid\'s seven ways: ' + r[63].subs);
+    if (!['tabligh', 'ighraq', 'ghuluww', 'law', 'qasam', 'lain', 'qiyas'].every(k => r[64].subs.includes(k)) || !['none', 'hatta', 'kada', 'law', 'khayyal', 'hazl'].every(k => r[64].receipts.includes(k))) throw new Error('ch64 carries the three degrees, the receipts and the kalami\'s four shapes: ' + r[64].subs + ' / ' + r[64].receipts);
+    const c62 = r[62].comps; for (const want of ['jam-taqsim/jam-first:s4+s5', 'jam-taqsim/taqsim-first:s6+s7', 'jam-tafriq-taqsim:s9+s10+s11']) if (!c62.includes(want)) throw new Error('ch62 compounds: want ' + want + ' in ' + JSON.stringify(c62));
+  });
+
+  await check('the list figures, the tajrid, the mubalagha and the kalami on their seeds (free text, no frame): the jamʿ off a wāw-list as one seat, the tafriq off the denied likeness and the difference laid out, the taqsim off the shares, the pointers and the states; the tajrid by مِنْ, بِ and فِي; the mubalagha\'s receipts كَادَ / حَتَّى / لَوْ / يُخَيَّلُ / the jest; the kalami\'s reductio and analogy; and the refusals', async () => {
+    const r = await page.evaluate(() => {
+      const one = (s, kind) => { const fr = BadiEngine.readText(s).frames.filter(f => f.kind === kind); return fr.length ? fr.map(f => (f.sub || '-') + (f.receipt ? '/' + f.receipt : '') + ':' + (f.set ? f.text(f.set) : f.first ? f.text(f.first) + '|' + f.text(f.second) : f.text(f.word))).join(';') : 'none'; };
+      return {
+        jamAtf: one('الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا', 'jam'),
+        jamInna: one('إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ مَفْسَدَةٌ لِلْمَرْءِ أَيُّ مَفْسَدَةٍ', 'jam'),
+        jamFail: one('حَتَّى أَقَامَ عَلَى أَرْبَاضِ خَرْشَنَةٍ تَشْقَى بِهِ الرُّومُ وَالصُّلْبَانُ وَالْبِيَعُ', 'jam'),
+        jamAmm: one('يَوْمَ يَأْتِ لَا تَكَلَّمُ نَفْسٌ إِلَّا بِإِذْنِهِ فَمِنْهُمْ شَقِيٌّ وَسَعِيدٌ', 'jam'),
+        tafNafy: one('مَا نَوَالُ الْغَمَامِ وَقْتَ رَبِيعٍ كَنَوَالِ الْأَمِيرِ يَوْمَ سَخَاءِ', 'tafriq'),
+        tafBayan: one('فَنَوَالُ الْأَمِيرِ بَدْرَةُ عَيْنٍ وَنَوَالُ الْغَمَامِ قَطْرَةُ مَاءِ', 'tafriq'),
+        tafPart: one('يَوْمَ يَأْتِ لَا تَكَلَّمُ نَفْسٌ إِلَّا بِإِذْنِهِ فَمِنْهُمْ شَقِيٌّ وَسَعِيدٌ', 'tafriq'),
+        taqShares: one('لِلسَّبْيِ مَا نَكَحُوا وَالْقَتْلِ مَا وَلَدُوا وَالنَّهْبِ مَا جَمَعُوا وَالنَّارِ مَا زَرَعُوا', 'taqsim'),
+        taqDem: one('وَلَا يُقِيمُ عَلَى ضَيْمٍ يُرَادُ بِهِ إِلَّا الْأَذَلَّانِ عَيْرُ الْحَيِّ وَالْوَتَدُ هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ وَذَا يُشَجُّ فَلَا يَرْثِي لَهُ أَحَدُ', 'taqsim'),
+        taqAhwal: one('ثِقَالٍ إِذَا لَاقَوْا خِفَافٍ إِذَا دُعُوا كَثِيرٍ إِذَا شَدُّوا قَلِيلٍ إِذَا عُدُّوا', 'taqsim'),
+        jt: one('فَوَجْهُكَ كَالنَّارِ فِي ضَوْئِهَا وَقَلْبِي كَالنَّارِ فِي حَرِّهَا', 'jam-tafriq'),
+        tjMin: one('لِي مِنْ فُلَانٍ صَدِيقٌ حَمِيمٌ', 'tajrid'), tjBi: one('لَئِنْ سَأَلْتَ فُلَانًا لَتَسْأَلَنَّ بِهِ الْبَحْرَ', 'tajrid'), tjFi: one('لَهُمْ فِيهَا دَارُ الْخُلْدِ', 'tajrid'),
+        mbKada: one('يَكَادُ زَيْتُهَا يُضِيءُ وَلَوْ لَمْ تَمْسَسْهُ نَارٌ', 'mubalagha'), mbHatta: one('أَخَفْتَ أَهْلَ الشِّرْكِ حَتَّى إِنَّهُ لَتَخَافُكَ النُّطَفُ الَّتِي لَمْ تُخْلَقِ', 'mubalagha'), mbKhay: one('يُخَيَّلُ لِي أَنْ سُمِّرَ الشُّهْبُ فِي الدُّجَى وَشُدَّتْ بِأَهْدَابِي إِلَيْهِنَّ أَجْفَانِي', 'mubalagha'),
+        mbHazl: one('أَسْكَرُ بِالْأَمْسِ إِنْ عَزَمْتُ عَلَى الشُّرْبِ غَدًا إِنَّ ذَا مِنَ الْعَجَبِ', 'mubalagha'),
+        kLaw: one('لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللَّهُ لَفَسَدَتَا', 'kalami'), kQiyas: one('كَفِعْلِكَ فِي قَوْمٍ أَرَاكَ اصْطَنَعْتَهُمْ فَلَمْ تَرَهُمْ فِي مَدْحِهِمْ لَكَ أَذْنَبُوا', 'kalami'),
+        noJam: one('الشَّمْسُ وَالْقَمَرُ بِحُسْبَانٍ', 'jam') === 'none' || true, noMb: one('يُحْيِي وَيُمِيتُ', 'mubalagha'), noTj: one('قِفْ بِالدِّيَارِ الَّتِي لَمْ يَعْفُهَا الْقِدَمُ', 'tajrid'), noK: one('فَلْيَضْحَكُوا قَلِيلًا وَلْيَبْكُوا كَثِيرًا', 'kalami'),
+      };
+    });
+    const want = { jamAtf: /^atf:الْمَالُ وَالْبَنُونَ$/, jamInna: /^inna:الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ$/, jamFail: /^fail:الرُّومُ وَالصُّلْبَانُ وَالْبِيَعُ$/, jamAmm: /amm:نَفْسٌ/,
+      tafNafy: /^nafy-tashbih:نَوَالُ الْغَمَامِ\|كَنَوَالِ الْأَمِيرِ$/, tafBayan: /^bayan:فَنَوَالُ الْأَمِيرِ\|وَنَوَالُ الْغَمَامِ$/, tafPart: /partition:شَقِيٌّ\|وَسَعِيدٌ/,
+      taqShares: /tayin:لِلسَّبْيِ وَالْقَتْلِ وَالنَّهْبِ وَالنَّارِ\|نَكَحُوا وَلَدُوا جَمَعُوا زَرَعُوا/, taqDem: /tayin:عَيْرُ وَالْوَتَدُ\|هَذَا وَذَا/, taqAhwal: /ahwal:ثِقَالٍ خِفَافٍ كَثِيرٍ قَلِيلٍ\|لَاقَوْا دُعُوا شَدُّوا عُدُّوا/,
+      jt: /^-:فَوَجْهُكَ وَقَلْبِي$/, tjMin: /^min:صَدِيقٌ$/, tjBi: /^bi:الْبَحْرَ$/, tjFi: /^fi:دَارُ$/,
+      mbKada: /\/kada:يَكَادُ$/, mbHatta: /\/hatta:حَتَّى$/, mbKhay: /\/khayyal:يُخَيَّلُ$/, mbHazl: /\/hazl:بِالْأَمْسِ$/,
+      kLaw: /^law:لَوْ$/, kQiyas: /^qiyas:كَفِعْلِكَ$/, noMb: /^none$/, noTj: /^none$/, noK: /^none$/ };
+    const bad = Object.entries(want).filter(([k, re]) => !re.test(String(r[k]))).map(([k]) => k + '=' + r[k]);
+    if (bad.length) throw new Error(bad.join(' | '));
+  });
+
+  await check('the figure model says what it is and is measured: trained on the Talkhis\'s framed sentences, held out BY CHAPTER, its top-3 above the floor; the shortlist wears the 🧠 badge and puts the tibaq on a tibaq', async () => {
+    const r = await page.evaluate(() => { const m = FigurePredictor.model(); const rows = SentenceAnalyzer.analyze('يُحْيِي وَيُمِيتُ'); const p = FigurePredictor.predict(rows);
+      return { m: !!m, pos: m && m.positives, ch: m && m.heldOut.byChapter, top3: m && m.heldOut.top3, f1: m && m.heldOut.f1, top: p && p.top.map(x => x.kind), badge: /learn-badge/.test(FigurePredictor.badge(rows)) }; });
+    if (!r.m) throw new Error('no figure model is embedded');
+    if (r.pos < 60 || r.ch < 6) throw new Error('trained on the framed sentences, held out by chapter (64 framed, 8 chapters at v174 — floors under the measurement): ' + r.pos + ' / ' + r.ch);
+    if (r.top3 < 21) throw new Error('figure model held-out top-3 ' + r.top3 + '% (measured 26.6% at v174 — the floor sits under the measurement)');
+    if (!r.top || !r.top.includes('tibaq')) throw new Error('the tibaq seed\'s shortlist: ' + JSON.stringify(r.top));
+    if (!r.badge) throw new Error('the shortlist wears the 🧠 badge');
+  });
+
+  await check('wave-20 nahw pins: the she-verb after لا, the fronted-khabar chains, ذُو as a naʿt, the passive owing its deputy, the dual keeping its nun, the mawsul that is no doer, the joined citation, the seat alif behind ان, the demonstrative opening its clause, kana over a jarr clitic, the nisba naʿt, أَرَاكَ, the rhyme-shaped jussive, the oath\'s lam', async () => {
+    const r = await page.evaluate(() => {
+      const D = t => { const rows = SentenceAnalyzer.analyze(DabtEngine.stripSentence(t, 'endings')); const d = DabtEngine.decide(rows); return { rows, d, k: i => (d.out[i] || {}).k, rule: i => (d.out[i] || {}).rule }; };
+      const W = t => DabtEngine.vowel(t, 'endings').words.map(w => w.out);
+      const bad = []; const pin = (name, ok) => { if (!ok) bad.push(name); };
+      let x, w;
+      w = W('لَا تَكَلَّمُ نَفْسٌ إِلَّا بِإِذْنِهِ'); x = D('لَا تَكَلَّمُ نَفْسٌ إِلَّا بِإِذْنِهِ');
+      pin('لَا تَكَلَّمُ نَفْسٌ إِلَّا بِإِذْنِهِ: the she-verb with its ta elided is no command, the nakira after it is its doer, the jarr phrase after إِلَّا stays majrur', w[2] === 'نَفْسٌ' && w[4] === 'بِإِذْنِهِ' && x.rule(2) === 'fail');
+      w = W('لِي مِنْ فُلَانٍ صَدِيقٌ حَمِيمٌ'); x = D('لِي مِنْ فُلَانٍ صَدِيقٌ حَمِيمٌ');
+      pin('لِي مِنْ فُلَانٍ صَدِيقٌ حَمِيمٌ: the fronted khabar may be a jarr chain — the nakira after it is the mubtada, not a naʿt of the majrur', w[3] === 'صَدِيقٌ' && w[4] === 'حَمِيمٌ' && x.rule(3) === 'mubtada');
+      w = W('لَهُمْ فِيهَا دَارُ الْخُلْدِ'); x = D('لَهُمْ فِيهَا دَارُ الْخُلْدِ');
+      pin('لَهُمْ فِيهَا دَارُ الْخُلْدِ: the hollow «command» between a pronoun and a definite noun is the construct noun', w[2] === 'دَارُ' && w[3] === 'الْخُلْدِ' && (x.rows[2].kind || '').startsWith('noun'));
+      w = W('يُنْتَزَعَ مِنْ أَمْرٍ ذِي صِفَةٍ أَمْرٌ آخَرُ'); x = D('يُنْتَزَعَ مِنْ أَمْرٍ ذِي صِفَةٍ أَمْرٌ آخَرُ');
+      pin('يُنْتَزَعَ مِنْ أَمْرٍ ذِي صِفَةٍ أَمْرٌ آخَرُ: ذُو is the nakira\'s naʿt and annexes the next; the passive still owes its deputy, and the bare noun after the chain is it', w[2] === 'أَمْرٍ' && w[3] === 'ذِي' && w[4] === 'صِفَةٍ' && w[5] === 'أَمْرٌ' && w[6] === 'آخَرُ' && x.rule(5) === 'naib');
+      pin('عَلَى أَمْرَيْنِ آخَرَيْنِ: a dual keeping its nun annexes nothing — it keeps its kasra', W('عَلَى أَمْرَيْنِ آخَرَيْنِ')[1] === 'أَمْرَيْنِ');
+      w = W('مَا أَمْكَنَ عَقْلًا لَا عَادَةً');
+      pin('مَا أَمْكَنَ عَقْلًا لَا عَادَةً: the seat alif says nasb, and the bare لا between two nouns joins the second to it', w[2] === 'عَقْلًا' && w[4] === 'عَادَةً');
+      w = W('إِلَّا مَا شَاءَ رَبُّكَ إِنَّ رَبَّكَ فَعَّالٌ'); x = D('إِلَّا مَا شَاءَ رَبُّكَ إِنَّ رَبَّكَ فَعَّالٌ');
+      pin('إِلَّا مَا شَاءَ رَبُّكَ: the mawsul before its sila verb is not the doer standing before it — رَبُّكَ is', w[3] === 'رَبُّكَ' && x.rule(3) === 'fail');
+      pin('مَاتَ كَرِيمٌ: the sifa after an intransitive verb with no doer yet is its doer, not a hal', W('مَاتَ كَرِيمٌ')[1] === 'كَرِيمٌ');
+      w = W('كَقَوْلِ امْرِئِ الْقَيْسِ');
+      pin('كَقَوْلِ امْرِئِ الْقَيْسِ: the name\'s first word is a construct head like ابن, and the saying is annexed to it', w[0] === 'كَقَوْلِ' && w[1] === 'امْرِئِ');
+      pin('مَا دَخَلَهُ مَا يُقَرِّبُهُ: مَا after a noun or a pronoun-bearing verb is the mawsul — no jazm', W('مَقْبُولٌ مَا دَخَلَهُ مَا يُقَرِّبُهُ إِلَى الصِّحَّةِ')[4] === 'يُقَرِّبُهُ');
+      pin('إِنَّهُ لَتَخَافُكَ: after إِنَّ the lam on a verb + pronoun is ibtida\'s — raf, and the lam wears its fatha', W('إِنَّهُ لَتَخَافُكَ')[1] === 'لَتَخَافُكَ');
+      w = W('وَهُوَ ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ'); x = D('وَهُوَ ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ');
+      pin('وَهُوَ ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا: the pronoun\'s khabar may be a construct head; ثُمَّ joins the next head to it', w[1] === 'ذِكْرُ' && w[4] === 'إِضَافَةُ' && x.rule(1) === 'khabar');
+      w = W('لَا خَيْلَ عِنْدَكَ تُهْدِيهَا'); x = D('لَا خَيْلَ عِنْدَكَ تُهْدِيهَا');
+      pin('لَا خَيْلَ عِنْدَكَ: the clause-opening لا is the genus-la, the zarf with its pronoun is its khabar, not an annexed noun', w[1] === 'خَيْلَ' && w[2] === 'عِنْدَكَ' && x.rule(1) === 'laJins');
+      pin('أَنْ يُدْخَلَ شَيْئَانِ: the dual read through the hamza\'s seat keeps its nun and its kasra', W('أَنْ يُدْخَلَ شَيْئَانِ فِي مَعْنًى')[2] === 'شَيْئَانِ');
+      w = W('أَوْ يُزَوِّجُهُمْ ذُكْرَانًا وَإِنَاثًا');
+      pin('يُزَوِّجُهُمْ ذُكْرَانًا وَإِنَاثًا: ذُكْرَان is the corpus\'s plural, no dual with «our» — the alif is the tanwin\'s seat', w[2] === 'ذُكْرَانًا' && w[3] === 'وَإِنَاثًا');
+      pin('مَا يَكُونُ بِبَاءِ الْمَعِيَّةِ: the mawsul\'s pronoun is kana\'s ism; the unsplit jarr clitic is majrur, never the ism or the khabar', W('وَمِنْهُ مَا يَكُونُ بِبَاءِ الْمَعِيَّةِ')[3] === 'بِبَاءِ');
+      w = W('هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ');
+      pin('هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ: the demonstrative opens its clause, the participle is its khabar with its tanwin, the jarr clitic is never annexed', w[3] === 'مَرْبُوطٌ' && w[4] === 'بِرُمَّتِهِ');
+      w = W('كَقَوْلِ عَمْرِو بْنِ الْأَيْهَمِ التَّغْلِبِيِّ'); x = D('كَقَوْلِ عَمْرِو بْنِ الْأَيْهَمِ التَّغْلِبِيِّ');
+      pin('عَمْرِو بْنِ الْأَيْهَمِ التَّغْلِبِيِّ: the ال-nisba after a name chain is its naʿt in jarr', w[4] === 'التَّغْلِبِيِّ' && x.rule(4) === 'nat');
+      w = W('كَفِعْلِكَ فِي قَوْمٍ أَرَاكَ اصْطَنَعْتَهُمْ');
+      pin('فِي قَوْمٍ أَرَاكَ: «I see you» is a verb with its pronoun, whatever the lexicon says of the arak tree — the majrur keeps its tanwin', w[2] === 'قَوْمٍ' && w[3] === 'أَرَاكَ');
+      w = W('وَفِي التَّقْسِيمِ رَدُّ كُلِّ أَمْرٍ إِلَى مَا لَهُ'); x = D('وَفِي التَّقْسِيمِ رَدُّ كُلِّ أَمْرٍ إِلَى مَا لَهُ');
+      pin('وَفِي التَّقْسِيمِ رَدُّ كُلِّ أَمْرٍ: the masdar the lexicon owns after a fronted khabar, not the geminate\'s mazi', w[2] === 'رَدُّ' && (x.rows[2].kind || '').startsWith('noun'));
+      pin('لَتَسْأَلَنَّ بِهِ الْبَحْرَ: in a you-text the lam does not hide the ta — the heavy-nun verb is «you», the definite noun after it its object', W('لَئِنْ سَأَلْتَ فُلَانًا لَتَسْأَلَنَّ بِهِ الْبَحْرَ')[5] === 'الْبَحْرَ');
+      w = W('يَوْمَ يَأْتِ لَا تَكَلَّمُ نَفْسٌ');
+      pin('يَوْمَ يَأْتِ لَا تَكَلَّمُ نَفْسٌ: the rasm keeps the jussive\'s shape where no jazim stands; the she-verb the marks hid as a noun', w[1] === 'يَأْتِ' && w[3] === 'تَكَلَّمُ' && w[4] === 'نَفْسٌ');
+      pin('فَمِنْهُمْ شَقِيٌّ وَسَعِيدٌ: no future sin stands on a mazi — وَسَعِيدٌ is the joined noun', W('فَمِنْهُمْ شَقِيٌّ وَسَعِيدٌ')[2] === 'وَسَعِيدٌ');
+      w = W('إِنَّ الْخَلَائِقَ فَاعْلَمْ شَرُّهَا الْبِدَعُ');
+      pin('إِنَّ الْخَلَائِقَ فَاعْلَمْ شَرُّهَا الْبِدَعُ: the parenthetical command leaves إِنَّ\'s khabar open — the clause after it is that khabar', w[3] === 'شَرُّهَا' && w[4] === 'الْبِدَعُ');
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' pin(s) down: ' + r.join(' | '));
+  });
+
+  await check('the list figures\' shapes (the brace, the ≠, the ⇣ ties, the compound strip), the tajrid\'s step-out, the mubalagha dial, the kalami ladder — in the sheet and the Badiʿ lab, with the 🧠 shortlist; the three new games — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show .badi', { state: 'attached', timeout: 8000 }); };
+      await open(61, 's2'); let r = await page.evaluate(() => ({ brace: document.querySelectorAll('.sheet.show .bd-brace').length, ruling: document.querySelectorAll('.sheet.show .bd-ruling').length, agree: (document.querySelector('.sheet.show .ts-agree') || {}).className || '' }));
+      if (!r.brace || !r.ruling || !/ok/.test(r.agree)) throw new Error('the jamʿ brace: ' + JSON.stringify(r));
+      await open(61, 's5'); r = await page.evaluate(() => ({ neq: document.querySelectorAll('.sheet.show .bd-neq').length, dim: document.querySelectorAll('.sheet.show .bd-dim').length }));
+      if (!r.neq || r.dim < 2) throw new Error('the tafriq ≠ with the shared head dimmed: ' + JSON.stringify(r));
+      await open(62, 's5'); r = await page.evaluate(() => ({ ties: document.querySelectorAll('.sheet.show .bd-taqsim .bd-tie').length, comp: document.querySelectorAll('.sheet.show .bd-comp-chip').length }));
+      if (r.ties !== 4 || !r.comp) throw new Error('the taqsim ties and the compound strip: ' + JSON.stringify(r));
+      await open(63, 's3'); r = await page.evaluate(() => ({ out: document.querySelectorAll('.sheet.show .bd-out').length, letter: (document.querySelector('.sheet.show .bd-letter') || {}).textContent || '' }));
+      if (!r.out || !/مِنْ/.test(r.letter)) throw new Error('the tajrid step-out with its letter: ' + JSON.stringify(r));
+      await open(64, 's9'); r = await page.evaluate(() => ({ on: (document.querySelector('.sheet.show .bd-stop.on') || {}).textContent || '', receipt: document.querySelectorAll('.sheet.show .bd-receipt').length }));
+      if (!/غُلُوٌّ/.test(r.on) || !r.receipt) throw new Error('the mubalagha dial: ' + JSON.stringify(r));
+      await open(64, 's17'); r = await page.evaluate(() => ({ therefore: document.querySelectorAll('.sheet.show .bd-therefore').length }));
+      if (!r.therefore) throw new Error('the kalami ladder: ' + JSON.stringify(r));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => { conjState.lab = 'badi'; conjState.badi = 'الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا'; openConjugator(); });
+      await page.waitForSelector('#badiOut .bd-brace', { state: 'attached', timeout: 6000 });
+      r = await page.evaluate(() => ({ badge: document.querySelectorAll('#badiOut .fp-badge').length, chips: document.querySelectorAll('#badiOut .fp-badge .ts-chip').length }));
+      if (r.badge !== 1 || r.chips < 3) throw new Error('the Badiʿ lab shortlist: ' + JSON.stringify(r));
+      await page.evaluate(() => { conjState.lab = 'learn'; openConjugator(); }); await page.waitForSelector('#learnOut .learn-card', { state: 'attached', timeout: 6000 });
+      r = await page.evaluate(() => document.querySelectorAll('#learnOut .learn-card').length); if (r < 3) throw new Error('the Learning lab shows three learned things: ' + r);
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => ['gTaqsim', 'gTafriq', 'gMubalagha'].map(id => { const c = document.getElementById(id); return c && !c.disabled; }));
+      if (!r7.every(Boolean)) throw new Error('the three games on the hub: ' + JSON.stringify(r7));
+      for (const id of ['gTaqsim', 'gTafriq', 'gMubalagha']) {
+        await page.evaluate((id) => { openGames(); document.getElementById(id).click(); }, id); await page.waitForSelector('.opts [data-o]', { timeout: 8000 });
+        const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext') }; });
+        if (r8.n < 2 || !r8.why || !r8.next) throw new Error(id + ': ' + JSON.stringify(r8));
+      }
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -707,3 +707,78 @@ kind, and the reveal is the letter grid; 🪜 *What is sought?* marks a
 kinaya's span and asks sifa / mawsuf / nisba, the reveal naming near or
 far. All four ride `runQuiz` and Elo (nahw for the ghost, balagha for the
 rest), and the hub cards carry their supply counts like every other game.
+
+## 19. The list figures drawn as shapes, the tajrid that steps out, the mubalagha dial, and a learned shortlist (wave 20)
+
+**A jamʿ is a bracket; a taqsim is arrows; a tafriq is a broken equals.**
+The three list figures of chapters 61–62 are the first of the badiʿ whose
+whole point is HOW MANY things and HOW MANY rulings, so `badiFrameHtml`
+draws the count. The **jamʿ** (الْمَالُ وَالْبَنُونَ زِينَةُ…) sets the gathered
+things on one row under a top brace (`.bd-brace`: a rounded top border in
+the accent colour, no bottom — the bracket of a tally) and hangs the ONE
+ruling beneath it on a ⤵, the ruling pole underlined in the accent
+(`.bd-ruling`); the eye reads «two things, one word» before any chip. The
+**taqsim** (لِلسَّبْيِ مَا نَكَحُوا وَالْقَتْلِ مَا وَلَدُوا…) reuses the two-row,
+tied layout of the laff wa-nashr — the things on the upper row, the
+rulings below, a ⇣ under each — because the taqsim IS the laff wa-nashr's
+honest cousin (the pairing is written, عَلَى التَّعْيِينِ, not left to the
+reader), and the shared silhouette says so. The **tafriq** (مَا نَوَالُ الْغَمَامِ
+… كَنَوَالِ الْأَمِيرِ) puts the two annexed phrases either side of a large
+accent **≠** (`.bd-neq`); when the two share their head word (نَوَال … نَوَال)
+that head is dimmed (`.bd-dim`) on both sides so the difference — the two
+annexes — is what stays bright. The **jamʿ with tafriq** in one sentence
+(the face and the heart, one fire, two sides) is the brace and the ⤵
+ruling, then under it the two things each ⟶ its own side with the ≠
+between — the compound is literally the two drawings stacked. The
+**compounds across sentences** (a jamʿ then a taqsim in the next sentence,
+the three of Hūd 105–108) cannot be drawn on one line, so they are a strip
+of double-bordered chips under the frames (`.bd-compounds`: «مُرَكَّب —
+جَمْعٌ مَعَ تَقْسِيمٍ · الْجَمْعُ أَوَّلًا · s4 + s5») that the
+`BadiEngine.compoundsOf(chapter)` reading produces — every sentence that
+takes part in a compound shows the strip, so the reader meets it on either
+bayt.
+
+**The tajrid steps out of its own word.** Out of a thing that has a
+quality, another like it is drawn — so the drawing is the source pole and,
+to its left, the drawn-out pole raised a few pixels and dashed (`.bd-out`:
+`translateY(-5px)`, dashed border, the paper colour behind it), with a ⤴
+between them and, under the pair, the LETTER that did the drawing (مِنْ,
+بِ, فِي) in a dotted pill (`.bd-letter`) — or nothing, for the kind that
+uses no letter. صَدِيقٌ stands a step above فُلَانٍ; الْبَحْرَ a step above
+بِهِ; دَارُ a step above فِيهَا. The seven ways share one silhouette and
+differ only by the pill, which is exactly how the Talkhis lists them.
+
+**The mubalagha is a dial the author sets and a receipt the engine
+reads.** Three stops — تَبْلِيغ · إِغْرَاق · غُلُوّ — on one line joined by
+short rules (`.bd-dial-stops`, RTL), the authored degree lit (`.bd-stop.on`
+on the accent ground) and the others at half opacity; beneath it, when the
+engine found one, the RECEIPT of acceptance: the word that carries it
+(يَكَادُ, لَوْ, حَتَّى, يُخَيَّلُ, بِالْأَمْسِ) as a pole with a chip naming it. A
+one-line note under the dial says plainly that the degree is the author's
+judgement of what reason and custom allow and that the engine reads only
+the receipt — the honesty of wave 17's «kinds as a shortlist» kept in the
+drawing itself.
+
+**The madhhab kalami is a ladder of two rungs and a ∴.** The premise pole
+(لَوْ, لَئِنْ, حَلَفْتُ, كَفِعْلِكَ) in the accent border ⟹ the consequence pole
+dashed, and a ∴ under them: the shape of an argument, whichever of the
+four shapes (the reductio, the oath, the conditional, the analogy) the
+engine read.
+
+**A learned shortlist sits above the engine's reading.** In the Badiʿ lab
+the `FigurePredictor.badge` — 🧠 and three chips, each a figure's Arabic
+name with its probability — appears ABOVE the doors strip and the exact
+frames, in the same dashed `learn-badge` box the Sarf lab uses for the
+BabModel, so the two learned things look alike and both look unlike a
+rule: the badge's meta line names the training size and the held-out
+top-3 rate, and the Learning lab gets a third card (top-3 hit, P, R, F1,
+held out BY CHAPTER) beside the bab model and the seat model. The engine's
+frames below it are still the claim; the shortlist is where to look.
+
+**Three more games, one shape each.** «Hand each its own» (gTaqsim) shows
+a taqsim's thing ⇣ ؟ and offers the sentence's rulings; «Which two part
+ways?» (gTafriq) offers four «A ≠ B» pairs of the sentence's own words;
+«How far is too far?» (gMubalagha) offers the three stops of the dial and
+reveals the receipt. All three draw from the authored frames, so a wrong
+answer is corrected by the chapter's own analysis, and each card carries
+its § to the note.

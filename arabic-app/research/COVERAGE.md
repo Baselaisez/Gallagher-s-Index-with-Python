@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (60 chapters at v173 — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya — and fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (64 chapters at v174 — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya —, fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr, then the list figures, the tajrīd, the mubālagha and the madhhab kalāmī), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2464,6 +2464,31 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v174 — wave 20: the list figures, the tajrid, the mubalagha, the kalami
+  — and a learned figure shortlist graded by chapter.** Talkhīṣ chapters
+  61–64 (source ~4100–4245, ṣaḥīfa 141–146): the jamʿ, the tafrīq, the
+  taqsīm (ch61: 18:46, Abū l-ʿAtāhiya, al-Waṭwāṭ, al-Mutalammis); the three
+  compounds and the two other taqsīms (ch62: al-Waṭwāṭ, al-Mutanabbī ×2,
+  Ḥassān ×2, Hūd 105–108, 42:49–50); the tajrīd's seven ways (ch63: the
+  Arabs' two sayings, Dhū l-Rumma, 41:28, Qatāda, al-Aʿshā, al-Mutanabbī);
+  the accepted mubālagha and the madhhab kalāmī (ch64: Imruʾ al-Qays, ʿAmr
+  b. al-Ayham, Abū Nuwās, 24:35, al-Mutanabbī, al-Arrajānī, the jest, 21:22,
+  al-Nābigha ×3 restored). 38 authored badīʿ frames, 8 notes
+  (jam, tafriq, taqsim, jam-maa-tafriq-taqsim, taqsim-al-ahwal-wal-istifa,
+  tajrid, mubalagha-maqbula, madhhab-kalami), 178 glossary entries,
+  46 paradigms. Engines: `BadiEngine` §11–15 (jamʿ/tafrīq/taqsīm off
+  the seats, the one-sentence jamʿ-with-tafrīq off two likenings, the
+  compounds across sentences by `compoundsOf`), `TajridEngine`,
+  `MubalaghaEngine` (receipts only), `KalamiEngine`; `FigurePredictor`
+  (`tools/ml/train_figures.py`, `tools/ml/figure_feats.js`): top-3
+  26.6% held out by chapter. Nahw/sarf: the rhyme (iṭlāq) rule in the
+  writer, the sound-plural index bypass, the أَفْعَل and -اء diptote fixes, the
+  lexicon-plural-not-dual guard, كَادَ/دَامَ as nawāsikh, the lām of ibtidāʾ
+  after إِنَّ, the oath's لَ on a noun after لَئِنْ, أَوْ after the heavy nūn,
+  the parallel-clause atf, the closing masdar as mafʿūl muṭlaq, the
+  negation-with-feminine-doer guard. Ḍabṭ (endings): ch61 99.1, ch62
+  96.0, ch63 98.3, ch64 98.3. Design: DESIGN.md §19. Games: gTaqsim,
+  gTafriq, gMubalagha. Next: ḥusn al-taʿlīl and the tafrīʿ (~4245–4300).
 - **v173 — wave 19: the badiʿ read whole (fifteen figures), the jinas
   and sajʿ engines, the learned layer (BabModel, RuleMiner, SeatModel),
   four games.** Three chapters from talkhis-al-miftah-balagha.txt
