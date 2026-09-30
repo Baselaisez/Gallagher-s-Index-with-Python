@@ -42,21 +42,37 @@ REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examp
 # A "plain" summary longer than this is not a summary. The full account belongs
 # in `explanation`, which the reader shows behind a toggle.
 PLAIN_MAX = 320
-NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi"}
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi", "arud"}
 
 BADI_KINDS = ("tibaq", "muqabala", "muraat-al-nazir", "tashabuh-al-atraf", "iham-al-tanasub", "irsad", "mushakala",
               "muzawaja", "aks", "ruju", "tawriya", "istikhdam", "laff-nashr", "jam", "tafriq", "taqsim", "jinas", "saj",
-              "jam-tafriq", "jam-taqsim", "jam-tafriq-taqsim", "tajrid", "mubalagha", "kalami")
+              "jam-tafriq", "jam-taqsim", "jam-tafriq-taqsim", "tajrid", "mubalagha", "kalami",
+              "husn-talil", "tafri", "takid-madh", "takid-dhamm", "istitba", "idmaj", "tawjih", "hazl-jidd", "tajahul", "qawl-mujib", "ittirad",
+              "sariqa", "iqtibas", "tadmin", "aqd", "hall", "talmih", "husn-ibtida", "baraat-istihlal", "takhallus", "iqtidab", "husn-intiha",
+              "radd-ajuz", "tashtir", "muwazana", "qalb-kull", "tashri", "luzum")   # wave 22: the lafzi muhassinat
 BADI_FIELDS = ("kind", "pair", "first", "second", "set", "pairs", "word", "companion", "refs", "sub", "class",
-               "near", "far", "murad", "other", "field", "asl", "with", "receipt")
-BADI_SUBS = {"tibaq": ("ijab", "salb"), "muraat-al-nazir": ("haqiqi", "mulhaq"), "mushakala": ("tahqiq", "taqdir"),
+               "near", "far", "murad", "other", "field", "asl", "with", "receipt", "kind2", "at", "letter", "grade", "source")   # wave 22
+BADI_KIND2 = {"jinas": ("mumathil", "mustawfa", "mutashabih", "mafruq", "awwal", "wasat", "akhir", "mudhayyal", "kull", "bad", "mujannah", "muzdawij", "shibh-ishtiqaq"),
+              "radd-ajuz": ("tikrar", "jinas", "mulhaq"),
+              "saj": ("equal", "second-longer", "third-longer"),   # wave 23: the best sajʿ, by the clauses' length
+              "sariqa": ("naskh", "ighara", "ilmam", "tashabuh", "naql", "ashmal", "qalb", "ziyada"),   # wave 24: the khatima
+              "iqtibas": ("ghayr-manqul", "manqul")}
+BADI_AT = ("sadr-awwal", "hashw-awwal", "arud", "sadr-thani", "ajuz")   # the radd's first word: where it stands in the bayt
+BADI_SUBS = {"sariqa": ("zahir", "ghayr-zahir"), "iqtibas": ("quran", "hadith"), "tadmin": ("istiana", "idaa"), "husn-ibtida": ("husn", "tatayyur"), "takhallus": ("takhallus", "iqtidab", "fasl-khitab"),
+             "tibaq": ("ijab", "salb"), "muraat-al-nazir": ("haqiqi", "mulhaq"), "mushakala": ("tahqiq", "taqdir"),
              "aks": ("mudaf", "mutaalliq", "tarafayn"), "tawriya": ("mujarrada", "murashshaha"),
              "istikhdam": ("lafz-damir", "damirayn"), "laff-nashr": ("murattab", "ghayr-murattab", "ijmali"),
-             "jinas": ("tamm", "naqis", "mudari", "lahiq", "qalb", "ishtiqaq", "muharraf", "murakkab"), "saj": ("mutarraf", "murassa", "mutawazi"),
+             "jinas": ("tamm", "naqis", "mudari", "lahiq", "qalb", "ishtiqaq", "muharraf", "murakkab"), "saj": ("mutarraf", "murassa", "mutawazi"), "muwazana": ("mumathala",),   # wave 23
              "jam": ("atf", "fail", "inna", "amm", "ishara"), "tafriq": ("nafy-tashbih", "bayan", "partition"), "taqsim": ("tayin", "ahwal", "istifa", "amma"),
              "jam-taqsim": ("jam-first", "taqsim-first"), "tajrid": ("min", "bi", "bi-musahaba", "fi", "bila-harf", "kinaya", "nafs"),
-             "mubalagha": ("tabligh", "ighraq", "ghuluww"), "kalami": ("law", "qasam", "lain", "qiyas")}
-BADI_RECEIPTS = ("kada", "law", "hatta", "khayyal", "hazl", "none")
+             "mubalagha": ("tabligh", "ighraq", "ghuluww"), "kalami": ("law", "qasam", "lain", "qiyas"),
+             "husn-talil": ("la-illa", "ghayr-madhkura", "mumkina", "ghayr-mumkina", "shakk"),
+             "takid-madh": ("istithna-min-dhamm", "madh-thumma-istithna", "nafy-illa"), "takid-dhamm": ("istithna-min-madh", "dhamm-thumma-istithna"),
+             "tajahul": ("tawbikh", "mubalagha-madh", "mubalagha-dhamm", "hayra"), "qawl-mujib": ("sifa-kinaya", "lafz-mushtarak")}
+BADI_RECEIPTS = ("kada", "law", "hatta", "khayyal", "hazl", "none",
+                 "innama", "lakin", "jumla", "kaanna",                      # husn-talil: what the claimed cause rides on
+                 "illa", "ghayr", "bayda", "lakinna", "siwa", "illa-anna",   # takid-madh / takid-dhamm: the exception's adat
+                 "hamza-am", "am", "layta", "ma-adri")            # tajahul: the question's shape
 
 def strip_diacritics(text: str) -> str:
     return DIACRITICS.sub("", unicodedata.normalize("NFC", text))
@@ -389,16 +405,43 @@ def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, sta
                         rep.error(f"{where}: badi[{n_}] {kind} needs 'first' and 'second' of the same length")
                     elif kind == "muqabala" and len(fr["first"]) < 2:
                         rep.error(f"{where}: badi[{n_}] muqabala needs at least two on each side")
+                if "kind2" in fr and fr["kind2"] not in BADI_KIND2.get(kind, ()):
+                    rep.error(f"{where}: badi[{n_}] kind2 {fr['kind2']!r} unknown for {kind}")
+                if "at" in fr and fr["at"] not in BADI_AT:
+                    rep.error(f"{where}: badi[{n_}] at {fr['at']!r} unknown")
+                if kind in ("radd-ajuz", "muwazana", "tashtir") and not ("pair" in fr or ("first" in fr and "second" in fr)):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'pair' or 'first'/'second'")
+                if kind in ("qalb-kull", "tashri", "luzum") and not ("set" in fr or "pair" in fr or "word" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'set', a 'pair' or a 'word'")
                 if kind == "tafriq" and not ("first" in fr and "second" in fr):
                     rep.error(f"{where}: badi[{n_}] tafriq needs 'first' and 'second'")
                 if kind in ("jam", "jam-tafriq") and not ("set" in fr and "word" in fr):
                     rep.error(f"{where}: badi[{n_}] {kind} needs a 'set' and the ruling 'word'")
                 if kind == "jam-tafriq" and not ("pairs" in fr and len(fr["pairs"]) == len(fr.get("set", []))):
                     rep.error(f"{where}: badi[{n_}] jam-tafriq needs one [thing, side] pair per member of 'set'")
+                if kind == "sariqa":
+                    if not re.match(r"^s\d+$", str(fr.get("with", ""))): rep.error(f"{path.name}: sentence {sid}: a sariqa frame names the sentence it takes from in `with`")
+                    if fr.get("grade") not in (None, "mamduh", "madhmum", "mithl"): rep.error(f"{path.name}: sentence {sid}: sariqa grade must be mamduh / madhmum / mithl")
                 if kind in ("jam-taqsim", "jam-tafriq-taqsim") and not re.match(r"^s\d+$", str(fr.get("with", ""))):
                     rep.error(f"{where}: badi[{n_}] {kind} needs 'with': the partner sentence id")
                 if kind == "tajrid" and not ("word" in fr and "sub" in fr):
                     rep.error(f"{where}: badi[{n_}] tajrid needs its 'word' and the way ('sub')")
+                if kind == "husn-talil" and not ("word" in fr and "companion" in fr and "sub" in fr and "receipt" in fr):
+                    rep.error(f"{where}: badi[{n_}] husn-talil needs the cause 'word', the quality 'companion', its kind ('sub') and its 'receipt'")
+                if kind == "tafri" and not ("word" in fr and "first" in fr and "second" in fr and len(fr["first"]) == 2 and len(fr["second"]) == 2):
+                    rep.error(f"{where}: badi[{n_}] tafri needs the hinge 'word' and two predications 'first'/'second' of [subject, predicate]")
+                if kind in ("takid-madh", "takid-dhamm") and not ("word" in fr and "sub" in fr and "receipt" in fr and "first" in fr and "second" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs the adat 'word', its kind ('sub'), its 'receipt', the 'first' clause and the 'second' (excepted) clause")
+                if kind in ("istitba", "qawl-mujib") and not ("word" in fr and "companion" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word' and its 'companion'")
+                if kind == "qawl-mujib" and "sub" not in fr:
+                    rep.error(f"{where}: badi[{n_}] qawl-mujib needs its kind ('sub')")
+                if kind in ("idmaj", "tawjih", "hazl-jidd") and "word" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word'")
+                if kind == "tajahul" and not ("word" in fr and "sub" in fr and "receipt" in fr):
+                    rep.error(f"{where}: badi[{n_}] tajahul needs the question 'word', its aim ('sub') and its 'receipt'")
+                if kind == "ittirad" and not ("set" in fr and len(fr["set"]) >= 2):
+                    rep.error(f"{where}: badi[{n_}] ittirad needs the 'set' of names in their order")
                 if kind == "mubalagha" and "sub" not in fr:
                     rep.error(f"{where}: badi[{n_}] mubalagha needs its degree ('sub')")
                 if "receipt" in fr and fr["receipt"] not in BADI_RECEIPTS:

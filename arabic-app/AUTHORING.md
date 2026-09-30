@@ -106,6 +106,26 @@ The badiʿ frames (`tools/validate_content.py`: `BADI_KINDS`, `BADI_FIELDS`,
 | tajrid | `word` (the drawn-out figure), `companion` (the mark it is drawn from) | min, bi, bi-musahaba, fi, bila-harf, kinaya, nafs |
 | mubalagha | `sub` (the degree — the author's judgement), `receipt` (kada, law, hatta, khayyal, hazl, none), `word` | tabligh, ighraq, ghuluww |
 | kalami | `word` (the premise), `companion` (the consequence) | law, qasam, lain, qiyas |
+| husn-talil | `word` (the claimed cause), `companion` (the quality), `sub` (the kind — the author's judgement), `receipt` (innama, lakin, jumla, law, kaanna) | la-illa, ghayr-madhkura, mumkina, ghayr-mumkina, shakk |
+| tafri | `word` (the كَمَا hinge), `first`, `second` (each `[subject, predicate]`) | — |
+| takid-madh, takid-dhamm | `word` (the adat), `sub` (the kind), `receipt` (illa, illa-anna, ghayr, bayda, siwa, lakinna), `first`, `second` (the clause on each side) | istithna-min-dhamm, madh-thumma-istithna, nafy-illa / istithna-min-madh, dhamm-thumma-istithna |
+| istitba | `word` (the spoken praise), `companion` (the entailed one) — a doc frame | — |
+| idmaj, tawjih, hazl-jidd | `word` — doc frames, shown and not read | — |
+| tajahul | `word` (the question's word), `sub` (the aim — the author's), `receipt` (hamza-am, am, layta, ma-adri, kaanna), `companion` | tawbikh, mubalagha-madh, mubalagha-dhamm, hayra |
+| qawl-mujib | `word` (the turned word), `companion` (the other's), `sub` | sifa-kinaya, lafz-mushtarak |
+| ittirad | `set` (the names in their order) | — |
+| jinas (wave 22) | `sub` as before, plus `kind2` (the seat / the kind within the kind — the engine's reading, checked by `agree()`): tamm → mumathil, mustawfa; murakkab → mutashabih, mafruq; naqis → awwal, wasat, akhir, mudhayyal; mudari, lahiq → awwal, wasat, akhir (+ muzdawij); qalb → kull, bad, mujannah; ishtiqaq → shibh-ishtiqaq; `pair` or `first`/`second` | see kind2 |
+| radd-ajuz | `kind2` (tikrar, jinas, mulhaq), `pair` (the head, the close), `at` in verse (sadr-awwal, hashw-awwal, arud, sadr-thani, ajuz) — a hemistich mark `punct="*"` on the bayt tells the grader the rhyme seats | tikrar, jinas, mulhaq |
+| saj (wave 23) | `sub` (mutarraf, mutawazi, murassa) and `kind2` for the finest kinds (equal, second-longer, third-longer) — the engine reads the clauses off the author's pauses: a `punct: "،"` / `"؛"` after the token that closes a clause, `"*"` at the hemistich; a one-word clause is read only where marked | `pair` (the two fāṣilas) |
+| tashtir | `pair` optional — the frame names the figure; the engine reads both halves off the `"*"` and requires two different rawīs | the bayt carries `"*"` |
+| muwazana | `sub` mumathala when half the words or more answer in wazn | `pair` (the two fāṣilas) |
+| qalb-kull | `pair` = [first token, last token] of the palindromic span (a whole line or one hemistich) | `set` optional |
+| tashri | `pair` (the first rhyme word — a stop the sense allows — and the line's true close); the engine confirms two different rawīs | hinted: the frame names the words |
+| luzum | `pair` for one line (the two rhyme words) OR `word` + `letter` for a bayt whose peers are the chapter's other luzum bayts — every rhyme word must keep the same letter before the same rawī | a `word` frame is graded across the chapter |
+| sariqa (wave 24) | `sub` zahir / ghayr-zahir; `kind2` the book's kind (naskh, ighara, ilmam; tashabuh, naql, ashmal, qalb, ziyada); `grade` mamduh / madhmum / mithl; `with` the sentence taken from (same chapter) | `set` the taker's words |
+| iqtibas / tadmin | `sub` quran / hadith (iqtibas) or istiana / idaa (tadmin); `kind2` ghayr-manqul / manqul (the words kept their meaning or were moved); `source` the sura:aya, the hadith, the poet; `with` for a tadmin whose other hemistich sits in another sentence — the IqtibasEngine finds the received span by its own table | `set` the received words |
+| aqd / hall / talmih | `source` the prose or verse the frame answers to (the engine confirms by the source it names); `with` the sentence holding the other side of an ʿaqd / ḥall | `set` |
+| husn-ibtida / baraat-istihlal / takhallus / husn-intiha | `sub` husn / tatayyur (the opening); takhallus / iqtidab / fasl-khitab (the transition); `source` the poet or the aya — the received bayts of ch76 live in the IqtibasEngine's table and the frame is confirmed by the finder | `set` the bayt (or the hinge word هَذَا) |
 
 Three of them are HINTED figures (mushakala, tawriya, istikhdam): the frame
 names the word, and the engine reads the rest off the surface — the companion

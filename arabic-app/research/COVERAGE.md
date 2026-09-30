@@ -15,7 +15,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
-| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (64 chapters at v174 — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya —, fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr, then the list figures, the tajrīd, the mubālagha and the madhhab kalāmī), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
+| 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (76 chapters at v178 — COMPLETE — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya —, fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr, then the list figures, the tajrīd, the mubālagha and the madhhab kalāmī), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
 | 5 | `research/sources/amil-tablolari-turkce.txt` | **FULL** | Bare enumeration tables hard-coded verbatim into `tools/check_canon.py`; nothing left to extract. |
 | 6 | `research/sources/avamil-curcani-slides.txt` | **PARTIAL** | Jurjānī's 100-ʿāmil taxonomy + kind 1 (17 jarr letters) seed `AVAMIL100`; kinds 2-13 were never transcribed upstream — no in-file remainder. |
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
@@ -2464,6 +2464,58 @@ not a one-line change.
   i'tirad (16:57, the two du'a/tanbih bayts, 2:222-223 — ~2895+),
   then the closing remarks of the bab.
 
+- **v178 — wave 24: the khātima, and the Talkhīṣ COMPLETE.**
+  Talkhīṣ chapters 73–76 (source ~4612–4885, ṣaḥīfa 160–169): the poets'
+  takings, plain and hidden, with the book's grades (ch73–74); the iqtibas,
+  the tadmin (istiʿāna / īdāʿ), the ʿaqd, the ḥall, the talmīḥ (ch75:
+  16:77, 12:83, 3:173, 14:37, the hadith حُفَّتِ الْجَنَّةُ, al-Ḥarīrī, Abū
+  l-Qāsim, Ibn ʿAbbād, Ibn al-Rūmī, al-ʿArjī, al-Mutanabbī, Abū l-ʿAtāhiya,
+  Abū Tammām); the three places of care — the fine opening, the ill omen,
+  barāʿat al-istihlāl, the takhalluṣ, the iqtiḍāb and what comes near it
+  (أَمَّا بَعْدُ, 38:55, 38:49, هَذَا بَابٌ), the fine close — and the book's last
+  sentence (ch76: Imruʾ al-Qays, Ashjaʿ, Ibn Muqātil, Abū Muḥammad, Abū
+  l-Faraj, Abū Tammām ×3, Abū Isḥāq). 42 authored badīʿ frames, 6
+  notes (the sariqāt ×2, the iqtibas, the three places, the ʿarūḍ, the
+  qāfiya — the first two of the new `arud` group), four engines (Arud /
+  Qafiya / Sariqa / Iqtibas with its received table), the bayt card, the
+  ʿArūḍ lab, gBahr; the rulings restored from the received matn and marked;
+  two Ottoman misprints of ch75 corrected and recorded. **The Talkhīṣ
+  al-Miftāḥ is complete: 76 chapters.**
+- **v177 — wave 23: the sajʿ on the author's pauses, the last four lafẓī figures.**
+  Talkhīṣ chapters 71–72 (source ~4532–4612, ṣaḥīfa 156–160): the sajʿ
+  muṭarraf / mutawāzī / murassaʿ, the finest kinds by length, the sukūn
+  close, the two qīls, the tashṭīr (ch71: 71:13–14, 88:13–14, 56:28–30,
+  53:1–2, 69:30–31, al-Ḥarīrī, Abū Tammām's tashṭīr); the muwāzana and
+  mumāthala, the qalb of the whole, the tashrīʿ, luzūm mā lā yalzam, the
+  closing principle (ch72: 88:15–16, 37:117–118, 74:3, 93:9–10, al-Arrajānī,
+  al-Ḥarīrī, Abū Tammām ×3). 29 authored badīʿ frames, 5 notes, five
+  engines (Tashtir / Muwazana / Qalb / Tashri / Luzum) and the SajEngine's
+  mark-cuts and finest kinds, one game; the definitions restored from the
+  received matn and marked.
+- **v176 — wave 22: the jinas by its seat, the close brought back.**
+  Talkhīṣ chapters 68–70 (source ~4395–4510, ṣaḥīfa 151–156): the jinas
+  tamm (mumathil / mustawfa, the jinas of composition mutashabih / mafruq),
+  muḥarraf, nāqiṣ by the odd letter's seat and mudhayyal (ch68: 30:55, Abū
+  Tammām, al-Busti, al-Ḥarīrī, 75:29–30); muḍāriʿ and lāḥiq by position,
+  qalb kull / baʿḍ / mujannaḥ, muzdawij, the two mulḥaqs (ch69: 6:26, the
+  ḥadīth, 104:1, 40:75, 4:83, 30:43, 27:22, 26:168); radd al-ʿajuz ʿalā
+  al-ṣadr in prose by tikrar / jinas / mulḥaq and in verse by the five
+  seats, the received bayts restored (ch70: 33:37, 71:10, al-Mutanabbī ×3,
+  Abū Tammām). 37 authored badīʿ frames, 6 notes, the JinasEngine's
+  positions and the RaddEngine, one game; the definitions restored from the
+  received matn and marked.
+- **v175 — wave 21: the cause, the exception, the question and the
+  name-chain.** Talkhīṣ chapters 65–67 (source ~4250–4395, ṣaḥīfa 146–151):
+  ḥusn al-taʿlīl's four kinds and the mulḥaq on doubt, tafrīʿ (ch65:
+  al-Mutanabbī ×2, Muslim b. al-Walīd, the author's bayt from Persian, Abū
+  Tammām, al-Kumayt); taʾkīd al-madḥ in three kinds with the istidrāk,
+  taʾkīd al-dhamm, istitbāʿ, idmāj (ch66: al-Nābigha, the ḥadīth, 7:126,
+  al-Hamadhānī, al-Mutanabbī ×2); tawjīh, the jest that means earnest,
+  tajāhul al-ʿārif's four points, al-qawl bil-mūjib, iṭṭirād (ch67: Abū
+  Nuwās, Laylā bint Ṭarīf, al-Buḥturī, Zuhayr, the Majnūn, 63:8, Ibn
+  al-Ḥajjāj, Rabīʿa b. Maqrūm). 23 authored badīʿ frames, 8 notes, six
+  engines (Talil, Takid, Tajahul, QawlMujib, Ittirad, the doc frames),
+  three games; the definitions restored from the received matn and marked.
 - **v174 — wave 20: the list figures, the tajrid, the mubalagha, the kalami
   — and a learned figure shortlist graded by chapter.** Talkhīṣ chapters
   61–64 (source ~4100–4245, ṣaḥīfa 141–146): the jamʿ, the tafrīq, the

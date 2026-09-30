@@ -4871,6 +4871,345 @@ token or a named afternoon:
   the script block failing to parse). When a probe reports an undefined global
   the reader has always defined, run the parse check first.
 
+## The khātima: the ʿarūḍ engine, the takings, the received text, and the Talkhīṣ complete (wave 24, v178)
+
+Chapters 73–76 close the Talkhīṣ al-Miftāḥ — 76 chapters, from the
+definition of eloquence to the openings and closings of the suras. The
+khātima: the poets' takings, plain (naskh / ighāra / ilmām) and hidden
+(tashābuh / naql / ashmal / qalb / ziyāda) with the grades the book gives
+(ch73–74); the iqtibas, the tadmin (istiʿāna / īdāʿ), the ʿaqd, the ḥall
+and the talmīḥ (ch75); the three places of care — the fine opening and the
+ill omen, barāʿat al-istihlāl, the takhalluṣ and the iqtiḍāb, the fasl
+al-khitāb, the fine close — and the book's last sentence (ch76).
+42 authored badīʿ frames read back; endings-mode ḍabṭ ch73 98.4 ·
+ch74 99.7 · ch75 98.3 · ch76 99.6 (floors 97 / 97 / 96 / 97). The lessons:
+
+- **A bayt is a measurable thing, and the engine measures it before it
+  argues.** `ArudEngine.scan` turns the writing into its sukūn/ḥaraka
+  string by the rules of the taqṭīʿ (the wasl of the article, the tanwīn's
+  nūn, the long vowels, the shadda's doubled letter, the pausal close of
+  the rhyme) and fits the sixteen metres with their licensed ziḥāfāt and
+  ʿilal by cost; a bayt of prose scans to none. Seventeen bayts of known
+  metre are the seeds, and every bayt of the corpus that carries a
+  hemistich mark is scanned in the smoke (the mudawwar audit: a hemistich
+  mark may not stand where the metre does not close the ṣadr).
+  `QafiyaEngine.read` names the rawī, the waṣl and the khurūj, the ridf,
+  the taʾsīs with its dakhīl, the majrā and the qāfiya's name.
+- **The received text is found, not asserted.** `IqtibasEngine.RECEIVED`
+  is a table of the ayas, the hadiths and the bayts the khātima cites;
+  `read` finds each one inside the sentence (one word may differ — the
+  taghyīr yasīr the book allows), reports the source and whether the
+  words were changed, and reads a tadmin's sub off the length found
+  (a whole bayt: istiʿāna; less: īdāʿ; two hemistichs of one source in one
+  sentence: the whole). The ʿaqd, ḥall and talmīḥ are authored with their
+  `source` and confirmed by it. Chapter 76's openings, transitions and
+  closes are rows of the same table — the finder lights Imruʾ al-Qays's
+  opening, Ibn Muqātil's ill omen, Abū Tammām's turn «كَلَّا وَلَكِنْ
+  مَطْلَعَ الْجُودِ», the أَمَّا بَعْدُ of fasl al-khitāb, the Qurʾanic هَذَا of
+  Ṣād 55 and 49, the writers' هَذَا بَابٌ, and the close that announces the
+  end.
+- **A taking is measured on words, roots and metre.** `SariqaEngine`
+  compares the taker's line with the sentence the frame names in `with`
+  (same chapter): the bare words shared, the roots shared, the baḥr and the
+  rawī kept — and from those reads naskh (all the words), ighāra (most),
+  ilmām (the meaning), and for the hidden kinds the book's names; the grade
+  (mamdūḥ / madhmūm / mithl) is the book's, shown as its judgement.
+- **The last two chapters forced twenty-odd nahw rules, each a receipt.**
+  The extra مَا inside an idafa (غَيْرِ مَا جُرْمٍ: the member's head two
+  back); the frozen verbs of praise and their doer (نِعْمَ الْوَكِيلُ) with the
+  canonical form written; the question of wonder (مَا بَالُ: the khabar is
+  no بِ + ال); the hamza of question on a noun the lexicon does not own
+  whole (أَمَطْلَعَ، أَأَحْلَامُ) with its idafa, and the fronted object before a
+  1st/2nd-person verb; the alif of release only on a participle's sound
+  plural (رَاجِعُونَا, not عَوَالِينَا); F1's lookback stopping at a pronoun (أَوْ
+  هُوَ أَقْرَبُ); the ism fiʿl on kasra (حَذَارِ) and بَعْدُ cut from its noun
+  (أَمَّا بَعْدُ), both mabni with their ending written back; the joined
+  citation head after the first (كَقَوْلِهِ … وَقَوْلِهِ); كُلَّ يَوْمٍ before a
+  verb as a zarf with its annexed time noun keeping its tanwīn; the doer
+  after قَدْ whatever noun stood before the فَ (بُشْرَى فَقَدْ أَنْجَزَ الْإِقْبَالُ);
+  the she-verb's doer in the plural or feminine noun right after it
+  (جَاءَتْ فَوَاتِحُ، سَاءَتْ ظُنُونُهُ، قَبُحَتْ فَعَلَاتُهُ); the joined أَفْعَل between
+  two tamyīz nouns as the elative (أَعْذَبَ لَفْظًا وَأَحْسَنَ سَبْكًا); the elative
+  before its tamyīz as kāna's khabar with her ism concealed; the list after
+  a colon opening a nominal clause; the nisba after a definite noun as its
+  naʿt (الْعَرَبِ الْجَاهِلِيَّةِ); the naming passive's second object after its
+  deputy (يُسَمَّى تَضْمِينُ الْبَيْتِ … اسْتِعَانَةً); the sifa after a مَا-clause as
+  the pronoun's khabar (وَأَنْتَ بِمَا أَمَّلْتُ مِنْكَ جَدِيرُ); the causative's second
+  object after its clitic first (يُذْكِرُنِي … مَجَرَّ); the jussive of a naqis
+  verb behind its object clitic, the dropped letter restored to find the
+  cell (فَإِنْ تُولِنِي); a verb reading after a jarr letter refused (مِنْ قَدِّهَا);
+  the joined demonstrative opening the second hemistich's clause (وَهَذَا
+  دُعَاءٌ); the closing «or other» following the list's case.
+- **The writer learned three things.** The ta'nith alif of the maqṣūr takes
+  no tanwīn (ذِكْرَى، بُشْرَى، شَكْوَى، دُنْيَا — never مَعْنًى or فَتًى: four
+  letters, the second sakin, no mīm); ʿAmr's silent wāw stands after the
+  tanwīn as the page writes it (عَمْرٌو، لَعَمْرٌو، بِعَمْرٍو); and the author's
+  qāfiya tag is a rhyme seat — the lone hemistich, the muṣarraʿ maṭlaʿ,
+  and the sukūn-close of a muqayyada rhyme (الْوَكِيلْ) kept like the sajʿ's
+  pausal close.
+- **A lone أَمَّا is a hinge, not yet a division.** The taqsīm-by-أَمَّا reader
+  fired on every «وَأَمَّا التَّخَلُّصُ فَهُوَ» definition; it now needs two shares
+  in the sentence (or a share before it) to be sure, and offers one share
+  as a candidate.
+- **The regression sweep that closed the bundle (patches 24m / 24n / 24p).**
+  Four waves landed in one release, so every earlier gate re-ran on the
+  grown corpus and the sweep fixed what it found rather than moving floors:
+  the maqṣūr with a pronoun is no dual in construct (مَعْنَاهُ — the name مَعْن
+  had entered the lexicon); the Qawaid audit exempts what the khātima writes
+  (a verb wearing a kasra, بْنِ, the fused كَ of a citation head, the dual's
+  yāʾ, كَانَ + muḍāriʿ, the relative's verb, أَنْ before سَ, the elative
+  khabar with its tamyīz, مَا بَالُ); the sajʿ clause cuts at a joined مَا;
+  `decide()` now sees the author's ORIGINAL tokens (`DabtEngine._orig24`,
+  set by `vowel()`) beside the stripped rows — the jawāb al-ṭalab
+  (اقْتَرِحْ شَيْئًا نُجِدْ) is read off the author's sukūn and the oath particle
+  only off its kasra (وَاللهُ أَحَقُّ is a mubtada; مُعْتَصِمٍ بِاللهِ a jarr
+  phrase); JinasEngine.rootOf takes a verb row's own root before the
+  lexicon's homograph (قَالَ / الْقَالِينَ); a joined she-verb inherits no
+  hidden «we»; بَيْنَ X وَY is no pair when بَيْنَ returns; no imperative after
+  a relative; the quoted predicate after كِنَايَةً عَنِ X; the joined noun
+  before a repeated بِ-phrase; each إِمَّا-share as a khabar; نَحْوُ: after a stop;
+  the giving verb's second object kept from the hal; the ات-naʿt onto a
+  broken-plural head; the KinayaEngine's mawsuf run opening on a plain nakira
+  predicate (24q). The release's own chunks then caught four more (24r): R9's
+  doer swap asks for a masdar doer behind a non-agent noun (لَمْ يَكْتُبِ
+  الطَّالِبُ دَرْسَهُ keeps its doer), the قَدْ-doer pre-pass leaves a sister of
+  kāna her ism, the citation نَحْوَ stays mansub, نِعْمَ carries a jamid
+  paradigm, the maqṣūr-construct guard asks for the host's own marks
+  (ذُكْرَانًا is no ذِكْرَى), and the ʿarūḍ engine's mudawwar audit moved three
+  hemistich marks to where the ṣadr closes (ch64 s3, ch73 s22, ch74 s15).
+  Six ch73–76 paradigms were corrected against
+  the reader's own `sarfAudit()` (the wawi naqis سَخَا, حَسَّنَّ by idgham, the
+  wasl alif's kasra on the افْتَعَلَ verbs, the doubled أَلَمَّ unpacked). The
+  JamEngine ceiling follows the corpus (151 heard plurals).
+
+## The sajʿ cut on the author's pauses, four figures read as receipts, and the nahw the last lafẓī chapters forced (wave 23, v177)
+
+Chapters 71–72 of the Talkhīṣ close the lafẓī badīʿ: the sajʿ by its three
+kinds and its finest lengths, the sukūn close, the two qīls, the tashṭīr
+(ch71); the muwāzana and mumāthala, the qalb of the whole, the tashrīʿ,
+luzūm mā lā yalzam, and the closing principle that the words follow the
+meanings (ch72). 29 authored badīʿ frames are read back (16 / 13); endings-
+mode ḍabṭ ch71 100, ch72 100 (floors 97 / 96). The lessons:
+
+- **The author's pause is data, and the engine reads it before it guesses.**
+  The wave-19 sajʿ engine cut clauses at wāw joiners and refused every
+  one-word clause; خُذُوهُ، فَغُلُّوهُ، ثُمَّ الْجَحِيمَ صَلُّوهُ has three clauses
+  and two of them are one word. `SajEngine.cutsOf` now takes the cuts from
+  the sentence's own `punctAfter` (`،` `؛` and the hemistich `*`), and a
+  marked one-word clause is a clause; free text is read through
+  `marksOf`, which lifts the same marks out of the string. The finest kind
+  is then arithmetic on the clauses' content words (nouns and verbs, never
+  pronouns — `cw23`): equal, second longer, third longer, shorter.
+- **A wazn is counted on the madd letters, not on every mark.** The
+  murassaʿ of al-Ḥarīrī (لَفْظِهِ / وَعْظِهِ) failed because the first cut
+  weighed every ḥaraka and the joiner's fatḥa on وَعْظِهِ tipped the scale.
+  `wazn()` strips a joining و/ف and the article (with the sun letter's
+  shadda) and counts only `(?<=َ)ا | (?<=ُ)و | (?<=ِ)ي`, keeping the joiner's
+  own fatḥa out of it. This is the ʿarūḍ's own notion of weight, and it is
+  what makes the muwāzana (same wazn, different rawī) decidable at all.
+- **The four last figures are receipts, and each names what it refuses.**
+  Tashṭīr: the hemistich cut, a sajʿ pair in each half, and the two rawīs
+  DIFFERENT (a bayt with one rawī is one sajʿ). Muwāzana: same wazn, not
+  the same rawī; mumāthala when ≥ ceil(m/2) and ≥ 2 words of both clauses
+  answer in wazn. Qalb al-kull: the bare letters of the line (seats folded,
+  ة→ه, the first word's joiner tried both ways) are a palindrome of six
+  letters or more — exact, or nothing. Tashrīʿ and luzūm are HINTED (the
+  frame names the words; the engine confirms the rawīs differ, or that the
+  letter before the rawī is the same on every rhyme word of the chapter's
+  luzum bayts — `BadiEngine.chapterOf` walks the peers) and free text gets
+  them only under `force`, because «two words that rhyme» is every second
+  line of prose. And the luzum's kept letter may not be a madd letter (the
+  ridf every rhyme may carry) nor an attached pronoun.
+- **The sajʿ mark and the atf chain disagree about one comma.** فِي سِدْرٍ
+  مَخْضُودٍ وَطَلْحٍ مَنْضُودٍ وَظِلٍّ مَمْدُودٍ was first authored with `،` after
+  each clause, and `_punctAt` — the set the ḍabṭ ladder consults to stop a
+  naʿt or a chain at a pause — broke the joined majrūrs into fresh clauses.
+  The sajʿ there reads without the marks (the wāw joiners cut it), so the
+  marks were removed from the content; where a mark IS needed for the cut
+  (وَنَمَارِقُ مَصْفُوفَةٌ، وَزَرَابِيُّ مَبْثُوثَةٌ) it stays, and the hemistich `*`
+  is no longer a stop for the ladder at all (the naʿt and the genus-lā
+  reach across it). A mark has two readers; author it for both.
+- **The nahw the two chapters forced, each paid for by a token.** The
+  oath's wāw before إِذَا (وَالنَّجْمِ إِذَا هَوَى: a clause-initial joined
+  ال-noun or name followed by إِذَا is majrūr by the qasam — `encOf`, not the
+  later-declared `enc`, because the rule stands before the oath rule in the
+  ladder); the ishtighāl after ثُمَّ (ثُمَّ الْجَحِيمَ صَلُّوهُ, the amr accepted
+  as the verb); the fronted object of an amr and of the prohibition
+  (وَرَبَّكَ فَكَبِّرْ، فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ — `youV`, the object seat
+  free, the verb transitive by its ism mafʿūl or majhūl); the elative at the
+  head is a noun (وَأَحْسَنُ السَّجْعِ — `b0` folds the seats, so the test reads
+  the hamza off the written word); the plural the lexicon owns WHOLE is a
+  diptote (بَلْ فَوَاصِلُ — `diptote()` must not peel a radical ف or و the
+  lexicon vouches for); the kāna-shaped noun (وَظِلٍّ مَمْدُودٍ — a row the
+  shape guess called a verb, with no cell and no lemma, that the lexicon
+  owns and whose marks agree with the noun, is that noun; generalized from
+  KANA_FORMS to any `pk === "kana"` row); فَكَبِّرْ re-read as a noun by the
+  ladder's kind guess because the lexicon owns بَرّ under a jarr clitic —
+  `__verbSure` is stamped by the pre-pass and re-asserted before the
+  chains; the demonstrative after إِنَّ is its ism; the fa-peeled cell that
+  opens on و; the plural index records `viaPlural`; the naʿt over a jarr
+  clitic onto a same-wazn annexed participle (بِاللهِ مُنْتَقِمٍ لِلهِ
+  مُرْتَغِبٍ); the passive after a relative takes its second object (مَا
+  يُسَمَّى التَّشْطِيرَ); a masdar jawāb noun; the sifa-clause verb's object
+  as a bare idafa head (عَلَى سَجْعٍ يُخَالِفُ سَجْعَ الْآخَرِ — the verb owned
+  transitive by the lexicon); لِلهِ / لِلَّهِ one jalāla in both modes; the
+  māḍī feminine rhyme تْ → تِ.
+- **Two wave-21 false alarms the release found before this wave landed.**
+  The Qawāʿid ledger raised «jarr with no governor» on بِأَنَّكَ (the ب/ل/ك
+  peel refused the inna-family remainder wearing a pronoun — now
+  `(ان|أن|إن|لكن|كأن|لعل|ليت)(pronoun)` with a shadda on the nūn peels) and
+  on ذَا after a jarr letter (the demonstrative is mabnī, whatever governs
+  it). Both are in patch21n; the v175 release was rerun on it.
+- **The pins are the wave's own regression set, and one pin was wrong.**
+  The pin «سَجْعَ الْآخَرِ annexed» was written on the two-word phrase
+  يُخَالِفُ سَجْعَ الْآخَرِ, where a 3ms verb with no earlier subject rightly
+  takes the first noun as its doer; the chapter's phrase has the nakira
+  before the verb. Write a pin on the sentence the rule was written for,
+  never on the fragment that looked like it.
+
+## The jinas by its seat, the close brought back, and the nahw the lafẓī chapters forced (wave 22, v176)
+
+Chapters 68–70 of the Talkhīṣ open the lafẓī badīʿ: the jinas by its
+kinds and positions (ch68–69) and radd al-ʿajuz ʿalā al-ṣadr in prose and
+verse (ch70). 37 authored badīʿ frames are read back (11 / 12 / 14);
+endings-mode ḍabṭ ch68 98.7, ch69 99.4, ch70 95.0 (floors 97 / 98 / 93).
+The lessons:
+
+- **The jinas's sub-kinds are positions, and positions are computed.**
+  `JinasEngine.read` already aligned the two words; wave 22 reads `kind2`
+  off the alignment — the seat of the odd letter (awwal / wasat / akhir),
+  the count of added letters (mudhayyal at two and more), the whole or the
+  part reversed, the winged qalb at the two ends of the line, the two
+  parts of speech (mumathil / mustawfa by the authored pos when the corpus
+  has it), the jinas of composition (a two-word span against one word,
+  mutashabih when the script is one). The letter-kinds outrank a root
+  match (السَّاقُ / الْمَسَاقُ is naqis, not ishtiqaq), vowels-first makes the
+  muḥarraf (جُبَّةُ الْبُرْدِ جُنَّةُ الْبَرْدِ), the makhraj groups are the
+  book's (ب و / ث ذ ظ / ت د ط / س ز ص / ل ر / ج ش ي / ك ق / خ غ / ح ع ه ء ا),
+  and `agree()` accepts the author's mutarraf for the engine's naqis/akhir.
+- **Radd al-ʿajuz is read unhinted from the content words.** `RaddEngine`
+  takes the last content word and looks for its repeat, its jinas partner
+  (from `JinasEngine`) or its derivation earlier in the line; the kind is
+  tikrar / jinas / mulhaq by what it found, the seat is estimated from the
+  content-word midpoint (sadr-awwal, hashw-awwal, arud, sadr-thani) with
+  the neighbouring seats as alternates, and `agree()` accepts the alternate.
+  Prose gets `nathr`.
+- **A verse sentence needs its hemistich mark.** The grader's rhyme rules
+  (the iṭlāq: tanwin dropped, the alif of the nasb tanwin) fire only when a
+  token carries `punctAfter: "*"`; the wave-22 bayts were authored without
+  it and read as prose until the marks were added. At the rhyme the grader
+  now accepts the waqf and the waṣl forms alike (مُغْرَمَا / مُغْرَمًا,
+  بِسَرِيعِ / بِسَرِيعٍ) — both are readings of the qāfiya, and the content
+  keeps whichever the received text prints.
+- **The nahw the three chapters forced** (two dry-run rounds, 22b and 22c;
+  ch48–67 checked sentence by sentence): the writer's five verbs of the
+  naqis keep the nun's fatha (يَنْهَوْنَ); the ال sound plural in raf writes
+  ونَ even when the plural index knows it (الْمُجْرِمُونَ — a pre-existing gap);
+  the mabni compounds (ذَلِكُمْ، اللَّهُمَّ، يَوْمَئِذٍ) and يَوْمَئِذٍ annexing nothing;
+  وَاللهُ + nakira as a mubtada, not an oath; the genus-lā before a
+  jarr-pronoun khabar (وَلَا جَامَ لَنَا); the naming passive's second object
+  (سُمِّيَ تَجْنِيسَ الْقَلْبِ); a name the analyzer took for a verb before بْنِ
+  (يَحْيَى بْنِ) once the corpus calls it propn; the joined pronoun-bearing
+  noun opening a nominal clause after a verb, including after a mubtada's
+  own verb (وَدَمْعُهُ سَائِلٌ); لَمْ يَكُنْ إِلَّا X — the mufarragh's إِلَّا keeps kana
+  open for its delayed ism and the time noun after the ism is annexed
+  (مُعَرَّجُ سَاعَةٍ) but takes no sifa-shaped nakira of its own (قَلِيلًا is the
+  khabar); the definition's opening masdar (رَدُّ الْعَجُزِ … هُوَ); «one of»
+  annexed to its definite (أَحَدُ اللَّفْظَيْنِ) and «the other» joining «one of
+  them» across a jarr phrase (وَالْآخَرُ); the pronoun-bearing item joining
+  the annexed head of ITS jarr phrase (أَوْ حَشْوِهِ); the verb after مَتَى
+  (وَلِيَ is not و + لِ + ي, and the zarf of question or condition is no doer);
+  the fronted khabar's mubtada after إِلَى … يَوْمَئِذٍ (الْمَسَاقُ); the ya of
+  «my» on a doubled stem or on the analyzer's «verb» (كِنِّي، جَدِّي) found by
+  the glossary when the noun index holds a homograph; the ism mafʿūl
+  khabar's deputy doer (مَعْقُودٌ بِنَوَاصِيهَا الْخَيْرُ); the addressee's تَ before
+  a masculine human noun (وَتَخْشَى النَّاسَ); wāw + hamza as the joiner
+  (وَأَعْدَادِهَا); the فَعِيل head of a three-link nakira chain (شَمِيمِ عَرَارِ
+  نَجْدٍ); فُعَلَة and فَوَاعِل as sifa shapes (هُمَزَةٍ لُمَزَةٍ، أَيْدٍ عَوَاصٍ); no naʿt
+  across a particle (فَإِنِّي نَافِعٌ); the dual command read off its two
+  addressees (دَعَانِي مِنْ مَلَامِكُمَا سَفَاهًا: the alif is the doer, the ني
+  the object, the nakira after is the ḥāl, and the fa-joined annexed head
+  whose verb follows its chain opens a new sentence); the tanwin's seat
+  alif before a final ha (سَفَاهًا is no «her»).
+- **Accepted misses, named:** عَوَاصِمِ's kasra is the rawi's (the diptote
+  would take a fatha — a poetic licence the grader cannot know without a
+  second rhyme word), and the ch48–60 numbers moved only where the wave-22
+  rules read a sentence differently on purpose (listed in the release
+  notes).
+
+## The cause read by its receipt, the exception by its adat, the question by its shape, the names by their chain — and the figures of meaning shown, not claimed (wave 21, v175)
+
+Chapters 65–67 of the Talkhīṣ finish the maʿnawī badīʿ: ḥusn al-taʿlīl and
+tafrīʿ (ch65), the praise confirmed by what looks like blame and its mirror,
+istitbāʿ and idmāj (ch66), tawjīh, the jest that means earnest, tajāhul
+al-ʿārif, al-qawl bil-mūjib and iṭṭirād (ch67). 23 authored badīʿ frames are
+read back (6 / 8 / 9); endings-mode ḍabṭ ch65 96.4, ch66 100, ch67 99.5
+(floors 95 / 98 / 98). The lessons:
+
+- **Where the figure is a claim about the world, the engine reads the RECEIPT
+  and leaves the claim to the author.** A ḥusn al-taʿlīl is a cause the poet
+  invents; no surface says the cause is unreal. What the surface does say is
+  what the cause RIDES ON: a negation answered by إِنَّمَا (لَمْ يَحْكِ … وَإِنَّمَا حُمَّتْ),
+  the light لَكِنْ after a negation, the unreal لَوْ whose لَ-answer is negated,
+  the doubting كَأَنَّ, or a fresh mazi sentence after the quality. `TalilEngine`
+  reads those five receipts and the cause-word, the frame gives the kind, the
+  card says so in one line — the same contract as the mubalagha's degree and
+  the istiʿāra's shortlist. Unhinted free text with a receipt returns nothing
+  unless `force` is passed (the lab), because «negation + إِنَّمَا» is everyday
+  Arabic, not a figure.
+- **The exception is nahw first.** Taʾkīd al-madḥ is an adat of exception
+  (إِلَّا أَنَّ, غَيْرَ أَنَّ, بَيْدَ أَنَّ, سِوَى أَنَّ, the لَكِنَّ that stands in for it) with a
+  quality before it and a quality after it; a negation before the adat makes
+  the first kind, none the second, مَا … إِلَّا أَنْ + verb the third.
+  `TakidEngine` reads the adat, the negation and the clause on each side from
+  `DabtEngine.decide`'s seats (the first khabar after the citation head; the
+  predicate of the adat's أَنَّ with its ism skipped) and gives one frame per
+  adat — the Hamadhānī bayt has three. The POLARITY (praise or blame) is
+  meaning: with a frame the kind is the frame's; without one a plain إِلَّا is
+  refused outright and the rarer adats are offered with «polarity unknown».
+- **The knower's question has a shape; its point does not.** `TajahulEngine`
+  reads the hamza paired with أَمْ, a bare أَمْ after a mubtada, لَيْتَ, مَا أَدْرِي and
+  a question word shadowed by كَأَنَّ; the aim (reproach, hyperbole in praise or
+  blame, bewilderment in love) is the frame's. Al-qawl bil-mūjib is read by
+  the other's word standing in both halves — the consonantal skeleton
+  (`TalilEngine.skel`) makes الْأَعَزُّ and الْعِزَّةُ one word. Iṭṭirād is the only
+  wave-21 figure read unhinted: a name, بْنِ, a name, بْنِ, a name is rare enough
+  to be sure. Istitbāʿ, idmāj, tawjīh and the jest are DOC frames: shown with
+  a note that says the engine reads nothing.
+- **The istifhām hamza on a noun is found by the lexicon, not the seg.** In
+  endings mode the analyzer does not peel أَلَمْعُ; the pre-pass asks the
+  lexicon whether the whole is a word and the rest is (`__hamzaQ`), `hasAl`
+  ignores the flag, the chain loop stops treating it as a sifa-shape, the
+  ladder makes the hamza'd nakira the fronted khabar (أَقَوْمٌ آلُ حِصْنٍ) and the
+  veto keeps it from annexing a definite. One flag, four consumers.
+- **The wave-20 entries stored the hollow verbs' short amr stem in the long
+  cells.** دُومَا, دُومُوا, دُومِي keep the long vowel; دُمَا does not exist. The
+  sarf-audit gate caught it on the second v174 run, the four entries were
+  rewritten (`fix21_hollow`) and the authoring calls corrected — the audit's
+  regeneration was right, the stored paradigm was wrong, and the gate is
+  exactly for that.
+- **A plain word that takes the noun index's key over a bracketed manqus must
+  keep the manqus reachable.** جَار (ch64's neighbour) silently replaced «جَارٍ
+  (الْجَارِي)» and نَهْرٌ جَارٍ became a majrur without a governor for the Qawaid
+  gate. `nounIndex` now keeps the displaced entry as an alternate and
+  `nounFromCorpus` prefers it when the written word carries the kasratan.
+- **The nahw the three chapters forced** (twelve dry-run patches, ch48–64
+  unchanged): the doubled passive's she-cell built from the stored he-cell
+  (the root walk cannot see two mīms under one shadda); the feminine of a
+  manqus written whole; the passive's deputy after a لِ-phrase or after the
+  nakira it describes; a mim-participle on لِ that annexes; the citation head
+  keeping a name before بْنِ; غَيْرُ + definite as a naʿt; a masdar annexing the
+  مَا that opens a verb; the light لَكِنْ keeping the subject; the فَعِيل naʿt
+  after a nakira jarr head; an annexed masdar never a maf'ul mutlaq; the
+  nasikh under a jarr clitic; مِنَّا / عَنَّا; the clause's own وَلَا after a stop;
+  غَيْرَ / بَيْدَ before أَنَّ as the exception's seat; the demonstrative's badal after
+  a preposition; the sifa-clause verb keeping its doer even without a stored
+  cell; the pronoun's definite khabar; مَا لَكَ as a finished nominal; the bare
+  word after لَمْ as a verb; the naqis before its pronoun; وَقَعَ over «and
+  fall!»; آلُ before a name; إِخَالُ; أَيَا; كَيْفَ fronting its khabar; the command
+  after قُلْ; a word never annexed to itself; the two-object verb's doer after
+  its pronoun object and the second object still owed; the writer's وَلِلَّهِ.
+
 ## The list figures read off the seats, the tajrid by its letter, the mubalagha as a dial and a receipt, the kalami by its shape — and a learned shortlist graded by chapter (wave 20, v174)
 
 Chapters 61–64 of the Talkhīṣ close the maʿnawī badīʿ: the jamʿ, the tafrīq,

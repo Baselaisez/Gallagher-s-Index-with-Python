@@ -68,7 +68,7 @@ void main(List<String> args) {
     }
     if (note.examples.isEmpty) fail(where, 'no examples');
     if (note.commonMistakes.isEmpty) fail(where, 'no commonMistakes');
-    const groups = {'sarf', 'nahw', 'awamil', 'balagha', 'bayan', 'badi'};   // badi: the registry's sixth group (wave 18)
+    const groups = {'sarf', 'nahw', 'awamil', 'balagha', 'bayan', 'badi', 'arud'};   // badi: the registry's sixth group (wave 18); arud: the seventh (wave 24)
     if (!groups.contains(note.group)) fail(where, 'bad group ${note.group}');
     final q = note.question;
     if (q != null) {

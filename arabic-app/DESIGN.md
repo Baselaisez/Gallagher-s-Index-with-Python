@@ -782,3 +782,182 @@ ways?» (gTafriq) offers four «A ≠ B» pairs of the sentence's own words;
 reveals the receipt. All three draw from the authored frames, so a wrong
 answer is corrected by the chapter's own analysis, and each card carries
 its § to the note.
+
+## 20. The cause-arrow, the exception hinge, the question mark, and the name-chain (wave 21)
+
+**A claimed cause is an arrow pointing backwards.** The ḥusn al-taʿlīl of
+chapter 65 says «this quality — because of THAT», and the poet's «that» is
+never the real cause, so the card (`.bd-talil`) draws the QUALITY as a
+dashed pole (`.bd-quality`, the thing that was already there), a large
+accent ⇐ (`.bd-because`), and the CLAIMED CAUSE as the accent-underlined
+pole (`.bd-cause`) — the eye reads the arrow the wrong way round on
+purpose, because that is what the figure does. Under the arrow two chips:
+the kind (fixed / unfixed, possible / impossible, on doubt) and, dotted
+(`.bd-rcpt`), the RECEIPT the cause rides on (بِإِنَّمَا, بِلَكِنْ, بِلَوْ,
+بِكَأَنَّ, or a fresh sentence). A one-line note says the kind is the
+author's judgement and the engine reads the receipt and the cause-word —
+the wave-17 honesty, kept on the card. The **tafrīʿ** (`.bd-tafri`) is two
+predications one above the other — subject and accent-underlined predicate
+(`.bd-pred`) — with the كَمَا hinge between them on ⤷ … ⤶ (`.bd-hinge`):
+one ruling, branched.
+
+**An exception is a hinge, and the hinge is coloured by what it confirms.**
+Taʾkīd al-madḥ and its mirror (chapter 66) live in the reader's
+expectation — the adat promises a fault and hands over a praise — so the
+card (`.bd-takid`) sets the first clause, the adat underlined in the
+accent (`.bd-hinge-adat`), and the excepted clause on ONE line, with the
+poles bordered green for praise (`.bd-praise`) or red for blame
+(`.bd-blame`), and the negation that opens the first kind dimmed at the
+front. The sub chip names the kind (a praise excepted from a denied blame;
+a praise, then the adat and another; مَا … إِلَّا أَنْ) and the dotted chip
+the adat (بِغَيْرَ أَنَّ, بِبَيْدَ أَنَّ, بِسِوَى, بِلَكِنَّ, بِإِلَّا). When the frame is
+missing and only the shape was read, a note says the polarity is unread.
+
+**A feigned question wears its own mark.** Tajāhul al-ʿārif (`.bd-tajahul`)
+puts the question word as the cause-style pole, a large Arabic ؟ (`.bd-q`)
+in the accent, and the partner (the أَمْ, the كَأَنَّ) as the dashed pole;
+the chips give the AIM (reproach, hyperbole in praise or blame,
+bewilderment in love — the author's) and the SHAPE the engine read (the
+hamza with أَمْ, a bare أَمْ, لَيْتَ, مَا أَدْرِي, كَأَنَّ). Al-qawl bil-mūjib is
+the other's word on the left, ↩, and the same word turned on the right.
+
+**Names run on a chain.** The iṭṭirād (`.bd-ittirad`) is the praised man
+and his fathers as accent-underlined poles joined by small grey بْنِ
+(`.bd-ibn`) — one unbroken run, exactly as the bayt carries them. Tawjīh
+(⇆ on either side of the two-faced word), the jest that means earnest,
+istitbāʿ (the spoken praise ⇒ the entailed one) and idmāj (the folded word
+alone) are DOC cards: the pole is lit and a note says the frame is the
+author's and the engine reads nothing — the figures of meaning are shown,
+never claimed.
+
+**Three more games.** «Why does the cloud rain?» marks the quality and asks
+for the word that carries the claimed cause (four tokens of the sentence);
+«Praise, or blame?» marks the adat and asks what it confirms and how (the
+five kinds, polarity in the label); «The knower feigns» marks the question
+and asks for its point. Each reveals the frame with its receipt and opens
+the note, as the wave-20 games do.
+
+## 21. The jinas by its seat, and the close brought back (wave 22)
+
+**A jinas is named by WHERE the two words differ, and the card says
+where.** Chapters 68–69 of the Talkhīṣ cut the jinas by four questions —
+one part of speech or two (مُمَاثِل / مُسْتَوْفًى), one word or two (the
+jinas of composition: مُتَشَابِه when the script is one, مَفْرُوق when it
+parts them), the same letters differently vowelled (مُحَرَّف), one letter
+more (نَاقِص: at the front, in the middle, at the end — مُطَرَّف — or two
+letters and more, مُذَيَّل), one letter other (مُضَارِع when the two letters
+are neighbours in the mouth, لَاحِق when they are not, each at the front,
+the middle or the end), the letters in another order (قَلْب: the whole, a
+part, or winged at the two ends of a line), and the two mulḥaqs
+(derivation, and its look-alike). The wave-19 alignment SVG already drew
+the two words letter against letter; wave 22 adds the POSITION chip
+(`.ts-shape-chip`, after the kind chip) that names the seat the engine
+found — فِي الْأَوَّلِ / فِي الْوَسَطِ / فِي الْآخِرِ, مُمَاثِل / مُسْتَوْفًى,
+مُتَشَابِه / مَفْرُوق, قَلْبُ كُلٍّ / قَلْبُ بَعْضٍ / مُجَنَّح — and the
+مُزْدَوِج flag when the two stand side by side. The chip is the engine's
+own reading (`JinasEngine.read` computes `kind2` from the aligned
+letters), so it never disagrees with the picture above it.
+
+**Radd al-ʿajuz is an arc drawn backwards.** The figure (`.bd-radd`) is
+the close of a line brought back upon its head, so the card sets the two
+words on ONE row, the head as the accent-underlined pole and the close as
+the dashed pole, with a large ↶ between them (`.bd-radd-arc`) that reads
+right-to-left as the close does — it points at the word it returns to.
+Two chips under the arc: the KIND (the same word twice, the two in jinas,
+the mulḥaq by derivation) and the SEAT — in prose «the head and the close
+of the fiqra»; in verse the five seats of chapter 70 (the head of the
+first hemistich, its middle, its end — the ʿarūḍ — or the head of the
+second), which `RaddEngine` estimates from the content-word midpoint and
+the authored frame confirms. When the engine's seat neighbours the
+authored one (the midpoint is an estimate), the frame still agrees; the
+card shows the authored seat.
+
+**One more game.** «The close comes back» marks the ʿajuz and asks for the
+earlier word it returns to (four tokens of the line); the reveal names
+the kind and the seat and opens the note. «Which jinas?» now reveals the
+position chip beside the kind.
+
+## 22. The sajʿ on the author's pauses, and the four figures of the last leaf (wave 23)
+
+**A sajʿ is cut where the author breathes, and the card shows the cut.**
+Chapters 71–72 of the Talkhīṣ close the lafẓī badīʿ. The sajʿ engine used
+to guess its clauses from the wāw joiners alone; wave 23 lets the AUTHOR cut
+them — a `،` or `؛` after a token, or the hemistich `*` — and reads the
+finest kinds off the clauses' length: equal (الْمُتَسَاوِي), the second longer
+(وَالنَّجْمِ إِذَا هَوَى، مَا ضَلَّ صَاحِبُكُمْ وَمَا غَوَى), the third longer
+(خُذُوهُ، فَغُلُّوهُ، ثُمَّ الْجَحِيمَ صَلُّوهُ), and the shorter second the books
+refuse. The card (`.bd-saj`) sets the two clauses one under the other with
+their fāṣilas accent-underlined, the kind chip (مُطَرَّف / مُتَوَازٍ /
+مُرَصَّع) and the length chip (`.ts-shape-chip`) after it, and the wazn
+strings the engine counted — a wazn is now the MADD letters only, so
+لَفْظِهِ and وَعْظِهِ weigh alike and the murassaʿ holds. A one-word clause
+is allowed only where the author marked it (فَغُلُّوهُ), never guessed.
+
+**The tashtir is a bayt folded in two.** `.bd-tashtir` draws the two halves
+(`.bd-tashtir-half`) on two rows with the hemistich cut (`.bd-tashtir-cut`)
+between them, each half carrying its own sajʿ pair in the row's ink and its
+rawī chip — and the two rawīs must differ, or the line is one sajʿ, not
+two. **The muwazana is an equals sign** (`.bd-muwazana`, `.bd-eq`): the two
+fāṣilas set side by side with their wazns printed beneath, equal in wazn
+and NOT in rhyme, and the mumāthala chip when half the words or more of
+both clauses answer in wazn. **The qalb of the whole is a mirror**
+(`.bd-qalb`): the bare letters of the line in a single row and the same
+row reversed under it (`.bd-qalb-mirror`), letter over letter, with the
+arrow (`.bd-qalb-arrow`) pointing both ways — the reader sees the
+palindrome rather than being told of it. **The tashrīʿ is a stop sign**
+(`.bd-tashri`, `.bd-stop`): the first rhyme word is marked as a place the
+sense may stop, the second as the line's true close, so the two rhymes
+read as two exits from one bayt. **Luzum mā lā yalzam lights one letter**
+(`.bd-luzum`, `.bd-luzum-l`): the letter before the rawī is boxed in the
+accent on every rhyme word, and the peers chip counts the other bayts of
+the chapter that keep the same letter — a luzum is a promise kept across
+lines, so the card says how many.
+
+**One more game.** «Which sajʿ?» (gSaj, ≈) marks the two fāṣilas of a
+sajʿ from the Talkhīṣ and asks for its kind; the reveal prints the
+engine's wazn strings for both fāṣilas, so the learner sees WHY the answer
+is mutawāzī and not muṭarraf, and opens the note.
+
+## 23. The khātima: the bayt scanned, the taking traced, the received text lit (wave 24)
+
+**A bayt is shown as it is heard.** Chapters 73–76 of the Talkhīṣ are its
+khātima — the poets' takings, the Qurʾān and the hadith woven in, and the
+three places a speech must be fine — and every ruling there is argued on
+BAYTS. So the sentence card grows a bayt card (`.bd-arud`): the two
+hemistichs on two rows, each foot (`.arud-foot`) boxed under the syllables
+it covers with its name (فَعُولُنْ، مَفَاعِيلُنْ), the baḥr chip after the
+line, the ziḥāf marked lighter where the foot deviated, and the rawī of the
+rhyme boxed in the accent (`.aq-rawi`) with the qāfiya's letters (the
+waṣl, the ridf, the taʾsīs) named in a row beneath. The ArudEngine scans
+free text (the taqṭīʿ from the writing itself: the sukūn/ḥaraka string,
+the article's wasl, the tanwīn's nūn, the long vowels), tries the sixteen
+metres with their licensed ziḥāfāt and ʿilal, and answers with the cheapest
+fit — or with «no metre», which the card prints as plainly as a baḥr; a
+prose shaṭr never scans. The ʿArūḍ lab takes any bayt, and gBahr asks the
+learner for the baḥr with the feet as the reveal.
+
+**A taking is drawn as two lines with the shared words lit.** The sariqa
+card (`.bd-sariqa`) prints the taker's line over the source's line
+(`.bd-line`), the shared words highlighted on both (`.bd-shared`), the
+arrow «taken from» (`.bd-sariqa-from`) naming the source sentence, and
+the chips for the book's own kinds: naskh / ighāra / ilmām (the plain
+takings, by how much was taken and whether the words came too), and for
+the hidden ones tashābuh / naql / ashmal / qalb / ziyāda, with the grade
+chip the book pronounces (mamdūḥ / madhmūm / mithl). The engine measures
+what it can — the shared bare words, the shared roots, the metre and rawī
+kept — and the book's judgement is a hint the card shows as such.
+
+**The received text is lit inside the sentence.** The iqtibas, tadmin,
+ʿaqd, ḥall and talmīḥ cards (`.bd-iqtibas`) mark the words of the Qurʾān,
+the hadith or the other poet's bayt in the accent's wash (`.bd-received`),
+name the source under it («the received text: النَّحْل ٧٧»), and add a
+chip when the words were changed for the metre (تَغْيِيرٌ يَسِيرٌ) or the
+tadmin was a whole bayt (istiʿāna) or a hemistich (īdāʿ). The fine
+opening, the ill omen, the barāʿat al-istihlāl, the takhalluṣ and the
+iqtiḍāb, the fasl al-khitāb and the fine close (ch76) wear the same card:
+the received bayt is the frame, and the chip says which of the three
+places of care it serves.
+
+**Two notes of another science.** The ʿarūḍ note and the qāfiya note are
+the first of a new registry group (`arud`), reached from the badīʿ doors
+strip and from every bayt card's baḥr chip.

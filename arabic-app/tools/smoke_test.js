@@ -106,7 +106,7 @@ if (!CHROME) {
   });
   if (!wasiyyaStats) throw new Error('could not find wasiyyat-abi-hanifa-L2 in STORIES to derive expectations');
 
-  await check('library lists ' + storyCount + ' stories, reader controls hidden', async () => {
+  await check('library lists \' + storyCount + \' stories, reader controls hidden', async () => {
     await page.waitForSelector('.lib-card', { timeout: 10000 });
     const cardCount = await page.locator('.lib-card').count();
     if (cardCount !== storyCount) throw new Error('cards=' + cardCount + ' expected=' + storyCount);
@@ -117,7 +117,7 @@ if (!CHROME) {
     if (!(await page.locator('#gamesOpen').isVisible())) throw new Error('Games must be reachable from the library');
   });
 
-  await check('open story renders ' + wasiyyaStats.chapters + ' chapters', async () => {
+  await check('open story renders \' + wasiyyaStats.chapters + \' chapters', async () => {
     await openStoryCard(wasiyyaStats.id);
     const chapterCount = await page.locator('.chapter-head').count();
     if (chapterCount !== wasiyyaStats.chapters) throw new Error('chapter count=' + chapterCount + ' expected=' + wasiyyaStats.chapters);
@@ -3969,7 +3969,7 @@ if (!CHROME) {
     if (a.cv2 < 75) throw new Error('held-out two-guess regressed to ' + a.cv2 + '%');
     // and it must be an HONEST gap: memorising its own corpus always scores higher
     if (a.res1 <= a.cv1) throw new Error('resubstitution should beat held-out; something is leaking');
-    if (a.ms > 4000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open');
+    if (a.ms > 6500) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open (the ceiling follows the corpus: 4.5 s at 76 chapters, v178)');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
     await page.waitForSelector('.ml-score', { timeout: 10000 });
@@ -9300,7 +9300,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 136) throw new Error('the qiyasi builder disagrees with more stored plurals than at v173 (131 — the corpus grew by three chapters of samaʿi plurals; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 160) throw new Error('the qiyasi builder disagrees with more stored plurals than at v178 (151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -10205,6 +10205,521 @@ if (!CHROME) {
         if (r8.n < 2 || !r8.why || !r8.next) throw new Error(id + ': ' + JSON.stringify(r8));
       }
       await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
+  // ---------------------------------------------------------------- wave 21: husn al-taʿlil, tafriʿ, the confirmed praise and blame, istitbaʿ, idmaj, tawjih, hazl, tajahul, al-qawl bil-mujib, ittirad; the nahw pins
+  const W21_FLOOR = { 65: 95, 66: 98, 67: 98 };   // measured at v175 (endings mode): ch65 96.4 · ch66 100 · ch67 99.5 (accepted: نَائِلَكَ/السَّحَابُ's delayed doer, the sentence-initial أَوْ يَظْهَرَ, عِقْدَ مُنْتَطِقٍ, فَتُثْبِتَهَا's far nasb)
+  await check('Talkhis ch65-67 (husn al-taʿlil\'s four kinds and the mulhaq on doubt, the tafriʿ; praise confirmed by what looks like blame in three kinds with the istidrak, blame confirmed, istitbaʿ, idmaj; tawjih, the jest that means earnest, tajahul al-ʿarif\'s four points, al-qawl bil-mujib\'s two kinds, ittirad): every authored frame read back, the kinds present, the ḍabṭ floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [65, 66, 67]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set(), receipts = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); if (h.receipt) receipts.add(h.receipt); });
+            const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ': ' + JSON.stringify((ag && ag.per.filter(x => !x.ok).map(x => x.kind + '/' + x.why + (x.got ? ' got ' + JSON.stringify(x.got) : ''))) || 'no agree')); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], receipts: [...receipts], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W21_FLOOR);
+    for (const N of [65, 66, 67]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 500));
+      if (o.dabt !== null && o.dabt < W21_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W21_FLOOR[N]);
+    }
+    const need = { 65: ['husn-talil', 'tafri'], 66: ['takid-madh', 'takid-dhamm', 'istitba', 'idmaj'], 67: ['tawjih', 'hazl-jidd', 'tajahul', 'qawl-mujib', 'ittirad'] };
+    for (const N of [65, 66, 67]) { const miss = need[N].filter(k => !r[N].kinds.includes(k)); if (miss.length) throw new Error('ch' + N + ' misses ' + miss.join(',')); }
+    if (!['la-illa', 'ghayr-madhkura', 'mumkina', 'ghayr-mumkina', 'shakk'].every(k => r[65].subs.includes(k)) || !['innama', 'lakin', 'jumla', 'law', 'kaanna'].every(k => r[65].receipts.includes(k))) throw new Error('ch65 carries the four kinds, the mulhaq and the five receipts: ' + r[65].subs + ' / ' + r[65].receipts);
+    if (!['istithna-min-dhamm', 'madh-thumma-istithna', 'nafy-illa', 'istithna-min-madh', 'dhamm-thumma-istithna'].every(k => r[66].subs.includes(k)) || !['ghayr', 'bayda', 'illa', 'lakinna', 'illa-anna'].every(k => r[66].receipts.includes(k))) throw new Error('ch66 carries the five kinds and the adats: ' + r[66].subs + ' / ' + r[66].receipts);
+    if (!['tawbikh', 'mubalagha-madh', 'mubalagha-dhamm', 'hayra', 'sifa-kinaya', 'lafz-mushtarak'].every(k => r[67].subs.includes(k)) || !['kaanna', 'hamza-am', 'ma-adri', 'am'].every(k => r[67].receipts.includes(k))) throw new Error('ch67 carries the four points, the two kinds and the question shapes: ' + r[67].subs + ' / ' + r[67].receipts);
+    if (r[65].bd < 6 || r[66].bd < 8 || r[67].bd < 9) throw new Error('frame counts: ' + [65, 66, 67].map(N => r[N].bd).join('/'));
+  });
+
+  await check('the wave-21 engines on their seeds (free text): the tafriʿ off the كَمَا hinge and the shared skeleton, the confirmed praise off غَيْرَ أَنَّ / بَيْدَ أَنَّ / سِوَى أَنَّ / لَكِنَّ (a plain إِلَّا waits for the chapter\'s frame), the ittirad off the names hinged on بْنِ, the husn al-taʿlil\'s receipts (إِنَّمَا, لَكِنْ, لَوْ, كَأَنَّ) found under force, the tajahul\'s question shapes under a frame', async () => {
+    const r = await page.evaluate(() => {
+      const rowsOf = t => SentenceAnalyzer.analyze(t);
+      const one = (t, kind) => { const fr = BadiEngine.readText(t).frames.filter(f => f.kind === kind); return fr.length ? fr.map(f => (f.sub || '-') + (f.receipt ? '/' + f.receipt : '') + ':' + (f.set ? f.text(f.set) : f.first ? f.text(f.first) + '|' + f.text(f.second) : f.text(f.word))).join(';') : 'none'; };
+      const tal = t => { const rows = rowsOf(t).map(r => ({ ...r })); const d = DabtEngine.decide(rows); const f = TalilEngine.read(rows, { d, force: true }).find(x => x.kind === 'husn-talil'); return f ? f.receipt + ':' + rows[f.word].w : 'none'; };
+      const taj = (t, sub) => { const rows = rowsOf(t); const d = DabtEngine.decide(rows.map(r => ({ ...r }))); const f = TajahulEngine.read(rows, { d, sen: { badi: [{ kind: 'tajahul', sub, word: 0 }] } })[0]; return f ? f.receipt + ':' + rows[f.word].w : 'none'; };
+      return {
+        tafri: one(TalilEngine.SEEDS[0], 'tafri'),
+        talInnama: tal(TalilEngine.SEEDS[1]), talLakin: tal(TalilEngine.SEEDS[2]), talLaw: tal(TalilEngine.SEEDS[3]), talKaanna: tal(TalilEngine.SEEDS[4]),
+        tkGhayr: one(TakidEngine.SEEDS[0], 'takid-madh'), tkBayda: one(TakidEngine.SEEDS[1], 'takid-madh'), tkIlla: one(TakidEngine.SEEDS[2], 'takid-madh'), tkSiwa: one(TakidEngine.SEEDS[4], 'takid-madh'),
+        ittirad: one(IttiradEngine.SEEDS[0], 'ittirad'),
+        tjHamza: taj(TajahulEngine.SEEDS[0], 'mubalagha-madh'), tjAdri: taj(TajahulEngine.SEEDS[1], 'mubalagha-dhamm'), tjAm: taj(TajahulEngine.SEEDS[2], 'hayra'), tjKa: taj(TajahulEngine.SEEDS[3], 'tawbikh'),
+        noTakid: one('مَا جَاءَ إِلَّا زَيْدٌ', 'takid-madh'), noTafri: one('كَتَبَ زَيْدٌ كَمَا كَتَبَ عَمْرٌو', 'tafri'), noIttirad: one('جَاءَ زَيْدُ بْنُ عَمْرٍو', 'ittirad'),
+      };
+    });
+    const want = { tafri: /^-:أَحْلَامُكُمْ شَافِيَةٌ\|دِمَاؤُكُمْ تَشْفِي/, talInnama: /^innama:حُمَّتْ/, talLakin: /^lakin:يَتَّقِي/, talLaw: /^law:نِيَّةُ/, talKaanna: /^kaanna:غَيَّبْنَ/,
+                   tkGhayr: /istithna-min-dhamm\/ghayr:عَيْبَ\|فُلُولٌ/, tkBayda: /madh-thumma-istithna\/bayda:أَفْصَحُ\|قُرَيْشٍ/, tkIlla: /^none$/, tkSiwa: /siwa:.*\|الضِّرْغَامُ/,
+                   ittirad: /بِعُتَيْبَةَ الْحَارِثِ بْنِ شِهَابِ|عُتَيْبَةَ.*شِهَابِ/, tjHamza: /^hamza-am:أَلَمْعُ/, tjAdri: /^ma-adri:أَدْرِي/, tjAm: /^am:لَيْلَايَ/, tjKa: /^kaanna:مَا/,
+                   noTakid: /^none$/, noTafri: /^none$/, noIttirad: /^none$/ };
+    const bad = Object.keys(want).filter(k => !want[k].test(String(r[k])));
+    if (bad.length) throw new Error('seeds: ' + bad.map(k => k + '=' + r[k]).join(' | '));
+  });
+
+  await check('wave-21 nahw pins: the doubled passive\'s she-cell, the feminine of a manqus, the passive\'s deputy after a لِ-phrase, the citation head before بْنِ, غَيْرُ as a naʿt, the masdar before مَا, the light لَكِنْ\'s concealed doer, the فَعِيل naʿt, the annexed masdar, the nasikh under a clitic, وَلِلَّهِ, the istifham hamza on a noun, the two-object verb\'s doer, مَا لَكَ, the verb after لَمْ, the command after قُلْ, the demonstrative\'s badal, the same word twice, كَيْفَ, the exception\'s seat', async () => {
+    const r = await page.evaluate(() => {
+      const D = t => { const rows = SentenceAnalyzer.analyze(DabtEngine.stripSentence(t, 'endings')); const d = DabtEngine.decide(rows); return { rows, d, k: i => (d.out[i] || {}).k, rule: i => (d.out[i] || {}).rule }; };
+      const W = t => DabtEngine.vowel(t, 'endings').words.map(w => (w.out || '').normalize('NFC')); const N = t => t.normalize('NFC');
+      const bad = []; const pin = (name, ok) => { if (!ok) bad.push(name); };
+      let w, x;
+      w = W('يُدَّعَى لِوَصْفٍ عِلَّةٌ مُنَاسِبَةٌ لَهُ بِاعْتِبَارٍ لَطِيفٍ'); pin('يُدَّعَى لِوَصْفٍ عِلَّةٌ مُنَاسِبَةٌ … بِاعْتِبَارٍ لَطِيفٍ: the passive owes its deputy after the لِ-phrase; the فَعِيل agreeing with a nakira jarr head is its naʿt', w[2] === 'عِلَّةٌ' && w[3] === 'مُنَاسِبَةٌ' && w[5] === 'بِاعْتِبَارٍ' && w[6] === 'لَطِيفٍ');
+      w = W('أَنْ يُثْبَتَ لِمُتَعَلِّقِ أَمْرٍ حُكْمٌ'); pin('لِمُتَعَلِّقِ أَمْرٍ حُكْمٌ: the mim-participle on لِ annexes, the bare noun after the chain is the deputy', w[2] === 'لِمُتَعَلِّقِ' && w[3] === 'أَمْرٍ' && w[4] === 'حُكْمٌ');
+      w = W('يَظْهَرُ لَهَا عِلَّةٌ غَيْرُ الْمَذْكُورَةِ'); pin('عِلَّةٌ غَيْرُ الْمَذْكُورَةِ: غَيْرُ with a definite after it describes the nakira', w[2] === 'عِلَّةٌ' && w[3] === 'غَيْرُ');
+      w = W('كَقَوْلِ مُسْلِمِ بْنِ الْوَلِيدِ'); pin('كَقَوْلِ مُسْلِمِ بْنِ الْوَلِيدِ: the name between the citation head and بْنِ stays annexed', w[1] === 'مُسْلِمِ' && w[2] === 'بْنِ' && w[3] === 'الْوَلِيدِ');
+      w = W('مَا بِهِ قَتْلُ أَعَادِيهِ وَلَكِنْ يَتَّقِي إِخْلَافَ مَا تَرْجُو الذِّئَابُ'); pin('وَلَكِنْ يَتَّقِي إِخْلَافَ مَا تَرْجُو: after the light لَكِنْ the subject stays and the masdar annexes the مَا', w[6] === 'إِخْلَافَ' && w[9] === 'الذِّئَابُ');
+      w = W('أَحْلَامُكُمْ لِسَقَامِ الْجَهْلِ شَافِيَةٌ'); pin('شَافِيَةٌ: the feminine of a manqus keeps its ya and its tanwin', w[3] === 'شَافِيَةٌ');
+      x = D('حُمَّتْ بِهِ فَصَبِيبُهَا الرُّحَضَاءُ'); pin('حُمَّتْ: the doubled passive\'s she-cell is a verb', (x.rows[0].kind || '').startsWith('verb') && /majhul/.test((x.rows[0].cell || {}).tense || ''));
+      w = W('يُسْتَثْنَى مِنْ صِفَةِ ذَمٍّ مَنْفِيَّةٍ عَنِ الشَّيْءِ صِفَةُ مَدْحٍ'); pin('صِفَةُ مَدْحٍ: the annexed masdar keeps its chain', w[7] === 'صِفَةُ' && w[8] === 'مَدْحٍ');
+      w = W('وَلَا عَيْبَ فِيهِمْ غَيْرَ أَنَّ سُيُوفَهُمْ بِهِنَّ فُلُولٌ'); pin('وَلَا عَيْبَ فِيهِمْ غَيْرَ أَنَّ: the clause\'s own لا of genus-denial, غَيْرَ the exception\'s seat', w[1] === 'عَيْبَ' && w[3] === 'غَيْرَ' && w[7] === 'فُلُولٌ');
+      x = D('هُوَ الْبَدْرُ إِلَّا أَنَّهُ الْبَحْرُ'); pin('هُوَ الْبَدْرُ: the pronoun\'s definite khabar', x.rule(1) === 'khabar');
+      w = W('لَهُنِّئَتِ الدُّنْيَا بِأَنَّكَ خَالِدٌ'); pin('بِأَنَّكَ خَالِدٌ: the nasikh keeps its particle-hood under a jarr clitic, its khabar marfu', w[2] === 'بِأَنَّكَ' && w[3] === 'خَالِدٌ');
+      w = W('وَلِلَّهِ الْعِزَّةُ وَلِرَسُولِهِ'); pin('وَلِلَّهِ: the jalala after وَلِ written whole', w[0] === 'وَلِلَّهِ' && w[1] === 'الْعِزَّةُ');
+      w = W('أَلَمْعُ بَرْقٍ سَرَى أَمْ ضَوْءُ مِصْبَاحٍ'); pin('أَلَمْعُ بَرْقٍ: the istifham hamza on a noun is no article — the noun heads its chain', w[0] === 'أَلَمْعُ' && w[1] === 'بَرْقٍ');
+      w = W('أَقَوْمٌ آلُ حِصْنٍ أَمْ نِسَاءٌ'); pin('أَقَوْمٌ آلُ حِصْنٍ: the asked nakira fronts the khabar, آل is the house', w[0] === 'أَقَوْمٌ' && w[1] === 'آلُ' && w[2] === 'حِصْنٍ');
+      w = W('وَسَمَّاهُ السَّكَّاكِيُّ سَوْقَ الْمَعْلُومِ مَسَاقَ غَيْرِهِ'); pin('سَمَّاهُ السَّكَّاكِيُّ سَوْقَ: after the pronoun object the nisba is the doer, the next noun the second object', w[1] === N('السَّكَّاكِيُّ') && w[2] === 'سَوْقَ');
+      w = W('أَيَا شَجَرَ الْخَابُورِ مَا لَكَ مُورِقًا'); pin('أَيَا شَجَرَ … مَا لَكَ مُورِقًا: the far call, and the hal after the finished question', w[1] === 'شَجَرَ' && w[5] === 'مُورِقًا');
+      w = W('كَأَنَّكَ لَمْ تَجْزَعْ عَلَى ابْنِ طَرِيفٍ'); pin('لَمْ تَجْزَعْ: the bare word after a jazim particle is the verb', w[2] === 'تَجْزَعْ');
+      w = W('فَقُلْ عَدِّ عَنْ ذَا'); pin('فَقُلْ عَدِّ: after «say», the command the paradigm knows', w[1] === N('عَدِّ'));
+      w = W('فِي هَذَا الْبَابِ كَالِاسْتِثْنَاءِ'); pin('فِي هَذَا الْبَابِ: the demonstrative\'s badal after a preposition', w[2] === 'الْبَابِ');
+      w = W('كَلَامٌ سِيقَ لِمَعْنًى مَعْنًى آخَرَ'); pin('لِمَعْنًى مَعْنًى آخَرَ: a word is never annexed to itself', w[2] === 'لِمَعْنًى' && w[4] === 'آخَرَ');
+      w = W('فَقُلْ كَيْفَ أَكْلُكَ لِلضَّبِّ'); pin('كَيْفَ أَكْلُكَ: the interrogative fronts the khabar, the noun after it is the mubtada', w[2] === 'أَكْلُكَ');
+      w = W('وَمَا تَنْقِمُ مِنَّا إِلَّا أَنْ آمَنَّا'); pin('مِنَّا: the preposition with نَا', w[2] === 'مِنَّا');
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' pin(s): ' + r.join(' || ').slice(0, 900));
+  });
+
+  await check('the wave-21 shapes (the cause-arrow, the tafriʿ hinge, the exception hinge, the question mark, the name-chain) in the sheet, and the three new games — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show .badi', { state: 'attached', timeout: 10000 }); };
+      await open(65, 's4'); let r = await page.evaluate(() => ({ cause: document.querySelectorAll('.sheet.show .bd-talil .bd-cause').length, rcpt: document.querySelectorAll('.sheet.show .bd-rcpt').length, agree: (document.querySelector('.sheet.show .ts-agree') || {}).className || '' }));
+      if (!r.cause || !r.rcpt || !/ok/.test(r.agree)) throw new Error('the cause-arrow with its receipt: ' + JSON.stringify(r));
+      await open(65, 's14'); r = await page.evaluate(() => ({ hinge: document.querySelectorAll('.sheet.show .bd-tafri .bd-hinge').length, pred: document.querySelectorAll('.sheet.show .bd-tafri .bd-pred').length }));
+      if (!r.hinge || r.pred < 2) throw new Error('the tafriʿ hinge: ' + JSON.stringify(r));
+      await open(66, 's3'); r = await page.evaluate(() => ({ adat: document.querySelectorAll('.sheet.show .bd-takid .bd-hinge-adat').length, praise: document.querySelectorAll('.sheet.show .bd-praise').length }));
+      if (!r.adat || r.praise < 2) throw new Error('the exception hinge: ' + JSON.stringify(r));
+      await open(67, 's8'); r = await page.evaluate(() => ({ q: document.querySelectorAll('.sheet.show .bd-tajahul .bd-q').length }));
+      if (!r.q) throw new Error('the question mark: ' + JSON.stringify(r));
+      await open(67, 's17'); r = await page.evaluate(() => ({ ibn: document.querySelectorAll('.sheet.show .bd-ittirad .bd-ibn').length }));
+      if (r.ibn !== 2) throw new Error('the name-chain hinged twice on بْنِ: ' + JSON.stringify(r));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => ['gTalil', 'gTakid', 'gTajahul'].map(id => { const c = document.getElementById(id); return c && !c.disabled; }));
+      if (!r7.every(Boolean)) throw new Error('the three games on the hub: ' + JSON.stringify(r7));
+      for (const id of ['gTalil', 'gTakid', 'gTajahul']) {
+        await page.evaluate((id) => { openGames(); document.getElementById(id).click(); }, id); await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
+        const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext') }; });
+        if (r8.n < 2 || !r8.why || !r8.next) throw new Error(id + ': ' + JSON.stringify(r8));
+      }
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
+  // ---------------------------------------------------------------- wave 22: the jinas by its kinds and positions, radd al-ʿajuz ʿala al-ṣadr in prose and verse; the nahw pins
+  const W22_FLOOR = { 68: 97, 69: 98, 70: 93 };   // measured at v176 (endings mode): ch68 98.7 · ch69 99.4 · ch70 95.0 (accepted: عَوَاصِمِ's kasra for the rawi, the ch70 rhyme seats the content marks)
+  await check('Talkhis ch68-70 (jinas tamm mumathil/mustawfa, of composition mutashabih/mafruq, muharraf, naqis by the odd letter\'s seat and mudhayyal; mudari and lahiq by position, qalb kull/bad/mujannah, muzdawij, the two mulhaqs; radd al-ʿajuz in prose by tikrar/jinas/mulhaq and in verse by the five seats): frames read back, kinds present, endings ḍabṭ floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [68, 69, 70]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set(), k2 = new Set(), ats = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); if (h.kind2) k2.add(h.kind2); if (h.at) ats.add(h.at); });
+            const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ': ' + JSON.stringify((ag && ag.per.filter(x => !x.ok).map(x => x.kind + '/' + x.why + (x.got ? ' got ' + JSON.stringify(x.got).slice(0, 120) : ''))) || 'no agree')); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], k2: [...k2], ats: [...ats], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W22_FLOOR);
+    for (const N of [68, 69, 70]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 500));
+      if (o.dabt !== null && o.dabt < W22_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W22_FLOOR[N]);
+    }
+    const has = (arr, want) => want.filter(k => !arr.includes(k));
+    let miss = has(r[68].subs, ['tamm', 'murakkab', 'muharraf', 'naqis']).concat(has(r[68].k2, ['mumathil', 'mustawfa', 'mutashabih', 'mafruq', 'awwal', 'wasat', 'akhir', 'mudhayyal']));
+    if (miss.length) throw new Error('ch68 misses ' + miss.join(','));
+    miss = has(r[69].subs, ['mudari', 'lahiq', 'qalb', 'ishtiqaq']).concat(has(r[69].k2, ['awwal', 'wasat', 'akhir', 'kull', 'bad', 'mujannah', 'muzdawij', 'shibh-ishtiqaq']));
+    if (miss.length) throw new Error('ch69 misses ' + miss.join(','));
+    miss = has(r[70].kinds, ['radd-ajuz', 'jinas']).concat(has(r[70].k2, ['tikrar', 'jinas', 'mulhaq'])).concat(has(r[70].ats, ['sadr-awwal', 'hashw-awwal', 'arud', 'sadr-thani']));
+    if (miss.length) throw new Error('ch70 misses ' + miss.join(','));
+    if (r[68].bd < 11 || r[69].bd < 12 || r[70].bd < 14) throw new Error('frame counts: ' + [68, 69, 70].map(N => r[N].bd).join('/'));
+  });
+
+  await check('the wave-22 engines on free text (no hint): the JinasEngine\'s kinds with their positions (tamm mumathil, lahiq wasat + muharraf, naqis awwal/akhir/mudhayyal, mudari wasat/akhir, lahiq awwal/akhir, qalb kull/bad/mujannah, muzdawij, ishtiqaq), the RaddEngine\'s tikrar/mulhaq with the prose and verse seats — and nothing on plain prose', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const txt = (n, sid) => { const ch = st.chapters.find(c => c.n === n); const sen = ch && ch.sentences.find(s => s.id === sid); return sen ? sen.tokens.map(t => t.s.full).join(' ') : ''; };
+      const jn = (n, sid) => { const t = txt(n, sid); if (!t) return 'no-sentence'; const fr = JinasEngine.readText(t).frames; return fr.length ? fr.map(f => f.sub + '/' + (f.kind2 || '-') + (f.muzdawij ? '+mz' : '') + ':' + f.text(f.pair[0]) + '|' + f.text(f.pair[1])).join(' ; ') : 'none'; };
+      const rd = t => { const rows = SentenceAnalyzer.analyze(t); const fr = RaddEngine.read(rows, {}); return fr.length ? fr.map(f => f.kind2 + ':' + rows[f.pair[0]].w + '|' + rows[f.pair[1]].w + ':' + (f.at || '') + (f.verse ? 'v' : '')).join(' ; ') : 'none'; };
+      return { s4: jn(68, 's4'), s12: jn(68, 's12'), s16: jn(68, 's16'), s18: jn(68, 's18'), s20: jn(68, 's20'), t4: jn(69, 's4'), t5: jn(69, 's5'), t7: jn(69, 's7'), t9: jn(69, 's9'), t11: jn(69, 's11'), t12: jn(69, 's12'), t14: jn(69, 's14'), t16: jn(69, 's16'), t18: jn(69, 's18'),
+               r0: rd(RaddEngine.SEEDS[0]), r1: rd(RaddEngine.SEEDS[1]), r2: rd(RaddEngine.SEEDS[2]), r8: rd(txt(70, 's8')), r9: rd(txt(70, 's9')), r10: rd(txt(70, 's10')), r12: rd(txt(70, 's12')),
+               noRadd: rd('جَاءَ زَيْدٌ وَذَهَبَ عَمْرٌو إِلَى السُّوقِ'), noJinas: JinasEngine.readText('جَاءَ زَيْدٌ وَذَهَبَ عَمْرٌو').frames.length };
+    });
+    const want = { s4: /tamm\/mumathil:السَّاعَةُ\|سَاعَةٍ/, s12: /lahiq\/wasat:جُبَّةُ\|جُنَّةُ.*muharraf\/-:الْبُرْدِ\|الْبَرْدِ/, s16: /naqis\/awwal:[^;]*\|الْمَسَاقُ/, s18: /naqis\/akhir[^:]*:عَوَاصٍ\|عَوَاصِمِ/, s20: /naqis\/mudhayyal:الْجَوَى\|الْجَوَانِحِ/,
+                   t4: /mudari\/wasat:يَنْهَوْنَ\|وَيَنْأَوْنَ/, t5: /mudari\/akhir:الْخَيْلُ\|الْخَيْرُ/, t7: /lahiq\/awwal[^:]*:هُمَزَةٍ\|لُمَزَةٍ/, t9: /lahiq\/akhir:أَمْرٌ\|الْأَمْنِ/, t11: /qalb\/kull:فَتْحٌ\|وَحَتْفٌ/, t12: /qalb\/bad:عَوْرَاتِنَا\|رَوْعَاتِنَا/, t14: /qalb\/mujannah:لَاحَ\|حَالٍ/, t16: /lahiq\/awwal\+mz:سَبَأٍ\|بِنَبَأٍ/, t18: /^ishtiqaq\/-:فَأَقِمْ\|الْقَيِّمِ/,
+                   r0: /^tikrar:وَتَخْشَى\|تَخْشَاهُ:sadr-awwal$/, r1: /^mulhaq:اسْتَغْفِرُوا\|غَفَّارًا:sadr-awwal$/, r2: /^tikrar:سَرِيعٌ\|بِسَرِيعِ:sadr-awwalv$/, r8: /tikrar:عَرَارِ\|عَرَارِ:hashw-awwalv/, r9: /tikrar:مُغْرَمًا\|مُغْرَمَا:arudv/, r10: /tikrar:قَلِيلًا\|قَلِيلُهَا:sadr-thaniv/, r12: /mulhaq:بَوَاتِرَ\|بُتْرُ:sadr-thaniv/,
+                   noRadd: /^none$/, noJinas: /^0$/ };
+    const bad = Object.keys(want).filter(k => !want[k].test(String(r[k])));
+    if (bad.length) throw new Error('seeds: ' + bad.map(k => k + '=' + r[k]).join(' | ').slice(0, 900));
+  });
+
+  await check('wave-22 nahw pins: the genus-la before its jarr-pronoun khabar, «one of» annexed, the mufarragh\'s delayed ism with its time noun, the ال sound plural in raf, the ya of «my» on a doubled stem, the ism maf\'ul\'s deputy, the addressee\'s tāʾ, wāw + hamza as the joiner, the fronted khabar\'s mubtada, the joined noun\'s clause, the verb after مَتَى, the فَعِيل chain head, «the other» joining «one of them», the definition\'s masdar, the فُعَلَة and فَوَاعِل naʿts, no naʿt across a particle, the name before بْنِ', async () => {
+    const r = await page.evaluate(() => {
+      const W = t => DabtEngine.vowel(t, 'endings').words.map(w => (w.out || '').normalize('NFC')); const N = t => t.normalize('NFC');
+      const bad = []; const pin = (name, ok) => { if (!ok) bad.push(name); };
+      let w;
+      w = W('كُلُّكُمْ قَدْ أَخَذَ الْجَامَ وَلَا جَامَ لَنَا'); pin('وَلَا جَامَ لَنَا: the genus-la\'s ism before its jarr-pronoun khabar', w[5] === 'جَامَ');
+      w = W('وَإِنْ كَانَ أَحَدُ اللَّفْظَيْنِ مُرَكَّبًا'); pin('أَحَدُ اللَّفْظَيْنِ: «one of» annexes its definite', w[2] === 'أَحَدُ' && w[3] === 'اللَّفْظَيْنِ');
+      w = W('وَإِنْ لَمْ يَكُنْ إِلَّا مُعَرَّجُ سَاعَةٍ قَلِيلًا'); pin('لَمْ يَكُنْ إِلَّا مُعَرَّجُ سَاعَةٍ قَلِيلًا: the mufarragh\'s delayed ism, the time noun annexed, the khabar after', w[4] === 'مُعَرَّجُ' && w[5] === 'سَاعَةٍ' && w[6] === 'قَلِيلًا');
+      w = W('يُقْسِمُ الْمُجْرِمُونَ مَا لَبِثُوا غَيْرَ سَاعَةٍ'); pin('الْمُجْرِمُونَ: the ال sound plural in raf keeps its nun\'s fatha', w[1] === 'الْمُجْرِمُونَ');
+      w = W('بَيْنِي وَبَيْنَ كِنِّي لَيْلٌ دَامِسٌ وَطَرِيقٌ طَامِسٌ'); pin('كِنِّي لَيْلٌ دَامِسٌ: the ya of «my» on a doubled stem, the delayed mubtada after the zarf phrase', w[2] === 'كِنِّي' && w[3] === 'لَيْلٌ' && w[4] === 'دَامِسٌ' && w[5] === 'وَطَرِيقٌ');
+      w = W('الْخَيْلُ مَعْقُودٌ بِنَوَاصِيهَا الْخَيْرُ'); pin('مَعْقُودٌ بِنَوَاصِيهَا الْخَيْرُ: the ism maf\'ul\'s deputy doer', w[3] === 'الْخَيْرُ');
+      w = W('وَتَخْشَى النَّاسَ وَاللهُ أَحَقُّ أَنْ تَخْشَاهُ'); pin('وَتَخْشَى النَّاسَ: the tāʾ before a masculine human noun is the addressee\'s', w[1] === 'النَّاسَ');
+      w = W('أَنْ يَتَّفِقَا فِي أَنْوَاعِ الْحُرُوفِ وَأَعْدَادِهَا وَهَيْئَاتِهَا'); pin('وَأَعْدَادِهَا: wāw + hamza opens no stem — the joiner', w[5] === 'وَأَعْدَادِهَا');
+      w = W('وَالْتَفَّتِ السَّاقُ بِالسَّاقِ إِلَى رَبِّكَ يَوْمَئِذٍ الْمَسَاقُ'); pin('إِلَى رَبِّكَ يَوْمَئِذٍ الْمَسَاقُ: the fronted khabar\'s mubtada', w[6] === 'الْمَسَاقُ');
+      w = W('سَائِلُ اللَّئِيمِ يَرْجِعُ وَدَمْعُهُ سَائِلٌ'); pin('وَدَمْعُهُ سَائِلٌ: the joined noun opens a nominal clause after the mubtada\'s verb', w[4] === 'سَائِلٌ');
+      w = W('وَمَتَى وَلِيَ أَحَدُ الْمُتَجَانِسَيْنِ الْآخَرَ سُمِّيَ مُزْدَوِجًا'); pin('مَتَى وَلِيَ أَحَدُ الْمُتَجَانِسَيْنِ الْآخَرَ: the verb after the shart adverb, its doer, its object', w[2] === 'أَحَدُ' && w[4] === 'الْآخَرَ');
+      w = W('تَمَتَّعْ مِنْ شَمِيمِ عَرَارِ نَجْدٍ'); pin('شَمِيمِ عَرَارِ نَجْدٍ: the فَعِيل head of a three-link chain', w[2] === 'شَمِيمِ' && w[3] === 'عَرَارِ');
+      w = W('أَنْ يَكُونَ أَحَدُهُمَا فِي آخِرِ الْبَيْتِ وَالْآخَرُ فِي صَدْرِ الْمِصْرَاعِ الْأَوَّلِ أَوْ حَشْوِهِ أَوْ آخِرِهِ'); pin('أَحَدُهُمَا … وَالْآخَرُ … أَوْ حَشْوِهِ: «the other» joins «one of them», the pronoun-bearing item joins its own phrase\'s head', w[6] === 'وَالْآخَرُ' && w[12] === 'حَشْوِهِ' && w[14] === 'آخِرِهِ');
+      w = W('رَدُّ الْعَجُزِ عَلَى الصَّدْرِ هُوَ فِي النَّثْرِ أَنْ يُجْعَلَ أَحَدُ اللَّفْظَيْنِ'); pin('رَدُّ الْعَجُزِ … هُوَ: the definition opens on its masdar', w[0] === 'رَدُّ' && w[1] === 'الْعَجُزِ');
+      w = W('جَدِّي جَهْدِي'); pin('جَدِّي: the ya of «my» on the analyzer\'s «verb»', w[0] === 'جَدِّي');
+      w = W('وَيْلٌ لِكُلِّ هُمَزَةٍ لُمَزَةٍ'); pin('هُمَزَةٍ لُمَزَةٍ: the فُعَلَة intensive is a naʿt, not a head', w[2] === 'هُمَزَةٍ');
+      w = W('يَمُدُّونَ مِنْ أَيْدٍ عَوَاصٍ'); pin('أَيْدٍ عَوَاصٍ: the فَوَاعِل naʿt after a manqus plural', w[2] === 'أَيْدٍ' && w[3] === 'عَوَاصٍ');
+      w = W('فَإِنِّي نَافِعٌ لِي قَلِيلُهَا'); pin('فَإِنِّي نَافِعٌ: inna\'s khabar, no naʿt across the particle', w[1] === 'نَافِعٌ' && w[3] === 'قَلِيلُهَا');
+      w = W('مَا مَاتَ مِنْ كَرَمِ الزَّمَانِ فَإِنَّهُ يَحْيَى لَدَى يَحْيَى بْنِ عَبْدِ اللهِ'); pin('يَحْيَى بْنِ عَبْدِ اللهِ: the name the analyzer took for a verb, before بْنِ', w[9] === 'بْنِ');
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' pin(s): ' + r.join(' || ').slice(0, 900));
+  });
+
+  await check('the wave-22 shapes (the radd card with its return-arc and seat chip, the jinas kind2 / position chip) in the sheet, and gRadd — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show .badi', { state: 'attached', timeout: 10000 }); };
+      await open(70, 's7'); let r = await page.evaluate(() => ({ arc: document.querySelectorAll('.sheet.show .bd-radd .bd-radd-arc').length, poles: document.querySelectorAll('.sheet.show .bd-radd .bd-frame > *').length, txt: (document.querySelector('.sheet.show .bd-radd') || {}).textContent || '' }));
+      if (!r.arc || r.poles < 3 || !/سَرِيعٌ/.test(r.txt) || !/بِسَرِيعِ/.test(r.txt)) throw new Error('the radd card: ' + JSON.stringify(r).slice(0, 300));
+      await open(68, 's4'); r = await page.evaluate(() => ({ chips: document.querySelectorAll('.sheet.show .ts-shape-chip').length, txt: [...document.querySelectorAll('.sheet.show .ts-shape-chip')].map(x => x.textContent).join('|') }));
+      if (!r.chips || !/مُمَاثِلٌ/.test(r.txt)) throw new Error('the kind2 chip: ' + JSON.stringify(r).slice(0, 300));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => { const c = document.getElementById('gRadd'); return c && !c.disabled; });
+      if (!r7) throw new Error('gRadd on the hub');
+      await page.evaluate(() => { openGames(); document.getElementById('gRadd').click(); }); await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
+      const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext') }; });
+      if (r8.n < 2 || !r8.why || !r8.next) throw new Error('gRadd: ' + JSON.stringify(r8));
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
+  // ---------------------------------------------------------------- wave 23: the sajʿ by its finest kinds on the author's pauses, the tashtir, the muwazana, the qalb of the whole, the tashriʿ, luzum ma la yalzam; the nahw pins
+  const W23_FLOOR = { 71: 97, 72: 96 };   // measured at v177 (endings mode): ch71 100 · ch72 100
+  await check('Talkhis ch71-72 (sajʿ mutarraf/mutawazi/murassaʿ with the finest kinds equal/second-longer/third-longer, the tashtir; muwazana with mumathala, qalb of the whole, tashriʿ, luzum ma la yalzam, the closing ʿaks): every authored frame read back, the kinds present, ḍabṭ floors', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = {};
+      for (const N of [71, 72]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set(), k2 = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); if (h.kind2) k2.add(h.kind2); });
+            const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ': ' + JSON.stringify((ag && ag.per.filter(x => !x.ok).map(x => x.kind + '/' + x.why + (x.got ? ':' + JSON.stringify(x.got).slice(0, 80) : ''))) || 'no-agree')); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], k2: [...k2], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W23_FLOOR);
+    for (const N of [71, 72]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 500));
+      if (o.dabt !== null && o.dabt < W23_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W23_FLOOR[N]);
+    }
+    const has = (arr, want) => want.filter(k => !arr.includes(k));
+    let miss = has(r[71].kinds, ['saj', 'tashtir', 'tibaq']).concat(has(r[71].subs, ['mutarraf', 'mutawazi', 'murassa'])).concat(has(r[71].k2, ['equal', 'second-longer', 'third-longer']));
+    if (miss.length) throw new Error('ch71 misses ' + miss.join(','));
+    miss = has(r[72].kinds, ['muwazana', 'qalb-kull', 'tashri', 'luzum', 'aks', 'tibaq']).concat(has(r[72].subs, ['mumathala']));
+    if (miss.length) throw new Error('ch72 misses ' + miss.join(','));
+    if (r[71].bd < 16 || r[72].bd < 13) throw new Error('frame counts: ' + [71, 72].map(N => r[N].bd).join('/'));
+  });
+
+  await check('the wave-23 engines on free text: the sajʿ cut on the author\'s pauses with its finest kinds (equal, second-longer, third-longer, murassaʿ), the tashtir split at the hemistich, the muwazana and its mumathala by wazn count, the qalb of the whole as a palindrome (the first word\'s joiner set aside), luzum ma la yalzam by the kept letter before the rawi — and nothing on plain prose', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah');
+      const txt = (n, sid) => { const ch = st.chapters.find(c => c.n === n); const sen = ch && ch.sentences.find(s => s.id === sid); return sen ? sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' ') : ''; };
+      const sj = t => { const o = SajEngine.readText(t); return o.frames.map(f => f.kind + '/' + f.sub + '/' + (f.kind2 || '-') + ':' + o.rows[f.pair[0]].w + '|' + o.rows[f.pair[1]].w).join(' ; ') || 'none'; };
+      const ts = t => { const o = TashtirEngine.readText(t); return o.frames.map(f => f.kind + ':' + (f.pair ? o.rows[f.pair[0]].w + '|' + o.rows[f.pair[1]].w : f.first.map(i => o.rows[i].w).join('~') + '|' + f.second.map(i => o.rows[i].w).join('~'))).join(' ; ') || 'none'; };
+      const mw = t => { const o = MuwazanaEngine.readText(t); return o.frames.map(f => f.kind + '/' + (f.sub || '-') + ':' + o.rows[f.pair[0]].w + '|' + o.rows[f.pair[1]].w).join(' ; ') || 'none'; };
+      const qb = t => { const o = QalbEngine.readText(t); return o.frames.map(f => f.kind + ':' + o.rows[f.pair[0]].w + '|' + o.rows[f.pair[1]].w + ':' + f.letters).join(' ; ') || 'none'; };
+      const lz = t => { const mk = SajEngine.marksOf(t); const rows = SentenceAnalyzer.analyze(mk.text); const fr = LuzumEngine.read(rows, { cuts: mk.cuts, hemi: mk.hemi, force: true }); return fr.map(f => f.kind + ':' + rows[f.pair[0]].w + '|' + rows[f.pair[1]].w + ':' + f.letter).join(' ; ') || 'none'; };
+      const plain = 'جَاءَ زَيْدٌ وَذَهَبَ عَمْرٌو إِلَى السُّوقِ';
+      return { s8: sj(txt(71, 's8')), s10: sj(txt(71, 's10')), s12: sj(txt(71, 's12')), s14: sj(txt(71, 's14')), s6: sj(txt(71, 's6')), s20: sj(txt(71, 's20')),
+        t22: ts(txt(71, 's22')), m2: mw(txt(72, 's2')), m4: mw(txt(72, 's4')), m5: mw(txt(72, 's5')), q7: qb(txt(72, 's7')), q8: qb(txt(72, 's8')), l12: lz(LuzumEngine.SEEDS[0]),
+        wazn: (() => { const a = SajEngine.wazn('مَرْفُوعَةٌ'), b = SajEngine.wazn('مَوْضُوعَةٌ'), c = SajEngine.wazn('لَفْظِهِ'), d = SajEngine.wazn('وَعْظِهِ'); return (a === b && c === d && a !== c && /^6:/.test(a) && /^4:/.test(c)) ? 'ok' : [a, b, c, d].join(','); })(),
+        pSaj: sj(plain), pTs: ts(plain), pMw: mw(plain), pQb: qb(plain), pLz: lz(plain) };
+    });
+    const want = { s8: /^saj\/mutawazi\/equal:مَرْفُوعَةٌ\|مَوْضُوعَةٌ$/, s10: /^saj\/mutawazi\/equal:مَخْضُودٍ\|مَنْضُودٍ ; saj\/mutawazi\/equal:مَنْضُودٍ\|مَمْدُودٍ$/, s12: /^saj\/mutawazi\/second-longer:هَوَى\|غَوَى$/,
+                   s14: /saj\/mutarraf\/third-longer:فَغُلُّوهُ\|صَلُّوهُ/, s6: /^saj\/murassa\/equal:لَفْظِهِ\|وَعْظِهِ$/, s20: /mutarraf\/equal:رُشْدِي\|يَدِي.*mutawazi\/equal:ثَمْدِي\|زَنْدِي/,
+                   t22: /^tashtir:مُعْتَصِمٍ~مُنْتَقِمٍ\|مُرْتَغِبٍ~مُرْتَقِبِ ; saj:مُعْتَصِمٍ\|مُنْتَقِمٍ ; saj:مُرْتَغِبٍ\|مُرْتَقِبِ$/,
+                   m2: /^muwazana\/-:مَصْفُوفَةٌ\|مَبْثُوثَةٌ$/, m4: /^muwazana\/mumathala:الْمُسْتَبِينَ\|الْمُسْتَقِيمَ$/, m5: /^muwazana\/mumathala:أَوَانِسُ\|ذَوَابِلُ$/,
+                   q7: /^qalb-kull:مَوَدَّتُهُ\|تَدُومُ:مودتهتدوملكلهولوهلكلمودتهتدوم$/, q8: /^qalb-kull:وَرَبَّكَ\|فَكَبِّرْ:ربكفكبر$/, l12: /^luzum:تَقْهَرْ\|تَنْهَرْ:ه$/,
+                   wazn: /^ok$/, pSaj: /^none$/, pTs: /^none$/, pMw: /^none$/, pQb: /^none$/, pLz: /^none$/ };
+    const bad = Object.keys(want).filter(k => !want[k].test(String(r[k])));
+    if (bad.length) throw new Error('seeds: ' + bad.map(k => k + '=' + r[k]).join(' | ').slice(0, 900));
+  });
+
+  await check('wave-23 nahw pins: the oath\'s waw before إِذَا, the plural head keeping its naʿt, the ishtighal after ثُمَّ, the elative at the head, the diptote plural owned whole, the fronted object of the amr and of the prohibition, the sifa-clause verb\'s annexed object, the ta-noun\'s dual, the murassaʿ\'s two clauses, the relative\'s passive with its second object, the naʿt over a jarr clitic, the nakira before غَيْرُ, the kāna-shaped lexicon noun', async () => {
+    const r = await page.evaluate(() => {
+      const W = t => DabtEngine.vowel(t, 'endings').words.map(w => (w.out || '').normalize('NFC')); const N = t => t.normalize('NFC');
+      const bad = []; const pin = (name, ok) => { if (!ok) bad.push(name); };
+      let w;
+      w = W('وَالنَّجْمِ إِذَا هَوَى مَا ضَلَّ صَاحِبُكُمْ وَمَا غَوَى'); pin('وَالنَّجْمِ: the oath\'s waw', w[0] === N('وَالنَّجْمِ'));
+      w = W('فِيهَا سُرُرٌ مَرْفُوعَةٌ وَأَكْوَابٌ مَوْضُوعَةٌ'); pin('سُرُرٌ مَرْفُوعَةٌ: the plural head keeps its naʿt', w[1] === N('سُرُرٌ') && w[2] === N('مَرْفُوعَةٌ') && w[4] === N('مَوْضُوعَةٌ'));
+      w = W('خُذُوهُ فَغُلُّوهُ ثُمَّ الْجَحِيمَ صَلُّوهُ'); pin('ثُمَّ الْجَحِيمَ صَلُّوهُ: the ishtighal after thumma', w[3] === N('الْجَحِيمَ') && w[4] === N('صَلُّوهُ'));
+      w = W('وَأَحْسَنُ السَّجْعِ مَا تَسَاوَتْ قَرَائِنُهُ'); pin('وَأَحْسَنُ السَّجْعِ: the elative at the head', w[0] === N('وَأَحْسَنُ') && w[1] === N('السَّجْعِ'));
+      w = W('لَا يُقَالُ فِي الْقُرْآنِ أَسْجَاعٌ بَلْ فَوَاصِلُ'); pin('بَلْ فَوَاصِلُ: the plural owned whole, a diptote', w[6] === N('فَوَاصِلُ'));
+      w = W('وَرَبَّكَ فَكَبِّرْ'); pin('وَرَبَّكَ فَكَبِّرْ: the fronted object of the amr', w[0] === N('وَرَبَّكَ') && w[1] === N('فَكَبِّرْ'));
+      w = W('فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ'); pin('أَمَّا الْيَتِيمَ فَلَا تَقْهَرْ: the fronted object of the prohibition', w[1] === N('الْيَتِيمَ'));
+      w = W('عَلَى سَجْعٍ يُخَالِفُ سَجْعَ الْآخَرِ'); pin('سَجْعَ الْآخَرِ: the sifa-clause verb\'s object annexed to «the other»', w[1] === N('سَجْعٍ') && w[3] === N('سَجْعَ') && w[4] === N('الْآخَرِ'));
+      w = W('فَإِنِ اخْتَلَفَتِ الْفَاصِلَتَانِ فِي الْوَزْنِ فَمُطَرَّفٌ'); pin('الْفَاصِلَتَانِ: the ta-noun\'s dual', w[2] === N('الْفَاصِلَتَانِ') && w[5] === N('فَمُطَرَّفٌ'));
+      w = W('فَهُوَ يَطْبَعُ الْأَسْجَاعَ بِجَوَاهِرِ لَفْظِهِ وَيَقْرَعُ الْأَسْمَاعَ بِزَوَاجِرِ وَعْظِهِ'); pin('وَيَقْرَعُ الْأَسْمَاعَ: the joined mudari keeps the pronoun doer', w[6] === N('الْأَسْمَاعَ'));
+      w = W('وَمِنْهُ مَا يُسَمَّى التَّشْطِيرَ'); pin('مَا يُسَمَّى التَّشْطِيرَ: the relative\'s passive and its second object', w[3] === N('التَّشْطِيرَ'));
+      w = W('تَدْبِيرُ مُعْتَصِمٍ بِاللهِ مُنْتَقِمٍ لِلهِ مُرْتَغِبٍ'); pin('بِاللهِ مُنْتَقِمٍ: the naʿt over the jarr clitic onto the annexed participle', w[3] === N('مُنْتَقِمٍ') && w[5] === N('مُرْتَغِبٍ'));
+      w = W('فَتًى غَيْرُ مَحْجُوبِ الْغِنَى عَنْ صَدِيقِهِ'); pin('فَتًى غَيْرُ: the nakira keeps its tanwin before غَيْرُ + a definite annex', w[0] === N('فَتًى') && w[1] === N('غَيْرُ'));
+      w = W('وَظِلٍّ مَمْدُودٍ'); pin('وَظِلٍّ: the kāna-shaped lexicon noun', w[0] === N('وَظِلٍّ'));
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' pin(s): ' + r.join(' || ').slice(0, 900));
+  });
+
+  await check('the wave-23 shapes (the qalb mirror, the tashtir halves, the tashriʿ stop, the luzum letter) in the sheet, and gSaj — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show .badi', { state: 'attached', timeout: 10000 }); };
+      await open(72, 's7'); let r = await page.evaluate(() => ({ mirror: document.querySelectorAll('.sheet.show .bd-qalb .bd-qalb-mirror').length, txt: (document.querySelector('.sheet.show .bd-qalb') || {}).textContent || '' }));
+      if (!r.mirror || !/مَوَدَّتُهُ/.test(r.txt)) throw new Error('the qalb card: ' + JSON.stringify(r).slice(0, 300));
+      await open(71, 's22'); r = await page.evaluate(() => ({ halves: document.querySelectorAll('.sheet.show .bd-tashtir .bd-tashtir-half').length, cut: document.querySelectorAll('.sheet.show .bd-tashtir .bd-tashtir-cut').length }));
+      if (r.halves < 2 || !r.cut) throw new Error('the tashtir card: ' + JSON.stringify(r).slice(0, 300));
+      await open(72, 's10'); r = await page.evaluate(() => ({ stop: document.querySelectorAll('.sheet.show .bd-tashri .bd-stop').length, txt: (document.querySelector('.sheet.show .bd-tashri') || {}).textContent || '' }));
+      if (!r.stop || !/الدَّنِيَّةِ/.test(r.txt)) throw new Error('the tashriʿ card: ' + JSON.stringify(r).slice(0, 300));
+      await open(72, 's12'); r = await page.evaluate(() => ({ l: document.querySelectorAll('.sheet.show .bd-luzum .bd-luzum-l').length, txt: (document.querySelector('.sheet.show .bd-luzum') || {}).textContent || '' }));
+      if (!r.l || !/تَقْهَرْ/.test(r.txt)) throw new Error('the luzum card: ' + JSON.stringify(r).slice(0, 300));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => { const c = document.getElementById('gSaj'); return c && !c.disabled; });
+      if (!r7) throw new Error('gSaj on the hub');
+      await page.evaluate(() => { openGames(); document.getElementById('gSaj').click(); }); await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
+      const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext') }; });
+      if (r8.n < 3 || !r8.why || !r8.next) throw new Error('gSaj: ' + JSON.stringify(r8));
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
+  // ---------------------------------------------------------------- wave 24: the ʿarūḍ (the taqṭīʿ and the baḥr) and the qāfiya, graded on known bayts and on the corpus
+  await check('ArudEngine: seventeen bayts of known metre scan to their baḥr (ṭawīl, basīṭ, wāfir, kāmil, khafīf, rajaz, mutadārik) and a shaṭr of prose scans to none', async () => {
+    const r = await page.evaluate(() => {
+      const tests = [
+    ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ* بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ", "tawil"],
+    ["إِذَا أَنْتَ لَمْ تُنْصِفْ أَخَاكَ وَجَدْتَهُ* عَلَى طَرَفِ الْهِجْرَانِ إِنْ كَانَ يَعْقِلُ", "tawil"],
+    ["مَا أَحْسَنَ الدِّينَ وَالدُّنْيَا إِذَا اجْتَمَعَا* وَأَقْبَحَ الْكُفْرَ وَالْإِفْلَاسَ بِالرَّجُلِ", "basit"],
+    ["إِذَا لَمْ تَسْتَطِعْ أَمْرًا فَدَعْهُ* وَجَاوِزْهُ إِلَى مَا تَسْتَطِيعُ", "wafir"],
+    ["إِذَا نَزَلَ السَّمَاءُ بِأَرْضِ قَوْمٍ* رَعَيْنَاهُ وَإِنْ كَانُوا غِضَابَا", "wafir"],
+    ["مَا نَوَالُ الْغَمَامِ وَقْتَ رَبِيعٍ* كَنَوَالِ الْأَمِيرِ يَوْمَ سَخَاءِ", "khafif"],
+    ["فَسَقَى الْغَضَا وَالسَّاكِنِيهِ وَإِنْ هُمُ* شَبُّوهُ بَيْنَ جَوَانِحِي وَضُلُوعِي", "kamil"],
+    ["وَلَا يُقِيمُ عَلَى ضَيْمٍ يُرَادُ بِهِ* إِلَّا الْأَذَلَّانِ عَيْرُ الْحَيِّ وَالْوَتِدُ", "basit"],
+    ["قِفْ بِالدِّيَارِ الَّتِي لَمْ يَعْفُهَا الْقِدَمُ* بَلَى وَغَيَّرَهَا الْأَرْوَاحُ وَالدِّيَمُ", "basit"],
+    ["سَأَشْكُرُ عَمْرًا إِنْ تَرَاخَتْ مَنِيَّتِي* أَيَادِيَ لَمْ تُمْنَنْ وَإِنْ هِيَ جَلَّتِ", "tawil"],
+    ["مَهَا الْوَحْشِ إِلَّا أَنَّ هَاتَا أَوَانِسُ* قَنَا الْخَطِّ إِلَّا أَنَّ تِلْكَ ذَوَابِلُ", "tawil"],
+    ["مَوَدَّتُهُ تَدُومُ لِكُلِّ هَوْلٍ* وَهَلْ كُلٌّ مَوَدَّتُهُ تَدُومُ", "wafir"],
+    ["يَا خَاطِبَ الدُّنْيَا الدَّنِيَّةِ إِنَّهَا* شَرَكُ الرَّدَى وَقَرَارَةُ الْأَكْدَارِ", "kamil"],
+    ["أَلَا لَيْتَ الشَّبَابَ يَعُودُ يَوْمًا* فَأُخْبِرَهُ بِمَا فَعَلَ الْمَشِيبُ", "wafir"],
+    ["دَعِ الْمَكَارِمَ لَا تَرْحَلْ لِبُغْيَتِهَا* وَاقْعُدْ فَإِنَّكَ أَنْتَ الطَّاعِمُ الْكَاسِي", "basit"],
+    ["يَا لَيْلُ الصَّبُّ مَتَى غَدُهُ* أَقِيَامُ السَّاعَةِ مَوْعِدُهُ", "mutadarik"],
+    ["إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ* مَفْسَدَةٌ لِلْمَرْءِ أَيُّ مَفْسَدَةْ", "rajaz"],
+      ];
+      const bad = []; for (const [b, want] of tests) { const r = ArudEngine.scan(b); const got = r.ok ? r.bahr : r.why; if (got !== want) bad.push(want + '→' + got + ' ' + b.slice(0, 30)); }
+      const prose = ArudEngine.scan('ذَهَبَ الرَّجُلُ إِلَى السُّوقِ صَبَاحًا* وَاشْتَرَى مِنْهُ الْخُبْزَ وَالزَّيْتَ وَرَجَعَ');
+      return { bad, prose: prose.ok ? prose.bahr : 'none' };
+    });
+    if (r.bad.length) throw new Error(r.bad.length + ' bayt(s): ' + r.bad.join(' | ').slice(0, 800));
+    if (r.prose !== 'none') throw new Error('prose scanned as ' + r.prose);
+  });
+
+  await check('ArudEngine on the corpus: every bayt marked with a hemistich ✽ is scanned — at least 60 of them to a baḥr — and no hemistich mark stands where the metre does not close the ṣadr (the mudawwar audit)', async () => {
+    const r = await page.evaluate(() => {
+      let n = 0, ok = 0; const none = [], star = [];
+      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => { if (!sen.tokens.some(t => t.punctAfter === '*')) return; n++;
+        const rs = ArudEngine.scanCited(sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' '));
+        if (rs.length && rs.every(x => x.ok)) { ok++; rs.forEach(x => { if (x.mudawwar && x.cutWord !== x.starWord && !x.cutInside) star.push(st.id.slice(0, 6) + ' ' + ch.n + ':' + sen.id + ' ✽@' + x.starWord + ' cut@' + x.cutWord + ' ' + (x.words[x.cutWord] || '')); }); }
+        else none.push(ch.n + ':' + sen.id); })));
+      return { n, ok, none, star };
+    });
+    if (r.n < 60) throw new Error('only ' + r.n + ' bayts carry a hemistich mark');
+    if (r.ok < 60) throw new Error(r.ok + ' of ' + r.n + ' scanned; none: ' + r.none.join(', '));
+    if (r.star.length) throw new Error('hemistich marks the metre refuses: ' + r.star.join(' | '));
+  });
+
+  await check('QafiyaEngine: the rawī, the waṣl and the khurūj, the ridf and the taʾsīs with its dakhīl, and the qāfiya\'s name — ten rhyme words', async () => {
+    const r = await page.evaluate(() => {
+      const tests = [
+    ["بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ", { rawi: "ل", majra: "kasra", wasl: "ي", name: "mutadarik" }],
+    ["عَلَى طَرَفِ الْهِجْرَانِ إِنْ كَانَ يَعْقِلُ", { rawi: "ل", majra: "damma", wasl: "و", name: "mutadarik" }],
+    ["وَجَاوِزْهُ إِلَى مَا تَسْتَطِيعُ", { rawi: "ع", ridf: "ي", hadhw: "kasra", name: "mutawatir" }],
+    ["رَعَيْنَاهُ وَإِنْ كَانُوا غِضَابَا", { rawi: "ب", ridf: "ا", wasl: "ا", name: "mutawatir" }],
+    ["مَفْسَدَةٌ لِلْمَرْءِ أَيُّ مَفْسَدَةْ", { rawi: "د", muqayyad: false, wasl: "هْ", name: "mutadarik" }],
+    ["فَأُخْبِرَهُ بِمَا فَعَلَ الْمَشِيبُ", { rawi: "ب", ridf: "ي", name: "mutawatir" }],
+    ["إِنَّ الزَّمَانَ بِمِثْلِهِ لَبَخِيلُ", { rawi: "ل", ridf: "ي", majra: "damma" }],
+    ["وَلَقَدْ يَكُونُ بِهِ الزَّمَانُ بَخِيلَا", { rawi: "ل", ridf: "ي", wasl: "ا" }],
+    ["مِنَ الْجَيْشِ إِلَّا أَنَّهَا لَمْ تُقَاتِلِ", { rawi: "ل", tasis: "ا", dakhil: "تِ", rass: "fatha", name: "mutadarik" }],
+    ["لَهَا الْمَنَايَا إِلَى أَرْوَاحِنَا سُبُلَا", { rawi: "ل", wasl: "ا", name: "mutarakib" }],
+      ];
+      const bad = []; for (const [t, want] of tests) { const r = QafiyaEngine.read(t); const b = Object.keys(want).filter(k => String(r && r[k]) !== String(want[k])); if (b.length) bad.push(t.slice(-14) + ':' + b.map(k => k + '=' + (r && r[k])).join(',')); }
+      return bad;
+    });
+    if (r.length) throw new Error(r.length + ' rhyme(s): ' + r.join(' | ').slice(0, 800));
+  });
+
+  await check('the bayt card (the tafāʿīl under both hemistichs, the baḥr chip, the rawī boxed) in the sheet, the ʿArūḍ lab with its seeds, and gBahr — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show .bd-arud', { state: 'attached', timeout: 10000 }); };
+      await open(72, 's13'); let r = await page.evaluate(() => ({ feet: document.querySelectorAll('.sheet.show .bd-arud .arud-foot').length, rawi: (document.querySelector('.sheet.show .bd-arud .aq-rawi') || {}).textContent, kind: (document.querySelector('.sheet.show .bd-arud .ts-kinds') || {}).textContent || '' }));
+      if (r.feet < 8 || r.rawi !== 'ت' || !/الطَّوِيل/.test(r.kind)) throw new Error('the bayt card: ' + JSON.stringify(r).slice(0, 300));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => { openConjugator(); conjState.lab = 'arud'; renderLabBody(); }); await page.waitForTimeout(300);
+      r = await page.evaluate(() => { const seeds = document.querySelectorAll('#arudOut [data-seed]').length; conjState.arud = 'إِذَا لَمْ تَسْتَطِعْ أَمْرًا فَدَعْهُ* وَجَاوِزْهُ إِلَى مَا تَسْتَطِيعُ'; renderArudOut(); return { seeds, feet: document.querySelectorAll('#arudOut .arud-foot').length, kind: (document.querySelector('#arudOut .ts-kinds') || {}).textContent || '' }; });
+      if (r.seeds < 4 || r.feet < 6 || !/الْوَافِر/.test(r.kind)) throw new Error('the ʿArūḍ lab: ' + JSON.stringify(r).slice(0, 300));
+      await page.evaluate(() => closeSheet());
+      await page.evaluate(() => openGames()); await page.waitForTimeout(400);
+      const r7 = await page.evaluate(() => { const c = document.getElementById('gBahr'); return c && !c.disabled; });
+      if (!r7) throw new Error('gBahr on the hub');
+      await page.evaluate(() => { openGames(); document.getElementById('gBahr').click(); }); await page.waitForSelector('.opts [data-o]', { timeout: 10000 });
+      const r8 = await page.evaluate(() => { const n = document.querySelectorAll('.opts [data-o]').length; document.querySelector('.opts [data-o]').click(); return { n, why: !!document.querySelector('.game-why'), next: !!document.getElementById('qNext'), feet: document.querySelectorAll('#qWhy .arud-foot').length }; });
+      if (r8.n < 4 || !r8.why || !r8.next || r8.feet < 4) throw new Error('gBahr: ' + JSON.stringify(r8));
+      await page.evaluate(() => { QUIZ_RESUME = null; closeSheet(); });
+    } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
+  });
+
+  // ---------------------------------------------------------------- wave 24: the khātima — the takings, the received text, the three places of care; the Talkhīṣ complete
+  const W24_FLOOR = {"73": 97, "74": 97, "75": 96, "76": 97};   // measured at v178 (endings mode): ch73 98.4 · ch74 99.7 · ch75 98.3 · ch76 99.6 (accepted: نَوَاهِلِ's darura, بِمِلْءِ فِيهَا's five-noun annex, the khabar muqaddam وَجِيفَةٌ آخِرُهُ, يَسِيرٍ after the la-jins noun)
+  await check('Talkhis ch73-76 (the sariqa plain and hidden with the book\'s grades; the iqtibas, tadmin, ʿaqd, ḥall, talmīḥ; the fine opening, the ill omen, the istihlāl, the takhalluṣ, the iqtiḍāb, the fasl al-khitāb, the fine close): every authored frame read back, the kinds present, ḍabṭ floors — the Talkhīṣ COMPLETE at 76 chapters', async () => {
+    const r = await page.evaluate((FL) => {
+      const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); const out = { total: st.chapters.length, last: Math.max(...st.chapters.map(c => c.n)) };
+      for (const N of [73, 74, 75, 76]) {
+        const ch = st.chapters.find(c => c.chapter === N || c.n === N);
+        if (!ch) { out[N] = { none: true }; continue; }
+        let hit = 0, n = 0; const bad = []; let bd = 0; const kinds = new Set(), subs = new Set(), k2 = new Set();
+        for (const sen of ch.sentences) {
+          const rows = SentenceAnalyzer.analyze(sen.tokens.map(t => t.s.full).join(' '));
+          if (sen.badi) { const hs = Array.isArray(sen.badi) ? sen.badi : [sen.badi]; bd += hs.length; hs.forEach(h => { kinds.add(h.kind); if (h.sub) subs.add(h.sub); if (h.kind2) k2.add(h.kind2); });
+            const ag = BadiEngine.agree(sen, BadiEngine.read(rows, { sen })); if (!ag || !ag.ok) bad.push(sen.id + ': ' + JSON.stringify((ag && ag.per.filter(x => !x.ok).map(x => x.kind + '/' + x.why + (x.got ? ':' + JSON.stringify(x.got).slice(0, 80) : ''))) || 'no-agree')); }
+          let g = null; try { g = DabtEngine.grade(sen, 'endings'); } catch (e) {}
+          if (g && g.aligned) { hit += g.hit; n += g.n; }
+        }
+        out[N] = { bad, bd, kinds: [...kinds], subs: [...subs], k2: [...k2], dabt: n ? Math.round(hit / n * 1000) / 10 : null };
+      }
+      return out;
+    }, W24_FLOOR);
+    if (r.total < 76 || r.last !== 76) throw new Error('the Talkhis must be complete at 76 chapters: ' + r.total + ' / last ' + r.last);
+    for (const N of [73, 74, 75, 76]) {
+      const o = r[N]; if (!o || o.none) throw new Error('chapter ' + N + ' is not in the package');
+      if (o.bad.length) throw new Error('ch' + N + ': ' + o.bad.length + ' authored frame(s) the engine does not read: ' + o.bad.join(' | ').slice(0, 500));
+      if (o.dabt !== null && o.dabt < W24_FLOOR[N]) throw new Error('ch' + N + ' endings ' + o.dabt + '% < ' + W24_FLOOR[N]);
+    }
+    const has = (arr, want) => want.filter(k => !arr.includes(k));
+    let miss = has(r[73].kinds, ['sariqa']).concat(has(r[73].subs, ['zahir'])).concat(has(r[74].kinds, ['sariqa'])).concat(has(r[74].subs, ['ghayr-zahir']));
+    if (miss.length) throw new Error('ch73-74 miss ' + miss.join(','));
+    miss = has(r[75].kinds, ['iqtibas', 'tadmin', 'aqd', 'hall', 'talmih']).concat(has(r[75].subs, ['quran', 'hadith', 'istiana', 'idaa']));
+    if (miss.length) throw new Error('ch75 misses ' + miss.join(','));
+    miss = has(r[76].kinds, ['husn-ibtida', 'baraat-istihlal', 'takhallus', 'husn-intiha']).concat(has(r[76].subs, ['husn', 'tatayyur', 'takhallus', 'iqtidab', 'fasl-khitab']));
+    if (miss.length) throw new Error('ch76 misses ' + miss.join(','));
+    if (r[75].bd < 13 || r[76].bd < 13) throw new Error('frame counts: ' + [73, 74, 75, 76].map(N => r[N].bd).join('/'));
+  });
+
+  await check('the IqtibasEngine on free text: the aya found with its source, the taghyīr yasīr flagged, the tadmin\'s length read (a hemistich is īdāʿ, a bayt is istiʿāna), the ch76 openings / transitions / closes found by their received bayts, أَمَّا بَعْدُ as fasl al-khitāb — and nothing found in plain prose', async () => {
+    const r = await page.evaluate(() => {
+      const F = t => { const rows = SentenceAnalyzer.analyze(t); return IqtibasEngine.read(rows, {}).map(f => f.kind + '/' + (f.sub || '-') + ':' + (f.source || '') + (f.changed ? '~' : '')).join(' ; ') || 'none'; };
+      return { a: F('فَلَمْ يَكُنْ إِلَّا كَلَمْحِ الْبَصَرِ أَوْ هُوَ أَقْرَبُ'), b: F('لَقَدْ أَنْزَلْتُ حَاجَاتِي بِوَادٍ غَيْرِ ذِي زَرْعِ'), c: F('إِنَّا إِلَى اللهِ رَاجِعُونَا'),
+               d: F('عَلَى أَنِّي سَأُنْشِدُ عِنْدَ بَيْعِي أَضَاعُونِي وَأَيَّ فَتًى أَضَاعُوا'), e: F('قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ'), f: F('مَوْعِدُ أَحْبَابِكَ بِالْفُرْقَةِ غَدُ'),
+               g: F('فَقُلْتُ كَلَّا وَلَكِنْ مَطْلَعَ الْجُودِ'), h: F('كَقَوْلِكَ بَعْدَ حَمْدِ اللهِ أَمَّا بَعْدُ'), i: F('بَقِيتَ بَقَاءَ الدَّهْرِ يَا كَهْفَ أَهْلِهِ وَهَذَا دُعَاءٌ لِلْبَرِيَّةِ شَامِلُ'),
+               plain: F('ذَهَبَ الرَّجُلُ إِلَى السُّوقِ وَاشْتَرَى الْخُبْزَ') };
+    });
+    const want = { a: /^iqtibas\/quran:النَّحْل ٧٧$/, b: /^iqtibas\/quran:إِبْرَاهِيم ٣٧$/, c: /^iqtibas\/quran:الْبَقَرَة ١٥٦~?$/, d: /tadmin\/idaa:الْعَرْجِيّ/, e: /^husn-ibtida\/husn:امْرُؤُ الْقَيْسِ$/, f: /^husn-ibtida\/tatayyur:ابْنُ مُقَاتِلٍ$/,
+                   g: /^takhallus\/takhallus:أَبُو تَمَّامٍ$/, h: /^takhallus\/fasl-khitab:فَصْلُ الْخِطَابِ$/, i: /^husn-intiha\/-:أَبُو إِسْحَاقَ$/, plain: /^none$/ };
+    const bad = Object.keys(want).filter(k => !want[k].test(String(r[k])));
+    if (bad.length) throw new Error('seeds: ' + bad.map(k => k + '=' + r[k]).join(' | ').slice(0, 900));
+  });
+
+  await check('wave-24 nahw pins: the extra مَا inside the idafa, the frozen verb\'s doer, the question of wonder, the questioned noun and its idafa, the fronted object before «you seek», the ism fiʿl on kasra, أَمَّا بَعْدُ, the zarf كُلَّ يَوْمٍ, the she-verb\'s plural doer, the doer after قَدْ, the ta\'nith alif, ʿAmr\'s waw, the nisba naʿt, the joined elatives, the naming passive\'s second object, the causative\'s second object, the jussive naqis behind its clitic, the joined citation head', async () => {
+    const r = await page.evaluate((PINS) => {
+      const bad = []; for (const [name, text, want] of PINS) { let w; try { w = DabtEngine.vowel(text, 'endings').words.map(x => (x.out || '').normalize('NFC')); } catch (e) { bad.push(name + ' ERR'); continue; }
+        const b = Object.keys(want).filter(i => i === 'has' ? !want.has.every(x => w.includes(x.normalize('NFC'))) : w[+i] !== want[i].normalize('NFC')); if (b.length) bad.push(name + ' — ' + b.map(i => i === 'has' ? w.join(' ') : i + ':' + w[+i]).join(' ')); }
+      return bad;
+    }, [
+  ['أَوْ هُوَ أَقْرَبُ: the pronoun stops the lookback', 'أَوْ هُوَ أَقْرَبُ حَتَّى أَنْشَدَ وَأَغْرَبَ', { 2: 'أَقْرَبُ' }],
+  ['غَيْرِ مَا جُرْمٍ: the extra مَا inside the idafa', 'مِنْ غَيْرِ مَا جُرْمٍ', { 1: 'غَيْرِ', 2: 'مَا', 3: 'جُرْمٍ' }],
+  ['وَنِعْمَ الْوَكِيلُ: the frozen verb and its doer', 'فَحَسْبُنَا اللهُ وَنِعْمَ الْوَكِيلُ', { 2: 'وَنِعْمَ', 3: 'الْوَكِيلُ' }],
+  ['مَا بَالُ: the question of wonder', 'مَا بَالُ مَنْ أَوَّلُهُ نُطْفَةٌ', { 1: 'بَالُ' }],
+  ['أَأَحْلَامُ نَائِمٍ: the questioned noun and its idafa', 'أَأَحْلَامُ نَائِمٍ أَلَمَّتْ بِنَا', { 0: 'أَأَحْلَامُ', 1: 'نَائِمٍ' }],
+  ['أَمَطْلَعَ الشَّمْسِ تَبْغِي: the fronted object before «you seek»', 'أَمَطْلَعَ الشَّمْسِ تَبْغِي أَنْ تَؤُمَّ بِنَا', { 0: 'أَمَطْلَعَ', 1: 'الشَّمْسِ' }],
+  ['حَذَارِ حَذَارِ: the ism fiʿl on kasra', 'هِيَ الدُّنْيَا تَقُولُ بِمِلْءِ فِيهَا حَذَارِ حَذَارِ مِنْ بَطْشِي وَفَتْكِي', { 5: 'حَذَارِ', 6: 'حَذَارِ' }],
+  ['أَمَّا بَعْدُ: the cut-off zarf on its damma', 'كَقَوْلِكَ بَعْدَ حَمْدِ اللهِ أَمَّا بَعْدُ', { 5: 'بَعْدُ' }],
+  ['كُلَّ يَوْمٍ تُبْدِي صُرُوفُ … أَبِي سَعِيدٍ: the zarf, the she-verb\'s doer, the kunya\'s name', 'كُلَّ يَوْمٍ تُبْدِي صُرُوفُ اللَّيَالِي خُلُقًا مِنْ أَبِي سَعِيدٍ غَرِيبَا', { 0: 'كُلَّ', 1: 'يَوْمٍ', 3: 'صُرُوفُ', 8: 'سَعِيدٍ' }],
+  ['بُشْرَى فَقَدْ أَنْجَزَ الْإِقْبَالُ: the ta\'nith alif, the doer after قَدْ', 'بُشْرَى فَقَدْ أَنْجَزَ الْإِقْبَالُ مَا وَعَدَا', { 0: 'بُشْرَى', 3: 'الْإِقْبَالُ' }],
+  ['جَاءَتْ فَوَاتِحُ السُّوَرِ وَخَوَاتِمُهَا: the plural doer and its atf', 'وَقَدْ جَاءَتْ فَوَاتِحُ السُّوَرِ وَخَوَاتِمُهَا عَلَى أَحْسَنِ الْوُجُوهِ', { 2: 'فَوَاتِحُ', 4: 'وَخَوَاتِمُهَا' }],
+  ['أَعْذَبَ لَفْظًا وَأَحْسَنَ سَبْكًا: kana\'s elative khabar and the joined elatives', 'لِيَكُونَ أَعْذَبَ لَفْظًا وَأَحْسَنَ سَبْكًا وَأَصَحَّ مَعْنًى', { 1: 'أَعْذَبَ', 3: 'وَأَحْسَنَ', 5: 'وَأَصَحَّ' }],
+  ['الْعَرَبِ الْجَاهِلِيَّةِ: the nisba naʿt', 'وَهُوَ مَذْهَبُ الْعَرَبِ الْجَاهِلِيَّةِ', { 3: 'الْجَاهِلِيَّةِ' }],
+  ['ذِكْرَى: the ta\'nith alif of the maqsur', 'قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلٍ', { 3: 'ذِكْرَى' }],
+  ['لَعَمْرٌو: the silent waw after the tanwin', 'لَعَمْرٌو مَعَ الرَّمْضَاءِ وَالنَّارُ تَلْتَظِي', { 0: 'لَعَمْرٌو' }],
+  ['وَأَنْتَ بِمَا أَمَّلْتُ مِنْكَ جَدِيرٌ: the sifa after the مَا-clause is the pronoun\'s khabar', 'وَأَنْتَ بِمَا أَمَّلْتُ مِنْكَ جَدِيرٌ', { has: ['جَدِيرٌ'] }],
+  ['وَهَذَا دُعَاءٌ … شَامِلٌ: the joined demonstrative opens its clause', 'يَا كَهْفَ أَهْلِهِ وَهَذَا دُعَاءٌ لِلْبَرِيَّةِ شَامِلٌ', { 4: 'دُعَاءٌ', 6: 'شَامِلٌ' }],
+  ['يُسَمَّى تَضْمِينُ الْبَيْتِ … اسْتِعَانَةً: the naming passive\'s second object', 'وَيُسَمَّى تَضْمِينُ الْبَيْتِ فَمَا زَادَ اسْتِعَانَةً', { 1: 'تَضْمِينُ', 5: 'اسْتِعَانَةً' }],
+  ['سَاءَتْ ظُنُونُهُ: the she-verb\'s doer', 'إِذَا سَاءَ فِعْلُ الْمَرْءِ سَاءَتْ ظُنُونُهُ', { 5: 'ظُنُونُهُ' }],
+  ['فَإِنْ تُولِنِي مِنْكَ الْجَمِيلَ: the jussive naqis behind its clitic', 'فَإِنْ تُولِنِي مِنْكَ الْجَمِيلَ فَأَهْلُهُ', { 1: 'تُولِنِي', 3: 'الْجَمِيلَ' }],
+  ['كَقَوْلِهِ … وَقَوْلِهِ: the joined citation head', 'كَقَوْلِهِ تَعَالَى هَذَا وَقَوْلِهِ هَذَا ذِكْرٌ', { has: ['وَقَوْلِهِ'] }],
+  ['مِنْ قَدِّهَا: no verb after a jarr letter', 'وَيُذْكِرُنِي مِنْ قَدِّهَا وَمَدَامِعِي مَجَرَّ عَوَالِينَا', { 2: 'قَدِّهَا', 4: 'مَجَرَّ', 5: 'عَوَالِينَا' }],
+]);
+    if (r.length) throw new Error(r.length + ' pin(s): ' + r.join(' || ').slice(0, 900));
+  });
+
+  await check('the received-text card (the words lit, the source named, the length chip) and the sariqa card (two lines, the shared words lit, the grade chip) in the sheet — on a phone', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const open = async (n, sid, sel) => { await page.evaluate(([n, sid]) => { const st = STORIES.find(s => s.id === 'talkhis-al-miftah'); if (!CUR || CUR.id !== st.id) openStory(st); const ch = st.chapters.find(c => c.n === n); const sen = ch.sentences.find(s => s.id === sid); openIrabSheet(sen); }, [n, sid]); await page.waitForSelector('.sheet.show ' + sel, { state: 'attached', timeout: 10000 }); };
+      await open(75, 's3', '.bd-iqtibas'); let r = await page.evaluate(() => ({ lit: document.querySelectorAll('.sheet.show .bd-iqtibas .bd-received').length, src: (document.querySelector('.sheet.show .bd-iqtibas .bd-sariqa-from') || {}).textContent || '' }));
+      if (r.lit < 4 || !/النَّحْل/.test(r.src)) throw new Error('the iqtibas card: ' + JSON.stringify(r).slice(0, 300));
+      await open(75, 's15', '.bd-iqtibas'); r = await page.evaluate(() => ({ chips: (document.querySelector('.sheet.show .bd-iqtibas .ts-kinds') || {}).textContent || '' }));
+      if (!/إِيدَاعٌ/.test(r.chips)) throw new Error('the tadmin card: ' + JSON.stringify(r).slice(0, 300));
+      await open(76, 's6', '.bd-iqtibas'); r = await page.evaluate(() => ({ chips: (document.querySelector('.sheet.show .bd-iqtibas .ts-kinds') || {}).textContent || '', lit: document.querySelectorAll('.sheet.show .bd-iqtibas .bd-received').length }));
+      if (!/يُتَطَيَّرُ/.test(r.chips) || r.lit < 3) throw new Error('the ill-omen card: ' + JSON.stringify(r).slice(0, 300));
+      await open(74, 's4', '.bd-sariqa'); r = await page.evaluate(() => ({ lines: document.querySelectorAll('.sheet.show .bd-sariqa .bd-line').length, shared: document.querySelectorAll('.sheet.show .bd-sariqa .bd-shared').length }));
+      if (r.lines < 2 || r.shared < 2) throw new Error('the sariqa card: ' + JSON.stringify(r).slice(0, 300));
+      await page.evaluate(() => closeSheet());
     } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
   });
 
