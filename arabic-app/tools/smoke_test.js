@@ -10809,6 +10809,77 @@ if (!CHROME) {
     }
   });
 
+  // ---------------------------------------------------------------- wave 26: the İzzî engines — the nūn of emphasis, the idghām rulings, the primer's steps
+  await check('wave 26 İzzî engines: the nūn of emphasis attached by class (34 seeds incl. اِذْهَبْنَانِّ، لَا تَخْشَوُنَّ، قِيَنَّ), every heavy-nūn token of the texts read back to its stored cell, the idghām rulings (10 seeds) with zero disagreements over every doubled Form-I cell in the corpus, the primer\'s steps rebuilding every stored passive and imperative of the sound verbs', async () => {
+    const r = await page.evaluate(() => {
+      const tw = TawkidNunEngine.seedCheck(); const twBad = tw.filter(x => !x.ok).map(x => x.base + '/' + x.cls + '/' + x.kind + '→' + x.got);
+      const words = ['لَيُخْرِجَنَّ', 'لَيَقُولُنَّ', 'لَتَسْأَلَنَّ', 'لَأَرْحَلَنَّ', 'تُقِيمَنَّ', 'تُقَصِّرَنَّ', 'تُخْرِجَنَّ', 'تُجِيبَنَّ', 'تَقْبَلَنَّ', 'تَقُولَنَّ', 'تَحْقِرَنَّ', 'تَثِقَنَّ'];
+      const rd = words.map(w => { const x = TawkidNunEngine.read(w); return [w, !!(x && x.ok), x && x.base, x && x.cls]; });
+      const corpusNun = []; STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach(t => { const f = (t.s.full || '').normalize('NFC'); if (/نَّ$/.test(f) && t.pos === 'verb' && !/^(إِنَّ|أَنَّ|كَأَنَّ|لَكِنَّ)$/.test(f)) corpusNun.push(f); }))));
+      const ig = IdghamRuleEngine.seedCheck(); const igBad = ig.filter(x => !x.ok).map(x => x.tense + x.idx + '→' + x.got + '/' + x.gotSurface);
+      const au = IdghamRuleEngine.audit();
+      const iz = IzziSteps.seedCheck(); const izBad = iz.filter(x => !x.ok).map(x => x.fn + ':' + x.inp + '→' + x.got);
+      let n = 0; const bad = []; for (const x of RootFinder.corpusIndex()) { const m = x.m || {}; let cls = null; try { cls = x.root ? nakilClass({ root: x.root }) : null; } catch (e) {} if (!cls || cls.type !== 'sound') continue;
+        if (m.mazi && m.majhulMazi) { n++; const q = IzziSteps.majhulMazi(m.mazi[0]); if (!q || q.out !== m.majhulMazi.normalize('NFC')) bad.push('mm:' + x.lemma + ':' + m.majhulMazi + '≠' + (q && q.out)); }
+        if (m.mudari && m.majhulMudari) { n++; const q = IzziSteps.majhulMudari(m.mudari[0]); if (!q || q.out !== m.majhulMudari.normalize('NFC')) bad.push('mu:' + x.lemma + ':' + m.majhulMudari + '≠' + (q && q.out)); }
+        if (m.mudari && m.amr && m.amr[0]) { n++; const q = IzziSteps.amr(m.mudari[0]); if (!q || q.out !== m.amr[0].normalize('NFC')) bad.push('amr:' + x.lemma + ':' + m.amr[0] + '≠' + (q && q.out)); } }
+      return { tw: tw.length, twBad, rd, corpusNun: corpusNun.length, ig: ig.length, igBad, audit: { checked: au.checked, lemmas: au.lemmas, bad: au.bad.slice(0, 6).map(b => b.lemma + ':' + b.t + b.i + ':' + b.stored), nbad: au.bad.length }, iz: iz.length, izBad, steps: { n, bad: bad.slice(0, 8), nbad: bad.length } };
+    });
+    if (r.tw < 30 || r.twBad.length) throw new Error('tawkid seeds: ' + r.twBad.join(' | '));
+    const rdBad = r.rd.filter(x => !x[1]); if (rdBad.length) throw new Error('heavy-nun tokens not read back: ' + rdBad.map(x => x[0]).join(' '));
+    if (r.corpusNun < 10) throw new Error('the corpus should carry at least ten heavy-nun verbs: ' + r.corpusNun);
+    if (r.ig < 8 || r.igBad.length) throw new Error('idgham seeds: ' + r.igBad.join(' | '));
+    if (r.audit.checked < 1000 || r.audit.lemmas < 30) throw new Error('idgham audit too small: ' + JSON.stringify(r.audit));
+    if (r.audit.nbad) throw new Error('idgham audit disagreements: ' + r.audit.nbad + ' — ' + r.audit.bad.join(' | '));
+    if (r.iz < 18 || r.izBad.length) throw new Error('İzzî step seeds: ' + r.izBad.join(' | '));
+    if (r.steps.n < 500) throw new Error('İzzî steps audited too few cells: ' + r.steps.n);
+    if (r.steps.nbad) throw new Error('İzzî steps disagree with ' + r.steps.nbad + ' stored cells: ' + r.steps.bad.join(' | '));
+  });
+
+  await check('wave 26 Tawkīd lab on a phone (the ʿIzzī table with its five refusals, the seats, the idghām table of a doubled root, the primer\'s steps verified; a written heavy-nūn word read off as a receipt), the two sarf games draw their items, the analyzer carries the receipt', async () => {
+    const was = page.viewportSize();
+    try {
+      await page.setViewportSize({ width: 390, height: 844 });
+      const r = await page.evaluate(async () => {
+        const out = {};
+        openConjugator(); conjState.lab = 'tawkid'; renderLabBody(); conjState.tawkid = 'يَضْرِبُ'; renderTawkidOut(); await new Promise(res => setTimeout(res, 30));
+        out.lab1 = { rows: document.querySelectorAll('.tawkid-table tbody tr').length, refused: document.querySelectorAll('.tw-refused').length, seats: document.querySelectorAll('.tw-seats li').length, verified: document.querySelectorAll('#tawkidOut .sl-verify.ok').length, bad: document.querySelectorAll('#tawkidOut .sl-verify.bad').length, overflow: document.documentElement.scrollWidth > window.innerWidth + 2 };
+        const first = document.querySelector('.tw-out[data-kind="heavy"]'); if (first) first.click(); await new Promise(res => setTimeout(res, 30)); out.lab1.steps = document.querySelectorAll('#tawkidSteps li').length;
+        conjState.tawkid = 'لَيَقُولُنَّ'; renderTawkidOut(); out.lab2 = { receipt: !!document.querySelector('.tw-receipt'), rows: document.querySelectorAll('.tawkid-table tbody tr').length };
+        conjState.tawkid = 'مَدَّ'; renderTawkidOut(); out.lab3 = { idgham: document.querySelectorAll('.idgham-table tbody tr').length, wajib: document.querySelectorAll('.ig-wajib').length, jaiz: document.querySelectorAll('.ig-jaiz').length, mumtani: document.querySelectorAll('.ig-mumtani').length };
+        conjState.tawkid = 'يَخْشَى'; renderTawkidOut(); const t3 = [...document.querySelectorAll('.tawkid-table tbody tr')].map(tr => tr.textContent.replace(/\s+/g, ' ')); out.lab4 = { rows: t3.length, waw: t3.some(x => /تَخْشَوُنَّ|يَخْشَوُنَّ|اِخْشَوُنَّ/.test(x)), ya: t3.some(x => /تَخْشَيِنَّ|اِخْشَيِنَّ/.test(x)) };
+        conjState.tawkid = 'xqz'; renderTawkidOut(); out.lab5 = !!document.querySelector('#tawkidOut .empty');
+        out.games = { tawkid: tawkidItems().length, idgham: idghamItems().length };
+        const rows = SentenceAnalyzer.analyze('وَاللهِ لَيَقُولُنَّ الْحَقَّ'); const row = rows.find(x => /لَيَقُولُنَّ/.test(x.w || '')); out.hook = row && row.__tawkid26 ? { ok: row.__tawkid26.ok, cls: row.__tawkid26.cls, base: row.__tawkid26.base, qasam: row.__tawkid26.qasam } : null;
+        return out;
+      });
+      if (r.lab1.rows !== 11 || r.lab1.refused !== 5 || r.lab1.seats < 6) throw new Error('tawkid table: ' + JSON.stringify(r.lab1));
+      if (r.lab1.verified < 3 || r.lab1.bad) throw new Error('the primer\'s steps on ضرب should verify three cells: ' + JSON.stringify(r.lab1));
+      if (r.lab1.overflow) throw new Error('the tawkid lab overflows a phone');
+      if (r.lab1.steps < 2) throw new Error('tapping a cell should show its steps: ' + r.lab1.steps);
+      if (!r.lab2.receipt || r.lab2.rows !== 11) throw new Error('a written heavy-nun word should show its receipt and the table: ' + JSON.stringify(r.lab2));
+      if (r.lab3.idgham < 30 || !r.lab3.wajib || !r.lab3.jaiz || !r.lab3.mumtani) throw new Error('the idgham table of مَدَّ: ' + JSON.stringify(r.lab3));
+      if (r.lab4.rows !== 11 || !r.lab4.waw || !r.lab4.ya) throw new Error('يَخْشَى should keep its waw/ya with damma/kasra: ' + JSON.stringify(r.lab4));
+      if (!r.lab5) throw new Error('an unknown word should say so');
+      if (r.games.tawkid < 200 || r.games.idgham < 100) throw new Error('game supply: ' + JSON.stringify(r.games));
+      if (!r.hook || !r.hook.ok || r.hook.cls !== 'pl' || !r.hook.qasam) throw new Error('the analyzer should carry the heavy-nun receipt: ' + JSON.stringify(r.hook));
+      await page.evaluate(() => { document.getElementById('scrim').click(); openGames(); });
+      await page.waitForSelector('#gTawkid', { timeout: 10000 });
+      await page.locator('#gTawkid').click();
+      await page.waitForSelector('.game-q .sigha', { timeout: 10000 });
+      if (await page.locator('.opts button').count() !== 4) throw new Error('the tawkid game should offer four forms');
+      await page.locator('.opts button').first().click();
+      await page.waitForSelector('.opts button.right', { timeout: 10000 });
+      await page.locator('#gBack').click();
+      await page.locator('#gIdgham').click();
+      await page.waitForSelector('.game-q .sigha', { timeout: 10000 });
+      if (await page.locator('.opts button').count() !== 3) throw new Error('the idgham game should offer the three rulings');
+      await page.locator('.opts button').first().click();
+      await page.waitForSelector('.opts button.right', { timeout: 10000 });
+      await page.evaluate(() => document.getElementById('scrim').click());
+    } finally { await page.setViewportSize(was); }
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

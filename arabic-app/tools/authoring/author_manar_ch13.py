@@ -319,7 +319,7 @@ def build_morph():
     out["tasawwara"] = s["verbs"]["tasawwara"]
     # رَوَى — NAQIS. The lam is a ya (ر و ي) and the mazi ends in an alif that
     # is that ya in disguise; the ـتُ persons bring it back.
-    out["rawa"] = _sg.naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "رَوَ", "رْو", "i", "اِرْوِ",
+    out["rawa"] = _sg.naqis1("daraba", "نَاقِصٌ يَائِيٌّ", "y", "رَوَ", "رْو", "i", "اِرْو",
                              "رِوَايَة", "رَاوٍ (الرَّاوِي)",
                              maful="مَرْوِيّ", pmz="رُوِيَ", pmd="يُرْوَى",
                              note="نَاقِصٌ يَائِيٌّ: لَمْ يَرْوِ.")

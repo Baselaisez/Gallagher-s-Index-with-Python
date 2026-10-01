@@ -1771,6 +1771,12 @@
   .at-legend .l1 { color: var(--lvl1); } .at-legend .l2 { color: var(--lvl2); } .at-legend .l3 { color: var(--lvl3); } .at-legend .l4 { color: var(--lvl4); }
   .at-intro { margin-top: var(--s2); }
   .sl-verify { font-family: var(--ui-font); font-size: var(--t-sm); margin-top: var(--s3); color: var(--ink-soft); }
+  .tw-out { cursor: pointer; } .tw-no { opacity: .75; } .tw-refused { color: var(--bad, #b3261e); font-size: .8em; font-family: var(--ui-font); }
+  .tw-cls small { font-family: var(--ui-font); color: var(--ink-soft); } .tw-h { font-family: var(--ui-font); margin: var(--s4) 0 var(--s2); }
+  .tw-seats { list-style: none; padding: 0; margin: 0; } .tw-seats li { padding: var(--s2) 0; border-bottom: 1px solid var(--line, #e3e0d8); font-size: var(--t-sm); }
+  .tw-seats small { font-family: var(--ui-font); color: var(--ink-soft); } .tw-rul { font-family: var(--ui-font); font-size: .75em; padding: 1px 7px; border-radius: 9px; background: var(--paper-2, #eee); margin-inline-end: 4px; }
+  .tw-wajib .tw-rul, .ig-wajib .ig-rul { color: #2e7d32; } .tw-mumtani .tw-rul, .ig-mumtani .ig-rul { color: #b3261e; } .ig-jaiz .ig-rul { color: #8a6d00; }
+  .idgham-table small, .tawkid-table small { font-family: var(--ui-font); }
   .sl-verify.ok { color: var(--ok); } .sl-verify.bad { color: var(--danger); }
   .tabs [data-lab="qawaid"]::before  { content: "📜"; }
   .tabs [data-lab="sledger"]::before { content: "📒"; }
@@ -2306,6 +2312,10 @@ const L = {
         tafriqGame:"Which two part ways?", tafriqGameDesc:"A tafriq from the Talkhis: between which two things of one kind is the difference struck?", tafriqAsk:"Between which two is the difference struck?", tafriqWhyNot:"Those two are not the two things of one kind the sentence sets apart.",
         iqSource:"the received text:", sariqaFrom:"taken from the bayt", sariqaRoots:"roots shared",
         badiTashtirNote:"Each hemistich carries its own sajʿ; the two rhyme letters differ — the mark ✽ is where the bayt breaks.", badiMuwazanaNote:"The fasilas share a wazn and not a rhyme letter; the count is how many words of the first clause answer the second in wazn.", badiQalbNote:"The bare letters, read from the end, are the letters read from the start — spelled out on both sides.", badiTashriNote:"Two stops ‖: the sense is whole at either; the engine reads only that the two end on different rhyme letters and that the second closes the bayt.", badiLuzumNote:"The letter before the rhyme letter is the same on both ends, though the sajʿ asked for the rhyme letter alone.", badiLuzumPeers:"— and {n} more bayt(s) of this chapter keep the same letter.", badiRefused:"The engine could not confirm the frame's claim.",
+        tawkidTab:"Tawkīd nūn", tawkidIntro:"Type any verb from the texts — an amr, a muḍāriʿ, or a form already wearing the nūn. The engine attaches the heavy and the light nūn of emphasis to every person by the ʿIzzī's table (the group's wāw falls, the dual keeps its alif and takes a kasra'd nūn, the women's plural gets a parting alif; no light nūn on the dual or on the women), narrates each step, names the verb's binā, and lists where the nūn may stand. A doubled root adds the idghām ruling of every cell; a sound one adds the primer's own steps for the passive and the imperative. Tap a cell for its steps.", tawkidPh:"e.g. يَضْرِبُ or لَيَقُولُنَّ", tawkidNone:"No paradigm in the texts for this word yet.", tawkidBase:"the cell", tawkidHeavy:"heavy nūn", tawkidLight:"light nūn", tawkidRefused:"refused", tawkidSeats:"Where the nūn may stand", tawkidReceipt:"read off the written word", tawkidQasam:"the lām of the oath stands before it", tawkidWajib:"obligatory", tawkidJaiz:"permitted", tawkidMumtani:"impossible",
+        idghamHead:"The idghām rulings of the doubled root", idghamFakk:"the fakk (the asl)", idghamIdgham:"the idghām", idghamAllowed:"allowed", izziHead:"The primer's steps (al-ʿIzzī)", izziMajhulMazi:"the passive past", izziMajhulMudari:"the passive present", izziAmr:"the imperative", izziVerified:"✓ rebuilds the stored cell", izziDiffers:"✗ differs from the stored cell", izziStored:"no stored cell to check against",
+        tawkidGame:"Attach the nūn", tawkidGameDesc:"A cell of a verb from the texts and a person: pick it with the nūn of emphasis. The wrong answers are the mistakes learners make — the kept wāw, the wrong vowel, the light nūn on a dual.", tawkidAsk:"Which form carries the nūn of emphasis correctly?", tawkidWhyNot:"Follow the class rule: the singular takes fatḥa before the nūn; the masculine plural drops its wāw and keeps ḍamma (unless a fatḥa stands before the wāw); the feminine «you» drops its yāʾ and keeps kasra; the dual keeps its alif and takes نِّ; the women's plural adds an alif before نِّ — and the light nūn never joins the dual or the women.",
+        idghamGame:"Idghām: which ruling?", idghamGameDesc:"A cell of a doubled verb from the texts: is its idghām obligatory, permitted or impossible? The reveal shows the asl and the reason.", idghamAsk:"The idghām in this cell is…", idghamWhyNot:"Look at the two twins in the asl: both vowelled → obligatory; the second sākin by a jazm or an amr → permitted (fakk or idghām); the second sākin by a vowelled pronoun or the women's nūn → impossible.",
         arudTab:"ʿArūḍ", arudIntro:"Paste a bayt with ✽ (or *) between its hemistichs. The engine cuts it into moving and still letters by the classical rules and names the baḥr whose tafāʿīl consume both halves with the fewest ziḥāfāt — or says that none does.", arudPh:"… ✽ …", arudSeeds:"bayts to try", arudEmpty:"Type a bayt, or tap one below.", arudNoStar:"Mark the hemistich cut with ✽ or * — the metre is read on the two halves.", tripletTitle:"one noun, three cases — the sign and what carries it", tripletNote:"The Kafiya's test-bench read by the engines: the case from the stored iʿrāb, the sign off the word's own ending, and whether it declines by a vowel or by a letter. A dashed cell declines by a letter.",
         arudNote:"The units are read off the marks: a tanwīn is a nūn, a shadda two letters, the article's alif and its assimilated lām fall mid-line, a madd falls before a waṣl, the pronoun's hāʾ may lengthen, and the close is lengthened or read in pause. The baḥr is the one pattern of tafāʿīl that consumes both hemistichs; each foot names the form it took.", arudNone:"no baḥr the engine knows consumes this line — the units are shown as read", arudMudawwar:"mudawwar — a word straddles the cut; the metre closes the ṣadr at", qafiyaLbl:"the qāfiya:",
         bahrGame:"Which baḥr?", bahrGameDesc:"A bayt from the texts — name its metre; the reveal cuts it into its tafāʿīl.", bahrAsk:"Which baḥr carries this bayt?", bahrWhyNot:"Count the units: the reveal shows the tafāʿīl the line really fills — set their pattern against the baḥr you picked.",
@@ -2631,6 +2641,10 @@ const L = {
         tafriqGame:"Hangi ikisi ayrılır?", tafriqGameDesc:"Telhîs'ten bir tefrîk: aynı cinsten hangi iki şey arasına fark konmuş?", tafriqAsk:"Fark hangi ikisinin arasına konmuştur?", tafriqWhyNot:"O ikisi, cümlenin ayırdığı aynı cinsten iki şey değildir.",
         iqSource:"alınan metin:", sariqaFrom:"şu beyitten alınmış:", sariqaRoots:"kök ortak",
         badiTashtirNote:"Her şatır kendi secisini taşır; iki revî harfi farklıdır — ✽ beytin kırıldığı yerdir.", badiMuwazanaNote:"Fâsılalar bir vezni paylaşır, revîyi değil; sayı, ilk cümlenin kaç kelimesinin ikinciye vezince karşılık verdiğidir.", badiQalbNote:"Çıplak harfler sondan okununca baştan okunan harflerin aynısıdır — iki yanda yazılmıştır.", badiTashriNote:"İki durak ‖: mana her ikisinde de tamdır; motor yalnız ikisinin ayrı revî harfiyle bittiğini ve ikincinin beyti kapadığını okur.", badiLuzumNote:"Revî harfinden önceki harf iki uçta aynıdır; oysa seci yalnız revîyi ister.", badiLuzumPeers:"— ve bu bâbın {n} beyti daha aynı harfi korur.", badiRefused:"Motor çerçevenin iddiasını doğrulayamadı.",
+        tawkidTab:"Te'kid nûnu", tawkidIntro:"Metinlerden herhangi bir fiil yazın — emir, muzâri ya da nûnu zaten taşıyan bir sîga. Motor, İzzî'nin tablosuyla sakîl ve hafîf te'kid nûnunu her şahsa bitiştirir (cemâat vâvı düşer, tesniye elifini korur ve kesreli nûn alır, cemi müennese ayırıcı elif girer; tesniyeye ve nisveye hafîf nûn gelmez), her adımı anlatır, fiilin binâsını adlandırır ve nûnun gelebileceği yerleri sıralar. Muzâaf kökte her hânenin idgam hükmü, sahih kökte ise meçhul ve emrin kitaptaki adımları eklenir. Adımlar için hâneye dokunun.", tawkidPh:"örn. يَضْرِبُ veya لَيَقُولُنَّ", tawkidNone:"Bu kelime için metinlerde henüz çekim yok.", tawkidBase:"hâne", tawkidHeavy:"sakîl nûn", tawkidLight:"hafîf nûn", tawkidRefused:"gelmez", tawkidSeats:"Nûnun gelebileceği yerler", tawkidReceipt:"yazılı kelimeden okundu", tawkidQasam:"önünde kasem lâmı var", tawkidWajib:"vâcib", tawkidJaiz:"câiz", tawkidMumtani:"mümteni'",
+        idghamHead:"Muzâaf kökün idgam hükümleri", idghamFakk:"fekk (asıl)", idghamIdgham:"idgam", idghamAllowed:"câiz olan", izziHead:"Kitabın adımları (İzzî)", izziMajhulMazi:"meçhul mâzî", izziMajhulMudari:"meçhul muzâri", izziAmr:"emir", izziVerified:"✓ kayıtlı hâneyi yeniden kurar", izziDiffers:"✗ kayıtlı hâneden farklı", izziStored:"karşılaştırılacak kayıtlı hâne yok",
+        tawkidGame:"Nûnu bitiştir", tawkidGameDesc:"Metinlerden bir fiilin hânesi ve şahsı: te'kid nûnlu şeklini seç. Yanlış şıklar öğrencinin yaptığı hatalardır — kalan vâv, yanlış hareke, tesniyede hafîf nûn.", tawkidAsk:"Te'kid nûnunu doğru taşıyan şekil hangisi?", tawkidWhyNot:"Sınıf kuralını izle: müfredde nûndan önce fetha; cemi müzekkerde vâv düşer, damme kalır (vâvdan önce fetha varsa vâv kalır); müennes muhâtabada yâ düşer, kesre kalır; tesniye elifini korur ve نِّ alır; cemi müennese نِّ'den önce elif girer — hafîf nûn tesniyeye ve nisveye hiç gelmez.",
+        idghamGame:"İdgam: hangi hüküm?", idghamGameDesc:"Metinlerden muzâaf bir fiilin hânesi: idgamı vâcib mi, câiz mi, mümteni' mi? Cevap aslı ve sebebi gösterir.", idghamAsk:"Bu hânede idgam…", idghamWhyNot:"Asıldaki iki misle bak: ikisi de harekeli → vâcib; ikincisi cezm ya da emirle sâkin → câiz (fekk de idgam da); ikincisi harekeli zamir ya da nisve nûnuyla sâkin → mümteni'.",
         arudTab:"Arûz", arudIntro:"Mısraları arasına ✽ (veya *) koyarak bir beyit yapıştırın. Motor beyti klasik kurallarla harekeli ve sâkin harflere böler, iki mısrayı en az zihâfla dolduran bahri adlandırır — ya da hiçbirinin dolduramadığını söyler.", arudPh:"… ✽ …", arudSeeds:"denenecek beyitler", arudEmpty:"Bir beyit yazın veya aşağıdan birine dokunun.", arudNoStar:"Mısra kesitini ✽ veya * ile işaretleyin — vezin iki yarım üzerinden okunur.", tripletTitle:"bir isim, üç hâl — alâmet ve onu taşıyan", tripletNote:"Kâfiye'nin deney tezgâhı, motorların okuduğu hâliyle: hâl kayıtlı i'râbdan, alâmet kelimenin kendi sonundan, ve hareke ile mi harf ile mi i'râb aldığı. Kesikli hücre harf ile i'râb alır.",
         arudNote:"Birimler harekelerden okunur: tenvin bir nûndur, şedde iki harftir, harf-i tarifin elifi ve idgamlı lâmı mısra içinde düşer, vasıl öncesinde med düşer, zamir hâsı uzayabilir, sonda ya işbâ yapılır ya vakıf okunur. Bahir, iki mısrayı da dolduran tek tef'ile örgüsüdür; her tef'ile aldığı şekli söyler.", arudNone:"motorun bildiği hiçbir bahir bu mısrayı doldurmuyor — birimler okunduğu gibi gösterildi", arudMudawwar:"müdevver — bir kelime kesiti aşıyor; vezin sadrı şurada kapatıyor:", qafiyaLbl:"kafiye:",
         bahrGame:"Hangi bahir?", bahrGameDesc:"Metinlerden bir beyit — veznini adlandır; cevap beyti tef'ilelerine böler.", bahrAsk:"Bu beyit hangi bahirde?", bahrWhyNot:"Birimleri say: cevap, mısranın gerçekten doldurduğu tef'ileleri gösterir — örgüsünü seçtiğin bahirle karşılaştır.",
@@ -11283,6 +11297,18 @@ function renderLabBody(){
     renderQawaidOut();
     return;
   }
+  if (conjState.lab === "tawkid") {
+    body.innerHTML = `<p class="ref-intro">${ui().tawkidIntro}</p>
+      <div class="conj-lab">
+        <input id="tawkidIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false"
+               placeholder="${escapeAttr(ui().tawkidPh)}" value="${escapeAttr(conjState.tawkid || "")}">
+      </div>
+      <div id="tawkidOut"></div>`;
+    const inp = document.getElementById("tawkidIn");
+    inp.addEventListener("input", debounced(() => { conjState.tawkid = inp.value; renderTawkidOut(); }));
+    renderTawkidOut();
+    return;
+  }
   if (conjState.lab === "arud") {
     body.innerHTML = `<p class="ref-intro">${ui().arudIntro}</p>
       <div class="conj-lab">
@@ -11753,6 +11779,46 @@ function renderQawaidOut(){
   }));
 }
 const this_bare = w => stripAr(w || "").replace(/[^ء-ي]/g, "");
+// the Tawkīd lab (wave 26): the ʿIzzī's nūn table on a stored paradigm, the idghām rulings of a doubled root, the primer's steps
+function renderTawkidOut(){
+  const out = document.getElementById("tawkidOut"); if (!out) return;
+  const txt = (conjState.tawkid || "").trim(); const u = ui(); const lang = state.uiLang === "tr" ? "tr" : "en"; const E = escapeAttr;
+  if (!txt) { out.innerHTML = ""; return; }
+  const w = txt.normalize("NFC").replace(/[«»،.:!؟]/g, " ").trim().split(/\s+/).pop();
+  let rd = null; try { rd = TawkidNunEngine.read(w); } catch (e) { rd = null; }
+  let hit = rd && rd.ok ? { lemma: rd.lemma, root: rd.root } : null;
+  if (!hit) { try { const h = RootFinder.fromCorpus(w); if (h && h.lemma) hit = { lemma: h.lemma, root: h.root }; } catch (e) {} }
+  let v = null; try { v = hit ? (RootFinder.corpusIndex().find(x => x.lemma === hit.lemma) || null) : null; } catch (e) { v = null; }
+  if (!v || !v.m) { out.innerHTML = `<p class="empty">${u.tawkidNone}</p>`; return; }
+  const m = v.m; let h = "";
+  const stepsHtml = steps => steps && steps.length ? `<ol class="ilal-steps sl-steps">${steps.map((s0, k) => `<li><div class="is-n">${k + 1}</div><div class="is-body"><div class="is-rule" lang="ar" dir="rtl">${s0.ar}${s0.now ? ` <b>${E(s0.now)}</b>` : ""}</div><div class="is-gloss">${E(s0[lang] || s0.en)}</div></div></li>`).join("")}</ol>` : "";
+  const binaLbl = k => TawkidNunEngine.BINA[k] ? `<span lang="ar" dir="rtl">${TawkidNunEngine.BINA[k].ar}</span> <small>${E(TawkidNunEngine.BINA[k][lang])}</small>` : "";
+  if (rd && rd.ok) h += `<div class="sl-fix tw-receipt"><div class="sf-head"><span class="ar" lang="ar">${E(rd.word)}</span> ${u.tawkidReceipt}</div>
+    <div class="sf-pair"><b lang="ar">${E(rd.base)}</b><span class="arrow">→</span><span lang="ar">${E(rd.core)}</span></div>
+    <div class="sf-why">${E(TawkidNunEngine.CLASS_LBL[rd.cls][lang])} · ${E(TawkidNunEngine.KIND_LBL[rd.kind][lang])}${rd.qasam ? " · " + u.tawkidQasam : ""}</div><div class="sf-why">${binaLbl(rd.bina)}</div>${stepsHtml(rd.steps)}</div>`;
+  const t = TawkidNunEngine.table(m);
+  h += `<div class="ilal-flow"><div class="if-end"><span class="if-lbl">${u.jadhrRoot}</span><b lang="ar">${E(v.root || "")}</b></div><div class="if-arrow">→</div><div class="if-end out"><span class="if-lbl">${E(v.lemma)}${v.gloss ? " · " + E(T(v.gloss)) : ""}</span><b lang="ar">${E((m.mudari || [])[0] || (m.amr || [])[0] || "")}</b></div></div>`;
+  h += `<div class="conj-wrap"><table class="conj tawkid-table"><thead><tr><th>${u.tawkidBase}</th><th></th><th>${u.tawkidHeavy}</th><th>${u.tawkidLight}</th></tr></thead><tbody>` +
+    t.rows.map((r, k) => `<tr><td lang="ar" dir="rtl">${E(r.base)}</td><td class="tw-cls"><span lang="ar" dir="rtl">${TawkidNunEngine.CLASS_LBL[r.cls].ar}</span><br><small>${E(TawkidNunEngine.CLASS_LBL[r.cls][lang])}</small></td>
+      <td lang="ar" dir="rtl" class="tw-out" data-k="${k}" data-kind="heavy">${r.heavy.ok ? `<b>${E(r.heavy.out)}</b>` : "—"}</td>
+      <td lang="ar" dir="rtl" class="tw-out ${r.light.ok ? "" : "tw-no"}" data-k="${k}" data-kind="light">${r.light.ok ? `<b>${E(r.light.out)}</b>` : `<span class="tw-refused">${u.tawkidRefused}</span>`}</td></tr>`).join("") + `</tbody></table></div><div id="tawkidSteps"></div>`;
+  h += `<h4 class="tw-h">${u.tawkidSeats}</h4><ul class="tw-seats">` + TawkidNunEngine.SEATS.map(s0 => `<li class="tw-${s0.ruling}"><span class="tw-rul">${E(u["tawkid" + s0.ruling.charAt(0).toUpperCase() + s0.ruling.slice(1)])}</span> <span lang="ar" dir="rtl">${s0.ar}</span> <small>${E(s0[lang])}</small>${s0.ex ? ` <b lang="ar" dir="rtl">${E(s0.ex)}</b>` : ""}</li>`).join("") + `</ul>`;
+  const rs = (v.root || "").split(/\s+/).filter(Boolean);
+  if (rs.length === 3 && rs[1] === rs[2] && (((m.mazi || [])[0] || "").normalize("NFC").replace(/[^ء-ي]/g, "").length === 2)) {
+    let bab = 1; try { const km = conjKnownMap(); const k = rs.map(x => x === "ى" ? "ي" : x).join(""); const kn = km instanceof Map ? km.get(k) : km[k]; if (kn && kn.bab) bab = kn.bab; } catch (e) {}
+    let tb = []; try { tb = IdghamRuleEngine.table(v.root, bab); } catch (e) { tb = []; }
+    if (tb.length) h += `<h4 class="tw-h">${u.idghamHead}</h4><div class="conj-wrap"><table class="conj idgham-table"><thead><tr><th>${u.idghamFakk}</th><th>${u.idghamIdgham}</th><th></th><th>${u.idghamAllowed}</th></tr></thead><tbody>` +
+      tb.map(r => `<tr class="ig-${r.ruling}"><td lang="ar" dir="rtl">${E(r.fakk)}</td><td lang="ar" dir="rtl">${E(r.idgham)}</td><td class="ig-rul"><span lang="ar" dir="rtl">${r.rulingLbl.ar}</span><br><small>${E(r.rulingLbl[lang])}</small></td><td><b lang="ar" dir="rtl">${r.allowed.map(E).join(" / ")}</b><br><small>${E(r.reasonLbl[lang])}</small></td></tr>`).join("") + `</tbody></table></div>`;
+  }
+  let cls = null; try { cls = v.root ? nakilClass({ root: v.root }) : null; } catch (e) { cls = null; }
+  if (cls && cls.type === "sound" && (m.mazi || [])[0] && (m.mudari || [])[0]) {
+    const parts = [["izziMajhulMazi", IzziSteps.majhulMazi(m.mazi[0]), m.majhulMazi], ["izziMajhulMudari", IzziSteps.majhulMudari(m.mudari[0]), m.majhulMudari], ["izziAmr", IzziSteps.amr(m.mudari[0]), (m.amr || [])[0]]];
+    h += `<h4 class="tw-h">${u.izziHead}</h4>` + parts.map(([k, r, stored]) => r ? `<div class="sl-fix"><div class="sf-head">${u[k]} <b lang="ar" dir="rtl">${E(r.out)}</b></div>${stepsHtml(r.steps)}<p class="sl-verify ${stored ? (r.out === stored.normalize("NFC") ? "ok" : "bad") : ""}">${stored ? (r.out === stored.normalize("NFC") ? u.izziVerified : u.izziDiffers + " · " + E(stored)) : u.izziStored}</p></div>` : "").join("");
+  }
+  out.innerHTML = h;
+  out.querySelectorAll(".tw-out").forEach(td => td.addEventListener("click", () => { const r = t.rows[+td.dataset.k]; const a = r[td.dataset.kind]; const box = document.getElementById("tawkidSteps"); if (!box || !r) return;
+    box.innerHTML = `<div class="sl-fix"><div class="sf-head"><b lang="ar" dir="rtl">${E(a.ok ? a.out : r.base)}</b> ${a.ok ? binaLbl(a.bina) : ""}</div>${stepsHtml(a.steps)}</div>`; }));
+}
 function renderSarfLedgerOut(){
   const out = document.getElementById("sledgerOut");
   if (!out) return;
@@ -11859,6 +11925,7 @@ function openConjugator(){
       <button data-lab="kinaya" class="${conjState.lab === "kinaya" ? "on" : ""}">${arSpan("كِنَايَة")} ${ui().kinayaTab}</button>
       <button data-lab="badi" class="${conjState.lab === "badi" ? "on" : ""}">${arSpan("بَدِيع")} ${ui().badiTab}</button>
       <button data-lab="arud" class="${conjState.lab === "arud" ? "on" : ""}">${arSpan("عَرُوض")} ${ui().arudTab}</button>
+      <button data-lab="tawkid" class="${conjState.lab === "tawkid" ? "on" : ""}">${arSpan("تَوْكِيد")} ${ui().tawkidTab}</button>
       <button data-lab="learn" class="${conjState.lab === "learn" ? "on" : ""}">${arSpan("تَعَلُّم")} ${ui().learnTab}</button>
     </div>
     <div id="labBody"></div>`;
@@ -16116,6 +16183,341 @@ class SarfMusahhih {
     return this.SEEDS.map(s => { const r = this.check(s.ar); return { ...s, got: r && (r.corrected || (r.ok ? r.word : null)), ok: !!(r && r.corrected === s.want) }; });
   }
 }
+
+// ---------- the TAWKID-NUN engine (نُونُ التَّوْكِيدِ): the İzzî's decision table as rules (wave 26) ----------
+// al-ʿIzzī (research/sources/izzi-sarf-grafikleri.txt, pp. 18–20, 40) states the attachment of the heavy and the light
+// nūn as a table by PERSON-CLASS, and Birgivī's Iẓhār (research/sources/izhar-al-asrar-matn-lithograph.txt, p. 159)
+// states its iʿrāb consequence: «وَالْمُضَارِعُ الْمُتَّصِلُ بِهِ نُونُ جَمْعِ الْمُؤَنَّثِ أَوْ نُونُ التَّأْكِيدِ … مَبْنِيٌّ». The engine
+// takes a stored cell (an amr, a muḍāriʿ, a majzūm) and ATTACHES the nūn by the class's rule, narrating each step; the
+// refusals (no light nūn on the dual or on the women's plural) are rulings, not gaps. read() does the reverse on a
+// written word — it strips the nūn, offers the possible bases to the corpus and keeps the one that re-attaches to the
+// word itself; so every heavy-nūn token in the texts (لَيَقُولُنَّ، تُقِيمَنَّ…) is a receipt the gate replays.
+class TawkidNunEngine {
+  static N(s){ return (s || "").normalize("NFC"); }
+  static MUD_CLASS = ["sg", "du", "pl", "sg", "du", "fpl", "sg", "du", "pl", "f2", "du", "fpl", "sg", "sg"];
+  static AMR_CLASS = ["sg", "du", "pl", "f2", "du", "fpl"];
+  static CLASS_LBL = {
+    sg:  { ar: "الْمُفْرَدُ (وَالْمُتَكَلِّمُ)", en: "singular (he, she, you, and «I» / «we»)", tr: "müfred (o, sen, ben, biz)" },
+    du:  { ar: "الْمُثَنَّى", en: "the dual", tr: "tesniye" },
+    pl:  { ar: "جَمْعُ الْمُذَكَّرِ", en: "the masculine plural", tr: "cemi müzekker" },
+    f2:  { ar: "الْمُفْرَدَةُ الْمُخَاطَبَةُ", en: "the feminine singular «you»", tr: "müfred müennes muhâtaba" },
+    fpl: { ar: "جَمْعُ الْمُؤَنَّثِ", en: "the feminine plural", tr: "cemi müennes" },
+  };
+  static KIND_LBL = { heavy: { ar: "النُّونُ الثَّقِيلَةُ", en: "the heavy nūn", tr: "nûn-u sakîle (müşeddede)" }, light: { ar: "النُّونُ الْخَفِيفَةُ", en: "the light nūn", tr: "nûn-u hafîfe" } };
+  static BINA = {
+    fath:  { ar: "مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ مُبَاشَرَةً", en: "built on the fatḥa: the nūn of emphasis touches the verb directly", tr: "te'kid nûnu doğrudan bitiştiği için fetha üzere mebnî" },
+    sukun: { ar: "مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ", en: "built on the sukūn: the women's nūn is attached", tr: "nisve nûnu bitiştiği için sükûn üzere mebnî" },
+    murab: { ar: "مُعْرَبٌ: النُّونُ لَمْ تُبَاشِرْهُ (بَيْنَهُمَا أَلِفٌ أَوْ وَاوٌ أَوْ يَاءٌ مَلْفُوظَةٌ أَوْ مُقَدَّرَةٌ)، وَحُذِفَتْ نُونُ الرَّفْعِ لِتَوَالِي الْأَمْثَالِ", en: "declinable: the nūn does not touch the verb (an alif, a wāw or a yāʾ, spoken or implied, stands between), and the nūn of rafʿ fell to avoid three nūns in a row", tr: "mu'reb: nûn fiile doğrudan bitişmez (arada elif, vâv ya da yâ vardır), ref nûnu tevâlî-i emsâlden düştü" },
+  };
+  // Where the nūn may stand — the classical seats (Ibn Hishām / the Kāfiya tradition the Avâmil lecture teaches)
+  static SEATS = [
+    { ruling: "wajib", ar: "جَوَابُ الْقَسَمِ: مُضَارِعٌ مُثْبَتٌ مُسْتَقْبَلٌ مُتَّصِلٌ بِاللَّامِ", en: "the answer of an oath: an affirmative future muḍāriʿ wearing the lām", tr: "kasem cevabı: lâm'lı, müsbet, istikbâl mânâlı muzâri", ex: "وَاللهِ لَأَفْعَلَنَّ" },
+    { ruling: "jaiz", ar: "بَعْدَ الطَّلَبِ: الْأَمْرُ وَالنَّهْيُ وَالِاسْتِفْهَامُ وَالتَّمَنِّي وَالْعَرْضُ وَالتَّحْضِيضُ", en: "after a request: the command, the prohibition, the question, the wish, the offer, the urging", tr: "talebden sonra: emir, nehiy, istifhâm, temennî, arz, tahdîd", ex: "اِضْرِبَنَّ · لَا تَضْرِبَنَّ · هَلْ تَضْرِبَنَّ" },
+    { ruling: "jaiz", ar: "بَعْدَ «إِمَّا» الشَّرْطِيَّةِ", en: "after the conditional إِمَّا (إِنْ + مَا)", tr: "şart edatı «immâ»dan sonra", ex: "إِمَّا تَرَيِنَّ" },
+    { ruling: "jaiz", ar: "بَعْدَ «لَا» النَّافِيَةِ أَوْ «مَا» الزَّائِدَةِ فِي جَوَابِ الْقَسَمِ (قَلِيلٌ)", en: "after a negative لَا or an added مَا in an oath's answer (rare)", tr: "kasem cevabında nefiy lâ'sı yahut zâid mâ'dan sonra (nâdir)", ex: "" },
+    { ruling: "mumtani", ar: "الْمَاضِي وَالِاسْمُ وَمُضَارِعُ الْخَبَرِ الْمُجَرَّدُ عَنِ الْقَسَمِ وَالطَّلَبِ", en: "the past tense, the noun, and a plain statement muḍāriʿ with no oath and no request", tr: "mâzî, isim ve kasemsiz-talebsiz haber muzârisi", ex: "ضَرَبَ · يَضْرِبُ" },
+    { ruling: "mumtani", ar: "جَوَابُ الْقَسَمِ إِذَا كَانَ مَنْفِيًّا أَوْ حَالًا أَوْ مَفْصُولًا عَنِ اللَّامِ بِالسِّينِ أَوْ سَوْفَ", en: "an oath's answer that is negated, present, or parted from its lām by sa-/sawfa", tr: "menfî, hâl mânâlı yahut lâm'dan sîn/sevfe ile ayrılmış kasem cevabı", ex: "وَاللهِ لَسَوْفَ أَفْعَلُ" },
+  ];
+  static naqisType(m){
+    const he = this.N(((m || {}).mudari || [])[0] || "");
+    if (/ِي$/.test(he)) return "i"; if (/ُو$/.test(he)) return "u"; if (/َى$/.test(he)) return "a"; return null;
+  }
+  // attach the nūn to one stored cell. form: the cell; cls: sg/du/pl/f2/fpl; kind: heavy/light; opts: { naqis: i/u/a/null, tense }
+  static attach(form, cls, kind, opts){
+    opts = opts || {}; const f = this.N(form); const heavy = kind !== "light"; const nun = heavy ? "نَّ" : "نْ";
+    const steps = []; const S = (ar, en, tr) => steps.push({ ar, en, tr });
+    const kindLbl = this.KIND_LBL[heavy ? "heavy" : "light"];
+    if (!heavy && (cls === "du" || cls === "fpl"))
+      return { ok: false, cls, kind: "light", reason: cls, steps: [{ ar: cls === "du" ? "لَا تَلْحَقُ النُّونُ الْخَفِيفَةُ الْمُثَنَّى، لِأَنَّهَا سَاكِنَةٌ بَعْدَ أَلِفٍ سَاكِنَةٍ فَيَلْتَقِي سَاكِنَانِ" : "لَا تَلْحَقُ النُّونُ الْخَفِيفَةُ جَمْعَ الْمُؤَنَّثِ، لِأَنَّ الْأَلِفَ الْفَاصِلَةَ سَاكِنَةٌ وَالنُّونَ الْخَفِيفَةَ سَاكِنَةٌ",
+        en: cls === "du" ? "the light nūn never joins the dual: it is sākin after the dual's sākin alif, two stills would meet" : "the light nūn never joins the women's plural: the parting alif and the light nūn are both sākin",
+        tr: cls === "du" ? "hafîf nûn tesniyeye bitişmez: sâkin eliften sonra sâkin nûn gelir, iki sâkin buluşur" : "hafîf nûn cemi müennese bitişmez: araya giren elif de hafîf nûn da sâkindir" }] };
+    let b = f; const tense = opts.tense || "";
+    const amrLike = tense === "amr" || /^majzum/.test(tense);
+    if (cls === "sg") {
+      const e = b.match(/([َُِْ])(ّ?)$/);
+      if (amrLike && opts.naqis && e && !/[يو]$/.test(b.replace(/[ً-ْ]+$/, ""))) {
+        const back = { i: "يَ", u: "وَ", a: "يَ" }[opts.naqis]; b = b + back;
+        S("رُدَّ لَامُ الْفِعْلِ الْمَحْذُوفُ لِلْجَزْمِ أَوِ الْأَمْرِ، وَفُتِحَ", "the weak lām that the jazm/amr dropped comes back, and takes fatḥa", "cezm/emirle düşen illetli lâm geri gelir ve fethalanır");
+      } else if (/َى$/.test(b)) { b = b.replace(/َى$/, "َيَ"); S("قُلِبَتِ الْأَلِفُ يَاءً مَفْتُوحَةً لِأَنَّ النُّونَ تَقْتَضِي فَتْحَ الْآخِرِ", "the alif becomes a yāʾ with fatḥa: the nūn demands a fatḥa on the last letter", "elif fethalı yâ olur: nûn son harfe fetha ister"); }
+      else if (/[ِي]ي$|ُو$/.test(b)) { b += "َ"; S("فُتِحَ آخِرُهُ", "the last letter takes fatḥa", "son harf fethalanır"); }
+      else if (e && e[1] === "ْ") { b = b.slice(0, -1) + "َ"; S("فُتِحَ آخِرُهُ بَدَلَ السُّكُونِ", "the final sukūn becomes a fatḥa", "sondaki sükûn fethaya döner"); }
+      else if (e && e[1] === "ُ") { b = b.slice(0, b.length - e[0].length) + "َ" + e[2]; S("فُتِحَ آخِرُهُ بَدَلَ الضَّمَّةِ", "the final ḍamma becomes a fatḥa", "sondaki damme fethaya döner"); }
+      else if (e && e[1] === "َ") { S("آخِرُهُ مَفْتُوحٌ أَصْلًا", "the last letter already wears fatḥa", "son harf zaten fethalı"); }
+      else return { ok: false, cls, kind, reason: "shape", steps };
+      b += nun; S(`أُلْحِقَتْ ${kindLbl.ar}`, `${kindLbl.en} is attached`, `${kindLbl.tr} bitişir`);
+      return { ok: true, cls, kind: heavy ? "heavy" : "light", out: this.N(b), steps, bina: "fath" };
+    }
+    if (cls === "pl") {
+      b = b.replace(/ُونَ$/, "ُو").replace(/ُوا$/, "ُو").replace(/َوْنَ$/, "َوْ").replace(/َوْا$/, "َوْ");
+      if (/ُونَ$|ُوا$|َوْنَ$|َوْا$/.test(f)) S(/نَ$/.test(f) ? "حُذِفَتْ نُونُ الرَّفْعِ لِتَوَالِي الْأَمْثَالِ" : "حُذِفَتِ الْأَلِفُ الْفَارِقَةُ", /نَ$/.test(f) ? "the nūn of rafʿ falls, lest three nūns follow" : "the group's silent alif falls", /نَ$/.test(f) ? "ref nûnu tevâlî-i emsâlden düşer" : "fârika elifi düşer");
+      if (/َوْ$/.test(b)) { b = b.replace(/َوْ$/, "َوُ"); S("بَقِيَتِ الْوَاوُ لِأَنَّ مَا قَبْلَهَا مَفْتُوحٌ، وَضُمَّتْ لِالْتِقَاءِ السَّاكِنَيْنِ", "the wāw stays, because the letter before it carries fatḥa; it takes ḍamma where two stills meet", "vâv kalır, çünkü öncesi fethalıdır; iki sâkin buluştuğu için damme alır"); }
+      else if (/ُو$/.test(b)) { b = b.replace(/ُو$/, "ُ"); S("حُذِفَتْ وَاوُ الْجَمَاعَةِ لِالْتِقَاءِ السَّاكِنَيْنِ وَبَقِيَتْ ضَمَّتُهَا دَلِيلًا عَلَيْهَا", "the group's wāw falls (two stills would meet) and its ḍamma stays as its trace", "cemâat vâvı iki sâkin buluştuğu için düşer, dammesi ona delil olarak kalır"); }
+      else return { ok: false, cls, kind, reason: "shape", steps };
+      b += nun; S(`أُلْحِقَتْ ${kindLbl.ar}`, `${kindLbl.en} is attached`, `${kindLbl.tr} bitişir`);
+      return { ok: true, cls, kind: heavy ? "heavy" : "light", out: this.N(b), steps, bina: "murab" };
+    }
+    if (cls === "f2") {
+      b = b.replace(/ِينَ$/, "ِي").replace(/َيْنَ$/, "َيْ");
+      if (/ِينَ$|َيْنَ$/.test(f)) S("حُذِفَتْ نُونُ الرَّفْعِ لِتَوَالِي الْأَمْثَالِ", "the nūn of rafʿ falls, lest three nūns follow", "ref nûnu tevâlî-i emsâlden düşer");
+      if (/َيْ$/.test(b)) { b = b.replace(/َيْ$/, "َيِ"); S("بَقِيَتِ الْيَاءُ لِأَنَّ مَا قَبْلَهَا مَفْتُوحٌ، وَكُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ", "the yāʾ stays, because the letter before it carries fatḥa; it takes kasra where two stills meet", "yâ kalır, çünkü öncesi fethalıdır; iki sâkin buluştuğu için kesre alır"); }
+      else if (/ِي$/.test(b)) { b = b.replace(/ِي$/, "ِ"); S("حُذِفَتْ يَاءُ الْمُخَاطَبَةِ لِالْتِقَاءِ السَّاكِنَيْنِ وَبَقِيَتْ كَسْرَتُهَا دَلِيلًا عَلَيْهَا", "the yāʾ of the addressed woman falls (two stills would meet) and its kasra stays as its trace", "muhâtaba yâsı iki sâkin buluştuğu için düşer, kesresi ona delil olarak kalır"); }
+      else return { ok: false, cls, kind, reason: "shape", steps };
+      b += nun; S(`أُلْحِقَتْ ${kindLbl.ar}`, `${kindLbl.en} is attached`, `${kindLbl.tr} bitişir`);
+      return { ok: true, cls, kind: heavy ? "heavy" : "light", out: this.N(b), steps, bina: "murab" };
+    }
+    if (cls === "du") {
+      if (/َانِ$/.test(b)) { b = b.replace(/َانِ$/, "َا"); S("حُذِفَتْ نُونُ الرَّفْعِ لِتَوَالِي الْأَمْثَالِ", "the nūn of rafʿ falls, lest three nūns follow", "ref nûnu tevâlî-i emsâlden düşer"); }
+      if (!/َا$/.test(b)) return { ok: false, cls, kind, reason: "shape", steps };
+      b += "نِّ"; S("أُلْحِقَتِ النُّونُ الثَّقِيلَةُ مَكْسُورَةً تَشْبِيهًا بِنُونِ الْمُثَنَّى، وَبَقِيَتِ الْأَلِفُ", "the heavy nūn is attached with kasra, on the model of the dual's own nūn; the alif stays", "sakîl nûn tesniye nûnuna benzetilerek kesreli gelir; elif kalır");
+      return { ok: true, cls, kind: "heavy", out: this.N(b), steps, bina: "murab" };
+    }
+    if (cls === "fpl") {
+      if (!/نَ$/.test(b)) return { ok: false, cls, kind, reason: "shape", steps };
+      b += "انِّ"; S("زِيدَتْ أَلِفٌ بَيْنَ نُونِ النِّسْوَةِ وَنُونِ التَّوْكِيدِ كَرَاهَةَ تَوَالِي ثَلَاثِ نُونَاتٍ، وَكُسِرَتِ النُّونُ الثَّقِيلَةُ", "an alif is inserted between the women's nūn and the nūn of emphasis — three nūns in a row are disliked — and the heavy nūn takes kasra", "nisve nûnu ile te'kid nûnu arasına elif girer (üç nûn art arda gelmesin diye), sakîl nûn kesrelenir");
+      return { ok: true, cls, kind: "heavy", out: this.N(b), steps, bina: "sukun" };
+    }
+    return { ok: false, cls, kind, reason: "class", steps };
+  }
+  // the whole table of one stored paradigm (the lemma's `m`): the six amr cells and the five muḍāriʿ classes, heavy and light
+  static table(m, meta){
+    if (!m) return null; const naqis = this.naqisType(m); const rows = [];
+    const push = (tense, i, cls, base) => { if (!base) return; rows.push({ tense, i, cls, base: this.N(base), heavy: this.attach(base, cls, "heavy", { naqis, tense }), light: this.attach(base, cls, "light", { naqis, tense }) }); };
+    (m.amr || []).forEach((c, i) => push("amr", i, this.AMR_CLASS[i], c));
+    [0, 1, 2, 9, 5].forEach(i => push("mudari", i, this.MUD_CLASS[i], (m.mudari || [])[i]));
+    return Object.assign({ naqis, rows }, meta || {});
+  }
+  // the reverse: a written word with the nūn → its base cell in the corpus (the receipt the gate replays)
+  static read(word){
+    const w0 = this.N(word).replace(/[«»،.:!؟\s]/g, ""); if (!w0) return null;
+    const m = w0.match(/^((?:وَ|فَ)?)(لَ)?(.+)$/); if (!m) return null;
+    const core = m[3]; let cls = null, kind = "heavy", bases = [];
+    if (/نَانِّ$/.test(core)) { cls = "fpl"; bases = [core.replace(/انِّ$/, "")]; }
+    else if (/َانِّ$/.test(core)) { cls = "du"; bases = [core.replace(/انِّ$/, "انِ"), core.replace(/انِّ$/, "ا")]; }
+    else if (/(نَّ|نْ)$/.test(core)) {
+      kind = /نَّ$/.test(core) ? "heavy" : "light"; const st = core.replace(/(نَّ|نْ)$/, "");
+      if (/وُ$/.test(st)) { cls = "pl"; bases = [st.replace(/وُ$/, "وْنَ"), st.replace(/وُ$/, "وْا")]; }
+      else if (/ُ$/.test(st)) { cls = "pl"; bases = [st + "ونَ", st + "وا"]; }
+      else if (/يِ$/.test(st)) { cls = "f2"; bases = [st.replace(/يِ$/, "يْنَ"), st.replace(/يِ$/, "يْ")]; }
+      else if (/ِ$/.test(st)) { cls = "f2"; bases = [st + "ينَ", st + "ي"]; }
+      else if (/َّ?$/.test(st)) { cls = "sg"; const sh = /ّ$/.test(st) ? "ّ" : ""; const s0 = st.replace(/َّ?$/, ""); bases = [s0 + "ُ" + sh, s0 + "ْ", s0.replace(/ي$/, "ى"), s0.replace(/[يو]$/, "ِ"), s0.replace(/و$/, "ُ"), s0.replace(/ي$/, "َ"), s0 + "َ" + sh, s0]; }
+    }
+    if (!cls) return null;
+    const seen = new Set(); let found = null;
+    for (const b0 of bases) { const b = this.N(b0); if (!b || seen.has(b)) continue; seen.add(b);
+      let hit = null; try { hit = RootFinder.fromCorpus(b); } catch (e) { hit = null; }
+      if (!hit || !hit.cell || !hit.cell.form) continue;
+      let v = null; try { v = RootFinder.corpusIndex().find(x => x.lemma === hit.lemma) || null; } catch (e) { v = null; }
+      const naqis = this.naqisType(v && v.m); const tense = hit.cell.tense || "";
+      const a = this.attach(hit.cell.form, cls, kind, { naqis, tense });
+      if (a.ok && a.out === this.N(core)) { found = { ok: true, word: w0, core, base: this.N(hit.cell.form), cell: hit.cell, lemma: hit.lemma, root: hit.root, gloss: hit.gloss, cls, kind, qasam: !!m[2], clitic: m[1] || "", bina: a.bina, steps: a.steps }; break; }
+    }
+    return found || { ok: false, word: w0, core, cls, kind, qasam: !!m[2] };
+  }
+  // wrong answers a learner actually writes — for the game and the drills; never equal to the right form
+  static distractors(right, cls, kind, base){
+    const out = new Set(); const r = this.N(right); const add = x => { x = this.N(x); if (x && x !== r) out.add(x); };
+    if (cls === "sg") { add(r.replace(/َنَّ$/, "ُنَّ")); add(r.replace(/َنَّ$/, "ْنَّ")); add(r.replace(/َنَّ$/, "ِنَّ")); add(r.replace(/َنَّ$/, "َانِّ")); }
+    if (cls === "pl") { add(this.N(base).replace(/نَ$/, "") + "نَّ"); add(r.replace(/ُنَّ$/, "َنَّ")); add(r.replace(/ُنَّ$/, "ُونَّ")); add(r.replace(/وُنَّ$/, "وْنَّ")); }
+    if (cls === "f2") { add(this.N(base).replace(/نَ$/, "") + "نَّ"); add(r.replace(/ِنَّ$/, "َنَّ")); add(r.replace(/ِنَّ$/, "ِينَّ")); add(r.replace(/يِنَّ$/, "يْنَّ")); }
+    if (cls === "du") { add(r.replace(/انِّ$/, "انْ")); add(r.replace(/انِّ$/, "انَّ")); add(r.replace(/انِّ$/, "َنَّ")); add(r.replace(/انِّ$/, "انِنَّ")); }
+    if (cls === "fpl") { add(r.replace(/نَانِّ$/, "نَّ")); add(r.replace(/نَانِّ$/, "نَانَّ")); add(r.replace(/نَانِّ$/, "نَانْ")); add(r.replace(/نَانِّ$/, "نَنَّ")); }
+    if (out.size < 3) { add(/نَّ$/.test(r) ? r.replace(/نَّ$/, "نْ") : r.replace(/نْ$/, "نَّ")); add(this.N(base) + (/نَّ$/.test(r) ? "نَّ" : "نْ")); add(r.replace(/ن([ً-ْ]+)$/, "نَّ$1").replace(/ّّ/, "ّ")); }
+    return [...out].slice(0, 3);
+  }
+  static SEEDS = [
+    // ضرب — the sound verb, every class (İzzî p. 19–20: اِذْهَبْنَانِّ)
+    { base: "يَضْرِبُ", cls: "sg", kind: "heavy", want: "يَضْرِبَنَّ" }, { base: "يَضْرِبُ", cls: "sg", kind: "light", want: "يَضْرِبَنْ" },
+    { base: "اِضْرِبْ", cls: "sg", kind: "heavy", want: "اِضْرِبَنَّ", tense: "amr" }, { base: "يَضْرِبُونَ", cls: "pl", kind: "heavy", want: "يَضْرِبُنَّ" },
+    { base: "اِضْرِبُوا", cls: "pl", kind: "light", want: "اِضْرِبُنْ", tense: "amr" }, { base: "تَضْرِبِينَ", cls: "f2", kind: "heavy", want: "تَضْرِبِنَّ" },
+    { base: "اِضْرِبِي", cls: "f2", kind: "heavy", want: "اِضْرِبِنَّ", tense: "amr" }, { base: "يَضْرِبَانِ", cls: "du", kind: "heavy", want: "يَضْرِبَانِّ" },
+    { base: "يَضْرِبَانِ", cls: "du", kind: "light", want: null }, { base: "يَضْرِبْنَ", cls: "fpl", kind: "heavy", want: "يَضْرِبْنَانِّ" },
+    { base: "اِذْهَبْنَ", cls: "fpl", kind: "heavy", want: "اِذْهَبْنَانِّ", tense: "amr" }, { base: "اِذْهَبْنَ", cls: "fpl", kind: "light", want: null, tense: "amr" },
+    // the weak lām (İzzî p. 19: لَا تَخْشَوُنَّ، لَا تَخْشَيِنَّ، لَتُبْلَوُنَّ، تَرَيِنَّ)
+    { base: "تَخْشَوْنَ", cls: "pl", kind: "heavy", want: "تَخْشَوُنَّ" }, { base: "تَخْشَيْنَ", cls: "f2", kind: "heavy", want: "تَخْشَيِنَّ" },
+    { base: "تُبْلَوْنَ", cls: "pl", kind: "heavy", want: "تُبْلَوُنَّ" }, { base: "تَرَيْنَ", cls: "f2", kind: "heavy", want: "تَرَيِنَّ" },
+    { base: "يَخْشَى", cls: "sg", kind: "heavy", want: "يَخْشَيَنَّ" }, { base: "اِخْشَ", cls: "sg", kind: "heavy", want: "اِخْشَيَنَّ", tense: "amr", naqis: "a" },
+    { base: "يَرْمِي", cls: "sg", kind: "heavy", want: "يَرْمِيَنَّ" }, { base: "اِرْمِ", cls: "sg", kind: "heavy", want: "اِرْمِيَنَّ", tense: "amr", naqis: "i" },
+    { base: "يَرْمُونَ", cls: "pl", kind: "heavy", want: "يَرْمُنَّ" }, { base: "يَدْعُو", cls: "sg", kind: "heavy", want: "يَدْعُوَنَّ" },
+    { base: "اُدْعُ", cls: "sg", kind: "heavy", want: "اُدْعُوَنَّ", tense: "amr", naqis: "u" }, { base: "تَدْعِينَ", cls: "f2", kind: "heavy", want: "تَدْعِنَّ" },
+    // the lafīf mafrūq وَقَى (İzzî p. 40: قِيَنَّ قِيَانِّ قُنَّ قِنَّ قِيَانِّ قِينَانِّ · قِيَنْ قُنْ قِنْ)
+    { base: "قِ", cls: "sg", kind: "heavy", want: "قِيَنَّ", tense: "amr", naqis: "i" }, { base: "قِيَا", cls: "du", kind: "heavy", want: "قِيَانِّ", tense: "amr" },
+    { base: "قُوا", cls: "pl", kind: "heavy", want: "قُنَّ", tense: "amr" }, { base: "قِي", cls: "f2", kind: "heavy", want: "قِنَّ", tense: "amr" },
+    { base: "قِينَ", cls: "fpl", kind: "heavy", want: "قِينَانِّ", tense: "amr" }, { base: "قِ", cls: "sg", kind: "light", want: "قِيَنْ", tense: "amr", naqis: "i" },
+    { base: "قُوا", cls: "pl", kind: "light", want: "قُنْ", tense: "amr" }, { base: "قِي", cls: "f2", kind: "light", want: "قِنْ", tense: "amr" },
+    // the doubled
+    { base: "مُدَّ", cls: "sg", kind: "heavy", want: "مُدَّنَّ", tense: "amr" }, { base: "يَمُدُّ", cls: "sg", kind: "heavy", want: "يَمُدَّنَّ" },
+  ];
+  static seedCheck(){
+    return this.SEEDS.map(s => { const a = this.attach(s.base, s.cls, s.kind, { naqis: s.naqis || null, tense: s.tense || "mudari" }); const got = a.ok ? a.out : null; return { ...s, got, ok: got === (s.want === null ? null : this.N(s.want)) }; });
+  }
+}
+
+// ---------- the IDGHAM-RULING engine (أَحْكَامُ الْإِدْغَامِ فِي الْمُضَاعَفِ): İzzî p. 25 ----------
+// Two twin letters meet; whether they contract is settled by their vowels in the ASL (the fakk, the root stood back
+// into the scale with no idghām run) and by the SOURCE of the second twin's sukūn: both vowelled → wājib (مَدَدَ → مَدَّ);
+// first sākin, second vowelled → wājib (مَدْعُوو → مَدْعُوّ); first vowelled, second sākin by a jazm or an amr (a sukūn
+// that ARRIVED) → jāʾiz (لَمْ يَمْدُدْ ~ لَمْ يَمُدَّ); first vowelled, second sākin by a vowelled rafʿ-pronoun or the women's
+// nūn (a sukūn that is ORIGINAL) → mumtaniʿ (مَدَدْتُ، مَدَدْنَ). The engine builds the fakk from the template the way the
+// sarf corrector does, reads the ruling, and audits every stored geminate cell in the corpus against it.
+class IdghamRuleEngine {
+  static N(s){ return (s || "").normalize("NFC"); }
+  static RULING = { wajib: { ar: "وَاجِبٌ", en: "obligatory", tr: "vâcib" }, jaiz: { ar: "جَائِزٌ", en: "permitted (either way)", tr: "câiz" }, mumtani: { ar: "مُمْتَنِعٌ", en: "impossible", tr: "mümteni'" } };
+  static REASON = {
+    both:  { ar: "الْمِثْلَانِ مُتَحَرِّكَانِ", en: "both twins are vowelled", tr: "iki misl de harekeli" },
+    first: { ar: "الْأَوَّلُ سَاكِنٌ وَالثَّانِي مُتَحَرِّكٌ", en: "the first twin is sākin and the second vowelled", tr: "birincisi sâkin, ikincisi harekeli" },
+    arid:  { ar: "الْأَوَّلُ مُتَحَرِّكٌ وَالثَّانِي سَاكِنٌ سُكُونًا عَارِضًا لِلْجَزْمِ أَوِ الْأَمْرِ، فَيَجُوزُ الْفَكُّ وَالْإِدْغَامُ", en: "the first is vowelled and the second's sukūn ARRIVED with the jazm or the amr — so the fakk and the idghām are both allowed", tr: "birincisi harekeli, ikincisinin sükûnu cezm yahut emirle ÂRIZ — fekk de idgam da câiz" },
+    asli:  { ar: "الْأَوَّلُ مُتَحَرِّكٌ وَالثَّانِي سَاكِنٌ سُكُونًا أَصْلِيًّا لِاتِّصَالِ ضَمِيرِ رَفْعٍ مُتَحَرِّكٍ أَوْ نُونِ النِّسْوَةِ، فَيَمْتَنِعُ الْإِدْغَامُ", en: "the first is vowelled and the second's sukūn is ORIGINAL (a vowelled rafʿ-pronoun or the women's nūn follows) — so the idghām is impossible", tr: "birincisi harekeli, ikincisinin sükûnu ASLÎ (harekeli ref zamiri yahut nisve nûnu bitişir) — idgam mümteni'" },
+  };
+  static letters(w){ const out = []; for (const c of this.N(w)) { if (/[ء-يٱ]/.test(c)) out.push({ l: c, m: "" }); else if (/[ً-ْٰ]/.test(c) && out.length) out[out.length - 1].m += c; } return out; }
+  // the first pair of adjacent twin letters in a fakk string: their vowel states
+  static pair(fakk){
+    const L = this.letters(fakk);
+    for (let i = 0; i + 1 < L.length; i++) if (L[i].l === L[i + 1].l && L[i].l !== "ا") {
+      const st = x => /[َُِ]/.test(x.m) ? "v" : "s";
+      return { i, l: L[i].l, v1: st(L[i]), v2: st(L[i + 1]), m1: L[i].m, m2: L[i + 1].m };
+    }
+    return null;
+  }
+  // the ʿayn-lām pair contracted: the surface is one letter shorter than the fakk and its letter at the pair's seat wears the shadda —
+  // a shadda elsewhere (ظَنَنَّ: the lām run into the women's nūn, a sākin first twin that always contracts) is not this pair's idghām
+  static twinContracted(surface, p, fakk){
+    const Sf = this.letters(surface), F = this.letters(fakk); if (!p) return false;
+    // the hamzat al-waṣl of the amr falls when the first radical takes a vowel (اُمْدُدْ → مُدَّ), so the seat is found by LETTER, not by index
+    let j = Sf.findIndex((x, k) => x.l === p.l && k >= Math.max(0, p.i - (F.length - Sf.length)));
+    if (j < 0) return false;
+    return Sf.length < F.length && /ّ/.test(Sf[j].m) && !(Sf[j + 1] && Sf[j + 1].l === p.l);
+  }
+  static sub(t, rs){ return t.replace(/[فعل]/g, ch => ({ "ف": rs[0], "ع": rs[1], "ل": rs[2] })[ch]); }
+  // the ruling for ONE cell of a geminate Form-I paradigm
+  static ruleFor(root, bab, tense, idx, form){
+    const rs = (root || "").split(/\s+/).filter(Boolean); if (rs.length !== 3 || rs[1] !== rs[2]) return null;
+    const cls = nakilClass({ root }); if (!cls || cls.type !== "gem") return null;
+    let der = null, tm = null; try { der = sarfDerive(cls, form || "I", bab); tm = sarfDerive(nakilClass({ root: "ف ع ل" }), form || "I", bab); } catch (e) { return null; }
+    if (!der || !der.ok || !tm || !tm.ok) return null;
+    const cell = (o, t, i) => { const x = o[t]; return Array.isArray(x) ? x[i] : (typeof x === "string" && i === 0 ? x : null); };
+    const surface = cell(der, tense, idx), tmpl = cell(tm, tense, idx); if (!surface || !tmpl) return null;
+    const fakk0 = this.N(this.sub(this.N(tmpl), rs)); const p = this.pair(fakk0); if (!p) return null;
+    const fakk = this.N(sjIdgham(fakk0));   // a sākin first twin at a SEAM (the nūn-lām before the women's nūn: ظَنَنْنَ → ظَنَنَّ) contracts as the tables do
+    let ruling, reason;
+    if (p.v1 === "v" && p.v2 === "v") { ruling = "wajib"; reason = "both"; }
+    else if (p.v1 === "s" && p.v2 === "v") { ruling = "wajib"; reason = "first"; }
+    else if (p.v1 === "v" && p.v2 === "s") { const arid = /^majzum/.test(tense) || (tense === "amr" && idx === 0); ruling = arid ? "jaiz" : "mumtani"; reason = arid ? "arid" : "asli"; }
+    else { ruling = "mumtani"; reason = "asli"; }
+    const idgham = this.N(surface); const contracted = this.twinContracted(idgham, p, fakk0);
+    const allowed = ruling === "wajib" ? [idgham] : ruling === "jaiz" ? [idgham, fakk] : [fakk];
+    return { root, bab, tense, idx, fakk, fakk0, pair: p, idgham, contracted, ruling, reason, allowed, rulingLbl: this.RULING[ruling], reasonLbl: this.REASON[reason] };
+  }
+  // the whole paradigm of a geminate root: every stored tense/cell with its ruling
+  static table(root, bab){
+    const out = []; const tenses = [["mazi", 14], ["mudari", 14], ["amr", 6], ["mansub", 1], ["majzum", 1], ["majzum2", 1]];
+    for (const [t, n] of tenses) for (let i = 0; i < n; i++) { const r = this.ruleFor(root, bab, t, i); if (r) out.push(r); }
+    return out;
+  }
+  // a typed word: the corpus names its cell; the ruling follows
+  static classify(word){
+    const w = (this.N(word).replace(/[«»،.:!؟]/g, " ").trim().split(/\s+/).pop() || ""); if (!w) return null;
+    let hit = null; try { hit = RootFinder.fromCorpus(w); } catch (e) { hit = null; }
+    if (!hit || !hit.root || !hit.cell) return { ok: null, word: w, reason: "no-cell" };
+    const rs = hit.root.split(/\s+/).filter(Boolean); if (rs.length !== 3 || rs[1] !== rs[2]) return { ok: null, word: w, root: hit.root, reason: "not-gem" };
+    let bab = null; try { const km = conjKnownMap(); const k = rs.map(x => x === "ى" ? "ي" : x).join(""); const kn = km instanceof Map ? km.get(k) : km[k]; bab = kn && kn.bab || null; } catch (e) {}
+    const r = this.ruleFor(hit.root, bab || 1, hit.cell.tense, hit.cell.i || 0, hit.form);
+    if (!r) return { ok: null, word: w, root: hit.root, reason: "no-rule" };
+    return Object.assign({ ok: true, word: w, lemma: hit.lemma, cell: hit.cell, storedOk: r.allowed.includes(w) }, r);
+  }
+  // every stored geminate cell in the corpus, audited against the ruling: wājib → must be contracted; mumtaniʿ → must be fakk
+  static audit(){
+    const out = { checked: 0, lemmas: 0, bad: [] }; let idx = []; try { idx = RootFinder.corpusIndex(); } catch (e) { idx = []; }
+    let km = null; try { km = conjKnownMap(); } catch (e) {}
+    for (const v of idx) {
+      const root = v.root; if (!root) continue; const rs = root.split(/\s+/).filter(Boolean); if (rs.length !== 3 || rs[1] !== rs[2]) continue;
+      if ((((v.m || {}).mazi || [])[0] || "").normalize("NFC").replace(/[^ء-ي]/g, "").length !== 2) continue;   // Form I only: the stored he-form is the two letters مَدَّ
+      const k = rs.map(x => x === "ى" ? "ي" : x).join(""); const kn = km ? (km instanceof Map ? km.get(k) : km[k]) : null; const bab = (kn && kn.bab) || v.bab || 1;
+      const m = v.m || {}; let any = false;
+      for (const [t, n] of [["mazi", 14], ["mudari", 14], ["amr", 6], ["mansub", 1], ["majzum", 1], ["majzum2", 1]]) for (let i = 0; i < n; i++) {
+        const stored = Array.isArray(m[t]) ? m[t][i] : (i === 0 ? m[t] : null); if (!stored) continue;
+        const r = this.ruleFor(root, typeof bab === "number" ? bab : 1, t, i); if (!r) continue; any = true; out.checked++;
+        const s = this.N(stored); const con = this.twinContracted(s, r.pair, r.fakk0);
+        if (r.ruling === "wajib" && !con) out.bad.push({ lemma: v.lemma, t, i, stored: s, want: r.idgham, ruling: r.ruling });
+        if (r.ruling === "mumtani" && con) out.bad.push({ lemma: v.lemma, t, i, stored: s, want: r.fakk, ruling: r.ruling });
+      }
+      if (any) out.lemmas++;
+    }
+    return out;
+  }
+  static SEEDS = [
+    { root: "م د د", bab: 1, tense: "mazi", idx: 0, ruling: "wajib", surface: "مَدَّ" }, { root: "م د د", bab: 1, tense: "mudari", idx: 0, ruling: "wajib", surface: "يَمُدُّ" },
+    { root: "م د د", bab: 1, tense: "mazi", idx: 12, ruling: "mumtani", surface: "مَدَدْتُ" }, { root: "م د د", bab: 1, tense: "mazi", idx: 5, ruling: "mumtani", surface: "مَدَدْنَ" },
+    { root: "م د د", bab: 1, tense: "mudari", idx: 5, ruling: "mumtani", surface: "يَمْدُدْنَ" }, { root: "م د د", bab: 1, tense: "majzum", idx: 0, ruling: "jaiz", surface: "يَمُدَّ", alt: "يَمْدُدْ" },
+    { root: "م د د", bab: 1, tense: "amr", idx: 0, ruling: "jaiz", surface: "مُدَّ", alt: "اُمْدُدْ" }, { root: "م د د", bab: 1, tense: "amr", idx: 5, ruling: "mumtani", surface: "اُمْدُدْنَ" },
+    { root: "ظ ن ن", bab: 1, tense: "mazi", idx: 13, ruling: "mumtani", surface: "ظَنَنَّا" }, { root: "ش ب ب", bab: 2, tense: "majzum", idx: 0, ruling: "jaiz", surface: "يَشِبَّ", alt: "يَشْبِبْ" },
+  ];
+  static seedCheck(){
+    return this.SEEDS.map(s => { const r = this.ruleFor(s.root, s.bab, s.tense, s.idx); const got = r ? r.ruling : null;
+      const surf = r ? (r.ruling === "mumtani" ? r.fakk : r.idgham) : null; const alt = r && r.ruling === "jaiz" ? r.fakk : null;
+      return { ...s, got, gotSurface: surf, gotAlt: alt, ok: got === s.ruling && surf === this.N(s.surface) && (!s.alt || alt === this.N(s.alt)) }; });
+  }
+}
+
+// ---------- the İzzî's STEP narrations (خُطُوَاتُ الْبِنَاءِ): majhūl and amr built by the primer's own steps ----------
+// İzzî pp. 9–12 give the majhūl and the amr as numbered operations on the letters; the engine performs them on a
+// stored he-form and narrates each, then the caller checks the result against the stored or derived cell (the ledger's
+// pattern: the narration must REBUILD what the table holds, or it is wrong).
+class IzziSteps {
+  static N(s){ return (s || "").normalize("NFC"); }
+  static L(w){ return IdghamRuleEngine.letters(w); }
+  static J(L){ return L.map(x => x.l + x.m).join("").normalize("NFC"); }
+  static setV(x, v){ x.m = x.m.replace(/[َُِْ]/g, "") + v; x.m = this.N(x.m).replace(/(ّ)([َُِ])/, "$1$2"); }
+  static majhulMazi(mazi){
+    const L = this.L(mazi); if (L.length < 3) return null; const steps = []; const S = (ar, en, tr, now) => steps.push({ ar, en, tr, now });
+    const last = L.length - 1, pen = L.length - 2;
+    for (let i = 0; i < pen; i++) if (/[َِ]/.test(L[i].m) || (i === 0 && /^[اٱ]$/.test(L[i].l))) this.setV(L[i], "ُ");
+    S("ضُمَّ كُلُّ مُتَحَرِّكٍ قَبْلَ مَا قَبْلَ الْآخِرِ (وَهَمْزَةُ الْوَصْلِ مَعَهَا)", "every vowelled letter before the penultimate takes ḍamma (the joining hamza with them)", "sondan bir öncekinin öncesindeki her harekeli harf (vasl hemzesi dahil) damme alır", this.J(L));
+    if (/[َُ]/.test(L[pen].m) || !L[pen].m) this.setV(L[pen], "ِ");
+    S("كُسِرَ مَا قَبْلَ الْآخِرِ", "the penultimate letter takes kasra", "sondan bir önceki harf kesre alır", this.J(L));
+    for (let i = 1; i < pen; i++) if (L[i].l === "ا" && !L[i].m && /ُ/.test(L[i - 1].m)) { L[i].l = "و"; S("قُلِبَتِ الْأَلِفُ وَاوًا لِانْضِمَامِ مَا قَبْلَهَا", "the alif becomes a wāw, the letter before it now carrying ḍamma", "öncesi dammeli olduğu için elif vâva döner", this.J(L)); }
+    return { out: this.J(L), steps, last: L[last].l };
+  }
+  static majhulMudari(mud){
+    const L = this.L(mud); if (L.length < 3) return null; const steps = []; const S = (ar, en, tr, now) => steps.push({ ar, en, tr, now });
+    const pen = L.length - 2;
+    this.setV(L[0], "ُ"); S("ضُمَّ حَرْفُ الْمُضَارَعَةِ", "the muḍāraʿa letter takes ḍamma", "muzâraat harfi damme alır", this.J(L));
+    if (L[pen].l === "ا" && !L[pen].m) { S("مَا قَبْلَ الْآخِرِ أَلِفٌ أَصْلًا، فَيَبْقَى", "the penultimate is already an alif; it stays", "sondan bir önceki zaten elif; kalır", this.J(L)); }
+    else { this.setV(L[pen], "َ"); S("فُتِحَ مَا قَبْلَ الْآخِرِ", "the penultimate letter takes fatḥa", "sondan bir önceki harf fetha alır", this.J(L)); }
+    return { out: this.J(L), steps };
+  }
+  static amr(mud, form){
+    const L = this.L(mud); if (L.length < 3) return null; const steps = []; const S = (ar, en, tr, now) => steps.push({ ar, en, tr, now });
+    if (!form && /ُ/.test(L[0].m) && L.length === 4 && !/[َُِّ]/.test(L[1].m)) form = "IV";   // يُفْعِلُ: the ḍamma prefix over a sākin fāʾ is the if'āl's mark
+    L.shift(); S("حُذِفَ حَرْفُ الْمُضَارَعَةِ", "the muḍāraʿa letter is dropped", "muzâraat harfi atılır", this.J(L));
+    if (!/[َُِ]/.test(L[0].m) || /ّ/.test(L[0].m)) {   // a shadda on the first letter is a sākin twin (يَتَّبِعُ → تَّبِعْ needs its waṣl hamza: اِتَّبِعْ)
+      if (form === "IV") { L.unshift({ l: "أ", m: "َ" }); S("جِيءَ بِهَمْزَةِ الْقَطْعِ مَفْتُوحَةً — بَابُ الْإِفْعَالِ", "a cutting hamza with fatḥa is brought — the Form IV rule", "if'âl bâbı: fethalı kat' hemzesi getirilir", this.J(L)); }
+      else { const pen = L[L.length - 2]; const v = /ُ/.test(pen.m) ? "ُ" : "ِ"; L.unshift({ l: "ا", m: v });
+        S(v === "ُ" ? "اجْتُلِبَتْ هَمْزَةُ الْوَصْلِ مَضْمُومَةً لِأَنَّ عَيْنَ الْمُضَارِعِ مَضْمُومَةٌ" : "اجْتُلِبَتْ هَمْزَةُ الْوَصْلِ مَكْسُورَةً لِأَنَّ عَيْنَ الْمُضَارِعِ غَيْرُ مَضْمُومَةٍ", v === "ُ" ? "a joining hamza is brought with ḍamma: the muḍāriʿ's ʿayn carries ḍamma" : "a joining hamza is brought with kasra: the muḍāriʿ's ʿayn does not carry ḍamma", v === "ُ" ? "vasl hemzesi dammeli gelir: muzârinin aynı dammeli" : "vasl hemzesi kesreli gelir: muzârinin aynı dammeli değil", this.J(L)); }
+    } else S("أَوَّلُهُ مُتَحَرِّكٌ فَلَا حَاجَةَ إِلَى هَمْزَةٍ", "the first letter is vowelled, so no hamza is needed", "ilk harf harekeli, hemzeye gerek yok", this.J(L));
+    const last = L[L.length - 1];
+    if (/ُ$/.test(last.m)) { this.setV(last, "ْ"); S("جُزِمَ آخِرُهُ: السُّكُونُ بَدَلَ الضَّمَّةِ", "the last letter is jazm'd: sukūn for ḍamma", "sonu cezmedilir: damme yerine sükûn", this.J(L)); }
+    else if (/^[يو]$/.test(last.l) && !/[َُِْ]/.test(last.m)) { L.pop(); S("حُذِفَ حَرْفُ الْعِلَّةِ جَزْمًا", "the weak letter falls as the jazm", "cezm için illetli harf düşer", this.J(L)); }
+    else if (last.l === "ى") { L.pop(); S("حُذِفَتِ الْأَلِفُ جَزْمًا", "the alif falls as the jazm", "cezm için elif düşer", this.J(L)); }
+    return { out: this.J(L), steps };
+  }
+  static SEEDS = [
+    { fn: "majhulMazi", inp: "ضَرَبَ", want: "ضُرِبَ" }, { fn: "majhulMazi", inp: "أَكْرَمَ", want: "أُكْرِمَ" }, { fn: "majhulMazi", inp: "اِسْتَغْفَرَ", want: "اُسْتُغْفِرَ" },
+    { fn: "majhulMazi", inp: "تَعَلَّمَ", want: "تُعُلِّمَ" }, { fn: "majhulMazi", inp: "قَاتَلَ", want: "قُوتِلَ" }, { fn: "majhulMazi", inp: "اِنْكَسَرَ", want: "اُنْكُسِرَ" },
+    { fn: "majhulMudari", inp: "يَضْرِبُ", want: "يُضْرَبُ" }, { fn: "majhulMudari", inp: "يُكْرِمُ", want: "يُكْرَمُ" }, { fn: "majhulMudari", inp: "يَسْتَغْفِرُ", want: "يُسْتَغْفَرُ" },
+    { fn: "majhulMudari", inp: "يُقَاتِلُ", want: "يُقَاتَلُ" }, { fn: "majhulMudari", inp: "يَتَعَلَّمُ", want: "يُتَعَلَّمُ" },
+    { fn: "amr", inp: "يَضْرِبُ", want: "اِضْرِبْ" }, { fn: "amr", inp: "يَنْصُرُ", want: "اُنْصُرْ" }, { fn: "amr", inp: "يُكْرِمُ", form: "IV", want: "أَكْرِمْ" },
+    { fn: "amr", inp: "يَتَعَلَّمُ", want: "تَعَلَّمْ" }, { fn: "amr", inp: "يَسْتَغْفِرُ", want: "اِسْتَغْفِرْ" }, { fn: "amr", inp: "يُقَاتِلُ", want: "قَاتِلْ" },
+    { fn: "amr", inp: "يَرْمِي", want: "اِرْمِ" }, { fn: "amr", inp: "يَدْعُو", want: "اُدْعُ" }, { fn: "amr", inp: "يَخْشَى", want: "اِخْشَ" },
+  ];
+  static seedCheck(){ return this.SEEDS.map(s => { const r = this[s.fn](s.inp, s.form); const got = r ? r.out : null; return { ...s, got, ok: got === this.N(s.want) }; }); }
+}
+
+// (wave 26) every verb row whose word ends in the heavy or the light nūn carries the ʿIzzī receipt: the base cell, the person-class, the binā
+SentenceAnalyzer.analyze = (orig => function(text){
+  const rows = orig.call(this, text);
+  try { for (const r of rows || []) { const w = (r.w || "").normalize("NFC"); if ((r.kind || "").startsWith("verb") && /ن[ً-ٰ]*ّ?[ً-ْ]*$/.test(w) && /(نَّ|نْ|نِّ)$/.test(w) && stripAr(w).replace(/[^ء-ي]/g, "").length >= 4) { const x = TawkidNunEngine.read(w); if (x && x.ok) r.__tawkid26 = x; } } } catch (e) {}
+  return rows;
+})(SentenceAnalyzer.analyze);
 
 // ---------- the TASHBIH engine (أَرْكَانُ التَّشْبِيهِ): the bayan door ----------
 // Fann 2 of the Talkhis opens on tashbih — «the indication that one thing
@@ -24292,6 +24694,62 @@ function startBahr(){
     extras: [{ label: () => `📖 ${ui().wajhNote}`, run: () => openRef("ilm-al-arud"), show: () => !!GRAMMAR["ilm-al-arud"] }, { label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`, run: it => openIrabSheet(it.sen), show: it => !!it.sen }]
   });
 }
+// gTawkid — ATTACH the nūn (wave 26): a stored cell and its person-class; the learner picks the form that wears the nūn of emphasis
+// by the ʿIzzī's rule. Every distractor is a mistake a learner writes (the kept wāw, the wrong vowel, the light nūn on a dual).
+let __tawkidItemsCache = null;
+function tawkidItems(){
+  let idx = []; try { idx = RootFinder.corpusIndex(); } catch (e) { idx = []; }
+  if (__tawkidItemsCache && __tawkidItemsCache.n === idx.length) return __tawkidItemsCache.items;
+  const out = [];
+  for (const v of idx) { const m = v.m || {}; if (!Array.isArray(m.amr) || !Array.isArray(m.mudari)) continue;
+    let t = null; try { t = TawkidNunEngine.table(m); } catch (e) { t = null; } if (!t) continue;
+    for (const r of t.rows) for (const kind of ["heavy", "light"]) { const a = r[kind]; if (!a.ok) continue;
+      const ds = TawkidNunEngine.distractors(a.out, r.cls, kind, r.base); if (ds.length < 3) continue;
+      out.push({ lemma: v.lemma, gloss: v.gloss, base: r.base, cls: r.cls, kind, right: a.out, ds, steps: a.steps, bina: a.bina, tense: r.tense, i: r.i }); } }
+  __tawkidItemsCache = { n: idx.length, items: out }; return out;
+}
+function startTawkid(){
+  const items = shuffle(tawkidItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const lg = state.uiLang === "tr" ? "tr" : "en"; const E = escapeAttr;
+  runQuiz({
+    title: ui().tawkidGame, ask: ui().tawkidAsk, items, restart: startTawkid,
+    area: "sarf", lvl: () => 5, itemKey: it => "tawkid:" + it.lemma + ":" + it.tense + ":" + it.i + ":" + it.kind,
+    question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${E(it.base)}</span>
+      <div class="sigha">${E(TawkidNunEngine.CLASS_LBL[it.cls][lg])} · ${E(TawkidNunEngine.KIND_LBL[it.kind][lg])}${it.gloss ? " · " + E(T(it.gloss)) : ""}</div></div>`,
+    options: it => shuffle([{ html: it.right, ok: true, ar: true }].concat(it.ds.map(d => ({ html: d, ok: false, ar: true })))),
+    whyNot: () => ui().tawkidWhyNot,
+    why: it => `<div class="frame-reveal"><span class="fr-name" lang="ar">${E(it.right)}</span></div><ol class="ilal-steps sl-steps">${it.steps.map((s0, k) => `<li><div class="is-n">${k + 1}</div><div class="is-body"><div class="is-rule" lang="ar" dir="rtl">${s0.ar}</div><div class="is-gloss">${E(s0[lg] || s0.en)}</div></div></li>`).join("")}</ol><p class="ref-intro"><span lang="ar" dir="rtl">${TawkidNunEngine.BINA[it.bina].ar}</span></p>`,
+  });
+}
+// gIdgham — WHICH ruling? a cell of a doubled Form-I verb from the texts; the learner names the idghām's ruling (wave 26)
+let __idghamItemsCache = null;
+function idghamItems(){
+  let idx = []; try { idx = RootFinder.corpusIndex(); } catch (e) { idx = []; }
+  if (__idghamItemsCache && __idghamItemsCache.n === idx.length) return __idghamItemsCache.items;
+  let km = null; try { km = conjKnownMap(); } catch (e) {}
+  const out = [];
+  for (const v of idx) { const rs = (v.root || "").split(/\s+/).filter(Boolean); if (rs.length !== 3 || rs[1] !== rs[2]) continue; const m = v.m || {};
+    if ((((m.mazi || [])[0] || "").normalize("NFC").replace(/[^ء-ي]/g, "")).length !== 2) continue;   // Form I only: the stored he-form is the two letters مَدَّ
+    const k = rs.map(x => x === "ى" ? "ي" : x).join(""); const kn = km ? (km instanceof Map ? km.get(k) : km[k]) : null; const bab = (kn && kn.bab) || 1;
+    let tb = []; try { tb = IdghamRuleEngine.table(v.root, bab); } catch (e) { tb = []; }
+    for (const r of tb) out.push({ lemma: v.lemma, gloss: v.gloss, r }); }
+  __idghamItemsCache = { n: idx.length, items: out }; return out;
+}
+function startIdgham(){
+  const items = shuffle(idghamItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const lg = state.uiLang === "tr" ? "tr" : "en"; const E = escapeAttr; const RUL = ["wajib", "jaiz", "mumtani"];
+  const lbl = k => `<span lang="ar">${IdghamRuleEngine.RULING[k].ar}</span> <span class="fr-doc">${E(IdghamRuleEngine.RULING[k][lg])}</span>`;
+  runQuiz({
+    title: ui().idghamGame, ask: ui().idghamAsk, items, restart: startIdgham,
+    area: "sarf", lvl: () => 5, itemKey: it => "idgham:" + it.lemma + ":" + it.r.tense + ":" + it.r.idx,
+    question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${E(it.r.allowed[0])}</span><div class="sigha">${E(it.lemma)}${it.gloss ? " · " + E(T(it.gloss)) : ""}</div></div>`,
+    options: it => shuffle(RUL.map(k => ({ html: lbl(k), ok: k === it.r.ruling, ar: true }))),
+    whyNot: () => ui().idghamWhyNot,
+    why: it => `<div class="frame-reveal"><span class="fr-name">${lbl(it.r.ruling)}</span></div><p class="game-q"><span lang="ar" dir="rtl">${E(it.r.fakk)}</span> → <span lang="ar" dir="rtl">${E(it.r.allowed.join(" / "))}</span></p><p lang="ar" dir="rtl">${it.r.reasonLbl.ar}</p><p class="ref-intro">${E(it.r.reasonLbl[lg])}</p>`,
+  });
+}
 // gSaj — WHICH sajʿ? The two fasilas of an authored sajʿ are marked; the learner names the kind by the wazn (mutarraf: the fasilas differ in wazn;
 // mutawazi: they share it and the rest does not; murassaʿ: most words of both clauses answer in wazn and rhyme). Fed by the authored `saj` frames
 // that carry a `sub`; the reveal shows the engine's own wazn strings, so the answer is the letters' and never a paraphrase. (wave 23)
@@ -24473,6 +24931,8 @@ class GameFactory {
     { id: "gRadd",    group: "balagha", emblem: "↶", min: 3, supply: () => raddItems().length },
     { id: "gSaj",     group: "balagha", emblem: "≈", min: 3, supply: () => sajItems().length },
     { id: "gBahr",    group: "balagha", emblem: "♫", min: 4, supply: () => bahrItems().length },
+    { id: "gTawkid",  group: "sarf",    emblem: "نّ", min: 4, supply: () => tawkidItems().length },
+    { id: "gIdgham",  group: "sarf",    emblem: "دّ", min: 4, supply: () => idghamItems().length },
   ];
   static get(id){ return this.CATALOGUE.find(g => g.id === id) || null; }
   // How many items each game can draw RIGHT NOW, in whatever scope is open.
@@ -24730,6 +25190,8 @@ function openGames(){
     ${gCard("gCloze", "✏️", ui().clozeGame, ui().clozeDesc, fadeLine)}
     ${gHead("صَرْف", ui().gGroupSarf)}
     ${gCard("gSarf", "⚙️", ui().sarfGame, ui().sarfGameDesc)}
+    ${gCard("gTawkid", "نّ", ui().tawkidGame, ui().tawkidGameDesc)}
+    ${gCard("gIdgham", "دّ", ui().idghamGame, ui().idghamGameDesc)}
     ${gCard("gAdad", "🔢", ui().adadGame, ui().adadGameDesc)}
     ${gHead("نَحْو", ui().gGroupNahw)}
     ${gCard("gHarakat", "🎯", ui().harakat, ui().harakatDesc)}
@@ -24791,6 +25253,8 @@ function openGames(){
   document.getElementById("gRadd").addEventListener("click", startRadd);
   document.getElementById("gSaj").addEventListener("click", startSaj);
   document.getElementById("gBahr").addEventListener("click", startBahr);
+  document.getElementById("gTawkid").addEventListener("click", startTawkid);
+  document.getElementById("gIdgham").addEventListener("click", startIdgham);
   showSheet();
 }
 

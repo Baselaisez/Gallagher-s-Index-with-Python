@@ -305,7 +305,7 @@ def build_morph():
     OMITTED — rare for this verb and not worth a guess.
     """
     out = {}
-    out["saa-verb"] = _sg.naqis1("fataha", "نَاقِصٌ يَائِيٌّ", "y", "سَعَ", "سْعَ", "a", "اِسْعَ",
+    out["saa-verb"] = _sg.naqis1("fataha", "نَاقِصٌ يَائِيٌّ", "y", "سَعَ", "سْع", "a", "اِسْع",
                                  "سَعْي", "سَاعٍ", "مَسْعِيّ", "سُعِيَ", "يُسْعَى")
     out["hara"] = _sg.hollow1("samia", "أَجْوَفُ يَائِيٌّ", "حَار", "حِر", "حَار", "حَر",
                               "حَار", "حَر", "حَيْرَة", "حَائِر",

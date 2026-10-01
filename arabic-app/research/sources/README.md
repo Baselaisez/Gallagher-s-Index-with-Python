@@ -215,3 +215,33 @@ The Emali file is future story material, not yet content: the Arabic verses
 are the received qasida text (good), but the commentary is Ottoman Turkish in
 Arabic script and must be converted to modern Turkish — and the verse i'rab
 authored from scratch — before any of it faces a reader.
+
+## The 2026-10-01 uploads — seven PDFs, read cover to cover
+
+| file | contents |
+|---|---|
+| `avamil-dersi-servet-hayma-2023.txt` | Servet Hayma's 44-page «Avâmil dersi» (İhtisas Okulu, 24 Jan 2023): Birgivī's 60 ʿāmil / 30 maʿmūl / 10 iʿrāb tree taught through the «İ'rab Mağazası» metaphor (Müşteri = the word kind, Beden = the sign, Endam = the maʿmūl seat, Etki eden = the ʿāmil), the nine declension classes with their tam/nakıs sign tables, taqdīrī iʿrāb's three obstacles (teazzür / istiskal / münasebet), the mabnī lists, the 14 sentence kinds with and without a maḥall, the «AJAN EN» mnemonic for the hidden أن |
+| `serhul-mugni-ders-notlari-kisa-1.txt` | 96 pages of Şerhu'l-Muğnî lesson notes in modern Turkish: the ism in 15 kinds, the six nouns, ghayr munṣarif's nine causes, the munādā's seven rulings, the 17 lāzim-mabnī ẓarfs, taṣghīr and nisba, jamʿ qilla, the nawāsikh with muqāraba/rajāʾ/shurūʿ, the 20 jarr letters, the 24-row sarf table |
+| `izzi-sarf-grafikleri.txt` | 48 infographic pages on al-ʿIzzī fī al-taṣrīf: the verb's divisions, the six bābs, the mazīd wazns, majhūl/amr formation as numbered steps, the iftiʿāl ibdāl, nūn al-tawkīd by person (اِذْهَبْنَانِّ, لَا تَخْشَوُنَّ), the three idghām rulings (wājib / jāʾiz لَمْ يَمْدُدْ ~ يَمُدَّ / mumtaniʿ مَدَدْتُ), the weak classes |
+| `izhar-al-asrar-matn-lithograph.txt` | **the Arabic matn of Birgivī's Iẓhār al-Asrār**, transcribed page by page (printed ٨٤–١٦٠ of an Ottoman majmūʿa lithograph, 77 scanned pages at 160 dpi) from the large framed text; the ḥāshiya in the margins is left untranscribed. This is the first clean, continuous Arabic Iẓhār on the shelf: `izhar-full-corrected.txt` carries the matn only inside Ottoman commentary, and `izhar-tercume-full.txt`'s inline Arabic is RTL-garbled. Spellings as printed (ثلثة، الصلوة) |
+| `nahiv-kafiye-ozeti-turkce.txt` | a 14-page Turkish Kâfiye summary keyed to the printed matn by (sahife, satır): the nine ghayr-munṣarif causes each with its condition, the four-and-four precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven qiyāsī ʿāmil-deletions, the mustathnā's four wājib-naṣb seats, the five pronoun sets, the الذي-khabar conditions, maʿrifa's six ranks, the ʿamal conditions of the derived nouns, the hidden-أن and hidden-إن seats, inna's kasra/fatḥa seats, tanwīn's five kinds |
+| `qisas-al-nabiyyin-nadwi-leveling-notes.txt` | Nadwī's «قصص النبيين للأطفال» vols. 1–2 (Karachi scans, in copyright): NOT transcribed — the author's prefaces paraphrased (delight, clarity, ease, nothing false; pupils made to retell, recite and recall) and two short measured specimens of the opening pages as calibration points for Qissa's own level ramp. Nothing from it may ship as content |
+
+What the Iẓhār matn settles: Birgivī's own words for the three bābs the
+whole Ottoman nahw curriculum hangs on — the ʿāmil (sixty: the twenty jarr
+letters, the eight inna-sisters, مَا and لَا, the four nawāṣib, the five jawāzim …
+the nine qiyāsī and the two maʿnawī), the maʿmūl (thirty: nine marfūʿ, thirteen
+manṣūb, two majrūr, one majzūm, five tawābiʿ), and the iʿrāb (ten signs in four
+cross-cutting divisions: by essence, by seat, by kind, by quality lafẓī /
+taqdīrī / maḥallī, with the seven taqdīrī seats and the two maḥallī seats
+enumerated, then the mabnī with its wājib and jāʾiz lists). Every «sixty / thirty
+/ ten» count the Avâmil lecture and the AVAMIL100 panel use is now backed by the
+received text rather than by a Turkish table.
+
+The Avâmil lecture is the wave-26 tutoring reference: its «İ'rab Mağazası»
+(the shop where a word comes in as a customer, the ʿāmil fits it with a body,
+the maʿmūl seat is its figure, the sign is the garment) is exactly the per-
+sentence card the engines can fill from their own verdicts, which is why it
+became the IrabShop tutor rather than a note. The İzzî graphics are the sarf
+engine reference for the same wave: its nūn al-tawkīd and idghām rules are
+stated as decision tables, which is the shape an engine wants.
