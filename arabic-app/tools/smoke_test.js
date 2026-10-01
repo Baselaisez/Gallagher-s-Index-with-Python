@@ -10723,6 +10723,92 @@ if (!CHROME) {
     } finally { await page.evaluate((p0) => setPremium(p0), prem); await page.setViewportSize(was); }
   });
 
+  // ---------------------------------------------------------------- wave 25: al-Kafiya (Ibn al-Hajib) — the second nahw text, authored from the Ottoman notebook
+  await check('al-Kafiya ch1-2 (the kalima and the kalam; the muʿrab, the iʿrab and the declension classes): the package on the shelf, its two notes with their question tests, the ḍabṭ floors, ʿAli\'s two bayts scanned', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'al-kafiya'); if (!st) return { err: 'no al-kafiya story' };
+      const notes = ['al-kalima-wal-kalam', 'al-murab-wal-mabni-wal-irab'].map(id => { const n = GRAMMAR[id]; return n ? { id, group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'al-kafiya' || e.sourceStory === 'al-kafiya').length, cm: (n.mistakes || n.commonMistakes || []).length } : { id, missing: true }; });
+      const per = {};
+      for (const ch of st.chapters) { let h = 0, n = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; n += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n, un, pct: n ? Math.round(1000 * h / n) / 10 : 0 }; }
+      const ch1 = st.chapters.find(c => (c.n || c.chapter) === 1);
+      const bayts = ['s9', 's10'].map(id => { const sen = ch1.sentences.find(x => x.id === id); const text = sen.tokens.map(t => t.s.full + (t.punctAfter || '')).join(' '); const a = ArudEngine.scanCited(text); return a && a[0] && a[0].ok ? a[0].bahr : 'none'; });
+      return { chapters: st.chapters.length, level: st.level, notes, per, bayts, tokens: st.chapters.reduce((a, c) => a + c.sentences.reduce((b, x) => b + x.tokens.length, 0), 0) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 2) throw new Error('al-Kafiya should carry at least two chapters: ' + r.chapters);
+    for (const n of r.notes) { if (n.missing) throw new Error('note missing: ' + n.id); if (n.group !== 'nahw') throw new Error(n.id + ' is not a nahw note'); if (!n.q || n.q[0] < 5 || n.q[0] !== n.q[1]) throw new Error(n.id + ': the question test must carry ≥5 questions in both languages: ' + JSON.stringify(n.q)); if (n.ex < 4) throw new Error(n.id + ': fewer than four examples anchored in al-kafiya: ' + n.ex); if (n.cm < 3) throw new Error(n.id + ': fewer than three common mistakes: ' + n.cm); }
+    const floors = { 1: 98, 2: 96 };   // measured at v179: ch1 100.0 (191 endings), ch2 100.0 (163)
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('al-Kafiya ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
+    if (r.bayts[0] !== 'basit' || r.bayts[1] !== 'wafir') throw new Error('ʿAli\'s bayts should scan basīṭ then wāfir: ' + JSON.stringify(r.bayts));
+  });
+
+  await check('wave 25 seeds — the nahw rules the Kafiya\'s definitions forced: the ordinal after أَوْ لَا, the sentence quoted after the kaf and after فِي, the letter-name annex, the tanwīn word annexing nothing, the passive rebuilt in the she-form and the dual, the we-doer, غَيْر as a naʿt, the name before its adjective, the mirrored clause, the maqṣūr keeping its shadda', async () => {
+    const r = await page.evaluate(() => {
+      const w = (s) => DabtEngine.vowel(s, 'endings').words.map(x => String(x.out || '').replace(/[،:.؛]/g, '')).join(' ').normalize('NFC');
+      return {
+        ordinal: w('لِأَنَّهَا إِمَّا أَنْ تَدُلَّ عَلَى مَعْنًى فِي نَفْسِهَا أَوْ لَا وَالثَّانِي الْحَرْفُ'),
+        kaf: w('وَلَا يَتَأَتَّى ذَلِكَ إِلَّا فِي اسْمَيْنِ كَزَيْدٌ قَائِمٌ أَوْ فِي فِعْلٍ وَاسْمٍ كَقَامَ زَيْدٌ'),
+        fi: w('فَزَيْدٌ فِي ضَرَبَ زَيْدٌ مُعْرَبٌ وَهَؤُلَاءِ فِي قَامَ هَؤُلَاءِ مَبْنِيٌّ'),
+        lam: w('وَمِنْ خَوَاصِّ الِاسْمِ دُخُولُ لَامِ التَّعْرِيفِ وَالْجَرِّ وَالتَّنْوِينِ وَكَوْنُهُ مُسْنَدًا إِلَيْهِ وَمُضَافًا'),
+        samm: w('سَمُّ الْخِيَاطِ مَعَ الْأَحْبَابِ مَيْدَانٌ'),
+        three: w('وَالْأَوَّلُ إِمَّا أَنْ يَقْتَرِنَ بِأَحَدِ الْأَزْمِنَةِ الثَّلَاثَةِ أَوْ لَا وَالثَّانِي الِاسْمُ وَالْأَوَّلُ الْفِعْلُ'),
+        propn: w('وَالتَّوْصِيفِيُّ كَزَيْدٍ الْعَالِمِ وَالْمَزْجِيُّ كَبَعْلَبَكَّ'),
+        ghayr: w('وَالِاسْمُ مَا دَلَّ عَلَى مَعْنًى فِي نَفْسِهِ غَيْرِ مُقْتَرِنٍ بِأَحَدِ الْأَزْمِنَةِ الثَّلَاثَةِ'),
+        passive: w('وَجَمْعُ الْمُؤَنَّثِ السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُنْصَبُ وَيُجَرُّ بِالْكَسْرَةِ'),
+        dual: w('فَالْمُفْرَدُ الْمُنْصَرِفُ وَالْجَمْعُ الْمُكَسَّرُ الْمُنْصَرِفُ يُرْفَعَانِ بِالضَّمَّةِ وَيُنْصَبَانِ بِالْفَتْحَةِ وَيُجَرَّانِ بِالْكَسْرَةِ'),
+        mirror: w('فَالرَّفْعُ عَلَمُ الْفَاعِلِيَّةِ وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ وَالْجَرُّ عَلَمُ الْإِضَافَةِ'),
+        we: w('جَاءَنَا الِاثْنَانِ كِلَاهُمَا وَاتَّبَعْنَا الِاثْنَيْنِ كِلَيْهِمَا وَعَمِلْنَا بِالِاثْنَيْنِ كِلَيْهِمَا'),
+        tanwin: w('وَأَنْوَاعُ إِعْرَابِ الِاسْمِ ثَلَاثَةٌ: رَفْعٌ وَنَصْبٌ وَجَرٌّ.'),
+        muthanna: w('وَالْمُثَنَّى وَاثْنَانِ وَكِلَا مُضَافًا إِلَى الضَّمِيرِ تُرْفَعُ بِالْأَلِفِ وَتُنْصَبُ وَتُجَرُّ بِالْيَاءِ'),
+        la: w('جِرَاحَاتُ السِّنَانِ لَهَا الْتِيَامٌ وَلَا يَلْتَامُ مَا جَرَحَ اللِّسَانُ'),
+      };
+    });
+    const want = {
+      ordinal: ['وَالثَّانِي الْحَرْفُ'], kaf: ['كَزَيْدٌ قَائِمٌ', 'كَقَامَ زَيْدٌ'], fi: ['فِي ضَرَبَ زَيْدٌ مُعْرَبٌ', 'فِي قَامَ هَؤُلَاءِ مَبْنِيٌّ'],
+      lam: ['دُخُولُ لَامِ التَّعْرِيفِ وَالْجَرِّ وَالتَّنْوِينِ وَكَوْنُهُ مُسْنَدًا'], samm: ['سَمُّ الْخِيَاطِ'], three: ['الْأَزْمِنَةِ الثَّلَاثَةِ', 'وَالثَّانِي الِاسْمُ وَالْأَوَّلُ الْفِعْلُ'],
+      propn: ['كَزَيْدٍ الْعَالِمِ'], ghayr: ['غَيْرِ مُقْتَرِنٍ'], passive: ['السَّالِمُ يُرْفَعُ بِالضَّمَّةِ وَيُنْصَبُ وَيُجَرُّ بِالْكَسْرَةِ'],
+      dual: ['يُرْفَعَانِ بِالضَّمَّةِ وَيُنْصَبَانِ بِالْفَتْحَةِ وَيُجَرَّانِ بِالْكَسْرَةِ'], mirror: ['وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ وَالْجَرُّ عَلَمُ الْإِضَافَةِ'],
+      we: ['وَاتَّبَعْنَا الِاثْنَيْنِ كِلَيْهِمَا وَعَمِلْنَا'], tanwin: ['رَفْعٌ وَنَصْبٌ وَجَرٌّ'], muthanna: ['وَالْمُثَنَّى وَاثْنَانِ وَكِلَا مُضَافًا', 'تُرْفَعُ بِالْأَلِفِ وَتُنْصَبُ وَتُجَرُّ بِالْيَاءِ'],
+      la: ['وَلَا يَلْتَامُ'],
+    };
+    const bad = [];
+    for (const [k, subs] of Object.entries(want)) for (const sub of subs) if (!r[k].includes(sub.normalize('NFC'))) bad.push(k + ': ' + sub + ' ∉ ' + r[k]);
+    if (bad.length) throw new Error(bad.join(' | ').slice(0, 900));
+  });
+
+  await check('the declension-triplet card (al-Kafiya ch2): one noun in three cases drawn from the sign engines — the vowel classes, the five nouns, the sound masculine plural and the dual by their letters — in the sheet on a phone, and no card where the sentence carries no triplet', async () => {
+    const was = page.viewportSize();
+    await page.setViewportSize({ width: 390, height: 844 });
+    const prem = await page.evaluate(() => { const p0 = !!state.premium; setPremium(true); return p0; });
+    try {
+      const r = await page.evaluate(() => {
+        const st = STORIES.find(s => s.id === 'al-kafiya'); if (!st) return { err: 'no al-kafiya' };
+        if (!CUR || CUR.id !== st.id) openStory(st);
+        const ch = st.chapters.find(c => (c.n || c.chapter) === 2);
+        const read = id => { const sen = ch.sentences.find(x => x.id === id); const div = document.createElement('div'); div.innerHTML = tripletHtml(sen);
+          return { cards: div.querySelectorAll('.bd-triplet').length, cells: [...div.querySelectorAll('.tp-cell')].map(c => ({ w: c.querySelector('.tp-word').textContent, sign: (c.querySelector('.tp-sign').textContent.split(' · ')[1] || ''), letter: c.classList.contains('tp-letter'), kase: (c.querySelector('.tp-case').textContent.split(' · ')[1] || '') })) }; };
+        return { s7: read('s7'), s8: read('s8'), s19: read('s19'), s21: read('s21'), s2: read('s2'), s4: read('s4') };
+      });
+      if (r.err) throw new Error(r.err);
+      const want = { s7: [['damma', false], ['fatha', false], ['kasra', false]], s8: [['the waw', true], ['the alif', true], ['the ya', true]], s19: [['the waw', true], ['the ya', true], ['the ya', true]], s21: [['the alif', true], ['the ya', true], ['the ya', true]] };
+      for (const [id, cells] of Object.entries(want)) {
+        const got = r[id]; if (got.cards !== 1 || got.cells.length !== 3) throw new Error(id + ': expected one card of three cells, got ' + JSON.stringify(got).slice(0, 300));
+        got.cells.forEach((c, i) => { if (c.sign !== cells[i][0] || c.letter !== cells[i][1]) throw new Error(id + ' cell ' + i + ' (' + c.w + '): ' + c.sign + '/' + c.letter + ' ≠ ' + cells[i].join('/')); });
+        if (got.cells.map(c => c.kase).join(',') !== 'rafʿ,nasb,jarr') throw new Error(id + ': the cases should read rafʿ, nasb, jarr: ' + got.cells.map(c => c.kase).join(','));
+      }
+      if (r.s2.cards || r.s4.cards) throw new Error('a definitional sentence grew a triplet card: ' + JSON.stringify([r.s2.cards, r.s4.cards]));
+      await page.evaluate(() => { const st = STORIES.find(s => s.id === 'al-kafiya'); const ch = st.chapters.find(c => (c.n || c.chapter) === 2); openIrabSheet(ch.sentences.find(x => x.id === 's8')); });
+      await page.waitForSelector('.sheet.show .bd-triplet .tp-cell', { state: 'attached', timeout: 10000 });
+      const m = await page.evaluate(() => { const cells = [...document.querySelectorAll('.sheet.show .bd-triplet .tp-cell')]; const vw = window.innerWidth; return { n: cells.length, widths: cells.map(c => Math.round(c.getBoundingClientRect().width)), overflow: cells.some(c => c.getBoundingClientRect().right > vw + 1 || c.getBoundingClientRect().left < -1), title: (document.querySelector('.sheet.show .bd-triplet .ts-chip') || {}).textContent || '' }; });
+      if (m.n !== 3 || m.widths.some(w => w < 80) || m.overflow) throw new Error('the card on a phone: ' + JSON.stringify(m));
+      if (!/إِعْرَاب/.test(m.title)) throw new Error('the card chip should open with إِعْرَاب: ' + m.title);
+      await page.evaluate(() => closeSheet());
+    } finally {
+      await page.evaluate((p0) => setPremium(p0), prem);
+      await page.setViewportSize(was);
+    }
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

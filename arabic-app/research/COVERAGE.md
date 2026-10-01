@@ -40,7 +40,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 26 | `research/sources/edatlar-irab-soru-testi.txt` | **FULL** | The Turkish question-test that became the `question` field on 11 nahw notes — the most completely exploited file in the batch. |
 | 27 | `research/sources/irab-taksimat-tablolari-turkce.txt` | **PARTIAL** | Every constituent fact is taught somewhere; the overarching iʿrāb taxonomy (ḥareke/ḥarf/ḥadhf; lafẓī/taqdīrī/maḥallī) is named by no single note. |
 | 28 | `research/sources/irab-taksimat-turkish.txt` | **PARTIAL (mostly corrupt)** | ~95% OLE binary noise; surviving fragments duplicate #27 plus real case-marker table data already taught — should be re-supplied as clean .docx. |
-| 29 | `research/sources/kafiya-ibn-hajib-sual-cevap.txt` | **UNTOUCHED** | 554KB, the largest file in the folder, entirely Ottoman-script al-Kāfiya commentary with no modern-Turkish counterpart; unmined and unreferenced anywhere. |
+| 29 | `research/sources/kafiya-ibn-hajib-sual-cevap.txt` | **PARTIAL** (was UNTOUCHED; opened in v179) | 554KB Ottoman-script lesson notebook on al-Kāfiya (Ziya Sungur-oğlu) whose ARABIC matn is vowelled and exact under the Turkish معناسى glosses: `content/samples/al-kafiya` ch1–2 (the kalima and the kalām; the muʿrab, the iʿrāb and the declension classes) are authored from its lines ~60–160, with Molla Jāmī's questions as the notes' question tests. Still unmined: taqdīrī iʿrāb (عَصًا، غُلَامِي، قَاضٍ، مُسْلِمِيَّ), the diptote's nine causes with the ʿadl definition, the mabnī bab (line ~1584), the verb bab (~2381), the majrūrāt and tawābiʿ. |
 | 30 | `research/sources/kafiya-internet-digest.txt` | **PARTIAL** | Closed the canon audit (supplied the last 2 of 81 amils); poetic-license diptote exceptions and fāʿil/mafʿūl order rules remain, and only the head was sampled. |
 | 31 | `research/sources/kafiya-turkce-sual-cevap.txt` | **PARTIAL** | ~58 Q&A nearly all matched by notes; gaps are tarkhīm, ʿāmil-elision constructions, iḍmār ʿalā sharīṭat al-tafsīr, iḍāfa maʿnawiyya's three senses, and fāʿil-order conditions. |
 | 32 | `research/sources/molla-cami-sual-cevap.txt` | **UNTOUCHED (likely redundant)** | 80KB Ottoman-script Molla Jāmī Q&A whose opening question is near-verbatim #31's Q1; overlap unverified past the first question. |
@@ -2481,6 +2481,7 @@ not a one-line change.
   ʿArūḍ lab, gBahr; the rulings restored from the received matn and marked;
   two Ottoman misprints of ch75 corrected and recorded. **The Talkhīṣ
   al-Miftāḥ is complete: 76 chapters.**
+- **v179 — wave 25: al-Kāfiya opens.** `kafiya-ibn-hajib-sual-cevap.txt` UNTOUCHED → PARTIAL: the notebook's vowelled matn became the `al-kafiya` package (ch1 the kalima/kalām, ch2 the muʿrab/iʿrāb and the six declension classes, 40 sentences, 382 tokens) with two nahw notes carrying Molla Jāmī's questions; the definitional sentences forced seventeen new ḍabṭ rules (patch25a/25b) and both chapters rebuild at 100%. Backlog: taqdīrī iʿrāb and ghayr munṣarif (ch3), then the mabnī and the verb babs.
 - **v177 — wave 23: the sajʿ on the author's pauses, the last four lafẓī figures.**
   Talkhīṣ chapters 71–72 (source ~4532–4612, ṣaḥīfa 156–160): the sajʿ
   muṭarraf / mutawāzī / murassaʿ, the finest kinds by length, the sukūn

@@ -5378,3 +5378,154 @@ ch64 98.3 (floors 97 / 94 / 96 / 96). The lessons:
   then found the last one: the manqus twin (جَارٍ beside جَار) must be preferred
   only over a key whose own word is no manqus — رَاضٍ keeps the glossary's
   entry with its root.
+
+## Al-Kāfiya opens: an Ottoman notebook becomes the second nahw text, and its definitions become rules (wave 25, v179)
+
+`content/samples/al-kafiya` (L5 Advanced, premium; regenerators
+`tools/authoring/author_kafiya_ch1.py`, `author_kafiya_ch2.py` over the shared
+`kafiya_common.py`, which re-points `talkhis_common` at the package) carries Ibn
+al-Ḥājib's matn from the notebook `research/sources/kafiya-ibn-hajib-sual-cevap.txt`
+— Ziya Sungur-oğlu's Ottoman-script lesson book, whose ARABIC is vowelled and
+exact under every Turkish معناسى gloss (the third Ottoman file on the shelf to
+prove the rule: never write a file off for its script). Chapter 1: the kalima
+and its two divisions, lafẓ / waḍʿ / maʿnā, the kalām and the isnād, the
+two-word minimum with the quoted كَزَيْدٌ قَائِمٌ, the five non-kalām compounds,
+the three definitions, the noun's marks (19 sentences, 199 tokens). Chapter 2:
+the muʿrab and the mabnī, the iʿrāb and its three signs, the ʿāmil, and the six
+declension classes proved on the notebook's own triplet جَاءَنِي / رَأَيْتُ /
+مَرَرْتُ بِـ (21 sentences, 183 tokens). Two notes carry the doctrine with Molla
+Jāmī's questions as their question test (`al-kalima-wal-kalam`,
+`al-murab-wal-mabni-wal-irab`). Endings-mode ḍabṭ at v179: ch1 100.0 (191),
+ch2 100.0 (163) — floors 98 / 96; both bayts of ʿAlī scan (basīṭ, wāfir).
+
+**Mark what is whose, sentence by sentence.** The notebook mixes the matn, the
+teacher's worked examples and Molla Jāmī's answers on one page. A sentence the
+notebook gives only in Turkish is RESTORED from the received matn and marked in
+both translations; a worked example (فَزَيْدٌ فِي ضَرَبَ زَيْدٌ مُعْرَبٌ) or an
+etymology (the كَلْم of the wound) is COMMENTARY and marked as such; the manifest
+attribution lists which sentences are which. ʿAlī's two bayts are printed as
+the notebook prints them (ضَيِّقَةٌ feminine by sense, يَلْتَامُ with its hamza
+softened) and the iʿrāb says so rather than correcting the page.
+
+**A text about grammar is a test-bench for the grammar engine.** Every
+definitional sentence of the Kāfiya forced a rule the Talkhīṣ had never needed,
+and each is a receipt, not a guess (patch25a / 25b, gated by the wave-25 seeds):
+- **The author's ending is evidence the tagger threw away.** أُطْلِقَ / أُحِسَّ were
+  read as the 1sg muḍāriʿ (cell 12); a fatḥa ending is the passive māḍī. سَمُّ was
+  the amr of سَمَّى; an imperative never wears a ḍamma. وَجَرٌّ was the māḍī جَرَّ;
+  no verb wears tanwīn. أَحْمَدَ was the 1sg of حَمِدَ; the lexicon owns it as a
+  name. Each rule reads `DabtEngine._orig24` — the author's own token — and
+  stands down where the ending says nothing.
+- **A tanwīn word annexes nothing.** رَفْعٌ وَنَصْبٌ وَجَرٌّ had been chained as an
+  idafa by bare letters; the prePairs filter and the ladder drop every head whose
+  author's token ends in tanwīn.
+- **The quoted sentence after the kaf and after فِي.** كَزَيْدٌ قَائِمٌ keeps its
+  ḍamma (the whole sentence sits in the place of jarr), كَقَامَ زَيْدٌ keeps its
+  verb, فِي ضَرَبَ زَيْدٌ keeps its verb though the analyzer had demoted it after a
+  jarr letter (`__vcell` restores it; the corpus is asked for a bare māḍī), and
+  the definite noun after the quotation is the delayed mubtada (فَفِي جَاءَنِي
+  زَيْدٌ الْعَامِلُ جَاءَ).
+- **The letter-names are nouns.** لَامِ التَّعْرِيفِ was the verb لَامَ; a letter
+  name before a definite annex is a noun and annexes to it.
+- **The mulḥaq forms are written as the author wrote them.** أَحَدَ عَشَرَ,
+  سِيبَوَيْهِ, اثْنَانِ / الِاثْنَيْنِ, أُولُو (read as the amr of آلَ) keep their letter;
+  a kept row is now written from the author's token, not from the stripped text
+  (the writer's «keep» had been printing الِاثْنَان and كِلَيْهُمَا), and كِلَيْهِمَا
+  after a kept mulḥaq is its tawkīd.
+- **The passive in a person the package does not store is rebuilt from the
+  he-form** (تُرْفَعُ، يُرْفَعَانِ، تُجَرُّ — the she-prefix, the dual and the plural
+  offered to the corpus as candidates) — stored-only remains the doctrine for
+  the FORM; the person is derivable and derived.
+- **The we-doer.** اتَّبَعْنَا / عَمِلْنَا were «he followed us»: a māḍī closing on
+  ـْنَا (the sukūn before the نَا) carries the first-plural cell.
+- **Seats the definitions forced:** the ordinal resuming after أَوْ لَا
+  (وَالثَّانِي الْحَرْفُ) or after its sibling's khabar; the mirrored clause
+  (وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ repeats فَالرَّفْعُ عَلَمُ الْفَاعِلِيَّةِ — a joined
+  definite noun before a repeated khabar resumes the frame with its annex);
+  الْأَزْمِنَةِ الثَّلَاثَةِ (a definite cardinal is its noun's naʿt); غَيْرِ مُقْتَرِنٍ
+  across فِي نَفْسِهِ (غَيْر + participle after a nakira's jarr chain is that
+  nakira's naʿt); زَيْدٍ الْعَالِمِ (a proper name is never annexed to the definite
+  adjective after it); السَّالِمُ after جَمْعُ الْمُؤَنَّثِ (the naʿt of جَمْع, not of its
+  annex); مُضَافَةً إِلَى after the mubtada (a fathatan nakira before a jarr letter
+  with the khabar still owed is the ḥāl); وَكَوْنُهُ مُسْنَدًا and وَأَخَوَاتُهَا joined
+  to the clause's mubtada; نَحْوُ: at the head as the khabar of a dropped mubtada
+  annexed to the quoted sentence; وَلَا يَلْتَامُ (after لَا a lexicon-less word
+  with a muḍāriʿ prefix and a final ḍamma is the verb, not the genus-lā's ism).
+
+**The design piece is the Kāfiya's own test-bench drawn** (DESIGN.md §24): a
+sentence carrying one noun in three case-forms grows a `.bd-triplet` card in the
+iʿrāb sheet — the case off the stored line, the sign off the word's ending
+(`caseSignOf`), vowel-class or letter-class off `IrabSign.of`, the letter classes
+dashed. `IrabSign.of` names its manner `huruf`, not `letters`; the five nouns show
+their letter only once the pronoun is peeled (أَبُوهُ reads a ḍamma otherwise), and
+the jarr clitic must come off before the engine is asked (بِأَبِيهِ). Gated on a phone.
+
+**Three things the wave taught about the tooling.**
+- **`process.env` does not exist inside `page.evaluate`.** The probes had been
+  "generalised" to a `STORY` env in wave 24 by reading `process.env.STORY` inside
+  the browser callback — a ReferenceError the moment the default was not taken.
+  Inject the value into the page once (`window.__STORY`) and read that.
+- **The ladder's early rules exist twice.** Lines 14648–14655 are repeated
+  inside the noun branch (~15069–15076); an anchor on any of them matches twice.
+  The true ladder top is the `const bw = bareOf(r), cw = coreOf(r);` line, and the
+  wave-24 `__zarfKull24` anchor is NOT the top — it sits after the idafa rules,
+  which is why the first cut of the propn-naʿt rule never saw its row.
+- **The maqṣūr writer ate the shadda.** `writeNoun`'s `[ً-ٰ]+ى$` strip includes
+  U+0651, so الْمُثَنَّى was written الْمُثَنَى; the shadda is kept and the fatḥa
+  is re-added before it (NFC order), for the definite and the tanwīn case both.
+- **Free text carries its own stops.** `grade()` fed the ladder `_colonAt` and
+  `_punctAt` from the tokens' `punctAfter`; `vowel()` on typed text had neither,
+  so «ثَلَاثَةٌ: رَفْعٌ وَنَصْبٌ وَجَرٌّ» lost its list frame in the lab. `vowel()` now
+  reads the colon and the pauses off the typed text when no grade supplied
+  them, keeps the sets it made in `_own25`, and retires them at the END of the
+  call — never at the next one: the first cut left them standing, and the
+  ch47/ch48 tashbih gates (which call `decide()` directly, not through
+  `vowel()`) read the seeds gate's colon at index 3 as their own. And the
+  author's tokens (`_orig24`) are stored without their trailing stops, or every
+  ending test on the last word of a clause fails on the comma.
+- **The author's token is evidence only where it is THIS row's.** A rule that
+  reads `_orig24[i]` inherits every place the analyzer's rows and the whitespace
+  tokens disagree; مَجْذُوذٍ became a ḥāl because the fathatan it "wore" was
+  عَطَاءً's, one token back. Every reader of the author's token now checks the
+  bare letters first and stands down on a mismatch.
+- **A new lexicon entry is a predator — fourth payment.** The needle's eye سَمّ
+  (ch1's bayt) let the speaker's-ya rule (22c) re-read سُمِّيَ as «my سَمّ», and
+  nine sentences of the jinās chapters lost their naming passive. The rule now
+  stands down on a whole stored cell matched mark for mark; the sweep of
+  ch48–76 against the v178 baseline is what found it.
+- **The amr's iltiqāʾ kasra is no evidence.** «An imperative never ends in a
+  kasra» took اُدْخُلِ الْبَيْتَ out of the drill garden within the hour — the kasra
+  is the meeting of two sākins before the article. The receipt rule keeps the
+  ḍamma and the tanwīn only.
+- **The name annexed keeps its head's naʿt.** كِتَابَ زَيْدٍ الْجَدِيدَ describes the
+  book; the propn-naʿt rule (زَيْدٍ الْعَالِمِ) stands down when the name is a
+  muḍāf ilayh. The seeded full-mode decision caught it.
+- **A nūn-final lām needs the `idgham` wrapper — fifth payment.** اقْتَرَنَ
+  shipped as اِقْتَرَنْنَ / اِقْتَرَنْنَا and the Sarf regeneration gate blocked the
+  first v179 run on it (the audit contracts the sākin twin; the stored cell
+  did not). `put_morph` never overwrites, so the script pops the stale key
+  before it stores the contracted one.
+- **A cell that IS the written word must win across the WHOLE corpus, not
+  only inside its own paradigm.** The release's sarf-corrector gate samples
+  every ninth stored cell, and al-Kāfiya's paradigms shifted the sample onto
+  fifteen Talkhīṣ cells the corrector "corrected" — all latent on v178:
+  تَقْرِنَّ (qarana's 2fp) was handed to قَرَى's تَقْرِينَ, because the heavy-nūn
+  restoration (kasra → ينَ) offered a candidate that matched قَرَى EXACTLY and
+  قَرَى walks first; اِقْرِنِي lost to اِقْرِ through the ني peel, وَعَدَا to دَعَا
+  through the joining-clitic strip, سَبَقُوا to بَقُوا through the future sīn,
+  شَبَّهَا to شَبَّتَا through the pronoun peel. `findFormInParadigm` already
+  ranked the whole surface first — per paradigm; `_fromCorpusWalk` now walks
+  the corpus four times (the word whole, the word behind a joining clitic,
+  candidate-exact, loose), so no derived candidate anywhere outranks the word
+  itself anywhere (patch25d). And the sixteenth was DATA: the Talkhīṣ copy of
+  سَاقَ stored the short amr stem in the vowel-initial cells (سُقِي for سُوقِي —
+  the hollow-amr rule this file already states), invisible to the paradigm
+  audit because the corpus index keeps the FIRST paradigm per key and the
+  Manār copy is right. A sampled gate is a gate that moves when the corpus
+  grows; `$SCR/sweep_musahhih.js` runs the corrector over every stored cell.
+- **A `grep -c` that finds nothing is exit 1, and everything after `&&` is
+  skipped — silently.** Two rounds of patch edits never ran because the Python
+  that made them stood behind a diagnostic grep; the rebuilt reader then
+  measured the OLD rules and the failures looked unexplained. Diagnostics go in
+  their own command; an edit script prints what it did, and the rebuild greps
+  for the edit's own comment before any probe is trusted.

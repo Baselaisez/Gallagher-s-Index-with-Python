@@ -1,0 +1,131 @@
+{
+ "id": "al-murab-wal-mabni-wal-irab",
+ "title": {
+  "ar": "الْمُعْرَبُ وَالْمَبْنِيُّ وَالْإِعْرَابُ",
+  "en": "The declinable and the indeclinable, and the iʿrab: the Kafiya's definitions",
+  "tr": "Mu'reb ve mebnî, ve i'râb: Kâfiye'nin tarifleri"
+ },
+ "level": 5,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الاسم منه معرب ومبني؛ المعرب المركب الذي لم يشبه مبني الأصل؛ الإعراب ما اختلف آخره به ليدل على المعاني المعتورة عليه",
+  "الفوائد الضيائية لملا جامي — مسألة الأسماء المعدودة: مبنية عند المصنف، معربة عند الزمخشري"
+ ],
+ "question": {
+  "en": [
+   "What is the MUʿRAB? The compounded word that does not resemble what is indeclinable by origin: الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ. «Compounded» means set into a construction with its governor: Zayd in ضَرَبَ زَيْدٌ is compounded with ضَرَبَ, and it resembles no particle, so it is declinable. هَؤُلَاءِ in قَامَ هَؤُلَاءِ resembles the particle (it points by itself, like a harf), so it is indeclinable.",
+   "Molla Jami's question: are the words counted one by one — alif, ba, ta, Zayd, ʿAmr, Bakr — muʿrab or mabni? For the author they are mabni, since they stand in no construction; for Zamakhshari they are muʿrab, since they resemble no mabni and would accept iʿrab the moment they entered a construction.",
+   "What is IʿRAB? That by which the end of the word differs, so as to point to the meanings that come over it in turn — مَا اخْتَلَفَ آخِرُهُ بِهِ لِيَدُلَّ عَلَى الْمَعَانِي الْمُعْتَوِرَةِ عَلَيْهِ. The «meanings» are doerhood, objecthood and annexation; the iʿrab is the vowel or the letter that changes at the end to mark which one holds. Its kinds are three: RAFʿ the sign of doerhood, NASB the sign of objecthood, JARR the sign of annexation — really or by ruling (a khabar is raised «by ruling» as if it were a doer).",
+   "What is the ʿAMIL? That by which the meaning requiring the iʿrab comes to stand: مَا بِهِ يَتَقَوَّمُ الْمَعْنَى الْمُقْتَضِي لِلْإِعْرَابِ. In جَاءَنِي زَيْدٌ the doerhood that requires the rafʿ came about through جَاءَ, so جَاءَ is the governor.",
+   "How do the classes decline? By VOWEL: the triptote single and broken plural (damma / fatha / kasra: زَيْدٌ، رِجَالٌ), the sound feminine plural (damma / kasra / kasra: مُسْلِمَاتٌ), the diptote (damma / fatha / fatha: أَحْمَدُ). By LETTER: the six nouns annexed to other than the speaker's ya (waw / alif / ya: أَبُوهُ), the sound masculine plural with أُولُو and the tens (waw / ya / ya: مُسْلِمُونَ), the dual with اثْنَانِ and كِلَا annexed to a pronoun (alif / ya / ya: الِاثْنَانِ كِلَاهُمَا). The notebook's triplet جَاءَنِي / رَأَيْتُ / مَرَرْتُ بِـ is the test-bench for every class.",
+   "What does the engine read? The DabtEngine's case layer is exactly this chapter: it assigns rafʿ / nasb / jarr by the seat (doer, object, annex, after a preposition) and then writes the SIGN by the class — the vowel for the triptote, the kasra-for-fatha of the sound feminine plural, the fatha-for-kasra of the diptote, the waw/alif/ya of the six nouns and the sound masculine plural, the alif/ya of the dual and of كِلَا before a pronoun. The example triplets of s7–s21 are graded against the notebook's own marks."
+  ],
+  "tr": [
+   "MU'REB nedir? Aslen mebnî olana benzemeyen mürekkeb: الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ. «Mürekkeb», âmiliyle terkibe girmiş demektir: ضَرَبَ زَيْدٌ'deki Zeyd darabe ile terkib edilmiştir ve hiçbir harfe benzemez, öyleyse mu'rebdir. قَامَ هَؤُلَاءِ'deki هَؤُلَاءِ harfe benzer (harf gibi kendi başına işaret eder), öyleyse mebnîdir.",
+   "Molla Câmî'nin sorusu: tek tek sayılan kelimeler — elif, bâ, tâ, Zeyd, Amr, Bekr — mu'reb mi mebnî mi? Müellife göre mebnîdir, çünkü terkibde vâki olmamışlardır; Zemahşerî'ye göre mu'rebdir, çünkü mebnîye benzemezler ve terkibe girdikleri an i'râbı kabul ederler.",
+   "İ'RÂB nedir? Üzerine sırayla gelen manalara delâlet etmesi için kendisiyle kelimenin sonunun değiştiği şey — مَا اخْتَلَفَ آخِرُهُ بِهِ لِيَدُلَّ عَلَى الْمَعَانِي الْمُعْتَوِرَةِ عَلَيْهِ. «Manalar» fâiliyet, mef'ûliyet ve izâfettir; i'râb sonda değişip hangisinin bulunduğunu gösteren hareke ya da harftir. Çeşitleri üçtür: REF' fâiliyetin, NASB mef'ûliyetin, CER izâfetin alâmeti — hakikaten ya da hükmen (haber, fâil imiş gibi «hükmen» merfûdur).",
+   "ÂMİL nedir? İ'râbı gerektiren mananın kendisiyle hâsıl olduğu şey: مَا بِهِ يَتَقَوَّمُ الْمَعْنَى الْمُقْتَضِي لِلْإِعْرَابِ. جَاءَنِي زَيْدٌ'de ref'i gerektiren fâiliyet جَاءَ ile hâsıl olmuştur, öyleyse âmil جَاءَ'dir.",
+   "Sınıflar nasıl i'râb alır? HAREKE ile: munsarif müfred ve cem-i mükesser (damme / fetha / kesre: زَيْدٌ، رِجَالٌ), cem-i müennes sâlim (damme / kesre / kesre: مُسْلِمَاتٌ), gayr-i munsarif (damme / fetha / fetha: أَحْمَدُ). HARF ile: mütekellim yâsından başkasına muzâf esmâ-i sitte (vâv / elif / yâ: أَبُوهُ), أُولُو ve onlarla birlikte cem-i müzekker sâlim (vâv / yâ / yâ: مُسْلِمُونَ), اثْنَانِ ve zamire muzâf كِلَا ile tesniye (elif / yâ / yâ: الِاثْنَانِ كِلَاهُمَا). Defterin جَاءَنِي / رَأَيْتُ / مَرَرْتُ بِـ üçlüsü her sınıfın deney tezgâhıdır.",
+   "Motor neyi okur? DabtEngine'in hâl katmanı tam bu bâbdır: yere göre (fâil, mef'ûl, muzâfun ileyh, harf-i cerden sonra) ref' / nasb / cer verir, sonra ALÂMETİ sınıfa göre yazar — munsarif için hareke, cem-i müennes sâlimin fetha yerine kesresi, gayr-i munsarifin kesre yerine fethası, esmâ-i sitte ile cem-i müzekker sâlimin vâv/elif/yâsı, tesniyenin ve zamir önündeki كِلَا'nın elif/yâsı. s7–s21'in örnek üçlüleri defterin kendi harekelerine karşı notlanır."
+  ]
+ },
+ "plain": {
+  "en": "A noun is declinable when it sits in a construction and resembles no particle; iʿrab is the changing ending that marks doer (rafʿ), object (nasb) or annex (jarr); the governor is what brings that meaning about. Vowel classes and letter classes each have their own signs.",
+  "tr": "İsim, terkibde durup harfe benzemiyorsa mu'rebdir; i'râb, fâili (ref'), mef'ûlü (nasb) ya da muzâfun ileyhi (cer) gösteren değişen sondur; âmil o manayı meydana getirendir. Hareke sınıflarının ve harf sınıflarının kendi alâmetleri vardır."
+ },
+ "explanation": {
+  "en": "الْمُعْرَبُ الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ. Ibn al-Hajib defines the declinable by two conditions — it must stand in a construction (the tarkib with a governor) and must not resemble the things that are indeclinable by origin (the particle, the mazi, the amr). The iʿrab is then defined by its function: the changing end that points to the meanings that alternate on the word — doerhood, objecthood, annexation — and its three kinds are named as signs (ʿalam) of those meanings. The ʿamil is what makes the meaning come about. The rest of the chapter is the notebook's table of classes: three that decline by vowel (the triptote single and broken plural; the sound feminine plural with its kasra for the fatha; the diptote with its fatha for the kasra) and three that decline by letter (the six nouns; the sound masculine plural with its attached أُولُو and the tens; the dual with اثْنَانِ and كِلَا before a pronoun), each proved by the triplet جَاءَنِي / رَأَيْتُ / مَرَرْتُ بِـ.",
+  "tr": "الْمُعْرَبُ الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ. İbnü'l-Hâcib mu'rebi iki şartla tarif eder — terkibde bulunmalı (âmille terkib) ve aslen mebnî olanlara (harf, mâzî, emir) benzememeli. İ'râb ise işleviyle tarif edilir: kelime üzerinde nöbetleşen manalara — fâiliyet, mef'ûliyet, izâfet — delâlet eden değişen son; üç çeşidi bu manaların alâmetleri (alem) olarak adlandırılır. Âmil, manayı meydana getirendir. Bâbın kalanı defterin sınıflar tablosudur: hareke ile i'râb alan üç sınıf (munsarif müfred ve cem-i mükesser; fetha yerine kesresiyle cem-i müennes sâlim; kesre yerine fethasıyla gayr-i munsarif) ve harf ile i'râb alan üç sınıf (esmâ-i sitte; mülhakı أُولُو ve onlarla cem-i müzekker sâlim; اثْنَانِ ve zamir önündeki كِلَا ile tesniye), her biri جَاءَنِي / رَأَيْتُ / مَرَرْتُ بِـ üçlüsüyle ispat edilir."
+ },
+ "examples": [
+  {
+   "ar": "الْمُعْرَبُ الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ",
+   "en": "The definition of the declinable.",
+   "tr": "Mu'rebin tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "وَالْإِعْرَابُ مَا اخْتَلَفَ آخِرُهُ بِهِ لِيَدُلَّ عَلَى الْمَعَانِي الْمُعْتَوِرَةِ عَلَيْهِ",
+   "en": "The definition of iʿrab.",
+   "tr": "İ'râbın tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "فَالرَّفْعُ عَلَمُ الْفَاعِلِيَّةِ، وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ، وَالْجَرُّ عَلَمُ الْإِضَافَةِ",
+   "en": "The three kinds as signs.",
+   "tr": "Üç çeşit, alâmet olarak.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "وَالْعَامِلُ مَا بِهِ يَتَقَوَّمُ الْمَعْنَى الْمُقْتَضِي لِلْإِعْرَابِ",
+   "en": "The definition of the governor.",
+   "tr": "Âmilin tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "جَاءَنِي أَبُوهُ، وَرَأَيْتُ أَبَاهُ، وَمَرَرْتُ بِأَبِيهِ",
+   "en": "The six nouns declined by letter.",
+   "tr": "Esmâ-i sittenin harfle i'râbı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "جَاءَنَا الِاثْنَانِ كِلَاهُمَا، وَاتَّبَعْنَا الِاثْنَيْنِ كِلَيْهِمَا",
+   "en": "كِلَا before a pronoun declines like the dual.",
+   "tr": "Zamir önündeki kilâ tesniye gibi i'râb alır.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s21"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«Mu'reb, sonu değişen kelimedir; mebnî ise değişmeyen»",
+   "right": "«الْمُعْرَبُ الْمُرَكَّبُ الَّذِي لَمْ يُشْبِهْ مَبْنِيَّ الْأَصْلِ — tarif terkib ve benzememe iledir, sonun değişmesi netice»",
+   "why": {
+    "en": "The Kafiya defines the declinable by its conditions (construction, no resemblance to the particle), not by the visible change; the change is what follows, and it may even be estimated (عَصًا, قَاضٍ).",
+    "tr": "Kâfiye mu'rebi şartlarıyla (terkib, harfe benzememe) tarif eder, görünen değişmeyle değil; değişme neticedir, hattâ takdîrî olabilir (عَصًا, قَاضٍ)."
+   }
+  },
+  {
+   "wrong": "«رَأَيْتُ مُسْلِمَاتًا — cem-i müennes sâlim fetha ile nasb edilir»",
+   "right": "«رَأَيْتُ مُسْلِمَاتٍ — nasbı da cerri de kesre iledir»",
+   "why": {
+    "en": "The sound feminine plural takes the kasra in place of the fatha; the tanwin stays but the vowel is the kasra.",
+    "tr": "Cem-i müennes sâlim fetha yerine kesre alır; tenvin kalır ama hareke kesredir."
+   }
+  },
+  {
+   "wrong": "«مَرَرْتُ بِأَحْمَدٍ — her isim harf-i cerden sonra kesre alır»",
+   "right": "«مَرَرْتُ بِأَحْمَدَ — gayr-i munsarifin cerri fetha ile, tenvinsiz»",
+   "why": {
+    "en": "The diptote refuses the kasra and the tanwin; its jarr is by the fatha (unless it is annexed or takes the article).",
+    "tr": "Gayr-i munsarif kesreyi ve tenvini kabul etmez; cerri fetha iledir (muzâf olmadıkça ya da lâm almadıkça)."
+   }
+  },
+  {
+   "wrong": "«كِلَا her zaman elif ile merfû, yâ ile mansûb ve mecrûrdur»",
+   "right": "«جَاءَنِي كِلَا الرَّجُلَيْنِ، وَرَأَيْتُ كِلَا الرَّجُلَيْنِ — zâhir isme muzâf olunca i'râbı takdîrî harekeyledir»",
+   "why": {
+    "en": "Only كِلَا annexed to a pronoun declines by letter like the dual; annexed to an overt noun it keeps its alif and its iʿrab is estimated.",
+    "tr": "Yalnız zamire muzâf كِلَا tesniye gibi harfle i'râb alır; zâhir isme muzâf olunca elifi kalır, i'râbı takdîrîdir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-kalima-wal-kalam",
+  "fail",
+  "maful-bihi",
+  "huruf-jarr",
+  "five-nouns",
+  "jam-mudhakkar-salim",
+  "jam-muannath-salim",
+  "mamnu-min-sarf",
+  "al-muthanna",
+  "jam-taksir",
+  "tawkid"
+ ]
+}

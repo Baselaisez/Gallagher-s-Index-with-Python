@@ -132,3 +132,20 @@ names the word, and the engine reads the rest off the surface — the companion
 that shares a stem, the pronouns that return, the furnishing that makes a
 tawriya murashshaḥa. A probe that calls `BadiEngine.read(rows)` without the
 sentence cannot read those; pass `{ sen }`.
+
+## A second text from an Ottoman notebook (wave 25)
+
+`tools/authoring/kafiya_common.py` is the whole adapter: it imports
+`talkhis_common`, re-points its `PKG` at `content/samples/al-kafiya` (or at
+`DRY_PKG` / `DRY_GR` for a dry run), and adds the commentary markers. Chapter
+scripts (`author_kafiya_ch1.py`, `author_kafiya_ch2.py`) use the Talkhīṣ API
+unchanged — `tok`, `seg`, `G`/`need`, `put_morph`, `write_out`, `report`. Three
+rules carried over and one new: a key is a global claim (check every package's
+glossary AND morphology before minting one — `alam` means عَالَم in Aqaid and
+عَلَم in the Talkhīṣ, so the Kāfiya's sign is `alam-sign`); a restored ruling is
+marked in both translations and in the attribution; a worked example that is
+the teacher's, not the matn's, is marked COMMENTARY (`C_EN` / `C_TR`); and
+**probe the chapter through the engines before landing it** (`STORY=al-kafiya
+… probe24_sen.js <ch>` against a dry reader) — every miss is either an authoring
+slip or a rule the text is owed, and the Kāfiya is owed many, because it is a
+book about exactly what the engine claims to know.

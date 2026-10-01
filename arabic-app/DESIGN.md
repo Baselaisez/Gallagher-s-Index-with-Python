@@ -961,3 +961,20 @@ places of care it serves.
 **Two notes of another science.** The ʿarūḍ note and the qāfiya note are
 the first of a new registry group (`arud`), reached from the badīʿ doors
 strip and from every bayt card's baḥr chip.
+
+## 24. The declension triplet: one noun, three cases, read by the engines (wave 25)
+
+**The Kāfiya proves every declension class on one triplet** — جَاءَنِي زَيْدٌ،
+وَرَأَيْتُ زَيْدًا، وَمَرَرْتُ بِزَيْدٍ — and the app draws that triplet as a card
+(`.bd-triplet`) whenever a sentence carries one noun in three case-forms. Three
+cells stand in the order the words come (`.tp-row`, RTL), each with the word
+large in the Arabic face (`.tp-word`), the CASE above it in small caps
+(`.tp-case`: رَفْع · rafʿ), the SIGN under it in the accent (`.tp-sign`:
+الضَّمَّة · damma, or الْوَاو · the waw), and BY WHAT it declines in the soft ink
+(`.tp-by`: by the vowel / by the letter). A cell that declines by a LETTER is
+drawn with a dashed border — the five nouns, the sound masculine plural, the
+dual — so the eye sees at once which class the page is teaching. Nothing on the
+card is stored: the case is read off the stored iʿrāb line, the sign off the
+word's own ending (`caseSignOf`), the manner off `IrabSign.of`; the note under
+the card says so. Same restraint as every card in the sheet: the neutral panel,
+the accent for the one fact that matters (the sign), no colour of its own.
