@@ -51,7 +51,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
 | 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL** (transcribed in v180) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the izhar-al-asrar package; the ḥāshiya is untranscribed. |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
-| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, nine chapters (§1–16 of «من كسر الأصنام؟» and §1–4 of «أحسن القصص» — through the forest and the well, v184), in copyright and flagged so in the manifest; §5–9 of «أحسن القصص» remain to author. |
+| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, ten chapters (§1–16 of «من كسر الأصنام؟» and §1–6 of «أحسن القصص» — through Yūsuf's night in the well, v185), in copyright and flagged so in the manifest; §7–9 of «أحسن القصص» remain to author. |
 
 **Tally:** FULL 9 · PARTIAL 24 · UNTOUCHED 6 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
 
@@ -2874,6 +2874,13 @@ not a one-line change.
   Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
   (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).
 
+- **v185 (wave 26n)** — Row 40: Qiṣaṣ chapter 10 (§5–6 of «أحسن القصص»: the
+  brothers before Yaʿqūb with Yūsuf 12:16–18, the whole shirt, «فَصَبْرٌ
+  جَمِيلٌ», Yūsuf in the well at night; 20 sentences, 143 tokens), the story
+  now 300 sentences / 2,107 tokens; one more engine round (29, `patch26n`:
+  the hamza seat of جَاؤُوا, the five noun under its pronoun, the fāʾ-joined
+  verb before its doer, the jawāb of إِذَا and the verb joined onto it, بَقِيَ as
+  kāna's sister, the intransitive verb's naʿt).
 - **v184 (wave 26m)** — Row 40: Qiṣaṣ chapter 9 (§3–4 of «أحسن القصص»: the
   delegation to Yaʿqūb with Yūsuf 12:12 and 12:13, the leave, the forest and
   the well, the glad tidings, the council and the dyed shirt; 33 sentences,

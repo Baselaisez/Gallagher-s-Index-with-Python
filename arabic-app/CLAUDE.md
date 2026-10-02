@@ -5912,3 +5912,45 @@ speech:
 `sadaqa-verb`, `ghaba-forest`, `wahid-alone`. A note id that does not exist
 (`lam-ibtida`, `hamzated-verbs`) is a validator error, not a silent gap — the
 slid lām and the hamzated verbs still have no note of their own.
+
+## Qiṣaṣ chapter 10 — before Yaʿqūb, Yūsuf in the well, and the round the ayas forced (wave 26n, v185)
+
+`qisas-al-nabiyyin-1` runs to **ten chapters, 300 sentences, 2,107 tokens**:
+chapter 10 «أَمَامَ يَعْقُوبَ، وَيُوسُفُ فِي الْبِئْرِ» (§5–6 of «أَحْسَنُ الْقَصَصِ», print
+pp. 34–36 — the brothers before Yaʿqūb with Yūsuf 12:16, 12:17 and the opening
+of 12:18 as the print sets them, the whole shirt, «فَصَبْرٌ جَمِيلٌ», Yūsuf in the
+well at night; `author_qisas_ch10.py`). Endings-mode ḍabṭ at v185: **ch10
+100.0 (143)** — floor 97; ch1–9 held; sarfAudit clean. One round
+(`patch26n`, round 29), six rules, each a receipt:
+
+- **One word, two hamza seats.** The print writes جَاؤُوا and the paradigm
+  stores جَاءُوا; the stored cell was unreachable and the analyzer read the
+  verb as a noun wearing the group's wāw — every seat of the sentence then
+  fell. The candidate builder offers ءُوا for ؤُوا, matching only, exactly as
+  the madda unfolds — and the fold must run AGAIN over the candidates the
+  later passes build (the joiner-stripped جَاؤُوا), or the joined form stays
+  blind. A spelling equivalence added early in a candidate list is only as
+  good as its reach over the candidates added after it.
+- **The five noun under its pronoun is the noun by table** (أَبَاهُمْ) even
+  where a verb cell spells the same letters (أَبَى + هُمْ, found through the
+  maqṣūra-to-alif candidate) — the pre-pass decides it before the whole-match
+  stamp can call the father an object pronoun of «he refused».
+- **The joined «māḍī + pronoun» that reads as the lexicon's noun rides a
+  wāw only** (وَوَلَدَهُ), and never before an ال-noun that would be its doer:
+  فَأَكَلَهُ الذِّئْبُ is a verb and the wolf its doer, not «and its food».
+- **The jawāb of إِذَا carries the shart verb's concealed doer** (إِذَا أَكَلَ
+  إِنْسَانًا جَرَحَهُ), and a verb joined onto that jawāb inherits the same
+  concealed doer though the jawāb wears its object (وَشَقَّ قَمِيصَهُ) — the
+  inherited-hidden rule had refused every verb wearing a pronoun. Two
+  blindnesses sat underneath: `joined()` refused every three-letter word
+  (وَشَقَّ — the geminate's third radical is the shadda), and the «وَوَصَلَ»
+  rule that re-cells a joined verb was dropping the joiner from its segments.
+- **بَقِيَ before «noun + muḍāriʿ» is ظَلَّ's sister** (بَقِيَ يَعْقُوبُ يَذْكُرُ
+  يُوسُفَ): the ism, the muḍāriʿ as khabar with the ism's act, the name after it
+  the object — the full verb بَقِيَ الْمَاءُ keeps its doer.
+- **An intransitive verb owes no object**: the bare nakira after a nakira
+  majrūr is its naʿt (جَاؤُوا … بِدَمٍ كَذِبٍ) — the lexicon's maṣdar-noun كَذِب
+  has no sifa shape to show, so the verb's valency is the receipt.
+
+**Key hygiene:** `isha` already meant عِيشَة and `mata` مَتَى — the chapter's keys
+are `isha-evening` and `mata-goods`; the إِذَا note is `idha-shartiyya`.
