@@ -5805,3 +5805,74 @@ read at the top of the ladder, so a doer rule that must beat it goes before
 that line, not before the frame it was written beside — bisect by trace, not
 by reasoning (`DabtEngine._trace.push({...every operand})` named the stamp in
 one run).
+
+## Qiṣaṣ chapter 8 — Yūsuf's dream, and the three rounds the children's narrative forced (wave 26j–26l, v183)
+
+`qisas-al-nabiyyin-1` runs to **eight chapters, 247 sentences, 1,707 tokens**:
+chapter 8 «رُؤْيَا عَجِيبَةٌ وَحَسَدُ الْإِخْوَةِ» (§1–2 of «أَحْسَنُ الْقَصَصِ», print
+pp. 27–30 — the boy Yūsuf, the dream with Yūsuf 12:4 as the print sets it,
+Yaʿqūb's reading and his warning, Binyāmīn, the brothers' envy, their council
+and the well; `author_qisas_ch8.py`). Endings-mode ḍabṭ at v183: **ch8 100.0
+(256)** — floor 97; ch1–7 held, the 47 seeds at 267/267. Three engine rounds
+(`patch26j`, round 26; `patch26k`, round 26 continued; `patch26l`, round 27),
+and each rule is a Level-1 frame:
+
+- **A `const` declared inside the ladder is unreachable from the rule above
+  it.** `transOf` was declared ~90 lines below its first use; the first
+  sentence to reach that use (أَبُونَا يُوسُفَ — a pronoun-bearing five-noun
+  before a name) threw `ReferenceError` in the TDZ and the whole sentence
+  came back undecided. A helper the ladder's early rules read is hoisted
+  beside `encOf`, at the ladder's head (`patch26j`). When a probe prints
+  nothing for a sentence, run it unfiltered first — the error was in the
+  log the filter dropped.
+- **فَهِمَ is not فَ + هِمْ.** The pre-pass read the verb as a fāʾ with the
+  plural pronoun; the kasra on the hāʾ is the receipt — no pronoun هِمْ rides
+  a fāʾ with a kasra — and the corpus owns the cell.
+- **The compound number is the object** (رَأَى أَحَدَ عَشَرَ كَوْكَبًا): both
+  halves mabnī on the fatḥa, the verb's doer concealed, the counted noun its
+  tamyīz.
+- **كُلّ / بَعْض before a muḍāriʿ opens the nominal clause** (كُلٌّ يَسْجُدُ لَهُ)
+  — never after inna's family.
+- **The elative before مِنْ right after a verb is the absolute object's
+  deputy** (يُحِبُّهُ أَكْثَرَ مِنْ جَمِيعِ إِخْوَتِهِ) — and the rule accepts the
+  analyzer's Form-IV reading of the word (أَكْثَرَ as the māḍī), because R11's
+  clause-head khabar reaches the same word first otherwise.
+- **وَكَانَ + [لَا|مَا] + a third-person muḍāriʿ after a clause with its subject
+  conceals kāna's ism, and the muḍāriʿ does the ism's act** (وَكَانَ يَعْرِفُ
+  طَبَائِعَ النَّاسِ، وَكَانَ لَا يُحِبُّ مِثْلَهُمَا أَحَدًا). Two traps paid: the
+  first cut lived in the KANA_FORMS branch, which وَكَانَ never enters (it has
+  a cell; the forms the table LACKS go there) — the rule belongs in the verbs
+  branch where the word actually arrives; and the analyzer's own «kāna's ism
+  expected» note re-opened kāna on the verb row itself, through the notes
+  regex at the head of that block — the stamped verb is exempt. The
+  «clause with its subject» test reads every seat decided so far
+  (fail/kanaIsm/mubtada/innaIsm), not the live state, because a verb clause
+  as kāna's khabar has already spent it.
+- **The you-frame stands down for an intransitive verb and for a plural the
+  corpus knows** (كَيْفَ تَسْجُدُ الْكَوَاكِبُ): a broken plural agrees with the
+  she-verb — it is the doer, not the object of «you prostrate». `INTRANS`
+  learned prostrate/bow/kneel/laugh/weep/cry/sleep/walk/swim/fly.
+- **A joined māḍī inherits a doer only in its own person** (سَمِعُوا الرُّؤْيَا
+  وَاشْتَدَّ حَسَدُهُمْ): a 3ms verb cannot share the group's wāw, so the pronoun-
+  bearing noun after it is its own doer.
+- **The name after a pronoun-bearing doer of a transitive verb that still
+  owes its object is the object** (يُحِبُّ أَبُونَا يُوسُفَ) — the LATE badal rule
+  («the name after a pronoun-bearing noun is its badal») needed the same
+  guard the early one got in 26k; the early rule had already stood down and
+  the late one was the one firing. The set()-tracing debug reader
+  (`probe26_set.js`: every `set()` records its source line) named the rule in
+  one run, where reading the ladder had named the wrong one twice.
+- **The engine's geminate amr is the jazm bil-fatḥ** (اِشْتَدَّ, with the fakk
+  only before the women's nūn: اِشْتَدِدْنَ) — the audit's message is
+  `engine≠stored`, and the first fix read it backwards.
+
+**Accepted misses, named.** None in chapter 8. The two from chapter 6 (s2,
+s15 — readings that need the sentence before) stand.
+
+**What the release found: a ceiling that follows the corpus.** The JamEngine
+audit counts the stored plurals the qiyāsī builder cannot rebuild, and the
+gate holds a ceiling just above the last measurement; chapter 8's heard
+plurals (شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء) took it from 151 to 161 and the
+first v183 run blocked on it. The ceiling moves with the corpus by design
+(v178 said so) — raise it to the measurement, name the chapter, and rerun the
+resumable release from the blocked chunk.
