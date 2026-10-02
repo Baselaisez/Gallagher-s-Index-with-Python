@@ -1,0 +1,5455 @@
+{
+ "chapter": 3,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "The people gathered and said: What shall we do?",
+    "tr": "İnsanlar toplandı ve dediler: Ne yapalım?"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "اجْتَمَعَ",
+      "smart": "اجْتَمَعَ",
+      "bare": "اجتمع"
+     },
+     "lex": "ijtamaa",
+     "pos": "verb",
+     "grammar": [
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«gathered» — a māḍī built on fatḥa.",
+      "tr": "«toplandı» — fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the people» — the doer, rafʿ by ḍamma.",
+      "tr": "«insanlar» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَقَالُوا",
+      "smart": "وَقَالُوا",
+      "bare": "وقالوا"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ فَاعِلٌ.",
+      "en": "«and» + «they said» — a māḍī built on ḍamma before the group's wāw; the wāw is the doer.",
+      "tr": "«ve» + «dediler» — cemi vâvı sebebiyle zamme üzere mebnî mâzî; vâv fâildir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالُوا",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "مَاذَا",
+      "smart": "مَاذَا",
+      "bare": "ماذا"
+     },
+     "lex": "madha",
+     "pos": "pron",
+     "grammar": [
+      "al-istifham",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ.",
+      "en": "«what» — the interrogative noun, built, in the place of naṣb: the object, placed first.",
+      "tr": "«ne» — mebnî istifham ismi, mahallen mansub; öne alınmış mef'ûl."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَفْعَلُ",
+      "smart": "نَفْعَلُ",
+      "bare": "نفعل"
+     },
+     "lex": "faala",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ: نَحْنُ.",
+      "en": "«we do» — a muḍāriʿ in rafʿ; «we» is concealed by necessity.",
+      "tr": "«yaparız» — merfû muzari; fâil zorunlu gizli «biz»."
+     },
+     "punctAfter": "؟"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "Ibrāhīm has broken the idols and insulted the gods!",
+    "tr": "İbrâhim putları kırdı ve ilâhları aşağıladı!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+      "en": "«indeed» — a particle like a verb: naṣb on its ism, rafʿ on its khabar.",
+      "tr": "«şüphesiz» — fiile benzeyen harf: ismini nasb, haberini ref eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the ism of inna, in naṣb; a diptote name.",
+      "tr": "«İbrâhim» — inne'nin ismi, mansub; gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَسَرَ",
+      "smart": "كَسَرَ",
+      "bare": "كسر"
+     },
+     "lex": "kasara",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ إِنَّ.",
+      "en": "«broke» — a māḍī built on fatḥa; the doer is the concealed pronoun.",
+      "tr": "«kırdı» — fetha üzere mebnî mâzî; fâil gizli zamirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَصْنَامَ",
+      "smart": "الْأَصْنَامَ",
+      "bare": "الأصنام"
+     },
+     "lex": "sanam",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«the idols» — the object, naṣb by fatḥa.",
+      "tr": "«putları» — mef'ûl-i bih, fetha ile mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأَهَانَ",
+      "smart": "وَأَهَانَ",
+      "bare": "وأهان"
+     },
+     "lex": "ahana",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "form-iv-verbs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأَهَانَ فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — مِنْ بَابِ الْإِفْعَالِ، أَجْوَفُ.",
+      "en": "«and insulted» — a Form IV hollow māḍī; the doer «he» is concealed.",
+      "tr": "«ve aşağıladı» — if'âl bâbından ecvef mâzî; fâil gizli «o»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَهَانَ",
+       "lex": "ahana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْآلِهَةَ",
+      "smart": "الْآلِهَةَ",
+      "bare": "الآلهة"
+     },
+     "lex": "ilah",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — جَمْعُ إِلَهٍ.",
+      "en": "«the gods» — the object, naṣb by fatḥa.",
+      "tr": "«ilâhları» — mef'ûl-i bih, fetha ile mansub."
+     },
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "And the people asked: What is Ibrāhīm's punishment? What is Ibrāhīm's due?",
+    "tr": "Ve insanlar sordu: İbrâhim'in cezası ne? İbrâhim'in karşılığı ne?"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَسَأَلَ",
+      "smart": "وَسَأَلَ",
+      "bare": "وسأل"
+     },
+     "lex": "saala",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «asked» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «sordu» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "سَأَلَ",
+       "lex": "saala",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the people» — the doer, rafʿ by ḍamma.",
+      "tr": "«insanlar» — fâil, damme ile merfû."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-istifham",
+     "pos": "pron",
+     "grammar": [
+      "al-istifham",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«what» — the interrogative noun, the mubtadaʾ.",
+      "tr": "«ne» — istifham ismi, mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "عِقَابُ",
+      "smart": "عِقَابُ",
+      "bare": "عقاب"
+     },
+     "lex": "iqab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the punishment» — the khabar, in rafʿ; annexed.",
+      "tr": "«cezası» — haber, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ — مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«of Ibrāhīm» — the annexed noun, jarr by fatḥa: a diptote.",
+      "tr": "«İbrâhim'in» — muzâfun ileyh, fetha ile mecrûr: gayr-i munsarıf."
+     },
+     "punctAfter": "؟"
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-istifham",
+     "pos": "pron",
+     "grammar": [
+      "al-istifham",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«what» — the interrogative noun, the mubtadaʾ.",
+      "tr": "«ne» — istifham ismi, mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَزَاءُ",
+      "smart": "جَزَاءُ",
+      "bare": "جزاء"
+     },
+     "lex": "jaza-answer",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the due» — the khabar, in rafʿ; annexed.",
+      "tr": "«karşılığı» — haber, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ — مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«of Ibrāhīm» — the annexed noun, jarr by fatḥa.",
+      "tr": "«İbrâhim'in» — muzâfun ileyh, fetha ile mecrûr."
+     },
+     "punctAfter": "؟"
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "The answer was: «Burn him and help your gods!» (al-Anbiyāʾ 21:68)",
+    "tr": "Cevap şu oldu: «Onu yakın ve ilâhlarınıza yardım edin!» (Enbiyâ 21:68)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "«was» — the defective verb kāna: it raises its ism and puts its khabar in naṣb.",
+      "tr": "«idi» — nâkıs fiil kâne: ismini ref, haberini nasb eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجَوَابُ",
+      "smart": "الْجَوَابُ",
+      "bare": "الجواب"
+     },
+     "lex": "jawab",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ — وَخَبَرُهَا الْجُمْلَةُ الْمَحْكِيَّةُ بَعْدَهُ.",
+      "en": "«the answer» — kāna's ism; its khabar is the quoted sentence.",
+      "tr": "«cevap» — kâne'nin ismi; haberi sonraki nakledilen cümledir."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "حَرِّقُوهُ",
+      "smart": "حَرِّقُوهُ",
+      "bare": "حرقوه"
+     },
+     "lex": "harraqa",
+     "pos": "verb",
+     "grammar": [
+      "al-iqtibas-wal-tadmin",
+      "imperative-amr",
+      "form-ii-verbs",
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْوَاوُ فَاعِلٌ، وَالْهَاءُ مَفْعُولٌ بِهِ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.",
+      "en": "«burn him» — an imperative built on the dropped nūn; the wāw is the doer, «him» the object; the clause is kāna's khabar.",
+      "tr": "«onu yakın» — nûnun hazfi üzere mebnî emir; vâv fâil, «onu» mef'ûl; cümle kâne'nin haberidir."
+     },
+     "segments": [
+      {
+       "form": "حَرِّقُوا",
+       "lex": "harraqa",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "quoteBefore": "«"
+    },
+    {
+     "surface": {
+      "full": "وَانْصُرُوا",
+      "smart": "وَانْصُرُوا",
+      "bare": "وانصروا"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَانْصُرُوا فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْوَاوُ فَاعِلٌ.",
+      "en": "«and help» — an imperative on the dropped nūn; the wāw is the doer.",
+      "tr": "«ve yardım edin» — nûnun hazfi üzere mebnî emir; vâv fâil."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "انْصُرُوا",
+       "lex": "nasara",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "آلِهَتَكُمْ",
+      "smart": "آلِهَتَكُمْ",
+      "bare": "آلهتكم"
+     },
+     "lex": "ilah",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَكُمْ ضَمِيرٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "«your gods» — the object; annexed to «your».",
+      "tr": "«ilâhlarınızı» — mef'ûl; «siz»e muzâf."
+     },
+     "segments": [
+      {
+       "form": "آلِهَةَ",
+       "lex": "ilah",
+       "pos": "noun"
+      },
+      {
+       "form": "كُمْ",
+       "lex": "pron-2mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": ".",
+     "quoteAfter": "»"
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "And so it was: they lit a fire and threw Ibrāhīm into it.",
+    "tr": "Ve öyle oldu: bir ateş yaktılar ve İbrâhim'i içine attılar."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهٰكَذَا",
+      "smart": "وَهٰكَذَا",
+      "bare": "وهكذا"
+     },
+     "lex": "hakadha",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهٰكَذَا: الْكَافُ لِلتَّشْبِيهِ وَذَا اسْمُ إِشَارَةٍ — فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ مُقَدَّمٌ (أَيْ: كَانَ الْأَمْرُ كَذٰلِكَ).",
+      "en": "«and so» — the kāf of likeness on a demonstrative; kāna's khabar, fronted («the matter was like this»).",
+      "tr": "«ve öyle» — teşbih kâfı + ism-i işâret; kâne'nin öne alınmış haberi («durum böyle oldu»)."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هٰكَذَا",
+       "lex": "hakadha",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ، وَاسْمُهَا مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — أَيِ الْأَمْرُ.",
+      "en": "«was» — kāna; its ism is concealed («the matter»).",
+      "tr": "«oldu» — kâne; ismi gizli («durum»)."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "أَوْقَدُوا",
+      "smart": "أَوْقَدُوا",
+      "bare": "أوقدوا"
+     },
+     "lex": "awqada",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "mithal-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ فَاعِلٌ.",
+      "en": "«they lit» — a māḍī built on ḍamma before the group's wāw; the wāw is the doer.",
+      "tr": "«yaktılar» — cemi vâvı ile zamme üzere mebnî mâzî; vâv fâildir."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَارًا",
+      "smart": "نَارًا",
+      "bare": "نارا"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«a fire» — the object, naṣb by fatḥa.",
+      "tr": "«bir ateş» — mef'ûl-i bih, fetha ile mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأَلْقَوْا",
+      "smart": "وَأَلْقَوْا",
+      "bare": "وألقوا"
+     },
+     "lex": "alqa",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأَلْقَوْا فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ الْمُقَدَّرِ عَلَى الْأَلِفِ الْمَحْذُوفَةِ، وَالْوَاوُ فَاعِلٌ.",
+      "en": "«and threw» — a nāqiṣ māḍī built on an estimated ḍamma on the dropped alif; the wāw is the doer.",
+      "tr": "«ve attılar» — düşen elif üzerinde takdîrî damme ile mebnî nâkıs mâzî; vâv fâil."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَلْقَوْا",
+       "lex": "alqa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِيهَا",
+      "smart": "فِيهَا",
+      "bare": "فيها"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "فِي حَرْفُ جَرٍّ، وَهَا ضَمِيرٌ فِي مَحَلِّ جَرٍّ.",
+      "en": "«into it» — the jarr letter on the pronoun.",
+      "tr": "«içine» — cer harfi + zamir."
+     },
+     "segments": [
+      {
+       "form": "فِي",
+       "lex": "fi",
+       "pos": "prep"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the object; a diptote name.",
+      "tr": "«İbrâhim'i» — mef'ûl-i bih; gayr-i munsarıf özel isim."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "But Allah helped Ibrāhīm and said to the fire:",
+    "tr": "Fakat Allah İbrâhim'e yardım etti ve ateşe dedi:"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلٰكِنَّ",
+      "smart": "وَلٰكِنَّ",
+      "bare": "ولكن"
+     },
+     "lex": "lakinna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلٰكِنَّ حَرْفُ اسْتِدْرَاكٍ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+      "en": "«but» — the heavy lākinna of correction: naṣb on its ism, rafʿ on its khabar.",
+      "tr": "«fakat» — şeddeli istidrak harfi lâkinne: ismini nasb, haberini ref eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لٰكِنَّ",
+       "lex": "lakinna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ لٰكِنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَصَرَ",
+      "smart": "نَصَرَ",
+      "bare": "نصر"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ لٰكِنَّ.",
+      "en": "«helped» — a māḍī built on fatḥa; the doer is the concealed pronoun.",
+      "tr": "«yardım etti» — fetha üzere mebnî mâzî; fâil gizli zamirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the object; a diptote name.",
+      "tr": "«İbrâhim'i» — mef'ûl-i bih; gayr-i munsarıf özel isim."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَقَالَ",
+      "smart": "وَقَالَ",
+      "bare": "وقال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«and» + «said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«ve» + «dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالَ",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لِلنَّارِ",
+      "smart": "لِلنَّارِ",
+      "bare": "للنار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اللَّامُ حَرْفُ جَرٍّ، وَالنَّارِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«to the fire» — the lām of jarr; in jarr.",
+      "tr": "«ateşe» — cer lâmı; mecrûr."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "النَّارِ",
+       "lex": "nar",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": ":"
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "«O fire, be coolness and safety for Ibrāhīm.» (al-Anbiyāʾ 21:69)",
+    "tr": "«Ey ateş, İbrâhim'e serin ve selâmet ol.» (Enbiyâ 21:69)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "al-iqtibas-wal-tadmin",
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "«O» — the vocative particle.",
+      "tr": "«ey» — nidâ harfi."
+     },
+     "quoteBefore": "«"
+    },
+    {
+     "surface": {
+      "full": "نَارُ",
+      "smart": "نَارُ",
+      "bare": "نار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى نَكِرَةٌ مَقْصُودَةٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "en": "«fire» — a specified-indefinite vocative, built on ḍamma in the place of naṣb.",
+      "tr": "«ateş» — nekire-i maksûde münâdâ, zamme üzere mebnî, mahallen mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "كُونِي",
+      "smart": "كُونِي",
+      "bare": "كوني"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "imperative-amr",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ نَاقِصٌ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ اسْمُهَا.",
+      "en": "«be» — the defective verb's imperative, built on the dropped nūn; the yāʾ of the addressed woman is its ism.",
+      "tr": "«ol» — nâkıs fiilin emri, nûnun hazfi üzere mebnî; muhâtaba yâsı ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَرْدًا",
+      "smart": "بَرْدًا",
+      "bare": "بردا"
+     },
+     "lex": "bard",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كُونِي مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«coolness» — the khabar of «be», in naṣb.",
+      "tr": "«serinlik» — «ol»un haberi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَسَلَامًا",
+      "smart": "وَسَلَامًا",
+      "bare": "وسلاما"
+     },
+     "lex": "salam",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَسَلَامًا مَعْطُوفٌ عَلَى بَرْدًا مَنْصُوبٌ مِثْلُهُ.",
+      "en": "«and safety» — joined to «coolness», in the same naṣb.",
+      "tr": "«ve selâmet» — berd'e ma'tûf, mansub."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "سَلَامًا",
+       "lex": "salam",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«for» (upon).",
+      "tr": "«üzerine»."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "إِبْرَاهِيمَ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ — مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — in jarr shown by fatḥa: a diptote.",
+      "tr": "«İbrâhim» — kesre yerine fetha ile mecrûr: gayr-i munsarıf."
+     },
+     "punctAfter": ".",
+     "quoteAfter": "»"
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "And so it was: the fire was coolness and safety for Ibrāhīm.",
+    "tr": "Ve öyle oldu: ateş İbrâhim'e serin ve selâmet oldu."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهٰكَذَا",
+      "smart": "وَهٰكَذَا",
+      "bare": "وهكذا"
+     },
+     "lex": "hakadha",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَهٰكَذَا فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ مُقَدَّمٌ.",
+      "en": "«and so» — kāna's khabar, fronted.",
+      "tr": "«ve öyle» — kâne'nin öne alınmış haberi."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هٰكَذَا",
+       "lex": "hakadha",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ، وَاسْمُهَا مُسْتَتِرٌ: هُوَ — أَيِ الْأَمْرُ.",
+      "en": "«was» — kāna; its ism is concealed.",
+      "tr": "«oldu» — kâne; ismi gizli."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "كَانَتِ",
+      "smart": "كَانَتِ",
+      "bare": "كانت"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ، وَالتَّاءُ لِلتَّأْنِيثِ، وَكُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«was» — kāna with the feminine tāʾ, its kasra for the meeting of two sukūns.",
+      "tr": "«oldu» — kâne + te'nis tâsı; iki sâkinin karşılaşması için kesre."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّارُ",
+      "smart": "النَّارُ",
+      "bare": "النار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the fire» — kāna's ism, in rafʿ.",
+      "tr": "«ateş» — kâne'nin ismi, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَرْدًا",
+      "smart": "بَرْدًا",
+      "bare": "بردا"
+     },
+     "lex": "bard",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«coolness» — kāna's khabar, in naṣb.",
+      "tr": "«serinlik» — kâne'nin haberi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَسَلَامًا",
+      "smart": "وَسَلَامًا",
+      "bare": "وسلاما"
+     },
+     "lex": "salam",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَسَلَامًا مَعْطُوفٌ عَلَى بَرْدًا مَنْصُوبٌ.",
+      "en": "«and safety» — joined to «coolness».",
+      "tr": "«ve selâmet» — berd'e ma'tûf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "سَلَامًا",
+       "lex": "salam",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«for».",
+      "tr": "«üzerine»."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "إِبْرَاهِيمَ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ — مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — in jarr shown by fatḥa: a diptote.",
+      "tr": "«İbrâhim» — kesre yerine fetha ile mecrûr: gayr-i munsarıf."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "translation": {
+    "en": "And the people saw that the fire did not harm Ibrāhīm.",
+    "tr": "Ve insanlar ateşin İbrâhim'e zarar vermediğini gördü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَرَأَى",
+      "smart": "وَرَأَى",
+      "bare": "ورأى"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «saw» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «gördü» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَى",
+       "lex": "raa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the people» — the doer, rafʿ by ḍamma.",
+      "tr": "«insanlar» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ رَأَى.",
+      "en": "«that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّارَ",
+      "smart": "النَّارَ",
+      "bare": "النار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«the fire» — the ism of anna, in naṣb.",
+      "tr": "«ateşin» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَضُرُّ",
+      "smart": "تَضُرُّ",
+      "bare": "تضر"
+     },
+     "lex": "darra",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هِيَ — وَالْجُمْلَةُ خَبَرُ أَنَّ.",
+      "en": "«harms» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«zarar verir» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the object; a diptote name.",
+      "tr": "«İbrâhim'i» — mef'ûl-i bih; gayr-i munsarıf özel isim."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "translation": {
+    "en": "And the people saw that Ibrāhīm was happy, and that Ibrāhīm was safe.",
+    "tr": "Ve insanlar İbrâhim'in sevinçli ve sağ salim olduğunu gördü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَرَأَى",
+      "smart": "وَرَأَى",
+      "bare": "ورأى"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «saw» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «gördü» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَى",
+       "lex": "raa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the people» — the doer, rafʿ by ḍamma.",
+      "tr": "«insanlar» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ رَأَى.",
+      "en": "«that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ — مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the ism of anna; a diptote.",
+      "tr": "«İbrâhim'in» — enne'nin ismi; gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَسْرُورٌ",
+      "smart": "مَسْرُورٌ",
+      "bare": "مسرور"
+     },
+     "lex": "masrur",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ — اسْمُ مَفْعُولٍ.",
+      "en": "«happy» — the khabar of anna, in rafʿ.",
+      "tr": "«sevinçli» — enne'nin haberi, merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ رَأَى.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Ibrāhīm» — the ism of anna.",
+      "tr": "«İbrâhim'in» — enne'nin ismi."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَالِمٌ",
+      "smart": "سَالِمٌ",
+      "bare": "سالم"
+     },
+     "lex": "salim",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ — اسْمُ فَاعِلٍ.",
+      "en": "«safe» — the khabar of anna, in rafʿ.",
+      "tr": "«sağ salim» — enne'nin haberi, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s11",
+   "translation": {
+    "en": "And the people were amazed and bewildered.",
+    "tr": "Ve insanlar hayrete düştü ve şaşkına döndü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَدَهِشَ",
+      "smart": "وَدَهِشَ",
+      "bare": "ودهش"
+     },
+     "lex": "dahisha",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «were amazed» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «hayrete düştü» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "دَهِشَ",
+       "lex": "dahisha",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the people» — the doer, rafʿ by ḍamma.",
+      "tr": "«insanlar» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَتَحَيَّرُوا",
+      "smart": "وَتَحَيَّرُوا",
+      "bare": "وتحيروا"
+     },
+     "lex": "tahayyara",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "form-v-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَتَحَيَّرُوا فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ، وَالْوَاوُ فَاعِلٌ — مِنْ بَابِ التَّفَعُّلِ.",
+      "en": "«and were bewildered» — a Form V māḍī on ḍamma; the wāw is the doer.",
+      "tr": "«ve şaşkına döndüler» — tefa''ul bâbından mâzî; vâv fâil."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "تَحَيَّرُوا",
+       "lex": "tahayyara",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s12",
+   "translation": {
+    "en": "And one night Ibrāhīm saw a star, and said: This is my Lord.",
+    "tr": "Ve bir gece İbrâhim bir yıldız gördü ve dedi: Bu benim Rabbimdir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَذَاتَ",
+      "smart": "وَذَاتَ",
+      "bare": "وذات"
+     },
+     "lex": "dhat",
+     "pos": "noun",
+     "grammar": [
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَذَاتَ ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.",
+      "en": "«one (night)» — an adverb of time in naṣb; annexed.",
+      "tr": "«bir (gece)» — mansub zaman zarfı; muzâf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "ذَاتَ",
+       "lex": "dhat",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَيْلَةٍ",
+      "smart": "لَيْلَةٍ",
+      "bare": "ليلة"
+     },
+     "lex": "layla",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«night» — the annexed noun, in jarr.",
+      "tr": "«gece» — muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "رَأَى",
+      "smart": "رَأَى",
+      "bare": "رأى"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«saw» — a māḍī built on fatḥa.",
+      "tr": "«gördü» — fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَوْكَبًا",
+      "smart": "كَوْكَبًا",
+      "bare": "كوكبا"
+     },
+     "lex": "kawkab",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«a star» — the object, naṣb by fatḥa.",
+      "tr": "«bir yıldız» — mef'ûl-i bih, fetha ile mansub."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَقَالَ",
+      "smart": "فَقَالَ",
+      "bare": "فقال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«and» + «said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«ve» + «dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالَ",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبِّي",
+      "smart": "رَبِّي",
+      "bare": "ربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ya-al-mutakallim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the khabar, rafʿ by an estimated ḍamma before the speaker's yāʾ; annexed to «my».",
+      "tr": "«Rabbim» — mütekellim yâsından önce takdîrî damme ile merfû haber; yâ muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s13",
+   "translation": {
+    "en": "And when the star set, Ibrāhīm said: No! This is not my Lord!",
+    "tr": "Ve yıldız batınca İbrâhim dedi: Hayır! Bu benim Rabbim değil!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَمَّا",
+      "smart": "وَلَمَّا",
+      "bare": "ولما"
+     },
+     "lex": "lamma",
+     "pos": "part",
+     "grammar": [
+      "maful-fih"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَلَمَّا حِينِيَّةٌ ظَرْفُ زَمَانٍ بِمَعْنَى حِينَ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "«and when» — the lammā of time («at the moment that»), with a conditional sense.",
+      "tr": "«ve … -ınca» — hîniyye lemmâ: «o zaman ki» mânâsında zaman zarfı, şart mânâlı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَمَّا",
+       "lex": "lamma",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "غَابَ",
+      "smart": "غَابَ",
+      "bare": "غاب"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«set» — a māḍī built on fatḥa.",
+      "tr": "«battı» — fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَوْكَبُ",
+      "smart": "الْكَوْكَبُ",
+      "bare": "الكوكب"
+     },
+     "lex": "kawkab",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the star» — the doer, rafʿ by ḍamma.",
+      "tr": "«yıldız» — fâil, damme ile merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "punctAfter": "!"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَيْسَ",
+      "smart": "لَيْسَ",
+      "bare": "ليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ، وَاسْمُهَا مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَأِ.",
+      "en": "«is not» — the frozen defective verb; its ism is concealed; the clause is the khabar.",
+      "tr": "«değildir» — câmid nâkıs fiil; ismi gizli; cümle haberdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِرَبِّي",
+      "smart": "بِرَبِّي",
+      "bare": "بربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "huruf-jarr",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ، وَرَبِّي خَبَرُ لَيْسَ مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the extra bāʾ strengthens the negation; the khabar of laysa, jarr in form and naṣb in place.",
+      "tr": "«Rabbim» — zâid bâ nefyi pekiştirir; leyse'nin haberi, lafzan mecrûr, mahallen mansub."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s14",
+   "translation": {
+    "en": "And Ibrāhīm saw the moon and said: This is my Lord.",
+    "tr": "Ve İbrâhim ayı gördü ve dedi: Bu benim Rabbimdir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَرَأَى",
+      "smart": "وَرَأَى",
+      "bare": "ورأى"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «saw» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «gördü» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَى",
+       "lex": "raa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْقَمَرَ",
+      "smart": "الْقَمَرَ",
+      "bare": "القمر"
+     },
+     "lex": "qamar",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«the moon» — the object, naṣb by fatḥa.",
+      "tr": "«ayı» — mef'ûl-i bih, fetha ile mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَقَالَ",
+      "smart": "فَقَالَ",
+      "bare": "فقال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«and» + «said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«ve» + «dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالَ",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبِّي",
+      "smart": "رَبِّي",
+      "bare": "ربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ya-al-mutakallim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the khabar, rafʿ by an estimated ḍamma before the speaker's yāʾ; annexed to «my».",
+      "tr": "«Rabbim» — mütekellim yâsından önce takdîrî damme ile merfû haber; yâ muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s15",
+   "translation": {
+    "en": "And when the moon set, Ibrāhīm said: No! This is not my Lord!",
+    "tr": "Ve ay batınca İbrâhim dedi: Hayır! Bu benim Rabbim değil!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَمَّا",
+      "smart": "وَلَمَّا",
+      "bare": "ولما"
+     },
+     "lex": "lamma",
+     "pos": "part",
+     "grammar": [
+      "maful-fih"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَلَمَّا حِينِيَّةٌ ظَرْفُ زَمَانٍ بِمَعْنَى حِينَ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "«and when» — the lammā of time («at the moment that»), with a conditional sense.",
+      "tr": "«ve … -ınca» — hîniyye lemmâ: «o zaman ki» mânâsında zaman zarfı, şart mânâlı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَمَّا",
+       "lex": "lamma",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "غَابَ",
+      "smart": "غَابَ",
+      "bare": "غاب"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«set» — a māḍī built on fatḥa.",
+      "tr": "«battı» — fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْقَمَرُ",
+      "smart": "الْقَمَرُ",
+      "bare": "القمر"
+     },
+     "lex": "qamar",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the moon» — the doer, rafʿ by ḍamma.",
+      "tr": "«ay» — fâil, damme ile merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "punctAfter": "!"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَيْسَ",
+      "smart": "لَيْسَ",
+      "bare": "ليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ، وَاسْمُهَا مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَأِ.",
+      "en": "«is not» — the frozen defective verb; its ism is concealed; the clause is the khabar.",
+      "tr": "«değildir» — câmid nâkıs fiil; ismi gizli; cümle haberdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِرَبِّي",
+      "smart": "بِرَبِّي",
+      "bare": "بربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "huruf-jarr",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ، وَرَبِّي خَبَرُ لَيْسَ مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the extra bāʾ strengthens the negation; the khabar of laysa, jarr in form and naṣb in place.",
+      "tr": "«Rabbim» — zâid bâ nefyi pekiştirir; leyse'nin haberi, lafzan mecrûr, mahallen mansub."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s16",
+   "translation": {
+    "en": "And the sun rose, and Ibrāhīm said: «This is my Lord; this is bigger.» (al-Anʿām 6:78)",
+    "tr": "Ve güneş doğdu; İbrâhim dedi: «Bu benim Rabbimdir; bu daha büyüktür.» (En'âm 6:78)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَطَلَعَتِ",
+      "smart": "وَطَلَعَتِ",
+      "bare": "وطلعت"
+     },
+     "lex": "talaa",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَكُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«and» + «rose» — a māḍī built on fatḥa; the tāʾ marks the feminine.",
+      "tr": "«ve» + «doğdu» — fetha üzere mebnî mâzî; tâ te'nis içindir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "طَلَعَتِ",
+       "lex": "talaa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسُ",
+      "smart": "الشَّمْسُ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the sun» — the doer, rafʿ by ḍamma.",
+      "tr": "«güneş» — fâil, damme ile merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَقَالَ",
+      "smart": "فَقَالَ",
+      "bare": "فقال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«and» + «said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«ve» + «dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَالَ",
+       "lex": "qala",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "al-iqtibas-wal-tadmin",
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     },
+     "quoteBefore": "«"
+    },
+    {
+     "surface": {
+      "full": "رَبِّي",
+      "smart": "رَبِّي",
+      "bare": "ربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ya-al-mutakallim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the khabar, rafʿ by an estimated ḍamma before the speaker's yāʾ; annexed to «my».",
+      "tr": "«Rabbim» — mütekellim yâsından önce takdîrî damme ile merfû haber; yâ muzâfun ileyh."
+     },
+     "segments": [
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَكْبَرُ",
+      "smart": "أَكْبَرُ",
+      "bare": "أكبر"
+     },
+     "lex": "akbar",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-tafdil",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — اسْمُ تَفْضِيلٍ مَمْنُوعٌ مِنَ الصَّرْفِ فَلَا يُنَوَّنُ.",
+      "en": "«bigger» — the khabar, in rafʿ; an elative, a diptote and so without tanwīn.",
+      "tr": "«daha büyük» — haber, merfû; ism-i tafdîl, gayr-i munsarıf olduğu için tenvinsiz."
+     },
+     "punctAfter": ".",
+     "quoteAfter": "»"
+    }
+   ]
+  },
+  {
+   "id": "s17",
+   "translation": {
+    "en": "And when the sun set in the night, Ibrāhīm said: No! This is not my Lord.",
+    "tr": "Ve güneş gece batınca İbrâhim dedi: Hayır! Bu benim Rabbim değil."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَمَّا",
+      "smart": "وَلَمَّا",
+      "bare": "ولما"
+     },
+     "lex": "lamma",
+     "pos": "part",
+     "grammar": [
+      "maful-fih"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَلَمَّا حِينِيَّةٌ ظَرْفُ زَمَانٍ بِمَعْنَى حِينَ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "«and when» — the lammā of time («at the moment that»), with a conditional sense.",
+      "tr": "«ve … -ınca» — hîniyye lemmâ: «o zaman ki» mânâsında zaman zarfı, şart mânâlı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَمَّا",
+       "lex": "lamma",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "غَابَتِ",
+      "smart": "غَابَتِ",
+      "bare": "غابت"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَكُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«set» — a māḍī built on fatḥa; the tāʾ marks the feminine.",
+      "tr": "«battı» — fetha üzere mebnî mâzî; tâ te'nis içindir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسُ",
+      "smart": "الشَّمْسُ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the sun» — the doer, rafʿ by ḍamma.",
+      "tr": "«güneş» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«in».",
+      "tr": "«-de»."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللَّيْلِ",
+      "smart": "اللَّيْلِ",
+      "bare": "الليل"
+     },
+     "lex": "layl",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِفِي وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the night» — in jarr.",
+      "tr": "«gece» — mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "«said» — a māḍī built on fatḥa; what is said is its object.",
+      "tr": "«dedi» — fetha üzere mebnî mâzî; söylenen söz mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "punctAfter": "!"
+    },
+    {
+     "surface": {
+      "full": "هٰذَا",
+      "smart": "هٰذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«this» — a demonstrative, built; the mubtadaʾ.",
+      "tr": "«bu» — ism-i işâret, mebnî; mahallen merfû (mübtedâ)."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَيْسَ",
+      "smart": "لَيْسَ",
+      "bare": "ليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ، وَاسْمُهَا مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَأِ.",
+      "en": "«is not» — the frozen defective verb; its ism is concealed; the clause is the khabar.",
+      "tr": "«değildir» — câmid nâkıs fiil; ismi gizli; cümle haberdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِرَبِّي",
+      "smart": "بِرَبِّي",
+      "bare": "بربي"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "huruf-jarr",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ، وَرَبِّي خَبَرُ لَيْسَ مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«my Lord» — the extra bāʾ strengthens the negation; the khabar of laysa, jarr in form and naṣb in place.",
+      "tr": "«Rabbim» — zâid bâ nefyi pekiştirir; leyse'nin haberi, lafzan mecrûr, mahallen mansub."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s18",
+   "translation": {
+    "en": "Allah is living; He does not die.",
+    "tr": "Allah diridir, ölmez."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+      "en": "«indeed» — a particle like a verb: naṣb on its ism, rafʿ on its khabar.",
+      "tr": "«şüphesiz» — fiile benzeyen harf: ismini nasb, haberini ref eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of inna, in naṣb.",
+      "tr": "«Allah» — inne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَيٌّ",
+      "smart": "حَيٌّ",
+      "bare": "حي"
+     },
+     "lex": "hayy",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ إِنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«living» — the khabar of inna, in rafʿ.",
+      "tr": "«diri» — inne'nin haberi, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَمُوتُ",
+      "smart": "يَمُوتُ",
+      "bare": "يموت"
+     },
+     "lex": "mata",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ (أَوْ حَالٌ).",
+      "en": "«dies» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«ölür» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s19",
+   "translation": {
+    "en": "Allah is ever-remaining; He does not vanish.",
+    "tr": "Allah bâkîdir, kaybolmaz."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+      "en": "«indeed» — a particle like a verb: naṣb on its ism, rafʿ on its khabar.",
+      "tr": "«şüphesiz» — fiile benzeyen harf: ismini nasb, haberini ref eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of inna, in naṣb.",
+      "tr": "«Allah» — inne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَاقٍ",
+      "smart": "بَاقٍ",
+      "bare": "باق"
+     },
+     "lex": "baqi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ إِنَّ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ الْمَحْذُوفَةِ — اسْمٌ مَنْقُوصٌ، وَالتَّنْوِينُ عِوَضٌ عَنِ الْيَاءِ.",
+      "en": "«ever-remaining» — the khabar in rafʿ by an estimated ḍamma on the dropped yāʾ: a manqūṣ noun, its tanwīn standing in for the yāʾ.",
+      "tr": "«bâkî» — düşen yâ üzerinde takdîrî damme ile merfû haber: mankûs isim; tenvin yânın ivazıdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغِيبُ",
+      "smart": "يَغِيبُ",
+      "bare": "يغيب"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«vanishes» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«kaybolur» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s20",
+   "translation": {
+    "en": "Allah is strong; nothing overcomes Him.",
+    "tr": "Allah güçlüdür; O'na hiçbir şey galip gelemez."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+      "en": "«indeed» — a particle like a verb: naṣb on its ism, rafʿ on its khabar.",
+      "tr": "«şüphesiz» — fiile benzeyen harf: ismini nasb, haberini ref eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ إِنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of inna, in naṣb.",
+      "tr": "«Allah» — inne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوِيٌّ",
+      "smart": "قَوِيٌّ",
+      "bare": "قوي"
+     },
+     "lex": "qawi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ إِنَّ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ عَلَى فَعِيلٍ.",
+      "en": "«strong» — the khabar, in rafʿ; a resembling adjective on faʿīl.",
+      "tr": "«güçlü» — haber, merfû; faîl vezninde sıfat-ı müşebbehe."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغْلِبُهُ",
+      "smart": "يَغْلِبُهُ",
+      "bare": "يغلبه"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes Him» — rafʿ after the negating lā; the pronoun «Him» is the object, placed before the doer.",
+      "tr": "«ona galip gelir» — nefiy lâ'sından sonra merfû; «ona» zamiri öne alınmış mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَيْءٌ",
+      "smart": "شَيْءٌ",
+      "bare": "شيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ مُؤَخَّرٌ.",
+      "en": "«anything» — the doer, rafʿ by ḍamma.",
+      "tr": "«hiçbir şey» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s21",
+   "translation": {
+    "en": "And the star is weak: the dawn overcomes it.",
+    "tr": "Ve yıldız zayıftır; sabah ona galip gelir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْكَوْكَبُ",
+      "smart": "وَالْكَوْكَبُ",
+      "bare": "والكوكب"
+     },
+     "lex": "kawkab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«and» + «the star» — the mubtadaʾ, in rafʿ.",
+      "tr": "«ve» + «yıldız» — mübtedâ, merfû."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْكَوْكَبُ",
+       "lex": "kawkab",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفٌ",
+      "smart": "ضَعِيفٌ",
+      "bare": "ضعيف"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ.",
+      "en": "«weak» — the khabar, in rafʿ; a resembling adjective.",
+      "tr": "«zayıf» — haber, merfû; sıfat-ı müşebbehe."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغْلِبُهُ",
+      "smart": "يَغْلِبُهُ",
+      "bare": "يغلبه"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes it» — a muḍāriʿ in rafʿ with its object pronoun first; the clause is a second khabar.",
+      "tr": "«ona galip gelir» — merfû muzari, mef'ûl zamiri önde; cümle ikinci haberdir."
+     },
+     "segments": [
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الصُّبْحُ",
+      "smart": "الصُّبْحُ",
+      "bare": "الصبح"
+     },
+     "lex": "subh",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the dawn» — the doer, rafʿ by ḍamma.",
+      "tr": "«sabah» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s22",
+   "translation": {
+    "en": "And the moon is weak: the sun overcomes it.",
+    "tr": "Ve ay zayıftır; güneş ona galip gelir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْقَمَرُ",
+      "smart": "وَالْقَمَرُ",
+      "bare": "والقمر"
+     },
+     "lex": "qamar",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«and» + «the moon» — the mubtadaʾ, in rafʿ.",
+      "tr": "«ve» + «ay» — mübtedâ, merfû."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْقَمَرُ",
+       "lex": "qamar",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفٌ",
+      "smart": "ضَعِيفٌ",
+      "bare": "ضعيف"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ.",
+      "en": "«weak» — the khabar, in rafʿ; a resembling adjective.",
+      "tr": "«zayıf» — haber, merfû; sıfat-ı müşebbehe."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَغْلِبُهُ",
+      "smart": "تَغْلِبُهُ",
+      "bare": "تغلبه"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes it» — a muḍāriʿ in rafʿ with its object pronoun first; the clause is a second khabar.",
+      "tr": "«ona galip gelir» — merfû muzari, mef'ûl zamiri önde; cümle ikinci haberdir."
+     },
+     "segments": [
+      {
+       "form": "تَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسُ",
+      "smart": "الشَّمْسُ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the sun» — the doer, rafʿ by ḍamma.",
+      "tr": "«güneş» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s23",
+   "translation": {
+    "en": "And the sun is weak: the night overcomes it, and the cloud overcomes it.",
+    "tr": "Ve güneş zayıftır; gece ona galip gelir, bulut ona galip gelir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالشَّمْسُ",
+      "smart": "وَالشَّمْسُ",
+      "bare": "والشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«and» + «the sun» — the mubtadaʾ, in rafʿ.",
+      "tr": "«ve» + «güneş» — mübtedâ, merfû."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الشَّمْسُ",
+       "lex": "shams",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفَةٌ",
+      "smart": "ضَعِيفَةٌ",
+      "bare": "ضعيفة"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ مُؤَنَّثَةٌ بِالتَّاءِ.",
+      "en": "«weak» — the khabar, in rafʿ; a resembling adjective.",
+      "tr": "«zayıf» — haber, merfû; sıfat-ı müşebbehe."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغْلِبُهَا",
+      "smart": "يَغْلِبُهَا",
+      "bare": "يغلبها"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes it» — a muḍāriʿ in rafʿ with its object pronoun first; the clause is a second khabar.",
+      "tr": "«ona galip gelir» — merfû muzari, mef'ûl zamiri önde; cümle ikinci haberdir."
+     },
+     "segments": [
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللَّيْلُ",
+      "smart": "اللَّيْلُ",
+      "bare": "الليل"
+     },
+     "lex": "layl",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the night» — the doer, rafʿ by ḍamma.",
+      "tr": "«gece» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَيَغْلِبُهَا",
+      "smart": "وَيَغْلِبُهَا",
+      "bare": "ويغلبها"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "jumla-sifa",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ.",
+      "en": "«and» + «and overcomes it» — a muḍāriʿ in rafʿ with its object pronoun first; the clause is a second khabar.",
+      "tr": "«ve» + «ve ona galip gelir» — merfû muzari, mef'ûl zamiri önde; cümle ikinci haberdir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْغَيْمُ",
+      "smart": "الْغَيْمُ",
+      "bare": "الغيم"
+     },
+     "lex": "ghaym",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the cloud» — the doer, rafʿ by ḍamma.",
+      "tr": "«bulut» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s24",
+   "translation": {
+    "en": "And the star does not help me, because it is weak.",
+    "tr": "Ve yıldız bana yardım etmez; çünkü o zayıftır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«and» + «not» — the negating lā, no government.",
+      "tr": "«ve» + «değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَا",
+       "lex": "la-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَنْصُرُنِي",
+      "smart": "يَنْصُرُنِي",
+      "bare": "ينصرني"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "«helps me» — rafʿ after the negating lā; the nūn of protection and the speaker's yāʾ as the object.",
+      "tr": "«bana yardım eder» — nefiy lâ'sından sonra merfû; vikâye nûnu ve mütekellim yâsı mef'ûldür."
+     },
+     "segments": [
+      {
+       "form": "يَنْصُرُ",
+       "lex": "nasara",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْكَوْكَبُ",
+      "smart": "الْكَوْكَبُ",
+      "bare": "الكوكب"
+     },
+     "lex": "kawkab",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the star» — the doer, rafʿ by ḍamma.",
+      "tr": "«yıldız» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِأَنَّهُ",
+      "smart": "لِأَنَّهُ",
+      "bare": "لأنه"
+     },
+     "lex": "lianna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالضَّمِيرُ الْمُتَّصِلُ فِي مَحَلِّ نَصْبٍ اسْمُهَا.",
+      "en": "«because it» — the lām of cause on anna; the pronoun is its ism.",
+      "tr": "«çünkü o» — ta'lil lâmı + enne; zamir ismidir."
+     },
+     "segments": [
+      {
+       "form": "لِأَنَّ",
+       "lex": "lianna",
+       "pos": "part"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفٌ",
+      "smart": "ضَعِيفٌ",
+      "bare": "ضعيف"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«weak» — the khabar of anna, in rafʿ.",
+      "tr": "«zayıf» — enne'nin haberi, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s25",
+   "translation": {
+    "en": "And the moon does not help me, because it is weak.",
+    "tr": "Ve ay bana yardım etmez; çünkü o zayıftır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«and» + «not» — the negating lā, no government.",
+      "tr": "«ve» + «değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَا",
+       "lex": "la-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَنْصُرُنِي",
+      "smart": "يَنْصُرُنِي",
+      "bare": "ينصرني"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "«helps me» — rafʿ after the negating lā; the nūn of protection and the speaker's yāʾ as the object.",
+      "tr": "«bana yardım eder» — nefiy lâ'sından sonra merfû; vikâye nûnu ve mütekellim yâsı mef'ûldür."
+     },
+     "segments": [
+      {
+       "form": "يَنْصُرُ",
+       "lex": "nasara",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْقَمَرُ",
+      "smart": "الْقَمَرُ",
+      "bare": "القمر"
+     },
+     "lex": "qamar",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the moon» — the doer, rafʿ by ḍamma.",
+      "tr": "«ay» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِأَنَّهُ",
+      "smart": "لِأَنَّهُ",
+      "bare": "لأنه"
+     },
+     "lex": "lianna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالضَّمِيرُ الْمُتَّصِلُ فِي مَحَلِّ نَصْبٍ اسْمُهَا.",
+      "en": "«because it» — the lām of cause on anna; the pronoun is its ism.",
+      "tr": "«çünkü o» — ta'lil lâmı + enne; zamir ismidir."
+     },
+     "segments": [
+      {
+       "form": "لِأَنَّ",
+       "lex": "lianna",
+       "pos": "part"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفٌ",
+      "smart": "ضَعِيفٌ",
+      "bare": "ضعيف"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«weak» — the khabar of anna, in rafʿ.",
+      "tr": "«zayıf» — enne'nin haberi, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s26",
+   "translation": {
+    "en": "And the sun does not help me, because it is weak.",
+    "tr": "Ve güneş bana yardım etmez; çünkü o zayıftır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَلَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«and» + «not» — the negating lā, no government.",
+      "tr": "«ve» + «değil/-mez» — nefiy lâ'sı, amel etmez."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَا",
+       "lex": "la-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَنْصُرُنِي",
+      "smart": "تَنْصُرُنِي",
+      "bare": "تنصرني"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "«helps me» — rafʿ after the negating lā; the nūn of protection and the speaker's yāʾ as the object.",
+      "tr": "«bana yardım eder» — nefiy lâ'sından sonra merfû; vikâye nûnu ve mütekellim yâsı mef'ûldür."
+     },
+     "segments": [
+      {
+       "form": "تَنْصُرُ",
+       "lex": "nasara",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسُ",
+      "smart": "الشَّمْسُ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«the sun» — the doer, rafʿ by ḍamma.",
+      "tr": "«güneş» — fâil, damme ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لِأَنَّهَا",
+      "smart": "لِأَنَّهَا",
+      "bare": "لأنها"
+     },
+     "lex": "lianna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالضَّمِيرُ الْمُتَّصِلُ فِي مَحَلِّ نَصْبٍ اسْمُهَا.",
+      "en": "«because it (f.)» — the lām of cause on anna; the pronoun is its ism.",
+      "tr": "«çünkü o» — ta'lil lâmı + enne; zamir ismidir."
+     },
+     "segments": [
+      {
+       "form": "لِأَنَّ",
+       "lex": "lianna",
+       "pos": "part"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "ضَعِيفَةٌ",
+      "smart": "ضَعِيفَةٌ",
+      "bare": "ضعيفة"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«weak» — the khabar of anna, in rafʿ.",
+      "tr": "«zayıf» — enne'nin haberi, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s27",
+   "translation": {
+    "en": "And Allah helps me.",
+    "tr": "Ve Allah bana yardım eder."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَيَنْصُرُنِي",
+      "smart": "وَيَنْصُرُنِي",
+      "bare": "وينصرني"
+     },
+     "lex": "nasara",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "ya-al-mutakallim",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَيَنْصُرُ فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«and helps me» — a muḍāriʿ in rafʿ; the nūn of protection and the speaker's yāʾ as the object.",
+      "tr": "«ve bana yardım eder» — merfû muzari; vikâye nûnu ve mütekellim yâsı mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَنْصُرُ",
+       "lex": "nasara",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهُ",
+      "smart": "اللهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«Allah» — the doer, in rafʿ.",
+      "tr": "«Allah» — lafza-i celâl, fâil, merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s28",
+   "translation": {
+    "en": "Because Allah is living; He does not die.",
+    "tr": "Çünkü Allah diridir, ölmez."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لِأَنَّ",
+      "smart": "لِأَنَّ",
+      "bare": "لأن"
+     },
+     "lex": "lianna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ.",
+      "en": "«because» — the lām of cause on anna.",
+      "tr": "«çünkü» — ta'lil lâmı + enne."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَيٌّ",
+      "smart": "حَيٌّ",
+      "bare": "حي"
+     },
+     "lex": "hayy",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«living» — the khabar of anna, in rafʿ.",
+      "tr": "«diri» — enne'nin haberi, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَمُوتُ",
+      "smart": "يَمُوتُ",
+      "bare": "يموت"
+     },
+     "lex": "mata",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ (أَوْ حَالٌ).",
+      "en": "«dies» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«ölür» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s29",
+   "translation": {
+    "en": "And ever-remaining; He does not vanish.",
+    "tr": "Ve bâkîdir, kaybolmaz."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَبَاقٍ",
+      "smart": "وَبَاقٍ",
+      "bare": "وباق"
+     },
+     "lex": "baqi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَخَبَرُ أَنَّ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ الْمَحْذُوفَةِ — اسْمٌ مَنْقُوصٌ، وَالتَّنْوِينُ عِوَضٌ عَنِ الْيَاءِ.",
+      "en": "«and» + «ever-remaining» — the khabar in rafʿ by an estimated ḍamma on the dropped yāʾ: a manqūṣ noun, its tanwīn standing in for the yāʾ.",
+      "tr": "«ve» + «bâkî» — düşen yâ üzerinde takdîrî damme ile merfû haber: mankûs isim; tenvin yânın ivazıdır."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "بَاقٍ",
+       "lex": "baqi",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغِيبُ",
+      "smart": "يَغِيبُ",
+      "bare": "يغيب"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«vanishes» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«kaybolur» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s30",
+   "translation": {
+    "en": "And strong; nothing overcomes Him.",
+    "tr": "Ve güçlüdür; O'na hiçbir şey galip gelemez."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَقَوِيٌّ",
+      "smart": "وَقَوِيٌّ",
+      "bare": "وقوي"
+     },
+     "lex": "qawi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَخَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ عَلَى فَعِيلٍ.",
+      "en": "«and» + «strong» — the khabar, in rafʿ; a resembling adjective on faʿīl.",
+      "tr": "«ve» + «güçlü» — haber, merfû; faîl vezninde sıfat-ı müşebbehe."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَوِيٌّ",
+       "lex": "qawi",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغْلِبُهُ",
+      "smart": "يَغْلِبُهُ",
+      "bare": "يغلبه"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes Him» — rafʿ after the negating lā; the pronoun «Him» is the object, placed before the doer.",
+      "tr": "«ona galip gelir» — nefiy lâ'sından sonra merfû; «ona» zamiri öne alınmış mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَيْءٌ",
+      "smart": "شَيْءٌ",
+      "bare": "شيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ مُؤَخَّرٌ.",
+      "en": "«anything» — the doer, rafʿ by ḍamma.",
+      "tr": "«hiçbir şey» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s31",
+   "translation": {
+    "en": "And Ibrāhīm knew that Allah was his Lord.",
+    "tr": "Ve İbrâhim Allah'ın kendi Rabbi olduğunu bildi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَعَرَفَ",
+      "smart": "وَعَرَفَ",
+      "bare": "وعرف"
+     },
+     "lex": "arafa",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «knew» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «bildi» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عَرَفَ",
+       "lex": "arafa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّهُ",
+      "smart": "رَبُّهُ",
+      "bare": "ربه"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«his Lord» — the khabar of anna, in rafʿ; annexed to «his».",
+      "tr": "«onun Rabbi» — enne'nin haberi, merfû; «o»na muzâf."
+     },
+     "segments": [
+      {
+       "form": "رَبُّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s32",
+   "translation": {
+    "en": "Because Allah is living; He does not die.",
+    "tr": "Çünkü Allah diridir, ölmez."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لِأَنَّ",
+      "smart": "لِأَنَّ",
+      "bare": "لأن"
+     },
+     "lex": "lianna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لِلتَّعْلِيلِ، وَأَنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ.",
+      "en": "«because» — the lām of cause on anna.",
+      "tr": "«çünkü» — ta'lil lâmı + enne."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَيٌّ",
+      "smart": "حَيٌّ",
+      "bare": "حي"
+     },
+     "lex": "hayy",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«living» — the khabar of anna, in rafʿ.",
+      "tr": "«diri» — enne'nin haberi, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَمُوتُ",
+      "smart": "يَمُوتُ",
+      "bare": "يموت"
+     },
+     "lex": "mata",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ ثَانٍ (أَوْ حَالٌ).",
+      "en": "«dies» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«ölür» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s33",
+   "translation": {
+    "en": "And that Allah is ever-remaining; He does not vanish.",
+    "tr": "Ve Allah'ın bâkî olduğunu, kaybolmadığını."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَاقٍ",
+      "smart": "بَاقٍ",
+      "bare": "باق"
+     },
+     "lex": "baqi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ الْمَحْذُوفَةِ — اسْمٌ مَنْقُوصٌ، وَالتَّنْوِينُ عِوَضٌ عَنِ الْيَاءِ.",
+      "en": "«ever-remaining» — the khabar in rafʿ by an estimated ḍamma on the dropped yāʾ: a manqūṣ noun, its tanwīn standing in for the yāʾ.",
+      "tr": "«bâkî» — düşen yâ üzerinde takdîrî damme ile merfû haber: mankûs isim; tenvin yânın ivazıdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغِيبُ",
+      "smart": "يَغِيبُ",
+      "bare": "يغيب"
+     },
+     "lex": "ghaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "hollow-verbs",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«vanishes» — rafʿ after the negating lā; the doer is concealed.",
+      "tr": "«kaybolur» — nefiy lâ'sından sonra merfû; fâil gizli zamirdir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s34",
+   "translation": {
+    "en": "And that Allah is strong; nothing overcomes Him.",
+    "tr": "Ve Allah'ın güçlü olduğunu; O'na hiçbir şeyin galip gelemediğini."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوِيٌّ",
+      "smart": "قَوِيٌّ",
+      "bare": "قوي"
+     },
+     "lex": "qawi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ — صِفَةٌ مُشَبَّهَةٌ عَلَى فَعِيلٍ.",
+      "en": "«strong» — the khabar, in rafʿ; a resembling adjective on faʿīl.",
+      "tr": "«güçlü» — haber, merfû; faîl vezninde sıfat-ı müşebbehe."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "لَا نَافِيَةٌ لَا عَمَلَ لَهَا.",
+      "en": "«not» — the negating lā, no government.",
+      "tr": "«değil/-mez» — nefiy lâ'sı, amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَغْلِبُهُ",
+      "smart": "يَغْلِبُهُ",
+      "bare": "يغلبه"
+     },
+     "lex": "ghalaba",
+     "pos": "verb",
+     "grammar": [
+      "la-nafiya",
+      "mudari-marfu",
+      "jumla-sifa"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بَعْدَ لَا النَّافِيَةِ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ — وَالْجُمْلَةُ خَبَرٌ ثَانٍ.",
+      "en": "«overcomes Him» — rafʿ after the negating lā; the pronoun «Him» is the object, placed before the doer.",
+      "tr": "«ona galip gelir» — nefiy lâ'sından sonra merfû; «ona» zamiri öne alınmış mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "يَغْلِبُ",
+       "lex": "ghalaba",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَيْءٌ",
+      "smart": "شَيْءٌ",
+      "bare": "شيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ مُؤَخَّرٌ.",
+      "en": "«anything» — the doer, rafʿ by ḍamma.",
+      "tr": "«hiçbir şey» — fâil, damme ile merfû."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s35",
+   "translation": {
+    "en": "And Ibrāhīm knew that Allah is the Lord of the star!",
+    "tr": "Ve İbrâhim Allah'ın yıldızın Rabbi olduğunu bildi!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَعَرَفَ",
+      "smart": "وَعَرَفَ",
+      "bare": "وعرف"
+     },
+     "lex": "arafa",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «knew» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «bildi» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عَرَفَ",
+       "lex": "arafa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمُ",
+      "smart": "إِبْرَاهِيمُ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the doer; a foreign name, a diptote.",
+      "tr": "«İbrâhim» — fâil; yabancı özel isim, gayr-i munsarıf."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّ",
+      "smart": "رَبُّ",
+      "bare": "رب"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the Lord» — the khabar of anna, in rafʿ; annexed.",
+      "tr": "«Rabbi» — enne'nin haberi, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكَوْكَبِ",
+      "smart": "الْكَوْكَبِ",
+      "bare": "الكوكب"
+     },
+     "lex": "kawkab",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«of the star» — the annexed noun, in jarr.",
+      "tr": "«yıldızın» — muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s36",
+   "translation": {
+    "en": "And that Allah is the Lord of the moon!",
+    "tr": "Ve Allah'ın ayın Rabbi olduğunu!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّ",
+      "smart": "رَبُّ",
+      "bare": "رب"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the Lord» — the khabar of anna, in rafʿ; annexed.",
+      "tr": "«Rabbi» — enne'nin haberi, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْقَمَرِ",
+      "smart": "الْقَمَرِ",
+      "bare": "القمر"
+     },
+     "lex": "qamar",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«of the moon» — the annexed noun, in jarr.",
+      "tr": "«ayın» — muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s37",
+   "translation": {
+    "en": "And that Allah is the Lord of the sun!",
+    "tr": "Ve Allah'ın güneşin Rabbi olduğunu!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّ",
+      "smart": "رَبُّ",
+      "bare": "رب"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the Lord» — the khabar of anna, in rafʿ; annexed.",
+      "tr": "«Rabbi» — enne'nin haberi, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسِ",
+      "smart": "الشَّمْسِ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«of the sun» — the annexed noun, in jarr.",
+      "tr": "«güneşin» — muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s38",
+   "translation": {
+    "en": "And that Allah is the Lord of the worlds!",
+    "tr": "Ve Allah'ın âlemlerin Rabbi olduğunu!"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَنَّ",
+      "smart": "وَأَنَّ",
+      "bare": "وأن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَحَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ نَصْبٍ مَفْعُولُ عَرَفَ.",
+      "en": "«and» + «that» — a particle like a verb: naṣb on its ism, rafʿ on its khabar; the clause is the verb's object.",
+      "tr": "«ve» + «-dığını» — fiile benzeyen harf: ismini nasb, haberini ref eder; cümle fiilin mef'ûlüdür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَنَّ",
+       "lex": "anna",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ أَنَّ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Allah» — the ism of anna, in naṣb.",
+      "tr": "«Allah» — enne'nin ismi, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّ",
+      "smart": "رَبُّ",
+      "bare": "رب"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ أَنَّ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ.",
+      "en": "«the Lord» — the khabar of anna, in rafʿ; annexed.",
+      "tr": "«Rabbi» — enne'nin haberi, merfû; muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعَالَمِينَ",
+      "smart": "الْعَالَمِينَ",
+      "bare": "العالمين"
+     },
+     "lex": "alam",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ.",
+      "en": "«of the worlds» — the annexed noun; its jarr shown by the yāʾ, as a word attached to the sound masculine plural.",
+      "tr": "«âlemlerin» — muzâfun ileyh; cem'-i müzekker sâlime mülhak olduğu için yâ ile mecrûr."
+     },
+     "punctAfter": "!"
+    }
+   ]
+  },
+  {
+   "id": "s39",
+   "translation": {
+    "en": "And Allah guided Ibrāhīm and made him a prophet and an intimate friend.",
+    "tr": "Ve Allah İbrâhim'e hidâyet etti ve onu peygamber ve halîl kıldı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهَدَى",
+      "smart": "وَهَدَى",
+      "bare": "وهدى"
+     },
+     "lex": "hada",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «guided» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «hidâyet etti» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هَدَى",
+       "lex": "hada",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهُ",
+      "smart": "اللهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«Allah» — the doer, in rafʿ.",
+      "tr": "«Allah» — lafza-i celâl, fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the object; a diptote name.",
+      "tr": "«İbrâhim'i» — mef'ûl-i bih; gayr-i munsarıf özel isim."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجَعَلَهُ",
+      "smart": "وَجَعَلَهُ",
+      "bare": "وجعله"
+     },
+     "lex": "jaala",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَعَلَ فِعْلٌ مَاضٍ يَنْصِبُ مَفْعُولَيْنِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ، وَالْهَاءُ مَفْعُولٌ بِهِ أَوَّلُ.",
+      "en": "«and made him» — a māḍī that takes two objects; the doer «He» is concealed; «him» is the first object.",
+      "tr": "«ve onu kıldı» — iki mef'ûl alan mâzî; fâil gizli «O»; «onu» birinci mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَعَلَ",
+       "lex": "jaala",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَبِيًّا",
+      "smart": "نَبِيًّا",
+      "bare": "نبيا"
+     },
+     "lex": "nabi",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«a prophet» — the second object, in naṣb.",
+      "tr": "«peygamber» — ikinci mef'ûl, mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَخَلِيلًا",
+      "smart": "وَخَلِيلًا",
+      "bare": "وخليلا"
+     },
+     "lex": "khalil",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَخَلِيلًا مَعْطُوفٌ عَلَى نَبِيًّا مَنْصُوبٌ — فَعِيلٌ بِمَعْنَى فَاعِلٍ.",
+      "en": "«and an intimate friend» — joined to «a prophet», in naṣb; faʿīl in the sense of fāʿil.",
+      "tr": "«ve halîl» — nebiyyen'e ma'tûf, mansub; fâil mânâsında faîl."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "خَلِيلًا",
+       "lex": "khalil",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s40",
+   "translation": {
+    "en": "And Allah commanded Ibrāhīm to call his people and to keep them from worshipping the idols.",
+    "tr": "Ve Allah İbrâhim'e kavmini çağırmasını ve onları putlara tapmaktan alıkoymasını emretti."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَأَمَرَ",
+      "smart": "وَأَمَرَ",
+      "bare": "وأمر"
+     },
+     "lex": "amara-v",
+     "pos": "verb",
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "«and» + «commanded» — a māḍī built on fatḥa.",
+      "tr": "«ve» + «emretti» — fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَمَرَ",
+       "lex": "amara-v",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهُ",
+      "smart": "اللهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«Allah» — the doer, in rafʿ.",
+      "tr": "«Allah» — lafza-i celâl, fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِبْرَاهِيمَ",
+      "smart": "إِبْرَاهِيمَ",
+      "bare": "إبراهيم"
+     },
+     "lex": "ibrahim",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "«Ibrāhīm» — the object; a diptote name.",
+      "tr": "«İbrâhim'i» — mef'ûl-i bih; gayr-i munsarıf özel isim."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "أَنْ",
+      "smart": "أَنْ",
+      "bare": "أن"
+     },
+     "lex": "an-masdariyya",
+     "pos": "part",
+     "grammar": [
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "حَرْفٌ مَصْدَرِيٌّ نَاصِبٌ — وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ جَرٍّ بِحَرْفِ جَرٍّ مَحْذُوفٍ (أَمَرَهُ بِأَنْ…).",
+      "en": "«to» — the maṣdar-making particle; the clause stands under an unspoken jarr letter («commanded him to…»).",
+      "tr": "«-masını» — masdariyye harfi; cümle hazfedilmiş cer harfinin mahallindedir («ona … emretti»)."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَدْعُوَ",
+      "smart": "يَدْعُوَ",
+      "bare": "يدعو"
+     },
+     "lex": "daa",
+     "pos": "verb",
+     "grammar": [
+      "an-masdariyya",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ عَلَى الْوَاوِ، وَالْفَاعِلُ مُسْتَتِرٌ: هُوَ.",
+      "en": "«call» — in naṣb by an, the fatḥa written on the wāw; the doer is concealed.",
+      "tr": "«çağırmasını» — en ile mansub; fetha vâv üzerinde zâhirdir; fâil gizli."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوْمَهُ",
+      "smart": "قَوْمَهُ",
+      "bare": "قومه"
+     },
+     "lex": "qawm",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "«his people» — the object; annexed to «his».",
+      "tr": "«kavmini» — mef'ûl; «o»na muzâf."
+     },
+     "segments": [
+      {
+       "form": "قَوْمَ",
+       "lex": "qawm",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَيَمْنَعَهُمْ",
+      "smart": "وَيَمْنَعَهُمْ",
+      "bare": "ويمنعهم"
+     },
+     "lex": "manaa",
+     "pos": "verb",
+     "grammar": [
+      "atf-nasaq",
+      "an-masdariyya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَيَمْنَعَ مَعْطُوفٌ عَلَى يَدْعُوَ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُمْ مَفْعُولٌ بِهِ.",
+      "en": "«and keep them» — joined to «call», in naṣb; «them» is the object.",
+      "tr": "«ve onları alıkoymasını» — yed'uve'ye ma'tûf, mansub; «onlar» mef'ûl."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَمْنَعَ",
+       "lex": "manaa",
+       "pos": "verb"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "عِبَادَةِ",
+      "smart": "عِبَادَةِ",
+      "bare": "عبادة"
+     },
+     "lex": "ibada",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِمِنْ، وَهُوَ مُضَافٌ — مَصْدَرُ عَبَدَ.",
+      "en": "«worshipping» — in jarr by «from»; annexed; the maṣdar of ʿabada.",
+      "tr": "«tapmak(tan)» — min ile mecrûr; muzâf; abede'nin masdarı."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَصْنَامِ",
+      "smart": "الْأَصْنَامِ",
+      "bare": "الأصنام"
+     },
+     "lex": "sanam",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«the idols» — the annexed noun, in jarr.",
+      "tr": "«putlara» — muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

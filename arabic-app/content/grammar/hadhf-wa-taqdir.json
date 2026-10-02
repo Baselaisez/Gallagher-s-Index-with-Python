@@ -1,0 +1,87 @@
+{
+ "id": "hadhf-wa-taqdir",
+ "title": {
+  "ar": "الْحَذْفُ وَالتَّقْدِير",
+  "en": "Omission, and the word the parser has to supply",
+  "tr": "Hazf ve takdîr"
+ },
+ "level": 4,
+ "group": "nahw",
+ "amil": "الْمَحْذُوفُ يَعْمَلُ عَمَلَ الْمَذْكُورِ — an omitted governor governs exactly as a written one does",
+ "classicalSources": [
+  "قواعد الإعراب (ابن هشام) — الباب الرابع: في الحذف",
+  "مغني اللبيب (ابن هشام) — الباب السادس",
+  "الكافية (ابن الحاجب) — حذف المبتدإ والخبر"
+ ],
+ "question": {
+  "tr": [
+   "Bu cümlede bir rükün eksik mi?",
+   "Eksikse: yerine ne KONUR? (Takdîr, tahmin değil, delîli olan bir tamamlamadır.)",
+   "Onu koyduran karîne nedir — önceki söz mü, hâl mi, mânânın kendisi mi?"
+  ],
+  "en": [
+   "Is a pillar of this sentence missing?",
+   "If so, what is PUT IN ITS PLACE? (A taqdir is a supplied word with evidence, not a guess.)",
+   "What licenses it — the previous speech, the situation, or the meaning itself?"
+  ]
+ },
+ "plain": {
+  "en": "Arabic drops words freely, and the parser puts them back. عَلِيلٌ is a khabar with no mubtada written — the iʿrab says «the khabar of an omitted mubtada, estimated as أَنَا». The estimate is part of the analysis, not an apology for it, and it must be licensed by something.",
+  "tr": "Arapça kelimeleri serbestçe düşürür; i'râb onları geri koyar. «عَلِيلٌ» mübtedâsı yazılmamış bir haberdir — i'râb şöyle der: «takdîri أَنَا olan mahzûf bir mübtedânın haberi». Takdîr, tahlîlin bir parçasıdır, özrü değil; ve bir karîneye dayanmak zorundadır."
+ },
+ "explanation": {
+  "en": "**What may be dropped.** Almost anything, given a signal: the mubtada (عَلِيلٌ = أَنَا عَلِيلٌ), the khabar (لَوْلَا زَيْدٌ = لَوْلَا زَيْدٌ مَوْجُودٌ), the verb (زَيْدًا — أَيْ اضْرِبْ زَيْدًا), the mawṣūf, the muḍāf (وَاسْأَلِ الْقَرْيَةَ = أَهْلَ الْقَرْيَةِ), the answer of an oath, the answer of a condition, and the ʿāmil of every mustaqarr jarr phrase in the language.\n\n**Two rules govern all of it.**\n\n1. **الْحَذْفُ لَا بُدَّ لَهُ مِنْ دَلِيلٍ.** Nothing is dropped without something to put it back: the words before, the situation in front of the speakers, or a meaning that admits of only one completion. Where no signal exists, the sentence is not elliptical — it is broken.\n2. **الْمَحْذُوفُ يَعْمَلُ عَمَلَ الْمَذْكُورِ.** The omitted word still GOVERNS. That is why a bare jarr phrase can be a khabar (its estimated ʿāmil carries a concealed doer) and why زَيْدًا standing alone is manṣūb — an unwritten verb put it there.\n\n**A taqdīr is a claim, and it can be wrong.** The books argue about them: is the khabar of لَوْلَا estimated as مَوْجُودٌ or as something narrower? Is وَاسْأَلِ الْقَرْيَةَ a dropped muḍāf or a majāz? Naming the estimate is what makes the disagreement possible, which is the point of naming it at all.\n\n**Which is why the app writes it out.** Wherever this library's iʿrāb says «خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ», it names the estimate immediately after — تَقْدِيرُهُ أَنَا, تَقْدِيرُهُ هَذَا, تَقْدِيرُهُ الشَّيْطَانُ. An analysis that says a word is missing and does not say which word has not finished.\n\n**And the estimate is not always unique.** سَهَرٌ دَائِمٌ can be read as the khabar of an omitted mubtada (عِلَّتِي سَهَرٌ) or as a mubtada whose khabar is omitted (بِي سَهَرٌ). Both are licensed; the surface settles neither; and saying so is the honest analysis rather than a failure of it.",
+  "tr": "**Neler düşebilir.** Karîne bulunmak şartıyla hemen her şey: mübtedâ («عَلِيلٌ» = أَنَا عَلِيلٌ), haber (لَوْلَا زَيْدٌ = لَوْلَا زَيْدٌ مَوْجُودٌ), fiil («زَيْدًا» — yani اضْرِبْ زَيْدًا), mevsûf, muzâf (وَاسْأَلِ الْقَرْيَةَ = أَهْلَ الْقَرْيَةِ), kasemin cevabı, şartın cevabı ve dildeki her müstakar câr-mecrûrun âmili.\n\n**Hepsini iki kāide idare eder.**\n\n1. **الْحَذْفُ لَا بُدَّ لَهُ مِنْ دَلِيلٍ.** Geri koyacak bir şey olmadan hiçbir şey düşürülmez: önceki söz, mütekellimlerin önündeki hâl, yahut tek bir tamamlamaya müsait olan mânâ. Karîne yoksa cümle hazifli değil, BOZUKtur.\n2. **الْمَحْذُوفُ يَعْمَلُ عَمَلَ الْمَذْكُورِ.** Mahzûf kelime yine de AMEL EDER. Çıplak bir câr-mecrûrun haber olabilmesinin (takdîr edilen âmili müstetir bir fâil taşır) ve tek başına duran «زَيْدًا»nın mansub olmasının (onu oraya yazılmamış bir fiil koymuştur) sebebi budur.\n\n**Takdîr bir iddiadır ve yanlış olabilir.** Kitaplar bunları tartışır: «لَوْلَا»nın haberi «مَوْجُودٌ» diye mi takdîr edilir, daha dar bir şeyle mi? «وَاسْأَلِ الْقَرْيَةَ» hazf-i muzâf mıdır, mecâz mıdır? İhtilâfı mümkün kılan şey, takdîrin adının konmasıdır; adının konmasının bütün maksadı da budur.\n\n**Uygulamanın onu yazmasının sebebi budur.** Bu kütüphanenin i'râbı «خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ» dediği her yerde, hemen ardından takdîri de söyler — تَقْدِيرُهُ أَنَا، تَقْدِيرُهُ هَذَا، تَقْدِيرُهُ الشَّيْطَانُ. Bir kelimenin eksik olduğunu söyleyip hangi kelime olduğunu söylemeyen tahlîl bitmemiştir.\n\n**Ve takdîr her zaman tek değildir.** «سَهَرٌ دَائِمٌ», mahzûf bir mübtedânın haberi (عِلَّتِي سَهَرٌ) yahut haberi mahzûf bir mübtedâ (بِي سَهَرٌ) okunabilir. İkisinin de karînesi vardır; yüzey hiçbirini tayin etmez; ve bunu söylemek, tahlîlin kusuru değil, dürüst hâlidir."
+ },
+ "examples": [
+  {
+   "ar": "قَالَ لِي كَيْفَ أَنْتَ قُلْتُ عَلِيلٌ.",
+   "en": "«He said to me: how are you? I said: ill.» — عَلِيلٌ is the khabar of an omitted mubtada, estimated as أَنَا.",
+   "tr": "«Bana ‹nasılsın› dedi, ‹hastayım› dedim.» — «عَلِيلٌ», takdîri «أَنَا» olan mahzûf bir mübtedânın haberidir.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s1"
+  },
+  {
+   "ar": "الْهِلَالُ وَاللهِ.",
+   "en": "«The crescent, by God!» — the mubtada هَذَا is omitted, and so is the answer of the oath.",
+   "tr": "«Hilâl, vallahi!» — mübtedâ «هَذَا» da, kasemin cevabı da mahzûftur.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s2"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«عَلِيلٌ — mübtedâ»",
+   "right": "«عَلِيلٌ — mahzûf mübtedânın haberi, takdîri أَنَا»",
+   "why": {
+    "en": "A single indefinite noun cannot open a sentence as a mubtada without a licence. It is a khabar, and its subject is the speaker, standing in front of the questioner.",
+    "tr": "Tek başına nekre bir isim, bir müsevvig olmadan mübtedâ olarak cümleye başlayamaz. O bir haberdir ve öznesi, soranın karşısında duran mütekellimdir."
+   }
+  },
+  {
+   "wrong": "«Mahzûf olduğu için amel etmez»",
+   "right": "«الْمَحْذُوفُ يَعْمَلُ عَمَلَ الْمَذْكُورِ»",
+   "why": {
+    "en": "The whole doctrine of the mustaqarr jarr phrase depends on this: an estimated كَائِنٌ carries a concealed doer and therefore a predication. An omitted word is absent from the page, not from the analysis.",
+    "tr": "Müstakar câr-mecrûr doktrininin tamamı buna dayanır: takdîr edilen «كَائِنٌ» müstetir bir fâil, dolayısıyla bir isnâd taşır. Mahzûf kelime sayfada yoktur, tahlîlde vardır."
+   }
+  },
+  {
+   "wrong": "«Takdîr, i'râbı kurtarmak için uydurulur»",
+   "right": "«Takdîrin bir DELÎLİ olmak zorundadır»",
+   "why": {
+    "en": "Without a signal the sentence is not elliptical but broken, and an estimate nothing licenses is not an analysis. That requirement is what keeps taqdir from becoming a way of parsing anything into anything.",
+    "tr": "Karîne olmadan cümle hazifli değil bozuktur; hiçbir şeyin izin vermediği bir takdîr de tahlîl değildir. Takdîrin, her şeyi her şeye çevirmenin yolu hâline gelmesini önleyen şart budur."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "mubtada-khabar",
+  "zarf-mustaqarr-wa-laghw",
+  "ahwal-al-musnad-ilayh",
+  "anwa-al-jumal"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
+}

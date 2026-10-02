@@ -1,0 +1,85 @@
+name: Qissa CI
+
+on:
+  push:
+    paths:
+      - 'arabic-app/**'
+  pull_request:
+    paths:
+      - 'arabic-app/**'
+
+jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Set up Node 20+
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate wasiyyat-abi-hanifa package
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          cd arabic-app
+          python tools/validate_content.py content/samples/wasiyyat-abi-hanifa
+
+      - name: Validate yunus-wa-al-hut package
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          cd arabic-app
+          python tools/validate_content.py content/samples/yunus-wa-al-hut
+
+      - name: Validate deeds-are-by-intentions package
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          cd arabic-app
+          python tools/validate_content.py content/user-uploads/deeds-are-by-intentions
+
+      - name: Rebuild prototype with build_prototype.py
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          cd arabic-app
+          python tools/build_prototype.py
+
+      # Catches a contributor who edited content but forgot to run build_prototype.py:
+      # both the embedded reader data block and the generated catalog index must match
+      # what the packages produce.
+      - name: Verify reader.html and catalog.json are up to date
+        run: |
+          cd arabic-app
+          git diff --exit-code prototype/reader.html content/catalog.json
+        if: always()
+
+      - name: Install npm dependencies
+        run: |
+          cd arabic-app
+          npm install
+
+      # Set up Chromium for Playwright smoke test via browser-actions/setup-chrome.
+      # The smoke_test.js uses playwright-core (no bundled browser), so we must
+      # provide a Chrome binary. This action installs Chrome and exports its path
+      # via CHROME_BIN; we pass this to the smoke test via CHROMIUM_PATH.
+      - name: Set up Chrome for Playwright
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Run smoke test
+        env:
+          # browser-actions/setup-chrome exports CHROME_BIN pointing to the installed Chrome binary.
+          # The smoke_test.js checks CHROMIUM_PATH first, then falls back to system Chrome locations.
+          CHROMIUM_PATH: ${{ env.CHROME_BIN }}
+        run: |
+          cd arabic-app
+          node tools/smoke_test.js

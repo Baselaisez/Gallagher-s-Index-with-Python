@@ -1,0 +1,74 @@
+{
+ "id": "jam",
+ "title": {
+  "ar": "الْجَمْعُ — أَنْ يُجْمَعَ بَيْنَ مُتَعَدِّدٍ فِي حُكْمٍ",
+  "en": "The jamʿ — many things gathered under one ruling",
+  "tr": "Cem' — birden çok şeyin tek hükümde toplanması"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — الجمع: أن يجمع بين متعدد في حكم"
+ ],
+ "question": {
+  "en": [
+   "How many things, and how many rulings? «Wealth and sons are the adornment of this life» — two things, ONE ruling. «Youth, idleness and wealth are a ruin for a man» — three things, one ruling. That is the JAMʿ.",
+   "What does the engine look for? A list joined by the waw that stands as ONE mubtada (or one ism of inna) and takes ONE khabar — DabtEngine's own seats, read back.",
+   "What is it not? Not a taqsim — there each thing gets its own; here the ruling is shared."
+  ],
+  "tr": [
+   "Kaç şey, kaç hüküm? «Mal ve oğullar dünya hayatının süsüdür» — iki şey, TEK hüküm. «Gençlik, boşluk ve zenginlik kişi için fesattır» — üç şey, tek hüküm. CEM' budur.",
+   "Motor neye bakar? Vâv ile bağlanmış, TEK mübtedâ (yahut inne'nin tek ismi) olarak duran ve TEK haber alan bir liste — DabtEngine'in kendi koltukları, geri okunmuş.",
+   "Ne değildir? Taksîm değildir — orada her şey kendininkini alır; burada hüküm ortaktır."
+  ]
+ },
+ "plain": {
+  "en": "The jamʿ: several things are named and one ruling covers them all — «wealth and sons are the adornment of this life». The engine reads a wāw-joined list standing as one subject with one predicate.",
+  "tr": "Cem': birkaç şey anılır ve tek bir hüküm hepsini kuşatır — «mal ve oğullar dünya hayatının süsüdür». Motor, tek özne olarak duran vâvlı bir listeyi tek yüklemiyle okur."
+ },
+ "explanation": {
+  "en": "The JAMʿ is أَنْ يُجْمَعَ بَيْنَ مُتَعَدِّدٍ فِي حُكْمٍ — to gather many things under ONE ruling. الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا (18:46): wealth and sons, two mubtadas joined by the waw, and one khabar — adornment — over both. Abu l-ʿAtahiya gathers three: إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ مَفْسَدَةٌ لِلْمَرْءِ — youth, idleness and wealth are one ruin. The figure is in the ARITHMETIC: n things, one ruling.\n\nWHAT THE ENGINE CLAIMS: the BadiEngine reads the jamʿ off DabtEngine's seats — an atf list whose head is the mubtada (or the ism of إِنَّ) and whose members all hang on one khabar; two members or more, one predicate. It names the set and the ruling word. It cannot judge whether the gathering is apt — that is the poet's choice, not the syntax's.",
+  "tr": "CEM' أَنْ يُجْمَعَ بَيْنَ مُتَعَدِّدٍ فِي حُكْمٍ'dir — birden çok şeyi TEK hükümde toplamak. الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا (Kehf 18:46): mal ve oğullar, vâv ile bağlanmış iki mübtedâ, ve ikisini de kuşatan tek haber — süs. Ebü'l-Atâhiye üçünü toplar: إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ مَفْسَدَةٌ لِلْمَرْءِ — gençlik, boşluk ve zenginlik tek fesattır. Sanat ARİTMETİKtedir: n şey, tek hüküm.\n\nMOTORUN İDDİASI: BadiEngine cem'i DabtEngine'in koltuklarından okur — başı mübtedâ (yahut إِنَّ'nin ismi) olan ve üyeleri tek habere asılan bir atıf listesi; iki yahut daha çok üye, tek yüklem. Kümeyi ve hüküm kelimesini adlandırır. Toplamanın yerinde olup olmadığına hükmedemez — o şairin seçimidir, sentaksın değil."
+ },
+ "examples": [
+  {
+   "ar": "الْمَالُ وَالْبَنُونَ زِينَةُ الْحَيَاةِ الدُّنْيَا",
+   "en": "18:46 — two things, one ruling.",
+   "tr": "Kehf 18:46 — iki şey, tek hüküm.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s2"
+  },
+  {
+   "ar": "إِنَّ الشَّبَابَ وَالْفَرَاغَ وَالْجِدَةَ * مَفْسَدَةٌ لِلْمَرْءِ أَيُّ مَفْسَدَةٍ",
+   "en": "Abu l-ʿAtahiya — three things, one ruling.",
+   "tr": "Ebü'l-Atâhiye — üç şey, tek hüküm.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s3"
+  },
+  {
+   "ar": "أَنْ يُجْمَعَ بَيْنَ مُتَعَدِّدٍ فِي حُكْمٍ",
+   "en": "the definition.",
+   "tr": "tarif.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s1"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«Her vâvlı liste cem' sanatıdır»",
+   "right": "«Cem', listenin TEK hükümde toplanmasıdır; hüküm dağılıyorsa taksîmdir»",
+   "why": {
+    "en": "A list is syntax; the jamʿ is the one ruling that binds it — a list whose members each get their own ruling is a taqsim.",
+    "tr": "Liste sentakstır; cem', onu bağlayan tek hükümdür — her üyesi kendi hükmünü alan liste taksîmdir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "tafriq",
+  "taqsim",
+  "atf-nasaq",
+  "ilm-al-badi",
+  "laff-wa-nashr",
+  "jam-maa-tafriq-taqsim"
+ ]
+}

@@ -1,0 +1,627 @@
+{
+ "chapter": 17,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Had you come to me, I would have honored you. (The matn's frame for لَوْ: the coming did NOT happen, so neither did the honoring — both clauses mazi, and the jawab wears its lam.)",
+    "tr": "Bana gelmiş olsaydın, sana ikram ederdim. (Metnin لَوْ kalıbı: geliş OLMADI, ikram da olmadı — iki cümle de mâzî; cevap lâmını giyer.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَوْ",
+      "smart": "لَوْ",
+      "bare": "لو"
+     },
+     "lex": "law",
+     "pos": "part",
+     "grammar": [
+      "in-shartiyya",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "حَرْفُ امْتِنَاعٍ لِامْتِنَاعٍ — يُقَيِّدُ حُصُولَ الْجَزَاءِ فِي الْمَاضِي بِشَرْطٍ قَطْعِيِّ الِانْتِفَاءِ.",
+      "en": "لَوْ — the third conditional, and the strangest: IMTINA' LI-IMTINA', «refusal for refusal». Where إِنْ doubts and إِذَا expects, لَوْ states two certainties at once: the shart certainly did NOT happen, and therefore neither did the jawab. It ties the jazā to its shart in the PAST — which is why, by rule, both clauses come as mazi.",
+      "tr": "لَوْ — üçüncü şart edatı ve en tuhafı: İMTİNÂ Lİ-İMTİNÂ, «olmadığı için olmadı». إِنْ şüphelenir, إِذَا bekler; لَوْ ise iki kesinliği birden söyler: şart kesinlikle OLMADI, dolayısıyla cevap da olmadı. Cezâyı şartına GEÇMİŞTE bağlar — kāide gereği iki cümlenin de mâzî gelmesi bundandır."
+     }
+    },
+    {
+     "surface": {
+      "full": "جِئْتَنِي",
+      "smart": "جِئْتَنِي",
+      "bare": "جئتني"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "ya-al-mutakallim",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "فِعْلُ الشَّرْطِ، مَاضٍ، وَالتَّاءُ فَاعِلٌ، وَالنُّونُ لِلْوِقَايَةِ وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«had you COME to me» — the shart verb, a mazi as the rule demands; the ta is the doer, and the protective nun shields the verb's ending from the speaker's ya.",
+      "tr": "«bana GELSEYDİN» — şart fiili; kāidenin istediği gibi mâzî. Tâ fâildir; vikāye nûnu, fiilin sonunu mütekellim yâsından korur."
+     },
+     "segments": [
+      {
+       "form": "جِئْ",
+       "lex": "jaa",
+       "pos": "verb"
+      },
+      {
+       "form": "تَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      },
+      {
+       "form": "نِ",
+       "lex": "ni-wiqaya",
+       "pos": "part"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَأَكْرَمْتُكَ",
+      "smart": "لَأَكْرَمْتُكَ",
+      "bare": "لأكرمتك"
+     },
+     "lex": "akrama",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "اللَّامُ وَاقِعَةٌ فِي جَوَابِ لَوْ، وَالْفِعْلُ مَاضٍ، وَالتَّاءُ فَاعِلٌ وَالْكَافُ مَفْعُولٌ بِهِ.",
+      "en": "«I would have HONORED you» — the jawab, opening on the lam that لَوْ loves (لَامُ جَوَابِ لَوْ), a Form IV mazi with the speaker's ta as doer and your kaf as object. Both halves of the frame now stand: unreal past against unreal past, the lam marking where the answer begins.",
+      "tr": "«sana İKRAM EDERDİM» — cevap; لَوْ'in sevdiği lâmla açılır (لَامُ جَوَابِ لَوْ). IV. bâbdan mâzî; konuşanın tâsı fâil, senin kâfın mef'ûl. Kalıbın iki yakası artık tamam: gerçekleşmemiş geçmişe karşı gerçekleşmemiş geçmiş; lâm, cevabın başladığı yeri işaretler."
+     },
+     "segments": [
+      {
+       "form": "لَ",
+       "lex": "lam-jawab",
+       "pos": "part"
+      },
+      {
+       "form": "أَكْرَمْ",
+       "lex": "akrama",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَوْ جِئْتَنِي لَأَكْرَمْتُكَ",
+     "ar": "لَوْ حَرْفُ امْتِنَاعٍ لِامْتِنَاعٍ — الشَّرْطُ وَالْجَزَاءُ مَاضِيَانِ عَلَى الْأَصْلِ، وَاللَّامُ فِي الْجَوَابِ.",
+     "en": "The asl of لَوْ complete: unreal shart, unreal jawab, both mazi, the lam on the answer.",
+     "tr": "لَوْ'in aslı tamam: gerçekleşmemiş şart, gerçekleşmemiş cevap, ikisi de mâzî; lâm cevabın üzerinde."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "Had he obeyed you in much of the affair, you would surely have come to grief. (al-Hujurat 49:7 — a MUDARI after لَوْ: the obeying is pictured continuing, time after time, in the past.)",
+    "tr": "Eğer o, birçok işte size uysaydı, sıkıntıya düşerdiniz. (Hucurât 49:7 — لَوْ'den sonra MUZÂRİ: itaat, geçmişte zaman zaman sürüp gider diye resmedilir.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَوْ",
+      "smart": "لَوْ",
+      "bare": "لو"
+     },
+     "lex": "law",
+     "pos": "part",
+     "grammar": [
+      "in-shartiyya",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "حَرْفُ امْتِنَاعٍ لِامْتِنَاعٍ.",
+      "en": "The law of unreality again — but watch what follows it this time.",
+      "tr": "Yine imtinâ لَوْ'i — fakat bu kez ardından gelene bak."
+     }
+    },
+    {
+     "surface": {
+      "full": "يُطِيعُكُمْ",
+      "smart": "يُطِيعُكُمْ",
+      "bare": "يطيعكم"
+     },
+     "lex": "ataa",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "hikayat-al-hal",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ — عَلَى خِلَافِ الْأَصْلِ بَعْدَ لَوْ — وَ«كُمْ» مَفْعُولٌ بِهِ، وَالْفَاعِلُ مُسْتَتِرٌ يَعُودُ عَلَى النَّبِيِّ ﷺ.",
+      "en": "«had he OBEYED you» — a MUDARI where لَوْ's rule demands a mazi, and the violation is the teaching: the present tense pictures the obeying as CONTINUING, renewed with every opinion of yours he might have followed — «had he kept obeying you, time after time». Say أَطَاعَكُمْ and one act is denied; the mudari denies a habit.",
+      "tr": "«size UYSAYDI» — لَوْ'in kāidesi mâzî isterken MUZÂRİ; ve ihlâl, dersin kendisidir: şimdiki kip, itaati SÜREN bir şey olarak resmeder — uyacağı her görüşünüzle yenilenen: «size uya uya gitseydi». أَطَاعَكُمْ de: tek bir iş nefyedilir; muzâri bir âdeti nefyeder."
+     },
+     "segments": [
+      {
+       "form": "يُطِيعُ",
+       "lex": "ataa",
+       "pos": "verb"
+      },
+      {
+       "form": "كُمْ",
+       "lex": "pron-2mp",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«in…» — hanging on the obeying.",
+      "tr": "«…-de» — itaate bağlanır."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَثِيرٍ",
+      "smart": "كَثِيرٍ",
+      "bare": "كثير"
+     },
+     "lex": "kathir",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«much» — in jarr under fi.",
+      "tr": "«birçok» — fî altında mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — حُرِّكَ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«of» — its nun taking a helping fatha before the article's resting alif.",
+      "tr": "«…-den» — nûnu, harf-i tarifin sâkin elifinden önce yardımcı fetha alır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَمْرِ",
+      "smart": "الْأَمْرِ",
+      "bare": "الأمر"
+     },
+     "lex": "amr",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the affair» — closing the phrase: in much of the affair.",
+      "tr": "«işin» — ibareyi kapatır: işin birçoğunda."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَعَنِتُّمْ",
+      "smart": "لَعَنِتُّمْ",
+      "bare": "لعنتم"
+     },
+     "lex": "anita",
+     "pos": "verb",
+     "grammar": [
+      "hikayat-al-hal",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "اللَّامُ فِي جَوَابِ لَوْ، وَ«عَنِتُّمْ» مَاضٍ مِنْ عَنِتَ — أُدْغِمَتْ تَاءُ الْفِعْلِ فِي تَاءِ الْفَاعِلِ — وَالتَّاءُ فَاعِلٌ.",
+      "en": "«you would have COME TO GRIEF» — the jawab with its lam, and a small sarf jewel: عَنِتَ ends in a ta, the subject suffix begins with one, and the two run together under a shadda — عَنِتْتُمْ spoken as عَنِتُّمْ. The shadda on the ta is the receipt of the meeting. And note the frame: the SHART broke the rule (mudari), the JAWAB keeps it (mazi) — each tense chosen for its own message.",
+      "tr": "«SIKINTIYA DÜŞERDİNİZ» — lâmıyla cevap; ve küçük bir sarf mücevheri: عَنِتَ tâ ile biter, fâil eki tâ ile başlar ve ikisi şedde altında birleşir — عَنِتْتُمْ, söylenişte عَنِتُّمْ. Tâdaki şedde, buluşmanın makbuzudur. Ve çatıya dikkat: ŞART kuralı bozdu (muzâri), CEVAP korudu (mâzî) — her kip kendi mesajı için seçilmiş."
+     },
+     "segments": [
+      {
+       "form": "لَ",
+       "lex": "lam-jawab",
+       "pos": "part"
+      },
+      {
+       "form": "عَنِتُّمْ",
+       "lex": "anita",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَوْ يُطِيعُكُمْ فِي كَثِيرٍ مِنَ الْأَمْرِ لَعَنِتُّمْ",
+     "ar": "مُضَارِعٌ بَعْدَ لَوْ — لِإِفَادَةِ الِاسْتِمْرَارِ فِي الزَّمَنِ الْمَاضِي وَقْتًا بَعْدَ وَقْتٍ.",
+     "en": "A mudari after law: the denied obeying is pictured as a CONTINUING habit in the past — the first licensed tense-shift.",
+     "tr": "Lev'den sonra muzâri: nefyedilen itaat, geçmişte SÜREN bir âdet olarak resmedilir — ruhsatlı ilk zaman kayması."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "Allah mocks them. (al-Baqara 2:15 — a MUDARI where an ism fail was expected: the requital renews, time after time.)",
+    "tr": "Allah onlarla istihzâ eder. (Bakara 2:15 — ism-i fâil beklenen yerde MUZÂRİ: karşılık, zaman zaman yenilenir.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "اللَّهُ",
+      "smart": "اللَّهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "The Name as mubtada.",
+      "tr": "Lafza-i celâl, mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَسْتَهْزِئُ",
+      "smart": "يَسْتَهْزِئُ",
+      "bare": "يستهزئ"
+     },
+     "lex": "istahzaa",
+     "pos": "verb",
+     "grammar": [
+      "form-x-verbs",
+      "hikayat-al-hal",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْجُمْلَةُ خَبَرٌ — وَجَاءَ الْمُضَارِعُ مَوْضِعَ اسْمِ الْفَاعِلِ لِإِفَادَةِ التَّجَدُّدِ وَقْتًا بَعْدَ وَقْتٍ.",
+      "en": "«MOCKS them» — Form X of the hamza-final ه ز أ, and the tense is the teaching: the aya answers the mockers' noun-sentence (إِنَّمَا نَحْنُ مُسْتَهْزِئُونَ — a settled trait) not with the matching ism fail مُسْتَهْزِئٌ but with a MUDARI: His requital is not a standing attribute but a renewing act, arriving again and again, time after time. Chapter 16's doctrine wielded as rhetoric.",
+      "tr": "«İSTİHZÂ EDER» — hemze-i lâm'lı ه ز أ kökünün X. bâbı; ve kip, dersin kendisidir: âyet, alaycıların isim cümlesine (إِنَّمَا نَحْنُ مُسْتَهْزِئُونَ — yerleşik bir vasıf) denk ism-i fâil مُسْتَهْزِئٌ ile değil, MUZÂRİ ile cevap verir: O'nun karşılığı duran bir sıfat değil, zaman zaman yeniden gelen bir iştir. 16. bâbın kāidesi, belâgat olarak kuşanılmış."
+     },
+     "segments": [
+      {
+       "form": "يَسْتَهْزِئُ",
+       "lex": "istahzaa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِهِمْ",
+      "smart": "بِهِمْ",
+      "bare": "بهم"
+     },
+     "lex": "bi",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِالْفِعْلِ.",
+      "en": "«them» — the mockery's target under the ba.",
+      "tr": "«onlarla» — istihzânın hedefi, bâ altında."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "هِمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "اللَّهُ يَسْتَهْزِئُ بِهِمْ",
+     "ar": "مُضَارِعٌ مَوْضِعَ اسْمِ الْفَاعِلِ — لِتَجَدُّدِ الْجَزَاءِ وَقْتًا بَعْدَ وَقْتٍ.",
+     "en": "A mudari standing where the ism fail was expected: the requital RENEWS — the mockers' settled trait is answered with an ever-arriving act.",
+     "tr": "İsm-i fâil beklenen yerde muzâri: karşılık YENİLENİR — alaycıların yerleşik vasfına, tekrar tekrar gelen bir işle cevap verilir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "And could you but see when they are made to stand before the Fire… (al-An'am 6:27 — the mudari after لَوْ shows the future as PRESENT: the scene is set playing before the eyes.)",
+    "tr": "Ateşin başında durduruldukları zaman bir görsen… (En'âm 6:27 — لَوْ'den sonraki muzâri istikbâli ŞİMDİ gibi gösterir: sahne, gözlerin önünde oynatılır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَوْ",
+      "smart": "وَلَوْ",
+      "bare": "ولو"
+     },
+     "lex": "law",
+     "pos": "part",
+     "grammar": [
+      "in-shartiyya",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«لَوْ» شَرْطِيَّةٌ — وَجَوَابُهَا مَحْذُوفٌ: لَرَأَيْتَ أَمْرًا عَظِيمًا.",
+      "en": "«and COULD you but…» — law again, and this time its JAWAB is omitted: «you would have seen a tremendous thing» — left unsaid because no words would carry it. The omission is itself the rhetoric: the hearer's imagination completes what the tongue declines to bound.",
+      "tr": "«bir GÖRSEN…» — yine lev; ve bu kez CEVABI hazfedilmiş: «muazzam bir şey görürdün» — hiçbir söz taşıyamayacağı için söylenmemiş. Hazfin kendisi belâgattir: dilin sınırlamaktan kaçındığını, dinleyenin muhayyilesi tamamlar."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "لَوْ",
+       "lex": "law",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تَرَى",
+      "smart": "تَرَى",
+      "bare": "ترى"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ — بَعْدَ لَوْ — تُقَدَّرُ ضَمَّتُهُ عَلَى الْأَلِفِ، وَالْفَاعِلُ أَنْتَ.",
+      "en": "«you SEE» — a mudari after law, and the boldest of the shifts: the standing-before-the-Fire has not happened, yet the Speaker — whose word cannot miss — sets it before you in the present tense, as a scene ALREADY PLAYING. The books call this حِكَايَةُ الْحَالِ: narrating a state as if you stood inside it.",
+      "tr": "«GÖRÜRSÜN» — lev'den sonra muzâri; kaymaların en cüretlisi: ateşin önünde durduruluş henüz olmamıştır; fakat sözü şaşmaz olan Konuşan, onu sana şimdiki kipte, OYNAMAKTA OLAN bir sahne gibi koyar. Kitaplar buna حِكَايَةُ الْحَالِ der: bir hâli, içinde duruyormuşsun gibi anlatmak."
+     },
+     "segments": [
+      {
+       "form": "تَرَى",
+       "lex": "raa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِذْ",
+      "smart": "إِذْ",
+      "bare": "إذ"
+     },
+     "lex": "idh",
+     "pos": "noun",
+     "grammar": [
+      "maful-fih",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ لِمَا مَضَى مِنَ الزَّمَانِ مَبْنِيٌّ عَلَى السُّكُونِ — وَهُنَا لِلْمُسْتَقْبَلِ تَنْزِيلًا لَهُ مَنْزِلَةَ الْمَاضِي.",
+      "en": "«WHEN…» — إِذْ, the zarf of PAST time, a mabni noun mudaf to the whole clause after it. And it deepens the shift: a past-time adverb pointing at a future scene — because for the One who speaks, the future is as settled as the past. Tense and time pull apart, deliberately, twice in three words.",
+      "tr": "«…-DIĞI ZAMAN» — إِذْ: GEÇMİŞ zaman zarfı; ardındaki cümlenin tamamına muzâf, mebnî bir isim. Ve kaymayı derinleştirir: geçmiş zarfı, gelecek bir sahneyi gösteriyor — çünkü Konuşan için istikbâl, mâzî kadar kesindir. Kip ile zaman, üç kelimede iki kez, kasıtla ayrışır."
+     }
+    },
+    {
+     "surface": {
+      "full": "وُقِفُوا",
+      "smart": "وُقِفُوا",
+      "bare": "وقفوا"
+     },
+     "lex": "waqafa",
+     "pos": "verb",
+     "grammar": [
+      "naib-al-fail",
+      "hikayat-al-hal"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، وَالْوَاوُ نَائِبُ فَاعِلٍ.",
+      "en": "«they are MADE TO STAND» — the passive of وَقَفَ: they do not stand, they are stood; the group's waw is the deputy doer. The agent unnamed, the standing absolute.",
+      "tr": "«DURDURULDUKLARI» — وَقَفَ'nin meçhûlü: durmazlar, durdurulurlar; cemâat vâvı nâib-i fâildir. Fâil anılmaz; duruş mutlaktır."
+     },
+     "segments": [
+      {
+       "form": "وُقِفُوا",
+       "lex": "waqafa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "part",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«before / at» — the jarr letter of the standing.",
+      "tr": "«başında» — duruşun cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "النَّارِ",
+      "smart": "النَّارِ",
+      "bare": "النار"
+     },
+     "lex": "nar",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ.",
+      "en": "«the Fire» — and the aya breaks off, its jawab still unsaid.",
+      "tr": "«ateşin» — ve âyet, cevabı hâlâ söylenmemiş, yarıda durur."
+     },
+     "punctAfter": "…"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَلَوْ تَرَى إِذْ وُقِفُوا عَلَى النَّارِ",
+     "ar": "مُضَارِعٌ بَعْدَ لَوْ وَظَرْفُ الْمَاضِي لِلْمُسْتَقْبَلِ — حِكَايَةُ الْحَالِ، وَالْجَوَابُ مَحْذُوفٌ تَهْوِيلًا.",
+     "en": "The future shown as present (the speaker cannot miss) with a past-time zarf pointing forward — hikayat al-hal — and the jawab omitted because no words would bound it.",
+     "tr": "İstikbâl şimdi gibi gösterilir (Konuşan şaşmaz), geçmiş zarfı ileriyi gösterir — hikâyetü'l-hâl — ve cevap, hiçbir sözün sınırlayamayacağı için hazfedilmiştir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "He sent the winds, and they STIR up a cloud… (Fatir 35:9 — a mudari set between two mazis: the wondrous image is made present before the eyes.)",
+    "tr": "Rüzgârları gönderdi; onlar bulutu KALDIRIR… (Fâtır 35:9 — iki mâzî arasında muzâri: eşsiz manzara gözlerin önüne getirilir.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَرْسَلَ",
+      "smart": "أَرْسَلَ",
+      "bare": "أرسل"
+     },
+     "lex": "arsala",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "fail"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالْفَاعِلُ مُسْتَتِرٌ يَعُودُ عَلَى اللَّهِ.",
+      "en": "«He SENT» — a plain mazi: the sending is reported as done.",
+      "tr": "«GÖNDERDİ» — düz mâzî: gönderiş, olmuş bitmiş diye bildirilir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الرِّيَاحَ",
+      "smart": "الرِّيَاحَ",
+      "bare": "الرياح"
+     },
+     "lex": "rih",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "«the winds» — the object, plural of رِيح.",
+      "tr": "«rüzgârları» — mef'ûl; رِيح'in çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَتُثِيرُ",
+      "smart": "فَتُثِيرُ",
+      "bare": "فتثير"
+     },
+     "lex": "athara",
+     "pos": "verb",
+     "grammar": [
+      "form-iv-verbs",
+      "hikayat-al-hal",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَالْفِعْلُ مُضَارِعٌ — عَلَى خِلَافِ مُقْتَضَى الظَّاهِرِ، إِذِ الْفِعْلَانِ حَوْلَهُ مَاضِيَانِ — لِاسْتِحْضَارِ الصُّورَةِ الْعَجِيبَةِ.",
+      "en": "«and they STIR up» — the aya's jewel. Both verbs around it are mazi (أَرْسَلَ before, فَسُقْنَاهُ after), so the surface demanded فَأَثَارَتْ. Instead a MUDARI: the winds driving the cloud is the one image in the sequence that displays the Power, so it alone is lifted out of past time and SET PLAYING — اسْتِحْضَارُ الصُّورَةِ, the picture made present. Form IV of the hollow ث و ر: أَثَارَ → تُثِيرُ.",
+      "tr": "«KALDIRIR» — âyetin mücevheri. Çevresindeki iki fiil de mâzî (önce أَرْسَلَ, sonra فَسُقْنَاهُ); zâhir فَأَثَارَتْ isterdi. Yerine MUZÂRİ: rüzgârların bulutu sürmesi, dizideki Kudreti gösteren tek manzaradır; bu yüzden yalnız o, geçmiş zamandan çıkarılıp OYNATILIR — اسْتِحْضَارُ الصُّورَةِ: resmin şimdiye getirilişi. Ecvef ث و ر'un IV. bâbı: أَثَارَ → تُثِيرُ."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "part"
+      },
+      {
+       "form": "تُثِيرُ",
+       "lex": "athara",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "سَحَابًا",
+      "smart": "سَحَابًا",
+      "bare": "سحابا"
+     },
+     "lex": "sahab",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "«a cloud» — indefinite: any cloud, every cloud; the wonder is the mechanism, not one instance.",
+      "tr": "«bir bulut» — nekre: herhangi bir bulut, her bulut; hayret tek olayda değil, düzenektedir."
+     },
+     "punctAfter": "…"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "أَرْسَلَ الرِّيَاحَ فَتُثِيرُ سَحَابًا",
+     "ar": "مُضَارِعٌ بَيْنَ مَاضِيَيْنِ — لِاسْتِحْضَارِ الصُّورَةِ الدَّالَّةِ عَلَى الْقُدْرَةِ.",
+     "en": "A mudari set between two mazis: of the whole sequence, only the image that displays the Power is lifted into the present.",
+     "tr": "İki mâzî arasında muzâri: bütün dizide yalnız Kudreti gösteren manzara şimdiye kaldırılır."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "naib-al-fail",
+  "title": {
+    "ar": "نَائِبُ الْفَاعِل (الْمَبْنِيُّ لِلْمَجْهُول)",
+    "en": "The naib al-fail (passive and its deputy subject)",
+    "tr": "Nâib-i fâil (meçhul sîga)"
+  },
+  "level": 4,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Ne?",
+      "Kim?"
+    ],
+    "en": [
+      "What?",
+      "Who?"
+    ]
+  },
+  "mamul": "marfu",
+  "classicalSources": [
+    "العوامل (البيركوي) — المرفوعات",
+    "إظهار الأسرار (البيركوي)",
+    "الفوائد الضيائية (ملا جامي)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "When nobody is named as doing it, the thing acted on moves into the doer's place.",
+    "tr": "Yapan anılmadığında, kendisine iş yapılan şey fâilin yerine geçer."
+  },
+  "explanation": {
+    "en": "When the doer is not named, Arabic rebuilds the verb rather than adding a word for «by». The verb is put into the majhul pattern and the former direct object steps up into the doer's place, in RAF', as the نَائِبُ الْفَاعِل — the deputy subject. The vowelling is fixed: in the past, damma on the first letter and kasra on the letter before the last (سَأَلَ ← سُئِلَ, كَتَبَ ← كُتِبَ); in the present, damma on the prefix and fatha before the last (يَسْأَلُ ← يُسْأَلُ, يَكْتُبُ ← يُكْتَبُ). Hollow verbs shift to kasra instead: قَالَ ← قِيلَ, يَقُولُ ← يُقَالُ. Birgivi counts the naib al-fail second among the nine marfu'at, immediately after the fa'il, because it occupies the same position.",
+    "tr": "Fâil zikredilmediğinde Arapça, «tarafından» diye bir kelime eklemek yerine fiili yeniden kurar. Fiil meçhul kalıbına sokulur ve önceki mef'ûlün bih, fâilin yerine geçerek REF hâlini alır: NÂİB-İ FÂİL. Harekeleme sabittir: mazide ilk harf ötreli, son harften önceki kesreli olur (سَأَلَ ← سُئِلَ, كَتَبَ ← كُتِبَ); muzaride önek ötreli, son harften önceki fethalı olur (يَسْأَلُ ← يُسْأَلُ, يَكْتُبُ ← يُكْتَبُ). Ecvef fiiller kesreye döner: قَالَ ← قِيلَ, يَقُولُ ← يُقَالُ. Birgivî, nâib-i fâili dokuz merfûâtın ikincisi sayar, hemen fâilden sonra; çünkü onun yerini tutar."
+  },
+  "examples": [
+    {
+      "ar": "وَلَا تَتَكَلَّمْ بَيْنَ يَدَيِ الْعَامَّةِ إِلَّا بِمَا تُسْأَلُ عَنْهُ.",
+      "en": "Do not speak before the common people except about what you are asked — تُسْأَلُ is majhul; its deputy subject is the hidden «you».",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s8",
+      "tr": "Avamın huzurunda ancak sorulan şey hakkında konuş — تُسْأَلُ meçhuldür, nâib-i fâili gizli «sen» zamiridir."
+    },
+    {
+      "ar": "كُتِبَ الدَّرْسُ.",
+      "en": "The lesson was written — the former object الدَّرْسَ now stands in raf' as naib al-fail.",
+      "tr": "Ders yazıldı — eskiden mef'ûl olan الدَّرْسَ şimdi nâib-i fâil olarak ref hâlindedir."
+    },
+    {
+      "ar": "قِيلَ لَهُ.",
+      "en": "It was said to him — a hollow verb takes kasra in the passive, not damma.",
+      "tr": "Ona denildi — ecvef fiil meçhulde damme değil kesre alır."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "كُتِبَ الدَّرْسَ",
+      "right": "كُتِبَ الدَّرْسُ",
+      "why": {
+        "en": "Once the verb is passive its object BECOMES the deputy subject and must take raf'. Leaving it in nasb is the commonest passive error.",
+        "tr": "Fiil meçhul olunca mef'ûl, nâib-i fâile DÖNÜŞÜR ve ref alır. Onu mansub bırakmak en sık yapılan meçhul hatasıdır."
+      }
+    },
+    {
+      "wrong": "كُتِبَ الدَّرْسُ مِنْ قِبَلِ الطَّالِبِ (في الفصيح)",
+      "right": "كَتَبَ الطَّالِبُ الدَّرْسَ",
+      "why": {
+        "en": "Classical Arabic does not name the doer of a passive verb — that is the whole point of «majhul» (unknown). If the doer matters, use the active. The «مِنْ قِبَلِ» construction is a modern calque.",
+        "tr": "Klasik Arapçada meçhul fiilin fâili zikredilmez — «meçhul» (bilinmeyen) denmesinin sebebi budur. Fâil önemliyse malum sîga kullanılır. «مِنْ قِبَلِ» kalıbı modern bir çeviri alışkanlığıdır."
+      }
+    },
+    {
+      "wrong": "قُولَ لَهُ",
+      "right": "قِيلَ لَهُ",
+      "why": {
+        "en": "Hollow verbs take kasra on the first letter in the passive, and the weak letter turns to ي: قَالَ ← قِيلَ, not *قُولَ.",
+        "tr": "Ecvef fiiller meçhulde ilk harflerini kesreli alır ve illet harfi yâya döner: قَالَ ← قِيلَ, *قُولَ değil."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "fail",
+    "maful-bihi",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

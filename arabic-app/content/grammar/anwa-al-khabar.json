@@ -1,0 +1,86 @@
+{
+  "id": "anwa-al-khabar",
+  "title": {
+    "ar": "أَنْوَاعُ الْخَبَر",
+    "en": "The three kinds of khabar",
+    "tr": "Haberin üç çeşidi"
+  },
+  "level": 3,
+  "group": "nahw",
+  "mamul": "marfu",
+  "classicalSources": [
+    "العوامل (البيركوي)",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "What you say about the topic can be one word, a whole clause, or a preposition with its noun. Only the first kind shows a case ending.",
+    "tr": "Mübteda hakkında söylenen şey tek kelime, tam bir cümle yahut bir harf-i cerle ismi olabilir. Yalnız birincisinde i'rab görünür."
+  },
+  "question": {
+    "tr": [
+      "Nedir? Kimdir?",
+      "Niçindir? Nerededir?"
+    ],
+    "en": [
+      "What is it? Who is it?",
+      "For what — or where — is it?"
+    ]
+  },
+  "explanation": {
+    "en": "The khabar comes in three shapes and only the first shows a case ending. (1) مُفْرَد — a single word: «الْعِلْمُ صِفَةٌ», and here the damma is visible. (2) جُمْلَة — a whole clause, verbal or nominal, which then stands «in the position of raf'». (3) شِبْهُ جُمْلَة — a preposition with its noun, or an adverb: «الْبَيِّنَةُ لِلْمُدَّعِي», «the proof is on the claimant». That third kind trips people up because there is no marfu' word to point at. The classical answer is that the phrase is attached to an omitted word — كَائِنٌ or مُسْتَقِرٌّ, «existing / located» — and THAT is the real khabar; the phrase merely occupies its position. Note that كَانَ and its sisters take the same three shapes for their khabar, and لَيْسَ in «وَالْإِلْهَامُ لَيْسَ مِنْ أَسْبَابِ الْمَعْرِفَةِ» has a shibh jumla khabar standing in nasb.",
+    "tr": "Haber üç şekilde gelir ve yalnız birincisinde i'rab alâmeti görünür. (1) Müfred — tek kelime: «الْعِلْمُ صِفَةٌ»; damme açıkça görülür. (2) Cümle — fiil veya isim cümlesi; bu durumda «ref mahallinde» bulunur. (3) Şibh-i cümle — câr-mecrûr yahut zarf: «الْبَيِّنَةُ لِلْمُدَّعِي». Üçüncüsü zorlayıcıdır, çünkü işaret edilecek merfû bir kelime yoktur. Klasik cevap şudur: bu terkip mahzûf bir kelimeye — كَائِنٌ veya مُسْتَقِرٌّ — mütealliktir ve asıl haber odur; terkip sadece onun yerini tutar. كَانَ ve kardeşlerinin haberi de aynı üç şekilde gelir; «وَالْإِلْهَامُ لَيْسَ مِنْ أَسْبَابِ الْمَعْرِفَةِ» cümlesinde لَيْسَ'nin haberi nasb mahallinde şibh-i cümledir."
+  },
+  "examples": [
+    {
+      "ar": "الْبَيِّنَةُ لِلْمُدَّعِي وَالْيَمِينُ عَلَى مَنْ أَنْكَرَ.",
+      "en": "Both khabars here are shibh jumla — prepositional phrases standing in the position of raf'.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s3",
+      "chapter": 4,
+      "tr": "Buradaki iki haber de şibh-i cümledir — ref mahallinde câr-mecrûrdur."
+    },
+    {
+      "ar": "وَالْإِلْهَامُ لَيْسَ مِنْ أَسْبَابِ الْمَعْرِفَةِ بِصِحَّةِ الشَّيْءِ.",
+      "en": "Inspiration is not among the causes of knowing — the khabar of لَيْسَ is a prepositional phrase in nasb.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s6",
+      "chapter": 2,
+      "tr": "İlham, bilmenin sebeplerinden değildir — لَيْسَ'nin haberi nasb mahallinde câr-mecrûrdur."
+    },
+    {
+      "ar": "وَالْأَعْيَانُ مَا يَكُونُ لَهُ قِيَامٌ بِذَاتِهِ.",
+      "en": "…that which has subsistence by itself — لَهُ is the fronted khabar of يَكُونُ.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s4",
+      "chapter": 3,
+      "tr": "…kendi zatıyla kâim olan şey — لَهُ, يَكُونُ'nun mukaddem haberidir."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "الْكِتَابُ عَلَى الطَّاوِلَةِ — لَا خَبَرَ لِلْجُمْلَةِ",
+      "right": "«عَلَى الطَّاوِلَةِ» فِي مَحَلِّ رَفْعٍ خَبَرٌ",
+      "why": {
+        "en": "A prepositional phrase can be the khabar. The sentence is complete — «the book is on the table» — even though no word carries a damma.",
+        "tr": "Câr-mecrûr haber olabilir. Hiçbir kelime damme almasa da cümle tamamdır: «kitap masanın üstündedir»."
+      }
+    },
+    {
+      "wrong": "الطَّالِبُ يَجْتَهِدُ — «يَجْتَهِدُ» خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ",
+      "right": "الْجُمْلَةُ الْفِعْلِيَّةُ «يَجْتَهِدُ» فِي مَحَلِّ رَفْعٍ خَبَرٌ",
+      "why": {
+        "en": "The damma on يَجْتَهِدُ is its own raf' as an unmarked mudari', not the raf' of a khabar. The CLAUSE is what occupies the khabar position.",
+        "tr": "يَجْتَهِدُ üzerindeki damme, muzârinin kendi merfûluğudur, haberin i'rabı değil. Haber mahallini tutan CÜMLEdir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "mubtada-khabar",
+    "kana-wa-akhawatuha",
+    "huruf-jarr"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

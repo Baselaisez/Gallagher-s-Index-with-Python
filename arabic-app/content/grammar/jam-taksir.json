@@ -1,0 +1,74 @@
+{
+ "id": "jam-taksir",
+ "title": {
+  "ar": "جَمْعُ التَّكْسِيرِ",
+  "en": "The broken plural",
+  "tr": "Cem-i teksîr (kırık çoğul)"
+ },
+ "level": 3,
+ "group": "sarf",
+ "classicalSources": [
+  "الكافية — الجمع",
+  "البناء"
+ ],
+ "question": {
+  "en": [
+   "Does the plural keep the singular's letters whole and add ـُونَ / ـَات — or does it BREAK the singular's shape (نَجْم → نُجُوم، سُنَّة → سُنَن، شَيْء → أَشْيَاء)?",
+   "Which pattern did it break into? The patterns are heard from the Arabs (samaʿi), not derived — the app stores each plural on its glossary entry.",
+   "Does the broken plural decline like a singular (نُجُومٌ، نُجُومًا، نُجُومٍ), or is it a صِيغَةُ مُنْتَهَى الْجُمُوعِ (جَوَانِب، مَسَاجِد) barred from tanwin?"
+  ],
+  "tr": [
+   "Çoğul, tekilin harflerini bütün bırakıp ـُونَ / ـَات mı ekler — yoksa tekilin şeklini KIRAR mı (نَجْم → نُجُوم، سُنَّة → سُنَن، شَيْء → أَشْيَاء)?",
+   "Hangi kalıba kırıldı? Kalıplar Araptan işitilir (semâî), türetilmez — uygulama her çoğulu sözlük maddesinde saklar.",
+   "Kırık çoğul tekil gibi mi çekilir (نُجُومٌ، نُجُومًا، نُجُومٍ), yoksa tenvin almayan bir صِيغَةُ مُنْتَهَى الْجُمُوعِ mü (جَوَانِب، مَسَاجِد)?"
+  ]
+ },
+ "plain": {
+  "en": "A sound plural adds an ending and leaves the word whole; a BROKEN plural changes the word's inner shape. Which broken pattern a noun takes is heard, not derived, so the app stores it — and the plural then declines like any singular, unless it is one of the heaviest patterns, which refuse tanwin.",
+  "tr": "Sâlim çoğul bir ek koyar, kelimeyi bütün bırakır; KIRIK çoğul kelimenin iç şeklini değiştirir. Bir ismin hangi kırık kalıbı aldığı işitilir, türetilmez; uygulama onu saklar — çoğul sonra her tekil gibi çekilir; en ağır kalıplar hariç, onlar tenvin almaz."
+ },
+ "explanation": {
+  "en": "The sound plurals (جَمْعُ الْمُذَكَّرِ السَّالِمُ, جَمْعُ الْمُؤَنَّثِ السَّالِمُ) keep the singular intact and add an ending. جَمْعُ التَّكْسِيرِ breaks the singular: by changing vowels only (أَسَد → أُسْد), by adding letters (نَجْم → نُجُوم، شَيْء → أَشْيَاء), by dropping them (سُنَّة → سُنَن، شَهِيد → شُهَدَاء changes both), or all at once. The patterns are many — فُعُول، أَفْعَال، فُعَل، فُعَلَاء، فَوَاعِل، مَفَاعِل — and which one a given noun takes is SAMAʿI: the books list them, the dictionaries record them, and no rule predicts نُجُوم rather than أَنْجُم from نَجْم alone. That is why the app stores every plural on its glossary entry instead of deriving it. In iʿrab a broken plural is treated as a SINGULAR word: it takes the three vowels and the tanwin (نُجُومٌ، سُنَنًا، أَشْيَاءَ → the last is a diptote, see below). Two families refuse tanwin: صِيغَةُ مُنْتَهَى الْجُمُوعِ — a plural on فَوَاعِل / مَفَاعِل / أَفَاعِيل (جَوَانِب، مَسَاجِد، مَفَاتِيح) — and the فُعَلَاء / أَفْعِلَاء plurals ending in the alif of femininity (سُعَدَاء، شُهَدَاء); and أَشْيَاء, alone of its shape, is barred too. A diptote plural in the mudaf-ilayh seat shows a fatha for its jarr (حُصُولِ أَشْيَاءَ) — but the ARTICLE or an IDAFA gives the kasra back (فِي جَوَانِبِ شَيْءٍ، السُّعَدَاءِ). Agreement: a broken plural of non-rational things is treated as feminine singular (نُجُومٌ لَامِعَةٌ), which is the doctrine the analyzer's agreement rules follow.",
+  "tr": "Sâlim çoğullar (جَمْعُ الْمُذَكَّرِ السَّالِمُ, جَمْعُ الْمُؤَنَّثِ السَّالِمُ) tekili bozmadan bir ek koyar. جَمْعُ التَّكْسِيرِ tekili kırar: yalnız harekeyi değiştirerek (أَسَد → أُسْد), harf ekleyerek (نَجْم → نُجُوم، شَيْء → أَشْيَاء), harf düşürerek (سُنَّة → سُنَن; شَهِيد → شُهَدَاء ikisini birden) yahut hepsini birden. Kalıplar çoktur — فُعُول، أَفْعَال، فُعَل، فُعَلَاء، فَوَاعِل، مَفَاعِل — ve bir ismin hangisini aldığı SEMÂÎDİR: kitaplar sayar, sözlükler kaydeder; نَجْم'den tek başına نُجُوم'u değil أَنْجُم'u hiçbir kural kestiremez. Bu yüzden uygulama her çoğulu türetmek yerine sözlük maddesinde saklar. İ'râbda kırık çoğul TEKİL bir kelime gibi işlem görür: üç harekeyi ve tenvini alır (نُجُومٌ، سُنَنًا؛ أَشْيَاءَ ise gayr-i munsariftir, aşağıda). İki aile tenvin almaz: صِيغَةُ مُنْتَهَى الْجُمُوعِ — فَوَاعِل / مَفَاعِل / أَفَاعِيل üzerine çoğul (جَوَانِب، مَسَاجِد، مَفَاتِيح) — ve te'nis elifiyle biten فُعَلَاء / أَفْعِلَاء çoğulları (سُعَدَاء، شُهَدَاء); أَشْيَاء da kendi şeklinde tek başına yasaklıdır. Muzâfun ileyh mevkiinde gayr-i munsarif çoğul cerrini fethayla gösterir (حُصُولِ أَشْيَاءَ) — fakat HARF-İ TARİF yahut İZÂFET kesrayı geri verir (فِي جَوَانِبِ شَيْءٍ، السُّعَدَاءِ). Uyum: akılsızların kırık çoğulu müennes tekil sayılır (نُجُومٌ لَامِعَةٌ); tahlilcinin uyum kuralları bu doktrini izler."
+ },
+ "examples": [
+  {
+   "ar": "وَكَأَنَّ النُّجُومَ بَيْنَ دُجَاهَا سُنَنٌ",
+   "en": "فُعُول and فُعَل: two broken plurals in one hemistich.",
+   "tr": "فُعُول ve فُعَل: bir mısrada iki kırık çoğul.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مِنْ حُصُولِ أَشْيَاءَ مُشْرِقَةٍ بِيضٍ فِي جَوَانِبِ شَيْءٍ",
+   "en": "أَشْيَاءَ a diptote in jarr by fatha; جَوَانِبِ given its kasra back by the idafa.",
+   "tr": "أَشْيَاءَ fethayla mecrur gayr-i munsarif; جَوَانِبِ izâfetle kesrasını geri almış.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s5"
+  },
+  {
+   "ar": "عَيْشَ السُّعَدَاءِ وَمَوْتَ الشُّهَدَاءِ",
+   "en": "فُعَلَاء with the alif of femininity — the article restores the kasra.",
+   "tr": "Te'nis elifli فُعَلَاء — harf-i tarif kesrayı geri verir.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«نَجْم'ün çoğulu نَجْمُونَ'dur»",
+   "right": "«نَجْم'ün çoğulu نُجُوم'dur — kırık çoğul; sâlim çoğul yalnız akıllı müzekkerin sıfatları ve alemleri içindir»",
+   "why": {
+    "en": "The sound masculine plural is for rational males (participles, adjectives, names); a thing-noun breaks. The pattern it breaks into is heard, and the glossary stores it.",
+    "tr": "Cem-i müzekker-i sâlim akıllı müzekkerler içindir (ism-i fâiller, sıfatlar, alemler); eşya isimleri kırılır. Kırıldığı kalıp işitilir, sözlük onu saklar."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jam-mudhakkar-salim",
+  "jam-muannath-salim",
+  "mamnu-min-sarf",
+  "al-muthanna",
+  "idafa-definiteness"
+ ]
+}

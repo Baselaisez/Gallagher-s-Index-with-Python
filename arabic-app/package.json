@@ -1,0 +1,19 @@
+{
+  "name": "arabic-app",
+  "version": "1.0.0",
+  "description": "A DuChinese-style app for learning Arabic through graded Islamic stories and audiobooks:\r tap-word dictionary, grammar deep-dives with common-mistake warnings, SRS flashcard games,\r and a lite/premium subscription model with continuously updated content.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright-core": "^1.61.1"
+  }
+}

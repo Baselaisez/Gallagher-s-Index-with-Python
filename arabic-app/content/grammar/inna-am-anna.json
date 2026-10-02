@@ -1,0 +1,41 @@
+{"id": "inna-am-anna",
+ "title": {"ar": "إِنَّ أَمْ أَنَّ؟ — كَسْرُ الْهَمْزَةِ وَفَتْحُهَا",
+           "en": "Inna or anna? Kasra and fatha of the hamza",
+           "tr": "İnne mi enne mi? Hemzenin kesri ve fethi"},
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": ["قطر الندى (ابن هشام)", "مغني اللبيب (ابن هشام)", "الكافية (ابن الحاجب)"],
+ "plain": {
+  "en": "Same particle, two vowels. Where the clause STANDS ON ITS OWN, the hamza takes kasra: إِنَّ. Where the clause can be melted into a masdar and slotted into the outer sentence, it takes fatha: أَنَّ.",
+  "tr": "Aynı harf, iki hareke. Cümle KENDİ BAŞINA duruyorsa hemze kesralıdır: إِنَّ. Cümle bir masdara dönüştürülüp dış cümleye yerleşebiliyorsa fethalıdır: أَنَّ."},
+ "question": {
+  "tr": ["Cümlenin başında mı? → إِنَّ", "«قَالَ»den sonra mı? → إِنَّ", "Masdarla değişebilir mi (-dığını / -diğini)? → أَنَّ"],
+  "en": ["At the sentence's opening? → إِنَّ", "After قَالَ? → إِنَّ", "Replaceable by a masdar ('that…')? → أَنَّ"]},
+ "explanation": {
+  "en": "Ibn Hisham's rule in Qatr al-Nada: the hamza takes KASRA (إِنَّ) wherever the clause cannot be traded for a masdar — at the very start of speech (إِنَّ طَرِيقَ النَّجَاةِ...), after قَالَ and the qawl family (قَالَ إِنَّ اللهَ قَادِرٌ — the saying is quoted whole, not melted down), after the oath (وَاللهِ إِنَّ...), at the head of a sila clause, and before a khabar carrying the lam (إِنَّ زَيْدًا لَقَائِمٌ). It takes FATHA (أَنَّ) wherever the clause DOES stand as a masdar in the outer sentence — as fa'il (بَلَغَنِي أَنَّكَ مُسَافِرٌ = بَلَغَنِي سَفَرُكَ), as maf'ul after verbs of knowing (عَلِمْتُ أَنَّ اللهَ قَادِرٌ = عَلِمْتُ قُدْرَةَ اللهِ), or after a jarr letter. So the learner's working test: sentence-initial → kasra; after a verb → usually fatha, EXCEPT the qawl verbs, which keep kasra because speech is reported, not nominalized. Turkish gives the fatha away: أَنَّ renders as -dığını/-diğini.",
+  "tr": "İbn Hişâm'ın Katrü'n-Nedâ'daki kaidesi: cümle bir masdarla DEĞİŞTİRİLEMİYORSA hemze KESRALIDIR (إِنَّ) — kelâmın başında (إِنَّ طَرِيقَ النَّجَاةِ...), «قَالَ» ve kavil fiillerinden sonra (قَالَ إِنَّ اللهَ قَادِرٌ — söz olduğu gibi aktarılır, masdara erimez), kasemden sonra (وَاللهِ إِنَّ...), sıla cümlesinin başında ve haberi lâm taşıyorken (إِنَّ زَيْدًا لَقَائِمٌ). Cümle dış cümleye bir MASDAR olarak yerleşiyorsa hemze FETHALIDIR (أَنَّ) — fâil olarak (بَلَغَنِي أَنَّكَ مُسَافِرٌ = بَلَغَنِي سَفَرُكَ), bilme fiillerinden sonra mef'ûl olarak (عَلِمْتُ أَنَّ اللهَ قَادِرٌ = عَلِمْتُ قُدْرَةَ اللهِ) veya cer harfinden sonra. Talebenin pratik testi: cümle başında → kesra; fiilden sonra → çoğunlukla fetha, İSTİSNASI kavil fiilleridir — onlardan sonra kesra kalır. Türkçe fethayı ele verir: أَنَّ, -dığını/-diğini diye çevrilir."},
+ "examples": [
+  {"ar": "إِنَّ طَرِيقَ النَّجَاةِ هُوَ مُتَابَعَةُ أَهْلِ السُّنَّةِ وَالْجَمَاعَةِ.",
+   "en": "Sentence-initial — nothing before it to melt into: KASRA.",
+   "tr": "Cümle başı — öncesinde eriyeceği bir şey yok: KESRA.",
+   "sourceStory": "aqaid-ahl-al-sunna", "sentence": "s5"},
+  {"ar": "ادَّعَى أَنَّهُ رَسُولٌ مِنَ اللهِ.",
+   "en": "After a verb, the clause is its maf'ul (= he claimed his being-a-messenger): FATHA.",
+   "tr": "Fiilden sonra, cümle onun mef'ûlüdür (= rasûl olduğunu iddia etti): FETHA.",
+   "sourceStory": "aqaid-ahl-al-sunna", "sentence": "s2"},
+  {"ar": "قَالَ زَيْدٌ إِنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ.",
+   "en": "After قَالَ the hamza keeps KASRA — the saying is quoted whole; the books except the qawl verbs from the after-a-verb fatha.",
+   "tr": "«قَالَ»den sonra hemze KESRALI kalır — söz olduğu gibi nakledilir; kitaplar kavil fiillerini fiilden-sonra-fetha kaidesinden istisna eder."}
+ ],
+ "commonMistakes": [
+  {"wrong": "عَلِمْتُ إِنَّ اللهَ قَادِرٌ",
+   "right": "عَلِمْتُ أَنَّ اللهَ قَادِرٌ",
+   "why": {"en": "After عَلِمَ the clause stands as the verb's object — a masdar in disguise (= I knew Allah's ability) — so the hamza opens: أَنَّ.",
+           "tr": "«عَلِمَ»den sonra cümle, fiilin mef'ûlü yerindedir — gizli bir masdardır (= Allah'ın kudretini bildim) — bu yüzden hemze fethalanır: أَنَّ."}},
+  {"wrong": "قَالَ زَيْدٌ أَنَّ اللهَ قَادِرٌ",
+   "right": "قَالَ زَيْدٌ إِنَّ اللهَ قَادِرٌ",
+   "why": {"en": "After most verbs the fatha test works (علم أنّ، بلغ أنّ) — but قَالَ reports speech as speech. A quoted sentence opens fresh, so its hamza is sentence-initial kasra. Fatha after قال is allowed only when قال means ظنّ ('to reckon'), as some Arabs use it.",
+           "tr": "Çoğu fiilden sonra fetha testi işler (علم أنّ، بلغ أنّ) — fakat قَالَ sözü söz olarak aktarır. Nakledilen cümle yeniden başlar; hemzesi cümle-başı kesrasıdır. قال'den sonra fetha ancak قال «zannetmek» manasına geldiğinde caizdir."}}
+ ],
+ "relatedNotes": ["inna-wa-akhawatuha", "an-masdariyya", "masdar"],
+ "gameSeeds": {"spotTheError": true}}

@@ -1,0 +1,939 @@
+{
+ "chapter": 14,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Truly WE have given you al-Kawthar — so pray to YOUR LORD and sacrifice. (al-Kawthar 108:1-2 — the discourse turns from the speaker to the third person.)",
+    "tr": "Muhakkak Bİz sana Kevser'i verdik — öyleyse RABBİN için namaz kıl ve kurban kes. (Kevser 108:1-2 — söz, birinci şahıstan üçüncü şahsa döner.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّا",
+      "smart": "إِنَّا",
+      "bare": "إنا"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "iltifat"
+     ],
+     "irab": {
+      "ar": "«إِنَّ» حَرْفُ تَوْكِيدٍ وَنَصْبٍ، وَ«نَا» اسْمُهَا فِي مَحَلِّ نَصْبٍ — وَالْكَلَامُ بِضَمِيرِ الْمُتَكَلِّمِ: مِنْ هُنَا يَبْدَأُ الِالْتِفَاتُ.",
+      "en": "إِنَّ with its ism already aboard: the shadda is the sign that this is the emphasis particle plus the fused «na» (mahallan mansub), not the speaker's أَنَا. The discourse opens in the FIRST person — «truly WE» — and holding that register in mind is the whole point: the turning, when it comes two words later, needs a fixed point to turn FROM.",
+      "tr": "İsmi üzerinde kaynaşmış إِنَّ: şedde, bunun te'kîd harfi + bitişik «نَا» (mahallen mansûb) olduğunun alâmetidir; konuşanın أَنَا'sı değildir. Söz BİRİNCİ şahısta açılır — «muhakkak BİZ» — ve bu kipi akılda tutmak işin özüdür: iki kelime sonra gelecek dönüş, kendisinden DÖNÜLECEK sâbit bir nokta ister."
+     },
+     "segments": [
+      {
+       "form": "إِنَّ",
+       "lex": "inna",
+       "pos": "part"
+      },
+      {
+       "form": "نَا",
+       "lex": "pron-1p",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَعْطَيْنَاكَ",
+      "smart": "أَعْطَيْنَاكَ",
+      "bare": "أعطيناك"
+     },
+     "lex": "aata",
+     "pos": "verb",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "form-iv-verbs",
+      "mafulayn"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِـ«نَا»، وَ«نَا» فَاعِلٌ، وَالْكَافُ مَفْعُولُهُ الْأَوَّلُ — وَالْجُمْلَةُ خَبَرُ إِنَّ.",
+      "en": "«We have given you» — mazi built on the sukun for the attached «na» of the doers; the kaf is the FIRST object (أَعْطَى governs two). The clause is inna's khabar, in the position of raf'. Note the persons standing shoulder to shoulder: WE give, YOU receive — takallum and khitab both on stage, the ghayba not yet entered.",
+      "tr": "«Biz sana verdik» — fâil «نَا»sına bitiştiği için sükûn üzere mebnî mâzî; kâf, BİRİNCİ mef'ûldür (أَعْطَى iki mef'ûl alır). Cümle, إِنَّ'nin haberidir, mahallen merfû. Şahısların omuz omuza durduğuna dikkat: BİZ veriyoruz, SEN alıyorsun — tekellüm ile hitâb sahnede, gaybet henüz girmemiştir."
+     },
+     "segments": [
+      {
+       "form": "أَعْطَيْنَا",
+       "lex": "aata",
+       "pos": "verb"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْكَوْثَرَ",
+      "smart": "الْكَوْثَرَ",
+      "bare": "الكوثر"
+     },
+     "lex": "kawthar",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "mafulayn"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
+      "en": "The SECOND object of the giving, in nasb by the plain fatha: al-Kawthar — the abundance, and the river of Paradise by that name.",
+      "tr": "Vermenin İKİNCİ mef'ûlü, zâhir fetha ile mansûb: Kevser — bolluk; ve o adla cennetteki nehir."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَصَلِّ",
+      "smart": "فَصَلِّ",
+      "bare": "فصل"
+     },
+     "lex": "salla",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَ«صَلِّ» أَمْرٌ مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ أَنْتَ.",
+      "en": "The fa of consequence — «so», the command growing out of the gift — and the amr of a naqis verb, built on the DROPPING of its weak letter: صَلِّ from صَلَّى, the kasra standing where the ya fell. The doer is «you», concealed.",
+      "tr": "Tefrî' fâsı — «öyleyse»: emir, ihsandan filizlenir — ve nâkıs fiilin emri, illet harfinin DÜŞMESİ üzere mebnîdir: صَلَّى'dan صَلِّ; yânın düştüğü yerde kesra durur. Fâil, gizli «sen»dir."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "part"
+      },
+      {
+       "form": "صَلِّ",
+       "lex": "salla",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لِرَبِّكَ",
+      "smart": "لِرَبِّكَ",
+      "bare": "لربك"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness",
+      "iltifat",
+      "khilaf-muqtada-al-zahir"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ — وَهُنَا مَوْضِعُ الِالْتِفَاتِ مِنَ التَّكَلُّمِ إِلَى الْغَيْبَةِ: مُقْتَضَى الظَّاهِرِ «فَصَلِّ لَنَا».",
+      "en": "«To your LORD» — and here the discourse TURNS. The Giver spoke as «We»; the surface therefore demanded «so pray to US» (فَصَلِّ لَنَا). Instead the third person enters: your LORD — the name that carries lordship, nurture, ownership. This is ILTIFAT from takallum to ghayba, and the turn is the rhetoric: the gift came intimately, from «Us»; the worship is owed to the Lord in His station.",
+      "tr": "«RABBİN için» — ve söz burada DÖNER. Veren «Biz» diye konuşmuştu; zâhir bu yüzden «bize namaz kıl» (فَصَلِّ لَنَا) isterdi. Yerine üçüncü şahıs girer: RABBİN — rubûbiyeti, terbiyeyi, sahipliği taşıyan isim. Bu, tekellümden gaybete İLTİFÂTtır ve dönüşün kendisi belâgattir: ihsan «Biz»den, yakınlıkla geldi; ibâdet ise makāmındaki Rabbe borçludur."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "رَبِّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَانْحَرْ",
+      "smart": "وَانْحَرْ",
+      "bare": "وانحر"
+     },
+     "lex": "nahara",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«انْحَرْ» أَمْرٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ أَنْتَ.",
+      "en": "«And sacrifice» — the joining waw hangs a second command on the first: amr built on the sukun, its hamza a hamzat al-wasl that melts after the waw. Prayer and sacrifice, the two great acts of devotion, both turned toward the Lord the iltifat just named.",
+      "tr": "«Ve kurban kes» — atıf vâvı ikinci emri birinciye asar: sükûn üzere mebnî emir; hemzesi, vâvdan sonra eriyen vasıl hemzesidir. Namaz ve kurban — iki büyük ibâdet — ikisi de iltifâtın az önce andığı Rabbe yöneltilmiştir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "انْحَرْ",
+       "lex": "nahara",
+       "pos": "verb"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ فَصَلِّ لِرَبِّكَ",
+     "ar": "اِلْتِفَاتٌ مِنَ التَّكَلُّمِ إِلَى الْغَيْبَةِ — مُقْتَضَى الظَّاهِرِ «فَصَلِّ لَنَا».",
+     "en": "Iltifat from first to third person: «We gave» … «so pray to your Lord» — where the surface demanded «pray to Us».",
+     "tr": "Tekellümden gaybete iltifât: «Biz verdik» … «Rabbin için namaz kıl» — zâhir «bize namaz kıl» isterdi."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "And why should I not worship the One who created me — and to Him YOU will be returned? (Ya-Sin 36:22 — the discourse turns from the speaker to those addressed.)",
+    "tr": "Ben, beni yaratana neden ibadet etmeyeyim — ve SİZ O'na döndürüleceksiniz? (Yâsîn 36:22 — söz, birinci şahıstan muhataplara döner.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَمَا",
+      "smart": "وَمَا",
+      "bare": "وما"
+     },
+     "lex": "ma-istifham",
+     "pos": "pron",
+     "grammar": [
+      "anwa-ma",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ بِحَسَبِ مَا قَبْلَهَا، وَ«مَا» اسْتِفْهَامِيَّةٌ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "The interrogative «ma» as mubtada — «what is it to me…?», a question worn by wonder, not a request for information. The speaker is the believer of Ya-Sin, arguing for his own worship.",
+      "tr": "İstifhâm «mâ»sı mübtedâ — «bana ne oluyor ki…?»; bilgi isteyen değil, hayret yüklü bir sorudur. Konuşan, Yâsîn'in mü'minidir; kendi ibâdetinin savunmasını yapar."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "مَا",
+       "lex": "ma-istifham",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لِيَ",
+      "smart": "لِيَ",
+      "bare": "لي"
+     },
+     "lex": "li",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "zarf-mustaqarr-wa-laghw"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرٌ — مُسْتَقَرٌّ.",
+      "en": "«To me» — the jarr pair standing as the khabar, mustaqarr on an omitted amil: what is [there] to me. The lam wears its fatha before the pronoun, as it always does.",
+      "tr": "«Bana» — haber olarak duran câr-mecrûr; mahzûf âmil üzere müstakar: bana ne [var]. Lâm, zamirden önce her zamanki fethasını giyer."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "يَ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "irab": {
+      "ar": "حَرْفُ نَفْيٍ.",
+      "en": "The negation over the coming verb.",
+      "tr": "Gelecek fiilin üzerindeki nefiy."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَعْبُدُ",
+      "smart": "أَعْبُدُ",
+      "bare": "أعبد"
+     },
+     "lex": "abada",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "hal"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ أَنَا — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+      "en": "«[that] I do not worship» — mudari' in raf', its doer the concealed «I»; the clause sits as HAL: what is it to me, in the state of not worshipping? Still the first person — the register the aya will turn away from at its close.",
+      "tr": "«ibadet etmeyeyim» — merfû muzâri; fâili gizli «ben». Cümle HÂL olarak mahallen mansûbtur: bana ne oluyor, ibadet etmez hâlde? Hâlâ birinci şahıs — âyetin sonunda dönüleceği kip."
+     }
+    },
+    {
+     "surface": {
+      "full": "الَّذِي",
+      "smart": "الَّذِي",
+      "bare": "الذي"
+     },
+     "lex": "alladhi",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ، فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "The relative, mabni, standing as the object of the worship: «the One who…» — and its sila comes to name Him by His act.",
+      "tr": "İsm-i mevsûl, mebnî; ibâdetin mef'ûlü olarak mahallen mansûb: «O ki…» — ve sılası, O'nu fiiliyle adlandırmaya gelir."
+     }
+    },
+    {
+     "surface": {
+      "full": "فَطَرَنِي",
+      "smart": "فَطَرَنِي",
+      "bare": "فطرني"
+     },
+     "lex": "fatara",
+     "pos": "verb",
+     "grammar": [
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ مَفْعُولٌ بِهِ — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+      "en": "«who CREATED me» — fatara, the primal origination, the verb of Ibrahim's فَطَرَنِي before it. The nun is the protective nun that spares the verb's ending from the ya's kasra; the ya of the speaker is the object. The clause is the sila, with no place in i'rab.",
+      "tr": "«beni YARATAN» — fatara: ilk yaratış, yoktan var ediş. Nûn, fiilin sonunu yânın kesrasından koruyan vikāye nûnudur; mütekellim yâsı mef'ûldür. Cümle sıladır; i'râbdan mahalli yoktur."
+     },
+     "segments": [
+      {
+       "form": "فَطَرَ",
+       "lex": "fatara",
+       "pos": "verb"
+      },
+      {
+       "form": "نِ",
+       "lex": "ni-wiqaya",
+       "pos": "part"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَإِلَيْهِ",
+      "smart": "وَإِلَيْهِ",
+      "bare": "وإليه"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "qasr",
+      "taqdim-al-musnad-ilayh"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَارٌّ وَمَجْرُورٌ مُقَدَّمٌ عَلَى عَامِلِهِ لِإِفَادَةِ الِاخْتِصَاصِ.",
+      "en": "«And to HIM» — the jarr pair FRONTED over its verb, and the fronting is a qasr: to Him and to none other is the return. The pronoun still ghayba, the Creator just named by His act.",
+      "tr": "«Ve yalnız O'NA» — câr-mecrûr, fiilinin ÖNÜNE alınmıştır ve takdîm bir kasırdır: dönüş O'nadır, başkasına değil. Zamir hâlâ gaybettedir; Yaratan az önce fiiliyle anılmıştı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "إِلَيْ",
+       "lex": "ila",
+       "pos": "prep"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "تُرْجَعُونَ",
+      "smart": "تُرْجَعُونَ",
+      "bare": "ترجعون"
+     },
+     "lex": "rajaa",
+     "pos": "verb",
+     "grammar": [
+      "naib-al-fail",
+      "afal-khamsa",
+      "iltifat",
+      "khilaf-muqtada-al-zahir"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ نَائِبُ فَاعِلٍ — وَالِالْتِفَاتُ مِنَ التَّكَلُّمِ إِلَى الْخِطَابِ: مُقْتَضَى الظَّاهِرِ «وَإِلَيْهِ أُرْجَعُ».",
+      "en": "«YOU will be returned» — and the discourse has TURNED. The whole aya ran in the first person (what is it to ME… who created ME); the surface demanded «and to Him I shall be returned» (أُرْجَعُ). Instead the plural YOU: the speaker, having argued worship for himself, wheels on his people — the return he proved for himself is theirs too, whether they worship or not. Passive, one of the five verbs, its raf' the fixed nun; the waw is the deputy doer.",
+      "tr": "«SİZ döndürüleceksiniz» — ve söz DÖNMÜŞTÜR. Âyetin tamamı birinci şahısta aktı (BANA ne oluyor… BENİ yaratan); zâhir «ben O'na döndürüleceğim» (أُرْجَعُ) isterdi. Yerine çoğul SİZ: ibâdeti kendi adına ispat eden konuşan, kavmine döner — kendisi için kanıtladığı dönüş, ibadet etseler de etmeseler de onlarındır. Meçhûl; ef'âl-i hamseden, ref'i sâbit nûnladır; vâv, nâib-i fâildir."
+     },
+     "punctAfter": "؟"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَمَا لِيَ لَا أَعْبُدُ الَّذِي فَطَرَنِي وَإِلَيْهِ تُرْجَعُونَ",
+     "ar": "اِلْتِفَاتٌ مِنَ التَّكَلُّمِ إِلَى الْخِطَابِ — مُقْتَضَى الظَّاهِرِ «وَإِلَيْهِ أُرْجَعُ».",
+     "en": "Iltifat from first to second person: the speaker proves the return for himself, then hands it to his hearers — «YOU will be returned» where the surface demanded «I».",
+     "tr": "Tekellümden hitâba iltifât: konuşan dönüşü kendi adına ispatlar, sonra dinleyenlere devreder — zâhir «ben» isterken «SİZ döndürüleceksiniz»."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "…until, when YOU are aboard the ships, and they run with THEM… (Yunus 10:22 — the discourse turns from those addressed to the third person.)",
+    "tr": "…nihayet SİZ gemilerde olduğunuzda ve gemiler ONLARI götürdüğünde… (Yûnus 10:22 — söz, muhataplardan üçüncü şahsa döner.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "حَتَّى",
+      "smart": "حَتَّى",
+      "bare": "حتى"
+     },
+     "lex": "hatta",
+     "pos": "part",
+     "irab": {
+      "ar": "حَرْفُ ابْتِدَاءٍ — يُبْتَدَأُ بَعْدَهُ الْكَلَامُ وَلَا عَمَلَ لَهُ هُنَا.",
+      "en": "Here NOT the jarr letter: before إِذَا it is the hatta of COMMENCEMENT — it opens a new stretch of discourse and governs nothing.",
+      "tr": "Burada cer harfi DEĞİL: إِذَا'dan önce İBTİDÂ hattâsıdır — yeni bir söz açar ve hiçbir şeyi amel etmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِذَا",
+      "smart": "إِذَا",
+      "bare": "إذا"
+     },
+     "lex": "idha",
+     "pos": "part",
+     "grammar": [
+      "idha-shartiyya"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "The zarf of future time carrying the sense of condition: «when…» — its clause is the mudaf-ilayh of the moment it names.",
+      "tr": "Şart mânâsı yüklü istikbal zarfı: «…dığı zaman» — cümlesi, adlandırdığı ânın muzâfun ileyhidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "كُنْتُمْ",
+      "smart": "كُنْتُمْ",
+      "bare": "كنتم"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَالتَّاءُ اسْمُهَا — وَالْخِطَابُ لِلنَّاسِ جَمِيعًا.",
+      "en": "«when YOU were» — kana the incomplete sister, built on the sukun for the subject-ta; the ta-plus-mim is its ism. Mark the register: the aya is speaking TO them — second person, the mode it is about to leave.",
+      "tr": "«SİZ olduğunuzda» — nâkıs kardeş kâne, fâil tâsına bitiştiği için sükûn üzere mebnî; tâ+mîm onun ismidir. Kipe dikkat: âyet onlara HİTAP etmektedir — ikinci şahıs; birazdan terk edeceği kip."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "zarf-mustaqarr-wa-laghw"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ — وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ كَانَ، مُسْتَقَرٌّ.",
+      "en": "The jarr letter; the pair is kana's khabar, mustaqarr.",
+      "tr": "Cer harfi; câr-mecrûr, kânenin haberidir — müstakar."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْفُلْكِ",
+      "smart": "الْفُلْكِ",
+      "bare": "الفلك"
+     },
+     "lex": "fulk",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ — وَ«الْفُلْكُ» يَسْتَوِي فِيهِ الْوَاحِدُ وَالْجَمْعُ.",
+      "en": "«The ships» — in jarr; and فُلْك is one of the words whose singular and plural share a single form. Here it is plural: the ships of the sea-farers.",
+      "tr": "«Gemiler» — mecrûr; فُلْك, tekili ile çoğulu tek kalıpta birleşen kelimelerdendir. Burada çoğuldur: deniz yolcularının gemileri."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَجَرَيْنَ",
+      "smart": "وَجَرَيْنَ",
+      "bare": "وجرين"
+     },
+     "lex": "jara",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَنُونُ النِّسْوَةِ فَاعِلٌ — وَالضَّمِيرُ لِلْفُلْكِ.",
+      "en": "«and they RAN» — the feminine plural nun as doer, its pronoun the ships (a broken-plural sense takes the feminine). Mazi of the naqis جَرَى, its weak ya surfacing before the nun: جَرَيْنَ.",
+      "tr": "«ve AKTILAR» — nisve nûnu fâildir; zamiri gemilerdir (cem' mânâsı müennes muâmelesi görür). Nâkıs جَرَى'nın mâzîsi; illetli yâsı nûndan önce yüzeye çıkar: جَرَيْنَ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "جَرَيْنَ",
+       "lex": "jara",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِهِمْ",
+      "smart": "بِهِمْ",
+      "bare": "بهم"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "iltifat",
+      "khilaf-muqtada-al-zahir"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ — وَالِالْتِفَاتُ مِنَ الْخِطَابِ إِلَى الْغَيْبَةِ: مُقْتَضَى الظَّاهِرِ «وَجَرَيْنَ بِكُمْ».",
+      "en": "«with THEM» — and the discourse has TURNED again. The aya was addressing them — «when YOU were aboard» — so the surface demanded «and they ran with YOU» (بِكُمْ). Instead the third person: with THEM. The classical reading of the turn: as the storm nears, the ungrateful are turned OUT of the divine address — spoken about, no longer spoken to — a distancing that is itself the rebuke.",
+      "tr": "«ONLARLA» — ve söz yine DÖNMÜŞTÜR. Âyet onlara hitap ediyordu — «SİZ gemilerdeyken» — zâhir bu yüzden «sizinle aktılar» (بِكُمْ) isterdi. Yerine üçüncü şahıs: ONLARLA. Dönüşün klasik okunuşu: fırtına yaklaşırken nankörler ilâhî hitâbın DIŞINA çıkarılır — artık kendilerine değil, haklarında konuşulur — ve bu uzaklaştırma azarın ta kendisidir."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "هِمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "…"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "حَتَّى إِذَا كُنْتُمْ فِي الْفُلْكِ وَجَرَيْنَ بِهِمْ",
+     "ar": "اِلْتِفَاتٌ مِنَ الْخِطَابِ إِلَى الْغَيْبَةِ — مُقْتَضَى الظَّاهِرِ «بِكُمْ»: أُخْرِجُوا مِنَ الْخِطَابِ إِخْرَاجًا.",
+     "en": "Iltifat from second to third person: «when YOU were aboard… and they ran with THEM» — the ungrateful are turned out of the address, and the distancing is the rebuke.",
+     "tr": "Hitâbdan gaybete iltifât: «SİZ gemideyken… onlarla aktılar» — nankörler hitâbdan çıkarılır ve uzaklaştırma, azarın kendisidir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Master of the Day of Judgment. YOU alone we worship. (al-Fatiha 1:4-5 — the discourse turns from the third person to direct address.)",
+    "tr": "Din gününün sahibi. Yalnız SANA ibadet ederiz. (Fâtiha 1:4-5 — söz, üçüncü şahıstan doğrudan hitâba döner.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَالِكِ",
+      "smart": "مَالِكِ",
+      "bare": "مالك"
+     },
+     "lex": "malik",
+     "pos": "noun",
+     "grammar": [
+      "ism-fail",
+      "idafa-definiteness",
+      "tarif-bil-idafa"
+     ],
+     "irab": {
+      "ar": "صِفَةٌ لِلَّهِ تَعَالَى مَجْرُورَةٌ، وَهُوَ مُضَافٌ — وَالْكَلَامُ إِلَى هُنَا غَيْبَةٌ: الْحَمْدُ لِلَّهِ… مَالِكِ….",
+      "en": "«Master» — ism fail, a sifa of Allah in jarr, itself a mudaf. Count the register: from الْحَمْدُ لِلَّهِ the sura has spoken ABOUT Him — Lord of the worlds, the Merciful, Master of the Day — every attribute in the third person, each one building what the musannif calls the gathering strength.",
+      "tr": "«Sahibi» — ism-i fâil; Allah'ın mecrûr sıfatı, kendisi muzâf. Kipi sayın: الْحَمْدُ لِلَّهِ'den beri sûre O'nun HAKKINDA konuşmuştur — âlemlerin Rabbi, Rahmân, din gününün sahibi — her vasıf üçüncü şahısta; her biri, musannifin «birikip güçlenen kuvvet» dediği şeyi kurar."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَوْمِ",
+      "smart": "يَوْمِ",
+      "bare": "يوم"
+     },
+     "lex": "yawm",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ، وَهُوَ مُضَافٌ.",
+      "en": "The mudaf ilayh, itself a mudaf: the chain runs on.",
+      "tr": "Mecrûr muzâfun ileyh; kendisi de muzâftır: zincir sürer."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدِّينِ",
+      "smart": "الدِّينِ",
+      "bare": "الدين"
+     },
+     "lex": "din",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — وَالدِّينُ هُنَا الْجَزَاءُ.",
+      "en": "The chain closes: «of the Judgment» — din here is requital, the settling of accounts.",
+      "tr": "Zincir kapanır: «dînin» — din burada cezâ, hesabın görülmesidir."
+     },
+     "punctAfter": "."
+    },
+    {
+     "surface": {
+      "full": "إِيَّاكَ",
+      "smart": "إِيَّاكَ",
+      "bare": "إياك"
+     },
+     "lex": "iyyaka",
+     "pos": "pron",
+     "grammar": [
+      "maful-bihi",
+      "qasr",
+      "iltifat",
+      "khilaf-muqtada-al-zahir"
+     ],
+     "irab": {
+      "ar": "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ، وَتَقْدِيمُهُ قَصْرٌ — وَالِالْتِفَاتُ مِنَ الْغَيْبَةِ إِلَى الْخِطَابِ: مُقْتَضَى الظَّاهِرِ «إِيَّاهُ نَعْبُدُ».",
+      "en": "«YOU alone» — and the sura TURNS to face Him. Every attribute so far was ghayba; the surface demanded «HIM we worship» (إِيَّاهُ نَعْبُدُ). But the servant who has named the perfections one by one — the musannif's nukta — finds by the end of مَالِكِ يَوْمِ الدِّينِ that the gathered force can no longer speak ABOUT; it must speak TO. The detached pronoun, fronted, is also a QASR: You and none other. Iltifat and ikhtisas in one word — the most famous turning in the language.",
+      "tr": "«Yalnız SANA» — ve sûre O'na DÖNER. Şimdiye dek her vasıf gaybetteydi; zâhir «O'NA ibadet ederiz» (إِيَّاهُ نَعْبُدُ) isterdi. Fakat kemâlleri bir bir sayan kul — musannifin nüktesi — مَالِكِ يَوْمِ الدِّينِ'in sonunda, biriken gücün artık HAKKINDA konuşamayacağını, yüz yüze KONUŞMASI gerektiğini bulur. Öne alınmış munfasıl zamir aynı zamanda KASIRdır: Sana, başkasına değil. Bir kelimede iltifât ve ihtisâs — dilin en meşhur dönüşü."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَعْبُدُ",
+      "smart": "نَعْبُدُ",
+      "bare": "نعبد"
+     },
+     "lex": "abada",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ نَحْنُ.",
+      "en": "«we worship» — mudari' in raf', its doer the concealed «we»: the single servant praying in the plural of the praying community.",
+      "tr": "«ibadet ederiz» — merfû muzâri; fâili gizli «biz»: tek kul, ibadet eden cemaatin çoğuluyla söyler."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَالِكِ يَوْمِ الدِّينِ إِيَّاكَ نَعْبُدُ",
+     "ar": "اِلْتِفَاتٌ مِنَ الْغَيْبَةِ إِلَى الْخِطَابِ مَعَ قَصْرٍ بِتَقْدِيمِ الْمَفْعُولِ — مُقْتَضَى الظَّاهِرِ «إِيَّاهُ نَعْبُدُ».",
+     "en": "Iltifat from third person to direct address, carrying a qasr in the fronted object: the named perfections gather until speech about Him must become speech to Him.",
+     "tr": "Gaybetten hitâba iltifât; öne alınmış mef'ûlde bir kasır taşır: sayılan kemâller birikir, tâ ki O'nun hakkındaki söz O'na söylenen söz olmak zorunda kalır."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "My God — Your disobedient SLAVE has come to You, confessing his sins, and he has called on You. (Ibrahim b. Adham's du'a — the plain sense demanded «I»; the servant names himself a slave to ask for mercy.)",
+    "tr": "İlâhî — âsi KULUN Sana geldi; günahlarını ikrar ederek, ve Sana dua etti. (İbrahim b. Edhem'in duası — zâhir «ben» isterdi; kul, merhamet dilemek için kendini «kulun» diye adlandırır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِلَهِي",
+      "smart": "إِلَهِي",
+      "bare": "إلهي"
+     },
+     "lex": "ilah",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "مُنَادًى بِحَرْفِ نِدَاءٍ مَحْذُوفٍ، مُضَافٌ إِلَى يَاءِ الْمُتَكَلِّمِ.",
+      "en": "«My God» — a munada whose calling particle (يَا) is omitted, as du'a loves to do; the mudaf ilayh is the speaker's own ya. The most intimate address in the language opens the plea.",
+      "tr": "«İlâhî / Allah'ım» — nidâ harfi (يَا) hazfedilmiş münâdâ; duânın sevdiği üslûp. Muzâfun ileyh, konuşanın kendi yâsıdır. Dilin en içli hitâbı, yakarışı açar."
+     },
+     "segments": [
+      {
+       "form": "إِلَهِ",
+       "lex": "ilah",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "عَبْدُكَ",
+      "smart": "عَبْدُكَ",
+      "bare": "عبدك"
+     },
+     "lex": "abd",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "khilaf-muqtada-al-zahir",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ — وُضِعَ الظَّاهِرُ مَوْضِعَ الضَّمِيرِ: مُقْتَضَى الظَّاهِرِ «أَنَا».",
+      "en": "«Your SLAVE» — the mubtada, and here is the chapter's FIRST door: an ism zahir set where the pronoun belonged. The speaker means himself; the surface demanded «I, the disobedient one» (أَنَا الْعَاصِي). But «I» claims standing, and this prayer wants none: he comes as a slave — Yours, owned, with no plea but the owning. The musannif files the motive precisely: لِطَلَبِ الشَّفَقَةِ وَالْمَرْحَمَةِ — to call forth tenderness and mercy.",
+      "tr": "«KULUN» — mübtedâ; ve işte bâbın BİRİNCİ kapısı: zamirin yerine konmuş ism-i zâhir. Konuşan kendini kasteder; zâhir «ben, âsi olan» (أَنَا الْعَاصِي) isterdi. Fakat «ben» bir makam iddia eder; bu duânın istediği makam yoktur: kul olarak gelir — Senin kulun, sahiplinin sahibinden başka delili olmadan. Musannif gerekçeyi tam kaydeder: لِطَلَبِ الشَّفَقَةِ وَالْمَرْحَمَةِ — şefkat ve merhameti celbetmek için."
+     },
+     "segments": [
+      {
+       "form": "عَبْدُ",
+       "lex": "abd",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْعَاصِي",
+      "smart": "الْعَاصِي",
+      "bare": "العاصي"
+     },
+     "lex": "aasi",
+     "pos": "noun",
+     "grammar": [
+      "ism-fail",
+      "naat-sifa",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "صِفَةٌ لِعَبْدُكَ مَرْفُوعَةٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ — مَنْقُوصٌ.",
+      "en": "«the disobedient» — sifa of the slave, a manqus whose damma is estimated on the ya (thiqal). The confession is built into the very NAME he gives himself: not a slave who happens to have sinned, but THE disobedient slave, article and all.",
+      "tr": "«âsi» — kulun sıfatı; menkūstur, dammesi yâ üzerinde takdîr edilir (sıklet). İtiraf, kendine verdiği İSMİN içine örülmüştür: günah işlemiş herhangi bir kul değil, harf-i tarifiyle, O âsi kul."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَتَاكَا",
+      "smart": "أَتَاكَا",
+      "bare": "أتاكا"
+     },
+     "lex": "ata",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالْكَافُ مَفْعُولٌ بِهِ، وَالْأَلِفُ لِلْإِطْلَاقِ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَأِ.",
+      "en": "«has COME to You» — mazi of the naqis أَتَى, its kaf the object, and the final alif is the ALIF AL-ITLAQ: verse pads its rhyme-word with a prolonging alif the grammar does not count. The clause is the khabar of «Your slave». He does not send the plea; he brings it.",
+      "tr": "«Sana GELDİ» — nâkıs أَتَى'nın mâzîsi; kâf mef'ûl, sondaki elif ise ITLAK ELİFİdir: şiir, kafiye kelimesini gramerin saymadığı bir uzatma elifiyle doldurur. Cümle, «kulun»un haberidir. Yakarışı göndermez; kendisi getirir."
+     },
+     "segments": [
+      {
+       "form": "أَتَا",
+       "lex": "ata",
+       "pos": "verb"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      },
+      {
+       "form": "ا",
+       "lex": "alif-itlaq",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُقِرًّا",
+      "smart": "مُقِرًّا",
+      "bare": "مقرا"
+     },
+     "lex": "muqirr",
+     "pos": "noun",
+     "grammar": [
+      "hal",
+      "ism-fail",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ — اسْمُ فَاعِلٍ مِنْ أَقَرَّ، مِنَ الْمُضَاعَفِ.",
+      "en": "«confessing» — hal in nasb by the plain fathatan (the final alif is only the tanwin's seat): in WHAT STATE did he come? Confessing. Ism fail of the geminate Form IV أَقَرَّ — the shadda holds the doubled ra that is the root's third letter.",
+      "tr": "«ikrar ederek» — zâhir fethateynle mansûb hâl (sondaki elif yalnız tenvinin kürsüsüdür): NE HÂLDE geldi? İkrar ederek. Muzâaf IV. bâb أَقَرَّ'nin ism-i fâili — şedde, kökün üçüncü harfi olan çift râyı tutar."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالذُّنُوبِ",
+      "smart": "بِالذُّنُوبِ",
+      "bare": "بالذنوب"
+     },
+     "lex": "dhanb",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "جَارٌّ وَمَجْرُورٌ مُتَعَلِّقٌ بِـ«مُقِرًّا».",
+      "en": "«of the sins» — the jarr pair hanging on the confessing: iqrar takes its object through bi. Plural: not one lapse but the whole ledger.",
+      "tr": "«günahları» — câr-mecrûr, «مُقِرًّا»ya bağlanır: ikrar, mef'ûlünü bâ ile alır. Çoğul: tek bir sürçme değil, defterin tamamı."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الذُّنُوبِ",
+       "lex": "dhanb",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَقَدْ",
+      "smart": "وَقَدْ",
+      "bare": "وقد"
+     },
+     "lex": "qad",
+     "pos": "part",
+     "grammar": [
+      "qad-harf",
+      "anwa-al-waw",
+      "hal"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ لِلْحَالِ، وَ«قَدْ» لِلتَّحْقِيقِ.",
+      "en": "The waw of circumstance with qad of realization: «while he has already…» — a past verb after وَقَدْ reads as an accomplished state.",
+      "tr": "Hâl vâvı ile tahkîk kādı: «hâlbuki çoktan…» — وَقَدْ'den sonraki mâzî, tamamlanmış bir hâl olarak okunur."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "قَدْ",
+       "lex": "qad",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "دَعَاكَا",
+      "smart": "دَعَاكَا",
+      "bare": "دعاكا"
+     },
+     "lex": "daa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-verbs",
+      "hal"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالْكَافُ مَفْعُولٌ بِهِ، وَالْأَلِفُ لِلْإِطْلَاقِ — وَالْجُمْلَةُ حَالٌ.",
+      "en": "«and he has CALLED on You» — the second rhyme-word, the same anatomy as أَتَاكَا: naqis mazi, object kaf, itlaq alif. The bayt's two halves close on the same sound because the plea's two acts — coming and calling — end in the same You.",
+      "tr": "«ve Sana DUA ETTİ» — ikinci kafiye kelimesi; أَتَاكَا ile aynı anatomi: nâkıs mâzî, mef'ûl kâfı, ıtlak elifi. Beytin iki yarısı aynı seste kapanır; çünkü yakarışın iki fiili — gelmek ve çağırmak — aynı SEN'de biter."
+     },
+     "segments": [
+      {
+       "form": "دَعَا",
+       "lex": "daa",
+       "pos": "verb"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      },
+      {
+       "form": "ا",
+       "lex": "alif-itlaq",
+       "pos": "part"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِلَهِي عَبْدُكَ الْعَاصِي أَتَاكَا مُقِرًّا بِالذُّنُوبِ وَقَدْ دَعَاكَا",
+     "ar": "وَضْعُ الظَّاهِرِ مَوْضِعَ الضَّمِيرِ لِطَلَبِ الشَّفَقَةِ — مُقْتَضَى الظَّاهِرِ «أَنَا الْعَاصِي».",
+     "en": "An ism zahir in the pronoun's place, to call forth mercy: «Your disobedient slave has come» where the plain sense demanded «I». The plea renounces standing before it asks anything.",
+     "tr": "Merhameti celb için zamirin yerine ism-i zâhir: zâhir «ben» isterken «âsi kulun geldi». Yakarış, bir şey istemeden önce makam iddiasından vazgeçer."
+    }
+   ]
+  }
+ ]
+}

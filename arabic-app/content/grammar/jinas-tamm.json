@@ -1,0 +1,92 @@
+{
+ "id": "jinas-tamm",
+ "title": {
+  "ar": "الْجِنَاسُ التَّامُّ — الْمُمَاثِلُ، وَالْمُسْتَوْفَى، وَالْمُرَكَّبُ (الْمُتَشَابِهُ وَالْمَفْرُوقُ)؛ وَالْمُحَرَّفُ",
+  "en": "The complete jinas — mumathil, mustawfa, the composite (mutashabih, mafruq); and the muharraf",
+  "tr": "Tam cinas — mümâsil, müstevfâ, mürekkep (müteşâbih, mefrûk); ve muharref"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — الجناس بين اللفظين هو تشابههما في اللفظ، والتام منه أن يتفقا في أنواع الحروف وأعدادها وهيئاتها وترتيبها؛ فإن كانا من نوع واحد كاسمين سمي مماثلا، وإن كانا من نوعين سمي مستوفى، وإن كان أحد اللفظين مركبا سمي جناس التركيب: فإن اتفقا في الخط خص باسم المتشابه وإلا خص باسم المفروق. وإن اختلفا في هيئات الحروف فقط سمي محرفا."
+ ],
+ "question": {
+  "en": [
+   "Do two words SOUND alike while they MEAN differently? That is JINAS — the first of the lafzi muhassinat, the ornaments of the WORDING. Count what the two share: the KINDS of letters, their NUMBER, their SHAPES (the vowels and the shadda), their ORDER. All four alike: the jinas is TAMM.",
+   "Then look at the CLASS of the two words. Both nouns, both verbs: MUMATHIL — السَّاعَةُ (the Hour) and سَاعَةٍ (an hour) in 30:55. A verb and a noun: MUSTAWFA — يَحْيَى «lives» and يَحْيَى the man in Abu Tammam. One of them made of TWO words: the jinas of TARKIB — and if the script is one too (ذَا هِبَةٍ / ذَاهِبَةٌ) it is MUTASHABIH, if the script parts them (جَامَ لَنَا / جَامَلَنَا) it is MAFRUQ.",
+   "Only the VOWELS differ? MUHARRAF: الْبُرْدِ / الْبَرْدِ, شَرَكُ / الشِّرْكِ, مُفْرِطٌ / مُفَرِّطٌ — and in this door a doubled letter counts as undoubled.",
+   "What does the engine read? The JinasEngine aligns the two words letter by letter, strips the article and the pronoun, and names the kind from the alignment: tamm when the skeletons and the vowels are one, muharraf when only the vowels part them; the class test (noun / verb) gives mumathil or mustawfa; a pair authored as murakkab is shown as its two halves against the one word. Which sound is a jinas and which is a plain repeat stays the author's judgement."
+  ],
+  "tr": [
+   "İki kelime SESTE benzerken MÂNÂDA ayrılıyor mu? Bu CİNÂS'tır — lafzî muhassinâtın, LAFZI süsleyen sanatların ilki. İkisinin ortak olanını say: harflerin NEVİLERİ, SAYILARI, ŞEKİLLERİ (hareke ve şedde), TERTİBİ. Dördü de bir: cinas TAMdır.",
+   "Sonra iki kelimenin SINIFINA bak. İkisi de isim, ikisi de fiil: MÜMÂSİL — Rûm 55'te السَّاعَةُ (Kıyamet saati) ile سَاعَةٍ (bir saat). Bir fiil, bir isim: MÜSTEVFÂ — Ebû Temmâm'da يَحْيَى «yaşar» ile Yahyâ. Biri İKİ kelimeden: TERKİP cinası — yazı da bir ise (ذَا هِبَةٍ / ذَاهِبَةٌ) MÜTEŞÂBİH, yazı ayırıyorsa (جَامَ لَنَا / جَامَلَنَا) MEFRÛK.",
+   "Yalnız HAREKELER mi ayrı? MUHARREF: الْبُرْدِ / الْبَرْدِ, شَرَكُ / الشِّرْكِ, مُفْرِطٌ / مُفَرِّطٌ — bu bapta şeddeli harf şeddesiz hükmündedir.",
+   "Motor neyi okur? JinasEngine iki kelimeyi harf harf hizalar, harf-i tarifi ve zamiri soyar, hizadan kısmı adlandırır: iskelet ve hareke bir ise tam, yalnız hareke ayırıyorsa muharref; sınıf testi (isim / fiil) mümâsil yahut müstevfâyı verir; mürekkep yazılmış çift, iki yarısı tek kelimeye karşı gösterilir. Hangi sesin cinas, hangisinin düz tekrar olduğu müellifin hükmüdür."
+  ]
+ },
+ "plain": {
+  "en": "Jinas: two words alike in sound, different in meaning. Tamm when letters, number, vowels and order all agree; mumathil (same class), mustawfa (noun and verb), tarkib (one word is two) — mutashabih if the script is one, mafruq if not. Muharraf: only the vowels differ.",
+  "tr": "Cinas: seste bir, mânâda ayrı iki kelime. Harf, sayı, hareke ve tertip hep bir ise tam; mümâsil (aynı sınıf), müstevfâ (isim ve fiil), terkip (biri iki kelime) — yazı bir ise müteşâbih, değilse mefrûk. Muharref: yalnız hareke ayrı."
+ },
+ "explanation": {
+  "en": "The Talkhis opens the MUHASSINAT LAFZIYYA with the jinas: الْجِنَاسُ بَيْنَ اللَّفْظَيْنِ تَشَابُهُهُمَا فِي اللَّفْظِ. The TAMM asks four agreements — أَنْوَاعُ الْحُرُوفِ وَأَعْدَادُهَا وَهَيْئَاتُهَا وَتَرْتِيبُهَا — and is named by the CLASS of its two words: MUMATHIL (مِنْ نَوْعٍ وَاحِدٍ), MUSTAWFA (مِنْ نَوْعَيْنِ). If one word is COMPOSITE the jinas is of TARKIB, and the SCRIPT decides its name: MUTASHABIH when the two look the same on the page (ذَا هِبَةٍ / ذَاهِبَةٌ — al-Busti), MAFRUQ when they part (جَامَ لَنَا / جَامَلَنَا). The MUHARRAF keeps every letter and changes only the HAY'A — the vowels — as in جُبَّةُ الْبُرْدِ جُنَّةُ الْبَرْدِ; a shadda does not count as a letter (مُفْرِطٌ / مُفَرِّطٌ).",
+  "tr": "Telhîs MUHASSİNÂT-I LAFZİYYE'yi cinasla açar: الْجِنَاسُ بَيْنَ اللَّفْظَيْنِ تَشَابُهُهُمَا فِي اللَّفْظِ. TAM cinas dört uyum ister — أَنْوَاعُ الْحُرُوفِ وَأَعْدَادُهَا وَهَيْئَاتُهَا وَتَرْتِيبُهَا — ve iki kelimesinin SINIFIYLA adlanır: MÜMÂSİL (مِنْ نَوْعٍ وَاحِدٍ), MÜSTEVFÂ (مِنْ نَوْعَيْنِ). Kelimelerden biri MÜREKKEPSE cinas TERKİP cinasıdır ve adını YAZI belirler: sayfada ikisi aynı görünüyorsa MÜTEŞÂBİH (ذَا هِبَةٍ / ذَاهِبَةٌ — Büstî), ayrılıyorsa MEFRÛK (جَامَ لَنَا / جَامَلَنَا). MUHARREF her harfi korur, yalnız HEY'ET'i — harekeleri — değiştirir: جُبَّةُ الْبُرْدِ جُنَّةُ الْبَرْدِ; şedde harf sayılmaz (مُفْرِطٌ / مُفَرِّطٌ)."
+ },
+ "examples": [
+  {
+   "ar": "وَيَوْمَ تَقُومُ السَّاعَةُ يُقْسِمُ الْمُجْرِمُونَ مَا لَبِثُوا غَيْرَ سَاعَةٍ",
+   "en": "30:55 — tamm mumathil.",
+   "tr": "Rûm 55 — tam mümâsil.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَا مَاتَ مِنْ كَرَمِ الزَّمَانِ فَإِنَّهُ * يَحْيَى لَدَى يَحْيَى بْنِ عَبْدِ اللهِ",
+   "en": "Abu Tammam — tamm mustawfa.",
+   "tr": "Ebû Temmâm — tam müstevfâ.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s6"
+  },
+  {
+   "ar": "إِذَا مَلِكٌ لَمْ يَكُنْ ذَا هِبَةٍ * فَدَعْهُ فَدَوْلَتُهُ ذَاهِبَةٌ",
+   "en": "al-Busti — tarkib, mutashabih.",
+   "tr": "Büstî — terkip, müteşâbih.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s8"
+  },
+  {
+   "ar": "جُبَّةُ الْبُرْدِ جُنَّةُ الْبَرْدِ",
+   "en": "muharraf.",
+   "tr": "muharref.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s12"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«السَّاعَةُ ile سَاعَةٍ aynı kelimenin tekrarıdır, cinas değil»",
+   "right": "«Cinâs-ı tam mümâsildir: seste bir, mânâda ayrı — Kıyamet saati ve bir zaman parçası»",
+   "why": {
+    "en": "Jinas needs two MEANINGS under one sound; a plain repeat has one.",
+    "tr": "Cinas tek ses altında iki MÂNÂ ister; düz tekrarda bir mânâ vardır."
+   }
+  },
+  {
+   "wrong": "«مُفْرِطٌ / مُفَرِّطٌ harf sayısı ayrı olduğu için nâkıstır»",
+   "right": "«Muharreftir: bu bapta şeddeli harf şeddesiz hükmündedir; yalnız hey'et ayrılır»",
+   "why": {
+    "en": "The Talkhis says it in so many words: the doubled letter counts as undoubled in this door.",
+    "tr": "Telhîs açıkça söyler: bu bapta şeddeli harf şeddesiz hükmündedir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jinas",
+  "jinas-naqis",
+  "ilm-al-badi",
+  "al-muthanna",
+  "five-nouns",
+  "jinas-mudari-lahiq",
+  "jinas-qalb"
+ ]
+}
