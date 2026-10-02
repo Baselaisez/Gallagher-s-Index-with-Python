@@ -51,7 +51,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
 | 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL** (transcribed in v180) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the izhar-al-asrar package; the ḥāshiya is untranscribed. |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
-| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **REFERENCE ONLY** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration; nothing from it ships. |
+| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, five chapters (§1–13 of «من كسر الأصنام؟»), in copyright and flagged so in the manifest; §14–25 of vol. 1 remain to author. |
 
 **Tally:** FULL 9 · PARTIAL 24 · UNTOUCHED 6 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
 
@@ -2873,3 +2873,14 @@ not a one-line change.
   the repelling masdar shipped as 'daf-repel'. Bank: see the commit.
   Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
   (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).
+
+- **v181 (wave 26b–26e)** — Row 40 REFERENCE → PARTIAL (story): Nadwī's
+  Qiṣaṣ al-Nabiyyīn vol. 1 transcribed complete from the two scans
+  (`$SCR/pdf26/qisas1_matn.txt`, 697 lines) and authored as the Level-1
+  story `qisas-al-nabiyyin-1`, chapters 1–5 (§1–13), 171 sentences; every
+  chapter at 100.0 endings-mode ḍabṭ after twenty rounds of Level-1
+  frames (`patch26d`/`patch26e`; rounds 19–20 are the release's own
+  findings — the mufarragh's negation, the relative's doer, the vocative's
+  kasra, the contracted jussive twin), 47 seeds, the free-text volume 84.5 →
+  90.4, the drill garden's full re-vowelling held at 96.3. Rights notice in the manifest. Next: §14 رؤيا إبراهيم onward
+  (transcript line 202+).

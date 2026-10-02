@@ -10880,6 +10880,113 @@ if (!CHROME) {
     } finally { await page.setViewportSize(was); }
   });
 
+  // ---------------------------------------------------------------- wave 26c: Qiṣaṣ al-Nabiyyīn (Nadwī) — the Level-1 reader, and the nahw frames it forced
+  await check('Qiṣaṣ al-Nabiyyīn ch1-5 (the idol seller; Ibrāhīm breaks the idols; the cold fire; the call and the king; to Mecca): the Level-1 story on the shelf with its rights notice, the la-nafiya note with its question test anchored in the story, the ḍabṭ floors, the Qur\'anic lines marked', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-1'); if (!st) return { err: 'no qisas story' };
+      const n = GRAMMAR['la-nafiya']; const note = n ? { group: n.group, level: n.level, q: n.question ? [n.question.en.length, n.question.tr.length] : null, anchored: (n.examples || []).filter(e => e.src === 'qisas-al-nabiyyin-1' || e.sourceStory === 'qisas-al-nabiyyin-1').length } : null;
+      const per = {};
+      for (const ch of st.chapters) { let h = 0, nn = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; nn += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n: nn, un, pct: nn ? Math.round(1000 * h / nn) / 10 : 0 }; }
+      const ch2 = st.chapters.find(c => (c.n || c.chapter) === 2);
+      const quoted = ch2 ? ch2.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : [];
+      const ch4 = st.chapters.find(c => (c.n || c.chapter) === 4); const quoted4 = ch4 ? ch4.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : [];
+      const sentences = st.chapters.reduce((a, c) => a + c.sentences.length, 0);
+      return { chapters: st.chapters.length, level: st.level, levelName: st.levelName, note, per, quoted, quoted4, sentences };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 5 || r.sentences < 160) throw new Error('the story should carry at least five chapters and 160 sentences: ' + r.chapters + '/' + r.sentences);
+    if (r.level !== 1) throw new Error('Qiṣaṣ is the Level-1 (Newbie) story: ' + r.level);
+    if (!r.note || r.note.group !== 'nahw' || r.note.level !== 1) throw new Error('la-nafiya should be a level-1 nahw note: ' + JSON.stringify(r.note));
+    if (!r.note.q || r.note.q[0] < 2 || r.note.q[0] !== r.note.q[1]) throw new Error('la-nafiya: the question test must carry the same number of en and tr questions');
+    if (r.note.anchored < 2) throw new Error('la-nafiya should be anchored in the story at least twice: ' + r.note.anchored);
+    const floors = { 1: 98, 2: 97, 3: 96, 4: 96, 5: 93 };   // measured at v181: ch1 100.0 (186 endings), ch2 100.0 (206), ch3 100.0 (235), ch4 100.0 (191), ch5 see the release notes
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Qiṣaṣ ch' + c + ' ḍabṭ ' + x.pct + '% below its floor ' + f + ' (' + x.h + '/' + x.n + ')'); }
+    for (const id of ['s11', 's20', 's21', 's22', 's23']) if (!r.quoted.includes(id)) throw new Error('ch2 ' + id + ' quotes the Qurʾan and must be marked as a quotation');
+    for (const id of ['s3', 's4', 's5', 's6', 's10', 's11', 's12', 's13', 's26', 's27', 's33']) if (!r.quoted4.includes(id)) throw new Error('ch4 ' + id + ' quotes the Qurʾan and must be marked as a quotation');
+    // the rights notice never ships to the browser — it is read off disk, where the rights holder's reader will read it
+    const man = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/samples/qisas-al-nabiyyin-1/manifest.json'), 'utf8'));
+    if (!/RIGHTS/.test(man.attribution.en || '') || !/HAKLAR/.test(man.attribution.tr || '')) throw new Error('the Qiṣaṣ attribution must carry the rights notice in both languages');
+    if (!/21:59|21:60|21:63/.test(man.attribution.en || '')) throw new Error('the attribution should name the Qurʾanic lines ch2 quotes');
+    if (!/2:258/.test(man.attribution.en || '') || !/26:7/.test(man.attribution.en || '')) throw new Error('the attribution should name the Qurʾanic lines ch4 quotes');
+    if (man.attribution.reviewStatus !== 'pending-scholarly-review') throw new Error('reviewStatus must stay pending-scholarly-review');
+  });
+
+  await check('wave 26c seeds — the Level-1 reader\'s frames rebuilt ending for ending: kāna + jarr phrase + delayed ism, the demonstrative\'s badal in every seat, the repeated word as tawkīd, the frozen adverbs, the diptote names, kāna\'s ism owning its verb, the perception verb\'s object + clause, وَلَا continuing a negation, the vocative\'s «you» and its prohibition, لِمَ against لَمْ, the speaker\'s tāʾ, the inherited doer, the question adverb\'s mubtada, the trimmed wiqāya nūn', async () => {
+    const r = await page.evaluate((seeds) => {
+      const norm = s => s.normalize('NFC').replace(/[«»()،.:!؟]/g, '').replace(/\s+/g, ' ').trim();
+      const bad = [];
+      for (const t of seeds) { const got = DabtEngine.vowel(t, 'endings').words.map(x => x.out).join(' '); if (norm(got) !== norm(t)) bad.push(t + ' ⇒ ' + got); }
+      return { n: seeds.length, bad };
+    }, [
+        'وَكَانَ آزَرُ يَبِيعُ الْأَصْنَامَ',
+        'كَانَ فِي قَرْيَةٍ رَجُلٌ مَشْهُورٌ جِدًّا',
+        'وَكَانَ اسْمُ هٰذَا الرَّجُلِ آزَرَ',
+        'وَكَانَ فِي هٰذِهِ الْقَرْيَةِ بَيْتٌ كَبِيرٌ جِدًّا',
+        'إِنَّ هٰذِهِ الْأَصْنَامَ لَا تَتَكَلَّمُ وَلَا تَسْمَعُ',
+        'قَبْلَ أَيَّامٍ كَثِيرَةٍ، كَثِيرَةٍ جِدًّا',
+        'يَا أَبِي لِمَاذَا تَعْبُدُ هٰذِهِ الْأَصْنَامَ',
+        'وَلِأَيِّ شَيْءٍ تَضَعُ لَهَا الطَّعَامَ وَالشَّرَابَ',
+        'وَكَانَ يَرَى الْفَأْرَ يَأْكُلُ طَعَامَ الْأَصْنَامِ فَلَا تَمْنَعُ',
+        'وَكَانَ إِبْرَاهِيمُ يَرَى النَّاسَ يَسْجُدُونَ لِلْأَصْنَامِ',
+        'وَكَانَ آزَرُ لَهُ وَلَدٌ رَشِيدٌ، رَشِيدٌ جِدًّا',
+        'غَضِبَ إِبْرَاهِيمُ وَأَخَذَ الْفَأْسَ',
+        'خَرَجَ زَيْدٌ وَدَخَلَ خَالِدٌ',
+        'يَا أَبَتِ لِمَ تَعْبُدُ مَا لَا يَسْمَعُ',
+        'يَا أَبَتِ لَا تَعْبُدِ الشَّيْطَانَ',
+        'أَرَادَ زَيْدٌ أَنْ يَخْرُجَ',
+        'أَمَرَ اللهُ إِبْرَاهِيمَ أَنْ يَدْعُوَ قَوْمَهُ',
+        'جَاءَ يَوْمُ عِيدٍ فَفَرِحَ النَّاسُ',
+        'لِأَنَّهُ يَوْمُ عِيدٍ',
+        'مَا عِقَابُ إِبْرَاهِيمَ',
+        'لَيْسَ فِيهَا عُشْبٌ وَلَا شَجَرٌ',
+        'لَا رَيْبَ فِيهِ وَلَا شَكَّ',
+        'وَذَاتَ لَيْلَةٍ رَأَى إِبْرَاهِيمُ كَوْكَبًا',
+        'وَقَالَ: أَنَا أُحْيِي وَأُمِيتُ، قَتَلْتُ رَجُلًا وَتَرَكْتُ رَجُلًا',
+        'قَالُوا: أَأَنْتَ فَعَلْتَ هٰذَا بِآلِهَتِنَا يَا إِبْرَاهِيمُ',
+        'وَلٰكِنْ تَعَجَّبَ النَّاسُ وَدَهِشُوا',
+        'وَكَانُوا يَعْرِفُونَ أَنَّ الصَّنَمَ الْأَكْبَرَ أَيْضًا حَجَرٌ',
+        'لَمْ يَكْتُبْ زَيْدٌ الدَّرْسَ',
+        'أَكْرِمْ زَيْدًا وَلَا تُهِنْ عَمْرًا',
+        'وَإِنَّ هٰذِهِ الْأَصْنَامَ يَا أَبِي لَا تَأْكُلُ وَلَا تَشْرَبُ',
+        'قَالُوا يَا أَبَانَا لِمَاذَا لَا تُرْسِلُ مَعَنَا يُوسُفَ',
+        'وَكَانَ يَعْقُوبُ لَا يُحِبُّ أَنْ يَبْعُدَ مِنْهُ يُوسُفُ',
+        'لَا يَعْلَمُ أَيْنَ خَزَائِنُ الْأَرْضِ',
+        'وَسَكَتَتِ الْأَصْنَامُ لِأَنَّهَا حِجَارَةٌ لَا تَنْطِقُ',
+        'الَّذِي خَلَقَنِي فَهُوَ يَهْدِينِ',
+        'إِنَّ إِبْرَاهِيمَ كَسَرَ الْأَصْنَامَ وَأَهَانَ الْآلِهَةَ',
+        'فَقَالَ: هٰذَا رَبِّي',
+        'وَأَنَّ الصَّنَمَ الْأَكْبَرَ لَا يَقْدِرُ أَنْ يَمْشِيَ وَيَتَحَرَّكَ',
+        'وَدَعَا الْمَلِكُ رَجُلًا وَقَتَلَهُ',
+        'هَلْ يَسْمَعُونَكُمْ إِذْ تَدْعُونَ',
+        'كَانَ فِي الْمَدِينَةِ مَلِكٌ كَبِيرٌ جِدًّا، وَظَالِمٌ جِدًّا',
+        'وَكَانَ إِبْرَاهِيمُ لَا يَخَافُ أَحَدًا إِلَّا اللهَ',
+        'فَغَضِبَ الْمَلِكُ وَطَلَبَ إِبْرَاهِيمَ',
+        'وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ',
+        'وَكَانَ الْمَلِكُ بَلِيدًا جِدًّا، وَكَذٰلِكَ كُلُّ مُشْرِكٍ',
+        'وَخَرَجَ إِبْرَاهِيمُ مِنْ بَلَدِهِ وَوَدَّعَ وَالِدَهُ',
+        'وَنَصَرَ اللهُ هَاجَرَ وَنَصَرَ إِسْمَاعِيلَ فَخَلَقَ لَهُمَا مَاءً'
+
+    ]);
+    if (r.n < 45) throw new Error('too few seeds: ' + r.n);
+    if (r.bad.length) throw new Error(r.bad.length + ' of ' + r.n + ' seeds misread: ' + r.bad.slice(0, 6).join(' | '));
+  });
+
+  await check('wave 26c Qiṣaṣ on a phone: the Level-1 story opens, its five chapter pills render, the sentences fit the viewport, a word sheet opens on the first word', async () => {
+    const was = page.viewportSize();
+    try {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.evaluate(() => { setPremium(true); const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-1'); openStory(st); });   // a premium story: the preview wall shows three sentences to a Lite reader
+      await page.waitForSelector('.sentence', { timeout: 10000 });
+      const r = await page.evaluate(() => ({ sentences: document.querySelectorAll('.sentence').length, pills: document.querySelectorAll('.ch-nav .ch-pill').length, overflow: document.documentElement.scrollWidth > window.innerWidth + 2 }));
+      if (r.sentences < 160) throw new Error('the story should render at least 160 sentences on a phone: ' + r.sentences);
+      if (r.pills < 5) throw new Error('five chapter pills expected: ' + r.pills);
+      if (r.overflow) throw new Error('the Level-1 story overflows a phone');
+      await page.locator('.sentence .word').first().click();
+      await page.waitForSelector('.sheet.show', { timeout: 10000 });
+      await page.evaluate(() => document.getElementById('scrim').click());
+    } finally { await page.setViewportSize(was); await page.evaluate(() => { setPremium(false); renderLibrary(); }); }
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

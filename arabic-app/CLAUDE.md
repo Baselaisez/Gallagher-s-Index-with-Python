@@ -5529,3 +5529,196 @@ the jarr clitic must come off before the engine is asked (بِأَبِيهِ). G
   measured the OLD rules and the failures looked unexplained. Diagnostics go in
   their own command; an edit script prints what it did, and the rebuild greps
   for the edit's own comment before any probe is trusted.
+
+
+## Qiṣaṣ al-Nabiyyīn is a story now, and the Level-1 reader's frames are rules (wave 26b–26e, v181)
+
+`content/samples/qisas-al-nabiyyin-1` (L1 Newbie, premium, **five chapters, 171
+sentences, 1,090 tokens**; regenerators `tools/authoring/author_qisas_ch1.py` …
+`author_qisas_ch5.py` over the shared `qisas_common.py`) carries the opening of
+Nadwī's «مَنْ كَسَرَ الْأَصْنَامَ؟» from the user's scans, transcribed page by page
+(`$SCR/pdf26/qisas1_matn.txt`, vol. 1 complete): the idol seller, Ibrāhīm breaks
+the idols, the cold fire and «my Lord is Allah», the call and the king, the call
+to the father, the road to Mecca and the well of Zamzam. **Nadwī died in 1999 and
+the text is in copyright**: the manifest attribution carries the RIGHTS/HAKLAR
+notice in both languages and the smoke gate reads it off disk; the user directed
+the story be authored regardless. Every Qurʾanic line the print sets (26:71–74,
+26:78–81, 21:59–63, 21:68–69, 6:78, 2:258, 19:42/44/47) is marked with
+`quoteBefore`/`quoteAfter` and the `al-iqtibas-wal-tadmin` tag, and the gate
+checks the ids. The note `la-nafiya` (nahw, level 1) with its question test is
+anchored in the story. Endings-mode ḍabṭ at v181: **ch1 100.0 (186), ch2 100.0
+(206), ch3 100.0 (235), ch4 100.0 (191), ch5 100.0 (240)** — floors 98/97/96/96/93;
+47 seed sentences rebuilt ending for ending; the whole volume as free text
+(4,480 endings, lexicon-blind) 84.5 → **90.4**.
+
+**A Level-1 text is the hardest test the ḍabṭ engine has met.** The Talkhīṣ
+settles most seats by definition frames and lexicon; a children's narrative is
+all verbs, names, pronouns and joined clauses, and every ambiguity the books
+list is live in it. The two patches (`patch26d`, `patch26e` — eighteen numbered
+rounds, each probed on the chapter it was for and re-graded on every earlier
+chapter and on the seeds before the next) are the record. The rules, each paid
+for by a named token:
+
+- **The inherited doer.** A joined transitive māḍī inherits the doer the clause
+  already named (غَضِبَ إِبْرَاهِيمُ وَأَخَذَ الْفَأْسَ) — guarded by person, by the
+  lexicon's transitivity (`majhulMazi`/`ismMaful`, compared in NFC: the shadda's
+  order had hidden every Form-II verb from the rule for seven rounds), by the
+  INTRANS gloss, by a colon or a pause, and by the SAME-LEMMA test that bends
+  only where the first verb took an object (وَغَضِبَ قَوْمُهُ وَغَضِبَ الْمَلِكُ names new
+  doers; نَصَرَ اللهُ هَاجَرَ وَنَصَرَ إِسْمَاعِيلَ keeps its doer). A NAME is the object
+  only where the first verb took an object or its doer stands right before the
+  joined verb (فَغَضِبَ الْمَلِكُ وَطَلَبَ إِبْرَاهِيمَ) — never the jalāla, never after
+  a saying verb, never past a pause (وَخَرَجَ الْمَاءُ … وَشَرِبَ إِسْمَاعِيلُ).
+- **The an-chain.** After أَرَادَ (or any verb whose doer is named or hidden) the
+  an-verb's doer is that doer; a verb from the PERSON_OBJ table takes the plain
+  noun after it, or the noun behind a returning jarr-pronoun (وَيَعْبُدَ فِيهِ اللهَ
+  وَيَدْعُوَ النَّاسَ); the joined an-verbs keep the chain through `st.anHidden30`;
+  أَنْ يَفْهَمَ الْمَلِكُ keeps its doer because فَهِمَ is in no table; أَنْ يَبْعُدَ
+  مِنْهُ يُوسُفُ keeps its doer because a returning pronoun + a noun is a seat, and
+  the one-letter `fused()` test had to be widened to مِنْهُ/فِيهَا/عَلَيْهِ before
+  the rule could see it.
+- **The speaker and the addressee.** A 1st/2nd-person tāʾ māḍī is written only
+  when the line resolves it: أَنَا/نَحْنُ or the speaker's نِي — including the
+  TRIMMED wiqāya nūn read off the author's token (وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ) —
+  against أَنْتَ/the vocative/a question particle opening the line (هَلْ شَرِبْتَ).
+  Unresolved stays `none`: a guess here is a wrong person half the time.
+- **The five verbs' nūn is not dropped when an object pronoun hides it**
+  (هَلْ يَسْمَعُونَكُمْ is no jawāb al-ṭalab): `nunDropped` reads the HOST.
+- **The exception follows the object it excepts from** (لَا يَخَافُ أَحَدًا إِلَّا
+  اللهَ — badal, nasb), the mirror of R13's mufarragh doer.
+- **A frozen adverb is transparent to the atf** (مَلِكٌ كَبِيرٌ جِدًّا، وَظَالِمٌ) and
+  never itself a maʿṭūf (وَكَذٰلِكَ); a clause-opening كَذٰلِكَ fronts the khabar
+  (وَكَذٰلِكَ كُلُّ مُشْرِكٍ); a wa-joined fused ẓarf opens a nominal clause
+  (وَمَعَهُ زَوْجُهُ هَاجَرُ) and the name after a pronoun-bearing noun is its badal.
+- **The twins the surface cannot split are split by the context's receipts:**
+  the amr-dual cell of another paradigm that spells this verb's 3ms māḍī reads
+  as the māḍī with no addressee in the line (وَدَعَا is never «you two, leave!»);
+  the token behind ONE joining letter matched mark for mark outranks a cell of
+  another lemma (وَوَصَلَ is وَ + وَصَلَ, never وَ + وَ + صَلِّ); a whole stored cell is
+  never split into host and pronoun (وَيَتَحَرَّكَ keeps its kāf); no pronoun clings
+  to a tanwīn word (مُشْرِكٍ); the analyzer's wāw-peel before a false article is
+  undone where the lexicon owns the wāw-initial noun (وَالِدَهُ was وَ + الد + ه —
+  and `joined()` believed the segments); a wa-joined «māḍī + pronoun» after a
+  pronoun-bearing noun is the noun (زَوْجَهُ هَاجَرَ وَوَلَدَهُ إِسْمَاعِيلَ) and keeps
+  its joiner in the segments or `joined()` cannot see it; the fused ب/ل/ك peel
+  loses to a whole stored verb cell (كَسَرَ is no كَ + سِرّ) — on the analyzer's
+  FLAG, not its segment list, which the heuristic peel leaves at one.
+- **فَكَانَ after a clause with its doer** conceals its ism and stamps the next
+  noun as its khabar outright (بَقِيَ الْمَاءُ فَكَانَ بِئْرَ زَمْزَمَ) — the kāna state
+  was reset by the row's own pre-pass twice and reopened by the analyzer's
+  «ism of kāna expected» note once; the stamp is what survived, and the stamped
+  khabar annexes the name after it (no tanwīn on a muḍāf).
+- **The relative is a wall for the subject** (الصِّلَةُ سُورٌ: الَّتِي يَشْرَبُ مِنْهَا
+  النَّاسُ — the mubtada before the relative owns nothing inside the ṣila, and
+  «the doer stands right before the verb» excludes every relative, not only مَا);
+  a returning jarr-pronoun after the ṣila's verb carries the ʿāʾid, so the
+  definite noun after it is the doer whatever the verb's valency.
+- **The foreign names are diptotes whatever the lexicon knows** —
+  `AJAM_NAMES26` grew إِسْمَاعِيل، مَكَّة، زَمْزَم، إِسْحَاق، يَعْقُوب، يُوسُف … and now
+  feeds `propn()` too, so free text with no lexicon entry still reads a name as
+  a name; the writer keeps the author's dress where only a dagger alif differs
+  (لِلّٰهِ) and the fatḥa the author put on the speaker's yāʾ (رَبِّيَ).
+- **Quotation marks are no letters**: the author's tokens lose «» before any
+  ending test, or every last word of a quoted line fails on the ».
+
+Three things the wave taught about the tooling. **The ladder's early rules exist
+twice** (recorded in wave 25) — a rep that must hit the delayed-ism rule needs
+`count=2`, and the one that hits `joined()` needs `count=1`; a wrong count crashes
+the patch chain and the next build silently measures the previous round. **A
+rule's guard must be instrumented, not reasoned about:** six rounds were spent
+on وَوَدَّعَ وَالِدَهُ before a one-line trace (`DabtEngine._trace.push({...every
+operand})`) showed `plainObj(nx)` false because the analyzer had segmented the
+object as a wāw + a false article; the same trace found the NFC lemma mismatch,
+the `fused()` one-letter blindness and the kāna reset in one afternoon. And
+**the saying verb's colon belongs to the doer** — `qala()` defaults to a colon
+and ch2/ch3 had shipped «قَالَ: إِبْرَاهِيمُ:» for a hundred commits; the regex fix
+runs over every author script and the JSON audit is in the chapter-4 run.
+
+**The seam-idghām wrapper, sixth payment — and the release gate is what pays it.** سَكَتَ
+(a tāʾ-final lām meeting the doer's تَ) and the hollow أَهَانَ (a nūn-final lām meeting
+the women's نَ and the نَا) were authored through `sound1`/`derived_hollow` bare,
+shipped سَكَتْتَ and أَهَنْنَ, and the Sarf regeneration gate blocked the first v181 run
+on them. Every maker whose lām is ت، ن or د goes through `_sg.idgham(...)`, and
+`put_morph` never overwrites, so the stale keys are popped before the script
+re-runs. The release is the only reader of the whole corpus's paradigms; the
+chapter probes never see a cell the text does not use.
+
+**Key hygiene, again:** `hajar` already meant حَجَر (ch2's stone), `adaa` أَدَاء,
+`safa` صَفَاء, `mushriq` «shining» not مَشْرِق — the global check caught all four
+at authoring time; the names are `hajar-name`, `adaa-lose`, `safa-q`, `mashriq`.
+
+**What the release found after the measured gates were green — three full-mode
+regressions and one seed, each a wave-26 rule reaching one word too far (rounds
+19–20).** The chapter probes grade in ENDINGS mode; the release also rebuilds the
+drill garden from BARE letters, and there the author's written marks are evidence
+the rules may read. (1) The mufarragh exception (لَنْ يَدْخُلَ الْجَنَّةَ إِلَّا مَنْ) had
+no negation in its guard — it was unreachable only because the name after إِلَّا
+used to read as a verb; the moment the wave's propn rules made زَيْدًا a noun,
+جَاءَ الطُّلَّابُ إِلَّا زَيْدًا became «the students were the object». The classical
+condition is the guard now (`negBefore33`: a nafy, a nahy, لَيْسَ or a question
+before the verb), and in full mode a written ḍamma on the noun refuses the object
+reading outright (`writtenRaf33`). (2) Round 15 excluded every relative from «the
+doer stands right before the verb» for الَّتِي يَشْرَبُ مِنْهَا النَّاسُ — and took
+مَنْ يَطْلُبِ الْعِلْمَ with it, where the ʿāʾid inside يَطْلُبِ IS the doer and الْعِلْمَ
+the object. The exclusion is now the SHAPE that needed it: a returning
+jarr-pronoun and a plain noun after the verb; مَا keeps the wave-20 reading.
+(3) Round 1 turned the vocative annexed to the speaker's yāʾ into a `keep` (يَا
+أَبِي — the five-noun host must not take the nasb alif), and the keep writer
+composed lemma + bare yāʾ in full mode: مُعَلِّمي. The muḍāf's kasra before the
+yāʾ is written on the host now. (4) The sixth idghām payment had a rider: once
+أَهَانَ's women's nūn contracted (تُهِنَّ), its bare letters equalled the singular
+jussive تُهِنْ, and the cell walk handed وَلَا تُهِنْ the 2fp cell. The يَكُنْ / يَكُنَّ
+rule (under a jazim the matching majzum cell is the cell) now covers the 2fp and
+reads the string-valued `majzum` / `majzum2` fields the packages actually store —
+its first cut assumed an array and silently did nothing. Meta-rule, paid for the
+fourth time this wave: a rule's new reach is measured on the NEIGHBOURS before the
+release, in full mode as well as endings mode, and a writer fix is probed on the
+seed it was written for before the two-hour run.
+
+**Round 21 — a glossary that grows flips a rule that asks it, fifth payment.**
+Release run 3 blocked on a Talkhīṣ bayt the wave never touched: كَقَوْلِ
+الْمُتَنَبِّي … لَوْ تَبْتَغِي عَنَقًا عَلَيْهِ لَأَمْكَنَا lost its mubālagha frame because
+لَأَمْكَنَا stopped being a verb. The bisect over the twenty rounds found NONE
+of them guilty — the unpatched v180 shell fails on the current content too. The
+Qiṣaṣ brought أُمّ into the lexicon; the marked-text rescue asks the lexicon
+whether the host owns the word, and «لَأَمْكَ» now answered أُمّ + كَ («your
+mother»). That hit did not match the host, so the rule neither returned nor
+tried the whole stored cell — the verb path lived in the `else` of a lookup
+that was never meant to be a verdict. A lexicon hit obtained only through a
+pronoun strip owns nothing; the whole-word corpus walk now runs before the row
+is left a noun. Two lessons on top of the standing one: bisect against the
+UNPATCHED shell first (one build answers «is it the engine or the content?»),
+and when a chapter's glossary enters the corpus, the sentences that can flip
+are everywhere else — the release is the only sweep that sees them.
+
+**Round 22 — the widened fall-through reached one word too far, within the hour.**
+Run 4 blocked on ch51's فَلْيَدْعُ نَادِيَهُ: round 21's whole-word walk read the
+manqūṣ in nasb with its pronoun as the 2fs amr نَادِي with an object — the exact
+reading the wave-16 madd-letter guard exists to refuse. Two guards now: a manqūṣ
+lemma (kasratan) equals the host with its restored yāʾ dropped, and that IS
+ownership; and the mismatch path takes a māḍī/muḍāriʿ cell only, never over a
+host whose last letter is a vowelled madd letter. The pattern is the one this
+file keeps recording — a widened frame ships WITH its control — and the cheap
+countermeasure is now in the loop: after a round that fixes a release finding,
+the failing CHUNK is rerun standalone on the landed reader before the two-hour
+run, so the next regression costs ten minutes.
+
+**Round 23 — the standalone chunk found two pins in ten minutes, and each was a
+Level-1 rule wearing a wave-22/24 sentence.** The subject's walk back over
+لا/ما/قد (round 3) crossed فَقَدْ, and بُشْرَى became the concealed doer of
+أَنْجَزَ — the fāʾ opens the jawāb's clause and the walk stops at it. The wa-fused
+ẓarf rule (وَمَعَهُ زَوْجُهُ, round 12) matched the VERB وَلِيَ by its bare letters
+(وَ + لِي) and seated أَحَدُ as a mubtada — a row with a verb cell is never that
+ẓarf; and the first guard written for it («the previous row is a particle»)
+took the Qiṣaṣ sentence away within the minute, because مَعَ is a ẓarf and
+the analyzer rightly calls it a NOUN (a peel is not a classification — the
+v-ch4 lesson, read from the other side). The one-joiner rule (round 10,
+وَوَصَلَ) swallowed وَعَدَا — its own cell وَعَدَ's dual already spelt the whole
+token, and a cell that spells the whole token outranks the token behind the
+joiner. Bisecting by ROUND (truncate the patch file before a marker, rebuild,
+probe) named all three in two passes of five builds; the bisect script stays
+in the scratchpad as the method.
+
+
+
+
