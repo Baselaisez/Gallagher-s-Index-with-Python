@@ -5876,3 +5876,39 @@ plurals (شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِ
 first v183 run blocked on it. The ceiling moves with the corpus by design
 (v178 said so) — raise it to the measurement, name the chapter, and rerun the
 resumable release from the blocked chunk.
+
+## Qiṣaṣ chapter 9 — the delegation and the forest, and the round the quoted speech forced (wave 26m, v184)
+
+`qisas-al-nabiyyin-1` runs to **nine chapters, 280 sentences, 1,964 tokens**:
+chapter 9 «وَفْدٌ إِلَى يَعْقُوبَ، وَإِلَى الْغَابَةِ» (§3–4 of «أَحْسَنُ الْقَصَصِ», print
+pp. 30–34 — the brothers' plea, Yūsuf 12:12 and 12:13 as the print sets them,
+the leave, the forest and the well, the glad tidings in the well, the council,
+the ram and the dyed shirt; `author_qisas_ch9.py`). Endings-mode ḍabṭ at v184:
+**ch9 100.0 (257)** — floor 97; ch1–8 held; sarfAudit clean. The chapter cost
+one round (`patch26m`, round 28), four rules, every one a receipt in the quoted
+speech:
+
+- **The jawāb al-ṭalab stamp knew only the word the analyzer took for a
+  NOUN.** Round 24m read the author's sukūn after an amr to turn a noun-read
+  word into the jussive (اقْتَرِحْ شَيْئًا نُجِدْ); يَرْتَعْ was already a verb to
+  the analyzer, so no stamp fell and the writer gave it raf'. The stamp now
+  reads the sukūn on a verb the analyzer owns too (third person, within three
+  rows of the amr, no jazim or nāṣib between) — أَرْسِلْهُ مَعَنَا غَدًا يَرْتَعْ
+  وَيَلْعَبْ, the second verb by the copied mood.
+- **The prohibiting لَا may stand after a saying verb's colon** (وَقَالَ لَهُ: لَا
+  تَحْزَنْ وَلَا تَخَفْ). The nahy test asked for the sentence head or a joiner;
+  the colon IS a clause head. The hollow تَخَفْ had passed on its letters
+  alone — the sound تَحْزَنْ needed the rule.
+- **The naṣb of أَنْ stops at the an-clause's named doer** before a FIRST-PERSON
+  joined verb (أَخَافُ أَنْ يَأْكُلَهُ الذِّئْبُ فَنَقُولُ لَهُ): the copied mood reached
+  four rows across the wolf, and «we» cannot be the wolf's co-ordinate.
+- **A mubtada needs its khabar** (آيَةُ ذٰلِكَ الدَّمُ): the ال-noun closing the
+  sentence after a demonstrative annexed to the clause's mubtada is the
+  khabar, not the demonstrative's badal — the rule that reads اسْمُ هٰذَا
+  الرَّجُلِ stands down on the sentence's last word.
+
+**Key hygiene:** `sadaqa` already meant صَدَقَة, `ghaba` the verb غَابَ, `wahid`
+وَاحِد (and وَحِيد in one upload — a standing collision); the chapter's keys are
+`sadaqa-verb`, `ghaba-forest`, `wahid-alone`. A note id that does not exist
+(`lam-ibtida`, `hamzated-verbs`) is a validator error, not a silent gap — the
+slid lām and the hamzated verbs still have no note of their own.
