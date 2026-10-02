@@ -5719,6 +5719,89 @@ joiner. Bisecting by ROUND (truncate the patch file before a marker, rebuild,
 probe) named all three in two passes of five builds; the bisect script stays
 in the scratchpad as the method.
 
+## Qiṣaṣ chapters 6–7, and the two rounds the dream and the Kaʿba forced (wave 26g–26i, v182)
 
+`qisas-al-nabiyyin-1` runs to **seven chapters, 217 sentences, 1,455 tokens**:
+chapter 6 «رُؤْيَا إِبْرَاهِيمَ» (§14, print pp. 21–23 — the return to Mecca, the
+dream, al-Ṣāffāt 37:102 as the print sets it in two marked lines, Minā, the ram,
+the Feast of Sacrifice; `author_qisas_ch6.py`) and chapter 7 «الْكَعْبَةُ وَبَيْتُ
+الْمَقْدِسِ» (§15–16, pp. 23–26 — the building of the Kaʿba with al-Baqara 2:127,
+the Muslims' turning and pilgrimage, Sārah and Isḥāq, al-Shām and Bayt
+al-Maqdis, Yaʿqūb's twelve sons and the hand-over to Yūsuf's story;
+`author_qisas_ch7.py`). Endings-mode ḍabṭ at v182: **ch6 97.3 (150), ch7
+100.0 (200)** — floors 95 / 97; ch1–5 held at 100.0, the 47 seeds at 267/267,
+the drill garden's full re-vowelling at 96.3. The two chapters cost two
+engine rounds (`patch26g`, round 24; `patch26h` + `patch26i`, round 25), and
+every rule is a Level-1 frame the Talkhīṣ never needed:
 
+- **A maqṣūr NAME whose lexicon lemma carries the tanwīn is munṣarif.** The
+  writer treated every name on an alif as a diptote (مُوسَى، عِيسَى) and wrote
+  مِنى; the lexicon's own مِنًى is the receipt of ṣarf, and `diptote()` stands
+  down on it.
+- **The elative after a verb's DEFINITE object is the elative** (يُحِبُّ اللهَ
+  أَكْثَرَ): a bare māḍī there could only be the object's naʿt or its ḥāl, a
+  definite takes no naʿt clause and a māḍī ḥāl needs قَدْ — the tenth demotion
+  guard, and the first that reads the clause rather than the word or its
+  neighbour.
+- **ابن wearing a pronoun right after a verb is the son** (يُحِبُّ ابْنَهُ) — an
+  imperative is never a verb's object, and «build it!» would need a colon.
+- **A verb matched WHOLE with its object pronoun is stamped with the pronoun it
+  wears** (بَنَاهُ ~ بَنَى + هُ, found through the maqṣūra-to-alif candidate): the
+  doer seat stays open, the name after it is the doer, and the cell writer
+  splits the host from the pronoun before writing. Two accidents sat on the
+  way: the lexicon's clitic strip read بَنَاهُ as بِ + نَاهٍ («a forbidder») and
+  told `guessEnc` the word was owned whole — a stamped pronoun now outranks
+  that strip; and the verb branch had already handed the name to the object
+  seat, so the doer rule runs BEFORE the object stamp is read.
+- **The relative's ʿāʾid may ride the ẓarf AFTER the noun** (الَّذِي بَارَكَ اللهُ
+  حَوْلَهُ): the subject-before-the-verb rule stands down for «relative + verb +
+  plain noun + returning pronoun» — on a noun or a fused particle, never on a
+  verb, or مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ loses its doer (the drill garden said so
+  within the hour).
+- **The ism fiʿl family takes its object** (وَإِلَيْكَ هٰذِهِ الْقِصَّةَ): إِلَيْكَ،
+  عَلَيْكَ، دُونَكَ، هَاكَ at the clause head make the next noun manṣūb, and a
+  demonstrative's badal follows the demonstrative's maḥall.
+- **رَبَّنَا before a plea verb is the vocative with its يَا dropped** (رَبَّنَا
+  تَقَبَّلْ مِنَّا) — the amr after it is the receipt; a mubtada has no imperative
+  for a khabar.
+- **اسْمُهُ / اسْمُهَا after a nakira opens its ṣifa clause** (زَوْجٌ أُخْرَى، اسْمُهَا
+  سَارَةُ؛ وَلَدٌ اسْمُهُ يَعْقُوبُ): mubtada, and the name after it the khabar — the
+  nakira may stand up to four rows back, across a pause or a jarr phrase.
+- **A name takes no plain-noun naʿt** (وَنَقَلَ إِبْرَاهِيمُ وَإِسْمَاعِيلُ الْحِجَارَةَ):
+  the ال-noun after a named or joined doer, while the verb owes its object, is
+  the object.
+- **The foreign names under a jarr clitic** (لِإِسْحٰقَ — the print's dagger alif,
+  which no lexicon lemma spells): `propn()` and `diptote()` fold the clitic
+  before the names table, so the fatḥa of jarr and kāna's fronted khabar both
+  survive a spelling the lexicon has never seen.
+- **The compound number** (لَهُ اثْنَا عَشَرَ وَلَدًا): اثْنَا carries no pronoun —
+  its نا is the stem's, and `guessEnc` had read «our two» — it is the delayed
+  mubtada after the fused pronoun and writes by its LETTER (اثْنَا / اثْنَيْ,
+  اثْنَتَا / اثْنَتَيْ); عَشَرَ keeps its bina.
+- **A fused pronoun after a pause opens a nominal clause** (…، مِنْهُمْ يُوسُفُ
+  بْنُ يَعْقُوبَ) exactly as the wāw-fused one did (وَمَعَهُ زَوْجُهُ).
+- **وَكَانَ + a lone nakira closing the sentence** after a clause with its
+  subject conceals its ism (اسْمُهُ يَعْقُوبُ وَكَانَ نَبِيًّا) — the فَكَانَ rule's
+  wāw sibling, narrowed to the sentence's last word.
+- **The tanwīn-word atf rule (P13) stands down on a lexicon-owned wāw-initial
+  word** (وَلَدٌ after لِإِبْرَاهِيمَ is kāna's delayed ism, never joined to the
+  majrūr) — the «clitic hides the feature» trap read from the other side: a
+  wāw the lexicon owns is not a joiner.
 
+**Accepted misses, named.** ch6 s2 (وَلَقِيَ إِسْمَاعِيلَ وَلَقِيَ هَاجَرَ — a
+sentence-initial verb whose doer is the previous sentence's) and s15 (وَهَلْ
+يُحِبُّ اللهَ أَكْثَرَ — a question joined onto the previous sentence's subject):
+both readings need the sentence before, which the grader does not hold. The
+chapter floor sits under them rather than on a rule that would guess.
+
+**Two things the wave taught about the loop.** The chapter probe grades in
+endings mode and the drill garden in FULL mode — the first cut of the ʿāʾid rule
+passed every chapter and took a drill sentence; the neighbour sweep
+(`build26t.sh`-style: chapters, seeds, the ch61–64 and ch51–57 gates, the drill,
+`sarfAudit`) runs after EVERY round now, in the background, before the next
+round is written. And a rule inserted «early in the ladder» is only early
+relative to the rules after it: the verb branch's object stamp (`__obj26`) is
+read at the top of the ladder, so a doer rule that must beat it goes before
+that line, not before the frame it was written beside — bisect by trace, not
+by reasoning (`DabtEngine._trace.push({...every operand})` named the stamp in
+one run).
