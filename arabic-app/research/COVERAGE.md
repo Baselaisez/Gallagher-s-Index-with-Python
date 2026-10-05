@@ -51,7 +51,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
 | 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL** (transcribed in v180) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the izhar-al-asrar package; the ḥāshiya is untranscribed. |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
-| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, ten chapters (§1–16 of «من كسر الأصنام؟» and §1–6 of «أحسن القصص» — through Yūsuf's night in the well, v185), in copyright and flagged so in the manifest; §7–9 of «أحسن القصص» remain to author. |
+| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, eleven chapters (§1–16 of «من كسر الأصنام؟» and §1–8 of «أحسن القصص» — through the ʿAzīz's house and the prison, v186), in copyright and flagged so in the manifest; §9 of «أحسن القصص» (the prison sermon) and the rest of the volume remain to author. |
 
 **Tally:** FULL 9 · PARTIAL 24 · UNTOUCHED 6 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
 
@@ -2874,6 +2874,15 @@ not a one-line change.
   Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
   (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).
 
+- **v186 (wave 26o)** — Row 40: Qiṣaṣ chapter 11 (§7–8 of «أحسن القصص»: the
+  caravan and the bucket with Yūsuf 12:19, the market of Egypt and the ʿAzīz,
+  the wife's attempt and Yūsuf's refusal, 12:29, 12:31, 12:33 and the prison;
+  28 sentences, 175 tokens), the story now 328 sentences / 2,282 tokens; one
+  engine round in five cuts (30, `patch26o`…`o5`: the subject carried across
+  the full stop with its receipts, the madda as hamza + alif, the endings strip
+  on reachable verb hosts, the stored plural owned whole, the bare speaker's
+  yāʾ, إِذَنْ mutawassiṭa, the elative khabar, the nouns of relation, the
+  diptote under a clitic, the group's wāw's sukūn).
 - **v185 (wave 26n)** — Row 40: Qiṣaṣ chapter 10 (§5–6 of «أحسن القصص»: the
   brothers before Yaʿqūb with Yūsuf 12:16–18, the whole shirt, «فَصَبْرٌ
   جَمِيلٌ», Yūsuf in the well at night; 20 sentences, 143 tokens), the story

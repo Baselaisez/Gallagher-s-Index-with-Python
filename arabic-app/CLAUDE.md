@@ -5954,3 +5954,78 @@ well at night; `author_qisas_ch10.py`). Endings-mode ḍabṭ at v185: **ch10
 
 **Key hygiene:** `isha` already meant عِيشَة and `mata` مَتَى — the chapter's keys
 are `isha-evening` and `mata-goods`; the إِذَا note is `idha-shartiyya`.
+
+## Qiṣaṣ chapter 11 — from the well to the palace, and the round the narrative's full stops forced (wave 26o, v186)
+
+`qisas-al-nabiyyin-1` runs to **eleven chapters, 328 sentences, 2,282 tokens**:
+chapter 11 «مِنَ الْبِئْرِ إِلَى الْقَصْرِ، وَالْوَفَاءُ وَالْأَمَانَةُ» (§7–8 of «أَحْسَنُ
+الْقَصَصِ», print pp. 36–38 — the caravan and the bucket with Yūsuf 12:19 as the
+print sets it, the market of Egypt and the ʿAzīz, the wife's attempt and
+Yūsuf's refusal, the ʿAzīz's verdict (12:29), the city's wonder (12:31),
+«السِّجْنُ أَحَبُّ إِلَيَّ» (12:33) and the prison; `author_qisas_ch11.py`).
+Endings-mode ḍabṭ at v186: **ch11 100.0 (175)** — floor 97; ch1–10 held (ch6's
+two accepted misses stand); the 47 seeds 267/267; the r21/r22 gates and the
+drill garden unchanged; sarfAudit clean. One round in five cuts (`patch26o`
+… `patch26o5`, round 30), and the rule that paid for most of it is new in kind:
+
+- **The narrative carries its subject across the full stop.** Every earlier
+  chapter accepted a miss where a sentence opened on a verb whose doer stood
+  in the sentence before (ch6 s2). The grader now hands `decide()` the subject
+  it found one sentence back — in reading order only, keyed on the chapter's
+  own sentence objects, cleared the moment the grade returns — and a sentence
+  opening on a joined 3rd-person transitive verb with ONE plain noun after it
+  reads that noun as the object (وَنَزَعَ الدَّلْوَ). Four neighbour sweeps drew
+  the rule's edges, each a receipt: the carried subject is the LAST named doer
+  (خَلِيلُهُ, not اللهَ) and only a name or an ال-noun (اسْمُهُ carries nothing);
+  it stands down for an intransitive verb (وَرَجَعَ الْإِخْوَةُ — INTRANS learned
+  dwell/settle/reside/rest for سَكَنَ), before an object clause (فَعَرَفَ يَعْقُوبُ
+  أَنَّهُ) or a colon, where a later verb's person is dual or plural (وَتَرَكُوا),
+  where the one noun is the jalāla (فَبَارَكَ اللهُ), and where it is a name
+  while the carried subject is not; joined nouns form one unit (وَنَقَلَ
+  إِبْرَاهِيمُ وَإِسْمَاعِيلُ الْحِجَارَةَ keeps its two doers); إِذَا after the noun opens
+  a clause, not an object. The chain propagates through joined verbs, over
+  أَوْ / ثُمَّ and into a muḍāriʿ after a muḍāriʿ — and an intransitive joined
+  verb before a plain definite noun names its own doer, whether it would have
+  inherited a hidden one or a named one (وَلَقِيَ هَاجَرَ وَفَرِحَ إِبْرَاهِيمُ).
+- **The madda is also hamza + alif** (رَآهُ = رَأَى + هُ): a matching-only unfold
+  beside the madda's two hamzas, and the whole-match stamp folds it the same
+  way — the first cut unfolded the word and left the comparison blind.
+- **The endings strip keeps a pronoun's vowel on a verb host the restore
+  rules can reach** (وَأَخْفَوْهُ → أَخْفَوْا; رَآهُ → رَأَى): a bare ه after the strip
+  reaches no cell, and the whole sentence after it fell. And the writer keeps
+  the group's wāw's sukūn before the pronoun that took the alif's place.
+- **A stored plural is owned whole** — no pronoun hides in its tail (بِدَرَاهِمَ is
+  never دَرَى + هُمْ: the أَبَاهُمْ trap with a lexicon plural); a diptote under its
+  jarr clitic is still a diptote; and the naʿt after a nakira majrūr reads the
+  jarr clitic by its kasra where the analyzer left it unpeeled, also when the
+  verb's object is already taken and the two agree (a broken plural takes the
+  feminine singular: بِدَرَاهِمَ مَعْدُودَةٍ).
+- **The bare speaker's yāʾ on a noun the lexicon owns without it is the
+  pronoun** (سَيِّدِي) — the analyzer had peeled a false future sīn.
+- **إِذَنْ in the middle of the speech is cancelled** (مُلْغَاة): it governs only
+  at the head of its sentence — the print's إِذَنْ تَذْهَبُ after قَالَتْ لِيُوسُفَ
+  keeps its raf', and the rule says why.
+- **The elative after a mubtada, before its مِنْ / إِلَى, is the khabar**, never
+  the Form-IV māḍī (السِّجْنُ أَحَبُّ إِلَيَّ).
+- **The «indefinite head after a transitive verb is the doer» cut stands down
+  for the nouns of relation** (امْرَأَةُ الْعَزِيزِ، زَوْجُ الْمَلِكِ) and wherever a third
+  plain definite noun follows to be the object (رَاوَدَتِ امْرَأَةُ الْعَزِيزِ يُوسُفَ) —
+  the cut was written for جَوَّزَ قَوْمٌ الِاعْتِرَاضَ, where nothing follows.
+
+Two content slips the engine caught: the aya's مِنَ الْخَاطِئِينَ had been typed
+with a sukūn, and أَدْلَى had been authored with no passive — so the inherited
+doer could not see it was transitive. **Key hygiene:** `idhan` already meant
+إِذًا, `baad` بَعْض in the Maqṣūd (the adverb is `bada`), `man-istifham` was
+already the package's own; the note ids the first draft guessed (ma-al-hijaziyya,
+in-nafiya, idha-fujaiyya, anwa-al-jawab, nun-al-wiqaya, ya-nida) do not
+exist — the validator said so, and the tokens anchor anwa-ma, qasr,
+idha-shartiyya, an-masdariyya, ya-al-mutakallim and vocative-munada instead.
+
+**What the release found: the plural ceiling again, and a timing gate that
+reads the machine.** The JamEngine audit rose to 167 with chapter 11's heard
+plurals (أُمَنَاء، بُرَآء، دِلَاء) and blocked the run at the v183 ceiling of 165;
+the gate now sits at 175 and names the chapter. And the held-out cross-
+validation timing check (4.5 s ceiling) failed once at 6.9 s — not the corpus
+but the load: two probe browsers were sweeping chapter 12 beside the release.
+Rerun alone it passed. **A timing gate measures the machine as much as the
+code; never run a probe beside the release's smoke chunks.**
