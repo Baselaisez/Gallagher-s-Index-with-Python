@@ -6064,3 +6064,95 @@ unchanged; the 47 seeds 267/267; sarfAudit clean. One round in four cuts
 `jari-bold`; `alim` in this package is عَلِيم, so the learned man is the standing
 `alim-scholar`; the geminate note is `doubled-verbs`, not the guessed
 `geminate-verbs`.
+
+## Qiṣaṣ chapters 13–19 — from Yūsuf's wisdom to Binyāmīn at Yūsuf's side, and round 32 (wave 26q, v188)
+
+`qisas-al-nabiyyin-1` runs to **nineteen chapters, 523 sentences, 3,814 tokens**:
+seven chapters landed in one wave, §10–20 of «أَحْسَنُ الْقَصَصِ» (print pp. 41–59) —
+ch13 «حِكْمَةُ يُوسُفَ، وَمَوْعِظَةُ التَّوْحِيدِ» (§10–11; the two men's dreams interpreted,
+the sermon of tawḥīd with Yūsuf 12:37–40, 35:40, 31:11), ch14 «تَأْوِيلُ الرُّؤْيَا،
+وَرُؤْيَا الْمَلِكِ» (§12–13; 12:41–42, the king's seven cows and seven ears),
+ch15 «الْمَلِكُ يُرْسِلُ إِلَى يُوسُفَ، وَيُوسُفُ عَلَى خَزَائِنِ الْأَرْضِ» (§14–16; 12:54–55),
+ch16 «جَاءَ إِخْوَةُ يُوسُفَ» (§17; 12:58), ch17 «بَيْنَ يُوسُفَ وَإِخْوَتِهِ» (§18; 12:59),
+ch18 «بَيْنَ يَعْقُوبَ وَأَبْنَائِهِ» (§19; 12:63–67), ch19 «بِنْيَامِينُ عِنْدَ يُوسُفَ» (§20;
+12:69, 12:73–75, 12:77 unmarked as the print sets it, 12:78–79) — regenerators
+`author_qisas_ch13.py` … `author_qisas_ch19.py`, +160 glossary entries, +53
+paradigms. Endings-mode ḍabṭ at v188: **ch13 100.0 (224), ch14 96.6 (177),
+ch15 98.3 (294), ch16 100.0 (164), ch17 100.0 (121), ch18 100.0 (114),
+ch19 97.8 (267)** — floors 97 where the chapter reaches it, else the named
+misses below; ch1–12 held; Talkhīṣ 71–76 unchanged; the 47 seeds 267/267;
+sarfAudit clean. One round in seven cuts (`patch26q` … `patch26q7`, round 32),
+the probe-first way: 120/169 sentences clean on the v187 engine, then
+138, 149, 156 and 158/169 after the cuts. The rules the seven chapters forced:
+
+- **The dual māḍī behind a lām or fā** (لَسَمِعَا، فَفَرِحَا): the ladder's seat-alif
+  test took the lexicon's lemma for the word minus its alif; now the WRITTEN
+  vowels must agree with that lemma (فَرِحَ ≠ فَرَح), and a fā-joined dual at the
+  head before a joined verb is the verb.
+- **The zarf before أَنْ/مَا/إِذَا is annexed to its clause** (قَبْلَ أَنْ يَأْتِيَ — no
+  tanwīn); the zarf never annexes an ordinal ṣifa (مَرَّةً ثَانِيَةً); كُلَّ يَوْمٍ after a
+  verb is a zarf; مَعَاذَ اللهِ is the mafʿūl muṭlaq.
+- **Title heads annex the name after them** (مَلِكُ مِصْرَ، رَسُولُ الْمَلِكِ، مَكَانَ
+  يُوسُفَ): the «verb + nakira + definite» object cut stands down for them, for a
+  chain member (تَأْوِيلِ رُؤْيَا الْمَلِكِ), and the number test stands down after an
+  always-muḍāf head (كُلَّ أَحَدٍ).
+- **The saying verb never takes a plain object** (وَقَالَ الْمَلِكُ is the doer); the
+  joined transitive māḍī's object is the name after it even across a jarr
+  phrase when the verb takes persons (وَسَأَلَ يُوسُفَ); a noun that repeats the
+  clause's doer, or that أَنَّ follows, is the doer again (وَعَلِمَ الْمَلِكُ وَعَلِمَ
+  النَّاسُ أَنَّ); the an-chain's name after a transitive verb is the object (أَنْ
+  يَذْكُرَ يُوسُفَ، أَنْ يَحْبِسَ بِنْيَامِينَ) and an intransitive one with a zarf names its
+  doer after it (أَنْ يَبْقَى عِنْدَهُ بِنْيَامِينُ); a doer-less muḍāriʿ opens the chain
+  too (يُمْكِنُ لِيُوسُفَ أَنْ).
+- **The she-verb after a masculine subject** (وَأَمَّا الْآخَرُ فَيُصْلَبُ فَتَأْكُلُ
+  الطَّيْرُ) takes the ال-noun after it as its doer when nothing feminine stands
+  before it.
+- **Kāna:** after إِنَّ's ism كَانَ conceals its ism (إِنَّ يُوسُفَ كَانَ كَبِيرَ النَّفْسِ); a
+  wa-joined noun after a jarr phrase is the maʿṭūf, not the ism (وَكَانَ فِي مِصْرَ
+  وَالشَّامِ مَجَاعَةٌ); the fronted khabar — kāna, a zarf or jarr phrase, then the
+  nakira ism — leaves the ṣifa after the ism as its naʿt (وَيَكُونُ بَعْدَ ذٰلِكَ
+  قَحْطٌ عَامٌّ); the subject scan steps over kāna's khabar so the ism owns the
+  verb after it (كَانَ يُوسُفُ جَوَادًا كَرِيمًا لَا يَعْرِفُ الْبُخْلَ).
+- **Sarf and the writer:** أَسْمَاء and the أَفْعَال plurals with a hamza lām are
+  munṣarif (only أَشْيَاء is barred); سِنِينَ declines by its letters at four letters;
+  the plural of a diptote colour declines (خُضْرٍ — the gloss's «diptote» belongs
+  to the lemma); وَبِنْيَامِينُ is no sound plural behind its wāw; الْأَخَوَانِ is the
+  five noun's dual on its wāw; إِخْوَان is not أَخَوَان (the lexicon's plural owns a
+  word only when the written vowels agree); أَبًا شَيْخًا annexes nothing; the
+  jawāb al-ṭalab in the first person, with a hamza or with its pronoun (نَأْخُذْ،
+  أَسْتَخْلِصْهُ); وَتَوَجَّهَ and وَضَعَ at the head are the māḍī (the twin amr needs
+  an addressee); لَا تَجِدُونَ keeps its nūn, so لَا is the nafy; وَكَلَّمَهُمْ goes back to
+  its cell when a jarr-letter peel left a verb with its pronoun; أَمِينَا in the
+  endings mode is no «our mother».
+- **Chains and pauses:** no annexation crosses a pause (بِشَيْءٍ، النَّائِمُ); a
+  wa-joined name after a pause with a nakira participle opens a ḥāl clause
+  (، وَبِنْيَامِينُ رَاجِعٌ غَدًا); the ṣifa-shaped head annexes a demonstrative
+  (صَاحِبُ هٰذَا التَّأْوِيلِ); the pair-before-their-verb reading stands down when the
+  noun before is a badal of the same shape and the verb is singular
+  (هٰذَا التَّأْوِيلَ وَالتَّدْبِيرَ فَرِحَ); مَنْ after the saying verb's colon opens the
+  question; the mufarragh (لَا يَنْفَعُ النَّاسَ … إِلَّا مَنْ) takes its object before
+  إِلَّا and its doer after; the name-object across a jarr phrase is for the
+  verbs of address only (وَسَأَلَ يُوسُفَ — never وَشَرِبَ إِسْمَاعِيلُ, which the
+  neighbour sweep caught in ch5); the tafṣīl badal keeps its ṣifa-shaped items after a
+  colon and the kāna-ism guard stops at a pause (the release smoke caught
+  Talkhīṣ ch48 s3/s4 — cut 7); the carried doer stands down for the name
+  after a dative pronoun only — a plain name after the carried verb is its
+  object (وَلَقِيَ إِسْمَاعِيلَ, ch6 in the same sweep); the plural ṣifa agrees with its ات-head (بَقَرَاتٍ
+  سِمَانٍ، سُنْبُلَاتٍ يَابِسَاتٍ); the counted phrase after a perception verb and a jarr
+  phrase is the object (رَأَى فِي الْمَنَامِ سَبْعَ بَقَرَاتٍ); the demonstrative's badal is
+  the object when a number doer follows (وَيَأْكُلُ هٰذِهِ الْبَقَرَاتِ سَبْعُ بَقَرَاتٍ);
+  a name after «nakira + لَهُ» is that nakira's badal (سَرَقَ أَخٌ لَهُ يُوسُفُ); the
+  shart's doer is not inherited by a jawāb whose nakira has its own clause;
+  لِأَيِّ شَيْءٍ declines and annexes (a question, no shart); كَيْفَ opens no shart;
+  بِاللهِ after a verb is the verb's own jarr phrase (نُشْرِكَ بِاللهِ); زَمَنٍ طَوِيلٍ
+  keeps its ṣifa with the majrūr that agrees with it; فَهُوَ جَزَاؤُهُ is the
+  pronoun's khabar, not the passive's second object.
+
+**Accepted misses (named, not floors):** ch14 s9 رَأَى فِي الْمَنَامِ سَبْعَ بَقَرَاتٍ (the counted object after a perception verb and a jarr phrase still reads as the doer); ch14 s13 هٰذَا لَيْسَ بِشَيْءٍ، النَّائِمُ يَرَى أَشْيَاءَ كَثِيرَةً (a pre-pass annexation crosses the pause — four tokens); ch14 s15 تَأْوِيلِ رُؤْيَا الْمَلِكِ (the chain stops after رُؤْيَا); ch15 s4 وَاشْتَاقَ الْمَلِكُ (the doer carried from s3 takes the repeated name as the object) and أَسْتَخْلِصْهُ (the jawāb al-ṭalab with its pronoun); ch15 s8 كَانَ أَحَدٌ مَكَانَ يُوسُفَ (the place noun before a name after kāna's ism); ch15 s22 لَا يَنْفَعُ النَّاسَ بِخَزَائِنِ الْأَرْضِ إِلَّا مَنْ (the mufarragh over a clitic-jarr noun); ch15 s31 أَمِينًا (read as «our mother» through the construct); ch19 s8 يُمْكِنُ (the majzūm twin wins the cell); ch19 s12 وَضَعَ هٰذَا الْإِنَاءَ (the demonstrative's badal after the doer-less verb reads as the doer); ch19 s14 صُوَاعَ إِنَاءَ الْمَلِكِ … وَلِمَنْ جَاءَ بِهِ حِمْلُ بَعِيرٍ (the bracketed badal and the delayed mubtada — three tokens); ch19 s21 أَبًا شَيْخًا (the bare five noun annexes the ṣifa-shaped nakira). Eleven sentences, twenty-two tokens of 1,361; ch14's floor is set at 96 for them, the other six chapters hold 97.
+
+**Key hygiene:** `hasada` is حَسَدَ (envy) — the reaping verb is `hasada-harvest`
+(حَصَدَ, bāb نَصَرَ); `jaa` is جَاءَ (the hunger is `jaa-hunger`), `dai` is دَاعٍ (the
+lost one `dai-lost`), `hafiz` is حَافِظ (`hafiz-keeper` for حَفِيظ), `sab` is صَعْب
+(`sab-seven`), `salaba` is سَلَبَ (`salaba-crucify`), `zaman` is زَمَان (`zaman-period`
+for زَمَن), `adhana` is آذَنَ (`adhdhana` for أَذَّنَ), `rahim` is the name
+(`rahim-merciful`).
