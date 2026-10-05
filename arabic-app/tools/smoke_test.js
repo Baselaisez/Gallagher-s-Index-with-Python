@@ -10881,7 +10881,7 @@ if (!CHROME) {
   });
 
   // ---------------------------------------------------------------- wave 26c: Qiṣaṣ al-Nabiyyīn (Nadwī) — the Level-1 reader, and the nahw frames it forced
-  await check('Qiṣaṣ al-Nabiyyīn ch1-19 (the idol seller; Ibrāhīm breaks the idols; the cold fire; the call and the king; to Mecca; the dream; the Kaʿba and Bayt al-Maqdis; Yūsuf\'s dream and the brothers\' envy; the delegation to Yaʿqūb and the forest; before Yaʿqūb and Yūsuf in the well; from the well to the palace, fidelity and trust; the sermon of the prison; the sermon of tawḥīd; the interpretation and the king\'s dream; the summons and the treasuries; the brothers come; Binyāmīn with Yūsuf): the Level-1 story on the shelf with its rights notice, the la-nafiya note with its question test anchored in the story, the ḍabṭ floors, the Qur\'anic lines marked (wave 26u)', async () => {
+  await check('Qiṣaṣ al-Nabiyyīn ch1-23 (the idol seller; Ibrāhīm breaks the idols; the cold fire; the call and the king; to Mecca; the dream; the Kaʿba and Bayt al-Maqdis; Yūsuf\'s dream and the brothers\' envy; the delegation to Yaʿqūb and the forest; before Yaʿqūb and Yūsuf in the well; from the well to the palace, fidelity and trust; the sermon of the prison; the sermon of tawḥīd; the interpretation and the king\'s dream; the summons and the treasuries; the brothers come; Binyāmīn with Yūsuf; the secret comes out; the good end — volume 1 complete): the Level-1 story on the shelf with its rights notice, the la-nafiya note with its question test anchored in the story, the ḍabṭ floors, the Qur\'anic lines marked (wave 26v)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-1'); if (!st) return { err: 'no qisas story' };
       const n = GRAMMAR['la-nafiya']; const note = n ? { group: n.group, level: n.level, q: n.question ? [n.question.en.length, n.question.tr.length] : null, anchored: (n.examples || []).filter(e => e.src === 'qisas-al-nabiyyin-1' || e.sourceStory === 'qisas-al-nabiyyin-1').length } : null;
@@ -10891,17 +10891,17 @@ if (!CHROME) {
       const quoted = ch2 ? ch2.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : [];
       const ch4 = st.chapters.find(c => (c.n || c.chapter) === 4); const quoted4 = ch4 ? ch4.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : [];
       const qOf = n => { const c = st.chapters.find(x => (x.n || x.chapter) === n); return c ? c.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : []; };   // (wave 26g)
-      const quoted6 = qOf(6), quoted7 = qOf(7), quoted8 = qOf(8), quoted9 = qOf(9), quoted10 = qOf(10), quoted11 = qOf(11), quoted12 = qOf(12), quoted13 = qOf(13), quoted14 = qOf(14), quoted15 = qOf(15), quoted16 = qOf(16), quoted17 = qOf(17), quoted18 = qOf(18), quoted19 = qOf(19);   // (wave 26l … 26u)
+      const quoted6 = qOf(6), quoted7 = qOf(7), quoted8 = qOf(8), quoted9 = qOf(9), quoted10 = qOf(10), quoted11 = qOf(11), quoted12 = qOf(12), quoted13 = qOf(13), quoted14 = qOf(14), quoted15 = qOf(15), quoted16 = qOf(16), quoted17 = qOf(17), quoted18 = qOf(18), quoted19 = qOf(19), quoted20 = qOf(20), quoted21 = qOf(21), quoted22 = qOf(22), quoted23 = qOf(23);   // (wave 26l … 26v)
       const sentences = st.chapters.reduce((a, c) => a + c.sentences.length, 0);
-      return { chapters: st.chapters.length, level: st.level, levelName: st.levelName, note, per, quoted, quoted4, quoted6, quoted7, quoted8, quoted9, quoted10, quoted11, quoted12, quoted13, quoted14, quoted15, quoted16, quoted17, quoted18, quoted19, sentences };
+      return { chapters: st.chapters.length, level: st.level, levelName: st.levelName, note, per, quoted, quoted4, quoted6, quoted7, quoted8, quoted9, quoted10, quoted11, quoted12, quoted13, quoted14, quoted15, quoted16, quoted17, quoted18, quoted19, quoted20, quoted21, quoted22, quoted23, sentences };
     });
     if (r.err) throw new Error(r.err);
-    if (r.chapters < 19 || r.sentences < 520) throw new Error('the story should carry at least nineteen chapters and 520 sentences: ' + r.chapters + '/' + r.sentences);
+    if (r.chapters < 23 || r.sentences < 590) throw new Error('the story should carry at least twenty-three chapters and 590 sentences: ' + r.chapters + '/' + r.sentences);
     if (r.level !== 1) throw new Error('Qiṣaṣ is the Level-1 (Newbie) story: ' + r.level);
     if (!r.note || r.note.group !== 'nahw' || r.note.level !== 1) throw new Error('la-nafiya should be a level-1 nahw note: ' + JSON.stringify(r.note));
     if (!r.note.q || r.note.q[0] < 2 || r.note.q[0] !== r.note.q[1]) throw new Error('la-nafiya: the question test must carry the same number of en and tr questions');
     if (r.note.anchored < 2) throw new Error('la-nafiya should be anchored in the story at least twice: ' + r.note.anchored);
-    const floors = { 1: 98, 2: 97, 3: 96, 4: 96, 5: 93, 6: 95, 7: 97, 8: 97, 9: 97, 10: 97, 11: 97, 12: 97, 13: 97, 14: 96, 15: 97, 16: 97, 17: 97, 18: 97, 19: 97 };   // measured at v181: ch1 100.0 (186 endings), ch2 100.0 (206), ch3 100.0 (235), ch4 100.0 (191), ch5 see the release notes; v182: ch6 and ch7 see the release notes (wave 26g); v183: ch8 see the release notes (wave 26l)
+    const floors = { 1: 98, 2: 97, 3: 96, 4: 96, 5: 93, 6: 95, 7: 97, 8: 97, 9: 97, 10: 97, 11: 97, 12: 97, 13: 97, 14: 96, 15: 97, 16: 97, 17: 97, 18: 97, 19: 97, 20: 97, 21: 97, 22: 97, 23: 97 };   // measured at v181: ch1 100.0 (186 endings), ch2 100.0 (206), ch3 100.0 (235), ch4 100.0 (191), ch5 see the release notes; v182: ch6 and ch7 see the release notes (wave 26g); v183: ch8 see the release notes (wave 26l)
     for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Qiṣaṣ ch' + c + ' ḍabṭ ' + x.pct + '% below its floor ' + f + ' (' + x.h + '/' + x.n + ')'); }
     for (const id of ['s11', 's20', 's21', 's22', 's23']) if (!r.quoted.includes(id)) throw new Error('ch2 ' + id + ' quotes the Qurʾan and must be marked as a quotation');
     for (const id of ['s3', 's4', 's5', 's6', 's10', 's11', 's12', 's13', 's26', 's27', 's33']) if (!r.quoted4.includes(id)) throw new Error('ch4 ' + id + ' quotes the Qurʾan and must be marked as a quotation');
@@ -10919,6 +10919,10 @@ if (!CHROME) {
     if (!r.quoted17.includes('s16')) throw new Error('ch17 s16 quotes Yūsuf 12:59 and must be marked as a quotation');   // (wave 26t)
     for (const id of ['s2', 's3', 's6', 's11', 's12']) if (!r.quoted18.includes(id)) throw new Error('ch18 ' + id + ' quotes Yūsuf 12:63–67 and must be marked as a quotation');   // (wave 26u)
     for (const id of ['s3', 's15', 's16', 's17', 's21', 's22']) if (!r.quoted19.includes(id)) throw new Error('ch19 ' + id + ' quotes Yūsuf 12:69–79 and must be marked as a quotation');   // (wave 26u)
+    for (const id of ['s5', 's17']) if (!r.quoted20.includes(id)) throw new Error('ch20 ' + id + ' quotes Yūsuf 12:81/12:83 and must be marked as a quotation');   // (wave 26v)
+    for (const id of ['s2', 's4', 's15', 's23', 's24', 's25', 's27']) if (!r.quoted21.includes(id)) throw new Error('ch21 ' + id + ' quotes Yūsuf 12:84–92 and must be marked as a quotation');   // (wave 26v)
+    for (const id of ['s7', 's8', 's9', 's10', 's11', 's12', 's16', 's17']) if (!r.quoted22.includes(id)) throw new Error('ch22 ' + id + ' quotes Yūsuf 12:93–100 or 12:4 and must be marked as a quotation');   // (wave 26v)
+    if (!r.quoted23.includes('s8')) throw new Error('ch23 s8 quotes Yūsuf 12:101 and must be marked as a quotation');   // (wave 26v)
     // the rights notice never ships to the browser — it is read off disk, where the rights holder's reader will read it
     const man = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/samples/qisas-al-nabiyyin-1/manifest.json'), 'utf8'));
     if (!/RIGHTS/.test(man.attribution.en || '') || !/HAKLAR/.test(man.attribution.tr || '')) throw new Error('the Qiṣaṣ attribution must carry the rights notice in both languages');
@@ -10936,6 +10940,7 @@ if (!CHROME) {
     for (const ref of ['12:54', '12:55']) if (!man.attribution.en.includes(ref) || !man.attribution.tr.includes(ref)) throw new Error('both attributions should name Yūsuf ' + ref + ', which ch15 quotes');   // (wave 26s)
     for (const ref of ['12:58', '12:59']) if (!man.attribution.en.includes(ref) || !man.attribution.tr.includes(ref)) throw new Error('both attributions should name Yūsuf ' + ref + ', which ch16–17 quote');   // (wave 26t)
     for (const ref of ['12:63', '12:64', '12:66', '12:67', '12:69', '12:73–75', '12:77', '12:78–79']) if (!man.attribution.en.includes(ref) || !man.attribution.tr.includes(ref)) throw new Error('both attributions should name Yūsuf ' + ref + ', which ch18–19 quote');   // (wave 26u)
+    for (const ref of ['12:81', '12:83', '12:84', '12:86', '12:89', '12:90', '12:91', '12:92', '12:93', '12:94', '12:95', '12:96', '12:97', '12:98', '12:100', '12:4', '12:101']) if (!man.attribution.en.includes(ref) || !man.attribution.tr.includes(ref)) throw new Error('both attributions should name Yūsuf ' + ref + ', which ch20–23 quote');   // (wave 26v)
     if (man.attribution.reviewStatus !== 'pending-scholarly-review') throw new Error('reviewStatus must stay pending-scholarly-review');
   });
 

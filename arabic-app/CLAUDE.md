@@ -6156,3 +6156,160 @@ lost one `dai-lost`), `hafiz` is حَافِظ (`hafiz-keeper` for حَفِيظ),
 (`sab-seven`), `salaba` is سَلَبَ (`salaba-crucify`), `zaman` is زَمَان (`zaman-period`
 for زَمَن), `adhana` is آذَنَ (`adhdhana` for أَذَّنَ), `rahim` is the name
 (`rahim-merciful`).
+
+## Qiṣaṣ chapters 20–23 — the end of volume 1, and round 33 (wave 26r, v189)
+
+`qisas-al-nabiyyin-1` is **complete for volume 1: twenty-three chapters, 597
+sentences, 4,502 tokens** (print pp. 1–68). The four chapters of this wave are
+§21–25 of «أَحْسَنُ الْقَصَصِ» (print pp. 59–68): ch20 «إِلَى يَعْقُوبَ» (§21; the
+brothers' return with 12:81 and 12:83), ch21 «يَظْهَرُ السِّرُّ» (§22; Yaʿqūb's grief
+with 12:84 and 12:86, the third journey, the secret revealed with 12:89–92),
+ch22 «يُوسُفُ يُرْسِلُ إِلَى يَعْقُوبَ، وَيَعْقُوبُ عِنْدَ يُوسُفَ» (§23–24; the shirt with
+12:93–98, the prostration with 12:100 and 12:4), ch23 «حُسْنُ الْعَاقِبَةِ» (§25; the
+kingship that did not distract, the prayer of 12:101, the death) —
+regenerators `author_qisas_ch20.py` … `author_qisas_ch23.py`, +100 glossary
+entries, +39 paradigms (عَسَى stored jamid, the geminates قَرَّ of bāb سَمِعَ and
+اِرْتَدَّ through `entry()` with split stems, عَمِيَ and تَوَفَّى through the
+kasra-māḍī nāqiṣ road). Endings-mode ḍabṭ at v189: **ch20 100.0 (151), ch21
+100.0 (238), ch22 100.0 (206), ch23 100.0 (93)** — floors 97; ch1–19 held;
+Talkhīṣ 48–50 and 71–76 unchanged; the 47 seeds 267/267; sarfAudit clean. One
+round in nine cuts (`patch26r` … `patch26r9`, round 33), the probe-first way:
+41/73 sentences clean on the v188 engine, then 58, 67, 71 and 73/73 — and the
+neighbour sweep's sixth cut, the drill garden's seventh and the release's eighth, below.
+
+**The sentence's end is not where the text ends.** Four of the round's rules
+were written and measured inert before they fired, and every one of them was
+reading the wrong copy of a fact:
+
+- **The ladder resets the verb's state before the inheritance rules read it.**
+  A rule placed beside `inheritSubj` read `st.failRow` and `st.verb` AFTER the
+  row had already claimed `st.verb = i` and cleared the doer; the fact it needed
+  lives in `prevFailRow` and `pre30.verb`, captured at the ladder's top for
+  exactly this reason. وَتَوَفَّاهُ اللهُ مُسْلِمًا وَأَلْحَقَهُ: the second verb wears its
+  object and inherits the first's named doer.
+- **A rule's guard inherits the earlier rule's blind spot.** The hamza-over-fā
+  peel (أَفَيَفْجَعُونَهُ) copied the open-class peel's `out.length === 0` — true
+  at the sentence head, false after the comma where the question actually
+  stands. The verb shape behind the hamza and the fatḥa'd fā is unambiguous, so
+  the peel now fires anywhere. And the endings strip had taken the pronoun's
+  vowel off the host (يَفْجَعُونَه), so the corpus walk needed the هُ candidate
+  back — the strip and the matcher have to agree about what a stripped pronoun
+  looks like.
+- **A `keep` that rewrites `row.w` changes what the writer keeps.** The
+  standalone question hamza (ءَأَنَّكَ, written on the line in the print) was
+  peeled by rewriting the row's word; the writer then wrote the remainder. The
+  row keeps the whole word; only the analyzer's `w` and `core` lose the hamza.
+- **`sawfa` set the right cell and a later pass overwrote `__cell`.** The
+  passive twin rule (the speaker's أُضِيفُ against the passive أُضِيفَ) stamps
+  `r.__cell`, which the ladder reads before `r.cell`; سَوْفَ أَسْتَغْفِرُ needed both
+  the flag the twin rule now respects and the author's ḍamma as a receipt.
+
+**The strip had a joiner bug for two hundred versions.** `stripEnding` tested
+the wiqāya-nūn tail (نِي) by comparing the lexicon's lemma against the host —
+without taking the joining wāw off the host — so وَحُزْنِي failed the test, kept
+«نِي» as its tail, and `rawStrip` ate the sukūn of the zāy as if it were the
+ending (وَحُزنِي). The lemma test folds the joiner now; the same fold already
+lived in a dozen other guards (the clitic hides the feature a rule tests for).
+
+**The rules of round 33, each paid for by a token:** the five noun annexed to
+the speaker's bare yāʾ is kept (أَبِي، أَخِي — a name after it would make the
+yāʾ the letter of jarr: أَبِي زَيْدٍ); سُبْحَانَ اللهِ beside مَعَاذَ اللهِ; هَلْ opens
+its clause; the delayed ism of إِنَّ after a fronted jarr khabar (إِنَّ لِلّٰهِ فِي
+ذٰلِكَ يَدًا خَفِيَّةً — and the demonstrative under فِي is the majrūr, not the ism
+the wave-23 rule took it for); كُلُّهُمْ after a plural verb is the tawkīd of its
+wāw; نَفْسَهُ after a transitive verb still owing its object is the object, not
+the tawkīd; the name before a demonstrative phrase after a transitive verb is
+the fronted object and the phrase the doer (لَمْ يَشْغَلْ يُوسُفَ هٰذَا الْمُلْكُ);
+الْيَوْمَ beside its verb is the zarf (أَفَيَفْجَعُونَهُ الْيَوْمَ، وَالْيَوْمَ يُفْجَعُ); the
+kin word joined after an intransitive verb's doer joins the doer (وَبَقِيَ يَعْقُوبُ
+وَآلُ يَعْقُوبَ); the nakira after a returning jarr phrase after a finished khabar
+opens its ṣifa clause with the phrase as fronted khabar (كَانَ بَشَرًا فِي صَدْرِهِ
+قَلْبُ بَشَرٍ — and that mubtada carries no subject across the sentence); the
+second object of a two-object verb is never a chain member and is not owed past
+a jarr letter (مَنَعَهُمْ مِنْ أَنْ يَقْنَطُوا مِنْ رَحْمَةِ اللهِ); R8's delayed doer stands
+down for the annex of the noun before it and after a seated subject (مِنْ كَثْرَةِ
+الْبُكَاءِ); the nahy reads the author's sukūn (وَلَا تَسْأَلْ after a complete
+clause); the intransitive joined verb — by gloss or by a paradigm with no
+passive — names its own pronoun-bearing doer under both inheritances (وَتَجَدَّدَ
+حُزْنُهُ); يَا أَسَفَى is kept, no mark on an alif; لَمْ يَزَلْ conceals its ism like
+وَكَانَ and joins the kāna list; إِلَى مَتَى is the question whatever follows (a jarr
+letter never enters on a conditional); أَلَمْ أَقُلْ is the hamza over لَمْ — a
+shadda on a cell's last letter is ṣarf and the written sukūn refutes it, and
+before a verb the particle remainder wins; ابْنَكَ after إِنَّ is the son; a
+jussive cell (أَجْرِ ~ جَرَى) cannot wear the author's fatḥa, and the lexicon's
+أَجْر owns the word; a lexicon noun reached by bare letters whose marks
+contradict the written word loses to the verb cell the marks spell exactly
+(الْقِصَّةَ عَلِمَ أَنَّ — and that cell is SURE, so the feminine-nakira demotion
+stands down); kāna is no transitive head for the chain walk (وَكَانَ دُعَاءُ
+يُوسُفَ annexes); a tanwīn head annexes nothing in the chain walk too (رَجَاءٌ
+كَبِيرٌ، يَدًا خَفِيَّةً — the author's token is the receipt, seat alif included);
+لَأَنْتَ is a detached pronoun under a lām and annexes nothing, the strip and the
+writer keep it; the print's dagger alif inside a name (إِسْحٰقَ) is an alif for
+the names table; a singular joined noun before a PLURAL joined verb is not
+that verb's own subject (وَبِنْيَامِينَ وَيَجْتَهِدُوا).
+
+**The neighbour sweep paid for three rules, and one of them was a lesson about
+shape.** (1) «A name before a demonstrative phrase after a transitive verb is
+the fronted object» (لَمْ يَشْغَلْ يُوسُفَ هٰذَا الْمُلْكُ) took ch19's سَمِعَ يُوسُفُ هٰذَا
+الْبُهْتَانَ within the sweep: the two sentences share every surface feature, and
+only the VERB splits them — the verbs of distraction and prevention (شَغَلَ،
+أَلْهَى، صَرَفَ، مَنَعَ) take the person as their object. The rule is keyed on that
+closed set now; a rule that two readings fit equally is a guess, whichever
+sentence it was written for. (2) R8's delayed doer (وَفَازَ بِاللَّذَّةِ الْجَسُورُ)
+had been given a «seated subject» guard for مِنْ كَثْرَةِ الْبُكَاءِ, and the guard
+took ch73's مَنْ رَاقَبَ النَّاسَ … وَفَازَ بِالطَّيِّبَاتِ الْفَاتِكُ — the subject seated
+by مَنْ belongs to the first verb, and the delayed doer is the second's own. The
+annex guard alone (the ال-noun completing an open idafa head) was the whole fix;
+the second guard was reasoning, not measurement. (3) The five-noun keep met the
+KUNYA: كَقَوْلِ أَبِي تَمَّامٍ، مِنْ أَبِي سَعِيدٍ — the yāʾ is the letter of jarr and the
+name after it the annex, so the kept أَبِي now HEADS the noun after it when that
+noun can be annexed (bare, not joined, not under a letter), and «my father»
+stays the reading before a verb, a joiner or a pause.
+
+**The drill garden's full-mode re-vowelling caught the seventh cut within the
+sweep** — two rules that read letters where they should have read the author's
+marks: the munada on a final alif (يَا أَسَفَى) was keeping يَا رَجُلًا, whose alif
+is the tanwīn's seat; and «a lām or wāw before the letters of a pronoun» (لَأَنْتَ)
+was keeping فَهْمًا, whose هما are the letters of هُمَا by accident — the tanwīn
+and the sukūn on the hāʾ refuse the pronoun. Both rules now read the author's
+token, in the strip and in the writer alike; in full mode the writer sees only
+bare letters, so the author's token is the only receipt it has.
+
+**The eighth cut was the release's — a māḍī is mabnī on its fatḥa.** Chunk 7
+failed on the wave-21 pin أَقَوْمٌ آلُ حِصْنٍ and on Talkhīṣ ch67 (s9, the same
+bayt): the round's «the author's marks spell the verb cell exactly» rule
+compared the word and the cell with `rawStrip`, which takes the LAST vowel off
+both — so آلُ read as the māḍī آلَ, mark for mark. The last vowel is iʿrāb on a
+muḍāriʿ and may move; on a māḍī it is binaʾ and may not, so the exactness test
+asks for the whole form when the cell is a māḍī. Chapters 58–60 and 65–70 were
+not in the neighbour sweep — the sweep covered the chapters the previous rounds
+had named, and the release found the one outside it within its first chunk.
+
+**And a ninth from the diff of the chapters the sweep had skipped.** Running
+ch58–70 against the v188 engine sentence by sentence (the only honest baseline:
+a floor hides a one-token change) found وَيَوْمَ تَقُومُ السَّاعَةُ reading its doer as
+a zarf: «the time noun beside its verb» had been written as «before or after a
+verb» and must be «after a verb that already HAS its doer, or wa-joined before
+its verb». The patch landed in the window between chunk 7 and the release.
+
+**Content:** ch21 s20 had lost its عَلَى to a helper that printed the role
+without the letter (هُوَ الَّذِي عَلَى خَزَائِنِ الْأَرْضِ) — the probe's
+«خَزَائِنِ→خَزَائِنُ (mubtada)» was a content slip, not an engine miss, and the
+matn line is the check. **Key hygiene:** `shaghala`, `ghayyara`, `hakama`,
+`adda-count`, `mawt`, `salih`, `dua`, `hadith`, `wali`, `dunya`, `alhaqa` and
+`aataa` (آتَى) were owned by other packages and copied with `find_gloss`;
+`naffadha`, `hashara`, `fatir`, `akhira`, `tawaffa` are new; أَوَامِر rides the
+standing `amr` with its plural named in the iʿrāb (the أُمُور plural means
+«matters»).
+
+**A deviation, named.** The land chain's ADD-only diff reported `morphology
+changed ['tala-long']`: chapter 22 re-specs the paradigm of طَالَ that chapter
+13 had copied in with `find_morph` — every cell identical, the bāb string now
+naming its model word in brackets and a note added. The chain's assertion
+fired and the chain went on, because the Python heredoc that holds it had no
+`|| exit 1` after it (the same trap this file records for `grep -c`): chunk 7
+and the release were already running on the re-specced file before the log
+was read. The release was left to run — the audit regenerates the cells from
+the bāb's model word, which did not change — and the deviation is recorded
+here instead of costing a second two-hour pass. The chain script has its exit
+now; chapter 22's `pop` of an inherited key is the thing to remove next wave.
