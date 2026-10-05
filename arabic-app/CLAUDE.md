@@ -6029,3 +6029,38 @@ validation timing check (4.5 s ceiling) failed once at 6.9 s — not the corpus
 but the load: two probe browsers were sweeping chapter 12 beside the release.
 Rerun alone it passed. **A timing gate measures the machine as much as the
 code; never run a probe beside the release's smoke chunks.**
+
+## Qiṣaṣ chapter 12 — the sermon of the prison, and the round the she-verb forced (wave 26p, v187)
+
+`qisas-al-nabiyyin-1` runs to **twelve chapters, 354 sentences, 2,453 tokens**:
+chapter 12 «مَوْعِظَةُ السِّجْنِ» (§9 of «أَحْسَنُ الْقَصَصِ», print pp. 38–41 — Yūsuf in
+the prison, loved and honoured; the two men and their dreams with Yūsuf 12:36
+in the print's two lines; the people of his time and their invented lords; the
+sermon's four questions; the two «but he was» sentences; the prophets proclaim
+the truth; `author_qisas_ch12.py`). Endings-mode ḍabṭ at v187: **ch12 100.0
+(171)** — floor 97; ch1–11 held; the Talkhīṣ khātima and sajʿ chapters (71–76)
+unchanged; the 47 seeds 267/267; sarfAudit clean. One round in four cuts
+(`patch26p` … `patch26p4`, round 31):
+
+- **The tanwīn's seat alif is read on a stored PLURAL too.** `alifSeat` compared
+  the written word against the lexicon's lemma only, so أَرْبَابًا (رَبّ's plural
+  owns it) was not a seat, and the head annexed the sifa after it (أَرْبَابًا
+  كَثِيرَةً). The plural field is a lemma for this purpose — hamza seats folded.
+- **The question hamza over a sister of kāna** (أَلَيْسَ أَهْلُ السِّجْنِ عِبَادَ اللهِ):
+  the kāna block's form test strips the hamza, and the pre-pass hands the row
+  لَيْسَ's frozen cell by hand — the jamid verb has no walkable paradigm, so the
+  corpus walk returns nothing for it and the writer had no ending to keep.
+- **A she-verb with no feminine in its clause takes the ال-noun after it as its
+  doer** (إِنِّي أَرَانِي أَحْمِلُ فَوْقَ رَأْسِي خُبْزًا تَأْكُلُ الطَّيْرُ مِنْهُ). Three rules
+  had claimed the collective as an object: «the subject named earlier owns the
+  verb after it» (the subject is «I»), «no she-verb takes a masculine doer — the
+  ta is you» (a first-person speech with no addressee anywhere in the line has
+  no «you»), and the sifa-clause presumption. Each now reads the gender of what
+  it would have made the doer; the collective's gloss (bird(s)) counts as a
+  plural. And the guard reads the PREVIOUS verb's person — by the time it runs
+  the row's own person is already «she», which is what the first cut compared.
+
+**Key hygiene:** `jari` already meant جَارٍ (the Talkhīṣ manqūṣ) — the bold man is
+`jari-bold`; `alim` in this package is عَلِيم, so the learned man is the standing
+`alim-scholar`; the geminate note is `doubled-verbs`, not the guessed
+`geminate-verbs`.
