@@ -6313,3 +6313,158 @@ was read. The release was left to run — the audit regenerates the cells from
 the bāb's model word, which did not change — and the deviation is recorded
 here instead of costing a second two-hour pass. The chain script has its exit
 now; chapter 22's `pop` of an inherited key is the thing to remove next wave.
+
+## Iẓhār al-Asrār opens — Birgivī's matn from the lithograph, and round 34 (wave 27, v190)
+
+`content/samples/izhar-al-asrar` (L5 Advanced, premium; regenerator
+`tools/authoring/author_izhar_ch1.py` over the shim `izhar_common.py`, which
+re-points `talkhis_common` at the package) carries the matn of Birgivī's Iẓhār
+from `research/sources/izhar-al-asrar-matn-lithograph.txt` — the framed text of
+the Ottoman lithograph, print pp. 84–89 for this chapter: the ḥamd, the treatise
+and the three things every parser needs (the governor, the governed, the
+governing = the iʿrāb), the kalima and its three kinds stated through the MARKS
+each admits and whether each governs, the ʿāmil's definition (مَا أَوْجَبَ
+بِوَاسِطَتِهِ كَوْنَ آخِرِ الْكَلِمَةِ عَلَى وَجْهٍ مَخْصُوصٍ مِنَ الْإِعْرَابِ), its division
+lafẓī/maʿnawī, samāʿī/qiyāsī, in-the-noun/in-the-muḍāriʿ, one-noun/two-nouns, and
+the TWENTY jarr letters each with its meaning — 21 sentences, 281 tokens, 160
+glossary entries (37 new), 13 paradigms (تَوَقَّفَ and عَنَى new). The note
+`al-amil-wa-aqsamuh` (awāmil, level 5) carries the opening with an eight-question
+test. The print's الصلوة / ثلثة are given standard and the manifest says so;
+the Turkish follows the tercüme on the shelf in sense. Endings-mode ḍabṭ at
+v190: **ch1 100.0 (281)** — floor 97; 239/281 on the v189 engine, then 263, 273,
+277 and 281 across seven cuts (`patch27a` … `patch27g`, round 34), and two more from the neighbour sweep. The chapter
+is the engines' own test-bench: every one of the twenty entries is a nominal
+sentence whose mubtada is a PARTICLE mentioned as a word.
+
+**A word mentioned as a word keeps its own marks and takes the seat the
+sentence gives it.** مِنْ لِلِابْتِدَاءِ: the jarr letter is quoted (لَفْظٌ مَحْكِيٌّ
+قُصِدَ لَفْظُهُ) and stands in the place of rafʿ as the mubtada; كَأَنَا وَأَنْتَ and
+كَهَلْ وَقَدْ sit in the place of jarr under the kāf. The engines already keep a
+closed-class word whole; what the chapter forced was the seat around it: a
+masdar annexes the quoted particle (دُخُولُ قَدْ — a قَدْ before no verb is a word
+mentioned, so the head writes no tanwīn), a clitic over a quoted pronoun or
+particle is kept whole (the lexicon's clitic-stripped hit on أَنَا is no refusal),
+and an ال-adjective after a quoted word under a jarr letter is its naʿt (عَلَى مَا
+الِاسْتِفْهَامِيَّةِ — the quoted مَا is a NOUN row to the analyzer, pk `ma`, not a
+particle row). حَاشَا entered PARTICLES as a jarr letter.
+
+**The rules of round 34, each paid for by a token:** the ḥamdala's رَبِّ is the
+annexed naʿt of the Name and the jarr phrase was the khabar (الْحَمْدُ لِلّٰهِ رَبِّ
+الْعَالَمِينَ), and the joined noun with its own jarr-phrase khabar joins the
+mubtada (وَالصَّلَاةُ عَلَى مُحَمَّدٍ) — never when the next jarr particle is itself
+joined (لِلْبُعْدِ وَالْمُجَاوَزَةِ، وَعَلَى); آل wearing a pronoun is the family
+(وَآلِهِ — آلَ «to return» takes no object); the sentence-initial وَبَعْدُ before a
+fā-clause keeps its ḍamma; the colon list after a counted annex spells out the
+NUMBER (ثَلَاثَةُ أَشْيَاءَ: الْعَامِلُ), and the noun after the explaining أَيْ follows
+its head (أَيِ الْإِعْرَابُ — the particle wears the iltiqāʾ kasra before the waṣl
+alif, which the analyzer's sukūn test had refused); the colon item after a dual
+or a number is the khabar of an omitted «one of them» (ضَرْبَيْنِ: سَمَاعِيٌّ
+وَقِيَاسِيٌّ) and is never the naʿt of the majrūr before the colon; a joined noun
+that REPEATS an earlier seat's word takes that seat (عَامِلٌ فِي اسْمٍ وَاحِدٍ وَعَامِلٌ
+فِي اسْمَيْنِ، حُرُوفَ الْجَرِّ وَحُرُوفَ الْإِضَافَةِ); the joined annexing noun after a
+masdar's own annex joins the annex (دُخُولُ التَّنْوِينِ وَحَرْفِ الْجَرِّ وَلَامِ
+التَّعْرِيفِ — keyed on the head's «(masdar)» gloss, so عَيْشَ السُّعَدَاءِ وَمَوْتَ
+الشُّهَدَاءِ keeps its parity); the joined pronoun-bearing كُلّ/بَعْض before a bare
+nakira opens a nominal clause (وَكُلُّهُ عَامِلٌ، وَبَعْضُهُ غَيْرُ عَامِلٍ); بَلْ after a
+غَيْر-negation opens a new clause whose bare nakira is the khabar of an omitted
+mubtada (بَلْ آلَةٌ); inna's khabar survives a parenthetical (أَنَّ الْكَلِمَةَ، وَهِيَ
+اللَّفْظُ الْمَوْضُوعُ لِمَعْنًى مُفْرَدٍ، ثَلَاثَةٌ); غَيْر's walk back steps over an
+unpeeled بِالْفَهْمِ; the passive continuing a ṣifa clause conceals its deputy and
+the annexed noun after it is its second object (حُرُوفٌ تَجُرُّهُ تُسَمَّى حُرُوفَ
+الْجَرِّ); kāna after a relative with jarr phrases after it takes the bare nakira
+past them as its delayed ism (مَا يَكُونُ لِلِّسَانِ فِيهِ حَظٌّ); the future sīn never
+stands on a jussive (عَلَى مَا سَيَجِيءُ), and the analyzer's jawāb-al-ṭalab note is
+trusted only after a REAL ṭalab (أَعْنِي after the listed عَامِلٌ, which the
+analyzer had read as the amr of عَامَلَ); the relative's verb takes a jarr
+clitic on the next word as its majrūr, never its object (بِوَاسِطَتِهِ، بِهَيْئَتِهِ);
+the definitional relative X هُوَ مَا VERB keeps its ʿāʾid as the doer when the verb
+is transitive — the first plain noun past the jarr phrases is the object (مَا
+أَوْجَبَ بِوَاسِطَتِهِ كَوْنَ) — while an INTRANSITIVE verb after a relative names its
+doer in the noun after it, even behind a fused pronoun (الَّذِي يَتَوَقَّفُ إِعْمَالُهُ،
+مَا يَحْتَاجُ إِلَيْهِ كُلُّ مُعْرِبٍ); the verbs that take their complement through a
+letter are intransitive for the object seat (need, depend, hinge, attach, belong
+joined INTRANS; Form VIII with no stored passive and no ism mafʿūl joined
+`intransParadigm`), and the «verb + fused pronoun + nakira → object» frame is for
+the Form II/IV shapes only — a waṣl-alif verb is not one (اتَّصَلَ بِهَا ضَمِيرٌ).
+
+**Four traps, each a doctrine this file already holds wearing a new mask:**
+- **The writer's hamza seat.** مُبْتَدَأً: a hamza seated on the alif takes the
+  fathatan with no second alif, and so does the mamdūd's hamza after its alif —
+  `writeNoun` wraps `writeNoun0` and corrects the two tails.
+- **A prefix regex on a core that still wears its article.** The tafṣīl badal is
+  armed when a set row's core matches NUMBERS — and «الف» matched الْفَاعِل, so
+  كَاسْمِ الْفَاعِلِ وَبَعْضُهُ غَيْرُ made غَيْرُ a badal of the thousand. The article
+  before a fāʾ is no أَلْف unless the core IS the number (الف، الفان، الاف).
+- **آخِر and آخَر are one spelling to the bare letters.** The diptote-ṣifa cut
+  (كَلَامِ آخَرَ) and the sifa-shape test read «اخر» and cut كَوْنَ آخِرِ الْكَلِمَةِ;
+  the khāʾ's vowel decides — the min/man family's newest member.
+- **The nisba's doubled yāʾ is no plural pattern.** سَمَاعِيّ matched the
+  diptote-by-shape test (فَعَالِي) and lost its tanwīn while لَفْظِيّ kept it; the
+  guard reads the shadda before any shape is tried.
+
+**A table the engines READ must be complete — fourth payment.** `FUSED_PRON` had
+فِيهِ and عَلَيْهِ and not إِلَيْهِ, while the relative presumption's own regex listed
+اليه; the one-letter `fused()` test stood blind to فِيهِ in a look-ahead this wave
+wrote (and had been widened once already in wave 26). Both reads now go through
+the one table, and إِلَيْهِ is in it.
+
+**The neighbour sweep paid for two guards — and bisected one miss away.** (1) The
+intransitive-relative doer rule read the clause-initial negating مَا of وَمَا بَقِيَ
+عِنْدَهُمْ شَكٌّ as a relative and seated the ẓarf as the doer; a bare مَا/مَنْ at the
+head of its clause before a verb is the negation (`patch27h`). (2) The
+quoted-particle annex armed on مَلَامَةً إِنَّ and ذِكْرٌ، وَإِنَّ — the particle must
+be one that normally precedes a VERB (قَدْ، سَوْفَ، لَمْ، لَنْ) and must be followed by
+a joined list, or it is no word mentioned; and the ḥamdala's naʿt rule reached
+عَبْدَ اللهِ بْنَ الزُّبَيْرِ — the Name ANNEXED heads no naʿt, and ابن is never one
+(`patch27i`, with the nisba guard asking the lexicon so that زَرَابِيُّ, a stored
+plural on the same letters, keeps its bar). (3) Kāfiya ch1 s12 (حَقِيقَةً أَوْ حُكْمًا
+after a numbered annex) reads as a khabar — on the unpatched v189 reader too:
+a pre-existing miss inside its floor, recorded here rather than chased in this
+wave. Talkhīṣ 48–50 and 71–76, Qiṣaṣ 6/14/15/19–23, Kāfiya ch2, the 47 seeds
+(267/267), the r21/r22 gates, the drill garden (FULL jumal 96.3) and sarfAudit
+(n: 0) are at baseline.
+
+**The tooling.** The first probe of a new package needs its OWN dry build
+(`build27.sh`: every repo package plus the dry copy, the grammar copy via
+`--grammar-dir`), and `probe24_sen.js` takes `STORY=izhar-al-asrar`. A rule
+whose anchor is a `const` with a cut comment is found by `rep()`'s count — every
+cut script asserts each anchor exactly once, and the instrumented copy
+(`patch26_dbgset.py`, plus one-off `_trace.push` lines) is what named the
+look-ahead's blindness and the tafṣīl arming in minutes where reading the ladder
+had not.
+
+**What the release found after the measured gates were green — two findings in smoke chunk 6, each a
+standing doctrine wearing a new mask (`patch27j`).** (1) **A new lexicon entry is a predator, fifth
+payment — and this time the prey was a homograph.** The Izhar's glossary brought قَسَم (the oath, among
+the jarr letters' meanings) into the noun index, which is keyed by BARE letters, and the oath took the
+key from قِسْم (the kind): the writer's dual test compares the written marks against the lemma it was
+handed, قِسْمَانِ no longer agreed with قَسَم, and the wave-19 pin wrote قِسْمَانٌ with a tanwīn. The index
+now keeps a refused strong homograph as an ALTERNATE of the key's holder (the جَارٍ-beside-جَار mechanism,
+generalised), and `nounFromCorpus` prefers the lemma whose marks agree with the written word on the
+key's letters, the last letter excepted (iʿrāb), the shadda ignored (sarf the writer may not carry) —
+unvowelled input keeps the holder. The rule underneath is the sarf test's: the vowels before the last
+letter are the word's identity, and a lookup that throws them away answers for the spelling, not the
+word. (2) **A verb the corpus is silent about is UNKNOWN, not intransitive.** The round-34 rule «an
+intransitive verb after a relative names its doer in the noun after it» had a fallback — a verb with no
+stored passive and no ism mafʿūl counts as intransitive — and شَاءَ owns no passive; so لِمَنْ يَشَاءُ
+الذُّكُورَ seated the males as the doer of «wills» and ch62's taqsim frame lost its fourth share. Under a
+jarr-fused relative (لِمَنْ، بِمَا، مِمَّا) the relative's clause sits inside an OUTER verb's government
+and the noun after it belongs to that verb unless the inner verb is KNOWN intransitive (gloss or
+paradigm shape); the fallback stands only for a bare relative at the clause head, where it was written.
+Both chapters were outside the neighbour sweep (ch61–64 and the wave-19 pins); the sweep now runs
+every Talkhīṣ chapter from 48 and the drill, so a rule's new reach is measured before the two-hour run.
+(3) **A clitic-peel regex is a homograph trap, every time — `patch27k`.** The quoted-word keep (كَأَنَا وَأَنْتَ،
+كَهَلْ وَقَدْ: a ب/ك/ل over a closed-class word mentioned as a word) matched by bare letters, and كَانَتِ is ك + انت
+to the letters: إِنْ كَانَتِ الْعَلَاقَةُ غَيْرَ (ch51) and وَكَانَتِ الْبِيضُ (ch70) lost their kāna. The keep now
+stands down on a whole stored verb cell and on a word the lexicon owns whole (كَهْل). Neither chapter was in the
+round's sweep; a per-sentence diff of EVERY Talkhīṣ chapter against the v189 engine found both inside their
+floors — which is why the floors are floors and the diff is the measurement.
+The per-sentence diff of al-Samti (eleven chapters, both readers) showed the cost of the accident: وَكَانَتْ مِنَّةُ أَبِي
+حَنِيفَةَ بِوَصِيَّتِهِ إِلَيَّ وَبِرِّهِ أَعْظَمَ had been «clean» on وَبِرِّهِ because وَكَانَتْ was KEPT as كَ + أَنْتَ and
+kāna never opened; with kāna read, the ism is right and the joined وَبِرِّهِ — a jarr clitic that should join
+بِوَصِيَّتِهِ while kāna's khabar is still owed — opens a nominal clause instead. One token, structurally an
+improvement, inside the floor (92.3 against 91), and the rule it names is round 36's.
+
+### v190 addendum — patch27l: the perceptron on interned features
+
+The v190 release blocked at smoke_3 on the crossVal timing gate (9.8 s against the 6.5 s ceiling). Measured A/B on the same host: the v189 reader took 9.7–10.6 s too, so the host was ~1.7× slower than at v189, not the engine. Rather than raise the ceiling, `IrabModel.fit` now interns every feature string to an integer once and keeps weights / accumulators / last-touched clocks in flat `Float64Array`s (`role*F+feature`, slot 0 the bias). Same LCG shuffle, same update order, same floating-point sums: `crossVal`, `accuracy`, the per-role key counts and a hash of every averaged weight were compared old vs new and are identical to the digit (cv 0.61292/0.76370, resubstitution 0.66880/0.81500, 13,762 tokens, 20 folds). Cost: 10.4 s → 2.7 s on the slow host. `rank()` and `tools/ablate_estimator.js` read the same string-keyed `{w, total}` as before. Rule kept: a timing-gate failure is first A/B'd against the previous reader on the same host; if the host is the cause, make the algorithm cheaper, never the gate looser.

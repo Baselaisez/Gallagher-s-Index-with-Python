@@ -10742,6 +10742,31 @@ if (!CHROME) {
     if (r.bayts[0] !== 'basit' || r.bayts[1] !== 'wafir') throw new Error('ʿAli\'s bayts should scan basīṭ then wāfir: ' + JSON.stringify(r.bayts));
   });
 
+  await check('Izhar al-Asrar ch1 (the three things, the kalima and its marks, the amil and its divisions, the twenty jarr letters): the package on the shelf, its awamil note with the question test, the ḍabṭ floor, the twenty letters quoted as mubtadas and kept whole (wave 27)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const n = GRAMMAR['al-amil-wa-aqsamuh']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length, cm: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const per = {};
+      for (const ch of st.chapters) { let h = 0, nn = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; nn += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n: nn, un, pct: nn ? Math.round(1000 * h / nn) / 10 : 0 }; }
+      const ch1 = st.chapters.find(c => (c.n || c.chapter) === 1);
+      const letters = ['s18', 's19', 's20', 's21'].flatMap(id => { const sen = ch1.sentences.find(x => x.id === id); const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => /^[وف]?(من|الى|إلى|عن|على|في|حتى|رب|حاشا|مذ|منذ|خلا|عدا|لولا|كي|لعل)$/.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok })); });
+      const hj = ch1.sentences.slice(17).reduce((a, sen) => a + sen.tokens.filter(t => (t.grammar || []).includes('huruf-jarr') || (t.grammar || []).includes('huruf-jarr-nawadir')).length, 0);
+      return { chapters: st.chapters.length, level: st.level, note, per, letters, hj, tokens: st.chapters.reduce((a, c) => a + c.sentences.reduce((b, x) => b + x.tokens.length, 0), 0), rights: (st.attribution && st.attribution.reviewStatus) || st.reviewStatus || null };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 1) throw new Error('Izhar should carry at least one chapter');
+    if (r.note.missing) throw new Error('note missing: al-amil-wa-aqsamuh');
+    if (r.note.group !== 'awamil') throw new Error('al-amil-wa-aqsamuh is not an awamil note: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 5 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥5 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.cm < 3) throw new Error('fewer than three common mistakes: ' + r.note.cm);
+    const floors = { 1: 97 };   // measured at v190: ch1 100.0 (281 endings)
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Izhar ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
+    if (r.letters.length < 16) throw new Error('the twenty-letter list should carry at least sixteen quoted letters: ' + r.letters.length);
+    const bad = r.letters.filter(x => x.ok === false); if (bad.length) throw new Error('a quoted jarr letter was rewritten by the ḍabṭ: ' + JSON.stringify(bad.slice(0, 4)));
+    if (r.hj < 20) throw new Error('fewer than twenty huruf-jarr anchors in the list sentences: ' + r.hj);
+  });
+
   await check('wave 25 seeds — the nahw rules the Kafiya\'s definitions forced: the ordinal after أَوْ لَا, the sentence quoted after the kaf and after فِي, the letter-name annex, the tanwīn word annexing nothing, the passive rebuilt in the she-form and the dual, the we-doer, غَيْر as a naʿt, the name before its adjective, the mirrored clause, the maqṣūr keeping its shadda', async () => {
     const r = await page.evaluate(() => {
       const w = (s) => DabtEngine.vowel(s, 'endings').words.map(x => String(x.out || '').replace(/[،:.؛]/g, '')).join(' ').normalize('NFC');

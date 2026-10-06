@@ -49,7 +49,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 35 | `research/sources/avamil-dersi-servet-hayma-2023.txt` | **PARTIAL** (landed and read cover to cover in v180) | 44-page Avâmil lecture: the 60/30/10 tree, the «İ'rab Mağazası» tutor metaphor (Müşteri/Beden/Endam/Etki eden), nine declension classes, taqdīrī's three obstacles, the 14 sentence kinds, the «AJAN EN» mnemonic — drives the IrabShop tutor card and the completed AVAMIL100 tree; the Arabic in its text layer is mojibake, so its Arabic is never quoted. |
 | 36 | `research/sources/serhul-mugni-ders-notlari-kisa-1.txt` | **PARTIAL** (landed in v180) | 96-page Şerhu'l-Muğnî notes: the 15 kinds of ism, ghayr munṣarif's nine causes, the munādā's seven rulings, 17 lāzim-mabnī ẓarfs, taṣghīr/nisba, the nawāsikh families, the 24-row sarf table; its vowel-before-letter font damage is documented in the header. |
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
-| 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL** (transcribed in v180) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the izhar-al-asrar package; the ḥāshiya is untranscribed. |
+| 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL (story)** (transcribed in v180, authored from v190) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the `izhar-al-asrar` package at v190 (L5, premium): ch1 = print pp. 84–89 — the ḥamd, the three things every parser needs, the kalima and its marks, the ʿāmil's definition and division, the twenty jarr letters with their meanings — 21 sentences / 281 tokens, 100.0 endings-mode ḍabṭ after round 34; the ḥāshiya is untranscribed. Next: pp. 89–94 (the mutaʿallaq, ẓarf mustaqarr/laghw, the omitted jarr letter). |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
 | 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, **twenty-three chapters — VOLUME 1 COMPLETE** (§1–16 of «من كسر الأصنام؟» and §1–25 of «أحسن القصص», print pp. 1–68, v189), in copyright and flagged so in the manifest; the story closes on Yūsuf's prayer (12:101) and his death. Volume 2 of the print has not been supplied. |
 
@@ -2874,6 +2874,17 @@ not a one-line change.
   Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
   (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).
 
+- **v190 (wave 27)** — Row 38: `izhar-al-asrar` opens — Birgivī's matn from the
+  lithograph, chapter 1 (print pp. 84–89: the ḥamd, the three things, the kalima
+  and its marks, the ʿāmil's definition and its division, the twenty jarr letters;
+  21 sentences / 281 tokens, 160 glossary entries, 13 paradigms), the awāmil note
+  `al-amil-wa-aqsamuh` with its eight-question test; one engine round in nine
+  cuts (34, `patch27a`…`27i`: the quoted particle as mubtada and the seats around
+  it, the writer's hamza seat, the tafṣīl arming misreading الْفَاعِل as أَلْف,
+  آخِر told from آخَر by the khāʾ's vowel, the nisba's doubled yāʾ in the diptote
+  shape test, إِلَيْهِ in the fused-pronoun table, the definitional relative, the
+  intransitive-by-letter verbs). Endings-mode ḍabṭ ch1 100.0 (281) from 239 on
+  the v189 engine.
 - **v189 (wave 26r)** — Row 40: Qiṣaṣ chapters 20–23 (§21–25 of «أحسن القصص»,
   print pp. 59–68 — the END of volume 1: to Yaʿqūb with 12:81/12:83, the
   secret comes out with 12:84–92, Yūsuf sends to Yaʿqūb and Yaʿqūb with Yūsuf

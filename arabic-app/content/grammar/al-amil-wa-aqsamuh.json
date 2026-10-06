@@ -1,0 +1,132 @@
+{
+ "id": "al-amil-wa-aqsamuh",
+ "title": {
+  "ar": "الْعَامِلُ وَأَقْسَامُهُ",
+  "en": "The governor and its divisions: the Izhar's opening",
+  "tr": "Âmil ve kısımları: İzhâr'ın açılışı"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الباب الأول في العامل",
+  "العوامل للبركوي — العوامل اللفظية السماعية",
+  "الكافية لابن الحاجب — الكلمة وأقسامها"
+ ],
+ "amil": "ثَلَاثَةُ أَشْيَاءَ: الْعَامِلُ وَالْمَعْمُولُ وَالْعَمَلُ — the three things every parser needs; this note is the first of them",
+ "question": {
+  "en": [
+   "What does every parser need? Three things, says the Izhar's first sentence: the GOVERNOR (what gives a word its ending), the GOVERNED (the word that receives it) and the GOVERNING itself — that is, the iʿrab. The book's three chapters are these three things in order; this note is the first bab.",
+   "What is a KALIMA, and why three kinds? An utterance set down for a single meaning. A verb points by its FORM, by coinage, to one of the three tenses; a noun points to a meaning self-standing in the understanding and joined to no tense; a particle points to a meaning that is not self-standing but an instrument for understanding another. Every verb governs; some nouns govern (the ism fāʿil) and some do not (أَنَا، أَنْتَ، الَّذِي); some particles govern (the jarr letter) and some do not (هَلْ، قَدْ).",
+   "What are the MARKS of each kind? Of the verb: that قَدْ, the sīn, سَوْفَ, إِنْ, لَمْ, لَمَّا, the lām of command and the lā of prohibition enter on it. Of the noun: that the tanwīn, the jarr letter and the lām of definition enter on it, and that it stands as mubtada, as doer and as annexed head. Birgivi lists them as the KHAWĀṢṢ — what belongs to one kind and to no other — and the DabtEngine classes every row by exactly these marks.",
+   "What is the ʿĀMIL? مَا أَوْجَبَ بِوَاسِطَتِهِ كَوْنَ آخِرِ الْكَلِمَةِ عَلَى وَجْهٍ مَخْصُوصٍ مِنَ الْإِعْرَابِ — what makes, through a MEANS, the end of the word take a specific manner of iʿrab. The means is the demand of iʿrab: in nouns, the arrival of the different meanings (doer-ness, object-ness, annexation) on one and the same word, which are hidden and call for visible signs; so ضَرَبَ makes the end of زَيْد a ḍamma and of غُلَام a fatḥa, and غُلَام makes the end of عَمْرو a kasra.",
+   "How is the governor DIVIDED? Of the WORDING (the tongue has a share in it) or of the SENSE. The one of the wording is HEARD (its governing rests on transmission) or BY RULE. The heard one governs in the NOUN or in the MUḌĀRIʿ. The one in the noun governs ONE noun or TWO nouns — the mubtada and the khabar, which after the governor enters are called its ism and its khabar. The Izhar's whole first bab is this tree walked branch by branch.",
+   "What governs ONE noun? Letters that put it in jarr, called the letters of jarr and of annexation — TWENTY: the bāʾ for attachment, مِنْ for the starting point, إِلَى for the end point, عَنْ for distance and passing beyond, عَلَى for being above, the lām for cause and specification, فِي for containment, the kāf for likening, حَتَّى for the limit, رُبَّ for fewness, the wāw and tāʾ of the oath, حَاشَا for exception, مُذْ and مُنْذُ for the starting point in past time (and both may be nouns), خَلَا and عَدَا for exception (and both may be verbs, the commoner reading), لَوْلَا for the non-occurrence of a thing because another exists (when a pronoun attaches to it), كَيْ for cause (before the interrogative مَا), and لَعَلَّ for hope (in the dialect of ʿUqayl). Each entry is «the letter, for its meaning» — a mubtada with a jarr-phrase khabar.",
+   "How does a particle stand as a MUBTADA? By being quoted: in مِنْ لِلِابْتِدَاءِ the word مِنْ is mentioned as a word (لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ), built on what it is heard with, in the PLACE of raf'. The same hikāya puts كَأَنَا وَأَنْتَ and كَهَلْ وَقَدْ in the place of jarr under the kāf. The engines keep every closed-class word's own marks and never strip a quoted particle; the chapter is their test.",
+   "What does the engine READ here? The DabtEngine rebuilds every ending of the chapter from the governors alone (the relative clauses after مَا, the fronted khabar وَمِنْ خَوَاصِّهِ, the dual khabars ضَرْبَيْنِ / نَوْعَيْنِ / قِسْمَيْنِ, the passive يُسَمَّيَانِ with its two objects, the twenty quoted mubtadas with their لِ-khabars) and the Qawāʿid ledger names the rule each ending keeps; the twenty letters are the HJ family the TaalluqEngine already walks."
+  ],
+  "tr": [
+   "İ'râb eden herkes neye muhtaçtır? İzhâr'ın ilk cümlesi üç şey der: ÂMİL (kelimeye sonunu veren), MA'MÛL (onu alan kelime) ve AMEL'in kendisi — yani i'râb. Kitabın üç babı bu üç şeyin sırasıdır; bu not birinci babdır.",
+   "KELİME nedir, niçin üç kısım? Müfred bir mana için konulmuş lafız. Fiil KALIBIYLA, vaz' olarak üç zamandan birine delâlet eder; isim anlayışta kendi başına duran ve hiçbir zamana yakın olmayan bir manaya; harf kendi başına durmayan, başkasını anlamaya âlet olan bir manaya delâlet eder. Her fiil âmildir; isimlerin bir kısmı âmildir (ism-i fâil) bir kısmı değildir (أَنَا، أَنْتَ، الَّذِي); harflerin bir kısmı âmildir (cer harfi) bir kısmı değildir (هَلْ، قَدْ).",
+   "Her kısmın ALÂMETLERİ nelerdir? Fiilin: قَدْ, sin, سَوْفَ, إِنْ, لَمْ, لَمَّا, emir lâmı ve nehiy lâ'sının ona dâhil olması. İsmin: tenvinin, cer harfinin ve tarif lâmının dâhil olması; mübtedâ, fâil ve muzâf olması. Birgivî bunları HÂSSALAR diye sayar — bir kısma mahsus olup başkasında bulunmayan; DabtEngine her satırı tam bu alâmetlerle sınıflar.",
+   "ÂMİL nedir? مَا أَوْجَبَ بِوَاسِطَتِهِ كَوْنَ آخِرِ الْكَلِمَةِ عَلَى وَجْهٍ مَخْصُوصٍ مِنَ الْإِعْرَابِ — bir VASITA ile kelimenin sonunun i'râbdan belirli bir vecih üzere olmasını gerektiren. Vasıta i'râbın muktezâsıdır: isimlerde farklı manaların (fâillik, mef'ûllük, izâfet) aynı kelimeye gelmesi; bunlar gizlidir, görünür alâmet ister. Böylece ضَرَبَ, زَيْد'in sonunu damme, غُلَام'ın sonunu fetha kılar; غُلَام da عَمْرو'un sonunu kesre kılar.",
+   "Âmil nasıl TAKSİM edilir? LAFZÎ (dilin onda payı vardır) ya da MA'NEVÎ. Lafzî olan SEMÂÎ (i'mâli nakle dayanır) ya da KIYÂSÎ. Semâî olan İSİMDE ya da MUZÂRİDE âmildir. İsimdeki âmil BİR isimde ya da İKİ isimde âmildir — mübtedâ ve haber; âmil dâhil olunca onun ismi ve haberi diye adlanırlar. İzhâr'ın birinci babı bu ağacın dal dal yürünmesidir.",
+   "BİR ismi ne cer eder? Onu cer eden harfler — cer harfleri ve izâfet harfleri — YİRMİ: bâ ilsâk için, مِنْ ibtidâ için, إِلَى intihâ için, عَنْ uzaklık ve mücâvezet için, عَلَى isti'lâ için, lâm ta'lîl ve tahsîs için, فِي zarfiyet için, kâf teşbih için, حَتَّى gâye için, رُبَّ taklîl için, kasem vâvı ve tâsı, حَاشَا istisnâ için, مُذْ ve مُنْذُ geçmiş zamanda ibtidâ için (ikisi isim de olur), خَلَا ve عَدَا istisnâ için (ikisi fiil de olur, çoğu böyledir), لَوْلَا bir şeyin başkasının varlığı yüzünden olmaması için (zamir bitişince), كَيْ ta'lîl için (istifham mâ'sından önce), لَعَلَّ terecci için (Ukayl lügatinde). Her madde «harf, manası için»dir — mübtedâ ile câr-mecrûr haber.",
+   "Bir harf nasıl MÜBTEDÂ olur? Hikâye ile: مِنْ لِلِابْتِدَاءِ'de مِنْ kelime olarak anılır (لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ), işitildiği hareke üzere mebnî, ref' MAHALLİNDE. Aynı hikâye كَأَنَا وَأَنْتَ ve كَهَلْ وَقَدْ'ı kâf altında cer mahalline koyar. Motorlar her kapalı sınıf kelimenin harekesini korur, hikâye edilen harfi asla soymaz; bab onların imtihanıdır.",
+   "Motor burada neyi OKUR? DabtEngine babın her sonunu yalnız âmillerden yeniden kurar (مَا'dan sonraki sılalar, mukaddem haber وَمِنْ خَوَاصِّهِ, tesniye haberler ضَرْبَيْنِ / نَوْعَيْنِ / قِسْمَيْنِ, iki mef'ûllü meçhul يُسَمَّيَانِ, لِ-haberli yirmi hikâye mübtedâsı); Kavâid defteri her sonun koruduğu kuralı adlandırır; yirmi harf TaalluqEngine'in zaten yürüdüğü cer ailesidir."
+  ]
+ },
+ "plain": {
+  "en": "A parser needs three things: the governor, the governed word, and the governing itself (the iʿrab). The governor makes a word's end take a specific case; it is of the wording or of the sense, heard or by rule, in a noun or in a verb. Twenty letters govern one noun in jarr.",
+  "tr": "İ'râb eden üç şeye muhtaçtır: âmil, ma'mûl ve amelin kendisi (i'râb). Âmil kelimenin sonunu belirli bir hale getirir; lafzî ya da ma'nevî, semâî ya da kıyâsî, isimde ya da fiilde olur. Yirmi harf bir ismi cer eder."
+ },
+ "explanation": {
+  "en": "فَهٰذِهِ رِسَالَةٌ فِيمَا يَحْتَاجُ إِلَيْهِ كُلُّ مُعْرِبٍ أَشَدَّ الِاحْتِيَاجِ، وَهُوَ ثَلَاثَةُ أَشْيَاءَ: الْعَامِلُ وَالْمَعْمُولُ وَالْعَمَلُ. Birgivi's Izhar al-Asrar is the Ottoman madrasah's second nahw book, read after his own Awamil and before the Kafiya, and it opens by naming its whole plan: three chapters for the three things a parser needs. The first bab is the governor. Before defining it the book defines the word and divides it into verb, noun and particle — the Kafiya's division, but stated through the MARKS (khawāṣṣ) each kind admits, which is what a parser actually sees on the page — and says of each kind whether it governs. Then the governor itself: what makes, through its means, the end of the word be in a specific manner of iʿrab. The means is the arrival of the hidden meanings (doer, object, annexed) on a word; the iʿrab is the visible sign they demand. The governor is then divided — wording / sense, heard / by rule, in the noun / in the muḍāriʿ, in one noun / in two — and the first leaf of the tree is the twenty jarr letters, each with the meaning it adds, listed as twenty tiny nominal sentences in which the letter itself is the quoted mubtada. The chapter closes with the three letters whose governing is conditioned: لَوْلَا only with a pronoun, كَيْ only before the interrogative مَا, لَعَلَّ only in the dialect of ʿUqayl.",
+  "tr": "فَهٰذِهِ رِسَالَةٌ فِيمَا يَحْتَاجُ إِلَيْهِ كُلُّ مُعْرِبٍ أَشَدَّ الِاحْتِيَاجِ، وَهُوَ ثَلَاثَةُ أَشْيَاءَ: الْعَامِلُ وَالْمَعْمُولُ وَالْعَمَلُ. Birgivî'nin İzhârü'l-Esrâr'ı Osmanlı medresesinin ikinci nahiv kitabıdır — kendi Avâmil'inden sonra, Kâfiye'den önce okunur — ve bütün planını adlandırarak açılır: i'râb edenin muhtaç olduğu üç şey için üç bab. Birinci bab âmildir. Kitap âmili tarif etmeden önce kelimeyi tarif eder ve fiil, isim ve harfe böler — Kâfiye'nin taksimi, fakat her kısmın kabul ettiği ALÂMETLER (hâssalar) üzerinden; i'râb edenin sayfada gördüğü de budur — ve her kısmın âmil olup olmadığını söyler. Sonra âmilin kendisi: bir vasıta ile kelimenin sonunun i'râbdan belirli bir vecih üzere olmasını gerektiren. Vasıta gizli manaların (fâil, mef'ûl, muzâf) kelimeye gelmesidir; i'râb onların istediği görünür alâmettir. Sonra âmil taksim edilir — lafzî / ma'nevî, semâî / kıyâsî, isimde / muzâride, bir isimde / iki isimde — ve ağacın ilk yaprağı, her biri kattığı manayla sayılan yirmi cer harfidir: harfin kendisinin hikâye edilmiş mübtedâ olduğu yirmi küçük isim cümlesi. Bab, ameli şarta bağlı üç harfle kapanır: لَوْلَا yalnız zamirle, كَيْ yalnız istifham مَا'sından önce, لَعَلَّ yalnız Ukayl lügatinde."
+ },
+ "examples": [
+  {
+   "ar": "وَهُوَ ثَلَاثَةُ أَشْيَاءَ: الْعَامِلُ وَالْمَعْمُولُ وَالْعَمَلُ أَيِ الْإِعْرَابُ",
+   "en": "The three things a parser needs — the plan of the book.",
+   "tr": "İ'râb edenin muhtaç olduğu üç şey — kitabın planı.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "وَمِنْ خَوَاصِّهِ دُخُولُ قَدْ وَالسِّينِ وَسَوْفَ وَإِنْ وَلَمْ وَلَمَّا وَلَامِ الْأَمْرِ وَلَاءِ النَّهْيِ",
+   "en": "The verb's marks — quoted particles annexed to «entering».",
+   "tr": "Fiilin hâssaları — dühûl'e muzâf hikâye edilmiş harfler.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s7"
+  },
+  {
+   "ar": "ثُمَّ الْعَامِلُ هُوَ مَا أَوْجَبَ بِوَاسِطَتِهِ كَوْنَ آخِرِ الْكَلِمَةِ عَلَى وَجْهٍ مَخْصُوصٍ مِنَ الْإِعْرَابِ",
+   "en": "The definition of the governor.",
+   "tr": "Âmilin tarifi.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s12"
+  },
+  {
+   "ar": "فَاللَّفْظِيُّ مَا يَكُونُ لِلِّسَانِ فِيهِ حَظٌّ، وَهُوَ عَلَى ضَرْبَيْنِ: سَمَاعِيٌّ وَقِيَاسِيٌّ",
+   "en": "The division — kāna with its delayed ism, the dual khabar.",
+   "tr": "Taksim — muahhar ismiyle kâne, tesniye haber.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s14"
+  },
+  {
+   "ar": "الْبَاءُ لِلْإِلْصَاقِ، وَمِنْ لِلِابْتِدَاءِ، وَإِلَى لِلِانْتِهَاءِ",
+   "en": "The first of the twenty — the letter as a quoted mubtada, its meaning as the khabar.",
+   "tr": "Yirminin ilkleri — hikâye edilmiş mübtedâ harf, manası haber.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s18"
+  },
+  {
+   "ar": "وَلَعَلَّ لِلتَّرَجِّي فِي لُغَةِ عُقَيْلٍ",
+   "en": "The twentieth letter — a governor only in one tribe's dialect.",
+   "tr": "Yirminci harf — yalnız bir kabilenin lehçesinde âmil.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s21"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«مِنْ لِلِابْتِدَاءِ'de مِنْ cer harfidir, sonrasını cer eder»",
+   "right": "«مِنْ burada hikâye edilmiş bir kelimedir: ref' mahallinde mübtedâ; لِلِابْتِدَاءِ onun haberidir»",
+   "why": {
+    "en": "A word mentioned AS a word is quoted (لَفْظٌ مَحْكِيٌّ): it keeps its own marks and takes the seat the sentence gives it. The twenty entries are nominal sentences about the letters, not phrases governed by them.",
+    "tr": "Kelime olarak anılan kelime hikâye edilir: kendi harekesini korur, cümlenin verdiği yere oturur. Yirmi madde harfler hakkında isim cümleleridir, onların cer ettiği terkipler değil."
+   }
+  },
+  {
+   "wrong": "«Her isim âmildir, her harf âmildir»",
+   "right": "«Her FİİL âmildir; isimlerin ve harflerin bir kısmı âmildir, bir kısmı değildir»",
+   "why": {
+    "en": "The book says it of each kind: all verbs govern; the ism fāʿil governs but أَنَا، أَنْتَ، الَّذِي do not; the jarr letter governs but هَلْ، قَدْ do not.",
+    "tr": "Kitap her kısım için söyler: bütün fiiller âmildir; ism-i fâil âmildir ama أَنَا، أَنْتَ، الَّذِي değildir; cer harfi âmildir ama هَلْ، قَدْ değildir."
+   }
+  },
+  {
+   "wrong": "«لَوْلَا، كَيْ ve لَعَلَّ her yerde cer harfidir»",
+   "right": "«لَوْلَا yalnız zamirle, كَيْ yalnız istifham مَا'sından önce, لَعَلَّ yalnız Ukayl lügatinde cer eder»",
+   "why": {
+    "en": "Birgivi counts them among the twenty with a condition on each; outside it لَوْلَا is the particle of imtināʿ before a sentence, كَيْ a nāṣib of the verb, لَعَلَّ a sister of إِنَّ.",
+    "tr": "Birgivî üçünü de şartıyla yirmiye katar; şart dışında لَوْلَا cümle önünde imtinâ harfi, كَيْ fiili nasb eden, لَعَلَّ ise إِنَّ'nin kardeşidir."
+   }
+  },
+  {
+   "wrong": "«خَلَا ve عَدَا her zaman cer harfidir»",
+   "right": "«خَلَا ve عَدَا daha çok FİİLDİR ve sonrasını nasb eder; cer ettikleri azdır»",
+   "why": {
+    "en": "The matn says وَيَكُونَانِ فِعْلَيْنِ وَهُوَ الْأَكْثَرُ — the verb reading, with its object in nasb, is the commoner one.",
+    "tr": "Matn der: وَيَكُونَانِ فِعْلَيْنِ وَهُوَ الْأَكْثَرُ — mef'ûlü mansûb fiil okuyuşu daha çoktur."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "huruf-jarr",
+  "huruf-jarr-nawadir",
+  "al-kalima-wal-kalam",
+  "mubtada-khabar",
+  "zarf-mustaqarr-wa-laghw",
+  "hadhf-wa-taqdir"
+ ]
+}
