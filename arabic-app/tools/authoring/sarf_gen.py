@@ -98,6 +98,16 @@ def entry(bab, wazn, masdar, fail, mazi, mudari, amr,
     if pmz and pmd:
         e["majhulMazi"], e["majhulMudari"] = pmz, pmd
     if note: e["note"] = note
+    # The seam nun: a nun-final stem before the women's nun (تَبَيَّنْ + نَ) and
+    # before نَا contracts, as the tables write it (سَكَنَّ، تَبَيَّنَّا). The
+    # reader's sarfAudit regenerates every paradigm with that idgham and
+    # fails on an uncontracted cell, so the generator writes it contracted.
+    def _seam(x):
+        if isinstance(x, list): return [_seam(c) for c in x]
+        if isinstance(x, str): return x.replace("\u0646\u0652\u0646\u064e", "\u0646\u0651\u064e")
+        return x
+    for k in ("mazi", "mudari", "amr", "mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"):
+        if k in e: e[k] = _seam(e[k])
     return nfc(e)
 
 BABS = {
