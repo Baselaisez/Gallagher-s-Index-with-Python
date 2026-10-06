@@ -4033,6 +4033,8 @@ if (!CHROME) {
         // vowelled ya is the interrogative noun (ch26). The flat fold threw
         // that vowel away and read أَيُّ الْفَرِيقَيْنِ as a call.
         if (f === 'اي' && /ي[ًٌٍَُِ]/.test(t.s.full.normalize('NFC'))) return;
+        // أَيْ of EXPLANATION (حَرْفُ تَفْسِيرٍ: أَيْ: مِنْ قَوْمِهِ — Izhar ch3) is no call either: the lexicon key «ay», or an i'rab line that names the tafsir, or a colon after it
+        if (f === 'اي' && (t.lex === 'ay' || /تَفْسِير/.test((t.irab && t.irab.ar) || '') || t.punctAfter === ':')) return;
         const m = sen.tokens[ti + 1];
         if (!m || !m.irab) return;
         const call = [t, m, sen.tokens[ti + 2]].filter(Boolean).map(x => x.s.full).join(' ');
@@ -4733,6 +4735,88 @@ if (!CHROME) {
       throw new Error('going back did not restore the table');
     await page.evaluate(() => { sarfTense = 'mazi'; sarfNakilPick = null;
       document.getElementById('scrim').click(); });
+  });
+
+  await check('the İ\'rab Mağazası fits the lesson\'s own customers — class, body, figure, obstacle and governor off the engines\' verdicts (wave 30)', async () => {
+    const r = await page.evaluate(() => {
+      const W = (s, i) => { const T = IrabShopEngine.table(s, 'endings'); const e = T.words[i]; return e ? [e.k, e.cls, e.sign, e.manner, e.obstacle, e.governor ? e.governor.kind : null].join('/') : 'NONE'; };
+      return {
+        zayd:     W('مَرَرْتُ بِزَيْدٍ', 1),            // jarr/mufrad/kasra/lafzi/-/samai
+        muslimun: W('جَاءَ الْمُسْلِمُونَ', 1),        // raf/jamMudhakkar/waw/lafzi
+        fata:     W('رَأَيْتُ الْفَتَى', 1),           // nasb/mufrad/fatha/taqdiri/taazzur
+        qadi:     W('مَرَرْتُ بِالْقَاضِي', 1),         // jarr/mufrad/kasra/taqdiri/istithqal
+        abu:      W('جَاءَ أَبُوكَ', 1),               // raf/khamsa/waw
+        yarda:    W('لَنْ يَرْضَى الْكَافِرُونَ', 1),   // nasb/mudariMutall/fatha/taqdiri/taazzur
+        yaktubu:  W('لَمْ يَكْتُبُوا الدَّرْسَ', 1),    // jazm/afalKhamsa/hadhfNun
+        muslimat: W('إِنَّ الْمُسْلِمَاتِ صَادِقَاتٌ', 1), // nasb/jamMuannath/kasra
+        ghulami:  W('جَاءَ غُلَامِي', 1),              // raf/mufrad/damma/taqdiri/munasaba
+        masajid:  W('رَأَيْتُ مَسَاجِدَ كَثِيرَةً', 1),  // nasb/mamnu/fatha
+        qalamayn: W('كَتَبْتُ بِقَلَمَيْنِ', 1),        // jarr/muthanna/ya
+        yarmi:    W('لَمْ يَرْمِ زَيْدٌ', 1),           // jazm/mudariMutall/hadhfAkhir
+        bi:       W('مَرَرْتُ بِزَيْدٍ', 0),            // the verb: mabni — no body
+        signs: Object.keys(IrabShopEngine.SIGN).length, classes: Object.keys(IrabShopEngine.CLASSES).length, obstacles: Object.keys(IrabShopEngine.OBSTACLE).length,
+      };
+    });
+    const want = { zayd: 'jarr/mufrad/kasra/lafzi//samai', muslimun: 'raf/jamMudhakkar/waw/lafzi//qiyasi', fata: 'nasb/mufrad/fatha/taqdiri/taazzur/qiyasi',
+      qadi: 'jarr/mufrad/kasra/taqdiri/istithqal/samai', abu: 'raf/khamsa/waw/lafzi//qiyasi', yarda: 'nasb/mudariMutall/fatha/taqdiri/taazzur/samai',
+      yaktubu: 'jazm/afalKhamsa/hadhfNun/lafzi//samai', muslimat: 'nasb/jamMuannath/kasra/lafzi//samai', ghulami: 'raf/mufrad/damma/taqdiri/munasaba/qiyasi',
+      masajid: 'nasb/mamnu/fatha/lafzi//qiyasi', qalamayn: 'jarr/muthanna/ya/lafzi//samai', yarmi: 'jazm/mudariMutall/hadhfAkhir/lafzi//samai' };
+    const bad = Object.keys(want).filter(k => r[k] !== want[k]).map(k => k + ': got ' + r[k] + ' want ' + want[k]);
+    if (bad.length) throw new Error(bad.join(' ; '));
+    if (!/^\/\/|^mabni|^\/null/.test(r.bi) && !/mabni/.test(r.bi)) throw new Error('the madi verb must walk out without a body: ' + r.bi);
+    if (r.signs !== 10 || r.classes !== 10 || r.obstacles !== 3) throw new Error('ten signs, ten customers, three obstacles — got ' + [r.signs, r.classes, r.obstacles]);
+  });
+
+  await check('the MamnuEngine bars a noun on two of the nine causes, and keeps the notes\' exits (wave 30)', async () => {
+    const r = await page.evaluate(() => {
+      const V = (w, o) => { const v = MamnuEngine.verdict(w, o || {}); return v ? (v.mabni ? 'mabni' : v.exit === 'al' ? 'al' : v.exit === 'rubba' ? 'rubba' : !v.sure ? 'open' : (v.barred ? 'barred:' + v.causes.join('+') : 'free:' + (v.exit || ''))) : 'null'; };
+      return { zaynab: V('زَيْنَب', { propn: true }), talha: V('طَلْحَة', { propn: true }), ahmar: V('أَحْمَر'), ahmad: V('أَحْمَد', { propn: true }), yazid: V('يَزِيد', { propn: true }), umar: V('عُمَر', { propn: true }),
+        masajid: V('مَسَاجِد'), hadramawt: V('حَضْرَمَوْت', { propn: true }), ibrahim: V('إِبْرَاهِيم', { propn: true }), uthman: V('عُثْمَان', { propn: true }), sakran: V('سَكْرَان'), hamra: V('حَمْرَاء', { root: 'ح م ر' }), ulama: V('عُلَمَاء', { root: 'ع ل م' }),
+        sughra: V('صُغْرَى'), nuh: V('نُوح', { propn: true }), misr: V('مِصْر', { propn: true }), asatidha: V('أَسَاتِذَة'), sibawayh: V('سِيبَوَيْهِ', { propn: true }), kitab: V('كِتاب'), fata: V('فَتًى'), khafa: V('خَفَاء', { root: 'خ ف ي' }), maa: V('مَاء', { root: 'م و ه' }), tamim: V('تَمِيم', { propn: true, root: 'ت م م' }),
+        alMasajid: V('الْمَسَاجِد'), rubba: V('إِبْرَاهِيم', { propn: true, rubba: true }),
+        alama: AlamaEngine.table('يَزِيد', { propn: true }).rows.map(x => x.out).join('|'), alamaRubba: AlamaEngine.write('مَسَاجِد', 'jarr').out,
+        zarf: ['كَانَ الْجَوُّ مُمْطِرًا أَمْسِ', 'مَا رَأَيْتُهُ قَطُّ', 'اجْلِسْ حَيْثُ شِئْتَ'].map(s0 => { const v = DabtEngine.vowel(s0, 'endings'); return v.words.map(x => x.out).join(' '); }) };
+    });
+    const want = { zaynab: 'barred:alamiyya+tanith', talha: 'barred:alamiyya+tanith', ahmar: 'barred:wasfiyya+waznFil', ahmad: 'barred:alamiyya+waznFil', yazid: 'barred:alamiyya+waznFil', umar: 'barred:alamiyya+adl',
+      masajid: 'barred:muntaha', hadramawt: 'barred:alamiyya+tarkib', ibrahim: 'barred:alamiyya+ujma', uthman: 'barred:alamiyya+alifNun', sakran: 'barred:wasfiyya+alifNun', hamra: 'barred:alifTanith', ulama: 'barred:alifTanith',
+      sughra: 'barred:alifTanith', nuh: 'open', misr: 'open', asatidha: 'free:taa', sibawayh: 'mabni', kitab: 'open', fata: 'open', khafa: 'open', maa: 'open', tamim: 'open', alMasajid: 'al', rubba: 'rubba' };
+    const bad = Object.keys(want).filter(k => r[k] !== want[k]).map(k => k + ': ' + r[k] + ' (want ' + want[k] + ')');
+    if (bad.length) throw new Error(bad.join(' ; '));
+    if (r.alama !== 'يَزِيدُ|يَزِيدَ|يَزِيدَ') throw new Error('the Alama engine asks the causes first: ' + r.alama);
+    if (r.alamaRubba !== 'مَسَاجِدَ') throw new Error('مَسَاجِدَ in jarr: ' + r.alamaRubba);
+    const Z = r.zarf.map(x => String(x).normalize('NFC')); const want9 = ['أَمْسِ', 'قَطُّ', 'حَيْثُ'].map(x => x.normalize('NFC'));
+    if (!Z[0].endsWith(want9[0]) || !Z[1].endsWith(want9[1]) || !Z[2].includes(want9[2])) throw new Error('the lāzim-mabnī ẓarfs keep their ending: ' + JSON.stringify(r.zarf));
+  });
+
+  await check('the Mağaza is graded on the corpus\'s own «وَعَلَامَةُ …» lines (wave 30)', async () => {
+    const a = await page.evaluate(() => { const a = IrabShopEngine.audit(140); return { n: a.n, hit: a.hit, acc: a.acc, sentences: a.sentences, miss: a.miss.slice(0, 6) }; });
+    if (a.n < 80) throw new Error('the audit shrank: ' + a.n + ' claims');
+    if (a.acc < 97) throw new Error('shop audit ' + a.acc + '% below the floor on ' + a.n + ' claims — first misses: ' + JSON.stringify(a.miss));
+  });
+
+  await check('the Mağaza lab fits a sentence on a phone, the Awāmil card carries Birgivī\'s 60/30/10 tree, the figure game has supply (wave 30)', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const r = await page.evaluate(() => {
+      conjState.lab = 'irabshop'; conjState.shop = 'جَاءَ الْمُسْلِمُونَ إِلَى الْمَسْجِدِ'; openConjugator();
+      const cards = document.querySelectorAll('#shopOut .shop-card').length;
+      const cells = document.querySelectorAll('#shopOut .shop-card .shop-cell').length;
+      const legend = !!document.querySelector('#shopOut .shop-legend');
+      const wide = document.documentElement.scrollWidth > window.innerWidth + 1;
+      openAvamil100();
+      const tree = document.querySelectorAll('.bt-tree li').length;
+      const sixty = Array.from(document.querySelectorAll('.bt-tree .bt-n')).map(x => x.textContent.trim());
+      const door = !!document.getElementById('avShopOpen');
+      let supply = 0; try { supply = GameFactory.supplyOf('gShop'); } catch (e) { supply = 'ERR ' + e.message; }
+      return { cards, cells, legend, wide, tree, sixty: sixty.slice(0, 3).join(','), door, supply };
+    });
+    if (r.cards < 4) throw new Error('four customers walked in — cards: ' + r.cards);
+    if (r.cells !== r.cards * 4) throw new Error('every card has four cells — got ' + r.cells + ' for ' + r.cards);
+    if (!r.legend) throw new Error('the legend (ten customers, ten signs, three obstacles) is missing');
+    if (r.wide) throw new Error('the shop floor overflows a phone');
+    if (r.tree < 20 || r.sixty !== '60,58,49') throw new Error('Birgivi\'s tree: ' + r.tree + ' leaves, top counts ' + r.sixty);
+    if (!r.door) throw new Error('the Awamil card has no door into the shop');
+    if (!(r.supply >= 3)) throw new Error('the figure game has no supply: ' + r.supply);
+    await page.setViewportSize({ width: 1280, height: 900 });
   });
 
   await check('the Alama engine writes the ending every class of noun really takes', async () => {
@@ -10760,7 +10844,7 @@ if (!CHROME) {
     if (!r.note.q || r.note.q[0] < 5 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥5 questions in both languages: ' + JSON.stringify(r.note.q));
     if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
     if (r.note.cm < 3) throw new Error('fewer than three common mistakes: ' + r.note.cm);
-    const floors = { 1: 97, 2: 97 };   // measured at v190: ch1 100.0 (281 endings); at v191: ch2 100.0 (169)
+    const floors = { 1: 97, 2: 97, 3: 97 };   // measured at v190: ch1 100.0 (281 endings); at v191: ch2 100.0 (169); at v192: ch3 100.0 (354)
     for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Izhar ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
     if (r.letters.length < 16) throw new Error('the twenty-letter list should carry at least sixteen quoted letters: ' + r.letters.length);
     const bad = r.letters.filter(x => x.ok === false); if (bad.length) throw new Error('a quoted jarr letter was rewritten by the ḍabṭ: ' + JSON.stringify(bad.slice(0, 4)));
@@ -10786,6 +10870,29 @@ if (!CHROME) {
     const m = r.laalla.find(x => /^مبتدأ/.test(String(x.w).replace(/[ً-ٰ]/g, ''))); if (!m || m.ok === false) throw new Error('مَجْرُورُ لَوْلَا وَلَعَلَّ مُبْتَدَأٌ: the quoted particle opens nothing — ' + JSON.stringify(m));
     if (!r.murra.length || r.murra.some(x => x.ok === false)) throw new Error('مُرَّ بِزَيْدٍ: the passive by its ḍamma — ' + JSON.stringify(r.murra));
     if (!r.nahwu.length || r.nahwu.some(x => x.ok === false)) throw new Error('نَحْوُ: after a pause keeps its ḍamma — ' + JSON.stringify(r.nahwu));
+  });
+
+  await check('Izhar al-Asrar ch3 (the omission of the jarr letter: the three qiyasi seats, the sama\'i, hadhf wa-isal, the shadhdh, two letters of one meaning): the note with its question test, the time zarf in nasb, the bounded place refusing the omission, the mafʿul lah, the connected object after the letter is gone, the irregular majrur kept (wave 29)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 3); if (!ch) return { err: 'no chapter 3' };
+      const n = GRAMMAR['hadhf-al-jarr']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
+      return { sentences: ch.sentences.length, note,
+        zarf: W('s2', /^(حينا|شهرا)$/), dar: W('s9', /^(دارا|دار|الدار|الخان|البلد)$/),
+        lah: W('s10', /^(تاديبا|تأديبا)$/), isal: W('s15', /^(قومه)$/), qasam: W('s16', /^(الله)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 18) throw new Error('ch3 has 18 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: hadhf-al-jarr');
+    if (r.note.group !== 'awamil') throw new Error('hadhf-al-jarr is not an awamil note: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 6 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥6 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.zarf.length < 2 || r.zarf.some(x => x.ok === false)) throw new Error('سِرْتُ حِينًا وَصُمْتُ شَهْرًا: the time ẓarf drops فِي and takes naṣb — ' + JSON.stringify(r.zarf));
+    if (r.dar.length < 3 || r.dar.some(x => x.ok === false)) throw new Error('صَلَّيْتُ دَارًا / فِي دَارٍ / دَخَلْتُ الدَّارَ: the bounded place and the three verbs that reach it — ' + JSON.stringify(r.dar));
+    if (!r.lah.length || r.lah.some(x => x.ok === false)) throw new Error('ضَرَبْتُ زَيْدًا تَأْدِيبًا: the mafʿūl lah in naṣb — ' + JSON.stringify(r.lah));
+    if (!r.isal.length || r.isal.some(x => x.ok === false)) throw new Error('وَاخْتَارَ مُوسَى قَوْمَهُ: the connected object — ' + JSON.stringify(r.isal));
+    const q = r.qasam.find(x => true); if (!q || q.ok === false) throw new Error('اللهِ لَأَفْعَلَنَّ: the irregular majrūr is kept — ' + JSON.stringify(r.qasam));
   });
 
   await check('wave 25 seeds — the nahw rules the Kafiya\'s definitions forced: the ordinal after أَوْ لَا, the sentence quoted after the kaf and after فِي, the letter-name annex, the tanwīn word annexing nothing, the passive rebuilt in the she-form and the dual, the we-doer, غَيْر as a naʿt, the name before its adjective, the mirrored clause, the maqṣūr keeping its shadda', async () => {

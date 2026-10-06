@@ -6561,3 +6561,140 @@ frame was the receipt. And فُلَانًا → فَلَانَا (Talkhīṣ ch6
 had hidden in wave 27 (ك + انا): the root finder's bare candidate list strips the fāʾ before the vowel is read
 (`radJoin28` guards the first strip; the loose passes still reach لَانَ's dual through the bare skeleton) —
 recorded, inside its floor, for the next round.
+
+## Iẓhār chapter 3 — the omission of the jarr letter, and round 36 (wave 29, v192)
+
+`izhar-al-asrar` runs to **three chapters, 51 sentences, 814 tokens**: chapter 3
+(print pp. 91–94; `author_izhar_ch3.py`) carries the omission of the governing
+letter — by rule in three places: the mafʿūl fīh (the time ẓarf, vague or
+bounded: سِرْتُ حِينًا، صُمْتُ شَهْرًا; the vague place ẓarf — the six directions,
+عِنْدَ، لَدَى، وَسْطَ، بَيْنَ، إِزَاءَ، حِذَاءَ، تِلْقَاءَ, the measured distances فَرْسَخ، مِيل، بَرِيد —
+with the exceptions جَانِبًا، وَجْهًا، وَسَطًا، خَارِجَ الدَّارِ، دَاخِلَ الدَّارِ، جَوْفَ الْبَيْتِ and
+every place-noun not meaning rest (مَقْتَل، مَضْرَب) or whose governor does not
+(مَقَام، مَكَان); the bounded place keeping فِي except after دَخَلَ، نَزَلَ، سَكَنَ), the
+mafʿūl lah as the doer's own concurrent act (ضَرَبْتُ زَيْدًا تَأْدِيبًا against
+أَكْرَمْتُكَ لِإِكْرَامِكَ), and أَنْ / أَنَّ (80:1–2); by hearing elsewhere; ḥadhf
+wa-īṣāl surfacing the iʿrāb of place (7:155, مَالٌ مُشْتَرَكٌ، ظَرْفٌ مُسْتَقِرٌّ); the
+shādhdh اللهِ لَأَفْعَلَنَّ; two letters of one meaning never on one verb without
+ʿaṭf — 18 sentences, 354 tokens, 113 glossary entries, 4 paradigms (اِنْتَصَبَ،
+عَبَسَ، أَوْصَلَ، اِخْتَارَ). The note `hadhf-al-jarr` (awāmil) carries the doctrine with
+an eight-question test, five anchored examples and three mistakes. Divergences
+recorded in the chapter's notes: لم يثبت restored where the lithograph's line
+breaks, كلت جانبا read as كُنْتُ جَانِبَ, the فَ of أَمَّا omitted as printed.
+Endings-mode ḍabṭ at v192: **ch3 100.0 (354)** — floor 97; 276/354 on the
+v191 engine, then 289, 297, 309, 352 and 354 across the cuts (`patch29a`…`29f`, round 36). The
+rules the chapter forced:
+
+- **A quoted letter is annexed by the noun that names its omission.** حَذْفُ فِي
+  مِنْهَا، فَإِنَّ حَذْفَ فِي مِنْهُ قِيَاسٌ: the masdar head takes the quoted jarr letter
+  as its annex (no tanwīn) when a fused pronoun-particle, a pause or a
+  non-jarr particle follows the letter — and فِي begins with a fāʾ, so the
+  joiner test asks `joined()` instead of the first letter (`29a` R1, `29c`, `29d`).
+- **Kāna's bare annexed head is its khabar only when kāna carries its
+  subject** (كُنْتُ جَانِبَ الدَّارِ) **or nothing after the whole annex can be a
+  khabar.** كَانَ عَامِلُ الْقِسْمِ الْأَخِيرِ بِمَعْنَى الِاسْتِقْرَارِ: the walk passes the
+  annex and its ال-naʿt, finds the jarr phrase, and the head is the ism; the
+  ال-noun after the ism's annex is its naʿt when a jarr phrase waits (`29b`, `29c`, `29d`).
+- **A waw-joined muḍāriʿ that opens its own condition is a new clause, not the
+  jawāb** — وَيُرْفَعُ إِنْ كَانَ نَائِبًا keeps its rafʿ even when the frames had
+  paired it with the earlier إِنْ (`29b`, `29c`).
+- **نَحْوَ as a citing ẓarf annexes the saying** (نَحْوَ قَوْلِهِ تَعَالَى); **نَحْوُ: with
+  a colon is the khabar of a dropped mubtada and never the citing ẓarf**, needs
+  no pause before it (…الِاسْتِقْرَارِ نَحْوُ:), **and a LIST after its colon is
+  annexed** — فَرْسَخٍ وَمِيلٍ وَبَرِيدٍ, الْمَقْتَلِ وَالْمَضْرَبِ — while a quoted sentence
+  (نَحْوُ: زَيْدٌ قَائِمٌ) is not: the next word must be a joiner, a pause, أَوْ or the
+  end (`29c`, `29d`, `29e`).
+- **The oath with its letter omitted** — اللهِ لَأَفْعَلَنَّ — is jarr by the qasam
+  (the rule had refused the jalāla for wearing ال); **وَاللهِ / تَاللهِ / بِاللهِ** as the
+  oath particle are written with the kasra (`29c`).
+- **A tāʾ-verb carrying كَ is spoken by «I»**: أَكْرَمْتُكَ decides the person of
+  every tāʾ-verb in the line (ضَرَبْتُ، جِئْتُكَ) — the object كَ is no addressee
+  evidence, and the speaker pick runs before the addressee count (`29c`, `29d`).
+- **A sentence opening on أَوْ or إِلَّا continues the last sentence's seat**: أَوْ
+  ظَرْفَ مَكَانٍ (the khabar of the kāna before the full stop), إِلَّا جَانِبًا (the
+  exception after the previous rule), the latter arming the exception list so
+  the joined nouns after the vowelling gloss بِفَتْحِ السِّينِ continue it in naṣb
+  rather than joining the gloss's annex (`29d`).
+- **The listed direction-ẓarfs after وَهِيَ:** — قُدَّامُ وَأَمَامُ وَخَلْفُ … — are the
+  pronoun's khabar and its ʿaṭf, written on a bare ḍamma (the ẓarf cut from its
+  annex is mabni on the ḍamma), while the same words quoted under a kāf keep the
+  kāf's form (`29d`, `29e`).
+- **The nakira after a لَهُ phrase is the doer the verb was still owed** (مَا ثَبَتَ
+  لَهُ اسْمٌ), and the relative's hidden-ʿāʾid reading stands down before it (`29d`, `29e`).
+- **A verb of saying before a colon closes the frames behind it** (لَا يُقَالُ:
+  كُنْتُ جَانِبَ الدَّارِ — the inna of the previous clause no longer owns the saying) (`29e`).
+- **The ال-participle after a jarr-clitic noun is its naʿt** (وَكَالْمَقَادِيرِ
+  الْمَمْسُوحَةِ) — the joined kāf-noun had slipped past the general naʿt rule (`29e`).
+- **A waw-nun singular the lexicon owns is no sound plural, clitic or not**:
+  بِسُكُونِ السِّينِ، بِقَانُونِ — the clitic had pushed the bare word over the plural's
+  length test, so the ending writer refused it; the tens (عِشْرُونَ) stay plurals (`29d`).
+- **The neighbour sweep's seven regressions, and the rules narrowed** (`29f`): the
+  لَهُ-doer only after a relative (فَخَلَقَ لَهُمَا مَاءً keeps its object); the own-condition
+  verb needs a SHART particle (فَإِنَّ is inna) and never the lām of command
+  (فَلْيُسْعِدِ النُّطْقُ إِنْ); kāna's bare annexed head is never the khabar when the
+  author wrote its rafʿ, when it is a quantifier head (أَحَدُ اللَّفْظَيْنِ، غَيْرُ) or when a
+  colon or the end follows the annex (وَكَانَ دُعَاءُ يُوسُفَ:); the sentence-initial أَوْ
+  continues only a kāna-khabar the last sentence actually left (`_carryKana29`,
+  carried like the subject, in reading order); the speaker's tāʾ needs a māḍī stem
+  before it (تَكُنْ is no tāʾ-verb — Talkhīṣ ch65 رَأَيْتَ); نَحْوَ: with the author's
+  FATHA and a colon still cites (the Talkhīṣ's forty-odd نَحْوَ:), only the ḍamma
+  makes it the khabar of a dropped mubtada.
+
+Measured across the cuts (endings mode, 354 tokens): 276 on the v191 engine →
+289 (`29a`+`29b`) → 297 (`29c`) → 309 (`29d`) → 352 (`29e`) → **354** (the list /
+tens refinements of `29d`); ch1 100.0 (281) and ch2 100.0 (169) kept; the neighbour
+sweep at baseline. Rules kept: a quoted word's joiner is read off the row, never
+the first letter; a source's list and a source's sentence after the same colon
+are told apart by what follows the first word; a sentence that opens on a
+connective inherits the seat the last sentence left open.
+
+## The İ'rab Mağazası and the nine causes — the Avâmil lesson and the Şerhu'l-Muğnî notes as engines (wave 30, v192)
+
+Two of the v180 sources are now consumed as RULES rather than as reading. The
+Avâmil lecture (row 35) teaches Birgivī as a shop — every word a MÜŞTERİ, fitted
+with a BEDEN, showing an ENDAM, by an ETKİ EDEN — and `IrabShopEngine`
+(`patch30a`) arranges exactly those four columns off verdicts the app already
+derives: the seat and the governor from `DabtEngine.vowel()` (`x.k`, `x.rule`,
+`x.head`), the class from `AlamaEngine.shape` plus the five-verbs persons
+(`FIVE_PERSONS` 1 2 4 7 8 9 10 of the 14-cell order; nūn al-niswa 5 and 11 are
+mabni) and the weak-final test on the lemma, the sign from the lesson's
+Bedenler table (`CLASSES`: seven noun customers, three muḍāriʿ customers), the
+manner from the ending's shape — the maqṣūr's three assumed vowels by
+التَّعَذُّر, the manqūṣ's damma and kasra by الِاسْتِثْقَال with the fatha spoken, the
+speaker's yāʾ by الْمُنَاسَبَة — and the governor's kind from `GOVERNOR` (Birgivī's
+samāʿī / qiyāsī / maʿnawī, and «by following» for the tawābiʿ). The engine
+never parses: a word the Dabt engine left undecided gets `manner: "mahalli"`
+or `"mabni"` and no sign, a letter gets `"none"`. `IrabShopEngine.audit()`
+grades the shop on the corpus's own «وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ» lines
+(`readIrab` parses case + sign + مُقَدَّر from the first عَلَامَةُ clause of a
+token's iʿrāb): **319/319 claims agree (100.0) over the whole corpus, 92/92 on the gate's 140-sentence budget** — after the five nouns with an enclitic (أَبُوهُ), the mulḥaq plurals (بَنِي، اثْنَا), the tanwīn's alif (زَيْدًا is no maqṣūr) and the written plural wāw (تُغْلَبُوا) were taught to the classifier; the first cut measured 287/322. The lab (`مَغَازَة` on the workshop rail), the
+lesson's twelve seeds, the legend of ten customers / ten signs / three
+obstacles, Birgivī's 60/30/10 tree on the Awāmil card (`BIRGIVI_TREE`, every
+taught leaf linking its note) and the gShop game (only words where the
+author's sign and the shop's sign agree are asked) are in DESIGN.md §25.
+
+The Şerhu'l-Muğnî notes (row 36) count the diptote's NINE causes, and
+`MamnuEngine` (`patch30b`) walks them with the notes' exits: ʿalamiyya with
+taʾnīth (the tāʾ, or a listed feminine name / city), a verb's pattern (أَفْعَل,
+يَفْعِل/يَفِيل/يَفُول, فَعَّل, يَحْيَى), ʿadl (فُعَل), a fused compound, ʿujma (a listed
+foreign name), the alif-nūn; waṣfiyya with أَفْعَل, فَعْلَان, or the ʿadl numbers
+(ثُلَاث… أُخَر) — the adjective read off `SifaEngine.classify` or the gloss; the
+ultimate plural (`JamEngine.recognize`) and the alif of femininity, long
+(`AlamaEngine.mamdudVerdict` — root-aware) or short (فُعْلَى / فَعْلَى / فُعَالَى by
+shape), standing for two. Exits: ال and the idafa give the kasra back without
+un-barring (`jarr: "kasra"`), رُبَّ strips ʿalamiyya so ʿujma alone no longer bars,
+ـوَيْهِ is mabni, a tāʾ-plural (أَسَاتِذَة) declines in full; the quiet-middle
+three-letter name (نُوح، مِصْر) is a PERMISSION in the notes, so the engine says
+nothing there and the lexicon keeps its say — the corpus reads مِصْرَ as barred
+and that reading is untouched. `AlamaEngine.mamnu` asks the engine first and
+only a SURE verdict overrides the tagger; the Mağaza card prints the causes
+under the figure. Audited against the authored endings (a bare majrūr noun
+written with a fatha and no tanwin is diptote evidence, with ـٍ munsarif
+evidence): **113/118 sure verdicts agreed on the first cut** — the five misses were مَاء read as an alif of femininity (a three-letter stem is required now), تَمِيم read as a verb's pattern (the prefix must be extra, the root's first radical tells), and the Talkhīṣ's خَرْشَنَةٍ, which the author reads with tanwīn and the engine leaves to the author; the thirty-five seeds of the notes pass. The `mamnu-min-sarf` note grew the nine causes and the
+exits, a seven-question test, seven corpus-anchored examples (أَحْمَدَ، مَكَّةَ،
+عُثْمَانَ، أَشْيَاءَ، إِبْرَاهِيمَ، فِرْعَوْنَ، أُخْرَى) and three more mistakes (`note30.py`).
+
+Rules kept: an engine ARRANGES verdicts it did not make and says so; a source's
+permission (مِصْر both ways) is never turned into a verdict; a game asks only
+what the corpus asserts; every lab opens on a phone without a horizontal
+scroll; the audit floors are measured on the day they are set.

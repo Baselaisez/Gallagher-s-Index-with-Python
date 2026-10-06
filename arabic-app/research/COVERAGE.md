@@ -46,10 +46,10 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 32 | `research/sources/molla-cami-sual-cevap.txt` | **UNTOUCHED (likely redundant)** | 80KB Ottoman-script Molla Jāmī Q&A whose opening question is near-verbatim #31's Q1; overlap unverified past the first question. |
 | 33 | `research/sources/qatr-al-nada-turkish-cicek.txt` | **PARTIAL** | Heavily consumed (afʿāl khamsa, أَنْ, hamzat inna rule); its own tracked gaps ishtighāl, nudba/istighātha, waqf remain open — the "ism fiiller" gap is now stale/closed. |
 | 34 | `research/sources/qawaid-al-irab-turkish.txt` | **PARTIAL** | Bāb 1's clause-maḥall doctrine fully consumed by `anwa-al-jumal.json`; bābs 2-4 (taʿalluq/maḥdhūf ʿāmil, مَا's 12 wajh, wāw's 8 wajh, muʿrib's ādāb) are open. |
-| 35 | `research/sources/avamil-dersi-servet-hayma-2023.txt` | **PARTIAL** (landed and read cover to cover in v180) | 44-page Avâmil lecture: the 60/30/10 tree, the «İ'rab Mağazası» tutor metaphor (Müşteri/Beden/Endam/Etki eden), nine declension classes, taqdīrī's three obstacles, the 14 sentence kinds, the «AJAN EN» mnemonic — drives the IrabShop tutor card and the completed AVAMIL100 tree; the Arabic in its text layer is mojibake, so its Arabic is never quoted. |
-| 36 | `research/sources/serhul-mugni-ders-notlari-kisa-1.txt` | **PARTIAL** (landed in v180) | 96-page Şerhu'l-Muğnî notes: the 15 kinds of ism, ghayr munṣarif's nine causes, the munādā's seven rulings, 17 lāzim-mabnī ẓarfs, taṣghīr/nisba, the nawāsikh families, the 24-row sarf table; its vowel-before-letter font damage is documented in the header. |
+| 35 | `research/sources/avamil-dersi-servet-hayma-2023.txt` | **USED** (read cover to cover in v180; the tutor built in v192) | 44-page Avâmil lecture: the 60/30/10 tree, the «İ'rab Mağazası» tutor metaphor (Müşteri/Beden/Endam/Etki eden), the Bedenler table (seven noun and three muḍāriʿ customers), the ten signs, taqdīrī's three obstacles, the 14 sentence kinds, the «AJAN EN» mnemonic — `IrabShopEngine` + the Mağaza lab + the gShop game + Birgivī's tree on the Awāmil card (v192); the Arabic in its text layer is mojibake, so its Arabic is never quoted. |
+| 36 | `research/sources/serhul-mugni-ders-notlari-kisa-1.txt` | **PARTIAL** (landed in v180; the nine causes built in v192) | 96-page Şerhu'l-Muğnî notes: the 15 kinds of ism, ghayr munṣarif's nine causes (→ `MamnuEngine` and the `mamnu-min-sarf` note's question test, v192), the munādā's seven rulings, 17 lāzim-mabnī ẓarfs, taṣghīr/nisba, the nawāsikh families, the 24-row sarf table; its vowel-before-letter font damage is documented in the header. |
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
-| 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL (story)** (transcribed in v180, authored from v190) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the `izhar-al-asrar` package at v190 (L5, premium): ch1 = print pp. 84–89 — the ḥamd, the three things every parser needs, the kalima and its marks, the ʿāmil's definition and division, the twenty jarr letters with their meanings — 21 sentences / 281 tokens; ch2 = pp. 89–91 (what the letters hang on, the seven that hang on nothing, the exceptives, the five seats of the majrūr, the ẓarf mustaqarr and laghw) 12 sentences / 179 tokens, 100.0 endings-mode ḍabṭ after round 34; the ḥāshiya is untranscribed. Next: pp. 89–94 (the mutaʿallaq, ẓarf mustaqarr/laghw, the omitted jarr letter). |
+| 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL (story)** (transcribed in v180, authored from v190) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the `izhar-al-asrar` package at v190 (L5, premium): ch1 = print pp. 84–89 — the ḥamd, the three things every parser needs, the kalima and its marks, the ʿāmil's definition and division, the twenty jarr letters with their meanings — 21 sentences / 281 tokens; ch2 = pp. 89–91 (what the letters hang on, the seven that hang on nothing, the exceptives, the five seats of the majrūr, the ẓarf mustaqarr and laghw) 12 sentences / 179 tokens; ch3 = pp. 91–94 (the omission of the jarr letter: the three qiyāsī seats, the samāʿī, ḥadhf wa-īṣāl, the shādhdh, two letters of one meaning) 18 sentences / 354 tokens, 100.0 endings-mode ḍabṭ after round 34; the ḥāshiya is untranscribed. Next: pp. 89–94 (the mutaʿallaq, ẓarf mustaqarr/laghw, the omitted jarr letter). |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
 | 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, **twenty-three chapters — VOLUME 1 COMPLETE** (§1–16 of «من كسر الأصنام؟» and §1–25 of «أحسن القصص», print pp. 1–68, v189), in copyright and flagged so in the manifest; the story closes on Yūsuf's prayer (12:101) and his death. Volume 2 of the print has not been supplied. |
 
@@ -2874,6 +2874,31 @@ not a one-line change.
   Next: the multi-jumla i'tirad (2:222-223), the «other sababs»
   (40:7), and the bab's closing on relative ijaz/itnab (~2915-2940).
 
+- **v192 (wave 29)** — Row 38: `izhar-al-asrar` ch3 (print pp. 91–94: the omission
+  of the governing letter — by rule in the mafʿūl fīh (the time ẓarf; the vague
+  place ẓarf with the six directions, عِنْدَ…تِلْقَاءَ and the measured distances;
+  the exceptions جَانِبًا, وَجْهًا, وَسَطًا, خَارِجَ, دَاخِلَ, جَوْفَ and every place-noun
+  not meaning rest; the bounded place keeping فِي except after دَخَلَ, نَزَلَ, سَكَنَ),
+  in the mafʿūl lah (the doer's own concurrent act), and from أَنْ/أَنَّ (80:1–2);
+  by hearing elsewhere; ḥadhf wa-īṣāl surfacing the iʿrāb of place (7:155,
+  مَالٌ مُشْتَرَكٌ, ظَرْفٌ مُسْتَقَرٌّ); the shādhdh اللهِ لَأَفْعَلَنَّ; two letters of one
+  meaning never on one verb without ʿaṭf — 18 sentences / 354 tokens, 38
+  glossary entries, 4 paradigms), the awāmil note `hadhf-al-jarr` with its
+  question test; round 36 in six cuts (`patch29a`…`29f`). Endings-mode ḍabṭ ch3
+  100.0 (354) from 276 on the v191 engine.
+- **v192 (wave 30 — alongside Iẓhār ch3)** — Row 35 USED: the İ'rab Mağazası —
+  `IrabShopEngine` arranges the Avâmil lesson's four columns (customer / body /
+  figure / governor) off the engines' own verdicts: the ten customers (seven noun
+  classes, three muḍāriʿ classes), the ten signs (3 vowels, 4 letters, 3
+  omissions), the three taqdīrī obstacles, the governor's kind by Birgivī; the
+  Mağaza lab with the lesson's seeds and legend; Birgivī's 60/30/10 tree on the
+  Awāmil card; the gShop figure game; the audit on the corpus's own
+  «وَعَلَامَةُ …» lines: 319/319 (100.0), 92/92 on the gate's budget. Row 36 advanced: `MamnuEngine` — the nine
+  causes of ghayr munṣarif with the notes' exits (ال / idafa / رُبَّ / ـوَيْهِ / the
+  tāʾ-plural / the quiet-middle name), asked by `AlamaEngine.mamnu` before the
+  tagger; audited against the authored endings: 113/118 sure verdicts on the first cut, the three real misses fixed; the `mamnu-min-sarf`
+  note grew the nine causes, a seven-question test, seven corpus-anchored
+  examples and three mistakes.
 - **v191 (wave 28)** — Row 38: `izhar-al-asrar` ch2 (print pp. 89–91: what the
   jarr letters hang on — a verb, its likeness or its meaning — and the seven that
   hang on nothing; the majrūr of the zāʾid and of رُبَّ keeping its place; the

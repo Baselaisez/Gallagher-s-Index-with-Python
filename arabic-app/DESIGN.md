@@ -978,3 +978,40 @@ card is stored: the case is read off the stored iʿrāb line, the sign off the
 word's own ending (`caseSignOf`), the manner off `IrabSign.of`; the note under
 the card says so. Same restraint as every card in the sheet: the neutral panel,
 the accent for the one fact that matters (the sign), no colour of its own.
+
+## 25. The İ'rab Mağazası: four cells per customer, and Birgivī's tree on the Awāmil card (wave 30)
+
+**The Avâmil lesson teaches iʿrāb as a shop**, and the workshop now has that shop
+as a lab (`مَغَازَة` on the rail, `conjState.lab === "irabshop"`). A sentence is
+typed or taken from the lesson's own seeds (`SHOP_SEEDS`), and every word walks
+out as a CARD (`.shop-card`) of four cells in the lesson's order: MÜŞTERİ — the
+word large, and under it its declension class (المُفْرَد · the singular, جَمْعُ
+الْمُذَكَّرِ السَّالِمُ…); BEDEN — the body it wears (مَرْفُوعٌ … or فِي مَحَلِّ رَفْعٍ for a
+mabni that only tries the dress on); ENDAM — the SIGN in the accent face
+(الضَّمَّةُ · الْوَاوُ · حَذْفُ النُّونِ), with الْمُقَدَّرَةُ appended and the OBSTACLE named
+in italics when the iʿrāb is assumed (التَّعَذُّرُ · الِاسْتِثْقَالُ · الْمُنَاسَبَةُ); and
+ETKİ EDEN — the governor, prefixed by the head word when the Dabt engine named
+one (الْمُسْلِمُونَ — الْفِعْلُ), with Birgivī's kind under it (lafẓī samāʿī /
+qiyāsī / maʿnawī / by following). The cells are a two-column grid on a phone
+and one row of four from 700 px up; the customer cell carries the accent as a
+left rule, a letter (no seat at all) or a mabni verb is drawn faded
+(`.shop-none`). Above the floor the sentence is written once more as a line
+(`.shop-line`) with an underline per word that SAYS the manner: solid for a
+spoken iʿrāb, dashed for an assumed one, dotted for a mabni's place, none for a
+letter. Under the floor a closed `<details>` legend carries the lesson's three
+tables — the ten customers with their three signs, the ten signs by what they
+are made of (three vowels, four letters, three omissions), the three obstacles
+— so the card is read first and the system second. Nothing on a card is parsed
+twice: the seat, the governor and the head come from `DabtEngine.vowel()`'s
+verdict, the class from `AlamaEngine.shape` and the five-verbs / weak-final
+tests, the diptote's causes from the `MamnuEngine` — and a word the engines left
+undecided walks out with no body, never with a guessed one.
+
+**Birgivī's tree** (`.bt-tree`) sits under Jurjānī's seventeen letters on the
+Awāmil card: three roots — ٦٠ governors, ٣٠ governed, ١٠ signs — each count a
+white numeral on an accent pill (`.bt-n`), the branches indented behind a
+hairline, every leaf that the app teaches carrying the § button of its note.
+The card ends on a door into the shop (`#avShopOpen`). The figure game
+(`gShop`, 🧥) asks only what the corpus itself asserts: a word whose authored
+iʿrāb line names its sign AND whose sign the shop derived the same way; the
+reveal shows the class and the obstacle, then the author's own line.
