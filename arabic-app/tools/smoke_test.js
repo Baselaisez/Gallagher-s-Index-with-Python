@@ -10760,11 +10760,32 @@ if (!CHROME) {
     if (!r.note.q || r.note.q[0] < 5 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥5 questions in both languages: ' + JSON.stringify(r.note.q));
     if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
     if (r.note.cm < 3) throw new Error('fewer than three common mistakes: ' + r.note.cm);
-    const floors = { 1: 97 };   // measured at v190: ch1 100.0 (281 endings)
+    const floors = { 1: 97, 2: 97 };   // measured at v190: ch1 100.0 (281 endings); at v191: ch2 100.0 (169)
     for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Izhar ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
     if (r.letters.length < 16) throw new Error('the twenty-letter list should carry at least sixteen quoted letters: ' + r.letters.length);
     const bad = r.letters.filter(x => x.ok === false); if (bad.length) throw new Error('a quoted jarr letter was rewritten by the ḍabṭ: ' + JSON.stringify(bad.slice(0, 4)));
     if (r.hj < 20) throw new Error('fewer than twenty huruf-jarr anchors in the list sentences: ' + r.hj);
+  });
+
+  await check('Izhar al-Asrar ch2 (what the jarr letters hang on; the seven that hang on nothing; the exceptive letters; the five seats of the majrur; the zarf mustaqarr and laghw): the note with its question test, the listed exceptives kept as words mentioned, the listed لَعَلَّ governing jarr in its own example, مُرَّ read passive by its ḍamma (wave 28)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 2); if (!ch) return { err: 'no chapter 2' };
+      const n = GRAMMAR['mahall-al-majrur']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
+      return { sentences: ch.sentences.length, note, ex: W('s2', /^و(حاشا|خلا|عدا|لولا|لعل)$/), laalla: W('s5', /^(زيد|قائم|مبتدأ)$/), murra: W('s9', /^مر$/), nahwu: W('s7', /^نحو$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 12) throw new Error('ch2 has 12 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: mahall-al-majrur');
+    if (r.note.group !== 'awamil') throw new Error('mahall-al-majrur is not an awamil note: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 5 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥5 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 3) throw new Error('fewer than three examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.ex.length < 5 || r.ex.some(x => x.ok === false)) throw new Error('the listed exceptives are words mentioned and must be kept: ' + JSON.stringify(r.ex));
+    const z = r.laalla.find(x => /^زيد/.test(String(x.w).replace(/[ً-ٰ]/g, '')) && x.rule === 'jarr'); if (!z || z.ok === false) throw new Error('لَعَلَّ زَيْدٍ: the listed لَعَلَّ governs jarr in its example — ' + JSON.stringify(r.laalla));
+    const m = r.laalla.find(x => /^مبتدأ/.test(String(x.w).replace(/[ً-ٰ]/g, ''))); if (!m || m.ok === false) throw new Error('مَجْرُورُ لَوْلَا وَلَعَلَّ مُبْتَدَأٌ: the quoted particle opens nothing — ' + JSON.stringify(m));
+    if (!r.murra.length || r.murra.some(x => x.ok === false)) throw new Error('مُرَّ بِزَيْدٍ: the passive by its ḍamma — ' + JSON.stringify(r.murra));
+    if (!r.nahwu.length || r.nahwu.some(x => x.ok === false)) throw new Error('نَحْوُ: after a pause keeps its ḍamma — ' + JSON.stringify(r.nahwu));
   });
 
   await check('wave 25 seeds — the nahw rules the Kafiya\'s definitions forced: the ordinal after أَوْ لَا, the sentence quoted after the kaf and after فِي, the letter-name annex, the tanwīn word annexing nothing, the passive rebuilt in the she-form and the dual, the we-doer, غَيْر as a naʿt, the name before its adjective, the mirrored clause, the maqṣūr keeping its shadda', async () => {

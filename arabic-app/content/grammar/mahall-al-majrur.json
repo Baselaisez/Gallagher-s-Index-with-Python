@@ -1,0 +1,134 @@
+{
+ "id": "mahall-al-majrur",
+ "title": {
+  "ar": "مُتَعَلَّقُ الْجَارِّ وَمَحَلُّ الْمَجْرُورِ",
+  "en": "What the jarr phrase hangs on, and the place of its majrūr",
+  "tr": "Câr-mecrûrun müteallakı ve mecrûrun mahalli"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — حروف الجر ومتعلقها",
+  "قواعد الإعراب لابن هشام — الباب الثاني: الجار والمجرور",
+  "العوامل للبركوي"
+ ],
+ "amil": "لَا بُدَّ لِهٰذِهِ الْحُرُوفِ مِنْ مُتَعَلَّقٍ — every jarr letter's phrase hangs on a governor, and the majrūr has a place beside its wording",
+ "question": {
+  "en": [
+   "What does a jarr phrase HANG ON? A verb, something like a verb (the ism fāʿil and its kin) or something with a verb's meaning (a demonstrative, a kināya) — Birgivī says لَا بُدَّ, there is no escape from it. The TaalluqEngine walks the same rule: nothing hangs in the air, and the nearest governor wins.",
+   "Which letters hang on NOTHING? The extra (zāʾid) letter — the bāʾ of كَفَى بِاللهِ and of بِحَسْبِكَ دِرْهَمٌ — and six more: رُبَّ, حَاشَا, خَلَا, عَدَا, لَوْلَا and لَعَلَّ. Seven in all, and the seven are the exceptions to everything that follows.",
+   "What happens to the MAJRŪR of the extra letter and of رُبَّ? It stays as it was before the letter came: بِاللهِ is the doer, بِحَسْبِكَ the fronted khabar, رُبَّ رَجُلٍ a mubtada. The letter changed the ending and nothing else — which is why the engine reads the case off the SEAT and the ending off the letter separately.",
+   "And of the exceptive letters, of لَوْلَا and لَعَلَّ? The majrūr of حَاشَا, خَلَا and عَدَا is like the mustathnā of إِلَّا; the majrūr of لَوْلَا and لَعَلَّ is a MUBTADA whose khabar follows — لَوْلَاكَ لَهَلَكَ زَيْدٌ (the khabar «existing» omitted), لَعَلَّ زَيْدٍ قَائِمٌ (ʿUqayl's dialect).",
+   "And of the other thirteen? Its place is NAṢB, by the letter's meaning: a mafʿūl fīh when the letter is فِي or means it (صَلَّيْتُ فِي الْمَسْجِدِ / بِالْمَسْجِدِ), a mafʿūl lah when it is the lām or means it (ضَرَبْتُ زَيْدًا لِلتَّأْدِيبِ، كَيْمَهْ عَصَيْتَ), a non-explicit mafʿūl bihi under any other (مَرَرْتُ بِزَيْدٍ). Jarr in wording, naṣb in place — the two i'rabs of one word.",
+   "Can the phrase be the DEPUTY DOER? Yes: when the governor is made passive and rests on the phrase, the phrase is in the place of rafʿ — مُرَّ بِزَيْدٍ. And the phrase may be FRONTED before its governor (بِزَيْدٍ مَرَرْتُ) — all but the seven.",
+   "What is a ẒARF MUSTAQARR? A phrase whose governor is OMITTED and is a general verb the phrase itself implies — زَيْدٌ فِي الدَّارِ, that is حَصَلَ «came to be»: the phrase then stands as the khabar. A ẒARF LAGHW is one whose governor is stated, or omitted but not general — زَيْدٌ فِي الدَّارِ أَكَلَ, مَرَرْتُ بِزَيْدٍ. The TaalluqEngine already branches on exactly this (stated vs. omitted governor), and this chapter is where the two names come from.",
+   "What does the engine READ here? The ḍabṭ engine rebuilds the quoted examples with the chapter's own doctrine: the extra bāʾ on a doer and a fronted khabar, the majrūr of لَعَلَّ as a mubtada, the passive مُرَّ with a phrase for its deputy, the fronted بِزَيْدٍ, and the two ẓarfs; the twenty letters' entries of chapter 1 are its vocabulary."
+  ],
+  "tr": [
+   "Câr-mecrûr NEYE BAĞLANIR? Bir fiile, fiil benzerine (ism-i fâil ve kardeşleri) ya da fiil manası taşıyana (işaret ismi, kinâye) — Birgivî لَا بُدَّ der, bundan kaçış yoktur. TaalluqEngine aynı kuralı yürür: hiçbir şey havada asılı kalmaz, en yakın âmil kazanır.",
+   "Hangi harfler HİÇBİR ŞEYE bağlanmaz? Zâid harf — كَفَى بِاللهِ ve بِحَسْبِكَ دِرْهَمٌ'deki bâ — ve altı harf daha: رُبَّ, حَاشَا, خَلَا, عَدَا, لَوْلَا ve لَعَلَّ. Toplam yedi; bundan sonrasının istisnası bu yedidir.",
+   "Zâidin ve رُبَّ'nin MECRÛRUNA ne olur? Harf gelmeden önce ne idiyse öyle kalır: بِاللهِ fâil, بِحَسْبِكَ mukaddem haber, رُبَّ رَجُلٍ mübtedâ. Harf yalnız sonu değiştirdi — motor bu yüzden hali YERDEN, sonu harften ayrı ayrı okur.",
+   "İstisnâ harflerinin, لَوْلَا ve لَعَلَّ'nin mecrûru? حَاشَا, خَلَا, عَدَا'nın mecrûru إِلَّا ile müstesnâ gibidir; لَوْلَا ve لَعَلَّ'nin mecrûru haberi sonra gelen MÜBTEDÂDIR — لَوْلَاكَ لَهَلَكَ زَيْدٌ («mevcûd» haberi mahzûf), لَعَلَّ زَيْدٍ قَائِمٌ (Ukayl lügati).",
+   "Diğer on üçünün? Mahalli NASBdır, harfin manasına göre: harf فِي ya da o manada ise mef'ûlün fîh (صَلَّيْتُ فِي الْمَسْجِدِ / بِالْمَسْجِدِ), lâm ya da o manada ise mef'ûlün leh (ضَرَبْتُ زَيْدًا لِلتَّأْدِيبِ، كَيْمَهْ عَصَيْتَ), başkası ise sarih olmayan mef'ûlün bih (مَرَرْتُ بِزَيْدٍ). Lafzen cer, mahallen nasb — bir kelimenin iki i'râbı.",
+   "Câr-mecrûr NÂİB-İ FÂİL olur mu? Olur: âmil meçhul kılınıp câr-mecrûra isnad edilince ref' mahallinde olur — مُرَّ بِزَيْدٍ. Ve câr-mecrûr âmilinden ÖNE alınabilir (بِزَيْدٍ مَرَرْتُ) — yedi hariç.",
+   "ZARF-I MÜSTAKAR nedir? Âmili HAZFEDİLMİŞ ve câr-mecrûrun kendisinin ima ettiği umumî bir fiil olan terkip — زَيْدٌ فِي الدَّارِ, yani حَصَلَ: câr-mecrûr haber olur. ZARF-I LAĞV âmili zikredilmiş ya da umumî olmayan terkiptir — زَيْدٌ فِي الدَّارِ أَكَلَ, مَرَرْتُ بِزَيْدٍ. TaalluqEngine tam bu ayrımla dallanır (zikredilen / hazfedilen âmil); iki ismin kaynağı bu babdır.",
+   "Motor burada neyi OKUR? Dabt motoru hikâye edilen örnekleri babın doktriniyle kurar: fâil ve mukaddem haber üstündeki zâid bâ, لَعَلَّ'nin mecrûru mübtedâ, nâibi câr-mecrûr olan meçhul مُرَّ, öne alınmış بِزَيْدٍ ve iki zarf; birinci babın yirmi harfi bunların sözlüğüdür."
+  ]
+ },
+ "plain": {
+  "en": "A jarr phrase always hangs on a verb or a verb-like word, except seven letters that hang on nothing. Its noun is majrūr in wording but takes a place by the letter's meaning: in, for, or by. With no governor stated the phrase is a settled ẓarf (an omitted «is»); with one stated, an idle ẓarf.",
+  "tr": "Câr-mecrûr daima bir fiile ya da fiil benzerine bağlanır; yedi harf hiçbir şeye bağlanmaz. İsmi lafzen mecrûrdur, mahalli ise harfin manasına göredir: -de, için, ile. Âmil zikredilmemişse zarf-ı müstakar (mahzûf «vardır»), zikredilmişse zarf-ı lağvdır."
+ },
+ "explanation": {
+  "en": "وَلَا بُدَّ لِهٰذِهِ الْحُرُوفِ مِنْ مُتَعَلَّقٍ: فِعْلٍ أَوْ شِبْهِهِ أَوْ مَعْنَاهُ. The second thing the Iẓhār does with the twenty letters is to say what their phrase hangs on and where their noun stands. The hanging is the Qawāʿid al-Iʿrāb's doctrine of taʿalluq, stated as a necessity: a verb, a verb-like noun, or a word with a verb's meaning — and the seven that attach to nothing are listed by name, with the extra letter at their head. Then the majrūr is given its PLACE: unchanged after the extra letter and رُبَّ, like the excepted after the exceptive letters, a mubtada after لَوْلَا and لَعَلَّ, and after the other thirteen a seat decided by the letter's meaning — the mafʿūl fīh of فِي, the mafʿūl lah of the lām, the non-explicit object of the rest. The phrase can carry the passive's deputy (مُرَّ بِزَيْدٍ) and can be fronted. Last come the two names every later book uses: the ẓarf mustaqarr, whose omitted governor is a general verb the phrase implies, and the ẓarf laghw, whose governor is stated.",
+  "tr": "وَلَا بُدَّ لِهٰذِهِ الْحُرُوفِ مِنْ مُتَعَلَّقٍ: فِعْلٍ أَوْ شِبْهِهِ أَوْ مَعْنَاهُ. İzhâr'ın yirmi harfle yaptığı ikinci iş, terkiplerinin neye bağlandığını ve isimlerinin nerede durduğunu söylemektir. Bağlanma Kavâidü'l-İ'râb'ın taalluk doktrinidir, zaruret olarak söylenir: bir fiil, fiil benzeri isim ya da fiil manalı kelime — hiçbir şeye bağlanmayan yedi, başta zâid harf olmak üzere adıyla sayılır. Sonra mecrûra YERİ verilir: zâidden ve رُبَّ'den sonra değişmez, istisnâ harflerinden sonra müstesnâ gibi, لَوْلَا ve لَعَلَّ'den sonra mübtedâ, diğer on üçten sonra harfin manasının belirlediği yer — فِي'nin mef'ûlün fîhi, lâmın mef'ûlün lehi, kalanının sarih olmayan mef'ûlü. Terkip meçhulün nâibini taşıyabilir (مُرَّ بِزَيْدٍ) ve öne alınabilir. En sonda sonraki her kitabın kullandığı iki ad gelir: hazfedilmiş âmili terkibin ima ettiği umumî fiil olan zarf-ı müstakar ve âmili zikredilmiş zarf-ı lağv."
+ },
+ "examples": [
+  {
+   "ar": "وَلَا بُدَّ لِهٰذِهِ الْحُرُوفِ مِنْ مُتَعَلَّقٍ: فِعْلٍ أَوْ شِبْهِهِ أَوْ مَعْنَاهُ",
+   "en": "The necessity of a governor.",
+   "tr": "Müteallakın zarureti.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s1"
+  },
+  {
+   "ar": "فَمَجْرُورُ الزَّائِدِ وَرُبَّ بَاقٍ عَلَى مَا كَانَ عَلَيْهِ قَبْلَ دُخُولِهِمَا",
+   "en": "The extra letter changes the ending only.",
+   "tr": "Zâid harf yalnız sonu değiştirir.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "لَوْلَاكَ لَهَلَكَ زَيْدٌ، وَلَعَلَّ زَيْدٍ قَائِمٌ",
+   "en": "The majrūr of lawlā and laʿalla as a mubtada.",
+   "tr": "Levlâ ve lealle'nin mecrûru mübtedâ.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s5"
+  },
+  {
+   "ar": "صَلَّيْتُ فِي الْمَسْجِدِ أَوْ بِالْمَسْجِدِ",
+   "en": "The mafʿūl fīh under fī and under a bāʾ meaning it.",
+   "tr": "Fî ve fî manasındaki bâ altında mef'ûlün fîh.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s6"
+  },
+  {
+   "ar": "مُرَّ بِزَيْدٍ",
+   "en": "The phrase as the passive's deputy doer.",
+   "tr": "Câr-mecrûr meçhulün nâib-i fâili.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s9"
+  },
+  {
+   "ar": "زَيْدٌ فِي الدَّارِ، أَيْ: حَصَلَ — زَيْدٌ فِي الدَّارِ أَكَلَ",
+   "en": "The settled ẓarf and the idle one.",
+   "tr": "Zarf-ı müstakar ve zarf-ı lağv.",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s11"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«كَفَى بِاللهِ'de Allah lafzı mecrûrdur, fâil gizlidir»",
+   "right": "«Bâ zâiddir: lafza-i celâl lafzen mecrûr, mahallen merfû FÂİLDİR»",
+   "why": {
+    "en": "The extra letter changes only the ending; the majrūr keeps the seat it had before the letter came.",
+    "tr": "Zâid harf yalnız sonu değiştirir; mecrûr harften önceki yerini korur."
+   }
+  },
+  {
+   "wrong": "«Her câr-mecrûr mahallen mansûbdur»",
+   "right": "«Yedi harfin mecrûru hariç: zâid ve رُبَّ'ninki olduğu gibi kalır, istisnâ harflerininki müstesnâ gibidir, لَوْلَا ve لَعَلَّ'ninki mübtedâdır»",
+   "why": {
+    "en": "The place is decided by the letter's meaning, and the seven are named exceptions.",
+    "tr": "Mahalli harfin manası belirler; yedisi adıyla sayılmış istisnâdır."
+   }
+  },
+  {
+   "wrong": "«زَيْدٌ فِي الدَّارِ أَكَلَ'de فِي الدَّارِ haberdir, أَكَلَ hâldir»",
+   "right": "«أَكَلَ haberdir; فِي الدَّارِ ona bağlı zarf-ı LAĞVdır»",
+   "why": {
+    "en": "A stated governor makes the phrase an idle ẓarf; only an omitted general verb makes it the settled khabar.",
+    "tr": "Zikredilen âmil terkibi lağv kılar; yalnız hazfedilmiş umumî fiil onu müstakar haber yapar."
+   }
+  },
+  {
+   "wrong": "«مُرَّ بِزَيْدٍ'de Zeyd mef'ûldür»",
+   "right": "«Câr-mecrûr ref' mahallinde NÂİB-İ FÂİLDİR»",
+   "why": {
+    "en": "The passive rests on the phrase itself, so the phrase takes the deputy's place.",
+    "tr": "Meçhul terkibin kendisine isnad edilir; terkip nâibin yerini alır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-amil-wa-aqsamuh",
+  "zarf-mustaqarr-wa-laghw",
+  "huruf-jarr",
+  "huruf-jarr-nawadir",
+  "maful-fih",
+  "maful-lah",
+  "naib-al-fail",
+  "hadhf-wa-taqdir"
+ ]
+}

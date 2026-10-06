@@ -6468,3 +6468,96 @@ improvement, inside the floor (92.3 against 91), and the rule it names is round 
 ### v190 addendum — patch27l: the perceptron on interned features
 
 The v190 release blocked at smoke_3 on the crossVal timing gate (9.8 s against the 6.5 s ceiling). Measured A/B on the same host: the v189 reader took 9.7–10.6 s too, so the host was ~1.7× slower than at v189, not the engine. Rather than raise the ceiling, `IrabModel.fit` now interns every feature string to an integer once and keeps weights / accumulators / last-touched clocks in flat `Float64Array`s (`role*F+feature`, slot 0 the bias). Same LCG shuffle, same update order, same floating-point sums: `crossVal`, `accuracy`, the per-role key counts and a hash of every averaged weight were compared old vs new and are identical to the digit (cv 0.61292/0.76370, resubstitution 0.66880/0.81500, 13,762 tokens, 20 folds). Cost: 10.4 s → 2.7 s on the slow host. `rank()` and `tools/ablate_estimator.js` read the same string-keyed `{w, total}` as before. Rule kept: a timing-gate failure is first A/B'd against the previous reader on the same host; if the host is the cause, make the algorithm cheaper, never the gate looser.
+
+## Iẓhār chapter 2 — what the jarr letters hang on, and the round the quoted lists forced (wave 28, v191)
+
+`izhar-al-asrar` runs to **two chapters, 33 sentences, 460 tokens**: chapter 2
+(print pp. 89–91; `author_izhar_ch2.py`) carries the taʿalluq of the jarr letters
+— every one hangs on a verb, its likeness or its meaning, except the zāʾid — the
+seven that hang on nothing (the zāʾid, رُبَّ, حَاشَا, خَلَا, عَدَا, لَوْلَا, لَعَلَّ) with
+where their majrūr stands, the five seats of the majrūr (mafʿūl fīh, mafʿūl lah,
+mafʿūl bihi ghayr ṣarīḥ, the deputy of the doer, the fronting), and the omitted
+mutaʿallaq that makes the ẓarf mustaqarr against the laghw — 12 sentences, 179
+tokens, 53 glossary entries, 3 paradigms. The note `mahall-al-majrur` (awāmil,
+level 5) carries the doctrine with an eight-question test. Endings-mode ḍabṭ at
+v191: **ch2 100.0 (169)** — floor 97; 143/166 on the v190 engine, then 160 and
+169 across three cuts (`patch28a`…`28c`, round 35). The chapter is twelve
+definitional sentences, each closing on a quoted example after نَحْوُ:, and the
+rules it forced are the rules of a text that TALKS ABOUT its own particles:
+
+- **A word listed as a word opens nothing.** مَجْرُورُ لَوْلَا وَلَعَلَّ مُبْتَدَأٌ: the
+  analyzer rightly pushed inna's expectation after لَعَلَّ, and the ladder seated
+  مُبْتَدَأٌ as its ism. A noun head before a particle that is followed by a JOINED
+  particle is annexing a list of words mentioned (`__quoted27` on both); a quoted
+  particle is kept as hikāya and pushes nothing, and the inna-note rules stand
+  down after one. The exceptive list وَحَاشَا وَخَلَا وَعَدَا is kept the same way —
+  the wāw-joined exceptive after a joined particle is a word mentioned, not a
+  majrūr of the letter before it (which is what the new خَلَا row had made of
+  عَدَا within the minute).
+- **The listed لَعَلَّ governs jarr in its own example.** لَعَلَّ زَيْدٍ قَائِمٌ is the
+  ʿUqayl dialect the Iẓhār counts among the jarr letters; nothing on the page
+  decides it but the text itself, which has just listed لَعَلَّ as a quoted word.
+  A later لَعَلَّ in a sentence that carries a quoted لَعَلَّ earlier governs jarr,
+  and the noun after its majrūr is the khabar. The receipt is the mention.
+- **نَحْوُ: after a pause.** Wave 25 read the citation head only at the sentence
+  head; the Iẓhār writes «…، نَحْوُ: كَفَى بِاللهِ» inside every sentence. The rule
+  now fires after a pause too, resets the clause and marks the citation wall.
+- **The colon list after a nakira majrūr is its badal** (مِنْ مُتَعَلَّقٍ: فِعْلٍ أَوْ
+  شِبْهِهِ أَوْ مَعْنَاهُ) — beside the wave-27 rule that makes the list after a dual
+  or a number the khabar of «one of them». **The exception after a negated,
+  complete nominal clause** is manṣūb (لَا بُدَّ … إِلَّا الزَّائِدَ): the two verbal
+  إِلَّا rules needed a verb, and a nominal clause with the genus-lā idiom or a
+  seated khabar is complete.
+- **A term-noun the lexicon glosses «the …» keeps its chain.** مَجْرُورُ حُرُوفِ
+  الِاسْتِثْنَاءِ and مَنْصُوبُ الْمَحَلِّ wear مَفْعُول, and the chain cut «a sifa-shaped
+  head before a bare noun» ate them; the wave-16 escape (فَعِيلَة worn by a NOUN)
+  now admits any lexicon noun whose gloss opens «the …» — the nahw's own terms.
+  The joined term-noun at the clause head annexes مَا عَدَا (the relative under a
+  verb of exception), and the annexed participle after that sila, with the
+  khabar still owed, is the khabar — not the ḥāl the shape rule offered.
+- **The pair under the letter is the dual verb's subject.** فِي الْجَارِّ وَالْمَجْرُورِ
+  يُسَمَّيَانِ: the wave-16 rule «a joined noun before its own verb joins the earlier
+  subject» crossed to الْمَحْذُوفُ; a joined ال-noun right after an ال-majrūr before
+  a DUAL verb joins the majrūr. The dual is read off the WRITTEN word (…ان): in
+  the endings-stripped rows the verb may carry no cell at all.
+- **The jawāb after a māḍī shart may keep its rafʿ, and the kept nūn is the
+  receipt.** فَإِنْ كَانَ الْمَحْذُوفُ … يُسَمَّيَانِ: the ShartEngine's frame hands the
+  jawab to jazm; where the shart is a māḍī (a cell, or كَانَ's closed-class row,
+  which carries none) and the author's five-verbs nūn stands, the raf is written
+  — the books allow both, and the page decides.
+- **The masdar after an impersonal verb is its doer** (وَيَجُوزُ تَقْدِيمُ): the
+  mafʿūl muṭlaq rule for an annexed masdar stands down for جَازَ، وَجَبَ، صَحَّ، لَزِمَ،
+  أَمْكَنَ and the glosses «permissible / obligatory / possible».
+- **فَيَكُونُ conceals its ism like فَكَانَ** (فَيَكُونُ مَرْفُوعَ الْمَحَلِّ after the
+  passive clause with its deputy) — the muḍāriʿ joins the wave-26 regex.
+- **The passive by the author's ḍamma.** مُرَّ بِزَيْدٍ: the package stores no
+  passive for مَرَّ, and the loose cell walk matched the active مَرَّ. A māḍī cell
+  matched with the author's token opening on a ḍamma where the cell opens on a
+  fatḥa is the passive, stamped as a derived majhūl — the wave-25 «the author's
+  ending is evidence» read at the FIRST letter.
+- **The joiner's fatḥa at the matching layer.** فُلَانًا was reaching فَلَانَا through
+  the corpus walk's joined pass; the analyzer's base peel learnt in wave 15 that a
+  joining letter wears a fatḥa, and the matching layer had not — the wāw/fāʾ
+  wearing any other mark is radical there too (`patch28c`).
+
+**Content and tooling.** خَلَا the exceptive is `khala-except` (the verb «to be
+devoid» owns `khala`) and joins PARTICLES as a jarr letter beside حَاشَا; كَيْمَهْ
+joins as a question. The dry build of a package the shelf already carries must
+EXCLUDE the landed copy (`build27.sh` skips `content/samples/izhar-al-asrar` when
+a dry copy is passed), or the landed one wins the id and the new chapter is
+silently absent — the first ch2 probe crashed on it. And a ladder guard traced
+through `window.__X` globals from inside `decide()` named the three remaining
+misses in one run where the SET trace could not (the dual verb's cell missing on
+the stripped row; the quoted list firing while a LATER rule re-opened inna; the
+mubtada state reset by the sila's verb).
+
+**The neighbour sweep paid for two narrowings (`patch28d`, `28e`).** The colon-badal rule took every colon list
+after a nakira majrūr — the Talkhīṣ writes «…: وَاحِدٌ», «…: تَبْلِيغٌ وَإِغْرَاقٌ وَغُلُوٌّ», «…: قَصْرٌ تَحِيَّةٌ وَسَلَامُ»
+as new clauses in rafʿ (five chapters moved) — and the Iẓhār's list is a list of ALTERNATIVES: a badal only when
+أَوْ follows the first item. The exception rule took لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللهُ and the shahāda itself
+(لَا إِلٰهَ إِلَّا اللهُ) — manṣūb only behind the genus-lā IDIOM whose ism the لَا row recorded (بُدَّ، شَكَّ، رَيْبَ…).
+A rule written on one sentence inherits that sentence's whole frame; the sweep is what says which half of the
+frame was the receipt. And فُلَانًا → فَلَانَا (Talkhīṣ ch63 s5) is a standing v189 miss that the hikāya accident
+had hidden in wave 27 (ك + انا): the root finder's bare candidate list strips the fāʾ before the vowel is read
+(`radJoin28` guards the first strip; the loose passes still reach لَانَ's dual through the bare skeleton) —
+recorded, inside its floor, for the next round.
