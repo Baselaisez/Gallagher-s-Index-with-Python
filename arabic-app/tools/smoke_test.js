@@ -4737,6 +4737,47 @@ if (!CHROME) {
       document.getElementById('scrim').click(); });
   });
 
+  await check('the InnaEngine reads the hamza of إِنَّ off its seat — Birgivi\'s kasr places and the fath places on his own examples (wave 31)', async () => {
+    const r = await page.evaluate(() => {
+      const V = s0 => { const T = InnaEngine.table(s0); return T.inna.map(v => v.hamza + '/' + v.seat).join(' '); };
+      return { ibtida: V('إِنَّ زَيْدًا قَائِمٌ'), qasam: V('وَاللهِ إِنَّ زَيْدًا قَائِمٌ'), ayn: V('زَيْدٌ إِنَّهُ قَائِمٌ'), lam: V('عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ'), maful: V('عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ'),
+        qawl: V('قُلْ إِنَّ اللهَ وَاحِدٌ'), tasdiq: V('نَعَمْ إِنَّ زَيْدًا قَائِمٌ'), iftitah: V('أَلَا إِنَّ زَيْدًا قَائِمٌ'), fail: V('بَلَغَنِي أَنَّكَ قَائِمٌ'), mubtada: V('عِنْدِي أَنَّكَ قَائِمٌ'),
+        mudaf: V('اجْلِسْ حَيْثُ أَنَّ زَيْدًا جَالِسٌ'), law: V('لَوْ أَنَّكَ قَائِمٌ لَكَانَ كَذَا'), jarr: V('عَجِبْتُ مِنْ أَنَّكَ قَائِمٌ'), mudh: V('مَا رَأَيْتُهُ مُذْ أَنَّكَ قَائِمٌ'), faJaza: V('مَنْ يُكْرِمْنِي فَإِنِّي أُكْرِمُهُ'),
+        sila: V('وَآتَيْنَاهُ مِنَ الْكُنُوزِ مَا إِنَّ مَفَاتِحَهُ لَتَنُوءُ بِالْعُصْبَةِ'), hal: V('وَإِنَّ فَرِيقًا مِنَ الْمُؤْمِنِينَ لَكَارِهُونَ'), talil: V('اطْلُبِ الْعِلْمَ فَإِنَّهُ نُورٌ'), hatta: V('أَنَقُولُ ذَلِكَ حَتَّى إِنَّ زَيْدًا يَقُولُهُ') };
+    });
+    const want = { ibtida: 'kasr/ibtida', qasam: 'kasr/qasam', ayn: 'kasr/khabarAyn', lam: 'kasr/lam', maful: 'fath/maful', qawl: 'kasr/qawl', tasdiq: 'kasr/tasdiq', iftitah: 'kasr/iftitah', fail: 'fath/fail', mubtada: 'fath/mubtada',
+      mudaf: 'fath/mudaf', law: 'fath/law', jarr: 'fath/jarr', mudh: 'fath/mudh', faJaza: 'both/faJaza', sila: 'kasr/lam', hal: 'kasr/lam', talil: 'kasr/faTalil', hatta: 'both/hatta' };
+    const bad = Object.keys(want).filter(k => r[k] !== want[k]).map(k => k + ': got ' + r[k] + ' want ' + want[k]);
+    if (bad.length) throw new Error(bad.join(' ; '));
+  });
+
+  await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
+    const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
+    if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');
+    if (a.cov < 85) throw new Error('the seats decide fewer than 85% — ' + a.cov + '% of ' + a.n);
+    if (a.acc < 97) throw new Error('the decided hamzas agree with the author below 97% — ' + a.acc + ' (' + a.hit + '/' + a.decided + '): ' + JSON.stringify(a.misses));
+  });
+
+  await check('the Inna lab opens on a phone with Birgivi\'s seeds, a coloured card per particle and the legend; the gInna game has a supply (wave 31)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'inna'; conjState.inna = 'عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ وَبَلَغَنِي أَنَّكَ قَائِمٌ'; openConjugator();
+      const cards = document.querySelectorAll('#innaOut .inna-card').length;
+      const kasr = document.querySelectorAll('#innaOut .inna-card.inna-kasr').length, fath = document.querySelectorAll('#innaOut .inna-card.inna-fath').length;
+      const seeds = document.querySelectorAll('#innaOut .qw-seed').length;
+      const legend = !!document.querySelector('#innaOut .shop-legend');
+      const tally = (document.querySelector('#innaOut .inna-tally') || {}).textContent || '';
+      const wide = document.documentElement.scrollWidth > window.innerWidth + 1;
+      let supply = 0; try { supply = GameFactory.supplyOf('gInna'); } catch (e) { supply = 'ERR ' + e.message; }
+      return { cards, kasr, fath, seeds, legend, tally, wide, supply };
+    });
+    if (r.cards !== 2 || r.kasr !== 1 || r.fath !== 1) throw new Error('two particles, one kasra and one fatha — got ' + JSON.stringify(r));
+    if (r.seeds < 12) throw new Error('Birgivi\'s seeds are missing: ' + r.seeds);
+    if (!r.legend) throw new Error('the legend of seats is missing');
+    if (!/\d/.test(r.tally)) throw new Error('the corpus tally is missing: ' + r.tally);
+    if (r.wide) throw new Error('the Inna lab overflows a phone');
+    if (!(r.supply >= 3)) throw new Error('gInna supply: ' + r.supply);
+  });
+
   await check('the İ\'rab Mağazası fits the lesson\'s own customers — class, body, figure, obstacle and governor off the engines\' verdicts (wave 30)', async () => {
     const r = await page.evaluate(() => {
       const W = (s, i) => { const T = IrabShopEngine.table(s, 'endings'); const e = T.words[i]; return e ? [e.k, e.cls, e.sign, e.manner, e.obstacle, e.governor ? e.governor.kind : null].join('/') : 'NONE'; };
@@ -9384,7 +9425,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 175) throw new Error('the qiyasi builder disagrees with more stored plurals than at v186 (167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 178) throw new Error('the qiyasi builder disagrees with more stored plurals than at v193 (178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -10829,7 +10870,7 @@ if (!CHROME) {
   await check('Izhar al-Asrar ch1 (the three things, the kalima and its marks, the amil and its divisions, the twenty jarr letters): the package on the shelf, its awamil note with the question test, the ḍabṭ floor, the twenty letters quoted as mubtadas and kept whole (wave 27)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
-      const n = GRAMMAR['al-amil-wa-aqsamuh']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length, cm: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const n = GRAMMAR['al-amil-wa-aqsamuh']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.src === 'izhar-al-asrar').length, cm: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
       const per = {};
       for (const ch of st.chapters) { let h = 0, nn = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; nn += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n: nn, un, pct: nn ? Math.round(1000 * h / nn) / 10 : 0 }; }
       const ch1 = st.chapters.find(c => (c.n || c.chapter) === 1);
@@ -10844,7 +10885,7 @@ if (!CHROME) {
     if (!r.note.q || r.note.q[0] < 5 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥5 questions in both languages: ' + JSON.stringify(r.note.q));
     if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
     if (r.note.cm < 3) throw new Error('fewer than three common mistakes: ' + r.note.cm);
-    const floors = { 1: 97, 2: 97, 3: 97 };   // measured at v190: ch1 100.0 (281 endings); at v191: ch2 100.0 (169); at v192: ch3 100.0 (354)
+    const floors = { 1: 97, 2: 97, 3: 97, 4: 97, 5: 97, 6: 97 };   // measured at v190: ch1 100.0 (281 endings); at v191: ch2 100.0 (169); at v192: ch3 100.0 (354); at v193: ch4 100.0 (187), ch5 269/269, ch6 117/117
     for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Izhar ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
     if (r.letters.length < 16) throw new Error('the twenty-letter list should carry at least sixteen quoted letters: ' + r.letters.length);
     const bad = r.letters.filter(x => x.ok === false); if (bad.length) throw new Error('a quoted jarr letter was rewritten by the ḍabṭ: ' + JSON.stringify(bad.slice(0, 4)));
@@ -10855,7 +10896,7 @@ if (!CHROME) {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
       const ch = st.chapters.find(c => (c.n || c.chapter) === 2); if (!ch) return { err: 'no chapter 2' };
-      const n = GRAMMAR['mahall-al-majrur']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length } : { missing: true };
+      const n = GRAMMAR['mahall-al-majrur']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.src === 'izhar-al-asrar').length } : { missing: true };
       const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
       return { sentences: ch.sentences.length, note, ex: W('s2', /^و(حاشا|خلا|عدا|لولا|لعل)$/), laalla: W('s5', /^(زيد|قائم|مبتدأ)$/), murra: W('s9', /^مر$/), nahwu: W('s7', /^نحو$/) };
     });
@@ -10872,11 +10913,74 @@ if (!CHROME) {
     if (!r.nahwu.length || r.nahwu.some(x => x.ok === false)) throw new Error('نَحْوُ: after a pause keeps its ḍamma — ' + JSON.stringify(r.nahwu));
   });
 
+  await check('Izhar al-Asrar ch4 (the governor in two nouns: the six letters resembling the verb, the restraining ma, kasr vs fath, the ten kasr seats with 28:76 and 8:5): the note with its question test, the quoted particles with their lam-khabars, the ism in nasb and the khabar in raf, the slid lam kept, the mabni ثَمَّةَ (wave 31)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 4); if (!ch) return { err: 'no chapter 4' };
+      const n = GRAMMAR['mawadi-kasr-inna']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
+      return { sentences: ch.sentences.length, note,
+        six: W('s3', /^(للتحقيق|للتشبيه|للاستدراك|للتمني|للترجي)$/), inna: W('s7', /^(زيدا|قائم)$/), sila: W('s8', /^(مفاتحه|لتنوء|بالعصبة)$/),
+        lam: W('s9', /^(لقائم)$/), hal: W('s12', /^(المؤمنين|لكارهون)$/), thamma: W('s6', /^(ثمة|الكسر|والفتح)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 12) throw new Error('ch4 has 12 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: mawadi-kasr-inna');
+    if (r.note.group !== 'awamil') throw new Error('mawadi-kasr-inna is not an awamil note: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 6 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥6 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.six.length < 5 || r.six.some(x => x.ok === false)) throw new Error('إِنَّ وَأَنَّ لِلتَّحْقِيقِ…: the quoted particles take لِ-khabars in jarr — ' + JSON.stringify(r.six));
+    if (r.inna.length < 4 || r.inna.some(x => x.ok === false)) throw new Error('إِنَّ زَيْدًا قَائِمٌ twice: the ism in naṣb, the khabar in rafʿ — ' + JSON.stringify(r.inna));
+    if (r.sila.length < 3 || r.sila.some(x => x.ok === false)) throw new Error('مَا إِنَّ مَفَاتِحَهُ لَتَنُوءُ بِالْعُصْبَةِ (28:76) — ' + JSON.stringify(r.sila));
+    if (!r.lam.length || r.lam.some(x => x.ok === false)) throw new Error('عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ: the slid lām on the khabar in rafʿ — ' + JSON.stringify(r.lam));
+    if (r.hal.length < 2 || r.hal.some(x => x.ok === false)) throw new Error('وَإِنَّ فَرِيقًا مِنَ الْمُؤْمِنِينَ لَكَارِهُونَ (8:5): jarr by the yāʾ, rafʿ by the wāw — ' + JSON.stringify(r.hal));
+    if (r.thamma.length < 3 || r.thamma.some(x => x.ok === false)) throw new Error('وَمِنْ ثَمَّةَ وَجَبَ الْكَسْرُ … وَالْفَتْحُ: the mabnī ẓarf kept, the doer and its joined noun in rafʿ — ' + JSON.stringify(r.thamma));
+  });
+
+  await check('Izhar al-Asrar ch5 (the fath seats, the fa of the answer, the lightened inn / an / ka-an / lakin): the note with its question test, the clause as a doer and an object, the lightened an with a mubtada in raf after it, the parted mudari in raf, the dual after ka-an, Amr as a mubtada after lakin (wave 31)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 5); if (!ch) return { err: 'no chapter 5' };
+      const n = GRAMMAR['mawadi-fath-anna']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
+      return { sentences: ch.sentences.length, note,
+        seats: W('s1', /^(انك|أنك|زيدا|قائم|جالس)$/), light: W('s7', /^(زيد|قائم)$/), parted: W('s8', /^(تقوم|سيكون)$/), dual: W('s10', /^(ثدياه|حقان|عمرو|حاضر)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 10) throw new Error('ch5 has 10 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: mawadi-fath-anna');
+    if (!r.note.q || r.note.q[0] < 6 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥6 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.seats.length < 6 || r.seats.some(x => x.ok === false)) throw new Error('بَلَغَنِي أَنَّكَ قَائِمٌ … حَيْثُ أَنَّ زَيْدًا جَالِسٌ: the ism in naṣb, the khabar in rafʿ at every seat — ' + JSON.stringify(r.seats));
+    if (r.light.length < 2 || r.light.some(x => x.ok === false)) throw new Error('عَلِمْتُ أَنْ زَيْدٌ قَائِمٌ: after the lightened أَنْ a mubtada in rafʿ — ' + JSON.stringify(r.light));
+    if (r.parted.length < 3 || r.parted.some(x => x.ok === false)) throw new Error('أَنْ لَا تَقُومُ / أَنْ سَيَكُونُ / أَنْ قَدْ تَقُومُ: the parted muḍāriʿ stays in rafʿ — ' + JSON.stringify(r.parted));
+    if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
+  });
+
+  await check('Izhar al-Asrar ch6 (the disjoined illa, la of the genus, ma / la like laysa with their conditions): the note with its question test, the excepted in nasb, la\'s annexed ism in nasb with its khabar in raf, the khabar in nasb after the Hijazi ma, the khabar back in raf when a condition fails (wave 31)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 6); if (!ch) return { err: 'no chapter 6' };
+      const n = GRAMMAR['ma-la-laysa-wa-la-al-jins']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
+      return { sentences: ch.sentences.length, note, illa: W('s1', /^(الحمار|حمارا)$/), jins: W('s2', /^(غلام|رجل|جالس)$/), laysa: W('s4', /^(قائما|حاضرا|رجل)$/), fail: W('s5', /^(قائم|زيد)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 5) throw new Error('ch6 has 5 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: ma-la-laysa-wa-la-al-jins');
+    if (!r.note.q || r.note.q[0] < 6 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥6 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 4) throw new Error('fewer than four examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.illa.length < 2 || r.illa.some(x => x.ok === false)) throw new Error('إِلَّا الْحِمَارَ / لٰكِنَّ حِمَارًا: the disjoined excepted in naṣb — ' + JSON.stringify(r.illa));
+    if (r.jins.length < 3 || r.jins.some(x => x.ok === false)) throw new Error('لَا غُلَامَ رَجُلٍ جَالِسٌ: the annexed ism in naṣb, the khabar in rafʿ — ' + JSON.stringify(r.jins));
+    if (r.laysa.length < 3 || r.laysa.some(x => x.ok === false)) throw new Error('مَا زَيْدٌ قَائِمًا وَلَا رَجُلٌ حَاضِرًا: the khabar in naṣb — ' + JSON.stringify(r.laysa));
+    if (r.fail.length < 6 || r.fail.some(x => x.ok === false)) throw new Error('مَا إِنْ زَيْدٌ قَائِمٌ … مَا زَيْدٌ إِلَّا قَائِمٌ: the khabar back in rafʿ — ' + JSON.stringify(r.fail));
+  });
+
   await check('Izhar al-Asrar ch3 (the omission of the jarr letter: the three qiyasi seats, the sama\'i, hadhf wa-isal, the shadhdh, two letters of one meaning): the note with its question test, the time zarf in nasb, the bounded place refusing the omission, the mafʿul lah, the connected object after the letter is gone, the irregular majrur kept (wave 29)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
       const ch = st.chapters.find(c => (c.n || c.chapter) === 3); if (!ch) return { err: 'no chapter 3' };
-      const n = GRAMMAR['hadhf-al-jarr']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.sourceStory === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const n = GRAMMAR['hadhf-al-jarr']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar' || e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
       const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, rule: w.rule })); };
       return { sentences: ch.sentences.length, note,
         zarf: W('s2', /^(حينا|شهرا)$/), dar: W('s9', /^(دارا|دار|الدار|الخان|البلد)$/),

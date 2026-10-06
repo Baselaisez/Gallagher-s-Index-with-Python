@@ -6698,3 +6698,122 @@ Rules kept: an engine ARRANGES verdicts it did not make and says so; a source's
 permission (مِصْر both ways) is never turned into a verdict; a game asks only
 what the corpus asserts; every lab opens on a phone without a horizontal
 scroll; the audit floors are measured on the day they are set.
+
+**Gate repair at v192's release (29g):** the Nida corpus gate folds every
+vocative particle flat and read the EXPLANATORY أَيْ of Iẓhār ch3 (حَرْفُ تَفْسِيرٍ,
+«أَيْ: مِنْ قَوْمِهِ») as a call, then failed because the engine rightly refused
+مِنْ / لِأَنْ / مُشْتَرَكٌ as munādās. The gate now skips أَيْ when the token's lexicon
+key is `ay`, or its iʿrāb line names the tafsīr, or a colon follows it
+(`patch29g_smoke`). The engine was right; the gate's reading of the corpus
+was not.
+
+## The hamza of إِنَّ decided from the seat — Iẓhār ch4 and the InnaEngine (wave 31, v193)
+
+Iẓhār ch4 (print pp. 94–96, `author_izhar_ch4.py`) is the governor in two
+nouns, first division: the eight letters whose manṣūb precedes their marfūʿ, the
+six that resemble the verb with their meanings (إِنَّ / أَنَّ taḥqīq, كَأَنَّ tashbīh,
+لٰكِنَّ istidrāk, لَيْتَ tamannī, لَعَلَّ tarajjī), the front of speech save أَنَّ, the
+restraining مَا (إِنَّمَا ضَرَبَ زَيْدٌ), Birgivī's reason — إِنَّ leaves the sentence a
+sentence, أَنَّ turns it into a maṣdar, hence KASR where a sentence stands and FATH
+where a word stands — and the ten kasr places with their examples (28:76, 8:5):
+12 sentences / 187 tokens, 48 glossary entries, 3 paradigms (the hollow
+hamza-final نَاءَ يَنُوءُ written by hand on the أَسَاءَ precedent), the awāmil note
+`mawadi-kasr-inna` with an eight-question test, six corpus-anchored examples and
+three mistakes. Two readings of the lithograph are declared in the manifest: the
+unclear «ومعها» before لَهَا صَدْرُ الْكَلَامِ is left out; «ولحقها ما» is read as the
+māḍī وَلَحِقَهَا مَا with the conditional sense of the received wording. Chapter 5 (pp. 96–98, `author_izhar_ch5.py`) is the other half of the
+rule: the fatḥa seats (a doer, an object, a mubtada, a muḍāf ilayh; after
+لَوْ / لَوْلَا with the restored wording لَوْ ثَبَتَ / مَوْجُودٌ, after the مَا of time, a
+jarr letter, the joining حَتَّى, مُذْ / مُنْذُ), the fāʾ of the answer where both
+stand, and the LIGHTENED forms — إِنْ with its telling lām and the verbs of the
+mubtada (2:143, 26:186), أَنْ with the concealed pronoun of the matter, a verb of
+certainty before it and لَا / the sīn / سَوْفَ / قَدْ parting it from a conjugable verb
+(73:20), none before a frozen verb, a condition or a prayer (7:185, 34:14, 24:9
+in the reading أَنْ غَضِبَ اللهُ the print carries), كَأَنْ and لٰكِنْ — 10 sentences /
+281 tokens, 60 entries, 5 paradigms, the note `mawadi-fath-anna` (nine
+questions). Chapter 6 (pp. 98–99, `author_izhar_ch6.py`) closes the governors
+of two nouns: إِلَّا in the disjoined exception read as لٰكِنَّ with a khabar
+estimated, لَا of the genus with its condition, and the second division — مَا and
+لَا that resemble لَيْسَ, their three conditions, the three failures (مَا إِنْ زَيْدٌ
+قَائِمٌ، مَا قَائِمٌ زَيْدٌ، مَا زَيْدٌ إِلَّا قَائِمٌ) and the bar on a fronted maʿmūl — 5
+sentences / 119 tokens, 22 entries, 5 paradigms, the note
+`ma-la-laysa-wa-la-al-jins`. Four garbled spots of the lithograph are read
+and declared: «كأن ذا ناب حقا» → the received shāhid كَأَنْ ثَدْيَاهُ حُقَّانِ, «الفاء
+وهما» → فَيَجِبُ إِلْغَاؤُهَا, «لكونهما» → لِكَوْنِهَا, «إلا الأحمار» → إِلَّا الْحِمَارَ. Package
+0.6.0: 6 chapters, 78 sentences, 1401 tokens, 456 entries. Endings-mode ḍabṭ:
+ch4 183/183, ch5 269/269, ch6 117/117 — 100% on all three after rounds 37–38 (`patch31b`–`patch31f`).
+
+**Rounds 37–38 (`patch31b`–`patch31f`) — the Iẓhār's own rules taught to the DabtEngine.** The
+first probe read ch4 170/187, ch5 ≈225/263, ch6 108/117; thirty-two misses in sixteen families,
+every one of them a rule the chapter itself states. (1) The NAMED particle: in وَبَعْدَ حَتَّى الْعَاطِفَةِ,
+بِمَعْنَى لٰكِنَّ, لِاخْتِصَاصِ مَا الْمَصْدَرِيَّةِ the particle is MENTIONED, not used — a bare head before it
+annexes the name (no tanwīn), the ال-naʿt or nisba after the name is in jarr, and the name opens
+nothing (`__named31`, folded into the wave-28 `__quoted27` flag); a particle counts as named when a
+pause, a naʿt, نَحْوُ or a joined second name follows it. (2) The LIGHTENED family (`lightened31`: the
+letters without the shadda, with marks on the page, on a particle row): كَأَنْ / أَنْ before a noun
+carry the ḍamīr al-shaʾn — the noun opens a nominal sentence (كَأَنْ ثَدْيَاهُ حُقَّانِ, عَلِمْتُ أَنْ زَيْدٌ قَائِمٌ);
+after a verb of certainty لَا / قَدْ part أَنْ from its verb, which stays in rafʿ (أَنْ لَا تَقُومُ، أَنْ قَدْ
+تَقُومُ); إِنْ before a verb with a lām within three words is no shart (وَإِنْ نَظُنُّكَ لَمِنَ الْكَاذِبِينَ),
+and the lām-noun after kāna under it is the khabar (وَإِنْ كَانَتْ لَكَبِيرَةً); إِنَّ with its shadda
+before لَا + verb nasbs nothing (فَلَا تَقَعُ). (3) إِنَّمَا governs nothing — the bare noun after its
+verb is the doer. (4) The maṣdar of kāna governs: كَوْنُ اسْمِهَا نَكِرَةً. (5) The Ḥijāzī مَا loses its
+work when its khabar comes first or إِلَّا breaks the negation (وَمَا قَائِمٌ زَيْدٌ، وَمَا زَيْدٌ إِلَّا قَائِمٌ
+→ rafʿ), and the shart's jazm stops at a citation (لَمْ تَعْمَلْ، نَحْوُ: … وَلَا يَتَقَدَّمُ) unless a shart
+particle with its own verb opens inside it; مَنْ at the head with a fāʾ-answer is the shart (مَنْ
+يُكْرِمْنِي فَإِنِّي أُكْرِمُهُ). (6) The letter's NAME is a noun (بَعْدَ وَاوِ الْحَالِ — its wāw no joiner);
+ثَمَّةَ joins the wave-30 mabnī ẓarfs; a counted noun, a noun after a jarr letter or a word the
+lexicon owns wears no question-hamza (ثَمَانِيَةُ أَحْرُفٍ — the number family's misses were all
+this one misreading); the endings page's لَـ + حِقْ is re-read as the māḍī the corpus owns
+(وَلَحِقَهَا). (7) Seats: a ẓarf is never the relative clause's doer (وَقَعَتْ بَعْدَ فَاءِ الْجَزَاءِ); the
+she-verb's named doer is never a jarr-fused noun (لَتَنُوءُ بِالْعُصْبَةِ) and an intransitive
+she-verb's definite noun is its doer whatever its gender (تَبَيَّنَتِ الْجِنُّ); غَيْر right after kāna
+before a ṣifa is the khabar (كَانَ غَيْرَ مُتَصَرِّفٍ) and after a definite jarr noun its naʿt (الْفِعْلِ
+الْمُتَصَرِّفِ غَيْرِ الشَّرْطِ); the أَوْ-list follows the alif-marked item before it (شَرْطًا أَوْ دُعَاءً);
+إِلَّا after a full affirmative sentence takes the mustathnā in naṣb (جَاءَنِي الْقَوْمُ إِلَّا الْحِمَارَ);
+a joined head after a pause before a particle opens a new sentence (، وَشَرْطُ عَمَلِهَا أَنْ); the
+participle after the genus-lā's ism before a jarr phrase is the khabar (لَا غُلَامَ رَجُلٍ جَالِسٌ
+عِنْدَنَا); the participle after a passive she-verb before نَحْوُ: is the deputy's ḥāl, and the joined
+participle after the example rides onto it (وَفُتِحَتْ فَاعِلَةً نَحْوُ: … ، وَمَفْعُولَةً); the second
+citation rides the wāw onto the first in its jarr (نَحْوَ قَوْلِهِ تَعَالَى … وَقَوْلِهِ تَعَالَى) and the cited
+clause opens anew after the colon (وَالْخَامِسَةُ أَنْ); the addressee's كَ on the clause after a
+tāʾ-verb makes the tāʾ the speaker's (عَجِبْتُ مِنْ أَنَّكَ قَائِمٌ). (8) Two engine repairs: the
+annexation's `marksSay` now reads the author's own marks from `_orig24` (the endings page had
+stripped them, so ضَمِيرِ شَأْنٍ was cut), and the dual of a doubled noun (حُقَّانِ, four bare letters
+under a shadda) is recognised in `dualByLex` and in `writeNoun`. The sweep then showed five regressions, repaired in `patch31f`: a particle under a jarr clitic is in use, not named (ثِقَةً بِأَنَّ السَّامِعَ), and a head the author closed with tanwīn names nothing; the addressee's كَ reaches the tāʾ only on a bare إِنَّ-family word within three words (نَهَبْتَ … حَوَيْتَهُ … بِأَنَّكَ keeps the addressee); the she-verb's named doer is never a ẓarf and an intransitive's doer is definite itself (أَقَامَتْ مَعَ الرَّايَاتِ، بَقِيتَ بَقَاءَ الدَّهْرِ); the page's marks settle an annexation only on a head that can be annexed — not a diptote sifa (أَبْيَضَ مِخْذَمٍ), not a muntahā plural (نَمَارِقُ مَصْفُوفَةٌ), and a maqṣūr head counts (إِحْدَى الْكَلِمَتَيْنِ); the dual is read off the row's lemma only when the inner marks agree (حُقَّانِ yes, ذُكْرَانًا no); and the whole word the corpus owns as a noun outranks a clitic-plus-verb reading (بِنَاءُ الْبَيْتِ, which the new verb نَاءَ had captured). The targeted re-sweep after 31f: no regressions; Talkhīṣ ch56 s4, ch62 s6, ch64 s2/s17, ch65 s2/s4/s5/s10, ch76 s4 and the r21 ch64 floor (95.7 → 97.9) improved.
+
+**`patch31g` — the author's marks belong to ONE sentence.** The chunk-6 smoke found Talkhīṣ ch48 s11 (وَكَأَنَّ الْبَرْقَ مُصْحَفُ قَارٍ) losing its كَأَنَّ frame: the pin analyses a sentence right after another sentence's `grade`, and the rules of 31c/31f that read `_orig24[j-1]` / `_orig24[i+1]` without a bare-word match were reading s10's marks under s11's indices. `decide(rows)` now drops `_orig24` when fewer than 60% of the rows match it bare for bare; `vowel()` sets it afresh on every call, so the grader loses nothing. Two more chunk-6 findings of the same run: the regenerated-paradigm audit refuses an uncontracted seam nūn (تَبَيَّنْنَ) — `sarf_gen.entry()` now writes the tables' idghām (تَبَيَّنَّ، تَبَيَّنَّا) and the Iẓhār's `tabayyana` was repaired; the qiyāsī-plural audit floor moved 175 → 178 for the three heard plurals ch4–6 added (ثَدْي → أَثْدَاء، كَارِه → كَارِهُونَ، كَنْز → كُنُوز).
+
+**`patch31h` — a noun the lexicon owns WHOLE keeps its first letter.** The chunk-5 smoke's Qawāʿid gate (every seeded error caught, no alarm on correct Arabic) raised one false alarm on Talkhīṣ 72:s9 بِنَاءُ الْبَيْتِ — «jarr: what follows a jarr letter is majrūr». The cause was a lexicon side-effect of ch4–6: the Iẓhār's نَاءَ (ن و أ) joined the paradigms, and the analyzer's loose corpus walk (`findFormInParadigm` over `formCandidates`, which peels بِ/لِ/كَ too) matched بِنَاءُ to نَاءَ's māḍī cell; the row was published as a noun with the lemma نَاءَ, root ن و أ, and `QawaidEngine.fused()` then took the بِ for a jarr letter and flagged the ḍamma. Three guards, all asking the noun lexicon (`RootFinder.nounFromCorpus`) whether it owns the word WHOLE: `RootFinder._find` drops a whole-word verb hit reached through a peeled بِ/لِ/كَ/سَ candidate; the candidate loop refuses the same peel (it already refused the وَ/فَ one for فَسَادُ); `QawaidEngine.fused()` returns false before its lemma/root paths. Probed: بِنَاءُ → بِنَاء (ب ن ي), no alarm; بِعَرَضٍ، لِفِقْهٍ، كَكُلِّ، بِبَيْتٍ still fused; لِسَانُهُ، كَلَامُ، بِنَاءً keep their lemmas. The Qawāʿid gate run alone passes; the release was restarted from scratch (the reader's sha changed between chunks). Lesson: a glossary entry is a GLOBAL claim on the analyzer too — a new short verb (نَاءَ، آبَ، عَادَ) can be reached through a clitic peel from any longer noun, so a whole-word owner must always outrank a peel.
+
+**`InnaEngine` (`patch31a`) turns the chapter's rule into a decision procedure.**
+`verdict(rows, i)` looks at the SEAT of an إِنَّ-shaped word — the previous word,
+the nearest governing verb within five words, the punctuation, a لَ on the
+khabar within four words — and names one of Birgivī's places: the ten kasr seats
+(`ibtida`, `qasam`, `sila`, `khabarAyn`, `lam`, `qawl`, `hattaIbt`, `tasdiq`,
+`iftitah`, `wawHal`) plus the fāʾ of causation and the isti'nāf wāw, the fath
+seats (`fail`, `maful`, `mubtada`, `khabarMana`, `mudaf`, `law`, `maTime`, `jarr`,
+`hattaAtf`, `mudh`, and إِلَّا's `istithna`), the two that allow both (`faJaza`,
+`hatta`), and `atf` (a wāw-joined particle inherits the previous clause's hamza,
+across a sentence boundary too through `audit()`'s `prevTail`). Where no seat is
+recognised the verdict is `both` and the engine says so — it never guesses. Three
+things made the audit honest: NFC puts the vowel BEFORE the shadda (إِنَّ is ن َ ّ,
+إِنِّي is ن ِ ّ), so the hamza test is `[إأ][َِ]?ن[َُِ]?ّ`; a jarr letter counts only
+when it stands BARE (فِيهِ / مِنَّا / لَهُ before إِنَّ close a phrase and open a new
+sentence); and a فَ-prefixed إِنَّ after a complete clause is the fāʾ of taʿlīl
+(kasr) unless a shart word came first. The verbs of knowing and of saying are
+read by STEM (`stem()` strips the conjugation affixes, `ILM_STEM` / `QAWL_STEM`),
+so يَعْرِفُونَ أَنَّ and نَادَى إِنَّ are seen without a lexicon; the lām of ibtidāʾ is
+trusted from an authored line (لَامُ الِابْتِدَاءِ / الْمُزَحْلَقَة) and from the shape in free
+text, never after لَوْ (لَكَانَ is the answer's lām). `audit()` grades every authored
+إِنَّ / أَنَّ in the corpus — the hamza LETTER the author wrote is the answer, quoted
+particles (لَفْظٌ مَحْكِيٌّ) are skipped, كَأَنَّ / لٰكِنَّ / إِنَّمَا / أَنَّى are not إِنَّ: **271
+particles, 246 decided by a seat (90.8%), 246/246 agree with the author (100.0)**;
+the first cut measured 162/199 and 77% coverage, the misses were the jarr-phrase
+false hits, the fāʾ of taʿlīl, the verb two words back (عَلِمَ النَّاسُ أَنَّ), the
+vocative (يَا أَبَانَا إِنَّا) and the joined أَنَّ at a sentence's head. The lab
+(`إِنَّ` on the workshop rail), Birgivī's sixteen seeds, the gInna game (only
+particles where the seat and the author agree are asked, three options: kasra /
+fatha / both) and the gates are in DESIGN.md §26. Smoke: the ch4 floor (97; the
+quoted particles' لِ-khabars, the ism in naṣb and the khabar in rafʿ, the slid
+lām, 28:76 and 8:5, the mabnī ثَمَّةَ), the nineteen seeds by seat, the audit floors
+(n ≥ 200, coverage ≥ 85, accuracy ≥ 97), the lab on a phone + the game supply.

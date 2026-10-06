@@ -1015,3 +1015,31 @@ The card ends on a door into the shop (`#avShopOpen`). The figure game
 (`gShop`, 🧥) asks only what the corpus itself asserts: a word whose authored
 iʿrāb line names its sign AND whose sign the shop derived the same way; the
 reveal shows the class and the obstacle, then the author's own line.
+
+## 26. The Inna lab: a card per particle, coloured by the hamza its seat decides (wave 31)
+
+**Birgivī's chapter is a decision, so the workshop shows it as one.** The rail
+gained `إِنَّ` (`conjState.lab === "inna"`): a sentence is typed, or one of the
+chapter's sixteen seeds taken (`INNA_SEEDS` — Birgivī's own examples in the order
+he gives them, from إِنَّ زَيْدًا قَائِمٌ to the ṣila of 28:76), and the sentence is
+written back once as a line (`.shop-line`, reused from the Mağaza) where every
+إِنَّ-shaped word is underlined in the colour of its verdict — green for the
+kasra, amber for the fatḥa, a dashed grey where both readings stand. Under the
+line, one CARD per particle (`.inna-card`, the colour as a left rule): the word
+large (`.inna-w`), the verdict in the accent face with ✓ / ✗ against the hamza
+the typist actually wrote (`.inna-h` — so a learner who types أَنَّ where the seat
+wants إِنَّ sees the cross at once), and the SEAT in Arabic with its plain
+sentence under it (`.inna-seat`: فِي جَوَابِ الْقَسَمِ — the answer of an oath). A
+quoted particle (the chapter's own إِنَّ وَأَنَّ لِلتَّحْقِيقِ) is drawn with no verdict
+and the note that its hamza is the author's, not a seat's. A closed legend lists
+the ten kasr seats, the fath seats and the two that allow both, each a phrase
+in Arabic with the plain sentence beside it, and links the `mawadi-kasr-inna`
+and `inna-am-anna` notes. Above the legend a one-line TALLY (`.inna-tally`,
+tabular numerals) reports the corpus audit — how many authored particles, how
+many a seat decided, how many of those agree with the author — so the lab
+never claims more than it measured. **The gInna game** (🔑 on the nahw shelf)
+blanks the hamza of a corpus particle (`ـنَّ` in the slot) and asks كَسْرٌ أَمْ
+فَتْحٌ؟ with three options — kasra · a sentence, fatḥa · a maṣdar, both; only
+particles where the engine's seat agrees with the author's letter are asked,
+and the reveal names the seat beside the author's iʿrāb line. Phone first: the
+cards are a single column, the line wraps, nothing overflows (gated).
