@@ -7119,3 +7119,99 @@ on two adjectives, one on رَسُولُ اللهِ), the reviewer's notes end t
 İ'rab Mağazası) read the new stories through the same `STORIES` feed — nothing
 is special-cased: a Level-1 sentence of Nūḥ and a Level-3 period of ʿĪsā go
 through the same decide() and the same rules.
+
+## Qiṣaṣ Part Two chapters 5–8 — the volition verb's hidden doer, and rounds 53–54 (wave 33, v195)
+
+Four more chapters of «سفينة نوح» (`author_qisas2_ch5–8.py`, print pp. 15–23, §9–14):
+the messenger — a human or an angel (ch5, 15 sentences), Nūḥ the messenger and what
+the people answered (ch6, 16), between Nūḥ and his people (ch7, 9, with 7:59–62
+quoted as the print quotes them), «اتَّبَعَكَ الْأَرْذَلُونَ» (ch8, 12, with 26:111,
+26:114–115, 11:30). Part Two now carries 8 chapters, 111 sentences, 1139 tokens,
+308 glossary entries, 107 paradigms, still Level 1, still in copyright and flagged
+so. New lexicon keys of this stretch: `lima`, `limadha`, `shafiq`, `riyasa`,
+`sadiq-friend`, `amma-tafsil` (أَمَّا), `ardhal` (أَرْذَل / أَرَاذِل), `tarid-expeller`,
+`in-nafiya`; the print's وَلٰكِنْ نُوحًا is kept as printed and the validator
+accepted it (the lightened لٰكِنْ before a naṣb noun is the print's reading, not
+ours to correct).
+
+**Rounds 53–54 (`patch33a`–`patch33g`) — sixteen rules the Level-1 prose forced,
+all probe-first, none on the neighbours' backs.** The four chapters measured
+198/199, 163/163, 129/129, 113/113 in endings mode after them (ch5 s5 اللهُ after
+إِلَّا مَنْ أَرَادَ is a true ambiguity we leave to the reviewer).
+
+1. **The nahy لَا and the five-verbs.** وَلَا تَذْكُرُونَهُ keeps its nūn: the nahy rule
+   jazms only when the verb, with its enclitic and its wāw/fāʾ stripped, does not end
+   in ون/ين/ان — a لَا before a five-verb form in a statement is the لَا of negation.
+2. **The same-subject verbs and أَنْ.** After يَقْدِرُ / يَسْتَطِيعُ / يُرِيدُ … أَنْ the
+   muḍāriʿ's doer is the governing verb's own: `SAME_SUBJ33` marks the row, and a
+   joined muḍāriʿ within four rows of it (no doer noun between) wears the hidden doer
+   — وَلَا يَقْدِرُ أَحَدٌ أَنْ يَرَاهُمْ وَيَسْمَعَ, no new fāʿil for يَسْمَعَ.
+3. **The sayer after قَالَ in a كَانَ frame.** وَإِذَا كَانَ الرَّسُولُ مَلَكًا قَالَ النَّاسُ: a
+   definite noun or a name right after قَالَ/يَقُولُ is the sayer, not the earlier
+   subject carried over — except the quoted-content nouns (الْحَقَّ، كَلِمَةً، شِعْرًا …),
+   which stay objects.
+4. **The oath that is a mubtada.** وَاللهُ يَعْلَمُ: a وَاللهُ right before a muḍāriʿ (not
+   a lām-verb, not a heavy nūn) is no oath but the subject — in the pre-pass and in the
+   noun rule (`patch33e`, the rule of wave 22b yielded).
+5. **The volition verb's own doer.** أَرَادَ اللهُ أَنْ يُرْسِلَ: `VOLITION33` (أَرَادَ, أَحَبَّ,
+   حَرَصَ …) gives the أَنْ-verb a hidden doer only when the governing verb's own doer
+   does not stand after it (`ownDoer33`: a definite/propn/enclitic noun in the next two
+   rows) — أَرَادَ اللهُ أَنْ يَعْرِفَ النَّاسُ keeps النَّاسُ as the doer of يَعْرِفَ.
+6. **The ism-fiʿl line refuses tanwīn and refuses آمِين after a noun** (أَمِينًا is a
+   ḥāl / khabar, never the «amen» interjection).
+7. **أَنْ + amr.** أَوْحَى إِلَيْهِ أَنْ أَنْذِرْ قَوْمَكَ: the wave-24p re-typing of an amr to a
+   māḍī after أَنْ is refused when the inner marks of the print's form disagree with
+   the māḍī cell (`marksDisagree9`) — the أَنْ here is the explanatory أَنْ.
+8. **The kin-noun iḍāfa.** قَالَ أَصْدِقَاءُ نُوحٍ: a bare kin/plural noun (أَوْلَاد، أَصْدِقَاء،
+   قَوْم، أَهْل، بَنُو …) ruled fāʿil/mafʿūl/ism/khabar takes the name after it as
+   muḍāf ilayh (`KIN33`).
+9. **The tanwīn word is never enclitic-split.** أَمِينًا was read as أُمّ + نَا by the
+   enclitic guess; a word wearing tanwīn carries no pronoun (`__noEnc33`: the
+   segments, construct and enclitic reset, the lemma re-read from the corpus).
+10. **The jarr clitic on an unsettled verb-shaped host.** بِأَيْدِيهِمْ: a host that
+    the analyzer could not settle, with a جَرّ letter and a lexicon noun beneath it,
+    is the noun after its letter (`__jarrClitic`), not a verb.
+11. **لَيْسَ in the kana family.** إِنَّ بَابِي لَيْسَ بَابَ مَلِكٍ: the wave-26q innaIsm rule
+    now lists لَيْسَ / لَيْسَتْ with كَانَ / صَارَ / يَكُونُ, so the ism of إِنَّ is also the
+    ism of لَيْسَ and the noun after it its naṣb khabar.
+12. **The joined subject before أَنْ.** وَشَغَلَتْهُمْ أَمْوَالُهُمْ وَأَوْلَادُهُمْ أَنْ يُفَكِّرُوا:
+    an enclitic noun right after an object-pronoun verb that already has its object,
+    followed by أَنْ, is the delayed fāʿil; the same-pronoun noun joined to it is its
+    ʿaṭf (the analyzer's unsplit wāw split here).
+13. **The joined-wāw fallback.** `joined()` was false for the analyzer's وأولاد+هم; the
+    ʿaṭf rule now also accepts a وَ/فَ prefix whose host-minus-wāw is a lexicon noun and
+    splits the segment itself.
+14. **The demonstrative's object.** أَنْ يَطْرُدَ هٰؤُلَاءِ الْمَسَاكِينَ: a definite noun after
+    a demonstrative that follows a transitive, object-less, non-passive, non-qawl 3ms
+    verb (nothing but a stop or particle after it) is the badal of the object; the
+    verb's doer stays OPEN (not hidden: the badal-doer rule leaves the same state, and
+    a joined māḍī after it then keeps the right to its own doer — وَضَعَ هٰذَا الْإِنَاءَ
+    … وَأَذَّنَ مُؤَذِّنٌ). The lanes found the refusals the rule needs: a FEMININE verb
+    agreeing with هٰذِهِ/تِلْكَ names its doer (لَقِيَتْ هٰذِهِ الْأُمَمُ، رَجَعَتْ هٰذِهِ
+    الْبِعْثَةُ), and a مَا/مَنْ before the verb is already its object.
+15. **The volition verb's doer named after it (`patch33g`).** أَرَادَ إِبْرَاهِيمُ أَنْ
+    يَفْهَمَ الْمَلِكُ، وَيَفْهَمَ قَوْمُهُ: when the volition verb's own doer stands after it
+    and the أَنْ-verb is followed by an ال-noun, that noun is the clause's own doer
+    (`ownDoer33`'s second arm); with the doer hidden (إِنَّ نُوحًا يُرِيدُ أَنْ يَنَالَ
+    الرِّيَاسَةَ) the ال-noun after the أَنْ-verb stays its object.
+16. **«to hurry», «to rush» are intransitive senses (`patch33g`).** أَسْرَعَ هٰذَا
+    الرَّجُلُ إِلَى بَابِ السِّجْنِ: the sarf table generated a majhūl for أَسْرَعَ, so the
+    demonstrative's-object rule read the verb as transitive; `INTRANS` now lists the two
+    senses, and the transitivity test reads every gloss sense as before.
+
+Two content repairs outside the story: `nala` (نَالَ) in the Badʾ al-Amālī and
+Mukhtaṣar al-Manār morphology carried no ism mafʿūl / majhūl, so the sarf table read it
+as lāzim and the doer rule refused its object — مَنِيل، نِيلَ، يُنَالُ added
+(`fix_morph33.py`); the rule stands: **a verb's transitivity is read off its own
+paradigm, so a paradigm without a majhūl is a claim of intransitivity**.
+
+Smoke: the Part Two gate grows to ch1-8 / 111 sentences with per-chapter floors from
+the measurement (ch1 100.0, ch2 99.3, ch3 99.1, ch4 99.2, ch5 99.5, ch6–8 100.0) and
+twelve rule assertions on real sentences (the sayer النَّاسُ, the five-verb
+تَذْكُرُونَهُ, the oath-mubtada وَاللهُ, أَمِينًا, أَنْذِرْ, نُوحٍ after أَصْدِقَاءُ, ضَلَالَةٌ
+after لَيْسَ بِي, بِأَيْدِيهِمْ, وَأَوْلَادُهُمْ, الْمَسَاكِينَ, بَابَ after لَيْسَ) — the gate
+reads `DabtEngine.grade().words[i].ok/k`, so a rule that slips is named, not just
+counted. The JamEngine corpus-audit ceiling moves 200 → 201: أَصْدِقَاءُ نُوحٍ brought the
+heard plural أَصْدِقَاء of صَدِيق into the story's glossary beside the builder's أَصْدِقَة. The neighbours (the Talkhīṣ/Kāfiya/Part One sweep, Part Four's forty-five
+chapters and Part One's twenty-four against the unpatched reader, the seeds, r21/r22,
+`sarfAudit`) swept WORSE 0.
