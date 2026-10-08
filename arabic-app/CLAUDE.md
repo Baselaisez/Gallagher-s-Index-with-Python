@@ -727,6 +727,16 @@ text and one who is not still gets the app; bump `CACHE` in `sw.js` whenever
 reader.html is rebuilt for a deploy. Registration is guarded by an `https?:`
 protocol test, so file:// and the published artifact are untouched.
 
+**The hosted copy is split; the repository reader is not.** From v194 the reader is 20 MB on disk
+(Part Four alone adds 45 chapters), above the artifact host's 16 MB page limit. The published copy is therefore
+produced by `pubsplit.py <reader> <outdir>` (kept with the release scripts): the `// __DATA_START__ … __DATA_END__`
+block is moved into `data/d1.js` (`const STORIES = [...]`, the first packages), `data/d2.js` (`STORIES.push(...)`)
+and `data/d3.js` (GRAMMAR, the models, REF_GROUPS), each under 15 MB, loaded by three `<script src>` tags in the
+page's place; top-level `const` in classic scripts shares one global lexical scope, so the engines see the
+same names. The page shrinks to 2.7 MB. Nothing else changes, and `prototype/reader.html` stays self-contained
+for file://, the PWA and the review bundle. Check the split copy headlessly (`STORIES.length`, one analysis)
+before publishing, and publish with `root=<outdir>` and the three files mapped.
+
 **Declare the charset.** reader.html had no `<meta charset>` for a long time
 because the artifact host supplies one. Served standalone the browser guesses,
 and a document that is mostly Arabic decoded as latin-1 is unreadable. The PWA
