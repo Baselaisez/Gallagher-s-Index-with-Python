@@ -119,7 +119,7 @@ S.append({"id": "s4", "translation": {
   tok("تُجَامِعُ","jamaa-share","verb",[W, "ism-mawsul", "fail", "maful-bihi", "form-iii-verbs", "mudari-marfu"], "فِعْلٌ مُضَارِعٌ مِنَ الْمُفَاعَلَةِ، وَالْفَاعِلُ مُسْتَتِرٌ — هِيَ؛ صِلَةٌ.", "«is joined with» — Form III; the sila.", "«birlikte gelir» — III. bâb; sıla."),
   tok("شَيْئًا","shay","noun",[W, "maful-bihi"], "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "«anything».", "«bir şey»."),
   tok("مِمَّا","ma-mawsula","pron",[W, "huruf-jarr", "ism-mawsul"], "مِنْ جَارَّةٌ وَمَا مَوْصُولَةٌ، أُدْغِمَتِ النُّونُ فِي الْمِيمِ.", "«of what» — min and the relative ma, the nun assimilated.", "«… olandan» — min ve mevsûle mâ, nûn mîme idgam edilmiş.",
-      segments=[seg("مِمْ","min","part"), seg("مَا","ma-mawsula","pron")]),
+      segments=[seg("مِنْ","min","part"), seg("مَا","ma-mawsula","pron")]),
   tok("يُلَائِمُ","laama","verb",[W, "ism-mawsul", "fail", "maful-bihi", "form-iii-verbs", "mudari-marfu"], "فِعْلٌ مُضَارِعٌ مِنَ الْمُفَاعَلَةِ، وَالْفَاعِلُ مُسْتَتِرٌ؛ صِلَةٌ.", "«suits».", "«uygun düşer»."),
   tok("الْقَرِيبَ","qarib","noun",[W, "maful-bihi"], "مَفْعُولٌ بِهِ مَنْصُوبٌ — الْمَعْنَى الْقَرِيبَ.", "«the near» — the near sense.", "«yakın olana» — yakın mânâya.", punct="؛"),
   wa_conj("وَمُرَشَّحَةٌ","murashshaha","noun",[W, "atf-nasaq", "ism-maful", "form-ii-verbs"], "مُرَشَّحَةٌ مَعْطُوفٌ عَلَى مُجَرَّدَةٌ — اسْمُ مَفْعُولِ رَشَّحَ: قَوَّى.", "«and furnished» — ism maf'ul of رَشَّحَ, to strengthen.", "«ve müreşşaha» — رَشَّحَ'nin ism-i mef'ûlü: güçlendirmek.", punct="،"),
@@ -128,7 +128,7 @@ S.append({"id": "s4", "translation": {
   tok("تُجَامِعُ","jamaa-share","verb",[W, "ism-mawsul", "fail", "maful-bihi", "form-iii-verbs", "mudari-marfu"], "فِعْلٌ مُضَارِعٌ، وَالْفَاعِلُ مُسْتَتِرٌ؛ صِلَةٌ.", "«is joined with».", "«birlikte gelir»."),
   tok("شَيْئًا","shay","noun",[W, "maful-bihi"], "مَفْعُولٌ بِهِ مَنْصُوبٌ.", "«something».", "«bir şey»."),
   tok("مِمَّا","ma-mawsula","pron",[W, "huruf-jarr", "ism-mawsul"], "مِنْ وَمَا الْمَوْصُولَةُ.", "«of what».", "«… olandan».",
-      segments=[seg("مِمْ","min","part"), seg("مَا","ma-mawsula","pron")]),
+      segments=[seg("مِنْ","min","part"), seg("مَا","ma-mawsula","pron")]),
   tok("يُلَائِمُهُ","laama","verb",[W, "ism-mawsul", "fail", "maful-bihi", "form-iii-verbs", "mudari-marfu"], "فِعْلٌ مُضَارِعٌ، وَالْهَاءُ مَفْعُولٌ بِهِ — يَعُودُ عَلَى الْقَرِيبِ.", "«suits it» — «it» the near sense.", "«ona uygun düşer» — «o» yakın mânâ.",
       segments=[seg("يُلَائِمُ","laama","verb"), seg("هُ","pron-3ms","pron")], punct=".")]})
 

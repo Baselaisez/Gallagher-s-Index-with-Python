@@ -412,7 +412,7 @@ def yamlik(punct=None, hidden=True):
     return tok("يَمْلِكْ", "malaka", "verb", ["lam-jazim"], "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَمْ وَعَلَامَةُ جَزْمِهِ السُّكُونُ" + ("، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ" if hidden else "") + ".", "«could (not) hold» — jussive after lam.", "«tutamadı» — lem ile meczum.", punct=punct)
 def nafsahu(punct=None): return mudaf_pron("نَفْسَهُ", "nafs", "هُ", "pron-3ms", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ", "«himself»", "«kendini»", tags=["maful-bihi"], punct=punct)
 def tum_mazi(full, lex, en, tr, tags=(), punct=None, extra=""):
-    host = full[:-3]
+    host = full[:-4]
     return tok(full, lex, "verb", list(tags), "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" + extra + ".", en + " — the doers' tāʾ.", tr + " — fâil tâ'sı.", punct=punct, segments=[seg(host, lex, "verb"), seg("تُمْ", "pron-2mp", "pron")])
 
 # ================================================================ §22 يظهر السر (pp. 61–64)

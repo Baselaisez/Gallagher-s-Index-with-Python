@@ -46,7 +46,7 @@ def ma_mawsula(punct=None):
     return tok("مَا", "ma-mawsula", "pron", ["maful-bihi"], "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", "«what» — the relative, built; in the place of naṣb as the object.", "«-diği şeyi» — ism-i mevsûl, mebnî; mahallen mansub mef'ûl.", punct=punct)
 def fa_mazi(full, lex, en, tr, hidden="هُوَ", tags=(), punct=None):
     """فَأَرَادَ، فَوَضَعَ، فَأَرْسَلَ، فَأَمَرَ — the fāʾ of sequence on a māḍī."""
-    return tok(full, lex, "verb", list(tags), "الْفَاءُ عَاطِفَةٌ، وَ" + full[1:].replace("ْ", "ْ") + " فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ" + (f"، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: {hidden}" if hidden else "") + ".",
+    return tok(full, lex, "verb", list(tags), "الْفَاءُ عَاطِفَةٌ، وَ" + full[2:] + " فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ" + (f"، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: {hidden}" if hidden else "") + ".",
                "«and (then)» + " + en + (" — a māḍī; the doer is concealed." if hidden else " — a māḍī built on fatḥa."), "«ve (sonra)» + " + tr + (" — mâzî; fâil gizli zamirdir." if hidden else " — fetha üzere mebnî mâzî."), punct=punct,
                segments=[seg("فَ", "fa", "conj"), seg(full[1:], lex, "verb")])
 def ya_abati():

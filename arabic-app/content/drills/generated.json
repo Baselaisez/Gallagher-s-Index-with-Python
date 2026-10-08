@@ -15,7 +15,7 @@
   "sentenceTokens": 8132,
   "posAgreement": 98.5,
   "caseJudged": 6064,
-  "caseAgreement": 98.4,
+  "caseAgreement": 98.3,
   "rows": 9217
  },
  "endings": [
@@ -21431,10 +21431,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "ف ص ح",
-      "wazn": "فِعَال — مَصْدَر / جَمْع",
-      "sure": false
+      "lemma": "صَاحَ",
+      "root": "ص ي ح",
+      "wazn": "فَعَلَتْ",
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -22143,10 +22143,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
-      "root": "ف ص ح",
-      "wazn": "فِعَال — مَصْدَر / جَمْع",
-      "sure": false
+      "lemma": "صَاحَ",
+      "root": "ص ي ح",
+      "wazn": "فَعَلَتْ",
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -26985,7 +26985,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَشْيَب",
+      "lemma": "شَيْب",
       "root": "ش ي ب",
       "wazn": "فِعلًا",
       "sure": true
@@ -30444,10 +30444,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "مَرْأَة",
       "root": "م ر أ",
       "wazn": "فَعْلَةِ",
-      "sure": false
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -30897,7 +30897,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "رَجُل",
+      "lemma": "رِجَال",
       "root": "ر ج ل",
       "wazn": "فِعَالَ",
       "sure": true
@@ -31406,9 +31406,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَالِب",
+      "lemma": "طَالَبَ",
       "root": "ط ل ب",
-      "wazn": "فَاعِلِ",
+      "wazn": "فَاعِلْ",
       "sure": true
      },
      "match": true,
@@ -32833,7 +32833,7 @@
       "kind": "verb",
       "lemma": "حَارَ",
       "root": "ح ي ر",
-      "wazn": "فَعِلَتْ",
+      "wazn": "فَعَلَتْ",
       "sure": true
      },
      "match": true,
@@ -36060,7 +36060,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "إِلَه",
+      "lemma": "إِلٰهِيّ",
       "root": "أ ل ه",
       "wazn": null,
       "sure": true
@@ -42041,7 +42041,7 @@
    "judged": 3,
    "agree": 3,
    "judgedC": 2,
-   "agreeC": 2,
+   "agreeC": 1,
    "tokens": [
     {
      "w": "لَوْ",
@@ -42102,15 +42102,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "حَدَّثَ",
+      "lemma": "تَحَدَّثَ",
       "root": "ح د ث",
-      "wazn": "تُفَعِّلُ",
+      "wazn": null,
       "sure": true
      },
      "match": true,
-     "caseSaid": "nasb",
+     "caseSaid": "mabni",
      "caseHuman": "nasb",
-     "caseMatch": true
+     "caseMatch": false
     }
    ]
   },
@@ -48596,7 +48596,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَعْجَبَ",
+      "lemma": "أُعْجِبَ",
       "root": "ع ج ب",
       "wazn": "أَفْعَلَ",
       "sure": true
@@ -48693,7 +48693,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَعْجَبَ",
+      "lemma": "أُعْجِبَ",
       "root": "ع ج ب",
       "wazn": "أَفْعَلَ",
       "sure": true
@@ -56801,7 +56801,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "رَجُل",
+      "lemma": "رِجَال",
       "root": "ر ج ل",
       "wazn": "فِّعَالِ",
       "sure": true
@@ -72918,9 +72918,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "كَفّ",
+      "lemma": "كَفَّ",
       "root": "ك ف ف",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -76777,9 +76777,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "حَال",
+      "lemma": "حَالَ",
       "root": "ح و ل",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -76899,9 +76899,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "حَال",
+      "lemma": "حَالَ",
       "root": "ح و ل",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -77874,9 +77874,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "حَال",
+      "lemma": "حَالَ",
       "root": "ح و ل",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -78310,9 +78310,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "مِسْك",
-      "root": "م س ك",
-      "wazn": "فِعْلَ",
+      "lemma": "لَمَسَ",
+      "root": "ل م س",
+      "wazn": null,
       "sure": true
      },
      "match": true,
@@ -78849,9 +78849,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "حَال",
+      "lemma": "حَالَ",
       "root": "ح و ل",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -79648,9 +79648,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "مِسْك",
-      "root": "م س ك",
-      "wazn": "فِعْلِ",
+      "lemma": "لَمَسَ",
+      "root": "ل م س",
+      "wazn": null,
       "sure": true
      },
      "match": true,
@@ -83115,7 +83115,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -85975,7 +85975,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -86868,9 +86868,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "كَفّ",
+      "lemma": "كَفَّ",
       "root": "ك ف ف",
-      "wazn": null,
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -93496,7 +93496,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -94028,7 +94028,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -103196,9 +103196,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَبْلَغُ",
+      "lemma": "أَبْلَغَ",
       "root": "ب ل غ",
-      "wazn": "أَفْعَلُ",
+      "wazn": "أَفْعَلَ",
       "sure": true
      },
      "match": true,
@@ -119632,9 +119632,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَبْلَغُ",
+      "lemma": "أَبْلَغَ",
       "root": "ب ل غ",
-      "wazn": "أَفْعَلُ",
+      "wazn": "أَفْعَلَ",
       "sure": true
      },
      "match": true,
@@ -119793,9 +119793,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَبْلَغُ",
+      "lemma": "أَبْلَغَ",
       "root": "ب ل غ",
-      "wazn": "أَفْعَلُ",
+      "wazn": "أَفْعَلَ",
       "sure": true
      },
      "match": true,
@@ -128167,7 +128167,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "دَعْ",
+      "lemma": "وَدَعَ",
       "root": "و د ع",
       "wazn": "اِفْعَلْ",
       "sure": true
@@ -128966,10 +128966,10 @@
       "pos": "noun",
       "grammar": [
        "mushakala",
-       "huruf-jarr",
+       "atf-nasaq",
        "idafa-definiteness"
       ],
-      "irab": "«as in the saying» — the kaf of «for instance», a wall: no likening."
+      "irab": "«and» + «the saying of» — joined to the example before it, annexed to the name after it."
      },
      "engine": {
       "kind": "noun",
@@ -131275,7 +131275,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -132108,7 +132108,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "طَرَف",
+      "lemma": "طَرْف",
       "root": "ط ر ف",
       "wazn": null,
       "sure": true
@@ -136402,9 +136402,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "غُصْن",
-      "root": "غ ص ن",
-      "wazn": "فُعْلٌ",
+      "lemma": "غَاصَ",
+      "root": "غ و ص",
+      "wazn": null,
       "sure": true
      },
      "match": true,
@@ -146963,9 +146963,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "دَارَى",
-      "root": "د ر ي",
-      "wazn": "فَاعِلْ",
+      "lemma": "دَارَ",
+      "root": "د و ر",
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -150661,11 +150661,11 @@
     "tr": "Nitekim Allah Teâlâ buyurur: «Ona ateş dokunmasa bile yağı NEREDEYSE aydınlatır» — «yağı aydınlatır» gulüv olurdu; يَكَادُ onu yaklaştırır, makbul olur. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 100,
+   "posAgreement": 88.9,
    "judged": 9,
-   "agree": 9,
-   "judgedC": 7,
-   "agreeC": 7,
+   "agree": 8,
+   "judgedC": 6,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "كَقَوْلِهِ",
@@ -150848,16 +150848,16 @@
       "irab": "«has touched it» — jussive; the doubled letters unmerged before the sukun."
      },
      "engine": {
-      "kind": "verb",
-      "lemma": "مَسَّ",
+      "kind": "noun",
+      "lemma": null,
       "root": "م س س",
-      "wazn": "تَفْعَلْ",
-      "sure": true
+      "wazn": null,
+      "sure": false
      },
-     "match": true,
-     "caseSaid": "jazm",
+     "match": false,
+     "caseSaid": null,
      "caseHuman": "jazm",
-     "caseMatch": true
+     "caseMatch": null
     },
     {
      "w": "نَارٌ",
@@ -155661,7 +155661,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "إِنْسَان",
+      "lemma": "إِنْسَانِيّ",
       "root": "أ ن س",
       "wazn": null,
       "sure": true
@@ -169336,7 +169336,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "دَعْ",
+      "lemma": "وَدَعَ",
       "root": "و د ع",
       "wazn": "اِفْعَلْ",
       "sure": true
@@ -174163,9 +174163,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "لَهُمْ",
-      "root": "ل ه م",
-      "wazn": "فَّعُلَّ",
+      "lemma": "اللّٰهُمَّ",
+      "root": "أ ل ه",
+      "wazn": null,
       "sure": true
      },
      "match": true,
@@ -174704,10 +174704,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "كَفَّ",
       "root": "ك ف ف",
-      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
-      "sure": false
+      "wazn": "فَعَلَ",
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -174774,7 +174774,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "حَال",
+      "lemma": "حَالَ",
       "root": "ح و ل",
       "wazn": null,
       "sure": true
@@ -177681,7 +177681,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "دَاعٍ (الدَّاعِي)",
+      "lemma": "دَاعٍ",
       "root": "د ع و",
       "wazn": null,
       "sure": true
@@ -178654,7 +178654,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "دَاعٍ (الدَّاعِي)",
+      "lemma": "دَاعٍ",
       "root": "د ع و",
       "wazn": null,
       "sure": true
@@ -185835,9 +185835,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "خَاطِب",
+      "lemma": "خَاطَبَ",
       "root": "خ ط ب",
-      "wazn": "فَاعِلَ",
+      "wazn": "فَاعِلْ",
       "sure": true
      },
      "match": true,
@@ -191958,10 +191958,10 @@
     "tr": "İkincisi bir fazilete mahsus olmakla daha beliğ olursa MEMDÛHTUR — Beşşâr'ın şu sözü gibi: (Geri yazım: kaynak bu hükmü yalnız Türkçe verir; bu, Telhîs'in alınan metnidir.)"
    },
    "jumal": [],
-   "posAgreement": 100,
+   "posAgreement": 88.9,
    "judged": 9,
-   "agree": 9,
-   "judgedC": 5,
+   "agree": 8,
+   "judgedC": 6,
    "agreeC": 5,
    "tokens": [
     {
@@ -192049,16 +192049,16 @@
       "irab": "«more eloquent» — kana's khabar; the elative, a diptote."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "أَبْلَغُ",
+      "kind": "verb",
+      "lemma": "أَبْلَغَ",
       "root": "ب ل غ",
       "wazn": "أَفْعَلَ",
       "sure": true
      },
-     "match": true,
-     "caseSaid": null,
+     "match": false,
+     "caseSaid": "mabni",
      "caseHuman": "nasb",
-     "caseMatch": null
+     "caseMatch": false
     },
     {
      "w": "لِاخْتِصَاصِهِ",
@@ -193785,7 +193785,7 @@
       "kind": "verb",
       "lemma": "حَارَ",
       "root": "ح ي ر",
-      "wazn": "فَعِلَ",
+      "wazn": "فَعَلَ",
       "sure": true
      },
      "match": true,
@@ -194333,10 +194333,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "سَبِيل",
-      "root": "س ب ل",
-      "wazn": "فُعُلَا",
-      "sure": true
+      "lemma": null,
+      "root": "ب ل و/ي",
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
      },
      "match": true,
      "caseSaid": null,
@@ -194756,7 +194756,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَبْلَغُ",
+      "lemma": "أَبْلَغَ",
       "root": "ب ل غ",
       "wazn": "أَفْعَلَ",
       "sure": true
@@ -195035,8 +195035,8 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "رَاثَ",
-      "root": "ر ي ث",
+      "lemma": "وَرِثَ",
+      "root": "و ر ث",
       "wazn": "يَفْعِلْ",
       "sure": true
      },
@@ -197667,10 +197667,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "كَفَّ",
       "root": "ك ف ف",
-      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
-      "sure": false
+      "wazn": "فَعَلَ",
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -197785,10 +197785,10 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": null,
+      "lemma": "كَفَّ",
       "root": "ك ف ف",
-      "wazn": "مِنَ الْمُضَاعَفِ — عَيْنُهُ وَلَامُهُ مِنْ جِنْسٍ وَاحِدٍ",
-      "sure": false
+      "wazn": "فَعَلَ",
+      "sure": true
      },
      "match": true,
      "caseSaid": "jarr",
@@ -201375,11 +201375,11 @@
     "tr": "Bu ve benzerleri — çoğu makbuldür; güzel tasarrufun tâbi olma sınıfından ibdâ' alanına çıkardığı da bundandır. Ne kadar gizli olursa kabule o kadar yakındır. (Geri yazım: kaynak bu hükmü yalnız Türkçe verir; bu, Telhîs'in alınan metnidir.)"
    },
    "jumal": [],
-   "posAgreement": 91.3,
+   "posAgreement": 87,
    "judged": 23,
-   "agree": 21,
+   "agree": 20,
    "judgedC": 18,
-   "agreeC": 17,
+   "agreeC": 16,
    "tokens": [
     {
      "w": "وَهَذَا",
@@ -201804,16 +201804,16 @@
       "irab": "«more intense» — the helper elative."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "أَشَدّ",
+      "kind": "verb",
+      "lemma": "أَشَدَّ",
       "root": "ش د د",
-      "wazn": null,
+      "wazn": "أَفْعَلَ",
       "sure": true
      },
-     "match": true,
-     "caseSaid": "nasb",
+     "match": false,
+     "caseSaid": "mabni",
      "caseHuman": "nasb",
-     "caseMatch": true
+     "caseMatch": false
     },
     {
      "w": "خَفَاءً",
@@ -204513,7 +204513,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "دَعْ",
+      "lemma": "وَدَعَ",
       "root": "و د ع",
       "wazn": "اِفْعَلْ",
       "sure": true
@@ -214657,7 +214657,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَشْيَب",
+      "lemma": "شَيْب",
       "root": "ش ي ب",
       "wazn": "فَّعْلِ",
       "sure": true
@@ -214800,7 +214800,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَشْيَب",
+      "lemma": "شَيْب",
       "root": "ش ي ب",
       "wazn": "فِعلًا",
       "sure": true
@@ -217232,9 +217232,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَحْسَنَ",
+      "lemma": "أَحْسَن",
       "root": "ح س ن",
-      "wazn": "أَفْعَلَ",
+      "wazn": "أَفْعَلِ",
       "sure": true
      },
      "match": true,
@@ -217281,9 +217281,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "أَكْمَل",
+      "lemma": "أَكْمَلَ",
       "root": "ك م ل",
-      "wazn": "أَفْعَلِهَا",
+      "wazn": "أَفْعَلَ",
       "sure": true
      },
      "match": true,

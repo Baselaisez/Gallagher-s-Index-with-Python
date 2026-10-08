@@ -104,7 +104,10 @@ def entry(bab, wazn, masdar, fail, mazi, mudari, amr,
     # fails on an uncontracted cell, so the generator writes it contracted.
     def _seam(x):
         if isinstance(x, list): return [_seam(c) for c in x]
-        if isinstance(x, str): return x.replace("\u0646\u0652\u0646\u064e", "\u0646\u0651\u064e")
+        if isinstance(x, str):
+            x = x.replace("\u0646\u0652\u0646\u064e", "\u0646\u0651\u064e")
+            for a, b in (("تْتَ", "تَّ"), ("تْتُ", "تُّ"), ("تْتِ", "تِّ")): x = x.replace(a, b)   # (wave 32q) the tāʾ seam: أَنْبَتَّ، كَبَتُّمْ
+            x = x.replace("ُوْ", "ُو").replace("ِيْ", "ِي")                                     # (wave 32q) the madd letter wears no sukūn: يُودِعُ
         return x
     for k in ("mazi", "mudari", "amr", "mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"):
         if k in e: e[k] = _seam(e[k])
@@ -131,8 +134,16 @@ def sound1(bab, v, core, amr_stem, masdar, fail, maful=None, pmz=None, pmd=None,
                  amr_attach(amr_stem), y+core+"َ", y+core+"ْ", t+core+"ْ",
                  maful, pmz, pmd, note)
 
+def _long_amr(L, S, La, Sa):
+    """(wave 32q) the amr's long stem before a vowel-initial suffix is the muḍāriʿ's long stem (تُوبَا، أَمِيلَا، اِنْهَالَا):
+    when the author handed the short stem twice, build it — prefix of Sa + L."""
+    if La == Sa and Sa.endswith(S) and L != S:
+        return Sa[:len(Sa) - len(S)] + L
+    return La
+
 def hollow1(bab, cls, Lm, Sm, L, S, La, Sa, masdar, fail, maful=None, pmz=None, pmd=None, note=None):
     b, w = BABS[bab]
+    La = _long_amr(L, S, La, Sa)
     return entry(b + " — " + cls, w, masdar, fail, mazi14(Lm, Sm),
                  mudari14("َ", L, S), amr_attach(La, Sa),
                  "يَ"+L+"َ", "يَ"+S+"ْ", "تَ"+S+"ْ", maful, pmz, pmd, note)
@@ -158,6 +169,7 @@ def derived(bab_ar, wazn, yv, v, core, amr_stem, masdar, fail,
 def derived_hollow(bab_ar, wazn, yv, Lm, Sm, L, S, La, Sa, masdar, fail,
                    maful=None, pmz=None, pmd=None, note=None):
     y, t = "ي"+yv, "ت"+yv
+    La = _long_amr(L, S, La, Sa)
     return entry(bab_ar, wazn, masdar, fail, mazi14(Lm, Sm), mudari14(yv, L, S),
                  amr_attach(La, Sa), y+L+"َ", y+S+"ْ", t+S+"ْ", maful, pmz, pmd, note)
 

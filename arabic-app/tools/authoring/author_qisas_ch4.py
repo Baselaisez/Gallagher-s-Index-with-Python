@@ -43,6 +43,7 @@ def ni_trimmed(full, lex, en, tr, punct=None, wa=False, khabar="هُوَ"):
                Wtr(wa) + tr + " — nâkıs muzâri, yâ üzerinde takdîrî damme ile merfû; vikâye nûnu kalır, mütekellim yâsı âyet sonunda düşer (mef'ûl)" + (" — cümle haberdir" if khabar else "") + ".",
                punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg(full[1:] if wa else full, lex, "verb")])
 def alladhi(full="الَّذِي", ar="", en="", tr="", wa=False, punct=None, tags=()):
+    full = conj_full(full, wa)
     return tok(full, "alladhi", "pron", ["ism-mawsul"] + list(tags), W(wa) + "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ " + ar + ".", Wen(wa) + "«the One who» — a relative noun, built on sukūn; " + en + ".", Wtr(wa) + "«o ki» — ism-i mevsûl, sükûn üzere mebnî; " + tr + ".",
                punct=punct, segments=([seg("وَ", "wa", "conj"), seg("الَّذِي", "alladhi", "pron")] if wa else None))
 def fa_pron(full, lex, pron, en, tr, ar_fa, punct=None):
@@ -62,7 +63,7 @@ def wa_la(punct=None): return la_nafiya("وَلَا", wa=True, punct=punct)
 def malik_mudaf_li(punct=None): return li_al("لِلْمَلِكِ", "malik-king", "«to the king»", "«krala»", punct=punct)
 def mazi_tu(full, lex, en, tr, tags=(), punct=None, wa=False):
     return tok(full, lex, "verb", list(tags), W(wa) + "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", Wen(wa) + en + " — a māḍī built on sukūn before the doer's tāʾ; the tāʾ «I» is the doer.", Wtr(wa) + tr + " — fâil tâsından önce sükûn üzere mebnî mâzî; tâ fâildir.",
-               punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg(full[1:-1] if wa else full[:-1], lex, "verb"), seg("تُ", "pron-1s", "pron")])
+               punct=punct, segments=([seg("وَ", "wa", "conj")] if wa else []) + [seg(full[2:-2] if wa else full[:-2], lex, "verb"), seg("تُ", "pron-1s", "pron")])
 def rajulan(punct=None, wa=False): return maful("رَجُلًا", "rajul", "«a man»", "«bir adam»", punct=punct)
 
 # ================================================================ §9 دعوة إبراهيم (pp. 15–17)

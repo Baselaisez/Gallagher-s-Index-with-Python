@@ -78,9 +78,9 @@ sen("s1", "And Ibrāhīm wanted to call his father too, so he said to him:", "Ve
   tok("وَالِدَهُ", "walid-father", "noun", ["maful-bihi", "idafa-definiteness"], "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«his father» — the object; annexed to the pronoun.", "«babasını» — mef'ûl; zamire muzâf.", segments=[seg("وَالِدَ", "walid-father", "noun"), seg("هُ", "pron-3ms", "pron")]),
   tok("أَيْضًا", "aydan", "noun", ["maful-mutlaq"], "مَفْعُولٌ مُطْلَقٌ لِفِعْلٍ مَحْذُوفٍ (آضَ) مَنْصُوبٌ بِالْفَتْحَةِ.", "«too» — an absolute object of a dropped verb.", "«de» — hazfedilmiş fiilin mef'ûl-i mutlakı.", punct="،"),
   qala("فَقَالَ", punct=None, wa=True, hidden="هُوَ"),
-  tok("لَهُ", "li", "prep", ["huruf-jarr"], "اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ فِي مَحَلِّ جَرٍّ.", "«to him».", "«ona».", punct=":", segments=[seg("لِ", "li", "prep"), seg("هُ", "pron-3ms", "pron")])])
-S[-1]["tokens"][5]["segments"] = [seg("فَ", "fa", "conj"), seg("قَالَ", "qala", "verb")]
-S[-1]["tokens"][5]["irab"]["ar"] = S[-1]["tokens"][5]["irab"]["ar"].replace("الْوَاوُ عَاطِفَةٌ", "الْفَاءُ عَاطِفَةٌ")
+  tok("لَهُ", "li", "prep", ["huruf-jarr"], "اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ فِي مَحَلِّ جَرٍّ.", "«to him».", "«ona».", punct=":", segments=[seg("لَ", "li", "prep"), seg("هُ", "pron-3ms", "pron")])])
+# (the fāʾ of فَقَالَ is read from the surface by qala() itself — the index-5 patch that once sat here landed on أَيْضًا)
+
 sen("s2", "«O my father, why do you worship what neither hears nor sees?» (Maryam 19:42)", "«Ey babacığım, ne işitmeyen ne gören şeye niçin tapıyorsun?» (Meryem 19:42)", quran(ya_abati() + [
   lima(), tok("تَعْبُدُ", "abada", "verb", ["mudari-marfu"], "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ وُجُوبًا: أَنْتَ.", "«do you worship» — the doer «you» is concealed by necessity.", "«tapıyorsun» — fâil vücûben gizli «sen»."),
   ma_mawsula()] + sila_la("يَسْمَعُ", "samia", "«hears»", "«işitir»") + sila_la("يُبْصِرُ", "absara", "«sees»", "«görür»", wa=True, tags=["form-iv-verbs"], punct=".")))
@@ -114,7 +114,7 @@ for _t in S[-1]["tokens"]:
     if _t["surface"]["full"] == "فَقَالَ": _t["segments"] = [seg("فَ", "fa", "conj"), seg("قَالَ", "qala", "verb")]; _t["irab"]["ar"] = _t["irab"]["ar"].replace("الْوَاوُ عَاطِفَةٌ", "الْفَاءُ عَاطِفَةٌ")
 sen("s8", "And he said to him: I am going away from here, and I will call upon my Lord.", "Ve ona dedi: Ben buradan gidiyorum ve Rabbime dua edeceğim.", [
   qala("وَقَالَ", punct=None, wa=True, hidden="هُوَ"),
-  tok("لَهُ", "li", "prep", ["huruf-jarr"], "اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ.", "«to him».", "«ona».", punct=":", segments=[seg("لِ", "li", "prep"), seg("هُ", "pron-3ms", "pron")]),
+  tok("لَهُ", "li", "prep", ["huruf-jarr"], "اللَّامُ حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ.", "«to him».", "«ona».", punct=":", segments=[seg("لَ", "li", "prep"), seg("هُ", "pron-3ms", "pron")]),
   ana_mubtada(), mudari_ana("أَذْهَبُ", "dhahaba", "«am going»", "«gidiyorum»"),
   tok("مِنْ", "min", "prep", ["huruf-jarr"], "حَرْفُ جَرٍّ.", "«from».", "«-dan»."),
   tok("هُنَا", "huna", "noun", ["huruf-jarr", "asma-al-ishara"], "اسْمُ إِشَارَةٍ لِلْمَكَانِ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ بِمِنْ.", "«here» — the demonstrative of place, built; in the place of jarr after «from».", "«bura» — mekân ism-i işâreti, mebnî; min ile mahallen mecrur."),

@@ -1073,6 +1073,7 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button[data-lab="ism"]').click();
     await page.fill('#ismIn', 'جلس');
     await page.waitForTimeout(300);
+    await page.waitForFunction(({ id, re }) => new RegExp(re).test(((document.getElementById(id) || {}).textContent || '').normalize('NFC')), { id: 'ismOut', re: 'مَجْلِس'.normalize('NFC') }, { timeout: 8000 }).catch(() => {});   // (wave 32q) wait for the render, not the clock
     const out = await page.locator('#ismOut').textContent();
     if (!out.includes('مَجْلِس'.normalize('NFC')) && !out.normalize('NFC').includes('مَجْلِس'.normalize('NFC')))
       throw new Error('the lab must derive مَجْلِس from the corpus bab of جلس');
@@ -1151,12 +1152,14 @@ if (!CHROME) {
     await page.waitForSelector('#conjRoot', { timeout: 10000 });
     await page.fill('#conjRoot', 'دحرج');
     await page.waitForTimeout(200);
+    await page.waitForFunction(({ id, re }) => new RegExp(re).test(((document.getElementById(id) || {}).textContent || '').normalize('NFC')), { id: 'conjOut', re: 'يُدَحْرِجُ'.normalize('NFC') }, { timeout: 8000 }).catch(() => {});   // (wave 32q) wait for the render, not the clock
     if (await page.locator('#conjRubaiSeg').isHidden()) throw new Error('the quadriliteral babs stayed hidden');
     if (!(await page.locator('#conjFormSeg').isHidden())) throw new Error('the triliteral forms should step aside');
     const out = (await page.locator('#conjOut').textContent()).normalize('NFC');
     if (!out.includes(N('يُدَحْرِجُ'))) throw new Error('the lab did not conjugate the quadriliteral');
     await page.fill('#conjRoot', 'نصر');
     await page.waitForTimeout(200);
+    await page.waitForFunction(() => { const e = document.getElementById('conjRubaiSeg'); return !e || e.offsetParent === null || e.hidden; }, null, { timeout: 8000 }).catch(() => {});   // (wave 32q)
     if (!(await page.locator('#conjRubaiSeg').isHidden())) throw new Error('three letters must restore the triliteral controls');
     await page.evaluate(() => { conjState.root = 'نصر'; closeSheet(); });
     await page.locator('#backLib').click();
@@ -3399,7 +3402,7 @@ if (!CHROME) {
     await page.locator('.sheet .tabs button[data-lab="jadhr"]').click();
     await page.waitForSelector('#jadhrIn', { timeout: 10000 });
     await page.fill('#jadhrIn', 'اصطبر');
-    await page.waitForTimeout(260);
+    await page.waitForFunction(() => /ص ب ر/.test((document.getElementById('jadhrOut') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});   // (wave 32q) the debounced render shares the thread with the Relax drips
     const out = await page.evaluate(() => {
       const t = document.getElementById('jadhrOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -3513,8 +3516,10 @@ if (!CHROME) {
     await page.waitForSelector('.sheet .tabs button[data-lab="mizan"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="mizan"]').click();
     await page.waitForSelector('#mizanIn', { timeout: 10000 });
+    const mizanBefore = await page.evaluate(() => (document.getElementById('mizanOut') || {}).textContent || '');
     await page.fill('#mizanIn', 'يستعملون');
     await page.waitForTimeout(260);
+    await page.waitForFunction(b => { const t = (document.getElementById('mizanOut') || {}).textContent || ''; return t && t !== b; }, mizanBefore, { timeout: 8000 }).catch(() => {});   // (wave 32q)
     const out = await page.evaluate(() => {
       const t = document.getElementById('mizanOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -3653,8 +3658,10 @@ if (!CHROME) {
     await page.waitForSelector('.sheet .tabs button[data-lab="ism"]', { timeout: 10000 });
     await page.locator('.sheet .tabs button[data-lab="ism"]').click();
     await page.waitForSelector('#ismIn', { timeout: 10000 });
+    const ismBefore = await page.evaluate(() => (document.getElementById('ismOut') || {}).textContent || '');
     await page.fill('#ismIn', 'مدينة');
     await page.waitForTimeout(260);
+    await page.waitForFunction(b => { const t = (document.getElementById('ismOut') || {}).textContent || ''; return t && t !== b; }, ismBefore, { timeout: 8000 }).catch(() => {});   // (wave 32q)
     const out = await page.evaluate(() => {
       const t = document.getElementById('ismOut').textContent;
       conjState.lab = 'sarf'; closeSheet();
@@ -3973,6 +3980,7 @@ if (!CHROME) {
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
     await page.waitForSelector('.ml-score', { timeout: 10000 });
+    await page.waitForFunction(() => /\d/.test((document.querySelector('.ml-score') || {}).textContent || ''), null, { timeout: 30000 });   // (wave 32p) the score follows the paint
     const line = await page.locator('.ml-score').textContent();
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
     // and it must lead with the HELD-OUT figure, never the resubstitution one
@@ -4765,11 +4773,12 @@ if (!CHROME) {
       const kasr = document.querySelectorAll('#innaOut .inna-card.inna-kasr').length, fath = document.querySelectorAll('#innaOut .inna-card.inna-fath').length;
       const seeds = document.querySelectorAll('#innaOut .qw-seed').length;
       const legend = !!document.querySelector('#innaOut .shop-legend');
-      const tally = (document.querySelector('#innaOut .inna-tally') || {}).textContent || '';
       const wide = document.documentElement.scrollWidth > window.innerWidth + 1;
       let supply = 0; try { supply = GameFactory.supplyOf('gInna'); } catch (e) { supply = 'ERR ' + e.message; }
-      return { cards, kasr, fath, seeds, legend, tally, wide, supply };
+      return { cards, kasr, fath, seeds, legend, wide, supply };
     });
+    await page.waitForFunction(() => /\d/.test((document.querySelector('#innaOut .inna-tally') || {}).textContent || ''), null, { timeout: 60000 });   // (wave 32p) the tally follows the paint
+    r.tally = await page.evaluate(() => (document.querySelector('#innaOut .inna-tally') || {}).textContent || '');
     if (r.cards !== 2 || r.kasr !== 1 || r.fath !== 1) throw new Error('two particles, one kasra and one fatha — got ' + JSON.stringify(r));
     if (r.seeds < 12) throw new Error('Birgivi\'s seeds are missing: ' + r.seeds);
     if (!r.legend) throw new Error('the legend of seats is missing');
@@ -7910,6 +7919,7 @@ if (!CHROME) {
     });
     await page.waitForSelector('#modelOut', { timeout: 10000 });
     await page.waitForTimeout(300);
+    await page.waitForFunction(() => /\d/.test((document.querySelector('.ml-score') || {}).textContent || '') && document.querySelectorAll('.mbar').length > 0, null, { timeout: 60000 });   // (wave 32p) the score and the bars follow the paint
     const lab = await page.evaluate(() => ({
       bars: document.querySelectorAll('.mbar').length,
       fills: [...document.querySelectorAll('.mbar-fill')].every(f =>
@@ -9044,7 +9054,10 @@ if (!CHROME) {
       const k = s => Shajara.build(SentenceAnalyzer.analyze(s)).edges.map(e => e.from + '>' + e.to + ':' + e.kind);
       return { n, edges, bad, nan, seats: k('ضَرَبَ زَيْدٌ عَمْرًا فِي الدَّارِ'),
                shart: k('وَإِنْ يُكَذِّبُوكَ فَقَدْ كُذِّبَتْ رُسُلٌ مِنْ قَبْلِكَ'),
-               idafa: k('جَاءَ عَبْدُ اللهِ'), inna: k('إِنَّ زَيْدًا قَائِمٌ') };
+               idafa: k('جَاءَ عَبْدُ اللهِ'), inna: k('إِنَّ زَيْدًا قَائِمٌ'),
+               // (wave 32m) the user's report: «ان الله غفور رحيم» drew غفور → رحيم as an annexation — two bare adjectives are a
+               // khabar and its naʿt; and a demonstrative never heads an idafa (هٰذَا رَسُولُ اللهِ: the chain is رَسُولُ → اللهِ only)
+               ghafur: k('ان الله غفور رحيم'), ghafur2: k('إِنَّ اللهَ غَفُورٌ رَحِيمٌ'), aziz: k('ان الله عزيز حكيم'), ishara: k('هٰذَا رَسُولُ اللهِ') };
     });
     if (r.bad.length) throw new Error('the shajara failed: ' + r.bad.slice(0, 4).join(' | '));
     if (r.nan) throw new Error(r.nan + ' diagrams carry NaN coordinates');
@@ -9052,6 +9065,34 @@ if (!CHROME) {
     const need = (list, kind) => { if (!list.some(x => x.endsWith(':' + kind))) throw new Error('missing ' + kind + ' arc in ' + JSON.stringify(list)); };
     need(r.seats, 'fail'); need(r.seats, 'maful'); need(r.seats, 'taalluq'); need(r.seats, 'jarr');
     need(r.shart, 'shart'); need(r.shart, 'jawab'); need(r.idafa, 'idafa'); need(r.inna, 'ism');
+    const no = (list, kind, what) => { if (list.some(x => x.endsWith(':' + kind))) throw new Error(what + ' drew a ' + kind + ' arc: ' + JSON.stringify(list)); };
+    no(r.ghafur, 'idafa', 'ان الله غفور رحيم'); need(r.ghafur, 'ism'); no(r.ghafur2, 'idafa', 'إِنَّ اللهَ غَفُورٌ رَحِيمٌ'); no(r.aziz, 'idafa', 'ان الله عزيز حكيم');
+    if (r.ishara.filter(x => x.endsWith(':idafa')).join() !== '1>2:idafa') throw new Error('هٰذَا رَسُولُ اللهِ: expected one idafa arc رَسُولُ → اللهِ, got ' + JSON.stringify(r.ishara));
+  });
+
+  await check('the reviewer\'s notes: a flag on the sentence, a note saved, exported, re-imported and reachable from Progress', async () => {
+    const r = await page.evaluate(async () => {
+      const wait = ms => new Promise(res => setTimeout(res, ms));
+      const keep = localStorage.getItem('qissa-review'); const out = {};
+      try {
+        const d = ReviewNotes.load(); d.on = true; d.by = 'Smoke'; d.notes = {}; d.imported = []; ReviewNotes.save(d);
+        const st = STORIES.find(s => s.id === 'deeds-are-by-intentions') || STORIES.find(s => !storyLocked(s)) || STORIES[0]; openStory(st); await wait(200);
+        const sec = document.querySelector('#story section.sentence'); const btn = sec && sec.querySelector('.rev-btn'); out.flag = !!btn;
+        btn.click(); const f = sec.querySelector('.rev-form'); out.form = !!f && f.querySelectorAll('.rev-kinds button').length === 7;
+        f.querySelector('[data-kind="dabt"]').click(); f.querySelector('.rev-problem').value = 'smoke'; f.querySelector('.rev-fix').value = 'fix'; f.querySelector('.rev-save:not(.rev-del)').click(); await wait(30);
+        out.saved = btn.classList.contains('on') && ReviewNotes.all().length === 1;
+        const js = ReviewNotes.exportJson(); const j = JSON.parse(js); out.json = j.app === 'qissa-review' && j.notes.length === 1 && /[؀-ۿ]/.test(j.notes[0].ar) && j.notes[0].kind === 'dabt';
+        out.text = /smoke/.test(ReviewNotes.exportText()) && /fix/.test(ReviewNotes.exportText());
+        j.by = 'Friend'; const imp = ReviewNotes.importText(JSON.stringify(j)); const again = ReviewNotes.importText(JSON.stringify(j)); out.imported = imp && imp.n === 1 && again && again.n === 0 && ReviewNotes.importText('{"a":1}') === null;
+        openStats(); await wait(50); out.ledger = document.querySelectorAll('#revLedger .rev-note').length === 2 && !!document.getElementById('revExport');
+        renderLibrary(); await wait(50); openStats(); await wait(50); document.querySelector('#revLedger [data-rev-go]').click(); await wait(300);
+        out.jump = CUR && CUR.id === st.id && !!document.querySelector('#story .rev-form');
+        const d2 = ReviewNotes.load(); d2.on = false; ReviewNotes.save(d2); openStory(st); await wait(150); out.off = document.querySelectorAll('#story .rev-btn').length === 0;
+        state.uiLang = 'tr'; out.tr = /Hakem/.test(ReviewNotes.statsHtml()) && ReviewNotes.kindLbl('dabt') === 'Hareke (zapt)'; state.uiLang = 'en';
+      } finally { if (keep === null) localStorage.removeItem('qissa-review'); else localStorage.setItem('qissa-review', keep); closeSheet(); renderLibrary(); }
+      return out; });
+    const bad = Object.entries(r).filter(([k, v]) => v !== true).map(([k]) => k);
+    if (bad.length) throw new Error('reviewer notes failed: ' + bad.join(', ') + ' ' + JSON.stringify(r));
   });
 
   await check('the Qawaid Atlas maps every note, links resolve, and a star opens its note', async () => {
@@ -9425,7 +9466,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 178) throw new Error('the qiyasi builder disagrees with more stored plurals than at v193 (178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 200) throw new Error('the qiyasi builder disagrees with more stored plurals than at v194 (200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -11138,6 +11179,41 @@ if (!CHROME) {
   });
 
   // ---------------------------------------------------------------- wave 26c: Qiṣaṣ al-Nabiyyīn (Nadwī) — the Level-1 reader, and the nahw frames it forced
+  await check('Qiṣaṣ al-Nabiyyīn Part Four ch1-45 (Shuʿayb; Dāwūd and Sulaymān; Ayyūb and Yūnus; Zakariyyā; ʿĪsā — the whole fourth part): the Level-3 story carries forty-five chapters and 401 sentences, the RIGHTS line, every chapter above its ḍabṭ floor, the quoted āyas marked', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-4'); if (!st) return { err: 'no qisas-4 story' };
+      const per = {};
+      for (const ch of st.chapters) { let h = 0, nn = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; nn += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n: nn, un, pct: nn ? Math.round(1000 * h / nn) / 10 : 0 }; }
+      const sentences = st.chapters.reduce((a, c) => a + c.sentences.length, 0);
+      const qOf = n => { const c = st.chapters.find(x => (x.n || x.chapter) === n); return c ? c.sentences.filter(sen => sen.tokens.some(t => t.quoteBefore)).map(sen => sen.id) : []; };
+      const rights = /RIGHTS/.test(String((st.attribution || {}).en || ''));
+      return { chapters: st.chapters.length, level: st.level, per, sentences, rights, quoted7: qOf(7), quoted44: qOf(44), review: (st.attribution || {}).reviewStatus || st.reviewStatus || (st.manifest || {}).reviewStatus };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 45 || r.sentences < 401) throw new Error('Part Four should carry forty-five chapters and 401 sentences: ' + r.chapters + '/' + r.sentences);
+    if (r.level !== 3) throw new Error('Part Four is the Level-3 story: ' + r.level);
+    { const man4 = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/samples/qisas-al-nabiyyin-4/manifest.json'), 'utf8')); if (!/RIGHTS/.test(man4.attribution.en || '') || !/HAKLAR/.test(man4.attribution.tr || '')) throw new Error('Part Four is in copyright: the RIGHTS line must stand in the attribution (read off disk — the builder never ships it)'); }
+    { const man4r = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/samples/qisas-al-nabiyyin-4/manifest.json'), 'utf8')); const rev4 = r.review || (man4r.attribution || {}).reviewStatus || man4r.reviewStatus; if (rev4 !== 'pending-scholarly-review') throw new Error('Part Four must stay pending-scholarly-review: ' + rev4); }
+    const floors = { 1: 97, 2: 98, 3: 97, 4: 99, 5: 99, 6: 93, 7: 88, 8: 95, 9: 95, 10: 94, 11: 90, 12: 89, 13: 95, 14: 90, 15: 97, 16: 94, 17: 89, 18: 90, 19: 95, 20: 91, 21: 92, 22: 93, 23: 90, 24: 92, 25: 92, 26: 93, 27: 79, 28: 90, 29: 93, 30: 92, 31: 94, 32: 95, 33: 94, 34: 88, 35: 93, 36: 90, 37: 90, 38: 88, 39: 94, 40: 94, 41: 93, 42: 92, 43: 93, 44: 89, 45: 89 };   // measured at v194 (wave 32, rounds 39–52): ch1 98.4 (129); ch2 99.2 (247); ch3 98.8 (243); ch4 100.0 (105); ch5 100.0 (172); ch6 94.1 (202); ch7 89.7 (165); ch8 97.0 (197); ch9 96.1 (127); ch10 95.0 (220); ch11 91.4 (151); ch12 90.1 (71); ch13 96.0 (101); ch14 91.0 (78); ch15 98.7 (158); ch16 95.2 (62); ch17 90.3 (185); ch18 91.8 (171); ch19 96.2 (186); ch20 92.6 (272); ch21 93.6 (251); ch22 94.9 (138); ch23 91.5 (189); ch24 93.2 (146); ch25 93.3 (120); ch26 94.7 (75); ch27 80.3 (71); ch28 91.9 (86); ch29 94.0 (84); ch30 93.8 (64); ch31 95.8 (71); ch32 97.0 (33); ch33 95.1 (81); ch34 89.5 (38); ch35 94.4 (162); ch36 91.7 (157); ch37 92.0 (112); ch38 89.5 (133); ch39 95.7 (185); ch40 95.2 (124); ch41 94.8 (155); ch42 93.7 (238); ch43 94.4 (126); ch44 90.7 (215); ch45 90.5 (220)
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Part Four ch' + c + ' ḍabṭ ' + x.pct + '% below its floor ' + f + ' (' + x.h + '/' + x.n + ')'); }
+    if (!r.quoted7.length) throw new Error('ch7 quotes the Qurʾan (آلَ دَاوُدَ شُكْرًا) and must carry quotation marks');
+    if (!r.quoted44.length) throw new Error('ch44 quotes al-Māʾida 5:116–120 and must carry quotation marks');
+  });
+  await check('Qiṣaṣ al-Nabiyyīn Part Two ch1-4 (the ship of Nūḥ §1–8: after Ādam; the envy of Satan; Satan\'s idea and trick; the pictures of the righteous; from pictures to statues; from statues to idols; the anger of God): the Level-1 story carries four chapters, the RIGHTS line, every chapter above its ḍabṭ floor', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-2'); if (!st) return { err: 'no qisas-2 story' };
+      const per = {};
+      for (const ch of st.chapters) { let h = 0, nn = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; nn += g.n; } else un++; } per[ch.n || ch.chapter] = { h, n: nn, un, pct: nn ? Math.round(1000 * h / nn) / 10 : 0 }; }
+      const sentences = st.chapters.reduce((a, c) => a + c.sentences.length, 0);
+      return { chapters: st.chapters.length, level: st.level, per, sentences, rights: /RIGHTS/.test(String((st.attribution || {}).en || '')), review: (st.attribution || {}).reviewStatus || st.reviewStatus || (st.manifest || {}).reviewStatus };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 4 || r.sentences < 59) throw new Error('Part Two should carry at least four chapters and 59 sentences: ' + r.chapters + '/' + r.sentences);
+    if (r.level !== 1) throw new Error('Part Two is a Level-1 (Newbie) story: ' + r.level);
+    { const man2 = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content/samples/qisas-al-nabiyyin-2/manifest.json'), 'utf8')); if (!/RIGHTS/.test(man2.attribution.en || '') || !/HAKLAR/.test(man2.attribution.tr || '') || (r.review || (man2.attribution || {}).reviewStatus || man2.reviewStatus) !== 'pending-scholarly-review') throw new Error('Part Two is in copyright: RIGHTS line (read off disk) + pending-scholarly-review'); }
+    const floors = { 1: 99, 2: 97, 3: 98, 4: 98 };   // measured at v194 (wave 33): ch1 100.0 (132); ch2 98.6 (138); ch3 99.1 (110); ch4 99.2 (121)
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('Part Two ch' + c + ' ḍabṭ ' + x.pct + '% below its floor ' + f + ' (' + x.h + '/' + x.n + ')'); }
+  });
   await check('Qiṣaṣ al-Nabiyyīn ch1-23 (the idol seller; Ibrāhīm breaks the idols; the cold fire; the call and the king; to Mecca; the dream; the Kaʿba and Bayt al-Maqdis; Yūsuf\'s dream and the brothers\' envy; the delegation to Yaʿqūb and the forest; before Yaʿqūb and Yūsuf in the well; from the well to the palace, fidelity and trust; the sermon of the prison; the sermon of tawḥīd; the interpretation and the king\'s dream; the summons and the treasuries; the brothers come; Binyāmīn with Yūsuf; the secret comes out; the good end — volume 1 complete): the Level-1 story on the shelf with its rights notice, the la-nafiya note with its question test anchored in the story, the ḍabṭ floors, the Qur\'anic lines marked (wave 26v)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-1'); if (!st) return { err: 'no qisas story' };

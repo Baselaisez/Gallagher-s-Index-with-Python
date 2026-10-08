@@ -51,7 +51,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 37 | `research/sources/izzi-sarf-grafikleri.txt` | **PARTIAL** (landed in v180) | 48 İzzî infographic pages: majhūl/amr steps, iftiʿāl ibdāl, nūn al-tawkīd by person with its refusals, the three idghām rulings, the weak classes — the decision tables behind TawkidNunEngine and IdghamRuleEngine. |
 | 38 | `research/sources/izhar-al-asrar-matn-lithograph.txt` | **PARTIAL (story)** (transcribed in v180, authored from v190) | The clean Arabic matn of the Iẓhār (printed pp. ٨٤–١٦٠), transcribed from the lithograph's framed text; the first continuous received Iẓhār on the shelf and the verification text #11 and #13 lacked. Opened by the `izhar-al-asrar` package at v190 (L5, premium): ch1 = print pp. 84–89 — the ḥamd, the three things every parser needs, the kalima and its marks, the ʿāmil's definition and division, the twenty jarr letters with their meanings — 21 sentences / 281 tokens; ch2 = pp. 89–91 (what the letters hang on, the seven that hang on nothing, the exceptives, the five seats of the majrūr, the ẓarf mustaqarr and laghw) 12 sentences / 179 tokens; ch3 = pp. 91–94 (the omission of the jarr letter: the three qiyāsī seats, the samāʿī, ḥadhf wa-īṣāl, the shādhdh, two letters of one meaning) 18 sentences / 354 tokens; ch4 = pp. 94–96 (the governor in two nouns: the six letters resembling the verb, the restraining مَا, kasr where a sentence stands and fath where a word stands, the ten kasr places with 28:76 and 8:5) 12 sentences / 187 tokens; ch5 = pp. 96–98 (the fath seats, the fāʾ of the answer, the lightened إِنْ / أَنْ / كَأَنْ / لٰكِنْ with 2:143, 26:186, 73:20, 7:185, 34:14, 24:9) 10 sentences / 281 tokens; ch6 = pp. 98–99 (the disjoined إِلَّا, لَا of the genus, مَا / لَا like لَيْسَ with their conditions) 5 sentences / 119 tokens, 100.0 endings-mode ḍabṭ after round 34; the ḥāshiya is untranscribed. Next: pp. 89–94 (the mutaʿallaq, ẓarf mustaqarr/laghw, the omitted jarr letter). |
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **PARTIAL** (landed in v180) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven deletions, the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
-| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, **twenty-three chapters — VOLUME 1 COMPLETE** (§1–16 of «من كسر الأصنام؟» and §1–25 of «أحسن القصص», print pp. 1–68, v189), in copyright and flagged so in the manifest; the story closes on Yūsuf's prayer (12:101) and his death. Volume 2 of the print has not been supplied. |
+| 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (in copyright): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, **twenty-three chapters — VOLUME 1 COMPLETE** (§1–16 of «من كسر الأصنام؟» and §1–25 of «أحسن القصص», print pp. 1–68, v189), in copyright and flagged so in the manifest; the story closes on Yūsuf's prayer (12:101) and his death. From v194 the owner's scan of **vol. 4** (Karachi 2008) is the story `qisas-al-nabiyyin-4`, **forty-five chapters — VOLUME 4 COMPLETE** (Shuʿayb §1–13, Dāwūd and Sulaymān §1–15, Ayyūb and Yūnus §1–7, Zakariyyā §1–8, ʿĪsā §1–42; print pp. 1–70; 401 sentences / 6789 tokens, Level 3), and the scan of **vol. 2** is the story `qisas-al-nabiyyin-2` — «سفينة نوح» §1–8 (print pp. 8–15, 4 chapters / 59 sentences, Level 1), the whole volume transcribed and authored chapter by chapter from here. Both in copyright and flagged so. |
 
 **Tally:** FULL 9 · PARTIAL 24 · UNTOUCHED 6 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
 
@@ -2886,6 +2886,59 @@ not a one-line change.
   glossary entries, 4 paradigms), the awāmil note `hadhf-al-jarr` with its
   question test; round 36 in six cuts (`patch29a`…`29f`). Endings-mode ḍabṭ ch3
   100.0 (354) from 276 on the v191 engine.
+- **v194 (waves 32–33)** — Row 40: `qisas-al-nabiyyin-4` — Nadwī's vol. 4 whole
+  (Shuʿayb §1–13, Dāwūd and Sulaymān §1–15, Ayyūb and Yūnus §1–7, Zakariyyā §1–8,
+  ʿĪsā §1–42; print pp. 1–70 of the Karachi 2008 scan): 45 chapters, 401 sentences,
+  6789 tokens, 1891 glossary entries, 565 paradigms, Level 3, in copyright; and
+  `qisas-al-nabiyyin-2` — vol. 2 «سفينة نوح» §1–8 (print pp. 8–15): 4 chapters, 59
+  sentences, 519 tokens, Level 1. The segment audit (41 slips in vol. 1, 7 in the
+  Talkhīṣ / Kāfiya repaired; the validator gates segments against the surface).
+  Rounds 39–50 (`patch32a`–`patch32l`): transitivity from the sarf table decides
+  the doer (a lāzim verb takes no object; the object-pronoun verb's doer is next;
+  the two-object verbs excepted), the elative's iḍāfa, the sound plurals the
+  lexicon owns whole, the name behind its jarr letter, حَتَّى before a māḍī, the
+  fixed-naṣb words, رَبَّنَا, كُلِّ شَيْءٍ + khabar, the delayed mubtada after لَهُمْ,
+  kāna's fronted jarr khabar, the five nouns' wāw, the noun annexed to a definite
+  as doer, لَوْ's fatḥa-lām, the question hamza on a muḍāriʿ, ʿaṭf on the muḍāf, the third person's لَا; then the
+  neighbour-sweep guards (the cognate masdar, the lexicon's noun over the letters-only
+  māḍī, the relative's object, the joined muḍāriʿ, the clause-opening seat, the two
+  definites) and the validator's one-word-per-token gate.
+  Round 51 (`patch32m`, the owner's report): the İ'rab haritası drew غفور → رحيم
+  as an annexation on the typed «ان الله غفور رحيم» — two bare adjectives are a
+  khabar and its naʿt, a demonstrative never heads a chain, and the Shajara asks
+  the DabtEngine's verdict on bare text. Round 52 (`patch32o`): the sweep's nine
+  debts bisected to their rounds and repaired (لَمَّا is not لِ + مَا; the joined
+  muḍāriʿ looks for the PREVIOUS verb; the lightened لٰكِنِ opens a clause; إِنَّمَا
+  with an object-carrying verb; the jussive kāna annexes nothing; the ال-naʿt and
+  the intransitive in the two-definites rule; the construct head the lexicon
+  owns against the fourth volume's new verb; the gate chapters' five: the lexicon noun as
+  the delayed mubtada, the majhūl's yāʾ, the called one after يَا, the kasra before هِ,
+  the naʿt behind a pronoun-closed doer; a second pass: هَدَى with two objects,
+  the quotation after كَقَوْلِ X opening on its mubtada, the māḍī after كَانَ keeping
+  her seat for the delayed ism, the called one a noun at the seat against the
+  marks, the amr's first cell أَنْتَ so دَعْنِي takes no named doer; a third pass off the
+  final probes: "intransitive" needs every gloss sense, never a place-object mover —
+  يَتَحَقَّقَ … حَقِيقَةَ، يَدْخُلُ ذُرِّيَّةُ آدَمَ الْجَنَّةَ; the glossary tags every adjective
+  "noun", so the naʿt rule's lexicon spare reads the glosses for a mark of quality
+  instead — مِنْ أَخْلَاقٍ فَاسِدَةٍ، فِي لُغَةٍ أَجْنَبِيَّةٍ; the all-floors gate caught ch63 under
+  its floor on the fourth volume's lexicon — the delayed mubtada after the khabar
+  muqaddam's jarr phrases, لَهُمْ فِيهَا دَارُ الْخُلْدِ, is the noun annexed, in both homograph
+  blocks; 32e's delayed mubtada after a pronoun-closed jarr phrase yields to a doer or nāʾib
+  seated after the clause's verb — مِثْلُهُ فِيهَا مُبَالَغَةً; 32c's dropped-yāʾ vocative steps
+  aside before a definite annex — يَا ظَبَيَاتِ الْقَاعِ, ch67 back over its floor; the smoke
+  generator's regress list: the relative's-object and ṣifa-clause rules yield the doer to
+  a later object — شَرَحَ اللهُ صَدْرَهُ، أَكْرَمَ اللهُ بِهَا سَيِّدَنَا، وَمَا كَفَرَ سُلَيْمَانُ — and
+  the joined wāw-initial lemma opens its own clause — وَوِلَادَتُهُ خَارِقَةٌ). Round 53 (`patch32q`):
+  the sarf audit's seventeen on the new volumes — fifteen authoring slips rewritten from the
+  engine (the hollow amr's long vowel before a vowel suffix, the tāʾ idghām, the madd wāw),
+  one engine rule (the recited bāb-4 mithāl droppers وَسِعَ يَسَعُ) and one audit twin (اِدَّخَرَ beside اِذَّخَرَ);
+  the audit at 0 on 989 verbs. The reviewer's notes (`patch32n`)
+  and `tools/build_review_bundle.py`: an offline build for reviewers with notes
+  that export, import and jump back to the sentence (DESIGN.md §27).
+  Relax (`patch32p`): the Games hub paints before it counts (48 s → 11 ms cold on the
+  desktop, 205 s under 4× throttling), the pools and the labs' scores computed in
+  slices and remembered per build (DESIGN.md §28).
+  Endings-mode ḍabṭ vol. 4 5972/6505 = 91.81% → 6130/6516 = 94.08%; vol. 2 497/501 = 99.20%.
 - **v193 (wave 31)** — Row 38: `izhar-al-asrar` ch4 (print pp. 94–96: the governor
   in two nouns, first division — the eight letters whose manṣūb precedes their
   marfūʿ; the six resembling the verb with their meanings; the front of speech

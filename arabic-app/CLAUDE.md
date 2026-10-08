@@ -6817,3 +6817,295 @@ fatha / both) and the gates are in DESIGN.md §26. Smoke: the ch4 floor (97; the
 quoted particles' لِ-khabars, the ism in naṣb and the khabar in rafʿ, the slid
 lām, 28:76 and 8:5, the mabnī ثَمَّةَ), the nineteen seeds by seat, the audit floors
 (n ≥ 200, coverage ≥ 85, accuracy ≥ 97), the lab on a phone + the game supply.
+
+## Qiṣaṣ Part Four and Part Two — the sarf table's transitivity decides the doer (waves 32–33, v194)
+
+Two more of the owner's Nadwī scans became stories. **Part Four** (`qisas-al-nabiyyin-4`,
+`qisas4_common.py` + `author_qisas4_ch1–45.py`): Shuʿayb §1–13, Dāwūd and Sulaymān
+§1–15, Ayyūb and Yūnus §1–7, Zakariyyā §1–8, ʿĪsā §1–42 — the whole book, print
+pp. 1–70 of the Karachi 2008 edition, transcribed page by page with its ḍabṭ:
+45 chapters, 401 sentences, 6789 tokens, 1891 glossary entries, 565 paradigms,
+Level 3, in copyright and flagged so (the manifest's RIGHTS line, the chapter notes
+that name every quoted āya as the print quotes it). **Part Two** (`qisas-al-nabiyyin-2`,
+`qisas2_common.py` + `author_qisas2_ch1–4.py`): «سفينة نوح» §1–8, print pp. 8–15 —
+after Ādam, the envy of Satan, his idea, his trick, the pictures of the righteous,
+from pictures to statues, from statues to idols, the anger of God: 4 chapters, 59
+sentences, 519 tokens, Level 1 like Part
+One; the transcript of the whole volume (Nūḥ §1–22, الْعَاصِفَة §1–11, نَاقَةُ ثَمُود
+§1–13) is in the scratchpad and the rest follows chapter by chapter.
+
+**The segment audit** that the fourth volume forced: `segcheck.py` compares every
+token's segments with its surface (consonant skeletons, with the corpus's
+underlying-form allowances: لِ+ال, مِنْ+مَا, كُنْ+نَا) and found 41 slips in Part One
+and 7 in the Talkhīṣ / Kāfiya — a wāw the i'rab named and the segments lacked, a
+pronoun split one letter short; `qisas_common`'s wa-helpers are now conj-aware
+(`conj_of / conj_full / conj_segs`: the فَ and the وَ read from the surface, the
+segments written from it), `talkhis_common`'s kaq/kawa likewise, and
+`validate_content.py` gates it corpus-wide ("segments '…' do not spell the surface").
+
+**Rounds 39–50 (patch32a–32l)** — the engine learned from 6789 new tokens, and the
+lesson of this wave is one principle made mechanical: **transitivity from the sarf
+table**. A verb whose paradigm carries no ism mafʿūl and no majhūl (or whose gloss
+is intransitive, or whose bāb is حَسُنَ / a reflexive form) is LĀZIM and takes no
+object — so the definite noun after it, even past a jarr phrase, is its doer
+(لَجَّ بِهِ الشَّيْبُ، ضَاقَتْ عَلَيْهِ نَفْسُهُ، اشْتَدَّ إِلْحَاحُ الْيَهُودِ، تَنَصَّرَ قُسْطَنْطِينُ،
+شَاعَتْ لَهَا تَمَاثِيلُ); a mutaʿaddī verb already carrying its object pronoun has its
+doer next (خَانَهَا عَقْلُهَا، لَا يُزْعِجُهُمْ شَيْءٌ) unless it takes two objects
+(آتَانِيَ الْكِتَابَ، فَيُوَفِّيهِمْ أُجُورَهُمْ); the scan stops at a bare majrur head waiting
+for its muḍāf ilayh (فِي مُعَامَلَةِ الزُّجَاجِ) and never takes آلَ before a name as the
+hollow verb (اعْمَلُوا آلَ دَاوُدَ). Around it: the elative annexes the bare noun after
+it (فِي أَقْرَبِ وَقْتٍ، أَكْبَرُ مَظْهَرٍ — a diptote muḍāf declines with kasra); the
+pronoun-closed word the lexicon owns as a noun, after a bare head, is the muḍāf
+ilayh and no māḍī (قُصُورِ نَظَرِهَا); the annexed sound plural writes its wāw
+(صَيَّادُو الْأَسْمَاكِ); the sound plurals the lexicon owns whole (الْعَالَمِينَ) still
+write ِينَ; the name behind its jarr letter is still the diptote (لِدَاوُدَ،
+وَلِسُلَيْمَانَ); حَتَّى before a corpus māḍī is the ibtidāʾiyya (حَتَّى جَاءَ); سُبْحَانَكَ /
+وَحْدَهُ / رَغْمَ fixed in naṣb; رَبَّنَا the dropped-يَا vocative before a plea, and the
+plea's تَ as «you»; يَا عِيسَى ابْنَ مَرْيَمَ; the khabar after كُلِّ شَيْءٍ (وَهُوَ عَلَى كُلِّ
+شَيْءٍ قَدِيرٌ، وَكُنَّا بِكُلِّ شَيْءٍ عَالِمِينَ); the delayed mubtada after a pronoun-closed
+jarr phrase no verb governs (لَهُمْ عَذَابٌ شَدِيدٌ); لَدُنْ built on sukūn. Part Two's
+first probes added the Level-1 seats: kāna's fronted jarr khabar and the naʿt of
+its delayed ism (فَكَانَ فِيهَا رِجَالٌ كَثِيرٌ); the five nouns' wāw is rafʿ — a mubtada or
+a doer, never an object (أَبُوهُمْ آدَمُ وَرَبُّهُمُ اللهُ); the noun annexed to a definite
+is definite — no ḥāl — and before a second definite it is the doer (يَدْخُلُ ذُرِّيَّةُ
+آدَمَ الْجَنَّةَ، وَيَدْخُلُ إِبْلِيسُ وَذُرِّيَّتُهُ النَّارَ); the fatḥa-lām of لَوْ's answer on
+a māḍī (لَتَعَجَّبَ — the lām of command wears a kasra); the question hamza before a
+muḍāriʿ the analyzer had read as a noun (أَنُشْرِكُ بِرَبِّنَا); the joined noun whose
+pronoun points at the muḍāf ilayh is joined to the muḍāf (رِجَالُ اللهِ وَأَوْلِيَاؤُهُ);
+the third person's لَا after a noun negates (حِجَارَةٌ لَا تَنْفَعُهُمْ). **The neighbour
+sweep then paid for the wave's own rounds** (patch32k–32l): rounds 39–47 had never
+been swept, and Kāfiya / Part One / Talkhīṣ showed eleven new misses — the lāzim
+scan taking the verb's cognate-manner masdar (يُقْعِي جُلُوسَ الْبَدَوِيِّ), the
+letters-only māḍī match swallowing a noun the lexicon owns with the same vowels (أَوْ
+حَالِهِ), the relative's-object rule reaching a doer that closes the sentence (وَلَا
+يَلْتَامُ مَا جَرَحَ اللِّسَانُ), the joined muḍāriʿ inheriting a doer that was NAMED
+(يَأْتِي النَّصْرُ وَيُخْصِبُ النَّاسُ), a bare lāzim verb naming a new doer from a seat
+that keeps the old one (إِنَّهُ خَانَ الْعَزِيزَ، أَنْ يَتْرُكَ الْأُمَرَاءَ), and the
+two-definites rule on a poet's fronted object (أَعْدَى الزَّمَانَ سَخَاؤُهُ) — each
+narrowed to its seat, and the sweep re-run clean before the gates. A token is one
+printed word: the validator now refuses whitespace inside a surface (twelve
+two-word tokens of Part Four — وَلَا تَنْقُصُوا، وَمَا قَتَلُوهُ — split into their words).
+
+**Round 51 (patch32m) — the owner's report.** Typed into the workshop, «ان الله
+غفور رحيم» drew غفور → رحيم as مُضَافٌ إِلَيْهِ on the İ'rab haritası. The DabtEngine had
+read the sentence right (اسم إنّ، خبر إنّ، نعت); the arrow came from `IdafaEngine.chain`,
+which on BARE text pairs noun to noun by shape alone (no tanwin to refute it), and
+from the Shajara, which drew every chain link without asking the verdict. Three
+edits: on an unvocalized head two adjective-shaped indefinites in a row (غفور رحيم،
+عزيز حكيم، سميع عليم، رجل كريم) are a khabar and its naʿt, never an annexation
+(`sifaPair32`, `DabtEngine.sifaShape` on both words, the member bare — no ال, no
+name, no pronoun); a demonstrative never HEADS a chain (هٰذَا رَسُولُ اللهِ — it may
+still be annexed to: مِثْلُ هٰذَا); and `Shajara.build` asks `DabtEngine.decide` once,
+on a copy of the rows, whenever a chain's head wears no vowel, and draws a link as
+idafa only where the verdict on the annexed word is `mudafIlayh` (or none) — the
+vocalized corpus never pays for this, so the Shajara's corpus gate costs the same.
+Smoke seeds: the four typed sentences, with and without vowels.
+
+**Round 52 (patch32o) — the sweep's debts, bisected.** The neighbour sweep after
+rounds 39–50 showed nine sentences worse than the wave-31 baseline; each was
+bisected to its round with `bisect32m.sh` (v193 + a, +b, … on the same nine
+sentences) and repaired at the source: 32a's relative-object rule read وَلَمَّا as
+لِ + مَا (the shadda on the mīm now names لَمَّا: وَلَمَّا رَأَى يُوسُفُ، سَمِعَ الْمَلِكُ،
+بَلَغَ إِبْرَاهِيمُ); 32b's two-joined-muḍāriʿ rule measured the gap from the CURRENT
+verb, which is always empty — it now finds the previous verb, wants no doer named
+between them and no majhūl before (فَيُصْلَبُ فَتَأْكُلُ الطَّيْرُ، يَأْتِي النَّصْرُ
+وَيُخْصِبُ النَّاسُ); 32l's clause-opening seat admits the lightened لٰكِنِ before a
+verb (وَلٰكِنِ اشْتَدَّ إِلْحَاحُ الْيَهُودِ); 32b's إِنَّمَا rule leaves the doer to a verb
+already carrying its object (إِنَّمَا خَانَهَا عَقْلُهَا); the jussive kāna never heads a
+chain (وَلَمْ يَكُ أَكْثَرَ الْفِتْيَانِ); 32g's two-definites rule yields to an ال-naʿt
+and to an intransitive verb, and the posture glosses count as one manner
+(يُقْعِي جُلُوسَ الْبَدَوِيِّ الْمُصْطَلِي); a three-letter «māḍī» between a bare annexing
+noun and a definite noun is the construct head the lexicon owns — the fourth
+volume's حَالَ had claimed تَشْبِيهُ حَالِ الدُّنْيَا, and the same noun with its pronoun
+joined by أَوْ to a pronoun-closed noun (أَوْ حَالِهِ) is the noun. The gate chapters
+(r21 / r22) added five more: 32a's naʿt-after-a-bare-jarr-noun rule spares a lexicon
+NOUN whose gloss names no quality and the word after a frozen one (لِي مِنْ فُلَانٍ
+صَدِيقٌ حَمِيمٌ — the delayed mubtada); 32a's nisba-yāʾ reading never takes a majhūl
+(سُمِّيَ فَصْلَ الْخِطَابِ keeps its verb); after يَا no word is a verb (يَا خَاطِبَ
+الدُّنْيَا — the fourth volume's خَاطَبَ had claimed it); a host closed by a kasra
+before هِ is the noun with its pronoun, never a māḍī with its object; 32h's
+two-definites rule yields to an intransitive verb and to a naʿt behind a
+pronoun-closed doer (مَا طَالَتْ قَرِينَتُهُ الثَّانِيَةُ). A second bisect pass on the
+sweep after those fixes found six more, each traced to its round and closed at
+the source: هَدَى takes two objects (اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ — 32e's
+object-pronoun doer had taken the path as the doer); the quotation after كَقَوْلِ X
+opens on its mubtada (كَقَوْلِ الْوَطْوَاطِ فَوَجْهُكَ كَالنَّارِ — a فَ-joined noun with
+its pronoun or ال after the cited poet, not his naʿt); a MĀḌĪ right after كَانَ keeps
+her seat open for the delayed ism (مَا كَانَ خَاطَ عَلَيْهِمْ كُلُّ زَرَّادِ — 32c's
+"a verb after kāna is never kāna" and 32a's "the verb after kāna is her khabar"
+both narrowed to the muḍāriʿ, which is the only reading in which كَانَ يَتَكَلَّمُ
+was ever meant); the called one after يَا stays a noun at the seat even when the
+page's marks had re-sworn it a verb (the fourth volume's خَاطَبَ against the
+author's خَاطِبَ — the marks block sets `__nida32`, the case loop's head drops the
+verb cell); and the amr's first cell is أَنْتَ, not هُوَ, so an object-pronoun amr
+takes no named doer (قُلْتُ: دَعْنِي، وَجْهُكَ الْجَنَّةُ — 32e had read the face as the
+doer of «let me» and the garden as its object). The final probes then caught
+two of the gate-chapter fixes over-reaching on the fourth volume, and both were
+narrowed: "intransitive" had been read off the FIRST sense of a verb's gloss, so
+تَحَقَّقَ «to be certain of, to verify» lost its object (يَتَحَقَّقَ الْحُكَّامُ …
+حَقِيقَةَ الْأَمْرِ) and دَخَلَ «to enter» lost its doer (يَدْخُلُ ذُرِّيَّةُ آدَمَ الْجَنَّةَ)
+— `intransAll32` now wants EVERY «to …» sense intransitive and never counts the
+place-object movers; and the lexicon-noun spare in the naʿt rule had believed the
+glossary's `pos`, which tags every adjective "noun" (فَاسِد، أَجْنَبِيّ، جَائِر) — `nounGloss32`
+reads the English and Turkish glosses for a mark of quality (ism fāʿil, nisba,
+ṣifa, ism-i fâil, sıfat…) and a short list of plain adjectives, so مِنْ أَخْلَاقٍ
+فَاسِدَةٍ and فِي لُغَةٍ أَجْنَبِيَّةٍ keep their naʿt while لِي مِنْ فُلَانٍ صَدِيقٌ keeps its
+delayed mubtada. The lesson is recorded here because it will recur: the glossary
+has no adjective class, so an engine rule may never infer "noun" from `pos`
+alone. An all-floors gate (`$SCR/gates_all.sh`, every Talkhīṣ chapter 48–76 in
+endings mode exactly as the smoke measures it) then showed ch63 at 94.9 against its
+floor of 96 — and 95.7 even on the v193 engine once the fourth volume's lexicon was
+loaded: the new verb دَارَ had taken دَارُ الْخُلْدِ. The delayed mubtada after the
+khabar-muqaddam's jarr phrases is now read in both homograph blocks: a three-letter
+«māḍī» the lexicon also owns as a noun, right after a jarr+pronoun word (لَهُمْ،
+فِيهَا) and right before an ال-noun, is that noun, annexed (لَهُمْ فِيهَا دَارُ الْخُلْدِ).
+One content slip stays documented: the fourth volume's authoring dropped the year's
+digits after سَنَةَ (تَنَصَّرَ قُسْطَنْطِينُ الْكَبِيرُ سَنَةَ ٣٠٦), so the ẓarf stands annexed
+to nothing and the grader reads it as an object — the digits belong in the token
+stream, which is a content task, not an engine rule. The same gate's sentence-by-sentence
+diff against the v193 engine found ch63's other debt in round 43: 32e's "the indefinite
+after a pronoun-closed jarr phrase that no verb governs is the delayed mubtada" (لَهُمْ
+عَذَابٌ شَدِيدٌ) had looked back only four words for a verb, so يُنْتَزَعَ مِنْ أَمْرٍ ذِي صِفَةٍ
+أَمْرٌ آخَرُ مِثْلُهُ فِيهَا مُبَالَغَةً opened a nominal clause at مُبَالَغَةً. The rule now
+asks the seat's own state: a doer or nāʾib seated between the clause's verb and this
+word closes the way (the nāʾib أَمْرٌ), while the mubtada's own verb does not
+(وَكُلُّ مُجْرِمٍ يَتَنَصَّلُ مِنْ جَرِيمَتِهِ وَكُلُّ مُجْرِمٍ لَهُ صِيَاحٌ keeps its two
+mubtadas). Three tries went into that guard — `st.subject` is not set by the nāʾib rule,
+`st.failRow` neither — and the lesson is the same as always: read the trace, not the
+field names. The same gate had ch67 one token under its floor of 98 (98.1 on the
+v193 engine): round 41's «يَا قَوْمِ even when a chain claimed it» (32c — the kasra of
+the dropped yāʾ, the chain undone) had taken يَا ظَبَيَاتِ الْقَاعِ, where the kasra is
+the sound feminine plural's naṣb before its annex; the dropped-yāʾ reading now
+steps aside when a definite noun (ال, a name) with no jarr letter and no pronoun
+stands right after the called one — يَا قَوْمِ أَرَهْطِي keeps its kasra because رَهْطِي is
+pronoun-closed and annexes to nothing. Last, the smoke generator's own regress
+list (a chapter under its v193-engine figure) named three chapters of the fourth
+volume, and the a–l bisect on the base engine put all four sentences on rounds 39
+and 40: the relative's-object rule (32a) and the ṣifa-clause rule (32b) read the
+Name as the object whenever a definite noun followed a transitive verb — شَرَحَ اللهُ
+صَدْرَهُ، أَكْرَمَ اللهُ بِهَا سَيِّدَنَا، وَمَا كَفَرَ سُلَيْمَانُ. Both rules now ask
+`laterObject32`: a definite or pronoun-closed noun further on, past the jarr phrases,
+is the object, so the noun right after the verb is the doer (the rule's own candidate
+may itself stand behind a jarr-pronoun, وَمَا شَرَحَ لَهُ صَدْرَهُ, and that is honoured);
+and a sentence-initial مَا before a māḍī is the negation, not the relative. The
+fourth — round 40's joined() learning the wāw before a wāw-initial lemma
+(وَوِلَادَتُهُ) — was right about the wāw and wrong about the seat: a joined
+pronoun-closed noun after a complete nominal clause, followed by a bare ṣifa-shaped
+noun agreeing with it (the host's tāʾ before the pronoun counts as the tāʾ marbūṭa),
+opens a new nominal clause, وَوِلَادَتُهُ خَارِقَةٌ لِلْعَادَةِ, no ʿaṭf.
+
+**Round 53 (patch32q) — the sarf audit bites the new volumes.** The release's smoke
+(chunk 2) failed on «the Sarf engine regenerates every stored paradigm it can
+classify»: seventeen of the fourth and second volumes' stored paradigms disagreed
+with `sarfDerive`. Read cell by cell, fifteen were the AUTHORING's slips and the
+engine was right — the hollow verb's amr before a vowel-initial suffix keeps its
+long vowel (تُبْ but تُوبَا، تُوبُوا، تُوبِي; زِيدَا، أَمِيلَا، عِيلَا، أَثِيرَا، مِيلَا،
+اِنْهَالَا، صِيحَا، ذُوبَا، شِيعَا، قُودَا), a tāʾ-final root merges with the subject's tāʾ
+in the māḍī (أَنْبَتَّ، أَنْبَتُّمْ، كَبَتُّ، نَحَتُّمَا), and the madd wāw after a ḍamma wears
+no sukūn (يُودِعُ). Those rows were rewritten from the engine's own derivation
+(`$SCR/fix_morph32b.py`, package and dry package alike). Two were the engine's:
+the mithāl's wāw in bāb فَعِلَ يَفْعَلُ is kept by rule (وَجِلَ يَوْجَلُ) except the recited
+few whose muḍāriʿ opened on a guttural — وَسِعَ يَسَعُ، وَطِئَ يَطَأُ، وَلِغَ يَلَغُ — and
+Form VIII on a ذ-initial root has two recited spellings, اِذَّكَرَ and اِدَّكَرَ — the engine
+keeps اِذَّ (the smoke's own canon from the İzzî), and the audit now reads the print's
+اِدَّخَرَ as its twin instead of a mismatch. The audit is at 0 on 989 verbs. The same chunk's
+Root Finder lab check read the output 260 ms after typing; the Relax drips now share
+the main thread, so the check waits for the root (`waitForFunction`, 8 s) instead —
+and the next rerun failed the SAME way on the Ism lab (مَجْلِس from جلس), so every lab
+check that types and sleeps (ism, conjugator, mīzān, the second ism) now waits for its
+own render. Rule for future smoke checks: never read a debounced lab after a fixed
+sleep; wait for the text. The next chunk found a real one: Relax's shop count
+(`shopCandidates`) had dropped the old pool's scope fallback, so a story whose
+sentences carry no readable iʿrāb line counted 0 and the figure game closed its door
+(patch32r: below three customers the count falls back to the shelf, as the pool
+always did). Chunk 5 then found two more that only the new volumes could expose:
+the fourth volume's verb رَجَمَ gave the analyzer a dual cell تَرْجُمَانِ, and the
+rhyme-sukūn leniency let إِلَى تَرْجُمَانْ (the interpreter, Talkhīṣ ch44) pass as that
+verb — a written final sukūn against a cell closed by the dual or plural nūn's
+vowel, with the noun in the corpus, now keeps the noun (patch32r_c); and the sarf
+corrector's first step asked the corpus index for ONE bare-letter hit, so حَرْنَ
+(the amr of حَارَ) was "corrected" to a sound حَرَنَ because another lemma answered
+first — it now vouches for any exact stored cell (patch32r_b, an exact-form map built
+once). One more authoring slip surfaced on the way, اِسْتَرِحِي for اِسْتَرِيحِي (the
+Form X hollow the audit could not classify), rewritten by hand. Chunk 6's plural
+audit then counted 200 stored plurals the qiyāsī builder disputes against the pin of
+178: the twenty-three new ones are the two volumes' HEARD plurals (قُرُون، دُرُوع،
+رُؤَسَاء، أَعْضَاء، صُحُف، شُعُوب، أَطِبَّاء، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، مَآسٍ …), each
+reviewed, so the pin moves to 200 with its reason in the check — and two of the
+builder's own guesses are gaps worth a round of their own: أَعْضَاو for أَعْضَاء (the
+wāw-final root under أَفْعَال takes the hamza) and مَأَاسِا for مَآسٍ (the hamza-initial
+root under مَفَاعِل wants the madda and the manqūṣ close).
+The lesson for authoring: a stored paradigm is a claim the engine will contest, so
+author scripts should derive the weak classes rather than type them. Two misses the fourth
+volume's lexicon introduced stay documented, not fixed: فَدَارِهِ (the amr of دَارَى,
+which `verbByBare` cannot see past the new māḍī دَارَ once endings mode has
+stripped the kasra) and ذَلِكَ أَنْ تَكُونَ الْأَلْفَاظُ تَوَابِعَ (kāna's ism read as
+her khabar only behind the demonstrative) — both inside their chapters' floors.
+The lesson for the next wave: a rule that names a neighbour by REGEX must say
+which particle it excludes (لَمَّا is not لِمَا), a rule about "the previous verb"
+must look for it, and every new verb a volume brings is a new homograph for every
+older text — the sweep must include the gate chapters, not only the neighbours.
+
+**The reviewer's notes and the offline bundle (patch32n, `tools/build_review_bundle.py`).**
+The owner asked for a build friends can revise offline. The reader needs no
+network (no CDN, no fonts, no API), so an offline build is the file itself; what
+was missing was a way to SEND NOTES BACK. `ReviewNotes` (before `renderStory`):
+a ⚑ on every sentence's tool row opens a form under the sentence — the kind
+(✓ correct · harakat · i'rab · translation · word meaning · spelling · other), the
+word it concerns (a select over the sentence's tokens), the problem, the
+correction; notes live in `localStorage["qissa-review"]` keyed story / chapter /
+sentence, with the sentence's text, translation, chapter and the reviewer's name;
+the Progress sheet grows a ledger (`statsHtml` / `bind`): the on/off switch, the
+name, export (a `qissa-review-<name>-<date>.json` download), copy as text (one
+block per note for a chat message), import (a friend's file, merged and listed
+with "Imported · name", de-duplicated by sentence + reviewer + time), delete,
+and jump-to-sentence (`goto`: opens the story, scrolls the section, opens the
+form). `REVIEW_BUILD` is a build-time constant: `build_review_bundle.py` copies
+`prototype/reader.html` with it flipped to true (notes on from the first open,
+`storyLocked` returns false so every story is open to the reviewers), adds the
+manifest, service worker and icons, and a README in English and Turkish, into
+`dist/qissa-review-<sw-version>.zip` (`dist/` is git-ignored; the zip is sent to
+the owner, not committed). In the ordinary reader the notes switch on from
+Progress. Strings in both languages (`rev*`); the smoke check saves a note on a
+sentence, exports, re-imports, finds it on Progress, jumps back, and reads the
+Turkish labels.
+
+**Relax — paint first, count later, remember per build (patch32p).** The owner's
+phone could not open the Games hub or the Atölye. Measured cold on the desktop:
+`openGames` 48 s (205 s under 4× CPU throttling) — the İ'rab-shop pool ran
+`DabtEngine.vowel` on sentence after sentence before one card painted (38 s), the
+jinas pool read every seed (7 s); the model and jumla labs cross-validated on open
+(2.9 s + 1.7 s), the perceptron re-trained on every fresh load (2.9 s). One principle
+fixed all of it, and it is now the rule for anything that is a FUNCTION OF THE BUILD:
+`Relax` (before `GameFactory`) — `get/set` a memo with a localStorage mirror keyed
+by the build (story count + sentence count + `document.lastModified`, other builds'
+keys swept at start), `later(key, fn, render)` (render the placeholder now, the value
+in a later task, cached), `chunked(items, step)` (slices of 10 ms). Then:
+`GameFactory.supplyOf` remembers per scope and build (`supplyKnown` answers without
+computing; the two vocabulary drills that follow the learner's deck are not stored);
+the hub paints every card at once with «…» where the count is still owed and fills
+them one game per slice (`.g-wait`), then warms the two slow pools in a drip; the
+shop pool counts CANDIDATES (a sentence whose author wrote an i'rab line the shop can
+read — milliseconds) and reads the engine's table only for the few sentences a round
+needs now, the rest in a 400 ms drip that pauses during a round, the items remembered
+as light references (`senRef32`); the jinas pool reads what a round needs and drips
+the seeds and the corpus (a frame carries a closure, so it is not stored); the model
+and jumla scores, the taggers' line and the Inna tally fill in after the panel paints
+and are remembered; the perceptron's 55 KB of weights are stored per build. Measured
+after: the hub paints in 11 ms and its counts arrive in under a second; the labs paint
+in tens of milliseconds; after a reload every count and score is a lookup. The smoke
+checks that read a score or a tally now WAIT for the digits (`patch32p_smoke`). The
+rule for the next engine: a count or an audit is never computed on the open path —
+it is painted as owed, computed in a slice, and remembered.
+
+Measured in endings mode on every sentence: Part Four 5972/6505 = 91.81% before the wave's
+rounds → 6130/6516 = 94.08% after them, no chapter regressing; Part Two 497/501 = 99.20%. The
+neighbours (Kāfiya, Part One, Talkhīṣ, the seeds, the r19/r21/r22 drills,
+`sarfAudit`) swept clean. Smoke: a Part Four gate (45 chapters, 401 sentences,
+Level 3, per-chapter floors from the measurement, the quoted āyas flagged, the
+RIGHTS line present) and a Part Two gate (4 chapters, Level 1, floors), the
+segment gate in the validator, the Shajara's four typed sentences (no idafa arc
+on two adjectives, one on رَسُولُ اللهِ), the reviewer's notes end to end. The engines and the games (gDabt, gGhost, the
+İ'rab Mağazası) read the new stories through the same `STORIES` feed — nothing
+is special-cased: a Level-1 sentence of Nūḥ and a Level-3 period of ʿĪsā go
+through the same decide() and the same rules.

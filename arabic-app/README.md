@@ -14,7 +14,7 @@ and a lite/premium subscription model with continuously updated content.
 | `content/samples/` | Editorial story packages (pilot: وصية أبي حنيفة) |
 | `content/user-uploads/` | Packages produced by the LLM analyzer from user-uploaded classical texts (demo: hadith إنما الأعمال بالنيات) |
 | `prototype/` | Self-contained interactive reader prototype (open `reader.html` in a browser) |
-| `tools/` | Pipeline tooling: `validate_content.py` (quality gate), `build_prototype.py` (package → reader), `analyze_text.py` (upload-your-own-text LLM analyzer) |
+| `tools/` | Pipeline tooling: `validate_content.py` (quality gate), `build_prototype.py` (package → reader), `analyze_text.py` (upload-your-own-text LLM analyzer), `build_review_bundle.py` (the offline reviewers' zip: reader with notes on, manifest, icons, README) |
 
 ## Status
 

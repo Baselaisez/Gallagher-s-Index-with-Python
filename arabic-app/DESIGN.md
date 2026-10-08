@@ -1043,3 +1043,48 @@ blanks the hamza of a corpus particle (`ـنَّ` in the slot) and asks كَسْ
 particles where the engine's seat agrees with the author's letter are asked,
 and the reveal names the seat beside the author's iʿrāb line. Phone first: the
 cards are a single column, the line wraps, nothing overflows (gated).
+
+## 27. The reviewer's notes: a flag under the sentence, a ledger on Progress, a file that travels back (wave 32)
+
+**A review is a conversation about one sentence, so it starts there.** When
+reviewing is on, the sentence's tool row (`.sent-tools`, after ▶) carries a ⚑
+(`.rev-btn`, the play button's size and radius; filled in the accent when the
+sentence already has a note). It opens a form UNDER the sentence (`.rev-form`:
+a dashed accent border, the panel colour, the UI face), not a sheet — the
+reviewer keeps the Arabic in view while writing about it. The form is four
+rows: the kind as pill chips (`.rev-kinds`: ✓ correct, harakat, i'rab,
+translation, word meaning, spelling, other — the lit one in the accent), the
+word (a right-to-left select over the sentence's tokens, "the whole sentence"
+first), the problem and the correction (two short textareas, `dir=auto` so a
+Turkish note and an Arabic correction each sit on their own side), then Save
+beside Remove. Saving fills the flag and closes the form after a beat with
+"Saved" — the reviewer moves on, the note stays. **The ledger lives on
+Progress** (`.rev-ledger`, under the level rows, a rule above it): the title
+with the count, one sentence of instructions, the on/off switch and the name
+box on one row, and the actions on the next — Export (.json, the accent
+button), Copy as text, Import a file…, Delete my notes (the soft style) — then
+the notes as cards (`.rev-note`): the Arabic line first in the reading face, the
+kind as a small pill (green for ✓), the word in bold, the problem, the
+correction in italics after an arrow, a meta line (story · chapter · Mine /
+Imported · name), and two small buttons — Open (jumps to the sentence and opens
+its form) and Remove (own notes only). An imported friend's notes sit in the
+same list, marked, so the owner triages in one place. **The offline bundle**
+is the same reader with `REVIEW_BUILD` on: no switch on Progress (reviewing is
+the point), every story open, and a README beside it. Phone first: the chips
+wrap, the selects and textareas take the full width, the ledger's rows wrap;
+nothing in the form or the ledger needs a hover.
+
+## 28. Paint first: the hub shows before it counts, the labs before they measure (wave 32)
+
+**Nothing the learner taps may wait on the corpus.** The Games hub used to count
+every drill's supply before it drew a single card — on a phone that was minutes of
+white sheet, read as "the games do not open". Now the hub draws all thirty-four
+cards at once; a card whose count is still owed shows a faint «…» in the count slot
+(`.g-n.g-wait`, 45% ink) and the numbers land one by one over the next second, a
+card greying to «nothing here for this story» only when its count says so. The same
+shape for the labs: the model and jumla panels paint their input and their intro at
+once with a «…» where the score goes, and the sentence fills in a moment later; the
+Inna tally likewise. The second visit of anything is a lookup — the counts, the
+scores, the trained weights are remembered per build — so the app FEELS faster
+each day it is used, which is the consumer promise: relaxed on the surface, the
+whole engine room underneath.

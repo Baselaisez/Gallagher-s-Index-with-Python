@@ -103,13 +103,18 @@ def bd(kind, pair, sub=None, cls=None):
 R_EN = " (Restored: the source carries this step only in Turkish.)"
 R_TR = " (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
 def kaq(tag, full="كَقَوْلِهِ", who="pron-3ms", punct=":"):
+    # the segments and the iʿrāb follow the SURFACE: a bare كَقَوْلِ (annexed to the poet's name after it) carries no
+    # pronoun segment, and a وَقَوْلِهِ without the kāf is the joined noun, not the kāf of exemplification
     pr = {"pron-3ms": "هِ", "pron-3mp": "هِمْ", "pron-2ms": "كَ", "pron-1p": "نَا"}[who]
-    return tok(full, "qawl", "noun", [tag, "huruf-jarr", "idafa-definiteness"],
-               "الْكَافُ لِلتَّمْثِيلِ — جِدَارٌ؛ قَوْلِ مَجْرُورٌ مُضَافٌ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ.",
-               "«as in the saying» — the kaf of «for instance», a wall: no likening.", "«sözü gibi» — «meselâ» kâfı, duvar: benzetme değil.",
-               segments=[seg("كَ", "ka", "part"), seg("قَوْلِ", "qawl", "noun"), seg(pr, who, "pron")], punct=punct)
+    wa = full.startswith("وَ"); body = full[2:] if wa else full
+    ka = body.startswith("كَ"); has_pr = body.endswith(pr) and len(body) > len("قَوْلِ") + len(pr) - 1
+    segs = ([seg("وَ", "wa", "conj")] if wa else []) + ([seg("كَ", "ka", "part")] if ka else []) + [seg("قَوْلِ", "qawl", "noun")] + ([seg(pr, who, "pron")] if has_pr else [])
+    ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if wa else "") + ("الْكَافُ لِلتَّمْثِيلِ — جِدَارٌ؛ قَوْلِ مَجْرُورٌ مُضَافٌ" if ka else "قَوْلِ مَعْطُوفٌ مَجْرُورٌ مُضَافٌ") + ("، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ." if has_pr else "، وَمَا بَعْدَهُ مُضَافٌ إِلَيْهِ.")
+    en = ("«and» + " if wa else "") + ("«as in the saying» — the kaf of «for instance», a wall: no likening." if ka else "«the saying of» — joined to the example before it, annexed to the name after it.")
+    tr = ("«ve» + " if wa else "") + ("«sözü gibi» — «meselâ» kâfı, duvar: benzetme değil." if ka else "«sözü» — önceki örneğe atıf, sonraki isme muzâf.")
+    return tok(full, "qawl", "noun", [tag] + (["atf-nasaq"] if wa else []) + (["huruf-jarr"] if ka else []) + ["idafa-definiteness"], ar, en, tr, segments=segs, punct=punct)
 def kawa(tag, full="وَكَقَوْلِهِ", who="pron-3ms"):
-    t = kaq(tag, full, who, ":"); t["segments"].insert(0, seg("وَ", "wa", "conj")); return t
+    return kaq(tag, full if full.startswith("وَ") else "وَ" + full, who, ":")
 def taala(tag, punct=":"):
     return tok("تَعَالَى", "taala", "verb", [tag], "فِعْلٌ مَاضٍ جَامِدٌ فِي مَعْنَى الدُّعَاءِ — لَا يَجْرِي عَلَى اللهِ إِلَّا مَاضِيًا.",
                "«exalted is He» — the frozen mazi of praise.", "«teâlâ» — duâ mânâsında donmuş mâzî.", punct=punct)

@@ -217,6 +217,25 @@ def audit_harakat(word: str):
             out.append("two sukuns meet")
     return out
 
+_SEG_SKEL_DROP = re.compile("[\u064b-\u0652\u0670\u0640]")
+_SEG_SKEL_WEAK = re.compile("[اىيئؤءأإآ]")
+
+
+def segment_skeleton(text: str) -> str:
+    """The consonant skeleton a token's segment chain and its surface must share. Diacritics and the tatweel are
+    dropped, ة reads as ت, the weak letters (alif, yāʾ, the hamza seats) are dropped — they are exactly what the
+    underlying forms the segments may carry legitimately rewrite (لِ + ال → لِلْ, مِنْ + مَا → مِمَّا, أَرَى + هُ → أَرَاهُ,
+    بِ + هُ → بِهِ, إِلَى + يَ → إِلَيَّ) — and the nūn assimilated into نّ / م / ل is contracted; the lām of
+    لِ + ال + لّٰه collapses. Everything else — a conjunction the surface lacks, a pronoun doubled, a stem cut
+    one letter short, an extra كَ — survives and is reported."""
+    text = unicodedata.normalize("NFC", text)
+    text = _SEG_SKEL_DROP.sub("", text).replace("ة", "ت")
+    text = _SEG_SKEL_WEAK.sub("", text).replace("لال", "لل")
+    for a, b in (("نن", "ن"), ("نم", "م"), ("نل", "ل"), ("للل", "لل")):
+        text = text.replace(a, b)
+    return text
+
+
 def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
                 rep: Report, stats: dict):
     surface = tok.get("surface")
@@ -244,7 +263,14 @@ def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
     else:
         stats["used_lex"].add(lex)
 
-    for seg in tok.get("segments", []):
+    segs = tok.get("segments", [])
+    if segs and full:
+        chain = "".join(sg.get("form", "") for sg in segs)
+        if segment_skeleton(chain) != segment_skeleton(full):
+            rep.error(f"{where}: segments '{chain}' do not spell the surface '{full}'")
+        if re.search(r"\s", full):
+            rep.error(f"{where}: the surface '{full}' holds whitespace — a token is one printed word")   # (wave 32)
+    for seg in segs:
         slex = seg.get("lex")
         if slex not in glossary:
             rep.error(f"{where}: segment lex '{slex}' not in glossary.json")

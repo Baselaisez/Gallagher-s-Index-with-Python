@@ -444,7 +444,7 @@ def maa_mi(full, lex, en, tr, punct=None, tags=()):
 def maa_z(): return tok("مَعَ", "maa", "noun", ["maful-fih", "idafa-definiteness"], "ظَرْفُ مَكَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ.", "«with» — an adverb of place; a muḍāf.", "«ile, beraber» — mekân zarfı; muzâf.")
 def enc_2s(full, lex, en, tr, tags=(), extra="", punct=None, wa=False, amr=False):
     # آتَيْتَنِي / عَلَّمْتَنِي — mazi 2ms with the speaker's ya; or an amr with it
-    host = full[:len(full) - 2]
+    host = full[:len(full) - (3 if amr else 5)]
     ar = W(wa) + ("فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: أَنْتَ" if amr else "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ فَاعِلٌ") + "، وَالنُّونُ لِلْوِقَايَةِ، وَالْيَاءُ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ" + extra + "."
     segs = ([seg("وَ", "wa", "conj")] if wa else []) + ([seg(host[2:] if wa else host, lex, "verb"), seg("تَ", "pron-2ms", "pron")] if not amr else [seg(host[2:] if wa else host, lex, "verb")]) + [seg("نِي", "pron-1s", "pron")]
     return tok(full, lex, "verb", (["imperative-amr"] if amr else []) + ["ya-al-mutakallim", "maful-bihi"] + list(tags), ar, Wen(wa) + en + " — the nūn of protection and the speaker's yāʾ as the object.", Wtr(wa) + tr + " — vikâye nûnu ve mütekellim yâ'sı mef'ûl.", punct=punct, segments=segs)
