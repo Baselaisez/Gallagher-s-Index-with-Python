@@ -1,6 +1,8 @@
 # Finans360: İzin ve Toplantı
 
 İzin talepleri, yıllık izin bakiyesi ve toplantı yönetimi için tek dosyalık, internetsiz çalışan uygulama.
+Uygulamada örnek ya da uydurma kayıt yoktur: boş açılır ve yalnızca sizin yüklediğiniz gerçek personelle çalışır.
+İlk açılışta üç adımlı kurulum Personel Bilgi Formu PDF’ini yüklemenizi, listeden kendinizi seçmenizi ve isteğe bağlı PIN kilidini açmanızı ister.
 Üç biçimde kullanılabilir:
 
 | Biçim | Nasıl alınır | Ne zaman |

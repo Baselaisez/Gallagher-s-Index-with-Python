@@ -184,7 +184,6 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
 .mtime span { font-size: 12.5px; color: var(--muted); }
 .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c); display: inline-block; flex: none; }
 .tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
-.tag-sample { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); border: 1px solid currentColor; border-radius: 5px; padding: 0 5px; vertical-align: 2px; }
 .pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: var(--mute-soft); color: var(--mute); }
 .pill.ok { background: var(--ok-soft); color: var(--ok); }
 .pill.warn { background: var(--warn-soft); color: var(--warn); }
@@ -365,6 +364,17 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
   body.printing #print-root { display: block; color: #111; }
   @page { size: A4; margin: 15mm; }
 }
+/* ---- first-run setup ---- */
+.setup { display: grid; gap: 14px; }
+.setup .card-title { margin: 0; font-size: 22px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; counter-increment: step; }
+.steps p { margin: 2px 0 0; }
+.step-mark { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 2px solid var(--line); font-weight: 700; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.step-mark:empty::before { content: counter(step); }
+.step-mark .ic { width: 16px; height: 16px; }
+.steps li.done .step-mark { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.steps li.done b { color: var(--muted); }
 /* ---- people ---- */
 .avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; font: 700 14px/1 var(--f-body); letter-spacing: .02em; color: var(--surface); background: var(--c, var(--accent)); }
 .avatar.lg { width: 64px; height: 64px; font-size: 22px; }
@@ -426,7 +436,7 @@ body.locked .app, body.locked #sheetRoot, body.locked #toastRoot { visibility: h
 (() => {
 'use strict';
 
-const VERSION = '2.1.0';
+const VERSION = '2.2.0';
 const KEY = 'finans360:data:v2';
 const UIKEY = 'finans360:ui:v2';
 const RELEASE = 'https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/';
@@ -642,6 +652,13 @@ function migrate(o) {
     notes: m.notes || '', actions: Array.isArray(m.actions) ? m.actions : [], attendance: m.attendance && typeof m.attendance === 'object' ? m.attendance : {},
     reminder: +m.reminder || 0, status: MSTATUS[m.status] ? m.status : 'planned', createdAt: m.createdAt || nowISO(), sample: !!m.sample
   }));
+  // Earlier versions opened with example records; keep real records only.
+  s.people = s.people.filter(p => !p.sample);
+  s.leaves = s.leaves.filter(l => !l.sample);
+  s.meetings = s.meetings.filter(m => !m.sample);
+  if (s.meId && !s.people.some(p => p.id === s.meId)) s.meId = null;
+  if (o.profileSample) s.profile = e.profile;
+  s.profileSample = false;
   return s;
 }
 const storage = {
@@ -652,7 +669,7 @@ let storageWarned = false;
 function load() {
   const raw = storage.get(KEY);
   if (raw) { try { S = migrate(JSON.parse(raw)); return; } catch (e) { console.warn('Kayıt okunamadı', e); } }
-  S = sampleState();
+  S = emptyState();
   persistNow();
 }
 function persistNow() {
@@ -662,65 +679,11 @@ function persistNow() {
 }
 const persistSoon = debounce(persistNow, 350);
 function persist() { persistNow(); }
-const hasSamples = () => S.profileSample || S.people.some(p => p.sample) || S.leaves.some(l => l.sample) || S.meetings.some(m => m.sample);
+const meReady = () => !!(S.meId || isDate(S.profile.hireDate));
 
-let UI = { tab: 'ozet', leaveWho: 'me', leaveStatus: 'all', leaveQ: '', mWhen: 'upcoming', mQ: '', calMonth: today().slice(0, 7), calDay: today(), bannerHidden: false, pView: 'list', pCo: 'all', pQ: '' };
+let UI = { tab: 'ozet', leaveWho: 'me', leaveStatus: 'all', leaveQ: '', mWhen: 'upcoming', mQ: '', calMonth: today().slice(0, 7), calDay: today(), pView: 'list', pCo: 'all', pQ: '' };
 try { const u = JSON.parse(storage.get(UIKEY) || '{}'); UI = { ...UI, leaveWho: u.leaveWho || UI.leaveWho, leaveStatus: u.leaveStatus || UI.leaveStatus, mWhen: u.mWhen || UI.mWhen, pView: u.pView || UI.pView }; } catch (e) { /* ignore */ }
 const saveUI = () => storage.set(UIKEY, JSON.stringify({ leaveWho: UI.leaveWho, leaveStatus: UI.leaveStatus, mWhen: UI.mWhen, pView: UI.pView }));
-
-/* ================= sample data (marked as examples) ================= */
-function sampleState() {
-  S = emptyState();
-  S.profileSample = true;
-  const t = today();
-  S.profile = { name: 'Deniz Kaya', sicil: 'FN-1042', dept: 'Finans', title: 'Kıdemli Finans Uzmanı', manager: 'Murat Aydın', managerContact: '', phone: '', hireDate: addMonths(t, -(6 * 12 + 3)), birthDate: '1990-04-12' };
-  const SP = (name, title, company, monthsAgo, birthdayIn, age) => { const bd = addDays(t, birthdayIn); return { ...blankPerson(), ...splitName(name), id: uid(), name, title, company, hireDate: addMonths(t, -monthsAgo), birthDate: ymd(parseD(`${parseD(bd).getFullYear() - age}${bd.slice(4)}`)), sample: true }; };
-  S.people = [SP('Murat Aydın', 'Finans Müdürü', 'Örnek Holding', 110, 120, 47), SP('Ayşe Demir', 'Muhasebe Uzmanı', 'Örnek Holding', 40, 5, 31), SP('Can Öztürk', 'Finans Analisti', 'Örnek Lojistik', 13, 200, 29), SP('Zeynep Arslan', 'Bütçe Uzmanı', 'Örnek Holding', 8, 60, 34)];
-  const L = (o) => ({ id: uid(), person: 'me', type: 'yillik', sub: '', startHalf: false, endHalf: false, startTime: '', endTime: '', deputy: '', contact: '', reason: '', note: '', status: 'approved', createdAt: nowISO(), history: [{ at: nowISO(), text: 'Talep oluşturuldu' }], sample: true, ...o });
-  const span = (from, n) => { const s = nextWorkday(from); return { start: s, end: plusWorkdays(s, n) }; };
-  const meetDay = nextWorkday(addDays(t, 3));
-  S.leaves.push(
-    L({ ...span(addDays(t, -95), 3), deputy: 'Can Öztürk', reason: 'Aile ziyareti' }),
-    L({ type: 'mazeret', sub: 'diger', ...span(addDays(t, -40), 1), reason: 'Ev taşıma' }),
-    L({ ...span(addDays(t, 34), 4), deputy: 'Ayşe Demir', contact: '0532 000 00 00', reason: 'Yaz tatili' }),
-    L({ ...span(addDays(t, 12), 2), status: 'pending', deputy: 'Zeynep Arslan' }),
-    (() => { const d = nextWorkday(addDays(t, 6)); return L({ type: 'saatlik', start: d, end: d, startTime: '14:00', endTime: '16:30', status: 'pending', reason: 'Banka randevusu' }); })(),
-    L({ person: 'Ayşe Demir', start: meetDay, end: plusWorkdays(meetDay, 2) }),
-    L({ person: 'Can Öztürk', type: 'rapor', ...span(addDays(t, -10), 2) }),
-    L({ person: 'Zeynep Arslan', ...span(addDays(t, 20), 5), status: 'pending' })
-  );
-  const M = (o) => ({ id: uid(), seriesId: null, kind: 'ekip', location: '', link: '', participants: [], agenda: [], notes: '', actions: [], attendance: {}, reminder: 10, status: 'planned', createdAt: nowISO(), sample: true, ...o });
-  const A = list => list.map(x => (typeof x === 'string' ? { id: uid(), text: x, done: false } : { id: uid(), ...x }));
-  let d0 = t, s0 = Math.ceil((new Date().getHours() * 60 + new Date().getMinutes() + 50) / 15) * 15;
-  if (!isFullWorkday(t) || s0 > 16 * 60 + 30) { d0 = nextWorkday(addDays(t, 1)); s0 = 10 * 60; }
-  const d1 = nextWorkday(addDays(d0, 1));
-  const past = (() => { let d = addDays(t, -3); while (!isFullWorkday(d)) d = addDays(d, -1); return d; })();
-  S.meetings.push(
-    M({ title: 'Haftalık finans ekip toplantısı', date: d0, start: fromMin(s0), end: fromMin(s0 + 45), location: 'Toplantı Odası 1', participants: ['Murat Aydın', 'Ayşe Demir', 'Can Öztürk', 'Zeynep Arslan'], agenda: A(['Nakit akış tablosu güncellemesi', 'Vadesi geçen alacakların takibi', 'Gelecek haftanın ödeme planı']) }),
-    M({ title: 'Banka görüşmesi: kredi limiti yenileme', kind: 'banka', date: d1, start: '14:00', end: '15:00', location: 'Online', link: 'https://meet.google.com/abc-defg-hij', participants: ['Murat Aydın'], agenda: A(['Limit artış talebi', 'Teminat yapısı', 'Faiz ve komisyon teklifi']), reminder: 15 }),
-    M({ title: 'Ay sonu kapanış planlaması', kind: 'kapanis', date: meetDay, start: '10:30', end: '11:30', location: 'Yönetim Katı', participants: ['Murat Aydın', 'Ayşe Demir', 'Zeynep Arslan'], agenda: A(['Tahakkuk ve karşılıklar', 'Banka mutabakatları', 'KDV beyannamesi takvimi']) }),
-    M({ title: 'Bütçe revizyonu: 4. çeyrek', kind: 'yonetim', date: past, start: '15:00', end: '16:00', status: 'done', location: 'Toplantı Odası 2', participants: ['Murat Aydın', 'Can Öztürk'], attendance: { 'Murat Aydın': 'yes', 'Can Öztürk': 'no' },
-      agenda: A([{ text: 'Gider gerçekleşmeleri', done: true }, { text: 'Pazarlama bütçesi aşımı', done: true }, { text: 'Kur varsayımları', done: false }]),
-      notes: 'Pazarlama giderleri bütçenin %8 üzerinde. Kur varsayımı 4. çeyrek için güncellenecek.\nYatırım bütçesinde değişiklik yok.',
-      actions: [
-        { id: uid(), text: 'Pazarlama giderlerini kalem bazında raporla', owner: 'Deniz Kaya', due: (() => { let d = addDays(t, -1); while (!isFullWorkday(d)) d = addDays(d, -1); return d; })(), done: false },
-        { id: uid(), text: 'Revize bütçeyi yönetime sun', owner: 'Murat Aydın', due: nextWorkday(addDays(t, 5)), done: false },
-        { id: uid(), text: 'Kur farkı varsayımını güncelle', owner: 'Can Öztürk', due: addDays(t, -2), done: true }
-      ] })
-  );
-  const sid = uid();
-  let th = addDays(t, 1); while (parseD(th).getDay() !== 4) th = addDays(th, 1);
-  for (let i = 0; i < 4; i++) if (isFullWorkday(addDays(th, 7 * i))) S.meetings.push(M({ seriesId: sid, title: 'Birebir: Murat Aydın', kind: 'birebir', date: addDays(th, 7 * i), start: '16:00', end: '16:30', location: 'Yönetim Katı', participants: ['Murat Aydın'], agenda: A(['Haftalık öncelikler']) }));
-  return S;
-}
-function clearSamples(silent) {
-  S.leaves = S.leaves.filter(l => !l.sample);
-  S.meetings = S.meetings.filter(m => !m.sample);
-  S.people = S.people.filter(p => !p.sample);
-  if (S.meId && !S.people.some(p => p.id === S.meId)) S.meId = null;
-  if (S.profileSample) { S.profile = emptyState().profile; S.profileSample = false; }
-  if (!silent) { persist(); render(); toast('Örnek veriler temizlendi'); }
-}
 
 /* ================= people (personnel records) ================= */
 const PERSON_FIELDS = ['name', 'firstName', 'lastName', 'company', 'title', 'hireDate', 'hireYear', 'birthDate', 'birthYear', 'birthPlace', 'tc', 'phone', 'email', 'email2', 'address', 'blood', 'education', 'gradDate', 'languages', 'marital', 'children', 'interests', 'entitlementOverride', 'carryOver', 'notes'];
@@ -1492,7 +1455,7 @@ function leaveRow(l) {
   const t = LEAVE_TYPES[l.type], [stL, stT] = STATUS[l.status], d = parseD(l.start);
   return `<button type="button" class="row" data-act="leave-open" data-id="${l.id}">
     <span class="datetile" style="--c:var(${t.color})"><span>${MON3[d.getMonth()]}</span><b>${d.getDate()}</b></span>
-    <span class="row-main"><span class="row-title">${esc(t.label)}${l.person !== 'me' ? ` <span class="muted">· ${esc(l.person)}</span>` : ''}${l.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span>
+    <span class="row-main"><span class="row-title">${esc(t.label)}${l.person !== 'me' ? ` <span class="muted">· ${esc(l.person)}</span>` : ''}</span>
     <span class="row-sub mono">${esc(rangeText(l))} · ${leaveAmount(l)}</span></span>
     <span class="row-end"><span class="pill ${stT}">${stL}</span></span></button>`;
 }
@@ -1501,7 +1464,7 @@ function meetingRow(m, showDate) {
   const live = isLive(m);
   return `<button type="button" class="row" data-act="meeting-open" data-id="${m.id}">
     <span class="mtime mono"><b>${m.start}</b><span>${m.end}</span></span>
-    <span class="row-main"><span class="row-title ${m.status === 'cancelled' ? 'done-text' : ''}">${esc(m.title)}${m.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span>
+    <span class="row-main"><span class="row-title ${m.status === 'cancelled' ? 'done-text' : ''}">${esc(m.title)}</span>
     <span class="row-sub"><span class="tag" style="font-weight:500">${kindDot(m.kind)}${esc(k[0])}</span>${showDate ? ` · ${fmt.shortDay(m.date)}` : ''}${m.location ? ` · ${esc(m.location)}` : ''}${m.participants.length ? ` · ${m.participants.length} kişi` : ''}${m.seriesId ? ` · ${I.repeat.replace('class="ic"', 'class="ic" style="width:13px;height:13px;vertical-align:-2px"')}` : ''}</span></span>
     <span class="row-end">${conf ? `<span class="flag" title="Çakışma veya izinli katılımcı">${I.alert}</span>` : ''}${live ? '<span class="pill live">Şu an</span>' : m.status !== 'planned' ? `<span class="pill ${MSTATUS[m.status][1]}">${MSTATUS[m.status][0]}</span>` : ''}</span></button>`;
 }
@@ -1517,8 +1480,18 @@ function specialRow(x) {
   const msg = x.kind === 'bday' ? `İyi ki doğdunuz ${p.firstName || p.name}! Nice sağlıklı ve mutlu yıllara.` : `${p.firstName || p.name}, ${x.years}. iş yılınız kutlu olsun! Emekleriniz için teşekkürler.`;
   const d = parseD(x.date);
   return `<div class="row"><span class="datetile" style="--c:var(${x.kind === 'bday' ? '--brass' : '--accent'})"><span>${MON3[d.getMonth()]}</span><b>${d.getDate()}</b></span>
-    <button type="button" class="row-main linkish" data-act="person-open" data-id="${p.id}"><span class="row-title">${esc(isMe ? 'Siz' : p.name)} · ${x.kind === 'bday' ? 'doğum günü' : `${x.years}. iş yılı`}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span><span class="row-sub">${when}${x.kind === 'bday' ? ` · ${x.years} yaşına giriyor` : (x.years === 1 ? ` · ilk yıllık izin hakkı doğuyor: ${fmt.num(x.ent)} gün` : ` · yıllık izin hakkı yenileniyor: ${fmt.num(x.ent)} gün`)}</span></button>
+    <button type="button" class="row-main linkish" data-act="person-open" data-id="${p.id}"><span class="row-title">${esc(isMe ? 'Siz' : p.name)} · ${x.kind === 'bday' ? 'doğum günü' : `${x.years}. iş yılı`}</span><span class="row-sub">${when}${x.kind === 'bday' ? ` · ${x.years} yaşına giriyor` : (x.years === 1 ? ` · ilk yıllık izin hakkı doğuyor: ${fmt.num(x.ent)} gün` : ` · yıllık izin hakkı yenileniyor: ${fmt.num(x.ent)} gün`)}</span></button>
     <span class="row-end">${!isMe && ph.ok ? `<a class="btn btn-sm" href="https://wa.me/${ph.digits}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Kutla</a>` : ''}</span></div>`;
+}
+function setupCard() {
+  const s1 = S.people.length > 0, s2 = meReady(), s3 = !!S.settings.pinHash;
+  if (s1 && s2) return '';
+  const step = (done, title, body) => `<li class="${done ? 'done' : ''}"><span class="step-mark">${done ? I.check : ''}</span><div><b>${title}</b><p class="fine">${body}</p></div></li>`;
+  return `<article class="card setup" aria-label="İlk kurulum"><p class="eyebrow">İlk kurulum</p><h2 class="card-title">Personelinizi yükleyin</h2>
+    <ol class="steps">${step(s1, 'Personel Bilgi Formu PDF’ini seçin', s1 ? `${S.people.length} kişi yüklendi.` : 'Ad, ünvan, işe giriş ve doğum tarihleri, iletişim bilgileri bu cihazda okunur; hiçbir yere gönderilmez. Excel’den kaydedilmiş CSV de olur.')}${step(s2, 'Listeden kendinizi seçin', 'İzin hakkınız, izin formlarınız ve toplantı davetleriniz bu kayıttan dolar.')}${step(s3, 'İsterseniz PIN kilidi açın', 'Personel kayıtları kişisel veri içerir. Ayarlar › Gizlilik ve kilit.')}</ol>
+    ${!s1 ? `<div class="toolbar"><button type="button" class="btn btn-primary" data-act="people-import">${I.upload} PDF ya da Excel dosyasını seç</button><button type="button" class="btn btn-quiet" data-act="person-new">${I.plus} Elle kişi ekle</button></div>`
+      : `<div class="field"><label for="s-me">Siz kimsiniz?</label><select id="s-me"><option value="">Seçin…</option>${S.people.slice().sort(byNameTR).map(x => `<option value="${x.id}">${esc(x.name)}${x.company ? ` · ${esc(x.company)}` : ''}</option>`).join('')}</select></div>`}
+  </article>`;
 }
 function viewHome() {
   const t = today(), p = S.profile, hr = new Date().getHours();
@@ -1537,9 +1510,8 @@ function viewHome() {
   const ideas = bridgeIdeas(3), hols = upcomingHolidays(4), sdays = specialDays(30);
   return `
   <section><p class="eyebrow">${fmt.longDay(t)}</p><h1 class="display h1">${greet}${first ? `, ${esc(first)}` : ''}</h1><p class="lede">${esc(facts.join(' · '))}.</p></section>
-  ${hasSamples() && !UI.bannerHidden ? `<div class="banner" role="note"><p><b>Örnek verilerle açıldı.</b> Kayıtlar “örnek” etiketi taşıyor. Kendi bilgilerinizi girmeden önce temizleyebilirsiniz.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="sample-clear">Örnekleri temizle</button><button type="button" class="btn btn-sm btn-quiet" data-act="banner-hide">Sonra</button></div></div>` : ''}
-  ${!p.name && !hasSamples() ? `<div class="banner" role="note"><p><b>Profilinizi tamamlayın.</b> Adınız, amiriniz ve işe giriş tarihiniz izin hakkını ve formları doğru doldurur.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="tab" data-tab="ayarlar">Ayarlara git</button></div></div>` : ''}
-  <div class="grid-2">${nextMeetingCard()}${balanceCard(balance(), false)}</div>
+  ${setupCard()}
+  <div class="grid-2">${nextMeetingCard()}${meReady() ? balanceCard(balance(), false) : ''}</div>
   <section class="sec"><div class="sec-head"><h2 class="sec-title">Açık aksiyonlar</h2><span class="fine">${acts.length} madde</span></div>
     ${acts.length ? `<div class="list">${acts.slice(0, 6).map(actionRow).join('')}</div>` : `<div class="list"><div class="empty"><p>Toplantılardan çıkan açık aksiyon yok.</p></div></div>`}</section>
   <section class="sec"><div class="sec-head"><h2 class="sec-title">Yaklaşan izinler</h2><button type="button" class="sec-link" data-act="tab" data-tab="izin">Tümü</button></div>
@@ -1564,7 +1536,7 @@ function viewLeaves() {
   const hours = S.leaves.filter(l => l.person === 'me' && l.type === 'saatlik' && l.status === 'approved' && parseD(l.start).getFullYear() === parseD(today()).getFullYear()).reduce((a, l) => a + leaveHours(l), 0);
   return `
   <section><p class="eyebrow">İzin yönetimi</p><h1 class="display h1">İzin</h1><p class="lede">Bakiyenizi izleyin, talep oluşturun, onay durumunu ve ekibin izinlerini tek yerde görün.</p></section>
-  ${balanceCard(balance(), true)}
+  ${meReady() ? balanceCard(balance(), true) : `<div class="banner" role="note"><p><b>İzin hakkınızı görmek için kendinizi seçin.</b> Personel listesindeki kaydınızı seçin ya da Ayarlar’da işe giriş tarihinizi girin.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="tab" data-tab="${S.people.length ? 'ayarlar' : 'personel'}">${S.people.length ? 'Kendimi seç' : 'Personeli yükle'}</button></div></div>`}
   ${hours ? `<p class="fine">Bu yıl onaylı saatlik izin: ${fmt.num(hours)} saat.</p>` : ''}
   <section class="sec">
     <div class="toolbar">${seg('leaveWho', [['me', 'Benim'], ['team', 'Ekip'], ['all', 'Tümü']])}
@@ -1680,7 +1652,7 @@ function viewSettings() {
     <ol class="fine" style="padding-left:18px;display:grid;gap:4px"><li><b>Android:</b> APK’yı indirip açın. İstenirse “bu kaynaktan yüklemeye izin ver” seçeneğini açın ve Yükle’ye dokunun.</li><li><b>HTML:</b> Dosyayı indirip tarayıcıda açın. Tek dosyadır, internet gerekmez; bilgisayarda da çalışır.</li><li><b>iPhone:</b> HTML dosyasını Safari’de açın ya da yayınlanmış adreste Paylaş › Ana Ekrana Ekle’yi kullanın.</li></ol>
     <p class="fine">Not: Her sürüm (APK, HTML, tarayıcı) kendi verisini tutar. Taşımak için Yedek al › Yedekten yükle.</p>`)}
   ${setCard('Veriler', `<div class="act-grid"><button type="button" class="btn" data-act="backup">${I.download} Yedek al (.json)</button><button type="button" class="btn" data-act="restore">${I.upload} Yedekten yükle</button><button type="button" class="btn" data-act="csv">${I.file} İzinleri Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="ics-all">${I.cal} Takvime aktar (.ics)</button></div>
-    <div class="act-grid">${hasSamples() ? '<button type="button" class="btn" data-act="sample-clear">Örnekleri temizle</button>' : '<button type="button" class="btn" data-act="sample-load">Örnek verileri yükle</button>'}<button type="button" class="btn btn-danger" data-act="wipe">${I.trash} Tüm verileri sil</button></div>`)}
+    <div class="act-grid"><button type="button" class="btn btn-danger" data-act="wipe">${I.trash} Tüm verileri sil</button></div>`)}
   <p class="fine" style="text-align:center">Finans360 ${VERSION} · ${ENV.native ? 'Android uygulaması' : ENV.framed ? 'Önizleme' : 'Tarayıcı sürümü'}</p>`;
 }
 function filteredPeople() {
@@ -1692,7 +1664,7 @@ function personRow(p) {
   const out = S.leaves.some(l => l.person === who && l.status === 'approved' && covers(l, t));
   const b = balance(undefined, who);
   const pill = out ? '<span class="pill warn">İzinde</span>' : b.basis === 'probation' ? `<span class="pill" title="İlk yıllık izin hakkının doğacağı tarih">Hak: ${fmt.short(b.next)}</span>` : `<span class="pill ${b.remaining < 0 ? 'bad' : 'ok'}">${fmt.num(b.remaining)} gün</span>`;
-  return `<button type="button" class="row" data-act="person-open" data-id="${p.id}"><span class="avatar" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><span class="row-main"><span class="row-title">${esc(p.name)}${p.id === S.meId ? ' <span class="badge">Siz</span>' : ''}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span><span class="row-sub">${esc(p.title || 'Ünvan yok')}${UI.pCo === 'all' && companies().length < 2 && p.company ? ` · ${esc(p.company)}` : ''}</span></span><span class="row-end">${pill}</span></button>`;
+  return `<button type="button" class="row" data-act="person-open" data-id="${p.id}"><span class="avatar" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><span class="row-main"><span class="row-title">${esc(p.name)}${p.id === S.meId ? ' <span class="badge">Siz</span>' : ''}</span><span class="row-sub">${esc(p.title || 'Ünvan yok')}${UI.pCo === 'all' && companies().length < 2 && p.company ? ` · ${esc(p.company)}` : ''}</span></span><span class="row-end">${pill}</span></button>`;
 }
 function balanceTable(list) {
   return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ad soyad</th><th>Şirket</th><th>İşe giriş</th><th>Kıdem</th><th class="num">Hak</th><th class="num">Kullanılan</th><th class="num">Planlı</th><th class="num">Bekleyen</th><th class="num">Kalan</th></tr></thead><tbody>${list.map(p => {
@@ -1713,7 +1685,7 @@ function viewPeople() {
   const cos = companies(), named = cos.filter(c => c[0]), t = today();
   const outToday = new Set(S.leaves.filter(l => l.status === 'approved' && covers(l, t)).map(l => l.person));
   const n = S.people.filter(p => outToday.has(whoOf(p))).length;
-  const onlySamples = !S.people.length || S.people.every(p => p.sample);
+  const onlySamples = !S.people.length;
   return `
   <section><p class="eyebrow">Personel</p><h1 class="display h1">Personel</h1><p class="lede">${S.people.length} kişi${named.length ? ` · ${named.length} şirket` : ''}${n ? ` · bugün ${n} kişi izinde` : ''}</p></section>
   ${onlySamples ? `<article class="card hero-empty"><p class="eyebrow">Personel listesi</p><h2>Personel Bilgi Formlarınızı içe aktarın</h2><p class="muted" style="margin:0">PDF’i seçin: ad, ünvan, işe giriş ve doğum tarihleri, iletişim bilgileri bu cihazda okunur ve izin hakları kıdemden hesaplanır. Excel’den kaydedilmiş CSV de olur.</p><div class="toolbar"><button type="button" class="btn btn-primary btn-sm" data-act="people-import">${I.upload} PDF ya da Excel’den içe aktar</button><button type="button" class="btn btn-sm" data-act="person-new">${I.plus} Kişi ekle</button></div></article>` : ''}
@@ -1921,7 +1893,7 @@ function renderLeaveDetail(s) {
   return `${sheetHead('İzin ayrıntısı', `<button type="button" class="icon-btn" data-act="leave-edit" data-id="${l.id}" aria-label="Düzenle">${I.edit}</button>`)}
   <div class="sheet-body">
     <div class="detail-hero">
-      <div class="dh-top"><span class="tag"><i class="dot" style="--c:var(${t.color})"></i>${esc(t.label)}${l.type === 'mazeret' && MAZERET[l.sub] ? ` · ${esc(MAZERET[l.sub][0])}` : ''}${l.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span>${l.status === 'pending' ? `<span class="pill warn">${stL}</span>` : `<span class="stamp ${stT}">${stL}</span>`}</div>
+      <div class="dh-top"><span class="tag"><i class="dot" style="--c:var(${t.color})"></i>${esc(t.label)}${l.type === 'mazeret' && MAZERET[l.sub] ? ` · ${esc(MAZERET[l.sub][0])}` : ''}</span>${l.status === 'pending' ? `<span class="pill warn">${stL}</span>` : `<span class="stamp ${stT}">${stL}</span>`}</div>
       <h3 class="dh-title">${esc(l.type === 'saatlik' ? fmt.longDay(l.start) : fmt.range(l.start, l.end))}</h3>
       <p class="dh-sub mono">${l.type === 'saatlik' ? `${l.startTime}–${l.endTime} · ` : ''}${leaveAmount(l)}${l.type !== 'saatlik' ? ` · ${dayDiff(l.start, l.end) + 1} takvim günü` : ''}${l.startHalf ? ' · ilk gün öğleden sonra' : ''}${l.endHalf ? ' · son gün öğlene kadar' : ''}</p>
       ${ret ? `<p class="dh-ret">İşe başlama: <b>${fmt.longDay(ret.date)}${ret.half ? ', öğleden sonra' : ''}</b></p>` : ''}
@@ -2051,7 +2023,7 @@ function renderMeetingDetail(s) {
   return `${sheetHead('Toplantı', `<button type="button" class="icon-btn" data-act="meeting-edit" data-id="${m.id}" aria-label="Düzenle">${I.edit}</button>`)}
   <div class="sheet-body">
     <div class="detail-hero">
-      <div class="dh-top"><span class="tag">${kindDot(m.kind)}${esc(k[0])}${m.seriesId ? ' · tekrarlanan' : ''}${m.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span>${live ? '<span class="pill live">Şu an</span>' : `<span class="pill ${MSTATUS[m.status][1]}">${m.status === 'planned' ? esc(countdown(m)) : MSTATUS[m.status][0]}</span>`}</div>
+      <div class="dh-top"><span class="tag">${kindDot(m.kind)}${esc(k[0])}${m.seriesId ? ' · tekrarlanan' : ''}</span>${live ? '<span class="pill live">Şu an</span>' : `<span class="pill ${MSTATUS[m.status][1]}">${m.status === 'planned' ? esc(countdown(m)) : MSTATUS[m.status][0]}</span>`}</div>
       <h3 class="dh-title">${esc(m.title)}</h3>
       <p class="dh-sub mono">${fmt.longDay(m.date)} · ${m.start}–${m.end} (${mDur(m)} dk)</p>
       ${m.location ? `<p class="tag" style="font-weight:500">${I.pin.replace('class="ic"', 'class="ic" style="width:16px;height:16px"')}${esc(m.location)}</p>` : ''}
@@ -2139,7 +2111,7 @@ function renderPerson(s) {
   const age = ageOf(p, t), sen = seniorityText(p);
   return `${sheetHead('Personel', `<button type="button" class="icon-btn" data-act="person-edit" data-id="${p.id}" aria-label="Düzenle">${I.edit}</button>`)}
   <div class="sheet-body">
-    <div class="detail-hero"><div class="person-hero"><span class="avatar lg" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><div><h3 class="dh-title">${esc(p.name)}${isMe ? ' <span class="badge">Siz</span>' : ''}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</h3><p class="dh-sub">${esc([p.title, p.company].filter(Boolean).join(' · ') || 'Ünvan ve şirket yok')}</p>${onLeave ? '<p><span class="pill warn">Bugün izinde</span></p>' : ''}</div></div></div>
+    <div class="detail-hero"><div class="person-hero"><span class="avatar lg" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><div><h3 class="dh-title">${esc(p.name)}${isMe ? ' <span class="badge">Siz</span>' : ''}</h3><p class="dh-sub">${esc([p.title, p.company].filter(Boolean).join(' · ') || 'Ünvan ve şirket yok')}</p>${onLeave ? '<p><span class="pill warn">Bugün izinde</span></p>' : ''}</div></div></div>
     ${ph.ok || p.email ? `<div class="contact-row">${ph.ok ? `<a class="btn" href="tel:+${ph.digits}">${I.call} Ara</a><a class="btn" href="https://wa.me/${ph.digits}" target="_blank" rel="noopener">${I.msg} WhatsApp</a>` : ''}${p.email ? `<a class="btn" href="mailto:${esc(p.email)}">${I.mail} E-posta</a>` : ''}<button type="button" class="btn" data-act="person-vcf" data-id="${p.id}">${I.download} Rehbere ekle</button></div>` : ''}
     ${noteList(personFlags(p).map(f => ['warn', f]))}
     <section class="sec"><div class="sec-head"><h4 class="sec-title">Yıllık izin</h4><button type="button" class="sec-link" data-act="leave-new" data-person="${esc(who)}">İzin ekle</button></div>
@@ -2227,7 +2199,6 @@ function renderImportPreview(s) {
     <div class="summary"><div class="sum-main"><strong>${recs.length}</strong><span>kişi okundu</span><span class="muted">· ${esc(s.data.source)}</span></div><div>${newC} yeni kayıt${recs.length - newC ? `, ${recs.length - newC} mevcut kaydın güncellemesi` : ''}.</div></div>
     ${cos.length ? `<fieldset class="field"><legend>Şirket adları</legend><p class="hint">E-posta alan adlarından çıkarıldı. Yanlışsa düzeltin; aynı adı yazdığınız şirketler birleşir.</p><div class="sec" style="gap:8px">${cos.map(([c, n]) => `<div class="inline-form"><input class="inp" data-co-key="${esc(c)}" value="${esc(c)}" aria-label="${esc(c)} şirket adı"><span class="pill">${n} kişi</span></div>`).join('')}</div></fieldset>` : ''}
     <div class="field"><label for="imp-me">Bu kişilerden biri siz misiniz?</label><select id="imp-me" name="me"><option value="">Hayır / sonra seçerim</option>${recs.slice().sort(byNameTR).map(r => `<option value="${esc(r.name)}" ${guess && guess.name === r.name ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select><p class="hint">Seçerseniz profiliniz, izin hakkınız ve formlarınız bu kayıttan doldurulur.</p></div>
-    ${hasSamples() ? '<label class="check"><input type="checkbox" name="clearSamples" checked> Örnek verileri temizle</label>' : ''}
     <section class="sec"><h4 class="sec-title">Okunan kişiler</h4><div class="list">${recs.map(r => { const n = personFlags(r).length; return `<div class="row"><span class="avatar" style="--c:var(${coColor(r.company)})">${esc(initials(r.name))}</span><span class="row-main"><span class="row-title">${esc(r.name)}</span><span class="row-sub">${esc([r.title, r.company].filter(Boolean).join(' · ') || '—')}</span></span><span class="row-end">${isKnown(r) ? '<span class="pill info">güncelleme</span>' : ''}${n ? `<span class="pill warn">${n} uyarı</span>` : ''}</span></div>`; }).join('')}</div></section>
     ${flagged.length ? `<details><summary class="sec-title">Kontrol edilmesi gerekenler (${flagged.length})</summary><div class="notes" style="margin-top:10px">${flagged.map(([r, f]) => `<p class="note warn">${I.alert}<span><b>${esc(r.name)}:</b> ${esc(f.join(' '))}</span></p>`).join('')}</div></details>` : ''}
     <p class="note">${I.lock}<span>Kayıtlar yalnızca bu cihazda saklanır. TC kimlik no ve kan grubu varsayılan olarak gizli gösterilir; Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.</span></p>
@@ -2266,7 +2237,6 @@ function submitImport(form, s) {
   $$('[data-co-key]', form).forEach(i => { const v = clean(i.value); if (v && v !== i.dataset.coKey) ren[i.dataset.coKey] = v; });
   const recs = s.data.records.map(r => ({ ...r, company: ren[r.company] || r.company }));
   for (const r of recs) if (r.company && r.email && !isFreeMail(r.email)) S.settings.companyMap[r.email.split('@')[1]] = r.company;
-  if (form.elements.clearSamples && form.elements.clearSamples.checked) clearSamples(true);
   const res = mergePeople(recs);
   const meName = form.elements.me.value;
   if (meName) { const p = findPerson(meName); if (p) setMe(p.id); }
@@ -2328,7 +2298,6 @@ const A = {
   'tab': (el, e) => { if (e) e.preventDefault(); closeTo(0, () => goTab(el.dataset.tab)); },
   'sheet-close': el => { const i = sheetIndex(el); closeTo(i < 0 ? sheets.length - 1 : i); },
   'toast-act': el => { const run = toastActs[el.dataset.id]; el.closest('.toast').remove(); if (run) run(); },
-  'banner-hide': () => { UI.bannerHidden = true; render(); },
   'filter': el => { UI[el.dataset.key] = el.dataset.v; saveUI(); render(); },
 
   'leave-new': el => {
@@ -2433,8 +2402,6 @@ const A = {
     saveFile(`izinler-${today()}.csv`, 'text/csv', '\ufeff' + rows.map(r => r.map(q).join(';')).join('\r\n'));
   },
   'ics-all': () => saveFile(`finans360-takvim-${today()}.ics`, 'text/calendar', icsWrap([...S.meetings.filter(m => m.status !== 'cancelled').map(icsMeeting), ...S.leaves.filter(activeLeave).map(icsLeave)])),
-  'sample-clear': () => clearSamples(),
-  'sample-load': () => confirmSheet({ title: 'Örnek veriler yüklensin mi?', body: 'Mevcut kayıtlarınızın yerini örnek kayıtlar alır. Önce yedek almanızı öneririz.', ok: 'Örnekleri yükle', run: () => { const st = S.settings; sampleState(); S.settings = { ...S.settings, theme: st.theme, notify: st.notify }; UI.bannerHidden = false; persist(); render(); toast('Örnek veriler yüklendi'); } }),
   'wipe': () => confirmSheet({ title: 'Tüm veriler silinsin mi?', body: 'İzinler, toplantılar, profil ve ayarlar bu cihazdan silinir. Bu işlem geri alınamaz.', ok: 'Hepsini sil', danger: true, run: () => { S = emptyState(); persist(); applyTheme(); render(); toast('Tüm veriler silindi'); } })
 };
 function restoreFrom(text) {
