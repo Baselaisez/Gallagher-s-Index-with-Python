@@ -7215,3 +7215,85 @@ counted. The JamEngine corpus-audit ceiling moves 200 → 201: أَصْدِقَ�
 heard plural أَصْدِقَاء of صَدِيق into the story's glossary beside the builder's أَصْدِقَة. The neighbours (the Talkhīṣ/Kāfiya/Part One sweep, Part Four's forty-five
 chapters and Part One's twenty-four against the unpatched reader, the seeds, r21/r22,
 `sarfAudit`) swept WORSE 0.
+
+## Qiṣaṣ Part Two chapters 9–11 — the argument of the rich, the call, the prayer, the ship, and round 55 (wave 34, v196)
+
+Three more chapters of «سفينة نوح» (`author_qisas2_ch9–11.py`, print pp. 23–28, §15–18):
+the argument of the rich and the call of Nūḥ (ch9, 20 sentences — «had it been good they
+would not have preceded us to it», 46:11; 71:2–4 as one quotation, so the jussive answer
+يَغْفِرْ sees its command), the prayer of Nūḥ (ch10, 13 — a thousand years less fifty; 11:36;
+11:32; «O God, leave not on the earth anyone of the unbelievers»), the ship (ch11, 14 — the
+mockery of the carpenters and the smiths; 11:38). Part Two now carries 11 chapters, 158
+sentences, 1584 tokens, 394 glossary entries, still Level 1, still in copyright and flagged
+so. New paradigms: `jarraba` (B2), `zala` (hollow wāw; the note keeps it apart from مَا زَالَ
+of the kāna family), `aqala`, `aghraqa` (B4), `naja-escape` (nāqiṣ wāw), `amara-command`
+(its amr مُرْ), `sanaa`, `sakhira`; the keys `naja`, `amara`, `an`, `tayyib`, `tabi` were
+already claimed by other words (نَعْجَة، أَمَارَة، أَنْ، الطَّيِّب، تَابِع) — a key is a global
+claim, so the new ones carry a suffix (`naja-escape`, `amara-command`, `an-prep`,
+`tayyib-good`, `tabaa-followers`).
+
+**Round 55 (`patch34a`–`patch34d`) — four cuts, all probe-first; the fourth is the lanes' repair.** The three chapters
+measure 195/196, 123/123, 111/111 in endings mode after them (ch9 s12 الْأَمْطَارَ after
+أَرْسَلَ عَلَيْكُمُ is the one ambiguity left: the sender is the previous sentence's God).
+
+1. **The relative's doer after the ʿāʾid.** الَّذِي يَدْعُو إِلَيْهِ نُوحٌ: inside a relative
+   clause, a verb followed by a jarr letter + pronoun (the returning pronoun) takes the next
+   definite noun as its DOER — the object seat is the relative's own.
+2. **The amr with the nūn of protection.** وَاتَّقُوهُ وَأَطِيعُونِ: a wāw-joined ون-word after
+   an amr, whose host + ا is an amr cell of the corpus, is that amr wearing the nūn of
+   protection with the speaker's yāʾ elided; it keeps its written form (the wave-26e
+   wiqāya trim now accepts …ونِ beside …ينِ).
+3. **Inna's bare ism annexes.** إِنَّ أَجَلَ اللهِ إِذَا جَاءَ: an ism of إِنَّ without ال, pronoun,
+   tanwīn or a sound-plural ending annexes the definite noun after it — and أَجَل after
+   إِنَّ / a jarr letter is the noun «term», never the answer-particle أَجَلْ the
+   particle list would make of it.
+4. **مَتَى under a jarr letter.** إِلَى مَتَى يَرَى الْحِجَارَةَ تُعْبَدُ: the analyzer already re-read
+   مَتَى under إِلَى as the question (wave 26r), but the shart-noun frame of decide() still
+   jazm'd the second verb; the frame now yields to `istif-ism`.
+5. **The verbs of continuing and beginning.** بَقِيَ right before a muḍāriʿ (as before
+   «noun + muḍāriʿ», wave 26n) and بَدَأَ / أَخَذَ / شَرَعَ / طَفِقَ / جَعَلَ before «noun +
+   muḍāriʿ» open the kāna frame; the khabar verb carries the 26l mark and does the ism's
+   act, so قَوْمَهُ and سَفِينَةً after it are its objects.
+6. **The opening number.** أَلْفَ سَنَةٍ إِلَّا خَمْسِينَ عَامًا اللهُ أَكْبَرُ: a sentence-opening
+   number annexed to a bare noun and followed by إِلَّا is the ẓarf of an understood verb
+   (the exclamation repeats مَكَثَ …); the excepted after إِلَّا takes naṣb, the number's
+   list-state is cleared, and the mubtada is still to come.
+7. **لَا of prohibition after a vocative and after لَكَ.** اللّٰهُمَّ لَا تَتْرُكْ, رَبِّ /
+   رَبَّنَا لَا …, and نَقُولُ لَكَ لَا تَجْلِسْ (لَكَ / لَكُمْ behind a verb of saying).
+8. **رَآهُ joined.** وَرَآهُ قَوْمُهُ: the analyzer knows رَآهُ but not وَرَآهُ; the pre-pass reads
+   the wāw-joined رَآ + pronoun as the defective رَأَى with its object, kept as written, the
+   doer following.
+9. **The addressee's tāʾ.** وَلٰكِنَّكَ مَا سَمِعْتَ كَلَامَنَا وَجَلَسْتَ: a tāʾ-verb right after
+   إِنَّكَ / لٰكِنَّكَ / لَعَلَّكَ (over مَا / لَا / قَدْ) is the addressee's — سَمِعْتَ, not the
+   speaker's سَمِعْتُ that the كَلَامَنَا «we» would otherwise win — and a wāw-joined tāʾ-verb
+   after it is the addressee's too.
+10. **فَإِنَّ in the answer slot.** إِنْ تَسْخَرُوا مِنَّا فَإِنَّا نَسْخَرُ مِنْكُمْ: the verb after
+    فَإِنَّ (heavy nūn) is inna's khabar in rafʿ; the shart frame no longer jazms it.
+11. **The joined māḍī before أَنْ.** وَأَجَابَ اللهُ … وَأَرَادَ أَنْ يُغْرِقَ قَوْمَهُ: a wāw-joined
+    māḍī right before أَنْ inherits the previous verb's NAMED doer (the 26l inheritance asked
+    for an unnamed one), so the volition rule of wave 33 can give the أَنْ-verb its hidden doer.
+12. **The subject search steps back over a question.** فَإِلَى مَتَى يَنْتَظِرُ نُوحٌ؟ إِلَى
+    مَتَى يَرَى فَسَادَ الْأَرْضِ؟: the «subject named earlier» frame walks back over the
+    question word and its jarr letter, and accepts a plain doer (rule `fail`) when the verb
+    stands right after a question word — an UNJOINED one: كَيْفَ يَغْلِبُ الشَّيْطَانُ وَكَيْفَ
+    يَلْعَبُ الشَّيْطَانُ بِالْإِنْسَانِ (Part One ch8) repeats the question with a wāw and names
+    its own doer again (34d).
+13. **The carried tāʾ reads the previous verb, not the state.** The 34c carry of the
+    addressee's tāʾ first read `st.person`, which the verb block had already set to the
+    CURRENT verb's cell (6, the ambiguous ت cell) — so لَقَدْ أَبْلَغْتُكُمْ … وَنَصَحْتُ لَكُمْ,
+    ظَلَمْتُ نَفْسِي وَأَسْلَمْتُ and قَتَلْتُ رَجُلًا وَتَرَكْتُ رَجُلًا (Parts Four and One) lost
+    their speaker's ḍamma in the lanes. It now reads the previous verb's RESOLVED cell
+    (`__cell` or `cell`, person 6, and the verb decided) through `pre30.verb` (34d). The
+    lanes are the only place such a slip shows: the new chapters had no speaker's tāʾ
+    followed by a joined one.
+
+Smoke: the Part Two gate grows to ch1-11 / 158 sentences with the floors from the
+measurement (ch9 99.5, ch10 100, ch11 100) and seventeen more named rule assertions; a
+word the grader keeps as written (the nūn of protection, رَآهُ) counts as undecided in the
+gate, as it does in the grader. The neighbours (the Talkhīṣ/Kāfiya/Part One sweep, Part
+Four's forty-five chapters and Part One's twenty-four against the v195 engine, Part Two
+ch1–8, the seeds, r21/r22, `sarfAudit`, the Talkhīṣ gates) swept WORSE 0.
+The JamEngine plural-audit floor moves from 201 to 205: ch9–11 added four HEARD plurals
+(سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names,
+which the builder still tries to break — its own gap, owed to a later round); the four were
+named by diffing the audit lists of the v195 and v196 readers, not guessed.
