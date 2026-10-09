@@ -1,0 +1,25 @@
+{
+  "name": "Finans360",
+  "short_name": "Finans360",
+  "description": "İzin talepleri, izin bakiyesi ve toplantı yönetimi. İnternetsiz çalışır.",
+  "lang": "tr",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./#ozet",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EDF1EF",
+  "theme_color": "#0B6B5D",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "İzin", "url": "./#izin", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Toplantı", "url": "./#toplanti", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

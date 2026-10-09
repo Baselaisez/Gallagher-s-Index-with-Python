@@ -1,0 +1,85 @@
+name: Finans360 Android
+
+on:
+  push:
+    paths:
+      - 'finans360/**'
+      - '.github/workflows/finans360-android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finans360-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: APK ve HTML paketle
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: finans360/app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: finans360/app/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Bağımlılıkları kur
+        run: npm ci --no-audit --no-fund
+
+      - name: Android projesini hazırla
+        run: node scripts/prepare-android.mjs
+
+      - name: APK derle
+        working-directory: finans360/app/android
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Dosyaları topla
+        id: pack
+        run: |
+          mkdir -p ../dist
+          cp android/app/build/outputs/apk/debug/app-debug.apk ../dist/Finans360.apk
+          cp ../index.html ../dist/Finans360.html
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+          ls -la ../dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Finans360-${{ steps.pack.outputs.version }}
+          path: finans360/dist/*
+
+      - name: İndirme sayfasını güncelle (Releases › finans360)
+        working-directory: finans360/dist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.pack.outputs.version }}
+        run: |
+          cat > notes.md <<NOTES
+          **Finans360 ${VERSION}**: izin ve toplantı yönetimi. İnternetsiz çalışır.
+
+          - **Finans360.apk**: Android uygulaması. İndirip açın; istenirse “bu kaynaktan yüklemeye izin ver” seçeneğini açıp Yükle’ye dokunun.
+          - **Finans360.html**: Tek dosya. Telefonda ya da bilgisayarda tarayıcıyla açın; kurulum gerekmez.
+
+          Derleme: ${GITHUB_SHA::7} · ${GITHUB_REF_NAME}
+          NOTES
+          gh release delete finans360 --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
+          gh release create finans360 Finans360.apk Finans360.html \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Finans360 ${VERSION}" \
+            --notes-file notes.md \
+            --latest
