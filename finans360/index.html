@@ -436,7 +436,7 @@ body.locked .app, body.locked #sheetRoot, body.locked #toastRoot { visibility: h
 (() => {
 'use strict';
 
-const VERSION = '2.2.0';
+const VERSION = '2.2.1';
 const KEY = 'finans360:data:v2';
 const UIKEY = 'finans360:ui:v2';
 const RELEASE = 'https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/';
@@ -2193,7 +2193,7 @@ function renderImportPreview(s) {
   const newC = recs.filter(r => !isKnown(r)).length;
   const cos = [...recs.reduce((m, r) => (r.company ? m.set(r.company, (m.get(r.company) || 0) + 1) : m), new Map())];
   const flagged = recs.map(r => [r, personFlags(r)]).filter(x => x[1].length);
-  const guess = recs.find(r => S.profile.name && !S.profileSample && fold(r.name) === fold(S.profile.name));
+  const guess = recs.find(r => s.data.meHint && fold(r.name) === fold(s.data.meHint)) || recs.find(r => S.profile.name && fold(r.name) === fold(S.profile.name));
   return `<form class="sheet-form" data-form="import-people" novalidate>${sheetHead('İçe aktarmayı onayla', '<button type="submit" class="btn btn-primary btn-sm">İçe aktar</button>')}
   <div class="sheet-body">
     <div class="summary"><div class="sum-main"><strong>${recs.length}</strong><span>kişi okundu</span><span class="muted">· ${esc(s.data.source)}</span></div><div>${newC} yeni kayıt${recs.length - newC ? `, ${recs.length - newC} mevcut kaydın güncellemesi` : ''}.</div></div>
@@ -2209,7 +2209,7 @@ async function handleImportFile(file, s) {
   const say = t => { if (st) st.textContent = t; };
   try {
     const name = lowerTR(file.name || ''), isPdf = /\.pdf$/.test(name) || file.type === 'application/pdf';
-    let recs = [], source = '';
+    let recs = [], source = '', meHint = '';
     if (isPdf) {
       say('PDF okuyucu hazırlanıyor…');
       const r = await parsePbfPdf(file, (i, n) => say(`Sayfa ${i}/${n} okunuyor…`));
@@ -2222,14 +2222,16 @@ async function handleImportFile(file, s) {
         if (o && Array.isArray(o.leaves) && Array.isArray(o.meetings)) { closeTo(sheets.indexOf(s), () => restoreFrom(text)); return; }
         const arr = Array.isArray(o) ? o : o && o.people;
         if (!Array.isArray(arr)) throw new Error('Bu JSON dosyası personel listesi içermiyor.');
-        recs = arr.filter(Boolean).map(normalizePerson).filter(x => x.name); source = 'JSON';
+        recs = arr.filter(Boolean).map(r => ({ ...normalizePerson(r), source: r.source || '' })).filter(x => x.name); source = 'JSON';
+        if (o && o.me) meHint = o.me;
+        if (o && o.companyMap && typeof o.companyMap === 'object') Object.assign(S.settings.companyMap, o.companyMap);
       } else {
         recs = csvToRecords(text); source = 'CSV';
         if (!recs.length) throw new Error('CSV’de kişi bulunamadı. İlk satırda “Adı” ya da “Ad Soyad” başlığı olmalı.');
       }
     }
     recs.forEach(r => { if (!r.source) r.source = `İçe aktarıldı: ${file.name || source} (${fmt.long(today())})`; });
-    swapSheet(s, 'importPreview', { records: prepareImport(recs), source });
+    swapSheet(s, 'importPreview', { records: prepareImport(recs), source, meHint });
   } catch (e) { console.warn(e); say(e && e.message ? e.message : 'Dosya okunamadı.'); }
 }
 function submitImport(form, s) {
@@ -2509,9 +2511,23 @@ function setupPWA() {
   window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; if (UI.tab === 'ayarlar') render(); });
 }
 
+/* ================= private builds: bundled personnel list ================= */
+function applySeed() {
+  const el = document.getElementById('f360-seed'); if (!el) return;
+  let seed; try { seed = JSON.parse(el.textContent); } catch (e) { console.warn('Gömülü personel listesi okunamadı', e); return; }
+  if (!seed || !Array.isArray(seed.people) || !seed.id || S.seedId === seed.id) return;
+  if (seed.companyMap && typeof seed.companyMap === 'object') Object.assign(S.settings.companyMap, seed.companyMap);
+  const res = mergePeople(seed.people.filter(r => r && r.name).map(r => ({ ...blankPerson(), ...r })));
+  if (seed.me && !S.meId) { const p = findPerson(seed.me); if (p) setMe(p.id); }
+  S.seedId = seed.id;
+  persistNow();
+  setTimeout(() => toast(`${res.added + res.updated} kişilik personel listesi yüklendi`, null, 5000), 300);
+}
+
 /* ================= boot ================= */
 function boot() {
   load();
+  applySeed();
   const h = location.hash.slice(1);
   UI.tab = VIEWS[h] ? h : 'ozet';
   applyTheme();
