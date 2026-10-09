@@ -117,6 +117,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .tab .ic { width: 22px; height: 22px; }
 .tab[aria-current="page"] { color: var(--ink); }
 .tab[aria-current="page"] .tab-ico { background: var(--accent-soft); color: var(--accent); }
+#gearBtn[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
 @media (min-width: 960px) {
   .tabbar { top: 0; right: auto; width: 100px; grid-template-columns: 1fr; grid-auto-rows: min-content; align-content: start; gap: 8px; padding: calc(var(--sat) + 84px) 8px 16px; border-top: 0; border-right: 1px solid var(--line); }
   .app { padding-left: 100px; }
@@ -364,6 +365,36 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
   body.printing #print-root { display: block; color: #111; }
   @page { size: A4; margin: 15mm; }
 }
+/* ---- people ---- */
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; font: 700 14px/1 var(--f-body); letter-spacing: .02em; color: var(--surface); background: var(--c, var(--accent)); }
+.avatar.lg { width: 64px; height: 64px; font-size: 22px; }
+.badge { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); border: 1px solid currentColor; border-radius: 5px; padding: 0 5px; vertical-align: 2px; }
+.person-hero { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; }
+.person-hero p { margin: 2px 0 0; }
+.contact-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr)); gap: 8px; }
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 720px; }
+.tbl th, .tbl td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl th { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--surface-2); }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl tbody tr:last-child td { border-bottom: 0; }
+.tbl tbody tr:hover td { background: var(--surface-2); }
+.drop { display: grid; gap: 6px; justify-items: center; text-align: center; padding: 24px 16px; border: 2px dashed var(--line); border-radius: var(--radius); background: var(--surface); cursor: pointer; color: var(--ink-2); }
+.drop .ic { width: 28px; height: 28px; color: var(--accent); }
+.drop.over, .drop:hover { border-color: var(--accent); background: var(--accent-soft); }
+details > summary { cursor: pointer; }
+.cal-bd { position: absolute; top: 9px; left: 33px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
+/* ---- lock ---- */
+#lock { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); }
+body.locked .app, body.locked #sheetRoot, body.locked #toastRoot { visibility: hidden; }
+.lock-box { width: min(100%, 340px); display: grid; gap: 14px; justify-items: center; text-align: center; }
+.lock-box svg { width: 56px; height: 56px; }
+.lock-box h1 { margin: 0; font: 700 24px/1.2 var(--f-display); }
+.lock-box p { margin: 0; }
+.lock-box input { width: 100%; text-align: center; font: 600 24px/1 var(--f-mono); letter-spacing: .4em; min-height: 54px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.lock-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.shake { animation: shake .3s; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
@@ -378,12 +409,14 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
         <span>Finans<b>360</b></span>
       </a>
       <span class="topbar-date" id="topDate"></span>
+      <button type="button" class="icon-btn" id="gearBtn" data-act="tab" data-tab="ayarlar" aria-label="Ayarlar"></button>
     </div>
   </header>
   <main id="view" class="view" tabindex="-1"></main>
   <nav class="tabbar" id="tabs" aria-label="Bölümler"></nav>
   <div id="fabSlot"></div>
 </div>
+<div id="lock" lang="tr" hidden></div>
 <div id="sheetRoot" lang="tr"></div>
 <div id="toastRoot" lang="tr" aria-live="polite"></div>
 <div id="print-root" lang="tr"></div>
@@ -393,7 +426,7 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
 (() => {
 'use strict';
 
-const VERSION = '2.0.0';
+const VERSION = '2.1.0';
 const KEY = 'finans360:data:v2';
 const UIKEY = 'finans360:ui:v2';
 const RELEASE = 'https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/';
@@ -499,6 +532,11 @@ const I = {
   phone: ic('<rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/>'),
   repeat: ic('<path d="M4 11.5V10a3 3 0 0 1 3-3h12.5l-3-3M20 12.5V14a3 3 0 0 1-3 3H4.5l3 3"/>'),
   list: ic('<path d="M10 6h10.5M10 12h10.5M10 18h10.5"/><path d="m3.5 6 1.3 1.3L7 5M3.5 12l1.3 1.3L7 11M3.5 18l1.3 1.3L7 17"/>'),
+  gear: ic('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'),
+  idcard: ic('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14.5 10h4M14.5 13.5h3"/>'),
+  lock: ic('<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>'),
+  call: ic('<path d="M5 3.5h3.5l1.8 4.5-2.3 1.5a11 11 0 0 0 6.5 6.5l1.5-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/>'),
+  table: ic('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10"/>'),
   ring: '<svg class="hero-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-dasharray="430 60" transform="rotate(-62 100 100)"/></svg>'
 };
 
@@ -573,10 +611,10 @@ function plusWorkdays(start, n) { let d = start, c = 1; for (let g = 0; c < n &&
 let S = null;
 function emptyState() {
   return {
-    v: 2, profileSample: false, teamSample: false,
+    v: 2, profileSample: false, meId: null,
     profile: { name: '', sicil: '', dept: '', title: '', manager: '', managerContact: '', phone: '', hireDate: '', birthDate: '' },
-    settings: { theme: 'system', saturdayWork: false, entitlementOverride: '', carryOver: 0, rooms: ['Toplantı Odası 1', 'Toplantı Odası 2', 'Yönetim Katı', 'Online'], defaultDuration: 60, defaultReminder: 10, notify: false, customHolidays: [] },
-    team: [], leaves: [], meetings: []
+    settings: { theme: 'system', saturdayWork: false, entitlementOverride: '', carryOver: 0, rooms: ['Toplantı Odası 1', 'Toplantı Odası 2', 'Yönetim Katı', 'Online'], defaultDuration: 60, defaultReminder: 10, notify: false, customHolidays: [], companyMap: {}, pinHash: '', lockMinutes: 5, maskSensitive: true },
+    people: [], leaves: [], meetings: []
   };
 }
 function migrate(o) {
@@ -586,7 +624,11 @@ function migrate(o) {
   s.settings = { ...e.settings, ...(o.settings || {}) };
   if (!Array.isArray(s.settings.rooms)) s.settings.rooms = e.settings.rooms;
   if (!Array.isArray(s.settings.customHolidays)) s.settings.customHolidays = [];
-  s.team = Array.isArray(o.team) ? o.team.filter(Boolean).map(String) : [];
+  if (!s.settings.companyMap || typeof s.settings.companyMap !== 'object') s.settings.companyMap = {};
+  s.people = (Array.isArray(o.people) ? o.people : []).filter(p => p && p.name).map(p => ({ ...blankPerson(), ...p, id: p.id || uid() }));
+  for (const n of (Array.isArray(o.team) ? o.team.filter(Boolean).map(String) : [])) if (!s.people.some(p => p.name === n)) s.people.push({ ...blankPerson(), ...splitName(n), id: uid(), name: n, sample: !!o.teamSample });
+  delete s.team; delete s.teamSample;
+  s.meId = s.people.some(p => p.id === o.meId) ? o.meId : null;
   s.leaves = (Array.isArray(o.leaves) ? o.leaves : []).filter(l => l && isDate(l.start)).map(l => ({
     id: l.id || uid(), person: l.person || 'me', type: LEAVE_TYPES[l.type] ? l.type : 'yillik', sub: l.sub || '',
     start: l.start, end: isDate(l.end) ? l.end : l.start, startHalf: !!l.startHalf, endHalf: !!l.endHalf,
@@ -620,19 +662,20 @@ function persistNow() {
 }
 const persistSoon = debounce(persistNow, 350);
 function persist() { persistNow(); }
-const hasSamples = () => S.profileSample || S.teamSample || S.leaves.some(l => l.sample) || S.meetings.some(m => m.sample);
+const hasSamples = () => S.profileSample || S.people.some(p => p.sample) || S.leaves.some(l => l.sample) || S.meetings.some(m => m.sample);
 
-let UI = { tab: 'ozet', leaveWho: 'me', leaveStatus: 'all', leaveQ: '', mWhen: 'upcoming', mQ: '', calMonth: today().slice(0, 7), calDay: today(), bannerHidden: false };
-try { const u = JSON.parse(storage.get(UIKEY) || '{}'); UI = { ...UI, leaveWho: u.leaveWho || UI.leaveWho, leaveStatus: u.leaveStatus || UI.leaveStatus, mWhen: u.mWhen || UI.mWhen }; } catch (e) { /* ignore */ }
-const saveUI = () => storage.set(UIKEY, JSON.stringify({ leaveWho: UI.leaveWho, leaveStatus: UI.leaveStatus, mWhen: UI.mWhen }));
+let UI = { tab: 'ozet', leaveWho: 'me', leaveStatus: 'all', leaveQ: '', mWhen: 'upcoming', mQ: '', calMonth: today().slice(0, 7), calDay: today(), bannerHidden: false, pView: 'list', pCo: 'all', pQ: '' };
+try { const u = JSON.parse(storage.get(UIKEY) || '{}'); UI = { ...UI, leaveWho: u.leaveWho || UI.leaveWho, leaveStatus: u.leaveStatus || UI.leaveStatus, mWhen: u.mWhen || UI.mWhen, pView: u.pView || UI.pView }; } catch (e) { /* ignore */ }
+const saveUI = () => storage.set(UIKEY, JSON.stringify({ leaveWho: UI.leaveWho, leaveStatus: UI.leaveStatus, mWhen: UI.mWhen, pView: UI.pView }));
 
 /* ================= sample data (marked as examples) ================= */
 function sampleState() {
   S = emptyState();
-  S.profileSample = true; S.teamSample = true;
+  S.profileSample = true;
   const t = today();
   S.profile = { name: 'Deniz Kaya', sicil: 'FN-1042', dept: 'Finans', title: 'Kıdemli Finans Uzmanı', manager: 'Murat Aydın', managerContact: '', phone: '', hireDate: addMonths(t, -(6 * 12 + 3)), birthDate: '1990-04-12' };
-  S.team = ['Murat Aydın', 'Ayşe Demir', 'Can Öztürk', 'Zeynep Arslan'];
+  const SP = (name, title, company, monthsAgo, birthdayIn, age) => { const bd = addDays(t, birthdayIn); return { ...blankPerson(), ...splitName(name), id: uid(), name, title, company, hireDate: addMonths(t, -monthsAgo), birthDate: ymd(parseD(`${parseD(bd).getFullYear() - age}${bd.slice(4)}`)), sample: true }; };
+  S.people = [SP('Murat Aydın', 'Finans Müdürü', 'Örnek Holding', 110, 120, 47), SP('Ayşe Demir', 'Muhasebe Uzmanı', 'Örnek Holding', 40, 5, 31), SP('Can Öztürk', 'Finans Analisti', 'Örnek Lojistik', 13, 200, 29), SP('Zeynep Arslan', 'Bütçe Uzmanı', 'Örnek Holding', 8, 60, 34)];
   const L = (o) => ({ id: uid(), person: 'me', type: 'yillik', sub: '', startHalf: false, endHalf: false, startTime: '', endTime: '', deputy: '', contact: '', reason: '', note: '', status: 'approved', createdAt: nowISO(), history: [{ at: nowISO(), text: 'Talep oluşturuldu' }], sample: true, ...o });
   const span = (from, n) => { const s = nextWorkday(from); return { start: s, end: plusWorkdays(s, n) }; };
   const meetDay = nextWorkday(addDays(t, 3));
@@ -670,13 +713,297 @@ function sampleState() {
   for (let i = 0; i < 4; i++) if (isFullWorkday(addDays(th, 7 * i))) S.meetings.push(M({ seriesId: sid, title: 'Birebir: Murat Aydın', kind: 'birebir', date: addDays(th, 7 * i), start: '16:00', end: '16:30', location: 'Yönetim Katı', participants: ['Murat Aydın'], agenda: A(['Haftalık öncelikler']) }));
   return S;
 }
-function clearSamples() {
+function clearSamples(silent) {
   S.leaves = S.leaves.filter(l => !l.sample);
   S.meetings = S.meetings.filter(m => !m.sample);
+  S.people = S.people.filter(p => !p.sample);
+  if (S.meId && !S.people.some(p => p.id === S.meId)) S.meId = null;
   if (S.profileSample) { S.profile = emptyState().profile; S.profileSample = false; }
-  if (S.teamSample) { S.team = []; S.teamSample = false; }
-  persist(); render(); toast('Örnek veriler temizlendi');
+  if (!silent) { persist(); render(); toast('Örnek veriler temizlendi'); }
 }
+
+/* ================= people (personnel records) ================= */
+const PERSON_FIELDS = ['name', 'firstName', 'lastName', 'company', 'title', 'hireDate', 'hireYear', 'birthDate', 'birthYear', 'birthPlace', 'tc', 'phone', 'email', 'email2', 'address', 'blood', 'education', 'gradDate', 'languages', 'marital', 'children', 'interests', 'entitlementOverride', 'carryOver', 'notes'];
+function blankPerson() { const p = {}; for (const k of PERSON_FIELDS) p[k] = ''; p.carryOver = 0; p.sample = false; return p; }
+function splitName(n) { const parts = String(n || '').trim().split(/\s+/).filter(Boolean); const lastName = parts.length > 1 ? parts.pop() : ''; return { firstName: parts.join(' '), lastName }; }
+const upperTR = s => String(s == null ? '' : s).toLocaleUpperCase('tr');
+const clean = s => String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+const fold = s => lowerTR(s).replace(/[çğıöşüâîû]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u', â: 'a', î: 'i', û: 'u' }[c])).replace(/[^a-z0-9]/g, '');
+const isCaps = s => !!s && s === upperTR(s) && /[A-ZÇĞİÖŞÜ]/.test(s);
+function titleTR(s) {
+  return clean(s).split(' ').map((w, i) => {
+    if (/\d/.test(w) && w === upperTR(w)) return w;
+    const lw = lowerTR(w);
+    if (i && (lw === 've' || lw === 'ile')) return lw;
+    return lw.replace(/(^|[\/(\-])(\S)/g, (m0, a, c) => a + c.toLocaleUpperCase('tr'));
+  }).join(' ');
+}
+const capsTitle = s => { s = clean(s); return isCaps(s) ? titleTR(s) : s; };
+const nameCase = s => { s = clean(s); return isCaps(s) || s === lowerTR(s) ? titleTR(s) : s; };
+const TR_MONTHS = { ocak: 1, şubat: 2, mart: 3, nisan: 4, mayıs: 5, haziran: 6, temmuz: 7, ağustos: 8, eylül: 9, ekim: 10, kasım: 11, aralık: 12 };
+function parseTRDate(v) {
+  const s = lowerTR(clean(v)); let m;
+  const ok = (y, mo, d) => { const t = `${y}-${pad(mo)}-${pad(d)}`; return isDate(t) && ymd(parseD(t)) === t ? t : ''; };
+  if ((m = s.match(/^(\d{1,2})[./-](\d{1,2})[./-](\d{4})$/))) return { date: ok(+m[3], +m[2], +m[1]), year: +m[3] };
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/))) return { date: ok(+m[1], +m[2], +m[3]), year: +m[1] };
+  if ((m = s.match(/^(\d{1,2})\s+([a-zçğıöşü]+)\s+(\d{4})$/)) && TR_MONTHS[m[2]]) return { date: ok(+m[3], TR_MONTHS[m[2]], +m[1]), year: +m[3] };
+  if ((m = s.match(/^(\d{4})$/))) return { date: '', year: +m[1] };
+  return { date: '', year: '' };
+}
+function phoneTR(v) {
+  const raw = clean(v); let d = raw.replace(/\D/g, '');
+  if (d.length === 12 && d.startsWith('90')) d = d.slice(2);
+  if (d.length === 11 && d.startsWith('0')) d = d.slice(1);
+  if (d.length === 10 && d[0] === '5') return { text: `+90 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6, 8)} ${d.slice(8)}`, ok: true, digits: '90' + d };
+  return { text: raw, ok: false, digits: '' };
+}
+function bloodTR(v) {
+  const s = upperTR(clean(v)).replace(/[()]/g, ' ').replace(/\s+/g, ' ');
+  const m = s.match(/^(AB|A|B|0|O)\s*(?:RH)?\s*([+-]|POZİTİF|NEGATİF)/);
+  if (!m) return clean(v);
+  return `${m[1] === 'O' ? '0' : m[1]} Rh${m[2] === '+' || m[2] === 'POZİTİF' ? '+' : '−'}`;
+}
+function tcValid(t) {
+  if (!/^[1-9]\d{10}$/.test(t || '')) return false;
+  const d = [...t].map(Number);
+  const c10 = ((((d[0] + d[2] + d[4] + d[6] + d[8]) * 7 - (d[1] + d[3] + d[5] + d[7])) % 10) + 10) % 10;
+  return c10 === d[9] && d.slice(0, 10).reduce((a, b) => a + b, 0) % 10 === d[10];
+}
+const maskTC = t => (!t ? '' : t.length > 5 ? t.slice(0, 3) + '•'.repeat(t.length - 5) + t.slice(-2) : '•••');
+const FREE_MAIL = /^(gmail|googlemail|hotmail|outlook|live|msn|yahoo|ymail|icloud|me|mac|yandex|mail|gmx|aol|proton|protonmail|mynet|windowslive|superonline|ttmail)\./;
+const isFreeMail = e => { const d = String(e || '').split('@')[1] || ''; return FREE_MAIL.test(d) || /\.edu(\.[a-z]{2})?$/.test(d); };
+const CO_WORDS = ['group', 'grup', 'holding', 'lojistik', 'insaat', 'enerji', 'teknoloji', 'yazilim', 'gida', 'tekstil', 'otomotiv', 'danismanlik', 'turizm', 'ticaret', 'muhendislik', 'medya', 'saglik', 'finans', 'yatirim', 'global'];
+function companyFromDomain(domain) {
+  domain = String(domain || '').toLowerCase();
+  const map = (S && S.settings && S.settings.companyMap) || {};
+  if (map[domain]) return map[domain];
+  let base = domain.replace(/\.(com|net|org|gen|biz|info|web|tv|av|bel|k12)\.tr$/, '').replace(/\.(com|net|org|co|io|biz|info|tr|group|app)$/, '');
+  base = base.split('.').pop() || '';
+  for (const w of CO_WORDS) if (base.length > w.length + 2 && base.endsWith(w)) { base = base.slice(0, -w.length) + ' ' + w; break; }
+  return titleTR(base.replace(/[-_]/g, ' '));
+}
+function normalizePerson(raw) {
+  const p = blankPerson();
+  p.firstName = nameCase(raw.firstName); p.lastName = nameCase(raw.lastName);
+  p.name = nameCase(raw.name) || [p.firstName, p.lastName].filter(Boolean).join(' ');
+  if (!p.firstName && !p.lastName) Object.assign(p, splitName(p.name));
+  const emails = [...new Set(`${raw.email || ''} ${raw.email2 || ''}`.toLowerCase().match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g) || [])];
+  p.email = emails.find(e => !isFreeMail(e)) || emails[0] || '';
+  p.email2 = emails.find(e => e !== p.email) || '';
+  p.company = clean(raw.company) || (p.email && !isFreeMail(p.email) ? companyFromDomain(p.email.split('@')[1]) : '');
+  p.title = capsTitle(raw.title);
+  const h = parseTRDate(raw.hire || raw.hireDate), b = parseTRDate(raw.birth || raw.birthDate);
+  p.hireDate = h.date; p.hireYear = h.date ? '' : (h.year || raw.hireYear || '');
+  p.birthDate = b.date; p.birthYear = b.date ? '' : (b.year || raw.birthYear || '');
+  p.birthPlace = capsTitle(raw.birthPlace);
+  p.tc = String(raw.tc || '').replace(/\D/g, '');
+  p.phone = phoneTR(raw.phone).text;
+  p.address = clean(raw.address); p.blood = bloodTR(raw.blood);
+  p.education = capsTitle(raw.education); p.gradDate = clean(raw.gradDate); p.languages = capsTitle(raw.languages);
+  p.marital = capsTitle(raw.marital); p.children = String(raw.children == null ? '' : raw.children).replace(/\D/g, '');
+  p.interests = clean(raw.interests); p.notes = clean(raw.notes);
+  p.entitlementOverride = clean(raw.entitlementOverride); p.carryOver = parseFloat(String(raw.carryOver || '').replace(',', '.')) || 0;
+  return p;
+}
+function personFlags(p) {
+  const f = [];
+  if (p.tc && !tcValid(p.tc)) f.push('TC kimlik numarası doğrulanamadı; rakamları kontrol edin.');
+  if (p.phone && !phoneTR(p.phone).ok) f.push('Cep telefonu biçimi hatalı.');
+  if (!p.hireDate) f.push(p.hireYear ? `İşe giriş yalnızca yıl olarak var (${p.hireYear}); izin hakkı için tam tarihi girin.` : 'İşe giriş tarihi yok; izin hakkı hesaplanamıyor.');
+  if (!p.birthDate && p.birthYear) f.push(`Doğum tarihi yalnızca yıl olarak var (${p.birthYear}).`);
+  if (!p.company) f.push('Şirket belirtilmemiş.');
+  return f;
+}
+const mePerson = () => (S.meId ? S.people.find(p => p.id === S.meId) || null : null);
+const findPerson = name => (name ? S.people.find(p => p.name === name) || S.people.find(p => fold(p.name) === fold(name)) || null : null);
+const otherPeople = () => S.people.filter(p => p.id !== S.meId);
+const byNameTR = (a, b) => a.name.localeCompare(b.name, 'tr');
+const whoOf = p => (p.id === S.meId ? 'me' : p.name);
+function companies() { const m = new Map(); for (const p of S.people) { const c = p.company || ''; m.set(c, (m.get(c) || 0) + 1); } return [...m].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr')); }
+const CO_COLORS = ['--c-mazeret', '--c-dogum', '--c-idari', '--c-dgunu', '--c-saatlik', '--c-yillik', '--c-rapor'];
+const coColor = c => (c ? CO_COLORS[hashId(fold(c)) % CO_COLORS.length] : '--c-ucretsiz');
+function seniorityText(p, t = today()) {
+  if (!isDate(p.hireDate)) return p.hireYear ? `${p.hireYear} yılından beri` : '';
+  if (p.hireDate > t) return `${dayDiff(t, p.hireDate)} gün sonra başlıyor`;
+  const a = parseD(p.hireDate), b = parseD(t);
+  let months = (b.getFullYear() - a.getFullYear()) * 12 + b.getMonth() - a.getMonth(); if (b.getDate() < a.getDate()) months--;
+  if (months < 1) return 'Bu ay başladı';
+  const y = Math.floor(months / 12), mo = months % 12;
+  return [y ? `${y} yıl` : '', mo ? `${mo} ay` : ''].filter(Boolean).join(' ');
+}
+function ageOf(subj, d) { if (isDate(subj.birthDate)) return fullYears(subj.birthDate, d); if (subj.birthYear) return parseD(d).getFullYear() - +subj.birthYear; return null; }
+function nextAnnual(d, from = today()) { let x = anniversary(d, parseD(from).getFullYear()); if (x < from) x = anniversary(d, parseD(from).getFullYear() + 1); return x; }
+function specialDays(n = 30) {
+  const t = today(), out = [];
+  for (const p of S.people) {
+    if (isDate(p.birthDate)) { const d = nextAnnual(p.birthDate, t); if (dayDiff(t, d) <= n) out.push({ kind: 'bday', p, date: d, years: parseD(d).getFullYear() - parseD(p.birthDate).getFullYear() }); }
+    if (isDate(p.hireDate) && p.hireDate < t) {
+      const d = nextAnnual(p.hireDate, t), yrs = parseD(d).getFullYear() - parseD(p.hireDate).getFullYear();
+      const ov = parseFloat(String(p.entitlementOverride).replace(',', '.'));
+      if (yrs >= 1 && dayDiff(t, d) <= n) out.push({ kind: 'work', p, date: d, years: yrs, ent: isFinite(ov) ? ov : lawDays(yrs, ageOf(p, d)) });
+    }
+  }
+  return out.sort((a, b) => a.date.localeCompare(b.date) || (a.kind === 'bday' ? -1 : 1));
+}
+function renamePersonRefs(oldName, newName) {
+  if (!oldName || oldName === newName) return;
+  for (const l of S.leaves) { if (l.person === oldName) l.person = newName; if (l.deputy === oldName) l.deputy = newName; }
+  for (const m of S.meetings) {
+    m.participants = m.participants.map(n => (n === oldName ? newName : n));
+    if (m.attendance[oldName]) { m.attendance[newName] = m.attendance[oldName]; delete m.attendance[oldName]; }
+    for (const a of m.actions) if (a.owner === oldName) a.owner = newName;
+  }
+}
+function syncMeToProfile() {
+  const p = mePerson(); if (!p) return;
+  Object.assign(S.profile, { name: p.name, title: p.title, dept: p.company, hireDate: p.hireDate, birthDate: p.birthDate, phone: p.phone, managerContact: S.profile.managerContact });
+  S.profileSample = false;
+}
+function syncProfileToMe() {
+  const p = mePerson(); if (!p) return;
+  const old = p.name;
+  Object.assign(p, { name: S.profile.name || p.name, title: S.profile.title, company: S.profile.dept, hireDate: S.profile.hireDate, birthDate: S.profile.birthDate, phone: S.profile.phone });
+  Object.assign(p, splitName(p.name));
+  if (old !== p.name) renamePersonRefs(old, p.name);
+}
+function setMe(id) {
+  const prev = mePerson(), p = S.people.find(x => x.id === id);
+  if (prev && prev.id !== id) for (const l of S.leaves) if (l.person === 'me') l.person = prev.name;
+  if (!p) { S.meId = null; return; }
+  S.meId = id; syncMeToProfile();
+  for (const l of S.leaves) if (l.person === p.name) l.person = 'me';
+}
+function mergePeople(recs) {
+  let added = 0, updated = 0;
+  for (const r of recs) {
+    const ex = S.people.find(p => r.tc && tcValid(r.tc) && p.tc === r.tc) || S.people.find(p => fold(p.name) === fold(r.name));
+    if (ex) {
+      const old = ex.name;
+      for (const k of PERSON_FIELDS) { const v = r[k]; if (v !== '' && v != null && !(k === 'carryOver' && !v)) ex[k] = v; }
+      if (r.hireDate) ex.hireYear = ''; if (r.birthDate) ex.birthYear = '';
+      ex.sample = false; renamePersonRefs(old, ex.name); updated++;
+    } else { S.people.push({ ...blankPerson(), ...r, id: uid(), sample: false }); added++; }
+  }
+  if (mePerson()) syncMeToProfile();
+  return { added, updated };
+}
+
+/* --- import: Personel Bilgi Formu PDF (read on this device), CSV, JSON --- */
+const PBF_FIELDS = [['ADI SOYADI', 'name'], ['AD SOYAD', 'name'], ['İŞE BAŞLAMA TARİHİ', 'hire'], ['İŞE GİRİŞ TARİHİ', 'hire'], ['MEZUNİYET TARİHİ', 'gradDate'], ['İLGİ ALANLARI/YETENEKLER', 'interests'], ['İLGİ ALANLARI', 'interests'], ['TC KİMLİK NO', 'tc'], ['T.C. KİMLİK NO', 'tc'], ['DOĞUM TARİHİ', 'birth'], ['DOĞUM YERİ', 'birthPlace'], ['MEDENİ HALİ', 'marital'], ['ÇOCUK SAYISI', 'children'], ['KAN GRUBU', 'blood'], ['MEZUNİYET', 'education'], ['SOYADI', 'lastName'], ['ÜNVAN', 'title'], ['UNVAN', 'title'], ['CEP NO', 'phone'], ['TELEFON', 'phone'], ['E-POSTA', 'email'], ['EMAİL', 'email'], ['E-MAİL', 'email'], ['ADRES', 'address'], ['ADI', 'firstName'], ['DİLLER', 'languages'], ['DİL', 'languages']];
+function pbfLines(items) {
+  const rows = [];
+  for (const it of items.slice().sort((a, b) => b.y - a.y)) { const r = rows.find(x => Math.abs(x.y - it.y) < 3); if (r) r.items.push(it); else rows.push({ y: it.y, items: [it] }); }
+  return rows.sort((a, b) => b.y - a.y).map(r => {
+    let s = '', prev = null;
+    for (const it of r.items.sort((a, b) => a.x - b.x)) { s += prev && it.x - (prev.x + prev.w) > 1.2 && !/\s$/.test(s) ? ' ' + it.t : it.t; prev = it; }
+    return clean(s);
+  }).filter(Boolean);
+}
+function pbfParseCol(lines) {
+  const out = {}; let cur = null;
+  for (const ln of lines) {
+    const U = upperTR(ln);
+    const f = PBF_FIELDS.find(([lb]) => U.startsWith(lb) && /^\s*(:|$)/.test(U.slice(lb.length)));
+    if (f) { cur = f[1]; const v = clean(ln.slice(f[0].length).replace(/^\s*:?\s*/, '')); out[cur] = out[cur] ? clean(out[cur] + ' ' + v) : v; }
+    else if (cur) out[cur] = clean((out[cur] || '') + ' ' + ln);
+  }
+  return out;
+}
+function parsePbfItems(items) {
+  const marks = items.filter(i => /^(İŞE|ÜNVAN|UNVAN)/.test(upperTR(i.t.trim()))).sort((a, b) => a.x - b.x);
+  if (!marks.length) return null;
+  const sx = marks[0].x - 1;
+  const raw = { ...pbfParseCol(pbfLines(items.filter(i => i.x < sx))), ...pbfParseCol(pbfLines(items.filter(i => i.x >= sx))) };
+  return raw.firstName || raw.lastName || raw.name ? raw : null;
+}
+async function loadPdfJs() {
+  if (window.pdfjsLib) return window.pdfjsLib;
+  const load = src => new Promise((res, rej) => { const el = document.createElement('script'); el.src = src; el.onload = () => res(); el.onerror = () => { el.remove(); rej(new Error(src)); }; document.head.appendChild(el); });
+  const bases = (ENV.native || ENV.http) && !ENV.framed ? ['vendor/'] : [];
+  bases.push('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/', 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/');
+  for (const b of bases) {
+    try { await load(b + 'pdf.min.js'); await load(b + 'pdf.worker.min.js'); if (window.pdfjsLib) return window.pdfjsLib; } catch (e) { /* try the next source */ }
+  }
+  throw new Error('PDF okuyucu yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.');
+}
+async function parsePbfPdf(file, progress) {
+  const lib = await loadPdfJs();
+  const doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false, disableFontFace: true }).promise;
+  const pages = doc.numPages, records = [];
+  for (let i = 1; i <= pages; i++) {
+    if (progress) progress(i, pages);
+    const page = await doc.getPage(i);
+    const content = await page.getTextContent();
+    const items = content.items.filter(it => it.str && it.str.trim()).map(it => ({ x: it.transform[4], y: it.transform[5], w: it.width || 0, t: it.str }));
+    const raw = parsePbfItems(items);
+    if (raw) { const p = normalizePerson(raw); if (p.name) records.push(p); }
+    if (page.cleanup) page.cleanup();
+  }
+  if (doc.destroy) doc.destroy();
+  return { records, pages };
+}
+function parseCSV(text) {
+  text = String(text).replace(/^\ufeff/, '');
+  const first = text.split(/\r?\n/)[0] || '';
+  const delim = [';', '\t', ','].map(d => [d, first.split(d).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+    else if (c === '"') q = true;
+    else if (c === delim) { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(c => c.trim()));
+}
+const CSV_COLS = [['Adı', 'firstName'], ['Soyadı', 'lastName'], ['Şirket', 'company'], ['Ünvan', 'title'], ['İşe başlama tarihi', 'hireDate'], ['Doğum tarihi', 'birthDate'], ['Doğum yeri', 'birthPlace'], ['TC kimlik no', 'tc'], ['Cep no', 'phone'], ['E-posta', 'email'], ['İkinci e-posta', 'email2'], ['Adres', 'address'], ['Kan grubu', 'blood'], ['Mezuniyet', 'education'], ['Mezuniyet tarihi', 'gradDate'], ['Dil', 'languages'], ['Medeni hali', 'marital'], ['Çocuk sayısı', 'children'], ['İlgi alanları', 'interests'], ['Yıllık izin hakkı', 'entitlementOverride'], ['Devreden izin', 'carryOver'], ['Notlar', 'notes']];
+const CSV_HEAD = (() => {
+  const m = {};
+  for (const [h, k] of CSV_COLS) m[fold(h)] = k === 'hireDate' ? 'hire' : k === 'birthDate' ? 'birth' : k;
+  Object.assign(m, { adsoyad: 'name', adisoyadi: 'name', isim: 'name', adsoyadi: 'name', ad: 'firstName', soyad: 'lastName', sirketadi: 'company', firma: 'company', unvani: 'title', gorev: 'title', gorevi: 'title', isegiristarihi: 'hire', isegiris: 'hire', tc: 'tc', tckn: 'tc', tckimlik: 'tc', telefon: 'phone', ceptelefonu: 'phone', gsm: 'phone', email: 'email', email2: 'email2', mail: 'email', egitim: 'education', diller: 'languages', medenihal: 'marital', ilgialanlariyetenekler: 'interests', not: 'notes' });
+  return m;
+})();
+function csvToRecords(text) {
+  const rows = parseCSV(text); if (rows.length < 2) return [];
+  const keys = rows[0].map(h => CSV_HEAD[fold(h)] || null);
+  if (!keys.includes('name') && !keys.includes('firstName')) return [];
+  return rows.slice(1).map(r => { const raw = {}; keys.forEach((k, i) => { if (k && clean(r[i])) raw[k] = r[i]; }); return normalizePerson(raw); }).filter(p => p.name);
+}
+function prepareImport(recs) {
+  const names = [...new Set(recs.map(r => r.company).filter(Boolean))];
+  const ren = {};
+  for (const a of names) {
+    const cands = names.filter(b => b !== a && fold(a).length >= 4 && fold(b).startsWith(fold(a)));
+    if (cands.length === 1) ren[a] = cands[0];
+  }
+  for (const r of recs) if (ren[r.company]) r.company = ren[r.company];
+  const known = [...new Set([...recs.map(r => r.company), ...S.people.map(p => p.company)].filter(Boolean))];
+  for (const r of recs) {
+    const m = r.title.match(/^(.+?)\s*\/\s*([^/]+)$/); if (!m) continue;
+    const hit = known.find(c => fold(c) === fold(m[2])); if (!hit) continue;
+    const proper = capsTitle(m[2]);
+    r.title = capsTitle(m[1]);
+    for (const x of recs) if (x.company === hit) x.company = proper;
+    if (!r.company) r.company = proper;
+  }
+  return recs;
+}
+function vcard(p) {
+  const e = s => String(s || '').replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\;');
+  const L = ['BEGIN:VCARD', 'VERSION:3.0', `N:${e(p.lastName)};${e(p.firstName)};;;`, `FN:${e(p.name)}`];
+  if (p.company) L.push(`ORG:${e(p.company)}`);
+  if (p.title) L.push(`TITLE:${e(p.title)}`);
+  const ph = phoneTR(p.phone); if (ph.ok) L.push(`TEL;TYPE=CELL:+${ph.digits}`);
+  if (p.email) L.push(`EMAIL;TYPE=WORK:${p.email}`);
+  if (p.email2) L.push(`EMAIL;TYPE=HOME:${p.email2}`);
+  if (p.address) L.push(`ADR;TYPE=HOME:;;${e(p.address)};;;;`);
+  if (isDate(p.birthDate)) L.push(`BDAY:${p.birthDate}`);
+  L.push('END:VCARD');
+  return L.join('\r\n');
+}
+const dmy = s => (isDate(s) ? s.split('-').reverse().join('.') : s || '');
 
 /* ================= leave calculations ================= */
 const personName = p => (p === 'me' ? (S.profile.name || 'Ben') : p);
@@ -710,16 +1037,23 @@ function rangeText(l) {
 }
 function fullYears(from, to) { const a = parseD(from), b = parseD(to); let y = b.getFullYear() - a.getFullYear(); if (b.getMonth() < a.getMonth() || (b.getMonth() === a.getMonth() && b.getDate() < a.getDate())) y--; return y; }
 function anniversary(hire, year) { const h = parseD(hire); const d = new Date(year, h.getMonth(), h.getDate()); if (d.getMonth() !== h.getMonth()) d.setDate(0); return ymd(d); }
-const ageAt = d => (isDate(S.profile.birthDate) ? fullYears(S.profile.birthDate, d) : null);
+function subjectOf(who) {
+  if (!who || who === 'me') { const mp = mePerson() || {}; return { hireDate: S.profile.hireDate, birthDate: S.profile.birthDate, birthYear: mp.birthYear || '', hireYear: mp.hireYear || '', entitlementOverride: S.settings.entitlementOverride, carryOver: S.settings.carryOver }; }
+  return findPerson(who) || { hireDate: '', birthDate: '', birthYear: '', hireYear: '', entitlementOverride: '', carryOver: 0 };
+}
 /* İş Kanunu md. 53: 1–5 yıl 14 gün, 5–15 yıl 20 gün, 15+ yıl 26 gün; 18 yaş ve altı ile 50 yaş ve üstüne en az 20 gün. */
 function lawDays(years, age) { let d = years >= 15 ? 26 : years > 5 ? 20 : 14; if (age != null && (age <= 18 || age >= 50)) d = Math.max(d, 20); return d; }
-function leaveYear(t = today()) {
-  const p = S.profile, st = S.settings;
-  const ov = parseFloat(String(st.entitlementOverride).replace(',', '.'));
+function leaveYear(t = today(), who = 'me') {
+  const p = subjectOf(who), ageAt = d => ageOf(p, d);
+  const ov = parseFloat(String(p.entitlementOverride == null ? '' : p.entitlementOverride).replace(',', '.'));
   const hasOv = isFinite(ov) && ov >= 0;
+  if (isDate(p.hireDate) && p.hireDate > t && !hasOv) {
+    const first = anniversary(p.hireDate, parseD(p.hireDate).getFullYear() + 1);
+    return { start: p.hireDate, end: addDays(first, -1), entitlement: 0, basis: 'probation', years: 0, next: first, nextEnt: lawDays(1, ageAt(first)) };
+  }
   if (!isDate(p.hireDate) || p.hireDate > t) {
     const y = parseD(t).getFullYear();
-    return { start: `${y}-01-01`, end: `${y}-12-31`, entitlement: hasOv ? ov : 14, basis: hasOv ? 'override' : 'assumed', years: null, next: null };
+    return { start: `${y}-01-01`, end: `${y}-12-31`, entitlement: hasOv ? ov : 14, basis: hasOv ? 'override' : 'assumed', years: null, next: null, hireYear: p.hireYear || '' };
   }
   const years = fullYears(p.hireDate, t);
   if (years < 1) {
@@ -731,23 +1065,23 @@ function leaveYear(t = today()) {
   const next = anniversary(p.hireDate, parseD(start).getFullYear() + 1);
   return { start, end: addDays(next, -1), entitlement: hasOv ? ov : lawDays(years, ageAt(start)), basis: hasOv ? 'override' : 'law', years, next, nextEnt: lawDays(years + 1, ageAt(next)) };
 }
-function balance(excludeId) {
-  const ly = leaveYear(); const t = today();
+function balance(excludeId, who = 'me') {
+  const ly = leaveYear(today(), who); const t = today();
   let used = 0, planned = 0, pending = 0;
   for (const l of S.leaves) {
-    if (l.person !== 'me' || l.type !== 'yillik' || l.id === excludeId || l.start < ly.start || l.start > ly.end) continue;
+    if (l.person !== who || l.type !== 'yillik' || l.id === excludeId || l.start < ly.start || l.start > ly.end) continue;
     const d = leaveDays(l);
     if (l.status === 'approved') { if (l.start <= t) used += d; else planned += d; }
     else if (l.status === 'pending') pending += d;
   }
-  const total = ly.entitlement + (parseFloat(String(S.settings.carryOver).replace(',', '.')) || 0);
+  const total = ly.entitlement + (parseFloat(String(subjectOf(who).carryOver || '').replace(',', '.')) || 0);
   return { ...ly, total, used, planned, pending, remaining: total - used - planned, afterPending: total - used - planned - pending };
 }
 function basisText(b) {
   if (b.basis === 'law') return `${b.years} yıl kıdem · yıllık ${b.entitlement} gün (İş K. md. 53)`;
   if (b.basis === 'override') return `Şirketin tanımladığı hak: ${fmt.num(b.entitlement)} gün`;
-  if (b.basis === 'probation') return `İlk yıllık izin hakkı ${fmt.long(b.next)} tarihinde doğar (${b.nextEnt} gün)`;
-  return 'İşe giriş tarihi girilmedi; 14 gün varsayıldı';
+  if (b.basis === 'probation') return `1 yıl dolmadı; ilk yıllık izin hakkı ${fmt.long(b.next)} tarihinde doğar (${b.nextEnt} gün)`;
+  return b.hireYear ? `İşe giriş tarihi eksik (yalnızca ${b.hireYear}); 14 gün varsayıldı` : 'İşe giriş tarihi girilmedi; 14 gün varsayıldı';
 }
 function leaveNotes(l) {
   const notes = [];
@@ -931,20 +1265,24 @@ const DOC_CSS = `.doc{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:13p
 .doc .sig>div{border:1px solid var(--doc-line,#3a3a3a);min-height:96px;padding:8px;font-size:11.5px;display:flex;flex-direction:column;gap:2px}
 .doc .sig .s-line{margin-top:auto;border-top:1px dotted currentColor;padding-top:4px;font-size:10.5px}
 .doc .foot{margin-top:18px;font-size:10.5px;opacity:.75}
-.doc .pre{white-space:pre-wrap}`;
+.doc .pre{white-space:pre-wrap}
+.doc table.pbf th{width:19%}
+.doc table.pbf td{width:31%}`;
 const tr = (k, v) => `<tr><th>${esc(k)}</th><td>${esc(v || '—')}</td></tr>`;
 function leaveDocHTML(l) {
   const p = S.profile, t = LEAVE_TYPES[l.type], ret = returnInfo(l), isMe = l.person === 'me';
+  const mp = isMe ? mePerson() || {} : findPerson(l.person) || {};
+  const subj = isMe ? { ...mp, title: p.title, company: p.dept, hireDate: p.hireDate } : mp;
   let bal = '';
-  if (isMe && l.type === 'yillik') { const b = balance(l.id); bal = tr('Yıllık izin bakiyesi', `Hak ${fmt.num(b.total)} gün · Bu izinden önce kalan ${fmt.num(b.remaining)} gün · Sonra kalan ${fmt.num(b.remaining - leaveDays(l))} gün`); }
+  if (l.type === 'yillik' && (isMe || mp.name)) { const b = balance(l.id, l.person); bal = tr('Yıllık izin bakiyesi', `Hak ${fmt.num(b.total)} gün · Bu izinden önce kalan ${fmt.num(b.remaining)} gün · Sonra kalan ${fmt.num(b.remaining - leaveDays(l))} gün`); }
   return `<div class="doc-top"><div class="doc-brand">${esc(p.dept || 'Finans')} · Finans360</div><div class="doc-meta">Form no: İZN-${esc(l.id.slice(0, 6).toUpperCase())}<br>Düzenleme: ${fmt.long(today())}</div></div>
 <h1>İZİN TALEP FORMU</h1>
 <h2>Personel bilgileri</h2>
-<table>${tr('Adı soyadı', personName(l.person))}${isMe ? tr('Sicil no', p.sicil) + tr('Departman', p.dept) + tr('Görevi', p.title) + tr('İşe giriş tarihi', isDate(p.hireDate) ? fmt.long(p.hireDate) : '') : ''}</table>
+<table>${tr('Adı soyadı', personName(l.person))}${subj.tc ? tr('TC kimlik no', subj.tc) : ''}${isMe && p.sicil ? tr('Sicil no', p.sicil) : ''}${tr('Şirket / departman', subj.company)}${tr('Görevi', subj.title)}${tr('İşe giriş tarihi', isDate(subj.hireDate) ? fmt.long(subj.hireDate) : subj.hireYear || '')}</table>
 <h2>İzin bilgileri</h2>
 <table>${tr('İzin türü', t.label + (l.type === 'mazeret' && MAZERET[l.sub] ? ` (${MAZERET[l.sub][0]})` : ''))}
 ${l.type === 'saatlik' ? tr('Tarih ve saat', `${fmt.longDay(l.start)}, ${l.startTime}–${l.endTime}`) + tr('Süre', `${fmt.num(leaveHours(l))} saat`) : tr('Başlangıç', fmt.longDay(l.start) + (l.startHalf ? ', öğleden sonra' : '')) + tr('Bitiş', fmt.longDay(l.end) + (l.endHalf ? ', öğlene kadar' : '')) + tr('Süre', `${fmt.num(leaveDays(l))} iş günü (${dayDiff(l.start, l.end) + 1} takvim günü)`) + tr('İşe başlama', ret ? fmt.longDay(ret.date) + (ret.half ? ', öğleden sonra' : '') : '')}
-${bal}${tr('Vekil', l.deputy)}${tr('İzinde adres / telefon', l.contact)}${tr('Açıklama', l.reason)}${tr('Durum', STATUS[l.status][0])}</table>
+${bal}${tr('Vekil', l.deputy)}${tr('İzinde adres / telefon', l.contact || [subj.phone, subj.address].filter(Boolean).join(' · '))}${tr('Açıklama', l.reason)}${tr('Durum', STATUS[l.status][0])}</table>
 <p>Yukarıda belirtilen tarihlerde izin kullanmak istiyorum. Gereğini arz ederim.</p>
 <div class="sig"><div>Talep eden<b>${esc(personName(l.person))}</b><span class="s-line">Tarih / İmza</span></div><div>Birim amiri<b>${esc(isMe ? p.manager : '')}</b><span class="s-line">Onay / İmza</span></div><div>İnsan kaynakları<b>&nbsp;</b><span class="s-line">Kayıt / İmza</span></div></div>
 <p class="foot">Hafta tatili ve resmî tatil günleri izin süresine dahil edilmemiştir (4857 sayılı İş Kanunu md. 56).</p>`;
@@ -957,6 +1295,16 @@ ${m.agenda.length ? `<h2>Gündem</h2><ol>${m.agenda.map(a => `<li>${esc(a.text)}
 ${m.notes ? `<h2>Görüşülenler</h2><p class="pre">${esc(m.notes)}</p>` : ''}
 ${m.actions.length ? `<h2>Kararlar ve aksiyonlar</h2><table><tr><th style="width:auto">Karar / aksiyon</th><th style="width:26%">Sorumlu</th><th style="width:22%">Termin</th></tr>${m.actions.map(a => `<tr><td>${esc(a.text)}${a.done ? ' ✓' : ''}</td><td>${esc(a.owner || '—')}</td><td>${a.due ? fmt.long(a.due) : '—'}</td></tr>`).join('')}</table>` : ''}
 <div class="sig"><div>Hazırlayan<b>${esc(S.profile.name)}</b><span class="s-line">İmza</span></div><div>Onaylayan<b>${esc(S.profile.manager)}</b><span class="s-line">İmza</span></div><div>Dağıtım<b>&nbsp;</b><span class="s-line">Katılımcılar</span></div></div>`;
+}
+function pbfDocHTML(p) {
+  const r = (a, b, c, d) => `<tr><th>${esc(a)}</th><td>${esc(b || '—')}</td><th>${esc(c)}</th><td>${esc(d || '—')}</td></tr>`;
+  return `<div class="doc-top"><div class="doc-brand">${esc(p.company || 'Finans360')}</div><div class="doc-meta">Düzenleme: ${fmt.long(today())}</div></div>
+<h1>PERSONEL BİLGİ FORMU</h1>
+<table class="pbf">${r('Adı', p.firstName, 'İşe başlama tarihi', p.hireDate ? fmt.long(p.hireDate) : p.hireYear)}${r('Soyadı', p.lastName, 'Ünvan', p.title)}${r('TC kimlik no', p.tc, 'Mezuniyet', p.education)}${r('Doğum tarihi', p.birthDate ? fmt.long(p.birthDate) : p.birthYear, 'Mezuniyet tarihi', p.gradDate)}${r('Doğum yeri', p.birthPlace, 'Dil', p.languages)}${r('Kan grubu', p.blood, 'Medeni hali', p.marital)}${r('Cep no', p.phone, 'Çocuk sayısı', p.children)}${r('E-posta', [p.email, p.email2].filter(Boolean).join(', '), 'İlgi alanları / yetenekler', p.interests)}<tr><th>Adres</th><td colspan="3">${esc(p.address || '—')}</td></tr></table>
+<p class="foot">Bu form 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında kişisel veri içerir; yetkisiz kişilerle paylaşmayın.</p>`;
+}
+function pbfText(p) {
+  return ['PERSONEL BİLGİ FORMU', '', ...[['Adı soyadı', p.name], ['Şirket', p.company], ['Ünvan', p.title], ['İşe başlama', p.hireDate ? fmt.long(p.hireDate) : p.hireYear], ['Doğum tarihi', p.birthDate ? fmt.long(p.birthDate) : p.birthYear], ['Doğum yeri', p.birthPlace], ['Cep no', p.phone], ['E-posta', [p.email, p.email2].filter(Boolean).join(', ')], ['Adres', p.address], ['Mezuniyet', [p.education, p.gradDate].filter(Boolean).join(', ')], ['Dil', p.languages]].filter(x => x[1]).map(([k, v]) => `${k}: ${v}`)].join('\n');
 }
 function standaloneDoc(title, inner) {
   return `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title><style>body{margin:0;padding:24px;background:#fff;color:#111}.bar{margin-bottom:16px}.bar button{font:600 15px system-ui;padding:10px 16px;border-radius:10px;border:1px solid #0B6B5D;background:#0B6B5D;color:#fff}@page{size:A4;margin:15mm}@media print{body{padding:0}.bar{display:none}}${DOC_CSS}</style></head><body><div class="bar"><button onclick="print()">Yazdır / PDF olarak kaydet</button></div><div class="doc">${inner}</div></body></html>`;
@@ -1099,7 +1447,7 @@ function applyTheme() {
 }
 
 /* ================= views ================= */
-const TABS = [['ozet', 'Özet', I.home], ['izin', 'İzin', I.sun], ['toplanti', 'Toplantı', I.users], ['takvim', 'Takvim', I.cal], ['ayarlar', 'Ayarlar', I.sliders]];
+const TABS = [['ozet', 'Özet', I.home], ['izin', 'İzin', I.sun], ['toplanti', 'Toplantı', I.users], ['takvim', 'Takvim', I.cal], ['personel', 'Personel', I.idcard]];
 const seg = (key, opts) => `<div class="seg" role="group">${opts.map(([v, l]) => `<button type="button" data-act="filter" data-key="${key}" data-v="${v}" aria-pressed="${UI[key] === v}">${l}</button>`).join('')}</div>`;
 const noteList = notes => (notes.length ? `<div class="notes">${notes.map(([tone, text]) => `<p class="note ${tone}">${tone === 'info' ? I.info : I.alert}<span>${esc(text)}</span></p>`).join('')}</div>` : '');
 const kindDot = k => `<i class="dot" style="--c:var(${(KINDS[k] || KINDS.diger)[1]})"></i>`;
@@ -1164,6 +1512,14 @@ function actionRow({ m, a }) {
     <span class="row-end">${a.due ? `<span class="pill ${late ? 'bad' : dayDiff(today(), a.due) <= 2 ? 'warn' : ''}">${late ? 'Gecikti · ' : ''}${fmt.short(a.due)}</span>` : ''}</span></div>`;
 }
 
+function specialRow(x) {
+  const p = x.p, n = dayDiff(today(), x.date), when = n === 0 ? 'Bugün' : n === 1 ? 'Yarın' : `${n} gün sonra`, isMe = p.id === S.meId, ph = phoneTR(p.phone);
+  const msg = x.kind === 'bday' ? `İyi ki doğdunuz ${p.firstName || p.name}! Nice sağlıklı ve mutlu yıllara.` : `${p.firstName || p.name}, ${x.years}. iş yılınız kutlu olsun! Emekleriniz için teşekkürler.`;
+  const d = parseD(x.date);
+  return `<div class="row"><span class="datetile" style="--c:var(${x.kind === 'bday' ? '--brass' : '--accent'})"><span>${MON3[d.getMonth()]}</span><b>${d.getDate()}</b></span>
+    <button type="button" class="row-main linkish" data-act="person-open" data-id="${p.id}"><span class="row-title">${esc(isMe ? 'Siz' : p.name)} · ${x.kind === 'bday' ? 'doğum günü' : `${x.years}. iş yılı`}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span><span class="row-sub">${when}${x.kind === 'bday' ? ` · ${x.years} yaşına giriyor` : (x.years === 1 ? ` · ilk yıllık izin hakkı doğuyor: ${fmt.num(x.ent)} gün` : ` · yıllık izin hakkı yenileniyor: ${fmt.num(x.ent)} gün`)}</span></button>
+    <span class="row-end">${!isMe && ph.ok ? `<a class="btn btn-sm" href="https://wa.me/${ph.digits}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Kutla</a>` : ''}</span></div>`;
+}
 function viewHome() {
   const t = today(), p = S.profile, hr = new Date().getHours();
   const greet = hr < 5 ? 'İyi geceler' : hr < 11 ? 'Günaydın' : hr < 17 ? 'İyi günler' : hr < 22 ? 'İyi akşamlar' : 'İyi geceler';
@@ -1178,7 +1534,7 @@ function viewHome() {
   if (teamOut.length) facts.push(`${teamOut.join(', ')} izinde`);
   const acts = openActions();
   const upLeaves = S.leaves.filter(l => activeLeave(l) && l.end >= t && l.start <= addDays(t, 45)).sort((a, b) => a.start.localeCompare(b.start)).slice(0, 5);
-  const ideas = bridgeIdeas(3), hols = upcomingHolidays(4);
+  const ideas = bridgeIdeas(3), hols = upcomingHolidays(4), sdays = specialDays(30);
   return `
   <section><p class="eyebrow">${fmt.longDay(t)}</p><h1 class="display h1">${greet}${first ? `, ${esc(first)}` : ''}</h1><p class="lede">${esc(facts.join(' · '))}.</p></section>
   ${hasSamples() && !UI.bannerHidden ? `<div class="banner" role="note"><p><b>Örnek verilerle açıldı.</b> Kayıtlar “örnek” etiketi taşıyor. Kendi bilgilerinizi girmeden önce temizleyebilirsiniz.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="sample-clear">Örnekleri temizle</button><button type="button" class="btn btn-sm btn-quiet" data-act="banner-hide">Sonra</button></div></div>` : ''}
@@ -1188,6 +1544,7 @@ function viewHome() {
     ${acts.length ? `<div class="list">${acts.slice(0, 6).map(actionRow).join('')}</div>` : `<div class="list"><div class="empty"><p>Toplantılardan çıkan açık aksiyon yok.</p></div></div>`}</section>
   <section class="sec"><div class="sec-head"><h2 class="sec-title">Yaklaşan izinler</h2><button type="button" class="sec-link" data-act="tab" data-tab="izin">Tümü</button></div>
     ${upLeaves.length ? `<div class="list">${upLeaves.map(leaveRow).join('')}</div>` : `<div class="list"><div class="empty"><p>Önümüzdeki 45 günde izin kaydı yok.</p><button type="button" class="btn btn-sm" data-act="leave-new">${I.plus} İzin talebi oluştur</button></div></div>`}</section>
+  ${sdays.length ? `<section class="sec"><div class="sec-head"><h2 class="sec-title">Yaklaşan özel günler</h2><button type="button" class="sec-link" data-act="tab" data-tab="personel">Personel</button></div><div class="list">${sdays.slice(0, 6).map(specialRow).join('')}</div></section>` : ''}
   ${ideas.length ? `<section class="sec"><div class="sec-head"><h2 class="sec-title">Köprü fırsatları</h2><span class="fine">Az izinle uzun tatil</span></div><div class="list">${ideas.map(x => `<div class="row bridge"><span class="bridge-num"><b>${x.span}</b><span>gün tatil</span></span><span class="row-main"><span class="row-title">${fmt.num(x.cost)} gün izinle · ${esc(x.name)}</span><span class="row-sub">${fmt.range(x.start, x.end)} · izin: ${x.leaveStart === x.leaveEnd ? fmt.shortDay(x.leaveStart) : `${fmt.shortDay(x.leaveStart)} – ${fmt.shortDay(x.leaveEnd)}`}</span></span><button type="button" class="btn btn-sm" data-act="leave-new" data-start="${x.leaveStart}" data-end="${x.leaveEnd}">Taslak</button></div>`).join('')}</div></section>` : ''}
   <section class="sec"><div class="sec-head"><h2 class="sec-title">Resmî tatiller</h2></div>
     <div class="list">${hols.map(h => `<div class="row"><span class="datetile" style="--c:var(--brass)"><span>${MON3[parseD(h.start).getMonth()]}</span><b>${parseD(h.start).getDate()}</b></span><span class="row-main"><span class="row-title">${esc(h.group)}</span><span class="row-sub">${h.start === h.end ? fmt.longDay(h.start) : fmt.range(h.start, h.end)}${h.days[0].half ? ' · arife yarım gün' : ''}</span></span><span class="row-end"><span class="pill">${dayDiff(t, h.start) === 0 ? 'Bugün' : `${dayDiff(t, h.start)} gün`}</span></span></div>`).join('') || '<div class="empty"><p>Tatil verisi bulunamadı. Ayarlar’dan tatil günü ekleyebilirsiniz.</p></div>'}</div></section>`;
@@ -1257,14 +1614,16 @@ function viewCalendar() {
     const d = addDays(gridStart, i), out = d.slice(0, 7) !== UI.calMonth;
     const h = holidayOn(d), we = isWeekend(d);
     const dl = leaves.filter(l => covers(l, d)), dm = S.meetings.filter(m => m.date === d && m.status !== 'cancelled');
+    const bd = S.people.filter(p => isDate(p.birthDate) && p.birthDate.slice(5) === d.slice(5));
     if (!out) { mCount += dm.length; if (dl.some(l => l.person === 'me')) lDays++; if (h && !h.half) hCount++; }
     const cls = ['cal-cell', out && 'out', we && 'we', h && (h.half ? 'half' : 'hol'), d === t && 'today'].filter(Boolean).join(' ');
-    const label = `${fmt.longDay(d)}${h ? ', ' + h.name : ''}${dm.length ? `, ${dm.length} toplantı` : ''}${dl.length ? `, ${dl.length} izin` : ''}`;
-    cells += `<button type="button" class="${cls}" data-act="cal-day" data-date="${d}" aria-pressed="${UI.calDay === d}" aria-label="${esc(label)}"><span class="cal-num">${parseD(d).getDate()}</span>${dm.length ? `<span class="cal-mc">${dm.length}</span>` : ''}${h ? `<span class="cal-hname">${esc(h.half ? 'Arife' : h.group)}</span>` : ''}<span class="cal-bars">${dl.slice(0, 3).map(l => `<i class="${l.person === 'me' ? '' : 'team'} ${l.status === 'pending' ? 'pend' : ''}" style="--c:var(${LEAVE_TYPES[l.type].color})"></i>`).join('')}</span></button>`;
+    const label = `${fmt.longDay(d)}${h ? ', ' + h.name : ''}${dm.length ? `, ${dm.length} toplantı` : ''}${dl.length ? `, ${dl.length} izin` : ''}${bd.length ? `, ${bd.length} doğum günü` : ''}`;
+    cells += `<button type="button" class="${cls}" data-act="cal-day" data-date="${d}" aria-pressed="${UI.calDay === d}" aria-label="${esc(label)}"><span class="cal-num">${parseD(d).getDate()}</span>${bd.length ? '<span class="cal-bd" aria-hidden="true"></span>' : ''}${dm.length ? `<span class="cal-mc">${dm.length}</span>` : ''}${h ? `<span class="cal-hname">${esc(h.half ? 'Arife' : h.group)}</span>` : ''}<span class="cal-bars">${dl.slice(0, 3).map(l => `<i class="${l.person === 'me' ? '' : 'team'} ${l.status === 'pending' ? 'pend' : ''}" style="--c:var(${LEAVE_TYPES[l.type].color})"></i>`).join('')}</span></button>`;
   }
   const d = UI.calDay, h = holidayOn(d);
   const dl = S.leaves.filter(l => covers(l, d)).sort((a, b) => (a.person === 'me' ? -1 : 1));
   const dm = S.meetings.filter(m => m.date === d).sort(byStart);
+  const dbd = S.people.filter(p => isDate(p.birthDate) && p.birthDate.slice(5) === d.slice(5));
   const noData = !BAYRAM[y] ? `<p class="note warn">${I.alert}<span>${y} yılı dinî bayram tarihleri yüklü değil. Ayarlar › Tatil günleri bölümünden ekleyebilirsiniz.</span></p>` : '';
   return `
   <section><p class="eyebrow">Takvim</p><h1 class="display h1">${MONTHS[mo - 1]} ${y}</h1><p class="lede">${mCount} toplantı · ${lDays} izinli gününüz · ${hCount} resmî tatil günü</p></section>
@@ -1276,12 +1635,12 @@ function viewCalendar() {
       <button type="button" class="icon-btn" data-act="cal-next" aria-label="Sonraki ay">${I.right}</button></div>
     <div class="cal-wd" aria-hidden="true">${['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'].map(x => `<span>${x}</span>`).join('')}</div>
     <div class="cal-grid">${cells}</div>
-    <div class="legend"><span><i class="lg" style="background:var(--c-yillik)"></i>Sizin izniniz</span><span><i class="lg" style="background:repeating-linear-gradient(135deg,var(--c-mazeret) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--c-mazeret)"></i>Ekip izni</span><span><i class="lg" style="background:var(--brass-soft);box-shadow:inset 0 0 0 1px var(--brass)"></i>Resmî tatil</span><span><span class="cal-mc" style="position:static">2</span>Toplantı</span></div>
+    <div class="legend"><span><i class="lg" style="background:var(--c-yillik)"></i>Sizin izniniz</span><span><i class="lg" style="background:repeating-linear-gradient(135deg,var(--c-mazeret) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--c-mazeret)"></i>Ekip izni</span><span><i class="lg" style="background:var(--brass-soft);box-shadow:inset 0 0 0 1px var(--brass)"></i>Resmî tatil</span><span><span class="cal-mc" style="position:static">2</span>Toplantı</span><span><i class="lg" style="width:8px;height:8px;border-radius:50%;background:var(--brass)"></i>Doğum günü</span></div>
   </div>
   <section class="sec" aria-live="polite">
     <div class="sec-head"><h2 class="sec-title">${fmt.longDay(d)}</h2></div>
     ${h ? `<p class="note warn">${I.flag}<span>${esc(h.name)}${h.half ? ': öğleden sonra tatil' : ''}</span></p>` : isWeekend(d) ? '<p class="fine">Hafta tatili</p>' : ''}
-    ${dl.length || dm.length ? `<div class="list">${dl.map(leaveRow).join('')}${dm.map(m => meetingRow(m, false)).join('')}</div>` : '<div class="list"><div class="empty"><p>Bu gün için kayıt yok.</p></div></div>'}
+    ${dl.length || dm.length || dbd.length ? `<div class="list">${dbd.map(p => specialRow({ kind: 'bday', p, date: d, years: parseD(d).getFullYear() - parseD(p.birthDate).getFullYear() })).join('')}${dl.map(leaveRow).join('')}${dm.map(m => meetingRow(m, false)).join('')}</div>` : '<div class="list"><div class="empty"><p>Bu gün için kayıt yok.</p></div></div>'}
     <div class="act-grid"><button type="button" class="btn" data-act="meeting-new" data-date="${d}">${I.plus} Toplantı ekle</button><button type="button" class="btn" data-act="leave-new" data-start="${d}" data-end="${d}">${I.plus} İzin ekle</button></div>
   </section>`;
 }
@@ -1296,13 +1655,15 @@ function viewSettings() {
   const custom = (st.customHolidays || []).slice().sort((a, c) => a.date.localeCompare(c.date));
   return `
   <section><p class="eyebrow">Finans360 · sürüm ${VERSION}</p><h1 class="display h1">Ayarlar</h1><p class="lede">Bütün kayıtlar yalnızca bu cihazda saklanır. Düzenli olarak yedek almanızı öneririz.</p></section>
-  ${setCard('Profil', `<div class="form-grid">${inp('profile.name', 'Ad soyad', p.name, 'text', 'autocomplete="name"')}${inp('profile.sicil', 'Sicil no', p.sicil)}${inp('profile.dept', 'Departman', p.dept)}${inp('profile.title', 'Unvan', p.title)}${inp('profile.manager', 'Birim amiri', p.manager)}${inp('profile.managerContact', 'Amirin e-postası', p.managerContact, 'email', 'inputmode="email"')}</div>`)}
+  ${setCard('Profil', `${S.people.length ? `<div class="field"><label for="s-me">Personel listesindeki kaydım</label><select id="s-me"><option value="">Seçilmedi</option>${S.people.slice().sort(byNameTR).map(x => `<option value="${x.id}" ${S.meId === x.id ? 'selected' : ''}>${esc(x.name)}${x.company ? ` · ${esc(x.company)}` : ''}</option>`).join('')}</select><p class="hint">Seçtiğiniz kayıt profilinizi, izin hakkınızı ve formlarınızı doldurur.</p></div>` : ''}<div class="form-grid">${inp('profile.name', 'Ad soyad', p.name, 'text', 'autocomplete="name"')}${inp('profile.sicil', 'Sicil no', p.sicil)}${inp('profile.dept', 'Departman', p.dept)}${inp('profile.title', 'Unvan', p.title)}${inp('profile.manager', 'Birim amiri', p.manager)}${inp('profile.managerContact', 'Amirin e-postası', p.managerContact, 'email', 'inputmode="email"')}</div>`)}
   ${setCard('Yıllık izin hesabı', `<div class="form-grid">${inp('profile.hireDate', 'İşe giriş tarihi', p.hireDate, 'date')}${inp('profile.birthDate', 'Doğum tarihi', p.birthDate, 'date')}${inp('settings.entitlementOverride', 'Yıllık hak (boşsa kanuna göre)', st.entitlementOverride, 'text', 'inputmode="decimal" placeholder="Örn. 22"')}${inp('settings.carryOver', 'Geçen yıldan devreden (gün)', st.carryOver, 'text', 'inputmode="decimal"')}</div>
     <label class="check"><input type="checkbox" data-bind="settings.saturdayWork" ${st.saturdayWork ? 'checked' : ''}> Cumartesi iş günü sayılsın</label>
     <p class="note" id="entSummary">${I.info}<span>${esc(basisText(b))}. Kanuni süreler (İş K. md. 53): 1–5 yıl 14 gün, 5–15 yıl 20 gün, 15 yıl ve üzeri 26 gün; 18 yaş ve altı ile 50 yaş ve üstü için en az 20 gün.</span></p>`)}
-  ${setCard('Ekip', `<p class="hint">Toplantı katılımcıları ve ekip izinleri bu listeden seçilir. İzinli bir katılımcı toplantıya eklenirse uyarılırsınız.</p>
-    <div class="chips">${S.team.map(n => `<span class="namechip">${esc(n)}<button type="button" data-act="team-del" data-name="${esc(n)}" aria-label="${esc(n)} kişisini çıkar">${I.x}</button></span>`).join('') || '<span class="fine">Henüz kimse eklenmedi.</span>'}</div>
-    <form class="inline-form" data-form="team-add"><input class="inp" name="name" placeholder="Ad soyad" aria-label="Ekibe kişi ekle" autocomplete="off"><button class="btn" type="submit">${I.plus} Ekle</button></form>`)}
+  ${setCard('Personel', `<p class="hint">${S.people.length} kişi kayıtlı. Kişileri Personel sekmesinden yönetin; Personel Bilgi Formu PDF’inden ya da Excel’den toplu içe aktarabilirsiniz.</p><div class="act-grid"><button type="button" class="btn" data-act="tab" data-tab="personel">${I.idcard} Personel listesi</button><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar</button></div>`)}
+  ${setCard('Gizlilik ve kilit', `<label class="check"><input type="checkbox" data-bind="settings.maskSensitive" ${st.maskSensitive ? 'checked' : ''}> TC kimlik no ve kan grubunu gizli göster</label>
+    ${st.pinHash ? `<div class="toolbar"><span class="pill ok">PIN kilidi açık</span></div><div class="field"><label for="s-lockmin">Arka planda kalınca kilitlen</label><select id="s-lockmin" data-bind="settings.lockMinutes">${[1, 5, 15, 60].map(n => `<option value="${n}" ${+st.lockMinutes === n ? 'selected' : ''}>${n} dakika sonra</option>`).join('')}</select></div><div class="act-grid"><button type="button" class="btn" data-act="lock-now">${I.lock} Şimdi kilitle</button><button type="button" class="btn" data-act="pin-off">Kilidi kaldır</button></div>`
+      : `<form class="sec" data-form="pin-set" style="gap:10px"><p class="hint">Personel kayıtları kişisel veri içerir. Uygulama açılırken PIN sorulsun:</p><div class="row2"><div class="field"><label for="s-pin1">Yeni PIN (4–8 rakam)</label><input id="s-pin1" name="pin1" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div class="field"><label for="s-pin2">PIN tekrar</label><input id="s-pin2" name="pin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div><div><button class="btn btn-primary" type="submit">${I.lock} PIN kilidini aç</button></div></form>`}
+    <p class="hint">PIN, uygulamayı başkasının açmasını engeller. Veriler cihazda şifrelenmeden saklanır; telefonunuzun ekran kilidini de açık tutun.</p>`)}
   ${setCard('Toplantı', `<div class="form-grid"><div class="field"><label for="s-dur">Varsayılan süre</label><select id="s-dur" data-bind="settings.defaultDuration">${[15, 30, 45, 60, 90, 120].map(n => `<option value="${n}" ${+st.defaultDuration === n ? 'selected' : ''}>${n} dk</option>`).join('')}</select></div>
     <div class="field"><label for="s-rem">Varsayılan hatırlatma</label><select id="s-rem" data-bind="settings.defaultReminder">${REMINDERS.map(([v, l]) => `<option value="${v}" ${+st.defaultReminder === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div></div>
     <span class="lbl">Toplantı yerleri</span>
@@ -1322,13 +1683,56 @@ function viewSettings() {
     <div class="act-grid">${hasSamples() ? '<button type="button" class="btn" data-act="sample-clear">Örnekleri temizle</button>' : '<button type="button" class="btn" data-act="sample-load">Örnek verileri yükle</button>'}<button type="button" class="btn btn-danger" data-act="wipe">${I.trash} Tüm verileri sil</button></div>`)}
   <p class="fine" style="text-align:center">Finans360 ${VERSION} · ${ENV.native ? 'Android uygulaması' : ENV.framed ? 'Önizleme' : 'Tarayıcı sürümü'}</p>`;
 }
-const VIEWS = { ozet: viewHome, izin: viewLeaves, toplanti: viewMeetings, takvim: viewCalendar, ayarlar: viewSettings };
+function filteredPeople() {
+  const q = fold(UI.pQ);
+  return S.people.filter(p => (UI.pCo === 'all' || (p.company || '') === UI.pCo) && (!q || fold([p.name, p.title, p.company, p.email, p.phone].join(' ')).includes(q))).sort(byNameTR);
+}
+function personRow(p) {
+  const who = whoOf(p), t = today();
+  const out = S.leaves.some(l => l.person === who && l.status === 'approved' && covers(l, t));
+  const b = balance(undefined, who);
+  const pill = out ? '<span class="pill warn">İzinde</span>' : b.basis === 'probation' ? `<span class="pill" title="İlk yıllık izin hakkının doğacağı tarih">Hak: ${fmt.short(b.next)}</span>` : `<span class="pill ${b.remaining < 0 ? 'bad' : 'ok'}">${fmt.num(b.remaining)} gün</span>`;
+  return `<button type="button" class="row" data-act="person-open" data-id="${p.id}"><span class="avatar" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><span class="row-main"><span class="row-title">${esc(p.name)}${p.id === S.meId ? ' <span class="badge">Siz</span>' : ''}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</span><span class="row-sub">${esc(p.title || 'Ünvan yok')}${UI.pCo === 'all' && companies().length < 2 && p.company ? ` · ${esc(p.company)}` : ''}</span></span><span class="row-end">${pill}</span></button>`;
+}
+function balanceTable(list) {
+  return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ad soyad</th><th>Şirket</th><th>İşe giriş</th><th>Kıdem</th><th class="num">Hak</th><th class="num">Kullanılan</th><th class="num">Planlı</th><th class="num">Bekleyen</th><th class="num">Kalan</th></tr></thead><tbody>${list.map(p => {
+    const b = balance(undefined, whoOf(p));
+    return `<tr><td><button type="button" class="linkish" data-act="person-open" data-id="${p.id}"><b>${esc(p.name)}</b></button></td><td>${esc(p.company || '—')}</td><td class="mono">${p.hireDate ? dmy(p.hireDate) : esc(p.hireYear || '—')}</td><td>${esc(seniorityText(p) || '—')}</td><td class="num">${fmt.num(b.total)}</td><td class="num">${fmt.num(b.used)}</td><td class="num">${fmt.num(b.planned)}</td><td class="num">${fmt.num(b.pending)}</td><td class="num"><b class="${b.remaining < 0 ? 'neg' : ''}">${b.basis === 'probation' ? `0 <span class="muted">(${fmt.short(b.next)})</span>` : fmt.num(b.remaining)}</b></td></tr>`;
+  }).join('')}</tbody></table></div><p class="fine">Hak, İş K. md. 53’e göre kıdem ve yaştan hesaplanır; 1 yılını doldurmayanlarda ilk hakkın doğacağı tarih gösterilir. Kişiye özel hak ve devreden izin kişi kartından girilir.</p>`;
+}
+function peopleListHTML() {
+  const list = filteredPeople();
+  if (!list.length) return `<div class="list"><div class="empty"><p>${S.people.length ? 'Aramanızla eşleşen kişi yok.' : 'Henüz personel kaydı yok.'}</p></div></div>`;
+  if (UI.pView === 'table') return balanceTable(list);
+  if (UI.pCo !== 'all' || companies().length < 2) return `<div class="list">${list.map(personRow).join('')}</div>`;
+  const groups = new Map();
+  for (const p of list) { const c = p.company || ''; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p); }
+  return [...groups].sort((a, b) => (!a[0]) - (!b[0]) || b[1].length - a[1].length || a[0].localeCompare(b[0], 'tr')).map(([c, ps]) => `<h3 class="grp"><span class="tag" style="font:inherit;color:inherit"><i class="dot" style="--c:var(${coColor(c)})"></i>${esc(c || 'Şirket belirtilmemiş')} · ${ps.length}</span></h3><div class="list">${ps.map(personRow).join('')}</div>`).join('');
+}
+function viewPeople() {
+  const cos = companies(), named = cos.filter(c => c[0]), t = today();
+  const outToday = new Set(S.leaves.filter(l => l.status === 'approved' && covers(l, t)).map(l => l.person));
+  const n = S.people.filter(p => outToday.has(whoOf(p))).length;
+  const onlySamples = !S.people.length || S.people.every(p => p.sample);
+  return `
+  <section><p class="eyebrow">Personel</p><h1 class="display h1">Personel</h1><p class="lede">${S.people.length} kişi${named.length ? ` · ${named.length} şirket` : ''}${n ? ` · bugün ${n} kişi izinde` : ''}</p></section>
+  ${onlySamples ? `<article class="card hero-empty"><p class="eyebrow">Personel listesi</p><h2>Personel Bilgi Formlarınızı içe aktarın</h2><p class="muted" style="margin:0">PDF’i seçin: ad, ünvan, işe giriş ve doğum tarihleri, iletişim bilgileri bu cihazda okunur ve izin hakları kıdemden hesaplanır. Excel’den kaydedilmiş CSV de olur.</p><div class="toolbar"><button type="button" class="btn btn-primary btn-sm" data-act="people-import">${I.upload} PDF ya da Excel’den içe aktar</button><button type="button" class="btn btn-sm" data-act="person-new">${I.plus} Kişi ekle</button></div></article>` : ''}
+  <section class="sec">
+    <div class="toolbar">${seg('pView', [['list', 'Liste'], ['table', 'İzin tablosu']])}<label class="search">${I.search}<span class="sr-only">Personelde ara</span><input id="pq" type="search" placeholder="Ad, ünvan, şirket ara" value="${esc(UI.pQ)}" autocomplete="off"></label></div>
+    ${cos.length > 1 ? `<div class="chips" role="group" aria-label="Şirket">${[['all', 'Tümü', S.people.length], ...cos.map(([c, k]) => [c, c || 'Belirtilmemiş', k])].map(([v, l, k]) => `<button type="button" class="chip" data-act="filter" data-key="pCo" data-v="${esc(v)}" aria-pressed="${UI.pCo === v}">${v !== 'all' ? `<i class="dot" style="--c:var(${coColor(v)})"></i>` : ''}${esc(l)} <span class="count">${k}</span></button>`).join('')}</div>` : ''}
+    <div id="peopleList" class="sec">${peopleListHTML()}</div>
+  </section>
+  ${setCard('Personel verisi', `<div class="act-grid"><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar (PDF, Excel)</button><button type="button" class="btn" data-act="people-csv">${I.file} Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="balances-csv">${I.table} İzin bakiyeleri (.csv)</button><button type="button" class="btn" data-act="people-vcf">${I.phone} Rehbere aktar (.vcf)</button></div>
+    <p class="note">${I.lock}<span>Personel kayıtları kişisel veri içerir (KVKK). Yalnızca bu cihazda saklanır; hiçbir sunucuya gönderilmez. Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.</span></p>`)}`;
+}
+const VIEWS = { ozet: viewHome, izin: viewLeaves, toplanti: viewMeetings, takvim: viewCalendar, personel: viewPeople, ayarlar: viewSettings };
 
 function render() {
   $('#tabs').innerHTML = TABS.map(([k, label, icon]) => `<button type="button" class="tab" data-act="tab" data-tab="${k}" ${UI.tab === k ? 'aria-current="page"' : ''}><span class="tab-ico">${icon}</span><span>${label}</span></button>`).join('');
   $('#topDate').textContent = fmt.longDay(today());
+  const gear = $('#gearBtn'); gear.innerHTML = I.gear; if (UI.tab === 'ayarlar') gear.setAttribute('aria-current', 'page'); else gear.removeAttribute('aria-current');
   $('#view').innerHTML = (VIEWS[UI.tab] || viewHome)();
-  const fab = UI.tab === 'izin' ? ['leave-new', 'İzin talebi'] : UI.tab === 'toplanti' ? ['meeting-new', 'Toplantı'] : null;
+  const fab = UI.tab === 'izin' ? ['leave-new', 'İzin talebi'] : UI.tab === 'toplanti' ? ['meeting-new', 'Toplantı'] : UI.tab === 'personel' ? ['person-new', 'Kişi'] : null;
   $('#fabSlot').innerHTML = fab ? `<button type="button" class="fab" data-act="${fab[0]}">${I.plus}<span>${fab[1]}</span></button>` : '';
   for (const s of sheets) refreshSheet(s);
 }
@@ -1388,9 +1792,14 @@ function confirmSheet(o) { openSheet('confirm', o); }
 
 /* --- leave form --- */
 function personOptions(cur) {
-  const names = [...new Set([...S.team, ...S.leaves.map(l => l.person).filter(p => p !== 'me')])];
-  if (cur !== 'me' && cur && !names.includes(cur)) names.unshift(cur);
-  return `<option value="me" ${cur === 'me' ? 'selected' : ''}>Ben${S.profile.name ? ` (${esc(S.profile.name)})` : ''}</option>${names.map(n => `<option value="${esc(n)}" ${cur === n ? 'selected' : ''}>${esc(n)}</option>`).join('')}<option value="__other">Başka biri…</option>`;
+  const others = otherPeople().slice().sort(byNameTR), known = new Set(others.map(p => p.name));
+  const groups = new Map();
+  for (const p of others) { const c = p.company || 'Diğer'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p.name); }
+  const extra = [...new Set(S.leaves.map(l => l.person).filter(n => n !== 'me' && !known.has(n)))];
+  if (cur && cur !== 'me' && !known.has(cur) && !extra.includes(cur)) extra.unshift(cur);
+  const opt = n => `<option value="${esc(n)}" ${cur === n ? 'selected' : ''}>${esc(n)}</option>`;
+  const grouped = [...groups].sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([c, ns]) => (groups.size > 1 ? `<optgroup label="${esc(c)}">${ns.map(opt).join('')}</optgroup>` : ns.map(opt).join(''))).join('');
+  return `<option value="me" ${cur === 'me' ? 'selected' : ''}>Ben${S.profile.name ? ` (${esc(S.profile.name)})` : ''}</option>${grouped}${extra.length ? `<optgroup label="Diğer kayıtlar">${extra.map(opt).join('')}</optgroup>` : ''}<option value="__other">Başka biri…</option>`;
 }
 function renderLeaveForm(s) {
   const l = s.data.draft, isEdit = !!s.data.existing;
@@ -1409,7 +1818,7 @@ function renderLeaveForm(s) {
     <div class="row2" data-show="hours"><div class="field"><label for="lf-st">Başlangıç saati</label><input id="lf-st" name="startTime" type="time" step="300" value="${esc(l.startTime || '14:00')}"></div><div class="field"><label for="lf-et">Bitiş saati</label><input id="lf-et" name="endTime" type="time" step="300" value="${esc(l.endTime || '16:00')}"></div></div>
     <div class="summary" data-summary aria-live="polite"></div>
     <div class="field"><label for="lf-deputy">Vekil (yerinize bakacak kişi)</label><input id="lf-deputy" name="deputy" list="dl-team" value="${esc(l.deputy)}" autocomplete="off"></div>
-    <datalist id="dl-team">${S.team.map(n => `<option value="${esc(n)}">`).join('')}</datalist>
+    <datalist id="dl-team">${S.people.map(p => `<option value="${esc(p.name)}">`).join('')}</datalist>
     <div class="field"><label for="lf-contact">İzinde ulaşılacak telefon / adres</label><input id="lf-contact" name="contact" value="${esc(l.contact)}" autocomplete="off"></div>
     <div class="field"><label for="lf-reason">Açıklama</label><textarea id="lf-reason" name="reason" rows="3">${esc(l.reason)}</textarea></div>
     <div class="field"><label for="lf-note">Karar notu <span class="muted">(amirin onay/ret açıklaması)</span></label><input id="lf-note" name="note" value="${esc(l.note)}" autocomplete="off"></div>
@@ -1431,7 +1840,11 @@ function syncLeaveForm(s, ev) {
   const form = s.el.querySelector('form'); if (!form) return;
   const f = form.elements;
   if (ev && ev.target === f.start && f.end.value && f.end.value < f.start.value) f.end.value = f.start.value;
-  if (ev && ev.target === f.person && !s.data.existing) f.status.value = f.person.value === 'me' ? 'pending' : 'approved';
+  if (ev && ev.target === f.person && !s.data.existing) {
+    f.status.value = f.person.value === 'me' ? 'pending' : 'approved';
+    const pr = f.person.value === 'me' ? mePerson() : findPerson(f.person.value);
+    if (!f.contact.value && pr && pr.phone) f.contact.value = pr.phone;
+  }
   const d = readLeaveForm(form); d.id = s.data.existing || '__draft';
   const show = (k, on) => form.querySelectorAll(`[data-show="${k}"]`).forEach(el => { el.hidden = !on; });
   show('other', f.person.value === '__other'); show('mazeret', d.type === 'mazeret');
@@ -1448,11 +1861,12 @@ function syncLeaveForm(s, ev) {
     const n = leaveDays(d), ret = returnInfo(d);
     html += `<div class="sum-main"><strong>${fmt.num(n)}</strong><span>iş günü</span><span class="muted">· ${dayDiff(d.start, d.end) + 1} takvim günü</span></div>`;
     if (ret) html += `<div>İşe başlama: <b>${fmt.longDay(ret.date)}${ret.half ? ', öğleden sonra' : ''}</b></div>`;
-    if (d.person === 'me' && d.type === 'yillik') {
-      const b = balance(s.data.existing);
+    if (d.type === 'yillik' && d.person && (d.person === 'me' || findPerson(d.person))) {
+      const b = balance(s.data.existing, d.person);
       const after = b.remaining - (d.status === 'approved' || d.status === 'pending' ? n : 0);
-      html += `<div>Yıllık izin bakiyesi: ${fmt.num(b.remaining)} → <b class="${after < 0 ? 'neg' : ''}">${fmt.num(after)} gün</b>${b.pending ? ` <span class="muted">(bekleyen ${fmt.num(b.pending)} gün hariç)</span>` : ''}</div>`;
-      if (after < 0) html += `<p class="note bad">${I.alert}<span>Bakiye yetersiz: ${fmt.num(-after)} gün eksik. Ücretsiz izin ya da devreden izin düşünebilirsiniz.</span></p>`;
+      html += `<div>Yıllık izin bakiyesi${d.person !== 'me' ? ` (${esc(d.person)})` : ''}: ${fmt.num(b.remaining)} → <b class="${after < 0 ? 'neg' : ''}">${fmt.num(after)} gün</b>${b.pending ? ` <span class="muted">(bekleyen ${fmt.num(b.pending)} gün hariç)</span>` : ''}</div>`;
+      if (b.basis === 'probation') html += `<p class="note warn">${I.alert}<span>${esc(personName(d.person))} henüz 1 yılını doldurmadı; ilk yıllık izin hakkı ${fmt.long(b.next)} tarihinde doğar (İş K. md. 53). Ücretsiz izin ya da şirket onayıyla avans izin kullanılabilir.</span></p>`;
+      else if (after < 0) html += `<p class="note bad">${I.alert}<span>Bakiye yetersiz: ${fmt.num(-after)} gün eksik. Ücretsiz izin ya da devreden izin düşünebilirsiniz.</span></p>`;
     }
     if (n === 0) html += `<p class="note warn">${I.alert}<span>Seçilen aralıkta iş günü yok (hafta sonu ya da resmî tatil).</span></p>`;
   }
@@ -1535,8 +1949,9 @@ function newMeetingDraft(o = {}) {
   return { title: '', kind: 'ekip', date, start: fromMin(start), end: fromMin(start + dur), location: '', link: '', participants: [], agenda: [], reminder: +S.settings.defaultReminder || 0, status: 'planned', repeat: 'none', count: 6, ...o };
 }
 function renderMeetingForm(s) {
-  const m = s.data.draft, isEdit = !!s.data.existing, team = S.team;
-  const others = (m.participants || []).filter(p => !team.includes(p));
+  const m = s.data.draft, isEdit = !!s.data.existing;
+  if (!s.data.parts) s.data.parts = (m.participants || []).slice();
+  const cos = companies().filter(c => c[0]);
   return `<form class="sheet-form" data-form="meeting" data-dur="${Math.max(5, toMin(m.end) - toMin(m.start)) || 60}" novalidate>
   ${sheetHead(isEdit ? 'Toplantıyı düzenle' : 'Yeni toplantı', '<button type="submit" class="btn btn-primary btn-sm">Kaydet</button>')}
   <div class="sheet-body">
@@ -1552,8 +1967,10 @@ function renderMeetingForm(s) {
     <datalist id="dl-rooms">${S.settings.rooms.map(r => `<option value="${esc(r)}">`).join('')}</datalist>
     <div class="field"><label for="mf-link">Çevrim içi bağlantı</label><input id="mf-link" name="link" type="url" inputmode="url" value="${esc(m.link)}" placeholder="https://meet.google.com/…" autocomplete="off"></div>
     <fieldset class="field"><legend>Katılımcılar</legend>
-      ${team.length ? `<div class="chips">${team.map(n => `<button type="button" class="chip" data-act="toggle-chip" data-name="${esc(n)}" aria-pressed="${m.participants.includes(n)}">${esc(n)}</button>`).join('')}</div>` : '<p class="hint">Ekip listesini Ayarlar’dan ekleyebilirsiniz.</p>'}
-      <input class="inp" name="others" aria-label="Diğer katılımcılar" value="${esc(others.join(', '))}" placeholder="Diğer katılımcılar (virgülle ayırın)" autocomplete="off">
+      <div class="chips" data-parts>${partsHTML(s)}</div>
+      <div class="inline-form"><input class="inp" name="partAdd" list="dl-people" placeholder="İsim yazın, listeden seçin" aria-label="Katılımcı ekle" autocomplete="off"><button type="button" class="btn" data-act="part-add">${I.plus} Ekle</button></div>
+      <datalist id="dl-people">${otherPeople().slice().sort(byNameTR).map(p => `<option value="${esc(p.name)}">${esc([p.title, p.company].filter(Boolean).join(' · '))}</option>`).join('')}</datalist>
+      ${cos.length > 1 && cos.length <= 10 ? `<div class="chips">${cos.map(([c, n]) => `<button type="button" class="chip" data-act="part-co" data-co="${esc(c)}"><i class="dot" style="--c:var(${coColor(c)})"></i>+ ${esc(c)} <span class="count">${n}</span></button>`).join('')}</div>` : ''}
     </fieldset>
     <div class="field"><label for="mf-agenda">Gündem <span class="muted">(her satıra bir madde)</span></label><textarea id="mf-agenda" name="agenda" rows="4">${esc(m.agenda.map(a => a.text).join('\n'))}</textarea></div>
     <div class="row2"><div class="field"><label for="mf-rem">Hatırlatma</label><select id="mf-rem" name="reminder">${REMINDERS.map(([v, lb]) => `<option value="${v}" ${+m.reminder === v ? 'selected' : ''}>${lb}</option>`).join('')}</select></div>
@@ -1562,13 +1979,25 @@ function renderMeetingForm(s) {
     ${isEdit ? '' : `<div class="field" data-show="count" hidden><label for="mf-count">Kaç toplantı oluşturulsun</label><input id="mf-count" name="count" type="number" min="2" max="26" value="${esc(m.count || 6)}" inputmode="numeric"></div>`}
   </div></form>`;
 }
+function partsHTML(s) {
+  return s.data.parts.length ? s.data.parts.map(n => `<span class="namechip">${esc(n)}<button type="button" data-act="part-del" data-name="${esc(n)}" aria-label="${esc(n)} katılımcısını çıkar">${I.x}</button></span>`).join('') : '<span class="fine">Henüz katılımcı yok.</span>';
+}
+function addParts(s, names) {
+  for (const raw of names) {
+    const n = clean(raw); if (!n) continue;
+    const p = findPerson(n), name = p ? p.name : n;
+    if (p && p.id === S.meId) continue;
+    if (!s.data.parts.some(x => fold(x) === fold(name))) s.data.parts.push(name);
+  }
+  const box = s.el.querySelector('[data-parts]'); if (box) box.innerHTML = partsHTML(s);
+  syncMeetingForm(s);
+}
 function readMeetingForm(form) {
-  const f = form.elements;
-  const chips = $$('[data-act="toggle-chip"][aria-pressed="true"]', form).map(b => b.dataset.name);
-  const others = f.others.value.split(',').map(x => x.trim()).filter(Boolean);
+  const f = form.elements, s = sheetOf(form);
+  const pending = f.partAdd ? f.partAdd.value.split(',').map(clean).filter(Boolean) : [];
   return {
     title: f.title.value.trim(), kind: f.kind.value, date: f.date.value, start: f.start.value, end: f.end.value,
-    location: f.location.value.trim(), link: f.link.value.trim(), participants: [...new Set([...chips, ...others])],
+    location: f.location.value.trim(), link: f.link.value.trim(), participants: [...new Set([...(s && s.data.parts ? s.data.parts : []), ...pending])],
     agendaLines: f.agenda.value.split('\n').map(x => x.trim()).filter(Boolean), reminder: +f.reminder.value || 0,
     status: f.status ? f.status.value : 'planned', repeat: f.repeat ? f.repeat.value : 'none', count: f.count ? Math.max(2, Math.min(26, +f.count.value || 2)) : 1
   };
@@ -1617,6 +2046,7 @@ function renderMeetingDetail(s) {
   if (!m) return sheetHead('Toplantı') + '<div class="sheet-body"><p>Bu toplantı silinmiş.</p></div>';
   const k = KINDS[m.kind] || KINDS.diger, link = safeUrl(m.link), live = isLive(m);
   const owners = [...new Set([S.profile.name, ...m.participants].filter(Boolean))];
+  const pOf = n => findPerson(n);
   const onLeave = new Set(S.leaves.filter(l => activeLeave(l) && covers(l, m.date) && l.person !== 'me').map(l => lowerTR(l.person)));
   return `${sheetHead('Toplantı', `<button type="button" class="icon-btn" data-act="meeting-edit" data-id="${m.id}" aria-label="Düzenle">${I.edit}</button>`)}
   <div class="sheet-body">
@@ -1632,7 +2062,7 @@ function renderMeetingDetail(s) {
       <div class="list checklist">${m.agenda.map(a => `<div class="ck"><button type="button" class="checkbtn" data-act="agenda-toggle" data-mid="${m.id}" data-aid="${a.id}" aria-pressed="${!!a.done}" aria-label="Görüşüldü olarak işaretle">${I.check}</button><span class="${a.done ? 'done-text' : ''}">${esc(a.text)}</span><button type="button" class="x" data-act="agenda-del" data-mid="${m.id}" data-aid="${a.id}" aria-label="Maddeyi sil">${I.x}</button></div>`).join('') || '<div class="empty"><p>Gündem maddesi yok.</p></div>'}</div>
       <form class="inline-form" data-form="agenda-add" data-mid="${m.id}"><input class="inp" name="text" placeholder="Gündem maddesi ekle" aria-label="Gündem maddesi" autocomplete="off"><button class="btn" type="submit">${I.plus} Ekle</button></form></section>
     <section class="sec"><div class="sec-head"><h4 class="sec-title">Katılım</h4><span class="fine">Dokunarak işaretleyin</span></div>
-      ${m.participants.length ? `<div class="chips">${m.participants.map(p => `<button type="button" class="att" data-act="attend" data-mid="${m.id}" data-name="${esc(p)}" data-v="${m.attendance[p] || ''}"><span class="av">${esc(initials(p))}</span>${esc(p)}<span class="muted">${m.attendance[p] === 'yes' ? '· katıldı' : m.attendance[p] === 'no' ? '· katılmadı' : onLeave.has(lowerTR(p)) ? '· izinli' : ''}</span></button>`).join('')}</div>` : '<p class="fine">Katılımcı eklenmedi.</p>'}</section>
+      ${m.participants.length ? `<div class="chips">${m.participants.map(p => `<button type="button" class="att" data-act="attend" data-mid="${m.id}" data-name="${esc(p)}" data-v="${m.attendance[p] || ''}"><span class="av" style="${pOf(p) ? `background:var(${coColor(pOf(p).company)});color:var(--surface)` : ''}">${esc(initials(p))}</span>${esc(p)}<span class="muted">${m.attendance[p] === 'yes' ? '· katıldı' : m.attendance[p] === 'no' ? '· katılmadı' : onLeave.has(lowerTR(p)) ? '· izinli' : ''}</span></button>`).join('')}</div>` : '<p class="fine">Katılımcı eklenmedi.</p>'}</section>
     <section class="sec"><div class="sec-head"><h4 class="sec-title">Notlar ve tutanak</h4><span class="fine" data-saved>Otomatik kaydedilir</span></div>
       <textarea class="notes-area" data-act-input="notes" data-mid="${m.id}" aria-label="Toplantı notları" placeholder="Görüşülenleri buraya yazın">${esc(m.notes)}</textarea></section>
     <section class="sec"><div class="sec-head"><h4 class="sec-title">Kararlar ve aksiyonlar</h4><span class="fine">${m.actions.filter(a => !a.done).length} açık</span></div>
@@ -1641,6 +2071,7 @@ function renderMeetingDetail(s) {
         <div class="inline-form"><select class="inp" name="owner" aria-label="Sorumlu"><option value="">Sorumlu</option>${owners.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select><input class="inp" type="date" name="due" aria-label="Termin"><button class="btn" type="submit">${I.plus} Ekle</button></div></form></section>
     <section class="sec"><h4 class="sec-title">Paylaş ve dışa aktar</h4><div class="act-grid">
       <button type="button" class="btn" data-act="meeting-invite" data-id="${m.id}">${I.msg} Davet metni</button>
+      ${(() => { const mails = [...new Set(m.participants.map(n => (findPerson(n) || {}).email).filter(Boolean))]; return mails.length ? `<a class="btn" href="${esc(`mailto:${mails.join(',')}?subject=${encodeURIComponent(m.title)}&body=${encodeURIComponent(meetingInvite(m))}`)}">${I.mail} E-posta daveti (${mails.length})</a>` : ''; })()}
       <button type="button" class="btn" data-act="meeting-minutes" data-id="${m.id}">${I.file} Tutanak</button>
       <button type="button" class="btn" data-act="meeting-ics" data-id="${m.id}">${I.download} Takvim dosyası</button>
       <a class="btn" href="${esc(gcalMeeting(m))}" target="_blank" rel="noopener">${I.cal} Google Takvim</a></div></section>
@@ -1696,6 +2127,172 @@ function renderRestore() {
     <div><button type="button" class="btn btn-primary" data-act="restore-text">${I.upload} Metinden yükle</button></div>
   </div>`;
 }
+function renderPerson(s) {
+  const p = S.people.find(x => x.id === s.data.id);
+  if (!p) return sheetHead('Personel') + '<div class="sheet-body"><p>Bu kayıt silinmiş.</p></div>';
+  const isMe = p.id === S.meId, who = isMe ? 'me' : p.name, t = today(), b = balance(undefined, who);
+  const show = !!s.data.reveal || !S.settings.maskSensitive, ph = phoneTR(p.phone);
+  const onLeave = S.leaves.some(l => l.person === who && l.status === 'approved' && covers(l, t));
+  const kv = (k, v) => (v ? `<div><dt>${k}</dt><dd>${v}</dd></div>` : '');
+  const leaves = S.leaves.filter(l => l.person === who && activeLeave(l) && l.end >= t).sort((a, c) => a.start.localeCompare(c.start)).slice(0, 4);
+  const meets = S.meetings.filter(m => m.status === 'planned' && mEnd(m) >= Date.now() && m.participants.some(n => fold(n) === fold(p.name))).sort(byStart).slice(0, 3);
+  const age = ageOf(p, t), sen = seniorityText(p);
+  return `${sheetHead('Personel', `<button type="button" class="icon-btn" data-act="person-edit" data-id="${p.id}" aria-label="Düzenle">${I.edit}</button>`)}
+  <div class="sheet-body">
+    <div class="detail-hero"><div class="person-hero"><span class="avatar lg" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><div><h3 class="dh-title">${esc(p.name)}${isMe ? ' <span class="badge">Siz</span>' : ''}${p.sample ? ' <span class="tag-sample">örnek</span>' : ''}</h3><p class="dh-sub">${esc([p.title, p.company].filter(Boolean).join(' · ') || 'Ünvan ve şirket yok')}</p>${onLeave ? '<p><span class="pill warn">Bugün izinde</span></p>' : ''}</div></div></div>
+    ${ph.ok || p.email ? `<div class="contact-row">${ph.ok ? `<a class="btn" href="tel:+${ph.digits}">${I.call} Ara</a><a class="btn" href="https://wa.me/${ph.digits}" target="_blank" rel="noopener">${I.msg} WhatsApp</a>` : ''}${p.email ? `<a class="btn" href="mailto:${esc(p.email)}">${I.mail} E-posta</a>` : ''}<button type="button" class="btn" data-act="person-vcf" data-id="${p.id}">${I.download} Rehbere ekle</button></div>` : ''}
+    ${noteList(personFlags(p).map(f => ['warn', f]))}
+    <section class="sec"><div class="sec-head"><h4 class="sec-title">Yıllık izin</h4><button type="button" class="sec-link" data-act="leave-new" data-person="${esc(who)}">İzin ekle</button></div>
+      <dl class="kv-list">${kv('Bu dönem hak', `${fmt.num(b.total)} gün`)}${kv('Kullanılan', `${fmt.num(b.used)} gün`)}${b.planned || b.pending ? kv('Planlı / bekleyen', `${fmt.num(b.planned)} / ${fmt.num(b.pending)} gün`) : ''}${kv('Kalan', `<b class="${b.remaining < 0 ? 'neg' : ''}">${fmt.num(b.remaining)} gün</b>`)}${kv('Dayanak', esc(basisText(b)))}${b.next && b.basis === 'law' ? kv('Sonraki hak', `${fmt.long(b.next)} · ${b.nextEnt} gün`) : ''}</dl>
+      ${leaves.length ? `<div class="list">${leaves.map(leaveRow).join('')}</div>` : ''}</section>
+    ${meets.length ? `<section class="sec"><h4 class="sec-title">Yaklaşan toplantılar</h4><div class="list">${meets.map(m => meetingRow(m, true)).join('')}</div></section>` : ''}
+    <section class="sec"><h4 class="sec-title">Bilgiler</h4><dl class="kv-list">
+      ${kv('Şirket', esc(p.company))}${kv('Ünvan', esc(p.title))}
+      ${kv('İşe giriş', p.hireDate ? `${fmt.long(p.hireDate)}${sen ? ` · ${esc(sen)}` : ''}` : esc(p.hireYear ? `${p.hireYear} (tam tarih yok)` : ''))}
+      ${kv('Doğum tarihi', p.birthDate ? `${fmt.long(p.birthDate)}${age != null ? ` · ${age} yaş` : ''}` : esc(p.birthYear ? `${p.birthYear}` : ''))}
+      ${kv('Doğum yeri', esc(p.birthPlace))}${kv('Cep telefonu', esc(p.phone))}${kv('E-posta', esc([p.email, p.email2].filter(Boolean).join('\n')))}${kv('Adres', esc(p.address))}
+      ${kv('Eğitim', esc([p.education, p.gradDate].filter(Boolean).join(' · ')))}${kv('Diller', esc(p.languages))}${kv('Medeni hali', esc(p.marital))}${kv('Çocuk sayısı', esc(p.children))}${kv('İlgi alanları', esc(p.interests))}${kv('Notlar', esc(p.notes))}
+    </dl></section>
+    ${p.tc || p.blood ? `<section class="sec"><div class="sec-head"><h4 class="sec-title">Hassas bilgiler</h4>${S.settings.maskSensitive ? `<button type="button" class="sec-link" data-act="person-reveal">${show ? 'Gizle' : 'Göster'}</button>` : ''}</div>
+      <dl class="kv-list">${kv('TC kimlik no', p.tc ? `<span class="mono">${esc(show ? p.tc : maskTC(p.tc))}</span>${show ? (tcValid(p.tc) ? ' <span class="pill ok">geçerli</span>' : ' <span class="pill bad">doğrulanamadı</span>') : ''}` : '')}${kv('Kan grubu', p.blood ? esc(show ? p.blood : '•••') : '')}</dl>
+      <p class="hint">Kan grubu sağlık verisidir (KVKK md. 6); yalnızca acil durumlar için saklayın.</p></section>` : ''}
+    <div class="act-grid"><button type="button" class="btn" data-act="person-doc" data-id="${p.id}">${I.file} Personel bilgi formu</button>${isMe ? '' : `<button type="button" class="btn" data-act="person-me" data-id="${p.id}">${I.idcard} Bu benim</button>`}<button type="button" class="btn btn-danger" data-act="person-delete" data-id="${p.id}">${I.trash} Kişiyi sil</button></div>
+    <p class="fine">${esc(p.source || '')}</p>
+  </div>`;
+}
+function renderPersonForm(s) {
+  const p = s.data.draft, isEdit = !!s.data.existing;
+  const f = (k, label, type = 'text', extra = '') => `<div class="field"><label for="pf-${k}">${label}</label><input id="pf-${k}" name="${k}" type="${type}" value="${esc(p[k])}" autocomplete="off" ${extra}></div>`;
+  const sel = (k, label, opts) => `<div class="field"><label for="pf-${k}">${label}</label><select id="pf-${k}" name="${k}">${opts.map(o => `<option value="${esc(o)}" ${p[k] === o ? 'selected' : ''}>${esc(o || '—')}</option>`).join('')}</select></div>`;
+  const bloods = ['', '0 Rh+', '0 Rh−', 'A Rh+', 'A Rh−', 'B Rh+', 'B Rh−', 'AB Rh+', 'AB Rh−']; if (p.blood && !bloods.includes(p.blood)) bloods.push(p.blood);
+  const mar = ['', 'Bekar', 'Evli', 'Nişanlı', 'Boşanmış', 'Dul']; if (p.marital && !mar.includes(p.marital)) mar.push(p.marital);
+  return `<form class="sheet-form" data-form="person" novalidate>${sheetHead(isEdit ? 'Kişiyi düzenle' : 'Yeni kişi', '<button type="submit" class="btn btn-primary btn-sm">Kaydet</button>')}
+  <div class="sheet-body"><p class="form-err" role="alert" hidden></p>
+    <section class="sec"><h4 class="sec-title">Kimlik ve görev</h4><div class="form-grid">${f('firstName', 'Adı')}${f('lastName', 'Soyadı')}<div class="field"><label for="pf-company">Şirket</label><input id="pf-company" name="company" list="dl-co" value="${esc(p.company)}" autocomplete="off"></div>${f('title', 'Ünvan')}${f('hireDate', 'İşe başlama tarihi', 'date')}${f('birthDate', 'Doğum tarihi', 'date')}${f('birthPlace', 'Doğum yeri')}</div>
+      <datalist id="dl-co">${companies().map(c => c[0]).filter(Boolean).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
+      ${!p.hireDate && p.hireYear ? `<p class="note warn">${I.alert}<span>Kaynakta işe giriş yalnızca yıl olarak var (${esc(p.hireYear)}). İzin hakkı için tam tarihi girin.</span></p>` : ''}</section>
+    <section class="sec"><h4 class="sec-title">İletişim</h4><div class="form-grid">${f('phone', 'Cep telefonu', 'tel', 'inputmode="tel"')}${f('email', 'E-posta', 'email', 'inputmode="email"')}${f('email2', 'İkinci e-posta', 'email', 'inputmode="email"')}</div><div class="field"><label for="pf-address">Adres</label><textarea id="pf-address" name="address" rows="2">${esc(p.address)}</textarea></div></section>
+    <section class="sec"><h4 class="sec-title">Eğitim ve diğer</h4><div class="form-grid">${f('education', 'Mezuniyet')}${f('gradDate', 'Mezuniyet tarihi')}${f('languages', 'Diller')}${sel('marital', 'Medeni hali', mar)}${f('children', 'Çocuk sayısı', 'text', 'inputmode="numeric"')}</div><div class="field"><label for="pf-interests">İlgi alanları / yetenekler</label><textarea id="pf-interests" name="interests" rows="2">${esc(p.interests)}</textarea></div></section>
+    <section class="sec"><h4 class="sec-title">Yıllık izin</h4><div class="form-grid">${f('entitlementOverride', 'Yıllık hak (boşsa kanuna göre)', 'text', 'inputmode="decimal"')}${f('carryOver', 'Devreden izin (gün)', 'text', 'inputmode="decimal"')}</div></section>
+    <section class="sec"><h4 class="sec-title">Hassas bilgiler</h4><div class="form-grid">${f('tc', 'TC kimlik no', 'text', 'inputmode="numeric" maxlength="11"')}${sel('blood', 'Kan grubu', bloods)}</div><p class="hint" data-tc-hint></p></section>
+    <div class="field"><label for="pf-notes">Notlar</label><textarea id="pf-notes" name="notes" rows="2">${esc(p.notes)}</textarea></div>
+  </div></form>`;
+}
+function syncPersonForm(s) {
+  const form = s.el.querySelector('form'), h = form && form.querySelector('[data-tc-hint]'); if (!h) return;
+  const v = form.elements.tc.value.replace(/\D/g, '');
+  h.textContent = !v ? '' : v.length < 11 ? `${v.length}/11 hane` : tcValid(v) ? 'TC kimlik numarası geçerli görünüyor.' : 'TC kimlik numarası doğrulanamadı; rakamları kontrol edin.';
+}
+function submitPerson(form, s) {
+  const f = form.elements, d = {}, err = form.querySelector('.form-err');
+  for (const k of ['firstName', 'lastName', 'company', 'title', 'hireDate', 'birthDate', 'birthPlace', 'phone', 'email', 'email2', 'address', 'education', 'gradDate', 'languages', 'marital', 'children', 'interests', 'entitlementOverride', 'carryOver', 'tc', 'blood', 'notes']) d[k] = f[k] ? f[k].value.trim() : '';
+  d.firstName = nameCase(d.firstName); d.lastName = nameCase(d.lastName);
+  d.name = [d.firstName, d.lastName].filter(Boolean).join(' ');
+  if (!d.name) { err.textContent = 'Adı yazın.'; err.hidden = false; err.scrollIntoView({ block: 'nearest' }); return; }
+  const dup = S.people.find(x => x.id !== s.data.existing && fold(x.name) === fold(d.name));
+  if (dup) { err.textContent = `${dup.name} zaten kayıtlı.`; err.hidden = false; err.scrollIntoView({ block: 'nearest' }); return; }
+  const ph = phoneTR(d.phone); if (ph.ok) d.phone = ph.text;
+  d.tc = d.tc.replace(/\D/g, ''); d.children = d.children.replace(/\D/g, ''); d.carryOver = parseFloat(d.carryOver.replace(',', '.')) || 0;
+  d.email = d.email.toLowerCase(); d.email2 = d.email2.toLowerCase();
+  let p;
+  if (s.data.existing) {
+    p = S.people.find(x => x.id === s.data.existing); if (!p) return;
+    const old = p.name; Object.assign(p, d);
+    if (d.hireDate) p.hireYear = ''; if (d.birthDate) p.birthYear = '';
+    p.sample = false; renamePersonRefs(old, p.name);
+    if (p.id === S.meId) syncMeToProfile();
+  } else { p = { ...blankPerson(), ...d, id: uid(), source: 'Elle eklendi' }; S.people.push(p); }
+  persist(); render();
+  if (s.data.fromDetail) { swapSheet(s, 'person', { id: p.id }); toast('Kişi güncellendi'); }
+  else closeTo(sheets.indexOf(s), () => toast(`${p.name} eklendi`));
+}
+function renderImport() {
+  return `${sheetHead('Personel içe aktar')}<div class="sheet-body">
+    <label class="drop" for="peopleFile">${I.upload}<b>Dosya seçin</b><span class="hint">Personel Bilgi Formu (PDF), Excel’den “CSV” olarak kaydedilmiş liste ya da Finans360 personel dosyası (JSON)</span></label>
+    <input id="peopleFile" type="file" accept=".pdf,.csv,.txt,.json,application/pdf,text/csv,application/json" hidden>
+    <p class="hint" data-import-status aria-live="polite"></p>
+    <p class="note">${I.lock}<span>Dosya bu cihazda okunur ve hiçbir sunucuya gönderilmez. PDF okuyucu, uygulamaya gömülü değilse ilk kullanımda internetten yüklenir. Kaydetmeden önce okunan kişileri gözden geçirirsiniz.</span></p>
+    <details><summary class="sec-title">Excel’den nasıl aktarılır?</summary><div class="sec" style="margin-top:10px"><p class="hint">İlk satır başlık olmalı: ${esc(CSV_COLS.slice(0, 12).map(c => c[0]).join('; '))} … Tarihler 01.03.2026 biçiminde yazılabilir. Excel’de Dosya › Farklı Kaydet › “CSV UTF-8” seçin.</p><div><button type="button" class="btn btn-sm" data-act="people-template">${I.download} Boş şablonu indir</button></div></div></details>
+  </div>`;
+}
+function renderImportPreview(s) {
+  const recs = s.data.records;
+  const isKnown = r => S.people.some(p => (r.tc && tcValid(r.tc) && p.tc === r.tc) || fold(p.name) === fold(r.name));
+  const newC = recs.filter(r => !isKnown(r)).length;
+  const cos = [...recs.reduce((m, r) => (r.company ? m.set(r.company, (m.get(r.company) || 0) + 1) : m), new Map())];
+  const flagged = recs.map(r => [r, personFlags(r)]).filter(x => x[1].length);
+  const guess = recs.find(r => S.profile.name && !S.profileSample && fold(r.name) === fold(S.profile.name));
+  return `<form class="sheet-form" data-form="import-people" novalidate>${sheetHead('İçe aktarmayı onayla', '<button type="submit" class="btn btn-primary btn-sm">İçe aktar</button>')}
+  <div class="sheet-body">
+    <div class="summary"><div class="sum-main"><strong>${recs.length}</strong><span>kişi okundu</span><span class="muted">· ${esc(s.data.source)}</span></div><div>${newC} yeni kayıt${recs.length - newC ? `, ${recs.length - newC} mevcut kaydın güncellemesi` : ''}.</div></div>
+    ${cos.length ? `<fieldset class="field"><legend>Şirket adları</legend><p class="hint">E-posta alan adlarından çıkarıldı. Yanlışsa düzeltin; aynı adı yazdığınız şirketler birleşir.</p><div class="sec" style="gap:8px">${cos.map(([c, n]) => `<div class="inline-form"><input class="inp" data-co-key="${esc(c)}" value="${esc(c)}" aria-label="${esc(c)} şirket adı"><span class="pill">${n} kişi</span></div>`).join('')}</div></fieldset>` : ''}
+    <div class="field"><label for="imp-me">Bu kişilerden biri siz misiniz?</label><select id="imp-me" name="me"><option value="">Hayır / sonra seçerim</option>${recs.slice().sort(byNameTR).map(r => `<option value="${esc(r.name)}" ${guess && guess.name === r.name ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select><p class="hint">Seçerseniz profiliniz, izin hakkınız ve formlarınız bu kayıttan doldurulur.</p></div>
+    ${hasSamples() ? '<label class="check"><input type="checkbox" name="clearSamples" checked> Örnek verileri temizle</label>' : ''}
+    <section class="sec"><h4 class="sec-title">Okunan kişiler</h4><div class="list">${recs.map(r => { const n = personFlags(r).length; return `<div class="row"><span class="avatar" style="--c:var(${coColor(r.company)})">${esc(initials(r.name))}</span><span class="row-main"><span class="row-title">${esc(r.name)}</span><span class="row-sub">${esc([r.title, r.company].filter(Boolean).join(' · ') || '—')}</span></span><span class="row-end">${isKnown(r) ? '<span class="pill info">güncelleme</span>' : ''}${n ? `<span class="pill warn">${n} uyarı</span>` : ''}</span></div>`; }).join('')}</div></section>
+    ${flagged.length ? `<details><summary class="sec-title">Kontrol edilmesi gerekenler (${flagged.length})</summary><div class="notes" style="margin-top:10px">${flagged.map(([r, f]) => `<p class="note warn">${I.alert}<span><b>${esc(r.name)}:</b> ${esc(f.join(' '))}</span></p>`).join('')}</div></details>` : ''}
+    <p class="note">${I.lock}<span>Kayıtlar yalnızca bu cihazda saklanır. TC kimlik no ve kan grubu varsayılan olarak gizli gösterilir; Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.</span></p>
+  </div></form>`;
+}
+async function handleImportFile(file, s) {
+  const st = s && s.el.querySelector('[data-import-status]');
+  const say = t => { if (st) st.textContent = t; };
+  try {
+    const name = lowerTR(file.name || ''), isPdf = /\.pdf$/.test(name) || file.type === 'application/pdf';
+    let recs = [], source = '';
+    if (isPdf) {
+      say('PDF okuyucu hazırlanıyor…');
+      const r = await parsePbfPdf(file, (i, n) => say(`Sayfa ${i}/${n} okunuyor…`));
+      recs = r.records; source = `PDF, ${r.pages} sayfa`;
+      if (!recs.length) throw new Error('Bu PDF’te Personel Bilgi Formu bulunamadı. Taranmış (resim) PDF’ler okunamaz; Excel’den CSV deneyin.');
+    } else {
+      const text = await file.text();
+      if (/^\s*[{[]/.test(text)) {
+        const o = JSON.parse(text);
+        if (o && Array.isArray(o.leaves) && Array.isArray(o.meetings)) { closeTo(sheets.indexOf(s), () => restoreFrom(text)); return; }
+        const arr = Array.isArray(o) ? o : o && o.people;
+        if (!Array.isArray(arr)) throw new Error('Bu JSON dosyası personel listesi içermiyor.');
+        recs = arr.filter(Boolean).map(normalizePerson).filter(x => x.name); source = 'JSON';
+      } else {
+        recs = csvToRecords(text); source = 'CSV';
+        if (!recs.length) throw new Error('CSV’de kişi bulunamadı. İlk satırda “Adı” ya da “Ad Soyad” başlığı olmalı.');
+      }
+    }
+    recs.forEach(r => { if (!r.source) r.source = `İçe aktarıldı: ${file.name || source} (${fmt.long(today())})`; });
+    swapSheet(s, 'importPreview', { records: prepareImport(recs), source });
+  } catch (e) { console.warn(e); say(e && e.message ? e.message : 'Dosya okunamadı.'); }
+}
+function submitImport(form, s) {
+  const ren = {};
+  $$('[data-co-key]', form).forEach(i => { const v = clean(i.value); if (v && v !== i.dataset.coKey) ren[i.dataset.coKey] = v; });
+  const recs = s.data.records.map(r => ({ ...r, company: ren[r.company] || r.company }));
+  for (const r of recs) if (r.company && r.email && !isFreeMail(r.email)) S.settings.companyMap[r.email.split('@')[1]] = r.company;
+  if (form.elements.clearSamples && form.elements.clearSamples.checked) clearSamples(true);
+  const res = mergePeople(recs);
+  const meName = form.elements.me.value;
+  if (meName) { const p = findPerson(meName); if (p) setMe(p.id); }
+  persist();
+  closeTo(sheets.indexOf(s), () => { UI.pCo = 'all'; goTab('personel'); toast(`${res.added} kişi eklendi${res.updated ? `, ${res.updated} kişi güncellendi` : ''}`, null, 5000); });
+}
+
+/* ================= app lock ================= */
+let locked = false, hiddenAt = 0;
+async function pinHash(pin) {
+  const data = new TextEncoder().encode('finans360:' + pin);
+  try { if (window.crypto && crypto.subtle) { const h = await crypto.subtle.digest('SHA-256', data); return 's256:' + [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); } } catch (e) { /* fall back below */ }
+  let h = 2166136261; for (const b of data) { h ^= b; h = Math.imul(h, 16777619); }
+  return 'fnv:' + (h >>> 0).toString(16);
+}
+function showLock(mode) {
+  locked = true; document.body.classList.add('locked');
+  const el = $('#lock'), logo = ($('.brand svg') || {}).outerHTML || '';
+  el.hidden = false;
+  el.innerHTML = mode === 'forgot'
+    ? `<div class="lock-box">${logo}<h1>PIN’i sıfırla</h1><p class="muted">PIN unutulduysa tek yol bu cihazdaki tüm Finans360 verilerini silmektir. Yedeğiniz varsa sonra Ayarlar › Yedekten yükle ile geri alabilirsiniz.</p><button type="button" class="btn btn-danger btn-block" data-act="pin-wipe">Tüm verileri sil ve sıfırla</button><button type="button" class="btn btn-quiet" data-act="pin-back">Geri dön</button></div>`
+    : `<form class="lock-box" data-form="unlock" novalidate>${logo}<h1>Finans360</h1><p class="muted">Devam etmek için PIN’inizi girin.</p><input id="pinInput" type="password" name="pin" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="PIN"><p class="form-err" role="alert" hidden></p><button class="btn btn-primary btn-block" type="submit">Kilidi aç</button><button type="button" class="btn btn-quiet" data-act="pin-forgot">PIN’imi unuttum</button></form>`;
+  setTimeout(() => { const i = $('#pinInput'); if (i) i.focus(); }, 60);
+}
+function hideLock() { locked = false; document.body.classList.remove('locked'); const el = $('#lock'); el.hidden = true; el.innerHTML = ''; }
+
 const SHEETS = {
   leaveForm: { label: s => (s.data.existing ? 'İzni düzenle' : 'Yeni izin talebi'), render: renderLeaveForm, mount: s => syncLeaveForm(s), static: true },
   leave: { label: () => 'İzin ayrıntısı', render: renderLeaveDetail },
@@ -1704,7 +2301,11 @@ const SHEETS = {
   text: { label: s => s.data.title, render: renderText, static: true },
   doc: { label: s => s.data.title, render: renderDoc, static: true },
   confirm: { label: s => s.data.title, render: renderConfirm, cls: 'sheet-sm', static: true },
-  restore: { label: () => 'Yedekten yükle', render: renderRestore, cls: 'sheet-sm', static: true }
+  restore: { label: () => 'Yedekten yükle', render: renderRestore, cls: 'sheet-sm', static: true },
+  person: { label: () => 'Personel', render: renderPerson },
+  personForm: { label: s => (s.data.existing ? 'Kişiyi düzenle' : 'Yeni kişi'), render: renderPersonForm, mount: s => syncPersonForm(s), static: true },
+  import: { label: () => 'Personel içe aktar', render: renderImport, cls: 'sheet-sm', static: true },
+  importPreview: { label: () => 'İçe aktarmayı onayla', render: renderImportPreview, static: true }
 };
 
 /* ================= actions ================= */
@@ -1730,7 +2331,11 @@ const A = {
   'banner-hide': () => { UI.bannerHidden = true; render(); },
   'filter': el => { UI[el.dataset.key] = el.dataset.v; saveUI(); render(); },
 
-  'leave-new': el => openSheet('leaveForm', { draft: newLeaveDraft(el.dataset.start ? { start: el.dataset.start, end: el.dataset.end || el.dataset.start } : {}) }),
+  'leave-new': el => {
+    const o = el.dataset.start ? { start: el.dataset.start, end: el.dataset.end || el.dataset.start } : {};
+    if (el.dataset.person) { o.person = el.dataset.person; o.status = el.dataset.person === 'me' ? 'pending' : 'approved'; const pr = el.dataset.person === 'me' ? mePerson() : findPerson(el.dataset.person); o.contact = (pr && pr.phone) || (el.dataset.person === 'me' ? S.profile.phone : '') || ''; }
+    openSheet('leaveForm', { draft: newLeaveDraft(o) });
+  },
   'leave-open': el => openSheet('leave', { id: el.dataset.id }),
   'leave-edit': el => { const l = findLeave(el.dataset.id); if (l) swapSheet(sheetOf(el), 'leaveForm', { draft: clone(l), existing: l.id, fromDetail: true }); },
   'leave-status': el => { const l = findLeave(el.dataset.id); if (!l || l.status === el.dataset.v) return; l.status = el.dataset.v; l.history.push({ at: nowISO(), text: `Durum: ${STATUS[l.status][0]}` }); afterChange(sheetOf(el)); toast(`Durum: ${STATUS[l.status][0]}`); },
@@ -1760,7 +2365,9 @@ const A = {
   'meeting-minutes': el => { const m = findMeeting(el.dataset.id); if (m) openSheet('doc', { title: 'Toplantı tutanağı', html: minutesDocHTML(m), text: minutesText(m), file: `tutanak-${m.date}.html` }); },
   'meeting-ics': el => { const m = findMeeting(el.dataset.id); if (m) saveFile(`toplanti-${m.date}.ics`, 'text/calendar', icsWrap([icsMeeting(m)])); },
   'dur': el => { const form = el.closest('form'); const f = form.elements; if (!isTime(f.start.value)) return; form.dataset.dur = el.dataset.min; f.end.value = fromMin(toMin(f.start.value) + +el.dataset.min); syncMeetingForm(sheetOf(el)); },
-  'toggle-chip': el => { el.setAttribute('aria-pressed', String(el.getAttribute('aria-pressed') !== 'true')); syncMeetingForm(sheetOf(el)); },
+  'part-add': el => { const s = sheetOf(el), inp = s && s.el.querySelector('[name="partAdd"]'); if (!inp) return; addParts(s, inp.value.split(',')); inp.value = ''; inp.focus(); },
+  'part-del': el => { const s = sheetOf(el); if (!s) return; s.data.parts = s.data.parts.filter(n => n !== el.dataset.name); addParts(s, []); },
+  'part-co': el => { const s = sheetOf(el); if (!s) return; addParts(s, otherPeople().filter(p => p.company === el.dataset.co).map(p => p.name)); },
   'agenda-toggle': el => { const m = findMeeting(el.dataset.mid); const a = m && m.agenda.find(x => x.id === el.dataset.aid); if (!a) return; a.done = !a.done; afterChange(sheetOf(el)); },
   'agenda-del': el => { const m = findMeeting(el.dataset.mid); if (!m) return; m.agenda = m.agenda.filter(x => x.id !== el.dataset.aid); afterChange(sheetOf(el)); },
   'action-toggle': el => { const m = findMeeting(el.dataset.mid); const a = m && m.actions.find(x => x.id === el.dataset.aid); if (!a) return; a.done = !a.done; afterChange(sheetOf(el)); if (a.done && !sheetOf(el)) toast('Aksiyon tamamlandı', { label: 'Geri al', run: () => { a.done = false; afterChange(); } }); },
@@ -1780,7 +2387,37 @@ const A = {
   'cal-today': () => { UI.calMonth = today().slice(0, 7); UI.calDay = today(); render(); },
   'cal-day': el => { UI.calDay = el.dataset.date; if (el.dataset.date.slice(0, 7) !== UI.calMonth) UI.calMonth = el.dataset.date.slice(0, 7); render(); },
 
-  'team-del': el => { S.team = S.team.filter(n => n !== el.dataset.name); S.teamSample = false; afterChange(); },
+  'person-new': () => openSheet('personForm', { draft: blankPerson() }),
+  'person-open': el => openSheet('person', { id: el.dataset.id }),
+  'person-edit': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) swapSheet(sheetOf(el), 'personForm', { draft: clone(p), existing: p.id, fromDetail: true }); },
+  'person-reveal': el => { const s = sheetOf(el); if (s) { s.data.reveal = !s.data.reveal; refreshSheet(s); } },
+  'person-me': el => { setMe(el.dataset.id); afterChange(); toast('Profiliniz bu kayda bağlandı'); },
+  'person-vcf': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) saveFile(`${fold(p.name) || 'kisi'}.vcf`, 'text/vcard', vcard(p) + '\r\n'); },
+  'person-doc': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) openSheet('doc', { title: 'Personel bilgi formu', html: pbfDocHTML(p), text: pbfText(p), file: `personel-${fold(p.name) || 'kisi'}.html` }); },
+  'person-delete': el => {
+    const p = S.people.find(x => x.id === el.dataset.id); if (!p) return;
+    confirmSheet({ title: `${p.name} silinsin mi?`, body: 'Kişi kaydı silinir. İzin ve toplantı kayıtlarındaki adı korunur. Bu işlem geri alınamaz.', ok: 'Sil', danger: true, run: () => { if (S.meId === p.id) { for (const l of S.leaves) if (l.person === 'me') l.person = p.name; S.meId = null; } S.people = S.people.filter(x => x.id !== p.id); persist(); render(); closeTo(0, () => toast('Kişi silindi')); } });
+  },
+  'people-import': () => openSheet('import'),
+  'people-template': () => saveFile('personel-sablon.csv', 'text/csv', '\ufeff' + CSV_COLS.map(c => c[0]).join(';') + '\r\n'),
+  'people-csv': () => {
+    if (!S.people.length) { toast('Aktarılacak kişi yok.'); return; }
+    const q = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+    const cell = (p, k) => (k === 'hireDate' ? (p.hireDate ? dmy(p.hireDate) : p.hireYear) : k === 'birthDate' ? (p.birthDate ? dmy(p.birthDate) : p.birthYear) : p[k]);
+    const rows = [CSV_COLS.map(c => q(c[0]))].concat(S.people.slice().sort(byNameTR).map(p => CSV_COLS.map(([, k]) => (k === 'tc' && p.tc ? `="${p.tc}"` : q(cell(p, k))))));
+    saveFile(`personel-${today()}.csv`, 'text/csv', '\ufeff' + rows.map(r => r.join(';')).join('\r\n'));
+  },
+  'balances-csv': () => {
+    const q = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+    const rows = [['Ad soyad', 'Şirket', 'Ünvan', 'İşe giriş', 'Kıdem', 'Yıllık hak', 'Kullanılan', 'Planlı', 'Bekleyen', 'Kalan', 'Dayanak']].concat(S.people.slice().sort(byNameTR).map(p => { const b = balance(undefined, whoOf(p)); return [p.name, p.company, p.title, p.hireDate ? dmy(p.hireDate) : p.hireYear, seniorityText(p), fmt.num(b.total), fmt.num(b.used), fmt.num(b.planned), fmt.num(b.pending), fmt.num(b.remaining), basisText(b)]; }));
+    saveFile(`izin-bakiyeleri-${today()}.csv`, 'text/csv', '\ufeff' + rows.map(r => r.map(q).join(';')).join('\r\n'));
+  },
+  'people-vcf': () => { if (!S.people.length) { toast('Aktarılacak kişi yok.'); return; } saveFile(`personel-rehber-${today()}.vcf`, 'text/vcard', S.people.slice().sort(byNameTR).map(vcard).join('\r\n') + '\r\n'); },
+  'lock-now': () => { if (S.settings.pinHash) showLock(); },
+  'pin-off': () => confirmSheet({ title: 'PIN kilidi kaldırılsın mı?', body: 'Uygulama açılırken artık PIN sorulmaz.', ok: 'Kilidi kaldır', run: () => { S.settings.pinHash = ''; persist(); render(); toast('PIN kilidi kaldırıldı'); } }),
+  'pin-forgot': () => showLock('forgot'),
+  'pin-back': () => showLock(),
+  'pin-wipe': () => { S = emptyState(); persistNow(); hideLock(); applyTheme(); UI.tab = 'ozet'; render(); toast('Tüm veriler silindi; PIN kaldırıldı'); },
   'room-del': el => { S.settings.rooms = S.settings.rooms.filter(n => n !== el.dataset.name); afterChange(); },
   'hol-del': el => { S.settings.customHolidays = S.settings.customHolidays.filter(h => h.date !== el.dataset.date); afterChange(); },
   'notify-on': () => enableNotifications(),
@@ -1821,7 +2458,24 @@ document.addEventListener('submit', e => {
   const val = n => (form.elements[n] ? form.elements[n].value.trim() : '');
   if (kind === 'leave') return submitLeave(form, s);
   if (kind === 'meeting') return submitMeeting(form, s);
-  if (kind === 'team-add') { const n = val('name'); if (!n) return; if (!S.team.includes(n)) S.team.push(n); S.teamSample = false; afterChange(); toast(`${n} ekibe eklendi`); return; }
+  if (kind === 'person') return submitPerson(form, s);
+  if (kind === 'import-people') return submitImport(form, s);
+  if (kind === 'unlock') {
+    const pin = val('pin');
+    pinHash(pin).then(h => {
+      if (h === S.settings.pinHash) { hideLock(); render(); return; }
+      const err = form.querySelector('.form-err'); err.textContent = 'PIN yanlış. Tekrar deneyin.'; err.hidden = false;
+      form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake'); form.elements.pin.value = ''; form.elements.pin.focus();
+    });
+    return;
+  }
+  if (kind === 'pin-set') {
+    const a = val('pin1'), b = val('pin2');
+    if (!/^\d{4,8}$/.test(a)) { toast('PIN 4–8 rakamdan oluşmalı.'); return; }
+    if (a !== b) { toast('İki PIN birbirini tutmuyor.'); return; }
+    pinHash(a).then(h => { S.settings.pinHash = h; persist(); render(); toast('PIN kilidi açıldı'); });
+    return;
+  }
   if (kind === 'room-add') { const n = val('name'); if (!n) return; if (!S.settings.rooms.includes(n)) S.settings.rooms.push(n); afterChange(); return; }
   if (kind === 'hol-add') { const d = val('date'); if (!isDate(d)) { toast('Tarih seçin.'); return; } S.settings.customHolidays = S.settings.customHolidays.filter(h => h.date !== d).concat([{ date: d, name: val('name') || 'Tatil', half: form.elements.half.checked }]); afterChange(); toast('Tatil günü eklendi'); return; }
   if (kind === 'agenda-add') { const m = findMeeting(form.dataset.mid), t = val('text'); if (!m || !t) return; m.agenda.push({ id: uid(), text: t, done: false }); afterChange(s); const inpEl = s && s.el.querySelector('[data-form="agenda-add"] input'); if (inpEl) inpEl.focus(); return; }
@@ -1831,15 +2485,21 @@ document.addEventListener('input', e => {
   const t = e.target;
   if (t.id === 'lq') { UI.leaveQ = t.value; const box = $('#leaveList'); if (box) box.innerHTML = leaveListHTML(); return; }
   if (t.id === 'mq') { UI.mQ = t.value; const box = $('#meetingList'); if (box) box.innerHTML = meetingListHTML(); return; }
+  if (t.id === 'pq') { UI.pQ = t.value; const box = $('#peopleList'); if (box) box.innerHTML = peopleListHTML(); return; }
+  if (t.name === 'partAdd') return;
   if (t.dataset.actInput === 'notes') { const m = findMeeting(t.dataset.mid); if (m) { m.notes = t.value; persistSoon(); const sv = t.closest('.sec').querySelector('[data-saved]'); if (sv) sv.textContent = 'Kaydedildi'; } return; }
   if (t.dataset.bind) { bindInput(t); return; }
   const form = t.closest('form[data-form]');
   if (form && form.dataset.form === 'leave') syncLeaveForm(sheetOf(form), e);
   if (form && form.dataset.form === 'meeting') syncMeetingForm(sheetOf(form), e);
+  if (form && form.dataset.form === 'person' && t.name === 'tc') syncPersonForm(sheetOf(form));
 });
 document.addEventListener('change', e => {
   const t = e.target;
   if (t.dataset.bind && (t.type === 'checkbox' || t.tagName === 'SELECT')) { bindInput(t); return; }
+  if (t.id === 'peopleFile' && t.files && t.files[0]) { handleImportFile(t.files[0], sheetOf(t)); t.value = ''; return; }
+  if (t.id === 's-me') { if (t.value) setMe(t.value); else setMe(null); persist(); render(); toast(t.value ? 'Profiliniz bu kayda bağlandı' : 'Bağlantı kaldırıldı'); return; }
+  if (t.name === 'partAdd') { const s = sheetOf(t); if (s && findPerson(t.value)) { addParts(s, [t.value]); t.value = ''; } return; }
   if (t.id === 'restoreFile' && t.files && t.files[0]) { const r = new FileReader(); r.onload = () => restoreFrom(String(r.result)); r.onerror = () => toast('Dosya okunamadı.'); r.readAsText(t.files[0]); return; }
   const form = t.closest('form[data-form]');
   if (form && form.dataset.form === 'leave' && (t.type === 'radio' || t.type === 'checkbox' || t.tagName === 'SELECT')) syncLeaveForm(sheetOf(form), e);
@@ -1848,16 +2508,29 @@ document.addEventListener('change', e => {
 function bindInput(t) {
   const [grp, key] = t.dataset.bind.split('.');
   let v = t.type === 'checkbox' ? t.checked : t.value;
-  if (key === 'defaultDuration' || key === 'defaultReminder') v = +v;
+  if (key === 'defaultDuration' || key === 'defaultReminder' || key === 'lockMinutes') v = +v;
   S[grp][key] = v;
-  if (grp === 'profile') S.profileSample = false;
+  if (grp === 'profile') { S.profileSample = false; syncProfileToMe(); }
   persistSoon();
   const es = $('#entSummary span'); if (es) es.textContent = `${basisText(balance())}. Kanuni süreler (İş K. md. 53): 1–5 yıl 14 gün, 5–15 yıl 20 gün, 15 yıl ve üzeri 26 gün; 18 yaş ve altı ile 50 yaş ve üstü için en az 20 gün.`;
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheets.length) { e.preventDefault(); closeTo(sheets.length - 1); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target && e.target.name === 'partAdd') { e.preventDefault(); const s = sheetOf(e.target); if (s) { addParts(s, e.target.value.split(',')); e.target.value = ''; } return; }
+  if (e.key === 'Escape' && sheets.length && !locked) { e.preventDefault(); closeTo(sheets.length - 1); }
+});
+['dragover', 'dragleave', 'drop'].forEach(type => document.addEventListener(type, e => {
+  const d = e.target && e.target.closest ? e.target.closest('.drop') : null; if (!d) return;
+  e.preventDefault();
+  d.classList.toggle('over', type === 'dragover');
+  if (type === 'drop' && e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) handleImportFile(e.dataTransfer.files[0], sheetOf(d));
+}));
 window.addEventListener('hashchange', () => { const t = location.hash.slice(1); if (VIEWS[t] && t !== UI.tab) { UI.tab = t; render(); } });
 if (window.matchMedia) { try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch (e) { /* old engines */ } }
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') tick(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') { hiddenAt = Date.now(); return; }
+  if (S.settings.pinHash && !locked && hiddenAt && Date.now() - hiddenAt > (+S.settings.lockMinutes || 5) * 60000) showLock();
+  tick();
+});
 
 /* ================= install & offline ================= */
 function setupPWA() {
@@ -1875,6 +2548,7 @@ function boot() {
   const h = location.hash.slice(1);
   UI.tab = VIEWS[h] ? h : 'ozet';
   applyTheme();
+  if (S.settings.pinHash) showLock();
   render();
   setupPWA();
   tick(); setInterval(tick, 30000);

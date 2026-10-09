@@ -15,6 +15,9 @@ rmSync(join(app, 'www'), { recursive: true, force: true });
 mkdirSync(join(app, 'www'), { recursive: true });
 cpSync(join(web, 'index.html'), join(app, 'www', 'index.html'));
 cpSync(join(web, 'icons'), join(app, 'www', 'icons'), { recursive: true });
+// PDF reader for the on-device "Personel Bilgi Formu" import, bundled so it works offline.
+mkdirSync(join(app, 'www', 'vendor'), { recursive: true });
+for (const f of ['pdf.min.js', 'pdf.worker.min.js']) cpSync(join(app, 'node_modules', 'pdfjs-dist', 'build', f), join(app, 'www', 'vendor', f));
 
 // 2. Native project
 if (!existsSync(join(app, 'android'))) run('npx cap add android');

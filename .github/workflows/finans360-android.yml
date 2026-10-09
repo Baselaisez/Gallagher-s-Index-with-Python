@@ -41,7 +41,7 @@ jobs:
         run: echo "ANDROID_HOME=$ANDROID_HOME" && ls "$ANDROID_HOME/platforms"
 
       - name: Bağımlılıkları kur
-        run: npm ci --no-audit --no-fund
+        run: npm ci --omit=optional --no-audit --no-fund
 
       - name: Android projesini hazırla
         run: node scripts/prepare-android.mjs

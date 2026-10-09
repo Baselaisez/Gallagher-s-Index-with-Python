@@ -42,6 +42,19 @@ Güncelleme için yeni APK’yı aynı şekilde yükleyin; verileriniz korunur.
 - Davet metni (WhatsApp), Google Takvim bağlantısı, `.ics` takvim dosyası ve imza alanlı **Toplantı Tutanağı**.
 - Android uygulamasında toplantıdan önce ve izinden bir gün önce telefon bildirimi.
 
+**Personel** (2.1)
+- Personel listesi şirketlere göre gruplanır; arama, şirket filtresi ve herkesin yıllık izin hakkını, kullandığını ve kalanını gösteren **izin tablosu**.
+- **Personel Bilgi Formu PDF’inden içe aktarma:** PDF telefonda/bilgisayarda okunur, hiçbir sunucuya gönderilmez. Ad, ünvan, işe giriş ve doğum tarihleri, iletişim, adres, eğitim, dil, medeni hal, ilgi alanları, TC kimlik no ve kan grubu alınır. Kaydetmeden önce önizleme gösterilir: şirket adları düzeltilebilir, “bu kişi benim” seçilebilir, eksik/hatalı alanlar (geçersiz TC, hatalı telefon, yalnızca yıl olan tarihler) listelenir.
+- Excel’den CSV ile içe/dışa aktarma (boş şablon dahil), telefon rehberine aktarma (.vcf), izin bakiyeleri raporu (.csv).
+- Kişi kartı: ara / WhatsApp / e-posta, kıdem ve yaş, izin durumu, yaklaşan izin ve toplantılar, yeniden üretilen Personel Bilgi Formu.
+- Her kişinin izin hakkı kendi işe giriş ve doğum tarihinden hesaplanır; 1 yılını doldurmayanlarda ilk hakkın doğacağı tarih gösterilir.
+- Ana sayfada yaklaşan doğum günleri ve iş yıldönümleri (WhatsApp ile “Kutla”); takvimde doğum günleri.
+- Toplantılara isimle ya da tüm şirketi tek dokunuşla katılımcı ekleme; katılımcılara e-posta daveti.
+- **Gizlilik:** TC kimlik no ve kan grubu varsayılan olarak maskelenir; isteğe bağlı **PIN kilidi** (arka planda belirli süre kalınca yeniden kilitlenir).
+
+> Bu depo herkese açıktır. Personel PDF’lerini, yedekleri ve dışa aktarılan dosyaları buraya **yüklemeyin**;
+> `finans360/.gitignore` bu dosya türlerini engeller. Veriler yalnızca uygulamanın çalıştığı cihazda saklanır.
+
 **Genel**
 - Aylık takvim: izinler, toplantılar ve tatiller bir arada.
 - Açık / koyu tema, telefon ve masaüstü düzeni.
@@ -56,6 +69,7 @@ Dinî bayram tarihleri 2025–2027 için yüklüdür. Sonraki yılların bayraml
 ```
 finans360/
   index.html             Uygulamanın tamamı (HTML + CSS + JS, tek dosya)
+  .gitignore             Kişisel veri dosyalarının depoya girmesini engeller
   manifest.webmanifest   Ana ekrana ekleme bilgileri
   sw.js                  Çevrimdışı çalışma (service worker)
   icons/                 Uygulama simgeleri
@@ -69,7 +83,8 @@ finans360/
 
 ## APK’yı kendiniz derlemek
 
-Gerekenler: Node 22+, JDK 21, Android SDK (Android Studio ile gelir).
+Gerekenler: Node 22+, JDK 21, Android SDK (Android Studio ile gelir). PDF okuyucu (pdf.js) APK’ya gömülür;
+tek dosya HTML sürümü onu ilk içe aktarmada internetten yükler.
 
 ```bash
 cd finans360/app
