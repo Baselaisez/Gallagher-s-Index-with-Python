@@ -4841,6 +4841,57 @@ if (!CHROME) {
     if (!/\d/.test(r.tally)) throw new Error('the corpus tally never painted: ' + r.tally);
   });
 
+  await check('the thirty-five doors: every door of the received table re-derives its own model verb from its root, the thirteen attached quadriliteral doors and the four late triliteral forms conjugate by recipe and pass the vowel proofreader, and a written form finds its door (wave 38)', async () => {
+    const r = await page.evaluate(() => {
+      const a = Bab35Engine.audit();
+      const flagged = Bab35Engine.allCells().filter(w => HarakeAuditor.audit(w).length);
+      const d = (ls, k) => Bab35Engine.derive(ls.split(''), k);
+      const N = s => String(s || '').normalize('NFC');
+      const rec = w => { const x = Bab35Engine.recognize(w); return x ? x.n + ':' + x.part : null; };
+      return { n: a.n, bad: a.bad, flagged: flagged.slice(0, 8), cells: Bab35Engine.allCells().length,
+        jalbaba: N(d('جلب', 'R9').mazi[0]), jilbab: N(d('جلب', 'R9').masdar2), salqa: [N(d('سلق', 'R10').mazi[0]), N(d('سلق', 'R10').mudari[0]), N(d('سلق', 'R10').amr[0])].join(' '),
+        hawqala: [N(d('حقل', 'R5').mudari[0]), N(d('حقل', 'R5').masdar2)].join(' '), tasalqa: N(d('سلق', 'R15').mudari[0]), islanqa: [N(d('سلق', 'R17').mazi[0]), N(d('سلق', 'R17').masdar)].join(' '),
+        iqansasa: N(d('قعس', 'R16').mazi[0]), ihmarra: [N(d('حمر', 'IX').mazi[0]), N(d('حمر', 'IX').mazi[12]), N(d('حمر', 'IX').mudari[5])].join(' '), ighshawshaba: N(d('غشب', 'XII').masdar), ijlawwadha: N(d('جلذ', 'XIII').mudari[0]), ihmaarra: N(d('حمر', 'XI').masdar),
+        recs: [rec('مُوَسْوِس'), rec('تَجَلْبَبَ'), rec('اِسْلَنْقَى'), rec('اِحْمَرَّتْ'), rec('اِغْشَوْشَبَ'), rec('جِلْبَاب'), rec('كتب')] };
+    });
+    if (r.n !== 35 || r.bad.length) throw new Error('the doors should be 35 and every model re-derived: ' + r.n + ' ' + JSON.stringify(r.bad));
+    if (r.flagged.length || r.cells < 700) throw new Error('the proofreader flagged derived cells (' + r.cells + ' cells): ' + r.flagged.join(' '));
+    if (r.jalbaba !== 'جَلْبَبَ' || r.jilbab !== 'جِلْبَاب') throw new Error('جلب + the repeated lām: ' + r.jalbaba + ' ' + r.jilbab);
+    if (r.salqa !== 'سَلْقَى يُسَلْقِي سَلْقِ') throw new Error('فَعْلَى of سلق: ' + r.salqa);
+    if (r.hawqala !== 'يُحَوْقِلُ حِيقَال') throw new Error('فَوْعَلَ of حقل: ' + r.hawqala);
+    if (r.tasalqa !== 'يَتَسَلْقَى' || r.islanqa !== 'اِسْلَنْقَى اِسْلِنْقَاء' || r.iqansasa !== 'اِقْعَنْسَسَ') throw new Error('the attached doors of تدحرج / احرنجم: ' + [r.tasalqa, r.islanqa, r.iqansasa].join(' | '));
+    if (r.ihmarra !== 'اِحْمَرَّ اِحْمَرَرْتُ يَحْمَرِرْنَ') throw new Error('اِفْعَلَّ contracts before a vowel and breaks before a consonant: ' + r.ihmarra);
+    if (r.ighshawshaba !== 'اِغْشِيشَاب' || r.ijlawwadha !== 'يَجْلَوِّذُ' || r.ihmaarra !== 'اِحْمِيرَار') throw new Error('the late triliteral doors XII / XIII / XI: ' + [r.ighshawshaba, r.ijlawwadha, r.ihmaarra].join(' '));
+    if (JSON.stringify(r.recs) !== JSON.stringify(['19:fail', '26:mazi', '35:mazi', '12:mazi', '16:mazi', '19:masdar', null])) throw new Error('the recogniser: ' + JSON.stringify(r.recs));
+  });
+
+  await check('the 35-door atlas opens on a phone with seven groups, thirty-five cards and the corpus footfall; its conjugate button hands the attached door to the Sarf lab, the late forms sit on the form row, and gBab35 has a supply (wave 38)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'bab35'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      return { cards: q('#bab35Out .bab35-card'), groups: q('#bab35Out .bab35-group'), strip: q('#bab35Out .b35g'), tab: !!document.querySelector('.tabs [data-lab=bab35]'), wide: document.documentElement.scrollWidth > window.innerWidth + 1, tally: (document.getElementById('bab35Tally') || {}).textContent || '' };
+    });
+    await page.waitForFunction(() => document.querySelectorAll('#bab35Out .bab35-foot').length >= 10, null, { timeout: 90000 });
+    const r2 = await page.evaluate(() => {
+      const foot = document.querySelectorAll('#bab35Out .bab35-foot').length;
+      document.querySelector('#bab35Out [data-conj="24"]').click();
+      const t = (document.getElementById('conjOut') || {}).textContent || '';
+      const conj = { lab: conjState.lab, root: conjState.root, mulhaq: conjState.mulhaq, jalbaba: /جَلْبَبَ/.test(t), masdar2: /جِلْبَاب/.test(t), segOn: (document.querySelector('#conjMulhaqSeg .on') || {}).textContent || '', forms: document.querySelectorAll('#conjFormSeg [data-cf]').length };
+      conjState.root = 'حمر'; conjState.mulhaq = ''; conjState.form = 'IX'; renderConjOut(); syncConjSeg();
+      const t2 = (document.getElementById('conjOut') || {}).textContent || '';
+      let supply = 0; try { supply = GameFactory.supplyOf('gBab35'); } catch (e) { supply = 'ERR ' + e.message; }
+      conjState.form = 'I'; try { closeSheet(); } catch (e) {}
+      return { foot, conj, ix: /اِحْمَرَّ/.test(t2) && /يَحْمَرُّ/.test(t2), supply };
+    });
+    if (r.cards !== 35 || r.groups !== 7 || r.strip < 8 || !r.tab) throw new Error('thirty-five cards in seven groups with the strip: ' + JSON.stringify(r));
+    if (r.wide) throw new Error('the atlas overflows the phone width');
+    if (!/35/.test(r.tally)) throw new Error('the audit tally should name 35 doors: ' + r.tally);
+    if (r2.foot < 10) throw new Error('the corpus footfall never painted: ' + r2.foot);
+    if (r2.conj.lab !== 'sarf' || r2.conj.root !== 'جلب' || r2.conj.mulhaq !== 'R9' || !r2.conj.jalbaba || !r2.conj.masdar2 || r2.conj.forms !== 13) throw new Error('the conjugate button should open the Sarf lab on جلب + the attached door: ' + JSON.stringify(r2.conj));
+    if (!r2.ix) throw new Error('form IX should conjugate in the Sarf lab');
+    if (!(r2.supply >= 4)) throw new Error('gBab35 has no supply: ' + r2.supply);
+  });
+
   await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
     const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
     if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');

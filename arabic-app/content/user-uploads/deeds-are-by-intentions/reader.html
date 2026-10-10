@@ -2076,6 +2076,23 @@
   .shop-line .shop-w.inna-kasr { border-bottom-color: #2a7f62; }
   .shop-line .shop-w.inna-fath { border-bottom-color: #b5651d; }
   .shop-line .shop-w.inna-both { border-bottom-style: dashed; border-bottom-color: #888; }
+  /* the 35-door atlas (wave 38): a strip of seven groups, a card per door */
+  .bab35-strip { display: flex; flex-wrap: wrap; gap: .35rem; margin: .4rem 0 .6rem; }
+  .bab35-strip .b35g { border: 1px solid var(--line); border-radius: 999px; padding: .1rem .6rem; font-size: .85rem; background: var(--panel); }
+  .bab35-strip .b35g b { font-size: 1rem; margin-inline-start: .3rem; }
+  .bab35-group { margin: .8rem 0 .3rem; }
+  .bab35-cards { display: grid; gap: .45rem; grid-template-columns: 1fr; }
+  @media (min-width: 700px) { .bab35-cards { grid-template-columns: repeat(2, 1fr); } }
+  .bab35-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: .5rem .65rem; display: grid; gap: .25rem; border-inline-start: 4px solid #8a6d3b; }
+  .bab35-card.g-mujarrad { border-inline-start-color: #2a7f62; } .bab35-card.g-mazid { border-inline-start-color: #3f7fbf; }
+  .bab35-card.g-rubai, .bab35-card.g-mazidR { border-inline-start-color: #b5651d; } .bab35-card.g-mulhaqR, .bab35-card.g-mulhaqT, .bab35-card.g-mulhaqH { border-inline-start-color: #b5651d; border-inline-start-style: dashed; }
+  .bab35-head { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+  .bab35-n { font-size: .8rem; color: var(--muted, #777); border: 1px solid var(--line); border-radius: 999px; padding: 0 .5rem; }
+  .bab35-wazn { font-size: 1.25rem; line-height: 1.6; }
+  .bab35-model { font-size: 1.05rem; }
+  .bab35-meta small { color: var(--muted, #777); display: block; }
+  .bab35-foot { font-size: .8rem; color: var(--muted, #777); }
+  .bab35-card button.b35-conj { justify-self: start; font-size: .85rem; border: 1px solid var(--line); border-radius: 999px; padding: .1rem .6rem; background: transparent; color: inherit; cursor: pointer; }
   /* the Wujuh lab (wave 37): a card per word, its faces as chips, the chosen face lit */
   .wujuh-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: .5rem .65rem; display: grid; gap: .3rem; border-inline-start: 4px solid #5b6ee1; }
   .wujuh-card.wujuh-extra { border-inline-start-color: #888; border-inline-start-style: dashed; }
@@ -2269,6 +2286,9 @@ const L = {
         innaKasrSeats:"ten places where the sentence stays a sentence", innaFathSeats:"where a masdar can stand in", innaBothSeats:"where either reading gives a sense", innaAudit:"Corpus audit: {n} authored إِنَّ / أَنَّ, {cov}% decided by a seat, {acc}% of those agree with the author's hamza.",
         wujuhTab:"Faces", wujuhIntro:"Ibn Hishām's third chapter: twenty words that each wear several FACES — إِنْ is a condition, a negation, a lightened إِنَّ or an extra letter; لَوْ has five faces, قَدْ seven, the wāw eight, مَا twelve. The engine reads the face off the page itself: the vowels the word wears (a shadda, a kasra on مِنْ) and the row beside it (a majzūm, a nakira in naṣb, a later إِلَّا, a فَ before). Every face is named with its reason; the corpus's own pages are the examiner", wujuhPh:"a sentence with one of the twenty — إِنْ تَجْتَهِدْ تَنْجَحْ", wujuhEmpty:"Type a sentence with إِنْ، أَنْ، لَوْ، إِذَا، إِذْ، لَمَّا، لَا، لَوْلَا، مَنْ، أَيّ، قَدْ، كَلَّا، مَا … or take one of the book's own.", wujuhNone:"None of the twenty words in this sentence.", wujuhLegend:"The twenty words by the number of their faces", wujuhFaces:"faces", wujuhExtraWord:"not among Ibn Hishām's twenty — the corpus's own frequent multi-face words", wujuhExtraFace:"a face the corpus adds beyond the book's count", wujuhDelegate:"read by the {e}", wujuhAudit:"Corpus audit: {n} authored instances of the words, {acc}% of the faces agree with the page's iʿrāb; مَا alone: {ma}% of {man}.", wujuhAgree:"agrees with the page", wujuhDisagree:"the page says otherwise",
         wujuhGame:"Which face?", wujuhGameDesc:"إِنْ، لَوْ، لَا، مَنْ، قَدْ، مَا … — the corpus's own sentences, and the word's faces to choose from", wujuhAsk:"Which face does the marked word wear here?", wujuhWhyNot:"Read the reason under the answer — the face is decided by the row beside the word.",
+        bab35Tab:"35 doors", bab35Intro:"The received table counts the doors of ṣarf as thirty-five: six bare triliterals, twelve augmented, one bare quadriliteral, six attached to it, three augmented quadriliterals, five attached to تَدَحْرَجَ and two to اِحْرَنْجَمَ. Every door here is DERIVED, none stored: a root and the table's own recipe (a wāw between the fāʾ and the ʿayn, the lām repeated, a yāʾ at the end) build the verb, and the engine re-derives each door's model verb from its root to prove it. The footfall is the corpus's own: how many of its verbs recite that door", bab35Footfall:"{n} corpus verbs", bab35Conj:"conjugate", bab35Bina:"what it is for", bab35Alama:"its mark", bab35Audit:"{ok} of {n} doors re-derive their model verb — māḍī, muḍāriʿ and maṣdar as the table writes them.", bab35Ex:"the table's example", bab35Model:"model",
+        bab35Game:"Which door?", bab35GameDesc:"A verb from the table of thirty-five — name its wazn; the attached doors are told from the bare ones", bab35Ask:"Which of the thirty-five doors does this verb walk through?", bab35WhyNot:"Count the letters and find the added one: the mark names the door.",
+        conjMulhaq:"attached door", conjMulhaqOff:"— (the triliteral forms)", conjMulhaqNote:"The three letters you typed are the ROOT; the door's recipe adds its letter and the engine conjugates the four-letter verb it makes.",
         kindsGame:"Which kind of noun?", kindsGameDesc:"Gender, number, definiteness, name or genus — the fifteen kinds of the Şerḥu'l-Muġnī", kindsAsk:"Which kind is this noun?", kindsWhyNot:"Read the kind's definition under the answer.", kinds15Title:"The fifteen kinds of noun", tasgirGame:"Diminutive or nisba?", tasgirGameDesc:"Derive the small form and the relation form by the Şerḥu'l-Muġnī's rules", tasgirAskT:"What is the diminutive (taṣghīr) of this noun?", tasgirAskN:"What is the nisba of this noun?", tasgirWhyNot:"The rule says otherwise — read it.", mughniSeeds:"The Şerḥu'l-Muġnī's own examples — tap one", mughniSrc:"by the rule of the Şerḥu'l-Muġnī notes", innaGame:"Kasra or fatha?", innaAsk:"How does the hamza of this إنّ read?", innaKasr:"kasra — a sentence", innaFath:"fatha — a masdar", innaBoth:"both", innaGameDesc:"The corpus wrote the hamza; the seat says why. Pick the reading — the seat is revealed after.",
         shopTab:"İ'rab Shop", shopIntro:"The Avâmil lesson's shop. Every word that walks in is a CUSTOMER (its declension class), is fitted with a BODY (the i'rab it wears), the fit shows as a FIGURE (the sign — a vowel, a letter or an omission), and someone made it so (the GOVERNOR). Nothing is parsed twice: the seat and the governor are the Dabt engine's own verdict, the class and the sign the ending rules", shopPh:"a sentence — مَرَرْتُ بِزَيْدٍ، جَاءَ الْمُسْلِمُونَ",
         shopEmpty:"Type a sentence, or take one of the lesson's own.", shopCustomer:"Customer", shopBody:"Body", shopFigure:"Figure", shopAgent:"Governor", shopLegend:"The ten customers, the ten signs, the three obstacles",
@@ -2610,6 +2630,9 @@ const L = {
         innaKasrSeats:"cümlenin cümle kaldığı on yer", innaFathSeats:"masdarın yerine geçebildiği yerler", innaBothSeats:"iki okuyuşun da mânâ verdiği yerler", innaAudit:"Külliyat denetimi: {n} yazılmış inne / enne, %{cov}'i bir yerle karara bağlandı, bunların %{acc}'i yazarın hemzesiyle uyuşuyor.",
         wujuhTab:"Vecihler", wujuhIntro:"İbn Hişâm'ın üçüncü bâbı: her biri birkaç VECİH taşıyan yirmi kelime — in şart, nefiy, hafifletilmiş inne veya zâid olur; lev beş vecihli, kad yedi, vâv sekiz, mâ on iki. Motor vechi sayfanın kendisinden okur: kelimenin taşıdığı harekeler (şedde, min'deki kesre) ve yanındaki satır (meczûm, mansûb nekre, sonraki illâ, önceki fâ). Her vecih gerekçesiyle adlandırılır; külliyatın kendi sayfaları sınav kâğıdıdır", wujuhPh:"yirmi kelimeden biriyle bir cümle — in tectehid tencah", wujuhEmpty:"İn, en, lev, izâ, iz, lemmâ, lâ, levlâ, men, eyy, kad, kellâ, mâ … içeren bir cümle yazın, ya da kitabın kendi örneklerinden birini alın.", wujuhNone:"Bu cümlede yirmi kelimeden hiçbiri yok.", wujuhLegend:"Yirmi kelime, vecih sayısına göre", wujuhFaces:"vecih", wujuhExtraWord:"İbn Hişâm'ın yirmisinden değil — külliyatın kendi sık çok-vecihli kelimeleri", wujuhExtraFace:"külliyatın kitabın sayısına eklediği vecih", wujuhDelegate:"{e} tarafından okunur", wujuhAudit:"Külliyat denetimi: kelimelerin {n} yazılı örneği, vecihlerin %{acc}'i sayfanın i'râbıyla uyuşuyor; yalnız mâ: {man} örnekte %{ma}.", wujuhAgree:"sayfayla uyuşuyor", wujuhDisagree:"sayfa başka diyor",
         wujuhGame:"Hangi vecih?", wujuhGameDesc:"İn, lev, lâ, men, kad, mâ … — külliyatın kendi cümleleri ve seçilecek vecihler", wujuhAsk:"İşaretli kelime burada hangi vechi taşıyor?", wujuhWhyNot:"Cevabın altındaki gerekçeyi okuyun — vechi kelimenin yanındaki satır belirler.",
+        bab35Tab:"35 bâb", bab35Intro:"Alınan tablo sarfın bâblarını otuz beş sayar: altı sülâsî mücerred, on iki mezîd, bir rubâî mücerred, ona mülhak altı, üç rubâî mezîd, tedahrece'ye mülhak beş ve ihrancem'e mülhak iki. Buradaki her kapı TÜRETİLİR, hiçbiri depolanmaz: kök ve tablonun kendi tarifi (fâ ile ayn arasına vav, lâm tekrarı, sona ye) fiili kurar; motor her kapının örnek fiilini kökünden yeniden türetip ispat eder. Ayak izi külliyatın kendisidir: kaç fiili o kapıdan geçiyor", bab35Footfall:"{n} külliyat fiili", bab35Conj:"çek", bab35Bina:"ne için", bab35Alama:"alâmeti", bab35Audit:"{n} kapının {ok} tanesi örnek fiilini yeniden türetiyor — mâzî, muzâri ve masdar, tablonun yazdığı gibi.", bab35Ex:"tablonun örneği", bab35Model:"mevzûn",
+        bab35Game:"Hangi bâb?", bab35GameDesc:"Otuz beş bâb tablosundan bir fiil — veznini söyle; mülhak kapılar mücerredlerden ayırt edilir", bab35Ask:"Bu fiil otuz beş bâbın hangisinden geçiyor?", bab35WhyNot:"Harfleri say ve ziyâde olanı bul: alâmet bâbı adlandırır.",
+        conjMulhaq:"mülhak bâb", conjMulhaqOff:"— (sülâsî bâblar)", conjMulhaqNote:"Yazdığın üç harf KÖKTÜR; bâbın tarifi harfini ekler, motor kurduğu dört harfli fiili çeker.",
         kindsGame:"İsmin hangi kısmı?", kindsGameDesc:"Cinsiyet, sayı, belirlilik, alem mi cins mi — Şerhu'l-Muğnî'nin on beş kısmı", kindsAsk:"Bu isim hangi kısımdan?", kindsWhyNot:"Cevabın altındaki tarifi oku.", kinds15Title:"İsmin on beş kısmı", tasgirGame:"Tasgîr mi nisbet mi?", tasgirGameDesc:"Şerhu'l-Muğnî kurallarıyla küçültme ve nisbet ismini türet", tasgirAskT:"Bu ismin tasgîri (küçültmesi) nedir?", tasgirAskN:"Bu ismin nisbeti nedir?", tasgirWhyNot:"Kural böyle demiyor — kuralı oku.", mughniSeeds:"Şerhu'l-Muğnî'nin kendi örnekleri — birine dokun", mughniSrc:"Şerhu'l-Muğnî ders notlarının kuralıyla", innaGame:"Kesre mi fetha mı?", innaAsk:"Bu inne'nin hemzesi nasıl okunur?", innaKasr:"kesre — cümle", innaFath:"fetha — masdar", innaBoth:"ikisi de", innaGameDesc:"Hemzeyi külliyat yazdı; yer sebebini söyler. Okuyuşu seç — yer ardından açılır.",
         shopTab:"İ'rab Mağazası", shopIntro:"Avâmil dersinin mağazası. İçeri giren her kelime bir MÜŞTERİdir (i'râb sınıfı), ona bir BEDEN giydirilir (taşıdığı i'râb), beden bir ENDAM olarak görünür (alâmet — hareke, harf yahut hazf) ve bunu biri yapmıştır (ETKİ EDEN — âmil). Hiçbir şey ikinci kez tahlil edilmez: yer ve âmil Dabt motorunun kendi hükmü, sınıf ve alâmet âhir kurallarıdır", shopPh:"bir cümle — مَرَرْتُ بِزَيْدٍ، جَاءَ الْمُسْلِمُونَ",
         shopEmpty:"Bir cümle yazın, ya da dersin kendi cümlelerinden birini alın.", shopCustomer:"Müşteri", shopBody:"Beden", shopFigure:"Endam", shopAgent:"Etki eden", shopLegend:"On müşteri, on alâmet, üç engel",
@@ -5980,6 +6003,283 @@ function rubaiDerive(letters, bab){
       note: "مَزِيدُ الرُّبَاعِيِّ بِتَضْعِيفِ اللَّامِ — اِقْشَعَرَّ الْجِلْدُ، وَالْجَزْمُ بِالْفَتْحِ." });
   }
   return { ok: false, reason: "bab" };
+}
+
+// ---------- the thirty-five doors (wave 38) --------------------------------
+// The received table (research/sources/sarf-35-bab-tablosu.txt) counts
+// thirty-five doors: six bare triliterals, twelve augmented triliterals, one
+// bare quadriliteral, six attached to it, three augmented quadriliterals,
+// five attached to تَدَحْرَجَ and two attached to اِحْرَنْجَمَ. The app had
+// eighteen triliteral doors and four quadriliteral ones; the other thirteen
+// were names. Every door is now DERIVED: a three-letter root plus the table's
+// own recipe («a wāw between the fāʾ and the ʿayn», «the lām repeated», «a yāʾ
+// at the end») builds the four-letter skeleton, and the skeleton conjugates
+// through the same cell builders as every other verb. Nothing is stored but
+// the table itself — its binā, its ʿalāma, its model verb and its maṣdars.
+const RUBAI17 = {
+  R1:  { n: 19, ar: "فَعْلَلَ يُفَعْلِلُ فَعْلَلَةً وَفِعْلَالًا", root: "دحرج", shape: "r1", skel: r => r, group: "rubai",
+         bina: "muta", alama: { en: "all four letters radical — the māḍī stands on four", tr: "harflerinin tamamı aslî — mâzîsi dört harf üzerine" } },
+  R5:  { n: 20, ar: "فَوْعَلَ يُفَوْعِلُ فَوْعَلَةً وَفِيعَالًا", root: "حقل", shape: "r1", skel: r => [r[0], "و", r[1], r[2]], group: "mulhaqR",
+         bina: "lazim", alama: { en: "a wāw added between the fāʾ and the ʿayn", tr: "fâ ile ayn arasına vav ziyadesiyle" } },
+  R6:  { n: 21, ar: "فَيْعَلَ يُفَيْعِلُ فَيْعَلَةً وَفِيعَالًا", root: "بطر", shape: "r1", skel: r => [r[0], "ي", r[1], r[2]], group: "mulhaqR",
+         bina: "mutaOnly", alama: { en: "a yāʾ added between the fāʾ and the ʿayn", tr: "fâ ile ayn arasına ye ziyadesiyle" } },
+  R7:  { n: 22, ar: "فَعْوَلَ يُفَعْوِلُ فَعْوَلَةً وَفِعْوَالًا", root: "جهر", shape: "r1", skel: r => [r[0], r[1], "و", r[2]], group: "mulhaqR",
+         bina: "mutaOnly", alama: { en: "a wāw added between the ʿayn and the lām", tr: "ayn ile lâm arasına vav ziyadesiyle" } },
+  R8:  { n: 23, ar: "فَعْيَلَ يُفَعْيِلُ فَعْيَلَةً وَفِعْيَالًا", root: "عثر", shape: "r1", skel: r => [r[0], r[1], "ي", r[2]], group: "mulhaqR",
+         bina: "lazim", alama: { en: "a yāʾ added between the ʿayn and the lām", tr: "ayn ile lâm arasına ye ziyadesiyle" } },
+  R9:  { n: 24, ar: "فَعْلَلَ يُفَعْلِلُ فَعْلَلَةً وَفِعْلَالًا (بِتَكْرِيرِ اللَّامِ)", root: "جلب", shape: "r1", skel: r => [r[0], r[1], r[2], r[2]], group: "mulhaqR",
+         bina: "mutaOnly", alama: { en: "a letter of the lām's kind added at the end — the lām repeated", tr: "sonuna lâm cinsinden bir harf ziyadesiyle — lâm tekrarlı" } },
+  R10: { n: 25, ar: "فَعْلَى يُفَعْلِي فَعْلَيَةً وَفِعْلَاءً", root: "سلق", shape: "r10", skel: r => [r[0], r[1], r[2], "ى"], group: "mulhaqR",
+         bina: "mutaOnly", alama: { en: "a yāʾ added at the end", tr: "sonuna ye ziyadesiyle" } },
+  R2:  { n: 26, ar: "تَفَعْلَلَ يَتَفَعْلَلُ تَفَعْلُلًا", root: "دحرج", shape: "r2", skel: r => r, group: "mazidR",
+         bina: "mutawaa", alama: { en: "a tāʾ in front — the māḍī stands on five", tr: "evveline te ziyadesiyle — mâzîsi beş harf üzerine" } },
+  R3:  { n: 27, ar: "اِفْعَنْلَلَ يَفْعَنْلِلُ اِفْعِنْلَالًا", root: "حرجم", shape: "r3", skel: r => r, group: "mazidR",
+         bina: "mutawaa", alama: { en: "hamzat al-waṣl in front and a nūn between the ʿayn and the first lām — six letters", tr: "evveline hemze, ayn ile birinci lâm arasına nûn ziyadesiyle — altı harf" } },
+  R4:  { n: 28, ar: "اِفْعَلَلَّ يَفْعَلِلُّ اِفْعِلَّالًا", root: "قشعر", shape: "r4", skel: r => r, group: "mazidR",
+         bina: "mubalagha", alama: { en: "hamzat al-waṣl in front and the last lām doubled — six letters", tr: "evveline hemze, sonuna lâm cinsinden bir harf ziyadesiyle — altı harf" } },
+  R11: { n: 29, ar: "تَفَعْلَلَ يَتَفَعْلَلُ تَفَعْلُلًا (بِتَكْرِيرِ اللَّامِ)", root: "جلب", shape: "r2", skel: r => [r[0], r[1], r[2], r[2]], group: "mulhaqT",
+         bina: "mutawaa", alama: { en: "a tāʾ in front and the lām repeated at the end", tr: "evveline te, sonuna lâm cinsinden bir harf ziyadesiyle" } },
+  R12: { n: 30, ar: "تَفَوْعَلَ يَتَفَوْعَلُ تَفَوْعُلًا", root: "جرب", shape: "r2", skel: r => [r[0], "و", r[1], r[2]], group: "mulhaqT",
+         bina: "mutawaa", alama: { en: "a tāʾ in front and a wāw between the fāʾ and the ʿayn", tr: "evveline te, fâ ile ayn arasına vav ziyadesiyle" } },
+  R13: { n: 31, ar: "تَفَيْعَلَ يَتَفَيْعَلُ تَفَيْعُلًا", root: "شطن", shape: "r2", skel: r => [r[0], "ي", r[1], r[2]], group: "mulhaqT",
+         bina: "lazim", alama: { en: "a tāʾ in front and a yāʾ between the fāʾ and the ʿayn", tr: "evveline te, fâ ile ayn arasına ye ziyadesiyle" } },
+  R14: { n: 32, ar: "تَفَعْوَلَ يَتَفَعْوَلُ تَفَعْوُلًا", root: "رهك", shape: "r2", skel: r => [r[0], r[1], "و", r[2]], group: "mulhaqT",
+         bina: "lazim", alama: { en: "a tāʾ in front and a wāw between the ʿayn and the lām", tr: "evveline te, ayn ile lâm arasına vav ziyadesiyle" } },
+  R15: { n: 33, ar: "تَفَعْلَى يَتَفَعْلَى تَفَعْلِيًا", root: "سلق", shape: "r15", skel: r => [r[0], r[1], r[2], "ى"], group: "mulhaqT",
+         bina: "lazim", alama: { en: "a tāʾ in front and a yāʾ at the end", tr: "evveline te, sonuna ye ziyadesiyle" } },
+  R16: { n: 34, ar: "اِفْعَنْلَلَ يَفْعَنْلِلُ اِفْعِنْلَالًا (بِتَكْرِيرِ اللَّامِ)", root: "قعس", shape: "r3", skel: r => [r[0], r[1], r[2], r[2]], group: "mulhaqH",
+         bina: "mubalagha", alama: { en: "hamzat al-waṣl, a nūn between the ʿayn and the lām, and the lām repeated", tr: "evveline hemze, ayn ile lâm arasına nûn, sonuna lâm cinsinden bir harf ziyadesiyle" } },
+  R17: { n: 35, ar: "اِفْعَنْلَى يَفْعَنْلِي اِفْعِنْلَاءً", root: "سلق", shape: "r17", skel: r => [r[0], r[1], r[2], "ى"], group: "mulhaqH",
+         bina: "mutawaa", alama: { en: "hamzat al-waṣl, a nūn between the ʿayn and the lām, and a yāʾ at the end", tr: "evveline hemze, ayn ile lâm arasına nûn, sonuna ye ziyadesiyle" } },
+};
+const BAB35_BINA = {
+  muta:      { ar: "لِلتَّعْدِيَةِ غَالِبًا وَلِلُّزُومِ أَحْيَانًا", en: "mostly transitive, sometimes intransitive", tr: "çok kere müteaddî, bazı kere lâzım içindir" },
+  lazim:     { ar: "لِلُّزُومِ فَقَطْ", en: "intransitive only", tr: "yalnız lâzım içindir" },
+  mutaOnly:  { ar: "لِلتَّعْدِيَةِ فَقَطْ", en: "transitive only", tr: "yalnız müteaddî içindir" },
+  takthir:   { ar: "لِلتَّكْثِيرِ", en: "for intensity and plurality", tr: "teksîr içindir" },
+  musharaka: { ar: "لِلْمُشَارَكَةِ بَيْنَ اثْنَيْنِ", en: "reciprocity between two (sometimes one)", tr: "iki kişi arasında müşâreket, bazı kere müşâreketsiz vâhid içindir" },
+  musharaka2:{ ar: "لِلْمُشَارَكَةِ بَيْنَ اثْنَيْنِ فَأَكْثَرَ", en: "reciprocity between two or more", tr: "iki ve çok kişi arasında müşâreket içindir" },
+  mutawaa:   { ar: "لِلْمُطَاوَعَةِ", en: "the result that follows the act (muṭāwaʿa)", tr: "mutâvaat içindir" },
+  mubalagha: { ar: "لِمُبَالَغَةِ اللَّازِمِ", en: "the intransitive intensified", tr: "lâzımın mübâlağası içindir" },
+  takalluf:  { ar: "لِلتَّكَلُّفِ", en: "taking pains, step by step", tr: "tekellüf içindir" },
+};
+const BAB35_GROUPS = {
+  mujarrad: { ar: "الثُّلَاثِيُّ الْمُجَرَّدُ", en: "bare triliteral", tr: "sülâsî mücerred", n: 6 },
+  mazid:    { ar: "الثُّلَاثِيُّ الْمَزِيدُ", en: "augmented triliteral", tr: "sülâsî mezîd", n: 12 },
+  rubai:    { ar: "الرُّبَاعِيُّ الْمُجَرَّدُ", en: "bare quadriliteral", tr: "rubâî mücerred", n: 1 },
+  mulhaqR:  { ar: "الْمُلْحَقُ بِالرُّبَاعِيِّ", en: "attached to the quadriliteral", tr: "rubâîye mülhak", n: 6 },
+  mazidR:   { ar: "الرُّبَاعِيُّ الْمَزِيدُ", en: "augmented quadriliteral", tr: "rubâî mezîd", n: 3 },
+  mulhaqT:  { ar: "الْمُلْحَقُ بِتَدَحْرَجَ", en: "attached to tadaḥraja", tr: "tedahrece'ye mülhak", n: 5 },
+  mulhaqH:  { ar: "الْمُلْحَقُ بِاحْرَنْجَمَ", en: "attached to iḥranjama", tr: "ihrancem'e mülhak", n: 2 },
+};
+// the four augmented triliteral doors the conjugator never had
+function mazidDerive(rs, form){
+  const [f, a, l] = rs;
+  const no = reason => ({ ok: false, reason });
+  if (!rs || rs.length !== 3) return no("len");
+  if (form === "IX") {
+    const G = f+"ْ"+a+"َ"+l+"ّ", brk = f+"ْ"+a+"َ"+l+"َ"+l, S = f+"ْ"+a+"َ"+l+"ِ"+l;
+    return { ok: true, wazn: sjN("اِفْعَلَّ يَفْعَلُّ اِفْعِلَالًا"), mazi: sjMazi14("اِ"+G, "اِ"+brk), mudari: sjMudari14("َ", G, S),
+      amr: ["اِ"+G+"َ", "اِ"+G+"َا", "اِ"+G+"ُوا", "اِ"+G+"ِي", "اِ"+G+"َا", "اِ"+S+"ْنَ"].map(s => sjN(sjIdgham(s))),
+      ...sjGovGem("َ", G), fail: sjN("مُ"+G), maful: sjN("مُ"+G), masdar: sjN("اِ"+f+"ْ"+a+"ِ"+l+"َا"+l),
+      note: "اِفْعَلَّ لِمُبَالَغَةِ اللَّازِمِ — فِي الْأَلْوَانِ وَالْعُيُوبِ: اِحْمَرَّ، اِعْوَرَّ؛ وَالْجَزْمُ بِالْفَتْحِ." };
+  }
+  if (form === "XI") {
+    const G = f+"ْ"+a+"َا"+l+"ّ", brk = f+"ْ"+a+"َا"+l+"َ"+l, S = f+"ْ"+a+"َا"+l+"ِ"+l;
+    return { ok: true, wazn: sjN("اِفْعَالَّ يَفْعَالُّ اِفْعِيلَالًا"), mazi: sjMazi14("اِ"+G, "اِ"+brk), mudari: sjMudari14("َ", G, S),
+      amr: ["اِ"+G+"َ", "اِ"+G+"َا", "اِ"+G+"ُوا", "اِ"+G+"ِي", "اِ"+G+"َا", "اِ"+S+"ْنَ"].map(s => sjN(sjIdgham(s))),
+      ...sjGovGem("َ", G), fail: sjN("مُ"+G), maful: sjN("مُ"+G), masdar: sjN("اِ"+f+"ْ"+a+"ِي"+l+"َا"+l),
+      note: "اِفْعَالَّ: مُبَالَغَةُ اِفْعَلَّ بِمَدِّ الْأَلِفِ — اِحْمَارَّ أَشَدُّ مِنِ اِحْمَرَّ." };
+  }
+  if (form === "XII") {
+    const v = f+"ْ"+a+"َوْ"+a+"َ"+l, core = f+"ْ"+a+"َوْ"+a+"ِ"+l;
+    return { ok: true, wazn: sjN("اِفْعَوْعَلَ يَفْعَوْعِلُ اِفْعِيعَالًا"), mazi: sjMazi14("اِ"+v), mudari: sjMudari14("َ", core), amr: sjAmr("اِ"+core),
+      ...sjGov("َ", core), fail: sjN("مُ"+core), maful: sjN("مُ"+v), masdar: sjN("اِ"+f+"ْ"+a+"ِي"+a+"َا"+l),
+      note: "اِفْعَوْعَلَ: الْعَيْنُ مُكَرَّرَةٌ وَبَيْنَهُمَا وَاوٌ — اِغْشَوْشَبَتِ الْأَرْضُ: كَثُرَ عُشْبُهَا." };
+  }
+  if (form === "XIII") {
+    const v = f+"ْ"+a+"َوَّ"+l, core = f+"ْ"+a+"َوِّ"+l;
+    return { ok: true, wazn: sjN("اِفْعَوَّلَ يَفْعَوِّلُ اِفْعِوَّالًا"), mazi: sjMazi14("اِ"+v), mudari: sjMudari14("َ", core), amr: sjAmr("اِ"+core),
+      ...sjGov("َ", core), fail: sjN("مُ"+core), maful: sjN("مُ"+v), masdar: sjN("اِ"+f+"ْ"+a+"ِوَّا"+l),
+      note: "اِفْعَوَّلَ: وَاوٌ مُشَدَّدَةٌ بَيْنَ الْعَيْنِ وَاللَّامِ — اِجْلَوَّذَتِ الْإِبِلُ: أَسْرَعَتْ." };
+  }
+  return no("form");
+}
+// every quadriliteral door from a root: three letters + the recipe, or four letters bare
+function rubai17Derive(letters, key){
+  const B = RUBAI17[key]; if (!B) return { ok: false, reason: "bab" };
+  const r = (letters || []).filter(Boolean);
+  let L;
+  if (key === "R1" || key === "R2" || key === "R3" || key === "R4") { if (r.length !== 4) return { ok: false, reason: "len" }; L = r; }
+  else { if (r.length !== 3 && r.length !== 4) return { ok: false, reason: "len" }; L = r.length === 4 ? r : B.skel(r); }
+  const [f, a, l, m] = L;
+  const label = { key, ar: B.ar, model: Bab35Engine.model(key), tr: BAB35_GROUPS[B.group].tr, en: BAB35_GROUPS[B.group].en };
+  const base = { ok: true, key, n: B.n, wazn: sjN(B.ar), babLabel: label, group: B.group, bina: BAB35_BINA[B.bina], alama: B.alama,
+                 mulhaq: B.group === "rubai" || B.group === "mazidR" ? null : sjN("مُلْحَقٌ — " + BAB35_GROUPS[B.group].ar + " — " + B.ar.split(" ")[0]) };
+  if (B.shape === "r1") {
+    const d = rubaiDerive(L, "R1"); if (!d.ok) return d;
+    const m2 = (a === "و" || a === "ي") ? f+"ِي"+l+"َا"+m : f+"ِ"+a+"ْ"+l+"َا"+m;
+    return { ...d, ...base, masdar2: sjN(m2), note: key === "R1" ? d.note : sjN("مُلْحَقٌ بِدَحْرَجَ: يُصَرَّفُ تَصْرِيفَهُ، وَمَصْدَرُهُ " + B.ar.split(" ").slice(2).join(" ") + ".") };
+  }
+  if (B.shape === "r2") {
+    const d = rubaiDerive(L, "R2"); if (!d.ok) return d;
+    return { ...d, ...base, note: key === "R2" ? d.note : sjN("مُلْحَقٌ بِتَدَحْرَجَ: مُطَاوِعُ " + Bab35Engine.model(key === "R11" ? "R9" : key === "R12" ? "R5" : key === "R13" ? "R6" : "R7").split(" ")[0] + "، وَمَصْدَرُهُ تَفَعْلُلٌ.") };
+  }
+  if (B.shape === "r3") {
+    const d = rubaiDerive(L, "R3"); if (!d.ok) return d;
+    return { ...d, ...base, note: key === "R3" ? d.note : sjN("مُلْحَقٌ بِاحْرَنْجَمَ بِتَكْرِيرِ اللَّامِ — اِقْعَنْسَسَ: تَأَخَّرَ.") };
+  }
+  if (B.shape === "r4") { const d = rubaiDerive(L, "R4"); return d.ok ? { ...d, ...base } : d; }
+  if (B.shape === "r10") {   // سَلْقَى يُسَلْقِي — the fourth letter is a yāʾ: the quadriliteral's own naqis
+    const b = f+"َ"+a+"ْ"+l;
+    return { ...base, mazi: sjMaziNaqis(b+"َ", "ي"), mudari: sjMudariNaqis("ُ", b, "i"), amr: sjAmrNaqis(b, "i"), ...sjGovNaqis("ُ", b, "i"),
+      fail: sjN("مُ"+b+"ٍ"), maful: sjN("مُ"+b+"ًى"), masdar: sjN(b+"َيَة"), masdar2: sjN(f+"ِ"+a+"ْ"+l+"َاء"),
+      note: "مُلْحَقٌ بِدَحْرَجَ بِزِيَادَةِ الْيَاءِ آخِرًا — نَاقِصٌ: سَلْقَاهُ: أَلْقَاهُ عَلَى قَفَاهُ." };
+  }
+  if (B.shape === "r15") {   // تَسَلْقَى يَتَسَلْقَى
+    const b = "تَ"+f+"َ"+a+"ْ"+l;
+    return { ...base, mazi: sjMaziNaqis(b+"َ", "ي"), mudari: sjMudariNaqis("َ", b, "a"), amr: sjAmrNaqis(b, "a"), ...sjGovNaqis("َ", b, "a"),
+      fail: sjN("مُ"+b+"ٍ"), maful: sjN("مُ"+b+"ًى"), masdar: sjN(b+"ٍ"),
+      note: "مُلْحَقٌ بِتَدَحْرَجَ بِالتَّاءِ وَالْيَاءِ — مُطَاوِعُ سَلْقَى؛ مَصْدَرُهُ تَفَعْلٍ كَتَسَلْقٍ." };
+  }
+  if (B.shape === "r17") {   // اِسْلَنْقَى يَسْلَنْقِي
+    const core = f+"ْ"+a+"َنْ"+l;
+    return { ...base, mazi: sjMaziNaqis("اِ"+core+"َ", "ي"), mudari: sjMudariNaqis("َ", core, "i"), amr: sjAmrNaqis("اِ"+core, "i"), ...sjGovNaqis("َ", core, "i"),
+      fail: sjN("مُ"+core+"ٍ"), maful: sjN("مُ"+core+"ًى"), masdar: sjN("اِ"+f+"ْ"+a+"ِنْ"+l+"َاء"),
+      note: "مُلْحَقٌ بِاحْرَنْجَمَ بِالنُّونِ وَالْيَاءِ — اِسْلَنْقَى: نَامَ عَلَى قَفَاهُ." };
+  }
+  return { ok: false, reason: "shape" };
+}
+class Bab35Engine {
+  // the thirty-five doors in the table's order: n, the door's key for the engines, group, wazn, model root and model line, binā, ʿalāma
+  static DOORS = [
+    { n: 1, key: "I1", form: "I", bab: 1, group: "mujarrad", ar: "فَعَلَ يَفْعُلُ", root: "نصر", model: "نَصَرَ يَنْصُرُ نَصْرًا", bina: "muta", alama: { en: "the ʿayn carries fatḥa in the māḍī and ḍamma in the muḍāriʿ", tr: "ayne'l-fiili mâzîde meftûh, muzâride mazmûm" }, ex: "نَصَرَ زَيْدٌ عَمْرًا · خَرَجَ زَيْدٌ" },
+    { n: 2, key: "I2", form: "I", bab: 2, group: "mujarrad", ar: "فَعَلَ يَفْعِلُ", root: "ضرب", model: "ضَرَبَ يَضْرِبُ ضَرْبًا", bina: "muta", alama: { en: "fatḥa in the māḍī, kasra in the muḍāriʿ", tr: "mâzîde meftûh, muzâride meksûr" }, ex: "ضَرَبَ زَيْدٌ عَمْرًا · جَلَسَ زَيْدٌ" },
+    { n: 3, key: "I3", form: "I", bab: 3, group: "mujarrad", ar: "فَعَلَ يَفْعَلُ", root: "فتح", model: "فَتَحَ يَفْتَحُ فَتْحًا", bina: "muta", alama: { en: "fatḥa in both, on condition that the ʿayn or the lām is a throat letter", tr: "ayn veya lâmı boğaz harfi olmak şartıyla her ikisinde meftûh" }, ex: "فَتَحَ زَيْدٌ الْبَابَ · ذَهَبَ زَيْدٌ" },
+    { n: 4, key: "I4", form: "I", bab: 4, group: "mujarrad", ar: "فَعِلَ يَفْعَلُ", root: "علم", model: "عَلِمَ يَعْلَمُ عِلْمًا", bina: "muta", alama: { en: "kasra in the māḍī, fatḥa in the muḍāriʿ", tr: "mâzîde meksûr, muzâride meftûh" }, ex: "عَلِمَ زَيْدٌ الْمَسْأَلَةَ · وَجِلَ زَيْدٌ" },
+    { n: 5, key: "I5", form: "I", bab: 5, group: "mujarrad", ar: "فَعُلَ يَفْعُلُ", root: "حسن", model: "حَسُنَ يَحْسُنُ حُسْنًا", bina: "lazim", alama: { en: "ḍamma in both", tr: "her ikisinde mazmûm" }, ex: "حَسُنَ زَيْدٌ" },
+    { n: 6, key: "I6", form: "I", bab: 6, group: "mujarrad", ar: "فَعِلَ يَفْعِلُ", root: "حسب", model: "حَسِبَ يَحْسِبُ حِسْبَانًا", bina: "muta", alama: { en: "kasra in both", tr: "her ikisinde meksûr" }, ex: "حَسِبَ زَيْدٌ عَمْرًا فَاضِلًا · نَعِمَ زَيْدٌ" },
+    { n: 7, key: "IV", form: "IV", group: "mazid", ar: "أَفْعَلَ يُفْعِلُ إِفْعَالًا", root: "كرم", model: "أَكْرَمَ يُكْرِمُ إِكْرَامًا", bina: "muta", alama: { en: "a hamza in front — the māḍī stands on four letters", tr: "evveline hemze ziyadesiyle mâzîsi dört harf üzerine" }, ex: "أَكْرَمَ زَيْدٌ عَمْرًا" },
+    { n: 8, key: "II", form: "II", group: "mazid", ar: "فَعَّلَ يُفَعِّلُ تَفْعِيلًا", root: "فرح", model: "فَرَّحَ يُفَرِّحُ تَفْرِيحًا", bina: "takthir", alama: { en: "a letter of the ʿayn's kind between the fāʾ and the ʿayn (the ʿayn doubled)", tr: "fâ ile ayn arasına ayn cinsinden bir harf getirmekle" }, ex: "طَوَّفَ زَيْدٌ الْكَعْبَةَ · غَلَّقَ زَيْدٌ الْبَابَ" },
+    { n: 9, key: "III", form: "III", group: "mazid", ar: "فَاعَلَ يُفَاعِلُ مُفَاعَلَةً وَفِعَالًا", root: "قتل", model: "قَاتَلَ يُقَاتِلُ مُقَاتَلَةً", bina: "musharaka", alama: { en: "an alif between the fāʾ and the ʿayn", tr: "fâ ile ayn arasına elif ziyadesiyle" }, ex: "قَاتَلَ زَيْدٌ عَمْرًا · قَاتَلَهُمُ اللهُ" },
+    { n: 10, key: "VII", form: "VII", group: "mazid", ar: "اِنْفَعَلَ يَنْفَعِلُ اِنْفِعَالًا", root: "كسر", model: "اِنْكَسَرَ يَنْكَسِرُ اِنْكِسَارًا", bina: "mutawaa", alama: { en: "a hamza and a nūn in front — five letters", tr: "evveline hemze ve nûn ziyadesiyle mâzîsi beş harf üzerine" }, ex: "كَسَرْتُ الزُّجَاجَ فَانْكَسَرَ" },
+    { n: 11, key: "VIII", form: "VIII", group: "mazid", ar: "اِفْتَعَلَ يَفْتَعِلُ اِفْتِعَالًا", root: "جمع", model: "اِجْتَمَعَ يَجْتَمِعُ اِجْتِمَاعًا", bina: "mutawaa", alama: { en: "a hamza in front and a tāʾ between the fāʾ and the ʿayn", tr: "evveline hemze, fâ ile ayn arasına te ziyadesiyle" }, ex: "جَمَعْتُ الْإِبِلَ فَاجْتَمَعَتْ" },
+    { n: 12, key: "IX", form: "IX", group: "mazid", ar: "اِفْعَلَّ يَفْعَلُّ اِفْعِلَالًا", root: "حمر", model: "اِحْمَرَّ يَحْمَرُّ اِحْمِرَارًا", bina: "mubalagha", alama: { en: "a hamza in front and a letter of the lām's kind at the end", tr: "evveline hemze, sonuna lâm cinsinden bir harf ziyadesiyle" }, ex: "اِحْمَرَّ زَيْدٌ" },
+    { n: 13, key: "V", form: "V", group: "mazid", ar: "تَفَعَّلَ يَتَفَعَّلُ تَفَعُّلًا", root: "كلم", model: "تَكَلَّمَ يَتَكَلَّمُ تَكَلُّمًا", bina: "takalluf", alama: { en: "a tāʾ in front and the ʿayn doubled", tr: "evveline te, fâ ile lâm arasına ayn cinsinden bir harf ziyadesiyle" }, ex: "تَعَلَّمْتُ الْعِلْمَ مَسْأَلَةً بَعْدَ مَسْأَلَةٍ" },
+    { n: 14, key: "VI", form: "VI", group: "mazid", ar: "تَفَاعَلَ يَتَفَاعَلُ تَفَاعُلًا", root: "بعد", model: "تَبَاعَدَ يَتَبَاعَدُ تَبَاعُدًا", bina: "musharaka2", alama: { en: "a tāʾ in front and an alif between the fāʾ and the ʿayn", tr: "evveline te, fâ ile ayn arasına elif ziyadesiyle" }, ex: "تَبَاعَدَ زَيْدٌ وَعَمْرٌو" },
+    { n: 15, key: "X", form: "X", group: "mazid", ar: "اِسْتَفْعَلَ يَسْتَفْعِلُ اِسْتِفْعَالًا", root: "خرج", model: "اِسْتَخْرَجَ يَسْتَخْرِجُ اِسْتِخْرَاجًا", bina: "muta", alama: { en: "a hamza, a sīn and a tāʾ in front — six letters", tr: "evveline hemze, sîn ve te ziyadesiyle mâzîsi altı harf üzerine" }, ex: "اِسْتَخْرَجَ زَيْدٌ الْمَالَ · اِسْتَحْجَرَ الطِّينُ" },
+    { n: 16, key: "XII", form: "XII", group: "mazid", ar: "اِفْعَوْعَلَ يَفْعَوْعِلُ اِفْعِيعَالًا", root: "غشب", model: "اِغْشَوْشَبَ يَغْشَوْشِبُ اِغْشِيشَابًا", bina: "mubalagha", alama: { en: "a hamza in front, and between the ʿayn and the lām a letter of the ʿayn's kind with a wāw", tr: "evveline hemze, ayn ile lâm arasına ayn cinsinden bir harf ve vav ziyadesiyle" }, ex: "اِعْشَوْشَبَتِ الْأَرْضُ" },
+    { n: 17, key: "XIII", form: "XIII", group: "mazid", ar: "اِفْعَوَّلَ يَفْعَوِّلُ اِفْعِوَّالًا", root: "جلذ", model: "اِجْلَوَّذَ يَجْلَوِّذُ اِجْلِوَّاذًا", bina: "mubalagha", alama: { en: "a hamza in front and two wāws between the ʿayn and the lām", tr: "evveline hemze, ayn ile lâm arasına iki vav ziyadesiyle" }, ex: "اِجْلَوَّذَتِ الْإِبِلُ" },
+    { n: 18, key: "XI", form: "XI", group: "mazid", ar: "اِفْعَالَّ يَفْعَالُّ اِفْعِيلَالًا", root: "حمر", model: "اِحْمَارَّ يَحْمَارُّ اِحْمِيرَارًا", bina: "mubalagha", alama: { en: "a hamza in front, an alif between the ʿayn and the lām, and the lām repeated", tr: "evveline hemze, ayn ile lâm arasına elif, sonuna lâm cinsinden harf ziyadesiyle" }, ex: "اِحْمَارَّ زَيْدٌ" },
+  ].concat(Object.keys(RUBAI17).map(k => {
+    const B = RUBAI17[k]; return { n: B.n, key: k, rubai: k, group: B.group, ar: B.ar, root: B.root, model: null, bina: B.bina, alama: B.alama, ex: "" };
+  })).sort((x, y) => x.n - y.n);
+  static MODELS = { R1: "دَحْرَجَ يُدَحْرِجُ دَحْرَجَةً وَدِحْرَاجًا", R5: "حَوْقَلَ يُحَوْقِلُ حَوْقَلَةً وَحِيقَالًا", R6: "بَيْطَرَ يُبَيْطِرُ بَيْطَرَةً وَبِيطَارًا", R7: "جَهْوَرَ يُجَهْوِرُ جَهْوَرَةً وَجِهْوَارًا",
+    R8: "عَثْيَرَ يُعَثْيِرُ عَثْيَرَةً وَعِثْيَارًا", R9: "جَلْبَبَ يُجَلْبِبُ جَلْبَبَةً وَجِلْبَابًا", R10: "سَلْقَى يُسَلْقِي سَلْقَيَةً وَسِلْقَاءً", R2: "تَدَحْرَجَ يَتَدَحْرَجُ تَدَحْرُجًا",
+    R3: "اِحْرَنْجَمَ يَحْرَنْجِمُ اِحْرِنْجَامًا", R4: "اِقْشَعَرَّ يَقْشَعِرُّ اِقْشِعْرَارًا", R11: "تَجَلْبَبَ يَتَجَلْبَبُ تَجَلْبُبًا", R12: "تَجَوْرَبَ يَتَجَوْرَبُ تَجَوْرُبًا", R13: "تَشَيْطَنَ يَتَشَيْطَنُ تَشَيْطُنًا",
+    R14: "تَرَهْوَكَ يَتَرَهْوَكُ تَرَهْوُكًا", R15: "تَسَلْقَى يَتَسَلْقَى تَسَلْقِيًا", R16: "اِقْعَنْسَسَ يَقْعَنْسِسُ اِقْعِنْسَاسًا", R17: "اِسْلَنْقَى يَسْلَنْقِي اِسْلِنْقَاءً" };
+  static model(key){ return this.MODELS[key] || ""; }
+  static door(keyOrN){ return this.DOORS.find(d => d.key === keyOrN || d.n === keyOrN) || null; }
+  static byGroup(){ const out = {}; for (const d of this.DOORS) (out[d.group] = out[d.group] || []).push(d); return out; }
+  // derive any door from root letters (3 for the triliteral and the attached doors, 4 for the bare and augmented quadriliteral)
+  static derive(letters, keyOrN){
+    const d = typeof keyOrN === "object" ? keyOrN : this.door(keyOrN); if (!d) return { ok: false, reason: "door" };
+    const r = (letters || []).filter(Boolean);
+    if (d.rubai) return rubai17Derive(r, d.rubai);
+    if (r.length !== 3) return { ok: false, reason: "len" };
+    if (["IX", "XI", "XII", "XIII"].includes(d.form)) { const x = mazidDerive(r, d.form); return x.ok ? { ...x, key: d.key, n: d.n, group: d.group, bina: BAB35_BINA[d.bina], alama: d.alama } : x; }
+    const cls = nakilClass({ root: r.join(" ") }); if (!cls) return { ok: false, reason: "class" };
+    const x = sarfDerive(cls, d.form, d.bab || 1);
+    return x.ok ? { ...x, key: d.key, n: d.n, group: d.group, bina: BAB35_BINA[d.bina], alama: d.alama } : x;
+  }
+  static modelLine(d){ return d.model || this.model(d.key); }
+  // the engine re-derives every door's own model verb and compares the māḍī, the muḍāriʿ and (for the augmented doors) the maṣdar with the table
+  static audit(){
+    const N = s => String(s || "").normalize("NFC").replace(/ِيًا$/, "ٍ").replace(/ًا$|ً$|ٌ$|ٍ$/, "");
+    const bad = [], rows = [];
+    for (const d of this.DOORS) {
+      const line = this.modelLine(d).split(/\s+/); const want = { mazi: line[0], mudari: line[1], masdar: N(line[2] || ""), masdar2: N(line[4] || "") };
+      const x = this.derive(d.root.split(""), d);
+      const got = x.ok ? { mazi: N(x.mazi[0]), mudari: N(x.mudari[0]), masdar: N(x.masdar || ""), masdar2: N(x.masdar2 || "") } : null;
+      const checks = ["mazi", "mudari"]; if (d.group !== "mujarrad") checks.push("masdar"); if (want.masdar2) checks.push("masdar2");
+      const miss = !got ? ["derive:" + (x.reason || "")] : checks.filter(k => N(want[k]) !== N(got[k])).map(k => `${k}: ${want[k]} ≠ ${got ? got[k] : "∅"}`);
+      rows.push({ n: d.n, key: d.key, ok: !miss.length, miss });
+      if (miss.length) bad.push({ n: d.n, key: d.key, miss });
+    }
+    return { n: this.DOORS.length, bad, rows };
+  }
+  // every derived cell of the quadriliteral and the four late triliteral doors, for the vowel proofreader
+  static allCells(){
+    const out = [];
+    for (const d of this.DOORS) { if (d.n < 12 || [13, 14, 15].includes(d.n)) continue; const x = this.derive(d.root.split(""), d); if (!x.ok) continue;
+      out.push(...x.mazi, ...x.mudari, ...x.amr, x.mansub, x.majzum, x.majzum2, x.fail, x.maful, x.masdar); if (x.masdar2) out.push(x.masdar2); }
+    return out.filter(Boolean);
+  }
+  static bare(w){ return stripAr(String(w || "").normalize("NFC")).replace(/[^ء-ي]/g, ""); }
+  // which quadriliteral (or late triliteral) door a written word belongs to — the letters are read off the skeleton, the door re-derived, and the word must be one of its cells
+  static recognize(word){
+    const w = String(word || "").normalize("NFC").replace(/[«»،.:!؟]/g, "").trim(); if (!w) return null;
+    const b = this.bare(w).replace(/^[وف](?=.{4})/, ""); const vow = /[ً-ْ]/.test(w);
+    const tries = [];
+    const push = (letters, key) => tries.push({ letters, key });
+    const four = (ls) => { push(ls, "R1"); if (ls[1] === "و" || ls[1] === "ي") push([ls[0], ls[2], ls[3]], ls[1] === "و" ? "R5" : "R6"); if (ls[2] === "و" || ls[2] === "ي") push([ls[0], ls[1], ls[3]], ls[2] === "و" ? "R7" : "R8"); if (ls[2] === ls[3]) push([ls[0], ls[1], ls[2]], "R9"); };
+    const fourT = (ls) => { push(ls, "R2"); if (ls[1] === "و" || ls[1] === "ي") push([ls[0], ls[2], ls[3]], ls[1] === "و" ? "R12" : "R13"); if (ls[2] === "و") push([ls[0], ls[1], ls[3]], "R14"); if (ls[2] === ls[3]) push([ls[0], ls[1], ls[2]], "R11"); };
+    let m;
+    if ((m = b.match(/^(.)(.)(.)ى$/))) push([m[1], m[2], m[3]], "R10");
+    if ((m = b.match(/^م(.)(.)(.)$/))) push([m[1], m[2], m[3]], "R10");              // مُسَلْقٍ / مُسَلْقًى
+    if ((m = b.match(/^مت(.)(.)(.)$/))) push([m[1], m[2], m[3]], "R15");
+    if ((m = b.match(/^م(.)(.)ن(.)$/))) push([m[1], m[2], m[3]], "R17");
+    if ((m = b.match(/^ت(.)(.)(.)ى$/))) push([m[1], m[2], m[3]], "R15");
+    if ((m = b.match(/^[اٱ](.)(.)ن(.)ى$/))) push([m[1], m[2], m[3]], "R17");
+    if ((m = b.match(/^(.)(.)(.)(.)$/))) four([m[1], m[2], m[3], m[4]]);
+    if ((m = b.match(/^(.)(.)(.)(.)ة$/))) four([m[1], m[2], m[3], m[4]]);                 // فَعْلَلَة
+    if ((m = b.match(/^(.)(.)(.)ا(.)$/))) four([m[1], m[2], m[3], m[4]]);                 // فِعْلَال
+    if ((m = b.match(/^(.)ي(.)ا(.)$/))) { push([m[1], m[2], m[3]], "R5"); push([m[1], m[2], m[3]], "R6"); }   // فِيعَال
+    if ((m = b.match(/^[اٱ](.)(.)ن(.)ا(.)$/))) { push([m[1], m[2], m[3], m[4]], "R3"); if (m[3] === m[4]) push([m[1], m[2], m[3]], "R16"); }   // اِفْعِنْلَال
+    if ((m = b.match(/^[اٱ](.)(.)(.)(.)ا(.)$/)) && m[4] === m[5]) push([m[1], m[2], m[3], m[4]], "R4");   // اِفْعِلَّال — the doubled lām written twice around the alif
+    if ((m = b.match(/^[اٱ](.)(.)(.)ا(.)$/)) && m[3] === m[4]) push([m[1], m[2], m[3]], "IX");   // اِفْعِلَال
+    if ((m = b.match(/^[اٱ](.)(.)ي(.)ا(.)$/))) { if (m[3] === m[4]) push([m[1], m[2], m[3]], "XI"); if (m[2] === m[3]) push([m[1], m[2], m[4]], "XII"); }   // اِفْعِيلَال / اِفْعِيعَال
+    if ((m = b.match(/^[يتنأم](.)(.)(.)(.)$/))) four([m[1], m[2], m[3], m[4]]);
+    if ((m = b.match(/^ت(.)(.)(.)(.)$/))) fourT([m[1], m[2], m[3], m[4]]);
+    if ((m = b.match(/^[يتنأ]ت(.)(.)(.)(.)$/)) || (m = b.match(/^مت(.)(.)(.)(.)$/))) fourT([m[1], m[2], m[3], m[4]]);
+    if ((m = b.match(/^[اٱ](.)(.)ن(.)(.)$/)) || (m = b.match(/^[يتنأم](.)(.)ن(.)(.)$/))) { push([m[1], m[2], m[3], m[4]], "R3"); if (m[3] === m[4]) push([m[1], m[2], m[3]], "R16"); }
+    if ((m = b.match(/^[اٱ](.)(.)(.)(.)$/)) || (m = b.match(/^[يتنأم](.)(.)(.)(.)$/))) { push([m[1], m[2], m[3], m[4]], "R4"); if (m[3] === "ا") push([m[1], m[2], m[4]], "XI"); }
+    if ((m = b.match(/^[اٱ](.)(.)و(.)(.)$/)) || (m = b.match(/^[يتنأم](.)(.)و(.)(.)$/))) { if (m[2] === m[3]) push([m[1], m[2], m[4]], "XII"); }
+    if ((m = b.match(/^[اٱ](.)(.)و(.)$/)) || (m = b.match(/^[يتنأم](.)(.)و(.)$/))) push([m[1], m[2], m[3]], "XIII");
+    if ((m = b.match(/^[اٱ](.)(.)(.)$/)) || (m = b.match(/^[يتنأم](.)(.)(.)$/))) push([m[1], m[2], m[3]], "IX");
+    // a suffixed cell (اِحْمَرَّتْ، تَدَحْرَجُوا) exposes its skeleton only once the ending is set aside
+    for (const suf of ["ت", "تا", "وا", "ن", "نا", "تم", "تن", "ا", "ان", "ون", "ين", "ي", "ه", "ها", "هم"]) {
+      if (b.length - suf.length >= 4 && b.endsWith(suf)) { const b2 = b.slice(0, -suf.length); let mm;
+        if ((mm = b2.match(/^(.)(.)(.)(.)$/))) four([mm[1], mm[2], mm[3], mm[4]]);
+        if ((mm = b2.match(/^ت(.)(.)(.)(.)$/))) fourT([mm[1], mm[2], mm[3], mm[4]]);
+        if ((mm = b2.match(/^[اٱ](.)(.)ن(.)(.)$/))) { push([mm[1], mm[2], mm[3], mm[4]], "R3"); if (mm[3] === mm[4]) push([mm[1], mm[2], mm[3]], "R16"); }
+        if ((mm = b2.match(/^[اٱ](.)(.)(.)(.)$/))) { push([mm[1], mm[2], mm[3], mm[4]], "R4"); if (mm[3] === "ا") push([mm[1], mm[2], mm[4]], "XI"); }
+        if ((mm = b2.match(/^[اٱ](.)(.)(.)$/))) push([mm[1], mm[2], mm[3]], "IX");
+        if ((mm = b2.match(/^[اٱ](.)(.)و(.)(.)$/)) && mm[2] === mm[3]) push([mm[1], mm[2], mm[4]], "XII");
+        if ((mm = b2.match(/^[اٱ](.)(.)و(.)$/))) push([mm[1], mm[2], mm[3]], "XIII"); }
+    }
+    const cmp = s => vow ? String(s || "").normalize("NFC") : this.bare(s);
+    const target = vow ? w.replace(/^[وف][َ]?(?=.{5})/, "") : b;
+    const hits = []; const seen = new Set();
+    for (const t of tries) {
+      const d = this.door(t.key); if (!d) continue;
+      const sk = t.key + ":" + t.letters.join(""); if (seen.has(sk)) continue; seen.add(sk);
+      const x = this.derive(t.letters, d); if (!x.ok) continue;
+      const cells = [["mazi", x.mazi], ["mudari", x.mudari], ["amr", x.amr], ["mansub", [x.mansub]], ["majzum", [x.majzum, x.majzum2]], ["fail", [x.fail]], ["maful", [x.maful]], ["masdar", [x.masdar, x.masdar2]]];
+      for (const [part, arr] of cells) { const i = (arr || []).findIndex(c => c && cmp(c) === cmp(target)); if (i >= 0) { hits.push({ door: d, key: d.key, n: d.n, part, cell: i, letters: t.letters, wazn: d.ar, bina: BAB35_BINA[d.bina], group: BAB35_GROUPS[d.group] }); break; } }
+    }
+    this._lastTries = tries;
+    if (!hits.length) return null;
+    const first = hits[0]; first.alts = hits.slice(1); return first;
+  }
+  // how many corpus verbs recite each door — read off the morphology's own بَاب lines
+  static footfall(){
+    if (this._foot) return this._foot;
+    const out = {}; const add = n => { out[n] = (out[n] || 0) + 1; };
+    const R = [[/نَصَرَ/, 1], [/ضَرَبَ/, 2], [/فَتَحَ/, 3], [/سَمِعَ|عَلِمَ/, 4], [/كَرُمَ|حَسُنَ/, 5], [/حَسِبَ/, 6], [/الْإِفْعَال|أَفْعَلَ/, 7], [/التَّفْعِيل|فَعَّلَ/, 8], [/الْمُفَاعَلَة|فَاعَلَ/, 9], [/الِانْفِعَال|انْفَعَلَ|اِنْفَعَلَ/, 10], [/الِافْتِعَال|افْتَعَلَ|اِفْتَعَلَ/, 11], [/افْعَلَّ|اِفْعَلَّ/, 12], [/التَّفَعُّل|تَفَعَّلَ/, 13], [/التَّفَاعُل|تَفَاعَلَ/, 14], [/الِاسْتِفْعَال|اسْتَفْعَلَ|اِسْتَفْعَلَ/, 15], [/فَعْلَلَ|رُبَاعِيّ/, 19]];
+    try { for (const st of STORIES) for (const m of Object.values(st.morph || {})) { const s = String((m && m.bab) || "").normalize("NFC"); if (!s) continue; const hit = R.find(([re]) => re.test(s)); if (hit) add(hit[1]); } } catch (e) {}
+    this._foot = out; return out;
+  }
 }
 
 // ---------- where i'lal must NOT run --------------------------------------
@@ -10920,7 +11220,9 @@ let conjState = { idafaA: "كِتَابٌ", idafaB: "الْوَلَدُ", idafaC
                   alama: "مَعَانِي", alamaDef: false, alamaMudaf: false, alamaMamnu: null,
                   kernel: "يَا عَبْدَ اللهِ",
                   model: "كَتَبَ الْوَلَدُ الدَّرْسَ فِي الْبَيْتِ" };
-const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "X"];
+const CONJ_FORMS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"];
+const CONJ_LATE = ["IX", "XI", "XII", "XIII"];   // (wave 38) the four augmented triliteral doors derived by mazidDerive
+const CONJ_MULHAQ = ["R5", "R6", "R7", "R8", "R9", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17"];   // the attached doors: a three-letter root + the recipe
 function conjClass(){
   const letters = conjState.root.replace(/[^ء-ي]/g, "").split("");
   // four letters are not an error but a DIFFERENT CHAPTER of the same book:
@@ -10983,13 +11285,15 @@ function syncConjSeg(){
   }
   const fSeg = document.getElementById("conjFormSeg");
   if (fSeg) fSeg.hidden = quad;
+  const mSeg = document.getElementById("conjMulhaqSeg");
+  if (mSeg) { mSeg.hidden = quad; mSeg.querySelectorAll("[data-cm]").forEach(x => x.classList.toggle("on", (x.dataset.cm || "") === (conjState.mulhaq || ""))); }
   document.querySelectorAll("#conjFormSeg [data-cf]").forEach(x => {
     x.classList.toggle("on", x.dataset.cf === conjState.form);
     x.classList.toggle("attested", !!kn && x.dataset.cf === kn.form);
   });
   const babSeg = document.getElementById("conjBabSeg");
   if (!babSeg) return;
-  babSeg.hidden = quad || conjState.form !== "I";
+  babSeg.hidden = quad || conjState.form !== "I" || !!conjState.mulhaq;
   babSeg.querySelectorAll("[data-cb]").forEach(x => {
     x.classList.toggle("on", +x.dataset.cb === conjState.bab);
     x.classList.toggle("attested", !!kn && kn.bab === +x.dataset.cb);
@@ -11003,17 +11307,21 @@ function renderConjOut(){
     out.innerHTML = `<p class="empty">${cls.err === "len" ? ui().conjBad : ui().conjHamza}</p>`;
     return;
   }
-  const r = cls.rubai ? rubaiDerive(cls.letters, conjState.rubai)
-                      : sarfDerive(cls, conjState.form, conjState.bab);
+  const r = cls.rubai ? rubai17Derive(cls.letters, conjState.rubai)
+          : conjState.mulhaq ? rubai17Derive(cls.rs, conjState.mulhaq)
+          : CONJ_LATE.includes(conjState.form) ? mazidDerive(cls.rs, conjState.form)
+          : sarfDerive(cls, conjState.form, conjState.bab);
   if (!r.ok) { out.innerHTML = `<p class="empty">${ui().conjNoForm}</p>`; return; }
-  if (cls.rubai) {
+  if (cls.rubai || conjState.mulhaq) {
+    const lang = state.uiLang === "tr" ? "tr" : "en";
     out.innerHTML = `<p class="bab-line" lang="ar">${r.wazn}</p>
-      <p class="conj-known">${arSpan("رُبَاعِيٌّ")} — ${state.uiLang === "tr" ? r.babLabel.tr : r.babLabel.en}</p>
+      <p class="conj-known">${arSpan("رُبَاعِيٌّ")} — ${r.babLabel[lang] || r.babLabel.en}${r.n ? ` · ${r.n}/35` : ""}${r.bina ? ` — ${escapeAttr(r.bina[lang] || r.bina.en)}` : ""}</p>
       ${r.mulhaq ? `<p class="sarf-note" lang="ar">${r.mulhaq}</p>` : ""}
+      ${conjState.mulhaq ? `<p class="sarf-note">${ui().conjMulhaqNote}${r.alama ? " — " + escapeAttr(r.alama[lang] || r.alama.en) : ""}</p>` : ""}
       <div class="facts">
         ${chip("اسم الفاعل: " + arSpan(r.fail))}
         ${chip("اسم المفعول: " + arSpan(r.maful))}
-        ${chip("المصدر: " + arSpan(r.masdar))}
+        ${chip("المصدر: " + arSpan(r.masdar))}${r.masdar2 ? chip("و " + arSpan(r.masdar2)) : ""}
       </div>
       <h4 class="conj-h" lang="ar">الْمَاضِي</h4>${conjTable(r.mazi, PERSON_ROWS, "")}
       <h4 class="conj-h" lang="ar">الْمُضَارِعُ</h4>${conjTable(r.mudari, PERSON_ROWS, "")}
@@ -12057,6 +12365,11 @@ function renderLabBody(){
     renderInnaOut();
     return;
   }
+  if (conjState.lab === "bab35") {
+    body.innerHTML = `<p class="ref-intro">${ui().bab35Intro}</p><div id="bab35Out"></div>`;
+    renderBab35Out();
+    return;
+  }
   if (conjState.lab === "wujuh") {
     body.innerHTML = `<p class="ref-intro">${ui().wujuhIntro}</p>
       <div class="conj-lab">
@@ -12153,6 +12466,8 @@ function renderLabBody(){
         `<button data-cb="${b}" class="${conjState.bab === b ? "on" : ""}" lang="ar">${SJ_BAB1[b].model.split(" ")[0]}</button>`).join("")}</div>
       <div class="seg conj-seg" id="conjRubaiSeg" hidden>${Object.values(RUBAI_BABS).map(b =>
         `<button data-cr="${b.key}" class="${conjState.rubai === b.key ? "on" : ""}" lang="ar">${b.model.split(" ")[0]}</button>`).join("")}</div>
+      <div class="seg conj-seg" id="conjMulhaqSeg"><button data-cm="" class="${!conjState.mulhaq ? "on" : ""}">${ui().conjMulhaqOff}</button>${CONJ_MULHAQ.map(k =>
+        `<button data-cm="${k}" class="${conjState.mulhaq === k ? "on" : ""}" lang="ar" title="${escapeAttr(RUBAI17[k].ar)}">${Bab35Engine.model(k).split(" ")[0]}</button>`).join("")}</div>
     </div>
     <div id="conjOut"></div>`;
   const root = document.getElementById("conjRoot");
@@ -12161,7 +12476,7 @@ function renderLabBody(){
     conjAutoPick(); syncConjSeg(); renderConjOut();
   });
   body.querySelectorAll("[data-cf]").forEach(b => b.addEventListener("click", () => {
-    conjState.form = b.dataset.cf;
+    conjState.form = b.dataset.cf; conjState.mulhaq = "";
     syncConjSeg(); renderConjOut();
   }));
   body.querySelectorAll("[data-cb]").forEach(b => b.addEventListener("click", () => {
@@ -12170,6 +12485,10 @@ function renderLabBody(){
   }));
   body.querySelectorAll("[data-cr]").forEach(b => b.addEventListener("click", () => {
     conjState.rubai = b.dataset.cr;
+    syncConjSeg(); renderConjOut();
+  }));
+  body.querySelectorAll("[data-cm]").forEach(b => b.addEventListener("click", () => {
+    conjState.mulhaq = b.dataset.cm || "";
     syncConjSeg(); renderConjOut();
   }));
   conjAutoPick(); syncConjSeg(); renderConjOut();
@@ -12441,6 +12760,7 @@ function openConjugator(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   sheetInner.innerHTML = `<div class="tabs labrail" role="tablist" aria-label="${escapeAttr(ui().labRailLabel)}">
       <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${arSpan("صَرْف")} ${ui().sarfLabTab}</button>
+      <button data-lab="bab35" class="${conjState.lab === "bab35" ? "on" : ""}">${arSpan("٣٥ بَابًا")} ${ui().bab35Tab}</button>
       <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
       <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
       <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
@@ -27002,6 +27322,10 @@ class GrammarKernel {
       [[`${wz.root}${wz.wazn ? " — " + wz.wazn : ""}`, wz.weak || ""]]);
     else miss.push({ ar: "الْجَذْرُ", en: "its root — the letters do not peel to three",
                      tr: "kökü — harfler üçe inmiyor" });
+    // (wave 38) a quadriliteral or a late triliteral door: the thirty-five-door table names it
+    try { const b35 = Bab35Engine.recognize(w); if (b35 && (b35.n >= 19 || CONJ_LATE.includes(b35.key))) add("bab35", "rule",
+      { ar: "بَابُهُ مِنَ الْخَمْسَةِ وَالثَّلَاثِينَ", en: "Its door among the thirty-five", tr: "Otuz beş bâbdan kapısı" },
+      [[`${b35.n} — ${b35.wazn}`, `${b35.part} · ${T(b35.bina)}${b35.alts.length ? " · " + (state.uiLang === "tr" ? "ya da" : "or") + " " + b35.alts.map(a => a.n + " " + a.wazn.split(" ")[0]).join(", ") : ""}`]]); } catch (e) {}
 
     try { const pk = IsmKindsEngine.profile(w, { pos: tok.pos, rule: tok.irab && tok.irab.rule }); if (pk.kinds.length) add("ism", "rule",
       { ar: "أَقْسَامُ الِاسْمِ", en: "Kinds of noun (the fifteen)", tr: "İsmin kısımları (on beş)" },
@@ -27480,6 +27804,74 @@ function renderInnaOut(){
     const inp = document.getElementById("innaIn"); if (inp) inp.value = b.dataset.seed;
     renderInnaOut();
   }));
+}
+// ---------- the 35-door atlas (wave 38): every door of the received table, derived and counted ----------
+function bab35CardHtml(d, lang, foot){
+  const E = escapeAttr, u = ui();
+  const bina = BAB35_BINA[d.bina] || {}, model = Bab35Engine.modelLine(d);
+  const n = foot && foot[d.n] ? `<span class="bab35-foot">${E(u.bab35Footfall.replace("{n}", foot[d.n]))}</span>` : "";
+  return `<div class="bab35-card g-${d.group}" data-n="${d.n}">
+    <div class="bab35-head"><span class="bab35-n">${d.n}/35</span><span class="bab35-wazn" lang="ar" dir="rtl">${E(d.ar)}</span>${n}</div>
+    <div class="bab35-model" lang="ar" dir="rtl"><small>${E(u.bab35Model)}:</small> ${E(model)}${d.ex ? ` <small>· ${E(u.bab35Ex)}:</small> ${E(d.ex)}` : ""}</div>
+    <div class="bab35-meta"><small><b>${E(u.bab35Bina)}:</b> <span lang="ar">${E(bina.ar || "")}</span> — ${E(bina[lang] || bina.en || "")}</small><small><b>${E(u.bab35Alama)}:</b> ${E((d.alama || {})[lang] || (d.alama || {}).en || "")}</small></div>
+    <button class="b35-conj" data-conj="${d.n}">${E(u.bab35Conj)} ${arSpan(d.root.split("").join(" "))}</button>
+  </div>`;
+}
+function renderBab35Out(){
+  const out = document.getElementById("bab35Out"); if (!out) return;
+  const lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr;
+  const groups = Bab35Engine.byGroup();
+  const order = ["mujarrad", "mazid", "rubai", "mulhaqR", "mazidR", "mulhaqT", "mulhaqH"];
+  const strip = `<div class="bab35-strip">${order.map(g => `<span class="b35g"><span lang="ar">${E(BAB35_GROUPS[g].ar)}</span><b>${BAB35_GROUPS[g].n}</b></span>`).join("")}<span class="b35g"><b>= 35</b></span></div>`;
+  const tally = `<p class="ref-intro bab35-tally" id="bab35Tally">…</p>`;
+  const paint = (foot) => {
+    out.innerHTML = strip + tally + order.map(g => `<div class="bab35-group"><div class="ref-group"><span class="ar" lang="ar">${E(BAB35_GROUPS[g].ar)}</span><span>${E(BAB35_GROUPS[g][lang] || BAB35_GROUPS[g].en)} · ${BAB35_GROUPS[g].n}</span></div><div class="bab35-cards">${(groups[g] || []).map(d => bab35CardHtml(d, lang, foot)).join("")}</div></div>`).join("");
+    out.querySelectorAll("[data-conj]").forEach(b => b.addEventListener("click", () => {
+      const d = Bab35Engine.door(+b.dataset.conj); if (!d) return;
+      conjState.root = d.root; conjState.mulhaq = ""; conjState.known = null;
+      if (d.rubai && d.root.length === 4) conjState.rubai = d.rubai;
+      else if (d.rubai) conjState.mulhaq = d.rubai;
+      else { conjState.form = d.form; if (d.bab) conjState.bab = d.bab; }
+      conjState.lab = "sarf"; openConjugator();
+    }));
+    const el = document.getElementById("bab35Tally"); if (el) { const a = Bab35Engine.audit(); el.textContent = u.bab35Audit.replace("{ok}", a.n - a.bad.length).replace("{n}", a.n); }
+  };
+  paint(null);
+  Relax.later("bab35-foot", () => Bab35Engine.footfall(), foot => { if (document.getElementById("bab35Out")) paint(foot); }, { persist: true });
+}
+// gBab35 — أَيُّ بَابٍ؟ the table's own models and the corpus's verbs with a known door; the options are four wazns
+let BAB35_CACHE = null;
+function bab35Items(){
+  if (BAB35_CACHE) return BAB35_CACHE;
+  const out = [];
+  for (const d of Bab35Engine.DOORS) out.push({ door: d, verb: Bab35Engine.modelLine(d), src: "table" });
+  try {
+    const km = conjKnownMap(); let k = 0;
+    for (const [key, hit] of Object.entries(km)) {
+      if (k >= 24) break;
+      const d = hit.form === "I" ? Bab35Engine.door("I" + (hit.bab || 1)) : Bab35Engine.door(hit.form); if (!d || !hit.mazi) continue;
+      const x = Bab35Engine.derive(key.split(""), d); if (!x.ok) continue;
+      out.push({ door: d, verb: `${x.mazi[0]} ${x.mudari[0]}${x.masdar ? " " + x.masdar : ""}`, src: "corpus", gloss: hit.gloss }); k++;
+    }
+  } catch (e) {}
+  BAB35_CACHE = out; return out;
+}
+function startBab35(){
+  const items = shuffle(bab35Items()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const lang = state.uiLang === "tr" ? "tr" : "en";
+  runQuiz({
+    title: ui().bab35Game, ask: ui().bab35Ask, items, restart: startBab35,
+    area: "sarf", lvl: it => it.door.group === "mujarrad" ? 2 : it.door.group === "mazid" ? 3 : 4, itemKey: it => "bab35:" + it.door.n + ":" + it.verb,
+    question: it => `<div class="game-q" lang="ar" dir="rtl">${it.verb}</div>${it.gloss ? `<p class="ref-intro">${escapeAttr(T(it.gloss))}</p>` : ""}`,
+    options: it => {
+      const same = Bab35Engine.DOORS.filter(d => d.n !== it.door.n && d.group === it.door.group), rest = Bab35Engine.DOORS.filter(d => d.n !== it.door.n && d.group !== it.door.group);
+      const ds = shuffle(same).slice(0, 2).concat(shuffle(rest).slice(0, 3)).slice(0, 3);
+      return shuffle([it.door, ...ds]).map(d => ({ html: `<span lang="ar">${escapeAttr(d.ar)}</span> <small>${d.n}/35</small>`, ok: d.n === it.door.n, ar: true, k: d.n }));
+    },
+    whyNot: () => ui().bab35WhyNot,
+    why: it => `<div class="frame-reveal"><span class="fr-name" lang="ar">${escapeAttr(it.door.ar)}</span><span class="fr-doc"><span lang="ar">${escapeAttr((BAB35_BINA[it.door.bina] || {}).ar || "")}</span> · ${escapeAttr((BAB35_BINA[it.door.bina] || {})[lang] || "")}<br>${escapeAttr((it.door.alama || {})[lang] || (it.door.alama || {}).en || "")}</span></div>`,
+  });
 }
 // ---------- the Wujuh lab (wave 37): Ibn Hishām's twenty words, a card per word with its faces ----------
 const WUJUH_SEEDS = WujuhEngine.SEEDS.map(s => s.ar);
@@ -28153,6 +28545,7 @@ class GameFactory {
     { id: "gIdgham",  group: "sarf",    emblem: "دّ", min: 4, supply: () => idghamItems().length },
     { id: "gTasgir",  group: "sarf",    emblem: "🔬", min: 4, supply: () => tasgirItems().length },
     { id: "gKinds",   group: "sarf",    emblem: "🗂️", min: 4, supply: () => kindsItems().length },
+    { id: "gBab35",   group: "sarf",    emblem: "٣٥", min: 4, supply: () => bab35Items().length },
   ];
   static get(id){ return this.CATALOGUE.find(g => g.id === id) || null; }
   // How many items each game can draw RIGHT NOW, in whatever scope is open.
@@ -28420,6 +28813,7 @@ function openGames(){
     ${gCard("gIdgham", "دّ", ui().idghamGame, ui().idghamGameDesc)}
     ${gCard("gTasgir", "🔬", ui().tasgirGame, ui().tasgirGameDesc)}
     ${gCard("gKinds", "🗂️", ui().kindsGame, ui().kindsGameDesc)}
+    ${gCard("gBab35", "٣٥", ui().bab35Game, ui().bab35GameDesc)}
     ${gCard("gAdad", "🔢", ui().adadGame, ui().adadGameDesc)}
     ${gHead("نَحْو", ui().gGroupNahw)}
     ${gCard("gHarakat", "🎯", ui().harakat, ui().harakatDesc)}
@@ -28471,6 +28865,7 @@ function openGames(){
   document.getElementById("gWujuh").addEventListener("click", startWujuh);
   document.getElementById("gTasgir").addEventListener("click", startTasgir);
   document.getElementById("gKinds").addEventListener("click", startKinds);
+  document.getElementById("gBab35").addEventListener("click", startBab35);
   document.getElementById("gIbaraTr").addEventListener("click", () => startIbara("toTr"));
   document.getElementById("gIbaraAr").addEventListener("click", () => startIbara("toAr"));
   document.getElementById("gTahlil").addEventListener("click", startTahlil);

@@ -1118,3 +1118,20 @@ iʿrāb is shown as the examiner, not hidden as a hint. On the sentence line the
 where the page disagrees. The legend lists the twenty by face count — the order of the book, one face to twelve — so the reader can
 see that قَدْ has seven and مَا twelve before ever typing one. The game gives the word's own faces as the options and nothing else: a
 reader who knows إِنْ has four faces is asked exactly which of the four it is here.
+
+## 31. The thirty-five doors as one wall: a strip that adds up, cards that conjugate (wave 38)
+
+The ṣarf student learns the doors as a count before anything else — «the doors are thirty-five» — so the atlas opens with the count made
+visible: seven pills, one per group, each carrying its number, and a last pill that says «= 35». The reader sees the arithmetic of the
+tradition (6 + 12 + 1 + 6 + 3 + 5 + 2) before reading a single wazn, and the groups keep their colour on every card below: green for the bare
+triliteral, blue for the augmented, amber for the quadriliteral, amber dashed for the doors that are only *attached* to it — the same
+dashed border the Wujuh lab uses for the corpus's added faces, so «attached» reads the same way everywhere. Each card is the table's
+own row set upright: the number badge, the wazn large, the model verb with its maṣdars, the example sentence the table gives, then two
+small lines the student is examined on — what the door is *for* (the binā) and what *marks* it (the ʿalāma, the letter the recipe adds).
+A footfall line («409 corpus verbs») sits in the header where a price would: the doors are not equal, and the reader should see at a
+glance that نَصَرَ carries four hundred verbs of these texts and فَعْلَلَ two. The one button on the card says «conjugate» and names the
+model root letter by letter; pressing it does not open a second table under the card — it walks the reader into the Sarf lab with that
+root typed and that door lit, because the lab is where conjugation already lives and the atlas should point, not duplicate. In the lab
+the thirteen attached doors are a row of model verbs under the form row, off by default, so a three-letter root keeps its ordinary
+eighteen doors until the reader asks for an attachment; lighting one hides the six bāb buttons (an attached door has no bāb vowel to
+choose) and a note says in one sentence what just happened: the three letters are the root, the recipe added its letter.

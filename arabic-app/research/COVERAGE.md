@@ -31,7 +31,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 17 | `research/sources/ilal-misal-ecvef-naqis.txt` | **PARTIAL (partly corrupt)** | First ~150 lines are OLE mojibake; readable remainder duplicates #16 but adds unmodeled exception classes (عَوِرَ، اِسْتَوَى، مِقْوَلٌ) the engines have no path for. |
 | 18 | `research/sources/maqsud-sarf.txt` | **PARTIAL** | Broad overlap with existing sarf engines but cited by nothing; its masdar-mīmī derivation rules, lafīf wazn assignment and iʿlāl exceptions are untapped. |
 | 19 | `research/sources/masdar-sifa-mubalagha-vezinleri.txt` | **PARTIAL (mostly corrupt)** | Only header counts survive (32 samāʿī masdars, 17 ṣifa mushabbaha, 8+1 mubālagha wazns); the data rows are unrecoverable garbage. |
-| 20 | `research/sources/sarf-35-bab-tablosu.txt` | **PARTIAL** | The 6 mujarrad + 12 mazīd babs are fully implemented; the remaining 17 quadriliteral babs (رباعى مجرد/ملحق/مزيد) have zero engine or note coverage. |
+| 20 | `research/sources/sarf-35-bab-tablosu.txt` | **FULL** (v200) | All thirty-five doors derived: the 6 mujarrad + 12 mazīd (IX, XI, XII, XIII added in v200 by `mazidDerive`) and the 17 quadriliteral doors (`RUBAI17` + `rubai17Derive`: the bare فَعْلَلَ, the six attached by the table's letter recipes, the three augmented, the five attached to تَدَحْرَجَ, the two attached to اِحْرَنْجَمَ) with each door's binā, ʿalāma, model line, example and both maṣdars; `Bab35Engine.audit()` re-derives every model 35/35; the 35-door atlas lab, the attached-door picker, gBab35, the word-card row. |
 | 21 | `research/sources/sifa-mushabbaha-vezinleri.txt` | **FULL** | The 18-wajh table and pronoun-count rule are reproduced near-verbatim in `sifa-mushabbaha.json`. |
 | 22 | `research/sources/misal-kaideleri-mesnedli.txt` | **PARTIAL (partly corrupt)** | Same rules as #17 but *with* Marāḥ al-Arwāḥ/ʿIzzī page citations — those citations are used nowhere in any `classicalSources` field. |
 | 23 | `research/sources/mensubat.txt` | **PARTIAL** | ~148 Q&A across manṣūbāt/majrūrāt/tawābiʿ/mabniyyāt, nearly all matched by notes — except tarkhīm, nadb, iḍmār ʿalā sharīṭat al-tafsīr, asmāʾ al-afʿāl, aṣwāt, murakkabāt, kināyāt-naḥw, dual/gender, and half the ḥurūf catalogue. |
@@ -2886,6 +2886,10 @@ not a one-line change.
   glossary entries, 4 paradigms), the awāmil note `hadhf-al-jarr` with its
   question test; round 36 in six cuts (`patch29a`…`29f`). Endings-mode ḍabṭ ch3
   100.0 (354) from 276 on the v191 engine.
+- **v200 (wave 38)** — Row 20 → FULL: the thirty-five doors of the ṣarf table all derived — the thirteen attached quadriliteral doors
+  built from a three-letter root by the table's own recipes (wāw/yāʾ between the fāʾ and the ʿayn or the ʿayn and the lām, the lām
+  repeated, a yāʾ at the end, the tāʾ and the nūn of the augmented), the four late triliteral doors IX / XI / XII / XIII, every door's
+  model re-derived 35/35 and proofread, the 35-door atlas with the corpus footfall, the conjugator's attached-door row, gBab35, two gates.
 - **v199 (wave 37)** — Row 34: the Qawāʿid al-Iʿrāb's bāb 3 as `WujuhEngine` — the twenty words' faces read off the page's vowels
   and the row beside the word, graded against every authored iʿrāb phrase (1691 instances, 99.5%; مَا 435, 61.8% → 89.7% with the
   corpus-taught `readMa`), the book's 40 example sentences as seeds (40/40), the Wujuh lab, gWujuh, the word-card row, two smoke gates.

@@ -7645,3 +7645,51 @@ shart / nafiya / zaida / mufajaa, chips, legend, seeds, tally, gWujuh supply). `
 seeds caught them; every index test now reads `< 0` / `>= 0`. (2) A prefix regex on a stem list (`ILM_STEM` has حس) made حُسْن a verb of
 knowing; the list is excluded by name where it matters. (3) An authored phrase can name a face it then denies («لا تحقيق»): the map
 tests the specific faces before the generic one.
+
+## The thirty-five doors completed — the seventeen quadriliteral bābs by the table's own recipes (wave 38, v200)
+
+The received table (`research/sources/sarf-35-bab-tablosu.txt`, COVERAGE row 20) counts the doors of ṣarf as thirty-five: 6 + 12 + 1 + 6
++ 3 + 5 + 2. Before this wave the conjugator derived the six bare triliterals and eight augmented ones (II–VIII, X) and four quadriliteral
+doors (`rubaiDerive` R1–R4); the six attached shapes were strings in `RUBAI_MULHAQ`, the five attached to تَدَحْرَجَ and the two attached to
+اِحْرَنْجَمَ were nowhere, and IX / XI / XII / XIII had no derivation. Wave 38 makes every door a derivation (`patch38a.py`, inserted after
+`rubaiDerive`; the surface in `patch38b.py`):
+
+- **`RUBAI17`** — the seventeen quadriliteral doors, each with the table's wazn line, its model root, its group, its binā key and its ʿalāma
+  (the Turkish ʿalāma column rendered EN/TR), and a `skel(root)` recipe that builds the four-letter skeleton from a three-letter root
+  exactly as the table says: فَوْعَلَ puts a wāw between the fāʾ and the ʿayn (حقل → حَوْقَلَ), فَيْعَلَ a yāʾ (بطر → بَيْطَرَ), فَعْوَلَ / فَعْيَلَ
+  the letter between the ʿayn and the lām (جهر → جَهْوَرَ، عثر → عَثْيَرَ), فَعْلَلَ-with-the-lām-repeated doubles the last radical (جلب →
+  جَلْبَبَ), فَعْلَى adds a yāʾ at the end (سلق → سَلْقَى); the five attached to تَدَحْرَجَ prefix the tāʾ to the same skeletons (تَجَلْبَبَ، تَجَوْرَبَ،
+  تَشَيْطَنَ، تَرَهْوَكَ، تَسَلْقَى) and the two attached to اِحْرَنْجَمَ insert the nūn (اِقْعَنْسَسَ، اِسْلَنْقَى).
+- **`rubai17Derive(letters, key)`** conjugates the skeleton through the existing cell builders: the فَعْلَلَ family through `rubaiDerive` R1
+  (plus the table's second maṣdar فِعْلَال, with the madd yāʾ after the kasra for فَوْعَلَ / فَيْعَلَ: حِيقَال، بِيطَار), the تَفَعْلَلَ family through R2,
+  the اِفْعَنْلَلَ family through R3, and three naqis doors of its own — سَلْقَى يُسَلْقِي سَلْقِ (مُسَلْقٍ، مُسَلْقًى، سَلْقَيَة / سِلْقَاء), تَسَلْقَى يَتَسَلْقَى
+  تَسَلْقَ (تَسَلْقٍ) and اِسْلَنْقَى يَسْلَنْقِي اِسْلَنْقِ (اِسْلِنْقَاء) — through `sjMaziNaqis` / `sjMudariNaqis` / `sjAmrNaqis` / `sjGovNaqis` with the
+  quadriliteral's own prefix vowel (ḍamma for the bare door, fatḥa for the augmented).
+- **`mazidDerive(rs, form)`** — the four late triliteral doors: اِفْعَلَّ and اِفْعَالَّ as geminates (contracted before a vowel, broken before a
+  consonant: اِحْمَرَّ / اِحْمَرَرْتُ / يَحْمَرِرْنَ, the amr carried by hamzat al-waṣl), اِفْعَوْعَلَ (the ʿayn repeated around a wāw: اِغْشَوْشَبَ،
+  اِغْشِيشَاب) and اِفْعَوَّلَ (the doubled wāw: اِجْلَوَّذَ يَجْلَوِّذُ اِجْلِوَّاذ).
+- **`Bab35Engine`** — `DOORS` (all thirty-five in the table's order with group, wazn, model root, model line, binā, ʿalāma and the table's
+  example sentences), `derive(letters, door)` dispatching to `sarfDerive` / `mazidDerive` / `rubai17Derive`, **`audit()`** re-deriving every
+  door's model verb from its root and comparing the māḍī, the muḍāriʿ and (for the augmented doors) the maṣdar(s) with the table's model
+  line — **35/35**; `allCells()` (every derived cell of doors 12 and 16–35, 700+ forms) for `HarakeAuditor` — **0 flagged**;
+  **`recognize(word)`** reads the skeleton off a written form (the fourteen māḍī / muḍāriʿ cells, the amr, the governed cells, the
+  participles, both maṣdars, with the common suffixes set aside), re-derives the candidate doors and returns the door whose cell equals the
+  word — the bare door first and the attached doors as `alts` (وَسْوَسَ is فَعْلَلَ, or فَعْوَلَ of وسس), with the cells themselves as the proof;
+  `footfall()` counts how many corpus verbs recite each door off the morphology's own بَاب lines (نَصَرَ 409, ضَرَبَ 357, أَفْعَلَ 312 … فَعْلَلَ 2).
+
+**Atölye.** A new lab tab «٣٥ بَابًا»: the strip of seven groups with their counts summing to 35, then a card per door — number, wazn,
+the model line, the table's example, the binā (AR + EN/TR), the ʿalāma (EN/TR), the corpus footfall painted after the paint
+(`Relax.later("bab35-foot")`), and a **conjugate** button that opens the Sarf lab on that door's model root with the right control lit.
+The conjugator gains the thirteen attached doors as a picker row for a three-letter root (`conjState.mulhaq`; the triliteral forms step
+aside while one is lit, and clicking a form clears it) and the four late forms IX / XI / XII / XIII on the form row (`CONJ_LATE` →
+`mazidDerive`); a four-letter root still hands over to R1–R4 (now through `rubai17Derive`, same output plus the second maṣdar). **Game
+gBab35** («Which door?», sarf, ٣٥): the thirty-five models plus up to twenty-four corpus verbs with a known door, options = four wazns
+(two from the same group when possible). **Word card**: a «بَابُهُ مِنَ الْخَمْسَةِ وَالثَّلَاثِينَ» row for quadriliteral and late-door forms, with the
+alternatives named. Smoke gates: the audit 35/35, the proofreader on every late cell, eleven named derivations, the recogniser on seven
+forms; the atlas on a phone (35 cards, 7 groups, footfall, the conjugate hand-over, 13 form buttons, form IX, gBab35 supply).
+
+**Process notes.** (1) The recogniser's maṣdar skeletons were first written with capture-group indices one past the end (`m[5]` on a
+four-group regex) — a silent `undefined` letter that made every maṣdar unrecognisable; the probe's `_lastTries` exposed it. (2) The table
+writes its maṣdars in the accusative (إِكْرَامًا); the audit strips the tanwīn-alif, and reads the manqūṣ تَسَلْقِيًا back to تَسَلْقٍ. (3) The
+doubled lām of اِفْعِلَّال is written twice around the alif in the maṣdar (اِقْشِعْرَار has seven bare letters, اِحْمِرَار six): two skeleton
+patterns, not one. `DabtEngine` is untouched; the lanes are byte-identical.
