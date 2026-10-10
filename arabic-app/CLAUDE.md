@@ -7496,3 +7496,88 @@ above, taken from the sentences the round was cut on). The neighbours (the
 Talkhīṣ/Kāfiya/Part One sweep, Part Four's forty-five chapters and Part One's
 twenty-four against the v196 engine, Part Two ch1–11, the seeds, r21/r22, `sarfAudit`,
 the Talkhīṣ gates) swept WORSE 0 on Part Four's lanes A and C, Part One, Part Two ch1–11 and the sweep (BETTER 27 / 6 / 1 / 1); lane B shows two lines whose graded-word count fell by one because وَرَبَّكُمْ moved from a lucky verb reading to the uncounted mabni noun reading — the same vowels.
+
+## The Şerḥu'l-Muġnī as engines — the fifteen kinds of ism, taṣghīr and nisba by rule, and round 57 (wave 36, v198)
+
+**What the wave is.** Row 36 of the coverage table — the 96-page Şerḥu'l-Muġnî lesson
+notes (`research/sources/serhul-mugni-ders-notlari-kisa-1.txt`) — had given the app the
+nine causes of ghayr munṣarif (v192) and the seventeen lāzim-mabnī ẓarfs (v192); its
+other automatable chapters were still lying in the text. This wave takes three of them
+cover to cover and makes them engines, labs, cards and games, each graded on the book's
+OWN examples: the fifteen kinds of ism (p. 3), the diminutive (pp. 51–53) and the nisba
+(pp. 53–55). Round 57 of the DabtEngine rides along with one cut.
+
+**Round 57 (`patch36a`) — one cut, one refused.** v197 had logged two cuts for this round
+off Part Four ch18 s4. The first — a chain of ال-adjectives the print separates with a
+comma (الْقَاهِرَةِ، الرَّحِيمَةِ) — was REFUSED on inspection: the page vowels
+الْقَوِيَّةُ الْقَاهِرَةُ الرَّحِيمَةُ الْحَكِيمَةُ in raf, naʿts of يَدُ and not of
+الْقُدْرَةِ, so the comma marks a change of head that no rule can read without the vowel
+the grader is forbidden to look at; the sentence keeps its three misses honestly. The
+second landed, narrower than logged: a wāw/fāʾ-joined muḍāriʿ of the same person cell as
+the muḍāriʿ before it, whose doer was NAMED, inherits that doer as its hidden pronoun when
+it is transitive AND a demonstrative follows it — تَبْرُزُ يَدُ الْقُدْرَةِ … فَتُخْرِجُ
+هٰذَا الْإِنْسَانَ الضَّعِيفَ (the demonstrative and its badal are the object, nasb). The
+wider cut (any transitive joined verb) was tried first and the lanes refused it: an ال-noun
+or a pronoun-closed noun after such a verb is as often its NEW doer — وَيَغْشَى الْيَأْسُ
+الْقَاتِلُ, وَيَفْهَمَ قَوْمُهُ, وَيُخْصِبُ النَّاسُ, وَيَأْكُلُ الْقَوِيُّ مِنْهُمُ
+الضَّعِيفَ — four regressions for five gains, so the engine keeps the old reading there and
+takes only the demonstrative, which after a verb with a doer already seated is its object.
+An intransitive one still names its own doer after it — يَقُومُ زَيْدٌ وَيَقْعُدُ عَمْرٌو.
+On every lane with the misses-based compare: every lane reads WORSE 0, BETTER 0 against v197 (Parts One, Two and Four, the Talkhīṣ, the sweep, the crash scan) — the cut touches nothing the corpus grades in sequence and holds the free-text sentence it was cut on; the Part Four ch18 s4 line keeps its three naʿt misses, which the page's own raf vowels alone could settle.
+
+**The IsmEngine learns the Muġnī (`patch36b`).** The engine already derived فُعَيْل /
+فُعَيْعِل and the plain nisba; the notes add the rules it lacked, in this order before
+the old ones: أَب / أَخ restore their elided wāw and melt it into the yāʾ of taṣghīr
+(أُبَيّ، أُخَيّ); فَعْلَان of a name or an adjective keeps its ان (سُلَيْمَان،
+عُثَيْمَان، سُكَيْرَان، كُسَيْلَان); the feminine اء and ى stay (حُمَيْرَاء، سُمَيْرَاء،
+بُشَيْرَى); five letters with a long fourth take فُعَيْعِيل with the long vowel turned yāʾ
+(مُفَيْتِيح، عُصَيْفِير، قُنَيْدِيل); anything past the fourth letter is dropped
+(سُفَيْرِج، عُنَيْدِل); a samāʿī feminine of three letters shows its ة (شُمَيْسَة،
+أُرَيْضَة، عُيَيْنَة — and رِجْل the foot does while رَجُل the man does not, the vowels
+telling them apart); a doubled letter counts twice (هِرَّة → هُرَيْرَة). For the nisba:
+فَعِل opens its kasra (مَلَكِيّ، نَمَرِيّ); فَعِيلَة and فُعَيْلَة drop the ة and the
+yāʾ together (قَبَلِيّ، مَدَنِيّ); the feminine hamza turns wāw while the root's hamza
+stays on its seat (صَحْرَاوِيّ against اِبْتِدَائِيّ، إِنْشَائِيّ — `femHamza` decides);
+a final doubled yāʾ after one letter returns its first yāʾ and turns the second wāw
+(حَيَوِيّ), after two letters drops the first (نَبَوِيّ، عَلَوِيّ); مَكَّة and سُنَّة keep
+their shadda and their own first vowel (مَكِّيّ، سُنِّيّ). `IsmEngine.MUGHNI_SEEDS` holds
+the book's 53 examples and `mughniAudit()` grades the engine on them — 53/53 — by a
+comparison that checks every letter and every vowel the engine wrote against the book's,
+and forgives only a vowel it left unwritten. The first gate run caught one seam (`patch36e`): on a word typed BARE, with no
+vowels at all, the hamza rule cannot see فَعْلَاء, so the old reading holds and the hamza turns wāw
+(صحراء → صحراوِيّ); the root hamza is kept only when the written vowels show another shape.
+
+**The surface (`patch36c`).** The Ism lab names the source under a Muġnī rule and offers
+the book's examples as seed chips (tap one, the derivation appears); a new sarf game
+**gTasgir** asks the diminutive or the nisba of the corpus's own nouns, its distractors
+cut from the wrong rule — the fatḥa for the ḍamma, the ة toggled, the other derivation,
+a neighbour's form — and its answer card reads the rule aloud.
+
+**IsmKindsEngine — the fifteen kinds (`patch36d`).** The notes open the ism with
+fifteen kinds: cins, alem, mu'reb, the tâbi', mebnî, tesniye, cem', ma'rife, nekre,
+müzekker, müennes, tasğîr, mensûb, aded, ism-i fiil. `IsmKindsEngine.L` carries all
+fifteen with the book's definitions in English and Turkish (the alem's three — ism,
+laqab, kunya; the mabnī's lāzim list and its ʿāriḍ list; the three plurals; the
+maʿrifa's five; the feminine's three written marks and its samāʿī kinds — women's names,
+female beings, the paired organs). `profile(word, ctx)` reads a word's shape and the
+lists and returns the kinds that apply with a sub-kind and a why: اسْمُ الْجِنْسِ or
+الْعَلَمُ (a kunya by its أَب / أُمّ, a laqab by its الدِّين, else an ism), مُعْرَب or
+مَبْنِيّ with the lāzim cause (ضَمِير، اسْمُ إِشَارَةٍ، مَوْصُول، شَرْط، اسْتِفْهَام،
+ظَرْف، اسْمُ فِعْل، كِنَايَة) or the ʿāriḍ one (the 11–19 compound, the munādā, لَا's
+ism, the ẓarf annexed to a clause — the last three only when the sentence says so), the
+dual, the sound and broken plurals (the JamEngine's recognition), the maʿrifa with its
+kind or the nakira, the gender with its mark, the taṣghīr shape, the nisba yāʾ, the
+number noun, the ism fiʿl. The Ism lab lists the fifteen as a checklist with the applied
+ones lit and defined; the word card gets a row «أَقْسَامُ الِاسْمِ» naming the applied
+kinds; a second game **gKinds** asks one axis of a corpus noun — gender (by which mark),
+number, definiteness (by which cause), or the kind itself — and answers with the book's
+definition. `IsmKindsEngine.SEEDS` are the notes' own examples, one per kind, and
+`audit()` reads them all back.
+
+**Gates.** Two smoke checks: the IsmEngine on the Muġnī's 53 examples with the two
+homographs (رُجَيْل / رُجَيْلَة), the lab's seed chips, the source note and gTasgir's
+supply; the IsmKindsEngine on the book's examples (حَمْرَاء feminine by the long alif
+and muʿrab, أَبُو بَكْرٍ a kunya, أَحَدَ عَشَرَ a number mabnī by accident, رَجُل /
+رِجْل told apart), the fifteen-row checklist and gKinds' supply. Coverage row 36 moves
+from PARTIAL to its three new engines; what the notes still hold for a later wave: the
+munādā's seven rulings as a lab, the 24-row sarf table as a drill.

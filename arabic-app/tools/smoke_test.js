@@ -4767,6 +4767,45 @@ if (!CHROME) {
     if (bad.length) throw new Error(bad.join(' ; '));
   });
 
+  await check('the IsmEngine derives every taṣghīr and nisba the Şerḥu\'l-Muġnī notes recite — فُعَيْعِيل, the kept ان/اء/ى, the samāʿī feminine\'s ة, أُبَيّ, the nisba\'s فَعَل and the dropped يَاء, the kept root hamza, حَيَوِيّ and نَبَوِيّ; رَجُل the man and رِجْل the foot told apart; the Ism lab offers the book\'s seeds and gTasgir has a supply (wave 36)', async () => {
+    const r = await page.evaluate(() => {
+      const a = IsmEngine.mughniAudit();
+      const t = w => (IsmEngine.tasgir(w) || {}).out || '∅', n = w => (IsmEngine.nisba(w) || {}).out || '∅';
+      conjState.lab = 'ism'; conjState.ism = 'قَبِيلَة'; openConjugator(); renderIsmOut();
+      const seeds = document.querySelectorAll('#ismOut .qw-seed').length;
+      const srcNote = /Muġnī|Muğnî/.test((document.getElementById('ismOut') || {}).textContent || '');
+      let supply = 0; try { supply = GameFactory.supplyOf('gTasgir'); } catch (e) { supply = 'ERR ' + e.message; }
+      const items = tasgirItems().slice(0, 3).map(it => it.kind + ':' + it.lemma + '→' + it.right + ' | ' + it.ds.join(' '));
+      try { closeSheet(); } catch (e) {}
+      return { n: a.n, bad: a.bad, rajul: t('رَجُل'), rijl: t('رِجْل'), malik: n('مَلِك'), hayy: n('حَيّ'), seeds, srcNote, supply, items };
+    });
+    if (r.n < 50 || r.bad.length) throw new Error('the Muġnī seeds: ' + r.n + ' graded, misses: ' + r.bad.join(' ; '));
+    if (!/^رُجَيْل$/.test(r.rajul) || !/^رُجَيْلَة$/.test(r.rijl)) throw new Error('رَجُل → رُجَيْل and رِجْل → رُجَيْلَة: ' + r.rajul + ' ' + r.rijl);
+    if (!/مَلَكِيّ/.test(r.malik) || !/حَيَوِيّ/.test(r.hayy)) throw new Error('مَلَكِيّ / حَيَوِيّ: ' + r.malik + ' ' + r.hayy);
+    if (r.seeds < 20) throw new Error('the lab should offer the book\'s seeds: ' + r.seeds);
+    if (!r.srcNote) throw new Error('the lab should name the source of a Muġnī rule');
+    if (!(r.supply >= 4)) throw new Error('gTasgir has no supply: ' + r.supply + ' ' + r.items.join(' ;; '));
+  });
+
+  await check('the IsmKindsEngine reads the Şerḥu\'l-Muġnī\'s fifteen kinds of ism off the book\'s own examples — jins and ʿalam (ism/laqab/kunya), muʿrab and mabnī (lāzim/ʿāriḍ), the dual, the three plurals, the five maʿrifas and the nakira, the four marks of the feminine, the diminutive, the nisba, the number noun, the ism fiʿl; the Ism lab lists the fifteen; gKinds has a supply (wave 36)', async () => {
+    const r = await page.evaluate(() => {
+      const a = IsmKindsEngine.audit();
+      const P = (w, o) => IsmKindsEngine.profile(w, o || {}).kinds.map(x => x.k + (x.sub && x.sub.ar ? '(' + x.sub.ar + ')' : '')).join(' ');
+      conjState.lab = 'ism'; conjState.ism = 'حَمْرَاء'; openConjugator(); renderIsmOut();
+      const rows = document.querySelectorAll('#ismOut .kinds15-list li').length, on = document.querySelectorAll('#ismOut .kinds15-list li.on').length;
+      let supply = 0; try { supply = GameFactory.supplyOf('gKinds'); } catch (e) { supply = 'ERR ' + e.message; }
+      try { closeSheet(); } catch (e) {}
+      return { n: a.n, bad: a.bad, hamra: P('حَمْرَاء'), kunya: P('أَبُو بَكْرٍ', { propn: true }), ashara: P('أَحَدَ عَشَرَ'), rajul: P('رَجُلٌ'), rijl: P('رِجْلٌ'), rows, on, supply };
+    });
+    if (r.n < 20 || r.bad.length) throw new Error('the fifteen kinds on the book\'s examples: ' + r.n + ' graded, misses: ' + r.bad.join(' ; '));
+    if (!/muannath\(.*الْمَمْدُودَةِ/.test(r.hamra) || !/murab/.test(r.hamra)) throw new Error('حَمْرَاء: feminine by the long alif and muʿrab — ' + r.hamra);
+    if (!/alam\(كُنْيَة\)/.test(r.kunya)) throw new Error('أَبُو بَكْرٍ is a kunya — ' + r.kunya);
+    if (!/adad/.test(r.ashara) || !/mabni\(عَارِضٌ/.test(r.ashara)) throw new Error('أَحَدَ عَشَرَ: a number, mabnī by accident — ' + r.ashara);
+    if (!/mudhakkar/.test(r.rajul) || !/muannath\(سَمَاعِيٌّ/.test(r.rijl)) throw new Error('رَجُل masculine, رِجْل feminine by hearing — ' + r.rajul + ' / ' + r.rijl);
+    if (r.rows !== 15 || r.on < 4) throw new Error('the lab should list the fifteen with the applied ones lit: ' + r.rows + ' / ' + r.on);
+    if (!(r.supply >= 4)) throw new Error('gKinds has no supply: ' + r.supply);
+  });
+
   await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
     const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
     if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');

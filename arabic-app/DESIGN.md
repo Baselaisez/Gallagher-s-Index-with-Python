@@ -1088,3 +1088,19 @@ Inna tally likewise. The second visit of anything is a lookup — the counts, th
 scores, the trained weights are remembered per build — so the app FEELS faster
 each day it is used, which is the consumer promise: relaxed on the surface, the
 whole engine room underneath.
+
+## 29. The fifteen kinds as a checklist, and the book's examples as chips (wave 36)
+
+**A classification is shown whole, never as a verdict.** The Ism lab's new panel lists
+all fifteen kinds of the Şerḥu'l-Muġnî in the book's order; the kinds that apply to the
+typed word are lit (a 3px accent bar on the start edge, full ink) and carry their
+sub-kind and the book's definition under them; the rest stay in the list at 45% ink —
+so the learner sees the word against the WHOLE map, and learns what it is not as well
+as what it is. The panel is a grid of small rows (Arabic name, then the name in the
+app's language) that reads on a phone without scrolling sideways. Under the taṣghīr
+and nisba output the book's own examples sit as seed chips (`.qw-seed`, the same chip
+the Qawāʿid and Inna labs use): a tap fills the input and derives, and a derivation
+cut by a Muġnī rule says so in one line under its rule. The two new game cards —
+🔬 Tasgîr/nisbet, 🗂️ the kinds — sit in the sarf row of the hub with the same card,
+emblem and count slot as every other drill; their answer cards read the rule or the
+definition aloud, in Arabic with the English or Turkish beside it.

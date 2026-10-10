@@ -857,6 +857,7 @@
   .tabs [data-lab="idafa"]::before { content: "🔗"; }
   .tabs [data-lab="nida"]::before  { content: "📣"; }
   .tabs [data-lab="ilal"]::before  { content: "🧪"; }
+  .kinds15 { margin-top: 14px; } .kinds15 h4 { margin: 0 0 6px; font-size: .95rem; } .kinds15-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; } .kinds15-list li { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: baseline; padding: 4px 8px; border-radius: 8px; background: var(--card-2, rgba(127,127,127,.06)); } .kinds15-list li.off { opacity: .45; } .kinds15-list li.on { border-inline-start: 3px solid var(--accent, #4a7); } .kinds15-list .k-ar { font-family: var(--ar-font); font-size: 1.05rem; } .kinds15-list .k-name { font-size: .9rem; } .kinds15-list .k-def { grid-column: 1 / -1; font-size: .82rem; opacity: .85; }
   .tabs [data-lab="kernel"]::before { content: "🜂"; }
   .tabs [data-lab="model"]::before { content: "🤖"; }
   /* ==== design wave 7: the model shows its hand ==========================
@@ -2248,7 +2249,7 @@ const L = {
         innaTab:"Inna", innaIntro:"Birgivi's rule: إِنَّ leaves the sentence a sentence, أَنَّ turns it into a masdar — so the hamza takes the kasra wherever a SENTENCE belongs and the fatha wherever a single WORD belongs. The engine reads the seat (what stands before, and whether a lam sits on the khabar) and names it; where no seat is known it says BOTH and does not guess", innaPh:"a sentence with إِنَّ or أَنَّ — عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ",
         innaEmpty:"Type a sentence with إِنَّ / أَنَّ, or take one of Birgivi's own.", innaNone:"No إِنَّ / أَنَّ in this sentence.", innaQuoted:"the particle is quoted as a word — its hamza is the author's, not a seat's", innaLegend:"The seats of the kasra, of the fatha, and of both",
         innaKasrSeats:"ten places where the sentence stays a sentence", innaFathSeats:"where a masdar can stand in", innaBothSeats:"where either reading gives a sense", innaAudit:"Corpus audit: {n} authored إِنَّ / أَنَّ, {cov}% decided by a seat, {acc}% of those agree with the author's hamza.",
-        innaGame:"Kasra or fatha?", innaAsk:"How does the hamza of this إنّ read?", innaKasr:"kasra — a sentence", innaFath:"fatha — a masdar", innaBoth:"both", innaGameDesc:"The corpus wrote the hamza; the seat says why. Pick the reading — the seat is revealed after.",
+        kindsGame:"Which kind of noun?", kindsGameDesc:"Gender, number, definiteness, name or genus — the fifteen kinds of the Şerḥu'l-Muġnī", kindsAsk:"Which kind is this noun?", kindsWhyNot:"Read the kind's definition under the answer.", kinds15Title:"The fifteen kinds of noun", tasgirGame:"Diminutive or nisba?", tasgirGameDesc:"Derive the small form and the relation form by the Şerḥu'l-Muġnī's rules", tasgirAskT:"What is the diminutive (taṣghīr) of this noun?", tasgirAskN:"What is the nisba of this noun?", tasgirWhyNot:"The rule says otherwise — read it.", mughniSeeds:"The Şerḥu'l-Muġnī's own examples — tap one", mughniSrc:"by the rule of the Şerḥu'l-Muġnī notes", innaGame:"Kasra or fatha?", innaAsk:"How does the hamza of this إنّ read?", innaKasr:"kasra — a sentence", innaFath:"fatha — a masdar", innaBoth:"both", innaGameDesc:"The corpus wrote the hamza; the seat says why. Pick the reading — the seat is revealed after.",
         shopTab:"İ'rab Shop", shopIntro:"The Avâmil lesson's shop. Every word that walks in is a CUSTOMER (its declension class), is fitted with a BODY (the i'rab it wears), the fit shows as a FIGURE (the sign — a vowel, a letter or an omission), and someone made it so (the GOVERNOR). Nothing is parsed twice: the seat and the governor are the Dabt engine's own verdict, the class and the sign the ending rules", shopPh:"a sentence — مَرَرْتُ بِزَيْدٍ، جَاءَ الْمُسْلِمُونَ",
         shopEmpty:"Type a sentence, or take one of the lesson's own.", shopCustomer:"Customer", shopBody:"Body", shopFigure:"Figure", shopAgent:"Governor", shopLegend:"The ten customers, the ten signs, the three obstacles",
         shopCustomers:"who can be fitted, and with which signs", shopSigns:"three vowels, four letters, three omissions", shopObstacles:"what makes an i'rab assumed rather than spoken",
@@ -2587,7 +2588,7 @@ const L = {
         innaTab:"İnne", innaIntro:"Birgivî'nin kuralı: inne cümleyi cümle bırakır, enne onu masdar yapar — o yüzden CÜMLE yerinde hemze kesre, tek KELİME yerinde fetha alır. Motor yeri okur (önde ne var, haberde lâm var mı) ve adlandırır; yer bilinmiyorsa İKİSİ der, tahmin etmez", innaPh:"inne veya enne'li bir cümle — عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ",
         innaEmpty:"İnne / enne'li bir cümle yazın, ya da Birgivî'nin kendi cümlelerinden birini alın.", innaNone:"Bu cümlede inne / enne yok.", innaQuoted:"harf kelime olarak hikâye edilmiş — hemzesi yazarındır, yerin değil", innaLegend:"Kesre, fetha ve iki vecih yerleri",
         innaKasrSeats:"cümlenin cümle kaldığı on yer", innaFathSeats:"masdarın yerine geçebildiği yerler", innaBothSeats:"iki okuyuşun da mânâ verdiği yerler", innaAudit:"Külliyat denetimi: {n} yazılmış inne / enne, %{cov}'i bir yerle karara bağlandı, bunların %{acc}'i yazarın hemzesiyle uyuşuyor.",
-        innaGame:"Kesre mi fetha mı?", innaAsk:"Bu inne'nin hemzesi nasıl okunur?", innaKasr:"kesre — cümle", innaFath:"fetha — masdar", innaBoth:"ikisi de", innaGameDesc:"Hemzeyi külliyat yazdı; yer sebebini söyler. Okuyuşu seç — yer ardından açılır.",
+        kindsGame:"İsmin hangi kısmı?", kindsGameDesc:"Cinsiyet, sayı, belirlilik, alem mi cins mi — Şerhu'l-Muğnî'nin on beş kısmı", kindsAsk:"Bu isim hangi kısımdan?", kindsWhyNot:"Cevabın altındaki tarifi oku.", kinds15Title:"İsmin on beş kısmı", tasgirGame:"Tasgîr mi nisbet mi?", tasgirGameDesc:"Şerhu'l-Muğnî kurallarıyla küçültme ve nisbet ismini türet", tasgirAskT:"Bu ismin tasgîri (küçültmesi) nedir?", tasgirAskN:"Bu ismin nisbeti nedir?", tasgirWhyNot:"Kural böyle demiyor — kuralı oku.", mughniSeeds:"Şerhu'l-Muğnî'nin kendi örnekleri — birine dokun", mughniSrc:"Şerhu'l-Muğnî ders notlarının kuralıyla", innaGame:"Kesre mi fetha mı?", innaAsk:"Bu inne'nin hemzesi nasıl okunur?", innaKasr:"kesre — cümle", innaFath:"fetha — masdar", innaBoth:"ikisi de", innaGameDesc:"Hemzeyi külliyat yazdı; yer sebebini söyler. Okuyuşu seç — yer ardından açılır.",
         shopTab:"İ'rab Mağazası", shopIntro:"Avâmil dersinin mağazası. İçeri giren her kelime bir MÜŞTERİdir (i'râb sınıfı), ona bir BEDEN giydirilir (taşıdığı i'râb), beden bir ENDAM olarak görünür (alâmet — hareke, harf yahut hazf) ve bunu biri yapmıştır (ETKİ EDEN — âmil). Hiçbir şey ikinci kez tahlil edilmez: yer ve âmil Dabt motorunun kendi hükmü, sınıf ve alâmet âhir kurallarıdır", shopPh:"bir cümle — مَرَرْتُ بِزَيْدٍ، جَاءَ الْمُسْلِمُونَ",
         shopEmpty:"Bir cümle yazın, ya da dersin kendi cümlelerinden birini alın.", shopCustomer:"Müşteri", shopBody:"Beden", shopFigure:"Endam", shopAgent:"Etki eden", shopLegend:"On müşteri, on alâmet, üç engel",
         shopCustomers:"kime beden biçilir, hangi alâmetle", shopSigns:"üç hareke, dört harf, üç hazf", shopObstacles:"i'râbı lafzî değil takdîrî kılan",
@@ -7602,6 +7603,103 @@ class WaznEngine {
 // cannot know — مَدِينَة → مَدَنِيّ, قُرَيْش → قُرَشِيّ — is STORED, not
 // computed: the semai table answers first, exactly like the Root Finder's
 // corpus-before-rules order.
+
+// ---- (wave 36d) IsmKindsEngine — the fifteen kinds of ism of the Şerḥu'l-Muġnī notes, read off the word ----
+class IsmKindsEngine {
+  static L = {
+    jins:     { n: 1,  ar: "اسْمُ الْجِنْسِ", en: "common noun", tr: "cins isim", def: { en: "used for one thing and for everything that truly resembles it — كِتَاب", tr: "bir şeye ve hakikatte ona benzeyen her şeye kullanılan — كِتَاب" } },
+    alam:     { n: 2,  ar: "الْعَلَمُ", en: "proper name", tr: "alem (özel isim)", def: { en: "set down once for one person alone and covering no other; an ism (زَيْد), a laqab of praise or blame (عِزُّ الدِّين), a kunya opening with أَب or أُمّ", tr: "bizzat biri için tek konuluşla konulan; isim (زَيْد), medh veya zem bildiren lakab (عِزُّ الدِّين), başında أَب / أُمّ olan künye" } },
+    murab:    { n: 3,  ar: "الْمُعْرَبُ", en: "declinable", tr: "mu'reb", def: { en: "its ending changes as the governor changes — جَاءَ زَيْدٌ، رَأَيْتُ زَيْدًا، مَرَرْتُ بِزَيْدٍ", tr: "amillerin değişmesiyle sonu değişen — جَاءَ زَيْدٌ، رَأَيْتُ زَيْدًا، مَرَرْتُ بِزَيْدٍ" } },
+    tawabi:   { n: 4,  ar: "تَوَابِعُ الْمُعْرَبِ", en: "the followers", tr: "mu'reblerin tâbileri", def: { en: "a word that takes its case from the word before it: naʿt, ʿaṭf, taʾkīd, badal", tr: "i'rabını öncesinden alan kelime: na't, atıf, te'kit, bedel" } },
+    mabni:    { n: 5,  ar: "الْمَبْنِيُّ", en: "indeclinable", tr: "mebnî", def: { en: "one ending whatever the governor: by nature (pronouns, demonstratives, relatives, conditionals, interrogatives, some ẓarfs, the ism fiʿl, some kināyas, sounds) or by accident (some munādās, the numbers 11–19, the ism of the generic لَا, compounds, ẓarfs annexed to a clause)", tr: "amil ne olursa olsun sonu değişmeyen: lâzım (zamir, işaret, mevsûl, şart, soru, bazı zarflar, isim fiil, bazı kinayeler, savtlar) veya ârız (bazı münâdâlar, 11–19 sayıları, cins lâ'nın ismi, bileşikler, cümleye muzaf zarflar)" } },
+    muthanna: { n: 6,  ar: "الْمُثَنَّى", en: "dual", tr: "tesniye", def: { en: "two of a thing: an alif and nūn in rafʿ, a yāʾ and nūn in naṣb and jarr — مُعَلِّمَانِ / مُعَلِّمَيْنِ", tr: "bir şeyin ikisi: ref'te elif-nûn, nasb ve cerde yâ-nûn — مُعَلِّمَانِ / مُعَلِّمَيْنِ" } },
+    jam:      { n: 7,  ar: "الْجَمْعُ", en: "plural", tr: "cem'", def: { en: "three kinds: the sound masculine (ـُونَ / ـِينَ), the sound feminine (ـَات), the broken plural whose singular is rebuilt — مُعَلِّمُونَ، مُعَلِّمَات، مَفَاتِيح", tr: "üç türlü: cemi müzekker sâlim (ـُونَ / ـِينَ), cemi müennes sâlim (ـَات), cemi mükesser — مُعَلِّمُونَ، مُعَلِّمَات، مَفَاتِيح" } },
+    marifa:   { n: 8,  ar: "الْمَعْرِفَةُ", en: "definite", tr: "ma'rife", def: { en: "points to one known thing — the name, the pronoun, the demonstrative and relative (the mubhams), the noun with ال or under the call, the noun annexed to a definite", tr: "belirli bir şeyi gösteren — alem, zamir, işaret ve mevsûl (mübhemler), harf-i tarifli veya nidâlı isim, ma'rifeye muzaf olan" } },
+    nakira:   { n: 9,  ar: "النَّكِرَةُ", en: "indefinite", tr: "nekre", def: { en: "points to no known thing, usually wearing the two marks of tanwīn — قَلَمٌ", tr: "belirli bir varlığı göstermeyen, çoğunlukla tenvinli — قَلَمٌ" } },
+    mudhakkar:{ n: 10, ar: "الْمُذَكَّرُ", en: "masculine", tr: "müzekker", def: { en: "a word taken as male, bearing no mark of femininity — فَقِيرٌ، أَحْمَرُ", tr: "erkek kabul edilen, müenneslik alâmeti taşımayan — فَقِيرٌ، أَحْمَرُ" } },
+    muannath: { n: 11, ar: "الْمُؤَنَّثُ", en: "feminine", tr: "müennes", def: { en: "taken as female: by the round tāʾ (فَقِيرَة), the long alif (حَمْرَاء), the short alif (كُبْرَى), or by hearing alone — women's names, female beings, the paired organs (زَيْنَب، أُمّ، عَيْن)", tr: "dişi kabul edilen: tâ-i merbûta (فَقِيرَة), elif-i memdûde (حَمْرَاء), elif-i maksûre (كُبْرَى) ile veya semâî — kadın adları, dişi varlıklar, çift organlar (زَيْنَب، أُمّ، عَيْن)" } },
+    tasgir:   { n: 12, ar: "اسْمُ التَّصْغِيرِ", en: "diminutive", tr: "ism-i tasğîr", def: { en: "smallness, fewness, affection or scorn — فُعَيْل، فُعَيْعِل، فُعَيْعِيل: قُلَيْم، دُفَيْتِر، مُفَيْتِيح", tr: "küçüklük, azlık, sevgi veya horlama — فُعَيْل، فُعَيْعِل، فُعَيْعِيل: قُلَيْم، دُفَيْتِر، مُفَيْتِيح" } },
+    mansub:   { n: 13, ar: "الِاسْمُ الْمَنْسُوبُ", en: "relative adjective (nisba)", tr: "ism-i mensûb", def: { en: "belonging to a place, a thing or a craft — a kasra and a doubled yāʾ at the end: عِرَاقِيّ، دِمَشْقِيّ", tr: "bir yere, varlığa veya işe mensup olma — sonunda kesre ve şeddeli yâ: عِرَاقِيّ، دِمَشْقِيّ" } },
+    adad:     { n: 14, ar: "أَسْمَاءُ الْعَدَدِ", en: "number noun", tr: "esmâü'l-aded", def: { en: "the names of the numbers — وَاحِد … عَشَرَة, the compounds 11–19 fixed on fatḥa, the tens, مِائَة، أَلْف", tr: "sayı isimleri — وَاحِد … عَشَرَة, fetha üzere mebnî 11–19, onlar, مِائَة، أَلْف" } },
+    ismFil:   { n: 15, ar: "أَسْمَاءُ الْأَفْعَالِ", en: "verb-noun (ism fiʿl)", tr: "esmâü'l-ef'âl (isim fiil)", def: { en: "a noun in the meaning of a māḍī, a muḍāriʿ or an amr, never conjugated, its object never before it, stronger than the verb and mabnī — هَيْهَاتَ، أُفٍّ، صَهْ، رُوَيْدَ", tr: "mâzî, muzâri veya emir manasında, çekilmeyen, mef'ûlü öne geçmeyen, fiilden kuvvetli ve mebnî isim — هَيْهَاتَ، أُفٍّ، صَهْ، رُوَيْدَ" } },
+  };
+  static ISM_FIL = new Set(["هيهات", "شتان", "سرعان", "بطان", "بطآن", "وشكان", "اف", "أف", "وا", "وي", "صه", "مه", "امين", "آمين", "ايه", "إيه", "حي", "هلم", "هاك", "هات", "تعال", "عليك", "دونك", "اليك", "إليك", "مكانك", "رويد", "بله", "اوه", "أوه", "هيا", "هلا", "ايهات", "ها"]);
+  static PRON = new Set(["هو", "هي", "هما", "هم", "هن", "انا", "أنا", "نحن", "انت", "أنت", "انتما", "أنتما", "انتم", "أنتم", "انتن", "أنتن", "اياك", "إياك", "اياه", "إياه", "ايانا", "إيانا", "اياكم", "إياكم", "اياهم", "إياهم", "اياي", "إياي"]);
+  static ISHARA = new Set(["هذا", "هذه", "هذان", "هذين", "هاتان", "هاتين", "هؤلاء", "ذلك", "ذاك", "تلك", "اولئك", "أولئك", "ذا", "ذي", "ذه", "هنا", "هناك", "هنالك", "ثم", "هكذا", "كذا", "ذانك", "تانك"]);
+  static MAWSUL = new Set(["الذي", "التي", "اللذان", "اللذين", "اللتان", "اللتين", "الذين", "اللاتي", "اللائي", "اللواتي", "من", "ما", "اي", "أي", "ذو"]);
+  static SHART = new Set(["من", "ما", "مهما", "متى", "ايان", "أيان", "اين", "أين", "اينما", "أينما", "انى", "أنى", "حيثما", "كيفما", "اذما", "إذما"]);
+  static ISTIFHAM = new Set(["من", "ما", "ماذا", "متى", "ايان", "أيان", "اين", "أين", "انى", "أنى", "كيف", "كم", "اي", "أي"]);
+  static ZARF_MABNI = new Set(["اذ", "إذ", "اذا", "إذا", "حيث", "الان", "الآن", "امس", "أمس", "قط", "عوض", "لدن", "منذ", "مذ", "اذما", "قبل", "بعد", "لدى", "ثم", "هنا", "هناك", "هنالك", "اين", "أين", "متى", "كيف"]);
+  static KINAYA = new Set(["كم", "كذا", "كيت", "ذيت", "كاين", "كأين"]);
+  static NUMBERS = /^(واحد|واحدة|اثنان|اثنتان|اثنين|اثنتين|ثلاث|ثلاثة|اربع|أربع|اربعة|أربعة|خمس|خمسة|ست|ستة|سبع|سبعة|ثمان|ثماني|ثمانية|تسع|تسعة|عشر|عشرة|عشرون|عشرين|ثلاثون|ثلاثين|اربعون|أربعون|اربعين|أربعين|خمسون|خمسين|ستون|ستين|سبعون|سبعين|ثمانون|ثمانين|تسعون|تسعين|مائة|مئة|مئتان|مائتان|مئتين|مائتين|الف|ألف|الفان|ألفان|الفين|ألفين|مليون)$/;
+  static WOMEN = new Set(["سعاد", "هند", "زينب", "مريم", "فاطمة", "عائشة", "خديجة", "آمنة", "امنة", "حواء", "سارة", "هاجر", "آسية", "اسية", "بلقيس", "رقية", "صفية", "حفصة", "ليلى", "سلمى", "دعد", "اسماء", "أسماء"]);
+  static FEM_BEINGS = new Set(["ام", "أم", "اخت", "أخت", "اتان", "أتان", "بنت", "ابنة", "امراة", "امرأة", "ناقة", "بقرة", "عروس"]);
+  static bare(w){ return stripAr((w || "").normalize("NFC")).replace(/[^ء-ي]/g, ""); }
+  static vow(w){ return (w || "").normalize("NFC").replace(/[«»،.:!؟]/g, "").trim(); }
+  // opt: { pos, propn, alam, rule, mudaf, munada, afterLa } — what the sentence (or the glossary) adds to the shape
+  static profile(word, opt){
+    const o = opt || {}; const v = this.vow(word); const b0 = this.bare(v); const al = /^ال/.test(b0) && b0.length > 3; const b = al ? b0.slice(2) : b0;
+    const K = []; const put = (k, sub, why) => { if (!K.some(x => x.k === k)) K.push({ k, sub: sub || null, why: why || null }); };
+    const F = (en, tr, ar) => ({ en, tr, ar: ar || "" });
+    const kunya = /^(ابو|ابي|ابا|أبو|أبي|أبا|ام|أم|ابن|بنت)$/.test(b0) || /^(ابو|ابي|ابا|أبو|أبي|أبا|ام|أم) /.test(this.bare(v).length ? v.replace(/[ً-ٰ]/g, "") : "") ;
+    const isPron = this.PRON.has(b0), isIsh = this.ISHARA.has(b0), isMaw = this.MAWSUL.has(b0) && !o.shart && !o.istifham, isShart = !!o.shart || (this.SHART.has(b0) && !isMaw && !!o.shartCtx), isIst = !!o.istifham || (this.ISTIFHAM.has(b0) && !!o.istifhamCtx), isFil = this.ISM_FIL.has(b0) && !al, isZarfM = this.ZARF_MABNI.has(b0) && !al, isKin = this.KINAYA.has(b0);
+    const isNum = this.NUMBERS.test(b) || /^(احد|أحد|اثن|ثلاث|اربع|أربع|خمس|ست|سبع|ثمان|تسع)[ةي]?( ?عشر[ة]?)$/.test(b);
+    const compound = /^(احد|أحد|اثن[اي]|ثلاث[ة]?|اربع[ة]?|أربع[ة]?|خمس[ة]?|ست[ة]?|سبع[ة]?|ثمان[يةي]?|تسع[ة]?) ?عشر[ة]?$/.test(this.bare(v).replace(/ /g, "")) || /^(احد|أحد|اثن[اي]|ثلاث[ة]?|اربع[ة]?|أربع[ة]?|خمس[ة]?|ست[ة]?|سبع[ة]?|ثمان[يةي]?|تسع[ة]?)عشر[ة]?$/.test(b0);
+    const dualShape = /[^ا]َانِ?$|[^ا]َيْنِ?$/.test(v.replace(/[ًٌٍ]/g, "")) && !/^ا/.test(b) && b.length >= 4 && !/ان$/.test(b.slice(0, -2));
+    const jamM = /ُونَ?$|ِينَ?$/.test(v) && b.length >= 5 && !/^(الذين|اللذين|اللتين|ايدين|أيدين|حين|دين|طين|عين|سكين|يقين|تين)$/.test(b);
+    const jamF = /َاتٍ?$|َاتٌ?$|َاتِ?$|ات$/.test(v) && /ات$/.test(b) && b.length >= 5 && !/^(بنات|اموات|أموات|اصوات|أصوات|اوقات|أوقات|ابيات|أبيات|اقوات|أقوات|اثبات|إثبات|ذات)$/.test(b);
+    let broken = null; try { broken = (typeof JamEngine !== "undefined" && JamEngine.recognize) ? JamEngine.recognize(v) : null; } catch (e) { broken = null; }
+    const taM = /ة$/.test(b), mamd = /اء$/.test(b) && b.length >= 4 && IsmEngine.femHamza(v.replace(/[ًٌٍَُِْ]$/, "")), maqs = /[ى]$/.test(b) && b.length >= 4 && /^[ء-ي][َُ][ء-ي]ْ[ء-ي]َى$/.test(v.replace(/[ًٌٍ]/g, "")), samai = IsmEngine.SEMAI_FEM.has(b) && (b !== "رجل" || /^رِجْ/.test(v)), woman = this.WOMEN.has(b), femBeing = this.FEM_BEINGS.has(b);
+    const tasShape = /^[ء-ي]ُ[ء-ي]َيْ[ء-ي]/.test(v) || /^[ء-ي]ُ[ء-ي]َيِّ/.test(v);
+    const nisShape = /ِيّ[ٌٍَُِ]?$/.test(v) && b.length >= 4;
+    // 15 — ism fiʿl; 14 — ʿadad
+    if (isFil) put("ismFil", F("in the meaning of a verb", "fiil manasında", "بِمَعْنَى الْفِعْلِ"));
+    if (isNum) put("adad", compound ? F("a compound of 11–19", "11–19 arası bileşik sayı", "مُرَكَّبٌ مِنْ ١١ إِلَى ١٩") : F("a number noun", "sayı ismi", "اسْمُ عَدَدٍ"));
+    // 5 / 3 — mabnī (lāzim / ʿāriḍ) or muʿrab
+    const lazim = isPron ? "ضَمِير" : isIsh ? "اسْمُ إِشَارَةٍ" : isMaw ? "اسْمٌ مَوْصُولٌ" : isShart ? "اسْمُ شَرْطٍ" : isIst ? "اسْمُ اسْتِفْهَامٍ" : isFil ? "اسْمُ فِعْلٍ" : isZarfM ? "ظَرْفٌ مَبْنِيٌّ" : isKin ? "كِنَايَة" : null;
+    const arid = compound ? "مُرَكَّبُ الْعَدَدِ ١١–١٩" : o.munada ? "مُنَادًى مَبْنِيٌّ" : o.afterLa ? "اسْمُ لَا النَّافِيَةِ لِلْجِنْسِ" : o.zarfJumla ? "ظَرْفٌ مُضَافٌ إِلَى جُمْلَةٍ" : null;
+    if (lazim) put("mabni", F("by nature (lāzim) — " + lazim, "lâzım mebnî — " + lazim, "لَازِمٌ — " + lazim));
+    else if (arid) put("mabni", F("by accident (ʿāriḍ) — " + arid, "ârız mebnî — " + arid, "عَارِضٌ — " + arid));
+    else put("murab", F("the ending follows the governor", "sonu amile göre değişir", "آخِرُهُ يَتْبَعُ الْعَامِلَ"));
+    if (o.rule && ["nat", "atf", "tawkid", "badal"].includes(o.rule)) put("tawabi", F({ nat: "a naʿt", atf: "an ʿaṭf", tawkid: "a taʾkīd", badal: "a badal" }[o.rule], { nat: "na't", atf: "atıf", tawkid: "te'kit", badal: "bedel" }[o.rule], { nat: "نَعْت", atf: "عَطْف", tawkid: "تَوْكِيد", badal: "بَدَل" }[o.rule]));
+    // 6 / 7 — number
+    if (!lazim && !isNum) {
+      if (jamM) put("jam", F("sound masculine plural", "cemi müzekker sâlim", "جَمْعُ مُذَكَّرٍ سَالِمٌ"));
+      else if (jamF) put("jam", F("sound feminine plural", "cemi müennes sâlim", "جَمْعُ مُؤَنَّثٍ سَالِمٌ"));
+      else if (dualShape) put("muthanna", F("the dual's alif-nūn or yāʾ-nūn", "tesniyenin elif-nûn / yâ-nûn'u", "أَلِفٌ وَنُونٌ أَوْ يَاءٌ وَنُونٌ"));
+      else if (broken && broken.shape && broken.shape.ar) put("jam", F("broken plural — " + broken.shape.ar, "cemi mükesser — " + broken.shape.ar, "جَمْعُ تَكْسِيرٍ — " + broken.shape.ar)); }
+    // 2 / 1 — ʿalam or jins
+    const propn = !!(o.propn || o.alam || /propn/.test(o.pos || "") || woman);
+    if (propn) put("alam", kunya ? F("a kunya — it opens with أَب / أُمّ", "künye — başında أَب / أُمّ", "كُنْيَة") : /الدين$|الله$/.test(b0.replace(/ /g, "")) ? F("a laqab of praise", "medh bildiren lakab", "لَقَب") : F("an ism — no praise, no blame in it", "isim — medh ve zem yok", "اسْم"));
+    else if (!lazim && !isNum && !isFil) put("jins", F("a common noun", "cins isim", "اسْمُ جِنْسٍ"));
+    // 8 / 9 — definiteness
+    if (isPron) put("marifa", F("a pronoun", "zamir", "ضَمِير"));
+    else if (isIsh || isMaw) put("marifa", F("a mubham — demonstrative or relative", "mübhem — işaret veya mevsûl", "مُبْهَم"));
+    else if (propn) put("marifa", F("a proper name", "alem", "عَلَم"));
+    else if (al) put("marifa", F("by the article", "harf-i tarif ile", "بِأَل"));
+    else if (o.munada) put("marifa", F("by the call", "nidâ ile", "بِالنِّدَاءِ"));
+    else if (o.mudaf) put("marifa", F("by annexation to a definite", "ma'rifeye izâfetle", "بِالْإِضَافَةِ"));
+    else if (!lazim && !isFil) put("nakira", F("no mark of definiteness", "belirlilik alâmeti yok", "لَا عَلَامَةَ تَعْرِيفٍ"));
+    // 10 / 11 — gender
+    if (!isPron && !isIsh && !isMaw && !isFil && !isNum) {
+      if (taM) put("muannath", F("by the round tāʾ", "tâ-i merbûta ile", "بِالتَّاءِ الْمَرْبُوطَةِ"));
+      else if (mamd) put("muannath", F("by the long alif", "elif-i memdûde ile", "بِالْأَلِفِ الْمَمْدُودَةِ"));
+      else if (maqs) put("muannath", F("by the short alif", "elif-i maksûre ile", "بِالْأَلِفِ الْمَقْصُورَةِ"));
+      else if (woman) put("muannath", F("by hearing — a woman's name", "semâî — kadın adı", "سَمَاعِيٌّ — اسْمُ امْرَأَةٍ"));
+      else if (femBeing) put("muannath", F("by hearing — a female being", "semâî — dişi varlık", "سَمَاعِيٌّ — دَلَالَةٌ عَلَى الْأُنْثَى"));
+      else if (samai) put("muannath", F("by hearing — a paired organ or a samāʿī feminine", "semâî — çift organ veya semâî müennes", "سَمَاعِيٌّ"));
+      else if (jamF) put("muannath", F("the sound feminine plural", "cemi müennes sâlim", "جَمْعُ الْمُؤَنَّثِ"));
+      else put("mudhakkar", F("no mark of femininity", "müenneslik alâmeti yok", "لَا عَلَامَةَ تَأْنِيثٍ")); }
+    // 12 / 13 — the derived shapes
+    if (tasShape && !propn) put("tasgir", F("the diminutive's measure", "tasğîr vezni", "وَزْنُ التَّصْغِيرِ"));
+    if (nisShape) put("mansub", F("the nisba's doubled yāʾ", "nisbet yâ'sı", "يَاءُ النِّسْبَةِ"));
+    K.sort((a, c) => this.L[a.k].n - this.L[c.k].n);
+    return { word: v, kinds: K, has: k => K.some(x => x.k === k), sub: k => (K.find(x => x.k === k) || {}).sub };
+  }
+  // the book's own examples, one per kind — the gate reads them back
+  static SEEDS = [["كِتَاب", "jins"], ["زَيْدٌ", "alam", { propn: true }], ["أَبُو بَكْرٍ", "alam", { propn: true }], ["زَيْدٌ", "murab", { propn: true }], ["هٰؤُلَاءِ", "mabni"], ["أَحَدَ عَشَرَ", "mabni"], ["مُعَلِّمَانِ", "muthanna"], ["مُعَلِّمُونَ", "jam"], ["مُعَلِّمَات", "jam"], ["مَفَاتِيح", "jam"], ["الرَّجُلُ", "marifa"], ["قَلَمٌ", "nakira"], ["فَقِيرَة", "muannath"], ["حَمْرَاء", "muannath"], ["كُبْرَى", "muannath"], ["شَمْس", "muannath"], ["زَيْنَب", "muannath"], ["فَقِيرٌ", "mudhakkar"], ["قُلَيْم", "tasgir"], ["عِرَاقِيّ", "mansub"], ["ثَلَاثَة", "adad"], ["هَيْهَاتَ", "ismFil"], ["هَيْهَاتَ", "mabni"], ["هُوَ", "marifa"]];
+  static audit(){ const bad = []; for (const [w, k, o] of this.SEEDS) { const p = this.profile(w, o || {}); if (!p.has(k)) bad.push(w + " ∌ " + k + " (" + p.kinds.map(x => x.k).join(",") + ")"); } return { n: this.SEEDS.length, bad }; }
+}
 class IsmEngine {
   static SEMAI_NISBA = {
     "مدينة": "مَدَنِيّ", "قريش": "قُرَشِيّ", "دنيا": "دُنْيَوِيّ",
@@ -7616,7 +7714,7 @@ class IsmEngine {
     const b = stripAr(word || "").replace(/[^ء-ي]/g, "").replace(/^ال/, "");
     return { b, ta: /ة$/.test(b), core: b.replace(/ة$/, "") };
   }
-  static tasgir(word){
+  static tasgir0(word){
     const { ta, core } = this.parts(word);
     const L = core.split("");
     if (L.length === 3 && /[اوىي]/.test(L[2]))
@@ -7637,7 +7735,7 @@ class IsmEngine {
       return { out: L[0]+"ُ"+L[1]+"َيْ"+L[2]+"ِ"+L[3]+(ta ? "َة" : ""), rule: "فُعَيْعِل" };
     return null;
   }
-  static nisba(word){
+  static nisba0(word){
     const { b, ta, core } = this.parts(word);
     const s = this.SEMAI_NISBA[b] || this.SEMAI_NISBA[core];
     if (s) return { out: s, rule: "سَمَاعِيٌّ — مِنَ الْجَدْوَلِ الْمَحْفُوظِ لَا مِنَ الْقَاعِدَةِ", semai: true };
@@ -7649,6 +7747,90 @@ class IsmEngine {
     if (/اء$/.test(core)) return { out: core.slice(0, -1) + "وِيّ", rule: "هَمْزَةُ الْمَمْدُودِ تُقْلَبُ وَاوًا" };
     if (/[اى]$/.test(core)) return { out: core.slice(0, -1) + "َوِيّ", rule: "أَلِفُ الْمَقْصُورِ تُقْلَبُ وَاوًا" };
     return { out: core + "ِيّ", rule: "تُزَادُ يَاءُ النِّسْبَةِ الْمُشَدَّدَةُ" };
+  }
+  // ---- (wave 36b) the Şerḥu'l-Muġnī's taṣghīr and nisba rules, on top of the rules above ----
+  static SEMAI_FEM = new Set(["شمس", "ارض", "أرض", "عين", "يد", "رجل", "نار", "دار", "ريح", "حرب", "روح", "نفس", "سوق", "بئر", "دلو", "ناب", "سبيل", "كاس", "كأس", "فاس", "فأس", "ضرس", "سن", "اذن", "أذن", "كبد", "كتف", "ساق", "قدم", "عصا", "عقرب", "حال", "طريق", "سكين"]);
+  static vow(word){ return (word || "").normalize("NFC").replace(/[«»،.:!؟]/g, "").replace(/^ا[ً-ٰ]*ل[ً-ٰ]*/, "").replace(/[ًٌٍ]$/, "").replace(/ً([اى])$/, "$1"); }
+  // the bare letters with a doubled letter written twice: هِرَّة → ه ر ر ة
+  static letters2(word){ const v = this.vow(word); const out = []; for (let i = 0; i < v.length; i++) { const c = v[i]; if (/[ء-ي]/.test(c)) { out.push(c); let j = i + 1; while (j < v.length && /[ً-ٰ]/.test(v[j])) { if (v[j] === "ّ") { out.push(c); break; } j++; } } } return out; }
+  static tasgir(word){
+    const v = this.vow(word); const L = this.letters2(word); const ta = /ة$/.test(L.join("")); const core = ta ? L.slice(0, -1) : L.slice();
+    const marks = x => x.replace(/[ًٌٍَُِْ]/g, "");
+    const mk = (a) => ({ out: a.normalize("NFC"), rule: "" });
+    // أَب، أَخ: the elided wāw returns and melts into the yāʾ of taṣghīr — أُبَيّ، أُخَيّ
+    if (!ta && core.length === 2) return { out: core[0] + "ُ" + core[1] + "َيّ", rule: "فُعَيْل — يُرَدُّ الْمَحْذُوفُ (أَبٌ أَصْلُهُ أَبَوٌ) وَتُدْغَمُ يَاءُ التَّصْغِيرِ فِيهِ: أَب → أُبَيّ", src: "mughni" };
+    // فَعْلَان of a name or adjective keeps its ان: سَلْمَان → سُلَيْمَان، سَكْرَان → سُكَيْرَان
+    if (!ta && core.length === 5 && core[3] === "ا" && core[4] === "ن" && /^[ء-ي][َُِ][ء-ي]ْ[ء-ي]َان$/.test(marks(v).length ? v : v))
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "َان", rule: "فُعَيْلَان — أَلِفُ فَعْلَانَ وَنُونُهُ تَبْقَيَانِ فِي الْأَعْلَامِ وَالصِّفَاتِ: سَلْمَان → سُلَيْمَان", src: "mughni" };
+    // فَعْلَاء of femininity keeps its اء: حَمْرَاء → حُمَيْرَاء
+    if (!ta && core.length === 5 && core[3] === "ا" && core[4] === "ء" && /^[ء-ي]َ[ء-ي]ْ[ء-ي]َاء$/.test(v))
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "َاء", rule: "فُعَيْلَاء — أَلِفُ التَّأْنِيثِ الْمَمْدُودَةُ تَبْقَى: حَمْرَاء → حُمَيْرَاء", src: "mughni" };
+    // فُعْلَى of femininity keeps its ى: بُشْرَى → بُشَيْرَى
+    if (!ta && core.length === 4 && core[3] === "ى")
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "َى", rule: "فُعَيْلَى — أَلِفُ التَّأْنِيثِ الْمَقْصُورَةُ تَبْقَى: بُشْرَى → بُشَيْرَى", src: "mughni" };
+    // five letters with a long fourth: فُعَيْعِيل — مِفْتَاح → مُفَيْتِيح، عُصْفُور → عُصَيْفِير، قِنْدِيل → قُنَيْدِيل (the long vowel turns yāʾ)
+    if (core.length === 5 && /[اوي]/.test(core[3]) && !/[اوي]/.test(core[4]))
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "ِي" + core[4] + (ta ? "َة" : ""), rule: "فُعَيْعِيل — حَرْفُ الْمَدِّ الرَّابِعُ يُقْلَبُ يَاءً: مِفْتَاح → مُفَيْتِيح", src: "mughni" };
+    // more than four letters with no long fourth: what follows the fourth is dropped — سَفَرْجَل → سُفَيْرِج، عَنْدَلِيب → عُنَيْدِل
+    if (core.length >= 5)
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "ِ" + core[3] + (ta ? "َة" : ""), rule: "فُعَيْعِل — مَا بَعْدَ الْحَرْفِ الرَّابِعِ يُحْذَفُ: سَفَرْجَل → سُفَيْرِج", src: "mughni" };
+    // a samāʿī feminine of three letters shows its ة in the diminutive: شَمْس → شُمَيْسَة، عَيْن → عُيَيْنَة
+    if (!ta && core.length === 3 && this.SEMAI_FEM.has(core.join("")) && !/[ا]/.test(core[1]) && (core.join("") !== "رجل" || /^رِجْ/.test(v)) /* رِجْل the foot is feminine, رَجُل the man is not */) {
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "َة", rule: "فُعَيْلَة — الْمُؤَنَّثُ السَّمَاعِيُّ تَظْهَرُ تَاؤُهُ فِي التَّصْغِيرِ: شَمْس → شُمَيْسَة", src: "mughni" }; }
+    // a doubled second letter counts twice: هِرَّة → هُرَيْرَة (فُعَيْعِلَة of ه ر ر)
+    if (ta && core.length === 3 && core[1] === core[2] && /ّ/.test(v))
+      return { out: core[0] + "ُ" + core[1] + "َيْ" + core[2] + "َة", rule: "فُعَيْلَة — الْحَرْفُ الْمُشَدَّدُ حَرْفَانِ: هِرَّة → هُرَيْرَة", src: "mughni" };
+    const r0 = this.tasgir0(word); return r0;
+  }
+  static nisba(word){
+    const v = this.vow(word); const L = this.letters2(word); const ta = /ة$/.test(L.join("")); const core = ta ? L.slice(0, -1) : L.slice();
+    const { b } = this.parts(word);
+    if (this.SEMAI_NISBA[b] || this.SEMAI_NISBA[core.join("")]) return this.nisba0(word);
+    // فَعِل: the kasra of the second letter opens to a fatḥa — مَلِك → مَلَكِيّ، نَمِر → نَمَرِيّ
+    if (!ta && core.length === 3 && /^[ء-ي]َ[ء-ي]ِ[ء-ي]$/.test(v))
+      return { out: core[0] + "َ" + core[1] + "َ" + core[2] + "ِيّ", rule: "فَعِل → فَعَلِيّ: كَسْرَةُ الْعَيْنِ تُفْتَحُ — مَلِك → مَلَكِيّ", src: "mughni" };
+    // فَعِيلَة / فُعَيْلَة: the ة and the يَاء both drop — قَبِيلَة → قَبَلِيّ، جُهَيْنَة → جُهَنِيّ
+    if (ta && core.length === 4 && core[2] === "ي" && /^[ء-ي][َُ][ء-ي][َِ]ي[ْ]?[ء-ي][َ]?ة/.test(v))
+      return { out: core[0] + "َ" + core[1] + "َ" + core[3] + "ِيّ", rule: "فَعِيلَة وَفُعَيْلَة: تُحْذَفُ التَّاءُ وَالْيَاءُ مَعًا — قَبِيلَة → قَبَلِيّ", src: "mughni" };
+    // a final hamza after an alif: the feminine hamza turns wāw (صَحْرَاء → صَحْرَاوِيّ), the root's hamza stays (اِبْتِدَاء → اِبْتِدَائِيّ)
+    if (!ta && core.length >= 4 && core[core.length - 2] === "ا" && core[core.length - 1] === "ء") {
+      const stem = v.replace(/[َُِْ]$/, "");
+      if (this.femHamza(stem) || !/[َُِ]/.test(stem)) return { out: core.slice(0, -1).join("") + "وِيّ", rule: "هَمْزَةُ التَّأْنِيثِ تُقْلَبُ وَاوًا: صَحْرَاء → صَحْرَاوِيّ", src: "mughni" };   /* (wave 36e) a bare word keeps the old reading */
+      return { out: core.slice(0, -1).join("") + "ئِيّ", rule: "الْهَمْزَةُ الْأَصْلِيَّةُ تَبْقَى عَلَى نَبْرَةٍ وَتُزَادُ يَاءُ النِّسْبَةِ: اِبْتِدَاء → اِبْتِدَائِيّ", src: "mughni" }; }
+    // a final doubled يّ: one letter before it — حَيّ → حَيَوِيّ; two letters before it — نَبِيّ → نَبَوِيّ، عَلِيّ → عَلَوِيّ
+    if (!ta && core.length >= 3 && core[core.length - 1] === "ي" && core[core.length - 2] === "ي") {
+      const pre = core.slice(0, -2);
+      if (pre.length === 1) return { out: pre[0] + "َيَوِيّ", rule: "الْيَاءُ الْمُشَدَّدَةُ بَعْدَ حَرْفٍ: الْأُولَى تُرَدُّ إِلَى أَصْلِهَا وَالثَّانِيَةُ تُقْلَبُ وَاوًا — حَيّ → حَيَوِيّ", src: "mughni" };
+      if (pre.length === 2) return { out: pre[0] + "َ" + pre[1] + "َوِيّ", rule: "الْيَاءُ الْمُشَدَّدَةُ بَعْدَ حَرْفَيْنِ: الْأُولَى تُحْذَفُ وَالثَّانِيَةُ تُقْلَبُ وَاوًا — نَبِيّ → نَبَوِيّ", src: "mughni" }; }
+    // ة drops and the doubled letter keeps its shadda: مَكَّة → مَكِّيّ
+    if (ta && core.length === 3 && core[1] === core[2] && /ّ/.test(v))
+      return { out: core[0] + ((v.match(/^[ء-ي]([َُِ])/) || [])[1] || "َ") + core[1] + "ِّيّ", rule: "تُحْذَفُ التَّاءُ ثُمَّ تُزَادُ يَاءُ النِّسْبَةِ: مَكَّة → مَكِّيّ، سُنَّة → سُنِّيّ", src: "mughni" };
+    return this.nisba0(word);
+  }
+  // the book's own examples (pp. 51–55 of the notes) — the engine is graded on them, and the lab offers them as seeds
+  static MUGHNI_SEEDS = {
+    tasgir: [["قَلَم", "قُلَيْم"], ["جَبَل", "جُبَيْل"], ["عَبْد", "عُبَيْد"], ["نَصْر", "نُصَيْر"], ["حَسَن", "حُسَيْن"], ["دَفْتَر", "دُفَيْتِر"], ["مَنْزِل", "مُنَيْزِل"], ["بُلْبُل", "بُلَيْبِل"], ["مَسْجِد", "مُسَيْجِد"],
+             ["مِفْتَاح", "مُفَيْتِيح"], ["عُصْفُور", "عُصَيْفِير"], ["قِنْدِيل", "قُنَيْدِيل"], ["عَنْدَلِيب", "عُنَيْدِل"], ["سَفَرْجَل", "سُفَيْرِج"], ["قَلْعَة", "قُلَيْعَة"], ["هِرَّة", "هُرَيْرَة"], ["بُشْرَى", "بُشَيْرَى"],
+             ["حَمْرَاء", "حُمَيْرَاء"], ["سَمْرَاء", "سُمَيْرَاء"], ["سَلْمَان", "سُلَيْمَان"], ["عُثْمَان", "عُثَيْمَان"], ["سَكْرَان", "سُكَيْرَان"], ["كَسْلَان", "كُسَيْلَان"], ["شَمْس", "شُمَيْسَة"], ["أَرْض", "أُرَيْضَة"], ["عَيْن", "عُيَيْنَة"],
+             ["عَالِم", "عُوَيْلِم"], ["جَارِيَة", "جُوَيْرِيَة"], ["بَاب", "بُوَيْب"], ["خَال", "خُوَيْل"], ["أَب", "أُبَيّ"], ["أَخ", "أُخَيّ"], ["نَهْر", "نُهَيْر"], ["قُفْل", "قُفَيْل"]],
+    nisba:  [["عِرَاق", "عِرَاقِيّ"], ["دِمَشْق", "دِمَشْقِيّ"], ["عِلْم", "عِلْمِيّ"], ["عُثْمَان", "عُثْمَانِيّ"], ["ذَهَب", "ذَهَبِيّ"], ["مَكَّة", "مَكِّيّ"], ["سُنَّة", "سُنِّيّ"], ["مَلِك", "مَلَكِيّ"], ["نَمِر", "نَمَرِيّ"],
+             ["مَدِينَة", "مَدَنِيّ"], ["قَبِيلَة", "قَبَلِيّ"], ["صَحْرَاء", "صَحْرَاوِيّ"], ["سَمَاء", "سَمَاوِيّ"], ["اِبْتِدَاء", "اِبْتِدَائِيّ"], ["إِنْشَاء", "إِنْشَائِيّ"], ["حَيّ", "حَيَوِيّ"], ["غَيّ", "غَيَوِيّ"], ["نَبِيّ", "نَبَوِيّ"], ["عَلِيّ", "عَلَوِيّ"]],
+  };
+  // two written forms agree when their letters agree and every vowel the engine wrote agrees with the book's (the book's own vowels are the measure; a letter the engine left bare is not a miss)
+  static agreeForm(out, exp){
+    const norm = x => (x || "").normalize("NFC").replace(/[ًٌٍْ]/g, "").replace(/^ا[ً-ٰ]*ل[ً-ٰ]*/, "");
+    const a = norm(out), b = norm(exp);
+    const bare = x => x.replace(/[ً-ٰ]/g, "");
+    if (bare(a) !== bare(b)) return false;
+    const vowelsAfter = x => { const m = []; for (let i = 0; i < x.length; i++) if (/[ء-ي]/.test(x[i])) { let v = ""; let j = i + 1; while (j < x.length && /[ً-ٰ]/.test(x[j])) { if (/[َُِ]/.test(x[j])) v = x[j]; j++; } m.push(v); } return m; };
+    const va = vowelsAfter(a), vb = vowelsAfter(b);
+    return va.every((v, i) => !v || !vb[i] || v === vb[i]);
+  }
+  static mughniAudit(){
+    const bad = []; let n = 0;
+    for (const [w, exp] of this.MUGHNI_SEEDS.tasgir) { n++; const r = this.tasgir(w); if (!r || !this.agreeForm(r.out, exp)) bad.push("tasgir " + w + " → " + (r ? r.out : "∅") + " ≠ " + exp); }
+    for (const [w, exp] of this.MUGHNI_SEEDS.nisba) { n++; const r = this.nisba(w); if (!r || !this.agreeForm(r.out, exp)) bad.push("nisba " + w + " → " + (r ? r.out : "∅") + " ≠ " + exp); }
+    return { n, bad };
   }
   // ---- التَّثْنِيَةُ وَالْجَمْعُ السَّالِمُ: the dual and the sound plurals, by rule -----
   // The dual and the two sound plurals are the ONE part of the plural chapter
@@ -11341,6 +11523,10 @@ function renderIsmOut(){
   if (n) h += `<div class="adad-phrase" lang="ar" dir="rtl">${ui().nisbaLbl} ${n.out}</div>
     <p class="bab-line" lang="ar">${n.rule}</p>
     ${n.semai ? `<p class="sarf-note">${ui().ismSemai}</p>` : ""}`;
+  if ((t && t.src === "mughni") || (n && n.src === "mughni")) h += `<p class="sarf-note">${ui().mughniSrc}</p>`;   /* (wave 36c) */
+  try { const pk = IsmKindsEngine.profile(w); const lg = state.uiLang === "tr" ? "tr" : "en";
+    h += `<div class="kinds15"><h4>${ui().kinds15Title}</h4><ol class="kinds15-list">${Object.entries(IsmKindsEngine.L).map(([k, L]) => { const hit = pk.kinds.find(x => x.k === k); return `<li class="${hit ? "on" : "off"}"><span class="k-ar" lang="ar" dir="rtl">${L.ar}</span><span class="k-name">${L[lg]}${hit && hit.sub ? " — " + escapeAttr(hit.sub[lg]) : ""}</span>${hit ? `<span class="k-def">${escapeAttr(L.def[lg])}</span>` : ""}</li>`; }).join("")}</ol></div>`; } catch (e) {}   /* (wave 36d) */
+  h += `<div class="qw-seeds"><div class="sub">${ui().mughniSeeds}</div><ul>${IsmEngine.MUGHNI_SEEDS.tasgir.filter((x, k) => k % 2 === 0).concat(IsmEngine.MUGHNI_SEEDS.nisba.filter((x, k) => k % 2 === 1)).map(([w0]) => `<li><button class="qw-seed" data-seed="${escapeAttr(w0)}" lang="ar" dir="rtl">${escapeAttr(w0)}</button></li>`).join("")}</ul></div>`;
   // ---- the dual and the sound plurals: exact rules, and the construct forms beside them
   try {
     const d = IsmEngine.dual(w), j = IsmEngine.jamSalim(w);
@@ -11400,6 +11586,7 @@ function renderIsmOut(){
     else h += `<p class="sarf-note">${ui().alatSemai}</p>`;
   }
   out.innerHTML = h;
+  out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => { conjState.ism = b.dataset.seed; const inp = document.getElementById("ismIn"); if (inp) inp.value = b.dataset.seed; renderIsmOut(); }));   /* (wave 36c) */
 }
 function renderMizanOut(){
   const out = document.getElementById("mizanOut");
@@ -16043,11 +16230,13 @@ class DabtEngine {
         if (/^[وف]?اعلم(وا|ي|ن|ا)?$/.test(bw) && t === "amr" && st.innaOpen && st.innaIsm) { set(i, "cell", "amr", { tense: t }); st.talab = true; continue; }   // إِنَّ الْخَلَائِقَ فَاعْلَمْ شَرُّهَا الْبِدَعُ: the parenthetical command leaves إِنَّ's khabar open (wave 20)
         const prevNamed26 = st.failRow != null && st.verb !== null && /mazi/i.test(st.lastTense || ""), prevMaful26 = st.maful, prevPerson26 = st.person, prevLemma26 = st.verb !== null && rows[st.verb] ? this.bare(rows[st.verb].lemma || "") : "", prevFailAdj26 = st.failRow === i - 1, prevHidden26 = !!(st.fail && st.hiddenDoer), prevNoDoer26 = st.verb !== null && !st.fail && /mazi|mudari/i.test(st.lastTense || "") && st.person === 0;   /* (wave 26q3) */   /* (wave 26e) */
         const carried26 = !!st.hiddenDoer26;   /* (wave 26o3) read before the row's reset */
+        const prevNamedMudari36 = joined(r) && st.verb !== null && st.fail && typeof st.failRow === "number" && /mudari/i.test(st.lastTense || "") && /mudari/i.test(t) && !/majhul/.test(t) && !st.passive && rows[st.verb] && rows[st.verb].cell && typeof (r.cell || {}).i === "number" && (r.cell || {}).i === rows[st.verb].cell.i;   /* (wave 36a) read before the reset: the previous muḍāriʿ named its doer and this joined one wears the same person */
         const kanaIsmNamed35 = st.kanaOpen && st.kanaIsm && !st.hiddenDoer && !joined(r) && out.slice(0, i).some(o => o && o.rule === "kanaIsm") && !/^(mawsul|man|ma)$/.test(((rows[i - 1] || {}).pk || "")) /* (wave 35p) الْمُعْجِزَاتُ الَّتِي أَكْرَمَ اللهُ: the relative's verb names its own doer */;   /* (wave 35e) كَانَتْ خَيْلُ عَادٍ تَمْلَأُ: the named ism's own verb */
         st.verb = i; st.passive = /majhul/.test(t); st.fail = false; st.maful = 0; st.kanaOpen = false; st.kanaIsm = false; st.failRow = null; st.hiddenDoer = false; st.hiddenDoer26 = false;
         st.intransV = (() => { try { const v0 = RootFinder.corpusIndex().find(x => x.lemma === r.lemma); return !!v0 && (/حَسُنَ/.test(String(v0.bab || "")) || (!!v0.m && !v0.m.ismMaful && !v0.m.majhulMazi && !v0.m.majhulMudari && !/^(كان|ليس|صار|اصبح|أصبح|امسى|أمسى|اضحى|أضحى|ظل|بات|زال|دام|كاد|اوشك|أوشك|عسى|جعل|طفق|اخذ|أخذ)$/.test(this.bare(r.lemma || ""))) /* (wave 24d) */); } catch (e) { return false; } })();   // the bab of فَعُلَ never governs an object
         if (inheritHidden && !(carried26 && (st.intransV || this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) || this.intransParadigm(r)) && rows[i + 1] && isNoun(rows[i + 1]) && (propn(rows[i + 1]) || hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) /* (wave 26r) وَتَجَدَّدَ حُزْنُهُ */) && !rows[i + 1].afterJarr && !fused(rows[i + 1]) && !joined(rows[i + 1]))) { st.fail = true; st.hiddenDoer = true; if (carried26) st.hiddenDoer26 = true; }   /* (wave 26o4) the carried chain propagates */   /* (wave 26o3) وَفَرِحَ إِبْرَاهِيمُ: an intransitive verb before a plain definite noun names its own doer — the carried «he» stands down */
         if (inheritSubj) { st.fail = true; st.hiddenDoer = true; }   // (wave 23b)
+        if (prevNamedMudari36 && !st.fail && !st.intransV && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && !this.intransParadigm(r) && rows[i + 1] && (rows[i + 1].pk || "") === "ishara" && /^[وف]?(هذا|هذه|هذان|هذين|هاتان|هاتين|هؤلاء|ذلك|ذاك|تلك|اولئك|أولئك)$/.test(bareOf(rows[i + 1]).replace(/[ٰ]/g, ))) { st.fail = true; st.hiddenDoer = true; }   /* (wave 36a) تَبْرُزُ يَدُ الْقُدْرَةِ … فَتُخْرِجُ هٰذَا الْإِنْسَانَ: the transitive joined verb keeps the named doer as its hidden pronoun when a DEMONSTRATIVE follows — that is its object; an ال-noun or a pronoun-closed noun after it may be a new doer (وَيَغْشَى الْيَأْسُ، وَيَفْهَمَ قَوْمُهُ، وَيَأْكُلُ الْقَوِيُّ) and keeps the old reading */
         if (joined(r) && /mazi/i.test(t) && !!encOf(r) && typeof pre30.verb === "number" && prevFailRow != null && rows[pre30.verb] && !!encOf(rows[pre30.verb]) && (r.cell || {}).i === ((rows[pre30.verb] || {}).cell || {}).i && !st.passive) { st.fail = true; st.hiddenDoer = true; }   /* (wave 26r5) read before the verb's own reset */   /* (wave 26r4) وَتَوَفَّاهُ اللهُ مُسْلِمًا وَأَلْحَقَهُ: the second verb wears its object; its doer is the first's, concealed */
         if (r.__youDoer && !st.passive) { st.fail = true; st.hiddenDoer = true; }
         if (kanaIsmNamed35 && !st.passive && !encOf(r) && [0, 3].includes(typeof cell.i === "number" ? cell.i : -1) && /mudari|mazi/i.test(t)) { st.fail = true; st.hiddenDoer = true; r.__ismDoer35 = true; }   /* (wave 35e) */
@@ -26030,6 +26219,9 @@ class GrammarKernel {
     else miss.push({ ar: "الْجَذْرُ", en: "its root — the letters do not peel to three",
                      tr: "kökü — harfler üçe inmiyor" });
 
+    try { const pk = IsmKindsEngine.profile(w, { pos: tok.pos, rule: tok.irab && tok.irab.rule }); if (pk.kinds.length) add("ism", "rule",
+      { ar: "أَقْسَامُ الِاسْمِ", en: "Kinds of noun (the fifteen)", tr: "İsmin kısımları (on beş)" },
+      pk.kinds.map(x => [IsmKindsEngine.L[x.k].ar + (x.sub && x.sub.ar ? " — " + x.sub.ar : ""), IsmKindsEngine.L[x.k][state.uiLang === "tr" ? "tr" : "en"]])); } catch (e) {}   /* (wave 36d) */
     const t = IsmEngine.tasgir(w), n = IsmEngine.nisba(w);
     if (t || n) add("ism", "rule",
       { ar: "التَّصْغِيرُ وَالنِّسْبَةُ", en: "Diminutive and nisba", tr: "Tasgîr ve nisbet" },
@@ -26745,6 +26937,95 @@ function startTawkid(){
     why: it => `<div class="frame-reveal"><span class="fr-name" lang="ar">${E(it.right)}</span></div><ol class="ilal-steps sl-steps">${it.steps.map((s0, k) => `<li><div class="is-n">${k + 1}</div><div class="is-body"><div class="is-rule" lang="ar" dir="rtl">${s0.ar}</div><div class="is-gloss">${E(s0[lg] || s0.en)}</div></div></li>`).join("")}</ol><p class="ref-intro"><span lang="ar" dir="rtl">${TawkidNunEngine.BINA[it.bina].ar}</span></p>`,
   });
 }
+// gIsmKinds — one axis of a corpus noun: gender / number / definiteness / name-or-genus / derived shape, by the IsmKindsEngine (wave 36)
+let __kindsItemsCache = { scope: null, items: null };
+function kindsItems(){
+  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
+  if (__kindsItemsCache.scope === scope && __kindsItemsCache.items) return __kindsItemsCache.items;
+  const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
+  const L = IsmKindsEngine.L; const nfc = x => String(x || "").normalize("NFC");
+  const AX = {
+    gender: { ks: ["mudhakkar", "muannath"], opts: p => { const m = p.sub("muannath"); return [["mudhakkar", null], ["muannath", "ta"], ["muannath", "alif"], ["muannath", "samai"]]; } },
+    number: { ks: ["muthanna", "jam"], opts: () => [["mufrad", null], ["muthanna", null], ["jam", "salim"], ["jam", "taksir"]] },
+    definite: { ks: ["marifa", "nakira"], opts: () => [["nakira", null], ["marifa", "al"], ["marifa", "alam"], ["marifa", "pron"]] },
+    kind: { ks: ["jins", "alam", "tasgir", "mansub", "adad", "ismFil"], opts: () => [["jins", null], ["alam", null], ["tasgir", null], ["mansub", null], ["adad", null], ["ismFil", null]] } };
+  const seen = new Set(); const out = [];
+  const push = (lemma, gloss, opt) => {
+    const b = stripAr(lemma).replace(/[^ء-ي]/g, ""); if (b.length < 2 || seen.has(b)) return; seen.add(b);
+    let p = null; try { p = IsmKindsEngine.profile(lemma, opt || {}); } catch (e) { return; }
+    const subAr = k => (p.sub(k) || {}).ar || "";
+    // gender
+    if (p.has("muannath") || p.has("mudhakkar")) { const sa = subAr("muannath"); const right = p.has("mudhakkar") ? "mudhakkar" : /التَّاءِ/.test(sa) ? "ta" : /الْأَلِفِ/.test(sa) ? "alif" : "samai";
+      out.push({ lemma, gloss, axis: "gender", right, opts: [["mudhakkar", "الْمُذَكَّرُ"], ["ta", "مُؤَنَّثٌ بِالتَّاءِ"], ["alif", "مُؤَنَّثٌ بِالْأَلِفِ"], ["samai", "مُؤَنَّثٌ سَمَاعِيٌّ"]], why: p.has("mudhakkar") ? L.mudhakkar : L.muannath, sub: p.sub(p.has("mudhakkar") ? "mudhakkar" : "muannath") }); }
+    // number
+    if (p.has("muthanna") || p.has("jam") || (p.has("jins") && !p.has("adad"))) { const sa = subAr("jam"); const right = p.has("muthanna") ? "muthanna" : p.has("jam") ? (/سَالِم/.test(sa) ? "salim" : "taksir") : "mufrad";
+      if (right !== "mufrad" || Math.random() < 0.25) out.push({ lemma, gloss, axis: "number", right, opts: [["mufrad", "مُفْرَدٌ"], ["muthanna", "مُثَنًّى"], ["salim", "جَمْعٌ سَالِمٌ"], ["taksir", "جَمْعُ تَكْسِيرٍ"]], why: p.has("muthanna") ? L.muthanna : p.has("jam") ? L.jam : L.jins, sub: p.sub(p.has("muthanna") ? "muthanna" : "jam") }); }
+    // definiteness
+    if (p.has("marifa") || p.has("nakira")) { const sa = subAr("marifa"); const right = p.has("nakira") ? "nakira" : /بِأَل/.test(sa) ? "al" : /عَلَم/.test(sa) ? "alam" : /ضَمِير|مُبْهَم/.test(sa) ? "pron" : "idafa";
+      if (right !== "idafa") out.push({ lemma, gloss, axis: "definite", right, opts: [["nakira", "نَكِرَةٌ"], ["al", "مَعْرِفَةٌ بِأَل"], ["alam", "مَعْرِفَةٌ — عَلَمٌ"], ["pron", "مَعْرِفَةٌ — ضَمِيرٌ أَوْ مُبْهَمٌ"]], why: p.has("nakira") ? L.nakira : L.marifa, sub: p.sub(p.has("nakira") ? "nakira" : "marifa") }); }
+    // the kind
+    for (const k of ["alam", "tasgir", "mansub", "adad", "ismFil"]) if (p.has(k)) { out.push({ lemma, gloss, axis: "kind", right: k, opts: [["jins", L.jins.ar], ["alam", L.alam.ar], ["tasgir", L.tasgir.ar], ["mansub", L.mansub.ar], ["adad", L.adad.ar], ["ismFil", L.ismFil.ar]].filter(x => x[0] === k || x[0] === "jins" || Math.random() < 0.6).slice(0, 4), why: L[k], sub: p.sub(k) }); break; } };
+  for (const st of stories) for (const e of Object.values(st.glossary || {})) { if (!e || !/^(noun|propn)/.test(e.pos || "") || /pron/.test(e.pos || "")) continue; const lemma = nfc(String(e.lemma || "").split(/[()\s]/)[0]); if (/[ًٌٍ]/.test(lemma)) continue; push(lemma, e.gloss, { pos: e.pos }); }
+  for (const [w, k, o] of IsmKindsEngine.SEEDS) push(w, null, o || {});
+  const fixed = out.map(it => { const opts = it.opts.some(x => x[0] === it.right) ? it.opts : it.opts.slice(0, 3).concat([[it.right, (L[it.right] || {}).ar || it.right]]); return { ...it, opts: opts.slice(0, 4) }; }).filter(it => it.opts.some(x => x[0] === it.right) && it.opts.length >= 3);
+  if (fixed.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return kindsItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
+  __kindsItemsCache = { scope, items: fixed }; return fixed;
+}
+function startKinds(){
+  const items = shuffle(kindsItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const E = escapeAttr, lg = state.uiLang === "tr" ? "tr" : "en";
+  const AXL = { gender: { en: "gender", tr: "cinsiyet" }, number: { en: "number", tr: "sayı" }, definite: { en: "definiteness", tr: "belirlilik" }, kind: { en: "the kind", tr: "kısım" } };
+  runQuiz({
+    title: ui().kindsGame, ask: ui().kindsAsk, items, restart: startKinds,
+    area: "sarf", lvl: it => it.axis === "kind" ? 4 : 3, itemKey: it => "kinds:" + it.axis + ":" + it.lemma,
+    question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${E(it.lemma)}</span>
+      <div class="sigha">${AXL[it.axis][lg]}${it.gloss ? " · " + E(T(it.gloss)) : ""}</div></div>`,
+    options: it => shuffle(it.opts.map(([k, ar]) => ({ html: `<span lang="ar">${E(ar)}</span>`, ok: k === it.right, ar: true }))),
+    whyNot: () => ui().kindsWhyNot,
+    why: it => `<div class="frame-reveal"><span class="fr-name" lang="ar">${E(it.why.ar)}${it.sub && it.sub.ar ? " — " + E(it.sub.ar) : ""}</span><span class="fr-doc">${E(it.why.def[lg])}</span></div>`,
+  });
+}
+// gTasgir — the diminutive or the nisba of the corpus's own nouns, derived by the Şerḥu'l-Muġnī's rules; the distractors are the wrong rule's forms (wave 36)
+let __tasgirItemsCache = { scope: null, items: null };
+function tasgirItems(){
+  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
+  if (__tasgirItemsCache.scope === scope && __tasgirItemsCache.items) return __tasgirItemsCache.items;
+  const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
+  const nfc = x => String(x || "").normalize("NFC");
+  const bareOf = x => stripAr(nfc(x)).replace(/[^ء-ي]/g, "");
+  const seen = new Set(); const out = []; const pool = [];
+  for (const st of stories) for (const e of Object.values(st.glossary || {})) {
+    if (!e || !/^noun/.test(e.pos || "") || /propn|pron|adj/.test(e.pos || "")) continue;
+    const lemma = nfc(String(e.lemma || "").split(/[()\s]/)[0]); const b = bareOf(lemma).replace(/^ال/, "");
+    if (b.length < 3 || b.length > 6 || seen.has(b) || /[ًٌٍ]/.test(lemma)) continue; seen.add(b);
+    let t = null, n = null; try { t = IsmEngine.tasgir(lemma); n = IsmEngine.nisba(lemma); } catch (err) { continue; }
+    if (t && t.out) pool.push({ lemma, gloss: e.gloss, kind: "tasgir", right: nfc(t.out), rule: t.rule, src: t.src, other: n ? nfc(n.out) : null });
+    if (n && n.out && !n.semai) pool.push({ lemma, gloss: e.gloss, kind: "nisba", right: nfc(n.out), rule: n.rule, src: n.src, other: t ? nfc(t.out) : null }); }
+  for (const it of pool) {
+    const ds = new Set(); const r = it.right;
+    if (it.kind === "tasgir") { ds.add(r.replace(/ُ/, "َ")); ds.add(/ة$/.test(r) ? r.replace(/َ?ة$/, "") : r + "َة"); if (it.other) ds.add(it.other); ds.add(r.replace(/َيْ/, "ِي")); }
+    else { if (it.other) ds.add(it.other); ds.add(r.replace(/ّ$/, "")); ds.add(/وِيّ$/.test(r) ? r.replace(/َ?وِيّ$/, "ِيّ") : r.replace(/ِيّ$/, "َوِيّ")); ds.add(r.replace(/ِيّ$/, "ِيَّة")); }
+    ds.delete(r); const d3 = [...ds].filter(x => x && stripAr(x) !== stripAr(r) || x !== r).slice(0, 3);
+    if (d3.length < 3) { const nb = pool.find(x => x !== it && x.kind === it.kind && !d3.includes(x.right) && x.right !== r); if (nb) d3.push(nb.right); }
+    if (d3.length >= 3) out.push({ ...it, ds: d3 }); }
+  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return tasgirItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
+  __tasgirItemsCache = { scope, items: out }; return out;
+}
+function startTasgir(){
+  const items = shuffle(tasgirItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const E = escapeAttr;
+  runQuiz({
+    title: ui().tasgirGame, ask: ui().tasgirAskT, items, restart: startTasgir,
+    area: "sarf", lvl: it => it.src === "mughni" ? 5 : 4, itemKey: it => "tasgir:" + it.kind + ":" + it.lemma,
+    question: it => `<div class="game-q"><span lang="ar" style="font-family:var(--ar-font);font-size:1.6rem">${E(it.lemma)}</span>
+      <div class="sigha">${it.kind === "tasgir" ? ui().tasgirAskT : ui().tasgirAskN}${it.gloss ? " · " + E(T(it.gloss)) : ""}</div></div>`,
+    options: it => shuffle([{ html: it.right, ok: true, ar: true }].concat(it.ds.map(d => ({ html: d, ok: false, ar: true })))),
+    whyNot: () => ui().tasgirWhyNot,
+    why: it => `<div class="frame-reveal"><span class="fr-name" lang="ar">${E(it.right)}</span><span class="fr-doc"><span lang="ar" dir="rtl">${E(it.rule || "")}</span>${it.src === "mughni" ? "<br>" + ui().mughniSrc : ""}</span></div>`,
+  });
+}
 // gIdgham — WHICH ruling? a cell of a doubled Form-I verb from the texts; the learner names the idghām's ruling (wave 26)
 let __idghamItemsCache = null;
 function idghamItems(){
@@ -26985,6 +27266,8 @@ class GameFactory {
     { id: "gBahr",    group: "balagha", emblem: "♫", min: 4, supply: () => bahrItems().length },
     { id: "gTawkid",  group: "sarf",    emblem: "نّ", min: 4, supply: () => tawkidItems().length },
     { id: "gIdgham",  group: "sarf",    emblem: "دّ", min: 4, supply: () => idghamItems().length },
+    { id: "gTasgir",  group: "sarf",    emblem: "🔬", min: 4, supply: () => tasgirItems().length },
+    { id: "gKinds",   group: "sarf",    emblem: "🗂️", min: 4, supply: () => kindsItems().length },
   ];
   static get(id){ return this.CATALOGUE.find(g => g.id === id) || null; }
   // How many items each game can draw RIGHT NOW, in whatever scope is open.
@@ -27250,6 +27533,8 @@ function openGames(){
     ${gCard("gSarf", "⚙️", ui().sarfGame, ui().sarfGameDesc)}
     ${gCard("gTawkid", "نّ", ui().tawkidGame, ui().tawkidGameDesc)}
     ${gCard("gIdgham", "دّ", ui().idghamGame, ui().idghamGameDesc)}
+    ${gCard("gTasgir", "🔬", ui().tasgirGame, ui().tasgirGameDesc)}
+    ${gCard("gKinds", "🗂️", ui().kindsGame, ui().kindsGameDesc)}
     ${gCard("gAdad", "🔢", ui().adadGame, ui().adadGameDesc)}
     ${gHead("نَحْو", ui().gGroupNahw)}
     ${gCard("gHarakat", "🎯", ui().harakat, ui().harakatDesc)}
@@ -27297,6 +27582,8 @@ function openGames(){
   document.getElementById("gNida").addEventListener("click", startNida);
   document.getElementById("gShop").addEventListener("click", startShop);
   document.getElementById("gInna").addEventListener("click", startInna);
+  document.getElementById("gTasgir").addEventListener("click", startTasgir);
+  document.getElementById("gKinds").addEventListener("click", startKinds);
   document.getElementById("gIbaraTr").addEventListener("click", () => startIbara("toTr"));
   document.getElementById("gIbaraAr").addEventListener("click", () => startIbara("toAr"));
   document.getElementById("gTahlil").addEventListener("click", startTahlil);
