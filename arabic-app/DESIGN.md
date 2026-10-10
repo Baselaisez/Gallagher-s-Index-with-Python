@@ -1104,3 +1104,17 @@ cut by a Muġnī rule says so in one line under its rule. The two new game cards
 🔬 Tasgîr/nisbet, 🗂️ the kinds — sit in the sarf row of the hub with the same card,
 emblem and count slot as every other drill; their answer cards read the rule or the
 definition aloud, in Arabic with the English or Turkish beside it.
+
+## 30. A word and its faces: the count badge, the lit chip, the page's tick (wave 37)
+
+The Wujuh lab shows a word the way Ibn Hishām lists it: **the word, how many faces it can wear, which one it wears here, and why**.
+Each card opens with the word large and a round badge «4 faces» from the book's own count — the badge is the lesson before the answer:
+this word has four readings, so the reader expects a decision, not a translation. Under it the chosen face stands in Arabic with its
+one-line definition in the reader's language and the engine's reason in a smaller line («a majzūm muḍāriʿ follows (sukūn, or the nūn
+dropped) — ‹do not›»). The last row is every face of that word as chips; the chosen one is lit, the rest stay as the reader's
+alternatives, and the faces the corpus adds beyond the book (لَا's jins / ʿāṭifa / jawāb, أَيْ's tafsīr) wear a dashed border so the book's
+count and the app's additions never blur. A ✓ or ✗ after the face appears only when the sentence is one of the corpus's own: the page's
+iʿrāb is shown as the examiner, not hidden as a hint. On the sentence line the twenty words are underlined in the lab's blue, in amber
+where the page disagrees. The legend lists the twenty by face count — the order of the book, one face to twelve — so the reader can
+see that قَدْ has seven and مَا twelve before ever typing one. The game gives the word's own faces as the options and nothing else: a
+reader who knows إِنْ has four faces is asked exactly which of the four it is here.

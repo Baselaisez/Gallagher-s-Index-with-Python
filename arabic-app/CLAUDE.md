@@ -7581,3 +7581,67 @@ and muʿrab, أَبُو بَكْرٍ a kunya, أَحَدَ عَشَرَ a number
 رِجْل told apart), the fifteen-row checklist and gKinds' supply. Coverage row 36 moves
 from PARTIAL to its three new engines; what the notes still hold for a later wave: the
 munādā's seven rulings as a lab, the 24-row sarf table as a drill.
+
+## The Qawāʿid al-Iʿrāb's third chapter as an engine — the twenty words and their faces (wave 37, v199)
+
+Ibn Hishām's *Qawāʿid al-Iʿrāb* (COVERAGE row 34, `research/sources/qawaid-al-irab-turkish.txt` lines 49–68) groups twenty words by how
+many FACES (wujūh) each wears: one (قَطُّ عَوْضُ أَجَلْ بَلَى نَعَمْ إِي), two (إِذَا), three (إِذْ لَمَّا كَلَّا لَا), four (لَوْلَا إِنْ أَنْ مَنْ), five
+(أَيّ لَوْ), seven (قَدْ), eight (الْوَاو) and twelve (مَا). Wave 37 builds that chapter as `WujuhEngine` (`prototype/reader.html`, inserted before
+`InnaEngine`; the source of the patch is `patch37a.py`, the lab/game/card `patch37b.py`).
+
+**What the engine does.** `WujuhEngine.table(src)` (a sentence object or a free string) returns one item per word of the table with
+`key`, `word`, `face`, `faces` (every face of that word, the chosen one lit, EN/TR/AR labels), `why` (EN/TR reason), `n` (the book's
+count), `authored` (the faces the page's own iʿrāb phrase names, or null) and `agree`. `read(rows, i)` decides the face off the page:
+
+- the word's own vowels first (`keyOf`): a shadda turns إِنْ into إِنَّ and لٰكِنْ into لٰكِنَّ, a kasra on مِنْ makes it the jarr letter, a tanwīn
+  makes إِذًا, كِلَا / نِعْمَ / نِعَمٍ / أَجَلٍ / لِمَا are homographs — all skipped, never guessed;
+- then the row beside it: a majzūm muḍāriʿ after لَا is the nāhiya, a nakira in naṣb without tanwīn the jins, a لَا inside a negated
+  chain after a و the zāʾida, a single bare noun after an affirmative the ʿāṭifa; فَإِذَا before a nominal sentence is the mufājaʾa; a
+  لَ-answer after لَوْ makes it the imtināʿ, a وَلَوْ with no answer the waṣliyya/taqlīl, وَدَّ before it the maṣdariyya; مَا إِنْ before a noun is
+  the extra إِنْ, إِلَّا close after إِنْ the nāfiya, وَإِنْ + كان/muḍāriʿ + a lām fāriqa the mukhaffafa; a separator (سَـ سَوْفَ قَدْ لَنْ لَمْ لَوْ) or a
+  noun after أَنْ the lightened أَنَّ, a command after a verb that means «say» without its letters (أَوْحَى نَادَى كَتَبَ) the tafsīriyya, لَمَّا أَنْ the
+  zāʾida; بَيْنَمَا … إِذْ the mufājaʾa, a judgment before and a reason after the taʿlīl; قَدْ + māḍī the taḥqīq, + muḍāriʿ the taqlīl (takthīr
+  when the doer is God), قَدْ قَامَتِ الصَّلَاةُ the taqrīb, قَدْنِي the ism fiʿl; كَلَّا + إِنَّ / an oath the istiftāḥ; نَعَمْ after a question the iʿlām, after
+  a request the waʿd; مَنْ after a question mark, a verb of asking or a vocative the istifhām, after كُلّ / a preposition / a construct / with a
+  ẓarf-clause the mawṣūl, with a majzūm or a فَ-answer the shart, after رُبَّ the mawṣūfa; أَيُّهَا the nidāʾ bridge, أَيْ with sukūn the tafsīr,
+  أَيّ repeating a nakira the kamāl, أَيُّ + al-noun + khabar the istifhām.
+- **The verb's tense and mood are read from the corpus cell first.** `RootFinder.fromCorpus(form).cell.tense` carries `mazi`,
+  `majhulMazi`, `mudari`, `majhulMudari`, `mansub`, `majzum`, `majzum2`, `amr`; the engine trusts the cell's mood only when the cell's form
+  equals the page word exactly (يُشَمَّ ≠ يُشَمُّ, so the page's fatḥa wins), and the page's vowels otherwise, after stripping object suffixes
+  (يَنْهَاهُمْ → يَنْهَا, تُجِبْهُ → تُجِبْ). A weak-final ending (تَهْدِي، يَرْجُو، يُبْنَى) is `weak` — the page cannot show its mood, and no rule
+  may call it jazm. The free-text fallback reads the māḍī/muḍāriʿ off the vowel after the first letter (تَجَلَّى / أَكَلَ / نَزَلَ are māḍī;
+  تَكْتُبُ / تَنَامُ muḍāriʿ; أَرْسَلَ the māḍī of bāb IV; تُرِكَ the majhūl).
+- **مَا** is read by `readMa` (the same neighbour facts, taught by the corpus) with `MaEngine.read` as the fallback shortlist; **الْوَاو**
+  stays with `WawEngine` (a prefix, not a row).
+
+**Grading — the page is the examiner.** `authored(key, irabAr)` maps the authored iʿrāb phrase to the faces it names (شَرْط → shart,
+مَصْدَرِيّ → masdariyya, تَفْسِير → tafsiriyya, نَافِيَة|نَفْي → nafiya, نَاهِيَة|جَازِمَة → nahiya, لِلْجِنْسِ → jins, زَائِدَة|تَأْكِيد النَّفْي → zaida, تَحْقِيق →
+tahqiq, تَقْلِيل → taqlil, تَكْثِير → takthir, فُجَائِيَّة → mufajaa, تَعْلِيل → talil, مَوْصُول → mawsul, اسْتِفْهَام → istifham, امْتِنَاع → imtina,
+وَصْلِيَّة → taqlil, مُخَفَّفَة → mukhaffafa, حِجَازِيَّة → hijaziyya, ظَرْفِيَّة → zarfiyya, كَافَّة → kaffa, تَعَجُّب → taajjub …); لَفْظٌ مَحْكِيٌّ and حَرْفُ جَرٍّ
+return null (not graded). The leading «الواو عاطفة، و…» clause is cut first so «عاطفة» never leaks into لَا's own face. Four places where
+the pages themselves divide are held as EITHER: وَلَا inside a negated chain before a noun (Nadwī's pages say نافية, the ʿAqāʾid زائدة
+لتأكيد النفي), لَا before a nakira in naṣb that a page calls plain نافية (it is the jins by form), لَا before a jarr-phrase (نافية as a ṣifa
+on some pages, عاطفة on others), and بَلْ before a sentence that the pages call «إضراب وعطف» (the book calls it ibtidāʾ). A standalone
+لَا that a page calls نافية is also allowed the answer-face. **These leniencies are listed here so nobody mistakes them for accuracy.**
+
+**Measured (probe reader q3an, the whole corpus):** 1691 authored instances of the twenty + the four corpus extras (لٰكِنْ بَلْ حَتَّى أَمَّا),
+coverage 100%, **99.5% agree** (9 misses: Birgivi's «قَدْ الفاصل» after عَلِمْتُ أَنْ, «أَنْ غَضِبَ اللهُ» lightened by context, حَتَّى بِالْقَتْلِ as
+ibtidāʾiyya, حَتَّى أَحَاطَ with a māḍī called naṣb, وَلَوْ بَرَزَتْ waṣliyya with a لَ-verb within six rows, لَا بِالتَّضَادِّ called ʿāṭifa, وَمَنْ فِي
+كَفِّهِ with a question later, فَلَا يَدْخُلُوا in a naṣb chain across a فَ, وَمَنْ خَلَقَكُمْ a question with no question mark). Seeds: the book's 40
+example sentences, 40/40. **مَا: 435 instances, 61.8% under `MaEngine.read` alone → 89.7% with `readMa`** (the relative after a
+preposition / construct / إِلَّا / a transitive verb, the negation at the head of a clause, مَا لَكُمْ مِنْ as negation, مَا + pronoun + verb,
+مَا أَفْعَلَ + manṣūb as wonder, مَا دَامَ / مَكَثَ مَا as the ẓarfiyya, إِذَا مَا as the zāʾida). Everything together: 2126 instances, 97.5%.
+
+**Atölye — the Wujuh lab** (`conjState.lab === "wujuh"`, `#wujuhIn`, `renderWujuhOut`): a card per word with the book's count badge,
+the chosen face in Arabic with its EN/TR definition and the reason, every face of the word as chips (the chosen one lit, the corpus's
+added faces dashed), ✓/✗ against the page when the sentence is a corpus one, the 40 seeds, the corpus tally (`Relax.later`
+`"wujuh-audit"`), and the legend of the twenty by face count. **Game gWujuh** («Which face?», nahw, 🎭): corpus sentences where the
+engine agrees with the page, the options are that word's own faces (max six per word). **Word card**: a «وُجُوهُ الْكَلِمَاتِ» row for the
+twenty words in a phrase. Smoke gates: the audit floors (n ≥ 1500, coverage ≥ 99, acc ≥ 98; مَا n ≥ 400, acc ≥ 85; seeds 40/40; five
+sample faces; the homographs مِنْ and إِنَّ never enter the table) and the lab on a phone (four cards for the seed sentence with the faces
+shart / nafiya / zaida / mufajaa, chips, legend, seeds, tally, gWujuh supply). `DabtEngine` is untouched: the lanes are byte-identical.
+
+**Process notes.** (1) `!this.negationBefore(rows, i)` on an index that returns −1 is always false — three rules were dead until the
+seeds caught them; every index test now reads `< 0` / `>= 0`. (2) A prefix regex on a stem list (`ILM_STEM` has حس) made حُسْن a verb of
+knowing; the list is excluded by name where it matters. (3) An authored phrase can name a face it then denies («لا تحقيق»): the map
+tests the specific faces before the generic one.

@@ -4806,6 +4806,41 @@ if (!CHROME) {
     if (!(r.supply >= 4)) throw new Error('gKinds has no supply: ' + r.supply);
   });
 
+  await check('the WujuhEngine reads Ibn Hishām\'s twenty words off the page — every authored instance is graded against the page\'s own iʿrāb, مَا separately, and the book\'s seeds all pass (wave 37)', async () => {
+    const r = await page.evaluate(() => {
+      const a = WujuhEngine.audit(0, { withMa: true }); const c = WujuhEngine.audit(0);
+      const m = a.byWord.ma || { n: 0, acc: 0 }; const sd = WujuhEngine.seedAudit();
+      const f = (t, k) => { const T0 = WujuhEngine.table(t); const v = T0.items.find(x => x.key === k); return v ? v.face : '(none)'; };
+      return { n: c.n, acc: c.acc, cov: c.coverage, man: m.n, maAcc: m.acc, seeds: sd.n, bad: sd.bad, misses: c.misses.slice(0, 5).map(x => x.w + ':' + x.want + '>' + x.got),
+        inShart: f('إِنْ تَجْتَهِدْ تَنْجَحْ.', 'in'), laJins: f('لَا رَيْبَ فِيهِ.', 'la'), laNahy: f('لَا تَكْتُبْ عَلَى الْجِدَارِ.', 'la'), idhaMuf: f('خَرَجْتُ فَإِذَا زَيْدٌ بِالْبَابِ.', 'idha'), manQ: f('مَنْ أَنْتَ؟', 'man'), minSkip: WujuhEngine.table('خَرَجْتُ مِنَ الْبَيْتِ.').items.length, innaSkip: WujuhEngine.table('إِنَّ اللهَ غَفُورٌ.').items.length };
+    });
+    if (r.n < 1500) throw new Error('the audit shrank: ' + r.n + ' instances of the twenty');
+    if (r.cov < 99) throw new Error('the faces leave instances undecided: ' + r.cov + '%');
+    if (r.acc < 98) throw new Error('the twenty words agree with the page below 98% — ' + r.acc + ': ' + JSON.stringify(r.misses));
+    if (r.man < 400 || r.maAcc < 85) throw new Error('مَا: ' + r.maAcc + '% of ' + r.man + ' (floor 85% of 400)');
+    if (r.seeds < 40 || r.bad.length) throw new Error('the book\'s seeds: ' + r.seeds + ', misses ' + JSON.stringify(r.bad));
+    if (r.inShart !== 'shart' || r.laJins !== 'jins' || r.laNahy !== 'nahiya' || r.idhaMuf !== 'mufajaa' || r.manQ !== 'istifham') throw new Error('the five sample faces: ' + JSON.stringify(r));
+    if (r.minSkip !== 0 || r.innaSkip !== 0) throw new Error('the homographs مِنْ and إِنَّ must not enter the table: ' + r.minSkip + ' ' + r.innaSkip);
+  });
+
+  await check('the Wujuh lab opens on a phone with a card per word, its faces as chips with the chosen one lit, the twenty-word legend and the book\'s seeds; the gWujuh game has a supply (wave 37)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'wujuh'; conjState.wujuh = 'إِنْ تَجْتَهِدْ تَنْجَحْ، وَمَا جَاءَ زَيْدٌ وَلَا عَمْرٌو، فَإِذَا الدَّلْوُ ثَقِيلَةٌ.'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      const faces = [...document.querySelectorAll('#wujuhOut .wujuh-card .wujuh-face')].map(e => e.textContent);
+      let supply = 0; try { supply = GameFactory.supplyOf('gWujuh'); } catch (e) { supply = 'ERR ' + e.message; }
+      return { cards: q('#wujuhOut .wujuh-card'), on: q('#wujuhOut .wujuh-faces .wf.on'), chips: q('#wujuhOut .wujuh-faces .wf'), legend: q('#wujuhOut .wujuh-legend li'), seeds: q('#wujuhOut .qw-seed'), tab: !!document.querySelector('.tabs [data-lab=wujuh]'), wide: document.documentElement.scrollWidth > window.innerWidth + 1, faces, supply };
+    });
+    await page.waitForFunction(() => /\d/.test((document.querySelector('#wujuhOut .wujuh-tally') || {}).textContent || ''), null, { timeout: 90000 });
+    r.tally = await page.evaluate(() => (document.querySelector('#wujuhOut .wujuh-tally') || {}).textContent || '');
+    if (r.cards !== 4 || r.on !== 4) throw new Error('four words, four lit faces — got ' + JSON.stringify(r));
+    if (!/شَرْطِيَّة/.test(r.faces[0]) || !/نَافِيَة/.test(r.faces[1]) || !/زَائِدَة/.test(r.faces[2]) || !/مُفَاجَأَة/.test(r.faces[3])) throw new Error('the four faces should read shart / nafiya / zaida / mufajaa: ' + r.faces.join(' | '));
+    if (r.chips < 16 || r.legend < 20 || r.seeds < 30 || !r.tab) throw new Error('chips, legend, seeds or the tab are missing: ' + JSON.stringify(r));
+    if (r.wide) throw new Error('the lab overflows the phone width');
+    if (!(r.supply >= 4)) throw new Error('gWujuh has no supply: ' + r.supply);
+    if (!/\d/.test(r.tally)) throw new Error('the corpus tally never painted: ' + r.tally);
+  });
+
   await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
     const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
     if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');
