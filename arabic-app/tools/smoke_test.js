@@ -4947,6 +4947,53 @@ if (!CHROME) {
     if (r2.opts.length !== 4 || !r2.opts.every(o => /^\[.+\]$/.test(o)) || !/\[؟\]/.test(r2.q)) throw new Error('the game should ask for the unsaid word with four bracketed options: ' + JSON.stringify(r2.opts) + ' ' + r2.q.slice(0, 80));
   });
 
+  await check('the AdabEngine holds the corpus to the fourth chapter: nine rules over every authored line with floors, the seeds each break their rule and their fixes pass, and the automatic muʿrib keeps the etiquette on its own lines (wave 40)', async () => {
+    const r = await page.evaluate(() => {
+      const l = AdabEngine.lint(); const R = l.rules; const sd = AdabEngine.seedAudit();
+      const N = s => String(s || '').normalize('NFC');
+      const lines = s => { const rows = SentenceAnalyzer.analyze(s); const a = AdabEngine.auditMurib(rows); return { debts: a.debts.map(d => d.w + ':' + d.rule), ar: rows.map((r, i) => N((Murib.line(rows, i) || {}).ar)) }; };
+      const m1 = lines('كُتِبَ الدَّرْسُ.'), m2 = lines('لَمْ يَكْتُبْ.'), m3 = lines('جَاءَ الَّذِي أَكْرَمْتُهُ.'), m4 = lines('لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو.'), m5 = lines('ذَهَبْتُ إِلَى الْمَدْرَسَةِ.'), m6 = lines('إِنْ تَجْتَهِدْ فَسَتَنْجَحُ.'), m7 = lines('لَنْ يَكْتُبُوا.');
+      return { lines: l.lines, sentences: l.sentences, rates: Object.fromEntries(Object.entries(R).map(([k, v]) => [k, [v.n, v.rate, v.finding]])), seeds: sd.n, bad: sd.bad.slice(0, 4), m1, m2, m3, m4, m5, m6, m7 };
+    });
+    if (r.lines < 28000 || r.sentences < 2800) throw new Error('the lint should walk the whole corpus: ' + r.lines + ' lines ' + r.sentences + ' sentences');
+    const need = { failNamed: [5000, 95, 250], khabarNamed: [1200, 96, 40], silaNamed: [480, 85, 70], notMawsulForDem: [300, 100, 0], naibNotFail: [1000, 99.5, 2], mudafIrab: [3800, 99, 4], zaidQuran: [700, 98, 6], fullTerm: [540, 98, 8], zarfNotFromIdafa: [1900, 100, 0] };
+    for (const [k, [n, rate, f]] of Object.entries(need)) { const v = r.rates[k]; if (!v || v[0] < n || v[1] < rate || v[2] > f) throw new Error('rule ' + k + ' off its floor: ' + JSON.stringify(v) + ' (need n>=' + n + ' rate>=' + rate + ' findings<=' + f + ')'); }
+    if (r.seeds < 11 || r.bad.length) throw new Error('every seed must break its rule and its fix must pass: ' + JSON.stringify(r.bad));
+    if (r.m1.debts.length || !/نَائِبُ فَاعِلٍ/.test(r.m1.ar[1]) || !/نَائِبُ فَاعِلِهِ/.test(r.m1.ar[0])) throw new Error('the passive by its full name: ' + JSON.stringify(r.m1));
+    if (r.m2.debts.length || !/نَفْيٍ وَجَزْمٍ وَقَلْبٍ/.test(r.m2.ar[0]) || !/السُّكُونُ/.test(r.m2.ar[1]) || !/مُسْتَتِرٌ جَوَازًا/.test(r.m2.ar[1])) throw new Error('لَمْ by its full term, the jazm sign by the sukūn, the concealed doer: ' + JSON.stringify(r.m2));
+    if (r.m3.debts.length || !/صِلَةُ الْمَوْصُولِ/.test(r.m3.ar[1]) || !/الْعَائِدُ/.test(r.m3.ar[1]) || !/التَّاءُ ضَمِيرٌ مُتَّصِلٌ/.test(r.m3.ar[2])) throw new Error('the relative with its ṣila and ʿāʾid, the attached doer: ' + JSON.stringify(r.m3));
+    if (r.m4.debts.length || !/خَبَرُهُ مَحْذُوفٌ وُجُوبًا/.test(r.m4.ar[1])) throw new Error('the khabar deleted after لَوْلَا pointed at: ' + JSON.stringify(r.m4));
+    if (r.m5.debts.length || !/التَّاءُ ضَمِيرٌ مُتَّصِلٌ/.test(r.m5.ar[0])) throw new Error('the māḍī of «I» names its tāʾ: ' + JSON.stringify(r.m5));
+    if (r.m6.debts.length || !/الْفَاءُ وَاقِعَةٌ فِي جَوَابِ الشَّرْطِ/.test(r.m6.ar[2]) || !/وَالْجُمْلَةُ جَوَابُ الشَّرْطِ/.test(r.m6.ar[2])) throw new Error('the fāʾ falls in the answer and the sentence is the answer: ' + JSON.stringify(r.m6));
+    if (r.m7.debts.length || !/نَفْيٍ وَنَصْبٍ وَاسْتِقْبَالٍ/.test(r.m7.ar[0]) || !/حَذْفُ النُّونِ/.test(r.m7.ar[1]) || !/الْوَاوُ ضَمِيرٌ مُتَّصِلٌ/.test(r.m7.ar[1])) throw new Error('لَنْ by its full term, the five verbs by the dropped nūn, the wāw as doer: ' + JSON.stringify(r.m7));
+  });
+
+  await check('the Adab lab opens on a phone with nine rule cards, the corpus tally paints with its bars and findings, the full-term legend stands; the Jumla lab shows the muʿrib\'s ledger; gAdab has a supply and asks which rule a line breaks (wave 40)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'adab'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      return { tab: !!document.querySelector('.tabs [data-lab=adab]'), cards: q('#adabOut .adab-card'), terms: q('#adabOut .adab-terms li'), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+    });
+    await page.waitForFunction(() => /\d/.test((document.getElementById('adabSum') || {}).textContent || ''), null, { timeout: 90000 });
+    const r2 = await page.evaluate(() => {
+      const q = s => document.querySelectorAll(s).length;
+      const o = { sum: (document.getElementById('adabSum') || {}).textContent, bars: q('#adabOut .adab-bar'), tallies: q('#adabOut .adab-tally'), ex: q('#adabOut .adab-ex li'), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+      conjState.lab = 'jumla'; conjState.jumla = 'كُتِبَ الدَّرْسُ وَجَاءَ الَّذِي أَكْرَمْتُهُ.'; openConjugator();
+      o.ledger = (document.querySelector('#jumlaOut .adab-ledger') || {}).className || ''; o.ledgerText = (document.querySelector('#jumlaOut .adab-ledger') || {}).textContent || '';
+      let supply = 0; try { supply = GameFactory.supplyOf('gAdab'); } catch (e) { supply = 'ERR ' + e.message; } o.supply = supply;
+      try { closeSheet(); } catch (e) {}
+      startAdab(); o.opts = [...document.querySelectorAll('.opts button')].map(x => x.textContent.trim()); o.qline = (document.querySelector('.adab-q-line') || {}).textContent || '';
+      try { closeSheet(); } catch (e) {}
+      return o;
+    });
+    if (!r.tab || r.cards !== 9 || r.terms < 8) throw new Error('nine cards and the terms: ' + JSON.stringify(r));
+    if (r.wide || r2.wide) throw new Error('the lab overflows the phone width');
+    if (!/28\d\d\d|29\d\d\d|3\d\d\d\d/.test(r2.sum) || r2.bars < 8 || r2.tallies !== 9 || r2.ex < 10) throw new Error('the tally should paint on every card: ' + JSON.stringify(r2));
+    if (!/adab-ledger clean/.test(r2.ledger) || !/5|6|7/.test(r2.ledgerText)) throw new Error('the muʿrib ledger should stand clean under the parsed sentence: ' + r2.ledger + ' ' + r2.ledgerText);
+    if (!(r2.supply >= 11)) throw new Error('gAdab has no supply: ' + r2.supply);
+    if (r2.opts.length !== 4 || !r2.qline) throw new Error('the game should show the line and four rules: ' + JSON.stringify(r2.opts) + ' ' + r2.qline);
+  });
+
   await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
     const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
     if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');

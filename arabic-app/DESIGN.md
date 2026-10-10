@@ -1153,3 +1153,21 @@ hearing, wājib by rule, naṣb preferred, jāʾiz for a clue — in the Arabic 
 to look up. The page's own verdict sits last as a small line with a tick or a cross, because the engine's reading and the page's reading
 are two voices and the student should hear both. The game asks only the one question the seat decides — which word is unsaid — with the
 options bracketed like the restored words, so the answer looks like what it will become on the line.
+
+## 33. The parser's conscience: a ledger under its own lines, and rule cards with a bar that tells the truth (wave 40)
+
+A grammar app that teaches the etiquette of parsing and then parses badly would be its own counter-example, so the fourth chapter is not
+shown as a page of advice but as a ledger the app keeps on *itself*. Under every sentence the Jumla lab parses, a one-line receipt now
+states whether the muʿrib's composed lines kept the nine rules — «all 5 checks kept» inside a thin green dashed frame, or a red one that
+lists what it still owes, by the rule's Arabic name — in the small grey type of the ghost-legend, because the receipt is about the machine,
+not about the learner, and should never compete with the lines it audits. The lines themselves changed more than the receipt: a verb
+line now ends in its doer, a mubtadaʾ line in its khabar, a relative in its ṣila, a passive's noun is called by its full name, and لَمْ is
+three words long — the way a careful teacher writes on the board. In the Atölye the chapter becomes nine cards in the house style — a
+numbered badge, the rule in the muḥaqqiq's red ink, a one-line gloss, then the *blame* in Arabic and plain words — and under each a
+three-colour bar: green for the corpus lines that keep the rule, amber for the ones that imply it (the office that fixes the case, the ṣila
+named without its ʿāʾid), red for the findings. The red segment is drawn at least one percent wide even when the count is small, so a
+rule with nine findings in seven hundred lines still shows a visible sliver: the bar must not look perfect when it is not. The findings
+open as the page's own lines, each a button that opens the sentence sheet, with a summary that says plainly «for review» — the app does
+not hide that its corpus has 183 verb lines that stop before their doer; it shows them, in the authors' own ink, and lets the reviewer go.
+The game asks the only question the chapter asks — «which rule does this line break?» — showing the sentence, the offending line in red
+ink, and four rules, so the learner practises the chapter the way an examiner would use it: on someone's actual parsing, not on a list.

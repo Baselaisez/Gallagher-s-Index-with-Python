@@ -7754,3 +7754,58 @@ authored map was too broad; the honest fix was to give the corpus's jāʾiz dele
 lifted the audit to 79.8 % with the false count at 0. (2) `verbMinusPron` stripped the root of أَعْنِي as an enclitic (→ ishtighāl on «أَعْ»);
 the enclitic floor is now three remaining letters. (3) The hemistich mark bounds a verse clause: مُرِيدُ الْخَيْرِ وَالشَّرِّ الْقَبِيحِ • وَلٰكِنْ لَيْسَ يَرْضَى
 would otherwise «have a verb». `DabtEngine` is untouched; the lanes are byte-identical.
+
+## The muʿrib's etiquette as a linter — the AdabEngine, and the muʿrib that learned it (wave 40, v202)
+
+The fourth chapter of the Qawāʿid al-Iʿrāb (`research/sources/qawaid-al-irab-turkish.txt`, bāb 4; COVERAGE row 34) is not grammar but
+*etiquette*: how the one who parses must speak. Wave 40 makes it a linter (`patch40a.py`, `class AdabEngine` before `InnaEngine`) and then
+holds two things to it — the corpus's own 28,948 authored iʿrāb lines, and the automatic muʿrib's composed lines (`Murib.line`), with the
+same code path:
+
+- **The nine rules** (`RULES`, each with the book's Arabic, EN/TR, and the *blame* — what the chapter calls the bad habit): (1) never a verb
+  without its doer, (2) never a mubtadaʾ without its khabar, (3) never «relative noun» without the ṣila and the returning pronoun, (4) a
+  demonstrative is never «relative», (5) the passive's marfūʿ is the nāʾib al-fāʿil, never «fāʿil», (6) the muḍāf keeps its iʿrāb by its
+  governor — state it, never «no iʿrāb shows on it», (7) no «zāʾid» on a letter of the Qurʾān — zāʾid means *emphasis only*, (8) the full
+  expression (لَمْ = نَفْي + جَزْم + قَلْب, لَنْ = نَفْي + نَصْب + اسْتِقْبَال, لَمَّا likewise, إِنَّ تَوْكِيد وَنَصْب, أَنَّ with the maṣdar, the fāʾ *falls in*
+  the answer and is not the answer), (9) ẓarf-ness does not pass down the iḍāfa. `TERMS` lists the full expressions as the chapter writes them.
+- **`check(rule, lines, i, ctx)`** reads one line against one rule and answers obey / implied / finding / not-in-reach: a verb line obeys
+  when its own words name the doer (فاعل، مستتر، التاء…) or a following token's line names a فاعل before the next verb; a mubtadaʾ line
+  obeys when a خبر is named on it or within ten lines either way; a relative obeys when a صلة is named on it or within eight lines ahead
+  (implied without the عائد); the passive rule reads فاعل only as an *office* (never the participle اسم فاعل), on the passive's line and
+  up to three tokens after it; the muḍāf rule reads the case words, or the office words that fix the case (implied); the Qurʾān rule fires
+  only on sentences carrying the ۝ / ﴿﴾ marks and counts «زائد لتوكيد النفي» as the book's own sense (implied); quoted words (لفظ محكي) are
+  not in reach. **`lint()`** walks the corpus (144 ms — strings only) and keeps forty examples per rule. Measured: 28,948 lines in 2,940
+  sentences — doer named 96.5 % (183 findings: verb lines that stop before their concealed doer), khabar 97.7 % (29), ṣila 89.1 % (56
+  relatives whose clause is never named), demonstrative 100 %, nāʾib 100 %, muḍāf 99.9 % (2), Qurʾān «zāʾid» 98.8 % (9 bare «زائد»), full
+  terms 99.5 % (3: «حرف ناسخ» for إِنَّ / أَنَّ, لَعَلَّ in the ʿUqayl reading), ẓarf 100 %. The findings are the page's own lines, listed in the
+  lab for scholarly review; they are not silently changed — except the mechanical term completions (below).
+- **`fix40_terms.py`** completed 27 of the corpus's own lines by the chapter's rule: «حَرْفُ نَفْيٍ وَجَزْمٍ» → «… وَقَلْبٍ» (25 لَمْ), «حَرْفُ نَفْيٍ
+  وَنَصْبٍ» → «… وَاسْتِقْبَالٍ» (2 لَنْ), in 15 chapter files of four packages, each re-dumped at its own indentation (the diff is the 27 lines).
+- **The muʿrib learns it** (`murib40.js` into `class Murib`): the office now comes from the DabtEngine's own reading when the analyzer's
+  notes gave none (`RULE_OFFICE`: مبتدأ، خبر، فاعل، نائب فاعل، مفعول به، اسم إنّ / خبر إنّ، اسم كان / خبر كان، نعت، معطوف، بدل، حال، تمييز، ظرف،
+  مفعول مطلق، مضاف إليه، منادى، مستثنى، توكيد، عطف بيان، اسم لا — vetoed where the case contradicts it), the passive's noun is always
+  the nāʾib whatever the note said, a letter never carries an office; every verb line gets its **doer clause** — the attached letter by the
+  cell (the māḍī's tāʾ for the 2nd person and «I», «نَا», the alif of the duals, the wāw of the masculine plural, the nūn of the feminine
+  plural, the yāʾ of the 2fs in the muḍāriʿ), the concealed pronoun with its ruling from the ghost layer («وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ
+  جَوَازًا تَقْدِيرُهُ هُوَ»), or the written noun after it («وَفَاعِلُهُ «زَيْدٌ»», «وَنَائِبُ فَاعِلِهِ …», «وَاسْمُهَا …» for a nāsikh); every mubtadaʾ
+  line gets its **khabar pointer** — after it, fronted before it, a jarr phrase hanging on an estimated governor, or the HadhfEngine's deletion
+  («وَخَبَرُهُ مَحْذُوفٌ وُجُوبًا تَقْدِيرُهُ «مَوْجُودٌ»»); every relative gets its **ṣila** («وَجُمْلَةُ «أَكْرَمْتُهُ» صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا») with the
+  **ʿāʾid** when a pronoun returns (attached, or concealed in the ṣila's verb); the particles get their **full terms** (`term()`: لَمْ، لَمَّا،
+  لَنْ، إِنَّ، أَنَّ، كَأَنَّ، لَكِنَّ، لَيْتَ، لَعَلَّ، أَنْ، the jarr / nidāʾ / nafy / istifhām / ʿaṭf / sharṭ / قَدْ / سَوْفَ letters), the nouns their class
+  (اسْمٌ مَوْصُولٌ، اسْمُ إِشَارَةٍ، ضَمِيرٌ مُنْفَصِلٌ، اسْمُ اسْتِفْهَامٍ); the **jazm sign** is read off what was actually removed (السُّكُون for a sound verb,
+  حَذْفُ النُّونِ for the five verbs, حَذْفُ حَرْفِ الْعِلَّةِ for the weak-final); the **fāʾ of the answer** writes «الْفَاءُ وَاقِعَةٌ فِي جَوَابِ الشَّرْطِ …
+  وَالْجُمْلَةُ جَوَابُ الشَّرْطِ» off the ShartEngine's frame. **`auditMurib(rows)`** runs the nine rules on the composed lines; on the seven
+  gate sentences the muʿrib now owes nothing (before this wave it wrote «فاعل» for the passive's noun, «حرف» for لَمْ, «حذف النون» for a
+  sound verb's jazm, and no doer, khabar or ṣila at all).
+
+**Atölye.** A new lab tab «آدَاب»: nine rule cards (the number, the book's Arabic, the gloss, the blame), each with a tally bar (kept /
+implied / findings) and the corpus's findings as the page's own lines, each opening its sentence sheet; the legend of the full terms.
+**The Jumla lab** shows a ledger under the muʿrib's lines: «the muʿrib's etiquette — all N checks kept», or the debts it still owes, by
+rule. **Game gAdab** («Which etiquette?», nahw, 📜): the book's own blames as seeded lines (`SEEDS`, each proven to break exactly its rule and
+its fix to pass all nine) plus the corpus's findings; the options are four rules. **Smoke** (`patch40_smoke.py`, two gates): the lint floors
+per rule, the seeds, seven muʿrib sentences with their exact clauses; the lab, the ledger, the game on a phone.
+
+**Process notes.** (1) The first lint counted the participle «اسْمُ فَاعِلٍ» and «فَاعِلُ «خَالِي» مَعْنًى» as the office «fāʿil» after a passive — the
+office must be read at the head of a clause; and «حَرْفُ تَشْبِيهٍ وَنَصْبٍ» is كَأَنَّ's own full term, not a short one. (2) The Qurʾān mark lives
+in `punctAfter`, not the word. (3) `json.dumps` with one indentation would have rewritten a two-space chapter file (1,042 lines); the fixer
+re-dumps each file at the indentation `git show HEAD:` had. `DabtEngine` is untouched; the lanes are byte-identical.
