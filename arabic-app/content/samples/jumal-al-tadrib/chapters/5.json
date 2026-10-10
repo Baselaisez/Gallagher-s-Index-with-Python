@@ -1,0 +1,766 @@
+{
+ "chapter": 5,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "If you study, you succeed.",
+    "tr": "Çalışırsan başarırsın."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنْ",
+      "smart": "إِنْ",
+      "bare": "إن"
+     },
+     "lex": "in-shartiyya",
+     "pos": "part",
+     "grammar": [
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "حَرْفُ شَرْطٍ جَازِمٌ يَجْزِمُ فِعْلَيْنِ.",
+      "en": "The conditional particle — it puts two verbs in jazm.",
+      "tr": "Câzim şart harfi — iki fiili cezmeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَدْرُسْ",
+      "smart": "تَدْرُسْ",
+      "bare": "تدرس"
+     },
+     "lex": "darasa",
+     "pos": "verb",
+     "grammar": [
+      "in-shartiyya",
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "فِعْلُ الشَّرْطِ مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ أَنْتَ.",
+      "en": "The condition verb in jazm, its sign the sukun; the fa'il is a hidden أَنْتَ.",
+      "tr": "Meczum şart fiili; cezm alâmeti sükûndur. Fâili gizli «أَنْتَ»dir."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَنْجَحْ",
+      "smart": "تَنْجَحْ",
+      "bare": "تنجح"
+     },
+     "lex": "najaha",
+     "pos": "verb",
+     "grammar": [
+      "in-shartiyya",
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "جَوَابُ الشَّرْطِ مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ.",
+      "en": "The answer verb in jazm, its sign the sukun.",
+      "tr": "Meczum cevap fiili; cezm alâmeti sükûndur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنْ تَدْرُسْ تَنْجَحْ",
+     "ar": "جُمْلَةُ الشَّرْطِ وَجَوَابُهُ — لَا مَحَلَّ لَهُمَا.",
+     "en": "The condition clause and its answer — i'rabless.",
+     "tr": "Şart cümlesi ve cevabı — mahalsizdirler."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "Whoever seeks knowledge finds it.",
+    "tr": "Kim ilmi ararsa onu bulur."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَنْ",
+      "smart": "مَنْ",
+      "bare": "من"
+     },
+     "lex": "man-shartiyya",
+     "pos": "pron",
+     "grammar": [
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "اسْمُ شَرْطٍ جَازِمٌ مُبْتَدَأٌ.",
+      "en": "A conditional noun in jazm-government — the mubtada.",
+      "tr": "Câzim şart ismi — mübtedadır."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَطْلُبِ",
+      "smart": "يَطْلُبِ",
+      "bare": "يطلب"
+     },
+     "lex": "talaba",
+     "pos": "verb",
+     "grammar": [
+      "in-shartiyya",
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "فِعْلُ الشَّرْطِ مَجْزُومٌ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "The condition verb in jazm, vowelled kasra where two sukuns met.",
+      "tr": "Meczum şart fiili; iki sâkin karşılaşınca kesralanmıştır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعِلْمَ",
+      "smart": "الْعِلْمَ",
+      "bare": "العلم"
+     },
+     "lex": "ilm",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَجِدْهُ",
+      "smart": "يَجِدْهُ",
+      "bare": "يجده"
+     },
+     "lex": "wajada",
+     "pos": "verb",
+     "grammar": [
+      "in-shartiyya",
+      "mithal-verbs"
+     ],
+     "irab": {
+      "ar": "جَوَابُ الشَّرْطِ مَجْزُومٌ — مِثَالٌ حُذِفَتْ وَاوُهُ (وَجَدَ يَجِدُ)، وَالْهَاءُ مَفْعُولٌ بِهِ.",
+      "en": "The answer verb in jazm — a mithal whose waw dropped (وَجَدَ يَجِدُ); the ha is its object.",
+      "tr": "Meczum cevap fiili — misâl fiildir, vâvı düşmüştür (وَجَدَ يَجِدُ); hâ zamiri mef'ûlün bihtir."
+     },
+     "segments": [
+      {
+       "form": "يَجِدْ",
+       "lex": "wajada",
+       "pos": "verb"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَنْ يَطْلُبِ الْعِلْمَ يَجِدْهُ",
+     "ar": "جُمْلَتَا الشَّرْطِ وَالْجَوَابِ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَنْ».",
+     "en": "The condition and answer clauses stand in raf' position as the khabar of مَنْ.",
+     "tr": "Şart ve cevap cümleleri, «مَنْ»in haberi olarak mahallen merfûdur."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "Did you read the book?",
+    "tr": "Kitabı okudun mu?"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "هَلْ",
+      "smart": "هَلْ",
+      "bare": "هل"
+     },
+     "lex": "hal-istifham",
+     "pos": "part",
+     "irab": {
+      "ar": "حَرْفُ اسْتِفْهَامٍ.",
+      "en": "The question particle.",
+      "tr": "İstifham harfidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَرَأْتَ",
+      "smart": "قَرَأْتَ",
+      "bare": "قرأت"
+     },
+     "lex": "qaraa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "en": "Past verb; the attached ت is its fa'il: you.",
+      "tr": "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir: sen."
+     },
+     "segments": [
+      {
+       "form": "قَرَأْ",
+       "lex": "qaraa",
+       "pos": "verb"
+      },
+      {
+       "form": "تَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْكِتَابَ",
+      "smart": "الْكِتَابَ",
+      "bare": "الكتاب"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mensub mef'ûlün bih."
+     },
+     "punctAfter": "؟"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "هَلْ قَرَأْتَ الْكِتَابَ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ اسْتِفْهَامِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An interrogative verbal clause — i'rabless.",
+     "tr": "İstifham bildiren fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "What did you hear in the lesson?",
+    "tr": "Derste ne işittin?"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَاذَا",
+      "smart": "مَاذَا",
+      "bare": "ماذا"
+     },
+     "lex": "madha",
+     "pos": "pron",
+     "irab": {
+      "ar": "اسْمُ اسْتِفْهَامٍ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ مُقَدَّمٌ.",
+      "en": "The question noun — a fronted object in nasb position.",
+      "tr": "İstifham ismi — öne alınmış mef'ûlün bih olarak mahallen mensubdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَمِعْتَ",
+      "smart": "سَمِعْتَ",
+      "bare": "سمعت"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "en": "Past verb; the attached ت is its fa'il.",
+      "tr": "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir."
+     },
+     "segments": [
+      {
+       "form": "سَمِعْ",
+       "lex": "samia",
+       "pos": "verb"
+      },
+      {
+       "form": "تَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسِ",
+      "smart": "الدَّرْسِ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     },
+     "punctAfter": "؟"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَاذَا سَمِعْتَ فِي الدَّرْسِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ اسْتِفْهَامِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An interrogative verbal clause — i'rabless.",
+     "tr": "İstifham bildiren fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "When the teacher came, the students stood.",
+    "tr": "Muallim gelince öğrenciler ayağa kalktı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِذَا",
+      "smart": "إِذَا",
+      "bare": "إذا"
+     },
+     "lex": "idha",
+     "pos": "part",
+     "grammar": [
+      "idha-shartiyya"
+     ],
+     "irab": {
+      "ar": "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+      "en": "A time-adverb carrying conditional force — it does not put verbs in jazm.",
+      "tr": "Şart manası taşıyan zaman zarfıdır — fiilleri cezmetmez."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَاءَ",
+      "smart": "جَاءَ",
+      "bare": "جاء"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُعَلِّمُ",
+      "smart": "الْمُعَلِّمُ",
+      "bare": "المعلم"
+     },
+     "lex": "muallim",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَامَ",
+      "smart": "قَامَ",
+      "bare": "قام"
+     },
+     "lex": "qama",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الطُّلَّابُ",
+      "smart": "الطُّلَّابُ",
+      "bare": "الطلاب"
+     },
+     "lex": "tullab",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâildir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِذَا جَاءَ الْمُعَلِّمُ قَامَ الطُّلَّابُ",
+     "ar": "جُمْلَةُ الشَّرْطِ فِي مَحَلِّ جَرٍّ بِإِضَافَةِ «إِذَا»، وَجُمْلَةُ الْجَوَابِ لَا مَحَلَّ لَهَا.",
+     "en": "The condition clause sits in jarr after إِذَا's idafa; the answer clause is i'rabless.",
+     "tr": "Şart cümlesi «إِذَا»nın izâfetiyle mahallen mecrur; cevap cümlesi mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "Do not write on the wall.",
+    "tr": "Duvara yazma."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nahiya-p",
+     "pos": "part",
+     "grammar": [
+      "la-nahiya"
+     ],
+     "irab": {
+      "ar": "«لَا» النَّاهِيَةُ — تَجْزِمُ الْمُضَارِعَ.",
+      "en": "The prohibiting la — it puts the mudari in jazm.",
+      "tr": "Nehiy lâsı — muzâriyi cezmeder."
+     }
+    },
+    {
+     "surface": {
+      "full": "تَكْتُبْ",
+      "smart": "تَكْتُبْ",
+      "bare": "تكتب"
+     },
+     "lex": "kataba",
+     "pos": "verb",
+     "grammar": [
+      "la-nahiya",
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ، وَالْفَاعِلُ أَنْتَ.",
+      "en": "Mudari in jazm after the prohibiting la; the fa'il is a hidden أَنْتَ.",
+      "tr": "Nehiy lâsıyla meczum muzâri; fâili gizli «أَنْتَ»dir."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْجِدَارِ",
+      "smart": "الْجِدَارِ",
+      "bare": "الجدار"
+     },
+     "lex": "jidar",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِحَرْفِ الْجَرِّ.",
+      "en": "In jarr after the preposition.",
+      "tr": "Cer harfiyle mecrurdur."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَا تَكْتُبْ عَلَى الْجِدَارِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ نَاهِيَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A prohibiting verbal clause — i'rabless.",
+     "tr": "Nehiy bildiren fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "Let every student sit in his place.",
+    "tr": "Her öğrenci yerine otursun."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لِيَجْلِسْ",
+      "smart": "لِيَجْلِسْ",
+      "bare": "ليجلس"
+     },
+     "lex": "jalasa",
+     "pos": "verb",
+     "grammar": [
+      "lam-amr"
+     ],
+     "irab": {
+      "ar": "اللَّامُ لَامُ الْأَمْرِ، وَالْفِعْلُ مُضَارِعٌ مَجْزُومٌ بِهَا.",
+      "en": "The lam of command; the mudari stands in jazm after it.",
+      "tr": "Lâm, emir lâmıdır; muzâri onunla meczumdur."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "lam-amr-p",
+       "pos": "part"
+      },
+      {
+       "form": "يَجْلِسْ",
+       "lex": "jalasa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كُلُّ",
+      "smart": "كُلُّ",
+      "bare": "كل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "fail",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "The fa'il in raf', itself a mudaf.",
+      "tr": "Merfû fâil ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "طَالِبٍ",
+      "smart": "طَالِبٍ",
+      "bare": "طالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrûr muzâfun ileyhtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَكَانِهِ",
+      "smart": "مَكَانِهِ",
+      "bare": "مكانه"
+     },
+     "lex": "makan",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "In jarr, a mudaf; the ha its mudaf ilayh.",
+      "tr": "Mecrur ve muzâf; hâ zamiri muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "مَكَانِ",
+       "lex": "makan",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لِيَجْلِسْ كُلُّ طَالِبٍ فِي مَكَانِهِ",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ طَلَبِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "A verbal clause of command — i'rabless.",
+     "tr": "Talep bildiren fiil cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "Where is your book, O boy?",
+    "tr": "Kitabın nerede, ey çocuk?"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَيْنَ",
+      "smart": "أَيْنَ",
+      "bare": "أين"
+     },
+     "lex": "ayna",
+     "pos": "pron",
+     "irab": {
+      "ar": "اسْمُ اسْتِفْهَامٍ فِي مَحَلِّ رَفْعٍ خَبَرٌ مُقَدَّمٌ.",
+      "en": "The question noun — a fronted khabar in raf' position.",
+      "tr": "İstifham ismi — öne geçmiş haber olarak mahallen merfûdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "كِتَابُكَ",
+      "smart": "كِتَابُكَ",
+      "bare": "كتابك"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+      "en": "The delayed mubtada in raf'; the kaf is its mudaf ilayh.",
+      "tr": "Sonraya bırakılmış merfû mübteda; kâf zamiri muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "كِتَابُ",
+       "lex": "kitab",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "The vocative particle.",
+      "tr": "Nidâ harfidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَلَدُ",
+      "smart": "وَلَدُ",
+      "bare": "ولد"
+     },
+     "lex": "walad",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "en": "A munada built on damm, in nasb position.",
+      "tr": "Zamme üzere mebnî münâdâ — mahallen mensub."
+     },
+     "punctAfter": "؟"
+    }
+   ],
+   "jumal": [
+    {
+     "text": "أَيْنَ كِتَابُكَ يَا وَلَدُ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ اسْتِفْهَامِيَّةٌ وَجُمْلَةُ نِدَاءٍ — لَا مَحَلَّ لَهُمَا.",
+     "en": "An interrogative nominal clause and a vocative — both i'rabless.",
+     "tr": "İstifham bildiren isim cümlesi ve nidâ — mahalsizdirler."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "id": "taqsim",
+ "title": {
+  "ar": "التَّقْسِيمُ — ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ عَلَى التَّعْيِينِ",
+  "en": "The taqsim — many things named, then to each its own",
+  "tr": "Taksîm — birden çok şey anılır, sonra her birine kendininki verilir"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — التقسيم: ذكر متعدد ثم إضافة ما لكل إليه على التعيين"
+ ],
+ "question": {
+  "en": [
+   "Are the things NAMED first, and then does EACH get its own? «…but the two most abject: the donkey and the tent-peg — THIS one is tied by its rope to humiliation, THAT one is struck and no one pities it.» Two named, two rulings, each to its own. That is the TAQSIM.",
+   "How is it unlike the laff wa-nashr? There the second list leaves the reader to match; here each ruling is pinned to its thing by name or pointer (هَذَا … وَذَا) — عَلَى التَّعْيِينِ.",
+   "What does the engine look for? A list of n items, then n demonstratives or repeated heads, each opening its own clause, in order."
+  ],
+  "tr": [
+   "Şeyler önce ANILIYOR, sonra HER BİRİ kendininkini mi alıyor? «…ancak iki zelil: eşek ile kazık — ŞU ipiyle zillete bağlıdır, ŞU ise başı yarılır da kimse acımaz.» İkisi anıldı, iki hüküm, her biri kendininkine. TAKSÎM budur.",
+   "Leff ü neşirden farkı? Orada ikinci liste eşleştirmeyi okuyucuya bırakır; burada her hüküm adıyla yahut işaretiyle (هَذَا … وَذَا) kendi şeyine iğnelenir — عَلَى التَّعْيِينِ.",
+   "Motor neye bakar? n üyeli bir liste, sonra her biri kendi cümlesini açan n işaret ismi yahut tekrarlanan baş, sırayla."
+  ]
+ },
+ "plain": {
+  "en": "The taqsim: several things are named and then each is given its own ruling, one by one — the donkey «is tied by its rope», the tent-peg «is struck and no one pities it». The engine reads the list and the pointers that hand each thing its clause.",
+  "tr": "Taksîm: birkaç şey anılır, sonra her birine kendi hükmü tek tek verilir — eşek «ipiyle bağlıdır», kazık «başı yarılır da kimse acımaz». Motor listeyi ve her şeye cümlesini veren işaretleri okur."
+ },
+ "explanation": {
+  "en": "The TAQSIM is ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ عَلَى التَّعْيِينِ — naming many things, then adding to each what belongs to it, by SPECIFICATION. Al-Mutalammis: وَلَا يُقِيمُ عَلَى ضَيْمٍ يُرَادُ بِهِ إِلَّا الْأَذَلَّانِ عَيْرُ الْحَيِّ وَالْوَتَدُ — the two abject things named; then هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ وَذَا يُشَجُّ فَلَا يَرْثِي لَهُ أَحَدُ — THIS (the donkey) tied by its frayed rope, THAT (the peg) beaten on the head. The demonstratives are the specification: each ruling is handed to its thing.\n\nWHAT THE ENGINE CLAIMS: the BadiEngine reads the taqsim off an atf list (the items) followed by as many clause-openers — demonstratives (هَذَا، ذَا) or the items' own heads repeated — each with its own predicate. It names the items and the pointer of each. The two wider uses of the name (naming a thing's states with what suits each; the complete division of a thing) come in the next chapter.",
+  "tr": "TAKSÎM ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ عَلَى التَّعْيِينِ'dir — birden çok şeyi anmak, sonra her birine kendisine ait olanı BELİRLEYEREK eklemek. Mütelemmis: وَلَا يُقِيمُ عَلَى ضَيْمٍ يُرَادُ بِهِ إِلَّا الْأَذَلَّانِ عَيْرُ الْحَيِّ وَالْوَتَدُ — iki zelil anıldı; sonra هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ وَذَا يُشَجُّ فَلَا يَرْثِي لَهُ أَحَدُ — ŞU (eşek) eski ipiyle bağlı, ŞU (kazık) başından dövülür. İşaret isimleri belirlemenin kendisidir: her hüküm kendi şeyine verilir.\n\nMOTORUN İDDİASI: BadiEngine taksîmi bir atıf listesinden (üyeler) ve ardından o sayıda cümle açıcıdan okur — işaret isimleri (هَذَا، ذَا) yahut üyelerin tekrar edilen başları — her biri kendi yüklemiyle. Üyeleri ve her birinin işaretini adlandırır. Adın iki geniş kullanımı (bir şeyin hâllerini her birine uygun düşenle anmak; bir şeyin bütün kısımlarını tamamlamak) sonraki bâbda gelir."
+ },
+ "examples": [
+  {
+   "ar": "وَلَا يُقِيمُ عَلَى ضَيْمٍ يُرَادُ بِهِ * إِلَّا الْأَذَلَّانِ عَيْرُ الْحَيِّ وَالْوَتَدُ * هَذَا عَلَى الْخَسْفِ مَرْبُوطٌ بِرُمَّتِهِ * وَذَا يُشَجُّ فَلَا يَرْثِي لَهُ أَحَدُ",
+   "en": "al-Mutalammis — two named, two rulings, each to its own.",
+   "tr": "Mütelemmis — ikisi anıldı, iki hüküm, her biri kendininkine.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s8"
+  },
+  {
+   "ar": "ذِكْرُ مُتَعَدِّدٍ ثُمَّ إِضَافَةُ مَا لِكُلٍّ إِلَيْهِ عَلَى التَّعْيِينِ",
+   "en": "the definition.",
+   "tr": "tarif.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«Taksîm ile leff ü neşr aynı şeydir»",
+   "right": "«Leff ü neşirde eşleştirme okuyucuya bırakılır; taksîmde her hüküm adıyla yahut işaretiyle kendi şeyine verilir — عَلَى التَّعْيِينِ»",
+   "why": {
+    "en": "The definition's last words are the difference: by specification.",
+    "tr": "Tarifin son sözü farkın kendisidir: belirleyerek."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jam",
+  "tafriq",
+  "laff-wa-nashr",
+  "asma-al-ishara",
+  "ilm-al-badi",
+  "jam-maa-tafriq-taqsim",
+  "taqsim-al-ahwal-wal-istifa"
+ ]
+}

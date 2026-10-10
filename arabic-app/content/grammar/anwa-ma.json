@@ -1,0 +1,91 @@
+{
+ "id": "anwa-ma",
+ "title": {
+  "ar": "أَنْوَاعُ «مَا» — الْوُجُوهُ الِاثْنَا عَشَرَ",
+  "en": "The kinds of ma — its twelve readings",
+  "tr": "«Mâ»nın çeşitleri — on iki vecih"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "قواعد الإعراب (ابن هشام)",
+  "مغني اللبيب (ابن هشام)",
+  "الكافية (ابن الحاجب)"
+ ],
+ "plain": {
+  "en": "One spelling, twelve jobs. Seven times a NOUN, five times a PARTICLE — and only the neighbours tell you which.",
+  "tr": "Tek yazılış, on iki görev. Yedisinde İSİM, beşinde HARF — hangisi olduğunu ancak komşuları söyler."
+ },
+ "question": {
+  "tr": [
+   "Sonrasında fiil mi var? Nefiy yahut şart olabilir.",
+   "«O şey ki» diye çevrilebiliyor mu? Mevsûldür.",
+   "Bir âmilin üstüne mi binmiş? Kâffedir."
+  ],
+  "en": [
+   "Does a verb follow? Then negation — or the conditional.",
+   "Can you read it «that which»? Then it is the relative.",
+   "Does it ride a governor? Then it is the restraining ma."
+  ]
+ },
+ "explanation": {
+  "en": "Ibn Hisham gives مَا its own chapter because nothing else in the language carries so many jobs on one spelling. As a NOUN it is: (1) the relative مَا الْمَوْصُولَة — «that which»; (2) the conditional مَا الشَّرْطِيَّة, putting two verbs in jazm (مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللهُ); (3) the interrogative مَا الِاسْتِفْهَامِيَّة (مَا هٰذَا؟); (4) the ma of wonder مَا التَّعَجُّبِيَّة, which needs أَفْعَلَ after it and a mansub noun after that (مَا أَحْسَنَ زَيْدًا!); (5) the described indefinite مَا النَّكِرَة الْمَوْصُوفَة (مَرَرْتُ بِمَا مُعْجِبٍ لَكَ); (6) the bare indefinite مَا النَّكِرَة التَّامَّة, «a thing», which needs no description after it (نِعِمَّا); and (7) the tamma/naqisa split, which belongs to this indefinite ma — tamma when it stands alone, naqisa when a description completes it. As a PARTICLE: (8) the plain negation مَا النَّافِيَة; (9) the Hijazi negation مَا الْحِجَازِيَّة, which works like لَيْسَ — raf' on its noun, NASB on its khabar (مَا هٰذَا بَشَرًا); (10) the masdar-maker مَا الْمَصْدَرِيَّة (عَجِبْتُ مِمَّا صَنَعْتَ = مِنْ صُنْعِكَ); (11) the same with a time sense, مَا الْمَصْدَرِيَّة الظَّرْفِيَّة (مَا دُمْتُ حَيًّا = مُدَّةَ دَوَامِي); and (12) the restraining مَا الْكَافَّة, which disarms the governor it sits on — إِنَّمَا, رُبَّمَا, قَلَّمَا — plus the plain extra مَا الزَّائِدَة. The Atölye's sentence analyzer applies these signals live: it names the reading AND the neighbour that proposed it, and offers the runners-up when the signal is weak.",
+  "tr": "İbn Hişâm «mâ»ya müstakil bir bâb ayırır; çünkü dilde tek yazılışla bu kadar görev taşıyan başka kelime yoktur. İSİM olarak: (1) mevsûle mâ — «o şey ki»; (2) şart mâsı, iki fiili cezmeder (مَا تَفْعَلْ مِنْ خَيْرٍ يَعْلَمْهُ اللهُ); (3) istifham mâsı (مَا هٰذَا؟); (4) taaccüb mâsı — ardından أَفْعَلَ, ondan sonra mensub isim ister (مَا أَحْسَنَ زَيْدًا!); (5) mevsûfe nekre mâ (مَرَرْتُ بِمَا مُعْجِبٍ لَكَ); (6) tâmme nekre mâ — «bir şey», ardından sıfat istemez (نِعِمَّا); (7) tâmme/nâkısa ayrımı, ki bu ayrım NEKRE mâya aittir: tek başına dururken tâmme, bir sıfat onu tamamlarken nâkısadır. HARF olarak: (8) sade nefiy mâsı; (9) hicâzî nefiy mâsı — leyse gibi amel eder, ismini ref haberini NASB eder (مَا هٰذَا بَشَرًا); (10) masdariyye mâ (عَجِبْتُ مِمَّا صَنَعْتَ = مِنْ صُنْعِكَ); (11) zarfiyye masdariyye (مَا دُمْتُ حَيًّا = مُدَّةَ دَوَامِي); (12) kâffe mâ — üzerine bindiği âmilin amelini keser: إِنَّمَا، رُبَّمَا، قَلَّمَا — ve zâid mâ. Atölye'deki cümle çözücü bu işaretleri canlı uygular: hem vechi hem onu öneren komşuyu söyler, işaret zayıfsa diğer ihtimalleri de sıralar."
+ },
+ "examples": [
+  {
+   "ar": "مَا أَحْسَنَ زَيْدًا!",
+   "en": "Wonder: أَفْعَلَ follows, and the noun after it is mansub — that pair is the signature.",
+   "tr": "Taaccüb: ardından أَفْعَلَ, ondan sonraki isim mensub — bu ikili onun imzasıdır."
+  },
+  {
+   "ar": "مَا هٰذَا بَشَرًا.",
+   "en": "Hijazi: a noun follows and the khabar is MANSUB — that accusative is this ma's own work, exactly as laysa would do it.",
+   "tr": "Hicâzî: ardından isim, haberi MENSUB — o mensub, bu mânın kendi amelidir; tıpkı leyse gibi."
+  },
+  {
+   "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ.",
+   "en": "Restraining: it rides إِنَّ and disarms it — الْأَعْمَالُ stands in raf' as a plain mubtada, not in nasb.",
+   "tr": "Kâffe: إِنَّ'nin üzerine binip amelini keser — الْأَعْمَالُ mensub değil, sade mübteda olarak merfûdur.",
+   "sourceStory": "deeds-are-by-intentions"
+  },
+  {
+   "ar": "فَبِمَا رَحْمَةٍ مِنَ اللهِ لِنْتَ لَهُمْ.",
+   "en": "Extra ma: رَحْمَةٍ is majrur by the ba itself — the ma between them governs nothing at all.",
+   "tr": "Zâid mâ: رَحْمَةٍ bizzat bâ ile mecrurdur — aradaki mâ hiçbir amel etmez."
+  },
+  {
+   "ar": "عَمَّ يَتَسَاءَلُونَ؟",
+   "en": "The alif of ما is elided after the jarr letter — a contraction that happens ONLY when the ma is interrogative.",
+   "tr": "Cer harfinden sonra مَا'nın elifi düşmüştür — bu hazif YALNIZ mâ istifhâmiyye olduğunda olur."
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "مَا هٰذَا بَشَرٌ",
+   "right": "مَا هٰذَا بَشَرًا",
+   "why": {
+    "en": "If the ma is the Hijazi one, it governs: its khabar takes nasb. Leaving the khabar in raf' is the Tamimi dialect's reading, in which ma governs nothing — a different choice, not a free one.",
+    "tr": "Mâ hicâzî ise amel eder: haberi mansub olur. Haberi merfû bırakmak Temîm lehçesinin okuyuşudur; orada mâ amel etmez — bu başka bir tercihtir, serbestlik değil."
+   }
+  },
+  {
+   "wrong": "إِنَّمَا الْأَعْمَالَ بِالنِّيَّاتِ",
+   "right": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+   "why": {
+    "en": "The kaffa ma has already disarmed إِنَّ; there is no governor left to put الأعمال in nasb.",
+    "tr": "Kâffe mâ إِنَّ'nin amelini çoktan kesmiştir; الأعمال'i nasbedecek âmil kalmamıştır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "ma-la-mushabbaha",
+  "ma-nafiya",
+  "innama-kaffa",
+  "an-masdariyya",
+  "ism-mawsul"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
+}

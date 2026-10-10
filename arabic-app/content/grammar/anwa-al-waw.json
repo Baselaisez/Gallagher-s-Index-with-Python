@@ -1,0 +1,71 @@
+{
+ "id": "anwa-al-waw",
+ "title": {
+  "ar": "أَنْوَاعُ الْوَاوِ",
+  "en": "The kinds of waw",
+  "tr": "Vav'ın çeşitleri"
+ },
+ "level": 4,
+ "group": "nahw",
+ "question": {
+  "tr": [
+   "Ne olduğu hâlde? (hâliye ise)"
+  ],
+  "en": [
+   "While in what state? (if haliyya)"
+  ]
+ },
+ "classicalSources": [
+  "إظهار الأسرار (البيركوي)",
+  "قواعد الإعراب (ابن هشام)",
+  "العوامل المائة (الجرجاني)"
+ ],
+ "plain": {
+  "en": "One letter, several jobs: joining («and»), circumstance («while»), a fresh start, an oath. Misread the waw and the sentence changes meaning.",
+  "tr": "Tek harf, birkaç görev: bağlama («ve»), hâl («-iken»), yeni başlangıç, yemin. Vav yanlış okunursa cümlenin anlamı değişir."
+ },
+ "explanation": {
+  "en": "The same letter و does very different work, and the i'rab must name which. (1) THE JOINING WAW (عاطفة) ties a follower to what precedes and shares its case — the workhorse. (2) THE WAW OF CIRCUMSTANCE (حالية) opens a clause that describes the STATE of someone in the main clause; the whole clause sits in nasb position as a hal. Test it by substituting «while / إِذْ»: in this story, وَرَجَعَ يُوسُفُ إِلَى الْبَصْرَةِ وَفِي قَلْبِهِ وَصِيَّةُ مُعَلِّمِهِ — Yusuf returned WHILE his teacher's testament lay in his heart. The waw before فِي is not joining two journeys; it paints his state on the road. A telltale: after a waw haliyya a nominal clause often begins with a fronted jarr phrase or carries a pronoun binding it to its owner (قَلْبِـهِ → يُوسُفُ). (3) THE RESUMPTIVE WAW (استئنافية) simply starts a new sentence with no i'rab tie. (4) THE OATH WAW (واو القسم) is a jarr letter: وَاللَّهِ. (5) THE WAW OF ACCOMPANIMENT (واو المعية) puts what follows in nasb as maf'ul ma'ah. And the plural waw (واو الجماعة) is not a particle at all but a pronoun — the fa'il inside كُونُوا.",
+  "tr": "Aynı و harfi çok farklı işler görür; i'rab hangisi olduğunu söylemek zorundadır. (1) ATIF VAVI (عاطفة) sonrakini öncekine bağlar, i'rabını paylaştırır — en yaygını. (2) VAV-I HÂLİYE (حالية) ana cümledeki birinin HÂLİNİ anlatan bir cümle açar; cümle bütünüyle hâl olarak mahallen mensubdur. Denemesi: yerine «-iken / إِذْ» koyun. Bu hikâyede: وَرَجَعَ يُوسُفُ إِلَى الْبَصْرَةِ وَفِي قَلْبِهِ وَصِيَّةُ مُعَلِّمِهِ — Yusuf, hocasının vasiyeti kalbinde OLDUĞU HÂLDE döndü. فِي'den önceki vav iki yolculuğu bağlamıyor; yoldaki hâlini çiziyor. İpucu: vav-ı hâliyeden sonra gelen isim cümlesi çoğu kez öne alınmış câr-mecrurla başlar ve sahibine dönen bir zamir taşır (قَلْبِـهِ → يُوسُفُ). (3) İSTİ'NÂFİYE VAVI yeni bir cümleye başlar; i'rab bağı yoktur. (4) KASEM VAVI cer harfidir: وَاللَّهِ. (5) MAİYYE VAVI sonrasını mef'ûlün maah olarak nasb eder. Cemaat vâvı (واو الجماعة) ise harf değil zamirdir — كُونُوا'daki fâil odur."
+ },
+ "examples": [
+  {
+   "ar": "وَرَجَعَ يُوسُفُ إِلَى الْبَصْرَةِ، وَفِي قَلْبِهِ وَصِيَّةُ مُعَلِّمِهِ.",
+   "en": "Yusuf returned to Basra — WHILE his teacher's testament lay in his heart (waw haliyya; the clause is a hal in nasb position).",
+   "tr": "Yusuf, hocasının vasiyeti kalbinde OLDUĞU HÂLDE Basra'ya döndü (vav-ı hâliye; cümle, hâl olarak mahallen mensub).",
+   "sourceStory": "wasiyyat-abi-hanifa-L2",
+   "sentence": "s18"
+  },
+  {
+   "ar": "وَكُونُوا عَوْنَ هَذَا الْعَبْدِ دَهْرًا.",
+   "en": "«And be this servant's helper…» — a joining waw tying imperative to imperative; the waw INSIDE كُونُوا is the plural pronoun, kana's noun.",
+   "tr": "«Ve bu kulun yardımcısı olun…» — emri emre bağlayan atıf vavı; كُونُوا'nun İÇİNDEKİ vav ise cemaat zamiri, «kâne»nin ismidir.",
+   "sourceStory": "bad-al-amali",
+   "sentence": "s65"
+  },
+  {
+   "ar": "وَاللَّهِ لَأَفْعَلَنَّ.",
+   "en": "«By Allah, I will surely do it» — the oath waw, a jarr letter (Jurjani counts it among the seventeen).",
+   "tr": "«Vallahi mutlaka yapacağım» — kasem vavı, bir cer harfidir (Cürcânî on yedi harfin içinde sayar)."
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "وَفِي قَلْبِهِ وَصِيَّةُ مُعَلِّمِهِ — «الْوَاوُ عَاطِفَةٌ»",
+   "right": "وَفِي قَلْبِهِ وَصِيَّةُ مُعَلِّمِهِ — «الْوَاوُ حَالِيَّةٌ»",
+   "why": {
+    "en": "Calling this waw a conjunction leaves the clause dangling — joined to what, sharing which case? The clause describes Yusuf's STATE while returning, so the waw is haliyya and the whole clause is a hal in nasb position. The «while»-substitution test decides it.",
+    "tr": "Bu vava atıf demek cümleyi boşta bırakır — neye bağlanıyor, hangi i'rabı paylaşıyor? Cümle Yusuf'un dönerkenki HÂLİNİ anlatır; öyleyse vav hâliyedir ve cümle bütünüyle mahallen mensub hâldir. «-iken» koyma denemesi bunu kestirir."
+   }
+  },
+  {
+   "wrong": "جَاءَ الطُّلَّابُ وَالْمُعَلِّمَ — «الْوَاوُ عَاطِفَةٌ»",
+   "right": "جَاءَ الطُّلَّابُ وَالْمُعَلِّمَ — «وَاوُ الْمَعِيَّةِ»",
+   "why": {
+    "en": "The fatha on الْمُعَلِّمَ betrays the waw: a joining waw would share the fa'il's damma. Nasb after the waw marks accompaniment — «the students came ALONG WITH the teacher» — the maf'ul ma'ah.",
+    "tr": "الْمُعَلِّمَ'deki fetha vavı ele verir: atıf vavı olsa fâilin zammesini paylaşırdı. Vavdan sonraki nasb maiyyet gösterir — «öğrenciler öğretmenLE BİRLİKTE geldi» — mef'ûlün maah."
+   }
+  }
+ ],
+ "relatedNotes": ["hal", "atf-nasaq", "maful-maah", "huruf-jarr"]
+}

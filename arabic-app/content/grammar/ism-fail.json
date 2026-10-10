@@ -1,0 +1,82 @@
+{
+  "id": "ism-fail",
+  "title": {
+    "ar": "اسْمُ الْفَاعِلِ وَعَمَلُهُ",
+    "en": "The ism fa'il — a doer-noun that governs like its verb",
+    "tr": "İsm-i fâil ve ameli — fiili gibi amel eden isim"
+  },
+  "level": 5,
+  "group": "awamil",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — اسم الفاعل",
+    "العوامل (البركوي) — العامل القياسي",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "The noun for the one doing the action — «striking», «thanking» — and it can take a subject and an object exactly as its verb would.",
+    "tr": "İşi yapanın ismi — «vuran», «şükreden» — ve tıpkı fiili gibi fâil ve mef'ûl alabilir."
+  },
+  "explanation": {
+    "en": "The ism fa'il names the one doing the act: فَاعِل from the bare triliteral (شَاكِر «thanking», خَالِص «pure»), and for every augmented bab the mudari' shape with مُ and a kasra before the end — مُوَدِّع from وَدَّعَ, مُخْلِص from أَخْلَصَ. Birgivi counts it among the nine QIYASI governors, and the Kafiya states the terms of its amal: it works the work of its verb — raising a doer, and if the verb is transitive putting an object in nasb — on two conditions. It must carry the meaning of the present or the future, not the past; and it must LEAN (اِعْتِمَاد) on something before it: a negation, a question, a mubtada it serves as khabar, or a noun it describes or accompanies as hal. So in عَامِلًا بِوَصِيَّةِ إِمَامِهِ the ism fa'il, standing as hal, still reaches its object through the بِ exactly as the verb عَمِلَ بِ would. With الـ in front (الضَّارِبُ) it governs unconditionally, because the tradition reads it there as standing for a relative clause: الَّذِي يَضْرِبُ. Where both conditions fail — a past-meaning doer with no support — the amal is gone and the construction falls back to idafa: ضَارِبُ زَيْدٍ أَمْسِ, with jarr, not nasb.",
+    "tr": "İsm-i fâil işi yapanı adlandırır: sülâsî mücerredden فَاعِل vezni (شَاكِر «şükreden», خَالِص «hâlis»), mezîd bâbların hepsinden ise muzâri şekli başında مُ ve sondan önce kesre ile — وَدَّعَ'dan مُوَدِّع, أَخْلَصَ'dan مُخْلِص. Birgivî onu dokuz KIYASÎ âmilden sayar; Kâfiye amelinin şartlarını söyler: fiilinin amelini yapar — fâilini ref eder, fiili müteaddî ise mef'ûlünü nasb eder — iki şartla. Manası hâl veya istikbâl olmalı, mâzî olmamalı; ve kendinden önce bir şeye DAYANMALI (i'timâd): bir nefiy, bir istifham, haberi olduğu bir mübteda, yahut sıfatı veya hâli olduğu bir isim. عَامِلًا بِوَصِيَّةِ إِمَامِهِ'de hâl olarak duran ism-i fâil, mef'ûlüne بِ üzerinden tıpkı عَمِلَ بِ fiili gibi ulaşır. Başında الـ varsa (الضَّارِبُ) kayıtsız şartsız amel eder; çünkü gelenek onu orada bir sıla hükmünde okur: الَّذِي يَضْرِبُ. İki şart da düşerse — dayanaksız, mâzî manalı bir fâil ismi — amel gider ve terkip izafete döner: ضَارِبُ زَيْدٍ أَمْسِ, nasb ile değil cer ile."
+  },
+  "examples": [
+    {
+      "ar": "فَخَرَجَ يُوسُفُ مِنْ عِنْدِهِ شَاكِرًا عَامِلًا بِوَصِيَّةِ إِمَامِهِ.",
+      "en": "Two doer-nouns as hal, and the second still governs: عَامِلًا reaches its object through بِ exactly as the verb عَمِلَ would.",
+      "tr": "Hâl olarak iki ism-i fâil; ikincisi amel etmeye devam eder: عَامِلًا, mef'ûlüne tıpkı عَمِلَ fiili gibi بِ ile ulaşır.",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "chapter": 2,
+      "sentence": "s6"
+    },
+    {
+      "ar": "مَنْ قَالَ … خَالِصًا وَمُخْلِصًا دَخَلَ الْجَنَّةَ.",
+      "en": "The bare-bab shape beside the augmented one in a single breath: خَالِص is فَاعِل from خَلَصَ, and مُخْلِص is the mim-shape from أَخْلَصَ.",
+      "tr": "Mücerred vezinle mezîd vezin yan yana: خَالِص, خَلَصَ'dan فَاعِل; مُخْلِص ise أَخْلَصَ'dan mimli şekildir.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "chapter": 1,
+      "sentence": "s1"
+    },
+    {
+      "ar": "أَتَى أَبَا حَنِيفَةَ مُوَدِّعًا.",
+      "en": "The Form II doer-noun as hal — «he came to bid farewell», the ism fa'il carrying the still-unfolding act.",
+      "tr": "Tef'îl bâbının ism-i fâili hâl olarak — «vedalaşmak üzere geldi»; ism-i fâil henüz sürmekte olan işi taşır.",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "chapter": 1,
+      "sentence": "s1"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "هٰذَا ضَارِبٌ زَيْدًا أَمْسِ",
+      "right": "هٰذَا ضَارِبُ زَيْدٍ أَمْسِ",
+      "why": {
+        "en": "With past meaning the ism fa'il loses its amal. The object can no longer stand in nasb; the construction becomes an idafa and the noun takes jarr.",
+        "tr": "Mâzî manasında ism-i fâilin ameli düşer. Mef'ûl artık nasb alamaz; terkip izafete döner ve isim cer olur."
+      }
+    },
+    {
+      "wrong": "كُلُّ اسْمِ فَاعِلٍ يَعْمَلُ أَيْنَمَا وَقَعَ",
+      "right": "يَعْمَلُ بِشَرْطَيْنِ: مَعْنَى الْحَالِ أَوِ الِاسْتِقْبَالِ، وَالِاعْتِمَادُ — إِلَّا الْمُحَلَّى بِالـ",
+      "why": {
+        "en": "The amal is conditional: present-or-future meaning, and support from a negation, question, mubtada or described noun. Only the الـ-form governs unconditionally, being read as الَّذِي with its verb.",
+        "tr": "Amel şartlıdır: hâl-istikbâl manası ve nefiy, istifham, mübteda yahut mevsûfa i'timâd. Yalnız الـ'lı şekil kayıtsız amel eder; çünkü الَّذِي ve fiili hükmünde okunur."
+      }
+    },
+    {
+      "wrong": "حَسَنٌ = اسْمُ فَاعِلٍ",
+      "right": "حَسَنٌ صِفَةٌ مُشَبَّهَةٌ، وَضَارِبٌ اسْمُ فَاعِلٍ",
+      "why": {
+        "en": "The ism fa'il names an act in motion; the sifa mushabbaha names a settled quality. The two govern differently, which is why the books keep them apart.",
+        "tr": "İsm-i fâil süren bir işi, sıfat-ı müşebbehe yerleşik bir vasfı adlandırır. Amelleri de farklıdır; kitapların onları ayrı tutmasının sebebi budur."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "ism-maful",
+    "sifa-mushabbaha",
+    "sighat-mubalagha",
+    "hal",
+    "augmented-babs"
+  ]
+}

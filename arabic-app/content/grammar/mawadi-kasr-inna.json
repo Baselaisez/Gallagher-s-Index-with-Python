@@ -1,0 +1,120 @@
+{
+ "id": "mawadi-kasr-inna",
+ "title": {
+  "ar": "مَوَاضِعُ كَسْرِ إِنَّ — حَيْثُ تَبْقَى الْجُمْلَةُ جُمْلَةً",
+  "en": "Where إِنَّ takes the kasra — wherever the clause stays a clause",
+  "tr": "İnne'nin kesre yerleri — cümlenin cümle kaldığı her yer"
+ },
+ "level": 4,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الحروف المشبهة بالفعل",
+  "الكافية لابن الحاجب — إنّ وأخواتها",
+  "مغني اللبيب لابن هشام — إنّ المكسورة والمفتوحة"
+ ],
+ "amil": "إِنَّ لَا تُغَيِّرُ مَعْنَى الْجُمْلَةِ وَأَنَّ مَعَ جُمْلَتِهَا فِي حُكْمِ الْمَصْدَرِ — the kasra stands where a SENTENCE is wanted, the fatḥa where a single word (a maṣdar) is wanted",
+ "question": {
+  "en": [
+   "WHICH letters govern two nouns with the manṣūb first? Eight; six of them resemble the verb — three letters or more, a fatḥa at the end, a verb's meaning inside: إِنَّ / أَنَّ confirm, كَأَنَّ likens, لٰكِنَّ rectifies, لَيْتَ wishes, لَعَلَّ hopes.",
+   "WHERE do they stand? At the front of the speech — all but أَنَّ, which never opens a sentence. And when مَا clings to them they lose their governing and may precede a verb: إِنَّمَا ضَرَبَ زَيْدٌ.",
+   "WHY kasra here and fatḥa there? إِنَّ leaves the sentence a sentence; أَنَّ turns it into a maṣdar. So read the hamza with an i wherever a SENTENCE belongs, with an a wherever a single WORD belongs.",
+   "The TEST: can you swap in a maṣdar? عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ = عَلِمْتُ قِيَامَ زَيْدٍ → fatḥa. إِنَّ زَيْدًا قَائِمٌ at the opening — no maṣdar can start a speech that way → kasra.",
+   "The TEN kasra places: (1) the opening; (2) the answer of an oath — وَاللهِ إِنَّ; (3) the ṣila — مَا إِنَّ مَفَاتِحَهُ لَتَنُوءُ (28:76); (4) the khabar of a concrete noun — زَيْدٌ إِنَّهُ قَائِمٌ; (5) when the lām of ibtidāʾ sits on its khabar — عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ.",
+   "…(6) after قَالَ bare of doubt — قُلْ إِنَّ اللهَ وَاحِدٌ; (7) after the ḥattā of opening — حَتَّى إِنَّ زَيْدًا يَقُولُهُ; (8) after نَعَمْ; (9) after أَلَا; (10) after the wāw of the ḥāl — وَإِنَّ فَرِيقًا مِنَ الْمُؤْمِنِينَ لَكَارِهُونَ (8:5).",
+   "What does the lām of ibtidāʾ DO to the hamza? It forces the kasra: a lām cannot sit inside a maṣdar, so عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ — and the verb عَلِمَ is suspended (مُعَلَّق) by that lām.",
+   "What does the engine READ here? The DabtEngine finds إِنَّ by its three letters and sets the ism in naṣb and the khabar in rafʿ, keeps the slid لَ as a prefix of the khabar (لَقَائِمٌ, لَكَارِهُونَ), reads the quoted particles as mubtadas with لِ-khabars, and hands the kasra/fatḥa choice to the rule above: a sentence seat → إِنَّ, a word seat → أَنَّ."
+  ],
+  "tr": [
+   "Mansûbu önce gelen iki isimde HANGİ harfler âmildir? Sekiz; altısı fiile benzer — üç ve daha fazla harf, sonda fetha, içinde fiil mânâsı: inne / enne tahkik, keenne teşbih, lâkinne istidrak, leyte temennî, lealle terecci.",
+   "NEREDE bulunurlar? Kelâmın başında — enne hâriç: o hiçbir zaman cümle açmaz. Mâ bitişince amelden düşer ve fiilin önüne gelebilirler: innemâ darabe Zeyd.",
+   "NEDEN burada kesre, orada fetha? İnne cümleyi cümle bırakır; enne onu masdar yapar. Öyleyse CÜMLE'nin yerinde hemzeyi i ile, tek KELİME'nin yerinde a ile oku.",
+   "TEST: yerine masdar koyabiliyor musun? Alimtü enne Zeyden kâimün = alimtü kıyâme Zeydin → fetha. Başta inne Zeyden kâimün — hiçbir masdar kelâmı öyle açamaz → kesre.",
+   "ON kesre yeri: (1) başlangıç; (2) kasemin cevabı — vallâhi inne; (3) sıla — mâ inne mefâtihahû le-tenûu (28:76); (4) zât isminin haberi — Zeydün innehû kâimün; (5) haberinde ibtidâ lâmı varsa — alimtü inne Zeyden le-kâimün.",
+   "…(6) zandan ârî kâle'den sonra — kul inne'llâhe vâhidün; (7) ibtidâ hattâ'sından sonra — hattâ inne Zeyden yekûluhû; (8) neam'dan sonra; (9) elâ'dan sonra; (10) hâl vâvından sonra — ve inne ferîkan mine'l-mü'minîne le-kârihûn (8:5).",
+   "İbtidâ lâmı hemzeye NE YAPAR? Kesreyi zorunlu kılar: lâm bir masdarın içinde duramaz; alimtü inne Zeyden le-kâimün — ve alime fiili o lâmla ta'lîk edilir.",
+   "Motor burada neyi OKUR? DabtEngine inne'yi üç harfinden bulur, ismini nasb, haberini ref' eder, kayan lâm'ı haberin öneki olarak tutar (le-kâimün, le-kârihûn), hikâye edilen harfleri li-haberli mübtedâ okur ve kesre/fetha seçimini yukarıdaki kurala bırakır: cümle yeri → inne, kelime yeri → enne."
+  ]
+ },
+ "plain": {
+  "en": "Six little words (إِنَّ and its sisters) grab two nouns: the first goes into naṣb, the second into rafʿ. Read إِنَّ with an i wherever a whole sentence is wanted, with an a wherever a single word would do.",
+  "tr": "Altı küçük kelime (inne ve kardeşleri) iki isim yakalar: birincisi nasb, ikincisi ref' olur. Tam bir cümle istenen yerde inne'yi i ile, tek kelime yeterli olan yerde a ile oku."
+ },
+ "explanation": {
+  "en": "Birgivī's first division of the governor in two nouns: eight letters whose manṣūb precedes their marfūʿ. Six resemble the verb — إِنَّ / أَنَّ for confirmation, كَأَنَّ for likening, لٰكِنَّ for rectification, لَيْتَ for the wish, لَعَلَّ for hope. They claim the front of the speech (all but أَنَّ), and مَا attached to them cancels their governing (إِنَّمَا ضَرَبَ زَيْدٌ). Because إِنَّ keeps the sentence a sentence while أَنَّ turns it into a maṣdar, the kasra is required wherever a sentence belongs and the fatḥa wherever a single word belongs. The kasra places: the opening; the answer of an oath; the ṣila (28:76); the khabar of a concrete noun; a sentence whose khabar carries the lām of ibtidāʾ; after a قَوْل bare of doubt; after the ḥattā of opening; after the letters of assent; after the letters of opening; after the wāw of the ḥāl (8:5).",
+  "tr": "Birgivî'nin iki isimdeki âmilin birinci kısmı: mansûbu merfûundan önce gelen sekiz harf. Altısı fiile benzer — inne / enne tahkik, keenne teşbih, lâkinne istidrak, leyte temennî, lealle terecci. Kelâmın başı onlarındır (enne hâriç); onlara bitişen mâ amellerini kaldırır (innemâ darabe Zeyd). İnne cümleyi cümle bıraktığı, enne ise masdar yaptığı için, cümle yerinde kesre, kelime yerinde fetha vâciptir. Kesre yerleri: başlangıç; kasemin cevabı; sıla (28:76); zât isminin haberi; haberinde ibtidâ lâmı bulunan cümle; zandan ârî kavlden sonra; ibtidâ hattâ'sından sonra; tasdik harflerinden sonra; iftitah harflerinden sonra; hâl vâvından sonra (8:5)."
+ },
+ "examples": [
+  {
+   "ar": "إِنَّ وَأَنَّ لِلتَّحْقِيقِ، وَكَأَنَّ لِلتَّشْبِيهِ، وَلٰكِنَّ لِلِاسْتِدْرَاكِ، وَلَيْتَ لِلتَّمَنِّي، وَلَعَلَّ لِلتَّرَجِّي",
+   "en": "the six letters resembling the verb, with their meanings",
+   "tr": "fiile benzeyen altı harf ve mânâları",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "إِنَّمَا ضَرَبَ زَيْدٌ",
+   "en": "مَا restrains إِنَّ: no governing, and a verb may follow",
+   "tr": "mâ inne'yi kâffe yapar: amel yok, fiil gelebilir",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s5"
+  },
+  {
+   "ar": "وَاللهِ إِنَّ زَيْدًا قَائِمٌ",
+   "en": "the oath's answer is a sentence — kasra",
+   "tr": "kasemin cevabı cümledir — kesre",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s7"
+  },
+  {
+   "ar": "مَا إِنَّ مَفَاتِحَهُ لَتَنُوءُ بِالْعُصْبَةِ",
+   "en": "the ṣila is a sentence — kasra (28:76)",
+   "tr": "sıla cümledir — kesre (28:76)",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s8"
+  },
+  {
+   "ar": "عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ",
+   "en": "the lām of ibtidāʾ on the khabar forces the kasra and suspends عَلِمَ",
+   "tr": "haberdeki ibtidâ lâmı kesreyi zorlar ve alime'yi ta'lîk eder",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s9"
+  },
+  {
+   "ar": "وَإِنَّ فَرِيقًا مِنَ الْمُؤْمِنِينَ لَكَارِهُونَ",
+   "en": "after the wāw of the ḥāl — kasra (8:5)",
+   "tr": "hâl vâvından sonra — kesre (8:5)",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s12"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "عَلِمْتُ أَنَّ زَيْدًا لَقَائِمٌ",
+   "right": "عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ",
+   "why": {
+    "en": "the lām of ibtidāʾ cannot live inside a maṣdar — once the khabar carries لَ, the hamza must take the kasra",
+    "tr": "ibtidâ lâmı masdarın içinde yaşayamaz — haber le- taşıyınca hemze kesre almak zorundadır"
+   }
+  },
+  {
+   "wrong": "أَنَّ زَيْدًا قَائِمٌ",
+   "right": "إِنَّ زَيْدًا قَائِمٌ",
+   "why": {
+    "en": "أَنَّ never opens a speech — the front of the sentence belongs to إِنَّ",
+    "tr": "enne hiçbir zaman kelâm açmaz — cümlenin başı inne'nindir"
+   }
+  },
+  {
+   "wrong": "إِنَّمَا زَيْدًا قَائِمٌ",
+   "right": "إِنَّمَا زَيْدٌ قَائِمٌ",
+   "why": {
+    "en": "مَا has stripped إِنَّ of its governing — the noun after إِنَّمَا is a plain mubtada",
+    "tr": "mâ inne'nin amelini kaldırmıştır — innemâ'dan sonraki isim düz mübtedâdır"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "mawadi-fath-anna",
+  "ma-la-laysa-wa-la-al-jins"
+ ]
+}

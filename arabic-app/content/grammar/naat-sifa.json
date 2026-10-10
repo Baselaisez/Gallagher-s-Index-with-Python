@@ -1,0 +1,77 @@
+{
+  "id": "naat-sifa",
+  "title": {
+    "ar": "النَّعْت (الصِّفَة)",
+    "en": "The na't (adjective)",
+    "tr": "Na't (sıfat)"
+  },
+  "level": 3,
+  "group": "nahw",
+  "classicalSources": [
+    "العوامل (البيركوي) — التوابع",
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "An adjective. It copies its noun in case, number, gender and definiteness.",
+    "tr": "Sıfat. Nitelediği ismi i'rabda, sayıda, cinste ve belirlilikte takip eder."
+  },
+  "explanation": {
+    "en": "The na't (also called sifa) is the first of the followers (التوابع): it follows its noun (المنعوت) in FOUR things — case, definiteness, gender, and number. In this story: عَزِيزًا مُحْتَرَمًا — «honored» follows «dear» in nasb and indefiniteness. Contrast with the hal: a definite word after a definite noun is a na't (الرَّجُلُ الْكَرِيمُ, the generous man); an indefinite mansub after a definite noun is a hal. Birgivi lists the followers at the end of the Awamil as governed «by way of following» (بالتبعية).",
+    "tr": "Na't (sıfat) tâbilerin ilkidir: mevsûfuna (men'ût) DÖRT şeyde uyar — i'rab, marifelik-nekrelik, müzekkerlik-müenneslik ve sayı. Hikâyede: عَزِيزًا مُحْتَرَمًا — «saygın», «aziz» kelimesine nasbda ve nekrelikte uyar. Hâl ile farkı: marife isimden sonra marife kelime sıfattır (الرَّجُلُ الْكَرِيمُ); marife isimden sonra nekre mansub ise hâldir. Birgivî, Avâmil'in sonunda tâbileri «tebe'iyyet yoluyla» âmillenmiş sayar."
+  },
+  "examples": [
+    {
+      "ar": "صِرْتَ فِيهِمْ عَزِيزًا مُحْتَرَمًا.",
+      "en": "You become dear and honored among them — the na't follows its noun in nasb.",
+      "sourceStory": "wasiyyat-abi-hanifa-L4",
+      "sentence": "s5",
+      "tr": "Aralarında aziz ve saygın olursun — na't, mevsûfuna nasbda uyar."
+    },
+    {
+      "ar": "الرَّجُلُ الْكَرِيمُ مَحْبُوبٌ.",
+      "en": "The generous man is beloved — definite noun, definite na't.",
+      "tr": "Cömert adam sevilir — marife isim, marife na't."
+    },
+    {
+      "ar": "قَرَأْتُ كِتَابًا مُفِيدًا.",
+      "en": "I read a useful book — indefinite noun, indefinite na't.",
+      "tr": "Faydalı bir kitap okudum — nekre isim, nekre na't."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "قرأتُ كتابًا مفيدٌ",
+      "right": "قرأتُ كتابًا مفيدًا",
+      "why": {
+        "en": "The na't must match its noun's case — after a mansub noun the adjective takes nasb too.",
+        "tr": "Sıfat, mevsûfun i'rabına uymalıdır — mansub isimden sonra sıfat da nasb alır."
+      }
+    },
+    {
+      "wrong": "الرجلُ كريمُ (نعتًا)",
+      "right": "الرجلُ الْكَرِيمُ",
+      "why": {
+        "en": "A na't of a definite noun must itself be definite; without ال the sentence turns into mubtada + khabar («the man is generous»).",
+        "tr": "Marife ismin sıfatı da marife olmalıdır; ال düşerse cümle mübteda-haber olur («adam cömerttir»)."
+      }
+    },
+    {
+      "wrong": "طالبةٌ مجتهدٌ",
+      "right": "طالبةٌ مجتهدةٌ",
+      "why": {
+        "en": "The na't follows in gender as well — feminine noun takes a feminine adjective.",
+        "tr": "Sıfat cinsiyette de uyar — müennes isme müennes sıfat gelir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "hal",
+    "badal",
+    "mubtada-khabar"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  },
+  "mamul": "tabai"
+}
