@@ -1,5 +1,5 @@
 /* Finans360 service worker: keeps the app usable offline once it has been opened. */
-const CACHE = 'finans360-v2.2.1';
+const CACHE = 'finans360-v2.3.0';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
@@ -18,6 +18,8 @@ self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  // Company server API: always live, never cached (responses are per user).
+  if (url.origin === self.location.origin && url.pathname.includes('/api/')) return;
 
   // Pages: network first so updates arrive, cached copy when offline.
   if (req.mode === 'navigate') {

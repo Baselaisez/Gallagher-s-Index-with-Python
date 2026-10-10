@@ -1,6 +1,7 @@
 # Finans360: İzin ve Toplantı
 
 İzin talepleri, yıllık izin bakiyesi ve toplantı yönetimi için tek dosyalık, internetsiz çalışan uygulama.
+İsterseniz bir **şirket sunucusuna** bağlanır. O zaman herkes kendi hesabıyla girer, izin talepleri amirin onayına gider ve yönetici kullanıcıları ve yetkileri yönetir (bkz. [sunucu kurulum rehberi](server/README.md)).
 Uygulamada örnek ya da uydurma kayıt yoktur: boş açılır ve yalnızca sizin yüklediğiniz gerçek personelle çalışır.
 İlk açılışta üç adımlı kurulum Personel Bilgi Formu PDF’ini yüklemenizi, listeden kendinizi seçmenizi ve isteğe bağlı PIN kilidini açmanızı ister.
 Üç biçimde kullanılabilir:
@@ -10,6 +11,7 @@ Uygulamada örnek ya da uydurma kayıt yoktur: boş açılır ve yalnızca sizin
 | **Android uygulaması** | [Finans360.apk](https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/Finans360.apk) | Telefonda uygulama olarak, bildirimlerle |
 | **Tek dosya HTML** | [Finans360.html](https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/Finans360.html) | Kurulum olmadan; telefon ya da bilgisayar tarayıcısında |
 | **Ana ekrana eklenen web uygulaması** | Bu klasörü herhangi bir HTTPS sunucuda (ör. GitHub Pages) yayınlayın | iPhone dahil her cihazda “Ana Ekrana Ekle” ile |
+| **Şirket sunucusu** | [Finans360-sunucu.tar.gz](https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/Finans360-sunucu.tar.gz) · [kurulum](server/README.md) | Ekipçe kullanım: hesaplar, roller, onay akışı, yönetim paneli |
 
 İndirme bağlantıları, `finans360/` klasöründeki her değişiklikten sonra GitHub Actions tarafından yeniden üretilir
 (**Releases › finans360**).
@@ -55,13 +57,39 @@ Güncelleme için yeni APK’yı aynı şekilde yükleyin; verileriniz korunur.
 - **Gizlilik:** TC kimlik no ve kan grubu varsayılan olarak maskelenir; isteğe bağlı **PIN kilidi** (arka planda belirli süre kalınca yeniden kilitlenir).
 
 > Bu depo herkese açıktır. Personel PDF’lerini, yedekleri ve dışa aktarılan dosyaları buraya **yüklemeyin**;
-> `finans360/.gitignore` bu dosya türlerini engeller. Veriler yalnızca uygulamanın çalıştığı cihazda saklanır.
+> `finans360/.gitignore` bu dosya türlerini engeller. Veriler, sunucusuz kullanımda yalnızca uygulamanın çalıştığı cihazda,
+> sunucu kurulduğunda yalnızca sizin sunucunuzda saklanır.
+
+**Şirket sunucusu** (2.3)
+
+- Kayıtlar şirketin kendi sunucusunda tek yerde durur. Telefon, bilgisayar ve Android uygulaması aynı kayıtları görür.
+- Üç rol vardır:
+  - **Personel:** Kendi kaydını ve izinlerini görür, izin talebi oluşturur.
+  - **Birim yöneticisi:** Sorumlu olduğu şirketlerin izinlerini görür ve onaylar.
+  - **Yönetici:** Her şeyi yönetir.
+- Diğer çalışanlar yalnız rehber bilgisiyle (ad, ünvan, şirket, iş e-postası) görünür.
+- **İzin onay akışı:**
+  - Talep, birim yöneticisinin ana sayfasına ve İzin sayfasına “Onayla / Reddet” düğmeleriyle düşer. Kalan bakiye de yanında gösterilir.
+  - İzin geçmişinde kararı kimin verdiği yazar.
+  - Çalışan bekleyen talebini düzenleyebilir ya da iptal edebilir.
+- **Toplantılar:** Herkes oluşturduğu ve katıldığı toplantıları görür. Katılımcılar gündem, katılım, not ve aksiyonları güncelleyebilir.
+- **Yönetim paneli:**
+  - Kullanıcılar: tek tek ya da personel listesinden toplu hesap açma, tek kullanımlık şifreler, rol ve şirket ataması, şifre sıfırlama, oturum kapatma, hesabı durdurma.
+  - Yetki modeli tablosu.
+  - Denetim kaydı: girişler, hatalı girişler, izin kararları, hassas veri görüntülemeleri.
+  - Sunucu yedeği; cihaz yedeğini sunucuya taşıma.
+- **Hesabım:** Hesap ve personel kaydı, yetkileriniz, izin bakiyesi, şifre değiştirme, açık oturumlar ve “diğer oturumları kapat”.
+- **Kişisel veri koruması:**
+  - TC kimlik no, kan grubu ve adres listelerde hiç gönderilmez. Yalnız yetkili kişi “Göster” dediğinde gönderilir ve bu görüntüleme denetim kaydına yazılır.
+  - Şifreler scrypt ile saklanır. Hatalı girişler sınırlanır.
+- Kurulum adımları: [server/README.md](server/README.md). Gereken: Node.js 22.13+ ve bir alan adı. HTTPS için Caddy kullanılır.
+- Android uygulaması ve tek dosya HTML, **Ayarlar › Şirket sunucusu** bölümünden bağlanır.
 
 **Genel**
 - Aylık takvim: izinler, toplantılar ve tatiller bir arada.
 - Açık / koyu tema, telefon ve masaüstü düzeni.
 - Yedek al / yedekten yükle (JSON), izinleri Excel’e aktar (CSV), tüm kayıtları takvime aktar (ICS).
-- Veriler yalnızca cihazda saklanır; sunucu yoktur.
+- Sunucusuz kullanımda veriler yalnızca cihazda saklanır; şirket sunucusuna bağlanınca ortak kayıtlar sunucuda durur.
 
 Dinî bayram tarihleri 2025–2027 için yüklüdür. Sonraki yılların bayramlarını ve ilan edilen idari izinleri
 **Ayarlar › Tatil günleri** bölümünden ekleyin.
@@ -75,6 +103,11 @@ finans360/
   manifest.webmanifest   Ana ekrana ekleme bilgileri
   sw.js                  Çevrimdışı çalışma (service worker)
   icons/                 Uygulama simgeleri
+  server/                Şirket sunucusu (Node.js 22.13+, ek paket yok)
+    server.js            Hesaplar, roller, API, denetim kaydı, SQLite veritabanı
+    test/                API testleri
+    deploy/              systemd birimi ve Caddy (HTTPS) ayarı
+    README.md            Kurulum rehberi
   app/                   Android kabuğu (Capacitor 8)
     package.json
     capacitor.config.json

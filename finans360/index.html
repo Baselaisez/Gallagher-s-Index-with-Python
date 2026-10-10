@@ -364,6 +364,29 @@ button.row:hover, .row .linkish:hover { background: var(--surface-2); }
   body.printing #print-root { display: block; color: #111; }
   @page { size: A4; margin: 15mm; }
 }
+/* ---- server mode: accounts, admin panel ---- */
+body.srv .topbar-date { display: none; }
+@media (min-width: 600px) { body.srv .topbar-date { display: inline; } }
+body.srv .topbar-in > .brand { margin-right: auto; }
+.acct-btn .avatar { width: 30px; height: 30px; font-size: 12px; }
+#adminBtn[aria-current="page"], #acctBtn[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
+body.no-org .org-only { display: none !important; }
+#lock { overflow-y: auto; }
+.lock-box.auth { text-align: left; justify-items: stretch; gap: 12px; }
+.lock-box.auth .lb-head { display: grid; justify-items: center; text-align: center; gap: 8px; margin-bottom: 4px; }
+.lock-box.auth label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.lock-box.auth input { font: 400 16px/1.3 var(--f-body); letter-spacing: normal; text-align: left; min-height: 48px; padding: 10px 12px; }
+.perm-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; }
+.perm-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: start; }
+.perm-list .ic { width: 18px; height: 18px; color: var(--ok); margin-top: 1px; }
+.approve-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.approve-row .row-end { gap: 6px; }
+@media (min-width: 560px) { .approve-row { grid-template-columns: minmax(0, 1fr) auto; } }
+.tbl.matrix { min-width: 680px; }
+.tbl.matrix th, .tbl.matrix td { white-space: normal; vertical-align: top; }
+.tbl.matrix td:first-child { font-weight: 600; min-width: 200px; }
+.tbl.matrix td.yes { color: var(--ok); font-weight: 700; }
+.tbl.matrix td.no { color: var(--muted); }
 /* ---- first-run setup ---- */
 .setup { display: grid; gap: 14px; }
 .setup .card-title { margin: 0; font-size: 22px; }
@@ -419,6 +442,8 @@ body.locked .app, body.locked #sheetRoot, body.locked #toastRoot { visibility: h
         <span>Finans<b>360</b></span>
       </a>
       <span class="topbar-date" id="topDate"></span>
+      <button type="button" class="icon-btn" id="adminBtn" data-act="tab" data-tab="yonetim" aria-label="Yönetim paneli" hidden></button>
+      <button type="button" class="icon-btn acct-btn" id="acctBtn" data-act="tab" data-tab="hesap" aria-label="Hesabım" hidden></button>
       <button type="button" class="icon-btn" id="gearBtn" data-act="tab" data-tab="ayarlar" aria-label="Ayarlar"></button>
     </div>
   </header>
@@ -436,7 +461,7 @@ body.locked .app, body.locked #sheetRoot, body.locked #toastRoot { visibility: h
 (() => {
 'use strict';
 
-const VERSION = '2.2.1';
+const VERSION = '2.3.0';
 const KEY = 'finans360:data:v2';
 const UIKEY = 'finans360:ui:v2';
 const RELEASE = 'https://github.com/Baselaisez/Gallagher-s-Index-with-Python/releases/download/finans360/';
@@ -546,6 +571,7 @@ const I = {
   idcard: ic('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14.5 10h4M14.5 13.5h3"/>'),
   lock: ic('<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>'),
   call: ic('<path d="M5 3.5h3.5l1.8 4.5-2.3 1.5a11 11 0 0 0 6.5 6.5l1.5-2.3 4.5 1.8V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.1 1.5 1.5 0 0 1 5 3.5z"/>'),
+  shield: ic('<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/>'),
   table: ic('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 9.5v10"/>'),
   ring: '<svg class="hero-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="78" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-dasharray="430 60" transform="rotate(-62 100 100)"/></svg>'
 };
@@ -673,6 +699,7 @@ function load() {
   persistNow();
 }
 function persistNow() {
+  if (Srv.on) { savePrefs(); if (Srv.user) pushSoon(); scheduleNotifications(); return; }
   const ok = storage.set(KEY, JSON.stringify(S));
   if (!ok && !storageWarned) { storageWarned = true; toast('Bu tarayıcı verileri kalıcı saklamıyor. Ayarlar › Yedek al ile kayıtlarınızı dışa aktarın.', null, 7000); }
   scheduleNotifications();
@@ -770,7 +797,7 @@ function normalizePerson(raw) {
 }
 function personFlags(p) {
   const f = [];
-  if (p.tc && !tcValid(p.tc)) f.push('TC kimlik numarası doğrulanamadı; rakamları kontrol edin.');
+  if ((p.tc && !tcValid(p.tc)) || (!p.tc && p.tcInfo && !p.tcInfo.valid)) f.push('TC kimlik numarası doğrulanamadı; rakamları kontrol edin.');
   if (p.phone && !phoneTR(p.phone).ok) f.push('Cep telefonu biçimi hatalı.');
   if (!p.hireDate) f.push(p.hireYear ? `İşe giriş yalnızca yıl olarak var (${p.hireYear}); izin hakkı için tam tarihi girin.` : 'İşe giriş tarihi yok; izin hakkı hesaplanamıyor.');
   if (!p.birthDate && p.birthYear) f.push(`Doğum tarihi yalnızca yıl olarak var (${p.birthYear}).`);
@@ -1484,6 +1511,7 @@ function specialRow(x) {
     <span class="row-end">${!isMe && ph.ok ? `<a class="btn btn-sm" href="https://wa.me/${ph.digits}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Kutla</a>` : ''}</span></div>`;
 }
 function setupCard() {
+  if (Srv.on) return serverHomeNotes();
   const s1 = S.people.length > 0, s2 = meReady(), s3 = !!S.settings.pinHash;
   if (s1 && s2) return '';
   const step = (done, title, body) => `<li class="${done ? 'done' : ''}"><span class="step-mark">${done ? I.check : ''}</span><div><b>${title}</b><p class="fine">${body}</p></div></li>`;
@@ -1536,8 +1564,9 @@ function viewLeaves() {
   const hours = S.leaves.filter(l => l.person === 'me' && l.type === 'saatlik' && l.status === 'approved' && parseD(l.start).getFullYear() === parseD(today()).getFullYear()).reduce((a, l) => a + leaveHours(l), 0);
   return `
   <section><p class="eyebrow">İzin yönetimi</p><h1 class="display h1">İzin</h1><p class="lede">Bakiyenizi izleyin, talep oluşturun, onay durumunu ve ekibin izinlerini tek yerde görün.</p></section>
-  ${meReady() ? balanceCard(balance(), true) : `<div class="banner" role="note"><p><b>İzin hakkınızı görmek için kendinizi seçin.</b> Personel listesindeki kaydınızı seçin ya da Ayarlar’da işe giriş tarihinizi girin.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="tab" data-tab="${S.people.length ? 'ayarlar' : 'personel'}">${S.people.length ? 'Kendimi seç' : 'Personeli yükle'}</button></div></div>`}
+  ${meReady() ? balanceCard(balance(), true) : Srv.on ? '' : `<div class="banner" role="note"><p><b>İzin hakkınızı görmek için kendinizi seçin.</b> Personel listesindeki kaydınızı seçin ya da Ayarlar’da işe giriş tarihinizi girin.</p><div class="btns"><button type="button" class="btn btn-sm" data-act="tab" data-tab="${S.people.length ? 'ayarlar' : 'personel'}">${S.people.length ? 'Kendimi seç' : 'Personeli yükle'}</button></div></div>`}
   ${hours ? `<p class="fine">Bu yıl onaylı saatlik izin: ${fmt.num(hours)} saat.</p>` : ''}
+  ${approvalsHTML()}
   <section class="sec">
     <div class="toolbar">${seg('leaveWho', [['me', 'Benim'], ['team', 'Ekip'], ['all', 'Tümü']])}
       <label class="search">${I.search}<span class="sr-only">İzinlerde ara</span><input id="lq" type="search" placeholder="Tür, kişi veya açıklama ara" value="${esc(UI.leaveQ)}" autocomplete="off"></label></div>
@@ -1626,12 +1655,12 @@ function viewSettings() {
   const p = S.profile, st = S.settings, b = balance();
   const custom = (st.customHolidays || []).slice().sort((a, c) => a.date.localeCompare(c.date));
   return `
-  <section><p class="eyebrow">Finans360 · sürüm ${VERSION}</p><h1 class="display h1">Ayarlar</h1><p class="lede">Bütün kayıtlar yalnızca bu cihazda saklanır. Düzenli olarak yedek almanızı öneririz.</p></section>
-  ${setCard('Profil', `${S.people.length ? `<div class="field"><label for="s-me">Personel listesindeki kaydım</label><select id="s-me"><option value="">Seçilmedi</option>${S.people.slice().sort(byNameTR).map(x => `<option value="${x.id}" ${S.meId === x.id ? 'selected' : ''}>${esc(x.name)}${x.company ? ` · ${esc(x.company)}` : ''}</option>`).join('')}</select><p class="hint">Seçtiğiniz kayıt profilinizi, izin hakkınızı ve formlarınızı doldurur.</p></div>` : ''}<div class="form-grid">${inp('profile.name', 'Ad soyad', p.name, 'text', 'autocomplete="name"')}${inp('profile.sicil', 'Sicil no', p.sicil)}${inp('profile.dept', 'Departman', p.dept)}${inp('profile.title', 'Unvan', p.title)}${inp('profile.manager', 'Birim amiri', p.manager)}${inp('profile.managerContact', 'Amirin e-postası', p.managerContact, 'email', 'inputmode="email"')}</div>`)}
-  ${setCard('Yıllık izin hesabı', `<div class="form-grid">${inp('profile.hireDate', 'İşe giriş tarihi', p.hireDate, 'date')}${inp('profile.birthDate', 'Doğum tarihi', p.birthDate, 'date')}${inp('settings.entitlementOverride', 'Yıllık hak (boşsa kanuna göre)', st.entitlementOverride, 'text', 'inputmode="decimal" placeholder="Örn. 22"')}${inp('settings.carryOver', 'Geçen yıldan devreden (gün)', st.carryOver, 'text', 'inputmode="decimal"')}</div>
+  <section><p class="eyebrow">Finans360 · sürüm ${VERSION}</p><h1 class="display h1">Ayarlar</h1><p class="lede">${Srv.on ? 'Ortak kayıtlar şirket sunucusunda; bu cihazda yalnız görünüm, hatırlatma ve kilit tercihleriniz saklanır.' : 'Bütün kayıtlar yalnızca bu cihazda saklanır. Düzenli olarak yedek almanızı öneririz.'}</p></section>
+  ${Srv.on ? serverProfileCard() : setCard('Profil', `${S.people.length ? `<div class="field"><label for="s-me">Personel listesindeki kaydım</label><select id="s-me"><option value="">Seçilmedi</option>${S.people.slice().sort(byNameTR).map(x => `<option value="${x.id}" ${S.meId === x.id ? 'selected' : ''}>${esc(x.name)}${x.company ? ` · ${esc(x.company)}` : ''}</option>`).join('')}</select><p class="hint">Seçtiğiniz kayıt profilinizi, izin hakkınızı ve formlarınızı doldurur.</p></div>` : ''}<div class="form-grid">${inp('profile.name', 'Ad soyad', p.name, 'text', 'autocomplete="name"')}${inp('profile.sicil', 'Sicil no', p.sicil)}${inp('profile.dept', 'Departman', p.dept)}${inp('profile.title', 'Unvan', p.title)}${inp('profile.manager', 'Birim amiri', p.manager)}${inp('profile.managerContact', 'Amirin e-postası', p.managerContact, 'email', 'inputmode="email"')}</div>`)}
+  ${Srv.on ? serverEntitlementCard(b) : setCard('Yıllık izin hesabı', `<div class="form-grid">${inp('profile.hireDate', 'İşe giriş tarihi', p.hireDate, 'date')}${inp('profile.birthDate', 'Doğum tarihi', p.birthDate, 'date')}${inp('settings.entitlementOverride', 'Yıllık hak (boşsa kanuna göre)', st.entitlementOverride, 'text', 'inputmode="decimal" placeholder="Örn. 22"')}${inp('settings.carryOver', 'Geçen yıldan devreden (gün)', st.carryOver, 'text', 'inputmode="decimal"')}</div>
     <label class="check"><input type="checkbox" data-bind="settings.saturdayWork" ${st.saturdayWork ? 'checked' : ''}> Cumartesi iş günü sayılsın</label>
     <p class="note" id="entSummary">${I.info}<span>${esc(basisText(b))}. Kanuni süreler (İş K. md. 53): 1–5 yıl 14 gün, 5–15 yıl 20 gün, 15 yıl ve üzeri 26 gün; 18 yaş ve altı ile 50 yaş ve üstü için en az 20 gün.</span></p>`)}
-  ${setCard('Personel', `<p class="hint">${S.people.length} kişi kayıtlı. Kişileri Personel sekmesinden yönetin; Personel Bilgi Formu PDF’inden ya da Excel’den toplu içe aktarabilirsiniz.</p><div class="act-grid"><button type="button" class="btn" data-act="tab" data-tab="personel">${I.idcard} Personel listesi</button><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar</button></div>`)}
+  ${Srv.on && !canWritePeople() ? '' : setCard('Personel', `<p class="hint">${S.people.length} kişi kayıtlı. Kişileri Personel sekmesinden yönetin; Personel Bilgi Formu PDF’inden ya da Excel’den toplu içe aktarabilirsiniz.</p><div class="act-grid"><button type="button" class="btn" data-act="tab" data-tab="personel">${I.idcard} Personel listesi</button><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar</button></div>`)}
   ${setCard('Gizlilik ve kilit', `<label class="check"><input type="checkbox" data-bind="settings.maskSensitive" ${st.maskSensitive ? 'checked' : ''}> TC kimlik no ve kan grubunu gizli göster</label>
     ${st.pinHash ? `<div class="toolbar"><span class="pill ok">PIN kilidi açık</span></div><div class="field"><label for="s-lockmin">Arka planda kalınca kilitlen</label><select id="s-lockmin" data-bind="settings.lockMinutes">${[1, 5, 15, 60].map(n => `<option value="${n}" ${+st.lockMinutes === n ? 'selected' : ''}>${n} dakika sonra</option>`).join('')}</select></div><div class="act-grid"><button type="button" class="btn" data-act="lock-now">${I.lock} Şimdi kilitle</button><button type="button" class="btn" data-act="pin-off">Kilidi kaldır</button></div>`
       : `<form class="sec" data-form="pin-set" style="gap:10px"><p class="hint">Personel kayıtları kişisel veri içerir. Uygulama açılırken PIN sorulsun:</p><div class="row2"><div class="field"><label for="s-pin1">Yeni PIN (4–8 rakam)</label><input id="s-pin1" name="pin1" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div class="field"><label for="s-pin2">PIN tekrar</label><input id="s-pin2" name="pin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div><div><button class="btn btn-primary" type="submit">${I.lock} PIN kilidini aç</button></div></form>`}
@@ -1639,27 +1668,29 @@ function viewSettings() {
   ${setCard('Toplantı', `<div class="form-grid"><div class="field"><label for="s-dur">Varsayılan süre</label><select id="s-dur" data-bind="settings.defaultDuration">${[15, 30, 45, 60, 90, 120].map(n => `<option value="${n}" ${+st.defaultDuration === n ? 'selected' : ''}>${n} dk</option>`).join('')}</select></div>
     <div class="field"><label for="s-rem">Varsayılan hatırlatma</label><select id="s-rem" data-bind="settings.defaultReminder">${REMINDERS.map(([v, l]) => `<option value="${v}" ${+st.defaultReminder === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div></div>
     <span class="lbl">Toplantı yerleri</span>
-    <div class="chips">${st.rooms.map(r => `<span class="namechip">${esc(r)}<button type="button" data-act="room-del" data-name="${esc(r)}" aria-label="${esc(r)} yerini çıkar">${I.x}</button></span>`).join('')}</div>
-    <form class="inline-form" data-form="room-add"><input class="inp" name="name" placeholder="Örn. 3. kat toplantı odası" aria-label="Toplantı yeri ekle" autocomplete="off"><button class="btn" type="submit">${I.plus} Ekle</button></form>`)}
+    <div class="chips">${st.rooms.map(r => `<span class="namechip">${esc(r)}<button type="button" class="org-only" data-act="room-del" data-name="${esc(r)}" aria-label="${esc(r)} yerini çıkar">${I.x}</button></span>`).join('')}</div>
+    <form class="inline-form org-only" data-form="room-add"><input class="inp" name="name" placeholder="Örn. 3. kat toplantı odası" aria-label="Toplantı yeri ekle" autocomplete="off"><button class="btn" type="submit">${I.plus} Ekle</button></form>`)}
   ${setCard('Tatil günleri', `<p class="hint">Resmî tatiller ve ${BAYRAM_YEARS[0]}–${BAYRAM_YEARS[BAYRAM_YEARS.length - 1]} dinî bayramları yüklüdür; arife günleri öğleden sonra tatil sayılır. Hükümetin ilan ettiği idari izinleri ya da sonraki yılların bayramlarını buradan ekleyin.</p>
-    ${custom.length ? `<div class="list">${custom.map(h => `<div class="row"><span class="datetile" style="--c:var(--brass)"><span>${MON3[parseD(h.date).getMonth()]}</span><b>${parseD(h.date).getDate()}</b></span><span class="row-main"><span class="row-title">${esc(h.name)}</span><span class="row-sub">${fmt.longDay(h.date)}${h.half ? ' · yarım gün' : ''}</span></span><button type="button" class="icon-btn" data-act="hol-del" data-date="${h.date}" aria-label="Sil">${I.trash}</button></div>`).join('')}</div>` : ''}
-    <form class="inline-form" data-form="hol-add"><input class="inp" type="date" name="date" aria-label="Tarih" required><input class="inp" name="name" placeholder="Açıklama, örn. İdari izin" aria-label="Açıklama"><label class="check"><input type="checkbox" name="half"> Yarım gün</label><button class="btn" type="submit">${I.plus} Ekle</button></form>`)}
+    ${custom.length ? `<div class="list">${custom.map(h => `<div class="row"><span class="datetile" style="--c:var(--brass)"><span>${MON3[parseD(h.date).getMonth()]}</span><b>${parseD(h.date).getDate()}</b></span><span class="row-main"><span class="row-title">${esc(h.name)}</span><span class="row-sub">${fmt.longDay(h.date)}${h.half ? ' · yarım gün' : ''}</span></span><button type="button" class="icon-btn org-only" data-act="hol-del" data-date="${h.date}" aria-label="Sil">${I.trash}</button></div>`).join('')}</div>` : ''}
+    <form class="inline-form org-only" data-form="hol-add"><input class="inp" type="date" name="date" aria-label="Tarih" required><input class="inp" name="name" placeholder="Açıklama, örn. İdari izin" aria-label="Açıklama"><label class="check"><input type="checkbox" name="half"> Yarım gün</label><button class="btn" type="submit">${I.plus} Ekle</button></form>`)}
   ${setCard('Hatırlatmalar', `<p class="hint">${ENV.native ? 'Toplantılardan önce ve izninizden bir gün önce telefon bildirimi gönderilir.' : 'Uygulama açıkken toplantıdan önce hatırlatma gösterilir. Kapalıyken bildirim için Android uygulamasını kurun.'}</p>
     <div class="toolbar"><span class="pill ${S.settings.notify ? 'ok' : ''}">${S.settings.notify ? 'Açık' : 'Kapalı'}</span>${S.settings.notify ? '<button type="button" class="btn btn-sm" data-act="notify-off">Kapat</button>' : `<button type="button" class="btn btn-sm btn-primary" data-act="notify-on">${I.bell} Hatırlatmaları aç</button>`}</div>`)}
   ${setCard('Görünüm', `<div class="seg" role="group" aria-label="Tema">${[['system', 'Sistem'], ['light', 'Açık'], ['dark', 'Koyu']].map(([v, l]) => `<button type="button" data-act="theme" data-v="${v}" aria-pressed="${st.theme === v}">${l}</button>`).join('')}</div>`)}
+  ${serverCard()}
   ${setCard('Uygulamayı indir', `<p class="hint">Finans360 internet olmadan çalışır. Telefonunuza kurmak için:</p>
     <div class="act-grid"><a class="btn btn-primary" href="${RELEASE}Finans360.apk" target="_blank" rel="noopener">${I.phone} Android uygulaması (APK)</a><a class="btn" href="${RELEASE}Finans360.html" target="_blank" rel="noopener">${I.file} Tek dosya HTML</a>${deferredInstall ? `<button type="button" class="btn" data-act="install">${I.download} Ana ekrana ekle</button>` : ''}</div>
     <ol class="fine" style="padding-left:18px;display:grid;gap:4px"><li><b>Android:</b> APK’yı indirip açın. İstenirse “bu kaynaktan yüklemeye izin ver” seçeneğini açın ve Yükle’ye dokunun.</li><li><b>HTML:</b> Dosyayı indirip tarayıcıda açın. Tek dosyadır, internet gerekmez; bilgisayarda da çalışır.</li><li><b>iPhone:</b> HTML dosyasını Safari’de açın ya da yayınlanmış adreste Paylaş › Ana Ekrana Ekle’yi kullanın.</li></ol>
     <p class="fine">Not: Her sürüm (APK, HTML, tarayıcı) kendi verisini tutar. Taşımak için Yedek al › Yedekten yükle.</p>`)}
-  ${setCard('Veriler', `<div class="act-grid"><button type="button" class="btn" data-act="backup">${I.download} Yedek al (.json)</button><button type="button" class="btn" data-act="restore">${I.upload} Yedekten yükle</button><button type="button" class="btn" data-act="csv">${I.file} İzinleri Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="ics-all">${I.cal} Takvime aktar (.ics)</button></div>
+  ${Srv.on ? serverDataCard() : setCard('Veriler', `<div class="act-grid"><button type="button" class="btn" data-act="backup">${I.download} Yedek al (.json)</button><button type="button" class="btn" data-act="restore">${I.upload} Yedekten yükle</button><button type="button" class="btn" data-act="csv">${I.file} İzinleri Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="ics-all">${I.cal} Takvime aktar (.ics)</button></div>
     <div class="act-grid"><button type="button" class="btn btn-danger" data-act="wipe">${I.trash} Tüm verileri sil</button></div>`)}
-  <p class="fine" style="text-align:center">Finans360 ${VERSION} · ${ENV.native ? 'Android uygulaması' : ENV.framed ? 'Önizleme' : 'Tarayıcı sürümü'}</p>`;
+  <p class="fine" style="text-align:center">Finans360 ${VERSION} · ${ENV.native ? 'Android uygulaması' : ENV.framed ? 'Önizleme' : 'Tarayıcı sürümü'}${Srv.on ? ' · sunucu bağlantılı' : ''}</p>`;
 }
 function filteredPeople() {
   const q = fold(UI.pQ);
   return S.people.filter(p => (UI.pCo === 'all' || (p.company || '') === UI.pCo) && (!q || fold([p.name, p.title, p.company, p.email, p.phone].join(' ')).includes(q))).sort(byNameTR);
 }
 function personRow(p) {
+  if (!fullAccess(p)) return `<button type="button" class="row" data-act="person-open" data-id="${p.id}"><span class="avatar" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><span class="row-main"><span class="row-title">${esc(p.name)}</span><span class="row-sub">${esc(p.title || 'Ünvan yok')}</span></span><span class="row-end"></span></button>`;
   const who = whoOf(p), t = today();
   const out = S.leaves.some(l => l.person === who && l.status === 'approved' && covers(l, t));
   const b = balance(undefined, who);
@@ -1667,6 +1698,7 @@ function personRow(p) {
   return `<button type="button" class="row" data-act="person-open" data-id="${p.id}"><span class="avatar" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><span class="row-main"><span class="row-title">${esc(p.name)}${p.id === S.meId ? ' <span class="badge">Siz</span>' : ''}</span><span class="row-sub">${esc(p.title || 'Ünvan yok')}${UI.pCo === 'all' && companies().length < 2 && p.company ? ` · ${esc(p.company)}` : ''}</span></span><span class="row-end">${pill}</span></button>`;
 }
 function balanceTable(list) {
+  list = list.filter(fullAccess);
   return `<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ad soyad</th><th>Şirket</th><th>İşe giriş</th><th>Kıdem</th><th class="num">Hak</th><th class="num">Kullanılan</th><th class="num">Planlı</th><th class="num">Bekleyen</th><th class="num">Kalan</th></tr></thead><tbody>${list.map(p => {
     const b = balance(undefined, whoOf(p));
     return `<tr><td><button type="button" class="linkish" data-act="person-open" data-id="${p.id}"><b>${esc(p.name)}</b></button></td><td>${esc(p.company || '—')}</td><td class="mono">${p.hireDate ? dmy(p.hireDate) : esc(p.hireYear || '—')}</td><td>${esc(seniorityText(p) || '—')}</td><td class="num">${fmt.num(b.total)}</td><td class="num">${fmt.num(b.used)}</td><td class="num">${fmt.num(b.planned)}</td><td class="num">${fmt.num(b.pending)}</td><td class="num"><b class="${b.remaining < 0 ? 'neg' : ''}">${b.basis === 'probation' ? `0 <span class="muted">(${fmt.short(b.next)})</span>` : fmt.num(b.remaining)}</b></td></tr>`;
@@ -1688,14 +1720,15 @@ function viewPeople() {
   const onlySamples = !S.people.length;
   return `
   <section><p class="eyebrow">Personel</p><h1 class="display h1">Personel</h1><p class="lede">${S.people.length} kişi${named.length ? ` · ${named.length} şirket` : ''}${n ? ` · bugün ${n} kişi izinde` : ''}</p></section>
-  ${onlySamples ? `<article class="card hero-empty"><p class="eyebrow">Personel listesi</p><h2>Personel Bilgi Formlarınızı içe aktarın</h2><p class="muted" style="margin:0">PDF’i seçin: ad, ünvan, işe giriş ve doğum tarihleri, iletişim bilgileri bu cihazda okunur ve izin hakları kıdemden hesaplanır. Excel’den kaydedilmiş CSV de olur.</p><div class="toolbar"><button type="button" class="btn btn-primary btn-sm" data-act="people-import">${I.upload} PDF ya da Excel’den içe aktar</button><button type="button" class="btn btn-sm" data-act="person-new">${I.plus} Kişi ekle</button></div></article>` : ''}
+  ${onlySamples && !canWritePeople() ? '<div class="list"><div class="empty"><p>Personel listesi henüz yüklenmedi.</p></div></div>' : ''}
+  ${onlySamples && canWritePeople() ? `<article class="card hero-empty"><p class="eyebrow">Personel listesi</p><h2>Personel Bilgi Formlarınızı içe aktarın</h2><p class="muted" style="margin:0">PDF’i seçin: ad, ünvan, işe giriş ve doğum tarihleri, iletişim bilgileri bu cihazda okunur ve izin hakları kıdemden hesaplanır. Excel’den kaydedilmiş CSV de olur.</p><div class="toolbar"><button type="button" class="btn btn-primary btn-sm" data-act="people-import">${I.upload} PDF ya da Excel’den içe aktar</button><button type="button" class="btn btn-sm" data-act="person-new">${I.plus} Kişi ekle</button></div></article>` : ''}
   <section class="sec">
     <div class="toolbar">${seg('pView', [['list', 'Liste'], ['table', 'İzin tablosu']])}<label class="search">${I.search}<span class="sr-only">Personelde ara</span><input id="pq" type="search" placeholder="Ad, ünvan, şirket ara" value="${esc(UI.pQ)}" autocomplete="off"></label></div>
     ${cos.length > 1 ? `<div class="chips" role="group" aria-label="Şirket">${[['all', 'Tümü', S.people.length], ...cos.map(([c, k]) => [c, c || 'Belirtilmemiş', k])].map(([v, l, k]) => `<button type="button" class="chip" data-act="filter" data-key="pCo" data-v="${esc(v)}" aria-pressed="${UI.pCo === v}">${v !== 'all' ? `<i class="dot" style="--c:var(${coColor(v)})"></i>` : ''}${esc(l)} <span class="count">${k}</span></button>`).join('')}</div>` : ''}
     <div id="peopleList" class="sec">${peopleListHTML()}</div>
   </section>
-  ${setCard('Personel verisi', `<div class="act-grid"><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar (PDF, Excel)</button><button type="button" class="btn" data-act="people-csv">${I.file} Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="balances-csv">${I.table} İzin bakiyeleri (.csv)</button><button type="button" class="btn" data-act="people-vcf">${I.phone} Rehbere aktar (.vcf)</button></div>
-    <p class="note">${I.lock}<span>Personel kayıtları kişisel veri içerir (KVKK). Yalnızca bu cihazda saklanır; hiçbir sunucuya gönderilmez. Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.</span></p>`)}`;
+  ${!canWritePeople() ? '' : setCard('Personel verisi', `<div class="act-grid"><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar (PDF, Excel)</button><button type="button" class="btn" data-act="people-csv">${I.file} Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="balances-csv">${I.table} İzin bakiyeleri (.csv)</button><button type="button" class="btn" data-act="people-vcf">${I.phone} Rehbere aktar (.vcf)</button></div>
+    <p class="note">${I.lock}<span>${Srv.on ? 'Personel kayıtları kişisel veri içerir (KVKK). Şirket sunucusunda saklanır; her kullanıcı rolünün izin verdiği kadarını görür ve hassas veri görüntülemeleri denetim kaydına yazılır.' : 'Personel kayıtları kişisel veri içerir (KVKK). Yalnızca bu cihazda saklanır; hiçbir sunucuya gönderilmez. Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.'}</span></p>`)}`;
 }
 const VIEWS = { ozet: viewHome, izin: viewLeaves, toplanti: viewMeetings, takvim: viewCalendar, personel: viewPeople, ayarlar: viewSettings };
 
@@ -1703,8 +1736,9 @@ function render() {
   $('#tabs').innerHTML = TABS.map(([k, label, icon]) => `<button type="button" class="tab" data-act="tab" data-tab="${k}" ${UI.tab === k ? 'aria-current="page"' : ''}><span class="tab-ico">${icon}</span><span>${label}</span></button>`).join('');
   $('#topDate').textContent = fmt.longDay(today());
   const gear = $('#gearBtn'); gear.innerHTML = I.gear; if (UI.tab === 'ayarlar') gear.setAttribute('aria-current', 'page'); else gear.removeAttribute('aria-current');
+  renderServerChrome();
   $('#view').innerHTML = (VIEWS[UI.tab] || viewHome)();
-  const fab = UI.tab === 'izin' ? ['leave-new', 'İzin talebi'] : UI.tab === 'toplanti' ? ['meeting-new', 'Toplantı'] : UI.tab === 'personel' ? ['person-new', 'Kişi'] : null;
+  const fab = UI.tab === 'izin' ? ['leave-new', 'İzin talebi'] : UI.tab === 'toplanti' ? ['meeting-new', 'Toplantı'] : UI.tab === 'personel' && canWritePeople() ? ['person-new', 'Kişi'] : null;
   $('#fabSlot').innerHTML = fab ? `<button type="button" class="fab" data-act="${fab[0]}">${I.plus}<span>${fab[1]}</span></button>` : '';
   for (const s of sheets) refreshSheet(s);
 }
@@ -1764,14 +1798,14 @@ function confirmSheet(o) { openSheet('confirm', o); }
 
 /* --- leave form --- */
 function personOptions(cur) {
-  const others = otherPeople().slice().sort(byNameTR), known = new Set(others.map(p => p.name));
+  const others = leaveCandidates(), known = new Set(others.map(p => p.name));
   const groups = new Map();
   for (const p of others) { const c = p.company || 'Diğer'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p.name); }
-  const extra = [...new Set(S.leaves.map(l => l.person).filter(n => n !== 'me' && !known.has(n)))];
+  const extra = Srv.on && P().leaveFor !== 'all' ? [] : [...new Set(S.leaves.map(l => l.person).filter(n => n !== 'me' && !known.has(n)))];
   if (cur && cur !== 'me' && !known.has(cur) && !extra.includes(cur)) extra.unshift(cur);
   const opt = n => `<option value="${esc(n)}" ${cur === n ? 'selected' : ''}>${esc(n)}</option>`;
   const grouped = [...groups].sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([c, ns]) => (groups.size > 1 ? `<optgroup label="${esc(c)}">${ns.map(opt).join('')}</optgroup>` : ns.map(opt).join(''))).join('');
-  return `<option value="me" ${cur === 'me' ? 'selected' : ''}>Ben${S.profile.name ? ` (${esc(S.profile.name)})` : ''}</option>${grouped}${extra.length ? `<optgroup label="Diğer kayıtlar">${extra.map(opt).join('')}</optgroup>` : ''}<option value="__other">Başka biri…</option>`;
+  return `<option value="me" ${cur === 'me' ? 'selected' : ''}>Ben${S.profile.name ? ` (${esc(S.profile.name)})` : ''}</option>${grouped}${extra.length ? `<optgroup label="Diğer kayıtlar">${extra.map(opt).join('')}</optgroup>` : ''}${!Srv.on || P().leaveFor === 'all' ? '<option value="__other">Başka biri…</option>' : ''}`;
 }
 function renderLeaveForm(s) {
   const l = s.data.draft, isEdit = !!s.data.existing;
@@ -1780,7 +1814,7 @@ function renderLeaveForm(s) {
   <div class="sheet-body">
     <p class="form-err" role="alert" hidden></p>
     <div class="row2"><div class="field"><label for="lf-person">Kimin için</label><select id="lf-person" name="person">${personOptions(l.person)}</select></div>
-    <div class="field"><label for="lf-status">Durum</label><select id="lf-status" name="status">${Object.entries(STATUS).map(([k, [lb]]) => `<option value="${k}" ${l.status === k ? 'selected' : ''}>${lb}</option>`).join('')}</select></div></div>
+    <div class="field" data-show="status"><label for="lf-status">Durum</label><select id="lf-status" name="status">${Object.entries(STATUS).map(([k, [lb]]) => `<option value="${k}" ${l.status === k ? 'selected' : ''}>${lb}</option>`).join('')}</select></div></div>
     <div class="field" data-show="other" hidden><label for="lf-other">Kişinin adı</label><input id="lf-other" name="other" autocomplete="off" placeholder="Ad soyad"></div>
     <fieldset class="field"><legend>İzin türü</legend><div class="chips">${Object.entries(LEAVE_TYPES).map(([k, t]) => `<label class="chip"><input type="radio" name="type" value="${k}" ${l.type === k ? 'checked' : ''}><span><i class="dot" style="--c:var(${t.color})"></i>${t.label}</span></label>`).join('')}</div><p class="hint" data-hint></p></fieldset>
     <div class="field" data-show="mazeret"><label for="lf-sub">Mazeret nedeni</label><select id="lf-sub" name="sub">${Object.entries(MAZERET).map(([k, [lb, n]]) => `<option value="${k}" ${l.sub === k ? 'selected' : ''}>${lb}${n ? ` · ${n} gün` : ''}</option>`).join('')}</select></div>
@@ -1793,7 +1827,7 @@ function renderLeaveForm(s) {
     <datalist id="dl-team">${S.people.map(p => `<option value="${esc(p.name)}">`).join('')}</datalist>
     <div class="field"><label for="lf-contact">İzinde ulaşılacak telefon / adres</label><input id="lf-contact" name="contact" value="${esc(l.contact)}" autocomplete="off"></div>
     <div class="field"><label for="lf-reason">Açıklama</label><textarea id="lf-reason" name="reason" rows="3">${esc(l.reason)}</textarea></div>
-    <div class="field"><label for="lf-note">Karar notu <span class="muted">(amirin onay/ret açıklaması)</span></label><input id="lf-note" name="note" value="${esc(l.note)}" autocomplete="off"></div>
+    <div class="field" data-show="status"><label for="lf-note">Karar notu <span class="muted">(amirin onay/ret açıklaması)</span></label><input id="lf-note" name="note" value="${esc(l.note)}" autocomplete="off"></div>
   </div></form>`;
 }
 function readLeaveForm(form) {
@@ -1820,6 +1854,9 @@ function syncLeaveForm(s, ev) {
   const d = readLeaveForm(form); d.id = s.data.existing || '__draft';
   const show = (k, on) => form.querySelectorAll(`[data-show="${k}"]`).forEach(el => { el.hidden = !on; });
   show('other', f.person.value === '__other'); show('mazeret', d.type === 'mazeret');
+  const approver = !Srv.on || canApproveName(f.person.value);
+  show('status', approver);
+  if (!approver) { f.status.value = s.data.existing ? ((findLeave(s.data.existing) || {}).status || 'pending') : 'pending'; d.status = f.status.value; }
   show('days', d.type !== 'saatlik'); show('hours', d.type === 'saatlik');
   form.querySelector('[data-start-label]').textContent = d.type === 'saatlik' ? 'Tarih' : 'Başlangıç';
   form.querySelector('[data-hint]').textContent = LEAVE_TYPES[d.type].hint;
@@ -1890,7 +1927,7 @@ function renderLeaveDetail(s) {
   const t = LEAVE_TYPES[l.type], [stL, stT] = STATUS[l.status], ret = returnInfo(l), isMe = l.person === 'me';
   const kv = (k, v) => (v ? `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>` : '');
   const rows = kv('Kişi', personName(l.person)) + kv('Vekil', l.deputy) + kv('İzinde ulaşım', l.contact) + kv('Açıklama', l.reason) + kv('Karar notu', l.note);
-  return `${sheetHead('İzin ayrıntısı', `<button type="button" class="icon-btn" data-act="leave-edit" data-id="${l.id}" aria-label="Düzenle">${I.edit}</button>`)}
+  return `${sheetHead('İzin ayrıntısı', canEditLeave(l) ? `<button type="button" class="icon-btn" data-act="leave-edit" data-id="${l.id}" aria-label="Düzenle">${I.edit}</button>` : '')}
   <div class="sheet-body">
     <div class="detail-hero">
       <div class="dh-top"><span class="tag"><i class="dot" style="--c:var(${t.color})"></i>${esc(t.label)}${l.type === 'mazeret' && MAZERET[l.sub] ? ` · ${esc(MAZERET[l.sub][0])}` : ''}</span>${l.status === 'pending' ? `<span class="pill warn">${stL}</span>` : `<span class="stamp ${stT}">${stL}</span>`}</div>
@@ -1900,15 +1937,16 @@ function renderLeaveDetail(s) {
     </div>
     ${noteList(leaveNotes(l))}
     ${rows ? `<dl class="kv-list">${rows}</dl>` : ''}
-    <div class="field"><span class="lbl">Durumu güncelle</span><div class="seg seg-wide" role="group">${Object.keys(STATUS).map(v => `<button type="button" data-act="leave-status" data-id="${l.id}" data-v="${v}" aria-pressed="${l.status === v}">${STATUS[v][0]}</button>`).join('')}</div></div>
+    ${canApproveLeave(l) ? `<div class="field"><span class="lbl">Durumu güncelle</span><div class="seg seg-wide" role="group">${Object.keys(STATUS).map(v => `<button type="button" data-act="leave-status" data-id="${l.id}" data-v="${v}" aria-pressed="${l.status === v}">${STATUS[v][0]}</button>`).join('')}</div></div>`
+      : isMe && (l.status === 'pending' || (l.status === 'approved' && l.end >= today())) ? `<div><button type="button" class="btn" data-act="leave-status" data-id="${l.id}" data-v="cancelled">${I.x} İzni iptal et</button></div>` : ''}
     <div class="act-grid">
       ${isMe ? `<button type="button" class="btn" data-act="leave-msg" data-id="${l.id}">${I.msg} Talep mesajı</button>` : ''}
       <button type="button" class="btn" data-act="leave-doc" data-id="${l.id}">${I.file} İzin formu</button>
       <button type="button" class="btn" data-act="leave-ics" data-id="${l.id}">${I.download} Takvim dosyası</button>
       <a class="btn" href="${esc(gcalLeave(l))}" target="_blank" rel="noopener">${I.cal} Google Takvim</a>
     </div>
-    <section class="sec"><h4 class="sec-title">Geçmiş</h4><ol class="timeline">${l.history.slice().reverse().map(h => `<li><span class="mono">${fmt.stamp(h.at)}</span><span>${esc(h.text)}</span></li>`).join('')}</ol></section>
-    <div><button type="button" class="btn btn-danger" data-act="leave-delete" data-id="${l.id}">${I.trash} Kaydı sil</button></div>
+    <section class="sec"><h4 class="sec-title">Geçmiş</h4><ol class="timeline">${l.history.slice().reverse().map(h => `<li><span class="mono">${fmt.stamp(h.at)}</span><span>${esc(h.text)}${h.by ? ` <span class="muted">· ${esc(h.by)}</span>` : ''}</span></li>`).join('')}</ol></section>
+    ${!Srv.on || canApproveLeave(l) || (isMe && l.status === 'pending') ? `<div><button type="button" class="btn btn-danger" data-act="leave-delete" data-id="${l.id}">${I.trash} Kaydı sil</button></div>` : ''}
   </div>`;
 }
 
@@ -2020,7 +2058,7 @@ function renderMeetingDetail(s) {
   const owners = [...new Set([S.profile.name, ...m.participants].filter(Boolean))];
   const pOf = n => findPerson(n);
   const onLeave = new Set(S.leaves.filter(l => activeLeave(l) && covers(l, m.date) && l.person !== 'me').map(l => lowerTR(l.person)));
-  return `${sheetHead('Toplantı', `<button type="button" class="icon-btn" data-act="meeting-edit" data-id="${m.id}" aria-label="Düzenle">${I.edit}</button>`)}
+  return `${sheetHead('Toplantı', ownsMeeting(m) ? `<button type="button" class="icon-btn" data-act="meeting-edit" data-id="${m.id}" aria-label="Düzenle">${I.edit}</button>` : '')}
   <div class="sheet-body">
     <div class="detail-hero">
       <div class="dh-top"><span class="tag">${kindDot(m.kind)}${esc(k[0])}${m.seriesId ? ' · tekrarlanan' : ''}</span>${live ? '<span class="pill live">Şu an</span>' : `<span class="pill ${MSTATUS[m.status][1]}">${m.status === 'planned' ? esc(countdown(m)) : MSTATUS[m.status][0]}</span>`}</div>
@@ -2028,6 +2066,7 @@ function renderMeetingDetail(s) {
       <p class="dh-sub mono">${fmt.longDay(m.date)} · ${m.start}–${m.end} (${mDur(m)} dk)</p>
       ${m.location ? `<p class="tag" style="font-weight:500">${I.pin.replace('class="ic"', 'class="ic" style="width:16px;height:16px"')}${esc(m.location)}</p>` : ''}
       ${link ? `<div style="margin-top:6px"><a class="btn btn-primary" href="${esc(link)}" target="_blank" rel="noopener">${I.video} Toplantıya katıl</a></div>` : ''}
+      ${Srv.on && m._owner && !ownsMeeting(m) ? `<p class="fine">Düzenleyen: ${esc(m._owner)}. Gündem, katılım, not ve aksiyonları siz de güncelleyebilirsiniz.</p>` : ''}
     </div>
     ${m.status === 'planned' ? noteList(meetingNotes(m)) : ''}
     <section class="sec"><div class="sec-head"><h4 class="sec-title">Gündem</h4><span class="fine">${m.agenda.filter(a => a.done).length}/${m.agenda.length}</span></div>
@@ -2048,10 +2087,10 @@ function renderMeetingDetail(s) {
       <button type="button" class="btn" data-act="meeting-ics" data-id="${m.id}">${I.download} Takvim dosyası</button>
       <a class="btn" href="${esc(gcalMeeting(m))}" target="_blank" rel="noopener">${I.cal} Google Takvim</a></div></section>
     <section class="sec"><h4 class="sec-title">Toplantı</h4><div class="act-grid">
-      ${m.status !== 'done' ? `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="done">${I.check} Yapıldı olarak işaretle</button>` : `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="planned">Planlandı’ya al</button>`}
-      ${m.status !== 'cancelled' ? `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="cancelled">${I.x} İptal et</button>` : ''}
+      ${!ownsMeeting(m) ? '' : m.status !== 'done' ? `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="done">${I.check} Yapıldı olarak işaretle</button>` : `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="planned">Planlandı’ya al</button>`}
+      ${ownsMeeting(m) && m.status !== 'cancelled' ? `<button type="button" class="btn" data-act="meeting-status" data-id="${m.id}" data-v="cancelled">${I.x} İptal et</button>` : ''}
       <button type="button" class="btn" data-act="meeting-dup" data-id="${m.id}">${I.copy} Çoğalt</button>
-      <button type="button" class="btn btn-danger" data-act="meeting-delete" data-id="${m.id}">${I.trash} Sil</button></div></section>
+      ${ownsMeeting(m) ? `<button type="button" class="btn btn-danger" data-act="meeting-delete" data-id="${m.id}">${I.trash} Sil</button>` : ''}</div></section>
   </div>`;
 }
 
@@ -2063,6 +2102,7 @@ function renderText(s) {
     <textarea id="${tid}" class="textout" readonly aria-label="${esc(d.title)}">${esc(d.text)}</textarea>
     <div class="act-grid">
       <button type="button" class="btn btn-primary" data-act="copy" data-src="${tid}">${I.copy} Kopyala</button>
+      ${d.csv ? `<button type="button" class="btn" data-act="cred-csv">${I.file} Excel listesi (.csv)</button>` : ''}
       ${d.wa !== false ? `<a class="btn" href="https://wa.me/?text=${encodeURIComponent(d.text)}" target="_blank" rel="noopener">${I.msg} WhatsApp</a>` : ''}
       ${d.mail ? `<a class="btn" href="mailto:${esc(d.mail.to || '')}?subject=${encodeURIComponent(d.mail.subject || '')}&body=${encodeURIComponent(d.text)}">${I.mail} E-posta</a>` : ''}
       ${canShareText() ? `<button type="button" class="btn" data-act="share-text" data-src="${tid}">${I.share} Paylaş</button>` : ''}
@@ -2102,6 +2142,7 @@ function renderRestore() {
 function renderPerson(s) {
   const p = S.people.find(x => x.id === s.data.id);
   if (!p) return sheetHead('Personel') + '<div class="sheet-body"><p>Bu kayıt silinmiş.</p></div>';
+  if (!fullAccess(p)) return renderPersonDirectory(p);
   const isMe = p.id === S.meId, who = isMe ? 'me' : p.name, t = today(), b = balance(undefined, who);
   const show = !!s.data.reveal || !S.settings.maskSensitive, ph = phoneTR(p.phone);
   const onLeave = S.leaves.some(l => l.person === who && l.status === 'approved' && covers(l, t));
@@ -2109,12 +2150,12 @@ function renderPerson(s) {
   const leaves = S.leaves.filter(l => l.person === who && activeLeave(l) && l.end >= t).sort((a, c) => a.start.localeCompare(c.start)).slice(0, 4);
   const meets = S.meetings.filter(m => m.status === 'planned' && mEnd(m) >= Date.now() && m.participants.some(n => fold(n) === fold(p.name))).sort(byStart).slice(0, 3);
   const age = ageOf(p, t), sen = seniorityText(p);
-  return `${sheetHead('Personel', `<button type="button" class="icon-btn" data-act="person-edit" data-id="${p.id}" aria-label="Düzenle">${I.edit}</button>`)}
+  return `${sheetHead('Personel', canWritePeople() ? `<button type="button" class="icon-btn" data-act="person-edit" data-id="${p.id}" aria-label="Düzenle">${I.edit}</button>` : '')}
   <div class="sheet-body">
     <div class="detail-hero"><div class="person-hero"><span class="avatar lg" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><div><h3 class="dh-title">${esc(p.name)}${isMe ? ' <span class="badge">Siz</span>' : ''}</h3><p class="dh-sub">${esc([p.title, p.company].filter(Boolean).join(' · ') || 'Ünvan ve şirket yok')}</p>${onLeave ? '<p><span class="pill warn">Bugün izinde</span></p>' : ''}</div></div></div>
     ${ph.ok || p.email ? `<div class="contact-row">${ph.ok ? `<a class="btn" href="tel:+${ph.digits}">${I.call} Ara</a><a class="btn" href="https://wa.me/${ph.digits}" target="_blank" rel="noopener">${I.msg} WhatsApp</a>` : ''}${p.email ? `<a class="btn" href="mailto:${esc(p.email)}">${I.mail} E-posta</a>` : ''}<button type="button" class="btn" data-act="person-vcf" data-id="${p.id}">${I.download} Rehbere ekle</button></div>` : ''}
-    ${noteList(personFlags(p).map(f => ['warn', f]))}
-    <section class="sec"><div class="sec-head"><h4 class="sec-title">Yıllık izin</h4><button type="button" class="sec-link" data-act="leave-new" data-person="${esc(who)}">İzin ekle</button></div>
+    ${canWritePeople() ? noteList(personFlags(p).map(f => ['warn', f])) : ''}
+    <section class="sec"><div class="sec-head"><h4 class="sec-title">Yıllık izin</h4>${!Srv.on || isMe || leaveCandidates().some(x => x.id === p.id) ? `<button type="button" class="sec-link" data-act="leave-new" data-person="${esc(who)}">İzin ekle</button>` : ''}</div>
       <dl class="kv-list">${kv('Bu dönem hak', `${fmt.num(b.total)} gün`)}${kv('Kullanılan', `${fmt.num(b.used)} gün`)}${b.planned || b.pending ? kv('Planlı / bekleyen', `${fmt.num(b.planned)} / ${fmt.num(b.pending)} gün`) : ''}${kv('Kalan', `<b class="${b.remaining < 0 ? 'neg' : ''}">${fmt.num(b.remaining)} gün</b>`)}${kv('Dayanak', esc(basisText(b)))}${b.next && b.basis === 'law' ? kv('Sonraki hak', `${fmt.long(b.next)} · ${b.nextEnt} gün`) : ''}</dl>
       ${leaves.length ? `<div class="list">${leaves.map(leaveRow).join('')}</div>` : ''}</section>
     ${meets.length ? `<section class="sec"><h4 class="sec-title">Yaklaşan toplantılar</h4><div class="list">${meets.map(m => meetingRow(m, true)).join('')}</div></section>` : ''}
@@ -2125,10 +2166,10 @@ function renderPerson(s) {
       ${kv('Doğum yeri', esc(p.birthPlace))}${kv('Cep telefonu', esc(p.phone))}${kv('E-posta', esc([p.email, p.email2].filter(Boolean).join('\n')))}${kv('Adres', esc(p.address))}
       ${kv('Eğitim', esc([p.education, p.gradDate].filter(Boolean).join(' · ')))}${kv('Diller', esc(p.languages))}${kv('Medeni hali', esc(p.marital))}${kv('Çocuk sayısı', esc(p.children))}${kv('İlgi alanları', esc(p.interests))}${kv('Notlar', esc(p.notes))}
     </dl></section>
-    ${p.tc || p.blood ? `<section class="sec"><div class="sec-head"><h4 class="sec-title">Hassas bilgiler</h4>${S.settings.maskSensitive ? `<button type="button" class="sec-link" data-act="person-reveal">${show ? 'Gizle' : 'Göster'}</button>` : ''}</div>
+    ${Srv.on ? serverSensitiveHTML(p, s) : p.tc || p.blood ? `<section class="sec"><div class="sec-head"><h4 class="sec-title">Hassas bilgiler</h4>${S.settings.maskSensitive ? `<button type="button" class="sec-link" data-act="person-reveal">${show ? 'Gizle' : 'Göster'}</button>` : ''}</div>
       <dl class="kv-list">${kv('TC kimlik no', p.tc ? `<span class="mono">${esc(show ? p.tc : maskTC(p.tc))}</span>${show ? (tcValid(p.tc) ? ' <span class="pill ok">geçerli</span>' : ' <span class="pill bad">doğrulanamadı</span>') : ''}` : '')}${kv('Kan grubu', p.blood ? esc(show ? p.blood : '•••') : '')}</dl>
       <p class="hint">Kan grubu sağlık verisidir (KVKK md. 6); yalnızca acil durumlar için saklayın.</p></section>` : ''}
-    <div class="act-grid"><button type="button" class="btn" data-act="person-doc" data-id="${p.id}">${I.file} Personel bilgi formu</button>${isMe ? '' : `<button type="button" class="btn" data-act="person-me" data-id="${p.id}">${I.idcard} Bu benim</button>`}<button type="button" class="btn btn-danger" data-act="person-delete" data-id="${p.id}">${I.trash} Kişiyi sil</button></div>
+    <div class="act-grid"><button type="button" class="btn" data-act="person-doc" data-id="${p.id}">${I.file} Personel bilgi formu</button>${isMe || Srv.on ? '' : `<button type="button" class="btn" data-act="person-me" data-id="${p.id}">${I.idcard} Bu benim</button>`}${canWritePeople() ? `<button type="button" class="btn btn-danger" data-act="person-delete" data-id="${p.id}">${I.trash} Kişiyi sil</button>` : ''}</div>
     <p class="fine">${esc(p.source || '')}</p>
   </div>`;
 }
@@ -2143,15 +2184,15 @@ function renderPersonForm(s) {
     <section class="sec"><h4 class="sec-title">Kimlik ve görev</h4><div class="form-grid">${f('firstName', 'Adı')}${f('lastName', 'Soyadı')}<div class="field"><label for="pf-company">Şirket</label><input id="pf-company" name="company" list="dl-co" value="${esc(p.company)}" autocomplete="off"></div>${f('title', 'Ünvan')}${f('hireDate', 'İşe başlama tarihi', 'date')}${f('birthDate', 'Doğum tarihi', 'date')}${f('birthPlace', 'Doğum yeri')}</div>
       <datalist id="dl-co">${companies().map(c => c[0]).filter(Boolean).map(c => `<option value="${esc(c)}">`).join('')}</datalist>
       ${!p.hireDate && p.hireYear ? `<p class="note warn">${I.alert}<span>Kaynakta işe giriş yalnızca yıl olarak var (${esc(p.hireYear)}). İzin hakkı için tam tarihi girin.</span></p>` : ''}</section>
-    <section class="sec"><h4 class="sec-title">İletişim</h4><div class="form-grid">${f('phone', 'Cep telefonu', 'tel', 'inputmode="tel"')}${f('email', 'E-posta', 'email', 'inputmode="email"')}${f('email2', 'İkinci e-posta', 'email', 'inputmode="email"')}</div><div class="field"><label for="pf-address">Adres</label><textarea id="pf-address" name="address" rows="2">${esc(p.address)}</textarea></div></section>
+    <section class="sec"><h4 class="sec-title">İletişim</h4><div class="form-grid">${f('phone', 'Cep telefonu', 'tel', 'inputmode="tel"')}${f('email', 'E-posta', 'email', 'inputmode="email"')}${f('email2', 'İkinci e-posta', 'email', 'inputmode="email"')}</div>${sensEditable() ? `<div class="field"><label for="pf-address">Adres</label><textarea id="pf-address" name="address" rows="2">${esc(p.address)}</textarea></div>` : ''}</section>
     <section class="sec"><h4 class="sec-title">Eğitim ve diğer</h4><div class="form-grid">${f('education', 'Mezuniyet')}${f('gradDate', 'Mezuniyet tarihi')}${f('languages', 'Diller')}${sel('marital', 'Medeni hali', mar)}${f('children', 'Çocuk sayısı', 'text', 'inputmode="numeric"')}</div><div class="field"><label for="pf-interests">İlgi alanları / yetenekler</label><textarea id="pf-interests" name="interests" rows="2">${esc(p.interests)}</textarea></div></section>
     <section class="sec"><h4 class="sec-title">Yıllık izin</h4><div class="form-grid">${f('entitlementOverride', 'Yıllık hak (boşsa kanuna göre)', 'text', 'inputmode="decimal"')}${f('carryOver', 'Devreden izin (gün)', 'text', 'inputmode="decimal"')}</div></section>
-    <section class="sec"><h4 class="sec-title">Hassas bilgiler</h4><div class="form-grid">${f('tc', 'TC kimlik no', 'text', 'inputmode="numeric" maxlength="11"')}${sel('blood', 'Kan grubu', bloods)}</div><p class="hint" data-tc-hint></p></section>
+    ${sensEditable() ? `<section class="sec"><h4 class="sec-title">Hassas bilgiler</h4><div class="form-grid">${f('tc', 'TC kimlik no', 'text', 'inputmode="numeric" maxlength="11"')}${sel('blood', 'Kan grubu', bloods)}</div><p class="hint" data-tc-hint>${Srv.on && s.data.existing ? 'Yükleniyor…' : ''}</p></section>` : ''}
     <div class="field"><label for="pf-notes">Notlar</label><textarea id="pf-notes" name="notes" rows="2">${esc(p.notes)}</textarea></div>
   </div></form>`;
 }
 function syncPersonForm(s) {
-  const form = s.el.querySelector('form'), h = form && form.querySelector('[data-tc-hint]'); if (!h) return;
+  const form = s.el.querySelector('form'), h = form && form.querySelector('[data-tc-hint]'); if (!h || !form.elements.tc) return;
   const v = form.elements.tc.value.replace(/\D/g, '');
   h.textContent = !v ? '' : v.length < 11 ? `${v.length}/11 hane` : tcValid(v) ? 'TC kimlik numarası geçerli görünüyor.' : 'TC kimlik numarası doğrulanamadı; rakamları kontrol edin.';
 }
@@ -2166,6 +2207,7 @@ function submitPerson(form, s) {
   const ph = phoneTR(d.phone); if (ph.ok) d.phone = ph.text;
   d.tc = d.tc.replace(/\D/g, ''); d.children = d.children.replace(/\D/g, ''); d.carryOver = parseFloat(d.carryOver.replace(',', '.')) || 0;
   d.email = d.email.toLowerCase(); d.email2 = d.email2.toLowerCase();
+  if (Srv.on) return submitPersonServer(form, s, d, err);
   let p;
   if (s.data.existing) {
     p = S.people.find(x => x.id === s.data.existing); if (!p) return;
@@ -2183,7 +2225,7 @@ function renderImport() {
     <label class="drop" for="peopleFile">${I.upload}<b>Dosya seçin</b><span class="hint">Personel Bilgi Formu (PDF), Excel’den “CSV” olarak kaydedilmiş liste ya da Finans360 personel dosyası (JSON)</span></label>
     <input id="peopleFile" type="file" accept=".pdf,.csv,.txt,.json,application/pdf,text/csv,application/json" hidden>
     <p class="hint" data-import-status aria-live="polite"></p>
-    <p class="note">${I.lock}<span>Dosya bu cihazda okunur ve hiçbir sunucuya gönderilmez. PDF okuyucu, uygulamaya gömülü değilse ilk kullanımda internetten yüklenir. Kaydetmeden önce okunan kişileri gözden geçirirsiniz.</span></p>
+    <p class="note">${I.lock}<span>${Srv.on ? 'Dosya bu cihazda okunur. Okunan kayıtları gözden geçirip onayladığınızda şirket sunucusuna kaydedilir.' : 'Dosya bu cihazda okunur ve hiçbir sunucuya gönderilmez. PDF okuyucu, uygulamaya gömülü değilse ilk kullanımda internetten yüklenir. Kaydetmeden önce okunan kişileri gözden geçirirsiniz.'}</span></p>
     <details><summary class="sec-title">Excel’den nasıl aktarılır?</summary><div class="sec" style="margin-top:10px"><p class="hint">İlk satır başlık olmalı: ${esc(CSV_COLS.slice(0, 12).map(c => c[0]).join('; '))} … Tarihler 01.03.2026 biçiminde yazılabilir. Excel’de Dosya › Farklı Kaydet › “CSV UTF-8” seçin.</p><div><button type="button" class="btn btn-sm" data-act="people-template">${I.download} Boş şablonu indir</button></div></div></details>
   </div>`;
 }
@@ -2198,10 +2240,10 @@ function renderImportPreview(s) {
   <div class="sheet-body">
     <div class="summary"><div class="sum-main"><strong>${recs.length}</strong><span>kişi okundu</span><span class="muted">· ${esc(s.data.source)}</span></div><div>${newC} yeni kayıt${recs.length - newC ? `, ${recs.length - newC} mevcut kaydın güncellemesi` : ''}.</div></div>
     ${cos.length ? `<fieldset class="field"><legend>Şirket adları</legend><p class="hint">E-posta alan adlarından çıkarıldı. Yanlışsa düzeltin; aynı adı yazdığınız şirketler birleşir.</p><div class="sec" style="gap:8px">${cos.map(([c, n]) => `<div class="inline-form"><input class="inp" data-co-key="${esc(c)}" value="${esc(c)}" aria-label="${esc(c)} şirket adı"><span class="pill">${n} kişi</span></div>`).join('')}</div></fieldset>` : ''}
-    <div class="field"><label for="imp-me">Bu kişilerden biri siz misiniz?</label><select id="imp-me" name="me"><option value="">Hayır / sonra seçerim</option>${recs.slice().sort(byNameTR).map(r => `<option value="${esc(r.name)}" ${guess && guess.name === r.name ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select><p class="hint">Seçerseniz profiliniz, izin hakkınız ve formlarınız bu kayıttan doldurulur.</p></div>
+    <div class="field" ${Srv.on ? 'hidden' : ''}><label for="imp-me">Bu kişilerden biri siz misiniz?</label><select id="imp-me" name="me"><option value="">Hayır / sonra seçerim</option>${recs.slice().sort(byNameTR).map(r => `<option value="${esc(r.name)}" ${guess && guess.name === r.name ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select><p class="hint">Seçerseniz profiliniz, izin hakkınız ve formlarınız bu kayıttan doldurulur.</p></div>
     <section class="sec"><h4 class="sec-title">Okunan kişiler</h4><div class="list">${recs.map(r => { const n = personFlags(r).length; return `<div class="row"><span class="avatar" style="--c:var(${coColor(r.company)})">${esc(initials(r.name))}</span><span class="row-main"><span class="row-title">${esc(r.name)}</span><span class="row-sub">${esc([r.title, r.company].filter(Boolean).join(' · ') || '—')}</span></span><span class="row-end">${isKnown(r) ? '<span class="pill info">güncelleme</span>' : ''}${n ? `<span class="pill warn">${n} uyarı</span>` : ''}</span></div>`; }).join('')}</div></section>
     ${flagged.length ? `<details><summary class="sec-title">Kontrol edilmesi gerekenler (${flagged.length})</summary><div class="notes" style="margin-top:10px">${flagged.map(([r, f]) => `<p class="note warn">${I.alert}<span><b>${esc(r.name)}:</b> ${esc(f.join(' '))}</span></p>`).join('')}</div></details>` : ''}
-    <p class="note">${I.lock}<span>Kayıtlar yalnızca bu cihazda saklanır. TC kimlik no ve kan grubu varsayılan olarak gizli gösterilir; Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.</span></p>
+    <p class="note">${I.lock}<span>${Srv.on ? 'Kayıtlar şirket sunucusuna kaydedilir. TC kimlik no, kan grubu ve adres yalnız yetkili kişilere gösterilir; her görüntüleme denetim kaydına yazılır.' : 'Kayıtlar yalnızca bu cihazda saklanır. TC kimlik no ve kan grubu varsayılan olarak gizli gösterilir; Ayarlar › Gizlilik ve kilit bölümünden PIN kilidi açabilirsiniz.'}</span></p>
   </div></form>`;
 }
 async function handleImportFile(file, s) {
@@ -2239,6 +2281,7 @@ function submitImport(form, s) {
   $$('[data-co-key]', form).forEach(i => { const v = clean(i.value); if (v && v !== i.dataset.coKey) ren[i.dataset.coKey] = v; });
   const recs = s.data.records.map(r => ({ ...r, company: ren[r.company] || r.company }));
   for (const r of recs) if (r.company && r.email && !isFreeMail(r.email)) S.settings.companyMap[r.email.split('@')[1]] = r.company;
+  if (Srv.on) return submitImportServer(form, s, recs);
   const res = mergePeople(recs);
   const meName = form.elements.me.value;
   if (meName) { const p = findPerson(meName); if (p) setMe(p.id); }
@@ -2259,7 +2302,7 @@ function showLock(mode) {
   const el = $('#lock'), logo = ($('.brand svg') || {}).outerHTML || '';
   el.hidden = false;
   el.innerHTML = mode === 'forgot'
-    ? `<div class="lock-box">${logo}<h1>PIN’i sıfırla</h1><p class="muted">PIN unutulduysa tek yol bu cihazdaki tüm Finans360 verilerini silmektir. Yedeğiniz varsa sonra Ayarlar › Yedekten yükle ile geri alabilirsiniz.</p><button type="button" class="btn btn-danger btn-block" data-act="pin-wipe">Tüm verileri sil ve sıfırla</button><button type="button" class="btn btn-quiet" data-act="pin-back">Geri dön</button></div>`
+    ? `<div class="lock-box">${logo}<h1>PIN’i sıfırla</h1>${Srv.on ? '<p class="muted">PIN’i unuttuysanız bu cihazdaki oturumu kapatın. Şirket şifrenizle yeniden giriş yaptığınızda kayıtlarınız sunucudan gelir.</p><button type="button" class="btn btn-danger btn-block" data-act="pin-wipe">Oturumu kapat ve PIN’i kaldır</button>' : '<p class="muted">PIN unutulduysa tek yol bu cihazdaki tüm Finans360 verilerini silmektir. Yedeğiniz varsa sonra Ayarlar › Yedekten yükle ile geri alabilirsiniz.</p><button type="button" class="btn btn-danger btn-block" data-act="pin-wipe">Tüm verileri sil ve sıfırla</button>'}<button type="button" class="btn btn-quiet" data-act="pin-back">Geri dön</button></div>`
     : `<form class="lock-box" data-form="unlock" novalidate>${logo}<h1>Finans360</h1><p class="muted">Devam etmek için PIN’inizi girin.</p><input id="pinInput" type="password" name="pin" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="PIN"><p class="form-err" role="alert" hidden></p><button class="btn btn-primary btn-block" type="submit">Kilidi aç</button><button type="button" class="btn btn-quiet" data-act="pin-forgot">PIN’imi unuttum</button></form>`;
   setTimeout(() => { const i = $('#pinInput'); if (i) i.focus(); }, 60);
 }
@@ -2275,7 +2318,7 @@ const SHEETS = {
   confirm: { label: s => s.data.title, render: renderConfirm, cls: 'sheet-sm', static: true },
   restore: { label: () => 'Yedekten yükle', render: renderRestore, cls: 'sheet-sm', static: true },
   person: { label: () => 'Personel', render: renderPerson },
-  personForm: { label: s => (s.data.existing ? 'Kişiyi düzenle' : 'Yeni kişi'), render: renderPersonForm, mount: s => syncPersonForm(s), static: true },
+  personForm: { label: s => (s.data.existing ? 'Kişiyi düzenle' : 'Yeni kişi'), render: renderPersonForm, mount: s => { syncPersonForm(s); loadSensForForm(s); }, static: true },
   import: { label: () => 'Personel içe aktar', render: renderImport, cls: 'sheet-sm', static: true },
   importPreview: { label: () => 'İçe aktarmayı onayla', render: renderImportPreview, static: true }
 };
@@ -2361,13 +2404,18 @@ const A = {
   'person-new': () => openSheet('personForm', { draft: blankPerson() }),
   'person-open': el => openSheet('person', { id: el.dataset.id }),
   'person-edit': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) swapSheet(sheetOf(el), 'personForm', { draft: clone(p), existing: p.id, fromDetail: true }); },
-  'person-reveal': el => { const s = sheetOf(el); if (s) { s.data.reveal = !s.data.reveal; refreshSheet(s); } },
+  'person-reveal': el => {
+    const s = sheetOf(el); if (!s) return;
+    if (!Srv.on) { s.data.reveal = !s.data.reveal; refreshSheet(s); return; }
+    if (s.data.sens) { s.data.sens = null; refreshSheet(s); return; }
+    api('GET', `/api/people/${encodeURIComponent(s.data.id)}/sensitive`).then(r => { s.data.sens = r; refreshSheet(s); }).catch(e => toast(e.message));
+  },
   'person-me': el => { setMe(el.dataset.id); afterChange(); toast('Profiliniz bu kayda bağlandı'); },
   'person-vcf': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) saveFile(`${fold(p.name) || 'kisi'}.vcf`, 'text/vcard', vcard(p) + '\r\n'); },
-  'person-doc': el => { const p = S.people.find(x => x.id === el.dataset.id); if (p) openSheet('doc', { title: 'Personel bilgi formu', html: pbfDocHTML(p), text: pbfText(p), file: `personel-${fold(p.name) || 'kisi'}.html` }); },
+  'person-doc': el => { const sh = sheetOf(el), p0 = S.people.find(x => x.id === el.dataset.id), p = p0 && { ...p0, ...((sh && sh.data.sens) || {}) }; if (p) openSheet('doc', { title: 'Personel bilgi formu', html: pbfDocHTML(p), text: pbfText(p), file: `personel-${fold(p.name) || 'kisi'}.html` }); },
   'person-delete': el => {
     const p = S.people.find(x => x.id === el.dataset.id); if (!p) return;
-    confirmSheet({ title: `${p.name} silinsin mi?`, body: 'Kişi kaydı silinir. İzin ve toplantı kayıtlarındaki adı korunur. Bu işlem geri alınamaz.', ok: 'Sil', danger: true, run: () => { if (S.meId === p.id) { for (const l of S.leaves) if (l.person === 'me') l.person = p.name; S.meId = null; } S.people = S.people.filter(x => x.id !== p.id); persist(); render(); closeTo(0, () => toast('Kişi silindi')); } });
+    confirmSheet({ title: `${p.name} silinsin mi?`, body: 'Kişi kaydı silinir. İzin ve toplantı kayıtlarındaki adı korunur. Bu işlem geri alınamaz.', ok: 'Sil', danger: true, run: () => { if (Srv.on) { api('DELETE', `/api/people/${encodeURIComponent(p.id)}`).then(() => { S.people = S.people.filter(x => x.id !== p.id); render(); closeTo(0, () => toast('Kişi silindi')); }).catch(e => toast(e.message)); return; } if (S.meId === p.id) { for (const l of S.leaves) if (l.person === 'me') l.person = p.name; S.meId = null; } S.people = S.people.filter(x => x.id !== p.id); persist(); render(); closeTo(0, () => toast('Kişi silindi')); } });
   },
   'people-import': () => openSheet('import'),
   'people-template': () => saveFile('personel-sablon.csv', 'text/csv', '\ufeff' + CSV_COLS.map(c => c[0]).join(';') + '\r\n'),
@@ -2388,7 +2436,7 @@ const A = {
   'pin-off': () => confirmSheet({ title: 'PIN kilidi kaldırılsın mı?', body: 'Uygulama açılırken artık PIN sorulmaz.', ok: 'Kilidi kaldır', run: () => { S.settings.pinHash = ''; persist(); render(); toast('PIN kilidi kaldırıldı'); } }),
   'pin-forgot': () => showLock('forgot'),
   'pin-back': () => showLock(),
-  'pin-wipe': () => { S = emptyState(); persistNow(); hideLock(); applyTheme(); UI.tab = 'ozet'; render(); toast('Tüm veriler silindi; PIN kaldırıldı'); },
+  'pin-wipe': () => { if (Srv.on) { S.settings.pinHash = ''; savePrefs(); hideLock(); logout(); return; } S = emptyState(); persistNow(); hideLock(); applyTheme(); UI.tab = 'ozet'; render(); toast('Tüm veriler silindi; PIN kaldırıldı'); },
   'room-del': el => { S.settings.rooms = S.settings.rooms.filter(n => n !== el.dataset.name); afterChange(); },
   'hol-del': el => { S.settings.customHolidays = S.settings.customHolidays.filter(h => h.date !== el.dataset.date); afterChange(); },
   'notify-on': () => enableNotifications(),
@@ -2404,12 +2452,13 @@ const A = {
     saveFile(`izinler-${today()}.csv`, 'text/csv', '\ufeff' + rows.map(r => r.map(q).join(';')).join('\r\n'));
   },
   'ics-all': () => saveFile(`finans360-takvim-${today()}.ics`, 'text/calendar', icsWrap([...S.meetings.filter(m => m.status !== 'cancelled').map(icsMeeting), ...S.leaves.filter(activeLeave).map(icsLeave)])),
-  'wipe': () => confirmSheet({ title: 'Tüm veriler silinsin mi?', body: 'İzinler, toplantılar, profil ve ayarlar bu cihazdan silinir. Bu işlem geri alınamaz.', ok: 'Hepsini sil', danger: true, run: () => { S = emptyState(); persist(); applyTheme(); render(); toast('Tüm veriler silindi'); } })
+  'wipe': () => Srv.on ? null : confirmSheet({ title: 'Tüm veriler silinsin mi?', body: 'İzinler, toplantılar, profil ve ayarlar bu cihazdan silinir. Bu işlem geri alınamaz.', ok: 'Hepsini sil', danger: true, run: () => { S = emptyState(); persist(); applyTheme(); render(); toast('Tüm veriler silindi'); } })
 };
 function restoreFrom(text) {
   let o;
   try { o = JSON.parse(text); } catch (e) { toast('Yedek okunamadı: geçerli bir JSON değil.'); return; }
   if (!o || !Array.isArray(o.leaves) || !Array.isArray(o.meetings)) { toast('Bu dosya bir Finans360 yedeği değil.'); return; }
+  if (Srv.on) return importBackupToServer(o);
   confirmSheet({ title: 'Yedek yüklensin mi?', body: `${o.leaves.length} izin ve ${o.meetings.length} toplantı yüklenecek. Bu cihazdaki kayıtların yerini alır.`, ok: 'Yükle', run: () => { S = migrate(o); persist(); applyTheme(); render(); closeTo(0, () => toast('Yedek yüklendi')); } });
 }
 
@@ -2425,6 +2474,7 @@ document.addEventListener('submit', e => {
   e.preventDefault();
   const s = sheetOf(form);
   const val = n => (form.elements[n] ? form.elements[n].value.trim() : '');
+  if (SUBMITS[kind]) return SUBMITS[kind](form, s, val);
   if (kind === 'leave') return submitLeave(form, s);
   if (kind === 'meeting') return submitMeeting(form, s);
   if (kind === 'person') return submitPerson(form, s);
@@ -2432,7 +2482,7 @@ document.addEventListener('submit', e => {
   if (kind === 'unlock') {
     const pin = val('pin');
     pinHash(pin).then(h => {
-      if (h === S.settings.pinHash) { hideLock(); render(); return; }
+      if (h === S.settings.pinHash) { hideLock(); if (Srv.on && !Srv.user) enterApp(); else render(); return; }
       const err = form.querySelector('.form-err'); err.textContent = 'PIN yanlış. Tekrar deneyin.'; err.hidden = false;
       form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake'); form.elements.pin.value = ''; form.elements.pin.focus();
     });
@@ -2455,6 +2505,7 @@ document.addEventListener('input', e => {
   if (t.id === 'lq') { UI.leaveQ = t.value; const box = $('#leaveList'); if (box) box.innerHTML = leaveListHTML(); return; }
   if (t.id === 'mq') { UI.mQ = t.value; const box = $('#meetingList'); if (box) box.innerHTML = meetingListHTML(); return; }
   if (t.id === 'pq') { UI.pQ = t.value; const box = $('#peopleList'); if (box) box.innerHTML = peopleListHTML(); return; }
+  if (t.id === 'uq') { UI.uQ = t.value; const box = $('#userList'); if (box) box.innerHTML = userListHTML(); return; }
   if (t.name === 'partAdd') return;
   if (t.dataset.actInput === 'notes') { const m = findMeeting(t.dataset.mid); if (m) { m.notes = t.value; persistSoon(); const sv = t.closest('.sec').querySelector('[data-saved]'); if (sv) sv.textContent = 'Kaydedildi'; } return; }
   if (t.dataset.bind) { bindInput(t); return; }
@@ -2466,6 +2517,7 @@ document.addEventListener('input', e => {
 document.addEventListener('change', e => {
   const t = e.target;
   if (t.dataset.bind && (t.type === 'checkbox' || t.tagName === 'SELECT')) { bindInput(t); return; }
+  if (handleServerChange(t)) return;
   if (t.id === 'peopleFile' && t.files && t.files[0]) { handleImportFile(t.files[0], sheetOf(t)); t.value = ''; return; }
   if (t.id === 's-me') { if (t.value) setMe(t.value); else setMe(null); persist(); render(); toast(t.value ? 'Profiliniz bu kayda bağlandı' : 'Bağlantı kaldırıldı'); return; }
   if (t.name === 'partAdd') { const s = sheetOf(t); if (s && findPerson(t.value)) { addParts(s, [t.value]); t.value = ''; } return; }
@@ -2477,6 +2529,7 @@ document.addEventListener('change', e => {
 function bindInput(t) {
   const [grp, key] = t.dataset.bind.split('.');
   let v = t.type === 'checkbox' ? t.checked : t.value;
+  if (Srv.on && grp === 'profile') { S.profile[key] = v; savePrefsRemote(); return; }
   if (key === 'defaultDuration' || key === 'defaultReminder' || key === 'lockMinutes') v = +v;
   S[grp][key] = v;
   if (grp === 'profile') { S.profileSample = false; syncProfileToMe(); }
@@ -2499,6 +2552,7 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') { hiddenAt = Date.now(); return; }
   if (S.settings.pinHash && !locked && hiddenAt && Date.now() - hiddenAt > (+S.settings.lockMinutes || 5) * 60000) showLock();
   tick();
+  if (Srv.on && Srv.user && !locked) pull(false);
 });
 
 /* ================= install & offline ================= */
@@ -2510,6 +2564,742 @@ function setupPWA() {
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
   window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; if (UI.tab === 'ayarlar') render(); });
 }
+
+/* ================= company server: accounts, roles, shared data ================= */
+/* With a server the app keeps no shared records on the device: people, leaves, meetings and
+   organisation settings come from the server, filtered by the signed-in user's role. Only personal
+   preferences (theme, reminders, PIN) and the session token stay in this browser. */
+const AUTH_KEY = 'finans360:auth:v1', PREFS_KEY = 'finans360:prefs:v1';
+const PERSONAL_SETTINGS = ['theme', 'notify', 'pinHash', 'lockMinutes', 'maskSensitive', 'defaultDuration', 'defaultReminder'];
+const USER_RE = /^[a-z0-9][a-z0-9._-]{2,39}$/;
+const Srv = { on: false, base: '', token: '', user: null, perms: null, prefs: {}, companies: [], synced: { leaves: new Map(), meetings: new Map() }, org: '', queue: Promise.resolve(), pullP: null, lastSync: 0, lastPw: '', sessions: null, sessAt: 0, offlineWarned: false };
+const Adm = { users: null, usersAt: 0, usersP: null, err: '', audit: null, auditAction: '', auditMore: true, auditP: null, auditErr: '', auditRun: 0 };
+const ROLE_INFO = {
+  employee: ['Personel', 'Kendi kaydını, izinlerini ve bakiyesini görür; izin talebi oluşturur. Diğer çalışanları yalnız rehber bilgisiyle görür.'],
+  manager: ['Birim yöneticisi', 'Sorumlu olduğu şirketlerdeki çalışanların kayıtlarını ve izinlerini görür, izin taleplerini onaylar ya da reddeder.'],
+  admin: ['Yönetici', 'Her şeyi görür ve yönetir: personel, izinler, kullanıcılar ve yetkiler, kurum ayarları, denetim kaydı ve yedek.']
+};
+const hostOf = u => { try { return new URL(u).host; } catch (e) { return u; } };
+const showErr = (el, t) => { if (el) { el.textContent = t; el.hidden = false; el.scrollIntoView({ block: 'nearest' }); } else toast(t); };
+const stable = v => (Array.isArray(v) ? '[' + v.map(stable).join(',') + ']' : v && typeof v === 'object' ? '{' + Object.keys(v).sort().map(k => JSON.stringify(k) + ':' + stable(v[k])).join(',') + '}' : JSON.stringify(v === undefined ? null : v));
+
+function serverConfig() {
+  if (ENV.framed) return null;
+  let saved = null;
+  try { saved = JSON.parse(storage.get(AUTH_KEY) || 'null'); } catch (e) { saved = null; }
+  // index.html served by the Finans360 server carries this tag; the app then talks to its own origin
+  if (document.querySelector('meta[name="f360-server"]')) return { base: '', token: saved && !saved.base ? saved.token || '' : '' };
+  if (saved && saved.base) return { base: saved.base, token: saved.token || '' };
+  return null;
+}
+const saveAuth = () => storage.set(AUTH_KEY, JSON.stringify({ base: Srv.base, token: Srv.token }));
+function loadPrefs() {
+  try {
+    const o = JSON.parse(storage.get(PREFS_KEY) || '{}') || {}, out = {};
+    for (const k of PERSONAL_SETTINGS) if (o[k] !== undefined) out[k] = o[k];
+    return out;
+  } catch (e) { return {}; }
+}
+function savePrefs() { const o = {}; for (const k of PERSONAL_SETTINGS) o[k] = S.settings[k]; storage.set(PREFS_KEY, JSON.stringify(o)); }
+const savePrefsRemote = debounce(() => {
+  if (!Srv.user) return;
+  api('PUT', '/api/me/prefs', { sicil: S.profile.sicil, manager: S.profile.manager, managerContact: S.profile.managerContact }).then(r => { Srv.prefs = r.prefs; }).catch(e => toast(e.message));
+}, 700);
+
+/* --- what the signed-in user may do (the server enforces the same rules) --- */
+const P = () => Srv.perms || {};
+const isAdmin = () => !Srv.on || P().role === 'admin';
+const canWritePeople = () => !Srv.on || P().peopleWrite === 'all';
+const fullAccess = p => !Srv.on || !p || p._access !== 'directory';
+function canApproveName(person) {
+  if (!Srv.on) return true;
+  const pr = P();
+  if (pr.approve === 'all') return true;
+  if (pr.approve !== 'scope' || !person || person === 'me' || person === '__other') return false;
+  const p = findPerson(person);
+  return !!p && p.id !== pr.personId && (pr.companies || []).includes(p.company);
+}
+const canApproveLeave = l => (!Srv.on ? true : l._approve !== undefined ? !!l._approve : canApproveName(l.person));
+const canEditLeave = l => !Srv.on || canApproveLeave(l) || (l.person === 'me' && l.status === 'pending');
+const ownsMeeting = m => !Srv.on || m._own !== false;
+const sensEditable = () => !Srv.on || (canWritePeople() && !!P().sensitive);
+function leaveCandidates() {
+  const others = otherPeople().slice().sort(byNameTR);
+  if (!Srv.on || P().leaveFor === 'all') return others;
+  if (P().leaveFor === 'scope') return others.filter(p => p._access !== 'directory' && (P().companies || []).includes(p.company));
+  return [];
+}
+
+/* --- HTTP --- */
+async function api(method, path, body) {
+  let r;
+  try {
+    r = await fetch(Srv.base + path, {
+      method, cache: 'no-store',
+      headers: { ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}), ...(Srv.token ? { Authorization: 'Bearer ' + Srv.token } : {}) },
+      body: body !== undefined ? JSON.stringify(body) : undefined
+    });
+  } catch (e) { throw Object.assign(new Error('Sunucuya ulaşılamadı. İnternet bağlantınızı kontrol edin.'), { offline: true }); }
+  let data = null;
+  try { data = await r.json(); } catch (e) { data = null; }
+  if (r.status === 401 && Srv.token && path !== '/api/login') {
+    Srv.token = ''; Srv.user = null; saveAuth();
+    showAuth('login', 'Oturumunuz sona erdi. Yeniden giriş yapın.', 'info');
+  } else if (r.status === 403 && data && data.code === 'must_change') showAuth('password');
+  if (!r.ok) throw Object.assign(new Error((data && data.error) || `Sunucu hatası (${r.status}).`), { status: r.status, code: data && data.code });
+  return data || {};
+}
+
+/* --- sign-in screens (drawn in the lock overlay) --- */
+function pwProblem(pw, username) {
+  if (pw.length < 8) return 'Şifre en az 8 karakter olmalı.';
+  if (username && pw.toLowerCase().includes(String(username).toLowerCase())) return 'Şifre kullanıcı adını içermemeli.';
+  if (!/[A-Za-zÇĞİÖŞÜçğıöşü]/.test(pw) || !/\d/.test(pw)) return 'Şifrede en az bir harf ve bir rakam olmalı.';
+  return '';
+}
+const authField = (name, label, type, extra = '') => `<label>${label}<input name="${name}" type="${type}" ${extra}></label>`;
+function showAuth(mode, msg, tone) {
+  locked = true; document.body.classList.add('locked');
+  const el = $('#lock'), logo = ($('.brand svg') || {}).outerHTML || '';
+  const host = Srv.base ? hostOf(Srv.base) : location.host;
+  const head = (title, sub) => `<div class="lb-head">${logo}<h1>${title}</h1>${sub ? `<p class="muted">${sub}</p>` : ''}</div>`;
+  const msgP = msg ? (tone === 'info' ? `<p class="note">${esc(msg)}</p>` : `<p class="form-err" role="alert">${esc(msg)}</p>`) : '';
+  const errP = msg && tone !== 'info' ? '' : '<p class="form-err" role="alert" hidden></p>';
+  const leave = Srv.base ? '<button type="button" class="btn btn-quiet" data-act="server-disconnect">Sunucudan ayrıl, bu cihazda kullan</button>' : '';
+  const pwHint = '<p class="hint">En az 8 karakter; en az bir harf ve bir rakam; kullanıcı adınızı içermesin.</p>';
+  el.hidden = false;
+  if (mode === 'loading') el.innerHTML = `<div class="lock-box auth">${head('Finans360', 'Sunucuya bağlanılıyor…')}<p class="fine" style="text-align:center">${esc(host)}</p></div>`;
+  else if (mode === 'setup') el.innerHTML = `<form class="lock-box auth" data-form="setup" novalidate>${head('İlk kurulum', 'Sunucuda henüz hesap yok. Yönetici hesabınızı oluşturun; diğer kullanıcıları sonra Yönetim panelinden eklersiniz.')}
+    ${msgP}${authField('name', 'Ad soyad', 'text', 'autocomplete="name"')}${authField('username', 'Kullanıcı adı', 'text', 'autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="ör. ad.soyad"')}
+    ${authField('password', 'Şifre', 'password', 'autocomplete="new-password"')}${authField('password2', 'Şifre tekrar', 'password', 'autocomplete="new-password"')}${pwHint}${errP}
+    <button class="btn btn-primary btn-block" type="submit">Yönetici hesabını oluştur</button><p class="fine" style="text-align:center">${esc(host)}</p></form>`;
+  else if (mode === 'password') el.innerHTML = `<form class="lock-box auth" data-form="new-password" novalidate>${head('Yeni şifre', 'İlk girişte ya da şifreniz sıfırlandığında kendi şifrenizi belirleyin.')}
+    ${msgP}${Srv.lastPw ? '' : authField('current', 'Mevcut (tek kullanımlık) şifre', 'password', 'autocomplete="current-password"')}
+    ${authField('next', 'Yeni şifre', 'password', 'autocomplete="new-password"')}${authField('next2', 'Yeni şifre tekrar', 'password', 'autocomplete="new-password"')}${pwHint}${errP}
+    <button class="btn btn-primary btn-block" type="submit">Şifreyi kaydet</button><button type="button" class="btn btn-quiet" data-act="logout">Çıkış yap</button></form>`;
+  else if (mode === 'offline') el.innerHTML = `<div class="lock-box auth">${head('Bağlantı yok', esc(msg || 'Sunucuya ulaşılamadı.'))}<p class="fine" style="text-align:center">${esc(host)}</p>
+    <button type="button" class="btn btn-primary btn-block" data-act="server-retry">Tekrar dene</button>${Srv.token ? '<button type="button" class="btn btn-quiet" data-act="logout">Çıkış yap</button>' : ''}${leave}</div>`;
+  else el.innerHTML = `<form class="lock-box auth" data-form="login" novalidate>${head('Finans360', 'Şirket hesabınızla giriş yapın.')}
+    ${msgP}${authField('username', 'Kullanıcı adı', 'text', 'autocomplete="username" autocapitalize="none" spellcheck="false"')}${authField('password', 'Şifre', 'password', 'autocomplete="current-password"')}${errP}
+    <button class="btn btn-primary btn-block" type="submit">Giriş yap</button>
+    <p class="fine" style="text-align:center">${esc(host)} · Şifrenizi unuttuysanız yöneticiniz sıfırlayabilir.</p>${leave}</form>`;
+  setTimeout(() => { const i = el.querySelector('input'); if (i) i.focus(); }, 60);
+}
+async function startServer() {
+  if (Srv.token) { if (S.settings.pinHash) { showLock(); return; } return enterApp(); }
+  try { const h = await api('GET', '/api/health'); showAuth(h.setup ? 'setup' : 'login'); }
+  catch (e) { showAuth('offline', e.message); }
+}
+async function enterApp() {
+  showAuth('loading');
+  try {
+    const d = await api('GET', '/api/bootstrap');
+    applyBootstrap(d); Srv.lastSync = Date.now();
+    closeTo(0);
+    hideLock(); render(); scheduleNotifications();
+    if (P().users) loadAdminUsers();
+  } catch (e) {
+    if (e.status === 401 || e.code === 'must_change') return;
+    showAuth('offline', e.message);
+  }
+}
+async function logout() {
+  if (Srv.user && hasPending()) await (Srv.queue = Srv.queue.then(pushNow).catch(() => {}));
+  try { if (Srv.token) await api('POST', '/api/logout'); } catch (e) { /* the token is dropped below either way */ }
+  Srv.token = ''; Srv.user = null; Srv.perms = null; Srv.sessions = null; Srv.lastPw = ''; saveAuth();
+  Object.assign(Adm, { users: null, usersAt: 0, audit: null, auditAction: '' });
+  S = emptyState(); S.settings = { ...S.settings, ...loadPrefs() }; snapshotSynced();
+  closeTo(0, () => { UI.tab = 'ozet'; render(); });
+  showAuth('login', 'Çıkış yapıldı.', 'info');
+}
+
+/* --- data: bootstrap, change tracking, push, pull --- */
+function orgWire() { const st = S.settings; return { rooms: st.rooms, customHolidays: st.customHolidays, companyMap: st.companyMap, saturdayWork: !!st.saturdayWork }; }
+function wire(x, col) { const o = {}; for (const k of Object.keys(x)) if (k[0] !== '_' && k !== 'sample' && !(col === 'leaves' && k === 'history')) o[k] = x[k]; return o; }
+const wireKey = (x, col) => stable(wire(x, col));
+function copyMeta(dst, src) { for (const k of Object.keys(src)) if (k[0] === '_') dst[k] = src[k]; }
+function normalize(col, item) { const n = migrate({ [col]: [item] })[col][0]; if (n) copyMeta(n, item); return n; }
+function snapshotSynced() {
+  for (const col of ['leaves', 'meetings']) Srv.synced[col] = new Map(S[col].map(x => [x.id, wireKey(x, col)]));
+  Srv.org = stable(orgWire());
+}
+function hasPending() {
+  if (!Srv.on || !S) return false;
+  for (const col of ['leaves', 'meetings']) {
+    const ids = new Set();
+    for (const x of S[col]) { ids.add(x.id); if (Srv.synced[col].get(x.id) !== wireKey(x, col)) return true; }
+    for (const id of Srv.synced[col].keys()) if (!ids.has(id)) return true;
+  }
+  return !!P().org && stable(orgWire()) !== Srv.org;
+}
+function applyBootstrap(d) {
+  Srv.user = d.user; Srv.perms = d.perms; Srv.prefs = d.prefs || {}; Srv.companies = d.companies || [];
+  const personal = {}; for (const k of PERSONAL_SETTINGS) personal[k] = S.settings[k];
+  const next = migrate({ v: 2, meId: d.perms.personId || null, settings: { ...S.settings, ...(d.org || {}), ...personal }, people: d.people || [], leaves: d.leaves || [], meetings: d.meetings || [] });
+  const byId = list => new Map((list || []).map(x => [x.id, x]));
+  const lm = byId(d.leaves), mm = byId(d.meetings);
+  for (const l of next.leaves) if (lm.has(l.id)) copyMeta(l, lm.get(l.id));
+  for (const m of next.meetings) if (mm.has(m.id)) copyMeta(m, mm.get(m.id));
+  S = next;
+  const me = mePerson();
+  if (me) { syncMeToProfile(); S.settings.entitlementOverride = me.entitlementOverride || ''; S.settings.carryOver = me.carryOver || 0; }
+  else { S.profile.name = d.user.name; S.settings.entitlementOverride = ''; S.settings.carryOver = 0; }
+  S.profile.sicil = Srv.prefs.sicil || ''; S.profile.manager = Srv.prefs.manager || ''; S.profile.managerContact = Srv.prefs.managerContact || '';
+  snapshotSynced();
+  if (UI.tab === 'yonetim' && !P().users) UI.tab = 'ozet';
+}
+const pushSoon = debounce(() => { Srv.queue = Srv.queue.then(pushNow).catch(e => console.warn(e)); }, 450);
+async function pushNow() {
+  if (!Srv.on || !Srv.user) return;
+  const ops = [];
+  for (const col of ['leaves', 'meetings']) {
+    const ids = new Set();
+    for (const x of S[col]) { ids.add(x.id); const key = wireKey(x, col); if (Srv.synced[col].get(x.id) !== key) ops.push({ col, id: x.id, method: 'PUT', body: wire(x, col), key }); }
+    for (const id of Srv.synced[col].keys()) if (!ids.has(id)) ops.push({ col, id, method: 'DELETE' });
+  }
+  const orgKey = P().org ? stable(orgWire()) : Srv.org;
+  if (!ops.length && orgKey === Srv.org) return;
+  let failed = null, changed = false, again = false;
+  for (const op of ops) {
+    try {
+      const r = await api(op.method, `/api/${op.col}/${encodeURIComponent(op.id)}`, op.body);
+      if (op.method === 'DELETE') { Srv.synced[op.col].delete(op.id); continue; }
+      const item = normalize(op.col, r.item); if (!item) continue;
+      const srvKey = wireKey(item, op.col), i = S[op.col].findIndex(x => x.id === op.id), cur = S[op.col][i];
+      Srv.synced[op.col].set(op.id, srvKey);
+      if (!cur) { again = true; continue; }
+      if (wireKey(cur, op.col) !== op.key) { copyMeta(cur, item); again = true; continue; } // edited again meanwhile: keep the newer local copy
+      if (srvKey !== op.key || stable(cur.history || null) !== stable(item.history || null)) { S[op.col][i] = item; changed = true; }
+      else copyMeta(cur, item);
+    } catch (e) { failed = failed || e; if (e.offline || e.status === 401 || e.code === 'must_change') break; }
+  }
+  if (!failed && P().org && orgKey !== Srv.org) {
+    try { const r = await api('PUT', '/api/org', orgWire()); Object.assign(S.settings, r.org || {}); Srv.org = stable(orgWire()); changed = true; } catch (e) { failed = e; }
+  }
+  if (failed) {
+    if (failed.offline) { if (!Srv.offlineWarned) { Srv.offlineWarned = true; toast('Sunucuya ulaşılamadı. Değişiklikler bağlantı gelince gönderilecek.', null, 6000); } return; }
+    if (failed.status === 401 || failed.code === 'must_change') return;
+    toast(failed.message, null, 6000);
+    try { await refresh(); } catch (e) { /* the next pull retries */ }
+    return;
+  }
+  Srv.offlineWarned = false; Srv.lastSync = Date.now();
+  if (changed) render();
+  if (again) pushSoon();
+}
+async function refresh() { const d = await api('GET', '/api/bootstrap'); applyBootstrap(d); Srv.lastSync = Date.now(); render(); }
+function pull(force) {
+  if (!Srv.on || !Srv.user || locked) return Promise.resolve(false);
+  if (Srv.pullP) return force ? Srv.pullP.then(() => pull(true)) : Srv.pullP;
+  if (!force) {
+    const a = document.activeElement;
+    if (document.visibilityState === 'hidden' || sheets.length || (a && a.matches && a.matches('input, textarea, select'))) return Promise.resolve(false);
+    if (hasPending()) { pushSoon(); return Promise.resolve(false); }
+    if (Date.now() - Srv.lastSync < 15000) return Promise.resolve(false);
+  }
+  Srv.pullP = (async () => {
+    try {
+      await Srv.queue;
+      const d = await api('GET', '/api/bootstrap');
+      if (!force && (sheets.length || hasPending())) return false;
+      applyBootstrap(d); Srv.lastSync = Date.now(); render();
+      return true;
+    } catch (e) { if (force && e.status !== 401 && e.code !== 'must_change') toast(e.message); return false; }
+  })().finally(() => { Srv.pullP = null; });
+  return Srv.pullP;
+}
+
+/* --- home, leaves and people in server mode --- */
+function serverHomeNotes() {
+  if (!Srv.user) return '';
+  const out = [];
+  const pend = S.leaves.filter(l => l.status === 'pending' && l.person !== 'me' && canApproveLeave(l));
+  if (pend.length) out.push(`<div class="banner" role="note"><p><b>${pend.length} izin talebi onayınızı bekliyor.</b> ${esc([...new Set(pend.map(l => l.person))].slice(0, 4).join(', '))}${pend.length > 4 ? '…' : ''}</p><div class="btns"><button type="button" class="btn btn-sm btn-primary" data-act="tab" data-tab="izin">Taleplere git</button></div></div>`);
+  if (!P().personId) out.push(`<div class="banner" role="note"><p><b>Hesabınız bir personel kaydına bağlı değil.</b> ${isAdmin() ? 'Yönetim › Kullanıcılar bölümünden kendi hesabınızı açıp personel kaydınızı seçin.' : 'Kendi izin bakiyenizi görmek ve izin talebi oluşturmak için yöneticinizden hesabınızı kaydınıza bağlamasını isteyin.'}</p>${isAdmin() ? '<div class="btns"><button type="button" class="btn btn-sm" data-act="tab" data-tab="yonetim">Yönetim</button></div>' : ''}</div>`);
+  if (canWritePeople() && !S.people.length) out.push(`<article class="card setup" aria-label="İlk kurulum"><p class="eyebrow">Sunucu kurulumu</p><h2 class="card-title">Personel listesini yükleyin</h2>
+    <ol class="steps"><li><span class="step-mark"></span><div><b>Personel Bilgi Formu PDF’ini ya da Excel listesini seçin</b><p class="fine">Dosya bu cihazda okunur; onayladığınız kayıtlar şirket sunucusuna kaydedilir.</p></div></li><li><span class="step-mark"></span><div><b>Çalışanlara hesap açın</b><p class="fine">Yönetim › Kullanıcılar › Personelden hesap aç. Her kişiye tek kullanımlık şifre üretilir.</p></div></li><li><span class="step-mark"></span><div><b>Birim yöneticilerini atayın</b><p class="fine">Birim yöneticisi kendi şirketindeki izin taleplerini onaylar.</p></div></li></ol>
+    <div class="toolbar"><button type="button" class="btn btn-primary" data-act="people-import">${I.upload} PDF ya da Excel dosyasını seç</button>${document.getElementById('f360-seed') ? `<button type="button" class="btn" data-act="seed-upload">${I.idcard} Gömülü listeyi yükle</button>` : ''}</div></article>`);
+  return out.join('');
+}
+function approvalsHTML() {
+  if (!Srv.on || !Srv.user) return '';
+  const list = S.leaves.filter(l => l.status === 'pending' && l.person !== 'me' && canApproveLeave(l)).sort((a, b) => a.start.localeCompare(b.start));
+  if (!list.length) return '';
+  const after = l => {
+    if (l.type !== 'yillik' || !findPerson(l.person)) return '';
+    const b = balance(l.id, l.person);
+    return ` · bakiye ${fmt.num(b.remaining)} → <b class="${b.remaining - leaveDays(l) < 0 ? 'neg' : ''}">${fmt.num(b.remaining - leaveDays(l))}</b> gün`;
+  };
+  return `<section class="sec"><div class="sec-head"><h2 class="sec-title">Onayınızı bekleyen talepler</h2><span class="fine">${list.length} talep</span></div>
+    <div class="list">${list.map(l => `<div class="row approve-row"><button type="button" class="row-main linkish" data-act="leave-open" data-id="${l.id}"><span class="row-title">${esc(l.person)} · ${esc(LEAVE_TYPES[l.type].label)}</span><span class="row-sub"><span class="mono">${esc(rangeText(l))}</span> · ${leaveAmount(l)}${after(l)}</span></button>
+      <span class="row-end"><button type="button" class="btn btn-sm btn-primary" data-act="leave-status" data-id="${l.id}" data-v="approved">${I.check} Onayla</button><button type="button" class="btn btn-sm" data-act="leave-status" data-id="${l.id}" data-v="rejected">Reddet</button></span></div>`).join('')}</div></section>`;
+}
+function renderPersonDirectory(p) {
+  return `${sheetHead('Personel')}<div class="sheet-body">
+    <div class="detail-hero"><div class="person-hero"><span class="avatar lg" style="--c:var(${coColor(p.company)})">${esc(initials(p.name))}</span><div><h3 class="dh-title">${esc(p.name)}</h3><p class="dh-sub">${esc([p.title, p.company].filter(Boolean).join(' · ') || 'Ünvan ve şirket yok')}</p></div></div></div>
+    ${p.email ? `<div class="contact-row"><a class="btn" href="mailto:${esc(p.email)}">${I.mail} E-posta</a></div>` : ''}
+    <p class="note">${I.lock}<span>Rehber bilgisini görüyorsunuz. Kişinin izinlerini ve kişisel bilgilerini yalnız kendisi, birim yöneticisi ve yönetici görür.</span></p>
+  </div>`;
+}
+function serverSensitiveHTML(p, s) {
+  const sens = s.data.sens;
+  if (!p.hasSensitive && !sens) return '';
+  const own = p.id === P().personId, can = own || !!P().sensitive;
+  const kv = (k, v) => (v ? `<div><dt>${k}</dt><dd>${v}</dd></div>` : '');
+  const rows = sens
+    ? kv('TC kimlik no', sens.tc ? `<span class="mono">${esc(sens.tc)}</span> ${tcValid(sens.tc) ? '<span class="pill ok">geçerli</span>' : '<span class="pill bad">doğrulanamadı</span>'}` : '') + kv('Kan grubu', esc(sens.blood)) + kv('Adres', esc(sens.address))
+    : kv('TC kimlik no', p.tcInfo ? `<span class="mono">${esc(p.tcInfo.masked)}</span>` : '') + kv('Kan grubu, adres', 'Gizli');
+  return `<section class="sec"><div class="sec-head"><h4 class="sec-title">Hassas bilgiler</h4>${can ? `<button type="button" class="sec-link" data-act="person-reveal">${sens ? 'Gizle' : 'Göster'}</button>` : ''}</div>
+    <dl class="kv-list">${rows || kv('Kayıt', 'Yok')}</dl>
+    <p class="hint">${can ? (own ? 'Kendi kaydınız.' : 'Her görüntüleme denetim kaydına yazılır.') : 'Bu bilgileri görme yetkiniz yok.'} Kan grubu sağlık verisidir (KVKK md. 6).</p></section>`;
+}
+function loadSensForForm(s) {
+  if (!Srv.on || !s.data.existing || !sensEditable()) return;
+  api('GET', `/api/people/${encodeURIComponent(s.data.existing)}/sensitive`).then(r => {
+    if (!s.el || !s.el.isConnected) return;
+    const form = s.el.querySelector('form'); if (!form) return;
+    const f = form.elements;
+    s.data.sensLoaded = true;
+    if (f.tc && !f.tc.value) f.tc.value = r.tc || '';
+    if (f.blood && r.blood) { if (![...f.blood.options].some(o => o.value === r.blood)) f.blood.add(new Option(r.blood, r.blood)); if (!f.blood.value) f.blood.value = r.blood; }
+    if (f.address && !f.address.value) f.address.value = r.address || '';
+    syncPersonForm(s);
+  }).catch(e => { const h = s.el && s.el.querySelector('[data-tc-hint]'); if (h) h.textContent = `Hassas bilgiler yüklenemedi: ${e.message} Kaydederseniz bu alanlar değişmez.`; });
+}
+function submitPersonServer(form, s, d, err) {
+  const id = s.data.existing || uid(), prev = s.data.existing ? S.people.find(x => x.id === id) : null;
+  const body = { ...d };
+  delete body.tc; delete body.blood; delete body.address;
+  body.hireYear = d.hireDate ? '' : (prev ? prev.hireYear : '');
+  body.birthYear = d.birthDate ? '' : (prev ? prev.birthYear : '');
+  body.source = prev ? prev.source || '' : 'Elle eklendi';
+  if (sensEditable() && (!s.data.existing || s.data.sensLoaded)) body.sensitive = { tc: d.tc, blood: d.blood, address: d.address };
+  const btn = form.querySelector('[type="submit"]'); if (btn) btn.disabled = true;
+  api('PUT', `/api/people/${encodeURIComponent(id)}`, body).then(r => {
+    const item = { ...blankPerson(), ...r.item }, i = S.people.findIndex(x => x.id === id);
+    if (i >= 0) S.people[i] = item; else S.people.push(item);
+    if (id === S.meId) { syncMeToProfile(); S.settings.entitlementOverride = item.entitlementOverride || ''; S.settings.carryOver = item.carryOver || 0; }
+    render();
+    if (s.data.fromDetail) { swapSheet(s, 'person', { id }); toast('Kişi güncellendi'); }
+    else closeTo(sheets.indexOf(s), () => toast(`${item.name} eklendi`));
+    if (prev && prev.name !== item.name) pull(true);
+  }).catch(e => { showErr(err, e.message); if (btn) btn.disabled = false; });
+}
+function submitImportServer(form, s, recs) {
+  const btn = form.querySelector('[type="submit"]'); if (btn) btn.disabled = true;
+  const fields = [...PERSON_FIELDS, 'source'];
+  const people = recs.map(r => { const o = {}; for (const k of fields) if (r[k] !== undefined) o[k] = r[k]; return o; });
+  api('POST', '/api/people/import', { people, companyMap: S.settings.companyMap })
+    .then(r => pull(true).then(() => closeTo(sheets.indexOf(s), () => { UI.pCo = 'all'; goTab('personel'); toast(`${r.added} kişi eklendi${r.updated ? `, ${r.updated} kişi güncellendi` : ''}. Hesap açmak için Yönetim › Kullanıcılar.`, null, 7000); })))
+    .catch(e => { toast(e.message, null, 6000); if (btn) btn.disabled = false; });
+}
+function importBackupToServer(o) {
+  if (!P().users) { toast('Yedek yükleme yalnız yöneticiler içindir.'); return; }
+  confirmSheet({ title: 'Yedek sunucuya aktarılsın mı?', body: `${(o.people || []).length} kişi, ${o.leaves.length} izin ve ${o.meetings.length} toplantı sunucuya eklenecek. Sunucudaki kayıtlar silinmez; aynı kayıtlar ikinci kez eklenmez.`, ok: 'Aktar',
+    run: () => api('POST', '/api/admin/import-backup', { backup: o }).then(r => pull(true).then(() => { closeTo(0); toast(`${r.people.added + r.people.updated} kişi, ${r.leaves} izin, ${r.meetings} toplantı aktarıldı`, null, 6000); })).catch(e => toast(e.message, null, 6000)) });
+}
+
+/* --- settings cards --- */
+function serverProfileCard() {
+  const u = Srv.user || {}, me = mePerson(), p = S.profile;
+  return setCard('Profil', `<dl class="kv-list"><div><dt>Hesap</dt><dd>${esc(u.name)} · @${esc(u.username)} · ${esc(P().roleLabel || '')}</dd></div><div><dt>Personel kaydı</dt><dd>${me ? esc([me.name, me.title, me.company].filter(Boolean).join(' · ')) : 'Bağlı değil'}</dd></div></dl>
+    <p class="hint">Ad, ünvan, şirket ve tarihler personel kaydınızdan gelir; düzeltme için yöneticinize başvurun. Aşağıdakiler izin formlarınızda ve talep mesajlarınızda kullanılır.</p>
+    <div class="form-grid">${inp('profile.sicil', 'Sicil no', p.sicil)}${inp('profile.manager', 'Birim amiri', p.manager)}${inp('profile.managerContact', 'Amirin e-postası', p.managerContact, 'email', 'inputmode="email"')}</div>
+    <div class="act-grid"><button type="button" class="btn" data-act="tab" data-tab="hesap">${I.lock} Hesabım ve şifre</button></div>`);
+}
+function serverEntitlementCard(b) {
+  const st = S.settings;
+  return setCard('Yıllık izin hesabı', `${meReady() ? `<p class="note" id="entSummary">${I.info}<span>${esc(basisText(b))}. Kanuni süreler (İş K. md. 53): 1–5 yıl 14 gün, 5–15 yıl 20 gün, 15 yıl ve üzeri 26 gün; 18 yaş ve altı ile 50 yaş ve üstü için en az 20 gün.</span></p>` : '<p class="hint">Hesabınız bir personel kaydına bağlanınca izin hakkınız burada görünür.</p>'}
+    <p class="hint">İşe giriş tarihi, kişiye özel hak ve devreden izin personel kaydından gelir.</p>
+    ${P().org ? `<label class="check"><input type="checkbox" data-bind="settings.saturdayWork" ${st.saturdayWork ? 'checked' : ''}> Cumartesi iş günü sayılsın (bütün kurum için)</label>` : st.saturdayWork ? '<p class="fine">Kurumda cumartesi iş günü sayılıyor.</p>' : ''}`);
+}
+function serverCard() {
+  if (!Srv.on) {
+    if (ENV.framed) return '';
+    return setCard('Şirket sunucusu', `<p class="hint">Finans360’ı şirketinizin sunucusuna bağlayın: herkes kendi hesabıyla girer, izin talepleri birim yöneticisinin onayına gider, yönetici kullanıcıları ve yetkileri yönetir. Kayıtlar sunucuda tek yerde durur.</p>
+      <form class="sec" data-form="connect" style="gap:8px" novalidate><div class="inline-form"><input class="inp" name="url" type="url" inputmode="url" placeholder="https://izin.sirketiniz.com" aria-label="Sunucu adresi" autocomplete="url" autocapitalize="none" spellcheck="false"><button class="btn btn-primary" type="submit">Bağlan</button></div><p class="form-err" role="alert" hidden></p></form>
+      <p class="fine">Bu cihazdaki kayıtlar silinmez ama sunucuya bağlıyken kullanılmaz. Taşımak için önce Yedek al’ı kullanın, sonra yönetici hesabıyla Yönetim › Veri › Cihaz yedeğini yükle.</p>`);
+  }
+  const u = Srv.user || {};
+  return setCard('Şirket sunucusu', `<dl class="kv-list"><div><dt>Sunucu</dt><dd>${esc(Srv.base ? hostOf(Srv.base) : location.host)}</dd></div><div><dt>Hesap</dt><dd>${esc(u.name || '')} · ${esc(P().roleLabel || '')}</dd></div><div><dt>Son eşitleme</dt><dd>${Srv.lastSync ? fmt.stamp(new Date(Srv.lastSync).toISOString()) : '—'}</dd></div></dl>
+    <div class="act-grid"><button type="button" class="btn" data-act="sync-now">${I.repeat} Şimdi eşitle</button><button type="button" class="btn" data-act="tab" data-tab="hesap">${I.lock} Hesabım</button><button type="button" class="btn" data-act="logout">Çıkış yap</button>${Srv.base ? '<button type="button" class="btn" data-act="server-disconnect">Sunucudan ayrıl</button>' : ''}</div>`);
+}
+function serverDataCard() {
+  return setCard('Veriler', `<div class="act-grid">${P().export ? `<button type="button" class="btn" data-act="server-export">${I.download} Sunucu yedeği (.json)</button>` : ''}<button type="button" class="btn" data-act="csv">${I.file} İzinleri Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="ics-all">${I.cal} Takvime aktar (.ics)</button></div>
+    <p class="hint">Kayıtlar şirket sunucusunda saklanır. Bu listeler yalnız görme yetkiniz olan kayıtları içerir.</p>`);
+}
+
+/* --- top bar --- */
+function renderServerChrome() {
+  const a = $('#adminBtn'), u = $('#acctBtn'); if (!a || !u) return;
+  const on = Srv.on && !!Srv.user;
+  a.hidden = !(on && P().users); u.hidden = !on;
+  document.body.classList.toggle('no-org', Srv.on && !P().org);
+  if (!on) return;
+  a.innerHTML = I.shield;
+  u.innerHTML = `<span class="avatar" style="--c:var(${P().role === 'admin' ? '--c-yonetim' : P().role === 'manager' ? '--c-mazeret' : '--accent'})">${esc(initials(Srv.user.name))}</span>`;
+  for (const [b, tab] of [[a, 'yonetim'], [u, 'hesap']]) { if (UI.tab === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); }
+  if (UI.tab === 'hesap' && Date.now() - Srv.sessAt > 30000) loadSessions();
+}
+
+/* --- Hesabım (user panel) --- */
+function serverOnlyView(title) {
+  return `<section><p class="eyebrow">${title}</p><h1 class="display h1">${title}</h1><p class="lede">Kullanıcı hesapları, roller ve yönetim paneli uygulama şirket sunucusuna bağlıyken çalışır. Bu cihazda kayıtlar yalnız size aittir.</p></section>${serverCard()}`;
+}
+function permissionLines() {
+  const p = P();
+  if (p.role === 'admin') return ['Bütün personel kayıtlarını görür; ekler, düzenler, siler ve içe aktarırsınız.', 'Bütün izinleri görür, herkes için izin kaydı oluşturur, onaylar ya da reddedersiniz.', 'TC kimlik no, kan grubu ve adres bilgilerini görürsünüz; her görüntüleme denetim kaydına yazılır.', 'Kullanıcı hesaplarını, rolleri ve yetkileri yönetirsiniz.', 'Kurum ayarlarını (toplantı yerleri, tatil günleri, cumartesi) değiştirirsiniz.', 'Denetim kaydını görür, sunucu yedeği alırsınız.', 'Bütün toplantıları görür ve düzenlersiniz.'];
+  const out = [];
+  if (p.role === 'manager') out.push(`Sorumlu olduğunuz şirketler: ${(p.companies || []).join(', ') || 'henüz atanmadı'}.`, 'Bu şirketlerdeki çalışanların kayıtlarını, izinlerini ve izin bakiyelerini görürsünüz.', 'Bu çalışanların izin taleplerini onaylar ya da reddedersiniz; kendi izniniz başka bir yöneticinin onayına gider.', 'Bu çalışanlar adına izin kaydı oluşturabilirsiniz.', p.sensitive ? 'Bu çalışanların TC kimlik no, kan grubu ve adres bilgilerini görebilirsiniz; her görüntüleme kaydedilir.' : 'Hassas bilgileri (TC kimlik no, kan grubu, adres) yalnız kendi kaydınızda görürsünüz.');
+  else out.push('Kendi personel kaydınızı ve izin bakiyenizi görürsünüz.', 'İzin talebi oluşturursunuz; talepleriniz birim yöneticisinin onayına gider.', 'Bekleyen talebinizi düzenleyebilir ya da iptal edebilirsiniz; onaylanmış izninizi de iptal edebilirsiniz.');
+  out.push('Diğer çalışanları rehber bilgisiyle (ad, ünvan, şirket, iş e-postası) görürsünüz.', 'Oluşturduğunuz ve katılımcısı olduğunuz toplantıları görürsünüz; katıldığınız toplantılarda gündem, katılım, not ve aksiyonları güncelleyebilirsiniz.');
+  return out;
+}
+function deviceName(ua) {
+  ua = String(ua || '');
+  if (!ua) return 'Bilinmeyen cihaz';
+  const os = /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iPhone / iPad' : /Windows/.test(ua) ? 'Windows' : /Mac OS X|Macintosh/.test(ua) ? 'Mac' : /Linux/.test(ua) ? 'Linux' : 'Cihaz';
+  const br = /; wv\)/.test(ua) ? 'Finans360 uygulaması' : /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'Tarayıcı';
+  return `${os} · ${br}`;
+}
+function sessionsHTML() {
+  if (!Srv.sessions) return '<p class="hint">Yükleniyor…</p>';
+  return `<div class="list">${Srv.sessions.map(x => `<div class="row"><span class="avatar" style="--c:var(${x.current ? '--accent' : '--c-ucretsiz'})">${I.phone}</span><span class="row-main"><span class="row-title">${esc(deviceName(x.ua))}</span><span class="row-sub">${esc([`son etkinlik ${fmt.stamp(x.lastSeen)}`, `açılış ${fmt.stamp(x.createdAt)}`, x.ip].filter(Boolean).join(' · '))}</span></span><span class="row-end">${x.current ? '<span class="pill ok">Bu cihaz</span>' : ''}</span></div>`).join('')}</div>`;
+}
+function loadSessions() {
+  Srv.sessAt = Date.now();
+  return api('GET', '/api/me/sessions').then(r => { Srv.sessions = r.sessions; const box = $('#sessList'); if (box) box.innerHTML = sessionsHTML(); }).catch(() => {});
+}
+function viewAccount() {
+  if (!Srv.on || !Srv.user) return serverOnlyView('Hesabım');
+  const u = Srv.user, p = P(), me = mePerson();
+  const kv = (k, v) => `<div><dt>${k}</dt><dd>${v}</dd></div>`;
+  return `
+  <section><p class="eyebrow">Hesabım</p><h1 class="display h1">${esc(u.name)}</h1><p class="lede">${esc(p.roleLabel || '')} · @${esc(u.username)} · ${esc(Srv.base ? hostOf(Srv.base) : location.host)}</p></section>
+  ${setCard('Hesap', `<dl class="kv-list">${kv('Ad soyad', esc(u.name))}${kv('Kullanıcı adı', esc(u.username))}${kv('Rol', esc(p.roleLabel || ''))}${kv('Personel kaydı', me ? esc([me.name, me.title, me.company].filter(Boolean).join(' · ')) : 'Bağlı değil')}${p.role === 'manager' ? kv('Sorumlu şirketler', esc((p.companies || []).join(', ') || '—')) : ''}${kv('Son giriş', u.lastLogin ? fmt.stamp(u.lastLogin) : '—')}</dl>
+    ${me ? `<div class="act-grid"><button type="button" class="btn" data-act="person-open" data-id="${me.id}">${I.idcard} Personel kaydım</button></div>` : ''}`)}
+  ${meReady() ? balanceCard(balance(), true) : ''}
+  ${setCard('Yetkileriniz', `<ul class="perm-list">${permissionLines().map(t => `<li>${I.check}<span>${esc(t)}</span></li>`).join('')}</ul>`)}
+  ${setCard('Şifre değiştir', `<form class="sec" data-form="acct-password" style="gap:10px" novalidate><div class="form-grid"><div class="field"><label for="ap-cur">Mevcut şifre</label><input id="ap-cur" name="current" type="password" autocomplete="current-password"></div><div class="field"><label for="ap-new">Yeni şifre</label><input id="ap-new" name="next" type="password" autocomplete="new-password"></div><div class="field"><label for="ap-new2">Yeni şifre tekrar</label><input id="ap-new2" name="next2" type="password" autocomplete="new-password"></div></div>
+    <p class="hint">En az 8 karakter; en az bir harf ve bir rakam. Şifre değişince diğer cihazlardaki oturumlar kapanır.</p><p class="form-err" role="alert" hidden></p><div><button class="btn btn-primary" type="submit">${I.lock} Şifreyi değiştir</button></div></form>`)}
+  ${setCard('Oturumlar', `<div id="sessList">${sessionsHTML()}</div><div class="act-grid"><button type="button" class="btn" data-act="close-others">${I.x} Diğer oturumları kapat</button><button type="button" class="btn btn-danger" data-act="logout">Çıkış yap</button></div>
+    <p class="hint">Oturumlar 30 gün kullanılmayınca kendiliğinden kapanır. Tanımadığınız bir cihaz görürseniz şifrenizi değiştirin.</p>`)}`;
+}
+
+/* --- Yönetim (admin panel) --- */
+const ACCESS_ROWS = [
+  ['Kendi kaydını ve izin bakiyesini görme', 'yes', 'yes', 'yes'],
+  ['İzin talebi oluşturma', 'Kendisi için', 'Kendisi ve birimi için', 'Herkes için'],
+  ['İzin onaylama ve reddetme', 'no', 'Birimi (kendi izni hariç)', 'Herkes'],
+  ['Bekleyen talebini düzenleme ve iptal', 'yes', 'yes', 'yes'],
+  ['Personel kayıtlarını görme', 'Kendisi; diğerleri rehber', 'Birimi; diğerleri rehber', 'Herkes'],
+  ['TC kimlik no, kan grubu, adres', 'Kendisi', 'Kendisi; izin verilirse birimi', 'Herkes'],
+  ['Personel ekleme, düzenleme, içe aktarma', 'no', 'no', 'yes'],
+  ['Toplantı oluşturma', 'yes', 'yes', 'yes'],
+  ['Toplantıları görme', 'Oluşturduğu ve katıldığı', 'Oluşturduğu ve katıldığı', 'Hepsi'],
+  ['Kurum ayarları (yerler, tatiller)', 'no', 'no', 'yes'],
+  ['Kullanıcı ve rol yönetimi', 'no', 'no', 'yes'],
+  ['Denetim kaydı ve sunucu yedeği', 'no', 'no', 'yes']
+];
+const AUDIT_FILTERS = [['', 'Tümü'], ['login', 'Giriş'], ['leave', 'İzin'], ['person', 'Personel'], ['person.sensitive', 'Hassas veri'], ['user', 'Kullanıcı'], ['backup', 'Yedek']];
+const AUDIT_LABELS = { setup: 'İlk kurulum', login: 'Giriş', 'login.fail': 'Hatalı giriş', 'password.change': 'Şifre değiştirildi', 'sessions.close': 'Oturumlar kapatıldı', 'leave.create': 'İzin kaydı', 'leave.status': 'İzin durumu', 'leave.delete': 'İzin silindi', 'meeting.create': 'Toplantı', 'meeting.delete': 'Toplantı silindi', 'org.update': 'Kurum ayarları', 'person.create': 'Personel eklendi', 'person.update': 'Personel güncellendi', 'person.delete': 'Personel silindi', 'person.sensitive': 'Hassas veri görüntülendi', 'people.import': 'Personel içe aktarıldı', 'user.create': 'Kullanıcı oluşturuldu', 'user.update': 'Kullanıcı güncellendi', 'user.reset': 'Şifre sıfırlandı', 'user.logout': 'Oturumlar kapatıldı', 'user.delete': 'Kullanıcı silindi', 'user.bulk': 'Toplu hesap', 'backup.export': 'Sunucu yedeği alındı', 'backup.import': 'Cihaz yedeği yüklendi', 'cli.create-admin': 'Komut satırı: yönetici', 'cli.reset-password': 'Komut satırı: şifre', 'cli.backup': 'Komut satırı: yedek' };
+function loadAdminUsers() {
+  if (Adm.usersP) return Adm.usersP;
+  Adm.usersP = api('GET', '/api/admin/users')
+    .then(r => { Adm.users = r.users; Adm.err = ''; })
+    .catch(e => { Adm.err = e.message; Adm.users = Adm.users || []; })
+    .then(() => { Adm.usersAt = Date.now(); Adm.usersP = null; if (UI.tab === 'yonetim' && !locked) render(); return Adm.users; });
+  return Adm.usersP;
+}
+const ensureUsers = () => (Adm.users ? Promise.resolve(Adm.users) : loadAdminUsers());
+function loadAudit(reset) {
+  const run = ++Adm.auditRun, cur = reset || !Adm.audit ? [] : Adm.audit, before = cur.length ? cur[cur.length - 1].id : 0;
+  const qs = `limit=60${before ? `&before=${before}` : ''}${Adm.auditAction ? `&action=${encodeURIComponent(Adm.auditAction)}` : ''}`;
+  Adm.auditP = api('GET', '/api/admin/audit?' + qs)
+    .then(r => { if (run !== Adm.auditRun) return; Adm.audit = cur.concat(r.items || []); Adm.auditMore = (r.items || []).length === 60; Adm.auditErr = ''; })
+    .catch(e => { if (run !== Adm.auditRun) return; Adm.audit = cur; Adm.auditMore = false; Adm.auditErr = e.message; })
+    .then(() => { if (run !== Adm.auditRun) return; Adm.auditP = null; if (UI.tab === 'yonetim' && !locked) render(); });
+  return Adm.auditP;
+}
+function userRow(u) {
+  const st = !u.active ? '<span class="pill">Pasif</span>' : u.mustChange ? '<span class="pill warn">İlk giriş bekleniyor</span>' : '';
+  const sub = [`@${u.username}`, u.personName ? u.personName + (u.personCompany ? ` · ${u.personCompany}` : '') : 'kayda bağlı değil', u.role === 'manager' ? `sorumlu: ${(u.companies || []).join(', ') || 'şirket seçilmedi'}` : '', u.lastLogin ? `son giriş ${fmt.stamp(u.lastLogin)}` : 'henüz giriş yapmadı'].filter(Boolean).join(' · ');
+  return `<button type="button" class="row" data-act="user-open" data-id="${esc(u.id)}"><span class="avatar" style="--c:var(${u.role === 'admin' ? '--c-yonetim' : u.role === 'manager' ? '--c-mazeret' : '--c-ucretsiz'})">${esc(initials(u.name))}</span><span class="row-main"><span class="row-title">${esc(u.name)} <span class="badge">${esc(u.roleLabel)}</span>${Srv.user && u.id === Srv.user.id ? ' <span class="badge">Siz</span>' : ''}</span><span class="row-sub">${esc(sub)}</span></span><span class="row-end">${st}</span></button>`;
+}
+function userListHTML() {
+  const q = fold(UI.uQ || ''), order = { admin: 0, manager: 1, employee: 2 };
+  const list = (Adm.users || []).filter(u => !q || fold([u.name, u.username, u.personName, u.personCompany, (u.companies || []).join(' '), u.roleLabel].join(' ')).includes(q));
+  if (!list.length) return `<div class="list"><div class="empty"><p>${q ? 'Aramanızla eşleşen kullanıcı yok.' : 'Henüz kullanıcı yok.'}</p></div></div>`;
+  return `<div class="list">${list.slice().sort((a, b) => order[a.role] - order[b.role] || a.name.localeCompare(b.name, 'tr')).map(userRow).join('')}</div>`;
+}
+function adminUsersHTML() {
+  if (!Adm.users || Date.now() - Adm.usersAt > 60000) loadAdminUsers();
+  if (!Adm.users) return '<div class="list"><div class="empty"><p>Kullanıcılar yükleniyor…</p></div></div>';
+  const taken = new Set(Adm.users.map(u => u.personId).filter(Boolean)), free = S.people.filter(p => !taken.has(p.id)).length;
+  const c = r => Adm.users.filter(u => u.role === r).length;
+  return `${Adm.err ? `<p class="note bad">${I.alert}<span>${esc(Adm.err)}</span></p>` : ''}
+    <div class="act-grid"><button type="button" class="btn btn-primary" data-act="user-new">${I.plus} Yeni kullanıcı</button><button type="button" class="btn" data-act="users-bulk" ${free ? '' : 'disabled'}>${I.users} Personelden hesap aç${free ? ` (${free})` : ''}</button></div>
+    <p class="fine">${Adm.users.length} hesap · ${c('admin')} yönetici · ${c('manager')} birim yöneticisi · ${c('employee')} personel${free ? ` · ${free} kişinin hesabı yok` : ''}</p>
+    <div class="toolbar"><label class="search">${I.search}<span class="sr-only">Kullanıcılarda ara</span><input id="uq" type="search" placeholder="Ad, kullanıcı adı, şirket ara" value="${esc(UI.uQ || '')}" autocomplete="off"></label></div>
+    <div id="userList">${userListHTML()}</div>`;
+}
+function adminAccessHTML() {
+  const cell = v => (v === 'yes' ? '<td class="yes">Evet</td>' : v === 'no' ? '<td class="no">—</td>' : `<td>${esc(v)}</td>`);
+  return `<p class="hint">Her kullanıcının bir rolü vardır. Yetkiler sunucuda denetlenir: uygulama yalnız yetkinin izin verdiği kayıtları alır.</p>
+    <div class="tbl-wrap"><table class="tbl matrix"><thead><tr><th>Yetki</th><th>Personel</th><th>Birim yöneticisi</th><th>Yönetici</th></tr></thead><tbody>${ACCESS_ROWS.map(([k, ...v]) => `<tr><td>${esc(k)}</td>${v.map(cell).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="notes">
+      <p class="note">${I.info}<span><b>Rehber bilgisi:</b> ad, ünvan, şirket ve iş e-postası. Telefon, doğum tarihi, izinler ve diğer bilgiler rehberde görünmez.</span></p>
+      <p class="note">${I.info}<span><b>Birim:</b> birim yöneticisinin sorumlu olduğu şirketler. Kullanıcılar › kişi › Sorumlu olduğu şirketler bölümünden atanır.</span></p>
+      <p class="note">${I.lock}<span><b>Hassas veri:</b> TC kimlik no, kan grubu ve adres listelerde hiç gönderilmez; yalnız “Göster” denince yetkili kişiye gönderilir ve denetim kaydına yazılır.</span></p>
+      <p class="note">${I.lock}<span><b>Hesap güvenliği:</b> şifreler sunucuda scrypt ile özetlenerek saklanır; hatalı girişler 8 denemeden sonra 15 dakika engellenir; oturumlar 30 gün kullanılmayınca kapanır.</span></p>
+    </div>`;
+}
+function auditRow(a) {
+  const tone = a.action === 'login.fail' ? 'bad' : a.action === 'person.sensitive' ? 'warn' : /^(user|backup|cli|setup)/.test(a.action) ? 'info' : '';
+  const d = new Date(a.at);
+  return `<div class="row"><span class="mtime mono"><b>${pad(d.getHours())}:${pad(d.getMinutes())}</b><span>${d.getDate()} ${MON3[d.getMonth()]}</span></span><span class="row-main"><span class="row-title">${esc(AUDIT_LABELS[a.action] || a.action)}${a.target ? ` <span class="muted">· ${esc(a.target)}</span>` : ''}</span><span class="row-sub">${esc([a.username || 'sistem', a.detail, a.ip].filter(Boolean).join(' · '))}</span></span><span class="row-end">${tone ? `<span class="pill ${tone}">${tone === 'bad' ? 'Uyarı' : tone === 'warn' ? 'Hassas' : 'Yönetim'}</span>` : ''}</span></div>`;
+}
+function adminAuditHTML() {
+  if (Adm.audit === null && !Adm.auditP) loadAudit(true);
+  return `<div class="chips" role="group" aria-label="Kayıt türü">${AUDIT_FILTERS.map(([v, l]) => `<button type="button" class="chip" data-act="audit-filter" data-v="${v}" aria-pressed="${Adm.auditAction === v}">${l}</button>`).join('')}</div>
+    ${Adm.auditErr ? `<p class="note bad">${I.alert}<span>${esc(Adm.auditErr)}</span></p>` : ''}
+    ${Adm.audit === null ? '<div class="list"><div class="empty"><p>Yükleniyor…</p></div></div>' : Adm.audit.length ? `<div class="list">${Adm.audit.map(auditRow).join('')}</div>` : '<div class="list"><div class="empty"><p>Bu türde kayıt yok.</p></div></div>'}
+    ${Adm.audit && Adm.auditMore ? '<div><button type="button" class="btn" data-act="audit-more">Daha eski kayıtlar</button></div>' : ''}
+    <p class="fine">Girişler, hatalı girişler, izin kararları, personel ve kullanıcı değişiklikleri, yedekler ve hassas veri görüntülemeleri kaydedilir. Kayıtlar uygulamadan silinemez.</p>`;
+}
+function adminDataHTML() {
+  const seed = !!document.getElementById('f360-seed');
+  return `${setCard('Personel', `<p class="hint">${S.people.length} kişi kayıtlı. PDF ve Excel dosyaları bu cihazda okunur; onayladığınız kayıtlar sunucuya kaydedilir. Daha önce indirdiğiniz personel dosyasını (.json) da buradan yükleyebilirsiniz.</p>
+      <div class="act-grid"><button type="button" class="btn" data-act="people-import">${I.upload} İçe aktar (PDF, Excel, JSON)</button>${seed ? `<button type="button" class="btn" data-act="seed-upload">${I.idcard} Gömülü listeyi yükle</button>` : ''}<button type="button" class="btn" data-act="people-csv">${I.file} Excel’e aktar (.csv)</button><button type="button" class="btn" data-act="balances-csv">${I.table} İzin bakiyeleri (.csv)</button></div>`)}
+    ${setCard('Yedek', `<div class="act-grid"><button type="button" class="btn" data-act="server-export">${I.download} Sunucu yedeği (.json)</button><label class="btn" for="devBackup">${I.upload} Cihaz yedeğini yükle</label></div><input id="devBackup" type="file" accept=".json,application/json" hidden>
+      <p class="hint">Sunucu yedeği bütün kayıtları ve hesapları içerir (şifreler hariç); güvenli bir yerde saklayın. Düzenli yedek için kurulum belgesindeki zamanlanmış görevi kullanın.</p>
+      <p class="hint">Cihaz yedeği: uygulamanın sunucusuz sürümünde Ayarlar › Yedek al ile aldığınız dosya. İçindeki personel, izin ve toplantılar sunucuya eklenir; aynı kayıtlar ikinci kez eklenmez.</p>`)}`;
+}
+function viewAdmin() {
+  if (!Srv.on || !Srv.user) return serverOnlyView('Yönetim');
+  if (!P().users) return `<section><p class="eyebrow">Yönetim</p><h1 class="display h1">Yönetim</h1><p class="lede">Bu bölüm yalnız yöneticiler içindir.</p></section>`;
+  const tab = UI.admTab || 'users', pend = S.leaves.filter(l => l.status === 'pending').length;
+  const tabs = [['users', 'Kullanıcılar'], ['access', 'Yetki modeli'], ['audit', 'Denetim kaydı'], ['data', 'Veri ve yedek']];
+  return `
+  <section><p class="eyebrow">Yönetim paneli</p><h1 class="display h1">Yönetim</h1><p class="lede">${Adm.users ? `${Adm.users.length} kullanıcı · ` : ''}${S.people.length} personel · ${pend} onay bekleyen izin</p></section>
+  <div class="chips" role="group" aria-label="Bölüm">${tabs.map(([v, l]) => `<button type="button" class="chip" data-act="filter" data-key="admTab" data-v="${v}" aria-pressed="${tab === v}">${l}</button>`).join('')}</div>
+  <section class="sec">${tab === 'access' ? adminAccessHTML() : tab === 'audit' ? adminAuditHTML() : tab === 'data' ? adminDataHTML() : adminUsersHTML()}</section>`;
+}
+
+/* --- user and bulk-account sheets --- */
+function suggestUser(p) {
+  const local = p.email ? p.email.split('@')[0].toLowerCase() : '';
+  const base = (USER_RE.test(local) ? local : [fold(p.firstName || p.name), fold(p.lastName)].filter(Boolean).join('.')).slice(0, 34) || 'kullanici';
+  const used = new Set((Adm.users || []).map(u => u.username.toLowerCase()));
+  let n = base.length < 3 ? 'kullanici' + base : base, i = 2;
+  const b0 = n; while (used.has(n)) n = b0 + i++;
+  return n;
+}
+function renderUserForm(s) {
+  const d = s.data.draft, isEdit = !!s.data.id, u = isEdit ? (Adm.users || []).find(x => x.id === s.data.id) : null, self = !!(u && Srv.user && u.id === Srv.user.id);
+  const taken = new Set((Adm.users || []).filter(x => x.id !== s.data.id).map(x => x.personId).filter(Boolean));
+  const groups = new Map();
+  for (const p of S.people.slice().sort(byNameTR)) { if (taken.has(p.id)) continue; const c = p.company || 'Şirket belirtilmemiş'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p); }
+  const opts = [...groups].sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([c, ps]) => `<optgroup label="${esc(c)}">${ps.map(p => `<option value="${esc(p.id)}" ${d.personId === p.id ? 'selected' : ''}>${esc(p.name)}${p.title ? ` · ${esc(p.title)}` : ''}</option>`).join('')}</optgroup>`).join('');
+  const cos = [...new Set([...Srv.companies, ...d.companies])].sort((a, b) => a.localeCompare(b, 'tr'));
+  return `<form class="sheet-form" data-form="user" novalidate>${sheetHead(isEdit ? 'Kullanıcıyı düzenle' : 'Yeni kullanıcı', '<button type="submit" class="btn btn-primary btn-sm">Kaydet</button>')}
+  <div class="sheet-body"><p class="form-err" role="alert" hidden></p>
+    <div class="field"><label for="uf-person">Personel kaydı</label><select id="uf-person" name="personId"><option value="">Bağlı değil</option>${opts}</select><p class="hint">Hesap bir personel kaydına bağlanınca kişi kendi bilgilerini, izinlerini ve bakiyesini görür, kendisi için izin talebi oluşturur.</p></div>
+    <div class="form-grid"><div class="field"><label for="uf-name">Ad soyad</label><input id="uf-name" name="name" value="${esc(d.name)}" autocomplete="off"></div><div class="field"><label for="uf-username">Kullanıcı adı</label><input id="uf-username" name="username" value="${esc(d.username)}" autocomplete="off" autocapitalize="none" spellcheck="false"></div></div>
+    <fieldset class="field"><legend>Rol</legend><div class="chips">${['employee', 'manager', 'admin'].map(r => `<label class="chip"><input type="radio" name="role" value="${r}" ${d.role === r ? 'checked' : ''}><span>${ROLE_INFO[r][0]}</span></label>`).join('')}</div><p class="hint" data-role-hint></p></fieldset>
+    <fieldset class="field" data-show="scope"><legend>Sorumlu olduğu şirketler</legend>${cos.length ? `<div class="checks">${cos.map(c => `<label class="check"><input type="checkbox" name="companies" value="${esc(c)}" ${d.companies.includes(c) ? 'checked' : ''}> ${esc(c)}</label>`).join('')}</div>` : '<p class="hint">Önce personel listesini yükleyin; şirketler oradan gelir.</p>'}</fieldset>
+    <label class="check" data-show="sens"><input type="checkbox" name="sensitive" ${d.sensitive ? 'checked' : ''}> Bu şirketlerdeki çalışanların TC kimlik no, kan grubu ve adres bilgilerini görebilir</label>
+    ${isEdit ? `<label class="check"><input type="checkbox" name="active" ${d.active ? 'checked' : ''} ${self ? 'disabled' : ''}> Hesap etkin (işareti kaldırırsanız kullanıcı giriş yapamaz)</label>
+    <section class="sec"><h4 class="sec-title">Hesap işlemleri</h4>${u ? `<p class="fine">${u.lastLogin ? `Son giriş ${fmt.stamp(u.lastLogin)}` : 'Henüz giriş yapmadı'} · ${u.sessions} açık oturum${u.mustChange ? ' · ilk giriş ya da şifre değişikliği bekleniyor' : ''}</p>` : ''}
+      <div class="act-grid"><button type="button" class="btn" data-act="user-reset" data-id="${esc(s.data.id)}">${I.lock} Şifreyi sıfırla</button><button type="button" class="btn" data-act="user-logout" data-id="${esc(s.data.id)}">${I.x} Oturumlarını kapat</button>${self ? '' : `<button type="button" class="btn btn-danger" data-act="user-delete" data-id="${esc(s.data.id)}">${I.trash} Hesabı sil</button>`}</div></section>`
+    : `<p class="note">${I.info}<span>Kaydettiğinizde tek kullanımlık bir şifre üretilir ve bir kez gösterilir. Kullanıcı ilk girişte kendi şifresini belirler.</span></p>`}
+  </div></form>`;
+}
+function syncUserForm(s) {
+  const form = s && s.el.querySelector('form'); if (!form) return;
+  const r = (form.querySelector('input[name="role"]:checked') || {}).value || 'employee';
+  form.querySelectorAll('[data-show="scope"], [data-show="sens"]').forEach(el => { el.hidden = r !== 'manager'; });
+  const h = form.querySelector('[data-role-hint]'); if (h) h.textContent = ROLE_INFO[r][1];
+}
+function renderBulk() {
+  const taken = new Set((Adm.users || []).map(u => u.personId).filter(Boolean));
+  const free = S.people.filter(p => !taken.has(p.id)).sort(byNameTR), groups = new Map();
+  for (const p of free) { const c = p.company || 'Şirket belirtilmemiş'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p); }
+  return `<form class="sheet-form" data-form="bulk-users" novalidate>${sheetHead('Personelden hesap aç', free.length ? '<button type="submit" class="btn btn-primary btn-sm">Hesapları aç</button>' : '')}
+  <div class="sheet-body"><p class="form-err" role="alert" hidden></p>
+    <p class="hint">Seçtiğiniz her kişiye kendi personel kaydına bağlı bir hesap açılır. Kullanıcı adı iş e-postasından (yoksa ad.soyad) üretilir; tek kullanımlık şifreler sonraki ekranda bir kez gösterilir.</p>
+    <fieldset class="field"><legend>Rol</legend><div class="chips">${['employee', 'manager'].map(r => `<label class="chip"><input type="radio" name="role" value="${r}" ${r === 'employee' ? 'checked' : ''}><span>${ROLE_INFO[r][0]}</span></label>`).join('')}</div><p class="hint">Birim yöneticisi seçilirse her kişi kendi şirketinin yöneticisi olur. Rolleri sonra tek tek değiştirebilirsiniz.</p></fieldset>
+    ${free.length ? `<label class="check"><input type="checkbox" data-act-all checked> Hepsini seç (${free.length})</label>
+    ${[...groups].sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([c, ps]) => `<section class="sec"><h4 class="sec-title">${esc(c)} · ${ps.length}</h4><div class="checks">${ps.map(p => `<label class="check"><input type="checkbox" name="pid" value="${esc(p.id)}" checked><span>${esc(p.name)}${p.title ? ` <span class="muted">· ${esc(p.title)}</span>` : ''}</span></label>`).join('')}</div></section>`).join('')}`
+    : `<p class="note">${I.info}<span>Bütün personelin hesabı var.</span></p>`}
+  </div></form>`;
+}
+function credentialSheet(list, title) {
+  const addr = Srv.base || location.origin;
+  const text = list.map(c => `${c.name}${c.company ? ` (${c.company})` : ''}\nKullanıcı adı: ${c.username}\nTek kullanımlık şifre: ${c.tempPassword}`).join('\n\n') + `\n\nAdres: ${addr}\nİlk girişte kendi şifrenizi belirleyeceksiniz.`;
+  return { title, text, wa: false, note: 'Şifreler yalnız şimdi gösterilir; sunucuda okunabilir biçimde saklanmaz. Her kişiye kendi bilgisini güvenli bir yoldan iletin.', csv: list };
+}
+
+/* --- form submits --- */
+const SUBMITS = Object.assign(Object.create(null), {
+  leave: (form, s) => {
+    if (Srv.on && form.elements.person.value === 'me' && !P().personId) { showErr(form.querySelector('.form-err'), 'Hesabınız bir personel kaydına bağlı değil. Kendiniz için izin talebi oluşturabilmek için yöneticinizden hesabınızı kaydınıza bağlamasını isteyin.'); return; }
+    submitLeave(form, s);
+  },
+  login: (form, s, val) => {
+    const err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    const username = val('username').toLowerCase(), password = form.elements.password.value;
+    if (!username || !password) { showErr(err, 'Kullanıcı adınızı ve şifrenizi yazın.'); return; }
+    btn.disabled = true;
+    api('POST', '/api/login', { username, password }).then(r => {
+      Srv.token = r.token; saveAuth();
+      if (r.mustChange) { Srv.lastPw = password; showAuth('password'); return; }
+      enterApp();
+    }).catch(e => {
+      showErr(err, e.message); btn.disabled = false; form.elements.password.value = ''; form.elements.password.focus();
+      form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+    });
+  },
+  setup: (form, s, val) => {
+    const err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    const name = val('name'), username = val('username').toLowerCase(), pw = form.elements.password.value;
+    if (!name) { showErr(err, 'Adınızı yazın.'); return; }
+    if (!USER_RE.test(username)) { showErr(err, 'Kullanıcı adı 3–40 karakter olmalı; Türkçe karakter olmadan harf, rakam, nokta, tire ve alt çizgi kullanılabilir.'); return; }
+    if (pw !== form.elements.password2.value) { showErr(err, 'İki şifre birbirini tutmuyor.'); return; }
+    const pr = pwProblem(pw, username); if (pr) { showErr(err, pr); return; }
+    btn.disabled = true;
+    api('POST', '/api/setup', { name, username, password: pw }).then(r => { Srv.token = r.token; saveAuth(); toast('Yönetici hesabınız oluşturuldu'); enterApp(); })
+      .catch(e => { showErr(err, e.message); btn.disabled = false; });
+  },
+  'new-password': form => {
+    const f = form.elements, err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    const current = Srv.lastPw || (f.current ? f.current.value : ''), next = f.next.value;
+    if (!current) { showErr(err, 'Mevcut şifrenizi yazın.'); return; }
+    if (next !== f.next2.value) { showErr(err, 'İki şifre birbirini tutmuyor.'); return; }
+    const pr = pwProblem(next, Srv.user ? Srv.user.username : ''); if (pr) { showErr(err, pr); return; }
+    btn.disabled = true;
+    api('POST', '/api/me/password', { current, next }).then(() => { Srv.lastPw = ''; toast('Şifreniz kaydedildi'); enterApp(); })
+      .catch(e => { if (Srv.lastPw && e.status === 400 && /Mevcut/.test(e.message)) { Srv.lastPw = ''; showAuth('password', e.message); return; } showErr(err, e.message); btn.disabled = false; });
+  },
+  'acct-password': form => {
+    const f = form.elements, err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    if (!f.current.value) { showErr(err, 'Mevcut şifrenizi yazın.'); return; }
+    if (f.next.value !== f.next2.value) { showErr(err, 'İki şifre birbirini tutmuyor.'); return; }
+    const pr = pwProblem(f.next.value, Srv.user.username); if (pr) { showErr(err, pr); return; }
+    btn.disabled = true;
+    api('POST', '/api/me/password', { current: f.current.value, next: f.next.value }).then(() => { form.reset(); err.hidden = true; toast('Şifreniz değişti; diğer cihazlardaki oturumlar kapatıldı.', null, 6000); loadSessions(); })
+      .catch(e => showErr(err, e.message)).then(() => { btn.disabled = false; });
+  },
+  connect: (form, s, val) => {
+    const err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    let raw = val('url');
+    if (!raw) { showErr(err, 'Sunucu adresini yazın.'); return; }
+    if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+    let u; try { u = new URL(raw); } catch (e) { showErr(err, 'Adres geçerli değil.'); return; }
+    if (u.protocol !== 'https:' && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(u.hostname) && location.protocol !== 'http:') { showErr(err, 'Sunucu adresi https:// ile başlamalı.'); return; }
+    const base = (u.origin + u.pathname).replace(/\/+$/, '');
+    btn.disabled = true;
+    fetch(base + '/api/health', { cache: 'no-store' }).then(r => r.json()).then(h => {
+      if (!h || h.app !== 'finans360-server') throw new Error('Bu adreste Finans360 sunucusu bulunamadı.');
+      storage.set(AUTH_KEY, JSON.stringify({ base, token: '' }));
+      location.reload();
+    }).catch(e => { showErr(err, /sunucusu bulunamadı/.test(e.message) ? e.message : 'Sunucuya ulaşılamadı. Adresi ve internet bağlantınızı kontrol edin.'); btn.disabled = false; });
+  },
+  user: (form, s) => {
+    const f = form.elements, err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    const role = (form.querySelector('input[name="role"]:checked') || {}).value || 'employee';
+    const body = { name: f.name.value.trim(), username: f.username.value.trim().toLowerCase(), role, personId: f.personId.value || null, companies: $$('input[name="companies"]:checked', form).map(i => i.value), sensitive: !!(f.sensitive && f.sensitive.checked) };
+    if (role !== 'manager') { body.companies = []; body.sensitive = false; }
+    if (s.data.id) body.active = f.active.checked;
+    if (!body.name) { showErr(err, 'Ad soyad yazın.'); return; }
+    if (!USER_RE.test(body.username)) { showErr(err, 'Kullanıcı adı 3–40 karakter olmalı; Türkçe karakter olmadan harf, rakam, nokta, tire ve alt çizgi kullanılabilir.'); return; }
+    if (role === 'manager' && !body.companies.length) { showErr(err, 'Birim yöneticisi için en az bir şirket seçin.'); return; }
+    btn.disabled = true;
+    api(s.data.id ? 'PUT' : 'POST', s.data.id ? `/api/admin/users/${encodeURIComponent(s.data.id)}` : '/api/admin/users', body).then(r => {
+      const i = (Adm.users || []).findIndex(x => x.id === r.user.id);
+      if (Adm.users) { if (i >= 0) Adm.users[i] = r.user; else Adm.users.push(r.user); }
+      Adm.usersAt = 0; loadAdminUsers();
+      if (r.tempPassword) swapSheet(s, 'text', credentialSheet([{ name: r.user.name, company: r.user.personCompany, username: r.user.username, tempPassword: r.tempPassword }], 'Hesap oluşturuldu'));
+      else closeTo(sheets.indexOf(s), () => toast('Kullanıcı güncellendi'));
+      if (Srv.user && r.user.id === Srv.user.id) pull(true);
+    }).catch(e => { showErr(err, e.message); btn.disabled = false; });
+  },
+  'bulk-users': (form, s) => {
+    const err = form.querySelector('.form-err'), btn = form.querySelector('[type="submit"]');
+    const ids = $$('input[name="pid"]:checked', form).map(i => i.value);
+    if (!ids.length) { showErr(err, 'En az bir kişi seçin.'); return; }
+    const role = (form.querySelector('input[name="role"]:checked') || {}).value || 'employee';
+    if (btn) btn.disabled = true;
+    api('POST', '/api/admin/users/bulk', { personIds: ids, role }).then(r => {
+      Adm.usersAt = 0; loadAdminUsers();
+      if (!r.created.length) { closeTo(sheets.indexOf(s), () => toast('Seçilen kişilerin hepsinin hesabı zaten var.')); return; }
+      swapSheet(s, 'text', credentialSheet(r.created, `${r.created.length} hesap açıldı`));
+    }).catch(e => { showErr(err, e.message); if (btn) btn.disabled = false; });
+  }
+});
+function handleServerChange(t) {
+  if (!Srv.on) return false;
+  if (t.id === 'uf-person') {
+    const form = t.closest('form'), f = form.elements, p = S.people.find(x => x.id === t.value);
+    if (p) {
+      if (!f.name.value.trim() || form.dataset.autoName === f.name.value) { f.name.value = p.name; form.dataset.autoName = p.name; }
+      if (!f.username.value.trim() || form.dataset.autoUser === f.username.value) { const u = suggestUser(p); f.username.value = u; form.dataset.autoUser = u; }
+      if (p.company && !$$('input[name="companies"]:checked', form).length) { const c = $$('input[name="companies"]', form).find(i => i.value === p.company); if (c) c.checked = true; }
+    }
+    return true;
+  }
+  if (t.name === 'role' && t.closest('form[data-form="user"]')) { syncUserForm(sheetOf(t)); return true; }
+  if (t.hasAttribute && t.hasAttribute('data-act-all')) { $$('input[name="pid"]', t.closest('form')).forEach(i => { i.checked = t.checked; }); return true; }
+  if (t.id === 'devBackup' && t.files && t.files[0]) { const file = t.files[0]; t.value = ''; file.text().then(restoreFrom, () => toast('Dosya okunamadı.')); return true; }
+  return false;
+}
+
+/* --- actions --- */
+Object.assign(A, {
+  'logout': () => logout(),
+  'server-retry': () => { showAuth('loading'); startServer(); },
+  'server-disconnect': () => {
+    const leave = () => { storage.set(AUTH_KEY, 'null'); location.reload(); };
+    if (locked) { leave(); return; }
+    confirmSheet({ title: 'Sunucudan ayrılınsın mı?', body: 'Oturumunuz kapanır ve uygulama bu cihazdaki kendi kayıtlarıyla çalışır. Sunucudaki kayıtlar silinmez; yeniden bağlanabilirsiniz.', ok: 'Ayrıl', run: () => logout().then(leave) });
+  },
+  'sync-now': () => { Srv.queue = Srv.queue.then(pushNow).catch(() => {}); pull(true).then(ok => { if (ok) toast('Eşitlendi'); }); },
+  'server-export': () => api('GET', '/api/admin/export').then(d => saveFile(`finans360-sunucu-yedek-${today()}.json`, 'application/json', JSON.stringify(d, null, 1))).catch(e => toast(e.message)),
+  'close-others': () => api('POST', '/api/me/sessions/close-others').then(r => { toast(r.closed ? `${r.closed} oturum kapatıldı` : 'Başka açık oturum yok'); loadSessions(); }).catch(e => toast(e.message)),
+  'seed-upload': () => {
+    let seed = null; try { seed = JSON.parse(document.getElementById('f360-seed').textContent); } catch (e) { seed = null; }
+    if (!seed || !Array.isArray(seed.people)) { toast('Gömülü liste okunamadı.'); return; }
+    if (seed.companyMap && typeof seed.companyMap === 'object') Object.assign(S.settings.companyMap, seed.companyMap);
+    openSheet('importPreview', { records: prepareImport(seed.people.filter(r => r && r.name).map(r => ({ ...blankPerson(), ...r }))), source: 'gömülü liste', meHint: seed.me || '' });
+  },
+  'user-new': () => ensureUsers().then(() => openSheet('userEdit', { draft: { name: '', username: '', role: 'employee', personId: '', companies: [], sensitive: false, active: true } })),
+  'user-open': el => { const u = (Adm.users || []).find(x => x.id === el.dataset.id); if (u) openSheet('userEdit', { id: u.id, draft: { name: u.name, username: u.username, role: u.role, personId: u.personId || '', companies: u.companies || [], sensitive: !!u.sensitive, active: !!u.active } }); },
+  'users-bulk': () => ensureUsers().then(() => openSheet('bulkUsers', {})),
+  'user-reset': el => {
+    const u = (Adm.users || []).find(x => x.id === el.dataset.id); if (!u) return;
+    confirmSheet({ title: `${u.name} için yeni şifre üretilsin mi?`, body: 'Kullanıcının mevcut şifresi geçersiz olur ve bütün oturumları kapanır. Tek kullanımlık yeni şifreyle girip kendi şifresini belirler.', ok: 'Şifreyi sıfırla',
+      run: () => api('POST', `/api/admin/users/${encodeURIComponent(u.id)}/reset-password`).then(r => { Adm.usersAt = 0; loadAdminUsers(); openSheet('text', credentialSheet([{ name: u.name, company: u.personCompany, username: u.username, tempPassword: r.tempPassword }], 'Yeni tek kullanımlık şifre')); }).catch(e => toast(e.message)) });
+  },
+  'user-logout': el => api('POST', `/api/admin/users/${encodeURIComponent(el.dataset.id)}/logout`).then(r => { toast(r.closed ? `${r.closed} oturum kapatıldı` : 'Açık oturum yok'); Adm.usersAt = 0; loadAdminUsers(); }).catch(e => toast(e.message)),
+  'user-delete': el => {
+    const u = (Adm.users || []).find(x => x.id === el.dataset.id); if (!u) return;
+    confirmSheet({ title: `${u.name} hesabı silinsin mi?`, body: 'Kullanıcı artık giriş yapamaz; oturumları kapanır. Personel kaydı, izinleri ve toplantıları silinmez. Geçici olarak engellemek için “Hesap etkin” işaretini kaldırmanız yeterli.', ok: 'Hesabı sil', danger: true,
+      run: () => api('DELETE', `/api/admin/users/${encodeURIComponent(u.id)}`).then(() => { Adm.users = (Adm.users || []).filter(x => x.id !== u.id); Adm.usersAt = 0; loadAdminUsers(); closeTo(0, () => toast('Hesap silindi')); }).catch(e => toast(e.message)) });
+  },
+  'audit-filter': el => { Adm.auditAction = el.dataset.v; Adm.audit = null; Adm.auditMore = true; loadAudit(true); render(); },
+  'audit-more': () => loadAudit(false),
+  'cred-csv': el => {
+    const s = sheetOf(el), list = s && s.data.csv; if (!list) return;
+    const q = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+    const rows = [['Ad soyad', 'Şirket', 'Kullanıcı adı', 'Tek kullanımlık şifre']].concat(list.map(c => [c.name, c.company || '', c.username, c.tempPassword]));
+    saveFile(`finans360-hesaplar-${today()}.csv`, 'text/csv', '﻿' + rows.map(r => r.map(q).join(';')).join('\r\n'));
+  }
+});
+Object.assign(SHEETS, {
+  userEdit: { label: s => (s.data.id ? 'Kullanıcıyı düzenle' : 'Yeni kullanıcı'), render: renderUserForm, mount: syncUserForm, static: true },
+  bulkUsers: { label: () => 'Personelden hesap aç', render: renderBulk, static: true }
+});
+Object.assign(VIEWS, { hesap: viewAccount, yonetim: viewAdmin });
 
 /* ================= private builds: bundled personnel list ================= */
 function applySeed() {
@@ -2526,13 +3316,14 @@ function applySeed() {
 
 /* ================= boot ================= */
 function boot() {
-  load();
-  applySeed();
+  const cfg = serverConfig();
+  if (cfg) { Srv.on = true; Srv.base = cfg.base || ''; Srv.token = cfg.token || ''; document.body.classList.add('srv'); S = emptyState(); S.settings = { ...S.settings, ...loadPrefs() }; }
+  else { load(); applySeed(); }
   const h = location.hash.slice(1);
   UI.tab = VIEWS[h] ? h : 'ozet';
   applyTheme();
-  if (S.settings.pinHash) showLock();
-  render();
+  if (Srv.on) { showAuth('loading'); render(); startServer(); setInterval(() => pull(false), 60000); }
+  else { if (S.settings.pinHash) showLock(); render(); }
   setupPWA();
   tick(); setInterval(tick, 30000);
   scheduleNotifications();
@@ -2541,7 +3332,7 @@ function boot() {
     if (LN && LN.addListener) LN.addListener('localNotificationActionPerformed', ev => { const id = ev && ev.notification && ev.notification.extra && ev.notification.extra.meetingId; if (id && findMeeting(id)) openSheet('meeting', { id }); });
   }
   const style = document.createElement('style'); style.textContent = DOC_CSS; document.head.appendChild(style);
-  window.Finans360 = { version: VERSION, state: () => S, holidayOn, leaveDays, balance, bridgeIdeas };
+  window.Finans360 = { version: VERSION, state: () => S, server: () => ({ on: Srv.on, user: Srv.user, perms: Srv.perms, pending: Srv.on && Srv.user ? hasPending() : false }), holidayOn, leaveDays, balance, bridgeIdeas };
 }
 boot();
 })();

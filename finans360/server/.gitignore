@@ -1,0 +1,7 @@
+# Database, backups and copies of personal data stay on the server only.
+data/
+*.db
+*.db-*
+*.json.bak
+finans360-yedek-*.json
+vendor/

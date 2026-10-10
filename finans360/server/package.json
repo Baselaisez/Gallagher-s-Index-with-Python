@@ -1,0 +1,14 @@
+{
+  "name": "finans360-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Finans360 sunucusu: kullanıcı hesapları, roller ve ortak veri (izin, toplantı, personel).",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "test": "node --no-warnings --test test/*.test.mjs",
+    "create-admin": "node --no-warnings server.js create-admin",
+    "backup": "node --no-warnings server.js backup"
+  }
+}

@@ -30,6 +30,10 @@ jobs:
           cache: npm
           cache-dependency-path: finans360/app/package-lock.json
 
+      - name: Sunucu testleri
+        working-directory: finans360/server
+        run: node --version && npm test
+
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -56,6 +60,12 @@ jobs:
           mkdir -p ../dist
           cp android/app/build/outputs/apk/debug/app-debug.apk ../dist/Finans360.apk
           cp ../index.html ../dist/Finans360.html
+          # server bundle: the app files, the server and the PDF reader (no data, no tests)
+          mkdir -p ../server/vendor
+          cp node_modules/pdfjs-dist/build/pdf.min.js node_modules/pdfjs-dist/build/pdf.worker.min.js ../server/vendor/
+          tar -czf ../dist/Finans360-sunucu.tar.gz -C ../.. --exclude='finans360/server/data' --exclude='finans360/server/test' \
+            finans360/index.html finans360/manifest.webmanifest finans360/sw.js finans360/icons finans360/server
+          tar -tzf ../dist/Finans360-sunucu.tar.gz
           echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
           ls -la ../dist
 
@@ -71,15 +81,16 @@ jobs:
           VERSION: ${{ steps.pack.outputs.version }}
         run: |
           cat > notes.md <<NOTES
-          **Finans360 ${VERSION}**: izin ve toplantı yönetimi. İnternetsiz çalışır.
+          **Finans360 ${VERSION}**: izin ve toplantı yönetimi. Tek başına internetsiz çalışır; isterseniz şirket sunucusuna bağlanır.
 
           - **Finans360.apk**: Android uygulaması. İndirip açın; istenirse “bu kaynaktan yüklemeye izin ver” seçeneğini açıp Yükle’ye dokunun.
           - **Finans360.html**: Tek dosya. Telefonda ya da bilgisayarda tarayıcıyla açın; kurulum gerekmez.
+          - **Finans360-sunucu.tar.gz**: Şirket sunucusu (hesaplar, roller, izin onay akışı, yönetim paneli). Kurulum: finans360/server/README.md
 
           Derleme: ${GITHUB_SHA::7} · ${GITHUB_REF_NAME}
           NOTES
           gh release delete finans360 --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag || true
-          gh release create finans360 Finans360.apk Finans360.html \
+          gh release create finans360 Finans360.apk Finans360.html Finans360-sunucu.tar.gz \
             --repo "$GITHUB_REPOSITORY" \
             --target "$GITHUB_SHA" \
             --title "Finans360 ${VERSION}" \

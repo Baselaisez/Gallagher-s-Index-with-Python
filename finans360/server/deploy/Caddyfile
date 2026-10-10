@@ -1,0 +1,7 @@
+# Caddy, alan adınız için HTTPS sertifikasını kendisi alır ve yeniler.
+# "izin.sirketiniz.com" yerine kendi alan adınızı yazın; alan adının A kaydı bu sunucunun IP adresini göstermeli.
+# Kurulum: sudo cp Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+izin.sirketiniz.com {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8360
+}
