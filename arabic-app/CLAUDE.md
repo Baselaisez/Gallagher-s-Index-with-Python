@@ -7693,3 +7693,64 @@ four-group regex) — a silent `undefined` letter that made every maṣdar unrec
 writes its maṣdars in the accusative (إِكْرَامًا); the audit strips the tanwīn-alif, and reads the manqūṣ تَسَلْقِيًا back to تَسَلْقٍ. (3) The
 doubled lām of اِفْعِلَّال is written twice around the alif in the maṣdar (اِقْشِعْرَار has seven bare letters, اِحْمِرَار six): two skeleton
 patterns, not one. `DabtEngine` is untouched; the lanes are byte-identical.
+
+## What the sentence leaves unsaid of necessity — the HadhfEngine (wave 39, v201)
+
+The Kāfiya and its Turkish summaries on the shelf (`nahiv-kafiye-ozeti-turkce.txt`, `kafiya-internet-digest.txt`, `kafiya-turkce-sual-cevap.txt`,
+`mensubat.txt`, `qatr-al-nada-turkish-cicek.txt`; COVERAGE rows 23 / 31 / 33 / 39) list where a governor, a khabar or a mubtadaʾ is deleted and
+what stands in its place; the corpus authored 406 such lines («لِفِعْلٍ مَحْذُوفٍ … تَقْدِيرُهُ», «خَبَرُهُ مَحْذُوفٌ وُجُوبًا», «خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ»,
+«حُذِفَ حَرْفُ النِّدَاءِ»). Wave 39 makes the lists an engine (`patch39a.py`, `class HadhfEngine` before `InnaEngine`; the surface in `patch39b.py`):
+
+- **The seats** (`SEAT`, each with `what: amil | khabar | mubtada | harf`): the maṣdar whose verb is never said (`MASDAR`, forty entries —
+  سُبْحَانَ → أُسَبِّحُ، مَعَاذَ → أَعُوذُ، حَقًّا → أَحُقُّ، أَيْضًا → آضَ، جِدًّا → يَجِدُّ، لَبَّيْكَ، سَقْيًا، رَعْيًا، حَمْدًا … — with the Kāfiya's seven qiyāsī
+  places `QIYASI7` and its samāʿī list), the heard phrases (`SAMAI`: اِمْرَأً وَنَفْسَهُ، انْتَهُوا خَيْرًا لَكُمْ، أَهْلًا وَسَهْلًا), ishtighāl (a fronted manṣūb and
+  the verb busy with its pronoun or with a jarr phrase on it — the ruling read off the neighbours: wājib after إِنْ / إِذَا / هَلَّا, naṣb preferred
+  after a question, a prohibition, a command, the أَمَّا branch (فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ) and an earlier verb, jāʾiz after وَ / فَ, rafʿ preferred
+  otherwise — with the mubtadaʾ reading as the alternative), the doer of a deleted verb after إِذَا / إِنْ / لَوْ (and لَوْ أَنَّ … → ثَبَتَ), taḥdhīr
+  (إِيَّاكَ وَ…، الطَّرِيقَ الطَّرِيقَ — the repeated or paired manṣūb at the head of a clause, split from ighrāʾ by a virtue / danger lexicon, else
+  «beware / hold to»), ikhtiṣāṣ (نَحْنُ الْعَرَبَ…، … أَيُّهَا الرَّجُلُ in a non-vocative first/second-person context), istighātha (يَا لَزَيْدٍ لِعَمْرٍو),
+  nudba (وَا زَيْدَاهْ، يَا أَسَفَى), the munādā (named for the list, left to the Nidāʾ lab), the vocative whose «O» is dropped (رَبِّ، رَبَّنَا، اللّٰهُمَّ،
+  اعْمَلُوا آلَ دَاوُدَ → `nidaMahdhuf`, what = harf), the Qurʾānic «remember» (a clause-initial إِذْ, and the manṣūb names that open on it —
+  وَأَيُّوبَ إِذْ نَادَى، وَذَا النُّونِ إِذْ → اذْكُرْ), the object whose verb the previous clause said (وَلِسُلَيْمَانَ الرِّيحَ → سَخَّرْنَا؛ وَالْمَشْهُورُ عِلْمَ
+  الطُّمَأْنِينَةِ → يُوجِبُ); the khabar deleted of necessity after لَوْلَا (مَوْجُودٌ, gendered and numbered off the mubtadaʾ; never when the khabar is
+  written), under the explicit oath (لَعَمْرُكَ → قَسَمِي), before the wāw of accompaniment (كُلُّ رَجُلٍ وَضَيْعَتُهُ → مَقْرُونَانِ), before the ḥāl
+  that stands for it (ضَرْبِي زَيْدًا قَائِمًا → حَاصِلٌ) and jawāzan after فَإِذَا; the mubtadaʾ deleted before نِعْمَ's praised one, the cut naʿt,
+  the maṣdar for its verb (صَبْرٌ جَمِيلٌ → صَبْرِي) and — the corpus's own voice, 180 lines — the jāʾiz deletions with a clue the Talkhīṣ
+  teaches (حذف المسند إليه: brevity, the hearer's state plain, guarding against idle words): the teacher's citation نَحْوُ / كَالْ… → ذٰلِكَ, the
+  parts after «two kinds / three things / خَصْلَتَانِ» → أَحَدُهُمَا / وَالْآخَرُ (the page's بَدَلُ تَفْصِيلٍ named as the other wajh), the reply that
+  says only the khabar after قَالَ / قَالُوا / قُلْتُ (قَالُوا مِنْ كَنْعَانَ → نَحْنُ؛ قُلْتُ عَلِيلٌ → أَنَا؛ the sayer's own doer never taken for the reply),
+  the naming يُقَالُ لَهُ إِبْرَاهِيمُ, the fāʾ of the answer with a bare khabar (فَفِدْيَةٌ، فَصِيَامُ شَهْرَيْنِ، فَمُرْسَلٌ → هُوَ / فَالْوَاجِبُ), the bare
+  khabar after أَيْ / بَلْ / إِمَّا, a clause that is all description of someone known (مُرِيدُ الْخَيْرِ…، صُمٌّ بُكْمٌ عُمْيٌ، إِمَامُ الْأَنْبِيَاءِ — bounded by
+  the hemistich mark), the heading word (فَصْلٌ → هٰذَا) and the Qurʾānic «none of … but» (وَإِنْ مِنْ أَهْلِ الْكِتَابِ إِلَّا → أَحَدٌ).
+- **The rulings** (`RULING`): wājib by hearing / by rule / plainly, naṣb preferred, jāʾiz, rafʿ preferred, jawāzan, jāʾiz for a clue.
+- **`read(rows)`** walks the row list (the analyzer's rows for a typed sentence, the stored tokens for a corpus sentence) with the page's case
+  (`pageCase`: the tanwīn, the dual and sound-plural endings, the vowel before an enclitic — the enclitic كَ / هُ stripped after any vowel), the
+  prefix only when it wears its fatḥa (فِعْلٌ is not فَ + عل), an imperative the analyzer could not name read by its shape (فَكَبِّرْ), the
+  clause boundaries (punctuation, the hemistich mark, a verb of saying). **`table(src)`** adds the seat / ruling texts, the page's own
+  reading (`authored(irabAr)` → seats + the restored word, vocalised) and `agree` / `taqdirAgree`; **`restore()`** writes the line with its
+  ghosts in brackets.
+- **`audit()`** grades every authored line: a hit when the engine reads the same seat (the page's لِفِعْلٍ مَحْذُوفٍ accepts ishtighāl / taḥdhīr /
+  اذْكُرْ; a mubtadaʾ line accepts any of the mubtadaʾ seats; a line written on the particle — يَا، وَا، لَوْلَا، لَوْ، the jarr letter of a reply, the
+  citation نَحْوُ — accepts the seat read on its neighbour), a false when the engine reads a seat where the page reads otherwise (a second tafṣīl
+  member the page calls maʿṭūf is the same reading's other wajh). Measured on the probe build: **n = 406, 79.8 % on the same seat, 0 false;
+  the restored word agrees on 83.9 % of the 149 lines that name it**; by seat: munādā 109/110, the citation نَحْوُ 53/63, the maṣdar 42/47,
+  the dropped «O» 22/25, اذْكُرْ 10/10, the jāʾiz mubtadaʾ 56/108 (the long tail is verse lines and «الْأَمْرُ كَذٰلِكَ» readings). **57 seeds**
+  (`SEEDS`) read their seat. **Smoke** (`patch39_smoke.py`, two gates): floors n ≥ 380, acc ≥ 75, false ≤ 3, verbAcc ≥ 78, seeds ≥ 50 with 0 bad,
+  eleven named reads, the ghost layer, the stored line's vocalised word; the lab / game gate.
+- **The ghost layer.** `TaqdirEngine.ghosts()` step 3b pushes every HadhfEngine read (except the munādā and the plain mafʿūl) as a ghost with
+  `kind = what`; `fromLine(tok)` restores the word a stored line names, with its vowels (`verbFull`), and «يَا» for a dropped vocative particle;
+  `LBL` gains khabar / mubtada / harf. New ghost colours: the governor in the accent, the khabar in the iʿrāb ink, the mubtadaʾ green, the
+  particle grey dotted.
+
+**Atölye.** A new lab tab «حَذْف»: a sentence box, the restored line with its ghost pills in place (before or after the word), a card per deletion
+(the word, what is unsaid, the restored word with its direction, the seat AR + EN/TR, the ruling, the explaining verb, the alternatives, the
+qiyāsī place, the heard phrase, the page's own word with ✓ / ✗), the fifty-seven seeds, the corpus tally (`Relax.later("hadhf-audit")`), and the
+legend of the Kāfiya's lists grouped by what is unsaid, with the seven qiyāsī places and the heard phrases. **Game gHadhf** («What is unsaid?»,
+nahw, ⌫): the corpus's own deletions where the engine agrees with the page, the seat marked with [؟], four bracketed words to choose from
+(the page's own taqdīrs as distractors). **Word card**: a «الْمَحْذُوفُ وُجُوبًا» row with the seat, the restored word and the ruling.
+
+**Process notes.** (1) The first audit (41 %) counted the Iẓhār's 168 «خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ: وَذَلِكَ نَحْوُ» citation lines as نِعْمَ's praised one — the
+authored map was too broad; the honest fix was to give the corpus's jāʾiz deletions their own seats and read them off the page's clues, which
+lifted the audit to 79.8 % with the false count at 0. (2) `verbMinusPron` stripped the root of أَعْنِي as an enclitic (→ ishtighāl on «أَعْ»);
+the enclitic floor is now three remaining letters. (3) The hemistich mark bounds a verse clause: مُرِيدُ الْخَيْرِ وَالشَّرِّ الْقَبِيحِ • وَلٰكِنْ لَيْسَ يَرْضَى
+would otherwise «have a verb». `DabtEngine` is untouched; the lanes are byte-identical.

@@ -1135,3 +1135,21 @@ root typed and that door lit, because the lab is where conjugation already lives
 the thirteen attached doors are a row of model verbs under the form row, off by default, so a three-letter root keeps its ordinary
 eighteen doors until the reader asks for an attachment; lighting one hides the six bāb buttons (an attached door has no bāb vowel to
 choose) and a note says in one sentence what just happened: the three letters are the root, the recipe added its letter.
+
+## 32. The unsaid, shown in its place: pills before and after the word, colour by what is missing (wave 39)
+
+The ghost layer already drew what the iʿrāb restores — the concealed pronoun, the dropped muḍāf, the estimated governor — as small dashed
+pills under the taqdīr toggle, and the rule stayed the same when the deletions of necessity joined it: a thing the page never writes must
+never look like a word of the page. What changed is that the pills now sit where the grammar puts the missing word, not merely beside it:
+the deleted governor stands *before* its object (ضَرَبْتُ ← زَيْدًا), the deleted khabar stands *after* لَوْلَا's mubtadaʾ (لَوْلَا زَيْدٌ مَوْجُودٌ), the
+unsaid «he» stands before its khabar — so the reader's eye reads the restored sentence in order, left to right of the Arabic, without a
+legend. The colour says what kind of thing is missing, and only that: the accent for a governor (the same accent the idiom pills always had),
+the iʿrāb ink for a khabar, green for a mubtadaʾ, a grey dotted ring for a particle (the «O» of رَبِّ) — four colours, one per answer to the
+question the student is actually asked in the exam («what is deleted?»), carried unchanged into the lab's cards (the card's left border) and
+the game's reveal. The lab line marks the word that *owns* the deletion with a thin underline rather than a highlight, so the pill stays the
+brightest thing on the line. Each card then says the four things in the order a teacher says them: the word, what is unsaid (a small pill of
+its own), the restored word with an arrow toward the word it serves, the seat in Arabic with its one-line gloss, then the ruling — wājib by
+hearing, wājib by rule, naṣb preferred, jāʾiz for a clue — in the Arabic term and a plain phrase, so «وُجُوبًا» is never a word the reader has
+to look up. The page's own verdict sits last as a small line with a tick or a cross, because the engine's reading and the page's reading
+are two voices and the student should hear both. The game asks only the one question the seat decides — which word is unsaid — with the
+options bracketed like the restored words, so the answer looks like what it will become on the line.

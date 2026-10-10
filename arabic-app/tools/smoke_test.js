@@ -4892,6 +4892,61 @@ if (!CHROME) {
     if (!(r2.supply >= 4)) throw new Error('gBab35 has no supply: ' + r2.supply);
   });
 
+  await check('the HadhfEngine reads what the sentence leaves unsaid of necessity: graded on every deleted governor / khabar / mubtadaʾ line the corpus authored, every seed restores its word, the ghost layer carries the deletions (wave 39)', async () => {
+    const r = await page.evaluate(() => {
+      const a = HadhfEngine.audit(); const sd = HadhfEngine.seedAudit();
+      const N = s => String(s || '').normalize('NFC');
+      const one = (ar, seat) => { const T0 = HadhfEngine.table(ar); const v = T0.items.find(x => x.seat === seat); return v ? N(v.taqdir) + '|' + v.ruling + '|' + (v.before === false ? 'after' : 'before') : null; };
+      const g1 = TaqdirEngine.readText('لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو').ghosts.filter(x => x.kind === 'khabar').map(x => N(x.text) + ':' + x.why).join(' ');
+      const g2 = TaqdirEngine.readText('زَيْدًا ضَرَبْتُهُ').ghosts.filter(x => x.kind === 'amil').map(x => N(x.text) + ':' + x.why).join(' ');
+      let fl = null; outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) for (const t of (sen.tokens || [])) { if (/تَقْدِيرُهُ: سَخَّرْنَا/.test(N((t.irab || {}).ar))) { fl = TaqdirEngine.fromLine(t); break outer; } }
+      let fl2 = null; outer2: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) for (const t of (sen.tokens || [])) { if (/حُذِفَ حَرْفُ النِّدَاءِ|حَرْفُ النِّدَاءِ مَحْذُوفٌ|بِحَرْفِ نِدَاءٍ مَحْذُوفٍ/.test(N((t.irab || {}).ar))) { fl2 = TaqdirEngine.fromLine(t); break outer2; } }
+      return { n: a.n, acc: a.acc, false: a.false, verbN: a.verbN, verbAcc: a.verbAcc, seeds: sd.n, bad: sd.bad.slice(0, 4),
+        ishtighal: one('هَلْ زَيْدًا ضَرَبْتَهُ؟', 'ishtighal'), amma: one('فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ.', 'ishtighal'), tahdhir: one('إِيَّاكَ وَالْأَسَدَ.', 'tahdhir'), ighra: one('الصَّلَاةَ الصَّلَاةَ.', 'ighra'),
+        lawla: one('لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو.', 'khabarLawla'), qasam: one('لَعَمْرُكَ لَأَفْعَلَنَّ.', 'khabarQasam'), subhan: one('سُبْحَانَ اللهِ.', 'mutlaq'), nahw: one('نَحْوُ جَاءَنِي زَيْدٌ.', 'mubtadaNahw'), udhkur: one('وَأَيُّوبَ إِذْ نَادَى رَبَّهُ.', 'udhkur'), rabb: one('رَبِّ إِنِّي ظَلَمْتُ نَفْسِي.', 'nidaMahdhuf'), ahad: one('وَإِنْ مِنْ أَهْلِ الْكِتَابِ إِلَّا لَيُؤْمِنَنَّ بِهِ.', 'mubtadaAhad'),
+        g1, g2, fl: fl ? fl.kind + ':' + N(fl.text) : null, fl2: fl2 ? fl2.kind + ':' + N(fl2.text) : null };
+    });
+    if (!(r.n >= 380 && r.acc >= 75 && r.false <= 3)) throw new Error('the corpus audit floor: n=' + r.n + ' acc=' + r.acc + ' false=' + r.false);
+    if (!(r.verbN >= 120 && r.verbAcc >= 78)) throw new Error('the restored word should agree with the page on most lines that name it: ' + r.verbN + ' ' + r.verbAcc);
+    if (!(r.seeds >= 50) || r.bad.length) throw new Error('every seed restores its word: ' + r.seeds + ' ' + JSON.stringify(r.bad));
+    if (r.ishtighal !== 'ضَرَبْتَ|rajihNasb|before') throw new Error('ishtighāl after هَلْ: naṣb preferred, the verb restored without its pronoun: ' + r.ishtighal);
+    if (!r.amma || !/تَقْهَرْ/.test(r.amma)) throw new Error('the أَمَّا branch of ishtighāl across لَا: ' + r.amma);
+    if (r.tahdhir !== 'أُحَذِّرُ|wajib|before' || r.ighra !== 'الْزَمْ|wajib|before') throw new Error('taḥdhīr / ighrāʾ: ' + r.tahdhir + ' ' + r.ighra);
+    if (r.lawla !== 'مَوْجُودٌ|wajib|after' || r.qasam !== 'قَسَمِي|wajib|after') throw new Error('the khabar deleted after لَوْلَا and under the oath: ' + r.lawla + ' ' + r.qasam);
+    if (r.subhan !== 'أُسَبِّحُ|wajibSamai|before') throw new Error('سُبْحَانَ: ' + r.subhan);
+    if (r.nahw !== 'ذٰلِكَ|jaizQarina|before' || !r.udhkur || !/اذْكُرْ/.test(r.udhkur) || !r.rabb || !/يَا/.test(r.rabb) || !r.ahad || !/أَحَدٌ/.test(r.ahad)) throw new Error('the citation نَحْوُ, the Qurʾānic «remember», the dropped «O», the unsaid أَحَدٌ: ' + [r.nahw, r.udhkur, r.rabb, r.ahad].join(' / '));
+    if (!/مَوْجُودٌ:khabarLawla/.test(r.g1) || !/ضَرَبْتُ:ishtighal/.test(r.g2)) throw new Error('the ghost layer should carry the deletions: ' + r.g1 + ' | ' + r.g2);
+    if (r.fl !== 'amil:سَخَّرْنَا' || r.fl2 !== 'harf:يَا') throw new Error('the stored line restores its word with its vowels: ' + r.fl + ' ' + r.fl2);
+  });
+
+  await check('the Hadhf lab opens on a phone with the seeds and the legend; a seed paints the restored line with its ghost pills and a card per deletion; the tally paints; gHadhf has a supply and asks for the unsaid word (wave 39)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'hadhf'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      const r0 = { tab: !!document.querySelector('.tabs [data-lab=hadhf]'), seeds: q('#hadhfOut .qw-seed'), legend: q('#hadhfOut .hadhf-legend li'), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+      const b = document.querySelector('#hadhfOut [data-seed="لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو."]'); if (b) b.click();
+      r0.cards = q('#hadhfOut .hadhf-card'); r0.pills = q('#hadhfOut .hadhf-line .ghost.g-khabar'); r0.card0 = (document.querySelector('#hadhfOut .hadhf-card') || {}).textContent || '';
+      r0.wide2 = document.documentElement.scrollWidth > window.innerWidth + 1;
+      let supply = 0; try { supply = GameFactory.supplyOf('gHadhf'); } catch (e) { supply = 'ERR ' + e.message; } r0.supply = supply;
+      return r0;
+    });
+    await page.waitForFunction(() => /\d/.test((document.getElementById('hadhfTally') || {}).textContent || '') && !/…/.test((document.getElementById('hadhfTally') || {}).textContent || ''), null, { timeout: 90000 });
+    const r2 = await page.evaluate(() => {
+      const tally = (document.getElementById('hadhfTally') || {}).textContent || '';
+      startHadhf();
+      const opts = [...document.querySelectorAll('.opts button')].map(b => b.textContent.trim());
+      const q = (document.querySelector('.game-q') || {}).textContent || '';
+      try { closeSheet(); } catch (e) {}
+      return { tally, opts, q };
+    });
+    if (!r.tab || r.seeds < 50 || r.legend < 30) throw new Error('the lab should open with the seeds and the legend: ' + JSON.stringify(r));
+    if (r.wide || r.wide2) throw new Error('the lab overflows the phone width');
+    if (r.cards < 1 || r.pills < 1 || !/مَوْجُودٌ/.test(r.card0) || !/لَوْلَا|وُجُوبًا/.test(r.card0)) throw new Error('the seed should paint the restored line and its card: ' + r.cards + ' ' + r.pills + ' ' + r.card0.slice(0, 120));
+    if (!(r.supply >= 4)) throw new Error('gHadhf has no supply: ' + r.supply);
+    if (!/\d+/.test(r2.tally) || !/%/.test(r2.tally)) throw new Error('the audit tally never painted: ' + r2.tally);
+    if (r2.opts.length !== 4 || !r2.opts.every(o => /^\[.+\]$/.test(o)) || !/\[؟\]/.test(r2.q)) throw new Error('the game should ask for the unsaid word with four bracketed options: ' + JSON.stringify(r2.opts) + ' ' + r2.q.slice(0, 80));
+  });
+
   await check('the InnaEngine is graded on every إِنَّ / أَنَّ the corpus authored — the hamza letter is the author\'s answer (wave 31)', async () => {
     const a = await page.evaluate(() => { const a = InnaEngine.audit(); return { n: a.n, decided: a.decided, hit: a.hit, miss: a.miss, acc: a.acc, cov: a.coverage, misses: a.misses.slice(0, 6) }; });
     if (a.n < 200) throw new Error('the audit shrank: ' + a.n + ' particles');
