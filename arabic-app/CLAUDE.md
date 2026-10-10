@@ -7297,3 +7297,202 @@ The JamEngine plural-audit floor moves from 201 to 205: ch9–11 added four HEAR
 (سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names,
 which the builder still tries to break — its own gap, owed to a later round); the four were
 named by diffing the audit lists of the v195 and v196 readers, not guessed.
+
+## Qiṣaṣ Part Two chapters 12–39 — the flood, the storm, the she-camel: VOLUME 2 COMPLETE, and round 56 (wave 35, v197)
+
+Twenty-eight chapters close the volume (`author_qisas2_ch12–39.py`, print pp. 28–68):
+the end of «سفينة نوح» — the flood (ch12), the son of Nūḥ (ch13: 11:42–43), «he is not
+of your family» (ch14: 11:45–47), after the flood (ch15: 11:44; 37:79); the whole of
+«العاصفة» §1–11 — after Nūḥ, the ingratitude, the aggression and the palaces of ʿĀd, Hūd
+the messenger, the call of Hūd (ch21: 7:65), the answer of the people (ch22: 7:66–68), the
+wisdom of Hūd (ch23: 7:69), the faith of Hūd (ch24: 11:54–56), the obstinacy of ʿĀd (ch25:
+67:26), the punishment (ch26: 11:43; 11:60); and the whole of «ناقة ثمود» §1–13 — after
+ʿĀd, the ingratitude of Thamūd, the worship of idols (ch29: 10:44), Ṣāliḥ, the call of
+Ṣāliḥ (ch31: 7:73), the propaganda of the rich (ch32: 23:33–38 as one quotation), «our
+opinion was wrong», the counsel of Ṣāliḥ, «I ask you no reward» (ch35: 26:145, 26:153–154),
+the she-camel of God, the turns (ch37: 11:64), the tyranny of Thamūd, the punishment (ch39:
+11:65; 7:79; the ḥadīth of the dwellings of the wrongdoers; 11:68). Part Two now carries
+39 chapters, 445 sentences, 4335 tokens, 804 glossary entries — **volume 2 complete** —
+still Level 1, still in copyright and flagged so. New paradigms include `khaba` (hollow
+yāʾ), `fajara`, `nafara`, `dajira`, `khariba`, `nabata`, `nataja`, `ayqana` (B4),
+`tafattara` / `tahaddama` (B5), `hajara-emigrate` (B3; the key `hajara` was هَجَرَ),
+`mujib-answerer` (the key `mujib` was مُوجِب), `hum` for the detached هُمْ.
+
+**Round 56 (`patch35a`–`patch35ae`) — thirty-one cuts, all probe-first, on 83 misses of the first
+measurement (ch12–39 at 95.1 on the v196 engine).** The chapters measure 99.x after them
+(ch12–18 100, ch19 94.0, ch20 100, ch21 99.0, ch22 97.1, ch23 98.2, ch24 98.9, ch25 100, ch26 97.7, ch27 100, ch28 100, ch29 98.7, ch30 98.0, ch31 96.7, ch32 96.8, ch33–34 100, ch35 94.8, ch36 100, ch37 97.5, ch38 100, ch39 98.2 — 2612/2645 = 98.75 overall, 97 of the 83+ first-measurement misses fixed, 31 kept (nominal leftovers under the floors), 0 new). The round's one structural change is the first: the grader hands the
+author's part of speech to the decision.
+
+1. **The author's part of speech settles the homograph (35c).** The grader has carried
+   the author's `pos` by index since wave 32c, but `vowel()` reset it before `decide()`
+   ever read it. It now survives for the one call, and a new first pass uses it only
+   where a STORED form is the written word: a verb by the author that the analyzer took
+   for a noun, a particle or a wāw-joined pair becomes the corpus cell that IS the word
+   (وَعَدَهُ = waʿada's māḍī, not وَ + عَدَّ; وَصَلَ, not وَ + صَلِّ; سَآوِي = the future sīn on
+   awā's muḍāriʿ; لَانَ; وَكُنَّا); a noun by the author that the analyzer took for a verb
+   becomes the noun lexicon's head that IS the word (مَلَكُ الْمَوْتِ, أَشَدُّ, ظَنُّنَا, وَبِنَاءِ);
+   a name by the author (صَالِح, هُود, عَاد, هَاجَر) is a name whatever the lexicon's verb says,
+   so `propn()` and the writer's `isPropn` honour it (no hal for صَالِحٌ, no annexed يَا هُودُ,
+   the name keeps its tanwīn before a bare ابْنٌ — لِنُوحٍ ابْنٌ). A verb the analyzer and the author
+   agree on is stamped and RESTORED if a later lexical pass renames it (وَهَاجَرَ صَالِحٌ was
+   becoming the name Hājar). The stored plural that IS the written word wears no
+   pronoun (مُلُوكَ, not مُلُو + كَ); the hamza seat is spelling for the comparison
+   (سَآوِي ~ أَأْوِي, أُومِنُ ~ أُؤْمِنُ); after the negating لَا the stripped word's passive
+   māḍī reading yields to the paradigm's own 1s muḍāriʿ (لَا أُومِنُ).
+2. **The analyzer's nahy flag reads the host (35a).** فَلَا تَسْأَلْنِ, لَا أَسْأَلُكُمْ, لَا
+   أَخَافُهُمْ: the prohibition was being read off the enclitic's sukūn; it now tests the
+   host's last letter, never the speaker's forms, and never the negated khabar after
+   إِنَّكَ / a detached pronoun.
+3. **The writer (35b).** بَسَاتِينُ: a muntahā-shape plural the lexicon STORES takes the
+   diptote's ḍamma (the ين-tail is the pattern's, not a sound plural's — النَّجَّارِينَ stays
+   a sound plural); بَاكِينَ: the manqūṣ branch never rewrites a sound plural's ين/ون;
+   يَصِحْنَ: the women's nūn keeps its fatḥa; فَلَا تَسْأَلْنِ: the shortened nūn of
+   protection keeps its kasra; يَا بُنَيَّ: the muḍāf munādā on the shadda takes its
+   fatḥa; إِنْ أَجْرِيَ: the page's fatḥa on the speaker's yāʾ.
+4. **The nominal seats (35d).** أَرْضًا جَمِيلَةً خَضْرَاءَ فِيهَا بَسَاتِينُ وَعُيُونٌ: the bare
+   noun after a jarr-pronoun behind an indefinite object is the ṣifa clause's delayed
+   mubtada, never the object's badal; وَإِنَّ وَعْدَكَ الْحَقُّ وَأَنْتَ…: the definite noun after
+   إِنَّ's ism with nothing left to be the khabar IS the khabar; وَإِنْ كَانَ ابْنَهُ: the
+   pronoun-closed noun that ends the line after kāna is her khabar; فَالْعِيَاذُ بِاللهِ: a
+   new nominal line after a closed iḍāfa; وَاللهُ لَا يَقْبَلُ الشَّفَاعَةَ: no oath when a
+   he-verb under لَا follows with no doer of its own — God is the mubtada, the verb his
+   khabar, the noun after it the object.
+5. **The doer and the frames (35e).** The verb after kāna's NAMED ism (كَانَتْ خَيْلُ عَادٍ
+   تَمْلَأُ الْمَيْدَانَ) or إِنَّ's NAMED ism (إِنَّ اللهَ لَا يَرْضَى لِعِبَادِهِ الْكُفْرَ) does the
+   ism's act — the noun after it is its object, and a pre-pass walk-back from the verb to
+   the kāna / إِنَّ keeps the doer-picks and the «definite noun after a hidden doer» rule
+   from naming another doer (35f); a kāna-sister with a pronoun ism under an open إِنَّ is
+   إِنَّ's khabar (وَلٰكِنَّهُمْ … صَارُوا عُبَّادَ); the shouting, calling and answering verbs
+   quote like قَالَ (وَصَاحُوا هٰذِهِ سَحَابَةُ مَطَرٍ); a ẓarf with its pronoun right after the
+   verb is the ẓarf and the definite noun behind it the doer (وَحَالَ بَيْنَهُمَا الْمَوْجُ);
+   السَّمَاء joins the feminine list; after a verb of prayer or worship الله is the one
+   addressed and the name after Him the doer (فَدَعَا اللهَ صَالِحٌ); the reciprocal
+   بَعْضُهُمْ بَعْضًا; kāna tāmma before the ال-time word with its ordinal (وَلَمَّا كَانَ
+   الْيَوْمُ الثَّالِثُ); the noun lexicon reads the opened tāʾ before a pronoun (مَاشِيَتُكُمْ
+   = مَاشِيَة, كَعَادَتِهِمْ = عَادَة) and the hamza on its seat (مَاؤُهَا = مَاء); a colon before
+   a verb closes the clause before it; a name right after a she-verb with no feminine
+   subject is its doer even for a verb of perception (لَمْ تَجِدْ عَادٌ جَوَابًا — the tribe is
+   feminine); the wāw-joined ال-noun before its own verb after a mubtada–verb line is a
+   new mubtada (الْأَطْفَالُ يَبْكُونَ وَالنِّسَاءُ يَصِحْنَ وَالرِّجَالُ يَدْعُونَ); after a pause an
+   ال-noun followed by a bare noun opens a nominal line (النَّاسُ أَمْوَاتٌ … وَالْبُيُوتُ خَرَابٌ);
+   the pronoun-closed noun after a naʿt before كَأَنَّهَا is the ṣifa clause's mubtada
+   (أَجْسَامُهُمْ كَأَنَّهَا مِنْ حَدِيدٍ); كُلّ / بَعْض / جَمِيع annex the bare noun after them
+   (كُلَّ وَاحِدٍ).
+6. **The moods and the kāna frames (35f).** وَإِلَّا تَغْفِرْ لِي وَتَرْحَمْنِي: إِلَّا before a
+   muḍāriʿ at the clause head is إِنْ + لَا, the shart's jazm copied by the wāw; لِيُنْذِرَكُمْ:
+   a lām after a jarr-pronoun or a jarr particle is the lām of purpose; وَلَا تَمْلِكُ لِأَحَدٍ,
+   وَلَا تَسْقُطُ وَرَقَةٌ: the she-verb under لَا with no addressee is negated — a jarr
+   phrase or a feminine noun after it changes nothing; فَيَأْخُذَكُمْ عَذَابٌ: the fāʾ of
+   consequence after a prohibition takes naṣb even where the author's note names the
+   jawāb of the request; لَيْسَ هٰذَا سَحَابَ رَحْمَةٍ, كَانَ ذٰلِكَ سَبْعَ لَيَالٍ: the demonstrative
+   after kāna is her ism (an ال-noun after it her badal); بَلْ closes every frame before
+   it (بَلْ هُوَ رِيحٌ); وَلٰكِنَّ النَّاسَ أَنْفُسَهُمْ يَظْلِمُونَ: the pronoun-closed noun between
+   إِنَّ's ism and a plural verb is the fronted object; the delayed ism behind a
+   jarr-pronoun, with or without its own pronoun (وَكَانَ لِلنَّاسِ فِيهِ رَجَاءٌ كَبِيرٌ, وَلَيْسَ
+   عَلَيْكُمْ عَلَفُهَا وَمَاؤُهَا — the frame closes on it, the adjective is a naʿt, the joined
+   noun an ʿaṭf); the future sīn on kāna's sister still opens her frame (أَنَّكَ سَتَكُونُ
+   مِثْلَ فُلَانٍ, where إِنَّ's pronoun ism is kāna's); kāna before مَا / مَنْ + verb is tāmma
+   (وَلَمَّا كَانَ مَا أَرَادَهُ اللهُ), and a wāw-joined verb after a مَا-subject clause starts
+   its own clause.
+7. **The leftovers (35g–35k).** بِالْفَوَاكِهِ وَالْأَثْمَارِ: the wāw-joined ال-noun right after
+   a noun in jarr is joined to it in jarr, and so after a frozen muḍāf ilayh (مِثْلَ فُلَانٍ
+   وَفُلَانٍ); وَبَارَكَ اللهُ لَهُمْ: الله right after a verb is its doer even where a subject
+   was named earlier in the line; تَشْرَبُ هٰذِهِ النَّاقَةُ: the she-verb's only feminine is the
+   demonstrative doer, the ال-noun its badal in rafʿ; inside the shart clause a joined
+   intransitive verb before a definite noun takes it as doer and the jawāb's she-verb
+   shares no masculine doer (وَغَرِقَ الْكُفَّارُ أَمْسَكَتِ السَّمَاءُ); بِآلِهَتِنَا: a
+   pronoun-closed noun whose head the lexicon owns only behind بِ / كَ / لِ is under that
+   jarr letter; the second لَا continues the negation past a jarr phrase (لَا تُؤْمِنُ
+   بِآلِهَتِنَا وَلَا تَخَافُهُمْ); the fāʾ clitic on a pronoun-closed muḍāriʿ; the relative
+   clause inside إِنَّ's ism (إِنَّ هٰذَا الْكَلْبَ الَّذِي تَرْمُونَ إِلَيْهِ … لَا يُفَارِقُ بَيْتَكُمْ)
+   keeps her frame open past its verb — the demonstrative after إِنَّ is her ism; after
+   مَا / مَنْ the definite noun behind the he-verb is its doer (كَمَا طَلَبَ النَّاسُ, مَا يَصْنَعُ
+   الْإِنْسَانُ); an intransitive verb's bare noun behind a jarr phrase is its doer when it
+   is no ṣifa-shape and wears no fatḥatān on the page (خَرَجَتْ مِنَ الْجَبَلِ نَاقَةٌ حَامِلٌ).
+   After لَا's ism the ال-time word is its ẓarf, not its annex (لَا شَكَّ الْيَوْمَ) (35k).
+
+8. **The neighbours' lanes (35l–35ae) — what the sweep of Parts One and Four found.** The
+   first full-lane run of the 35a–k reader against the v196 logs was WORSE 9 / 7 / 8
+   on the three lanes; every one was hunted to its rule. The surprise was content, not
+   code: عِيدِ الْأَضْحَى (Part One ch6) broke on the UNPATCHED reader because Part Two
+   brought the name عَاد (the people of Hūd) into the lexicon, and the analyzer's lemma
+   for عِيد is the verb عَادَ — the "name + ṣifa" rule (زَيْدٍ الْعَالِمِ) tested the LEMMA
+   against the lexicon and found a name. A head is a name by its own word now, never by
+   a lemma that merely spells a name elsewhere (35m). The rest: the relative's hidden
+   doer passes only to a verb JOINED to the relative's own verb (وَمَنْ رَآهُمْ وَرَأَى
+   قُصُورَهُمْ takes the object; الَّتِي أَكْرَمَ اللهُ بِهَا keeps الله) (35l/35n); a مَا
+   governed by a noun or a jarr letter is mawṣūl (غَيْرِ مَا يُرْضِي اللهَ) and the taʿajjub
+   أَفْعَلَ takes its noun as object (فَمَا أَشَدَّ الظَّلَامَ وَمَا أَبْعَدَ السَّلَامَ); inside a
+   chain of "ال-noun + jarr phrase" members the joined ال-noun before its own jarr phrase
+   joins the chain's head, not the jarr noun (الِاسْتِخْفَافُ بِالْأَنْبِيَاءِ … وَالتَّعَامُلُ
+   بِالرِّبَا); the walk-back to kāna's ism crosses no fatḥatān khabar and no relative
+   pronoun (كَانَ الْوَقْتُ مَسَاءً قَدْ مَدَّ الظَّلَامُ رُوَاقَهُ), and a noun the pre-pass
+   already named doer is never the owed object; the she-verb right after a kāna sister is
+   its khabar — the ism is its doer (لَا تَزَالُ تَعْبُدُ الشَّمْسَ, صَارَتْ تَفْقِدُ
+   أَصَالَتَهَا), and an opened-tāʾ noun under هُمْ after a named doer is the object (لَمْ
+   تَقْبَلْ مَقَالَتَهُمْ); once الله is the named doer, every later joined 3ms muḍāriʿ
+   continues Him (يُرِيدُهُ اللهُ … وَيُقِيمُ الْحُجَّةَ … وَيَنْصُرُ الْحَقَّ وَيَكْبِتُ أَهْلَ
+   الْبَاطِلِ) (35o); the two-object verb whose second object rides بِ owes no further
+   object (يُبَشِّرُكِ بِكَلِمَةٍ … اسْمُهُ الْمَسِيحُ عِيسَى ابْنُ مَرْيَمَ); a fatḥatān noun behind
+   a tafḍīl is its tamyīz, never the muḍāf ilayh, and the tafḍīl is diptote in the writer
+   too (أَدَقَّ مِنْهُ وَأَبْعَدَ مَنَالًا, أَكْثَرُ مَالًا) (35p); the author-noun retype keeps
+   the joiner in its own segment (وَكَفٍّ عَنِ الْعَمَلِ); the munādā's fatḥa is already there
+   under the shadda in NFC order (يَا بَنِيَّ); the jarr-clitic pass lends the row its lemma
+   and its jarr but leaves the analyzer's own segments to the writer (بِأَهْلِكُمْ, لِإِخْوَتِكُمُ,
+   بِهَدِيَّتِكُمْ), and a demonstrative joined after a jarr member opens its own clause
+   (وَذٰلِكَ سِرُّ تَفْضِيلِهِمْ) (35q); a wāw-joined مَا is the negation, governed by no noun
+   (وَمَا سَمِعَ النَّاسُ بِمِثْلِهَا), only an unjoined مَا behind a tanwīn-less muḍāf is the
+   governed mawṣūl (غَيْرِ مَا يُرْضِي اللهَ, not لِبَعْضٍ مَا يَقُولُ هُودٌ), and behind a question
+   word the name after the verb is its doer, never the object the name-rule would make
+   it now that the author's propn flag reaches that rule (مَاذَا يُرِيدُ هُودٌ) (35r); the release's own Talkhīṣ gate caught the last one — the
+   wāw/fāʾ-joined māḍī reading (وَهَاجَرَ) is refused where the author wrote a noun or the
+   lexicon owns the whole word (ظَهَرَ فَسَادُ جَعْلِ وَجْهِ الشَّبَهِ is no فَ + سَادَ) (35s); the Talkhīṣ gates of ch48–57 caught two
+   more — a مَا fused to بِ / لِ is the governed mawṣūl (بِمَا يُلَائِمُ الْمُسْتَعَارَ لَهُ; كَمَا
+   طَلَبَ النَّاسُ keeps its doer), and the joined noun after a muḍāf-ilayh member is its atf only
+   when both are bare indefinites and the joined one wears no fatḥatān (مِثْلَ فُلَانٍ وَفُلَانٍ;
+   وَالْجَامِعُ التَّرَتُّبُ and وَالْكَرَمُ بَيْنَ بُرْدَيْهِ open their own clause, فَانْطِبَاقًا is
+   the ḥāl) (35t). A Talkhīṣ lane (ch40–76 against v196) then found eleven more, all
+   hunted to their rules (35u–35ab): إِنَّمَا is no مَا and a مَا behind a pronoun-closed noun
+   is the governed mawṣūl; the joined ال-noun after a jarr noun is its atf only when no
+   pause stands before it, no unjoined verb follows the joined chain, the joiner is no
+   jawāb's fāʾ after a shart, and no raf noun with its own jarr phrase precedes
+   (فَالْأَحْسَنُ تَرْكُ…, وَالنَّجْمُ وَالشَّجَرُ يَسْجُدَانِ, وَالْفَضْلُ لِلْأَوَّلِ); a passive verb keeps
+   the مَا before it as its nāʾib (وَتُسَمَّى التَّنَاسُبَ); the jawāb on the fāʾ is no jazm
+   (وَإِلَّا فَيُقَالُ); a head wearing tanwīn annexes nothing — no pre-pair, no كُلّ-pair, no
+   asked-nakira pair survives it, and the asked nakira annexes only without tanwīn (أَقَوْمٌ آلُ حِصْنٍ, كُلٌّ مَوَدَّتُهُ); the كُلّ-member rule releases
+   the member from any head seat so the writer keeps its tanwīn, and keeps the seat when it annexes on (كُلَّ يَوْمٍ تُبْدِي; كُلِّ أَعْمَالِ الْخَيْرِ); the
+   author's noun behind لَا is the genus-lā's ism before any ḥāl reading (وَلَا مَالَ). After these the lanes read WORSE 0 against v196 on
+   every sentence the round touched. The release's chunk 6 then found the one lane none of these probes walk — the FREE-TEXT path
+   (35ac): the bayān and badīʿ engines call `decide()` on the analyzer's rows with no grader context, and the round's
+   tanwīn tests read `_orig24` (the grader's copy of the written words), which that path leaves empty or stale from the
+   last graded sentence, as it leaves the grader's part-of-speech list. Now `decide()` takes the row's own written word
+   as its marks and drops the stale list when no graded text is aligned (فَانْطِبَاقًا keeps its fatḥatān and its ḥāl, so
+   the tashbīh's wajh is read again); the 35j bare-doer hop crosses jarr phrases only, never a negation (لَا تَكَلَّمُ نَفْسٌ:
+   the homograph after لَا is its own verb, not يَأْتِ's doer, and the jamʿ ʿāmm comes back); and C4's tanwīn alif needs the
+   fatḥatān itself — آمَنَّا wears a fatḥa before its shadda and stays the verb now that Part Two's lexicon owns آمِن (the
+   takīd al-madḥ sub reads nafy-illā again). The five chunk-6 checks (ch48–50, ch61–64, ch65–67, the tibāq and list seeds)
+   are that lane's gate. Chunk 7 then caught what the lane compare itself had hidden: it counted HITS, so a sentence whose
+   graded-word count grew with new misses (12/13 → 12/15) read as unchanged. The compare now counts misses (`cmplog56b`),
+   and the three it surfaced are cut in 35ad: the ال-noun right after a NAMED or pronoun-closed object or its badal is that
+   object's naʿt, no new mubtada (وَتَنَاوَلُوا أُمَّهُ مَرْيَمَ الْبَتُولَ — and so وَالطَّعْنِ is بِالْقَذْفِ's atf again; Part Four ch29
+   back over its floor; a plain ال-object keeps the old reading, because Part Four ch18 s4 showed the wider cut only moves the
+   miss: there the print separates a chain of five naʿts with a comma — الْقَاهِرَةِ، الرَّحِيمَةِ — and the 23c "no naʿt across
+   a stop" rule turns الرَّحِيمَةِ into an object, after which فَتُخْرِجُ هٰذَا الْإِنْسَانَ needs the joined she-verb to inherit
+   يَدُ as its hidden doer; both are round-57 cuts, probe-first, not this release's); the 35h object rule skips a demonstrative, whose kāf is no pronoun (فَعَلَ ذَلِكَ keeps its mabnī surface); a word
+   wearing fatḥatān on the page is no delayed mubtada and no khabar (مِثْلُهُ فِيهَا مُبَالَغَةً is left to the reader, as v196
+   left it — and the writer (35ae) now leaves an undecided word with the page's own ending instead of a stripped one, so
+   the free-text reader shows وَكِلَا مُضَافًا as written, never مُضَافا; the seventh gate run caught that on the Kāfiya
+   seeds). Two Part Two floors had been carried over above their own measurement (ch19 94.0, ch35 94.8 against a floor of
+   95) and now stand at the measured 93.
+
+What this round is NOT: no engine learned the author's answers. The part of speech is
+the only authored fact read, it is read only where a stored form confirms it, and the
+grader still writes every ending from the rules; the `pos` has been in every token since
+the first package and the live app shows it on the card.
+
+Smoke: the Part Two gate grows to ch1-39 / 445 sentences with per-chapter floors from
+the measurement (floors ch1 99, ch2 98, ch3 98, ch4 98, ch5 98, ch6 99, ch7 99, ch8 99, ch9 99, ch10 99, ch11 99, ch12 99, ch13 99, ch14 99, ch15 99, ch16 99, ch17 99, ch18 99, ch19 93, ch20 99, ch21 98, ch22 96, ch23 97, ch24 97, ch25 99, ch26 96, ch27 99, ch28 99, ch29 97, ch30 97, ch31 95, ch32 95, ch33 99, ch34 99, ch35 93, ch36 99, ch37 96, ch38 99, ch39 97) and fifty-four more named rule assertions (one per cut
+above, taken from the sentences the round was cut on). The neighbours (the
+Talkhīṣ/Kāfiya/Part One sweep, Part Four's forty-five chapters and Part One's
+twenty-four against the v196 engine, Part Two ch1–11, the seeds, r21/r22, `sarfAudit`,
+the Talkhīṣ gates) swept WORSE 0 on Part Four's lanes A and C, Part One, Part Two ch1–11 and the sweep (BETTER 27 / 6 / 1 / 1); lane B shows two lines whose graded-word count fell by one because وَرَبَّكُمْ moved from a lucky verb reading to the uncounted mabni noun reading — the same vowels.
