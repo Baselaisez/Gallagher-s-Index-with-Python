@@ -7809,3 +7809,53 @@ per rule, the seeds, seven muʿrib sentences with their exact clauses; the lab, 
 office must be read at the head of a clause; and «حَرْفُ تَشْبِيهٍ وَنَصْبٍ» is كَأَنَّ's own full term, not a short one. (2) The Qurʾān mark lives
 in `punctAfter`, not the word. (3) `json.dumps` with one indentation would have rewritten a two-space chapter file (1,042 lines); the fixer
 re-dumps each file at the indentation `git show HEAD:` had. `DabtEngine` is untouched; the lanes are byte-identical.
+
+## The sign of the iʿrāb, re-derived from the written word — the SignEngine (wave 41, v203)
+
+The two Turkish iʿrāb-taxonomy tables (`research/sources/irab-taksimat-tablolari-turkce.txt`, and what survives of
+`irab-taksimat-turkish.txt`; COVERAGE rows 27–28) say three small things no single note said: the SIGN has an essence
+(ḥareke / ḥarf / ḥazif), the iʿrāb has an attribute (lafẓî / takdîrî / mahallî), and every class of word takes its signs from one
+row of a class × case table. Wave 41 makes that table an engine (`patch41a.py`, `class SignEngine` before `InnaEngine`) and grades
+it on the corpus's own statements:
+
+- **`SIGNS`** — eleven signs, each with its essence; **`ESSENCE`**, **`ATTRIBUTE`**, **`REASON`** (niyāba, taʿadhdhur, thiqal,
+  ishtighāl) in Arabic, EN and TR; **`CLASSES`** — thirteen rows (sound singular/broken plural, sound feminine plural, diptote,
+  dual + mulḥaq, sound masculine plural + mulḥaq, the five nouns, maqṣūr, manqūṣ, annexed to the speaker's yāʾ, sound-final
+  muḍāriʿ, weak-final muḍāriʿ, the five verbs, mabnī), each cell `[sign, manner, reason?]`.
+- **`classify(word, {pos, lex, next, tags, kase, cell})`** reads the class off the WRITTEN word: proclitics and enclitics peeled
+  (نِي only on verbs; a definite word keeps its pronoun unless the rest is a truncated plural — السَّاكِنِيهِ), the five nouns and كِلَا
+  by annexation, a maqṣūr before a pronoun told from a dual by the lexeme's tail, the dual and sound plural by SHAPE and then by a
+  consonant-skeleton test against the Latin lexeme key (مُؤْمِنِينَ: م م ن ن outgrows *mumin*; الزَّمَانِ equals *zaman*, so the ـان is the
+  stem's), فَعَالِيل broken plurals that end like a plural (شَيَاطِين) by a no-shadda-before-the-alif shape, the diptote by `MamnuEngine`
+  or the afʿal shape, exempt when annexed (its own bare kasra says so), the five verbs by their nūn or by a truncated وا/ا/ي under
+  jazm/naṣb, the weak-final verb by a jazm that leaves a short vowel on the last letter (يَرَ، يَتَّقِ) unless the kasra only joins a
+  hamzat waṣl. **`annexedTo`** reads the next word: a proper name, a majrūr with the article or a bare kasra (a chain), a pronoun-bearing
+  noun, or an indefinite majrūr after the word's own kasra / truncated tail — and ابن/بنت after a name is never the muḍāf ilayh.
+  The corpus's own `grammar` tags (al-muthanna, jam-mudhakkar-salim, jam-taksir, mamnu-min-sarf, ism-maqsur-manqus, afal-khamsa,
+  naqis-verbs) break ties the shape cannot; `viaTag` counts how often (1,123 of 8,859 — the smoke gate caps it at 15%).
+- **`expect(cls, kase)`** is the table lookup (the weak-final verb's naṣb on an alif becomes estimated); **`table(word)`** is the
+  word's whole row; **`authored(irabAr)`** reads «مرفوع بالضمة / وعلامة رفعه الضمة المقدرة على الألف للتعذر» into `{kase, sign, manner, why}`.
+- **`audit()`** walks every authored iʿrāb line: 8,859 sign statements (2,947 ḍamma, 2,451 kasra, 2,311 fatḥa, 401 yāʾ, 400 thubūt,
+  119 wāw, 76 alif, 70 sukūn, 65 ḥadhf al-nūn, 19 ḥadhf ḥarf al-ʿilla), re-derived from the written word alone: **99.9% agree with the
+  author on the sign, 89.4% on spoken/estimated**; the taxonomy counts (ḥaraka 7,779 / ḥarf 996 / ḥadhf 84; lafẓī 8,048 / taqdīrī 811 /
+  maḥallī 3,520 «في محل» lines) are the lab's numbers. The twelve lines that still disagree are the authors' own split on the jarr
+  of a diptote maqṣūr (مُوسَى، أُخْرَى، سَلْمَى، يَحْيَى، هَدَايَا «فتحة مقدرة» against عِيسَى، زَكَرِيَّا، نِينَوَى «كسرة مقدرة» — the table keeps
+  the kasra), one تِيه the MABNI list swallows, and a hollow verb's jazm the author wrote as a deletion.
+- **27 seeds** (`SEEDS`, one or two per class) and `seedAudit()`.
+
+The **Signs lab** (`patch41b.py`, tab «عَلَامَات») shows the two taxonomies as cards with the corpus counts, a word box with the seeds
+as chips (`SignEngine.table` → the class, its reason, and the cells with spoken/estimated marked), and the thirteen class cards, each
+with its cells, its footfall «n authored lines · rate%» and up to three authored example words per cell that open the sentence sheet.
+The **word card** gained the row «عَلَامَةُ إِعْرَابِهِ» (after the fifteen kinds row, because it needs the corpus token). **gSign**
+(«أَيُّ عَلَامَةٍ؟», group nahw) shows a corpus sentence with the word lit and its case, and asks the sign; the distractors are the other
+signs that case can take, the reveal is the class and the reason.
+
+**Process notes.** (1) The container was rebuilt mid-wave and the scratchpad (engine draft, build scripts, baselines, node modules) was
+lost; the engine was rewritten from the recorded design and re-graded — the first draft measured 96.9%, the rewrite with the skeleton
+test, the annexation reader and the tag tie-breaks 99.9%. (2) The authored-line reader at first matched only «مرفوع بالضمة»; the
+«وعلامة رفعه الضمة» branch needed its optional space — a gate pins one line of each phrasing. (3) A Latin lexeme key is NOT a
+transliteration with vowel length (*mumin* for مُؤْمِن, *sikkin* for سِكِّين, *muhtadin* for the plural itself), so the stem test
+compares consonant skeletons with hamza, ʿayn and the long-vowel letters dropped on both sides and doubled Latin letters collapsed to
+the shadda — and where the key is the plural itself, the corpus tag decides. (4) The smoke harness gained `SMOKE_SLICE=a-b` (an
+ordinal slice) so a release can run the suite in resumable chunks; CI still runs everything. `DabtEngine` and the analyzer are
+untouched.

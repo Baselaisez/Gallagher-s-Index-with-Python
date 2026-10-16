@@ -2121,6 +2121,31 @@
   .adab-ledger .al-lbl { font-weight: 600; margin-inline-end: .4rem; }
   .adab-ledger ul { margin: .25rem 0 0; padding-inline-start: 1rem; } .adab-ledger [lang="ar"] { font-family: var(--ar-font); font-size: 1rem; color: var(--ink); }
   .adab-q-line { font-size: 1.05rem; margin: .3rem 0; }
+  .sign-tax { display: grid; gap: .6rem; grid-template-columns: 1fr; margin: .5rem 0 .8rem; }
+  @media (min-width: 640px) { .sign-tax { grid-template-columns: 1fr 1fr; } }
+  .sign-tax-col h4 { margin: .2rem 0 .4rem; font-size: 1.05rem; } .sign-tax-col h4 small { font-size: .75rem; color: var(--muted, #777); margin-inline-start: .4rem; }
+  .sign-tax-card { display: grid; grid-template-columns: 1fr auto; gap: .1rem .6rem; align-items: baseline; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: .4rem .6rem; margin-bottom: .35rem; }
+  .sign-tax-card .st-ar { font-size: 1.1rem; } .sign-tax-card .st-doc { grid-column: 1 / -1; color: var(--muted, #777); } .sign-tax-card .st-n { font-size: .8rem; border: 1px solid var(--line); border-radius: 999px; padding: 0 .5rem; white-space: nowrap; }
+  .sign-ess { border-inline-start: 3px solid #2a7f62; } .sign-attr { border-inline-start: 3px solid #3f7fbf; }
+  .sign-h { margin: .8rem 0 .3rem; }
+  .sign-classes { display: grid; gap: .5rem; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .sign-classes { grid-template-columns: repeat(2, 1fr); } }
+  .sign-class, .sign-word { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: .5rem .65rem; display: grid; gap: .3rem; border-inline-start-width: 3px; }
+  .sign-class.p-ism { border-inline-start-color: #2a7f62; } .sign-class.p-fil { border-inline-start-color: #b5651d; } .sign-class.p-mabni { border-inline-start-color: #888; } .sign-word { border-inline-start-color: #3f7fbf; }
+  .sign-head { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+  .sign-n { font-size: .8rem; color: var(--muted, #777); border: 1px solid var(--line); border-radius: 999px; padding: 0 .5rem; }
+  .sign-ar { font-size: 1.15rem; } .sign-part { font-size: .75rem; color: var(--muted, #777); border: 1px solid var(--line); border-radius: 999px; padding: 0 .45rem; } .sign-why { color: var(--muted, #777); } .sign-word-w { font-size: 1.35rem; }
+  .sign-doc small { color: var(--muted, #777); }
+  .sign-cells { display: grid; gap: .3rem; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); }
+  .sign-cell { border: 1px solid var(--line); border-radius: .5rem; padding: .3rem .4rem; display: grid; gap: .1rem; min-width: 0; }
+  .sign-cell.off { opacity: .45; } .sign-cell .sc-case { font-size: .72rem; color: var(--muted, #777); text-transform: uppercase; letter-spacing: .03em; }
+  .sign-cell .sc-sign { font-size: 1.05rem; } .sign-cell.m-taqdiri .sc-sign { text-decoration: underline dotted; text-underline-offset: .2em; } .sign-cell.m-mahalli .sc-sign { opacity: .6; }
+  .sign-cell.b-harf { background: color-mix(in srgb, #3f7fbf 9%, transparent); } .sign-cell.b-hadhf { background: color-mix(in srgb, #b5651d 10%, transparent); }
+  .sign-cell .sc-why, .sign-cell .sc-attr { font-size: .72rem; color: var(--muted, #777); overflow-wrap: anywhere; }
+  .sign-cell .sc-ex { display: flex; flex-wrap: wrap; gap: .2rem; } .sign-ex { font: inherit; font-size: .9rem; border: 1px dashed var(--line); background: transparent; color: inherit; border-radius: 999px; padding: 0 .4rem; cursor: pointer; }
+  .sign-tally { color: var(--muted, #777); }
+  .sign-seeds { display: flex; flex-wrap: wrap; gap: .3rem; margin: .4rem 0; } .sign-seeds button { font: inherit; font-size: .95rem; border: 1px solid var(--line); background: transparent; color: inherit; border-radius: 999px; padding: .05rem .55rem; cursor: pointer; }
+  .sign-q-line { font-size: 1.1rem; margin: .3rem 0; }
   /* the Hadhf lab (wave 39): the restored line with its ghost pills, a card per deletion coloured by what is unsaid */
   .hadhf-line .ghost { font-size: .8em; vertical-align: baseline; }
   .hadhf-line .shop-w.hadhf-on { border-bottom: 2px solid var(--accent); }
@@ -2329,6 +2354,7 @@ const L = {
         innaTab:"Inna", innaIntro:"Birgivi's rule: إِنَّ leaves the sentence a sentence, أَنَّ turns it into a masdar — so the hamza takes the kasra wherever a SENTENCE belongs and the fatha wherever a single WORD belongs. The engine reads the seat (what stands before, and whether a lam sits on the khabar) and names it; where no seat is known it says BOTH and does not guess", innaPh:"a sentence with إِنَّ or أَنَّ — عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ",
         innaEmpty:"Type a sentence with إِنَّ / أَنَّ, or take one of Birgivi's own.", innaNone:"No إِنَّ / أَنَّ in this sentence.", innaQuoted:"the particle is quoted as a word — its hamza is the author's, not a seat's", innaLegend:"The seats of the kasra, of the fatha, and of both",
         innaKasrSeats:"ten places where the sentence stays a sentence", innaFathSeats:"where a masdar can stand in", innaBothSeats:"where either reading gives a sense", innaAudit:"Corpus audit: {n} authored إِنَّ / أَنَّ, {cov}% decided by a seat, {acc}% of those agree with the author's hamza.",
+        signTab:"Signs", signIntro:"The received tables divide the iʿrāb SIGN three ways by its essence — a vowel, a letter, a deletion — and the iʿrāb itself three ways by its attribute — spoken, estimated, by place. Below them the table that assigns every class of word its sign in each case, with the corpus's own footfall: every authored «مرفوع وعلامة رفعه …» line was derived again from the written word alone and compared with the author.", signEssence:"by essence", signAttribute:"by attribute", signTable:"The class × case table — the signs every class takes, with examples the corpus authored", signFoot:"{n} authored lines · {rate}% derived the author's sign", signNoFoot:"no authored line in this class", signLines:"{n} lines", signSum:"{n} authored sign statements re-derived from the written word: {acc}% agree with the author on the sign, {m}% on spoken/estimated.", signPartNoun:"noun", signPartVerb:"verb", signPartMabni:"no case", signWordPh:"a written word — كِتَابٌ، مُسْلِمِينَ، أَبُوكَ، الْقَاضِي، يَرْمِي", signNoWord:"nothing to classify", signMamnuNote:"a diptote: in jarr the fatḥa stands in", signGame:"Which sign?", signGameDesc:"A word from the stories with its case — name the sign of its iʿrāb; the distractors are the other signs that case can take.", signAsk:"What is the sign of this word's iʿrāb in this case?", signWhyNot:"That sign belongs to another class of word in this case.",
         adabTab:"Etiquette", adabIntro:"The fourth chapter of the Qawāʿid al-Iʿrāb: the ETIQUETTE of the one who parses. Use the full expression — لَمْ is «negation, jazm and conversion», not «jazm»; the passive's noun is the nāʾib al-fāʿil; the fāʾ falls in the answer, it is not the answer — and avoid the habits the book blames: a verb named without its doer, a mubtadaʾ without its khabar, a relative without its ṣila and the pronoun that returns, a demonstrative called «relative», a muḍāf said to «show no iʿrāb», a letter of the Qurʾān called «extra». The engine holds the corpus's own 28,948 iʿrāb lines to these rules — and holds the automatic muʿrib to the same rules, in the Jumla lab, under every sentence it parses.", adabSum:"{lines} authored lines in {sent} sentences, checked against the nine rules.", adabTally:"{n} lines in reach — {rate}% keep the rule; {f} findings", adabNoCase:"no line in reach of this rule", adabFindings:"the {f} findings — the page's own line, for review", adabTerms:"The full expressions, as the chapter writes them", adabLedger:"The muʿrib's etiquette", adabLedgerOk:"all {n} checks kept", adabLedgerDebt:"{ok} of {n} kept — {d} the muʿrib still owes:",
         adabGame:"Which etiquette?", adabGameDesc:"An iʿrāb line that breaks one rule of the fourth chapter — the book's own blames, and the corpus's findings", adabAsk:"Which rule of the muʿrib's etiquette does this line break?", adabWhyNot:"Read the rule under the answer — and the line as the chapter would write it.",
         hadhfTab:"Unsaid", hadhfIntro:"What the sentence leaves unsaid OF NECESSITY. The Kāfiya and its Turkish summaries list where a governor, a khabar or a mubtadaʾ is deleted and what stands in its place: the verb of سُبْحَانَ / حَقًّا / أَيْضًا, the fronted object of ishtighāl (زَيْدًا ضَرَبْتُهُ), the «beware» of إِيَّاكَ وَ…, the «hold to» of الصَّلَاةَ الصَّلَاةَ, the «I single out» of أَيُّهَا الرَّجُلُ, the «remember» of إِذْ, the khabar after لَوْلَا and under the oath, the mubtadaʾ before نِعْمَ's praised one, the teacher's «[that is] like …», the reply that says only the khabar. The engine reads each seat off the page — the vowels and the neighbours — writes the taqdīr, names the ruling, and is graded against every «لِفِعْلٍ مَحْذُوفٍ … تَقْدِيرُهُ» line the corpus authored.", hadhfPh:"a sentence with something unsaid — زَيْدًا ضَرَبْتُهُ", hadhfEmpty:"Type a sentence with an unsaid governor, khabar or mubtadaʾ — إِيَّاكَ وَالْأَسَدَ، لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو، سُبْحَانَ اللهِ، نَحْوُ جَاءَنِي زَيْدٌ — or take one of the book's own.", hadhfNone:"Nothing in this sentence is left unsaid of necessity — or the engine does not see it.", hadhfAudit:"Corpus audit: {n} deletions the pages authored, {acc}% read on the same seat; the restored word agrees on {vacc}% of the {vn} lines that name it; {false} read where the page reads otherwise.", hadhfLegend:"The Kāfiya's lists: where the deletion is wājib, where it is heard, where a clue allows it", hadhfAgree:"the page's iʿrāb names this seat", hadhfDisagree:"the page's iʿrāb reads otherwise", hadhfExplained:"explained by", hadhfAlso:"also said", hadhfAlt:"the other reading", hadhfQiyasi:"qiyāsī place", hadhfQiyasi7:"the seven places where the maṣdar's verb is deleted by rule", hadhfHeard:"the phrases received by hearing", hadhfPage:"the page restores",
@@ -2677,6 +2703,7 @@ const L = {
         innaTab:"İnne", innaIntro:"Birgivî'nin kuralı: inne cümleyi cümle bırakır, enne onu masdar yapar — o yüzden CÜMLE yerinde hemze kesre, tek KELİME yerinde fetha alır. Motor yeri okur (önde ne var, haberde lâm var mı) ve adlandırır; yer bilinmiyorsa İKİSİ der, tahmin etmez", innaPh:"inne veya enne'li bir cümle — عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ",
         innaEmpty:"İnne / enne'li bir cümle yazın, ya da Birgivî'nin kendi cümlelerinden birini alın.", innaNone:"Bu cümlede inne / enne yok.", innaQuoted:"harf kelime olarak hikâye edilmiş — hemzesi yazarındır, yerin değil", innaLegend:"Kesre, fetha ve iki vecih yerleri",
         innaKasrSeats:"cümlenin cümle kaldığı on yer", innaFathSeats:"masdarın yerine geçebildiği yerler", innaBothSeats:"iki okuyuşun da mânâ verdiği yerler", innaAudit:"Külliyat denetimi: {n} yazılmış inne / enne, %{cov}'i bir yerle karara bağlandı, bunların %{acc}'i yazarın hemzesiyle uyuşuyor.",
+        signTab:"Alâmetler", signIntro:"Alınan tablolar i'rab ALÂMETİNİ zâtı itibariyle üçe ayırır — hareke, harf, hazif — ve i'rabın kendisini sıfatı itibariyle üçe — lafzî, takdirî, mahallî. Altlarında her kelime sınıfına her hâlde alâmetini veren tablo, külliyatın kendi ayak izleriyle: yazarın her «مرفوع وعلامة رفعه …» satırı yalnız yazılı kelimeden yeniden türetildi ve yazarla karşılaştırıldı.", signEssence:"zâtı itibariyle", signAttribute:"sıfatı itibariyle", signTable:"Sınıf × hâl tablosu — her sınıfın aldığı alâmetler, külliyatın yazdığı örneklerle", signFoot:"{n} yazılı satır · %{rate} yazarın alâmetini türetti", signNoFoot:"bu sınıfta yazılı satır yok", signLines:"{n} satır", signSum:"{n} yazılı alâmet ifadesi yazılı kelimeden yeniden türetildi: alâmette %{acc}, lafzî/takdirîde %{m} yazarla uyuşuyor.", signPartNoun:"isim", signPartVerb:"fiil", signPartMabni:"hâl yok", signWordPh:"yazılı bir kelime — كِتَابٌ، مُسْلِمِينَ، أَبُوكَ، الْقَاضِي، يَرْمِي", signNoWord:"sınıflanacak bir şey yok", signMamnuNote:"gayr-ı munsarıf: cerde fetha niyâbet eder", signGame:"Hangi alâmet?", signGameDesc:"Hikâyelerden bir kelime ve hâli — i'rab alâmetini söyle; çeldiriciler o hâlin alabildiği öteki alâmetlerdir.", signAsk:"Bu kelimenin bu hâldeki i'rab alâmeti nedir?", signWhyNot:"O alâmet bu hâlde başka bir kelime sınıfınındır.",
         adabTab:"Âdâb", adabIntro:"Kavâidü'l-İ'râb'ın dördüncü bâbı: i'râb yapanın ÂDÂBI. Tam tabir kullanılır — lem «nefiy, cezm ve kalb»dir, yalnız «cezm» değil; meçhûlün ismi nâibü'l-fâildir; fâ cevapta vâkidir, cevabın kendisi değil — ve kitabın ayıpladığı alışkanlıklardan kaçınılır: fâilinden söz edilmeden fiil, haberi aranmadan mübtedâ, sılası ve âid zamiri söylenmeden mevsûl, ism-i işârete «mevsûl» demek, muzâf için «üzerinde i'râb zâhir olmaz» demek, Kur'ân'daki bir harfe «zâid» demek. Motor, külliyatın kendi 28.948 i'râb satırını bu kurallara vurur — ve otomatik mu'ribi aynı kurallara vurur: Cümle atölyesinde, çözümlediği her cümlenin altında.", adabSum:"{sent} cümledeki {lines} yazılı satır, dokuz kurala vuruldu.", adabTally:"erişilen {n} satır — %{rate}'i kuralı gözetiyor; {f} mahzur", adabNoCase:"bu kuralın erişiminde satır yok", adabFindings:"{f} mahzur — sayfanın kendi satırı, gözden geçirilmek üzere", adabTerms:"Tam tabirler, bâbın yazdığı gibi", adabLedger:"Mu'ribin âdâbı", adabLedgerOk:"{n} kontrolün hepsi gözetildi", adabLedgerDebt:"{n} kontrolden {ok}'u gözetildi — mu'ribin hâlâ borçlu olduğu {d}:",
         adabGame:"Hangi âdâb?", adabGameDesc:"Dördüncü bâbın bir kuralını bozan bir i'râb satırı — kitabın kendi ayıpları ve külliyatın mahzurları", adabAsk:"Bu satır mu'rib âdâbının hangi kuralını bozuyor?", adabWhyNot:"Cevabın altındaki kuralı okuyun — ve satırı bâbın yazacağı gibi.",
         hadhfTab:"Mahzuf", hadhfIntro:"Cümlenin ZORUNLU olarak söylemediği şey. Kâfiye ve Türkçe özetleri âmilin, haberin veya mübtedânın nerede hazfedildiğini ve yerine neyin geçtiğini sayar: sübhâne / hakkan / eydan'ın fiili, iştigalin öne alınmış mef'ûlü (zeyden darabtühû), iyyâke ve…'nin «sakın»ı, es-salâte es-salâte'nin «sarıl»ı, eyyühe'r-racül'ün «tahsis ederim»i, iz'in «hatırla»sı, levlâ'dan sonraki ve yeminin altındaki haber, ni'me'nin medh edileninden önceki mübtedâ, hocanın «[o] şöyledir: …»ü, yalnız haberle verilen cevap. Motor her mahalli sayfadan okur — harekeler ve komşular — takdiri yazar, hükmü söyler ve külliyatın yazdığı her «li-fi'lin mahzûfin … takdîruhû» satırıyla sınanır.", hadhfPh:"mahzufu olan bir cümle — zeyden darabtühû", hadhfEmpty:"Âmili, haberi veya mübtedâsı söylenmemiş bir cümle yazın — iyyâke ve'l-esede, levlâ zeydün le-heleke amrun, sübhânallâh, nahvu câenî zeydün — ya da kitabın kendi örneklerinden birini alın.", hadhfNone:"Bu cümlede zorunlu bir mahzuf yok — ya da motor görmüyor.", hadhfAudit:"Külliyat denetimi: sayfaların yazdığı {n} hazif, %{acc}'i aynı mahalde okundu; geri konan kelime, onu adlandıran {vn} satırın %{vacc}'inde uyuşuyor; {false} yerde sayfa başka türlü okuyor.", hadhfLegend:"Kâfiye'nin listeleri: hazfin vâcib olduğu, işitildiği, karîneyle câiz olduğu yerler", hadhfAgree:"sayfanın i'râbı bu mahalli söylüyor", hadhfDisagree:"sayfanın i'râbı başka türlü okuyor", hadhfExplained:"müfessiri", hadhfAlso:"şöyle de denir", hadhfAlt:"öteki okuyuş", hadhfQiyasi:"kıyâsî mevzi", hadhfQiyasi7:"masdarın fiilinin kâideyle hazfedildiği yedi mevzi", hadhfHeard:"semâ ile alınan ibâreler", hadhfPage:"sayfa geri koyuyor",
@@ -12424,6 +12451,20 @@ function renderLabBody(){
     renderBab35Out();
     return;
   }
+  if (conjState.lab === "sign") {
+    body.innerHTML = `<p class="ref-intro">${ui().signIntro}</p>
+      <div class="conj-lab">
+        <input id="signIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" placeholder="${escapeAttr(ui().signWordPh)}" value="${escapeAttr(conjState.sign || "")}">
+        <div class="sign-seeds">${SignEngine.SEEDS.map(x => `<button data-w="${escapeAttr(x.w)}" lang="ar" dir="rtl">${escapeAttr(x.w)}</button>`).join("")}</div>
+      </div>
+      <div id="signWordOut"></div>
+      <div id="signOut"></div>`;
+    const inp = document.getElementById("signIn");
+    inp.addEventListener("input", debounced(() => { conjState.sign = inp.value; renderSignWord(); }));
+    body.querySelectorAll(".sign-seeds button").forEach(b => b.addEventListener("click", () => { inp.value = b.dataset.w; conjState.sign = b.dataset.w; renderSignWord(); }));
+    renderSignWord(); renderSignOut();
+    return;
+  }
   if (conjState.lab === "adab") {
     body.innerHTML = `<p class="ref-intro">${ui().adabIntro}</p><div id="adabOut"></div>`;
     renderAdabOut();
@@ -12844,6 +12885,7 @@ function openConjugator(){
       <button data-lab="wujuh" class="${conjState.lab === "wujuh" ? "on" : ""}">${arSpan("وُجُوه")} ${ui().wujuhTab}</button>
       <button data-lab="hadhf" class="${conjState.lab === "hadhf" ? "on" : ""}">${arSpan("حَذْف")} ${ui().hadhfTab}</button>
       <button data-lab="adab" class="${conjState.lab === "adab" ? "on" : ""}">${arSpan("آدَاب")} ${ui().adabTab}</button>
+      <button data-lab="sign" class="${conjState.lab === "sign" ? "on" : ""}">${arSpan("عَلَامَات")} ${ui().signTab}</button>
       <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
       <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
@@ -26505,6 +26547,225 @@ class AdabEngine {
   }
 }
 
+// ---------- SignEngine (wave 41): the taxonomy of the iʿrāb SIGN from the received Turkish tables — its essence (ḥaraka / ḥarf / ḥadhf), its attribute (lafẓī / taqdīrī / maḥallī), and the class × case table that assigns every written word its sign ----------
+class SignEngine {
+  // the eleven signs, each with its essence
+  static SIGNS = {
+    damma:     { ar: "الضَّمَّةُ", en: "ḍamma", tr: "ötre (zamme)", by: "haraka" },
+    fatha:     { ar: "الْفَتْحَةُ", en: "fatḥa", tr: "üstün (fetha)", by: "haraka" },
+    kasra:     { ar: "الْكَسْرَةُ", en: "kasra", tr: "esre (kesre)", by: "haraka" },
+    sukun:     { ar: "السُّكُونُ", en: "sukūn", tr: "cezim (sükûn)", by: "haraka" },
+    waw:       { ar: "الْوَاوُ", en: "the wāw", tr: "vav", by: "harf" },
+    alif:      { ar: "الْأَلِفُ", en: "the alif", tr: "elif", by: "harf" },
+    ya:        { ar: "الْيَاءُ", en: "the yāʾ", tr: "ye", by: "harf" },
+    thubut:    { ar: "ثُبُوتُ النُّونِ", en: "the nūn kept", tr: "nûnun sübûtu", by: "harf" },
+    hadhfNun:  { ar: "حَذْفُ النُّونِ", en: "the nūn dropped", tr: "nûnun hazfi", by: "hadhf" },
+    hadhfIlla: { ar: "حَذْفُ حَرْفِ الْعِلَّةِ", en: "the weak last letter dropped", tr: "illet harfinin (âhirin) hazfi", by: "hadhf" },
+    mahall:    { ar: "فِي مَحَلِّ", en: "a place, no sign on the word", tr: "mahallen — kelimede alâmet yok", by: "mahall" },
+  };
+  // the i'rab by its essence (bi-ḥasab al-dhāt wa-l-ḥaqīqa): three
+  static ESSENCE = {
+    haraka: { ar: "الْحَرَكَةُ", en: "a vowel — ḍamma, fatḥa, kasra (and the sukūn that is the vowel's absence)", tr: "hareke — zamme, fetha, kesre (ve harekenin yokluğu olan sükûn)" },
+    harf:   { ar: "الْحَرْفُ", en: "a letter — wāw, yāʾ, alif, nūn", tr: "harf — vav, ye, elif, nun" },
+    hadhf:  { ar: "الْحَذْفُ", en: "a deletion — of the vowel, of the last letter, of the nūn", tr: "hazif — harekenin, âhirin, nûnun hazfi" },
+    mahall: { ar: "الْمَحَلُّ", en: "no sign at all: the word is mabnī or a clause, and the case lives in its place", tr: "alâmet yok: kelime mebnî ya da cümledir, i'rab mahallindedir" },
+  };
+  // the i'rab by its attribute (bi-ḥasab al-ṣifa): three
+  static ATTRIBUTE = {
+    lafzi:   { ar: "الْإِعْرَابُ اللَّفْظِيُّ", en: "spoken: the sign is on the word and heard", tr: "lafzî: alâmet kelimenin üzerinde, işitilir" },
+    taqdiri: { ar: "الْإِعْرَابُ التَّقْدِيرِيُّ", en: "estimated: the sign is owed but the last letter cannot carry it (taʿadhdhur), is too heavy for it (thiqal), or is busy with the speaker's yāʾ (ishtighāl)", tr: "takdirî: alâmet vardır ama âhir taşıyamaz (teazzür), ağır gelir (sıkal) ya da mütekellim yâsı ile meşguldür (iştigal)" },
+    mahalli: { ar: "الْإِعْرَابُ الْمَحَلِّيُّ", en: "by place: a mabnī word or a clause sits in the position of a case and takes no sign", tr: "mahallî: mebnî kelime ya da cümle bir i'rab mahallinde oturur, alâmet almaz" },
+  };
+  static REASON = {
+    niyaba:    { ar: "نِيَابَةً", en: "standing in for the original sign", tr: "asıl alâmete niyâbeten" },
+    taadhdhur: { ar: "لِلتَّعَذُّرِ", en: "the alif cannot carry any vowel", tr: "teazzür: elif hareke taşıyamaz" },
+    thiqal:    { ar: "لِلثِّقَلِ", en: "ḍamma and kasra are too heavy on the yāʾ / wāw", tr: "sıkal: ye / vav üzerinde zamme ve kesre ağır gelir" },
+    ishtighal: { ar: "لِاشْتِغَالِ الْمَحَلِّ بِحَرَكَةِ الْمُنَاسَبَةِ", en: "the last letter is busy with the kasra the speaker's yāʾ demands", tr: "iştigal: âhir, mütekellim yâsının istediği kesre ile meşguldür" },
+  };
+  // the class × case table: signs: { raf: [sign, manner, reason?], nasb: …, jarr: …, jazm: … }
+  static CLASSES = {
+    sahih:        { n: 1, ar: "الْمُفْرَدُ الْمُنْصَرِفُ وَجَمْعُ التَّكْسِيرِ", en: "the singular and broken plural that take tanwīn: ḍamma, fatḥa, kasra", tr: "müfred munsarıf ve cem-i mükesser munsarıf: zamme, fetha, kesre", part: "ism", signs: { raf: ["damma", "lafzi"], nasb: ["fatha", "lafzi"], jarr: ["kasra", "lafzi"] } },
+    jamMuannath:  { n: 2, ar: "جَمْعُ الْمُؤَنَّثِ السَّالِمُ", en: "the sound feminine plural: kasra stands in for the fatḥa", tr: "cem-i müennes sâlim: nasbda kesre fethaya niyâbet eder", part: "ism", signs: { raf: ["damma", "lafzi"], nasb: ["kasra", "lafzi", "niyaba"], jarr: ["kasra", "lafzi"] } },
+    mamnu:        { n: 3, ar: "الْمَمْنُوعُ مِنَ الصَّرْفِ", en: "the diptote: fatḥa stands in for the kasra (unless annexed or with the article)", tr: "gayr-ı munsarıf: cerde fetha kesreye niyâbet eder (izâfet ve lâm-ı tarif dışında)", part: "ism", signs: { raf: ["damma", "lafzi"], nasb: ["fatha", "lafzi"], jarr: ["fatha", "lafzi", "niyaba"] } },
+    muthanna:     { n: 4, ar: "الْمُثَنَّى وَمَا أُلْحِقَ بِهِ", en: "the dual (and اثْنَانِ، كِلَا with a pronoun): alif in rafʿ, yāʾ in naṣb and jarr", tr: "tesniye ve mülhakları (isnân, zamire muzaf kilâ): ref'de elif, nasb ve cerde ye", part: "ism", signs: { raf: ["alif", "lafzi", "niyaba"], nasb: ["ya", "lafzi", "niyaba"], jarr: ["ya", "lafzi", "niyaba"] } },
+    jamMudhakkar: { n: 5, ar: "جَمْعُ الْمُذَكَّرِ السَّالِمُ وَمَا أُلْحِقَ بِهِ", en: "the sound masculine plural (and أُولُو، عِشْرُونَ and their sisters): wāw in rafʿ, yāʾ in naṣb and jarr", tr: "cem-i müzekker sâlim ve mülhakları (ulû, işrûn ve kardeşleri): ref'de vav, nasb ve cerde ye", part: "ism", signs: { raf: ["waw", "lafzi", "niyaba"], nasb: ["ya", "lafzi", "niyaba"], jarr: ["ya", "lafzi", "niyaba"] } },
+    khamsa:       { n: 6, ar: "الْأَسْمَاءُ الْخَمْسَةُ", en: "the five nouns in iḍāfa: wāw, alif, yāʾ", tr: "esmâ-i hamse izâfette: vav, elif, ye", part: "ism", signs: { raf: ["waw", "lafzi", "niyaba"], nasb: ["alif", "lafzi", "niyaba"], jarr: ["ya", "lafzi", "niyaba"] } },
+    maqsur:       { n: 7, ar: "الِاسْمُ الْمَقْصُورُ", en: "the maqṣūr — all three vowels estimated on the alif (taʿadhdhur)", tr: "ism-i maksûr — üç hareke de elif üzerinde takdirî (teazzür)", part: "ism", signs: { raf: ["damma", "taqdiri", "taadhdhur"], nasb: ["fatha", "taqdiri", "taadhdhur"], jarr: ["kasra", "taqdiri", "taadhdhur"] } },
+    manqus:       { n: 8, ar: "الِاسْمُ الْمَنْقُوصُ", en: "the manqūṣ — ḍamma and kasra estimated on the yāʾ (thiqal), the fatḥa spoken", tr: "ism-i mankûs — zamme ve kesre ye üzerinde takdirî (sıkal), fetha lafzî", part: "ism", signs: { raf: ["damma", "taqdiri", "thiqal"], nasb: ["fatha", "lafzi"], jarr: ["kasra", "taqdiri", "thiqal"] } },
+    mudafYa:      { n: 9, ar: "الْمُضَافُ إِلَى يَاءِ الْمُتَكَلِّمِ", en: "annexed to the speaker's yāʾ — all three estimated (ishtighāl)", tr: "mütekellim yâsına muzaf — üçü de takdirî (iştigal)", part: "ism", signs: { raf: ["damma", "taqdiri", "ishtighal"], nasb: ["fatha", "taqdiri", "ishtighal"], jarr: ["kasra", "taqdiri", "ishtighal"] } },
+    mudariSahih:  { n: 10, ar: "الْمُضَارِعُ الصَّحِيحُ الْآخِرِ", en: "the sound-final muḍāriʿ with no pronoun attached: ḍamma, fatḥa, and jazm by the vowel's deletion (sukūn)", tr: "âhiri sahih, zamir bitişmeyen muzari: zamme, fetha, cezim harekenin hazfiyle (sükûn)", part: "fil", signs: { raf: ["damma", "lafzi"], nasb: ["fatha", "lafzi"], jazm: ["sukun", "lafzi"] } },
+    mudariMutall: { n: 11, ar: "الْمُضَارِعُ الْمُعْتَلُّ الْآخِرِ", en: "the weak-final muḍāriʿ: ḍamma estimated, fatḥa spoken (estimated on the alif), jazm by deleting the weak letter", tr: "âhiri illetli muzari: zamme takdirî, fetha lafzî (elifte takdirî), cezim âhirin hazfiyle", part: "fil", signs: { raf: ["damma", "taqdiri", "thiqal"], nasb: ["fatha", "lafzi"], jazm: ["hadhfIlla", "lafzi"] } },
+    khamsaVerbs:  { n: 12, ar: "الْأَفْعَالُ الْخَمْسَةُ", en: "the five verbs: the nūn kept in rafʿ, dropped in naṣb and jazm", tr: "ef'âl-i hamse: ref'de nûnun sübûtu, nasb ve cezimde nûnun hazfi", part: "fil", signs: { raf: ["thubut", "lafzi"], nasb: ["hadhfNun", "lafzi"], jazm: ["hadhfNun", "lafzi"] } },
+    mabni:        { n: 13, ar: "الْمَبْنِيُّ", en: "the mabnī: no sign — the case is a place", tr: "mebnî: alâmet yok — i'rab mahallîdir", part: "mabni", signs: { raf: ["mahall", "mahalli"], nasb: ["mahall", "mahalli"], jarr: ["mahall", "mahalli"], jazm: ["mahall", "mahalli"] } },
+  };
+  static CASE_AR = { raf: "الرَّفْعُ", nasb: "النَّصْبُ", jarr: "الْجَرُّ", jazm: "الْجَزْمُ" };
+  static MULHAQ_JAM = /^(أجمعون|اجمعون|أجمعين|اجمعين|أكتعون|أكتعين|أولو|اولو|أولي|اولي|عشرون|عشرين|ثلاثون|ثلاثين|أربعون|اربعون|أربعين|اربعين|خمسون|خمسين|ستون|ستين|سبعون|سبعين|ثمانون|ثمانين|تسعون|تسعين|سنون|سنين|بنون|بنين|أهلون|اهلون|أهلين|اهلين|عالمون|عالمين|أرضون|ارضون|أرضين|ارضين|عليون|عليين)$/;
+  static MULHAQ_MUTH = /^(اثنان|اثنين|اثنتان|اثنتين|اثنا|اثني|اثنتا|اثنتي|كلا|كلتا)$/;
+  static TANWIN = /[ًٌٍ]/;
+  static BROKEN_IN = /[ء-ي][ً-ْ]*[ء-ي][ً-ْ]*ا[ء-ي]ِينَ$/;   // فَعَالِيل-shaped broken plurals that end like a sound plural (شَيَاطِين، مَسَاكِين)
+  static nfc(w){ return String(w || "").normalize("NFC").replace(/[«»،.:!؟۝﴾﴿]/g, "").trim(); }
+  static bare(w){ return stripAr(this.nfc(w)).replace(/[^ء-ي]/g, ""); }
+  static hasAl(f){ return /^(?:[وف]َ)?(?:[بكل]ِ?)?[اٱ][ً-ٰ]*ل/.test(f) || /^(?:[وف]َ)?لِل/.test(f); }
+  static stripEnc(f, verb){ const m = f.match(verb ? /^(.+[َُِّْاوي])(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|نِي|هَا|هُ|هِ|كَ|كِ)$/ : /^(.+[َُِّْاوي])(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|هِ|كَ|كِ)$/); return m && this.bare(m[1]).length >= 2 && (!this.hasAl(f) || /[ِّ]ي$|[ُّ]و$/.test(m[1])) ? m[1] : f; }
+  static stripProclitic(f){ return f.replace(/ٰ/g, "ا").replace(/^(?:[وف]َ)?(?:[بك]ِ|كَ|لِ(?!ل))(?=.{3})/, "").replace(/^لِل(?=[ء-ي])/, "ال"); }
+  static verbPrefix(f){ const b = this.bare(f).replace(/^[وفسل]/, ""); return /^[يتنأآ]/.test(b) && b.length >= 3; }
+  // the corpus lexeme is a Latin key (zaman, yad, mana, ruya-dream): its tail says whether a written ـان/ـين/ـون belongs to the stem
+  static lexStem(lex){ return String(lex || "").toLowerCase().replace(/-.*$/, "").replace(/[^a-z]/g, ""); }
+  static lexEndsA(lex){ return /a$/.test(this.lexStem(lex)); }
+  // the written tail belongs to the stem when the lexeme ends in it and nothing of that tail survives once the suffix is cut (الزَّمَانِ ~ zaman; عَيْنَيْ ~ ayn keeps its ين)
+  static skelAr(b){ return b.replace(/^ال/, "").replace(/[اويىءأإؤئع]/g, "").length; }
+  static skelLat(l){ return l.replace(/(sh|th|kh|dh|gh)/g, "x").replace(/([a-z])\1/g, "$1").replace(/[aeiouyw]/g, "").length; }
+  // a full dual / plural tail (ـانِ ـيْنِ ـونَ ـينَ) is a suffix only when the Arabic consonant skeleton outgrows the lexeme's (مُؤْمِنِينَ: م م ن ن > m m n); equal skeletons mean the tail is the stem's (الزَّمَانِ، بِنْيَامِينَ، دُونَ)
+  static tailIsStem(b, lex){ const l = this.lexStem(lex); if (!l) return false; return this.skelAr(b) <= this.skelLat(l); }
+  static BROKEN_IN2 = /[ء-ي][ًٌٍَُِْ]?[ء-ي][ًٌٍَُِْ]?ا[ء-ي]ِينَ$/;   // no shadda before the alif: فَعَّالِين (بَنَّائِين) is a sound plural
+  static tagged(opt, tag){ return Array.isArray(opt.tags) && opt.tags.includes(tag); }
+  // the next word makes this one a muḍāf: a proper name, or a noun with the article and a majrūr tail, or an indefinite majrūr after the word's own kasra / truncated tail; a proper name is never the muḍāf
+  static annexedTo(f, opt){
+    const nx = opt.next; if (!nx || !nx.w) return false;
+    if (opt.pos === "propn" || this.TANWIN.test(f) || this.hasAl(f)) return false;
+    const nw = this.nfc(nx.w); if (/^[وف]َ/.test(nw) || /^(ا?بْنِ?|بِنْتِ?)$/.test(nw.replace(/[ً-ٰ]/g, (m) => m === "ْ" ? m : ""))) return false;
+    if (!/^(noun|propn|adj)$/.test(nx.pos || "")) return false;
+    if (nx.pos === "propn") return true;
+    const nb = this.stripEnc(nw);
+    if (/ِ$|ِينَ$|َيْنِ$/.test(nb) && !this.TANWIN.test(nb)) return true;
+    if (this.hasAl(nw) && /ى$|ا$/.test(nw)) return true;
+    if (/ٍّ?$/.test(nw) && /ِ$|[َّ]يْ$|[َّ]ا$|[ُِّ][وي]$/.test(f)) return true;
+    return false;
+  }
+  // ── the class of a written word (the verb/noun split from the corpus's pos where it is known)
+  static classify(word, opt = {}){
+    const f0 = this.nfc(word); if (!f0) return null;
+    const isVerb0 = opt.pos === "verb" || (opt.pos === undefined && opt.verb === true);
+    const f1 = f0.replace(/^[وف]َ(?=.{3})/, ""); let f = this.stripEnc(f1, isVerb0); let enc = f !== f1;
+    // a definite word whose lexeme ends in h keeps its final hāʾ (لِلتَّشْبِيهِ is no truncated plural)
+    if (enc && this.hasAl(f1) && /h$/.test(this.lexStem(opt.lex))) { f = f1; enc = false; } const b = this.bare(f); const flat = b.replace(/[أإآ]/g, "ا").replace(/ى/g, "ي");
+    const R = (cls, why, viaTag, mamnu) => ({ cls, why: why || "", word: f0, viaTag: !!viaTag, mamnu: !!mamnu });
+    const isVerb = opt.pos === "verb" || (opt.pos === undefined && opt.verb === true);
+    // a jarr letter fused to a noun keeps the corpus's «prep» tag — the line is about the noun behind it
+    if ((opt.pos === "prep" || opt.pos === "part") && /^(?:[وف]َ)?[بكل]ِ/.test(f0) && (this.bare(f0).length >= 5 || (this.bare(this.stripProclitic(f0)).length >= 3 && /[ًٌٍَُِ]$/.test(f0)))) return this.classify(this.stripProclitic(f0), { ...opt, pos: "noun" });
+    if (opt.pos === "part" || opt.pos === "prep" || opt.pos === "conj") return R("mabni", "harf");
+    if (/^(هذان|هذين|هاتان|هاتين|اللذان|اللذين|اللتان|اللتين|ذان|ذين|تان|تين)$/.test(b)) return R("muthanna", "dual demonstrative / relative");
+    if (/^(أي|اي)$/.test(this.bare(this.stripProclitic(f))) && /ّ/.test(f)) return R("sahih", "ayy declines");
+    if (opt.pos === "pron" || (typeof IrabSign !== "undefined" && (IrabSign.MABNI.includes(flat) || IrabSign.MABNI.includes(b)))) return R("mabni", "mabni");
+    if (isVerb) {
+      const t = (opt.cell && opt.cell.tense) || "";
+      if (/mazi|amr/.test(t) || (!t && !/^[يتنأآ]/.test(this.bare(f1).replace(/^[وفسل](?=..)/, "")))) return R("mabni", "mazi / amr");
+      const sub = /^(majzum|mansub|majzum2)$/.test(t) || /^(jazm|nasb)$/.test(opt.kase || "");
+      if (enc && this.tagged(opt, "naqis-verbs") && /َا$|ِي$|ُو$/.test(f) && !/[ُّ]و$/.test(f)) return R("mudariMutall", "weak-final before a pronoun", true);
+      if ((/[ُّ]ونَ$|[َّ]انِ$|[ِّ]ينَ$|َوْنَ$|َيْنَ$/.test(f) && !sub) || (/ُوا$|َا$|ِي$|َوْا$|َوُا$|[ُّ]و$/.test(f) && sub)) return R("khamsaVerbs", "five verbs");
+      if (/[ُّ]ونَنِي?$|[ُّ]ونِي$|[ِّ]ينَنِي?$|[َّ]انِنِي?$/.test(f1) || (this.tagged(opt, "afal-khamsa") && /(ونَ|ينَ|انِ|ُنَّ|ِنَّ|انِّ|ونِ|ينِ)/.test(f1))) return R("khamsaVerbs", "five verbs (nūn al-wiqāya / nūn al-tawkīd)", true);
+      if ((/[وياى]$/.test(b) && !/ُوا$/.test(f)) || (opt.lex && /[وىي]$/.test(String(opt.lex).replace(/[^ء-ي]/g, "")) && sub)) return R("mudariMutall", "weak-final");
+      if (/^(jazm|nasb)$/.test(opt.kase || "") && this.tagged(opt, "naqis-verbs")) return R("mudariMutall", "weak-final (nāqiṣ) under jazm", true);
+      // jazm that leaves a short vowel on the last letter (يَرَ، يَتَّقِ، تَرَهُمْ): the weak letter was the sign — unless the kasra only joins a following hamzat waṣl, or the letter is doubled
+      if ((opt.kase || "") === "jazm" && /[َُِ]$/.test(f) && !/ّ[َُِ]$/.test(f) && !(opt.next && /^(?:[وف]َ)?[اٱ]/.test(this.nfc(opt.next.w || "")))) return R("mudariMutall", "weak-final: jazm left a short vowel");
+      return R("mudariSahih", "sound mudari");
+    }
+    if (opt.pos && opt.pos !== "noun" && opt.pos !== "propn" && opt.pos !== "adj" && opt.pos !== "adv") return R("mabni", opt.pos);
+    const nounish = !opt.pos || /^(noun|propn|adj|adv)$/.test(opt.pos);
+    const tanwin = this.TANWIN.test(f); const al = this.hasAl(f); const annexed = this.annexedTo(f, opt);
+    const g = this.stripProclitic(f); const gb = this.bare(g); const gflat = gb.replace(/[أإآ]/g, "ا").replace(/ى/g, "ي");
+    const taksir = this.tagged(opt, "jam-taksir"); const mamnuTag = this.tagged(opt, "mamnu-min-sarf"); const propn = opt.pos === "propn";
+    const any = (re) => re.test(flat) || re.test(gflat); const gbNoAl = gb.replace(/^ال/, "");
+    // the five nouns and the speaker's yāʾ on them
+    const nxw = opt.next ? this.nfc(opt.next.w || "") : "";
+    const annexed5 = annexed || (!!opt.next && /^(noun|propn)$/.test(opt.next.pos || "") && !/^[وف]َ/.test(nxw) && (propn || (!this.TANWIN.test(nxw) && !this.hasAl(nxw))));
+    if (any(/^(ابي|اخي|حمي)$/) && !enc && !annexed5 && !tanwin) return R("mudafYa", "five nouns annexed to the speaker's ya");
+    if (any(/^(ابو|اخو|حمو|ذو|ابا|اخا|حما|ذا|ابي|اخي|حمي|ذي)$/) && !tanwin && (enc || any(/^(ذو|ذا|ذي)$/) || annexed5 || !opt.next)) return R("khamsa", "five nouns");
+    // كِلَا / كِلْتَا: dual signs only with a pronoun, otherwise a maqṣūr
+    if (any(/^(كلا|كلي|كلتا|كلتي)$/)) return enc ? R("muthanna", "kilā with a pronoun: dual signs") : R("maqsur", "kilā before a noun: estimated on the alif");
+    // a maqṣūr carrying a pronoun (مَعْنَاهُ، مَوْلَانَا) is not a dual: the lexeme ends in the alif
+    if ((enc || annexed) && /[ىا]$/.test(b) && (this.lexEndsA(opt.lex) || this.tagged(opt, "ism-maqsur-manqus"))) return R("maqsur", enc ? "maqṣūr with a pronoun" : "maqṣūr annexed", false, propn || mamnuTag);
+    if (this.tagged(opt, "jam-mudhakkar-salim") && /[ُّ]ونَ$|[ِّ]ينَ$|[ُّ]و$|[ِّ]ي$/.test(f) && !propn) return R("jamMudhakkar", "sound masculine plural (tagged)", true);
+    if (this.tagged(opt, "al-muthanna") && /[َّ]انِ$|[َّ]يْنِ$|[َّ]يْ$|[َّ]ا$|[َّ]يِ$/.test(f) && !propn) return R("muthanna", "dual (tagged)", true);
+    // a manqūṣ carrying a pronoun or annexed (بَاقِيهِ، مُشْتَرِيهِ، أَيْدِي النَّاسِ): the yāʾ is the lexeme's
+    if ((enc || annexed) && /[ِّ]ي$/.test(f) && !/ِيّ$/.test(f) && (/i$/.test(this.lexStem(opt.lex)) || this.tagged(opt, "ism-maqsur-manqus"))) return R("manqus", enc ? "manqūṣ with a pronoun" : "manqūṣ annexed");
+    // the dual and what is attached to it
+    const dualFull = /[َّ]انِ$|[َّ]يْنِ$/.test(f);
+    const dualTrunc = (nounish || !/^[يتنأ]/.test(b)) && (/[َّ]يْ$/.test(f) || (/َيَّ$/.test(f1) && !al && this.tagged(opt, "al-muthanna")) || (/[َّ]ا$|[َّ]يِ$/.test(f) && (enc || annexed)));
+    if (this.MULHAQ_MUTH.test(gbNoAl)) return R("muthanna", "attached to the dual");
+    if (!taksir && ((dualFull && !this.tailIsStem(gb, opt.lex)) || dualTrunc)) return R("muthanna", dualFull ? "dual" : "dual, its nūn dropped in annexation");
+    // the sound masculine plural and what is attached to it
+    if (/ِيَّ$/.test(f) && /^(بني|اولي|اهلي|ذوي|عالمي)$/.test(gflat)) return R("jamMudhakkar", "attached to the sound plural, with the speaker's ya");
+    if (this.MULHAQ_JAM.test(gbNoAl) || (/^(اولو|اولي|اهلو|اهلي|بنو|بني|ذوو|ذوي|عالمو|عالمي)$/.test(gflat.replace(/^ال/, "")) && (enc || annexed))) return R("jamMudhakkar", "attached to the sound plural");
+    const plFull = /[ُّ]ونَ$|[ِّ]ينَ$/.test(f) && (nounish || !this.verbPrefix(f));
+    const plTrunc = (nounish || !this.verbPrefix(f)) && b.length >= 4 && !/ِيّ/.test(f) && (/[ُّ]و$/.test(f) || (/[ِّ]ي$/.test(f) && (enc || (annexed && this.tagged(opt, "jam-mudhakkar-salim")))));
+    const broken = taksir || this.BROKEN_IN2.test(g.replace(/^(?:[وف]َ)?(?:[بكل]ِ?)?[اٱ][ً-ٰ]*ل/, ""));
+    if (!broken && !propn && ((plFull && !this.tailIsStem(gb, opt.lex)) || plTrunc)) return R("jamMudhakkar", plFull ? "sound masculine plural" : "sound masculine plural, its nūn dropped");
+    if (/[َّ]اتٌ$|[َّ]اتٍ$|[َّ]اتِ$|[َّ]اتُ$|[َّ]اتَ$/.test(f) && b.length >= 4 && !/^(ذات|ذوات)$/.test(b)) return R("jamMuannath", "sound feminine plural");
+    if (/ً/.test(f) && /ا$|ى$/.test(b) && !/ًى$/.test(f)) return R("sahih", "tanwin seat");
+    // the maqṣūr (a proper name or a tagged diptote is flagged, for the card; the table keeps the estimated kasra)
+    if (/[ىا]$/.test(b) && b.length > 2 && !/^(هذا|ذا|ما|لا|إذا|اذا|إلا|الا)$/.test(b)) return R("maqsur", "weak alif", false, !al && !annexed && !tanwin && (propn || mamnuTag));
+    if (/ًى$/.test(f)) return R("maqsur", "weak alif");
+    if (al && /ِي$/.test(f) && !/ِيّ$/.test(f) && b.length > 4) return R("manqus", "manqus with al");
+    if (/ٍ$/.test(f) && typeof opt.manqusHint === "string" && /المحذوفة/.test(opt.manqusHint)) return R("manqus", "manqus indefinite");
+    if (/[َّ]اتِي$/.test(f) && !al && b.length >= 5) return R("jamMuannath", "sound feminine plural with the speaker's ya");
+    if (/ِي$/.test(f) && !al && !/ِيّ$/.test(f) && b.length >= 4) return R("mudafYa", "speaker's ya");
+    if (/ِيَ$/.test(f) && !al && b.length >= 4) return R("mudafYa", "speaker's ya (nasb)");
+    // the diptote: only free of the article, the tanwīn and an annexation
+    if (!tanwin && !al && !enc) {
+      let why = "";
+      if (/^(آخر|أخر|اخر)$/.test(gb) || (gb.length === 4 && /^أَ[ء-ي]ْ[ء-ي]َ[ء-ي]/.test(g)) || (gb.length === 3 && /^أَ[ء-ي]َ[ء-ي]ّ/.test(g))) why = "afʿal";
+      else if (mamnuTag) why = "diptote (tagged)";
+      else if (typeof MamnuEngine !== "undefined") { try { const v = MamnuEngine.verdict(g, { propn }); if (v && v.sure && v.barred && !v.mabni) why = "diptote: " + v.causes.join("+"); } catch (e) {} }
+      const annexedDip = (annexed && !/َ$/.test(f)) || (/ِ$/.test(f) && (opt.kase === "jarr" || !opt.kase) && !!opt.next);
+      if (why) return annexedDip ? R("sahih", why + " — annexed, so fully declined") : R("mamnu", why, why === "diptote (tagged)");
+    }
+    return R("sahih", "sound");
+  }
+  static expect(cls, kase, word, c){
+    const C = this.CLASSES[cls]; if (!C) return null; const s = C.signs[kase]; if (!s) return null;
+    let [sign, manner, reason] = s;
+    if (cls === "mudariMutall" && kase === "nasb" && word && /[ىا]$/.test(this.bare(this.stripEnc(this.nfc(word))))) { manner = "taqdiri"; reason = "taadhdhur"; }
+    return { sign, manner, reason: reason || "", by: this.SIGNS[sign].by, signInfo: this.SIGNS[sign], reasonInfo: reason ? this.REASON[reason] : null };
+  }
+  // ── the page's own statement
+  static SIGN_WORD = { "ضمة": "damma", "فتحة": "fatha", "كسرة": "kasra", "سكون": "sukun", "واو": "waw", "ألف": "alif", "ياء": "ya", "ثبوت النون": "thubut", "حذف النون": "hadhfNun", "حذف حرف العلة": "hadhfIlla", "حذف الياء": "hadhfIlla", "حذف الألف": "hadhfIlla", "حذف الواو": "hadhfIlla" };
+  static CASE_WORD = { "مرفوع": "raf", "منصوب": "nasb", "مجرور": "jarr", "مجزوم": "jazm" };
+  static authored(irabAr){
+    const s = String(irabAr || "").normalize("NFC").replace(/[ً-ٰ]/g, ""); if (!s) return null;
+    const m = s.match(/(مرفوع|منصوب|مجرور|مجزوم)[^.—]{0,12}?(?:وعلامة (?:رفعه|نصبه|جره|جزمه) ?|ب)(?:ال)?(ضمة|فتحة|كسرة|سكون|واو|ألف|ياء|ثبوت النون|حذف النون|حذف حرف العلة|حذف الياء|حذف الألف|حذف الواو)( المقدرة| مقدرة| الظاهرة| ظاهرة)?( على [^،.—]{1,24}| نيابة عن [^،.—]{1,30}| لأنه [^،.—]{1,30})?/);
+    if (!m) return null;
+    const manner = /مقدر/.test(m[3] || "") ? "taqdiri" : /ظاهر/.test(m[3] || "") ? "lafzi" : "";
+    const why = (m[4] || "").trim();
+    return { kase: this.CASE_WORD[m[1]], sign: this.SIGN_WORD[m[2]], manner, why, niyaba: /نيابة/.test(why), text: m[0] };
+  }
+  // ── the corpus: every authored sign statement against the derivation from the word's class
+  static audit(limit = 0){
+    if (this._audit && this._audit.limit === limit) return this._audit;
+    const out = { limit, n: 0, hit: 0, viaTag: 0, mannerN: 0, mannerHit: 0, byClass: {}, essence: { haraka: 0, harf: 0, hadhf: 0 }, attribute: { lafzi: 0, taqdiri: 0, mahalli: 0 }, bySign: {}, misses: [], examples: {} };
+    let seen = 0;
+    outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) {
+      const toks = sen.tokens || []; if (limit && ++seen > limit) break outer;
+      toks.forEach((t, i) => {
+        const ar = String((t.irab || {}).ar || "").normalize("NFC"); if (!ar) return;
+        if (/في محل/.test(ar.replace(/[ً-ٰ]/g, ""))) out.attribute.mahalli++;
+        const a = this.authored(ar); if (!a) return;
+        out.n++; const S = this.SIGNS[a.sign]; if (S) out.essence[S.by === "mahall" ? "hadhf" : S.by]++; out.attribute[a.manner === "taqdiri" ? "taqdiri" : "lafzi"]++; out.bySign[a.sign] = (out.bySign[a.sign] || 0) + 1;
+        const w = (t.s || t.surface || {}).full || "";
+        const nx = toks[i + 1]; const c = this.classify(w, { pos: t.pos, manqusHint: a.why, lex: t.lex, cell: t.cell, kase: a.kase, tags: t.grammar, next: nx ? { w: (nx.s || nx.surface || {}).full || "", pos: nx.pos } : null }); const e = c ? this.expect(c.cls, a.kase, w, c) : null;
+        const key = c ? c.cls : "?"; const B = out.byClass[key] || (out.byClass[key] = { n: 0, hit: 0 }); B.n++;
+        const ok = !!e && e.sign === a.sign;
+        if (ok) { B.hit++; out.hit++; if (c.viaTag) out.viaTag++; if (a.manner) { out.mannerN++; if (e.manner === a.manner) out.mannerHit++; }
+          const ek = key + ":" + a.kase; const X = out.examples[ek] || (out.examples[ek] = []); if (X.length < 6 && !X.some(x => x.w === w)) X.push({ w, st: st.id, ch: ch.n || ch.chapter, sen: sen.id, i, kase: a.kase, sign: a.sign, line: a.text.slice(0, 70) }); }
+        else if (out.misses.length < 80) out.misses.push({ st: st.id.slice(0, 10), sen: sen.id, w, pos: t.pos, cls: key, why: c ? c.why : "", kase: a.kase, want: a.sign, got: e ? e.sign : null, line: a.text.slice(0, 60) });
+      });
+    }
+    out.acc = out.n ? Math.round(1000 * out.hit / out.n) / 10 : 0; out.mannerAcc = out.mannerN ? Math.round(1000 * out.mannerHit / out.mannerN) / 10 : 0;
+    for (const k of Object.keys(out.byClass)) out.byClass[k].rate = Math.round(1000 * out.byClass[k].hit / out.byClass[k].n) / 10;
+    this._audit = out; return out;
+  }
+  // a word and its whole row of the table
+  static table(word, opt = {}){ const c = this.classify(word, opt); if (!c) return null; const C = this.CLASSES[c.cls]; return { cls: c.cls, why: c.why, mamnu: c.mamnu, info: C, cells: Object.keys(C.signs).map(k => ({ kase: k, ...this.expect(c.cls, k, word, c) })) }; }
+  static SEEDS = [
+    { w: "كِتَابٌ", cls: "sahih" }, { w: "رِجَالٌ", cls: "sahih" }, { w: "مُسْلِمَاتٌ", cls: "jamMuannath" }, { w: "مَسَاجِدَ", cls: "mamnu", pos: "noun" }, { w: "إِبْرَاهِيمَ", cls: "mamnu", pos: "propn" },
+    { w: "رَجُلَانِ", cls: "muthanna" }, { w: "رَجُلَيْنِ", cls: "muthanna" }, { w: "مُسْلِمُونَ", cls: "jamMudhakkar" }, { w: "مُسْلِمِينَ", cls: "jamMudhakkar" }, { w: "عِشْرُونَ", cls: "jamMudhakkar" }, { w: "اثْنَانِ", cls: "muthanna" },
+    { w: "أَبُوكَ", cls: "khamsa" }, { w: "أَخَاهُ", cls: "khamsa" }, { w: "ذِي", cls: "khamsa" }, { w: "الْفَتَى", cls: "maqsur" }, { w: "مُوسَى", cls: "maqsur", pos: "propn" }, { w: "الْقَاضِي", cls: "manqus" }, { w: "كِتَابِي", cls: "mudafYa" },
+    { w: "يَكْتُبُ", cls: "mudariSahih", pos: "verb" }, { w: "يَرْمِي", cls: "mudariMutall", pos: "verb" }, { w: "يَسْعَى", cls: "mudariMutall", pos: "verb" }, { w: "يَدْعُو", cls: "mudariMutall", pos: "verb" },
+    { w: "يَكْتُبُونَ", cls: "khamsaVerbs", pos: "verb" }, { w: "تَكْتُبِينَ", cls: "khamsaVerbs", pos: "verb" }, { w: "كَتَبَ", cls: "mabni", pos: "verb" }, { w: "هٰذَا", cls: "mabni", pos: "pron" }, { w: "مِنْ", cls: "mabni", pos: "prep" },
+  ];
+  static seedAudit(){ const bad = []; for (const s of this.SEEDS) { const c = this.classify(s.w, { pos: s.pos }); if (!c || c.cls !== s.cls) bad.push({ w: s.w, want: s.cls, got: c && c.cls }); } return { n: this.SEEDS.length, bad }; }
+}
+
 class InnaEngine {
   static SEAT = {
     ibtida:   { h: "kasr", ar: "فِي الِابْتِدَاءِ", en: "at the opening of the speech", tr: "kelâmın başında" },
@@ -28042,6 +28303,10 @@ class GrammarKernel {
     try { const pk = IsmKindsEngine.profile(w, { pos: tok.pos, rule: tok.irab && tok.irab.rule }); if (pk.kinds.length) add("ism", "rule",
       { ar: "أَقْسَامُ الِاسْمِ", en: "Kinds of noun (the fifteen)", tr: "İsmin kısımları (on beş)" },
       pk.kinds.map(x => [IsmKindsEngine.L[x.k].ar + (x.sub && x.sub.ar ? " — " + x.sub.ar : ""), IsmKindsEngine.L[x.k][state.uiLang === "tr" ? "tr" : "en"]])); } catch (e) {}   /* (wave 36d) */
+    // (wave 41) the sign of its iʿrāb: the received table's class × case row for this written word
+    try { const sg = SignEngine.table(w, { pos: (typeof tok === "object" && tok) ? tok.pos : undefined, lex: (typeof tok === "object" && tok) ? tok.lex : undefined }); if (sg && sg.cls !== "mabni") { const L = state.uiLang === "tr" ? "tr" : "en"; add("sign", "rule",
+      { ar: "عَلَامَةُ إِعْرَابِهِ", en: "The sign of its iʿrāb", tr: "İ'rab alâmeti" },
+      [[sg.info.ar, sg.info[L]], ...sg.cells.map(c => [`${SignEngine.CASE_AR[c.kase]}: ${c.signInfo.ar}${c.manner === "taqdiri" ? " مُقَدَّرَةٌ" : ""}${c.reason ? " " + SignEngine.REASON[c.reason].ar : ""}`, `${SignEngine.ATTRIBUTE[c.manner][L].split(":")[0]} · ${SignEngine.ESSENCE[c.by][L].split(/ [—:]/)[0]}${c.reasonInfo ? " — " + c.reasonInfo[L] : ""}`])]); } } catch (e) {}
     const t = IsmEngine.tasgir(w), n = IsmEngine.nisba(w);
     if (t || n) add("ism", "rule",
       { ar: "التَّصْغِيرُ وَالنِّسْبَةُ", en: "Diminutive and nisba", tr: "Tasgîr ve nisbet" },
@@ -28596,6 +28861,89 @@ function startBab35(){
 // ---------- the Adab lab (wave 40): the fourth chapter's etiquette — nine rules, the corpus held to them, the muʿrib held to them ----------
 const ADAB_STATE_LBL = { obey: { ar: "مُرَاعًى", en: "kept", tr: "gözetilmiş" }, implied: { ar: "مَفْهُومٌ", en: "implied", tr: "zımnen" }, finding: { ar: "مَأْخَذٌ", en: "finding", tr: "mahzur" } };
 function adabFindSentence(ex){ try { const st = STORIES.find(s => s.id === ex.st); const ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(ex.ch)); return ch && ch.sentences.find(s => s.id === ex.sen) || null; } catch (e) { return null; } }
+// ---------- the Signs lab (wave 41): the taxonomy of the iʿrāb sign with the corpus's own counts, the class × case table with its footfall, a word box, and gSign ----------
+function signFindSentence(ex){ try { const st = STORIES.find(s => s.id === ex.st); const ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(ex.ch)); return ch && ch.sentences.find(s => s.id === ex.sen) || null; } catch (e) { return null; } }
+const SIGN_CASES = ["raf", "nasb", "jarr", "jazm"];
+function signCaseLabel(k, lang){ const L = { raf: { en: "rafʿ", tr: "ref'" }, nasb: { en: "naṣb", tr: "nasb" }, jarr: { en: "jarr", tr: "cer" }, jazm: { en: "jazm", tr: "cezim" } }; return L[k][lang] || L[k].en; }
+function signCellHtml(cls, kase, lang, foot){
+  const E = escapeAttr, e = SignEngine.expect(cls, kase);
+  if (!e) return `<div class="sign-cell off" data-kase="${kase}"><span class="sc-case">${E(signCaseLabel(kase, lang))}</span><span class="sc-sign">—</span></div>`;
+  const ex = foot && foot.examples && foot.examples[cls + ":" + kase] || [];
+  const exs = ex.slice(0, 3).map(x => `<button class="sign-ex" data-st="${E(x.st)}" data-ch="${E(String(x.ch))}" data-sen="${E(x.sen)}" lang="ar" dir="rtl">${E(x.w)}</button>`).join("");
+  return `<div class="sign-cell m-${e.manner} b-${e.by}" data-kase="${kase}" title="${E(SignEngine.ATTRIBUTE[e.manner][lang] || "")}">
+    <span class="sc-case">${E(signCaseLabel(kase, lang))}</span>
+    <span class="sc-sign" lang="ar" dir="rtl">${E(e.signInfo.ar)}${e.manner === "taqdiri" ? ` <small>مُقَدَّرَةٌ</small>` : ""}</span>
+    ${e.reason ? `<small class="sc-why" lang="ar" dir="rtl">${E(SignEngine.REASON[e.reason].ar)}</small>` : ""}
+    ${exs ? `<span class="sc-ex">${exs}</span>` : ""}
+  </div>`;
+}
+function signClassCardHtml(cls, lang, foot){
+  const E = escapeAttr, C = SignEngine.CLASSES[cls], u = ui();
+  const B = foot && foot.byClass && foot.byClass[cls];
+  const tally = B ? `<small class="sign-tally">${E(u.signFoot.replace("{n}", B.n).replace("{rate}", B.rate))}</small>` : (foot ? `<small class="sign-tally">${E(u.signNoFoot)}</small>` : `<small class="sign-tally">…</small>`);
+  return `<div class="sign-class p-${C.part}" data-cls="${cls}">
+    <div class="sign-head"><span class="sign-n">${C.n}</span><span class="sign-ar" lang="ar" dir="rtl">${E(C.ar)}</span><span class="sign-part">${E(C.part === "fil" ? u.signPartVerb : C.part === "mabni" ? u.signPartMabni : u.signPartNoun)}</span></div>
+    <div class="sign-doc"><small>${E(C[lang] || C.en)}</small></div>
+    <div class="sign-cells">${SIGN_CASES.filter(k => C.signs[k]).map(k => signCellHtml(cls, k, lang, foot)).join("")}</div>
+    ${tally}
+  </div>`;
+}
+function signTaxHtml(lang, foot){
+  const E = escapeAttr, u = ui();
+  const ess = Object.entries(SignEngine.ESSENCE).map(([k, v]) => { const n = foot ? (k === "mahall" ? foot.attribute.mahalli : foot.essence[k]) : null; return `<div class="sign-tax-card sign-ess" data-k="${k}"><span class="st-ar" lang="ar" dir="rtl">${E(v.ar)}</span><small class="st-doc">${E(v[lang] || v.en)}</small><span class="st-n">${n === null ? "…" : E(u.signLines.replace("{n}", n))}</span></div>`; }).join("");
+  const attr = Object.entries(SignEngine.ATTRIBUTE).map(([k, v]) => { const n = foot ? foot.attribute[k] : null; return `<div class="sign-tax-card sign-attr" data-k="${k}"><span class="st-ar" lang="ar" dir="rtl">${E(v.ar)}</span><small class="st-doc">${E(v[lang] || v.en)}</small><span class="st-n">${n === null ? "…" : E(u.signLines.replace("{n}", n))}</span></div>`; }).join("");
+  return `<div class="sign-tax"><div class="sign-tax-col"><h4 lang="ar" dir="rtl">بِحَسَبِ الذَّاتِ وَالْحَقِيقَةِ <small>${E(u.signEssence)}</small></h4>${ess}</div><div class="sign-tax-col"><h4 lang="ar" dir="rtl">بِحَسَبِ الصِّفَةِ <small>${E(u.signAttribute)}</small></h4>${attr}</div></div>`;
+}
+function signWordHtml(word, lang){
+  const E = escapeAttr, u = ui(); const w = String(word || "").trim(); if (!w) return "";
+  const t = SignEngine.table(w); if (!t) return `<p class="ref-intro">${E(u.signNoWord)}</p>`;
+  const C = t.info;
+  return `<div class="sign-word"><div class="sign-head"><span class="sign-word-w" lang="ar" dir="rtl">${E(w)}</span><span class="sign-ar" lang="ar" dir="rtl">${E(C.ar)}</span><small class="sign-why">${E(t.why)}${t.mamnu ? " · " + E(u.signMamnuNote) : ""}</small></div>
+    <div class="sign-doc"><small>${E(C[lang] || C.en)}</small></div>
+    <div class="sign-cells">${t.cells.map(c => `<div class="sign-cell m-${c.manner} b-${c.by}" data-kase="${c.kase}"><span class="sc-case">${E(signCaseLabel(c.kase, lang))}</span><span class="sc-sign" lang="ar" dir="rtl">${E(c.signInfo.ar)}${c.manner === "taqdiri" ? ` <small>مُقَدَّرَةٌ</small>` : ""}</span>${c.reason ? `<small class="sc-why" lang="ar" dir="rtl">${E(SignEngine.REASON[c.reason].ar)}</small>` : ""}<small class="sc-attr">${E(SignEngine.ATTRIBUTE[c.manner][lang].split(":")[0])} · ${E(SignEngine.ESSENCE[c.by][lang].split(/ [—:]/)[0])}</small></div>`).join("")}</div></div>`;
+}
+let SIGN_FOOT = null;
+function renderSignOut(){
+  const out = document.getElementById("signOut"); if (!out) return;
+  const lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr;
+  const paint = (foot) => {
+    const head = foot ? `<p class="ref-intro sign-sum" id="signSum">${E(u.signSum.replace("{n}", foot.n).replace("{acc}", foot.acc).replace("{m}", foot.mannerAcc))}</p>` : `<p class="ref-intro sign-sum" id="signSum">…</p>`;
+    out.innerHTML = head + signTaxHtml(lang, foot) + `<h4 class="sign-h">${E(u.signTable)}</h4><div class="sign-classes">${Object.keys(SignEngine.CLASSES).map(k => signClassCardHtml(k, lang, foot)).join("")}</div>`;
+    out.querySelectorAll(".sign-ex").forEach(b => b.addEventListener("click", () => { const sen = signFindSentence({ st: b.dataset.st, ch: b.dataset.ch, sen: b.dataset.sen }); if (sen) { try { openIrabSheet(sen); } catch (e) {} } }));
+  };
+  paint(SIGN_FOOT);
+  if (!SIGN_FOOT) Relax.later("sign-audit", () => { const a = SignEngine.audit(); return { n: a.n, acc: a.acc, mannerAcc: a.mannerAcc, essence: a.essence, attribute: a.attribute, byClass: a.byClass, examples: a.examples }; }, a => { SIGN_FOOT = a; if (document.getElementById("signOut")) paint(a); }, { persist: true });
+}
+function renderSignWord(){ const o = document.getElementById("signWordOut"); if (!o) return; o.innerHTML = signWordHtml(conjState.sign || "", state.uiLang === "tr" ? "tr" : "en"); }
+// gSign — عَلَامَةُ إِعْرَابِهِ؟ a corpus word with its authored case: name the sign; the distractors are the other signs that case can take
+let SIGN_ITEMS = null;
+function signItems(){
+  if (SIGN_ITEMS) return SIGN_ITEMS;
+  const out = [];
+  try { const a = SignEngine.audit(); for (const [k, X] of Object.entries(a.examples)) { const cls = k.split(":")[0]; for (const x of X.slice(0, 4)) { const sen = signFindSentence(x); if (sen) out.push({ sen, ti: x.i, w: x.w, kase: x.kase, sign: x.sign, cls }); } } } catch (e) {}
+  SIGN_ITEMS = out; return out;
+}
+function startSign(){
+  const items = shuffle(signItems()).slice(0, 8);
+  if (!items.length) { openGames(); return; }
+  const lang = state.uiLang === "tr" ? "tr" : "en", E = escapeAttr;
+  const perCase = {}; for (const C of Object.values(SignEngine.CLASSES)) for (const [k, s] of Object.entries(C.signs)) (perCase[k] = perCase[k] || new Set()).add(s[0]);
+  runQuiz({
+    title: ui().signGame, ask: ui().signAsk, items, restart: startSign,
+    area: "nahw", lvl: it => /^(sahih|mudariSahih|mabni)$/.test(it.cls) ? 2 : 4, itemKey: it => "sign:" + it.sen.id + ":" + it.ti,
+    question: it => `<div class="game-q" lang="ar">${senWithSlot(it.sen, it.ti, t => `<mark class="ghost-slot">${t.s.full}</mark>`)}</div><div class="sign-q-line"><span lang="ar" dir="rtl">${E(it.w)}</span> — <span lang="ar" dir="rtl">${E(SignEngine.CASE_AR[it.kase])}</span> <small>${E(signCaseLabel(it.kase, lang))}</small></div>`,
+    options: it => {
+      const pool = [...(perCase[it.kase] || [])].filter(s => s !== it.sign && s !== "mahall");
+      const all = Object.keys(SignEngine.SIGNS).filter(s => s !== it.sign && s !== "mahall" && !pool.includes(s));
+      const others = shuffle(pool).slice(0, 3); while (others.length < 3 && all.length) others.push(all.splice(Math.floor(Math.random() * all.length), 1)[0]);
+      return shuffle([it.sign, ...others]).map(s => ({ html: `<span lang="ar">${E(SignEngine.SIGNS[s].ar)}</span> — ${E(SignEngine.SIGNS[s][lang] || SignEngine.SIGNS[s].en)}`, ok: s === it.sign, ar: true, k: s }));
+    },
+    whyNot: () => ui().signWhyNot,
+    why: it => { const e = SignEngine.expect(it.cls, it.kase, it.w); const C = SignEngine.CLASSES[it.cls]; return `<div class="frame-reveal"><span class="fr-name" lang="ar">${E(C.ar)}</span><span class="fr-doc">${E(C[lang] || C.en)}${e ? `<br><span lang="ar" dir="rtl">${E(SignEngine.CASE_AR[it.kase])}: ${E(e.signInfo.ar)}${e.manner === "taqdiri" ? " مُقَدَّرَةٌ" : ""}${e.reason ? " " + E(SignEngine.REASON[e.reason].ar) : ""}</span> — ${E(SignEngine.ATTRIBUTE[e.manner][lang].split(":")[0])}${e.reasonInfo ? ", " + E(e.reasonInfo[lang] || e.reasonInfo.en) : ""}` : ""}</span></div>`; },
+    extras: [{ label: () => `${arSpan("إِعْرَاب")} ${ui().sheetTitle}`, run: it => { if (it.sen) openIrabSheet(it.sen); } }],
+  });
+}
+
 function adabRuleCardHtml(k, R, lint, lang){
   const E = escapeAttr, u = ui();
   const T0 = lint ? lint.rules[k] : null;
@@ -29423,6 +29771,7 @@ class GameFactory {
     { id: "gWujuh",   group: "nahw",    emblem: "🎭", min: 4, supply: () => wujuhItems().length },
     { id: "gHadhf",   group: "nahw",    emblem: "⌫", min: 4, supply: () => hadhfItems().length },
     { id: "gAdab",    group: "nahw",    emblem: "📜", min: 4, supply: () => adabItems().length },
+    { id: "gSign",    group: "nahw",    emblem: "◌ُ", min: 4, supply: () => signItems().length },
     { id: "gHamza",   group: "nahw",    emblem: "﴾؟﴿", min: 3, supply: () => hamzaItems().length },
     { id: "gShart",   group: "nahw",    emblem: "إِنْ", min: 3, supply: () => shartItems().length },
     { id: "gSpot",    group: "nahw",    emblem: "🔍", min: 1, supply: null },
@@ -29729,6 +30078,7 @@ function openGames(){
     ${gCard("gWujuh", "🎭", ui().wujuhGame, ui().wujuhGameDesc)}
     ${gCard("gHadhf", "⌫", ui().hadhfGame, ui().hadhfGameDesc)}
     ${gCard("gAdab", "📜", ui().adabGame, ui().adabGameDesc)}
+    ${gCard("gSign", "◌ُ", ui().signGame, ui().signGameDesc)}
     ${gCard("gHamza", "﴾؟﴿", ui().hamzaGame, ui().hamzaGameDesc)}
     ${gCard("gShart", "إِنْ", ui().shartGame, ui().shartGameDesc)}
     ${gCard("gSpot", "🔍", ui().spot, ui().spotDesc)}
@@ -29771,6 +30121,7 @@ function openGames(){
   document.getElementById("gWujuh").addEventListener("click", startWujuh);
   document.getElementById("gHadhf").addEventListener("click", startHadhf);
   document.getElementById("gAdab").addEventListener("click", startAdab);
+  document.getElementById("gSign").addEventListener("click", startSign);
   document.getElementById("gTasgir").addEventListener("click", startTasgir);
   document.getElementById("gKinds").addEventListener("click", startKinds);
   document.getElementById("gBab35").addEventListener("click", startBab35);

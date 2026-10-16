@@ -51,7 +51,10 @@ if (!CHROME) {
   // page runs as a returning reader so its sheet cannot sit over every other check.
   await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
   await page.goto(url);
+  let checkN = 0;
   const check = async (name, fn) => {
+    checkN++;
+    if (process.env.SMOKE_SLICE) { const [a, b] = process.env.SMOKE_SLICE.split('-').map(Number); if (checkN < a || checkN > b) return; }   // an ordinal slice, for a chunked release run — CI runs everything
     if (process.env.SMOKE_ONLY && !new RegExp(process.env.SMOKE_ONLY).test(name)) return;   // a named subset, for triage — the release runs everything
     try { await fn(); console.log('PASS', name); }
     catch (e) {
@@ -4945,6 +4948,59 @@ if (!CHROME) {
     if (!(r.supply >= 4)) throw new Error('gHadhf has no supply: ' + r.supply);
     if (!/\d+/.test(r2.tally) || !/%/.test(r2.tally)) throw new Error('the audit tally never painted: ' + r2.tally);
     if (r2.opts.length !== 4 || !r2.opts.every(o => /^\[.+\]$/.test(o)) || !/\[؟\]/.test(r2.q)) throw new Error('the game should ask for the unsaid word with four bracketed options: ' + JSON.stringify(r2.opts) + ' ' + r2.q.slice(0, 80));
+  });
+
+  await check('the SignEngine re-derives every authored sign statement from the written word alone: the taxonomy of the sign (essence × attribute) and the class × case table hold the corpus at 99.5%, the seeds classify, and the named words land in their classes (wave 41)', async () => {
+    const r = await page.evaluate(() => {
+      const a = SignEngine.audit(); const sd = SignEngine.seedAudit();
+      const c = (w, o) => { const x = SignEngine.classify(w, o || {}); return x ? x.cls : null; };
+      const e = (w, k, o) => { const t = SignEngine.table(w, o || {}); const c0 = t && t.cells.find(x => x.kase === k); return c0 ? [c0.sign, c0.manner, c0.reason] : null; };
+      const au = SignEngine.authored('مرفوع وعلامة رفعه الضمة المقدرة على الألف للتعذر');
+      return { n: a.n, acc: a.acc, viaTag: a.viaTag, mannerAcc: a.mannerAcc, essence: a.essence, attribute: a.attribute, byClass: Object.fromEntries(Object.entries(a.byClass).map(([k, v]) => [k, [v.n, v.rate]])), seeds: sd.n, bad: sd.bad.slice(0, 4),
+        cls: { pl: c('مُسْلِمِينَ', { pos: 'noun' }), stem: c('الزَّمَانِ', { pos: 'noun', lex: 'zaman' }), dual: c('عَيْنَيْهَا', { pos: 'noun', lex: 'ayn' }), maqsurEnc: c('مَعْنَاهُ', { pos: 'noun', lex: 'mana' }), abi: c('أَبِي', { pos: 'noun', next: { w: 'حَنِيفَةَ', pos: 'propn' } }), abiMine: c('أَبِي', { pos: 'noun' }), kila: c('كِلَيْهِمَا', { pos: 'noun' }), kila2: c('كِلَا', { pos: 'noun', next: { w: 'الرَّجُلَيْنِ', pos: 'noun' } }), jazm: c('يَرَ', { pos: 'verb', kase: 'jazm' }), five: c('يَكْتُبُوا', { pos: 'verb', kase: 'jazm' }), dipAnnexed: c('بِخَزَائِنِ', { pos: 'noun', next: { w: 'الْأَرْضِ', pos: 'noun' } }), dip: c('مَسَاجِدَ', { pos: 'noun' }), broken: c('الشَّيَاطِينَ', { pos: 'noun', lex: 'shaytan' }), manqusEnc: c('مُشْتَرِيهِ', { pos: 'noun', lex: 'mushtari' }) },
+        ex: { fem: e('مُسْلِمَاتٍ', 'nasb'), maqsur: e('الْفَتَى', 'raf'), manqusRaf: e('الْقَاضِي', 'raf'), manqusNasb: e('الْقَاضِي', 'nasb'), mamnu: e('مَسَاجِدَ', 'jarr', { pos: 'noun' }), ya: e('كِتَابِي', 'jarr'), five: e('يَكْتُبُونَ', 'jazm', { pos: 'verb' }), weak: e('يَرْمِي', 'jazm', { pos: 'verb' }) },
+        au: au && [au.kase, au.sign, au.manner] };
+    });
+    if (r.n < 7900 || r.acc < 99.5 || r.mannerAcc < 85) throw new Error('the audit fell: ' + JSON.stringify([r.n, r.acc, r.mannerAcc]));
+    if (r.viaTag > 0.15 * r.n) throw new Error('too much of the accuracy leans on the corpus tags: ' + r.viaTag + ' of ' + r.n);
+    if (r.essence.haraka < 7000 || r.essence.harf < 800 || r.essence.hadhf < 20 || r.attribute.taqdiri < 750 || r.attribute.mahalli < 3400) throw new Error('the taxonomy counts shrank: ' + JSON.stringify([r.essence, r.attribute]));
+    for (const [k, [n, rate]] of Object.entries(r.byClass)) if (n >= 50 && rate < 97) throw new Error('class ' + k + ' below its floor: ' + n + ' lines, ' + rate + '%');
+    if (r.seeds < 27 || r.bad.length) throw new Error('every seed must land in its class: ' + JSON.stringify(r.bad));
+    const want = { pl: 'jamMudhakkar', stem: 'sahih', dual: 'muthanna', maqsurEnc: 'maqsur', abi: 'khamsa', abiMine: 'mudafYa', kila: 'muthanna', kila2: 'maqsur', jazm: 'mudariMutall', five: 'khamsaVerbs', dipAnnexed: 'sahih', dip: 'mamnu', broken: 'sahih', manqusEnc: 'manqus' };
+    for (const [k, v] of Object.entries(want)) if (r.cls[k] !== v) throw new Error('classify ' + k + ': want ' + v + ' got ' + r.cls[k]);
+    const wantE = { fem: ['kasra', 'lafzi', 'niyaba'], maqsur: ['damma', 'taqdiri', 'taadhdhur'], manqusRaf: ['damma', 'taqdiri', 'thiqal'], manqusNasb: ['fatha', 'lafzi', ''], mamnu: ['fatha', 'lafzi', 'niyaba'], ya: ['kasra', 'taqdiri', 'ishtighal'], five: ['hadhfNun', 'lafzi', ''], weak: ['hadhfIlla', 'lafzi', ''] };
+    for (const [k, v] of Object.entries(wantE)) if (String(r.ex[k]) !== String(v)) throw new Error('expect ' + k + ': want ' + v + ' got ' + r.ex[k]);
+    if (String(r.au) !== 'raf,damma,taqdiri') throw new Error('the authored reader: ' + r.au);
+  });
+
+  await check('the Signs lab opens on a phone with the two taxonomies and their corpus counts, thirteen class cards with their cells and authored examples, the word box classifies a typed word and a seed, the word card carries the sign row, and gSign has a supply and asks the sign (wave 41)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'sign'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      return { tab: !!document.querySelector('.tabs [data-lab=sign]'), ess: q('#signOut .sign-ess'), attr: q('#signOut .sign-attr'), classes: q('#signOut .sign-class'), cells: q('#signOut .sign-cell'), seeds: q('.sign-seeds button'), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+    });
+    if (!r.tab || r.ess !== 4 || r.attr !== 3 || r.classes !== 13 || r.cells < 39 || r.seeds < 27) throw new Error('the lab should stand: ' + JSON.stringify(r));
+    await page.waitForFunction(() => /\d/.test((document.getElementById('signSum') || {}).textContent || ''), null, { timeout: 90000 });
+    const r2 = await page.evaluate(() => {
+      const q = s => document.querySelectorAll(s).length;
+      const o = { sum: (document.getElementById('signSum') || {}).textContent, ex: q('#signOut .sign-ex'), stn: [...document.querySelectorAll('#signOut .st-n')].map(x => x.textContent), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+      const inp = document.getElementById('signIn'); inp.value = 'مُسْلِمُونَ'; conjState.sign = inp.value; renderSignWord();
+      o.word = (document.querySelector('#signWordOut .sign-ar') || {}).textContent; o.wordCells = [...document.querySelectorAll('#signWordOut .sign-cell .sc-sign')].map(x => x.textContent.trim());
+      document.querySelector('.sign-seeds button[data-w="الْقَاضِي"]').click(); o.seed = (document.querySelector('#signWordOut .sign-ar') || {}).textContent; o.seedCells = [...document.querySelectorAll('#signWordOut .sign-cell')].map(x => x.className);
+      let supply = 0; try { supply = GameFactory.supplyOf('gSign'); } catch (e) { supply = 'ERR ' + e.message; } o.supply = supply;
+      try { closeSheet(); } catch (e) {}
+      startSign(); o.opts = [...document.querySelectorAll('.opts button')].map(x => x.textContent.trim()); o.qline = (document.querySelector('.sign-q-line') || {}).textContent || ''; o.wide2 = document.documentElement.scrollWidth > window.innerWidth + 1;
+      try { closeSheet(); } catch (e) {}
+      const card = GrammarKernel.askWord('مُسْلِمِينَ'); const row = (card.findings || []).find(f => f.k === 'sign'); o.card = row ? row.rows.map(x => x[0]) : [];
+      return o;
+    });
+    if (!/79\d\d|8\d\d\d/.test(r2.sum) || r2.ex < 60 || r2.stn.filter(x => /\d/.test(x)).length < 7) throw new Error('the counts should paint: ' + JSON.stringify([r2.sum, r2.ex, r2.stn]));
+    if (r.wide || r2.wide || r2.wide2) throw new Error('the lab overflows the phone width');
+    if (!/جَمْعُ الْمُذَكَّرِ/.test(r2.word) || String(r2.wordCells) !== 'الْوَاوُ,الْيَاءُ,الْيَاءُ') throw new Error('the word box: ' + JSON.stringify([r2.word, r2.wordCells]));
+    if (!/الْمَنْقُوصُ/.test(r2.seed) || !/m-taqdiri/.test(r2.seedCells[0]) || !/m-lafzi/.test(r2.seedCells[1])) throw new Error('the seed chip: ' + JSON.stringify([r2.seed, r2.seedCells]));
+    if (!(r2.supply >= 60)) throw new Error('gSign has no supply: ' + r2.supply);
+    if (r2.opts.length !== 4 || !r2.qline) throw new Error('the game should show the word, its case and four signs: ' + JSON.stringify(r2.opts) + ' ' + r2.qline);
+    if (!r2.card.length || !/جَمْعُ الْمُذَكَّرِ/.test(r2.card[0]) || !r2.card.some(x => /الرَّفْعُ: الْوَاوُ/.test(x))) throw new Error('the word card should carry the sign row: ' + JSON.stringify(r2.card));
   });
 
   await check('the AdabEngine holds the corpus to the fourth chapter: nine rules over every authored line with floors, the seeds each break their rule and their fixes pass, and the automatic muʿrib keeps the etiquette on its own lines (wave 40)', async () => {

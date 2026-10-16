@@ -1171,3 +1171,20 @@ open as the page's own lines, each a button that opens the sentence sheet, with 
 not hide that its corpus has 183 verb lines that stop before their doer; it shows them, in the authors' own ink, and lets the reviewer go.
 The game asks the only question the chapter asks — «which rule does this line break?» — showing the sentence, the offending line in red
 ink, and four rules, so the learner practises the chapter the way an examiner would use it: on someone's actual parsing, not on a list.
+
+## 34. The sign as a thing with an essence: taxonomy cards, a class × case grid that fits a phone, and spoken vs estimated as a dotted line (wave 41)
+
+A table in a Turkish madrasa handout is a grid of thirteen rows by three or four columns, and on a phone a grid like that is either
+unreadable or scrolls sideways. The Signs lab does not draw the grid. It draws each ROW as a card — number, Arabic name, a coloured
+edge for noun / verb / no-case — with its three or four cells side by side inside the card, each cell naming the case in small caps,
+the sign in Arabic, and the reason under it; a card is a row the reader can hold in one glance, and the thirteen cards stack on a phone
+and pair up on a tablet without ever overflowing. Two things are drawn as marks rather than words, because they are what the handout's
+upper tables are about: a cell whose sign is only estimated carries the sign with a DOTTED underline — the sign is there in the grammar
+but not on the page, which is exactly what a dotted line says — and a cell whose sign is a letter or a deletion rather than a vowel is
+tinted (blue for the letter, amber for the deletion), so the essence of the sign is visible across the whole grid before any word is
+read. Above the grid the two taxonomies stand as six small cards with the corpus's own counts on them («7,779 lines» under ḥaraka,
+«811 lines» under taqdīrī, «3,520 lines» under maḥallī), so the abstraction is weighed in the stories' own ink rather than asserted.
+Under every class card a grey tally «n authored lines · rate%» tells the truth about the engine, and each cell shows up to three
+authored words from the corpus as dashed chips that open the sentence sheet — the table proves itself on the texts it teaches from.
+The word box above the grid answers a typed word with one card in the same shape (its class, the reason it was placed there, its
+cells), with the twenty-seven seeds as chips to tap, so the learner can ask the table about any word before trusting it on the stories.
