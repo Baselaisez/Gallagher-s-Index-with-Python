@@ -4950,6 +4950,47 @@ if (!CHROME) {
     if (r2.opts.length !== 4 || !r2.opts.every(o => /^\[.+\]$/.test(o)) || !/\[؟\]/.test(r2.q)) throw new Error('the game should ask for the unsaid word with four bracketed options: ' + JSON.stringify(r2.opts) + ' ' + r2.q.slice(0, 80));
   });
 
+  await check('the TartibEngine reads the Kāfiya\'s sixteen obligatory orders on every authored clause and isnād of the corpus: the attached-doer, verb-khabar, object-pronoun and referent rules never see their order broken, the definiteness rules hold above 95%, the seventeen seeds each raise their rule, and the analyzer path reads the test sentences (wave 43)', async () => {
+    const r = await page.evaluate(() => {
+      const a = TartibEngine.audit(); const sd = TartibEngine.seedAudit();
+      const rr = s => { const rows = SentenceAnalyzer.analyze(s); const r = TartibEngine.readRows(rows); return r.frames.map(f => f.type + ':' + f.order + ':' + f.fires.join('+') + (f.violated.length ? '!' : '')).join('|') + (r.tanazu.length ? '+tanazu' : ''); };
+      return { clauses: a.clauses, isnads: a.isnads, orders: a.orders, rules: Object.fromEntries(Object.entries(a.rules).map(([k, v]) => [k, [v.n, v.kept, v.violated]])), viol: a.violations.length, seeds: sd.n, bad: sd.bad.slice(0, 4),
+        rows: [rr('ضَرَبْتُ زَيْدًا'), rr('فِي الدَّارِ رَجُلٌ'), rr('قَامَ وَقَعَدَ زَيْدٌ'), rr('زَيْدٌ قَامَ'), rr('ضَرَبَنِي زَيْدٌ'), rr('كَتَبَ الطَّالِبُ الدَّرْسَ')] };
+    });
+    if (r.clauses < 900 || r.isnads < 440 || r.orders.FM < 850 || r.orders.KM < 150) throw new Error('the reader should walk the corpus: ' + JSON.stringify([r.clauses, r.isnads, r.orders]));
+    const exact = { fm2: 300, mk4: 30, mf4: 6, km3: 10, mk3: 5, fm3: 4 };
+    for (const [k, n] of Object.entries(exact)) { const v = r.rules[k]; if (!v || v[0] < n || v[2] > 0) throw new Error('rule ' + k + ' must hold on every clause it binds: ' + JSON.stringify(v) + ' (need n>=' + n + ')'); }
+    for (const k of ['mk2', 'km2']) { const v = r.rules[k]; if (!v || v[0] < 60 || v[1] / v[0] < 0.95) throw new Error('rule ' + k + ' below 95%: ' + JSON.stringify(v)); }
+    if (r.viol > 8) throw new Error('too many clauses against the rules: ' + r.viol);
+    if (r.seeds < 17 || r.bad.length) throw new Error('every seed must raise its rule: ' + JSON.stringify(r.bad));
+    const want = ['verb:FM:fm2', 'isnad:KM:km2', '+tanazu', 'isnad:MK:mk4', 'verb:MF:mf4', 'verb:FM:'];
+    want.forEach((w, i) => { if (!r.rows[i].includes(w)) throw new Error('the analyzer path on sentence ' + i + ': want ' + w + ' got ' + r.rows[i]); });
+  });
+
+  await check('the Tartīb lab opens on a phone with the sixteen rule cards in four pairs and the tanāzuʿ card, the corpus tally paints with bars and examples, the sentence box names the rule that binds a typed order, the Jumla lab carries the order ledger, and gTartib has a supply and asks the rule (wave 43)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'tartib'; conjState.tartib = 'ضَرَبْتُ زَيْدًا'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      return { tab: !!document.querySelector('.tabs [data-lab=tartib]'), cards: q('#tartibOut .tb-card'), pairs: q('#tartibOut .tb-pair'), seeds: q('.tb-seeds button'), frames: q('#tartibSenOut .tb-frame'), fires: [...document.querySelectorAll('#tartibSenOut .tb-fire')].map(x => x.textContent), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+    });
+    if (!r.tab || r.cards !== 17 || r.pairs !== 4 || r.seeds !== 17 || r.frames !== 1 || !/الْفَاعِلُ ضَمِيرٌ مُتَّصِلٌ/.test(r.fires.join(' '))) throw new Error('the lab should stand: ' + JSON.stringify(r));
+    await page.waitForFunction(() => /\d/.test((document.getElementById('tartibSum') || {}).textContent || ''), null, { timeout: 90000 });
+    const r2 = await page.evaluate(() => {
+      const q = s => document.querySelectorAll(s).length;
+      const o = { sum: (document.getElementById('tartibSum') || {}).textContent, bars: q('#tartibOut .tb-bar'), exs: q('#tartibOut .tb-ex'), wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+      conjState.lab = 'jumla'; conjState.jumla = 'ضَرَبْتُ زَيْدًا وَفِي الدَّارِ رَجُلٌ.'; openConjugator(); o.ledger = (document.querySelector('#jumlaOut .tb-ledger') || {}).textContent || '';
+      let supply = 0; try { supply = GameFactory.supplyOf('gTartib'); } catch (e) { supply = 'ERR ' + e.message; } o.supply = supply;
+      try { closeSheet(); } catch (e) {}
+      startTartib(); o.opts = [...document.querySelectorAll('.opts button')].map(x => x.textContent.trim()); o.q = (document.querySelector('.tb-q-line') || {}).textContent || ''; o.wide2 = document.documentElement.scrollWidth > window.innerWidth + 1;
+      try { closeSheet(); } catch (e) {}
+      return o;
+    });
+    if (!/9\d\d|1\d\d\d/.test(r2.sum) || r2.bars < 8 || r2.exs < 40) throw new Error('the tally should paint: ' + JSON.stringify([r2.sum, r2.bars, r2.exs]));
+    if (r.wide || r2.wide || r2.wide2) throw new Error('the lab overflows the phone width');
+    if (!/ضَمِيرٌ مُتَّصِلٌ/.test(r2.ledger)) throw new Error('the Jumla ledger should carry the order: ' + r2.ledger.slice(0, 120));
+    if (!(r2.supply >= 50) || r2.opts.length !== 4 || !r2.q) throw new Error('gTartib: ' + JSON.stringify([r2.supply, r2.opts.length, r2.q]));
+  });
+
   await check('the MaqsudEngine re-derives the Maqṣūd commentary\'s eighteen model roots cell by cell — the Emsile row, the paradigm blocks, the twelve bābs and the mazīd rows — and the hamza-seat rule, the lafīf and the yāʾ-initial makers hold their named forms (wave 42)', async () => {
     const r = await page.evaluate(() => {
       const a = MaqsudEngine.audit(); const M = k => MaqsudEngine.MODELS.find(m => m.key === k);

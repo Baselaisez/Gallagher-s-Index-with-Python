@@ -7905,3 +7905,44 @@ ate مُمَادَّة's first mīm; the geminate rule contracts only the root's
 and رَوَّاء into رَاّاء — the hollow mīmī noun and the weak-lām mubālagha are built by template without the chain. (4) The text writes
 يُوتِى for يُؤْتِي and مِأْكَل for مِئْكَل: the ḍamma case is folded (ُؤْ ↔ ُو), the kasra case is left as the text's convention and counted
 loose. `DabtEngine`, the analyzer and `sarfDerive` are untouched.
+
+## The order the sentence must keep — the TartibEngine (wave 43, v205)
+
+The Kâfiye summary (`research/sources/nahiv-kafiye-ozeti-turkce.txt`, COVERAGE row 39; cross-read with rows 30–31) lists four places each
+where the fāʿil must precede the mafʿūl, the mafʿūl the fāʿil, the mubtadaʾ the khabar and the khabar the mubtadaʾ — sixteen places where
+the order is doctrine, not style — and the tanāzuʿ chapter. The app's `TaqdimEngine` (wave 13) reads the maʿānī's REASONS for fronting;
+nothing read the naḥw's OBLIGATIONS. Wave 43 adds `TartibEngine` (`patch43a.py`, before `InnaEngine`):
+
+- **`RULES`** — fm1–4 (ambiguous case and context; the doer an attached pronoun; the object after إِلَّا; the object under إِنَّمَا),
+  mf1–4 (a pronoun in the doer referring to the object; the doer after إِلَّا; the doer under إِنَّمَا; the object an attached pronoun with
+  a written doer), mk1–4 (the mubtadaʾ a ṣadr word; both definite; both equally general; the khabar a verb), km1–4 (the khabar a
+  question word; the fronted phrase that licenses an indefinite mubtadaʾ; a pronoun in the mubtadaʾ referring into the khabar; the
+  mubtadaʾ an أَنَّ-clause), each with the book's Arabic and its example in EN/TR; **`TANAZU`** with the Basran and Kufan resolutions.
+- **The corpus reader** works on the authored lines, not the parser: `clausesOf(sen)` takes every verb, reads its doer off its own line
+  (an attached letter «التاء ضمير متصل في محل رفع فاعل», the concealed «الفاعل مستتر») and its object pronoun («ضمير متصل في محل نصب
+  مفعول به»), then the written فاعل / مفعول به heads up to the next verb, with إِلَّا and إِنَّمَا noted; `isnadsOf(sen)` takes every مبتدأ
+  head and finds its khabar — a خبر head, a clause line «في محل رفع خبر», a phrase «متعلق بخبر», or a fronted one behind it («خبر مقدم»,
+  never the نحو of an example) — stopping at a وَ/فَ-initial token, which opens another clause. `judgeVerb` / `judgeIsnad` fire the
+  rules; a rule whose side disagrees with the authored order is a *violation*. Definiteness reads the article, a proper name, a pronoun,
+  an enclitic or the speaker's yāʾ, ذو, and annexation (a tanwīn-less case vowel before a noun). Two rules need a pronoun's referent
+  (mf1, km3): they are fired only where the order already shows it, so they EXPLAIN a fronting and never accuse one.
+- **`audit()`**: 970 verb clauses and 478 isnāds — doer-first 941, object-first 29, mubtadaʾ-first 265, khabar-first 213. The rules
+  that bind by form hold on every clause: fm2 (321/321), mk4 (38/38), mf4 (8/8), km3 (13/13), fm3 (5/5), mk3 (9/9); the definiteness
+  rules mk2 98.7% (77) and km2 98% (99); three clauses stand against the rules — two lines of Badʾ al-Amālī's verse and one Talkhīṣ
+  example («قَصْرٌ عَلَيْهِ») — shown in the lab as findings for review, not corrected. Tanāzuʿ in prose is rare: one candidate.
+- **`readRows(rows)`** runs the same rules on the analyzer's rows (`DabtEngine` offices, the verb's cell for the attached or concealed
+  doer — the māḍī attaches its letters, the muḍāriʿ conceals only أَنْتَ / أَنَا / نَحْنُ — the enclitic for the object pronoun), for the
+  sentence box and the Jumla ledger; **`SEEDS`** are the book's own seventeen examples, each carrying its offices as the corpus writes
+  them, so `seedAudit()` grades the rules and not the parser (17/17).
+
+The **Tartīb lab** (tab «تَرْتِيب») has the sentence box with the seeds as chips (each frame: the order, the doer/object or
+mubtadaʾ/khabar, the rule that binds it in green, or «either order is allowed»), then the four pairs as rule cards with a kept/against
+bar, the corpus's examples as chips that open the sentence sheet, and the findings folded under each card, and the tanāzuʿ card. The
+**Jumla lab** gained the order ledger under the muʿrib's lines. **gTartib** («Why this order?») shows a seed or a corpus frame and asks
+which of the sixteen rules makes its order obligatory, the distractors from the same pair first.
+
+**Process notes.** (1) The first reader took «مُعْرَبٌ وَمِنْهُ مَبْنِيٌّ» as a mubtadaʾ with a phrase khabar — the وَ opens a new clause;
+the forward search stops at any conjunction-initial token. (2) A tanwīn-bearing alif (يَزِيدًا) is not an ambiguous case; the shadda sits
+between the kasra and the speaker's yāʾ (رَبِّي), so the regexes allow it. (3) مَا at the head of a Talkhīṣ definition is the relative, not a
+question: km1 fires only on أَيْنَ، كَيْفَ، مَتَى and their sisters. (4) The analyzer labels عَمْرٌو in «مَا ضَرَبَ زَيْدًا إِلَّا عَمْرٌو» by
+position, not by case — the reason the seeds carry their own offices. `DabtEngine` and the analyzer are untouched.

@@ -1202,3 +1202,16 @@ eighteen roots are chips with their agreement count in the tooltip; the blocks f
 fourteen-cell paradigms open on demand, and every cell is an inline-grid pill that wraps, so the lab fits a phone without a sideways
 scroll. The game inverts the lab: it hides the form and shows the slot, and its distractors are the row's own other cells, so the
 learner is asked the Emsile's question in the Emsile's order.
+
+## 36. A rule shown with its own evidence: sixteen cards, each with the corpus's count, its examples and its exceptions (wave 43)
+
+The order rules are the kind of grammar a learner is usually asked to take on trust, so the Tartīb lab makes each one carry its
+evidence. Every card has three bands: the book's sentence in Arabic with its stock example, a thin bar that is almost entirely green
+(kept) with a sliver of red where the corpus disagrees, and a row of dashed chips — the corpus's own clauses that the rule bound, each
+opening its sentence sheet. Where the corpus does stand against a rule, the card does not hide it: a folded red «n against the rule —
+for review» lists the clauses, because a verse of Badʾ al-Amālī that fronts a khabar for the metre is exactly what a reader should be
+shown when the rule says it cannot be done. The four pairs are headed in Arabic with the direction spelled out, so the eight-plus-eight
+rules read as two mirrored tables rather than a list. Above the cards the sentence box answers in the same grammar: a frame line names
+the order (FM, MF, MK, KM), the two parts with their kinds (a written noun, an attached pronoun, a concealed one), and the binding rule
+as a green pill — or, in grey, «either order is allowed here», which is the honest answer for most sentences and the one a lab must be
+willing to give. The same frame lines appear under the Jumla lab's muʿrib, so the order is read where the sentence is parsed.
