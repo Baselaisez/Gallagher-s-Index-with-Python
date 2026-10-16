@@ -1188,3 +1188,17 @@ Under every class card a grey tally «n authored lines · rate%» tells the trut
 authored words from the corpus as dashed chips that open the sentence sheet — the table proves itself on the texts it teaches from.
 The word box above the grid answers a typed word with one card in the same shape (its class, the reason it was placed there, its
 cells), with the twenty-seven seeds as chips to tap, so the learner can ask the table about any word before trusting it on the stories.
+
+## 35. A text graded against the machine, cell by cell: four colours, the struck form, and nothing hidden (wave 42)
+
+The Maqṣūd lab is the first place the app sets a whole received text beside its own derivations and lets the learner see where the two
+part company. The design rule was that the text keeps the page: every cell shows the commentary's own form in the reading size, and the
+app's derivation appears only when it differs — struck through in grey when the difference is the text's orthography (a vowel after its
+alif, a tanwīn after its alif, an Ottoman final ى), in red under the text when the app really disagrees. A reader who trusts the book
+reads the book; a reader who wants to know what the engine would say reads the second line; nobody is told which is right. Four
+left-edge colours carry the verdict without a word — green, amber, red, grey — and a dashed grey edge marks the cells the engine refuses
+to guess on principle (the broken plurals, the nūn-tawkīd persons), so «not derived» is visibly different from «derived wrongly». The
+eighteen roots are chips with their agreement count in the tooltip; the blocks fold as details so the Emsile row stays open and the
+fourteen-cell paradigms open on demand, and every cell is an inline-grid pill that wraps, so the lab fits a phone without a sideways
+scroll. The game inverts the lab: it hides the form and shows the slot, and its distractors are the row's own other cells, so the
+learner is asked the Emsile's question in the Emsile's order.

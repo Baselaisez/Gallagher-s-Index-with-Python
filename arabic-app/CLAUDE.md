@@ -7859,3 +7859,49 @@ compares consonant skeletons with hamza, ʿayn and the long-vowel letters droppe
 the shadda — and where the key is the plural itself, the corpus tag decides. (4) The smoke harness gained `SMOKE_SLICE=a-b` (an
 ordinal slice) so a release can run the suite in resumable chunks; CI still runs everything. `DabtEngine` and the analyzer are
 untouched.
+
+## The Maqṣūd's model roots, re-derived — the MaqsudEngine (wave 42, v204)
+
+`research/sources/maqsud-sarf.txt` (COVERAGE row 18) is a 177 KB Ottoman-Turkish commentary on the Maqṣūd that nothing cited. Its
+second half recites EIGHTEEN model roots — وَعَدَ، يَسَرَ، قَالَ، كَالَ، خَافَ، غَزَا، رَمَى، مَدَّ، فَرَّ، عَضَّ، رَوَى، رَوِيَ، وَقَى، أَكَلَ،
+سَأَلَ، قَرَأَ، رَأَى، أَتَى — each through the Emsile-i muhtelife row (24 slots), the ten paradigm blocks (māḍī and muḍāriʿ, maʿlūm and
+majhūl, ism fāʿil ×10, ism mafʿūl ×7, tafḍīl ×8, amr ghāʾib and ḥāḍir with their nūn forms), the «بابلره نقل» line (the twelve bābs) and,
+for chosen bābs, the mazīd Emsile row. Wave 42 parses that text (`maqsud_parse.py` by label, `maqsud_slots.py` by the particles that
+announce each slot — فَهُوَ، وَذَاكَ، لَمْ، لَمَّا، مَا، لَا، لَنْ، لِـ، the fused ones peeled, the alternative maṣdars skipped, the wonder forms
+read past أَشَدَّ / أَشْدِدْ بِـ) into `MaqsudEngine.MODELS` (1,922 recited cells) and grades the app's own conjugator on every one:
+
+- **`formI(model)`** — `sarfDerive` for the classes it serves (mithāl, ajwaf, nāqiṣ, geminate; the joined lafīf رَوَى rides the nāqiṣ maker
+  with its wāw as a sound second radical); built here for the rest: the parted lafīf (وَقَى يَقِي: the wāw drops as in the mithāl, the yāʾ
+  ends as in the nāqiṣ, the one-letter imperative takes hāʾ al-sakt — قِهْ), the hamzated (the sound maker with a bare ء, then
+  **`seat()`**), رَأَى (the muḍāriʿ drops its hamza: يَرَى، رَهْ), أَتَى (اِيتِ), and the yāʾ-initial whose wasl-imperative is اِيسِرْ. The
+  three samāʿī imperatives كُلْ خُذْ مُرْ are a stored list. **`majhul()`** builds the passive per class (قِيلَ يُقَالُ، غُزِيَ يُغْزَى، مُدَّ يُمَدُّ،
+  وُقِيَ يُوقَى) where the generic `sjMajhul` guessed from the active surface.
+- **`seat(word)`** is the hamza-seat rule as an algorithm: initial by its own vowel (أ/إ); medial by the stronger of its own and the
+  preceding vowel (kasra > ḍamma > fatḥa: سَأَلَ، يَسْأَلُ، مَسْؤُولٌ، قَارِئٌ); after a long ā on the line unless kasra/ḍamma (سَائِلٌ، رَاءٍ);
+  final after sukūn or a long vowel on the line (مَقْرُوءٌ); a sakin hamza after a fatḥa-hamza is the madda (أَءْكَلَ → آكَلَ), after إِ a
+  yāʾ (إِيتَاء), after a hamzat waṣl the ibdāl (اِءْتِ → اِيتِ، اِيتَكَلَ). The smoke gate pins ten seats.
+- **`emsileI()`** adds the noun slots by template with the iʿlāl chain (`IlalEngine.derive`) where the Maqṣūd applies it: the mīmī
+  maṣdar مَفْعِل for bāb 2 and the mithāl, مَفْعَل otherwise, مَفْعًى for the weak-lām, مَفَال for the hollow; the آلة مِفْعَل with the mithāl's
+  wāw → yāʾ (مِيعَد) and the hollow's wāw kept (مِقْوَل, the commentary's own exception); مَرَّة، نَوْع (رِيَّة for the joined lafīf),
+  تَصْغِير، نِسْبَة (رَمِيّ for the yāʾ-lām, غَزْوِيّ for the wāw-lām), مُبَالَغَة (غَزَّاء), تَفْضِيل and the two wonder forms. **`nakil()`** runs
+  the received twelve-bāb makers with the class, the parted lafīf's VIII as اِتَّقَى and the hamzated seated. **`babRow()`** takes the
+  app's `nakilMorph` + `muhtelife` row (the ziyāde table's extension slots) and reads it into the text's slots; the geminate contracts
+  its twins in III and VI as the text does (مَادَّ، تَمَادَّ); the IV of رَأَى (أَرَى يُرِي إِرَاءَةً) is a stored elision.
+- **`audit()`** compares every cell three ways: *strict* (letters and vowels, after the text's orthography is normalised — a vowel
+  written after its long letter, the tanwīn after its alif, the Ottoman final ى, the bare-alif hamza, the hamza seats folded),
+  *loose* (letters only), *refused* (the app recites no form); broken plurals and the nūn-tawkīd persons are *recited only* and not
+  graded. Measured: **1,922 cells · 87.6% strict · 93.9% loose · 95.0% derived**; the remaining disagreements are the text's own
+  typos and conventions (عَزَا for غَزَا، مَدَدْنُ، a triple-vowelled jazm, the dual kept sound in رَوَيَتَا) and a handful of variants
+  (قُولَا for the hollow فُعْلَى, the dropped madda in آتُونَ).
+
+The **Maqṣūd lab** (tab «الْمَقْصُود») shows the summary line, eighteen root chips, and for the chosen root the Emsile row and every
+block as cells coloured by agreement (green strict, amber orthography-only with the derived form struck under it, red a real
+disagreement with the derived form in red, grey not derived, dashed grey recited only), then each mazīd row. **gMaqsud** («Maksûd
+soruyor», group ṣarf) asks: this root, this bāb, this slot — which form? with the row's other cells as distractors.
+
+**Process notes.** (1) The parser's first pass attached a bāb's own «امر حاضر» block to the root and swallowed a second root's rows
+when a label had two spaces — labels match `\s+` now and a block after a bāb row belongs to that bāb. (2) The generic contraction regex
+ate مُمَادَّة's first mīm; the geminate rule contracts only the root's doubled letter. (3) `IlalEngine.derive` turned مَكْيَل into مَكِل
+and رَوَّاء into رَاّاء — the hollow mīmī noun and the weak-lām mubālagha are built by template without the chain. (4) The text writes
+يُوتِى for يُؤْتِي and مِأْكَل for مِئْكَل: the ḍamma case is folded (ُؤْ ↔ ُو), the kasra case is left as the text's convention and counted
+loose. `DabtEngine`, the analyzer and `sarfDerive` are untouched.

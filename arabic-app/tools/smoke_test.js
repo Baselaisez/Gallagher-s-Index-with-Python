@@ -4950,6 +4950,46 @@ if (!CHROME) {
     if (r2.opts.length !== 4 || !r2.opts.every(o => /^\[.+\]$/.test(o)) || !/\[؟\]/.test(r2.q)) throw new Error('the game should ask for the unsaid word with four bracketed options: ' + JSON.stringify(r2.opts) + ' ' + r2.q.slice(0, 80));
   });
 
+  await check('the MaqsudEngine re-derives the Maqṣūd commentary\'s eighteen model roots cell by cell — the Emsile row, the paradigm blocks, the twelve bābs and the mazīd rows — and the hamza-seat rule, the lafīf and the yāʾ-initial makers hold their named forms (wave 42)', async () => {
+    const r = await page.evaluate(() => {
+      const a = MaqsudEngine.audit(); const M = k => MaqsudEngine.MODELS.find(m => m.key === k);
+      const seat = w => MaqsudEngine.seat(w);
+      const f = (k, fld, i) => { const d = MaqsudEngine.formI(M(k)); return d ? (Array.isArray(d[fld]) ? d[fld][i || 0] : d[fld]) : null; };
+      return { n: a.n, acc: a.acc, accLoose: a.accLoose, coverage: a.coverage, recited: a.recited, byBlock: Object.fromEntries(Object.entries(a.byBlock).map(([k, v]) => [k, [v.n, Math.round(100 * v.strict / v.n)]])),
+        seats: [seat('سَءَلَ'), seat('يَسْءَلُ'), seat('مَسْءُولٌ'), seat('قَارِءٌ'), seat('رَاءٍ'), seat('أَءْكَلَ'), seat('اِءْتِ'), seat('مَقْرُوءٌ'), seat('ءِتْيَةً'), seat('إِءْتَاء')],
+        forms: { waqa: [f('وَقَى', 'mudari'), f('وَقَى', 'amr'), f('وَقَى', 'fail')], raa: [f('رَأَى', 'mudari'), f('رَأَى', 'mazi'), f('رَأَى', 'maful')], rawa: [f('رَوَى', 'mudari'), f('رَوَى', 'mazi', 6)], yasara: f('يَسَرَ', 'amr'), akala: [f('اَكَلَ', 'mudari'), f('اَكَلَ', 'amr'), f('اَكَلَ', 'fail')], ata: [f('اَتَى', 'mudari'), f('اَتَى', 'amr')] },
+        viii: (MaqsudEngine.babRow(M('وَقَى'), 'VIII') || {}).mazi, iv: (MaqsudEngine.babRow(M('رَأَى'), 'IV') || {}).mudari, nakil: MaqsudEngine.nakil(M('اَكَلَ')), gemVI: (MaqsudEngine.babRow(M('مَدَّ'), 'VI') || {}).mazi };
+    });
+    if (r.n < 1900 || r.acc < 86 || r.accLoose < 92 || r.coverage < 94) throw new Error('the Maqṣūd audit fell: ' + JSON.stringify([r.n, r.acc, r.accLoose, r.coverage]));
+    for (const [k, [n, rate]] of Object.entries(r.byBlock)) if (/^(maziM|maziJ|mudariM|mudariJ|amrGh|amrH|maful|emsile)$/.test(k) && rate < 85) throw new Error('block ' + k + ' below 85%: ' + n + ' cells, ' + rate + '%');
+    const S = ['سَأَلَ', 'يَسْأَلُ', 'مَسْؤُولٌ', 'قَارِئٌ', 'رَاءٍ', 'آكَلَ', 'اِيتِ', 'مَقْرُوءٌ', 'إِتْيَةً', 'إِيتَاء'].map(x => x.normalize('NFC'));
+    r.seats.forEach((x, i) => { if (x.normalize('NFC') !== S[i]) throw new Error('seat ' + i + ': want ' + S[i] + ' got ' + x); });
+    const N = x => String(x || '').normalize('NFC');
+    const want = { 'waqa.0': 'يَقِي', 'waqa.1': 'قِهْ', 'waqa.2': 'وَاقٍ', 'raa.0': 'يَرَى', 'raa.1': 'رَأَى', 'raa.2': 'مَرْئِيّ', 'rawa.0': 'يَرْوِي', 'rawa.1': 'رَوَيْتَ', 'akala.0': 'يَأْكُلُ', 'akala.1': 'كُلْ', 'akala.2': 'آكِل', 'ata.0': 'يَأْتِي', 'ata.1': 'اِيتِ' };
+    for (const [k, v] of Object.entries(want)) { const [a, i] = k.split('.'); const got = Array.isArray(r.forms[a]) ? r.forms[a][+i] : r.forms[a]; if (N(got) !== N(v)) throw new Error('form ' + k + ': want ' + v + ' got ' + got); }
+    if (N(r.forms.yasara) !== N('اِيسِرْ')) throw new Error('the yāʾ-initial imperative: ' + r.forms.yasara);
+    if (N(r.viii) !== N('اِتَّقَى') || N(r.iv) !== N('يُرِي') || N(r.gemVI) !== N('تَمَادَّ')) throw new Error('the parted lafīf VIII, the hamza-elided IV, the contracted VI: ' + JSON.stringify([r.viii, r.iv, r.gemVI]));
+    if (!r.nakil.some(x => N(x) === N('اِيتَكَلَ')) || !r.nakil.some(x => N(x) === N('آكَلَ'))) throw new Error('the hamzated nakil: ' + JSON.stringify(r.nakil));
+  });
+
+  await check('the Maqṣūd lab opens on a phone with the eighteen root chips, the Emsile row and the blocks of the chosen root coloured by agreement, switches root, and gMaqsud has a supply and asks a slot of a row (wave 42)', async () => {
+    const r = await page.evaluate(() => {
+      conjState.lab = 'maqsud'; conjState.maqsud = 'قَالَ'; openConjugator();
+      const q = s => document.querySelectorAll(s).length;
+      const o = { tab: !!document.querySelector('.tabs [data-lab=maqsud]'), sum: (document.getElementById('maqsudSum') || {}).textContent, roots: q('.mq-roots button'), blocks: q('#maqsudOut .mq-block'), ok: q('#maqsudOut .mq-cell.ok'), near: q('#maqsudOut .mq-cell.near'), miss: q('#maqsudOut .mq-cell.miss'), root: (document.querySelector('#maqsudOut .mq-root') || {}).textContent, wide: document.documentElement.scrollWidth > window.innerWidth + 1 };
+      document.querySelector('.mq-roots button[data-k="اَكَلَ"]').click(); o.root2 = (document.querySelector('#maqsudOut .mq-root') || {}).textContent; o.ok2 = q('#maqsudOut .mq-cell.ok');
+      let supply = 0; try { supply = GameFactory.supplyOf('gMaqsud'); } catch (e) { supply = 'ERR ' + e.message; } o.supply = supply;
+      try { closeSheet(); } catch (e) {}
+      startMaqsud(); o.opts = [...document.querySelectorAll('.opts button')].map(x => x.textContent.trim()); o.q = (document.querySelector('.mq-q-slot') || {}).textContent || ''; o.wide2 = document.documentElement.scrollWidth > window.innerWidth + 1;
+      try { closeSheet(); } catch (e) {}
+      return o;
+    });
+    if (!r.tab || r.roots !== 18 || r.blocks < 12 || !/قَالَ/.test(r.root) || r.ok < 150 || !/19\d\d|2\d\d\d/.test(r.sum)) throw new Error('the lab should stand on قَالَ: ' + JSON.stringify(r));
+    if (!/اَكَلَ/.test(r.root2) || r.ok2 < 60) throw new Error('switching the root: ' + JSON.stringify([r.root2, r.ok2]));
+    if (r.wide || r.wide2) throw new Error('the lab overflows the phone width');
+    if (!(r.supply >= 400) || r.opts.length !== 4 || !r.q) throw new Error('gMaqsud: ' + JSON.stringify([r.supply, r.opts, r.q]));
+  });
+
   await check('the SignEngine re-derives every authored sign statement from the written word alone: the taxonomy of the sign (essence × attribute) and the class × case table hold the corpus at 99.5%, the seeds classify, and the named words land in their classes (wave 41)', async () => {
     const r = await page.evaluate(() => {
       const a = SignEngine.audit(); const sd = SignEngine.seedAudit();
