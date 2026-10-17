@@ -1,0 +1,95 @@
+{
+ "id": "al-iqtibas-wal-tadmin",
+ "title": {
+  "ar": "الِاقْتِبَاسُ وَالتَّضْمِينُ وَالْعَقْدُ وَالْحَلُّ وَالتَّلْمِيحُ",
+  "en": "The iqtibas, the tadmin, the ʿaqd, the hall and the talmih",
+  "tr": "İktibas, tazmin, akd, hal ve telmih"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — الخاتمة: ومما يتصل بالسرقات الشعرية القول في الاقتباس والتضمين والعقد والحل والتلميح"
+ ],
+ "question": {
+  "en": [
+   "What is the IQTIBAS? Qurʾan or hadith woven into one's speech without saying it is from there — in prose (al-Hariri's «as the twinkling of an eye, or nearer», «may the faces be disfigured») or in verse (Abu l-Qasim's «then fair patience», «God is sufficient for us, and excellent the Trustee»; Ibn ʿAbbad's «the Garden is hedged with hateful things»). Two kinds: the taken words keep their meaning (all of these) or are MOVED from it (Ibn al-Rumi's «a valley without tillage» — no water in the aya, no profit in the bayt). A small change for the metre is allowed («to God are we returning» for «to Him»).",
+   "What is the TADMIN? Another's VERSE woven into one's own, flagged if it is not famous: al-Hariri weaves al-ʿArji's hemistich «they have lost me — and what a youth they have lost»; Ibn Abi l-Isbaʿ weaves al-Mutanabbi's whole bayt and betters it with a tawriya and a tashbih. A bayt or more is ISTIʿANA; a hemistich or less is IDAʿ or RAFW.",
+   "What are the ʿAQD, the HALL and the TALMIH? The ʿaqd: prose put into verse, not as an iqtibas (Abu l-ʿAtahiya versifies ʿAli's «what has the son of Adam to do with boasting?»). The hall: verse put into prose (a Maghribi unties al-Mutanabbi's «when a man's deeds are foul, his thoughts turn foul»). The talmih: a story or verse pointed at without naming it (Joshua and the halted sun; «he who seeks refuge with ʿAmr»).",
+   "What does the engine read? The IqtibasEngine keeps a table of received spans (the ayas and hadiths the chapters cite) and finds them in the sentence, one word at a time, reporting the source, whether the words were changed, and — for the tadmin — whether a whole bayt (istiʿana) or a part (idaʿ) was woven in. The ʿaqd, hall and talmih are authored frames the engine confirms by the source they name."
+  ],
+  "tr": [
+   "İKTİBAS nedir? Kur'ân yahut hadisin, oradan olduğu söylenmeden söze katılması — nesirde (Harîrî'nin «göz açıp kapayıncaya kadar yahut daha az», «yüzler çirkinleşsin») yahut nazımda (Ebü'l-Kâsım'ın «güzel bir sabır», «Allah bize yeter, ne güzel vekildir»; İbn Abbâd'ın «cennet hoşa gitmeyenlerle çevrilidir»). İki tür: alınan lafız manasını korur (bunların hepsi) yahut manasından NAKLEDİLİR (İbnü'r-Rûmî'nin «ekini olmayan vadi»si — âyette su yok, beyitte fayda yok). Vezin için küçük değişiklik câizdir («Allah'a dönücüleriz»).",
+   "TAZMİN nedir? Başkasının ŞİİRİNİN kendi şiirine katılması, meşhur değilse uyarıyla: Harîrî Arcî'nin «beni ziyan ettiler — ne genci ziyan ettiler» mısraını katar; İbn Ebi'l-İsba' Mütenebbî'nin bütün beytini katar, tevriye ve teşbihle güzelleştirir. Bir beyit yahut fazlası İSTİÂNE; bir mısra yahut azı ÎDÂ' yahut REFV.",
+   "AKD, HAL ve TELMİH nedir? Akd: nesrin iktibas olmaksızın nazma çekilmesi (Ebü'l-Atâhiye, Hz. Ali'nin «Âdemoğlunun övünmekle ne işi var»ını nazmeder). Hal: nazmın nesre çevrilmesi (bir Mağribli Mütenebbî'nin «kişinin fiili kötü olunca zanları kötü olur»unu çözer). Telmih: bir kıssaya yahut şiire anmadan işaret (Yûşa' ve durdurulan güneş; «Amr'a sığınan»).",
+   "Motor neyi okur? IqtibasEngine alınan pasajların tablosunu tutar (bâbların andığı âyet ve hadisler) ve onları cümlede kelime kelime bulur; kaynağı, lafzın değişip değişmediğini ve tazminde bütün beyit (istiâne) mi yoksa parça (îdâ') mı katıldığını bildirir. Akd, hal ve telmih yazarın çerçeveleridir; motor adlandırdıkları kaynakla doğrular."
+  ]
+ },
+ "plain": {
+  "en": "Quoting scripture or hadith into your own words is iqtibas; quoting another poet is tadmin; versifying prose is ʿaqd; prosing verse is hall; hinting at a story without naming it is talmih.",
+  "tr": "Kendi sözüne Kur'ân yahut hadis katmak iktibas; başka şairden katmak tazmin; nesri nazma çekmek akd; nazmı nesre çevirmek hal; bir kıssaya anmadan işaret telmihtir."
+ },
+ "explanation": {
+  "en": "وَمِمَّا يَتَّصِلُ بِالسَّرِقَاتِ الشِّعْرِيَّةِ: الْقَوْلُ فِي الِاقْتِبَاسِ وَالتَّضْمِينِ وَالْعَقْدِ وَالْحَلِّ وَالتَّلْمِيحِ. After the takings the Talkhis lists five ways of building on another's words that are no theft: the Qurʾan and hadith woven in without attribution (iqtibas), another poet's verse woven in and flagged (tadmin), prose versified (ʿaqd), verse prosed (hall), a story or verse hinted at (talmih). The rulings are RESTORED from the received matn and marked; the Qurʾanic text prints as the source prints it, with two Ottoman misprints corrected and recorded. The reader lights the received span inside the sentence and names its source.",
+  "tr": "وَمِمَّا يَتَّصِلُ بِالسَّرِقَاتِ الشِّعْرِيَّةِ: الْقَوْلُ فِي الِاقْتِبَاسِ وَالتَّضْمِينِ وَالْعَقْدِ وَالْحَلِّ وَالتَّلْمِيحِ. Sirkatlerden sonra Telhîs, başkasının sözü üzerine kurulan ve hırsızlık olmayan beş yolu sayar: nispet edilmeden katılan Kur'ân ve hadis (iktibas), uyarıyla katılan başka şairin şiiri (tazmin), nazma çekilen nesir (akd), nesre çevrilen nazım (hal), işaret edilen kıssa yahut şiir (telmih). Hükümler alınan metinden GERİ YAZILMIŞ ve işaretlenmiştir; Kur'ân metni kaynağın basılı şekliyledir, Osmanlıca baskının iki yanlışı düzeltilip kaydedilmiştir. Okuyucu alınan pasajı cümle içinde yakar ve kaynağını adlandırır."
+ },
+ "examples": [
+  {
+   "ar": "فَلَمْ يَكُنْ إِلَّا كَلَمْحِ الْبَصَرِ أَوْ هُوَ أَقْرَبُ، حَتَّى أَنْشَدَ وَأَغْرَبَ",
+   "en": "al-Hariri — an iqtibas from al-Nahl 77, in prose.",
+   "tr": "Harîrî — Nahl 77'den iktibas, nesirde.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s3"
+  },
+  {
+   "ar": "لَقَدْ أَنْزَلْتُ حَاجَاتِي بِوَادٍ غَيْرِ ذِي زَرْعِ",
+   "en": "Ibn al-Rumi — the taken words moved from their meaning.",
+   "tr": "İbnü'r-Rûmî — alınan lafız manasından nakledilmiş.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s11"
+  },
+  {
+   "ar": "عَلَى أَنِّي سَأُنْشِدُ عِنْدَ بَيْعِي * أَضَاعُونِي وَأَيَّ فَتًى أَضَاعُوا",
+   "en": "al-Hariri — a tadmin of idaʿ: al-ʿArji's hemistich.",
+   "tr": "Harîrî — îdâ' tazmini: Arcî'nin mısraı.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s15"
+  },
+  {
+   "ar": "مَا بَالُ مَنْ أَوَّلُهُ نُطْفَةٌ * وَجِيفَةٌ آخِرُهُ يَفْخَرُ",
+   "en": "Abu l-ʿAtahiya — an ʿaqd of ʿAli's saying.",
+   "tr": "Ebü'l-Atâhiye — Hz. Ali'nin sözünün akdi.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s21"
+  },
+  {
+   "ar": "فَوَاللهِ مَا أَدْرِي أَأَحْلَامُ نَائِمٍ * أَلَمَّتْ بِنَا أَمْ كَانَ فِي الرَّكْبِ يُوشَعُ",
+   "en": "Abu Tammam — a talmih to Joshua's halted sun.",
+   "tr": "Ebû Temmâm — Yûşa'ın durdurulan güneşine telmih.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s26"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«Şair âyeti şiirine koydu: bu bir sirkattir»",
+   "right": "«لَا عَلَى أَنَّهُ مِنْهُ — Kur'ân'dan olduğu söylenmeden katılan iktibastır, sirkat değil»",
+   "why": {
+    "en": "The iqtibas is defined by not attributing; it is a figure, and the book lists it beside the takings precisely to set it apart.",
+    "tr": "İktibas nispet edilmemekle tanımlanır; bir sanattır, kitap onu sirkatlerden ayırmak için yanlarında sayar."
+   }
+  },
+  {
+   "wrong": "«Başkasının bir mısraını almak istiânedir»",
+   "right": "«تَضْمِينُ الْبَيْتِ فَمَا زَادَ اسْتِعَانَةٌ، وَالْمِصْرَاعِ فَمَا دُونَهُ إِيدَاعٌ — bir mısra yahut azı îdâ' ve refvdir»",
+   "why": {
+    "en": "The two names are cut by length: a whole bayt or more is istiʿana, a hemistich or less is idaʿ / rafw.",
+    "tr": "İki ad uzunlukla ayrılır: bir beyit yahut fazlası istiâne, bir mısra yahut azı îdâ' / refv."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "sariqat-shiriyya",
+  "sariqat-ghayr-zahira",
+  "ilm-al-arud"
+ ]
+}

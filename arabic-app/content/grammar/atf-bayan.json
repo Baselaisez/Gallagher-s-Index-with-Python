@@ -1,0 +1,82 @@
+{
+ "id": "atf-bayan",
+ "title": {
+  "ar": "عَطْفُ الْبَيَان",
+  "en": "Explicative apposition (atf al-bayan)",
+  "tr": "Atf-ı beyân"
+ },
+ "level": 5,
+ "group": "nahw",
+ "mamul": "tabai",
+ "classicalSources": [
+  "العوامل (البيركوي) — التوابع",
+  "إظهار الأسرار (البيركوي)",
+  "الكافية (ابن الحاجب)"
+ ],
+ "plain": {
+  "en": "A noun put straight after another to say more exactly who is meant: «Abu Hafs, Umar».",
+  "tr": "Kimin kastedildiğini daha açık söylemek için hemen ardından gelen isim: «Ebû Hafs, Ömer»."
+ },
+ "explanation": {
+  "en": "Atf al-bayan is a follower that clarifies what precedes it — like an adjective in office, but a NOUN in form rather than a derived word. It agrees with what it follows in case, definiteness, gender and number: أَقْسَمَ بِاللَّهِ أَبُو حَفْصٍ عُمَرُ, where عُمَرُ names the man whose kunya was just given. The classical difficulty is telling it from badal, since both are nouns following nouns. The usual test: a badal is meant to STAND IN for what precedes it — you could drop the first word and the sentence would still work — whereas atf al-bayan is meant only to explain, and dropping the first would lose the point. Birgivi lists it fifth and last among the tawabi'.",
+  "tr": "Atf-ı beyân, kendinden öncekini açıklayan bir tâbidir — görev bakımından sıfat gibi, fakat şekil bakımından müştak değil CÂMİD bir isimdir. Tâbi olduğu kelimeye i'rabda, marifelikte, cinsiyette ve sayıda uyar: أَقْسَمَ بِاللَّهِ أَبُو حَفْصٍ عُمَرُ; burada عُمَرُ, künyesi az önce verilen zatın adını bildirir. Klasik güçlük, onu bedelden ayırmaktır; çünkü ikisi de isimden sonra gelen isimdir. Alışılmış ölçü: bedel, öncekinin YERİNE geçmek üzere getirilir — birinci kelime düşse cümle yine işler; atf-ı beyân ise yalnız açıklamak için gelir, birinci düşerse maksat kaybolur. Birgivî onu tâbilerin beşincisi ve sonuncusu olarak sayar."
+ },
+ "examples": [
+  {
+   "ar": "أَقْسَمَ بِاللَّهِ أَبُو حَفْصٍ عُمَرُ.",
+   "en": "Abu Hafs — Umar — swore by Allah. The name explains the kunya; both are marfu'.",
+   "tr": "Ebû Hafs — Ömer — Allah'a yemin etti. İsim künyeyi açıklar; ikisi de merfûdur."
+  },
+  {
+   "ar": "ذَهَبَ إِلَى مُعَلِّمِهِ أَبِي حَنِيفَةَ.",
+   "en": "He went to his teacher, Abu Hanifa — the same shape the wasiyya uses, there analyzed as badal.",
+   "tr": "Hocası Ebû Hanîfe'ye gitti — vasiyetteki aynı yapı, orada bedel olarak tahlil edilmiştir."
+  },
+  {
+   "ar": "جَاءَ أَخُوكَ زَيْدٌ.",
+   "en": "Your brother — Zayd — came. (The Talkhis files this very sentence under BADAL kull min kull instead; the two readings are a standing khilaf, and the difference is whether زَيْد merely clarifies «your brother» or is itself what is meant.)",
+   "tr": "Kardeşin — Zeyd — geldi. (Telhîs tam bu cümleyi BEDEL-i kül altında sayar; iki okuyuş yerleşik bir hilâftır ve fark, «زَيْد»in «kardeşin»i yalnız îzâh mı ettiği yoksa kastedilenin kendisi mi olduğudur.)"
+  },
+  {
+   "ar": "قَدِمَ صَدِيقُكَ خَالِدٌ.",
+   "en": "The book's own example. «Your friend» is definite and still does not say WHICH friend; the name supplies exactly that and nothing more — which is the whole office of the atf bayan.",
+   "tr": "Kitabın kendi misali. «Arkadaşın» marifedir ve yine de HANGİ arkadaş olduğunu söylemez; isim tam bunu verir, fazlasını değil — atf-ı beyânın bütün vazifesi budur.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s4"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "أقسم بالله أبو حفصٍ عمرًا",
+   "right": "أَقْسَمَ بِاللَّهِ أَبُو حَفْصٍ عُمَرُ",
+   "why": {
+    "en": "Atf al-bayan is a tabi': it copies the case of what it explains. Here that word is the marfu' subject, so the name is marfu' too.",
+    "tr": "Atf-ı beyân bir tâbidir: açıkladığı kelimenin i'rabını alır. Burada o kelime merfû fâildir, dolayısıyla isim de merfûdur."
+   }
+  },
+  {
+   "wrong": "جاء الرجلُ الكريمُ (على أنه عطف بيان)",
+   "right": "عَطْفُ الْبَيَانِ يَكُونُ جَامِدًا",
+   "why": {
+    "en": "A derived word like «generous» following a noun is a na't, not atf al-bayan. Atf al-bayan is a solid noun — a name or the like.",
+    "tr": "İsimden sonra gelen «kerîm» gibi müştak bir kelime na't'tır, atf-ı beyân değildir. Atf-ı beyân câmid bir isimdir — özel isim ve benzeri."
+   }
+  },
+  {
+   "wrong": "عدّ كل اسمٍ بعد اسمٍ بدلًا",
+   "right": "الْفَرْقُ بِالْقَصْدِ: الْبَدَلُ مَقْصُودٌ بِالْحُكْمِ، وَعَطْفُ الْبَيَانِ لِلتَّوْضِيحِ",
+   "why": {
+    "en": "Not every noun after a noun is badal. Ask what is intended: if the second is what the ruling really falls on, it is badal; if it merely clarifies the first, it is atf al-bayan.",
+    "tr": "İsimden sonra gelen her isim bedel değildir. Maksada bakılır: hüküm gerçekte ikinciye aitse bedeldir; yalnız birinciyi açıklıyorsa atf-ı beyândır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "badal",
+  "naat-sifa",
+  "atf-nasaq"
+ ],
+ "gameSeeds": {
+  "spotTheError": true
+ }
+}

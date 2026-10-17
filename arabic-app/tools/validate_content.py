@@ -1,0 +1,708 @@
+#!/usr/bin/env python3
+"""Validate Qissa content packages before publishing.
+
+Usage:
+    python3 tools/validate_content.py content/samples/wasiyyat-abi-hanifa \
+        [--grammar-dir content/samples/grammar]
+
+Checks (E = error, blocks publish; W = warning):
+  E manifest.json: required fields, level range, chapter files exist
+  E chapters: sentences have ids, translations (en required), tokens well-formed
+  E tashkeel layers: stripping diacritics from `full` and `smart` must equal `bare`
+  E lex references: every token/segment lex exists in glossary.json
+  E grammar references: every grammar id resolves to a note file in the grammar dir
+  E audio spans: [start, end] with start < end, non-overlapping, monotonic per chapter
+  E morphology.json: verbs exist in glossary, paradigm sizes (mazi/mudari=14, amr=6),
+      forms are Arabic-only, required fields (bab, wazn, masdar, ismFail)
+  E grammar notes: required fields; commonMistakes entries need wrong/right/why
+  W i'rab coverage below 100% of tokens
+  W glossary entries never referenced by any chapter
+  W verb (pos=verb in glossary) with no morphology entry
+  W grammar note has no example sourced from a story
+
+Exit code 0 = no errors (warnings allowed), 1 = errors found.
+"""
+import argparse
+import json
+import re
+import sys
+import unicodedata
+from datetime import date, timedelta
+from pathlib import Path
+
+# Arabic diacritics: tanwin/harakat/shadda/sukun (064B-0652), quranic marks
+# commonly used in vocalized text (0653-0655), dagger alif (0670).
+DIACRITICS = re.compile(r"[ً-ٰٕ]")
+ARABIC_ONLY = re.compile(r"^[؀-ۿ\s]+$")
+
+REQUIRED_MANIFEST = ["id", "title", "level", "version", "published", "access", "chapters"]
+ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+REQUIRED_NOTE = ["id", "title", "level", "group", "plain", "explanation", "examples",
+                 "commonMistakes"]
+# A "plain" summary longer than this is not a summary. The full account belongs
+# in `explanation`, which the reader shows behind a toggle.
+PLAIN_MAX = 320
+NOTE_GROUPS = {"sarf", "nahw", "awamil", "balagha", "bayan", "badi", "arud"}
+
+BADI_KINDS = ("tibaq", "muqabala", "muraat-al-nazir", "tashabuh-al-atraf", "iham-al-tanasub", "irsad", "mushakala",
+              "muzawaja", "aks", "ruju", "tawriya", "istikhdam", "laff-nashr", "jam", "tafriq", "taqsim", "jinas", "saj",
+              "jam-tafriq", "jam-taqsim", "jam-tafriq-taqsim", "tajrid", "mubalagha", "kalami",
+              "husn-talil", "tafri", "takid-madh", "takid-dhamm", "istitba", "idmaj", "tawjih", "hazl-jidd", "tajahul", "qawl-mujib", "ittirad",
+              "sariqa", "iqtibas", "tadmin", "aqd", "hall", "talmih", "husn-ibtida", "baraat-istihlal", "takhallus", "iqtidab", "husn-intiha",
+              "radd-ajuz", "tashtir", "muwazana", "qalb-kull", "tashri", "luzum")   # wave 22: the lafzi muhassinat
+BADI_FIELDS = ("kind", "pair", "first", "second", "set", "pairs", "word", "companion", "refs", "sub", "class",
+               "near", "far", "murad", "other", "field", "asl", "with", "receipt", "kind2", "at", "letter", "grade", "source")   # wave 22
+BADI_KIND2 = {"jinas": ("mumathil", "mustawfa", "mutashabih", "mafruq", "awwal", "wasat", "akhir", "mudhayyal", "kull", "bad", "mujannah", "muzdawij", "shibh-ishtiqaq"),
+              "radd-ajuz": ("tikrar", "jinas", "mulhaq"),
+              "saj": ("equal", "second-longer", "third-longer"),   # wave 23: the best sajʿ, by the clauses' length
+              "sariqa": ("naskh", "ighara", "ilmam", "tashabuh", "naql", "ashmal", "qalb", "ziyada"),   # wave 24: the khatima
+              "iqtibas": ("ghayr-manqul", "manqul")}
+BADI_AT = ("sadr-awwal", "hashw-awwal", "arud", "sadr-thani", "ajuz")   # the radd's first word: where it stands in the bayt
+BADI_SUBS = {"sariqa": ("zahir", "ghayr-zahir"), "iqtibas": ("quran", "hadith"), "tadmin": ("istiana", "idaa"), "husn-ibtida": ("husn", "tatayyur"), "takhallus": ("takhallus", "iqtidab", "fasl-khitab"),
+             "tibaq": ("ijab", "salb"), "muraat-al-nazir": ("haqiqi", "mulhaq"), "mushakala": ("tahqiq", "taqdir"),
+             "aks": ("mudaf", "mutaalliq", "tarafayn"), "tawriya": ("mujarrada", "murashshaha"),
+             "istikhdam": ("lafz-damir", "damirayn"), "laff-nashr": ("murattab", "ghayr-murattab", "ijmali"),
+             "jinas": ("tamm", "naqis", "mudari", "lahiq", "qalb", "ishtiqaq", "muharraf", "murakkab"), "saj": ("mutarraf", "murassa", "mutawazi"), "muwazana": ("mumathala",),   # wave 23
+             "jam": ("atf", "fail", "inna", "amm", "ishara"), "tafriq": ("nafy-tashbih", "bayan", "partition"), "taqsim": ("tayin", "ahwal", "istifa", "amma"),
+             "jam-taqsim": ("jam-first", "taqsim-first"), "tajrid": ("min", "bi", "bi-musahaba", "fi", "bila-harf", "kinaya", "nafs"),
+             "mubalagha": ("tabligh", "ighraq", "ghuluww"), "kalami": ("law", "qasam", "lain", "qiyas"),
+             "husn-talil": ("la-illa", "ghayr-madhkura", "mumkina", "ghayr-mumkina", "shakk"),
+             "takid-madh": ("istithna-min-dhamm", "madh-thumma-istithna", "nafy-illa"), "takid-dhamm": ("istithna-min-madh", "dhamm-thumma-istithna"),
+             "tajahul": ("tawbikh", "mubalagha-madh", "mubalagha-dhamm", "hayra"), "qawl-mujib": ("sifa-kinaya", "lafz-mushtarak")}
+BADI_RECEIPTS = ("kada", "law", "hatta", "khayyal", "hazl", "none",
+                 "innama", "lakin", "jumla", "kaanna",                      # husn-talil: what the claimed cause rides on
+                 "illa", "ghayr", "bayda", "lakinna", "siwa", "illa-anna",   # takid-madh / takid-dhamm: the exception's adat
+                 "hamza-am", "am", "layta", "ma-adri")            # tajahul: the question's shape
+
+def strip_diacritics(text: str) -> str:
+    return DIACRITICS.sub("", unicodedata.normalize("NFC", text))
+
+
+class Report:
+    def __init__(self):
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
+
+    def error(self, msg: str):
+        self.errors.append(msg)
+
+    def warn(self, msg: str):
+        self.warnings.append(msg)
+
+    def dump(self) -> int:
+        for w in self.warnings:
+            print(f"  W  {w}")
+        for e in self.errors:
+            print(f"  E  {e}")
+        print(f"\n{len(self.errors)} error(s), {len(self.warnings)} warning(s)")
+        return 1 if self.errors else 0
+
+
+def load_json(path: Path, rep: Report):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        rep.error(f"{path}: file missing")
+    except json.JSONDecodeError as exc:
+        rep.error(f"{path}: invalid JSON — {exc}")
+    return None
+
+
+def check_manifest(pkg: Path, rep: Report):
+    manifest = load_json(pkg / "manifest.json", rep)
+    if manifest is None:
+        return None
+    for field in REQUIRED_MANIFEST:
+        if field not in manifest:
+            rep.error(f"manifest.json: missing required field '{field}'")
+    level = manifest.get("level")
+    if not isinstance(level, int) or not 1 <= level <= 6:
+        rep.error(f"manifest.json: level must be an integer 1-6, got {level!r}")
+    title = manifest.get("title", {})
+    if not isinstance(title, dict) or "ar" not in title or "en" not in title:
+        rep.error("manifest.json: title must contain at least 'ar' and 'en'")
+    # The date the story entered the library, not the date the text was written —
+    # the library's "New" shelf is about what the reader has not seen yet. It is
+    # authored, not derived: a rebuild must never silently re-date the catalogue.
+    published = manifest.get("published")
+    if published is not None:
+        if not isinstance(published, str) or not ISO_DATE_RE.match(published):
+            rep.error(f"manifest.json: published must be YYYY-MM-DD, got {published!r}")
+        else:
+            try:
+                when = date.fromisoformat(published)
+            except ValueError:
+                rep.error(f"manifest.json: published is not a real date: {published!r}")
+            else:
+                # A future date makes the story permanently "not yet new" in the
+                # reader, which reads as a missing badge rather than as an error.
+                # One day of slack: date.today() is the VALIDATING machine's
+                # local date, and an author east of UTC legitimately writes a
+                # date a UTC CI runner has not reached yet — the same civil-date
+                # trap the reader hit with the NEW badge.
+                if when > date.today() + timedelta(days=1):
+                    rep.error(f"manifest.json: published is in the future: {published}")
+    for ch in manifest.get("chapters", []):
+        n = ch.get("n")
+        chapter_file = pkg / "chapters" / f"{n}.json"
+        if not chapter_file.exists():
+            rep.error(f"manifest.json: chapter {n} declared but {chapter_file.name} missing")
+        # Narration is two-part: the chapter names its recording, the sentences
+        # carry their slices. Naming a file that is not in the package would
+        # ship a player pointing at a 404.
+        audio_file = ch.get("audioFile")
+        if audio_file:
+            # Resolve and require containment: '../x' escapes the package and an
+            # absolute path discards pkg entirely — both would validate here and
+            # 404 in the shipped package, the exact failure this check exists for.
+            target = (pkg / audio_file).resolve()
+            if not (target.is_file() and pkg.resolve() in target.parents):
+                rep.error(f"manifest.json: chapter {n} audioFile '{audio_file}' "
+                          f"is not a file inside the package")
+    attribution = manifest.get("attribution", {})
+    if attribution.get("reviewStatus") != "approved":
+        rep.warn(
+            f"manifest.json: attribution.reviewStatus is "
+            f"{attribution.get('reviewStatus')!r} — scholarly review required before publish"
+        )
+    return manifest
+
+
+# The harake auditor: what the orthography itself forbids, no dictionary
+# needed. Mirrors HarakeAuditor in the reader — keep the two rule sets in
+# step. Warnings, not errors: a deliberate poetic license (rhyme-bare tanwin)
+# is recorded in i'rab notes, not silently normalized away.
+_V = set("َُِ")
+_TANWIN = set("ًٌٍ")
+def audit_harakat(word: str):
+    w = unicodedata.normalize("NFC", word or "")
+    units = []
+    for ch in w:
+        if "ً" <= ch <= "ٰ" and units:
+            units[-1][1].append(ch)
+        elif "ء" <= ch <= "ي":
+            units.append([ch, []])
+    out = []
+    # the books' own exception: بْنُ between two names, alif elided
+    ibn = "".join(c for c, _ in units) in ("بن", "بني")
+    # …and وَاوُ عَمْرٍو, which is one word wide: the waw of عَمْرو is silent and
+    # written only to tell the name from عُمَر, so the tanwin sits on the ra
+    # with a letter still to come. KEEP IN STEP with HarakeAuditor in the reader.
+    # …seen also through one joining clitic (وَعَمْرٌو، فَعَمْرٌو، لِعَمْرٍو):
+    # the clitic must not hide the exception's own word — the documented trap.
+    _bare_amr = "".join(c for c, _ in units)
+    amr_waw = _bare_amr == "عمرو" or (len(_bare_amr) == 5 and _bare_amr[0] in "وفبلك"
+                                       and _bare_amr[1:] == "عمرو")
+    for i, (c, marks) in enumerate(units):
+        vowels = sum(1 for m in marks if m in _V)
+        tanwins = sum(1 for m in marks if m in _TANWIN)
+        sukun = "ْ" in marks
+        shadda = "ّ" in marks
+        if i == 0 and sukun and not ibn:
+            out.append("opens with sukun")
+        if i == 0 and shadda:
+            out.append("opens with shadda")
+        if c == "ا" and i > 0 and (vowels or sukun):
+            out.append("vowel on a plain medial alif")
+        if vowels + tanwins > 1:
+            out.append("two vowels on one letter")
+        if shadda and sukun:
+            out.append("shadda with sukun")
+        if tanwins and i < len(units) - 1 and not (
+                amr_waw and i == len(units) - 2 and units[i + 1][0] == "و") and not (
+                i == len(units) - 2 and units[i + 1][0] in "اى"):
+            out.append("tanwin before the end")
+        if sukun and i > 0 and "ْ" in units[i - 1][1]:
+            out.append("two sukuns meet")
+    return out
+
+_SEG_SKEL_DROP = re.compile("[\u064b-\u0652\u0670\u0640]")
+_SEG_SKEL_WEAK = re.compile("[اىيئؤءأإآ]")
+
+
+def segment_skeleton(text: str) -> str:
+    """The consonant skeleton a token's segment chain and its surface must share. Diacritics and the tatweel are
+    dropped, ة reads as ت, the weak letters (alif, yāʾ, the hamza seats) are dropped — they are exactly what the
+    underlying forms the segments may carry legitimately rewrite (لِ + ال → لِلْ, مِنْ + مَا → مِمَّا, أَرَى + هُ → أَرَاهُ,
+    بِ + هُ → بِهِ, إِلَى + يَ → إِلَيَّ) — and the nūn assimilated into نّ / م / ل is contracted; the lām of
+    لِ + ال + لّٰه collapses. Everything else — a conjunction the surface lacks, a pronoun doubled, a stem cut
+    one letter short, an extra كَ — survives and is reported."""
+    text = unicodedata.normalize("NFC", text)
+    text = _SEG_SKEL_DROP.sub("", text).replace("ة", "ت")
+    text = _SEG_SKEL_WEAK.sub("", text).replace("لال", "لل")
+    for a, b in (("نن", "ن"), ("نم", "م"), ("نل", "ل"), ("للل", "لل")):
+        text = text.replace(a, b)
+    return text
+
+
+def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
+                rep: Report, stats: dict):
+    surface = tok.get("surface")
+    if not isinstance(surface, dict):
+        rep.error(f"{where}: token missing 'surface' object")
+        return
+    for layer in ("full", "smart", "bare"):
+        if layer not in surface:
+            rep.error(f"{where}: surface missing layer '{layer}'")
+    full, smart, bare = (surface.get(k, "") for k in ("full", "smart", "bare"))
+    if full and bare and strip_diacritics(full) != unicodedata.normalize("NFC", bare):
+        rep.error(f"{where}: strip(full) '{strip_diacritics(full)}' != bare '{bare}'")
+    if smart and bare and strip_diacritics(smart) != unicodedata.normalize("NFC", bare):
+        rep.error(f"{where}: strip(smart) '{strip_diacritics(smart)}' != bare '{bare}'")
+    if DIACRITICS.search(bare):
+        rep.error(f"{where}: bare layer '{bare}' still contains diacritics")
+    for issue in audit_harakat(full):
+        rep.warn(f"{where}: harakat — {issue} in '{full}'")
+
+    lex = tok.get("lex")
+    if not lex:
+        rep.error(f"{where}: token missing 'lex'")
+    elif lex not in glossary:
+        rep.error(f"{where}: lex '{lex}' not in glossary.json")
+    else:
+        stats["used_lex"].add(lex)
+
+    segs = tok.get("segments", [])
+    if segs and full:
+        chain = "".join(sg.get("form", "") for sg in segs)
+        if segment_skeleton(chain) != segment_skeleton(full):
+            rep.error(f"{where}: segments '{chain}' do not spell the surface '{full}'")
+        if re.search(r"\s", full):
+            rep.error(f"{where}: the surface '{full}' holds whitespace — a token is one printed word")   # (wave 32)
+    for seg in segs:
+        slex = seg.get("lex")
+        if slex not in glossary:
+            rep.error(f"{where}: segment lex '{slex}' not in glossary.json")
+        else:
+            stats["used_lex"].add(slex)
+        if not seg.get("form"):
+            rep.error(f"{where}: segment missing 'form'")
+
+    phrase = tok.get("phrase")
+    if phrase:
+        plex = phrase.get("lex")
+        if plex not in glossary:
+            rep.error(f"{where}: phrase lex '{plex}' not in glossary.json")
+        else:
+            stats["used_lex"].add(plex)
+        if not isinstance(phrase.get("span"), int) or phrase["span"] < 2:
+            rep.error(f"{where}: phrase span must be an integer >= 2")
+
+    for gid in tok.get("grammar", []):
+        if gid not in grammar_ids:
+            rep.error(f"{where}: grammar id '{gid}' has no note file in grammar dir")
+        else:
+            stats["used_grammar"].add(gid)
+
+    stats["tokens"] += 1
+    if tok.get("irab"):
+        irab = tok["irab"]
+        if not irab.get("ar") or not irab.get("en"):
+            rep.error(f"{where}: irab must contain both 'ar' and 'en'")
+        stats["irab_tokens"] += 1
+
+
+def check_chapter(path: Path, glossary: dict, grammar_ids: set, rep: Report, stats: dict):
+    data = load_json(path, rep)
+    if data is None:
+        return
+    prev_end = None
+    seen_ids = set()
+    for sen in data.get("sentences", []):
+        sid = sen.get("id", "?")
+        where = f"{path.name}:{sid}"
+        if sid in seen_ids:
+            rep.error(f"{where}: duplicate sentence id")
+        seen_ids.add(sid)
+        translation = sen.get("translation", {})
+        if "en" not in translation:
+            rep.error(f"{where}: missing English translation")
+        audio = sen.get("audio")
+        if audio is not None:
+            if (not isinstance(audio, list) or len(audio) != 2
+                    or not all(isinstance(x, (int, float)) for x in audio)):
+                rep.error(f"{where}: audio must be [startMs, endMs]")
+            else:
+                start, end = audio
+                if start >= end:
+                    rep.error(f"{where}: audio start {start} >= end {end}")
+                if prev_end is not None and start < prev_end:
+                    rep.error(f"{where}: audio overlaps previous sentence "
+                              f"(starts {start} < previous end {prev_end})")
+                prev_end = end
+        # Sentence-level i'rab (Qawa'id al-I'rab): each clause row must carry
+        # the clause text, the Arabic classification, and BOTH glosses — a
+        # half-translated row goes silently blank in one language.
+        jumal = sen.get("jumal")
+        if jumal is not None:
+            if not isinstance(jumal, list) or not jumal:
+                rep.error(f"{where}: jumal must be a non-empty list")
+            else:
+                for i, j in enumerate(jumal):
+                    for k in ("text", "ar", "en", "tr"):
+                        if not (isinstance(j, dict) and j.get(k)):
+                            rep.error(f"{where}: jumal[{i}] missing '{k}'")
+        tokens = sen.get("tokens", [])
+        if not tokens:
+            rep.error(f"{where}: sentence has no tokens")
+        for i, tok in enumerate(tokens):
+            check_token(tok, f"{where}[{i}]", glossary, grammar_ids, rep, stats)
+            ph = tok.get("phrase")
+            if ph and isinstance(ph.get("span"), int) and i + ph["span"] > len(tokens):
+                rep.error(f"{where}[{i}]: phrase span {ph['span']} runs past the end of the sentence")
+        # Authored bayan frames point at tokens BY INDEX; an index past the end
+        # (or a half-translated gloss) is silent in the reader and wrong in the
+        # engine audit — ch51 shipped eight such frames before this check.
+        ts = sen.get("tashbih")
+        if ts is not None:
+            if not isinstance(ts, dict):
+                rep.error(f"{where}: tashbih must be an object")
+            else:
+                idx = list(ts.get("mushabbah") or []) + list(ts.get("bihi") or []) + list(ts.get("wajh") or [])
+                if ts.get("adat") is not None:
+                    idx.append(ts["adat"])
+                for k in idx:
+                    if not isinstance(k, int) or k < 0 or k >= len(tokens):
+                        rep.error(f"{where}: tashbih index {k!r} is out of range (sentence has {len(tokens)} tokens)")
+                if not ts.get("kind"):
+                    rep.error(f"{where}: tashbih frame needs a 'kind'")
+        # Authored KINAYA frames (wave 18): the said as a span [first, last],
+        # the kind by what is sought, the meant, the rungs; and BADIʿ frames:
+        # a figure joining two token indexes.
+        kf = sen.get("kinaya")
+        if kf is not None:
+            frames = kf if isinstance(kf, list) else [kf]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or not isinstance(fr.get("span"), list) or len(fr["span"]) != 2 \
+                        or not all(isinstance(x, int) for x in fr["span"]):
+                    rep.error(f"{where}: kinaya[{n_}] needs a 'span' of two integers")
+                    continue
+                a_, b_ = fr["span"]
+                if a_ < 0 or b_ >= len(tokens) or a_ > b_:
+                    rep.error(f"{where}: kinaya[{n_}] span {fr['span']} is out of range (sentence has {len(tokens)} tokens)")
+                if fr.get("kind") not in ("sifa", "mawsuf", "nisba"):
+                    rep.error(f"{where}: kinaya[{n_}] kind {fr.get('kind')!r} not in sifa|mawsuf|nisba")
+                if "sub" in fr and fr["sub"] not in ("qariba-wadiha", "qariba-khafiyya", "baida"):
+                    rep.error(f"{where}: kinaya[{n_}] sub {fr['sub']!r} unknown")
+                if "sakkaki" in fr and fr["sakkaki"] not in ("tarid", "talwih", "ramz", "ima"):
+                    rep.error(f"{where}: kinaya[{n_}] sakkaki {fr['sakkaki']!r} unknown")
+                lz = fr.get("lazim")
+                if not (isinstance(lz, dict) and lz.get("en") and lz.get("tr")):
+                    rep.error(f"{where}: kinaya[{n_}].lazim must carry both en and tr")
+                for r_ in fr.get("wasait", []) or []:
+                    if not (isinstance(r_, dict) and r_.get("en") and r_.get("tr")):
+                        rep.error(f"{where}: kinaya[{n_}] every rung must carry both en and tr")
+                if "head" in fr and (not isinstance(fr["head"], int) or fr["head"] < a_ or fr["head"] > b_):
+                    rep.error(f"{where}: kinaya[{n_}] head {fr.get('head')!r} must lie inside the span")
+                for k_ in fr:
+                    if k_ not in ("span", "kind", "sub", "lazim", "wasait", "sakkaki", "tasrih", "head", "mawsuf"):
+                        rep.error(f"{where}: kinaya[{n_}] has an unknown field {k_!r}")
+        bf = sen.get("badi")
+        if bf is not None:
+            frames = bf if isinstance(bf, list) else [bf]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or fr.get("kind") not in BADI_KINDS:
+                    rep.error(f"{where}: badi[{n_}] kind {fr.get('kind') if isinstance(fr, dict) else fr!r} unknown")
+                    continue
+                kind = fr["kind"]
+                def _ix(x): return isinstance(x, int) and 0 <= x < len(tokens)
+                for k_ in fr:
+                    if k_ not in BADI_FIELDS:
+                        rep.error(f"{where}: badi[{n_}] has an unknown field {k_!r}")
+                if "pair" in fr and not (isinstance(fr["pair"], list) and len(fr["pair"]) == 2 and all(_ix(x) for x in fr["pair"])):
+                    rep.error(f"{where}: badi[{n_}] needs a 'pair' of two token indexes inside the sentence")
+                for k_ in ("first", "second", "set", "refs"):
+                    if k_ in fr and not (isinstance(fr[k_], list) and len(fr[k_]) >= 1 and all(_ix(x) for x in fr[k_])):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' must be a list of token indexes inside the sentence")
+                if "pairs" in fr and not (isinstance(fr["pairs"], list) and all(isinstance(q, list) and len(q) == 2 and all(_ix(x) for x in q) for q in fr["pairs"])):
+                    rep.error(f"{where}: badi[{n_}] 'pairs' must be a list of [i, j] token pairs")
+                for k_ in ("word", "companion"):
+                    if k_ in fr and not _ix(fr[k_]):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' must be a token index inside the sentence")
+                for k_ in ("near", "far", "murad", "other"):
+                    if k_ in fr and not (isinstance(fr[k_], dict) and fr[k_].get("en") and fr[k_].get("tr")):
+                        rep.error(f"{where}: badi[{n_}] '{k_}' needs both en and tr")
+                if kind == "laff-nashr" and fr.get("sub") == "ijmali":
+                    if not ("first" in fr and "second" in fr and len(fr["first"]) == 1 and len(fr["second"]) >= 2):
+                        rep.error(f"{where}: badi[{n_}] laff-nashr ijmali needs one summary word in 'first' and two or more in 'second'")
+                elif kind in ("muqabala", "aks", "laff-nashr", "muzawaja", "taqsim"):
+                    if not ("first" in fr and "second" in fr and len(fr["first"]) == len(fr["second"])):
+                        rep.error(f"{where}: badi[{n_}] {kind} needs 'first' and 'second' of the same length")
+                    elif kind == "muqabala" and len(fr["first"]) < 2:
+                        rep.error(f"{where}: badi[{n_}] muqabala needs at least two on each side")
+                if "kind2" in fr and fr["kind2"] not in BADI_KIND2.get(kind, ()):
+                    rep.error(f"{where}: badi[{n_}] kind2 {fr['kind2']!r} unknown for {kind}")
+                if "at" in fr and fr["at"] not in BADI_AT:
+                    rep.error(f"{where}: badi[{n_}] at {fr['at']!r} unknown")
+                if kind in ("radd-ajuz", "muwazana", "tashtir") and not ("pair" in fr or ("first" in fr and "second" in fr)):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'pair' or 'first'/'second'")
+                if kind in ("qalb-kull", "tashri", "luzum") and not ("set" in fr or "pair" in fr or "word" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'set', a 'pair' or a 'word'")
+                if kind == "tafriq" and not ("first" in fr and "second" in fr):
+                    rep.error(f"{where}: badi[{n_}] tafriq needs 'first' and 'second'")
+                if kind in ("jam", "jam-tafriq") and not ("set" in fr and "word" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'set' and the ruling 'word'")
+                if kind == "jam-tafriq" and not ("pairs" in fr and len(fr["pairs"]) == len(fr.get("set", []))):
+                    rep.error(f"{where}: badi[{n_}] jam-tafriq needs one [thing, side] pair per member of 'set'")
+                if kind == "sariqa":
+                    if not re.match(r"^s\d+$", str(fr.get("with", ""))): rep.error(f"{path.name}: sentence {sid}: a sariqa frame names the sentence it takes from in `with`")
+                    if fr.get("grade") not in (None, "mamduh", "madhmum", "mithl"): rep.error(f"{path.name}: sentence {sid}: sariqa grade must be mamduh / madhmum / mithl")
+                if kind in ("jam-taqsim", "jam-tafriq-taqsim") and not re.match(r"^s\d+$", str(fr.get("with", ""))):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs 'with': the partner sentence id")
+                if kind == "tajrid" and not ("word" in fr and "sub" in fr):
+                    rep.error(f"{where}: badi[{n_}] tajrid needs its 'word' and the way ('sub')")
+                if kind == "husn-talil" and not ("word" in fr and "companion" in fr and "sub" in fr and "receipt" in fr):
+                    rep.error(f"{where}: badi[{n_}] husn-talil needs the cause 'word', the quality 'companion', its kind ('sub') and its 'receipt'")
+                if kind == "tafri" and not ("word" in fr and "first" in fr and "second" in fr and len(fr["first"]) == 2 and len(fr["second"]) == 2):
+                    rep.error(f"{where}: badi[{n_}] tafri needs the hinge 'word' and two predications 'first'/'second' of [subject, predicate]")
+                if kind in ("takid-madh", "takid-dhamm") and not ("word" in fr and "sub" in fr and "receipt" in fr and "first" in fr and "second" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs the adat 'word', its kind ('sub'), its 'receipt', the 'first' clause and the 'second' (excepted) clause")
+                if kind in ("istitba", "qawl-mujib") and not ("word" in fr and "companion" in fr):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word' and its 'companion'")
+                if kind == "qawl-mujib" and "sub" not in fr:
+                    rep.error(f"{where}: badi[{n_}] qawl-mujib needs its kind ('sub')")
+                if kind in ("idmaj", "tawjih", "hazl-jidd") and "word" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word'")
+                if kind == "tajahul" and not ("word" in fr and "sub" in fr and "receipt" in fr):
+                    rep.error(f"{where}: badi[{n_}] tajahul needs the question 'word', its aim ('sub') and its 'receipt'")
+                if kind == "ittirad" and not ("set" in fr and len(fr["set"]) >= 2):
+                    rep.error(f"{where}: badi[{n_}] ittirad needs the 'set' of names in their order")
+                if kind == "mubalagha" and "sub" not in fr:
+                    rep.error(f"{where}: badi[{n_}] mubalagha needs its degree ('sub')")
+                if "receipt" in fr and fr["receipt"] not in BADI_RECEIPTS:
+                    rep.error(f"{where}: badi[{n_}] receipt {fr['receipt']!r} unknown")
+                if kind in ("tibaq", "irsad", "ruju") and "pair" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'pair'")
+                if kind in ("muraat-al-nazir", "iham-al-tanasub") and not ("set" in fr and len(fr["set"]) >= 2):
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'set' of two or more")
+                if kind == "tashabuh-al-atraf" and "pairs" not in fr:
+                    rep.error(f"{where}: badi[{n_}] tashabuh-al-atraf needs 'pairs'")
+                if kind in ("mushakala", "tawriya", "istikhdam", "iham-al-tanasub") and "word" not in fr:
+                    rep.error(f"{where}: badi[{n_}] {kind} needs a 'word'")
+                if "sub" in fr and fr["sub"] not in BADI_SUBS.get(kind, ()):
+                    rep.error(f"{where}: badi[{n_}] sub {fr['sub']!r} not allowed for {kind}")
+                if "class" in fr and fr["class"] not in ("ism", "fil", "harf", "mixed"):
+                    rep.error(f"{where}: badi[{n_}] class {fr['class']!r} unknown")
+        mj = sen.get("majaz")
+        if mj is not None:
+            frames = mj if isinstance(mj, list) else [mj]
+            for n_, fr in enumerate(frames):
+                if not isinstance(fr, dict) or not isinstance(fr.get("word"), int):
+                    rep.error(f"{where}: majaz[{n_}] needs an integer 'word'")
+                    continue
+                if fr["word"] < 0 or fr["word"] >= len(tokens):
+                    rep.error(f"{where}: majaz[{n_}] word {fr['word']} is out of range (sentence has {len(tokens)} tokens)")
+                if fr.get("kind") not in ("mursal", "istiara", "aqli", "ziyada", "nuqsan", "makniyya", "takhyiliyya", "murakkab"):
+                    rep.error(f"{where}: majaz[{n_}] kind {fr.get('kind')!r} unknown")
+                ist = fr.get("istiara")
+                if ist is not None:
+                    if not isinstance(ist, dict):
+                        rep.error(f"{where}: majaz[{n_}].istiara must be an object")
+                    else:
+                        ENUMS = {"lafz": ("asliyya", "tabaiyya", "makniyya", "takhyiliyya", "murakkab"),
+                                 "ends": ("wifaqiyya", "inadiyya"), "jami": ("dakhil", "kharij", "ammiyya", "khassiyya"),
+                                 "qarinaSeat": ("fail", "maful", "maful2", "majrur"), "mulaim": ("mutlaqa", "mujarrada", "murashshaha", "both")}
+                        for k_, allowed in ENUMS.items():
+                            if k_ in ist and ist[k_] not in allowed:
+                                rep.error(f"{where}: majaz[{n_}].istiara.{k_} {ist[k_]!r} not in {allowed}")
+                        if "hissi" in ist:
+                            h = ist["hissi"]
+                            if not isinstance(h, list) or len(h) != 3 or any(x not in ("hissi", "aqli", "mukhtalif") for x in h):
+                                rep.error(f"{where}: majaz[{n_}].istiara.hissi must be [minhu, lahu, jami] of hissi|aqli|mukhtalif")
+                        for k_ in ("mulaimMinhu", "mulaimLahu"):
+                            for j in ist.get(k_, []) or []:
+                                if not isinstance(j, int) or j < 0 or j >= len(tokens):
+                                    rep.error(f"{where}: majaz[{n_}].istiara.{k_} index {j!r} out of range")
+                        for k_ in ist:
+                            if k_ not in ENUMS and k_ not in ("hissi", "mulaimMinhu", "mulaimLahu"):
+                                rep.error(f"{where}: majaz[{n_}].istiara has an unknown field {k_!r}")
+                for g in ("haqiqa", "murad"):
+                    v = fr.get(g)
+                    if v is not None and not (isinstance(v, dict) and v.get("en") and v.get("tr")):
+                        rep.error(f"{where}: majaz[{n_}].{g} must carry both en and tr")
+
+
+def check_morphology(pkg: Path, glossary: dict, rep: Report):
+    path = pkg / "morphology.json"
+    if not path.exists():
+        rep.warn("morphology.json: not present (verbs will have no sarf tables)")
+        return
+    data = load_json(path, rep)
+    if data is None:
+        return
+    verbs = data.get("verbs", {})
+    for lex, m in verbs.items():
+        where = f"morphology.json:{lex}"
+        if lex not in glossary:
+            rep.error(f"{where}: verb not in glossary.json")
+        # A jamid verb does not conjugate fully — the entry stores exactly the
+        # tenses that exist and nothing else. لَيْسَ is mazi-only; مَا زَالَ has a
+        # mazi and a mudari but no amr (and no usable masdar). Requiring the
+        # missing forms would force us to invent Arabic that does not exist.
+        if m.get("jamid"):
+            for field in ("bab", "wazn"):
+                if not m.get(field):
+                    rep.error(f"{where}: missing '{field}'")
+            forms = m.get("mazi")
+            if not isinstance(forms, list) or len(forms) != 14:
+                rep.error(f"{where}: jamid verb must still have 14 mazi forms")
+            mud = m.get("mudari")
+            if mud is not None and (not isinstance(mud, list) or len(mud) != 14):
+                rep.error(f"{where}: jamid mudari, when present, must have 14 forms")
+            if m.get("amr"):
+                rep.error(f"{where}: jamid verb must not carry 'amr'")
+            continue
+        for field in ("bab", "wazn", "masdar", "ismFail"):
+            if not m.get(field):
+                rep.error(f"{where}: missing '{field}'")
+        # The Emsile-i Muhtelife table needs the governed mudari' forms. They are
+        # stored rather than derived because hollow/defective verbs break the
+        # sound-verb rule (يَقُولُ -> لَمْ يَقُلْ), so a missing one is a warning:
+        # the muhtelife tab is simply hidden for that verb.
+        missing_gov = [f for f in ("mansub", "majzum", "majzum2") if not m.get(f)]
+        if missing_gov:
+            rep.warn(f"{where}: no {'/'.join(missing_gov)} — "
+                     f"the Emsile-i Muhtelife table will be hidden for this verb")
+        for tense, size in (("mazi", 14), ("mudari", 14), ("amr", 6)):
+            forms = m.get(tense)
+            if not isinstance(forms, list) or len(forms) != size:
+                rep.error(f"{where}: '{tense}' must have exactly {size} forms, "
+                          f"got {len(forms) if isinstance(forms, list) else type(forms).__name__}")
+                continue
+            for i, form in enumerate(forms):
+                if not form or not ARABIC_ONLY.match(form):
+                    rep.error(f"{where}: {tense}[{i}] '{form}' is empty or not Arabic-only")
+    glossary_verbs = {k for k, v in glossary.items() if v.get("pos") == "verb"}
+    for missing in sorted(glossary_verbs - set(verbs)):
+        rep.warn(f"morphology.json: glossary verb '{missing}' has no paradigm entry")
+
+
+def check_grammar_notes(grammar_dir: Path, rep: Report) -> set:
+    ids = set()
+    if not grammar_dir.is_dir():
+        rep.error(f"{grammar_dir}: grammar directory missing")
+        return ids
+    for path in sorted(grammar_dir.glob("*.json")):
+        note = load_json(path, rep)
+        if note is None:
+            continue
+        nid = note.get("id")
+        if nid != path.stem:
+            rep.error(f"{path.name}: id '{nid}' does not match filename")
+        ids.add(path.stem)
+        for field in REQUIRED_NOTE:
+            if field not in note:
+                rep.error(f"{path.name}: missing required field '{field}'")
+        if note.get("group") not in NOTE_GROUPS:
+            rep.error(f"{path.name}: group must be one of {sorted(NOTE_GROUPS)}, "
+                      f"got {note.get('group')!r}")
+        title = note.get("title", {})
+        if "ar" not in title or "en" not in title:
+            rep.error(f"{path.name}: title must contain 'ar' and 'en'")
+        # The madrasah "edat" test: which interrogative the word answers. Both
+        # languages are required and both must be non-empty — a half-translated
+        # question test is worse than none, because the reader is told to ask a
+        # question that is not there.
+        # The jargon-free lede. It is what a reader with no madrasah background
+        # sees first, so it has to exist, be bilingual, and stay short.
+        plain = note.get("plain")
+        if plain is not None:
+            if not isinstance(plain, dict) or not plain.get("en") or not plain.get("tr"):
+                rep.error(f"{path.name}: plain must have non-empty 'en' and 'tr'")
+            else:
+                for lang in ("en", "tr"):
+                    if len(plain[lang]) > PLAIN_MAX:
+                        rep.error(f"{path.name}: plain.{lang} is {len(plain[lang])} chars "
+                                  f"(max {PLAIN_MAX}) — put the detail in explanation")
+        q = note.get("question")
+        if q is not None:
+            if not isinstance(q, dict):
+                rep.error(f"{path.name}: question must be an object with 'tr' and 'en'")
+            else:
+                for lang in ("tr", "en"):
+                    vals = q.get(lang)
+                    if not isinstance(vals, list) or not vals or not all(
+                            isinstance(v, str) and v.strip() for v in vals):
+                        rep.error(f"{path.name}: question.{lang} must be a non-empty "
+                                  f"list of non-empty strings")
+                if isinstance(q.get("tr"), list) and isinstance(q.get("en"), list) \
+                        and len(q["tr"]) != len(q["en"]):
+                    rep.error(f"{path.name}: question.tr has {len(q['tr'])} entries "
+                              f"but question.en has {len(q['en'])} — they must correspond")
+        if not note.get("examples"):
+            rep.error(f"{path.name}: needs at least one example")
+        elif not any(x.get("sourceStory") for x in note["examples"]):
+            rep.warn(f"{path.name}: no example is sourced from a story "
+                     f"(add sourceStory/sentence to keep notes anchored in real content)")
+        mistakes = note.get("commonMistakes", [])
+        if not mistakes:
+            rep.error(f"{path.name}: needs at least one commonMistakes entry "
+                      f"(a Qissa grammar note without mistakes is incomplete)")
+        for i, m in enumerate(mistakes):
+            for field in ("wrong", "right", "why"):
+                if not m.get(field):
+                    rep.error(f"{path.name}: commonMistakes[{i}] missing '{field}'")
+    return ids
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("package", type=Path, help="story package directory")
+    ap.add_argument("--grammar-dir", type=Path, default=None,
+                    help="global grammar registry (default: content/grammar next to the package tree)")
+    args = ap.parse_args()
+
+    pkg: Path = args.package
+    grammar_dir = args.grammar_dir
+    if grammar_dir is None:
+        # Global registry lives at content/grammar; packages at content/<collection>/<story>.
+        candidates = [pkg.parent.parent / "grammar", pkg.parent / "grammar"]
+        grammar_dir = next((c for c in candidates if c.is_dir()), candidates[0])
+    rep = Report()
+    stats = {"tokens": 0, "irab_tokens": 0, "used_lex": set(), "used_grammar": set()}
+
+    print(f"Validating package: {pkg}")
+    if not pkg.is_dir():
+        print(f"  E  {pkg}: not a directory")
+        return 1
+
+    grammar_ids = check_grammar_notes(grammar_dir, rep)
+    manifest = check_manifest(pkg, rep)
+    glossary_doc = load_json(pkg / "glossary.json", rep) or {}
+    glossary = glossary_doc.get("entries", {})
+    if not glossary:
+        rep.error("glossary.json: no entries")
+    for lex, entry in glossary.items():
+        if not entry.get("lemma"):
+            rep.error(f"glossary.json:{lex}: missing lemma")
+        if not entry.get("gloss", {}).get("en"):
+            rep.error(f"glossary.json:{lex}: missing English gloss")
+        lvl = entry.get("level")
+        if not isinstance(lvl, int) or not 0 <= lvl <= 6:
+            rep.error(f"glossary.json:{lex}: level must be integer 0-6, got {lvl!r}")
+
+    if manifest:
+        for ch in manifest.get("chapters", []):
+            chapter_file = pkg / "chapters" / f"{ch.get('n')}.json"
+            if chapter_file.exists():
+                check_chapter(chapter_file, glossary, grammar_ids, rep, stats)
+
+    check_morphology(pkg, glossary, rep)
+
+    for unused in sorted(set(glossary) - stats["used_lex"]):
+        rep.warn(f"glossary.json: entry '{unused}' never referenced by any chapter")
+    if stats["tokens"]:
+        coverage = 100 * stats["irab_tokens"] / stats["tokens"]
+        if coverage < 100:
+            rep.warn(f"i'rab coverage {coverage:.0f}% "
+                     f"({stats['irab_tokens']}/{stats['tokens']} tokens)")
+    print(f"  tokens: {stats['tokens']}, i'rab: {stats['irab_tokens']}, "
+          f"glossary used: {len(stats['used_lex'])}/{len(glossary)}, "
+          f"grammar notes referenced: {len(stats['used_grammar'])}/{len(grammar_ids)}\n")
+    return rep.dump()
+
+
+if __name__ == "__main__":
+    sys.exit(main())

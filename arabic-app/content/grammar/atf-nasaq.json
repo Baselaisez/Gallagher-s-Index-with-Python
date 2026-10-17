@@ -1,0 +1,79 @@
+{
+  "id": "atf-nasaq",
+  "title": {
+    "ar": "عَطْفُ النَّسَق",
+    "en": "Coupling (atf al-nasaq)",
+    "tr": "Atf-ı nesak (bağlama)"
+  },
+  "level": 2,
+  "group": "nahw",
+  "mamul": "tabai",
+  "classicalSources": [
+    "العوامل (البيركوي) — التوابع",
+    "إظهار الأسرار (البيركوي)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "Joining words with «and», «or», «then». The joined word copies the case of the one before it.",
+    "tr": "Kelimeleri «ve», «veya», «sonra» ile bağlamak. Bağlanan kelime, öncekinin i'rabını alır."
+  },
+  "explanation": {
+    "en": "Coupling joins a second word to a first through one of the letters of atf, and the second then takes the FIRST'S CASE — it is governed «by way of following» (بِالتَّبَعِيَّةِ), which is why Birgivi puts it among the tawabi' rather than among the governed-by-a-word. The Awamil lists ten letters: وَ (mere joining), فَ (joining with sequence), ثُمَّ (sequence with delay), حَتَّى (up to and including), أَوْ and إِمَّا (alternatives), أَمْ (in questions), لَا and بَلْ and لَكِنْ (correcting or setting aside). The rule to hold onto is that the conjunct copies whatever case the first word had: after a mansub it is mansub, after a majrur it is majrur.",
+    "tr": "Atf, ikinci bir kelimeyi atıf harflerinden biriyle birinciye bağlar; ikinci kelime böylece BİRİNCİNİN İ'RABINI alır — «tebe'iyyet yoluyla» âmillenmiştir; Birgivî'nin onu bir kelimeyle âmillenenler arasında değil, tâbiler arasında sayması bundandır. Avâmil on harf sayar: وَ (mutlak bağlama), فَ (tertip ile), ثُمَّ (tertip ve mühlet ile), حَتَّى (gaye ile), أَوْ ve إِمَّا (tercih), أَمْ (soruda), لَا ile بَلْ ve لَكِنْ (idrâb ve istidrâk). Akılda tutulacak kural: ma'tûf, birincinin i'rabını kopyalar — mansubdan sonra mansub, mecrûrdan sonra mecrûr olur."
+  },
+  "examples": [
+    {
+      "ar": "وَاعْمَلْ بِهَا يَنْفَعْكَ اللَّهُ بِعِلْمِكَ.",
+      "en": "And act upon it — the وَ couples this command to the one before it.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s3",
+      "tr": "Ve onunla amel et — vâv bu emri öncekine bağlar."
+    },
+    {
+      "ar": "لِمَصْلَحَتِكَ وَمَصْلَحَةِ الْمُسْلِمِينَ.",
+      "en": "For your good and the good of the Muslims — the conjunct copies the jarr of the first.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "sentence": "s12",
+      "tr": "Senin ve Müslümanların iyiliği için — matûf, birincinin cerrini alır."
+    },
+    {
+      "ar": "جَاءَ زَيْدٌ فَعَمْرٌو ثُمَّ بَكْرٌ.",
+      "en": "Zayd came, then Amr, then later Bakr — فَ marks immediate sequence, ثُمَّ a delayed one.",
+      "tr": "Zeyd geldi, sonra Amr, sonra da Bekir — فَ hemen ardından, ثُمَّ araya zaman girerek."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "مررتُ بزيدٍ وعمرٌو",
+      "right": "مَرَرْتُ بِزَيْدٍ وَعَمْرٍو",
+      "why": {
+        "en": "The conjunct follows the first word's case. After a majrur it must be majrur, not raf'.",
+        "tr": "Ma'tûf, birincinin i'rabına uyar. Mecrûrdan sonra mecrûr olmalıdır, merfû değil."
+      }
+    },
+    {
+      "wrong": "رأيتُ زيدًا وعمرٌ",
+      "right": "رَأَيْتُ زَيْدًا وَعَمْرًا",
+      "why": {
+        "en": "Same rule after a mansub: the conjunct takes nasb.",
+        "tr": "Mansubdan sonra da aynı kural: ma'tûf nasb alır."
+      }
+    },
+    {
+      "wrong": "جاء زيدٌ ثُمَّ عمرٌو فورًا",
+      "right": "جَاءَ زَيْدٌ فَعَمْرٌو",
+      "why": {
+        "en": "ثُمَّ carries a gap in time; for «immediately after», the letter is فَ.",
+        "tr": "ثُمَّ arada mühlet bulunduğunu bildirir; «hemen ardından» için فَ kullanılır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "naat-sifa",
+    "badal",
+    "atf-bayan"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

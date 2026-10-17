@@ -1,0 +1,99 @@
+{
+  "id": "hollow-verbs",
+  "title": {
+    "ar": "الْفِعْل الأَجْوَف",
+    "en": "Hollow verbs",
+    "tr": "Ecvef fiil"
+  },
+  "level": 3,
+  "group": "sarf",
+  "classicalSources": [
+    "بناء الأفعال — الأقسام السبعة",
+    "المقصود — الأجوف",
+    "مراح الأرواح"
+  ],
+  "plain": {
+    "en": "Verbs with و or ي in the middle, like قَالَ. The weak letter shortens or vanishes in some forms — which is why «he did not say» is لَمْ يَقُلْ and not لَمْ يَقُولْ.",
+    "tr": "Ortası و veya ي olan fiiller (قَالَ gibi). İllet harfi bazı sîgalarda kısalır veya düşer; «demedi» bu yüzden لَمْ يَقُلْ'dur, لَمْ يَقُولْ değil."
+  },
+  "explanation": {
+    "en": "A hollow (ajwaf) verb has و or ي as its middle radical: قَالَ (aslu-hu قَوَلَ), خَافَ (خَوِفَ), أَرَادَ (أَرْوَدَ). Two rules explain almost every form. FIRST, a voweled و or ي moves its vowel onto the preceding sound letter: يَقْوُلُ → يَقُولُ, and if that vowel is a fatha the letter becomes alif instead: يَخْوَفُ → يَخَافُ. SECOND, when that move would leave two vowelless letters together, the weak letter is dropped outright: لَمْ يَقْوُلْ → لَمْ يَقُلْ, قَوَلْنَ → قُلْنَ. The vowel left behind is not arbitrary — it points to what was lost: damma for a dropped و (قُلْنَ, قُمْنَ), kasra for a dropped ي (بِعْنَ, كِلْنَ). The passive follows the same logic from the other side: قُوِلَ → قِيلَ, بُيِعَ → بِيعَ, خُوِفَ → خِيفَ. Two limits are worth memorising. In the augmented babs, i'lal happens only in إِفْعَال, اِنْفِعَال, اِفْتِعَال and اِسْتِفْعَال; فَعَّلَ, فَاعَلَ, تَفَعَّلَ, تَفَاعَلَ and اِفْعَلَّ keep the weak letter intact — طَوَّلَ, طَاوَلَ, تَحَوَّلَ, تَصَوَّرَ. And the masdars of if'al and istif'al compensate for the lost و with a final ة: إِقْوَام → إِقَامَة, اِسْتِقْوَام → اِسْتِقَامَة. The Bina counts these among the seven irregular classes.",
+    "tr": "Ecvef fiilin orta harfi و veya ي'dir: قَالَ (aslı قَوَلَ), خَافَ (خَوِفَ), أَرَادَ (أَرْوَدَ). Neredeyse bütün şekilleri iki kaide açıklar. BİRİNCİ: harekeli و/ي harekesini kendinden önceki sahih sâkin harfe nakleder: يَقْوُلُ → يَقُولُ; o hareke fetha ise harf elife kalbolur: يَخْوَفُ → يَخَافُ. İKİNCİ: bu nakil iki sâkini bir araya getirecekse illetli harf tamamen düşer: لَمْ يَقْوُلْ → لَمْ يَقُلْ، قَوَلْنَ → قُلْنَ. Geriye kalan hareke keyfî değildir, düşen harfe delâlet eder: و düşmüşse damme (قُلْنَ، قُمْنَ), ي düşmüşse kesre (بِعْنَ، كِلْنَ). Meçhul de aynı mantığı öbür yönden izler: قُوِلَ → قِيلَ، بُيِعَ → بِيعَ، خُوِفَ → خِيفَ. Ezberlenmesi gereken iki sınır vardır. Mezîd bablarda i'lal yalnız إِفْعَال، اِنْفِعَال، اِفْتِعَال ve اِسْتِفْعَال'de olur; فَعَّلَ، فَاعَلَ، تَفَعَّلَ، تَفَاعَلَ ve اِفْعَلَّ illetli harfi olduğu gibi korur — طَوَّلَ، طَاوَلَ، تَحَوَّلَ، تَصَوَّرَ. Ayrıca if'âl ve istif'âl masdarlarında düşen و'ın yerine sona tâ getirilir: إِقْوَام → إِقَامَة، اِسْتِقْوَام → اِسْتِقَامَة. Binâ bunları aksâm-ı seb'a içinde sayar."
+  },
+  "examples": [
+    {
+      "ar": "قَالَ لَهُ أَبُو حَنِيفَةَ.",
+      "en": "Abu Hanifa said to him.",
+      "sourceStory": "wasiyyat-abi-hanifa-L2",
+      "sentence": "s3",
+      "tr": "Ebû Hanîfe ona dedi."
+    },
+    {
+      "ar": "قُلْتُ الْحَقَّ وَقَالُوا كَذِبًا.",
+      "en": "I spoke the truth and they spoke a lie — long and short stems side by side.",
+      "tr": "Ben doğruyu söyledim, onlar yalan söylediler — uzun ve kısa gövde yan yana."
+    },
+    {
+      "ar": "خَافَ يُونُسُ فَدَعَا رَبَّهُ.",
+      "en": "Yunus was afraid and called upon his Lord — خَافَ shows the fatha route: خَوِفَ → خَافَ.",
+      "sourceStory": "yunus-wa-al-hut",
+      "tr": "Yunus korktu ve Rabbine dua etti — خَافَ fetha yolunu gösterir: خَوِفَ → خَافَ."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "قَالْتُ لك",
+      "right": "قُلْتُ لك",
+      "why": {
+        "en": "Before the consonant suffix ـتُ the long alif must shorten to damma: قُلْتُ.",
+        "tr": "ـتُ ünsüz ekinden önce uzun elif ötreye kısalmalıdır: قُلْتُ."
+      }
+    },
+    {
+      "wrong": "لم يَقُولْ شيئًا",
+      "right": "لم يَقُلْ شيئًا",
+      "why": {
+        "en": "In the jussive after لم the long vowel shortens: لم يَقُلْ.",
+        "tr": "لم'den sonra meczumda uzun ünlü kısalır: لم يَقُلْ."
+      }
+    },
+    {
+      "wrong": "قُوِلَ الْحَقُّ",
+      "right": "قِيلَ الْحَقُّ",
+      "why": {
+        "en": "In the passive of a hollow verb the damma before the weak letter goes and its kasra moves back: قُوِلَ → قِيلَ.",
+        "tr": "Ecvefin meçhulünde illetli harften önceki damme düşer ve kesre öne nakledilir: قُوِلَ → قِيلَ."
+      }
+    },
+    {
+      "wrong": "تَصَاوَرَ / يَتَصَاوَرُ",
+      "right": "تَصَوَّرَ / يَتَصَوَّرُ",
+      "why": {
+        "en": "No i'lal in bab V. The و is doubled and stable there, so the verb conjugates exactly like a sound one.",
+        "tr": "Tefe'ul bâbında i'lal yoktur. و şeddeli ve sabittir, fiil sahih gibi çekilir."
+      }
+    },
+    {
+      "wrong": "إِقْوَامٌ",
+      "right": "إِقَامَةٌ",
+      "why": {
+        "en": "The masdar of أَقَامَ loses its و and takes a ة in compensation — the same happens in اِسْتِقَامَة.",
+        "tr": "أَقَامَ'nin masdarı و'ını kaybeder ve karşılığında tâ alır; اِسْتِقَامَة'de de böyledir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "mithal-verbs",
+    "naqis-verbs",
+    "imperative-amr",
+    "form-iv-verbs"
+  ],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": [
+      "قُلْتُ",
+      "لَمْ يَقُلْ",
+      "قُلْ"
+    ]
+  }
+}

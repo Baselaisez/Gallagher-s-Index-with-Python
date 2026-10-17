@@ -1,0 +1,61 @@
+{
+  "id": "ism-fil",
+  "title": {
+    "ar": "أَسْمَاءُ الْأَفْعَالِ",
+    "en": "Noun-verbs (asma' al-af'al)",
+    "tr": "İsim fiiller (esmâ-i ef'âl)"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "قطر الندى (ابن هشام) — أسماء الأفعال",
+    "الكافية (ابن الحاجب) — المبنيات"
+  ],
+  "plain": {
+    "en": "Some words LOOK like nouns but WORK like verbs: عَلَيْكَ «hold to!», صَهْ «hush!», هَيْهَاتَ «how far-fetched!». They conjugate for nothing and no one — yet they take a fa'il like any verb.",
+    "tr": "Bazı kelimeler İSME benzer ama FİİL gibi çalışır: عَلَيْكَ «elzem tut!», صَهْ «sus!», هَيْهَاتَ «ne uzak!». Hiçbir kip ve şahıs için çekilmezler — yine de her fiil gibi fâil alırlar."
+  },
+  "explanation": {
+    "en": "The أَسْمَاءُ الْأَفْعَالِ carry a verb's meaning and government in a noun's clothing. Three tenses: هَيْهَاتَ = بَعُدَ (a past: «it is far indeed»), أُفٍّ = أَتَضَجَّرُ (a present: «ugh»), and the largest family are commands — صَهْ = اُسْكُتْ, مَهْ = اِنْكَفِفْ, رُوَيْدَ = أَمْهِلْ, دُونَكَ = خُذْ, and عَلَيْكَ = اِلْزَمْ, whose object routinely arrives through an extra بِ: عَلَيْكَ بِالصَّبْرِ «hold fast to patience» — majrur in form, its position that of a maf'ul bih. All of them are MABNI, all take a concealed fa'il, none may be omitted, and their ma'mul does not precede them. One live consequence from Qatr al-Nada: a mudari' answering a noun-verb of command is in JAZM, exactly as if a true imperative had preceded — مَكَانَكَ تُحْمَدْ «stay put — you will be praised».",
+    "tr": "أَسْمَاءُ الْأَفْعَالِ, isim kılığında fiil manası ve ameli taşır. Üç zamanı vardır: هَيْهَاتَ = بَعُدَ (mâzî: «ne kadar uzak»), أُفٍّ = أَتَضَجَّرُ (muzâri: «of!»), en kalabalık aile ise emirlerdir — صَهْ = اُسْكُتْ, مَهْ = vazgeç, رُوَيْدَ = mühlet ver, دُونَكَ = al, ve عَلَيْكَ = اِلْزَمْ; mef'ûlü çoğu zaman zâid بِ ile gelir: عَلَيْكَ بِالصَّبْرِ «sabra sarıl» — lafzen mecrûr, mahallen mef'ûlün bih. Hepsi MEBNÎDİR, hepsi gizli fâil alır, hiçbiri hazfedilmez ve ma'mulleri önlerine geçmez. Katru'n-Nedâ'dan canlı bir netice: emir manalı isim fiile cevap olan muzâri MECZUM olur — gerçek bir emir geçmiş gibi: مَكَانَكَ تُحْمَدْ «yerinde dur — övülürsün»."
+  },
+  "examples": [
+    {
+      "ar": "وَعَلَيْكَ بِالْمُدَارَاةِ وَالصَّبْرِ.",
+      "en": "«Hold fast to tact and patience» — عَلَيْكَ works as the imperative «keep to», its fa'il a concealed «you», its object behind the extra بِ.",
+      "sourceStory": "wasiyyat-abi-hanifa-samti",
+      "sentence": "s26",
+      "chapter": 4,
+      "tr": "«Müdârâya ve sabra sarıl» — عَلَيْكَ, «elzem tut» emri gibi çalışır; fâili gizli «sen», mef'ûlü zâid بِ'nin ardındadır."
+    },
+    {
+      "ar": "هَيْهَاتَ هَيْهَاتَ لِمَا تُوعَدُونَ.",
+      "en": "«Far, far indeed is what you are promised» (al-Mu'minun 23:36) — a noun with a past verb's force.",
+      "tr": "«Size vaad edilen ne uzak, ne uzak!» (Mü'minûn 23:36) — mâzî fiil kuvvetinde bir isim."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "صَهْ، يَصِهُ، صَاهٍ",
+      "right": "صَهْ (لَا يَتَصَرَّفُ)",
+      "why": {
+        "en": "Noun-verbs do not conjugate — no mudari', no ism fa'il, no other person. The single frozen form IS the whole verb.",
+        "tr": "İsim fiiller çekilmez — muzârisi, ism-i fâili, başka şahsı yoktur. O tek donmuş kalıp, fiilin tamamıdır."
+      }
+    },
+    {
+      "wrong": "عَلَيْكَ بِالصَّبْرِ — جَارٌّ وَمَجْرُورٌ خَبَرٌ مُقَدَّمٌ",
+      "right": "عَلَيْكَ اسْمُ فِعْلِ أَمْرٍ، وَالْبَاءُ زَائِدَةٌ وَمَجْرُورُهَا مَفْعُولٌ بِهِ مَحَلًّا",
+      "why": {
+        "en": "In the command reading there is no mubtada anywhere: عَلَيْكَ is itself the verb-force, and what follows the extra بِ is its object, not a subject waiting for news.",
+        "tr": "Emir okuyuşunda ortada mübteda yoktur: عَلَيْكَ bizzat fiil kuvvetidir; zâid بِ'den sonrası haber bekleyen özne değil, mef'ûlüdür."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "imperative-amr",
+    "at-tahdhir",
+    "lam-amr",
+    "huruf-jarr"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "/qissa/",
+  "name": "Qissa — Arabic graded reader",
+  "short_name": "Qissa",
+  "description": "Classical Islamic texts, graded by level, with madrasah grammar on every word.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./reader.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6ef",
+  "theme_color": "#0f5c4a",
+  "categories": ["education", "books"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Review your deck",
+      "short_name": "Deck",
+      "url": "./reader.html#deck",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

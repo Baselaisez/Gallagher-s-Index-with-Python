@@ -1,0 +1,61 @@
+{
+  "id": "nun-tawkid",
+  "title": {
+    "ar": "نُونُ التَّوْكِيدِ",
+    "en": "The nun of emphasis",
+    "tr": "Te'kid nûnu"
+  },
+  "level": 4,
+  "group": "nahw",
+  "classicalSources": [
+    "قطر الندى (ابن هشام) — إعراب المضارع",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "A doubled nun on the end of a present verb — لَا تَحْقِرَنَّ «do not EVER despise» — hammers the verb home. The verb ends in fatha because of the nun, not because anything made it nasb.",
+    "tr": "Muzârinin sonuna gelen şeddeli nûn — لَا تَحْقِرَنَّ «sakın hor görme» — fiili perçinler. Fiilin sonundaki fetha nûn yüzündendir; hiçbir âmil onu nasb etmiş değildir."
+  },
+  "explanation": {
+    "en": "The نُونُ التَّوْكِيدِ comes heavy (ـنَّ) or light (ـنْ) and fastens to the mudari' — most often after a prohibition, a command, an oath's lam (وَاللهِ لَأَفْعَلَنَّ), or a question. When it attaches directly, the verb becomes MABNI on fatha: the fatha of تَحْقِرَنَّ is building, not nasb, and if a jazim like لَا النَّاهِيَة stands before the verb, the jazm survives «in position» (فِي مَحَلِّ جَزْمٍ). The five-verbs endings interact with it: their nun of raf' drops before the nun of emphasis (تَفْعَلُونَ + نَّ → تَفْعَلُنَّ). The wasiyya's counsel list runs on this nun: لَا تَحْقِرَنَّ، لَا تُقَصِّرَنَّ، لَا تُخْرِجَنَّ، لَا تَثِقَنَّ، لَا تَقُولَنَّ — five prohibitions, each nailed shut.",
+    "tr": "Te'kid nûnu şeddeli (ـنَّ) yahut sâkin (ـنْ) gelir ve muzâriye bitişir — en çok nehiyden, emirden, kasem lâmından (وَاللهِ لَأَفْعَلَنَّ) yahut istifhamdan sonra. Doğrudan bitiştiğinde fiil fetha üzere MEBNÎ olur: تَحْقِرَنَّ'deki fetha binâdır, nasb değildir; başta لَا النَّاهِيَة gibi bir câzim varsa cezm «mahallen» devam eder (فِي مَحَلِّ جَزْمٍ). Beş fiilin sonlarıyla da etkileşir: ref nûnları, te'kid nûnundan önce düşer (تَفْعَلُونَ + نَّ → تَفْعَلُنَّ). Vasiyetin nasihat listesi bu nûnla yürür: لَا تَحْقِرَنَّ، لَا تُقَصِّرَنَّ، لَا تُخْرِجَنَّ، لَا تَثِقَنَّ، لَا تَقُولَنَّ — beş nehiy, beşi de perçinli."
+  },
+  "examples": [
+    {
+      "ar": "وَلَا تَحْقِرَنَّ أَحَدًا يَقْصِدُكَ.",
+      "en": "«And do not EVER despise anyone who seeks you out» — the verb is built on fatha by the heavy nun, in the position of jazm under لا.",
+      "sourceStory": "wasiyyat-abi-hanifa-samti",
+      "sentence": "s21",
+      "chapter": 3,
+      "tr": "«Sana yönelen hiç kimseyi sakın hor görme» — fiil, şeddeli nûnla fetha üzere mebnîdir; لا altında mahallen meczumdur."
+    },
+    {
+      "ar": "وَتَاللهِ لَأَكِيدَنَّ أَصْنَامَكُمْ.",
+      "en": "«By Allah, I shall surely scheme against your idols» (al-Anbiya 21:57) — the oath's lam and the heavy nun clamp the verb from both ends.",
+      "tr": "«Vallahi putlarınıza mutlaka bir tuzak kuracağım» (Enbiyâ 21:57) — kasem lâmı ile şeddeli nûn fiili iki uçtan kenetler."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "لَا تَحْقِرَنَّ — فِعْلٌ مَنْصُوبٌ",
+      "right": "فِعْلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَزْمٍ بِلَا النَّاهِيَةِ",
+      "why": {
+        "en": "The fatha before the nun of emphasis is building, not nasb — no nasb governor is anywhere in the sentence; لا of prohibition still holds the verb in the position of jazm.",
+        "tr": "Te'kid nûnundan önceki fetha binâdır, nasb değildir — cümlede hiçbir nasb âmili yoktur; nehiy lâ'sı fiili mahallen cezimde tutar."
+      }
+    },
+    {
+      "wrong": "لَا تَقُولُنَّ",
+      "right": "لَا تَقُولَنَّ",
+      "why": {
+        "en": "Directly attached, the nun of emphasis takes fatha before it; damma would pretend the raf' survived the prohibition.",
+        "tr": "Doğrudan bitişen te'kid nûnundan önce fetha gelir; zamme, nehye rağmen ref sürüyormuş gibi olurdu."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "la-nahiya",
+    "imperative-amr",
+    "afal-khamsa",
+    "mudari-marfu"
+  ]
+}

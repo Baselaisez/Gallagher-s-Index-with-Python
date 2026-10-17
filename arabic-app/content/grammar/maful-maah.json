@@ -1,0 +1,77 @@
+{
+  "id": "maful-maah",
+  "title": {
+    "ar": "الْمَفْعُولُ مَعَهُ",
+    "en": "The maf'ul ma'ah (accusative of accompaniment)",
+    "tr": "Mef'ûl maah"
+  },
+  "level": 5,
+  "group": "nahw",
+  "question": {
+    "tr": [
+      "Ne ile beraber?",
+      "Kim ile beraber?"
+    ],
+    "en": [
+      "Together with what?",
+      "Together with whom?"
+    ]
+  },
+  "mamul": "mansub",
+  "classicalSources": [
+    "المنصوبات",
+    "العوامل (البيركوي)",
+    "الكافية (ابن الحاجب)"
+  ],
+  "plain": {
+    "en": "What or who it happened alongside.",
+    "tr": "İşin kiminle yahut neyle beraber olduğu."
+  },
+  "explanation": {
+    "en": "Defined in the Mansubat as «هُوَ مَذْكُورٌ بَعْدَ الْوَاوِ لِمُصَاحَبَةِ مَعْمُولِ فِعْلٍ لَفْظًا أَوْ مَعْنًى» — a noun after a وَ that means «together with» rather than «and», put in nasb: سِرْتُ وَالنِّيلَ «I travelled alongside the Nile». The test is whether the two are true partners in the action. If they are, the وَ is a connective and the noun follows the case of what precedes; if the second merely accompanies, the وَ is وَاوُ الْمَعِيَّةِ and the noun is mansub. Compare جَاءَ زَيْدٌ وَعَمْرٌو (both came) with اِسْتَوَى الْمَاءُ وَالْخَشَبَةَ (the water rose level with the plank — the plank did not rise).",
+    "tr": "Mensûbât'ta şöyle tanımlanır: «هُوَ مَذْكُورٌ بَعْدَ الْوَاوِ لِمُصَاحَبَةِ مَعْمُولِ فِعْلٍ لَفْظًا أَوْ مَعْنًى» — «ve» değil «ile birlikte» mânâsındaki bir وَ'dan sonra gelen ve nasb alan isimdir: سِرْتُ وَالنِّيلَ «Nil boyunca yürüdüm». Ölçü, ikisinin fiilde gerçekten ortak olup olmadığıdır. Ortaksalar وَ atıf harfidir ve isim öncekinin i'rabını alır; ikincisi sadece eşlik ediyorsa وَ vâvü'l-maiyyedir ve isim mansub olur. Karşılaştır: جَاءَ زَيْدٌ وَعَمْرٌو (ikisi de geldi) ile اِسْتَوَى الْمَاءُ وَالْخَشَبَةَ (su tahta ile aynı seviyeye geldi — tahta yükselmedi)."
+  },
+  "examples": [
+    {
+      "ar": "سِرْتُ وَالنِّيلَ.",
+      "en": "I travelled alongside the Nile — the Nile did not travel; it accompanies.",
+      "tr": "Nil boyunca yolculuk ettim — Nil yolculuk etmedi, beraberlik bildirir."
+    },
+    {
+      "ar": "اِسْتَوَى الْمَاءُ وَالْخَشَبَةَ.",
+      "en": "The water became level with the plank — the classic test case.",
+      "tr": "Su tahta ile bir hizaya geldi — klasik ölçü örneği."
+    },
+    {
+      "ar": "جَاءَ زَيْدٌ وَعَمْرٌو.",
+      "en": "Zayd and Amr came — here both are doers, so the وَ is a plain connective and عمرو is marfu'.",
+      "tr": "Zeyd ve Amr geldi — burada ikisi de fâildir, dolayısıyla vâv atıf harfidir ve عمرو merfûdur."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "سرتُ والنيلُ",
+      "right": "سرتُ والنيلَ",
+      "why": {
+        "en": "When the وَ means «together with», the noun after it is mansub. Reading it as a connective and giving it raf' claims the Nile travelled too.",
+        "tr": "وَ «ile birlikte» mânâsındaysa sonrası mansub olur. Atıf sayıp ref verilirse Nil'in de yürüdüğü iddia edilmiş olur."
+      }
+    },
+    {
+      "wrong": "جاء زيدٌ وعمرًا",
+      "right": "جاء زيدٌ وعمرٌو",
+      "why": {
+        "en": "The opposite error: when both are genuinely doers, the وَ is a connective and the second follows the first in raf'. Not every وَ is waw al-ma'iyya.",
+        "tr": "Bunun tersi hata: ikisi de gerçekten fâilse وَ atıf harfidir ve ikincisi birinciye ref'de uyar. Her وَ vâvü'l-maiyye değildir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-fih",
+    "hal",
+    "maful-bihi"
+  ],
+  "gameSeeds": {
+    "spotTheError": true
+  }
+}

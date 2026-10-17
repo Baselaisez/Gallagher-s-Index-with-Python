@@ -1,0 +1,64 @@
+{
+  "id": "huruf-tanbih",
+  "title": {
+    "ar": "حُرُوفُ التَّنْبِيهِ (أَلَا، أَمَا، هَا)",
+    "en": "The particles of alerting: أَلَا، أَمَا، هَا",
+    "tr": "Tenbih harfleri (أَلَا، أَمَا، هَا)"
+  },
+  "level": 4,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب) — حروف التنبيه",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "أَلَا، أَمَا and هَا open a sentence to say «listen — what follows matters». They change no endings; they only wake the listener.",
+    "tr": "أَلَا، أَمَا ve هَا cümlenin başında «dikkat — şimdi söylenecek şey mühim» demektir. Hiçbir i'rabı değiştirmezler; sadece dinleyeni uyandırırlar."
+  },
+  "explanation": {
+    "en": "The حُرُوفُ التَّنْبِيهِ are three: أَلَا، أَمَا، هَا. They stand at the head of the sentence (they have صَدْرُ الْكَلَامِ), alert the listener, and then leave the sentence exactly as it was — they govern nothing. أَلَا very often introduces إِنَّ: «أَلَا إِنَّ أَوْلِيَاءَ اللهِ لَا خَوْفٌ عَلَيْهِمْ». That habit of standing directly before إِنَّ is why the Ottoman amil tables print أَلَا in the same row as إِنَّ and its sisters — but the government in أَلَا إِنَّ زَيْدًا قَائِمٌ belongs wholly to إِنَّ; أَلَا only knocks on the door. هَا is the same particle seen fused in هٰذَا (هَا + ذَا). A separate أَلَا exists among the حُرُوفُ التَّحْضِيضِ (urging: «why not…?» — أَلَا تَنْزِلُ؟); context separates them: tanbih-أَلَا precedes a statement, tahdid-أَلَا precedes a verb being urged.",
+    "tr": "Tenbih harfleri üçtür: أَلَا، أَمَا، هَا. Cümlenin başında bulunurlar (sadr-ı kelâm hakları vardır), dinleyeni uyarırlar ve cümleyi olduğu gibi bırakırlar — amel etmezler. أَلَا çok defa إِنَّ'nin önünde gelir: «أَلَا إِنَّ أَوْلِيَاءَ اللهِ لَا خَوْفٌ عَلَيْهِمْ». Osmanlı avâmil cetvellerinin أَلَا'yı إِنَّ ve kardeşleriyle aynı satırda göstermesi bu alışkanlıktandır — hâlbuki أَلَا إِنَّ زَيْدًا قَائِمٌ cümlesindeki amel tamamen إِنَّ'nindir; أَلَا yalnız kapıyı çalar. هَا aynı harfin هٰذَا (هَا + ذَا) içinde bitişmiş hâlidir. Bir de tahdîd (teşvik) harfleri arasında ayrı bir أَلَا vardır («niçin…-mıyorsun?» — أَلَا تَنْزِلُ؟); ikisini bağlam ayırır: tenbih أَلَا'sı bir haberin, tahdîd أَلَا'sı teşvik edilen bir fiilin önüne gelir."
+  },
+  "examples": [
+    {
+      "ar": "أَلَا إِنَّ زَيْدًا قَائِمٌ.",
+      "en": "Listen — Zayd is indeed standing. أَلَا alerts; the nasb of زَيْدًا is إِنَّ's work alone.",
+      "tr": "Dikkat — Zeyd gerçekten ayaktadır. أَلَا uyarır; زَيْدًا'in nasbı yalnız إِنَّ'nin amelidir."
+    },
+    {
+      "ar": "أَمَا وَاللهِ لَقَدْ صَدَقَ.",
+      "en": "Truly, by Allah, he spoke the truth — أَمَا readies the listener for the oath.",
+      "tr": "Gerçekten, vallahi doğru söyledi — أَمَا dinleyeni yemine hazırlar."
+    },
+    {
+      "ar": "فَهَذِهِ هِيَ الْأُصُولُ الْأَرْبَعَةُ الَّتِي عَلَيْهَا مَدَارُ الْأَحْكَامِ.",
+      "en": "So these are the four principles upon which the rulings turn — the هَا of tanbih is not a separate word here but the first half of هَذِهِ (هَا + ذِهِ), and it still does the same job: it makes the reader look.",
+      "tr": "İşte hükümlerin medârı olan dört asıl bunlardır — buradaki tenbih HÂ'sı ayrı bir kelime değil, هَذِهِ'nin ilk yarısıdır (هَا + ذِهِ) ve yine aynı işi görür: okuyucuya baktırır.",
+      "sourceStory": "mukhtasar-al-manar",
+      "sentence": "s3",
+      "chapter": 3
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "أَلَا زَيْدًا قَائِمٌ",
+      "right": "أَلَا إِنَّ زَيْدًا قَائِمٌ",
+      "why": {
+        "en": "أَلَا itself governs nothing, so it cannot put زيد into nasb. The amil-table row that seats الا beside إِنَّ records its habit of preceding إِنَّ, not a government of its own.",
+        "tr": "أَلَا kendisi amel etmez, زيد'i nasb edemez. Avâmil cetvelinin الا'yı إِنَّ yanına oturtması onun إِنَّ önünde gelme âdetini kaydeder, kendi amelini değil."
+      }
+    },
+    {
+      "wrong": "إِنَّ أَلَا زَيْدًا قَائِمٌ",
+      "right": "أَلَا إِنَّ زَيْدًا قَائِمٌ",
+      "why": {
+        "en": "The tanbih particles hold the head of the sentence; nothing may precede them, least of all the very إِنَّ they introduce.",
+        "tr": "Tenbih harflerinin sadr-ı kelâm hakkı vardır; önlerine hiçbir şey geçemez — hele takdim ettikleri إِنَّ hiç geçemez."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "inna-wa-akhawatuha",
+    "qad-harf"
+  ]
+}
