@@ -8003,3 +8003,50 @@ a token:
 `build44_dry.sh` (every repo package but the landed Iẓhār, plus the dry copy); `probe44_sen.js` grades a chapter sentence by sentence,
 `probe44_set.js` (on a `patch44_dbg.py` copy) names the rule that set each missed word by its LINE, and `probe44_all.js` grades every
 chapter of every story for the neighbour sweep — the three were rewritten after the scratchpad loss and stay in the scratchpad.
+
+## Iẓhār chapter 8 — the qiyāsī governor and the verb, نِعْمَ and بِئْسَ, and round 59 (wave 45, v207)
+
+`izhar-al-asrar` runs to **eight chapters, 93 sentences, 1,666 tokens**: chapter 8 (print pp. 101–102; `author_izhar_ch8.py`) is
+the QIYĀSĪ governor defined — a universal rule with an unbounded subject, a heard form no hurt (كُلُّ صِفَةٍ مُشَبَّهَةٍ تَرْفَعُ الْفَاعِلَ — s1) —
+its nine kinds opened with the verb (raising and naṣb, the fronted manṣūb, lāzim and mutaʿaddī — s2), the lāzim understood without an
+object and taking none but through a jarr letter (s3), the verbs of praise and blame of it — نِعْمَ and بِئْسَ (s4), the three shapes of
+their doer (made definite by the lām, annexed to such a noun, a concealed pronoun explained by an indefinite tamyīz) and the makhṣūṣ as a
+mubtadaʾ whose khabar is the clause before it (s5), its omission and its fronting (الزَّيْدُونَ نِعْمَ الرِّجَالُ — s6), سَاءَ like بِئْسَ and
+حَبَّذَا with its frozen doer ذَا (s7): 7 sentences / 137 tokens, 27 glossary entries, 9 paradigms (بِئْسَ stored jāmid beside نِعْمَ; the
+grammarians' نَصَبَ يَنْصِبُ of bāb ضَرَبَ keyed `nasaba-nahw` — the corpus's `nasaba-set` recites يَنْصُبُ, and a vowel apart is a word
+apart to the corpus walk), the awāmil note `al-lazim-wal-mutaaddi` with an eight-question test, five anchored examples and four
+mistakes. Endings-mode ḍabṭ: **90.3 → 95.2 → 100.0 (124)** across round 59 (`patch45a`, thirteen cuts); floor 97.
+
+**The quoted VERB, and the clause it stands in.** Chapter 7 taught the engines the list of quoted closed-class words; chapter 8 quotes
+VERBS — مِثْلُ بِئْسَ، مَخْصُوصِ نِعْمَ، وَسَاءَ مِثْلُ بِئْسَ، وَحَبَّذَا لِلْمَدْحِ — and annexes nouns to them. The rules, each paid for by a token:
+
+- **The quoted praise verb annexed is kept (45b/45k).** A verb row that is a chain member is written as it stands (hikāya in the place
+  of jarr), never with a kasratān; and نِعْمَ / بِئْسَ / سَاءَ / حَبَّذَا after a bare annexing noun (مِثْل، مَخْصُوص، إِعْرَاب، فَاعِل, a
+  masdar shape, the MUDAF_WORDS) become its member and are kept — the rule runs BEFORE the wave-25 mabnī keep, which had swallowed the
+  verb whole and left the head its tanwīn. A verb heads no chain: وَيَنْصِبُ مَعْمُولَاتٍ had been paired by shape before the author's
+  part of speech turned the head into a verb.
+- **The frozen doer is never a jarr-clitic noun, and a quoted نِعْمَ has no doer (45c/45e).** نِعْمَ لِلْمَدْحِ، وَبِئْسَ لِلذَّمِّ: the
+  wave-24 doer rule stands down on لِلْ… and on a quoted verb; the praise verbs join the quoted list of wave 44 (after وَهِيَ:, and every
+  wāw-joined one while the list runs). حَبَّذَا is always the praise verb, also before a NAME (حَبَّذَا زَيْدٌ) — its doer is ذَا.
+- **The manqūṣ behind a shadda (45a).** مُتَعَدٍّ: NFC writes the kasratān BEFORE the shadda, so the writer's lemma test (`/ٍ$/`) never
+  saw a manqūṣ whose last radical is doubled — the third NFC-shadda payment on this file's record, at the writer.
+- **The passive still owes its deputy (45h/45l).** وَيُذْكَرَ بَعْدَ ذٰلِكَ الْمَخْصُوصُ: the ال-noun after the ẓarf's demonstrative had been
+  the demonstrative's badal (the wave-21d/26m rule); while a passive stands with no deputy seated, that noun is the deputy — in both
+  demonstrative rules, the early one and the seat block.
+- **The wāw-joined pronoun-bearing ẓarf and noun open a clause (45f/45g).** وَبَعْدَهُ الْمَخْصُوصُ: بَعْدَ، قَبْلَ، فَوْقَ، تَحْتَ join مَعَ and
+  عِنْدَ in the wave-26e fronted-khabar list; وَإِعْرَابُهُ كَإِعْرَابِ مَخْصُوصِ نِعْمَ and وَفَاعِلُهُ ذَا: after a complete nominal clause (or a
+  praise-verb clause), a wāw-joined pronoun-bearing noun before a jarr phrase, a demonstrative or a name is a new mubtadaʾ — the parity
+  walk had joined it to the nearest majrūr.
+- **The naṣb of أَنْ reaches across kāna's whole frame (45i).** أَنْ يَكُونَ الْفَاعِلُ مُعَرَّفًا بِاللَّامِ أَوْ مُضَافًا إِلَيْهِ أَوْ مُضْمَرًا مُمَيَّزًا
+  بِنَكِرَةٍ، وَيُذْكَرَ: the mood copy reached four rows; after a naṣb-kāna it now reaches any wāw-joined verb with no other verb between.
+- **The negated verb after the example resumes the definition's subject (45j).** فَاللَّازِمُ مَا يَتِمُّ فَهْمُهُ …، نَحْوُ: قَعَدَ زَيْدٌ، وَلَا
+  يَنْصِبُ الْمَفْعُولَ بِهِ: a wāw-joined negated 3ms transitive muḍāriʿ right after a citation's pause conceals the mubtadaʾ seated before
+  the citation and takes the ال-noun as its object — the example had reset the subject and the noun was read as the doer.
+- **A verb ends the list the number opened (45m).** وَهُوَ تِسْعَةٌ: الْأَوَّلُ الْفِعْلُ، فَكُلُّ فِعْلٍ يَرْفَعُ وَيَنْصِبُ مَعْمُولَاتٍ كَثِيرَةً: the tafṣīl
+  armed by تِسْعَةٌ was still waiting four clauses later and took the plural object as its badal.
+
+**Key hygiene:** `nasaba-set` is the corpus's نَصَبَ يَنْصُبُ («to set up»), so the grammarians' verb is `nasaba-nahw` with its own
+bāb-ضَرَبَ paradigm; `nima` is نِعْمَة, the verb is the standing `nima-verb`; `saa` is سَعَة, the blame verb `saa-bad`; `dha` and `mithl` are
+the Talkhīṣ's and the Amālī's keys reused; `fail` is a note id, the doer-noun is `fail-doer`. The tooling is wave 44's (`build45_dry.sh`,
+`probe44_sen.js`, `probe44_set.js` with an `IDX` list, `probe45_rows.js` — the rows AS DECIDE SAW THEM, after the pre-passes, which is
+what named the `__kindNoun` and `__mabni25` flags that the first two cuts had not seen).

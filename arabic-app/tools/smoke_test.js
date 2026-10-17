@@ -11370,6 +11370,35 @@ if (!CHROME) {
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
   });
 
+  await check('Izhar al-Asrar ch8 (the qiyasi governor and the verb: lazim and mutaaddi; nima and bi\'sa with the three shapes of their doer, the makhsus as a mubtada, its omission and fronting; sa\'a and habbadha): the note with its question test, the doer of nima by the article and by annexation, the tamyiz of the concealed doer, the makhsus in raf, the fronted makhsus by the waw, the quoted praise verbs annexed and kept, the manqus mutaaddi, the sound feminine plural object — and the chapter at 97+ endings-mode dabt (wave 45)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 8); if (!ch) return { err: 'no chapter 8' };
+      const n = GRAMMAR['al-lazim-wal-mutaaddi']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; });
+      return { sentences: ch.sentences.length, note, dabt: Math.round(1000 * hit / nn) / 10, n: nn,
+        doer: W('s5', /^(الرجل|غلام)$/), tamyiz: W('s5', /^رجلا$/), zayd: W('s5', /^زيد$/), front: W('s6', /^الزيدون$/), quoted: W('s7', /^(بئس|نعم|ذا)$/), mutaaddi: W('s2', /^ومتعد$/), plural: W('s2', /^معمولات$/), object: W('s3', /^المفعول$/), madh: W('s4', /^(للمدح|للذم)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 7) throw new Error('ch8 has 7 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: al-lazim-wal-mutaaddi');
+    if (r.note.group !== 'awamil') throw new Error('the note belongs to the awamil group: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 8 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥8 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 5) throw new Error('fewer than five examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.mistakes < 4) throw new Error('fewer than four mistakes: ' + r.note.mistakes);
+    if (r.dabt < 97) throw new Error('ch8 endings-mode dabt below 97: ' + r.dabt + ' on ' + r.n);
+    if (r.doer.length < 3 || r.doer.some(x => x.ok === false) || r.doer.filter(x => x.k === 'raf').length < 2) throw new Error('نِعْمَ الرَّجُلُ / نِعْمَ غُلَامُ الرَّجُلِ: the doer in raf — ' + JSON.stringify(r.doer));
+    if (r.tamyiz.length < 1 || r.tamyiz.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('نِعْمَ رَجُلًا: the tamyiz of the concealed doer — ' + JSON.stringify(r.tamyiz));
+    if (r.zayd.length < 3 || r.zayd.some(x => x.ok === false || x.k !== 'raf')) throw new Error('زَيْدٌ the makhsus: a delayed mubtada in raf — ' + JSON.stringify(r.zayd));
+    if (r.front.length < 1 || r.front.some(x => x.ok === false || x.k !== 'raf')) throw new Error('الزَّيْدُونَ نِعْمَ الرِّجَالُ: the fronted makhsus by the waw — ' + JSON.stringify(r.front));
+    if (r.quoted.length < 3 || r.quoted.some(x => x.ok === false || x.k !== 'keep')) throw new Error('مِثْلُ بِئْسَ، فَاعِلُهُ ذَا، مَخْصُوصِ نِعْمَ: the quoted words kept as written — ' + JSON.stringify(r.quoted));
+    if (r.mutaaddi.length < 1 || r.mutaaddi.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَمُتَعَدٍّ: the manqus in raf with its kasratan — ' + JSON.stringify(r.mutaaddi));
+    if (r.plural.length < 1 || r.plural.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('يَنْصِبُ مَعْمُولَاتٍ: the sound feminine plural object — ' + JSON.stringify(r.plural));
+    if (r.object.length < 1 || r.object.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('وَلَا يَنْصِبُ الْمَفْعُولَ بِهِ: the object after the example — ' + JSON.stringify(r.object));
+    if (r.madh.length < 2 || r.madh.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('نِعْمَ لِلْمَدْحِ، وَبِئْسَ لِلذَّمِّ: the jarr phrase after the quoted verb — ' + JSON.stringify(r.madh));
+  });
+
   await check('Izhar al-Asrar ch7 (the governor in the mudari: the four nasibs, idhan\'s condition and its two failures, the concealed an, the fifteen jazims, the concealed in): the note with its question test, the quoted particles as words mentioned, the ungoverning idhan keeping the damma, the fa of cause with its concealed an, the jawab al-talab under a concealed in, the naming passive\'s second object, the letter-name resuming the list, the frozen hal — and the chapter at 97+ endings-mode dabt (wave 44)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
