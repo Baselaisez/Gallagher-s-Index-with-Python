@@ -11370,6 +11370,42 @@ if (!CHROME) {
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
   });
 
+  await check('Izhar al-Asrar ch14-15 (the mudaf stripped of its tanwin and its deputy, the ma\'nawi and the lafzi idafa, the sifa with the article annexed to its object — الضَّارِبُ الرَّجُلِ; the complete vague noun by itself, by the tanwin, by the nun of the dual and of the plural-like, by annexation, and the tamyiz of the numbers): the two notes with their question tests, the cited chain annexed on the author\'s kasra and its joined heads, the article-sifa head, the quoted غَيْرٍ after its own mention, the pronoun-bearing noun after the pause opening its clause, the mubtada\'s word repeated, the term after the majrur number as the khabar, the jarr-clitic quantifier and letter-name annexing, the dual pronoun returning to its pair, the construct keeping its letters — and both chapters at 97+ endings-mode dabt (wave 50)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const c14 = st.chapters.find(c => (c.n || c.chapter) === 14); const c15 = st.chapters.find(c => (c.n || c.chapter) === 15); if (!c14 || !c15) return { err: 'no chapter 14/15' };
+      const note = id => { const n = GRAMMAR[id]; return n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true }; };
+      const W = (ch, id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      const D = ch => { let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; }); return { dabt: Math.round(1000 * hit / nn) / 10, n: nn }; };
+      return { s14: c14.sentences.length, s15: c15.sentences.length, n14: note('al-mudaf-wa-nawa-al-idafa'), n15: note('al-ism-al-mubham-al-tamm'), d14: D(c14), d15: D(c15),
+        shart: W(c14, 's1', /^وشرطه$/), shart2: W(c14, 's3', /^وشرطها$/), ghayr: W(c14, 's5', /^(والمضاف|غير|وشبهه|ومثل)$/), chain: W(c14, 's6', /^(ضارب|وحسن|ومعمول|والضاربا|والضاربو)$/), zayd: W(c14, 's6', /^زيد$/),
+        alsifa: W(c14, 's7', /^(الضارب|الرجل|الوجه|أصله)$/), ahad: W(c15, 's2', /^بأحد$/), nahwu: W(c15, 's2', /^نحو$/), tanwin: W(c15, 's3', /^وبالتنوين$/), mumayyiz: W(c15, 's4', /^(ومميز|ثلاثة|مجرور|منصوب|مفرد|وتثنيتهما|وجمعهما|مائة|وألف)$/), nun: W(c15, 's6', /^(وبنون|شبه)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.s14 < 7) throw new Error('ch14 has 7 sentences — got ' + r.s14);
+    if (r.s15 < 6) throw new Error('ch15 has 6 sentences — got ' + r.s15);
+    for (const [id, n] of [['al-mudaf-wa-nawa-al-idafa', r.n14], ['al-ism-al-mubham-al-tamm', r.n15]]) {
+      if (n.missing) throw new Error('note missing: ' + id);
+      if (n.group !== 'awamil') throw new Error(id + ' belongs to the awamil group: ' + n.group);
+      if (!n.q || n.q[0] < 7 || n.q[0] !== n.q[1]) throw new Error(id + ': the question test must carry ≥7 questions in both languages: ' + JSON.stringify(n.q));
+      if (n.ex < 4) throw new Error(id + ': fewer than four examples anchored in izhar-al-asrar: ' + n.ex);
+      if (n.mistakes < 3) throw new Error(id + ': fewer than three mistakes: ' + n.mistakes);
+    }
+    if (r.d14.dabt < 97) throw new Error('ch14 endings-mode dabt below 97: ' + r.d14.dabt + ' on ' + r.d14.n);
+    if (r.d15.dabt < 97) throw new Error('ch15 endings-mode dabt below 97: ' + r.d15.dabt + ' on ' + r.d15.n);
+    if (r.shart.length < 1 || r.shart.some(x => x.ok === false || x.k !== 'raf')) throw new Error('، وَشَرْطُهُ أَنْ يَكُونَ: the pronoun-bearing noun after the pause opens the clause — ' + JSON.stringify(r.shart));
+    if (r.shart2.length < 1 || r.shart2.some(x => x.ok === false || x.k !== 'raf')) throw new Error('، وَشَرْطُهَا تَجْرِيدُ: the mubtada before the bare masdar — ' + JSON.stringify(r.shart2));
+    if (r.ghayr.length < 5 || r.ghayr.some(x => x.ok === false) || r.ghayr[0].k !== 'raf' || r.ghayr[2].k !== 'jarr' || r.ghayr[3].k !== 'jarr') throw new Error('وَالْمُضَافُ غَيْرُ غَيْرٍ وَشِبْهِهِ وَمِثْلٍ: the hal-waw clause, the word before its own mention annexing it, the joined words following the mention — ' + JSON.stringify(r.ghayr));
+    if (r.chain.length < 5 || r.chain.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('نَحْوُ: ضَارِبِ زَيْدٍ وَحَسَنِ الْوَجْهِ وَمَعْمُولِ الدَّارِ وَالضَّارِبَا زَيْدٍ وَالضَّارِبُو زَيْدٍ: the cited chain annexed on the kasra, its joined heads, the constructs keeping their letters — ' + JSON.stringify(r.chain));
+    if (r.zayd.length < 3 || r.zayd.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('زَيْدٍ ×3: the annexes of the cited heads — ' + JSON.stringify(r.zayd));
+    if (r.alsifa.length < 4 || r.alsifa.some(x => x.ok === false)) throw new Error('نَحْوُ: الضَّارِبِ زَيْدٍ … جَازَ الضَّارِبُ الرَّجُلِ … عَلَى الْحَسَنِ الْوَجْهِ، أَصْلُهُ: the sifa with the article annexed to its object — ' + JSON.stringify(r.alsifa));
+    if (r.ahad.length < 1 || r.ahad.some(x => x.ok === false || !/دِ$/.test(x.out || ''))) throw new Error('بِأَحَدِ خَمْسَةِ أَشْيَاءَ: the jarr-clitic quantifier annexed, no tanwin — ' + JSON.stringify(r.ahad));
+    if (r.nahwu.length < 2 || r.nahwu.some(x => x.ok === false)) throw new Error('نَحْوُ: / نَحْوُ قَوْلِهِ: the khabar of a dropped mubtada by the author\'s damma — ' + JSON.stringify(r.nahwu));
+    if (r.tanwin.length < 1 || r.tanwin.some(x => x.ok === false || x.k !== 'jarr' || !/نِ$/.test(x.out || ''))) throw new Error('وَبِالتَّنْوِينِ: no sound plural behind the clitics — ' + JSON.stringify(r.tanwin));
+    if (r.mumayyiz.length < 14 || r.mumayyiz.some(x => x.ok === false)) throw new Error('وَمُمَيِّزُ ثَلَاثَةٍ … بَلْ هُوَ مَجْرُورٌ … مَنْصُوبٌ مُفْرَدٌ … وَتَثْنِيَتِهِمَا وَجَمْعِهِمَا … نَحْوُ: مِائَةُ رَجُلٍ وَأَلْفُ دِرْهَمٍ: the term head annexing the number, the pronoun\'s khabar after بَلْ, the term after the majrur number as the khabar, the dual pronoun returning to its pair, the cited number in raf by its damma with its joined head — ' + JSON.stringify(r.mumayyiz));
+    if (r.nun.length < 2 || r.nun.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('وَبِنُونِ شِبْهِ الْجَمْعِ: بِ + نُون by the marks, annexed — ' + JSON.stringify(r.nun));
+  });
+
   await check('Izhar al-Asrar ch12-13 (the ism fa\'il and ism maf\'ul with their conditions — no diminutive, no sifa before the work, the lam or the reliance on a mubtada, a mawsuf, a dhu hal, a question or a negation; the sifa mushabbaha doing its verb\'s work; the tafdil raising the apparent doer in the kuhl frame; the masdar standing for its verb): the two notes with their question tests, the cited diminutives kept in raf, the dual after wa-la joined, the nakira doer\'s na\'t, the madi shart\'s jawab in raf, the aw-list resumed after a citation, the masdar\'s object, the cognate masdar annexed, the carried subject\'s object with its na\'t, the jarr-clitic noun annexed to ma, the kuhl frame\'s doer — and both chapters at 97+ endings-mode dabt (wave 49)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };

@@ -8308,3 +8308,75 @@ says the maṣdar is in use (49r). Two keeps stay, because the books keep them: 
 instance», wave 25) and نَحْوَ يُحْيِي وَيُمِيتُ (the verbs after the citing ẓarf). The drill bank (`content/drills/generated.json`) was
 regenerated after the round: 922 worked sentences, part-of-speech agreement 98.5%, the case layer 98.3% over 6,065 double-decided
 tokens — three sentences moved, none below its chapter's floor.
+
+## Iẓhār chapters 14–15 — the muḍāf, the complete vague noun and the tamyīz, and round 64 (wave 50, v209)
+
+`izhar-al-asrar` runs to **fifteen chapters, 144 sentences, 2,744 tokens, 709 glossary entries**: chapter 14 (print pp. 110–111;
+`author_izhar_ch14.py`) is the seventh qiyāsī governor — the annexed noun, stripped of its tanwīn and of the nūn that stands in for
+it, never equal to its annex in generality nor narrower than it (s1–2); the maʿnawī annexation (a head that is no ṣifa annexed to its
+object: غُلَامِ زَيْدٍ، ضَارِبِ عَمْرٍو أَمْسِ — s3), definite by a definite annex and specified by an indefinite one, save غَيْر and its
+like and مِثْل (s4–5); the lafẓī annexation (the ṣifa annexed to its object, lightening only: ضَارِبِ زَيْدٍ، حَسَنِ الْوَجْهِ، وَالضَّارِبَا
+زَيْدٍ — s6), with the article barred before a bare name (الضَّارِبِ زَيْدٍ) and allowed before an article-noun (الضَّارِبُ الرَّجُلِ on the
+model of الْحَسَنُ الْوَجْهِ — s7): 7 sentences / 141 tokens. Chapter 15 (print pp. 111–113; `author_izhar_ch15.py`) is the eighth —
+the complete vague noun that puts an indefinite in naṣb as its tamyīz (s1), its completeness by one of five things: by itself in the
+vague pronoun and the demonstrative (رُبَّهُ رَجُلًا، يَا لَهُ رَجُلًا، نِعْمَ رَجُلًا؛ مَاذَا أَرَادَ اللهُ بِهٰذَا مَثَلًا — s2), by the tanwīn
+spoken or estimated (رِطْلٌ زَيْتًا، مِثْقَالُ ذَهَبًا، أَحَدَ عَشَرَ رَجُلًا — s3), by the nūn of the dual (مَنَوَانِ سَمْنًا — s5) and of the
+plural-like twenty to ninety (عِشْرُونَ دِرْهَمًا — s6), by annexation (مِلْؤُهُ عَسَلًا — s6); the tamyīz of the numbers — three to ten in
+the plural and jarr save the hundreds, eleven to ninety-nine singular in naṣb, a hundred and a thousand with their duals and plurals
+singular in jarr (s4) — and no fronting of the tamyīz (s6): 6 sentences / 142 tokens. Together 48 glossary entries (the measures رِطْل،
+مِثْقَال، مَنّ, the matn's مَنَوَانِ, the letter-name نُون, the state حَالَة under `hala-condition` because `hala` is حَالَ) and 3 paradigms
+(أَفَادَ، اِمْتَنَعَ، تَعَرَّفَ); the awāmil notes `al-mudaf-wa-nawa-al-idafa` (nine questions, seven anchored examples, four mistakes) and
+`al-ism-al-mubham-al-tamm` (ten, nine, four). Endings-mode ḍabṭ: **ch14 87.9 → 100.0 (137), ch15 86.3 → 100.0 (126)** across round 64
+(`patch50a` – `patch50d`, four cuts; the fourth is the corpus sweep's repairs); floors 97; chapters 9–13 unchanged. The chapter-14 token غَيْرَ (the khabar after the ḥāl's
+wāw) was re-read as غَيْرُ in authoring — the author's own note had said rafʿ was the origin, and the engine read it so.
+
+**The chapter that teaches the annexed ṣifa is the chapter that breaks every rule written against it.** Three doctrines this file
+holds — لَا يَجْتَمِعُ ال وَالْإِضَافَة, a name takes no naʿt, a ṣifa before a bare noun cuts the chain — are exactly what the lafẓī
+annexation suspends: الضَّارِبُ الرَّجُلِ is an article-ṣifa annexed to an article-noun. The rules of round 64, each paid for by a token:
+
+- **The ṣifa with the article annexed to its object (50u/50ab).** An ال-word of participle shape (or one of the named فَعَل
+  adjectives: حَسَن…) directly before a name or a plain ال-noun, inside a citation (نَحْوُ), after جَازَ / امْتَنَعَ / يَجُوزُ or under
+  عَلَى, heads it — marked BEFORE the colon rule and before the نَحْوُ: annexation, because both decide the row first; the construct
+  dual and plural are read through their tail (وَالضَّارِبَا، وَالضَّارِبُو) and the writer keeps their letters (50b).
+- **The cited chain after نَحْوُ: is annexed on the author's kasra and quoted on his ḍamma (50d).** نَحْوُ: ضَارِبِ زَيْدٍ وَحَسَنِ
+  الْوَجْهِ: the wave-29 list rule saw only bare items before a joiner; a head with its member is a list item too, and the chain's end
+  is a joiner, a pause, أَوْ, or the jarr phrase that follows (لِعَدَمِ التَّخْفِيفِ — 50ae). The joined heads of the list follow the
+  first head in jarr (50ac — the wāw read by letters where the lexicon owns no مَعْمُول), the ajuz rule stands down inside the list
+  (50t), a head whose partner head is undecided stays undecided with it rather than taking the member's jarr (50e/50w), and
+  the cited number after نَحْوُ: with the author's ḍamma is the quoted mubtadaʾ in rafʿ (50al — نَحْوُ: ثَلَاثَةُ رِجَالٍ، مِائَةُ رَجُلٍ
+  وَأَلْفُ دِرْهَمٍ: the receipt that decided نَحْوُ itself in 50f decides the number it cites).
+- **A word before its own mention annexes it, and what follows continues the mention (50n/50c/50s/50y).** غَيْرُ غَيْرٍ وَشِبْهِهِ
+  وَمِثْلٍ: the tawkīd lafẓī (كَثِيرَةٍ، كَثِيرَةٍ) needs the same ending on both words; with two endings the first is the head and the
+  second the word named, and the joined pronoun-bearing nouns after it join the mention, not the head (the wave-24h rule for
+  فَوَاتِحُ السُّوَرِ وَخَوَاتِمُهَا stands down there).
+- **The dual pronoun returns to the pair it follows (50aa).** مِائَةٍ وَأَلْفٍ وَتَثْنِيَتِهِمَا وَجَمْعِهِمَا: the parity walk had paired
+  the pronoun-bearing words with the mubtadaʾ مُمَيِّزُ; هِمَا names two things, and the two majrūrs before it are the two.
+- **The clauses the pauses open (50l/50m/50o/50z).** ، وَشَرْطُهُ أَنْ يَكُونَ and ، وَشَرْطُهَا تَجْرِيدُ (a joined pronoun-bearing noun
+  after a pause before أَنْ or a bare maṣdar is a mubtadaʾ); وَالْمُضَافُ غَيْرُ غَيْرٍ (the wāw of the ḥāl after kāna's khabar opens a
+  nominal clause); ، وَمُمَيِّزُ أَحَدَ عَشَرَ (the mubtadaʾ's word repeated after a pause opens its clause again, and the
+  frozen-adverb ʿaṭf of wave 26e stands down before a pause and a chain head — 50r); ، أَصْلُهُ الْحَسَنُ وَجْهُهُ (a pronoun-bearing noun
+  after a pause before a definite is a mubtadaʾ, not the verb's object).
+- **The term after the majrūr number is the khabar, no tamyīz (50q); the pronoun's khabar after بَلْ is no ḥāl (50i).** إِلَى تِسْعٍ
+  وَتِسْعِينَ مَنْصُوبٌ مُفْرَدٌ دَائِمًا; بَلْ هُوَ مَجْرُورٌ وَمَجْمُوعٌ.
+- **The heads that annex a number and the clitic heads that annex (50p/50g/50ad).** مُمَيِّزُ ثَلَاثَةٍ، مُمَيِّزُ مِائَةٍ (the term heads
+  pass the «a number is never a muḍāf ilayh» cut); بِأَحَدِ خَمْسَةِ أَشْيَاءَ and بِنُونِ شِبْهِ الْجَمْعِ (a jarr-clitic quantifier or
+  letter-name heads the noun after it, and the chain runs on: نُونِ شِبْهِ الْجَمْعِ).
+- **What the corpus sweep took back (50af–50ak).** The round was swept corpus-wide against a content-only baseline before landing,
+  and eight chapters had moved: the mention rule had annexed every tawkīd lafẓī (كَثِيرَةٍ كَثِيرَةٍ، أَصْنَامٌ أَصْنَامٌ، رُوَيْدًا رُوَيْدًا — the
+  author's tanwīn now refuses the mention, 50af); the clitic quantifier had annexed لِأَحَدٍ نَفْعًا (the tanwīn stays, 50ag); the
+  construct-letter writer had stripped لِعُلُوِّ السِّنِّ (a doubled wāw is no plural, 50ah); the pause rule had opened a clause on
+  ، شَدِيدِي الِاعْتِمَادِ (a ṣifa-shaped construct in يْ carries no «my», 50ai); and the head-to-head hop had climbed from صَمْتٍ onto
+  بَعْدَ (never onto a ẓarf or a frozen adverb, 50aj). One sentence came out ahead: إِمَّا ثَابِتَةٌ … أَوْ غَيْرُ ثَابِتَةٍ — the أَوْ-word now
+  shares the إِمَّا-word's case (50ak) where wave 49b had only stopped the nearest-noun pairing.
+- **The clitic test reads the marks against the whole-word owner (50h/50v).** وَبِنُونِ: the lexicon owns بَنُونَ by the letters, and
+  the written بِ with its kasra refutes it — the vowels before the last letter are the word's identity (the ṣarf test's doctrine, at
+  the clitic peel); with the whole-word claim refuted, the peeled reading (بِ + نُون) is tried.
+- **The citing نَحْوُ with the author's ḍamma is the khabar of a dropped mubtadaʾ (50f).** نَحْوُ قَوْلِهِ تَعَالَى — the wave-29 reading
+  (the citing ẓarf on a fatḥa) keeps the fatḥa only where the page writes it.
+- **The writer's no-plural test sees through the clitics (50a).** وَبِالتَّنْوِينِ had been declined as a sound plural because
+  `lex("وَبِالتَّنْوِين")` is nothing; the test now asks for the host behind the joiner and behind the jarr letter.
+
+**Key hygiene:** `hala` is حَالَ, so the state is `hala-condition` (caught at dry-run); `tamyiz-noun` beside the note id `tamyiz`;
+`dhahab-gold` because `dhahab` is the verb; `mia`, `alf`, `thalathumia`, `tisumia`, `tis`, `tisun` name the numbers; `nun-letter`; the
+measures `ritl`, `mithqal`, `mann`; `ya-nida` for the يَا of يَا لَهُ. **Process:** the round was swept corpus-wide against a
+CONTENT-ONLY baseline (the v208 engine with the chapter-14–15 packages) before anything was landed — the v208 lesson, kept.
