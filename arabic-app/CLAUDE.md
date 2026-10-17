@@ -7946,3 +7946,60 @@ the forward search stops at any conjunction-initial token. (2) A tanwīn-bearing
 between the kasra and the speaker's yāʾ (رَبِّي), so the regexes allow it. (3) مَا at the head of a Talkhīṣ definition is the relative, not a
 question: km1 fires only on أَيْنَ، كَيْفَ، مَتَى and their sisters. (4) The analyzer labels عَمْرٌو in «مَا ضَرَبَ زَيْدًا إِلَّا عَمْرٌو» by
 position, not by case — the reason the seeds carry their own offices. `DabtEngine` and the analyzer are untouched.
+
+## Iẓhār chapter 7 — the nāṣib and the jāzim of the muḍāriʿ, and round 58 (wave 44, v206)
+
+`izhar-al-asrar` runs to **seven chapters, 86 sentences, 1,529 tokens**: chapter 7 (print pp. 99–101; `author_izhar_ch7.py`) is
+the governor in the MUḌĀRIʿ — two kinds (s1); the four nāṣibs with their senses (أَنْ of the maṣdar, لَنْ of the emphatic future negation,
+كَيْ of cause, إِذَنْ of condition and answer — s2); إِذَنْ's condition (a future verb leaning on nothing before it — s3) and the two examples
+where it fails (إِذَنْ أَظُنُّكَ كَاذِبًا — present; أَنَا إِذَنْ أُكْرِمُكَ — leaning on أَنَا; s4); the concealed أَنْ (زُرْنِي فَأُكْرِمَكَ — s5); the
+fifteen jāzims — the four letters of one verb (لَمْ، لَمَّا، لَامُ الْأَمْرِ، لَا النَّهْيِ — s6), the eleven words of requital (إِنْ، حَيْثُمَا، أَيْنَ،
+أَنَّى، إِذْمَا، إِذَا مَا، مَتَى، مَهْمَا، مَا، أَيٌّ، مَنْ — s7) — and the concealed إِنْ (زُرْنِي أُكْرِمْكَ — s8): 8 sentences / 128 tokens, 34
+glossary entries, 4 paradigms (جَزَمَ of bāb ضَرَبَ and اِعْتَمَدَ built, أَرَادَ and زَارَ copied), the awāmil note `nawasib-wa-jawazim-al-mudari`
+with a seven-question test, five anchored examples and four mistakes. The lithograph's «أحد عشر منها» is kept masculine and the manifest
+says so. Endings-mode ḍabṭ: **90.1 → 99.2 → 100.0 (121)** across round 58 (`patch44a`, eleven cuts); floor 97.
+
+**The chapter is a LIST of words mentioned, and the list is the doctrine of round 58.** Every item of the matn's enumerations — وَهِيَ: لَمْ
+وَلَمَّا لِلنَّفْيِ الْمَاضِي، وَلَامُ الْأَمْرِ وَلَا النَّهْيِ لِلطَّلَبِ — is a closed-class word quoted, glossed by a لِ-phrase, and joined to the next by a
+wāw; the engines read each one as a word in USE and the sentence fell apart (a quoted إِنْ opened a sharṭ frame that jazm'd فَيُجْزَمُ three
+rows later; a quoted أَنَّى fronted a khabar over لِلْمَكَانِ; a quoted أَنْ made خَاصَّةً its ḍamīr-al-shaʾn mubtadaʾ). The rules, each paid for by
+a token:
+
+- **The quoted list (44b).** A closed-class word after the pronoun's (or the counted noun's) colon — وَهِيَ:، أَرْبَعَةُ أَحْرُفٍ: — and every
+  wāw-joined closed-class word while the list runs (over the jarr phrases and the ال-naʿts that gloss each item) is a word mentioned
+  (`__quoted27`, the wave-28 flag); a verb or a bare open-class noun ends the list; a joined لَا/مَا directly before a verb is in use. The
+  keep now covers the sharṭ and question NOUNS (pk shart / shart-jazim / istif-ism / man / ma), and the keep DELETES the ShartEngine
+  frame the quoted adat had opened (`shartVerb`), so the jazm the frame promised never reaches a later verb.
+- **The letter-name resumes the list (44c).** After a pause, a wāw-joined letter-name (لَام، وَاو، فَاء…) annexing the next word — وَلَامُ
+  الْأَمْرِ — joins the quoted khabar in the place of rafʿ, where the parity walk had joined it to the majrūr before the pause.
+- **The quoted adverb fronts nothing (44d).** The question-adverb rule (أَيْنَ خَزَائِنُ الْأَرْضِ) stands down on a quoted adverb and on a
+  jarr-clitic noun: وَأَنَّى لِلْمَكَانِ، وَمَتَى لِلزَّمَانِ keep their jarr.
+- **The maṣdar of concealment annexes the particle it names (44e).** إِضْمَارُ أَنْ خَاصَّةً، إِضْمَارُ إِنْ خَاصَّةً — حَذْف، إِضْمَار، تَقْدِير، ذِكْر،
+  زِيَادَة… before a bare particle whose next word it cannot govern (a frozen adverb, a pause, a fused pronoun, a jarr-clitic noun, the
+  end): the head annexes (no tanwīn), the particle is quoted. The wave-29 rule needed a jarr letter after the particle; the wave-28 rule a
+  joined second particle; this one reads the head's lemma.
+- **The frozen ḥāls (44f).** خَاصَّةً، كَافَّةً، قَاطِبَةً، طُرًّا، جَمِيعًا join `FROZEN_ADV26` as ḥāls — خَاصَّة / كَافَّة only where no noun stands
+  before them (صِفَةٌ خَاصَّةٌ is a naʿt).
+- **وَنَحْوُ: after a pause is the citation head again (44g)**, not the ʿaṭf of the earlier نَحْوُ — the wave-27 «repeats an earlier seat's
+  word» rule excludes it.
+- **What was said is the object (44h).** لِمَنْ قَالَ هٰذَا الْقَوْلَ: after a saying verb, a demonstrative followed by a SPEECH noun (قَوْل،
+  كَلَام، كَلِمَة، شِعْر، بَيْت، حَدِيث…) is what was said — the demonstrative in the place of naṣb, its badal in naṣb; the wave-33 sayer rule
+  (قَالَ النَّاسُ) keeps every other definite noun as the sayer.
+- **The jawāb al-ṭalab reads the seam (44j).** زُرْنِي أُكْرِمْكَ: the wave-24m/26q rule stripped the object pronoun with `[ً-ٰ]*كَ$` — a
+  pattern that never matched a VOWELLED pronoun, so the author's sukūn on the host was never read and first-person answers with a
+  pronoun (أَسْتَخْلِصْهُ, an accepted miss since ch15) stayed in rafʿ. The pronoun comes off with its OWN vowel now (`كَ[ً-ٰ]*$`), and
+  the host's sukūn is the receipt: jazm by the concealed إِنْ.
+- **The she-passive of naming after a pause (44k).** مُضَارِعَيْنِ، تُسَمَّى كَلِمَ الْمُجَازَاةِ: an unjoined تُ-passive of a two-object verb
+  after a pause (or after a seated subject) names the clause's own subject — its deputy concealed — and the bare annexed noun after it is
+  the NAME, the second object; the wave-27 rule needed a verb right before the passive, the wave-19 one a joined passive.
+- **كَلِمَ is not كَ + لَمْ (44a — the analyzer).** The ب/ل/ك peel before a particle remainder read كَلِمَ as a quoted لَمْ under a kāf; a
+  fatḥa-headed particle (لم لن لا ما لو كي قد هل لكن لعل ليت لما) is refused when the written second letter wears a kasra or a ḍamma —
+  the lexicon's كَلِم (the collective of كَلِمَة) keeps its word. The fifth payment of «a clitic-peel regex is a homograph trap».
+
+**Content and tooling.** Key hygiene: `nasaba` means نَاسَبَ elsewhere, so the nāṣib is `nasib` and the verb is only the noun's gloss;
+`idhan` is إِذًا in the Qiṣaṣ, the matn's إِذَنْ rides `idhan-jawab`; `jaza` is جَزَى, the answer is the standing `jaza-answer`; `kadhib` is
+كَذِب, the liar `kadhib-liar`; `ma` is water in the creed, the conditional مَا is `ma-shartiyya`; `anna` is أَنَّ, the adverb أَنَّى is
+`anna-shartiyya`; the letter لَام is `lam-letter` (the talkhīṣ's `lam-amr` is the clitic لِـ). The dry build of the chapter is
+`build44_dry.sh` (every repo package but the landed Iẓhār, plus the dry copy); `probe44_sen.js` grades a chapter sentence by sentence,
+`probe44_set.js` (on a `patch44_dbg.py` copy) names the rule that set each missed word by its LINE, and `probe44_all.js` grades every
+chapter of every story for the neighbour sweep — the three were rewritten after the scratchpad loss and stay in the scratchpad.

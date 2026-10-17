@@ -11370,6 +11370,36 @@ if (!CHROME) {
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
   });
 
+  await check('Izhar al-Asrar ch7 (the governor in the mudari: the four nasibs, idhan\'s condition and its two failures, the concealed an, the fifteen jazims, the concealed in): the note with its question test, the quoted particles as words mentioned, the ungoverning idhan keeping the damma, the fa of cause with its concealed an, the jawab al-talab under a concealed in, the naming passive\'s second object, the letter-name resuming the list, the frozen hal — and the chapter at 97+ endings-mode dabt (wave 44)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 7); if (!ch) return { err: 'no chapter 7' };
+      const n = GRAMMAR['nawasib-wa-jawazim-al-mudari']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; });
+      const quoted = (() => { const sen = ch.sentences.find(x => x.id === 's2'); const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => /^و?(لن|كي|إذن|أن)$/.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => w.k + ':' + w.ok); })();
+      return { sentences: ch.sentences.length, note, dabt: Math.round(1000 * hit / nn) / 10, n: nn, quoted,
+        idhan: W('s4', /^(أظنك|أكرمك)$/), fa: W('s5', /^فأكرمك$/), hal: W('s5', /^خاصة$/), idmar: W('s5', /^إضمار$/), lam: W('s6', /^ولام$/), kalim: W('s7', /^كلم$/), makan: W('s7', /^(للمكان|للزمان)$/), jazm: W('s8', /^(أكرمك|فيجزم)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 8) throw new Error('ch7 has 8 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: nawasib-wa-jawazim-al-mudari');
+    if (r.note.group !== 'awamil') throw new Error('the note belongs to the awamil group: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 7 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥7 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 5) throw new Error('fewer than five examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.mistakes < 4) throw new Error('fewer than four mistakes: ' + r.note.mistakes);
+    if (r.dabt < 97) throw new Error('ch7 endings-mode dabt below 97: ' + r.dabt + ' on ' + r.n);
+    if (r.quoted.length < 4 || r.quoted.some(x => x !== 'keep:true')) throw new Error('أَنْ وَلَنْ وَكَيْ وَإِذَنْ are words mentioned, kept as written: ' + JSON.stringify(r.quoted));
+    if (r.idhan.length < 2 || r.idhan.some(x => x.ok === false || x.k !== 'raf')) throw new Error('إِذَنْ أَظُنُّكَ / أَنَا إِذَنْ أُكْرِمُكَ: the ungoverning idhan keeps the damma — ' + JSON.stringify(r.idhan));
+    if (r.fa.length < 1 || r.fa.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('زُرْنِي فَأُكْرِمَكَ: nasb by the concealed أَنْ after the fa of cause — ' + JSON.stringify(r.fa));
+    if (r.hal.length < 1 || r.hal.some(x => x.ok === false || x.rule !== 'hal')) throw new Error('خَاصَّةً: the frozen hal — ' + JSON.stringify(r.hal));
+    if (r.idmar.length < 1 || r.idmar.some(x => x.ok === false || x.k !== 'raf')) throw new Error('إِضْمَارُ أَنْ: the masdar annexes the quoted particle, no tanwin — ' + JSON.stringify(r.idmar));
+    if (r.lam.length < 1 || r.lam.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَلَامُ الْأَمْرِ: the letter-name resumes the list in raf — ' + JSON.stringify(r.lam));
+    if (r.kalim.length < 1 || r.kalim.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('تُسَمَّى كَلِمَ الْمُجَازَاةِ: the naming passive\'s second object — ' + JSON.stringify(r.kalim));
+    if (r.makan.length < 2 || r.makan.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('وَأَنَّى لِلْمَكَانِ، وَمَتَى لِلزَّمَانِ: the jarr phrase after the quoted adverb — ' + JSON.stringify(r.makan));
+    if (r.jazm.length < 2 || r.jazm.some(x => x.ok === false) || !r.jazm.some(x => x.k === 'jazm') || !r.jazm.some(x => x.k === 'raf')) throw new Error('فَيُجْزَمُ … زُرْنِي أُكْرِمْكَ: the quoted إِنْ opens no frame, the jawab al-talab is majzum by the concealed إِنْ — ' + JSON.stringify(r.jazm));
+  });
+
   await check('Izhar al-Asrar ch6 (the disjoined illa, la of the genus, ma / la like laysa with their conditions): the note with its question test, the excepted in nasb, la\'s annexed ism in nasb with its khabar in raf, the khabar in nasb after the Hijazi ma, the khabar back in raf when a condition fails (wave 31)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
