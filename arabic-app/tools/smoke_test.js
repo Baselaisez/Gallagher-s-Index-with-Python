@@ -11370,6 +11370,147 @@ if (!CHROME) {
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
   });
 
+  await check('Izhar al-Asrar ch12-13 (the ism fa\'il and ism maf\'ul with their conditions — no diminutive, no sifa before the work, the lam or the reliance on a mubtada, a mawsuf, a dhu hal, a question or a negation; the sifa mushabbaha doing its verb\'s work; the tafdil raising the apparent doer in the kuhl frame; the masdar standing for its verb): the two notes with their question tests, the cited diminutives kept in raf, the dual after wa-la joined, the nakira doer\'s na\'t, the madi shart\'s jawab in raf, the aw-list resumed after a citation, the masdar\'s object, the cognate masdar annexed, the carried subject\'s object with its na\'t, the jarr-clitic noun annexed to ma, the kuhl frame\'s doer — and both chapters at 97+ endings-mode dabt (wave 49)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const c12 = st.chapters.find(c => (c.n || c.chapter) === 12); const c13 = st.chapters.find(c => (c.n || c.chapter) === 13); if (!c12 || !c13) return { err: 'no chapter 12/13' };
+      const note = id => { const n = GRAMMAR[id]; return n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true }; };
+      const W = (ch, id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      const D = ch => { let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; }); return { dabt: Math.round(1000 * hit / nn) / 10, n: nn }; };
+      return { s12: c12.sentences.length, s13: c13.sentences.length, n12: note('shurut-amal-ism-al-fail'), n13: note('amal-ism-al-tafdil-wal-masdar'), d12: D(c12), d13: D(c13),
+        dim: W(c12, 's3', /^(ضويرب|ومضيرب)$/), dual: W(c12, 's3', /^موصوفين$/), nat: W(c12, 's3', /^شديد$/), shart: W(c12, 's4', /^يشترط$/), shart2: W(c12, 's5', /^يشترط$/), list: W(c12, 's5', /^(الاستفهام|النفي)$/), obj: W(c12, 's6', /^المفعول$/), cog: W(c12, 's8', /^(عمل|فعلها)$/),
+        carry: (() => { DabtEngine.grade(c13.sentences.find(x => x.id === 's1'), 'endings'); return W(c13, 's2', /^(الفاعل|الظاهر)$/); })() /* the carried subject needs s1 graded first */, mudaf: W(c13, 's2', /^لمتعلق$/), kuhl: W(c13, 's3', /^الكحل$/), fa: W(c13, 's5', /^فيعمل$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.s12 < 8) throw new Error('ch12 has 8 sentences — got ' + r.s12);
+    if (r.s13 < 6) throw new Error('ch13 has 6 sentences — got ' + r.s13);
+    for (const [id, n] of [['shurut-amal-ism-al-fail', r.n12], ['amal-ism-al-tafdil-wal-masdar', r.n13]]) {
+      if (n.missing) throw new Error('note missing: ' + id);
+      if (n.group !== 'awamil') throw new Error(id + ' belongs to the awamil group: ' + n.group);
+      if (!n.q || n.q[0] < 7 || n.q[0] !== n.q[1]) throw new Error(id + ': the question test must carry ≥7 questions in both languages: ' + JSON.stringify(n.q));
+      if (n.ex < 4) throw new Error(id + ': fewer than four examples anchored in izhar-al-asrar: ' + n.ex);
+      if (n.mistakes < 3) throw new Error(id + ': fewer than three mistakes: ' + n.mistakes);
+    }
+    if (r.d12.dabt < 97) throw new Error('ch12 endings-mode dabt below 97: ' + r.d12.dabt + ' on ' + r.d12.n);
+    if (r.d13.dabt < 97) throw new Error('ch13 endings-mode dabt below 97: ' + r.d13.dabt + ' on ' + r.d13.n);
+    if (r.dim.length < 2 || r.dim.some(x => x.ok === false || x.k !== 'raf')) throw new Error('نَحْوُ: ضُوَيْرِبٌ وَمُضَيْرِبٌ: the cited diminutives in raf — ' + JSON.stringify(r.dim));
+    if (r.dual.length < 1 || r.dual.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('وَلَا مَوْصُوفَيْنِ: the dual after wa-la joined in nasb — ' + JSON.stringify(r.dual));
+    if (r.nat.length < 2 || r.nat.some(x => x.ok === false || x.k !== 'raf')) throw new Error('ضَارِبٌ شَدِيدٌ / ضَارِبٌ غُلَامَهُ شَدِيدٌ: the nakira doer\'s na\'t in raf — ' + JSON.stringify(r.nat));
+    if (r.shart.length < 1 || r.shart.some(x => x.ok === false || x.k !== 'raf')) throw new Error('إِنْ كَانَا بِاللَّامِ لَا يُشْتَرَطُ: the madi shart\'s jawab in raf — ' + JSON.stringify(r.shart));
+    if (r.shart2.length < 1 || r.shart2.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَإِنْ كَانَا مُجَرَّدَيْنِ مِنْهَا يُشْتَرَطُ: the madi shart\'s jawab in raf — ' + JSON.stringify(r.shart2));
+    if (r.list.length < 2 || r.list.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('أَوِ الِاسْتِفْهَامِ … أَوِ النَّفْيِ: the aw-list resumed after the citation in jarr — ' + JSON.stringify(r.list));
+    if (r.obj.length < 1 || r.obj.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('فِي نَصْبِهِمَا الْمَفْعُولَ بِهِ: the masdar\'s object in nasb — ' + JSON.stringify(r.obj));
+    if (r.cog.length < 2 || r.cog.some(x => x.ok === false) || r.cog[0].k !== 'nasb' || r.cog[1].k !== 'jarr') throw new Error('تَعْمَلُ عَمَلَ فِعْلِهَا: the cognate masdar annexed — ' + JSON.stringify(r.cog));
+    if (r.carry.length < 2 || r.carry.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('وَلَا يَرْفَعُ الْفَاعِلَ الظَّاهِرَ: the carried subject\'s object with its na\'t — ' + JSON.stringify(r.carry));
+    if (r.mudaf.length < 1 || r.mudaf.some(x => x.ok === false || x.k !== 'jarr' || !/قِ$/.test(x.out || ''))) throw new Error('لِمُتَعَلِّقِ مَا يَجْرِي: annexed to the relative, no tanwin — ' + JSON.stringify(r.mudaf));
+    if (r.kuhl.length < 1 || r.kuhl.some(x => x.ok === false || x.k !== 'raf')) throw new Error('أَحْسَنَ فِي عَيْنِهِ الْكُحْلُ مِنْهُ: the tafdil\'s apparent doer in raf — ' + JSON.stringify(r.kuhl));
+    if (r.fa.length < 1 || r.fa.some(x => x.ok === false || x.k !== 'raf')) throw new Error('فَيَعْمَلُ الْمَصْدَرُ: the jawab on the fa in raf — ' + JSON.stringify(r.fa));
+  });
+
+  await check('Izhar al-Asrar ch11 (the verbs of approach: the khabar only a mudari; asa with an, with an dropped, and tamm; kada without an; karaba like kada; the eight verbs of beginning; awshaka; no fronting): the note with its question test, the sentence-initial quoted verb kept, the zarf after the jarr-clitic particle, the frozen hal between mubtada and khabar, the tanwin head annexing no particle, the masdar annexing the verb it names, asa\'s ism and the nasb of its an-clause, kada\'s khabar in raf — and the chapter at 97+ endings-mode dabt (wave 48)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 11); if (!ch) return { err: 'no chapter 11' };
+      const n = GRAMMAR['afal-al-muqaraba']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; });
+      return { sentences: ch.sentences.length, note, dabt: Math.round(1000 * hit / nn) / 10, n: nn,
+        kada0: W('s3', /^وكاد$/), khabaruhu: W('s3', /^وخبره$/), ghalib: W('s3', /^غالبا$/), mudari3: W('s3', /^مضارع$/), maa: W('s2', /^مع$/), zayd2: W('s2', /^زيد$/), yakhruj: W('s2', /^يخرج$/), yakhruj3: W('s3', /^يخرج$/), istimal: W('s6', /^استعمال$/), akhbar: W('s1', /^أخبارها$/), filan: W('s1', /^فعلا$/), eight: W('s5', /^و(هلهل|طفق|أخذ|أنشأ|أقبل|هب|جعل|علق)$/), taqdim: W('s7', /^(تقديم|أخبار)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 7) throw new Error('ch11 has 7 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: afal-al-muqaraba');
+    if (r.note.group !== 'awamil') throw new Error('the note belongs to the awamil group: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 8 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥8 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 6) throw new Error('fewer than six examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.mistakes < 4) throw new Error('fewer than four mistakes: ' + r.note.mistakes);
+    if (r.dabt < 97) throw new Error('ch11 endings-mode dabt below 97: ' + r.dabt + ' on ' + r.n);
+    if (r.kada0.length < 1 || r.kada0.some(x => x.ok === false || x.k !== 'keep')) throw new Error('وَكَادَ، — the sentence-initial verb mentioned, kept — ' + JSON.stringify(r.kada0));
+    if (r.khabaruhu.length < 1 || r.khabaruhu.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَخَبَرُهُ: the mubtada after the kept verb — ' + JSON.stringify(r.khabaruhu));
+    if (r.ghalib.length < 1 || r.ghalib.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('غَالِبًا: the frozen ḥāl — ' + JSON.stringify(r.ghalib));
+    if (r.mudari3.length < 1 || r.mudari3.some(x => x.ok === false || x.k !== 'raf' || !/عٌ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('مُضَارِعٌ بِلَا أَنْ: the khabar past the frozen ḥāl, its tanwīn kept before the quoted particle — ' + JSON.stringify(r.mudari3));
+    if (r.maa.length < 2 || r.maa.some(x => x.ok === false || !/عَ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('مَعَ أَنْ، بِأَنْ مَعَ الْمُضَارِعِ: the ẓarf keeps its fatḥa after the jarr-clitic particle — ' + JSON.stringify(r.maa));
+    if (r.zayd2.length < 2 || r.zayd2.some(x => x.ok === false || x.k !== 'raf')) throw new Error('عَسَى زَيْدٌ أَنْ يَخْرُجَ، عَسَى أَنْ يَخْرُجَ زَيْدٌ: the ism of ʿasā and the doer of the inner verb — ' + JSON.stringify(r.zayd2));
+    if (r.yakhruj.length < 2 || r.yakhruj.some(x => x.ok === false || !/جَ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('أَنْ يَخْرُجَ: naṣb by an, twice — ' + JSON.stringify(r.yakhruj));
+    if (r.yakhruj3.length < 1 || r.yakhruj3.some(x => x.ok === false || !/جُ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('كَادَ زَيْدٌ يَخْرُجُ: the khabar of kāda in raf, no an — ' + JSON.stringify(r.yakhruj3));
+    if (r.istimal.length < 1 || r.istimal.some(x => x.ok === false || !/لَ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('يُسْتَعْمَلُ اسْتِعْمَالَ عَسَى: the maṣdar annexes the verb it names — ' + JSON.stringify(r.istimal));
+    if (r.akhbar.length < 1 || r.akhbar.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَلَا يَكُونُ أَخْبَارُهَا: the ism of yakūnu — ' + JSON.stringify(r.akhbar));
+    if (r.filan.length < 1 || r.filan.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('إِلَّا فِعْلًا مُضَارِعًا: the khabar after the emptied exception — ' + JSON.stringify(r.filan));
+    if (r.eight.length < 8 || r.eight.some(x => x.ok === false)) throw new Error('وَهَلْهَلَ وَطَفِقَ وَأَخَذَ وَأَنْشَأَ وَأَقْبَلَ وَهَبَّ وَجَعَلَ وَعَلِقَ: the eight verbs mentioned — ' + JSON.stringify(r.eight));
+    if (r.taqdim.length < 2 || r.taqdim.some(x => x.ok === false)) throw new Error('تَقْدِيمُ أَخْبَارِ أَفْعَالِ الْمُقَارَبَةِ: the chain — ' + JSON.stringify(r.taqdim));
+  });
+
+  await check('Izhar al-Asrar ch10 (the mutaaddi to three objects — alama and ara; the tamm and the naqis verb defined by what the marfu needs; kana\'s sisters by name and the verbs that mean sara; the tamm that becomes naqis; the khabar fronted save after ma): the note with its question test, the verbs quoted after nahwu kept, the Form-IV madi by the author\'s fatha with its three objects, the term head annexing the verb it names, the naming passive elided with its deputy and its name, ay + sara concealing the ism, the closing «and other than that» — and the chapter at 97+ endings-mode dabt (wave 47)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 10); if (!ch) return { err: 'no chapter 10' };
+      const n = GRAMMAR['al-fil-al-tamm-wal-naqis']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; });
+      return { sentences: ch.sentences.length, note, dabt: Math.round(1000 * hit / nn) / 10, n: nn,
+        alama: W('s1', /^أعلم$/), ara: W('s1', /^وأرى$/), mafuluha: W('s1', /^(مفعولها|الأول)$/), bab: W('s1', /^باب$/), zayd: W('s1', /^زيد$/), three: W('s1', /^(عمرا|بكرا|فاضلا)$/),
+        deputy: W('s3', /^(ومرفوعه|ومنصوبه)$/), names: W('s3', /^(اسما|خبرا)$/), mana: W('s6', /^معنى$/), ashara: W('s6', /^عشرة$/), ghayr: W('s6', /^وغير$/), quoted: W('s4', /^(كان|وصار)$/), kunna: W('s4', /^كن$/), front: W('s7', /^(قائما|زيد)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 7) throw new Error('ch10 has 7 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: al-fil-al-tamm-wal-naqis');
+    if (r.note.group !== 'awamil') throw new Error('the note belongs to the awamil group: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 8 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥8 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 6) throw new Error('fewer than six examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.mistakes < 4) throw new Error('fewer than four mistakes: ' + r.note.mistakes);
+    if (r.dabt < 97) throw new Error('ch10 endings-mode dabt below 97: ' + r.dabt + ' on ' + r.n);
+    if (r.alama.length < 2 || r.alama.some(x => x.ok === false || !/مَ$/.test(String(x.out || '').normalize('NFC'))) || r.alama[0].k !== 'keep') throw new Error('نَحْوُ: أَعْلَمَ وَأَرَى، … نَحْوُ: أَعْلَمَ زَيْدٌ: the verb quoted is kept, the verb used is the Form-IV māḍī by the author\'s fatḥa — ' + JSON.stringify(r.alama));
+    if (r.ara.length < 1 || r.ara.some(x => x.ok === false || x.k !== 'keep')) throw new Error('وَأَرَى، — the second quoted verb kept — ' + JSON.stringify(r.ara));
+    if (r.mafuluha.length < 2 || r.mafuluha.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَهٰذِهِ مَفْعُولُهَا الْأَوَّلُ: the pronoun-bearing noun after the demonstrative and its ordinal naʿt in raf — ' + JSON.stringify(r.mafuluha));
+    if (r.bab.length < 2 || r.bab.some(x => x.ok === false || x.k !== 'jarr' || !/بِ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('كَمَفْعُولِ بَابِ أَعْطَيْتُ، كَمَفْعُولَيْ بَابِ عَلِمْتُ: the term head annexes the verb it names, no tanwīn — ' + JSON.stringify(r.bab));
+    if (r.zayd.length < 1 || r.zayd.some(x => x.ok === false || x.k !== 'raf')) throw new Error('أَعْلَمَ زَيْدٌ: the doer of the Form-IV māḍī — ' + JSON.stringify(r.zayd));
+    if (r.three.length < 3 || r.three.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا: the three objects — ' + JSON.stringify(r.three));
+    if (r.deputy.length < 2 || r.deputy.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَمَرْفُوعُهُ اسْمًا لَهُ، وَمَنْصُوبُهُ خَبَرًا لَهُ: the deputy of the elided naming passive in raf — ' + JSON.stringify(r.deputy));
+    if (r.names.length < 2 || r.names.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('اسْمًا لَهُ، خَبَرًا لَهُ: the name in nasb — ' + JSON.stringify(r.names));
+    if (r.mana.length < 1 || r.mana.some(x => x.ok === false || !/ى$/.test(String(x.out || '').normalize('NFC')))) throw new Error('مَعْنَى صَارَ: the maqṣūr head annexes the verb, no tanwīn — ' + JSON.stringify(r.mana));
+    if (r.ashara.length < 2 || r.ashara.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('تَمَّ التِّسْعَةُ بِهٰذَا عَشَرَةً، أَيْ صَارَ عَشَرَةً تَامَّةً: the khabar of the verb that became nāqiṣ, and after أَيْ صَارَ with the ism concealed — ' + JSON.stringify(r.ashara));
+    if (r.ghayr.length < 1 || r.ghayr.some(x => x.ok === false || x.k !== 'raf')) throw new Error('وَغَيْرُ ذٰلِكَ: the closing «and other than that» joins the citation head — ' + JSON.stringify(r.ghayr));
+    if (r.quoted.length < 2 || r.quoted.some(x => x.ok === false)) throw new Error('نَحْوُ: كَانَ وَصَارَ: the sisters quoted by name — ' + JSON.stringify(r.quoted));
+    if (r.kunna.length < 1 || r.kunna.some(x => x.ok === false)) throw new Error('إِذَا كُنَّ بِمَعْنَى صَارَ: the women\'s nūn on kāna — ' + JSON.stringify(r.kunna));
+    if (r.front.length < 2 || r.front.some(x => x.ok === false) || r.front[0].k !== 'nasb' || r.front[1].k !== 'raf') throw new Error('قَائِمًا مَا زَالَ زَيْدٌ: the khabar fronted before the sister, the ism after — ' + JSON.stringify(r.front));
+  });
+
+  await check('Izhar al-Asrar ch9 (the mutaaddi and its three kinds; the verbs of the heart with their bar on dropping, ilgha and imal, the two pronouns of one person, anna on the two objects; the taliq by the question hamza, the negation, the lam of ibtida and inna with the lam; the mulhaq sayyara family): the note with its question test, the taliq examples in raf behind the speaker\'s verb, the annulled verb between its two words, the frozen هَبْ and the quoted verbs kept, the colon item opening its own clause, the masdar before أَنْ and before دُخُولِ أَنَّ annexed, the أَوْ-joined partner in jarr, the feminine naat after the pause — and the chapter at 97+ endings-mode dabt (wave 46)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const ch = st.chapters.find(c => (c.n || c.chapter) === 9); if (!ch) return { err: 'no chapter 9' };
+      const n = GRAMMAR['al-mutaaddi-wa-afal-al-qulub']; const note = n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true };
+      const W = (id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule })); };
+      let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; });
+      return { sentences: ch.sentences.length, note, dabt: Math.round(1000 * hit / nn) / 10, n: nn,
+        taliqVerbs: W('s8', /^و?(علمت|رأيت|وجدت)$/), taliqNouns: W('s8', /^(أزيد|زيد|منطلق|لزيد)$/), ilgha: W('s5', /^منطلق$/), nafsi: W('s6', /^علمتني$/), jawaz: W('s6', /^جواز$/),
+        qism: W('s2', /^(القسم|الأول)$/), hab: W('s3', /^(وهب|أحسب)$/), ghayr: W('s3', /^غير$/), sifat: W('s3', /^(داخلة|ناصبة)$/), ahad: W('s4', /^أحدهما$/), lam: W('s7', /^(لام|المكسورة)$/), ibtal: W('s7', /^إبطال$/), kaf: W('s9', /^كشككت$/), mulhaq: W('s10', /^(صير|وجعل|وترك|واتخذ)$/), zayd1: W('s1', /^(زيد|عمرا)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.sentences < 10) throw new Error('ch9 has 10 sentences — got ' + r.sentences);
+    if (r.note.missing) throw new Error('note missing: al-mutaaddi-wa-afal-al-qulub');
+    if (r.note.group !== 'awamil') throw new Error('the note belongs to the awamil group: ' + r.note.group);
+    if (!r.note.q || r.note.q[0] < 10 || r.note.q[0] !== r.note.q[1]) throw new Error('the question test must carry ≥10 questions in both languages: ' + JSON.stringify(r.note.q));
+    if (r.note.ex < 7) throw new Error('fewer than seven examples anchored in izhar-al-asrar: ' + r.note.ex);
+    if (r.note.mistakes < 4) throw new Error('fewer than four mistakes: ' + r.note.mistakes);
+    if (r.dabt < 97) throw new Error('ch9 endings-mode dabt below 97: ' + r.dabt + ' on ' + r.n);
+    if (r.taliqVerbs.length < 3 || r.taliqVerbs.some(x => x.ok === false || !/تُ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('عَلِمْتُ أَزَيْدٌ، رَأَيْتُ مَا زَيْدٌ، وَجَدْتُ لَزَيْدٌ: the taliq verb is the speaker\'s — ' + JSON.stringify(r.taliqVerbs));
+    if (r.taliqNouns.length < 5 || r.taliqNouns.some(x => x.ok === false || x.k !== 'raf')) throw new Error('the suspended clause keeps its raf — ' + JSON.stringify(r.taliqNouns));
+    if (r.ilgha.length < 2 || r.ilgha.some(x => x.ok === false || x.k !== 'raf')) throw new Error('زَيْدٌ عَلِمْتُ مُنْطَلِقٌ: the annulled verb between its two words — ' + JSON.stringify(r.ilgha));
+    if (r.nafsi.length < 1 || r.nafsi.some(x => x.ok === false)) throw new Error('عَلِمْتُنِي قَائِمًا: the two pronouns of one person — ' + JSON.stringify(r.nafsi));
+    if (r.jawaz.length < 2 || r.jawaz.some(x => x.ok === false || !/زُ$/.test(String(x.out || '').normalize('NFC')))) throw new Error('جَوَازُ أَنْ يَكُونَ، جَوَازُ دُخُولِ أَنَّ: the masdar annexed to its clause, no tanwin — ' + JSON.stringify(r.jawaz));
+    if (r.qism.length < 2 || r.qism.some(x => x.ok === false || x.k !== 'raf')) throw new Error('ثَلَاثَةِ أَقْسَامٍ: الْقِسْمُ الْأَوَّلُ مَا كَانَ: the colon item opens its own clause — ' + JSON.stringify(r.qism));
+    if (r.hab.length < 2 || r.hab.some(x => x.ok === false) || r.hab[0].k !== 'keep' || !/بْ$/.test(String(r.hab[0].out || '').normalize('NFC')) || !/بُ$/.test(String(r.hab[1].out || '').normalize('NFC'))) throw new Error('وَهَبْ بِمَعْنَى أَحْسَبُ: the frozen word and the glossed verb kept — ' + JSON.stringify(r.hab));
+    if (r.ghayr.length < 1 || r.ghayr.some(x => x.ok === false || x.k !== 'nasb')) throw new Error('غَيْرَ مُتَصَرِّفٍ: the hal after the glossed verb — ' + JSON.stringify(r.ghayr));
+    if (r.sifat.length < 2 || r.sifat.some(x => x.ok === false || x.k !== 'raf')) throw new Error('دَاخِلَةٌ، نَاصِبَةٌ: the feminine naat after the pause — ' + JSON.stringify(r.sifat));
+    if (r.ahad.length < 2 || r.ahad.some(x => x.ok === false || x.k !== 'jarr')) throw new Error('مَعًا أَوْ أَحَدِهِمَا؛ حَذْفُ أَحَدِهِمَا: the أَوْ-joined partner and the annexed one of them — ' + JSON.stringify(r.ahad));
+    if (r.lam.length < 2 || r.lam.slice(0, 2).some(x => x.ok === false || x.k !== 'jarr')) throw new Error('أَوْ لَامِ الِابْتِدَاءِ أَوِ الْقَسَمِ أَوْ إِنَّ الْمَكْسُورَةِ: the list in jarr — ' + JSON.stringify(r.lam));
+    if (r.ibtal.length < 1 || r.ibtal.some(x => x.ok === false || x.k !== 'raf')) throw new Error('أَيْ إِبْطَالُ الْعَمَلِ: the explaining أَيْ returns to أَمَّا\'s mubtada — ' + JSON.stringify(r.ibtal));
+    if (r.kaf.length < 1 || r.kaf.some(x => x.ok === false || x.k !== 'keep')) throw new Error('كَشَكَكْتُ: the quoted verb under the kaf — ' + JSON.stringify(r.kaf));
+    if (r.mulhaq.length < 4 || r.mulhaq.some(x => x.ok === false || !/[َّ]$/.test(String(x.out || '').normalize('NFC')))) throw new Error('صَيَّرَ وَجَعَلَ وَتَرَكَ وَاتَّخَذَ: the quoted verbs kept — ' + JSON.stringify(r.mulhaq));
+    if (r.zayd1.length < 2 || r.zayd1.some(x => x.ok === false) || r.zayd1[0].k !== 'raf' || r.zayd1[1].k !== 'nasb') throw new Error('نَحْوُ: ضَرَبَ زَيْدٌ عَمْرًا: the cited verb names its own doer — ' + JSON.stringify(r.zayd1));
+  });
+
   await check('Izhar al-Asrar ch8 (the qiyasi governor and the verb: lazim and mutaaddi; nima and bi\'sa with the three shapes of their doer, the makhsus as a mubtada, its omission and fronting; sa\'a and habbadha): the note with its question test, the doer of nima by the article and by annexation, the tamyiz of the concealed doer, the makhsus in raf, the fronted makhsus by the waw, the quoted praise verbs annexed and kept, the manqus mutaaddi, the sound feminine plural object — and the chapter at 97+ endings-mode dabt (wave 45)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };

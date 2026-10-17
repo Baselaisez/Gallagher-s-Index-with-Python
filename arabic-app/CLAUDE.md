@@ -8050,3 +8050,261 @@ bāb-ضَرَبَ paradigm; `nima` is نِعْمَة, the verb is the standing `
 the Talkhīṣ's and the Amālī's keys reused; `fail` is a note id, the doer-noun is `fail-doer`. The tooling is wave 44's (`build45_dry.sh`,
 `probe44_sen.js`, `probe44_set.js` with an `IDX` list, `probe45_rows.js` — the rows AS DECIDE SAW THEM, after the pre-passes, which is
 what named the `__kindNoun` and `__mabni25` flags that the first two cuts had not seen).
+
+## Iẓhār chapter 9 — the mutaʿaddī's three kinds, the verbs of the heart and the taʿlīq, and round 60 (wave 46, v208)
+
+`izhar-al-asrar` runs to **nine chapters, 103 sentences, 1,926 tokens**: chapter 9 (print pp. 102–104; `author_izhar_ch9.py`) is
+the MUTAʿADDĪ defined — not understood without the thing the act fell upon — and its three kinds: to one object (ضَرَبَ زَيْدٌ عَمْرًا,
+its object dropped with a clue or without — s1); to two objects in three divisions — the second object a different thing from the first
+(أَعْطَيْتُ زَيْدًا دِرْهَمًا — s2), the VERBS OF THE HEART that enter on the mubtadaʾ and the khabar and put both in naṣb (عَلِمْتُ رَأَيْتُ
+وَجَدْتُ زَعَمْتُ ظَنَنْتُ خِلْتُ حَسِبْتُ, and the frozen هَبْ — s3) with their bar on dropping (s4), ilghāʾ and iʿmāl when the verb stands between
+or after its two words (زَيْدٌ عَلِمْتُ مُنْطَلِقٌ — s5), the doer and the object as two attached pronouns of one person and أَنَّ on the two
+objects (عَلِمْتُنِي قَائِمًا، عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ — s6), the TAʿLĪQ defined — the work annulled in wording, not in sense, by a question
+word, a negation, the lām of ibtidāʾ, an oath or إِنَّ with the lām in its khabar (s7), its four examples (عَلِمْتُ أَزَيْدٌ عِنْدَكَ أَمْ عَمْرٌو،
+رَأَيْتُ مَا زَيْدٌ مُنْطَلِقٌ، وَجَدْتُ لَزَيْدٌ مُنْطَلِقٌ، عَلِمْتُ إِنَّ زَيْدًا لَقَائِمٌ — s8) and its reach over every verb of the heart, of seeking
+knowledge and of the five senses (s9); and the verbs ATTACHED to the verbs of the heart — صَيَّرَ جَعَلَ تَرَكَ اتَّخَذَ (s10): 10 sentences /
+260 tokens, 49 glossary entries, 25 paradigms (عَمَّ as a geminate, ذَاقَ hollow, عَدِمَ of bāb سَمِعَ, زَعَمَ, تَوَسَّطَ and تَأَخَّرَ built; the
+rest copied by lemma identity), the awāmil note `al-mutaaddi-wa-afal-al-qulub` with a ten-question test, seven anchored examples and four
+mistakes. The lithograph's «عديم» is read as وَعَدِمَ and its «على حد» as the received عَلَى حَدِّهَا, and the manifest says so; the
+matn's أَحْسِبُ is vowelled أَحْسَبُ (the corpus recites حَسِبَ يَحْسَبُ, and a vowel apart is a word apart to the corpus walk). هَبْ is stored as
+a frozen particle entry — the validator forbids an amr on a jāmid paradigm, and «suppose!» has no other cell. Endings-mode ḍabṭ:
+**83.6 → 93.8 → 96.3 → 97.5 → 98.7 (239)** across round 60 (`patch46a`, four cuts, twenty-four edits); floor 97. The three misses
+left are named, not chased: the sentence-initial وَكُلَّ فِعْلٍ (s9) is joined onto the object of the sentence before last — across the
+citation sentence between them — which no carry reaches; and غَيْرَ هٰذِهِ after كُلَّ فِعْلٍ قَلْبِيٍّ reads as the naʿt of فِعْلٍ in jarr as
+honestly as it reads as كُلّ's in naṣb.
+
+**The taʿlīq is a seat rule, and the verb of the heart is the speaker's.** Every example of s8 had been read with the ADDRESSEE's tāʾ
+(عَلِمْتَ) and the suspended clause as objects (أَزَيْدًا، مَا زَيْدًا مُنْطَلِقًا): the wave-26e person pick saw عِنْدَكَ's كَ and voted «you»,
+and nothing closed the object seat. Round 60's rules, each paid for by a token:
+
+- **The taʿlīq (46b).** A verb of the heart (`QULUB_VERBS`) followed by a question hamza (`__hamzaQ` / `__mubtadaQ24`), a negating مَا, هَلْ or
+  لَا, a lām-noun (the author's لَ with its fatḥa) or إِنَّ with the shadda and a lām-noun within three words is the SPEAKER's; the clause
+  after it stands in the place of its two objects — the verb seat and the object seat close (`st.taliq46`), and the nouns open their own
+  nominal sentence. The question hamza is no letter of the name: the writer's diptote test folds it, so أَزَيْدٌ keeps its tanwīn (46o).
+- **Ilghāʾ (46i).** A bare ṣifa-shaped nakira right after a tāʾ-verb of the heart whose previous row is the mubtadaʾ is the KHABAR in rafʿ
+  (زَيْدٌ عَلِمْتُ مُنْطَلِقٌ) — the verb between its two words governs nothing.
+- **The quoted verb under the kāf of «for instance» (46c).** كَشَكَكْتُ، كَلَمَسْتُ: the author-pos retype tries the word behind a kāf, the
+  hit is kept as written (hikāya), and a kept verb hands no person down the wāw chain — وَتَبَيَّنْتُ وَنَسِيتُ stay unresolved first/second
+  person as every quoted list does. The vowelled tāʾ on the page (نَسِيتُ) is the doer's, never the she-verb's (نَسِيَتْ): the 3fs cell the
+  stripped letters reached is re-read as the paradigm's own cell 6 before the person pick runs (46x).
+- **A māḍī is mabnī on its fatḥa (46d/46q).** وَهَبْ: the author-pos retype matched وَهَبَ, the analyzer matched the amr هَبْ «give!», and a
+  later twin rule made it هَبَّ «it blew». The author's sukūn refutes every māḍī cell (the doer's tāʾ excepted — its vowel is the
+  pronoun's; the iltiqāʾ تِ excepted), and a word the lexicon owns whole as a `part` entry (هَبْ، حَبَّذَا) is kept as the author wrote it and
+  opens its clause — the `__authorVerb35` restore stands down on it.
+- **بِمَعْنَى is always annexed (46e)**, and the glossed verb after it is its member — أَحْسَبُ written as it stands; غَيْرَ after the glossed
+  verb is the ḥāl (غَيْرَ مُتَصَرِّفٍ). The author's verb wears no question hamza: the 24h peel (أَ + حسب) yields to the author's pos.
+- **The feminine ṣifa after the pause is a further naʿt of the nakira khabar (46f).** أَفْعَالٌ تَدُلُّ عَلَى فِعْلٍ قَلْبِيٍّ، دَاخِلَةٌ عَلَى…،
+  نَاصِبَةٌ إِيَّاهُمَا: the walk back finds the bare khabar and nothing seated between; the object seat the ṣifa clause's verb had left open
+  had been taking the naʿt.
+- **The أَوْ-joined word shares its partner's shape and its jarr (46g).** مَعًا أَوْ أَحَدِهِمَا (pronoun with pronoun, across the frozen adverb),
+  أَوِ النَّفْيِ أَوْ لَامِ الِابْتِدَاءِ (an annexing head after an ال-noun) — the 22b «joined to the khabar» rule and the generic object seat had
+  taken them. And أَحَدُهُمَا wearing its pronoun is «one of them», never a count: the chain's number veto reads the core's PREFIX now (the
+  pronoun rode in the core), so حَذْفُ أَحَدِهِمَا annexes (46m).
+- **The numbered item after the colon with its ordinal and its own predicate opens a new clause (46h).** ثَلَاثَةِ أَقْسَامٍ: الْقِسْمُ الْأَوَّلُ مَا
+  كَانَ — the wave-27 «the list spells out the number» rule had made it a badal in jarr; and the number's list never takes a ẓarf as its
+  badal (أَحَدِهِمَا مَعَ قَرِينَةٍ — 46u).
+- **Kāna's pronoun-bearing ism keeps the ordinal after it as its naʿt (46p)** when a bare nakira waits to be the khabar (مَفْعُولُهُ الثَّانِي
+  مُبَايِنًا) — the 32a/b guard had asked for an ال-ism.
+- **The maṣdar before أَنْ is annexed to its clause (46j)** — جَوَازُ أَنْ يَكُونَ, after قَبْلَ أَنْ of wave 26q; the maṣdar of concealment reaches
+  past a jarr letter and past the shadda of أَنَّ (دُخُولِ أَنَّ عَلَى مَفْعُولَيْهَا), and the maṣdar before it chains to it (جَوَازُ دُخُولِ — 46t).
+- **The particle joined into a list of nouns is a word mentioned, and the ṣifa after it its naʿt (46k).** أَوِ الْقَسَمِ أَوْ إِنَّ الْمَكْسُورَةِ: the
+  analyzer's «ism of إِنَّ» note had seated الْمَكْسُورَةَ in naṣb.
+- **The explaining أَيْ after the pause returns to أَمَّا's mubtadaʾ (46l).** وَأَمَّا التَّعْلِيقُ بِ…، أَيْ إِبْطَالُ الْعَمَلِ: the wave-27a apposition
+  had followed the nearest majrūr.
+- **The citation head is never the subject of the cited verb (46a).** نَحْوُ: ضَرَبَ زَيْدٌ عَمْرًا — the adjacent-subject rule had hidden the
+  doer and made Zayd the object.
+- **Two writer and lexicon receipts.** A sound plural's length is the STEM's, not the clitics' (وَبِدُونِهَا is no plural — the wāw had pushed
+  the bare word over the five-letter test, 46v), and the lexicon's sound-plural strip leaves a real stem (بُدّ never owned بِدُون — 46n/46s).
+
+**Key hygiene:** `zaama` is زَعَامَة, so the verb is `zaama-claim`; `khala-think` is the Talkhīṣ's خَالَ; `amma` is أَمَّا and `amma-verb`
+أَمَّ, so عَمَّ is `amma-include`; `ibtida-start` is the standing ابْتِدَاء; `maful-object` the standing مَفْعُول; `hab-suppose` the frozen هَبْ.
+The tooling is wave 44's (`build46_dry.sh`, `probe44_sen.js`, `probe44_set.js`, `probe45_rows.js`); two lessons it taught this wave: a
+patch script's `rep()` must never append code after a `//` line comment or inside a `/* … */` one (two parse failures), and a Python
+replacement string written in a heredoc turns `\n` into a real newline and eats a `\'` — write the patch file, then `py_compile` it.
+
+## Iẓhār chapter 10 — the third kind, the tāmm and the nāqiṣ verb, kāna's sisters, and round 61 (wave 47, v208)
+
+`izhar-al-asrar` runs to **ten chapters, 110 sentences, 2,104 tokens**: chapter 10 (print pp. 105–106; `author_izhar_ch10.py`) is
+the MUTAʿADDĪ TO THREE OBJECTS — أَعْلَمَ and أَرَى, the first object like that of أَعْطَيْتُ's bāb, the last two like the two of
+عَلِمْتُ's (أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا — s1); every verb needs a marfūʿ: TĀMM when the speech is complete by it (its marfūʿ the
+doer, its manṣūb the object — s2), NĀQIṢ when it needs a manṣūb (its marfūʿ its ism, its manṣūb its khabar, entering only on the mubtadaʾ
+and the khabar — s3); the first division — the common one, كَانَ and صَارَ, with the verbs that mean صَارَ (آلَ رَجَعَ حَالَ اسْتَحَالَ تَحَوَّلَ
+ارْتَدَّ جَاءَ قَعَدَ — s4); the sisters by name (أَصْبَحَ أَمْسَى أَضْحَى ظَلَّ بَاتَ آضَ غَدَا رَاحَ, the مَا-verbs فَتِئَ انْفَكَّ بَرِحَ وَنَى meaning
+مَا زَالَ, مَا دَامَ and لَيْسَ — s5); the tāmm that comes to mean صَارَ (تَمَّ التِّسْعَةُ بِهٰذَا عَشَرَةً, كَمُلَ زَيْدٌ عَالِمًا — s6); the khabar
+fronted before the verb save where مَا opens it (قَائِمًا مَا زَالَ زَيْدٌ — s7): 7 sentences / 178 tokens, 37 glossary entries, 21 paradigms
+(the twelve sisters with their nāqiṣ, hollow and doubled paradigms, أَعْلَمَ as the derived Form IV), the awāmil note
+`al-fil-al-tamm-wal-naqis` with an eight-question test, seven anchored examples and four mistakes. The lithograph's garbled إِنْ / لَمْ
+clause before the two divisions is HELD BACK and the doubled «وما دام» read once; the manifest says so. Endings-mode ḍabṭ: **93.6 →
+100.0 (171)** across round 61 (`patch47a`, eight cuts); floor 97. Chapters 1–9 unchanged (ch9 98.7 with its three named misses).
+
+**A chapter that names the verbs it governs by.** Chapter 10 is a list of VERBS mentioned as words — the sisters by name, the verbs
+that mean صَارَ, the bābs named by their model (بَابِ أَعْطَيْتُ, بَابِ عَلِمْتُ), a verb's meaning (مَعْنَى صَارَ) — and the engines read every
+one as a verb in use until told otherwise. The rules, each paid for by a token:
+
+- **The speaker's twin loses to the author's fatḥa (47a).** أَعْلَمَ bare is عَلِمَ's «I know» (cell 12) to the corpus walk, which meets
+  that cell first; where the author's token ends in a fatḥa and the corpus holds that exact form as a Form-IV māḍī (أَعْلَمَ of
+  `alama-inform`), the māḍī is the cell — the doer opens, زَيْدٌ takes it, the lemma turns transitive. Never after a nāṣib or a jāzim,
+  whose fatḥa is the twin's own naṣb.
+- **The verbs quoted after نَحْوُ: before a pause are kept, and the clause closes behind them (47b).** نَحْوُ: أَعْلَمَ وَأَرَى، — two
+  words mentioned; the first cut left وَأَرَى in use and it seated مَفْعُولُهَا as its object. A kept verb carries `__mabni25` so the
+  writer prints the author's token, not the stripped one.
+- **A term head annexes the verb it names (47c).** بَابِ أَعْطَيْتُ، مَعْنَى صَارَ، اسْمُ كَانَ: a bare head of the term list (بَاب، مَعْنَى،
+  مِثْل، لَفْظ، وَزْن، حُكْم، إِعْرَاب، صِيغَة، مَخْصُوص، فَاعِل، مَفْعُول، اسْم، خَبَر…) before a verb row that is followed by a pause, a joiner,
+  a jarr letter or the end is paired in the pre-pass — the head writes no tanwīn, the verb is kept. The citation head نَحْوُ: is
+  excluded by its colon (the first cut annexed it to the quoted verb and the quoted-list rule never saw the second verb).
+- **The naming passive elided (47d).** يُسَمَّى فِعْلًا نَاقِصًا، وَمَرْفُوعُهُ اسْمًا لَهُ، وَمَنْصُوبُهُ خَبَرًا لَهُ: after a naming passive in the
+  sentence, a wāw-joined pronoun-bearing noun after a pause whose next word wears the author's fatḥatān is the DEPUTY of the elided
+  يُسَمَّى (rafʿ) and that word its name (naṣb). The analyzer leaves the wāw unsplit on وَمَرْفُوعُهُ, so the rule reads the letter.
+- **The explaining أَيْ hands the sister the seated subject (47e).** أَيْ صَارَ عَشَرَةً تَامَّةً: a sister right after أَيْ, with a subject
+  seated in the clause before, conceals her ism and the nakira after her is the khabar — in the VERB branch (صَارَ has no stored
+  cell and never enters the kāna-forms branch; the first cut sat there and did nothing).
+- **The closing «and other than that» joins the citation head (47f).** وَغَيْرُ ذٰلِكَ at the sentence's end, after a نَحْوُ: in rafʿ,
+  takes its rafʿ — the parity walk had joined it to the last example's ḥāl.
+- **The verbs of three objects (47g).** أَعْلَمَ، أَرَى، أَنْبَأَ، نَبَّأَ، أَخْبَرَ، خَبَّرَ، حَدَّثَ take a second and a third bare object; the
+  Form-II members are told by their shadda from حَدَثَ «to happen».
+- **The pronoun-bearing noun after the clause-head demonstrative (47h).** وَهٰذِهِ مَفْعُولُهَا الْأَوَّلُ كَمَفْعُولِ…: rafʿ, its ordinal
+  naʿt in rafʿ, the kāf phrase the khabar.
+
+**Key hygiene:** `adha` is أَذًى, `zalla` زَلَّة, `ghada` غَضًا, `raha` رَحًى — the sisters are `adha-become`, `zalla-remain`,
+`ghada-become`, `raha-become`; `amsa`, `bata`, `ada-become`, `fatia`, `infakka`, `bariha`, `wana`, `kamula`, `istahala`, `alama-inform`
+are new; صَارَ، آلَ، رَجَعَ، حَالَ، تَحَوَّلَ، ارْتَدَّ، أَصْبَحَ، دَامَ، زَالَ، أَرَى are reused by `find_gloss`. The tooling is wave 46's; the
+operand dump (`probe47_t.js` on a `patch44_dbg.py` copy with a `window.__t47i` line before a rule) named the three blind spots —
+the citation head in the annex list, the unsplit wāw, the cell-less sister — in one run each.
+
+## Iẓhār chapter 11 — the verbs of approach, and round 62 (wave 48, v208)
+
+`izhar-al-asrar` runs to **eleven chapters, 117 sentences, 2,194 tokens**: chapter 11 (print pp. 106–107; `author_izhar_ch11.py`)
+is the SECOND division of the nāqiṣ verb — what carries the sense of nearness, أَفْعَالُ الْمُقَارَبَةِ, whose khabar is never anything
+but a muḍāriʿ (s1); عَسَى with its khabar mostly with أَنْ (عَسَى زَيْدٌ أَنْ يَخْرُجَ), أَنْ sometimes dropped, and عَسَى tāmm with the
+an-clause as its doer (عَسَى أَنْ يَخْرُجَ زَيْدٌ — s2); كَادَ mostly without أَنْ (كَادَ زَيْدٌ يَخْرُجُ) and sometimes with it (s3); كَرَبَ
+like كَادَ in both ways (s4); the eight verbs of beginning — هَلْهَلَ طَفِقَ أَخَذَ أَنْشَأَ أَقْبَلَ هَبَّ جَعَلَ عَلِقَ — with a bare muḍāriʿ
+(s5); أَوْشَكَ used like عَسَى and كَادَ (s6); no fronting of their khabars (s7): 7 sentences / 90 tokens, 14 glossary entries, 6
+paradigms (كَرَبَ، طَفِقَ، عَلِقَ sound; أَنْشَأَ hamza-lām Form IV; أَوْشَكَ the mithāl Form IV with its madd wāw; هَلْهَلَ the first
+QUADRILITERAL stored by hand through `entry()` on فَعْلَلَ يُفَعْلِلُ), the awāmil note `afal-al-muqaraba` with a nine-question test,
+seven anchored examples and four mistakes. Endings-mode ḍabṭ: **96.6 → 100.0 (84)** across round 62 (`patch48a`, eight cuts); floor 97.
+Chapters 9–10 unchanged.
+
+**The rules, each paid for by a token:**
+
+- **A sentence-initial wāw-joined verb before a pause continues the list of words mentioned (48d).** وَكَادَ، وَخَبَرُهُ…: the
+  previous sentence's نَحْوُ: عَسَى، … is still being listed across the full stop; the verb is kept and opens no kāna frame — the
+  first probe had seated وَخَبَرُهُ as kāna's ism and غَالِبًا as her khabar.
+- **The frozen adverb heads no naʿt (48b) and is the ḥāl wherever it wears the author's fatḥatān (48f/48h).** وَخَبَرُهُ غَالِبًا
+  مُضَارِعٌ: مُضَارِعٌ had been the naʿt of غَالِبًا; غَالِبًا، نَادِرًا، مُطْلَقًا، أَصْلًا join the frozen list, and a frozen ḥāl, maṣdar-ḥāl or
+  ẓarf never carries a naʿt — the nakira after it is the owed khabar.
+- **A tanwīn head annexes no particle mentioned (48e/48g).** مُضَارِعٌ بِلَا أَنْ: FIVE rules of waves 27–31 and 46 annex a bare noun
+  to the quoted particle after it (دُخُولُ قَدْ، حَذْفُ فِي، مَجْرُورُ لَوْلَا…), and every one read the letters; the author's tanwīn is the
+  receipt that the head is complete, and all five now read it. The sixth payment of «a word wearing tanwīn annexes nothing».
+- **A ẓarf after a jarr-clitic particle is the ẓarf (48a).** بِأَنْ مَعَ الْمُضَارِعِ: the wave-26 rule «the nakira after the fused
+  pronoun is the mubtada of kāna's clause-khabar» (كَانَ آزَرُ لَهُ وَلَدٌ) stands down on مَعَ، عِنْدَ، بَعْدَ، قَبْلَ…
+- **A bare maṣdar head annexes the verb it names (48c).** يُسْتَعْمَلُ اسْتِعْمَالَ عَسَى: the term-head list of 47c grows the maṣdar
+  shape (no ال, no tanwīn on the author's token) — the maṣdar of kind before the verb it quotes.
+
+**Key hygiene:** `an` is عَنْ, the particle أَنْ is `an-masdariyya` (its note id too); `habba-blow` is reused for هَبَّ (one lemma,
+two senses, the gloss carries both); `karaba-approach` because كَرْب owns `karb`; `halhala`, `tafiqa`, `aliqa`, `anshaa`, `awshaka`
+are new; `muqaraba` arrived with chapter 10. The lithograph's هلهل is kept as printed. `probe48_all.js` replaces the single-page
+corpus sweep: a fresh page per story, one evaluate per chapter raced against a six-minute timeout — the one-page sweep hung twice at
+0% CPU while probe browsers ran beside it, and a hung sweep that prints nothing is a sweep that was never run.
+
+## Iẓhār chapters 12–13 — the ism fāʿil, the ism mafʿūl, the ṣifa mushabbaha, the tafḍīl and the maṣdar as governors, and round 63 (wave 49, v208)
+
+`izhar-al-asrar` runs to **thirteen chapters, 131 sentences, 2,461 tokens, 661 glossary entries**: chapter 12 (print pp. 107–109;
+`author_izhar_ch12.py`) is the second, third and fourth qiyāsī governors — the ism fāʿil and the ism mafʿūl doing their verb's work
+(s1–2), the conditions on the apparent doer and the object: no diminutive (نَحْوُ: ضُوَيْرِبٌ وَمُضَيْرِبٌ) and no ṣifa BEFORE the work
+(جَاءَنِي ضَارِبٌ شَدِيدٌ against جَاءَنِي رَجُلٌ ضَارِبٌ غُلَامَهُ شَدِيدٌ — s3), with the lām nothing more is required (الضَّارِبُ غُلَامُهُ عَمْرًا
+أَمْسِ عِنْدَنَا — s4), without it the reliance on a mubtadaʾ, a mawṣūf, a dhū ḥāl, a question or a negation (أَقَائِمٌ الزَّيْدَانِ، مَا قَائِمٌ
+الزَّيْدَانِ — s5), the sense of the present or the future for naṣb (s6), the ism mafʿūl like the ism fāʿil (s7), the ṣifa mushabbaha doing
+its verb's work under the same conditions save that sense (زَيْدٌ حَسَنٌ وَجْهُهُ — s8): 8 sentences / 151 tokens. Chapter 13 (print pp.
+109–110; `author_izhar_ch13.py`) is the fifth and sixth — the ism tafḍīl, which puts no object in naṣb (s1) and raises an apparent doer
+only in the kuḥl frame (مَا رَأَيْتُ رَجُلًا أَحْسَنَ فِي عَيْنِهِ الْكُحْلُ مِنْهُ فِي عَيْنِ زَيْدٍ — s2–3), the maṣdar doing its verb's work when
+its verb may stand in its place with أَنْ or مَا (s4), the maṣdar whose verb is dropped by hearing or by rule (سَقْيًا — s5), and the
+maṣdar annexed, bare, or with the lām (s6): 6 sentences / 116 tokens. Together 44 glossary entries (the two diminutives ضُوَيْرِب and
+مُضَيْرِب as the matn's own examples, the wazn-names فَعُول and مِفْعَال, the kuḥl) and 4 paradigms (أَضْمَرَ، اِشْتَرَطَ، جَرَى، وَصَفَ); the awāmil
+notes `shurut-amal-ism-al-fail` and `amal-ism-al-tafdil-wal-masdar` with ten-question tests, eight anchored examples each and four
+mistakes. Endings-mode ḍabṭ: **ch12 92.4 → 100.0 (146), ch13 95.6 → 100.0 (113)** across round 63 (`patch49a`); floors 97; chapters
+9–11 unchanged.
+
+**Round 63 opened with the neighbour sweep's bill for round 60.** Rounds 60–62 had been measured on their own chapters and on a
+twenty-sentence subset; the first corpus-wide sweep of the three (`probe48_all.js` against the v207 baseline) showed sixteen
+chapters worse, and a cut-by-cut bisect of `patch46a` (seventeen truncations of the patch script, one build and one probe each) put
+every one of the twenty regressed sentences on three cuts:
+
+- **46d's frozen-particle keep fired on every لَهُ and مَتَى in the library (fourteen sentences).** «A word the lexicon owns as a
+  particle, which the analyzer read as nothing, is kept and opens its clause» (وَهَبْ) was guarded only by `!(kind === "particle" &&
+  pk)` — and a fused jarr-pronoun (لَهُ) is a particle row WITHOUT a pk, مَتَى a NOUN row with one. The clause reset then made the
+  object after لَهُ a khabar (سَخَّرَ اللهُ لَهُ الْجِبَالَ) and كَانَ لَهُ أَخٌ her khabar. The keep now demands `!r.pk`, no particle kind,
+  no fused pronoun, no mabnī word (49a).
+- **46g's أَوْ-parity read a chain MEMBER as the partner (three sentences).** كُنْتُ جَانِبَ الدَّارِ أَوْ مَضْرَبَ زَيْدٍ: the word before
+  أَوْ is الدَّارِ, a muḍāf ilayh, and the rule gave مَضْرَبَ its jarr. The partner of a head is the head of the chain (49b); the rule stands
+  down under إِمَّا (إِمَّا دَاخِلٌ … أَوْ غَيْرُ دَاخِلٍ — told from أَمَّا by the hamza's SEAT, which `bareOf` keeps); and two pronoun-bearing
+  nouns pair only as a closed pair — a long أَوْ-list of them (بَيَانُ إِمْكَانِهِ أَوْ حَالُهُ أَوْ مِقْدَارُهَا …) is a list at the head's level.
+- **46v stripped a radical fāʾ as a clitic (two sentences).** فَرِحِينَ and بَاكِينَ lost their sound-plural reading because «the sound
+  plural's length is the stem's» peeled every leading و/ف/ب/ل/ك; the strip counts only where the lexicon owns the STEM as a whole word
+  (وَبِدُونِهَا → دُون), which is the fact the rule was written on (49c).
+
+The meta-rule, paid for the fifth time and now written into the loop: **a round is swept corpus-wide before the next round is cut**,
+not before the release — three rounds batched into one release cost one bisect of seventeen builds.
+
+**The rules of chapters 12–13, each paid for by a token:**
+
+- **The cited diminutive is a word mentioned (49d).** نَحْوُ: ضُوَيْرِبٌ وَمُضَيْرِبٌ: the wave-29 rule annexes a list after نَحْوُ: (فَرْسَخٍ
+  وَمِيلٍ); a word in the diminutive shape (فُعَيْل / فُعَيْعِل, read off the inner marks) cited after a mention of التَّصْغِير is the khabar of
+  a dropped mubtadaʾ in rafʿ, and its joined twin follows.
+- **The dual after وَلَا joins the dual before it (49e).** أَنْ لَا يَكُونَا مُصَغَّرَيْنِ، … وَلَا مَوْصُوفَيْنِ: the genus-lā had seated a dual
+  as its ism; a dual or sound plural after وَلَا takes the case of the dual or plural before it.
+- **The ḥāl's owner is definite (49f).** جَاءَنِي رَجُلٌ ضَارِبٌ غُلَامَهُ شَدِيدٌ: the wave-22 rule «the object seat is the pronoun's, the nakira
+  after is the ḥāl» took شَدِيدٌ as the ḥāl of a NAKIRA; صَاحِبُ الْحَالِ مَعْرِفَةٌ, so a ṣifa-shaped nakira after a nakira doer (or its naʿt)
+  is a further naʿt of that doer.
+- **After a māḍī shart the page's rafʿ stands (49g).** إِنْ كَانَا بِاللَّامِ لَا يُشْتَرَطُ، وَإِنْ كَانَا مُجَرَّدَيْنِ مِنْهَا يُشْتَرَطُ: both readings
+  are the books' (وَبَعْدَ مَاضٍ رَفْعُكَ الْجَزَا حَسَنٌ), and the receipt is the author's ḍamma or five-verbs nūn — the wave-28 rule had read
+  the nūn only. A frame map (`shartJawab49`: the jawāb's index → its shart's) names the shart verb; and the jawāb on the fāʾ (فَيَعْمَلُ
+  الْمَصْدَرُ) is a sentence that no jazm reaches, the lām of command excepted.
+- **The أَوْ-list resumes after a citation (49h).** الِاعْتِمَادُ عَلَى الْمُبْتَدَإِ أَوِ الْمَوْصُوفِ أَوْ ذِي الْحَالِ، نَحْوُ: …، أَوِ الِاسْتِفْهَامِ، نَحْوُ:
+  …، أَوِ النَّفْيِ: an أَوْ-joined definite after a citation's pause joins the last أَوْ-item before the citation, in its case.
+- **The maṣdar wearing its doer takes its object (49i).** وَيُشْتَرَطُ فِي نَصْبِهِمَا الْمَفْعُولَ بِهِ الدَّلَالَةُ: a pronoun-bearing noun under a
+  jarr letter whose root the corpus conjugates transitively, before an ال-noun that a fused particle and a second ال-noun follow, is a
+  maṣdar with its doer, and the ال-noun is its object — the term الْمَفْعُولُ بِهِ had been read as its naʿt.
+- **The cognate maṣdar annexes (49j).** فَهِيَ تَعْمَلُ عَمَلَ فِعْلِهَا: the mafʿūl muṭlaq of kind before a definite noun heads it — فِعْلَهَا had
+  been the verb's object.
+- **The carried subject's object wears its naʿt (49k).** وَلَا يَرْفَعُ الْفَاعِلَ الظَّاهِرَ إِلَّا إِذَا: the wave-26 carry across the full stop
+  demands ONE plain noun after the verb; an agreeing ال-naʿt rides with its noun.
+- **The jarr-clitic noun before a relative annexes it in place (49l).** وَصْفًا لِمُتَعَلِّقِ مَا يَجْرِي عَلَيْهِ: the wave-17 rule annexes a
+  bare noun to مَا; a noun under its own لِ never reached it (the jarr-clitic rule `continue`s first), and the analyzer calls this مَا a
+  particle — the head is marked where the clitic rule fires, the relative stays mabnī.
+- **The kuḥl frame (49m).** مَا رَأَيْتُ رَجُلًا أَحْسَنَ فِي عَيْنِهِ الْكُحْلُ مِنْهُ: a tafḍīl nakira, a jarr phrase on a pronoun, an ال-noun and
+  مِنْ with a returning pronoun — the one frame in which the ism tafḍīl raises an apparent doer, read exactly as the chapter states it.
+
+**Key hygiene:** `hala` is حَالَ, so chapter 15's state is `hala-condition` (caught at dry-run, for the next wave); `ayn-eye` beside the
+standing `ayn`; `hasan-adj` beside the name; `rabi-fourth`, `faul-wazn`, `mifal-wazn` name the wazns; `dhu` and `alayhi` are the
+Talkhīṣ's keys reused. The tooling: `probe49_bis.js` grades a LIST of sentences across stories in one page (the twenty regressed
+sentences on four readers — 0, +46a, +47a, +48a — named the round in one pass), `probe49_w.js` prints every word's decision for the
+same list, and `bisect46.sh` truncates a patch script before each cut marker and probes each truncation; `probe48_eval.js` with a
+`window.__t49` dump named the three operands the first cuts had misread (a tense string «majhulMudari» against `/mudari/`, a maṣdar
+shape the pronoun hid, a relative the analyzer files as a particle).
+
+**What the release found after the measured gates and the sweep were green — two findings in chunk 8, each a standing doctrine
+wearing a new mask (`patch49b`, `patch49c`).** (1) **A sentence quoted is not a list of words mentioned.** The wave-47 keep
+«the verbs after نَحْوُ: before a pause are words mentioned» (نَحْوُ: أَعْلَمَ وَأَرَى،) took the chapter-7 example نَحْوُ: زُرْنِي
+فَأُكْرِمَكَ whole, and the fāʾ of cause lost its naṣb to a `keep`. A verb wearing its object pronoun is in USE, and the joined twin of a
+word mentioned rides a wāw — the fāʾ makes a consequence (49n). The neighbour sweep had passed the chapter: `cmp45.py` counts
+MISSES, and a word turned `keep` is undecided, not missed — the chapter's graded count fell by two and read as BETTER. The compare
+must also count a chapter whose graded total FALLS; until it does, a BETTER line with a smaller denominator is a line to read.
+(2) **A new lexicon entry is a predator — sixth payment, at the writer.** Chapter 9's glossary brought مَعًا («together») into
+the noun index, and `guessEnc` — asked about مَعَانِيَ الْمُؤَاسَاةِ (Part Four ch25) — found a lexicon owner for the host مَعَا behind a
+نِي tail and wrote the plural as a word with the speaker's pronoun; the chapter fell from 93.3 to 89.2 on the v207 ENGINE with the
+v208 content, below its floor. Two guards, both rules this file already states: a word the noun lexicon owns WHOLE wears no
+pronoun tail, in the strip (49o) and in the guess (49p); and a NOUN host never takes the wiqāya nūn — note 103's fifth use. The
+lesson underneath is the one from wave 26r (لَأَمْكَنَا): when a chapter's glossary enters the corpus, the sentences that can flip
+are everywhere else, and the content-only build (the previous engine with the new packages — `reader_b49_0` here) is the one
+build that answers «engine or content?» in a single probe.
+
+**The comparer's blind spot, closed — and what it had hidden (`patch49d`).** Taught to count a chapter whose graded total FALLS
+(`SHRUNK`), `cmp45.py` re-read the round-63 sweep and named seven chapters where a word had turned `keep`: every one a VERB IN USE
+kept as a word mentioned. The 47c term-head pairing (مَعْنَى صَارَ، بَابِ أَعْطَيْتَ) had been pairing لَفْظٌ وُضِعَ, لَفْظٌ أُرِيدَ بِهِ, لَفْظٍ
+وَقَعَ فِي and حُكْمٌ فَتُثْبِتَهَا — a nakira and the verb of its ṣifa clause — because the head list (لفظ، حكم…) never read the author's
+tanwīn that the 48c maṣdar-shape branch already read; a tanwīn head annexes no verb, and a fāʾ-joined verb is a consequence, never a
+word named (49q). And the 46d frozen-particle keep took فَهَنِيئًا — the lexicon files هَنِيئًا as a particle — where the author's tanwīn
+says the maṣdar is in use (49r). Two keeps stay, because the books keep them: كَقَامَ زَيْدٌ (the verb under the kāf of «for
+instance», wave 25) and نَحْوَ يُحْيِي وَيُمِيتُ (the verbs after the citing ẓarf). The drill bank (`content/drills/generated.json`) was
+regenerated after the round: 922 worked sentences, part-of-speech agreement 98.5%, the case layer 98.3% over 6,065 double-decided
+tokens — three sentences moved, none below its chapter's floor.

@@ -14,7 +14,7 @@
   "sentences": 922,
   "sentenceTokens": 8132,
   "posAgreement": 98.5,
-  "caseJudged": 6063,
+  "caseJudged": 6065,
   "caseAgreement": 98.3,
   "rows": 9217
  },
@@ -29126,11 +29126,11 @@
      "en": "A verbal sentence, the sila of the relative — i'rabless."
     }
    ],
-   "posAgreement": 100,
+   "posAgreement": 91.7,
    "judged": 12,
-   "agree": 12,
-   "judgedC": 10,
-   "agreeC": 10,
+   "agree": 11,
+   "judgedC": 11,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "الَّذِي",
@@ -29213,16 +29213,16 @@
       "irab": "A zarf of TIME, mabni ON THE KASRA, standing in the position of nasb and attaching to «was». Almost nothing else in the language is built on a kasra — the imperative on a sukun, أَيْنَ and كَيْفَ on a fatha, and أَمْسِ alone on a kasra, when it means the particular yesterday just past."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "أَمْسِ",
-      "root": "أ م س",
-      "wazn": "فَعْلِ",
+      "kind": "verb",
+      "lemma": "أَمْسَى",
+      "root": "م س و",
+      "wazn": "أَفْعِلْ",
       "sure": true
      },
-     "match": true,
-     "caseSaid": null,
+     "match": false,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "رَجُلٌ",
@@ -31916,11 +31916,11 @@
     "tr": "Geçip giden dün, büyük bir gündü. — Hırsızı emîrin bizzat kendisi kesti. — Bana kavim geldi, hepsi."
    },
    "jumal": [],
-   "posAgreement": 100,
+   "posAgreement": 91.7,
    "judged": 12,
-   "agree": 12,
-   "judgedC": 10,
-   "agreeC": 8,
+   "agree": 11,
+   "judgedC": 11,
+   "agreeC": 9,
    "tokens": [
     {
      "w": "أَمْسِ",
@@ -31934,16 +31934,16 @@
       "irab": "Mabni ON THE KASRA, standing in the position of raf' as the mubtada — and the na't after it is the fifth reason: pure CONFIRMATION. «Yesterday» cannot mean any day but the one just gone, so الدَّابِرُ adds no information whatever; it presses the word down, which is what a taʾkīd-adjective is for."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "أَمْسِ",
-      "root": "أ م س",
-      "wazn": "فَعْلِ",
+      "kind": "verb",
+      "lemma": "أَمْسَى",
+      "root": "م س و",
+      "wazn": "أَفْعِلْ",
       "sure": true
      },
-     "match": true,
-     "caseSaid": null,
+     "match": false,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "الدَّابِرُ",
@@ -140587,7 +140587,7 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "قَلْب",
+      "lemma": "قَلْبِيّ",
       "root": "ق ل ب",
       "wazn": "فَعْلِي",
       "sure": true
