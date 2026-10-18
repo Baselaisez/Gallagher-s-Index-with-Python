@@ -8439,3 +8439,126 @@ Lesson of the release before this one, kept here because it will recur: **the dr
 drills step failed on one token — ذَهَب owned by two packages with two root spellings (ذ هـ ب with a tatweel in Kitāb al-Ṣulḥ, ذ ه ب
 in the Iẓhār); the release's own build resolved the word to the other owner than the landing build had, and the derived root and wazn
 moved. Regenerate the bank from the reader the release built, not from the one the landing built, and spell roots without tatweel.
+
+## Iẓhār chapters 18–21 — the second bāb, the governed word: its three divisions, the sentence's positions, the doer and its deputy, and round 66 (wave 54, v211)
+
+`izhar-al-asrar` runs to **twenty-one chapters, 198 sentences, 3,746 tokens, 831 glossary entries**. Chapter 18 (print pp. 115–117;
+`author_izhar_ch18.py`) opens the second bāb: coined words outside composition are neither governed nor governing, inside it they fall
+into three divisions (s1); the first, never governed — the particle and the lām-less imperative (s2), the Basrans' reason (the letter
+of the muḍāriʿ dropped, the likeness to the noun gone, the origin regained — s3) and the Kufans' (declined, jazm'd by an estimated lām
+— s4); the second, always governed — the noun absolutely (s5), so that even the noun-verbs have a maḥall (rafʿ by the ibtidāʾ with
+their doer filling the khabar's place, or naṣb as a maṣdar — s6–7), the pronoun of separation ruled a particle (كَانَ زَيْدٌ هُوَ
+الْقَائِمَ — s8), the lām on the participles a relative whose iʿrāb passed to what follows it (s9) — جَاءَنِي الضَّارِبُ زَيْدًا from جَاءَنِي
+الَّذِي ضَرَبَ زَيْدًا (s10), the ruling reversed for the wording's side (s11) — and the muḍāriʿ (s12): 12 sentences / 204 tokens.
+Chapter 19 (pp. 117–119; `author_izhar_ch19.py`) is the third division: the māḍī's place of naṣb after أَنْ and of jazm after the
+jāzim, shown on the joined muḍāriʿ (أَعْجَبَنِي أَنْ ضَرَبْتَ وَتَقْتُلَ، وَإِنْ ضَرَبْتَ وَتَقْتُلْ ضَرَبْتُكَ وَأَقْتُلْ — s1–3); the sentence, verbal
+(s4) and nominal (s5 — the transcription's «اسم الجر فالعامل» printed as اسْمِ الْحَرْفِ الْعَامِلِ and flagged); its iʿrāb when its
+wording is meant (زَيْدٌ قَائِمٌ جُمْلَةٌ اسْمِيَّةٌ — s6), as the saying's content (﴿وَإِذَا قِيلَ لَهُمْ آمِنُوا﴾ — s7), as a maṣdar through
+أَنْ / أَنَّ / مَا (بَلَغَنِي أَنَّكَ قَائِمٌ، ﴿وَأَنْ تَصُومُوا خَيْرٌ لَكُمْ﴾ — s8) or without them (﴿يَوْمَ يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ﴾، ﴿سَوَاءٌ عَلَيْهِمْ
+أَأَنْذَرْتَهُمْ أَمْ لَمْ تُنْذِرْهُمْ﴾، تَسْمَعُ بِالْمُعَيْدِيِّ خَيْرٌ مِنْ أَنْ تَرَاهُ — s9–11): 11 sentences / 222 tokens. Chapter 20 (pp. 119–121;
+`author_izhar_ch20.py`) is the sentence not read as a single noun: a maḥall only as the khabar of the mubtadaʾ and of إِنَّ's bāb
+(rafʿ — s1), of كَانَ's and كَادَ's bāb, the second object of عَلِمَ and the third of أَعْلَمَ (s2), the suspended clause and the ḥāl
+(naṣb — s3), the answer of a jāzim condition after the fāʾ or إِذَا (jazm — s4), the ṣifa of a nakira, the clause joined to a single
+noun or to a sentence with a maḥall (s5), the badal, tawkīd and bayān with the followed word's iʿrāb (s6) — two kinds of sentence
+(s7), five positions (s8): 8 sentences / 198 tokens; the print's عَمْرٌو in عَلِمَ زَيْدٌ عَمْرٌو أَبُوهُ قَائِمٌ is kept and flagged.
+Chapter 21 (pp. 121–122; `author_izhar_ch21.py`) opens the marfūʿāt: the governed in its own right and by following, the four
+divisions (s1–2), the doer (ضَرَبَ زَيْدٌ، أَقَائِمٌ الزَّيْدَانِ، هَيْهَاتَ زَيْدٌ — s3) and the deputy doer (ضُرِبَ زَيْدٌ، أَمَضْرُوبٌ الزَّيْدَانِ
+— s4), both nouns with the deputy also a jarr phrase (مُرَّ بِزَيْدٍ — s5), the governor singular and masculine, no fronting, no
+dropping both save with the maṣdar (s6): 6 sentences / 89 tokens. Together 72 glossary entries (the grammarians' nouns: `mudaraa`,
+`mushabih`, `araba`, `kufi`, `majzum`, `masadd`, `sadd-filling`, `ibtida-nahw`, `inakasa`, `tarjih`, `filiyya`, `ismiyya`, `matuf`,
+`maqul`, `muaydi`, `maqsur`, `indhar`, `muallaq`, `mukram`, `matbu`, `aalama`, `asala-origin`, `shabaha`, `madrub`, `jarr-active`,
+`ifrad`, `tadhkir`) and four paradigms (أَعْرَبَ، انْعَكَسَ، أَعْلَمَ، شَابَهَ); the awāmil notes `al-mamul-wa-aqsamuh`,
+`al-madi-wal-jumla-mamulayn`, `mawadi-irab-al-jumla`, `al-marfuat-al-fail-wa-naibuh`. Endings-mode ḍabṭ: **ch18 97.5 → 100.0
+(200), ch19 93.9 → 100.0 (214), ch20 93.3 → 100.0 (195), ch21 97.7 → 100.0 (87)** across round 66 (`patch54a`, one cut); floors 97;
+chapters 9–17 unchanged.
+
+**A chapter about the sentence's maḥall is a chapter of sentences inside sentences, and the engine reads one clause at a time.** The
+rules of round 66, each paid for by a token:
+
+- **The author's vowel as the receipt, where the structure alone is silent (54e/54h2/54i/54l/54m/54o/54p/54q/54u/54v/54w).** The
+  Iẓhār's prose quotes a clause and then speaks about it, and the author's own ending on the next word is the only sign of where
+  the quotation ended: فَأَصْلُ جَاءَنِي (the ḍamma without tanwīn annexes the head to the quoted verb), بِوَاسِطَةِ أَنْ and لِبَابِ إِنَّ
+  (the kasra annexes the clitic noun to the quoted particle), ﴿وَأَنْ تَصُومُوا خَيْرٌ لَكُمْ﴾ and تَسْمَعُ بِالْمُعَيْدِيِّ خَيْرٌ (the tanwīn
+  ḍamm after an أَنْ- or نَحْوُ-clause makes the clause the mubtadaʾ), إِنْ تَقَعْ خَبَرَ الْمُبْتَدَإِ (the fatḥa on the annexed noun after
+  the verb is the ḥāl's), فَتَكُونُ مَرْفُوعَةَ الْمَحَلِّ and فَلَا يَكُونُ مَعْمُولَةً (kāna's hidden ism, the ṣifa its khabar), أَوْ صِفَةً at a
+  sentence's head and أَوْ جُمْلَةٍ after a citation (the list resumed), مَرْفُوعَةُ … أَوْ مَنْصُوبَةُ (the أَوْ-word joins the word of its
+  written case), the colon list خَبَرٌ وَمَفْعُولٌ وَجَوَابُ … وَحَالٌ وَتَابِعٌ in rafʿ, جُمْلَةٍ لَهَا مَحَلٌّ (the mubtadaʾ after its fronted
+  khabar), زَيْدٌ قَائِمٌ جُمْلَةٌ اسْمِيَّةٌ (the quoted sentence's khabar). The precedent is wave 29f's; the receipt never overrides a
+  rule that already decided, it only decides where none had.
+- **The passive by its first ḍamma (54d/54d2/54d3/54g).** أُعْطِيَ إِعْرَابُهَا and أُرِيدَ بِالْجُمْلَةِ لَفْظُهَا: the cell matcher had
+  read أُعْطِيَ as أَعْطَى and أُرِيدَ after إِنْ as the muḍāriʿ أُرِيدُ jazm'd; a māḍī whose first letter wears a ḍamma is the passive, the
+  noun after it its deputy, and the passive's second object (wave 26q) waits for an explicit deputy.
+- **The joined muḍāriʿ after أَنْ + māḍī takes the māḍī's naṣb (54f); the naṣb never copies onto a فَ-verb after a pause (54i2).**
+  أَعْجَبَنِي أَنْ ضَرَبْتَ وَتَقْتُلَ; حَتَّى يَجُوزَ …، فَتَقَعُ.
+- **Three places the ladder misread a clause boundary (54a/54c/54k/54n/54j2/54j/54s/54t/54r/54y).** The naʿt of a jarr-clitic nakira
+  (بِلَامٍ مُقَدَّرَةٍ، لِشَرْطٍ جَازِمٍ — the letter names are feminine); the pronoun of separation parts kāna's ism from its khabar
+  (كَانَ زَيْدٌ هُوَ الْقَائِمَ); the khabar after the demonstrative's badal (وَهٰذَا الْأَخِيرُ مَقْصُورٌ); the causative's second object
+  (24h) never after a detached pronoun or a questioned participle (فَأَنْتَ مُكْرَمٌ، أَقَائِمٌ الزَّيْدَانِ); the sound plural in yāʾ
+  after the verb is its object and the pronoun-bearing noun after it the doer (يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ — the raf reading of
+  الصَّادِقِينَ had passed as «ok» because the written letters do not change: a grading blind spot now closed by the rule); the twin
+  after وَلَا joins its twin (تَقْدِيمُهُمَا … وَلَا حَذْفُهُمَا); غَيْرُ annexes the nakira after it (غَيْرُ مَعْمُولٍ) — but never the verb
+  غُيِّرَ (bare غير) — and the noun after أَنَّ is never a named word's naʿt — on the author's fatḥa it is the cited particle's ism (غَيْرَ أَنَّ النَّائِبَ قَدْ يَكُونُ).
+- **The place-nouns are ẓarfs (54f2/54b).** يَقَعُ مَوْقِعَ الْقِسْمِ had named مَوْقِعَ the doer in the pre-pass; مَسَدَّ joins the list
+  and the fatḥa under a shadda is read (NFC puts the shadda after the vowel).
+- **A gloss that calls the plural a diptote does not make the singular one (54x).** تَابِعٌ: the lexicon says «pl. تَوَابِع, a
+  diptote», and the diptote test had read the word «diptote» alone; the «pl.» / «ç.» clause is cut before the test — and JS's \b
+  does not see ç as a letter, so the boundary is written out.
+
+**The sweep's repairs (round 66 was swept twice).** The first sweep of round 66 came back WORSE 18 (three of them SHRUNK — izhar
+ch10/ch20/ch21 had lost graded words to «undecided»); every regression was traced to its rule and the rule narrowed, never the
+corpus: 54l and 54j refuse the ẓarf nouns (فَوْقَ، بَعْدَ، عِنْدَ) and the tawkīd words; 54i fires only for a muḍāriʿ whose doer is
+already bound (the cell's second or first person, or its `also` reading, or the plural's وا/ون), never a māḍī (أَعْلَمَ زَيْدٌ) nor
+a passive still owing its deputy (أَنْ يُطْلَقَ لَفْظٌ); 54h never on an alif-ending token (قَائِما with its tanwīn left to the page)
+nor right after نَحْوُ; 54j refuses the host's fatḥa behind the pronoun (عِيشَتَهُ); 54s skips the jarr phrase between the twins
+(عَلَى عَامِلِهِمَا); 54v reads the HOST's vowel behind a pronoun (تَقْرِيرُهَا, not the pronoun's), makes a second pass without
+head/pronoun parity, and crosses the list's punctuation only where أَوْ continues it (talkhīṣ ch49 s9: 13 → 15 of 15); 54h2 refuses
+the dual's nūn kasra (بَاقِيَتَانِ، بِلَفْظَيْنِ had been annexed on it and lost their ending); 54x cuts the plural clause only when the
+word IS its lemma (the dual's own gloss stays whole); 54k never inside kāna/inna; 54u not while a passive owes its deputy nor
+under an open mubtadaʾ; 54t wants a noun before غَيْرُ. The second sweep came back WORSE 3 and each was a rule
+again: 54l never after kāna's sisters (إِنْ كَانَ ظَرْفَ زَمَانٍ had lost the carried khabar of the next sentence's أَوْ ظَرْفَ مَكَانٍ) and
+it marks the doer found-and-hidden, as wave 20's ḥāl rule does (تَطْحَنُ حَبَّةَ الْحَيَاةِ نَاعِمَةً دَقِيقَةً); 54u takes the poem's pause
+ḍamma on the last word as the tanwīn (كَمَنْ فِي كَفِّهِ مِنْهُمْ خِضَابُ: the mubtadaʾ after its fronted khabar, no longer «undecided»).
+Third sweep: WORSE 0 (SHRUNK counted).
+
+**The release's own audit found three Hadhf seats speaking where the page had already spoken (54z1–54z3, `patch54b`).** The
+fourth smoke chunk failed on the Hadhf audit floor — false alarms 7 against the floor's 3 — and on the Signs lab's count regex
+(9012 authored sign statements, past the gate's 79xx|8xxx). The seven false alarms: ishtighāl proposed for الْمَوْضِعَيْنِ inside
+غَيْرِ هٰذَيْنِ الْمَوْضِعَيْنِ لَا يَكُونُ لَهَا (a noun inside a jarr phrase, the badal of a dual demonstrative, is no fronted object);
+a deleted أَحَدُهَا before a DEFINITE enumerated item that carries its own khabar (الْقِسْمُ الْأَوَّلُ مَا كَانَ، الْأَوَّلُ الِاسْمُ — the
+ordinal item is always a mubtadaʾ with its khabar after it; the nakira item keeps the classical deletion, عَامِلٌ فِي الِاسْمِ); a
+deleted هُوَ before the فَ-word after أَمَّا when أَمَّا's own mubtadaʾ stands between (أَمَّا الْمَرْفُوعُ فَتِسْعَةٌ: the khabar of
+الْمَرْفُوعُ). False alarms 7 → 2 (the remaining two are the author's jāʾiz alternatives: يَا لَهُ رَجُلًا read as istighātha, قِسْمٌ
+فِي تَأْوِيلِ الْمُفْرَدِ read as a nakira mubtadaʾ), accuracy 81.6 unchanged, every authored deletion still found (the definite item with a definite naʿt and no khabar after it, الْحَوَاسُّ السَّلِيمَةُ, keeps its deletion). The Signs
+regex now admits 9xxx. Lesson kept: **a content wave can fail an engine's corpus audit** — the audit floors are part of the
+release's gates for exactly this reason, and the fix is the engine's rule, never the floor.
+
+**The sixth smoke chunk then failed twice more, and both were the release's build order speaking (54l2 `patch54c`, 54idx
+`patch54d`).** The Talkhīṣ ch48 likening frame يُقْعِي جُلُوسَ الْبَدَوِيِّ lost its absolute object: 54l (the annexed noun after the
+verb on the author's fatḥa is the ḥāl) had taken the annexed maṣdar of kind before the mafʿūl-muṭlaq rule could — 54l now refuses a
+word the lexicon glosses «(masdar». And the Qawaid audit raised a false alarm on نَهْرٌ جَارٍ (talkhīṣ ch5 s4): the ch21 glossary
+entry جَارّ (the jarr particle as governor) had taken the noun index's key «جار» in the release's SORTED package walk — izhar before
+qisas and talkhīṣ — and the bracketed manqūṣ entry جَارٍ (الْجَارِي), being weak, was dropped from the key instead of kept as an
+alternate; the CaseEngine then read the kasratan as a jarr with no governor. The index now keeps a weak homograph as an alternate
+whatever the walk order (the manqūṣ branch of wave 20u then finds it). Lesson kept: **the dry build walks the packages in the
+release's order** — `release.py` sorts the sample packages, so a dry reader that appends the dry package last builds a DIFFERENT
+lexicon index from the one that ships; `build58_dry.sh` keeps the dry package in its alphabetical place. And: a content wave that
+adds a homograph (جَارّ beside جَارٍ) can move an engine that never changed — the corpus audits in the smoke test exist to catch it.
+
+**The drill bank's drift then named the other homograph (54sh, `patch54e`).** With the key «جار» owned by the Izhar entry جَارّ,
+the neighbour جَارٌ / جَارِهِ of the prophet stories resolved to جَارّ — root ج ر ر — and the bank's worked sentences carried the wrong
+lemma. The lookup now reads the SHADDA on the written word's last radical: where the page marks that radical, a shadda there or its
+absence picks the lemma among the key's alternates (never the manqūṣ جَارٍ for a word without the kasratan — wave 20u owns that);
+where the key holds no fitting alternate the next skeleton is tried (الْجَارُ → جَار through the key «جار»), and the mismatched hit
+is kept only as the last resort (الْحَقِ written without its shadda still finds الْحَقّ). The 27j homograph block now runs for a key
+without alternates too, so the shadda test may pass the key over. Lesson kept: **a homograph that differs only by a shadda needs
+the shadda read** — the index keys on bare letters, and a content wave that adds جَارّ, كُلّ-shaped or رَبّ-shaped lemmas beside
+their sound twins moves every lookup of the twin unless the mark decides.
+
+Lesson kept: **a patch script's own apostrophe** — `author's` inside a single-quoted Python string broke `patch54a.py`, and the dry
+build ran on WITHOUT the patch while its probes reported the baseline as if it were the round: the probes now run only behind `&&`
+after the build's «patch ok» and PARSE OK, never behind `;`. **A dump inside a two-line object literal** breaks
+the reader at load (the `.lib-card` wait times out): put debug lines after the statement, and parse the copy before probing it.
+
+Lesson kept: **an EARLY rule must refuse a member** — 54h made مَعْمُولٍ the naʿt of غَيْرُ because the annexation rule sits later in
+the ladder; every early rule now carries `!member.has(i)`. And the ladder's early rules exist twice, so a reader anchor may need both
+copies patched (the patch helper accepts one or two).

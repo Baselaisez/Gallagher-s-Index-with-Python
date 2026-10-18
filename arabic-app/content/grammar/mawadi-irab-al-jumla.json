@@ -1,0 +1,126 @@
+{
+ "id": "mawadi-irab-al-jumla",
+ "title": {
+  "ar": "مَوَاضِعُ إِعْرَابِ الْجُمْلَةِ الَّتِي لَيْسَتْ فِي تَأْوِيلِ الْمُفْرَدِ",
+  "en": "The positions in which a sentence not read as a single noun has a place in the iʿrāb",
+  "tr": "Müfred te'vilinde olmayan cümlenin i'râbdan mahalli olduğu yerler"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الباب الثاني في المعمول: الجملة",
+  "مغني اللبيب لابن هشام — الباب الثاني: الجمل التي لها محل من الإعراب",
+  "شرح ابن عقيل — الجمل"
+ ],
+ "amil": "a sentence not read as a single noun is governed only in five positions — the khabar (of the mubtadaʾ and of إِنَّ's bāb: rafʿ; of كَانَ's and كَادَ's bāb: naṣb), the object (the second of عَلِمَ, the third of أَعْلَمَ, the suspended clause: naṣb), the ḥāl (naṣb), the answer of a jāzim condition after the fāʾ or إِذَا (jazm), and the follower (ṣifa of a nakira, ʿaṭf on a single noun or on a sentence with a maḥall, badal, tawkīd, bayān: the followed word's iʿrāb)",
+ "question": {
+  "en": [
+   "Where has a sentence that is NOT read as a single noun a place in the iʿrāb? In five positions only: khabar, object, answer of a jāzim condition with the fāʾ or idhā, ḥāl, and follower. Elsewhere it has no iʿrāb at all.",
+   "Which khabar-sentences are in the place of rafʿ? The khabar of the mubtadaʾ (زَيْدٌ أَبُوهُ قَائِمٌ) and of inna's bāb (إِنَّ زَيْدًا قَامَ أَبُوهُ).",
+   "Which are in the place of naṣb? The khabar of kāna's bāb (كَانَ زَيْدٌ أَبُوهُ عَالِمٌ) and of kāda's (كَادَ زَيْدٌ يَخْرُجُ); the second object of ʿalima's bāb (عَلِمَ زَيْدٌ عَمْرًا أَبُوهُ قَائِمٌ) and the third of aʿlama's (أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا أَبُوهُ قَائِمٌ); the clause the verb of the heart is suspended from (عَلِمْتُ أَقَائِمٌ زَيْدٌ); and the ḥāl (جَاءَنِي زَيْدٌ وَهُوَ رَاكِبٌ).",
+   "Which is in the place of jazm? The answer of a jāzim condition after the fāʾ or idhā: إِنْ تُكْرِمْنِي فَأَنْتَ مُكْرَمٌ.",
+   "And the follower? The ṣifa of an indefinite noun (جَاءَنِي رَجُلٌ أَبُوهُ قَائِمٌ), the clause joined to a single noun (زَيْدٌ ضَارِبٌ وَيَقْتُلُ) or to a sentence with a maḥall (زَيْدٌ أَبُوهُ قَائِمٌ وَابْنُهُ قَاعِدٌ), the badal of either, the tawkīd of the second, the bayān of it on one view — each takes the iʿrāb of the word it follows.",
+   "What is the sum? The sentence is of two kinds: read as a single noun (its wording or a maṣdar sense intended) and so governed in every position; or not so read, and governed only in the five positions.",
+   "Why does the print have عَمْرٌو in the example of ʿalima? The lithograph writes عمرو with its silent wāw where the first object wants عَمْرًا; the reader keeps the print's form and says so in the iʿrāb.",
+   "What does the engine READ here? The DabtEngine raises the inner mubtadaʾ and khabar of every clause, reads أَبُوهُ by its wāw, keeps the quoted particles and verbs, declines the five diptote مَوَاضِعَ on the fatḥa, and gives the apodosis after the fāʾ its own mubtadaʾ and khabar."
+  ],
+  "tr": [
+   "Müfred te'vilinde OLMAYAN cümlenin i'râbdan mahalli nerede olur? Yalnız beş yerde: haber, mef'ûl, fâ veya izâ ile câzim şartın cevabı, hâl ve tâbi. Başka yerde i'râbı hiç yoktur.",
+   "Hangi haber cümleleri ref' mahallindedir? Mübtedânın haberi (Zeydün ebûhu kâimün) ve inne babının haberi (inne Zeyden kâme ebûhu).",
+   "Hangileri nasb mahallindedir? Kâne babının haberi (kâne Zeydün ebûhu âlimün) ve kâde'nin (kâde Zeydün yahrucu); alime babının ikinci mef'ûlü (alime Zeydün Amran ebûhu kâimün) ve a'leme'nin üçüncüsü (a'leme Zeydün Amran Bekran ebûhu kâimün); kalp fiilinin ta'lîk edildiği cümle (alimtü e-kâimün Zeydün); ve hâl (câenî Zeydün ve hüve râkibün).",
+   "Hangisi cezm mahallindedir? Fâ veya izâ'dan sonra câzim şartın cevabı: in tükrimnî fe-ente mükramün.",
+   "Tâbi? Nekrenin sıfatı (câenî racülün ebûhu kâimün), müfrede (Zeydün dâribün ve yaktülü) ya da mahalli olan cümleye ma'tûf cümle (Zeydün ebûhu kâimün vebnühu kâidün), ikisinden birinin bedeli, ikincinin te'kîdi, bir görüşe göre beyânı — her biri tâbi olduğu kelimenin i'râbını alır.",
+   "Netice? Cümle iki kısımdır: müfred te'vilinde olan (lafzı veya mastar mânâsı kastedilen) — her yerde ma'mûl; öyle olmayan — yalnız beş yerde ma'mûl.",
+   "Baskıda alime örneğinde niçin عَمْرٌو var? Taşbaskı birinci mef'ûlün عَمْرًا istediği yerde sessiz vâvlı عمرو yazar; okuyucu baskının şeklini korur ve i'râbda söyler.",
+   "Motor burada neyi OKUR? DabtEngine her cümlenin iç mübtedâ ve haberini ref' eder, ebûhu'yu vâvıyla okur, hikâye edilen harf ve fiilleri tutar, gayr-i munsarif mevâdıa'yı fetha ile çeker ve fâ'dan sonraki cevaba kendi mübtedâ ve haberini verir."
+  ]
+ },
+ "plain": {
+  "en": "A sentence can sit inside another sentence and take its slot: as the predicate («Zayd — his father is standing»), as an object («I knew — is Zayd standing?»), as the answer to «if», as a «while» clause, or as a follower. There the whole clause counts as raised, accusative or jussive; elsewhere a clause has no case.",
+  "tr": "Bir cümle başka bir cümlenin içinde durup onun yerini alabilir: haber olarak («Zeyd — babası ayaktadır»), mef'ûl olarak («bildim — Zeyd ayakta mı?»), «eğer»in cevabı, «iken» cümlesi ya da bir ismin tâbii olarak. Bu yerlerde bütün cümle merfû, mansûb veya meczûm sayılır; başka yerde cümlenin i'râbı yoktur."
+ },
+ "explanation": {
+  "en": "Outside the two positions of the single-noun reading, a sentence has no iʿrāb unless it stands as the khabar of the mubtadaʾ (زَيْدٌ أَبُوهُ قَائِمٌ) or of inna's bāb (إِنَّ زَيْدًا قَامَ أَبُوهُ) — the place of rafʿ; as the khabar of kāna's bāb (كَانَ زَيْدٌ أَبُوهُ عَالِمٌ) or of kāda (كَادَ زَيْدٌ يَخْرُجُ), as the second object of ʿalima's bāb (عَلِمَ زَيْدٌ عَمْرًا أَبُوهُ قَائِمٌ) or the third of aʿlama's (أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا أَبُوهُ قَائِمٌ), as the clause suspended from them (عَلِمْتُ أَقَائِمٌ زَيْدٌ) or as a ḥāl (جَاءَنِي زَيْدٌ وَهُوَ رَاكِبٌ) — the place of naṣb; as the answer of a jāzim condition after the fāʾ or idhā (إِنْ تُكْرِمْنِي فَأَنْتَ مُكْرَمٌ) — the place of jazm; or as a ṣifa of an indefinite noun (جَاءَنِي رَجُلٌ أَبُوهُ قَائِمٌ), joined to a single noun (زَيْدٌ ضَارِبٌ وَيَقْتُلُ) or to a sentence with a maḥall (زَيْدٌ أَبُوهُ قَائِمٌ وَابْنُهُ قَاعِدٌ), a badal of either, a tawkīd of the second or a bayān of it on one view — its iʿrāb then follows the followed word's. So the sentence is of two kinds: read as a single noun, with iʿrāb everywhere (its wording or a maṣdar sense intended), and not so read, governed only in five positions — khabar, object, the answer of a jāzim condition with the fāʾ or idhā, ḥāl and follower.",
+  "tr": "Müfred te'vilinin iki yeri dışında cümlenin i'râbı yoktur; ancak mübtedânın (Zeydün ebûhu kâimün) veya inne babının haberi (inne Zeyden kâme ebûhu) olursa — ref' mahalli; kâne babının (kâne Zeydün ebûhu âlimün) veya kâde'nin haberi (kâde Zeydün yahrucu), alime babının ikinci (alime Zeydün Amran ebûhu kâimün) veya a'leme'nin üçüncü mef'ûlü (a'leme Zeydün Amran Bekran ebûhu kâimün), onlardan muallak cümle (alimtü e-kâimün Zeydün) ya da hâl (câenî Zeydün ve hüve râkibün) olursa — nasb mahalli; fâ veya izâ'dan sonra câzim şartın cevabı olursa (in tükrimnî fe-ente mükramün) — cezm mahalli; ya da nekrenin sıfatı (câenî racülün ebûhu kâimün), müfrede (Zeydün dâribün ve yaktülü) veya mahalli olan cümleye ma'tûf (Zeydün ebûhu kâimün vebnühu kâidün), ikisinden birinin bedeli, ikincinin te'kîdi veya bir görüşe göre beyânı olursa — i'râbı metbûunkine göredir. Böylece cümle iki kısımdır: müfred te'vilinde olan, her yerde i'râblı (lafzı veya mastar mânâsı kastedilen); ve öyle olmayan, yalnız beş yerde ma'mûl — haber, mef'ûl, fâ veya izâ ile câzim şartın cevabı, hâl ve tâbi."
+ },
+ "examples": [
+  {
+   "ar": "زَيْدٌ أَبُوهُ قَائِمٌ",
+   "en": "the khabar-sentence of the mubtadaʾ: place of rafʿ",
+   "tr": "mübtedânın haber cümlesi: ref' mahalli",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s1"
+  },
+  {
+   "ar": "كَادَ زَيْدٌ يَخْرُجُ",
+   "en": "the khabar of kāda: place of naṣb",
+   "tr": "kâde'nin haberi: nasb mahalli",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s2"
+  },
+  {
+   "ar": "عَلِمْتُ أَقَائِمٌ زَيْدٌ",
+   "en": "the suspended clause filling the two objects' place",
+   "tr": "iki mef'ûlün yerini tutan muallak cümle",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ وَهُوَ رَاكِبٌ",
+   "en": "the ḥāl-sentence with its wāw",
+   "tr": "vâvlı hâl cümlesi",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "إِنْ تُكْرِمْنِي فَأَنْتَ مُكْرَمٌ",
+   "en": "the apodosis after the fāʾ: place of jazm",
+   "tr": "fâ'dan sonra cevap: cezm mahalli",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s4"
+  },
+  {
+   "ar": "زَيْدٌ ضَارِبٌ وَيَقْتُلُ",
+   "en": "the clause joined to a single noun",
+   "tr": "müfrede ma'tûf cümle",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s5"
+  },
+  {
+   "ar": "خَبَرٌ وَمَفْعُولٌ وَجَوَابُ شَرْطٍ جَازِمٍ مَعَ الْفَاءِ أَوْ إِذَا وَحَالٌ وَتَابِعٌ",
+   "en": "the five positions",
+   "tr": "beş yer",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s8"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "زَيْدٌ أَبَاهُ قَائِمٌ",
+   "right": "زَيْدٌ أَبُوهُ قَائِمٌ",
+   "why": {
+    "en": "the inner mubtadaʾ keeps its rafʿ; the place of rafʿ belongs to the clause as a whole",
+    "tr": "iç mübtedâ ref'ini korur; ref' mahalli cümlenin bütününündür"
+   }
+  },
+  {
+   "wrong": "إِنْ تُكْرِمْنِي أَنْتَ مُكْرَمٌ",
+   "right": "إِنْ تُكْرِمْنِي فَأَنْتَ مُكْرَمٌ",
+   "why": {
+    "en": "a nominal apodosis needs the fāʾ (or idhā) to take the place of jazm",
+    "tr": "isim cümlesi olan cevap cezm mahalli için fâ (veya izâ) ister"
+   }
+  },
+  {
+   "wrong": "جَاءَنِي زَيْدٌ هُوَ رَاكِبٌ",
+   "right": "جَاءَنِي زَيْدٌ وَهُوَ رَاكِبٌ",
+   "why": {
+    "en": "the nominal ḥāl-clause is bound by the wāw (or a pronoun)",
+    "tr": "isim cümlesi olan hâl, vâv (veya zamir) ile bağlanır"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-marfuat-al-fail-wa-naibuh"
+ ]
+}
