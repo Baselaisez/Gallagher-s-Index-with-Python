@@ -8380,3 +8380,62 @@ annexation suspends: الضَّارِبُ الرَّجُلِ is an article-ṣif
 `dhahab-gold` because `dhahab` is the verb; `mia`, `alf`, `thalathumia`, `tisumia`, `tis`, `tisun` name the numbers; `nun-letter`; the
 measures `ritl`, `mithqal`, `mann`; `ya-nida` for the يَا of يَا لَهُ. **Process:** the round was swept corpus-wide against a
 CONTENT-ONLY baseline (the v208 engine with the chapter-14–15 packages) before anything was landed — the v208 lesson, kept.
+
+## Iẓhār chapters 16–17 — the sense of the verb, the maʿnawī governor, the sixty complete, and round 65 (wave 52, v210)
+
+`izhar-al-asrar` runs to **seventeen chapters, 161 sentences, 3,033 tokens, 759 glossary entries** — the first bāb of the Iẓhār,
+the governors, is now authored end to end (forty-nine samāʿī, nine qiyāsī, two maʿnawī: «فَمَجْمُوعُ مَا ذَكَرْنَا مِنَ الْعَوَامِلِ
+سِتُّونَ»). Chapter 16 (print pp. 113–115; `author_izhar_ch16.py`) is the ninth qiyāsī governor, the SENSE OF THE VERB — every
+utterance from which a verb's meaning is understood (s1): the noun-verbs with the sense of a command or a past verb, governing as the
+verb they name and never preceded by their governed word (s2) — هَا زَيْدًا أَيْ خُذْهُ، رُوَيْدَ، هَلُمَّ، هَاتِ (s3), حَيَّهَلَ الثَّرِيدَ،
+بَلْهَ، عَلَيْكَ، دُونَكَ، تَرَاكِ (s4), هَيْهَاتَ الْأَمْرُ أَيْ بَعُدَ، شَتَّانَ زَيْدٌ وَعَمْرٌو، سَرْعَانَ، وَشْكَانَ (s5); the settled ẓarf — never the
+object, the manifest doer only on leaning on what was mentioned or on the relative (s6: زَيْدٌ فِي الدَّارِ أَبُوهُ، مَا فِي الدَّارِ أَحَدٌ،
+جَاءَ الَّذِي فِي الدَّارِ أَبُوهُ — s7), the fronted khabar, the concealed doer moved from the dropped mutaʿallaq, the ḥāl and the ẓarf
+without condition (s8); the nisba noun governing as the ism mafʿūl (مَرَرْتُ بِرَجُلٍ هَاشِمِيٍّ أَخُوهُ — s9); the borrowed noun
+(أَسَدٌ غُلَامُهُ؛ أَسَدٌ عَلَيَّ أَيْ مُجْتَرِئٌ — s10); every noun with a ṣifa's sense (لَفْظَةُ اللهِ in al-Anʿām 6:3 = الْمَعْبُودُ فِيهَا —
+s11); the demonstrative, لَيْتَ، لَعَلَّ and the letters of calling, likening, alerting and negation, governing the ḥāl and the ẓarf
+only (s12): 12 sentences / 229 tokens. The transcription's «إلا ما ذكر» on p. 114 is printed as the standard «على ما ذكر», which the
+three examples require, and the iʿrāb of عَلَى says so. Chapter 17 (p. 115; `author_izhar_ch17.py`) is the maʿnawī governor — no
+share for the tongue, a sense known by the heart, two of them (s1): the stripping of the mubtadaʾ and the khabar from the lafẓī
+governors for the predication (زَيْدٌ قَائِمٌ — s2), the muḍāriʿ's standing in a noun's place (زَيْدٌ يَضْرِبُ، فَيَضْرِبُ وَاقِعٌ مَوْقِعَ
+ضَارِبٍ — s3) only while stripped of the nāṣibs and the jāzims (s4), and the sum of sixty (s5): 5 sentences / 60 tokens. Together 50
+glossary entries (the noun-verbs under their own keys — `ha-ism-fil` beside `ha-tanbih`, `halumma`, `hati`, `hayyahal`, `balha`,
+`dunaka`, `taraki`, `shattana`, `saraana`, `washkana`; `mansub-nisba` beside `mansub` the accusative; `tajarrud`, `mawqi`) and one
+paradigm (اِفْتَرَقَ); the awāmil notes `mana-al-fil-wa-asma-al-afal` (nine questions, ten anchored examples, four mistakes) and
+`al-amil-al-manawi` (six, four, three). Endings-mode ḍabṭ: **ch16 90.8 → 100.0 (208), ch17 93.2 → 100.0 (59)** across round 65
+(`patch52a`, one cut); floors 97; chapters 9–15 unchanged.
+
+**The noun-verb is a frozen word that governs, and the engine had never met one.** The lexicon knew رُوَيْدَ، هَيْهَاتَ، عَلَيْكَ from the
+Talkhīṣ and the Waṣiyya; the rest had no entry, so هَاتِ became an ʿaṭf in naṣb, حَيَّهَلَ a mubtadaʾ annexed to الثَّرِيدِ, سَرْعَانَ an
+object of افْتَرَقَا. The rules of round 65, each paid for by a token:
+
+- **The noun-verbs are kept as written and govern as their verb (52a/52b).** هَاتِ، حَيَّهَلَ، دُونَكَ، سَرْعَانَ، وَشْكَانَ، شَتَّانَ، هَلُمَّ،
+  بَلْهَ، تَرَاكِ، رُوَيْدَ، هَيْهَاتَ join `MABNI_EXTRA` and an early keep; the noun after a command noun-verb is its object in naṣb (هَا
+  and عَلَيْكَ only on the author's tanwīn fatḥ, since هَا alerts and عَلَيْكَ is a jarr phrase elsewhere), the noun after a past-sense
+  one its doer in rafʿ.
+- **The relative's ṣila is complete; the أَوْ-word after it joins the relative (52c).** عَلَى مَا ذُكِرَ أَوِ الْمَوْصُولِ: the passive had
+  owed a deputy and took الْمَوْصُولُ for it.
+- **The jazm ends at the clause between (52d).** لَمْ يَرْفَعْ ظَاهِرًا فَفَاعِلُهُ ضَمِيرٌ …، وَيَعْمَلُ: the mood copy of wave 26m had carried
+  the jazm onto every later joined verb of the same voice; once a mubtadaʾ has opened after the jazm'd verb the copy stands down.
+- **The citing نَحْوُ without a colon reads the author's vowels (52e/52f).** نَحْوُ أَسَدٌ فِي قَوْلِكَ: the word after it with tanwīn ḍamm
+  is the quoted word in rafʿ and نَحْوُ the annexed khabar; نَحْوُ لَفْظَةِ اللهِ: the kasra on a head of its own makes it نَحْوُ's annex.
+- **The speaker's ḍamma on the tāʾ (52g).** مَرَرْتُ inside قَوْلِكَ: the addressee's كَ in the sentence had picked the addressee's tāʾ
+  (wave 26e); the author's vowel on the tāʾ now decides first, either way.
+- **The nakira naʿt raises the pronoun-bearing noun after it (52h).** بِرَجُلٍ أَسَدٍ غُلَامُهُ — the naʿt sababī: the verb had taken
+  غُلَامَهُ for its object.
+- **The explicative apposition after أَيْ (52i).** It skips a pronoun jarr phrase (أَسَدٌ عَلَيَّ أَيْ مُجْتَرِئٌ) and, when the author's
+  token carries an ending, prefers the nearest candidate of that case within the pause (﴿وَهُوَ اللهُ فِي السَّمٰوَاتِ﴾ أَيِ الْمَعْبُودُ
+  — the khabar, not the majrūr it stands beside).
+- **The place-noun annexed is the ẓarf (52j); the verb's word repeated after the pause is a mention (52k).** وُقُوعُهُ بِنَفْسِهِ
+  مَوْقِعَ الِاسْمِ; زَيْدٌ يَضْرِبُ، فَيَضْرِبُ وَاقِعٌ مَوْقِعَ ضَارِبٍ — the ṣifa after the mentioned verb is its khabar (the twin of 50o for
+  nouns).
+- **The head annexed to the relative on the author's ḍamma, and the -ūn khabar after the ṣila (52l/52m).** فَمَجْمُوعُ مَا ذَكَرْنَا
+  مِنَ الْعَوَامِلِ سِتُّونَ: the ṣila's object is the relative itself, so the sound-plural-shaped word after the jarr phrase is the owed
+  khabar; the writer declines سِتُّونَ by its letters like the longer tens (52q — the four-letter ten had fallen through to tanwīn).
+- **Small receipts (52n/52o/52p).** وَغَيْرُ ذٰلِكَ closing a list that began in the sentence before stands in rafʿ on its own; a
+  joined word after a pause with the author's ḍamma (، وَالْمُرَادُ مِنْهُ؛ ، وَأَسَدٌ عَلَيَّ) opens its clause; فَلِذَا keeps its form.
+
+Lesson of the release before this one, kept here because it will recur: **the drill bank can drift on package order alone.** The v209
+drills step failed on one token — ذَهَب owned by two packages with two root spellings (ذ هـ ب with a tatweel in Kitāb al-Ṣulḥ, ذ ه ب
+in the Iẓhār); the release's own build resolved the word to the other owner than the landing build had, and the derived root and wazn
+moved. Regenerate the bank from the reader the release built, not from the one the landing built, and spell roots without tatweel.
