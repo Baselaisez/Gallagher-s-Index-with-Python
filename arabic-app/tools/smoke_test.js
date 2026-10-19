@@ -11370,6 +11370,47 @@ if (!CHROME) {
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
   });
 
+  await check('Izhar al-Asrar ch22-24 (the doer and its deputy as pronoun or noun: hidden by necessity — the speakers and the single masculine addressee, the command noun-verb, afʿal outside the kuḥl case, the participles and the settled ẓarf without their condition, their dual and sound plural, the exception verbs; hidden by choice — the single absent of the verb and the verb\'s likeness with a condition; the apparent attached — the alif, the wāw, the nūn, the tāʾ, nā and the yāʾ): the sentences, the three notes, the dabt floors, and the readings — the joined noun on the author\'s kasra continuing the jarr list across the sentence, the time-word on the tanwīn fatḥ, the ṣifa-shaped doer on the tanwīn ḍamm after جَاءَنِي, the prohibition on the author\'s sukūn, the mubtadaʾ after كَذَا and after إِذْ, the lām-of-command duals and the cited نَا written as the author wrote them (wave 56)', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const C = n => st.chapters.find(c => (c.n || c.chapter) === n); const c22 = C(22), c23 = C(23), c24 = C(24); if (!c22 || !c23 || !c24) return { err: 'no chapter 22-24' };
+      const note = id => { const n = GRAMMAR[id]; return n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true }; };
+      const W = (ch, id, re) => { const sen = ch.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule, src: w.src })); };
+      const D = ch => { let hit = 0, nn = 0; ch.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; }); return { dabt: Math.round(1000 * hit / nn) / 10, n: nn }; };
+      return { s: [c22.sentences.length, c23.sentences.length, c24.sentences.length], n22: note('al-fail-al-mudmar-al-mustatir-wujuban'), n23: note('al-mustatir-jawazan'), n24: note('al-bariz-al-muttasil'), d: [D(c22), D(c23), D(c24)],
+        tara: W(c22, 's4', /^(تارة|وتارة)$/), ism: W(c22, 's6', /^(واسم|فعل|الأمر)$/), afal: W(c22, 's7', /^(وأفعل|التفضيل|أفضل)$/), darib: W(c22, 's8', /^(واسم|ضارب|مضروب|أسد|ناطق|هاشمي|حسن|الدار|زيد)$/), ada: W(c22, 's10', /^(القوم|عدا|زيدا)$/),
+        nahy: W(c23, 's1', /^(ليضرب|يضرب|لتضرب|تضرب)$/), bawaqi: W(c23, 's2', /^(البواقي|ضمير)$/), ghulam: W(c23, 's4', /^(ضارب|غلامه)$/),
+        lam: W(c24, 's1', /^(وليضربا|ولتضربا|واضربا|يضربا|تضربا)$/), waw: W(c24, 's2', /^(وجمعها|المذكر|أصله|ضربتموا)$/), nun: W(c24, 's3', /^(وجمعها|المؤنث|النون)$/), ta: W(c24, 's4', /^(المخاطب|المفرد|والمتكلم|وحده|التاء)$/), na: W(c24, 's5', /^(والمتكلم|غيره|نا)$/), ya: W(c24, 's6', /^(والمخاطبة|المفردة|الياء|تضربين|واضربي|تضربي)$/) };
+    });
+    if (r.err) throw new Error(r.err);
+    for (const [k, n, min] of [['ch22', r.s[0], 10], ['ch23', r.s[1], 4], ['ch24', r.s[2], 6]]) if (n < min) throw new Error(k + ' has ' + min + ' sentences — got ' + n);
+    for (const [id, n, qmin] of [['al-fail-al-mudmar-al-mustatir-wujuban', r.n22, 7], ['al-mustatir-jawazan', r.n23, 6], ['al-bariz-al-muttasil', r.n24, 7]]) {
+      if (n.missing) throw new Error('note missing: ' + id);
+      if (n.group !== 'awamil') throw new Error(id + ' belongs to the awamil group: ' + n.group);
+      if (!n.q || n.q[0] < qmin || n.q[0] !== n.q[1]) throw new Error(id + ': the question test must carry ≥' + qmin + ' questions in both languages: ' + JSON.stringify(n.q));
+      if (n.ex < 4) throw new Error(id + ': fewer than four examples anchored in izhar-al-asrar: ' + n.ex);
+      if (n.mistakes < 3) throw new Error(id + ': fewer than three mistakes: ' + n.mistakes);
+    }
+    r.d.forEach((d, q) => { if (d.dabt < 97) throw new Error('ch' + (22 + q) + ' endings-mode dabt below 97: ' + d.dabt + ' on ' + d.n); });
+    if (r.d[2].n < 85) throw new Error('ch24 should grade its lām-of-command duals and the cited نَا, not leave them undecided: n=' + r.d[2].n);
+    const need = (name, arr, n, msg) => { if (arr.length < n || arr.some(x => x.ok === false)) throw new Error(msg + ' — ' + JSON.stringify(arr)); };
+    need('tara', r.tara, 2, 'تَارَةً إِلَيْهِ وَتَارَةً إِلَى: the time-words on the tanwīn fatḥ');
+    need('ism', r.ism, 3, 'وَاسْمِ فِعْلِ الْأَمْرِ: the joined noun on the author\'s kasra continues the jarr list across the sentence');
+    need('afal', r.afal, 3, 'وَأَفْعَلِ التَّفْضِيلِ … أَفْضَلُ: the pattern declined by its annexation, the comparative khabar');
+    need('darib', r.darib, 9, 'جَاءَنِي ضَارِبٌ أَوْ مَضْرُوبٌ أَوْ أَسَدٌ نَاطِقٌ أَوْ هَاشِمِيٌّ أَوْ حَسَنٌ، فِي الدَّارِ زَيْدٌ: the ṣifa-shaped doer on the tanwīn ḍamm, the أَوْ-list in rafʿ, the naʿt after the ʿaṭf');
+    need('ada', r.ada, 3, 'جَاءَنِي الْقَوْمُ عَدَا … زَيْدًا: the exception verb and its exceptee');
+    need('nahy', r.nahy, 4, 'لِيَضْرِبْ أَوْ لَا يَضْرِبْ، لِتَضْرِبْ أَوْ لَا تَضْرِبْ: the lām of command and the prohibition on the author\'s sukūn');
+    need('bawaqi', r.bawaqi, 2, 'وَكَذَا الْبَوَاقِي … ضَمِيرٌ: the mubtadaʾ after its fronted khabar, the doer');
+    need('ghulam', r.ghulam, 2, 'زَيْدٌ ضَارِبٌ غُلَامُهُ: the participle raising the apparent doer');
+    need('lam', r.lam, 5, 'وَلِيَضْرِبَا وَلِتَضْرِبَا وَاضْرِبَا وَلَا يَضْرِبَا وَلَا تَضْرِبَا: the dual behind the lām of command and the prohibitive lā');
+    need('waw', r.waw, 4, 'وَجَمْعِهَا الْمُذَكَّرِ … إِذْ أَصْلُهُ ضَرَبْتُمُوا: the joined noun on the kasra, the mubtadaʾ after إِذْ');
+    need('nun', r.nun, 3, 'وَجَمْعِهَا الْمُؤَنَّثِ وَهُوَ النُّونُ');
+    need('ta', r.ta, 5, 'وَفِي الْمُخَاطَبِ الْمُفْرَدِ … وَالْمُتَكَلِّمِ وَحْدَهُ … وَهُوَ التَّاءُ: the definite naʿt on the kasra before the fronted-khabar rule');
+    need('na', r.na, 3, 'وَالْمُتَكَلِّمِ مَعَهُ غَيْرُهُ … وَهُوَ نَا: the cited pronoun written as the author wrote it');
+    need('ya', r.ya, 6, 'وَالْمُخَاطَبَةِ الْمُفْرَدَةِ … وَهُوَ الْيَاءُ: تَضْرِبِينَ وَاضْرِبِي وَلَا تَضْرِبِي — the addressee\'s yāʾ without a sukūn');
+    if (!r.lam.filter(x => /ليضربا|لتضربا/.test(String(x.w).replace(/[ً-ٰ]/g, ''))).every(x => x.k === 'jazm' && x.src === 'nahw')) throw new Error('the lām-of-command duals are decided jazm and written as authored: ' + JSON.stringify(r.lam));
+  });
+
   await check('Izhar al-Asrar ch18-21 (the second bāb — the governed word: the particle and the lām-less imperative never governed, the noun and the muḍāriʿ always, the noun-verbs\' maḥall, the pronoun of separation, the lām of the participle as a relative; the māḍī\'s place after أَنْ and the jāzim shown on the joined muḍāriʿ; the sentence read as a single noun and the five positions of the other; the doer and the deputy doer): the four notes with their question tests, بِلَامٍ مُقَدَّرَةٍ / لِشَرْطٍ جَازِمٍ as the clitic nakira\'s naʿt, هُوَ الْقَائِمَ after kāna, أُعْطِيَ إِعْرَابُهَا and أُرِيدَ لَفْظُهَا as the passive\'s deputy, أَنْ ضَرَبْتَ وَتَقْتُلَ in naṣb, the ، فَتَقَعُ in rafʿ, جُمْلَةٌ اسْمِيَّةٌ, خَيْرٌ as the clause\'s khabar, الصَّادِقِينَ صِدْقُهُمْ, مَرْفُوعَةَ الْمَحَلِّ as kāna\'s khabar, فَأَنْتَ مُكْرَمٌ, the أَوْ-list on the author\'s vowels, the colon list in rafʿ, غَيْرَ أَنَّ النَّائِبَ, وَلَا حَذْفُهُمَا, وَتَابِعٌ with its tanwīn — and all four chapters at 97+ endings-mode dabt (wave 54)', async () => {
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };

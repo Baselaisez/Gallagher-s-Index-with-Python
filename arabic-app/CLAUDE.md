@@ -8562,3 +8562,70 @@ the reader at load (the `.lib-card` wait times out): put debug lines after the s
 Lesson kept: **an EARLY rule must refuse a member** — 54h made مَعْمُولٍ the naʿt of غَيْرُ because the annexation rule sits later in
 the ladder; every early rule now carries `!member.has(i)`. And the ladder's early rules exist twice, so a reader anchor may need both
 copies patched (the patch helper accepts one or two).
+
+## Iẓhār chapters 22–24 — the doer and its deputy as pronoun and noun: the pronoun hidden by necessity and by choice, the apparent attached pronoun, and round 67 (wave 56, v212)
+
+`izhar-al-asrar` runs to **twenty-four chapters, 218 sentences, 4,047 tokens, 868 glossary entries**. Chapter 22 (print pp. 122–123;
+`author_izhar_ch22.py`): each of the doer and the deputy is a pronoun or an apparent noun (s1), the pronoun hidden or apparent (s2),
+the hidden one hidden by necessity — never shown, its governor predicated of nothing else (s3) — or by choice (s4); the necessary
+hiding in the two speakers and the single masculine addressee of the non-past (أَضْرِبُ، نَضْرِبُ، تَضْرِبُ — s5), the command noun-verb
+(نَزَالِ، صَهْ، مَهْ — s6), the afʿal of preference outside the kuḥl case (زَيْدٌ أَفْضَلُ مِنْ عَمْرٍو — s7), the participles, what has
+their sense, the ṣifa mushabbaha and the settled ẓarf when the condition of their governing an apparent doer is absent (جَاءَنِي
+ضَارِبٌ أَوْ مَضْرُوبٌ أَوْ أَسَدٌ نَاطِقٌ أَوْ هَاشِمِيٌّ أَوْ حَسَنٌ، فِي الدَّارِ زَيْدٌ — s8), their dual and sound plural absolutely (رَجُلَانِ
+ضَارِبَانِ، رِجَالٌ ضَارِبُونَ — s9), and عَدَا، خَلَا، مَا عَدَا، مَا خَلَا، لَيْسَ، لَا يَكُونُ of the exception (جَاءَنِي الْقَوْمُ عَدَا زَيْدًا — s10):
+10 sentences / 145 tokens. Chapter 23 (pp. 123–124; `author_izhar_ch23.py`): the pronoun hidden by choice in the single absent
+masculine and feminine (زَيْدٌ ضَرَبَ أَوْ يَضْرِبُ أَوْ لِيَضْرِبْ أَوْ لَا يَضْرِبْ، هِنْدٌ ضَرَبَتْ … — s1), since ضَرَبَ زَيْدٌ is also said and then
+nothing hides (s2); in the verb's likeness when a condition of governing other than the dual and plural is found (زَيْدٌ ضَارِبٌ
+وَمَضْرُوبٌ، أَسَدٌ نَاطِقٌ … — s3; the transcription's «زيد ضاربا ومضروبا» printed in rafʿ and flagged), since زَيْدٌ ضَارِبٌ غُلَامُهُ is also
+said (s4): 4 sentences / 68 tokens. Chapter 24 (pp. 124–125; `author_izhar_ch24.py`): the apparent attached pronoun — the dual's alif
+through all ten forms (s1), the masculine plural's wāw with the origin ضَرَبْتُمُوا (s2), the feminine plural's nūn (s3), the tāʾ of the
+single addressee and the speaker alone in the past with its three vowels (s4), nā of the speaker with others (s5), the yāʾ of the
+single feminine addressee outside the past (تَضْرِبِينَ وَاضْرِبِي وَلَا تَضْرِبِي — s6): 6 sentences / 88 tokens. Together 37 glossary
+entries (the grammarians' nouns `muzhar`, `bariz`, `istitar`, `ibraz`, `mustaqirr`, `mutlaqan`, `afal-wazn`, `ghaiba`, `bawaqi`,
+`mukhataba-fem`, the noun-verbs `nazal`, `sah`, `mah`, the name `hind`) and the notes `al-fail-al-mudmar-al-mustatir-wujuban`,
+`al-mustatir-jawazan`, `al-bariz-al-muttasil`. Endings-mode ḍabṭ: **ch22 92.0 → 100.0 (139), ch23 97.1 → 100.0 (68), ch24 83.9 →
+100.0 (87)** across round 67 (`patch56a`); floors 97; chapters 10, 16, 18–21 unchanged at 100.0.
+
+**A conjugation chapter is a chapter of cited forms, and the page's own marks are the only receipt (round 67).** The rules, each
+paid for by a token:
+
+- **The joined noun on the author's bare kasra continues a jarr list — across the sentence boundary too (56a, 56j).** وَاسْمِ
+  فِعْلِ الْأَمْرِ، وَأَفْعَلِ التَّفْضِيلِ، وَجَمْعِهَا الْمُذَكَّرِ، وَالْمُتَكَلِّمِ وَحْدَهُ، وَالْمُخَاطَبَةِ الْمُفْرَدَةِ: the Iẓhār lists the places of the
+  hidden pronoun as one long «فِي … وَ … وَ …», and the authoring cut it at the commas; a وَ-word whose host wears a kasra without
+  tanwīn is jarr by ʿaṭf to the nearest jarr noun — and at the sentence's head, to the list in the line above (the precedent is
+  29d's carried kāna). The definite noun after a definite jarr noun on the author's kasra is its naʿt before the fronted-khabar
+  rule can read وَفِي الْمُخَاطَبِ الْمُفْرَدِ as a clause (56j).
+- **The written tanwīn decides the ẓarf and the doer (56b, 56c, 54h+).** تَارَةً إِلَيْهِ وَتَارَةً إِلَى: the time-words on the tanwīn
+  fatḥ are ẓarfs; جَاءَنِي ضَارِبٌ أَوْ مَضْرُوبٌ أَوْ أَسَدٌ نَاطِقٌ: the ṣifa-shaped nakira on the tanwīn ḍamm after a verb whose doer is
+  hidden-or-owed is the doer (the ḥāl rule had read every one as a ḥāl), the أَوْ-items follow by their written case (54v) and the
+  nakira ṣifa after a rafʿ ʿaṭf is its naʿt (54h now admits `atf`).
+- **The author's sukūn after لَا is the prohibition (56d).** أَوْ لَا يَضْرِبْ: the cell matcher offers the muḍāriʿ يَضْرِبُ; the page's
+  sukūn, with لَا before it, is the nahy — jazm.
+- **كَذَا and إِذْ front a khabar (56e, 56g).** وَكَذَا الْبَوَاقِي: the definite noun after كَذَا is the mubtadaʾ of the fronted khabar, not
+  the verb's object; إِذْ أَصْلُهُ ضَرَبْتُمُوا: after the particle of reason the pronoun-bearing noun on the author's ḍamma is the
+  mubtadaʾ, its annexation to إِذْ undone.
+- **The decided word whose form has no ending to change is written as the author wrote it — and GRADED (56f, 56h, 56i2, 56x).**
+  وَلِيَضْرِبَا، وَلِتَضْرِبَا: the analyzer read the lām-of-command duals as nouns and dressed them with tanwīn; the author's part of
+  speech (`_pos24`) and the لِ + muḍāriʿ shape decide jazm, and the writer returns the page's form with `src: nahw` — unlike the
+  `kept` route (26e/54g), which the grader leaves undecided and the sweep would count as SHRUNK. The same for the cited pronoun
+  نَا (وَهُوَ نَا) and for لَا تَضْرِبِي, whose kasra-yāʾ without a wiqāya nūn is the addressee's own letter, not the object pronoun the
+  analyzer split off (the writer also stops putting a sukūn on a jazm'd verb that already ends in the yāʾ — 56i).
+
+- **The author's fatḥa on the definite noun right after the verb is the object, and the ḍamma-noun after it the owed doer (56k, 56k2).**
+  قَطَعَ اللِّصَّ الْأَمِيرُ نَفْسُهُ (Talkhīṣ ch10): the ladder had read the first definite noun after the verb as its doer whatever the page
+  said; with the written fatḥa (no tanwīn) it is the mafʿūl and the doer stays owed, so the next definite noun on the ḍamma is the
+  fāʿil, not the ṣifa-shaped naʿt of the object. Guarded: the verb just before must not be a kāna-sister or a heart verb, must carry
+  no object clitic, must not be passive; the time-nouns (الْيَوْمَ، اللَّيْلَةَ) and the frozen adverbs are excluded. NFC puts the
+  shadda AFTER the fatḥa (اللِّصَّ ends in U+0651), so every written-vowel test on a doubled last letter reads `/َّ?$/`.
+
+**The sweep's three repairs (round 67, second pass).** The first pass came back WORSE 3: (1) لَهُوَ الْفَضْلُ الْمُبِينُ — 56h caught
+لَهُوَ as a «cited pronoun» (three bare letters, pos pron) and inna's khabar never closed, so الْمُبِينُ followed الْفَضْلِ into jarr:
+56h now takes only the two-letter bare pronoun, never joined, never inside an open إِنَّ; (2) كَانَ يَوْمًا عَظِيمًا — 56b read يَوْمًا as a
+ẓarf before kāna's khabar logic and left kāna open into the next sentence: 56b yields while `st.kanaOpen`; (3) وَالْبَاقِيَانِ
+عَقْلِيَّانِ — 56a took the dual's nūn-kasra for a case kasra and the dual became an ʿaṭf in jarr, its khabar undecided: 56a skips
+a host ending in `[اي]نِ`. Then WORSE 0 (the second sweep's receipt is in the commit).
+
+Lesson kept: **a kept row is an undecided row** — `res.src = "kept"` is excluded from the grade's count, so a rule that keeps the
+author's form where the engine has in fact decided the case shrinks the chapter; mark the row `__exact56` and let the writer return
+the form as a decision. And: **the dry build must walk the packages in the release's order** — `build58_dry.sh` keeps
+`izhar-al-asrar` in its alphabetical place, so round 67 was probed on the lexicon that ships.
