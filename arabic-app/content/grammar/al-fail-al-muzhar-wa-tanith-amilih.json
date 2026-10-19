@@ -1,0 +1,109 @@
+{
+ "id": "al-fail-al-muzhar-wa-tanith-amilih",
+ "title": {
+  "ar": "الْفَاعِلُ الْمُظْهَرُ: إِفْرَادُ عَامِلِهِ وَغَيْبَتُهُ وَتَأْنِيثُهُ",
+  "en": "The apparent doer: its governor singular, third person, and feminine",
+  "tr": "Muzhar fâil: âmilinin müfredliği, gaybeti ve te'nîsi"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الفاعل المظهر وتأنيث عامله",
+  "الكافية لابن الحاجب — الفاعل: تأنيث الفعل",
+  "شرح قطر الندى لابن هشام — تأنيث الفعل للفاعل"
+ ],
+ "amil": "the apparent doer keeps its governor singular and in the third person even when it is a dual or plural (ضَرَبَ الزَّيْدَانِ وَالزَّيْدُونَ); a real feminine of the humans, singular or dual, attached to a declining governor, makes it feminine (ضَرَبَتْ هِنْدٌ أَوِ الْهِنْدَانِ، زَيْدٌ ضَارِبَةٌ جَارِيَتُهُ), and so does a feminine pronoun other than the rational broken plural's (هِنْدٌ ضَرَبَتْ، الشَّمْسُ طَلَعَتْ); elsewhere the governor may be feminine or masculine (طَلَعَتْ أَوْ طَلَعَ الشَّمْسُ، سَارَتْ أَوْ سَارَ النَّاقَةُ، جَاءَتْ أَوْ جَاءَ الْمُؤْمِنَاتُ، جَاءَتْ أَوْ جَاءَ الْقَاضِيَ الْيَوْمَ امْرَأَةٌ، الرِّجَالُ جَاءَتْ أَوْ جَاؤُوا)",
+ "question": {
+  "en": [
+   "What happens to the governor predicated of an apparent doer? It stays singular and third person, even if the doer is a dual or a plural: ضَرَبَ الزَّيْدَانِ، ضَرَبَ الزَّيْدُونَ — never ضَرَبَا الزَّيْدَانِ.",
+   "When must the governor be feminine? When the doer is a real feminine of the humans, singular or dual, attached to its governor — and the governor declines: ضَرَبَتْ هِنْدٌ، ضَرَبَتِ الْهِنْدَانِ، زَيْدٌ ضَارِبَةٌ جَارِيَتُهُ.",
+   "And with a pronoun? When the governor is predicated of a feminine pronoun other than the rational broken masculine plural's: هِنْدٌ ضَرَبَتْ أَوْ ضَارِبَةٌ، الشَّمْسُ طَلَعَتْ أَوْ طَالِعَةٌ.",
+   "Where is it a choice? In every other case with a feminine doer: طَلَعَتْ أَوْ طَلَعَ الشَّمْسُ (a formal feminine), سَارَتْ أَوْ سَارَ النَّاقَةُ (a real feminine not human), جَاءَتْ أَوْ جَاءَ الْمُؤْمِنَاتُ (a sound feminine plural), جَاءَتْ أَوْ جَاءَ الْقَاضِيَ الْيَوْمَ امْرَأَةٌ (a real feminine parted from its governor), الرِّجَالُ جَاءَتْ أَوْ جَاؤُوا (the rational broken plural's pronoun).",
+   "Why is «attached» a condition? Because an object or ẓarf between the verb and a real feminine doer loosens the tie: جَاءَ الْقَاضِيَ الْيَوْمَ امْرَأَةٌ is allowed.",
+   "What does the engine READ here? The DabtEngine raises the noun after a singular verb as its doer whatever its number, raises جَارِيَتُهُ after the feminine participle as the participle's doer, reads الْقَاضِيَ between the verb and امْرَأَةٌ as the object, and joins the paired verbs with أَوْ as alternatives sharing one doer."
+  ],
+  "tr": [
+   "Muzhar fâile isnâd edilen âmile ne olur? Fâil tesniye veya cemi' olsa bile müfred ve gâib kalır: darabe'z-Zeydâni, darabe'z-Zeydûne — asla darabâ'z-Zeydâni değil.",
+   "Âmilin te'nîsi ne zaman vâcibdir? Fâil insanlardan hakîkî müennes olup müfred veya tesniye ise, âmiline bitişikse ve âmil mutasarrıfsa: darabet Hindün, darabeti'l-Hindâni, Zeydün dâribetün câriyetühû.",
+   "Zamirle? Âmil, âkıl mükesser müzekker cemi' dışındaki müennesin zamirine isnâd edilince: Hindün darabet ev dâribetün, eş-şemsü tala'at ev tâli'atün.",
+   "Nerede tercihe kalır? Müennes fâilli diğer her durumda: tala'at ev tala'a'ş-şemsü (lafzî müennes), sârat ev sâra'n-nâkatü (insan olmayan hakîkî müennes), câet ev câe'l-mü'minâtü (cem-i müennes sâlim), câet ev câe'l-kâdıye'l-yevme imraetün (âmilinden ayrı hakîkî müennes), er-ricâlü câet ev câû (âkıl mükesser cemi'in zamiri).",
+   "«Bitişik» niçin şarttır? Çünkü fiil ile hakîkî müennes fâil arasına giren mef'ûl veya zarf bağı gevşetir: câe'l-kâdıye'l-yevme imraetün câizdir.",
+   "Motor burada neyi OKUR? DabtEngine müfred fiilden sonraki ismi sayısı ne olursa olsun fâil olarak ref' eder, müennes ism-i fâilden sonraki câriyetühû'yu ism-i fâilin fâili okur, fiil ile imraetün arasındaki el-kâdıye'yi mef'ûl okur ve ev ile eşlenen fiilleri tek fâili paylaşan seçenekler olarak bağlar."
+  ]
+ },
+ "plain": {
+  "en": "A verb keeps its singular form before its subject even when the subject is two or many: «struck the two Zayds». If the subject is a woman's name right after the verb, the verb takes the feminine tāʾ: «struck (f.) Hind». For the sun, a she-camel, or a woman separated from the verb, the tāʾ is optional.",
+  "tr": "Fiil, öznesi iki veya çok olsa da öznesinden önce tekil kalır: «vurdu iki Zeyd». Özne fiilin hemen ardındaki bir kadın adıysa fiil dişil tâ alır: «vurdu (dişi) Hind». Güneş, dişi deve ya da fiilden ayrı düşmüş bir kadın için tâ isteğe bağlıdır."
+ },
+ "explanation": {
+  "en": "The apparent doer is plain. When the governor is predicated of it, the governor must be kept singular and in the third person even if the doer is a dual or a plural (ضَرَبَ الزَّيْدَانِ وَالزَّيْدُونَ). If the doer is a real feminine of the humans, singular or dual, attached to its governor, the governor must be made feminine — if it declines (ضَرَبَتْ هِنْدٌ أَوِ الْهِنْدَانِ، زَيْدٌ ضَارِبَةٌ جَارِيَتُهُ); and so when the governor is predicated of the pronoun of a feminine other than the rational masculine broken plural (هِنْدٌ ضَرَبَتْ أَوْ ضَارِبَةٌ، الشَّمْسُ طَلَعَتْ أَوْ طَالِعَةٌ). In other than these two, the governor may be made feminine or masculine if the doer is feminine (طَلَعَتْ أَوْ طَلَعَ الشَّمْسُ، سَارَتْ أَوْ سَارَ النَّاقَةُ، جَاءَتْ أَوْ جَاءَ الْمُؤْمِنَاتُ، جَاءَتْ أَوْ جَاءَ الْقَاضِيَ الْيَوْمَ امْرَأَةٌ، الرِّجَالُ جَاءَتْ أَوْ جَاؤُوا، جَاءَتْ أَوْ جَاءَ الرِّجَالُ).",
+  "tr": "Muzhar fâil açıktır. Âmil ona isnâd edilince, fâil tesniye veya cemi' olsa bile âmilin müfred ve gâib olması vâcibdir (darabe'z-Zeydâni ve'z-Zeydûne). Fâil insanlardan hakîkî müennes olup müfred veya tesniye ise ve âmiline bitişikse, âmil mutasarrıf olduğu takdirde te'nîsi vâcibdir (darabet Hindün evi'l-Hindâni, Zeydün dâribetün câriyetühû); âmil, âkıl müzekker mükesser cemi' dışındaki müennesin zamirine isnâd edilince de böyledir (Hindün darabet ev dâribetün, eş-şemsü tala'at ev tâli'atün). Bu ikisinin dışında fâil müennes ise âmilin te'nîsi de tezkîri de câizdir (tala'at ev tala'a'ş-şemsü, sârat ev sâra'n-nâkatü, câet ev câe'l-mü'minâtü, câet ev câe'l-kâdıye'l-yevme imraetün, er-ricâlü câet ev câû, câet ev câe'r-ricâlü)."
+ },
+ "examples": [
+  {
+   "ar": "ضَرَبَ الزَّيْدَانِ وَالزَّيْدُونَ",
+   "en": "the governor singular before the dual and plural doer",
+   "tr": "tesniye ve cemi' fâilden önce müfred âmil",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s2"
+  },
+  {
+   "ar": "ضَرَبَتْ هِنْدٌ أَوِ الْهِنْدَانِ، وَزَيْدٌ ضَارِبَةٌ جَارِيَتُهُ",
+   "en": "the real human feminine attached: the feminine governor",
+   "tr": "bitişik hakîkî müennes: müennes âmil",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "هِنْدٌ ضَرَبَتْ أَوْ ضَارِبَةٌ، وَالشَّمْسُ طَلَعَتْ أَوْ طَالِعَةٌ",
+   "en": "the feminine pronoun",
+   "tr": "müennes zamir",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s4"
+  },
+  {
+   "ar": "طَلَعَتْ أَوْ طَلَعَ الشَّمْسُ، سَارَتْ أَوْ سَارَ النَّاقَةُ",
+   "en": "the choice elsewhere",
+   "tr": "diğer yerlerde tercih",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s5"
+  },
+  {
+   "ar": "جَاءَتْ أَوْ جَاءَ الْقَاضِيَ الْيَوْمَ امْرَأَةٌ",
+   "en": "the feminine parted from its governor",
+   "tr": "âmilinden ayrı müennes",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s6"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "ضَرَبُوا الزَّيْدُونَ",
+   "right": "ضَرَبَ الزَّيْدُونَ",
+   "why": {
+    "en": "the governor before an apparent doer stays singular: the wāw would be a second doer",
+    "tr": "muzhar fâilden önceki âmil müfred kalır: vâv ikinci bir fâil olurdu"
+   }
+  },
+  {
+   "wrong": "ضَرَبَ هِنْدٌ",
+   "right": "ضَرَبَتْ هِنْدٌ",
+   "why": {
+    "en": "a real human feminine attached to a declining governor makes it feminine by necessity",
+    "tr": "bitişik hakîkî müennes, mutasarrıf âmili vücûben te'nîs eder"
+   }
+  },
+  {
+   "wrong": "الرِّجَالُ جَاءَ",
+   "right": "الرِّجَالُ جَاءَتْ أَوْ جَاؤُوا",
+   "why": {
+    "en": "predicated of the rational broken plural's pronoun, the governor is feminine singular or masculine plural",
+    "tr": "âkıl mükesser cemi'in zamirine isnâd edilince âmil müfred müennes veya cemi' müzekker olur"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-muannath-wa-alamatuh",
+  "al-jumu-wa-tanith-amiliha"
+ ]
+}
