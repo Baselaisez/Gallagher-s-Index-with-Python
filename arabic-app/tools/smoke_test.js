@@ -3982,7 +3982,7 @@ if (!CHROME) {
     if (a.ms > 6500) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open (the ceiling follows the corpus: 4.5 s at 76 chapters, v178)');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('.ml-score', { timeout: 10000 });
+    await page.waitForSelector('.ml-score', { timeout: 30000 });   // (wave 61) the lab re-runs the folds on open; the speed is gated above, the paint only has to arrive
     await page.waitForFunction(() => /\d/.test((document.querySelector('.ml-score') || {}).textContent || ''), null, { timeout: 30000 });   // (wave 32p) the score follows the paint
     const line = await page.locator('.ml-score').textContent();
     if (!line.includes(String(a.n))) throw new Error('the panel must state the real size: ' + line);
@@ -11281,6 +11281,56 @@ if (!CHROME) {
     const floors = { 1: 98, 2: 96 };   // measured at v179: ch1 100.0 (191 endings), ch2 100.0 (163)
     for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('al-Kafiya ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
     if (r.bayts[0] !== 'basit' || r.bayts[1] !== 'wafir') throw new Error('ʿAli\'s bayts should scan basīṭ then wāfir: ' + JSON.stringify(r.bayts));
+  });
+
+  // ---------------------------------------------------------------- wave 61: al-Kafiya ch3-4 — the mabnī and the pronoun; where the detached pronoun stands, the faṣl and the shaʾn
+  await check('al-Kafiya ch3-4 (the mabnī and the pronoun; the six excuses of the detached, two pronouns meeting, kāna\'s khabar, لَوْلَا/عَسَى, the nūn of protection, the faṣl and the shaʾn): the two notes with their question tests, the ḍabṭ floors, the round-70 rules by name', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'al-kafiya'); if (!st) return { err: 'no al-kafiya story' };
+      const notes = ['al-mabni-wal-mudmar', 'mawadi-al-munfasil-wa-damir-al-fasl-wal-shan'].map(id => { const n = GRAMMAR[id]; return n ? { id, group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'al-kafiya' || e.sourceStory === 'al-kafiya').length, cm: (n.mistakes || n.commonMistakes || []).length } : { id, missing: true }; });
+      const per = {};
+      for (const ch of st.chapters) { const c = ch.n || ch.chapter; if (c !== 3 && c !== 4) continue; let h = 0, n = 0, un = 0; for (const sen of ch.sentences) { const g = DabtEngine.grade(sen, 'endings'); if (g && g.aligned) { h += g.hit; n += g.n; } else un++; } per[c] = { h, n, un, pct: n ? Math.round(1000 * h / n) / 10 : 0 }; }
+      const word = (c, sid, bareW, nth) => { const ch = st.chapters.find(x => (x.n || x.chapter) === c); const sen = ch && ch.sentences.find(x => x.id === sid); if (!sen) return 'no sentence ' + c + ':' + sid; const g = DabtEngine.grade(sen, 'endings'); let k = 0; for (const x of g.words) { if (String(x.w || '').normalize('NFC') === bareW.normalize('NFC')) { if (k === (nth || 0)) return x.ok === true ? 'ok' : ('MISS ' + (x.out || '')); k++; } } return 'word not found ' + bareW; };
+      return { chapters: st.chapters.length, notes, per, rules: {
+        fasl: word(4, 's10', 'الرَّقِيب'),
+        afdal: word(4, 's11', 'أَفْضَل'),
+        zarf: word(4, 's11', 'عِنْد'),
+        maIsm: word(4, 's6', 'فَاعِل'),
+        masdar: word(4, 's5', 'اِنْفِصَالهُ'),
+        naming: word(4, 's12', 'ضَمِير', 1),
+        cited: word(4, 's13', 'الْمُخَفَّفَة'),
+        fa: word(4, 's13', 'فَلَازِم'),
+        shan: word(3, 's7', 'مَذْكُور') } };
+    });
+    if (r.err) throw new Error(r.err);
+    if (r.chapters < 4) throw new Error('al-Kafiya should carry at least four chapters: ' + r.chapters);
+    for (const n of r.notes) { if (n.missing) throw new Error('note missing: ' + n.id); if (n.group !== 'nahw') throw new Error(n.id + ' is not a nahw note'); if (!n.q || n.q[0] < 6 || n.q[0] !== n.q[1]) throw new Error(n.id + ': the question test must carry ≥6 questions in both languages: ' + JSON.stringify(n.q)); if (n.ex < 4) throw new Error(n.id + ': fewer than four examples anchored in al-kafiya: ' + n.ex); if (n.cm < 3) throw new Error(n.id + ': fewer than three common mistakes: ' + n.cm); }
+    const floors = { 3: 98, 4: 98 };   // measured at v215 after round 70: ch3 100.0 (184 endings), ch4 100.0 (269)
+    for (const [c, f] of Object.entries(floors)) { const x = r.per[c]; if (!x) throw new Error('chapter ' + c + ' missing'); if (x.un) throw new Error('ch' + c + ': ' + x.un + ' sentences did not align'); if (x.pct < f) throw new Error('al-Kafiya ch' + c + ' dabt (endings) fell below the floor: ' + x.pct + '% over ' + x.n); }
+    const R = r.rules; const named = {
+      fasl: '70c/d — كُنْتَ opens kāna with her ism on the tāʾ; the faṣl pronoun parts it from the khabar in naṣb (الرَّقِيبَ)',
+      afdal: '70d — the faṣl pronoun\'s khabar may be an elative with مِنْ (the Kafiya\'s own condition): أَفْضَلَ',
+      zarf: '70e — the ẓarf after the jarr phrase is no delayed mubtada (عِنْدَ الْخَلِيلِ)',
+      maIsm: '70b — مَا after لِأَنَّ is her ism, the nakira after the nominal ṣila her khabar (فَاعِلٌ)',
+      masdar: '70a — the second maṣdar answers the first: khabar of the joined definite noun, not an object (انْفِصَالُهُ)',
+      naming: '70f — after the pause the naming passive\'s deputy is the seated doer; the annexed noun is the name (ضَمِيرَ الشَّأْنِ)',
+      cited: '70g — أَنْ cited after مَعَ is a word in jarr; its ṣifa follows it (الْمُخَفَّفَةِ)',
+      fa: '70h — the fāʾ of the ruling after إِلَّا: khabar of a dropped mubtada (فَلَازِمٌ)',
+      shan: '70i — after a finished nominal sentence the joined annexed noun opens a new one; the nakira ṣifa is its khabar (مَذْكُورٌ)' };
+    for (const [k, msg] of Object.entries(named)) if (R[k] !== 'ok') throw new Error(msg + ': ' + R[k]);
+  });
+
+  await check('round 71a — a cited إِيَّاكَ inside the Kafiya\'s pronoun list is no taḥdhīr, and a لَوْلَا standing after a ẓarf (بَعْدَ لَوْلَا، عِنْدَ سِيبَوَيْهِ لَوْلَا) deletes no khabar; the real إِيَّاكَ وَالْأَسَدَ and the Talkhīṣ\'s لَوْلَا مُفَارَقَةُ keep theirs', async () => {
+    const r = await page.evaluate(() => {
+      const N = s => String(s || '').normalize('NFC');
+      const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };
+      const seatsAt = (sn, w) => { if (!sn) return 'no sentence'; const i = sn.tokens.findIndex(t => N((t.s || t.surface).full) === N(w)); if (i < 0) return 'no token ' + w; return HadhfEngine.table(sn).items.filter(v => v.i === i).map(v => v.seat).join(',') || 'none'; };
+      return { iyyaka: seatsAt(sen('al-kafiya', 3, 's11'), 'وَإِيَّاكَ'), munfasil: seatsAt(sen('al-kafiya', 4, 's6'), 'الْمُنْفَصِلُ'), majrur: seatsAt(sen('al-kafiya', 4, 's7'), 'مَجْرُورٌ'), harf: seatsAt(sen('al-kafiya', 4, 's7'), 'حَرْفُ'),
+        talkhis: seatsAt(sen('talkhis-al-miftah', 73, 's22'), 'مُفَارَقَةُ'), asad: (HadhfEngine.table('إِيَّاكَ وَالْأَسَدَ.').items.find(v => v.seat === 'tahdhir') || {}).taqdir || null };
+    });
+    for (const k of ['iyyaka', 'munfasil', 'majrur', 'harf']) if (r[k] !== 'none') throw new Error(k + ' should raise no deletion: ' + r[k]);
+    if (r.talkhis !== 'khabarLawla') throw new Error('the real لَوْلَا must keep its deleted khabar: ' + r.talkhis);
+    if (!r.asad) throw new Error('إِيَّاكَ وَالْأَسَدَ must stay a taḥdhīr');
   });
 
   await check('Izhar al-Asrar ch1 (the three things, the kalima and its marks, the amil and its divisions, the twenty jarr letters): the package on the shelf, its awamil note with the question test, the ḍabṭ floor, the twenty letters quoted as mubtadas and kept whole (wave 27)', async () => {
