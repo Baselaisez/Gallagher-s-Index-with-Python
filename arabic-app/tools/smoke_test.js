@@ -4474,9 +4474,12 @@ if (!CHROME) {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.evaluate(() => { try { closeSheet(); } catch (e) {} });
       await page.waitForTimeout(200);
-      // open a story so the word sheet has something to open on
+      // open a story so the word sheet has something to open on — after the page has gone idle: the games hub's
+      // deferred work on the full Iẓhār (66 chapters, wave 60) was still running when this check clicked, and the
+      // story's words came up only after eight seconds on a loaded machine
+      await page.evaluate(() => new Promise(r => (window.requestIdleCallback || (f => setTimeout(f, 50)))(r, { timeout: 15000 })));
       await page.evaluate(() => { const c = document.querySelector('.lib-card'); if (c) c.click(); });
-      await page.waitForSelector('.word', { timeout: 10000 });
+      await page.waitForSelector('.word', { timeout: 30000 });
       const opens = ['word sheet', 'workshop', 'games hub', 'deck'];
       for (const name of opens) {
         // open, then WAIT for the sheet to finish sliding up. Measuring during
@@ -9838,7 +9841,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 210) throw new Error('the qiyasi builder disagrees with more stored plurals than at v213 (210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 212) throw new Error('the qiyasi builder disagrees with more stored plurals than at v214 (212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -11368,6 +11371,71 @@ if (!CHROME) {
     if (r.light.length < 2 || r.light.some(x => x.ok === false)) throw new Error('عَلِمْتُ أَنْ زَيْدٌ قَائِمٌ: after the lightened أَنْ a mubtada in rafʿ — ' + JSON.stringify(r.light));
     if (r.parted.length < 3 || r.parted.some(x => x.ok === false)) throw new Error('أَنْ لَا تَقُومُ / أَنْ سَيَكُونُ / أَنْ قَدْ تَقُومُ: the parted muḍāriʿ stays in rafʿ — ' + JSON.stringify(r.parted));
     if (r.dual.length < 4 || r.dual.some(x => x.ok === false)) throw new Error('كَأَنْ ثَدْيَاهُ حُقَّانِ / وَلٰكِنْ عَمْرٌو حَاضِرٌ: the dual mubtada and khabar, ʿAmr in rafʿ — ' + JSON.stringify(r.dual));
+  });
+
+  await check('Izhar al-Asrar ch32-66 (the manṣūbāt and the mafʿūls, the ḥāl, tamyīz and mustathnā; the majrūrāt; the majzūm and the condition; the tawābiʿ; the iʿrāb and its four divisions, the munṣarif and the diptote, the taqdīrī and maḥallī; the mabnī by origin and by accident, lāzim and not, and the optional building) — wave 60', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'izhar-al-asrar'); if (!st) return { err: 'no izhar-al-asrar story' };
+      const C = n => st.chapters.find(c => (c.n || c.chapter) === n); const ch = [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66].map(C); if (ch.some(c => !c)) return { err: 'no chapter 32-66' };
+      const note = id => { const n = GRAMMAR[id]; return n ? { group: n.group, q: n.question ? [n.question.en.length, n.question.tr.length] : null, ex: (n.examples || []).filter(e => e.src === 'izhar-al-asrar').length, mistakes: (n.mistakes || n.commonMistakes || []).length } : { missing: true }; };
+      const W = (c, id, re) => { const sen = c.sentences.find(x => x.id === id); if (!sen) return [{ w: 'NO ' + id, ok: false }]; const g = DabtEngine.grade(sen, 'endings'); return (g.words || []).filter(w => re.test(String(w.w || '').replace(/[ً-ٰ]/g, ''))).map(w => ({ w: w.w, out: w.out, ok: w.ok, k: w.k, rule: w.rule, src: w.src })); };
+      const D = c => { let hit = 0, nn = 0; c.sentences.forEach(sen => { const g = DabtEngine.grade(sen, 'endings'); hit += g.hit; nn += g.n; }); return { dabt: Math.round(1000 * hit / nn) / 10, n: nn }; };
+      return { s: ch.map(c => c.sentences.length), d: ch.map(D),
+        notes: ['al-mansubat-al-maful-al-mutlaq', 'al-maful-bihi-wa-qismah', 'al-maful-fih-wal-maful-lah', 'al-maful-maah-wal-hal', 'al-hal-jumla-wa-rabituha', 'al-tamyiz-wa-ahkamuh', 'al-mustathna-wa-nawah-wa-nasbuh', 'al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa', 'al-mansubat-al-tasi-ila-al-thalith-ashar', 'al-majrur-bil-harf-wa-bil-idafa', 'hadhf-al-mudaf-wal-mudaf-ilayh', 'al-majzum-wal-shart-wal-jaza', 'al-fa-fi-jawab-al-shart', 'al-tawabi-wal-sifa', 'al-marifa-al-mudmarat-wal-alam', 'asma-al-ishara-wa-sighuha', 'al-mawsul-wal-muarraf-bil-lam-wal-mudaf', 'al-atf-bil-huruf-wa-ahkamuh', 'al-tawkid-al-lafzi-wal-manawi', 'al-badal-wa-aqsamuh-wa-atf-al-bayan', 'al-irab-wa-taqsimuhu-bil-dhat-wal-mahall', 'naqis-al-irab-bil-harakat-wal-murab-bil-huruf', 'al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai', 'ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath', 'ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh', 'taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal', 'al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki', 'al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin', 'al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh', 'al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab', 'al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar', 'al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf', 'al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada', 'al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun', 'jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha'].map(note),
+        nahwZayd: W(ch[22], 's5', /^(نحو|زيد)$/), muntaha: W(ch[24], 's5', /^(نحو|مساجد|ومصابيح)$/), afal: W(ch[23], 's2', /^(نحو|أفعل|وأبيض)$/), ishara: W(ch[15], 's2', /^(وته|وذه|وذهي|تان|وتين)$/), ishara2: W(ch[15], 's4', /^(وأولالك|وذانك|وتانك)$/),
+        mawsul: W(ch[16], 's2', /^(اللذان)$/), murakkab: W(ch[8], 's4', /^(والحادي|عشر|اسم)$/), ithna: W(ch[30], 's2', /^(اثنا|اثني|عشر|باثني)$/), maqtu: W(ch[32], 's1', /^(قبل|وبعد|وتحت|وفوق|وقدام|وأمام|وخلف|ووراء|غير|وحسب)$/),
+        kanaIlla: W(ch[22], 's1', /^(يكون|تام)$/), kanaNak: W(ch[5], 's7', /^(يكون|نكرة)$/), suffixed: W(ch[22], 's2', /^(فرفعه|ونصبه|وجزمه)$/), taqdiri: W(ch[27], 's1', /^(فرفعه|تقديري)$/), pause: W(ch[28], 's1', /^(أحمد|وضاربه|وضاربات|زيد)$/),
+        kasra: W(ch[29], 's2', /^(فعال|كفجار|حذام|نحو|علم)$/), ghayrMa: W(ch[9], 's4', /^(غير)$/), ghayrYa: W(ch[26], 's1', /^(غير|مسلمي)$/), citedNat: W(ch[34], 's3', /^(واسم|لا|المكررة|المتصل|المفرد|النكرة)$/), munada: W(ch[33], 's1', /^(رجل|زيد|وعمرو)$/),
+        istighatha: W(ch[32], 's4', /^(زيداه|لزيد)$/), nahwCite: W(ch[14], 's5', /^(نحو|زيد|أسامة|وسبحان)$/), jawab: W(ch[27], 's4', /^(يحذفان|فيكون|مصطفون|ومصطفين)$/), hayaa: W(ch[3], 's3', /^(هيئة|المفعول|ضربت)$/), tawkid: W(ch[18], 's1', /^(زيد|وزيد|قائم)$/),
+        tamyiz: W(ch[5], 's4', /^(وأبوة|ودارا)$/), wajib: W(ch[11], 's2', /^(أو|واجب)$/), quran: W(ch[12], 's5', /^(يبتغ)$/), sila: W(ch[16], 's1', /^(جملة|خبرية|معلومة)$/), badal: W(ch[19], 's6', /^(ناصية|كاذبة)$/), hamza: W(ch[19], 's3', /^(جزءا)$/), abu: W(ch[27], 's3', /^(أبو|القاسم)$/), bimana: W(ch[5], 's5', /^(بمعنى)$/), kull: W(ch[10], 's5', /^(ونحو|كل|واحد|وحين|ويوم)$/)
+      };
+    });
+    if (r.err) throw new Error(r.err);
+    [5, 4, 6, 6, 8, 7, 6, 5, 6, 4, 6, 4, 7, 6, 5, 5, 5, 5, 3, 8, 7, 5, 6, 4, 6, 5, 4, 5, 4, 4, 2, 4, 4, 4, 4].forEach((min, q) => { if (r.s[q] < min) throw new Error('ch' + (32 + q) + ' has ' + min + ' sentences — got ' + r.s[q]); });
+    const ids = ['al-mansubat-al-maful-al-mutlaq', 'al-maful-bihi-wa-qismah', 'al-maful-fih-wal-maful-lah', 'al-maful-maah-wal-hal', 'al-hal-jumla-wa-rabituha', 'al-tamyiz-wa-ahkamuh', 'al-mustathna-wa-nawah-wa-nasbuh', 'al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa', 'al-mansubat-al-tasi-ila-al-thalith-ashar', 'al-majrur-bil-harf-wa-bil-idafa', 'hadhf-al-mudaf-wal-mudaf-ilayh', 'al-majzum-wal-shart-wal-jaza', 'al-fa-fi-jawab-al-shart', 'al-tawabi-wal-sifa', 'al-marifa-al-mudmarat-wal-alam', 'asma-al-ishara-wa-sighuha', 'al-mawsul-wal-muarraf-bil-lam-wal-mudaf', 'al-atf-bil-huruf-wa-ahkamuh', 'al-tawkid-al-lafzi-wal-manawi', 'al-badal-wa-aqsamuh-wa-atf-al-bayan', 'al-irab-wa-taqsimuhu-bil-dhat-wal-mahall', 'naqis-al-irab-bil-harakat-wal-murab-bil-huruf', 'al-murab-bil-hadhf-wal-munsarif-wa-ghayruh-al-samai', 'ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath', 'ghayr-al-munsarif-al-qiyasi-al-tanith-wal-tarkib-wal-alif-nun-wal-jam-wa-insirafuh', 'taqsim-al-irab-bil-naw-wal-sifa-wal-taqdiri-al-awwal', 'al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki', 'al-taqdiri-al-rabi-ila-al-sadis-al-ya-wal-waw-wal-murab-bil-huruf-qabl-al-sakin', 'al-taqdiri-al-sabi-wal-mahalli-wal-mabni-wa-aqsamuh', 'al-mabni-al-lazim-al-mudmarat-wal-isharat-wal-mawsulat-wa-faali-wal-aswat-wal-murakkab', 'al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar', 'al-mabni-al-lazim-al-kinayat-wal-mutadamminat-wal-zuruf', 'al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada', 'al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun', 'jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha'];
+    r.notes.forEach((n, q) => { const id = ids[q];
+      if (n.missing) throw new Error('note missing: ' + id);
+      if (n.group !== 'awamil') throw new Error(id + ' belongs to the awamil group: ' + n.group);
+      if (!n.q || n.q[0] < 6 || n.q[0] !== n.q[1]) throw new Error(id + ': the question test must carry ≥6 questions in both languages: ' + JSON.stringify(n.q));
+      if (n.ex < 4) throw new Error(id + ': fewer than four examples anchored in izhar-al-asrar: ' + n.ex);
+      if (n.mistakes < 3) throw new Error(id + ': fewer than three mistakes: ' + n.mistakes);
+    });
+    r.d.forEach((d, q) => { if (d.dabt < 97) throw new Error('ch' + (32 + q) + ' endings-mode dabt below 97: ' + d.dabt + ' on ' + d.n); });
+    [47, 40, 61, 79, 73, 65, 74, 94, 81, 58, 116, 62, 122, 92, 90, 59, 106, 102, 71, 121, 122, 112, 128, 61, 108, 126, 108, 166, 117, 106, 74, 63, 90, 62, 88].forEach((min, q) => { if (r.d[q].n < min) throw new Error('ch' + (32 + q) + ' grades fewer words than round 69 did (SHRUNK): n=' + r.d[q].n + ' < ' + min); });
+    const need = (name, arr, n, msg) => { if (arr.length < n || arr.some(x => x.ok === false)) throw new Error(msg + ' — ' + JSON.stringify(arr)); };
+    need('nahwZayd', r.nahwZayd, 2, 'نَحْوُ زَيْدٍ: نَحْو never carries the tanwīn before what it cites, the cited noun its muḍāf ilayh (69)');
+    need('muntaha', r.muntaha, 4, 'نَحْوُ مَسَاجِدَ وَمَصَابِيحَ: the cited diptote on its fatḥa, the joined one riding it as written (69)');
+    need('afal', r.afal, 3, 'نَحْوُ أَفْعَلَ وَأَبْيَضَ (69)');
+    need('ishara', r.ishara, 5, 'تِهْ ذِهْ ذِهِي تَانِ تَيْنِ: the authored pronoun written as the author wrote it (69)');
+    need('ishara2', r.ishara2, 3, 'أُولَالِكَ ذَانِّكَ تَانِّكَ (69)');
+    need('mawsul', r.mawsul, 1, 'اللَّذَانِ: the dual relative on its kasra (69)');
+    need('murakkab', r.murakkab, 3, 'وَالْحَادِيَ عَشَرَ اسْمُ لَا: the compound ordinal on the fatḥa, the khabar annexed to the particle it names (69)');
+    need('ithna', r.ithna, 5, 'اثْنَا عَشَرَ، اثْنَيْ عَشَرَ، بِاثْنَيْ عَشَرَ: the first part as written, the second on the fatḥa (69)');
+    need('maqtu', r.maqtu, 10, 'قَبْلُ وَبَعْدُ وَتَحْتُ … وَلَا غَيْرُ وَلَيْسَ غَيْرُ وَحَسْبُ: cut from annexation, built on the ḍamm (69)');
+    need('kanaIlla', r.kanaIlla, 2, 'لَا يَكُونُ إِلَّا تَامَّ الْإِعْرَابِ: the annexed khabar on the author\'s fatḥa after إِلَّا (69)');
+    need('kanaNak', r.kanaNak, 2, 'لَا يَكُونُ إِلَّا نَكِرَةً (69)');
+    need('suffixed', r.suffixed, 3, 'فَرَفْعُهُ بِالضَّمِّ وَنَصْبُهُ … وَجَزْمُهُ: the suffixed noun on the author\'s host vowel (69)');
+    need('taqdiri', r.taqdiri, 4, 'فَرَفْعُهُ وَجَرُّهُ تَقْدِيرِيٌّ: the khabar on the tanwīn ḍamm after the suffixed mubtadaʾ (69)');
+    need('pause', r.pause, 4, 'نَحْوُ أَحْمَدْ وَضَارِبَهْ وَضَارِبَاتْ … نَحْوُ زَيْدْ: the word in pause on its sukūn (69)');
+    need('kasra', r.kasra, 6, 'عَلَى فَعَالِ … كَفَجَارِ … نَحْوُ حَذَامِ: built on the kasra, the annexed عَلَمَ in naṣb (69)');
+    need('ghayrMa', r.ghayrMa, 1, 'غَيْرَ مَا سُمِعَ: غَيْر on the author\'s fatḥa is the exception (69)');
+    need('ghayrYa', r.ghayrYa, 2, 'غَيْرَ التَّثْنِيَةِ … مُسْلِمِيَّ: the exception, the plural on the speaker\'s yāʾ (69)');
+    need('citedNat', r.citedNat, 7, 'وَاسْمُ لَا الْمُكَرَّرَةِ الْمُتَّصِلِ بِهَا الْمُفْرَدِ النَّكِرَةِ: the naʿt chain of the cited particle on the kasra (69)');
+    need('munada', r.munada, 4, 'يَا رَجُلُ زَيْدُ وَيَا زَيْدُ وَعَمْرُو: the munādā and its badal on the ḍamm (69)');
+    need('istighatha', r.istighatha, 2, 'يَا زَيْدَاهْ … يَا لَزَيْدٍ: the hāʾ of pause, the lām of istighātha (69)');
+    need('nahwCite', r.nahwCite, 5, 'نَحْوُ: زَيْدٌ … نَحْوُ أُسَامَةَ وَسُبْحَانَ: the word cited on the ḍamma after the colon, the joined diptote (69)');
+    need('jawab', r.jawab, 4, 'نَحْوُ مُصْطَفَوْنَ وَمُصْطَفَيْنَ … يُحْذَفَانِ فَيَكُونُ: the cited plural with its nūn, the jawāb the author wrote in rafʿ (69)');
+    need('hayaa', r.hayaa, 3, 'مَا يُبَيِّنُ هَيْئَةَ الْفَاعِلِ أَوِ الْمَفْعُولِ … مِثْلُ ضَرَبْتُ: the annexed object, the cited verb (69)');
+    need('tawkid', r.tawkid, 5, 'وَضَرَبَ زَيْدٌ زَيْدٌ وَزَيْدٌ قَائِمٌ قَائِمٌ: the lafẓī tawkīd rides its first (69)');
+    need('tamyiz', r.tamyiz, 2, 'أَبًا وَأُبُوَّةً وَدَارًا: the joined item on the author\'s tanwīn (69)');
+    need('wajib', r.wajib, 2, 'أَوْ الْأَوَّلُ … فَالْجَزْمُ فِي الْمُضَارِعِ وَاجِبٌ: the particle as written before the waṣl, the khabar after the jarr phrase (69)');
+    need('quran', r.quran, 1, 'وَمَنْ يَبْتَغِ: the shart after مَنْ, the deficient verb\'s deleted yāʾ (69)');
+    need('sila', r.sila, 3, 'مِنْ صِلَةٍ جُمْلَةٍ خَبَرِيَّةٍ مَعْلُومَةٍ: the naʿt chain on the tanwīn kasr (69)');
+    need('badal', r.badal, 2, 'بِالنَّاصِيَةِ نَاصِيَةٍ كَاذِبَةٍ: the badal and its naʿt (69)');
+    need('hamza', r.hamza, 1, 'جُزْءًا: the tanwīn\'s alif after the hamza (69)');
+    need('abu', r.abu, 2, 'جَاءَنِي أَبُو الْقَاسِمِ: the five nouns annexed (69)');
+    need('bimana', r.bimana, 1, 'بِمَعْنَى: annexed to the gloss, colon or not (69)');
+    need('kull', r.kull, 5, 'وَنَحْوُ يَوْمَئِذٍ أَيْ كُلَّ وَاحِدٍ وَحِينَ إِذْ … وَيَوْمَ إِذْ: نَحْو joined, كُلّ annexed on the tanwīn kasr, the time-noun before إِذْ (69)');
   });
 
   await check('Izhar al-Asrar ch25-31 (the apparent doer and the feminine of its governor; the feminine and its signs; the plurals and their governors; the mubtadaʾ and its kinds; the khabar and its rules; the fāʾ in the khabar after أَمَّا; the fifth to ninth marfūʿāt) — wave 58', async () => {
