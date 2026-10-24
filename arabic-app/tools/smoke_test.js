@@ -11410,13 +11410,37 @@ if (!CHROME) {
       closeSheet && closeSheet();
       return { n: a.n, banks: a.banks, bad: a.bad, sameBank, anchored, bankN, listed, refs, game: GameFactory.CATALOGUE.some(g => g.id === "gCatechism") };
     });
-    if (r.banks < 7 || r.n < 200) throw new Error('the seven banks should load with their 202 questions: ' + JSON.stringify(r));
+    if (r.banks < 12 || r.n < 470) throw new Error('the twelve banks should load with their 470 questions (floors): ' + JSON.stringify(r));
     if (r.bad.length) throw new Error('catechism audit: ' + r.bad.slice(0, 5).join(', '));
     if (!r.sameBank) throw new Error('distractors must be three distinct other items of the same bank');
     if (r.anchored < 50) throw new Error('at least fifty items anchor to a chapter of the text: ' + r.anchored);
     if (r.listed !== r.bankN) throw new Error('the lab lists the whole selected bank: ' + r.listed + ' of ' + r.bankN);
     if (r.refs < r.bankN) throw new Error('the lab links at least one note per item of the listed bank: ' + r.refs + ' of ' + r.bankN);
     if (!r.game) throw new Error('gCatechism is in the GameFactory catalogue');
+  });
+
+  await check('wave 65 — catechism banks II: the Iẓhār Q&A (three bābs), the badīʿ sheet and the ʿalāqa sheet load; the balāgha banks declare their Elo area and the round credits it per item; every verified Arabic string is the anchored chapter\'s own', async () => {
+    const r = await page.evaluate(() => {
+      const a = CatechismEngine.audit();
+      const books = CatechismEngine.banks().map(b => b.book);
+      const badi = CatechismEngine.items("badi")[0], kaf = CatechismEngine.items("kafiya-turkce")[0];
+      const sizes = Object.fromEntries(["izhar-amil", "izhar-mamul", "izhar-irab", "badi", "alaka"].map(b => [b, CatechismEngine.items(b).length]));
+      // the round posts the bank's area: answer one badīʿ item through runQuiz and read the balagha rating before and after
+      const before = state.elo.balagha;
+      const wrong = CatechismEngine.distractors(badi, 3);
+      runQuiz({ title: "t", ask: "t", items: [badi], restart: () => {}, area: it => CatechismEngine.areaOf(it), lvl: () => 4,
+        question: it => "q", options: it => [{ html: "a", ok: true }].concat(wrong.map(w => ({ html: "b", ok: false }))), why: () => "" });
+      const btn = document.querySelector(".opts [data-o]"); if (btn) btn.click();
+      const after = state.elo.balagha;
+      closeSheet && closeSheet();
+      return { books, bad: a.bad, anchored: a.anchored, verified: a.verified, areas: a.areas, areaBadi: CatechismEngine.areaOf(badi), areaKaf: CatechismEngine.areaOf(kaf), sizes, before, after };
+    });
+    for (const b of ["izhar-amil", "izhar-mamul", "izhar-irab", "badi", "alaka"]) if (!r.books.includes(b)) throw new Error('bank missing: ' + b);
+    if (r.bad.length) throw new Error('catechism audit: ' + r.bad.slice(0, 5).join(', '));
+    if (r.areaBadi !== 'balagha' || r.areaKaf !== 'nahw' || !r.areas.includes('balagha')) throw new Error('bank areas: ' + JSON.stringify([r.areaBadi, r.areaKaf, r.areas]));
+    if (r.sizes["izhar-amil"] < 71 || r.sizes["izhar-mamul"] < 73 || r.sizes["izhar-irab"] < 10 || r.sizes.badi < 44 || r.sizes.alaka < 70) throw new Error('bank sizes (floors): ' + JSON.stringify(r.sizes));
+    if (r.anchored < 200 || r.verified < 0.8 * r.anchored) throw new Error('verified-Arabic floor: ' + r.verified + ' of ' + r.anchored + ' anchored');
+    if (!(r.after > r.before)) throw new Error('a right badīʿ answer must raise the balagha rating: ' + r.before + ' → ' + r.after);
   });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {

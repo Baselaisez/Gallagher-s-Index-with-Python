@@ -12,7 +12,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 
 | # | File | Verdict | One-line summary |
 |---|---|---|---|
-| 1 | `research/sources/alaka-suallar.txt` | **UNTOUCHED** | Readable Ottoman-script 70-question madrasah bank on ʿalaqa/istiʿāra; nothing referenced in reader.html — a ready-made quiz template naming all 28-29 ʿalaqa types. |
+| 1 | `research/sources/alaka-suallar.txt` | **FULL** (v218) | The 70 Ottoman sual are `content/catechism/alaka.json` (gCatechism, Sual-Cevap lab, Elo area balagha), answered from file #2 and anchored to the Talkhīṣ bayān chapters where the matn carries the witness; before that, a ready-made quiz template naming the 28 ʿalaqa types that nothing referenced. |
 | 2 | `research/sources/alaka-ilm-bayan.txt` | **FULL** (was PARTIAL; completed in v104) | The answer-key textbook behind file #1: ~28 ʿalaqa types each with definition + Qurʾānic example + qarīna + Turkish parallel — the single richest unconsumed teaching resource in the folder. |
 | 3 | `research/sources/alaqat-al-majaz-balagha.txt` | **UNTOUCHED (unrecoverable)** | All 14,861 lines are undecoded PDF-stream binary; no readable substring exists — total loss until re-extracted from the original document. |
 | 4 | `research/sources/talkhis-al-miftah-balagha.txt` | **PARTIAL** | Source of all 9 balāgha notes AND of the `talkhis-al-miftah` story (76 chapters at v178 — COMPLETE — from the faṣāḥa definitions through the maʿānī babs to the bayān entire — tashbīh, haqīqa/majāz, the istiʿāra with all its kinds, the kināya —, fifteen figures of the badīʿ from the ṭibāq to laff wa-nashr, then the list figures, the tajrīd, the mubālagha and the madhhab kalāmī), plus `khabar-insha`. Still unconsumed: the remaining badīʿ figures (tajāhul al-ʿārif, al-qawl bil-mūjab, the lafẓī figures beyond jinās and sajʿ), the sariqāt and the khātima (~4100+). |
@@ -21,9 +21,9 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 7 | `research/sources/mamul-tablolari-turkce.txt` | **FULL** | Maʿmūl tables hard-coded into `check_canon.py`; drives the "marfūʿ 8/8, manṣūb 13/13" coverage claim. |
 | 8 | `research/sources/awamil-birgivi-ottoman.txt` | **PARTIAL** | Taxonomy fully reflected in the nahw/awamil notes; its canonical one-example-per-iʿrāb mnemonic set and closing count-mnemonic are unused (partly by deliberate policy). |
 | 9 | `research/sources/awamil-birgivi-tables.txt` | **FULL** | The 12 governor/governed tables that produced the `awamil` classification field on every note — pure taxonomy, fully absorbed. |
-| 10 | `research/sources/izhar-amil-mamul-irab.txt` | **PARTIAL** | Doctrine folded generically into the registry, but its numbered soru-cevap catechism form is an entirely unused pedagogical asset. |
+| 10 | `research/sources/izhar-amil-mamul-irab.txt` | **FULL (through #12)** (v218) | Its doctrine was in the registry; its catechism form is now consumed through the denser twin (#12): the Iẓhār Q&A banks `izhar-amil` / `izhar-mamul` / `izhar-irab` cover the same three bābs question for question. |
 | 11 | `research/sources/izhar-full-corrected.txt` | **PARTIAL** | Deepest single prose source on babs I-III with a teacher's marginal notes; largest unmined prose block, and never used to verify the sibling translation's garbled Arabic. |
-| 12 | `research/sources/izhar-sual-cevap.txt` | **PARTIAL** | Denser twin of file #10 (fuller mustathnā/iḍāfa Q&A); same unconsumed catechism-form gap, and the stronger candidate if a Q&A game is built. |
+| 12 | `research/sources/izhar-sual-cevap.txt` | **FULL** (v218) | All 154 Q&A (bāb 1 ʿāmil 71, bāb 2 maʿmūl 73, bāb 3 iʿrāb 10) are `content/catechism/izhar-*.json`, each anchored to the `izhar-al-asrar` chapter that carries its definition and its Arabic re-dressed from that chapter's own tokens (114 of 133 anchored items verified); the seven places where the notebook's Arabic differs from the matn now quote the matn. |
 | 13 | `research/sources/izhar-tercume-full.txt` | **PARTIAL** | Modern-Turkish Izhar that shaped the kıyāsī-9/semāʿī/maʿnevī-2 split; its inline Arabic has confirmed RTL-reversal corruption and needs cross-checking against #11. |
 | 14 | `research/sources/bablara-nakil-12-wazn.txt` | **FULL** | The exact 12-wazn nakil table implemented verbatim by `NAKIL_BABS`/`nakilClass`, including the iftiʿāl ibdāl cases. |
 | 15 | `research/sources/bablara-nakil-tablosu.txt` | **FULL (redundant)** | Byte-level near-duplicate of #14 minus the preamble; deletable as a duplicate transcription. |
@@ -53,7 +53,7 @@ teaches and automates. Re-run with the `sources-coverage-audit` workflow
 | 39 | `research/sources/nahiv-kafiye-ozeti-turkce.txt` | **FULL** (landed in v180; deletions v201; the sixteen obligatory orders and tanāzuʿ as `TartibEngine` v205) | 14-page Kâfiye summary keyed to the matn by page/line: the nine diptote causes with conditions, the precedence rules, tanāzuʿ, the mafʿūl muṭlaq's seven qiyāsī deletions and its samāʿī list (now `HadhfEngine.QIYASI7` / `MASDAR`, read and graded), the four wujūb places of the mafʿūl bih's governor (samāʿ, munādā, iḍmār ʿalā sharīṭat al-tafsīr, taḥdhīr — all read), the mustathnā seats, the pronoun sets, the derived nouns' ʿamal conditions, the hidden أن/إن seats, inna's seats, tanwīn's five kinds. |
 | 40 | `research/sources/qisas-al-nabiyyin-nadwi-leveling-notes.txt` | **PARTIAL (story)** | Nadwī's graded reader (rights: the manifests say «in copyright»; the owner states (v215) that Nadwī released the printing rights to all Muslims and any publisher may print the book — web search could not confirm a waiver, so the copyright page of a current edition must be read and quoted in the three manifests before any store upload; the RIGHTS lines stay until then): prefaces paraphrased and two measured opening specimens (6.2 tokens/sentence, كان-framed 17/20) as the level-ramp calibration — and from v181 the user's two scans of vol. 1 are a STORY: `qisas-al-nabiyyin-1`, **twenty-three chapters — VOLUME 1 COMPLETE** (§1–16 of «من كسر الأصنام؟» and §1–25 of «أحسن القصص», print pp. 1–68, v189), in copyright and flagged so in the manifest; the story closes on Yūsuf's prayer (12:101) and his death. From v194 the owner's scan of **vol. 4** (Karachi 2008) is the story `qisas-al-nabiyyin-4`, **forty-five chapters — VOLUME 4 COMPLETE** (Shuʿayb §1–13, Dāwūd and Sulaymān §1–15, Ayyūb and Yūnus §1–7, Zakariyyā §1–8, ʿĪsā §1–42; print pp. 1–70; 401 sentences / 6789 tokens, Level 3), and the scan of **vol. 2** is the story `qisas-al-nabiyyin-2`, **thirty-nine chapters — VOLUME 2 COMPLETE** («سفينة نوح» §1–22, «العاصفة» §1–11, «ناقة ثمود» §1–13; print pp. 8–68; 445 sentences / 4335 tokens / 804 glossary entries, Level 1; v195 added §9–14, v196 §15–18, v197 the rest of the volume). All three in copyright and flagged so. |
 
-**Tally:** FULL 9 · PARTIAL 24 · UNTOUCHED 6 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
+**Tally:** FULL 12 · PARTIAL 22 · UNTOUCHED 5 (of which 1, `alaqat-al-majaz-balagha.txt`, is unrecoverable) · REFERENCE ONLY 1.
 
 ---
 
@@ -106,7 +106,7 @@ Ordered per the project's stated philosophy: automatable rule systems first, the
 **From:** `talkhis-al-miftah-balagha.txt` fann 1 (~2,600 lines, roughly half the book)
 **Why:** Half the app's primary balāgha source is unread, and this is the section a reader most often needs to explain *why* a sentence is phrased as it is. Ranked below the rule systems because the notes are descriptive rather than derivable.
 
-### 10. Madrasah catechism quiz bank — CONTENT + ENGINE — **CLOSED at v217** for the two Turkish notebooks (#23, #31: 202 items in `content/catechism/`); the Ottoman Iẓhār pair (#10, #12) and `alaka-suallar.txt` still await transliteration into the same bank shape.
+### 10. Madrasah catechism quiz bank — CONTENT + ENGINE — **CLOSED at v218** for every question sheet on the shelf: the two Turkish notebooks (#23, #31) at v217, the Ottoman Iẓhār Q&A (#12, which carries #10's questions), the Talkhīṣ badīʿ sheet (#4) and `alaka-suallar.txt` (#1) at v218 — twelve banks, 470 items in `content/catechism/`, the Arabic re-dressed from the anchored chapter's own tokens. Molla Jāmī (#32) is the one Q&A file left.
 **What:** Build a Q&A game mode fed by the numbered soru-cevap pairs already transcribed across the Izhar pair and mensubāt (~148 Qs) — distinct from the Tahlil tutor, which walks stored corpus sentences rather than doctrine questions. Use `izhar-sual-cevap.txt` as the primary feed (denser: mubtadaʾ 44 vs 9, kāna 38 vs 12, mustathnā 12 vs 0).
 **From:** `izhar-sual-cevap.txt`, `izhar-amil-mamul-irab.txt`, `mensubat.txt`, `alaka-suallar.txt`
 **Why:** A ready-made, already-transcribed question bank with no home in the app — the form itself, not the doctrine, is what is unconsumed. Ranked last of the ten because it needs Ottoman-script transliteration before ingestion.
@@ -136,6 +136,12 @@ not a one-line change.
 ---
 
 ## Log
+
+- **v218** — backlog #10 closed for the whole shelf: `izhar-sual-cevap.txt` (#12, and so #10's
+  questions), the Talkhīṣ badīʿ question sheet (#4) and `alaka-suallar.txt` (#1) are five more
+  catechism banks (izhar-amil 71, izhar-mamul 73, izhar-irab 10, badi 44, alaka 70); the
+  assembler now re-dresses every anchored item's Arabic from the chapter's own tokens and the
+  banks declare their Elo discipline (the two Talkhīṣ sheets post to balagha).
 
 - **v217** — backlog #10 closed for the Turkish notebooks: `mensubat.txt` (#23)
   and `kafiya-turkce-sual-cevap.txt` (#31) are consumed in their own FORM —

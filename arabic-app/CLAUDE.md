@@ -8943,6 +8943,34 @@ The smoke check audits every bank (bilingual, notes resolve, ≥ 50 anchored), d
 lab. Still unconsumed in the same form: the Iẓhār Q&A pair (Ottoman script, denser) and Molla Jāmī — the assembler takes
 a new bank as one more `*_qa_*.py` file.
 
+**Wave 65 — catechism banks II: the Iẓhār Q&A, the badīʿ sheet and the ʿalāqa sheet, and the Arabic made the matn's by
+construction.** Three more question sheets on the shelf had the madrasah's examining form and nothing else of theirs
+unconsumed: `izhar-sual-cevap.txt` (Ottoman, 154 Q&A over the Iẓhār's three bābs), the forty-four badīʿ sual at the end of
+`talkhis-al-miftah-balagha.txt`, and the seventy `alaka-suallar.txt` sual whose answers are `alaka-ilm-bayan.txt`. They are
+five banks now — `izhar-amil` 71, `izhar-mamul` 73, `izhar-irab` 10, `badi` 44, `alaka` 70 — twelve banks and 470 items in
+all, each Iẓhār item anchored to the chapter of `izhar-al-asrar` that carries its definition and each badīʿ item to its
+Talkhīṣ chapter. Three things changed in the pipeline, all general:
+- **A bank declares its discipline.** `area` on the bank (`balagha` for the two Talkhīṣ sheets, `nahw` otherwise) and
+  `CatechismEngine.areaOf(it)`; `runQuiz` now accepts `area` as a FUNCTION of the item, because one round of the catechism
+  draws from both disciplines and each answer must credit its own Elo ledger. The smoke suite plays one badīʿ item through
+  the real shell and reads the balagha rating before and after.
+- **The Arabic is the matn's by construction, not by care.** After anchoring, the assembler looks for every `ar` string as a
+  contiguous TOKEN RUN of the anchored chapter and, when it finds it, REPLACES the authored string with the chapter's own
+  vowelled forms (`verified` on the item counts them); a string the chapter does not carry whole stays as authored and is
+  listed in the run's report. 229 of the 235 anchored items are re-dressed this way. The reader's audit re-reads every
+  verified string off the chapter's tokens in the browser, so the claim is checked where the text is, not trusted from a
+  script. The report found seven notebook wordings that are NOT the matn's (بِالْمَفْهُومِيَّةِ for the matn's بِالْفَهْمِ, the
+  notebook's مَعْنَى الْفِعْلِ for the matn's مَعْنَى فِعْلٍ…) and the items now quote the matn — the notebook's Arabic is a
+  transcription of the book, and where they differ the book wins, as with every story's attribution.
+- **A probe is a token run, never a substring.** The wave-64 probe matched its four words as a substring of the chapter's bare
+  text, so «لفظ» anchored inside «اللفظ» and an ʿalāqa definition landed in the istiʿāra chapter that quotes it in passing. The
+  probe now walks tokens, and a bank may say where its anchors belong (`anchor_from=46` sends the ʿalāqa sheet to the bayān
+  fann instead of the maʿānī chapter that happens to cite the same āya). Anchors fell from 246 to 235 and every one of the
+  lost ones was an accident.
+Two items quote no book: the sheet asks who wrote the ʿAlāqa and who founded the bayān, and the answers (ʿIṣām al-Dīn
+al-Isfarāyīnī; ʿAbd al-Qāhir al-Jurjānī) are the madrasah's, stated as such in the answer text. Backlog #10 is closed for every
+question sheet on the shelf; Molla Jāmī (80 KB, Ottoman, overlap with the Kāfiya sheet unmeasured) is the one Q&A file left.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:
