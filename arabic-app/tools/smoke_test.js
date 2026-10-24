@@ -2308,6 +2308,43 @@ if (!CHROME) {
     await page.evaluate(() => document.getElementById('scrim').click());
   });
 
+  await check('wave 67 — a catechism question can be reviewed like a word: saved from the Sual-Cevap lab, the card asks the question, shows the book\'s wording, then the explanation; it grades, prunes and exports', async () => {
+    await page.evaluate(() => { state.deck.length = 0; persistDeck(); conjState.lab = "sual"; conjState.sualBook = "izhar-amil"; conjState.sualQ = ""; conjState.sualFocus = CatechismEngine.items("izhar-amil")[0].id; openConjugator(); });   // the save button lives inside a <details>: focus the first item so it is OPEN, or the button is attached but hidden
+    await page.waitForSelector('.sheet.show #sualOut details[open] .cat-save', { timeout: 10000 });
+    const qaId = await page.locator('#sualOut .cat-save').first().getAttribute('data-qa');
+    await page.locator('#sualOut .cat-save').first().click();
+    const after = await page.locator('#sualOut .cat-save').first().textContent();
+    if (!/In your deck|Destede/.test(after)) throw new Error('save button did not flip: ' + after);
+    const card = await page.evaluate(() => state.deck.find(c => c.type === 'qa'));
+    if (!card || card.qaId !== qaId) throw new Error('qa card not stored: ' + JSON.stringify(card));
+    await page.evaluate(() => document.getElementById('scrim').click());
+    await page.locator('#deckOpen').click();
+    await page.waitForSelector('.sheet.show #reviewCard.qa-card', { timeout: 10000 });
+    const front = await page.locator('#reviewCard .qa-q').textContent();
+    const want = await page.evaluate(id => T(CatechismEngine.item(id).q), qaId);
+    if (front.trim() !== want.trim()) throw new Error('front is ' + front + ' expected ' + want);
+    if (await page.locator('#reviewCard .qa-ar').count()) throw new Error('the book\'s wording was on the front');
+    await page.locator('#reviewCard').click();
+    if (!(await page.locator('#reviewCard .qa-ar').count())) throw new Error('step 2 did not show the book\'s wording');
+    if (await page.locator('#reviewCard .qa-a').count()) throw new Error('the explanation came before step 3');
+    await page.locator('#reviewCard').click();
+    if (!(await page.locator('#reviewCard .qa-a').count())) throw new Error('no explanation at step 3');
+    if (!(await page.locator('#reviewCard .cat-ref').count())) throw new Error('step 3 links no note');
+    await page.locator('.grade[data-q="good"]').click();
+    const due = await page.evaluate(() => state.deck[0].srs.due - Date.now());
+    if (!(due > 0)) throw new Error('grading did not schedule the qa card: ' + due);
+    const r = await page.evaluate(() => {
+      const tsv = buildDeckExport();
+      state.deck.push({ type: 'qa', qaId: 'no-such-bank-q999', srs: { due: 0, ivl: 0 } });
+      pruneDeck();
+      return { n: state.deck.length, tsv };
+    });
+    if (r.n !== 1) throw new Error('orphan qa card survived the prune: ' + r.n);
+    if (!/qissa catechism/.test(r.tsv)) throw new Error('the export does not carry the qa card: ' + r.tsv.slice(0, 120));
+    await page.evaluate(() => { state.deck.length = 0; persistDeck(); });
+    await page.evaluate(() => document.getElementById('scrim').click());
+  });
+
   await check('Lite deck cap: adding stops at the limit, reviewing never does', async () => {
     await toLibrary();
     const r = await page.evaluate(() => {
@@ -3558,7 +3595,7 @@ if (!CHROME) {
       const down = state.elo.vocab;
       const tgt = EloModel.targetLevel('vocab');
       const exp = EloModel.expected(1200, EloModel.itemRating(3));
-      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 };
+      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 };   // every area the model tracks — a reset that drops one leaves NaN for a later check (CI, v218)
       localStorage.removeItem('qissa-elo');
       return { before, up, down, tgt, exp, weakestWorks: !!EloModel.weakest() };
     });
@@ -3883,7 +3920,7 @@ if (!CHROME) {
       EloModel.update('vocab', 3, true, 'lex:hard-word');
       const itemAfterHit = state.eloItems['vocab|lex:hard-word'];
       const hist = state.eloHist.length;
-      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200 };
+      state.elo = { vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 };   // every area the model tracks — a reset that drops one leaves NaN for a later check (CI, v218)
       state.eloItems = {};
       localStorage.removeItem('qissa-elo-items'); localStorage.removeItem('qissa-elo');
       return { before, itemAfterMiss, itemAfterHit, hist };
@@ -11426,6 +11463,7 @@ if (!CHROME) {
       const badi = CatechismEngine.items("badi")[0], kaf = CatechismEngine.items("kafiya-turkce")[0];
       const sizes = Object.fromEntries(["izhar-amil", "izhar-mamul", "izhar-irab", "badi", "alaka"].map(b => [b, CatechismEngine.items(b).length]));
       // the round posts the bank's area: answer one badīʿ item through runQuiz and read the balagha rating before and after
+      if (!(state.elo.balagha > 0)) state.elo.balagha = 1200;   // backfilled exactly as boot backfills an old profile; this check must not depend on the checks before it
       const before = state.elo.balagha;
       const wrong = CatechismEngine.distractors(badi, 3);
       runQuiz({ title: "t", ask: "t", items: [badi], restart: () => {}, area: it => CatechismEngine.areaOf(it), lvl: () => 4,
@@ -11441,6 +11479,35 @@ if (!CHROME) {
     if (r.sizes["izhar-amil"] < 71 || r.sizes["izhar-mamul"] < 73 || r.sizes["izhar-irab"] < 10 || r.sizes.badi < 44 || r.sizes.alaka < 70) throw new Error('bank sizes (floors): ' + JSON.stringify(r.sizes));
     if (r.anchored < 200 || r.verified < 0.8 * r.anchored) throw new Error('verified-Arabic floor: ' + r.verified + ' of ' + r.anchored + ' anchored');
     if (!(r.after > r.before)) throw new Error('a right badīʿ answer must raise the balagha rating: ' + r.before + ' → ' + r.after);
+  });
+
+  await check('wave 68 — WaqfEngine: the pausal forms the books give, a refusal where they differ, every sentence-final word of the corpus read at the pause, the lab table and a game round', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x).normalize("NFC");
+      const pins = [["رَحْمَةٌ", "رَحْمَهْ", "ta"], ["رَحْمَةً", "رَحْمَهْ", "ta"], ["زَيْدًا", "زَيْدَا", "tanwinFath"], ["فَتًى", "فَتَى", "tanwinFath"], ["زَيْدٌ", "زَيْدْ", "tanwin"], ["قَاضٍ", "قَاضْ", "tanwin"],
+        ["ضَارِبَاتٍ", "ضَارِبَاتْ", "tanwin"], ["يَكْتُبُ", "يَكْتُبْ", "sukun"], ["كِتَابُهُ", "كِتَابُهْ", "sukun"], ["مُسْلِمُونَ", "مُسْلِمُونْ", "sukun"], ["الْحَقُّ", "الْحَقّ", "shadda"], ["لِمَ", "لِمَهْ", "sakt"], ["قِ", "قِهْ", "sakt"],
+        ["إِلَى", "إِلَى", "madd"], ["يَدْعُو", "يَدْعُو", "madd"], ["مِنْ", "مِنْ", "sakin"], ["الْقَاضِي", "الْقَاضِي", "madd"]];
+      const bad = [];
+      pins.forEach(([w, want, rule]) => { const x = WaqfEngine.pause(w); if (!x.ok || N(x.out) !== N(want) || x.rule !== rule) bad.push(w + " → " + (x.ok ? x.out + "/" + x.rule : "refused:" + x.reason) + " (want " + want + "/" + rule + ")"); });
+      const ref = WaqfEngine.pause("سَمَاءً"); if (ref.ok || ref.reason !== "hamza") bad.push("سَمَاءً should be refused as hamza");
+      const unv = WaqfEngine.pause("كتاب"); if (unv.ok || unv.reason !== "unvowelled") bad.push("an unvowelled ending should be refused");
+      let n = 0, ok = 0, refused = {}; const rules = {};
+      STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => { const t = sen.tokens[sen.tokens.length - 1]; if (!t) return; n++;
+        const x = WaqfEngine.pause(t.s.full); if (x.ok) { ok++; rules[x.rule] = (rules[x.rule] || 0) + 1; } else refused[x.reason] = (refused[x.reason] || 0) + 1; })));
+      conjState.lab = "waqf"; conjState.waqf = "رَحْمَةٌ زَيْدًا قَاضٍ يَكْتُبُ"; openConjugator();
+      const rows = [...document.querySelectorAll("#waqfOut .waqf-table tr")].map(tr => (tr.querySelectorAll("td.ar b")[0] || {}).textContent || "");
+      closeSheet && closeSheet();
+      const items = waqfItems();
+      const sample = items.slice(0, 40).map(it => { const w = WaqfEngine.distractors(it.word, it.r.out); return { distinct: new Set(w.concat([it.r.out])).size === w.length + 1, enough: w.length >= 3 }; });
+      return { bad, n, ok, refused, rules, rows, items: items.length, sample: sample.every(x => x.distinct && x.enough), game: GameFactory.CATALOGUE.some(g => g.id === "gWaqf") };
+    });
+    if (r.bad.length) throw new Error('pins: ' + r.bad.join(' | '));
+    if (r.n < 1500 || r.ok < 0.97 * r.n) throw new Error('corpus pause: ' + r.ok + ' of ' + r.n + ' refused ' + JSON.stringify(r.refused));
+    for (const k of ["ta", "tanwinFath", "tanwin", "sukun", "madd"]) if (!(r.rules[k] > 0)) throw new Error('a rule never fired on the corpus: ' + k + ' ' + JSON.stringify(r.rules));
+    if (r.rows.join(" ") !== "رَحْمَهْ زَيْدَا قَاضْ يَكْتُبْ") throw new Error('lab table: ' + r.rows.join(" "));
+    if (r.items < 50) throw new Error('too few waqf items: ' + r.items);
+    if (!r.sample) throw new Error('a round had fewer than three distinct wrong answers');
+    if (!r.game) throw new Error('gWaqf is in the GameFactory catalogue');
   });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {

@@ -8971,6 +8971,57 @@ Two items quote no book: the sheet asks who wrote the ʿAlāqa and who founded t
 al-Isfarāyīnī; ʿAbd al-Qāhir al-Jurjānī) are the madrasah's, stated as such in the answer text. Backlog #10 is closed for every
 question sheet on the shelf; Molla Jāmī (80 KB, Ottoman, overlap with the Kāfiya sheet unmeasured) is the one Q&A file left.
 
+**Wave 66 — Molla Jāmī's questions, and the shelf's last question sheet.** `molla-cami-sual-cevap.txt` is the Ottoman
+sual-cevap on al-Fawāʾid al-Ḍiyāʾiyya, Jāmī's sharḥ of the Kāfiya: eighty questions in three runs (the word, the sentence and
+the iʿrāb; the diptote with its nine causes argued one by one; the marfūʿāt from the doer's two obligatory orders to the
+khabar's four obligatory droppings). It overlaps the Kāfiya Turkish sheet in nine questions and is otherwise a different book —
+the sharḥ's questions are WHY-questions (why no ḥamdala, why the word before the sentence, why rafʿ went to the doer, why
+حَضَاجِرُ and سَرَاوِيلُ and جَوَارٍ are what they are) where the matn's sheet asked WHAT. It is the `jami` bank (80 items, area
+nahw), anchored to the Kāfiya chapters that carry its definitions (ch1, ch2, ch46 and the matn chapters the examples quote),
+assembled through the same pipeline with nothing added to it. With it every question sheet on the shelf is a bank: thirteen
+banks, 550 items. The Kūfan/Baṣran disputes the sharḥ reports (tanāzuʿ, the governor of the mubtadaʾ, the ẓarf khabar) are
+kept as the sharḥ states them, both sides named — the bank records a disagreement, it does not settle one.
+
+**Wave 67 — the catechism joins the deck.** A madrasah student does not only answer the sual-cevap once; he recites it until
+it stays. The deck now takes a `qa` card — `{type: "qa", qaId}` and nothing else, the way a note card holds only its
+`noteId`: the question, the book's Arabic, the answer, the notes and the anchor are read from the bank at review time, so a
+corrected item never leaves a stale copy in anyone's deck, and `pruneDeck` drops an id no bank carries any more (the
+`cardKey` rule: one new type, one new line, no fourth findIndex). The card walks the madrasah's order and the smoke suite
+walks it with it: the front is the QUESTION, prose and left-to-right, with its bank and number under it; the first tap shows
+the book's own wording (the `ar` strings the assembler re-dressed from the matn — recite before you explain); the second
+shows the explanation with the notes that teach it and the «in the text» door; then the four FSRS grades, the same
+scheduler as every other card. Save buttons sit where an item is met — the Sual-Cevap lab's item and the game's reveal
+(`catechismWhy` renders both; in the review it renders only the notes and the anchor, since the card has already shown the
+rest) — and the deck's filter row and search know the new type (`qa`: question, answer and Arabic are all searchable). The
+Anki export carries it as «qissa catechism». One design rule the card forced: a question is prose, so the `qa-card` front
+drops the Arabic display font, the 2.6 rem size and the rtl direction that every other front wears — the list row the same
+— and the smoke check asserts the Arabic is NOT on the front and the explanation NOT before step 3, because the order is
+the pedagogy.
+
+**Wave 68 — `WaqfEngine`: the word at the pause, built by rule.** Qaṭr al-Nadā closes with the bāb al-waqf and the Iẓhār's
+seventh taqdīrī position is the paused word; the app had neither as an engine, only `SajEngine.pausal` (a bare-letter
+rhyme key) and a few verse-pause special cases inside the ḍabṭ. `WaqfEngine.pause(word)` is of the first class — it BUILDS
+the pausal form from the written word and says which rule did it: the feminine tāʾ to a still hāʾ (رَحْمَةٌ → رَحْمَهْ),
+the tanwīn of naṣb to an alif (زَيْدًا → زَيْدَا, فَتًى → فَتَى), the tanwīn of rafʿ and jarr dropped with the last letter
+stilled (زَيْدٌ → زَيْدْ — and the indefinite manqūṣ keeps its yāʾ dropped, قَاضٍ → قَاضْ, which is the same rule and is said
+so), a doubled last letter stilled under its shadda (الْحَقُّ → الْحَقّ, no written sukūn — the harake auditor forbids
+shadda+sukūn and the pause does not need it) — read FIRST of all the endings, because NFC orders a vowel BEFORE the shadda it sits under (ق + ُ + ّ), so every
+other ending test sees a shadda as the last mark and refused الْحَقُّ as unvowelled until the doubled endings got their own
+four rules ahead of the rest (the smoke pin caught it on landing), the hāʾ of pause on the jarr-fused interrogative مَا and on a verb left with
+one letter (لِمَ → لِمَهْ, قِ → قِهْ), every other final vowel to sukūn (يَكْتُبُ → يَكْتُبْ, مُسْلِمُونَ → مُسْلِمُونْ, كِتَابُهُ →
+كِتَابُهْ), a final alif or madd letter untouched. Two refusals, both honest: a hamza carrying the tanwīn of naṣb without an
+alif on the page (سَمَاءً — the books write its pausal alif two ways, so nothing is built), and an unvowelled ending (the
+pause cannot be read off what has no vowel). Each result also states the Iẓhār's note on what the pause HIDES: a paused
+word without the tanwīn of firmness, or with the feminine tāʾ, shows none of its three states; one with that tanwīn shows
+its naṣb (the alif) and hides its rafʿ and jarr. Around the engine: the Waqf lab tab (a word or a sentence, every word's
+pausal form with its rule), and `gWaqf` — the pause falls on the LAST word of a sentence, so every sentence-final corpus
+token whose pausal form differs from the page is an item, and the wrong answers are the classic errors generated from the
+same word (the tanwīn kept, the tāʾ kept as tāʾ, the alif of naṣb lost, the manqūṣ's yāʾ restored, a spurious hāʾ), each
+refuted by name in `whyNot`. The smoke suite pins seventeen forms and the two refusals, then reads every sentence-final
+word of the corpus at the pause and holds a floor (≥ 97 % built; the refusals are listed, never silent) and requires each
+of the five common rules to have fired on real text — a rule the corpus never reaches is a table entry pretending to be
+coverage, the same test every engine here passes. COVERAGE row 33 (Qaṭr al-Nadā) closes with it.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:

@@ -85,3 +85,5 @@ assemble("izhar-mamul", "izhar-al-asrar", {"ar": "سُؤَالَاتُ الْإ�
 assemble("izhar-irab", "izhar-al-asrar", {"ar": "سُؤَالَاتُ الْإِظْهَارِ: الْإِعْرَابُ", "en": "Questions on the Iẓhār: the iʿrāb", "tr": "İzhâr Soru-Cevapları: İ'rab"}, "research/sources/izhar-sual-cevap.txt", prefix="izhar3")
 assemble("badi", "talkhis-al-miftah", {"ar": "سُؤَالَاتُ الْبَدِيعِ", "en": "Questions on the badīʿ", "tr": "Bedî' Soru-Cevapları"}, "research/sources/talkhis-al-miftah-balagha.txt", prefix="badi", area="balagha")
 assemble("alaka", "talkhis-al-miftah", {"ar": "سُؤَالَاتُ الْعَلَاقَةِ", "en": "Questions on the ʿalāqa", "tr": "Alâka Soru-Cevapları"}, "research/sources/alaka-suallar.txt", prefix="alaka", area="balagha", anchor_from=46)
+# wave 66 — Molla Jāmī's sual-cevap on his sharḥ of the Kāfiya
+assemble("jami", "al-kafiya", {"ar": "سُؤَالَاتُ مُلَّا جَامِي", "en": "Molla Jāmī's questions on al-Kāfiya", "tr": "Molla Câmî Soru-Cevapları"}, "research/sources/molla-cami-sual-cevap.txt", prefix="jami")
