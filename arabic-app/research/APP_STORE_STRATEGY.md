@@ -13,7 +13,7 @@
 The store build ships only what is finished and reviewed. Remaining work, in the order the coverage audit (`research/COVERAGE.md`) already ranks it:
 
 1. **Stories still to author from the sources on the shelf**
-   - `kafiya-ibn-hajib-sual-cevap.txt` — the full Kāfiya matn (only ch1–2 authored). The largest remaining text; the engine already reads its grammar.
+   - `kafiya-ibn-hajib-sual-cevap.txt` — the full Kāfiya matn: **done at v216** (46 chapters, 8,157 tokens, the notebook consumed to its end). Left on the page: the ~115-question review index, a catechism-quiz bank for a later wave.
    - `aqaid-nasafi-matn-full.txt` — the ʿAqāʾid of al-Nasafī as a full story (the Aqāʾid package holds 24 chapters from the creed; the Nasafī matn itself is not authored).
    - `wasiyya-samti-arabic.txt`, `emali-qasida-ottoman.txt` — verify the authored packages against these transcriptions cover to cover (the Amālī has 14 chapters; check the qaṣīda's full bayt count).
    - `qatr-al-nada-turkish-cicek.txt` — Qaṭr al-Nadā as a story (its rules are consumed; its matn is not).

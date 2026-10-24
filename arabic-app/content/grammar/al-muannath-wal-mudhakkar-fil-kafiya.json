@@ -1,0 +1,128 @@
+{
+ "id": "al-muannath-wal-mudhakkar-fil-kafiya",
+ "title": {
+  "ar": "الْمُؤَنَّثُ وَالْمُذَكَّرُ فِي الْكَافِيَةِ",
+  "en": "The feminine and the masculine in the Kafiya: the marks, real against verbal, and when the verb's tāʾ is obligatory, optional, or replaced by a plural pronoun",
+  "tr": "Kâfiye'de müennes ve müzekker: alâmetler, hakîkî ile lafzî, fiilin tâ'sının ne zaman vâcib, ne zaman câiz, ne zaman cemi zamiriyle değişir olduğu"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المؤنث: ما فيه علامة التأنيث لفظا أو تقديرا؛ الحقيقي ما بإزائه ذكر من الحيوان؛ تاء التأنيث في الفعل واجبة وجائزة؛ ضمير الجمع",
+  "ضياء صونغور اوغلى — دفتر الكافية: التعريفات بلفظها، جاءت اليوم هند وجاء اليوم هند، طلعت الشمس وطلع، جاء الرجال وجاءت، النساء نصرت ونصرن، العيون ظهرت وظهرن"
+ ],
+ "question": {
+  "en": [
+   "What is a FEMININE noun? One carrying the mark of femininity in its wording (امْرَأَة, with the tāʾ) or by estimation (دَار, with none written). The masculine is simply the opposite. The marks are three: the tāʾ (فَاطِمَة), the short alif (حُبْلَى), the long alif (حَمْرَاء).",
+   "Real or verbal? REAL when a male stands over against it among living things (امْرَأَة against رَجُل, نَاقَة against جَمَل); VERBAL when none does (ظُلْمَة, عَيْن).",
+   "When MUST the verb take the tāʾ? When a real feminine follows it directly (جَاءَتْ هِنْدٌ), and whenever the verb is predicated of a feminine's PRONOUN, real or not (هِنْدٌ جَاءَتْ، الشَّمْسُ طَلَعَتْ).",
+   "When MAY it? When a word separates verb and doer (جَاءَتِ الْيَوْمَ هِنْدٌ / جَاءَ الْيَوْمَ هِنْدٌ), and when the doer is an apparent non-real feminine (طَلَعَتِ الشَّمْسُ / طَلَعَ الشَّمْسُ). An apparent broken plural is treated the same (جَاءَ الرِّجَالُ / جَاءَتِ الرِّجَالُ).",
+   "And a plural's PRONOUN? For rational men: the she-form or the they-form (الرِّجَالُ جَاءَتْ / جَاؤُوا). For women and for non-rational things: the she-form or the they-women form (النِّسَاءُ نَصَرَتْ / نَصَرْنَ، الْعُيُونُ ظَهَرَتْ / ظَهَرْنَ).",
+   "What does the engine read? The DabtEngine's doer rules read the verb's tāʾ as the receipt of a feminine doer and accept the he-form before a separated or non-real feminine and before a broken plural; the agreement checks in the games are built from this table."
+  ],
+  "tr": [
+   "MÜENNES isim nedir? Te'nîs alâmetini lafzında (امْرَأَة, tâ ile) ya da takdîren (دَار, yazılı alâmet yok) taşıyan. Müzekker yalnızca onun tersidir. Alâmet üçtür: tâ (فَاطِمَة), maksûr elif (حُبْلَى), memdûd elif (حَمْرَاء).",
+   "Hakîkî mi lafzî mi? Canlılardan karşısında bir erkek varsa HAKÎKÎ (رَجُل karşısında امْرَأَة, جَمَل karşısında نَاقَة); yoksa LAFZÎ (ظُلْمَة, عَيْن).",
+   "Fiil tâ'yı ne zaman ALMALI? Hakîkî müennes fiilin hemen ardından gelince (جَاءَتْ هِنْدٌ) ve fiil, hakîkî olsun olmasın, bir müennesin ZAMİRİNE isnâd edilince (هِنْدٌ جَاءَتْ، الشَّمْسُ طَلَعَتْ).",
+   "Ne zaman ALABİLİR? Fiil ile fâil arasına bir kelime girince (جَاءَتِ الْيَوْمَ هِنْدٌ / جَاءَ الْيَوْمَ هِنْدٌ) ve fâil zâhir gayr-i hakîkî müennes olunca (طَلَعَتِ الشَّمْسُ / طَلَعَ الشَّمْسُ). Zâhir cem-i mükesser de aynı muameleyi görür (جَاءَ الرِّجَالُ / جَاءَتِ الرِّجَالُ).",
+   "Ya ceminin ZAMİRİ? Âkil erkekler için: müennes şekli ya da cemi şekli (الرِّجَالُ جَاءَتْ / جَاؤُوا). Kadınlar ve gayr-i âkil şeyler için: müennes şekli ya da nisve şekli (النِّسَاءُ نَصَرَتْ / نَصَرْنَ، الْعُيُونُ ظَهَرَتْ / ظَهَرْنَ).",
+   "Motor neyi okur? DabtEngine'in fâil kuralları fiilin tâ'sını müennes fâilin makbuzu olarak okur; ayrılmış ya da gayr-i hakîkî müennesten ve cem-i mükesserden önce müzekker şekli kabul eder; oyunlardaki uyum denetimleri bu tablodan kurulur."
+  ]
+ },
+ "plain": {
+  "en": "A feminine noun shows its gender by a tāʾ or an alif, or shows nothing and is still feminine. The verb before a feminine doer takes the tāʾ: always for a woman or a she-animal standing right after it, always for a pronoun, but optionally when a word comes between or when the doer is a thing or a broken plural.",
+  "tr": "Müennes isim cinsini bir tâ ya da elifle gösterir, ya da hiçbir şey göstermez ve yine müennestir. Müennes fâilden önceki fiil tâ alır: hemen ardından gelen bir kadın ya da dişi hayvan için her zaman, zamir için her zaman; araya kelime girince ya da fâil bir şey ya da kırık çoğul olunca ise isteğe bağlı."
+ },
+ "explanation": {
+  "en": "The chapter has two halves. The first defines gender by its marks — a feminine noun either shows one (the tāʾ, the short alif, the long alif) or is counted feminine without showing it — and then cuts the feminine in two by a test outside grammar: does a male stand over against it among living things? If yes it is real (a woman, a she-camel); if not, verbal (darkness, an eye). The second half is the rule the division exists for: the verb's tāʾ of femininity. It is obligatory in the two cases where nothing weakens the bond — a real feminine standing directly after its verb, and any feminine's pronoun, because a pronoun has no gender of its own and takes the verb's. It becomes optional where the bond loosens: a word between verb and doer (today), a doer that is feminine only by its wording (the sun), and — the notebook's extension of the same thought — a broken plural standing apparent, which the Arabs treat like a non-real feminine. Even the plural's pronoun keeps a choice: men's plural takes the she-form or the they-form, women's and things' plurals the she-form or the nūn form. The whole table is what the DabtEngine's doer rules encode when they read a tāʾ on the verb as a receipt of what follows and still accept the bare verb before the sun or the men.",
+  "tr": "Bâb iki yarımdır. İlki cinsi alâmetleriyle tarif eder — müennes isim ya bir alâmet gösterir (tâ, maksûr elif, memdûd elif) ya da göstermeden müennes sayılır — sonra müennesi nahvin dışından bir ölçüyle ikiye böler: canlılardan karşısında bir erkek var mı? Varsa hakîkîdir (kadın, dişi deve); yoksa lafzî (karanlık, göz). İkinci yarı bu bölünmenin kendisi için var olduğu kuraldır: fiilin te'nîs tâ'sı. Bağı zayıflatan hiçbir şeyin olmadığı iki durumda vâcibdir — fiilinin hemen ardından gelen hakîkî müennes ve herhangi bir müennesin zamiri, çünkü zamirin kendi cinsi yoktur, fiilinkini alır. Bağ gevşeyince câiz olur: fiil ile fâil arasına giren kelime (bugün), yalnız lafzıyla müennes olan fâil (güneş) ve — defterin aynı düşünceyi uzatışı — zâhir duran cem-i mükesser; Araplar onu gayr-i hakîkî müennes gibi görür. Ceminin zamiri bile bir seçim taşır: erkeklerin cemi müennes şeklini ya da cemi şeklini, kadınların ve şeylerin cemileri müennes şeklini ya da nûn şeklini alır. Bütün tablo, DabtEngine'in fâil kurallarının fiildeki tâ'yı ardından gelenin makbuzu olarak okurken güneşten ya da adamlardan önce yalın fiili de kabul etmesinde kodludur."
+ },
+ "examples": [
+  {
+   "ar": "الْمُؤَنَّثُ: مَا فِيهِ عَلَامَةُ التَّأْنِيثِ لَفْظًا أَوْ تَقْدِيرًا",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "فَاطِمَةُ، حُبْلَى، حَمْرَاءُ",
+   "en": "The three marks.",
+   "tr": "Üç alâmet.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "امْرَأَةٌ بِإِزَاءِ رَجُلٍ — ظُلْمَةٌ وَعَيْنٌ",
+   "en": "Real against verbal.",
+   "tr": "Hakîkî ile lafzî.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "جَاءَتْ هِنْدٌ — هِنْدٌ جَاءَتْ — الشَّمْسُ طَلَعَتْ",
+   "en": "The obligatory tāʾ.",
+   "tr": "Vâcib tâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "جَاءَتِ الْيَوْمَ هِنْدٌ / جَاءَ الْيَوْمَ هِنْدٌ — طَلَعَتِ الشَّمْسُ / طَلَعَ الشَّمْسُ",
+   "en": "The optional tāʾ.",
+   "tr": "Câiz tâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "الرِّجَالُ جَاءَتْ / جَاؤُوا — النِّسَاءُ نَصَرَتْ / نَصَرْنَ",
+   "en": "The plural's pronoun.",
+   "tr": "Ceminin zamiri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«جَاءَ هِنْدٌ — fâil fiilden sonra, tâ gerekmez»",
+   "right": "«جَاءَتْ هِنْدٌ — bitişik hakîkî müennes fâil için tâ vâcibdir»",
+   "why": {
+    "en": "The he-form is allowed only across a gap or before a non-real feminine; Hind right after her verb demands the tāʾ.",
+    "tr": "Müzekker şekli ancak fâsıla ile ya da gayr-i hakîkî müennesten önce câizdir; fiilinin hemen ardındaki Hind tâ'yı ister."
+   }
+  },
+  {
+   "wrong": "«الشَّمْسُ طَلَعَ — güneş lafzî müennestir, tâ câizdir»",
+   "right": "«الشَّمْسُ طَلَعَتْ — fiil zamire isnâd edilince tâ her müennes için vâcibdir; cevâz yalnız zâhir için: طَلَعَ الشَّمْسُ»",
+   "why": {
+    "en": "The option belongs to the apparent noun after the verb; a pronoun always carries its antecedent's gender into the verb.",
+    "tr": "Seçim fiilden sonraki zâhir isme âittir; zamir, mercîinin cinsini her zaman fiile taşır."
+   }
+  },
+  {
+   "wrong": "«الرِّجَالُ جَاءَتْ yanlıştır, adamlar müzekkerdir»",
+   "right": "«الرِّجَالُ جَاءَتْ ve الرِّجَالُ جَاؤُوا ikisi de doğrudur: cem-i mükesserin zamiri müfred müennes ya da cemi müzekker olur»",
+   "why": {
+    "en": "A broken plural is a collective the Arabs may construe as a single feminine thing — the she-form is the sign of that construal.",
+    "tr": "Cem-i mükesser, Arapların tek bir müennes şey gibi kurabildiği bir topluluktur — müennes şekli bu kuruluşun alâmetidir."
+   }
+  },
+  {
+   "wrong": "«الْعُيُونُ ظَهَرُوا — çoğul fâil, vâv ile»",
+   "right": "«الْعُيُونُ ظَهَرَتْ ya da ظَهَرْنَ — gayr-i âkil ceminin zamiri müennes şekli ya da nûn şeklidir, vâv değil»",
+   "why": {
+    "en": "The wāw of the plural is for rational males only; things and women take the tāʾ or the nūn.",
+    "tr": "Ceminin vâvı yalnız âkil erkekler içindir; şeyler ve kadınlar tâ ya da nûn alır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-muannath-wa-alamatuh",
+  "al-fail-al-muzhar-wa-tanith-amilih",
+  "al-jumu-wa-tanith-amiliha",
+  "jam-taksir",
+  "jam-muannath-salim",
+  "ism-mamdud",
+  "ism-maqsur-manqus",
+  "mamnu-min-sarf"
+ ]
+}

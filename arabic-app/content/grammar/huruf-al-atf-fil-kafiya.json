@@ -1,0 +1,118 @@
+{
+ "id": "huruf-al-atf-fil-kafiya",
+ "title": {
+  "ar": "حُرُوفُ الْعَطْفِ فِي الْكَافِيَةِ: الْوَاوُ وَالْفَاءُ وَثُمَّ وَحَتَّى",
+  "en": "The coordination letters in the Kafiya: the ten, and the four of absolute joining — the wāw without order, the fāʾ with order and no delay, thumma with delay in fact, ḥattā with a part of its whole and delay only in the mind",
+  "tr": "Kâfiye'de atıf harfleri: on harf ve mutlak cem'in dördü — tertipsiz vâv, tertipli ve mühletsiz fâ, hakikî mühletli sümme, bütününün bir cüz'ü ve yalnız zihnî mühletle hattâ"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — حروف العطف: الواو والفاء وثم وحتى وأو وإما وأم ولا وبل ولكن؛ والأربعة الأولى للجمع المطلق",
+  "ضياء صونغور اوغلى — دفتر الكافية: الواو بلا ترتيب؛ الفاء للترتيب بلا مهلة؛ ثم للترتيب مع المهلة؛ حتى ومعطوفها جزء؛ الفرقان بين حتى وثم؛ مات الناس حتى الأنبياء؛ قدم الحجاج حتى المشاة"
+ ],
+ "question": {
+  "en": [
+   "How many coordination letters are there? Ten, and they divide by what they say about the two things joined. The first four say both are in: the wāw, the fāʾ, thumma, ḥattā. The next three leave it open which one: aw, immā, am. The last three settle on one of the two: lā, bal, lākin.",
+   "What does the wāw add? Nothing but «and». جَاءَنِي زَيْدٌ وَعَمْرٌو says both came — not who came first, not whether together. The WawEngine's atf face is exactly this: joining, with no order read into it.",
+   "What do the fāʾ and thumma add? Order — and they differ in the gap. The fāʾ joins with order and no delay (ʿAmr right after Zayd); thumma with order and a delay (ʿAmr after a while). The gap is real: it happened in that order.",
+   "What is special about ḥattā as a coordinator? Two things. Its coordinate must be a PART of what it is joined to — and the strongest or weakest part, to make a point: مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ (even the prophets, the strongest), قَدِمَ الْحُجَّاجُ حَتَّى الْمُشَاةُ (even those on foot, the weakest). And its «delay» is only in the mind: the prophets did not really die after everyone else.",
+   "How is ḥattā the coordinator told from ḥattā the jarr letter? By the case that follows: الْأَنْبِيَاءُ in rafʿ is joined to النَّاسُ; a majrūr after ḥattā is the end-point of chapter 30. The analyzer reads the ending and names the face.",
+   "What does the engine do? The PARTICLES table holds the ten with their senses; the AmilEngine pairs each coordinate with what it is joined to, so the coordinate takes its partner's case; and the TartibEngine's order ledger records whether a letter implies sequence."
+  ],
+  "tr": [
+   "Kaç atıf harfi vardır? On; ve bağlanan iki şey hakkında söyledikleriyle bölünürler. İlk dördü ikisinin de dahil olduğunu söyler: vâv, fâ, sümme, hattâ. Sonraki üçü hangisi olduğunu açık bırakır: ev, immâ, em. Son üçü ikisinden birinde karar kılar: lâ, bel, lâkin.",
+   "Vâv ne ekler? «Ve»den başka hiçbir şey. جَاءَنِي زَيْدٌ وَعَمْرٌو ikisinin de geldiğini söyler — kimin önce geldiğini değil, beraber olup olmadığını değil. WawEngine'in atıf yüzü tam budur: içine sıra okunmayan bağlama.",
+   "Fâ ve sümme ne ekler? Tertip — ve aralıkta ayrılırlar. Fâ tertiple ve mühletsiz bağlar (Amr Zeyd'in hemen ardından); sümme tertiple ve mühletle (Amr bir süre sonra). Aralık gerçektir: o sırayla olmuştur.",
+   "Atıf harfi olarak hattâ'da özel olan ne? İki şey. Ma'tûfu bağlandığının bir CÜZ'Ü olmalıdır — ve bir noktayı vurgulamak için en kuvvetli ya da en zayıf cüz: مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ (peygamberler bile, en kuvvetli), قَدِمَ الْحُجَّاجُ حَتَّى الْمُشَاةُ (yayalar bile, en zayıf). Ve «mühleti» yalnız zihindedir: peygamberler gerçekten herkesten sonra ölmedi.",
+   "Atıf hattâ'sı cer hattâ'sından nasıl ayrılır? Ardından gelen harekeyle: ref'teki الْأَنْبِيَاءُ, النَّاسُ'a bağlıdır; hattâ'dan sonraki mecrûr otuzuncu bâbın intihâsıdır. Analizör sonu okur ve yüzü adlandırır.",
+   "Motor ne yapar? PARTICLES tablosu onunu mânâlarıyla tutar; AmilEngine her ma'tûfu bağlandığıyla eşler, böylece ma'tûf eşinin i'rabını alır; TartibEngine'in sıra defteri bir harfin sıra ima edip etmediğini kaydeder."
+  ]
+ },
+ "plain": {
+  "en": "Ten little words join one thing to another. The first four — «and», «and then», «then later», «even» — say both things are included; they differ only in whether one came after the other and how long after. «Even» has a twist: what follows it must be part of what came before, and the «after» is only in your head.",
+  "tr": "On küçük kelime bir şeyi ötekine bağlar. İlk dördü — «ve», «hemen sonra», «sonra», «hatta» — ikisinin de dahil olduğunu söyler; yalnız sırada ve aradaki sürede ayrılırlar. «Hatta»nın bir inceliği vardır: ardından gelen öncekinin parçası olmalıdır ve «sonra» yalnız kafandadır."
+ },
+ "explanation": {
+  "en": "The Kafiya lists the ten and makes the first division — the four for absolute joining — and the notebook glosses each of the four by the two parameters the tradition uses, order and delay. The wāw has neither, and the notebook says so negatively, in the way that matters for reading: nothing about who came first or whether together may be inferred from it. The fāʾ has order without delay, thumma has both. Ḥattā is the interesting one, and the notebook gives it the two rules that make it a different letter from the jarr ḥattā of chapter 30: the coordinate is a part of the whole — the extreme part, to make a point of strength or weakness — and the delay is mental, not real, which the two stock examples show from both ends (the prophets' death, the pilgrims on foot). The two differences from thumma are then stated as a catechism. The next chapter takes the six remaining letters.",
+  "tr": "Kâfiye onunu sayar ve ilk bölümü — mutlak cem'in dördü — yapar; defter dördün her birini geleneğin kullandığı iki ölçütle, tertip ve mühletle şerh eder. Vâvda ikisi de yoktur ve defter bunu okuma için önemli olan olumsuz biçimde söyler: kimin önce geldiği ya da beraber olup olmadıkları ondan çıkarılamaz. Fâ'da mühletsiz tertip, sümme'de ikisi de vardır. İlginç olan hattâ'dır ve defter ona onu otuzuncu bâbın cer hattâ'sından farklı bir harf kılan iki kuralı verir: ma'tûf bütünün bir cüz'üdür — kuvvet ya da zaaf vurgusu için uç cüz — ve mühlet gerçek değil zihnîdir; iki alışılmış örnek bunu iki uçtan gösterir (peygamberlerin ölümü, yaya hacılar). Sümme'den iki fark sonra sual-cevap olarak verilir. Sonraki bâb kalan altı harfi alır."
+ },
+ "examples": [
+  {
+   "ar": "الْوَاوُ وَالْفَاءُ وَثُمَّ وَحَتَّى وَأَوْ وَإِمَّا وَأَمْ وَلَا وَبَلْ وَلَكِنْ",
+   "en": "The ten.",
+   "tr": "On harf.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ وَعَمْرٌو",
+   "en": "The wāw: both, in no order.",
+   "tr": "Vâv: ikisi, sırasız.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ فَعَمْرٌو — جَاءَنِي زَيْدٌ ثُمَّ عَمْرٌو",
+   "en": "The fāʾ and thumma: order, without and with delay.",
+   "tr": "Fâ ve sümme: tertip, mühletsiz ve mühletli.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ",
+   "en": "Ḥattā: the strongest part.",
+   "tr": "Hattâ: en kuvvetli cüz.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "قَدِمَ الْحُجَّاجُ حَتَّى الْمُشَاةُ",
+   "en": "Ḥattā: the weakest part, the delay only in the mind.",
+   "tr": "Hattâ: en zayıf cüz, mühlet yalnız zihinde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«جَاءَنِي زَيْدٌ وَعَمْرٌو — önce Zeyd, sonra Amr geldi»",
+   "right": "«ikisi de geldi; vâv sıra bildirmez»",
+   "why": {
+    "en": "Only the fāʾ and thumma carry order.",
+    "tr": "Sırayı yalnız fâ ve sümme taşır."
+   }
+  },
+  {
+   "wrong": "«مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءِ»",
+   "right": "«مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ — atıf hattâ'sından sonra ma'tûf, ma'tûfun aleyhin i'rabını alır»",
+   "why": {
+    "en": "A majrūr after ḥattā makes it the jarr letter, not the coordinator.",
+    "tr": "Hattâ'dan sonra mecrûr onu atıf değil cer harfi yapar."
+   }
+  },
+  {
+   "wrong": "«جَاءَنِي زَيْدٌ حَتَّى عَمْرٌو»",
+   "right": "«جَاءَنِي الْقَوْمُ حَتَّى زَيْدٌ — hattâ'nın ma'tûfu bir cüz olmalıdır»",
+   "why": {
+    "en": "ʿAmr is not a part of Zayd; the part condition fails.",
+    "tr": "Amr Zeyd'in cüz'ü değildir; cüz şartı sağlanmaz."
+   }
+  },
+  {
+   "wrong": "«مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ — peygamberler herkesten sonra öldü»",
+   "right": "«hattâ'nın mühleti yalnız zihnîdir; hakikatte bir sıra yoktur»",
+   "why": {
+    "en": "The second difference from thumma: the delay is in the mind.",
+    "tr": "Sümme'den ikinci fark: mühlet zihindedir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "atf-nasaq",
+  "anwa-al-waw",
+  "ila-hatta-fi-wal-ba-fil-kafiya",
+  "al-fa-fi-jawab-al-shart",
+  "aw-imma-am-la-bal-lakin-fil-kafiya"
+ ]
+}

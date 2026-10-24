@@ -8743,6 +8743,157 @@ draft refused any لَوْلَا after a majrūr noun and lost a real one: the T
 (unchanged), false 3, and the gate (`patch71_smoke.py`) pins the four cited tokens at «no deletion» beside the Talkhīṣ's
 verse and إِيَّاكَ وَالْأَسَدَ as the live controls. Every engine edit, however small, re-runs the neighbour sweep (WORSE 0).
 
+**Wave 62 — al-Kāfiya complete from the notebook (ch5–46, 8,157 tokens).** The Ottoman notebook's Kāfiya run
+(`kafiya-ibn-hajib-sual-cevap.txt`, lines ~60–405) is consumed to its end: 46 chapters, 495 sentences, 8,157 tokens,
+1,376 glossary entries, 46 chapter notes, every chapter validated on a DRY copy (`$S/dry61/al-kafiya`) before landing.
+The notebook's second half is a sharḥ in the madrasah's question-and-answer voice, and the chapters keep its order:
+the mabnī and the pronouns (5–8), the marfūʿāt and manṣūbāt (9–20), the majrūrāt and the tawābiʿ (21–24), the verb
+and its sisters (25–28), the ḥarf letter by letter — jarr (29–33), the inna family (34–36), coordination (37–38),
+augmentation (39), urging/qad/question (40), condition (41), the oath meeting the condition (42), ammā (43), kallā, the
+tāʾ and the five tanwīns (44), the nūn of emphasis (45) — and the notebook's own definitions sheet (46). Three
+authoring rules earned on the way: **a lex key is a global claim** (the Talkhīṣ's `alam` = عَلَم collided with every
+other package's عَالَم and is renamed `alam-banner`; `salaha`, `aata`, `kaffa`, `bayda`, `sami` all had to be minted
+under suffixed keys after `find_gloss` silently returned a different lemma — check the lemma, never the key); **segments
+must spell the surface** (no segmentation on an idghām form like مِتُّ or on لَئِنْ; the iʿrāb names the idghām);
+**a note may only claim what an engine does** — every «the analyzer…» sentence in the new notes was checked against the
+code and reduced to the iʿrāb lines where the engine does not yet do it. The Qur'anic citations follow the muṣḥaf
+(تَدْعُوا 17:110, أَلَّا 7:12) where the notebook writes them apart, and the manifest attribution records both.
+
+**Round 72a (`patch72a.py`) — the nūn of emphasis is BUILT, not stored.** `TawkidEngine.rows(morph)` derives the
+heavy and the light nūn for all fourteen muḍāriʿ cells and the six amr cells from the stored paradigm by the Kāfiya's
+own rules (ch45): the ending vowel becomes a fatḥa; after the dual's alif and the women's nūn the heavy nūn takes a kasra
+and the light one is refused (two quiescents — Yūnus allows it, the engine prints —); the plural wāw and the addressed
+woman's yāʾ drop and leave their vowel as a trace unless a fatḥa precedes them, in which case they stay vowelled
+(تَرَوُنَّ، تَرَيِنَّ); the alif returns to its yāʾ (تَرَيَنَّ). **The imperative of the addressee is rebuilt from the
+muḍāriʿ**, because the stored امر has lost the very ending the nūn needs (قُلْ → قُولَنَّ، اِرْمِ → اِرْمِيَنَّ، رَ → رَيَنَّ);
+the stored amr says only whether a hamza-initial root keeps its hamza (اِئْتِيَنَّ) or drops it (خُذَنَّ). One trap: in NFC
+the ending vowel sits BEFORE a final shadda (يَمُدُّ), so the vowel to strip is found by look-ahead, not at the string's
+end — the first draft shipped يَمُدَُّنَّ. The sheet gains a التَّوْكِيد tense, the Sarf Lab prints the rows, and the gate
+holds a fixed table across the classes plus a **corpus audit**: every authored token carrying a nūn-of-emphasis segment
+must be a cell the engine builds for that verb (31 of 31 in the built reader; the Kāfiya's two refused forms اِضْرِبَانْ،
+اِضْرِبْنَانْ counted apart). Two things the built reader taught that the raw JSON had not: **the builder keeps only
+`{form, lex}` on a segment**, so the verb is found as the nearest segment before the nūn that owns a paradigm, never by a
+`pos` the page does not carry; and **before the speaker's yāʾ the heavy nūn takes a kasra and swallows the nūn of
+protection** (لَيَأْتِيَنِّي), so the audit compares that token against the plain cell.
+
+**Round 72b (`patch72b.py`) — the implied oath has a seat.** `HadhfEngine` raises `qasamMuqaddar` on لَئِنْ: the lām
+prepares for an oath never said and the answer belongs to the oath, so the engine looks ahead for the fingerprint —
+a verb that keeps its nūn (لَا يَخْرُجُونَ), إِنَّ with no fāʾ, or the lām of the answer — and names it. A plain إِنْ
+raises nothing. Gated on 59:12, a لَئِنْ … لَأَقُومَنَّ, the Kāfiya's own token and the plain control.
+
+**Round 72c (`patch72c.py`, `patch72c2.py`, `patch72c3.py`) — the sweep's repairs after the lexicon grew.** The first
+neighbour sweep after landing came back WORSE 12 across six other stories, and the diagnosis is worth more than the
+fixes. **Five of the Kāfiya's minted paradigms shadowed correct copies that other packages already owned under the
+same global key** — اِسْتَعْمَلَ had lost its initial alif, وَلِيَ carried doubled kasras, اِشْتَقَّ a doubled sukūn — and
+because a lex key is a global claim, the corrupted copy won the corpus walk for every story (اسْتَعْمَلَ stopped matching
+any cell, الْوَقْفَ fell into jarr behind it). The repair is an identity copy from the owning package and a scan every
+landing should repeat: **no paradigm may carry two marks on one letter, and a key owned elsewhere must be cell-for-cell
+identical.** صَلُحَ (bāb كَرُمَ) is not the wasiyya's صَلَحَ and became `saluha-karuma`. Three regressions were real
+homographs the bigger lexicon created, each answered by a rule, not a list: (1) **the word's own dictionary entry
+first** — the corpus walk breaks a loose tie by package order, so فَأَنْزِلْ (أَنْزَلَ's amr) became نَزَلَ's «I descend» the
+day نَزَلَ entered the Kāfiya, and عُدْهُ (عَادَ) became عَدَّ's; the grader now hands the ḍabṭ the author's lex by index
+(`_lex24`, beside the wave-32 `_pos24`), and a cell from that verb's own paradigm outranks the walk; (2) **rank before
+wording** (the Kāfiya's obligatory orders): after a verb, [noun + 3rd-person pronoun] [definite noun] seats the definite
+noun as the doer — the pronoun may precede its referent in wording only when the referent precedes it in rank
+(خَلَعَتْ عَلَيْهِ جَمَالَهَا الْأَيَّامُ, never *ضَرَبَ غُلَامُهُ زَيْدًا); (3) **the apposition after a majrūr name** — a bare
+kin or tribe noun annexed to a following name follows the name's jarr (لِعَادٍ قَوْمِ هُودٍ). Two placement lessons: a rule
+that must beat the wave-58 receipt rules has to stand at the HEAD of the row loop, and a constant declared later in
+that loop (`KANAF69`) cannot be referenced earlier — inline it. Each pass was measured on the nine regressed sentences
+before the sweep was re-run.
+
+**Round 72d (`patch72d.py`) — a rule written from one sentence inherits that sentence's shape.** The second sweep came
+back WORSE 24, and twenty-two of them were the rank rule of 72c firing on things it had never been shown: a fused
+jarr-pronoun as the «noun + pronoun» (يُرَغِّبُ فِيهِ الْخُصُومَ), a ẓarf host (مَعَهُ النَّارَ), a verb already wearing its wāw doer
+(أَلْقَوْا فِيهَا إِبْرَاهِيمَ), an amr (فَاعْلَمْ شَرُّهَا الْبِدَعُ), a pronoun disagreeing with the verb in gender (قَالَتْ زَوْجُهُ هَاجَرُ
+— the هُ cannot be هَاجَر), and two-object verbs whose second object merely looks like a doer (لَا يُؤْتِي عِلْمَهُ الْمُشْرِكَ). The
+rule was correct for خَلَعَتْ عَلَيْهِ جَمَالَهَا الْأَيَّامُ and had been placed at the head of the ladder so nothing could pre-empt
+it, which is exactly why nothing could. It now demands a bare third-person cell of the verb (no attached doer, no
+amr), gender agreement between the pronoun and that cell, a real noun as host (`RANK72_HOSTS` lists what is never one),
+and the author's receipt on both nominals — the fatḥa before the pronoun and the ḍamma on the definite noun. **Three
+rules of thumb for any rule seated at the head of the ladder: it must refuse the fused shapes, it must check that the
+verb has not already got what the rule is about to give it, and it must read the receipt.** Two more repairs: the
+badal rule's receipt was the following name's kasratān, which a muḍāf ilayh also wears (أَصْحَابَ سَفَاهَةٍ is an object) —
+it now reads the kin noun's own kasra; and the own-lex overlay, by giving كَانَ a cell, woke the clause-annexing rule on
+لِنُوحٍ ابْنٌ كَانَ, so that rule stands down before كَانَ's family and before any head wearing tanwīn. أَرَى joined
+`TWO_OBJ`, and a two-object verb wearing its first object seats the next bare noun as the second when the author wrote
+naṣb on it (أَرَاهُ آيَاتٍ) — a doer would wear the ḍamma. Gated by a smoke check over the six sentences.
+**Round 72e — three SHRUNK chapters, and not one engine line.** The re-sweep came back WORSE 0 but SHRUNK 3: the
+Iẓhār's لَفْظًا أَوْ تَقْدِيرًا and the Talkhīṣ's تَوَابِعَ had stopped being graded at all. The Kāfiya's wave had minted
+`lafzan` and `taqdiran` with lemmas wearing their tanwīn and `tawabi` with the plural as the lemma, and because the
+lexicon lookup is by bare surface and the first package wins, those three entries captured other packages' tokens and
+handed them a kind the ḍabṭ seats nothing on. The repair is the keys the library already owned (`lafz`, `taqdir`,
+`tabi`) and the three entries deleted; the Nasafī wave's `khilafan` became the noun `khilaf` before it could do the
+same. **A lemma is a dictionary form: no tanwīn, no case, the singular — an accusative adverbial is a noun in naṣb,
+and a plural is the singular's `plural` field, never its own key.** The sweep is the only thing that sees this, which
+is why it is mandatory for a content wave too.
+
+
+**Round 72f — a sentence id is unique within its CHAPTER.** Every chapter numbers its sentences s1, s2…, so
+`jumpTo(story, senId)` found the FIRST chapter carrying the id: a corpus-search hit from al-Kāfiya ch24 s3 opened
+ch1 s3 and asked for a word index it does not have — the word sheet never showed and the release's corpus-search
+check timed out. The check had passed for a hundred versions because the top hit happened to be reachable; al-Kāfiya
+at 46 chapters ended the coincidence. `jumpTo` takes the chapter now (`openSearch` passes `data-ch`; stored cards
+without one keep the old first-chapter behaviour), and the «is this sentence on the page» walk that the cloze extra
+and the new check both need is ONE helper, `senOnPage(st, senId, chN)`, instead of two copies. The check gates both
+faces: a hit behind the paywall must bounce back to the search, a reachable hit must open the sheet. Same lesson as
+the superset search assertion: when a correct word breaks a test, the test was wrong — and a test that assumes an
+ordering of the corpus will break on the next chapter that reorders it.
+
+**Round 72g — a wave's paradigms are checked by the release, not by the validator.** Wave 62 shipped four defective
+cells in al-Kāfiya's morphology that `validate_content.py` cannot see and the sarf audit (smoke_3) refused on the first
+release: `derived()` takes the māḍī STEM WITH its hamzat al-waṣl (`"اِفْتَقَر"`, not `"فْتَقَر"` — the mudāriʿ core is
+the bare one), and `majzum2` is the corpus's SECOND-PERSON jazm cell (تَخْتَلَّ، تَسْتَجِرْ), never the 3ms repeated. The
+two shapes are now a one-line scan worth running on any dry package before its release (`mazi[0][1] === "ْ"`, a
+`majzum2` not opening on تَ/تُ); wave 63's bank passed it clean. And the neighbour sweep for a paradigm fix can be
+NARROWED honestly: a stored cell can only change a verdict where its surface occurs, so the 29 chapters carrying the
+four verbs were re-probed against the full sweep's own log (WORSE 0, BETTER 1 — ch26's اِعْتَرَضَ, now found as a
+verb) instead of a second 40-minute pass.
+
+**Round 72h — a cap written as a COUNT is a running total in disguise.** The Adab lint gated `failNamed` on
+`rate ≥ 95` AND `findings ≤ 250`; the rate was 95.2 and the findings 295, because the corpus had grown by a fifth. The
+two assertions say the same thing, and only the absolute one can be broken by growth alone. A finding cap is now a
+FRACTION of n where it was a budget (0.05, 0.04, 0.15) and stays an integer only where it is a near-zero tolerance (2, 4,
+6, 8). The Adab-lab tally check had the same disease in regex form (`/28\d\d\d|29\d\d\d|3\d\d\d\d/` — the line
+count's first digits) and is a floor now. Third time this file records the lesson; grep a new check for a bare number
+before shipping it.
+
+**Round 73a — a new GENRE moves every corpus-graded floor at once, and each floor fails for its own reason.** The Kāfiya's
+42 chapters are a commentary in the Q&A voice — definitions, named particles, cited examples — and the first release run
+on them failed five corpus-graded checks in one chunk. None was a flake and none was one bug:
+- **Mentions.** The authored line for a NAMED particle says «لَفْظٌ مَحْكِيٌّ», and `InnaEngine` already skipped those —
+  with `/مَحْكِيّ/`, which never matched, because the tanwīn on the yāʾ is ordered BEFORE the shadda by NFC. Ten named
+  particles were graded as usage. Test a diacritised keyword on the STRIPPED string, always (`/محكي/`).
+- **The definiendum's colon.** «الْمَعْرِفَةُ: مَا وُضِعَ لِشَيْءٍ بِعَيْنِهِ» — `readMa` treated the colon as a clause stop,
+  so the frame that v116 wrote for exactly this sentence shape («a definite noun, then مَا, then a verb») never saw
+  its noun, and 48 definitions read as negations. A colon after a definite noun that is not a verb and not a pronoun is
+  the copula of a definition, not a stop. مَا 82.5 → 88.9 % of 604.
+- **Two seats the Kāfiya itself lists.** The khabar of a WAITING mubtadaʾ (الْفَرْقُ بَيْنَهُمَا أَنَّ — a bare أَنَّ with no
+  returning pronoun can only close as a masdar: fatḥa; with the pronoun, زَيْدٌ إِنَّهُ قَائِمٌ, the sentence-khabar branch
+  keeps its kasra) and the delayed mubtadaʾ after a fronted jarr phrase (وَمِنْهَا أَنَّ — the book's عِنْدِي أَنَّكَ with a
+  letter for the ẓarf). A DELAYED mubtadaʾ (مُؤَخَّر) already has its khabar and must not open the first seat; a hemistich
+  mark closes a clause like a full stop. Inna 95.9 → 97.4 %.
+- **The Hadhf false-positive budget.** `false ≤ 3` was set at n ≈ 400 and the Kāfiya tripled n, but the right answer was
+  not a bigger budget: of the twelve new false proposals, six were on quoted words (the audit now does not charge a
+  deletion proposed on a word the author marked مَحْكِيّ and gave no deletion — the ENGINE keeps proposing there, because
+  the author marks real deletions inside quotes too, and skipping the row cost 28 points of accuracy before that was
+  understood), two were قَالَ فُلَانٌ read as a reply (the verb's own doer — and `core()` peels the فَ of فُلَانٌ, so the
+  guard tests the bare word), one was the tamyīz of a number read as ishtighāl, one a list item whose jarr-phrase khabar
+  the rule did not see, one a muḍāf after the fāʾ taken for a bare khabar, one a tafṣīl headed by a QUOTED number word.
+  false 15 → 3 at the same accuracy (86.2).
+The general lesson: when a floor fails after content of a new genre lands, list the misses and read them before touching
+the floor — here every one of the five was either a real engine gap the new genre exposed or a measurement bug, and the
+floors did not move.
+
+**Round 73b — run the LATER chunks on a copy before spending the release on the earlier ones.** v216's first three
+release runs each died in the next chunk (smoke_2, smoke_3, smoke_4), three hours apart. The fourth time, chunks 4–8 were
+run on a patched COPY of the reader first (`SMOKE_READER`), which found two more floors the Kāfiya had moved — the muʿrib's
+`fullTerm` rule (nine لَمْ lines authored as «نَفْيٍ وَجَزْمٍ», two thirds of the term; fixed in the chapters AND the author
+scripts, since a regenerated chapter must not bring the debt back) and the Jam audit's disagreement ceiling (three heard
+plurals, ratcheted with the note the check carries) — before a single release minute was spent on them. Two things to
+know about a copy run: the suite resolves the uploaded reader, the manifests it reads off disk and the page's icons
+relative to ITS OWN directory, so a copy in the scratchpad fails those checks with ENOENT and ERR_FILE_NOT_FOUND —
+artefacts, not findings; and a copy run is not the gate — the release still runs everything on the landed files.
+
 **Qiṣaṣ al-Nabiyyīn rights.** The owner states that Nadwī released the printing rights to all Muslims and that any publisher
 may print the book. Web search at v215 could not confirm a waiver (uploads tagged by uploaders, one site claiming reserved
 rights, Muʾassasat al-Risāla editions). The finding is recorded in `research/APP_STORE_STRATEGY.md` §5 and `COVERAGE.md`
