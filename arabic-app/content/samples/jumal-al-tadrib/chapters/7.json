@@ -1,0 +1,732 @@
+{
+ "chapter": 7,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Zayd, sit down.",
+    "tr": "Zeyd, otur."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ نَائِبٌ عَنْ «أَدْعُو».",
+      "en": "A particle of calling, standing in for «I call».",
+      "tr": "«Çağırıyorum» fiilinin yerini tutan nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدُ",
+      "smart": "زَيْدُ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مُفْرَدٌ عَلَمٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "en": "A single proper name: fixed on the damma, in the position of nasb.",
+      "tr": "Müfred alem: damme üzere mebnî, mahallen mansub."
+     }
+    },
+    {
+     "surface": {
+      "full": "اِجْلِسْ",
+      "smart": "اِجْلِسْ",
+      "bare": "اجلس"
+     },
+     "lex": "jalasa",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+      "en": "An imperative built on sukun; the fa'il is hidden, «you».",
+      "tr": "Sükûn üzere mebnî emir fiili; fâil müstetir «sen»."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا زَيْدُ اِجْلِسْ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ طَلَبِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then an imperative clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra talebî fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "Student, write the lesson.",
+    "tr": "Öğrenci, dersi yaz."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "طَالِبُ",
+      "smart": "طَالِبُ",
+      "bare": "طالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى نَكِرَةٌ مَقْصُودَةٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+      "en": "No proper name at all, yet MEANT of the one before you: a nakira maqsuda, fixed on the damma just the same.",
+      "tr": "Hiç alem değil, fakat önündekini KASTEDİYOR: nekire-i maksûde; o da damme üzere mebnîdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "اُكْتُبِ",
+      "smart": "اُكْتُبِ",
+      "bare": "اكتب"
+     },
+     "lex": "kataba",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "An imperative on sukun, given a kasra where two sakins met.",
+      "tr": "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mansub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا طَالِبُ اُكْتُبِ الدَّرْسَ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "You two students, write the lesson.",
+    "tr": "Ey iki öğrenci, dersi yazın."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "طَالِبَانِ",
+      "smart": "طَالِبَانِ",
+      "bare": "طالبان"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "al-muthanna"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مُثَنًّى مَبْنِيٌّ عَلَى الْأَلِفِ فِي مَحَلِّ نَصْبٍ — يُبْنَى عَلَى مَا يُرْفَعُ بِهِ.",
+      "en": "A dual munada: fixed on the ALIF, not the damma — it is built on whatever would RAISE it.",
+      "tr": "Tesniye münâdâ: damme üzere değil ELİF üzere mebnî — kendisiyle MERFÛ olacağı şey üzere bina edilir."
+     }
+    },
+    {
+     "surface": {
+      "full": "اُكْتُبَا",
+      "smart": "اُكْتُبَا",
+      "bare": "اكتبا"
+     },
+     "lex": "kataba",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "afal-khamsa"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَأَلِفُ الِاثْنَيْنِ فَاعِلٌ.",
+      "en": "An imperative built on the DROPPED nun; the dual alif inside it is the fa'il.",
+      "tr": "Nûnun hazfi üzere mebnî emir; içindeki elif-i isneyn fâildir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mansub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا طَالِبَانِ اُكْتُبَا الدَّرْسَ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Muslims, listen.",
+    "tr": "Ey Müslümanlar, dinleyin."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمُونَ",
+      "smart": "مُسْلِمُونَ",
+      "bare": "مسلمون"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "مُنَادًى جَمْعُ مُذَكَّرٍ سَالِمٌ مَبْنِيٌّ عَلَى الْوَاوِ فِي مَحَلِّ نَصْبٍ.",
+      "en": "A sound masculine plural munada: fixed on the WAW — the very letter that raises it.",
+      "tr": "Cem'-i müzekker-i sâlim münâdâ: onu ref eden harfin ta kendisi olan VÂV üzere mebnî."
+     }
+    },
+    {
+     "surface": {
+      "full": "اِسْمَعُوا",
+      "smart": "اِسْمَعُوا",
+      "bare": "اسمعوا"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr",
+      "afal-khamsa"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَوَاوُ الْجَمَاعَةِ فَاعِلٌ.",
+      "en": "An imperative built on the dropped nun; the waw of the group is the fa'il.",
+      "tr": "Nûnun hazfi üzere mebnî emir; vâv-ı cemâat fâildir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا مُسْلِمُونَ اِسْمَعُوا",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "Abdullah, enter the house.",
+    "tr": "Abdullah, eve gir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَبْدَ",
+      "smart": "عَبْدَ",
+      "bare": "عبد"
+     },
+     "lex": "abd",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مُضَافٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ — وَالْمُضَافُ لَا يُبْنَى.",
+      "en": "A mudaf munada: really mansub by the fatha — a mudaf is never fixed.",
+      "tr": "Muzâf münâdâ: fetha ile gerçekten mansub — muzâf mebnî olmaz."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "The mudaf ilayh, in jarr.",
+      "tr": "Mecrûr muzâfun ileyh."
+     }
+    },
+    {
+     "surface": {
+      "full": "اُدْخُلِ",
+      "smart": "اُدْخُلِ",
+      "bare": "ادخل"
+     },
+     "lex": "dakhala",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "An imperative on sukun, given a kasra where two sakins met.",
+      "tr": "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْبَيْتَ",
+      "smart": "الْبَيْتَ",
+      "bare": "البيت"
+     },
+     "lex": "bayt",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mansub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا عَبْدَ اللهِ اُدْخُلِ الْبَيْتَ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "Somebody — anybody — listen.",
+    "tr": "Ey (herhangi) bir adam, dinle."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَجُلًا",
+      "smart": "رَجُلًا",
+      "bare": "رجلا"
+     },
+     "lex": "rajul",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "مُنَادًى نَكِرَةٌ غَيْرُ مَقْصُودَةٍ مَنْصُوبٌ، وَبَقِيَ تَنْوِينُهُ لِأَنَّهُ نَكِرَةٌ.",
+      "en": "An indefinite meant of nobody in particular: really mansub — and it alone KEEPS its tanwin.",
+      "tr": "Hiç kimseyi kastetmeyen nekire: gerçekten mansub — ve tenvinini KORUYAN yalnız odur."
+     }
+    },
+    {
+     "surface": {
+      "full": "اِسْمَعْ",
+      "smart": "اِسْمَعْ",
+      "bare": "اسمع"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+      "en": "An imperative built on sukun; the fa'il is hidden, «you».",
+      "tr": "Sükûn üzere mebnî emir fiili; fâil müstetir «sen»."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا رَجُلًا اِسْمَعْ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then an imperative clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra talebî fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "O student, seek knowledge.",
+    "tr": "Ey talebe, ilmi taleb et."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَيُّهَا",
+      "smart": "أَيُّهَا",
+      "bare": "أيها"
+     },
+     "lex": "ayyuha",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "huruf-tanbih"
+     ],
+     "irab": {
+      "ar": "«أَيُّ» مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ، وَ«هَا» حَرْفُ تَنْبِيهٍ — وَهُوَ الْوُصْلَةُ إِلَى نِدَاءِ الْمُعَرَّفِ بِـ«الْ».",
+      "en": "«ayy» is the munada, fixed on the damma; «ha» is a particle of drawing near — together they are the only way in to calling a noun that wears the article.",
+      "tr": "Münâdâ «eyy»dir, damme üzere mebnî; «hâ» tenbih harfidir — ال'lı bir isme seslenmenin yegâne yolu budur."
+     },
+     "segments": [
+      {
+       "form": "أَيُّ",
+       "lex": "ayyuha",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "ha-tanbih",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الطَّالِبُ",
+      "smart": "الطَّالِبُ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ لِـ«أَيُّ» مَرْفُوعٌ لَفْظًا.",
+      "en": "A na't following «ayy» — and it is raf' on the page, not nasb.",
+      "tr": "«Eyy»in na'tı — sayfada mansub değil, merfûdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "اُطْلُبِ",
+      "smart": "اُطْلُبِ",
+      "bare": "اطلب"
+     },
+     "lex": "talaba",
+     "pos": "verb",
+     "grammar": [
+      "imperative-amr"
+     ],
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، كُسِرَ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "An imperative on sukun, given a kasra where two sakins met.",
+      "tr": "Sükûn üzere mebnî emir; iki sâkin buluştuğu için kesra verilmiştir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعِلْمَ",
+      "smart": "الْعِلْمَ",
+      "bare": "العلم"
+     },
+     "lex": "ilm",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ.",
+      "en": "Direct object, in nasb.",
+      "tr": "Mansub mef'ûlün bih."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا أَيُّهَا الطَّالِبُ اُطْلُبِ الْعِلْمَ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "My teacher, I heard your lesson.",
+    "tr": "Hocam, dersini dinledim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "يَا",
+      "smart": "يَا",
+      "bare": "يا"
+     },
+     "lex": "ya-nida",
+     "pos": "part",
+     "grammar": [
+      "vocative-munada"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نِدَاءٍ.",
+      "en": "A particle of calling.",
+      "tr": "Nidâ harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُعَلِّمِي",
+      "smart": "مُعَلِّمِي",
+      "bare": "معلمي"
+     },
+     "lex": "muallim",
+     "pos": "noun",
+     "grammar": [
+      "vocative-munada",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُنَادًى مُضَافٌ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ فَتْحَةٌ مُقَدَّرَةٌ قَبْلَ يَاءِ الْمُتَكَلِّمِ، وَالْيَاءُ مُضَافٌ إِلَيْهِ.",
+      "en": "A mudaf to the speaker's ya: still mansub, but by an ESTIMATED fatha — nothing shows on the page.",
+      "tr": "Mütekellim yâsına muzâf: yine mansub, fakat TAKDÎRÎ fetha ile — sayfada görünen yoktur."
+     },
+     "segments": [
+      {
+       "form": "مُعَلِّمِ",
+       "lex": "muallim",
+       "pos": "noun"
+      },
+      {
+       "form": "ي",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "سَمِعْتُ",
+      "smart": "سَمِعْتُ",
+      "bare": "سمعت"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "A past verb built on sukun because the ta of the doer joined it; that ta is the fa'il.",
+      "tr": "Fâil tâsı bitiştiği için sükûn üzere mebnî mâzî; tâ fâildir."
+     },
+     "segments": [
+      {
+       "form": "سَمِعْ",
+       "lex": "samia",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "دَرْسَكَ",
+      "smart": "دَرْسَكَ",
+      "bare": "درسك"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+      "en": "Direct object in nasb; the kaf is its mudaf ilayh.",
+      "tr": "Mansub mef'ûlün bih; kâf muzâfun ileyhtir."
+     },
+     "segments": [
+      {
+       "form": "دَرْسَ",
+       "lex": "dars",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "يَا مُعَلِّمِي سَمِعْتُ دَرْسَكَ",
+     "ar": "جُمْلَةُ نِدَاءٍ ثُمَّ جُمْلَةٌ فِعْلِيَّةٌ — لَا مَحَلَّ لَهُمَا.",
+     "en": "A vocative, then a verbal clause — neither takes a case.",
+     "tr": "Nidâ cümlesi, sonra fiil cümlesi — ikisi de mahalsizdir."
+    }
+   ]
+  }
+ ]
+}

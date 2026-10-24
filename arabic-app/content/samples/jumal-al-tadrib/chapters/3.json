@@ -1,0 +1,931 @@
+{
+ "chapter": 3,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Zayd said: truly Allah is able over everything.",
+    "tr": "Zeyd, Allah'ın her şeye kâdir olduğunu söyledi (Allah her şeye kâdirdir, dedi)."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَالَ",
+      "smart": "قَالَ",
+      "bare": "قال"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "Past verb, built on fatha.",
+      "tr": "Fetha üzere mebnî mâzî fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ بَعْدَ الْقَوْلِ — فَالْمَقُولُ يُحْكَى كَمَا هُوَ.",
+      "en": "Particle of emphasis and nasb; the hamza takes KASRA — it stands after قَالَ: the saying is quoted whole, not melted into a masdar.",
+      "tr": "Te'kid ve nasb harfi; hemzesi KESRALIDIR — «قَالَ»den sonra geldiği için; söz olduğu gibi nakledilir, masdara erimez."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The majestic name — the ism of إِنَّ, in nasb.",
+      "tr": "Lafza-i celâl — «إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَادِرٌ",
+      "smart": "قَادِرٌ",
+      "bare": "قادر"
+     },
+     "lex": "qadir",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ — اسْمُ فَاعِلٍ.",
+      "en": "The khabar of إِنَّ in raf' — an ism fa'il: able.",
+      "tr": "«إِنَّ»nin merfû haberi — ism-i fâil: kâdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "كُلِّ",
+      "smart": "كُلِّ",
+      "bare": "كل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِـ«عَلَى» وَهُوَ مُضَافٌ.",
+      "en": "In jarr after عَلَى, itself a mudaf.",
+      "tr": "«عَلَى» ile mecrur ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَيْءٍ",
+      "smart": "شَيْءٍ",
+      "bare": "شيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrûr muzâfun ileyhtir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "قَالَ زَيْدٌ...",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    },
+    {
+     "text": "إِنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ",
+     "ar": "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+     "en": "The quoted speech — in nasb position as the maqul al-qawl.",
+     "tr": "Makûlü'l-kavl — mahallen mensubdur."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "I knew that Allah is able over everything.",
+    "tr": "Allah'ın her şeye kâdir olduğunu bildim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "عَلِمْتُ",
+      "smart": "عَلِمْتُ",
+      "bare": "علمت"
+     },
+     "lex": "alima",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "en": "Past verb; the attached ت is its fa'il.",
+      "tr": "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir."
+     },
+     "segments": [
+      {
+       "form": "عَلِمْ",
+       "lex": "alima",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، فُتِحَتْ هَمْزَتُهُ لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= عَلِمْتُ قُدْرَةَ اللهِ).",
+      "en": "Particle of emphasis and nasb; the hamza takes FATHA — the clause melts into a masdar (= I knew Allah's ABILITY).",
+      "tr": "Te'kid ve nasb harfi; hemzesi FETHALIDIR — çünkü sonrası masdar hükmündedir (= Allah'ın kudretini bildim: -dığını)."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "en": "The majestic name — the ism of أَنَّ, in nasb.",
+      "tr": "Lafza-i celâl — «أَنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَادِرٌ",
+      "smart": "قَادِرٌ",
+      "bare": "قادر"
+     },
+     "lex": "qadir",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «أَنَّ» مَرْفُوعٌ — اسْمُ فَاعِلٍ.",
+      "en": "The khabar of أَنَّ in raf' — an ism fa'il: able.",
+      "tr": "«أَنَّ»nin merfû haberi — ism-i fâil: kâdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَى",
+      "smart": "عَلَى",
+      "bare": "على"
+     },
+     "lex": "ala",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "A jarr letter.",
+      "tr": "Cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "كُلِّ",
+      "smart": "كُلِّ",
+      "bare": "كل"
+     },
+     "lex": "kull",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِـ«عَلَى» وَهُوَ مُضَافٌ.",
+      "en": "In jarr after عَلَى, itself a mudaf.",
+      "tr": "«عَلَى» ile mecrur ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَيْءٍ",
+      "smart": "شَيْءٍ",
+      "bare": "شيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrûr muzâfun ileyhtir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "عَلِمْتُ...",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening verbal clause — i'rabless.",
+     "tr": "İbtidâiyye fiil cümlesi — mahalsizdir."
+    },
+    {
+     "text": "أَنَّ اللهَ قَادِرٌ عَلَى كُلِّ شَيْءٍ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ سَدَّ مَسَدَّ مَفْعُولَيْ «عَلِمَ».",
+     "en": "The construed masdar stands in for the objects of عَلِمَ.",
+     "tr": "Müevvel masdar, «عَلِمَ»nin mef'ûllerinin yerini tutar."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "I heard that the teacher is ill.",
+    "tr": "Muallimin hasta olduğunu işittim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "سَمِعْتُ",
+      "smart": "سَمِعْتُ",
+      "bare": "سمعت"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+      "en": "Past verb; the attached ت is its fa'il.",
+      "tr": "Mâzî fiil; bitişik tâ zamiri mahallen merfû fâildir."
+     },
+     "segments": [
+      {
+       "form": "سَمِعْ",
+       "lex": "samia",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، فُتِحَتْ هَمْزَتُهُ لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= سَمِعْتُ مَرَضَهُ).",
+      "en": "Particle of emphasis and nasb; the hamza takes FATHA — the clause melts into a masdar (= I heard of his ILLNESS).",
+      "tr": "Te'kid ve nasb harfi; hemzesi FETHALIDIR — çünkü sonrası masdar hükmündedir (hasta olduğunu: -dığını)."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُعَلِّمَ",
+      "smart": "الْمُعَلِّمَ",
+      "bare": "المعلم"
+     },
+     "lex": "muallim",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "en": "The ism of أَنَّ, in nasb.",
+      "tr": "«أَنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَرِيضٌ",
+      "smart": "مَرِيضٌ",
+      "bare": "مريض"
+     },
+     "lex": "marid",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «أَنَّ» مَرْفُوعٌ — صِفَةٌ مُشَبَّهَةٌ.",
+      "en": "The khabar in raf' — a sifa mushabbaha.",
+      "tr": "Merfû haberi — sıfat-ı müşebbehedir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "أَنَّ الْمُعَلِّمَ مَرِيضٌ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ «سَمِعَ».",
+     "en": "The construed masdar is the object of سَمِعَ.",
+     "tr": "Müevvel masdar, «سَمِعَ»nin mef'ûlüdür."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Truly the lesson is easy.",
+    "tr": "Şüphesiz ders kolaydır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ فِي صَدْرِ الْكَلَامِ.",
+      "en": "Particle of emphasis and nasb; the hamza takes KASRA — it opens the speech; nothing before it could absorb a masdar.",
+      "tr": "Te'kid ve nasb harfi; hemzesi KESRALIDIR — söz başında geldiği için."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "سَهْلٌ",
+      "smart": "سَهْلٌ",
+      "bare": "سهل"
+     },
+     "lex": "sahl",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "en": "The khabar of إِنَّ, in raf'.",
+      "tr": "«إِنَّ»nin merfû haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّ الدَّرْسَ سَهْلٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An emphasized nominal clause — i'rabless.",
+     "tr": "Te'kidli isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "The girl said: truly the book is new.",
+    "tr": "Kız, kitap yenidir, dedi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَالَتِ",
+      "smart": "قَالَتِ",
+      "bare": "قالت"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ، وَالتَّاءُ لِلتَّأْنِيثِ، كُسِرَتْ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "Past verb; the ت marks the feminine, vowelled kasra to break the two sukuns.",
+      "tr": "Mâzî fiil; tâ te'nis içindir, iki sâkin karşılaştığı için kesralanmıştır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْبِنْتُ",
+      "smart": "الْبِنْتُ",
+      "bare": "البنت"
+     },
+     "lex": "bint",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ بَعْدَ الْقَوْلِ.",
+      "en": "Particle of emphasis and nasb; the hamza takes KASRA — it stands after a qawl verb.",
+      "tr": "Te'kid ve nasb harfi; hemzesi KESRALIDIR — kavil fiilinden sonra geldiği için."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْكِتَابَ",
+      "smart": "الْكِتَابَ",
+      "bare": "الكتاب"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَدِيدٌ",
+      "smart": "جَدِيدٌ",
+      "bare": "جديد"
+     },
+     "lex": "jadid",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "en": "The khabar of إِنَّ, in raf'.",
+      "tr": "«إِنَّ»nin merfû haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّ الْكِتَابَ جَدِيدٌ",
+     "ar": "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+     "en": "In nasb position — the maqul al-qawl.",
+     "tr": "Makûlü'l-kavl — mahallen mensubdur."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "By Allah, truly knowledge is beneficial.",
+    "tr": "Vallahi, ilim elbette faydalıdır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَاللهِ",
+      "smart": "وَاللهِ",
+      "bare": "والله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ لِلْقَسَمِ حَرْفُ جَرٍّ، وَلَفْظُ الْجَلَالَةِ مَجْرُورٌ بِهَا.",
+      "en": "The oath waw — a jarr letter; the majestic name in jarr after it.",
+      "tr": "Kasem vâvı — cer harfidir; lafza-i celâl onunla mecrurdur."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "اللهِ",
+       "lex": "allah",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ بَعْدَ الْقَسَمِ.",
+      "en": "Particle of emphasis and nasb; the hamza takes KASRA — it stands after the oath.",
+      "tr": "Te'kid ve nasb harfi; hemzesi KESRALIDIR — kasemden sonra geldiği için."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعِلْمَ",
+      "smart": "الْعِلْمَ",
+      "bare": "العلم"
+     },
+     "lex": "ilm",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَافِعٌ",
+      "smart": "نَافِعٌ",
+      "bare": "نافع"
+     },
+     "lex": "nafi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "en": "The khabar of إِنَّ, in raf'.",
+      "tr": "«إِنَّ»nin merfû haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَاللهِ إِنَّ الْعِلْمَ نَافِعٌ",
+     "ar": "جُمْلَةُ جَوَابِ الْقَسَمِ — لَا مَحَلَّ لَهَا.",
+     "en": "The oath's answer clause — i'rabless.",
+     "tr": "Kasemin cevap cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "I bear witness that Muhammad is the Messenger of Allah.",
+    "tr": "Muhammed'in Allah'ın Rasûlü olduğuna şehadet ederim."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَشْهَدُ",
+      "smart": "أَشْهَدُ",
+      "bare": "أشهد"
+     },
+     "lex": "shahida",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَفَاعِلُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
+      "en": "Mudari in raf'; its fa'il is a hidden أَنَا.",
+      "tr": "Merfû muzâri; fâili gizli «أَنَا» zamiridir."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَنَّ",
+      "smart": "أَنَّ",
+      "bare": "أن"
+     },
+     "lex": "anna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، فُتِحَتْ هَمْزَتُهُ لِأَنَّ مَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ (= أَشْهَدُ بِرِسَالَتِهِ).",
+      "en": "Particle of emphasis and nasb; the hamza takes FATHA — the clause melts into a masdar (= I witness his MESSENGERSHIP).",
+      "tr": "Te'kid ve nasb harfi; hemzesi FETHALIDIR — çünkü sonrası masdar hükmündedir (Rasûl olduğuna: -dığına)."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُحَمَّدًا",
+      "smart": "مُحَمَّدًا",
+      "bare": "محمدا"
+     },
+     "lex": "muhammad",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «أَنَّ» مَنْصُوبٌ.",
+      "en": "The ism of أَنَّ, in nasb.",
+      "tr": "«أَنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَسُولُ",
+      "smart": "رَسُولُ",
+      "bare": "رسول"
+     },
+     "lex": "rasul",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «أَنَّ» مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "The khabar in raf', itself a mudaf.",
+      "tr": "«أَنَّ»nin merfû haberi ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "The majestic name — mudaf ilayh in jarr.",
+      "tr": "Lafza-i celâl — mecrûr muzâfun ileyhtir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "أَنَّ مُحَمَّدًا رَسُولُ اللهِ",
+     "ar": "الْمَصْدَرُ الْمُؤَوَّلُ مَفْعُولُ «أَشْهَدُ».",
+     "en": "The construed masdar is the object of أَشْهَدُ.",
+     "tr": "Müevvel masdar, «أَشْهَدُ»nün mef'ûlüdür."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "Zayd did not say that the lesson is difficult.",
+    "tr": "Zeyd, ders zordur, demedi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَمْ",
+      "smart": "لَمْ",
+      "bare": "لم"
+     },
+     "lex": "lam-jazima",
+     "pos": "part",
+     "grammar": [
+      "lam-jazim"
+     ],
+     "irab": {
+      "ar": "حَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ.",
+      "en": "The particle of negation, jazm and time-flip.",
+      "tr": "Nefiy, cezm ve kalb harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَقُلْ",
+      "smart": "يَقُلْ",
+      "bare": "يقل"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "lam-jazim",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ، حُذِفَتْ عَيْنُهُ لِالْتِقَاءِ السَّاكِنَيْنِ — قَالَ يَقُولُ.",
+      "en": "Mudari in jazm; the hollow middle dropped where two sukuns met — قَالَ يَقُولُ.",
+      "tr": "Meczum muzâri; iki sâkin karşılaşınca ecvefin ortası düşmüştür — قَالَ يَقُولُ."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٌ",
+      "smart": "زَيْدٌ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ.",
+      "en": "The fa'il, in raf'.",
+      "tr": "Merfû fâil."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ بَعْدَ الْقَوْلِ وَلَوْ مَنْفِيًّا.",
+      "en": "Particle of emphasis and nasb; the hamza takes KASRA — after a qawl verb, even a negated one.",
+      "tr": "Te'kid ve nasb harfi; hemzesi KESRALIDIR — kavil fiilinden sonra geldiği için — fiil menfî olsa da."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسَ",
+      "smart": "الدَّرْسَ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "صَعْبٌ",
+      "smart": "صَعْبٌ",
+      "bare": "صعب"
+     },
+     "lex": "sab",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ.",
+      "en": "The khabar of إِنَّ, in raf'.",
+      "tr": "«إِنَّ»nin merfû haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّ الدَّرْسَ صَعْبٌ",
+     "ar": "جُمْلَةٌ فِي مَحَلِّ نَصْبٍ مَقُولُ الْقَوْلِ.",
+     "en": "In nasb position — the maqul al-qawl.",
+     "tr": "Makûlü'l-kavl — mahallen mensubdur."
+    }
+   ]
+  }
+ ]
+}

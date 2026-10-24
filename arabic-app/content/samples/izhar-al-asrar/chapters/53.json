@@ -1,0 +1,3209 @@
+{
+ "chapter": 53,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "or deficient in iʿrāb by two vowels: either by ḍamma in rafʿ and fatḥa in naṣb and jarr — and that is the non-declinable, as in «there came to me Aḥmad», «and I saw Aḥmad», «and I passed by Aḥmad»;",
+    "tr": "ya da iki hareke ile i'râbı nâkıs olandır: ya ref'te damme, nasb ve cerde fetha ile — o da gayr-ı munsariftir: «bana Ahmed geldi», «Ahmed'i gördüm», «Ahmed'e uğradım» gibi;"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ — عَلَى تَامُّ الْإِعْرَابِ.",
+      "en": "«or»",
+      "tr": "«ya da»"
+     }
+    },
+    {
+     "surface": {
+      "full": "نَاقِصُ",
+      "smart": "نَاقِصُ",
+      "bare": "ناقص"
+     },
+     "lex": "naqis",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "idafa-definiteness",
+      "ism-fail",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ مَرْفُوعٌ بِضَمَّةٍ ظَاهِرَةٍ لِلْإِضَافَةِ، مُضَافٌ.",
+      "en": "«deficient in»",
+      "tr": "«nâkıs»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْإِعْرَابِ",
+      "smart": "الْإِعْرَابِ",
+      "bare": "الإعراب"
+     },
+     "lex": "irab",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«iʿrāb»",
+      "tr": "«i'râbı»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالْحَرَكَتَيْنِ",
+      "smart": "بِالْحَرَكَتَيْنِ",
+      "bare": "بالحركتين"
+     },
+     "lex": "haraka",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْحَرَكَتَيْنِ مَجْرُورٌ بِالْيَاءِ — مُثَنًّى.",
+      "en": "«by two vowels» — a dual in jarr by the yāʾ.",
+      "tr": "«iki hareke ile» — yâ ile mecrûr tesniye."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْحَرَكَتَيْنِ",
+       "lex": "haraka",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "إِمَّا",
+      "smart": "إِمَّا",
+      "bare": "إما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "إِمَّا حَرْفُ تَفْصِيلٍ.",
+      "en": "«either»",
+      "tr": "«ya»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالضَّمَّةِ",
+      "smart": "بِالضَّمَّةِ",
+      "bare": "بالضمة"
+     },
+     "lex": "damma",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالضَّمَّةِ مَجْرُورٌ.",
+      "en": "«by ḍamma»",
+      "tr": "«damme ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الضَّمَّةِ",
+       "lex": "damma",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَفْعًا",
+      "smart": "رَفْعًا",
+      "bare": "رفعا"
+     },
+     "lex": "raf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — حَالَ الرَّفْعِ.",
+      "en": "«in rafʿ»",
+      "tr": "«ref'te»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْفَتْحَةِ",
+      "smart": "وَالْفَتْحَةِ",
+      "bare": "والفتحة"
+     },
+     "lex": "fatha",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْفَتْحَةِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and fatḥa»",
+      "tr": "«ve fetha»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْفَتْحَةِ",
+       "lex": "fatha",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَصْبًا",
+      "smart": "نَصْبًا",
+      "bare": "نصبا"
+     },
+     "lex": "nasb",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in naṣb»",
+      "tr": "«nasbda»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجَرًّا",
+      "smart": "وَجَرًّا",
+      "bare": "وجرا"
+     },
+     "lex": "jarr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَرًّا مَعْطُوفٌ مَنْصُوبٌ.",
+      "en": "«and in jarr»",
+      "tr": "«ve cerde»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَرًّا",
+       "lex": "jarr",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَهُوَ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "«and that is»",
+      "tr": "«o da»"
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "غَيْرُ",
+      "smart": "غَيْرُ",
+      "bare": "غير"
+     },
+     "lex": "ghayr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ، مُضَافٌ.",
+      "en": "«the non-»",
+      "tr": "«gayr-ı»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُنْصَرِفِ",
+      "smart": "الْمُنْصَرِفِ",
+      "bare": "المنصرف"
+     },
+     "lex": "munsarif",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "ism-fail",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — الْمَمْنُوعُ مِنَ الصَّرْفِ.",
+      "en": "«declinable» — the diptote.",
+      "tr": "«munsarif» — gayr-ı munsarif."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "hadhf-wa-taqdir",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَرْفُوعٌ، مُضَافٌ إِلَى الْمَحْكِيِّ.",
+      "en": "«as in»",
+      "tr": "«… gibi»"
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "جَاءَنِي",
+      "smart": "جَاءَنِي",
+      "bare": "جاءني"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "maful-bihi",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "لَفْظٌ مَحْكِيٌّ: فِعْلٌ مَاضٍ، وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«there came to me»",
+      "tr": "«bana geldi»"
+     },
+     "segments": [
+      {
+       "form": "جَاءَ",
+       "lex": "jaa",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s-obj",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَحْمَدُ",
+      "smart": "أَحْمَدُ",
+      "bare": "أحمد"
+     },
+     "lex": "ahmad",
+     "pos": "propn",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "mamnu-min-sarf",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — عَلَمٌ عَلَى وَزْنِ الْفِعْلِ، غَيْرُ مُنْصَرِفٍ.",
+      "en": "«Aḥmad» — rafʿ by ḍamma; a diptote.",
+      "tr": "«Ahmed» — damme ile merfû; gayr-ı munsarif."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَرَأَيْتُ",
+      "smart": "وَرَأَيْتُ",
+      "bare": "ورأيت"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَرَأَيْتُ فِعْلٌ مَاضٍ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I saw»",
+      "tr": "«ve gördüm»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَيْ",
+       "lex": "raa",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَحْمَدَ",
+      "smart": "أَحْمَدَ",
+      "bare": "أحمد"
+     },
+     "lex": "ahmad",
+     "pos": "propn",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "maful-bihi",
+      "mamnu-min-sarf",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "«Aḥmad» — naṣb by fatḥa.",
+      "tr": "«Ahmed'i» — fetha ile mansûb."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمَرَرْتُ",
+      "smart": "وَمَرَرْتُ",
+      "bare": "ومررت"
+     },
+     "lex": "marra",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَرَرْتُ فِعْلٌ مَاضٍ مُضَاعَفٌ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I passed»",
+      "tr": "«ve uğradım»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَرَرْ",
+       "lex": "marra",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِأَحْمَدَ",
+      "smart": "بِأَحْمَدَ",
+      "bare": "بأحمد"
+     },
+     "lex": "ahmad",
+     "pos": "propn",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "mamnu-min-sarf",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَأَحْمَدَ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ غَيْرُ مُنْصَرِفٍ.",
+      "en": "«by Aḥmad» — jarr by fatḥa in place of kasra.",
+      "tr": "«Ahmed'e» — kesre yerine fetha ile mecrûr."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "أَحْمَدَ",
+       "lex": "ahmad",
+       "pos": "propn"
+      }
+     ],
+     "punctAfter": "،"
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "or by ḍamma in rafʿ and kasra in naṣb and jarr — and that is the sound feminine plural, as in «there came to me Muslim women», «and I saw Muslim women», «and I passed by Muslim women».",
+    "tr": "ya da ref'te damme, nasb ve cerde kesre ile — o da cem'-i müennes-i sâlimdir: «bana müslüman kadınlar geldi», «müslüman kadınları gördüm», «müslüman kadınlara uğradım» gibi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَإِمَّا",
+      "smart": "وَإِمَّا",
+      "bare": "وإما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَإِمَّا حَرْفُ تَفْصِيلٍ.",
+      "en": "«or either»",
+      "tr": "«ya da»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِمَّا",
+       "lex": "imma",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِالضَّمَّةِ",
+      "smart": "بِالضَّمَّةِ",
+      "bare": "بالضمة"
+     },
+     "lex": "damma",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالضَّمَّةِ مَجْرُورٌ.",
+      "en": "«by ḍamma»",
+      "tr": "«damme ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الضَّمَّةِ",
+       "lex": "damma",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَفْعًا",
+      "smart": "رَفْعًا",
+      "bare": "رفعا"
+     },
+     "lex": "raf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — حَالَ الرَّفْعِ.",
+      "en": "«in rafʿ»",
+      "tr": "«ref'te»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْكَسْرَةِ",
+      "smart": "وَالْكَسْرَةِ",
+      "bare": "والكسرة"
+     },
+     "lex": "kasra",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْكَسْرَةِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and kasra»",
+      "tr": "«ve kesre»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْكَسْرَةِ",
+       "lex": "kasra",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَصْبًا",
+      "smart": "نَصْبًا",
+      "bare": "نصبا"
+     },
+     "lex": "nasb",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in naṣb»",
+      "tr": "«nasbda»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجَرًّا",
+      "smart": "وَجَرًّا",
+      "bare": "وجرا"
+     },
+     "lex": "jarr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَرًّا مَعْطُوفٌ مَنْصُوبٌ.",
+      "en": "«and in jarr»",
+      "tr": "«ve cerde»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَرًّا",
+       "lex": "jarr",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَهُوَ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "«and that is»",
+      "tr": "«o da»"
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "جَمْعُ",
+      "smart": "جَمْعُ",
+      "bare": "جمع"
+     },
+     "lex": "jam",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "jam-muannath-salim"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ، مُضَافٌ.",
+      "en": "«the plural of»",
+      "tr": "«cem'-i»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُؤَنَّثِ",
+      "smart": "الْمُؤَنَّثِ",
+      "bare": "المؤنث"
+     },
+     "lex": "muannath",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "ism-maful",
+      "form-ii-verbs",
+      "jam-muannath-salim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the feminine»",
+      "tr": "«müennes»"
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّالِمُ",
+      "smart": "السَّالِمُ",
+      "bare": "السالم"
+     },
+     "lex": "salim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "ism-fail",
+      "jam-muannath-salim"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ لِجَمْعُ مَرْفُوعٌ.",
+      "en": "«sound»",
+      "tr": "«sâlim»"
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "hadhf-wa-taqdir",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَرْفُوعٌ، مُضَافٌ إِلَى الْمَحْكِيِّ.",
+      "en": "«as in»",
+      "tr": "«… gibi»"
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "جَاءَنِي",
+      "smart": "جَاءَنِي",
+      "bare": "جاءني"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "maful-bihi",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "لَفْظٌ مَحْكِيٌّ: فِعْلٌ مَاضٍ، وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«there came to me»",
+      "tr": "«bana geldi»"
+     },
+     "segments": [
+      {
+       "form": "جَاءَ",
+       "lex": "jaa",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s-obj",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمَاتٌ",
+      "smart": "مُسْلِمَاتٌ",
+      "bare": "مسلمات"
+     },
+     "lex": "muslima",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "jam-muannath-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "«Muslim women» — rafʿ by ḍamma.",
+      "tr": "«müslüman kadınlar» — damme ile merfû."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَرَأَيْتُ",
+      "smart": "وَرَأَيْتُ",
+      "bare": "ورأيت"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَرَأَيْتُ فِعْلٌ مَاضٍ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I saw»",
+      "tr": "«ve gördüm»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَيْ",
+       "lex": "raa",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمَاتٍ",
+      "smart": "مُسْلِمَاتٍ",
+      "bare": "مسلمات"
+     },
+     "lex": "muslima",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "maful-bihi",
+      "jam-muannath-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ.",
+      "en": "«Muslim women» — naṣb by kasra in place of fatḥa.",
+      "tr": "«müslüman kadınları» — fetha yerine kesre ile mansûb."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمَرَرْتُ",
+      "smart": "وَمَرَرْتُ",
+      "bare": "ومررت"
+     },
+     "lex": "marra",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَرَرْتُ فِعْلٌ مَاضٍ مُضَاعَفٌ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I passed»",
+      "tr": "«ve uğradım»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَرَرْ",
+       "lex": "marra",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِمُسْلِمَاتٍ",
+      "smart": "بِمُسْلِمَاتٍ",
+      "bare": "بمسلمات"
+     },
+     "lex": "muslima",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "jam-muannath-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَمُسْلِمَاتٍ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "«by Muslim women» — jarr by kasra.",
+      "tr": "«müslüman kadınlara» — kesre ile mecrûr."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "مُسْلِمَاتٍ",
+       "lex": "muslima",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "And the second, likewise, is either complete in iʿrāb by the three letters — by wāw in rafʿ, alif in naṣb and yāʾ in jarr — and that is the six nouns, annexed to other than the speaker's yāʾ, singular and un-diminished;",
+    "tr": "İkincisi de ya üç harf ile i'râbı tam olandır — ref'te vâv, nasbda elif, cerde yâ ile — o da mütekellim yâsından başkasına muzâf, müfred ve mükebber olan altı isimdir;"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالثَّانِي",
+      "smart": "وَالثَّانِي",
+      "bare": "والثاني"
+     },
+     "lex": "thani",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالثَّانِي مُبْتَدَأٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — الْمُعْرَبُ بِالْحُرُوفِ الْمَحْضَةِ.",
+      "en": "«and the second» — the one declined by pure letters.",
+      "tr": "«ikincisi» — sırf harflerle mu'reb olan."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الثَّانِي",
+       "lex": "thani",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَيْضًا",
+      "smart": "أَيْضًا",
+      "bare": "أيضا"
+     },
+     "lex": "aydan",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "maful-mutlaq"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ مُطْلَقٌ لِفِعْلٍ مَحْذُوفٍ: آضَ أَيْضًا.",
+      "en": "«likewise»",
+      "tr": "«de»"
+     }
+    },
+    {
+     "surface": {
+      "full": "إِمَّا",
+      "smart": "إِمَّا",
+      "bare": "إما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "إِمَّا حَرْفُ تَفْصِيلٍ.",
+      "en": "«either»",
+      "tr": "«ya»"
+     }
+    },
+    {
+     "surface": {
+      "full": "تَامُّ",
+      "smart": "تَامُّ",
+      "bare": "تام"
+     },
+     "lex": "tamm",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ، مُضَافٌ.",
+      "en": "«complete in»",
+      "tr": "«tam»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْإِعْرَابِ",
+      "smart": "الْإِعْرَابِ",
+      "bare": "الإعراب"
+     },
+     "lex": "irab",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«iʿrāb»",
+      "tr": "«i'râbı»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالْحُرُوفِ",
+      "smart": "بِالْحُرُوفِ",
+      "bare": "بالحروف"
+     },
+     "lex": "harf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "jam-taksir",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْحُرُوفِ مَجْرُورٌ.",
+      "en": "«by the letters»",
+      "tr": "«harflerle»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْحُرُوفِ",
+       "lex": "harf",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الثَّلَاثَةِ",
+      "smart": "الثَّلَاثَةِ",
+      "bare": "الثلاثة"
+     },
+     "lex": "thalatha",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ — الطَّبْعُ: الثلثة.",
+      "en": "«three» — the print spells it الثلثة.",
+      "tr": "«üç» — baskıda الثلثة."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "بِالْوَاوِ",
+      "smart": "بِالْوَاوِ",
+      "bare": "بالواو"
+     },
+     "lex": "waw-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْوَاوِ مَجْرُورٌ.",
+      "en": "«by wāw»",
+      "tr": "«vâv ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْوَاوِ",
+       "lex": "waw-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَفْعًا",
+      "smart": "رَفْعًا",
+      "bare": "رفعا"
+     },
+     "lex": "raf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — حَالَ الرَّفْعِ.",
+      "en": "«in rafʿ»",
+      "tr": "«ref'te»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْأَلِفِ",
+      "smart": "وَالْأَلِفِ",
+      "bare": "والألف"
+     },
+     "lex": "alif-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْأَلِفِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and alif»",
+      "tr": "«ve elif»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْأَلِفِ",
+       "lex": "alif-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَصْبًا",
+      "smart": "نَصْبًا",
+      "bare": "نصبا"
+     },
+     "lex": "nasb",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in naṣb»",
+      "tr": "«nasbda»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْيَاءِ",
+      "smart": "وَالْيَاءِ",
+      "bare": "والياء"
+     },
+     "lex": "ya-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْيَاءِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and yāʾ»",
+      "tr": "«ve yâ»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْيَاءِ",
+       "lex": "ya-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "جَرًّا",
+      "smart": "جَرًّا",
+      "bare": "جرا"
+     },
+     "lex": "jarr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in jarr»",
+      "tr": "«cerde»"
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَهُوَ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "«and that is»",
+      "tr": "«o da»"
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَسْمَاءُ",
+      "smart": "الْأَسْمَاءُ",
+      "bare": "الأسماء"
+     },
+     "lex": "ism",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "jam-taksir",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ.",
+      "en": "«the nouns»",
+      "tr": "«isimler»"
+     }
+    },
+    {
+     "surface": {
+      "full": "السِّتَّةُ",
+      "smart": "السِّتَّةُ",
+      "bare": "الستة"
+     },
+     "lex": "sitta",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ — أَبٌ، أَخٌ، حَمٌ، هَنٌ، فُو، ذُو.",
+      "en": "«six» — ab, akh, ḥam, han, fū, dhū.",
+      "tr": "«altı» — eb, ah, ham, hen, fû, zû."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُضَافَةُ",
+      "smart": "الْمُضَافَةُ",
+      "bare": "المضافة"
+     },
+     "lex": "mudaf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "ism-maful",
+      "form-iv-verbs",
+      "idafa-definiteness",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ ثَانٍ مَرْفُوعٌ — شَرْطُ إِعْرَابِهَا بِالْحُرُوفِ.",
+      "en": "«annexed» — the condition of their letter-iʿrāb.",
+      "tr": "«muzâf olan» — harfle i'râbın şartı."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«to»",
+      "tr": "«-e»"
+     }
+    },
+    {
+     "surface": {
+      "full": "غَيْرِ",
+      "smart": "غَيْرِ",
+      "bare": "غير"
+     },
+     "lex": "ghayr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِإِلَى، مُضَافٌ.",
+      "en": "«other than»",
+      "tr": "«başkasına»"
+     }
+    },
+    {
+     "surface": {
+      "full": "يَاءِ",
+      "smart": "يَاءِ",
+      "bare": "ياء"
+     },
+     "lex": "ya-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ، مُضَافٌ.",
+      "en": "«the yāʾ of»",
+      "tr": "«yâsından»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُتَكَلِّمِ",
+      "smart": "الْمُتَكَلِّمِ",
+      "bare": "المتكلم"
+     },
+     "lex": "mutakallim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "ism-fail",
+      "form-v-verbs",
+      "ya-al-mutakallim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ — فَأَبِي لَا يُعْرَبُ بِالْحُرُوفِ.",
+      "en": "«the speaker» — so أَبِي takes no letter-iʿrāb.",
+      "tr": "«mütekellim» — ebî harfle i'râblanmaz."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "الْمُفْرَدَةُ",
+      "smart": "الْمُفْرَدَةُ",
+      "bare": "المفردة"
+     },
+     "lex": "mufrad",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "ism-maful",
+      "form-iv-verbs",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ ثَالِثٌ مَرْفُوعٌ — لَا الْمُثَنَّاةُ وَلَا الْمَجْمُوعَةُ.",
+      "en": "«singular» — not dual or plural.",
+      "tr": "«müfred» — tesniye ve cemi değil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُكَبَّرَةُ",
+      "smart": "الْمُكَبَّرَةُ",
+      "bare": "المكبرة"
+     },
+     "lex": "mukabbar",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "ism-maful",
+      "form-ii-verbs",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ رَابِعٌ مَرْفُوعٌ — لَا الْمُصَغَّرَةُ كَأُبَيٍّ.",
+      "en": "«un-diminished» — not a diminutive like ubayy.",
+      "tr": "«mükebber» — übeyy gibi tasgîr edilmiş değil."
+     },
+     "punctAfter": "،"
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "or deficient in iʿrāb by two letters: either by wāw in rafʿ and yāʾ in naṣb and jarr — and that is the sound masculine plural, and ulū, and ʿishrūn and its sisters — as in «there came to me Muslims and men of wealth and twenty», «and I saw Muslims and men of wealth and twenty», «and I passed by Muslims and men of wealth and twenty»;",
+    "tr": "ya da iki harf ile i'râbı nâkıs olandır: ya ref'te vâv, nasb ve cerde yâ ile — o da cem'-i müzekker-i sâlim, ulû, işrûn ve kardeşleridir — «bana müslümanlar, mal sahipleri ve yirmi geldi», «müslümanları, mal sahiplerini ve yirmiyi gördüm», «müslümanlara, mal sahiplerine ve yirmiye uğradım» gibi;"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَإِمَّا",
+      "smart": "وَإِمَّا",
+      "bare": "وإما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَإِمَّا حَرْفُ تَفْصِيلٍ.",
+      "en": "«or either»",
+      "tr": "«ya da»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِمَّا",
+       "lex": "imma",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَاقِصُ",
+      "smart": "نَاقِصُ",
+      "bare": "ناقص"
+     },
+     "lex": "naqis",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "ism-fail",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ، مُضَافٌ.",
+      "en": "«deficient in»",
+      "tr": "«nâkıs»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْإِعْرَابِ",
+      "smart": "الْإِعْرَابِ",
+      "bare": "الإعراب"
+     },
+     "lex": "irab",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«iʿrāb»",
+      "tr": "«i'râbı»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالْحَرْفَيْنِ",
+      "smart": "بِالْحَرْفَيْنِ",
+      "bare": "بالحرفين"
+     },
+     "lex": "harf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْحَرْفَيْنِ مَجْرُورٌ بِالْيَاءِ — مُثَنًّى.",
+      "en": "«by two letters»",
+      "tr": "«iki harf ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْحَرْفَيْنِ",
+       "lex": "harf",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "إِمَّا",
+      "smart": "إِمَّا",
+      "bare": "إما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "إِمَّا حَرْفُ تَفْصِيلٍ.",
+      "en": "«either»",
+      "tr": "«ya»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالْوَاوِ",
+      "smart": "بِالْوَاوِ",
+      "bare": "بالواو"
+     },
+     "lex": "waw-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْوَاوِ مَجْرُورٌ.",
+      "en": "«by wāw»",
+      "tr": "«vâv ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْوَاوِ",
+       "lex": "waw-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَفْعًا",
+      "smart": "رَفْعًا",
+      "bare": "رفعا"
+     },
+     "lex": "raf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — حَالَ الرَّفْعِ.",
+      "en": "«in rafʿ»",
+      "tr": "«ref'te»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْيَاءِ",
+      "smart": "وَالْيَاءِ",
+      "bare": "والياء"
+     },
+     "lex": "ya-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْيَاءِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and yāʾ»",
+      "tr": "«ve yâ»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْيَاءِ",
+       "lex": "ya-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَصْبًا",
+      "smart": "نَصْبًا",
+      "bare": "نصبا"
+     },
+     "lex": "nasb",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in naṣb»",
+      "tr": "«nasbda»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجَرًّا",
+      "smart": "وَجَرًّا",
+      "bare": "وجرا"
+     },
+     "lex": "jarr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَرًّا مَعْطُوفٌ مَنْصُوبٌ.",
+      "en": "«and in jarr»",
+      "tr": "«ve cerde»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَرًّا",
+       "lex": "jarr",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَهُوَ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "«and that is»",
+      "tr": "«o da»"
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "جَمْعُ",
+      "smart": "جَمْعُ",
+      "bare": "جمع"
+     },
+     "lex": "jam",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ، مُضَافٌ.",
+      "en": "«the plural of»",
+      "tr": "«cem'-i»"
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُذَكَّرِ",
+      "smart": "الْمُذَكَّرِ",
+      "bare": "المذكر"
+     },
+     "lex": "mudhakkar",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness",
+      "ism-maful",
+      "form-ii-verbs",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«the masculine»",
+      "tr": "«müzekker»"
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّالِمُ",
+      "smart": "السَّالِمُ",
+      "bare": "السالم"
+     },
+     "lex": "salim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "naat-sifa",
+      "ism-fail",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ لِجَمْعُ مَرْفُوعٌ.",
+      "en": "«sound»",
+      "tr": "«sâlim»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأُولُو",
+      "smart": "وَأُولُو",
+      "bare": "وأولو"
+     },
+     "lex": "ulu",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "five-nouns"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأُولُو مَعْطُوفٌ مَرْفُوعٌ بِالْوَاوِ — مُلْحَقٌ بِالْجَمْعِ، لَا وَاحِدَ لَهُ مِنْ لَفْظِهِ.",
+      "en": "«and ulū» — attached to the plural, with no singular of its own form.",
+      "tr": "«ve ulû» — cemiye mülhak, kendi lafzından tekili yok."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أُولُو",
+       "lex": "ulu",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَعِشْرُونَ",
+      "smart": "وَعِشْرُونَ",
+      "bare": "وعشرون"
+     },
+     "lex": "ishrun",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَعِشْرُونَ مَعْطُوفٌ مَرْفُوعٌ بِالْوَاوِ — مُلْحَقٌ.",
+      "en": "«and twenty»",
+      "tr": "«ve yirmi»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عِشْرُونَ",
+       "lex": "ishrun",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَأَخَوَاتُهَا",
+      "smart": "وَأَخَوَاتُهَا",
+      "bare": "وأخواتها"
+     },
+     "lex": "ukht",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "idafa-definiteness",
+      "jam-muannath-salim",
+      "jam-mudhakkar-salim"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأَخَوَاتُ مَعْطُوفٌ مَرْفُوعٌ، مُضَافٌ، وَهَا مُضَافٌ إِلَيْهِ — ثَلَاثُونَ إِلَى تِسْعِينَ.",
+      "en": "«and its sisters» — thirty to ninety.",
+      "tr": "«ve kardeşleri» — otuzdan doksana."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَخَوَاتُ",
+       "lex": "ukht",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "hadhf-wa-taqdir",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَرْفُوعٌ، مُضَافٌ إِلَى الْمَحْكِيِّ.",
+      "en": "«as in»",
+      "tr": "«… gibi»"
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "جَاءَنِي",
+      "smart": "جَاءَنِي",
+      "bare": "جاءني"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "maful-bihi",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "لَفْظٌ مَحْكِيٌّ: فِعْلٌ مَاضٍ، وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«there came to me»",
+      "tr": "«bana geldi»"
+     },
+     "segments": [
+      {
+       "form": "جَاءَ",
+       "lex": "jaa",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s-obj",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمُونَ",
+      "smart": "مُسْلِمُونَ",
+      "bare": "مسلمون"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالْوَاوِ.",
+      "en": "«Muslims» — rafʿ by the wāw.",
+      "tr": "«müslümanlar» — vâv ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأُولُو",
+      "smart": "وَأُولُو",
+      "bare": "وأولو"
+     },
+     "lex": "ulu",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأُولُو مَعْطُوفٌ مَرْفُوعٌ بِالْوَاوِ، مُضَافٌ.",
+      "en": "«and men of»",
+      "tr": "«ve sahipleri»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أُولُو",
+       "lex": "ulu",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَالٍ",
+      "smart": "مَالٍ",
+      "bare": "مال"
+     },
+     "lex": "mal",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«wealth»",
+      "tr": "«mal»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَعِشْرُونَ",
+      "smart": "وَعِشْرُونَ",
+      "bare": "وعشرون"
+     },
+     "lex": "ishrun",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَعِشْرُونَ مَعْطُوفٌ مَرْفُوعٌ بِالْوَاوِ.",
+      "en": "«and twenty»",
+      "tr": "«ve yirmi»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عِشْرُونَ",
+       "lex": "ishrun",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَرَأَيْتُ",
+      "smart": "وَرَأَيْتُ",
+      "bare": "ورأيت"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَرَأَيْتُ فِعْلٌ مَاضٍ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I saw»",
+      "tr": "«ve gördüm»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَيْ",
+       "lex": "raa",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمِينَ",
+      "smart": "مُسْلِمِينَ",
+      "bare": "مسلمين"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "maful-bihi",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ.",
+      "en": "«Muslims» — naṣb by the yāʾ.",
+      "tr": "«müslümanları» — yâ ile mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأُولِي",
+      "smart": "وَأُولِي",
+      "bare": "وأولي"
+     },
+     "lex": "ulu",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأُولِي مَعْطُوفٌ مَنْصُوبٌ بِالْيَاءِ، مُضَافٌ.",
+      "en": "«and men of»",
+      "tr": "«ve sahiplerini»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أُولِي",
+       "lex": "ulu",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَالٍ",
+      "smart": "مَالٍ",
+      "bare": "مال"
+     },
+     "lex": "mal",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«wealth»",
+      "tr": "«mal»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَعِشْرِينَ",
+      "smart": "وَعِشْرِينَ",
+      "bare": "وعشرين"
+     },
+     "lex": "ishrun",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَعِشْرِينَ مَعْطُوفٌ مَنْصُوبٌ بِالْيَاءِ.",
+      "en": "«and twenty»",
+      "tr": "«ve yirmiyi»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عِشْرِينَ",
+       "lex": "ishrun",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمَرَرْتُ",
+      "smart": "وَمَرَرْتُ",
+      "bare": "ومررت"
+     },
+     "lex": "marra",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَرَرْتُ فِعْلٌ مَاضٍ مُضَاعَفٌ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I passed»",
+      "tr": "«ve uğradım»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَرَرْ",
+       "lex": "marra",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِمُسْلِمِينَ",
+      "smart": "بِمُسْلِمِينَ",
+      "bare": "بمسلمين"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَمُسْلِمِينَ مَجْرُورٌ بِالْيَاءِ.",
+      "en": "«by Muslims» — jarr by the yāʾ.",
+      "tr": "«müslümanlara» — yâ ile mecrûr."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "مُسْلِمِينَ",
+       "lex": "muslim",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَأُولِي",
+      "smart": "وَأُولِي",
+      "bare": "وأولي"
+     },
+     "lex": "ulu",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَأُولِي مَعْطُوفٌ مَجْرُورٌ بِالْيَاءِ، مُضَافٌ.",
+      "en": "«and men of»",
+      "tr": "«ve sahiplerine»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أُولِي",
+       "lex": "ulu",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَالٍ",
+      "smart": "مَالٍ",
+      "bare": "مال"
+     },
+     "lex": "mal",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«wealth»",
+      "tr": "«mal»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَعِشْرِينَ",
+      "smart": "وَعِشْرِينَ",
+      "bare": "وعشرين"
+     },
+     "lex": "ishrun",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "jam-mudhakkar-salim",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَعِشْرِينَ مَعْطُوفٌ مَجْرُورٌ بِالْيَاءِ.",
+      "en": "«and twenty»",
+      "tr": "«ve yirmiye»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "عِشْرِينَ",
+       "lex": "ishrun",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "or by alif in rafʿ and yāʾ in naṣb and jarr — and that is the dual, and ithnān, and kilā annexed to a pronoun — as in «there came to me two Muslims and two and both of them», «and I saw two Muslims and two and both of them», «and I passed by two Muslims and two and both of them».",
+    "tr": "ya da ref'te elif, nasb ve cerde yâ ile — o da tesniye, isnân ve zamire muzâf kilâ'dır — «bana iki müslüman, iki ve her ikisi geldi», «iki müslümanı, ikiyi ve her ikisini gördüm», «iki müslümana, ikiye ve her ikisine uğradım» gibi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "part",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "taqsim"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ.",
+      "en": "«or»",
+      "tr": "«ya da»"
+     }
+    },
+    {
+     "surface": {
+      "full": "بِالْأَلِفِ",
+      "smart": "بِالْأَلِفِ",
+      "bare": "بالألف"
+     },
+     "lex": "alif-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْأَلِفِ مَجْرُورٌ.",
+      "en": "«by alif»",
+      "tr": "«elif ile»"
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "الْأَلِفِ",
+       "lex": "alif-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَفْعًا",
+      "smart": "رَفْعًا",
+      "bare": "رفعا"
+     },
+     "lex": "raf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ — حَالَ الرَّفْعِ.",
+      "en": "«in rafʿ»",
+      "tr": "«ref'te»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْيَاءِ",
+      "smart": "وَالْيَاءِ",
+      "bare": "والياء"
+     },
+     "lex": "ya-letter",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْيَاءِ مَعْطُوفٌ مَجْرُورٌ.",
+      "en": "«and yāʾ»",
+      "tr": "«ve yâ»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْيَاءِ",
+       "lex": "ya-letter",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَصْبًا",
+      "smart": "نَصْبًا",
+      "bare": "نصبا"
+     },
+     "lex": "nasb",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ.",
+      "en": "«in naṣb»",
+      "tr": "«nasbda»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَجَرًّا",
+      "smart": "وَجَرًّا",
+      "bare": "وجرا"
+     },
+     "lex": "jarr",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "hal",
+      "masdar",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَجَرًّا مَعْطُوفٌ مَنْصُوبٌ.",
+      "en": "«and in jarr»",
+      "tr": "«ve cerde»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَرًّا",
+       "lex": "jarr",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْرِيعِ، وَهُوَ مُبْتَدَأٌ فِي مَحَلِّ رَفْعٍ.",
+      "en": "«and that is»",
+      "tr": "«o da»"
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْمُثَنَّى",
+      "smart": "الْمُثَنَّى",
+      "bare": "المثنى"
+     },
+     "lex": "muthanna",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "ism-maful",
+      "form-ii-verbs",
+      "al-muthanna",
+      "ism-maqsur-manqus"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ — اسْمٌ مَقْصُورٌ.",
+      "en": "«the dual»",
+      "tr": "«tesniye»"
+     }
+    },
+    {
+     "surface": {
+      "full": "وَاثْنَانِ",
+      "smart": "وَاثْنَانِ",
+      "bare": "واثنان"
+     },
+     "lex": "ithnan",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاثْنَانِ مَعْطُوفٌ مَرْفُوعٌ بِالْأَلِفِ — مُلْحَقٌ بِالْمُثَنَّى.",
+      "en": "«and ithnān» — attached to the dual.",
+      "tr": "«ve isnân» — tesniyeye mülhak."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "اثْنَانِ",
+       "lex": "ithnan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَكِلَا",
+      "smart": "وَكِلَا",
+      "bare": "وكلا"
+     },
+     "lex": "kila",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "tawkid"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكِلَا مَعْطُوفٌ مَرْفُوعٌ بِأَلِفٍ مُقَدَّرَةٍ.",
+      "en": "«and kilā»",
+      "tr": "«ve kilâ»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كِلَا",
+       "lex": "kila",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُضَافًا",
+      "smart": "مُضَافًا",
+      "bare": "مضافا"
+     },
+     "lex": "mudaf",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "hal",
+      "ism-maful",
+      "form-iv-verbs",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "حَالٌ مِنْ كِلَا مَنْصُوبٌ — شَرْطُ إِعْرَابِهِ بِالْحُرُوفِ.",
+      "en": "«annexed» — a ḥāl: the condition for its letter-iʿrāb.",
+      "tr": "«muzâf olarak» — hâl: harfle i'râbın şartı."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "«to»",
+      "tr": "«-e»"
+     }
+    },
+    {
+     "surface": {
+      "full": "مُضْمَرٍ",
+      "smart": "مُضْمَرٍ",
+      "bare": "مضمر"
+     },
+     "lex": "mudmar",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "ism-maful",
+      "form-iv-verbs",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِإِلَى — فَإِنْ أُضِيفَ إِلَى الظَّاهِرِ فَبِالْأَلِفِ فِي الْأَحْوَالِ كُلِّهَا.",
+      "en": "«a pronoun» — annexed to an apparent noun it keeps the alif throughout.",
+      "tr": "«zamire» — zâhire muzâf olunca her halde elifle kalır."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "نَحْوُ",
+      "smart": "نَحْوُ",
+      "bare": "نحو"
+     },
+     "lex": "nahw",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "mubtada-khabar",
+      "hadhf-wa-taqdir",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ مَرْفُوعٌ، مُضَافٌ إِلَى الْمَحْكِيِّ.",
+      "en": "«as in»",
+      "tr": "«… gibi»"
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "جَاءَنِي",
+      "smart": "جَاءَنِي",
+      "bare": "جاءني"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "maful-bihi",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "لَفْظٌ مَحْكِيٌّ: فِعْلٌ مَاضٍ، وَالْيَاءُ مَفْعُولٌ بِهِ.",
+      "en": "«there came to me»",
+      "tr": "«bana geldi»"
+     },
+     "segments": [
+      {
+       "form": "جَاءَ",
+       "lex": "jaa",
+       "pos": "verb"
+      },
+      {
+       "form": "نِي",
+       "lex": "pron-1s-obj",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمَانِ",
+      "smart": "مُسْلِمَانِ",
+      "bare": "مسلمان"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "fail",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالْأَلِفِ.",
+      "en": "«two Muslims» — rafʿ by the alif.",
+      "tr": "«iki müslüman» — elif ile merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَاثْنَانِ",
+      "smart": "وَاثْنَانِ",
+      "bare": "واثنان"
+     },
+     "lex": "ithnan",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاثْنَانِ مَعْطُوفٌ مَرْفُوعٌ بِالْأَلِفِ.",
+      "en": "«and two»",
+      "tr": "«ve iki»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "اثْنَانِ",
+       "lex": "ithnan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَكِلَاهُمَا",
+      "smart": "وَكِلَاهُمَا",
+      "bare": "وكلاهما"
+     },
+     "lex": "kila",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "idafa-definiteness",
+      "tawkid",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكِلَا مَعْطُوفٌ مَرْفُوعٌ بِالْأَلِفِ، مُضَافٌ، وَهُمَا مُضَافٌ إِلَيْهِ.",
+      "en": "«and both of them»",
+      "tr": "«ve her ikisi»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كِلَا",
+       "lex": "kila",
+       "pos": "noun"
+      },
+      {
+       "form": "هُمَا",
+       "lex": "pron-3d",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَرَأَيْتُ",
+      "smart": "وَرَأَيْتُ",
+      "bare": "ورأيت"
+     },
+     "lex": "raa",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَرَأَيْتُ فِعْلٌ مَاضٍ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I saw»",
+      "tr": "«ve gördüm»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "رَأَيْ",
+       "lex": "raa",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مُسْلِمَيْنِ",
+      "smart": "مُسْلِمَيْنِ",
+      "bare": "مسلمين"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "maful-bihi",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ.",
+      "en": "«two Muslims» — naṣb by the yāʾ.",
+      "tr": "«iki müslümanı» — yâ ile mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَاثْنَيْنِ",
+      "smart": "وَاثْنَيْنِ",
+      "bare": "واثنين"
+     },
+     "lex": "ithnan",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاثْنَيْنِ مَعْطُوفٌ مَنْصُوبٌ بِالْيَاءِ.",
+      "en": "«and two»",
+      "tr": "«ve ikiyi»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "اثْنَيْنِ",
+       "lex": "ithnan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَكِلَيْهِمَا",
+      "smart": "وَكِلَيْهِمَا",
+      "bare": "وكليهما"
+     },
+     "lex": "kila",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "idafa-definiteness",
+      "tawkid",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكِلَيْ مَعْطُوفٌ مَنْصُوبٌ بِالْيَاءِ، مُضَافٌ، وَهِمَا مُضَافٌ إِلَيْهِ.",
+      "en": "«and both of them»",
+      "tr": "«ve her ikisini»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كِلَيْ",
+       "lex": "kila",
+       "pos": "noun"
+      },
+      {
+       "form": "هِمَا",
+       "lex": "pron-3d",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَمَرَرْتُ",
+      "smart": "وَمَرَرْتُ",
+      "bare": "ومررت"
+     },
+     "lex": "marra",
+     "pos": "verb",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "fail",
+      "doubled-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَرَرْتُ فِعْلٌ مَاضٍ مُضَاعَفٌ، وَالتَّاءُ فَاعِلٌ.",
+      "en": "«and I passed»",
+      "tr": "«ve uğradım»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَرَرْ",
+       "lex": "marra",
+       "pos": "verb"
+      },
+      {
+       "form": "تُ",
+       "lex": "pron-1s",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بِمُسْلِمَيْنِ",
+      "smart": "بِمُسْلِمَيْنِ",
+      "bare": "بمسلمين"
+     },
+     "lex": "muslim",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "huruf-jarr",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَمُسْلِمَيْنِ مَجْرُورٌ بِالْيَاءِ.",
+      "en": "«by two Muslims» — jarr by the yāʾ.",
+      "tr": "«iki müslümana» — yâ ile mecrûr."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "مُسْلِمَيْنِ",
+       "lex": "muslim",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَاثْنَيْنِ",
+      "smart": "وَاثْنَيْنِ",
+      "bare": "واثنين"
+     },
+     "lex": "ithnan",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاثْنَيْنِ مَعْطُوفٌ مَجْرُورٌ بِالْيَاءِ.",
+      "en": "«and two»",
+      "tr": "«ve ikiye»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "اثْنَيْنِ",
+       "lex": "ithnan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَكِلَيْهِمَا",
+      "smart": "وَكِلَيْهِمَا",
+      "bare": "وكليهما"
+     },
+     "lex": "kila",
+     "pos": "noun",
+     "grammar": [
+      "naqis-al-irab-bil-harakat-wal-murab-bil-huruf",
+      "atf-nasaq",
+      "al-muthanna",
+      "idafa-definiteness",
+      "tawkid",
+      "al-murab-wal-mabni-wal-irab"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكِلَيْ مَعْطُوفٌ مَجْرُورٌ بِالْيَاءِ، مُضَافٌ، وَهِمَا مُضَافٌ إِلَيْهِ.",
+      "en": "«and both of them»",
+      "tr": "«ve her ikisine»"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كِلَيْ",
+       "lex": "kila",
+       "pos": "noun"
+      },
+      {
+       "form": "هِمَا",
+       "lex": "pron-3d",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

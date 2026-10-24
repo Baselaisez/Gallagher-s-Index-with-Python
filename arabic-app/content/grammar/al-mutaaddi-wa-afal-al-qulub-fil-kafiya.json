@@ -1,0 +1,128 @@
+{
+ "id": "al-mutaaddi-wa-afal-al-qulub-fil-kafiya",
+ "title": {
+  "ar": "الْمُتَعَدِّي وَاللَّازِمُ وَأَفْعَالُ الْقُلُوبِ فِي الْكَافِيَةِ",
+  "en": "Transitive against intransitive by the test of understanding; one, two and three objects; and the verbs of the heart with their four properties",
+  "tr": "Anlaşılma ölçütüyle müteaddî ile lâzım; bir, iki ve üç mef'ûl; ve dört hâssasıyla ef'âl-i kulûb"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المتعدي: ما يتوقف فهمه على متعلق؛ اللازم: ما لا يتوقف؛ أفعال القلوب وخواصها: الإلغاء، اتحاد الفاعل والمفعول ضميرين",
+  "ضياء صونغور اوغلى — دفتر الكافية: ضرب، أعطى وعلم، أعلم وأرى وأنبأ ونبأ وأخبر وخبر وحدث؛ زيادة الهمزة؛ الأول كمفعول أعطيت والآخران كمفعولي علمت؛ ظننت حسبت خلت زعمت علمت رأيت وجدت؛ لزوم ذكر المفعولين؛ الإلغاء توسطا وتأخرا؛ علمتني منطلقا لا ضربتني؛ المعاني الأخرى"
+ ],
+ "question": {
+  "en": [
+   "How do you tell a TRANSITIVE verb from an intransitive one? By whether understanding it needs something beyond the doer: ضَرَبَ leaves you asking «whom?», قَعَدَ does not. The Kafiya's test is semantic, which is why the glossary stores transitivity and the engine reads it rather than guessing from shape.",
+   "How many objects? One (ضَرَبَ), two (أَعْطَى، عَلِمَ) or three (أَعْلَمَ، أَرَى، أَنْبَأَ، نَبَّأَ، أَخْبَرَ، خَبَّرَ، حَدَّثَ). أَعْلَمَ and أَرَى reach three because the hamza was added to a two-object verb; the other five reach three only when they mean أَعْلَمَ. The first of the three behaves like أَعْطَيْتُ's object, the second and third like عَلِمْتُ's pair.",
+   "What are the VERBS OF THE HEART? Seven: three of opinion (ظَنَّ، حَسِبَ، خَالَ), three of knowledge (عَلِمَ، رَأَى، وَجَدَ), and زَعَمَ for either. They sit on a nominal sentence and say which it is: زَيْدٌ قَائِمٌ is a fact; عَلِمْتُ زَيْدًا قَائِمًا is that fact known; ظَنَنْتُ زَيْدًا قَائِمًا is it supposed.",
+   "Why can neither object be dropped alone? Because the two objects were a mubtada and a khabar, and a sentence cannot lose half of itself; name both or neither. أَعْطَيْتُ's objects are independent and either may go.",
+   "What is ILGHĀʾ? Cancelling the verb's government when it stands in the middle or at the end: زَيْدٌ عَلِمْتُ قَائِمٌ, زَيْدٌ قَائِمٌ عَلِمْتُ — permitted beside the governed versions. The sentence was whole before the verb arrived, so a verb that is not in front may be treated as a parenthesis.",
+   "What is the two-pronoun licence? A verb of the heart may have doer and first object as two attached pronouns of one person — عَلِمْتُنِي مُنْطَلِقًا, «I knew myself departing» — because the first object is really a mubtada about the doer. Any other verb must say ضَرَبْتُ نَفْسِي; ضَرَبْتُنِي is barred.",
+   "When do they take ONE object? When they shift sense: ظَنَّ as suspecting, عَلِمَ as recognising (عَرَفَ), رَأَى as seeing with the eye (أَبْصَرَ), وَجَدَ as coming upon (أَصَابَ). The analyzer's zanna-expectation must therefore be a shortlist — two objects first, the one-object sense underneath."
+  ],
+  "tr": [
+   "MÜTEADDÎ fiil lâzımdan nasıl ayrılır? Anlaşılmasının fâilden öte bir şeye muhtaç olup olmadığıyla: ضَرَبَ «kimi?» sorusunu bırakır, قَعَدَ bırakmaz. Kâfiye'nin ölçütü mânâya dairdir; sözlüğün müteaddîliği saklayıp motorun biçimden tahmin etmek yerine onu okumasının sebebi budur.",
+   "Kaç mef'ûl? Bir (ضَرَبَ), iki (أَعْطَى، عَلِمَ) ya da üç (أَعْلَمَ، أَرَى، أَنْبَأَ، نَبَّأَ، أَخْبَرَ، خَبَّرَ، حَدَّثَ). أَعْلَمَ ve أَرَى üçe ulaşır, çünkü hemze iki mef'ûllü bir fiile eklenmiştir; öteki beşi yalnız أَعْلَمَ anlamındayken üçe ulaşır. Üçün birincisi أَعْطَيْتُ'nün mef'ûlü gibi, ikinci ve üçüncüsü عَلِمْتُ'nün çifti gibi davranır.",
+   "EF'ÂL-İ KULÛB nelerdir? Yedi: üçü zan (ظَنَّ، حَسِبَ، خَالَ), üçü ilim (عَلِمَ، رَأَى، وَجَدَ), زَعَمَ ikisi için. Bir isim cümlesinin üzerine oturup hangisi olduğunu söylerler: زَيْدٌ قَائِمٌ bir olgudur; عَلِمْتُ زَيْدًا قَائِمًا o olgunun bilinmesi; ظَنَنْتُ زَيْدًا قَائِمًا sanılması.",
+   "Neden mef'ûllerden biri tek başına düşürülemez? Çünkü iki mef'ûl mübtedâ ve haberdi ve bir cümle yarısını kaybedemez; ya ikisi de söylenir ya hiçbiri. أَعْطَيْتُ'nün mef'ûlleri bağımsızdır, biri gidebilir.",
+   "İLGÂ nedir? Fiil ortada ya da sonda durduğunda amelinin iptali: زَيْدٌ عَلِمْتُ قَائِمٌ, زَيْدٌ قَائِمٌ عَلِمْتُ — amel eden biçimlerin yanında câiz. Cümle fiil gelmeden önce bütündü; önde olmayan bir fiil cümle-i mu'terize sayılabilir.",
+   "İki zamir ruhsatı nedir? Bir kalp fiilinin fâili ile birinci mef'ûlü aynı kişi için iki bitişik zamir olabilir — عَلِمْتُنِي مُنْطَلِقًا, «kendimi giderken bildim» — çünkü birinci mef'ûl gerçekte fâil hakkında bir mübtedâdır. Başka her fiil ضَرَبْتُ نَفْسِي demelidir; ضَرَبْتُنِي memnûdur.",
+   "Ne zaman TEK mef'ûl alırlar? Mânâ kaydığında: ظَنَّ suçlamak, عَلِمَ tanımak (عَرَفَ), رَأَى gözle görmek (أَبْصَرَ), وَجَدَ rastlamak (أَصَابَ). Bu yüzden analizörün zanne-beklentisi bir kısa liste olmalıdır — önce iki mef'ûl, altında tek mef'ûllü mânâ."
+  ]
+ },
+ "plain": {
+  "en": "A verb is transitive if it cannot be understood without an object (ضَرَبَ «he struck» — whom?). Some take two objects, a few three. The verbs of the heart (think, know, find) take a whole «X is Y» sentence as their two objects: both are said or neither, and the verb may be switched off when it is not first.",
+  "tr": "Bir fiil mef'ûlsüz anlaşılamıyorsa müteaddîdir (ضَرَبَ «vurdu» — kimi?). Bazı fiiller iki, birkaçı üç mef'ûl alır. Kalp fiilleri (sanmak, bilmek, bulmak…) bütün bir «X, Y'dir» cümlesini iki mef'ûl olarak alır; bu yüzden ikisi de söylenir ya da hiçbiri, ve fiil ortada ya da sonda gelince ameli kapatılabilir."
+ },
+ "explanation": {
+  "en": "The Kafiya defines transitivity by understanding, not by form: a verb is transitive when its sense is incomplete without something beyond the doer. The notebook then builds the ladder of objects — one, two, three — and explains the seven three-object verbs by their history: أَعْلَمَ and أَرَى are عَلِمَ and رَأَى with a causative hamza, which adds an object to the two they already had; the other five join the list only when they mean the same thing. The first of three objects is a plain object like أَعْطَيْتُ's; the second and third are the old mubtada and khabar, which is what the verbs of the heart govern directly. Those seven verbs are the chapter's real subject. They take a nominal sentence and colour it — known or supposed — and every property the notebook lists follows from the fact that their two objects were once a sentence: both must be present because a sentence has two halves; the verb may be cancelled when it does not come first, because the sentence stood before it arrived; the doer and the first object may be the same person in two attached pronouns, because the first object is a mubtada about that person, whereas ضَرَبْتُنِي would make one person both striker and struck in a single act. The last sentence records the senses in which four of them take a single object — suspicion, recognition, sight, finding — and for the analyzer that list is the reason a verb of the heart yields a shortlist rather than a verdict.",
+  "tr": "Kâfiye müteaddîliği biçimle değil anlaşılmayla tarif eder: bir fiil, mânâsı fâilden öte bir şey olmadan eksikse müteaddîdir. Defter sonra mef'ûl merdivenini kurar — bir, iki, üç — ve yedi üç mef'ûllü fiili tarihçeleriyle açıklar: أَعْلَمَ ve أَرَى, zaten iki mef'ûlü olan عَلِمَ ve رَأَى'ya ettirgen hemzenin bir mef'ûl eklemesidir; öteki beşi yalnız aynı anlama geldiklerinde listeye katılır. Üç mef'ûlün birincisi أَعْطَيْتُ'nünki gibi düz bir mef'ûldür; ikinci ve üçüncüsü eski mübtedâ ve haberdir — kalp fiillerinin doğrudan yönettiği şey. O yedi fiil bâbın asıl konusudur. Bir isim cümlesini alıp renklendirirler — bilinen ya da sanılan — ve defterin saydığı her hâssa iki mef'ûllerinin bir zamanlar cümle olmasından çıkar: ikisi de bulunmalıdır, çünkü cümlenin iki yarısı vardır; fiil önde gelmediğinde ilgâ edilebilir, çünkü cümle o gelmeden önce ayaktaydı; fâil ile birinci mef'ûl iki bitişik zamirde aynı kişi olabilir, çünkü birinci mef'ûl o kişi hakkında bir mübtedâdır; oysa ضَرَبْتُنِي tek bir fiilde bir kişiyi hem vuran hem vurulan yapardı. Son cümle dördünün tek mef'ûl aldığı mânâları kaydeder — suçlama, tanıma, görme, rastlama — ve analizör için bu liste, bir kalp fiilinin hüküm değil kısa liste vermesinin sebebidir."
+ },
+ "examples": [
+  {
+   "ar": "الْمُتَعَدِّي: مَا يَتَوَقَّفُ فَهْمُهُ عَلَى مُتَعَلَّقٍ — وَاللَّازِمُ: مَا لَا يَتَوَقَّفُ",
+   "en": "The two definitions.",
+   "tr": "İki tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "أَعْلَمَ وَأَرَى وَأَنْبَأَ وَنَبَّأَ وَأَخْبَرَ وَخَبَّرَ وَحَدَّثَ",
+   "en": "The seven three-object verbs.",
+   "tr": "Yedi üç mef'ûllü fiil.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "عَلِمْتُ زَيْدًا قَائِمًا — ظَنَنْتُ زَيْدًا قَائِمًا",
+   "en": "Knowledge and opinion on one sentence.",
+   "tr": "Bir cümle üzerinde ilim ve zan.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "زَيْدٌ عَلِمْتُ قَائِمٌ — زَيْدٌ قَائِمٌ عَلِمْتُ",
+   "en": "Ilghāʾ in the middle and at the end.",
+   "tr": "Ortada ve sonda ilgâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "عَلِمْتُنِي مُنْطَلِقًا — لَا ضَرَبْتُنِي بَلْ ضَرَبْتُ نَفْسِي",
+   "en": "The two-pronoun licence.",
+   "tr": "İki zamir ruhsatı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "رَأَيْتُ بِمَعْنَى أَبْصَرْتُ، وَوَجَدْتُ بِمَعْنَى أَصَبْتُ",
+   "en": "The one-object senses.",
+   "tr": "Tek mef'ûllü mânâlar.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«عَلِمْتُ زَيْدًا — tek mef'ûlle, «Zeyd'in ayakta olduğunu bildim» anlamında»",
+   "right": "«عَلِمْتُ زَيْدًا قَائِمًا — kalp fiilinin iki mef'ûlü birlikte söylenir; tek mef'ûllü عَلِمْتُ زَيْدًا «Zeyd'i tanıdım» demektir»",
+   "why": {
+    "en": "The two objects are a sentence; dropping one leaves half a sentence or shifts the verb to its one-object sense.",
+    "tr": "İki mef'ûl bir cümledir; birini düşürmek yarım cümle bırakır ya da fiili tek mef'ûllü mânâsına kaydırır."
+   }
+  },
+  {
+   "wrong": "«عَلِمْتُ زَيْدٌ قَائِمٌ»",
+   "right": "«عَلِمْتُ زَيْدًا قَائِمًا — fiil önde gelince ilgâ câiz değildir»",
+   "why": {
+    "en": "Ilghāʾ is licensed only in the middle or at the end.",
+    "tr": "İlgâ yalnız ortada ya da sonda câizdir."
+   }
+  },
+  {
+   "wrong": "«ضَرَبْتُنِي»",
+   "right": "«ضَرَبْتُ نَفْسِي — iki bitişik zamir ruhsatı yalnız kalp fiillerine aittir»",
+   "why": {
+    "en": "Only where the first object is really a mubtada about the doer can doer and object be one person.",
+    "tr": "Yalnız birinci mef'ûl gerçekte fâil hakkında mübtedâ olduğunda fâil ile mef'ûl aynı kişi olabilir."
+   }
+  },
+  {
+   "wrong": "«أَخْبَرَ her zaman üç mef'ûle müteaddîdir»",
+   "right": "«أَخْبَرَ, أَعْلَمَ mânâsındayken üç mef'ûl alır; yoksa bir mef'ûl ve bir câr-mecrûr»",
+   "why": {
+    "en": "Only أَعْلَمَ and أَرَى are three-object verbs by form; the other five by sense.",
+    "tr": "Yalnız أَعْلَمَ ve أَرَى biçimce üç mef'ûllüdür; öteki beşi mânâca."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "zanna-wa-akhawatuha",
+  "mafulayn",
+  "fail",
+  "maful-bihi",
+  "al-fil-wal-madi-wal-mudari-fil-kafiya",
+  "al-majhul-fil-kafiya"
+ ]
+}

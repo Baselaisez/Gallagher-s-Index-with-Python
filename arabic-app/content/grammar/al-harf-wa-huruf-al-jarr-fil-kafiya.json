@@ -1,0 +1,126 @@
+{
+ "id": "al-harf-wa-huruf-al-jarr-fil-kafiya",
+ "title": {
+  "ar": "الْحَرْفُ وَحُرُوفُ الْجَرِّ فِي الْكَافِيَةِ: مِنْ",
+  "en": "The particle and the jarr letters in the Kafiya: the two definitions, the governed noun in taʾwīl, the twenty letters, the two names, and min's four senses with their tests",
+  "tr": "Kâfiye'de harf ve cer harfleri: iki tarif, te'villi mecrûr, yirmi harf, iki ad ve min'in testleriyle dört mânâsı"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الحرف: ما دل على معنى في غيره؛ حرف الجر: ما وضع للإفضاء بفعل أو معناه إلى ما يليه؛ وهي من وإلى وحتى وفي والباء واللام ورب والواو وواو القسم وتاؤه وباؤه وعن وعلى والكاف ومذ ومنذ وخلا وعدا وحاشا",
+  "ضياء صونغور اوغلى — دفتر الكافية: الحرف يحتاج إلى اسم أو فعل؛ المجرور صريحا وبالتأويل؛ معاني الأفعال؛ وجه التسمية؛ من للابتداء والتبيين والتبعيض والزيادة وعلاماتها؛ الكوفيون والأخفش في قد كان من مطر"
+ ],
+ "question": {
+  "en": [
+   "What is a particle? A word whose meaning lives in another word: مِنْ means nothing until مَكَّةَ follows it, and قَدْ nothing until ظَهَرَ does. That is why a particle can never be a sentence on its own and always needs a noun or a verb beside it.",
+   "What is a jarr letter? A particle set down to carry a verb's reach — or the reach of a verb-like word, an ism fāʿil, an ism mafʿūl, a ṣifa mushabbaha — over to the noun after it. The noun may be explicit (بِزَيْدٍ) or a clause read as a noun (بِمَا رَحُبَتْ = بِرُحْبِهَا).",
+   "How many are they, and why two names? Twenty: the sixteen plain letters plus the wāw of rubba and the three oath letters. «Jarr letters» for what they do to the noun; «iḍāfa letters» for what they do to the verb — they annex it to its noun. The Iẓhār teaches the same twenty under the first name.",
+   "What does مِنْ mean? Four things, each with a test the madrasah hands you. Beginning, in place or time — test: can إِلَى stand opposite it? Explanation — test: can a relative replace it (الرِّجْسَ الَّذِي هُوَ الْأَوْثَانُ)? Partition — test: can بَعْض replace it (بَعْضَ الدَّرَاهِمِ)? And redundant — only in speech that is not affirmative (مَا جَاءَنِي مِنْ أَحَدٍ).",
+   "May مِنْ be redundant in an affirmative sentence? The Kufans and al-Akhfash said yes, from قَدْ كَانَ مِنْ مَطَرٍ. Ibn al-Ḥājib says no: read it as partition (بَعْضُ مَطَرٍ) or as explanation (شَيْءٌ مِنْ مَطَرٍ). Where a reading saves the rule, the rule is kept.",
+   "What does the engine do? The kernel's PARTICLES table carries all twenty with their government, the TaalluqEngine hangs every jarr phrase on the nearest verb or verb-meaning (the Qawāʿid's rule, now the Kafiya's definition), and the Jarr lab lists min's senses with these very tests."
+  ],
+  "tr": [
+   "Harf nedir? Mânâsı başka bir kelimede yaşayan kelime: مِنْ, ardından مَكَّةَ gelene kadar hiçbir şey demektir; قَدْ de ظَهَرَ gelene kadar. Bu yüzden harf tek başına asla cümle olamaz ve daima yanında bir isim ya da fiile muhtaçtır.",
+   "Cer harfi nedir? Bir fiilin — ya da fiil benzeri bir kelimenin, ism-i fâilin, ism-i mef'ûlün, sıfat-ı müşebbehenin — ulaşımını ardındaki isme taşımak için konulan harf. İsim sarih olabilir (بِزَيْدٍ) ya da isim sayılan bir cümle (بِمَا رَحُبَتْ = بِرُحْبِهَا).",
+   "Kaç tanedir ve neden iki ad? Yirmi: on altı düz harf artı rubbe vâvı ve üç kasem harfi. İsme yaptıkları için «cer harfleri»; fiile yaptıkları için «izâfet harfleri» — onu ismine izâfe ederler. İzhar aynı yirmiyi birinci adla öğretir.",
+   "مِنْ ne demektir? Dört şey, her biri medresenin eline verdiği bir testle. İbtidâ, mekânda ya da zamanda — test: karşısına إِلَى konabilir mi? Tebyîn — test: yerine ism-i mevsûl konabilir mi (الرِّجْسَ الَّذِي هُوَ الْأَوْثَانُ)? Teb'îz — test: yerine بَعْض konabilir mi (بَعْضَ الدَّرَاهِمِ)? Ve zâid — yalnız olumlu olmayan kelâmda (مَا جَاءَنِي مِنْ أَحَدٍ).",
+   "مِنْ olumlu cümlede zâid olabilir mi? Kûfeliler ve Ahfeş قَدْ كَانَ مِنْ مَطَرٍ'den hareketle evet dedi. İbnü'l-Hâcib hayır der: teb'îz (بَعْضُ مَطَرٍ) ya da tebyîn (شَيْءٌ مِنْ مَطَرٍ) olarak oku. Bir okuyuş kuralı kurtarıyorsa kural korunur.",
+   "Motor ne yapar? Çekirdeğin PARTICLES tablosu yirmisini amelleriyle taşır, TaalluqEngine her cer ibaresini en yakın fiile ya da fiil mânâsına asar (Kavâid'in kuralı, şimdi Kâfiye'nin tarifi) ve Cer laboratuvarı min'in mânâlarını tam bu testlerle listeler."
+  ]
+ },
+ "plain": {
+  "en": "A particle means something only next to another word, and a jarr letter is the particle that links a verb to the noun it reaches: «I travelled FROM Basra». Arabic has twenty. The first, min, can mean «from», «namely», «some of», or nothing at all in a negative sentence, and each sense has a quick test.",
+  "tr": "Harf, yalnız başka bir kelimenin yanında bir şey ifade eden kelimedir; cer harfi, fiili ulaştığı isme bağlayan harftir: «Basra'DAN yola çıktım». Arapçada yirmi tane vardır. İlki min, «-den», «yani», «bazısı» ya da olumsuz cümlede hiçbir şey demek olabilir ve her mânânın hızlı bir testi vardır."
+ },
+ "explanation": {
+  "en": "The Kafiya's third part opens with the particle, and the notebook gives both definitions verbatim before glossing them. The ḥarf's definition is tested on one sentence, قَدْ ظَهَرَ نُورُ الْإِسْلَامِ مِنْ مَكَّةَ, in which each particle is shown reaching for the word that completes it. The jarr letter's definition carries the whole TaalluqEngine in one line — a letter conveys a verb, or a verb's meaning, to a noun — and the notebook's two glosses are exactly the engine's two edge cases: the noun may be a clause in taʾwīl (the aya of 9:118), and the «verb-meaning» words are the participles and the ṣifa mushabbaha that the glossary flags as verbal. The list of twenty is given as the notebook gives it, with the wāw of rubba and the three oath letters counted separately, and the double naming (jarr / iḍāfa) is explained from the two ends of the relation. Then مِنْ, the first and busiest letter, with the madrasah's substitution tests — إِلَى opposite it, a relative in its place, بَعْض in its place — and the one dispute, redundancy in affirmative speech, where the Kufans and al-Akhfash cite قَدْ كَانَ مِنْ مَطَرٍ and the author answers with two taʾwīls. The remaining letters follow in the next chapters.",
+  "tr": "Kâfiye'nin üçüncü kısmı harfle açılır ve defter iki tarifi de şerh etmeden önce aynen verir. Harfin tarifi tek cümlede, قَدْ ظَهَرَ نُورُ الْإِسْلَامِ مِنْ مَكَّةَ'de sınanır; orada her harfin kendini tamamlayan kelimeye uzandığı gösterilir. Cer harfinin tarifi bütün TaalluqEngine'i tek satırda taşır — harf bir fiili ya da fiilin mânâsını bir isme ulaştırır — ve defterin iki şerhi tam olarak motorun iki sınır hâlidir: isim te'villi bir cümle olabilir (9:118 âyeti) ve «fiil mânâsı» kelimeleri sözlüğün fiilî diye işaretlediği ism-i fâil, ism-i mef'ûl ve sıfat-ı müşebbehedir. Yirmilik liste defterin verdiği gibi verilir, rubbe vâvı ve üç kasem harfi ayrı sayılır; çifte ad (cer / izâfet) ilişkinin iki ucundan açıklanır. Sonra ilk ve en meşgul harf مِنْ, medresenin yerine koyma testleriyle — karşısına إِلَى, yerine ism-i mevsûl, yerine بَعْض — ve tek ihtilâf, olumlu kelâmda zâidlik; orada Kûfeliler ve Ahfeş قَدْ كَانَ مِنْ مَطَرٍ'i delil getirir, musannif iki te'ville cevap verir. Kalan harfler sonraki bâblarda gelir."
+ },
+ "examples": [
+  {
+   "ar": "الْحَرْفُ: مَا دَلَّ عَلَى مَعْنًى فِي غَيْرِهِ",
+   "en": "The particle defined.",
+   "tr": "Harfin tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "حَرْفُ الْجَرِّ: مَا وُضِعَ لِلْإِفْضَاءِ بِفِعْلٍ أَوْ مَعْنَاهُ إِلَى مَا يَلِيهِ",
+   "en": "The jarr letter defined.",
+   "tr": "Cer harfinin tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "حَتَّى إِذَا ضَاقَتْ عَلَيْهِمُ الْأَرْضُ بِمَا رَحُبَتْ",
+   "en": "The governed noun in taʾwīl.",
+   "tr": "Te'villi mecrûr.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "سِرْتُ مِنَ الْبَصْرَةِ إِلَى الْكُوفَةِ",
+   "en": "min for beginning, with its ilā test.",
+   "tr": "İbtidâ için min, ilâ testiyle.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "فَاجْتَنِبُوا الرِّجْسَ مِنَ الْأَوْثَانِ — أَخَذْتُ مِنَ الدَّرَاهِمِ",
+   "en": "Explanation and partition.",
+   "tr": "Tebyîn ve teb'îz.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "مَا جَاءَنِي مِنْ أَحَدٍ — قَدْ كَانَ مِنْ مَطَرٍ",
+   "en": "Redundant min, and the disputed affirmative case.",
+   "tr": "Zâid min ve ihtilâflı olumlu hâl.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«مِنْ tek başına bir kelâmdır»",
+   "right": "«harf, kelâmın cüz'ü olmak için isme ya da fiile muhtaçtır»",
+   "why": {
+    "en": "A particle's meaning lives in another word; alone it says nothing.",
+    "tr": "Harfin mânâsı başka kelimede yaşar; tek başına hiçbir şey söylemez."
+   }
+  },
+  {
+   "wrong": "«جَاءَنِي مِنْ أَحَدٍ — zâid min»",
+   "right": "«مَا جَاءَنِي مِنْ أَحَدٍ — zâid min yalnız olumlu olmayan kelâmda»",
+   "why": {
+    "en": "Redundancy needs a negation, prohibition or question before it, on the author's view.",
+    "tr": "Musannife göre zâidlik öncesinde nefy, nehy ya da istifham ister."
+   }
+  },
+  {
+   "wrong": "«أَخَذْتُ مِنَ الدَّرَاهِمِ — ibtidâ için min»",
+   "right": "«teb'îz için min — بَعْضَ الدَّرَاهِمِ yerine konabilir»",
+   "why": {
+    "en": "Run the substitution test: baʿḍ fits, ilā does not.",
+    "tr": "Yerine koyma testini uygula: ba'z uyar, ilâ uymaz."
+   }
+  },
+  {
+   "wrong": "«cer harfleri on altıdır»",
+   "right": "«yirmidir — rubbe vâvı ve kasemin vâvı, tâsı, bâsı ayrı sayılır»",
+   "why": {
+    "en": "The notebook counts the oath letters and the wāw of rubba as separate letters.",
+    "tr": "Defter kasem harflerini ve rubbe vâvını ayrı harfler sayar."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "huruf-jarr",
+  "huruf-jarr-nawadir",
+  "al-kalima-wal-kalam",
+  "mana-al-fil",
+  "anwa-ma",
+  "ila-hatta-fi-wal-ba-fil-kafiya"
+ ]
+}

@@ -1,0 +1,128 @@
+{
+ "id": "al-huruf-al-mushabbaha-bil-fil-fil-kafiya",
+ "title": {
+  "ar": "الْحُرُوفُ الْمُشَبَّهَةُ بِالْفِعْلِ فِي الْكَافِيَةِ: إِنَّ وَأَنَّ",
+  "en": "The verb-like particles in the Kafiya: the six, why «verb-like», the head of speech, the mā that disarms them, and the hamza of inna — kasra where a sentence fits, fatḥa where a noun fits, both where both fit",
+  "tr": "Kâfiye'de fiile benzeyen harfler: altısı, neden «fiile benzer», sadr-ı kelâm, onları silahsızlandıran mâ ve inne'nin hemzesi — cümlenin uyduğu yerde kesre, ismin uyduğu yerde fetha, ikisinin uyduğu yerde ikisi"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — الحروف المشبهة بالفعل: إن وأن وكأن ولكن وليت ولعل؛ لها صدر الكلام إلا أن؛ تلحقها ما الكافة؛ إن لا تغير معنى الجملة وأن مع جملتها في حكم المفرد",
+  "ضياء صونغور اوغلى — دفتر الكافية: وجه التسمية؛ مواضع الكسر والفتح والوجهين؛ آية الكنوز؛ لولا أنك ولو أنك؛ من يكرمني فإني أكرمه؛ بيت عبد القفا واللهازم"
+ ],
+ "question": {
+  "en": [
+   "Why are these six «like the verb»? They look like one — three to five letters, ending in a fatḥa as a māḍī does — and each carries a verb's meaning: أَكَّدْتُ, شَبَّهْتُ, اسْتَدْرَكْتُ, تَمَنَّيْتُ, تَرَجَّيْتُ. That is why they govern as a verb governs: ism in naṣb, khabar in rafʿ.",
+   "Why must they open the sentence? So the hearer knows at once which kind of speech is coming — emphasis, likeness, correction, wish, hope. أَنَّ is the exception because it never opens: it turns its clause into a noun that some other word must hold.",
+   "What does مَا do to them? Attached, it stops their government and lets them enter on a verb: إِنَّمَا قَامَ زَيْدٌ. The MaEngine reads the fused spelling as kāffa, and the qaṣr note takes it from there.",
+   "How do I choose between إِنَّ and أَنَّ? One test: إِنَّ leaves the sentence a sentence; أَنَّ makes it a single noun. So read kasra wherever a sentence can stand — the opening, after «say» with no opinion, after a relative — and fatḥa wherever a noun is wanted: as doer (بَلَغَنِي أَنَّكَ = قِيَامُكَ), object (عَلِمْتُ أَنَّ = قِيَامَ زَيْدٍ), delayed mubtada (عِنْدِي أَنَّكَ), muḍāf ilayh (حَيْثُ أَنَّ), after لَوْلَا and لَوْ.",
+   "When are both right? When both readings are: after the fāʾ of a conditional answer (فَإِنِّي أُكْرِمُهُ = «then I honour him» / «then his reward is my honouring him») and after إِذَا of surprise, where the verse of the slave of the nape may be read either way. The engine keeps both faces and says which reading each implies.",
+   "What does the engine do? The kernel's INNA table pushes [ism-naṣb, khabar-rafʿ] at each of the six; the inna-am-anna note and the Hamza game drill the kasra/fatḥa rule; the Qawāʿid's «after a verb of saying» exception lives in the analyzer's walk back to the nearest verb."
+  ],
+  "tr": [
+   "Bu altısı neden «fiile benzer»? Fiile benzerler — üç ila beş harf, mâzî gibi fetha ile biten — ve her biri bir fiil mânâsı taşır: أَكَّدْتُ, شَبَّهْتُ, اسْتَدْرَكْتُ, تَمَنَّيْتُ, تَرَجَّيْتُ. Fiilin yönettiği gibi yönetmeleri bundandır: isim nasbda, haber ref'te.",
+   "Neden cümleyi açmalıdırlar? Dinleyen hangi tür kelâmın geldiğini hemen bilsin diye — te'kid, teşbih, istidrak, temennî, tereccî. أَنَّ istisnadır çünkü hiç açmaz: cümlesini başka bir kelimenin tutması gereken bir isme çevirir.",
+   "مَا onlara ne yapar? Bitişince amellerini durdurur ve fiil üzerine girmelerine izin verir: إِنَّمَا قَامَ زَيْدٌ. MaEngine bitişik yazımı kâffe okur, kasr notu oradan devralır.",
+   "إِنَّ ile أَنَّ arasında nasıl seçerim? Tek test: إِنَّ cümleyi cümle bırakır; أَنَّ onu tek bir isim yapar. Öyleyse cümlenin durabildiği her yerde kesre oku — ibtidâ, zansız «de» fiilinden sonra, ism-i mevsûlden sonra — isim istenen her yerde fetha: fâil (بَلَغَنِي أَنَّكَ = قِيَامُكَ), mef'ûl (عَلِمْتُ أَنَّ = قِيَامَ زَيْدٍ), muahhar mübtedâ (عِنْدِي أَنَّكَ), muzâfun ileyh (حَيْثُ أَنَّ), لَوْلَا ve لَوْ'den sonra.",
+   "İkisi ne zaman doğrudur? İki okuyuş da doğruyken: şart cevabının fâsından sonra (فَإِنِّي أُكْرِمُهُ = «ben de ona ikram ederim» / «cezâsı ona ikram etmemdir») ve mufâcee إِذَا'sından sonra; ense kulu beyti iki türlü de okunabilir. Motor iki yüzü de tutar ve her okuyuşun neyi ima ettiğini söyler.",
+   "Motor ne yapar? Çekirdeğin INNA tablosu altısının her birinde [isim-nasb, haber-ref'] iter; inna-am-anna notu ve Hemze oyunu kesre/fetha kuralını çalıştırır; Kavâid'in «kavl fiilinden sonra» istisnası analizörün en yakın fiile geri yürüyüşünde yaşar."
+  ]
+ },
+ "plain": {
+  "en": "Six little words — inna, anna, ka-anna, lākinna, layta, laʿalla — behave like verbs: a subject in naṣb, a predicate in rafʿ, and first place. The hard pair is inna/anna: inna keeps a sentence a sentence («indeed Zayd stands»), anna folds it into a noun («that Zayd stands»), and the vowel on the hamza tells you which.",
+  "tr": "Altı küçük kelime — inne, enne, keenne, lâkinne, leyte, lealle — fiil gibi davranır: nasbda özne, ref'te yüklem, ve önce gelirler. Çetin çift inne/enne: inne cümleyi cümle bırakır («muhakkak Zeyd ayaktadır»), enne onu isme katlar («Zeyd'in ayakta olduğu»); hangisi olduğunu hemzedeki hareke söyler."
+ },
+ "explanation": {
+  "en": "The Kafiya's list is verbatim, and the notebook's first gloss is the etymology of the name — shape and meaning both verb-like — which is also the reason for their government. Two general rules follow: the head of speech, with أَنَّ excepted and the reason given, and the kāffa مَا, which the notebook ties to the «most eloquent» usage because a minority let إِنَّمَا keep governing. The chapter's centre is the hamza of إِنَّ, and the notebook teaches it as a single principle before it lists cases: إِنَّ preserves the sentence, أَنَّ reduces it to a noun, so the vowel follows what the position wants. Three kasra positions and six fatḥa positions are each given with a sentence and, for the fatḥa, with the paraphrase that proves the noun reading (قِيَامُكَ, قِيَامَ زَيْدٍ, مَكَانَ جُلُوسِ زَيْدٍ); لَوْلَا and لَوْ are explained by what follows them, a mubtada and a doer. The two-way positions close the chapter — the fāʾ of the answer, where the speaker's intention decides, and إِذَا of surprise, where the verse is read both ways. The aya 28:76 is cited in its received وَآتَيْنَاهُ where the notebook writes وَأَتَيْنَاهُ; the manifest records it.",
+  "tr": "Kâfiye'nin listesi aynendir ve defterin ilk şerhi adın etimolojisidir — şekil ve mânâ, ikisi de fiile benzer — ki bu amellerinin de sebebidir. İki genel kural izler: sebebi verilerek أَنَّ istisna edilen sadr-ı kelâm ve defterin «en fasih» kullanışa bağladığı mâ-i kâffe, çünkü bir azınlık إِنَّمَا'nın amel etmesine izin verir. Bâbın merkezi إِنَّ'nin hemzesidir ve defter onu hâlleri saymadan önce tek bir ilke olarak öğretir: إِنَّ cümleyi korur, أَنَّ onu isme indirger; dolayısıyla hareke mevkinin istediğini izler. Üç kesre mevkii ve altı fetha mevkii birer cümleyle, fetha için ayrıca isim okuyuşunu kanıtlayan takdirle verilir (قِيَامُكَ, قِيَامَ زَيْدٍ, مَكَانَ جُلُوسِ زَيْدٍ); لَوْلَا ve لَوْ ardlarından gelenle, mübtedâ ve fâille açıklanır. İki yönlü mevkiler bâbı kapar — konuşanın niyetinin belirlediği cevap fâsı ve beytin iki türlü okunduğu mufâcee إِذَا'sı. 28:76 âyeti defterin وَأَتَيْنَاهُ yazdığı yerde alınan وَآتَيْنَاهُ ile zikredilir; manifest bunu kaydeder."
+ },
+ "examples": [
+  {
+   "ar": "إِنَّ وَأَنَّ وَكَأَنَّ وَلَكِنَّ وَلَيْتَ وَلَعَلَّ",
+   "en": "The six.",
+   "tr": "Altısı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "إِنَّمَا قَامَ زَيْدٌ",
+   "en": "Disarmed by mā.",
+   "tr": "Mâ ile silahsızlanmış.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "قُلْ إِنَّ اللهَ وَاحِدٌ — مَا إِنَّ مَفَاتِحَهُ لَتَنُوءُ بِالْعُصْبَةِ",
+   "en": "Kasra after saying and after a relative.",
+   "tr": "Kavlden ve mevsûlden sonra kesre.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "بَلَغَنِي أَنَّكَ قَائِمٌ — عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ — اجْلِسْ حَيْثُ أَنَّ زَيْدًا جَالِسٌ",
+   "en": "Fatḥa as doer, object and muḍāf ilayh.",
+   "tr": "Fâil, mef'ûl ve muzâfun ileyh olarak fetha.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "مَنْ يُكْرِمْنِي فَإِنِّي أُكْرِمُهُ",
+   "en": "Both readings after the fāʾ of the answer.",
+   "tr": "Cevap fâsından sonra iki okuyuş.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "إِذَا إِنَّهُ عَبْدُ الْقَفَا وَاللَّهَازِمِ",
+   "en": "Both readings after idhā of surprise.",
+   "tr": "Mufâcee izâ'sından sonra iki okuyuş.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s10"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«أَنَّ زَيْدًا قَائِمٌ» (cümle başında)",
+   "right": "«إِنَّ زَيْدًا قَائِمٌ — enne sadr-ı kelâmda bulunmaz»",
+   "why": {
+    "en": "Anna needs a word before it to hold the noun it makes.",
+    "tr": "Enne, yaptığı ismi tutacak önceki bir kelime ister."
+   }
+  },
+  {
+   "wrong": "«عَلِمْتُ إِنَّ زَيْدًا قَائِمٌ»",
+   "right": "«عَلِمْتُ أَنَّ زَيْدًا قَائِمٌ — mef'ûl mevkiinde fetha»",
+   "why": {
+    "en": "Where a single noun is wanted, the hamza takes the fatḥa.",
+    "tr": "Müfred istenen yerde hemze fetha alır."
+   }
+  },
+  {
+   "wrong": "«قُلْ أَنَّ اللهَ وَاحِدٌ»",
+   "right": "«قُلْ إِنَّ اللهَ وَاحِدٌ — zansız kavlden sonra kesre»",
+   "why": {
+    "en": "Speech is quoted whole; the sentence stays a sentence.",
+    "tr": "Söz bütün olarak nakledilir; cümle cümle kalır."
+   }
+  },
+  {
+   "wrong": "«إِنَّمَا زَيْدًا قَائِمٌ»",
+   "right": "«إِنَّمَا زَيْدٌ قَائِمٌ — kâffe mâ ameli durdurur»",
+   "why": {
+    "en": "On the most eloquent usage inna-mā governs nothing.",
+    "tr": "En fasih kullanışa göre innemâ hiçbir şeyi yönetmez."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "inna-wa-akhawatuha",
+  "inna-am-anna",
+  "an-masdariyya",
+  "anwa-ma",
+  "qasr",
+  "al-afal-al-naqisa-fil-kafiya",
+  "masail-inna-wal-mukhaffafa-fil-kafiya",
+  "kaanna-lakinna-layta-laalla-fil-kafiya"
+ ]
+}
