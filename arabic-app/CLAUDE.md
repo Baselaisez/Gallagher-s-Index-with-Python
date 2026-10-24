@@ -8894,6 +8894,111 @@ know about a copy run: the suite resolves the uploaded reader, the manifests it 
 relative to ITS OWN directory, so a copy in the scratchpad fails those checks with ENOENT and ERR_FILE_NOT_FOUND —
 artefacts, not findings; and a copy run is not the gate — the release still runs everything on the landed files.
 
+**Wave 63 — the Nasafī matn consumed to its end (aqaid-ahl-al-sunna ch25–46).** The creed had been authored by theme
+from chapter 5 on, and an alignment of the package against `research/sources/aqaid-nasafi-matn-full.txt` (a 3-gram
+match per matn line, the script is the method) showed it held 41 % of the matn's 1,203 words: the epistemology at the
+head (lines 17–29), the negations, the eight attributes and the attribute of speech (31–33), the manner of the vision,
+capability, pain and the slain and provision (35–47), the forgiveness rules, īmān and islam (53–57), and the whole tail
+from the Companions to the ranks of the messengers (77–93) were on the shelf and not in the app. Twenty-two chapters
+close that: 65 sentences, 528 tokens, every sentence a contiguous span of the received wording. Three decisions to keep:
+- **A chapter may continue a sentence another chapter cut short.** The matn's lists run on for a line; chapter 5 stopped
+  at لَيْسَ بِعَرَضٍ وَلَا جِسْمٍ وَلَا جَوْهَرٍ, so chapter 29 opens with وَلَا مُصَوَّرٍ and its iʿrāb names the word it is joined
+  to in the earlier chapter. The precedent was chapter 19 continuing chapter 18's list of the imam's offices. A
+  continuation is honest where a re-splice would not be; the attribution says which chapter the span continues.
+- **Three fragments are left out and named**, not quietly: the two epithets الشَّائِي الْمُرِيدُ that close the names, the
+  supplier's bracketed gloss in line 33 (a note, not matn), and غَيْرُ حَالٍّ فِيهَا after the Qurʾān sentence. The
+  opening doxology (line 13) is the transcriber's, not al-Nasafī's. One transcription slip is corrected and recorded:
+  «من المساء» for the received مِنَ السَّمَاءِ in the signs of the Hour.
+- **The lexicon's global keys bit eight times in one wave**, each caught by `G()`'s lemma assertion before anything was
+  written: `rai` is رَائِع not الرَّائِي, `hasan` is al-Baṣrī not حَسَن, `rida` is رِدَاء not رِضَاء, `dalil` holds the plural
+  دَلَائِل, `aqiba` is عَاقِبَة not عَقِيبَ, `hadar` is حَضَارِ, `istihlal` is اسْتِهْلَال not اسْتِحْلَال, `amal` is أَمَل not عَمَل, and
+  `qada` is the noun قَضَاء while a verb paradigm sits under the same key elsewhere. Every one got a suffixed key. **Check
+  the lemma before reusing a key that merely sounds right** — the transliteration is not the word.
+The authoring went through `aq63.py`, a layer of iʿrāb builders (MUB/KHA/MUDI/NAT/ATF/MAJ/FUSED/PRON_J/ENC/MAZI/MUDA …)
+over the shared Talkhīṣ machinery, so each token is one call carrying the madrasah wording and the two glosses; the
+`aqaid_common.py` shim switches the package and honours DRY_PKG/DRY_GR like the Kāfiya's. The verbs new to the library
+(ضَاهَى، حَدَثَ، تَمَكَّنَ، اِسْتَوْفَى، تَزَايَدَ، قَضَى) carry generated paradigms; every other verb's paradigm is an identity copy from
+the package that owns it.
+
+**Wave 64 — the catechism: the madrasah's sual-cevap as content, engine, game and lab.** Two of the Turkish notebooks
+on the shelf (`kafiya-turkce-sual-cevap.txt`, `mensubat.txt`) are numbered question-and-answer books — «Mef'ûl-i mutlak
+nedir? Kaç kısımdır?» with the Kāfiya's own Arabic definition as the answer. Their doctrine was already in the registry;
+their FORM was not, and the form is the madrasah's way of examining. `content/catechism/<book>.json` (seven banks, 202
+items: kafiya-turkce 58, mansubat 58, majrurat 9, tawabi 10, mabni 42, fil 14, harf 11) stores each item as
+`{id, n, q{en,tr}, a{en,tr}, ar[], notes[], story?, chapter?}` — `ar` is the vowelled Arabic the answer quotes (the
+definition, the shāhid), `notes` the registry ids that teach it, and `story`/`chapter` an anchor into the matn the
+assembler (`tools/authoring/assemble_catechism.py`) keeps ONLY when the item's Arabic is found verbatim in that chapter
+(a four-word probe), so «see it in the text» can never jump to a page that does not carry the words. The builder emits
+`CATECHISM`; `check_i18n.py` gates every q/a on en+tr. Three things govern the banks: (1) **the Arabic is the book's,
+the prose is ours** — the Ottoman-Turkish answer is translated, the Arabic definition is transcribed and vowelled, and
+where the notebook's Arabic is defective (the `کبى` examples run on without harakat) the item quotes only what is sure;
+(2) **a note id is a claim** — the assembler drops an id that is not in the registry and reports it, and an item may not
+ship with no note at all (the particle bank's first draft guessed eleven ids that did not exist; the registry's own
+`-fil-kafiya` chapter notes replaced them); (3) **the item is the unit, the bank is the scope**: `CatechismEngine`
+draws a round's three wrong answers from the SAME bank first, by closeness (Jaccard over the answer words) — a
+manṣūbāt question offered a ḥarf answer gives itself away. `gCatechism` (nahw, min 4) runs on `runQuiz` with the right
+answer and three same-bank distractors shortened to one clause; the extras button opens the Sual-Cevap lab
+(`conjState.lab = "sual"`: pick a bank, filter by a word, every item folds open to its Arabic, its notes and its anchor).
+The smoke check audits every bank (bilingual, notes resolve, ≥ 50 anchored), draws distractors and lists a bank in the
+lab. Still unconsumed in the same form: the Iẓhār Q&A pair (Ottoman script, denser) and Molla Jāmī — the assembler takes
+a new bank as one more `*_qa_*.py` file.
+
+**Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
+507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
+none to a lowered floor. Three lessons are general:
+- **An enclitic guess can be the whole bug.** يُضَاهِي and يَسْتَوْفِي were dressed يُضَاهُي: not a vowel rule at all —
+  `guessEnc` had taken the verb's final yāʾ for the speaker's object pronoun, so the realization voweled the hāʾ and glued
+  the «pronoun» back on, and the following definite noun became the DOER because «the verb already has its object». On
+  a verb the speaker's object rides نِي; a bare yāʾ after a kasra is the manqūṣ's own letter. The mood rafʿ on a weak
+  ending is then ESTIMATED and the page's letters are the graded answer (`rafTaqdiri`, counted as a hit — a «kept»
+  verdict drops out of the count, and the sweep reads a shrinking count as a regression).
+- **A verb that is the khabar of a waiting mubtadaʾ has a hidden doer.** الْعِلْمُ الثَّابِتُ بِهِ يُضَاهِي الْعِلْمَ: the generic
+  doer rule saw «verb, then a definite noun» and named the doer. The scan back from the verb — over jarr phrases, naʿts and
+  earlier objects, stopping at a khabar, doer or deputy — finds the mubtadaʾ, and the definite noun is the OBJECT, unless
+  it wears a returning pronoun of its own (زَيْدٌ قَامَ أَبُوهُ keeps its overt doer).
+- **When the page is vowelled, its last vowel can veto a seat.** Seven of the misses were nasb seats (ḥāl ×3, mafʿūl
+  muṭlaq, a two-object verb's second object, kāna's khabar, a māḍī cell) claimed on words the author had written with a
+  ḍamma or ḍammatan. `own68(i)` already existed for exactly this — «the author's vowel as receipt» — and the fix was to
+  consult it at those seven sites: a ḍammatan is never a ḥāl or an object, a ḍamma after kāna's fronted jarr phrase is
+  kāna tāmma's doer, a ḍamma on a «māḍī» is a masdar heading its clause. The receipt decides nothing on unvowelled text,
+  where those rules behave as before.
+The rest were single frames: the blessing formula عَلَيْهِ الصَّلَاةُ وَالسَّلَامُ (a parenthetical nominal sentence), the
+indefinite manqūṣ in a لَا-chain of majrūrs, the kasratan right after a bare noun (its muḍāf ilayh). 525/525 after.
+
+**Round 73d/73e — the sweep's first pass is part of the round, not a formality after it.** Round 73c went to the sweep at
+525/525 on its own chapters and came back WORSE 7 over 418. Five were one rule: the new annexation receipt («a kasratan
+right after a bare noun is its muḍāf ilayh») fired on بِدَرَاهِمَ مَعْدُودَةٍ، أَبْيَضَ مِخْذَمٍ — the head is a DIPTOTE, bare of
+tanwīn by nature, and the kasratan after it is a naʿt. A majrūr head written with a fatḥa is barred from tanwīn, never
+annexed; the receipt now says so. One was a word left UNJUDGED: the receipt vetoes stopped a wrong ḥāl on هٰذَا صِرَاطٌ and
+no later rule claimed the word, so it fell out of the graded count — which the sweep rightly reads as shrinkage. A veto
+must hand the word to the seat the receipt implies (here: a ḍammatan after a demonstrative is its khabar), never merely
+withhold the wrong one. And one was DATA wearing the engine's clothes: three wave-63 nāqiṣ verbs had a doubled kasra in
+69 cells — their stems reached `sarf_gen`'s naqis engine already carrying the vowel the engine adds («قْضِ» for «قْض»,
+the same trap as the sukūn and the hamzat al-waṣl before it) — and the sweep saw it as وَاقْضِِ because the corpus index is
+global and the first package's cell dresses every story's token. The scan `[ًٌٍَُِْ][ًٌٍَُِْ]` over every stored cell is now
+the fourth one-liner to run on a dry package before its release (with `mazi[0][1] === "ْ"`, the `majzum2` person, and
+the generator-equals-package check).
+
+**Round 73f/73g — the release's own checks are the last readers of a new text.** v217's release found two more things
+the probe and the sweep cannot see: the Signs-lab tally regex enumerated its count's first digits and the count passed
+10,000 (a floor now — the fourth such regex this file records; grep a new check for a bare number before shipping it);
+and the Qawāʿid error-checker raised a jarr alarm on وَلَا مُصَوَّرٍ, a chapter that OPENS mid-list — the governor
+(لَيْسَ بِـ) stands two sentences back in the previous chapter, and the author's line says so («مَعْطُوفٌ عَلَى عَرَضٍ فِي
+قَوْلِهِ…»). The checker now reads the surface the way a reader does: a kasratan noun opening a sentence behind وَلَا / وَ
+joins the chain it continues, and that chain is in the sentence before. The Jam ceiling ratchets once more (مَعَاصٍ of
+مَعْصِيَة: the builder makes مَعَاصِي and does not yet shorten the manqūṣ muntahā — its own gap, recorded as before).
+
+**Round 73h — a rule that walks BACK through a sentence needs a wall at the previous verb.** The hidden-doer rule of
+round 73c looked back from a verb for a waiting mubtadaʾ and found فَالْأَوَّلُ in «فَالْأَوَّلُ كَقَوْلِ الْمُتَنَبِّي: … أَقَامَ …
+تَشْقَى بِهِ الرُّومُ وَالصُّلْبَانُ وَالْبِيَعُ» — past the colon, past the quoted verse's own verb — and turned the three subjects
+of تَشْقَى into an object. The ḍabṭ sweep could not see it (in the graded path the author's vowels had settled the word
+first); the Badīʿ list-figure reader, which calls `decide()` on bare analyzer rows with NO authored vowels, lost its jamʿ
+and the release caught it. Two lessons: a walk back stops at an earlier VERB (that clause is the mubtadaʾ's khabar),
+letting only the blessing formulas (تَعَالَى، سُبْحَانَهُ) and a JOINED verb inheriting the hidden doer of the one before
+it (يُجِيبُ الدَّعَوَاتِ وَيَقْضِي الْحَاجَاتِ) through; and a verdict's RULE NAME is an interface — `rafTaqdiri` broke a reader
+keyed on `raf`, so the estimated rafʿ keeps the mood rule's name and carries its manner as a flag. Same family as the
+ṣila wall (v12x) and the particle wall of the أَنَّ search: write the walls down as you meet them.
+
 **Qiṣaṣ al-Nabiyyīn rights.** The owner states that Nadwī released the printing rights to all Muslims and that any publisher
 may print the book. Web search at v215 could not confirm a waiver (uploads tagged by uploaders, one site claiming reserved
 rights, Muʾassasat al-Risāla editions). The finding is recorded in `research/APP_STORE_STRATEGY.md` §5 and `COVERAGE.md`

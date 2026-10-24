@@ -204,6 +204,14 @@ def js(name, value):
     return f"const {name} = {json.dumps(value, ensure_ascii=False, separators=(',', ':'))};"
 
 
+def load_catechism():
+    """content/catechism/*.json — the madrasah's sual-cevap banks (wave 64): {book, title{en,tr}, source, items[{id, n, q, a, ar[], notes[], story?, chapter?}]}."""
+    out = []
+    for f in sorted((ROOT / "content/catechism").glob("*.json")) if (ROOT / "content/catechism").is_dir() else []:
+        out.append(json.loads(f.read_text(encoding="utf-8")))
+    return out
+
+
 def build_catalog(pkgs):
     """Build a catalog.json index from discovered packages.
 
@@ -270,6 +278,7 @@ def main():
         js("GRAMMAR", grammar),
         js("BAB_MODEL", json.loads((ROOT / "content/models/bab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/bab_model.json").exists() else None),
         js("FIGURE_MODEL", json.loads((ROOT / "content/models/figure_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/figure_model.json").exists() else None),
+        js("CATECHISM", load_catechism()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

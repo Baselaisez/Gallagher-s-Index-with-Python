@@ -72,6 +72,15 @@ def main():
                 if e.get(extra) and not bilingual_ok(e[extra]):
                     missing.append(f"{pkg}/glossary: {lex} {extra} not bilingual")
 
+    for f in sorted(ROOT.glob("content/catechism/*.json")):
+        bank = json.loads(f.read_text(encoding="utf-8"))
+        if not bilingual_ok(bank.get("title")):
+            missing.append(f"catechism/{f.stem}: title not bilingual")
+        for it in bank.get("items", []):
+            for k in ("q", "a"):
+                if not bilingual_ok(it.get(k)):
+                    missing.append(f"catechism/{f.stem}: {it.get('id')} {k} not bilingual")
+
     # i'rab Turkish may come from the shared translation memory instead of the
     # token, so apply the same merge the builder does before judging.
     tm_path = ROOT / "content/i18n/irab-tr.json"

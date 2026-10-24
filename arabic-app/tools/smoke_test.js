@@ -5096,7 +5096,7 @@ if (!CHROME) {
       const card = GrammarKernel.askWord('مُسْلِمِينَ'); const row = (card.findings || []).find(f => f.k === 'sign'); o.card = row ? row.rows.map(x => x[0]) : [];
       return o;
     });
-    if (!/79\d\d|[89]\d\d\d/.test(r2.sum) || r2.ex < 60 || r2.stn.filter(x => /\d/.test(x)).length < 7) throw new Error('the counts should paint: ' + JSON.stringify([r2.sum, r2.ex, r2.stn]));
+    if (!/\b(79\d\d|[89]\d\d\d|\d{5,})\b/.test(r2.sum) || r2.ex < 60 || r2.stn.filter(x => /\d/.test(x)).length < 7) throw new Error('the counts should paint: ' + JSON.stringify([r2.sum, r2.ex, r2.stn]));
     if (r.wide || r2.wide || r2.wide2) throw new Error('the lab overflows the phone width');
     if (!/جَمْعُ الْمُذَكَّرِ/.test(r2.word) || String(r2.wordCells) !== 'الْوَاوُ,الْيَاءُ,الْيَاءُ') throw new Error('the word box: ' + JSON.stringify([r2.word, r2.wordCells]));
     if (!/الْمَنْقُوصُ/.test(r2.seed) || !/m-taqdiri/.test(r2.seedCells[0]) || !/m-lafzi/.test(r2.seedCells[1])) throw new Error('the seed chip: ' + JSON.stringify([r2.seed, r2.seedCells]));
@@ -9859,7 +9859,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 213) throw new Error('the qiyasi builder disagrees with more stored plurals than at v216 (213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 214) throw new Error('the qiyasi builder disagrees with more stored plurals than at v217 (214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -11382,6 +11382,42 @@ if (!CHROME) {
     if (r.audit.ok !== r.audit.n) throw new Error('corpus audit misses: ' + JSON.stringify(r.audit.miss));
   });
 
+  await check('wave 63 — the Nasafī matn consumed to its end: aqaid-ahl-al-sunna carries 46 chapters, the new verbs own full paradigms, and the one transcription divergence is recorded in the attribution', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'aqaid-ahl-al-sunna');
+      const toks = n => { const c = st.chapters.find(x => x.n === n); return c ? c.sentences.reduce((k, s) => k + s.tokens.length, 0) : 0; };
+      const verbs = ['dahaa', 'hadatha', 'tamakkana', 'istawfa', 'tazayada', 'qada-verb'].map(k => { const m = (st.morph || {})[k]; return [k, m ? (m.mazi || []).length : -1, m ? (m.mudari || []).length : -1]; });
+      return { chapters: st.chapters.length, t25: toks(25), t46: toks(46), verbs, total: st.chapters.reduce((k, c) => k + c.sentences.reduce((j, s) => j + s.tokens.length, 0), 0) };
+    });
+    if (r.chapters < 46) throw new Error('the creed should run to 46 chapters: ' + r.chapters);
+    if (r.t25 < 20 || r.t46 < 15) throw new Error('ch25 / ch46 token counts: ' + r.t25 + ' ' + r.t46);
+    for (const [k, mz, md] of r.verbs) if (mz !== 14 || md !== 14) throw new Error('wave-63 verb ' + k + ' should own 14+14 cells: ' + mz + '/' + md);
+    const man = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'content/samples/aqaid-ahl-al-sunna/manifest.json'), 'utf8'));
+    const att = JSON.stringify(man.attribution || {});
+    if (!/السَّمَاءِ|السماء/.test(att)) throw new Error('the ch45 divergence (المساء → السَّمَاءِ) must be recorded in the attribution');
+  });
+
+  await check('wave 64 — CatechismEngine: the banks load, every item is bilingual with real notes and anchors, a round draws four answers with one right one from the same bank, the lab lists the bank', async () => {
+    const r = await page.evaluate(() => {
+      const a = CatechismEngine.audit();
+      const items = catechismItems(); const it = items[0];
+      const wrong = CatechismEngine.distractors(it, 3);
+      const sameBank = wrong.every(w => w.bank.book === it.bank.book) && wrong.every(w => w.id !== it.id) && new Set(wrong.map(w => w.id)).size === 3;
+      const anchored = items.filter(x => x.story).length; const bankN = items.filter(x => x.bank.book === it.bank.book).length;
+      conjState.lab = "sual"; conjState.sualBook = it.bank.book; conjState.sualQ = ""; openConjugator();
+      const listed = document.querySelectorAll("#sualOut details.cat-item").length;
+      const refs = document.querySelectorAll("#sualOut .cat-ref").length;
+      closeSheet && closeSheet();
+      return { n: a.n, banks: a.banks, bad: a.bad, sameBank, anchored, bankN, listed, refs, game: GameFactory.CATALOGUE.some(g => g.id === "gCatechism") };
+    });
+    if (r.banks < 7 || r.n < 200) throw new Error('the seven banks should load with their 202 questions: ' + JSON.stringify(r));
+    if (r.bad.length) throw new Error('catechism audit: ' + r.bad.slice(0, 5).join(', '));
+    if (!r.sameBank) throw new Error('distractors must be three distinct other items of the same bank');
+    if (r.anchored < 50) throw new Error('at least fifty items anchor to a chapter of the text: ' + r.anchored);
+    if (r.listed !== r.bankN) throw new Error('the lab lists the whole selected bank: ' + r.listed + ' of ' + r.bankN);
+    if (r.refs < r.bankN) throw new Error('the lab links at least one note per item of the listed bank: ' + r.refs + ' of ' + r.bankN);
+    if (!r.game) throw new Error('gCatechism is in the GameFactory catalogue');
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };

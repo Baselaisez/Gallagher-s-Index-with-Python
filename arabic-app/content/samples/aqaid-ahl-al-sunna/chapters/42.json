@@ -1,0 +1,410 @@
+{
+ "chapter": 42,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "And the saint does not reach the rank of the prophets.",
+    "tr": "Velî, nebîlerin derecesine ulaşmaz."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«لَا» حَرْفُ نَفْيٍ لَا مَحَلَّ لَهُ.",
+      "en": "«and not».",
+      "tr": "«ve … -maz»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَا",
+       "lex": "la-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَبْلُغُ",
+      "smart": "يَبْلُغُ",
+      "bare": "يبلغ"
+     },
+     "lex": "balagha",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "fail"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ لِتَجَرُّدِهِ عَنِ النَّاصِبِ وَالْجَازِمِ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ «الْوَلِيُّ».",
+      "en": "«reaches».",
+      "tr": "«ulaşır»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْوَلِيُّ",
+      "smart": "الْوَلِيُّ",
+      "bare": "الولي"
+     },
+     "lex": "wali",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«the saint».",
+      "tr": "«velî»."
+     }
+    },
+    {
+     "surface": {
+      "full": "دَرَجَةَ",
+      "smart": "دَرَجَةَ",
+      "bare": "درجة"
+     },
+     "lex": "daraja",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ لِـ«يَبْلُغُ» مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ، وَهُوَ مُضَافٌ.",
+      "en": "«the rank of».",
+      "tr": "«derecesine»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَنْبِيَاءِ",
+      "smart": "الْأَنْبِيَاءِ",
+      "bare": "الأنبياء"
+     },
+     "lex": "nabi",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the prophets» — the plural of نَبِيّ.",
+      "tr": "«nebîlerin» — نَبِيّ'in çoğulu."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "And the servant does not reach a point where command and prohibition fall away from him.",
+    "tr": "Kul, emir ve nehyin kendisinden düştüğü bir yere ulaşmaz."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَا",
+      "smart": "وَلَا",
+      "bare": "ولا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "grammar": [
+      "la-nafiya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» حَرْفُ نَفْيٍ لَا مَحَلَّ لَهُ.",
+      "en": "«and not».",
+      "tr": "«ve … -maz»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "لَا",
+       "lex": "la-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَصِلُ",
+      "smart": "يَصِلُ",
+      "bare": "يصل"
+     },
+     "lex": "wasala",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "fail",
+      "mithal-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ لِتَجَرُّدِهِ عَنِ النَّاصِبِ وَالْجَازِمِ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ «الْعَبْدُ».",
+      "en": "«reaches» — the assimilated verb drops its wāw in the muḍāriʿ: وَصَلَ، يَصِلُ.",
+      "tr": "«ulaşır» — misâl fiil muzâride vâvını düşürür: وَصَلَ، يَصِلُ."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعَبْدُ",
+      "smart": "الْعَبْدُ",
+      "bare": "العبد"
+     },
+     "lex": "abd",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«the servant».",
+      "tr": "«kul»."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "«to».",
+      "tr": "«-e»."
+     }
+    },
+    {
+     "surface": {
+      "full": "حَيْثُ",
+      "smart": "حَيْثُ",
+      "bare": "حيث"
+     },
+     "lex": "haythu",
+     "pos": "noun",
+     "grammar": [
+      "al-kinayat-wal-zuruf-al-mabniyya",
+      "mahall-al-majrur",
+      "jaiz-al-bina-al-zuruf-al-mudafa-ila-al-jumla-wa-la-al-mukarrara-wa-sifat-ismiha"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ مَكَانٍ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ جَرٍّ بِـ«إِلَى»، مُضَافٌ إِلَى الْجُمْلَةِ بَعْدَهُ.",
+      "en": "«where» — a ẓarf built on the ḍamma, annexed to a whole sentence.",
+      "tr": "«… -diği yer» — damme üzere mebnî, cümleye muzâf zarf."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَسْقُطُ",
+      "smart": "يَسْقُطُ",
+      "bare": "يسقط"
+     },
+     "lex": "saqata",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "fail",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ لِتَجَرُّدِهِ عَنِ النَّاصِبِ وَالْجَازِمِ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ «الْأَمْرُ»، وَالْجُمْلَةُ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "«falls away» — the sentence annexed to حَيْثُ.",
+      "tr": "«düşer» — حَيْثُ'ya muzâf cümle."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَنْهُ",
+      "smart": "عَنْهُ",
+      "bare": "عنه"
+     },
+     "lex": "pron-3ms",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "«عَنْ» حَرْفُ جَرٍّ، وَالضَّمِيرُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«يَسْقُطُ».",
+      "en": "«from him».",
+      "tr": "«ondan»."
+     },
+     "segments": [
+      {
+       "form": "عَنْ",
+       "lex": "an",
+       "pos": "prep"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَمْرُ",
+      "smart": "الْأَمْرُ",
+      "bare": "الأمر"
+     },
+     "lex": "amr",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«command».",
+      "tr": "«emir»."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالنَّهْيُ",
+      "smart": "وَالنَّهْيُ",
+      "bare": "والنهي"
+     },
+     "lex": "nahy",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْأَمْرُ» تَابِعٌ لَهُ فِي الرَّفْعِ.",
+      "en": "«and prohibition» — the Antinomian claim that a perfected servant is free of the Law is denied.",
+      "tr": "«ve nehiy» — kâmil kulun şeriattan kurtulduğu iddiası reddedilir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "النَّهْيُ",
+       "lex": "nahy",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "And the non-existent is not a thing.",
+    "tr": "Ma'dûm, bir şey değildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْمَعْدُومُ",
+      "smart": "وَالْمَعْدُومُ",
+      "bare": "والمعدوم"
+     },
+     "lex": "madum",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«and the non-existent» — against the Muʿtazilī thesis that the non-existent is a «thing».",
+      "tr": "«ve ma'dûm» — ma'dûmun «şey» olduğunu söyleyen Mu'tezilî teze karşı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْمَعْدُومُ",
+       "lex": "madum",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَيْسَ",
+      "smart": "لَيْسَ",
+      "bare": "ليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "al-afal-al-naqisa-fil-kafiya"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ، وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ — وَالْجُمْلَةُ خَبَرُ الْمُبْتَدَإِ.",
+      "en": "«is not».",
+      "tr": "«değildir»."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِشَيْءٍ",
+      "smart": "بِشَيْءٍ",
+      "bare": "بشيء"
+     },
+     "lex": "shay",
+     "pos": "noun",
+     "grammar": [
+      "huruf-al-ziyada-fil-kafiya",
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ زَائِدَةٌ لِتَوْكِيدِ النَّفْيِ، وَ«شَيْءٍ» مَجْرُورٌ لَفْظًا مَنْصُوبٌ مَحَلًّا خَبَرُ «لَيْسَ».",
+      "en": "«a thing» — laysa's khabar behind the extra bāʾ.",
+      "tr": "«bir şey» — zâid bâ ardındaki leyse haberi."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "شَيْءٍ",
+       "lex": "shay",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

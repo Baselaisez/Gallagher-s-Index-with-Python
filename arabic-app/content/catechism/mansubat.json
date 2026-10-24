@@ -1,0 +1,1160 @@
+{
+ "book": "mansubat",
+ "title": {
+  "ar": "سُؤَالَاتُ الْمَنْصُوبَاتِ",
+  "en": "Questions on the manṣūbāt",
+  "tr": "Mansûbât Soru-Cevapları"
+ },
+ "source": "research/sources/mensubat.txt",
+ "items": [
+  {
+   "n": 1,
+   "q": {
+    "tr": "«Mansûbât» ne kelimedir? Tarifi nedir? Mef'ûliyyet alâmetleri nelerdir?",
+    "en": "What word is «manṣūbāt», how is it defined, and what are the signs of the object-role?"
+   },
+   "a": {
+    "tr": "«Mansûb» kelimesinin cem'idir; mevsûfu müzekker gayr-i âkil olan sıfatlar elif ve tâ ile cem'lenir. Tarifi: mef'ûliyyet alâmetini taşıyan şey. Mef'ûliyyet alâmetleri: fetha, kesre, elif, yâ.",
+    "en": "The plural of «manṣūb»; adjectives of non-rational masculine nouns take the alif-tāʾ plural. Definition: what carries the sign of the object-role. The signs: fatḥa, kasra, alif and yāʾ."
+   },
+   "ar": [
+    "هُوَ مَا اشْتَمَلَ عَلَى عَلَمِ الْمَفْعُولِيَّةِ"
+   ],
+   "notes": [
+    "al-mansubat-al-maful-al-mutlaq",
+    "tarifat-daftar-al-kafiya"
+   ],
+   "id": "mansubat-q1"
+  },
+  {
+   "n": 2,
+   "q": {
+    "tr": "Mef'ûl-i mutlak nedir? Kaç kısımdır?",
+    "en": "What is the absolute object (mafʿūl muṭlaq), and how many kinds has it?"
+   },
+   "a": {
+    "tr": "Zikredilen bir fiilin fâilinin, o fiilin mânâsı altında yaptığı şeyin adıdır. Üç kısımdır: te'kîdî — mânâsında fiilin mânâsı üzerine bir fazlalık yoksa (جَلَسْتُ جُلُوسًا); nev'î — fiilin bir nev'ine delâlet ederse (جَلَسْتُ جِلْسَةً); adedî — fiilin sayısına delâlet ederse (جَلَسْتُ جَلْسَةً).",
+    "en": "The name of what the doer of a named verb did, under that verb's own meaning. Three kinds: of emphasis — adding nothing to the verb's meaning (جَلَسْتُ جُلُوسًا); of kind — naming a manner of the act (جَلَسْتُ جِلْسَةً); of number — counting the act (جَلَسْتُ جَلْسَةً)."
+   },
+   "ar": [
+    "وَهُوَ اسْمُ مَا فَعَلَهُ فَاعِلُ فِعْلٍ مَذْكُورٍ بِمَعْنَاهُ",
+    "جَلَسْتُ جُلُوسًا",
+    "جَلَسْتُ جِلْسَةً",
+    "جَلَسْتُ جَلْسَةً"
+   ],
+   "notes": [
+    "maful-mutlaq",
+    "al-mansubat-al-maful-al-mutlaq"
+   ],
+   "id": "mansubat-q2"
+  },
+  {
+   "n": 3,
+   "q": {
+    "tr": "Mef'ûl-i mutlakın kısımlarından hangisi tesniye ve cem' olmaz? Niçin?",
+    "en": "Which kind of absolute object takes no dual or plural, and why?"
+   },
+   "a": {
+    "tr": "Te'kîdî olanı. Tesniye ve cem' sayıya delâlet edip taaddüd ister; te'kîdî mef'ûl-i mutlak ise sayıdan soyulmuş mâhiyete delâlet eder. Nev' ya da sayı kastedilirse tesniye ve cem' olabilir; aralarında zıtlık yoktur.",
+    "en": "The one of emphasis. Dual and plural signify number and demand plurality, while the emphatic absolute object signifies the bare nature stripped of number. Where kind or number is meant, dual and plural are possible; there is no contradiction between them."
+   },
+   "ar": [],
+   "notes": [
+    "maful-mutlaq"
+   ],
+   "id": "mansubat-q3"
+  },
+  {
+   "n": 4,
+   "q": {
+    "tr": "Mef'ûl-i mutlak, fiilinin lafzından başka bir lafızla gelir mi?",
+    "en": "May the absolute object come in a wording other than its verb's?"
+   },
+   "a": {
+    "tr": "Gelebilir: ya madde bakımından (قَعَدْتُ جُلُوسًا) ya bâb bakımından (أَنْبَتَهُ اللهُ نَبَاتًا).",
+    "en": "It may: differing in root (قَعَدْتُ جُلُوسًا) or in form (أَنْبَتَهُ اللهُ نَبَاتًا)."
+   },
+   "ar": [
+    "قَعَدْتُ جُلُوسًا",
+    "أَنْبَتَهُ اللهُ نَبَاتًا"
+   ],
+   "notes": [
+    "maful-mutlaq"
+   ],
+   "id": "mansubat-q4"
+  },
+  {
+   "n": 5,
+   "q": {
+    "tr": "Mecâzî mef'ûl-i mutlak nedir?",
+    "en": "What is the figurative absolute object?"
+   },
+   "a": {
+    "tr": "Hazfedilip sıfatı ya da muzâfun ileyhi yerine geçen mef'ûl-i mutlaktır. Sıfatın yerine geçtiğine misal: ضَرَبْتُ شَدِيدًا (aslı: ضَرَبْتُ ضَرْبًا شَدِيدًا); muzâfun ileyhin yerine geçtiğine misal: ضَرَبْتُ الْجَلَّادَ (aslı: ضَرَبْتُ ضَرْبَ الْجَلَّادِ).",
+    "en": "An absolute object dropped and replaced by its adjective or its annexed-to noun. By the adjective: ضَرَبْتُ شَدِيدًا (for ضَرَبْتُ ضَرْبًا شَدِيدًا); by the annexed-to: ضَرَبْتُ الْجَلَّادَ (for ضَرَبْتُ ضَرْبَ الْجَلَّادِ)."
+   },
+   "ar": [
+    "ضَرَبْتُ شَدِيدًا",
+    "ضَرَبْتُ الْجَلَّادَ"
+   ],
+   "notes": [
+    "maful-mutlaq",
+    "hadhf-al-mudaf-wal-mudaf-ilayh"
+   ],
+   "id": "mansubat-q5"
+  },
+  {
+   "n": 6,
+   "q": {
+    "tr": "Mef'ûl-i mutlakın fiili kaç şekilde hazfedilir?",
+    "en": "In how many ways is the absolute object's verb dropped?"
+   },
+   "a": {
+    "tr": "İki kısım: cevâzen ve vücûben. Vücûben hazif de ikidir: semâî ve kıyâsî.",
+    "en": "Two: permittedly and obligatorily; obligatory dropping is again of two kinds, heard and regular."
+   },
+   "ar": [],
+   "notes": [
+    "maful-mutlaq",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q6"
+  },
+  {
+   "n": 7,
+   "q": {
+    "tr": "«خَيْرَ مَقْدَمٍ» neye misaldir?",
+    "en": "What does «خَيْرَ مَقْدَمٍ» exemplify?"
+   },
+   "a": {
+    "tr": "Mef'ûl-i mutlakın fiilinin cevâzen hazfine. Aslı: قَدِمْتَ قُدُومًا خَيْرَ مَقْدَمٍ. Mef'ûl-i mutlak olan قُدُومًا fiiliyle birlikte hazfedilip sıfatı خَيْرَ مَقْدَمٍ onun yerine geçmekle mecâzî mef'ûl-i mutlak da olmuştur.",
+    "en": "The permitted dropping of the absolute object's verb. Its origin: قَدِمْتَ قُدُومًا خَيْرَ مَقْدَمٍ. The absolute object قُدُومًا went with its verb and its adjective خَيْرَ مَقْدَمٍ took its place — so it is a figurative absolute object as well."
+   },
+   "ar": [
+    "قَدِمْتَ قُدُومًا خَيْرَ مَقْدَمٍ"
+   ],
+   "notes": [
+    "maful-mutlaq",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q7"
+  },
+  {
+   "n": 8,
+   "q": {
+    "tr": "Mef'ûl-i mutlakın fiilinin vücûben semâen hazfedildiği yerler kaçtır, nelerdir?",
+    "en": "In how many heard cases must the absolute object's verb be dropped, and which are they?"
+   },
+   "a": {
+    "tr": "Yedidir: سَقْيًا (سَقَاكَ اللهُ سَقْيًا)، رَعْيًا (رَعَاكَ اللهُ رَعْيًا)، خَيْبَةً (خَابَ خَيْبَةً)، جَدْعًا (جُدِعَ جَدْعًا)، حَمْدًا (حَمِدْتُ حَمْدًا)، شُكْرًا (شَكَرْتُ شُكْرًا)، عَجَبًا (عَجِبْتُ عَجَبًا).",
+    "en": "Seven: سَقْيًا (for سَقَاكَ اللهُ سَقْيًا), رَعْيًا, خَيْبَةً, جَدْعًا, حَمْدًا, شُكْرًا, عَجَبًا — each the masdar left standing for a verb the Arabs never utter with it."
+   },
+   "ar": [
+    "سَقْيًا، رَعْيًا، خَيْبَةً، جَدْعًا، حَمْدًا، شُكْرًا، عَجَبًا"
+   ],
+   "notes": [
+    "maful-mutlaq",
+    "al-mansubat-al-maful-al-mutlaq"
+   ],
+   "id": "mansubat-q8"
+  },
+  {
+   "n": 9,
+   "q": {
+    "tr": "Mef'ûl-i mutlakın fiilinin vücûben kıyâsen hazfedildiği yerler kaçtır, nelerdir?",
+    "en": "In how many regular cases must the absolute object's verb be dropped, and which are they?"
+   },
+   "a": {
+    "tr": "Altıdır. 1) Haber olmayan bir isme giren nefiyden ya da nefiy mânâsından sonra müsbet gelirse, ya da o isimden sonra tekrarlanırsa: مَا أَنْتَ إِلَّا سَيْرًا، إِنَّمَا أَنْتَ سَيْرًا، زَيْدٌ سَيْرًا سَيْرًا. 2) Önceki cümlenin mânâsının eserini tafsil ederse: فَشُدُّوا الْوَثَاقَ فَإِمَّا مَنًّا بَعْدُ وَإِمَّا فِدَاءً. 3) Kendi mânâsında bir isim ve sahibini içeren cümleden sonra, organların fiillerinden bir fiile delâlet edecek şekilde teşbih gelirse: مَرَرْتُ بِزَيْدٍ فَإِذَا لَهُ صَوْتٌ صَوْتَ حِمَارٍ. 4) Başkasına ihtimali olmayan cümlenin mazmûnu olursa: عَلَيَّ أَلْفُ دِرْهَمٍ اعْتِرَافًا. 5) Başkasına ihtimali olan cümlenin mazmûnu olursa: زَيْدٌ قَائِمٌ حَقًّا. 6) Fâiline ya da mef'ûlüne muzâf tesniye olursa: لَبَّيْكَ، سَعْدَيْكَ.",
+    "en": "Six. 1) After a negation (or its sense) over a noun that is not a predicate, an affirmed or repeated masdar: مَا أَنْتَ إِلَّا سَيْرًا، إِنَّمَا أَنْتَ سَيْرًا، زَيْدٌ سَيْرًا سَيْرًا. 2) Detailing the effect of the preceding sentence: فَشُدُّوا الْوَثَاقَ فَإِمَّا مَنًّا بَعْدُ وَإِمَّا فِدَاءً. 3) A likeness after a sentence holding a noun of its own meaning and its owner, where a bodily act is meant: مَرَرْتُ بِزَيْدٍ فَإِذَا لَهُ صَوْتٌ صَوْتَ حِمَارٍ. 4) The content of a sentence that admits nothing else: عَلَيَّ أَلْفُ دِرْهَمٍ اعْتِرَافًا. 5) The content of a sentence that admits something else: زَيْدٌ قَائِمٌ حَقًّا. 6) A dual annexed to its doer or object: لَبَّيْكَ، سَعْدَيْكَ."
+   },
+   "ar": [
+    "مَا أَنْتَ إِلَّا سَيْرًا",
+    "زَيْدٌ سَيْرًا سَيْرًا",
+    "مَرَرْتُ بِزَيْدٍ فَإِذَا لَهُ صَوْتٌ صَوْتَ حِمَارٍ",
+    "عَلَيَّ أَلْفُ دِرْهَمٍ اعْتِرَافًا",
+    "زَيْدٌ قَائِمٌ حَقًّا",
+    "لَبَّيْكَ وَسَعْدَيْكَ"
+   ],
+   "notes": [
+    "maful-mutlaq",
+    "al-mansubat-al-maful-al-mutlaq",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q9"
+  },
+  {
+   "n": 10,
+   "q": {
+    "tr": "Mef'ûlün bihin tarifi nedir? Fiili üzerine takdimi câiz midir?",
+    "en": "How is the direct object defined, and may it stand before its verb?"
+   },
+   "a": {
+    "tr": "Fâilin fiilinin üzerine vâki olduğu şeydir. Fiili amelde kuvvetli olduğu için mef'ûlün bih önde de arkada da nasbedilir; takdimi câizdir: زَيْدًا ضَرَبْتُ. Takdim ikidir: cevâzen (اللهَ أَعْبُدُ) ve mef'ûlün bih şart ya da istifham mânâsı taşırsa vücûben (مَنْ رَأَيْتَ؟ مَنْ تُكْرِمْ يُكْرِمْكَ).",
+    "en": "That upon which the doer's act falls. Its verb is strong enough to govern it before or after, so putting it first is allowed: زَيْدًا ضَرَبْتُ. Two cases: permitted (اللهَ أَعْبُدُ), and obligatory when the object carries a conditional or interrogative sense (مَنْ رَأَيْتَ؟ مَنْ تُكْرِمْ يُكْرِمْكَ)."
+   },
+   "ar": [
+    "هُوَ مَا وَقَعَ عَلَيْهِ فِعْلُ الْفَاعِلِ",
+    "زَيْدًا ضَرَبْتُ",
+    "اللهَ أَعْبُدُ",
+    "مَنْ تُكْرِمْ يُكْرِمْكَ"
+   ],
+   "notes": [
+    "maful-bihi",
+    "al-maful-bihi-wa-qismah",
+    "taqdim-al-musnad-ilayh"
+   ],
+   "id": "mansubat-q10"
+  },
+  {
+   "n": 11,
+   "q": {
+    "tr": "Mef'ûlün bihin fiili kaç şekilde hazfedilir?",
+    "en": "In how many ways is the direct object's verb dropped?"
+   },
+   "a": {
+    "tr": "İki: cevâzen (مَنْ أَضْرِبُ؟ diyene زَيْدًا demek — اِضْرِبْ hazfedilmiştir) ve vücûben, dört yerde: semâen, münâdâda, izmâr alâ şerîtati't-tefsîrde ve tahzîrde.",
+    "en": "Two: permittedly (زَيْدًا in answer to مَنْ أَضْرِبُ؟, with اِضْرِبْ dropped) and obligatorily, in four places: the heard cases, the vocative, the verb implied on condition of explanation (ishtighāl), and the warning."
+   },
+   "ar": [],
+   "notes": [
+    "hadhf-al-maful",
+    "al-maful-bihi-wa-qismah"
+   ],
+   "id": "mansubat-q11"
+  },
+  {
+   "n": 12,
+   "q": {
+    "tr": "Mef'ûlün bihin fiilinin vücûben semâen hazfi ne demektir? Misali nedir?",
+    "en": "What is the heard obligatory dropping of the direct object's verb, and what are its examples?"
+   },
+   "a": {
+    "tr": "Araplardan işitildiği gibi korunan hazif: Araplar nerede hazfetmişse orada hazfedilir, oraya kıyasla başka yerde hazfedilmez. Misaller: اِمْرَأً وَنَفْسَهُ (aslı اُتْرُكْ اِمْرَأً وَنَفْسَهُ), اِنْتَهُوا خَيْرًا لَكُمْ (aslı اِنْتَهُوا عَنِ التَّثْلِيثِ وَاقْصِدُوا خَيْرًا لَكُمْ), أَهْلًا وَسَهْلًا (aslı أَتَيْتَ أَهْلًا وَوَطِئْتَ سَهْلًا).",
+    "en": "A dropping kept as the Arabs were heard to make it: where they dropped, one drops, and nowhere else by analogy. Examples: اِمْرَأً وَنَفْسَهُ (for اُتْرُكْ اِمْرَأً وَنَفْسَهُ), اِنْتَهُوا خَيْرًا لَكُمْ (for اِنْتَهُوا عَنِ التَّثْلِيثِ وَاقْصِدُوا خَيْرًا لَكُمْ), أَهْلًا وَسَهْلًا (for أَتَيْتَ أَهْلًا وَوَطِئْتَ سَهْلًا)."
+   },
+   "ar": [
+    "اِمْرَأً وَنَفْسَهُ",
+    "اِنْتَهُوا خَيْرًا لَكُمْ",
+    "أَهْلًا وَسَهْلًا"
+   ],
+   "notes": [
+    "hadhf-al-maful"
+   ],
+   "id": "mansubat-q12"
+  },
+  {
+   "n": 13,
+   "q": {
+    "tr": "Münâdânın tarifi nedir? Nidâ harfleri nelerdir?",
+    "en": "How is the vocative defined, and what are the letters of calling?"
+   },
+   "a": {
+    "tr": "Lafzan ya da takdiren أَدْعُو yerine geçen bir harfle yönelmesi istenendir. Nidâ harfleri beştir: يَا، أَيَا، هَيَا، أَيْ ve hemze.",
+    "en": "The one whose turning-to is sought by a letter standing, in wording or by estimation, for أَدْعُو. The letters are five: يَا، أَيَا، هَيَا، أَيْ and the hamza."
+   },
+   "ar": [
+    "وَهُوَ الْمَطْلُوبُ إِقْبَالُهُ بِحَرْفٍ نَائِبٍ مَنَابَ أَدْعُو لَفْظًا أَوْ تَقْدِيرًا"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q13"
+  },
+  {
+   "n": 14,
+   "q": {
+    "tr": "Nidâ harfinin ve münâdânın lafzan ve takdiren olduğuna misal veriniz. İkbâl kaç kısımdır?",
+    "en": "Give examples of the calling letter and the called one stated and implied. How many kinds has the turning-to (iqbāl)?"
+   },
+   "a": {
+    "tr": "Harf lafzan: يَا زَيْدُ; harf takdiren: يُوسُفُ أَعْرِضْ عَنْ هَذَا (aslı يَا يُوسُفُ). Münâdâ lafzan: يَا زَيْدُ; münâdâ takdiren: أَلَا يَا اسْجُدُوا (aslı أَلَا يَا قَوْمُ اسْجُدُوا). İkbâl hakikaten olur (يَا زَيْدُ), hükmen olur (يَا سَمَاءُ، يَا جِبَالُ، يَا أَرْضُ).",
+    "en": "Letter stated: يَا زَيْدُ; letter implied: يُوسُفُ أَعْرِضْ عَنْ هَذَا (for يَا يُوسُفُ). Called one stated: يَا زَيْدُ; implied: أَلَا يَا اسْجُدُوا (for أَلَا يَا قَوْمُ اسْجُدُوا). The turning-to is real (يَا زَيْدُ) or by ruling (يَا سَمَاءُ، يَا جِبَالُ، يَا أَرْضُ)."
+   },
+   "ar": [
+    "يُوسُفُ أَعْرِضْ عَنْ هَذَا",
+    "أَلَا يَا اسْجُدُوا"
+   ],
+   "notes": [
+    "vocative-munada",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q14"
+  },
+  {
+   "n": 15,
+   "q": {
+    "tr": "Münâdânın i'râb ve binâ hâlleri nasıldır?",
+    "en": "How is the vocative declined or built?"
+   },
+   "a": {
+    "tr": "1) Müfred (muzâf ve şibh-i muzâf olmayan) ma'rife ise ref' alâmeti üzere mebnîdir: يَا رَجُلُ، يَا زَيْدُ، يَا زَيْدَانِ، يَا زَيْدُونَ. 2) Başına lâm-ı istiğâse girerse mecrûr ve mu'rabdır: يَا لَزَيْدٍ. 3) Sonuna elif-i istiğâse gelirse fetha üzere mebnîdir: يَا زَيْدَاهُ. 4) Bunların dışında mansûbdur: يَا عَبْدَ اللهِ، يَا طَالِعًا جَبَلًا، يَا رَجُلًا (belirsiz birine hitapta).",
+    "en": "1) A single definite (neither annexed nor annexation-like) is built on its rafʿ sign: يَا رَجُلُ، يَا زَيْدُ، يَا زَيْدَانِ، يَا زَيْدُونَ. 2) With the lām of appeal before it, it is declined in jarr: يَا لَزَيْدٍ. 3) With the alif of appeal after it, built on the fatḥa: يَا زَيْدَاهُ. 4) Otherwise it is in naṣb: يَا عَبْدَ اللهِ، يَا طَالِعًا جَبَلًا، يَا رَجُلًا (addressing no one in particular)."
+   },
+   "ar": [
+    "يَا زَيْدُ",
+    "يَا لَزَيْدٍ",
+    "يَا زَيْدَاهُ",
+    "يَا عَبْدَ اللهِ",
+    "يَا طَالِعًا جَبَلًا"
+   ],
+   "notes": [
+    "vocative-munada",
+    "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada"
+   ],
+   "id": "mansubat-q15"
+  },
+  {
+   "n": 16,
+   "q": {
+    "tr": "Münâdânın tâbilerinin hükmü nasıldır?",
+    "en": "What is the ruling of the vocative's followers?"
+   },
+   "a": {
+    "tr": "1) Ref' alâmeti üzere mebnî münâdânın te'kîd, sıfat, atf-ı beyân ve üzerine يَا giremeyen ma'tûftan müfred tâbileri lafzına hamlen ref', mahalline hamlen nasb olur: يَا تَمِيمُ أَجْمَعُونَ وَأَجْمَعِينَ، يَا زَيْدُ الْعَاقِلُ وَالْعَاقِلَ، يَا غُلَامُ بِشْرٌ وَبِشْرًا. 2) Bunların muzâf tâbileri mansûbdur: يَا تَمِيمُ كُلَّهُمْ، يَا زَيْدُ ذَا الْمَالِ. 3) Bedel ve üzerine يَا girebilen ma'tûf müstakil münâdâ hükmündedir: يَا زَيْدُ بِشْرُ، يَا زَيْدُ أَخَا عَمْرٍو، يَا زَيْدُ وَعَمْرُو، يَا زَيْدُ وَطَالِعًا جَبَلًا.",
+    "en": "1) The single followers (emphasis, adjective, explanatory apposition, a coordinate that could not take يَا) of a vocative built on its rafʿ sign take rafʿ for its wording or naṣb for its place: يَا تَمِيمُ أَجْمَعُونَ وَأَجْمَعِينَ، يَا زَيْدُ الْعَاقِلُ وَالْعَاقِلَ. 2) Their annexed followers are in naṣb: يَا تَمِيمُ كُلَّهُمْ، يَا زَيْدُ ذَا الْمَالِ. 3) A badal, and a coordinate that could take يَا, rule as independent vocatives: يَا زَيْدُ بِشْرُ، يَا زَيْدُ أَخَا عَمْرٍو، يَا زَيْدُ وَعَمْرُو، يَا زَيْدُ وَطَالِعًا جَبَلًا."
+   },
+   "ar": [
+    "يَا زَيْدُ الْعَاقِلُ",
+    "يَا تَمِيمُ كُلَّهُمْ",
+    "يَا زَيْدُ أَخَا عَمْرٍو"
+   ],
+   "notes": [
+    "vocative-munada",
+    "al-mabni-ghayr-al-lazim-tawabi-al-munada-wa-huruf-al-nida-wa-ism-la-wal-mudari-bil-nun"
+   ],
+   "id": "mansubat-q16"
+  },
+  {
+   "n": 17,
+   "q": {
+    "tr": "Başka bir aleme muzâf olan اِبْن ile vasıflanan alemde tercih edilen nedir?",
+    "en": "In a proper name described by اِبْن annexed to another name, which reading is preferred?"
+   },
+   "a": {
+    "tr": "Fethadır; bu terkipler Arap kelâmında çok kullanıldığından kesret-i isti'mâl hafiflik ister: يَا زَيْدَ ابْنَ عَمْرٍو، يَا هِنْدَ ابْنَةَ زَيْدٍ.",
+    "en": "The fatḥa; such compounds are so common in Arabic speech that frequency of use asks for lightness: يَا زَيْدَ ابْنَ عَمْرٍو، يَا هِنْدَ ابْنَةَ زَيْدٍ."
+   },
+   "ar": [
+    "يَا زَيْدَ ابْنَ عَمْرٍو",
+    "يَا هِنْدَ ابْنَةَ زَيْدٍ"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q17"
+  },
+  {
+   "n": 18,
+   "q": {
+    "tr": "Lâm ile ma'rife olan bir kelimeye nasıl nidâ edilir?",
+    "en": "How is a word made definite by the article called?"
+   },
+   "a": {
+    "tr": "İki ta'rif edatı bir araya gelmesin diye nidâ harfiyle münâdâ arası أَيُّهَا، هَذَا ya da أَيُّهَذَا ile ayrılır: يَا أَيُّهَا الرَّجُلُ، يَا هَذَا الرَّجُلُ، يَا أَيُّهَذَا الرَّجُلُ.",
+    "en": "So that two marks of definiteness do not meet, أَيُّهَا, هَذَا or أَيُّهَذَا is set between the letter and the called one: يَا أَيُّهَا الرَّجُلُ، يَا هَذَا الرَّجُلُ، يَا أَيُّهَذَا الرَّجُلُ."
+   },
+   "ar": [
+    "يَا أَيُّهَا الرَّجُلُ",
+    "يَا هَذَا الرَّجُلُ"
+   ],
+   "notes": [
+    "vocative-munada",
+    "anwa-al-lam-al-tarif"
+   ],
+   "id": "mansubat-q18"
+  },
+  {
+   "n": 19,
+   "q": {
+    "tr": "يَا اللهُ'da hüküm nedir?",
+    "en": "What is the ruling of يَا اللهُ?"
+   },
+   "a": {
+    "tr": "Husûsî bir hükümdür. اللهُ'ın aslı إِلَهٌ idi; hemzesi atılıp yerine lâm-ı ta'rif geldi, lâm lâma idgam edildi ve lâm kelimeye lâzım oldu. Nidâ harfiyle lâm-ı ta'rifin birleşmesi yalnız burada câizdir, çünkü iki şart vardır: lâm hazfedilen bir şeyden ivaz olmalı ve kelimeye lâzım olmalı. Başka yerde bu iki şart bulunmadığından musannif «خَاصَّةً» demiştir.",
+    "en": "A special ruling. اللهُ was originally إِلَهٌ; its hamza dropped, the article came in its place, lām merged with lām, and the article became inseparable. The calling letter meets the article only here, on two conditions: the lām replaces something dropped, and it clings to the word. Nowhere else are both met, which is why the author says «خَاصَّةً»."
+   },
+   "ar": [
+    "يَا اللهُ"
+   ],
+   "notes": [
+    "vocative-munada",
+    "anwa-al-lam-al-tarif"
+   ],
+   "id": "mansubat-q19"
+  },
+  {
+   "n": 20,
+   "q": {
+    "tr": "«مِنْ أَجْلِكِ يَا الَّتِي» beytinin tamamı ve nüktesi nedir?",
+    "en": "What is the full verse «مِنْ أَجْلِكِ يَا الَّتِي», and its point?"
+   },
+   "a": {
+    "tr": "مِنْ أَجْلِكِ يَا الَّتِي تَيَّمْتِ قَلْبِي * وَأَنْتِ بَخِيلَةٌ بِالْوَصْلِ عَنِّي. Nükte: iki ta'rif edatının (nidâ harfi ile ism-i mevsûl) şâz olarak bir araya geldiğine misaldir.",
+    "en": "مِنْ أَجْلِكِ يَا الَّتِي تَيَّمْتِ قَلْبِي * وَأَنْتِ بَخِيلَةٌ بِالْوَصْلِ عَنِّي. The point: an irregular meeting of two marks of definiteness, the calling letter and the relative."
+   },
+   "ar": [
+    "مِنْ أَجْلِكِ يَا الَّتِي تَيَّمْتِ قَلْبِي وَأَنْتِ بَخِيلَةٌ بِالْوَصْلِ عَنِّي"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q20"
+  },
+  {
+   "n": 21,
+   "q": {
+    "tr": "«يَا تَيْمَ تَيْمَ عَدِيٍّ» beytinin tamamı ve nüktesi nedir?",
+    "en": "What is the full verse «يَا تَيْمَ تَيْمَ عَدِيٍّ», and its point?"
+   },
+   "a": {
+    "tr": "يَا تَيْمَ تَيْمَ عَدِيٍّ لَا أَبَا لَكُمْ * لَا يُلْقِيَنَّكُمْ فِي سَوْءَةٍ عُمَرُ. Nükte: birinci تَيْم müfred ma'rife olmakla damme ile, zikredilen ya da takdir edilen عَدِيّ'e muzâf olmakla nasb ile okunabilir; ikinci تَيْم muzâf ya da muzâf tâbi olmakla yalnız nasb okunur.",
+    "en": "يَا تَيْمَ تَيْمَ عَدِيٍّ لَا أَبَا لَكُمْ * لَا يُلْقِيَنَّكُمْ فِي سَوْءَةٍ عُمَرُ. The point: the first تَيْم may be read with the ḍamma as a single definite, or in naṣb as annexed to a stated or implied عَدِيّ; the second, annexed or an annexed follower, is read in naṣb only."
+   },
+   "ar": [
+    "يَا تَيْمَ تَيْمَ عَدِيٍّ لَا أَبَا لَكُمْ لَا يُلْقِيَنَّكُمْ فِي سَوْءَةٍ عُمَرُ"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q21"
+  },
+  {
+   "n": 22,
+   "q": {
+    "tr": "Mütekellim yâ'sına muzâf münâdâda kaç vecih vardır?",
+    "en": "How many readings has a vocative annexed to the speaker's yāʾ?"
+   },
+   "a": {
+    "tr": "Dört: yâ'nın fethasıyla (يَا غُلَامِيَ), sükûnuyla (يَا غُلَامِي), hazfıyla (يَا غُلَامِ), elife kalbiyle (يَا غُلَامَا). Vakıfta bunlara hâ getirilir: يَا غُلَامِيَهْ، يَا غُلَامِيهْ، يَا غُلَامِهْ، يَا غُلَامَاهْ.",
+    "en": "Four: with the yāʾ's fatḥa (يَا غُلَامِيَ), its sukūn (يَا غُلَامِي), its dropping (يَا غُلَامِ), its turning to alif (يَا غُلَامَا). In pause a hāʾ is added: يَا غُلَامِيَهْ، يَا غُلَامِيهْ، يَا غُلَامِهْ، يَا غُلَامَاهْ."
+   },
+   "ar": [
+    "يَا غُلَامِيَ",
+    "يَا غُلَامِ",
+    "يَا غُلَامَا"
+   ],
+   "notes": [
+    "vocative-munada",
+    "ya-al-mutakallim"
+   ],
+   "id": "mansubat-q22"
+  },
+  {
+   "n": 23,
+   "q": {
+    "tr": "Terhîmin tarifi nedir? Hükmü nedir?",
+    "en": "How is tarkhīm defined, and what is its ruling?"
+   },
+   "a": {
+    "tr": "Hafiflik için münâdânın sonundan hazfetmektir. Münâdâda câiz, münâdânın dışında şiir zarûretiyle câiz olup geniş kelâmda câiz değildir.",
+    "en": "Dropping from the end of the called one to lighten it. Permitted in the vocative; outside it only by the compulsion of verse, never in free speech."
+   },
+   "ar": [
+    "وَهُوَ حَذْفٌ فِي آخِرِهِ تَخْفِيفًا"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q23"
+  },
+  {
+   "n": 24,
+   "q": {
+    "tr": "Terhîmin şartları ve sebepleri nelerdir?",
+    "en": "What are the conditions of tarkhīm, and their reasons?"
+   },
+   "a": {
+    "tr": "Üçü ademî biri vücûdî dört şart. Ademîler: münâdâ muzâf olmayacak (muzâftan hazif olmaz, mânâ bakımından sondaki cüz değildir; muzâfun ileyhten hazif olmaz, lafız bakımından sondaki cüz değildir — عَبْدُ اللهِ gibi); müstegâs olmayacak (lâm-ı istiğâse ile i'râbı görünmez — يَا لَزَيْدٍ; elif-i istiğâse ile ziyade hazfe zıttır — يَا زَيْدَاهُ); cümle olmayacak (cümle alemlikten önceki hâlini hikâye eder — تَأَبَّطَ شَرًّا). Vücûdî şart: üç harften fazla alem ya da tâ-i te'nîsli olacak — alem çok nidâ edildiğinden hafiflik uygundur (عَمَّارُ); üçten az kalırsa mu'rabın mebnî asgarîsi olan üçün altına düşer; tâ kelimenin kendisinden değildir, zâil olmak için konulmuştur (فَاطِمَةُ).",
+    "en": "Four conditions, three negative and one positive. Negative: not annexed (nothing can go from the annexed, which is not the end in meaning, nor from the annexed-to, which is not the end in wording — عَبْدُ اللهِ); not appealed-to (with the lām its case does not show — يَا لَزَيْدٍ; with the alif, addition contradicts dropping — يَا زَيْدَاهُ); not a sentence (a sentence tells its state before it became a name — تَأَبَّطَ شَرًّا). Positive: a proper name of more than three letters, or one with the tāʾ of femininity — names are called often, so lightening suits them (عَمَّارُ); fewer than three letters would fall below the declinable's minimum; and the tāʾ is not of the word's body but was set there to go (فَاطِمَةُ)."
+   },
+   "ar": [
+    "عَبْدُ اللهِ",
+    "تَأَبَّطَ شَرًّا",
+    "يَا عَمَّا",
+    "يَا فَاطِمَ"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q24"
+  },
+  {
+   "n": 25,
+   "q": {
+    "tr": "Terhîmde kaç harf hazfedilir?",
+    "en": "How many letters does tarkhīm drop?"
+   },
+   "a": {
+    "tr": "1) Sonunda bir hükümde iki ziyade varsa (مَرْوَانُ) ya da dörtten fazla olup son harfi önünde med harfi bulunan sahih bir harfse (مَنْصُورٌ), son iki harf düşer: يَا مَرْوَ، يَا مَنْصُ. 2) Mürekkepse (بَعْلَبَكُّ) son isim düşer: يَا بَعْلَ. 3) Bunların dışında bir harf düşer: حَارِثٌ'ten يَا حَارِ، مَالِكٌ'ten يَا مَالِ.",
+    "en": "1) When the end holds two additions under one ruling (مَرْوَانُ), or the name exceeds four letters and ends in a sound letter preceded by a long vowel (مَنْصُورٌ), the last two letters go: يَا مَرْوَ، يَا مَنْصُ. 2) In a compound (بَعْلَبَكُّ) the last noun goes: يَا بَعْلَ. 3) Otherwise one letter goes: يَا حَارِ from حَارِثٌ, يَا مَالِ from مَالِكٌ."
+   },
+   "ar": [
+    "يَا مَرْوَ",
+    "يَا مَنْصُ",
+    "يَا بَعْلَ",
+    "يَا حَارِ"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q25"
+  },
+  {
+   "n": 26,
+   "q": {
+    "tr": "Mendûbun tarifi nedir? Hükmü nedir?",
+    "en": "How is the lamented one (mandūb) defined, and what is its ruling?"
+   },
+   "a": {
+    "tr": "Üzerine يَا ya da وَا ile ağlanılandır. Hükmü münâdânın hükmü gibidir; ancak nekreye nidâ câizken nekreye ağlamak câiz değildir: يَا رَجُلًا denir, وَا رَجُلَاهْ denmez. Bir de mendûbun sonuna elif ziyadesi câizdir.",
+    "en": "The one lamented with يَا or وَا. Its ruling is the vocative's, except that an indefinite may be called but not lamented: يَا رَجُلًا, never وَا رَجُلَاهْ. And an alif may be added to its end."
+   },
+   "ar": [
+    "وَهُوَ الْمُتَفَجَّعُ عَلَيْهِ بِيَا أَوْ وَا"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q26"
+  },
+  {
+   "n": 27,
+   "q": {
+    "tr": "«وَا جُمْجُمَتَيِ الشَّامِيَّتَيْنَاهْ» neye misaldir?",
+    "en": "What does «وَا جُمْجُمَتَيِ الشَّامِيَّتَيْنَاهْ» exemplify?"
+   },
+   "a": {
+    "tr": "Elif-i nüdbenin sıfata da girebileceğine dair İmam Yûnus'un delilidir.",
+    "en": "Yūnus's proof that the alif of lament may enter the adjective as well."
+   },
+   "ar": [
+    "وَا جُمْجُمَتَيِ الشَّامِيَّتَيْنَاهْ"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q27"
+  },
+  {
+   "n": 28,
+   "q": {
+    "tr": "Nidâ harfinin hazfi câiz midir?",
+    "en": "May the calling letter be dropped?"
+   },
+   "a": {
+    "tr": "Cins ismi, işaret ismi, müstegâs ve mendûbun dışında câizdir: يُوسُفُ أَعْرِضْ عَنْ هَذَا، أَيُّهَا الرَّجُلُ. Cins isminde câiz değildir, çünkü cins isimlerine nidâ az olduğundan harf düşünce cins ismi olduğu anlaşılmaz; işaret ismi mübhemlikte cins ismi gibidir; müstegâs ve mendûbda istenen sesi uzatmaktır, hazif buna zıttır.",
+    "en": "Yes, except before a generic noun, a demonstrative, an appealed-to or a lamented one: يُوسُفُ أَعْرِضْ عَنْ هَذَا، أَيُّهَا الرَّجُلُ. Not before a generic noun, which is seldom called and would not be known as one; the demonstrative is as vague as a generic; and appeal and lament want the voice drawn out, which dropping contradicts."
+   },
+   "ar": [
+    "يُوسُفُ أَعْرِضْ عَنْ هَذَا",
+    "أَيُّهَا الرَّجُلُ"
+   ],
+   "notes": [
+    "vocative-munada",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q28"
+  },
+  {
+   "n": 29,
+   "q": {
+    "tr": "«أَصْبِحْ لَيْلُ»، «اِفْتَدِ مَخْنُوقُ»، «أَطْرِقْ كَرَا» neye misaldir?",
+    "en": "What do «أَصْبِحْ لَيْلُ», «اِفْتَدِ مَخْنُوقُ» and «أَطْرِقْ كَرَا» exemplify?"
+   },
+   "a": {
+    "tr": "Cins ismi olan münâdâdan nidâ harfinin şâz olarak hazfine: aslları صِرْ صُبْحًا يَا لَيْلُ، اِفْتَدِ يَا مَخْنُوقُ، أَطْرِقْ يَا كَرَوَانُ.",
+    "en": "The irregular dropping of the calling letter before a generic noun: for صِرْ صُبْحًا يَا لَيْلُ، اِفْتَدِ يَا مَخْنُوقُ، أَطْرِقْ يَا كَرَوَانُ."
+   },
+   "ar": [
+    "أَصْبِحْ لَيْلُ",
+    "اِفْتَدِ مَخْنُوقُ",
+    "أَطْرِقْ كَرَا"
+   ],
+   "notes": [
+    "vocative-munada"
+   ],
+   "id": "mansubat-q29"
+  },
+  {
+   "n": 30,
+   "q": {
+    "tr": "İzmâr alâ şerîtati't-tefsîrin tarifi nedir? Misalleri nelerdir?",
+    "en": "How is the verb implied on condition of explanation (ishtighāl) defined, and what are its examples?"
+   },
+   "a": {
+    "tr": "Ardında kendi zamiriyle ya da müteallakıyla meşgul bir fiil ya da şibh-i fiil bulunan, o fiil ya da münasibi önüne getirilse onu nasbedecek her isim. Misaller: زَيْدًا ضَرَبْتُهُ (aslı ضَرَبْتُ زَيْدًا ضَرَبْتُهُ), زَيْدًا مَرَرْتُ بِهِ (aslı جَاوَزْتُ زَيْدًا), زَيْدًا ضَرَبْتُ غُلَامَهُ (aslı أَهَنْتُ زَيْدًا), زَيْدًا حُبِسْتُ عَلَيْهِ (aslı لَابَسْتُ زَيْدًا).",
+    "en": "Every noun followed by a verb, or its like, busied with the noun's pronoun or with what hangs on it, such that the verb or a fitting one, set before the noun, would put it in naṣb. Examples: زَيْدًا ضَرَبْتُهُ (for ضَرَبْتُ زَيْدًا ضَرَبْتُهُ), زَيْدًا مَرَرْتُ بِهِ (for جَاوَزْتُ زَيْدًا), زَيْدًا ضَرَبْتُ غُلَامَهُ (for أَهَنْتُ زَيْدًا), زَيْدًا حُبِسْتُ عَلَيْهِ (for لَابَسْتُ زَيْدًا)."
+   },
+   "ar": [
+    "وَهُوَ كُلُّ اسْمٍ بَعْدَهُ فِعْلٌ أَوْ شِبْهُهُ مُشْتَغِلٌ عَنْهُ بِضَمِيرِهِ أَوْ مُتَعَلِّقِهِ لَوْ سُلِّطَ عَلَيْهِ هُوَ أَوْ مُنَاسِبُهُ لَنَصَبَهُ",
+    "زَيْدًا ضَرَبْتُهُ",
+    "زَيْدًا مَرَرْتُ بِهِ"
+   ],
+   "notes": [
+    "al-maful-bihi-wa-qismah",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q30"
+  },
+  {
+   "n": 31,
+   "q": {
+    "tr": "İzmâr alâ şerîtati't-tefsîr mevkiindeki isimde kaç sûret vardır?",
+    "en": "How many cases has the noun standing in the ishtighāl position?"
+   },
+   "a": {
+    "tr": "1) Ref' karinesine aykırı bir karine yoksa ya da ref' karinesi nasb karinesinden kuvvetliyse ibtidâ ile ref' tercih edilir — talep dışı أَمَّا'dan ve إِذَا-i mufâcee'den sonra gelen isim gibi (لَقِيتُ الْقَوْمَ وَأَمَّا زَيْدٌ فَأَكْرَمْتُهُ). 2) Şu altı yerde nasb tercih edilir, çünkü fiil mevkiidir: isim fiil cümlesine atfedilirse (خَرَجْتُ فَزَيْدًا لَقِيتُهُ), nefiy harfinden sonra (مَا زَيْدًا ضَرَبْتُهُ), istifham harfinden sonra (أَزَيْدًا ضَرَبْتَهُ), şart إِذَا'sından sonra (إِذَا عَبْدَ اللهِ تَلْقَاهُ فَأَكْرِمْهُ), حَيْثُ'den sonra (حَيْثُ زَيْدًا تَجِدْهُ), emir ya da nehiyden önce (زَيْدًا اضْرِبْهُ، زَيْدًا لَا تَضْرِبْهُ); müfessirin sıfata karışma korkusu varsa da nasb tercih edilir (إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ). 3) Haberi fiil cümlesi olan isim cümlesine atfedilirse iki vecih eşittir (زَيْدٌ قَامَ وَعَمْرًا أَكْرَمْتُهُ). 4) Şart ve tahdîd harfinden sonra nasb vâciptir, çünkü bu harfler lafzan ya da takdiren bir fiile girer (إِنْ زَيْدًا ضَرَبْتَهُ ضَرَبَكَ).",
+    "en": "1) Rafʿ by ibtidāʾ is preferred when no clue opposes it or the rafʿ clue is the stronger — the noun after non-demanding أَمَّا or after إِذَا of surprise (لَقِيتُ الْقَوْمَ وَأَمَّا زَيْدٌ فَأَكْرَمْتُهُ). 2) Naṣb is preferred in six places, the places of a verb: the noun joined to a verbal sentence (خَرَجْتُ فَزَيْدًا لَقِيتُهُ), after a negation (مَا زَيْدًا ضَرَبْتُهُ), after a question (أَزَيْدًا ضَرَبْتَهُ), after conditional إِذَا (إِذَا عَبْدَ اللهِ تَلْقَاهُ فَأَكْرِمْهُ), after حَيْثُ (حَيْثُ زَيْدًا تَجِدْهُ), before a command or prohibition (زَيْدًا اضْرِبْهُ، زَيْدًا لَا تَضْرِبْهُ); and where the explaining verb could be mistaken for an adjective (إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ). 3) Joined to a nominal sentence whose khabar is verbal, the two are equal (زَيْدٌ قَامَ وَعَمْرًا أَكْرَمْتُهُ). 4) After a conditional or urging particle naṣb is obligatory, since those enter on a verb stated or implied (إِنْ زَيْدًا ضَرَبْتَهُ ضَرَبَكَ)."
+   },
+   "ar": [
+    "خَرَجْتُ فَزَيْدًا لَقِيتُهُ",
+    "أَزَيْدًا ضَرَبْتَهُ",
+    "زَيْدًا اضْرِبْهُ",
+    "إِنْ زَيْدًا ضَرَبْتَهُ ضَرَبَكَ"
+   ],
+   "notes": [
+    "al-maful-bihi-wa-qismah",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q31"
+  },
+  {
+   "n": 32,
+   "q": {
+    "tr": "«إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ» misalini açıklayınız.",
+    "en": "Explain «إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ»."
+   },
+   "a": {
+    "tr": "كُلَّ, izmâr alâ şerîtati't-tefsîr üzere mansûbdur: hazfedilmiş خَلَقْنَا'nın mef'ûlü, خَلَقْنَاهُ müfessir, بِقَدَرٍ hâldir — «biz her şeyi kudretimizle yarattık». كُلُّ ibtidâ ile ref' okunup خَلَقْنَاهُ haber kılınsa mânâ aynıdır; fakat o zaman müfessir خَلَقْنَاهُ'nun sıfata karışma korkusu vardır: sıfat olursa بِقَدَرٍ haber olur ve mânâ «yarattıklarımız kudretimizledir» olur — bu da bazı şeyleri Allah'ın yaratmadığını vehmettiren (Mu'tezile'nin kullara isnadı gibi) fâsid bir mânâdır. Bu yüzden sıfata karışma korkusu olan yerde nasb tercih edilir.",
+    "en": "كُلَّ is in naṣb by ishtighāl: the object of a dropped خَلَقْنَا, with خَلَقْنَاهُ explaining it and بِقَدَرٍ a ḥāl — «We created everything by Our measure». Read in rafʿ with خَلَقْنَاهُ as khabar the sense is the same, but then the explaining verb could be taken as an adjective, بِقَدَرٍ would become the khabar, and the sense would be «what We created is by measure» — a corrupt sense that lets some things be uncreated by God (the Muʿtazilī ascription to the servants). So where that confusion threatens, naṣb is preferred."
+   },
+   "ar": [
+    "إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ"
+   ],
+   "notes": [
+    "al-maful-bihi-wa-qismah",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q32"
+  },
+  {
+   "n": 33,
+   "q": {
+    "tr": "«كُلُّ شَيْءٍ فَعَلُوهُ فِي الزُّبُرِ» ve «الزَّانِيَةُ وَالزَّانِي فَاجْلِدُوا» âyetlerindeki كُلُّ شَيْءٍ ve الزَّانِيَةُ iştiğâl bâbına girer mi?",
+    "en": "Do كُلُّ شَيْءٍ in «كُلُّ شَيْءٍ فَعَلُوهُ فِي الزُّبُرِ» and الزَّانِيَةُ in «الزَّانِيَةُ وَالزَّانِي فَاجْلِدُوا» fall under ishtighāl?"
+   },
+   "a": {
+    "tr": "1) كُلُّ شَيْءٍ mübteda olmakla ref'i vâciptir: فَعَلُوهُ sıfatı, فِي الزُّبُرِ haberidir — «işledikleri her şey defterlerdedir». İştiğâl sayılsa takdir فَعَلُوا كُلَّ شَيْءٍ فِي الزُّبُرِ olur ve mânâ bozulur. 2) الزَّانِيَةُ وَالزَّانِي'nin ref'inde kurrâ ittifak etmiştir, ref' vâciptir; iştiğâl sayılsa kurrânın tercih edilmeyen bir vecihte ittifakı gerekirdi, bu yüzden nahivciler te'vile gittiler. Müberred'e göre buradaki fâ şart mânâsındadır ve böyle bir fâ'dan sonraki fiil öncesine amel edemez. Sîbeveyh'e göre iki müstakil cümledir: «حُكْمُ الزَّانِيَةِ وَالزَّانِي فِيمَا يُتْلَى عَلَيْكُمْ» ve «إِنْ ثَبَتَ زِنَاهُمَا فَاجْلِدُوا» — cezâ cümlesinin cüzü şart cümlesinin cüzünde amel edemez.",
+    "en": "1) كُلُّ شَيْءٍ must be in rafʿ as mubtadaʾ, with فَعَلُوهُ its adjective and فِي الزُّبُرِ its khabar — «everything they did is in the records». As ishtighāl it would mean فَعَلُوا كُلَّ شَيْءٍ فِي الزُّبُرِ, which is nonsense. 2) The readers agree on rafʿ for الزَّانِيَةُ وَالزَّانِي, so rafʿ is obligatory; ishtighāl would have them agreeing on a dispreferred reading, so the grammarians sought interpretations. Al-Mubarrad: the fāʾ here has the sense of a condition, and a verb after such a fāʾ cannot govern what precedes it. Sībawayh: two independent sentences — «حُكْمُ الزَّانِيَةِ وَالزَّانِي فِيمَا يُتْلَى عَلَيْكُمْ» and «إِنْ ثَبَتَ زِنَاهُمَا فَاجْلِدُوا» — and a part of the answer-sentence cannot govern a part of the condition-sentence."
+   },
+   "ar": [
+    "كُلُّ شَيْءٍ فَعَلُوهُ فِي الزُّبُرِ",
+    "الزَّانِيَةُ وَالزَّانِي فَاجْلِدُوا كُلَّ وَاحِدٍ مِنْهُمَا مِائَةَ جَلْدَةٍ"
+   ],
+   "notes": [
+    "al-maful-bihi-wa-qismah",
+    "al-fa-fi-khabar-al-mubtada"
+   ],
+   "id": "mansubat-q33"
+  },
+  {
+   "n": 34,
+   "q": {
+    "tr": "Tahzîrin tarifi nedir? Misali nedir?",
+    "en": "How is the warning (taḥdhīr) defined, and what is its example?"
+   },
+   "a": {
+    "tr": "Ardındakinden sakındırmak için اتَّقِ takdiriyle ma'mûl olan, ya da sakındırılanın tekrarla zikridir. اتَّقِ takdiriyle: إِيَّاكَ وَالْأَسَدَ، إِيَّاكَ وَأَنْ تَحْذِفَ; tekrarla: الطَّرِيقَ الطَّرِيقَ.",
+    "en": "A governed word in naṣb by an implied اتَّقِ, warning against what follows, or the thing warned of named twice. By the implied verb: إِيَّاكَ وَالْأَسَدَ، إِيَّاكَ وَأَنْ تَحْذِفَ; by repetition: الطَّرِيقَ الطَّرِيقَ."
+   },
+   "ar": [
+    "وَهُوَ مَعْمُولٌ بِتَقْدِيرِ اتَّقِ تَحْذِيرًا مِمَّا بَعْدَهُ أَوْ ذُكِرَ الْمُحَذَّرُ مِنْهُ مُكَرَّرًا",
+    "إِيَّاكَ وَالْأَسَدَ",
+    "الطَّرِيقَ الطَّرِيقَ"
+   ],
+   "notes": [
+    "at-tahdhir",
+    "ighra-wa-ikhtisas"
+   ],
+   "id": "mansubat-q34"
+  },
+  {
+   "n": 35,
+   "q": {
+    "tr": "Mef'ûlün fîhin tarifi nedir? Nasbının şartı nedir?",
+    "en": "How is the mafʿūl fīh defined, and what is the condition of its naṣb?"
+   },
+   "a": {
+    "tr": "Zikredilen bir fiilin zaman ya da mekân cihetinden içinde işlendiği şeydir. Nasbının şartı فِي'nin takdir edilmesidir; فِي lafızda gelirse cer gerekir. فِي mübhem zaman zarfında, mahdûd zaman zarfında ve mübhem mekân zarfında takdir edilir; mahdûd mekân zarfında takdir edilmez.",
+    "en": "That in which a named act was done, of time or of place. The condition of its naṣb is that فِي be implied; stated, فِي requires jarr. فِي is implied with a vague time, a bounded time and a vague place; with a bounded place it is not."
+   },
+   "ar": [
+    "هُوَ مَا فُعِلَ فِيهِ فِعْلٌ مَذْكُورٌ مِنْ زَمَانٍ أَوْ مَكَانٍ"
+   ],
+   "notes": [
+    "maful-fih",
+    "al-maful-fih-wal-maful-lah"
+   ],
+   "id": "mansubat-q35"
+  },
+  {
+   "n": 36,
+   "q": {
+    "tr": "Mef'ûlün lehin tarifi nedir? Kaç kısımdır?",
+    "en": "How is the mafʿūl lah defined, and how many kinds has it?"
+   },
+   "a": {
+    "tr": "Zikredilen bir fiilin kendisi için işlendiği şeydir. İki kısım: tahsîlî — fiil onu elde etmek için işlenirse (ضَرَبْتُ زَيْدًا تَأْدِيبًا لَهُ); husûlî — fiil o bulunduğu için işlenirse (قَعَدْتُ عَنِ الْحَرْبِ جُبْنًا).",
+    "en": "That for whose sake a named act was done. Two kinds: to attain it (ضَرَبْتُ زَيْدًا تَأْدِيبًا لَهُ) and because it is there (قَعَدْتُ عَنِ الْحَرْبِ جُبْنًا)."
+   },
+   "ar": [
+    "هُوَ مَا فُعِلَ لِأَجْلِهِ فِعْلٌ مَذْكُورٌ",
+    "ضَرَبْتُ زَيْدًا تَأْدِيبًا لَهُ",
+    "قَعَدْتُ عَنِ الْحَرْبِ جُبْنًا"
+   ],
+   "notes": [
+    "maful-lah",
+    "al-maful-fih-wal-maful-lah"
+   ],
+   "id": "mansubat-q36"
+  },
+  {
+   "n": 37,
+   "q": {
+    "tr": "Mef'ûlün lehin nasbının şartı nedir? Lâmın hazfinin şartları nelerdir?",
+    "en": "What is the condition of the mafʿūl lah's naṣb, and the conditions for dropping its lām?"
+   },
+   "a": {
+    "tr": "Lafzan nasbının şartı lâmın takdiridir. Lâmın takdirinin üç şartı: mef'ûlün leh bir hades (masdar) olacak; mef'ûlün leh ile illetlenen fiilin fâili bir olacak; mef'ûlün leh fiile vücutta yakın (aynı zamanda) olacak: ضَرَبْتُ زَيْدًا تَأْدِيبًا.",
+    "en": "Its naṣb in wording requires the lām to be implied, which has three conditions: the mafʿūl lah is an event-noun (masdar); it shares the doer of the verb it explains; and it is close to the verb in time: ضَرَبْتُ زَيْدًا تَأْدِيبًا."
+   },
+   "ar": [
+    "ضَرَبْتُ زَيْدًا تَأْدِيبًا"
+   ],
+   "notes": [
+    "maful-lah",
+    "lam-taleel"
+   ],
+   "id": "mansubat-q37"
+  },
+  {
+   "n": 38,
+   "q": {
+    "tr": "Mef'ûlün meahın tarifi nedir? Hâllerini beyan ediniz.",
+    "en": "How is the mafʿūl maʿah defined, and what are its cases?"
+   },
+   "a": {
+    "tr": "Lafzan ya da mânen bir fiilin ma'mûlüne eşlik için vâvdan sonra zikredilendir. Dört hâli vardır: fiil lafzan var ve atıf câizse iki vecih — atıf ya da nasb (جِئْتُ أَنَا وَزَيْدٌ / وَزَيْدًا); fiil lafzan var, atıf câiz değilse nasb teayyün eder (جِئْتُ وَزَيْدًا); fiil mânen var, atıf câizse atıf teayyün eder (مَا لِزَيْدٍ وَعَمْرٍو); fiil mânen var, atıf câiz değilse nasb teayyün eder (مَا شَأْنُكَ وَعَمْرًا).",
+    "en": "What is named after the wāw as company to a verb's governed word, the verb stated or implied. Four cases: verb stated and coordination allowed — two readings, coordination or naṣb (جِئْتُ أَنَا وَزَيْدٌ / وَزَيْدًا); verb stated, coordination impossible — naṣb (جِئْتُ وَزَيْدًا); verb implied, coordination allowed — coordination (مَا لِزَيْدٍ وَعَمْرٍو); verb implied, coordination impossible — naṣb (مَا شَأْنُكَ وَعَمْرًا)."
+   },
+   "ar": [
+    "هُوَ مَذْكُورٌ بَعْدَ الْوَاوِ لِمُصَاحَبَةِ مَعْمُولِ فِعْلٍ لَفْظًا أَوْ مَعْنًى",
+    "جِئْتُ وَزَيْدًا",
+    "مَا شَأْنُكَ وَعَمْرًا"
+   ],
+   "notes": [
+    "maful-maah",
+    "al-maful-maah-wal-hal",
+    "anwa-al-waw"
+   ],
+   "id": "mansubat-q38"
+  },
+  {
+   "n": 39,
+   "q": {
+    "tr": "Hâlin tarifi nedir? Hâlin âmili nelerdir?",
+    "en": "How is the ḥāl defined, and what governs it?"
+   },
+   "a": {
+    "tr": "Fâilin ya da mef'ûlün bihin hey'etini lafzan ya da mânen açıklayandır. Âmili fiil olur (ضَرَبْتُ زَيْدًا قَائِمًا), şibh-i fiil olur (زَيْدٌ فِي الدَّارِ قَائِمًا — aslı كَائِنٌ هُوَ قَائِمًا), mânâ-yı fiil olur (هَذَا زَيْدٌ قَائِمًا — aslı أُنَبِّهُ / أُشِيرُ).",
+    "en": "What makes plain the state of the doer or the object, in wording or in meaning. Its governor is a verb (ضَرَبْتُ زَيْدًا قَائِمًا), a verb-like word (زَيْدٌ فِي الدَّارِ قَائِمًا, for كَائِنٌ هُوَ قَائِمًا), or a word with a verb's meaning (هَذَا زَيْدٌ قَائِمًا, for أُنَبِّهُ / أُشِيرُ)."
+   },
+   "ar": [
+    "مَا يُبَيِّنُ هَيْئَةَ الْفَاعِلِ أَوِ الْمَفْعُولِ بِهِ لَفْظًا أَوْ مَعْنًى",
+    "زَيْدٌ فِي الدَّارِ قَائِمًا",
+    "هَذَا زَيْدٌ قَائِمًا"
+   ],
+   "notes": [
+    "hal",
+    "mana-al-fil"
+   ],
+   "id": "mansubat-q39"
+  },
+  {
+   "n": 40,
+   "q": {
+    "tr": "Hâlin ve zi'l-hâlin şartı nedir?",
+    "en": "What is the condition of the ḥāl, and of its owner?"
+   },
+   "a": {
+    "tr": "Hâl nekre olur; zi'l-hâl çoğu kere ma'rifedir: ضَرَبْتُ زَيْدًا قَائِمًا.",
+    "en": "The ḥāl is indefinite; its owner is usually definite: ضَرَبْتُ زَيْدًا قَائِمًا."
+   },
+   "ar": [
+    "ضَرَبْتُ زَيْدًا قَائِمًا"
+   ],
+   "notes": [
+    "hal"
+   ],
+   "id": "mansubat-q40"
+  },
+  {
+   "n": 41,
+   "q": {
+    "tr": "«وَأَرْسَلَهَا الْعِرَاكَ» beytinin tamamı nedir? Neye misaldir?",
+    "en": "What is the full verse «وَأَرْسَلَهَا الْعِرَاكَ», and what does it exemplify?"
+   },
+   "a": {
+    "tr": "وَأَرْسَلَهَا الْعِرَاكَ وَلَمْ يَذُدْهَا * وَلَمْ يُشْفِقْ عَلَى نَغَصِ الدِّخَالِ. Hâl olan الْعِرَاكَ ma'rife gelmişse de تَعْتَرِكُ الْعِرَاكَ ya da مُعْتَرِكَةً diye nekre ile te'villidir.",
+    "en": "وَأَرْسَلَهَا الْعِرَاكَ وَلَمْ يَذُدْهَا * وَلَمْ يُشْفِقْ عَلَى نَغَصِ الدِّخَالِ. The ḥāl الْعِرَاكَ comes definite, but is construed as the indefinite تَعْتَرِكُ الْعِرَاكَ or مُعْتَرِكَةً."
+   },
+   "ar": [
+    "وَأَرْسَلَهَا الْعِرَاكَ وَلَمْ يَذُدْهَا وَلَمْ يُشْفِقْ عَلَى نَغَصِ الدِّخَالِ"
+   ],
+   "notes": [
+    "hal"
+   ],
+   "id": "mansubat-q41"
+  },
+  {
+   "n": 42,
+   "q": {
+    "tr": "«مَرَرْتُ بِهِ وَحْدَهُ» ve «فَعَلْتُهُ جُهْدَكَ» neye misaldir?",
+    "en": "What do «مَرَرْتُ بِهِ وَحْدَهُ» and «فَعَلْتُهُ جُهْدَكَ» exemplify?"
+   },
+   "a": {
+    "tr": "Ma'rife gelen hâle: وَحْدَهُ, يَنْفَرِدُ وَحْدَهُ ya da مُنْفَرِدًا diye; جُهْدَكَ, تَجْتَهِدُ جُهْدَكَ ya da مُجْتَهِدًا diye nekre ile te'villidir.",
+    "en": "A ḥāl that comes definite: وَحْدَهُ is construed as يَنْفَرِدُ وَحْدَهُ or مُنْفَرِدًا, and جُهْدَكَ as تَجْتَهِدُ جُهْدَكَ or مُجْتَهِدًا."
+   },
+   "ar": [
+    "مَرَرْتُ بِهِ وَحْدَهُ",
+    "فَعَلْتُهُ جُهْدَكَ"
+   ],
+   "notes": [
+    "hal"
+   ],
+   "id": "mansubat-q42"
+  },
+  {
+   "n": 43,
+   "q": {
+    "tr": "Hâlin, âmili ve zi'l-hâl üzerine takdimi câiz midir?",
+    "en": "May the ḥāl precede its governor and its owner?"
+   },
+   "a": {
+    "tr": "Manevî âmil (tasrih ve takdir olmaksızın kelâmın fehvâsından çıkarılan) üzerine takdim edemez, çünkü ameli zayıftır. Zi'l-hâl sırf nekre ise hâlin ona takdimi vâciptir (جَاءَنِي رَاكِبًا رَجُلٌ); mecrûr zi'l-hâl üzerine takdimi câiz değildir — takdim etmeyene misal: وَاتَّبِعْ مِلَّةَ إِبْرَاهِيمَ حَنِيفًا; câiz olmayana misal: جَاءَتْنِي مُجَرَّدًا عَنِ الثِّيَابِ ضَارِبَةُ زَيْدٍ.",
+    "en": "Not before a governor of meaning (understood from the drift of speech without statement or estimation), whose government is weak. If the owner is a bare indefinite the ḥāl must precede it (جَاءَنِي رَاكِبًا رَجُلٌ); it may not precede an owner in jarr — as in وَاتَّبِعْ مِلَّةَ إِبْرَاهِيمَ حَنِيفًا, where it does not, and جَاءَتْنِي مُجَرَّدًا عَنِ الثِّيَابِ ضَارِبَةُ زَيْدٍ, where it could not."
+   },
+   "ar": [
+    "جَاءَنِي رَاكِبًا رَجُلٌ",
+    "وَاتَّبِعْ مِلَّةَ إِبْرَاهِيمَ حَنِيفًا"
+   ],
+   "notes": [
+    "hal",
+    "al-hal-jumla-wa-rabituha"
+   ],
+   "id": "mansubat-q43"
+  },
+  {
+   "n": 44,
+   "q": {
+    "tr": "«هَذَا بُسْرًا أَطْيَبُ مِنْهُ رُطَبًا» neye misaldir?",
+    "en": "What does «هَذَا بُسْرًا أَطْيَبُ مِنْهُ رُطَبًا» exemplify?"
+   },
+   "a": {
+    "tr": "بُسْرًا ve رُطَبًا'nın câmid oldukları hâlde hâl vâki olduğuna.",
+    "en": "Rigid (non-derived) nouns, بُسْرًا and رُطَبًا, standing as ḥāl."
+   },
+   "ar": [
+    "هَذَا بُسْرًا أَطْيَبُ مِنْهُ رُطَبًا"
+   ],
+   "notes": [
+    "hal"
+   ],
+   "id": "mansubat-q44"
+  },
+  {
+   "n": 45,
+   "q": {
+    "tr": "Hâl cümle olur mu? Olursa ne lâzım gelir?",
+    "en": "May the ḥāl be a sentence, and what does that require?"
+   },
+   "a": {
+    "tr": "Yalnız haber cümlesi olur ve onu zi'l-hâle bağlayan bir râbıt gerekir. İsim cümlesinde râbıt: zamirle birlikte vâv, yalnız zamir ya da yalnız vâv. Fiil cümlesinde: müsbet muzâride yalnız zamir; menfî muzâri, müsbet mâzî ve menfî mâzîde vâv ile zamir, yalnız zamir ya da yalnız vâv. Ayrıca müsbet mâzîde mâzîyi hâle yaklaştırmak için açık ya da mukadder bir قَدْ lâzımdır.",
+    "en": "Only a declarative sentence, and it needs a tie (rābiṭ) to its owner. In a nominal sentence: the wāw with a pronoun, the pronoun alone, or the wāw alone. In a verbal sentence: an affirmative muḍāriʿ takes the pronoun only; a negated muḍāriʿ, an affirmative māḍī and a negated māḍī take wāw with pronoun, pronoun alone or wāw alone. An affirmative māḍī also needs قَدْ, stated or implied, to draw the past up to the present."
+   },
+   "ar": [],
+   "notes": [
+    "al-hal-jumla-wa-rabituha",
+    "hal",
+    "anwa-al-waw"
+   ],
+   "id": "mansubat-q45"
+  },
+  {
+   "n": 46,
+   "q": {
+    "tr": "«رَاشِدًا مَهْدِيًّا» neye misaldir?",
+    "en": "What does «رَاشِدًا مَهْدِيًّا» exemplify?"
+   },
+   "a": {
+    "tr": "Hâl olduğu hâlde âmili olan سِرْ fiilinin hazfine; aslı سِرْ رَاشِدًا مَهْدِيًّا.",
+    "en": "A ḥāl whose governor سِرْ has been dropped: for سِرْ رَاشِدًا مَهْدِيًّا."
+   },
+   "ar": [
+    "سِرْ رَاشِدًا مَهْدِيًّا"
+   ],
+   "notes": [
+    "hal",
+    "hadhf-wa-taqdir"
+   ],
+   "id": "mansubat-q46"
+  },
+  {
+   "n": 47,
+   "q": {
+    "tr": "Temyizin tarifi nedir? Kaç kısımdır?",
+    "en": "How is the tamyīz defined, and how many kinds has it?"
+   },
+   "a": {
+    "tr": "Zikredilen ya da takdir edilen bir zattan yerleşmiş kapalılığı kaldıran isimdir. İki kısım: zikredilen zattan (عِشْرُونَ دِرْهَمًا) ve takdir edilen zattan (طَابَ زَيْدٌ نَفْسًا) kapalılığı kaldıran.",
+    "en": "The noun that lifts the settled vagueness from an entity named or implied. Two kinds: from a named entity (عِشْرُونَ دِرْهَمًا) and from an implied one (طَابَ زَيْدٌ نَفْسًا)."
+   },
+   "ar": [
+    "مَا يَرْفَعُ الْإِبْهَامَ الْمُسْتَقِرَّ عَنْ ذَاتٍ مَذْكُورَةٍ أَوْ مُقَدَّرَةٍ",
+    "عِشْرُونَ دِرْهَمًا",
+    "طَابَ زَيْدٌ نَفْسًا"
+   ],
+   "notes": [
+    "tamyiz",
+    "al-tamyiz-wa-ahkamuh"
+   ],
+   "id": "mansubat-q47"
+  },
+  {
+   "n": 48,
+   "q": {
+    "tr": "Zikredilen zattan kapalılığı kaldıran birinci kısım temyiz nelerden kapalılığı kaldırır? Hükümleri nelerdir?",
+    "en": "From what does the first kind of tamyīz lift vagueness, and what are its rulings?"
+   },
+   "a": {
+    "tr": "1) Çoğu kere müfred miktardan: sayı (عِشْرُونَ دِرْهَمًا), tartı (رِطْلٌ زَيْتًا), ölçü (عَلَى التَّمْرَةِ مِثْلُهَا زُبْدًا). Miktar tenvin ya da tesniye nûnuyla tamamlanıyorsa izafet câizdir; şibh-i cem' nûnuyla tamamlanıyorsa izafet nâdiren câizdir. 2) Bazen miktar dışından: خَاتَمٌ حَدِيدًا — bu kısım çoğunlukla izafetle kullanılır.",
+    "en": "1) Mostly from a single measure: number (عِشْرُونَ دِرْهَمًا), weight (رِطْلٌ زَيْتًا), capacity (عَلَى التَّمْرَةِ مِثْلُهَا زُبْدًا). Where the measure ends in tanwīn or the dual's nūn, annexation is allowed; where it ends in the plural-like nūn, only rarely. 2) Sometimes from what is no measure: خَاتَمٌ حَدِيدًا — this kind is mostly used in annexation."
+   },
+   "ar": [
+    "عِشْرُونَ دِرْهَمًا",
+    "رِطْلٌ زَيْتًا",
+    "خَاتَمٌ حَدِيدًا"
+   ],
+   "notes": [
+    "tamyiz",
+    "al-tamyiz-wa-ahkamuh",
+    "asma-al-adad-fil-kafiya"
+   ],
+   "id": "mansubat-q48"
+  },
+  {
+   "n": 49,
+   "q": {
+    "tr": "Takdir edilen zattan kapalılığı kaldıran ikinci kısım temyiz nelerden kapalılığı kaldırır?",
+    "en": "From what does the second kind of tamyīz lift vagueness?"
+   },
+   "a": {
+    "tr": "Üç şeyden: cümledeki nisbetten (طَابَ زَيْدٌ نَفْسًا), şibh-i cümledeki nisbetten (زَيْدٌ طَيِّبٌ أَبًا), izafetteki nisbetten (أَعْجَبَنِي طِيبُهُ نَفْسًا).",
+    "en": "From three things: the attribution in a sentence (طَابَ زَيْدٌ نَفْسًا), in a sentence-like phrase (زَيْدٌ طَيِّبٌ أَبًا), and in an annexation (أَعْجَبَنِي طِيبُهُ نَفْسًا)."
+   },
+   "ar": [
+    "طَابَ زَيْدٌ نَفْسًا",
+    "زَيْدٌ طَيِّبٌ أَبًا",
+    "أَعْجَبَنِي طِيبُهُ نَفْسًا"
+   ],
+   "notes": [
+    "tamyiz",
+    "al-tamyiz-wa-ahkamuh"
+   ],
+   "id": "mansubat-q49"
+  },
+  {
+   "n": 50,
+   "q": {
+    "tr": "«وَلِلَّهِ دَرُّهُ فَارِسًا» neye misaldir?",
+    "en": "What does «وَلِلَّهِ دَرُّهُ فَارِسًا» exemplify?"
+   },
+   "a": {
+    "tr": "Temyizin müştak bir sıfat olduğuna.",
+    "en": "A tamyīz that is a derived adjective."
+   },
+   "ar": [
+    "وَلِلَّهِ دَرُّهُ فَارِسًا"
+   ],
+   "notes": [
+    "tamyiz"
+   ],
+   "id": "mansubat-q50"
+  },
+  {
+   "n": 51,
+   "q": {
+    "tr": "Temyizin âmili üzerine takdimi câiz midir?",
+    "en": "May the tamyīz precede its governor?"
+   },
+   "a": {
+    "tr": "Âmili ism-i mübhem-i tâm ise câiz değildir: câmid bir isimdir, ameli zayıftır ve fiile benzerlikle amel eder; temyiz öne geçerse amel edemez. Âmili fiil olduğunda da esah mezhebe göre câiz değildir, çünkü temyiz mânâda fâildir ve fâil fiilin önüne geçmez.",
+    "en": "Not when its governor is a complete vague noun: a rigid noun governs weakly and only by likeness to the verb, and cannot reach a tamyīz set before it. Nor, on the sounder view, when the governor is a verb, for the tamyīz is in meaning a doer, and the doer does not precede its verb."
+   },
+   "ar": [],
+   "notes": [
+    "tamyiz",
+    "al-ism-al-mubham-al-tamm"
+   ],
+   "id": "mansubat-q51"
+  },
+  {
+   "n": 52,
+   "q": {
+    "tr": "Müstesnâ kaç kısımdır? Tarifleri ve misalleri nelerdir?",
+    "en": "How many kinds has the exception, with their definitions and examples?"
+   },
+   "a": {
+    "tr": "İki: muttasıl — lafzan ya da takdiren çok olandan إِلَّا ve kardeşleriyle çıkarılan (جَاءَنِي الْقَوْمُ إِلَّا زَيْدًا); munkatı' — إِلَّا'dan sonra zikredilip çıkarılmayan (جَاءَنِي الْقَوْمُ إِلَّا حِمَارًا).",
+    "en": "Two: the connected — taken by إِلَّا and its sisters out of a plurality stated or implied (جَاءَنِي الْقَوْمُ إِلَّا زَيْدًا); the disconnected — named after إِلَّا without being taken out (جَاءَنِي الْقَوْمُ إِلَّا حِمَارًا)."
+   },
+   "ar": [
+    "هُوَ الْمُخْرَجُ عَنْ مُتَعَدِّدٍ لَفْظًا أَوْ تَقْدِيرًا بِإِلَّا وَأَخَوَاتِهَا",
+    "هُوَ الْمَذْكُورُ بَعْدَهَا غَيْرَ مُخْرَجٍ",
+    "جَاءَنِي الْقَوْمُ إِلَّا حِمَارًا"
+   ],
+   "notes": [
+    "istithna",
+    "al-mustathna-wa-nawah-wa-nasbuh"
+   ],
+   "id": "mansubat-q52"
+  },
+  {
+   "n": 53,
+   "q": {
+    "tr": "Müstesnânın nasbının vâcip olduğu yerler kaç mevzidir?",
+    "en": "In how many places must the exception be in naṣb?"
+   },
+   "a": {
+    "tr": "Dört: tam ve müsbet kelâmda sıfat olmayan إِلَّا'dan sonra (جَاءَنِي الْقَوْمُ إِلَّا زَيْدًا); müstesnâ müstesnâ-minhin önüne geçtiğinde (جَاءَنِي إِلَّا زَيْدًا الْقَوْمُ); munkatı' olduğunda (جَاءَنِي الْقَوْمُ إِلَّا حِمَارًا); خَلَا، عَدَا، مَا خَلَا، مَا عَدَا، لَيْسَ، لَا يَكُونُ'dan sonra (جَاءَنِي الْقَوْمُ خَلَا زَيْدًا، مَا عَدَا عَمْرًا، لَيْسَ زَيْدًا، سَيَجِيءُ أَهْلُكَ لَا يَكُونُ بِشْرًا).",
+    "en": "Four: after non-adjectival إِلَّا in a full affirmative sentence (جَاءَنِي الْقَوْمُ إِلَّا زَيْدًا); when the exception precedes what it is taken from (جَاءَنِي إِلَّا زَيْدًا الْقَوْمُ); when it is disconnected (جَاءَنِي الْقَوْمُ إِلَّا حِمَارًا); and after خَلَا، عَدَا، مَا خَلَا، مَا عَدَا، لَيْسَ، لَا يَكُونُ (جَاءَنِي الْقَوْمُ خَلَا زَيْدًا، مَا عَدَا عَمْرًا، لَيْسَ زَيْدًا، سَيَجِيءُ أَهْلُكَ لَا يَكُونُ بِشْرًا)."
+   },
+   "ar": [
+    "جَاءَنِي إِلَّا زَيْدًا الْقَوْمُ",
+    "جَاءَنِي الْقَوْمُ خَلَا زَيْدًا",
+    "سَيَجِيءُ أَهْلُكَ لَا يَكُونُ بِشْرًا"
+   ],
+   "notes": [
+    "istithna",
+    "al-mustathna-wa-nawah-wa-nasbuh",
+    "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya"
+   ],
+   "id": "mansubat-q53"
+  },
+  {
+   "n": 54,
+   "q": {
+    "tr": "Müstesnânın diğer hükümleri nasıldır?",
+    "en": "What are the exception's other rulings?"
+   },
+   "a": {
+    "tr": "Nasbının vâcip olmasından başka i'râb bakımından üç hükmü daha vardır: müstesnâ-minh zikredilmiş gayr-i müsbet kelâmda إِلَّا'dan sonra nasb câiz, bedel muhtardır (مَا فَعَلُوهُ إِلَّا قَلِيلٌ / قَلِيلًا); gayr-i müsbet kelâmda müstesnâ-minh zikredilmemişse müstesnâ âmillere göre i'râblanır (مَا ضَرَبَنِي إِلَّا زَيْدٌ); غَيْر، سِوَى، سَوَاء ve حَاشَا'dan sonra mecrûrdur.",
+    "en": "Besides the obligatory naṣb, three more: after إِلَّا in a non-affirmative sentence with the excepted-from stated, naṣb is allowed and badal preferred (مَا فَعَلُوهُ إِلَّا قَلِيلٌ / قَلِيلًا); in a non-affirmative sentence with it unstated, the exception takes the case its governors give (مَا ضَرَبَنِي إِلَّا زَيْدٌ); after غَيْر، سِوَى، سَوَاء and حَاشَا it is in jarr."
+   },
+   "ar": [
+    "مَا فَعَلُوهُ إِلَّا قَلِيلٌ",
+    "مَا ضَرَبَنِي إِلَّا زَيْدٌ"
+   ],
+   "notes": [
+    "istithna",
+    "istithna-mufarragh",
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa"
+   ],
+   "id": "mansubat-q54"
+  },
+  {
+   "n": 55,
+   "q": {
+    "tr": "إِلَّا ne zaman sıfat olan غَيْر üzerine hamledilir? Misali nedir?",
+    "en": "When is إِلَّا read as the adjective غَيْر, and what is the example?"
+   },
+   "a": {
+    "tr": "Nekre kılınmış ve mahsur olmayan bir cem'den sonra geldiğinde, istisnâ mazur görüldüğü için غَيْر mânâsına hamledilir: لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللهُ لَفَسَدَتَا — burada istisnâ mânâyı bozar, bu yüzden إِلَّا sıfat olan غَيْر mânâsındadır.",
+    "en": "When it follows an indefinite, unbounded plural, exception being excused there: لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللهُ لَفَسَدَتَا — an exception would corrupt the sense, so إِلَّا here means the adjective غَيْر."
+   },
+   "ar": [
+    "لَوْ كَانَ فِيهِمَا آلِهَةٌ إِلَّا اللهُ لَفَسَدَتَا"
+   ],
+   "notes": [
+    "al-mustathna-badaluhu-wa-jarruh-wa-ghayr-wa-illa",
+    "istithna"
+   ],
+   "id": "mansubat-q55"
+  },
+  {
+   "n": 56,
+   "q": {
+    "tr": "كَانَ bâbının haberinin âmili kaç şekilde hazfedilir? Misalleri nelerdir?",
+    "en": "In how many ways is the governor of kāna's khabar dropped, and what are the examples?"
+   },
+   "a": {
+    "tr": "İki: cevâzen — النَّاسُ مَجْزِيُّونَ بِأَعْمَالِهِمْ إِنْ خَيْرًا فَخَيْرٌ وَإِنْ شَرًّا فَشَرٌّ; burada dört vecih vardır: إِنْ خَيْرًا فَخَيْرٌ (إِنْ كَانَ عَمَلُهُ خَيْرًا فَجَزَاؤُهُ خَيْرٌ), إِنْ خَيْرًا فَخَيْرًا (… فَكَانَ جَزَاؤُهُ خَيْرًا), إِنْ خَيْرٌ فَخَيْرٌ (إِنْ كَانَ فِي عَمَلِهِ خَيْرٌ …), إِنْ خَيْرٌ فَخَيْرًا. Vücûben — أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ: aslı لِأَنْ كُنْتَ مُنْطَلِقًا; cer lâmı kıyâsen hazfedildi, كَانَ ihtisar için düştü, bitişik تَ munfasıl أَنْتَ'ye çevrildi, أَنْ'den sonra كَانَ'den ivaz مَا getirildi, nûn mîme idgam edildi, haber olduğu gibi kaldı.",
+    "en": "Two: permittedly — النَّاسُ مَجْزِيُّونَ بِأَعْمَالِهِمْ إِنْ خَيْرًا فَخَيْرٌ وَإِنْ شَرًّا فَشَرٌّ, with four readings: إِنْ خَيْرًا فَخَيْرٌ (for إِنْ كَانَ عَمَلُهُ خَيْرًا فَجَزَاؤُهُ خَيْرٌ), إِنْ خَيْرًا فَخَيْرًا (… فَكَانَ جَزَاؤُهُ خَيْرًا), إِنْ خَيْرٌ فَخَيْرٌ (إِنْ كَانَ فِي عَمَلِهِ خَيْرٌ …), إِنْ خَيْرٌ فَخَيْرًا. Obligatorily — أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ, for لِأَنْ كُنْتَ مُنْطَلِقًا: the lām went by rule, كَانَ for brevity, the attached تَ became detached أَنْتَ, مَا came after أَنْ in place of كَانَ, the nūn merged into the mīm, and the khabar stayed as it was."
+   },
+   "ar": [
+    "إِنْ خَيْرًا فَخَيْرٌ وَإِنْ شَرًّا فَشَرٌّ",
+    "أَمَّا أَنْتَ مُنْطَلِقًا انْطَلَقْتُ"
+   ],
+   "notes": [
+    "kana-wa-akhawatuha",
+    "hadhf-wa-taqdir",
+    "al-afal-al-naqisa-fil-kafiya"
+   ],
+   "id": "mansubat-q56"
+  },
+  {
+   "n": 57,
+   "q": {
+    "tr": "Cinsi nefyeden لَا'nın isminin hükmü nedir? «لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ»'ta kaç vecih vardır?",
+    "en": "What is the ruling of the ism of the genus-denying لَا, and how many readings has «لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ»?"
+   },
+   "a": {
+    "tr": "Üç hükmü vardır: ismi muzâf ya da şibh-i muzâf nekre olup لَا'yı izlerse mansûbdur (لَا غُلَامَ رَجُلٍ); müfredse nasb alâmeti üzere mebnîdir (لَا رَجُلَ فِي الدَّارِ); ma'rife olursa ya da لَا ile ismi ayrılırsa ref' ve tekrar vâciptir (لَا زَيْدٌ فِي الدَّارِ وَلَا عَمْرٌو؛ لَا فِي الدَّارِ رَجُلٌ). لَا حَوْلَ وَلَا قُوَّةَ'de beş vecih: حَوْلَ … قُوَّةَ، حَوْلَ … قُوَّةً، حَوْلَ … قُوَّةٌ، حَوْلٌ … قُوَّةٌ، حَوْلٌ … قُوَّةَ.",
+    "en": "Three: an indefinite ism that is annexed or annexation-like and follows لَا is in naṣb (لَا غُلَامَ رَجُلٍ); a single one is built on its naṣb sign (لَا رَجُلَ فِي الدَّارِ); a definite one, or one separated from لَا, must be in rafʿ with لَا repeated (لَا زَيْدٌ فِي الدَّارِ وَلَا عَمْرٌو؛ لَا فِي الدَّارِ رَجُلٌ). لَا حَوْلَ وَلَا قُوَّةَ has five readings: حَوْلَ … قُوَّةَ، حَوْلَ … قُوَّةً، حَوْلَ … قُوَّةٌ، حَوْلٌ … قُوَّةٌ، حَوْلٌ … قُوَّةَ."
+   },
+   "ar": [
+    "لَا غُلَامَ رَجُلٍ",
+    "لَا رَجُلَ فِي الدَّارِ",
+    "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ"
+   ],
+   "notes": [
+    "la-nafiya-lil-jins",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "id": "mansubat-q57"
+  },
+  {
+   "n": 58,
+   "q": {
+    "tr": "لَيْسَ'ye benzeyen مَا ve لَا'nın ameli ne zaman bâtıl olur?",
+    "en": "When does the government of مَا and لَا that resemble لَيْسَ lapse?"
+   },
+   "a": {
+    "tr": "مَا ile ismi arasına zâid إِنْ girdiğinde (مَا إِنْ زَيْدٌ قَائِمٌ); nefiy إِلَّا ile bozulduğunda (مَا زَيْدٌ إِلَّا قَائِمٌ); haberleri isimlerinin önüne geçtiğinde (مَا قَائِمٌ زَيْدٌ، لَا قَائِمٌ زَيْدٌ). Ayrıca لَا'nın ismi nekre olmalıdır; لَا ma'rifede amel etmez (لَا زَيْدٌ قَائِمٌ).",
+    "en": "When an extra إِنْ comes between مَا and its ism (مَا إِنْ زَيْدٌ قَائِمٌ); when إِلَّا breaks the negation (مَا زَيْدٌ إِلَّا قَائِمٌ); when their khabar precedes their ism (مَا قَائِمٌ زَيْدٌ، لَا قَائِمٌ زَيْدٌ). And لَا's ism must be indefinite; it does not govern a definite (لَا زَيْدٌ قَائِمٌ)."
+   },
+   "ar": [
+    "مَا إِنْ زَيْدٌ قَائِمٌ",
+    "مَا زَيْدٌ إِلَّا قَائِمٌ",
+    "مَا قَائِمٌ زَيْدٌ"
+   ],
+   "notes": [
+    "ma-la-mushabbaha",
+    "ma-la-laysa-wa-la-al-jins"
+   ],
+   "id": "mansubat-q58"
+  }
+ ]
+}

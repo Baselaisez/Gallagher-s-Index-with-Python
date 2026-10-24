@@ -14,11 +14,11 @@ The store build ships only what is finished and reviewed. Remaining work, in the
 
 1. **Stories still to author from the sources on the shelf**
    - `kafiya-ibn-hajib-sual-cevap.txt` — the full Kāfiya matn: **done at v216** (46 chapters, 8,157 tokens, the notebook consumed to its end). Left on the page: the ~115-question review index, a catechism-quiz bank for a later wave.
-   - `aqaid-nasafi-matn-full.txt` — the ʿAqāʾid of al-Nasafī as a full story (the Aqāʾid package holds 24 chapters from the creed; the Nasafī matn itself is not authored).
+   - `aqaid-nasafi-matn-full.txt` — the ʿAqāʾid of al-Nasafī: **done at v217** (aqaid-ahl-al-sunna ch25–46, the matn consumed to its end).
    - `wasiyya-samti-arabic.txt`, `emali-qasida-ottoman.txt` — verify the authored packages against these transcriptions cover to cover (the Amālī has 14 chapters; check the qaṣīda's full bayt count).
    - `qatr-al-nada-turkish-cicek.txt` — Qaṭr al-Nadā as a story (its rules are consumed; its matn is not).
    - `molla-cami-sual-cevap.txt` (Molla Jāmī on the Kāfiya) — Ottoman script; transliterate as the Iẓhār was, then author as commentary chapters beside the Kāfiya.
-2. **Automations still owed to the engines** (the audit's top ten): the ʿalaqa engine fed by the 70-question bank, مَا's twelve faces as a disambiguator, the taʿalluq rule, the iʿlāl chains of the derived nouns, the catechism quiz game from the ~150 transcribed Q&A, the ʿawāmil kinds 2–13 (blocked on the Jurjānī deck pages).
+2. **Automations still owed to the engines** (the audit's top ten): the ʿalaqa engine fed by the 70-question bank, مَا's twelve faces as a disambiguator, the taʿalluq rule, the iʿlāl chains of the derived nouns, the catechism quiz game from the ~150 transcribed Q&A (**done at v217**: seven banks, 202 items, gCatechism + the Sual-Cevap lab), the ʿawāmil kinds 2–13 (blocked on the Jurjānī deck pages).
 3. **OOP consolidation** — every engine is already a static class; the store wave adds a thin `Lesson` object model (story → chapter → sentence → token → verdicts) so the games, labs and the Atlas read one typed interface instead of the STORIES array directly, and the sync layer (§3) serialises the same model.
 
 ## 2. Packaging: how the APK is built, and why it is fast
