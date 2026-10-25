@@ -1215,3 +1215,11 @@ rules read as two mirrored tables rather than a list. Above the cards the senten
 the order (FM, MF, MK, KM), the two parts with their kinds (a written noun, an attached pronoun, a concealed one), and the binding rule
 as a green pill — or, in grey, «either order is allowed here», which is the honest answer for most sentences and the one a lab must be
 willing to give. The same frame lines appear under the Jumla lab's muʿrib, so the order is read where the sentence is parsed.
+
+## Phone: the text first (wave 72)
+
+Below 860px the sticky bar carries three things — the reading mode, Listen, «Aa» — and the reading sheet carries the
+rest (vowel layer, level underlines, speed, size, tint, role colours, estimated pronouns), each sheet button clicking
+the bar's own hidden control. Gated at 390×844: the first sentence of a story and the first card of the library sit in
+the upper half of the first screen (measured 293px / 335px; gate = measurement + 45px). Desktop keeps the full bar.
+

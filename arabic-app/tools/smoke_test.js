@@ -11543,6 +11543,34 @@ if (!CHROME) {
     if (!r.e[1]) throw new Error('the kāf of tashbīh must carry its remark: ' + JSON.stringify(r.e));
     if (r.g[1]) throw new Error('after a DEFINITE object no ṣifa alternative: ' + JSON.stringify(r.g));
   });
+
+  await check('wave 72 — the phone shows the text first: the first library card and the first sentence sit in the upper half of a 390×844 screen, the bar keeps only mode / Listen / Aa, the reading sheet reaches every control it hid and the desktop bar is unchanged', async () => {
+    const LIB_MAX = 403, SEN_MAX = 338;   // measured 358 / 293 on landing; the gate is the measurement plus a 45px margin
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
+    const p9 = await ctx.newPage(); await p9.goto(url); await p9.waitForSelector('.lib-card'); await p9.waitForTimeout(300);
+    const lib = await p9.evaluate(() => { const c = document.querySelector('.continue-card, .lib-card'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
+      return { top: Math.round(c.getBoundingClientRect().top), role: vis('roleToggle'), lang: vis('uiLangSeg') }; });
+    if (lib.top > LIB_MAX) throw new Error('first library card at ' + lib.top + 'px on a phone (max ' + LIB_MAX + ')');
+    if (lib.role || !lib.lang) throw new Error('front door on a phone: the role toggle must hide and the language segment stay: ' + JSON.stringify(lib));
+    await p9.locator('.lib-card').first().click(); await p9.waitForSelector('section.sentence'); await p9.waitForTimeout(300);
+    const st = await p9.evaluate(() => { const s = document.querySelector('section.sentence'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
+      return { top: Math.round(s.getBoundingClientRect().top), speed: vis('speedSeg'), ul: vis('ulToggle'), aa: vis('readCtrlBtn'), mode: vis('modeSeg'), play: vis('playAll'), eyebrow: !!document.getElementById('eyebrow').offsetParent }; });
+    if (st.top > SEN_MAX) throw new Error('first sentence at ' + st.top + 'px on a phone (max ' + SEN_MAX + ')');
+    if (st.speed || st.ul || !st.aa || !st.mode || !st.play || st.eyebrow) throw new Error('phone bar: ' + JSON.stringify(st));
+    await p9.locator('#readCtrlBtn').click(); await p9.waitForSelector('.sheet.show [data-rcl="smart"]');
+    await p9.locator('.sheet.show [data-rcl="smart"]').click(); await p9.waitForTimeout(200);
+    const r1 = await p9.evaluate(() => ({ layer: state.layer, barOn: document.querySelector('.controls .seg [data-layer="smart"]').classList.contains('on'), sheetOn: document.querySelector('.sheet.show [data-rcl="smart"]').classList.contains('on') }));
+    if (r1.layer !== 'smart' || !r1.barOn || !r1.sheetOn) throw new Error('the sheet did not drive the bar: ' + JSON.stringify(r1));
+    await p9.locator('.sheet.show [data-rcl="full"]').click(); await p9.waitForTimeout(150);
+    await p9.locator('.sheet.show [data-rct="ulToggle"]').click(); await p9.waitForTimeout(150);
+    const r2 = await p9.evaluate(() => ({ layer: state.layer, ul: state.underlines, cls: storyEl.classList.contains('underlines') }));
+    if (r2.layer !== 'full' || r2.ul !== r2.cls) throw new Error('toggle through the sheet: ' + JSON.stringify(r2));
+    await p9.locator('.sheet.show [data-rct="ulToggle"]').click(); await p9.waitForTimeout(150);
+    await ctx.close();
+    const desk = await page.evaluate(() => { const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); }; return { speed: vis('speedSeg') || document.body.classList.contains('lib-mode'), aa: vis('readCtrlBtn') }; });
+    if (desk.aa) throw new Error('the Aa bar button must not show on the desktop');
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };

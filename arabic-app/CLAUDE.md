@@ -9046,7 +9046,10 @@ real CPU, almost all of it parsing the inline data block; the SPLIT page that th
 ship paints in 2.6–3.0 s under ×4 — the split is the startup optimisation, and the gate measures the repository reader
 only because that is the file the suite opens); the games hub was already lazy (wave 32p paints the supply counts after the hub shows), so
 nothing else was on the startup path. Capacitor's packages are devDependencies with a lockfile, so `npm ci` on the
-runner and `npm install` here resolve the same tree. Not yet: the hardware back button (Capacitor's default closes the
+runner and `npm install` here resolve the same tree. **The workflow has built the app**: the first on-demand run (25 Oct 2026, commit fe20b3f, build 242) produced the
+`qissa-android` artifact — the debug APK and the unsigned release APK/AAB, 33.9 MB zipped — in two minutes on a GitHub
+runner, after two workflow-only fixes the first attempts taught: a step's `if` cannot read `secrets` (map the secret
+to a job-level env var and test that), and the Capacitor 8 CLI refuses Node 20 (the job sets up Node 22). Not yet: the hardware back button (Capacitor's default closes the
 app from the top view — a sheet-aware handler needs the App plugin), Play's listing assets and the data-safety form
 (APP_STORE_STRATEGY §2.6), and the signed first build, which waits on the owner's keystore.
 
@@ -9077,7 +9080,22 @@ device's own voices (and that routing belongs to the device); no permission beyo
 permission. `research/PLAY_LISTING.md` holds the listing copy in both languages, the data-safety and content-rating
 answers, and the owner's four blockers (account and closed test, keystore secrets and one workflow run, the Qiṣaṣ
 licence, the public privacy URL). The wording «machine-parsed, under scholarly review» is deliberate and stays until a
-reviewer is named in the manifests (APP_STORE_STRATEGY §5). COVERAGE row 34 closes
+reviewer is named in the manifests (APP_STORE_STRATEGY §5).
+
+**Wave 72 — DESIGN: on a phone the text comes first, and the gate is a pixel.** Screenshots at 390×844 showed the
+story page spending 514px — more than half the screen — on chrome before its first sentence: the slogan, the title,
+five chips, then SEVEN rows of controls (ḍabṭ layer, Levels, EN/TR, theme, mode, Listen, speed, A−/A+, 🎨, [هُوَ]);
+the front door put its first card at 411px. The fix is not a new layout but a rule about who holds what: below 860px
+the sticky bar keeps the reading mode, Listen and ONE «Aa» button, and every other reading control moves into the
+reading sheet that already existed for size and tint — the layer segment, the level underlines, the speed, the role
+colours, the estimated pronouns. The sheet owns no logic: each of its buttons CLICKS the bar's own (hidden) control
+and redraws, so a control is implemented exactly once — the tabbar doctrine again. The story header drops the slogan
+(it belongs to the front door), the mode segment speaks Arabic alone, the tabbar's Library tab replaces «← Library»,
+and the front door hides its one-line pitch and the two story-only toggles. Measured after: first sentence at 293px,
+first card at 335px, the bar one row of 49px. The smoke check runs a 390×844 context and GATES those two numbers
+(measurement + 45px), asserts which controls the bar shows and hides, drives the layer and the underlines through the
+sheet and reads them back off `state` and the bar, and asserts the desktop bar is untouched. A design claim that a
+browser can measure is gated like an engine claim; the number is the design. COVERAGE row 34 closes
 with it, and two stale rows were truthed in the same pass: the Talkhīṣ (row 4) has been complete to its khātima since
 v178 and the Iẓhār matn (row 38) since v214 — a coverage table is a claim about the shelf and must be re-read when the
 shelf changes, not only when a file does.

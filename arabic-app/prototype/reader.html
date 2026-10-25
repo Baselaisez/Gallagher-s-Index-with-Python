@@ -1417,10 +1417,38 @@
     background: var(--accent); color: var(--accent-ink);
     font-size: .6rem; font-weight: 700; line-height: 16px; text-align: center;
   }
+  #readCtrlBtn { display: none; }   /* phone only — above 860px the bar carries every control itself */
+  .rc-group.rc-toggles { display: flex; flex-wrap: wrap; gap: var(--s2); }
+  .rc-group.rc-toggles .tbtn[lang="ar"] { font-family: var(--ar-font); }
   @media (max-width: 860px) {
     .tabbar { display: grid; }
     /* the toolbar keeps the READING controls and gives up the destinations */
     #statsOpen, #searchOpen, #refOpen, #conjOpen, #gamesOpen, #deckOpen { display: none; }
+    /* design wave 72 — the phone shows the TEXT first. The sticky bar keeps ← Library, the reading mode, Listen and
+       one «Aa»; every other reading control lives in the reading sheet, whose buttons click the bar's hidden
+       controls (one implementation each). The front door hides the two story-only toggles. Measured on 390×844:
+       the first sentence came down from 514px to the first screen's upper half, the first card from 411px. */
+    body:not(.lib-mode) .controls [aria-label="Tashkeel"], body:not(.lib-mode) #ulToggle, body:not(.lib-mode) #uiLangSeg,
+    body:not(.lib-mode) #themeToggle, body:not(.lib-mode) #speedSeg, body:not(.lib-mode) #fontMinus,
+    body:not(.lib-mode) #fontPlus, body:not(.lib-mode) #roleToggle, body:not(.lib-mode) #taqdirToggle,
+    body:not(.lib-mode) #streakChip { display: none !important; }
+    .lib-mode #roleToggle, .lib-mode #taqdirToggle { display: none !important; }
+    #readCtrlBtn { display: inline-flex; }
+    /* the tabbar's Library tab already goes back; the mode segment speaks Arabic alone; the header's Aa chip is the bar's */
+    body:not(.lib-mode) #backLib, body:not(.lib-mode) #modeSeg .m-en, body:not(.lib-mode) #readCtrlChip { display: none !important; }
+    nav.controls { padding: .45rem 0; gap: .4rem; }
+    header.app { padding: .8rem 0 .6rem; }
+    body:not(.lib-mode) .eyebrow { display: none; }
+    h1.story-title { font-size: 1.7rem; margin-top: .15rem; line-height: 1.35; }
+    .story-sub { font-size: .84rem; }
+    .meta-row { gap: .35rem; margin-top: .5rem; }
+    .lib-mode .story-sub { display: none; }   /* the front door's one-line pitch is for a wide screen; the phone shows the shelf */
+    .stat-strip { margin: var(--s2) 0 var(--s3); }
+    .st-tile { padding: var(--s2) var(--s1); min-height: 0; gap: 2px; }
+    .st-tile .st-n { font-size: var(--t-lg); }
+    .lib-card { padding: var(--s3); margin: var(--s2) 0; }
+    .lib-card .t { font-size: 1.35rem; }
+    .lib-card .cover { height: 34px; margin-bottom: .35rem; }
     body { padding-bottom: calc(var(--s7) + var(--s5)); }
     /* The thumb bar is FIXED over everything, and a sheet is fixed at bottom:0
        too — so the sheet's last row ends up underneath it, and no amount of
@@ -2294,6 +2322,7 @@
       <button data-mode="hard"><span class="m-ar" lang="ar">صَعْب</span><span class="m-en"></span></button>
     </div>
     <button class="tbtn reader-only" id="playAll" aria-pressed="false">▶ Listen</button>
+    <button class="tbtn reader-only" id="readCtrlBtn" aria-label="Reading options">Aa</button>
     <div class="seg reader-only" role="group" aria-label="Playback speed" id="speedSeg">
       <button data-rate="0.75" style="font-family:var(--ui-font);font-size:.72rem">0.75×</button>
       <button data-rate="1" class="on" style="font-family:var(--ui-font);font-size:.72rem">1×</button>
@@ -2475,6 +2504,7 @@ const L = {
         readCtrlTitle:"Reading", readCtrlSize:"Arabic size",
         readCtrlTheme:"Page tint", rtAuto:"Auto", rtSepia:"Sepia", rtNight:"Night",
         readCtrlHint:"These apply to the reading column only — the app theme stays yours.",
+        readCtrlLayer:"Vowel marks", readCtrlSpeed:"Listening speed", readCtrlLevels:"Level underlines", readCtrlPaint:"Role colours", readCtrlTaqdir:"Estimated pronouns",
         laJinsFrame:"La of the genus", laJinsIsm:"its ism (mabni on fath)",
         laJinsKh:"its khabar",
         roughLbl:"Rough gloss:",
@@ -2831,6 +2861,7 @@ const L = {
         readCtrlTitle:"Okuma", readCtrlSize:"Arapça boyutu",
         readCtrlTheme:"Sayfa rengi", rtAuto:"Otomatik", rtSepia:"Sepya", rtNight:"Gece",
         readCtrlHint:"Yalnız okuma sütununa uygulanır — uygulama teması sizde kalır.",
+        readCtrlLayer:"Harekeler", readCtrlSpeed:"Dinleme hızı", readCtrlLevels:"Seviye çizgileri", readCtrlPaint:"Rol renkleri", readCtrlTaqdir:"Takdîrî zamirler",
         laJinsFrame:"Cins lâ'sı", laJinsIsm:"ismi (fetha üzere mebnî)",
         laJinsKh:"haberi",
         roughLbl:"Kaba çeviri:",
@@ -4017,8 +4048,26 @@ function openReadCtrls(){
           <button data-rt="sepia" class="${state.readTheme === "sepia" ? "on" : ""}">${U.rtSepia}</button>
           <button data-rt="night" class="${state.readTheme === "night" ? "on" : ""}">${U.rtNight}</button>
         </div></div>
+      <div class="rc-group"><span class="ls-lbl">${U.readCtrlLayer}</span>
+        <div class="seg" role="group" aria-label="${escapeAttr(U.readCtrlLayer)}">${["full", "smart", "bare"].map(k =>
+          `<button data-rcl="${k}" class="${state.layer === k ? "on" : ""}" lang="ar">${{ full: "كَامِل", smart: "ذكي", bare: "بدون" }[k]}</button>`).join("")}</div></div>
+      <div class="rc-group"><span class="ls-lbl">${U.readCtrlSpeed}</span>
+        <div class="seg" role="group" aria-label="${escapeAttr(U.readCtrlSpeed)}">${["0.75", "1", "1.25"].map(r =>
+          `<button data-rcr="${r}" class="${String(state.rate || 1) === r ? "on" : ""}" style="font-family:var(--ui-font);font-size:.76rem">${r}×</button>`).join("")}</div></div>
+      <div class="rc-group rc-toggles">
+        <button class="tbtn${state.underlines ? " on" : ""}" data-rct="ulToggle">${U.readCtrlLevels}</button>
+        <button class="tbtn${state.roles ? " on" : ""}" data-rct="roleToggle">🎨 ${U.readCtrlPaint}</button>
+        <button class="tbtn${state.taqdir ? " on" : ""}" data-rct="taqdirToggle"><span lang="ar">[هُوَ]</span> ${U.readCtrlTaqdir}</button>
+      </div>
       <p class="ref-intro">${U.readCtrlHint}</p>
       <p class="ar-sample" lang="ar" dir="rtl" style="font-size:${state.arSize}rem">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</p>`;
+    // wave 72: the sheet owns no logic — each control clicks the bar's own button and redraws
+    sheetInner.querySelectorAll("[data-rcl]").forEach(b =>
+      b.addEventListener("click", () => { const t = document.querySelector(`.controls .seg [data-layer="${b.dataset.rcl}"]`); if (t) t.click(); draw(); }));
+    sheetInner.querySelectorAll("[data-rcr]").forEach(b =>
+      b.addEventListener("click", () => { const t = document.querySelector(`#speedSeg [data-rate="${b.dataset.rcr}"]`); if (t) t.click(); draw(); }));
+    sheetInner.querySelectorAll("[data-rct]").forEach(b =>
+      b.addEventListener("click", () => { const t = document.getElementById(b.dataset.rct); if (t) t.click(); draw(); }));
     sheetInner.querySelectorAll("[data-ars]").forEach(b =>
       b.addEventListener("click", () => { setArSizeStep(parseInt(b.dataset.ars, 10)); draw(); }));
     sheetInner.querySelectorAll("[data-rt]").forEach(b =>
@@ -32188,6 +32237,7 @@ document.getElementById("roleToggle").addEventListener("click", () => {
   updateRoleMode();
 });
 updateRoleMode();
+document.getElementById("readCtrlBtn").addEventListener("click", openReadCtrls);   // wave 72: the phone bar's one door to the reading controls
 document.getElementById("taqdirToggle").addEventListener("click", () => {
   state.taqdir = !state.taqdir;
   localStorage.setItem("qissa-taqdir", state.taqdir ? "1" : "0");
