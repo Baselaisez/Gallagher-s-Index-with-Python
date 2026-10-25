@@ -17,7 +17,7 @@ jobs:
           python-version: '3.x'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'   # the Capacitor 8 CLI refuses to run below Node 22
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
