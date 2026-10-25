@@ -9022,6 +9022,66 @@ word of the corpus at the pause and holds a floor (≥ 97 % built; the refusals 
 of the five common rules to have fired on real text — a rule the corpus never reaches is a table entry pretending to be
 coverage, the same test every engine here passes. COVERAGE row 33 (Qaṭr al-Nadā) closes with it.
 
+**Wave 69 — the Android shell is in the repository, and the APK is one command away.** `android/` is the committed
+Capacitor 8 project (`capacitor.config.json` at the app root: appId `app.qissa.reader`, webDir `dist/android-www`,
+`androidScheme: https`); `tools/build_android.py` splits the reader exactly as the hosted copy is split (pubsplit:
+a 3.5 MB page + three data files, so the WebView parses a page and streams the data), copies the PWA shell beside it,
+stamps the build number and runs `cap sync`. Four decisions, each with a reason: (1) **the build number IS the
+service-worker cache number** (`qissa-v240` → versionCode 240 / versionName 0.240) — release.py already bumps it on
+every shippable build, so an APK is traceable to the exact reader it carries and nothing can mint two version codes
+for one reader; (2) **no service worker inside the shell** — the files are on the device, a cache over the local
+scheme would only add a stale copy; the reader defines `NATIVE_SHELL` from the Capacitor bridge (injected before any
+page script) and skips registration when it is set, and the smoke suite pins the flag false in a browser; (3) **the
+key never enters git** — `app/build.gradle` reads `android/keystore.properties` when it exists and builds unsigned
+when it does not (the debug APK installs anywhere; Play needs the signed AAB), the keytool and gradle commands are in
+the tool's docstring; (4) **the SDK is not in this container and need not be** — `.github/workflows/qissa-android.yml`
+builds the APK and the AAB on `workflow_dispatch` ONLY (an APK is an artefact, not a check; the owner asked that CI
+stay cheap) on a GitHub runner, which has the SDK, signing when the three keystore secrets are set. The launcher
+icons come from the same `make_icons.js` drawing (`--android <res dir>`: five densities, the adaptive foreground on
+transparent with the glyph inside the safe 66 %), the splash is a colour resource (the template's logo images are
+deleted), and the status bar is light over the cream. The startup gate measures what a phone will feel: a fresh
+profile on a ×4-throttled CPU must paint the library within the budget (`STARTUP_MS` in the suite, set at twice the
+slowest measured run: the self-contained 32 MB page paints its 22 cards in 7.9–8.4 s under ×4, i.e. about 2 s on the
+real CPU, almost all of it parsing the inline data block; the SPLIT page that the shell and the hosted copy actually
+ship paints in 2.6–3.0 s under ×4 — the split is the startup optimisation, and the gate measures the repository reader
+only because that is the file the suite opens); the games hub was already lazy (wave 32p paints the supply counts after the hub shows), so
+nothing else was on the startup path. Capacitor's packages are devDependencies with a lockfile, so `npm ci` on the
+runner and `npm install` here resolve the same tree. Not yet: the hardware back button (Capacitor's default closes the
+app from the top view — a sheet-aware handler needs the App plugin), Play's listing assets and the data-safety form
+(APP_STORE_STRATEGY §2.6), and the signed first build, which waits on the owner's keystore.
+
+**Wave 70 — bāb 2 of Qawāʿid al-Iʿrāb is finished, and the finish was three small rules, not a new engine.**
+`TaalluqEngine` already knew the doctrine's spine (every jarr phrase hangs on a verb or a verb's meaning; the nearest
+governor; the four that hang on nothing; laghw against mustaqarr; the lām of ibtidāʾ). What the page still said and the
+engine did not: a phrase whose governor is omitted is not merely «attached to kāʾin» — it SITS somewhere, and the books
+name the seat from the neighbours exactly as they name a sentence's: after a nakira it is a ṣifa, after a maʿrifa that
+already has its predicate a ḥāl, after the bare mubtada the khabar, and fronted at the head a khabar muqaddam with its
+mubtada behind it; after a negation or a question the phrase may raise the noun after it as a fāʿil (مَا فِي الدَّارِ
+أَحَدٌ). `seatOf` reads all of that off definiteness (`defOf`: the article behind a clitic or with its alif swallowed,
+an attached pronoun, a proper name; a tanwīn) and position, and the kernel prints it after the estimated governor.
+Two guards: the primary answer NEVER moves — after an indefinite noun a found governor keeps its claim and the ṣifa
+reading is OFFERED beside it (the measured 48 % on the corpus's hand-written attachments is the gate, and it is
+untouched by construction); and the kāf of tashbīh carries Ibn Hishām's report that on one view it attaches to nothing,
+shown as a view and not as a verdict. `of()` is now a wrapper that dresses `_of()`'s answer, so every caller (the
+kernel, the ghost layer, the Jumla lab, the smoke gate) sees the seat without being changed. Two things the pins
+caught on landing, both the same lesson — a rule written from one sentence inherits that sentence's shape: the noun at
+the HEAD of a sentence is the mubtada whatever it wears (زَيْدٌ carries a tanwīn and the surface cannot tell a name from a
+nakira, so «ṣifa after a nakira» must yield to «the head is the mubtada»), and the delayed mubtada of a fronted phrase
+is sought PAST the phrase's own majrūr (فِي الدَّارِ رَجُلٌ — the first noun after فِي is the one فِي governs).
+
+**Wave 71 — the store groundwork is written, and it claims only what the build does.** `prototype/privacy.html` (EN/TR,
+one static page, served beside the reader and packaged into the APK) states the whole data story in the app's own
+terms: no account, no server, no analytics; the `qissa-*` localStorage keys are the only state and clearing them is the
+deletion; the Android app makes no request of its own, the web app is fetched once and cached; read-aloud is the
+device's own voices (and that routing belongs to the device); no permission beyond the container's default internet
+permission. `research/PLAY_LISTING.md` holds the listing copy in both languages, the data-safety and content-rating
+answers, and the owner's four blockers (account and closed test, keystore secrets and one workflow run, the Qiṣaṣ
+licence, the public privacy URL). The wording «machine-parsed, under scholarly review» is deliberate and stays until a
+reviewer is named in the manifests (APP_STORE_STRATEGY §5). COVERAGE row 34 closes
+with it, and two stale rows were truthed in the same pass: the Talkhīṣ (row 4) has been complete to its khātima since
+v178 and the Iẓhār matn (row 38) since v214 — a coverage table is a claim about the shelf and must be re-read when the
+shelf changes, not only when a file does.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:

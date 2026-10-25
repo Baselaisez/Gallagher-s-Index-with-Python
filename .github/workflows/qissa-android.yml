@@ -1,0 +1,53 @@
+name: Qissa Android
+
+# On demand only — an APK is a release artefact, not a check, and the owner asked that CI stay cheap.
+on:
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Install Capacitor
+        run: |
+          cd arabic-app
+          npm ci
+      - name: Build the web assets and sync the Android project
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          cd arabic-app
+          python tools/build_android.py
+      # The keystore is the owner's. With the three secrets set, the AAB and the release APK are signed and
+      # Play-ready; without them the job still produces the debug APK, which installs on any phone.
+      - name: Write the keystore (if the secrets exist)
+        if: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+        run: |
+          cd arabic-app/android
+          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > qissa-release.jks
+          printf 'storeFile=../qissa-release.jks\nstorePassword=%s\nkeyAlias=qissa\nkeyPassword=%s\n' \
+            "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" "${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
+      - name: Gradle build
+        run: |
+          cd arabic-app/android
+          chmod +x gradlew
+          ./gradlew assembleDebug bundleRelease assembleRelease --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qissa-android
+          path: |
+            arabic-app/android/app/build/outputs/apk/debug/*.apk
+            arabic-app/android/app/build/outputs/apk/release/*.apk
+            arabic-app/android/app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error

@@ -11025,9 +11025,11 @@ class SentenceAnalyzer {
           tr: `«${t.word}»ya TAALLUK eder — ${t.lbl.tr}. Taallukta en yakın âmil evlâdır; geriye uzanmaz, ona asılır. ${t.state.ar} — ${t.state.tr}.`,
           ml: t.how === "model" });
         else if (t.kind === "mahdhuf") r.notes.push({
-          en: `${t.text.en} ${t.state.ar} — ${t.state.en}.`,
-          tr: `${t.text.tr} ${t.state.ar} — ${t.state.tr}.` });
+          en: `${t.text.en} ${t.state.ar} — ${t.state.en}.` + (t.seat ? ` ${t.seat.ar} — ${t.seat.en}.` : "") + (t.fail ? ` ${t.fail.ar} — ${t.fail.en}.` : ""),
+          tr: `${t.text.tr} ${t.state.ar} — ${t.state.tr}.` + (t.seat ? ` ${t.seat.ar} — ${t.seat.tr}.` : "") + (t.fail ? ` ${t.fail.ar} — ${t.fail.tr}.` : "") });
         else r.notes.push({ en: t.text.en, tr: t.text.tr });
+        if (t.alt) r.notes.push({ en: `Or, the books allow: ${t.alt.ar} — ${t.alt.en}; the nearest governor keeps the first claim.`, tr: `Yahut, kitapların cevazıyla: ${t.alt.ar} — ${t.alt.tr}; ilk hak en yakın âmilindir.` });
+        if (t.remark) r.notes.push({ en: `${t.remark.ar} — ${t.remark.en}.`, tr: `${t.remark.ar} — ${t.remark.tr}.` });
       });
     } catch (e) {}
 
@@ -24850,8 +24852,70 @@ class TaalluqEngine {
                tr: "«rubbe», bir görüşe göre taalluk etmez" };
     return null;
   }
-  // The answer for the jarr-majrur (or zarf) at index i.
+  // Definiteness off the SURFACE alone: the article (behind a clitic or with its alif swallowed), an attached
+  // pronoun, a proper name → definite; a tanwīn → indefinite; anything else is unknown and the seat stays unnamed.
+  static defOf(row){
+    if (!row) return null;
+    if (row.alam) return "def";
+    const w = (row.w || "").normalize("NFC"), f = this.flatOf(row.w);
+    if (/^(ال|[وفبكل]ال|لل)/.test(f) && f.length > 3) return "def";
+    if (row.seg && row.seg.length > 1 && /^(ه|ها|هم|هما|هن|ك|كم|كما|كن|ي|نا)$/.test(this.flatOf(row.seg[row.seg.length - 1]))) return "def";
+    if (/[ًٌٍ]/.test(w)) return "indef";
+    return null;
+  }
+  static SEAT_LBL = {
+    khabar:   { ar: "فِي مَحَلِّ رَفْعٍ خَبَرٌ", en: "the phrase fills the KHABAR's seat (its omitted amil is the predicate)", tr: "terkîb HABER yerindedir (mahzûf âmili yüklemdir)" },
+    muqaddam: { ar: "خَبَرٌ مُقَدَّمٌ، وَمَا بَعْدَهُ مُبْتَدَأٌ مُؤَخَّرٌ", en: "a FRONTED khabar — the noun after it is the mubtada, put back behind its predicate", tr: "ÖNE ALINMIŞ haber — ardındaki isim, yükleminin arkasına bırakılmış mübtedâdır" },
+    sifa:     { ar: "فِي مَحَلِّ جَرٍّ صِفَةٌ لِلنَّكِرَةِ قَبْلَهُ", en: "after an INDEFINITE noun the phrase is its ṢIFA — as a sentence after a nakira is", tr: "NEKREden sonra terkîb onun SIFATIdır — nekreden sonraki cümle nasıl sıfatsa" },
+    hal:      { ar: "فِي مَحَلِّ نَصْبٍ حَالٌ مِنَ الْمَعْرِفَةِ قَبْلَهُ", en: "after a DEFINITE noun that already has its predicate the phrase is a ḤĀL — as a sentence after a maʿrifa is", tr: "Yüklemi tamam bir MARİFEden sonra terkîb HÂLdir — marifeden sonraki cümle nasıl hâlse" },
+  };
+  static FAIL_LBL = { ar: "وَبَعْدَ النَّفْيِ أَوِ الِاسْتِفْهَامِ يَجُوزُ أَنْ يَرْفَعَ الظَّرْفُ الْفَاعِلَ: مَا فِي الدَّارِ أَحَدٌ",
+    en: "and after a negation or a question the phrase may itself RAISE the noun after it as a fāʿil (jāʾiz — «mā fī d-dāri aḥadun»)",
+    tr: "ve nefiy yahut istifhamdan sonra terkîb, ardındaki ismi FÂİL olarak ref edebilir (câiz — «mâ fi'd-dâri ehadün»)" };
+  static KAF_LBL = { ar: "كَافُ التَّشْبِيهِ لَا تَتَعَلَّقُ عِنْدَ بَعْضِهِمْ", en: "the kāf of tashbīh — on one view Ibn Hishām reports, it attaches to nothing at all; on the other it hangs like any letter, so both are shown",
+    tr: "teşbih kâfı — İbn Hişâm'ın naklettiği bir görüşe göre hiçbir şeye taalluk etmez; diğerine göre her harf gibi asılır; ikisi de gösterilir" };
+  // The SEAT an omitted-governor phrase fills, read off the neighbours (bāb 2: «after a maʿrifa or a nakira the jarr
+  // phrase, like a sentence, carries the ṣifa / ḥāl possibility»; a fronted phrase is the khabar muqaddam).
+  static seatOf(rows, i){
+    const skip = r => r && (this.flatOf(r.w) === "" || /^(و|ف|ما|لا|هل|أ|ليس|ان|إن|أن|كان)$/.test(this.flatOf(r.w)));
+    let j = i - 1; while (j >= 0 && skip(rows[j])) j--;
+    // the noun AFTER the phrase — past the phrase's own majrūr when the letter stands alone (فِي الدَّارِ رَجُلٌ: the
+    // candidate mubtada is رَجُلٌ, not the الدَّارِ the letter governs)
+    const after = rows.slice(this.JARR.has(this.flatOf(rows[i].w)) ? i + 2 : i + 1).find(r => (r.kind || "").startsWith("noun"));
+    const negQ = rows.slice(0, i).some(r => /^(ما|لا|ليس|لم|لن|هل|أ)$/.test(this.flatOf(r.w)));
+    if (j < 0) {
+      if (after && /[ٌ]/.test((after.w || "").normalize("NFC"))) return { key: "muqaddam", lbl: this.SEAT_LBL.muqaddam, fail: negQ ? this.FAIL_LBL : null };
+      return null;
+    }
+    const prev = rows[j], d = this.defOf(prev);
+    if (!(prev.kind || "").startsWith("noun")) return null;
+    // the noun at the HEAD of the sentence is the mubtada whatever its dress (زَيْدٌ فِي الدَّارِ — a proper name wears
+    // a tanwīn and the surface cannot tell it from a nakira), so the phrase after it is the khabar, never its ṣifa
+    if (rows.slice(0, j).every(skip)) return { key: "khabar", lbl: this.SEAT_LBL.khabar };
+    if (d === "indef") return { key: "sifa", lbl: this.SEAT_LBL.sifa };
+    if (d === "def") {
+      const hasPred = rows.slice(0, j).some(r => (r.kind || "").startsWith("noun") || (r.kind || "").startsWith("verb"));
+      return hasPred ? { key: "hal", lbl: this.SEAT_LBL.hal } : { key: "khabar", lbl: this.SEAT_LBL.khabar };
+    }
+    return null;
+  }
+  // The answer for the jarr-majrur (or zarf) at index i, dressed with bāb 2's seat, alternative and remark.
   static of(rows, i){
+    const t = this._of(rows, i);
+    if (!t) return t;
+    try {
+      const row = rows[i], f = this.flatOf(row.w);
+      if (t.kind === "mahdhuf") { const seat = this.seatOf(rows, i); if (seat) { t.seat = seat.lbl; t.seatKey = seat.key; if (seat.fail) t.fail = seat.fail; } }
+      else if (t.kind === "found") {
+        let j = i - 1; while (j >= 0 && this.flatOf(rows[j].w) === "") j--;
+        if (j >= 0 && j !== t.at && (rows[j].kind || "").startsWith("noun") && this.defOf(rows[j]) === "indef") t.alt = this.SEAT_LBL.sifa;
+      }
+      const kaf = f === "ك" || (/^ك/.test(f) && f.length > 3 && !(row.lemma && /^ك/.test(this.flatOf(row.lemma))) && !row.alam && (row.seg && row.seg.length > 1 && this.flatOf(row.seg[0]) === "ك" || /^كال/.test(f)));
+      if (kaf && t.kind !== "exempt") t.remark = this.KAF_LBL;
+    } catch (e) {}
+    return t;
+  }
+  static _of(rows, i){
     const row = rows[i];
     if (!row) return null;
     // A resolved VERB is no jarr phrase: لِيَحْضُرْ opens on لَامُ الْأَمْرِ, and
@@ -32201,7 +32265,11 @@ if (pruneDeck()) persistDeck(); else updateDeckCount();
 // Only over http(s): a service worker cannot register from file:// or inside a
 // sandboxed frame, and neither should throw. Everything below is additive — the
 // app is one self-contained file and works with none of it.
-if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+// Inside the Android shell (wave 69) the bridge object is injected before any page script runs; the files are
+// already on the device, so the service worker is skipped — a cache over a local scheme adds a stale copy and
+// nothing else. NATIVE_SHELL is read by the chrome (no install hints) and by nothing that changes the content.
+const NATIVE_SHELL = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === "function" && window.Capacitor.isNativePlatform());
+if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !NATIVE_SHELL) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   });

@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tools/smoke_test.js",
+    "android": "python3 tools/build_android.py"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,10 @@
   "type": "commonjs",
   "dependencies": {
     "playwright-core": "^1.61.1"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3"
   }
 }

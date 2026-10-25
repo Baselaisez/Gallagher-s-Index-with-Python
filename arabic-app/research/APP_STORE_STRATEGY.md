@@ -66,6 +66,6 @@ Measured claims to put on the listing once reviewed: the number of parsed words,
 
 ## 7. What the next wave does (actionable now)
 
-- Wave 61: `tools/build_android.py` + the committed `android/` Capacitor project + the startup gate + the lazy games hub; produce the first signed APK/AAB from a local keystore (the owner creates the keystore; the tool documents the three commands).
+- ~~Wave 61~~ **DONE in wave 69 (v220)**: `tools/build_android.py`, the committed `android/` Capacitor 8 project, the startup gate (×4 CPU, fresh profile) and the on-demand `qissa-android.yml` workflow that builds the debug APK and, with the keystore secrets, the signed AAB/APK. The lazy hub had already landed (wave 32p). Still the owner's: the keystore (three commands in the tool's docstring), the three repository secrets `ANDROID_KEYSTORE_B64` / `ANDROID_KEYSTORE_PASSWORD` / `ANDROID_KEY_PASSWORD`, then run the workflow once and sideload the debug APK.
 - Wave 62–65: the Kāfiya full matn, then the Nasafī creed, then Qaṭr al-Nadā — each with its engine round, sweep and gates as before.
 - In parallel (owner): Play developer account, the keystore, the privacy policy page (one static page on the GitHub Pages site), the decision on the Qiṣaṣ licence, and a shortlist of two scholars for the review.

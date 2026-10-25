@@ -11509,6 +11509,40 @@ if (!CHROME) {
     if (!r.sample) throw new Error('a round had fewer than three distinct wrong answers');
     if (!r.game) throw new Error('gWaqf is in the GameFactory catalogue');
   });
+
+  await check('wave 69 — the Android shell: NATIVE_SHELL is false in a browser, and a fresh profile on a ×4-throttled CPU paints the library within the startup budget', async () => {
+    const flag = await page.evaluate(() => typeof NATIVE_SHELL === "boolean" && NATIVE_SHELL === false);
+    if (!flag) throw new Error('NATIVE_SHELL must exist and be false outside the shell');
+    const STARTUP_MS = 17000;   // measured 7.9–8.4 s (×4 CPU, file://, the 32 MB self-contained page; the SPLIT page that ships paints in 2.6–3.0 s) — the budget is 2× the slowest run; see CLAUDE.md wave 69
+    const ctx = await browser.newContext();
+    await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));   // a returning reader: the first-run picker must not sit over the shelf
+    const p9 = await ctx.newPage();
+    const cdp = await ctx.newCDPSession(p9);
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    const t0 = Date.now();
+    await p9.goto(url);
+    await p9.waitForSelector('.lib-card', { timeout: 60000 });
+    const ms = Date.now() - t0;
+    const cards = await p9.$$eval('.lib-card', els => els.length);
+    await ctx.close();
+    console.log('      startup (×4 CPU, fresh profile): ' + ms + ' ms to ' + cards + ' library cards');
+    if (cards < 20) throw new Error('library painted ' + cards + ' cards');
+    if (ms > STARTUP_MS) throw new Error('startup took ' + ms + ' ms on a ×4-throttled CPU (budget ' + STARTUP_MS + ')');
+  });
+
+  await check('wave 70 — Qawāʿid al-Iʿrāb bāb 2 completed: an omitted-governor phrase names its SEAT (khabar / fronted khabar / ṣifa / ḥāl), raises a fāʿil after a negation, offers ṣifa beside a found governor after a nakira, and reports the kāf view', async () => {
+    const r = await page.evaluate(() => {
+      const T = (txt, i) => TaalluqEngine.of(SentenceAnalyzer.analyze(txt), i) || {};
+      const a = T('زَيْدٌ فِي الدَّارِ', 1), b = T('فِي الدَّارِ رَجُلٌ', 0), c = T('مَا فِي الدَّارِ أَحَدٌ', 1),
+            d = T('مَرَرْتُ بِرَجُلٍ فِي الدَّارِ', 2), e = T('جَاءَ زَيْدٌ كَالْأَسَدِ', 2), g = T('رَأَيْتُ الرَّجُلَ فِي الدَّارِ', 2);
+      return { a: [a.kind, a.seatKey], b: [b.kind, b.seatKey], c: [c.kind, c.seatKey, !!c.fail], d: [d.kind, !!d.alt, d.alt && d.alt.ar], e: [e.kind, !!e.remark], g: [g.kind, !!g.alt] };
+    });
+    const want = { a: ['mahdhuf', 'khabar'], b: ['mahdhuf', 'muqaddam'], c: ['mahdhuf', 'muqaddam', true] };
+    for (const k of Object.keys(want)) if (JSON.stringify(r[k]) !== JSON.stringify(want[k])) throw new Error(k + ': ' + JSON.stringify(r[k]) + ' want ' + JSON.stringify(want[k]));
+    if (r.d[0] !== 'found' || !r.d[1] || !/صِفَةٌ/.test(r.d[2])) throw new Error('after an indefinite noun the ṣifa reading must be offered beside the found governor: ' + JSON.stringify(r.d));
+    if (!r.e[1]) throw new Error('the kāf of tashbīh must carry its remark: ' + JSON.stringify(r.e));
+    if (r.g[1]) throw new Error('after a DEFINITE object no ṣifa alternative: ' + JSON.stringify(r.g));
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };
