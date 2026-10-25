@@ -7,6 +7,9 @@ on:
 jobs:
   apk:
     runs-on: ubuntu-latest
+    # a step's `if` cannot read `secrets` directly; the secret is mapped to an env var at the job level and tested there
+    env:
+      KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,10 +35,10 @@ jobs:
       # The keystore is the owner's. With the three secrets set, the AAB and the release APK are signed and
       # Play-ready; without them the job still produces the debug APK, which installs on any phone.
       - name: Write the keystore (if the secrets exist)
-        if: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+        if: ${{ env.KEYSTORE_B64 != '' }}
         run: |
           cd arabic-app/android
-          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > qissa-release.jks
+          echo "$KEYSTORE_B64" | base64 -d > qissa-release.jks
           printf 'storeFile=../qissa-release.jks\nstorePassword=%s\nkeyAlias=qissa\nkeyPassword=%s\n' \
             "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" "${{ secrets.ANDROID_KEY_PASSWORD }}" > keystore.properties
       - name: Gradle build
