@@ -5732,7 +5732,9 @@ if (!CHROME) {
     });
     const conjWords = 6;
     await page.locator('#conjOpen').click();
-    await page.waitForSelector('#jumlaOut .vrow', { timeout: 10000 });
+    // a COLD page trains the taggers and the IrabModel on this first analysis (43k tokens): when the chunked release
+    // happens to open its slice on this check, ten seconds is not enough — the layout is what is measured, not the warm-up
+    await page.waitForSelector('#jumlaOut .vrow', { timeout: 90000 });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.waitForTimeout(200);
     let r;
@@ -11553,6 +11555,9 @@ if (!CHROME) {
       return { top: Math.round(c.getBoundingClientRect().top), role: vis('roleToggle'), lang: vis('uiLangSeg') }; });
     if (lib.top > LIB_MAX) throw new Error('first library card at ' + lib.top + 'px on a phone (max ' + LIB_MAX + ')');
     if (lib.role || !lib.lang) throw new Error('front door on a phone: the role toggle must hide and the language segment stay: ' + JSON.stringify(lib));
+    const shelf = await p9.evaluate(() => ({ visible: [...document.querySelectorAll('.lib-card')].filter(c => c.getBoundingClientRect().top < 844).length, cover: !!document.querySelector('.lib-card .cover') && !!document.querySelector('.lib-card .cover').offsetParent, h: Math.round(document.querySelector('.lib-card').getBoundingClientRect().height) }));
+    if (shelf.visible < 3) throw new Error('wave 75: three cards should start inside the first phone screen, got ' + shelf.visible + ' (card ' + shelf.h + 'px)');
+    if (shelf.cover) throw new Error('wave 75: the arabesque strip must not render on a phone');
     await p9.locator('.lib-card').first().click(); await p9.waitForSelector('section.sentence'); await p9.waitForTimeout(300);
     const st = await p9.evaluate(() => { const s = document.querySelector('section.sentence'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
       return { top: Math.round(s.getBoundingClientRect().top), speed: vis('speedSeg'), ul: vis('ulToggle'), aa: vis('readCtrlBtn'), mode: vis('modeSeg'), play: vis('playAll'), eyebrow: !!document.getElementById('eyebrow').offsetParent }; });
@@ -11570,6 +11575,46 @@ if (!CHROME) {
     await ctx.close();
     const desk = await page.evaluate(() => { const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); }; return { speed: vis('speedSeg') || document.body.classList.contains('lib-mode'), aa: vis('readCtrlBtn') }; });
     if (desk.aa) throw new Error('the Aa bar button must not show on the desktop');
+  });
+
+  await check('wave 73 — the Android back key retreats one layer at a time: an open sheet closes, a story returns to the shelf, and only the shelf lets the app exit', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      openStory(STORIES[0]); openGames(); out.a = onNativeBack(); out.aSheet = sheet.classList.contains('show'); out.aLib = document.body.classList.contains('lib-mode');
+      out.b = onNativeBack(); out.bLib = document.body.classList.contains('lib-mode');
+      out.c = onNativeBack();
+      return out;
+    });
+    if (r.a !== 'sheet' || r.aSheet || r.aLib) throw new Error('first back with a sheet open: ' + JSON.stringify(r));
+    if (r.b !== 'library' || !r.bLib) throw new Error('second back inside a story: ' + JSON.stringify(r));
+    if (r.c !== 'exit') throw new Error('third back on the shelf: ' + JSON.stringify(r));
+  });
+
+  await check('wave 74 — the search sheet finds doctrine: a note by its Arabic title with or without vowels, a note by a Turkish word, a question by its English words; the note button opens the note and the question button opens the lab on that item', async () => {
+    const r = await page.evaluate(() => {
+      const ids = x => x.map(n => n.g.id);
+      return { inna: ids(DoctrineSearch.notes('إِنَّ')), innaBare: ids(DoctrineSearch.notes('ان')), tr: ids(DoctrineSearch.notes('mübteda')), qa: DoctrineSearch.qa('governor').length, qaTr: DoctrineSearch.qa('fâil').length, none: DoctrineSearch.notes('zzzzqq').length + DoctrineSearch.qa('zzzzqq').length };
+    });
+    if (!r.inna.length || !r.inna.some(id => /inna/.test(id))) throw new Error('إِنَّ should find an inna note: ' + r.inna.join(','));
+    if (!r.innaBare.length) throw new Error('an unvowelled ان should still find notes');
+    if (!r.tr.length) throw new Error('a Turkish term should find notes');
+    if (r.qa < 1 || r.qaTr < 1) throw new Error('questions: ' + r.qa + ' / ' + r.qaTr);
+    if (r.none) throw new Error('nonsense must find nothing');
+    await page.evaluate(() => openSearch('إِنَّ'));
+    await page.waitForSelector('.sheet.show .hit-note');
+    const nq = await page.evaluate(() => ({ n: document.querySelectorAll('.sheet.show .hit-note').length, q: document.querySelectorAll('.sheet.show .hit-qa').length }));
+    if (nq.n < 1 || nq.q < 1) throw new Error('sheet sections: ' + JSON.stringify(nq));
+    const noteId = await page.locator('.sheet.show .hit-note').first().getAttribute('data-note');
+    await page.locator('.sheet.show .hit-note').first().click(); await page.waitForTimeout(300);
+    const refOk = await page.evaluate(id => sheetInner.textContent.includes(GRAMMAR[id].title.ar) || sheetInner.textContent.includes(T(GRAMMAR[id].title)), noteId);
+    if (!refOk) throw new Error('the note button did not open the note ' + noteId);
+    await page.evaluate(() => openSearch('governor'));
+    await page.waitForSelector('.sheet.show .hit-qa');
+    const qaId = await page.locator('.sheet.show .hit-qa').first().getAttribute('data-qa');
+    await page.locator('.sheet.show .hit-qa').first().click(); await page.waitForTimeout(400);
+    const labOk = await page.evaluate(id => conjState.lab === 'sual' && !!document.querySelector('#sualOut details[open]') && document.querySelector('#sualOut details[open] .cat-save').dataset.qa === id, qaId);
+    if (!labOk) throw new Error('the question button did not open the lab on ' + qaId);
+    await page.evaluate(() => document.getElementById('scrim').click());
   });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {

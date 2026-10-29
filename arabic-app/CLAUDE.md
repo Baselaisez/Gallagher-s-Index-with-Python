@@ -9095,7 +9095,33 @@ and the front door hides its one-line pitch and the two story-only toggles. Meas
 first card at 335px, the bar one row of 49px. The smoke check runs a 390×844 context and GATES those two numbers
 (measurement + 45px), asserts which controls the bar shows and hides, drives the layer and the underlines through the
 sheet and reads them back off `state` and the bar, and asserts the desktop bar is untouched. A design claim that a
-browser can measure is gated like an engine claim; the number is the design. COVERAGE row 34 closes
+browser can measure is gated like an engine claim; the number is the design.
+
+**Wave 73 — the back key retreats one layer, and the store assets come from the running app.** Capacitor's default
+answers Android's back key by closing the app from any view. `onNativeBack()` is a pure decision — an open sheet
+closes, a story returns to the shelf, and only the shelf lets the app exit — so the suite tests it in a browser
+(sheet → library → exit, never an exit with a sheet open); the wiring to the App plugin (`@capacitor/app`, registered
+by `cap sync` into the committed gradle glue) runs only inside the shell. `tools/store_shots.js` renders the Play
+listing's screenshots from the live reader — six per language at 1080×1920 (a 360×640 viewport at 3×, the 9:16 Play
+wants: the shelf, a story, a word sheet, the tarkīb sheet, the games hub, the workshop) — and the 1024×500 feature
+graphic from the icon's own glyph and colours, into `research/store/`. Nothing is mocked: a screenshot that is not the
+app as it runs would be a claim the build does not make.
+
+**Wave 74 — the search sheet searches doctrine, and a hit is always explainable by the letters typed.** Corpus search
+found words; a learner who types «hal», «fâil» or «إِنَّ» wants the RULE. `DoctrineSearch` scores every grammar note
+(title ×3, the plain lede ×2, the explanation and the question test ×1) and every catechism item (question ×3, answer
+and the matn's words ×2) by term hits in all three languages, folded exactly as the corpus index folds — no vowels, one
+alif, ة→ه, ى→ي, Turkish dotless-i — so an unvowelled «ان» finds the inna notes and «mübteda» finds the mubtada ones. No
+model and no stemming on purpose: the shortlist must be defensible from the letters, the same bar the engines meet.
+The notes render below the corpus hits as buttons into `openRef`, the questions as buttons into the Sual-Cevap lab
+focused on that item (the bank, the item, the open `<details>`). The smoke check pins a vowelled and an unvowelled
+Arabic query, a Turkish one, an English one, a nonsense one (nothing), and walks both buttons to where they lead.
+
+**Wave 75 — DESIGN II: on a phone the shelf is a list.** After wave 72 the front door's first card sat at 335px, but
+each card still spent ~250 CSS px on an arabesque strip and a display-sized title band, so one and a half stories fit
+a screen. Below 480px the strip is gone and the band tightens (1.3rem type, body line-height, slim padding); the
+spine, the level tint, the chips and the progress bar stay. The wave-72 phone gate now also requires three cards to
+start inside the first screen and the strip not to render — the shelf's density is a number, like the chrome's. COVERAGE row 34 closes
 with it, and two stale rows were truthed in the same pass: the Talkhīṣ (row 4) has been complete to its khātima since
 v178 and the Iẓhār matn (row 38) since v214 — a coverage table is a claim about the shelf and must be re-read when the
 shelf changes, not only when a file does.

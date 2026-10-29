@@ -1449,6 +1449,16 @@
     .lib-card { padding: var(--s3); margin: var(--s2) 0; }
     .lib-card .t { font-size: 1.35rem; }
     .lib-card .cover { height: 34px; margin-bottom: .35rem; }
+  }
+  /* design wave 75 — on a phone the shelf is a list: no arabesque strip, a tight title band, so three cards fit the
+     first screen (measured: a card went from ~250 to ~150 CSS px at 390 wide). The spine, the tint, the chips and the
+     progress bar are untouched. */
+  @media (max-width: 480px) {
+    .lib-card .cover { display: none; }
+    .lib-card .t { font-size: 1.3rem; line-height: 1.55; padding: .5rem .5rem .4rem; margin: -.65rem -.65rem .4rem -.9rem; }
+    .lib-card .s { margin: .15rem 0 .3rem; font-size: .8rem; }
+    .lib-card .meta-row { margin-top: .25rem; }
+    .lib-card .progress { margin-top: var(--s2); }
     body { padding-bottom: calc(var(--s7) + var(--s5)); }
     /* The thumb bar is FIXED over everything, and a sheet is fixed at bottom:0
        too — so the sheet's last row ends up underneath it, and no amount of
@@ -2677,6 +2687,7 @@ const L = {
         searchBtn:"Search", searchTitle:"Search the corpus",
         searchPlaceholder:"Arabic, a root, or a meaning\u2026",
         searchHint:"Type two letters or more. Arabic matches with or without vowels; you can also search a root (\u0642 \u0648 \u0644) or an English or Turkish meaning.",
+        searchNotes:"Grammar notes", searchQa:"Questions from the books",
         searchNone:"Nothing in the stories matches that.",
         searchFound:"{n} occurrences of {w} words.",
         searchMore:"+{n} more",
@@ -3034,6 +3045,7 @@ const L = {
         searchBtn:"Ara", searchTitle:"Metinlerde ara",
         searchPlaceholder:"Arapça, bir kök yahut bir mana\u2026",
         searchHint:"En az iki harf yazın. Arapça harekeli ya da harekesiz eşleşir; kök (\u0642 \u0648 \u0644) veya İngilizce/Türkçe mana da arayabilirsiniz.",
+        searchNotes:"Gramer notları", searchQa:"Kitaplardan sorular",
         searchNone:"Hikâyelerde buna uyan bir şey yok.",
         searchFound:"{w} kelimede {n} geçiş.",
         searchMore:"+{n} tane daha",
@@ -13540,6 +13552,54 @@ function searchRank(r, q){
   if (lemma.includes(n) || bare.includes(n)) return 1;
   return 0;                                           // letters in passing only
 }
+// Wave 74 — the search over DOCTRINE. The corpus search finds words; a learner also types «hal», «fâil», «إِنَّ»
+// wanting the rule. Notes and questions are scored by term hits on their texts in all three languages (title and
+// question weigh most), folded the way the corpus index folds (no vowels, one alif, Turkish dotless-i) — no model,
+// no stemming, so a hit is always explainable by the letters the learner typed.
+class DoctrineSearch {
+  static fold(t){ return String(t || "").toLowerCase().normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/ı/g, "i").replace(/İ/g, "i").replace(/â/g, "a").replace(/î/g, "i").replace(/û/g, "u").replace(/[«»"'،؛.:!?؟()\[\]—–]/g, " "); }
+  static terms(q){ return this.fold(q).split(/\s+/).filter(w => w.length >= 2); }
+  static hits(terms, text, w){ const f = this.fold(text); let n = 0; terms.forEach(t => { if (f.includes(t)) n += w; }); return n; }
+  static notes(q, k){
+    const terms = this.terms(q); if (!terms.length) return [];
+    const out = [];
+    Object.entries(GRAMMAR).forEach(([gid, g]) => {   // the registry is keyed by id; the note object itself carries none
+      let sc = 0;
+      sc += this.hits(terms, (g.title || {}).ar, 3) + this.hits(terms, (g.title || {}).en, 3) + this.hits(terms, (g.title || {}).tr, 3);
+      sc += this.hits(terms, (g.plain || {}).en, 2) + this.hits(terms, (g.plain || {}).tr, 2);
+      sc += this.hits(terms, (g.explanation || {}).en, 1) + this.hits(terms, (g.explanation || {}).tr, 1);
+      if (g.question) sc += this.hits(terms, [].concat(g.question.tr || [], g.question.en || []).join(" "), 1);
+      if (sc > 0) out.push({ g: Object.assign({ id: gid }, g), sc });
+    });
+    return out.sort((a, b) => b.sc - a.sc).slice(0, k || 6);
+  }
+  static qa(q, k){
+    const terms = this.terms(q); if (!terms.length) return [];
+    const out = [];
+    CatechismEngine.items().forEach(it => {
+      let sc = this.hits(terms, T(it.q), 3) + this.hits(terms, T(it.a), 2) + this.hits(terms, (it.ar || []).join(" "), 2);
+      if (sc > 0) out.push({ it, sc });
+    });
+    return out.sort((a, b) => b.sc - a.sc).slice(0, k || 6);
+  }
+  static html(q){
+    const notes = this.notes(q), qa = this.qa(q);
+    let b = "";
+    if (notes.length) {
+      b += `<div class="hit-lex"><span class="hl-gl">${ui().searchNotes}</span><span class="hl-n">${notes.length}</span></div>`;
+      notes.forEach(({ g }) => { b += `<button class="hit hit-note" data-note="${escapeAttr(g.id)}"><div class="h-ar" lang="ar" dir="rtl">${(g.title || {}).ar || ""}</div><div class="h-src">${escapeAttr(T(g.title))} — ${escapeAttr(CatechismEngine.short(T(g.plain), 120))}</div></button>`; });
+    }
+    if (qa.length) {
+      b += `<div class="hit-lex"><span class="hl-gl">${ui().searchQa}</span><span class="hl-n">${qa.length}</span></div>`;
+      qa.forEach(({ it }) => { b += `<button class="hit hit-qa" data-qa="${escapeAttr(it.id)}" data-book="${escapeAttr(it.bank.book)}"><div class="h-src" style="font-weight:600;color:var(--ink)">${escapeAttr(T(it.q))}</div>${(it.ar || [])[0] ? `<div class="h-ar" lang="ar" dir="rtl">${(it.ar || [])[0]}</div>` : ""}<div class="h-src">${escapeAttr(T(it.bank.title))}</div></button>`; });
+    }
+    return b;
+  }
+  static bind(root){
+    root.querySelectorAll(".hit-note").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
+    root.querySelectorAll(".hit-qa").forEach(b => b.addEventListener("click", () => { conjState.lab = "sual"; conjState.sualBook = b.dataset.book; conjState.sualQ = ""; conjState.sualFocus = b.dataset.qa; openConjugator(); }));
+  }
+}
 function openSearch(q){
   if (q !== undefined) searchQuery = q;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
@@ -13583,6 +13643,7 @@ function openSearch(q){
           .replace("{n}", rows.length - 4)}</div>`;
     });
   }
+  if (searchQuery.trim().length >= 2) { try { body += DoctrineSearch.html(searchQuery); } catch (e) {} }   // wave 74
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${arSpan("بَحْث")} ${ui().searchTitle}</button></div>
     <div class="ref-search-row">
       <input type="search" id="corpusSearch" class="ref-search" autocomplete="off"
@@ -13598,8 +13659,9 @@ function openSearch(q){
     again.focus();
     try { again.setSelectionRange(at, at); } catch (e) {}
   });
-  sheetInner.querySelectorAll(".hit").forEach(b =>
+  sheetInner.querySelectorAll(".hit:not(.hit-note):not(.hit-qa)").forEach(b =>
     b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
+  DoctrineSearch.bind(sheetInner);
   showSheet();
   if (q !== undefined) input.focus();
 }
@@ -32319,6 +32381,20 @@ if (pruneDeck()) persistDeck(); else updateDeckCount();
 // already on the device, so the service worker is skipped — a cache over a local scheme adds a stale copy and
 // nothing else. NATIVE_SHELL is read by the chrome (no install hints) and by nothing that changes the content.
 const NATIVE_SHELL = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === "function" && window.Capacitor.isNativePlatform());
+// Wave 73 — the hardware back button. Capacitor's default closes the app from the top view; a reader expects the
+// back key to retreat one layer: the open sheet first, then the story (to the shelf), and only then the app.
+// The decision is a pure function so the suite can test it in a browser; only the wiring needs the App plugin.
+function onNativeBack(){
+  if (sheet && sheet.classList.contains("show")) { closeSheet(); return "sheet"; }
+  if (!document.body.classList.contains("lib-mode")) { renderLibrary(); window.scrollTo(0, 0); return "library"; }
+  return "exit";
+}
+if (NATIVE_SHELL) {
+  try {
+    const App = window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+    if (App && App.addListener) App.addListener("backButton", () => { if (onNativeBack() === "exit") App.exitApp(); });
+  } catch (e) {}
+}
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !NATIVE_SHELL) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").catch(() => {});

@@ -16,8 +16,8 @@ signs the manifests. Owner's items are marked **OWNER**.
 | Contact email | **OWNER** |
 | Default language | en-US; tr-TR listing translated below |
 | Icon | `prototype/icons/icon-512.png` (512 × 512, the same drawing as the launcher) |
-| Feature graphic | 1024 × 500 — **OWNER** or wave 72 (`make_icons.js` can render it from the same source) |
-| Screenshots | ≥ 2 phone (16:9 or 9:16), from the Android build: the library, a story page with a word sheet, the tarkīb sheet, the workshop, a game — wave 72 |
+| Feature graphic | `research/store/feature-graphic-{en,tr}.png` (1024 × 500, wave 73, `tools/store_shots.js`) |
+| Screenshots | `research/store/{en,tr}/01–06.png` (1080 × 1920, wave 73): the shelf, a story, a word sheet, the tarkīb sheet, the games hub, the workshop — rendered from the live reader by `tools/store_shots.js`; re-run after a design wave |
 
 ## Short description (80 chars)
 
