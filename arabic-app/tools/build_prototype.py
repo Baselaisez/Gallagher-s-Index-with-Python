@@ -154,6 +154,9 @@ def build_story(pkg: Path, irab_tr=None):
         "published": manifest.get("published", ""),
         "access": manifest.get("access", "free"),
         "review": manifest.get("attribution", {}).get("reviewStatus", ""),
+        # Wave 77: the provenance note ships to the reader (the «About this text» sheet) — what is received text,
+        # what is editorial, what is in copyright, what still awaits a scholar. Honesty is a feature of the page.
+        "about": {k: v for k, v in manifest.get("attribution", {}).items() if k in ("ar", "en", "tr") and isinstance(v, str) and v.strip()},
         "glossary": glossary,
         "morph": morph,
         "chapters": chapters,

@@ -9121,7 +9121,33 @@ Arabic query, a Turkish one, an English one, a nonsense one (nothing), and walks
 each card still spent ~250 CSS px on an arabesque strip and a display-sized title band, so one and a half stories fit
 a screen. Below 480px the strip is gone and the band tightens (1.3rem type, body line-height, slim padding); the
 spine, the level tint, the chips and the progress bar stay. The wave-72 phone gate now also requires three cards to
-start inside the first screen and the strip not to render — the shelf's density is a number, like the chrome's. COVERAGE row 34 closes
+start inside the first screen and the strip not to render — the shelf's density is a number, like the chrome's.
+
+**Wave 76 — backup and restore, without a server.** The app has no account and no sync (LAUNCH.md §7 says so); the
+honest answer that needs no server is the learner's state as ONE FILE. `Backup.exportJson()` is exactly the
+`qissa-*` keys of localStorage — nothing derived, nothing summarised — so a restore (`importText`) reproduces the
+device byte for byte: it refuses anything that is not a Qissa backup, clears the keys the backup does not carry (a
+restore is a replacement, not a merge — a merge of two FSRS schedules is a guess), writes the rest and reloads, because
+the boot code is the only reader of those keys and must stay so. Three buttons on the Progress page: save (download; in
+the shell the share sheet, where a WebView cannot download), copy (clipboard, with a prompt fallback), restore from
+file (after a confirm). The smoke check exports, strips a key, plants a stray one, restores, and reads the key back.
+
+**Wave 77 — every text says where its Arabic comes from, on the page.** The manifest's attribution is the one place a
+package states what its Arabic IS — received matn, restored, editorial bridge, Qur'anic quotation — which readings
+diverge from the transcription, what is in copyright and what awaits a scholar; it shipped nowhere but disk, and the
+suite read it off disk. The builder now forwards it as `about` (ar/en/tr, ~350 KB over 22 packages) and the story
+header carries an «About this text» chip that opens it in the reader's language with the Arabic below, under a
+review line that says in plain words what `reviewStatus` means. A gate holds that EVERY story ships a note — a
+package with no provenance would fail the build, which is the right failure. The honesty the project keeps in its
+manifests is now a feature a reader can open; the store text's «machine-parsed, under scholarly review» is the same
+sentence, on every text.
+
+**Wave 78 — the Arabic voice is chosen, not assumed.** `pickVoice()` took the first voice whose language began with
+«ar» and, finding none, let the default voice read Arabic letters as noise without a word. Now the reading sheet lists
+the device's Arabic voices (`arabicVoices()`), remembers the learner's pick in `qissa-voice` (a stray pick falls back
+to the first Arabic voice, never to silence), and with none installed says so and where Android keeps them; the first
+Listen without an Arabic voice says it once as a toast. Headless Chromium ships no voices, so the suite exercises the
+«none installed» branch on every run and the picker branch wherever a voice exists — both are gated. COVERAGE row 34 closes
 with it, and two stale rows were truthed in the same pass: the Talkhīṣ (row 4) has been complete to its khātima since
 v178 and the Iẓhār matn (row 38) since v214 — a coverage table is a claim about the shelf and must be re-read when the
 shelf changes, not only when a file does.

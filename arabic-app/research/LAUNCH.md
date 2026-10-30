@@ -1,4 +1,4 @@
-# Qissa — launch handover (v222, build 244)
+# Qissa — launch handover (v223, build 246)
 
 This is the owner's checklist for taking the app to consumers. Everything the project can do by itself is done and
 gated; the items marked **OWNER** need an account, a key or a signature only the owner has.
@@ -7,12 +7,12 @@ gated; the items marked **OWNER** need an account, a key or a signature only the
 
 | piece | where | state |
 |---|---|---|
-| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v244`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 340 browser checks, PWA checks, drills golden file |
+| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v246`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 346 browser checks, PWA checks, drills golden file |
 | The hosted copy | `python3 tools/pubsplit.py prototype/reader.html <outdir>` → `reader.html` (3.5 MB) + `data/d1–d3.js` | the artifact at claude.ai is this copy (Version 70) |
 | The Android project | `android/` (Capacitor 8, appId `app.qissa.reader`), `capacitor.config.json`, `tools/build_android.py` | the on-demand workflow has built it on a GitHub runner (debug APK + unsigned release APK/AAB, 33.9 MB zipped) |
 | Store copy and assets | `research/PLAY_LISTING.md`, `research/store/{en,tr}/01–06.png` (1080×1920), `research/store/feature-graphic-{en,tr}.png` (1024×500) | rendered from the live reader by `tools/store_shots.js` |
 | Privacy policy | `prototype/privacy.html` (EN/TR) | packaged into the APK and served beside the reader |
-| Review bundle | `dist/qissa-review-v244.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
+| Review bundle | `dist/qissa-review-v246.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
 
 Content: 22 texts in six levels, 43,833 parsed tokens, 328 grammar notes, 13 catechism banks (550 questions),
 20 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
@@ -31,8 +31,11 @@ Content: 22 texts in six levels, 43,833 parsed tokens, 328 grammar notes, 13 cat
 ## 2b. A public URL for the web app and the privacy policy (OWNER: one setting)
 
 `.github/workflows/qissa-pages.yml` publishes the hosted copy (the split reader, the PWA shell, `privacy.html`) to
-GitHub Pages on demand. Once: Settings → Pages → Source → "GitHub Actions". Then Actions → Qissa Pages → Run
-workflow; the run's summary shows the URL. The reader is at `<url>/` (also `/reader.html`), the privacy policy at
+GitHub Pages on demand. Once: Settings → Pages → Source → "GitHub Actions". **Until Pages is enabled GitHub does not
+register this workflow at all** (dispatching it returned 404 twice on 29–30 Oct 2026 while the Android workflow
+beside it ran fine) — enable Pages first, push any commit, then Actions → Qissa Pages → Run workflow; the run's
+summary shows the URL. Any other static host works the same way: upload the output of `tools/pubsplit.py` plus
+`manifest.webmanifest`, `sw.js`, `icons/` and `privacy.html`. The reader is at `<url>/` (also `/reader.html`), the privacy policy at
 `<url>/privacy.html` — paste that into the Play listing. Re-run after every release to update the web app; the
 service worker's cache name makes installed PWAs fetch the new build on next open.
 
@@ -47,7 +50,7 @@ service worker's cache name makes installed PWAs fetch the new build on next ope
    `ANDROID_KEYSTORE_B64` (the .b64 file's content), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`.
 3. Run the "Qissa Android" workflow once more; the artifact now also holds the **signed** `app-release.aab` and
    `app-release.apk`. Upload the AAB to Play Console (Play requires bundles).
-4. Version numbers come from the service worker's cache number (`qissa-v244` → versionCode 244, versionName 0.244);
+4. Version numbers come from the service worker's cache number (`qissa-v246` → versionCode 246, versionName 0.246);
    `python3 tools/release.py` bumps it on every shippable build, so a Play upload is traceable to the exact reader.
 
 ## 4. Google Play — the listing (OWNER, copy from research/PLAY_LISTING.md)
@@ -85,5 +88,5 @@ service worker's cache name makes installed PWAs fetch the new build on next ope
 - Startup on a mid-range phone: the self-contained page parses ~2 s of inline data; the shell and the hosted copy use
   the split page (0.7 s). Measured and gated in the smoke suite.
 - Read-aloud is the device's own voices; recorded narration exists only where a chapter ships a file.
-- No account and no sync: progress and the deck live on the device (export from the deck as TSV).
+- No account and no sync: progress and the deck live on the device. Progress → Backup saves everything as one file (or shares it from the phone) and restores it on another device; the deck also exports as TSV for Anki.
 - iOS: the web app installs as a PWA from Safari; there is no App Store build yet (Capacitor can add `ios/` on a Mac).

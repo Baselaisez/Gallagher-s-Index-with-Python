@@ -11616,6 +11616,63 @@ if (!CHROME) {
     if (!labOk) throw new Error('the question button did not open the lab on ' + qaId);
     await page.evaluate(() => document.getElementById('scrim').click());
   });
+
+  await check('wave 76 — backup and restore: the export carries every qissa-* key and nothing else, a restore puts them back byte for byte, a foreign file is refused, and the progress page offers the three buttons', async () => {
+    const r = await page.evaluate(() => {
+      localStorage.setItem('qissa-elo', JSON.stringify({ vocab: 1234, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 })); localStorage.setItem('not-ours', 'x');
+      const txt = Backup.exportJson(); const j = JSON.parse(txt);
+      const keys = Object.keys(j.data);
+      localStorage.removeItem('qissa-elo'); localStorage.setItem('qissa-elo-items', '{"stray":1}');
+      const n = Backup.importText(txt);
+      const back = localStorage.getItem('qissa-elo');
+      const bad = Backup.importText('{"app":"other"}'), bad2 = Backup.importText('not json');
+      localStorage.removeItem('not-ours');
+      openStats();
+      const ui9 = { ex: !!document.getElementById('bkExport'), cp: !!document.getElementById('bkCopy'), im: !!document.getElementById('bkImport') };
+      return { app: j.app, keys, n, back, bad, bad2, ui9, strayGone: localStorage.getItem('qissa-elo-items') !== '{"stray":1}' || keys.includes('qissa-elo-items') };
+    });
+    if (r.app !== 'qissa-backup' || !r.keys.includes('qissa-elo') || r.keys.some(k => !k.startsWith('qissa-'))) throw new Error('export keys: ' + r.keys.join(','));
+    if (r.n !== r.keys.length || !r.back || JSON.parse(r.back).vocab !== 1234) throw new Error('restore: ' + r.n + ' of ' + r.keys.length + ' / ' + r.back);
+    if (r.bad !== null || r.bad2 !== null) throw new Error('a foreign file must be refused');
+    if (!r.strayGone) throw new Error('a restore must clear keys the backup does not carry');
+    if (!r.ui9.ex || !r.ui9.cp || !r.ui9.im) throw new Error('progress page buttons: ' + JSON.stringify(r.ui9));
+    await page.evaluate(() => { localStorage.setItem('qissa-elo', JSON.stringify({ vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 })); document.getElementById('scrim').click(); });
+  });
+
+  await check('wave 77 — every story ships its provenance: the manifest\'s attribution reaches the reader for all 22 packages, the «About this text» chip opens a sheet carrying it, and the review status is said in plain words', async () => {
+    const r = await page.evaluate(() => {
+      const missing = STORIES.filter(st => !(st.about && (st.about.en || st.about.tr))).map(st => st.id);
+      const st = STORIES.find(s => s.id === 'kitab-al-sulh') || STORIES[0];
+      openStory(st);
+      const chip = document.getElementById('aboutChip'); if (!chip) return { missing, chip: false };
+      chip.click();
+      const txt = sheetInner.textContent;
+      const probe = (T(st.about) || st.about.en).slice(0, 40);
+      return { missing, chip: true, has: txt.includes(probe), pending: txt.includes(ui().aboutPending), ar: !!sheetInner.querySelector('.about-ar'), review: st.review };
+    });
+    if (r.missing.length) throw new Error('stories without a provenance note: ' + r.missing.join(','));
+    if (!r.chip || !r.has) throw new Error('the About sheet does not carry the attribution: ' + JSON.stringify(r));
+    if (r.review !== 'reviewed' && !r.pending) throw new Error('an unreviewed text must say so on its About sheet');
+    await page.evaluate(() => { document.getElementById('scrim').click(); renderLibrary(); });
+  });
+
+  await check('wave 78 — the Arabic voice is chosen, not assumed: the reading sheet lists the device\'s Arabic voices or says none is installed, a stored pick survives pickVoice, and a stray pick falls back to the first Arabic voice', async () => {
+    const r = await page.evaluate(() => {
+      const vs = arabicVoices();
+      localStorage.setItem('qissa-voice', 'no-such-voice'); pickVoice(); const fb = arVoice ? arVoice.voiceURI : null;
+      localStorage.removeItem('qissa-voice'); pickVoice();
+      openStory(STORIES[0]); openReadCtrls();
+      const sel = sheetInner.querySelector('[data-rcv]'), none = sheetInner.querySelector('.rc-voice-none');
+      const out = { n: vs.length, fb, sel: !!sel, none: !!none, opts: sel ? sel.options.length : 0 };
+      if (sel && vs.length) { sel.value = vs[0].voiceURI; sel.dispatchEvent(new Event('change')); out.stored = localStorage.getItem('qissa-voice'); out.picked = arVoice && arVoice.voiceURI; localStorage.removeItem('qissa-voice'); pickVoice(); }
+      document.getElementById('scrim').click(); renderLibrary();
+      return out;
+    });
+    if (r.n ? (!r.sel || r.opts !== r.n + 1 || r.none) : (!r.none || r.sel)) throw new Error('voice group: ' + JSON.stringify(r));
+    if (r.n && r.fb !== (await page.evaluate(() => arabicVoices()[0].voiceURI))) throw new Error('a stray pick must fall back to the first Arabic voice: ' + JSON.stringify(r));
+    if (r.n && (r.stored !== r.picked || !r.picked)) throw new Error('the pick must be stored and used: ' + JSON.stringify(r));
+    await page.evaluate(() => { localStorage.setItem('qissa-elo', JSON.stringify({ vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 })); document.getElementById('scrim').click(); });
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };
@@ -12571,8 +12628,11 @@ if (!CHROME) {
       if (r.sentences < 160) throw new Error('the story should render at least 160 sentences on a phone: ' + r.sentences);
       if (r.pills < 5) throw new Error('five chapter pills expected: ' + r.pills);
       if (r.overflow) throw new Error('the Level-1 story overflows a phone');
-      await page.locator('.sentence .word').first().click();
-      await page.waitForSelector('.sheet.show', { timeout: 10000 });
+      // the tap is dispatched in the page: at 390px over 160+ freshly laid-out sentences Playwright's own stability
+      // wait before a click has twice outrun ten seconds in the chunked release (never in a warm page) — the sheet is
+      // what is measured, not the pointer
+      await page.evaluate(() => document.querySelector('.sentence .word').click());
+      await page.waitForSelector('.sheet.show', { timeout: 30000 });
       await page.evaluate(() => document.getElementById('scrim').click());
     } finally { await page.setViewportSize(was); await page.evaluate(() => { setPremium(false); renderLibrary(); }); }
   });
