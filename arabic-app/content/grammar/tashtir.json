@@ -1,0 +1,64 @@
+{
+ "id": "tashtir",
+ "title": {
+  "ar": "التَّشْطِيرُ — شَطْرَانِ عَلَى سَجْعَيْنِ",
+  "en": "The tashtir — two halves on two sajʿs",
+  "tr": "Taştîr — iki şatır, iki seci"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — ومنه ما يسمى التشطير وهو جعل كل من شطري البيت مسجعا على سجع يخالف الآخر"
+ ],
+ "question": {
+  "en": [
+   "Does EACH half of the bayt rhyme within itself — and on a DIFFERENT letter from the other half? That is TASHTIR, «halving»: the first misraʿ of Abu Tammam's bayt closes its two clauses on the mim (مُعْتَصِمٍ … مُنْتَقِمٍ), the second on the ba (مُرْتَغِبٍ … مُرْتَقِبِ). It is filed under the sajʿ because it IS sajʿ inside verse — the qil that sajʿ is not confined to prose.",
+   "What does the engine read? It cuts the bayt at the hemistich mark, reads a sajʿ inside each half with the same reader the prose uses, and requires the two rawi letters to differ — one rawi across both halves is plain sajʿ in verse, not tashtir."
+  ],
+  "tr": [
+   "Beytin HER yarısı kendi içinde — ve öbüründen FARKLI bir harfle — secili mi? Bu TAŞTÎR'dir, «yarımlama»: Ebû Temmâm'ın beytinin birinci mısraı iki cümlesini mîm ile kapatır (مُعْتَصِمٍ … مُنْتَقِمٍ), ikincisi bâ ile (مُرْتَغِبٍ … مُرْتَقِبِ). Seci babında sayılır; çünkü nazım içindeki secidir — secinin nesre mahsus olmadığı görüşü.",
+   "Motor neyi okur? Beyti mısra işaretinden keser, her yarıda nesrin okuyucusuyla bir seci okur ve iki revî harfinin farklı olmasını ister — iki yarıda tek revî, nazımda düz secidir, taştîr değil."
+  ]
+ },
+ "plain": {
+  "en": "Each half of the bayt rhymed on its own sajʿ, the two rhymes on different letters — Abu Tammam's mim-half and ba-half.",
+  "tr": "Beytin her yarısı kendi secisiyle, iki seci farklı harflerde — Ebû Temmâm'ın mîm yarısı ve bâ yarısı."
+ },
+ "explanation": {
+  "en": "وَمِنْهُ مَا يُسَمَّى التَّشْطِيرَ، وَهُوَ جَعْلُ كُلٍّ مِنْ شَطْرَيِ الْبَيْتِ مُسَجَّعًا عَلَى سَجْعٍ يُخَالِفُ سَجْعَ الْآخَرِ — the sajʿ chapter closes on the one shape that lives only in verse: a bayt whose halves are each a rhymed fiqra of their own, and whose two rhymes disagree. Abu Tammam's praise of al-Muʿtasim (the caliph's name sits inside the first word as a tawriya) runs مُعْتَصِمٍ بِاللهِ مُنْتَقِمٍ on the mim, then لِلهِ مُرْتَغِبٍ فِي اللهِ مُرْتَقِبِ on the ba — four participles of Form VIII, each with its jarr phrase, the rhyme word of the bayt closing on the rawi's bare kasra.",
+  "tr": "وَمِنْهُ مَا يُسَمَّى التَّشْطِيرَ، وَهُوَ جَعْلُ كُلٍّ مِنْ شَطْرَيِ الْبَيْتِ مُسَجَّعًا عَلَى سَجْعٍ يُخَالِفُ سَجْعَ الْآخَرِ — seci babı, yalnız nazımda yaşayan bir şekille kapanır: yarıları her biri kendi secili fıkrası olan ve iki secisi birbirini tutmayan beyit. Ebû Temmâm'ın Mu'tasım methi (halifenin adı ilk kelimede tevriye olarak durur) مُعْتَصِمٍ بِاللهِ مُنْتَقِمٍ ile mîm üzere, sonra لِلهِ مُرْتَغِبٍ فِي اللهِ مُرْتَقِبِ ile bâ üzere akar — iftiâl bâbından dört ism-i fâil, her biri câr-mecrûruyla; beytin kafiye kelimesi revînin çıplak kesresiyle kapanır."
+ },
+ "examples": [
+  {
+   "ar": "تَدْبِيرُ مُعْتَصِمٍ بِاللهِ مُنْتَقِمٍ * لِلهِ مُرْتَغِبٍ فِي اللهِ مُرْتَقِبِ",
+   "en": "Abu Tammam — the mim-half and the ba-half.",
+   "tr": "Ebû Temmâm — mîm yarısı ve bâ yarısı.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s22"
+  },
+  {
+   "ar": "تَجَلَّى بِهِ رُشْدِي وَأَثْرَتْ بِهِ يَدِي * وَفَاضَ بِهِ ثَمْدِي وَأَوْرَى بِهِ زَنْدِي",
+   "en": "Abu Tammam — sajʿ in verse on ONE rawi: not a tashtir.",
+   "tr": "Ebû Temmâm — TEK revî üzere nazımda seci: taştîr değil.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s20"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«Beytin dört fâsılası kafiyeli: taştîr vardır»",
+   "right": "«Taştîr, iki yarının İKİ AYRI seci üzere olmasıdır; dört fâsıla tek harfte birleşirse nazımda düz secidir»",
+   "why": {
+    "en": "The name says «halving»: two halves, two rhymes. One rhyme across the bayt is the sajʿ-in-verse the qil allows.",
+    "tr": "Ad «yarımlama» der: iki yarı, iki kafiye. Beyit boyunca tek kafiye, görüşün câiz gördüğü nazımdaki secidir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "saj",
+  "radd-al-ajuz",
+  "jinas",
+  "ilm-al-badi",
+  "ilm-al-arud"
+ ]
+}

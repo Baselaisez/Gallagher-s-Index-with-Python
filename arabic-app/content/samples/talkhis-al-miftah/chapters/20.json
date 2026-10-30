@@ -1,0 +1,649 @@
+{
+ "chapter": 20,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Say: are those who know and those who do not know equal? (al-Zumar 39:9 — the transitive verb DEMOTED to intransitive rank: no object is meant; knowing itself is the whole predicate.)",
+    "tr": "De ki: hiç bilenlerle bilmeyenler bir olur mu? (Zümer 39:9 — müteaddî fiil lâzım menzilesine indirilmiş: mef'ûl kastedilmemiştir; bilmenin kendisi yüklemin tamamıdır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قُلْ",
+      "smart": "قُلْ",
+      "bare": "قل"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "«Say» — the amr of قَالَ, its hollow middle dropped against the sukun.",
+      "tr": "«De» — قَالَ'nin emri; ecvef ortası sükûn karşısında düşmüş."
+     }
+    },
+    {
+     "surface": {
+      "full": "هَلْ",
+      "smart": "هَلْ",
+      "bare": "هل"
+     },
+     "lex": "hal-istifham",
+     "pos": "part",
+     "irab": {
+      "ar": "حَرْفُ اسْتِفْهَامٍ — وَالِاسْتِفْهَامُ هُنَا لِلْإِنْكَارِ.",
+      "en": "«are…?» — the question letter, and the question here DENIES: of course they are not equal.",
+      "tr": "«hiç … mi?» — istifham harfi; buradaki soru İNKÂR içindir: elbette bir olmazlar."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَسْتَوِي",
+      "smart": "يَسْتَوِي",
+      "bare": "يستوي"
+     },
+     "lex": "istawa",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ.",
+      "en": "«are equal» — Form VIII of س و ي, a naqis: its damma is estimated on the ya, too heavy to sound. The ya is the RADICAL, not a pronoun — the corpus paradigm is what settles that.",
+      "tr": "«bir olur» — س و ي'nin VIII. bâbı; nâkıs: dammesi yâ üzerinde takdîr edilir — söylenmesi ağırdır. Yâ, ZAMİR değil ASIL harftir; bunu külliyat paradigması karara bağlar."
+     }
+    },
+    {
+     "surface": {
+      "full": "الَّذِينَ",
+      "smart": "الَّذِينَ",
+      "bare": "الذين"
+     },
+     "lex": "alladhina",
+     "pos": "pron",
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ فَاعِلٌ.",
+      "en": "«those who» — the relative, standing as fa'il of the equality-verb.",
+      "tr": "«o kimseler ki» — ism-i mevsûl; eşitlik fiilinin fâili."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَعْلَمُونَ",
+      "smart": "يَعْلَمُونَ",
+      "bare": "يعلمون"
+     },
+     "lex": "alima",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِثُبُوتِ النُّونِ — نُزِّلَ مَنْزِلَةَ اللَّازِمِ فَلَا مَفْعُولَ لَهُ.",
+      "en": "«who KNOW» — and the teaching is what is NOT there: عَلِمَ takes an object, and none is meant. The verb is set at the rank of an intransitive: the claim is not «they know something particular» but that knowing is their state. Nothing is reconstructed, because nothing was dropped — the object was never intended.",
+      "tr": "«BİLENLER» — ve ders, orada OLMAYANdadır: عَلِمَ mef'ûl alır ve hiçbiri kastedilmemiştir. Fiil lâzım menzilesine konmuştur: iddia «belli bir şeyi bilirler» değil; bilmenin onların hâli olduğudur. Hiçbir şey takdîr edilmez, çünkü hiçbir şey düşmemiştir — mef'ûl hiç kastedilmemiştir."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالَّذِينَ",
+      "smart": "وَالَّذِينَ",
+      "bare": "والذين"
+     },
+     "lex": "alladhina",
+     "pos": "pron",
+     "grammar": [
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالْمَوْصُولُ مَعْطُوفٌ.",
+      "en": "«and those who» — joined to the first relative.",
+      "tr": "«ve o kimseler ki» — ilk mevsûle atfedilmiş."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "الَّذِينَ",
+       "lex": "alladhina",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "لَا",
+      "smart": "لَا",
+      "bare": "لا"
+     },
+     "lex": "la-nafiya",
+     "pos": "part",
+     "irab": {
+      "ar": "نَافِيَةٌ لَا عَمَلَ لَهَا فِي الْمُضَارِعِ.",
+      "en": "«not» — plain negation over the mudari.",
+      "tr": "«-mez» — muzâri üzerinde amelsiz nefiy."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَعْلَمُونَ",
+      "smart": "يَعْلَمُونَ",
+      "bare": "يعلمون"
+     },
+     "lex": "alima",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful"
+     ],
+     "irab": {
+      "ar": "مِثْلُ أُخْتِهِ — مُنَزَّلٌ مَنْزِلَةَ اللَّازِمِ.",
+      "en": "«do not know» — the twin, demoted the same way: not-knowing as a state, no object in view. Sakkaki adds: in a KHATABI maqam the generalized verb affirms knowing of the one and denies it of the other, blocking any arbitrary escape.",
+      "tr": "«bilmezler» — ikizi; aynı şekilde indirilmiş: hâl olarak bilmemek, görüşte mef'ûl yok. Sekkâkî ekler: HİTÂBÎ makamda umumîleşen fiil, bilmeyi birine isbat, ötekinden nefyeder — keyfî kaçışı kapatır."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+     "ar": "الْوَجْهُ الْأَوَّلُ: تَنْزِيلُ الْمُتَعَدِّي مَنْزِلَةَ اللَّازِمِ — لَا حَذْفَ وَلَا تَقْدِيرَ.",
+     "en": "WAJH 1 — the demotion: when the speaker's purpose is to affirm the act of its doer absolutely (or deny it), the transitive is SET AT the intransitive's rank. No object is reconstructed — a taqdir here would ruin the point, which is knowing as such.",
+     "tr": "1. VECİH — tenzîl: konuşanın maksadı fiili fâiline mutlak olarak isbat (yahut nefiy) ise, müteaddî LÂZIM menzilesine konur. Mef'ûl takdîr edilmez — burada takdir, maksadı bozar; maksat bilmenin kendisidir."
+    },
+    {
+     "text": "هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
+     "ar": "وَفَرْقُ الْبَابِ: هَذَا غَيْرُ الْحَذْفِ — الْمَحْذُوفُ مُقَدَّرٌ، وَالْمُنَزَّلُ لَا مَفْعُولَ لَهُ أَصْلًا.",
+     "en": "And the bab's dividing line: DEMOTION is not OMISSION. An omitted object can be named back (the coming ayat name theirs); a demoted verb never had one in view. Confusing the two is the chapter's own commonMistake.",
+     "tr": "Ve bâbın ayırım çizgisi: TENZÎL, HAZİF değildir. Hazfedilen mef'ûl geri adlandırılabilir (gelecek âyetler kendilerininkini adlandırır); tenzîl edilmiş fiilin görüşte mef'ûlü hiç olmamıştır. İkisini karıştırmak, bâbın kendi yaygın hatasıdır."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "And had He willed, He would have guided you all. (al-An'am 6:149 — mashi'a's object dropped for IBHAM then BAYAN: the jawab names what the shart left dark.)",
+    "tr": "Dileseydi hepinizi hidayete erdirirdi. (En'âm 6:149 — meşîet fiilinin mef'ûlü İBHÂM sonra BEYÂN için hazfedilmiş: şartın karanlık bıraktığını cevap adlandırır.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَلَوْ",
+      "smart": "وَلَوْ",
+      "bare": "ولو"
+     },
+     "lex": "law",
+     "pos": "part",
+     "grammar": [
+      "in-shartiyya"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ وَ«لَوْ» حَرْفُ امْتِنَاعٍ لِامْتِنَاعٍ.",
+      "en": "«and had» — law: the shart certainly did not happen, so neither did the jawab.",
+      "tr": "«ve eğer … -seydi» — lev: şart kesinlikle olmadı, cevap da olmadı."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "لَوْ",
+       "lex": "law",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَاءَ",
+      "smart": "شَاءَ",
+      "bare": "شاء"
+     },
+     "lex": "shaa",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful"
+     ],
+     "irab": {
+      "ar": "فِعْلُ الشَّرْطِ — وَمَفْعُولُهُ «هِدَايَتَكُمْ» مَحْذُوفٌ لِلْإِبْهَامِ ثُمَّ الْبَيَانِ.",
+      "en": "«He willed» — and willed WHAT? The object (هِدَايَتَكُمْ, your guidance) is dropped, and the drop is a technique: the mashi'a is left DARK for one beat, and the jawab lights it. The rule beneath: a mashi'a-object drops when it is nothing strange; Abu Yaqub's «had I wished to weep BLOOD» keeps its object precisely because weeping blood is gharib.",
+      "tr": "«diledi» — NEYİ diledi? Mef'ûl (هِدَايَتَكُمْ, hidayetinizi) hazfedilmiştir ve hazif bir tekniktir: meşîet bir vuruş KARANLIK bırakılır, cevap onu aydınlatır. Alttaki kural: meşîet mef'ûlü, garip bir şey değilse düşer; Ebû Ya'kūb'un «KAN ağlamak isteseydim» sözü mef'ûlünü tam da kan ağlamak garip olduğu için söyler."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَهَدَاكُمْ",
+      "smart": "لَهَدَاكُمْ",
+      "bare": "لهداكم"
+     },
+     "lex": "hada",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful"
+     ],
+     "irab": {
+      "ar": "اللَّامُ وَاقِعَةٌ فِي جَوَابِ «لَوْ»، وَ«هَدَى» مَاضٍ وَ«كُمْ» مَفْعُولُهُ — وَهُوَ الْبَيَانُ.",
+      "en": "«He would have guided you» — the jawab wearing law's beloved lam, and it IS the bayan: the guiding named here tells the hearer what the willing was about. One clause holds the dark word and the lamp.",
+      "tr": "«sizi hidayete erdirirdi» — lev'in sevdiği lâmı giymiş cevap; ve BEYÂNIN kendisidir: burada adlanan hidayet, dilemenin neye dair olduğunu söyler. Tek cümle, karanlık kelimeyle kandili birlikte taşır."
+     },
+     "segments": [
+      {
+       "form": "لَ",
+       "lex": "lam-jawab",
+       "pos": "part"
+      },
+      {
+       "form": "هَدَا",
+       "lex": "hada",
+       "pos": "verb"
+      },
+      {
+       "form": "كُمْ",
+       "lex": "pron-2mp",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَجْمَعِينَ",
+      "smart": "أَجْمَعِينَ",
+      "bare": "أجمعين"
+     },
+     "lex": "ajmain",
+     "pos": "noun",
+     "grammar": [
+      "tawkid"
+     ],
+     "irab": {
+      "ar": "تَوْكِيدٌ مَعْنَوِيٌّ لِلضَّمِيرِ «كُمْ» مَنْصُوبٌ بِالْيَاءِ.",
+      "en": "«all of you» — the ma'nawi tawkid riding the object pronoun, its nasb shown by the ya: had He willed, not one would be left unguided.",
+      "tr": "«hepinizi» — mef'ûl zamirine binen mânevî te'kid; nasbı yâ iledir: dileseydi, hidayetsiz bir kişi kalmazdı."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ",
+     "ar": "الْوَجْهُ الثَّانِي: حَذْفُ مَفْعُولِ الْمَشِيئَةِ لِلْإِبْهَامِ ثُمَّ الْبَيَانِ.",
+     "en": "WAJH 2 — IBHAM then BAYAN: leave the willing unspecified, then let the jawab specify it. The suspense is one clause long, and the drop is licensed because a mashi'a-object is expected — only a GHARIB object (weeping blood) must be spoken.",
+     "tr": "2. VECİH — İBHÂM sonra BEYÂN: dilemeyi belirsiz bırak, cevabın belirlemesine izin ver. Gerilim tek cümle sürer; hazfe cevaz, meşîet mef'ûlünün beklenen bir şey olmasındandır — yalnız GARİP mef'ûl (kan ağlamak) söylenmek zorundadır."
+    },
+    {
+     "text": "وَلَوْ شَاءَ لَهَدَاكُمْ أَجْمَعِينَ",
+     "ar": "وَشَاهِدُ الْعَكْسِ: «وَلَوْ شِئْتُ أَنْ أَبْكِيَ دَمًا لَبَكَيْتُهُ» — ذُكِرَ لِغَرَابَتِهِ.",
+     "en": "And the counter-witness, kept in the note: Abu Yaqub SPEAKS his object because weeping blood is strange; al-Jawhari's second bakaytu tafakkuran is excluded from this bab — there the mention is for want of a qarina, not for gharaba. The books split hairs here on purpose; so do we.",
+     "tr": "Ve aksin şahidi (notta saklı): Ebû Ya'kūb mef'ûlünü SÖYLER, çünkü kan ağlamak gariptir; Cevherî'nin ikinci bekeytü tefekkuran'ı bu bâbdan değildir — orada zikir, garâbetten değil karîne yokluğundandır. Kitaplar burada kılı kırk yarar; biz de yararız."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "And Allah calls to the Abode of Peace. (Yunus 10:25 — the object جَمِيعَ عِبَادِهِ dropped for TA'MIM with brevity: the call is to everyone.)",
+    "tr": "Allah selâmet yurduna çağırır. (Yûnus 10:25 — mef'ûl جَمِيعَ عِبَادِهِ, kısaltmayla birlikte TAMİM için hazfedilmiş: çağrı herkesedir.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَاللَّهُ",
+      "smart": "وَاللَّهُ",
+      "bare": "والله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "anwa-al-waw",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَلَفْظُ الْجَلَالَةِ مُبْتَدَأٌ.",
+      "en": "«And Allah» — a fresh sentence; the Name as mubtada.",
+      "tr": "«Ve Allah» — yeni cümle; lafza-i celâl mübtedâ."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "اللَّهُ",
+       "lex": "allah",
+       "pos": "propn"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَدْعُو",
+      "smart": "يَدْعُو",
+      "bare": "يدعو"
+     },
+     "lex": "daa",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful",
+      "tajaddud-wa-thubut"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ — مَفْعُولُهُ «جَمِيعَ عِبَادِهِ» مَحْذُوفٌ لِلتَّعْمِيمِ مَعَ الِاخْتِصَارِ.",
+      "en": "«calls» — and calls WHOM? Everyone: drop the object and no listener can read himself out of the call. The named-object sentence (He calls His servants) is LONGER and says LESS — the drop generalizes and abbreviates in one stroke. The mudari adds renewal: the calling stands open now.",
+      "tr": "«çağırır» — ve KİMİ çağırır? Herkesi: mef'ûlü düşür; hiçbir dinleyen kendini çağrının dışına okuyamaz. Mef'ûllü cümle (kullarını çağırır) hem daha UZUNdur hem daha az söyler — hazif tek hamlede hem umumîleştirir hem kısaltır. Muzâri teceddüt katar: çağrı şimdi de açıktır."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِلَى",
+      "smart": "إِلَى",
+      "bare": "إلى"
+     },
+     "lex": "ila",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ لِانْتِهَاءِ الْغَايَةِ.",
+      "en": "«to» — the endpoint letter: the call has a destination.",
+      "tr": "«-e» — gayenin sonu harfi: çağrının bir varış yeri var."
+     }
+    },
+    {
+     "surface": {
+      "full": "دَارِ",
+      "smart": "دَارِ",
+      "bare": "دار"
+     },
+     "lex": "dar",
+     "pos": "noun",
+     "grammar": [
+      "tarif-bil-idafa"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ وَهُوَ مُضَافٌ.",
+      "en": "«the Abode» — majrur under ila, and a mudaf: definite through what follows. (The same letters spell the amr of دَارَى — «humour him!» — and only the jarr letter before this word settles which it is.)",
+      "tr": "«yurduna» — ilâ altında mecrûr ve muzâf: sonrakiyle marife. (Aynı harfler دَارَى'nın emrini de yazar — «idare et!» — hangisi olduğunu yalnız önündeki cer harfi çözer.)"
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّلَامِ",
+      "smart": "السَّلَامِ",
+      "bare": "السلام"
+     },
+     "lex": "salam",
+     "pos": "noun",
+     "grammar": [
+      "tarif-bil-idafa"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "«of Peace» — the mudaf ilayh: Paradise named by what is found there.",
+      "tr": "«selâmın» — muzâfun ileyh: cennet, içinde bulunanla adlandırılmış."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "وَاللَّهُ يَدْعُو إِلَى دَارِ السَّلَامِ",
+     "ar": "الْوَجْهُ الثَّالِثُ: حَذْفُ الْمَفْعُولِ لِلتَّعْمِيمِ مَعَ الِاخْتِصَارِ.",
+     "en": "WAJH 3 — TA'MIM: the unnamed object is every servant. Naming any set would fence the call; silence fences nothing. And it comes with brevity for free — the rare case where saying less asserts more.",
+     "tr": "3. VECİH — TAMİM: adlanmayan mef'ûl her kuldur. Herhangi bir küme adlamak çağrıyı çitlerdi; susku hiçbir şeyi çitlemez. Ve kısaltma bedavaya gelir — az söylemenin çok iddia ettiği nadir hâl."
+    },
+    {
+     "text": "وَاللَّهُ يَدْعُو إِلَى دَارِ السَّلَامِ",
+     "ar": "وَأُخْتَاهُ فِي النَّوْعِ: الِاخْتِصَارُ الْمُجَرَّدُ مَعَ الْقَرِينَةِ، وَرِعَايَةُ الْفَاصِلَةِ.",
+     "en": "Its two sisters in kind, kept in the note: mere brevity where a qarina stands (أَصْغَيْتُ إِلَيْهِ — the ear goes unsaid; أَرِنِي — the second object ذَاتَكَ unsaid), and the fasila — which the next aya shows.",
+     "tr": "Türdeşi iki kardeşi (notta saklı): karîne varken salt kısaltma (أَصْغَيْتُ إِلَيْهِ — kulak söylenmez; أَرِنِي — ikinci mef'ûl ذَاتَكَ söylenmez), ve fâsıla — onu da sonraki âyet gösterir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "Your Lord has not forsaken you, nor does He hate. (al-Duha 93:3 — the kaf of قَلَاكَ dropped for the FASILA: the sura's verses end on the same letter.)",
+    "tr": "Rabbin seni terk etmedi ve darılmadı. (Duhâ 93:3 — قَلَاكَ'nın kâfı FÂSILA için hazfedilmiş: sûrenin âyet sonları aynı harfte biter.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-nafiya",
+     "pos": "part",
+     "grammar": [
+      "anwa-ma"
+     ],
+     "irab": {
+      "ar": "نَافِيَةٌ.",
+      "en": "«not» — plain negation over the madi.",
+      "tr": "«-medi» — mâzî üzerinde nefiy."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَدَّعَكَ",
+      "smart": "وَدَّعَكَ",
+      "bare": "ودعك"
+     },
+     "lex": "waddaa",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ وَ«كَ» مَفْعُولُهُ — مَذْكُورٌ.",
+      "en": "«forsaken YOU» — Form II of و د ع, and its object kaf is SPOKEN: hold this against its twin at the verse's end.",
+      "tr": "«SENİ terk etmedi» — و د ع'nin II. bâbı; mef'ûl kâfı SÖYLENMİŞTİR: bunu âyet sonundaki ikiziyle karşılaştır."
+     },
+     "segments": [
+      {
+       "form": "وَدَّعَ",
+       "lex": "waddaa",
+       "pos": "verb"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "رَبُّكَ",
+      "smart": "رَبُّكَ",
+      "bare": "ربك"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "tarif-bil-idafa"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَهُوَ مُضَافٌ إِلَى الْكَافِ.",
+      "en": "«your Lord» — the fa'il, made definite by the kaf of the addressed.",
+      "tr": "«Rabbin» — fâil; muhatabın kâfıyla marife."
+     },
+     "segments": [
+      {
+       "form": "رَبُّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "كَ",
+       "lex": "pron-2ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَمَا",
+      "smart": "وَمَا",
+      "bare": "وما"
+     },
+     "lex": "ma-nafiya",
+     "pos": "part",
+     "grammar": [
+      "anwa-ma",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ وَ«مَا» نَافِيَةٌ.",
+      "en": "«nor» — the joined second negation.",
+      "tr": "«ve … -madı» — atfedilmiş ikinci nefiy."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "مَا",
+       "lex": "ma-nafiya",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "قَلَى",
+      "smart": "قَلَى",
+      "bare": "قلى"
+     },
+     "lex": "qalaa",
+     "pos": "verb",
+     "grammar": [
+      "hadhf-al-maful"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ — وَمَفْعُولُهُ «كَ» مَحْذُوفٌ رِعَايَةً لِلْفَاصِلَةِ.",
+      "en": "«nor does He hate [you]» — and the kaf is GONE. Not for generality this time: for the FASILA, the rhyme the sura's verses close on (سَجَى، قَلَى، فَتَرْضَى…). قَلَاكَ would break the cadence; the ear supplies the object from وَدَّعَكَ beside it. Orthography note: قَلَى's alif is the ya-naqis third radical — the same shape as هَدَى.",
+      "tr": "«ve darılmadı [sana]» — kâf GİTMİŞ. Bu kez umum için değil: FÂSILA için — sûrenin âyet sonlarının kapandığı seci (سَجَى، قَلَى، فَتَرْضَى…). قَلَاكَ âhengi bozardı; kulak, mef'ûlü yanındaki وَدَّعَكَ'den tamamlar. İmlâ notu: قَلَى'nın elifi, yâ-nâkıs üçüncü asıl harftir — هَدَى ile aynı kalıp."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى",
+     "ar": "الْوَجْهُ الرَّابِعُ: حَذْفُ الْمَفْعُولِ رِعَايَةً لِلْفَاصِلَةِ.",
+     "en": "WAJH 4 — the FASILA: one verse, the object spoken in its first verb and dropped from its second, and the only difference is the rhyme. The pair is the cleanest minimal contrast the bab owns — nothing else changed.",
+     "tr": "4. VECİH — FÂSILA: tek âyet; mef'ûl ilk fiilde söylenmiş, ikincisinden düşürülmüş ve tek fark kafiyedir. Çift, bâbın sahip olduğu en temiz asgarî karşıtlıktır — başka hiçbir şey değişmemiştir."
+    },
+    {
+     "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَى",
+     "ar": "وَمِنْ إِخْوَتِهِ: الْحَذْفُ لِلِاسْتِهْجَانِ — «مَا رَأَيْتُ مِنْهُ وَلَا رَأَى مِنِّي».",
+     "en": "And its remaining brothers, carried in the note: the mustahjan drop (Aisha's «I saw not from him, nor he from me» — the object unfit to speak), and concealment — dropping so the object CAN be denied at need. Eight wujuh in all; the chapter walks five in real text.",
+     "tr": "Ve kalan kardeşleri (notta): müstehcen hazfi (Âişe vâlidemizin «ben ondan görmedim, o da benden» sözü — söylenmesi çirkin mef'ûl), ve gizleme — gerektiğinde İNKÂR edilebilsin diye düşürmek. Toplam sekiz vecih; bâb beşini gerçek metinde yürütür."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "You alone we worship, and You alone we ask for help. (al-Fatiha 1:4 — the object FRONTED before its verb: takhsis, worship confined to Him.)",
+    "tr": "Yalnız Sana ibadet eder ve yalnız Senden yardım isteriz. (Fâtiha 1:4 — mef'ûl fiilinin ÖNÜNE alınmış: tahsis, ibadet O'na hasredilmiş.)"
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِيَّاكَ",
+      "smart": "إِيَّاكَ",
+      "bare": "إياك"
+     },
+     "lex": "iyyaka",
+     "pos": "pron",
+     "grammar": [
+      "hadhf-al-maful",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "ضَمِيرُ نَصْبٍ مُنْفَصِلٌ مَفْعُولٌ بِهِ مُقَدَّمٌ لِلتَّخْصِيصِ.",
+      "en": "«You alone» — the detached NASB pronoun (its case is its very spelling: iyya exists for nothing else), standing as the object FRONTED. The order is the meaning: نَعْبُدُكَ says «we worship You»; إِيَّاكَ نَعْبُدُ says «You and none other do we worship». Most fronting restricts — the aksariyya rule — and this is its throne verse.",
+      "tr": "«yalnız Sana» — munfasıl NASB zamiri (hâli imlâsının kendisidir: iyyâ başka hiçbir şey için yoktur); ÖNE alınmış mef'ûl. Sıra mânâdır: نَعْبُدُكَ «Sana ibadet ederiz» der; إِيَّاكَ نَعْبُدُ «Senden başkasına değil, yalnız Sana ibadet ederiz» der. Takdimin çoğu hasreder — ekseriyet kuralı — ve bu, onun taht âyetidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَعْبُدُ",
+      "smart": "نَعْبُدُ",
+      "bare": "نعبد"
+     },
+     "lex": "abada",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَالْفَاعِلُ «نَحْنُ» مُسْتَتِرٌ.",
+      "en": "«we worship» — the verb arriving AFTER its object, its «we» concealed within.",
+      "tr": "«ibadet ederiz» — mef'ûlünden SONRA gelen fiil; «biz»i içinde gizli."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَإِيَّاكَ",
+      "smart": "وَإِيَّاكَ",
+      "bare": "وإياك"
+     },
+     "lex": "iyyaka",
+     "pos": "pron",
+     "grammar": [
+      "hadhf-al-maful",
+      "anwa-al-waw"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَالضَّمِيرُ مَفْعُولٌ مُقَدَّمٌ ثَانٍ.",
+      "en": "«and You alone» — the frame repeated whole: the waw joins two VERBAL clauses, each with its object fronted. (Not a hal waw — the iyya family opens a verbal clause, never the nominal clause a hal needs.)",
+      "tr": "«ve yalnız Senden» — çatı bütünüyle tekrarlanır: vâv, her biri mef'ûlü öne alınmış iki FİİL cümlesini bağlar. (Hâl vâvı değil — iyyâ ailesi fiil cümlesi açar; hâlin istediği isim cümlesini asla.)"
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "part"
+      },
+      {
+       "form": "إِيَّاكَ",
+       "lex": "iyyaka",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "نَسْتَعِينُ",
+      "smart": "نَسْتَعِينُ",
+      "bare": "نستعين"
+     },
+     "lex": "istaana",
+     "pos": "verb",
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ — أَجْوَفُ مِنَ الِاسْتِفْعَالِ، أَصْلُهُ نَسْتَعْوِنُ.",
+      "en": "«we ask for help» — Form X of ع و ن, hollow: the waw melted to a ya-sound alif in the mazi (اِسْتَعَانَ) and stands as a ya here — the i'lal of أَقَالَ/اِسْتَقَالَ. Repeating إِيَّاكَ rather than saying وَنَسْتَعِينُ keeps the takhsis on BOTH acts.",
+      "tr": "«yardım isteriz» — ع و ن'un X. bâbı; ecvef: vâv, mâzîde elife eridi (اِسْتَعَانَ), burada yâ olarak durur — أَقَالَ/اِسْتَقَالَ i'lâli. وَنَسْتَعِينُ demek yerine إِيَّاكَ'yi tekrarlamak, tahsisi İKİ fiil üzerinde de tutar."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+     "ar": "الْوَجْهُ الْخَامِسُ: تَقْدِيمُ الْمَفْعُولِ لِلتَّخْصِيصِ — وَالْأَكْثَرِيَّةُ: أَكْثَرُ التَّقْدِيمِ لِلتَّخْصِيصِ لَا كُلُّهُ.",
+     "en": "WAJH 5 — TAQDIM of the object: worship and help-seeking confined to Him alone. And the honest rule rides with it: MOST fronting restricts, not all — some is mere care, blessing or savour (بِسْمِ اللهِ… أَقْرَأُ, the basmala's deferred verb), which is why the books argue the case verse by verse.",
+     "tr": "5. VECİH — mef'ûlün TAKDİMİ: ibadet ve istiâne yalnız O'na hasredilmiş. Dürüst kural da yanında: takdimin ÇOĞU hasreder, hepsi değil — kimi salt ihtimam, teberrük yahut istilzâzdır (بِسْمِ اللهِ… أَقْرَأُ, besmelenin sona bırakılmış fiili); kitapların dâvâyı âyet âyet tartışması bundandır."
+    },
+    {
+     "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+     "ar": "وَحَدُّ الدَّعْوَى: «مَا زَيْدًا ضَرَبْتُ وَلَا غَيْرَهُ» لَا يُقَالُ — لِأَنَّ التَّقْدِيمَ يُثْبِتُ الْوُقُوعَ.",
+     "en": "And the claim's edge, kept exact: مَا زَيْدًا ضَرَبْتُ means «it was not ZAYD I struck» — the striking itself stands. So «wa-la ghayrahu» after it is a contradiction, and the books REFUSE the sentence. A fronting that denies must deny the choice of object, never the act — the doctrine's own boundary, taught as a boundary.",
+     "tr": "Ve iddianın sınırı, tam hâliyle: مَا زَيْدًا ضَرَبْتُ «dövdüğüm ZEYD değildi» demektir — dövmenin kendisi ayaktadır. O hâlde ardından «وَلَا غَيْرَهُ» çelişkidir ve kitaplar cümleyi REDDEDER. Nefyeden bir takdim, fiili değil mef'ûl seçimini nefyeder — doktrinin kendi sınırı, sınır olarak öğretilmiş."
+    }
+   ]
+  }
+ ]
+}

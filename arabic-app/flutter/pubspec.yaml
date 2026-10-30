@@ -1,0 +1,60 @@
+# UN-COMPILED SPIKE — design + skeleton only. See docs/05-flutter-architecture.md.
+#
+# This pubspec is NOT resolved/locked (no Flutter SDK on the authoring machine).
+# Version ranges are the recommended floors; run `flutter pub get` to resolve and
+# generate pubspec.lock. `flutter create .` first to add the platform folders.
+name: qissa
+description: "Qissa — Arabic graded-reader & audiobook app (DuChinese for Arabic). Flutter client spike."
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- State management (see doc §"State management": riverpod chosen over bloc) ---
+  flutter_riverpod: ^2.5.1
+
+  # --- Networking + models ---
+  http: ^1.2.0              # fetch catalog.json + package files from the CDN
+  # NOTE: models in lib/models/ use hand-written fromJson (no codegen) so the
+  # spike stays inspectable; swap to json_serializable if the surface grows.
+
+  # --- Local storage ---
+  shared_preferences: ^2.2.0  # reader settings (layer, font size, uiLang) — mirrors prototype localStorage keys
+  isar: ^3.1.0                # SRS deck + per-story progress (indexed, offline, reactive queries)
+  isar_flutter_libs: ^3.1.0
+  path_provider: ^2.1.0       # app-docs dir for isar + downloaded packages
+
+  # --- Audio ---
+  just_audio: ^0.9.36         # chapter MP3 narration + sentence seek via AudioSpan (data-model rule 5)
+  audio_service: ^0.18.0      # lock-screen / background playback (spec §3.4 audiobooks)
+  flutter_tts: ^4.0.2         # device Arabic TTS of the `full` layer (uploads + word audio fallback; analyzer doc)
+
+  # --- Monetization (spec §3.6, analyzer doc roadmap) ---
+  purchases_flutter: ^6.29.0  # RevenueCat cross-store Lite/Premium subscriptions
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Bundled reader font. Ship the Noto Naskh Arabic TTFs under assets/fonts/.
+  # (Do NOT rely on a system Arabic font — coverage of full tashkeel varies by
+  # platform; bundling guarantees identical rendering iOS/Android.)
+  fonts:
+    - family: NotoNaskhArabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
+        - asset: assets/fonts/NotoNaskhArabic-Bold.ttf
+          weight: 700
+
+  # Downloaded content packages are fetched at runtime to app storage, NOT
+  # bundled as assets — the catalog is server-driven (spec §3.5).

@@ -1,0 +1,42 @@
+{
+  "story": "yunus-wa-al-hut",
+  "reviewStatus": "pending-scholarly-review",
+  "quranicProvenance": {
+    "duaSentences": [
+      "s10",
+      "s11"
+    ],
+    "duaText": "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+    "source": "al-Anbiya (21):87",
+    "otherPassages": [
+      "as-Saffat (37):139-148",
+      "al-Qalam (68):48-50",
+      "Yunus (10):98"
+    ],
+    "orthographyDecision": "Rendered in standard MSA orthography (إِلَهَ, not the mushaf dagger-alif إِلَٰهَ). Reviewer/pipeline to confirm the convention for embedded Qur'anic quotes; no sura:aya display widget was invented.",
+    "level": "إنّ (inna-wa-akhawatuha) and كان (kana-wa-akhawatuha) are Level-2 structures, admitted here only because this is a verbatim du'a A1 learners already know by heart. Glossed word-by-word; not expected for production."
+  },
+  "reviewerFlags": [
+    {
+      "sentence": "s2",
+      "issue": "Anger simplified to 'with his people'; Qur'an has مُغَاضِبًا (21:87). Theological question of a prophet leaving is deliberately left untouched."
+    },
+    {
+      "sentence": "s6",
+      "issue": "Falling into the sea simplifies the casting of lots (37:141). Confirm the simplification, or approve the alternative رَمَى الرِّجَالُ يُونُسَ فِي الْبَحْرِ."
+    },
+    {
+      "sentence": "s13",
+      "issue": "'The whale brought Yunus out' is the conventional children's phrasing; Qur'an states Allah as agent (فَنَبَذْنَاهُ بِالْعَرَاءِ, 37:145). Flag if agency should be stated as Allah's command."
+    },
+    {
+      "sentence": "s14",
+      "issue": "Return -> belief order follows the common narrative (37:147-148); mufassirun differ on exact chronology relative to 10:98. Not asserted dogmatically."
+    },
+    {
+      "gloss": "hut",
+      "issue": "حُوت rendered 'whale / great fish' (balina / büyük balık); glosses stay non-committal on species."
+    }
+  ],
+  "possibleChapter2": "Epilogue (37:146): the يَقْطِين (gourd) plant, the tasbih in the three darknesses, and the 'hundred thousand or more' (37:147) — omitted at A1, available if a longer read is wanted."
+}

@@ -1,0 +1,110 @@
+{
+ "id": "tarifat-daftar-al-kafiya",
+ "title": {
+  "ar": "تَعْرِيفَاتُ دَفْتَرِ الْكَافِيَةِ: الْعِلْمُ وَالْوَضْعُ وَالْمَعْنَى وَالْإِسْنَادُ وَالْخَاصَّةُ وَالْأَقْسَامُ الْأَرْبَعَةُ",
+  "en": "The Kafiya notebook's definitions sheet: the science of naḥw, waḍʿ, maʿnā, isnād, khāṣṣa, and the four classes of nouns in one line each",
+  "tr": "Kâfiye defterinin tarifler sayfası: nahiv ilmi, vaz', mânâ, isnad, hâssa ve dört isim sınıfı birer satırla"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "ضياء صونغور اوغلى — دفتر الكافية ص ٩٦: تعريف علم النحو وموضوعه وغايته؛ الوضع؛ المعنى؛ الإسناد؛ الخاصة؛ المرفوعات والمنصوبات والمجرورات والتوابع",
+  "الكافية لابن الحاجب — الكلمة لفظ وضع لمعنى مفرد؛ الكلام ما تضمن كلمتين بالإسناد؛ التوابع كل ثان بإعراب سابقه من جهة واحدة"
+ ],
+ "question": {
+  "en": [
+   "What is naḥw FOR? The sheet answers in three lines: it is the science of the Arabic word's states as to iʿrāb and bināʾ (definition), its subject is the word as it occurs in speech (not the word in the dictionary), and its aim is not to err in iʿrāb and bināʾ. Every engine in this app is an answer to that aim.",
+   "What does «assigned to a meaning» (وُضِعَ لِمَعْنًى) in the definition of the word rest on? On waḍʿ: a word is tied to a meaning so that hearing the one brings the other to mind. The glossary is the app's record of waḍʿ; the analyzer's «sure» rows are the words whose waḍʿ it has on file.",
+   "What makes two words a sentence? Isnād — relating one to the other so that the hearer gets a complete benefit and may fall silent. قَامَ زَيْدٌ is speech; غُلَامُ زَيْدٍ is not, because the idafa relates without predicating. The analyzer's first question (ismiyya or fiʿliyya) presupposes an isnād found.",
+   "What is a khāṣṣa, and why does the Kafiya list the noun's? A property found in a thing and in nothing else — so the noun's khāṣṣa (the article, tanwīn, jarr, being talked about) is a TEST: find one and the word is a noun. The sentence analyzer's noun/verb reading is built on exactly these marks.",
+   "How does the sheet define the four classes? Not by case endings but by the SIGN of a role: the marfūʿāt carry the sign of fāʿiliyya, the manṣūbāt of mafʿūliyya, the majrūrāt of the muḍāf ilayh — and the tawābiʿ have no role of their own but carry a preceding word's iʿrāb from one single side. That last clause excludes the khabar (which agrees with the mubtadaʾ in case but from a different side).",
+   "Why «from one side»? Because the khabar also carries the mubtadaʾ's rafʿ, yet it is not a follower: it takes rafʿ for being a khabar, not for following. The definition's last three words are what keep the tawābiʿ to five."
+  ],
+  "tr": [
+   "Nahiv NE İÇİNDİR? Sayfa üç satırla cevap verir: Arapça kelimenin i'râb ve binâ bakımından hâllerinin ilmidir (tarif), mevzuu kelâmda vâki olan kelimedir (sözlükteki kelime değil), gayesi i'râb ve binâda hata etmemektir. Bu uygulamadaki her motor o gayeye bir cevaptır.",
+   "Kelimenin tarifindeki «bir mânâya konulmuş» (وُضِعَ لِمَعْنًى) neye dayanır? Vaz'a: kelime bir mânâya öyle bağlanır ki birini duymak ötekini akla getirir. Sözlük, uygulamanın vaz' kaydıdır; analizörün «sure» satırları vaz'ı dosyada olan kelimelerdir.",
+   "İki kelimeyi cümle yapan nedir? İsnad — birini ötekine öyle nispet etmek ki muhatap tam bir fayda alır ve susabilir. قَامَ زَيْدٌ kelâmdır; غُلَامُ زَيْدٍ değildir, çünkü izâfet isnad etmeden nispet eder. Analizörün ilk sorusu (isim mi fiil cümlesi mi) bulunmuş bir isnadı varsayar.",
+   "Hâssa nedir ve Kâfiye ismin hâssasını niçin sayar? Bir şeyde bulunup başkasında bulunmayan özellik — bu yüzden ismin hâssası (elif-lâm, tenvin, cer, hakkında konuşulma) bir TESTTİR: birini bul, kelime isimdir. Cümle analizörünün isim/fiil okuması tam bu alâmetler üzerine kuruludur.",
+   "Sayfa dört sınıfı nasıl tarif eder? Hareke sonlarıyla değil bir rolün ALÂMETİYLE: merfûât fâiliyet alâmetini, mansûbât mef'ûliyet alâmetini, mecrûrât muzâfun ileyh alâmetini taşır — tevâbi'in ise kendi rolü yoktur, önceki kelimenin i'râbını tek bir cihetten taşır. Bu son kayıt haberi dışarıda bırakır (haber mübtedaya i'râbda uyar ama başka bir cihetten).",
+   "Niçin «bir cihetten»? Çünkü haber de mübtedanın ref'ini taşır ama tâbi değildir: ref'i izlediği için değil haber olduğu için alır. Tarifin son üç kelimesi tevâbi'i beşte tutan şeydir."
+  ]
+ },
+ "plain": {
+  "en": "A page of short definitions from the notebook. Grammar is the science of how Arabic words end; a word means something because it was assigned to it; two words make a sentence when one is said about the other; a noun's «marks» are what only nouns have; and words are sorted by which role sign they carry.",
+  "tr": "Defterden bir sayfa kısa tarif. Nahiv, Arapça kelimelerin nasıl bittiğinin ilmidir; kelime, ona konulduğu için bir şey ifade eder; biri öteki hakkında söylenince iki kelime cümle olur; ismin «alâmetleri» yalnız isimlerde olanlardır; kelimeler taşıdıkları rol alâmetine göre sınıflanır."
+ },
+ "explanation": {
+  "en": "The notebook ends its Kafiya with a sheet of definitions in the sharḥ tradition's wording. The matn's own definitions (the word, speech, the noun, the muʿrab, iʿrāb, the diptote, the fāʿil, the deputy, the mubtadaʾ and the khabar) are already in the matn chapters and are not repeated; this chapter takes what the matn does not state — the science's definition, subject and aim, the four technical terms waḍʿ, maʿnā, isnād and khāṣṣa, and the sheet's one-line definitions of the four classes by their role signs. The definitions are the vocabulary the whole book has been using; they are placed last because the notebook places them last.",
+  "tr": "Defter Kâfiye'sini şerh geleneğinin ifadesiyle bir tarifler sayfasıyla bitirir. Matnın kendi tarifleri (kelime, kelâm, isim, mu'rab, i'râb, gayr-i munsarif, fâil, nâib, mübteda ve haber) matn bâblarında zaten vardır ve tekrarlanmaz; bu bâb matnın söylemediğini alır — ilmin tarifi, mevzuu ve gayesi, dört ıstılah vaz', mânâ, isnad ve hâssa ve sayfanın dört sınıfı rol alâmetleriyle tarif eden birer satırı. Tarifler bütün kitabın kullanageldiği kelime hazinesidir; defter onları sona koyduğu için sona konmuştur."
+ },
+ "examples": [
+  {
+   "ar": "عِلْمُ النَّحْوِ عِلْمٌ يُعْرَفُ بِهِ أَحْوَالُ الْكَلِمَةِ الْعَرَبِيَّةِ مِنْ حَيْثُ الْإِعْرَابِ وَالْبِنَاءِ",
+   "en": "The science defined.",
+   "tr": "İlmin tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "الْوَضْعُ تَخْصِيصُ شَيْءٍ بِشَيْءٍ",
+   "en": "Waḍʿ.",
+   "tr": "Vaz'.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "الْإِسْنَادُ نِسْبَةُ إِحْدَى الْكَلِمَتَيْنِ إِلَى الْأُخْرَى",
+   "en": "Isnād.",
+   "tr": "İsnad.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "الْمَرْفُوعَاتُ مَا اشْتَمَلَ عَلَى عَلَمِ الْفَاعِلِيَّةِ",
+   "en": "A class defined by its role sign.",
+   "tr": "Rol alâmetiyle tarif edilen bir sınıf.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "التَّوَابِعُ كُلُّ ثَانٍ بِإِعْرَابِ سَابِقِهِ مِنْ جِهَةٍ وَاحِدَةٍ",
+   "en": "The followers.",
+   "tr": "Tevâbi'.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«غُلَامُ زَيْدٍ bir kelâmdır»",
+   "right": "«değildir — izâfet nispettir, isnad değildir; susmak sahih olmaz»",
+   "why": {
+    "en": "Speech needs an isnād that yields a complete benefit.",
+    "tr": "Kelâm, tam fayda veren bir isnad ister."
+   }
+  },
+  {
+   "wrong": "«haber bir tâbidir, çünkü mübtedanın ref'ini taşır»",
+   "right": "«tâbi değildir — ref'i başka bir cihetten alır»",
+   "why": {
+    "en": "The followers carry a preceding word's iʿrāb from ONE side; the khabar's rafʿ is its own.",
+    "tr": "Tevâbi' önceki kelimenin i'râbını TEK cihetten taşır; haberin ref'i kendinindir."
+   }
+  },
+  {
+   "wrong": "«nahvin mevzuu sözlükteki kelimedir»",
+   "right": "«kelâmda vâki olan kelimedir — i'râb cümle içinde doğar»",
+   "why": {
+    "en": "Iʿrāb is a property of a word in a sentence, not in a list.",
+    "tr": "İ'râb, listedeki değil cümledeki kelimenin özelliğidir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-kalima-wal-kalam",
+  "al-murab-wal-mabni-wal-irab",
+  "al-mamul-wa-aqsamuh",
+  "al-amil-wa-aqsamuh",
+  "atf-nasaq"
+ ]
+}
