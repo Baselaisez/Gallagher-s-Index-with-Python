@@ -1,4 +1,4 @@
-# Qissa — launch handover (v223, build 246)
+# Qissa — launch handover (v224, build 247)
 
 This is the owner's checklist for taking the app to consumers. Everything the project can do by itself is done and
 gated; the items marked **OWNER** need an account, a key or a signature only the owner has.
@@ -7,12 +7,12 @@ gated; the items marked **OWNER** need an account, a key or a signature only the
 
 | piece | where | state |
 |---|---|---|
-| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v246`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 346 browser checks, PWA checks, drills golden file |
+| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v247`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 346 browser checks, PWA checks, drills golden file |
 | The hosted copy | `python3 tools/pubsplit.py prototype/reader.html <outdir>` → `reader.html` (3.5 MB) + `data/d1–d3.js` | the artifact at claude.ai is this copy (Version 70) |
 | The Android project | `android/` (Capacitor 8, appId `app.qissa.reader`), `capacitor.config.json`, `tools/build_android.py` | the on-demand workflow has built it on a GitHub runner (debug APK + unsigned release APK/AAB, 33.9 MB zipped) |
 | Store copy and assets | `research/PLAY_LISTING.md`, `research/store/{en,tr}/01–06.png` (1080×1920), `research/store/feature-graphic-{en,tr}.png` (1024×500) | rendered from the live reader by `tools/store_shots.js` |
 | Privacy policy | `prototype/privacy.html` (EN/TR) | packaged into the APK and served beside the reader |
-| Review bundle | `dist/qissa-review-v246.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
+| Review bundle | `dist/qissa-review-v247.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
 
 Content: 22 texts in six levels, 43,833 parsed tokens, 328 grammar notes, 13 catechism banks (550 questions),
 20 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).

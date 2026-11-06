@@ -41,6 +41,13 @@
     --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
     --radius: 14px;
     --radius-lg: 20px;
+    /* design wave 79 — the tokens the design package added: a second surface, the gold and the fire, the hero card,
+       the pressable button's shadow and the thumb bar's glass. The paper theme fills them; the three themes from the
+       package (Mürekkep, Gece, Bahçe) override every colour token below, and only tokens — no component knows
+       which theme is on. */
+    --sf2: #EFE8DA; --gold: #B8862F; --fire: #C9622A; --hero: #1E3F42; --hero-ink: #EDF3EF;
+    --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
+    --tab-bg: rgba(255,253,247,.96);
     /* ===== the design system: one scale for space, type, motion, touch =====
        Colour was already tokenised; everything ELSE was ad-hoc rem literals,
        which is why two panels built a week apart never quite lined up. These
@@ -85,40 +92,58 @@
     --lvl1: #7CC98F; --lvl2: #45C2B4; --lvl3: #D9A94E; --lvl4: #E07A7A; --irab-ink: #D08A73;
     --shadow: 0 18px 50px rgba(0,0,0,.55);
   }
+  /* design wave 79 — auto follows the device: paper by day, Gece (the package's night theme) in the dark */
   @media (prefers-color-scheme: dark) {
-    :root {
-      --ground: #101A20;
-      --panel: #16232B;
-      --ink: #E9E2D2;
-      --ink-soft: #97A6AD;
-      --line: #27363F;
-      --accent: #45C2B4;
-      --accent-ink: #08221F;
-      --accent-soft: rgba(69,194,180,.14);
-      --danger: #E07A7A;
-      --ok: #7CC98F;
-      --lvl1: #7CC98F;
-      --lvl2: #45C2B4;
-      --lvl3: #D9A94E;
-      --lvl4: #E07A7A;
-      --irab-ink: #D08A73;
-      --shadow: 0 18px 50px rgba(0,0,0,.55); 
-      --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
+    :root:not([data-theme]) {
+      --ground: #0E131D; --panel: #161D2B; --ink: #EEE8DA; --ink-soft: #9BA3B4; --line: #283247;
+      --accent: #E2B65C; --accent-ink: #1B1404; --accent-soft: rgba(226,182,92,.13);
+      --danger: #EE8B7B; --ok: #6CC3A6;
+      --lvl1: #6CC3A6; --lvl2: #7FA7F2; --lvl3: #E2B65C; --lvl4: #EE8B7B; --irab-ink: #F0C987;
+      --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
+      --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
+      --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 8px 22px rgba(226,182,92,.22); --btn-sh2: none;
+      --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
     }
   }
-  :root[data-theme="light"] {
+  :root[data-theme="light"], :root[data-theme="paper"] {
     --ground: #FAF6EE; --panel: #FFFDF7; --ink: #22303A; --ink-soft: #5A6B76; --line: #E4DCCB;
     --accent: #0E7C74; --accent-ink: #FFFFFF; --accent-soft: rgba(14,124,116,.10);
     --danger: #B23B3B; --ok: #2E7D46;
     --lvl1: #2E7D46; --lvl2: #0E7C74; --lvl3: #B07A1E; --lvl4: #B23B3B; --irab-ink: #96402F;
     --shadow: 0 18px 50px rgba(34,48,58,.22); --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
+    --sf2: #EFE8DA; --gold: #B8862F; --fire: #C9622A; --hero: #1E3F42; --hero-ink: #EDF3EF;
+    --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
+    --tab-bg: rgba(255,253,247,.96); --radius: 14px; --radius-lg: 20px;
   }
-  :root[data-theme="dark"] {
-    --ground: #101A20; --panel: #16232B; --ink: #E9E2D2; --ink-soft: #97A6AD; --line: #27363F;
-    --accent: #45C2B4; --accent-ink: #08221F; --accent-soft: rgba(69,194,180,.14);
-    --danger: #E07A7A; --ok: #7CC98F;
-    --lvl1: #7CC98F; --lvl2: #45C2B4; --lvl3: #D9A94E; --lvl4: #E07A7A; --irab-ink: #D08A73;
-    --shadow: 0 18px 50px rgba(0,0,0,.55); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
+  :root[data-theme="murekkep"] {
+    --ground: #F3EDE1; --panel: #FBF8F2; --ink: #1E1A16; --ink-soft: #6B6056; --line: #DED3C0;
+    --accent: #A5432B; --accent-ink: #FFF8EF; --accent-soft: rgba(165,67,43,.10);
+    --danger: #A5432B; --ok: #3D7A52;
+    --lvl1: #3D7A52; --lvl2: #2D6D8C; --lvl3: #B07A1E; --lvl4: #A5432B; --irab-ink: #8A3A26;
+    --shadow: 0 18px 50px rgba(30,26,22,.18); --shadow-sm: 0 1px 0 rgba(30,26,22,.03), 0 8px 22px rgba(30,26,22,.06);
+    --sf2: #ECE4D5; --gold: #B8862F; --fire: #C9622A; --hero: #2A241F; --hero-ink: #F5ECDD;
+    --hero-soft: rgba(245,236,221,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
+    --tab-bg: rgba(251,248,242,.94); --radius: 14px; --radius-lg: 20px;
+  }
+  :root[data-theme="dark"], :root[data-theme="gece"] {
+    --ground: #0E131D; --panel: #161D2B; --ink: #EEE8DA; --ink-soft: #9BA3B4; --line: #283247;
+    --accent: #E2B65C; --accent-ink: #1B1404; --accent-soft: rgba(226,182,92,.13);
+    --danger: #EE8B7B; --ok: #6CC3A6;
+    --lvl1: #6CC3A6; --lvl2: #7FA7F2; --lvl3: #E2B65C; --lvl4: #EE8B7B; --irab-ink: #F0C987;
+    --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
+    --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
+    --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 8px 22px rgba(226,182,92,.22); --btn-sh2: none;
+    --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
+  }
+  :root[data-theme="bahce"] {
+    --ground: #F1F4E9; --panel: #FFFFFF; --ink: #14251A; --ink-soft: #56655A; --line: #D9E0CB;
+    --accent: #1F9157; --accent-ink: #FFFFFF; --accent-soft: rgba(31,145,87,.12);
+    --danger: #E0533F; --ok: #1F9157;
+    --lvl1: #1F9157; --lvl2: #2B83C9; --lvl3: #E5A01A; --lvl4: #E0533F; --irab-ink: #B4472E;
+    --shadow: 0 18px 50px rgba(20,37,26,.18); --shadow-sm: 0 3px 0 #D9E0CB;
+    --sf2: #E6EBDA; --gold: #E5A01A; --fire: #F06A36; --hero: #1F9157; --hero-ink: #FFFFFF;
+    --hero-soft: rgba(255,255,255,.2); --hero-ac: #FFD34D; --btn-sh: 0 4px 0 #14703F; --btn-sh2: 0 3px 0 #D9E0CB;
+    --tab-bg: rgba(255,255,255,.96); --radius: 22px; --radius-lg: 28px;
   }
 
   * { box-sizing: border-box; }
@@ -1393,7 +1418,7 @@
   .tabbar {
     position: fixed; inset-inline: 0; bottom: 0; z-index: 40; display: none;
     grid-template-columns: repeat(5, 1fr);
-    background: var(--panel); border-top: 1px solid var(--line);
+    background: var(--tab-bg); border-top: 1px solid var(--line);
     padding-bottom: env(safe-area-inset-bottom, 0);
     box-shadow: 0 -1px 0 var(--line), var(--e2);
   }
@@ -1403,14 +1428,19 @@
     border: 0; background: none; cursor: pointer; color: var(--ink-soft);
     font-family: var(--ui-font); transition: color var(--dur-fast) var(--ease);
   }
-  .tabbar button .tb-i { font-size: 1.15rem; line-height: 1; }
+  /* design wave 79 — the package's icon set: one line-weight, outlined at rest, filled and seated on a pill when
+     active (its «emoji → ikon seti» note). The icons are inline SVG so the shell needs no icon font. */
+  .tabbar button .tb-i { display: grid; place-items: center; width: 54px; height: 28px; border-radius: var(--r-full);
+    transition: background var(--dur-base) var(--ease); }
+  .tabbar button .tb-i svg { width: 22px; height: 22px; display: block; }
+  .tabbar button .tb-i .ic-f { display: none; }
+  .tabbar button.on .tb-i { background: var(--accent-soft); }
+  .tabbar button.on .tb-i .ic-f { display: block; }
+  .tabbar button.on .tb-i .ic-o { display: none; }
   .tabbar button .tb-l { font-size: .62rem; letter-spacing: .02em; }
   .tabbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   .tabbar button.on { color: var(--accent); }
-  .tabbar button.on::before {
-    content: ""; position: absolute; top: 0; inset-inline: 22%; height: 2px;
-    background: var(--accent); border-radius: 0 0 2px 2px;
-  }
+  .tabbar button.on::before { content: none; }   /* wave 79: the pill replaced the hairline */
   .tabbar .tb-badge {
     position: absolute; top: 3px; inset-inline-end: 22%;
     min-width: 16px; height: 16px; padding: 0 4px; border-radius: var(--r-full);
@@ -2311,6 +2341,224 @@
   .tq-dabt .dabt-line { font-size: 1.5rem; }
   .tq-dabt .tq-dscore { font-size: var(--t-sm); margin: var(--s2) 0; } .tq-dabt .tq-dscore b { color: var(--ink); }
   @media (max-width: 480px) { .dabt-line { font-size: 1.45rem; } .sl-fix .sf-pair { font-size: 1.4rem; } }
+
+  /* ================= design wave 79: the design package, part I ==========
+     From the uploaded mobile redesign (three themes, fifteen screens): the
+     front door's daily-goal ring, the hero «continue» card, XP, the hub's
+     task and recommendation cards, the progress page's streak hero with
+     its week, the XP bars, the level path and the badges, and a theme
+     picker whose previews are painted in each theme's own colours. Every
+     colour is a token; the Bahçe theme's pressable buttons come from
+     --btn-sh alone. */
+  .btn.primary { box-shadow: var(--btn-sh); }
+  .lib-card, .game-pick button, .tbtn { box-shadow: var(--btn-sh2); }
+  .ic { width: 1em; height: 1em; display: inline-block; vertical-align: -.15em; }
+  .goal-card { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4);
+    border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); box-shadow: var(--btn-sh2);
+    margin: var(--s2) 0 var(--s3); font-family: var(--ui-font); }
+  .goal-ring { width: 58px; height: 58px; border-radius: 50%; flex: none; display: grid; place-items: center;
+    background: conic-gradient(var(--accent) 0 var(--pct, 0%), var(--sf2) 0); }
+  .goal-ring > span { width: 44px; height: 44px; border-radius: 50%; background: var(--panel); display: grid;
+    place-items: center; font-weight: 700; font-size: var(--t-md); font-variant-numeric: tabular-nums; }
+  .goal-main { flex: 1; min-width: 0; display: grid; gap: 3px; }
+  .goal-h { font-weight: 600; font-size: var(--t-md); }
+  .goal-sub { font-size: var(--t-sm); color: var(--ink-soft); line-height: 1.35; text-wrap: pretty; }
+  .goal-xp { display: grid; justify-items: end; gap: 2px; flex: none; }
+  .goal-xp b { color: var(--accent); font-size: var(--t-lg); line-height: 1; }
+  .goal-xp span { font-size: var(--t-xs); letter-spacing: var(--track-caps); color: var(--ink-soft); }
+  .stat-strip.mini { display: flex; gap: var(--s2); margin: 0 0 var(--s3); }
+  .stat-strip.mini .st-tile { flex: 1; display: flex; flex-direction: row; align-items: center; justify-content: center; gap: .3rem;
+    padding: .3rem .3rem; min-height: var(--tap);   /* the thumb floor, as every tile before it */ border-radius: var(--r-full); background: var(--panel); border: 1px solid var(--line);
+    cursor: pointer; font-family: var(--ui-font); color: var(--ink); }
+  .stat-strip.mini .st-ar { display: none; }
+  .stat-strip.mini .st-n { font-size: var(--t-md); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-strip.mini .st-l { font-size: .6rem; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .stat-strip.mini .st-i { color: var(--fire); display: inline-flex; }
+  .stat-strip.mini .st-i svg { width: 16px; height: 16px; }
+  .stat-strip.mini .st-tile[data-st="due"] .st-i { color: var(--accent); }
+  .stat-strip.mini .st-tile[data-st="known"] .st-i { color: var(--ok); }
+  /* the continue card as the package's hero: ink ground, gold accent, a play circle */
+  .continue-card { background: var(--hero); color: var(--hero-ink); border: 0; position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm); }
+  .continue-card::before, .continue-card::after { content: ""; position: absolute; border-radius: 50%;
+    border: 1px solid var(--hero-soft); pointer-events: none; }
+  .continue-card::before { width: 150px; height: 150px; right: -30px; top: -30px; }
+  .continue-card::after { width: 102px; height: 102px; right: -6px; top: -6px; }
+  .continue-card .cc-lbl { color: var(--hero-ac); }
+  .continue-card .cc-sub { color: var(--hero-ink); opacity: .78; }
+  .continue-card .progress { background: var(--hero-soft); }
+  .continue-card .progress > div { background: var(--hero-ac); }
+  .continue-card .cc-ring .rbg { stroke: var(--hero-soft); }
+  .continue-card .cc-ring .rfg { stroke: var(--hero-ac); }
+  .continue-card .cc-pct { color: var(--hero-ac); }
+  .continue-card .cc-play { width: 44px; height: 44px; border-radius: 50%; background: var(--hero-ac); color: var(--hero);
+    display: grid; place-items: center; flex: none; }
+  .continue-card .cc-play svg { width: 24px; height: 24px; }
+  /* the hub: the day's task and the coach's pick sit above the shelves */
+  .hub-task { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4); border-radius: var(--radius);
+    background: var(--hero); color: var(--hero-ink); font-family: var(--ui-font); margin: 0 0 var(--s3); }
+  .hub-task .ht-i { width: 44px; height: 44px; border-radius: var(--r-md); background: var(--hero-soft); color: var(--hero-ac);
+    display: grid; place-items: center; flex: none; }
+  .hub-task .ht-i svg { width: 26px; height: 26px; }
+  .hub-task .ht-main { flex: 1; min-width: 0; display: grid; gap: 5px; }
+  .hub-task .ht-row { display: flex; justify-content: space-between; gap: var(--s2); font-size: var(--t-sm); font-weight: 600; }
+  .hub-task .ht-bar { height: 6px; border-radius: var(--r-full); background: var(--hero-soft); overflow: hidden; }
+  .hub-task .ht-bar span { display: block; height: 100%; background: var(--hero-ac); border-radius: var(--r-full); }
+  .hub-task .ht-sub { font-size: var(--t-xs); opacity: .78; }
+  .hub-task.done .ht-i { background: var(--hero-ac); color: var(--hero); }
+  .hub-reco { display: flex; align-items: center; gap: var(--s3); width: 100%; text-align: start; padding: var(--s3) var(--s4);
+    border: 2px solid var(--accent); border-radius: var(--radius); background: var(--panel); color: var(--ink); cursor: pointer;
+    font-family: var(--ui-font); margin: 0 0 var(--s4); box-shadow: var(--btn-sh); }
+  .hub-reco .hr-i { width: 48px; height: 48px; border-radius: var(--r-md); background: var(--accent); color: var(--accent-ink);
+    display: grid; place-items: center; font-size: 1.5rem; flex: none; }
+  .hub-reco .hr-main { flex: 1; min-width: 0; display: grid; gap: 2px; }
+  .hub-reco .hr-k { font-size: var(--t-xs); letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .hub-reco .hr-t { font-weight: 700; font-size: var(--t-lg); }
+  .hub-reco .hr-d { font-size: var(--t-sm); color: var(--ink-soft); }
+  .hub-reco .hr-go { color: var(--accent); display: inline-flex; }
+  .hub-reco .hr-go svg { width: 26px; height: 26px; }
+  @media (max-width: 860px) {
+    .game-pick { grid-template-columns: 1fr 1fr; gap: var(--s2); }
+    .game-pick button { padding: var(--s3); }
+    .game-pick .gt { font-size: var(--t-md); flex-wrap: wrap; }
+    .game-pick .gd { font-size: var(--t-xs); margin-top: 2px; }
+    .game-pick button::after { font-size: 3rem; }
+  }
+  /* the progress page: the streak hero, its week, the XP bars, the level path, the badges */
+  .pg-hero { padding: var(--s4); border-radius: var(--radius); background: var(--hero); color: var(--hero-ink);
+    font-family: var(--ui-font); display: grid; gap: var(--s3); margin: var(--s2) 0 var(--s3); }
+  .pg-hero .ph-top { display: flex; align-items: center; gap: var(--s3); }
+  .pg-hero .ph-fire { color: var(--fire); display: inline-flex; }
+  .pg-hero .ph-fire svg { width: 48px; height: 48px; }
+  .pg-hero .ph-n { font-size: var(--t-2xl); font-weight: 700; line-height: 1; }
+  .pg-hero .ph-sub { font-size: var(--t-sm); opacity: .78; margin-top: 3px; }
+  .pg-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .pg-week > span { display: grid; justify-items: center; gap: 4px; font-size: var(--t-xs); opacity: .8; }
+  .pg-week i { width: 30px; height: 30px; border-radius: 50%; background: var(--hero-soft); display: grid; place-items: center;
+    color: var(--hero); font-style: normal; }
+  .pg-week i svg { width: 16px; height: 16px; }
+  .pg-week .hit i { background: var(--hero-ac); }
+  .pg-week .today i { background: var(--hero-ink); color: var(--fire); }
+  .pg-hero .ph-shield { display: flex; align-items: center; gap: var(--s2); font-size: var(--t-xs); opacity: .85; }
+  .pg-hero .ph-shield svg { width: 16px; height: 16px; }
+  .pg-sec { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: var(--s4);
+    font-family: var(--ui-font); display: grid; gap: var(--s3); margin: var(--s3) 0; }
+  .pg-sec .ps-h { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; font-size: var(--t-md); }
+  .pg-sec .ps-h span { font-size: var(--t-xs); color: var(--ink-soft); font-weight: 500; }
+  .pg-bars { height: 96px; display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--s2); align-items: end; }
+  .pg-bars > span { display: grid; justify-items: center; align-content: end; gap: 4px; height: 100%; }
+  .pg-bars i { display: block; width: 100%; border-radius: 6px 6px 3px 3px; background: color-mix(in srgb, var(--accent) 35%, var(--sf2)); }
+  .pg-bars .today i { background: var(--accent); }
+  .pg-bars b { font-size: .62rem; color: var(--ink-soft); font-weight: 500; }
+  .pg-path { display: flex; align-items: center; }
+  .pg-path > span { flex: 1; display: flex; align-items: center; }
+  .pg-path > span:first-child { flex: none; }
+  .pg-path > span::before { content: ""; flex: 1; height: 3px; background: var(--sf2); }
+  .pg-path > span:first-child::before { content: none; }
+  .pg-path > span.done::before { background: var(--accent); }
+  .pg-path i { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 700;
+    font-size: var(--t-sm); background: var(--sf2); color: var(--ink-soft); flex: none; }
+  .pg-path > span.done i { background: var(--accent); color: var(--accent-ink); }
+  .pg-path > span.mine i { width: 36px; height: 36px; box-shadow: 0 0 0 5px var(--accent-soft); }
+  .pg-path-sub { font-size: var(--t-sm); color: var(--ink-soft); }
+  .pg-badges { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); }
+  .pg-badges > span { display: grid; justify-items: center; gap: 6px; text-align: center; font-size: var(--t-xs); color: var(--ink-soft); }
+  .pg-badges i { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--sf2);
+    border: 2px dashed var(--line); color: var(--ink-soft); opacity: .7; }
+  .pg-badges i svg { width: 26px; height: 26px; }
+  .pg-badges .on i { background: color-mix(in srgb, var(--gold) 18%, var(--panel)); color: var(--gold); opacity: 1;
+    border: 2px solid color-mix(in srgb, var(--gold) 45%, transparent); }
+  /* the theme picker: a card per theme, painted in its own colours */
+  .theme-cards { display: grid; gap: var(--s2); margin: var(--s3) 0; font-family: var(--ui-font); }
+  .theme-card { display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s3); text-align: start;
+    border: 2px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .theme-card.on { border-color: var(--accent); background: var(--accent-soft); }
+  .theme-card .tc-prev { width: 84px; height: 60px; border-radius: var(--r-md); flex: none; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 7px; box-sizing: border-box; }
+  .theme-card .tc-prev b { font-family: var(--ar-font); font-size: 1.25rem; text-align: right; line-height: 1.2; font-weight: 700; }
+  .theme-card .tc-prev i { display: block; height: 11px; border-radius: 6px; }
+  .theme-card .tc-main { flex: 1; min-width: 0; display: grid; gap: 2px; }
+  .theme-card .tc-n { font-weight: 700; font-size: var(--t-md); }
+  .theme-card .tc-s { font-size: var(--t-sm); color: var(--ink-soft); }
+  .theme-card .tc-ok { color: var(--accent); opacity: 0; display: inline-flex; }
+  .theme-card .tc-ok svg { width: 22px; height: 22px; }
+  .theme-card.on .tc-ok { opacity: 1; }
+  .theme-dots { display: flex; gap: var(--s2); align-items: center; }
+  .theme-dot { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); cursor: pointer; padding: 0;
+    background: linear-gradient(135deg, var(--td-bg) 50%, var(--td-ac) 50%); }
+  .theme-dot.on { box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); }
+  .theme-dot.auto { background: linear-gradient(135deg, #FAF6EE 50%, #0E131D 50%); }
+  #themeToggle { display: inline-flex; align-items: center; gap: .35rem; }
+  #themeToggle .th-sw { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--line);
+    background: linear-gradient(135deg, var(--td-bg, var(--ground)) 50%, var(--td-ac, var(--accent)) 50%); }
+  body.theme-anim, body.theme-anim .lib-card, body.theme-anim .sheet, body.theme-anim nav.controls, body.theme-anim .tabbar {
+    transition: background-color .45s, color .45s, border-color .45s; }
+
+  /* ================= design wave 80: the design package, part II =========
+     The first run walks three steps — level, daily goal, look — the way the
+     package's onboarding does, with a progress row of dots and one primary
+     button; the choices land in the same state the chips and sheets edit.
+     While a story is read aloud a pill floats above the thumb bar with the
+     sentence count and prev / stop / next, so the reader's hand never has
+     to find the toolbar. The word sheet leads with the meaning in the
+     reader's language. */
+  .onb { font-family: var(--ui-font); display: grid; gap: var(--s4); }
+  .onb-head { display: flex; align-items: center; gap: var(--s3); }
+  .onb-dots { flex: 1; display: flex; gap: 6px; }
+  .onb-dots i { flex: 1; height: 5px; border-radius: var(--r-full); background: var(--sf2); transition: background .3s; }
+  .onb-dots i.on { background: var(--accent); }
+  .onb-count { font-size: var(--t-sm); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .onb-back { border: 0; background: transparent; color: var(--ink); cursor: pointer; width: var(--tap); height: var(--tap);
+    display: grid; place-items: center; border-radius: 50%; margin-inline-start: calc(-1 * var(--s2)); }
+  .onb-back svg { width: 22px; height: 22px; transform: scaleX(-1); }
+  .onb-back[hidden] { display: none; }
+  .onb-hero { height: 150px; border-radius: var(--radius); background: var(--hero); color: var(--hero-ink); display: grid;
+    place-items: center; position: relative; overflow: hidden; }
+  .onb-hero::before { content: ""; position: absolute; inset: 12px; border: 1px solid var(--hero-soft); border-radius: calc(var(--radius) - 6px); }
+  .onb-hero b { font-family: var(--ar-font); font-size: 4rem; line-height: 1.2; color: var(--hero-ac); font-weight: 700; }
+  .onb-hero small { position: absolute; bottom: 16px; font-size: var(--t-xs); letter-spacing: .3em; text-transform: uppercase; opacity: .8; }
+  .onb h3 { font-family: var(--ui-font); font-size: var(--t-2xl); line-height: var(--lh-tight); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  .onb .onb-sub { font-size: var(--t-md); color: var(--ink-soft); line-height: var(--lh-body); margin: 0; text-wrap: pretty; }
+  .onb-feats { display: grid; gap: var(--s2); }
+  .onb-feats > span { display: flex; align-items: center; gap: var(--s3); font-size: var(--t-md); font-weight: 500; }
+  .onb-feats i { width: 36px; height: 36px; border-radius: var(--r-md); background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; flex: none; }
+  .onb-feats i svg { width: 20px; height: 20px; }
+  .onb .level-pick { margin: 0; }
+  .onb-goals { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
+  .onb-goal { display: grid; gap: 4px; text-align: start; padding: var(--s4); border: 2px solid var(--line); border-radius: var(--radius);
+    background: var(--panel); color: var(--ink); cursor: pointer; font-family: var(--ui-font); box-shadow: var(--btn-sh2); }
+  .onb-goal b { font-size: var(--t-xl); line-height: 1; }
+  .onb-goal span { font-size: var(--t-xs); color: var(--ink-soft); }
+  .onb-goal .og-n { font-weight: 700; font-size: var(--t-md); color: var(--ink); margin-top: var(--s2); }
+  .onb-goal.on { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); box-shadow: var(--btn-sh); }
+  .onb-goal.on span, .onb-goal.on .og-n { color: inherit; }
+  .onb-cta { display: grid; gap: var(--s2); }
+  .onb-cta .btn.primary { width: 100%; min-height: 54px; font-size: var(--t-md); }
+  .onb-cta .btn.primary svg { width: 20px; height: 20px; }
+  .onb-cta .onb-skip { border: 0; background: transparent; color: var(--ink-soft); min-height: var(--tap); cursor: pointer; font-family: var(--ui-font); font-size: var(--t-sm); }
+  .player-pill { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 39; width: min(40rem - 2rem, calc(100% - 28px));
+    display: flex; align-items: center; gap: var(--s1); padding: 6px; border-radius: var(--r-full); background: var(--panel);
+    border: 1px solid var(--line); box-shadow: var(--shadow); font-family: var(--ui-font); }
+  .player-pill[hidden] { display: none; }
+  .player-pill .pp-main { flex: 1; min-width: 0; display: grid; gap: 2px; padding-inline-start: var(--s3); }
+  .player-pill .pp-lbl { font-size: var(--t-sm); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .player-pill .pp-sub { font-size: var(--t-xs); color: var(--ink-soft); }
+  .player-pill button { border: 0; background: transparent; color: var(--ink); cursor: pointer; width: var(--tap); height: var(--tap);
+    border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .player-pill button svg { width: 24px; height: 24px; }
+  .player-pill .pp-stop { width: 50px; height: 50px; background: var(--accent); color: var(--accent-ink); box-shadow: var(--btn-sh); }
+  .player-pill .pp-stop svg { width: 28px; height: 28px; }
+  @media (max-width: 860px) { .player-pill { bottom: calc(var(--tap) + var(--s4) + env(safe-area-inset-bottom, 0)); } }
+  /* a long toast (the no-voice notice) is a card, not a pill, and it sits above the thumb bar */
+  #toast { border-radius: var(--radius); line-height: 1.45; width: max-content; max-width: min(calc(100% - 2rem), 28rem); z-index: 41; }
+  @media (max-width: 860px) { #toast { bottom: calc(var(--tap) + var(--s5) + 50px + env(safe-area-inset-bottom, 0)); } }
+  .w-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s3); margin: var(--s2) 0; font-family: var(--ui-font); }
+  .w-head .w-gl { flex: 1; min-width: 0; display: grid; gap: 3px; }
+  .w-head .w-g1 { font-size: var(--t-xl); line-height: var(--lh-tight); font-weight: 600; letter-spacing: -.01em; text-wrap: balance; }
+  .w-head .w-g2 { font-size: var(--t-sm); color: var(--ink-soft); }
+  .w-head .w-g2 small { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; margin-inline-end: .4rem; }
 </style>
 
 <div class="readbar" id="readbar" aria-hidden="true"><div></div></div>
@@ -2370,13 +2618,14 @@
        nothing can drift. Above 860px the toolbar is the navigation and this
        is hidden — a phone wants a thumb bar, a desktop wants a menu. -->
   <nav class="tabbar" id="tabbar" aria-label="Main">
-    <button data-nav="library" id="navLibrary"><span class="tb-i">📚</span><span class="tb-l"></span></button>
-    <button data-nav="deck" id="navDeck"><span class="tb-i">🃏</span><span class="tb-l"></span><span class="tb-badge" id="navDeckCount" hidden>0</span></button>
-    <button data-nav="games" id="navGames"><span class="tb-i">🎮</span><span class="tb-l"></span></button>
-    <button data-nav="atolye" id="navAtolye"><span class="tb-i">🛠️</span><span class="tb-l"></span></button>
-    <button data-nav="progress" id="navProgress"><span class="tb-i">📈</span><span class="tb-l"></span></button>
+    <button data-nav="library" id="navLibrary"><span class="tb-i" data-ic="library"></span><span class="tb-l"></span></button>
+    <button data-nav="deck" id="navDeck"><span class="tb-i" data-ic="deck"></span><span class="tb-l"></span><span class="tb-badge" id="navDeckCount" hidden>0</span></button>
+    <button data-nav="games" id="navGames"><span class="tb-i" data-ic="games"></span><span class="tb-l"></span></button>
+    <button data-nav="atolye" id="navAtolye"><span class="tb-i" data-ic="atolye"></span><span class="tb-l"></span></button>
+    <button data-nav="progress" id="navProgress"><span class="tb-i" data-ic="progress"></span><span class="tb-l"></span></button>
   </nav>
 
+  <div class="player-pill" id="playerPill" hidden role="group" aria-label="Listening"></div>
   <div class="legend" id="legend">
     <span><span class="sw" style="background:var(--lvl1)"></span><span class="lvl-label" data-lvl="1">Level 1</span></span>
     <span><span class="sw" style="background:var(--lvl2)"></span><span class="lvl-label" data-lvl="2">Level 2</span></span>
@@ -2411,7 +2660,21 @@ const REF_GROUPS = [{"id":"sarf","ar":"الصَّرْف","label":{"en":"Morpholo
 
 // ---------- i18n ----------
 const L = {
-  en: { word:"Word", sarf:"Conjugation", irab:"Analysis", grammar:"Grammar",
+  en: {
+        /* wave 80 */ onbStep:"{a} / {b}", onbTitleLevel:"What is your level?", onbTitleGoal:"How much each day?", onbSubGoal:"Small and regular beats big and rare. The goal feeds the ring on the front door.",
+        onbTitleTheme:"Choose your look", onbSubTheme:"Tap one and watch the app change. You can change it any time from «Aa» or the toolbar.", onbNext:"Continue", onbStart:"Start reading", onbBack:"Back",
+        onbF1:"Tap a word — meaning, ṣarf and iʿrāb at a glance", onbF2:"A deck that remembers for you", onbF3:"Streaks, games and badges",
+        goalRelaxed:"Relaxed", goalRegular:"Regular", goalSerious:"Serious", goalIntense:"Intense", goalPreset:"{r} reviews · {n} new words",
+        playerSent:"Sentence {i} / {n}", playerListening:"Listening", playerPrev:"Previous sentence", playerNext:"Next sentence", playerStop:"Stop",
+        /* wave 79 */ goalH:"Daily goal · {p}%", goalSub:"{r} reviews and {n} new words still to go today.", goalDone:"Today's goal is done — the streak is safe.",
+        xpLbl:"XP", xpToday:"today", hubTask:"Today's task: {n} answers", hubTaskSub:"Reward: +{x} XP", hubTaskDone:"Done — the reward is yours.",
+        hubReco:"Recommended", hubRecoDesc:"Your weakest area right now, by your own ratings.", pgStreakSub:"best {b}",
+        pgShield:"Your weekly mercy is still there — one missed day will not break the chain.", pgShieldUsed:"The weekly mercy is spent — read every day till the week turns.",
+        pgXp:"Weekly XP", pgXpTotal:"{n} XP in all", pgPath:"Level path", pgPathSub:"Reading level {n} · texts of your level in the library", pgPathNone:"Pick your level and the path lights up.",
+        pgBadges:"Badges", badgeStory:"First story", badgeStreak:"7-day streak", badgeWords:"100 words", badgeSarf:"Sarf master", badgeNahw:"Naḥw master", badgeDeck:"50 cards", badgeQa:"Catechist", badgeRound:"Perfect round",
+        themeTitle:"Appearance", themeAuto:"Follow the device", themeAutoSub:"Paper by day, Night after dark", themeTap:"Tap one — the app changes under your thumb.",
+        statStreak:"days", statDue:"due", statKnown:"known",
+        word:"Word", sarf:"Conjugation", irab:"Analysis", grammar:"Grammar",
         save:"＋ Save to flashcards", saved:"✓ In your deck", gnote:"Grammar note",
         deck:"Deck", grammarBtn:"Grammar", levels:"Levels", chapter:"Chapter",
         yourDeck:"Your deck", empty:"No cards yet — tap a word in the story, then “Save to flashcards”.",
@@ -2771,7 +3034,21 @@ const L = {
         tsDocTitle:"the wajh's divisions — what the surface cannot settle", tsDocHint:"The engine claims the SHAPE of each end (bare, restricted, or a whole picture) and whether a spoken wajh is one meaning or a composite hay'a — those are syntax. Whether the shared meaning really lives in the second end (tahqiqi) or is imagined into it (takhyili), and what KIND of meaning it is, are knowledge of the two things, so they stand here as a shortlist, never a verdict.",
         tashbihAgree:"the engine's arkan agree with the authored ones", tashbihDisagree:"the engine's arkan DIFFER from the authored ones — a question for the author or the engine",
         streakTitle:"{d}-day streak \u2014 {r}/{R} reviews, {n}/{N} new words today" },
-  tr: { word:"Kelime", sarf:"Çekim (Sarf)", irab:"İ'rab", grammar:"Gramer",
+  tr: {
+        /* wave 80 */ onbStep:"{a} / {b}", onbTitleLevel:"Seviyen nedir?", onbTitleGoal:"Günde ne kadar?", onbSubGoal:"Küçük ve düzenli, büyük ve seyrekten iyidir. Hedef, kütüphanedeki halkayı besler.",
+        onbTitleTheme:"Görünümünü seç", onbSubTheme:"Birine dokun, uygulamanın değiştiğini gör. «Aa» sayfasından ya da araç çubuğundan istediğin an değiştirebilirsin.", onbNext:"Devam", onbStart:"Okumaya başla", onbBack:"Geri",
+        onbF1:"Kelimeye dokun — anlamı, sarfı ve i'rabı tek bakışta", onbF2:"Senin yerine hatırlayan deste", onbF3:"Seri, oyunlar ve rozetler",
+        goalRelaxed:"Rahat", goalRegular:"Düzenli", goalSerious:"Ciddi", goalIntense:"Yoğun", goalPreset:"{r} tekrar · {n} yeni kelime",
+        playerSent:"Cümle {i} / {n}", playerListening:"Dinleniyor", playerPrev:"Önceki cümle", playerNext:"Sonraki cümle", playerStop:"Durdur",
+        /* wave 79 */ goalH:"Günlük hedef · %{p}", goalSub:"Bugün {r} tekrar ve {n} yeni kelime kaldı.", goalDone:"Bugünün hedefi tamam — seri güvende.",
+        xpLbl:"XP", xpToday:"bugün", hubTask:"Günün görevi: {n} cevap", hubTaskSub:"Ödül: +{x} XP", hubTaskDone:"Tamam — ödül senin.",
+        hubReco:"Önerilen", hubRecoDesc:"Kendi puanlarına göre şu an en zayıf alanın.", pgStreakSub:"en iyisi {b}",
+        pgShield:"Haftalık affın duruyor — bir gün kaçırırsan seri bozulmaz.", pgShieldUsed:"Haftalık af kullanıldı — hafta dönene kadar her gün oku.",
+        pgXp:"Haftalık XP", pgXpTotal:"toplam {n} XP", pgPath:"Seviye yolu", pgPathSub:"Okuma seviyen {n} · kütüphanede seviyenin metinleri", pgPathNone:"Seviyeni seç, yol aydınlansın.",
+        pgBadges:"Rozetler", badgeStory:"İlk hikâye", badgeStreak:"7 gün seri", badgeWords:"100 kelime", badgeSarf:"Sarf ustası", badgeNahw:"Nahiv ustası", badgeDeck:"50 kart", badgeQa:"Suâl-cevap", badgeRound:"Kusursuz tur",
+        themeTitle:"Görünüm", themeAuto:"Cihaza uy", themeAutoSub:"Gündüz Kâğıt, karanlıkta Gece", themeTap:"Birine dokun — uygulama parmağının altında değişir.",
+        statStreak:"gün", statDue:"tekrar", statKnown:"bilinen",
+        word:"Kelime", sarf:"Çekim (Sarf)", irab:"İ'rab", grammar:"Gramer",
         save:"＋ Kart destesine ekle", saved:"✓ Destede", gnote:"Gramer notu",
         deck:"Deste", grammarBtn:"Gramer", levels:"Seviye", chapter:"Bölüm",
         yourDeck:"Desteniz", empty:"Henüz kart yok — hikâyede bir kelimeye dokunun, sonra “Kart destesine ekle”.",
@@ -3933,16 +4210,20 @@ function renderLibrary(){
   // progress page use, so the strip can never disagree with them. The whole
   // row is one tap into the deck, and it is built only from tokens.
   const dStats = deckStats();
+  // design wave 79 — the package's daily-goal ring takes the top of the door; the three numbers become one quiet row
+  // of chips under it (same ids, same data, same tap into the deck).
+  storyEl.insertAdjacentHTML("beforeend", goalCardHtml());
+  document.getElementById("goalCard").addEventListener("click", () => openDeck());
   const strip = document.createElement("div");
-  strip.className = "stat-strip";
+  strip.className = "stat-strip mini";
   strip.id = "statStrip";
-  const tile = (k, n, lbl, ar) =>
-    `<button class="st-tile" data-st="${k}"><span class="st-ar" lang="ar">${ar}</span>` +
+  const tile = (k, n, lbl, ar, ic) =>
+    `<button class="st-tile" data-st="${k}"><span class="st-ar" lang="ar">${ar}</span><span class="st-i">${IconSet.svg(ic, true)}</span>` +
     `<span class="st-n">${n}</span><span class="st-l">${lbl}</span></button>`;
   strip.innerHTML =
-    tile("streak", state.streak.days || 0, ui().stStreak, "مُوَاظَبَة") +
-    tile("due", dStats.due, ui().stDue, "مُرَاجَعَة") +
-    tile("known", dStats.mature, ui().stKnown, "مَحْفُوظ");
+    tile("streak", state.streak.days || 0, ui().statStreak, "مُوَاظَبَة", "fire") +
+    tile("due", dStats.due, ui().statDue, "مُرَاجَعَة", "deck") +
+    tile("known", dStats.mature, ui().statKnown, "مَحْفُوظ", "checkc");
   strip.querySelectorAll("[data-st]").forEach(b2 =>
     b2.addEventListener("click", () => openDeck()));
   storyEl.appendChild(strip);
@@ -3963,7 +4244,7 @@ function renderLibrary(){
         <circle class="rbg" cx="22" cy="22" r="19"></circle>
         <circle class="rfg" cx="22" cy="22" r="19" style="stroke-dasharray:${C};stroke-dashoffset:${
           (2 * Math.PI * 19 * (1 - pct / 100)).toFixed(1)}"></circle>
-      </svg><span class="cc-pct">${pct}%</span></div></div>`;
+      </svg><span class="cc-pct">${pct}%</span></div><span class="cc-play" aria-hidden="true">${IconSet.svg("play", true)}</span></div>`;
     hero.addEventListener("click", () => openStory(lastSt, true));
     storyEl.appendChild(hero);
   }
@@ -4087,6 +4368,7 @@ function openReadCtrls(){
             `<button data-ars="${n}" class="${Math.abs(state.arSize - v) < 0.08 ? "on" : ""}" style="font-size:${
               [0.78, 0.9, 1.05, 1.2][n]}rem">A</button>`).join("")}
         </div></div>
+      <div class="rc-group"><span class="ls-lbl">${U.themeTitle}</span>${themeDotsHtml()}</div>
       <div class="rc-group"><span class="ls-lbl">${U.readCtrlTheme}</span>
         <div class="seg" role="group" aria-label="${escapeAttr(U.readCtrlTheme)}">
           <button data-rt="auto" class="${state.readTheme === "auto" ? "on" : ""}">${U.rtAuto}</button>
@@ -4121,6 +4403,7 @@ function openReadCtrls(){
       b.addEventListener("click", () => { setArSizeStep(parseInt(b.dataset.ars, 10)); draw(); }));
     sheetInner.querySelectorAll("[data-rt]").forEach(b =>
       b.addEventListener("click", () => { setReadTheme(b.dataset.rt); draw(); }));
+    bindThemePicks(sheetInner, draw);   // wave 79
   };
   draw();
   showSheet();
@@ -4289,6 +4572,7 @@ class EloModel {
     const e = this.expected(state.elo[area], ri);
     const s = correct ? 1 : 0;
     state.elo[area] = Math.round(state.elo[area] + this.K * (s - e));
+    Xp.answer(!!correct);   // wave 79: every graded answer earns, and counts toward the day's task
     if (itemKey) {
       const k = area + "|" + itemKey;
       state.eloItems[k] = Math.round(ri - this.K_ITEM * (s - e));
@@ -5235,7 +5519,91 @@ function speak(sen, sec, onDone){
 let playAllActive = false;
 let playAllIdx = -1;
 
+
+// ================= design wave 80: the design package, part II =================
+// The first run, as the package drew it: three steps with a dot row, a hero
+// tile, and one primary button. Step one is the level question the app has
+// always asked (same buttons, same storage); step two sets the daily goal the
+// deck's editor also sets; step three is the theme picker. Nothing is written
+// until «Start reading», except the theme, which must be seen to be chosen.
+const GOAL_PRESETS = [["goalRelaxed", 10, 3], ["goalRegular", 20, 5], ["goalSerious", 30, 8], ["goalIntense", 50, 12]];
+class Onboarding {
+  static step = 0; static level = 0; static goal = 1;
+  static open(){
+    this.step = 0; this.level = state.myLevel || 0;
+    this.goal = Math.max(0, GOAL_PRESETS.findIndex(([, r, n]) => r === state.goal.reviews && n === state.goal.newWords));
+    if (this.goal < 0) this.goal = 1;
+    this.draw(); showSheet();
+  }
+  static draw(){
+    const U = ui(), lvls = levelChoices(), lo = lvls[0][0], hi = lvls[lvls.length - 1][0];
+    const dots = [0, 1, 2].map(i => `<i class="${i <= this.step ? "on" : ""}"></i>`).join("");
+    let body = "";
+    if (this.step === 0) body = `
+      <div class="onb-hero"><b lang="ar">قِصَّة</b><small>Qissa</small></div>
+      <h3>${U.onbTitleLevel}</h3><p class="onb-sub">${U.welcomeBody.replace("{a}", lo).replace("{b}", hi)}</p>
+      <div class="onb-feats"><span><i>${IconSet.svg("sparkle", true)}</i>${U.onbF1}</span><span><i>${IconSet.svg("deck", true)}</i>${U.onbF2}</span><span><i>${IconSet.svg("fire", true)}</i>${U.onbF3}</span></div>
+      <div class="level-pick">${lvls.map(([lv, en]) => `<button class="btn ${this.level === lv ? "saved" : ""}" data-pick-level="${lv}">${U.level} ${lv} · ${levelLabel(en)}</button>`).join("")}</div>
+      <div class="onb-cta"><button class="btn unsure onb-skip" data-pick-level="${lo}">${U.welcomeUnsure.replace("{a}", lo)}</button></div>`;
+    else if (this.step === 1) body = `
+      <h3>${U.onbTitleGoal}</h3><p class="onb-sub">${U.onbSubGoal}</p>
+      <div class="onb-goals">${GOAL_PRESETS.map(([k, r, n], i) => `<button class="onb-goal${this.goal === i ? " on" : ""}" data-goal="${i}"><b>${r}</b><span>${U.goalPreset.replace("{r}", r).replace("{n}", n)}</span><span class="og-n">${U[k]}</span></button>`).join("")}</div>
+      <div class="onb-cta"><button class="btn primary" id="onbNext">${U.onbNext} ${IconSet.svg("chev", false)}</button></div>`;
+    else body = `
+      <h3>${U.onbTitleTheme}</h3><p class="onb-sub">${U.onbSubTheme}</p>
+      ${themeCardsHtml()}
+      <div class="onb-cta"><button class="btn primary" id="onbNext">${U.onbStart} ${IconSet.svg("chev", false)}</button></div>`;
+    sheetInner.innerHTML = `<div class="onb" id="onb" data-step="${this.step}">
+      <div class="onb-head"><button class="onb-back" id="onbBack" aria-label="${escapeAttr(U.onbBack)}" ${this.step ? "" : "hidden"}>${IconSet.svg("chev", false)}</button>
+        <div class="onb-dots">${dots}</div><span class="onb-count">${U.onbStep.replace("{a}", this.step + 1).replace("{b}", 3)}</span></div>${body}</div>`;
+    const back = document.getElementById("onbBack");
+    if (back) back.addEventListener("click", () => { this.step = Math.max(0, this.step - 1); this.draw(); });
+    sheetInner.querySelectorAll("[data-pick-level]").forEach(b =>
+      b.addEventListener("click", () => { this.level = parseInt(b.dataset.pickLevel, 10); this.step = 1; this.draw(); }));
+    sheetInner.querySelectorAll("[data-goal]").forEach(b =>
+      b.addEventListener("click", () => { this.goal = parseInt(b.dataset.goal, 10); this.draw(); }));
+    bindThemePicks(sheetInner, () => this.draw());
+    const next = document.getElementById("onbNext");
+    if (next) next.addEventListener("click", () => { if (this.step < 2) { this.step++; this.draw(); } else this.finish(); });
+  }
+  static finish(){
+    const [, r, n] = GOAL_PRESETS[this.goal] || GOAL_PRESETS[1];
+    state.goal = { reviews: r, newWords: n };
+    localStorage.setItem("qissa-goal", JSON.stringify(state.goal));
+    setMyLevel(this.level || levelChoices()[0][0]);   // persists the level, selects «For you», re-renders and closes
+  }
+}
+// the pill that floats over the story while it is read aloud
+const PlayerPill = {
+  el: null,
+  sync(){
+    const el = this.el || (this.el = document.getElementById("playerPill"));
+    if (!el) return;
+    if (!playAllActive || playAllIdx < 0 || !SENTENCE_FLAT.length) { el.hidden = true; return; }
+    const U = ui(), n = SENTENCE_FLAT.length, i = playAllIdx + 1;
+    if (!el.dataset.built) {
+      el.innerHTML = `<span class="pp-main"><span class="pp-lbl" id="ppLbl"></span><span class="pp-sub">${U.playerListening} · ${state.rate || 1}×</span></span>
+        <button id="ppPrev" aria-label="${escapeAttr(U.playerPrev)}">${IconSet.svg("play", true, "pp-flip")}</button>
+        <button class="pp-stop" id="ppStop" aria-label="${escapeAttr(U.playerStop)}">${IconSet.svg("pause", true)}</button>
+        <button id="ppNext" aria-label="${escapeAttr(U.playerNext)}">${IconSet.svg("play", true)}</button>`;
+      el.querySelector("#ppPrev svg").style.transform = "scaleX(-1)";
+      el.querySelector("#ppPrev").addEventListener("click", () => playAllJump(-1));
+      el.querySelector("#ppNext").addEventListener("click", () => playAllJump(1));
+      el.querySelector("#ppStop").addEventListener("click", () => stopPlayAll());
+      el.dataset.built = "1";
+    }
+    el.querySelector("#ppLbl").textContent = U.playerSent.replace("{i}", i).replace("{n}", n);
+    el.querySelector(".pp-sub").textContent = U.playerListening + " · " + (state.rate || 1) + "×";
+    el.hidden = false;
+  },
+};
+function playAllJump(d){
+  if (!playAllActive) return;
+  const i = Math.max(0, Math.min(SENTENCE_FLAT.length - 1, playAllIdx + d));
+  playAllStep(i);   // speak() supersedes the utterance in flight by generation
+}
 function updatePlayAllBtn(){
+  PlayerPill.sync();   // wave 80
   const btn = document.getElementById("playAll");
   if (!btn) return;
   btn.textContent = playAllActive ? ui().stopAll : ui().playAll;
@@ -5258,6 +5626,7 @@ function playAllStep(idx){
   if (!playAllActive) return; // stopped between steps
   if (idx >= SENTENCE_FLAT.length) { stopPlayAll(); return; }
   playAllIdx = idx;
+  PlayerPill.sync();   // wave 80: the pill follows the sentence
   const { sen, sec, ch } = SENTENCE_FLAT[idx];
   markRead(sen, ch);
   speak(sen, sec, () => playAllStep(idx + 1));
@@ -13224,9 +13593,11 @@ function openWord(tok, el, tab, ctx){
       chip(ui().rootChip + " " + arSpan(entry.root), "tappable") + `</button>`;
     if (entry.plural) html += chip(ui().pluralChip + " " + arSpan(entry.plural));
     if (entry.level > 0) html += chip(ui().level + " " + entry.level, "level");
+    // wave 80: the meaning leads, in the reader's language; the other language stays, small, under it
+    const g1 = state.uiLang === "tr" ? "tr" : "en", g2 = g1 === "tr" ? "en" : "tr";
     html += `</div>
-      <p class="gloss"><small>EN</small>${entry.gloss.en}</p>
-      <p class="gloss"><small>TR</small>${entry.gloss.tr}</p>`;
+      <div class="w-head"><div class="w-gl"><p class="gloss w-g1">${entry.gloss[g1] || entry.gloss[g2] || ""}</p>
+      <p class="gloss w-g2"><small>${g2.toUpperCase()}</small>${entry.gloss[g2] || ""}</p></div></div>`;
     // The form in the text, beside the dictionary form: وَاعْفُ next to عَفَا,
     // named (emir — sen) and translated as the FORM means («affet!»), so the
     // reader never has to bridge lemma and text alone.
@@ -24102,6 +24473,7 @@ function weekKey(){
 function countActivity(kind){
   const t = rollDay();
   t[kind] = (t[kind] || 0) + 1;
+  Xp.forActivity(kind);   // wave 79
   localStorage.setItem("qissa-today", JSON.stringify(t));
   const k = todayKey();
   if (state.streak.last !== k) {
@@ -24119,7 +24491,8 @@ function countActivity(kind){
       shieldWeek = weekKey();
       showToast(ui().mercyUsed);
     }
-    state.streak = { days, last: k, ...(shieldWeek ? { shieldWeek } : {}) };
+    const best = Math.max(state.streak.best || 0, days);   // wave 79: the longest chain is remembered
+    state.streak = { days, last: k, best, ...(shieldWeek ? { shieldWeek } : {}) };
     localStorage.setItem("qissa-streak", JSON.stringify(state.streak));
   }
   updateStreakChip();   // the percentage moves on every act, not only the first
@@ -24442,6 +24815,7 @@ function openStats(){
     </div>`).join("");
   sheetInner.innerHTML = `
     <h3 class="welcome-h">${ui().statsTitle}</h3>
+    ${ProgressPage.heroHtml()}
     <div class="stats-grid">
       ${tile("\u{1F525} " + state.streak.days, ui().dayStreak)}
       ${tile(c.storiesDone + "/" + c.stories, ui().stStories)}
@@ -24453,6 +24827,9 @@ function openStats(){
     <p class="ref-intro">${ui().todayLine.replace("{r}", t.reviewed)
       .replace("{n}", t.learned).replace("{s}", t.read)}</p>
     ${lvlRows}
+    ${ProgressPage.xpHtml()}
+    ${ProgressPage.pathHtml()}
+    ${ProgressPage.badgesHtml()}
     ${Backup.html()}
     ${ReviewNotes.statsHtml()}`;
   Backup.bind(sheetInner);
@@ -31841,7 +32218,7 @@ function openGames(){
   };
   const gHead = (ar, label) => `<div class="game-group"><span class="ar" lang="ar">${ar}</span>${label}</div>`;
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${ui().games}</button></div>
-    ${gameScopeBanner()}<div class="game-pick">
+    ${gameScopeBanner()}${hubTaskHtml()}<div class="game-pick">
     ${gHead("مُفْرَدَات", ui().gGroupVocab)}
     ${gCard("gMatch", "🀄", ui().match, ui().matchDesc, fadeLine)}
     ${gCard("gCloze", "✏️", ui().clozeGame, ui().clozeDesc, fadeLine)}
@@ -31893,6 +32270,7 @@ function openGames(){
     ${gCard("gSaj", "≈", ui().sajGame, ui().sajGameDesc)}
     ${gCard("gBahr", "♫", ui().bahrGame, ui().bahrGameDesc)}
   </div>`;
+  bindHubTask();   // wave 79: the recommendation card clicks the shelf's own card
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
   document.getElementById("gSpot").addEventListener("click", startSpot);
@@ -32377,20 +32755,249 @@ updateTaqdirMode();
 // Focus mode: while the reader scrolls DOWN through a story the header slides
 // away and the text owns the screen; a nudge upward — or nearing the top —
 // brings the controls back. Library mode never hides (the CSS scopes it out).
-// theme: auto follows the OS; light/dark pin it. The attribute lives on
-// <html> so the override outranks the media query.
-function applyTheme(){
-  if (state.theme === "auto") delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = state.theme;
-  const b = document.getElementById("themeToggle");
-  if (b) b.textContent = state.theme === "auto" ? "\u25d0" : state.theme === "light" ? "\u2600" : "\u263e";
+
+// ================= design wave 79: the design package, part I =================
+// The uploaded mobile redesign asked for four things the app did not have: a
+// theme the learner chooses (three of them, plus the paper they know), one icon
+// set in place of emoji, a daily goal they can see at a glance with XP behind
+// it, and a progress page that reads like a week. Each is a small class; none
+// keeps state the Backup does not already carry (XP lives under qissa-xp).
+class IconSet {
+  // 24-unit paths. `o` is the outline (stroked), `f` the filled twin; a stroked
+  // icon with no fill twin is simply drawn heavier when active.
+  static P = {
+    library:  { o: "M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z", f: "M3 4h7a3 3 0 0 1 2 .8A3 3 0 0 1 14 4h7v15h-7a2 2 0 0 0-1.5.7L12 20l-.5-.3A2 2 0 0 0 10 19H3z" },
+    deck:     { o: "M4 7h11v14H4z M9 3h11v14", f: "M3 6h12v15H3z M8 2h12v15h-2V4H8z" },
+    games:    { o: "M7 8h10a5 5 0 0 1 5 5v2a3 3 0 0 1-5.6 1.5L15.5 15h-7l-.9 1.5A3 3 0 0 1 2 15v-2a5 5 0 0 1 5-5z M7 11v3 M5.5 12.5h3 M16 12h.01 M18 14h.01", f: "M7 8h10a5 5 0 0 1 5 5v2a3 3 0 0 1-5.6 1.5L15.5 15h-7l-.9 1.5A3 3 0 0 1 2 15v-2a5 5 0 0 1 5-5zm-.75 2.5v1.75H4.5v1.5h1.75v1.75h1.5v-1.75H9.5v-1.5H7.75V10.5zM16 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm2.5 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" },
+    atolye:   { o: "M14.5 5.5a4 4 0 0 0-5 5L4 16l3 3 5.5-5.5a4 4 0 0 0 5-5l-2.3 2.3-2-2z", f: "M15.6 3.6a5 5 0 0 0-6.4 6.1L3 16l4 4 6.3-6.2a5 5 0 0 0 6.1-6.4l-2.9 2.9-2.5-2.5z" },
+    progress: { o: "M4 20V11 M10 20V5 M16 20v-7 M22 20H2", f: null },
+    fire:     { o: "M12 3c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3 0-6 1-10z", f: "M12 2c1.5 4 6 6.5 6 12a6 6 0 0 1-12 0c0-2.5 1.2-4 2.5-5.2.1 2 .9 3.2 2 3.2C10.5 9 10.5 6 12 2z" },
+    bolt:     { o: "M13 2 4 14h7l-1 8 9-12h-7z", f: "M13 2 4 14h7l-1 8 9-12h-7z" },
+    play:     { o: "M7 4l13 8-13 8z", f: "M7 4l13 8-13 8z" },
+    pause:    { o: "M7 5h3v14H7z M14 5h3v14h-3z", f: "M6 4h4v16H6z M14 4h4v16h-4z" },
+    check:    { o: "M4 12l5 5L20 7", f: null },
+    checkc:   { o: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M8 12l3 3 5-6", f: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.4 14.4L6.5 12.3l1.4-1.4 2.7 2.7 5.5-5.5 1.4 1.4z" },
+    lock:     { o: "M6 11h12v10H6z M8 11V7a4 4 0 0 1 8 0v4", f: "M6 11h12v10H6zm2-4a4 4 0 0 1 8 0v4h-2V7a2 2 0 0 0-4 0v4H8z" },
+    search:   { o: "M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z M15.5 15.5 21 21", f: null },
+    trophy:   { o: "M7 4h10v5a5 5 0 0 1-10 0z M7 6H4a3 3 0 0 0 3 3 M17 6h3a3 3 0 0 1-3 3 M12 14v4 M8 21h8 M9 18h6", f: "M6 3h12v6a6 6 0 0 1-5 5.9V18h3v3H8v-3h3v-3.1A6 6 0 0 1 6 9zm-2 2h2v3.5A3.5 3.5 0 0 1 2.5 5zm16 0h2a3.5 3.5 0 0 1-3.5 3.5V5z" },
+    shield:   { o: "M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z", f: "M12 2l9 3.3V12c0 5.5-3.9 8.9-9 10-5.1-1.1-9-4.5-9-10V5.3z" },
+    star:     { o: "M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z", f: "M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2 1.2-6.8-5-4.9 6.9-1z" },
+    book:     { o: "M5 4h5a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5z M19 4h-5a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h5z", f: "M4 3h6a3 3 0 0 1 2 .8A3 3 0 0 1 14 3h6v16h-6a2 2 0 0 0-1.5.7l-.5.5-.5-.5A2 2 0 0 0 10 19H4z" },
+    gift:     { o: "M4 10h16v10H4z M3 7h18v3H3z M12 7v13 M12 7c-2-4-6-3-5 0 M12 7c2-4 6-3 5 0", f: "M3 7h7.3C8.2 6 8 3.5 10 3c1 0 1.7 1.3 2 2.8C12.3 4.3 13 3 14 3c2 .5 1.8 3 .7 4H21v3H3zm1 4h7v9H4zm9 0h7v9h-7z" },
+    close:    { o: "M6 6l12 12 M18 6 6 18", f: null },
+    chev:     { o: "M9 6l6 6-6 6", f: null },
+    volume:   { o: "M4 9h4l5-4v14l-5-4H4z M16 9a4 4 0 0 1 0 6 M18.5 6.5a8 8 0 0 1 0 11", f: null },
+    translate:{ o: "M4 5h9 M8.5 3v2 M11 5c-.8 4-3.3 7-7 9 M6.5 9c1.5 2.5 3.5 4 6 5 M13 21l4-10 4 10 M14.5 17h5", f: null },
+    sparkle:  { o: "M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z", f: "M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z" },
+  };
+  static svg(name, filled, extra){
+    const p = this.P[name];
+    if (!p) return "";
+    const d = filled && p.f ? p.f : p.o;
+    const cls = "ic " + (filled ? "ic-f" : "ic-o") + (extra ? " " + extra : "");
+    return filled && p.f
+      ? `<svg class="${cls}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${d}"/></svg>`
+      : `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${filled ? 2.6 : 1.8}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+  }
+  // both states in one span; CSS shows one — the tab bar's pill rule
+  static pair(name){ return this.svg(name, false) + this.svg(name, true); }
+  static fillTabbar(){
+    document.querySelectorAll("#tabbar .tb-i[data-ic]").forEach(el => { el.innerHTML = IconSet.pair(el.dataset.ic); });
+  }
 }
-document.getElementById("themeToggle").addEventListener("click", () => {
-  state.theme = state.theme === "auto" ? "light" : state.theme === "light" ? "dark" : "auto";
+// The four themes: the paper the app shipped with, and the three the design package drew. The preview colours
+// are the theme's own tokens, so a card can never promise a look the theme does not deliver. `auto` follows the device.
+const THEMES = {
+  paper:    { name: { en: "Paper", tr: "Kâğıt" }, sub: { en: "Cream and teal — the reader you know", tr: "Krem ve çam yeşili — alıştığın okuyucu" }, bg: "#FAF6EE", line: "#E4DCCB", ac: "#0E7C74", ink: "#22303A" },
+  murekkep: { name: { en: "Ink", tr: "Mürekkep" }, sub: { en: "Paper, ink, a quiet serif — the most book-like", tr: "Kâğıt, mürekkep, sakin serif — en «kitap» olanı" }, bg: "#F3EDE1", line: "#DED3C0", ac: "#A5432B", ink: "#1E1A16" },
+  gece:     { name: { en: "Night", tr: "Gece" }, sub: { en: "Deep navy, gold accents — for long evenings", tr: "Koyu lacivert, altın vurgu — uzun gece okumaları" }, bg: "#0E131D", line: "#283247", ac: "#E2B65C", ink: "#EEE8DA" },
+  bahce:    { name: { en: "Garden", tr: "Bahçe" }, sub: { en: "Bright green, bold shapes — the most playful", tr: "Canlı yeşil, tok biçimler — en oyunlu olanı" }, bg: "#F1F4E9", line: "#D9E0CB", ac: "#1F9157", ink: "#14251A" },
+};
+const THEME_ALIAS = { light: "paper", dark: "gece" };   // what an older build stored
+function themeKey(){ const t = THEME_ALIAS[state.theme] || state.theme; return THEMES[t] ? t : "auto"; }
+function effectiveTheme(){
+  const k = themeKey();
+  if (k !== "auto") return k;
+  return (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "gece" : "paper";
+}
+function setTheme(k){
+  state.theme = THEMES[k] ? k : "auto";
   localStorage.setItem("qissa-theme", state.theme);
+  document.body.classList.add("theme-anim");
+  clearTimeout(setTheme._t); setTheme._t = setTimeout(() => document.body.classList.remove("theme-anim"), 600);
   applyTheme();
-});
+}
+function themeDotsHtml(){
+  const k = themeKey();
+  return `<div class="theme-dots" role="group">` +
+    `<button class="theme-dot auto${k === "auto" ? " on" : ""}" data-theme-pick="auto" title="${escapeAttr(ui().themeAuto)}" aria-label="${escapeAttr(ui().themeAuto)}"></button>` +
+    Object.entries(THEMES).map(([id, t]) => `<button class="theme-dot${k === id ? " on" : ""}" data-theme-pick="${id}" style="--td-bg:${t.bg};--td-ac:${t.ac}" title="${escapeAttr(T(t.name))}" aria-label="${escapeAttr(T(t.name))}"></button>`).join("") +
+    `</div>`;
+}
+function bindThemePicks(root, after){
+  root.querySelectorAll("[data-theme-pick]").forEach(b => b.addEventListener("click", () => { setTheme(b.dataset.themePick); if (after) after(); }));
+}
+function openThemePicker(){
+  const draw = () => {
+    const k = themeKey();
+    sheetInner.innerHTML = `<h3 class="welcome-h">${ui().themeTitle}</h3><p class="ref-intro">${ui().themeTap}</p>
+      ${themeCardsHtml()}`;
+    bindThemePicks(sheetInner, draw);
+  };
+  draw();
+  showSheet();
+}
+function themeCardsHtml(){
+  const k = themeKey();
+  return `<div class="theme-cards">
+        <button class="theme-card${k === "auto" ? " on" : ""}" data-theme-pick="auto">
+          <span class="tc-prev" style="background:linear-gradient(135deg,#FAF6EE 50%,#0E131D 50%);border:1px solid var(--line)"><b style="color:#0E7C74">قِصَّة</b><i style="background:#E2B65C"></i></span>
+          <span class="tc-main"><span class="tc-n">${ui().themeAuto}</span><span class="tc-s">${ui().themeAutoSub}</span></span>
+          <span class="tc-ok">${IconSet.svg("checkc", true)}</span></button>
+        ${Object.entries(THEMES).map(([id, t]) => `<button class="theme-card${k === id ? " on" : ""}" data-theme-pick="${id}">
+          <span class="tc-prev" style="background:${t.bg};border:1px solid ${t.line}"><b style="color:${t.ac}">قِصَّة</b><i style="background:${t.ac}"></i></span>
+          <span class="tc-main"><span class="tc-n">${T(t.name)}</span><span class="tc-s">${T(t.sub)}</span></span>
+          <span class="tc-ok">${IconSet.svg("checkc", true)}</span></button>`).join("")}
+      </div>`;
+}
+// XP: a number the learner can watch grow. It is EARNED by the acts the app already counts — a sentence read, a card
+// reviewed, a word learned, a graded answer — never granted; the ledger keeps a total and the last fourteen days.
+class Xp {
+  static READ = 2; static REVIEW = 5; static LEARN = 10; static HIT = 5; static MISS = 1;
+  static TASK_N = 12; static TASK_XP = 50;
+  static load(){
+    if (!this._l) { try { this._l = JSON.parse(localStorage.getItem("qissa-xp") || "null") || {}; } catch (e) { this._l = {}; } }
+    const l = this._l;
+    if (typeof l.total !== "number") l.total = 0;
+    if (!l.days) l.days = {};
+    if (!l.answers) l.answers = {};
+    return l;
+  }
+  static save(){ localStorage.setItem("qissa-xp", JSON.stringify(this._l)); }
+  static day(d){ const x = d || new Date(); return x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0") + "-" + String(x.getDate()).padStart(2, "0"); }
+  static earn(n){
+    if (!(n > 0)) return;
+    const l = this.load(), k = this.day();
+    l.total += n; l.days[k] = (l.days[k] || 0) + n;
+    const keys = Object.keys(l.days).sort();
+    while (keys.length > 14) delete l.days[keys.shift()];
+    this.save();
+  }
+  static forActivity(kind){ this.earn({ read: this.READ, reviewed: this.REVIEW, learned: this.LEARN }[kind] || 0); }
+  // a graded answer in any game: XP, the day's answer count, and the day's task when it is met
+  static answer(correct){
+    const l = this.load(), k = this.day();
+    l.answers[k] = (l.answers[k] || 0) + 1;
+    const keys = Object.keys(l.answers).sort();
+    while (keys.length > 14) delete l.answers[keys.shift()];
+    this.save();
+    this.earn(correct ? this.HIT : this.MISS);
+    if (l.answers[k] === this.TASK_N) { l.taskDone = k; this.earn(this.TASK_XP); if (typeof showToast === "function") showToast(ui().hubTaskDone + " +" + this.TASK_XP + " XP"); }
+  }
+  static total(){ return this.load().total; }
+  static today(){ return this.load().days[this.day()] || 0; }
+  static answersToday(){ return this.load().answers[this.day()] || 0; }
+  static taskDone(){ return this.load().taskDone === this.day(); }
+  // the last seven days, oldest first: [{ key, xp, label }]
+  static week(){
+    const out = [], l = this.load();
+    for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); const key = this.day(d); out.push({ key, xp: l.days[key] || 0, d }); }
+    return out;
+  }
+}
+// the goal card at the front door — the package's ring, the goal in words, and today's XP
+function goalCardHtml(){
+  const t = rollDay(), pct = goalPct();
+  const r = Math.max(0, state.goal.reviews - t.reviewed), n = Math.max(0, state.goal.newWords - t.learned);
+  const sub = pct >= 100 ? ui().goalDone : ui().goalSub.replace("{r}", r).replace("{n}", n);
+  return `<button class="goal-card" id="goalCard"><span class="goal-ring" style="--pct:${pct}%"><span>${pct}%</span></span>
+    <span class="goal-main"><span class="goal-h">${ui().goalH.replace("{p}", pct)}</span><span class="goal-sub">${sub}</span></span>
+    <span class="goal-xp"><b>+${Xp.today()}</b><span>${ui().xpLbl} · ${ui().xpToday}</span></span></button>`;
+}
+// the hub's two cards above the shelves: the day's task (graded answers today) and the coach's recommendation
+function hubTaskHtml(){
+  const n = Math.min(Xp.TASK_N, Xp.answersToday()), done = Xp.taskDone() || n >= Xp.TASK_N;
+  const RECO = { vocab: ["gCloze", "✏️"], sarf: ["gSarf", "⚙️"], nahw: ["gTahlil", "🎓"], adad: ["gAdad", "🔢"], balagha: ["gWajh", "🎭"] };
+  // the weakest area first; an area whose game this scope cannot feed yields to the next-weakest
+  const order = EloModel.AREAS.slice().sort((a, b) => state.elo[a] - state.elo[b]);
+  const weak = order.find(a => { const n = GameFactory.supplyKnown(RECO[a][0]); return n === null || n === undefined || n >= 1; }) || order[0];
+  const [gid, em] = RECO[weak] || RECO.vocab;
+  const title = { gCloze: ui().clozeGame, gSarf: ui().sarfGame, gTahlil: ui().tahlil, gAdad: ui().adadGame, gWajh: ui().wajhGame }[gid];
+  return `<div class="hub-task${done ? " done" : ""}" id="hubTask"><span class="ht-i">${IconSet.svg(done ? "checkc" : "gift", true)}</span>
+      <span class="ht-main"><span class="ht-row"><span>${ui().hubTask.replace("{n}", Xp.TASK_N)}</span><span>${n}/${Xp.TASK_N}</span></span>
+      <span class="ht-bar"><span style="width:${Math.round(100 * n / Xp.TASK_N)}%"></span></span>
+      <span class="ht-sub">${done ? ui().hubTaskDone : ui().hubTaskSub.replace("{x}", Xp.TASK_XP)}</span></span></div>
+    <button class="hub-reco" id="hubReco" data-game="${gid}"><span class="hr-i">${em}</span>
+      <span class="hr-main"><span class="hr-k">${ui().hubReco} · ${ui().coachAreas[weak]}</span><span class="hr-t">${title}</span><span class="hr-d">${ui().hubRecoDesc}</span></span>
+      <span class="hr-go">${IconSet.svg("play", true)}</span></button>`;
+}
+function bindHubTask(){
+  const b = document.getElementById("hubReco");
+  if (b) b.addEventListener("click", () => { const g = document.getElementById(b.dataset.game); if (g && !g.disabled) g.click(); });
+}
+// the progress page's new sections, computed from state alone
+class ProgressPage {
+  static heroHtml(){
+    const week = Xp.week(), today = Xp.day();
+    const lbl = state.uiLang === "tr" ? ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"] : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const dots = week.map(w => { const hit = w.xp > 0, isT = w.key === today; const i = (w.d.getDay() + 6) % 7;
+      return `<span class="${hit ? "hit" : ""}${isT ? " today" : ""}"><i>${hit ? IconSet.svg(isT ? "fire" : "check", true) : ""}</i>${lbl[i]}</span>`; }).join("");
+    const best = Math.max(state.streak.best || 0, state.streak.days || 0);
+    const spent = state.streak.shieldWeek === weekKey();
+    return `<div class="pg-hero"><div class="ph-top"><span class="ph-fire">${IconSet.svg("fire", true)}</span>
+        <div><div class="ph-n">${state.streak.days || 0}</div><div class="ph-sub">${ui().dayStreak} · ${ui().pgStreakSub.replace("{b}", best)}</div></div></div>
+      <div class="pg-week">${dots}</div>
+      <div class="ph-shield">${IconSet.svg("shield", false)}${spent ? ui().pgShieldUsed : ui().pgShield}</div></div>`;
+  }
+  static xpHtml(){
+    const week = Xp.week(), today = Xp.day(), max = Math.max(1, ...week.map(w => w.xp));
+    const lbl = state.uiLang === "tr" ? ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"] : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const bars = week.map(w => `<span class="${w.key === today ? "today" : ""}" title="${w.xp} XP"><i style="height:${Math.max(4, Math.round(100 * w.xp / max))}%"></i><b>${lbl[(w.d.getDay() + 6) % 7]}</b></span>`).join("");
+    return `<div class="pg-sec" id="pgXp"><div class="ps-h">${ui().pgXp}<span>${ui().pgXpTotal.replace("{n}", Xp.total())}</span></div><div class="pg-bars">${bars}</div></div>`;
+  }
+  static pathHtml(){
+    const my = state.myLevel || 0;
+    const steps = [1, 2, 3, 4, 5, 6].map(n => `<span class="${n <= my ? "done" : ""}${n === my ? " mine" : ""}"><i>${n}</i></span>`).join("");
+    return `<div class="pg-sec" id="pgPath"><div class="ps-h">${ui().pgPath}</div><div class="pg-path">${steps}</div>
+      <div class="pg-path-sub">${my ? ui().pgPathSub.replace("{n}", my) : ui().pgPathNone}</div></div>`;
+  }
+  static badges(){
+    const c = corpusStats(), d = deckStats();
+    const qa = state.deck.filter(x => x.type === "qa").length;
+    return [
+      { id: "story", icon: "book", on: c.storiesDone >= 1, label: ui().badgeStory },
+      { id: "streak", icon: "fire", on: Math.max(state.streak.best || 0, state.streak.days || 0) >= 7, label: ui().badgeStreak },
+      { id: "words", icon: "star", on: d.mature >= 100, label: ui().badgeWords },
+      { id: "deck", icon: "deck", on: d.total >= 50, label: ui().badgeDeck },
+      { id: "sarf", icon: "trophy", on: state.elo.sarf >= 1400, label: ui().badgeSarf },
+      { id: "nahw", icon: "trophy", on: state.elo.nahw >= 1400, label: ui().badgeNahw },
+      { id: "qa", icon: "sparkle", on: qa >= 10, label: ui().badgeQa },
+      { id: "round", icon: "checkc", on: Xp.taskDone(), label: ui().badgeRound },
+    ];
+  }
+  static badgesHtml(){
+    return `<div class="pg-sec" id="pgBadges"><div class="ps-h">${ui().pgBadges}<span>${this.badges().filter(b => b.on).length}/${this.badges().length}</span></div>
+      <div class="pg-badges">${this.badges().map(b => `<span class="${b.on ? "on" : ""}" data-badge="${b.id}"><i>${IconSet.svg(b.icon, true)}</i>${b.label}</span>`).join("")}</div></div>`;
+  }
+}
+// theme: auto follows the OS; a named theme pins it. The attribute lives on <html> so the override outranks the
+// media query; the browser chrome follows the theme through the theme-color meta.
+function applyTheme(){
+  const k = themeKey();
+  if (k === "auto") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = k;
+  const eff = THEMES[effectiveTheme()];
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && eff) meta.setAttribute("content", eff.ac);
+  const b = document.getElementById("themeToggle");
+  if (b) {
+    b.innerHTML = k === "auto" ? "◐" : `<span class="th-sw" style="--td-bg:${eff.bg};--td-ac:${eff.ac}"></span>`;
+    b.title = ui().themeTitle + (k === "auto" ? " · " + ui().themeAuto : " · " + T(eff.name));
+  }
+}
+document.getElementById("themeToggle").addEventListener("click", openThemePicker);
 applyTheme();
+IconSet.fillTabbar();
 applyReadPrefs();
 let focusLastY = 0;
 window.addEventListener("scroll", () => {
@@ -32423,7 +33030,7 @@ if (STORIES.length === 1) openStory(STORIES[0]); else renderLibrary();
 // the level chip (or the "For you" button) reopens the picker on demand.
 if (!state.myLevel && STORIES.length > 1 && localStorage.getItem("qissa-welcomed") !== "1") {
   localStorage.setItem("qissa-welcomed", "1");
-  openLevelPicker();
+  Onboarding.open();   // wave 80: level → daily goal → look
 }
 // The one place a deck loaded from storage is made safe to render. GRAMMAR is
 // baked into the file and never changes at runtime, so once this has run no

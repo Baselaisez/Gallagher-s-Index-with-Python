@@ -1223,3 +1223,19 @@ rest (vowel layer, level underlines, speed, size, tint, role colours, estimated 
 the bar's own hidden control. Gated at 390×844: the first sentence of a story and the first card of the library sit in
 the upper half of the first screen (measured 293px / 335px; gate = measurement + 45px). Desktop keeps the full bar.
 
+## The design package: four themes, one icon set, the goal ring, the walk (waves 79–80)
+
+The owner's mobile redesign (`research/design/MOBILE_REDESIGN.md`) set three themes and a gamified front door; the app took
+the themes as token sets and the surfaces as components. **Themes.** Paper (the original teal cream), Mürekkep (paper,
+red-brown ink, gold hero), Gece (navy, gold), Bahçe (green, white cards, 3-D buttons). A theme is only a `:root[data-theme]`
+block: every colour token, `--radius` (14 / 14 / 18 / 22) and `--btn-sh` (none / none / a gold glow / a 4px green
+drop). `auto` follows the OS. The picker's preview tiles are painted inline from the same values, so a card cannot promise
+what the theme does not deliver. **Icons.** `IconSet` holds 24-unit paths, each with an outline and a filled twin; the thumb
+bar shows the outline at rest and the filled one on an accent-soft pill when active. **The front door.** Goal ring
+(conic-gradient of `goalPct`), the goal in words, today's XP; three one-row chips; the continue card as the hero (ink
+ground, gold accent, play circle). **The hub.** The day's task (hero card, bar, reward) and the coach's recommendation
+(accent border, play glyph) above the shelves; two columns under 860px. **Progress.** Streak hero with a seven-day row,
+weekly XP bars, a level path, eight badges that light from state. **The walk.** Three steps with a dot row, a hero tile,
+and one primary button; the level buttons are the picker's own. **The player pill.** Fixed above the thumb bar while Listen
+runs: count, previous, stop (accent circle), next. Measured at 390×844: the first library card sits at 366px (gate 403),
+the first sentence at 293px (gate 338).

@@ -2712,8 +2712,18 @@ if (!CHROME) {
       const mid = String(shelved[Math.floor(shelved.length / 2)]);
 
       await p3.locator('.level-pick [data-pick-level="' + mid + '"]').click();
+      // wave 80: the level is step one of three — the daily goal and the look follow, then «Start reading»
+      await p3.waitForSelector('.sheet.show #onb[data-step="1"] .onb-goal', { timeout: 10000 });
+      await p3.locator('.sheet.show .onb-goal[data-goal="2"]').click();
+      await p3.locator('.sheet.show #onbNext').click();
+      await p3.waitForSelector('.sheet.show #onb[data-step="2"] .theme-card', { timeout: 10000 });
+      await p3.locator('.sheet.show .theme-card[data-theme-pick="murekkep"]').click();
+      await p3.locator('.sheet.show #onbNext').click();
       await p3.waitForSelector('.lib-card', { timeout: 10000 });
       if (await p3.locator('.sheet.show').count()) throw new Error('the sheet stayed open after a choice');
+      const onb = await p3.evaluate(() => ({ goal: localStorage.getItem('qissa-goal'), theme: localStorage.getItem('qissa-theme'), attr: document.documentElement.dataset.theme }));
+      if (onb.goal !== '{"reviews":30,"newWords":8}' || onb.theme !== 'murekkep' || onb.attr !== 'murekkep') throw new Error('the walk must land its choices: ' + JSON.stringify(onb));
+      await p3.evaluate(() => { localStorage.removeItem('qissa-theme'); state.theme = 'auto'; applyTheme(); });
       const after = await p3.evaluate(() => ({
         level: localStorage.getItem('qissa-mylevel'),
         sort: state.libSort,
@@ -3930,22 +3940,29 @@ if (!CHROME) {
     if (r.hist < 1) throw new Error('updates must leave a daily snapshot for the sparkline');
   });
 
-  await check('the theme toggle pins light and dark over the OS preference', async () => {
+  await check('the theme toggle opens the picker; a named theme pins its own tokens over the OS preference, and an older build\'s light/dark still resolve', async () => {
     await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); });
     const t0 = await page.evaluate(() => document.documentElement.dataset.theme || 'none');
     if (t0 !== 'none') throw new Error('auto must leave no attribute, got ' + t0);
     await page.locator('#themeToggle').click();
-    const t1 = await page.evaluate(() => document.documentElement.dataset.theme);
-    if (t1 !== 'light') throw new Error('first click pins light, got ' + t1);
-    await page.locator('#themeToggle').click();
-    const r = await page.evaluate(() => ({
-      theme: document.documentElement.dataset.theme,
-      ground: getComputedStyle(document.documentElement).getPropertyValue('--ground').trim(),
-    }));
-    if (r.theme !== 'dark') throw new Error('second click pins dark, got ' + r.theme);
-    if (r.ground !== '#101A20') throw new Error('dark vars must win: --ground=' + r.ground);
-    await page.locator('#themeToggle').click();
-    await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); });
+    await page.waitForSelector('.sheet.show .theme-card', { timeout: 10000 });
+    const n = await page.locator('.sheet.show .theme-card').count();
+    if (n !== 5) throw new Error('the picker shows auto and the four themes, got ' + n);
+    await page.locator('.sheet.show .theme-card[data-theme-pick="gece"]').click();
+    const ground = () => page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--ground').trim());
+    const r = { theme: await page.evaluate(() => document.documentElement.dataset.theme), ground: await ground(), stored: await page.evaluate(() => localStorage.getItem('qissa-theme')) };
+    if (r.theme !== 'gece' || r.ground !== '#0E131D' || r.stored !== 'gece') throw new Error('Gece must pin its tokens: ' + JSON.stringify(r));
+    const on = await page.evaluate(() => (document.querySelector('.sheet.show .theme-card.on') || {}).dataset.themePick);
+    if (on !== 'gece') throw new Error('the picker marks the chosen card, got ' + on);
+    const legacy = {};
+    for (const [k, want, g] of [['dark', 'gece', '#0E131D'], ['light', 'paper', '#FAF6EE'], ['murekkep', 'murekkep', '#F3EDE1'], ['bahce', 'bahce', '#F1F4E9']]) {
+      await page.evaluate(k => { state.theme = k; applyTheme(); }, k);
+      legacy[k] = [await page.evaluate(() => document.documentElement.dataset.theme), await ground()];
+      if (legacy[k][0] !== want || legacy[k][1] !== g) throw new Error('theme ' + k + ' → ' + JSON.stringify(legacy[k]) + ', wanted ' + want + ' ' + g);
+    }
+    const meta = await page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content'));
+    if (meta !== '#1F9157') throw new Error('the browser chrome follows the theme: ' + meta);
+    await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); document.getElementById('scrim').click(); });
   });
 
   await check('the IrabModel trains on the corpus and votes sensibly', async () => {
@@ -11673,6 +11690,79 @@ if (!CHROME) {
     if (r.n && (r.stored !== r.picked || !r.picked)) throw new Error('the pick must be stored and used: ' + JSON.stringify(r));
     await page.evaluate(() => { localStorage.setItem('qissa-elo', JSON.stringify({ vocab: 1200, sarf: 1200, nahw: 1200, adad: 1200, balagha: 1200 })); document.getElementById('scrim').click(); });
   });
+  await check('wave 79 — the design package, part I: the thumb bar carries one SVG icon set with a pill under the active tab, the front door opens on the daily-goal ring with today\'s XP, XP is earned by the acts the app counts, the hub leads with the day\'s task and a playable recommendation, the progress page opens on the streak hero with its week, XP bars, level path and badges, and the reading sheet carries the theme dots', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      renderLibrary();
+      out.svgs = document.querySelectorAll('#tabbar .tb-i svg').length;
+      out.pill = !!document.querySelector('#tabbar button.on .tb-i');
+      out.onIsLib = (document.querySelector('#tabbar button.on') || {}).id;
+      out.goal = !!document.querySelector('#goalCard .goal-ring');
+      out.tiles = document.querySelectorAll('#statStrip .st-tile .st-i svg').length;
+      const snap = localStorage.getItem('qissa-xp');
+      const t0 = Xp.total(), d0 = Xp.today(), a0 = Xp.answersToday();
+      Xp.earn(3); Xp.answer(true); Xp.answer(false);
+      out.xp = [Xp.total() - t0, Xp.today() - d0, Xp.answersToday() - a0];
+      if (snap === null) localStorage.removeItem('qissa-xp'); else localStorage.setItem('qissa-xp', snap);
+      Xp._l = null;
+      out.xpRestored = Xp.total() === t0;
+      openGames();
+      out.task = !!document.getElementById('hubTask');
+      out.taskOutside = !document.querySelector('.game-pick #hubTask');
+      const reco = document.getElementById('hubReco');
+      const g = reco && document.getElementById(reco.dataset.game);
+      out.reco = reco ? reco.dataset.game : null;
+      out.recoPlayable = !!(g && !g.disabled);
+      document.getElementById('scrim').click();
+      openStats();
+      out.hero = !!document.querySelector('.sheet.show .pg-hero');
+      out.week = document.querySelectorAll('.sheet.show .pg-week > span').length;
+      out.bars = document.querySelectorAll('.sheet.show #pgXp .pg-bars > span').length;
+      out.path = document.querySelectorAll('.sheet.show #pgPath .pg-path > span').length;
+      out.badges = document.querySelectorAll('.sheet.show .pg-badges > span').length;
+      out.gridTiles = document.querySelectorAll('.sheet.show .stat-tile b').length;
+      document.getElementById('scrim').click();
+      openStory(STORIES[0]); openReadCtrls();
+      out.dots = sheetInner.querySelectorAll('.theme-dots .theme-dot').length;
+      out.autoDot = !!sheetInner.querySelector('.theme-dot.auto');
+      document.getElementById('scrim').click(); renderLibrary();
+      return out;
+    });
+    if (r.svgs !== 10 || !r.pill || r.onIsLib !== 'navLibrary') throw new Error('thumb bar: ' + JSON.stringify(r));
+    if (!r.goal || r.tiles !== 3) throw new Error('front door: ' + JSON.stringify(r));
+    if (r.xp.join() !== '9,9,2' || !r.xpRestored) throw new Error('XP ledger: earn 3 + hit 5 + miss 1 = 9, two answers: ' + JSON.stringify(r));
+    if (!r.task || !r.taskOutside || !r.reco || !r.recoPlayable) throw new Error('hub: ' + JSON.stringify(r));
+    if (!r.hero || r.week !== 7 || r.bars !== 7 || r.path !== 6 || r.badges !== 8 || r.gridTiles !== 6) throw new Error('progress: ' + JSON.stringify(r));
+    if (r.dots !== 5 || !r.autoDot) throw new Error('reading sheet theme dots: ' + JSON.stringify(r));
+  });
+  await check('wave 80 — the design package, part II: Listen raises the player pill with the sentence count, next and previous move the reading, stop lowers it; the word sheet leads with the meaning in the reader\'s language', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      openStory(STORIES[0]);
+      document.getElementById('playAll').click();
+      const pill = document.getElementById('playerPill');
+      out.shown = !pill.hidden; out.lbl0 = (document.getElementById('ppLbl') || {}).textContent; out.idx0 = playAllIdx;
+      document.getElementById('ppNext').click();
+      out.idx1 = playAllIdx; out.lbl1 = document.getElementById('ppLbl').textContent;
+      document.getElementById('ppPrev').click();
+      out.idx2 = playAllIdx;
+      out.playingN = document.querySelectorAll('.sentence.playing').length;
+      document.getElementById('ppStop').click();
+      out.hiddenAfter = pill.hidden; out.active = playAllActive; out.pressed = document.getElementById('playAll').getAttribute('aria-pressed');
+      const tok = SENTENCE_FLAT[0].sen.tokens.find(t => GLOSSARY[t.lex] && GLOSSARY[t.lex].gloss && GLOSSARY[t.lex].gloss.en && GLOSSARY[t.lex].gloss.tr);
+      state.uiLang = 'tr'; openWord(tok, null, 'word');
+      out.trFirst = sheetInner.querySelector('.w-head .w-g1').textContent.trim() === GLOSSARY[tok.lex].gloss.tr;
+      out.enSmall = sheetInner.querySelector('.w-head .w-g2 small').textContent.trim();
+      state.uiLang = 'en'; openWord(tok, null, 'word');
+      out.enFirst = sheetInner.querySelector('.w-head .w-g1').textContent.trim() === GLOSSARY[tok.lex].gloss.en;
+      document.getElementById('scrim').click(); renderLibrary();
+      return out;
+    });
+    if (!r.shown || !/1 \/ \d+/.test(r.lbl0) || r.idx0 !== 0) throw new Error('the pill must rise on the first sentence: ' + JSON.stringify(r));
+    if (r.idx1 !== 1 || !/2 \/ \d+/.test(r.lbl1) || r.idx2 !== 0 || r.playingN !== 1) throw new Error('next/previous must move the reading: ' + JSON.stringify(r));
+    if (!r.hiddenAfter || r.active || r.pressed !== 'false') throw new Error('stop must lower the pill and release Listen: ' + JSON.stringify(r));
+    if (!r.trFirst || r.enSmall !== 'EN' || !r.enFirst) throw new Error('the word head leads with the reader\'s language: ' + JSON.stringify(r));
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };
@@ -12623,7 +12713,7 @@ if (!CHROME) {
     try {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.evaluate(() => { setPremium(true); const st = STORIES.find(s => s.id === 'qisas-al-nabiyyin-1'); openStory(st); });   // a premium story: the preview wall shows three sentences to a Lite reader
-      await page.waitForSelector('.sentence', { timeout: 10000 });
+      await page.waitForSelector('.sentence', { timeout: 30000 });   // (v224) the same allowance as the sheet below: the page is cold at the end of a release chunk; alone it renders in under a second
       const r = await page.evaluate(() => ({ sentences: document.querySelectorAll('.sentence').length, pills: document.querySelectorAll('.ch-nav .ch-pill').length, overflow: document.documentElement.scrollWidth > window.innerWidth + 2 }));
       if (r.sentences < 160) throw new Error('the story should render at least 160 sentences on a phone: ' + r.sentences);
       if (r.pills < 5) throw new Error('five chapter pills expected: ' + r.pills);

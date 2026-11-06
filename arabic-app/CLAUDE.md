@@ -9152,6 +9152,44 @@ with it, and two stale rows were truthed in the same pass: the Talkhīṣ (row 4
 v178 and the Iẓhār matn (row 38) since v214 — a coverage table is a claim about the shelf and must be re-read when the
 shelf changes, not only when a file does.
 
+**Wave 79 — the design package, part I: four themes, one icon set, the goal ring, XP, the hub's task, the progress hero.**
+The owner uploaded a mobile redesign (a Claude Design export: three themes × fifteen screens plus ten new ones; recorded in
+`research/design/MOBILE_REDESIGN.md`). What it asked for that the app lacked was taken whole: the learner CHOOSES a look —
+Paper (the teal cream the app shipped with), Mürekkep, Gece and Bahçe, the package's three, with their exact token values
+(`THEMES` + four `:root[data-theme=…]` blocks; `auto` is Paper by day and Gece under a dark OS; an older build's stored
+«light»/«dark» resolve through `THEME_ALIAS`). The toolbar's ◐ opens a picker whose cards are painted in each theme's own
+colours; the reading sheet carries the same choice as dots. New tokens (`--sf2 --gold --fire --hero --hero-ink --hero-soft
+--hero-ac --btn-sh --btn-sh2 --tab-bg`) feed the new surfaces, and Bahçe's pressable 3-D buttons are `--btn-sh` alone —
+no component knows which theme is on. The thumb bar's emoji became `IconSet` (inline SVG, outlined at rest, filled on a
+pill when active); the front door opens on the goal ring (`goalCardHtml`: goalPct, the goal in words, today's XP) with the
+three numbers as one row of chips (same `#statStrip .st-tile[data-st]`, same data); the continue card is the package's
+hero (ink ground, gold accent, a play circle). `Xp` is a ledger under `qissa-xp` (total, fourteen days, answers per day)
+EARNED by the acts the app already counts — `countActivity` (read 2 / review 5 / learn 10) and `EloModel.update` (hit 5 /
+miss 1); the day's task is twelve graded answers for +50, and the Backup carries the key like any other. The hub leads with
+the task card and the coach's recommendation (the weakest area whose game this scope can feed — `GameFactory.supplyKnown`
+decides, so the card never points at a disabled shelf card); the progress page opens on the streak hero (days, best —
+`streak.best` is now kept — the seven-day row from the XP ledger, the mercy line), then weekly XP bars, the level path
+and eight derived badges. Gated: the theme check rewritten for the picker; a wave-79 check over the bar, the ring, the
+ledger (restored after), the hub, the hero, the dots; the wave-72 gate still holds (first card at 366px on 390×844).
+
+**Wave 80 — the design package, part II: the first run as a walk, the player pill, the meaning first.** The first run
+now walks three steps the way the package drew it (`Onboarding`): the level question the app always asked (same buttons,
+same storage) under a hero tile and three feature lines; the daily goal as four preset cards (10/3 20/5 30/8 50/12 — the
+same `state.goal` the deck's editor sets); the theme cards; «Start reading» writes the level and the goal and lands on
+«For you». The level chip and the «For you» button still open the plain picker. While a story is read aloud a pill floats
+above the thumb bar (`PlayerPill`, synced from `updatePlayAllBtn` and `playAllStep`): the sentence count, previous / stop /
+next — `playAllJump` simply calls `playAllStep`, since `speak()` supersedes the utterance in flight by generation. The word
+sheet leads with the meaning in the reader's language, the other language small beneath (`.w-head`). The no-voice toast
+(wave 78) was a 300-character pill on a phone; a toast is now a card, sat above the thumb bar. Gated: the first-run check
+walks all three steps and asserts the stored goal and theme; a wave-80 check drives the pill and the word head.
+
+*Landing lessons (waves 79–80).* The front door's tiles are under the thumb floor — a one-row chip is still a tap target,
+so `min-height: var(--tap)` stays on it (the suite caught 29px). Headless Chromium has `speechSynthesis` with no voices, so
+Listen finishes a nine-sentence story in milliseconds: a screenshot of the pill needs the playing state forced; the smoke
+check reads the pill synchronously after the click, which is enough. A design package names Google fonts and an icon
+webfont; neither can ship in a self-contained reader that must run offline and inside the Android shell, so the fonts
+stay the system stacks and the icons are inline SVG paths.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:
