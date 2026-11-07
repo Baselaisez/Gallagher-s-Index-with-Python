@@ -4040,7 +4040,7 @@ if (!CHROME) {
     // affordable: 60.2/74.5 -> 61.2/76.5, stable across three seeds
     // (61.2-61.3 / 75.4-76.5). A fifth pair (governor-key×position) was
     // noise alone and nothing in the ensemble — dropped. Floors raised.
-    if (a.cv1 < 60) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');
+    if (a.cv1 < 63.0) throw new Error('held-out first-guess regressed to ' + a.cv1 + '%');   // (wave 83) the floor rose with the three neighbourhood features
     // …and re-pinned at 67 when the corpus reached 3,619 labelled tokens. The
     // measured two-guess moved 68.x -> 67.9 as Talkhis chapters 7 and 8 added
     // ~90 labels and reshaped the seventeen folds. That it was the DATA and not
@@ -4982,9 +4982,11 @@ if (!CHROME) {
       return { n: a.n, acc: a.acc, false: a.false, verbN: a.verbN, verbAcc: a.verbAcc, seeds: sd.n, bad: sd.bad.slice(0, 4),
         ishtighal: one('هَلْ زَيْدًا ضَرَبْتَهُ؟', 'ishtighal'), amma: one('فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ.', 'ishtighal'), tahdhir: one('إِيَّاكَ وَالْأَسَدَ.', 'tahdhir'), ighra: one('الصَّلَاةَ الصَّلَاةَ.', 'ighra'),
         lawla: one('لَوْلَا زَيْدٌ لَهَلَكَ عَمْرٌو.', 'khabarLawla'), qasam: one('لَعَمْرُكَ لَأَفْعَلَنَّ.', 'khabarQasam'), subhan: one('سُبْحَانَ اللهِ.', 'mutlaq'), nahw: one('نَحْوُ جَاءَنِي زَيْدٌ.', 'mubtadaNahw'), udhkur: one('وَأَيُّوبَ إِذْ نَادَى رَبَّهُ.', 'udhkur'), rabb: one('رَبِّ إِنِّي ظَلَمْتُ نَفْسِي.', 'nidaMahdhuf'), ahad: one('وَإِنْ مِنْ أَهْلِ الْكِتَابِ إِلَّا لَيُؤْمِنَنَّ بِهِ.', 'mubtadaAhad'),
-        g1, g2, fl: fl ? fl.kind + ':' + N(fl.text) : null, fl2: fl2 ? fl2.kind + ':' + N(fl2.text) : null };
+        g1, g2, fl: fl ? fl.kind + ':' + N(fl.text) : null, fl2: fl2 ? fl2.kind + ':' + N(fl2.text) : null,
+        faqir: HadhfEngine.table('يَا رَبِّ أَنَا فَقِيرٌ فَأَعْطِنِي مِنْ خَيْرِكَ.').items.map(x => x.seat).join(' ') };
     });
     if (!(r.n >= 380 && r.acc >= 75 && r.false <= 3)) throw new Error('the corpus audit floor: n=' + r.n + ' acc=' + r.acc + ' false=' + r.false);
+    if (r.faqir !== 'munada') throw new Error('(wave 91) فَقِيرٌ is one word — the line restores nothing but its vocative: ' + r.faqir);
     if (!(r.verbN >= 120 && r.verbAcc >= 78)) throw new Error('the restored word should agree with the page on most lines that name it: ' + r.verbN + ' ' + r.verbAcc);
     if (!(r.seeds >= 50) || r.bad.length) throw new Error('every seed restores its word: ' + r.seeds + ' ' + JSON.stringify(r.bad));
     if (r.ishtighal !== 'ضَرَبْتَ|rajihNasb|before') throw new Error('ishtighāl after هَلْ: naṣb preferred, the verb restored without its pronoun: ' + r.ishtighal);
@@ -9915,7 +9917,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 214) throw new Error('the qiyasi builder disagrees with more stored plurals than at v217 (214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 215) throw new Error('the qiyasi builder disagrees with more stored plurals than at v225 (215 — the Mūsā story added the HEARD plural of plenty حِبَال of حَبْل beside the builder\'s paucity أَحْبُل — the plural of plenty is heard, the glossary stores it; at v217 it was 214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -11699,13 +11701,14 @@ if (!CHROME) {
       out.onIsLib = (document.querySelector('#tabbar button.on') || {}).id;
       out.goal = !!document.querySelector('#goalCard .goal-ring');
       out.tiles = document.querySelectorAll('#statStrip .st-tile .st-i svg').length;
-      const snap = localStorage.getItem('qissa-xp');
+      const snap = localStorage.getItem('qissa-xp'); const tOrig = Xp.total();
+      localStorage.removeItem('qissa-xp'); Xp._l = null;   // (v225) a clean ledger: the day's task (12 answers → +50) must not fire from the answers earlier checks gave
       const t0 = Xp.total(), d0 = Xp.today(), a0 = Xp.answersToday();
       Xp.earn(3); Xp.answer(true); Xp.answer(false);
       out.xp = [Xp.total() - t0, Xp.today() - d0, Xp.answersToday() - a0];
       if (snap === null) localStorage.removeItem('qissa-xp'); else localStorage.setItem('qissa-xp', snap);
       Xp._l = null;
-      out.xpRestored = Xp.total() === t0;
+      out.xpRestored = Xp.total() === tOrig;
       openGames();
       out.task = !!document.getElementById('hubTask');
       out.taskOutside = !document.querySelector('.game-pick #hubTask');
@@ -11762,6 +11765,167 @@ if (!CHROME) {
     if (r.idx1 !== 1 || !/2 \/ \d+/.test(r.lbl1) || r.idx2 !== 0 || r.playingN !== 1) throw new Error('next/previous must move the reading: ' + JSON.stringify(r));
     if (!r.hiddenAfter || r.active || r.pressed !== 'false') throw new Error('stop must lower the pill and release Listen: ' + JSON.stringify(r));
     if (!r.trFirst || r.enSmall !== 'EN' || !r.enFirst) throw new Error('the word head leads with the reader\'s language: ' + JSON.stringify(r));
+  });
+  await check('wave 81 — the Model lab judged by the book: a sentence of the open text is offered as chips, its role-bearing words become cards with belief bars, evidence chips and the book\'s own line as the verdict, the tally counts the agreements, withholding evidence re-judges the card, and typed text keeps the free analysis', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      openStory(STORIES.find(x => x.id === 'ashab-al-fil') || STORIES[0]);
+      conjState.lab = 'model'; conjState.model = ''; conjState.modelSen = null; openConjugator();
+      const chips = [...document.querySelectorAll('#modelSents [data-model-sen]')];
+      out.chips = chips.length;
+      if (!chips.length) return out;
+      chips[0].click();
+      out.filled = (document.getElementById('modelIn') || {}).value === conjState.model;
+      const cards = [...document.querySelectorAll('#modelOut .model-card[data-book-card]')];
+      out.cards = cards.length;
+      out.verdicts = cards.filter(c => c.querySelector('.model-verdict[data-book]')).length;
+      out.bars = cards.filter(c => c.querySelector('.mbar-fill')).length;
+      const tally = document.getElementById('modelTally'); out.tally = tally ? tally.textContent : '';
+      const sen = conjState.modelSen; out.roles = sen.tokens.filter(t => RoleEngine.of(t)).length;
+      const chip = cards[0].querySelector('.feat-chip'); const v0 = cards[0].querySelector('.model-verdict').outerHTML;
+      chip.click(); out.off = chip.classList.contains('off'); out.reJudged = !!cards[0].querySelector('.model-verdict'); chip.click(); out.back = cards[0].querySelector('.model-verdict').outerHTML === v0;
+      conjState.modelSen = null; conjState.model = 'ضَرَبَ زَيْدٌ عَمْرًا.'; renderModelOut();
+      out.freeCards = document.querySelectorAll('#modelOut .model-card').length; out.freeVerdicts = document.querySelectorAll('#modelOut .model-verdict').length;
+      document.getElementById('scrim').click(); renderLibrary();
+      return out;
+    });
+    if (r.chips < 1 || !r.filled) throw new Error('sentence chips: ' + JSON.stringify(r));
+    if (r.cards < 1 || r.cards !== r.roles || r.verdicts !== r.cards || r.bars !== r.cards) throw new Error('one card per role-bearing word, each judged: ' + JSON.stringify(r));
+    if (!/\d+/.test(r.tally)) throw new Error('the tally: ' + JSON.stringify(r));
+    if (!r.off || !r.reJudged || !r.back) throw new Error('withholding evidence must re-judge and restore: ' + JSON.stringify(r));
+    if (r.freeCards < 1 || r.freeVerdicts !== 0) throw new Error('typed text keeps the free analysis, with no book line: ' + JSON.stringify(r));
+  });
+  await check('wave 82 — «Musa and Pharaoh», an original Level-1 story in the graded-reader manner: six chapters, sixty-three sentences, every token with trilingual i\'rab, free, pending review; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'musa-wa-firawn');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences);
+      const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the story is not on the shelf');
+    if (r.chapters !== 6 || r.sents !== 63 || r.toks !== 291 || r.level !== 1 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.n < 220 || r.hit < r.n - 8) throw new Error('the ḍabṭ engine should re-derive the story\'s endings (allowing eight): ' + JSON.stringify(r));
+  });
+  await check('wave 83b — the imperative joins the Iʿlāl lab: اُقْوُلْ → قُلْ by naql, the meeting of two sakins and the wasl drop; بِعْ; اُكْتُبْ untouched; the naqis drops its last letter for the jazm (اِرْمِ، اُغْزُ); the mithal loses its wāw as in the muḍāriʿ (عِدْ، صِلْ); a muḍāriʿ keeps its yāʾ', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const out = {};
+      for (const [root, want] of [['قول', 'قُلْ'], ['بيع', 'بِعْ'], ['كتب', 'اُكْتُبْ'], ['رمي', 'اِرْمِ'], ['غزو', 'اُغْزُ'], ['وعد', 'عِدْ'], ['وصل', 'صِلْ']]) {
+        const b = IlalEngine.build(root, 'amr'); out[root] = b ? N(b.out) + (N(b.out) === N(want) ? '' : '≠' + want) + '|' + b.steps.map(x => x.id).join(',') : 'null';
+      }
+      out.mudariKeepsYa = N(IlalEngine.build('رمي', 'mudari').out).endsWith(N('ي') + '\u064F') || N(IlalEngine.build('رمي', 'mudari').out).includes(N('رْمِي'));
+      out.shape = !!(IlalEngine.SHAPES.amr && IlalEngine.SHAPES.amr.ar);
+      conjState.lab = 'ilal'; conjState.ilalRoot = 'قول'; conjState.ilalShape = 'amr'; openConjugator();
+      out.lab = (document.querySelector('#ilalOut .if-end.out b') || {}).textContent || ''; out.seg = !!document.querySelector('#ilalSeg [data-is="amr"]');
+      document.getElementById('scrim').click();
+      return out;
+    });
+    const bad = Object.entries(r).filter(([k, v]) => typeof v === 'string' && v.includes('≠'));
+    if (bad.length) throw new Error('imperative derivations: ' + JSON.stringify(bad));
+    if (!r.mudariKeepsYa || !r.shape || !r.seg || String(r.lab).normalize('NFC') !== 'قُلْ'.normalize('NFC')) throw new Error('the lab and the muḍāriʿ: ' + JSON.stringify(r));
+  });
+  await check('wave 83 — the ḍabṭ engine learns from its misses: the annexed ism after لِأَنَّ, the tawkīd after a jarr pronoun, the idiom قَامَ مَقَامَهُ, the ṣila\'s verb with the returning pronoun as its doer; the grader keeps a cited form undecided and judges a silent ending by the author\'s line; floors on the three texts that moved most', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const pick = (id, ch, sid) => { const st = STORIES.find(s => s.id === id); const c = st.chapters.find(x => String(x.n) === String(ch)); const sen = c.sentences.find(s => s.id === sid); const k = c.sentences.indexOf(sen); if (k > 0) DabtEngine.grade(c.sentences[k - 1], 'endings'); return DabtEngine.grade(sen, 'endings'); };
+      const word = (g, w) => g.words.find(x => N(x.w).replace(/[«»،.:!؟]/g, '') === N(w)) || {};
+      const out = {};
+      let g = pick('al-kafiya', 5, 's5'); out.inna = word(g, 'اخْتِلَاف'); out.inna = [out.inna.rule, out.inna.ok, out.inna.src];
+      g = pick('al-kafiya', 32, 's3'); out.tawkid = [word(g, 'كُلّهَا').rule, word(g, 'كُلّهَا').k];
+      g = pick('al-kafiya', 29, 's9'); out.zarf = [word(g, 'مَكَانهَا').rule, word(g, 'مَكَانهَا').k];
+      g = pick('qisas-al-nabiyyin-4', 19, 's10'); out.sila = [word(g, 'الظُّلُمَات').rule, word(g, 'الْكُرُبَات').rule, word(g, 'الرَّحْمَة').rule];
+      g = pick('al-kafiya', 20, 's9'); out.hikaya = g.words.filter(x => x.rule === 'hikaya' && x.ok === null && x.src === 'kept').length;
+      out.labels = !!(DabtEngine.RULE.hikaya && DabtEngine.RULE.silent && DabtEngine.RULE.hikaya.tr && DabtEngine.RULE.silent.en);
+      // the three texts that moved most (the whole corpus is the weekly CI's business)
+      out.acc = {}; for (const id of ['al-kafiya', 'qisas-al-nabiyyin-4', 'bad-al-amali']) { const c = DabtEngine.corpus('endings', [id], 0); out.acc[id] = [c.acc, c.hit, c.n]; }
+      return out;
+    });
+    if (r.inna[0] !== 'innaIsm' || r.inna[1] !== true) throw new Error('لِأَنَّ اخْتِلَافَ آخِرِهَا — the annexed ism after li-anna: ' + JSON.stringify(r.inna));
+    if (r.tawkid[0] !== 'tawkid' || r.tawkid[1] !== 'jarr') throw new Error('مِنْهَا كُلِّهَا — the tawkīd follows the jarr pronoun: ' + JSON.stringify(r.tawkid));
+    if (r.zarf[0] !== 'zarf') throw new Error('مَكَانَهَا — the idiom\'s ẓarf: ' + JSON.stringify(r.zarf));
+    if (r.sila.some(x => x !== 'maful')) throw new Error('الَّتِي تُبَدِّدُ الظُّلُمَاتِ وَتَكْشِفُ الْكُرُبَاتِ وَتَسْتَنْزِلُ الرَّحْمَةَ — the ṣila\'s objects: ' + JSON.stringify(r.sila));
+    if (r.hikaya < 1 || !r.labels) throw new Error('a cited form stays undecided under its own label: ' + JSON.stringify([r.hikaya, r.labels]));
+    const floors83 = { 'al-kafiya': 98.2, 'qisas-al-nabiyyin-4': 97.7, 'bad-al-amali': 94.2 };
+    for (const [id, f] of Object.entries(floors83)) if (r.acc[id][0] < f) throw new Error(id + ' endings accuracy fell: ' + JSON.stringify(r.acc[id]) + ' < ' + f);
+  });
+  await check('wave 85 — «Musa and the Children of Israel», the original Level-1 sequel: four chapters, twenty-nine sentences, every token with trilingual i\'rab, free, pending review, a sibling of the first story; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'musa-wa-bani-israil');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const first = STORIES.find(x => x.id === 'musa-wa-firawn');
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review, group: st.group,
+        sib: !!(first && st.group === first.group), irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the sequel is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 29 || r.toks !== 138 || r.level !== 1 || !r.free || !r.sib) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.n < 100 || r.hit < r.n - 8) throw new Error('the ḍabṭ engine should re-derive the sequel\'s endings (allowing eight): ' + JSON.stringify(r));
+  });
+  await check('wave 84 — the object rules: the second object after an enclitic first object (أَلْهَمَهُ الدُّعَاءَ), the imperative\'s object (ادْخُلِي الصَّرْحَ), the she-verb before the Name of God (سَأَلَتِ اللهَ), the khabar verb of the ism of إِنَّ (لَا يَحْتَمِلُ التَّبْدِيلَ), the opening name before إِذْ as the object of the omitted «remember»', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const pick = (id, ch, sid) => { const st = STORIES.find(s => s.id === id); const c = st.chapters.find(x => String(x.n) === String(ch)); const sen = c.sentences.find(s => s.id === sid); const k = c.sentences.indexOf(sen); if (k > 0) DabtEngine.grade(c.sentences[k - 1], 'endings'); return DabtEngine.grade(sen, 'endings'); };
+      const word = (g, w) => g.words.find(x => N(x.w).replace(/[«»،.:!؟]/g, '') === N(w)) || {};
+      const out = {};
+      let g = pick('qisas-al-nabiyyin-4', 17, 's7'); out.second = [word(g, 'الدُّعَاء').rule, word(g, 'الدُّعَاء').ok];
+      g = pick('qisas-al-nabiyyin-4', 28, 's1'); out.second2 = [word(g, 'الْإِنْجِيل').rule, word(g, 'الْإِنْجِيل').ok];
+      g = pick('qisas-al-nabiyyin-4', 15, 's9'); out.amr = [word(g, 'الصَّرْح').rule, word(g, 'الصَّرْح').ok];
+      g = pick('qisas-al-nabiyyin-4', 20, 's10'); out.she = [word(g, 'الله').rule, word(g, 'الله').ok, word(g, 'الْوَلَد').k];
+      g = pick('mukhtasar-al-manar', 12, 's3'); out.inna = [word(g, 'التَّبْدِيل').rule, word(g, 'التَّبْدِيل').ok];
+      g = pick('qisas-al-nabiyyin-4', 8, 's7'); out.udhkur = [word(g, 'وَدَاوُد').rule, word(g, 'وَدَاوُد').ok, word(g, 'وَسُلَيْمَان').k];
+      out.labels = !!(DabtEngine.RULE.udhkur && DabtEngine.RULE.udhkur.ar && DabtEngine.RULE.udhkur.en && DabtEngine.RULE.udhkur.tr);
+      const c = DabtEngine.corpus('endings', ['qisas-al-nabiyyin-4'], 0); out.acc = [c.acc, c.hit, c.n];
+      return out;
+    });
+    for (const k of ['second', 'second2', 'amr', 'she', 'inna', 'udhkur']) if (r[k][0] !== (k === 'udhkur' ? 'udhkur' : 'maful') || r[k][1] !== true) throw new Error(k + ': ' + JSON.stringify(r[k]));
+    if (r.she[2] !== 'nasb' || r.udhkur[2] !== 'nasb') throw new Error('the demonstrative\'s badal and the joined name follow the object: ' + JSON.stringify([r.she, r.udhkur]));
+    if (!r.labels) throw new Error('the udhkur rule carries its three labels');
+    if (r.acc[0] < 97.7) throw new Error('qisas-al-nabiyyin-4 endings accuracy fell: ' + JSON.stringify(r.acc) + ' < ' + 97.7);
+  });
+  await check('wave 86 — «Musa and al-Khidr», the third original Level-1 story: four chapters, thirty-nine sentences, every token with trilingual i\'rab, free, pending review, a sibling of the first two; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'musa-wal-khadir');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const first = STORIES.find(x => x.id === 'musa-wa-firawn');
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review, group: st.group,
+        sib: !!(first && st.group === first.group), irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the third story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 39 || r.toks !== 180 || r.level !== 1 || !r.free || !r.sib) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.n < 140 || r.hit < r.n - 10) throw new Error('the ḍabṭ engine should re-derive the third story\'s endings (allowing ten): ' + JSON.stringify(r));
+  });
+  await check('wave 88 — «Musa in Madyan», the fourth original Level-1 story: four chapters, thirty-nine sentences, every token with trilingual i\'rab, free, pending review, a sibling of the first three; the hal, the vocative, the number with its counted noun and the prohibitive la are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'musa-fi-madyan');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const first = STORIES.find(x => x.id === 'musa-wa-firawn');
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review, group: st.group,
+        sib: !!(first && st.group === first.group), irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        hal: toks.some(t => bare(t) === 'خائفا' && tag(t, 'hal')), nida: toks.filter(t => tag(t, 'vocative-munada')).length, adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length,
+        nahiya: toks.some(t => bare(t) === 'تخف' && tag(t, 'la-nahiya')), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the fourth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 39 || r.toks !== 237 || r.level !== 1 || !r.free || !r.sib) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (!r.hal || r.nida < 4 || r.adad < 6 || !r.nahiya) throw new Error('the story should tag the hal, the vocatives, the numbers and the prohibitive la: ' + JSON.stringify(r));
+    if (r.n < 180 || r.hit < r.n - 10) throw new Error('the ḍabṭ engine should re-derive the fourth story\'s endings: ' + JSON.stringify(r));
   });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {

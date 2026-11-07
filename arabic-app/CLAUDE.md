@@ -9190,6 +9190,131 @@ check reads the pill synchronously after the click, which is enough. A design pa
 webfont; neither can ship in a self-contained reader that must run offline and inside the Android shell, so the fonts
 stay the system stacks and the icons are inline SVG paths.
 
+**Wave 81 — the Model lab judged by the book.** The lab took typed text only, so the perceptron's belief could never be
+checked against anything on the page. Now a row of chips offers the sentences of the open text (or the first on the
+shelf) that carry role-bearing words; a tap fills the input with the sentence and renders ONE card per word the
+`RoleEngine` reads a role for — the belief bars and the live-ablation chips exactly as before, and under them the
+book's own iʿrāb line with a verdict: «the model agrees with the book», or «the model is unsure — the rules and the
+book win» (the package's atölye/model screen). The tally above counts the agreements. Withholding a chip re-judges the
+card from what remains; nothing is retrained, the book is only read. `renderModelBook` computes `prev` and `ctx` by
+the same chain as `modelPredictFor`, so the lab shows the model that ships. Typed text keeps the free analysis.
+
+**Wave 82 — «مُوسَى وَفِرْعَوْنُ», the project's own graded story.** Qiṣaṣ al-Nabiyyīn volumes 1, 2 and 4 are on the
+shelf; the volume that tells Mūsā's story was never uploaded. Rather than wait, the project wrote its own Level-1
+retelling in the method the leveling notes record — short كَانَ-framed sentences, one event per line, the vocabulary
+repeated — six chapters (Pharaoh and the Children of Israel; the birth; the messenger; the sea; the magicians; the
+desert), 63 sentences, 291 tokens, every token with trilingual iʿrāb, FREE, ORIGINAL and `pending-scholarly-review`, the attribution saying in
+three languages that no āya is quoted and nothing here is a classical text. The regenerator
+`tools/authoring/author_musa.py` copies every glossary entry and every verb paradigm from the package that already owns
+the lemma (the lemma-identity rule; `amana` is forced to the Yūnus story's verb because the Nūḥ story's `amana` is the
+noun أَمَانَة — a key collision that predates this wave and is now recorded); only كَبِرَ (built by `sarf_gen.sound1`,
+bāb samiʿa), الصُّنْدُوق, النِّيل, حَيَّة, سَاحِر, حَبْل and حَارّ are new. The validator passes with 0 errors; the ḍabṭ engine re-derives the
+story's endings at 284/291 (97.6%; the seven left are the engine's: a naʿt after kāna's fronted khabar, بَنُو as kāna's ism, the deputy doer after a jarr phrase, صَارَتْ's khabar). Gate: wave-82 check (shape, iʿrāb coverage, provenance, the ḍabṭ floor).
+
+**Wave 83 — the ḍabṭ engine learns from its own misses; the grader reads the book honestly.** The v224 engine re-derived
+42,534 of 43,119 corpus endings; a probe (`$S/probe81_miss.js`) listed every miss with its neighbourhood, and the misses
+sorted into three kinds. 88 were CITED forms — al-Kāfiya quoting فَعَالِ or تَدْخُل as shapes, the author's line beginning
+«لَفْظٌ مَحْكِيٌّ» — which carry no case of their own; the grader now keeps them undecided under the label `hikaya`. 353 were
+words the BOOK leaves bare at the end (اخْتِلَاف، الطَّيْر: the source's print carried no mark there), so there was nothing to
+compare; the grader now reads the author's own iʿrāb line for the case (مَرْفُوع/مَنْصُوب/مَجْرُور/مَجْزُوم) and judges the
+engine's sign against that (`src: "irab"`), undecided (`silent`) when the line names no case — 98 of the 353 were the
+engine right and the book silent, 255 were real errors now visible. Four rules came out of the real ones: the annexed ism
+after the whole inna family on a silent ending (لِأَنَّ اخْتِلَافَ آخِرِهَا — R26 had demanded the author's fatḥa); the tawkīd
+maʿnawī wearing its head's case (مِنْهَا كُلِّهَا، الْقَوْمُ كُلُّهُمْ — the Ājurrūmiyya's tawkīd); the idiom قَامَ مَقَامَهُ
+(مَقَام/مَكَان/مَحَلّ + pronoun after a verb or the maṣdar of standing is the ẓarf); and the ṣila's verb, whose doer is the
+returning pronoun, so the plain noun after it is its object and a و/ف-joined verb in the same ṣila keeps the doer
+(الَّتِي تُبَدِّدُ الظُّلُمَاتِ وَتَكْشِفُ الْكُرُبَاتِ). Corpus after: 42,546 / 43,030 (98.88%, 803 undecided; v224 42,534 / 43,119 = 98.64%) — al-Kāfiya 218 → 122 misses, Qiṣaṣ 4 147 → 143, Talkhīṣ 92 → 92; 484 misses remain, the
+largest kinds being the doer-or-object choice after a verb whose doer carried over from the sentence before and the
+grammar books' citations inside running prose. The perceptron gained three neighbourhood features, each ablated
+leave-one-story-out first (`$S/ablate81.js`: pp-pos×sign +1.3, ns-sign +0.8, fn/nfn +0.7 alone): held-out 64.6 / 79.3 (v224 62.8 / 78.2; resubstitution 67.5).
+Gate: wave-83 check (the four sentences, the cited form, the whole-corpus floor, the raised held-out floor).
+
+**Wave 85 — «مُوسَى وَبَنُو إِسْرَائِيلَ», the sequel.** The second ORIGINAL Level-1 story continues the first in the same
+method and the same regenerator style (`tools/authoring/author_musa2.py`, four chapters: the calf, the anger of Mūsā, the
+desert, the holy land — 29 sentences, 138 tokens, trilingual iʿrāb on every token, FREE, `pending-scholarly-review`,
+a sibling of `musa-wa-firawn` in the shelf's story group). It deliberately widens the grammar the first story met:
+the prohibitive لَا with one of the five verbs (لَا تَعْبُدُوا), the imperative built on the dropped nūn (ادْخُلُوا),
+the tens declining by letters with their singular tamyīz (أَرْبَعِينَ لَيْلَةً), the mafʿūl muṭlaq with its naʿt
+(غَضَبًا شَدِيدًا), the ḥāl clause (يَسْجُدُونَ لَهُ), the interrogative مَا and the badal after a demonstrative, the
+fronted khabar with a diptote plural naʿt (قَوْمٌ أَقْوِيَاءُ). Five glossary entries are new (هَارُون، السَّامِرِيّ،
+أَرْبَعُونَ، تَوْبَة، the interrogative مَا); the rest — عَبَدَ and قَبِلَ among them — are copied by lemma identity. (A first
+draft rebuilt عَبَدَ under its existing key with a paradigm lacking the passive; the engine then read every «worship + object»
+clause in the Qiṣaṣ as a new mubtadaʾ — 42 words. The lemma-identity rule is not a courtesy: a second paradigm for the
+same lemma changes the engine's view of the verb everywhere.) The ḍabṭ engine
+re-derives the sequel's endings at 132/134 (98.5 %, the fronted object الْعِجْلَ twice — the engine's own gap). Gate: wave-85 check.
+
+**Wave 84 — the object rules.** The wave-83 probe left 57 words the author calls مَفْعُولٌ بِهِ that the engine had seated as
+the doer or a mubtadaʾ. Traced to their seats (`$S/w84/trace.js` logs every `set()` and every `__doerOf` with its line), they
+fall to five rules written where the seat is decided, not after it: **A** the verb's own form fixes its doer — a dual, plural,
+second- or first-person suffix, or the imperative — so the noun after it is the object (ادْخُلِي الصَّرْحَ; the she-verb pre-pass
+and the clause-opening hop pre-pass both decline to seat it); **B** the second object of a ditransitive after an enclitic first
+object (أَلْهَمَهُ الدُّعَاءَ، آتَاهُ الْإِنْجِيلَ، تَتَوَهَّمُهُ مَاءً، فَيُوَفِّيهِمْ أُجُورَهُمْ — the enclitic already counted as the first);
+**C** a definite noun standing before the verb over at most one particle is its doer — the mubtadaʾ or the ism of إِنَّ — so the noun
+after is the object (لِأَنَّ الْخَبَرَ لَا يَحْتَمِلُ التَّبْدِيلَ; round 73c's khabar-verb rule now accepts the ism of إِنَّ as a waiting
+subject); **D** the she-verb before the Name of God takes it as object, and before a masculine ال-noun only when a feminine doer is in evidence — carried from the sentence before or named earlier in this one (سَأَلَتِ اللهَ; the v225 gate caught نَطَقَتِ الْحَالُ, whose الْحَال is feminine without a tāʾ: the tāʾ-less feminines joined `femWord84` and the evidence clause was added), and the
+demonstrative after a verb governed by أَنْ keeps the object's seat (أَنْ يَتَقَبَّلَ هٰذَا الْوَلَدَ); **E** the opening name before إِذْ is
+the object of the omitted «اذْكُرْ» (وَدَاوُدَ وَسُلَيْمَانَ إِذْ، وَأَيُّوبَ إِذْ — rule `udhkur`, labelled in three languages, note
+`al-maful-bihi-wa-qismah`). The carried subject of the previous sentence also stops the hop pre-pass from seating a
+definite noun after a joined clause-opening verb. Measured on the whole corpus: 42,546/43,030 (98.88 %) → 43,152/43,632 (98.90 %, the three Mūsā stories' 602 tokens now included) (misses
+484 → 480 — 471 outside the three Mūsā stories); qisas-al-nabiyyin-4 at 6,548/6,679 (98.0 %). Left for a later round: the doer carried across a chapter
+boundary (وَتَفَقَّدَ الطَّيْرَ opens its chapter), the doer carried within a sentence over a second وَ-joined māḍī (وَأَلَانَ لَهُ
+الْحَدِيدَ), and the clause-opening verb with no subject anywhere (يُجَالِسُ الْفُقَرَاءَ). Gate: wave-84 check (six sentences,
+the labels, the qisas-4 floor).
+
+**Wave 86 — «مُوسَى وَالْخَضِرُ», the third story.** The third ORIGINAL Level-1 story of the Mūsā group (`tools/authoring/author_musa3.py`,
+four chapters: the righteous servant, the ship, the boy and the wall, the reason — 39 sentences, 180 tokens, trilingual iʿrāb
+on every token, FREE, `pending-scholarly-review`, a sibling of the two earlier stories in the shelf's story group; after al-Kahf
+60–82 as it is told to children, no āya quoted). It is written to meet what the first two did not: the dual in every seat (the
+alif of the two as doer — أَخَذَا، رَكِبَا، نَسِيَا، رَأَيَا; the dual noun in nasb and jarr — مُؤْمِنَيْنِ، لِغُلَامَيْنِ يَتِيمَيْنِ; the
+five nouns in the dual and the singular — أَبَوَاهُ، أَبُوهُمَا), the tāʾ of the doer with and without an enclitic object (خَرَقْتَ،
+قُلْتُ، خَرَقْتُهَا), the two objects of عَلَّمَ and أَعْطَى with the enclitic first (عَلَّمَهُ اللهُ عِلْمًا، أَعْطَاهُمَا اللهُ وَلَدًا — the
+wave-84 pattern), the imperative with the nūn of guarding (عَلِّمْنِي), أَمَّا … فَ three times with كَانَ and a fronted jarr khabar,
+the diptote plural of the extreme pattern (لِمَسَاكِينَ), لَنْ and لِ of purpose with their hidden doers, إِنْ شَاءَ اللهُ with its
+omitted answer, هُنَاكَ and الْآنَ as built adverbs. Three glossary entries are new (الْخَضِر، خَرَقَ، الصَّخْرَة); the rest are copied by
+lemma identity. The ḍabṭ engine re-derives its endings at 175/177 (98.9 %). Gate: wave-86 check.
+
+**Wave 88 — «مُوسَى فِي مَدْيَنَ», the fourth story.** The fourth ORIGINAL Level-1 story of the Mūsā group (`tools/authoring/author_musa4.py`,
+four chapters: leaving Egypt, at the well, the righteous old man, ten years — 39 sentences, 237 tokens, trilingual iʿrāb on every
+token, FREE, `pending-scholarly-review`, a sibling of the three earlier stories; after al-Qaṣaṣ 14–29 as it is told to children, no
+āya quoted — the lines that lie close to the Qurʾān's wording were rephrased on purpose). It is written to meet what the first three
+did not: the ḥāl (خَرَجَ … خَائِفًا) and the ḥāl clause with its binding wāw (وَهِيَ تَسْتَحْيِي), the vocative in its three shapes (يَا
+مُوسَى built on an estimated ḍamma; يَا رَبِّ with the dropped yāʾ; يَا أَبَتِ with the tāʾ in the yāʾ's place), the feminine dual in rafʿ
+and jarr (امْرَأَتَانِ، الْبِنْتَيْنِ، بِنْتَيَّ with the two yāʾs merged), the number with its counted noun (ثَمَانِيَ سِنِينَ، عَشْرَ
+سِنِينَ — the manqūṣ-shaped eight with its visible fatḥa, the plural in jarr by annexation), the absolute object (خَوْفًا شَدِيدًا), the
+prohibitive لَا on a hollow verb (لَا تَخَفْ), the conditional with a nominal answer (وَإِنْ عَمِلْتَ … فَذَلِكَ خَيْرٌ), حَتَّى with the hidden
+أَنْ, the five nouns in four seats (أَبُونَا، أَبِي، أَبِيهَا، أَبُوهَا), the imperative with the nūn of guarding and with the dropped weak
+letter (انْصُرْنِي، أَعْطِنِي), the five verbs in rafʿ and nasb (يُرِيدُونَ أَنْ يَقْتُلُوكَ، تَسْقِيَانِ). Four glossary entries are new
+(خَائِف، رَاعٍ، اسْتَأْجَرَ with its Form-X paradigm built by `sarf_gen.derived`, ثَمَانِي); the rest are copied by lemma identity. The
+ḍabṭ engine re-derives its endings at 228/234 (97.4 %). Gate: wave-88 check.
+
+**Wave 91 — the ḥadhf prefix reads the lemma.** The HadhfEngine took every word that opens with فَ or وَ for a conjunction
+plus a word (فَقِيرٌ as فَ + قِيرٌ), so «يَا رَبِّ أَنَا فَقِيرٌ فَأَعْطِنِي» restored a mubtadaʾ before فَقِيرٌ that أَنَا already supplies.
+The rows the engine reads now carry the token's glossary lemma and plural, and the prefix helper returns nothing when the bare
+word begins with its own lemma (فَقِير، وَلَد، فَتًى، وَجَدَتْ); the analyzer's rows already carry a lemma, so a typed sentence reads
+the same way. Corpus audit 1,176 lines: 86.1 % → 86.3 %, false positives 4 → 3, all 57 seeds hold. Gate: the wave-39 check
+(the Midian line must restore nothing but its vocative).
+
+**v225 design repair — the phone card rules were dead CSS.** The wave-75 phone rules for the library card's title band and
+pitch had the same specificity as the wide-screen title band declared later in the sheet, so every phone card carried the
+87px band; the release gate caught it only when the Mūsā stories' two-line pitches pushed the third card off the first
+screen. The phone rules now carry the `#story` id (the shelf's container). A card: 206 → 167 px (one-line pitch), 187 px
+(two lines).
+
+**Wave 87 — the carried doer, part II.** Two rules written at the carry: (a) the previous sentence's subject carries across a
+chapter boundary — `_carry26` now looks at the last sentence of the previous chapter when the graded sentence opens its own
+(وَتَفَقَّدَ الطَّيْرَ opens chapter 13; the rule is sound, though that chapter's predecessor ends on an aside whose last named doer is
+not Sulaymān, so the word still waits); (b) the chain of hidden doers survives an enclitic object on the verb before — a joined
+third-person transitive māḍī after وَعَلَّمَهُ keeps its doer hidden when a plain definite object (not a name, not a demonstrative,
+not followed by a second ال-noun) or a fused jarr clitic + such a noun follows (وَأَلَانَ لَهُ الْحَدِيدَ): whichever referent acts, the
+noun after the verb is the object, and a name after the verb still names its own doer (فَقَالَ لَهُ إِبْرَاهِيمُ); (c) the crossing
+carry is held to the chapter's opening: a name after the opening verb names the chapter's own doer and is never the previous
+chapter's carried doer's object (وَاشْتَاقَ يُوسُفُ after a chapter closing on يَغْفِرُ اللهُ — the first probe lost it, the guard won it back). Measured on the
+whole corpus: 43,380/43,866 (98.89 %) → 43,381/43,866 (98.89 %) (misses 486 → 485). Traced and left for the next round
+(`$S/w87/keys87.txt`): the verb inside a ṣila or after a negated muḍāriʿ with a mubtadaʾ waiting two particles back (مَا احْتَمَلَ
+الصِّدْقَ، لَا يَحْتَمِلُ النَّسْخَ), the second verb of an أَوْ-joined pair sharing an explicit doer (يُحِبُّ اللهَ أَكْثَرَ أَوْ يُحِبُّ
+ابْنَهُ), the clause-opening unjoined muḍāriʿ whose doer is carried over several sentences (يُجَالِسُ الْفُقَرَاءَ). Gate: the
+wave-84 check still holds its six sentences.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:
