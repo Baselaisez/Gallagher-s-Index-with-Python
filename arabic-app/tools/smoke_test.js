@@ -11927,6 +11927,53 @@ if (!CHROME) {
     if (!r.hal || r.nida < 4 || r.adad < 6 || !r.nahiya) throw new Error('the story should tag the hal, the vocatives, the numbers and the prohibitive la: ' + JSON.stringify(r));
     if (r.n < 180 || r.hit < r.n - 10) throw new Error('the ḍabṭ engine should re-derive the fourth story\'s endings: ' + JSON.stringify(r));
   });
+  await check('wave 90 — «Nuh and the Ship», the fifth original Level-1 story: four chapters, forty-one sentences, every token with trilingual i\'rab, free, pending review; the deputy doer, the emptied exception, the dual, the sound masculine plural in its cases and the verbal tawkid are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'nuh-wa-al-safina');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        naib: toks.some(t => bare(t) === 'أبواب' && tag(t, 'naib-al-fail')), mufarragh: toks.filter(t => tag(t, 'istithna-mufarragh')).length,
+        dual: toks.some(t => bare(t) === 'اثنين' && tag(t, 'al-muthanna')), jms: toks.filter(t => tag(t, 'jam-mudhakkar-salim')).length,
+        tawkid: toks.some(t => bare(t) === 'قليلا' && tag(t, 'tawkid')), lam: toks.some(t => bare(t) === 'يؤمن' && tag(t, 'lam-jazim')), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the fifth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 41 || r.toks !== 244 || r.level !== 1 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (!r.naib || r.mufarragh < 2 || !r.dual || r.jms < 6 || !r.tawkid || !r.lam) throw new Error('the story should tag the deputy doer, the emptied exceptions, the dual, the sound plurals, the tawkid and the jussive: ' + JSON.stringify(r));
+    if (r.n < 190 || r.hit < r.n - 4) throw new Error('the ḍabṭ engine should re-derive the fifth story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 92 — five rules from the Nūḥ story, on sentences assembled from corpus tokens: a ة-noun after a masculine name or a sound masculine plural is the object, not a naʿt; «you» after an imperative is its tawkīd; الْيَوْمَ beside a verb whose doer follows is the ẓarf; the verb of command shares its object with the أَنْ-clause; the question before a تَ-verb asks «you»', async () => {
+    const r = await page.evaluate(() => {
+      const all = []; STORIES.forEach(st => st.chapters.forEach(ch => (ch.sentences || []).forEach(sn => sn.tokens.forEach(t => all.push(t)))));
+      const tok = (f) => { const t = all.find(t => t.s && t.s.full === f); if (!t) throw new Error('no corpus token ' + f); return JSON.parse(JSON.stringify(t)); };
+      const rules = (text) => DabtEngine.grade({ id: 'w92', tokens: text.split(' ').map(tok) }, 'endings').words.map(w => w.out + '/' + w.rule);
+      return { name: rules('دَخَلَ نُوحٌ السَّفِينَةَ')[2], plural: rules('دَخَلَ الْمُؤْمِنُونَ السَّفِينَةَ')[2], amr: rules('فَاصْبِرْ أَنْتَ مِثْلَ نُوحٍ')[2],
+        day: rules('لَا يَنْجُو الْيَوْمَ أَحَدٌ').slice(2), amara: rules('أَمَرَ اللهُ نُوحًا أَنْ يَصْنَعَ سَفِينَةً')[5], why: rules('لِمَاذَا تَصْنَعُ سَفِينَةً')[2],
+        still: rules('دَخَلَ الرَّجُلُ الْبَيْتَ')[2] };
+    });
+    if (r.name !== 'السَّفِينَةَ/maful' || r.plural !== 'السَّفِينَةَ/maful') throw new Error('the ة-noun after a masculine name or a sound plural is the object: ' + JSON.stringify(r));
+    if (r.amr !== 'مِثْلَ/maful') throw new Error('«you» after the imperative is its tawkīd — the annexed مِثْلَ stays in nasb: ' + JSON.stringify(r));
+    if (r.day.join(' ') !== 'الْيَوْمَ/zarf أَحَدٌ/fail') throw new Error('the day beside the verb is the ẓarf and the nakira after it the doer: ' + JSON.stringify(r));
+    if (r.amara !== 'سَفِينَةً/maful' || r.why !== 'سَفِينَةً/maful') throw new Error('the أَنْ-clause of a command and the questioned تَ-verb keep a hidden doer: ' + JSON.stringify(r));
+    if (r.still !== 'الْبَيْتَ/maful') throw new Error('the plain object still reads: ' + JSON.stringify(r));
+  });
+  await check('wave 89 — the number and its counted noun (the Kāfiya): three to ten annex the plural, a hundred and a thousand the singular, the number wears no tanwīn and the counted noun stands in jarr; the bare maṣdar before a counted number is annexed to it — عَشْرَ سِنِينَ (Madyan 4:s3, 4:s6; Abū Yūsuf 5:s26), إِطْعَامُ عَشَرَةِ مَسَاكِينَ and صِيَامُ ثَلَاثَةِ أَيَّامٍ (Kaffārāt 2:s4, 2:s6) re-derive whole', async () => {
+    const r = await page.evaluate(() => {
+      const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st.chapters.find(x => String(x.n || x.chapter) === String(c)); const k = ch.sentences.findIndex(x => x.id === sid); if (k > 0) DabtEngine.grade(ch.sentences[k - 1], 'endings'); return DabtEngine.grade(ch.sentences[k], 'endings'); };
+      const pick = (g, w) => { const x = g.words.find(y => y.w === w); return x ? x.out + '/' + x.rule : null; };
+      const a = sen('musa-fi-madyan', 4, 's3'), b = sen('musa-fi-madyan', 4, 's6'), c = sen('wasiyyat-abi-yusuf-L5', 5, 's26'), d = sen('kitab-al-kaffarat', 2, 's4'), e = sen('kitab-al-kaffarat', 2, 's6');
+      return { a: a.hit + '/' + a.n, b: b.hit + '/' + b.n, c: c.hit + '/' + c.n, d: d.hit + '/' + d.n, e: e.hit + '/' + e.n, ashr: pick(a, 'عَشْر'), sinin: pick(a, 'سِنِين'), itam: pick(d, 'إِطْعَام'), ashara: pick(d, 'عَشَرَة'), siyam: pick(e, 'فَصِيَام'), thalatha: pick(e, 'ثَلَاثَة') };
+    });
+    if (r.a !== '6/6' || r.b !== '6/6' || r.c !== '12/12') throw new Error('the ten years should re-derive whole: ' + JSON.stringify(r));
+    if (!/^عَشْرَ\//.test(r.ashr || '') || !/^سِنِينَ\/mudafIlayh$/.test(r.sinin || '')) throw new Error('the number annexes its plural: ' + JSON.stringify(r));
+    if (parseInt(r.d, 10) < 8 || r.e !== '6/6' || !/^إِطْعَامُ\//.test(r.itam || '') || !/^عَشَرَةِ\//.test(r.ashara || '') || !/^فَصِيَامُ\//.test(r.siyam || '') || !/^ثَلَاثَةِ\//.test(r.thalatha || '')) throw new Error('the maṣdar before the counted number is annexed to it: ' + JSON.stringify(r));
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };

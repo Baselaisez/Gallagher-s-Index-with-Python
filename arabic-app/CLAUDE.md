@@ -9315,6 +9315,39 @@ whole corpus: 43,380/43,866 (98.89 %) → 43,381/43,866 (98.89 %) (misses 486 �
 ابْنَهُ), the clause-opening unjoined muḍāriʿ whose doer is carried over several sentences (يُجَالِسُ الْفُقَرَاءَ). Gate: the
 wave-84 check still holds its six sentences.
 
+**Wave 90 — «نُوحٌ وَالسَّفِينَةُ», the fifth story.** The fifth ORIGINAL Level-1 story and the first outside the Mūsā group
+(`tools/authoring/author_nuh.py`; four chapters: Nūḥ and his people, building the ship, the flood, the rescue — 41 sentences,
+244 tokens, trilingual iʿrāb on every token, free, `pending-scholarly-review`, its own `storyGroup`). Composed after Hūd
+25–48, Sūrat Nūḥ and al-Qamar 9–15 as the story is told to children; no āya is quoted, and the manifest says so in three
+languages. Written to put on the page what the first four stories had not: the deputy doer on a passive
+(فُتِحَتْ أَبْوَابُ السَّمَاءِ), the jussive لَمْ with the emptied exception after it (فَلَمْ يُؤْمِنْ بِهِ إِلَّا قَلِيلٌ), the sound
+masculine plural in all three cases (الْمُؤْمِنُونَ / الْكَافِرِينَ / قَلِيلِينَ as the khabar of كَانُوا), the dual-declining number
+with its badal (اثْنَيْنِ: ذَكَرًا وَأُنْثَى), لَمَّا of time with its annexed clause, the verbal tawkīd by repetition (قَلِيلًا
+قَلِيلًا), the diptote feminine of colour (خَضْرَاءَ) and the indefinite manqūṣ (جَبَلٍ عَالٍ). The helpers are the Mūsā stories'
+own, assembled verbatim from `author_musa4.py` so the house wording cannot drift; only خَشَب and ذَكَر are new to the lexicon,
+and مِثْل is the first naʿt of an indefinite that is itself annexed (مِثْلُنَا — annexation does not define it). The ḍabṭ engine
+re-derives its endings at 233/241 (96.7 %) on landing — 241/241 once wave 92 adds the rules its misses named. Gate: wave-90 check.
+
+**Wave 92 — the Nūḥ story's eight misses, by rule.** The fifth story graded 233/241 on landing; each miss was a rule the
+engine lacked, and each is now a rule: (1) a ة-noun with ال after a masculine proper name (`FEM_NAMES92` lists the
+tāʾ-less feminine names) or after a sound masculine plural head is not its naʿt — gender agreement bars it, so it falls to
+the object (دَخَلَ نُوحٌ السَّفِينَةَ، دَخَلَ الْمُؤْمِنُونَ السَّفِينَةَ); (2) «you» right after an imperative is the tawkīd of its hidden
+doer (`__tawkid92`) and opens no nominal clause — فَاصْبِرْ أَنْتَ مِثْلَ نُوحٍ keeps مِثْلَ in nasb; (3) الْيَوْمَ beside a verb whose
+doer still follows is the ẓarf and the nakira after it the doer (لَا يَنْجُو الْيَوْمَ أَحَدٌ); (4) the verbs of command and
+request (`OBJ_CTRL92`: أَمَرَ، طَلَبَ، سَأَلَ، دَعَا، نَهَى، كَلَّفَ، أَذِنَ، أَوْصَى، رَجَا) share their object with their أَنْ-clause, so the
+clause's verb keeps a hidden doer and the nakira after it is what is done (أَمَرَ اللهُ نُوحًا أَنْ يَصْنَعَ سَفِينَةً); (5) an
+interrogative (لِمَاذَا، مَاذَا، هَلْ، كَيْفَ، مَتَى، أَيْنَ، أَنَّى) straight before a تَ-verb followed by a nakira asks «you» — the
+nakira is the object even when it is feminine (لِمَاذَا تَصْنَعُ سَفِينَةً). Nūḥ: 233 → 241/241; corpus 43,614/44,107 (98.88 %) → 43,622/44,107 (98.90 %) (8 fixes, 0 breaks — all 27 texts swept story by story). Gate: wave-92 check (five assembled sentences plus a control); the wave-90 floor tightens to four misses.
+
+**Wave 89 — the number and its counted noun.** The Kāfiya's rule, in the ḍabṭ engine's pre-pairing pass: a unit number
+(ثَلَاثَة … عَشَرَة, بِضْعَة, in either gender) before a plural, or مِائَة / أَلْف before a singular, is the muḍāf and the counted
+noun its muḍāf ilayh — the number wears no tanwīn (عَشْرَ سِنِينَ, not عَشْرًا), the counted noun stands in jarr; the plural is
+known from the plural index, the corpus lexicon or JamEngine. The compound (أَحَدَ عَشَرَ) and the tens stay with wave 26k's
+tamyīz. A bare noun straight before such a number is annexed to it in turn (إِطْعَامُ عَشَرَةِ مَسَاكِينَ، صِيَامُ ثَلَاثَةِ أَيَّامٍ — the
+maṣdar made muḍāf to its object), unless it is a verb, a particle, a proper name, a ẓarf, a quantifier or a number itself.
+Measured on every corpus sentence that carries a number word (141 sentences): 2,292/2,313 → 2,301/2,315 (the two new judgements are numbers the engine now decides) (9 fixes, 0 breaks; the 85 sentences with an elative before مَا/مَنْ move only on the Kaffārāt line — an elative-to-مَا annexation was tried and dropped, since the corpus reads بِأَكْثَرَ مَا with the diptote's fatḥa; أَوْسَطِ مَا تُطْعِمُونَ stays the one known miss). Gate:
+wave-89 check (the Madyan and Abū Yūsuf «ten years», the Kaffārāt's two lines).
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:
