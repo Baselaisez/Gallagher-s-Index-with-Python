@@ -11974,6 +11974,174 @@ if (!CHROME) {
     if (!/^عَشْرَ\//.test(r.ashr || '') || !/^سِنِينَ\/mudafIlayh$/.test(r.sinin || '')) throw new Error('the number annexes its plural: ' + JSON.stringify(r));
     if (parseInt(r.d, 10) < 8 || r.e !== '6/6' || !/^إِطْعَامُ\//.test(r.itam || '') || !/^عَشَرَةِ\//.test(r.ashara || '') || !/^فَصِيَامُ\//.test(r.siyam || '') || !/^ثَلَاثَةِ\//.test(r.thalatha || '')) throw new Error('the maṣdar before the counted number is annexed to it: ' + JSON.stringify(r));
   });
+  await check('wave 93 — «Salih and the She-Camel», the sixth original Level-1 story: four chapters, forty sentences, every token with trilingual i\'rab, free, pending review; the feminine verb, the prohibitive لَا on a five-verb, the badal after a demonstrative, the number with its plural, the absolute object, the diptote and the jussive of a weak verb are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'salih-wa-al-naqa');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        nahy: toks.some(t => bare(t) === 'تمسوها' && tag(t, 'la-nahiya') && tag(t, 'afal-khamsa')), badal: toks.filter(t => tag(t, 'badal')).length,
+        adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length, mutlaq: toks.some(t => bare(t) === 'حزنا' && tag(t, 'maful-mutlaq')),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, jazm: toks.some(t => bare(t) === 'يبق' && tag(t, 'lam-jazim')), aqara: !!(st.glossary && st.glossary.aqara), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the sixth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 40 || r.toks !== 237 || r.level !== 1 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (!r.nahy || r.badal < 3 || r.adad < 4 || !r.mutlaq || r.dipt < 3 || !r.jazm || !r.aqara) throw new Error('the story should tag the prohibition, the badal, the number, the absolute object, the diptote and the jussive: ' + JSON.stringify(r));
+    if (r.n < 190 || r.hit < r.n - 12) throw new Error('the ḍabṭ engine should re-derive the sixth story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 94 — «Sulayman and the Hoopoe», the seventh original Level-1 story: four chapters, forty-four sentences, every token with trilingual i\'rab, free, pending review; the diptote in its cases, the two objects, the vocative on the speaker\'s ya, the prohibitive لَا with the feminine ya, the tawkid of meaning, the hal وَحْدَهُ, أَنَّ and the manqus noun are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'sulayman-wa-al-hudhud');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, two: toks.filter(t => t.irab && /الْمَفْعُولُ الْأَوَّلُ/.test(t.irab.ar)).length,
+        rabbi: toks.some(t => bare(t) === 'رب' && tag(t, 'vocative-munada') && tag(t, 'ya-al-mutakallim')), femya: toks.some(t => bare(t) === 'تعبدي' && tag(t, 'la-nahiya') && tag(t, 'afal-khamsa')),
+        kull: toks.some(t => bare(t) === 'كلهم' && tag(t, 'tawkid')), wahda: toks.some(t => bare(t) === 'وحده' && tag(t, 'hal')), anna: toks.some(t => bare(t) === 'أن' && tag(t, 'inna-wa-akhawatuha')),
+        manqus: toks.some(t => bare(t) === 'بواد' && tag(t, 'ism-maqsur-manqus')), mutlaq: toks.filter(t => tag(t, 'maful-mutlaq')).length, jms: toks.filter(t => tag(t, 'jam-mudhakkar-salim')).length, hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the seventh story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 44 || r.toks !== 231 || r.level !== 1 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.dipt < 8 || r.two < 3 || !r.rabbi || !r.femya || !r.kull || !r.wahda || !r.anna || !r.manqus || r.mutlaq < 2 || r.jms < 2) throw new Error('the story should tag the diptote, the two objects, the vocative, the feminine ya, the tawkid, the hal, anna, the manqus and the sound plural: ' + JSON.stringify(r));
+    if (r.n < 180 || r.hit < r.n - 12) throw new Error('the ḍabṭ engine should re-derive the seventh story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 100 — «Luqman and His Son», the twelfth original story and the fourth at Level 2: four chapters, sixteen sentences, every token with trilingual i\'rab, free, pending review; the diptote name behind its lam, the vocative بُنَيَّ, the imperatives and prohibitions of defective and hollow verbs, إِذَا with its clause, the dual وَالِدَيْكَ, the five-noun أَبِيهِ, the lam of purpose and the ultimate plural وَصَايَا are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'luqman-wa-ibnuh');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, bunayy: toks.filter(t => bare(t) === 'بني' && tag(t, 'vocative-munada')).length, amr: toks.filter(t => tag(t, 'imperative-amr')).length, nahy: toks.filter(t => tag(t, 'la-nahiya')).length,
+        idha: toks.filter(t => tag(t, 'huruf-al-shart-fil-kafiya')).length, dual: toks.filter(t => tag(t, 'al-muthanna')).length, five: toks.filter(t => tag(t, 'five-nouns')).length, khamsa: toks.filter(t => tag(t, 'afal-khamsa')).length,
+        naqis: toks.filter(t => tag(t, 'naqis-verbs')).length, bati: !!((st.glossary || st.gloss || {}).bati), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the twelfth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 16 || r.toks !== 189 || r.level !== 2 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.dipt < 6 || r.bunayy < 3 || r.amr < 10 || r.nahy < 3 || r.idha < 3 || r.dual < 1 || r.five < 1 || r.khamsa < 2 || r.naqis < 5 || !r.bati) throw new Error('the story should tag the diptotes, the vocative بُنَيَّ, the imperatives, the prohibitions, إِذَا, the dual, the five noun, the five verbs and the defective verbs, and carry the new entry: ' + JSON.stringify(r));
+    if (r.n < 180 || r.hit < r.n - 2) throw new Error('the ḍabṭ engine should re-derive the twelfth story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 99 — «Qarun and His Treasures», the eleventh original story and the third at Level 2: four chapters, seventeen sentences, every token with trilingual i\'rab, free, pending review; the diptote name in four cases, لَيْتَ, بَلْ, the lam of command, the hal clause after حَوْلَهُ, the two objects of أَعْطَى, عَمَّنْ and the elative خَيْرٌ مِنْ are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'qarun-wa-kunuzuh');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, layta: toks.some(t => bare(t) === 'ليتنا' && tag(t, 'inna-wa-akhawatuha')), bal: toks.some(t => bare(t) === 'بل' && tag(t, 'atf-nasaq')),
+        lamAmr: toks.filter(t => /^[وف]ل/.test(bare(t)) && tag(t, 'lam-jazim')).length, hal: toks.filter(t => tag(t, 'al-hal-jumla-wa-rabituha')).length, tafdil: toks.filter(t => tag(t, 'ism-tafdil')).length,
+        amman: toks.some(t => bare(t) === 'عمن' && tag(t, 'ism-mawsul')), nahy: toks.filter(t => tag(t, 'la-nahiya')).length, qarun: !!((st.glossary || st.gloss || {}).qarun), khasafa: !!((st.glossary || st.gloss || {})['khasafa-sink']), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the eleventh story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 17 || r.toks !== 188 || r.level !== 2 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.dipt < 8 || !r.layta || !r.bal || r.lamAmr < 2 || r.hal < 1 || r.tafdil < 2 || !r.amman || r.nahy < 3 || !r.qarun || !r.khasafa) throw new Error('the story should tag the diptotes, layta, bal, the lam of command, the hal clause, the elatives, عَمَّنْ and the prohibitions, and carry the two new entries: ' + JSON.stringify(r));
+    if (r.n < 180 || r.hit < r.n - 2) throw new Error('the ḍabṭ engine should re-derive the eleventh story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 98 — «The People of the Cave», the tenth original story and the second at Level 2: four chapters, twenty-two sentences, every token with trilingual i\'rab, free, pending review; the compound number, the hal clause, the sound feminine plural, the ultimate-plural diptote, the interrogative كَمْ, the emptied exception and the deputy of the absolute object are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'ashab-al-kahf');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length, hal: toks.filter(t => tag(t, 'al-hal-jumla-wa-rabituha')).length, femPl: toks.filter(t => tag(t, 'jam-muannath-salim')).length,
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, kam: toks.some(t => bare(t) === 'كم' && tag(t, 'al-istifham')), illa: toks.filter(t => tag(t, 'istithna-mufarragh')).length, mutlaq: toks.filter(t => tag(t, 'maful-mutlaq')).length,
+        salim: toks.filter(t => tag(t, 'jam-mudhakkar-salim')).length, nawm: !!((st.glossary || st.gloss || {}).nawm), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the tenth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 22 || r.toks !== 215 || r.level !== 2 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.adad < 2 || r.hal < 3 || r.femPl < 1 || r.dipt < 3 || !r.kam || r.illa < 1 || r.mutlaq < 1 || r.salim < 4 || !r.nawm) throw new Error('the story should tag the compound number, the hal clause, the feminine plural, the diptotes, kam, the emptied exception, the absolute object and the sound plurals, and carry the new entry: ' + JSON.stringify(r));
+    if (r.n < 200 || r.hit < r.n - 1) throw new Error('the ḍabṭ engine should re-derive the tenth story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 97 — «Dawud and Jalut», the ninth original story and the first at Level 2: four chapters, thirty-seven sentences, every token with trilingual i\'rab, free, pending review; the hal clause, the tamyiz, the formal idafa, the dual, the sound feminine plural, لَوْ, the deputy doer, the speaker\'s ya and the diptotes are tagged; the five new entries are on the shelf; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'dawud-wa-jalut');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const gl = st.glossary || st.gloss || {};
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        hal: toks.filter(t => tag(t, 'al-hal-jumla-wa-rabituha')).length, tamyiz: toks.filter(t => tag(t, 'tamyiz')).length, lafzi: toks.filter(t => tag(t, 'idafa-lafziyya')).length,
+        dual: toks.filter(t => tag(t, 'al-muthanna')).length, femPl: toks.filter(t => tag(t, 'jam-muannath-salim')).length, law: toks.filter(t => tag(t, 'huruf-al-shart-fil-kafiya')).length,
+        naib: toks.filter(t => tag(t, 'naib-al-fail')).length, ya: toks.filter(t => tag(t, 'ya-al-mutakallim')).length, dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, mutlaq: toks.filter(t => tag(t, 'maful-mutlaq')).length,
+        newWords: ['talut', 'jalut', 'miqla', 'zabur', 'haraba-flee'].filter(k => !!gl[k]).length, hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the ninth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 37 || r.toks !== 357 || r.level !== 2 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.hal < 3 || r.tamyiz < 1 || r.lafzi < 2 || r.dual < 1 || r.femPl < 1 || r.law < 1 || r.naib < 1 || r.ya < 4 || r.dipt < 10 || r.mutlaq < 3) throw new Error('the story should tag the hal clause, the tamyiz, the formal idafa, the dual, the feminine plural, law, the deputy doer, the speaker\'s ya, the diptotes and the absolute object: ' + JSON.stringify(r));
+    if (r.newWords !== 5) throw new Error('the five new entries should be on the shelf: ' + JSON.stringify(r));
+    if (r.n < 340 || r.hit < r.n - 12) throw new Error('the ḍabṭ engine should re-derive the ninth story\'s endings: ' + JSON.stringify(r));
+  });
+  await check('wave 96 — the paradigm key the engine never read, and six rules from the Sulaymān and Hūd stories: a verb with a stored passive participle but no stored passive is transitive (عَقَرَ النَّاقَةَ); a verb whose gloss names its preposition is lāzim before that phrase (آمَنَ بِهِ قَلِيلٌ); the demonstrative\'s badal after a placed object is in jarr; the you-feminine jussive reaches its cell; the أَفْعَى elative annexes the definite noun; كُلُّهُمْ follows the collective head; the group\'s wāw is the doer before وَحْدَهُ', async () => {
+    const r = await page.evaluate(() => {
+      const all = []; STORIES.forEach(st => st.chapters.forEach(ch => (ch.sentences || []).forEach(sn => sn.tokens.forEach(t => all.push(t)))));
+      const tok = (f) => { const t = all.find(t => t.s && t.s.full === f); return t ? JSON.parse(JSON.stringify(t)) : { s: { full: f, smart: f, bare: f.replace(/[\u064B-\u0652\u0670]/g, '') } }; };
+      const rules = (text) => DabtEngine.grade({ id: 'w96', tokens: text.split(' ').map(tok) }, 'endings').words.map(w => w.out + '/' + w.rule);
+      return { aqara: rules('فَعَقَرَ رَجُلٌ مِنْهُمُ النَّاقَةَ')[3], naqr: rules('نَعْقِرُ النَّاقَةَ فِي اللَّيْلِ')[1], amana: rules('فَكَذَّبَهُ أَكْثَرُ الْقَوْمِ وَآمَنَ بِهِ قَلِيلٌ مِنْهُمْ')[5],
+        badal: rules('وَشَكَرَ اللهَ عَلَى هَذِهِ النِّعْمَةِ')[4], fem: rules('لَا تَعْبُدِي الشَّمْسَ').slice(1), tafdil: rules('نَحْنُ أَقْوَى النَّاسِ')[2],
+        kull: rules('فَهَلَكَ قَوْمُ عَادٍ كُلُّهُمْ')[3], wahda: rules('وَكَانُوا يَعْبُدُونَ اللهَ وَحْدَهُ')[3], chain: rules('فَإِنَّهَا لَا تَنْفَعُ وَلَا تَضُرُّ').slice(2),
+        ctrlDoer: rules('فَدَعَا اللهَ صَالِحٌ')[2], ctrlKull: rules('جَاءَ الرِّجَالُ كُلُّهُمْ')[2] };
+    });
+    if (r.aqara !== 'النَّاقَةَ/maful' || r.naqr !== 'النَّاقَةَ/maful') throw new Error('a verb with a stored passive participle is transitive — its definite noun is the object: ' + JSON.stringify(r));
+    if (r.amana !== 'قَلِيلٌ/fail') throw new Error('the preposition-verb\'s nakira past its phrase is the doer: ' + JSON.stringify(r));
+    if (r.badal !== 'النِّعْمَةِ/badal') throw new Error('the demonstrative\'s badal after a placed object follows the jarr seat: ' + JSON.stringify(r));
+    if (!/^تَعْبُدِي\/jazm$/.test(r.fem[0]) || r.fem[1] !== 'الشَّمْسَ/maful') throw new Error('the you-feminine jussive reaches its cell and takes its object: ' + JSON.stringify(r));
+    if (r.tafdil !== 'النَّاسِ/mudafIlayh') throw new Error('the أَفْعَى elative annexes the definite noun: ' + JSON.stringify(r));
+    if (r.kull !== 'كُلُّهُمْ/tawkid' || r.ctrlKull !== 'كُلُّهُمْ/tawkid') throw new Error('كُلُّهُمْ follows the collective head of the annexation: ' + JSON.stringify(r));
+    if (r.wahda !== 'وَحْدَهُ/hal') throw new Error('the group\'s wāw is the doer and وَحْدَهُ the ḥāl: ' + JSON.stringify(r));
+    if (r.chain.join(' ') !== 'تَنْفَعُ/raf وَلَا/mabni تَضُرُّ/raf') throw new Error('the joined لَا continues the negation of the إِنَّ khabar: ' + JSON.stringify(r));
+    if (r.ctrlDoer !== 'صَالِحٌ/fail') throw new Error('the he-verb\'s named doer after اللهَ still reads: ' + JSON.stringify(r));
+  });
+  await check('wave 95 — «Hud and Ad», the eighth original Level-1 story: four chapters, thirty-five sentences, every token with trilingual i\'rab, free, pending review; the conditional مَنْ with its answer, إِنْ with لَمْ, لَكِنَّ/إِنَّ with a pronoun, the relative and its ṣila, the annexed elative, the unannexed five-noun, the diptote plural and the number are tagged; the ḍabṭ engine re-derives its endings', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'hud-wa-aad');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g);
+      const bare = (t) => (t.s && t.s.bare) || '';
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        man: toks.filter(t => bare(t).replace(/^[وف]/, '') === 'من' && tag(t, 'al-majzum-wal-shart-wal-jaza')).length, shart: toks.filter(t => tag(t, 'al-majzum-wal-shart-wal-jaza')).length,
+        lakinna: toks.some(t => bare(t) === 'ولكنه' && tag(t, 'inna-wa-akhawatuha')), mawsul: toks.some(t => bare(t) === 'الذي' && tag(t, 'ism-mawsul')),
+        tafdil: toks.some(t => bare(t) === 'أقوى' && tag(t, 'ism-tafdil')), akh: toks.some(t => bare(t) === 'أخا' && tag(t, 'five-nouns')),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length, kull: toks.some(t => bare(t) === 'كلهم' && tag(t, 'tawkid')), hit, n, miss: miss.slice(0, 8) };
+    });
+    if (r.missing) throw new Error('the eighth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 35 || r.toks !== 182 || r.level !== 1 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.man < 2 || r.shart < 7 || !r.lakinna || !r.mawsul || !r.tafdil || !r.akh || r.dipt < 3 || r.adad < 2 || !r.kull) throw new Error('the story should tag the conditional, lakinna, the relative, the elative, the five-noun, the diptote, the number and the tawkid: ' + JSON.stringify(r));
+    if (r.n < 140 || r.hit < r.n - 12) throw new Error('the ḍabṭ engine should re-derive the eighth story\'s endings: ' + JSON.stringify(r));
+  });
   await check('round 72d — the rank rule keeps to its shape: a fused jarr-pronoun, a wāw doer, a gender mismatch and the author\'s naṣb all refuse it; the second object after أَرَاهُ; ابْنٌ before كَانَ keeps its tanwīn', async () => {
     const r = await page.evaluate(() => {
       const sen = (id, c, sid) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(x => (x.n || x.chapter) === c); return ch && ch.sentences.find(x => x.id === sid); };
