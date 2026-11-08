@@ -101,7 +101,7 @@
       --lvl1: #6CC3A6; --lvl2: #7FA7F2; --lvl3: #E2B65C; --lvl4: #EE8B7B; --irab-ink: #F0C987;
       --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
       --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
-      --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 8px 22px rgba(226,182,92,.22); --btn-sh2: none;
+      --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 4px 0 #9A7430; --btn-sh2: none;
       --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
     }
   }
@@ -112,7 +112,7 @@
     --lvl1: #2E7D46; --lvl2: #0E7C74; --lvl3: #B07A1E; --lvl4: #B23B3B; --irab-ink: #96402F;
     --shadow: 0 18px 50px rgba(34,48,58,.22); --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
     --sf2: #EFE8DA; --gold: #B8862F; --fire: #C9622A; --hero: #1E3F42; --hero-ink: #EDF3EF;
-    --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
+    --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: 0 4px 0 #085A54; --btn-sh2: none;
     --tab-bg: rgba(255,253,247,.96); --radius: 14px; --radius-lg: 20px;
   }
   :root[data-theme="murekkep"] {
@@ -122,7 +122,7 @@
     --lvl1: #3D7A52; --lvl2: #2D6D8C; --lvl3: #B07A1E; --lvl4: #A5432B; --irab-ink: #8A3A26;
     --shadow: 0 18px 50px rgba(30,26,22,.18); --shadow-sm: 0 1px 0 rgba(30,26,22,.03), 0 8px 22px rgba(30,26,22,.06);
     --sf2: #ECE4D5; --gold: #B8862F; --fire: #C9622A; --hero: #2A241F; --hero-ink: #F5ECDD;
-    --hero-soft: rgba(245,236,221,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
+    --hero-soft: rgba(245,236,221,.16); --hero-ac: #D9A54A; --btn-sh: 0 4px 0 #7A2F1E; --btn-sh2: none;
     --tab-bg: rgba(251,248,242,.94); --radius: 14px; --radius-lg: 20px;
   }
   :root[data-theme="dark"], :root[data-theme="gece"] {
@@ -132,7 +132,7 @@
     --lvl1: #6CC3A6; --lvl2: #7FA7F2; --lvl3: #E2B65C; --lvl4: #EE8B7B; --irab-ink: #F0C987;
     --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
     --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
-    --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 8px 22px rgba(226,182,92,.22); --btn-sh2: none;
+    --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 4px 0 #9A7430; --btn-sh2: none;
     --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
   }
   :root[data-theme="bahce"] {
@@ -623,8 +623,7 @@
   /* ---------- bottom sheet ---------- */
   .scrim {
     position: fixed; inset: 0; background: rgba(10,16,20,.45); z-index: 9; border: 0; padding: 0;
-    opacity: 0; pointer-events: none; transition: opacity .2s;
-    -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    opacity: 0; pointer-events: none; transition: opacity .2s;   /* (wave 105) no backdrop blur: the scrim is a flat tint */
   }
   .scrim.show { opacity: 1; pointer-events: auto; }
   .sheet {
@@ -640,14 +639,8 @@
     max-height: 82dvh; overscroll-behavior: contain;
   }
   .sheet.show { transform: translate(-50%, 0); }
-  /* the glass sheet: frosted over the page where the browser can afford it */
-  @supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
-    .sheet {
-      background: color-mix(in srgb, var(--panel) 82%, transparent);
-      -webkit-backdrop-filter: blur(16px) saturate(1.25);
-      backdrop-filter: blur(16px) saturate(1.25);
-    }
-  }
+  /* (wave 105) the sheet is opaque: the frosted glass cost a full-screen blur on every frame of the open animation
+     on phones; transitions stay on transform, opacity and colour only */
   /* the i'lal chain: asl ← result, with the rule as recited */
   .ilal {
     border: 1px solid var(--line); border-inline-start: 3px solid var(--lvl3, var(--accent));
@@ -778,7 +771,6 @@
   body:not(.lib-mode) header.app { transition: opacity .3s ease, transform .3s ease; }
   body.focus-hide:not(.lib-mode) header.app { opacity: 0; transform: translateY(-10px); pointer-events: none; }
 
-  .scrim.show { backdrop-filter: blur(2.5px); }
   .sheet { transition: transform .34s cubic-bezier(.22, 1.08, .36, 1); }
   .grab { width: 3rem; opacity: .8; }
 
@@ -1682,6 +1674,9 @@
   .game-q { direction: rtl; text-align: right; font-family: var(--ar-font); font-size: 1.5rem;
     line-height: 2; background: var(--accent-soft); border-radius: 10px; padding: .6rem .9rem; margin: .5rem 0; }
   .game-meta { font-family: var(--ui-font); font-size: .78rem; color: var(--ink-soft); display: flex; gap: 1rem; }
+  .clock105 { font-variant-numeric: tabular-nums; color: var(--fire); font-weight: 700; margin-inline-start: auto; }   /* wave 105 */
+  .game-over { text-align: center; padding: 1.2rem 0 .4rem; }
+  .game-over .go-big { font: 700 3rem/1 var(--ui-font); color: var(--accent); margin-bottom: .4rem; }
   .game-why { border-inline-start: 3px solid var(--accent); padding: .4rem .8rem; margin: .6rem 0; font-size: .9rem; }
   .due-tag { font-family: var(--ui-font); font-size: .68rem; color: var(--ink-soft); white-space: nowrap; }
 
@@ -2315,6 +2310,7 @@
   .dabt-detail .dd-rule { font-family: var(--ar-font); font-size: var(--t-lg); color: var(--irab-ink); direction: rtl; text-align: right; }
   .dabt-detail .dd-x { font-size: var(--t-sm); color: var(--ink); } .dabt-detail .dd-note { font-size: var(--t-xs); color: var(--ink-soft); }
   .dabt-detail .dd-was { font-size: var(--t-sm); color: var(--danger); }
+  .dabt-detail .dd-mamnu { font-size: var(--t-xs); color: var(--ink-soft); margin-top: 2px; }   /* (wave 101) the diptote's causes under the verdict */
   .dabt-verdict { font-family: var(--ui-font); font-size: var(--t-sm); font-weight: 600; margin: 0 0 var(--s2); }
   .dabt-verdict.ok { color: var(--ok); } .dabt-verdict.bad { color: var(--danger); }
   .dabt-tools { display: flex; gap: var(--s2); flex-wrap: wrap; align-items: center; margin-top: var(--s3); font-family: var(--ui-font); }
@@ -2353,6 +2349,9 @@
      colour is a token; the Bahçe theme's pressable buttons come from
      --btn-sh alone. */
   .btn.primary { box-shadow: var(--btn-sh); }
+  /* (wave 105) the design brief's pressable button: the solid shadow is the button's depth, and the press sinks it */
+  .btn.primary:hover { box-shadow: var(--btn-sh); }
+  @media (prefers-reduced-motion: no-preference) { .btn.primary:active { transform: translateY(3px); box-shadow: none; } }
   .lib-card, .game-pick button, .tbtn { box-shadow: var(--btn-sh2); }
   .ic { width: 1em; height: 1em; display: inline-block; vertical-align: -.15em; }
   .goal-card { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4);
@@ -3437,6 +3436,7 @@ Object.assign(L.en, {
   games:"Games", match:"Match pairs", matchDesc:"Match each Arabic word with its meaning.",
   harakat:"Endings (i'rab)", harakatDesc:"Pick the correctly vocalized form for the sentence — trains case endings.",
   spot:"Spot the error", spotDesc:"One of the two is a classic learner mistake. Choose the correct one.",
+  hizliGame:"Quick tour — 60 seconds", hizliGameDesc:"One minute of mixed questions: an ending to choose, a sentence to vet, a phrase to render.", hizliAsk:"Answer as many as you can before the clock runs out.", hizliOver:"{n} right out of {t} in sixty seconds.", hizliClock:"s left",
   moves:"Moves", matchDone:"All pairs found —", next:"Next →", replay:"Play again", score:"Score",
   due:"due", dueNow:"now", allDone:"All reviews done for now.", nextReview:"Next review",
   whichCorrect:"Which one is correct?", chooseForm:"Choose the correct form for this sentence:", back2:"← Games"
@@ -3445,6 +3445,7 @@ Object.assign(L.tr, {
   games:"Oyunlar", match:"Eşleştir", matchDesc:"Her Arapça kelimeyi anlamıyla eşleştirin.",
   harakat:"Son harekeler (i'rab)", harakatDesc:"Cümleye uygun doğru harekeli şekli seçin — i'rab sonlarını çalıştırır.",
   spot:"Hatayı bul", spotDesc:"İkisinden biri klasik bir öğrenci hatası. Doğru olanı seçin.",
+  hizliGame:"Hızlı tur — 60 saniye", hizliGameDesc:"Bir dakika karışık soru: bir hareke, doğru harekelenmiş cümle, bir ibarenin tercümesi.", hizliAsk:"Süre dolmadan olabildiğince çok soruyu cevaplayın.", hizliOver:"Altmış saniyede {t} sorudan {n} doğru.", hizliClock:"sn kaldı",
   moves:"Hamle", matchDone:"Tüm çiftler bulundu —", next:"İleri →", replay:"Tekrar oyna", score:"Puan",
   due:"bekliyor", dueNow:"şimdi", allDone:"Şimdilik tüm tekrarlar bitti.", nextReview:"Sonraki tekrar",
   whichCorrect:"Hangisi doğru?", chooseForm:"Bu cümle için doğru şekli seçin:", back2:"← Oyunlar"
@@ -4677,6 +4678,18 @@ function runQuiz(cfg){
   // 🔥 chip is feedback, not score, so it renders only from 2 up.
   const G = { i: 0, score: 0, combo: 0, answered: null, opts: null, optsFor: -1 };
   function draw(){
+    // (wave 105) a timed round: the clock, not the item count, ends it — and the summary names what was answered
+    if (cfg.deadline && ((Date.now() >= cfg.deadline && G.answered == null) || G.i >= cfg.items.length)) {
+      clearInterval(G.tick105);
+      sheetInner.innerHTML = `<div class="backrow"><button id="gBack">${ui().back2}</button></div>
+        <div class="tabs"><button class="on">${cfg.title}</button></div>
+        <div class="game-over"><div class="go-big">${G.score}</div>
+        <p class="ref-intro">${ui().hizliOver.replace("{n}", G.score).replace("{t}", G.i)}</p>
+        <div class="sheet-actions"><button class="btn primary" id="qAgain">${ui().replay}</button></div></div>`;
+      document.getElementById("gBack").addEventListener("click", () => { QUIZ_RESUME = null; openGames(); });
+      document.getElementById("qAgain").addEventListener("click", () => { QUIZ_RESUME = null; cfg.restart(); });
+      return;
+    }
     const it = cfg.items[G.i];
     // options are drawn ONCE per question — a resume must not reshuffle them
     if (G.optsFor !== G.i) { G.opts = cfg.options(it); G.optsFor = G.i; G.answered = null; }
@@ -4690,8 +4703,18 @@ function runQuiz(cfg){
         `<button data-o="${oi}"${o.ar ? ' lang="ar"' : ""}${done ? " disabled" : ""} class="${
           done && o.ok ? "right" : (done && oi === G.answered ? "wrongpick" : "")}">${o.html}</button>`).join("") + `</div>
       <div class="game-meta"><span>${ui().score}: ${G.score}</span>${
-        G.combo >= 2 ? `<span class="combo">🔥 ×${G.combo}</span>` : ""}</div><div id="qWhy"></div>`;
-    document.getElementById("gBack").addEventListener("click", () => { QUIZ_RESUME = null; openGames(); });
+        G.combo >= 2 ? `<span class="combo">🔥 ×${G.combo}</span>` : ""}${
+        cfg.deadline ? `<span class="clock105" id="qClock">⏱ ${Math.max(0, Math.ceil((cfg.deadline - Date.now()) / 1000))} ${ui().hizliClock}</span>` : ""}</div><div id="qWhy"></div>`;
+    document.getElementById("gBack").addEventListener("click", () => { QUIZ_RESUME = null; clearInterval(G.tick105); openGames(); });
+    if (cfg.deadline) {
+      clearInterval(G.tick105);
+      G.tick105 = setInterval(() => {
+        const el = document.getElementById("qClock"); if (!el) { clearInterval(G.tick105); return; }
+        const left = Math.ceil((cfg.deadline - Date.now()) / 1000);
+        el.textContent = "⏱ " + Math.max(0, left) + " " + ui().hizliClock;
+        if (left <= 0 && G.answered == null) { clearInterval(G.tick105); draw(); }
+      }, 500);
+    }
     if (!done) {
       sheetInner.querySelectorAll(".opts [data-o]").forEach(b => b.addEventListener("click", () => {
         G.answered = +b.dataset.o;
@@ -4728,7 +4751,7 @@ function runQuiz(cfg){
     extras.forEach((x, k) =>
       document.getElementById("qX" + k).addEventListener("click", () => x.run(it)));
     document.getElementById("qNext").addEventListener("click", () => {
-      if (++G.i < cfg.items.length) draw(); else { QUIZ_RESUME = null; cfg.restart(); }
+      if (++G.i < cfg.items.length) draw(); else if (cfg.deadline) draw(); else { QUIZ_RESUME = null; cfg.restart(); }
     });
   }
   QUIZ_RESUME = { redraw: draw };
@@ -5502,6 +5525,23 @@ function speak(sen, sec, onDone){
     return;
   }
   if (!("speechSynthesis" in window)) { setTimeout(finish, 0); return; }
+  // (wave 105) no Arabic voice installed: the karaoke still flows. Each word lights for a span proportional to its
+  // letters at the chosen reading speed, and the sentence finishes as a spoken one would — so «Play all» walks the
+  // text at reading pace instead of handing the line to a voice of another language.
+  if (!arVoice) {
+    if (!voiceWarned && !NATIVE_SHELL_SILENT) { voiceWarned = true; try { showToast(ui().voiceNone); } catch (e) {} }
+    const words105 = sec.querySelectorAll(".word"); let k105 = 0;
+    const step105 = () => {
+      if (gen !== speakGen) return;
+      clearSpokenWord();
+      if (k105 >= words105.length) { finish(); return; }
+      const el = words105[k105++]; el.classList.add("speaking"); spokenEl = el;
+      const letters = stripAr(el.textContent || "").length;
+      setTimeout(step105, Math.min(1400, 160 + letters * 70) / (state.rate || 1));
+    };
+    setTimeout(step105, 0);
+    return;
+  }
   speechSynthesis.cancel();
   const { text, offsets } = sentenceText(sen);
   const u = new SpeechSynthesisUtterance(text);
@@ -7908,20 +7948,22 @@ class RootFinder {
   // memo the notes reject: no model is swapped behind this lookup.)
   static _fcMemo = new Map();
   static _fcMemoFor = null;
-  static fromCorpus(word){
+  static fromCorpus(word, prefer = null){
     const idx = this.corpusIndex();
     if (this._fcMemoFor !== idx) { this._fcMemo = new Map(); this._fcMemoFor = idx; }
-    const key = String(word || "");
+    const key = String(word || "") + (prefer ? "|" + prefer : "");   /* (wave 112) a tense preference is part of the question */
     // callers own what they get back (a cell may be annotated in place), so
     // the memo hands out a copy and keeps its own untouched
     const copy = r => r ? { ...r, cell: r.cell && typeof r.cell === "object" ? { ...r.cell } : r.cell } : r;
     if (this._fcMemo.has(key)) return copy(this._fcMemo.get(key));
-    const r = this._fromCorpusWalk(word, idx);
+    const r = this._fromCorpusWalk(word, idx, prefer);
     if (this._fcMemo.size > 6000) this._fcMemo.clear();
     this._fcMemo.set(key, copy(r));
     return r;
   }
-  static _fromCorpusWalk(word, idx){
+  // (wave 112) does this cell stand in the tense the sentence expects? «mudari» covers the governed forms too.
+  static _tenseIs(cell, prefer){ const t = String((cell && cell.tense) || ""); return prefer === "mudari" ? /^(mudari|mansub|majzum|majzum2|majhulMudari)$/.test(t) : t === prefer; }
+  static _fromCorpusWalk(word, idx, prefer = null){
     // An EXACT cell anywhere in the corpus outranks a LOOSE (bare-letters)
     // hit anywhere else. First-hit-wins was deciding by PACKAGE ORDER: سَلْ
     // bare-matched سَلِّ (salla's amr, earlier in the walk) while its own
@@ -7932,14 +7974,24 @@ class RootFinder {
     const w0 = String(word || "").normalize("NFC"), w1 = /^[وف][ً-ٰ]*[ٌٍُِّْ]/.test(w0) ? w0 : w0.replace(/^[وف][ً-ٰ]*(?=[^ً-ٰ])/, "");   /* (wave 28c) the joiner's fatha */
     const wholeIn = (m, t) => { for (const k of ["amr", "mazi", "mudari"]) { const a = m[k]; if (Array.isArray(a)) for (const f of a) if (f && f.normalize("NFC") === t) return true; }
       for (const k of ["mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"]) { const f = m[k]; if (typeof f === "string" && f && f.normalize("NFC") === t) return true; } return false; };
-    for (const pass of ["w0", "w1", true, false])
+    let first = null;
+    for (const pass of ["w0", "w1", true, false]) {
       for (const v of idx) {
         if (pass === "w0" && !wholeIn(v.m, w0)) continue;
         if (pass === "w1" && (w1 === w0 || !wholeIn(v.m, w1))) continue;
         const cell = findFormInParadigm(v.m, word, typeof pass === "string" ? true : pass);
-        if (cell) return { root: v.root, via: "corpus", lemma: v.lemma,
-                           form: v.form, bab: v.bab, gloss: v.gloss, cell };
+        if (!cell) continue;
+        const hit = { root: v.root, via: "corpus", lemma: v.lemma, form: v.form, bab: v.bab, gloss: v.gloss, cell };
+        if (!prefer) return hit;
+        // (wave 112) a tense PREFERENCE from the sentence: among the cells of THIS pass, the first in the expected tense
+        // wins (لَا أَرَى: رَأَى's «I see», not أَرَى's «he showed» — two exact whole-word cells that package order had
+        // been deciding); with none in that tense the first hit stands, exactly as before. The preference never
+        // reaches into a later pass: an exact cell still outranks a loose one.
+        if (this._tenseIs(cell, prefer)) return hit;
+        if (!first) first = hit;
       }
+      if (first) return first;
+    }
     return null;
   }
   // ---- the NOUN lexicon ---------------------------------------------------
@@ -8272,10 +8324,10 @@ class RootFinder {
   // and each miss walks the whole corpus. The memo makes repeat lookups free;
   // 400 entries is far past anything one session types.
   static _memo = new Map();
-  static find(word){
-    const key = (word || "").normalize("NFC");
+  static find(word, prefer = null){
+    const w0 = (word || "").normalize("NFC"), key = w0 + (prefer ? "|" + prefer : "");
     if (this._memo.has(key)) return this._memo.get(key);
-    const res = this._find(key);
+    const res = this._find(w0, prefer);
     if (this._memo.size > 400) this._memo.clear();
     this._memo.set(key, res);
     return res;
@@ -8286,8 +8338,8 @@ class RootFinder {
       if (v.lemma === lemma && findFormInParadigm(v.m, word)) return true;
     return false;
   }
-  static _find(word){
-    const hit = this.fromCorpus(word);
+  static _find(word, prefer = null){
+    const hit = this.fromCorpus(word, prefer);   /* (wave 112) the whole-word walk hears the sentence's tense preference */
     if (hit) {
       /* (wave 31h) the whole-word walk matches LOOSELY through formCandidates, which peels بِ/لِ/كَ too: بِنَاءُ reached
          نَاءَ's māḍī cell (the Iẓhār's نَاءَ) and was published as a verb's clitic. A noun the lexicon owns WHOLE
@@ -9540,7 +9592,11 @@ class IrabModel {
       const pb = stripAr(ctx.prevFull).replace(/[^ء-ي]/g, "");
       if (TaalluqEngine.JARR.has(pb)) f.push("gov-jarr");
       try {
-        const pg = IsmTagger.tag(ctx.prevFull, 1)[0];
+        // (wave 112) rows() hands a per-pass memo in ctx.tagOf: the tagger is the dearest call in this function
+        // (3.2 s over the corpus) and 48,058 tokens are only 16,349 distinct words. The memo lives and dies inside
+        // one rows() call, so IsmTagger.evalUnseen's model swap can never leak into it — the hazard that
+        // keeps IsmTagger.tag itself unmemoised.
+        const pg = ctx.tagOf ? ctx.tagOf(ctx.prevFull) : IsmTagger.tag(ctx.prevFull, 1)[0];
         if (pg && pg.p >= 0.4 && TaalluqEngine.VERBAL_WAZN.test(pg.wazn)) f.push("gov-verbal");
       } catch (e) {}
       // the previous word's CLOSED-CLASS KEY — the İzhar doctrine as a
@@ -9637,6 +9693,8 @@ class IrabModel {
   }
   static rows(){
     const out = [];
+    const tagMemo = new Map();                       // (wave 112) one pass, one memo — see features()
+    const tagOf = w => { let v = tagMemo.get(w); if (v === undefined) { v = IsmTagger.tag(w, 1)[0] || null; tagMemo.set(w, v); } return v; };
     STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
       let prev = null;
       const n = sen.tokens.length;
@@ -9644,7 +9702,7 @@ class IrabModel {
         const role = RoleEngine.of(t);
         if (role) out.push({ st: st.id, role, fs: this.features(t.s.full, i, n, prev, {
           prevFull: i > 0 ? sen.tokens[i - 1].s.full : null,
-          nextFull: i + 1 < n ? sen.tokens[i + 1].s.full : null, ...this.hood(sen, i) }) });
+          nextFull: i + 1 < n ? sen.tokens[i + 1].s.full : null, tagOf, ...this.hood(sen, i) }) });
         prev = t.pos === "verb" ? "verb"
              : (t.irab && /حَرْفُ جَرٍّ|جَارَّة/.test(t.irab.ar || "")) ? "jarr"
              : t.pos === "noun" ? "noun" : null;
@@ -9657,16 +9715,20 @@ class IrabModel {
   // weight remembers WHEN it last changed and pays its back-rent into the
   // accumulator on the next touch, so 10 epochs over the corpus cost
   // milliseconds, not the naive O(weights) sweep per example.
-  static fit(rows){
-    const R = this.ROLES, NR = R.length;
-    // v190: the SAME algorithm on interned features. Every feature string is
-    // given an integer once, the weights, accumulators and last-touched
-    // clocks live in flat Float64Arrays indexed role*F+feature, and the
-    // inner loop never touches a string-keyed object. The shuffle, the
-    // update order and the floating-point sums are identical to the
-    // object-keyed version, so the model — and the numbers the gates read —
-    // are the same to the digit; the 20-fold crossVal just stops costing
-    // ten seconds on a slow host.
+  // v190: the SAME algorithm on interned features. Every feature string is
+  // given an integer once, the weights, accumulators and last-touched
+  // clocks live in flat Float64Arrays indexed role*F+feature, and the
+  // inner loop never touches a string-keyed object. The shuffle, the
+  // update order and the floating-point sums are identical to the
+  // object-keyed version, so the model — and the numbers the gates read —
+  // are the same to the digit; the 20-fold crossVal just stops costing
+  // ten seconds on a slow host.
+  // (wave 112) the interning is its own step. fit() interned its rows on every call, and the 42-fold crossVal paid
+  // that 42 times over the same 39,843 rows; now a row set is interned ONCE and each fold trains on an index list.
+  // The ids are global instead of per-fold, but a weight is a weight: each (role, feature) cell sees the same
+  // updates in the same order and the score sums run in the row's own feature order, so every number the gates
+  // read is unchanged to the digit (verified on the v228 corpus: 65.246 / 79.924 over 42 folds, before and after).
+  static intern(rows){
     const idOf = new Map();
     const fid = new Array(rows.length), rid = new Int32Array(rows.length);
     rows.forEach((x, i) => {
@@ -9676,14 +9738,24 @@ class IrabModel {
         if (id === undefined) { id = idOf.size + 1; idOf.set(a[k], id); }
         o[k] = id;
       }
-      fid[i] = o; rid[i] = R.indexOf(x.role);
+      fid[i] = o; rid[i] = this.ROLES.indexOf(x.role);
     });
-    const F = idOf.size + 1;                       // slot 0 of every role = the bias
+    return { idOf, fid, rid, F: idOf.size + 1 };   // slot 0 of every role = the bias
+  }
+  // the averaged perceptron on interned rows. idx lists the training rows (indices into it.fid / it.rid) in corpus
+  // order; the fixed LCG shuffles those positions exactly as it shuffled the filtered array before.
+  static fitCore(it, idx){
+    const NR = this.ROLES.length, F = it.F, fid = it.fid, rid = it.rid;
+    // the cells are FEATURE-major (feature*NR + role): the roles' weights of one feature sit side by side, so scoring
+    // an example walks its features once and reads eight neighbours instead of walking eight rows of scattered
+    // cells. Each role's sum is still the bias first and then the features in the row's own order — the same
+    // additions in the same order, so the same doubles.
     const w = new Float64Array(NR * F), acc = new Float64Array(NR * F), last = new Float64Array(NR * F);
+    const sc = new Float64Array(NR);
     let t = 1, seed = this.SEED;
     const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x80000000;
     const upd = (k, d) => { acc[k] += w[k] * (t - last[k]); last[k] = t; w[k] += d; };
-    const ord = rows.map((_, i) => i);
+    const ord = Array.from(idx);
     for (let e = 0; e < this.EPOCHS; e++) {
       for (let i = ord.length - 1; i > 0; i--) {
         const j = Math.floor(rnd() * (i + 1));
@@ -9691,39 +9763,61 @@ class IrabModel {
       }
       for (let q = 0; q < ord.length; q++) {
         const ix = ord[q], fs = fid[ix], role = rid[ix];
+        for (let r = 0; r < NR; r++) sc[r] = w[r];                       // feature 0: the bias
+        for (let k = 0; k < fs.length; k++) { const base = fs[k] * NR; for (let r = 0; r < NR; r++) sc[r] += w[base + r]; }
         let best = -1, bs = -Infinity;
-        for (let r = 0; r < NR; r++) {
-          const base = r * F;
-          let s = w[base];
-          for (let k = 0; k < fs.length; k++) s += w[base + fs[k]];
-          if (s > bs) { bs = s; best = r; }
-        }
+        for (let r = 0; r < NR; r++) if (sc[r] > bs) { bs = sc[r]; best = r; }
         // mistake-driven: a correct guess changes nothing, which is exactly
         // how the correlated-feature double count dies — once one cue of a
         // cluster carries the decision, its twins stop accumulating weight.
         if (best !== role) {
-          const bR = role * F, bB = best * F;
-          for (let k = 0; k < fs.length; k++) { upd(bR + fs[k], 1); upd(bB + fs[k], -1); }
-          upd(bR, 1); upd(bB, -1);
+          for (let k = 0; k < fs.length; k++) { const base = fs[k] * NR; upd(base + role, 1); upd(base + best, -1); }
+          upd(role, 1); upd(best, -1);
         }
         t++;
       }
     }
+    // the averaged weights, flat. A never-touched cell averages to exactly 0 — what rank() reads for an absent key.
+    const avg = new Float64Array(NR * F);
+    for (let k = 0; k < NR * F; k++) if (last[k]) avg[k] = (acc[k] + w[k] * (t - last[k])) / t;
+    return { avg, touched: last, F, total: idx.length };
+  }
+  static fit(rows){
+    const it = this.intern(rows);
+    const core = this.fitCore(it, rows.map((_, i) => i));
     // back to the string-keyed shape rank() and the ablation tools read: a
     // touched weight (its clock was set) is reported, an untouched one is
     // simply absent, as before.
+    const R = this.ROLES, NR = R.length, F = it.F;
     const names = new Array(F); names[0] = "__b";
-    idOf.forEach((id, name) => { names[id] = name; });
+    it.idOf.forEach((id, name) => { names[id] = name; });
     const avg = {};
     for (let r = 0; r < NR; r++) {
-      const o = {}, base = r * F;
+      const o = {};
       for (let f = 0; f < F; f++) {
-        const k = base + f;
-        if (last[k]) o[names[f]] = (acc[k] + w[k] * (t - last[k])) / t;
+        const k = f * NR + r;
+        if (core.touched[k]) o[names[f]] = core.avg[k];
       }
       avg[R[r]] = o;
     }
     return { w: avg, total: rows.length };
+  }
+  // (wave 112) rank() on a flat model and an interned row — the same sums in the same order, the same softmax,
+  // the same stable sort; crossVal grades its folds here and never rebuilds the string-keyed shape.
+  static rankFlat(core, fs){
+    const NR = this.ROLES.length, F = core.F, avg = core.avg;
+    const scores = new Array(NR);
+    for (let r = 0; r < NR; r++) {
+      let s = avg[r];
+      for (let k = 0; k < fs.length; k++) s += avg[fs[k] * NR + r];
+      scores[r] = { r: this.ROLES[r], s };
+    }
+    let mx = -Infinity;
+    for (let r = 0; r < NR; r++) if (scores[r].s > mx) mx = scores[r].s;
+    let z = 0;
+    scores.forEach(x => { x.p = Math.exp(x.s - mx); z += x.p; });
+    scores.forEach(x => { x.p /= z; });
+    return scores.sort((a, b) => b.p - a.p);
   }
   // score every role for one feature vector; softmax turns the margins into
   // the shortlist's percentages. They are RANKS wearing probability clothes —
@@ -9769,15 +9863,18 @@ class IrabModel {
     // moment the estimator changes, and its number quietly stops meaning
     // anything. This one cannot drift.
     const rows = this.rows();
+    const it = this.intern(rows);                    // (wave 112) once, not once per fold
     const ids = [...new Set(rows.map(x => x.st))];
     let ok = 0, t2 = 0, n = 0;
     ids.forEach(held => {
-      const m = this.fit(rows.filter(x => x.st !== held));
-      rows.filter(x => x.st === held).forEach(x => {
-        const pr = this.rank(m, x.fs);
-        n++; if (pr[0] && pr[0].r === x.role) ok++;
-        if (pr.slice(0, 2).some(y => y.r === x.role)) t2++;
-      });
+      const tr = [], te = [];
+      for (let i = 0; i < rows.length; i++) (rows[i].st !== held ? tr : te).push(i);
+      const core = this.fitCore(it, tr);
+      for (const i of te) {
+        const pr = this.rankFlat(core, it.fid[i]);
+        n++; if (pr[0] && pr[0].r === rows[i].role) ok++;
+        if (pr.slice(0, 2).some(y => y.r === rows[i].role)) t2++;
+      }
     });
     this._cv = { n, folds: ids.length, top1: n ? ok / n : 0, top2: n ? t2 / n : 0 };
     return this._cv;
@@ -11183,7 +11280,13 @@ class SentenceAnalyzer {
       afterVerb = row.kind.startsWith("verb");
       // -- dig with the other machines. A proper name has no root to find and
       // no scale to stand in, so the machines are not asked about one.
-      const r = (jalala || construct) ? null : RootFinder.find(w);
+      // (wave 112) the sentence tells the corpus walk which tense it expects: after لَا، لَمْ، لَنْ، سَ، سَوْفَ، أَنْ، كَيْ، إِذَنْ
+      // — or any governor of the muḍāriʿ the İzhar queue announced — a word that the paradigms own both as a speaker's
+      // muḍāriʿ and as a Form-IV māḍī is the muḍāriʿ (لَا أَرَى is «I do not see»), and the noun after it expects the
+      // MAF'UL. Until now the package that happened to walk first decided it.
+      const pv112 = stripAr((out[out.length - 1] || {}).w || "").replace(/[^ء-ي]/g, "").replace(/^[وف](?=..)/, "");
+      const prefer112 = (expVerb || /^(لا|لم|لن|س|سوف|ان|كي|لكي|اذن)$/.test(pv112)) ? "mudari" : null;
+      const r = (jalala || construct) ? null : RootFinder.find(w, prefer112);
       if (r) {
         row.root = r.root;
         if (r.via === "corpus") {
@@ -13394,6 +13497,7 @@ function dabtDetailHtml(v, i, lang){
     <div class="dd-w">${E(x.out)} <small>#${i + 1} · ${E(srcLbl.split(" — ")[0])}</small></div>
     ${R ? `<div class="dd-rule">${R.ar}</div><div class="dd-x">${E(R[lang] || R.en)}${head ? ` — <span lang="ar">${head}</span>` : ""}</div>` : `<div class="dd-x">${E(srcLbl)}</div>`}
     ${x.ok === false && x.want ? `<div class="dd-was">${E(u.dabtWas.replace("{w}", x.want))}</div>` : ""}
+    ${(() => { try { if (typeof MamnuEngine === "undefined" || !x.out) return ""; const e0 = (() => { try { return DabtEngine.lex(x.out); } catch (q) { return null; } })(); const b0 = String(x.out || "").normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/^[وف]/, "").replace(/[أإآ]/g, "ا"); const pr0 = !!(e0 && /propn/.test(String(e0.pos || ""))) || !!(DabtEngine.AJAM_NAMES26 && DabtEngine.AJAM_NAMES26.test(b0)); const mv = MamnuEngine.verdict(x.out, { propn: pr0, pos: e0 && e0.pos, root: e0 && e0.root }); if (!mv || !mv.sure || mv.mabni || !(mv.barred || (mv.causes || []).length)) return ""; const ex = MamnuEngine.explain(mv, lang); return `<div class="dd-mamnu"><span lang="ar" dir="rtl">${ex.ar}</span> — ${E(ex.text)}</div>`; } catch (e) { return ""; } })()}
     ${R && R.note && GRAMMAR[R.note] ? `<div class="dd-note"><button class="qw-note" data-note="${E(R.note)}" title="${E(T(GRAMMAR[R.note].title))}">§</button> ${E(T(GRAMMAR[R.note].title))}</div>` : ""}
   </div>`;
 }
@@ -16053,7 +16157,7 @@ class DabtEngine {
     }
     if ((r && r.kind || "") !== "verb" && !(r && r.construct) && !(r && r.cell && r.cell.form) && !/^[وفبكل]?(ال|لل)/.test(this.bare(w || "")) && /ِ[ً-ٰ]*ي$/.test((w || "").normalize("NFC")) && !/ِيّ|ي[ً-ٰ]*ّ[ً-ٰ]*$/.test((w || "").normalize("NFC"))) {   /* (wave 26o) سَيِّدِي: the bare speaker's yāʾ on a noun the lexicon owns without it */
       try { const h = (w || "").normalize("NFC").replace(/ي$/, ""); const lm = this.lemmaOf(h); const hb = this.bare(h).replace(/^[وفبكل]/, "");
-        if (lm && !/ٍ$|ِي$|ى$/.test(lm) && this.bare(lm) === hb && hb.length >= 3) return "ي"; } catch (e) {} }
+        if (lm && !/ٍ$|ِي$|ى$/.test(lm) && this.bare(lm) === hb && hb.length >= 2 && !/^(اب|أب|اخ|أخ|حم)$/.test(hb)) return "ي"; } catch (e) {} }   /* (wave 111) يَدِي: the lexicon owning the two-letter stem is receipt enough — (wave 112) but not for the five nouns: أَبِي's yāʾ is «my» or the letter of jarr (أَبِي سَعِيدٍ) and only the word after it says which, so the five-noun rules decide */
     const s = (w || "").normalize("NFC");
     let m = s.match(this.TAIL);
     if (!m && !/[ً-ٰ]/.test(s)) {                                             // a BARE word (full mode): the tail has no marks to match
@@ -16131,6 +16235,8 @@ class DabtEngine {
     if (!propn && /^[أا][^ا]{2,3}$/.test(b) && !/^ال/.test(b) && (() => { try { if (!(SifaEngine.classify(s).kinds || []).includes("ism-tafdil")) return false; const e6 = this.lex(s) || this.lex(host); if (!e6) return false; return /\b(more|most|great(er|est)|farther|further|less|fewer|better|worse|finer|harder|closer|nearer|elative|comparative|superlative)\b|-(er|est)\b/i.test(String((e6.gloss || {}).en || "")); } catch (e) { return false; } })()) return true;   /* (wave 35n) وَأَبْعَدَ مَنَالًا: the tafḍīl the lexicon glosses as a comparative */
     try { const n9 = this.lex(host); if (n9 && !n9.viaPlural /* (wave 26q3) خُضْرٍ */ && /^(?![\s\S]*triptote)[\s\S]*(diptote|mamnu|gayr-ı munsarif)/i.test((this.bare(String(n9.lemma || "").split(/[()\s]/)[0]) !== b.replace(/^ال/, "") ? String((n9.gloss && (n9.gloss.en + " " + n9.gloss.tr)) || "") : String((n9.gloss && (n9.gloss.en + " " + n9.gloss.tr)) || "").replace(/(^|[\s(])(pl|ç)\.\s*[^;)]*/g, "$1")) /* (wave 54x) تَابِعٌ: the plural's diptote is not the singular's */)) return true; } catch (e) {}
     const noTanwin = s.replace(/[ًٌٍ]/g, "");
+    /* (wave 101) the Kāfiya's causes decide first: MamnuEngine's sure verdict on the LEMMA of a word the lexicon owns as this very lemma */
+    try { if (typeof MamnuEngine !== "undefined") { const e101 = this.lex(host) || this.lex(s); if (e101 && !e101.viaPlural) { const lm101 = String(e101.lemma || "").split(/[()\s]/)[0]; const lb101 = this.bare(lm101); if (lb101 && lb101 === b.replace(/^ال/, "")) { const v101 = MamnuEngine.verdict(lm101, { pos: e101.pos, propn: propn || /propn/.test(String(e101.pos || "")), root: root || e101.root }); if (v101 && v101.sure && !v101.mabni && v101.exit !== "taa") { DabtEngine._mamnu101 = { w: s, lemma: lm101, v: v101 }; return !!v101.barred; } } } } } catch (e) {}
     if (DabtEngine.AJAM_NAMES26.test(b.replace(/^[وف]/, "").replace(/[أإآ]/g, "ا"))) return true;   /* (wave 26d/e) the prophet stories' foreign names — known whatever the lexicon says */
     if (/\u0670/.test(s) && DabtEngine.AJAM_NAMES26.test(this.bare(String(s).replace(/\u0670/g, "ا")).replace(/^[وف]?[بلك]?/, "").replace(/[أإآ]/g, "ا"))) return true;   /* (wave 26r2) إِسْحٰقَ: the print's dagger alif */
     if (/^[وف]?[بلك]/.test(b) && DabtEngine.AJAM_NAMES26.test(b.replace(/^[وف]?[بلك]/, "").replace(/[أإآ]/g, "ا"))) return true;   /* (wave 26h) لِإِسْحٰقَ: the name behind its jarr clitic */
@@ -16740,7 +16846,7 @@ class DabtEngine {
             const cognate32 = (() => { try { if (!this.masdarShape(this.rawStrip(cand.w || "").replace(/^[وف][ً-ٰ]*/, ""))) return false; const gc = String((cand.gloss && (cand.gloss.en || cand.gloss)) || ((this.lex(cand.w || "") || {}).gloss || {}).en || "").toLowerCase(); const wv = glossE32.replace(/\(.*?\)/g, "").split(/[^a-z]+/).filter(x => x.length >= 3 && !/^(the|and|for|with|from|into|out|off|one|his|her|its|their|to|be|of|on|in|at|by|up)$/.test(x)); const wc = gc.replace(/\(.*?\)/g, "").split(/[^a-z]+/).filter(x => x.length >= 3); const posture32 = /\b(sit|sitting|seat|squat|stand|standing|walk|walking|run|running|sleep|sleeping|lie|lying|crouch|kneel|recline|gait|stride|posture)\b/; return wv.some(a => wc.some(b => a.startsWith(b) || b.startsWith(a))) || (posture32.test(glossE32) && posture32.test(gc)) /* (wave 32o) the posture family is one manner */; } catch (e) { return false; } })();   /* (wave 32k) يُقْعِي جُلُوسَ الْبَدَوِيِّ: the cognate-manner masdar is the mafʿūl muṭlaq, no doer */
             const partitive93 = !!(nx2 && !isVerb(nx2) && /^[وف]?من(ه|ها|هم|هن|هما|ك|كم|كن|كما|نا|ي|ا)?$/.test(bareOf(nx2).replace(/[أإآ]/g, "ا")) && !(cand.kind || "").startsWith("particle")); /* (wave 93) قَلِيلٌ مِنْهُمْ: the quantity word before the partitive مِنْ is a noun, not a ṣifa */ const bareHop35 = lazim32 && hops32 > 0 && !defC && (partitive93 || !this.sifaShape(cand, cand.w || "")) && !/ً/.test(String((this._orig24 || [])[j32] || "").normalize("NFC")) && !(cand.kind || "").startsWith("particle") && rows.slice(i + 1, j32).every(x => !((x.kind || "") === "particle" && /^[وف]?(قد|لا|ما|الا|إلا|لم|لن)$/.test(bareOf(x)))) /* (wave 35ac) لَا تَكَلَّمُ نَفْسٌ: the hop crosses jarr phrases only, never a negation — the word after لَا is its own verb */;   /* (wave 35j) خَرَجَتْ مِنَ الْجَبَلِ نَاقَةٌ */
             if (cognate32) { /* the mafʿūl muṭlaq stays with its own rule */ } else
-            if ((defC || (negV32 && encDoer32) || (lazim32 && hops32 > 0 && plC) || bareHop35) && !zarfC && genderOk && seat32 && (!subjBefore84(i, r) || (hops32 > 0 && this.prepGov93(r, rows[i + 1])) /* (wave 97) the preposition-verb past its phrase names its doer whatever stands before it; (wave 93) كَذَّبَهُ الْقَوْمُ وَآمَنَ بِهِ قَلِيلٌ: the joined preposition-verb's nakira past its phrase is a new doer, not the clause before's */) && !(() => { const cy = this._carry26; if (!cy || !cy.bare || lazim32 || encV32 || !(r.cell && [0, 3].includes(Number(r.cell.i)))) return false; if (!(i === 0 ? joined(r) : (i === 1 && (rows[0].kind || "") === "particle" && /^[وف]?(هل|قد|ما|لا|ثم)$/.test(bareOf(rows[0]))))) return false; if (!hasAl(cand) || propn(cand) || hops32 > 0) return false; if (/^[وف]?(قال|قالت|يقول|تقول)$/.test(bareOf(r))) return false; return Number(r.cell.i) === 0 ? !cy.fem : !!cy.fem; })() /* (wave 84) وَتَفَقَّدَ الطَّيْرَ: the previous sentence's subject carries; the hop pre-pass leaves the noun to the carry rule */) cand.__doerOf = i;
+            if ((defC || (negV32 && encDoer32) || (lazim32 && hops32 > 0 && plC) || bareHop35) && !zarfC && genderOk && seat32 && !(joined(r) && pv && isVerb(pv) && !pv.__kindNoun && /mudari/i.test(String((pv.cell || {}).tense || "")) && /mudari/i.test(String((r.cell || {}).tense || "")) && Number((pv.cell || {}).i) === Number((r.cell || {}).i) && !this.guessEnc(pv, pv.w || "") && rows[i + 1] && !!this.guessEnc(rows[i + 1], rows[i + 1].w || "")) /* (wave 111) يَرْكَبُ وَيَتْرُكُ ابْنَهُ: the joined present verb shares the hidden doer; the pronoun-bearing noun is its object */ && (!subjBefore84(i, r) || (hops32 > 0 && this.prepGov93(r, rows[i + 1])) /* (wave 97) the preposition-verb past its phrase names its doer whatever stands before it; (wave 93) كَذَّبَهُ الْقَوْمُ وَآمَنَ بِهِ قَلِيلٌ: the joined preposition-verb's nakira past its phrase is a new doer, not the clause before's */) && !(() => { const cy = this._carry26; if (!cy || !cy.bare || lazim32 || encV32 || !(r.cell && [0, 3].includes(Number(r.cell.i)))) return false; if (!(i === 0 ? joined(r) : (i === 1 && (rows[0].kind || "") === "particle" && /^[وف]?(هل|قد|ما|لا|ثم)$/.test(bareOf(rows[0]))))) return false; if (!hasAl(cand) || propn(cand) || hops32 > 0) return false; if (/^[وف]?(قال|قالت|يقول|تقول)$/.test(bareOf(r))) return false; return Number(r.cell.i) === 0 ? !cy.fem : !!cy.fem; })() /* (wave 84) وَتَفَقَّدَ الطَّيْرَ: the previous sentence's subject carries; the hop pre-pass leaves the noun to the carry rule */) cand.__doerOf = i;
           }
         }
       }
@@ -17081,7 +17187,7 @@ class DabtEngine {
       const timeWord = /^(حين|يوم|وقت|ساعة|ليلة|صباح|مساء|غد|اذ|إذ|اذا|إذا|عند|بين|قبل|بعد|دون|فوق|تحت|امام|أمام|خلف|وراء|حول|اثناء|أثناء|لدى|لدي|مع)$/.test(cwHost);
       const defNext = hasAl(n) || n.alam || propn(n) || !!encOf(n) || /^فلان(ة)?$/.test(coreOf(n));   // فُلَان stands for a name
       if (enc) return;
-      if (timeWord && !/ي$/.test(bareOf(r)) && (isVerb(n) || (isNoun(n) && !n.afterJarr && !fused(n))) && !(member.has(i) && isNoun(n) && !hasAl(n) && this.sifaShape(n, n.w)) /* (wave 22c) مُعَرَّجُ سَاعَةٍ قَلِيلًا: an annexed time noun takes no sifa-shaped nakira as its own annex */) { head.add(i); if (isNoun(n) && !mabniWord(n)) member.set(i + 1, i); return; }
+      if (timeWord && !/ي$/.test(bareOf(r)) && (isVerb(n) || (isNoun(n) && !n.afterJarr && !fused(n))) && !(member.has(i) && isNoun(n) && !hasAl(n) && this.sifaShape(n, n.w)) && !(isVerb(n) && i > 0 && isVerb(rows[i - 1]) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && DabtEngine.COMEV26.test(this.bare(rows[i - 1].lemma || "").replace(/[أإآ]/g, "ا"))) /* (wave 111) وَجَاءَ يَوْمٌ كَانَ الدَّوْرُ فِيهِ: the day that came is the doer, described by the clause, not annexed to it */ /* (wave 22c) مُعَرَّجُ سَاعَةٍ قَلِيلًا: an annexed time noun takes no sifa-shaped nakira as its own annex */) { head.add(i); if (isNoun(n) && !mabniWord(n)) member.set(i + 1, i); return; }
       if (/^(ما|من|الذي|التي|الذين|اللاتي|اللائي)$/.test(coreOf(n)) && isNoun(n) && !hasAl(r) && !propn(r) && !joined(r) && !member.has(i + 1) && !head.has(i) && !mabniWord(r) && !this.sifaShape(r, r.w) && !this.KANA_FORMS.has(cw)) { head.add(i); member.set(i + 1, i); return; }
       if (isNoun(r) && !hasAl(r) && !propn(r) && !mabniWord(r) && !r.afterJarr && !fused(r) && !this.sifaShape(r, r.w) && !this.ZARF_WORDS.test(cw) && !this.NUMBERS.test(cw) && !this.KANA_FORMS.has(cw) &&
           isNoun(n) && /^(هذا|هذه|ذلك|تلك|هؤلاء|اولئك|أولئك|هذين|هاتين|ذينك|تينك)$/.test(coreOf(n)) && !joined(n) && !n.afterJarr && !head.has(i) && !member.has(i + 1) && !/[ًٌٍ]/.test((r.w || "").normalize("NFC"))) {
@@ -17153,6 +17259,9 @@ class DabtEngine {
       // أَقْسَامٍ: وَاحِدٌ… وَوَاحِدٌ…): badal al-tafsil, each item in the number's case
       if (k !== "keep" && isNoun(rows[i]) && rule !== "badal" && DabtEngine.NUMBERS.test(coreOf(rows[i]).replace(/^[وف]/, "")) && !/(ون|ين)$/.test(coreOf(rows[i])) && !(/^[وف]?ال/.test(coreOf(rows[i])) && !/^[وف]?(الف|الفان|الفين|الاف|آلاف)$/.test(coreOf(rows[i]))) /* (wave 27d) كَاسْمِ الْفَاعِلِ: the article before ف is no أَلْف */) st.tafsil = { k, i, used: false }; };
     const lastCase = () => (st.lastNoun >= 0 && out[st.lastNoun] && !["keep", "cell", "none"].includes(out[st.lastNoun].k)) ? out[st.lastNoun] : null;
+    /* (wave 111) the tanwīn is the receipt of ṣarf and of the ending: a word the author closed with ـًا (لِآدَمَ تَكْرِيمًا) is no muḍāf ilayh, and a word wearing tanwīn (كُلَّ يَوْمٍ حَيَوَانًا) is no muḍāf — the pair is released */
+    { const o111 = q => String((this._orig24 || [])[q] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); const own111 = q => !!rows[q] && !!o111(q) && this.bare(o111(q)) === bareOf(rows[q]);
+      for (const [m, h] of Array.from(member.entries())) { if (!rows[m] || !rows[h] || !isNoun(rows[m]) || !isNoun(rows[h])) continue; const relM = own111(m) && /ً/.test(o111(m)) && !/(ً[ىا]|[ىا]ً)$/.test(o111(m)) && !/ًا?\s*$/.test(String(rows[m].lemma || "")) ; const relH = own111(h) && /[ًٌٍ]/.test(o111(h)) && !encOf(rows[h]); if (relM || relH) { member.delete(m); if (![...member.values()].includes(h)) head.delete(h); } } }
     for (let i = 0; i < rows.length; i++) {
       const r = rows[i];
       if (!r) continue;
@@ -17164,6 +17273,18 @@ class DabtEngine {
       const pos68 = q => String((this._pos24 || [])[q] || "");
       const own68 = z => !!rows[z] && !!o68(z) && this.bare(o68(z)) === bareOf(rows[z]);
       const dammaT68 = z => own68(z) && /ٌّ?$/.test(o68(z));
+      if (isNoun(r) && !isVerb(r) && hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !encOf(r) && i > 0 && isNoun(rows[i - 1]) && joined(rows[i - 1]) && /ُو[ً-ٰ]*(هُ|هَا|هُمْ|هُمَا|هُنَّ|كَ|كِ|كُمْ|كُمَا|نَا)$/.test((rows[i - 1].w || "").normalize("NFC")) && /^[وف](اب|أب|اخ|أخ|حم|فو|ذو)/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && rows[i + 1] && isVerb(rows[i + 1]) && !joined(rows[i + 1])) { set(i - 1, "raf", "mubtada"); rows[i - 1].__exact56 = true; set(i, "raf", "nat", { head: i - 1 }); st.mubtada = true; st.khabar = false; continue; }   /* (wave 111) وَأَبُوهُ الشَّيْخُ يَمْشِي: the five-noun's wāw is the receipt of rafʿ — the joiner opens a ḥāl clause, the al-noun its naʿt, the verb its khabar */
+      if (i > 0 && this._colonAt && this._colonAt.has(i - 1) && !st.qawl && out[i - 1] && out[i - 1].k === "nasb" && isNoun(rows[i - 1]) && ((st.kanaOpen && st.kanaIsm) || (st.verb !== null && rows[st.verb] && (this.KANA_FORMS.has(bareOf(rows[st.verb]).replace(/^[وف]/, "")) || /^[وف]?(صار|صارت|اصبح|أصبح|اصبحت|أصبحت|ظل|بات|امسى|أمسى|اضحى|أضحى)$/.test(bareOf(rows[st.verb])))))) { st.kanaOpen = false; st.kanaIsm = false; st.verb = null; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.mubtada = false; st.khabar = false; st.maful = 0; }   /* (wave 111) مَثَلًا: رِضَا النَّاسِ غَايَةٌ — the colon after the nāsikh's completed sentence opens a new one */
+      if (i > 0 && this._colonAt && this._colonAt.has(i - 1) && !st.qawl && propn(r) && !joined(r) && !r.afterJarr && !fused(r) && isNoun(rows[i - 1]) && !isVerb(rows[i - 1]) && out[i - 1] && out[i - 1].k && out[i - 1].k !== "keep" && ((!hasAl(rows[i - 1]) && /(ان|ين|ون)$/.test(bareOf(rows[i - 1]))) || /^[وف]?(اثنان|اثنين|اثنتان|اثنتين|ثلاثة|ثلاث|اربعة|أربعة|اربع|أربع|خمسة|خمس|ستة|ست|سبعة|سبع|ثمانية|ثماني|تسعة|تسع|عشرة|عشر)$/.test(bareOf(rows[i - 1])))) { set(i, out[i - 1].k, "badal", { head: i - 1 }); continue; }   /* (wave 111) كَانَ لِآدَمَ ابْنَانِ: هَابِيلُ وَقَابِيلُ — the names after the colon are the badal of the counted or dual noun before it */
+      if (st.kanaOpen && !st.kanaIsm && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !propn(r) && !joined(r) && !r.afterJarr && !jarrClit(r) && head.has(i) && member.get(i + 1) === i && rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !encOf(rows[i + 1]) && !propn(rows[i + 1]) && st.verb !== null && rows[st.verb] && /^[وف]/.test(bareOf(rows[st.verb])) && rows.slice(0, st.verb).some((x, q) => isNoun(x) && out[q] && out[q].rule === "fail")) { set(i, "nasb", "kanaKhabar"); st.kanaIsm = true; st.kanaOpen = false; continue; }   /* (wave 111) فَكَانَ أَوَّلَ قَاتِلٍ: the doer already named carries into the joined كَانَ as its hidden ism — the nakira-annexed phrase is the khabar */
+      if (st.qawl && isNoun(r) && !isVerb(r) && (hasAl(r) || propn(r)) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !encOf(r) && st.verb !== null && !st.fail && this._colonAt && Array.from(this._colonAt).some(c => c >= i) && rows.slice(st.verb + 1, i).every(x => (x.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(x)))) { set(i, "raf", "fail"); st.fail = true; st.failRow = i; st.hiddenDoer = false; r.__sayer111 = true; continue; }   /* (wave 111) قَالَ لَهُ الْأَسَدُ غَضْبَانَ: — the colon still to come says the speech has not begun: the definite noun is the sayer */
+      if (st.qawl && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && !propn(r) && i > 0 && rows[i - 1].__sayer111 && this._colonAt && this._colonAt.has(i) && (this.sifaShape(r, w) || (() => { try { return !!MamnuEngine.verdict(w, {}).causes.includes("wasfiyya"); } catch (e) { return false; } })())) { set(i, "nasb", "hal"); continue; }   /* (wave 111) غَضْبَانَ: the adjective between the sayer and the colon is his ḥāl */
+      /* (wave 111) مَعَهُمَا حِمَارٌ: the ẓarf that already holds its pronoun annexes nothing more — the bare nakira after it is the mubtadaʾ, the ẓarf its fronted khabar; at the clause's head, after a joiner or after a full stop— (wave 112) but never across a pause mark after the ẓarf (بَيْنَهُمَا، نَحْوُ: — the comma closes the ẓarf's clause), and never an always-annexed word with a word after it, the citation colon allowed (نَحْوُ: الْحَوْضُ…: نَحْو، مِثْل، كُلّ، غَيْر mean nothing alone, so they take no tanwīn there; the citation-head and construct rules below decide them) */
+      if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !propn(r) && !mabniWord(r) && i > 0 && rows[i - 1] && !isVerb(rows[i - 1]) && /^[وف]?(مع|عند|لدى|امام|أمام|خلف|فوق|تحت|بين|حول|وراء|قدام)(ه|ها|هم|هما|هن|ك|كم|كما|كن|نا|ي)$/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && !(this._punctAt && this._punctAt.has(i - 1)) && !(rows[i + 1] && !(this._punctAt && this._punctAt.has(i) && !(this._colonAt && this._colonAt.has(i))) && MaEngine.ALWAYS_MUDAF.has(bw.replace(/^[وف]/, "").replace(/[أإآ]/g, "ا"))) && (i === 1 || joined(rows[i - 1]) || (this._punctAt && this._punctAt.has(i - 2)) || (i >= 2 && (rows[i - 2].kind || "") === "particle" && !fused(rows[i - 2]))) && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !hasAl(rows[i + 1]) && !joined(rows[i + 1]) && this.sifaShape(rows[i + 1], (rows[i + 1].w || "").normalize("NFC")) && false)) {
+        if (member.get(i) === i - 1) { member.delete(i); if (![...member.values()].includes(i - 1)) head.delete(i - 1); }
+        set(i, "raf", "mubtada"); st.mubtada = true; st.khabar = true; st.lastNoun = i; r.__mub111 = true; continue; }
+      if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && /ات$/.test(bw.replace(/^[وف]/, "")) && /^(سنة|يوم|شهر|ليلة|ساعة|عام|مرة|لحظة|دقيقة|اسبوع|أسبوع)$/.test(this.bare(String(r.lemma || "").split(/[()\s]/)[0]).replace(/[أإآ]/g, "ا")) && st.verb !== null && i > 0 && isNoun(rows[i - 1]) && !/(ات|ون|ين)$/.test(bareOf(rows[i - 1])) && !member.has(i)) { if (head.has(i) && !member.has(i + 1)) head.delete(i); set(i, "nasb", "zarf"); continue; }   /* (wave 111) سَنَوَاتٍ طَوِيلَةً: the plural of a time noun after the verb's phrase is its adverb — no naʿt of the singular before it; its naʿt follows in naṣb */
+      if (isNoun(r) && !isVerb(r) && /َ[ً-ٰ]*يْ?[ً-ٰ]*(ه|هم|ها|هما|هن|ك|كم|كما|كن|نا)[ً-ٰ]*$/.test(w) && /ي(ه|هم|ها|هما|هن|ك|كم|كما|كن|نا)$/.test(bw) && !/^(?:[وف][ً-ٰ]*)?ا[ً-ٰ]*ل(?![ً-ٰ]*[َُِ])/.test(w) && !(() => { try { const e = this.lex(w); return !!(e && /ي$/.test(this.bare(String(e.lemma || "").split(/[()\s]/)[0]))); } catch (e) { return false; } })()) { r.__exact56 = true; set(i, "keep", "mabni"); continue; }   /* (wave 111) وَالِدَيْهِ، يَدَيْهِ: the dual's yāʾ before its pronoun carries no ending to decide */
         /* round 72c — the apposition after a majrūr name: لِعَادٍ قَوْمِ هُودٍ — a bare kin/tribe noun annexed to a following name follows the name's jarr as its badal */
         if (!joined(r) && i > 0 && out[i - 1] && out[i - 1].k === "jarr" && /^(قوم|بني|بنو|آل|ابن|اهل|أهل|أصحاب|اصحاب)$/.test(bw) && !hasAl(r) && !encOf(r) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && (propn(rows[i + 1]) || hasAl(rows[i + 1]) || (own68(i) && /ِ$/.test(o68(i)) && own68(i + 1) && /ٍ$/.test(o68(i + 1)))) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr) { set(i, "jarr", "badal", { head: i - 1 }); continue; }
         /* round 72c/72d — rank before wording (al-Kafiya, the obligatory orders): a pronoun may precede its referent in wording only when the referent
@@ -17343,6 +17464,7 @@ class DabtEngine {
       if (authored69 && isNoun(r) && !isVerb(r) && own68(i) && /(َيْ|َوْنَ|َيْنَ|ِيَّ|َانِ|َيْنِ)$/.test(o68(i)) && !/^(pron|part)$/.test(pos68(i))) r.__exact56 = true;
       if (authored69 && (isNoun(r) || /^(noun|adv|propn)$/.test(pos68(i))) && (!isVerb(r) || /^(noun|adv|propn)$/.test(pos68(i))) && own68(i) && /ْ$/.test(o68(i)) && !/^(pron|part)$/.test(pos68(i)) && !mabniWord(r) && (/اهْ$/.test(o68(i)) || /^[وف]?ك?(لد|نخ|غاق|حادي)$/.test(bw) || rows.some(x => /^(باسكان|بالاسكان|الاسكان|اسكان|الوقف|وقف|السكون|سكون|الموقوف|موقوف|ساكن|يوقف|وقفا)$/.test(bareOf(x).replace(/[إأآ]/g, "ا"))))) { member.delete(i); delete r.__qMember24; r.__exact56 = true; set(i, "keep", "mabni"); continue; }
       /* R17 · the author's bare kasra on an indefinite that annexes nothing: built on the kasra (فَعَالِ، حَذَامِ، كَفَجَارِ، يَا فَسَاقِ، كَغَاقِ) */
+      if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !mabniWord(r) && jarrClit(r) && !r.afterJarr && !head.has(i) && !member.has(i) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !hasAl(rows[i + 1]) && !encOf(rows[i + 1]) && !propn(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !jarrClit(rows[i + 1]) && !mabniWord(rows[i + 1]) && pos68(i + 1) === "noun" && !propn(r) && !(own68(i) && /[ًٌٍ]/.test(o68(i))) && !(own68(i + 1) && /ً/.test(o68(i + 1))) /* (wave 111) the author's tanwīn is the receipt: no muḍāf wears it, no muḍāf ilayh wears the alif of naṣb */ && !this.sifaShape(rows[i + 1], (rows[i + 1].w || "").normalize("NFC")) && !this.NUMBERS.test(bareOf(rows[i + 1])) && !ZARF69.test(bareOf(rows[i + 1])) && !head.has(i + 1) && !member.has(i + 1) && (!rows[i + 2] || (this._punctAt && this._punctAt.has(i + 1)) || !isNoun(rows[i + 2]) || joined(rows[i + 2]) || rows[i + 2].afterJarr || jarrClit(rows[i + 2]))) { head.add(i); member.set(i + 1, i); rows[i + 1].__qMember24 = i; }   /* (wave 102) بِلِسَانِ تُرْجُمَانٍ: the clitic's noun annexes the bare noun that closes the phrase when it is no adjective */
       if (authored69 && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !mabniWord(r) && !joined(r) && own68(i) && /ِّ?$/.test(o68(i)) && !/[ًٌٍ]/.test(o68(i)) && !head.has(i) && !(rows[i + 1] && /^(ما|من|الذي|التي|الذين|اللاتي|اللائي|اللواتي)$/.test(bareOf(rows[i + 1]).replace(/[أإآ]/g, "ا"))) /* (wave 60j) */ && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !jarrClit(rows[i + 1]) && !mabniWord(rows[i + 1]) && !/^(pron|part)$/.test(pos68(i + 1)) && !/[ًٌٍ]/.test(o68(i + 1)) && !ZARF69.test(bareOf(rows[i + 1])) && !/^[وف]?(عند|حين|مع|لدى|اذا|إذا|اذ|إذ)$/.test(bareOf(rows[i + 1]))) && (r.afterJarr || jarrClit(r) || member.has(i) || (i > 0 && /^[وف]?نحو$/.test(bareOf(rows[i - 1]))) || (i > 0 && /^(يا|ويا)$/.test(bareOf(rows[i - 1]))))) { r.__exact56 = true; set(i, "keep", "mabni"); continue; }
       /* R18 · the munādā on the author's ḍamma, its badal on the ḍamma, the repeated muḍāf after it, the lām of istighātha */
       if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && i > 0 && /^(يا|ويا|ايا|أيا|هيا)$/.test(bareOf(rows[i - 1]).replace(/[إأآ]/g, "ا")) && own68(i)) {
@@ -17452,7 +17574,7 @@ class DabtEngine {
         else if (typeof st.quotedList44 === "number" && ((r.cell && isVerb(r)) || (isNoun(r) && !hasAl(r) && !joined(r) && !r.afterJarr && !jarrClit(r) && !encOf(r) && !head.has(i) && !member.has(i) && !DabtEngine.FROZEN_ADV26.test(bw)))) st.quotedList44 = null; }
       const pre30 = { fail: st.fail, hidden: st.hiddenDoer, verb: st.verb, subject: st.subject, mubtada: st.mubtada, kanaIsm: st.kanaIsm };
       /* (wave 34b) وَرَآهُ قَوْمُهُ: kept as written; the object is aboard, the doer follows */
-      if (this._colonAt && i > 0 && this._colonAt.has(i - 1) && isVerb(r) && !r.__kindNoun && st.verb !== null && !st.qawl && !(st.tafsil && !st.tafsil.used)) { st.verb = null; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.hiddenDoer26 = false; st.maful = 0; st.kanaOpen = false; st.kanaIsm = false; st.innaOpen = false; st.innaIsm = false; st.innaPronIsm = false; st.mubtada = false; st.khabar = false; st.subject = false; st.subjectAt = -1; }   /* (wave 35e) كَمَا طَلَبَ النَّاسُ: خَرَجَتْ — the colon closes the clause */
+      if (this._colonAt && i > 0 && (this._colonAt.has(i - 1) || (i > 1 && this._colonAt.has(i - 2) && /^[وف]?(لم|لن|لا|ما|قد|س|سوف|لما)$/.test(bareOf(rows[i - 1])))) && isVerb(r) && !r.__kindNoun && st.verb !== null && !st.qawl && !(st.tafsil && !st.tafsil.used)) { st.verb = null; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.hiddenDoer26 = false; st.maful = 0; st.kanaOpen = false; st.kanaIsm = false; st.innaOpen = false; st.innaIsm = false; st.innaPronIsm = false; st.mubtada = false; st.khabar = false; st.subject = false; st.subjectAt = -1; }   /* (wave 35e) كَمَا طَلَبَ النَّاسُ: خَرَجَتْ — the colon closes the clause */
       if ((r.kind || "") === "particle" && /^[وف]?بل$/.test(bw) && !encOf(r)) { st.kanaOpen = false; st.kanaIsm = false; st.innaOpen = false; st.innaIsm = false; st.innaPronIsm = false; st.verb = null; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.hiddenDoer26 = false; st.maful = 0; st.mubtada = false; st.khabar = false; st.subject = false; st.subjectAt = -1; }   /* (wave 35f) بَلْ هُوَ رِيحٌ: a new line */
       if (st.innaOpen && !st.innaIsm && isNoun(r) && (r.pk || "") === "ishara" && i > 0 && (rows[i - 1].pk || "") === "inna" && !encOf(rows[i - 1])) { st.innaIsm = true; st.subject = true; st.subjectAt = i; }   /* (wave 35j) إِنَّ هٰذَا الْكَلْبَ */
       if (r.__raa34) { set(i, "keep", "mazi"); st.verb = i; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.maful = 1; st.lastTense = "mazi"; st.person = 0; st.mubtada = false; st.khabar = false; continue; }
@@ -17751,7 +17873,7 @@ class DabtEngine {
       if (isNoun(r) && !hasAl(r) && !r.afterJarr && !joined(r) && !encOf(r) && st.mubtada && !st.khabar && st.verb === null && /ً$/.test(o25L) && rows[i + 1] && (rows[i + 1].kind || "") === "particle" && rows[i + 1].pk === "jarr") { set(i, "nasb", "hal"); continue; }   /* L5 مُضَافَةً إِلَى */
       if (isNoun(r) && /^[وف]/.test(bareOf(r)) && /^اخوات/.test(bw25) && encOf(r) && i > 0) { let j6 = -1; for (let q = i - 1; q >= 0; q--) if (out[q] && ["mubtada", "atf"].includes(out[q].rule) && isNoun(rows[q])) { j6 = q; break; } if (j6 >= 0) { set(i, out[j6].k, "atf"); continue; } }   /* L6 وَأَخَوَاتُهَا */
       if (typeof r.__doerOf === "number" && !(rows[r.__doerOf] && rows[r.__doerOf].__youDoer) && !/^[وف]?(موقع|موضع|مكان|محل|مقام|مسد)$/.test(bw) /* (wave 54f2) يَقَعُ مَوْقِعَ */) { set(i, "raf", "fail"); st.fail = true; st.failRow = i; st.hiddenDoer = false; st.maful = 0; if (/^[وف]?الله$/.test(bareOf(r))) st.allah35 = true; continue; }   // the doer the verb already named (wave 20)
-      if (st.kanaOpen && !st.kanaIsm && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && (this.elative24(r, w) || /^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w))) && rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !isVerb(rows[i + 1]) && !rows[i + 1].afterJarr && /ا$/.test(bareOf(rows[i + 1]))) { set(i, "nasb", "kanaKhabar"); st.kanaIsm = true; st.kanaOpen = false; st.kanaKhabarAt = i; st.hiddenDoer = true; continue; }   /* (wave 24h) لِيَكُونَ أَعْذَبَ لَفْظًا: the elative before its tamyiz is kana's khabar, her ism concealed */
+      if (st.kanaOpen && !st.kanaIsm && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && !propn(r) && !r.alam /* (wave 103) كَانَ أَيُّوبُ نَبِيًّا: the name is the ism */ && (this.elative24(r, w) || /^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w))) && rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !isVerb(rows[i + 1]) && !rows[i + 1].afterJarr && /ا$/.test(bareOf(rows[i + 1]))) { set(i, "nasb", "kanaKhabar"); st.kanaIsm = true; st.kanaOpen = false; st.kanaKhabarAt = i; st.hiddenDoer = true; continue; }   /* (wave 24h) لِيَكُونَ أَعْذَبَ لَفْظًا: the elative before its tamyiz is kana's khabar, her ism concealed */
       if (isVerb(r) && i > 0 && (rows[i - 1].kind || "") === "particle" && /^[وف]?(لم|لما|لن|لا)$/.test(bareOf(rows[i - 1])) && (this.KANA_FORMS.has(bw.replace(/^[وف]/, "")) || /^[وف]?(يزل|تزل|يزال|تزال|يكن|تكن|يك|تك|يصر|تصر|يصبح|تصبح|يمس|تمس|يضح|تضح|يظل|تظل|يبت|تبت|يبرح|ينفك|يفتأ|يدم)$/.test(bw)) && st.fail && !st.hiddenDoer) { st.fail = false; st.hiddenDoer = false; st.failRow = null; }   /* (wave 24h) لَمْ يَزَلْ سُوءُ الظَّنِّ: the sister of kana after the jazm particle wants her own ism */
       if (isNoun(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && st.verb !== null && i === st.verb + 1 && st.fail && !st.hiddenDoer && typeof st.subjectAt === "number" && st.subjectAt >= 0 && st.subjectAt < st.verb - 1 && out[st.subjectAt] && out[st.subjectAt].rule === "mubtada" && !out.slice(st.subjectAt + 1, i).some(o => o && o.rule === "khabar") && (/^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w)))) { set(i, "raf", "khabar", { head: st.subjectAt }); st.mubtada = true; st.khabar = true; continue; }   /* (wave 24h) لَعَمْرٌو مَعَ الرَّمْضَاءِ وَالنَّارُ تَلْتَظِي أَرَقُّ: the elative after the ḥāl clause is the khabar still owed */
       if (r.__frontKh24) { st.verb = null; st.fail = false; st.maful = 0; st.kanaOpen = false; st.innaOpen = false; st.mubtada = true; st.khabar = true; st.subject = true; st.subjectAt = i; set(i, "raf", "mubtada"); continue; }   /* (wave 24h) فَمِنْهُمْ شَقِيٌّ: the mubtada after its fronted khabar */
@@ -17923,6 +18045,7 @@ class DabtEngine {
       // ---- closed classes
       if ((r.kind || "") === "particle") {
         const pk = r.pk || "";
+        if (/^[وف]?حتى$/.test(bw)) st.hattaCarry102 = !!(st.verb !== null && (!st.fail || st.failRow == null) && rows[st.verb] && rows[st.verb].cell && Number(rows[st.verb].cell.i) === 0 && /mazi/i.test(st.lastTense || "") && !st.passive); else if (!["atf", "waw", "fa"].includes(pk)) st.hattaCarry102 = false;   /* (wave 102) سَارَ … حَتَّى بَلَغَ: حَتَّى remembers the hidden he-doer */
         if (pk === "imma") st.immaNext = true;
         if (["atf", "waw", "fa"].includes(pk) || (pk === "nafy" && /^[وف]لا$/.test(bw)) || /^(ثم|او|أو|بل)$/.test(bw)) { st.join = i; if (/^[وف]لا$/.test(bw)) st.la = i; }
         if (pk === "nafy" && /^لا$/.test(bw) && i > 0 && isNoun(rows[i - 1]) && !(this._punctAt && this._punctAt.has(i - 1)) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !hasAl(rows[i + 1]) && !rows[i + 1].afterJarr && out[i - 1] && ["nasb", "jarr", "raf"].includes(out[i - 1].k)) st.join = i;
@@ -17947,6 +18070,7 @@ class DabtEngine {
       // or a bare NAME the corpus matched to a passive cell (زيد → زِيدَ)
       let kindNoun = isNoun(r);
       if (isVerb(r) && r.cell && /majhulMazi/.test(r.cell.tense || "") && !/[ً-ٰ]/.test(w)) { const n0 = this.lex(w); if (n0 && !/verb/.test(n0.pos || "")) kindNoun = true; }
+      if (isVerb(r) && r.cell && r.cell.derived && /majhul/i.test(r.cell.tense || "") && String((this._pos24 || [])[i] || "") === "noun") { try { const hD = this.split(w, encOf(r))[0]; const nD = this.lex(hD) || this.lex(hD.replace(/ت$/, "ة")); if (nD && !/verb/.test(nD.pos || "")) kindNoun = true; } catch (e) {} }   /* (wave 111) صُورَتَهُ: the author's noun is no derived passive صُوِّرَتْهُ */
       if (isVerb(r) && r.cell && /amr/.test(r.cell.tense || "") && /[ً-ٰ]/.test(w) && i > 0 && (isNoun(rows[i - 1]) || (rows[i - 1].pk || "") === "jarr") && !encOf(r) && !((this._pos24 && this._pos24.length === rows.length ? String(this._pos24[i] || "") : "") === "verb" && (o => /ْ$/.test(o) || (/ِ$/.test(o) && /^[ًٌٍَُِْ]*[اٱ]/.test(String((this._orig24 || [])[i + 1] || "").normalize("NFC"))))(String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""))) /* (wave 100e) جَالِسِ الْعُلَمَاءَ: the author's imperative on its sukun or the kasra of wasl */) {
         const nA = this.lex(w); const lmA = nA ? String(nA.lemma || "").split(/[()\s]/)[0].normalize("NFC") : "";
         if (nA && !/verb|part|pron/.test(nA.pos || "") && this.rawStrip(lmA) === this.rawStrip(w.replace(/^[وف][ً-ٰ]*/, ""))) kindNoun = true;   // صَالِحٍ is no amr of صَالَحَ
@@ -17959,7 +18083,7 @@ class DabtEngine {
         const n1 = (() => { if (!(/ا$/.test(bw) && r.cell.i === 1)) return null; if (i === 0 && /^[وف]/.test(bw) && rows[1] && isVerb(rows[1]) && joined(rows[1]) && !encOf(r)) return null;   /* (wave 26q2) فَفَرِحَا وَاطْمَأَنَّا */ const w1 = w.replace(/ا$/, ""); const e1 = this.lex(w1); if (!e1 || !/[ً-ٰ]/.test(w1)) return e1; const lm1 = this.rawStrip(String(e1.lemma || "").split(/[()\s]/)[0]); const c1 = w1.replace(/^[وف][ً-ٰ]*/, ""); return [w1, c1, c1.replace(/^[بلك][ً-ٰ]*/, ""), c1.replace(/^ال/, "")].some(x => this.rawStrip(x) === lm1) ? e1 : null; })();   /* (wave 26q) فَفَرِحَا، لَسَمِعَا */
         const enc0 = encOf(r);
         const n2 = /^[وف]?[أا]/.test(bw) && enc0 ? this.lex(this.split(w, enc0)[0]) : null;
-        if ((n1 && !/verb/.test(n1.pos || "")) || (n2 && !/verb/.test(n2.pos || "") && bw.replace(/^[وف]/, "").length - enc0.length === 4)) kindNoun = true;
+        if (((n1 && !/verb/.test(n1.pos || "")) || (n2 && !/verb/.test(n2.pos || "") && bw.replace(/^[وف]/, "").length - enc0.length === 4)) && String((this._pos24 || [])[i] || "") !== "verb") kindNoun = true;   /* (wave 111) وَطَلَبَا: the author's verb is no noun wearing the tanwīn alif */
       }
       if (isVerb(r) && r.cell && !/[ً-ٰ]/.test(w)) {
         const enc0 = encOf(r), hostB = enc0 ? this.split(w, enc0)[0] : w;
@@ -18082,7 +18206,7 @@ class DabtEngine {
         if (joined(r) && !st.passive && !encOf(r) && rows[i - 1] && isVerb(rows[i - 1]) && !rows[i - 1].__kindNoun && ((st.fail && st.hiddenDoer) || (typeof st.subjectAt === "number" && rows[st.subjectAt] && ["man", "mawsul"].includes(rows[st.subjectAt].pk || ""))) && rows.slice(Math.max(0, i - 5), i).some(x => /^[وف]?(من|الذي|التي|الذين)$/.test(bareOf(x)) && ["man", "mawsul"].includes(x.pk || ""))) r.__ismDoer35 = true;   /* (wave 35l/35n) وَمَنْ رَآهُمْ وَرَأَى قُصُورَهُمْ — only the verb joined to the relative's own verb; الَّتِي أَكْرَمَ اللهُ بِهَا keeps الله */
         if (st.allah35 && joined(r) && !encOf(r) && !st.passive && !st.fail && r.cell && Number(r.cell.i) === 0 && /mudari/i.test(r.cell.tense || "") && rows[i - 1] && !((rows[i - 1].kind || "") === "particle" && !fused(rows[i - 1])) && !(rows[i + 1] && isNoun(rows[i + 1]) && /^[وف]?الله$/.test(bareOf(rows[i + 1])))) { st.fail = true; st.hiddenDoer = true; }   /* (wave 35o) يُرِيدُهُ اللهُ … وَيُقِيمُ الْحُجَّةَ … وَيَنْصُرُ الْحَقَّ: the joined 3ms verbs continue Him */
         if (r.__kanaDoer26 && !st.passive) { st.fail = true; st.hiddenDoer = true; st.kanaIsm = true; }   /* (wave 26l) the verb after وَكَانَ does the concealed ism's act — the noun after it is its object */
-        { const cy = this._carry26; if (cy && cy.bare && !st.passive && !encOf(r) && [0, 3].includes(typeof cell.i === "number" ? cell.i : -1) && /mazi|mudari/i.test(t) && (i === 0 ? joined(r) : (i === 1 && (rows[0].kind || "") === "particle" && !fused(rows[0]) && /^[وف]?(هل|قد|ما|لا|ثم)$/.test(bareOf(rows[0])))) && !/^[وف]?(قال|قالت|يقول|تقول)$/.test(bw) && transOf(i) && !st.intransV && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && !(this._colonAt && this._colonAt.has(i)) && !(rows[i + 1] && isNoun(rows[i + 1]) && !rows[i + 1].afterJarr && bareOf(rows[i + 1]).replace(/^[وف]/, "") === cy.bare) && !(rows[i + 1] && (rows[i + 1].kind || "") === "particle" && this.FUSED_PRON.test(bareOf(rows[i + 1])) && rows[i + 2] && isNoun(rows[i + 2]) && propn(rows[i + 2]) && !rows[i + 2].afterJarr && !fused(rows[i + 2])) /* (wave 26q4) وَاشْتَاقَ الْمَلِكُ؛ فَأَمَرَ لَهُمْ يُوسُفُ; (wave 26q6) not وَلَقِيَ إِسْمَاعِيلَ */ && (cell.i === 0 ? !cy.fem : !!cy.fem) && (() => { let n = 0, ok = true; for (let q = i + 1; q < rows.length; q++) { const x = rows[q]; if (isVerb(x) && !x.__kindNoun) { if (x.cell && [1, 2, 4, 5, 7, 8, 10, 11, 13].includes(Number(x.cell.i))) ok = false; break; } if ((x.kind || "") === "particle" && !/^[وف]?(قد|لا|ما)$/.test(bareOf(x))) { if (/inna|an-amb|mawsul/.test(String(x.pk || "")) || /^[وف]?(ان|أن|إن|انه|أنه|إنه|انها|أنها|إنها|الذي|التي|الذين|كيف|هل)$/.test(bareOf(x))) ok = false; if (!fused(x)) break; } if (isNoun(x) && !x.afterJarr && !fused(x) && !jarrClit(x) && !mabniWord(x)) { if (this.elative24(x, x.w || "")) continue; if (joined(x)) { if (n === 0) ok = false; continue; } if (n >= 1 && hasAl(x) && this.sifaShape(x, x.w || "") && q > 0 && isNoun(rows[q - 1]) && hasAl(rows[q - 1]) && !rows[q - 1].afterJarr) continue;   /* (wave 49k) الْفَاعِلَ الظَّاهِرَ: the agreeing ال-naʿt rides with its noun */ n++; if (this.bare(x.w || "").replace(/^ال/, "") === cy.bare.replace(/^ال/, "")) ok = false; if (/^[وف]?(الله|لله)$/.test(bareOf(x)) || (propn(x) && (!cy.propn || cy.cross))) ok = false; } } return ok && n === 1; })())   /* (wave 26o4) joined nouns are one unit; the jalāla is never the carried doer's object; a name is, only after a name */   /* (wave 87c) وَاشْتَاقَ يُوسُفُ: a chapter opens by naming its doer — a name after the opening verb is never the previous chapter's carried doer's object */ { st.fail = true; st.hiddenDoer = true; st.hiddenDoer26 = true; r.__carry26 = true; } }   /* (wave 26o) وَنَزَعَ الدَّلْوَ: the narrative carries its subject across the full stop — a sentence opening on a joined 3rd-person transitive verb with ONE plain noun after it keeps the previous sentence's doer concealed, and the noun is its object */
+        { const cy = this._carry26; if (cy && cy.bare && !st.passive && !encOf(r) && [0, 3].includes(typeof cell.i === "number" ? cell.i : -1) && /mazi|mudari/i.test(t) && (i === 0 ? joined(r) : (i === 1 && (rows[0].kind || "") === "particle" && !fused(rows[0]) && /^[وف]?(هل|قد|ما|لا|ثم)$/.test(bareOf(rows[0])))) && !/^[وف]?(قال|قالت|يقول|تقول)$/.test(bw) && transOf(i) && !st.intransV && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && !(this._colonAt && this._colonAt.has(i)) && !(rows[i + 1] && isNoun(rows[i + 1]) && !rows[i + 1].afterJarr && bareOf(rows[i + 1]).replace(/^[وف]/, "") === cy.bare) && !(rows[i + 1] && (rows[i + 1].kind || "") === "particle" && this.FUSED_PRON.test(bareOf(rows[i + 1])) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && (hasAl(rows[i + 2]) || propn(rows[i + 2])) && !rows[i + 2].afterJarr && !joined(rows[i + 2]) && rows[i + 3] && isNoun(rows[i + 3]) && !isVerb(rows[i + 3]) && !!encOf(rows[i + 3]) && !joined(rows[i + 3]) && !rows[i + 3].afterJarr) /* (wave 111) وَزَيَّنَ لَهُ الشَّيْطَانُ قَتْلَهُ: two candidates after the verb — the first is its own doer, the carried one yields */ && !(rows[i + 1] && (rows[i + 1].kind || "") === "particle" && this.FUSED_PRON.test(bareOf(rows[i + 1])) && rows[i + 2] && isNoun(rows[i + 2]) && propn(rows[i + 2]) && !rows[i + 2].afterJarr && !fused(rows[i + 2])) /* (wave 26q4) وَاشْتَاقَ الْمَلِكُ؛ فَأَمَرَ لَهُمْ يُوسُفُ; (wave 26q6) not وَلَقِيَ إِسْمَاعِيلَ */ && (cell.i === 0 ? !cy.fem : !!cy.fem) && (() => { let n = 0, ok = true; for (let q = i + 1; q < rows.length; q++) { const x = rows[q]; if (isVerb(x) && !x.__kindNoun) { if (x.cell && [1, 2, 4, 5, 7, 8, 10, 11, 13].includes(Number(x.cell.i))) ok = false; break; } if ((x.kind || "") === "particle" && !/^[وف]?(قد|لا|ما)$/.test(bareOf(x))) { if (/inna|an-amb|mawsul/.test(String(x.pk || "")) || /^[وف]?(ان|أن|إن|انه|أنه|إنه|انها|أنها|إنها|الذي|التي|الذين|كيف|هل)$/.test(bareOf(x))) ok = false; if (!fused(x)) break; } if (isNoun(x) && !x.afterJarr && !fused(x) && !jarrClit(x) && !mabniWord(x)) { if (this.elative24(x, x.w || "")) continue; if (joined(x)) { if (n === 0) ok = false; continue; } if (n >= 1 && hasAl(x) && this.sifaShape(x, x.w || "") && q > 0 && isNoun(rows[q - 1]) && hasAl(rows[q - 1]) && !rows[q - 1].afterJarr) continue;   /* (wave 49k) الْفَاعِلَ الظَّاهِرَ: the agreeing ال-naʿt rides with its noun */ n++; if (this.bare(x.w || "").replace(/^ال/, "") === cy.bare.replace(/^ال/, "")) ok = false; if (/^[وف]?(الله|لله)$/.test(bareOf(x)) || (propn(x) && (!cy.propn || cy.cross))) ok = false; } } return ok && n === 1; })())   /* (wave 26o4) joined nouns are one unit; the jalāla is never the carried doer's object; a name is, only after a name */   /* (wave 87c) وَاشْتَاقَ يُوسُفُ: a chapter opens by naming its doer — a name after the opening verb is never the previous chapter's carried doer's object */ { st.fail = true; st.hiddenDoer = true; st.hiddenDoer26 = true; r.__carry26 = true; } }   /* (wave 26o) وَنَزَعَ الدَّلْوَ: the narrative carries its subject across the full stop — a sentence opening on a joined 3rd-person transitive verb with ONE plain noun after it keeps the previous sentence's doer concealed, and the noun is its object */
         { const fj = frames.find(f => f.jawab === i && typeof f.shart === "number" && f.shart < i); if (fj && !st.passive && encOf(r) && [0, 3].includes(typeof cell.i === "number" ? cell.i : -1) && rows[fj.shart] && rows[fj.shart].cell && [0, 3].includes(Number(rows[fj.shart].cell.i)) && !rows.slice(fj.shart + 1, i).some((x, q) => isNoun(x) && out[fj.shart + 1 + q] && ["fail", "kanaIsm"].includes(out[fj.shart + 1 + q].rule || ""))) { st.fail = true; st.hiddenDoer = true; st.hiddenDoer26 = true; } }   /* (wave 26n) إِذَا أَكَلَ إِنْسَانًا جَرَحَهُ: the jawāb's doer is the shart verb's concealed doer */
         if (r.__dualAmr && !st.passive) { st.fail = true; st.hiddenDoer = true; }   // (wave 22c) دَعَانِي: the alif is the doer, the ني the object — the nakira after is the hal or the maf'ul li-ajlih   // (wave 22c) وَتَخْشَى النَّاسَ: «you fear» — the noun after it is the object
         if (anBefore && prevHidden && !st.passive && !encOf(r) && !st.intransV && !(rows[i + 1] && (rows[i + 1].kind || "") === "particle" && fused(rows[i + 1]) && rows[i + 2] && isNoun(rows[i + 2]) && (propn(rows[i + 2]) || hasAl(rows[i + 2])) && !rows[i + 2].afterJarr)) { st.fail = true; st.hiddenDoer = true; }   /* (wave 26e) أَنْ يَبْعُدَ مِنْهُ يُوسُفُ: the doer is named */
@@ -18100,7 +18224,10 @@ class DabtEngine {
         // Form V/VI/VII with no stored passive is the intransitive shape (تَغَيَّرَ، تَقَدَّمَ، اِنْتَقَلَ): it takes no object either
         if (!st.intransV) { try { const v1 = RootFinder.corpusIndex().find(x => x.lemma === r.lemma); if (v1 && v1.m && /تَفَعَّلَ|تَفَاعَلَ|اِنْفَعَلَ/.test(String(v1.m.wazn || "")) && !v1.m.majhulMazi && !(v1.m.ismMaful || v1.m.maful)) st.intransV = true; } catch (e) {} }   // وَهِيَ الْجَمْعُ … وَتُسَمَّى الطِّبَاقَ: the naib is the sentence's own subject
         st.person = typeof cell.person === "number" ? cell.person : (t === "amr" ? 6 : (typeof cell.i === "number" ? cell.i : (/^(majzum2|mansub2)$/.test(t) ? 6 : null)));
-        if (inheritDoer && !(carried26 && (st.intransV || this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) || this.intransParadigm(r)) && rows[i + 1] && isNoun(rows[i + 1]) && (propn(rows[i + 1]) || hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) /* (wave 26r4) وَتَجَدَّدَ حُزْنُهُ */) && !rows[i + 1].afterJarr && !fused(rows[i + 1]) && !joined(rows[i + 1]))) st.fail = true;   /* (wave 26o5) the carried chain: an intransitive joined verb before a plain definite noun names its own doer */   // the same unnamed doer does both
+        if (inheritDoer && !(carried26 && (st.intransV || this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) || this.intransParadigm(r)) && rows[i + 1] && isNoun(rows[i + 1]) && (propn(rows[i + 1]) || hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) /* (wave 26r4) وَتَجَدَّدَ حُزْنُهُ */) && !rows[i + 1].afterJarr && !fused(rows[i + 1]) && !joined(rows[i + 1]))) st.fail = true;   /* (wave 26o5) the carried chain: an intransitive joined verb before a plain definite noun names its own doer */
+        if (st.hattaCarry102 && i > 0 && /^[وف]?حتى$/.test(bareOf(rows[i - 1])) && /mazi/i.test(t) && Number(cell.i) === 0 && !encOf(r)) { st.fail = true; st.hiddenDoer = true; st.failRow = null; }   /* (wave 102) حَتَّى بَلَغَ آخِرَ الْأَرْضِ: the past he-verb after حَتَّى keeps the hidden doer */
+        if (!st.fail && !encOf(r) && /^ل[ً-ٰ]*ِ[ً-ٰ]*[يتنأ]/.test((r.w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*/, "")) && !/mazi|amr/i.test(t) && pre30 && pre30.verb !== null && rows[pre30.verb] && rows[pre30.verb].cell && Number(rows[pre30.verb].cell.i) === Number(cell.i) && (pre30.fail || pre30.hidden || !!encOf(rows[pre30.verb]))) { st.fail = true; st.hiddenDoer = true; st.failRow = null; }   /* (wave 103) لِيُظْهِرَ لِلنَّاسِ صَبْرَهُ: the lām-of-purpose verb keeps the hidden doer of the clause it serves */
+        st.hattaCarry102 = false;   // the same unnamed doer does both
         if (st.kanaOpen && !st.kanaIsm && i > 0 && /^[وف]?(كان|كانت|يكون|تكون|كانوا|يكونون|يكن|تكن|كنت|كنا|كنتم)$/.test(bareOf(rows[i - 1])) && !this.KANA_FORMS.has(cw.replace(/^[وف]/, "")) && !/^[وف]?(كان|كانت|يكون|تكون|ليس|ليست)$/.test(bw) && /mudari/i.test(t) /* (wave 32o) a māḍī after kāna keeps her seat for the delayed ism */) { st.kanaOpen = false; st.kanaIsm = false; }   /* (wave 32a) كَانَ يَتَكَلَّمُ: the verb right after kāna is her khabar — her ism is concealed */
         if (st.innaOpen && st.innaIsm && !this.KANA_FORMS.has(cw.replace(/^[وف]/, "")) && !(i > 0 && /^[وف]?([بلك]|في|عن|من|الى|إلى|على)?(ما|من|الذي|التي|الذين)$/.test(bareOf(rows[i - 1])))) { st.innaOpen = false; }   /* (wave 32b) أَنَّهُ مَا حَمَلَهُ: the verb after إِنَّ's ism is her khabar — the ism stays, the seat closes */
         { const pv32o = (() => { for (let k = i - 1; k >= 0; k--) if (isVerb(rows[k]) && rows[k].cell && !rows[k].__kindNoun) return k; return -1; })();   /* (wave 32o) the PREVIOUS verb, not this one */
@@ -18125,7 +18252,7 @@ class DabtEngine {
              so kāna's ism (or a mubtadaʾ) before the clause does not hide the doer */
           const qawlSayer33 = /^(قال|يقول|قالت|تقول|قيل|يقال)$/.test(cw.replace(/^[وف]/, "")) && !!nx && isNoun(nx) && !nx.afterJarr && !joined(nx) && !fused(nx) && !encOf(nx) && (hasAl(nx) || propn(nx)) &&
                               !/^(ال)?(حق|كلمة|قول|شعر|صدق|كذب|باطل|خير|شر|سوء|كلام|مثل|نحو|حقيقة)$/.test(bareOf(nx).replace(/^[وف]/, ""));
-          const subjPrev = subjQ >= 0 && isNoun(rows[subjQ]) && out[subjQ] && (["kanaIsm", "mubtada", "innaIsm"].includes(out[subjQ].rule) || (out[subjQ].rule === "fail" && i >= 1 && /^[وف]?(متى|كيف|لماذا|اين|أين|لم|هل)$/.test(bareOf(rows[i - 1])) && rows[subjQ + 1] && !joined(rows[subjQ + 1]) /* (wave 34b/34d) إِلَى مَتَى يَرَى: the doer named before an UNJOINED question — not كَيْفَ يَغْلِبُ الشَّيْطَانُ وَكَيْفَ يَلْعَبُ الشَّيْطَانُ */)) && !joined(r) && !qawlSayer33 && !rows.slice(subjQ + 1, i).some(x => isVerb(x)) && !(this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && nx && (nx.kind || "") === "particle" && fused(nx) && rows[i + 2] && isNoun(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]));   /* (wave 26e) */   /* (wave 26e) over لا/ما and the subject's own naʿt */
+          const subjPrev = subjQ >= 0 && isNoun(rows[subjQ]) && out[subjQ] && (["kanaIsm", "mubtada", "innaIsm"].includes(out[subjQ].rule) || (out[subjQ].rule === "fail" && i >= 1 && (/^[وف]?(متى|كيف|لماذا|اين|أين|هل)$/.test(bareOf(rows[i - 1])) || (/^[وف]?لم$/.test(bareOf(rows[i - 1])) && /لِ[ً-ٰ]*مَ/.test((rows[i - 1].w || "").normalize("NFC")))) /* (wave 102) لَمْ يَقْدِرْ يَأْجُوجُ: the negation is no question */ && rows[subjQ + 1] && !joined(rows[subjQ + 1]) /* (wave 34b/34d) إِلَى مَتَى يَرَى: the doer named before an UNJOINED question — not كَيْفَ يَغْلِبُ الشَّيْطَانُ وَكَيْفَ يَلْعَبُ الشَّيْطَانُ */)) && !joined(r) && !qawlSayer33 && !rows.slice(subjQ + 1, i).some(x => isVerb(x)) && !(this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && nx && (nx.kind || "") === "particle" && fused(nx) && rows[i + 2] && isNoun(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]));   /* (wave 26e) */   /* (wave 26e) over لا/ما and the subject's own naʿt */
           const objPrev = i > 0 && isNoun(rows[i - 1]) && out[i - 1] && (rows[i - 1].__obj26 || rows[i - 1].__kanaObj26 || (out[i - 1].rule === "maful" && out[i - 1].k === "nasb")) && !joined(r);
           const perceive = DabtEngine.PERCEIVE26.test(this.bare(r.lemma || "").replace(/[أإآ]/g, "ا")) && nx && isNoun(nx) && !nx.afterJarr && !joined(nx) && (hasAl(nx) || propn(nx)) && rows[i + 2] && isVerb(rows[i + 2]) && !joined(rows[i + 2]);
           const plNext26 = !!nx && isNoun(nx) && (() => { try { const e = RootFinder.nounFromCorpus(nx.w || ""); return !!(e && e.viaPlural); } catch (e) { return false; } })();   /* (wave 26l) كَيْفَ تَسْجُدُ الْكَوَاكِبُ: a broken plural agrees with the she-verb — it is the doer */
@@ -18136,13 +18263,14 @@ class DabtEngine {
           /* (wave 26e) غَضِبَ إِبْرَاهِيمُ وَأَخَذَ الْفَأْسَ: a joined transitive māḍī inherits the doer the clause already named; أَمَرَ اللهُ إِبْرَاهِيمَ أَنْ يَدْعُوَ قَوْمَهُ: the object does what أَنْ asks */
           { const transV26 = (() => { try { const lm31 = String(r.lemma || "").normalize("NFC"); const v = RootFinder.corpusIndex().find(x => String(x.lemma || "").normalize("NFC") === lm31); return !!(v && v.m && ((v.m.ismMaful || v.m.maful) || v.m.majhulMazi)); } catch (e) { return false; } })();
             const fusedNext = !!nx && (nx.kind || "") === "particle" && fused(nx) && rows[i + 2] && isNoun(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]) && !fused(rows[i + 2]);
-            if (!st.fail && p3 && joined(r) && /mazi/i.test(t) && prevNamed26 && transV26 && !/^قال/.test(this.bare(r.lemma || "")) && !(nx && prevFailRow != null && rows[prevFailRow] && bareOf(rows[prevFailRow]) === bareOf(nx)) && !(rows[i + 2] && (rows[i + 2].kind || "") === "particle" && /^(ان|أن)$/.test(bareOf(rows[i + 2]).replace(/[أإآ]/g, "ا")) && !(nx && encOf(nx))) /* (wave 26q) */ && ((plainObj(nx) && (!propn(nx) || ((prevMaful26 > 0 || prevFailAdj26 || /^(سال|سأل|كلم|امر|أمر|دعا|نادى|اجاب|أجاب|خاطب|حدث|اخبر|أخبر|زار|لقي|قابل|ودع|استقبل)$/.test(this.bare(r.lemma || "")) /* (wave 26q5) وَسَأَلَ يُوسُفَ — not وَشَرِبَ إِسْمَاعِيلُ */) && !/^قال/.test(this.bare(r.lemma || "")) && !/^الله$/.test(bareOf(nx)) && !(this._punctAt && this._punctAt.has(i - 1))))) || fusedNext) && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && prevPerson26 === st.person && (this.bare(r.lemma || "") !== prevLemma26 || prevMaful26 > 0) && !(this._colonAt && this._colonAt.has(i + 1))) { st.fail = true; st.hiddenDoer = true; if (plainObj(nx)) nx.__obj26 = true; else if (fusedNext && (hasAl(rows[i + 2]) || propn(rows[i + 2]) || !!encOf(rows[i + 2]) || transV26)) rows[i + 2].__obj26 = true; }
+            if (!st.fail && p3 && joined(r) && /mazi/i.test(t) && prevNamed26 && transV26 && !(nx && (nx.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(nx)) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && (hasAl(rows[i + 2]) || propn(rows[i + 2])) && !joined(rows[i + 2]) && !rows[i + 2].afterJarr && rows[i + 3] && isNoun(rows[i + 3]) && !isVerb(rows[i + 3]) && !!encOf(rows[i + 3]) && !joined(rows[i + 3]) && !rows[i + 3].afterJarr) /* (wave 111) two candidates after the fused pronoun: the first is the verb's own doer */ && !/^قال/.test(this.bare(r.lemma || "")) && !(nx && prevFailRow != null && rows[prevFailRow] && bareOf(rows[prevFailRow]) === bareOf(nx)) && !(rows[i + 2] && (rows[i + 2].kind || "") === "particle" && /^(ان|أن)$/.test(bareOf(rows[i + 2]).replace(/[أإآ]/g, "ا")) && !(nx && encOf(nx))) /* (wave 26q) */ && ((plainObj(nx) && (!propn(nx) || ((prevMaful26 > 0 || prevFailAdj26 || /^(سال|سأل|كلم|امر|أمر|دعا|نادى|اجاب|أجاب|خاطب|حدث|اخبر|أخبر|زار|لقي|قابل|ودع|استقبل)$/.test(this.bare(r.lemma || "")) /* (wave 26q5) وَسَأَلَ يُوسُفَ — not وَشَرِبَ إِسْمَاعِيلُ */) && !/^قال/.test(this.bare(r.lemma || "")) && !/^الله$/.test(bareOf(nx)) && !(this._punctAt && this._punctAt.has(i - 1))))) || fusedNext) && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && prevPerson26 === st.person && (this.bare(r.lemma || "") !== prevLemma26 || prevMaful26 > 0) && !(this._colonAt && this._colonAt.has(i + 1))) { st.fail = true; st.hiddenDoer = true; if (plainObj(nx)) nx.__obj26 = true; else if (fusedNext && (hasAl(rows[i + 2]) || propn(rows[i + 2]) || !!encOf(rows[i + 2]) || transV26)) rows[i + 2].__obj26 = true; }
+            if (!st.fail && p3 && joined(r) && /mudari/i.test(t) && (prevHidden26 || prevNoDoer26) && !prevNamed26 && /mudari/i.test(st.lastTense || "") && transV26 && !!nx && isNoun(nx) && !!encOf(nx) && !nx.afterJarr && !joined(nx) && !/^قال/.test(this.bare(r.lemma || ""))) { st.fail = true; st.hiddenDoer = true; nx.__obj26 = true; }   /* (wave 111) يَرْكَبُ وَيَتْرُكُ ابْنَهُ: the joined present verb keeps the hidden doer of the one before it — the noun with its pronoun is the object */
             if (!st.fail && p3 && anBefore && prevMaful26 > 0 && plainObj(nx)) { st.fail = true; st.hiddenDoer = true; nx.__obj26 = true; st.anHidden30 = i; }
             { const lm30 = this.bare(r.lemma || ""), po30 = DabtEngine.PERSON_OBJ30.test(lm30);
               const p3x = p3 || (!r.cell && !encOf(r) && /^[وف]?ي/.test(bw) && !r.lemma);
               const fusedNext2 = fusedNext || (!!nx && (nx.kind || "") === "particle" && /^(من|في|عن|الى|إلى|على|مع|عند|ب|ل|ك)(ه|ها|هم|هن|هما|ك|كم|كن|كما|ني|ي|نا)$/.test(bareOf(nx).replace(/[أإآ]/g, "ا")) && rows[i + 2] && isNoun(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]));
-              if (!st.fail && p3x && anBefore && prevMaful26 === 0 && (prevNamed26 || prevHidden26 || prevNoDoer26) && !/^قال/.test(lm30)) {
-                if ((po30 || (transV26 && propn(nx))) && plainObj(nx) && !(i > 0 && /^[وف]?(ماذا|لماذا|اين|أين|كيف|متى|هل|ما|من|اي|أي)$/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && (rows[i - 1].kind || "") !== "particle") /* (wave 35r) مَاذَا يُرِيدُ هُودٌ: behind a question word the name is the doer */) { st.fail = true; st.hiddenDoer = true; st.anHidden30 = i; nx.__obj26 = true; }   /* (wave 26q) */
+              if (!st.fail && p3x && anBefore && prevMaful26 === 0 && (prevNamed26 || prevHidden26 || prevNoDoer26) && !/^قال/.test(lm30) && !(prevHidden26 && !prevNamed26 && typeof prevPerson26 === "number" && prevPerson26 >= 6) /* (wave 111) أَخَافُ أَنْ يَنْزِلَ بِكُمْ عَذَابٌ: «I fear» lends no doer to «it comes down» — the nakira after is its doer */) {
+                if ((po30 || (transV26 && propn(nx))) && plainObj(nx) && !(i > 0 && /^[وف]?(ماذا|لماذا|اين|أين|كيف|متى|هل|ما|من|اي|أي)$/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && (rows[i - 1].kind || "") !== "particle") /* (wave 35r) مَاذَا يُرِيدُ هُودٌ: behind a question word the name is the doer */ && !(propn(nx) && rows[i + 2] && joined(rows[i + 2]) && propn(rows[i + 2])) && !(propn(nx) && rows[i + 2] && /^(ان|أن)$/.test(bareOf(rows[i + 2]).replace(/[أإآ]/g, "ا"))) /* (wave 102) لَمْ يَقْدِرْ يَأْجُوجُ وَمَأْجُوجُ أَنْ: two joined names are the compound doer; the name before أَنْ is the doer */) { st.fail = true; st.hiddenDoer = true; st.anHidden30 = i; nx.__obj26 = true; }   /* (wave 26q) */
                 else if (po30 && fusedNext2) { st.fail = true; st.hiddenDoer = true; st.anHidden30 = i; rows[i + 2].__obj26 = true; }
                 else if (!plainObj(nx) && !fusedNext2 && !((st.intransV || this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase())) && rows[i + 2] && isNoun(rows[i + 2]) && propn(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2])) /* (wave 26q) يَبْقَى عِنْدَهُ بِنْيَامِينُ */) { st.fail = true; st.hiddenDoer = true; st.anHidden30 = i; } }   /* (wave 26e) أَرَادَ إِبْرَاهِيمُ أَنْ يَدْعُوَ وَالِدَهُ */
               if (!st.fail && p3x && joined(r) && (/mudari/i.test(t) || (!r.cell && /^[وف]ي/.test(bw))) && st.lastMood === "nasb" && typeof st.lastMoodAt === "number" && st.anHidden30 === st.lastMoodAt && !/^قال/.test(lm30)) {
@@ -18193,7 +18321,7 @@ class DabtEngine {
         const qawl = /^(قال|يقول|قلت|قالوا|قيل|يقال|تقول|أقول|اقول|نقول|قالت|يقولون|قلنا|قالا)$/.test(cw.replace(/^[وف]/, "")) || this.bare(r.lemma || "") === "قال" ||
                      (/^(صاح|صاحوا|صاحت|يصيح|يصيحون|نادى|نادوا|نادت|ينادي|هتف|هتفوا|اجاب|أجاب|اجابوا|أجابوا|يجيب|سال|سأل|سالوا|سألوا)$/.test(cw.replace(/^[وف]/, "").replace(/[أإآ]/g, "ا")) && !!rows[i + 1] && !encOf(r) && ((rows[i + 1].pk || "") === "ishara" || /^[وف]?(ان|إن|انه|إنه|انا|أنا|اني|إني|انك|إنك|يا|هل|ما|لا|من|اين|أين|ماذا|لماذا|كيف|متى)$/.test(bareOf(rows[i + 1]).replace(/[أإآ]/g, "ا"))));   /* (wave 35e) وَصَاحُوا هٰذِهِ سَحَابَةُ مَطَرٍ */   /* (wave 29a) لَا يُقَالُ: … */
         if (qawl) { st.maful = 1; st.qawl = true; st.mubtada = false; st.khabar = false;
-          if (rows[i + 1] && ((rows[i + 1].kind || "") === "particle" || fused(rows[i + 1]) || rows[i + 1].afterJarr)) { st.verb = null; st.qawl = false; } }   // the quotation is the object; the sayer may still follow
+          if (rows[i + 1] && ((rows[i + 1].kind || "") === "particle" || fused(rows[i + 1]) || rows[i + 1].afterJarr) && !(this.FUSED_PRON.test(bareOf(rows[i + 1])) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && (hasAl(rows[i + 2]) || propn(rows[i + 2])) && !joined(rows[i + 2]) && !rows[i + 2].afterJarr && this._colonAt && Array.from(this._colonAt).some(c => c >= i + 2)) /* (wave 111) قَالَ لَهُ الْأَسَدُ غَضْبَانَ: — the colon ahead keeps the sayer's clause open */) { st.verb = null; st.qawl = false; } }   // the quotation is the object; the sayer may still follow
         if (r.__kafQuoted46) { set(i, "keep", "hikaya"); { const o46 = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»،؛.:!؟]/g, ""); if (o46 && this.bare(o46) === bareOf(r)) r.w = o46; } st.verb = null; st.fail = false; st.maful = 0; st.lastTense = "mazi"; continue; }   /* (wave 46c) كَشَكَكْتُ: the quoted verb under the kāf is written as it stands */
         if (/mazi/i.test(t)) {
           const hostB0 = this.bare(this.split(w, encOf(r))[0]);
@@ -18259,7 +18387,7 @@ class DabtEngine {
         // فَاءُ السَّبَبِيَّةِ: a fa-verb answering a talab (an amr, a nahy, a question, a wish) is mansub by a hidden أَنْ
         const faClitic = /^ف/.test(bw) && (((r.seg || []).length > 1 && /^ف$/.test(this.bare(r.seg[0]))) || (r.cell && !/^ف/.test(this.bare(r.cell.form || "")) && bw.slice(1) === this.bare(r.cell.form || "").replace(/ونَ?$/, "و").replace(/و$/, "و")) || (r.cell && bw.slice(1) === this.bare(r.cell.form || "")));
         const faClitic35 = /^ف/.test(bw) && !!encOf(r) && r.cell && !/^ف/.test(this.bare(r.cell.form || "")) && bw.slice(1, bw.length - this.bare(encOf(r)).length) === this.bare(r.cell.form || "");   /* (wave 35h) فَيَأْخُذَكُمْ */
-        const faSabab = (faClitic || faClitic35) && st.talab && !/^(يكون|تكون|يكن|نكون|اكون|أكون)$/.test(cw);
+        const faSabab = (faClitic || faClitic35) && st.talab && !/^(يكون|تكون|يكن|نكون|اكون|أكون)$/.test(cw) && !(i >= 2 && out[i - 1] && out[i - 1].rule === "khabar" && /^[وف](انت|انا|هو|هي|نحن|انتم|هم|هما|انتما|انتن|هن)$/.test(bareOf(rows[i - 2]).replace(/[أإآ]/g, "ا"))) /* (wave 111) وَأَنْتَ صَحِيحٌ، فَتُكَلِّمُهُمْ: the nominal clause between the request and the fāʾ closes the request — the fāʾ joins, it does not cause */;
         const lamClitic = /^ل[يتنأ]/.test(cw) && r.cell && !/^ل/.test(this.bare(r.cell.form || "")) && ((r.seg || []).length === 1 || ((r.seg || []).length === 2 && !!encOf(r)));   // (wave 20) لَتَخَافُكَ: verb + pronoun, the lam still a clitic
         const innaCtx = st.innaOpen || /^[وف]?(ان|إن|انه|إنه|انها|إنها|انهم|إنهم|انا|إنا|اني|إني)$/.test(pb) || ((out[i - 1] || {}).rule || "") === "innaIsm";   // (wave 20)
         const lamAmr = lamClitic && !innaCtx && (i === 0 || st.join === i - 1 || ((rows[i - 1] || {}).kind === "particle" && !this.FUSED_PRON.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && ((rows[i - 1] || {}).pk || "") !== "jarr" && !fused(rows[i - 1]) /* (wave 35f) مِنْكُمْ لِيُنْذِرَكُمْ: the lām of purpose */) || /^[وف][ً-ٰ]*ل[ً-ٰ]*ْ/.test(w));   // فَلْيَدْعُ: the lam of command is SAKIN after فَ/وَ; a lam of purpose never is
@@ -18379,7 +18507,7 @@ class DabtEngine {
       if (/^[وف]?غير$/.test(bw) && !joined(r) && head.has(i) && i > 0 && isNoun(rows[i - 1]) && !hasAl(rows[i - 1]) && !encOf(rows[i - 1]) && !propn(rows[i - 1]) && out[i - 1] && ["fail", "naib", "mubtada", "khabar", "maful", "jarr", "innaIsm", "kanaIsm", "mudafIlayh"].includes(out[i - 1].rule) && rows[i + 1] && isNoun(rows[i + 1]) && hasAl(rows[i + 1])) { set(i, out[i - 1].k, "nat"); continue; }   // عِلَّةٌ غَيْرُ الْمَذْكُورَةِ (wave 21)
       if (i === 0 && /^[وف]قول$/.test(bw) && head.has(0) && rows[1] && isNoun(rows[1]) && !st.mubtada) { set(i, "jarr", "atf"); continue; }   // وَقَوْلِ أَبِي الْعَتَاهِيَةِ: joined to the كَقَوْلِ before the sentence (wave 20)
       if (typeof r.__doerOf === "number" && !(rows[r.__doerOf] && rows[r.__doerOf].__youDoer) && !/^[وف]?(موقع|موضع|مكان|محل|مقام|مسد)$/.test(bw) /* (wave 54f2) يَقَعُ مَوْقِعَ */) { set(i, "raf", "fail"); st.fail = true; st.failRow = i; st.hiddenDoer = false; st.maful = 0; if (/^[وف]?الله$/.test(bareOf(r))) st.allah35 = true; continue; }   // the doer the verb already named (wave 20)
-      if (st.kanaOpen && !st.kanaIsm && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && (this.elative24(r, w) || /^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w))) && rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !isVerb(rows[i + 1]) && !rows[i + 1].afterJarr && /ا$/.test(bareOf(rows[i + 1]))) { set(i, "nasb", "kanaKhabar"); st.kanaIsm = true; st.kanaOpen = false; st.kanaKhabarAt = i; st.hiddenDoer = true; continue; }   /* (wave 24h) لِيَكُونَ أَعْذَبَ لَفْظًا: the elative before its tamyiz is kana's khabar, her ism concealed */
+      if (st.kanaOpen && !st.kanaIsm && isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && !propn(r) && !r.alam /* (wave 103) كَانَ أَيُّوبُ نَبِيًّا: the name is the ism */ && (this.elative24(r, w) || /^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w))) && rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !isVerb(rows[i + 1]) && !rows[i + 1].afterJarr && /ا$/.test(bareOf(rows[i + 1]))) { set(i, "nasb", "kanaKhabar"); st.kanaIsm = true; st.kanaOpen = false; st.kanaKhabarAt = i; st.hiddenDoer = true; continue; }   /* (wave 24h) لِيَكُونَ أَعْذَبَ لَفْظًا: the elative before its tamyiz is kana's khabar, her ism concealed */
       if (isVerb(r) && i > 0 && (rows[i - 1].kind || "") === "particle" && /^[وف]?(لم|لما|لن|لا)$/.test(bareOf(rows[i - 1])) && (this.KANA_FORMS.has(bw.replace(/^[وف]/, "")) || /^[وف]?(يزل|تزل|يزال|تزال|يكن|تكن|يك|تك|يصر|تصر|يصبح|تصبح|يمس|تمس|يضح|تضح|يظل|تظل|يبت|تبت|يبرح|ينفك|يفتأ|يدم)$/.test(bw)) && st.fail && !st.hiddenDoer) { st.fail = false; st.hiddenDoer = false; st.failRow = null; }   /* (wave 24h) لَمْ يَزَلْ سُوءُ الظَّنِّ: the sister of kana after the jazm particle wants her own ism */
       if (isNoun(r) && !hasAl(r) && !encOf(r) && !r.afterJarr && !joined(r) && st.verb !== null && i === st.verb + 1 && st.fail && !st.hiddenDoer && typeof st.subjectAt === "number" && st.subjectAt >= 0 && st.subjectAt < st.verb - 1 && out[st.subjectAt] && out[st.subjectAt].rule === "mubtada" && !out.slice(st.subjectAt + 1, i).some(o => o && o.rule === "khabar") && (/^[أا][^ا]{3}$/.test(bw) || (/^[أا][^ا]{2}$/.test(bw) && /ّ/.test(w)))) { set(i, "raf", "khabar", { head: st.subjectAt }); st.mubtada = true; st.khabar = true; continue; }   /* (wave 24h) لَعَمْرٌو مَعَ الرَّمْضَاءِ وَالنَّارُ تَلْتَظِي أَرَقُّ: the elative after the ḥāl clause is the khabar still owed */
       if (r.__frontKh24) { st.verb = null; st.fail = false; st.maful = 0; st.kanaOpen = false; st.innaOpen = false; st.mubtada = true; st.khabar = true; st.subject = true; st.subjectAt = i; set(i, "raf", "mubtada"); continue; }   /* (wave 24h) فَمِنْهُمْ شَقِيٌّ: the mubtada after its fronted khabar */
@@ -18397,7 +18525,7 @@ class DabtEngine {
       if (isVerb(r)) { st.twoObj24 = !!r.__twoObj24 && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && /^[وف]?ب/.test(bareOf(rows[i + 1])) && (rows[i + 1].afterJarr || jarrClit(rows[i + 1]) || ((rows[i + 1].seg || []).length > 1 && this.bare(rows[i + 1].seg[0] || "") === "ب"))) /* (wave 35n) يُبَشِّرُكِ بِكَلِمَةٍ: the second object rides بِ */; st.twoObjAt = i; st.twoObjEnc = r.enc || this.guessEnc(r, r.w || "") || ""; }   /* (wave 24h) */
       if (/^[وف]?[بلك](ذا|ذلك|ذلكم|هذا|هذه|ذاك)$/.test(bw)) { { const o7 = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); if (o7 && this.bare(o7) === bw) { r.w = o7; r.__mabni25 = true; } } set(i, "keep", "mabni"); continue; }   /* (wave 52p) فَلِذَا */
       if (isNoun(r) && !mabniWord(r) && /^[وف]?[بل]/.test(bw) && jarrClit(r) && !r.afterJarr && !/^[وف]?ك?قول/.test(bw)) { if (rows[i + 1] && /^(ما|من)$/.test(coreOf(rows[i + 1])) && (isNoun(rows[i + 1]) || /^(ma|man|mawsul)$/.test(rows[i + 1].pk || "") || (rows[i + 1].kind || "") === "particle") && rows[i + 2] && isVerb(rows[i + 2]) && !hasAl(r) && !encOf(r) && !head.has(i) && !member.has(i + 1) && !/^[وف]?[بل](بعض|احد|أحد|كل|غير|مثل|اي|أي)$/.test(bw) && !(st.verb !== null && st.maful === 0 && !st.passive && transOf(st.verb) && !st.kanaOpen)) head.add(i);   /* (wave 49l) لِمُتَعَلِّقِ مَا يَجْرِي: annexed to the relative in place */ if (/^[وف]?[بل](احد|أحد|احدى|إحدى|بعض|كل|نون|لام|واو|باء|تاء|كاف|همزة|الف|ألف|ياء)$/.test(bw) && rows[i + 1] && isNoun(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !fused(rows[i + 1]) && !mabniWord(rows[i + 1]) && !head.has(i) && !member.has(i + 1) && !/[ًٌٍ]/.test(String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, "")) /* (wave 50ag) لِأَحَدٍ نَفْعًا keeps its tanwīn */) { head.add(i); member.set(i + 1, i); }   /* (wave 50g) بِأَحَدِ خَمْسَةِ أَشْيَاءَ */ { const oJ = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); if (rows[i + 1] && !head.has(i) && !member.has(i + 1) && ((rows[i + 1].kind || "") === "particle" || isVerb(rows[i + 1]) || /^(ان|أن|إن|ما|لا|لو|كان)$/.test(bareOf(rows[i + 1]))) && oJ && this.bare(oJ) === bw && /ِ$/.test(oJ) && !/[اي][ً-ٰ]*نِ$/.test(oJ) && !/[ًٌٍ]/.test(oJ)) head.add(i); }   /* (wave 54h2) بِوَاسِطَةِ أَنْ، لِبَابِ إِنَّ: annexed to the quoted word on the author's kasra */ set(i, "jarr", "jarr"); if (st.kanaOpen && st.kanaIsm) { st.kanaOpen = false; st.kanaIsm = false; }
-        if (!enc && !/[ًٌٍ]/.test(w) && rows[i + 1] && isNoun(rows[i + 1]) && (hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) || propn(rows[i + 1])) && !rows[i + 1].afterJarr && !joined(rows[i + 1]) && !fused(rows[i + 1]) && !jarrClit(rows[i + 1]) && !mabniWord(rows[i + 1]) && !head.has(i) && !member.has(i + 1) && !head.has(i + 1)) { head.add(i); member.set(i + 1, i); }   // (patch s, wave 21l) بِاسْمِ كُلِّهِ: the clitic's noun annexes a DEFINITE noun after it — لِوَصْفٍ عِلَّةٌ keeps its tanwin
+        if (!enc && !/[ًٌٍ]/.test(w) && rows[i + 1] && isNoun(rows[i + 1]) && (hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) || propn(rows[i + 1])) && !rows[i + 1].afterJarr && !joined(rows[i + 1]) && !fused(rows[i + 1]) && !jarrClit(rows[i + 1]) && !mabniWord(rows[i + 1]) && !head.has(i) && !member.has(i + 1) && !head.has(i + 1) && !(!hasAl(r) && !!encOf(rows[i + 1]) && !hasAl(rows[i + 1]) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && !hasAl(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]) && !fused(rows[i + 2]) && !jarrClit(rows[i + 2]) && !encOf(rows[i + 2]) && !this.sifaShape(rows[i + 2], rows[i + 2].w)) /* (wave 111) بِغُلَامٍ اسْمُهُ يَحْيَى: the indefinite noun is described by the sentence after it, not annexed to it */) { head.add(i); member.set(i + 1, i); }   // (patch s, wave 21l) بِاسْمِ كُلِّهِ: the clitic's noun annexes a DEFINITE noun after it — لِوَصْفٍ عِلَّةٌ keeps its tanwin
         continue; }   // بِرُمَّتِهِ، بِبَاءِ: the jarr letter the analyzer left on its noun — بِ and لِ only; the kaf of likeness keeps its own reading (wave 20)
       if (isNoun(r) && hasAl(r) && !joined(r) && !r.afterJarr && /ي[ًٌٍَُِ]*ّ$/.test(w.replace(/[ًٌٍَُِ]+$/, "")) && i > 0 && !member.has(i) /* (wave 23b) قَوْلِ السَّكَّاكِيِّ: a chain member is annexed */ && (propn(rows[i - 1]) || member.has(i - 1) || rows[i - 1].__ibn) && out[i - 1] && ["raf", "nasb", "jarr"].includes(out[i - 1].k) && !st.innaOpen) {
         let hn = i - 1; while (member.has(hn) && rows[hn].__ibn === undefined && member.get(hn) === hn - 1) hn = member.get(hn); if (!out[hn] || !["raf", "nasb", "jarr"].includes(out[hn].k)) hn = i - 1;
@@ -18412,7 +18540,7 @@ class DabtEngine {
       if (pos56(i) === "pron" && isNoun(r) && !r.pk && !encOf(r) && !hasAl(r) && this.bare(o56(i)) === bw && bw.length <= 2 && !st.innaOpen && !joined(r)) { r.__exact56 = true; set(i, "keep", "pron"); continue; }   /* (wave 56h) وَهُوَ نَا: the cited pronoun — never لَهُوَ after إِنَّ (the sweep: qisas-4 ch6) */
       if (pos56(i) === "verb" && !isVerb(r) && !r.cell && /^[وف]?ل[يتنأا]/.test(bw) && bw.length >= 5 && this.bare(o56(i)) === bw && !hasAl(r)) { r.__exact56 = true; set(i, "jazm", "lamAmr"); st.verb = i; st.lastMood = "jazm"; st.lastMoodAt = i; continue; }   /* (wave 56f) وَلِيَضْرِبَا: the author's verb behind the lām of command, its jazm the nūn's deletion */
       if (isNoun(r) && !isVerb(r) && /^[وف]?(تارة|مرة|طورا|حينا|احيانا|أحيانا|يوما|ليلة|ساعة|لحظة|غدا|غدوة|عشية|بكرة|ابدا|أبدا|دائما|قديما|حديثا)$/.test(bw) && /ً/.test(o56(i)) && this.bare(o56(i)) === bw && !r.afterJarr && !member.has(i) && !st.kanaOpen) { set(i, "nasb", "zarf"); continue; }   /* (wave 56b; not كَانَ يَوْمًا — the sweep: talkhis ch10) تَارَةً … وَتَارَةً: the time-word on the tanwīn fatḥ */
-      if (isNoun(r) && !isVerb(r) && joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !mabniWord(r) && !/[ًٌٍ]/.test(o56(i)) && /ِ$/.test(hostV56(i)) && !/[اي][ً-ٰ]*نِ$/.test(hostV56(i)) /* وَالْبَاقِيَانِ: the dual's nūn — the sweep: talkhis ch52 */ && this.bare(o56(i)) === bw && !/ي$/.test(bw) && !(st.innaOpen && !st.innaIsm)) { let hd = -1; for (let j = i - 1; j >= 0; j--) { if (out[j] && out[j].k === "jarr" && isNoun(rows[j])) { hd = j; break; } } set(i, "jarr", "atf", hd >= 0 ? { head: hd } : {}); if (i === 0) { st.verb = null; st.mubtada = false; } continue; }   /* (wave 56a) وَاسْمِ فِعْلِ الْأَمْرِ، وَالْمُتَكَلِّمِ وَحْدَهُ: the joined noun on the author's bare kasra continues the jarr list, across the sentence boundary too */
+      if (isNoun(r) && !isVerb(r) && joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !mabniWord(r) && !/[ًٌٍ]/.test(o56(i)) && /ِ$/.test(hostV56(i)) && !/[اي][ً-ٰ]*نِ$/.test(hostV56(i)) && !/َ[ً-ٰ]*يْ?[ً-ٰ]*(ه|هم|ها|هما|هن|ك|كم|كما|كن|نا)[ً-ٰ]*$/.test(o56(i)) /* (wave 111) وَالِدَيْهِ: the dual's yāʾ before its pronoun */ /* وَالْبَاقِيَانِ: the dual's nūn — the sweep: talkhis ch52 */ && this.bare(o56(i)) === bw && !/ي$/.test(bw) && !(st.innaOpen && !st.innaIsm)) { let hd = -1; for (let j = i - 1; j >= 0; j--) { if (out[j] && out[j].k === "jarr" && isNoun(rows[j])) { hd = j; break; } } set(i, "jarr", "atf", hd >= 0 ? { head: hd } : {}); if (i === 0) { st.verb = null; st.mubtada = false; } continue; }   /* (wave 56a) وَاسْمِ فِعْلِ الْأَمْرِ، وَالْمُتَكَلِّمِ وَحْدَهُ: the joined noun on the author's bare kasra continues the jarr list, across the sentence boundary too */
       if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && !fused(r) && !propn(r) && st.verb !== null && (!st.fail || st.hiddenDoer) && !st.passive && i > st.verb && i - st.verb <= 2 && /ٌّ?$/.test(o56(i)) && this.bare(o56(i)) === bw && !member.has(i) && !head.has(i) && (this.sifaShape(r, w) || !!encOf(rows[st.verb]))) { set(i, "raf", "fail", { head: st.verb }); st.fail = true; st.hiddenDoer = false; st.failRow = i; continue; }   /* (wave 56c) جَاءَنِي ضَارِبٌ: the ṣifa-shaped nakira on the tanwīn ḍamm is the doer the verb still owes */
       if (isNoun(r) && !isVerb(r) && hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && i > 0 && /^[وف]?(كذا|كذلك|هكذا)$/.test(bareOf(rows[i - 1])) && !member.has(i) && !/[ًٌٍَِ]$/.test(o56(i))) { set(i, "raf", "mubtada"); st.verb = null; st.fail = false; st.maful = 1; st.mubtada = true; st.khabar = true; st.subject = true; st.subjectAt = i; continue; }   /* (wave 56e) وَكَذَا الْبَوَاقِي: the mubtadaʾ after its fronted khabar */
       if (isNoun(r) && !isVerb(r) && hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && !propn(r) && i > 0 && st.verb === i - 1 && isVerb(rows[i - 1]) && joined(rows[i - 1]) && !encOf(rows[i - 1]) && !st.passive && !st.fail && st.failRow === null && typeof st.maful56 === "number" && st.maful56 < st.verb && /[اى]$/.test(hostV56(i)) && !/[ًٌٍ]/.test(o56(i)) && !member.has(i) && !st.innaOpen && !st.kanaOpen) { set(i, "nasb", "maful", { head: st.verb }); st.fail = true; st.hiddenDoer = true; st.maful56 = i; continue; }   /* (wave 56m) قَتَلَ الْبُخْلَ وَأَحْيَا السَّمَاحَا: the joined verb shares the concealed doer — its alif-final definite noun is its object, not its doer */
@@ -18434,7 +18562,7 @@ class DabtEngine {
       if (isNoun(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && !fused(r) && /ٌّ?$/.test(o54(i)) && this.bare(o54(i)) === bw && (() => { const isV = q => !!rows[q] && (isVerb(rows[q]) || !!rows[q].cell || (!!out[q] && /^(hikaya|mazi|mudari|raf|jazm|nasbVerb)$/.test(out[q].rule || "") && !isNoun(rows[q]))); const vv = isV(i - 1) ? i - 1 : ((i >= 2 && (rows[i - 1].afterJarr || jarrClit(rows[i - 1]) || (out[i - 1] && out[i - 1].k === "jarr" && /^[وف]?[بلك]/.test(bareOf(rows[i - 1])))) && isV(i - 2)) ? i - 2 : -1); if (vv < 1 || member.has(i)) return false; if (!/^[وف]?[يتنأا]/.test(bareOf(rows[vv]))) return false; { const vc54 = (rows[vv].__cell || rows[vv].cell) || {}; if (st.passive || /mazi|majhul/i.test(String(vc54.tense || ""))) return false; if (!(typeof vc54.i === "number" && vc54.i >= 6) && !(vc54.also || []).some(x => x >= 6) && !/(وا|ون|ين|ان|تم|نا|تما|تن)$/.test(bareOf(rows[vv]))) return false; } return /^[وف]?(ان|أن|نحو)$/.test(bareOf(rows[vv - 1])); })()) { set(i, "raf", "khabar"); st.verb = null; st.maful = 1; st.mubtada = true; st.khabar = true; continue; }   /* (wave 54i) ﴿وَأَنْ تَصُومُوا خَيْرٌ لَكُمْ﴾، تَسْمَعُ بِالْمُعَيْدِيِّ خَيْرٌ: the clause is the mubtadaʾ, the tanwīn-ḍamm word its khabar */
       if (isNoun(r) && !!encOf(r) && !joined(r) && !r.afterJarr && !fused(r) && !member.has(i) && st.verb !== null && i >= 2 && st.verb === i - 2 && out[i - 1] && out[i - 1].rule === "maful" && out[i - 1].k === "nasb" && !st.passive && (!st.fail || st.hiddenDoer) && !/^[وف]?(فوق|تحت|بعد|قبل|عند|امام|أمام|خلف|بين|وراء|دون|حول|مع|اثناء|أثناء|يوم|ليلة|حين|وقت|ساعة|مدة|طول|عرض|جانب|نحو|قرب|غداة|عشية|صباح|مساء|ذات|كل|بعض|جميع|نفس|عين|كلا|كلتا|غير|مثل|اول|أول|آخر|سائر|ايام|أيام|ليالي|سنة|شهر|عام)$/.test(bw.replace(/(ه|ها|هم|هن|هما|ك|كم|كن|كما|ي|نا)$/, "")) && !member.has(i - 1) && !/َ$/.test(hostV54(i))) { set(i, "raf", "fail", { head: st.verb }); st.fail = true; st.hiddenDoer = false; st.maful = 1; continue; }   /* (wave 54j) يَنْفَعُ الصَّادِقِينَ صِدْقُهُمْ: the doer after the fronted object */
       if (isNoun(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && this.sifaShape(r, w) && i >= 2 && hasAl(rows[i - 1]) && out[i - 1] && /^(badal|nat)$/.test(out[i - 1].rule || "") && out[i - 1].k === "raf" && (rows[i - 2].pk || "") === "ishara" && !st.kanaOpen && !st.innaOpen && !/[ًَ]$/.test(o54(i))) { set(i, "raf", "khabar"); st.verb = null; st.maful = 1; st.mubtada = true; st.khabar = true; continue; }   /* (wave 54k) وَهٰذَا الْأَخِيرُ مَقْصُورٌ: the khabar after the demonstrative\'s badal */
-      if (isNoun(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && head.has(i) && member.get(i + 1) === i && st.verb === i - 1 && !st.passive && !st.kanaOpen && !(() => { try { const e = this.lex(w); return !!e && /\(masdar/.test(String((e.gloss || {}).en || "")); } catch (e) { return false; } })() /* (wave 54l2) يُقْعِي جُلُوسَ الْبَدَوِيِّ: the annexed maṣdar of kind is the absolute object */ && !/^[وف]?(كان|كانت|ليس|ليست|يكون|تكون|صار|صارت|يصير|تصير|يكن|تكن|يزل|تزل|يزال|تزال)$/.test(bareOf(rows[i - 1])) && !/^[وف]?(فوق|تحت|بعد|قبل|عند|امام|أمام|خلف|بين|وراء|دون|حول|مع|اثناء|أثناء|يوم|ليلة|حين|وقت|ساعة|مدة|طول|عرض|جانب|نحو|قرب|غداة|عشية|صباح|مساء|ذات|كل|بعض|جميع|نفس|عين|كلا|كلتا|غير|مثل|اول|أول|آخر|سائر|ايام|أيام|ليالي|سنة|شهر|عام)$/.test(bw) && !DabtEngine.FROZEN_ADV26.test(bw) && /َ$/.test(o54(i)) && !/[ًٌٍ]/.test(o54(i)) && this.bare(o54(i)) === bw) { set(i, "nasb", "hal"); st.maful = 1; st.fail = true; st.hiddenDoer = true; continue; }   /* (wave 54l) إِنْ تَقَعْ خَبَرَ الْمُبْتَدَإِ: the annexed noun after the verb on the author\'s fatḥa is the ḥāl */
+      if (isNoun(r) && !hasAl(r) && !encOf(r) && !joined(r) && !r.afterJarr && head.has(i) && member.get(i + 1) === i && st.verb === i - 1 && !st.passive && !st.kanaOpen && !(() => { try { const e = this.lex(w); return !!e && /\(masdar/.test(String((e.gloss || {}).en || "")); } catch (e) { return false; } })() /* (wave 54l2) يُقْعِي جُلُوسَ الْبَدَوِيِّ: the annexed maṣdar of kind is the absolute object */ && !/^[وف]?(كان|كانت|ليس|ليست|يكون|تكون|صار|صارت|يصير|تصير|يكن|تكن|يزل|تزل|يزال|تزال)$/.test(bareOf(rows[i - 1])) && !/^[وف]?(فوق|تحت|بعد|قبل|عند|امام|أمام|خلف|بين|وراء|دون|حول|مع|اثناء|أثناء|يوم|ليلة|حين|وقت|ساعة|مدة|طول|عرض|جانب|نحو|قرب|غداة|عشية|صباح|مساء|ذات|كل|بعض|جميع|نفس|عين|كلا|كلتا|غير|مثل|اول|أول|آخر|سائر|ايام|أيام|ليالي|سنة|شهر|عام)$/.test(bw) && !DabtEngine.FROZEN_ADV26.test(bw) && /َ$/.test(o54(i)) && !/[ًٌٍ]/.test(o54(i)) && this.bare(o54(i)) === bw) { if (st.maful === 0 && transOf(st.verb) && rows[i + 1] && (hasAl(rows[i + 1]) || propn(rows[i + 1]) || !!encOf(rows[i + 1]) || /^[وف]?الله$/.test(bareOf(rows[i + 1])))) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); continue; }   /* (wave 111) يَخْدِمُ بَيْتَ اللهِ، نَالَ رَحْمَةَ اللهِ: the noun annexed to a definite after a transitive verb still owed its object is that object, no ḥāl */ set(i, "nasb", "hal"); st.maful = 1; st.fail = true; st.hiddenDoer = true; continue; }   /* (wave 54l) إِنْ تَقَعْ خَبَرَ الْمُبْتَدَإِ: the annexed noun after the verb on the author\'s fatḥa is the ḥāl */
       if (isNoun(r) && !r.afterJarr && !joined(r) && !fused(r) && st.kanaOpen && !st.kanaIsm && this.sifaShape(r, (w || "").normalize("NFC").replace(/[ً-ٰ]*ة$/, "")) && ((head.has(i) && member.get(i + 1) === i && rows[i + 1] && hasAl(rows[i + 1]) && /َ$/.test(o54(i))) || (!hasAl(r) && !encOf(r) && /ً$/.test(o54(i))))) { set(i, "nasb", "kanaKhabar"); st.kanaOpen = false; st.kanaIsm = false; continue; }   /* (wave 54m) فَتَكُونُ مَرْفُوعَةَ الْمَحَلِّ، فَلَا يَكُونُ مَعْمُولَةً: kāna\'s hidden ism, the ṣifa its khabar */
       if (isNoun(r) && !hasAl(r) && !encOf(r) && i === 1 && /^(او|أو)$/.test(bareOf(rows[0])) && /ً$/.test(o54(i)) && this.bare(o54(i)) === bw) { set(i, "nasb", "atf"); continue; }   /* (wave 54o) أَوْ صِفَةً لِنَكِرَةٍ: the sentence-initial أَوْ continues the list before it */
       if (isNoun(r) && !hasAl(r) && !encOf(r) && !joined(r) && i >= 2 && /^(او|أو)$/.test(bareOf(rows[i - 1])) && this._punctAt && this._punctAt.has(i - 2) && /[ًٍ]$/.test(o54(i)) && this.bare(o54(i)) === bw && (() => { const want = /ٍ$/.test(o54(i)) ? "jarr" : "nasb"; for (let j = i - 3; j >= 0; j--) if (isNoun(rows[j]) && out[j] && out[j].k === want && !hasAl(rows[j]) && (want === "nasb" || rows[j].afterJarr || jarrClit(rows[j]))) { set(i, want, "atf", { head: j }); return true; } return false; })()) continue;   /* (wave 54p) عَلَى مُفْرَدٍ نَحْوُ …، أَوْ جُمْلَةٍ: the أَوْ-list resumed after the citation on the author\'s kasra */
@@ -18544,7 +18672,8 @@ class DabtEngine {
       if (member.has(i) && ((r.cell && isVerb(r) && !r.__kindNoun) || /^(نعم|بئس|ساء|حبذا)$/.test(bw))) { { const o6 = (((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, "")); if (o6 && this.bare(o6) === bareOf(r)) r.w = o6; } set(i, "keep", "hikaya", { head: member.get(i) }); continue; }   /* (wave 45b) مِثْلُ بِئْسَ: the quoted verb annexed is kept, in the place of jarr */
       if (member.has(i) && !isVerb(r) && !!encOf(r) && /^[وف]?(مثل|نحو|شبه|غير)(ه|ها|هم|هما|هن|نا|ك|كم|كما|كن|ي)$/.test(bw.replace(/[أإآ]/g, "ا")) && (() => { const j = member.get(i); const x = rows[j]; if (!x || !isNoun(x) || hasAl(x) || encOf(x) || propn(x) || x.afterJarr) return false; const xb0 = bareOf(x).replace(/[أإآ]/g, "ا"); return [xb0, xb0.replace(/^[وف]/, "")].some(xb => /^ا[^ا]{3}اء$/.test(xb) || /^[^ا]{3}اء$/.test(xb)) && own68(j) && /ُ$/.test(o68(j)) && !/[ًٌٍ]/.test(o68(j)); })()) {
         const j = member.get(i); member.delete(i); if (![...member.values()].includes(j)) head.delete(j); set(i, out[j] ? out[j].k : "raf", "nat", { head: j }); continue; }   /* (wave 99) أَغْنِيَاءُ مِثْلُهُ: the diptote plural on its damma is no muḍāf — مِثْلُ after it is its naʿt */
-      if (member.has(i) && !isVerb(r)) { set(i, "jarr", "mudafIlayh", { head: member.get(i) }); continue; }   /* (wave 60) مِثْلُ ضَرَبْتُ: the cited verb is no muḍāf ilayh */
+      if (member.has(i) && !isVerb(r) && (() => { const h = member.get(i); const rel = (rows[h] && own68(h) && /[ًٌٍ]/.test(o68(h)) && !encOf(rows[h])) || (own68(i) && /ً/.test(o68(i)) && !/(ً[ىا]|[ىا]ً)$/.test(o68(i))); if (rel) { member.delete(i); if (![...member.values()].includes(h)) head.delete(h); } return rel; })()) { /* (wave 111) بِغُلَامٍ اسْمُهُ يَحْيَى: the author's tanwīn on the would-be head is the receipt that nothing is annexed — the pair is released and the word falls to the rules below */ }
+      else if (member.has(i) && !isVerb(r)) { set(i, "jarr", "mudafIlayh", { head: member.get(i) }); continue; }   /* (wave 60) مِثْلُ ضَرَبْتُ: the cited verb is no muḍāf ilayh */
       // نَحْوُ / مِثْلُ standing before a MARFU' word is «for instance:» — the khabar of an
       // omitted mubtada, and the example that follows is a clause of its own
       if (/^(نحو|مثل)$/.test(cw) && !enc && rows[i + 1] && isNoun(rows[i + 1]) && !member.has(i + 1) && !joined(rows[i + 1]) &&
@@ -18813,6 +18942,7 @@ class DabtEngine {
         if (st.innaOpen && st.innaIsm && hdec.rule === "innaIsm" && hasAl(r) && !enc && !joined(r) && !fused(r) && !r.afterJarr &&
             (i === rows.length - 1 || (this._punctAt && this._punctAt.has(i)) || (rows[i + 1] && /^[وف](انت|انتم|انتما|انتن|هو|هي|هم|هن|هما|انا|نحن)$/.test(bareOf(rows[i + 1]).replace(/[أإآ]/g, "ا"))))) {
           set(i, "raf", "innaKhabar"); st.innaOpen = false; st.innaIsm = false; continue; }   /* (wave 35d) وَإِنَّ وَعْدَكَ الْحَقُّ وَأَنْتَ…: the line ends on it — the khabar, no naʿt */
+        if (st.fail && st.failRow === i - 1 && st.maful === 0 && !st.passive && st.verb !== null && rows[st.verb] && transOf(st.verb) && !st.kanaOpen && !st.innaOpen && hasAl(rows[i - 1]) && this.sifaShape(rows[i - 1], rows[i - 1].w) && hasAl(r) && this.sifaShape(r, w) && !joined(r) && !r.afterJarr && this._punctAt && this._punctAt.has(i) && this.bare(String(r.lemma || "")) !== this.bare(String(rows[i - 1].lemma || "")) && !(rows[i + 1] && isNoun(rows[i + 1]) && !hasAl(rows[i + 1]) && !rows[i + 1].afterJarr)) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); continue; }   /* (wave 111) وَظَلَمَ الْغَنِيُّ الْفَقِيرَ: two substantive adjectives close the clause of a transitive verb still owed its object — the second is that object */
         if (agree && (!propn(r) || hasAl(r)) /* (wave 32c) الْأَبِ الرَّحِيمِ */ && !numberBar && (afterSeat ? (this.sifaShape(r, w) || sifaPl26) : (hasAl(r) || this.sifaShape(r, w) || sifaPl26 || (this.MUDAF_WORDS.has(cw) && member.has(i + 1))))) {
           set(i, hdec.k, "nat", { head: natHead }); continue;
         }
@@ -18852,7 +18982,7 @@ class DabtEngine {
       if (st.innaOpen && st.innaIsm && i >= 2 && /^[وف](هو|هي|هما|هم|هن)$/.test(bareOf(rows[i - 1])) && out[i - 2] && out[i - 2].rule === "innaIsm" && isNoun(r)) { set(i, "raf", "khabar"); st.innaParen27 = true; continue; }   /* (wave 27a) وَهِيَ اللَّفْظُ: the parenthetical's khabar — inna's khabar is still owed */
       if (st.innaOpen && st.innaIsm) { st.innaOpen = false; set(i, "raf", "innaKhabar"); continue; }
       if (/kana-family's ISM|ism of kana/.test(N) && !fused(r) && !r.afterJarr && !jarrClit(r) && !(st.kanaOpen && st.kanaIsm && st.hiddenDoer)) { set(i, "raf", "kanaIsm"); continue; }   // (wave 20) never a jarr phrase
-      if (/KHABAR — mansub/.test(N)) { set(i, "nasb", "kanaKhabar"); st.kanaOpen = false; continue; }
+      if (/KHABAR — mansub/.test(N) && !(i > 0 && isVerb(rows[i - 1]) && !/^[وف]?(كان|كانت|يكون|تكون|يكن|تكن|صار|صارت|يصير|تصير|ليس|ليست|اصبح|أصبح|اصبحت|أصبحت|ظل|ظلت|بات|باتت|امسى|أمسى|اضحى|أضحى|يزال|تزال|يزل|تزل)$/.test(bareOf(rows[i - 1])) && typeof st.verb === "number" && st.verb === i - 1) /* (wave 111) وَكَانَ يَخْدِمُ بَيْتَ اللهِ: the verb took the khabar's seat — the noun after it is that verb's */) { set(i, "nasb", "kanaKhabar"); st.kanaOpen = false; continue; }
       if (st.forceKhabar === i && isNoun(r)) { st.forceKhabar = null; st.khabar = true; set(i, "raf", "khabar"); continue; }
       if (isNoun(r) && hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && !mabniWord(r) && !/^[وف]?(الذي|التي|الذين|اللاتي|اللائي|اللذان|اللتان)$/.test(cw) && i > 0 && rows[i - 1] && rows[i - 1].pk === "pron" && (rows[i - 1].kind || "").startsWith("noun") &&
           !joined(rows[i - 1]) && st.verb === null && !st.innaOpen && !st.kanaOpen && !st.khabar && (i === 1 || (rows[i - 2] && ((rows[i - 2].kind || "") === "particle" || /^[وف]?كقول/.test(bareOf(rows[i - 2])))))) {
@@ -18922,8 +19052,9 @@ class DabtEngine {
             if (selfDoer84(v84) && !intr84 && st.maful === 0) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); r.__objOfSelf84 = true; st.fail = true; st.hiddenDoer = true; continue; }   /* A · أَلَنَّا لَهُ الْحَدِيدَ */
             if (pc84 === 3 && !intr84 && !encOf(v84) && (/^[وف]?الله$/.test(bareOf(r)) || (hasAl(r) && !femWord84(r) && !joined(r) && (() => { const cy = this._carry26; if (cy && cy.fem) return true; if (typeof st.subjectAt === "number" && st.subjectAt >= 0 && st.subjectAt < st.verb && rows[st.subjectAt] && femWord84(rows[st.subjectAt])) return true; for (let q = st.verb - 1; q >= 0; q--) { if (isNoun(rows[q]) && !rows[q].afterJarr && out[q] && /^(fail|mubtada|kanaIsm|innaIsm|naib)$/.test(out[q].rule || "") && femWord84(rows[q])) return true; } return false; })() /* (wave 84 repair) نَطَقَتِ الْحَالُ: the she-verb takes the ال-noun as object only when a feminine doer is in evidence — carried, or named earlier in the sentence */)) && st.verb === i - 1 && !/amr/i.test(v84.cell.tense || "")) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); r.__objOfSelf84 = true; st.fail = true; st.hiddenDoer = true; continue; }   /* D · سَأَلَتِ اللهَ */
           }
-          if (hasAl(r) && !propn(r) && !r.alam && !enc && st.maful === 0 && !st.passive && st.verb !== null && i - st.verb >= 2 && joined(rows[st.verb]) && rows[st.verb].cell && Number(rows[st.verb].cell.i) === 0 && !encOf(rows[st.verb]) && rows.slice(st.verb + 1, i).every(x => (x.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(x).replace(/[أإآ]/g, "ا"))) && !this.prepGov93(rows[st.verb], rows[st.verb + 1]) && transOf(st.verb) && (() => { for (let q = st.verb - 1; q >= 0; q--) { if (isVerb(rows[q]) && !rows[q].__kindNoun) return !!(rows[q].cell && Number(rows[q].cell.i) === 0) && !out.slice(q + 1, st.verb).some((o, d) => o && o.rule === "fail" && isNoun(rows[q + 1 + d]) && !/^[وف]?الله$/.test(bareOf(rows[q + 1 + d])) && !propn(rows[q + 1 + d]) && !rows[q + 1 + d].alam); } return false; })() && !/^[وف]?الله$/.test(bw)) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); st.fail = true; st.hiddenDoer = true; continue; }   /* (wave 97; 98c: only after the Name, a name or a hidden doer — وَيَلْزَمُ فِيهَا الضَّمِيرُ opens anew) وَأَعْطَاهُ اللهُ الْحِكْمَةَ، وَأَنْزَلَ عَلَيْهِ الزَّبُورَ: the joined he-verb keeps the clause's doer; the definite past its jarr-pronoun is the object */
+          if (hasAl(r) && !propn(r) && !r.alam && !enc && st.maful === 0 && !st.passive && st.verb !== null && i - st.verb >= 2 && joined(rows[st.verb]) && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !!encOf(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !fused(rows[i + 1])) /* (wave 111) a pronoun-bearing noun follows: this al-noun is the doer, that one the object */ && rows[st.verb].cell && Number(rows[st.verb].cell.i) === 0 && !encOf(rows[st.verb]) && rows.slice(st.verb + 1, i).every(x => (x.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(x).replace(/[أإآ]/g, "ا"))) && !this.prepGov93(rows[st.verb], rows[st.verb + 1]) && transOf(st.verb) && (() => { for (let q = st.verb - 1; q >= 0; q--) { if (isVerb(rows[q]) && !rows[q].__kindNoun) return !!(rows[q].cell && Number(rows[q].cell.i) === 0) && !out.slice(q + 1, st.verb).some((o, d) => o && o.rule === "fail" && isNoun(rows[q + 1 + d]) && !/^[وف]?الله$/.test(bareOf(rows[q + 1 + d])) && !propn(rows[q + 1 + d]) && !rows[q + 1 + d].alam); } return false; })() && !/^[وف]?الله$/.test(bw)) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); st.fail = true; st.hiddenDoer = true; continue; }   /* (wave 97; 98c: only after the Name, a name or a hidden doer — وَيَلْزَمُ فِيهَا الضَّمِيرُ opens anew) وَأَعْطَاهُ اللهُ الْحِكْمَةَ، وَأَنْزَلَ عَلَيْهِ الزَّبُورَ: the joined he-verb keeps the clause's doer; the definite past its jarr-pronoun is the object */
           if (!enc && (hasAl(r) || propn(r) || r.alam) && rows[st.verb] && this.DITRANS.test(this.bare(rows[st.verb].lemma || "")) && !joined(r) && !r.afterJarr && !fused(r) && st.verb === i - 2 && out[i - 1] && out[i - 1].rule === "maful" && isNoun(rows[i - 1]) && !encOf(rows[st.verb])) { st.maful = 2; set(i, "nasb", "maful", { head: st.verb }); st.fail = true; st.hiddenDoer = true; continue; }   /* (wave 98) أَعْطَى الْبَائِعَ الدَّرَاهِمَ: the verb of giving owes a second object */
+          if (st.fail && !st.hiddenDoer && !!enc && st.maful === 0 && st.verb === i - 1 && rows[st.verb] && /^[وف]/.test(bareOf(rows[st.verb])) && !joined(r) && !r.afterJarr && !jarrClit(r) && !fused(r) && !/^(?:[وف]َ?)?[بل]ِ/.test(w) && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !jarrClit(rows[i + 1]) && (encOf(rows[i + 1]) || hasAl(rows[i + 1]))) && !(this.INTRANS.test(String((rows[st.verb].gloss && (rows[st.verb].gloss.en || rows[st.verb].gloss)) || "").toLowerCase()) || this.intransParadigm(rows[st.verb]))) { st.maful++; set(i, "nasb", "maful", { head: st.verb }); continue; }   /* (wave 111) فَنَظَرَ الْأَسَدُ … فَرَأَى صُورَتَهُ: the doer the clause already named serves the joined verb — the noun with its pronoun is the object */
           set(i, "raf", "fail"); st.failRow = i;
           if (st.qawl) { st.verb = null; st.qawl = false; }
           continue;
@@ -18937,6 +19068,7 @@ class DabtEngine {
         if (st.maful === 0 && !st.passive && st.hiddenDoer && !hasAl(r) && !encOf(r) && !joined(r) && typeof st.verb === "number" && st.verb === i - 2 && rows[i - 1] && /^[وف]?(له|لها|لهم|لهن|لهما|لك|لكم|لي|لنا)$/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا")) && rows[i - 3] && /^[وف]?(ما|الذي|التي|من|الذين)$/.test(bareOf(rows[i - 3]).replace(/[أإآ]/g, "ا"))) { set(i, "raf", "fail"); continue; }   /* (wave 29e/f) ثَبَتَ لَهُ اسْمٌ: the nakira after the لَهُ phrase is the doer the verb was still owed */
         if (st.maful === 0 && !st.passive && i >= 2 && !!encOf(r) && !hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && this.masdarShape(this.split(w, encOf(r))[0]) && joined(rows[i - 1]) && hasAl(rows[i - 1]) && isNoun(rows[i - 1]) && out[i - 1] && out[i - 1].rule === "atf" && out[i - 1].k === "raf" && typeof st.failRow === "number" && st.failRow >= 0 && rows[st.failRow] && !!encOf(rows[st.failRow]) && this.masdarShape(this.split((rows[st.failRow].w || "").normalize("NFC"), encOf(rows[st.failRow]))[0]) && !(this._punctAt && this._punctAt.has(i - 1))) { out[i - 1] = { k: "raf", rule: "mubtada" }; set(i, "raf", "khabar"); st.verb = null; st.mubtada = true; st.khabar = true; st.subject = true; st.subjectAt = i - 1; st.fail = false; continue; }   /* (wave 70a) جَازَ اتِّصَالُهُ وَالْمُخْتَارُ انْفِصَالُهُ: the second maṣdar answers the first — the joined definite noun is a mubtada, this its khabar */
         if (st.maful === 0 && !st.passive && /^[وف]?الله$/.test(bw) && !enc && st.verb === i - 1 && rows[st.verb].cell && Number(rows[st.verb].cell.i) === 0 && !encOf(rows[st.verb]) && !/majhul/i.test(rows[st.verb].cell.tense || "") && !DabtEngine.WORSHIP97.test(this.bare(String(rows[st.verb].lemma || "").split(/[()\s]/)[0]).replace(/[أإآ]/g, "ا")) && !anVerb84(st.verb) && !(st.verb > 0 && /^[وف]?(ان|أن|لن|لم|كي|حتى|لئلا|ل)$/.test(bareOf(rows[st.verb - 1]).replace(/[أإآ]/g, "ا"))) /* (wave 98) أَنْ يَرَى اللهَ: the subordinate verb keeps the clause's doer */) { set(i, "raf", "fail"); st.fail = true; st.failRow = i; st.hiddenDoer = false; st.allah35 = true; continue; }   /* (wave 97) وَأَلَانَ اللهُ لَهُ الْحَدِيدَ: the Name right after a verb that is no verb of worship or address is its doer, whatever doer the clause before carried */
+        if (st.maful === 0 && !st.passive && st.hiddenDoer && st.verb !== null && rows[st.verb] && (!transOf(st.verb) || st.intransV || this.INTRANS.test(String((rows[st.verb].gloss && (rows[st.verb].gloss.en || rows[st.verb].gloss)) || "").toLowerCase()) || /^to (descend|dismount|alight|fall|rise|arrive|appear|happen|occur|remain|stay|dwell|live|die|perish|sleep|wake|weep|cry|laugh|sit|stand|walk|run|flee|return|go|come|enter|exit|leave|pass|grow|increase|decrease|shine|burn|boil|flow|blow)\b/.test(String((rows[st.verb].gloss && (rows[st.verb].gloss.en || rows[st.verb].gloss)) || "").toLowerCase()) || this.intransParadigm(rows[st.verb])) && !hasAl(r) && !encOf(r) && !propn(r) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !this.sifaShape(r, w)) { set(i, "raf", "fail"); st.fail = true; st.failRow = i; st.hiddenDoer = false; continue; }   /* (wave 111) أَنْ يَنْزِلَ بِكُمْ عَذَابٌ: a verb whose paradigm stores no object takes none — the nakira after it is its doer */
         if (st.maful === 0 && !st.passive) { st.maful++; set(i, "nasb", "maful"); continue; }
         if ((st.maful === 1 || st.maful === 2) && rows[st.verb] && (lm => /^(اعلم|ارى|انبا|اخبر)$/.test(lm) || (/^(نبا|خبر|حدث)$/.test(lm) && /ّ/.test(String(rows[st.verb].lemma || "").normalize("NFC"))))(this.bare(rows[st.verb].lemma || "").replace(/[أإآ]/g, "ا")) && !joined(r) && !r.afterJarr && !fused(r) && !hasAl(r) && !encOf(r)) { st.maful++; set(i, "nasb", "maful"); continue; }   /* (wave 47g) أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا: the verbs of three objects */
         if (st.maful === 1 && rows[st.verb] && this.QULUB_VERBS.test(this.bare(rows[st.verb].lemma || "")) && !joined(r) && !r.afterJarr && !fused(r)) { st.maful++; set(i, "nasb", "maful"); continue; }
@@ -18961,6 +19093,8 @@ class DabtEngine {
       if (!hasAl(r) && !enc && this.sifaShape(r, w) && own68(i) && /ٌّ?$/.test(o68(i))) { set(i, "raf", "khabar"); continue; }   /* (round 73c) آمِرٌ نَاهٍ مُخْبِرٌ: a ḍammatan after the khabar is a second khabar, no ḥāl */
       if (!hasAl(r) && !enc && this.sifaShape(r, w)) { set(i, "nasb", "hal"); continue; }
     }
+    /* (wave 111) the tanwīn alif the author wrote is the receipt of naṣb: a decided noun wearing ـًا keeps naṣb whatever seat was argued (قُرْبَانًا) */
+    for (let q = 0; q < rows.length; q++) { try { const o = String((this._orig24 || [])[q] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); if (!o || !rows[q] || !isNoun(rows[q]) || isVerb(rows[q]) || encOf(rows[q]) || this.bare(o) !== bareOf(rows[q])) continue; if (/ً/.test(o) && out[q] && ["jarr", "raf"].includes(out[q].k) && !["keep", "mabni", "cell", "none"].includes(out[q].rule || "")) out[q] = { ...out[q], k: "nasb", receipt111: true }; } catch (e) {} }
     return { out, head, member };
   }
   // ---- VOWEL: the sentence, endings derived (mode "endings") or every mark derived (mode "full")
@@ -19149,8 +19283,9 @@ class DabtEngine {
       const lexPl = (() => { try { const n = this.lex(w); const pl = String((n && n.plural) || ""); const hv = hN0.replace(/^[وف][ً-ٰ]*/, "").replace(/^ا[ً-ٰ]*ل[ً-ٰ]*/, "").replace(/[ً-ٰ]+$/, ""); return pl.split(/[\/،,]/).some(x => { const xb = this.bare(x.trim()).replace(/^ال/, ""); if (!xb || xb !== bhD) return false; const xv = x.trim().normalize("NFC").replace(/^ال/, "").replace(/[ً-ٰ]+$/, ""); return !(/[ً-ٰ]/.test(hv) && /[ً-ٰ]/.test(xv) && hv !== xv && !hv.startsWith(xv)); }); } catch (e) { return false; } })();   // (wave 20)   /* (wave 26q2) إِخْوَان ≠ أَخَوَان */
       const fH = x => (x || "").replace(/[ئؤأإ]/g, "ء");
       const marksAgree = !/[ً-ٰ]/.test(hN0) || !/[ً-ٰ]/.test(lm || "") || fH(hN0.replace(/^[وف][ً-ٰ]*/, "").replace(/^ا[ً-ٰ]*ل[ً-ٰ]*/, "").replace(/^([ء-ي])([ًٌٍَُِ]*)ّ/, "$1$2")).startsWith(fH((lm || "").normalize("NFC").replace(/[ً-ٰ]+$/, "").replace(/^ال/, "").replace(/ة$/, "ت").replace(/[ىي]$/, "").replace(/[ً-ٰ]+$/, "")));   // ذُكْرَان is no dual of ذَكَر: the inner vowels differ (wave 20)
-      const dualByLex = /َ[ً-ٰ]*(ان|يْن)$/.test(hN0) && (bh.length >= 5 || (bh.length === 4 && /ّ/.test(hN0))) && (!lb || ((lb + "ان" === bh || lb + "ين" === bh) && (marksAgree || hN0.replace(/َ[ً-ٰ]*(ان|يْن)$/, "") === String(lm || "").normalize("NFC").replace(/[ً-ٰ]+$/, "")))) && (() => { const stem = hN0.replace(/َ[ً-ٰ]*(ان|يْن)$/, ""); try { const e = this.lex(stem) || this.lex(stem.replace(/ئ$/, "ء")) || this.lex(stem.replace(/ت$/, "ة")) || (/^(ال)?[أا][بخ]و$/.test(this.bare(stem)) ? this.lex(stem.replace(/[ً-ٰ]*و$/, "")) : null) /* (wave 26q3) الْأَخَوَانِ */;   /* (wave 23b) */ return !!(e && /noun|adj/.test(e.pos || "") && !/verb/.test(e.pos || "")); } catch (e) { return false; } })();   // شَيْئَانِ: the dual read off its singular (wave 20)
-      const dual = !lexPl && !(/[ً-ٰ]/.test(hN0) && /ِ[ً-ٰ]*ي[ً-ٰ]*ن$/.test(hN0)) /* (wave 32a) النَّبِيِّينَ: a kasra before the yāʾ-nūn is the sound plural, never the dual */ && (dualByLex || (/(ان|ين)$/.test(bh) && lb && marksAgree && (lb + "ان" === bh.replace(/ين$/, "ان") || lb + "ين" === bh || fH(lb) + "ان" === fH(bh).replace(/ين$/, "ان") || fH(lb) + "ين" === fH(bh) || lbD + "ان" === bhD.replace(/ين$/, "ان") || lbD + "ين" === bhD || (manqus && lbD + "يان" === bhD.replace(/ين$/, "ان")) || (/^(اب|اخ|حم)$/.test(lbD) && (lbD + "وان" === bhD || lbD + "وين" === bhD)) /* (wave 26q2) الْأَخَوَانِ */)) || dualShape);   // بَاقٍ → بَاقِيَانِ: the manqus dual takes its ya back
+      const wholeLex111 = (() => { try { const e = this.lex(host) || this.lex(host.replace(/[ً-ٰ]*ا$/, "")); if (!e || e.viaPlural) return false; const lw = this.bare(String(e.lemma || "").split(/[()\s]/)[0]); const bh0 = bh.replace(/ا$/, ""); return !!lw && [bh, bh0].some(x => lw === x || lw === x.replace(/^ال/, "") || lw === x.replace(/^[وف]/, "")); } catch (e) { return false; } })();   /* (wave 111) قُرْبَانًا: the lexicon owns the whole word as a singular — no dual of قُرْب */
+      const dualByLex = !wholeLex111 && /َ[ً-ٰ]*(ان|يْن)$/.test(hN0) && (bh.length >= 5 || (bh.length === 4 && /ّ/.test(hN0))) && (!lb || ((lb + "ان" === bh || lb + "ين" === bh) && (marksAgree || hN0.replace(/َ[ً-ٰ]*(ان|يْن)$/, "") === String(lm || "").normalize("NFC").replace(/[ً-ٰ]+$/, "")))) && (() => { const stem = hN0.replace(/َ[ً-ٰ]*(ان|يْن)$/, ""); try { const e = this.lex(stem) || this.lex(stem.replace(/ئ$/, "ء")) || this.lex(stem.replace(/ت$/, "ة")) || (/^(ال)?[أا][بخ]و$/.test(this.bare(stem)) ? this.lex(stem.replace(/[ً-ٰ]*و$/, "")) : null) /* (wave 26q3) الْأَخَوَانِ */;   /* (wave 23b) */ return !!(e && /noun|adj/.test(e.pos || "") && !/verb/.test(e.pos || "")); } catch (e) { return false; } })();   // شَيْئَانِ: the dual read off its singular (wave 20)
+      const dual = !lexPl && !(/[ً-ٰ]/.test(hN0) && /ِ[ً-ٰ]*ي[ً-ٰ]*ن$/.test(hN0)) /* (wave 32a) النَّبِيِّينَ: a kasra before the yāʾ-nūn is the sound plural, never the dual */ && (dualByLex || (!wholeLex111 && /(ان|ين)$/.test(bh) && lb && marksAgree && (lb + "ان" === bh.replace(/ين$/, "ان") || lb + "ين" === bh || fH(lb) + "ان" === fH(bh).replace(/ين$/, "ان") || fH(lb) + "ين" === fH(bh) || lbD + "ان" === bhD.replace(/ين$/, "ان") || lbD + "ين" === bhD || (manqus && lbD + "يان" === bhD.replace(/ين$/, "ان")) || (/^(اب|اخ|حم)$/.test(lbD) && (lbD + "وان" === bhD || lbD + "وين" === bhD)) /* (wave 26q2) الْأَخَوَانِ */)) || dualShape);   // بَاقٍ → بَاقِيَانِ: the manqus dual takes its ya back
       const kasraYa32 = /ِ[ً-ٰ]*ي[ً-ٰ]*ن$/.test(hN0) && !/َ[ً-ٰ]*يْ[ً-ٰ]*ن$/.test(hN0);   /* (wave 32e) الْعَالَمِينَ، عَالِمِينَ: the kasra-yāʾ before the nūn is the sound plural's */
       const singular = /(ون|ين)$/.test(bh) && lb && !(kasraYa32 && /^(عالمين|اهلين|أهلين|بنين|سنين|ارضين|أرضين|عالمون|اهلون|أهلون|بنون|سنون|ارضون|أرضون)$/.test(bhD)) && (lb === bh || lb === bhD || lb.replace(/^ال/, "") === bhD || lb === bh.replace(/^[وف]/, "") /* (wave 26q2) وَبِنْيَامِينُ */);   /* (wave 24g) وَالتَّضْمِينُ */                    // عِشْرِين is not a plural; هَامَان is no dual
       const isPropn = (() => { if (r.__propn35) return true; const n = this.lex(w); if (n && /propn/.test(n.pos || "")) return true; try { const w32 = (w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*/, ""); if (/^[بلك]/.test(w32) && !/^[بلك][ً-ٰ]*ا/.test(w32) && this.bare(w32).length >= 5) { const n2 = this.lex(w32.replace(/^[بلك][ً-ٰ]*/, "")); return !!(n2 && /propn/.test(n2.pos || "")); } } catch (e) {} return false; })();   /* (wave 32e) لِدَاوُدَ، وَلِسُلَيْمَانَ: the name behind its jarr letter */
@@ -21952,9 +22087,12 @@ class TaqdirEngine {
   static expected(tok){
     const ar = String((tok.irab || {}).ar || "").normalize("NFC");
     if (!/مُسْتَتِر/.test(ar.replace(/(لَا|لَيْسَ|غَيْرُ|غَيْرَ|غَيْرِ)\s+مُسْتَتِر[ًٌٍ]?/g, ""))) return null;   // «لَا مُسْتَتِرٌ» asserts the opposite
-    const m = ar.match(/تَقْدِيرُهُ\s*«?\s*(هُوَ|هِيَ|أَنْتَ|أَنَا|نَحْنُ|أَنْتِ)/);
+    // (wave 112) a line may OFFER two readings — the Kāfiya's own «تَضْرِبُ … تَقْدِيرُهُ أَنْتَ أَوْ هِيَ» — and the engine
+    // that names either has read the form right; `texts` carries them all, `text` the first for the callers that want one
+    const m = ar.match(/تَقْدِيرُهُ\s*«?\s*((?:هُوَ|هِيَ|أَنْتَ|أَنَا|نَحْنُ|أَنْتِ)(?:\s*(?:أَوْ|،|\/)\s*(?:هُوَ|هِيَ|أَنْتَ|أَنَا|نَحْنُ|أَنْتِ))*)/);
+    const texts = m ? m[1].split(/\s*(?:أَوْ|،|\/)\s*/).filter(Boolean) : [];
     const written = /(التَّاءُ|الْوَاوُ|النُّونُ|نَا|الْأَلِفُ|الْيَاءُ)\s+(فَاعِلٌ|فَاعِلُهُ|نَائِبُ فَاعِلٍ)/.test(ar);
-    return { text: m ? m[1] : null, naib: /نَائِبُ الْفَاعِلِ\s+(ضَمِيرٌ\s+)?مُسْتَتِرٌ|نَائِبُ فَاعِلٍ\s+مُسْتَتِرٌ/.test(ar) || (/نَائِب/.test(ar) && /مُسْتَتِر/.test(ar) && !/الْفَاعِلُ\s+(ضَمِيرٌ\s+)?مُسْتَتِرٌ/.test(ar)), written };
+    return { text: texts[0] || null, texts, naib: /نَائِبُ الْفَاعِلِ\s+(ضَمِيرٌ\s+)?مُسْتَتِرٌ|نَائِبُ فَاعِلٍ\s+مُسْتَتِرٌ/.test(ar) || (/نَائِب/.test(ar) && /مُسْتَتِر/.test(ar) && !/الْفَاعِلُ\s+(ضَمِيرٌ\s+)?مُسْتَتِرٌ/.test(ar)), written };
   }
   static grade(sen){
     const toks = sen.tokens || []; const text = toks.map(t => ((t.s && t.s.full) || (t.surface && t.surface.full) || "")).join(" ");
@@ -21965,7 +22103,7 @@ class TaqdirEngine {
     toks.forEach((t, i) => {
       const ex = this.expected(t);
       const mine = gs.find(x => x.i === i && (x.kind === "mustatir" || x.kind === "naib"));
-      if (ex) { res.n++; if (mine) { res.hit++; if (ex.text) { res.textN++; if (mine.text === ex.text) res.textHit++; else res.miss.push({ i, w: (t.s || t.surface).full, want: ex.text, got: mine.text }); } }
+      if (ex) { res.n++; if (mine) { res.hit++; if (ex.text) { res.textN++; if ((ex.texts || [ex.text]).includes(mine.text)) res.textHit++; else res.miss.push({ i, w: (t.s || t.surface).full, want: (ex.texts || [ex.text]).join(" أَوْ "), got: mine.text }); } }
                 else res.miss.push({ i, w: (t.s || t.surface).full, want: ex.text || "مُسْتَتِر", got: null }); }
       else if (mine) { const ar = String((t.irab || {}).ar || ""); if (/(التَّاءُ|الْوَاوُ|النُّونُ|نَا|الْأَلِفُ|الْيَاءُ)\s+(فَاعِلٌ|فَاعِلُهُ|نَائِبُ فَاعِلٍ)|فَاعِلٌ مَرْفُوعٌ/.test(ar) && /^(فِعْل|الْفَاءُ|الْوَاوُ)/.test(ar)) { res.false++; res.miss.push({ i, w: (t.s || t.surface).full, want: null, got: mine.text, false: true }); } }
     });
@@ -29128,6 +29266,7 @@ class MamnuEngine {
     wayh:  { ar: "مَا خُتِمَ بِوَيْهِ مَبْنِيٌّ عَلَى الْكَسْرِ", en: "a name ending in -wayh is mabni on the kasra, not a diptote", tr: "veyh ile biten kesre üzere mebnîdir, gayr-i munsarif değil" },
     taa:   { ar: "لَحِقَتْهُ التَّاءُ فَانْصَرَفَ", en: "the plural took the tāʾ marbūṭa: it declines in full", tr: "tâ-i merbûta alan çoğul munsariftir" },
     sakin: { ar: "ثُلَاثِيٌّ سَاكِنُ الْوَسَطِ فَيَنْصَرِفُ", en: "a three-letter name with a quiet middle declines in full", tr: "ortası sâkin üç harfli alem munsariftir" },
+    tanwin: { ar: "نُوِّنَ فَهُوَ مُنْصَرِفٌ", en: "it carries tanwin: fully declined", tr: "tenvinlidir: munsariftir" },
   };
   static FEM_NAMES = new Set(["مريم", "زينب", "هاجر", "سعاد", "دمشق", "بغداد", "حمص", "سارة", "عائشة", "فاطمة", "خديجة", "آسية", "بلقيس", "هند"]);
   static FOREIGN = new Set(["ابراهيم", "إبراهيم", "يعقوب", "يوسف", "اسماعيل", "إسماعيل", "اسحاق", "إسحاق", "هارون", "اسرائيل", "إسرائيل", "آدم", "ادم", "داود", "داوود", "سليمان", "ايوب", "أيوب",
@@ -29137,6 +29276,14 @@ class MamnuEngine {
   static bare(w){ return stripAr((w || "").normalize("NFC")).replace(/[^ء-ي]/g, ""); }
   static strip(w){ return (w || "").normalize("NFC").replace(/[«»،.:!؟]/g, "").trim(); }
   // the surface's own definiteness: the article, or an annexation the caller knows about
+  // (wave 112) does the corpus recite this very word as a cell of some verb's paradigm? A name on the verb's pattern
+  // (يَزِيد، يَشْكُر، تَغْلِب) is the classic ʿalamiyya + wazn al-fiʿl, but with no root to vouch the engine could not tell
+  // يَزِيد from يَقِين (a noun on فَعِيل whose yāʾ is a root letter). The paradigms can: if the written word is a
+  // muḍāriʿ cell, its first letter is the person prefix, not a radical. The lookup is the RootFinder's own.
+  static verbVouch(s){
+    try { const r = RootFinder.fromCorpus(String(s || "").replace(/[ًٌٍَُِْ]$/, "") + "ُ"); if (r && r.root && r.cell) return true; } catch (e) {}
+    try { const r = RootFinder.fromCorpus(String(s || "")); return !!(r && r.root && String(r.via || "") === "corpus"); } catch (e) { return false; }
+  }
   static verdict(word, opt = {}){
     const w0 = this.strip(word); if (!w0) return null;
     const hasAl = /^[اٱ][ً-ٰ]*ل/.test(w0);
@@ -29145,6 +29292,7 @@ class MamnuEngine {
     const b = this.bare(s);
     const out = { word: w0, causes: [], barred: false, sure: false, exit: null, mabni: false, jarr: "kasra" };
     if (!b || b.length < 3) return out;
+    if (/[ًٌٍ]/.test(w0)) { out.sure = true; out.barred = false; out.exit = "tanwin"; return out; }   /* (wave 101) مَعْنًى، فَتًى، ثَمَانٍ: the tanwīn is the receipt of ṣarf */
     // lexicon facts the shape cannot know
     let lex = null; try { lex = RootFinder.nounFromCorpus(s); } catch (e) { lex = null; }
     const pos = String((lex && lex.pos) || opt.pos || "");
@@ -29154,10 +29302,12 @@ class MamnuEngine {
     if (/ويه$/.test(b)) { out.mabni = true; out.exit = "wayh"; out.sure = true; return out; }
     // ---- the single causes that stand for two
     try { const j = JamEngine.recognize(s); if (j && j.sure && !/ة$/.test(b)) { out.causes.push("muntaha"); } } catch (e) {}
+    try { if (!out.causes.includes("muntaha") && !/ة$/.test(b) && typeof JamEngine !== "undefined" && JamEngine.muntaha && JamEngine.muntaha(b) && !/ي[ً-ٰ]*ّ[ً-ٰ]*$/.test(s) && !(lex && !lex.viaPlural && this.bare(String(lex.lemma || "").split(/[()\s]/)[0]) === b)) out.causes.push("muntaha"); } catch (e) {}   /* (wave 101) مَسَاجِدَ: the shape alone bars the ultimate plural */
     // the ultimate plural that took the tāʾ (أَسَاتِذَة، زَنَادِقَة): two letters, an alif, two or three letters, the tāʾ — it declines in full; a proper name is judged by its own causes
     if (!propn && /ة$/.test(b) && /^[ء-ي]{2}ا[ء-ي]{2,3}ة$/.test(b)) out.exit = "taa";
     let md = null; try { md = AlamaEngine.mamdudVerdict(s, root); } catch (e) { md = null; }
-    if (md === true && b.replace(/اء$/, "").length >= 3) out.causes.push("alifTanith");   // a stem of three before the alif: مَاء، دَاء carry a radical, not the alif of femininity
+    if (md === true && b.replace(/اء$/, "").length >= 3) out.causes.push("alifTanith");
+    else if (md === null && !out.causes.length && /اء$/.test(b) && b.length >= 5 && (/^[ء-ي]َ[ء-ي]ْ[ء-ي]َاء$/.test(skel) || /^[ء-ي]ُ[ء-ي]َ[ء-ي]َاء$/.test(skel) || /^أَ[ء-ي]ْ[ء-ي]ِ[ء-ي]َاء$/.test(skel))) out.causes.push("alifTanith");   /* (wave 101) صَحْرَاءُ، فُقَرَاءُ، أَصْدِقَاءُ: the mamdūd shapes with no root to ask */   // a stem of three before the alif: مَاء، دَاء carry a radical, not the alif of femininity
     // the short alif of femininity: فُعْلَى / فَعْلَى — four letters, a quiet second, the alif last (صُغْرَى، بُشْرَى، حُبْلَى); not the three-letter فَتًى / هُدًى
     if (/ى$/.test(b) && b.length === 4 && /^[ء-ي][َُ][ء-ي]ْ[ء-ي]َ?ى$/.test(skel)) out.causes.push("alifTanith");
     if (/ى$/.test(b) && b.length === 5 && /^[ء-ي][َُ][ء-ي]َا[ء-ي]َ?ى$/.test(skel)) out.causes.push("alifTanith");   // فُعَالَى / فَعَالَى (صَحَارَى)
@@ -29168,22 +29318,28 @@ class MamnuEngine {
       else if (this.FEM_NAMES.has(b.replace(/[أإآ]/g, "ا"))) { if (three) out.exit = "sakin"; else out.causes.push("alamiyya", "tanith"); }
       else if (this.TARKIB.has(b)) out.causes.push("alamiyya", "tarkib");
       else if (/ان$/.test(b) && b.length >= 5) out.causes.push("alamiyya", "alifNun");
-      else if ((/^أَ[ء-ي]ْ[ء-ي]َ[ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي]ْ[ء-ي][َُِ][ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي][ِ]ي[ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي]ُو[ء-ي]$/.test(skel) || /^[ء-ي]َ[ء-ي]َّ[ء-ي]$/.test(skel) || (/^ي/.test(b) && /ى$/.test(b) && b.length === 4)) && !(String(root || "").replace(/\s+/g, "")[0] === b[0] && /^[يتنأ]/.test(b))) out.causes.push("alamiyya", "waznFil");   // the prefix must be EXTRA: تَمِيم (ت م م) is فَعِيل
+      else if ((/^أَ[ء-ي]ْ[ء-ي]َ[ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي]ْ[ء-ي][َُِ][ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي][ِ]ي[ء-ي]$/.test(skel) || /^[يتن]َ[ء-ي]ُو[ء-ي]$/.test(skel) || /^[ء-ي]َ[ء-ي]َّ[ء-ي]$/.test(skel) || (/^ي/.test(b) && /ى$/.test(b) && b.length === 4)) && !(String(root || "").replace(/\s+/g, "")[0] === b[0] && /^[يتنأ]/.test(b))) { out.causes.push("alamiyya", "waznFil"); if (!String(root || "").trim() && /^[يتن]/.test(b) && !/^[ء-ي]َ[ء-ي]َّ[ء-ي]$/.test(skel) && !this.verbVouch(s)) out.unsureWazn = true; }   /* (wave 112) …unless the corpus paradigms KNOW the word as a verb cell (يَزِيدُ is زَادَ's muḍāriʿ): then the yāʾ is the person prefix and the verb pattern is certain */   // the prefix must be EXTRA: تَمِيم (ت م م) is فَعِيل; (wave 101) with no root to vouch, the [يتن]-name is left unsure
       else if (/^[ء-ي]ُ[ء-ي]َ[ء-ي]$/.test(skel)) out.causes.push("alamiyya", "adl");
       else if (this.FOREIGN.has(b) || this.FOREIGN.has(b.replace(/[أإآ]/g, "ا"))) { if (three) out.exit = "sakin"; else out.causes.push("alamiyya", "ujma"); }
     }
     // ---- an adjective: waṣfiyya and its partner
-    if (!propn && !out.causes.length) {
+    let receipt111 = false;   /* (wave 111) a cause examined and dismissed by a receipt: the verdict is SURE free, not unsure */
+    if (!propn && !out.causes.length && typeof DabtEngine !== "undefined" && DabtEngine.NUMBERS && DabtEngine.NUMBERS.test(b) && !(this.ADL_NUMBERS.has(b) && (/^[ء-ي]ُ[ء-ي]َا[ء-ي]$/.test(skel) || /^مَ[ء-ي]ْ[ء-ي](َ[ء-ي]|ى)$/.test(skel)))) receipt111 = true;   /* the plain cardinal declines (ثَلَاث، أَرْبَع) — only the فُعَال / مَفْعَل shapes are ʿadl */
+    if (!propn && !out.causes.length && /^أَ[ء-ي]ْ[ء-ي]َا[ء-ي]$/.test(skel) && !/ة$/.test(b)) receipt111 = true;   /* the أَفْعَال plural: its final ان is root, no alif-nūn (أَرْكَان) */
+    if (!propn && !out.causes.length && !(typeof DabtEngine !== "undefined" && DabtEngine.NUMBERS && DabtEngine.NUMBERS.test(b) && !this.ADL_NUMBERS.has(b)) /* (wave 101) أَرْبَع declines */) {
       let c = null; try { c = SifaEngine.classify(s); } catch (e) { c = null; }
       const kinds = (c && c.kinds) || [];
-      const adj = opt.wasf !== undefined ? !!opt.wasf : (kinds.includes("ism-tafdil") || kinds.includes("colour") || kinds.includes("sifa-mushabbaha") || /\b(more|most|-er|-est|colou?r|red|black|white|green|yellow|blue|blind|deaf|lame|mute|thirsty|hungry|angry|drunk|full)\b|daha |en |renk|kırmızı|siyah|beyaz|yeşil|sarı|mavi|kör|sağır|topal|dilsiz|susuz|aç|kızgın|sarhoş/.test(gl));
+      const adj0 = opt.wasf !== undefined ? !!opt.wasf : (kinds.includes("ism-tafdil") || kinds.includes("colour") || kinds.includes("sifa-mushabbaha") || /\b(more|most|-er|-est|colou?r|red|black|white|green|yellow|blue|blind|deaf|lame|mute|thirsty|hungry|angry|drunk|full)\b|daha |en |renk|kırmızı|siyah|beyaz|yeşil|sarı|mavi|kör|sağır|topal|dilsiz|susuz|aç|kızgın|sarhoş/.test(gl));
+      const lexG111 = (() => { try { return typeof DabtEngine !== "undefined" ? DabtEngine.lex(s) : null; } catch (e) { return null; } })(); const nounish111 = !!((lex && lex.plural) || (lexG111 && lexG111.plural) || /^(a|an|the)\s/i.test(String((lex && lex.gloss && lex.gloss.en) || (lexG111 && lexG111.gloss && lexG111.gloss.en) || "")));
+      const adj = adj0 && !(opt.wasf === undefined && lex && nounish111 && pos === "noun" && !/\b(more|most|-er|-est|colou?r|red|black|white|green|yellow|blue|blind|deaf|lame|mute|thirsty|hungry|angry|drunk|full)\b|daha |en |renk|kırmızı|siyah|beyaz|yeşil|sarı|mavi|kör|sağır|topal|dilsiz|susuz|aç|kızgın|sarhoş/.test(gl) && !/\b(fool|foolish|stupid|wise|brave|coward|generous|noble|mean|lazy)\b|ahmak|akıllı|cesur|korkak|cömert|tembel/i.test(gl));   /* (wave 111) أَرْنَبٌ، أَرَانِبُ: a NOUN the lexicon owns with its own plural is no adjective — the أَفْعَل shape alone bars nothing */
       if (adj && /^أَ[ء-ي]ْ?[ء-ي]َ[ء-ي]$/.test(skel) && !/ة$/.test(b)) out.causes.push("wasfiyya", "waznFil");
-      else if (adj && /^[ء-ي]َ[ء-ي]ْ[ء-ي]َان$/.test(skel)) out.causes.push("wasfiyya", "alifNun");
-      else if (this.ADL_NUMBERS.has(b)) out.causes.push("wasfiyya", "adl");
+      else if (adj && /^[ء-ي]َ[ء-ي]ْ[ء-ي]َان$/.test(skel) && !/^[أا]/.test(b) && (opt.wasf === true || /\b(sifa|ṣifa|adjective|awake|thirsty|hungry|angry|drunk|full|sated|tired|lazy|sleepy|naked|ashamed|joyful|sorrowful)\b|susuz|aç\b|kızgın|sarhoş|uykulu|uyanık|çıplak/i.test(gl))) out.causes.push("wasfiyya", "alifNun");   /* (wave 101) يَقْظَان، عَطْشَان — not شَيْطَان، مَيْدَان، أَرْكَان */
+      else if (this.ADL_NUMBERS.has(b) && (/^[ء-ي]ُ[ء-ي]َا[ء-ي]$/.test(skel) || /^مَ[ء-ي]ْ[ء-ي](َ[ء-ي]|ى)$/.test(skel))) out.causes.push("wasfiyya", "adl");   /* (wave 101) ثُلَاثَ، مَثْنَى — not the plain ثَلَاث */
+      else if (/^[ء-ي]َ[ء-ي]ْ[ء-ي]َان$/.test(skel) && !/^[أا]/.test(b) && pos === "noun" && opt.wasf !== true) receipt111 = true;   /* (wave 111) شَيْطَان: فَعْلَان the lexicon knows as a noun — no adjectivity, no cause */
     }
     // the quiet-middle three-letter name MAY decline in full (the notes' هُود، نُوح، مِصْر) — a permission, not a verdict: the lexicon keeps its say
-    if (!out.causes.length) { out.sure = out.exit === "taa"; out.barred = false; return out; }
-    out.sure = true;
+    if (!out.causes.length) { out.sure = out.exit === "taa" || receipt111; out.barred = false; return out; }
+    out.sure = !out.unsureWazn;
     out.barred = true;
     // ---- the exits that give the kasra back without unbarring the noun
     if (hasAl) out.exit = "al";
@@ -29196,7 +29352,9 @@ class MamnuEngine {
     if (!v) return "";
     const L = o => o ? (o[lang] || o.en) : "";
     const cs = v.causes.map(k => this.CAUSE[k]).filter(Boolean);
-    const ar = cs.length ? "مَمْنُوعٌ مِنَ الصَّرْفِ لِ" + cs.map(c => c.ar).join(" وَ") : (v.mabni ? "" : "مُنْصَرِفٌ");
+    const jarr101 = s => String(s || "").split(" ").map(w => w.replace(/ُّ$/, "ِّ").replace(/[ٌُ]$/, "ِ")).join(" ");
+    const li101 = s => (/^ا[ً-ٰ]*ل/.test(s) ? "لِ" + s.replace(/^ا[ً-ٰ]*/, "") : "لِ" + s);
+    const ar = cs.length ? "مَمْنُوعٌ مِنَ الصَّرْفِ " + li101(jarr101(cs[0].ar)) + cs.slice(1).map(c => " وَ" + jarr101(c.ar)).join("") : (v.mabni ? "" : "مُنْصَرِفٌ");   /* (wave 101) the causes in jarr after the lām */
     const x = v.exit ? this.EXIT[v.exit] : null;
     return { ar: ar + (x ? " — " + x.ar : ""), text: (cs.length ? cs.map(L).join(" + ") : (v.mabni ? "" : (lang === "tr" ? "munsarif" : "fully declined"))) + (x ? " — " + L(x) : "") };
   }
@@ -30081,7 +30239,12 @@ class JamEngine {
       const bd = this.build(lemma);
       if (!bd || bd.kind === "refuse") { r.refused++; return; }
       r.built++;
-      if (bd.agrees) r.agree++; else if (bd.agrees === false) r.disagree.push(lemma + " → " + bd.out + " ≠ " + bd.stored.join("/"));
+      // (wave 112) a lemma may sit under two keys (رَسُول in a story's own glossary and in the Kāfiya's); the heard plural
+      // is one fact, so a disagreement is counted once per lemma — a second key carrying the same plural is a copy, not
+      // a new place where the builder is wrong. The ceiling on this list is meant to catch a builder that starts
+      // inventing, and copies were moving it.
+      const line = lemma + " → " + bd.out + " ≠ " + bd.stored.join("/");
+      if (bd.agrees) r.agree++; else if (bd.agrees === false && !r.disagree.includes(line)) r.disagree.push(line);
     }));
     return r;
   }
@@ -30355,9 +30518,20 @@ class IsmTagger {
     const m = this.train();
     if (!m.L.length) return [];
     const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);
+    // (wave 112) the logarithms live ON the model object: log((count+1)/(n+2)) depends on the label and the
+    // feature alone, so each is taken once per model and read back — the same double every time, and a fold's
+    // model carries its own table, so the evalUnseen swap that forbids a word cache (below) cannot cross here.
+    const lg = m._lg || (m._lg = { prior: new Map(), f: new Map() });
     const sc = m.L.map(y => {
-      let lp = Math.log((m.n[y] + 1) / (m.total + m.L.length));
-      fs.forEach(k => { lp += wt * Math.log(((m.f[y][k] || 0) + 1) / (m.n[y] + 2)); });
+      let lp = lg.prior.get(y);
+      if (lp === undefined) { lp = Math.log((m.n[y] + 1) / (m.total + m.L.length)); lg.prior.set(y, lp); }
+      let ly = lg.f.get(y); if (!ly) { ly = new Map(); lg.f.set(y, ly); }
+      const fy = m.f[y], ny = m.n[y] + 2;
+      for (let i = 0; i < fs.length; i++) {
+        const k = fs[i]; let v = ly.get(k);
+        if (v === undefined) { v = Math.log(((fy[k] || 0) + 1) / ny); ly.set(k, v); }
+        lp += wt * v;
+      }
       return { y, lp };
     });
     const mx = Math.max(...sc.map(x => x.lp));
@@ -32187,6 +32361,7 @@ class GameFactory {
     { id: "gCatechism", group: "nahw", emblem: "❓", min: 4, supply: () => catechismItems().length },   // wave 64: the banks are global, so every story can play it
     { id: "gShart",   group: "nahw",    emblem: "إِنْ", min: 3, supply: () => shartItems().length },
     { id: "gSpot",    group: "nahw",    emblem: "🔍", min: 1, supply: null },
+    { id: "gHizli",   group: "nahw",    emblem: "⏱", min: 1, supply: () => harakatItems().length },   // wave 105: sixty seconds of mixed questions
     { id: "gTahlil",  group: "nahw",    emblem: "🎓", min: 3, supply: () => tahlilSentences().length },
     { id: "gDuel",    group: "nahw",    emblem: "🤖", min: 4, supply: () => duelItems().length },
     { id: "gIbaraTr", group: "ibara",   emblem: "🔤", min: 4, supply: () => ibaraItems().length },
@@ -32535,6 +32710,7 @@ function openGames(){
     ${gCard("gCatechism", "❓", ui().catechismGame, ui().catechismGameDesc)}
     ${gCard("gShart", "إِنْ", ui().shartGame, ui().shartGameDesc)}
     ${gCard("gSpot", "🔍", ui().spot, ui().spotDesc)}
+    ${gCard("gHizli", "⏱", ui().hizliGame, ui().hizliGameDesc)}
     ${gCard("gTahlil", "🎓", ui().tahlil, ui().tahlilDesc)}
     ${gCard("gDuel", "🤖", ui().duelGame, ui().duelGameDesc)}
     ${gCard("gGhost", "👻", ui().ghostGame, ui().ghostGameDesc)}
@@ -32561,6 +32737,7 @@ function openGames(){
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
   document.getElementById("gSpot").addEventListener("click", startSpot);
+  document.getElementById("gHizli").addEventListener("click", startHizli);
   document.getElementById("gCloze").addEventListener("click", startCloze);
   document.getElementById("gSarf").addEventListener("click", startSarfGame);
   document.getElementById("gAdad").addEventListener("click", startAdadGame);
@@ -32724,6 +32901,45 @@ function startSpot(){
     why: it => T(it.why),
     extras: [{ label: it => `${arSpan(it.title.ar)} — ${ui().gnote}`,
                run: it => openRef(it.noteId) }],
+  });
+}
+
+// ---------- game: the quick tour (wave 105) ----------
+// Sixty seconds, one mixed pool — an ending to choose (the harakat game's items), a sentence to vet (the spot game's
+// classic mistakes), a phrase to render into Turkish (the ibara game's sentences). Every item keeps its own game's
+// explanation and Elo area; the clock, not the item count, ends the round.
+function hizliItems(){
+  const out = [];
+  shuffle(harakatItems()).slice(0, 14).forEach(it => out.push({ k: "harakat", it }));
+  const spot = [];
+  Object.entries(GRAMMAR).forEach(([id, g]) => (g.mistakes || []).forEach(m => spot.push({ wrong: m.wrong, right: m.right, why: m.why, noteId: id, title: g.title })));
+  shuffle(spot).slice(0, 8).forEach(it => out.push({ k: "spot", it }));
+  const pool = ibaraItems();
+  if (pool.length >= 4) shuffle(pool).slice(0, 8).forEach(it => out.push({ k: "ibara", it, pool }));
+  return shuffle(out);
+}
+function startHizli(){
+  const items = hizliItems();
+  if (items.length < 6) { openGames(); return; }
+  runQuiz({
+    title: ui().hizliGame, ask: ui().hizliAsk, items, restart: startHizli, deadline: Date.now() + 60000,
+    area: x => x.k === "ibara" ? "nahw" : "vocab",
+    lvl: x => x.k === "ibara" ? Math.min(5, 2 + x.it.pairs.length) : 3,
+    itemKey: x => x.k === "ibara" ? "ibara#" + x.it.sen.id : null,
+    question: x => x.k === "harakat" ? `<div class="game-q" lang="ar">${senWithSlot(x.it.sen, x.it.ti, () => "«ـــــ»")}</div>`
+      : x.k === "ibara" ? `<div class="game-q"><div class="ib-src ar" lang="ar">${x.it.ar}</div></div>` : "",
+    options: x => {
+      if (x.k === "harakat") {
+        const it = x.it; const definite = /^ال/.test(stripAr(it.base));
+        const candidates = HARAKAT_SET.filter(c => c !== it.last && !(definite && TANWIN_SET.includes(c)));
+        return shuffle([{ html: it.full, ok: true, ar: true }, ...shuffle(candidates).slice(0, 2).map(c => ({ html: it.base + c, ok: false, ar: true }))]);
+      }
+      if (x.k === "spot") return shuffle([{ html: x.it.right, ok: true, ar: true }, { html: x.it.wrong, ok: false, ar: true }]);
+      const others = DistractorEngine.near(x.pool, x.it, 3); const mk = y => ({ html: escapeAttr(y.tr), ok: y === x.it });
+      return shuffle([mk(x.it), ...others.map(mk)]);
+    },
+    why: x => x.k === "harakat" ? irabWhy(x.it.irab) : x.k === "spot" ? T(x.it.why)
+      : `<div class="ib-answer"><span lang="ar">${x.it.ar}</span><div class="ib-tr">${escapeAttr(x.it.tr)}</div></div>` + ibaraExplain(x.it),
   });
 }
 
@@ -32923,9 +33139,25 @@ document.getElementById("ulToggle").addEventListener("click", e => {
   e.currentTarget.setAttribute("aria-pressed", state.underlines);
   storyEl.classList.toggle("underlines", state.underlines);
 });
+// (wave 105) the design brief's three reading modes couple the dials: Easy = full tashkil, level lines, the translation;
+// Medium = smart tashkil with the lines; Hard = bare, no lines, no translation — a real book. The preset applies on the
+// learner's tap only; a stored mode never rewrites a stored layer, and each dial can still be moved on its own afterwards.
+const MODE_PRESET105 = { easy: { layer: "full", underlines: true }, medium: { layer: "smart", underlines: true }, hard: { layer: "bare", underlines: false } };
+function applyModePreset105(m){
+  const pr = MODE_PRESET105[m]; if (!pr) return;
+  state.layer = pr.layer; localStorage.setItem("qissa-layer", pr.layer);
+  document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x.dataset.layer === pr.layer));
+  if (state.underlines !== pr.underlines) {
+    state.underlines = pr.underlines;
+    const ul = document.getElementById("ulToggle");
+    if (ul) { ul.classList.toggle("on", pr.underlines); ul.setAttribute("aria-pressed", pr.underlines); }
+    storyEl.classList.toggle("underlines", pr.underlines);
+  }
+}
 document.querySelectorAll("#modeSeg [data-mode]").forEach(b =>
   b.addEventListener("click", () => {
     setMode(b.dataset.mode);
+    applyModePreset105(b.dataset.mode);
     renderStory();
   }));
 document.getElementById("playAll").addEventListener("click", () => {

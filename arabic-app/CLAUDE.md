@@ -9470,6 +9470,217 @@ and the لَل of a lexicon name is the jarr letter, not the article (لِلُق
 «son of»; the وَسَ-verb conjoined across a comma to an إِنَّ-khabar clause keeps the hidden doer, so the construct head after it
 is the object (وَسَيَجْزِي كُلَّ إِنْسَانٍ). Luqmān 188/188 (100 %; 181/188 on landing). Corpus sweep on the v227 engine: 43,631/44,109 (98.92 %) → 43,641/44,110 (98.94 %), ten fixes and no break; waves 100b–100e repair the two sweep regressions of لِلِّسَانِ (the article's shadda) and the Luqmān imperative جَالِسِ الْعُلَمَاءَ (the kasra of waṣl on an author's verb). Gate: wave-100 check.
 
+**Wave 101 — the ḍabṭ engine consults MamnuEngine.** `MamnuEngine` (wave 30b) knew the Kāfiya's nine causes but the ḍabṭ
+engine never asked it; its diptote test was a ladder of shape regexes. A probe over the whole lexicon (3,728 nouns and names)
+found the two disagreeing on 48 lemmas, and MamnuEngine was wrong on most: it barred مَعْنًى، مُنَادًى، مَرْعًى as alif al-taʾnīth
+(the tanwīn on the lemma is the receipt of ṣarf), ثَلَاث and أَرْبَع as deflected adjectives (only the فُعَال / مَفْعَل shapes are
+ʿadl: ثُلَاثَ، مَثْنَى), شَيْطَان، مَيْدَان، أَرْكَان، أَعْيَان as فَعْلَان adjectives (the shape alone proves nothing; the أَفْعَال plural never),
+and تَمِيم as a verb-pattern name (with no root to vouch for the prefix it is left unsure). Four receipts fixed those; the six
+left (الْأَخْفَش، الْأَيْهَم، الْأَفْوَه، ثُلَاثَ، الْأَوْلَى، الْأَقْصَى) are MamnuEngine's to win. `DabtEngine.diptote()` now asks
+MamnuEngine first for any word the lexicon owns as this very lemma — on the LEMMA, so the tanwīn receipt applies — and keeps
+the verdict on `DabtEngine._mamnu101` for the word sheet; the shape ladder serves the plurals and the unknown words. The verdict's effect on the ḍabṭ corpus was measured together with waves 102–111 (see wave 111). Gate: wave-101 check.
+
+**Wave 102 — «ذُو الْقَرْنَيْنِ وَالسَّدُّ», the thirteenth story, the fifth at Level 2.** The thirteenth ORIGINAL story
+(`tools/authoring/author_dhu.py`; four chapters: the just king, the weak people, building the barrier, a favour from Allah —
+16 sentences, 202 tokens, trilingual iʿrāb on every token, free, `pending-scholarly-review`). Composed after al-Kahf 83–98 as
+the story is told to young readers; the journeys, the people's plea, the iron and copper and the king's words are all reworded
+so that no āya is quoted. On the page: the five nouns ذُو / ذَا in three seats (kāna's ism, the doer, the object, the annexed
+vocative), the dual in jarr by the yāʾ (الْقَرْنَيْنِ، جَبَلَيْنِ عَظِيمَيْنِ، الْجَبَلَيْنِ), the kind-denying لَا (لَا بُيُوتَ لَهُمْ), the two foreign
+names barred from tanwīn in nasb and rafʿ (يَأْجُوجَ وَمَأْجُوجَ، يَأْجُوجُ وَمَأْجُوجُ), the lām of purpose on the defective verb and on
+the five-verb (لِتَبْنِيَ، لِيَعْمَلُوا), the five-verbs in nasb with and without the object pronoun (يَصْعَدُوا، يَنْقُبُوهُ), the jussive
+of the defective verb with its object (لَمْ أَبْنِهِ), the conditional مَنْ with both verbs, إِذَا with its clause, the manqūṣ in nasb
+(عَالِيًا), the mā of duration (مَا شَاءَ اللهُ), هٰكَذَا. Three entries are new (عَادِل، نُحَاس، نَقَبَ — bāb naṣara). The ḍabṭ engine graded
+it 196/200 on landing; the misses became rules: the jarr-clitic noun annexes the bare noun that closes the phrase when it is
+no adjective (بِلِسَانِ تُرْجُمَانٍ); حَتَّى carries the hidden he-doer of the past clause into the past verb after it (سَارَ … حَتَّى
+بَلَغَ آخِرَ الْأَرْضِ); the colon closes the clause before a jāzim/nāṣib particle as before the verb itself; two names joined by the
+wāw after a verb are its compound doer and a name before أَنْ is the doer of the verb that takes the clause (لَمْ يَقْدِرْ يَأْجُوجُ
+وَمَأْجُوجُ أَنْ); and the negation لَمْ is no longer mistaken for the question لِمَ in the carried-subject rule. Dhū l-Qarnayn 199/199 (100 %).  Gate: wave-102 check.
+
+**Wave 103 — «أَيُّوبُ وَالصَّبْرُ», the fourteenth story, the sixth at Level 2.** The fourteenth ORIGINAL story
+(`tools/authoring/author_ayyub.py`; four chapters: the blessing, the beautiful patience, the prayer, the reward — 16 sentences,
+177 tokens, trilingual iʿrāb on every token, free, `pending-scholarly-review`). Composed after al-Anbiyāʾ 83–84 and Ṣād 41–44
+as the story is told to young readers; the prayer («my illness has been long, You know my state, and Your mercy is wide»),
+the spring and the restoration are reworded so that no āya is quoted. On the page: بَقِيَ as a sister of كَانَ, سِنِينَ declined
+like the sound plural, the complete exception with its excepted noun in nasb (إِلَّا زَوْجَتَهُ), the jussive of the defective verb
+(لَمْ يَشْكُ), the two relatives conjoined, مِنِّي with the guarding nūn, the dual الْحَالَيْنِ, كَأَنَّهُ شَابٌّ, the two objects of أَعْطَى
+and of رَزَقَ, the elative أَكْثَرَ barred from tanwīn, the object of purpose (جَزَاءً لِصَبْرِهِ), the pronoun of separation (هُوَ) between
+أَنَّ's noun and predicate, the absolute object annexed to the diptote name (صَبْرَ أَيُّوبَ), the conditional with two verbs and
+their answer. Three entries are new (بَارِد، رِجْل، رَزَقَ — bāb naṣara). The ḍabṭ engine graded it 173/176 on landing; the
+misses became two rules: a proper name after كَانَ is never the elative khabar before a tamyīz (كَانَ أَيُّوبُ نَبِيًّا), and the
+lām-of-purpose verb keeps the hidden doer of the clause it serves (لِيُظْهِرَ لِلنَّاسِ صَبْرَهُ). Ayyūb 176/176 (100 %).  Gate: wave-103 check.
+
+**Wave 104 — «زَكَرِيَّا وَيَحْيَى», the fifteenth story, the seventh at Level 2.** The fifteenth ORIGINAL story
+(`tools/authoring/author_zak.py`; four chapters: Zakariyyā and Maryam, the prayer, the glad tidings, Yaḥyā — 16 sentences,
+211 tokens, 130 glossary entries, 33 verb paradigms; two new entries عَجُوز، كِبَر). Composed after Āl ʿImrān 37–41 and
+Maryam 2–15 as the account is retold to young readers; no āya is quoted — the provision in the niche, the old man's prayer,
+the sign of three days and the boy's wisdom are all reworded. Grammar in the text: the maqṣūr names زَكَرِيَّا، يَحْيَى on their
+estimated ḍamma, مَرْيَمُ and عِمْرَانَ as diptotes, بَنِي إِسْرَائِيلَ (the sound-plural look-alike with its nūn dropped), the vocative
+رَبِّ with the speaker's yāʾ dropped, the kind-denying لَا (لَا وَلَدَ لَهَا), the five nouns (أَبُوهُ), the dual (شَكَرَا، وَالِدَيْهِ), the
+deputy doer (وُلِدَ يَحْيَى، فَقِيلَ لَهُ), the ḥāl clause (تُبَشِّرُهُ), the number with its counted plural (ثَلَاثَةَ أَيَّامٍ), the
+conditional (فَمَنْ دَعَا … أَجَابَهُ), مِنْ أَيْنَ لَكِ. Ḍabṭ on landing 209/209 (100 %; 205/209 before the wave-111 rules). Corpus 46,901 → 47,112 tokens.  Gate: wave-104 check.
+
+**Wave 105 — DESIGN IV: the owner's design brief lands.** The uploaded design package (`Mobile_app_design_improvement`:
+a fifteen-screen, three-theme mobile redesign with a Turkish brief) was read against the reader. What it asked for and the
+reader already had — the three reading modes, the word-by-word highlight on boundary events, the voice picker, the four
+themes, the icon set, the gamification layer, forty-four games including Spot the error and the phrase games — stays as
+built. The five pieces it asked for that were missing: (1) the mode tap applies its preset — Easy = full tashkīl, level
+lines, the translation; Medium = smart tashkīl with the lines; Hard = bare, no lines, no translation, a real book — on the
+learner's tap only, each dial still movable afterwards; (2) with no Arabic voice installed the karaoke still flows: each
+word lights for a span proportional to its letters at the chosen speed and the sentence finishes as a spoken one would,
+so «Play all» walks the text at reading pace instead of handing it to a voice of another language; (3) performance: the
+frosted sheet and the blurred scrim are gone (a full-screen blur on every frame of the open animation), transitions stay on
+transform, opacity and colour; (4) the pressable button of the Bahçe design in every theme — a solid 4 px depth shadow under
+the primary button, pressed flat on :active; (5) the quick tour: sixty seconds of mixed questions (an ending from the
+harakat game, a sentence to vet from the spot game, a phrase to render from the ibara game) on the shared quiz runner,
+which learned a clock — the round ends on the clock or on the last item with a summary, every item keeps its own
+explanation and Elo area. Gate: wave-105 check.
+
+**Wave 106 — «شُعَيْبٌ وَأَهْلُ مَدْيَنَ», the sixteenth story, the eighth at Level 2.** The sixteenth ORIGINAL story
+(`tools/authoring/author_shuayb.py`; four chapters: the people of Madyan, Shuʿayb's call, the denial, the end — 16 sentences,
+174 tokens, 117 glossary entries, 35 verb paradigms; five new entries كَالَ، غَشَّ، أَمَانَة، حَلَال، شِرَاء, the first two with
+their own paradigms — the yāʾ-hollow كَالَ يَكِيلُ and the doubled غَشَّ يَغُشُّ with its idghām). Composed after Hūd 84–95 and
+al-Shuʿarāʾ 176–191 as the account is retold to young readers; no āya is quoted — the short measure, the call to honest
+dealing, the mockery and the cry are all reworded. Grammar in the text: the sound masculine plural in its seats (مَعَ
+الْمُؤْمِنِينَ، جَاثِمِينَ، كَانُوا صَادِقِينَ، يُهْلِكُ الظَّالِمِينَ), the sound feminine plural as a time adverb (سَنَوَاتٍ طَوِيلَةً), the
+elatives أَكْثَرَ، أَقَلَّ، خَيْرٌ, the diptote مَدْيَنَ beside the triptote شُعَيْبٌ, إِذَا with its annexed clause and its answer, the
+prohibition (لَا تَأْخُذُوا، وَلَا تُعْطُوهُمْ), فَإِنَّ with its predicate, the conditional مَنْ with a maqṣūr sharṭ verb (أَدَّى)
+and a māḍī answer (بَارَكَ), the ḥāl (وَحْدَهُ، كَامِلًا), the waṣl ḍamma of مِنْهُمُ الْأَغْنِيَاءُ, the protesting hamza (أَتَأْمُرُنَا). Ḍabṭ on landing 174/174 (100 %; 170/174 before the wave-111 rules). Corpus 47,112 → 47,286 tokens.  Gate: wave-106 check.
+
+**Wave 107 — «آدَمُ وَإِبْلِيسُ», the seventeenth story, the ninth at Level 2.** The seventeenth ORIGINAL story
+(`tools/authoring/author_adam.py`; four chapters: the creation of Ādam, the pride of Iblīs, the tree, the repentance — 17
+sentences, 187 tokens, 113 glossary entries, 37 verb paradigms; four new entries آدَم، حَوَّاء، مَغْفِرَة، تَكْرِيم). Composed
+after al-Baqara 30–39, al-Aʿrāf 11–25 and Ṭā-Hā 115–123 as the account is retold to young readers; no āya is quoted — the
+names, the prostration, the refusal, the tree, the whisper and the repentance are all reworded. Grammar in the text: the
+dual carried through a whole chapter (أَكَلَا، نَسِيَا، عَصَيَا، بَكَيَا، قَالَا; the imperative كُلَا and the jussives لَا تَأْكُلَا،
+تَعِيشَا on the dropped nūn; أَكَلْتُمَا with its tāʾ; the enclitics هُمَا/كُمَا after verbs, nouns and jarr letters), the passive
+with a hidden deputy doer (خُلِقَ) and with the deputy following (عُصِيَ اللهُ، أُخْرِجَ إِبْلِيسُ), the object of purpose
+(تَكْرِيمًا), the tawkīd كُلِّهَا, the jussive of كَانَ with its dropped wāw (لَمْ يَكُنْ), the quadriliteral وَسْوَسَ, the diptotes
+آدَمُ، إِبْلِيسُ، حَوَّاءُ beside الْأَشْيَاءِ regaining its kasra under the article, أَنَّ standing in for the two objects of عَلِمَ,
+the sīn of the future (سَأُرْسِلُ), مَنْ with an enclitic sharṭ verb (أَطَاعَهُمْ، عَصَاهُمْ). Ḍabṭ on landing 184/184 (100 %; 181/183 before the wave-111 rules). Corpus 47,286 → 47,473 tokens. Gate: wave-107 check.
+
+**Wave 108 — «هَابِيلُ وَقَابِيلُ», the eighteenth story, the tenth at Level 2.** The eighteenth ORIGINAL story
+(`tools/authoring/author_habil.py`; four chapters: the two sons of Ādam, the offering, the crime, the remorse — 16 sentences,
+197 tokens, 117 glossary entries, 33 verb paradigms; ten new entries هَابِيل، قَابِيل، حَسُود، قُرْبَان، أَسْوَأ، حَفَرَ، حُفْرَة،
+دَفَنَ، نَادِم، قَسَمَ, the three verbs with their own bāb-ḍaraba paradigms). Composed after al-Māʾida 27–31 as the account is
+retold to young readers; no āya is quoted — the two offerings, the threat, the brother's answer, the crow and the burial
+are all reworded. Grammar in the text: the oath and its answer (وَاللهِ لَأَنْتَقِمَنَّ — the wāw of qasam, the lām, the heavy
+nūn of emphasis building the muḍāriʿ on fatha), the kind-denying لَا (لَا ذَنْبَ لِي), the emptied exception (لَا يَقْبَلُ إِلَّا
+مِنَ الْمُتَّقِينَ), the five nouns in three cases (أَخَاهُ، أَخِيهِ، أَبِيهِ), the doubled verb unfused before the tāʾ (مَدَدْتَ) and
+fused in nasb (أَمُدَّ), لَوْ with its فَلَنْ answer, إِلَيَّ and لِأَنِّي with the speaker's yāʾ, أَمَّا…فَ, the elative annexed to
+the relative مَا with a ẓarf ṣila (أَحْسَنَ مَا عِنْدَهُ), the formal iḍāfa of the quasi-participle (طَيِّبَ الْقَلْبِ، شَدِيدَ الْغَضَبِ),
+the tanwīn of compensation (كُلٌّ مِنْهُمَا), the suspended مَاذَا, the lām of purpose (لِيَدْفِنَ، لِيُعَلِّمَ), the manqūṣ in jarr
+(الْمُتَّقِي), the dual ism kāna after a fronted khabar (كَانَ لِآدَمَ ابْنَانِ). Ḍabṭ on landing 197/197 (100 %; 191/196 before the wave-111 rules). Corpus 47,473 → 47,670 tokens. Gate: wave-108 check.
+
+**Wave 109 — «الْأَسَدُ وَالْأَرْنَبُ», the nineteenth story, the eleventh at Level 2 — the first fable.** The nineteenth
+ORIGINAL story and the first from outside the prophets' cycle: the lion and the hare of Kalīla wa-Dimna (Ibn al-Muqaffaʿ,
+8th c., public domain), retold freely for the graded reader — no sentence of the classical text is copied
+(`tools/authoring/author_asad.py`; four chapters: the king of the forest, the hare's turn, the well, the end — 16 sentences,
+201 tokens, 121 glossary entries, 40 verb paradigms; four new entries أَرْنَب، حِيلَة، صَافٍ، صَادَ, the verb with its
+yāʾ-hollow paradigm). Grammar in the text: كَانَ with a fronted jarr-phrase khabar and a nakira ism (كَانَ فِي غَابَةٍ أَسَدٌ),
+the clause as adjective (يَأْكُلُ…؛ كَانَ الدَّوْرُ فِيهِ…؛ فِيهَا مَاءٌ صَافٍ), the tawkīd كُلُّهَا, the hollow verb losing its yāʾ in jazm
+(لَا تَصِدْ) and كُنْتُ losing its alif, the jussive answering a request (اتْرُكُونِي أَذْهَبْ), لَعَلِّي with the dropped nūn of
+guarding, the nūn of guarding kept in لَقِيَنِي، أَرِنِي and merged in مِنِّي, the diptotes آخَرَ/آخَرُ، غَضْبَانَ، أَنْفَعُ, the manqūṣ
+nakira in rafʿ (صَافٍ) and the manqūṣ in jarr elsewhere, ظَنَّ and زَعَمَ with أَنَّ standing in for the two objects, the tamyīz
+converted from the doer (ازْدَادَ غَضَبًا), the conjoining لَا (بِعَقْلِهِ لَا بِقُوَّتِهِ), the lām of purpose (لِيُقَاتِلَ), the
+ibdāl of افْتَعَلَ in ازْدَادَ, the demonstrative with its badal. Ḍabṭ on landing 198/198 (100 %; 191/198 before the wave-111 rules). Corpus 47,670 → 47,871 tokens. Gate: wave-109 check.
+
+**Wave 110 — «جُحَا وَالْحِمَارُ», the twentieth story, the twelfth at Level 2 — the first folk tale.** The twentieth ORIGINAL
+story: Juḥā, his son and the donkey — "you cannot please everyone" — composed freely from the common oral tradition
+(`tools/authoring/author_juha.py`; four chapters: to the market, what people say, the carried donkey, the lesson — 16 sentences,
+187 tokens, 105 glossary entries, 29 verb paradigms; five new entries جُحَا، قَاسٍ، أَحْمَق، رِضَا، هُمَا). Grammar in the text:
+the maqṣūr name in every case with its estimated vowels (جُحَا as doer and as muḍāf ilayh), the verb of wonder (مَا أَعْجَبَ هٰذَا
+الْوَلَدَ), أَلَا opening a reproach on the dual five-verb (أَلَا تَرْحَمَانِ), the dual through the tale (صَارَا يَسِيرَانِ، فَنَزَلَا، مَشَيَا،
+رَبَطَا، حَمَلَاهُ، سَارَا؛ هٰذَيْنِ الْأَحْمَقَيْنِ؛ قَدَمَيْهِ، رِجْلَيْهِ), the five noun أَبُوهُ in a ḥāl clause, ḥāl clauses opened by the wāw
+(وَمَعَهُمَا حِمَارٌ، وَهُوَ يَمْشِي، وَهُمَا يَمْشِيَانِ، وَالنَّاسُ يَضْحَكُونَ), بِلَا between the jarr letter and its noun, لَمْ يَبْقَ إِلَّا أَنْ
+with the clause as doer, رَآهُمَا with its madda, قَطُّ, the imperatives انْظُرُوا and خُذْ, مَنْ أَرَادَ أَنْ يُرْضِيَ … لَمْ يُرْضِ (the
+naqis verb in nasb and in jazm), the manqūṣ with the article (الْقَاسِي), the passive muḍāriʿ as adjective (غَايَةٌ لَا
+تُدْرَكُ), the maqṣūr nakira عَصًا. Ḍabṭ on landing 186/186 (100 %; 179/186 before the wave-111 rules). Corpus 47,871 → 48,058 tokens. Gate: wave-110 check.
+
+**Wave 111 — the eight new stories' thirty-six ḍabṭ misses, as rules.** Every miss of waves 102–110 was traced to the
+rule that decided it (a `set()` hook on the dry copy records the rule, its code line and the state it saw) and answered by
+a grammatical rule, never by a word list: the intransitive verb of motion keeps its doer — the nakira after أَنْ يَنْزِلَ بِكُمْ
+is the doer, not an object, when the paradigm's gloss is a verb of motion or state even though it stores a passive; the colon
+after a nāsikh's finished sentence (صَارَ قَوْلُهُ مَثَلًا:) closes the kāna frame and opens a new sentence; the definite names after
+a colon that follows a dual or a number are its badal (ابْنَانِ: هَابِيلُ وَقَابِيلُ, the second joined); a definite noun between
+قَالَ لَهُ and a colon still to come is the sayer (قَالَ لَهُ الْأَسَدُ غَضْبَانَ:) and the nakira after it a ḥāl; the joined verb of a
+clause whose doer is already named takes the pronoun-bearing noun as its object (فَنَظَرَ الْأَسَدُ … فَرَأَى صُورَتَهُ); the day
+that came is the doer and is not annexed to the clause after it (وَجَاءَ يَوْمٌ كَانَ الدَّوْرُ فِيهِ); two substantive adjectives
+closing the clause of a transitive verb still owed its object are doer and object (وَظَلَمَ الْغَنِيُّ الْفَقِيرَ); the fāʾ after
+a pronoun-and-khabar clause is no fāʾ of causation (وَأَنْتَ صَحِيحٌ، فَتُكَلِّمُهُمْ keeps its ḍamma); an indefinite noun followed
+by a pronoun-bearing noun and a bare predicate is described by that sentence, not annexed (بِغُلَامٍ اسْمُهُ يَحْيَى); a ẓarf with
+a pronoun before a nakira opens a nominal sentence; a time noun in the sound plural is a ẓarf; the five-noun ـُوهُ before an
+article noun and a verb is a mubtada; فَكَانَ joined onto a named doer takes the nakira-annexed phrase as khabar; the
+renderer reads قُرْبَان as the lexicon's own lemma and no longer as the dual of قُرْب, and the dual's article guard reads the
+vowelled word (وَالِدَيْهِ). Tooling kept in the scratch tree: a sentence probe that draws tokens from the corpus, a story probe,
+and the `set()`/`member.set`/`head.add` stack recorder. The eight stories grade 1,523/1,523 on landing; the Zakariyyā text's
+يَخْدُمُ was corrected to the lexicon's يَخْدِمُ (bāb ḍaraba). Corpus 46,719/47,221 → 46,777/47,227 hits on the 42 texts (misses 502 → 450; seventeen texts improved, none worse after the last repair — the doer fallback that had taken نَالَ رَحْمَةَ اللهِ was answered and Ayyūb and Zakariyyā re-probed 176/176 and 210/210). The release's Sarf gate caught a wrong stored paradigm: the imperative of طَالَ in Qiṣaṣ 4 (and the copy Ayyūb inherited) had the shortened stem before the dual, plural and feminine endings (طُلُوا); the source script and both copies now read طُولُوا, as Qiṣaṣ 1 and the Talkhīṣ already did. Gate: wave-111 check.
+
+**Wave 112 — the held-out grade keeps pace with the corpus, exact to the digit.** The v228 release's third smoke chunk
+timed the IrabModel's leave-one-story-out cross-validation at 7.4 s against its 6.5 s ceiling: the eight new stories had
+carried the labelled corpus to 39,843 rows over 42 folds. The time was profiled, not guessed at — 2.9 s of it was
+featurisation, and 3.2 s of THAT was the noun-pattern tagger asked about the previous word once per token although the
+48,058 tokens are only 16,349 distinct words; the other 5 s were the 42 trainings of the averaged perceptron, each of
+which re-interned the same feature strings. Three changes, none of which moves a number: rows() hands features() a
+memo that lives and dies inside one featurisation pass (IsmTagger.tag itself stays unmemoised — its evalUnseen swaps
+models behind the caller's back, the recorded reason a word cache was rejected); the rows are interned once
+(IrabModel.intern) and every fold trains on an index list (fitCore) and is graded on flat arrays (rankFlat) — the ids
+are global instead of per-fold, but each (role, feature) cell sees the same updates in the same order and each role's
+sum runs bias-first in the row's own feature order, so the doubles are the same; the weight cells are feature-major so
+scoring an example reads eight neighbours per feature instead of walking eight scattered rows; and the tagger's
+logarithms are taken once per model object. Verified on the v228 corpus before landing: 65.246 / 79.924 held-out over
+42 folds, 2,291 shipped weights with the same checksum, before and after. Measured 8.4 → 5.9 s in the probe (the smoke
+page runs about twelve percent faster). The ceiling moved to 8 s with the measurements written into the check — the
+folds are paid once per build per device, since Relax persists the score. Gate: the held-out check.
+
+**Two gates caught two different kinds of fault in the same chunk (v228).** The SignEngine audit put the class «annexed
+to the speaker's yāʾ» at 95.5 % and named the five lines: طَعَامِي، مَرَضِي، مَالِي، جِسْمِي in rafʿ and حَالِي in naṣb had
+been authored «بِكَسْرَةٍ مُقَدَّرَةٍ» — a shared helper in five story scripts estimated a KASRA whatever the case, where the
+estimated vowel is the case's own (the ḍamma in rafʿ, the fatḥa in naṣb, prevented from showing by the kasra that suits the
+yāʾ). The helper now chooses by the role it is given, the five packages were regenerated, and the authoring kit's
+YA_NOUN was written right from the start. The wave-30 MamnuEngine check then failed on two words for opposite reasons:
+فَتًى came back «sure, free» because the wave-101 tanwīn receipt decides it — the TEST was stale and now expects that; يَزِيد
+came back «open» because the wave-101 caution (no root to vouch, so a يَفْعِيل shape might hide a radical yāʾ as in يَقِين)
+had no way to ask the one witness that settles it. MamnuEngine.verbVouch() asks the RootFinder's corpus walk whether the
+written word is a cell of some paradigm: يَزِيدُ is زَادَ's muḍāriʿ, so the yāʾ is the person prefix and ʿalamiyya + wazn
+al-fiʿl is certain. A content gate that names its lines and an engine gate that names its words are what let a chunk's
+two failures be fixed in one pass without guessing.
+
+**Package order was deciding a tense (v228, chunk 5).** «مَا لِيَ لَا أَرَى الْهُدْهُدَ» had read أَرَى as رَأَى's «I see» for a
+hundred versions — until «The Lion and the Hare» arrived with the Form-IV paradigm أَرَى «he showed» in a package that
+sorts first, and the corpus walk's first-hit-wins among EXACT cells handed the word to the māḍī; the noun after it lost
+its «expects the MAF'UL» note and the Talkhīṣ ch27 check caught it. Two whole-word cells were genuinely tied, and the
+only thing that separates them is the sentence: after لَا، لَمْ، لَنْ، سَ، سَوْفَ، أَنْ، كَيْ، إِذَنْ — or any governor of the
+muḍāriʿ the İzhar queue announced — the word is the muḍāriʿ. RootFinder.fromCorpus(word, prefer) and find(word, prefer)
+now take that preference (memoised as part of the question), and the walk returns the first cell of the pass in the
+expected tense, the first hit otherwise — so a call without a preference is bit-for-bit the old walk, and an exact cell
+still outranks a loose one. Probed: لَا أَرَى → رَأَى/muḍāriʿ with the object note; أَرَى الرَّجُلُ صَاحِبَهُ الطَّرِيقَ keeps
+«he showed»; لَمْ أَرَ → majzūm; the wave-25d controls (تَقْرِنَّ، وَعَدَا، سَلْ) unchanged. The lesson is the old one in a new
+place: when a lookup can return two right answers, a tie broken by iteration order is a bug waiting for the next package.
+
+**Two graders were honest about the wrong thing (v228, chunk 6).** The JamEngine audit's ceiling (215 at v225) is meant to
+catch a plural builder that starts inventing. It rose to 220 — but four of the five new lines were the eight stories' HEARD
+plurals the builder cannot derive (حُسُد، نَادِمُونَ، حَمْقَى، عَجَائِز — stored in the glossary, right) and the fifth was a COPY:
+أَمَانَات under two lex keys counted twice. A disagreement is one fact per lemma+plural, however many keys carry it; the audit
+now counts it once (measured 211 distinct) and the ceiling names the four heard plurals. The TaqdirEngine corpus check fell to
+94.1 % on one word: the Kāfiya's own line for تَضْرِبُ reads «تَقْدِيرُهُ أَنْتَ أَوْ هِيَ» — the matn OFFERS two readings, the
+engine said هِيَ, and the grader had captured only the first pronoun. expected() now returns every pronoun a line offers
+(`texts`, split on أَوْ، ،، /) and a hit is any of them; `text` stays the first for the callers that want one. Neither fix
+touched an engine. The lesson: when a floor or ceiling moves, read the lines that moved it before reaching for the engine —
+twice now the grader was the one being unfair.
+
+**A receipt loosened for one word reached five others (v228, chunk 7).** Wave 111 let the speaker's-yāʾ receipt accept a
+two-letter stem so that يَدِي reads as يَد + «my». The wave-24 pin «مِنْ أَبِي سَعِيدٍ» then failed: أَب is also two letters
+and in the lexicon, so أَبِي now split as أَب + «my» BEFORE the five-noun rules could see it, the generic after-preposition
+rule took the word, and سَعِيدٍ lost its annexation and became a naʿt. The five nouns are the one place where a final yāʾ is
+ambiguous by design — أَبِي is «my father» alone and the letter of jarr in the kunya — and only the word after decides,
+which is exactly what the kunya rule reads. The two-letter receipt now excludes the five nouns' stems (أب، أخ، حم); يَدِي
+keeps its yāʾ, the eight stories keep their grade, the pin is back. The same chunk's design check timed out waiting a
+fixed 2.6 s for the voiceless karaoke to finish: the sentence takes 0.6 s on an idle thread, but a lab's deferred
+held-out folds can hold the thread first, so the check now polls for the finish (up to 12 s) — the assertion was always
+«it finishes», never «in 2.6 s».
+
+**A story rule met the grammar book (v228, chunk 8).** The wave-111 rule for «مَعَهُمَا حِمَارٌ» (the bare indefinite after a pronoun-bearing ẓarf is the mubtadaʾ) was written on the Juḥā story and fired on the Iẓhār's «بَيْنَهُمَا نَحْوُ الْحَوْضُ …», writing نَحْوٌ with tanwīn; the grader then dropped the word as undecided and chapter 37 shrank from 65 graded words to 64. The printed line was «بَيْنَهُمَا، نَحْوُ: الْحَوْضُ…» — a comma after the ẓarf and the citation colon after نَحْوُ, both invisible in a bare surface print, so READ punctAfter before reasoning about a sentence. Two repairs, both the engine's own knowledge: the rule needs no pause mark between the ẓarf and its mubtadaʾ (the comma closes the ẓarf's clause), and a word in MaEngine.ALWAYS_MUDAF (نَحْو، مِثْل، كُلّ، غَيْر mean nothing alone) with a word after it — the citation colon allowed — is never the bare tanwīn mubtadaʾ, so the citation-head rules below decide it. The first cut guarded the colon as a pause and changed nothing; the probe, not the reasoning, showed why. Lesson: a rule drafted on the stories must be checked against the grammar texts' citation frames before it lands, and the SHRUNK floors are the gate that catches it — a word leaving the grade is as much a regression as a word missed.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:
