@@ -14,7 +14,7 @@ gated; the items marked **OWNER** need an account, a key or a signature only the
 | Privacy policy | `prototype/privacy.html` (EN/TR) | packaged into the APK and served beside the reader |
 | Review bundle | `dist/qissa-review-v248.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
 
-Content: 42 texts in six levels, 48,058 parsed tokens, 328 grammar notes, 13 catechism banks (550 questions),
+Content: 46 texts in six levels, 49,033 parsed tokens, 328 grammar notes, 13 catechism banks (550 questions),
 20 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
 
 ## 2. Run it today (no account needed)

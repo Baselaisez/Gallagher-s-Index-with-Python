@@ -150,11 +150,11 @@ S.append({"id": "s2", "translation": {
       "مَجْرُورٌ بِـ«فِي» وَهُوَ مُضَافٌ.",
       "Majrur by «fi» and a mudaf — the chain runs on into the next word.",
       "«فِي» ile mecrûr ve muzâf — zincir sonraki kelimeye uzanır."),
-  tok("صَدِيقِكَ","sadiq","noun",["idafa-definiteness"],
+  tok("صَدِيقِكَ","sadiq-friend","noun",["idafa-definiteness"],
       "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَهُوَ مُضَافٌ أَيْضًا، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
       "The mudaf ilayh, in jarr — and itself a mudaf, the kaf annexed to it: a two-link chain, دَارِ صَدِيقِ كَ, each member majrur by the one before.",
       "Mecrûr muzâfun ileyh — ve kendisi de muzâftır; kâf ona muzâfun ileyhtir: iki halkalı zincir, her halka öncekiyle mecrûr.",
-      segments=[seg("صَدِيقِ","sadiq","noun"), seg("كَ","pron-2ms","pron")],
+      segments=[seg("صَدِيقِ","sadiq-friend","noun"), seg("كَ","pron-2ms","pron")],
       punct=".")]})
 
 # ---------------------------------------------------------------- s3

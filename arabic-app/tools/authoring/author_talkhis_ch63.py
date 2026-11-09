@@ -98,7 +98,7 @@ S.append({"id": "s3", "translation": {
   tok("لِي","li","part",[D, "huruf-jarr", "mubtada-khabar", "ya-al-mutakallim"], "جَارٌّ وَمَجْرُورٌ خَبَرٌ مُقَدَّمٌ.", "«I have» — the fronted khabar.", "«bana var» — öne alınmış haber.", segments=[seg("لِ","li","part"), seg("ي","pron-1s","pron")]),
   tok("مِنْ","min","part",[D, "huruf-jarr"], "حَرْفُ جَرٍّ لِلِابْتِدَاءِ — حَرْفُ التَّجْرِيدِ.", "«out of» — the min of the tajrid.", "«-den» — tecrîd harfi."),
   tok("فُلَانٍ","fulan","noun",[D, "huruf-jarr"], "مَجْرُورٌ — الْأَمْرُ ذُو الصِّفَةِ: مِنْهُ يُنْتَزَعُ.", "«so-and-so» — the thing that has the quality; the other is drawn out of him.", "«falan» — sıfatın sahibi; öbürü ondan çıkarılır."),
-  tok("صَدِيقٌ","sadiq","noun",[D, "mubtada-khabar"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ — الْمُنْتَزَعُ: صَدِيقٌ آخَرُ مِثْلُهُ.", "«a friend» — the delayed mubtada; the drawn-out: another friend like him.", "«bir dost» — sona bırakılmış mübtedâ; çıkarılan: onun gibi başka bir dost."),
+  tok("صَدِيقٌ","sadiq-friend","noun",[D, "mubtada-khabar"], "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ — الْمُنْتَزَعُ: صَدِيقٌ آخَرُ مِثْلُهُ.", "«a friend» — the delayed mubtada; the drawn-out: another friend like him.", "«bir dost» — sona bırakılmış mübtedâ; çıkarılan: onun gibi başka bir dost."),
   tok("حَمِيمٌ","hamim","noun",[D, "naat-sifa", "sifa-mushabbaha"], "نَعْتٌ مَرْفُوعٌ — الْحَمِيمُ: الْقَرِيبُ الْوَدُودُ.", "«warm» — a na't; hamim is the close and loving.", "«sıcak» — na't; hamîm: yakın ve sevecen.", punct=".")]})
 S[-1]["badi"] = [{"kind": "tajrid", "sub": "min", "word": ix(S[-1], "صَدِيقٌ"), "companion": ix(S[-1], "فُلَانٍ")}]
 
@@ -307,7 +307,7 @@ CAND = {
  "mutanabbi": need("mutanabbi", "الْمُتَنَبِّي", None, "propn", "al-Mutanabbi — Abu l-Tayyib Ahmad b. al-Husayn, the poet of Sayf al-Dawla (d. 354/965)", "el-Mütenebbî — Ebü't-Tayyib Ahmed b. Hüseyin, Seyfüddevle'nin şairi (ö. 354/965)", 6),
 }
 for k in ("qawl", "min", "huwa", "an-masdariyya", "kana", "amr", "dhu", "akhar", "fi", "li", "bi", "ila", "ka", "wa", "fa", "pron-3fs", "pron-3ms", "pron-3mp", "pron-1s", "pron-2ms",
-          "aqsam", "ma-mawsula", "man-mawsula", "fulan", "sadiq", "lain", "saala", "bahr", "dar", "khuld", "la-nafiya", "baqiya", "rahala", "aw", "mata-die", "karim", "ya", "khayr",
+          "aqsam", "ma-mawsula", "man-mawsula", "fulan", "sadiq-friend", "lain", "saala", "bahr", "dar", "khuld", "la-nafiya", "baqiya", "rahala", "aw", "mata-die", "karim", "ya", "khayr",
           "rakiba", "shariba", "kas", "bakhila", "nafs", "mal", "lam-amr", "in-shartiyya", "lam", "hal", "taala", "tawkid", "nun-tawkid"):
     if k not in TG: CAND[k] = find_gloss(k)
 GLOSS_ADD = {k: v for k, v in CAND.items() if v}

@@ -9922,7 +9922,7 @@ if (!CHROME) {
     // measured at v170: 390 plurals, 49 muntaha shapes (35 resolved), 208 built, 94 agree, 114 differ — a difference is a HEARD plural
     // (رُسُل beside the qiyasi أَرْسِلَة), not an error; the ceiling catches a builder that starts inventing, the floor a walk that stops
     if (r.plurals < 350 || r.muntaha < 40 || r.built < 150 || r.agree < 80) throw new Error('the audit walks the corpus plurals: ' + JSON.stringify(r));
-    if (r.disagree > 211) throw new Error('the qiyasi builder disagrees with more stored plurals than at v228 (211 DISTINCT — the audit now counts a lemma+plural once however many keys carry it (wave 112); the eight new stories added four HEARD plurals the builder cannot derive: حُسُد of حَسُود beside the builder\'s أَحْسِدَة, نَادِمُونَ of نَادِم (a sound plural for a person) beside نَوَادِم, حَمْقَى of أَحْمَق (the فَعْلَى of afflictions) beside أَحَامِق, عَجَائِز of عَجُوز beside أَعْجِزَة — heard, the glossary stores them; the raw list with copies stood at 220, at v225 the copies-included count was 215 — the Mūsā story added the HEARD plural of plenty حِبَال of حَبْل beside the builder\'s paucity أَحْبُل — the plural of plenty is heard, the glossary stores it; at v217 it was 214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
+    if (r.disagree > 215) throw new Error('the qiyasi builder disagrees with more stored plurals than at v229 (215 DISTINCT — the four Level-3 originals added four HEARD plurals the builder cannot derive: كُفَلَاء of كَفِيل beside the builder\'s أَكْفِلَة, أُجَرَاء of أَجِير beside آجِرَة, آنِيَة of إِنَاء beside its broken attempt, رُهْبَان of رَاهِب beside رَوَاهِب — heard, the glossary stores them; at v228 the distinct count was 211 — the audit now counts a lemma+plural once however many keys carry it (wave 112); the eight new stories added four HEARD plurals the builder cannot derive: حُسُد of حَسُود beside the builder\'s أَحْسِدَة, نَادِمُونَ of نَادِم (a sound plural for a person) beside نَوَادِم, حَمْقَى of أَحْمَق (the فَعْلَى of afflictions) beside أَحَامِق, عَجَائِز of عَجُوز beside أَعْجِزَة — heard, the glossary stores them; the raw list with copies stood at 220, at v225 the copies-included count was 215 — the Mūsā story added the HEARD plural of plenty حِبَال of حَبْل beside the builder\'s paucity أَحْبُل — the plural of plenty is heard, the glossary stores it; at v217 it was 214 — the Nasafī ch25–46 added the HEARD plural مَعَاصٍ of مَعْصِيَة beside the builder\'s مَعَاصِي, the manqūṣ muntahā it does not yet shorten — its own gap, owed to a later round; at v216 it was 213 — al-Kafiya ch5–46 added three HEARD plurals: جِرَاحَات of جِرَاحَة beside the builder\'s جَرَائِح, أَسِنَّة of سِنَان beside the uncontracted أَسْنِنَة, and جِمَال of جَمَل beside أَجْمَال — its own gaps, owed to a later round; at v214 it was 212 — ch32–66 of the Iẓhār added two HEARD plurals: قِرَاءَات of قِرَاءَة beside the builder\'s قَرَائِء, and ظُرَفَاء of ظَرِيف beside أَظْرِفَة — its own gaps, owed to a later round; at v213 it was 210 — ch25–31 of the Iẓhār added the HEARD plural عَلَامَات of عَلَامَة beside the builder\'s عَلَائِم, its own gap, owed to a later round; at v197 it was 209 — Part Two ch12–39 added four HEARD plurals: سَحَابَات of سَحَابَة, مَبْعُوثُونَ of مَبْعُوث, نُجَبَاء of نَجِيب, نُقُوش of نَقْش — the builder offers سَحَائِب، مَبَاعِيث، أَنْجِبَة، أَنْقُش, its own gap, owed to a later round; at v196 it was 205 — Part Two ch9–11 added four HEARD plurals: سُرُج of سِرَاج, رِمَال of رَمْل, and the sound نَجَّارُونَ / حَدَّادُونَ of the فَعَّال trade-names, which the builder still tries to break (أَنْجِرَة، أَحْدِدَة) — its own gap, owed to a later round; at v195 it was 201 — Part Two ch5–8 added the HEARD plural أَصْدِقَاء of صَدِيق (أَصْدِقَاءُ نُوحٍ) beside the builder\'s أَصْدِقَة; at v194 it was 200 — the fourth and second parts of the Qiṣaṣ added twenty-three HEARD plurals: قُرُون، دُرُوع، سَابِغَات، حُذَّاق، قُدُور، كُرُوم، رُؤَسَاء، أَعْضَاء، قُشُور، عُرُوق، صُحُف، شُعُوب، عُهُود، أَشْرَاف، أَطِبَّاء، حُرُوب، أَنْصَار، زُعَمَاء، خِرَاف، زُمَلَاء، خُرَافَات، دُرُوب، مَآسٍ — each reviewed; the builder\'s أَعْضَاو and مَأَاسِا are its own gaps, the wāw-final أَفْعَال and the hamza-initial مَفَاعِل, owed to a later round; at v193 it was 178 — ch4–6 of the Iẓhār added ثَدْي، كَارِه، كَنْز; at v192 it was 175; at v186 it was 167 — ch11 of the Qiṣaṣ added أُمَنَاء، بُرَآء، دِلَاء; at v183 it was 161 — ch8 added شُبَّان، أَقْوِيَاء، طَبَائِع، أَذْكِيَاء; at v178 it was 151 — the corpus grew by twelve chapters of samaʿi plurals: رُسُل، شُهُور، قُلُوب، أَحَادِيث، كَرَامَات، أَئِمَّة; the builder is unchanged): ' + r.disagree + ' — ' + r.dis.join(' | '));
     if (!/^(كُتُب|أَكْتِبَة)/.test((r.b1 || '').normalize('NFC')) && r.b1 !== 'refuse') throw new Error('كِتَاب builds on فُعُل/أَفْعِلَة or refuses — got ' + r.b1);
     if (r.b3.normalize('NFC') !== 'مَسَاجِد' && r.b3 !== 'refuse') throw new Error('مَسْجِد → مَسَاجِد — got ' + r.b3);
   });
@@ -10362,7 +10362,7 @@ if (!CHROME) {
       await page.evaluate(() => { conjState.lab = 'learn'; openConjugator(); }); await page.waitForSelector('#learnOut .learn-card', { state: 'attached', timeout: 10000 });
       const r5 = await page.evaluate(() => { const i = document.getElementById('learnRoot'); i.value = 'ك ت ب'; i.dispatchEvent(new Event('input')); return new Promise(res => setTimeout(() => res({ badge: document.querySelectorAll('#learnOut .learn-badge').length, run: !!document.getElementById('learnRun') }), 700)); });
       if (r5.badge !== 1 || !r5.run) throw new Error('the Learning lab: ' + JSON.stringify(r5));
-      await page.evaluate(() => { conjState.lab = 'sarf'; conjState.root = 'ق ر ض'; conjState.form = 'I'; openConjugator(); }); await page.waitForTimeout(500);
+      await page.evaluate(() => { conjState.lab = 'sarf'; conjState.root = 'ن س ج'; conjState.form = 'I'; openConjugator(); }); await page.waitForTimeout(500);   /* (wave 118b) ق ر ض is no longer silent — the Trust story brought أَقْرَضَ; نَسَجَ the corpus has never seen */
       const r6 = await page.evaluate(() => ({ badge: document.querySelectorAll('#conjOut .learn-badge').length, known: !!document.querySelector('#conjOut .conj-known') }));
       if (r6.badge !== 1) throw new Error('the Sarf lab shows the 🧠 guess only when the corpus is silent: ' + JSON.stringify(r6));
       await page.evaluate(() => openGames()); await page.waitForTimeout(400);
@@ -12064,6 +12064,123 @@ if (!CHROME) {
       return { bad, n: want.length };
     }, [["shuayb-wa-ahl-madyan", "عَذَابٌ", "عَذَابٌ", "fail"], ["shuayb-wa-ahl-madyan", "شَدِيدٌ", "شَدِيدٌ", "nat"], ["shuayb-wa-ahl-madyan", "الْفَقِيرَ", "الْفَقِيرَ", "maful"], ["habil-wa-qabil", "هَابِيلُ", "هَابِيلُ", "badal"], ["habil-wa-qabil", "وَقَابِيلُ", "وَقَابِيلُ", "atf"], ["habil-wa-qabil", "قُرْبَانًا", "قُرْبَانًا", "mafulMutlaq"], ["al-asad-wa-al-arnab", "يَوْمٌ", "يَوْمٌ", "fail"], ["al-asad-wa-al-arnab", "صُورَتَهُ", "صُورَتَهُ", "maful"], ["al-asad-wa-al-arnab", "غَضْبَانَ", "غَضْبَانَ", "hal"], ["zakariyya-wa-yahya", "فَتُكَلِّمُهُمْ", "فَتُكَلِّمُهُمْ", "raf"], ["zakariyya-wa-yahya", "بِغُلَامٍ", "بِغُلَامٍ", "jarr"], ["zakariyya-wa-yahya", "بَيْتَ", "بَيْتَ", "maful"], ["juha-wa-al-himar", "رِضَا", "رِضَا", "mubtada"], ["juha-wa-al-himar", "غَايَةٌ", "غَايَةٌ", "khabar"], ["dhu-al-qarnayn-wa-al-sadd", "ذُو", "ذُو", "kanaIsm"], ["adam-wa-iblis", "آدَمُ", "آدَمُ", "fail"]]);
     if (r.bad.length) throw new Error('wave-111 rules: ' + r.bad.join(' | '));
+  });
+  await check('wave 113 — «The Men in the Cave», the twenty-first original story and the FIRST original text at Level 3 (the shelf held two): four chapters, twenty-six sentences, 301 tokens with trilingual i\'rab, free, pending review; the Level-3 syntax it carries — كَانَ with the speaker\'s ta inside a condition, the pronoun of the matter, the fronted khabar before a dual noun, two-object verbs, the hal clause with its waw, the kind-denying لَا, the lam of command and the lam of purpose, both exceptions, the maf\'ul li-ajlih, the speaker\'s ya on a dual, the guarding nun, the فُعَلَاء diptote plural — and the ḍabṭ engine grades it', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'ashab-al-ghar');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const lex = k => toks.filter(t => t.lex === k).length;
+      const G = st.glossary || st.gloss || {};
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        shart: toks.filter(t => tag(t, 'al-majzum-wal-shart-wal-jaza')).length, shan: toks.filter(t => tag(t, 'mawadi-al-munfasil-wa-damir-al-fasl-wal-shan')).length,
+        muthanna: toks.filter(t => tag(t, 'al-muthanna')).length, mafulayn: toks.filter(t => tag(t, 'mafulayn')).length, halCl: toks.filter(t => tag(t, 'al-hal-jumla-wa-rabituha')).length,
+        laJins: toks.filter(t => tag(t, 'la-nafiya-lil-jins')).length, lamAmr: toks.filter(t => (t.segments || []).some(sg => sg.lex === 'lam-amr')).length,
+        lamTalil: toks.filter(t => (t.segments || []).some(sg => sg.lex === 'lam-taleel')).length, istithna: toks.filter(t => tag(t, 'istithna')).length, mufarragh: toks.filter(t => tag(t, 'istithna-mufarragh')).length,
+        lah: toks.filter(t => tag(t, 'maful-lah')).length, yaMut: toks.filter(t => tag(t, 'ya-al-mutakallim')).length, wiqaya: toks.filter(t => (t.segments || []).some(sg => sg.lex === 'nun-wiqaya')).length,
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, allahumma: lex('allahumma'), ghar: !!G.ghar, ajir: !!G.ajir, halaba: !!G.halaba && !!((st.morph || st.morphology || {}).halaba || true),
+        hit, n, miss
+      };
+    });
+    if (r.missing) throw new Error('the twenty-first story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 26 || r.toks !== 301 || r.level !== 3 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.shart < 9 || r.shan < 3 || r.muthanna < 5 || r.mafulayn < 4 || r.halCl < 3 || r.laJins < 2 || r.lamAmr < 1 || r.lamTalil < 2 || r.istithna < 3 || r.mufarragh < 2 || r.lah < 1 || r.yaMut < 8 || r.wiqaya < 3 || r.dipt < 3 || r.allahumma !== 6 || !r.ghar || !r.ajir || !r.halaba)
+      throw new Error('the Level-3 syntax the story was written to carry: ' + JSON.stringify(r));
+    // the ḍabṭ engine's grade on the landed engine, 1 misses measured — a regression here is a rule that stopped firing
+    if (r.n < 280 || r.hit < r.n - 1) throw new Error('ḍabṭ ' + r.hit + '/' + r.n + ' — ' + r.miss.join(' | '));
+  });
+  await check('wave 115 — «The Leper, the Bald Man and the Blind Man», the twenty-second original story and the second at Level 3: four chapters, twenty-two sentences, 261 tokens with trilingual i\'rab, free, pending review; the أَفْعَل adjectives of defect as diptotes (and the one that takes kasra under the article), the declinable أَيُّ, the predicate of an omitted mubtada, the suspended يَنْظُرَ مَاذَا, the oath ba before a relative, the prayer in the shape of a past verb (فَصَيَّرَكَ اللهُ), the manqus وَادٍ, two-object verbs, the fronted predicate of لَيْسَ — and the ḍabṭ engine grades it', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'al-abras-wa-al-aqra-wa-al-ama');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const lex = k => toks.filter(t => t.lex === k).length;
+      const G = st.glossary || st.gloss || {};
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length, abras: lex('abras'), aqra: lex('aqra'), ama: lex('ama-blind'), ayy: lex('ayy'), hadhf: toks.filter(t => tag(t, 'hadhf-wa-taqdir')).length,
+        qasam: toks.filter(t => tag(t, 'huruf-al-qasam-fil-kafiya')).length, shart: toks.filter(t => tag(t, 'al-majzum-wal-shart-wal-jaza')).length, mafulayn: toks.filter(t => tag(t, 'mafulayn')).length,
+        manqus: toks.filter(t => tag(t, 'ism-maqsur-manqus')).length, laysa: lex('laysa'), mawsul: toks.filter(t => tag(t, 'ism-mawsul')).length, istifham: toks.filter(t => tag(t, 'al-istifham')).length,
+        kaanna: lex('ka-anna'), innama: lex('innama'), wiqaya: toks.filter(t => (t.segments || []).some(sg => sg.lex === 'nun-wiqaya')).length, shaar: !!G.shaar, ula: !!G['ula-first'],
+        hit, n, miss
+      };
+    });
+    if (r.missing) throw new Error('the twenty-second story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 22 || r.toks !== 261 || r.level !== 3 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.dipt < 10 || r.abras < 4 || r.aqra < 3 || r.ama < 4 || r.ayy < 1 || r.hadhf < 4 || r.qasam < 3 || r.shart < 3 || r.mafulayn < 12 || r.manqus < 8 || r.laysa < 2 || r.mawsul < 12 || r.istifham < 3 || r.kaanna < 1 || r.innama < 2 || r.wiqaya < 2 || !r.shaar || !r.ula)
+      throw new Error('the Level-3 syntax the story was written to carry: ' + JSON.stringify(r));
+    if (r.n < 235 || r.hit < r.n - 2) throw new Error('ḍabṭ ' + r.hit + '/' + r.n + ' — ' + r.miss.join(' | '));
+  });
+  await check('wave 116 — «The Killer\'s Repentance», the twenty-third original story and the third at Level 3: four chapters, twenty-three sentences, 213 tokens with trilingual i\'rab, free, pending review; the compound number with its singular tamyiz (تِسْعَةً وَتِسْعِينَ نَفْسًا), the extra مِنْ on a questioned mubtada (هَلْ لِي مِنْ تَوْبَةٍ), the kind-denying لَا (لَا تَوْبَةَ لَكَ), the declinable أَيَّة as a conditional noun in jarr, the dual in jarr, كَانَ as the condition\'s verb with an elative khabar, two-object جَعَلَ and وَجَدَ, the passive قِيلَ and يُغْلَقُ, the ḥāl clause with its wāw, the stand-in كَذَا, قَطُّ after لَمْ — and the ḍabṭ engine grades it', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'tawbat-al-qatil');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const lex = k => toks.filter(t => t.lex === k).length; const segLex = k => toks.filter(t => (t.segments || []).some(sg => sg.lex === k)).length;
+      const G = st.glossary || st.gloss || {};
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length, tamyiz: toks.filter(t => tag(t, 'tamyiz')).length, laJins: toks.filter(t => tag(t, 'la-nafiya-lil-jins')).length,
+        zaida: toks.filter(t => tag(t, 'huruf-al-ziyada-fil-kafiya')).length, mafulayn: toks.filter(t => tag(t, 'mafulayn')).length, muthanna: toks.filter(t => tag(t, 'al-muthanna')).length,
+        shart: toks.filter(t => tag(t, 'al-majzum-wal-shart-wal-jaza')).length, tafdil: toks.filter(t => tag(t, 'ism-tafdil')).length, majhul: toks.filter(t => tag(t, 'al-majhul-fil-kafiya')).length,
+        halCl: toks.filter(t => tag(t, 'al-hal-jumla-wa-rabituha')).length, amr: toks.filter(t => tag(t, 'imperative-amr')).length, naib: toks.filter(t => tag(t, 'naib-al-fail')).length,
+        kinaya: toks.filter(t => tag(t, 'al-kinayat-wal-zuruf-al-mabniyya')).length, lamJazm: toks.filter(t => tag(t, 'lam-jazim')).length, nahy: toks.filter(t => tag(t, 'la-nahiya')).length,
+        mutlaq: toks.filter(t => tag(t, 'maful-mutlaq')).length, inna: toks.filter(t => tag(t, 'inna-wa-akhawatuha')).length,
+        rahib: lex('rahib'), hakam: lex('hakam'), taib: lex('taib'), nisf: lex('nisf'), shibr: segLex('shibr'), tisun: lex('tisun'), mia: lex('mia'), ayy: lex('ayy'), qattu: lex('qattu'), kadha: lex('kadha'),
+        gloss: !!(G.rahib && G.hakam && G.shibr && G.nisf && G.taib),
+        hit, n, miss
+      };
+    });
+    if (r.missing) throw new Error('the twenty-third story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 23 || r.toks !== 213 || r.level !== 3 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.adad < 6 || r.tamyiz < 2 || r.laJins < 3 || r.zaida < 2 || r.mafulayn < 4 || r.muthanna < 2 || r.shart < 5 || r.tafdil < 3 || r.majhul < 2 || r.halCl < 2 || r.amr < 3 || r.naib < 2 || r.kinaya < 2 || r.lamJazm < 1 || r.nahy < 1 || r.mutlaq < 2 || r.inna < 10)
+      throw new Error('the Level-3 syntax the story was written to carry: ' + JSON.stringify(r));
+    if (r.rahib < 2 || r.hakam < 1 || r.taib < 2 || r.nisf < 1 || r.shibr < 1 || r.tisun < 2 || r.mia < 1 || r.ayy < 1 || r.qattu < 1 || r.kadha < 2 || !r.gloss)
+      throw new Error('the words the story was written around: ' + JSON.stringify(r));
+    // the ḍabṭ engine's grade on the landed engine, 0 misses measured — a regression here is a rule that stopped firing
+    if (r.n < 195 || r.hit < r.n - 0) throw new Error('ḍabṭ ' + r.hit + '/' + r.n + ' — ' + r.miss.join(' | '));
+  });
+  await check('wave 117 — «The Trust and the Log», the twenty-fourth original story and the fourth at Level 3: four chapters, twenty sentences, 200 tokens with trilingual i\'rab, free, pending review; the imperative of أَتَى with the guarding nun (ائْتِنِي), the answer of the request in jazm (أُشْهِدْهُمْ), the diptote plural فُعَلَاء under a jarr letter, the speaker\'s ya on a ẓarf and on a khabar (بَيْنِي، كَفِيلِي), the lam of purpose on weak verbs (لِيُؤَدِّيَ، لِآتِيَكَ), أَلْف annexing a singular, لَعَلَّ with a clause khabar, the إِذَا of surprise with the extra ba (فَإِذَا بِالْخَشَبَةِ), the oath with لَقَدْ, أَلَمْ, the pluperfect كُنْتَ أَرْسَلْتَ, four generated paradigms (أَقْرَضَ، أَشْهَدَ، نَقَرَ، اسْتَوْدَعَ) — and the ḍabṭ engine grades it', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(x => x.id === 'al-amana-wa-al-khashaba');
+      if (!st) return { missing: true };
+      const sents = st.chapters.flatMap(c => c.sentences); const toks = sents.flatMap(x => x.tokens);
+      let hit = 0, n = 0; const miss = [];
+      sents.forEach(sn => { const g = DabtEngine.grade(sn, 'endings'); hit += g.hit; n += g.n; g.words.forEach(w => { if (w.ok === false) miss.push(sn.id + ':' + w.w + '→' + w.out + '/' + w.rule); }); });
+      const tag = (t, g) => (t.grammar || []).includes(g); const lex = k => toks.filter(t => t.lex === k).length; const segLex = k => toks.filter(t => (t.segments || []).some(sg => sg.lex === k)).length;
+      const G = st.glossary || st.gloss || {}; const M = (st.morph || st.morphology || {}); const V = M.verbs || M || {};
+      return { chapters: st.chapters.length, sents: sents.length, toks: toks.length, level: st.level, free: st.access !== 'premium', review: st.review,
+        irab: toks.filter(t => t.irab && t.irab.ar && t.irab.en && t.irab.tr).length, about: !!(st.about && st.about.en && st.about.tr),
+        yaMut: toks.filter(t => tag(t, 'ya-al-mutakallim')).length, mafulayn: toks.filter(t => tag(t, 'mafulayn')).length, adad: toks.filter(t => tag(t, 'asma-al-adad-fil-kafiya')).length,
+        wujub: toks.filter(t => tag(t, 'al-fail-al-mudmar-al-mustatir-wujuban')).length, naqis: toks.filter(t => tag(t, 'naqis-verbs')).length, mithal: toks.filter(t => tag(t, 'mithal-verbs')).length,
+        lamTalil: toks.filter(t => tag(t, 'lam-taleel')).length, talab: toks.filter(t => tag(t, 'jawab-al-talab')).length, qasam: toks.filter(t => tag(t, 'al-qasam-wal-shart-fil-kafiya')).length,
+        zaida: toks.filter(t => tag(t, 'huruf-al-ziyada-fil-kafiya')).length, laalla: toks.filter(t => tag(t, 'kaanna-lakinna-layta-laalla-fil-kafiya')).length, dipt: toks.filter(t => tag(t, 'mamnu-min-sarf')).length,
+        amr: toks.filter(t => tag(t, 'imperative-amr')).length, lamJazm: toks.filter(t => tag(t, 'lam-jazim')).length, istifham: toks.filter(t => tag(t, 'al-istifham')).length, tafdil: toks.filter(t => tag(t, 'ism-tafdil')).length,
+        wiqaya: segLex('nun-wiqaya'), kafil: lex('kafil') + segLex('kafil'), khashaba: lex('khashaba') + segLex('khashaba'), alf: lex('alf'), dinar: lex('dinar'), allahumma: lex('allahumma'),
+        gloss: !!(G.kafil && G.khashaba && G.aqrada && G.ashhada && G.naqara && G.istawdaa),
+        paradigms: ['aqrada', 'ashhada', 'naqara', 'istawdaa'].filter(k => V[k] && V[k].mazi && V[k].mudari && V[k].amr).length,
+        hit, n, miss
+      };
+    });
+    if (r.missing) throw new Error('the twenty-fourth story is not on the shelf');
+    if (r.chapters !== 4 || r.sents !== 20 || r.toks !== 200 || r.level !== 3 || !r.free) throw new Error('shape: ' + JSON.stringify(r));
+    if (r.irab !== r.toks || !r.about || r.review === 'reviewed') throw new Error('every token carries trilingual i\'rab and the text says it is unreviewed: ' + JSON.stringify(r));
+    if (r.yaMut < 8 || r.mafulayn < 9 || r.adad < 7 || r.wujub < 7 || r.naqis < 9 || r.mithal < 5 || r.lamTalil < 2 || r.talab < 1 || r.qasam < 2 || r.zaida < 1 || r.laalla < 1 || r.dipt < 4 || r.amr < 4 || r.lamJazm < 4 || r.istifham < 2 || r.tafdil < 3)
+      throw new Error('the Level-3 syntax the story was written to carry: ' + JSON.stringify(r));
+    if (r.wiqaya < 3 || r.kafil < 6 || r.khashaba < 4 || r.alf < 5 || r.dinar < 4 || r.allahumma < 1 || !r.gloss || r.paradigms !== 4)
+      throw new Error('the words and the four generated paradigms the story was written around: ' + JSON.stringify(r));
+    // the ḍabṭ engine's grade on the landed engine, 1 misses measured — a regression here is a rule that stopped firing
+    if (r.n < 180 || r.hit < r.n - 1) throw new Error('ḍabṭ ' + r.hit + '/' + r.n + ' — ' + r.miss.join(' | '));
   });
   await check('wave 109 — «The Lion and the Hare», the nineteenth original story (a Kalila wa-Dimna fable retold) and the eleventh at Level 2: four chapters, sixteen sentences, every token with trilingual i\'rab, free, pending review; the fronted predicate of kana, the clause-adjective, the tawkid, the hollow verb in jazm, the jussive answering a request, the diptotes, the manqus nakira, zanna with anna, the tamyiz, the conjoining la; four new entries with a hollow paradigm; the ḍabṭ engine re-derives its endings', async () => {
     const r = await page.evaluate(() => {

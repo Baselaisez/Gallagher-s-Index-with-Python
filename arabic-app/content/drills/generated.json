@@ -13,8 +13,8 @@
   "mizanDropped": 13,
   "sentences": 922,
   "sentenceTokens": 8132,
-  "posAgreement": 98.5,
-  "caseJudged": 6070,
+  "posAgreement": 98.4,
+  "caseJudged": 6069,
   "caseAgreement": 98.3,
   "rows": 9217
  },
@@ -32245,7 +32245,7 @@
     },
     {
      "w": "صَدِيقُكَ",
-     "lex": "sadiq",
+     "lex": "sadiq-friend",
      "human": {
       "pos": "noun",
       "grammar": [
@@ -33138,7 +33138,7 @@
     },
     {
      "w": "صَدِيقِكَ",
-     "lex": "sadiq",
+     "lex": "sadiq-friend",
      "human": {
       "pos": "noun",
       "grammar": [
@@ -44549,7 +44549,7 @@
       "kind": "verb",
       "lemma": "رَأَى",
       "root": "ر أ ي",
-      "wazn": "أَفْعَلَ",
+      "wazn": "أَفْعَلُ",
       "sure": true
      },
      "match": true,
@@ -46926,7 +46926,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -47980,7 +47980,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -51158,7 +51158,7 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَرَى",
+      "lemma": "رَأَى",
       "root": "ر أ ي",
       "wazn": null,
       "sure": true
@@ -56572,8 +56572,8 @@
    "posAgreement": 100,
    "judged": 5,
    "agree": 5,
-   "judgedC": 2,
-   "agreeC": 2,
+   "judgedC": 3,
+   "agreeC": 3,
    "tokens": [
     {
      "w": "وَلَسْتَ",
@@ -56588,15 +56588,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": null,
-      "root": "ل س ت",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "lemma": "لَيْسَ",
+      "root": "ل ي س",
+      "wazn": null,
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "بِمُسْتَبْقٍ",
@@ -61780,8 +61780,8 @@
    "posAgreement": 100,
    "judged": 5,
    "agree": 5,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "وَلَسْتُ",
@@ -61796,15 +61796,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": null,
-      "root": "ل س ت",
-      "wazn": "فَعَلَ / فَعَّلَ",
-      "sure": false
+      "lemma": "لَيْسَ",
+      "root": "ل ي س",
+      "wazn": null,
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "بِنَظَّارٍ",
@@ -91449,7 +91449,7 @@
    "posAgreement": 90,
    "judged": 10,
    "agree": 9,
-   "judgedC": 4,
+   "judgedC": 3,
    "agreeC": 3,
    "tokens": [
     {
@@ -91634,15 +91634,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَرَى",
+      "lemma": "رَأَى",
       "root": "ر أ ي",
-      "wazn": "أَفْعَلَ",
+      "wazn": "أَفْعَلُ",
       "sure": true
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": null,
      "caseHuman": "raf",
-     "caseMatch": false
+     "caseMatch": null
     },
     {
      "w": "أَعْصِرُ",
@@ -104680,7 +104680,7 @@
    "posAgreement": 100,
    "judged": 10,
    "agree": 10,
-   "judgedC": 5,
+   "judgedC": 4,
    "agreeC": 4,
    "tokens": [
     {
@@ -104816,15 +104816,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَرَى",
+      "lemma": "رَأَى",
       "root": "ر أ ي",
-      "wazn": "أَفْعَلَ",
+      "wazn": "أَفْعَلُ",
       "sure": true
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": null,
      "caseHuman": "raf",
-     "caseMatch": false
+     "caseMatch": null
     },
     {
      "w": "تُقَدِّمُ",
@@ -124135,7 +124135,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -145901,7 +145901,7 @@
     },
     {
      "w": "صَدِيقٌ",
-     "lex": "sadiq",
+     "lex": "sadiq-friend",
      "human": {
       "pos": "noun",
       "grammar": [
@@ -150291,7 +150291,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -153300,7 +153300,7 @@
    "posAgreement": 100,
    "judged": 11,
    "agree": 11,
-   "judgedC": 8,
+   "judgedC": 7,
    "agreeC": 7,
    "tokens": [
     {
@@ -153390,15 +153390,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "أَرَى",
+      "lemma": "رَأَى",
       "root": "ر أ ي",
-      "wazn": "أَفْعَلَ",
+      "wazn": "أَفْعَلُ",
       "sure": true
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": null,
      "caseHuman": "raf",
-     "caseMatch": false
+     "caseMatch": null
     },
     {
      "w": "اصْطَنَعْتَهُمْ",
@@ -186025,11 +186025,11 @@
     "tr": "LÜZÛM-İ MÂ LÂ YELZEM, revî harfinden yahut fâsıladan onun mânâsında olandan önce, secide gerekli olmayanın gelmesidir. (Geri yazım: kaynak bu hükmü yalnız Türkçe verir; bu, Telhîs'in alınan metnidir.)"
    },
    "jumal": [],
-   "posAgreement": 100,
+   "posAgreement": 95,
    "judged": 20,
-   "agree": 20,
+   "agree": 19,
    "judgedC": 19,
-   "agreeC": 19,
+   "agreeC": 18,
    "tokens": [
     {
      "w": "وَلُزُومُ",
@@ -186400,16 +186400,16 @@
       "irab": "«what» — the doer of «come»."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "particle",
       "lemma": null,
       "root": null,
       "wazn": null,
       "sure": true
      },
-     "match": true,
-     "caseSaid": "mabni",
+     "match": false,
+     "caseSaid": "harf",
      "caseHuman": "mabni",
-     "caseMatch": true
+     "caseMatch": false
     },
     {
      "w": "لَيْسَ",
@@ -187140,7 +187140,7 @@
     },
     {
      "w": "صَدِيقِهِ",
-     "lex": "sadiq",
+     "lex": "sadiq-friend",
      "human": {
       "pos": "noun",
       "grammar": [

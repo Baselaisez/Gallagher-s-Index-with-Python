@@ -9681,6 +9681,159 @@ held-out folds can hold the thread first, so the check now polls for the finish 
 
 **A story rule met the grammar book (v228, chunk 8).** The wave-111 rule for «مَعَهُمَا حِمَارٌ» (the bare indefinite after a pronoun-bearing ẓarf is the mubtadaʾ) was written on the Juḥā story and fired on the Iẓhār's «بَيْنَهُمَا نَحْوُ الْحَوْضُ …», writing نَحْوٌ with tanwīn; the grader then dropped the word as undecided and chapter 37 shrank from 65 graded words to 64. The printed line was «بَيْنَهُمَا، نَحْوُ: الْحَوْضُ…» — a comma after the ẓarf and the citation colon after نَحْوُ, both invisible in a bare surface print, so READ punctAfter before reasoning about a sentence. Two repairs, both the engine's own knowledge: the rule needs no pause mark between the ẓarf and its mubtadaʾ (the comma closes the ẓarf's clause), and a word in MaEngine.ALWAYS_MUDAF (نَحْو، مِثْل، كُلّ، غَيْر mean nothing alone) with a word after it — the citation colon allowed — is never the bare tanwīn mubtadaʾ, so the citation-head rules below decide it. The first cut guarded the colon as a pause and changed nothing; the probe, not the reasoning, showed why. Lesson: a rule drafted on the stories must be checked against the grammar texts' citation frames before it lands, and the SHRUNK floors are the gate that catches it — a word leaving the grade is as much a regression as a word missed.
 
+**Wave 113 — «أَصْحَابُ الْغَارِ», the first ORIGINAL text at Level 3.** The shelf's third level held two texts, both
+inherited; this is the first composed for it: the three travellers shut in a cave by a fallen rock, each calling on God by
+the best deed he did for His sake alone — the narrative the ḥadīth collections preserve, RETOLD FREELY in a graded reader's
+wording. No sentence is the text of a ḥadīth, none may be cited as one, and the attribution says so in three languages.
+Four chapters, 26 sentences, 301 tokens with trilingual iʿrāb; three new entries (غَار، أَجِير، حَلَبَ with a generated
+bāb-naṣara paradigm). The Level-3 syntax it was written to carry, so the engines meet it in a story and not only in a matn:
+كَانَ with the speaker's tāʾ inside a condition (إِنْ كُنْتُ فَعَلْتُ), the pronoun of the matter after إِنَّ, the fronted
+khabar before a dual (كَانَ لِي أَبَوَانِ), the two objects of سَقَى and أَعْطَى, the ḥāl clause with its wāw, the kind-denying
+لَا, the lām of command on a weak verb (فَلْيَدْعُ), the lām of purpose on the five verbs, the emptied and the complete
+exception, the mafʿūl li-ajlih (خَوْفًا مِنْكَ), the speaker's yāʾ on a dual (قَدَمَيَّ), the nūn of guarding, the diptote
+plural فُعَلَاء (أُجَرَاءُ), سِنِينَ declined like the sound plural. Ḍabṭ on landing: 291/292.
+
+**The authoring kit (wave 113).** Every original story since wave 82 carried a private copy of the same six-hundred-line
+helper library. `tools/authoring/story_kit.py` now holds it once — the Juḥā script's library verbatim, `tok()`
+NFC-normalising every Arabic string — and author_ghar.py and author_abras.py are the first scripts written on it: paths,
+`from story_kit import *`, the sentences, the new entries, the manifest. The earlier scripts keep their copies on purpose:
+they regenerate SHIPPED texts, and an edit to the kit must never silently re-author one. A helper fixed in the kit is a fix
+for the next story; a helper fixed in a shipped story's copy is a repair, and is applied at every copy (wave 111's yāʾ rule).
+
+**Wave 113b — the held-out folds run one task at a time.** IrabModel.crossVal() is cvPrepare() + cvFold(p, k) × folds +
+cvFinish(p): the same sums in the same order, so the number the smoke suite floors and the number the lab paints are one
+number. Relax.laterSteps() runs a prepare/count/step/finish sequence inside a time budget per task (120 ms), and the Model
+and Jumla labs take the 42 folds through it — the first open of a lab no longer holds the main thread for the whole corpus.
+The smoke suite still times crossVal() in one breath (wave 112's ceiling).
+
+**Wave 115 — «الْأَبْرَصُ وَالْأَقْرَعُ وَالْأَعْمَى», the second ORIGINAL text at Level 3.** The leper, the bald man and the blind
+man among the Children of Israel, blessed and then tried by an angel in a poor man's shape — again the ḥadīth narrative
+retold freely, never quoted. Four chapters, 22 sentences, 261 tokens with trilingual iʿrāb; new entries أَبْرَص، أَقْرَع،
+أَعْمَى (the أَفْعَل adjectives of defect — diptotes, and the one that takes kasra under the article), شَعْر، أُولَى. Syntax it
+carries: the declinable أَيُّ in a question, the predicate of an omitted mubtada (ثَلَاثَةٌ… أَبْرَصُ وَأَقْرَعُ وَأَعْمَى), the
+suspended يَنْظُرَ مَاذَا, the oath bāʾ before a relative (بِالَّذِي أَعْطَاكَ), the prayer in the shape of a past verb
+(فَصَيَّرَكَ اللهُ), the manqūṣ وَادٍ in its three cases, two-object verbs throughout, the fronted predicate of لَيْسَ, كَأَنَّ
+and إِنَّمَا. Ḍabṭ on landing: 249/251. The shelf: 46 texts, 49,033 parsed tokens.
+
+**Wave 116 — «تَوْبَةُ الْقَاتِلِ», the third ORIGINAL text at Level 3.** The man who killed ninety-nine, the monk who said
+no and became the hundredth, the learned man who said yes and sent him to a land of worshippers, the death on the road, the
+angels of mercy and of punishment in dispute, the arbiter in human form and the land that drew near by a span — the ḥadīth
+narrative RETOLD FREELY, never quoted; the attribution says so in three languages. Four chapters, 23 sentences, 213 tokens
+with trilingual iʿrāb; five new entries, all nouns (رَاهِب، حَكَم، شِبْر، نِصْف، تَائِب). Syntax it carries: the compound number
+with its singular tamyīz (تِسْعَةً وَتِسْعِينَ نَفْسًا — the units opposite in gender, the tens declined like the sound plural),
+مِائَةً with its specifier omitted, the extra مِنْ on a questioned mubtadaʾ (هَلْ لِي مِنْ تَوْبَةٍ — jarr in form, rafʿ by
+seat), the kind-denying لَا with a jarr-phrase khabar (لَا تَوْبَةَ لَكَ), the declinable أَيَّة as a conditional noun in jarr
+before كَانَ with an elative khabar (فَإِلَى أَيَّتِهِمَا كَانَ أَقْرَبَ فَهُوَ مِنْ أَهْلِهَا), the dual in jarr, two-object جَعَلَ and
+وَجَدَ, the passive قِيلَ with a quoted clause as its deputy doer and يُغْلَقُ with a hidden one, the ḥāl clause with its wāw,
+the stand-in كَذَا built in the seat of jarr, قَطُّ after لَمْ, لٰكِنَّ with a noun ism, أَنْ after أَمَرَ with the preposition
+dropped. One lexicon fault surfaced while writing it: the key `sadiq` is صَادِق «truthful» in most packages and صَدِيق
+«friend» in two — a global key with two lemmas; the story pins the first and the repair of the key is owed. Ḍabṭ on
+landing: 210/210.
+
+**Wave 117 — «الْأَمَانَةُ وَالْخَشَبَةُ», the fourth ORIGINAL text at Level 3.** The man who borrows a thousand dinars with God
+alone as witness and guarantor, finds no ship when the term falls due, hollows a log and commits the coins and a letter to
+the sea; the lender finds the log on the shore as firewood, the borrower arrives later with a second thousand — the
+Bukhārī narrative RETOLD FREELY, never quoted, and no āya quoted either (the oath formula the ḥadīth shares with the Qurʾān
+was deliberately NOT used; the story says اللهُ شَهِيدٌ بَيْنِي وَبَيْنَكَ instead). Four chapters, 20 sentences, 200 tokens
+with trilingual iʿrāb; six new entries — the nouns كَفِيل، خَشَبَة (the unit noun of خَشَب) and FOUR verbs with generated
+paradigms, أَقْرَضَ (IV), أَشْهَدَ (IV), نَقَرَ (bāb naṣara), اسْتَوْدَعَ (X, a wāw-initial mithāl whose wāw stays). Syntax it carries:
+the imperative of أَتَى built on the dropped weak letter with the guarding nūn (ائْتِنِي، فَأْتِنِي), the answer of the request in
+jazm (أُشْهِدْهُمْ), the diptote plural فُعَلَاء under a jarr letter (بِشُهَدَاءَ), the speaker's yāʾ on a ẓarf and on a khabar
+(بَيْنِي، كَفِيلِي), the lām of purpose on weak verbs with the fatḥa showing on the yāʾ (لِيُؤَدِّيَ، لِآتِيَكَ), أَلْف annexing a
+singular, two-object سَأَلَ، أَعْطَى، أَقْرَضَ، اسْتَوْدَعَ، أَخْبَرَ، عَلِمَ, لَعَلَّ with a clause khabar, the إِذَا of surprise with the
+extra bāʾ on the mubtadaʾ (فَإِذَا بِالْخَشَبَةِ), the oath with لَقَدْ in its answer, أَلَمْ, the pluperfect كُنْتَ أَرْسَلْتَ, the wāw
+of ḥāl before a ẓarf khabar (وَمَعَهُ أَلْفُ دِينَارٍ آخَرُ). Ḍabṭ on landing: 197/198.
+
+**Wave 118 — the ḍabṭ engine learns from the four Level-3 stories: 29 misses → 4, by rule.** On landing the four texts graded
+290/293, 231/246, 210/211 and 189/199; after this wave 293/294, 252/254, 211/211 and 198/199 (the corpus sweep over all 46
+texts moved from 99.01 % to 99.08 %). The rules, each a sentence of grammar and none a patch to a word: (1) a word whose own
+lemma, article stripped, is the whole host is a singular, not a dual (الدَّيْنَ، الْعَيْنَ — never «two religions»); (2) the author's
+pronoun SEGMENT is a receipt the engine may read, but only where its own reading finds no pronoun AND the segment before the
+pronoun is a noun by the glossary (مَالَكَ is مَال + كَ, not مَالِكٌ; بَصَرِي is بَصَر + ي, not a nisba; بِمَالِكَ through its bāʾ) —
+nothing it already reads changes; (3) MamnuEngine knows the أَفْعَل adjectives of defect the
+glossary names (leprous, bald, …) as adjectives, so وَصْفِيَّة + وَزْن الْفِعْل bars them (أَبْرَصُ، أَبْرَصَ); (4) a bare elative right
+after a كَانَ-form is its khabar — an indefinite elative is never the ism (كَانَ أَقْرَبَ); (5) the tawkīd that repeats the pronoun of
+the verb's own enclitic object stresses that object, in naṣb (فَأَخَذَهَا كُلَّهَا); (6) the saying-noun مِثْلَ/نَحْوَ after a قَالَ-form
+reaches over the addressee's لَهُ and over a named sayer (قَالَ لَهُ مِثْلَ ذٰلِكَ، قَالَ لَهُ الْمَلَكُ مِثْلَ مَا قَالَ); (7) the first-person
+muḍāriʿ of a hamza-initial verb begins with آ, and the lām-clitic test sees past an enclitic object (لِآتِيَكَ); (8) the hidden-doer
+chain of wave 87b carries over an indefinite annexed object or a number word (أَلْفَ دِينَارٍ), across the particle+pronoun bridges
+فِيهَا/إِلَيْهِ as it did across لَهُ, into the answer of لَمَّا (فَلَمَّا كَسَرَهَا وَجَدَ), and it STARTS at a past verb that carries only
+its enclitic object with another verb right after it (فَنَقَرَهَا وَجَعَلَ — the doer of both is hidden); (9) the Name of Majesty
+after a third-person verb in any mood is its doer, and after a subordinate verb too when a plain object follows later in the
+clause (أَنْ يَرُدَّ اللهُ إِلَيَّ بَصَرِي, against أَنْ يَرَى اللهَ); (10) the fronted jarr/ẓarf phrase with a pronoun or a demonstrative
+at the head of a clause — the wave-111 ẓarf rule widened to the jarr letters and the demonstratives — makes the bare indefinite
+after it the delayed ism of كَانَ or the mubtadaʾ (كَانَ عِنْدِي أُجَرَاءُ، كَانَ لِهٰذَا وَادٍ، وَلِهٰذَا وَادٍ), the dual and the sound
+plurals left to their older rules; (11) the bare elative before إِلَى/مِنْ/عِنْدَ in a clause opened by the interrogative أَيّ is the
+khabar (أَيُّ شَيْءٍ أَحَبُّ إِلَيْكَ); (12) the demonstrative after a verb that already carries its first object as an enclitic — in
+the first person too, inside إِنَّ's khabar too — sits in the seat of naṣb as the second object, and its badal follows
+(أَسْتَوْدِعُكَ هٰذِهِ الْخَشَبَةَ).
+
+**What the wave refused to patch.** Four misses stand, each a real ambiguity or a discourse reading the grammar alone does not
+settle: كُلُّ مَا تَرَى مِنَ الْأَمْوَالِ أَجْرُكَ (the khabar of a كُلُّ مَا mubtadaʾ after a ṣila and a jarr phrase), فَأُبْصِرَ بِهِ النَّاسَ
+(a joined first-person muḍāriʿ in naṣb that is letter-for-letter a passive māḍī), وَالْمَالَ بَعِيرًا (the conjoined second object of
+أَعْطَى before a badal), and أَلْفُ دِينَارٍ آخَرُ (the adjective may follow the muḍāf or the muḍāf ilayh; both are Arabic). And the
+leper story's six «the angel came to X» sentences were REWRITTEN to جَاءَ إِلَى X rather than taught: جَاءَ فُلَانًا is Arabic, but
+«X came» is the plainer reading of جَاءَ + definite noun, and a Level-3 reader should meet the unambiguous frame first. Three
+lessons on method: TRACE, do not infer — four rules were «written» three times from guessed conditions before a trace of the
+real state at the rule site showed the one condition that blocked each (a verb row's `st.verb` already reset to itself; a
+particle+pronoun word that is not `fused()`; the analyzer's cell index for the first person); an `||` appended inside an `&&`
+chain changes the whole condition's meaning (one such slip made every اللهُ with a noun after it a doer — caught by the
+four-story probe, fixed by grouping); and the author's `punctAfter` is part of the sentence (the colon after نَحْوُ, the comma
+after بَيْنَهُمَا), so read it before reasoning.
+
+**Wave 118b — the sweep's UNDECIDED count is a gate too.** The first cut of rule (2) read the pronoun segment on every token:
+particles included. عَلَيْهِ became عَلَيْ + هِ, a noun-shaped row no rule could seat, and went undecided — 122 words across the shelf
+(qisas-4 lost 50 graded words, Iẓhār 17, the Kāfiya 13), إِلَيَّ and وَكَ even lost their ending in the output — while the sweep's
+ACCURACY rose (99.01 → 99.07 %), because the lost words had all been hits. A word-level diff of the Kāfiya and the ʿAqāʾid named
+them. The repair: the receipt is read only where the segment BEFORE the pronoun is a noun — by the GLOSSARY's part of speech,
+because the built reader keeps only form and lex on a segment (the first repair tested the segment's own pos, which never
+exists in the build, and silently switched the receipt off everywhere: the four stories fell back to their old misses and said
+so). A verb's نَا segment is its doer (قَرَأْنَا), not an object, so verbs take no receipt either. Compare hits AND graded-word
+counts AND undecided between sweeps; a rising accuracy with a falling n is a regression wearing a gain's clothes.
+The repaired receipt then exposed seven more rules that had been leaning on the old blindness, each traced at its site and
+answered by grammar: a verb whose CELL is dual or plural, or whose stripped ending shows ُون/ِين/ُوا, carries its doer — the
+Name of Majesty after it is the object (يُخَادِعُونَ اللهَ; the first cut tested bare letters and took أَلَانَ for a plural); the
+fronted phrase never raises the first part of a compound number (كَانَ لَهُ أَحَدَ عَشَرَ أَخًا); before the speaker's yāʾ the host
+always wears kasra, so it is no receipt of jarr (وَامْرَأَتِي); the fronted phrase IS كَانَ's khabar, so كَانَ لِي وَلَدٌ closes and the
+nakira of the next clause is no kanaKhabar (وَامْرَأَتِي عَجُوزٌ); the munādā annexed to the yāʾ is a DECISION in naṣb, not a kept
+word (يَا أَبِي — three vocatives had gone undecided); أُولِي/ذَوِي are the oblique of أُولُو/ذَوُو, never «my»; the yāʾ-suffixed noun
+joined right after a verb that carries its object pronoun (اتَّخِذُونِي وَأُمِّيَ) is conjoined to that pronoun and leaves the second
+object its seat (إِلٰهَيْنِ) — the verb's ـنِي read from the written word where the analyzer stores no enclitic; and a receipt is
+read only where the segments spell the surface letter for letter (لَدُنَّا's idghām swallowed a letter, so none). Final sweep over
+the 46 texts: 99.01 → 99.08 %, undecided 847 → 830, fifteen texts changed and none worse than the baseline (the one lost
+graded word is a Bad' al-Amālī miss that became honestly undecided).
+The release's chunk 4 then named one more: HadhfEngine's detail rule (الْعَامِلُ عَلَى ضَرْبَيْنِ لَفْظِيٌّ وَمَعْنَوِيٌّ → «one of them
+is …») fired on the Cave story's كَانَ لِي أَبَوَانِ شَيْخَانِ كَبِيرَانِ, two false deletions; a part of a detail is SINGULAR, so a dual
+after a dual agrees with it as its ṣifa and heads no «one of them». False positives 5 → 2 (one older Iẓhār case fell with
+it), the 57 seeds hold, the restored-verb agreement stands at 95.1 %.
+Chunk 6 named three more, two of them the corpus outgrowing a test's premise and one a GRADER that had never read the
+stories: (1) JamEngine's distinct-disagreement ceiling moves 211 → 215 for the four HEARD plurals the Level-3 texts store
+(كُفَلَاء، أُجَرَاء، آنِيَة، رُهْبَان — the qiyāsī builder cannot derive them, the glossary keeps them, each named in the check);
+(2) the Sarf-lab «🧠 guess only when the corpus is silent» check used the root ق ر ض, and the Trust story brought أَقْرَضَ — the
+check now asks for ن س ج, a root no text has seen; (3) TaqdirEngine's corpus grader extracted the stored pronoun with a regex
+that knew only the matns' «تَقْدِيرُهُ «هُوَ»» and not the stories' «تَقْدِيرُهُ: هُوَ» with its colon, so it had been grading the
+named pronoun on the Kāfiya and the ʿAqāʾid alone; once the Level-3 stories filled its 80-sentence window it counted no line at
+all (textN 0 → «0 % < 95»). The regex takes the colon; the grader now reads every story's lines too. A grader that passes on
+a subset is not a grader of the corpus: when a window-based check falls to zero, look at what filled the window.
+The fourth chunk-6 failure was the same kind of blindness one layer down. The CASE-layer floor (96.5 % agreement between
+`CaseEngine.claim` and the author's iʿrāb line) read 96.4 on the tree, and the per-story probe put every ORIGINAL story at the
+bottom — Shuʿayb 83.7 %, Ayyūb 86.5, Qārūn 86.7, Luqmān 86.8, the Cave 89.0 — while the matns sat at 96–97. The pairs were
+all one shape: naṣb→mabnī 20, jarr→mabnī 16, rafʿ→mabnī 13, ḥarf→mabnī 9. `CaseEngine.humanCase(irabAr)` tested «مبني»
+anywhere in the line, and the stories' lines go on past the word to its ATTACHED pronoun or letter — «مَجْرُورٌ بِالْكَسْرَةِ،
+مُضَافٌ، وَهِمْ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ…», «مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ…» — so the grader read the
+pronoun's binā as the host's case and marked the engine (which had said jarr and rafʿ, correctly) wrong. The matns rarely
+write that clause, which is why the floor had held at 97.4 since it was pinned. humanCase now splits the line on «،/؛» and
+drops every clause whose subject is a pronoun or a letter (وهم ضمير…، والواو…، والتاء…، والهاء…) before reading the head's
+case; «اسم موصول مبني … مجرورة بها» keeps its head clause and stays mabnī. Shuʿayb 83.7 → 94.6, the Cave 89.0 → 92.8,
+Ayyūb 86.5 → 95.5; the Kāfiya moved 96.1 → 96.1 (unchanged, as it should — its lines name no pronoun). Corpus 96.4 → 97.1 % over 37,639 double-decided tokens, the floor 96.5 untouched; the lowest text is now the ʿAqāʾid at 92.4 (its lines name the sentence's seat — «في محل رفع» — more often than the word's mark, a convention difference, not a grader error).
+The drills step then caught the repair reaching too far: the bank lost fifteen judged pronouns, because a pronoun's OWN line
+begins «ضَمِيرُ فَصْلٍ مَبْنِيٌّ…» / «هُمُ ضَمِيرٌ مُنْفَصِلٌ…» and the filter dropped its first clause too. Two guards: the first
+clause is never dropped, and when it names a prefixed letter («الواو حالية، هم ضمير…», «الباء للتعدية، والياء…») the second
+clause is the word's and is kept as well. Bank 6,070 → 6,069 judged (the fused بِي, whose line names a letter and a pronoun
+and no host case, is now unjudged — defensible), CASE layer 98.3 %. The lesson joins the previous one: the stories write
+FULLER iʿrāb than the matns, and every grader that was pinned on the matns has to be re-read against a story line before
+its floor is trusted — and a grader repair is itself re-read against the bank before the release moves on.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:

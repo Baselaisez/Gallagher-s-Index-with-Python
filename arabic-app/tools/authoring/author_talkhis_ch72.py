@@ -311,8 +311,8 @@ S.append({"id": "s14", "translation": {
   tok("مَحْجُوبِ", "mahjub", "noun", [L, "idafa-definiteness", "ism-maful"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ، مُضَافٌ — اسْمُ مَفْعُولٍ مِنْ حَجَبَ.", "«veiled of» — the ism maf'ul, annexed to its doer.", "«gizlenmiş» — ism-i mef'ûl, fâiline muzâf."),
   tok("الْغِنَى", "ghina", "noun", [L, "idafa-definiteness", "ism-maqsur-manqus"], "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ — إِضَافَةُ اسْمِ الْمَفْعُولِ إِلَى نَائِبِ فَاعِلِهِ.", "«wealth» — the ism maf'ul annexed to its deputy doer.", "«zenginliği» — ism-i mef'ûl nâib-i fâiline muzâf."),
   tok("عَنْ", "an", "prep", [L, "huruf-jarr"], "حَرْفُ جَرٍّ.", "«from».", "«-den»."),
-  tok("صَدِيقِهِ", "sadiq", "noun", [L, "huruf-jarr", "idafa-definiteness"], "مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«his friend».", "«dostundan».", punct="*",
-      segments=[seg("صَدِيقِ", "sadiq", "noun"), seg("هِ", "pron-3ms", "pron")]),
+  tok("صَدِيقِهِ", "sadiq-friend", "noun", [L, "huruf-jarr", "idafa-definiteness"], "مَجْرُورٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.", "«his friend».", "«dostundan».", punct="*",
+      segments=[seg("صَدِيقِ", "sadiq-friend", "noun"), seg("هِ", "pron-3ms", "pron")]),
   tok("وَلَا", "la-nafiya", "part", [L, "atf-nasaq"], "الْوَاوُ عَاطِفَةٌ، وَلَا زَائِدَةٌ لِتَأْكِيدِ النَّفْيِ.", "«nor» — the la repeats the negation.", "«ne de» — nefyi pekiştiren lâ.",
       segments=[seg("وَ", "wa", "conj"), seg("لَا", "la-nafiya", "part")]),
   tok("مُظْهِرِ", "muzhir", "noun", [L, "atf-nasaq", "idafa-definiteness", "ism-fail", "form-iv-verbs"], "مَعْطُوفٌ عَلَى مَحْجُوبِ مَجْرُورٌ، مُضَافٌ — اسْمُ فَاعِلٍ مِنْ أَظْهَرَ.", "«showing of» — joined to «veiled».", "«gösteren» — mahcûb'a atıf."),
@@ -431,7 +431,7 @@ CAND = {
 for k in ("fasila", "fi", "wazn", "taqfiya", "wa", "in-shartiyya", "kana", "ma-mawsula", "qarina", "min", "lafz", "aw", "akthar", "mithl", "qabala", "ukhra", "ism", "bi", "kitab", "hada",
           "sirat", "mustaqim", "wahsh", "illa", "anna", "tilka", "qaraa", "akhir", "ka", "ma-masdariyya", "awwal", "mawadda", "dama", "li", "kull", "rabb", "fa", "bina", "bayt", "ala",
           "qafiya", "sahha", "mana", "inda", "dunya", "sharak", "lazima", "harf", "rawiyy", "saj", "jaa", "qabla", "yatim", "sail", "maniyya", "ayadi", "lam-jazim", "hiya", "ghayr",
-          "ghina", "sadiq", "la-nafiya", "idha", "raa", "khalla", "haythu", "khafiya", "makan", "ayn", "hatta", "tajalla", "asl", "husn", "jami", "la-nahiya", "an-masdariyya", "inna",
+          "ghina", "sadiq-friend", "la-nafiya", "idha", "raa", "khalla", "haythu", "khafiya", "makan", "ayn", "hatta", "tajalla", "asl", "husn", "jami", "la-nahiya", "an-masdariyya", "inna",
           "pron-3ms", "pron-3fs", "pron-3d", "pron-2ms", "pron-1s"):
     if k not in TG: CAND[k] = find_gloss(k)
 GLOSS_ADD = {k: v for k, v in CAND.items() if v}
