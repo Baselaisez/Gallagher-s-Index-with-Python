@@ -722,20 +722,21 @@ received wording wins and the divergence is recorded.
 
 **The app is installable.** `prototype/` is a deployable directory:
 `reader.html` + `manifest.webmanifest` + `sw.js` + `icons/`. The service worker is
-network-first with a cache fallback, so a reader who is online gets the current
-text and one who is not still gets the app; bump `CACHE` in `sw.js` whenever
-reader.html is rebuilt for a deploy. Registration is guarded by an `https?:`
+cache-first with a background refresh (wave 127; it was network-first until v231), so a returning reader gets the
+app at once and the next visit gets the text that was fetched behind the last one; bump `CACHE` in `sw.js` whenever
+reader.html is rebuilt for a deploy (the bump turns into a clean install). Registration is guarded by an `https?:`
 protocol test, so file:// and the published artifact are untouched.
 
 **The hosted copy is split; the repository reader is not.** From v194 the reader is 20 MB on disk
 (Part Four alone adds 45 chapters), above the artifact host's 16 MB page limit. The published copy is therefore
 produced by `pubsplit.py <reader> <outdir>` (kept with the release scripts): the `// __DATA_START__ … __DATA_END__`
-block is moved into `data/d1.js` (`const STORIES = [...]`, the first packages), `data/d2.js` (`STORIES.push(...)`)
-and `data/d3.js` (GRAMMAR, the models, REF_GROUPS), each under 15 MB, loaded by three `<script src>` tags in the
-page's place; top-level `const` in classic scripts shares one global lexical scope, so the engines see the
-same names. The page shrinks to 2.7 MB. Nothing else changes, and `prototype/reader.html` stays self-contained
+block is moved into `data/d1.js` (`const STORIES = [...]`, the first packages), `data/d2.js` and `data/d3.js`
+(`STORIES.push(...)`) and `data/d4.js` (GRAMMAR, CATECHISM, the models, REF_GROUPS and the ready call),
+each under 15 MB, loaded by `<script src>` tags in the page's place (three files until wave 127, four since);
+top-level `const` in classic scripts shares one global lexical scope, so the engines see the same names. The page
+shrinks to under 4 MB and, since wave 127, draws its skeleton shelf before the data files arrive. Nothing else changes, and `prototype/reader.html` stays self-contained
 for file://, the PWA and the review bundle. Check the split copy headlessly (`STORIES.length`, one analysis)
-before publishing, and publish with `root=<outdir>` and the three files mapped.
+before publishing, and publish with `root=<outdir>` and the data files mapped.
 
 **Declare the charset.** reader.html had no `<meta charset>` for a long time
 because the artifact host supplies one. Served standalone the browser guesses,
@@ -9881,12 +9882,101 @@ jussive whose cell carries no person — an older tagger gap, the next wave's), 
 the speaker's muḍāriʿ), one is «عَلَى أَنْ تَعْمَلَ» whose speech began in the previous sentence, and one the construct rule
 caught on the second pass (أَرْضَ السُّوءِ أَنْ تَتَبَاعَدَ — the muḍāf, not its majrūr, is the noun the clause is about). The ghost carries its `cue`, so a panel can say WHY it read «you».
 
+**The kit's speaker-yāʾ helper wrote the wrong vowel (caught by the SignEngine gate of v231).** `YA_MUTAKALLIM_N` said «بِكَسْرَةٍ
+مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ» for every case; the estimated vowel is the case's own — ḍamma for rafʿ, fatḥa for naṣb, kasra only for
+jarr — hidden because the letter before the yāʾ must carry the yāʾ's kasra (مَنَعَ مِنْ ظُهُورِهَا اشْتِغَالُ الْمَحَلِّ). Four lines of the
+two new stories (مَالِي ×2, رَبِّي as object, مِثْلِي) and two older ones (al-amana) carried the wrong statement; the SignEngine's
+class audit (mudafYa) re-derives the sign from the written word and fell from 99 % to 96.2 %, under its 97 % floor — the gate
+did its job. The helper now reads the case word in the role; all fifteen generators that use it were re-run (only those six
+lines changed). Lesson: a helper that hardcodes a sign is a claim about every future story; make it read the case.
+
+**Four passive cells in the Level-5 Abū Yūsuf package held participles (caught by the İzzī gate of v231).** `wasiyyat-abi-yusuf-l5`
+stored `majhulMazi` as مَرْحُوم، مَدْخُول، مَعْرُوف، مَطْلُوب — the ism mafʿūl where the passive māḍī (رُحِمَ، دُخِلَ، عُرِفَ، طُلِبَ) belongs. The
+gate had never seen them because the corpus index takes a key's first paradigm by shelf order and the same four keys sit, correct,
+in earlier packages; the new Level-2 story «الرَّحْمَةُ بِالْحَيَوَانِ» copied رَحِمَ from the Level-5 package (its PREF list reached it
+first) and so put the wrong cell in front. Repaired at the source (the four entries now equal the majority paradigm) and in the
+copy; the chunks that had already passed (1–7) ran on the tree with the wrong cell in a package no check reads for sarf, so the
+release resumed from the gates and chunk 8 rather than from scratch. Lesson: a copied paradigm inherits its source's mistakes —
+the generators should prefer the oldest package that holds a key, not the first in a hand-written list.
+The drills gate then drifted by TWO rows of the analyzer's `wazn`: سَمِعَ in a Talkhīṣ line went from فَعِلَ to null, and «رَحِمَهُ» (rahima) in talkhis-al-miftah gained one. Cause: the
+corpus index takes a key's first holder by shelf order; «الْغُرَابُ وَالثَّعْلَبُ» (Level 1) now stands before the Level-2 texts, so
+`samia` (bāb written «مِنْ بَابِ عَلِمَ يَعْلَمُ») is met before `samia-verb` (bāb «سَمِعَ يَسْمَعُ»), and the wazn reader recognises a
+bāb only by the canonical model verb's name. The regenerated bank was committed with that row as it is (the gate's purpose is
+to make such a change visible, and it did); the engine item is parked for wave 129: name the bāb by its two vowels, not by
+the model verb written in the text. Two dead ends were tried and reverted on the way — restoring the Level-5 bāb wording
+and filling `form: "I"` on 292 verb entries — neither moved the row, because neither is what the wazn reader consults.
+
+**Wave 127 — SPEED: the shell first, the stories second, a long text in frames.** The owner's brief: «it is a bit working slow;
+optimise the app so it is consumer-friendly in terms of speed». The reader is one 37 MB file of which 26 MB is data, and every
+cold load paid for all of it before a single card showed: the browser parsed a 24 MB object literal, then the shelf, then the
+welcome. Four changes, all mechanical, none touching a rule. (1) **Two scripts.** `build_prototype.py` now writes the data
+block AFTER the code, in its own `<script>`, and the code ends with a hand-off: if the stories are already present (a cached
+or inlined page) it boots at once, otherwise it draws a **skeleton shelf from a CATALOG** — one line per story (id, title,
+subtitle, level, group, access, chapter and sentence counts), spliced between `// __CATALOG_START__ … __CATALOG_END__` at the
+top of the code — and waits. The data block ends with `window.__qissaDataReady()`, which runs `bootWithData()` once: the real
+shelf, the pending card tap (a tap on a skeleton card is remembered and opened when the data lands, with a toast), welcome,
+deck pruning, the hash. (2) **JSON.parse, measured and rejected.** The three big constants were tried as `JSON.parse("…")` strings — Node
+parses the JSON string a third faster than the literal (529 vs 747 ms for STORIES) — but the whole page in Chromium booted
+LATER with them (12.6 s vs 10.5 s at 4× throttling) and held a larger heap (179 vs 111 MB): the script scanner walks the
+24 MB string and JSON.parse walks it again. The literal stays; `js(name, value, parse=False)` keeps the option. (3) **Chunked
+render.** `renderStory` paints the first 40 sentences synchronously and the rest in requestAnimationFrame batches of 30
+(texts of 80 sentences or fewer still render whole), chapter pills come from the chapter list before the sentences exist, and
+`flushStoryRender()` finishes the job on demand — every consumer that reads the whole DOM (resume scroll, play-all, jump,
+“new words here”, the smoke helper) calls it first. A generation counter cancels the frames when the library reopens; `window.__QISSA_RENDER_SYNC = true` renders whole (the smoke harness sets it on every page, because dozens of older checks read a whole text the moment it opens — three failed in the first run; the wave-127 check switches it off for itself).
+(4) **Cache-first worker.** `sw.js` serves the cached page at once and refreshes it in the background; the CACHE bump on
+each release still turns into a clean install. Measured in Playwright at 4× CPU throttling (a mid phone), file://, cold:
+first library card 11.3 s → 1.5 s; the stories in and the real shelf drawn 11.4 s → 10.7 s;
+the Kāfiya tapped → its first sentence 26.2 s → 1.2 s; the Kāfiya fully rendered 26.2 s → 3.4 s
+(DOM nodes after 11790 → 11791). The hosted copy is split exactly as before (`pubsplit.py`, now four files —
+two of stories, one of the models and grammar, one for the rest and the ready call), and `build_android.py` checks every
+`data/d*.js` the split wrote. Lesson: a self-contained page is the right artefact for review and offline, but its first
+paint must not wait for its last byte — order the scripts so the shell runs first and let the data announce itself.
+
 **Wave 119 — closed by diagnosis, no code.** The note said أُرَاهَا should be tied to أَرَى's passive, not رَأَى's, by a rule
 that prefers the paradigm owning the written form. Probed on the v229 tree: `RootFinder.fromCorpus("أُرَاهَا")` returns رَأَى,
 majhūl muḍāriʿ, person 12, form أُرَى (derived) — and both stored lines (the Kāfiya's «كُنْتُ أُرَى زَيْدًا», the Talkhīṣ's «أُرَاهَا
 فِي الضَّلَالِ تَهِيمُ») carry the author's key `raa`, so the engine agrees with the author already. The two paradigms share
 يُرَى as their stored majhūl and neither stores أُرَى; a rule preferring the owner of the exact surface would find no owner.
 Nothing to change; the task is retired with the probe's JSON in the scratchpad.
+
+**Wave 123 — «جُرَيْجٌ الْعَابِدُ», the twenty-fifth ORIGINAL story, the fifth at Level 3.** The ḥadīth of Jurayj (al-Bukhārī,
+Muslim) retold freely in a graded reader's wording — the worshipper who does not answer his mother three days running while
+he prays, her prayer that he be tried among people, the woman's accusation, the hermitage torn down, the infant who speaks
+from the cradle and names the shepherd, and the hermitage rebuilt of clay. 4 chapters / 19 sentences / 187 tokens; two
+entries new to the lexicon (the name جُرَيْج on the diminutive فُعَيْل, the noun صَوْمَعَة), every verb's paradigm the shelf's.
+Grammar it teaches: the vocative annexed to the speaker's yāʾ with the yāʾ dropped (يَا رَبِّ), the hollow Form-IV jussive
+under لَا nāhiya and لَمْ with its middle letter gone (لَا تُمِتْهُ، لَمْ يُجِبْهَا), حَتَّى with a hidden أَنْ on a passive (حَتَّى
+يُفْتَنَ), the five nouns with the kāf and with the yāʾ (أَبُوكَ، أَبِي — letters for the one, estimated vowels for the other),
+the manqūṣ ordinal (الْيَوْمِ الثَّانِي), مَنْ of condition as the noun of أَنَّ with its answer opened by the fāʾ (فَعَلَيْهِ أَنْ
+يُجِيبَهَا), the plural imperative built on the dropped nūn (أَعِيدُوهَا), the naqis past before the wāw of the group (بَنَوْهَا),
+the frozen absolute object أَيْضًا, the omitted khabar after a cry (أُمِّي وَصَلَاتِي!). Ḍabṭ on the landed engine: 184/186.
+The nine remaining lines are rules for a later wave, not patches: اللّٰهُمَّ is a fixed vocative form and the engine still reads its final vowel as a doer's; الْغُلَامَ after an imperative of saying is the object, not the doer; أَحَدُهُمَا opening its clause is the mubtadaʾ, not an object; قَرِيبٌ after إِنَّ … is the khabar, not the ism; الْيَوْمَ and كُلَّ يَوْمٍ opening a clause are adverbs of time, not mubtadaʾs; the silent endings of فَمِهِ/فَمَهُ are judged by the author's line (unjudged, not wrong).
+
+**Wave 124 — «صَاحِبُ الْجَنَّتَيْنِ», the twenty-sixth ORIGINAL story, the sixth at Level 3.** The parable of the man with two
+gardens (Sūrat al-Kahf) retold freely and DELIBERATELY not in the Qurʾān's words — every phrase a learner might recognise
+from the āyāt was paraphrased («مَالِي أَكْثَرُ مِنْ مَالِكَ وَقَوْمِي أَقْوَى مِنْ قَوْمِكَ», «لَنْ تَهْلِكَ هٰذِهِ الْجَنَّةُ أَبَدًا», «أَتَكْفُرُ
+بِرَبِّكَ الَّذِي خَلَقَكَ وَرَزَقَكَ هٰذَا الْمَالَ», «لَيْتَنِي شَكَرْتُ رَبِّي»). 4 chapters / 17 sentences / 202 tokens; one entry new (عِنَب).
+The DUAL is the thread: رَجُلَانِ، جَنَّتَانِ، الْجَنَّتَيْنِ، جَنَّتَيْهِ (the nūn dropped for the annexation, the hāʾ's kasra after the
+yāʾ), كَانَتَا، صَارَتَا (the alif of the two as the noun of the copula), تُعْطِيَانِ (a five-verb dual), حَوْلَهُمَا، بَيْنَهُمَا، فِيهِمَا.
+Beside it: أَمَّا…فَ twice (the fāʾ of its answer on a verb and on كَانَ), لَنْ, لٰكِنَّ, لَيْتَنِي with the guarding nūn, the
+conditional whose answer opens with فَسَـ, لَيْسَ with a fronted khabar as a second naʿt, أَصْبَحَ as a full verb, the maqṣūr
+and the diptote elatives (أَقْوَى، أَكْثَرُ، خَيْرًا), مَنْ as a relative muḍāf ilayh. Ḍabṭ on the landed engine: 198/202.
+
+**Wave 125 — «الرَّحْمَةُ بِالْحَيَوَانِ», the twenty-seventh ORIGINAL story, the fifteenth at Level 2.** Two ḥadīth narratives
+retold freely for the level most learners sit at — the thirsty traveller who climbs back down the well and waters a dog from
+his leather sock, and the woman who shuts a cat in until it starves; the ḥadīths' own clauses («فَشَكَرَ اللهُ لَهُ فَغَفَرَ لَهُ»,
+«دَخَلَتِ امْرَأَةٌ النَّارَ فِي هِرَّةٍ») were paraphrased, not copied. 4 chapters / 15 sentences / 133 tokens; two entries new (هِرَّة،
+عَطَش). Grammar: إِذَا of surprise, the diptote عَطْشَانُ, the tamyīz مَاءً after مَلَأَ, the counted absolute object مَرَّةً ثَانِيَةً,
+three jussives on «she» including the dropped weak letter (لَمْ تَسْقِهَا), مَنْ of condition twice with a past and a jussive
+answer, وَلَوْ of generalisation with its answer unsaid, two passives as naʿt clauses of indefinite mubtadaʾs (رَجُلٌ غُفِرَ لَهُ,
+امْرَأَةٌ عُذِّبَتْ), أَنَّ with a fronted khabar and its noun after. Ḍabṭ on the landed engine: 133/133.
+
+**Wave 126 — «الْغُرَابُ وَالثَّعْلَبُ», the twenty-eighth ORIGINAL story, the eighth at Level 1.** The fable of the crow and the
+fox (Aesop; La Fontaine) for beginners: 4 chapters / 12 sentences / 84 tokens, two entries new (ثَعْلَب، جُبْن), every other word
+and paradigm the shelf's. Short verbal sentences with a named doer, the ḥāl clause with the wāw (وَالْجُبْنُ فِي فَمِهِ), the
+fronted ẓarf khabar of كَانَ, أَنْ + manṣūb after أَرَادَ, the vocative nakira maqṣūda (يَا غُرَابُ), أَنَّ with an annexed noun, لَنْ
+on «I», مَرَّةً أُخْرَى with the maqṣūr diptote, and the moral as مَنْ of condition with a nominal answer. Ḍabṭ on the landed
+engine: 82/82.
 
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —

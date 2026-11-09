@@ -6,7 +6,7 @@
     python3 tools/build_android.py --gradle   # …and then ./gradlew assembleDebug bundleRelease (needs the Android SDK)
 
 What it does, and why each step exists (research/APP_STORE_STRATEGY.md §2):
-1. `tools/pubsplit.py` splits the self-contained reader into reader.html + data/d1–d3.js — the same split the
+1. `tools/pubsplit.py` splits the self-contained reader into reader.html + data/d1–dN.js (four files since wave 127) — the same split the
    hosted copy uses — so the WebView parses a 3.5 MB page and streams the data files instead of parsing 32 MB
    of HTML; the split page is also written as index.html, which is the only entry Capacitor will load.
 2. The PWA shell travels with it (manifest, icons); sw.js does NOT: inside the native shell the files are
@@ -44,11 +44,13 @@ def write_www():
     shutil.copytree(PROTO / "icons", WWW / "icons")
     if (PROTO / "privacy.html").exists(): shutil.copy(PROTO / "privacy.html", WWW / "privacy.html")   # the privacy page travels with the shell (wave 71)
     # the data files are classic scripts sharing one global scope with the page (pubsplit's contract); assert the
-    # page really references all three, or a WebView would show an empty library with no error anyone can see
+    # page really references every one of them, or a WebView would show an empty library with no error anyone can see
     page = (WWW / "index.html").read_text(encoding="utf-8")
-    for n in ("data/d1.js", "data/d2.js", "data/d3.js"):
+    data_files = sorted(p.name for p in (WWW / "data").glob("d*.js"))
+    if len(data_files) < 2: sys.exit("the split wrote fewer than two data files")
+    for name in data_files:
+        n = f"data/{name}"
         if f'<script src="{n}"></script>' not in page: sys.exit(f"split page does not load {n}")
-        if not (WWW / n).exists(): sys.exit(f"missing {n}")
     return WWW
 
 def stamp_version(v):
@@ -69,7 +71,7 @@ def main():
     if a.no_sync: return
     subprocess.run(["npx", "cap", "sync", "android"], cwd=ROOT, check=True)
     pub = ANDROID / "app/src/main/assets/public"
-    for n in ("index.html", "data/d1.js", "data/d2.js", "data/d3.js", "icons/icon-512.png"):
+    for n in ("index.html", "data/d1.js", "data/d2.js", "icons/icon-512.png"):
         if not (pub / n).exists(): sys.exit(f"cap sync did not deliver {n}")
     print("assets:", sum(p.stat().st_size for p in pub.rglob("*") if p.is_file()) // 1_000_000, "MB in", pub.relative_to(ROOT))
     if a.gradle:

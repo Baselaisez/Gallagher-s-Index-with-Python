@@ -203,8 +203,28 @@ def build_grammar(grammar_dir: Path):
     return notes
 
 
-def js(name, value):
-    return f"const {name} = {json.dumps(value, ensure_ascii=False, separators=(',', ':'))};"
+def js(name, value, parse=False):
+    """a JS constant. parse=True emits JSON.parse("…") instead of the literal. Node parses the JSON string about a third
+    faster (529 vs 747 ms for the 24 MB STORIES), but the whole page in Chromium at 4x CPU throttling booted LATER with it
+    (12.6 s vs 10.5 s) and held a larger heap (179 vs 111 MB): the script scanner still walks the 24 MB string and then
+    JSON.parse walks it again. Wave 127 measured both and kept the literal; the option stays for a future re-measurement."""
+    body = json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+    if not parse:
+        return f"const {name} = {body};"
+    lit = json.dumps(body, ensure_ascii=False).replace("</", "<\\/").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+    return f"const {name} = JSON.parse({lit});"
+
+
+CAT_START = "// __CATALOG_START__"
+CAT_END = "// __CATALOG_END__"
+
+
+def build_shelf_catalog(stories):
+    """the one-line-per-story list the shell paints the library from BEFORE the stories are parsed (wave 127)"""
+    return [{"id": st["id"], "group": st.get("group"), "title": st["title"], "subtitle": st.get("subtitle"), "level": st.get("level"),
+             "levelName": st.get("levelName"), "chapters": len(st.get("chapters") or []),
+             "sentences": sum(len(c.get("sentences") or []) for c in (st.get("chapters") or [])),
+             "published": st.get("published"), "access": st.get("access")} for st in stories]
 
 
 def load_catechism():
@@ -305,6 +325,8 @@ def main():
              "label": {"en": "Embellishment — the Talkhis, Fann 3: tibaq, muqabala, jinas",
                        "tr": "Bedî' — Telhîs'in üçüncü fenni: tıbâk, mukabele, cinas"}},
         ]),
+        # (wave 127) the data script is the LAST script of the page; this line hands the shell its data
+        'if (typeof window.__qissaDataReady === "function") window.__qissaDataReady();',
         END,
     ])
 
@@ -312,7 +334,13 @@ def main():
     i, j = html.find(START), html.find(END)
     if i == -1 or j == -1:
         raise SystemExit(f"markers {START} / {END} not found in {args.html}")
-    args.html.write_text(html[:i] + block + html[j + len(END):], encoding="utf-8")
+    html = html[:i] + block + html[j + len(END):]
+    # (wave 127) the catalog at the top of the code script — the skeleton library is drawn from it before the data parses
+    ci, cj = html.find(CAT_START), html.find(CAT_END)
+    if ci == -1 or cj == -1:
+        raise SystemExit(f"markers {CAT_START} / {CAT_END} not found in {args.html} — the reader predates wave 127")
+    html = html[:ci] + "\n".join([CAT_START, js("CATALOG", build_shelf_catalog(stories)), CAT_END]) + html[cj + len(CAT_END):]
+    args.html.write_text(html, encoding="utf-8")
     n_tokens = sum(len(s["tokens"]) for st in stories
                    for c in st["chapters"] for s in c["sentences"])
     print(f"Rebuilt {args.html}: {len(stories)} stories, {n_tokens} tokens, "

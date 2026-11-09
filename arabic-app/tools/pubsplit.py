@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""pubsplit.py <reader.html> <outdir> — the artifact copy of the reader with its __DATA_START__…__DATA_END__ block
-moved into outdir/data/d1.js (const STORIES = first packages), d2.js… (STORIES.push(...)), dN.js (GRAMMAR, models,
-REF_GROUPS); each file < 15 MB; the page keeps everything else. The repository reader stays self-contained.
-Publish with root=<outdir>, files={"data/d1.js": "data/d1.js", …}."""
+"""pubsplit.py <reader.html> <outdir> — the artifact copy of the reader with its __DATA_START__…__DATA_END__ block moved
+into outdir/data/d1.js (const STORIES = first packages), d2.js… (STORIES.push(...)), dN.js (GRAMMAR, models, REF_GROUPS, the
+ready call); each file < 15 MB; the page keeps everything else. The repository reader stays self-contained.
+(wave 127) reads either a literal or a JSON.parse("…") embedding and writes literals; the data scripts follow the code script,
+so the page's skeleton library paints before they parse. Publish with root=<outdir>, files={"data/d1.js": "data/d1.js", …}."""
 import json,sys,os
 src,out=sys.argv[1],sys.argv[2]
 os.makedirs(os.path.join(out,"data"),exist_ok=True)
@@ -11,10 +12,14 @@ i=t.find("// __DATA_START__"); j=t.find("// __DATA_END__")
 assert i>0 and j>i, "data markers missing"
 seg=t[i:j]
 s=seg.find("const STORIES = "); g=seg.find("\nconst GRAMMAR")
-arr=json.loads(seg[s+len("const STORIES = "):g].rstrip().rstrip(";"))
+lit=seg[s+len("const STORIES = "):g].rstrip().rstrip(";")
+if lit.startswith("JSON.parse("): arr=json.loads(json.loads(lit[len("JSON.parse("):-1]))
+else: arr=json.loads(lit)
 rest=seg[g+1:]; head=seg[:s]
 d=lambda o: json.dumps(o,ensure_ascii=False,separators=(",",":"))
-files=[]; cur=[]; curb=0; LIM=15_000_000
+def jp(o):   # an object literal: Chromium parses it faster than JSON.parse("…") of the same data (wave 127 measurement)
+    return d(o).replace("</","<\\/")
+files=[]; cur=[]; curb=0; LIM=13_000_000
 for p in arr:
     b=len(d(p).encode())+2
     if cur and curb+b>LIM: files.append(cur); cur=[]; curb=0
@@ -23,7 +28,7 @@ files.append(cur)
 names=[]
 for k,chunk in enumerate(files):
     fn=f"data/d{k+1}.js"; names.append(fn)
-    body=("const STORIES = " if k==0 else "STORIES.push(...")+d(chunk)+(";\n" if k==0 else ");\n")
+    body=("const STORIES = "+jp(chunk)+";\n") if k==0 else ("STORIES.push(..."+jp(chunk)+");\n")
     open(os.path.join(out,fn),"w",encoding="utf-8").write((head if k==0 else "")+body)
 fn=f"data/d{len(files)+1}.js"; names.append(fn)
 open(os.path.join(out,fn),"w",encoding="utf-8").write(rest)

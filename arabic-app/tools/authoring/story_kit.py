@@ -603,8 +603,12 @@ def MAJHUL_NA(full, lex, extra=None, punct=None, note_ar="", note_en="", note_tr
 def YA_MUTAKALLIM_N(full, lex, stem, role_ar, role_en, role_tr, extra=None, punct=None, prep=None):
     """جُنْدِي، بِرَبِّي: a noun annexed to the speaker's ya (optionally under a jarr letter)"""
     segs = ([seg(prep[0], prep[1], "prep")] if prep else []) + [seg(stem, lex, "noun"), seg("ي", "pron-1s", "pron")]
+    # (wave 128) the estimated vowel is the CASE's vowel, hidden by the kasra the yāʾ demands: ḍamma for rafʿ, fatḥa for naṣb,
+    # kasra for jarr — the helper used to write «kasra» for every case, and the SignEngine's audit caught the marfūʿ lines
+    vowel = "بِضَمَّةٍ" if "مَرْفُوع" in role_ar else "بِفَتْحَةٍ" if "مَنْصُوب" in role_ar else "بِكَسْرَةٍ"
+    hidden_by = "" if vowel == "بِكَسْرَةٍ" else " مَنَعَ مِنْ ظُهُورِهَا اشْتِغَالُ الْمَحَلِّ بِالْكَسْرَةِ الْمُنَاسِبَةِ لِلْيَاءِ"
     return tok(full, (prep[1] if prep else lex), ("prep" if prep else "noun"), ["ya-al-mutakallim", "idafa-definiteness", "al-bariz-al-muttasil"] + (["huruf-jarr"] if prep else []) + (extra or []),
-        (prep[2] + "، وَ" if prep else "") + stem + " " + role_ar + " بِكَسْرَةٍ مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ، مُضَافٌ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+        (prep[2] + "، وَ" if prep else "") + stem + " " + role_ar + " " + vowel + " مُقَدَّرَةٍ قَبْلَ يَاءِ الْمُتَكَلِّمِ" + hidden_by + "، مُضَافٌ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
         (prep[3] + "; " if prep else "") + role_en + " — the vowel is estimated before the speaker's ya; the noun is annexed, and the ya is the second term of the idafa in the seat of jarr.",
         (prep[4] + "; " if prep else "") + role_tr + " — hareke mütekellim yâ'sından önce takdîrîdir; isim muzâf, yâ muzâfun ileyh — mahallen mecrûr.", punct=punct, segments=segs)
 BANU_ISMK = lambda: tok("بَنُو", "banu", "noun", ["kana-wa-akhawatuha", "jam-mudhakkar-salim", "idafa-definiteness"], "اسْمُ كَانَ مَرْفُوعٌ بِالْوَاوِ — مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتْ نُونُهُ لِلْإِضَافَةِ، مُضَافٌ.", "The noun of كَانَ, in raf' — attached to the sound masculine plural, raised by the waw; its nun is dropped for the idafa.", "Kâne'nin ismi, merfû — cem-i müzekker sâlime mülhak, vâv ile merfû; nûnu izâfet için düşmüş, muzâf.")

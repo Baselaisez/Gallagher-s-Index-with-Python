@@ -50,6 +50,8 @@ if (!CHROME) {
   // The first-run level picker has its own fresh-context check below; the main
   // page runs as a returning reader so its sheet cannot sit over every other check.
   await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
+  // (wave 127) a long text renders in frames; these checks read a whole text the moment it opens, so every page renders synchronously
+  await page.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
   await page.goto(url);
   let checkN = 0;
   const check = async (name, fn) => {
@@ -89,6 +91,8 @@ if (!CHROME) {
     const card = storyCard(id);
     if (!(await card.count())) throw new Error(id + ' is not in the library');
     await card.click();
+    // (wave 127) a long text renders in frames; the checks read the whole DOM, so finish it here
+    await page.evaluate(() => { if (window.flushStoryRender) window.flushStoryRender(); });
   };
 
   // Data-driven expectations, derived from the page's own STORIES global
@@ -2090,6 +2094,7 @@ if (!CHROME) {
     // A Turkish device must not be shown an English app on first run; a stored
     // choice must still win over the device.
     const ctx2 = await browser.newContext({ locale: 'tr-TR' });
+    await ctx2.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
     try {
       const p2 = await ctx2.newPage();
       await p2.goto(url);
@@ -2697,6 +2702,7 @@ if (!CHROME) {
   await check('first run asks the level once, and "For you" shelves by it', async () => {
     // A brand-new profile: nothing stored, so this is the first visit.
     const ctx3 = await browser.newContext();
+    await ctx3.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
     try {
       const p3 = await ctx3.newPage();
       await p3.goto(url);
@@ -10180,6 +10186,44 @@ if (!CHROME) {
     if (r.textAcc < 98) throw new Error('the pronoun named ' + r.textAcc + '% < 98 on the story shelf: ' + r.miss.join(' '));
   });
 
+  await check('wave 127 — SPEED: the shell is two scripts (code, then data), the CATALOG paints a skeleton shelf before the stories parse, the boot hands off once, a long text renders its first sentences at once and the rest in frames, and the flush finishes it', async () => {
+    const r = await page.evaluate(() => {
+      const scripts = [...document.scripts].filter(x => !x.src && x.textContent.length > 1000);
+      const dataIdx = scripts.findIndex(x => /__DATA_START__/.test(x.textContent.slice(0, 400)));
+      const codeIdx = scripts.findIndex(x => /__CATALOG_START__/.test(x.textContent.slice(0, 4000)));
+      return { n: scripts.length, dataIdx, codeIdx, catalog: typeof CATALOG !== 'undefined' ? CATALOG.length : -1, stories: STORIES.length,
+               booted: typeof window.__qissaBootedAt === 'number', pending: document.body.classList.contains('data-pending'),
+               catFields: typeof CATALOG !== 'undefined' ? Object.keys(CATALOG[0]).sort().join(',') : '' };
+    });
+    if (r.n < 2 || r.codeIdx !== 0 || r.dataIdx !== r.n - 1) throw new Error('the code script first, the data script last: ' + JSON.stringify(r));
+    if (r.catalog !== r.stories) throw new Error('the CATALOG lists every story: ' + r.catalog + ' vs ' + r.stories);
+    if (!/^access,chapters,group,id,level,levelName,published,sentences,subtitle,title$/.test(r.catFields)) throw new Error('catalog fields: ' + r.catFields);
+    if (!r.booted || r.pending) throw new Error('the boot hand-off ran and the pending state cleared: ' + JSON.stringify(r));
+    // the skeleton draws from the catalog alone (the function is callable after boot too)
+    const sk = await page.evaluate(() => { renderLibrarySkeleton(); const n = document.querySelectorAll('.lib-card.skel').length; renderLibrary(); return n; });
+    if (sk !== r.stories) throw new Error('the skeleton shelf has a card per catalogued story: ' + sk);
+    // the chunked render: the Kāfiya (hundreds of sentences) shows its first sentences at once, not all; the flush completes it
+    const ch = await page.evaluate(async () => {
+      const wasPremium = state.premium; state.premium = true;   // the Kāfiya is premium: its locked preview is 3 sentences
+      window.__QISSA_RENDER_SYNC = false;   // this check wants the frames the rest of the suite switches off
+      const st = STORIES.find(s => s.id === 'al-kafiya'); const total = st.chapters.reduce((a, c) => a + c.sentences.length, 0);
+      const t0 = performance.now(); openStory(st); const first = document.querySelectorAll('.sentence').length; const tFirst = performance.now() - t0;
+      const pills = document.querySelectorAll('.ch-pill').length;
+      window.flushStoryRender(); const after = document.querySelectorAll('.sentence').length; const tFull = performance.now() - t0;
+      const pendingAfter = !!(window.flushStoryRender && (() => { try { return STORY_RENDER_FLUSH !== null; } catch (e) { return false; } })());
+      renderLibrary(); state.premium = wasPremium; window.__QISSA_RENDER_SYNC = true;
+      return { total, first, after, pills, chapters: st.chapters.length, tFirst: Math.round(tFirst), tFull: Math.round(tFull), pendingAfter };
+    });
+    if (ch.first >= ch.total || ch.first < 30) throw new Error('the first frame paints a part of the text: ' + JSON.stringify(ch));
+    if (ch.after !== ch.total) throw new Error('the flush completes the text: ' + JSON.stringify(ch));
+    if (ch.pills !== ch.chapters) throw new Error('every chapter has its pill before it renders: ' + JSON.stringify(ch));
+    if (ch.pendingAfter) throw new Error('nothing stays pending after the flush');
+    if (ch.tFirst > 1500) throw new Error('the first frame of the Kāfiya took ' + ch.tFirst + ' ms (> 1500 on the test machine)');
+    // a short text still renders in one go
+    const sh = await page.evaluate(() => { const st = STORIES.find(s => s.id === 'luqman-wa-ibnuh'); const total = st.chapters.reduce((a, c) => a + c.sentences.length, 0); openStory(st); const n = document.querySelectorAll('.sentence').length; renderLibrary(); return { total, n }; });
+    if (sh.n !== sh.total) throw new Error('a short text renders whole at once: ' + JSON.stringify(sh));
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });
@@ -11569,6 +11613,7 @@ if (!CHROME) {
     if (!flag) throw new Error('NATIVE_SHELL must exist and be false outside the shell');
     const STARTUP_MS = 17000;   // measured 7.9–8.4 s (×4 CPU, file://, the 32 MB self-contained page; the SPLIT page that ships paints in 2.6–3.0 s) — the budget is 2× the slowest run; see CLAUDE.md wave 69
     const ctx = await browser.newContext();
+    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
     await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));   // a returning reader: the first-run picker must not sit over the shelf
     const p9 = await ctx.newPage();
     const cdp = await ctx.newCDPSession(p9);
@@ -11601,6 +11646,7 @@ if (!CHROME) {
   await check('wave 72 — the phone shows the text first: the first library card and the first sentence sit in the upper half of a 390×844 screen, the bar keeps only mode / Listen / Aa, the reading sheet reaches every control it hid and the desktop bar is unchanged', async () => {
     const LIB_MAX = 403, SEN_MAX = 338;   // measured 358 / 293 on landing; the gate is the measurement plus a 45px margin
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
     await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
     const p9 = await ctx.newPage(); await p9.goto(url); await p9.waitForSelector('.lib-card'); await p9.waitForTimeout(300);
     const lib = await p9.evaluate(() => { const c = document.querySelector('.continue-card, .lib-card'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };
