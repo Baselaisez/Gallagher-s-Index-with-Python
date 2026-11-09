@@ -3796,7 +3796,9 @@ if (!CHROME) {
 
   await check('focus mode hides the header on the way down, returns it on the way up', async () => {
     await openStoryCard('wasiyyat-abi-hanifa-samti');
-    await page.waitForSelector('.word', { timeout: 10000 });
+    // (v230) the Samtī text (708 tokens) renders in well under a second on a warm page; at the end of a cold release chunk
+    // that has just graded the whole corpus for an hour it once outran ten seconds — the same allowance as the v224 waits
+    await page.waitForSelector('.word', { timeout: 30000 });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(80);
     await page.evaluate(() => window.scrollTo(0, 900));
@@ -10152,6 +10154,32 @@ if (!CHROME) {
     if (r.lines < 300) throw new Error('the stored lines name their ghosts: ' + r.lines);
   });
 
+  await check('wave 121 — TaqdirEngine names the ADDRESSEE: تَفْعَلُ is «أَنْتَ» after a vocative, inside speech, after ـكَ, under the prohibition, and «هِيَ» after a feminine perfect, ـهَا, الَّتِي, a feminine noun; the corpus grader over the story shelf', async () => {
+    const r = await page.evaluate(() => {
+      const one = s => { const g = TaqdirEngine.readText(s).ghosts.filter(x => x.kind === 'mustatir'); return g.map(x => x.text + (x.cue ? '/' + x.cue : '')).join(';') || '∅'; };
+      // the STORY shelf — the seven matns excluded: the whole corpus takes the grader past 25 minutes, and the authored أَنْتَ/هِيَ lines live in the stories
+      const ids = STORIES.map(s => s.id).filter(id => !/qisas-al-nabiyyin|al-kafiya|izhar-al-asrar|talkhis-al-miftah|aqaid-ahl-al-sunna|bad-al-amali|jumal-al-tadrib|wasiyyat-abi-hanifa/.test(id));
+      const c = TaqdirEngine.corpus(ids, 0);
+      return { voc: one('يَا أَبِي لِمَاذَا تَعْبُدُ هٰذِهِ الْأَصْنَامَ'), qawl: one('قَالَ لَهُ أَلَا تَخْرُجُ مَعَنَا'), ka: one('إِنَّكَ لَا تَزَالُ تَذْكُرُ يُوسُفَ'), nahy: one('لَا تَحْزَنْ'),
+               fem: one('كَانَتْ زَوْجَتُهُ تَعْمَلُ عِنْدَ النَّاسِ'), ha: one('فَإِنَّهَا لَا تَنْفَعُ وَلَا تَضُرُّ'), allati: one('الْكَلِمَاتُ الَّتِي تُبَدِّدُ الظُّلُمَاتِ'), rih: one('وَكَانَتِ الرِّيحُ تَجْرِي بِأَمْرِهِ'),
+               textAcc: c.textAcc, textN: c.textN, recall: c.recall, n: c.n, false: c.false, miss: c.miss.filter(m => m.got && /^(هِيَ|أَنْتَ)$/.test(m.got)).slice(0, 6).map(m => m.w + ':' + m.want + '→' + m.got) };
+    });
+    // (the seed keeps the story's هٰذِهِ: without it the ḍabṭ layer reads الْأَصْنَامَ as the doer despite its fatḥa and no ghost is raised — a ḍabṭ gap, noted for its own wave)
+    if (!/^أَنْتَ\/nida/.test(r.voc)) throw new Error('after the vocative the verb addresses «you»: ' + r.voc);
+    if (!/أَنْتَ\/qawl/.test(r.qawl)) throw new Error('inside speech the verb addresses «you»: ' + r.qawl);
+    if (!/أَنْتَ\/(ka|انك)/.test(r.ka)) throw new Error('after إِنَّكَ the verb addresses «you»: ' + r.ka);
+    if (!/أَنْتَ/.test(r.nahy)) throw new Error('the prohibition addresses «you»: ' + r.nahy);
+    if (!/هِيَ/.test(r.fem) || /أَنْتَ/.test(r.fem)) throw new Error('after كَانَتْ زَوْجَتُهُ the verb is «she»: ' + r.fem);
+    if (!/هِيَ\/انها|هِيَ\/ha/.test(r.ha) || /أَنْتَ/.test(r.ha)) throw new Error('after إِنَّهَا both verbs are «she»: ' + r.ha);
+    if (!/هِيَ\/التي/.test(r.allati)) throw new Error('the ṣila of الَّتِي is «she»: ' + r.allati);
+    if (!/هِيَ/.test(r.rih) || /أَنْتَ/.test(r.rih)) throw new Error('الرِّيحُ تَجْرِي is «she»: ' + r.rih);
+    // the story-shelf grader (every story sentence whose lines assert a ghost — not the 80-sentence window of the older check):
+    // measured at v230 — recall 92.6, the pronoun named 99.2 % of 592 (it was 96.6 before the reader)
+    if (r.n < 600) throw new Error('the story-shelf graded set is too small: ' + r.n);
+    if (r.recall < 90) throw new Error('story-shelf ghost recall ' + r.recall + '% < 90');
+    if (r.textAcc < 98) throw new Error('the pronoun named ' + r.textAcc + '% < 98 on the story shelf: ' + r.miss.join(' '));
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });
@@ -12181,6 +12209,39 @@ if (!CHROME) {
       throw new Error('the words and the four generated paradigms the story was written around: ' + JSON.stringify(r));
     // the ḍabṭ engine's grade on the landed engine, 1 misses measured — a regression here is a rule that stopped firing
     if (r.n < 180 || r.hit < r.n - 1) throw new Error('ḍabṭ ' + r.hit + '/' + r.n + ' — ' + r.miss.join(' | '));
+  });
+  await check('wave 120 — the Muḥallil (فَهْم): a sentence the shelf never saw is read by the rules — seats decided, every word named from the lexicon or the paradigms, an approximate meaning in English and Turkish composed from the glosses in the order the seats dictate (the doer before its verb, the naʿt before its noun, the nāsikh as «was», the negation with the bare stem, the vocative\'s addressee as «you»), the grammar it carries with its § notes, the closest analysed sentences of the shelf with jump buttons, and the sureness line — on a phone, without sideways scroll', async () => {
+    await page.evaluate(() => { conjState.lab = 'fahm'; conjState.fahm = 'قال المعلم لتلاميذه اقرؤوا كتبكم'; conjState.fahmPick = -1; openConjugator(); });
+    await page.waitForSelector('#fahmOut .fahm-meaning', { timeout: 20000 });
+    const r = await page.evaluate(() => {
+      const a = (document.getElementById('fahmOut') || {}).__a || null;
+      const m = s0 => FahmEngine.analyze(s0, 'en').meaning;
+      return {
+        rail: !!document.querySelector('.tabs [data-lab="fahm"].on'),
+        words: document.querySelectorAll('#fahmOut .dabt-w').length, rows: document.querySelectorAll('#fahmOut .fahm-words tbody tr').length,
+        meaning: (document.querySelector('#fahmOut .fahm-meaning p') || {}).textContent || '', tr: (document.querySelector('#fahmOut .fahm-meaning .fahm-tr') || {}).textContent || '',
+        feats: document.querySelectorAll('#fahmOut .fahm-feats li').length, notes: document.querySelectorAll('#fahmOut .fahm-feats [data-note]').length,
+        near: document.querySelectorAll('#fahmOut .fahm-near li').length, jumps: document.querySelectorAll('#fahmOut [data-jump]').length, marks: document.querySelectorAll('#fahmOut .fahm-near mark').length,
+        seeds: document.querySelectorAll('#fahmOut .qw-seed').length, sure: (document.querySelector('#fahmOut .fahm-sure') || {}).textContent || '',
+        known: a && a.known, n: a && a.n, decided: a && a.decided,
+        fits: document.documentElement.scrollWidth <= window.innerWidth + 1,
+        m1: m('كان الرجل تاجرا في البصرة'), m2: m('لم يأكل الولد طعامه'), m3: m('يا أبي لماذا تسجد لهذه الأصنام'), m4: m('رأيت رجلا كريما في المسجد الكبير'), m5: m('لن يذهب الاولاد الى السوق غدا'), m6: m('ان الله غفور رحيم'),
+        near1: FahmEngine.analyze('ذهب الطالب الى المدرسة ورأى معلمه فيها', 'en').near.map(x => x.st.id + ':' + x.sn.id)
+      };
+    });
+    if (!r.rail || r.words !== 5 || r.rows !== 5) throw new Error('the fahm lab renders its five words on the rail and in the table: ' + JSON.stringify(r));
+    if (!/teacher/.test(r.meaning) || !/students/.test(r.meaning) || !/read/.test(r.meaning) || !/books/.test(r.meaning) || !/TR/.test(r.tr) || !/[Öö]ğrenci|muallim/i.test(r.tr)) throw new Error('the approximate meaning in both languages: ' + JSON.stringify(r));
+    if (r.feats < 3 || r.notes < 3 || r.near < 1 || r.jumps < 1 || r.marks < 1 || r.seeds < 5) throw new Error('features with notes, nearest sentences with jumps and highlighted shared words, seeds: ' + JSON.stringify(r));
+    if (r.known !== 5 || r.n !== 5 || r.decided < 4 || !/5 of 5/.test(r.sure)) throw new Error('the sureness line: ' + JSON.stringify(r));
+    if (!r.fits) throw new Error('the fahm lab scrolls sideways on a phone');
+    // the composer\'s rules, each on the sentence written for it
+    if (!/^The man was a merchant in Basra\.$/.test(r.m1.en) || !/idi\.$/.test(r.m1.tr)) throw new Error('kāna as «was», the Turkish «idi» last: ' + JSON.stringify(r.m1));
+    if (!/^The child did not eat his food\.$/.test(r.m2.en) || !/yemedi\.$/.test(r.m2.tr)) throw new Error('the negated jussive with the bare stem, the Turkish negative past: ' + JSON.stringify(r.m2));
+    if (!/^O my father why you bow down (to|for) these idols/.test(r.m3.en)) throw new Error('the vocative kin word, the addressee «you», the plural demonstrative with its badal: ' + JSON.stringify(r.m3));
+    if (!/^You saw a noble man in the big mosque\.$/.test(r.m4.en) || !/^Kerîm adam büyük mescid/.test(r.m4.tr)) throw new Error('the naʿt before its noun with the article carried, the speaker\'s tāʾ, the Turkish adjective order: ' + JSON.stringify(r.m4));
+    if (!/^The children will not go to the market tomorrow\.$/.test(r.m5.en) || !/yarın gitmiyor\.$/.test(r.m5.tr)) throw new Error('the plural by the lexicon, لَنْ with the bare stem, غَدًا as the adverb: ' + JSON.stringify(r.m5));
+    if (!/^Indeed Allah is (the )?Forgiving/.test(r.m6.en) || !/^Şüphesiz Allah/.test(r.m6.tr)) throw new Error('إِنَّ read from its ism, the Name without an article: ' + JSON.stringify(r.m6));
+    if (!r.near1.length || !r.near1.some(x => /^(wasiyyat-abi-hanifa-L2|qisas-al-nabiyyin-2|musa-wa-firawn):/.test(x))) throw new Error('the nearest analysed sentences share the lemmas ذَهَبَ / إِلَى / مُعَلِّم: ' + JSON.stringify(r.near1));
   });
   await check('wave 109 — «The Lion and the Hare», the nineteenth original story (a Kalila wa-Dimna fable retold) and the eleventh at Level 2: four chapters, sixteen sentences, every token with trilingual i\'rab, free, pending review; the fronted predicate of kana, the clause-adjective, the tawkid, the hollow verb in jazm, the jussive answering a request, the diptotes, the manqus nakira, zanna with anna, the tamyiz, the conjoining la; four new entries with a hollow paradigm; the ḍabṭ engine re-derives its endings', async () => {
     const r = await page.evaluate(() => {

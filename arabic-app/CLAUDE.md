@@ -9834,6 +9834,60 @@ and no host case, is now unjudged — defensible), CASE layer 98.3 %. The lesson
 FULLER iʿrāb than the matns, and every grader that was pinned on the matns has to be re-read against a story line before
 its floor is trusted — and a grader repair is itself re-read against the bank before the release moves on.
 
+**Wave 120 — the Muḥallil (فَهْم lab): a NEW sentence, read by the rules and set beside the shelf.** The owner's brief: a learner
+types a sentence the app never saw; the app should compare it with what it has already analysed and, from its qawāʿid
+algorithms and the analysed instances, say approximately what it means and what grammar it carries — by rules and objects, no
+outside model. FahmEngine does exactly that and nothing more: `DabtEngine.vowel()` decides the seats (its rows carry the
+analyzer's verb cells); every word is named by the lexicon (`DabtEngine.lex`, the pronoun HOST looked up when a tail is on the
+word — يَدِهِ is يَد, أَبِي is أَب by a kin table), by the paradigms (a hamza seat normalised, اقْرَؤُوا), by a particle table
+built once from the glossaries (fused ones taken apart: فِيهَا، لِهٰذِهِ، لِتَلَامِيذِهِ), by a nāsikh table (كَانَ before كَأَنَّ), by an
+adverb table (غَدًا is «tomorrow» at the clause's end, not غَدَا «became»), or — flagged on the panel — by root alone. The
+approximate meaning is the glosses set in the order the seats dictate: the doer before its verb (EN) and the verb last (TR),
+the naʿt before its noun with the article carried over («a big book», «büyük kitap»), the nāsikh as «was/idi» after the ism,
+إِنَّ read from its ism as «indeed/şüphesiz», the negation with the bare stem («did not eat», «yemedi» by vowel harmony), the
+question particle as a frame («Did … ?», «… mı?»), the vocative's addressee as «you», the plural demonstrative with its badal
+(«these idols»), the Turkish postposition after its noun, English irregular pasts and plurals from small tables, Turkish
+tense and person from harmony rules. Below the meaning: the structure line (each word's seat in words), the word table
+(lemma · gloss · seat · ṣarf), the grammar the sentence carries with § notes (from the rules that fired), the features seen
+in the closest analysed sentences, and the three closest sentences of the shelf by shared lemmas (verbs weighted double), the
+shared words marked and a jump into their text — the learner sees the EVIDENCE the reading leans on. The sureness line counts
+words known, seats decided, words read by root. Twelve probe sentences, all composed from the glosses alone, read as a reader
+would say them; the smoke check pins six of them in both languages. Honest limits, said on the panel: a word the lexicon
+lacks is glossed by its root in brackets ([lesson?] for الْمَدْرَسَة, [long?] for الطَّاوِلَة — the next content waves feed the
+lexicon, and the Muḥallil grows with it); an unvowelled قَرَأْتَ/قَرَأَتْ keeps the analyzer's first reading.
+
+**Wave 121 — TaqdirEngine names the ADDRESSEE: تَفْعَلُ is one written form for two persons, and the sentence decides.**
+The Kāfiya's own line for the bare form is «تَقْدِيرُهُ أَنْتَ أَوْ هِيَ» — both. The engine had been naming whichever paradigm
+cell the tagger met first (the 3fs, index 3, sits before the 2ms, index 6, in every stored muḍāriʿ array), so Ibrāhīm's
+«يَا أَبِي لِمَاذَا تَعْبُدُ هٰذِهِ الْأَصْنَامَ» read «she worships» and Luqmān's «لَا تَجْعَلْ» the other way round. The stories
+had written the answer 125 times (59 أَنْتَ, 67 هِيَ, the rest هُوَ on تَعَالَى-like forms); the reader was prototyped on those
+lines in Python before a line of JS was written, and the cues fell into two tiers. STRONG, read nearest-first walking back
+from the verb: for «you» — a second-person pronoun or enclitic (أَنْتَ، إِنَّكَ، لَكَ، ـكَ), a vocative (يَا، رَبِّ، رَبَّنَا، اللّٰهُمَّ،
+بُنَيَّ), a verb of saying that opens speech (قَالَ، قَالَتْ، قُلْتُ، قِيلَ), an imperative, a 2ms perfect (عَلِمْتَ), the
+prohibition's لَا right before the jussive, the speaker's ـنِي on the verb itself; for «she» — هِيَ، إِنَّهَا، هٰذِهِ، تِلْكَ, an
+ـهَا enclitic, الَّتِي, a feminine perfect (كَانَتْ زَوْجَتُهُ تَعْمَلُ), the noun right before أَنْ whose clause this is (أَمَرَ
+الْأَرْضَ أَنْ تَقْتَرِبَ). WEAK, used only when no strong cue stands anywhere in the sentence: a feminine noun (tāʾ marbūṭa, a
+known feminine, a sound feminine plural, a non-human plural) that is not majrūr and not a number word → «she»; an
+interrogative → «you». A sister تَفْعَلُ on the way back is skipped — it waits for the same answer; nothing found → the
+tagger's cell stands. Two lessons: (1) the first cut let a feminine noun beat a 2nd-person pronoun further back
+(«أَنْتَ وَلِيِّي فِي الدُّنْيَا وَالْآخِرَةِ تَوَفَّنِي» read «she») — a majrūr noun is no subject candidate, and a weak cue must
+never outrank a strong one however near; (2) NFC puts the shadda AFTER the ḍamma (تَضُرُّ ends in U+0651), so a «final ḍamma»
+test that does not strip the shadda reads a rafʿ verb as jussive. Prototype 117/125 right, 5 undecided, 3 wrong. The
+story-shelf grader (the 34 story texts, every sentence whose lines assert a ghost — the seven matns are excluded because
+the whole corpus takes the grader past 25 minutes, and the 80-sentence window of the older check never reached the stories):
+the pronoun named 96.6 → 99.2 % of 592 lines, recall 92.6 %, no false ghost; the smoke check pins the eight seed
+sentences by cue and a floor of 98. Of the five lines still missed, two are «أَجِدْ» read as second person (a first-person
+jussive whose cell carries no person — an older tagger gap, the next wave's), one is «وَأَجِبْهُمْ» (an amr of أَجَابَ read as
+the speaker's muḍāriʿ), one is «عَلَى أَنْ تَعْمَلَ» whose speech began in the previous sentence, and one the construct rule
+caught on the second pass (أَرْضَ السُّوءِ أَنْ تَتَبَاعَدَ — the muḍāf, not its majrūr, is the noun the clause is about). The ghost carries its `cue`, so a panel can say WHY it read «you».
+
+**Wave 119 — closed by diagnosis, no code.** The note said أُرَاهَا should be tied to أَرَى's passive, not رَأَى's, by a rule
+that prefers the paradigm owning the written form. Probed on the v229 tree: `RootFinder.fromCorpus("أُرَاهَا")` returns رَأَى,
+majhūl muḍāriʿ, person 12, form أُرَى (derived) — and both stored lines (the Kāfiya's «كُنْتُ أُرَى زَيْدًا», the Talkhīṣ's «أُرَاهَا
+فِي الضَّلَالِ تَهِيمُ») carry the author's key `raa`, so the engine agrees with the author already. The two paradigms share
+يُرَى as their stored majhūl and neither stores أُرَى; a rule preferring the owner of the exact surface would find no owner.
+Nothing to change; the task is retired with the probe's JSON in the scratchpad.
+
 **Round 73c — the author's vowel is a RECEIPT, and the rules may read it.** The Nasafī matn's 22 new chapters arrived at
 507/524 on the DabtEngine's endings grade; every one of the seventeen misses was read, and all fell to eleven rules —
 none to a lowered floor. Three lessons are general:

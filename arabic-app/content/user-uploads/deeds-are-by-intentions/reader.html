@@ -1899,6 +1899,24 @@
   .opts button.catlong { text-align: start; white-space: normal; line-height: 1.4; }
   .tabs [data-lab="sledger"]::before { content: "📒"; }
   .tabs [data-lab="dabt"]::before    { content: "✍️"; }
+  .tabs [data-lab="fahm"]::before    { content: "🧭"; }
+  .fahm-meaning { border: 1px solid var(--line); border-inline-start: 3px solid var(--accent); border-radius: var(--r-md); background: var(--panel); padding: .6rem .8rem; margin: .6rem 0; }
+  .fahm-meaning p { margin: .2rem 0; font-size: 1.05rem; line-height: 1.5; }
+  .fahm-meaning small, .fahm-sure { color: var(--muted); font-size: var(--t-xs); }
+  .fahm-struct { font-size: var(--t-sm); color: var(--muted); margin: .2rem 0 .5rem; line-height: 1.6; }
+  .fahm-struct b { color: var(--ink); font-weight: 600; }
+  .fahm-words { width: 100%; border-collapse: collapse; margin: .5rem 0; font-size: var(--t-sm); }
+  .fahm-words th, .fahm-words td { border-bottom: 1px solid var(--line); padding: .35rem .3rem; text-align: start; vertical-align: top; }
+  .fahm-words td.ar { font-family: var(--ar-font); font-size: 1.25rem; direction: rtl; text-align: right; white-space: nowrap; }
+  .fahm-words td small { color: var(--muted); display: block; }
+  .fahm-words tr.approx td { color: var(--muted); }
+  .fahm-feats ul, .fahm-near ul { list-style: none; padding: 0; margin: .3rem 0; }
+  .fahm-feats li { padding: .25rem 0; border-bottom: 1px dashed var(--line); font-size: var(--t-sm); }
+  .fahm-near li { padding: .4rem 0; border-bottom: 1px dashed var(--line); }
+  .fahm-near .ar { font-family: var(--ar-font); font-size: 1.2rem; direction: rtl; display: block; text-align: right; line-height: 1.9; }
+  .fahm-near .ar mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: inherit; border-radius: 3px; }
+  .fahm-near small { color: var(--muted); display: block; }
+  .fahm-near .fahm-jump { float: inline-end; margin-inline-start: .5rem; }
   .tabs [data-lab="tashbih"]::before { content: "🪞"; }
   .tabs [data-lab="majaz"]::before   { content: "🌉"; }
   .tabs [data-lab="kinaya"]::before  { content: "🪜"; }
@@ -3008,6 +3026,11 @@ const L = {
         atlasReadStat:"{n} stars met in what you have read", atlasReadLegend:"read", noteOpenLab:"open in the lab",
         atlasIntro:"The notes as a sky: each bab a sector, each level a ring outward, each note a star sized by the corpus sentences that anchor it, each dependency a line. Tap a star to open it; the search box dims what it does not match.",
         atlasLegend:"star size = corpus anchors · lines = related notes",
+        fahmTab:"Understand", fahmIntro:"Type ANY Arabic sentence, with or without its marks. The rules read it: every word is sought in the shelf\'s lexicon and paradigms, the governors decide the seats, and the sentence is glossed word by word into an approximate meaning. Below it, the grammar it carries with its notes, and the closest sentences the shelf has already analysed — the evidence the reading leans on. No outside model: the rules and the 46 analysed texts alone.",
+        fahmPh:"e.g. ذهب الطالب الى المدرسة ورأى معلمه فيها", fahmEmpty:"Type a sentence to have it read.", fahmMeaning:"Approximate meaning", fahmApprox:"word glosses in the sentence\'s order of sense — a reading, not a translation",
+        fahmStruct:"Structure", fahmWords:"Word by word", fahmColWord:"word", fahmColGloss:"lemma · gloss", fahmColSeat:"seat", fahmColSarf:"ṣarf", fahmFeatures:"Grammar it carries", fahmNear:"Closest analysed sentences", fahmNearNone:"no analysed sentence shares a word with this one yet",
+        fahmSure:"{k} of {n} words known to the lexicon · {d} seats decided by rule · {u} read by root only", fahmByRoot:"by root only", fahmByPattern:"read by its pattern {w} on the root", fahmUnknown:"unknown", fahmShared:"shares: {w}", fahmJump:"open in its text", fahmSeeds:"try a sentence",
+        fahmNearFeat:"seen in the closest sentences", fahmPast:"past", fahmPresent:"present", fahmAmr:"command", fahmPassive:"passive", fahmVerbal:"verbal sentence", fahmNominal:"nominal sentence", fahmClauses:"{n} clauses",
         dabtTab:"Dabt", dabtIntro:"Type a sentence WITHOUT its endings — or with them, to be checked. The engine reads the governors (the verb, the jarr letter, inna, kana, the idafa, the shart…) and WRITES every ending itself; in the full mode it also rebuilds the vowels inside each word from the paradigm cells and the lexicon. Tap a word for the rule that decided it.",
         dabtPh:"e.g. ذهب الطالب الى المدرسة",
         dabtEndings:"endings", dabtFull:"every mark", dabtModeHint:"endings: the inner marks are yours, the last letter's is derived · every mark: the whole word is rebuilt",
@@ -3386,6 +3409,11 @@ const L = {
         atlasReadStat:"okuduklarınızda karşılaşılan {n} yıldız", atlasReadLegend:"okunmuş", noteOpenLab:"lâboratuvarda aç",
         atlasIntro:"Notlar bir gökyüzü olarak: her bâb bir dilim, her seviye dışa doğru bir halka, her not onu destekleyen külliyat cümleleri kadar büyük bir yıldız, her bağımlılık bir çizgi. Bir yıldıza dokunup açın; arama kutusu uymayanı soldurur.",
         atlasLegend:"yıldız büyüklüğü = külliyat şahitleri · çizgiler = ilgili notlar",
+        fahmTab:"Anla", fahmIntro:"Harekeli ya da harekesiz HERHANGİ bir Arapça cümle yazın. Kurallar okur: her kelime rafın sözlüğünde ve çekim tablolarında aranır, âmiller mahalleri belirler, cümle kelime kelime yaklaşık bir anlama çevrilir. Altında taşıdığı gramer notlarıyla, ve rafın zaten tahlil ettiği en yakın cümleler — okumanın dayandığı deliller. Dış model yok: yalnız kurallar ve tahlil edilmiş 46 metin.",
+        fahmPh:"örn. ذهب الطالب الى المدرسة ورأى معلمه فيها", fahmEmpty:"Okunması için bir cümle yazın.", fahmMeaning:"Yaklaşık anlam", fahmApprox:"kelime karşılıkları anlam sırasıyla — bir okuma, tercüme değil",
+        fahmStruct:"Yapı", fahmWords:"Kelime kelime", fahmColWord:"kelime", fahmColGloss:"kök · karşılık", fahmColSeat:"mahal", fahmColSarf:"sarf", fahmFeatures:"Taşıdığı gramer", fahmNear:"En yakın tahlilli cümleler", fahmNearNone:"henüz bu cümleyle kelime paylaşan tahlilli cümle yok",
+        fahmSure:"{n} kelimeden {k}\'ü sözlükte · {d} mahal kuralla kararlaştırıldı · {u} yalnız kökten okundu", fahmByRoot:"yalnız kökten", fahmByPattern:"{w} vezniyle kökünden okundu", fahmUnknown:"bilinmiyor", fahmShared:"ortak: {w}", fahmJump:"metninde aç", fahmSeeds:"bir cümle dene",
+        fahmNearFeat:"en yakın cümlelerde görülen", fahmPast:"mazi", fahmPresent:"muzari", fahmAmr:"emir", fahmPassive:"meçhul", fahmVerbal:"fiil cümlesi", fahmNominal:"isim cümlesi", fahmClauses:"{n} cümlecik",
         dabtTab:"Zabt", dabtIntro:"Bir cümleyi SONLARI OLMADAN yazın — ya da sonlarıyla, denetlensin diye. Motor âmilleri okur (fiil, cer harfi, inne, kâne, izâfet, şart…) ve her sonu kendisi YAZAR; tam kipte kelimenin içindeki harekeleri de çekim hücrelerinden ve sözlükten yeniden kurar. Kararı veren kaide için kelimeye dokunun.",
         dabtPh:"örn. ذهب الطالب الى المدرسة",
         dabtEndings:"sonlar", dabtFull:"bütün harekeler", dabtModeHint:"sonlar: iç harekeler sizin, son harfinki türetilir · bütün harekeler: kelimenin tamamı yeniden kurulur",
@@ -13116,6 +13144,18 @@ function renderLabBody(){
     renderTashbihOut();
     return;
   }
+  if (conjState.lab === "fahm") {   /* (wave 120) the Muḥallil: a new sentence read by the rules and set beside the shelf */
+    body.innerHTML = `<p class="ref-intro">${ui().fahmIntro}</p>
+      <div class="conj-lab">
+        <textarea id="fahmIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" rows="2"
+               placeholder="${escapeAttr(ui().fahmPh)}">${escapeAttr(conjState.fahm || "")}</textarea>
+      </div>
+      <div id="fahmOut"></div>`;
+    const inp = document.getElementById("fahmIn");
+    inp.addEventListener("input", debounced(() => { conjState.fahm = inp.value; conjState.fahmPick = -1; renderFahmOut(); }));
+    renderFahmOut();
+    return;
+  }
   if (conjState.lab === "dabt") {
     body.innerHTML = `<p class="ref-intro">${ui().dabtIntro}</p>
       <div class="conj-lab">
@@ -13526,6 +13566,272 @@ function dabtCompare(v, text){
     x.ok = x.out.normalize("NFC") === toks[i]; if (!x.ok) n++; });
   return n;
 }
+
+// ─── (wave 120) FahmEngine — the Muḥallil ────────────────────────────────────────────────────────────────────────────
+// A NEW sentence, read by the same rules that read the shelf: DabtEngine decides the seats (its rows carry the
+// analyzer's verb cells), the glossary and the paradigms name the words, and the shelf's own sentences stand beside
+// the reading as evidence. Everything here is a table or a rule; the "meaning" is the glosses set in the order the
+// seats dictate — honest about being approximate, and said so on the panel.
+class FahmEngine {
+  static _idx = null; static _root = null;
+  static bare(t){ return String(t || "").normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ى/g, "ي").replace(/ة$/, "ه"); }
+  static index(){
+    if (this._idx) return this._idx;
+    const byKey = new Map(), byBare = new Map(), lemmaOf = new Map();
+    (typeof STORIES !== "undefined" ? STORIES : []).forEach(st => Object.entries(st.glossary || {}).forEach(([k, e]) => {
+      if (!e) return; if (!byKey.has(k)) byKey.set(k, e);
+      const b = this.bare(e.lemma); if (!b) return;
+      if (/^(part|prep|pron|conj|adv)$/.test(e.pos || "") && !byBare.has(b)) byBare.set(b, e);
+      if (!lemmaOf.has(k)) lemmaOf.set(k, b);
+    }));
+    return this._idx = { byKey, byBare, lemmaOf };
+  }
+  static byRoot(root, pos){
+    if (!this._root) { const m = new Map(); (typeof STORIES !== "undefined" ? STORIES : []).forEach(st => Object.values(st.glossary || {}).forEach(e => { if (!e || !e.root) return; const l = m.get(e.root) || []; l.push(e); m.set(e.root, l); })); this._root = m; }
+    const l = this._root.get(root) || []; if (pos === "verb") return l.find(e => /verb/.test(e.pos || "") && (!e.form || e.form === "I")) || l.find(e => /verb/.test(e.pos || "")) || null;
+    return l.find(e => /^noun/.test(e.pos || "")) || l.find(e => /verb/.test(e.pos || "")) || l[0] || null;
+  }
+  // (wave 120) a word the lexicon lacks, read by its PATTERN on its root: the Kāfiya's derived nouns as rules — the place/time
+  // noun مَفْعَل(ة), the doer's فَاعِل(ة), the done-to's مَفْعُول(ة), the intensive فَعَّال, the instrument مِفْعَال/مِفْعَل — each
+  // composed from the root's Form-I verb gloss, in English and in Turkish
+  static PL_PATTERNS = [
+    [/^(.)(.)و(.)$/, m => [m[1] + m[2] + m[3]]],                       // فُعُول ← فَعْل  (ضيوف ← ضيف، بيوت ← بيت)
+    [/^ا(.)(.)ا(.)$/, m => [m[1] + m[2] + m[3]]],                      // أَفْعَال ← فَعْل  (اولاد ← ولد، اصنام ← صنم)
+    [/^ا(.)(.)(.)ة$/, m => [m[1] + m[2] + "ا" + m[3]]],                // أَفْعِلَة ← فَعَال  (اطعمة ← طعام)
+    [/^(.)(.)ا(.)$/, m => [m[1] + m[2] + m[3], m[1] + m[2] + m[3] + "ة"]],   // فِعَال ← فَعْل/فَعْلَة  (رجال ← رجل، جبال ← جبل)
+    [/^(.)(.)(.)اء$/, m => [m[1] + m[2] + "ي" + m[3]]],                // فُعَلَاء ← فَعِيل  (فقراء ← فقير)
+    [/^م(.)ا(.)(.)$/, m => ["م" + m[1] + m[2] + m[3], "م" + m[1] + m[2] + m[3] + "ة"]],   // مَفَاعِل ← مَفْعَل(ة)  (مكاتب ← مكتب، مدارس ← مدرسة)
+    [/^م(.)ا(.)ي(.)$/, m => ["م" + m[1] + m[2] + "ا" + m[3], "م" + m[1] + m[2] + "و" + m[3]]],   // مَفَاعِيل ← مِفْعَال/مَفْعُول  (مفاتيح ← مفتاح)
+    [/^(.)وا(.)(.)$/, m => [m[1] + "ا" + m[2] + m[3], m[1] + "ا" + m[2] + m[3] + "ة"]],   // فَوَاعِل ← فَاعِل(ة)  (كواتب ← كاتب، قواعد ← قاعدة)
+    [/^(.)(.)(.)ان$/, m => [m[1] + m[2] + "ا" + m[3], m[1] + m[2] + m[3]]],   // فِعْلَان/فُعْلَان ← فَعَال/فَعْل  (غلمان ← غلام، بلدان ← بلد)
+    [/^(.)(.)ا(.)ل$/, m => [m[1] + m[2] + m[3] + "ل"]],
+    [/^(.)(.)ائ(.)$/, m => [m[1] + m[2] + "ي" + m[3] + "ة"]],          // فَعَائِل ← فَعِيلَة  (رسائل ← رسالة، قبائل ← قبيلة)
+    [/^(.)(.)(.)$/, m => [m[1] + m[2] + m[3] + "ة"]]                   // فُعَل ← فُعْلَة  (غرف ← غرفة)
+  ];
+  static pluralGuess(bareHost){
+    const h = bareHost.replace(/^ال/, ""); if (h.length < 3) return null;
+    for (const [re, mk] of this.PL_PATTERNS) { const m = h.match(re); if (!m) continue; for (const cand of mk(m)) { if (cand.length < 3) continue; let e = null; try { e = DabtEngine.lex(cand, true); } catch (q) { e = null; } if (e && e.lemma && /^(noun|propn)/.test(e.pos || "") && this.bare(e.lemma) === cand && (!e.plural || this.bare(e.plural) === h || true)) return { e, singular: cand }; } }
+    return null;
+  }
+  static rootFromShape(core){ const c = core.replace(/^ال/, "").replace(/ة$/, ""); let m; if ((m = c.match(/^م(.)(.)و(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^م(.)(.)ا(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^م(.)(.)(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^(.)ا(.)(.)$/))) return m[1] + " " + m[2] + " " + m[3]; if ((m = c.match(/^(.)(.)ا(.)$/))) return m[1] + " " + m[2] + " " + m[3]; return null; }
+  static derive(bareHost, root){
+    let R = String(root || "").split(/\s+/).filter(Boolean); if (R.length !== 3) { const r2 = this.rootFromShape(bareHost); if (!r2) return null; R = r2.split(" "); root = r2; }
+    const ve = this.byRoot(root, "verb"); if (!ve || !ve.gloss) return null;
+    const en = this.sense(ve.gloss, "en").replace(/^to /, ""), tr = this.trStem(ve.gloss); if (!en) return null;
+    const h = bareHost.replace(/^ال/, "").replace(/ه$/, "ة"); const fem = /ة$/.test(h); const core = h.replace(/ة$/, "");
+    const [f, a, l] = R.map(x => x.replace(/[أإآ]/g, "ا"));
+    const ing = en.replace(/e$/, "") + "ing"; const trI = this.trHarmony(tr).i;
+    if (core === "م" + f + a + l) return { lemma: "مَ" + f + "ْ" + a + "َ" + l + (fem ? "َة" : ""), en: "place of " + ing, tr: tr + (this.trHarmony(tr).a === "a" ? "ma" : "me") + " yeri", wazn: "مَفْعَل" + (fem ? "ة" : "") };
+    if (core === f + "ا" + a + l) return { lemma: f + "َا" + a + "ِ" + l + (fem ? "َة" : ""), en: "one who " + this.enPres(en, 0) + (fem ? " (f.)" : ""), tr: tr + (/[aeıioöuüâ]$/.test(tr) ? "y" : "") + (this.trHarmony(tr).a === "a" ? "an" : "en"), wazn: "فَاعِل" + (fem ? "ة" : "") };
+    if (core === "م" + f + a + "و" + l) return { lemma: "مَ" + f + "ْ" + a + "ُو" + l + (fem ? "َة" : ""), en: this.enPP(en) + (fem ? " (f.)" : ""), tr: tr + (this.trHarmony(tr).i === "ı" || this.trHarmony(tr).i === "u" ? "ılan" : "ilen"), wazn: "مَفْعُول" + (fem ? "ة" : "") };
+    if (core === f + a + "ا" + l) return { lemma: f + "َ" + a + "َّا" + l + (fem ? "َة" : ""), en: "one who " + this.enPres(en, 0) + " much", tr: "çok " + tr + (this.trHarmony(tr).a === "a" ? "an" : "en"), wazn: "فَعَّال" + (fem ? "ة" : "") };
+    if (core === "م" + f + a + "ا" + l) return { lemma: "مِ" + f + "ْ" + a + "َا" + l, en: "instrument of " + ing, tr: tr + (this.trHarmony(tr).a === "a" ? "ma" : "me") + " aleti", wazn: "مِفْعَال" };
+    return null;
+  }
+  static NASIKH = { "كان": { ar: "كَانَ", en: "was", tr: "idi" }, "كانت": { ar: "كَانَتْ", en: "was", tr: "idi" }, "كانوا": { ar: "كَانُوا", en: "were", tr: "idiler" }, "كنت": { ar: "كُنْتَ", en: "you were", tr: "idin" }, "كنا": { ar: "كُنَّا", en: "we were", tr: "idik" }, "يكون": { ar: "يَكُونُ", en: "is / will be", tr: "olur" }, "تكون": { ar: "تَكُونُ", en: "is / will be", tr: "olur" }, "ليس": { ar: "لَيْسَ", en: "is not", tr: "değil" }, "ليست": { ar: "لَيْسَتْ", en: "is not", tr: "değil" }, "صار": { ar: "صَارَ", en: "became", tr: "oldu" }, "اصبح": { ar: "أَصْبَحَ", en: "became", tr: "oldu" }, "امسى": { ar: "أَمْسَى", en: "became (by evening)", tr: "oldu" }, "ظل": { ar: "ظَلَّ", en: "remained", tr: "kaldı" }, "بات": { ar: "بَاتَ", en: "spent the night", tr: "geceledi" }, "مازال": { ar: "مَا زَالَ", en: "still is", tr: "hâlâ" } };
+  static ADVERB = { "غدا": { ar: "غَدًا", en: "tomorrow", tr: "yarın" }, "اليوم": { ar: "الْيَوْمَ", en: "today", tr: "bugün" }, "امس": { ar: "أَمْسِ", en: "yesterday", tr: "dün" }, "الان": { ar: "الْآنَ", en: "now", tr: "şimdi" }, "هنا": { ar: "هُنَا", en: "here", tr: "burada" }, "هناك": { ar: "هُنَاكَ", en: "there", tr: "orada" }, "دائما": { ar: "دَائِمًا", en: "always", tr: "daima" }, "كثيرا": { ar: "كَثِيرًا", en: "much", tr: "çok" }, "جدا": { ar: "جِدًّا", en: "very", tr: "çok" }, "ابدا": { ar: "أَبَدًا", en: "ever", tr: "asla" }, "قليلا": { ar: "قَلِيلًا", en: "a little", tr: "biraz" }, "ايضا": { ar: "أَيْضًا", en: "also", tr: "de" }, "معا": { ar: "مَعًا", en: "together", tr: "birlikte" }, "فقط": { ar: "فَقَطْ", en: "only", tr: "yalnız" }, "سريعا": { ar: "سَرِيعًا", en: "quickly", tr: "çabucak" }, "صباحا": { ar: "صَبَاحًا", en: "in the morning", tr: "sabahleyin" }, "مساء": { ar: "مَسَاءً", en: "in the evening", tr: "akşamleyin" }, "ليلا": { ar: "لَيْلًا", en: "at night", tr: "geceleyin" }, "نهارا": { ar: "نَهَارًا", en: "by day", tr: "gündüz" } };
+  static KIN_YA = { "ابي": "أَب", "أبي": "أَب", "اخي": "أَخ", "أخي": "أَخ", "امي": "أُمّ", "أمي": "أُمّ", "ربي": "رَبّ", "قومي": "قَوْم", "ولدي": "وَلَد", "بني": "ابْن", "صديقي": "صَدِيق", "سيدي": "سَيِّد", "اهلي": "أَهْل", "أهلي": "أَهْل", "عمي": "عَمّ", "خالي": "خَال", "جدي": "جَدّ", "بيتي": "بَيْت", "كتابي": "كِتَاب", "مالي": "مَال", "نفسي": "نَفْس", "قلبي": "قَلْب", "يدي": "يَد", "اختي": "أُخْت", "أختي": "أُخْت", "ابنتي": "ابْنَة", "زوجي": "زَوْج", "زوجتي": "زَوْجَة", "معلمي": "مُعَلِّم", "استاذي": "أُسْتَاذ", "أستاذي": "أُسْتَاذ" };
+  static PRON = { "ه": { en: "his", tr: "onun", obj: "him", tobj: "onu" }, "ها": { en: "her", tr: "onun", obj: "it", tobj: "onu" }, "هم": { en: "their", tr: "onların", obj: "them", tobj: "onları" }, "هن": { en: "their (f.)", tr: "onların", obj: "them (f.)", tobj: "onları" }, "هما": { en: "their (two)", tr: "o ikisinin", obj: "them (two)", tobj: "o ikisini" }, "ك": { en: "your", tr: "senin", obj: "you", tobj: "seni" }, "كم": { en: "your (pl.)", tr: "sizin", obj: "you (pl.)", tobj: "sizi" }, "كما": { en: "your (two)", tr: "siz ikinizin", obj: "you (two)", tobj: "siz ikinizi" }, "كن": { en: "your (f. pl.)", tr: "sizin", obj: "you (f. pl.)", tobj: "sizi" }, "نا": { en: "our", tr: "bizim", obj: "us", tobj: "bizi" }, "ي": { en: "my", tr: "benim", obj: "me", tobj: "beni" }, "ني": { en: "me", tr: "beni", obj: "me", tobj: "beni" } };
+  static PERSON = { en: ["he", "they (two)", "they", "she", "they (two f.)", "they (f.)", "you", "you (two)", "you (pl.)", "you (f.)", "you (two f.)", "you (f. pl.)", "I", "we"],
+                    tr: ["o", "o ikisi", "onlar", "o", "o ikisi", "onlar", "sen", "siz ikiniz", "siz", "sen", "siz ikiniz", "siz", "ben", "biz"] };
+  static IRREG = { go: ["went", "gone"], see: ["saw", "seen"], say: ["said", "said"], come: ["came", "come"], take: ["took", "taken"], give: ["gave", "given"], make: ["made", "made"], know: ["knew", "known"], eat: ["ate", "eaten"], drink: ["drank", "drunk"], do: ["did", "done"], be: ["was", "been"], become: ["became", "become"], find: ["found", "found"], sit: ["sat", "sat"], stand: ["stood", "stood"], write: ["wrote", "written"], read: ["read", "read"], hear: ["heard", "heard"], leave: ["left", "left"], send: ["sent", "sent"], strike: ["struck", "struck"], hit: ["hit", "hit"], bring: ["brought", "brought"], buy: ["bought", "bought"], sell: ["sold", "sold"], tell: ["told", "told"], think: ["thought", "thought"], fall: ["fell", "fallen"], rise: ["rose", "risen"], run: ["ran", "run"], speak: ["spoke", "spoken"], throw: ["threw", "thrown"], fly: ["flew", "flown"], sleep: ["slept", "slept"], weep: ["wept", "wept"], keep: ["kept", "kept"], build: ["built", "built"], cut: ["cut", "cut"], put: ["put", "put"], get: ["got", "got"], meet: ["met", "met"], seek: ["sought", "sought"], teach: ["taught", "taught"], understand: ["understood", "understood"], forgive: ["forgave", "forgiven"], hold: ["held", "held"], lead: ["led", "led"], feed: ["fed", "fed"], light: ["lit", "lit"], ride: ["rode", "ridden"], drive: ["drove", "driven"], swim: ["swam", "swum"], begin: ["began", "begun"], forget: ["forgot", "forgotten"], grow: ["grew", "grown"], draw: ["drew", "drawn"], wear: ["wore", "worn"], steal: ["stole", "stolen"], choose: ["chose", "chosen"], lie: ["lay", "lain"], win: ["won", "won"], fight: ["fought", "fought"], catch: ["caught", "caught"], dig: ["dug", "dug"], feel: ["felt", "felt"], have: ["had", "had"], pay: ["paid", "paid"], flee: ["fled", "fled"], bear: ["bore", "borne"], shine: ["shone", "shone"], let: ["let", "let"], set: ["set", "set"], spend: ["spent", "spent"], lose: ["lost", "lost"], mean: ["meant", "meant"], freeze: ["froze", "frozen"], break: ["broke", "broken"], hide: ["hid", "hidden"], bind: ["bound", "bound"], swear: ["swore", "sworn"], forbid: ["forbade", "forbidden"], shoot: ["shot", "shot"], bleed: ["bled", "bled"], arise: ["arose", "arisen"], kneel: ["knelt", "knelt"], split: ["split", "split"], spread: ["spread", "spread"], shut: ["shut", "shut"], cast: ["cast", "cast"], slay: ["slew", "slain"], dwell: ["dwelt", "dwelt"], awake: ["awoke", "awoken"], blow: ["blew", "blown"], shake: ["shook", "shaken"], smite: ["smote", "smitten"], seize: ["seized", "seized"] };
+  // the glossary's English is "to go", "student, seeker", "to demand (bi: something) of (Form III)": the first sense, its brackets shed
+  static sense(g, lang){ let t = String((g && (g[lang] || g.en)) || "").replace(/\([^)]*\)/g, "").trim(); t = t.split(/[;,]|\s[—–-]\s/)[0].trim(); return t.replace(/[!?…]+$/, "").replace(/^(a|an|the) /i, "").trim(); }
+  static enPast(stem){ const w = stem.split(" "); const v = w[0]; const r = this.IRREG[v]; const p = r ? r[0] : /e$/.test(v) ? v + "d" : /[^aeiou]y$/.test(v) ? v.replace(/y$/, "ied") : /[^aeiou][aeiou][^aeiouwxy]$/.test(v) && (v.match(/[aeiou]+/g) || []).length === 1 ? v + v.slice(-1) + "ed" : v + "ed"; return [p].concat(w.slice(1)).join(" "); }
+  static enPP(stem){ const w = stem.split(" "); const v = w[0]; const r = this.IRREG[v]; return [r ? r[1] : this.enPast(v)].concat(w.slice(1)).join(" "); }
+  static enPres(stem, i){ const w = stem.split(" "); const v = w[0]; const third = [0, 3].includes(Number(i)); const s = third ? (/(s|sh|ch|x|z|o)$/.test(v) ? v + "es" : /[^aeiou]y$/.test(v) ? v.replace(/y$/, "ies") : v === "have" ? "has" : v + "s") : v; return [s].concat(w.slice(1)).join(" "); }
+  // Turkish: the stem is the gloss without -mek/-mak; the past -di and the present -iyor follow vowel harmony and the voiceless consonants
+  static trStem(g){ const t = this.sense(g, "tr"); return t.replace(/(mek|mak)$/, ""); }
+  static trHarmony(stem){ const v = (stem.match(/[aeıioöuüâîû]/g) || ["e"]).pop(); return { i: /[aıâ]/.test(v) ? "ı" : /[ouû]/.test(v) ? "u" : /[öü]/.test(v) ? "ü" : "i", a: /[aıouâû]/.test(v) ? "a" : "e" }; }
+  static trPast(stem, i){ const h = this.trHarmony(stem); const d = /[çfhkpsşt]$/.test(stem) ? "t" : "d"; const per = ["", "ler", "ler", "", "ler", "ler", "n", "niz", "niz", "n", "niz", "niz", "m", "k"][Number(i) || 0] || ""; let p = per; if (p === "ler") p = h.a === "a" ? "lar" : "ler"; if (p === "niz") p = "n" + h.i + "z"; return stem + d + h.i + p; }
+  static trPres(stem, i){ const h = this.trHarmony(stem); const base = /[aeıioöuü]$/.test(stem) ? stem.replace(/[aeıioöuü]$/, m => (/[aı]/.test(m) ? "ı" : /[ou]/.test(m) ? "u" : /[öü]/.test(m) ? "ü" : "i")) + "yor" : stem + h.i + "yor"; const per = ["", "lar", "lar", "", "lar", "lar", "sun", "sunuz", "sunuz", "sun", "sunuz", "sunuz", "um", "uz"][Number(i) || 0] || ""; return base + per; }
+  static particle(w){
+    const { byBare } = this.index(); const b = this.bare(w);
+    for (const c of [b, b.replace(/^[وف]/, "")]) { const ns = this.NASIKH[c]; if (ns) return { e: { lemma: ns.ar, pos: "verb", gloss: { en: ns.en, tr: ns.tr } }, joiner: c !== b ? b[0] : "", nasikh: true }; }
+    for (const c of [b, b.replace(/^[وف]/, "")]) { const e = byBare.get(c); if (e) return { e, joiner: c !== b ? b[0] : "" }; }
+    for (const [c, joiner] of [[b, ""], [b.replace(/^[وف]/, ""), b.length > 1 && /^[وف]/.test(b) ? b[0] : ""]]) {
+      if (!c) continue;
+      const ns = this.NASIKH[c]; if (ns) return { e: { lemma: ns.ar, pos: "verb", gloss: { en: ns.en, tr: ns.tr } }, joiner, nasikh: true };
+      const m = c.match(/^(ل|ب|في|علي|الي|من|عن|مع|عند|لدي|ك|ان|لكن|لعل|ليت)(ه|ها|هم|هن|هما|ك|كم|كما|كن|نا|ي|ني)$/);
+      if (m) return { e: byBare.get(m[1]) || null, pron: m[2], joiner, fusedPron: true };
+      const d = c.match(/^(ل|ب|ك|في|علي|الي|من|عن)(هذا|هذه|ذلك|تلك|هؤلاء|اولئك|الذي|التي|الذين|ما|من)$/);
+      if (d) return { e: byBare.get(d[1]) || null, tail: byBare.get(d[2]) || null, joiner, fusedDem: true };
+    }
+    return null;
+  }
+  // one word: what it is (lemma, gloss, how we know), what seat it holds (the ḍabṭ decision), its ṣarf facts
+  static word(r, x, i){
+    const w = r.w || ""; const b = this.bare(w); const o = { i, w, out: (x && x.out) || w, k: x && x.k, rule: x && x.rule, src: x && x.src, head: x && x.head, kind: r.kind || "", enc: r.enc || "", lemma: null, gloss: null, pos: null, how: "", joiner: "", al: !!r.al, tanwin: !!r.tanwin };
+    const core0 = b.replace(/^[وف]/, "");
+    if (/^[وف]/.test(b) && b.length > 1 && r.kind !== "particle") { if ((r.kind === "verb" && r.cell && !/^[وف]/.test(this.bare(r.cell.form || ""))) || /^ال/.test(core0) || (r.seg && r.seg.length > 1 && /^[وف]$/.test(this.bare(r.seg[0])))) o.joiner = b[0]; }
+    const ns0 = this.NASIKH[core0]; if (ns0) { o.lemma = ns0.ar; o.gloss = { en: ns0.en, tr: ns0.tr }; o.pos = "nasikh"; o.how = "lexicon"; o.kind = "particle"; if (/^[وف]/.test(b) && core0 !== b) o.joiner = b[0]; return o; }
+    if (!r.cell && /[ؤئ]/.test(w)) { let fc = null; try { fc = RootFinder.fromCorpus(String(w).replace(/[ؤئ]/g, "أ")); } catch (q) { fc = null; } if (fc && fc.cell) { o.lemma = fc.lemma; o.gloss = fc.gloss; o.pos = "verb"; o.cell = fc.cell; o.how = "cell"; o.root = fc.root || null; o.kind = "verb"; if (/^[وف]/.test(b) && core0 !== b && !/^[وف]/.test(this.bare(fc.cell.form || ""))) o.joiner = b[0]; return o; } }
+    const adv = this.ADVERB[core0]; if (adv && (!r.__next || (r.__next && (r.__next.kind === "particle" || /^[وف]/.test(this.bare(r.__next.w || "")))))) { o.lemma = adv.ar; o.gloss = { en: adv.en, tr: adv.tr }; o.pos = "adv"; o.how = "lexicon"; o.kind = "adv"; if (/^[وف]/.test(b) && core0 !== b) o.joiner = b[0]; return o; }
+    const kin = this.KIN_YA[core0]; if (kin) { let e = null; try { e = DabtEngine.lex(kin, true); } catch (q) { e = null; } if (e && e.lemma) { o.lemma = e.lemma; o.gloss = e.gloss; o.pos = e.pos || "noun"; o.enc = "ي"; o.how = "lexicon"; o.root = e.root || null; if (/^[وف]/.test(b) && core0 !== b) o.joiner = b[0]; return o; } }
+    if (r.kind === "verb" && r.cell) { o.lemma = r.lemma || null; o.gloss = r.gloss || null; o.pos = "verb"; o.cell = r.cell; o.how = "cell"; o.root = r.root || null; }
+    else if (r.kind === "particle") { const p = this.particle(w); if (p) { o.lemma = p.e ? p.e.lemma : null; o.gloss = p.e ? p.e.gloss : null; o.pos = p.nasikh ? "nasikh" : (p.e ? p.e.pos : "part"); o.pron = p.pron || ""; o.tail = p.tail || null; o.how = p.e ? "lexicon" : ""; if (p.joiner) o.joiner = p.joiner; } }
+    else {
+      let e = null;
+      if (o.enc) { const host = String(w).normalize("NFC").replace(/[\u064b-\u0652\u0670]*(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|هِ|كَ|كِ|نِي|هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)[\u064b-\u0652\u0670]*$/, ""); try { e = host.length >= 2 ? DabtEngine.lex(host, true) : null; } catch (q) { e = null; } if (e && /^(part|prep|pron|conj)$/.test(e.pos || "")) e = null; }
+      if (!e) { try { e = DabtEngine.lex(w, true); } catch (q) { e = null; } }
+      if (!e && !o.enc) { const m = String(w).normalize("NFC").match(/^(.*?[ء-ي])[\u064b-\u0652\u0670]*(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|هِ|كَ|كِ|نِي|هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)[\u064b-\u0652\u0670]*$/); if (m && this.bare(m[1]).replace(/^[وف]?[بلك]?/, "").length >= 2) { try { e = DabtEngine.lex(m[1], true); } catch (q) { e = null; } if (e && /^(part|prep|pron|conj)$/.test(e.pos || "")) e = null; if (e) o.enc = this.bare(m[2]); } }
+      if (e && e.lemma && /fat[hḥ]a|kasra|[dḍ]amma|suk[uū]n|tanw[iī]n|\bjarr\b|\bna[sṣ]b\b|\braf|mabn[iī]|iʿr[aā]b|particle|the letter/i.test(String((e.gloss || {}).en || ""))) { const dv = this.derive(core0.replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, ""), e.root || r.root); if (dv) { o.lemma = dv.lemma; o.gloss = { en: dv.en, tr: dv.tr }; o.pos = "noun"; o.how = "pattern"; o.wazn = dv.wazn; o.root = e.root || r.root || null; e = null; } }
+      if (o.how === "pattern") { /* the pattern reading stands */ }
+      else if (e && e.lemma) { o.lemma = e.lemma; o.gloss = e.gloss || null; o.pos = e.pos || "noun"; o.how = (r.kind === "noun" && /verb/.test(e.pos || "")) ? "root" : "lexicon"; o.root = e.root || r.root || null;
+        const lb = this.bare(e.lemma), hb = this.bare(String(w).normalize("NFC").replace(/[\u064b-\u0652\u0670]*(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|هِ|كَ|كِ|نِي|هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)[\u064b-\u0652\u0670]*$/, "")).replace(/^[وف]?[بلك]?(ال)?/, "");
+        if (/^(part|prep|pron|conj)$/.test(e.pos || "") && /^[وف]?[بلك]/.test(b) && lb === core0.replace(/^[بلك]/, "")) { const { byBare } = this.index(); o.clitic = byBare.get(core0[0]) || null; o.kind = "particle"; o.tail = e; o.lemma = o.clitic ? o.clitic.lemma : e.lemma; o.gloss = o.clitic ? o.clitic.gloss : e.gloss; o.pos = "prep"; }
+        else if (/^[بلك]/.test(core0) && !/^(ب|ل|ك)$/.test(core0)) { const rest = core0.slice(1).replace(/^ال/, "").replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, ""); if (lb !== core0.replace(/^ال/, "") && (lb === rest || (e.plural && this.bare(e.plural) === rest) || rest.length >= 3 && lb.replace(/^ال/, "") === rest.replace(/ه$/, "ة").replace(/^ال/, ""))) { const { byBare } = this.index(); o.clitic = byBare.get(core0[0]) || null; if (/^ال/.test(core0.slice(1))) o.al = true; } }
+        if (e.plural && this.bare(e.plural) === hb && lb !== hb) o.num = "pl"; }
+      else if (r.lemma && r.gloss) { o.lemma = r.lemma; o.gloss = r.gloss; o.pos = r.kind === "verb" ? "verb" : "noun"; o.how = r.cell ? "cell" : "root"; o.root = r.root || null; }
+      else { const p = this.particle(w); if (p && p.e) { o.lemma = p.e.lemma; o.gloss = p.e.gloss; o.pos = p.e.pos; o.pron = p.pron || ""; o.how = "lexicon"; o.kind = "particle"; } }
+    }
+    if (!o.gloss && r.kind !== "verb") { const pg = this.pluralGuess(core0.replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, "")); if (pg) { o.lemma = pg.e.lemma; o.gloss = pg.e.gloss; o.pos = pg.e.pos; o.num = "pl"; o.how = "pattern"; o.wazn = "جَمْع تَكْسِير"; o.root = pg.e.root || o.root || null; } }
+    if (!o.gloss && (r.root || o.root) && r.kind !== "verb") { const dv = this.derive(core0.replace(/(هما|كما|هم|هن|كم|كن|نا|ها|ه|ك|ني|ي)$/, ""), r.root || o.root); if (dv) { o.lemma = dv.lemma; o.gloss = { en: dv.en, tr: dv.tr }; o.pos = "noun"; o.how = "pattern"; o.wazn = dv.wazn; o.root = r.root || o.root; } }
+    if (!o.gloss && (r.root || o.root)) { const e2 = this.byRoot(r.root || o.root); if (e2) { o.lemma = e2.lemma; o.gloss = e2.gloss; o.pos = e2.pos; o.how = "root"; o.root = r.root || o.root; const hb2 = core0.replace(/^[بلك]?(ال)?/, ""); if (e2.plural && this.bare(e2.plural) === hb2) { o.num = "pl"; o.how = "lexicon"; } } }
+    return o;
+  }
+  static sentenceType(items){ const first = items.find(x => x.kind !== "particle" || /^(part|pron)$/.test(x.pos || "") && !/^(part|prep|conj)$/.test(x.pos || "")); return items.some(x => x.pos === "verb" && (items.indexOf(x) === 0 || items[items.indexOf(x) - 1].joiner || /^(part|conj)$/.test(items[items.indexOf(x) - 1].pos || ""))) && first && first.pos === "verb" ? "verbal" : "nominal"; }
+  static EN_PL = { child: "children", man: "men", woman: "women", foot: "feet", tooth: "teeth", mouse: "mice", person: "people", sheep: "sheep", ox: "oxen", wife: "wives", knife: "knives", life: "lives", leaf: "leaves", wolf: "wolves", thief: "thieves" };
+  static enPlural(g){ const w = g.split(" "); const n = w[w.length - 1]; const p = this.EN_PL[n] || (/(s|sh|ch|x|z)$/.test(n) ? n + "es" : /[^aeiou]y$/.test(n) ? n.replace(/y$/, "ies") : n + "s"); return w.slice(0, -1).concat([p]).join(" "); }
+  static trPlural(g){ const h = this.trHarmony(g); return g + (h.a === "a" ? "lar" : "ler"); }
+  static adjShape(x){ return /^(مفعول|فاعل|فعال)/.test(x.wazn || "") || /ed$|ing$|ful$|ous$|ive$|able$|less$|^(big|small|great|good|bad|new|old|long|short|high|low|noble|generous|rich|poor|strong|weak|beautiful|ugly|near|far|many|few|open|closed|true|false|alive|dead)$/.test(this.sense(x.gloss, "en")); }
+  static nounGloss(x, lang){
+    let g = this.sense(x.gloss, lang) || "…";
+    const propn = x.pos === "propn" || /^(الله|اللّه)$/.test(this.bare(x.lemma || ""));
+    if (x.num === "pl") g = lang === "en" ? this.enPlural(g) : this.trPlural(g);
+    const approx = x.how === "root" ? (s0 => "[" + s0 + "?]") : (s0 => s0);
+    let cl = x.clitic ? this.sense(x.clitic.gloss, lang) : ""; if (cl && lang === "en" && this.bare(x.clitic.lemma) === "ل" && x.afterSpeech) cl = "to";
+    if (lang === "en") { let t = approx(g); if (x.enc && this.PRON[x.enc]) t = this.PRON[x.enc].en + " " + approx(g); else if (x.noArt) t = approx(g); else if (x.al && !propn) t = "the " + t; else if (!propn && x.num !== "pl" && /^(noun)$/.test(x.pos || "") && !(/^(khabar|kanaKhabar|innaKhabar|hal|nat)$/.test(x.rule || "") && this.adjShape(x)) && (x.tanwin || /^(fail|maful|mubtada|khabar|kanaIsm|kanaKhabar|innaIsm|innaKhabar|jarr|hal|tamyiz|naib)$/.test(x.rule || "")) && !/^(the|a|an) /.test(t)) t = (/^[aeiou]/i.test(t) ? "an " : "a ") + t; return (cl ? cl + " " : "") + t; }
+    let t = approx(g); if (x.enc && this.PRON[x.enc]) t = this.PRON[x.enc].tr + " " + approx(g) + (x.enc === "ي" ? "" : /[aıou]/.test((g.match(/[aeıioöuü]/g) || ["e"]).pop()) ? "ı" : "i"); return t + (cl ? " " + cl : "");
+  }
+  static verbGloss(x, lang, hasDoer){
+    const i = Number((x.cell || {}).i) || 0; const tense = String((x.cell || {}).tense || ""); const passive = /majhul/i.test(tense);
+    if (lang === "en") { const stem = this.sense(x.gloss, "en").replace(/^to /, "") || "…"; const subj = hasDoer ? "" : this.PERSON.en[i] + " "; const obj = x.enc && this.PRON[x.enc] ? " " + this.PRON[x.enc].obj : "";
+      if (/amr/.test(tense)) return stem + "!" + obj;
+      if (passive) return subj + ([0, 3, 12].includes(i) ? "was " : "were ") + this.enPP(stem) + obj;
+      if (/mazi/.test(tense)) return subj + this.enPast(stem) + obj;
+      return subj + this.enPres(stem, hasDoer ? 0 : i) + obj; }
+    const stem = this.trStem(x.gloss) || "…"; const obj = x.enc && this.PRON[x.enc] ? this.PRON[x.enc].tobj + " " : "";
+    if (/amr/.test(tense)) return obj + stem + "!";
+    if (passive) return obj + "(" + ui().fahmPassive + ") " + this.trPast(stem, hasDoer ? 0 : i);
+    if (/mazi/.test(tense)) return obj + this.trPast(stem, hasDoer ? 0 : i);
+    return obj + this.trPres(stem, hasDoer ? 0 : i);
+  }
+  static partGloss(x, lang){ const g = this.sense(x.gloss, lang); const p = x.pron && this.PRON[x.pron]; let d = x.tail ? this.sense(x.tail.gloss, lang) : ""; if (x.demPl) d = lang === "en" ? x.demPl : (x.demPl === "those" ? "şu" : "bu"); if (lang === "en") return [g, p ? p.obj : "", d].filter(Boolean).join(" "); return [p ? p.tobj : "", d, g].filter(Boolean).join(" "); }
+  static pairGloss(adj, head, lang){ const ag = this.sense(adj.gloss, lang) || "…"; const hg = this.nounGloss({ ...head, al: false, tanwin: false, rule: "none", enc: "" }, lang); if (lang === "en") { const art = head.enc && this.PRON[head.enc] ? this.PRON[head.enc].en + " " : head.noArt ? "" : (head.al && head.pos !== "propn") ? "the " : head.num === "pl" ? "" : (/^[aeiou]/i.test(ag) ? "an " : "a "); const cl = head.clitic ? this.sense(head.clitic.gloss, "en") + " " : ""; return cl + art + ag + " " + hg; } const own = head.enc && this.PRON[head.enc] ? this.PRON[head.enc].tr + " " : ""; const cl = head.clitic ? " " + this.sense(head.clitic.gloss, "tr") : ""; return own + ag + " " + hg + cl; }
+  static glossOf(x, lang){ if (x.pos === "nasikh" || x.pos === "adv") return this.sense(x.gloss, lang); if (x.pos === "verb") return this.verbGloss(x, lang, false); if (x.kind === "particle" || /^(part|prep|conj|pron)$/.test(x.pos || "")) return this.partGloss(x, lang); return this.nounGloss(x, lang); }
+  static clauses(items){ const cl = []; let cur = []; items.forEach((x, i) => { const hasVerb = cur.some(y => y.pos === "verb" || y.pos === "nasikh"); const done = cur.some(y => /khabar|^maful$|^jarr$/i.test(y.rule || "")) && !cur.some(y => y.pos === "verb" && cur.indexOf(y) === cur.length - 1); const opens = i > 0 && x.joiner && (x.pos === "verb" || x.pos === "nasikh" || x.rule === "mubtada" || (done && /^(noun|propn)$/.test(x.pos || "") && (x.al || x.rule === "mubtada" || x.rule === "atf")) || /^(ان|إن|لكن|اذا|إذا|لما|لمّا|ثم)$/.test(this.bare(x.w).replace(/^[وف]/, "")) || (hasVerb && /^(prep)$/.test(x.pos || ""))); if (opens && cur.length) { cl.push(cur); cur = []; } cur.push(x); }); if (cur.length) cl.push(cur); return cl; }
+  static NEG = { "لم": { en: "did not", tr: "past" }, "لما": { en: "had not yet", tr: "past" }, "لا": { en: "does not", tr: "pres" }, "لن": { en: "will not", tr: "pres" }, "ما": { en: "did not", tr: "past" } };
+  static trNeg(stem, tense, i){ const h = this.trHarmony(stem); const per = ["", "ler", "ler", "", "ler", "ler", "n", "niz", "niz", "n", "niz", "niz", "m", "k"][Number(i) || 0] || ""; if (/mazi/.test(tense)) { const m = h.a === "a" ? "ma" : "me"; let p = per === "ler" ? (h.a === "a" ? "lar" : "ler") : per === "niz" ? "n" + (h.a === "a" ? "ı" : "i") + "z" : per; return stem + m + (h.a === "a" ? "dı" : "di") + p; } const pp = ["", "lar", "lar", "", "lar", "lar", "sun", "sunuz", "sunuz", "sun", "sunuz", "sunuz", "um", "uz"][Number(i) || 0] || ""; return stem + "m" + h.i + "yor" + pp; }
+  // the items of a clause in reading order, the naʿt moved before its noun (EN and TR both say "a big book"), the Turkish postposition after its noun
+  static ordered(c, lang){ const out = c.slice(); for (let k = 1; k < out.length; k++) { const x = out[k]; if (x.rule === "nat") { const hd = typeof x.head === "number" ? out.findIndex(y => y.i === x.head) : k - 1; if (hd >= 0 && hd === k - 1 && /^(noun|propn)$/.test(out[hd].pos || "") && !/khabar/i.test(out[hd].rule || "")) { x._pairHead = out[hd]; out[hd]._paired = true; } } } if (lang === "tr") { for (let k = 0; k + 1 < out.length; k++) { if (/^prep$/.test(out[k].pos || "") && !out[k].pron && !out[k].tail && out[k + 1].rule === "jarr") { const p = out[k]; out[k] = out[k + 1]; out[k + 1] = p; } } } return out; }
+  static JOIN = { en: { "و": "and", "ف": "so" }, tr: { "و": "ve", "ف": "böylece" } };
+  static clauseText(c, lang){
+    const verb = c.find(x => x.pos === "verb"); const doer = c.find(x => /^(fail|naib)$/.test(x.rule || "") && x !== verb);
+    const used = new Set(); const parts = []; const first = c[0]; const j = first.joiner ? this.JOIN[lang][first.joiner] : "";
+    if (j) parts.push(j);
+    const unit = x => x._pairHead ? (used.add(x._pairHead), this.pairGloss(x, x._pairHead, lang)) : this.glossOf(x, lang);
+    const rest = () => c.forEach(x => { if (used.has(x) || x === verb || x === doer) return; if (x.kind === "particle" && /^(و|ف)$/.test(this.bare(x.w))) return; if (x._paired && !used.has(x)) { const adj = c.find(y => y._pairHead === x); if (adj && !used.has(adj)) { parts.push(this.pairGloss(adj, x, lang)); used.add(adj); used.add(x); return; } } parts.push(unit(x)); used.add(x); });
+    if (verb) {
+      const ord = this.ordered(c, lang); const vi = ord.indexOf(verb);
+      const negs = ord.filter(x => x.kind === "particle" && this.NEG[this.bare(x.w).replace(/^[وف]/, "")] && ord.indexOf(x) < vi);
+      negs.forEach(x => used.add(x));
+      const pre = ord.filter(x => ord.indexOf(x) < vi && !used.has(x) && x !== doer && !(x.kind === "particle" && /^(و|ف)$/.test(this.bare(x.w))));
+      const pairOrGloss = x => { if (x._paired) { const adj = ord.find(y => y._pairHead === x); if (adj && !used.has(adj)) { used.add(adj); return this.pairGloss(adj, x, lang); } } if (x._pairHead && !used.has(x._pairHead)) { used.add(x._pairHead); return this.pairGloss(x, x._pairHead, lang); } return this.glossOf(x, lang); };
+      pre.forEach(x => { if (used.has(x)) return; parts.push(pairOrGloss(x)); used.add(x); });
+      const rest2 = () => ord.forEach(x => { if (used.has(x) || x === verb || x === doer) return; if (x.kind === "particle" && /^(و|ف)$/.test(this.bare(x.w))) return; parts.push(pairOrGloss(x)); used.add(x); });
+      const i = Number((verb.cell || {}).i) || 0, tense = String((verb.cell || {}).tense || "");
+      if (lang === "en") {
+        if (doer) { parts.push(this.nounGloss(doer, "en")); used.add(doer); }
+        if (negs.length) { const ng = this.NEG[this.bare(negs[0].w).replace(/^[وف]/, "")]; parts.push(doer ? ng.en : this.PERSON.en[i] + " " + ng.en); const stem = this.sense(verb.gloss, "en").replace(/^to /, "") || "…"; parts.push(stem + (verb.enc && this.PRON[verb.enc] ? " " + this.PRON[verb.enc].obj : "")); }
+        else parts.push(this.verbGloss(verb, "en", !!doer));
+        used.add(verb); rest2();
+      } else {
+        if (doer) { parts.push(this.nounGloss(doer, "tr")); used.add(doer); } used.add(verb); rest2();
+        if (negs.length) { const ng = this.NEG[this.bare(negs[0].w).replace(/^[وف]/, "")]; const stem = this.trStem(verb.gloss) || "…"; parts.push((verb.enc && this.PRON[verb.enc] ? this.PRON[verb.enc].tobj + " " : "") + this.trNeg(stem, ng.tr === "past" ? "mazi" : "mudari", doer ? 0 : i)); }
+        else parts.push(this.verbGloss(verb, "tr", !!doer));
+      }
+      return parts.filter(Boolean).join(" ");
+    }
+    const ord = this.ordered(c, lang);
+    const m = ord.find(x => /^(mubtada|innaIsm|kanaIsm)$/.test(x.rule || "")); const kh = ord.find(x => /khabar/i.test(x.rule || ""));
+    const nas = ord.find(x => x.pos === "nasikh"); if (nas) used.add(nas);
+    const inna = ord.find(x => x.kind === "particle" && /^(ان|إن|وان|فان)$/.test(this.bare(x.w)) && m && m.rule === "innaIsm"); if (inna) { used.add(inna); parts.push(lang === "en" ? "indeed" : "şüphesiz"); }
+    ord.forEach(x => { if (used.has(x)) return; if (x.kind === "particle" && /^(و|ف)$/.test(this.bare(x.w))) return; if (x._paired) { const adj = ord.find(y => y._pairHead === x); if (adj && !used.has(adj)) { parts.push(this.pairGloss(adj, x, lang)); used.add(adj); used.add(x); if (x === m && kh && lang === "en") parts.push(nas ? this.sense(nas.gloss, "en") : "is"); return; } } if (x._pairHead && !used.has(x._pairHead)) { parts.push(this.pairGloss(x, x._pairHead, lang)); used.add(x._pairHead); used.add(x); return; } parts.push(this.glossOf(x, lang)); used.add(x); if (x === m && kh && lang === "en") parts.push(nas ? this.sense(nas.gloss, "en") : "is"); });
+    if (lang === "tr" && kh) parts.push(nas ? this.sense(nas.gloss, "tr") : "-dır");
+    return parts.filter(Boolean).join(" ");
+  }
+  static meaning(items, lang){ const q = items.length && /^(هل|ا|أ)$/.test(this.bare(items[0].w)); const its = q ? items.slice(1) : items; const cl = this.clauses(its); let t = cl.map(c => this.clauseText(c, lang)).join(" "); t = t.replace(/\s+/g, " ").trim(); if (!t) return ""; if (q) t = (lang === "en" ? (its.some(x => x.pos === "verb") ? "did " : "is ") : "") + t + (lang === "tr" ? " mı" : ""); return t[0].toUpperCase() + t.slice(1) + (q || items.some(x => /؟/.test(x.w)) ? "?" : "."); }
+  static structure(items, lang){ const L = DabtEngine.RULE || {}; return items.map(x => { const R = L[x.rule]; const lbl = R ? (R[lang] || R.en) : (x.src === "kept" || x.src === "lexicon" ? (lang === "en" ? "built (mabnī)" : "mebnî") : (lang === "en" ? "undecided" : "kararsız")); return { w: x.out, lbl }; }); }
+  static sarf(x, lang){ if (x.pos !== "verb" || !x.cell) return ""; const t = String(x.cell.tense || ""); const u = ui(); const tense = /amr/.test(t) ? u.fahmAmr : /mazi/i.test(t) ? u.fahmPast : u.fahmPresent; const per = this.PERSON[lang][Number(x.cell.i) || 0] || ""; return tense + (/majhul/i.test(t) ? " · " + u.fahmPassive : "") + " · " + per + (x.root ? " · " + x.root : ""); }
+  static features(items, lang){
+    const L = DabtEngine.RULE || {}; const seen = new Map();
+    items.forEach(x => { const R = L[x.rule]; if (!R) return; const key = R.note || x.rule; if (!seen.has(key)) seen.set(key, { note: R.note && GRAMMAR[R.note] ? R.note : null, ar: R.ar, lbl: R[lang] || R.en, words: [] }); seen.get(key).words.push(x.out); });
+    return Array.from(seen.values());
+  }
+  static nearest(items, limit){
+    const { byKey, lemmaOf } = this.index(); const want = new Map();
+    items.forEach(x => { if (!x.lemma) return; const b = this.bare(x.lemma); if (!b) return; want.set(b, x.pos === "verb" ? 2 : /^(part|prep|conj|pron)$/.test(x.pos || "") ? 0.25 : 1); });
+    if (!want.size) return [];
+    const res = [];
+    (typeof STORIES !== "undefined" ? STORIES : []).forEach(st => (st.chapters || []).forEach(ch => (ch.sentences || []).forEach(sn => {
+      let score = 0; const shared = [], seen = new Set();
+      (sn.tokens || []).forEach(t => { const b = lemmaOf.get(t.lex); if (b && want.has(b) && !seen.has(b)) { seen.add(b); score += want.get(b); shared.push(t.s.full); } });
+      if (score >= 1) res.push({ st, ch, sn, score: score - Math.abs((sn.tokens || []).length - items.length) * 0.03, shared });
+    })));
+    res.sort((a, b) => b.score - a.score); return res.slice(0, limit || 3);
+  }
+  static nearFeatures(near, lang, limit){ const cnt = new Map(); near.forEach(n => (n.sn.tokens || []).forEach(t => (t.grammar || []).forEach(g => { if (GRAMMAR[g]) cnt.set(g, (cnt.get(g) || 0) + 1); }))); return Array.from(cnt.entries()).sort((a, b) => b[1] - a[1]).slice(0, limit || 6).map(([g, n]) => ({ note: g, title: T(GRAMMAR[g].title), n })); }
+  static analyze(text, lang){
+    let v = null; try { v = DabtEngine.vowel(text, "endings"); } catch (e) { v = null; }
+    if (!v || !v.words.length) return null;
+    const items = v.words.map((x, i) => this.word(v.rows[i] || { w: x.w }, x, i));
+    const voc = items.some(x => /^(يا|ايا|هيا)$/.test(this.bare(x.w).replace(/^[وف]/, "")));
+    items.forEach((x, i) => {
+      if (voc && x.pos === "verb" && x.cell && Number(x.cell.i) === 3 && /^[وف]?ت/.test(this.bare(x.w))) x.cell = { ...x.cell, i: 6 };   // يَا أَبِي لِمَاذَا تَسْجُدُ: the addressee, not «she»
+      const prev = items[i - 1];
+      if (prev && prev.pos === "verb" && prev.cell && /amr/.test(String(prev.cell.tense || "")) && x.pos === "verb" && x.cell && /^(كم|كما|كن|نا|ها|هم|هن|ه|ك)$/.test(x.enc || "")) { const host = String(x.w).normalize("NFC").replace(/[\u064b-\u0652\u0670]*(هُمَا|كُمَا|هُمْ|هُنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|كَ|هما|كما|هم|هن|كم|كن|نا|ها|ه|ك)[\u064b-\u0652\u0670]*$/, ""); let e = null; try { e = DabtEngine.lex(host, true); } catch (q) { e = null; } if (e && /^noun/.test(e.pos || "")) { x.pos = "noun"; x.kind = "noun"; x.cell = null; x.lemma = e.lemma; x.gloss = e.gloss; x.how = "lexicon"; x.rule = x.rule === "mazi" ? "maful" : x.rule; const hb = this.bare(host); if (e.plural && this.bare(e.plural) === hb && this.bare(e.lemma) !== hb) x.num = "pl"; } }   // اقْرَؤُوا كُتُبَكُمْ: after a command, the «verb» carrying your/our/their pronoun is the noun it also spells
+      if (x.clitic && items.slice(0, i).some(y => y.pos === "verb" && /^(قال|قالت|قلت|قلنا|يقول|تقول|اقول|نقول|قالوا|كتب|ارسل|أرسل|اعطى|أعطى|ذهب|جاء|نظر|دعا|اشار|أشار)$/.test(this.bare(y.lemma || "").replace(/[\u064b-\u0652]/g, "")))) x.afterSpeech = true;
+      if (prev && x.rule === "badal" && (prev.tail || /^pron$/.test(prev.pos || "")) && /^(هذا|هذه|ذلك|تلك|هؤلاء|اولئك)$/.test(this.bare((prev.tail || {}).lemma || prev.lemma || ""))) { x.noArt = true; if (x.num === "pl") { const dem = this.bare((prev.tail || {}).lemma || prev.lemma); prev.demPl = /^(ذلك|تلك|اولئك)$/.test(dem) ? "those" : "these"; } }
+    });
+    const known = items.filter(x => x.gloss && x.how !== "root").length, byRoot = items.filter(x => x.how === "root").length;
+    const decided = v.words.filter(x => x.src !== "none" && x.src !== "kept").length;
+    const near = this.nearest(items, 3);
+    return { v, items, type: this.sentenceType(items), meaning: { en: this.meaning(items, "en"), tr: this.meaning(items, "tr") }, structure: this.structure(items, lang), features: this.features(items, lang), near, nearFeatures: this.nearFeatures(near, lang, 6), known, byRoot, decided, n: items.length, clauses: this.clauses(items).length };
+  }
+}
+const FAHM_SEEDS = ["ذهب الطالب الى المدرسة ورأى معلمه فيها", "ان الله غفور رحيم", "كان الرجل تاجرا في البصرة", "لم يأكل الولد طعامه", "يا أبي لماذا تسجد لهذه الأصنام", "جاء المعلم وفي يده كتاب كبير"];
+function renderFahmOut(){
+  const out = document.getElementById("fahmOut"); if (!out) return;
+  const txt = (conjState.fahm || "").trim(); const lang = state.uiLang === "tr" ? "tr" : "en", u = ui(), E = escapeAttr;
+  const seeds = `<div class="dabt-seeds qw-seeds"><div class="qw-head">${u.fahmSeeds}</div><ul>${FAHM_SEEDS.map(s0 => `<li><button class="qw-seed" data-seed="${E(s0)}" lang="ar" dir="rtl">${E(s0)}</button></li>`).join("")}</ul></div>`;
+  if (!txt) { out.innerHTML = `<p class="empty">${u.fahmEmpty}</p>` + seeds; }
+  else {
+    const a = FahmEngine.analyze(txt, lang);
+    if (!a) out.innerHTML = `<p class="empty">${u.jadhrBad}</p>` + seeds;
+    else {
+      const pick = conjState.fahmPick >= 0 && conjState.fahmPick < a.v.words.length ? conjState.fahmPick : -1;
+      const rows = a.items.map((x, i) => `<tr class="${x.how === "root" || !x.gloss ? "approx" : ""}"><td class="ar">${E(x.out)}</td><td>${x.lemma ? `<span lang="ar">${E(x.lemma)}</span> · ` : ""}${E(FahmEngine.sense(x.gloss, lang) || u.fahmUnknown)}${x.how === "root" ? `<small>${u.fahmByRoot}${x.root ? " · " + E(x.root) : ""}</small>` : x.how === "pattern" ? `<small>${u.fahmByPattern.replace("{w}", x.wazn || "")}${x.root ? " · " + E(x.root) : ""}</small>` : ""}</td><td>${E(a.structure[i].lbl)}${typeof x.head === "number" && a.v.words[x.head] ? `<small>← ${E(a.v.words[x.head].out)}</small>` : ""}</td><td>${E(FahmEngine.sarf(x, lang))}</td></tr>`).join("");
+      const feats = a.features.map(f => `<li>${f.note ? `<button class="qw-note" data-note="${E(f.note)}" title="${E(T(GRAMMAR[f.note].title))}">§</button> ` : ""}<span lang="ar">${E(f.ar)}</span> — ${E(f.lbl)} <small lang="ar">(${E(f.words.join("، "))})</small></li>`).join("");
+      const nfeats = a.nearFeatures.map(f => `<li><button class="qw-note" data-note="${E(f.note)}">§</button> ${E(f.title)} <small>×${f.n}</small></li>`).join("");
+      const sharedSet = new Set(a.near.flatMap(n => n.shared));
+      const near = a.near.length ? a.near.map(n => `<li><button class="fahm-jump qw-note" data-jump="${E(n.st.id)}|${E(n.sn.id)}|${n.ch.n}" title="${E(u.fahmJump)}">↗</button><span class="ar">${(n.sn.tokens || []).map(t => sharedSet.has(t.s.full) ? `<mark>${E(t.s.full)}</mark>` : E(t.s.full)).join(" ")}</span><small>${E(T(n.st.title))}${n.sn.translation ? " — " + E(T(n.sn.translation)) : ""}</small></li>`).join("") : `<li><small>${u.fahmNearNone}</small></li>`;
+      out.innerHTML = dabtLineHtml(a.v, { compare: false, pick }) +
+        `<div class="fahm-meaning"><div class="qw-head">${u.fahmMeaning} · ${a.type === "verbal" ? u.fahmVerbal : u.fahmNominal}${a.clauses > 1 ? " · " + u.fahmClauses.replace("{n}", a.clauses) : ""}</div><p class="fahm-${lang}" dir="ltr">${E(a.meaning[lang])}</p>${lang === "en" ? `<p class="fahm-tr" dir="ltr"><small>TR</small> ${E(a.meaning.tr)}</p>` : `<p class="fahm-en" dir="ltr"><small>EN</small> ${E(a.meaning.en)}</p>`}<small>${u.fahmApprox}</small></div>
+         <p class="fahm-sure">${u.fahmSure.replace("{k}", a.known).replace("{n}", a.n).replace("{d}", a.decided).replace("{u}", a.byRoot)}</p>
+         <div class="fahm-struct">${a.structure.map(s0 => `<b lang="ar">${E(s0.w)}</b> ${E(s0.lbl)}`).join(" · ")}</div>
+         <div class="qw-head">${u.fahmWords}</div>
+         <table class="fahm-words"><thead><tr><th>${u.fahmColWord}</th><th>${u.fahmColGloss}</th><th>${u.fahmColSeat}</th><th>${u.fahmColSarf}</th></tr></thead><tbody>${rows}</tbody></table>
+         <div class="fahm-feats"><div class="qw-head">${u.fahmFeatures}</div><ul>${feats || `<li><small>—</small></li>`}</ul>${nfeats ? `<div class="qw-head">${u.fahmNearFeat}</div><ul>${nfeats}</ul>` : ""}</div>
+         <div class="fahm-near"><div class="qw-head">${u.fahmNear}</div><ul>${near}</ul></div>` + (pick >= 0 ? dabtDetailHtml(a.v, pick, lang) : "") + seeds;
+      out.querySelectorAll(".dabt-w").forEach(b => b.addEventListener("click", () => { conjState.fahmPick = +b.dataset.i; renderFahmOut(); }));
+      out.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => { const [sid, sen, chN] = b.dataset.jump.split("|"); jumpTo(sid, sen, 0, Number(chN)); }));
+      out.__a = a;
+    }
+  }
+  out.querySelectorAll("[data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note)));
+  out.querySelectorAll("[data-seed]").forEach(b => b.addEventListener("click", () => { conjState.fahm = b.dataset.seed; conjState.fahmPick = -1; const inp = document.getElementById("fahmIn"); if (inp) inp.value = b.dataset.seed; renderFahmOut(); }));
+}
 function renderDabtOut(){
   const out = document.getElementById("dabtOut");
   if (!out) return;
@@ -13779,6 +14085,7 @@ function openConjugator(){
       <button data-lab="qawaid" class="${conjState.lab === "qawaid" ? "on" : ""}">${arSpan("قَوَاعِد")} ${ui().qawaidTab}</button>
       <button data-lab="sledger" class="${conjState.lab === "sledger" ? "on" : ""}">${arSpan("دَفْتَر")} ${ui().sledgerTab}</button>
       <button data-lab="dabt" class="${conjState.lab === "dabt" ? "on" : ""}">${arSpan("ضَبْط")} ${ui().dabtTab}</button>
+      <button data-lab="fahm" class="${conjState.lab === "fahm" ? "on" : ""}">${arSpan("فَهْم")} ${ui().fahmTab}</button>
       <button data-lab="tashbih" class="${conjState.lab === "tashbih" ? "on" : ""}">${arSpan("تَشْبِيه")} ${ui().tashbihTab}</button>
       <button data-lab="majaz" class="${conjState.lab === "majaz" ? "on" : ""}">${arSpan("مَجَاز")} ${ui().majazTab}</button>
       <button data-lab="kinaya" class="${conjState.lab === "kinaya" ? "on" : ""}">${arSpan("كِنَايَة")} ${ui().kinayaTab}</button>
@@ -22077,7 +22384,11 @@ class TaqdirEngine {
       if (isVerb(r) && cell && typeof cell.i === "number") {
         const t = String(cell.tense || ""); const passive = /majhul/.test(t);
         const base = /amr/.test(t) ? "amr" : /mudari|mansub|majzum/.test(t) ? "mudari" : "mazi";
-        const pi = typeof cell.person === "number" ? cell.person : (/^(majzum2|mansub2)$/.test(t) ? 6 : cell.i);   // a rebuilt cell carries its person
+        let pi = typeof cell.person === "number" ? cell.person : (/^(majzum2|mansub2)$/.test(t) ? 6 : cell.i);   // a rebuilt cell carries its person
+        // (wave 121) تَفْعَلُ is ONE written form for two persons — the absent she and the present you — and the paradigm
+        // cell the tagger met first decides nothing; the sentence does. The addressee reader walks back from the verb.
+        let cue = null;
+        if (base === "mudari" && !passive && (pi === 3 || pi === 6) && this.taForm(r)) { const a = this.addressee(rows, i); if (a) { cue = a.cue; pi = a.who === "you" ? 6 : 3; } }
         const pron = (this.PRON[base] || {})[pi];
         if (!pron) return;                                      // duals, plurals and the 2fs write their doer as a letter
         // a NAMED doer after the verb, before the next clause: no ghost — the scan stops at a verb, a clause particle,
@@ -22090,7 +22401,7 @@ class TaqdirEngine {
         if (named) return;
         if (r.enc && /^(ت|تم|تن|نا)$/.test(r.enc)) return;      // an attached doer (كَتَبْتُ) is written
         const wujub = base === "amr" || this.WUJUB.has(pi);   // the amr's «you» and the speaker's and addressee's pronouns are concealed of necessity
-        g.push({ i, kind: passive ? "naib" : "mustatir", text: pron, wujub, why: passive ? "naib" : (wujub ? "wujuban" : "jawazan") });
+        g.push({ i, kind: passive ? "naib" : "mustatir", text: pron, wujub, why: passive ? "naib" : (wujub ? "wujuban" : "jawazan"), cue });
       }
       // 1b · a copula with no NAMED ism before its khabar carries its ism concealed (لَيْسَ كَمِثْلِهِ شَيْءٌ is named; لَيْسَ فِي الدَّارِ is not) — and تَعَالَى is formulaic
       if (isVerb(r) && (r.pk === "kana" || /^(ليس|ليست|كان|كانت|تعالى)$/.test(this.bare(r.w).replace(/^[وف]/, ""))) && !g.some(x => x.i === i)) {
@@ -22110,6 +22421,71 @@ class TaqdirEngine {
     // 4 · the dropped MUDAF of a majaz by omission
     try { MajazEngine.read(rows).forEach(f => { if (f.kind === "nuqsan" && f.mudaf) g.push({ i: f.word, kind: "mudaf", text: f.mudaf, why: "mudaf", before: true }); }); } catch (e) {}
     return g.sort((a, b) => a.i - b.i);
+  }
+  // ---- (wave 121) the ADDRESSEE reader: is this تَفْعَلُ «she» (the absent feminine) or «you» (the present masculine)?
+  // The Kāfiya's own answer for the bare form is «أَنْتَ أَوْ هِيَ» — both. In a SENTENCE one of them is meant, and the
+  // sentence says which, by cues that are read nearest-first, walking back from the verb:
+  //   STRONG for «you»: a second-person pronoun or enclitic (أَنْتَ، إِنَّكَ، لَكَ، ـكَ), a vocative (يَا، رَبِّ، رَبَّنَا،
+  //     اللّٰهُمَّ، بُنَيَّ), a verb of SAYING that opens speech (قَالَ، قَالَتْ، قُلْتُ، قِيلَ), an imperative, a 2ms perfect
+  //     (عَلِمْتَ), the prohibition's لَا right before a jussive, the speaker's ـنِي on the verb itself;
+  //   STRONG for «she»: هِيَ، إِنَّهَا، هٰذِهِ، تِلْكَ, an ـهَا enclitic, الَّتِي, a feminine perfect (كَانَتْ، صَارَتْ، جَاءَتْ),
+  //     a noun right before أَنْ that this verb's clause is about (أَمَرَ الْأَرْضَ أَنْ تَقْتَرِبَ);
+  //   WEAK (used only when no strong cue stands in the sentence): a feminine noun — tāʾ marbūṭa, a known feminine
+  //     (أَرْض، رِيح، شَمْس، نَفْس، يَد…), a sound feminine plural, a non-human plural (الْجِبَال، الْوُحُوش، الْأَصْنَام) —
+  //     that is NOT majrūr and not a number word; an interrogative (مَاذَا، لِمَاذَا، هَلْ، أَلَمْ، أَلَا) for «you».
+  // A sister تَفْعَلُ on the way back is skipped — it waits for the same answer. Nothing found → null, and the tagger's
+  // cell stands. Measured on the corpus's 125 lines that name هِيَ or أَنْتَ under a تَـ verb: 117 right, 5 undecided, 3 wrong.
+  static ADDR_FEM = new Set(["ارض", "الارض", "ريح", "الريح", "الرياح", "شمس", "الشمس", "نار", "النار", "عين", "العين", "نفس", "النفس", "دار", "الدار", "يد", "اليد", "رجل", "بئر", "حرب", "سماء", "السماء", "ام", "امه", "الجبال", "الوحوش", "الاصنام", "الكلمات", "الطير", "الامم", "رحى", "ناقة", "الناقة", "سفينة", "السفينة"]);
+  static ADDR_NUM = new Set(["ثلاثة", "اربعة", "خمسة", "ستة", "سبعة", "ثمانية", "تسعة", "عشرة", "مائة", "مئة"]);
+  static ADDR_Q = new Set(["ماذا", "لماذا", "لاي", "هل", "الم", "الا", "اين", "كيف", "متى"]);
+  static ADDR_SAY = /^[وف]?(قال|قالت|قالوا|قلت|قلنا|يقول|تقول|اقول|نادى|ناداه|دعا|سال|ساله|اجاب|اجابه|قيل)$/;
+  static ADDR_YOU = new Set(["انت", "انك", "لك", "اليك", "عليك", "منك", "بك", "معك", "عندك", "لديك", "اياك"]);
+  static ADDR_VOC = new Set(["يا", "بني", "رب", "ربنا", "اللهم", "ابي", "ابانا", "ابت"]);
+  static addrBare(w){ return this.bare(w).replace(/[أإآ]/g, "ا"); }
+  // a singular تَـ muḍāriʿ: the prefix ت after و/ف and س/ل, no 2fs ـِينَ, no dual/plural letters
+  static taForm(r){
+    const w = String((r && r.w) || "").normalize("NFC"); const core = w.replace(/(هُمْ|هُمَا|هُنَّ|هَا|هُ|كَ|كُمْ|كُمَا|كُنَّ|نِي|نَا)$/, "");
+    const b = this.bare(core).replace(/^[وف]/, "").replace(/^[سل]/, "");
+    if (!/^ت/.test(b)) return false;
+    if (/ِينَ?$|َانِ?$|ُونَ?$|ُوا$|ْنَ$/.test(core)) return false;
+    return true;
+  }
+  static addressee(rows, i){
+    const r = rows[i]; if (!r) return null;
+    const v = String(r.w || "").normalize("NFC"); const vcore = v.replace(/(هُمْ|هُمَا|هُنَّ|هَا|هُ|كَ|كُمْ|كُمَا|نِي|نَا)$/, "").replace(/ّ/g, "");
+    const prev = rows[i - 1] ? this.addrBare(rows[i - 1].w).replace(/^[وف]/, "") : "";
+    if (prev === "لا" && !/ُ$/.test(vcore)) return { who: "you", cue: "nahy" };            // لَا + the jussive — the prohibition
+    if (/نِي$/.test(v) && (r.enc === "ني" || /ني$/.test(this.bare(v)))) return { who: "you", cue: "ni" };
+    // the clause of أَنْ is about the noun just before أَنْ (أَمَرَ الْأَرْضَ أَنْ تَقْتَرِبَ)
+    if (prev === "ان" && rows[i - 2] && (rows[i - 2].kind || "").startsWith("noun")) {
+      const femNoun = n => { const nb = this.addrBare(n.w); const nw = String(n.w || "").normalize("NFC"); return /ة[ًٌٍَُِ]*$/.test(nw) || this.ADDR_FEM.has(nb) || /ات[ًٌٍَُِ]*$/.test(nw); };
+      if (femNoun(rows[i - 2])) return { who: "she", cue: "an-noun" };
+      // a construct before أَنْ (أَرْضَ السُّوءِ أَنْ تَتَبَاعَدَ): the majrūr is the muḍāf ilayh — the muḍāf is the noun the clause is about
+      if (/[ِ]$|ٍ$/.test(String(rows[i - 2].w || "").normalize("NFC").replace(/ّ/g, "")) && rows[i - 3] && (rows[i - 3].kind || "").startsWith("noun") && femNoun(rows[i - 3])) return { who: "she", cue: "an-mudaf" }; }
+    let weak = null;
+    for (let j = i - 1; j >= 0; j--) {
+      const t = rows[j]; const w = String(t.w || "").normalize("NFC"); const bc = this.addrBare(w).replace(/^[وف]/, ""); const kind = t.kind || "";
+      if (bc === "هي" || bc === "انها" || bc === "هذه" || bc === "تلك") return { who: "she", cue: bc };
+      if (this.ADDR_YOU.has(bc)) return { who: "you", cue: bc };
+      if (/كَ$/.test(w) && !/^(ذلك|تلك|ذاك|هناك|هنالك|كذلك)$/.test(bc)) return { who: "you", cue: "ka" };
+      if (/هَا$/.test(w) && bc !== "ها" && bc.length > 2) return { who: "she", cue: "ha" };
+      if (bc === "التي") return { who: "she", cue: bc };
+      if (this.ADDR_VOC.has(bc) || (t.kind === "particle" && t.pk === "nida")) return { who: "you", cue: "nida" };
+      if (this.ADDR_Q.has(bc) && !weak) weak = { who: "you", cue: "istifham" };
+      if (kind.startsWith("verb")) {
+        if (this.ADDR_SAY.test(bc)) return { who: "you", cue: "qawl" };
+        if (/ْتَ$/.test(w)) return { who: "you", cue: "2ms-madi" };
+        if (/(تْ|تِ)$/.test(w) && !/^[وف]?ت/.test(bc)) return { who: "she", cue: "fem-madi" };
+        const tn = String((t.cell && t.cell.tense) || "");
+        if (/amr/.test(tn) || (/^ا/.test(bc) && /ْ$/.test(w) && !/^(ان|اذا|اذ)$/.test(bc))) return { who: "you", cue: "amr" };
+        continue;                                                                       // a sister تَفْعَلُ waits for the same answer
+      }
+      if (kind.startsWith("noun") && !weak && !this.ADDR_NUM.has(bc)) {
+        const majrur = /[ِ]$|ٍ$/.test(w.replace(/ّ/g, "")) || (rows[j - 1] && rows[j - 1].kind === "particle" && rows[j - 1].pk === "jarr");
+        if (!majrur && (/ة[ًٌٍَُِ]*$/.test(w) || this.ADDR_FEM.has(bc) || /ات[ًٌٍَُِ]*$/.test(w))) weak = { who: "she", cue: "fem-noun" };
+      }
+    }
+    return weak;
   }
   static readText(text){
     let rows = []; try { rows = SentenceAnalyzer.analyze((text || "").normalize("NFC").replace(/[«»،.:!؟]/g, " ").trim()) || []; } catch (e) { rows = []; }
@@ -22172,7 +22548,7 @@ class TaqdirEngine {
     tot.textAcc = tot.textN ? Math.round(1000 * tot.textHit / tot.textN) / 10 : 0;
     return tot;
   }
-  static SEEDS = ["كَتَبَ الدَّرْسَ", "اكْتُبْ", "وَاسْأَلِ الْقَرْيَةَ", "زَيْدٌ فِي الدَّارِ", "سُبْحَانَ اللهِ", "إِيَّاكَ وَالْكَذِبَ", "أُرِيدُ أَنْ أَكْتُبَ", "قَامَتْ هِنْدٌ"];
+  static SEEDS = ["كَتَبَ الدَّرْسَ", "اكْتُبْ", "وَاسْأَلِ الْقَرْيَةَ", "زَيْدٌ فِي الدَّارِ", "سُبْحَانَ اللهِ", "إِيَّاكَ وَالْكَذِبَ", "يَا أَبِي لِمَاذَا تَعْبُدُ هٰذِهِ الْأَصْنَامَ", "كَانَتْ زَوْجَتُهُ تَعْمَلُ عِنْدَ النَّاسِ", "أُرِيدُ أَنْ أَكْتُبَ", "قَامَتْ هِنْدٌ"];
 }
 
 // ---------- the BADIʿ engine: the tibaq, read off the sentence ----------
