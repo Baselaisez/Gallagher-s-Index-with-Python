@@ -9986,6 +9986,87 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 131 — the ḍabṭ engine learns from the whole corpus's remaining misses: rules, not patches.** The v232 sweep graded
+49,728 endings: 48,452 right, 832 undecided (cited forms, bare endings the line does not name), 444 wrong. The 444 were
+dumped with their sentence and the author's own iʿrāb line, grouped by the rule that misread them, and read as a
+grammarian reads a student's errors — what RULE did the engine lack? Twenty-odd rules came out of it, each a thing the
+grammar states, laid in one pre-pass over the analyzer's rows (`DabtEngine.decide`, «wave 131») with the marks honoured
+first in the main loop so no later heuristic can overrule them: (R1) the author's own jarr LETTER on a word is the word's —
+بِإِزَائِهِ، وَلِمَعْمُولِهَا، بِتَعْيِينِ stand in jarr whatever the clause rule would say (read from the segments the author
+wrote, as wave 118 reads its receipts; `grade` hands them in as `_jarr131`); (R2) the Name is the DOER of the verbs of divine
+action — قَالَ اللهُ تَعَالَى، صَلَّى اللهُ عَلَيْهِ، رَضِيَ اللهُ عَنْهُ، شَاءَ اللهُ، أَرَادَ اللهُ — while the verbs that take
+the Name as their object (دَعَا، سَأَلَ، عَبَدَ، ذَكَرَ، أَحَبَّ…, the wave-35e list) keep their reading, and a noun wearing rafʿ
+before the verb keeps the doer's seat; (R3) the DOER past the jarr phrase: an intransitive verb (لَجَّ بِهِ الشَّيْبُ، تَقَدَّمَتْ
+بِهِ السِّنُّ، يَنْقُصُ بِهِ الثَّمَنُ), a verb already holding its object in a pronoun (يُسَمِّيهِ بَعْضُهُمْ), the partitive with
+its pronoun right after a reflexive or intransitive verb (يَتَسَاقَطُ بَعْضُهُ عَلَى بَعْضٍ), or the بِ-pronoun that saturates the
+verb at the head of its clause (كَمَا أَخْبَرَ بِهِ نَبِيُّنَا) — the definite noun right behind the pronoun-bearing particle is
+the doer, never behind a jarr noun (فِي صَدْرِ الْكَلَامِ keeps its muḍāf ilayh) and never past a definite noun the
+preposition's own pronoun has set free (قَالَ لَهُ الْأَسَدُ غَضْبَانَ); a clause joined onto a clause of the same shape
+takes the same reading (…وَوَهَنَ مِنْهُ الْعَظْمُ وَلَجَّ بِهِ الشَّيْبُ, the analyzer's amr cell on لَجَّ overruled by the
+author's fatḥa); and the indefinite DUAL after a definite place (دَخَلَ مَعَهُ السِّجْنَ رَجُلَانِ) is the doer, the place the
+object — a dual by the kasra on its nūn, never غَضْبَانَ or دُونَ by their letters; (R4) the comparative KHABAR — after a relative or demonstrative subject, خَيْرٌ / شَرٌّ / an elative with
+its مِنْ, its لَكُمْ or its tamyīz closes the clause as the khabar (مَا آتَانِيَ اللهُ خَيْرٌ مِمَّا آتَاكُمْ، ذٰلِكُمْ خَيْرٌ لَكُمْ،
+أَيُّ الْفَرِيقَيْنِ خَيْرٌ مَقَامًا، أَهْوَنُ وَأَيْسَرُ لِلتَّصْدِيقِ), and under a nāsikh anywhere earlier in the clause it keeps
+the nāsikh's case (وَكَانَ ذٰلِكَ أَبْلَغَ); (R5) the matn CITES its particles — one of the grammar's own particles followed by the feminine TERM
+that describes it (مِنْ زَائِدَةٌ، بِأَنْ مُضْمَرَةٍ، مَعَ مَا النَّافِيَةِ، أَمِ الْمُتَّصِلَةِ، كَمْ الْخَبَرِيَّةِ) is a noun in the
+sentence, and the term takes the case of the particle's seat: jarr behind a jarr letter or a muḍāf — بَعْدَ and بَيْنَ
+included, whatever their first letter — (بَعْدَ أَنِ الْمَصْدَرِيَّةِ، بَيْنَ إِنِ النَّافِيَةِ), naṣb after a transitive verb (تَبِعَ أَمِ
+الْمُتَّصِلَةَ) but rafʿ when that verb already holds its object in a pronoun, the particle being its DOER (وَتَلْحَقُهَا مَا
+الْكَافَّةُ), the partner's case when the cited particle is itself wāw-joined (فِي خَبَرِ لَيْسَ وَمَا النَّافِيَةِ takes لَيْسَ's
+seat; وَلَا النَّاهِيَةُ يُطْلَبُ بِهَا opens its own clause), the case of the nearest free noun when a bare لَا is the
+conjunction (الْمُخَفَّفَةُ مِنَ الثَّقِيلَةِ لَا النَّاصِبَةُ), rafʿ otherwise (وَمِنْ زَائِدَةٌ); a second term follows the first (مَا
+الْمَصْدَرِيَّةِ التَّوْقِيتِيَّةِ); the category noun after the answer's فَ + cited particle is its khabar and annexes the
+noun after it (فَحَتَّى حَرْفُ ابْتِدَاءٍ); a nāṣib or
+jāzim before one of the grammar's own she-verbs (حَتَّى تَنْصِبُ، أَنْ تُزَادُ، إِذَنْ تَنْصِبُ — the lex keys name them) is the
+verb's SUBJECT, not its governor; a nāṣib never reaches a verb joined by وَ to the verb before it (فَتَبْقَى أَنْ وَتَعْمَلُ); a
+particle followed by وَ + particle is a list of names (إِنْ وَلَوْ وَأَمَّا وَهِيَ تَقَعُ); (R6) a cognate noun after a passive
+still owing its deputy is the deputy, not its maṣdar (وُلِدَ … وَلَدٌ جَمِيلٌ); (R7) a ẕarf wearing its pronoun (عِنْدَهُمْ،
+بَيْنَهُمَا) annexes nothing before it; (R8) a bare noun before the relative مَا / مَنْ is annexed to it (إِضَافَةُ مَا، تَقْدِيمِ مَا
+بَعْدَهُ، صِدْقِ مَنِ ادَّعَى، غَيْرِ مَا هُوَ), as is the grammar's operation noun before the cited verb-form (نَصْبُ
+تَصُومُوا) — never a dual or a sound plural, whose nūn says it is not annexed (قِسْمَانِ مَا); (R9) وَحْدَهُ is the ḥāl even behind a jarr chain; (R10) the IMPERATIVE in its chain
+— a verb whose letters the māḍī and the amr share (تَمَسَّكْ ~ تَمَسَّكَ، وَقِّرِ ~ وَقَّرَ، اسْتَجِدَّ ~ اسْتَجَدَّ) is the amr when the
+author closed it on a sukūn, on the kasra of waṣl, or with the amr's own inner vowels, and the two later rereadings that
+turned a wāw-initial or a sentence-opening amr into a māḍī stand down before that receipt; (R11) a noun's tāʾ marbūṭa opened
+before its pronoun (نِعْمَتِهِ، فَصَاحَتِهَا) is no she-verb; (R12) the GRADER reads the author's line once more: where it names
+the rhyme or the pause as the reason for the written ending (وَاتِّصَالِ، تَرْجُمَانْ، نَاهِدِ، الْأَشَلْ) the engine's full ending
+is judged against the un-rhymed norm, as the hemistich seats of wave 22c are, and where only the letters agree the seat is
+undecided, not wrong; (R13) the manqūṣ in naṣb shows its fatḥa — annexed (ثَمَانِيَ سِنِينَ), before its pronoun (أَيْدِيَهُمْ),
+or definite (الْقَاضِيَ); (R17) كُلُّهُ / كُلُّهُمْ as the tawkīd of a marfūʿ — before an indefinite khabar (أَمْرُهُ كُلُّهُ عَجَبٌ،
+كُلُّهُمْ إِلٰهٌ) or right after the group's wāw (صَارُوا كُلُّهُمْ لِي أَصْدِقَاءَ, whose khabar then stands past the jarr phrase)
+— in rafʿ, not in the case of the muḍāf ilayh beside it; (E) the addressee's verb — a تَـ muḍāriʿ before the speaker's own
+pronoun phrase (تَعْمَلَ عِنْدِي ثَمَانِيَ سِنِينَ) has أَنْتَ for its doer, so the number after it is the ẕarf; (F) the demonstrative
+that OPENS a clause names its subject, and the indefinite or the name after it is the khabar (هٰذَا وَدٌّ وَذٰلِكَ سُوَاعٌ، هَذِهِ
+دَرَاهِمُ مِنْ زَمَنٍ); (G) the nāsikh with its pronoun ism, prefixed or bare (لِأَنَّهَا تَمَاثِيلُ، فَإِنَّهُ…), makes the noun after
+it its khabar, and with a detached pronoun between (إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ) the noun after the pronoun is the khabar
+and annexes the definite noun after it — عَلَّامُ itself rescued from the analyzer's reading as the compound عَلَامَ by the
+author's part of speech; (H) the kāna FRAMES the shape reader lost, handed to the wave-33 khabar mark the base already
+honours: ism named, khabar indefinite (صَارَتِ الْحِبَالُ حَيَّاتٍ — never when the ism is a ẕarf with its pronoun, لَمْ يَكُنْ
+مَعَهُمْ مَاءٌ، كَانَ وَرَاءَهُمْ مَلِكٌ, nor when the noun after is annexed, مَرْيَمُ بِنْتُ عِمْرَانَ, nor in the ḍamīr al-shaʾn's
+cited sentence); the naming frame (كَانَ اسْمُهُ النِّيلَ); the hidden ism under a pronoun nāsikh (لِأَنَّهُ لَمْ يَكُنْ صَاحِبَ
+حَوْلٍ); the ṣifa of the indefinite ism after a fronted jarr khabar (كَانَ فِي مِصْرَ قَوْمٌ ضُعَفَاءُ) — all on كَانَ / صَارَ /
+يَكُنْ by their forms; (I)
+the she-verb joined onto a clause whose OBJECT was feminine takes that object as its doer (أَلْقَى مُوسَى عَصَاهُ فَأَكَلَتِ
+الْحَيَّاتِ), and the she-verbs of a feminine ism run on through the sentence (أَنَّ الْمَلِكَةَ تَتَوَهَّمُهُ … وَهُنَالِكَ
+تَتَبَيَّنُ الْخَطَأَ: the noun after the later verb is its object); (J) the conditional's two verbs in jazm — مَنْ / إِنْ (by the author's hamza) / مَتَى / أَيْنَ / مَهْمَا at the head of
+their clause + muḍāriʿ with a فَ-answer later (مَنْ يُشْرِكْ بِاللهِ فَقَدْ…، وَإِنْ تَغْفِرْ لَهُمْ فَإِنَّكَ) or a bare second
+muḍāriʿ as the answer (وَمَنْ يَزِغْ عَنْ أَمْرِنَا نُذِقْهُ), the verb joined onto the shart verb sharing its jazm (وَيَسْتَكْبِرْ);
+(K) the prohibition inside a chain of commands (وَاصْحَبِ الْأَخْيَارَ وَلَا تَتَهَاوَنْ); (L) a wāw-joined verb (or one after أَوْ / أَمْ)
+whose partner is a muḍāriʿ that أَنْ / لَنْ / كَيْ / حَتَّى / لِـ governs — أَنْ by the hamza the author wrote above it, never
+the conditional إِنْ or إِلَّا — shares its naṣb across the nouns between (أَنْ نَأْكُلَ مِنْهَا وَتَطْمَئِنَّ قُلُوبُنَا وَنَعْلَمَ،
+حَتَّى أُفَرِّغَ … وَتَجْعَلَ), not across a clause that closed on its own doer (أَنْ يَأْكُلَهُ الذِّئْبُ فَنَقُولُ); the three verb
+marks (rafʿ, jazm, naṣb) ride the base engine's own mood decision so its doer and object bookkeeping runs unchanged.
+Two realisation bugs fell with them: the writer keeps the author's INNER vowels and owns only the last letter's mark
+(دَرَاهِمُ was leaving as دَرَاهُمُ — the ending pass had peeled «هم» off a word the lexicon owns whole; the whole-noun
+receipt of wave 98 now reaches the writer), and the alif-final NAME in naṣb shows no fatḥa (زَكَرِيَّا, while عَصًا and جِدًّا
+keep their tanwīn). The first draft broke 261 endings the shipped engine had right; every one was traced to a rule written
+too wide (a بَعْدَ whose first letter the prefix-stripper took for بِ, masculine terms in the cited-particle list, the jāzim in
+the grammar-verb list, غَضْبَانَ and دُونَ read as duals by their last letters, a kāna seat that bypassed the base's construct
+pairing) and narrowed by rule, not by exception list — the sweep below is the proof. Verified by the full sweep (`$S/w114/probe_words.js`, all 51 texts,
+`w129/diff_sweeps.py`): 48,541 right, 835 undecided, 352 wrong — 89 endings fixed, 0 broken; the
+smoke suite grades thirty of the lines the rules were written for and the rhyme seat. Lesson: the misses of a corpus
+of this size cluster by RULE, not by text — one honest reading of the author's receipts (his jarr letter, his sukūn, his
+hamza, his part of speech) settles more lines than any guess from shape. The release box timed the 51-fold held-out grade at 9.0 s against its 8 s ceiling — the same reader as v232 on a slower container — so the IrabModel's fold loop was profiled: a microsecond per training example, the cost being the cache miss on each shuffled row's own little feature array. `intern()` now packs every row's feature cells into one flat Int32Array run and `fitCore` walks it with integer cells and eight local sums; every weight is an integer, so the sums are exact in any order and the result is bit-identical (same weights, 65.283 / 80.050 held-out, 67.533 resubstitution; checked on four folds in Node and on the whole page). The folds went 6.2 → 2.5 s in Node, and `crossVal()` after `train()` 10.4 → 2.9 s on the page; the whole-corpus rows are memoised so the two featurise once between them. Ceiling unchanged at 8 s.
+
 **Wave 119 — closed by diagnosis, no code.** The note said أُرَاهَا should be tied to أَرَى's passive, not رَأَى's, by a rule
 that prefers the paradigm owning the written form. Probed on the v229 tree: `RootFinder.fromCorpus("أُرَاهَا")` returns رَأَى,
 majhūl muḍāriʿ, person 12, form أُرَى (derived) — and both stored lines (the Kāfiya's «كُنْتُ أُرَى زَيْدًا», the Talkhīṣ's «أُرَاهَا

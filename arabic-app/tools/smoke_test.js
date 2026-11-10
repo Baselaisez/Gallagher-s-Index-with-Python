@@ -4069,6 +4069,12 @@ if (!CHROME) {
     // by three EXACT changes (the governor tag memoised per featurisation pass, the features interned once instead of
     // once per fold, feature-major weight cells), every gate number unchanged to the digit — ceiling 8 s. The folds are
     // paid once per build per device (Relax persists the score), so this is a one-time idle cost, not a per-open one.
+    // (wave 131) 9.0 s at 51 texts / 41,294 rows / 51 folds on the v233 release box — the SAME reader as v232 on a slower
+    // container; the folds alone were 8.2 s, a microsecond per training example. The cost was the cache miss, not the
+    // arithmetic: each shuffled example chased its own little feature array. intern() now packs every row's feature cells
+    // into one flat run and fitCore walks it with integer cells and eight local sums — bit-identical (same weights, 65.283 /
+    // 80.050 held-out, 67.533 resubstitution) and 10.4 → 2.9 s for crossVal after train() on that box; the whole-corpus
+    // rows are memoised, so train() and crossVal() featurise once between them. Ceiling kept at 8 s.
     if (a.ms > 8000) throw new Error('cross-validation took ' + a.ms + 'ms — too slow to run on open (the ceiling follows the corpus: 4.5 s at 76 chapters, v178; 5.2 s at 42 texts, v228)');
     await page.evaluate(() => { conjState.lab = 'jumla'; });
     await page.locator('#conjOpen').click();
@@ -10280,6 +10286,23 @@ if (!CHROME) {
     if (!r.quietClosed || r.ranWhileHeld !== 0 || r.ranAfterRelease !== 1) throw new Error('Quiet gate: ' + JSON.stringify([r.quietClosed, r.ranWhileHeld, r.ranAfterRelease]));
     for (const [lab, ms] of Object.entries(r.labShell)) if (ms > 400) throw new Error('the ' + lab + ' tab should paint its shell at once, took ' + ms + ' ms');
     if (!(r.ismFilled > 200)) throw new Error('the deferred analysis should fill the Ism tab within 1.5 s');
+  });
+
+  await check('wave 131 — the ḍabṭ engine learns from the corpus by rule: the Name as doer, the comparative khabar, the doer past the jarr phrase, the cited particle and its term, the author\'s jarr letter, the imperative chain, the conditional\'s jazm, the kāna frames, the manqūṣ fatḥa', async () => {
+    const r = await page.evaluate(() => {
+      const want = [["qisas-al-nabiyyin-4", 7, "s11", 13], ["qisas-al-nabiyyin-2", 5, "s5", 26], ["musa-fi-madyan", 4, "s2", 4], ["qisas-al-nabiyyin-2", 3, "s13", 15], ["musa-wa-firawn", 1, "s5", 4], ["musa-wa-firawn", 2, "s6", 5], ["qisas-al-nabiyyin-4", 1, "s8", 7], ["al-kafiya", 21, "s3", 1], ["qisas-al-nabiyyin-4", 23, "s9", 3], ["qisas-al-nabiyyin-4", 37, "s5", 7], ["qisas-al-nabiyyin-4", 44, "s6", 44], ["qisas-al-nabiyyin-4", 37, "s7", 6], ["qisas-al-nabiyyin-4", 18, "s10", 5], ["musa-wa-firawn", 5, "s9", 4], ["qisas-al-nabiyyin-2", 4, "s7", 5], ["qisas-al-nabiyyin-1", 8, "s6", 2], ["musa-wa-firawn", 5, "s8", 2], ["al-kafiya", 16, "s2", 13], ["al-kafiya", 21, "s6", 1], ["qisas-al-nabiyyin-4", 42, "s6", 15], ["qisas-al-nabiyyin-4", 43, "s6", 21], ["qisas-al-nabiyyin-4", 20, "s3", 10], ["qisas-al-nabiyyin-4", 11, "s6", 11], ["dhu-al-qarnayn-wa-al-sadd", 3, "s1", 6], ["al-kafiya", 7, "s10", 3], ["qisas-al-nabiyyin-4", 35, "s5", 26], ["al-kafiya", 21, "s7", 8], ["qisas-al-nabiyyin-4", 44, "s2", 11], ["qisas-al-nabiyyin-4", 39, "s6", 4], ["qisas-al-nabiyyin-4", 21, "s4", 2]];
+      const rows = want.map(([id, chN, sid, ti]) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === chN); if (!ch) return { id, chN, sid, missing: true };
+        const k = ch.sentences.findIndex(x => x.id === sid); if (k < 0) return { id, chN, sid, missing: true };
+        DabtEngine._lastGraded26 = null; if (k > 0) DabtEngine.grade(ch.sentences[k - 1], 'endings');
+        const g = DabtEngine.grade(ch.sentences[k], 'endings'); const w = g.words[ti] || {}; return { id, chN, sid, ti, want: w.want, out: w.out, ok: w.ok, rule: w.rule }; });
+      // the verse seat the author's line names as the rhyme's: judged against the un-rhymed norm, never wrong for its kasra
+      const st = STORIES.find(x => x.id === 'bad-al-amali'); const ch = st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === 3); const sn = ch.sentences.find(x => x.id === 's12');
+      const gq = DabtEngine.grade(sn, 'endings'); const q = gq.words[8] || {};
+      return { rows, qafiya: { want: q.want, out: q.out, ok: q.ok, rule: q.rule } };
+    });
+    const bad = r.rows.filter(x => x.missing || x.ok !== true);
+    if (bad.length) throw new Error('corpus lines still misread: ' + JSON.stringify(bad));
+    if (r.qafiya.ok === false) throw new Error('the rhyme seat is judged wrong: ' + JSON.stringify(r.qafiya));
   });
 
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
