@@ -15,7 +15,7 @@ gated; the items marked **OWNER** need an account, a key or a signature only the
 | Review bundle | `dist/qissa-review-v<build>.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
 
 Content: 51 texts in six levels (536 chapters, 4,490 sentences, 49,728 parsed tokens), 328 grammar notes, 13 catechism
-banks (550 questions), 24570 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
+banks (550 questions), 1,139 generated drill items (34 endings · 36 iḍāfa · 100 paradigms · 47 mīzān · 922 sentences), the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
 
 ## 2. Run it today (no account needed)
 
