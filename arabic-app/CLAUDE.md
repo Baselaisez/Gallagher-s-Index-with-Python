@@ -9932,6 +9932,60 @@ two of stories, one of the models and grammar, one for the rest and the ready ca
 `data/d*.js` the split wrote. Lesson: a self-contained page is the right artefact for review and offline, but its first
 paint must not wait for its last byte — order the scripts so the shell runs first and let the data announce itself.
 
+**Wave 128 — «الْأَسَدُ وَالْفَأْرُ», the twenty-ninth ORIGINAL story, the ninth at Level 1.** Aesop's lion and mouse retold for
+beginners: a mouse walks over a sleeping lion, begs «يَا مَلِكَ الْغَابَةِ، ارْحَمْنِي» and promises «إِنْ تَرَكْتَنِي خَدَمْتُكَ يَوْمًا»;
+the lion laughs («كَيْفَ تَخْدُمُنِي؟») and lets it go; days later the hunter's net, the roar, the rope cut through, and the
+lesson «لَا تَضْحَكْ مِنَ الضَّعِيفِ، فَقَدْ يَنْفَعُكَ يَوْمًا». 4 chapters / 14 sentences / 89 tokens, every token with its trilingual iʿrāb; one
+new entry (شَبَكَة); the rest of the vocabulary reused by lemma identity (أَسَد، فَأْر، صَيَّاد، حَبْل، نَوْم …). Grammar carried: كَانَ with a
+participial khabar, the annexed vocative (مَلِكَ) and the vocative on the speaker's yāʾ (صَدِيقِي, its naʿt in naṣb), the
+imperative with the nūn of guarding, the إِنْ conditional on two māḍīs, كَيْفَ as a ḥāl, لٰكِنَّ with an enclitic ism, the قَدْ of
+fewness before a muḍāriʿ, and the prohibitive لَا. Regenerator `tools/authoring/author_asad_far.py`; 0 validator errors; ḍabṭ
+89/89 on the landed engine. Its one miss on the v231 engine — the naʿt الصَّغِيرَ after يَا صَدِيقِي read as a muḍāf ilayh — is closed by wave 129's R7, so the story reads 89/89 on the shipped engine.
+
+**Wave 129 — the ḍabṭ engine learns from the v231/v232 stories' misses: nine rules, not patches.** The owner's standing brief —
+engines that understand Arabic «via rules and automations, no built-up AI, just OOP». The seven misread lines of waves 123–128
+and the two engine fragilities the v231 release exposed, each closed by a rule the grammar states: (R1) اللّٰهُمَّ is a fixed
+vocative — built on the ḍamm of the hāʾ, the doubled mīm standing for the dropped يَا — kept as written; (R2) the NAMED doer of a
+clause rides across ثُمَّ as it rides across a joined wāw/fāʾ (فَقَامَ جُرَيْجٌ … ثُمَّ أَتَى الْغُلَامَ: the boy is the object); (R3) a
+quantity noun annexed to the dual pronoun right after a dual noun opens its own nominal clause (رَجُلَانِ أَحَدُهُمَا غَنِيٌّ); (R4)
+after إِنَّ/أَنَّ a manṣūb time noun that annexes is the ism, not a ẓarf, so the nakira after its annex is the khabar (أَنَّ يَوْمَ
+الْقِيَامَةِ قَرِيبٌ); (R5) the definite time adverb after a COMPLETE nominal clause is a ẓarf, not a new mubtadaʾ (أَنَا فَقِيرٌ
+الْيَوْمَ); (R6) after a she-māḍī the quantity noun annexed to a masculine noun cannot be the doer — it is the object (فَأَهْلَكَتْ
+كُلَّ شَيْءٍ); (R7) the munādā annexed to the speaker's yāʾ is manṣūb and its naʿt follows it in naṣb (يَا صَدِيقِي الصَّغِيرَ);
+(R8) `sjAttested` names a Form-I bāb by the two vowels of its wazn when the bāb text carries another model verb's name
+(«مِنْ بَابِ عَلِمَ يَعْلَمُ» is the i–a bāb); (R9) the corpus index reads a glossary entry's missing «form» off the morphology, so
+the shelf order no longer decides whether سَمِعَ has a wazn. Whole-corpus sweep (every story, endings mode): 48444/49728 →
+48452/49728 — 8 lines fixed, 0 broken. Smoke: the seven lines, the two
+bāb readings and the index form are pinned. The two drifted drill rows of v231 return to their wazn. The release's Sarf audit then caught the fallback's one side effect: وَدَّ (al-Kāfiya; bāb written «فَعِلَ يَفْعَلُ — مُضَاعَفٌ مِثَالٌ») was classified for the first time, and `nakilClass` calls a wāw-first root a mithal before it looks at the twins, so the mithal path spelled *وَدِدَ. `sarfDerive` now has the doubled mithal of bāb سَمِعَ (the wāw stays, the twins contract: وَدَّ، وَدِدْتُ، يَوَدُّ، يَوْدَدْنَ، اِيدَدْنَ; the wāw-dropping bābs are refused for want of a received paradigm) — 1,124 paradigms regenerate, 0 mismatch.
+
+**Wave 130 — SPEED II: the Atölye and the games.** The owner, after v231: «it is still slow in the Atölye and the games».
+Measured at 4× CPU throttling on a cold profile, the shelf and the stories now paint fast, but a tap on gWajh ran
+716 s, gShop 34 s, gJinas 12.6 s, and the Jumla tab 13.7 s. Causes, each one a first-use cost paid ON THE TAP: the Wajh
+pool analysed every tagged sentence of the library before the round could start; the shop and jinās pools read their
+first eight sentences on open; every first analysis trained the perceptron (1.8 s unthrottled) because a fresh profile
+has no cached weights; the five analysis tabs ran their first analysis before the sheet painted. Four changes, no
+feature removed: (1) `IrabModel.fitCoreStepper` — the averaged perceptron as a resumable loop (same seed, same
+per-epoch shuffle, same updates in the same order, so the weights are bit-identical to `fitCore`'s; the smoke check
+compares them) — and `prewarmStep(budget)`, which builds rows one story per slice, then trains in slices, then
+stores the model where `train()` finds it; (2) `Quiet` — a scheduler that runs pool-building jobs only while the
+reader is idle (no touch, wheel, key or scroll for 1.2 s, no sheet open, the page visible, no story render pending),
+one job at a time in idle callbacks with a 30 ms budget; `bootWithData` queues the model, then the Wajh, shop and
+jinās pools, 1.5 s after the stories land; the harness flag `__QISSA_QUIET_OFF` holds the jobs so the smoke
+timings stay clean; (3) the Wajh pool is built to the round's need (eight items, at most sixteen analyses) and the
+rest dripped under Quiet, its items persisted as sentence references + frame (`wajh:<scope>`), like the shop's
+(the release's chunk 5 caught the first cut: the round's need read at most sixteen sentences and the harness holds Quiet,
+so the pool check saw 4 items — the tagged pool clusters by story, and a run of misses is normal; now a need above
+eight is read to the pool's end, `want × 6` sentences, which is the whole-pool sweep the old builder always paid, and the
+check asks for sixty; the game's own cold path is unchanged);
+the shop and jinās drips stand down while the reader is busy; (4) the Jumla, Jadhr, Kernel, Mīzān and Ism tabs paint
+their shell and fill the analysis a frame later (`__QISSA_RENDER_SYNC` keeps them synchronous for the suite).
+Verified: the pre-warmed model equals the synchronous fit weight for weight; the pools fill within a few minutes of
+idle; measured again at 4× after the warm (the probe idles 420 s after boot, the pools full): gWajh 716.3 s → 6 ms; gShop 34.3 s → 3 ms; gJinas 12.6 s → 3 ms; jumla 13.7 s → 2 ms; jadhr 1.1 s → 1 ms; kernel 621 ms → 2 ms; mizan 573 ms → 1 ms; ism 457 ms → 1 ms. A tap
+within the first seconds, before Quiet has run, still pays the cold price minus the library-wide pass (gWajh 33.1 s; gShop 22.5 s; gJinas 12.5 s) — the
+next speed wave, if the owner asks, builds the shop and jinās pools to the round's need as the Wajh pool is. Lesson: the second speed wave was not about bytes but about WHEN
+work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
+and stops the moment the reader moves.
+
 **Wave 119 — closed by diagnosis, no code.** The note said أُرَاهَا should be tied to أَرَى's passive, not رَأَى's, by a rule
 that prefers the paradigm owning the written form. Probed on the v229 tree: `RootFinder.fromCorpus("أُرَاهَا")` returns رَأَى,
 majhūl muḍāriʿ, person 12, form أُرَى (derived) — and both stored lines (the Kāfiya's «كُنْتُ أُرَى زَيْدًا», the Talkhīṣ's «أُرَاهَا

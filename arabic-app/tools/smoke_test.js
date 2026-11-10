@@ -51,7 +51,7 @@ if (!CHROME) {
   // page runs as a returning reader so its sheet cannot sit over every other check.
   await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
   // (wave 127) a long text renders in frames; these checks read a whole text the moment it opens, so every page renders synchronously
-  await page.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
+  await page.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
   await page.goto(url);
   let checkN = 0;
   const check = async (name, fn) => {
@@ -2094,7 +2094,7 @@ if (!CHROME) {
     // A Turkish device must not be shown an English app on first run; a stored
     // choice must still win over the device.
     const ctx2 = await browser.newContext({ locale: 'tr-TR' });
-    await ctx2.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
+    await ctx2.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
     try {
       const p2 = await ctx2.newPage();
       await p2.goto(url);
@@ -2242,11 +2242,16 @@ if (!CHROME) {
       throw new Error('SEN_AUDIO mapped ' + counts.mapped + ' but ' + counts.timed + ' sentences carry spans');
 
     try {
+    // The slice is a quarter of a second: on a slow runner it can end before the next line looks (v230 on GitHub's runner),
+    // so an observer installed BEFORE the click records that the highlight ever appeared.
+    await page.evaluate(() => { window.__hlSeen = false; const mo = new MutationObserver(() => { if (document.querySelector('.sentence.playing')) window.__hlSeen = true; }); mo.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class'] }); window.__hlObserver = mo; });
     await page.locator('.sentence').first().locator('.play:not(.irab-btn)').click();
     // The real path: the shared narration element takes the chapter file and
     // plays; the sentence highlight behaves exactly as with TTS.
     await page.waitForFunction(() => narration.src.startsWith('data:audio/wav'), null, { timeout: 10000 });
-    if (!(await page.locator('.sentence.playing').count())) throw new Error('no sentence highlight during narration');
+    await page.waitForFunction(() => window.__hlSeen || document.querySelector('.sentence.playing'), null, { timeout: 10000 }).catch(() => {});
+    if (!(await page.evaluate(() => window.__hlSeen || !!document.querySelector('.sentence.playing')))) throw new Error('no sentence highlight during narration');
+    await page.evaluate(() => { if (window.__hlObserver) window.__hlObserver.disconnect(); });
     // The slice ends on its own — [0,250]ms plus the guard timer — and the
     // highlight must come down with it, with nothing left playing.
     await page.waitForFunction(() => narration.paused, null, { timeout: 10000 });
@@ -2702,7 +2707,7 @@ if (!CHROME) {
   await check('first run asks the level once, and "For you" shelves by it', async () => {
     // A brand-new profile: nothing stored, so this is the first visit.
     const ctx3 = await browser.newContext();
-    await ctx3.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
+    await ctx3.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
     try {
       const p3 = await ctx3.newPage();
       await p3.goto(url);
@@ -8431,7 +8436,7 @@ if (!CHROME) {
   await check('the wajh game reads the frame tables, and the confusion matrix aimed the features', async () => {
     const r = await page.evaluate(() => {
       renderLibrary();
-      const items = wajhItems();   // also warms the cache for the play below
+      const items = wajhItems(60);   // the WHOLE pool, built now — the harness holds Quiet, so no drip would fill it (wave 130b); also warms the cache for the play below
       const keys = new Set(items.map(x => x.key));
       // the v148 neighbourhood features, each on its type shape: the idafa
       // head before a mudaf-ilayh, the sign-agreement of a na't with its
@@ -10224,6 +10229,59 @@ if (!CHROME) {
     if (sh.n !== sh.total) throw new Error('a short text renders whole at once: ' + JSON.stringify(sh));
   });
 
+  await check('wave 129 — the ḍabṭ engine learns from the v231/v232 stories by rule: اللّٰهُمَّ kept as a fixed vocative, the named doer carried across ثُمَّ, أَحَدُهُمَا opening its clause, the time-noun ism of أَنَّ with its khabar in rafʿ, الْيَوْمَ as a ẓarf after a complete clause, كُلَّ as the object of a she-verb, the naʿt of يَا صَدِيقِي in naṣb; the bāb named by its vowels; the index reads a missing form off the morphology', async () => {
+    const r = await page.evaluate(() => {
+      const want = [['jurayj-al-abid', 1, 's5', 3], ['jurayj-al-abid', 3, 's1', 7], ['sahib-al-jannatayn', 1, 's1', 4], ['sahib-al-jannatayn', 2, 's3', 5], ['sahib-al-jannatayn', 3, 's2', 2], ['sahib-al-jannatayn', 4, 's1', 10], ['al-asad-wa-al-far', 4, 's1', 5]];
+      const rows = want.map(([id, chN, sid, ti]) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => (c.n || c.chapter) === chN); const sn = ch && ch.sentences.find(x => x.id === sid); if (!sn) return { id, sid, missing: true }; const g = DabtEngine.grade(sn, 'endings'); const w = g.words[ti]; return { id, sid, ti, want: w.want, out: w.out, ok: w.ok, rule: w.rule }; });
+      const bab = sjAttested({ wazn: 'فَعِلَ يَفْعَلُ', bab: 'مِنْ بَابِ عَلِمَ يَعْلَمُ' });
+      const bab2 = sjAttested({ wazn: 'فَعَلَ يَفْعُلُ', bab: 'مِنْ بَابِ كَتَبَ يَكْتُبُ' });
+      const idx = RootFinder.corpusIndex().filter(x => /^samia/.test(x.lex)).map(x => [x.lex, x.form]);
+      const text = 'فَالْأَوَّلُ كَقَوْلِهِ ﷺ خَيْرُ النَّاسِ رَجُلٌ مُمْسِكٌ بِعِنَانِ فَرَسِهِ كُلَّمَا سَمِعَ هَيْعَةً طَارَ إِلَيْهَا';
+      const an = (SentenceAnalyzer.analyze(text) || [])[10] || {};
+      return { rows, bab, bab2, idx, samiaWazn: an.wazn || null };
+    });
+    const bad = r.rows.filter(x => x.missing || x.ok !== true);
+    if (bad.length) throw new Error('story lines still misread: ' + JSON.stringify(bad));
+    if (!r.bab || r.bab.form !== 'I' || r.bab.bab !== 4) throw new Error('the i–a bāb by its vowels: ' + JSON.stringify(r.bab));
+    if (!r.bab2 || r.bab2.bab !== 1) throw new Error('the a–u bāb by its vowels: ' + JSON.stringify(r.bab2));
+    if (!r.idx.length || r.idx.some(x => x[1] !== 'I')) throw new Error('the index should know سَمِعَ as Form I in every entry: ' + JSON.stringify(r.idx));
+    if (r.samiaWazn !== 'فَعِلَ') throw new Error('the analyzer names سَمِعَ\'s wazn again: ' + r.samiaWazn);
+  });
+
+  await check('wave 130 — SPEED II: the perceptron pre-warms in slices to the SAME weights as the synchronous fit, the Wajh pool is built to the round\'s need (not the whole library), the shop and jinās pools drip under Quiet, five Atölye tabs paint their shell before their analysis, and Quiet holds its jobs while a sheet is open or the harness says so', async () => {
+    const r = await page.evaluate(async () => {
+      const out = {};
+      // the stepped training, run to completion here in big slices, must equal fit() weight for weight
+      IrabModel._model = null; IrabModel._prewarm = null; try { localStorage.removeItem(Relax.key("irab-model")); Relax._mem.delete("irab-model"); } catch (e) {}
+      const t0 = performance.now(); let steps = 0; while (!IrabModel.prewarmStep(200) && steps < 400) steps++; out.prewarmMs = Math.round(performance.now() - t0); out.steps = steps;
+      const f = IrabModel.fit(IrabModel.rows()); out.same = JSON.stringify(IrabModel._model.w) === JSON.stringify(f.w) && IrabModel._model.total === f.total; out.total = f.total;
+      // the Wajh pool: eight items from at most sixteen analyses, never the whole library
+      WAJH_CACHE = { scope: null, items: null }; try { Relax._mem.delete("wajh:__lib"); localStorage.removeItem(Relax.key("wajh:__lib")); } catch (e) {}
+      const t1 = performance.now(); const items = wajhItems(8); out.wajhMs = Math.round(performance.now() - t1); out.wajhItems = items.length; out.wajhQueueLeft = WAJH_CACHE.queue.length; out.wajhTagged = wajhTaggedRefs().length;
+      out.wajhPersisted = !!Relax.get("wajh:__lib", true);
+      // Quiet: closed while the harness flag stands; a job queued now does not run; it runs once the flag drops and the sheet is shut
+      out.quietClosed = Quiet.ok() === false; Quiet.jobs.length = 0;   /* the boot-time jobs the harness held — drop them so the probe job is first */
+      let ran = 0; Quiet.add("smoke130", () => { ran++; return true; });
+      await new Promise(r => setTimeout(r, 700)); out.ranWhileHeld = ran;
+      window.__QISSA_QUIET_OFF = false; Quiet.last = 0; try { closeSheet(); } catch (e) {}
+      const until = performance.now() + 6000; while (ran < 1 && performance.now() < until) await new Promise(r => setTimeout(r, 100)); out.ranAfterRelease = ran;
+      window.__QISSA_QUIET_OFF = true;
+      // the labs paint their shell first when the sync switch is off
+      window.__QISSA_RENDER_SYNC = false; openConjugator(); out.labShell = {};
+      for (const lab of ["jumla", "jadhr", "kernel", "mizan", "ism"]) { conjState.lab = lab; const t = performance.now(); renderLabBody(); out.labShell[lab] = Math.round(performance.now() - t); }
+      await new Promise(r => setTimeout(r, 1500)); out.ismFilled = ((document.getElementById("ismOut") || {}).innerHTML || "").length;
+      window.__QISSA_RENDER_SYNC = true; try { closeSheet(); } catch (e) {}
+      return out;
+    });
+    if (!r.same) throw new Error('the stepped training must equal the synchronous fit: ' + JSON.stringify(r));
+    if (r.steps < 2) throw new Error('the pre-warm should take more than one slice at 200 ms: ' + r.steps);
+    if (r.wajhItems < 3 || r.wajhQueueLeft < r.wajhTagged - 16 - r.wajhItems) throw new Error('the Wajh pool should stop at the round\'s need: ' + JSON.stringify(r));
+    if (!r.wajhPersisted) throw new Error('the Wajh items are kept across loads as references');
+    if (!r.quietClosed || r.ranWhileHeld !== 0 || r.ranAfterRelease !== 1) throw new Error('Quiet gate: ' + JSON.stringify([r.quietClosed, r.ranWhileHeld, r.ranAfterRelease]));
+    for (const [lab, ms] of Object.entries(r.labShell)) if (ms > 400) throw new Error('the ' + lab + ' tab should paint its shell at once, took ' + ms + ' ms');
+    if (!(r.ismFilled > 200)) throw new Error('the deferred analysis should fill the Ism tab within 1.5 s');
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });
@@ -11613,7 +11671,7 @@ if (!CHROME) {
     if (!flag) throw new Error('NATIVE_SHELL must exist and be false outside the shell');
     const STARTUP_MS = 17000;   // measured 7.9–8.4 s (×4 CPU, file://, the 32 MB self-contained page; the SPLIT page that ships paints in 2.6–3.0 s) — the budget is 2× the slowest run; see CLAUDE.md wave 69
     const ctx = await browser.newContext();
-    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
+    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
     await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));   // a returning reader: the first-run picker must not sit over the shelf
     const p9 = await ctx.newPage();
     const cdp = await ctx.newCDPSession(p9);
@@ -11646,7 +11704,7 @@ if (!CHROME) {
   await check('wave 72 — the phone shows the text first: the first library card and the first sentence sit in the upper half of a 390×844 screen, the bar keeps only mode / Listen / Aa, the reading sheet reaches every control it hid and the desktop bar is unchanged', async () => {
     const LIB_MAX = 403, SEN_MAX = 338;   // measured 358 / 293 on landing; the gate is the measurement plus a 45px margin
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
-    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; });
+    await ctx.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
     await ctx.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
     const p9 = await ctx.newPage(); await p9.goto(url); await p9.waitForSelector('.lib-card'); await p9.waitForTimeout(300);
     const lib = await p9.evaluate(() => { const c = document.querySelector('.continue-card, .lib-card'); const vis = id => { const e = document.getElementById(id); return !!(e && e.offsetParent); };

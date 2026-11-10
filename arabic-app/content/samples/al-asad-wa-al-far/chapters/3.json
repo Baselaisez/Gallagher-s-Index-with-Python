@@ -1,0 +1,554 @@
+{
+ "chapter": 3,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "After some days the lion fell into a hunter's net.",
+    "tr": "Birkaç gün sonra aslan bir avcının ağına düştü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "بَعْدَ",
+      "smart": "بَعْدَ",
+      "bare": "بعد"
+     },
+     "lex": "bada",
+     "pos": "noun",
+     "grammar": [
+      "maful-fih",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.",
+      "en": "An adverb of time, in nasb and annexed.",
+      "tr": "zaman zarfı, mansûb, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَيَّامٍ",
+      "smart": "أَيَّامٍ",
+      "bare": "أيام"
+     },
+     "lex": "yawm",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ — جَمْعُ يَوْمٍ.",
+      "en": "The second term of the idafa, in jarr — the plural of «day».",
+      "tr": "Muzâfun ileyh, mecrûr — «gün»ün çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَقَعَ",
+      "smart": "وَقَعَ",
+      "bare": "وقع"
+     },
+     "lex": "waqaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "mithal-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "The waw conjoins; past verb built on fatha.",
+      "tr": "«ve» + fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "قَعَ",
+       "lex": "waqaa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَسَدُ",
+      "smart": "الْأَسَدُ",
+      "bare": "الأسد"
+     },
+     "lex": "asad",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "a jarr letter.",
+      "tr": "«-de» — cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "شَبَكَةِ",
+      "smart": "شَبَكَةِ",
+      "bare": "شبكة"
+     },
+     "lex": "shabaka",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "In jarr after the letter, annexed.",
+      "tr": "Cer harfiyle mecrûr, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "صَيَّادٍ",
+      "smart": "صَيَّادٍ",
+      "bare": "صياد"
+     },
+     "lex": "sayyad",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The second term of the idafa, in jarr.",
+      "tr": "Muzâfun ileyh, mecrûr."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "The lion roared with a mighty voice.",
+    "tr": "Aslan şiddetli bir sesle kükredi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَصَاحَ",
+      "smart": "فَصَاحَ",
+      "bare": "فصاح"
+     },
+     "lex": "saha-shout",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "The fa conjoins; past verb built on fatha.",
+      "tr": "«bunun üzerine» + fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "صَاحَ",
+       "lex": "saha-shout",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَسَدُ",
+      "smart": "الْأَسَدُ",
+      "bare": "الأسد"
+     },
+     "lex": "asad",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِصَوْتٍ",
+      "smart": "بِصَوْتٍ",
+      "bare": "بصوت"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَصَوْتٍ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "The ba is a jarr letter; the noun after it is in jarr.",
+      "tr": "Bâ cer harfi; sonraki isim mecrûr."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "صَوْتٍ",
+       "lex": "sawt",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "شَدِيدٍ",
+      "smart": "شَدِيدٍ",
+      "bare": "شديد"
+     },
+     "lex": "shadid",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "An adjective (na't), agreeing with its noun.",
+      "tr": "Na't (sıfat), mevsûfuna uyar."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "The mouse heard his voice and came quickly.",
+    "tr": "Fare onun sesini duydu ve hızla geldi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "سَمِعَ",
+      "smart": "سَمِعَ",
+      "bare": "سمع"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "past verb built on fatha.",
+      "tr": "fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْفَأْرُ",
+      "smart": "الْفَأْرُ",
+      "bare": "الفأر"
+     },
+     "lex": "far-mouse",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "صَوْتَهُ",
+      "smart": "صَوْتَهُ",
+      "bare": "صوته"
+     },
+     "lex": "sawt",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "The direct object, in nasb; annexed, and the attached pronoun is the second term of the idafa, in the seat of jarr.",
+      "tr": "Mef'ûlün bih, mansûb; muzâf, bitişik zamir muzâfun ileyh — mahallen mecrûr."
+     },
+     "segments": [
+      {
+       "form": "صَوْتَ",
+       "lex": "sawt",
+       "pos": "noun"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَجَاءَ",
+      "smart": "فَجَاءَ",
+      "bare": "فجاء"
+     },
+     "lex": "jaa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ.",
+      "en": "The fa conjoins; past verb built on fatha; the doer is a hidden pronoun.",
+      "tr": "«bunun üzerine» + fetha üzere mebnî mâzî; fâil gizli zamirdir."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "جَاءَ",
+       "lex": "jaa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "سَرِيعًا",
+      "smart": "سَرِيعًا",
+      "bare": "سريعا"
+     },
+     "lex": "sari",
+     "pos": "noun",
+     "grammar": [
+      "hal",
+      "sifa-mushabbaha"
+     ],
+     "irab": {
+      "ar": "حَالٌ مَنْصُوبٌ بِالْفَتْحَةِ — يُبَيِّنُ هَيْئَةَ صَاحِبِهِ وَقْتَ الْفِعْلِ.",
+      "en": "The hal (circumstantial accusative), in nasb — it states the doer's condition at the time of the action.",
+      "tr": "Hâl, mansûb — sahibinin fiil anındaki durumunu bildirir."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "The mouse cut the rope with its mouth, and the lion came out of the net.",
+    "tr": "Fare ipi ağzıyla kesti ve aslan ağdan çıktı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "قَطَعَ",
+      "smart": "قَطَعَ",
+      "bare": "قطع"
+     },
+     "lex": "qataa",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "past verb built on fatha.",
+      "tr": "fetha üzere mebnî mâzî."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْفَأْرُ",
+      "smart": "الْفَأْرُ",
+      "bare": "الفأر"
+     },
+     "lex": "far-mouse",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْحَبْلَ",
+      "smart": "الْحَبْلَ",
+      "bare": "الحبل"
+     },
+     "lex": "habl",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The direct object, in nasb.",
+      "tr": "Mef'ûlün bih, mansûb."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِفَمِهِ",
+      "smart": "بِفَمِهِ",
+      "bare": "بفمه"
+     },
+     "lex": "bi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَفَمِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "The ba is a jarr letter; the noun after it is in jarr; it is annexed to the attached pronoun.",
+      "tr": "Bâ cer harfi; sonraki isim mecrûr; bitişik zamire muzâf."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "فَمِ",
+       "lex": "fam",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَخَرَجَ",
+      "smart": "فَخَرَجَ",
+      "bare": "فخرج"
+     },
+     "lex": "kharaja",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "The fa conjoins; past verb built on fatha.",
+      "tr": "«bunun üzerine» + fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "خَرَجَ",
+       "lex": "kharaja",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَسَدُ",
+      "smart": "الْأَسَدُ",
+      "bare": "الأسد"
+     },
+     "lex": "asad",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The doer (fa'il), in raf'.",
+      "tr": "Fâil, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَحُرِّكَ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "A jarr letter, voweled with fatha before the following ال.",
+      "tr": "«-den» — cer harfi; iki sâkin karşılaştığı için fetha ile harekelendi."
+     }
+    },
+    {
+     "surface": {
+      "full": "الشَّبَكَةِ",
+      "smart": "الشَّبَكَةِ",
+      "bare": "الشبكة"
+     },
+     "lex": "shabaka",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "In jarr after the letter.",
+      "tr": "Cer harfiyle mecrûr."
+     },
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

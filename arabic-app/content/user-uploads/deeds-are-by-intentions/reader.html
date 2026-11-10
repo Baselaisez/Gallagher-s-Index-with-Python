@@ -5157,7 +5157,7 @@ function startDuel(){
 // result is cached per scope.
 const WAJH_TAGS = ["khuruj-al-istifham", "al-amr-wa-wujuhuh", "insha-wa-tamanni",
                    "adawat-al-tasawwur", "al-istifham", "khabar-fi-mana-al-insha"];
-let WAJH_CACHE = { scope: null, items: null };
+let WAJH_CACHE = { scope: null, items: null, queue: null, dripping: false };
 // one definition of what a wajh item IS — the sync builder and the boot
 // drip both call these, so they can never disagree about an item.
 function wajhTagged(){
@@ -5182,16 +5182,42 @@ function wajhItemOf(sen, note){
   if (frames.length !== 1) return null;
   return { sen, key: frames[0].key, doc: frames[0].doc, eng: frames[0].eng, note };
 }
-function wajhItems(){
-  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
-  if (WAJH_CACHE.scope === scope && WAJH_CACHE.items) return WAJH_CACHE.items;
+// (wave 130) the tagged pool with the story and chapter each sentence belongs to — the references the persisted items carry
+function wajhTaggedRefs(){
   const out = [];
-  wajhTagged().forEach(({ sen, note }) => {
-    const it = wajhItemOf(sen, note);
-    if (it) out.push(it);
-  });
-  WAJH_CACHE = { scope, items: out };
+  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+    const note = sen.tokens.flatMap(t => t.grammar || []).find(g => WAJH_TAGS.includes(g));
+    if (note) out.push({ st, ch, sen, note });
+  })));
   return out;
+}
+// (wave 130) built to the round's NEED (eight items), the rest dripped while the reader is idle, the items kept across
+// loads as sentence references + the frame they fired. The old pool analysed every tagged sentence of the library on
+// the first tap — 716 s at 4× CPU in the timing run; the round needs eight.
+function wajhItems(need){
+  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
+  const want = typeof need === "number" ? need : 8;
+  if (WAJH_CACHE.scope !== scope || !WAJH_CACHE.items) {
+    const stored = Relax.get("wajh:" + scope, true); const items = [], seen = new Set();
+    (stored || []).forEach(r => { const x = senFromRef32(r); if (!x) return; const tbl = r.eng === "insha" ? InshaEngine.DOC : IstifhamEngine.DOC; const doc = tbl && tbl[r.key]; if (!doc) return;
+      seen.add(r.st + "/" + r.ch + ":" + r.sid); items.push({ sen: x.sen, key: r.key, doc, eng: r.eng, note: r.note, st: x.st, ch: x.ch }); });
+    const queue = shuffle(wajhTaggedRefs().filter(x => !seen.has(x.st.id + "/" + (x.ch.n !== undefined ? x.ch.n : x.ch.chapter) + ":" + x.sen.id)));
+    WAJH_CACHE = { scope, items, seen, queue, dripping: false };
+  }
+  const C = WAJH_CACHE;
+  const persist = () => { try { Relax.set("wajh:" + scope, C.items.slice(0, 60).map(it => ({ ...senRef32(it.st, it.ch, it.sen), key: it.key, eng: it.eng, note: it.note })), true); } catch (e) {} };
+  const readOne = () => { const x = C.queue.shift(); if (!x) return; const key = x.st.id + "/" + (x.ch.n !== undefined ? x.ch.n : x.ch.chapter) + ":" + x.sen.id; if (C.seen.has(key)) return; C.seen.add(key);
+    let it = null; try { it = wajhItemOf(x.sen, x.note); } catch (e) { it = null; } if (it) C.items.push({ ...it, st: x.st, ch: x.ch }); };
+  // (wave 130b) the round's need (eight) reads at most sixteen sentences now — the tagged pool clusters by
+  // story, so a run of misses is normal and the drip fills the rest; an EXPLICIT larger need (the harness,
+  // a lab) is honoured to the pool's end, which is the whole-pool sweep the pre-130 builder always paid.
+  const cap = want <= 8 ? 16 : want * 6;
+  let tried = 0; while (C.items.length < want && C.queue.length && tried < cap) { readOne(); tried++; }
+  if (tried) persist();
+  if (!C.dripping && C.queue.length) { C.dripping = true;
+    Quiet.add("wajh-drip", () => { if (WAJH_CACHE !== C) return true; if (!C.queue.length || C.items.length >= 60) { C.dripping = false; persist(); return true; }
+      readOne(); if ((C.items.length % 6) === 0) persist(); return false; }); }
+  return C.items;
 }
 // the hub's count: the analyze sweep costs seconds and a card may not
 // charge that on open, so the COLD answer is the tagged-sentence pool the
@@ -5207,29 +5233,9 @@ function wajhSupply(){
 // thread for seconds (a smoke check caught the jank a user would feel);
 // the drip builds the same pool invisibly, and a synchronous wajhItems()
 // call before the drip finishes simply builds fresh and wins.
-setTimeout(function warmWajh(){
-  try {
-    if (WAJH_CACHE.items) return;
-    const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
-    const sens = wajhTagged();
-    const out = [];
-    let k = 0;
-    (function step(){
-      if (WAJH_CACHE.items) return;
-      if (k >= sens.length) { WAJH_CACHE = { scope, items: out }; return; }
-      // stand down while a sheet is up: one slice costs real milliseconds on
-      // a slow device, and the labs debounce their input — a slice landing
-      // inside that window blocks the re-render and the reader sees a stale
-      // answer. The pool can wait; the open sheet cannot.
-      if (sheet.classList.contains("show")) { setTimeout(step, 350); return; }
-      const { sen, note } = sens[k++];
-      try { const it = wajhItemOf(sen, note); if (it) out.push(it); } catch (e) {}
-      setTimeout(step, 120);
-    })();
-  } catch (e) {}
-}, 2500);
+/* (wave 130) the Wajh pool warms under Quiet (see bootWithData); the boot-time sweep that stood here is gone */
 function startWajh(){
-  const items = shuffle(wajhItems()).slice(0, 8);
+  const items = shuffle(wajhItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   const others = it => {
     const tbl = it.eng === "insha" ? InshaEngine.DOC : IstifhamEngine.DOC;
@@ -7088,6 +7094,19 @@ function sarfDerive(cls, form, bab){
         mazi: sjMazi14(v), mudari: sjMudari14("َ", core), amr: sjAmr(A),
         ...sjGov("َ", core), fail: sjN(f+"َا"+a+"ِ"+l), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l) };
     }
+    if (t === "mithal" && a === l) {
+      // (wave 130) the doubled MITHAL (وَدَّ يَوَدُّ، وَدِدْتُ): in bāb سَمِعَ the mithal keeps its wāw (وَجِلَ يَوْجَلُ), so the twins
+      // meet vowelled and contract exactly as in the plain doubled root — وَدِدَ → وَدَّ, يَوْدَدُ → يَوَدُّ — with the fakk before a
+      // sukūn-headed ending (وَدِدْتُ، يَوْدَدْنَ); the amr's fem-plural alone opens on hamzat waṣl, whose kasra turns the wāw
+      // into yāʾ (اِيدَدْنَ). In the wāw-dropping bābs (ضَرَبَ، نَصَرَ) no received paradigm attests the class; refuse it honestly.
+      if (bab !== 4) return no("gem-mithal-bab");
+      const G = f+V.v2+a+"ّ", S = f+"ْ"+a+V.v2+l;
+      return { ok: true, wazn: sjN(`فَع${V.v1}لَ يَفْع${V.v2}لُ — مُضَاعَفٌ مِثَالٌ`),
+        mazi: sjMazi14(f+"َ"+a+"ّ", f+"َ"+a+V.v1+l), mudari: sjMudari14("َ", G, S),
+        amr: [G+"َ", G+"َا", G+"ُوا", G+"ِي", G+"َا", "اِي"+a+V.v2+l+"ْنَ"].map(s => sjN(sjIdgham(s))),
+        ...sjGovGem("َ", G), fail: sjN(f+"َا"+a+"ّ"), maful: sjN("مَ"+f+"ْ"+a+"ُو"+l),
+        note: "مُضَاعَفٌ مِثَالٌ: تَثْبُتُ الْوَاوُ فِي بَابِ سَمِعَ، وَالْجَزْمُ بِالْفَتْحِ، وَيَجُوزُ الْفَكُّ." };
+    }
     if (t === "gem") {
       if (![1, 2, 4].includes(bab)) return no("gem-bab");
       const G = f+V.v2+a+"ّ", S = f+"ْ"+a+V.v2+l;
@@ -7379,7 +7398,17 @@ function sjAttested(m){
   const form = SJ_FORM_OF_HEAD[head];
   if (form) return { form, bab: null };
   const key = Object.keys(SJ_BAB1_OF_MODEL).find(k => sjN(m.bab || "").includes(sjN(k)));
-  return key ? { form: "I", bab: SJ_BAB1_OF_MODEL[key] } : null;
+  if (key) return { form: "I", bab: SJ_BAB1_OF_MODEL[key] };
+  // (wave 129) a bāb written with another model verb («مِنْ بَابِ عَلِمَ يَعْلَمُ» for the i–a bāb) is still a bāb: read it off the two
+  // vowels of the wazn's own words — the ʿayn's vowel in فَعِلَ and in يَفْعَلُ name the bāb without any model verb's name
+  const parts = sjN(m.wazn || "").split(/\s+/);
+  if (parts.length >= 2 && /^ف/.test(parts[0]) && /^ي/.test(parts[1])) {
+    const ayn = str => { const k = str.indexOf("ع"); return k >= 0 ? (str[k + 1] || "") : ""; };
+    const v1 = ayn(parts[0]), v2 = ayn(parts[1]);
+    const hit = Object.entries(SJ_BAB1).find(([, b]) => b.v1 === v1 && b.v2 === v2);
+    if (hit) return { form: "I", bab: Number(hit[0]) };
+  }
+  return null;
 }
 function sarfAudit(){
   const out = { checked: 0, skipped: 0, bad: [] };
@@ -7987,7 +8016,10 @@ class RootFinder {
       seen.add(lex);
       const e = st.glossary[lex];
       if (!e || !e.root) return;
-      this._index.push({ lex, m, root: e.root, lemma: e.lemma, form: e.form || null,
+      // (wave 129) a glossary entry without «form» no longer leaves the index blind: the morphology recites the form
+      let form129 = e.form || null;
+      if (!form129) { try { const at = sjAttested(m); if (at && at.form) form129 = at.form; } catch (e2) {} }
+      this._index.push({ lex, m, root: e.root, lemma: e.lemma, form: form129,
                          bab: m.bab || null, gloss: e.gloss });
     }));
     return this._index;
@@ -9743,11 +9775,11 @@ class IrabModel {
     let firstNoun; if (k >= 0) { firstNoun = true; for (let q = k + 1; q < i; q++) if (/noun|propn/.test(toks[q].pos || "")) { firstNoun = false; break; } }
     return { prevPos: i > 0 ? (toks[i - 1].pos || null) : null, firstNoun };
   }
-  static rows(){
+  static rows(stories){   /* (wave 130) optional story list: the pre-warm builds one story per slice */
     const out = [];
     const tagMemo = new Map();                       // (wave 112) one pass, one memo — see features()
     const tagOf = w => { let v = tagMemo.get(w); if (v === undefined) { v = IsmTagger.tag(w, 1)[0] || null; tagMemo.set(w, v); } return v; };
-    STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
+    (stories || STORIES).forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
       let prev = null;
       const n = sen.tokens.length;
       sen.tokens.forEach((t, i) => {
@@ -9833,6 +9865,72 @@ class IrabModel {
     const avg = new Float64Array(NR * F);
     for (let k = 0; k < NR * F; k++) if (last[k]) avg[k] = (acc[k] + w[k] * (t - last[k])) / t;
     return { avg, touched: last, F, total: idx.length };
+  }
+  // (wave 130) fitCore as a STEPPER: the same seed, the same per-epoch shuffle, the same mistake-driven updates in the
+  // same order — so the averaged weights are bit-identical to fitCore's — but the loop can stop at any example and
+  // resume in a later task. step(budgetMs) returns true when every epoch is done; finish() returns fitCore's shape.
+  static fitCoreStepper(it, idx){
+    const NR = this.ROLES.length, F = it.F, fid = it.fid, rid = it.rid, EP = this.EPOCHS;
+    const w = new Float64Array(NR * F), acc = new Float64Array(NR * F), last = new Float64Array(NR * F);
+    const sc = new Float64Array(NR);
+    let t = 1, seed = this.SEED;
+    const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x80000000;
+    const upd = (k, d) => { acc[k] += w[k] * (t - last[k]); last[k] = t; w[k] += d; };
+    const ord = Array.from(idx);
+    const shuffleEpoch = () => { for (let i = ord.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const tmp = ord[i]; ord[i] = ord[j]; ord[j] = tmp; } };
+    let e = 0, q = 0;
+    if (EP > 0) shuffleEpoch();
+    const one = () => {
+      const ix = ord[q], fs = fid[ix], role = rid[ix];
+      for (let r = 0; r < NR; r++) sc[r] = w[r];
+      for (let k = 0; k < fs.length; k++) { const base = fs[k] * NR; for (let r = 0; r < NR; r++) sc[r] += w[base + r]; }
+      let best = -1, bs = -Infinity;
+      for (let r = 0; r < NR; r++) if (sc[r] > bs) { bs = sc[r]; best = r; }
+      if (best !== role) {
+        for (let k = 0; k < fs.length; k++) { const base = fs[k] * NR; upd(base + role, 1); upd(base + best, -1); }
+        upd(role, 1); upd(best, -1);
+      }
+      t++;
+    };
+    return {
+      step(budget){ const t0 = performance.now();
+        while (e < EP) {
+          while (q < ord.length) { one(); q++; if (performance.now() - t0 > budget) return false; }
+          q = 0; e++; if (e < EP) shuffleEpoch();
+        }
+        return true; },
+      finish(){ const avg = new Float64Array(NR * F);
+        for (let k = 0; k < NR * F; k++) if (last[k]) avg[k] = (acc[k] + w[k] * (t - last[k])) / t;
+        return { avg, touched: last, F, total: idx.length }; },
+    };
+  }
+  // (wave 130) the string-keyed model from a flat core — fit() and the pre-warm share it, so they cannot drift apart
+  static modelFromCore(it, core, total){
+    const R = this.ROLES, NR = R.length, F = it.F;
+    const names = new Array(F); names[0] = "__b";
+    it.idOf.forEach((id, name) => { names[id] = name; });
+    const avg = {};
+    for (let r = 0; r < NR; r++) {
+      const o = {};
+      for (let f = 0; f < F; f++) { const k = f * NR + r; if (core.touched[k]) o[names[f]] = core.avg[k]; }
+      avg[R[r]] = o;
+    }
+    return { w: avg, total };
+  }
+  // (wave 130) the pre-warm: rows one story per slice, then the stepper, then the model — each call does at most
+  // `budget` ms and returns true when the model stands (or already stood). A synchronous train() in between wins.
+  static prewarmStep(budget){
+    if (this._model) return true;
+    const cached = Relax.get("irab-model", true); if (cached && cached.total && cached.w) { this._model = cached; return true; }
+    const P = this._prewarm || (this._prewarm = { k: 0, rows: [], it: null, stepper: null });
+    const t0 = performance.now();
+    while (P.k < STORIES.length) { P.rows.push(...this.rows([STORIES[P.k++]])); if (performance.now() - t0 > budget) return false; }
+    if (!P.it) { P.it = this.intern(P.rows); P.stepper = this.fitCoreStepper(P.it, P.rows.map((_, i) => i)); if (performance.now() - t0 > budget) return false; }
+    if (!P.stepper.step(Math.max(5, budget - (performance.now() - t0)))) return false;
+    const m = this.modelFromCore(P.it, P.stepper.finish(), P.rows.length);
+    this._model = m; this._prewarm = null;
+    try { Relax.set("irab-model", m, true); } catch (e) {}
+    return true;
   }
   static fit(rows){
     const it = this.intern(rows);
@@ -13245,7 +13343,7 @@ function renderLabBody(){
       <div id="jumlaOut"></div>`;
     const inp = document.getElementById("jumlaIn");
     inp.addEventListener("input", debounced(() => { conjState.jumla = inp.value; renderJumlaOut(); }));
-    renderJumlaOut();
+    if (window.__QISSA_RENDER_SYNC === true) renderJumlaOut(); else setTimeout(renderJumlaOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     // Grading the two distilled taggers costs about two seconds of arithmetic,
     // which is two seconds too many to spend before the panel paints. Paint
     // first, measure after, fill the line in when the number exists.
@@ -13267,7 +13365,7 @@ function renderLabBody(){
       <div id="kernOut"></div>`;
     const inp = document.getElementById("kernIn");
     inp.addEventListener("input", debounced(() => { conjState.kernel = inp.value; renderKernelOut(); }));
-    renderKernelOut();
+    if (window.__QISSA_RENDER_SYNC === true) renderKernelOut(); else setTimeout(renderKernelOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     return;
   }
   if (conjState.lab === "ilal") {
@@ -13346,7 +13444,7 @@ function renderLabBody(){
       <div id="ismOut"></div>`;
     const inp = document.getElementById("ismIn");
     inp.addEventListener("input", debounced(() => { conjState.ism = inp.value; renderIsmOut(); }));
-    renderIsmOut();
+    if (window.__QISSA_RENDER_SYNC === true) renderIsmOut(); else setTimeout(renderIsmOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     return;
   }
   if (conjState.lab === "irabshop") {
@@ -13477,7 +13575,7 @@ function renderLabBody(){
       <div id="mizanOut"></div>`;
     const inp = document.getElementById("mizanIn");
     inp.addEventListener("input", debounced(() => { conjState.mizan = inp.value; renderMizanOut(); }));
-    renderMizanOut();
+    if (window.__QISSA_RENDER_SYNC === true) renderMizanOut(); else setTimeout(renderMizanOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     return;
   }
   if (conjState.lab === "jadhr") {
@@ -13489,7 +13587,7 @@ function renderLabBody(){
       <div id="jadhrOut"></div>`;
     const inp = document.getElementById("jadhrIn");
     inp.addEventListener("input", debounced(() => { conjState.jadhr = inp.value; renderJadhrOut(); }));
-    renderJadhrOut();
+    if (window.__QISSA_RENDER_SYNC === true) renderJadhrOut(); else setTimeout(renderJadhrOut, 0);   /* (wave 130) the sheet paints first; the analysis fills in a frame later */
     return;
   }
   if (conjState.lab === "adad") {
@@ -17685,6 +17783,22 @@ class DabtEngine {
       const CITED68 = /^(ان|لا|ما|كان|اما|لو|لولا|لم|لن|لما|ليت|لعل|كان|لكن|ظن|قد|حتى|اذا|اذ|كي|ليس|عسى|كاد|نعم|بئس|هل|لات|ليتما|سوف|الا|خلا|عدا|حاشا|سوى|كان|كانت|يكون|في|من|الى|على|عن|ب|ل|ك)$/;
       if (typeof r.__doer68 === "number" && isNoun(r)) { set(i, "raf", "fail", { head: r.__doer68 }); st.fail = true; st.hiddenDoer = false; st.failRow = i; continue; }   /* (wave 58h/58o) the doer the object-first rule promised */
       if (r.__zarf68 && isNoun(r)) { set(i, "nasb", "zarf"); continue; }   /* (wave 58o) الْيَوْمَ between the fronted object and the doer */
+      /* (wave 129) R1 · اللّٰهُمَّ: a fixed vocative — built on the ḍamm of the hāʾ, the doubled mīm standing for the dropped يَا; written as the author wrote it */
+      if (isNoun(r) && /^[وف]?اللهم$/.test(bw)) { r.__exact56 = true; set(i, "keep", "munada"); st.munada69 = i; continue; }
+      /* (wave 129) R7 · يَا صَدِيقِي الصَّغِيرَ: the munādā annexed to the speaker's yāʾ is manṣūb, and its naʿt follows it in naṣb */
+      if (isNoun(r) && !hasAl(r) && i > 0 && /^(يا|ويا|ايا|أيا|هيا)$/.test(bareOf(rows[i - 1]).replace(/[إأآ]/g, "ا")) && /ي$/.test(bw) && /ِي$/.test(o68(i))) st.munadaYa129 = i;
+      if (isNoun(r) && !isVerb(r) && hasAl(r) && !joined(r) && !r.afterJarr && !fused(r) && typeof st.munadaYa129 === "number" && i === st.munadaYa129 + 1) { set(i, "nasb", "naat", { head: i - 1 }); continue; }
+      /* (wave 129) R3 · رَجُلَانِ أَحَدُهُمَا غَنِيٌّ: the quantity noun annexed to the DUAL pronoun right after a dual noun opens its own nominal clause */
+      if (isNoun(r) && !isVerb(r) && !!encOf(r) && /^(احد|احدى|كل|كلا|كلتا|بعض)هما$/.test(bw.replace(/[أإآ]/g, "ا")) && !r.afterJarr && !jarrClit(r) && !joined(r) && i > 0 && isNoun(rows[i - 1]) && /(ان|ين)$/.test(bareOf(rows[i - 1])) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !hasAl(rows[i + 1]) && !encOf(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr) {
+        set(i, "raf", "mubtada"); st.verb = null; st.fail = false; st.maful = 0; st.kanaOpen = false; st.innaOpen = false; st.mubtada = true; st.khabar = false; st.subject = true; st.subjectAt = i; continue; }
+      /* (wave 129) R4 · أَنَّ يَوْمَ الْقِيَامَةِ قَرِيبٌ: the manṣūb time noun that annexes, right after إِنَّ/أَنَّ, is the ism — not a ẓarf — so the nakira after its annex is the khabar */
+      if (isNoun(r) && !isVerb(r) && !hasAl(r) && !encOf(r) && !joined(r) && i > 0 && /^[وف]?[لب]?(ان|كان|لكن|لعل|ليت)$/.test(bareOf(rows[i - 1]).replace(/[إأآ]/g, "ا")) && /ّ/.test(o68(i - 1)) && /^(يوم|ليلة|وقت|ساعة|حين|زمن|زمان)$/.test(bw) && own68(i) && /َّ?$/.test(o68(i)) && !/[ًٌٍ]/.test(o68(i)) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && (hasAl(rows[i + 1]) || !!encOf(rows[i + 1]) || propn(rows[i + 1]))) {
+        head.add(i); if (!member.has(i + 1)) member.set(i + 1, i); set(i, "nasb", "innaIsm"); st.innaOpen = true; st.innaIsm = true; st.subject = true; st.subjectAt = i; st.verb = null; st.fail = false; st.maful = 0; continue; }
+      /* (wave 129) R5 · أَنَا فَقِيرٌ الْيَوْمَ: the definite time adverb after a COMPLETE nominal clause is a ẓarf, not a new mubtadaʾ */
+      if (isNoun(r) && !isVerb(r) && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && /^(اليوم|الليلة|الان|الآن|الساعة|البارحة|الغد|الغداة|العشية)$/.test(bw) && st.mubtada && st.khabar && st.verb === null && !(rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !hasAl(rows[i + 1]) && !encOf(rows[i + 1]))) { set(i, "nasb", "zarf"); continue; }
+      /* (wave 129) R6 · فَأَهْلَكَتْ كُلَّ شَيْءٍ: after a she-māḍī the quantity noun annexed to a MASCULINE noun cannot be the doer — it is the object */
+      if (isNoun(r) && !isVerb(r) && !encOf(r) && !joined(r) && !r.afterJarr && /^[وف]?(كل|بعض|جميع)$/.test(bw) && i > 0 && isVerb(rows[i - 1]) && !rows[i - 1].__kindNoun && rows[i - 1].cell && /mazi/i.test(rows[i - 1].cell.tense || "") && !/majhul/i.test(rows[i - 1].cell.tense || "") && Number(rows[i - 1].cell.i) === 3 && !encOf(rows[i - 1]) && rows[i + 1] && isNoun(rows[i + 1]) && !isVerb(rows[i + 1]) && !joined(rows[i + 1]) && !rows[i + 1].afterJarr && !/ة$/.test(bareOf(rows[i + 1]).replace(/^ال/, ""))) {
+        head.add(i); if (!member.has(i + 1)) member.set(i + 1, i); set(i, "nasb", "maful", { head: i - 1 }); st.verb = i - 1; st.maful = 1; st.fail = true; st.hiddenDoer = true; st.failRow = null; continue; }
       if (isNoun(r) && !isVerb(r) && (joined(r) || /^[وف]/.test(bw)) && !r.__noJoin32 && !hasAl(r) && !encOf(r) && !r.afterJarr && !fused(r) && dammaT68(i) && typeof st.failRow === "number" && st.failRow < i && rows[st.failRow] && typeof rows[st.failRow].__doer68 === "number" && out[st.failRow] && out[st.failRow].k === "raf") { set(i, "raf", "atf", { head: st.failRow }); continue; }   /* (wave 58p) وَاوٌ … وَنُونٌ: the joined noun on the author's tanwīn ḍamm rides that doer */
       if (r.__citeMub68 && isNoun(r)) { r.afterJarr = false; set(i, "raf", "mubtada"); st.verb = null; st.fail = false; st.maful = 0; st.kanaOpen = false; st.innaOpen = false; st.mubtada = true; st.khabar = false; st.subject = true; st.subjectAt = i; if (rows[i + 1] && isNoun(rows[i + 1]) && !joined(rows[i + 1]) && !hasAl(rows[i + 1]) && !encOf(rows[i + 1]) && dammaT68(i + 1)) rows[i + 1].__ismKhabar26 = true; continue; }   /* (wave 58k) فِي زَيْدٌ قَائِمٌ: the cited sentence after فِي */
       if (pos68(i) === "verb" && !isVerb(r) && !r.cell && own68(i) && bw.length >= 3 && !hasAl(r) && !joined(r) && !/^[وف]?(كان|كانت|ليس|ليست)$/.test(bw) && !/^[وف]?ل[يتنأا][ء-ي]{2,}/.test(bw) /* (wave 60h) not the lām of command */) { r.__exact56 = true; r.kind = "verb"; r.__kind68 = true; set(i, "keep", "mazi"); st.verb = i; st.fail = false; st.failRow = null; st.hiddenDoer = false; st.maful = 0; st.passive = /^[وف]?[ء-ي]ُ/.test(o68(i)); st.kanaOpen = false; st.innaOpen = false; continue; }   /* (wave 58b) رُكِّبَتْ: the author's past verb the analyzer could not read — the feminine tāʾ on its sukūn, its first ḍamma the passive */
@@ -18645,7 +18759,13 @@ class DabtEngine {
           /* (wave 26e) غَضِبَ إِبْرَاهِيمُ وَأَخَذَ الْفَأْسَ: a joined transitive māḍī inherits the doer the clause already named; أَمَرَ اللهُ إِبْرَاهِيمَ أَنْ يَدْعُوَ قَوْمَهُ: the object does what أَنْ asks */
           { const transV26 = (() => { try { const lm31 = String(r.lemma || "").normalize("NFC"); const v = RootFinder.corpusIndex().find(x => String(x.lemma || "").normalize("NFC") === lm31); return !!(v && v.m && ((v.m.ismMaful || v.m.maful) || v.m.majhulMazi)); } catch (e) { return false; } })();
             const fusedNext = !!nx && (nx.kind || "") === "particle" && fused(nx) && rows[i + 2] && isNoun(rows[i + 2]) && !rows[i + 2].afterJarr && !joined(rows[i + 2]) && !fused(rows[i + 2]);
-            if (!st.fail && p3 && joined(r) && /mazi/i.test(t) && prevNamed26 && transV26 && !(nx && (nx.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(nx)) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && (hasAl(rows[i + 2]) || propn(rows[i + 2])) && !joined(rows[i + 2]) && !rows[i + 2].afterJarr && rows[i + 3] && isNoun(rows[i + 3]) && !isVerb(rows[i + 3]) && !!encOf(rows[i + 3]) && !joined(rows[i + 3]) && !rows[i + 3].afterJarr) /* (wave 111) two candidates after the fused pronoun: the first is the verb's own doer */ && !/^قال/.test(this.bare(r.lemma || "")) && !(nx && prevFailRow != null && rows[prevFailRow] && bareOf(rows[prevFailRow]) === bareOf(nx)) && !(rows[i + 2] && (rows[i + 2].kind || "") === "particle" && /^(ان|أن)$/.test(bareOf(rows[i + 2]).replace(/[أإآ]/g, "ا")) && !(nx && encOf(nx))) /* (wave 26q) */ && ((plainObj(nx) && (!propn(nx) || ((prevMaful26 > 0 || prevFailAdj26 || /^(سال|سأل|كلم|امر|أمر|دعا|نادى|اجاب|أجاب|خاطب|حدث|اخبر|أخبر|زار|لقي|قابل|ودع|استقبل)$/.test(this.bare(r.lemma || "")) /* (wave 26q5) وَسَأَلَ يُوسُفَ — not وَشَرِبَ إِسْمَاعِيلُ */) && !/^قال/.test(this.bare(r.lemma || "")) && !/^الله$/.test(bareOf(nx)) && !(this._punctAt && this._punctAt.has(i - 1))))) || fusedNext) && !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase()) && prevPerson26 === st.person && (this.bare(r.lemma || "") !== prevLemma26 || prevMaful26 > 0) && !(this._colonAt && this._colonAt.has(i + 1))) { st.fail = true; st.hiddenDoer = true; if (plainObj(nx)) nx.__obj26 = true; else if (fusedNext && (hasAl(rows[i + 2]) || propn(rows[i + 2]) || !!encOf(rows[i + 2]) || transV26)) rows[i + 2].__obj26 = true; }
+            const thumma129 = i > 0 && (rows[i - 1].kind || "") === "particle" && /^ثم$/.test(bareOf(rows[i - 1])) && !encOf(r);   /* (wave 129) the named doer rides across ثُمَّ too */
+            if (!st.fail && p3 && (joined(r) || thumma129) && /mazi/i.test(t) && prevNamed26 && transV26 && !(nx && (nx.kind || "") === "particle" && this.FUSED_PRON.test(bareOf(nx)) && rows[i + 2] && isNoun(rows[i + 2]) && !isVerb(rows[i + 2]) && (hasAl(rows[i + 2]) || propn(rows[i + 2])) && !joined(rows[i + 2]) && !rows[i + 2].afterJarr && rows[i + 3] && isNoun(rows[i + 3]) && !isVerb(rows[i + 3]) && !!encOf(rows[i + 3]) && !joined(rows[i + 3]) && !rows[i + 3].afterJarr) /* (wave 111) two candidates after the fused pronoun: the first is the verb's own doer */ && !/^قال/.test(this.bare(r.lemma || "")) && !(nx && prevFailRow != null && rows[prevFailRow] && bareOf(rows[prevFailRow]) === bareOf(nx)) && !(rows[i + 2] && (rows[i + 2].kind || "") === "particle" && /^(ان|أن)$/.test(bareOf(rows[i + 2]).replace(/[أإآ]/g, "ا")) && !(nx && encOf(nx))) /* (wave 26q) */ && ((plainObj(nx) && (!propn(nx) || ((prevMaful26 > 0 || prevFailAdj26 || /^(سال|سأل|كلم|امر|أمر|دعا|نادى|اجاب|أجاب|خاطب|حدث|اخبر|أخبر|زار|لقي|قابل|ودع|استقبل)$/.test(this.bare(r.lemma || "")) /* (wave 26q5) وَسَأَلَ يُوسُفَ — not وَشَرِبَ إِسْمَاعِيلُ */) && !/^قال/.test(this.bare(r.lemma || "")) && !/^الله$/.test(bareOf(nx)) && !(this._punctAt && this._punctAt.has(i - 1))))) || fusedNext) && ((thumma129 && /^(اتى|أتى)$/.test(this.bare(r.lemma || ""))) || !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase())) && prevPerson26 === st.person && (this.bare(r.lemma || "") !== prevLemma26 || prevMaful26 > 0) && !(this._colonAt && this._colonAt.has(i + 1))) { st.fail = true; st.hiddenDoer = true; if (plainObj(nx)) nx.__obj26 = true; else if (fusedNext && (hasAl(rows[i + 2]) || propn(rows[i + 2]) || !!encOf(rows[i + 2]) || transV26)) rows[i + 2].__obj26 = true; }
+            if (!st.fail && p3 && thumma129 && /mazi/i.test(t) && !/majhul/.test(t) && Number((r.cell || {}).i) === 0 && transV26 && !!nx && plainObj(nx) && !propn(nx) && hasAl(nx) &&
+                (/^(اتى|أتى)$/.test(this.bare(r.lemma || "")) || !this.INTRANS.test(String((r.gloss && (r.gloss.en || r.gloss)) || "").toLowerCase())) &&
+                (() => { let doer = -1; for (let q = i - 2; q >= 0; q--) { const o = out[q]; if (!o) continue; if (o.rule === "fail" && o.k === "raf" && isNoun(rows[q]) && !isVerb(rows[q]) && !joined(rows[q])) { doer = q; break; } if (["mubtada", "kanaIsm", "innaIsm", "naib"].includes(o.rule)) return false; }
+                  if (doer < 0) return false; if (this._punctAt && [...this._punctAt].some(pp => pp > doer && pp < i - 2)   /* the comma before ثُمَّ itself is the pause the conjunction asks for */) return false;
+                  for (let q = doer + 1; q < i - 1; q++) { const x = rows[q]; if (isVerb(x) && !x.__kindNoun && x.cell && !(Number(x.cell.i) === 0 && /mazi/i.test(x.cell.tense || ""))) return false; } return true; })()) { st.fail = true; st.hiddenDoer = true; nx.__obj26 = true; if (nx.__doerOf === i) delete nx.__doerOf; r.__thumma129 = true; }   /* (wave 129) the clause's NAMED doer acts again after the ثُمَّ that reset the state; the definite noun after is its object */
             if (!st.fail && p3 && joined(r) && /mudari/i.test(t) && (prevHidden26 || prevNoDoer26) && !prevNamed26 && /mudari/i.test(st.lastTense || "") && transV26 && !!nx && isNoun(nx) && !!encOf(nx) && !nx.afterJarr && !joined(nx) && !/^قال/.test(this.bare(r.lemma || ""))) { st.fail = true; st.hiddenDoer = true; nx.__obj26 = true; }   /* (wave 111) يَرْكَبُ وَيَتْرُكُ ابْنَهُ: the joined present verb keeps the hidden doer of the one before it — the noun with its pronoun is the object */
             if (!st.fail && p3 && anBefore && prevMaful26 > 0 && plainObj(nx)) { st.fail = true; st.hiddenDoer = true; nx.__obj26 = true; st.anHidden30 = i; }
             { const lm30 = this.bare(r.lemma || ""), po30 = DabtEngine.PERSON_OBJ30.test(lm30);
@@ -31511,7 +31631,7 @@ function shopItems(need){
   if (tried) persist();
   if (!C.dripping && C.items.length < 24 && C.queue.length) { C.dripping = true;   // the rest in a drip — one sentence a slice, never during a round
     (function step(){ if (SHOP_CACHE !== C) return; if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
-      if (sheet.classList.contains("show") && document.querySelector(".game-q")) { setTimeout(step, 500); return; }
+      if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
       shopReadSentence(C.queue.shift(), C); if ((C.items.length % 6) === 0) persist(); setTimeout(step, 400); })(); }
   if (C.items.length < 4 && !C.queue.length && CUR && !GAME_SCOPE_FALLBACK && !C.fallback) { C.fallback = true; GAME_SCOPE_FALLBACK = true; try { return shopItems(want); } finally { GAME_SCOPE_FALLBACK = false; } }   // a story that cannot feed the shop hands the round to the library
   return C.items;
@@ -32253,7 +32373,7 @@ function jinasItems(need){
   let tried = 0; while (C.items.length < want && C.seeds.length && tried < 12) { jinasPush32(C, C.seeds.shift(), null); tried++; }
   if (!C.dripping && (C.seeds.length || (C.k < C.sens.length && C.corpusN < 40))) { C.dripping = true;
     (function step(){ if (JINAS_CACHE !== C) return; if (!C.seeds.length && (C.k >= C.sens.length || C.corpusN >= 40)) { C.dripping = false; persist(); return; }
-      if (sheet.classList.contains("show") && document.querySelector(".game-q")) { setTimeout(step, 500); return; }
+      if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
       if (C.seeds.length) jinasPush32(C, C.seeds.shift(), null); else { const x = C.sens[C.k++]; jinasPush32(C, x.sen.tokens.map(t => t.s.full).join(" "), x); }
       if ((C.items.length % 8) === 0) persist(); setTimeout(step, 90); })(); }
   return C.items;
@@ -34043,8 +34163,37 @@ function bootWithData(){
   if (pruneDeck()) persistDeck(); else updateDeckCount();
   try { Relax.sweep(); } catch (e) {}   /* (wave 32p) */
   openFromHash();
+  // (wave 130) the pre-warm, in idle slices: the perceptron first (every analysis asks for it), then the three game
+  // pools whose first open used to pay for a sweep. Nothing here blocks a tap; a tap that comes first simply computes.
+  setTimeout(() => { try {
+    Quiet.add("irab-model", b => IrabModel.prewarmStep(b));
+    Quiet.add("wajh-pool", () => { try { wajhItems(0); } catch (e) {} return true; });
+    Quiet.add("shop-pool", () => { try { shopItems(0); } catch (e) {} return true; });
+    Quiet.add("jinas-pool", () => { try { jinasItems(0); } catch (e) {} return true; });
+  } catch (e) {} }, 1500);
 }
 window.__qissaDataReady = bootWithData;
+/* (wave 130) Quiet — pool-building and model-training jobs run only while the reader is idle: no touch, wheel, key or
+   scroll for 1.2 s, no sheet open, the page visible, no story render pending. Each job is a function(budgetMs) that does
+   at most that much work and returns true when finished; jobs run one at a time, in idle callbacks where the browser
+   has them. The owner's complaint was the Atölye and the games opening slowly: their first open used to pay for a
+   corpus sweep or a perceptron training on the tap itself. Now that work happens here, before the tap. */
+const Quiet = {
+  last: 0, jobs: [], _t: null, BUDGET: 30,
+  note(){ Quiet.last = performance.now(); },
+  ok(){ try { if (window.__QISSA_QUIET_OFF === true) return false;   /* the test harness holds the jobs so its own timings stay clean */
+    return document.visibilityState !== "hidden" && !(typeof sheet !== "undefined" && sheet && sheet.classList.contains("show")) &&
+    (performance.now() - Quiet.last) > 1200 && !(typeof STORY_RENDER_FLUSH !== "undefined" && STORY_RENDER_FLUSH); } catch (e) { return false; } },
+  add(name, fn){ if (this.jobs.some(j => j.name === name)) return; this.jobs.push({ name, fn }); this.kick(); },
+  kick(delay){ if (this._t) return; this._t = setTimeout(() => { this._t = null; this.tick(); }, delay || 300); },
+  tick(){ if (!this.jobs.length) return; if (!this.ok()) { this.kick(600); return; }
+    const run = () => { const j = this.jobs[0]; if (!j) return; let done = false; try { done = !!j.fn(this.BUDGET); } catch (e) { done = true; }
+      if (done) this.jobs.shift(); if (this.jobs.length) this.kick(); };
+    if (window.requestIdleCallback) requestIdleCallback(run, { timeout: 800 }); else setTimeout(run, 0); },
+  pending(){ return this.jobs.map(j => j.name); },
+};
+["pointerdown", "touchstart", "wheel", "keydown", "scroll"].forEach(ev => { try { addEventListener(ev, Quiet.note, { passive: true, capture: true }); } catch (e) {} });
+window.Quiet = Quiet;
 // The one place a deck loaded from storage is made safe to render. GRAMMAR is
 // baked into the file and never changes at runtime, so once this has run no
 // card can point at a note that is not there — which is why nothing downstream
