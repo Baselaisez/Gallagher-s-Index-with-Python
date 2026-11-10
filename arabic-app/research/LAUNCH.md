@@ -1,4 +1,4 @@
-# Qissa — launch handover (v225, build 248)
+# Qissa — launch handover (v233, build 279)
 
 This is the owner's checklist for taking the app to consumers. Everything the project can do by itself is done and
 gated; the items marked **OWNER** need an account, a key or a signature only the owner has.
@@ -7,15 +7,15 @@ gated; the items marked **OWNER** need an account, a key or a signature only the
 
 | piece | where | state |
 |---|---|---|
-| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v248`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 346 browser checks, PWA checks, drills golden file |
-| The hosted copy | `python3 tools/pubsplit.py prototype/reader.html <outdir>` → `reader.html` (3.5 MB) + `data/d1–d3.js` | the artifact at claude.ai is this copy (Version 70) |
-| The Android project | `android/` (Capacitor 8, appId `app.qissa.reader`), `capacitor.config.json`, `tools/build_android.py` | the on-demand workflow has built it on a GitHub runner (debug APK + unsigned release APK/AAB, 33.9 MB zipped) |
-| Store copy and assets | `research/PLAY_LISTING.md`, `research/store/{en,tr}/01–06.png` (1080×1920), `research/store/feature-graphic-{en,tr}.png` (1024×500) | rendered from the live reader by `tools/store_shots.js` |
+| The reader (web / PWA) | `prototype/` — `reader.html`, `sw.js` (cache `qissa-v279`), `manifest.webmanifest`, `icons/`, `privacy.html` | release gates green: validator, i18n, canon, 387 browser checks, PWA checks, drills golden file |
+| The hosted copy | `python3 tools/pubsplit.py prototype/reader.html <outdir>` → `reader.html` (3.9 MB) + `data/d1–d4.js` (four files since wave 127) | the artifact at claude.ai is this copy (Version 81) |
+| The Android project | `android/` (Capacitor 8, appId `app.qissa.reader`), `capacitor.config.json`, `tools/build_android.py` | the on-demand workflow has built it on a GitHub runner (debug APK + unsigned release APK/AAB, 33.9 MB at v222; last run v223, 30 Oct 2026 — the v233 run is batched with the week's-end CI; `tools/build_android.py --no-sync` verified the four-file web assets at v233) zipped) |
+| Store copy and assets | `research/PLAY_LISTING.md`, `research/store/{en,tr}/01–06.png` (1080×1920), `research/store/feature-graphic-{en,tr}.png` (1024×500) | rendered from the live reader by `tools/store_shots.js`; re-rendered at v233 (wave 132) |
 | Privacy policy | `prototype/privacy.html` (EN/TR) | packaged into the APK and served beside the reader |
-| Review bundle | `dist/qissa-review-v248.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
+| Review bundle | `dist/qissa-review-v<build>.zip` (`tools/build_review_bundle.py`) | for reviewers: notes on every sentence, export |
 
-Content: 46 texts in six levels, 49,033 parsed tokens, 328 grammar notes, 13 catechism banks (550 questions),
-20 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
+Content: 51 texts in six levels (536 chapters, 4,490 sentences, 49,728 parsed tokens), 328 grammar notes, 13 catechism
+banks (550 questions), 24570 drills, the workshop's engines. Every manifest still says `reviewStatus: pending-scholarly-review` (see §5).
 
 ## 2. Run it today (no account needed)
 
@@ -26,7 +26,8 @@ Content: 46 texts in six levels, 49,033 parsed tokens, 328 grammar notes, 13 cat
   branch `claude/arabic-app-research-ozd58s`), download the `qissa-android` artifact, install
   `app-debug.apk` on a phone (allow "install from unknown sources"). The debug APK is the full app, unsigned for Play.
 - **Android, locally:** `npm install` then `python3 tools/build_android.py --gradle` with the Android SDK and Java 21
-  installed; outputs under `android/app/build/outputs/`.
+  installed; outputs under `android/app/build/outputs/`. (The cloud container used for development cannot reach
+  dl.google.com, so the SDK is not installable there — the GitHub runner is the build machine.)
 
 ## 2b. A public URL for the web app and the privacy policy (OWNER: one setting)
 
