@@ -10322,6 +10322,22 @@ if (!CHROME) {
     if (!r.bina.includes("لَهُمْ") || !r.bina.includes("مِنِّي")) throw new Error('the jarr letter with its pronoun is not built as «bina»: ' + JSON.stringify(r.bina));
     if (!r.legendHasBina) throw new Error('the lab legend does not name the built source');
   });
+  await check('wave 134 — the writer\'s shapes and the engine\'s guards: a proper name, a separate pronoun and a verb annex nothing (وَلِسُلَيْمَانَ الرِّيحَ، لَهُوَ الْفَضْلُ، اقْرَؤُوا الْقُرْآنَ), a diptote ending in alif shows no ending (بِهَدَايَا، سُورِيَا، شَتَّى), the foreign name wears no tanwīn (قُسْطَنْطِينُ), the manqūṣ plural takes its fatḥa before the pronoun (أَيْدِيَهُمْ), the maṣdar of kind is the mafʿūl muṭlaq past the ṣila and when repeated (مُعَامَلَةَ), the two-object passive keeps its second object (كُلِّفَ حَمْلَهُ), the genus-لَا\'s ism is no ḥāl (لَا مَعْنَى لَهَا) — fifteen corpus lines read right and two built sentences', async () => {
+    const r = await page.evaluate((want) => {
+      const rows = want.map(([id, chN, sid, ti]) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === chN); if (!ch) return { id, chN, sid, missing: true };
+        const k = ch.sentences.findIndex(x => x.id === sid); if (k < 0) return { id, chN, sid, missing: true };
+        DabtEngine._lastGraded26 = null; if (k > 0) DabtEngine.grade(ch.sentences[k - 1], 'endings');
+        const g = DabtEngine.grade(ch.sentences[k], 'endings'); const w = g.words[ti] || {}; return { id, chN, sid, ti, want: w.want, out: w.out, ok: w.ok, rule: w.rule, src: w.src }; });
+      DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null;
+      const v1 = DabtEngine.vowel("وَوَهَبْنَا لِدَاوُدَ سُلَيْمَانَ", "endings").words.map(x => x.out + "·" + x.rule);
+      const v2 = DabtEngine.vowel("وَقَدْ كُلِّفَ حَمْلَهُ", "endings").words.map(x => x.out + "·" + x.rule);
+      return { rows, v1, v2 };
+    }, JSON.parse("[[\"qisas-al-nabiyyin-4\", 6, \"s8\", 17], [\"qisas-al-nabiyyin-4\", 17, \"s4\", 25], [\"qisas-al-nabiyyin-4\", 44, \"s5\", 1], [\"qisas-al-nabiyyin-4\", 8, \"s14\", 8], [\"qisas-al-nabiyyin-4\", 8, \"s14\", 9], [\"qisas-al-nabiyyin-4\", 10, \"s7\", 6], [\"qisas-al-nabiyyin-4\", 24, \"s10\", 16], [\"qisas-al-nabiyyin-4\", 11, \"s8\", 12], [\"qisas-al-nabiyyin-4\", 24, \"s8\", 8], [\"qisas-al-nabiyyin-4\", 39, \"s9\", 18], [\"qisas-al-nabiyyin-4\", 45, \"s4\", 5], [\"qisas-al-nabiyyin-4\", 35, \"s8\", 5], [\"qisas-al-nabiyyin-4\", 45, \"s3\", 21], [\"qisas-al-nabiyyin-4\", 16, \"s4\", 2], [\"al-kafiya\", 39, \"s2\", 11]]"));
+    const bad = r.rows.filter(x => x.missing || x.ok !== true);
+    if (bad.length) throw new Error('corpus lines still misread: ' + JSON.stringify(bad));
+    if (r.v1[1] !== "لِدَاوُدَ·jarr") throw new Error('the diptote behind its jarr letter lost its fatḥa: ' + JSON.stringify(r.v1));
+    if (r.v2[2] !== "حَمْلَهُ·maful") throw new Error('the two-object passive lost its second object: ' + JSON.stringify(r.v2));
+  });
 
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };

@@ -9986,6 +9986,32 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 134 — the writer's shapes and the engine's guards.** The v234 sweep's 346 wrong endings were read by text and
+by rule; the largest groups were not decisions but SHAPES the writer got wrong, and HEADS the chain made that the
+seats forbid. (1) The chain paired a proper name with the definite noun after it (وَلِسُلَيْمَانَ الرِّيحَ،
+وَوَهَبْنَا لِدَاوُدَ سُلَيْمَانَ) — the name was then a muḍāf, so the writer gave the diptote a kasra and the noun a
+muḍāf-ilayh kasra. A proper name annexes nothing: bare, or behind its jarr letter (`propnClit134`, which peels لِ/بِ/كَ
+and asks the lexicon or the Qiṣaṣ' name list). Nor does a separate pronoun (إِنَّ هٰذَا لَهُوَ الْفَضْلُ — the ال-noun
+after it is its khabar), nor a verb — the plural's wāw-alif (اقْرَؤُوا الْقُرْآنَ), the author's verb tag the tagger could
+not match (فَصَارَتْ تَخْدُمُ النَّاسَ), the bare muḍāriʿ shape. The three guards sit in the wave-20 unpair block and on
+the wave-111 main-loop annexation. (2) A diptote ending in alif shows NO ending in any case — the mark would stack behind
+the alif (`بِهَدَايًَا`): `writeNoun` returns the host; `diptote()` now owns the فَعَالَى / فَعَالِي plurals the lexicon lists
+(هَدَايَا) and the alif-final name (سُورِيَا); MamnuEngine gains the doubled فَعْلَى (شَتَّى). (3) The foreign names of the
+Qiṣaṣ (قُسْطَنْطِين، هِرَقْل، بُطْرُس…) join AJAM_NAMES26 and MamnuEngine.FOREIGN — ʿujma, no tanwīn. (4) The manqūṣ plural
+before its pronoun (أَيْدِيَهُمْ): the أَفْعِي shape is no sound-plural construct in `constructLetters`, and the writer's
+`manqus` reads the shapes أَفْعِي / فَعَالِي / فَاعِي — the yāʾ takes the nasb fatḥa and nothing else. (5) The mafʿūl muṭlaq of
+KIND whose verb stands further back (وَيُعَامِلُونَ مَنْ لَا يَجْرِي فِي عُرُوقِهِ الدَّمُ … مُعَامَلَةَ الْحَيَوَانَاتِ: the ṣila reset
+the verb, the root did not change) and the maṣdar REPEATED after its own jarr phrase (فِي مُعَامَلَةِ الزُّجَاجِ مُعَامَلَةَ
+الْمَاءِ) — `cognate134`: an annexed maṣdar by shape, no article, no jarr, whose root an earlier verb owns or whose word
+stood before it annexed and majrūr; asked before the late mubtadaʾ and as its own rule. (6) The two-object verb made
+passive keeps its first object as the deputy by preference (the Kāfiya) — hidden in قَدْ كُلِّفَ حَمْلَهُ — so the thing with
+its pronoun stays the second object (`__maful134`, TWO_OBJ). (7) Three smaller receipts: the author tags نِعْمَتِهِ a noun
+and the wave-35 re-kind now looks the lemma up with its marbūṭa restored; the comma inside a jarr list opens no
+sentence (وَشُكْرِ نِعْمَتِهِ، وَالدُّعَاءِ لِلتَّوْفِيقِ stays ʿaṭf); the nakira after لَا before a jarr-pronoun is the
+genus-لَا's ism, never a ḥāl (لَا مَعْنَى لَهَا — the maqṣūr shows no tanwīn). Left alone on purpose: the object of an
+elided verb (وَلِسُلَيْمَانَ الرِّيحَ reads as the name's naʿt), the author's blank year (سَنَةَ …), the carried doer against
+a name object (فَالْتَقَمَ يُونُسَ) — these need the sentence's meaning, not its rules. Sweep of all 51 texts, 49,728 endings: 49,109 right / 292 undecided / 327 wrong (was 49,089 / 293 / 346); 20 fixed, 0 broken.
+
 **Wave 133 — the ḍabṭ engine DECIDES what it used to leave undecided.** The v233 sweep left 835 of 49,728 endings
 undecided — the writer had copied the author's word (`src: "kept"`) or the rules had stayed silent (`none`), and the grader
 counts both as no claim. They were dumped with the author's own iʿrāb line and read in groups. (1) 296 were MABNĪ words
