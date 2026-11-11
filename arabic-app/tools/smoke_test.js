@@ -10305,6 +10305,24 @@ if (!CHROME) {
     if (r.qafiya.ok === false) throw new Error('the rhyme seat is judged wrong: ' + JSON.stringify(r.qafiya));
   });
 
+  await check('wave 133 — the ḍabṭ engine DECIDES what it used to leave undecided: the jarr letter with its pronoun built by rule, the mabnī word\'s own vowel stated, ʿAmr\'s wāw with the case before it, the dropped nūn and the trimmed wiqāya nūn, and the roles the grammar names on the silent endings (the books\' adverbial maṣdar, the tamyīz after the elative and كَمْ, the ẕarf of time, the naʿt by shape, the deputy past the jarr phrase, the khabar of kāna / كَوْن / مَا, the pronoun\'s khabar, the late mubtadaʾ, the object past the doer and the jarr phrase, the badal and tawkīd with their pronoun) — thirty corpus lines read right, and the new source «bina» on the lab', async () => {
+    const r = await page.evaluate((want) => {
+      const rows = want.map(([id, chN, sid, ti]) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === chN); if (!ch) return { id, chN, sid, missing: true };
+        const k = ch.sentences.findIndex(x => x.id === sid); if (k < 0) return { id, chN, sid, missing: true };
+        DabtEngine._lastGraded26 = null; if (k > 0) DabtEngine.grade(ch.sentences[k - 1], 'endings');
+        const g = DabtEngine.grade(ch.sentences[k], 'endings'); const w = g.words[ti] || {}; return { id, chN, sid, ti, want: w.want, out: w.out, ok: w.ok, rule: w.rule, src: w.src }; });
+      // the built forms carry the source «bina», and the lab's legend names it
+      const v = DabtEngine.vowel("قَالَ لَهُمْ مُوسَى اسْمَعُوا مِنِّي", "endings");
+      const bina = v.words.filter(x => x.src === "bina").map(x => x.out);
+      const legend = typeof dabtLegendHtml === "function" ? dabtLegendHtml() : "";
+      return { rows, bina, legendHasBina: /class="bina"/.test(legend) && /bin[āâ]/.test(legend) };
+    }, JSON.parse("[[\"musa-fi-madyan\", 3, \"s7\", 4], [\"hud-wa-aad\", 3, \"s3\", 8], [\"al-ghurab-wa-al-thalab\", 3, \"s2\", 1], [\"ashab-al-fil\", 1, \"s9\", 3], [\"qisas-al-nabiyyin-1\", 4, \"s10\", 3], [\"qisas-al-nabiyyin-1\", 8, \"s10\", 3], [\"musa-wal-khadir\", 4, \"s3\", 0], [\"nuh-wa-al-safina\", 1, \"s7\", 3], [\"al-ghurab-wa-al-thalab\", 1, \"s2\", 6], [\"musa-wal-khadir\", 3, \"s12\", 2], [\"musa-wa-bani-israil\", 3, \"s4\", 2], [\"musa-fi-madyan\", 3, \"s5\", 3], [\"musa-wa-bani-israil\", 4, \"s1\", 5], [\"qisas-al-nabiyyin-1\", 4, \"s11\", 3], [\"qisas-al-nabiyyin-1\", 8, \"s28\", 4], [\"qisas-al-nabiyyin-1\", 8, \"s9\", 10], [\"qisas-al-nabiyyin-1\", 10, \"s1\", 2], [\"qisas-al-nabiyyin-1\", 2, \"s13\", 0], [\"musa-wa-bani-israil\", 4, \"s4\", 2], [\"qisas-al-nabiyyin-1\", 7, \"s20\", 10], [\"musa-wa-bani-israil\", 4, \"s7\", 4], [\"qisas-al-nabiyyin-1\", 4, \"s12\", 3], [\"qisas-al-nabiyyin-1\", 10, \"s4\", 3], [\"qisas-al-nabiyyin-1\", 9, \"s33\", 4], [\"qisas-al-nabiyyin-1\", 5, \"s7\", 6], [\"qisas-al-nabiyyin-1\", 9, \"s19\", 16], [\"qisas-al-nabiyyin-1\", 4, \"s13\", 3], [\"qisas-al-nabiyyin-1\", 13, \"s22\", 4], [\"qisas-al-nabiyyin-1\", 7, \"s8\", 2], [\"qisas-al-nabiyyin-1\", 15, \"s6\", 6]]"));
+    const bad = r.rows.filter(x => x.missing || x.ok !== true);
+    if (bad.length) throw new Error('corpus lines still misread: ' + JSON.stringify(bad));
+    if (!r.bina.includes("لَهُمْ") || !r.bina.includes("مِنِّي")) throw new Error('the jarr letter with its pronoun is not built as «bina»: ' + JSON.stringify(r.bina));
+    if (!r.legendHasBina) throw new Error('the lab legend does not name the built source');
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });

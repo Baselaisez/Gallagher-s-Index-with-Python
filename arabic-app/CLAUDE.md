@@ -9986,6 +9986,61 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 133 — the ḍabṭ engine DECIDES what it used to leave undecided.** The v233 sweep left 835 of 49,728 endings
+undecided — the writer had copied the author's word (`src: "kept"`) or the rules had stayed silent (`none`), and the grader
+counts both as no claim. They were dumped with the author's own iʿrāb line and read in groups. (1) 296 were MABNĪ words
+the engine already knew — the jarr letter with its pronoun (عَلَيْهِمْ، لَكُمْ، مِنَّا), حَيْثُ، أَمْسِ، قَطُّ، الْآنَ، هَيْهَاتَ، the
+cut-off ẕarf, the oath — written from the author's token. Now `jarrPron133` BUILDS the letter-plus-pronoun form by rule
+(the letter's seat before a pronoun: عَلَيْ / إِلَيْ / لَدَيْ, لَ before every pronoun but لِي, مِنْ and عَنْ doubling their nūn
+into مِنِّي / مِنَّا / عَنِّي / عَنَّا, فِيَّ / عَلَيَّ with the speaker's yāʾ merged, هِ after a kasra or a yāʾ, the waṣl pass breaking
+the plural's sukūn before the article), the wave-24/30 built endings (`__mabniEnd24`: the ism fiʿl table, the lāzim-mabnī
+ẕarfs, now also بِحَيْثُ، يَوْمَئِذٍ / حِينَئِذٍ on the tanwīn of compensation, يَا أَبَتِ) and the oath's kasra are STATED, and the
+page's licensed variants are kept where the base keeps them (لِيَ، لَهُمُ الذِّكْرَى through `__exact56`). A new source
+«bina» (`.src-bina`, the lab legend in EN/TR) names a built ending the rules state, so the grader grades it. (2) 72 were
+عَمْرٌو — its decided case now sits before the silent wāw (عَمْرٌو، عَمْرٍو) and naṣb drops it (عَمْرًا); 58 of the 72 read
+right, the five wrong are the base's own decisions exposed. (3) The five verbs whose nūn the page dropped (يَدْخُلُوا) are
+naṣb and jazm alike in form, so the dropped nūn is stated; the trimmed wiqāya nūn's kasra (يَهْدِينِ) likewise. (4) 297 were
+SILENT nouns, and the author's line named a classic role for nearly every one. Each role's own condition is now a rule in
+a second pre-pass (`decide`, «wave 133»), read off the words' letters, the paradigm cells, the SifaEngine's shapes and the
+lexicon — never off the author's ending — and applied as a FALLBACK after the main loop: a base decision always stands,
+the marks fill only what it left undecided (the first draft consumed them early and broke the base's ʿaṭf bookkeeping).
+(A) the books' adverbial maṣdar, bare and mid-clause (لَفْظًا، مَعْنًى، رَفْعًا، وُجُوبًا، قِيَاسًا، عِوَضًا، خِلَافًا، جَزَاءً، فَضْلًا
+عَنْ…) — a ḥāl / tamyīz / mafʿūl muṭlaq, all on the fatḥa, the analyzer's verb reading of فَضْلًا overruled by the author's
+part of speech; (B) the tamyīz after the elative with its مِنْ, its construct or its pronoun (أَشَدُّ مِنَّا قُوَّةً، أَشَدُّ النَّاسِ
+حَسْرَةً، أَكْبَرَهُمْ سَفَاهَةً), after كَمْ، رُبَّهُ، يَا لَهُ، نِعْمَ, after fullness (مِلْؤُهُ عَسَلًا، مُمْتَلِئٌ مَاءً), and the kin or body
+noun after a bare quality (طَيِّبٌ أَبًا، حَسَنٌ وَجْهًا); (C) the ẕarf of time after its clause's verb (دَعَا قَوْمَهُ لَيْلًا،
+جَاؤُوا أَبَاهُمْ عِشَاءً، يَدْعُو قَوْمَهُ زَمَنًا طَوِيلًا); (D) the NAʿT by shape — a quality-shaped word (the SifaEngine's
+ism fāʿil / mafʿūl / ṣifa mushabbaha / elative / mubālagha, the nisba, the grammar's own adjectives مَاضٍ، مَعْرِفَة، مُفْرَد…)
+right after a noun of the same definiteness and gender takes its case (الْأَرْضَ الْمُقَدَّسَةَ، يَعْقُوبَ الشَّيْخَ الْكَبِيرَ، بَيْتَهُ
+الْحَرَامَ، حَمْدًا طَيِّبًا كَثِيرًا، فِعْلٌ مَاضٍ مَحْذُوفٌ، بَشَرًا مِثْلَكُمْ), a bare head only when it wears its tanwīn (جَمْعُ غَفِيرٍ
+annexes), never after a doer-noun that governs (مُتَنَاوِلٍ غَيْرَهُ), and مَا لَكُمْ مِنْ إِلٰهٍ غَيْرُهُ follows the maḥall; (E) the
+DEPUTY DOER past the jarr phrase or right after the passive (يُطْلَبُ بِهَا الْفِعْلُ، عُصِيَ اللهُ بِهِ، يُفْهَمُ مِنْهُ مَعْنَى،
+سُلِبَ زَيْدٌ) — the person read off the receipts (بُلِّغْتَ is the addressee), أُخْرِجَ a passive māḍī by its hamza's ḍamma and
+final fatḥa whatever cell the analyzer heard; (F) the khabar of kāna past an apposed name or a jarr phrase (كَانَ أَبُوهُ
+يَعْقُوبُ نَبِيًّا، يَكُونُ أَبُوكُمْ لَكُمْ خَالِصًا) and the khabar of the maṣdar كَوْن (كَوْنُهُ مُسْنَدًا، بِكَوْنِهِ حَرْفًا); (G) the
+khabar of the Hijazi مَا (مَا زَيْدٌ قَائِمًا، وَمَا الْقُرْآنُ مَخْلُوقًا); (H) the khabar after a detached pronoun (أَنْتَ وَلِيِّي،
+هُوَ يُوسُفُ), never the faṣl pronoun inside a kāna / لَيْسَ clause; (I) the late mubtadaʾ after a clause-opening jarr phrase
+(فَفِي الْقُرْآنِ قِصَصٌ، فَلِلرِّزْقِ إِلٰهٌ، الَّتِي فِيهَا سَلْوَى) — not kāna's ism; (J) the doer right after a third-person verb
+holding its object in a pronoun (فَتَقَبَّلَهَا رَبُّهَا، أَلْهَمَهُ اللهُ), not a ditransitive and not inside a relative whose head
+is the doer; (K) the OBJECT past the found doer and the jarr phrase, and the second object past the first (فَقَصَّ مُوسَى
+عَلَيْهِ قِصَّتَهُ، بَنَى أَبُوهُ وَأَخُوهُ بَيْتًا، أَلْهَمَهُ اللهُ الْكَلِمَاتِ، سَمَّيْتُهَا مَرْيَمَ، تَبْخَسُوا النَّاسَ أَشْيَاءَهُمْ،
+هَبْ لِي مِنْ لَدُنْكَ ذُرِّيَّةً طَيِّبَةً، أَرِنِي هٰذَا الْأَسَدَ) — the doer found by the cell's person, the receipts (the tāʾ's
+vowel, the sukūn before نَا: اتَّبَعْنَا), a marfūʿ noun after the verb, a subject before it or the relative it sits in; the
+bare majrūr annexes what follows (مِنْ تَأْوِيلِ الْأَحَادِيثِ), the passive's definite follower is its badal (سُلِبَ زَيْدٌ
+ثَوْبُهُ, an early consumer for the books' badal al-ishtimāl), a verb holding its object pronoun names no second one unless
+it gives two (دَعْنِي وَجْهُكَ الْجَنَّةُ), and كُلّ / غَيْر / مِثْل stay with their annexation; (L) the badal and the tawkīd that
+carry a pronoun follow their head (ضَرَبْتُ زَيْدًا رَأْسَهُ، فِي ذٰلِكَ كُلِّهِ); (M) the ism fāʿil's object (ضَارِبٌ غُلَامَهُ،
+الضَّارِبُ زَيْدًا، الْمُدَبِّرُ كُلَّ أَمْرٍ) and the maṣdar's (ضَرْبُ زَيْدٍ عَمْرًا، إِكْرَامُ عَمْرٍو خَالِدًا) — the intransitive
+doer-noun's follower being its DOER (رَاكِبًا غُلَامُهُ); (N) the ṣifa clause (قَوْمًا ضُعَفَاءَ لُغَتُهُمْ غَرِيبَةٌ); (W) the ʿaṭf by
+أَمْ / أَوْ / بَلْ / ثُمَّ; (Y) the bare noun after a bare noun wearing its tanwīn, neither a quality nor an adverb, in the head's
+naṣb (زَوْجًا ذَكَرًا). The grader hands the pre-pass the punctuation marks themselves (`_punct133`): a comma pauses, only
+. : ! ؟ ؛ close a clause. The twin-tāʾ receipt of wave 52g is read on the host before the pronoun (رَأَيْتُهُمْ، آتَيْتَنِي), and
+the writer reads the page's tanwīn kasr on a bare consonant under a rafʿ decision as the manqūṣ's own receipt (مَاضٍ، خَالٍ،
+جَارٍ) — never a sound feminine plural. Sweep of all 51 texts, 49,728 endings: 49,089 right / 293 undecided /
+346 wrong (was 48,541 / 835 / 352); 548 fixed, 0 broken. The undecided that remain are the cited forms
+(لَفْظ مَحْكِيّ), the wāw-joined names and a long tail of one-offs. Smoke: thirty corpus lines, the built forms' source and
+the legend. Three late receipts: the name before بْنِ is annexed, not the cited line's mubtadaʾ (كَقَوْلِ عَمْرِو بْنِ مَعْدِي كَرِبَ); a lām wearing a fatḥa before a noun is the lām of ibtidāʾ, not the jarr lām, and after قَوْلِهِ the name opens the quotation (وَكَقَوْلِهِ لَعَمْرٌو); the author's own correction of the print («وَالْوَجْهُ: عَمْرًا») is the ending the grader accepts. وَحْدَهُ stays the ḥāl (wave 131 R9): no badal or tawkīd rule touches it.
+
 **Wave 132 — the Play build refreshed at v233.** The APK pipeline (wave 69) last ran on a GitHub runner at v223; the cloud container cannot reach dl.google.com, so the Android SDK stays on the runner and the next on-demand run is batched with the week's-end CI (the owner asked that CI stay rare). Done here: `tools/build_android.py --no-sync` builds the shell's web assets from the four-file split (index.html + data/d1–d4.js; build 279 stamped into android/app/build.gradle from sw.js); `tools/store_shots.js` re-rendered the twelve Play screenshots and both feature graphics from the v233 reader (the wave-79/80/105 design, 51 stories on the shelf, each checked by eye); `research/LAUNCH.md` carries v233's numbers (51 texts / 536 chapters / 4,490 sentences / 49,728 tokens / 387 browser checks / 1,139 generated drill items (34 endings · 36 iḍāfa · 100 paradigms · 47 mīzān · 922 sentences) / artifact Version 81). The owner's items are unchanged: the keystore and its three secrets, GitHub Pages for the privacy-policy URL, a contact email, the Qiṣaṣ licence line in the three manifests. No reader or content change — no gates.
 
 **Wave 131 — the ḍabṭ engine learns from the whole corpus's remaining misses: rules, not patches.** The v232 sweep graded
