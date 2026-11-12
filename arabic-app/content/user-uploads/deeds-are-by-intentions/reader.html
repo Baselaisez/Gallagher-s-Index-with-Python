@@ -3820,7 +3820,7 @@ function senRead(prog, sen, ch, st){
 // (wave 127) renderStory paints the first RENDER_FIRST sentences at once and the rest in requestAnimationFrame batches;
 // STORY_RENDER_FLUSH finishes a pending render synchronously for the callers that need the whole text in the DOM.
 let RENDER_GEN = 0, STORY_RENDER_FLUSH = null;
-const RENDER_SYNC_MAX = 80, RENDER_FIRST = 40, RENDER_BATCH = 30;
+const RENDER_SYNC_MAX = 80, RENDER_FIRST = 40, RENDER_BATCH = 30, RENDER_MIN144 = 6, RENDER_MS144 = 10;
 function flushStoryRender(){ if (STORY_RENDER_FLUSH) STORY_RENDER_FLUSH(); }
 window.flushStoryRender = flushStoryRender;
 let SENTENCE_FLAT = []; // [{sen, sec, ch}] in reading order, rebuilt by renderStory() — the
@@ -4091,7 +4091,7 @@ function renderStory(){
     storyEl.classList.add("rendering");
     step(RENDER_FIRST);
     STORY_RENDER_FLUSH = () => { if (gen !== RENDER_GEN) { STORY_RENDER_FLUSH = null; return; } step(jobs.length); done(); };
-    const more = () => { if (gen !== RENDER_GEN || !STORY_RENDER_FLUSH) return; step(RENDER_BATCH); if (k < jobs.length) requestAnimationFrame(more); else done(); };
+    const more = () => { if (gen !== RENDER_GEN || !STORY_RENDER_FLUSH) return; const t0 = performance.now(); let n = 0; while (k < jobs.length && (n < RENDER_MIN144 || (n < RENDER_BATCH && performance.now() - t0 < RENDER_MS144))) { step(1); n++; } if (k < jobs.length) requestAnimationFrame(more); else done(); };   /* (wave 144) a frame's budget, not a fixed thirty — a tap between frames waits for one short step */
     requestAnimationFrame(more);
   }
   // Chapter pills, built from the chapters that WILL render — a locked preview may cut chapters off, and a pill must
@@ -5360,11 +5360,12 @@ function startHamza(){
 // corpus tokens; the guards keep out the words that only LOOK like adats
 // (a doubled إِنَّ, the fuja'iyya idha whose next word is a noun), and every
 // wrong pick is refuted by the doctrine of the adat it claimed.
-function shartItems(){
-  const ADS = { "ان": "in", "إن": "in", "اذا": "idha", "إذا": "idha",
-                "لو": "law", "كلما": "kullama" };
-  const items = [];
-  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+const SHART_ADS144 = { "ان": "in", "إن": "in", "اذا": "idha", "إذا": "idha", "لو": "law", "كلما": "kullama" };
+const SHART_POOL = new GamePool("shart", { minSample: 8, units: GamePool.chapters, scan: (u, out) => shartScan144(u.st, u.ch, out) });   /* (wave 144) */
+function shartItems(need){ return SHART_POOL.items(need); }
+function shartScan144(st, ch, items){
+  const ADS = SHART_ADS144;
+  [ch].forEach(ch => ch.sentences.forEach(sen =>
     sen.tokens.forEach((t, ti) => {
       const b = (t.s.bare || "").replace(/^[وف]/, "");
       const k = ADS[b];
@@ -5376,11 +5377,11 @@ function shartItems(){
         if (!nx || nx.pos !== "verb") return;                // the fuja'iyya conditions nothing
       }
       items.push({ sen, ti, tok: t, k, st });
-    }))));
+    })));
   return items;
 }
 function startShart(){
-  const items = shuffle(shartItems()).slice(0, 8);
+  const items = shuffle(shartItems(8).slice()).slice(0, 8);
   if (items.length < 3) { openGames(); return; }
   const lang = () => state.uiLang === "tr" ? "tr" : "en";
   const OPTS = [
@@ -14227,6 +14228,11 @@ class FahmEngine {
   }
   static nearFeatures(near, lang, limit){ const cnt = new Map(); near.forEach(n => (n.sn.tokens || []).forEach(t => (t.grammar || []).forEach(g => { if (GRAMMAR[g]) cnt.set(g, (cnt.get(g) || 0) + 1); }))); return Array.from(cnt.entries()).sort((a, b) => b[1] - a[1]).slice(0, limit || 6).map(([g, n]) => ({ note: g, title: T(GRAMMAR[g].title), n })); }
   static analyze(text, lang){
+    const key144 = String(lang || "") + "|" + String(text || ""); const memo144 = this._memo144 || (this._memo144 = new Map());
+    if (memo144.has(key144)) { const hit = memo144.get(key144); memo144.delete(key144); memo144.set(key144, hit); return hit; }   /* (wave 144) the keystroke's debounce and the re-render share one reading */
+    const res144 = this.analyze0(text, lang); if (memo144.size >= 24) memo144.delete(memo144.keys().next().value); memo144.set(key144, res144); return res144;
+  }
+  static analyze0(text, lang){
     let v = null; try { v = DabtEngine.vowel(text, "endings"); } catch (e) { v = null; }
     if (!v || !v.words.length) return null;
     const items = v.words.map((x, i) => this.word(v.rows[i] || { w: x.w }, x, i));
@@ -14542,9 +14548,8 @@ function openConjugator(){
     <div id="labBody"></div>`;
   // Bring the current tool into view. A rail whose selected item is scrolled
   // off-screen is worse than a wrapping row: it looks like nothing is selected.
-  const railSync = () => {
-    const on = sheetInner.querySelector(".labrail button.on");
-    if (on && on.scrollIntoView) on.scrollIntoView({ inline: "center", block: "nearest" });
+  const railSync = () => {   /* (wave 144) after the frame paints — a forced layout before the paint cost ~80 ms at 4× CPU */
+    requestAnimationFrame(() => { const on = sheetInner.querySelector(".labrail button.on"); if (on && on.scrollIntoView) { try { on.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {} } });
   };
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
     conjState.lab = b.dataset.lab;
@@ -14935,8 +14940,29 @@ function bindRefIndexEvents(){
 // story; a story's own glossary is the only place a lemma or root is recorded,
 // so the walk has to carry it rather than read the global GLOSSARY.
 let CORPUS = null;
+let CORPUS_PART144 = null;   /* (wave 144) { k, rows }: the index under construction, one story a step */
+function buildCorpusStep144(budget){
+  if (CORPUS) return true;
+  const P = CORPUS_PART144 || (CORPUS_PART144 = { k: 0, rows: [] }); const t0 = performance.now();
+  while (P.k < STORIES.length && (P.k === 0 || performance.now() - t0 < (budget || 20))) { buildCorpusStory144(STORIES[P.k++], P.rows); }
+  if (P.k >= STORIES.length) { CORPUS = P.rows; CORPUS_PART144 = null; return true; }
+  return false;
+}
+function buildCorpusStory144(st, rows){
+  st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+    sen.tokens.forEach((tok, ti) => {
+      const e = st.glossary[tok.lex] || {};
+      const r = { st, ch, sen, ti, tok, entry: e,
+        hay: [tok.s.bare, strip(e.lemma || ""), strip(e.root || ""), strip(e.root || "").replace(/\s+/g, ""),
+              (e.gloss && e.gloss.en || "").toLowerCase(),
+              (e.gloss && e.gloss.tr || "").toLowerCase()].join("\u0000") };
+      r.fhay = foldAr(r.hay); const root = foldAr(strip(e.root || "")); r.fRoot = root; r.fRootTight = root.replace(/\s+/g, ""); r.fLemma = foldAr(strip(e.lemma || "")); r.fBare = foldAr(tok.s.bare || "");
+      rows.push(r);
+    })));
+}
 function buildCorpus(){
   if (CORPUS) return CORPUS;
+  if (CORPUS_PART144) { while (!buildCorpusStep144(1e9)) {} return CORPUS; }   /* finish what Quiet began */
   CORPUS = [];
   STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
     sen.tokens.forEach((tok, ti) => {
@@ -14949,6 +14975,7 @@ function buildCorpus(){
               (e.gloss && e.gloss.tr || "").toLowerCase()].join("\u0000"),
       });
     }))));
+  CORPUS.forEach(r => { r.fhay = foldAr(r.hay); const root = foldAr(strip(r.entry.root || "")); r.fRoot = root; r.fRootTight = root.replace(/\s+/g, ""); r.fLemma = foldAr(strip(r.entry.lemma || "")); r.fBare = foldAr(r.tok.s.bare || ""); });   /* (wave 144) folded once, searched many times */
   return CORPUS;
 }
 const DIACRITICS_RE = /[ً-ْٓ-ٰٕ]/g;
@@ -14963,7 +14990,7 @@ function searchCorpus(q){
   if (needle.length < 2) return [];
   const nAr = foldAr(needle), nLat = needle.toLowerCase();
   return buildCorpus().filter(r =>
-    foldAr(r.hay).includes(nAr) || r.hay.includes(nLat));
+    r.fhay.includes(nAr) || r.hay.includes(nLat));   /* (wave 144) */
 }
 // A substring match is not a match of the same worth. Type ق و ل and المنقول
 // comes back, because م-ن-ق-و-ل really does contain ق-و-ل — the letters are
@@ -14975,8 +15002,8 @@ function searchCorpus(q){
 function searchRank(r, q){
   const n = foldAr(q.trim()), nLat = q.trim().toLowerCase();
   if (!n) return 0;
-  const root = foldAr(strip(r.entry.root || "")), rootTight = root.replace(/\s+/g, "");
-  const lemma = foldAr(strip(r.entry.lemma || "")), bare = foldAr(r.tok.s.bare || "");
+  const rootTight = r.fRootTight !== undefined ? r.fRootTight : foldAr(strip(r.entry.root || "")).replace(/\s+/g, "");
+  const lemma = r.fLemma !== undefined ? r.fLemma : foldAr(strip(r.entry.lemma || "")), bare = r.fBare !== undefined ? r.fBare : foldAr(r.tok.s.bare || "");   /* (wave 144) the row's own folds */
   const nTight = n.replace(/\s+/g, "");
   if (rootTight && rootTight === nTight) return 4;   // the root itself, typed either way
   if (lemma === n || bare === n) return 3;           // the word itself
@@ -14992,7 +15019,9 @@ function searchRank(r, q){
 // question weigh most), folded the way the corpus index folds (no vowels, one alif, Turkish dotless-i) — no model,
 // no stemming, so a hit is always explainable by the letters the learner typed.
 class DoctrineSearch {
-  static fold(t){ return String(t || "").toLowerCase().normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/ı/g, "i").replace(/İ/g, "i").replace(/â/g, "a").replace(/î/g, "i").replace(/û/g, "u").replace(/[«»"'،؛.:!?؟()\[\]—–]/g, " "); }
+  static fold(t){ const s = String(t || ""); if (s.length > 8) { const m = this._fold144 || (this._fold144 = new Map()); const hit = m.get(s); if (hit !== undefined) return hit; const f = this.fold0(s); if (m.size > 30000) m.clear(); m.set(s, f); return f; } return this.fold0(s); }   /* (wave 144) each note's text folds once */
+  static warm144(){ try { Object.values(GRAMMAR).forEach(g => { [(g.title || {}).ar, (g.title || {}).en, (g.title || {}).tr, (g.plain || {}).en, (g.plain || {}).tr, (g.explanation || {}).en, (g.explanation || {}).tr].forEach(t => { if (t) this.fold(t); }); if (g.question) this.fold([].concat(g.question.tr || [], g.question.en || []).join(" ")); }); CatechismEngine.items().forEach(it => { this.fold(T(it.q)); this.fold(T(it.a)); this.fold((it.ar || []).join(" ")); }); } catch (e) {} return true; }
+  static fold0(t){ return String(t || "").toLowerCase().normalize("NFC").replace(/[ً-ْٰ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/ı/g, "i").replace(/İ/g, "i").replace(/â/g, "a").replace(/î/g, "i").replace(/û/g, "u").replace(/[«»"'،؛.:!?؟()\[\]—–]/g, " "); }
   static terms(q){ return this.fold(q).split(/\s+/).filter(w => w.length >= 2); }
   static hits(terms, text, w){ const f = this.fold(text); let n = 0; terms.forEach(t => { if (f.includes(t)) n += w; }); return n; }
   static notes(q, k){
@@ -33684,7 +33713,8 @@ function startBadi(){
 // gJinas — name the kind of a jinas pair, letter by letter. Fed by the JinasEngine's seeds, the note's examples and the corpus.
 // (wave 32p) the pool reads what a round needs now and the rest in a drip — the seeds, then the corpus — and remembers per build
 let JINAS_CACHE = { scope: null, items: null };
-function jinasPush32(C, text, ref){ let r; try { r = JinasEngine.readText(text); } catch (e) { return 0; } let n = 0;
+const JINAS_SEED_MEMO144 = new Map();
+function jinasPush32(C, text, ref){ let r; try { if (!ref && JINAS_SEED_MEMO144.has(text)) r = JINAS_SEED_MEMO144.get(text); else { r = JinasEngine.readText(text); if (!ref) JINAS_SEED_MEMO144.set(text, r); } } catch (e) { return 0; } let n = 0;   /* (wave 144) a seed read once serves every scope */
   const pick = ref ? [r.frames.find(x => x.sub !== "ishtiqaq") || (C.corpusN < 12 ? r.frames[0] : null)].filter(Boolean) : r.frames;
   pick.forEach(f => { const k = f.a + "|" + f.b; if (C.seen.has(k)) return; C.seen.add(k); C.items.push({ text, sen: ref ? ref.sen : null, ref: ref ? senRef32(ref.st, ref.ch, ref.sen) : null, f, sub: f.sub }); n++; if (ref) C.corpusN++; });
   return n; }
@@ -33698,7 +33728,7 @@ function jinasItems(need){
   }
   const C = JINAS_CACHE;
   const persist = () => {};
-  let tried = 0; while (C.items.length < want && C.seeds.length && tried < 12) { jinasPush32(C, C.seeds.shift(), null); tried++; }
+  const t0j = performance.now(); let tried = 0; while (C.items.length < want && C.seeds.length && tried < 12 && (C.items.length < 4 || performance.now() - t0j < 40)) { jinasPush32(C, C.seeds.shift(), null); tried++; }   /* (wave 144) the round's four now, the rest in the drip */
   if (!C.dripping && (C.seeds.length || (C.k < C.sens.length && C.corpusN < 40))) { C.dripping = true;
     (function step(){ if (JINAS_CACHE !== C) return; if (!C.seeds.length && (C.k >= C.sens.length || C.corpusN >= 40)) { C.dripping = false; persist(); return; }
       if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
@@ -35462,8 +35492,10 @@ function bootWithData(){
     Quiet.add("wajh-pool", () => { try { wajhItems(0); } catch (e) {} return true; });
     Quiet.add("shop-pool", () => { try { shopItems(0); } catch (e) {} return true; });
     Quiet.add("jinas-pool", () => { try { jinasItems(0); } catch (e) {} return true; });
-    [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL, SHOPC_POOL, ROLE_POOL, CASE_POOL, NIDA_POOL, WAQF_POOL, SARF_POOL, BAHR_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140, 142) */
-    Quiet.add("maqsud-warm", () => { try { MaqsudEngine.audit(); maqsudItems(); } catch (e) {} return true; });   /* (wave 142) the Maqṣūd lab's first paint cost ~250 ms at 4× CPU: its tables are derived here, idle */
+    [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL, SHOPC_POOL, ROLE_POOL, CASE_POOL, NIDA_POOL, WAQF_POOL, SARF_POOL, BAHR_POOL, SHART_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140, 142) */
+    Quiet.add("maqsud-warm", () => { try { MaqsudEngine.audit(); maqsudItems(); } catch (e) {} return true; });
+    Quiet.add("search-index", b => { try { return buildCorpusStep144(b); } catch (e) { return true; } });   /* (wave 144) the search sheet's index, a story a slice — the first search cost ~1.1 s at 4× CPU */
+    Quiet.add("search-fold", () => DoctrineSearch.warm144());   /* (wave 142) the Maqṣūd lab's first paint cost ~250 ms at 4× CPU: its tables are derived here, idle */
   } catch (e) {} }, 1500);
 }
 window.__qissaDataReady = bootWithData;

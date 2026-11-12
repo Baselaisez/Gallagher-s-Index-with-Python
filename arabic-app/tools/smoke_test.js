@@ -10510,6 +10510,29 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 144 — SPEED VI: the search index is built a story a slice and each row carries its folds, the doctrine texts fold once, the Muḥallil reads a sentence once per language, the long text renders by frame budget, the jinās seeds are read once a session', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      let steps = 0; while (!buildCorpusStep144(5) && steps < 2000) steps++; out.steps = steps; out.rows = CORPUS.length; out.folds = CORPUS.every(x => typeof x.fhay === "string" && typeof x.fLemma === "string" && typeof x.fRootTight === "string");
+      const t0 = performance.now(); const h1 = searchCorpus("كتاب"); const t1 = performance.now(); searchCorpus("كتاب"); out.ms2 = Math.round(performance.now() - t1); out.ms1 = Math.round(t1 - t0); out.hits = h1.length;
+      out.rank = searchRank(h1[0], "كتاب") >= 1;
+      const probe = "الْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِينَ"; out.fold = DoctrineSearch.fold(probe) === DoctrineSearch.fold0(probe) && DoctrineSearch._fold144 instanceof Map && DoctrineSearch._fold144.has(probe);
+      DoctrineSearch.warm144(); out.foldN = DoctrineSearch._fold144.size; out.notes = DoctrineSearch.notes("hal").length;
+      const S1 = "ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ"; const a = FahmEngine.analyze(S1, "en"); out.memo = !!a && a.items.length === 4 && a === FahmEngine.analyze(S1, "en") && a !== FahmEngine.analyze(S1, "tr") && FahmEngine._memo144.size >= 2;
+      out.shart = (() => { const t0 = performance.now(); const it = shartItems(8); const ms = Math.round(performance.now() - t0); return { n: it.length, ms, full: SHART_POOL.count() }; })();
+      out.render = RENDER_MIN144 === 6 && RENDER_MS144 === 10 && RENDER_BATCH === 30;
+      const n0 = JINAS_SEED_MEMO144.size; const ji = jinasItems(8); out.jinas = { memo: JINAS_SEED_MEMO144.size, items: ji.length, grew: JINAS_SEED_MEMO144.size >= n0 };
+      return out;
+    });
+    if (!(r.rows > 40000 && r.folds)) throw new Error('search index: ' + JSON.stringify(r));
+    if (!(r.hits > 0 && r.rank && r.ms2 <= 80)) throw new Error('search: ' + JSON.stringify(r));
+    if (!(r.fold && r.foldN > 500 && r.notes > 0)) throw new Error('doctrine folds: ' + JSON.stringify(r));
+    if (!r.memo) throw new Error('Muḥallil memo: ' + JSON.stringify(r));
+    if (!r.render) throw new Error('render budget: ' + JSON.stringify(r));
+    if (!(r.shart.n >= 8 && r.shart.full >= 40)) throw new Error('shart pool: ' + JSON.stringify(r.shart));
+    if (!(r.jinas.items >= 4 && r.jinas.grew && r.jinas.memo >= 1)) throw new Error('jinās seeds: ' + JSON.stringify(r));
+  });
+
   await check('wave 143 — the undecided endings read by rule: فَضْلًا عَنْ the ḥāl, رَبِّ the vocative on its kasra before the imperative هَبْ with its object, the number before its plural time-noun the ẕarf, the second object after the enclitic first, the badal across its naʿt, the postponed mubtadaʾ in each lām clause, the dual\'s yāʾ of the speaker, أَجَلُّ kept, the makhṣūṣ after نِعْمَ, حَسَبَ the ẕarf, the khabar fronted before كَانَ, مَأْوَاهُ النَّارُ, غَيْرُهُ the deputy doer, the nakira\'s ṣifa clause', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };

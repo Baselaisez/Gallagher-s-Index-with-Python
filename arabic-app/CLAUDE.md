@@ -9986,6 +9986,22 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 144 — SPEED VI, the reading surface.** Measured on v244 at 4× CPU, warm: the Atölye open 223 ms, a word tapped
+in the first seconds of a long text 150–290 ms (the frame's thirty-sentence batch ran between the tap and its sheet), the
+search sheet's first query 963 ms and its second 467, the Muḥallil 119 ms on every re-render of the same sentence. By rule
+and without a verdict changed: the search index is built a story a slice under Quiet after boot (`buildCorpusStep144`) and
+every row carries its folded haystack and rank keys once (`fhay`, `fLemma`, `fRootTight`, `fBare`) — before, every query folded
+all 49,000 rows again; the doctrine search folds each note's and question's text once (`DoctrineSearch.fold` memo, warmed
+under Quiet); the Muḥallil keeps the last 24 readings by sentence and language (`FahmEngine.analyze` → `analyze0`), so the
+keystroke's debounce, the re-render and the language switch share one engine pass; the Atölye's rail scrolls its tab into
+view after the frame paints (the forced layout before it cost ~80 ms); the long text's frames are time-budgeted
+(`RENDER_MIN144` 6 sentences, `RENDER_MS144` 10 ms, `RENDER_BATCH` 30 the ceiling) so a tap between frames waits for one
+short step; the jinās seeds are read once a session whatever the scope (`JINAS_SEED_MEMO144`) and the cold start reads seeds
+only until four items stand and 40 ms are spent. The conditional game (gShart, 101 ms warm: its scan swept every
+token at each start) joins the pool class (`SHART_POOL`, warmed at boot). After, at 4× CPU, warm: the Atölye open 45–90 ms, a
+word tapped during a long text's first frames 75–113 ms, the search sheet 144 ms first / 78 second, the Muḥallil's re-render
+7 ms, every game start under 40 ms (gIbaraAr 39 the slowest) and every lab tab under 30 ms. Every story, game and lab kept.
+
 **Wave 143 — the undecided endings of the prose, by rule.** The v243 blind sweep still left 277 endings undecided and 162
 wrong; the receipts-on sweep 173 / 84. Grouped by construction and read by rule in a block at the top of the decide loop (a
 word bearing tanwīn is a noun whatever the tagger made of its letters): فَضْلًا عَنْ is the ḥāl; حَسَبَ before its annexed noun is
