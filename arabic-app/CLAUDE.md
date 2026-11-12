@@ -9986,6 +9986,49 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 151 — the matns' remaining wrong endings, by rule.** The v250 blind sweep's 93 wrong rows in al-Kāfiya and the
+Talkhīṣ, traced to the deciding line and read by rule, on the dry copy first. The matn CITES: the verb templates
+(يُفْعِلُ، يُفَعِّلُ، يَسْتَفْعِلُ، أَفْعِلْ، مَا أَفْعَلَهُ) are the lexicon's nouns no longer — the skeleton ف ع ل under a verb's
+prefix and vowels (MudariShape, with the blind copy's missing final vowel tried as the amr's sukūn and the muḍāriʿ's
+ḍamma) is the verb it models, in its own mood; the kāf of comparison on a verb (كَقَامَ زَيْدٌ، كَسِرْتُ مِنَ الْبَصْرَةِ، كَأَتِمُّوا
+الصِّيَامَ) cites the clause and the word is its verb (the lexicon's noun of the same letters blocks only when its vowels are the
+written word's — صَمْت is not صُمْتُ); the light nūn of tawkīd on an amr the corpus knows (اِضْرِبَنْ); the heavy nūn, with or
+without an enclitic, before the amr's sukūn and the muḍāriʿ's ḌAMMA (اِضْرِبَنَّ، هَلْ تَرَيَنَّ، لَآتِيَنَّكَ). The cited PARTICLE
+governs nothing: after مَعَ / بَعْدَ / بِمَعْنَى / خَبَرِ… (مَعَ مِنْ اسْمَا تَفْضِيلٍ، بِمَعْنَى عَنْ مَعَ الْقَوْلِ، مَعَ لَكِنَّ ضَعِيفٌ — the
+ẕarf before it is its muḍāf), after the grammar's she-verb (تُقَدَّرُ رُبَّ بَعْدَهَا), after a jarr letter (أَعَمُّ مِنْ هَلْ
+فَتَدْخُلُ), between أَوْ and a cited particle, or joined to a list of them (وَمَتَى وَأَيٍّ وَأَيْنَ وَإِنْ وَتُسْتَعْمَلُ) — it is a
+mabnī word of the sentence, it opens no mood (jazm, naṣb, the request's فَ) and the word after it keeps its own seat; the
+particle named by its term at the head of the sentence (وَمِنْ زَائِدَةٌ) is a mubtadaʾ with its khabar. The grammar's TERM
+is the khabar: after a mubtadaʾ (وَسِنُونَ وَأَرَضُونَ شَاذٌّ — a sound plural bars a singular naʿt; مُمَيِّزُ مِائَةٍ مُفْرَدٌ
+مَجْرُورٌ), after a cited verbal clause with its clause-terms or the Name as doer (فَعَلِمَ اللهُ تَامٌّ، وَكَانَ اللهُ نَاقِصٌ), after a
+lone relative (أَوِ الَّذِينَ صِفَةٌ لِلْقَوْمِ). The seats: the MAṢDAR annexed to its doer or carrying it as a pronoun takes the
+definite noun after it as the object its verb takes (دَفْعُ اللهِ النَّاسَ، مُخَاطَبَةِ الْإِنْسَانِ نَفْسَهُ، تَضَمُّنِهِ الضَّمِيرَ — the
+verb found from the root in the paradigm corpus, its transitivity from the ledger); مَكَانَهَا / مَوْضِعَهُ after a completed
+construct is the ẕarf; the joined al-noun before a ẕarf-pronoun and a nakira opens its own clause (وَالْفِعْلُ بَعْدَهَا
+مُسْتَقْبَلٌ، وَالْجُمْلَةُ قَبْلَهُ خَبَرٌ); ʿaṭf across the citation frames of a matn parallels the word before the earlier نَحْوُ
+(وَالصِّفَةَ الْمُشَبَّهَةَ — the construct's head; وَالِانْفِعَالِ — the muḍāf ilayh when both are maṣdars); the joined name after
+إِنَّ's completed clause opens its own (إِنَّ زَيْدًا قَائِمٌ وَعَمْرٌو); حَتَّى of ʿaṭf after an intransitive verb and its al-plural
+doer (مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ); kāna's family + a nakira predicate + a definite noun: the definite is the ISM
+(كَانَتْ فِرَاخًا بُيُوضُهَا، لَيْسَ قَائِمًا زَيْدٌ); تَكُونَ + a feminine or plural al-noun with no addressee is the she-form and
+the al-noun its ism (أَنْ تَكُونَ الْأَلْفَاظُ تَوَابِعَ); مَا كَانَ غَيْرَهُ; حَبَّذَا رَجُلًا زَيْدٌ (the ḥāl, then the praised in
+rafʿ); the elative annexing a plural that annexes an al-noun (أَعْلَى مَرَاتِبِ التَّشْبِيهِ); أَصْلُهُ / مَعْنَاهُ / تَقْدِيرُهُ after a
+completed clause opens the gloss's clause; the grammar's she-verb and its cited doer (رَفَعَتْ كَانَ الْجُزْءَ الْأَوَّلَ: كَانَ the
+doer as a word, kept; الْجُزْءَ the object); the she-verb inside a مَا-relative with a plural noun and its pronoun (بِمَا قَدَّمَتْ
+أَيْدِيهِمْ: the relative is the object, the noun the doer); وَإِمَّا عَمْرٌو copies the first إِمَّا's case; لَا of ʿaṭf between
+two nouns of one shape (مُسْلِمُونَ لَا أَحْمَرُ وَسَكْرَانُ؛ جَاءَ زَيْدٌ لَا عَمْرٌو); إِنَّا / إِنَّهُ + the nakira after a jarr phrase
+is the khabar (إِنَّا إِلَى اللهِ رَاجِعُونَ); إِنَّ / أَنَّ + مَا is the relative ism and its ṣila's jarr phrases do not close the
+particle (أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ); the opening pair of nakiras (وَخَيْرٌ وَشَرٌّ) is mubtadaʾ and ʿaṭf; the
+dual in construct keeps its alif (اسْمَا تَفْضِيلٍ، مُسْلِمَا الْقَوْمِ); فَإِنَّ مِثْلَ فِي… and وَكَأَنَّ وَمِثْلُ: the word as a word;
+بِمَا before a nakira noun (فَبِمَا رَحْمَةٍ مِنَ اللهِ): the مَا is extra, the noun jarr; قَدْ / لَمْ / لَنْ enter only on a verb —
+the unknown word after them in a verb's shape is that verb (كَانَ الْمَلِكُ قَدْ عُزِلَ), and a vowelled passive stays a verb
+(مَانِعٌ آخَرُ أُتِيَ بِمَعْمُولِ…); the cited VERB after مَعَ / بَعْدَ / قَبْلَ (وَبَعْدَ عَسَى مَنْصُوبٌ) is a word of the sentence, the ẕarf its muḍāf, and opens no verbal clause; the particle before its own verb governs even inside a list of cited particles (أَوْ فَلَا تَضْرِبْهُ keeps its jazm); the joined al-noun after a verb the ledger seats a doer after and no object (يَصْدُقُ وَالسِّينُ لِلِاسْتِقْبَالِ), before a jarr phrase, a ẕarf or a nakira, opens its own clause; after the amr قُلْ the annexed قَوْلُ is the quotation's mubtadaʾ, not قَالَ's cognate. The LETTERS fix a seat: the written dual / sound-plural nūn (مَعْنَيَانِ، شَيْئَانِ، اللَّفْظَيْنِ —
+the stem a noun the lexicon owns, the whole word no lemma; مَكَان، إِنْسَان، سُلْطَان keep theirs) is never a construct head
+(مَعْنَيَانِ أَحَدُهُمَا); the yāʾ of the oblique dual and plural is never rafʿ — the seat a rule offered a doer is the object's and
+the al-noun after it the postponed doer (أَنْ يَجْمَعَ اللَّفْظَيْنِ الِاشْتِقَاقُ); the written nūn of the five forms is rafʿ whatever
+stands before the verb (حَتَّى لَا يَرْجُونَهُ); لَمَّا before a muḍāriʿ is the jāzima (وَلَمَّا يَنْفَعْهُ النَّدَمُ); فَعْلَى with a
+radical mīm whose فَعِيل singular the lexicon owns (مَرْضَى، not مَرْمَى) is barred from tanwīn. The person-suffixed māḍī the
+doer pre-mark caught (لَا يَجُوزُ أَرَأَيْتَ زَيْدًا) is a verb. Sweeps against v250: blind 63 rows fixed / 0 broken (wrong 133 → 108, undecided 177 → 139 of 49,728 graded endings); receipts-on 35 fixed / 0 broken (wrong 72 → 61, undecided 95 → 71). Twenty-three typed sentences gate the rules.
+
 **Wave 150 — SPEED VIII: the hosted copy's boot.** The copy a phone runs (the artifact, the Android shell) is the split
 one — tools/pubsplit.py's page plus data/*.js. Measured over route interception (an in-process https origin, no socket):
 at 1× CPU the inline-code page booted in 1.35 s with a 100 ms long task; at 4× in 2.5–3.3 s with a long task of 478–847 ms

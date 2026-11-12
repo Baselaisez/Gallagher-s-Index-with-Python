@@ -10510,6 +10510,69 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 151 — the matns\' remaining wrong endings by rule: the cited verb templates read as verbs (يُفْعِلُ، أَفْعِلْ، مَا أَفْعَلَهُ), the kāf of comparison on a verb (كَسِرْتُ), the cited particle governs nothing (رُبَّ بَعْدَهَا، وَمِنْ زَائِدَةٌ، مِنْ هَلْ فَتَدْخُلُ), the grammar\'s term as khabar (شَاذٌّ، تَامٌّ), the maṣdar\'s object (دَفْعُ اللهِ النَّاسَ), لَمَّا the jāzima, the written nūn of the five forms, the heavy nūn before an enclitic, the oblique dual is never rafʿ, حَتَّى of ʿaṭf, the opening pair of nakiras, قَدْ before an unknown verb, the cited verb after بَعْدَ, the prohibition\'s لَا after أَوْ', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("نَحْوُ يُفْعِلُ وَيُفَعِّلُ وَيُفَاعِلُ مَفْتُوحٌ فِيمَا سِوَاهُ نَحْوُ يَسْتَفْعِلُ");
+      out.s2 = E("مَا أَفْعَلَهُ نَحْوُ مَا أَحْسَنَ زَيْدًا وَأَفْعِلْ بِهِ");
+      out.s3 = E("فِي الْمَكَانِ كَسِرْتُ مِنَ الْبَصْرَةِ");
+      out.s4 = E("وَالْوَاوُ الَّتِي تُقَدَّرُ رُبَّ بَعْدَهَا");
+      out.s5 = E("وَمِنْ زَائِدَةٌ فِي غَيْرِ الْمُوجَبِ");
+      out.s6 = E("وَاسْتِعْمَالُ الْهَمْزَةِ أَعَمُّ مِنْ هَلْ فَتَدْخُلُ الْهَمْزَةُ عَلَى الِاسْمِ");
+      out.s7 = E("وَسِنُونَ وَأَرَضُونَ شَاذٌّ");
+      out.s8 = E("فَعَلِمَ اللهُ تَامٌّ وَكَانَ اللهُ نَاقِصٌ");
+      out.s9 = E("وَلَوْلَا دَفْعُ اللهِ النَّاسَ");
+      out.s10 = E("وَلَمَّا يَنْفَعْهُ النَّدَمُ");
+      out.s11 = E("مَرِضَ فُلَانٌ حَتَّى لَا يَرْجُونَهُ");
+      out.s12 = E("وَاللهِ لَآتِيَنَّكَ");
+      out.s13 = E("وَيُلْحَقُ بِالْجِنَاسِ شَيْئَانِ أَحَدُهُمَا أَنْ يَجْمَعَ اللَّفْظَيْنِ الِاشْتِقَاقُ");
+      out.s14 = E("مَاتَ النَّاسُ حَتَّى الْأَنْبِيَاءُ");
+      out.s15 = E("وَخَيْرٌ وَشَرٌّ مَعَ مِنْ اسْمَا تَفْضِيلٍ");
+      out.s16 = E("كَانَ الْمَلِكُ قَدْ عُزِلَ");
+      out.s17 = E("إِذَا كَانَتْ بِمَعْنَى كَيْ أَوْ إِلَى وَالْفِعْلُ بَعْدَهَا مُسْتَقْبَلٌ");
+      out.s18 = E("كَانَ الرَّجُلُ كَرِيمًا");
+      out.s19 = E("رَأَى الْوَلَدُ الرَّجُلَيْنِ فِي السُّوقِ");
+      out.s20 = E("وَبَعْدَ عَسَى مَنْصُوبٌ فِي مَحَلِّ رَفْعٍ");
+      out.s21 = E("إِنْ ضَرَبَكَ زَيْدٌ فَاضْرِبْهُ أَوْ فَلَا تَضْرِبْهُ");
+      out.s22 = E("ضَرَبَ زَيْدٌ عَمْرًا وَلَمْ يَقُمْ بَكْرٌ");
+      out.s23 = E("قَامَ زَيْدٌ وَالرَّجُلُ عِنْدَهُ");
+      out.dual = [DabtEngine.dualNun151({ w: "مَعْنَيَانِ", kind: "noun" }), DabtEngine.dualNun151({ w: "مَكَانُ", kind: "noun" }), DabtEngine.obliqueNun151({ w: "اللَّفْظَيْنِ", kind: "noun" }), DabtEngine.fatlaMim151("مَرْضَى"), DabtEngine.fatlaMim151("مَرْمَى")];
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    if (JSON.stringify(r.dual) !== JSON.stringify([true, false, true, true, false])) throw new Error('dualNun151 / obliqueNun151 / fatlaMim151: ' + JSON.stringify(r.dual));
+    want('s1', 1, /^يُفْعِلُ·raf$/, 'the cited muḍāriʿ template is a verb in rafʿ');
+    want('s1', 8, /^يَسْتَفْعِلُ·raf$/, 'and after the second نَحْوُ too');
+    want('s2', 1, /^أَفْعَلَهُ·mazi$/, 'مَا أَفْعَلَهُ: the wonder\'s template on its fatḥa');
+    want('s2', 6, /^وَأَفْعِلْ·amr$/, 'وَأَفْعِلْ بِهِ: the amr template on its sukūn');
+    want('s3', 2, /^كَسِرْتُ·mazi$/, 'كَسِرْتُ: the kāf of comparison on the verb');
+    want('s4', 4, /^بَعْدَهَا·zarf$/, 'the cited رُبَّ governs nothing: بَعْدَهَا is the ẕarf');
+    want('s5', 1, /^زَائِدَةٌ·khabar$/, 'وَمِنْ زَائِدَةٌ: the particle named by its term');
+    want('s6', 5, /^فَتَدْخُلُ·raf$/, 'the cited هَلْ opens no request: فَتَدْخُلُ in rafʿ');
+    want('s7', 2, /^شَاذٌّ·khabar$/, 'the term after the sound plurals is the khabar, no naʿt');
+    want('s8', 2, /^تَامٌّ·khabar$/, 'فَعَلِمَ اللهُ تَامٌّ: the clause\'s term');
+    want('s8', 5, /^نَاقِصٌ·khabar$/, 'وَكَانَ اللهُ نَاقِصٌ: the same');
+    want('s9', 3, /^النَّاسَ·maful$/, 'the maṣdar\'s object after its doer');
+    want('s10', 1, /^يَنْفَعْهُ·jazm$/, 'لَمَّا before a muḍāriʿ is the jāzima');
+    want('s11', 4, /^يَرْجُونَهُ·raf$/, 'the written nūn of the five forms is rafʿ');
+    want('s12', 1, /^لَآتِيَنَّكَ·(mazi|amr|raf)$/, 'the heavy nūn before the enclitic keeps its fatḥa');
+    want('s13', 6, /^اللَّفْظَيْنِ·maful$/, 'the oblique dual is the object');
+    want('s13', 7, /^الِاشْتِقَاقُ·fail$/, 'and the al-noun after it the postponed doer');
+    want('s14', 3, /^الْأَنْبِيَاءُ·atf$/, 'حَتَّى of ʿaṭf after the intransitive verb and its plural doer');
+    want('s15', 1, /^وَشَرٌّ·atf$/, 'the opening pair: ʿaṭf, no khabar on a wāw');
+    want('s15', 4, /^اسْمَا·khabar$/, 'the dual in construct keeps its alif');
+    want('s16', 3, /^عُزِلَ·mazi$/, 'قَدْ enters only on a verb');
+    want('s17', 6, /^وَالْفِعْلُ·mubtada$/, 'the joined al-noun before a ẕarf-pronoun and a nakira opens its clause');
+    want('s18', 2, /^كَرِيمًا·kanaKhabar$/, 'kāna\'s ordinary khabar untouched');
+    want('s19', 2, /^الرَّجُلَيْنِ·maful$/, 'the ordinary dual object untouched');
+    want('s20', 1, /^عَسَى·mabni$/, 'the cited verb after بَعْدَ is a word of the sentence');
+    want('s20', 2, /^مَنْصُوبٌ·(khabar|mubtada)$/, 'and the term after it in rafʿ, no doer of عَسَى');
+    want('s21', 6, /^تَضْرِبْهُ·jazm$/, 'the prohibition\'s لَا keeps its jazm after أَوْ');
+    want('s22', 4, /^يَقُمْ·jazm$/, 'لَمْ in a joined clause still governs');
+    want('s23', 2, /^وَالرَّجُلُ·(atf|mubtada)$/, 'the joined al-noun after the intransitive verb is never the object');
+  });
+
   await check('wave 150 — SPEED VIII, the hosted copy: tools/pubsplit.py writes the code to app.js (compiled off the main thread, code-cached from the second visit), keeps the catalog and the skeleton inline, and inserts the data scripts from a loader after one frame so the skeleton shelf paints before the first data file parses; the single-file reader is untouched', async () => {
     const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path');
     const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-split-'));
@@ -12487,7 +12550,7 @@ if (!CHROME) {
       g = pick('al-kafiya', 32, 's3'); out.tawkid = [word(g, 'كُلّهَا').rule, word(g, 'كُلّهَا').k];
       g = pick('al-kafiya', 29, 's9'); out.zarf = [word(g, 'مَكَانهَا').rule, word(g, 'مَكَانهَا').k];
       g = pick('qisas-al-nabiyyin-4', 19, 's10'); out.sila = [word(g, 'الظُّلُمَات').rule, word(g, 'الْكُرُبَات').rule, word(g, 'الرَّحْمَة').rule];
-      g = pick('al-kafiya', 20, 's9'); out.hikaya = g.words.filter(x => x.rule === 'hikaya' && x.ok === null && x.src === 'kept').length;
+      g = pick('al-kafiya', 35, 's2'); out.hikaya = g.words.filter(x => x.rule === 'hikaya' && x.ok === null && x.src === 'kept').length;   // (wave 151) 20:s9's templates are read now; وَعَمْرٌو's cited forms in 35:s2 stay undecided
       out.labels = !!(DabtEngine.RULE.hikaya && DabtEngine.RULE.silent && DabtEngine.RULE.hikaya.tr && DabtEngine.RULE.silent.en);
       // the three texts that moved most (the whole corpus is the weekly CI's business)
       out.acc = {}; for (const id of ['al-kafiya', 'qisas-al-nabiyyin-4', 'bad-al-amali']) { const c = DabtEngine.corpus('endings', [id], 0); out.acc[id] = [c.acc, c.hit, c.n]; }
