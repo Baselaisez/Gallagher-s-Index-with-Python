@@ -10510,6 +10510,36 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 147 — the prose\'s remaining wrong endings read by rule: a joined noun after a naʿt follows the kāna-ism or doer (وَأَوْلَادٌ), the second term of بَيْنَ is coordinate to the first (وَأَوْلَادِهَا), the elative before an al-maṣdar is a mafʿūl muṭlaq (أَشَدَّ الِاحْتِيَاجِ), بَنِي before a proper name is the object, the al-noun after بِكُلِّ ذٰلِكَ or after a demonstrative badal is the object the verb still owes, خَيْرٌ after a relative subject is the khabar, a joined al-maṣdar is coordinate across a jarr phrase, and the و of وَعَادَاتٌ is a conjunction although the lexicon knows no عَادَات; كُلِّهِ after a demonstrative in a jarr phrase is its tawkīd even with no kasra written', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("كَانَ لَهُ شَيْءٌ كَثِيرٌ وَأَوْلَادٌ مَرْضِيَّةٌ");
+      out.s2 = E("فَرَّقُوا بَيْنَ الْأُمَّهَاتِ وَأَوْلَادِهَا");
+      out.s3 = E("يَحْتَاجُ إِلَيْهِ كُلُّ مُعْرِبٍ أَشَدَّ الِاحْتِيَاجِ");
+      out.s4 = E("فَيُعِيدُ بِكُلِّ ذٰلِكَ الثِّقَةَ");
+      out.s5 = E("وَيُدِينُ فِي هٰذِهِ الْقَضِيَّةِ الْغُلَاةَ");
+      out.s6 = E("وَالَّذِي أَعْطَانِي اللهُ خَيْرٌ مِمَّا أَنْتُمْ فِيهِ");
+      out.s7 = E("وَقَامَ مُوسَى يَدْعُو بَنِي إِسْرَائِيلَ إِلَى اللهِ");
+      out.s8 = E("كَانَتْ فِي قَوْمِهِ عَقَائِدُ زَائِفَةٌ وَعَادَاتٌ جَاهِلِيَّةٌ");
+      out.s10 = E("فَابْتُلِيَ فِي ذٰلِكَ كُلِّهِ");
+      out.s9 = E("دَعَا إِلَى الْوُقُوفِ عِنْدَ الظَّاهِرِ وَالتَّمَسُّكِ بِالْقُشُورِ دُونَ اللُّبَابِ وَالتَّشَبُّثِ بِالْمَظَاهِرِ");
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    want('s1', 4, /^وَأَوْلَادٌ·atf$/, 'وَأَوْلَادٌ coordinate to the kāna-ism, over the naʿt');
+    want('s2', 3, /^وَأَوْلَادِهَا·atf$/, 'the second term of بَيْنَ');
+    want('s3', 4, /^أَشَدَّ·mafulMutlaq$/, 'the elative before the al-maṣdar');
+    want('s3', 5, /^الِاحْتِيَاجِ·mudafIlayh$/, 'its muḍāf ilayh');
+    want('s4', 3, /^الثِّقَةَ·maful$/, 'the object after بِكُلِّ ذٰلِكَ');
+    want('s5', 4, /^الْغُلَاةَ·maful$/, 'the object after the demonstrative badal');
+    want('s6', 3, /^خَيْرٌ·khabar$/, 'خَيْرٌ the khabar of the relative subject');
+    want('s7', 3, /^بَنِي·maful$/, 'بَنِي إِسْرَائِيلَ the object of the verb whose doer is seated');
+    want('s8', 5, /^وَعَادَاتٌ·atf$/, 'وَعَادَاتٌ: the و a conjunction');
+    want('s9', 9, /^وَالتَّشَبُّثِ·atf$/, 'the joined al-maṣdar across the jarr phrase');
+    want('s10', 3, /^كُلِّهِ·tawkid$/, 'فِي ذٰلِكَ كُلِّهِ read blind: the tawkīd of the demonstrative, never the deputy');
+  });
+
   await check('wave 146 — the matn\'s cited clause read as a clause of its own: after نَحْوُ a clause opened by a governing particle (إِذَنْ، لَنْ…) is analysed again and its verdict outranks the sentence\'s reading; the present-state إِذَنْ أَظُنُّكَ stays in rafʿ (the Iẕhār\'s own example); a noun-phrase example keeps the sentence\'s reading', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };

@@ -9986,6 +9986,29 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 147 — the prose's remaining wrong endings, by rule.** The v247 blind sweep's 162 wrong endings, traced one by one
+(the `continue`-line tracer names the rule that exits), and read by rule in the wave-143 block: the joined nakira after
+kāna's ism (or a doer, a mubtadaʾ, a deputy) and its naʿt, when a ṣifa-shaped nakira follows it, is the ism's ʿaṭf
+(شَيْءٌ كَثِيرٌ وَأَوْلَادٌ مَرْضِيَّةٌ، عَقَائِدُ زَائِفَةٌ وَعَادَاتٌ جَاهِلِيَّةٌ — the nisba shape counts as a ṣifa, the tagger may call it a
+verb); what بَيْنَ annexes joins in jarr when the pronoun returns to the first noun (بَيْنَ الْأُمَّهَاتِ وَأَوْلَادِهَا, not مَعَانٍ
+وَتَخْصِيصُهُ); the elative annexing an al-maṣdar after a complete clause is the mafʿūl muṭlaq (أَشَدَّ الِاحْتِيَاجِ — the waṣl alif's
+kasra sits on the lām, the article's shadda on the first radical: the shape helper strips both); بَنِي before a name after a
+verb whose doer is given is the object, never after kāna; the comparative before مِنْ / مِمَّا is the khabar the relative
+clause's mubtadaʾ still owes (وَالَّذِي أَعْطَانِيَ اللهُ … خَيْرٌ مِمَّا); the joined participle after a relative clause joins the
+participles' list and annexes what follows (وَمُطَهِّرُكَ مِنَ الَّذِينَ كَفَرُوا وَجَاعِلُ); the joined al-maṣdar after a jarr-phrase
+chain joins the maṣdars' jarr list (وَالتَّمَسُّكِ بِالْقُشُورِ دُونَ اللُّبَابِ وَالتَّشَبُّثِ); the al-noun after kāna's ism's jarr chain is
+its last member's naʿt when the khabar is a verb to come (بَعْضُ الْيَهُودِ وَالْمُتَحَمِّسِينَ السُّفَهَاءِ مِنَ الشَّبَابِ يَنْهَالُونَ — within
+the LAST kāna clause of the sentence); the repeated partitive وَبَعْضُهُ opens its own clause (the Iẕhār's وَبَعْضُهُ عَامِلٌ …
+وَبَعْضُهُ غَيْرُ عَامِلٍ); the al-noun after a quantifier's demonstrative (بِكُلِّ ذٰلِكَ الثِّقَةَ) or after a demonstrative's badal
+(فِي هٰذِهِ الْقَضِيَّةِ الْغُلَاةَ) is the object the verb still owes, no badal, no naʿt. Tried and withdrawn: closing the fāʾ of
+consequence by an indicative verb between the request and the fāʾ (يَحْكِي … فَيَقُولُ) — it broke the Kāfiya's مَا تَأْتِينَا
+فَتُحَدِّثَنَا. The joiner test learned the lexicon's habit: the و/ف is a conjunction when the lexicon knows the whole word only by
+stripping it (وَأَوْلَاد → وَلَد, the lemma the rest gives too), or knows nothing of the whole and the rest is a word or a ـَات
+plural whose singular it holds (وَعَادَات → عَادَة); وَسَائِل stays one word, its lemma is not سَائِل's. The article-stripper
+reads NFC order (the fatḥa before the shadda). كُلِّهِ after a demonstrative inside a jarr phrase is its tawkīd even blind
+(فِي ذٰلِكَ كُلِّهِ), never the passive's deputy. Blind sweep 49,384 → 49,403 ok (15 fixed, 0 broken); receipts-on 49,548 →
+49,553 (5 fixed, 0 broken). Ten typed sentences gate the rules.
+
 **Wave 146 — the matn's cited clause read as a clause of its own.** Of the v246 blind sweep's 182 undecided endings, 95 are
 words the author's own line calls مَحْكِيّ — the examples after نَحْوُ، كَقَوْلِكَ، تَقُولُ (the grader does not fault them, it leaves
 them undecided unless the engine's ending equals the author's). The sentence's reading inside such a citation is contaminated
