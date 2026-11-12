@@ -9986,6 +9986,65 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 135 — the doer and its rābiṭ.** The v235 sweep's 327 wrong endings read by text and by rule: the largest group
+was a noun seated as the DOER where the seats forbid a noun doer. (1) The khabar verb of a mubtadaʾ and the verb after
+the ism of إِنَّ need a returning pronoun (the rābiṭ): when a plain ال-noun follows such a verb and the verb agrees with
+the subject in gender, the doer is the hidden pronoun and the noun is the object (كُلُّكُمْ قَدْ أَخَذَ الْجَامَ، أَدَاةَ النَّفْيِ
+تَنْفِي الزِّيَادَةَ، بِطَانَةٌ تُعَرِّفُكَ أَخْبَارَ النَّاسِ). The addressee's تَ-verb takes no noun doer where the sentence, or the
+one before it (`_youPrev135`, carried by `grade`), speaks to «you» and no feminine subject stands before the verb
+(أَنْ تُكَلِّمَ الْأَطْفَالَ). Two bare nouns after the verb, the second a nakira agreeing with it: object, then doer (وَرَدَتْ
+عُكَاظَ قَبِيلَةٌ، دَخَلَ مَعَهُ السِّجْنَ رَجُلَانِ). The transitive verb with a carried doer, its jarr pronoun, then a definite: the
+object (سَخَّرَ لَهُمَا الْأَقْوِيَاءَ، أَرْسَلَ عَلَيْكُمُ الْأَمْطَارَ). The Name before another definite is the doer (لَا يُحِبُّ اللهُ
+الْجَهْرَ); the grammarians and poets the matns make speak are doers (`SCHOLARS135`: جَوَّزَ الْمُبَرِّدُ); the ṣila's verb keeps a
+name as its doer (الَّذِي سَلَكَ الْمَسِيحُ); the verb after أَوْ keeps the hidden doer. (2) The tagger's receipts, read on the
+words AS WRITTEN (`_full135`: decide's rows carry the word with its ending stripped): a word under tanwīn is a noun
+whatever the particle table says (وَلِيًّا is no وَ + لِي، أَهْلًا no هَلَّا، لَامًا no أَمَّا، فُلَانًا no verb); the author's ḍamma on the
+first radical names the passive (خُصَّ، رُدَّ، ضُمَّ); the fatḥa under the enclitic is the māḍī's (فَتَقَبَّلَهَا، وَتَوَعَّدَهُ), the
+plural joined onto a māḍī chain is its māḍī (وَتَنَاوَلُوهُ); the final ḍamma on an أَ-verb is the speaker's present (أَشْهَدُ);
+the kasra before the final sukūn is the command's, not the elative's (وَأَكْرِمْ مَنْ أَتَاكَ — the elative re-kind spares it);
+after the ẕarf head the word is its annexed noun (مَعَ فَصَاحَتِهَا); وَلْيَكُنْ keeps the sukūn of كَانَ's jussive; between
+the negating إِنْ and إِلَّا the yāʾ-closed word is the speaker's noun (أَجْرِيَ). (3) The pairs the chain misses: the maṣdar
+annexes the noun that is itself annexed (لِبَيَانِ مِقْدَارِ سَوَادِهِ، بِتَعْيِينِ أَحَدِ الْأَمْرَيْنِ), the quantifier annexes the
+demonstrative (كُلُّ ذَلِكَ), the maqṣūr elative the plural (أَعْلَى مَرَاتِبِ), the sayer of كَقَوْلِ is annexed and the saying
+follows him (كَقَوْلِ الْبُحْتُرِيِّ). (4) The moods the eight things give (the Kāfiya): the فَ of causation after the wish,
+the hope, the question and the command takes naṣb (لَعَلِّي أَحُجُّ فَأَزُورَكَ، لَوْ تَأْتِينِي فَتُحَدِّثَنِي), the bare answer of the
+request jazm (لَيْتَ لِي مَالًا أُنْفِقْهُ، أَيْنَ بَيْتُكَ أَزُرْكَ); لَا after أَنْ negates (أَنْ لَا يَكُونَ), after the relative too (مَا لَا
+يُكَلِّفُونَكَ); the lām with kasra after وَ is the purpose's (وَلِيَكُونَ); أَنَّى questions; مِنْ with kasra cites; the particle after
+a ẕarf head opens no condition (بَعْدَ إِنْ … يُفَسِّرُهُ). (5) The early seats: أَيُّهَا الرَّجُلُ; إِنَّمَا opens a clause; لِلّٰهِ;
+the badal after the demonstrative behind a jarr letter (وَلِهٰذِهِ الْحِكْمَةِ); the ẕarf head annexing a noun is never
+marfūʿ (قَوْلَانِ عِنْدَ الْأَكْثَرِ); مَكَانَهَا، مَوْضِعَهُ; الْيَوْمَ between the verb and its doer (جَاءَتِ الْيَوْمَ هِنْدٌ); the nakira after
+the intransitive verb's jarr phrase is its doer (يَنْقُصُ بِهِ الثَّمَنُ، شَاعَتْ لَهَا تَمَاثِيلُ); إِلَّا's exception as the object
+the verb still owes or the mustathnā in naṣb; كُلُّهُمْ إِلٰهٌ; the cited particle with the grammar's category noun (إِذَا
+الْمُفَاجَأَةِ) and the grammar's noun annexing a cited particle or verb (جَوَابُ أَمِ، جُمْلَةُ يَجِيءُ); حَيْثُ زَيْدٌ جَالِسٌ; the
+partitive doer after the verb that carries its object (يُسَمِّيهِ بَعْضُهُمْ); the dual on its yāʾ-nūn is never the doer; the
+joined pronoun-noun after the ẕarf's noun joins it; آخَرُ agrees with the number or its nakira; the elative khabar
+(أَهْوَنُ وَأَيْسَرُ لِلتَّصْدِيقِ مِنْ); the ism of إِنَّ after the fronted phrase; إِنَّا … رَاجِعُونَ; أَنَّ اللهَ رَبُّهُ; the nakira
+participle governs the definite after it (بِكَافٍ عَبْدَهُ); the لَا of ʿaṭf (جَائِزَةٌ لَا وَاجِبَةٌ); the khabar after the ṣila; خَيْرٌ
+مِمَّا; the verb whose doer is its own letter takes the definite as its object (سَأَقُولُ لَكَ السَّبَبَ); the sister of كَانَ
+with her doer on her (لَيْسُوا لَكَ أَقْرِبَاءَ); the derived maṣdar governs (لِتَضَمُّنِهِ الضَّمِيرَ); the badal after the name; the
+nakira that cannot describe the definite opens a clause (اتِّبَاعُهُ، مُوَسْوِسٌ سَاعٍ); the joined definite before its own verb
+opens one (وَالشَّقِيُّ قَدْ يَسْعَدُ); the definite closing the clause after the jarr phrase is the object owed (وَيُدِينُ فِي هٰذِهِ
+الْقَضِيَّةِ الْغُلَاةَ). (6) The writer and the diptotes: دُنْيَا and خَوَاصّ and أَشْيَاء are mamnūʿ; the lexicon's own singular in
+ـات is no sound plural (نَبَاتًا); the sound plural's nūn keeps its fatḥa (وَالْبَنُونَ); بَال with its own fatḥa is no بِ + ال;
+the formula عَلَيْهِ السَّلَامُ / رَضِيَ اللهُ عَنْهُ / صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ is parenthetical and keeps the clause's state. (7) What the first
+sweep taught (152 regressions, all read back): the object-then-doer reading needs the second noun ALONE to agree with the
+verb, or a dual, or the author's ḍamma on it (فَغَضِبَ قَابِيلُ غَضَبًا keeps its doer); the request's answer needs a noun between the
+opener and the verb and no لَا/أَنْ before it (كَيْفَ لَا نُقَاتِلُ, إِلَّا أَنْ نَحْمِلَ keep their moods; إِلَّا with its shadda is no أَلَا);
+أَنْ لَا after a verb of knowledge is the lightened أَنَّ (عَلِمْتُ أَنْ لَا تَقُومُ); وَلَا shares the naṣb only within four words and
+the same person; the لَا of ʿaṭf joins only the nakira right before it under its tanwīn, never the annexed noun or the
+noun before لَهُمْ (لَا بُيُوتَ لَهُمْ, لَا غُلَامَ رَجُلٍ stay genus-لَا); the joined definite opens a clause only after a raised noun
+or a verb, never a time noun, never before صَلَّى/تَعَالَى/كَانَ; the nakira participle governs only behind a jarr letter or
+under fatḥa-tanwīn (زَيْدٌ ضَارِبٌ غُلَامُهُ keeps its doer); the sister of كَانَ with her doer on her takes a noun khabar, not the
+separate pronoun (كُنْتَ أَنْتَ الرَّقِيبَ); the grammar noun before a cited particle is left to the wave-68 rule and its chain
+(جَوَازُ دُخُولِ أَنَّ, اسْمُ لَا الْمُكَرَّرَةِ); the sayer of كَقَوْلِهِ is already on it; إِمَامُ with its hamza below is the noun, not
+أَمَامَ; and wherever the author's own ḍamma or kasra stands on the word (`own68`/`o68`, the enclitic's vowel through
+`encV135`), the seat that would overrule it steps back — the receipts the earlier waves introduced, read before every
+new wave-135 seat (الرِّجَالُ after لَا يَضْطَلِعُ … إِلَّا, وَالْعَاقِبَةُ الْحَسَنَةُ, وَتَخْصِيصُهُ, الثَّلَاثَةِ). The release's smoke chunk taught one more
+guard the endings sweep cannot see (mubtadaʾ and khabar share the ḍamma): the nakira that «cannot describe the definite» opens a
+clause only when that definite already has its khabar — a mubtadaʾ still owed one takes the nakira AS its khabar (الْخَيْلُ مَعْقُودٌ
+بِنَوَاصِيهَا الْخَيْرُ keeps its deputy doer; النَّشْرُ مِسْكٌ keeps the likening frame the TashbihEngine reads from the seats); with it, لَا غَيْرُ stays the maqṭūʿ and is no
+لَا of ʿaṭf, and the definite plural participle's object rule steps back before the author's ḍamma (وَالتَّكْوِينُ صِفَةٌ). Sweep of all 51 texts, 49,728 endings: 49,231 right / 280 undecided / 217 wrong (was 49,109 / 292 / 327); 127 fixed, 3 broken (one wrong ending, two left undecided).
+
 **Wave 134 — the writer's shapes and the engine's guards.** The v234 sweep's 346 wrong endings were read by text and
 by rule; the largest groups were not decisions but SHAPES the writer got wrong, and HEADS the chain made that the
 seats forbid. (1) The chain paired a proper name with the definite noun after it (وَلِسُلَيْمَانَ الرِّيحَ،

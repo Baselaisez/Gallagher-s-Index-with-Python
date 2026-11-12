@@ -10338,6 +10338,26 @@ if (!CHROME) {
     if (r.v1[1] !== "لِدَاوُدَ·jarr") throw new Error('the diptote behind its jarr letter lost its fatḥa: ' + JSON.stringify(r.v1));
     if (r.v2[2] !== "حَمْلَهُ·maful") throw new Error('the two-object passive lost its second object: ' + JSON.stringify(r.v2));
   });
+  await check('wave 135 — the doer and its rābiṭ: the khabar verb of a mubtadaʾ and the verb after إِنَّ\'s ism keep the returning pronoun as their doer (كُلُّكُمْ قَدْ أَخَذَ الْجَامَ، أَدَاةَ النَّفْيِ تَنْفِي الزِّيَادَةَ), the Name and the grammarian are doers (يُحِبُّ اللهُ الْجَهْرَ، جَوَّزَ الْمُبَرِّدُ), the carried doer keeps the definite after the jarr pronoun as the object (سَخَّرَ لَهُمَا الْأَقْوِيَاءَ), the maṣdar annexes the annexed (بِتَعْيِينِ أَحَدِ), the sayer of كَقَوْلِ is annexed, the formula عَلَيْهِ السَّلَامُ keeps the clause, إِنَّمَا opens one, the wish\'s answer is in jazm, the لَا of ʿaṭf joins, وَلْيَكُنْ keeps its sukūn — nineteen corpus lines read right and four built sentences', async () => {
+    const r = await page.evaluate((want) => {
+      const rows = want.map(([id, chN, sid, ti]) => { const st = STORIES.find(x => x.id === id); const ch = st && st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === chN); if (!ch) return { id, chN, sid, missing: true };
+        const k = ch.sentences.findIndex(x => x.id === sid); if (k < 0) return { id, chN, sid, missing: true };
+        DabtEngine._lastGraded26 = null; if (k > 0) DabtEngine.grade(ch.sentences[k - 1], 'endings');
+        const g = DabtEngine.grade(ch.sentences[k], 'endings'); const w = g.words[ti] || {}; return { id, chN, sid, ti, want: w.want, out: w.out, ok: w.ok, rule: w.rule, src: w.src }; });
+      DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._youPrev135 = false;
+      const v1 = DabtEngine.vowel("لَعَلِّي أَحُجُّ فَأَزُورَكَ", "endings").words.map(x => x.out + "·" + x.rule);
+      const v2 = DabtEngine.vowel("أَيُّهَا الرَّجُلُ", "endings").words.map(x => x.out + "·" + x.rule);
+      const v3 = DabtEngine.vowel("جَاءَتِ الْيَوْمَ هِنْدٌ", "endings").words.map(x => x.out + "·" + x.rule);
+      const v4 = DabtEngine.vowel("كُلُّكُمْ قَدْ أَخَذَ الْجَامَ", "endings").words.map(x => x.out + "·" + x.rule);
+      return { rows, v1, v2, v3, v4 };
+    }, JSON.parse("[[\"talkhis-al-miftah\", 68, \"s10\", 3], [\"al-kafiya\", 19, \"s13\", 6], [\"al-kafiya\", 15, \"s8\", 8], [\"al-kafiya\", 15, \"s8\", 9], [\"al-kafiya\", 30, \"s2\", 19], [\"al-kafiya\", 38, \"s4\", 4], [\"al-kafiya\", 8, \"s4\", 11], [\"al-kafiya\", 16, \"s5\", 5], [\"qisas-al-nabiyyin-4\", 6, \"s6\", 2], [\"qisas-al-nabiyyin-4\", 45, \"s9\", 1], [\"qisas-al-nabiyyin-4\", 10, \"s12\", 5], [\"qisas-al-nabiyyin-4\", 23, \"s5\", 18], [\"talkhis-al-miftah\", 59, \"s10\", 1], [\"talkhis-al-miftah\", 58, \"s10\", 3], [\"talkhis-al-miftah\", 29, \"s2\", 3], [\"talkhis-al-miftah\", 7, \"s3\", 6], [\"wasiyyat-abi-hanifa-samti\", 5, \"s34\", 0], [\"musa-fi-madyan\", 2, \"s6\", 7], [\"kitab-al-buyu\", 1, \"s5\", 6]]"));
+    const bad = r.rows.filter(x => x.missing || x.ok !== true);
+    if (bad.length) throw new Error('corpus lines still misread: ' + JSON.stringify(bad));
+    if (r.v1[2] !== "فَأَزُورَكَ·nasbVerb") throw new Error('the fāʾ of causation after the hope lost its naṣb: ' + JSON.stringify(r.v1));
+    if (r.v2[1] !== "الرَّجُلُ·nat") throw new Error('the noun after أَيُّهَا lost its rafʿ: ' + JSON.stringify(r.v2));
+    if (r.v3[1] !== "الْيَوْمَ·zarf" || r.v3[2] !== "هِنْدٌ·fail") throw new Error('the ẕarf between the verb and its doer: ' + JSON.stringify(r.v3));
+    if (r.v4[3] !== "الْجَامَ·maful") throw new Error('the khabar verb took a noun doer: ' + JSON.stringify(r.v4));
+  });
 
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
