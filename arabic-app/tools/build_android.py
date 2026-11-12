@@ -48,9 +48,11 @@ def write_www():
     page = (WWW / "index.html").read_text(encoding="utf-8")
     data_files = sorted(p.name for p in (WWW / "data").glob("d*.js"))
     if len(data_files) < 2: sys.exit("the split wrote fewer than two data files")
+    # (wave 150) the page names every data file in its loader list (not in <script> tags) and loads the code from app.js
     for name in data_files:
         n = f"data/{name}"
-        if f'<script src="{n}"></script>' not in page: sys.exit(f"split page does not load {n}")
+        if f'"{n}"' not in page: sys.exit(f"split page does not load {n}")
+    if '<script src="app.js"></script>' not in page or not (WWW / "app.js").exists(): sys.exit("split page does not load app.js")
     return WWW
 
 def stamp_version(v):

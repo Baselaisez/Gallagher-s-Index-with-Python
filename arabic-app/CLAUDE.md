@@ -9986,6 +9986,20 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 150 — SPEED VIII: the hosted copy's boot.** The copy a phone runs (the artifact, the Android shell) is the split
+one — tools/pubsplit.py's page plus data/*.js. Measured over route interception (an in-process https origin, no socket):
+at 1× CPU the inline-code page booted in 1.35 s with a 100 ms long task; at 4× in 2.5–3.3 s with a long task of 478–847 ms
+— the HTML parser swallowing a 3.9 MB inline script, re-parsed on every launch. Now the code leaves the page: `app.js` is
+the first script of the body (an external classic script streams and compiles off the main thread, and the browser keeps
+its bytecode in the code cache from the second visit on); the page keeps the CATALOG and the skeleton inline; the data
+scripts are inserted by a tiny loader after one frame (`async=false` keeps insertion order), so the skeleton shelf is on
+screen before the first data file parses on every host, file:// included (check_split: 51 skeleton cards at first paint,
+tCard 230 ms). At 4× the boot fell to 1.8 s and the longest task to 210 ms; at 1× to 1.0–1.2 s with no long task.
+tools/build_android.py accepts the loader list in place of the <script> tags and requires app.js; the service worker's
+cache-first fetch covers app.js like any other same-origin file. The single-file reader in prototype/ is untouched (the
+wave-127 check still finds its code script first and its data script last). A smoke check runs the split into a temp dir
+and verifies the structure. Every story and feature kept.
+
 **Wave 149 — the prose's remaining wrong endings, by rule.** The v249 blind sweep's 147 wrong rows traced to the line that
 decides each (the `continue` tracer, the condition logger, a `member.set` tracer for the construct pairings). The writer:
 a five noun behind its conjunction keeps its letter-declension (وَذُو الْجَلَالِ — the shape test strips the و/ف and the

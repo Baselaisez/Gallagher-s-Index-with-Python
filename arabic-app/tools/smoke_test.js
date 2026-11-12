@@ -10510,6 +10510,25 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 150 — SPEED VIII, the hosted copy: tools/pubsplit.py writes the code to app.js (compiled off the main thread, code-cached from the second visit), keeps the catalog and the skeleton inline, and inserts the data scripts from a loader after one frame so the skeleton shelf paints before the first data file parses; the single-file reader is untouched', async () => {
+    const cp = require('child_process'), os = require('os'), fsx = require('fs'), pathx = require('path');
+    const dir = fsx.mkdtempSync(pathx.join(os.tmpdir(), 'qissa-split-'));
+    const out = cp.execSync(`python3 tools/pubsplit.py prototype/reader.html "${dir}"`, { encoding: 'utf8' });
+    const page = fsx.readFileSync(pathx.join(dir, 'reader.html'), 'utf8'); const app = fsx.readFileSync(pathx.join(dir, 'app.js'), 'utf8');
+    const files = fsx.readdirSync(pathx.join(dir, 'data')).filter(f => /^d\d+\.js$/.test(f)).sort();
+    if (!/files=\{"app\.js": "app\.js"/.test(out)) throw new Error('the publish map starts with app.js: ' + out.split('\n').pop());
+    if (app.length < 3e6 || page.length > 600e3) throw new Error('the code is in app.js, the page is small: ' + app.length + ' / ' + page.length);
+    if (!/__CATALOG_START__/.test(page) || /__CATALOG_START__/.test(app)) throw new Error('the catalog stays inline, out of app.js');
+    if (!/<script src="app\.js"><\/script>/.test(page)) throw new Error('the page loads app.js');
+    if (/<script src="data\//.test(page)) throw new Error('no data <script src> tag: the loader inserts them');
+    const m = page.match(/var L=(\[[^\]]*\]);function go\(\)/); if (!m) throw new Error('the loader list is missing');
+    const L = JSON.parse(m[1]); if (JSON.stringify(L) !== JSON.stringify(files.map(f => 'data/' + f))) throw new Error('the loader lists every data file in order: ' + m[1] + ' vs ' + files.join(','));
+    if (!/async=false/.test(page) || !/requestAnimationFrame/.test(page)) throw new Error('the loader keeps order and waits a frame');
+    if (!/window\.__qissaDataReady === "function"\) window\.__qissaDataReady\(\)/.test(fsx.readFileSync(pathx.join(dir, 'data', files[files.length - 1]), 'utf8'))) throw new Error('the last data file hands off to the shell');
+    cp.execSync(`node --check "${pathx.join(dir, 'app.js')}"`);
+    fsx.rmSync(dir, { recursive: true, force: true });
+  });
+
   await check('wave 149 — the prose\'s remaining wrong endings by rule: the five noun keeps its letter behind a conjunction (وَذُو), the lexicon\'s plural on a muntahā shape is barred from tanwīn (خَوَاصَّ), كُنْ فَيَكُونُ is the tāmma, the joined al-noun after a jarr phrase in a clause whose object is the verb\'s enclitic joins the jarr phrase (وَالْوَحْيِ), the ṣila\'s nakira behind its jarr letter annexes the al-noun (بِنَظْمِ الْكَلَامِ), the nakira time noun after the quote\'s fronted jarr phrase is the postponed mubtadaʾ, the speaker\'s فَأُفْعِلَ is no passive, the transitive verb\'s owed object follows its doer\'s jarr chain, the Mukhtaṣar\'s وَلَا يَدْخُلُ الْأَخْبَارَ, and a sound plural with its nūn on is never a muḍāf', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
