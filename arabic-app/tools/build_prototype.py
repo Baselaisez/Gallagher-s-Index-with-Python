@@ -301,6 +301,9 @@ def main():
         js("GRAMMAR", grammar),
         js("BAB_MODEL", json.loads((ROOT / "content/models/bab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/bab_model.json").exists() else None),
         js("FIGURE_MODEL", json.loads((ROOT / "content/models/figure_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/figure_model.json").exists() else None),
+        # (wave 136) the IrabModel's weights, fitted by tools/gen_irab_model.js and gated against a fresh fit; the reader
+        # reads them only when their corpus signature is its own (the single-package hadith reader trains as before)
+        js("IRAB_MODEL", json.loads((ROOT / "content/models/irab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/irab_model.json").exists() else None),
         js("CATECHISM", load_catechism()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",

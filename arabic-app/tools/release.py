@@ -50,6 +50,8 @@ def main():
         # engines, committed so that any change moving a single derived cell
         # shows up as a named diff rather than as silence.
         run("drill bank", ["node", "tools/gen_drills.js", "--check"])
+        # (wave 136) the shipped IrabModel is a golden file too: refit in the page and compared weight for weight
+        run("irab model", ["node", "tools/gen_irab_model.js", "--check"])
     else:
         print("\n!!! SKIPPED smoke suite (QISSA_SKIP)")
 

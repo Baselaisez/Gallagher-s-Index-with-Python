@@ -10259,7 +10259,7 @@ if (!CHROME) {
       const out = {};
       // the stepped training, run to completion here in big slices, must equal fit() weight for weight
       IrabModel._model = null; IrabModel._prewarm = null; try { localStorage.removeItem(Relax.key("irab-model")); Relax._mem.delete("irab-model"); } catch (e) {}
-      const t0 = performance.now(); let steps = 0; while (!IrabModel.prewarmStep(200) && steps < 400) steps++; out.prewarmMs = Math.round(performance.now() - t0); out.steps = steps;
+      IrabModel._noShipped = true; /* (wave 136) the shipped weights would answer at once */ const t0 = performance.now(); let steps = 0; while (!IrabModel.prewarmStep(200) && steps < 400) steps++; IrabModel._noShipped = false; out.prewarmMs = Math.round(performance.now() - t0); out.steps = steps;
       const f = IrabModel.fit(IrabModel.rows()); out.same = JSON.stringify(IrabModel._model.w) === JSON.stringify(f.w) && IrabModel._model.total === f.total; out.total = f.total;
       // the Wajh pool: eight items from at most sixteen analyses, never the whole library
       WAJH_CACHE = { scope: null, items: null }; try { Relax._mem.delete("wajh:__lib"); localStorage.removeItem(Relax.key("wajh:__lib")); } catch (e) {}
@@ -10357,6 +10357,49 @@ if (!CHROME) {
     if (r.v2[1] !== "الرَّجُلُ·nat") throw new Error('the noun after أَيُّهَا lost its rafʿ: ' + JSON.stringify(r.v2));
     if (r.v3[1] !== "الْيَوْمَ·zarf" || r.v3[2] !== "هِنْدٌ·fail") throw new Error('the ẕarf between the verb and its doer: ' + JSON.stringify(r.v3));
     if (r.v4[3] !== "الْجَامَ·maful") throw new Error('the khabar verb took a noun doer: ' + JSON.stringify(r.v4));
+  });
+  await check('wave 136 — SPEED III: the corpus walk reads the inverted index of every spelling a paradigm can be matched by and returns, word for word, what the full walk returned (a corpus sample, three tense preferences); the noun lookup is memoised to the same answers; the build ships the IrabModel\'s weights, read only for its own corpus and equal to a fresh fit weight for weight; a fresh sentence analyses in milliseconds, the three game pools build in well under a second', async () => {
+    const r = await page.evaluate(() => {
+      const out = {}; const J = x => JSON.stringify(x);
+      const idx = RootFinder.corpusIndex();
+      out.paradigms = idx.length; out.indexKeys = RootFinder.bareIndex().size;
+      const words = new Set(); STORIES.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => (sen.tokens || []).forEach(t => words.add(t.s.full)))));
+      const all = [...words]; let s = 97; const rnd = () => { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; };
+      const sample = []; while (sample.length < 250) sample.push(all[Math.floor(rnd() * all.length)]);
+      ["وَكَتَبَ", "يُوصَفُونَ", "دُعُوا", "أُخْرِجْنَا", "نُشِرْنَ", "لَمْ يَضَعِ", "تُشَبَّهَ", "نُجِدْ", "سَلْ", "آخُذُ", "رَآهُ", "جَاؤُوا", "كُذِّبَتْ", "تَقْرِنَّ", "وَعَدَا", "بِنَاءُ", "فَلْيَدْعُ", "قُدِرَا"].forEach(w => sample.push(w));
+      let mism = 0, hits = 0; const ex = [];
+      for (const w of sample) for (const prefer of [null, "mudari", "mazi"]) {
+        const a = RootFinder._fromCorpusWalk(w, idx, prefer, null), c = RootFinder._fromCorpusWalk(w, idx, prefer, RootFinder.walkCandidates(w, idx));
+        if (a) hits++; if (J(a) !== J(c)) { mism++; if (ex.length < 5) ex.push({ w, prefer, a: a && a.lemma, c: c && c.lemma }); }
+      }
+      out.walkTests = sample.length * 3; out.walkHits = hits; out.walkMismatch = mism; out.walkExamples = ex;
+      let nm = 0; for (const w of sample.slice(0, 150)) { const a = RootFinder._nounFromCorpus0(w); RootFinder._nfcMemo136.delete(w); const c = RootFinder.nounFromCorpus(w), d = RootFinder.nounFromCorpus(w); if (J(a) !== J(c) || J(c) !== J(d)) nm++; }
+      out.nounMismatch = nm;
+      // the shipped model
+      out.shippedSig = (typeof IRAB_MODEL !== "undefined" && IRAB_MODEL && IRAB_MODEL.corpus) ? IRAB_MODEL.corpus.sig : null; out.sig = IrabModel.corpusSig();
+      const sh = IrabModel.shipped(); out.shipped = !!sh;
+      IrabModel._model = null; IrabModel._prewarm = null; try { localStorage.removeItem(Relax.key("irab-model")); Relax._mem.delete("irab-model"); } catch (e) {}
+      out.prewarmAtOnce = IrabModel.prewarmStep(5) === true && !!(IrabModel._model && IrabModel._model.shipped);
+      IrabModel._model = null; const m = IrabModel.train(); out.trainShipped = !!(m && m.shipped);
+      const f = IrabModel.fit(IrabModel.rows()); out.sameAsFit = J(m.w) === J(f.w) && m.total === f.total; out.total = f.total;
+      // speed, on the memos cleared: fresh sentences through the analyser, the three pools from nothing
+      RootFinder._fcMemo = new Map(); RootFinder._nfcMemo136 = new Map(); RootFinder._memo = new Map();
+      const sens = []; STORIES.slice(5, 25).forEach(st => { const ch = st.chapters[st.chapters.length - 1]; const sen = ch && ch.sentences[ch.sentences.length - 1]; if (sen) sens.push(sen.tokens.map(t => t.s.full).join(" ")); });
+      const t0 = performance.now(); let n = 0; for (const tx of sens.slice(0, 8)) { try { SentenceAnalyzer.analyze(tx); n++; } catch (e) {} } out.analyzeAvgMs = Math.round((performance.now() - t0) / Math.max(1, n));
+      WAJH_CACHE = { scope: null, items: null }; SHOP_CACHE = { scope: null, items: null }; JINAS_CACHE = { scope: null, items: null };
+      try { ["wajh:__lib", "shop:__lib"].forEach(k => { Relax._mem.delete(k); localStorage.removeItem(Relax.key(k)); }); } catch (e) {}
+      const T = fn => { const t = performance.now(); let k = 0; try { k = fn().length; } catch (e) {} return [Math.round(performance.now() - t), k]; };
+      out.wajh = T(() => wajhItems(8)); out.shop = T(() => shopItems(8)); out.jinas = T(() => jinasItems(8));
+      return out;
+    });
+    if (r.walkMismatch) throw new Error('the filtered corpus walk disagrees with the full one: ' + JSON.stringify(r.walkExamples));
+    if (r.walkHits < 60) throw new Error('the walk sample found too few verbs to mean anything: ' + r.walkHits);
+    if (r.nounMismatch) throw new Error('the memoised noun lookup disagrees with the plain one on ' + r.nounMismatch + ' words');
+    if (!r.shipped || r.shippedSig !== r.sig) throw new Error('the build shipped no IrabModel for this corpus: ' + JSON.stringify([r.shippedSig, r.sig]));
+    if (!r.prewarmAtOnce || !r.trainShipped) throw new Error('the shipped model is not the one read: ' + JSON.stringify([r.prewarmAtOnce, r.trainShipped]));
+    if (!r.sameAsFit) throw new Error('the shipped IrabModel differs from a fresh fit (' + r.total + ' rows) — run tools/gen_irab_model.js and rebuild');
+    if (r.analyzeAvgMs > 400) throw new Error('a fresh sentence analyses too slowly on cleared memos: ' + r.analyzeAvgMs + ' ms average (ceiling 400)');
+    for (const [k, v] of [["wajh", r.wajh], ["shop", r.shop], ["jinas", r.jinas]]) if (v[0] > 2500 || v[1] < 1) throw new Error('the ' + k + ' pool from nothing: ' + v[0] + ' ms for ' + v[1] + ' items (ceiling 2500 ms)');
   });
 
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
@@ -12929,7 +12972,8 @@ if (!CHROME) {
       if (n.mistakes < 3) throw new Error(id + ': fewer than three mistakes: ' + n.mistakes);
     });
     r.d.forEach((d, q) => { if (d.dabt < 97) throw new Error('ch' + (32 + q) + ' endings-mode dabt below 97: ' + d.dabt + ' on ' + d.n); });
-    [47, 40, 61, 79, 73, 65, 74, 94, 81, 58, 116, 62, 122, 92, 90, 59, 106, 102, 71, 121, 122, 112, 128, 61, 108, 126, 108, 166, 117, 106, 74, 63, 90, 62, 88].forEach((min, q) => { if (r.d[q].n < min) throw new Error('ch' + (32 + q) + ' grades fewer words than round 69 did (SHRUNK): n=' + r.d[q].n + ' < ' + min); });
+    /* (wave 136) ch38 74 → 72 and ch44 122 → 121: the author's receipts refuse the seats that contradict them and leave those words undecided — three cited examples (مُقَدَّمًا، زَيْدًا، مُنْقَطِعًا) were graded on a wrong seat with the right ending before */
+    [47, 40, 61, 79, 73, 65, 72, 94, 81, 58, 116, 62, 121, 92, 90, 59, 106, 102, 71, 121, 122, 112, 128, 61, 108, 126, 108, 166, 117, 106, 74, 63, 90, 62, 88].forEach((min, q) => { if (r.d[q].n < min) throw new Error('ch' + (32 + q) + ' grades fewer words than round 69 did (SHRUNK): n=' + r.d[q].n + ' < ' + min); });
     const need = (name, arr, n, msg) => { if (arr.length < n || arr.some(x => x.ok === false)) throw new Error(msg + ' — ' + JSON.stringify(arr)); };
     need('nahwZayd', r.nahwZayd, 2, 'نَحْوُ زَيْدٍ: نَحْو never carries the tanwīn before what it cites, the cited noun its muḍāf ilayh (69)');
     need('muntaha', r.muntaha, 4, 'نَحْوُ مَسَاجِدَ وَمَصَابِيحَ: the cited diptote on its fatḥa, the joined one riding it as written (69)');

@@ -9986,6 +9986,54 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 136 — SPEED III and the author's receipts.** The owner's complaint stood: the Atölye and the games were still slow.
+Timed cold at 4× CPU on v236, every lab tab opened under 130 ms and every game under 320 ms — except the three that read
+eight FRESH sentences through the analyser on the tap: gWajh 17.0 s, gJinas 14.9 s, gShop 12.2 s. The CPU profile put 88 % of
+the analyser's time in ONE place, `RootFinder._fromCorpusWalk`: for every word, four passes (whole word, joiner-stripped,
+exact, loose) over every one of the 1,258 verb paradigms, each pass walking the paradigm's cells through
+`findFormInParadigm` — 60–100 ms a word, seconds a sentence, 130 s for 1,500 words in the probe. (1) `paradigmBares136(m)`
+names every bare skeleton the matcher could match for a paradigm — the stored cells, the passive it builds from each
+active cell (`sjMajhul`), and each derivation it tries beside a cell (the group's wāw plural and the ت/أ/ن persons of the
+stored majhūl muḍāriʿ, the dual/plural/she/you/we/women forms of the stored majhūl māḍī and its alif of iṭlāq, the أ/ن
+persons rebuilt from a ي/ت jussive, the ي-twins of a ن/أ/ت word on the three single cells); `RootFinder.bareIndex()` inverts
+them once per corpus index (29,108 keys, 222 ms) and `walkCandidates(word)` hands the walk only the paradigms whose bares
+meet the word's candidates (formCandidates + the joiner-stripped whole). The matcher is untouched and the candidates
+come in index order, so the first hit is the same hit: 4,560 lookups (1,500 corpus words × three tense preferences, plus
+the hard shapes) agree word for word, 130.6 s → 86 ms; the 49,728-ending sweep is identical. `nounFromCorpus` is memoised
+per written word. (2) The first analysis of a fresh install also FIT the IrabModel on the tap (1.5 s on a laptop): the
+build now ships the weights. `tools/gen_irab_model.js` fits in the page and writes `content/models/irab_model.json`
+(2,275 weights over 41,294 rows, with the corpus signature `IrabModel.corpusSig()` = texts:tokens:first:last);
+`build_prototype.py` embeds it as `IRAB_MODEL`; `IrabModel.shipped()` returns it only for its own corpus (the
+single-package ḥadīth reader trains as before), and `train()`/`prewarmStep()` read it first. The release gate
+(`gen_irab_model.js --check`, in tools/release.py beside the drill bank) refits and compares weight for weight — a
+golden file like the bank. Cold at 4× CPU after both: gWajh 386 ms, gJinas 154 ms, gShop 557 ms; a fresh sentence
+analyses in 5–20 ms (first one 420 ms, the indexes included). (3) The ḍabṭ half — the author's ENDING as the receipt a
+seat may not contradict, the wave-135 policy made general: `endR136` reads the final short vowel on the word as written
+(under the enclitic through `encV135`, the tanwīn's seat-alif read through; the dual's نِ and the plural's نَ are no
+receipt — سُلَيْمَانَ is no dual). The pre-pass doer steps back before a fatḥa (تَوَهَّمَتِ الزُّجَاجَةَ، يُجَالِسُ الْفُقَرَاءَ،
+تُعَرِّفُكَ أَخْبَارَ النَّاسِ، جَاءَ سُلَيْمَانَ); the name after the verb under a fatḥa is the object of a concealed doer
+(فَالْتَقَمَ يُونُسَ); the relative's intransitive-verb doer and the «no new clause» mubtadaʾ step back before a fatḥa or
+kasra (لِمَا لَزِمَ الْعِبَادَ، بِنَظْمِ الْكَلَامِ، أَنْ يَفُوقَ الْمَمْدُوحُ النَّاسَ); the object default and the pre-pass object step
+back before a ḍamma — the word is then the doer the verb still owes (جَاءَتِ الْيَوْمَ هِنْدٌ، وَجَوَّزَ الْمُبَرِّدُ،
+اللَّفْظَيْنِ الِاشْتِقَاقُ), the khabar an open mubtadaʾ owes (كُلُّ مَا تَرَى … أَجْرُكَ), the partner of the raised noun
+before it — joined, describing it, or its khabar (شَيْءٌ كَثِيرٌ وَأَوْلَادٌ مَرْضِيَّةٌ، الْحُكَّامُ الْأَجَانِبُ الْمُشْرِكُونَ،
+وَفُلْكٌ جَمْعٌ) — the khabar of a relative-opened clause (وَالَّذِي أَعْطَانِيَ اللهُ … خَيْرٌ مِمَّا), or, bearing a pronoun,
+the mubtadaʾ of a new clause (أَصْلُهُ زَيْدٌ قَائِمٌ); the ʿaṭf reads the receipt — where the head's case contradicts the
+joined word's own ending, the partner is the nearest earlier noun seated in the written case (بِالنُّبُوَّةِ وَالْوَحْيِ
+وَآتَاهُ، عَبْدًا لِلّٰهِ وَلَا الْمَلَائِكَةُ الْمُقَرَّبُونَ، وَالْمُدَاهَنَةَ لِلشِّرْكِ وَالِاضْطِرَابَ، وَبَعْضُهُ غَيْرُ عَامِلٍ); the deputy
+doer steps back before the kasra under the pronoun (فِي ذٰلِكَ كُلِّهِ). And the relative مَا — the definition's مَا after a
+mubtadaʾ or khabar, and مَا behind a jarr letter (مِمَّا، لِمَا، بِمَا، فِيمَا، عَمَّا) — joins the ṣila rule of wave 83: its
+verb's doer is the returning pronoun, the plain definite after it the object (وَالْخَبَرُ مَا احْتَمَلَ الصِّدْقَ وَالْكَذِبَ،
+مِمَّا يُلَائِمُ الْقَرِيبَ، اسْمٌ لِمَا لَزِمَ الْعِبَادَ). Last, `set()` itself refuses the seat the receipt contradicts (no object or
+jarr on a ḍamma, no raised seat on a fatḥa or kasra; the nūn, the verb's own vowel and the diptote's jarr excepted) and
+leaves the word to the rules below and the wave-133 fallback — counted in `DabtEngine._refused136`. Honesty note: these
+receipts read the AUTHOR'S ending; on a vowelled text the engine names seats, on an unvowelled one it decides as before,
+and the sweep below is the vowelled corpus. The release's smoke chunks drew the two boundaries: the receipts are read ONLY
+inside `grade()` — the authored corpus (`_receiptsOn136`); a sentence typed into a lab is the user's claim, and the Ḍabṭ lab checks
+exactly those endings (ذَهَبَ الطَّالِبَ must be flagged), so `vowel()` on free text reads none; and the ḍamma word is the postposed doer
+only of a verb that still owes one — not of ضَرَبْتُ, whose doer is on it, and never across a joined word (وَفِي الدَّارِ رَجُلٌ opens its
+own clause: the Jumla ledger keeps «الْفَاعِلُ ضَمِيرٌ مُتَّصِلٌ»). Sweep of all 51 texts, 49,728 endings: 49,232 right / 398 undecided / 98 wrong (was 49,231 / 280 / 217); 102 fixed, 101 broken — 99 of them seats the receipt refused and left undecided (the right ending on a wrong seat before: زَيْدًا labelled a mubtadaʾ), two wrong.
+
 **Wave 135 — the doer and its rābiṭ.** The v235 sweep's 327 wrong endings read by text and by rule: the largest group
 was a noun seated as the DOER where the seats forbid a noun doer. (1) The khabar verb of a mubtadaʾ and the verb after
 the ism of إِنَّ need a returning pronoun (the rābiṭ): when a plain ال-noun follows such a verb and the verb agrees with
