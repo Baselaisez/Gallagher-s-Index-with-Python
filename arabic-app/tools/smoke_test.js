@@ -10463,6 +10463,25 @@ if (!CHROME) {
     if (!r.keyCleared) throw new Error('the graded sentence key stayed set after grade()');
   });
 
+  await check('wave 139 — the verb by its shape in every tense and person (MudariShape.full): the māḍī with its suffixes, the augmented bābs, the passives, the amr and the jussive, the muḍāriʿ with its number suffixes, behind a joiner / lām / سَ and before an attached pronoun; the nouns that wear a verb-like skeleton stay nouns; the analyser reads the Talkhīṣ\'s misread verbs', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      const F = w => { const f = MudariShape.full(w); return f ? f.bab + "/" + f.tense + "/" + f.person + (f.enc ? "+" : "") : null; };
+      out.verbs = ["كَسَبَتْ", "وَكَذَّبَ", "نُجِدْ", "وَيُسَمِّيهِ", "تَكَلَّمُ", "حُمَّتْ", "لَأَمْكَنَا", "تَمْسَسْهُ", "فَكَبِّرْ", "كُنْتِ", "أَزْمَعْتِ", "تَبَدَّلْتِ", "دَرَسْنَا", "يَكْتُبُونَ", "تَكْتُبِينَ", "يَجْلِسَانِ", "اسْتَغْفَرُوا", "اِجْلِسْ", "سَيَذْهَبُونَ", "اِنْطَلَقَتْ", "تَبَادَلُوا", "عُلِّمَتْ", "أُخْرِجَ"].map(F);
+      out.nouns = ["وَلَدَ", "خَاتَمَ", "أَكْبَرَ", "كَاتِبُهُ", "كِتَابُ", "بِنْتِ", "أُخْتِ", "الْكِتَابَ", "سَبْتِ", "بِرٌّ", "مُعَلِّمُ", "رَبَّكَ", "رَبِّنَا", "غُرَّتَهُ", "صُرَّتَنَا", "وَطَرَفَاهُ", "قَبْلَ", "عِنْدَ", "مَدْرَسَةُ", "أُمَّهُ", "حَقَّهُ"].map(F);
+      const A = w => { const x = SentenceAnalyzer.analyze(w)[0] || {}; return (x.kind || "") + (x.cell && x.cell.tense ? "/" + x.cell.tense : ""); };
+      out.read = ["كَسَبَتْ", "وَكَذَّبَ", "نُجِدْ", "تَكَلَّمُ", "حُمَّتْ", "لَأَمْكَنَا", "فَكَبِّرْ", "كُنْتِ", "بَخِلَا", "وَشُدَّتْ"].map(A);
+      out.kept = ["أَمْسِ", "رَبَّكَ", "غُرَّتَهُ", "وَطَرَفَاهُ", "بَلَى", "لَفِي", "وَنِعْمَ"].map(A);
+      return out;
+    });
+    const want = ['I/mazi/3', 'II/mazi/0', 'IV/mudari/13', 'II/mudari/0+', 'V/mudari/3', 'I/majhulMazi/3', 'IV/mazi/1', 'I/mudari/3+', 'II/amr/6', 'I/mazi/9', 'IV/mazi/9', 'V/mazi/9', 'I/mazi/13', 'I/mudari/2', 'I/mudari/9', 'I/mudari/1', 'X/mazi/2', 'I/amr/6', 'I/mudari/2', 'VII/mazi/3', 'VI/mazi/2', 'II/majhulMazi/3', 'IV/majhulMazi/0'];
+    r.verbs.forEach((v, i) => { if (v !== want[i]) throw new Error('shape ' + i + ': got ' + v + ', want ' + want[i]); });
+    r.nouns.forEach((v, i) => { if (v) throw new Error('a noun read as a verb shape: #' + i + ' → ' + v); });
+    r.read.forEach((v, i) => { if (!/^verb/.test(v)) throw new Error('the analyser still misreads verb #' + i + ' as ' + v); });
+    const keptWant = [/^noun/, /^noun/, /^noun/, /^noun/, /^noun/, /^particle/, /^verb/];
+    r.kept.forEach((v, i) => { if (!keptWant[i].test(v)) throw new Error('kept word #' + i + ' read as ' + v); });
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });

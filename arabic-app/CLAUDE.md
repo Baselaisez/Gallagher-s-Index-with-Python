@@ -9986,6 +9986,33 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 139 — the verb by its shape in every tense and person.** Wave 138 had taught the analyser one shape, the bare
+muḍāriʿ. The drill bank's part-of-speech audit (`tools/gen_drills.js`, 8,132 human-tagged tokens) still showed 126
+disagreements, and the Talkhīṣ's verbs were being read as nouns: كَسَبَتْ as كَ + سَبْت, وَكَذَّبَ as ذَبّ, فَكَبِّرْ as فَ + كَ + بِرّ,
+نُجِدْ as نَجْد, تَكَلَّمُ as a noun, حُمَّتْ / شُدَّتْ / حُفَّتْ unread, كُنْتِ / أَزْمَعْتِ / تَبَدَّلْتِ as majrūr nouns, لَأَمْكَنَا as a noun with
+its pronoun, بَخِلَا as بِ + a particle. `MudariShape.full(word)` now reads the WHOLE conjugation by vowel-shape — (1) the
+muḍāriʿ bare or with its number suffix (ونَ / ينَ / انِ / نَ), the hollow jussive on its sukūn (نُجِدْ، يَقُلْ) and the assimilated
+تَفَعَّلُ / تَفَاعَلُ; (2) the māḍī stems of bābs I–X and the passives فُعِلَ / فُعِّلَ / أُفْعِلَ / the geminate فُعَّتْ with the
+fourteen person suffixes, the hollow māḍī before a consonant suffix (كُنْتِ — damma only: بِنْتِ is a noun); (3) the amr of
+bābs I–X on its sukūn with the plural / feminine / dual endings — all behind a joiner (وَ / فَ), a lām (لَ / لِ) or the future
+سَ, and before an attached pronoun. A shape a NOUN could wear is admitted only with a suffix no noun takes: the bare فَعَلَ
+(وَلَدَ), فَاعَلَ (خَاتَمَ) and أَفْعَلَ (أَكْبَرَ) need their تْ / تُ / نَا / وا; the dual alif on those stems is refused (مَنَوَا سَمْنٍ,
+طَرَفَاهُ, أَفْضَلَا are annexed dual nouns) except behind the oath's lām (لَأَمْكَنَا); the two-radical geminate noun with its
+pronoun (رَبَّكَ، رَبِّنَا، غُرَّتَهُ، صُرَّتَنَا، أُمَّهُ) is never a verb; أُخْرِجَ with a final fatha is the passive māḍī, not the
+speaker's muḍāriʿ in naṣb. The tie-break consults it where the lexicon is silent; a synthetic cell is built only for a word
+that ends in its last radical — a suffix or a pronoun carries its own fixed vowel (تُرْجَعُونَ، نُذِقْهُ، يُبَشِّرُكِ keep theirs).
+Four analyser guards came with it: the fused jarr letter's noun must wear the WRITTEN vowels (`sjSarfAgree`; a vowel + تْ
+ending is the feminine māḍī, a pronoun's sukūn is not — and the ḍabṭ engine's own two fused-jarr-over-a-verb rules take the
+same test through `DabtEngine.fusedNounWears139`, so the wave-23 pin وَرَبَّكَ فَكَبِّرْ keeps its amr); the noun lexicon does not take a verb-shaped guess whose written
+vowels it does not wear, nor an entry that is itself a verb; the kasra after a sukūn on a final tāʾ (كُنْتِ) is the
+she-addressee's suffix, not a jarr sign; the peeled بِ / لُ / كَ must wear its own vowel (بَخِلَا is a verb; لَ may still be the
+lām of ibtidāʾ); the engine's built adverbs (`KEEP26`: أَمْسِ، فَقَطْ، هُنَا…, but not نَعَمْ / بَلَى / كَلَّا, which have verb
+homographs) are never verbs in the analyser either, and أَمْسِ is its own lemma. Measured: POS agreement 98.5 → 98.7 %
+(126 → 108 disagreements: 18 fixed, 0 broken); the blind sweep (49,252 / 193 / 283) and the receipts-on sweep
+(49,458 / 96 / 174) are unchanged to the ending — 0 fixed, 0 broken. The remaining disagreements are labelling conventions (مَا as pronoun vs particle, 50),
+particles the human tags as nouns (فِيمَا، كَمَا، إِذْ), and defective verbs the shape does not yet reach (يَكُ، نَبْكِ، يَلِيهِ،
+إِخَالُ).
+
 **Wave 138 — the typed sentence read blind.** The sweep had always been run with the author's receipts on; measured BLIND
 (`DabtEngine._blind138`, the receipts off as they are for a typed sentence in the Ḍabṭ lab and the Muḥallil) v238 read
 49,229 right / 216 wrong / 283 undecided of 49,728 — the number that says how the engine reads a NEW sentence. The wrong

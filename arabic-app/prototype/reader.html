@@ -10435,7 +10435,7 @@ function anJarrNoun32(row, w){   /* (wave 32r) the jarr letter's claim made good
 class MudariShape {
   static SHAPES = (() => {
     const C = "[ء-ي]", V = "[َُِ]", E = "[َُْ]?$";
-    const mk = (bab, body, pre) => ({ bab, re: new RegExp("^" + pre + body + E) });
+    const mk = (bab, body, pre) => ({ bab, re: new RegExp("^" + pre + body + E), body: pre + body });   /* (wave 139) body kept for the suffixed forms */
     return [
       mk("I",    "َ" + C + "ْ" + C + V + C, "[يتن]"),                                   // يَفْعُلُ، تَكْتُبُ، نَنْصُرُ
       mk("II",   "ُ" + C + "َ" + C + "ِّ" + C, "[يتنأ]"),                     // يُفَعِّلُ
@@ -10456,6 +10456,87 @@ class MudariShape {
     for (const s of this.SHAPES) if (s.re.test(core)) {
       const p = core[0]; const person = p === "ي" ? 0 : p === "ت" ? 3 : p === "ن" ? 13 : 12;
       return { bab: s.bab, person, passive: /majhul/.test(s.bab), joined: core !== w, core };
+    }
+    return null;
+  }
+  /* (wave 139) the whole conjugation by shape — the māḍī with its person suffixes, the augmented bābs, the passives, the amr and
+     the jussive on their sukūn, the muḍāriʿ with its number suffixes — behind a joiner (وَ / فَ), a lām (لَ / لِ) or the future سَ,
+     and before an attached pronoun. The person is read off prefix and suffix as the paradigm tables read it. A shape a NOUN could
+     also wear is admitted only with a suffix no noun takes: bāb I فَعَلَ (the annexed وَلَدَ), bāb III فَاعَلَ (خَاتَمَ) and bāb IV
+     أَفْعَلَ (the elative أَكْبَرَ) need their تْ / تُ / نَا / وا; the augmented bābs V–X and the passives stand alone. */
+  static MAZI_SUFFIX = [["ْتُمَا", 7], ["ْتُنَّ", 11], ["ْتُمْ", 8], ["ْنَا", 13], ["ْتَا", 4], ["ْنَ", 5], ["ْتُ", 12], ["ْتَ", 6], ["ْتِ", 9], ["ُوا", 2], ["َتَا", 4], ["َتْ", 3], ["َا", 1], ["َ", 0]];
+  static GEM_SUFFIX = [["تُمَا", 7], ["تُمْ", 8], ["نَا", 13], ["تَا", 4], ["تْ", 3], ["تُ", 12], ["تَ", 6], ["تِ", 9], ["ا", 1]];
+  static full(word){
+    const w0 = String(word || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, "");
+    if (!w0 || /[ًٌٍ]/.test(w0) || /ة$/.test(w0.replace(/[ً-ْ]+$/, "")) || /^ال/.test(w0)) return null;
+    let w = w0, pre = "";
+    const mJ = w.match(/^([وف]َ)(?=[ء-ي])/); if (mJ && stripAr(w).replace(/[^ء-ي]/g, "").length > 3) { pre += mJ[1]; w = w.slice(mJ[1].length); }
+    const mL = w.match(/^(ل[َِ]|سَ)(?=[يتنأا])/); if (mL && stripAr(w).replace(/[^ء-ي]/g, "").length > 3) { pre += mL[1]; w = w.slice(mL[1].length); }
+    let enc = "", hit = this.fullCore(w);
+    if (!hit) {
+      const mE = w.match(/(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|نَا|هَا|هُ|هِ|كَ|كِ|نِي)$/);
+      if (mE) { const host = w.slice(0, -mE[0].length); if (stripAr(host).replace(/[^ء-ي]/g, "").length >= 3) { hit = this.fullCore(host) || this.fullCore(host + "َ") || this.fullCore(host + "ُ"); if (hit && hit.how === "mazi" && hit.bab === "I" && hit.person === 1) hit = null; /* طَرَفَاهُ: the dual noun */ if (hit && hit.how === "mazi" && /^[ء-ي][َُِ][ء-ي][َُِ]ّ(ت[َُِ]?)?$/.test(host)) hit = null; /* غُرَّتَهُ، صُرَّتَنَا، أُمَّهُ: the geminate noun before its pronoun */ if (hit) enc = mE[0]; } }
+    }
+    if (!hit) return null;
+    if (hit.how === "mazi" && hit.person === 1 && /^(I|III|IV)$/.test(hit.bab) && !/majhul/.test(hit.tense) && pre !== "لَ") return null;   // مَنَوَا سَمْنٍ، أَفْضَلَا: the dual noun annexed
+    if (hit.how === "mudari" && hit.person === 3 && /^(نِي|نَا)$/.test(enc) && /^ت/.test(w)) hit = { ...hit, person: 6 };   // تَشْتُمْنِي: the ت before the speaker's pronoun is the addressee
+    return { ...hit, pre, enc, core: w, joined: /^[وف]/.test(pre), passive: /majhul/.test(hit.tense), suffixed: !!hit.suffixed || !!enc };
+  }
+  static fullCore(w){
+    const C = "[ء-ي]", V = "[َُِ]";
+    if (/^[ء-ي][َُِ][ء-ي][َُِ]ّ(ت[َِ])?(كَ|كِ|هُ|هِ|هَا|هُمْ|هُمَا|هُنَّ|كُمْ|كُمَا|كُنَّ|نَا|نِي|يَ?)$/.test(w)) return null;   // رَبَّكَ، رَبِّنَا، غُرَّتَهُ: a two-radical geminate NOUN wearing its pronoun
+    // 1 · the muḍāriʿ — bare (its last vowel or a jussive sukūn), or with its number suffix
+    for (const s of this.SHAPES) {
+      const m = w.match(new RegExp("^" + s.body + "([َُْ]?|ُونَ|ُون|ِينَ|ِين|َانِ|َان|ْنَ)$")); if (!m) continue;
+      const p = w[0], t = m[1]; let person = p === "ي" ? 0 : p === "ت" ? 3 : p === "ن" ? 13 : 12;
+      if (p === "أ" && s.bab === "IV" && t === "َ") continue;   // أُخْرِجَ: the passive māḍī outranks the speaker's muḍāriʿ in naṣb
+      if (/^ُون/.test(t)) person = p === "ي" ? 2 : 8; else if (/^ِين/.test(t)) person = 9; else if (/^َان/.test(t)) person = p === "ي" ? 1 : 4; else if (t === "ْنَ") person = p === "ي" ? 5 : 11;
+      return { bab: s.bab.replace("-majhul", ""), tense: /majhul/.test(s.bab) ? "majhulMudari" : "mudari", person, how: "mudari", suffixed: t.length > 1 };
+    }
+    // 1b · the hollow jussive on its sukūn (يَقُلْ، نُجِدْ، تَخَفْ) and the assimilated تَفَعَّلُ / تَفَاعَلُ (تَكَلَّمُ for تَتَكَلَّمُ)
+    for (const [bab, re, tense] of [
+      ["I",  new RegExp("^[يتنأ]َ" + C + V + C + "ْ$"), "mudari"],
+      ["IV", new RegExp("^[يتنأ]ُ" + C + "ِ" + C + "ْ$"), "mudari"],
+      ["V",  new RegExp("^تَ" + C + "َ" + C + "َّ" + C + "[ُْ]$"), "mudari"],
+      ["VI", new RegExp("^تَ" + C + "َا" + C + "َ" + C + "[ُْ]$"), "mudari"],
+    ]) if (re.test(w)) { const p = w[0]; return { bab, tense, person: p === "ي" ? 0 : p === "ت" ? 3 : p === "ن" ? 13 : 12, how: "mudari" }; }
+    // 2 · the māḍī stems with their person suffixes
+    const stems = [
+      ["I",     C + "َ" + C + V + C, true],           // فَعَلَ / فَعِلَ / فَعُلَ — a suffix is required (وَلَدَ)
+      ["II",    C + "َ" + C + "َّ" + C, false],        // فَعَّلَ
+      ["III",   C + "َا" + C + "َ" + C, true],          // فَاعَلَ — خَاتَمَ is a noun: a suffix is required
+      ["IV",    "أَ" + C + "ْ" + C + "َ" + C, true],      // أَفْعَلَ — أَكْبَرَ is the elative: a suffix is required
+      ["V",     "تَ" + C + "َ" + C + "َّ" + C, false],    // تَفَعَّلَ
+      ["VI",    "تَ" + C + "َا" + C + "َ" + C, false],     // تَفَاعَلَ
+      ["VII",   "[اٱ]ِ?نْ" + C + "َ" + C + "َ" + C, false],      // اِنْفَعَلَ
+      ["VIII",  "[اٱ]ِ?" + C + "ْتَ" + C + "َ" + C, false],      // اِفْتَعَلَ
+      ["X",     "[اٱ]ِ?سْتَ" + C + "ْ" + C + "َ" + C, false],     // اِسْتَفْعَلَ
+      ["I-majhul",    C + "ُ" + C + "ِ" + C, false],              // فُعِلَ
+      ["II-majhul",   C + "ُ" + C + "ِّ" + C, false],             // فُعِّلَ
+      ["IV-majhul",   "أُ" + C + "ْ" + C + "ِ" + C, false],        // أُفْعِلَ
+      ["V-majhul",    "تُ" + C + "ُ" + C + "ِّ" + C, false],
+      ["VIII-majhul", "[اٱ]ُ?" + C + "ْتُ" + C + "ِ" + C, false],
+      ["X-majhul",    "[اٱ]ُ?سْتُ" + C + "ْ" + C + "ِ" + C, false],
+    ];
+    for (const [bab, stem, needSuffix] of stems) for (const [suf, person] of this.MAZI_SUFFIX) {
+      if (suf === "َ" && needSuffix) continue;
+      if (new RegExp("^" + stem + suf + "$").test(w)) return { bab: bab.replace("-majhul", ""), tense: /majhul/.test(bab) ? "majhulMazi" : "mazi", person, how: "mazi", suffixed: suf !== "َ" };
+    }
+    // 2b · the geminate passive فُعَّتْ (حُمَّتْ، شُدَّتْ، حُفَّتْ) and the hollow māḍī before a consonant suffix (قُلْتُ، كُنْتِ — damma only: بِنْتِ is a noun)
+    for (const [suf, person] of this.GEM_SUFFIX) if (new RegExp("^" + C + "ُ" + C + "َّ" + suf + "$").test(w)) return { bab: "I", tense: "majhulMazi", person, how: "mazi", suffixed: true };
+    for (const [suf, person] of this.MAZI_SUFFIX) if (/^ْ/.test(suf) && new RegExp("^[ب-ي]ُ" + C + suf + "$").test(w)) return { bab: "I", tense: "mazi", person, how: "mazi", suffixed: true };
+    // 3 · the amr on its sukūn, with its plural / feminine / dual endings
+    for (const [bab, stem] of [
+      ["I",    "[اٱ][ِ ُ]?" + C + "ْ" + C + V + C],   // اِفْعَلْ / اُفْعُلْ
+      ["II",   C + "َ" + C + "ِّ" + C],                 // فَعِّلْ
+      ["III",  C + "َا" + C + "ِ" + C],                 // فَاعِلْ
+      ["IV",   "أَ" + C + "ْ" + C + "ِ" + C],            // أَفْعِلْ
+      ["V",    "تَ" + C + "َ" + C + "َّ" + C],           // تَفَعَّلْ
+      ["VIII", "[اٱ]ِ?" + C + "ْتَ" + C + "ِ" + C],       // اِفْتَعِلْ
+      ["X",    "[اٱ]ِ?سْتَ" + C + "ْ" + C + "ِ" + C],      // اِسْتَفْعِلْ
+    ]) {
+      const m = w.match(new RegExp("^" + stem.replace(" ", "") + "(ْ|ُوا|ُو|ِي|َا|ْنَ)$"));
+      if (m) return { bab, tense: "amr", person: m[1] === "ْ" ? 6 : /^ُو/.test(m[1]) ? 8 : m[1] === "ِي" ? 9 : m[1] === "َا" ? 7 : 11, how: "amr", suffixed: m[1] !== "ْ" };
     }
     return null;
   }
@@ -10893,6 +10974,7 @@ class SentenceAnalyzer {
       // «إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ» is لَامُ الِابْتِدَاءِ, slid onto the khabar
       // (الْمُزَحْلَقَة), and the majrur of في is the noun after it.
       if (!this.PARTICLES[core] && /^[بلك]/.test(core) && core.length > 2 && !/[ًٌٍ]/.test((w || "").normalize("NFC")) &&
+          !(/^ب[َُ]|^لُ|^ك[ُِ]/.test((w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*(?=[بلك])/, "")) && !/^.ال/.test(core)) /* (wave 139) the letter's own vowel: بَخِلَا is a verb, بِ wears kasra (لَ may be the lām of ibtidāʾ) */ &&
           !(/^(لم|لن|لا|ما|لو|كي|قد|هل|لكن|لعل|ليت|لما)$/.test(core.slice(1)) && new RegExp("^[وف]?[ً-ٰ]*" + core[0] + "[ً-ٰ]*" + core[1] + "[ُِ]").test((w || "").normalize("NFC"))) /* (wave 44a) كَلِمَ الْمُجَازَاةِ: the kasra on the lām refutes لَمْ — the word is the lexicon's كَلِم */ &&
           (/^.ال/.test(core) ||
            // (wave 21n) بِأَنَّكَ، لِأَنَّهُ: the nasikh wearing its pronoun behind the jarr letter
@@ -11740,7 +11822,7 @@ class SentenceAnalyzer {
           // …the DUAL of the five verbs ends in a kasra of its own (يَشْتَرِكَانِ):
           // that kasra is the nun's bina, not a case, so a cell written ـانِ is
           // exempt — a jarr sign cannot stand on a letter the paradigm vowels.
-          const jarrSign = /ِ$/.test(w.normalize("NFC").replace(/[«»،.:!؟]/g, "")) &&
+          const jarrSign = /ِ$/.test(w.normalize("NFC").replace(/[«»،.:!؟]/g, "")) && !/ْتِ$/.test(w.normalize("NFC").replace(/[«»،.:!؟]/g, "")) /* (wave 139) كُنْتِ: the she-addressee's تِ after a sukūn */ &&
                            r.cell && !cellSukun && !/انِ$/.test((r.cell.form || "").normalize("NFC")) &&
                            ["mazi", "mudari"].includes(r.cell.tense);
           // …and the SEVENTH reads the ATF: the ism tafdil and the Form IV
@@ -11847,7 +11929,10 @@ class SentenceAnalyzer {
             row.kind = "noun"; row.sure = true; row.lemma = "ابْن";
             row.notes.push({ en: "«son of» between two names — annexed to the name after it, a na't or a mudaf ilayh of the one before; no «build!» here", tr: "iki isim arasında «oğlu» — ardındaki isme muzâf, öncekinin na'ti veya muzâfun ileyhi; «inşa et!» değil" });
           }
-          else if (r.cell && /^([وف][ً-ٰ]*)?([بل][ً-ٰ]*ِ|ك[ً-ٰ]*َ)/.test(w.normalize("NFC")) && (() => { try { const e = RootFinder.nounFromCorpus(w.normalize("NFC").replace(/^([وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, "")); return !!e && !/verb|part|pron/.test(e.pos || ""); } catch (e) { return false; } })()) {
+          else if (r.cell && /^([وف][ً-ٰ]*)?([بل][ً-ٰ]*ِ|ك[ً-ٰ]*َ)/.test(w.normalize("NFC")) && (() => { try { const rem = w.normalize("NFC").replace(/^([وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, ""); const e = RootFinder.nounFromCorpus(rem); if (!e || /verb|part|pron/.test(e.pos || "")) return false;
+                     /* (wave 139) the noun behind the letter must wear the WRITTEN vowels: كَسَبَتْ is كَسَبَ + تْ, not كَ + سَبْت; فَكَبِّرْ is the amr, not فَ + كَ + بِرّ */
+                     if (/[ً-ٰ]/.test(rem)) { if (/[َُِ]تْ$/.test(rem) && !/ة/.test(rem)) return false; const lm = String(e.lemma || "").split(/[()\s،,\/]/)[0].normalize("NFC"); if (lm && /[ً-ٰ]/.test(lm) && !sjSarfAgree(rem, lm)) return false; }
+                     return true; } catch (e) { return false; } })()) {
             // بِأَرْضِ قَوْمٍ: a kasra'd jarr letter on the lexicon's noun is that noun, whatever verb cell the letters reach (لَمْ أَرْضَ) (wave 19)
             const wn = RootFinder.nounFromCorpus(w.normalize("NFC").replace(/^([وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, ""));
             row.kind = "noun"; row.lemma = wn.lemma; row.gloss = wn.gloss; row.sure = true; if (wn.root) row.root = wn.root; row.afterJarr = true;
@@ -11893,7 +11978,12 @@ class SentenceAnalyzer {
       // …and if no verb paradigm claimed it, ask the noun lexicon. A gloss the
       // glossary already owns is not a guess, so the row becomes `sure`.
       if (!jalala && !row.gloss) {
-        const nn = RootFinder.nounFromCorpus(w);
+        let nn = RootFinder.nounFromCorpus(w);
+        if (nn && (!row.kind || row.kind.endsWith("?")) && (() => { try {   /* (wave 139) a verb-shaped word keeps its shape against a noun that does not wear its written vowels */
+              const wN = w.normalize("NFC").replace(/[«»،.:!؟]/g, ""); if (!/[ً-ٰ]/.test(wN)) return false; const sh = MudariShape.full(wN); if (!sh) return false;
+              if (/verb/.test(nn.pos || "")) return true;
+              const lm = String(nn.lemma || "").split(/[()\s،,\/]/)[0].normalize("NFC"); const cmp = sh.core.replace(new RegExp(sh.enc + "$"), "");
+              return !!lm && /[ً-ٰ]/.test(lm) && !sjSarfAgree(cmp, lm); } catch (e) { return false; } })()) nn = null;
         if (nn) {
           row.lemma = nn.lemma; row.gloss = nn.gloss; row.sure = true;
           if (nn.verbal) row.verbal = true;
@@ -12091,6 +12181,9 @@ class SentenceAnalyzer {
     //
     // The row stays `sure: false`. A decision is not a certainty, and the UI
     // goes on marking it a guess.
+    out.forEach(r => { try {   /* (wave 139) لَأَمْكَنَا: an oath's lām on a māḍī whose suffix was read as a pronoun — no noun «لأمك» exists, the shape is bāb IV with its dual alif */
+      if (/^noun/.test(r.kind || "") && r.enc && /^لَ/.test((r.w || "").normalize("NFC")) && !r.afterJarr) { const sh = MudariShape.full(r.w); if (sh && sh.pre === "لَ" && /mazi/i.test(sh.tense) && !sh.enc) { const host = stripAr(r.w).replace(/[^ء-ي]/g, "").replace(new RegExp(r.enc + "$"), ""); if (!RootFinder.nounFromCorpus(host) || /َ$/.test(String(r.lemma || "").normalize("NFC"))) { r.kind = "verb"; r.enc = ""; r.seg = []; r.cell = { tense: sh.tense, i: sh.person, form: sh.core, shape138: true }; r.__shape138 = sh.bab; r.ml = null; (r.notes || (r.notes = [])).push({ en: "the lām of the oath's answer on a past-tense verb of bāb " + sh.bab + " — the ending is the verb's own suffix, not an attached pronoun", tr: "mâzî fiil üzerinde kasem cevabının lâmı (" + sh.bab + ". bâb) — sonu fiilin kendi eki, bitişik zamir değil" }); } } } } catch (e) {} });
+    out.forEach(r => { try { const b26 = stripAr(r.w || "").replace(/[^ء-ي]/g, "").replace(/^[وف](?=...)/, ""); if ((r.kind || "").startsWith("verb") && DabtEngine.KEEP26.test(b26) && !/^(نعم|بلى|كلا|اجل|أجل)$/.test(b26) && !r.enc) { r.kind = "noun"; r.cell = null; r.__keep26 = true; r.lemma = String(r.w || "").normalize("NFC").replace(/[^ء-يً-ٰ]/g, "").replace(/^[وف]َ(?=...)/, "").replace(/[ً-ٰ]$/, ""); try { const nn = RootFinder.nounFromCorpus(r.lemma); r.gloss = nn && nn.gloss ? nn.gloss : ""; } catch (e) { r.gloss = ""; } (r.notes || (r.notes = [])).push({ en: "a built adverb (أَمْسِ، فَقَطْ، هُنَا) — kept as the word it is, never a verb", tr: "mebnî bir zarf (أَمْسِ، فَقَطْ، هُنَا) — olduğu kelime olarak kalır; fiil değildir" }); } } catch (e) {} });   /* (wave 139) */
     out.forEach((r, i) => {
       if (!r.kind || !r.kind.endsWith("?")) return;
       const wn = (r.w || "").normalize("NFC"), bn = stripAr(wn).replace(/[^ء-ي]/g, ""), nx = out[i + 1];
@@ -12104,12 +12197,17 @@ class SentenceAnalyzer {
         return;
       }
       {   /* (wave 138) the Ṣarf shape outranks the statistics: an unknown word vowelled as a muḍāriʿ bāb IS a muḍāriʿ */
-        const sh = MudariShape.of(r.w);
-        if (sh && !r.enc && !r.afterJarr) {
-          r.kind = "verb"; r.__shape138 = sh.bab;
-          if (!r.cell) r.cell = { tense: sh.passive ? "majhulMudari" : "mudari", i: sh.person, form: sh.core, shape138: true };
-          r.notes.push({ en: "a word unknown to the lexicon, but its own vowels spell the present-tense pattern of bāb " + sh.bab + " (" + sh.core + ") — and no noun pattern wears those vowels: a muḍāriʿ by its shape",
-                         tr: "sözlüğün tanımadığı bir kelime; fakat harekeleri " + sh.bab + ". bâbın muzâri vezni (" + sh.core + ") üzerindedir — hiçbir isim vezni bu harekeleri bu sırayla taşımaz: şekliyle muzâri" });
+        const sh = MudariShape.full(r.w);   /* (wave 139) …and the whole conjugation: māḍī, amr, passives, suffixes, enclitics */
+        const seamBare139 = !!(sh && sh.enc && sh.how === "mudari" && !/[َُِْ]$/.test(sh.core.slice(0, -sh.enc.length)) && !/[اوي]$/.test(sh.core.slice(0, -sh.enc.length)));   // تَشْتُمنِي: the mood vowel before the pronoun is unwritten
+        if (sh && seamBare139) r.__tense139 = sh.tense;
+        if (sh && !seamBare139 && !r.afterJarr && (!r.enc || sh.enc)) {
+          r.kind = "verb"; r.__shape138 = sh.bab; if (sh.enc) r.__encShape139 = sh.enc;
+          if ((!r.cell || !r.cell.form) && !sh.suffixed) r.cell = { tense: sh.tense, i: sh.person, form: sh.core, shape138: true };
+          else if ((!r.cell || !r.cell.form) && sh.enc && sh.how === "mudari" && /ْ$/.test(sh.core.slice(0, -sh.enc.length))) r.cell = { tense: "majzum", i: sh.person, form: sh.core.slice(0, -sh.enc.length), shape138: true };   // تَشْتُمْنِي: the jussive keeps its sukūn before the pronoun
+          if (sh.suffixed) r.__tense139 = sh.tense;
+          const tl = sh.tense === "amr" ? ["imperative", "emir"] : /mazi/i.test(sh.tense) ? ["past-tense", "mâzî"] : ["present-tense", "muzâri"];
+          r.notes.push({ en: "a word unknown to the lexicon, but its own vowels spell the " + tl[0] + (sh.passive ? " passive" : "") + " pattern of bāb " + sh.bab + " (" + sh.core + ") — and no noun pattern wears those vowels in that order: a verb by its shape",
+                         tr: "sözlüğün tanımadığı bir kelime; fakat harekeleri " + sh.bab + ". bâbın " + (sh.passive ? "meçhul " : "") + tl[1] + " vezni (" + sh.core + ") üzerindedir — hiçbir isim vezni bu harekeleri bu sırayla taşımaz: şekliyle fiil" });
           return;
         }
       }
@@ -18084,7 +18182,7 @@ class DabtEngine {
       if (isNoun(r) && !encOf(r) && !hasAl(r) && /َ[ْ]?ي[ْ]?$/.test((r.w || "").normalize("NFC").replace(/[ًٌٍ]/g, "")) && b0.length >= 4 && nx && isNoun(nx) && !joined(nx) && !nx.afterJarr && !fused(nx)) { r.__dualAnnexed = true; prePairs.push([i, i + 1]); }
       // (wave 19) بِأَرْضِ قَوْمٍ: a kasra'd ب/ل (or a fatha'd ك) on a word the lexicon owns as a noun is that noun — whatever verb cell its letters reach (لَمْ أَرْضَ)
       if (isVerb(r) && r.cell && !encOf(r) && /^([وف][ً-ٰ]*)?([بل][ً-ٰ]*ِ|ك[ً-ٰ]*َ)/.test((r.w || "").normalize("NFC")) &&
-          (() => { try { const e = this.lex((r.w || "").normalize("NFC").replace(/^([وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, "")); return !!(e && !/verb|part|pron/.test(e.pos || "")); } catch (e) { return false; } })()) {
+          (() => { try { const rem = (r.w || "").normalize("NFC").replace(/^([وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, ""); const e = this.lex(rem); return !!(e && !/verb|part|pron/.test(e.pos || "")) && DabtEngine.fusedNounWears139(rem, e); } catch (e) { return false; } })()) {
         r.__vcell = r.cell; r.cell = null; r.kind = "noun"; r.__kindNoun = true; r.afterJarr = true; r.__jarrClitic = true;
         if (nx && isNoun(nx) && !hasAl(nx) && !nx.afterJarr && !encOf(nx) && !joined(nx) && !fused(nx)) prePairs.push([i, i + 1]); }
     });
@@ -19434,8 +19532,8 @@ class DabtEngine {
       }
       // ---- a fused jarr letter on an indefinite the analyzer took for a verb (بِفَسَادٍ)
       if (isVerb(r) && /^[وف]?[بلك]/.test(bw) && (/^[وف]?[بل][ً-ٰ]*ِ|^[وف]?ك[ً-ٰ]*َ/.test(w) || !/[ً-ٰ]/.test(w)) && !r.seg.slice(1).length && !(encOf(r) && r.cell && /mazi|mudari/i.test(r.cell.tense || "")) /* (wave 26q2) وَكَلَّمَهُمْ */) {
-        const nn = this.lex(w.replace(/^[وف][ً-ٰ]*/, "").replace(/^[بلك][ً-ٰ]*/, ""));
-        if (nn && !/verb/.test(nn.pos || "")) { kindNoun = true; r.afterJarr = true; }
+        const rem139 = w.replace(/^[وف][ً-ٰ]*/, "").replace(/^[بلك][ً-ٰ]*/, ""); const nn = this.lex(rem139);
+        if (nn && !/verb/.test(nn.pos || "") && DabtEngine.fusedNounWears139(rem139, nn)) { kindNoun = true; r.afterJarr = true; }
       }
       // ---- كُلّ before a noun is the quantifier annexed to it, never the amr of أَكَلَ
       if (isVerb(r) && /^[وف]?كل$/.test(bw) && rows[i + 1] && isNoun(rows[i + 1]) && !rows[i + 1].afterJarr) { kindNoun = true; head.add(i); member.set(i + 1, i); }
@@ -21013,6 +21111,8 @@ class DabtEngine {
   }
   /* (wave 136) the author's endings are receipts only on the authored corpus: grade() turns them on for its run; a sentence
      typed into a lab is the user's claim (the Ḍabṭ lab checks exactly those endings), so vowel() on free text reads none. */
+  /* (wave 139) the noun the lexicon offers behind a fused jarr letter must wear the vowels the word is WRITTEN with: فَكَبِّرْ is not فَ + كَ + بِرّ (the kasra-shadda sits on the bāʾ, the lemma's on the rāʾ), كَسَبَتْ is not كَ + سَبْت. Unvowelled input proves nothing. */
+  static fusedNounWears139(rem, e){ try { const w = String(rem || "").normalize("NFC"); if (!/[ً-ٰ]/.test(w)) return true; if (/[َُِ]تْ$/.test(w) && !/ة/.test(w)) return false; const lm = String((e && e.lemma) || "").split(/[()\s،,\/]/)[0].normalize("NFC"); if (!lm || !/[ً-ٰ]/.test(lm)) return true; return sjSarfAgree(w, lm.replace(/^ال/, "")); } catch (x) { return true; } }
   static grade(sen, mode){ this._receiptsOn136 = true; this._gradeSen136 = sen; this._senKey138 = (sen && sen.tokens) ? sen.tokens.map(t => t.s.full).join(" ") : null; try { return this._grade136(sen, mode); } finally { this._receiptsOn136 = false; this._gradeSen136 = null; this._senKey138 = null; } }
   static _grade136(sen, mode){
     const toks = (sen.tokens || []).map(t => (t.s ? t.s.full : t.surface ? t.surface.full : "").normalize("NFC"));

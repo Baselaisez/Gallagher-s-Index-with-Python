@@ -13,9 +13,9 @@
   "mizanDropped": 13,
   "sentences": 922,
   "sentenceTokens": 8132,
-  "posAgreement": 98.5,
-  "caseJudged": 6069,
-  "caseAgreement": 98.3,
+  "posAgreement": 98.7,
+  "caseJudged": 6071,
+  "caseAgreement": 98.4,
   "rows": 9217
  },
  "endings": [
@@ -29126,11 +29126,11 @@
      "en": "A verbal sentence, the sila of the relative — i'rabless."
     }
    ],
-   "posAgreement": 91.7,
+   "posAgreement": 100,
    "judged": 12,
-   "agree": 11,
-   "judgedC": 11,
-   "agreeC": 11,
+   "agree": 12,
+   "judgedC": 10,
+   "agreeC": 10,
    "tokens": [
     {
      "w": "الَّذِي",
@@ -29213,16 +29213,16 @@
       "irab": "A zarf of TIME, mabni ON THE KASRA, standing in the position of nasb and attaching to «was». Almost nothing else in the language is built on a kasra — the imperative on a sukun, أَيْنَ and كَيْفَ on a fatha, and أَمْسِ alone on a kasra, when it means the particular yesterday just past."
      },
      "engine": {
-      "kind": "verb",
-      "lemma": "أَمْسَى",
+      "kind": "noun",
+      "lemma": "أَمْس",
       "root": "م س و",
       "wazn": "أَفْعِلْ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "mabni",
+     "match": true,
+     "caseSaid": null,
      "caseHuman": "mabni",
-     "caseMatch": true
+     "caseMatch": null
     },
     {
      "w": "رَجُلٌ",
@@ -31916,11 +31916,11 @@
     "tr": "Geçip giden dün, büyük bir gündü. — Hırsızı emîrin bizzat kendisi kesti. — Bana kavim geldi, hepsi."
    },
    "jumal": [],
-   "posAgreement": 91.7,
+   "posAgreement": 100,
    "judged": 12,
-   "agree": 11,
-   "judgedC": 11,
-   "agreeC": 9,
+   "agree": 12,
+   "judgedC": 10,
+   "agreeC": 8,
    "tokens": [
     {
      "w": "أَمْسِ",
@@ -31934,16 +31934,16 @@
       "irab": "Mabni ON THE KASRA, standing in the position of raf' as the mubtada — and the na't after it is the fifth reason: pure CONFIRMATION. «Yesterday» cannot mean any day but the one just gone, so الدَّابِرُ adds no information whatever; it presses the word down, which is what a taʾkīd-adjective is for."
      },
      "engine": {
-      "kind": "verb",
-      "lemma": "أَمْسَى",
+      "kind": "noun",
+      "lemma": "أَمْس",
       "root": "م س و",
       "wazn": "أَفْعِلْ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "mabni",
+     "match": true,
+     "caseSaid": null,
      "caseHuman": "mabni",
-     "caseMatch": true
+     "caseMatch": null
     },
     {
      "w": "الدَّابِرُ",
@@ -82330,9 +82330,9 @@
     "tr": "«Ey iki dostum, bakışlarınızı uzağa gönderin: yeryüzünün yüzlerinin nasıl şekillendiğini görürsünüz —»"
    },
    "jumal": [],
-   "posAgreement": 88.9,
+   "posAgreement": 100,
    "judged": 9,
-   "agree": 8,
+   "agree": 9,
    "judgedC": 7,
    "agreeC": 7,
    "tokens": [
@@ -82546,13 +82546,13 @@
       "irab": "«they are shaped» — تَتَصَوَّرُ with one of its two ta's dropped, as poets may."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "تَصَوَّرَ",
       "root": "ص و ر",
       "wazn": "تَفَعَّلْ",
       "sure": true
      },
-     "match": false,
+     "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
      "caseMatch": true
@@ -121574,11 +121574,11 @@
     "tr": "Yahut iki harf; «Kazandığı LEHİNE, işlediği ALEYHİNEDİR» (Bakara 2:286) gibi. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 77.8,
+   "posAgreement": 88.9,
    "judged": 9,
-   "agree": 7,
-   "judgedC": 6,
-   "agreeC": 5,
+   "agree": 8,
+   "judgedC": 7,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "أَوْ",
@@ -121711,16 +121711,16 @@
       "irab": "«it earned» — the doer «it» (the soul) concealed; the sila."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "سَبْت",
-      "root": "س ب ت",
-      "wazn": "فَعَلْ",
+      "kind": "verb",
+      "lemma": "كَسَبَ",
+      "root": "ك س ب",
+      "wazn": "فَعَلَتْ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": null,
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "وَعَلَيْهَا",
@@ -123575,11 +123575,11 @@
     "tr": "Dördün örneği: «Kim VERİR, SAKINIR ve en güzeli TASDİK EDERSE, ona en KOLAYI kolaylaştırırız; kim CİMRİLİK EDER, kendini MÜSTAĞNİ GÖRÜR ve en güzeli YALANLARSA, ona en GÜÇ olanı kolaylaştırırız» (Leyl 92:5-10). (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 94.4,
+   "posAgreement": 100,
    "judged": 18,
-   "agree": 17,
+   "agree": 18,
    "judgedC": 12,
-   "agreeC": 11,
+   "agreeC": 12,
    "tokens": [
     {
      "w": "وَمِثَالُ",
@@ -123937,16 +123937,16 @@
       "irab": "«and denies» — the third counterpart, against affirming."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "ذَبّ",
-      "root": "ذ ب ب",
-      "wazn": null,
+      "kind": "verb",
+      "lemma": "كَذَّبَ",
+      "root": "ك ذ ب",
+      "wazn": "فَعَّلَ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "jarr",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "بِالْحُسْنَى",
@@ -127222,9 +127222,9 @@
     "tr": "Onlardan biri, bazılarının TESHÎM dediği İRSÂDDIR: revî harfi bilindiğinde, fıkranın yahut beytin SONUNDAN önce ona DELÂLET EDEN bir şey konulması. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 90,
+   "posAgreement": 95,
    "judged": 20,
-   "agree": 18,
+   "agree": 19,
    "judgedC": 13,
    "agreeC": 13,
    "tokens": [
@@ -127293,13 +127293,13 @@
       "irab": "«and call it»."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "سَمَّى",
       "root": "س م و",
       "wazn": "يُفَعِّلُ",
       "sure": true
      },
-     "match": false,
+     "match": true,
      "caseSaid": null,
      "caseHuman": null,
      "caseMatch": null
@@ -128623,11 +128623,11 @@
     "tr": "Tahkîkin örneği: «Dediler: bir şey iste, sana onu güzelce PİŞİRELİM. Dedim: bana bir cübbe ile bir gömlek PİŞİRİN.» (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 92.3,
+   "posAgreement": 100,
    "judged": 13,
-   "agree": 12,
-   "judgedC": 10,
-   "agreeC": 10,
+   "agree": 13,
+   "judgedC": 11,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "مِثَالُ",
@@ -128763,16 +128763,16 @@
       "irab": "«we shall do well» — jazm as the answer to the request; «We» concealed."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "نَجْد",
+      "kind": "verb",
+      "lemma": null,
       "root": "ن ج د",
-      "wazn": "فُعِلْ",
-      "sure": true
+      "wazn": "فَعَلَ / فَعَّلَ",
+      "sure": false
      },
-     "match": false,
-     "caseSaid": null,
+     "match": true,
+     "caseSaid": "jazm",
      "caseHuman": "jazm",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "لَكَ",
@@ -142493,9 +142493,9 @@
     "tr": "Nitekim Allah Teâlâ buyurur: «O gün gelince HİÇBİR NEFİS O'nun izni olmadan konuşamaz; artık onlardan kimi ŞAKÎ, kimi SAÎDDİR» — hepsi tek hükümde toplanmış, sonra ikiye ayrılmıştır. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 91.7,
+   "posAgreement": 100,
    "judged": 12,
-   "agree": 11,
+   "agree": 12,
    "judgedC": 9,
    "agreeC": 8,
    "tokens": [
@@ -142630,13 +142630,13 @@
       "irab": "«shall speak» — one of the two tas dropped; the ONE ruling over all."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "تَكَلَّمَ",
       "root": "ك ل م",
       "wazn": "تَفَعَّلْ",
       "sure": true
      },
-     "match": false,
+     "match": true,
      "caseSaid": "raf",
      "caseHuman": "raf",
      "caseMatch": true
@@ -147599,11 +147599,11 @@
     "tr": "A'şâ'nın dediği gibi: «Ey binekleri sürenlerin en HAYIRLISI, ve • CİMRİNİN eliyle kâse içmeyen» — kinâye ile bir insanı iki eder: içen ve sunan el. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 92.3,
+   "posAgreement": 100,
    "judged": 13,
-   "agree": 12,
+   "agree": 13,
    "judgedC": 9,
-   "agreeC": 8,
+   "agreeC": 9,
    "tokens": [
     {
      "w": "كَقَوْلِ",
@@ -147901,16 +147901,16 @@
       "irab": "«is stingy» — the sila; the alif is the rhyme's."
      },
      "engine": {
-      "kind": "particle",
-      "lemma": null,
-      "root": null,
-      "wazn": null,
+      "kind": "verb",
+      "lemma": "بَخِلَ",
+      "root": "ب خ ل",
+      "wazn": "فَعِلَا",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     }
    ]
   },
@@ -150661,11 +150661,11 @@
     "tr": "Nitekim Allah Teâlâ buyurur: «Ona ateş dokunmasa bile yağı NEREDEYSE aydınlatır» — «yağı aydınlatır» gulüv olurdu; يَكَادُ onu yaklaştırır, makbul olur. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 88.9,
+   "posAgreement": 100,
    "judged": 9,
-   "agree": 8,
-   "judgedC": 6,
-   "agreeC": 6,
+   "agree": 9,
+   "judgedC": 7,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "كَقَوْلِهِ",
@@ -150848,16 +150848,16 @@
       "irab": "«has touched it» — jussive; the doubled letters unmerged before the sukun."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": null,
       "root": "م س س",
       "wazn": null,
       "sure": false
      },
-     "match": false,
-     "caseSaid": null,
+     "match": true,
+     "caseSaid": "jazm",
      "caseHuman": "jazm",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "نَارٌ",
@@ -151080,11 +151080,11 @@
     "tr": "Mütenebbî'nin dediği gibi: «Tırnakları üstlerine bir toz düğümledi; • üstünde yürümek isteselerdi, MÜMKÜN OLURDU» — güzel bir hayal: gulüv makbuldür. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 90.9,
+   "posAgreement": 100,
    "judged": 11,
-   "agree": 10,
+   "agree": 11,
    "judgedC": 8,
-   "agreeC": 7,
+   "agreeC": 8,
    "tokens": [
     {
      "w": "كَقَوْلِ",
@@ -151335,16 +151335,16 @@
       "irab": "«it could have» — the lam of law's answer; the alif the rhyme's."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "أَمْكَنَ",
       "root": "م ك ن",
       "wazn": "أَفْعَلَا",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "nasb",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     }
    ]
   },
@@ -151426,9 +151426,9 @@
     "tr": "Errecânî'nin dediği gibi: «BANA ÖYLE GELİR Kİ yıldızlar karanlığa çivilenmiş • ve göz kapaklarım kirpiklerimle onlara bağlanmış» — hayal ile onu yaklaştıran يُخَيَّلُ, bir arada. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 92.3,
+   "posAgreement": 100,
    "judged": 13,
-   "agree": 12,
+   "agree": 13,
    "judgedC": 7,
    "agreeC": 6,
    "tokens": [
@@ -151660,13 +151660,13 @@
       "irab": "«and are bound» — a passive."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": null,
       "root": "ش د ت",
       "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
      },
-     "match": false,
+     "match": true,
      "caseSaid": null,
      "caseHuman": "mabni",
      "caseMatch": null
@@ -154536,9 +154536,9 @@
     "tr": "Ebü't-Tayyib'in dediği gibi: «Bulut senin ihsanına benzeyemedi — ancak • ondan HUMMAYA tutuldu da döktüğü, humma teridir». (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 91.7,
+   "posAgreement": 100,
    "judged": 12,
-   "agree": 11,
+   "agree": 12,
    "judgedC": 6,
    "agreeC": 6,
    "tokens": [
@@ -154745,13 +154745,13 @@
       "irab": "«it caught a fever» — a doubled passive; the deputy concealed: the cloud."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": null,
       "root": "ح م ت",
       "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
      },
-     "match": false,
+     "match": true,
      "caseSaid": null,
      "caseHuman": "mabni",
      "caseMatch": null
@@ -185417,11 +185417,11 @@
     "tr": "«Ve Rabbini yücelt!» (Müddessir 3) — rabbeke fekebbir: ر ب ك ف ك ب ر, iki uçtan aynı harfler."
    },
    "jumal": [],
-   "posAgreement": 50,
+   "posAgreement": 100,
    "judged": 2,
-   "agree": 1,
-   "judgedC": 0,
-   "agreeC": 0,
+   "agree": 2,
+   "judgedC": 1,
+   "agreeC": 1,
    "tokens": [
     {
      "w": "وَرَبَّكَ",
@@ -185461,16 +185461,16 @@
       "irab": "«magnify!» — the amr of Form II; the fa is extra (or answers an estimated أَمَّا)."
      },
      "engine": {
-      "kind": "noun",
-      "lemma": "بِرّ",
-      "root": "ب ر ر",
-      "wazn": null,
+      "kind": "verb",
+      "lemma": "كَبَّرَ",
+      "root": "ك ب ر",
+      "wazn": "فَعِّلْ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": null,
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": null
+     "caseMatch": true
     }
    ]
   },
@@ -203508,11 +203508,11 @@
     "tr": "«Hiçbir suç olmaksızın * bizi terke karar verdiysen — güzel bir sabır» (serî') — «güzel bir sabır» Kur'ân'dandır (Yûsuf 83)."
    },
    "jumal": [],
-   "posAgreement": 72.7,
+   "posAgreement": 90.9,
    "judged": 11,
-   "agree": 8,
+   "agree": 10,
    "judgedC": 10,
-   "agreeC": 8,
+   "agreeC": 10,
    "tokens": [
     {
      "w": "إِنْ",
@@ -203551,16 +203551,16 @@
       "irab": "«you (f.) have» — the kasra: a woman addressed."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "كَانَ",
       "root": "ك و ن",
       "wazn": "فَعَلْتِ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "jarr",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "أَزْمَعْتِ",
@@ -203575,16 +203575,16 @@
       "irab": "«resolved» — kana's khabar."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "أَزْمَعَ",
       "root": "ز م ع",
       "wazn": "أَفْعَلْتِ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "jarr",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "عَلَى",
@@ -203789,11 +203789,11 @@
     "tr": "«Ve bizi başkasıyla değiştirdiysen * — Allah bize yeter, ne güzel vekildir» — Kur'ân'dandır (Âl-i İmrân 173)."
    },
    "jumal": [],
-   "posAgreement": 87.5,
+   "posAgreement": 100,
    "judged": 8,
-   "agree": 7,
+   "agree": 8,
    "judgedC": 6,
-   "agreeC": 5,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "وَإِنْ",
@@ -203832,16 +203832,16 @@
       "irab": "«you have exchanged»."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": "تَبَدَّلَ",
       "root": "ب د ل",
       "wazn": "تَفَعَّلْتِ",
       "sure": true
      },
-     "match": false,
-     "caseSaid": "jarr",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "بِنَا",
@@ -204231,9 +204231,9 @@
     "tr": "Ve İbn Abbâd'ın: «Bana dedi: bekçim kötü huyludur, onu idare et. * Dedim: bırak beni — yüzün cennettir, hoşa gitmeyenlerle çevrili» (kâmil) sözü gibi — «cennet hoşa gitmeyenlerle çevrilidir» hadistendir."
    },
    "jumal": [],
-   "posAgreement": 93.8,
+   "posAgreement": 100,
    "judged": 16,
-   "agree": 15,
+   "agree": 16,
    "judgedC": 13,
    "agreeC": 13,
    "tokens": [
@@ -204584,13 +204584,13 @@
       "irab": "«hedged about» — the print shows خُفَّتْ; the hadith reads حُفَّتْ."
      },
      "engine": {
-      "kind": "noun",
+      "kind": "verb",
       "lemma": null,
       "root": "ح ف ت",
       "wazn": "فَعَلَ / فَعَّلَ",
       "sure": false
      },
-     "match": false,
+     "match": true,
      "caseSaid": null,
      "caseHuman": "mabni",
      "caseMatch": null
