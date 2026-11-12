@@ -10510,6 +10510,54 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 143 — the undecided endings read by rule: فَضْلًا عَنْ the ḥāl, رَبِّ the vocative on its kasra before the imperative هَبْ with its object, the number before its plural time-noun the ẕarf, the second object after the enclitic first, the badal across its naʿt, the postponed mubtadaʾ in each lām clause, the dual\'s yāʾ of the speaker, أَجَلُّ kept, the makhṣūṣ after نِعْمَ, حَسَبَ the ẕarf, the khabar fronted before كَانَ, مَأْوَاهُ النَّارُ, غَيْرُهُ the deputy doer, the nakira\'s ṣifa clause', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("أَكْرَمَهُ النَّاسُ فَضْلًا عَنْ أَهْلِهِ");
+      out.s2 = E("رَبِّ هَبْ لِي وَلَدًا صَالِحًا");
+      out.s3 = E("صَامَ الرَّجُلُ ثَلَاثَةَ أَيَّامٍ");
+      out.s4 = E("أَبْلَغْتُكُمْ رِسَالَةَ الْمَلِكِ");
+      out.s5 = E("قَرَأْتُ الْكِتَابَ الْكَبِيرَ كِتَابَ النَّحْوِ");
+      out.s6 = E("فَلِلرِّزْقِ إِلٰهٌ وَلِلرَّحْمَةِ إِلٰهٌ");
+      out.s7 = E("وَقَفَ الْغُلَامُ بَيْنَ يَدَيَّ");
+      out.s8 = E("هُوَ أَجَلُّ مِنَ الْحَيَوَانِ");
+      out.s9 = E("نِعْمَ رَجُلًا زَيْدٌ");
+      out.s10 = E("جَاءَ كُلُّ وَاحِدٍ حَسَبَ طَاقَتِهِ");
+      out.s11 = E("يَأْكُلُ الرَّجُلُ الطَّعَامَ حَلَالًا كَانَ أَوْ حَرَامًا");
+      out.s12 = E("الْكَافِرُ مَأْوَاهُ النَّارُ");
+      out.s13 = E("لَا يُعْبَدُ غَيْرُهُ");
+      out.s14 = E("قَالَ رَبِّ إِنِّي ظَلَمْتُ نَفْسِي");
+      out.s15 = E("وَجَدَ قَوْمًا لُغَتُهُمْ غَرِيبَةٌ");
+      out.s16 = E("رَأَيْتُ فَتًى كَرِيمًا");
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    want('s1', 2, /^فَضْلًا·hal$/, 'فَضْلًا عَنْ is the ḥāl');
+    want('s2', 0, /^رَبِّ·munada$/, 'رَبِّ before the imperative is the vocative on its kasra');
+    want('s2', 1, /^هَبْ·amr$/, 'هَبْ is the imperative of وَهَبَ');
+    want('s2', 3, /^وَلَدًا·maful$/, 'the nakira after the imperative\'s jarr phrase is its object, never the doer');
+    want('s3', 2, /^ثَلَاثَةَ·zarf$/, 'the number before the plural time-noun is the ẕarf');
+    want('s3', 3, /^أَيَّامٍ·mudafIlayh$/, 'its plural is annexed');
+    want('s4', 1, /^رِسَالَةَ·maful$/, 'the second object after the enclitic first object (أَبْلَغَ)');
+    want('s5', 3, /^كِتَابَ·badal$/, 'the definite repeated across its naʿt is the badal');
+    want('s6', 1, /^إِلٰهٌ·mubtada$/, 'the postponed mubtadaʾ after the fused lām phrase');
+    want('s6', 3, /^إِلٰهٌ·mubtada$/, 'the second lām clause has its own postponed mubtadaʾ, not an owed khabar');
+    want('s7', 3, /^يَدَيَّ·mudafIlayh$/, 'the dual annexed to the speaker\'s yāʾ keeps its fatḥa-shadda');
+    want('s8', 1, /^أَجَلُّ·/, 'أَجَلُّ the elative is never the particle أَجَلْ');
+    want('s9', 2, /^زَيْدٌ·mubtada$/, 'the makhṣūṣ after نِعْمَ and its tamyīz');
+    want('s10', 3, /^حَسَبَ·zarf$/, 'حَسَبَ before its annexed noun is the ẕarf');
+    want('s10', 4, /^طَاقَتِهِ·mudafIlayh$/, 'its noun is annexed');
+    want('s11', 3, /^حَلَالًا·kanaKhabar$/, 'the khabar fronted before كَانَ … أَوْ');
+    want('s12', 2, /^النَّارُ·khabar$/, 'مَأْوَاهُ النَّارُ: the khabar after the enclitic noun');
+    want('s13', 2, /^غَيْرُهُ·naib$/, 'غَيْرُهُ after the passive is the deputy doer');
+    want('s14', 1, /^رَبِّ·munada$/, 'رَبِّ إِنِّي: the vocative before the speech');
+    want('s15', 1, /^قَوْمًا·maful$/, 'the fatḥatān after the transitive verb is the object');
+    want('s15', 2, /^لُغَتُهُمْ·mubtada$/, 'the nakira\'s ṣifa clause: its returning pronoun is the rābiṭ');
+    want('s16', 1, /^فَتًى·maful$/, 'the maqṣūr nakira keeps its tanwīn as the object');
+    want('s16', 2, /^كَرِيمًا·nat$/, 'its naʿt follows it');
+  });
+
   await check('wave 141 — the prose texts\' blind endings by rule: وَحْدَهُ the ḥāl, سَنَةَ before its number the ẕarf, لَيْسُوا\'s khabar past the jarr phrase, نِعَمِ the noun annexing the Name, the nakira head before مَنِ, the sound-plural naʿt by its letters, the two-object verb\'s definite and nakira objects with the ṣifa in the third seat, the owed khabar, the kāna / إِنَّ khabar kept, the ـَات plural\'s kasra and the singular\'s fatḥa', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };

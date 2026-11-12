@@ -9986,6 +9986,31 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 143 — the undecided endings of the prose, by rule.** The v243 blind sweep still left 277 endings undecided and 162
+wrong; the receipts-on sweep 173 / 84. Grouped by construction and read by rule in a block at the top of the decide loop (a
+word bearing tanwīn is a noun whatever the tagger made of its letters): فَضْلًا عَنْ is the ḥāl; حَسَبَ before its annexed noun is
+the ẕarf; the number before a plural time-noun is the ẕarf and the noun its muḍāf ilayh (ثَلَاثَةَ أَيَّامٍ); the second object
+after an enclitic first object (أَبْلَغْتُكُمْ رِسَالَةَ) and the second object that closes the clause (مَنْزِلَتَهُ) — only where the
+verb's own cell owes it, never after a 3rd-person verb whose doer is still to come; وَمَأْوَاهُ النَّارُ the khabar after the
+enclitic noun (also after an unjoined enclitic khabar-noun, never a ṣifa shape); the postponed mubtadaʾ after a fused-lām
+al-phrase (وَلِلرَّحْمَةِ إِلٰهٌ — each lām clause its own, the owed-khabar mark steps aside); the badal that repeats the definite
+across its al-naʿt (الْكِتَابَ الْكَبِيرَ كِتَابَ النَّحْوِ, adjacent only); حَلَالًا كَانَ أَوْ حَرَامًا the khabar fronted before كَانَ; kāna's
+late khabar past a relative clause (عِلَاجًا), never a muḍāf ilayh; the khabar after the mubtadaʾ's jarr phrases (عَجَبٌ);
+وَالْمَشْهُورُ عِلْمَ the object after an atf-rafʿ participle; غَيْرُهُ the deputy doer after a passive cell; the makhṣūṣ after نِعْمَ
+and its tamyīz however the tamyīz was named (نِعْمَ رَجُلًا زَيْدٌ); letter names (الْوَاوُ، الْيَاءُ) by their seat; the maqṣūr naʿt
+after its nakira and the alif the tanwīn of naṣb leaves in the blind text — both LAST resorts after every seat the engine knows
+(the dual muḍāf غُلَامَا ابْنِكَ excepted; after a ṣifa-shaped nakira the alif is the tamyīz, حَسَنٌ وَجْهًا). رَبِّ هَبْ لِي: هَبْ is the
+imperative of وَهَبَ (its own cell), رَبِّ the vocative annexed to the elided yāʾ of the speaker — kept as written, the writer
+restoring the kasra (the yāʾ's trace), never a mubtadaʾ; the imperative's doer is the concealed أَنْتَ, so no nakira after it is
+the postposed doer (وَلَدًا the object). The fatḥatān after a transitive verb with no doer yet is the object, not a tamyīz (وَجَدَ
+قَوْمًا); the nakira object's ṣifa clause — قَوْمًا لُغَتُهُمْ غَرِيبَةٌ — reads its returning pronoun as the rābiṭ and makes the
+enclitic noun the clause's mubtadaʾ, not a second object or a postposed doer. The writer: a kept host ending in ـَيّ with no
+lexicon entry of its own is the dual on the speaker's yāʾ (يَدَيَّ, fatḥa); kept demonstrative compounds get their fatḥa (كَذٰلِكَ،
+لَدُنْكَ); أَجَلُّ with its shadda is the elative, never the particle أَجَلْ. The grader: an engine-kept word counts as right when it
+equals the author's (before, every kept word was «undecided»). Blind sweep 49,289 ok / 162 wrong / 277 undecided → 49,384 /
+162 / 182 (FIXED 95, BROKEN 0); receipts-on 49,471 / 84 / 173 → 49,547 / 84 / 97 (FIXED 76, BROKEN 0). Sixteen typed sentences
+gate the rules in the smoke test. Every story, game and lab kept.
+
 **Wave 142 — SPEED V, the seven starts that still swept the shelf.** Measured on v242 at 4× CPU: gShop 799 ms, gWajh 307,
 gNida 290, gJinas 254, gBahr 177, gRole 168, gWaqf 141, gTahlil 132, gCase 124, gSarf 98 — each tap still built its whole pool
 over the 51 texts before drawing eight (the role regexes over 41,000 iʿrāb lines, NidaEngine.flat on every token, the ʿarūḍ
