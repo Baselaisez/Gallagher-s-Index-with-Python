@@ -9986,6 +9986,28 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 148 — SPEED VII: the boot, the idle jobs and the engines' first use.** Measured on v248 at 4× CPU: every lab tab and
+game start was under 150 ms once warm, but three things still held the thread. (1) Boot: V8 parsed 26 MB of story object
+literal — a 1.2 s long task at 1× CPU (~5 s on a phone). The build now folds each story's BODY (chapters and morph, 23 of
+the 26 MB) into a JSON string inside the literal (`lazy_bodies` in tools/build_prototype.py); `hydrateStories148` installs
+an enumerable getter per body that parses on first use and replaces itself with the value, so every reader of st.chapters
+sees the array it always did and JSON.stringify sees it too. The shelf never parses a body: the build adds `stats`
+(chapters, sentences, tokens) and `lexNew` (the token lexes with a glossary level ≥ 1, first-seen order — storyNewWords's
+walk), and Relax's corpus version reads the counts. A pool's warm() no longer builds its unit list on the spot (that
+touched every body at boot + 1.5 s). The boot's long task fell from 1,117 to 455 ms at 1×; the file grows 8 % (the strings' escaped
+quotes). (2) The idle jobs: the v248 drain held the thread 2.4 s for the shop's candidate scan, 0.6 s for the jinās seeds,
+0.3 s each for the Maqṣūd audit and the search fold, 0.2 s for a big story's search index — a tap during any of them
+waited. Now every job does at most a budget per call, in this order: `stories-parse` (a body a slice), `irab-model`,
+`engine-warm`, the pools (a chapter a step, `stepFull148`), the three seeds over pools already whole, `maqsud-warm`
+(`auditStep`, a model a step, the same tallies in the same order), `search-index` (a chapter a step), `search-fold`
+(`warm144(budget)`, a note a step). (3) The engines' first use: the first DabtEngine.vowel of a page cost 773 ms at 1× —
+the paradigm bare index (186), SarfTagger.train (105), IsmTagger.train (78), LazimEngine.ledger (44) and the compile of
+the big functions. `engine-warm` builds them in slices (`bareIndexStep`, `trainStep`, `ledgerStep` — each the one-shot
+loop under a budget; the smoke check proves the sliced results equal the one-shot ones) and then reads one sentence with
+each engine, restoring the engine's per-call statics after it. The Maqṣūd lab paints its frame at once and fills from
+`auditStep` in frames (the harness's sync flag keeps the one-shot). Every idle step after this is under 150 ms at 4× but one: the first reading itself, which compiles the engine's big functions (~1.1 s at 4×) — it used to land on the first tap, now it lands idle. Blind and
+receipts-on sweeps byte-identical to v248. Every story and feature kept.
+
 **Wave 147 — the prose's remaining wrong endings, by rule.** The v247 blind sweep's 162 wrong endings, traced one by one
 (the `continue`-line tracer names the rule that exits), and read by rule in the wave-143 block: the joined nakira after
 kāna's ism (or a doer, a mubtadaʾ, a deputy) and its naʿt, when a ṣifa-shaped nakira follows it, is the ism's ʿaṭf

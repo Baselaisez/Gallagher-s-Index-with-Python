@@ -10510,6 +10510,44 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 148 — SPEED VII: the story bodies ride as JSON strings and parse on first use (the shelf reads the build\'s counts and new-word list, the same numbers), the engines\' corpus indexes are built in slices under the idle budget (the paradigm bare index, the two taggers, the valency ledger, the Maqṣūd audit, the search fold and index) and come out identical to the one-shot builds, the pools and seeds wait for the parsed stories', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      const dataScript = [...document.scripts].find(x => !x.src && /__DATA_START__/.test(x.textContent.slice(0, 400)));
+      out.lazyForm = !!dataScript && dataScript.textContent.includes('"chapters":"[');
+      out.fns = ["hydrateStories148", "storyParsed148", "chapterCount148", "buildCorpusChapter144"].every(f => typeof window[f] === "function") &&
+        ["bareIndexStep"].every(f => typeof RootFinder[f] === "function") && typeof SarfTagger.trainStep === "function" && typeof IsmTagger.trainStep === "function" &&
+        typeof LazimEngine.ledgerStep === "function" && typeof MaqsudEngine.auditStep === "function" && typeof GamePool.prototype.stepFull148 === "function";
+      out.stats = STORIES.every(st => st.stats && typeof st.stats.sentences === "number" && typeof st.stats.chapters === "number" && Array.isArray(st.lexNew));
+      // the shelf's numbers are the walk's numbers
+      const bad = [];
+      STORIES.forEach(st => { void st.chapters; const chs = st.chapters; let sen = 0; const seen = new Set(); chs.forEach(c => c.sentences.forEach(sn => { sen++; sn.tokens.forEach(t => { const e = st.glossary[t.lex]; if (e && e.level >= 1) seen.add(t.lex); }); }));
+        if (sen !== st.stats.sentences || chs.length !== st.stats.chapters || seen.size !== st.lexNew.length || storyStats(st).total !== sen || storyNewWords(st, new Set()) !== seen.size || chapterCount148(st) !== chs.length) bad.push(st.id); });
+      out.bad = bad;
+      out.parsedArrays = STORIES.every(st => Array.isArray(st.chapters) && (st.morph === undefined || typeof st.morph === "object"));
+      out.stringified = JSON.stringify(STORIES[0]).includes('"chapters":[');
+      // the sliced builders give the one-shot results
+      const J = m => JSON.stringify(m, (k, v) => k.startsWith("_") ? undefined : v);   // the wave-145 tag memo rides on the model object
+      const a = J(SarfTagger.train()), b = J(SarfTagger.fit(SarfTagger.rows())); out.sarfSame = a === b;
+      const c = J(IsmTagger.train()), d = J(IsmTagger.fit(IsmTagger.rows())); out.ismSame = c === d;
+      const M = RootFinder.bareIndex(), idx = RootFinder.corpusIndex(), M2 = new Map(); idx.forEach((v, i) => { for (const b2 of paradigmBares136(v.m)) { let a2 = M2.get(b2); if (!a2) M2.set(b2, a2 = []); if (a2[a2.length - 1] !== i) a2.push(i); } });
+      out.bareSame = M.size === M2.size && JSON.stringify([...M]) === JSON.stringify([...M2]);
+      const au = MaqsudEngine.audit(); MaqsudEngine._audit = null; MaqsudEngine._auditPart = null; let n = 0; while (!MaqsudEngine.auditStep(5)) n++; out.auditSteps = n; out.auditSame = JSON.stringify(au) === JSON.stringify(MaqsudEngine.audit());
+      out.foldBool = typeof DoctrineSearch.warm144(1e9) === "boolean";
+      out.corpus = (() => { const rows = buildCorpus(); const P = { k: 0, c: 0, rows: [] }; CORPUS_PART144 = P; const saved = CORPUS; CORPUS = null; let steps = 0; while (!buildCorpusStep144(2)) steps++; const same = CORPUS.length === saved.length && CORPUS.every((r, i) => r.st === saved[i].st && r.sen === saved[i].sen && r.ti === saved[i].ti && r.fhay === saved[i].fhay); CORPUS = saved; return { steps, same }; })();
+      return out;
+    });
+    if (!r.lazyForm) throw new Error('the data script carries the story bodies as JSON strings');
+    if (!r.fns) throw new Error('the wave-148 functions are missing');
+    if (!r.stats) throw new Error('every story carries stats and lexNew');
+    if (r.bad.length) throw new Error('the shelf\'s counts differ from the walk: ' + r.bad.join(' '));
+    if (!(r.parsedArrays && r.stringified)) throw new Error('the parsed bodies are plain arrays/objects and enumerable: ' + JSON.stringify(r));
+    if (!(r.sarfSame && r.ismSame && r.bareSame)) throw new Error('a sliced builder differs from its one-shot: ' + JSON.stringify({ sarf: r.sarfSame, ism: r.ismSame, bare: r.bareSame }));
+    if (!(r.auditSame && r.auditSteps >= 2)) throw new Error('the Maqṣūd audit in slices: ' + JSON.stringify({ same: r.auditSame, steps: r.auditSteps }));
+    if (!r.foldBool) throw new Error('warm144 reports its progress');
+    if (!(r.corpus.same && r.corpus.steps >= 2)) throw new Error('the search index a chapter a step: ' + JSON.stringify(r.corpus));
+  });
+
   await check('wave 147 — the prose\'s remaining wrong endings read by rule: a joined noun after a naʿt follows the kāna-ism or doer (وَأَوْلَادٌ), the second term of بَيْنَ is coordinate to the first (وَأَوْلَادِهَا), the elative before an al-maṣdar is a mafʿūl muṭlaq (أَشَدَّ الِاحْتِيَاجِ), بَنِي before a proper name is the object, the al-noun after بِكُلِّ ذٰلِكَ or after a demonstrative badal is the object the verb still owes, خَيْرٌ after a relative subject is the khabar, a joined al-maṣdar is coordinate across a jarr phrase, and the و of وَعَادَاتٌ is a conjunction although the lexicon knows no عَادَات; كُلِّهِ after a demonstrative in a jarr phrase is its tawkīd even with no kasra written', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
