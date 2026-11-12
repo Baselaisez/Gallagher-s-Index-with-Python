@@ -10023,6 +10023,72 @@ declines as al-Mutanabbī wrote it; the plural of ابْن wears the nūn's fat�
 dress behind لَ (لَاجْتَمَعَ). blind: wrong 108 -> 85 (FIXED 23, BROKEN 0), undecided 139 -> 139
 receipts-on: wrong 61 -> 51 (FIXED 10, BROKEN 0), undecided 71 -> 71 Typed sentences gate the rules in the smoke check.
 
+**Wave 154 — the owner's scanned «الْمَقَامَات» becomes the fifty-second text, authored THROUGH the engine.** The first of the
+two PDFs the owner uploaded (Yasin print, 25 pp., no text layer): read page by page from the page images, the matn only — the
+publisher's footnotes and front matter are not transcribed — into `research/sources/maqamat-birgivi-src.txt` (13 chapters /
+149 sentences / 1,985 words, our vowelling of an unvowelled print; chapter 1 the preface, 2–5 the Sharīʿa's ten stations,
+6–8 the Ṭarīqa's, 9–10 the Maʿrifa's, 11–12 the Ḥaqīqa's, 13 the close). THE PIPELINE IS THE POINT: `tools/authoring/
+engine_author.js` runs the reader headless over the transcription and writes every word's engine reading (role, case,
+lexicon key, enclitic, verb cell) — now looking the host up with its enclitics peeled, hamza folded and plurals mapped (159 →
+0 unknown); `tools/authoring/pkg_from_engine.py` turns that into the package: templated trilingual iʿrāb from PART / PRON /
+DEM / ROLE / SIGN tables (the jarr clitic's segments, the enclitic's muḍāf ilayh clause, the sound-plural / dual / maqṣūr /
+manqūṣ / diptote signs, لِلّٰهِ as lām + the Name, اسْمُ «لَا» النَّافِيَةِ لِلْجِنْسِ after لَا on a bare fatḥa host, the mabnī
+ẕarf with its pronoun), glossary entries by lemma identity from the 5,418 global keys plus 20 new verbs whose paradigms
+`tools/authoring/maqamat/sarf_maqamat.py` derives through sarf_gen (أَوْرَثَ، أَقَرَّ the geminate IV, أَمْضَى the defective IV,
+بَاشَرَ، جَاهَدَ، رَابَطَ، صَابَرَ، بَيَّضَ، فَوَّضَ، خَلَّصَ، تَقَلَّبَ، تَشَبَّهَ، تَأَذَّى، انْعَدَمَ، افْتَخَرَ، احْتَرَزَ، اعْتَذَرَ، حَرَمَ، نَهَى،
+أَصْبَحَ), and a `_review.json` of what the author must decide. The author's side files (`tools/authoring/maqamat/`: lex,
+trans, meta, fixes, morph_extra) hold the 109 corrections where the engine's reading differed from the written text — THE
+79 ENGINE≠WRITTEN ROWS ARE THE NEXT LEARNING SET (ʿaṭf case after a jarr phrase وَالصَّلَاةُ, إِنَّ's ism behind وَ, لَا +
+muḍāriʿ stays rafʿ, اخْتَارُوا is māḍī, وَآلِهِ a noun, رَبِّ a noun not رُبَّ, مِنَ vs مَنْ, قِيلَ passive, the person of تـ-verbs).
+The package validates with 0 errors (level 4, premium, `pending-scholarly-review`), the reader opens it, the word sheet reads
+its tokens; `validate_content.py --grammar-dir` validates a package outside content/samples. WHAT THE NEW TEXT TAUGHT THE
+ENGINES: the first sweep broke five Nasafī rows (وَالتَّكْوِينُ صِفَةٌ لِلَّهِ تَعَالَى أَزَلِيَّةٌ → أَزَلِيَّةً) — two causes, both now
+rules. (a) The transitivity ledger (LazimEngine) had counted the quoted verse's object after «قَوْلِهِ تَعَالَى:» and أَجَابَ's
+object after the parenthesis «اللهُ تَعَالَى دُعَاءَهُ» as تَعَالَى's own: punctuation now closes the verb's clause in the ledger,
+and the praise parenthesis (تَعَالَى، سُبْحَانَهُ، تَبَارَكَ، جَلَّ، عَزَّ) never collects objects. (b) A package may copy a verb's
+paradigm only from the text that also owns its glossary entry: a paradigm from one text beside a gloss from another made the new
+package the verb index's winner with the OTHER gloss («exalted is He» instead of «to be exalted»), and the INTRANS gloss test
+read the verb as transitive — `pkg_from_engine.py` now records each key's owners and skips the inconsistent copy (تَعَالَى). Sweeps
+after both: blind 0 broken, receipts-on 0 broken. THE CORPUS AUDITS AS TEACHERS: the first release fell on two corpus-wide
+gates — the SignEngine audit (99.6 → 99.4 %: the templated sign statements had read يَكُونُ as a five-verb by a bare nūn,
+written the jussive's sign from the rule's name instead of the engine's case, missed the four-letter feminine plural آيَاتِ, the
+five noun أَبَاكُمْ before the maqṣūr test, the annexed dual مِائَتَيْ and بَنِي) and the WujuhEngine audit (97.5 %: every مَنْ
+had been labelled «مَوْصُول (أَوْ شَرْطِيّ)», every لَا «نَافِيَة»). Now `engine_author.js` carries WujuhEngine's face for the
+twenty words into each row (`wajh`), the generator writes لَا / مَنْ from that face (nāfiya, nāhiya, jins, ʿāṭifa, zāʾida,
+jawāb; shart, mawṣūl, istifhām, mawṣūfa), the five verbs are read from the written ending with a two-letter stem, the mood from
+the engine's case (تُبْدُوهُ is jazm under rule «shart»), the doubled verb's jussive keeps its sukūn under the fatḥa; the
+author's `wajh` fix overrides the engine (مَنْ كَانَ يُرِيدُ حَرْثَ الْآخِرَةِ is shart). Sign audit 99.6 % again (the six rows left are
+the engine's own: نَوَاهِيهِ / الْمُلُوكِ / تَشْبِيهُ read as truncated sound plurals — a classifier item for a later wave), faces
+one miss. Smoke: the text is present with its counts and four iʿrāb lines. THE LATER GATES TAUGHT MORE: (1) the CASE layer
+(96.5 floor) and the ADDRESSEE grader (98 on the story shelf) fell to 96.3 / 96.9 on the new text — the Maqāmāt alone stood at
+79.6 / 90.4. Most of it was the reader's side: `CaseEngine.humanCase` read every particle line that names the particle's binā
+(«حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى السُّكُونِ») as a «mabni» claim against the engine's «harf»; now the word's OWN clause — the first
+that names no prefixed letter («الْوَاوُ عَاطِفَةٌ، وَاللَّامُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهَا»: the third) — decides, a clause that names a
+ḥarf / adāt or the النافية / الناهية / الزائدة / المصدرية faces reads «harf», and «…» quotes never break the clause reader
+(295 → 0 of those rows). The addressee reader (TaqdirEngine) took the ـهَا of a jarr phrase or an ordinal (فِيهَا، مِنْهَا،
+أَوَّلُهَا، عَاشِرُهَا) as a «she» cue — that pronoun is majrūr, never the subject — and was never asked about a passive
+(تُحَاسَبُ وَلَا تُسْأَلُ after أَنَّكَ); now the ـهَا host is checked (`ADDR_HA_HOST`), the passive asks the same question, the
+interrogative hamza before تَفْعَلُ (أَتَظُنُّ) is «you», هَلَّا is «you», the clause of أَنْ after a MASCULINE noun or هُوَ
+(الْإِيمَانُ أَنْ تُؤْمِنَ) is «you», a second-person marker AHEAD in the sentence (تَأْكُلُ وَتَلْبَسُ مَا وَجَدْتَ) decides when nothing
+behind does, and the speaker's prefixes name the person the paradigm cell left at its first row (أَقْبَلُ تَوْبَتَكُمْ → أَنَا,
+سَنُرِيهِمْ → نَحْنُ). The generator's side: the hidden pronoun by the verb's own shape and the nearest cue (`person_of`: ـَتْ is
+she, أَ I, نَـ we behind سَـ, تَـ you unless a feminine subject or هِيَ/إِنَّهَا stands nearer than an أَنْتَ/ـكَ/ـتَ, or follows the
+verb), a يـ/تـ/أـ/نـ word after لَمْ / لَنْ / أَنْ is the verb they govern whatever the engine's kind said (لَمْ يَكُنْ had been a
+«particle»), the written tanwīn of fatḥ on كَانَ's «noun» or إِنَّ's «predicate» names the predicate / the noun instead (the
+written ending outranks the engine's role), the five verbs keep their nūn before an attached pronoun and the suffix test
+reads the word without its shadda (NFC seats ّ after the vowel: يُحِبُّونَهُمْ), and a fixes row's iʿrāb overrides any branch
+(verbs and particles too). Shelf addressee 99.0, corpus case 97.2 (the Maqāmāt 98.7 / 97.8); the 22 rows left are the
+engine's own gaps for the next learning wave: بَعْدُ / قَبْلُ cut from annexation are mabnī, مَرَاتِبَ the diptote in jarr,
+يَوْمَيْنِ the dual ẕarf, سَيِّئَاتِكُمْ / آيَاتِنَا the ـَات object, أَبَاكُمْ the five noun with a pronoun, لَمْ أَعْفُ the defective
+jussive, أَنْ يَسْلُكَ, رَغِبَ read as a noun, أَلْفِ, أَشَدَّ. (2) The plural builder's audit: four HEARD plurals the builder cannot
+derive (أَدْرَاك، هَالِكُونَ، خَطَايَا، أَنْصِبَاء) — recorded in the check as every wave before. (3) The IrabModel must be refit
+whenever the corpus changes (`node tools/gen_irab_model.js` before the release, not only `--check` at its end): the build
+ships weights keyed by the corpus signature. (4) A latent game bug the new supply order exposed: gMaqsud's three distractors
+could repeat a form (a lafīf row's يَرْوَى twice) and the round showed three options — the option builder dedupes by
+`MaqsudEngine.loose`. (5) A `//` comment appended to a one-line arrow body swallows the rest of the line — the code block is
+syntax-checked (`node --check` on the first script minus its tags) before any release. Second PDF («الْأُصُولُ الْمُنِيفَةُ»,
+64 pp.) is transcribed (35 chapters / 350 sentences / 12,556 words, with EN/TR lines) and follows the same pipeline next.
+
 **Wave 152 — SPEED IX: the cold taps.** Measured on v252 at 4× CPU: every lab tab and game start was under 50 ms once
 Quiet had run, but three taps still held the thread when they came early. (1) The Atölye's first paint: 150 ms, of
 which 136 ms was `conjAutoPick` — the sarf lab snaps its controls to the corpus's attested verb, and the attested-verb map

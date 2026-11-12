@@ -14,8 +14,8 @@
   "sentences": 922,
   "sentenceTokens": 8132,
   "posAgreement": 98.7,
-  "caseJudged": 6071,
-  "caseAgreement": 98.4,
+  "caseJudged": 6081,
+  "caseAgreement": 98.5,
   "rows": 9217
  },
  "endings": [
@@ -5924,7 +5924,7 @@
    "judged": 12,
    "agree": 12,
    "judgedC": 11,
-   "agreeC": 10,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "وَأَمَّا",
@@ -6081,8 +6081,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "mabni",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "قَوْلٍ",
@@ -7239,7 +7239,7 @@
    "judged": 7,
    "agree": 7,
    "judgedC": 6,
-   "agreeC": 5,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "فَالْخَاصُّ",
@@ -7376,8 +7376,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "mabni",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "الِانْفِرَادِ",
@@ -13864,7 +13864,7 @@
    "judged": 6,
    "agree": 6,
    "judgedC": 5,
-   "agreeC": 5,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "فَالْحَقِيقَةُ",
@@ -13956,8 +13956,8 @@
      },
      "match": true,
      "caseSaid": "mabni",
-     "caseHuman": "mabni",
-     "caseMatch": true
+     "caseHuman": "harf",
+     "caseMatch": false
     },
     {
      "w": "وُضِعَ",
@@ -16243,7 +16243,7 @@
    "judged": 8,
    "agree": 8,
    "judgedC": 6,
-   "agreeC": 5,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "وَلَا",
@@ -16332,8 +16332,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "mabni",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "الْخَبَرَ",
@@ -27158,7 +27158,7 @@
    "judged": 10,
    "agree": 10,
    "judgedC": 5,
-   "agreeC": 5,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "مَحَبَّتُكَ",
@@ -27366,8 +27366,8 @@
      },
      "match": true,
      "caseSaid": "jarr",
-     "caseHuman": "jarr",
-     "caseMatch": true
+     "caseHuman": "harf",
+     "caseMatch": false
     },
     {
      "w": "مَحَبَّتِكَ",
@@ -29909,8 +29909,8 @@
    "posAgreement": 100,
    "judged": 9,
    "agree": 9,
-   "judgedC": 6,
-   "agreeC": 6,
+   "judgedC": 7,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "أَهَذَا",
@@ -30070,8 +30070,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "رَيْبَ",
@@ -30769,8 +30769,8 @@
    "posAgreement": 100,
    "judged": 8,
    "agree": 8,
-   "judgedC": 6,
-   "agreeC": 6,
+   "judgedC": 8,
+   "agreeC": 8,
    "tokens": [
     {
      "w": "لَا",
@@ -30791,8 +30791,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "رَجُلَ",
@@ -30882,8 +30882,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "رِجَالَ",
@@ -33772,7 +33772,7 @@
    "judged": 5,
    "agree": 5,
    "judgedC": 4,
-   "agreeC": 3,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "أَنْتَ",
@@ -33818,8 +33818,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "mabni",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "سَعَيْتَ",
@@ -35371,7 +35371,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -37488,9 +37488,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "عُمَرُ",
-      "root": null,
-      "wazn": null,
+      "lemma": "عُمْر",
+      "root": "ع م ر",
+      "wazn": "فَعْلًا",
       "sure": true
      },
      "match": true,
@@ -45182,9 +45182,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "عُمَرُ",
-      "root": null,
-      "wazn": null,
+      "lemma": "عُمْر",
+      "root": "ع م ر",
+      "wazn": "فَعْلًا",
       "sure": true
      },
      "match": true,
@@ -46092,8 +46092,8 @@
    "posAgreement": 100,
    "judged": 5,
    "agree": 5,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "لَا",
@@ -46115,8 +46115,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "تَشْتِمْ",
@@ -48200,8 +48200,8 @@
    "posAgreement": 100,
    "judged": 7,
    "agree": 7,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "ذَلِكَ",
@@ -48268,8 +48268,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "رَيْبَ",
@@ -49156,8 +49156,8 @@
    "posAgreement": 100,
    "judged": 6,
    "agree": 6,
-   "judgedC": 4,
-   "agreeC": 4,
+   "judgedC": 5,
+   "agreeC": 5,
    "tokens": [
     {
      "w": "أَقُولُ",
@@ -49246,8 +49246,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "تُقِيمَنَّ",
@@ -49583,8 +49583,8 @@
    "posAgreement": 100,
    "judged": 11,
    "agree": 11,
-   "judgedC": 9,
-   "agreeC": 9,
+   "judgedC": 10,
+   "agreeC": 10,
    "tokens": [
     {
      "w": "قَالَ",
@@ -49808,8 +49808,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "يَبْلَى",
@@ -58226,8 +58226,8 @@
    "posAgreement": 100,
    "judged": 12,
    "agree": 12,
-   "judgedC": 6,
-   "agreeC": 6,
+   "judgedC": 7,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "بِجُمْلَةٍ",
@@ -58318,8 +58318,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "مَحَلَّ",
@@ -62158,7 +62158,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -64086,7 +64086,7 @@
    "judged": 9,
    "agree": 9,
    "judgedC": 7,
-   "agreeC": 7,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "وَأَرْكَانُهُ",
@@ -64271,8 +64271,8 @@
      },
      "match": true,
      "caseSaid": "raf",
-     "caseHuman": "raf",
-     "caseMatch": true
+     "caseHuman": "harf",
+     "caseMatch": false
     },
     {
      "w": "التَّشْبِيهِ",
@@ -79960,7 +79960,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "mabni",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -105436,7 +105436,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "nasb",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -108772,8 +108772,8 @@
    "posAgreement": 92.9,
    "judged": 14,
    "agree": 13,
-   "judgedC": 10,
-   "agreeC": 10,
+   "judgedC": 11,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "وَفَسَّرَ",
@@ -108867,8 +108867,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "تَحَقُّقَ",
@@ -112810,7 +112810,7 @@
    "judged": 13,
    "agree": 13,
    "judgedC": 13,
-   "agreeC": 12,
+   "agreeC": 13,
    "tokens": [
     {
      "w": "وَفَرَّقَ",
@@ -112905,8 +112905,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "jarr",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "الِانْتِقَالَ",
@@ -119452,7 +119452,7 @@
    "judged": 11,
    "agree": 11,
    "judgedC": 10,
-   "agreeC": 9,
+   "agreeC": 10,
    "tokens": [
     {
      "w": "فَصْلٌ",
@@ -119569,8 +119569,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "jarr",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "الْمَجَازَ",
@@ -148094,8 +148094,8 @@
    "posAgreement": 92.9,
    "judged": 14,
    "agree": 13,
-   "judgedC": 10,
-   "agreeC": 10,
+   "judgedC": 11,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "كَقَوْلِ",
@@ -148165,8 +148165,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "خَيْلَ",
@@ -159431,7 +159431,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "nasb",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -160179,7 +160179,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "nasb",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -176405,7 +176405,7 @@
    "judged": 6,
    "agree": 6,
    "judgedC": 4,
-   "agreeC": 3,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "وَتَخْشَى",
@@ -176522,8 +176522,8 @@
      },
      "match": true,
      "caseSaid": "harf",
-     "caseHuman": "jarr",
-     "caseMatch": false
+     "caseHuman": "harf",
+     "caseMatch": true
     },
     {
      "w": "تَخْشَاهُ",
@@ -186774,9 +186774,9 @@
      },
      "engine": {
       "kind": "noun",
-      "lemma": "عُمَرُ",
-      "root": null,
-      "wazn": null,
+      "lemma": "عُمْر",
+      "root": "ع م ر",
+      "wazn": "فَعْلًا",
       "sure": true
      },
      "match": true,
@@ -188791,7 +188791,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -189096,7 +189096,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -189449,7 +189449,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -195374,7 +195374,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -197159,7 +197159,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -197697,7 +197697,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -197815,7 +197815,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -197882,7 +197882,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -198187,7 +198187,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -198443,7 +198443,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -198911,7 +198911,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -200087,7 +200087,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -200179,7 +200179,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -200417,7 +200417,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -202351,7 +202351,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -202959,7 +202959,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -202983,7 +202983,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -204803,7 +204803,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -206305,7 +206305,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -210189,7 +210189,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -211388,7 +211388,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -211484,7 +211484,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -213581,7 +213581,7 @@
      },
      "match": false,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -216335,7 +216335,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -216453,7 +216453,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
@@ -217383,7 +217383,7 @@
      },
      "match": true,
      "caseSaid": null,
-     "caseHuman": "jarr",
+     "caseHuman": "harf",
      "caseMatch": null
     },
     {
