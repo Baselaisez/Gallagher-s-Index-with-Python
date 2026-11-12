@@ -10507,6 +10507,50 @@ if (!CHROME) {
     if (!(r.fallback.n >= 4)) throw new Error('the tiny story ' + r.fallback.story + ' did not fall back to the library: ' + r.fallback.n + ' items');
   });
 
+  await check('wave 141 — the prose texts\' blind endings by rule: وَحْدَهُ the ḥāl, سَنَةَ before its number the ẕarf, لَيْسُوا\'s khabar past the jarr phrase, نِعَمِ the noun annexing the Name, the nakira head before مَنِ, the sound-plural naʿt by its letters, the two-object verb\'s definite and nakira objects with the ṣifa in the third seat, the owed khabar, the kāna / إِنَّ khabar kept, the ـَات plural\'s kasra and the singular\'s fatḥa', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("جَلَسَ وَحْدَهُ فِي الْبَيْتِ");
+      out.s2 = E("وَكَانَ ذَلِكَ سَنَةَ ثَلَاثِينَ");
+      out.s3 = E("لَيْسُوا لَكَ أَقْرِبَاءَ");
+      out.s4 = E("هَذَا مِنْ مَظَاهِرِ نِعَمِ اللهِ عَلَى عِبَادِهِ");
+      out.s5 = E("قُصِدَ بِهِ إِظْهَارُ صِدْقِ مَنِ ادَّعَى النُّبُوَّةَ");
+      out.s6 = E("جَاءَ الْمَلَائِكَةُ الْمُقَرَّبُونَ");
+      out.s7 = E("تَوَرَّطَتْ فِي الْخَطَإِ وَتَوَهَّمَتِ الزُّجَاجَةَ مَاءً رَقْرَاقًا");
+      out.s8 = E("وَتَصْدِيقُ الْكَاهِنِ بِمَا يُخْبِرُهُ عَنِ الْغَيْبِ كُفْرٌ");
+      out.s9 = E("أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللهِ");
+      out.s10 = E("صَارَ مُوسَى رَسُولَ اللهِ");
+      out.s11 = E("أَهْلَكَ جَنَّتَهُ فِي لَيْلَةٍ وَاحِدَةٍ");
+      out.s12 = E("وَالسَّلَامُ عَلَيَّ يَوْمَ وُلِدْتُ وَيَوْمَ أَمُوتُ");
+      out.s14 = E("إِنَّ الْمُقَدَّرَاتِ لَا تُدْرَكُ بِالرَّأْيِ");
+      out.s15 = E("زَرَعَ الرَّجُلُ نَبَاتًا");
+      out.s16 = E("سَلَّمْتُ عَلَى الْمُؤْمِنِينَ");
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    want('s1', 1, /^وَحْدَهُ·hal$/, 'وَحْدَهُ is the ḥāl');
+    want('s2', 2, /^سَنَةَ·zarf$/, 'سَنَةَ before its number is the ẕarf');
+    want('s3', 2, /^أَقْرِبَاءَ·kanaKhabar$/, 'لَيْسُوا\'s khabar past the jarr phrase');
+    want('s4', 3, /^نِعَمِ·/, 'نِعَمِ is the noun on its kasra, never the verb of praise');
+    want('s4', 4, /^اللهِ·mudafIlayh$/, 'the Name after نِعَمِ is annexed');
+    want('s5', 3, /^صِدْقِ·mudafIlayh$/, 'the nakira before مَنِ is a head (no tanwīn)');
+    want('s6', 1, /^الْمَلَائِكَةُ·fail$/, 'the head of the sound-plural naʿt is the doer');
+    want('s6', 2, /^الْمُقَرَّبُونَ·nat$/, 'the sound plural by its letters is the naʿt');
+    want('s7', 4, /^الزُّجَاجَةَ·maful$/, 'the definite after the two-object verb is its first object');
+    want('s7', 5, /^مَاءً·maful$/, 'the nakira is its second object');
+    want('s7', 6, /^رَقْرَاقًا·nat$/, 'the ṣifa in the third seat is the naʿt');
+    want('s8', 6, /^كُفْرٌ·khabar$/, 'the owed khabar closes the verbless sentence');
+    want('s9', 3, /^رَسُولُ·innaKhabar$/, 'إِنَّ\'s khabar kept (no badal)');
+    want('s10', 2, /^رَسُولَ·kanaKhabar$/, 'kāna\'s khabar kept (no badal)');
+    want('s11', 3, /^لَيْلَةٍ·jarr$/, 'the jarr noun before وَاحِدَةٍ is no number head');
+    want('s11', 4, /^وَاحِدَةٍ·nat$/, 'وَاحِدَةٍ is the naʿt');
+    want('s12', 3, /^وُلِدْتُ·/, 'the passive māḍī on the speaker\'s tāʾ reads عَلَيَّ');
+    want('s14', 1, /^الْمُقَدَّرَاتِ·innaIsm$/, 'the ـَات plural wears the kasra as إِنَّ\'s ism');
+    want('s15', 2, /^نَبَاتًا·maful$/, 'the singular نَبَات wears the fatḥatayn');
+    want('s16', 2, /^الْمُؤْمِنِينَ·jarr$/, 'the ـِين plural\'s nūn wears the fatḥa');
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });

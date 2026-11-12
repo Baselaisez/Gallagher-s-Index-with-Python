@@ -9986,6 +9986,37 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 141 — the prose texts' blind endings by rule.** The blind sweep (the engine reads the stripped sentence with no
+receipt from the author) still left 193 wrong / 283 undecided endings on v241, two thirds of them in the fourth Qiṣaṣ volume
+and the ʿAqāʾid. A pre-pass of twenty-odd rules before the main decide loop now reads what the earlier waves could not: وَحْدَهُ
+is a ḥāl wherever it stands; the noun before a number is annexed to it and سَنَةَ / عَامَ / يَوْمَ before the number is the
+ẕarf (never when the noun is itself a muḍāf ilayh or stands behind a jarr letter; وَاحِد and اثْنَان follow their noun as its
+naʿt); لَيْسُوا / صَارُوا / كَانُوا and the rest of the family in their plural and dual forms carry the ism in the suffix, so the
+nakira past the jarr phrases is the KHABAR; نِعَمِ with the fatḥa on the ʿayn is the plural of نِعْمَة and annexes the Name, never
+the verb of praise; the nakira before مَنْ / مَا with a verb after it is a head (صِدْقِ مَنِ ادَّعَى) unless it is ṣifa-shaped
+(رِيحٌ شَدِيدَةٌ مَا رَأَى); a ẕarf with its pronoun or a definite noun opening a verb clause is never the muḍāf ilayh of the nakira
+before it; the sound masculine plural naʿt by its letters fixes its head (الْمَلَائِكَةُ الْمُقَرَّبُونَ — unless the lexicon owns
+the ـُون word as a singular, الصَّبِيُّ الْمَأْذُونُ); the naʿt after a ـِين plural must itself be a plural; ابْن between a name
+whose case is invisible and a name takes the earlier head's case, and رَسُولَ اللهِ after the ابْن chain is its badal; the ṣila's
+doer is the name or title right after the relative's verb (not after كَانَ, not a ẕarf with its pronoun); the demonstrative after
+a ledger-lāzim verb is its doer and the definite noun after it the badal (not when the joined verb continues a clause with its own
+subject); the owed khabar closes a verbless sentence (…عَنِ الْغَيْبِ كُفْرٌ) — never a head word, a cited word, the word after
+a bare nakira or a coordinator, nor inside a citing matn sentence; ʿaṭf across a complement joins the enclosing list, but a joined
+noun with its own jarr phrase never joins a jarr list (وَالْكَافُ لِلتَّشْبِيهِ), a bare final noun joins the free-particle jarr
+noun or the muḍāf ilayh right before it (فِي النَّصْبِ وَالْجَرِّ، اسْمِ الْفَاعِلِ وَالْمَفْعُولِ), and the joined definite after the
+doer's jarr noun joins that noun only when it closes the clause (بِالنُّبُوَّةِ وَالْوَحْيِ vs وَالِاجْتِرَاءُ عَلَيْهِمْ). The
+CONTINUING DOER rule makes the definite noun after a verb its object only on evidence: the verb's own person suffix (never a cell
+without a person index), the Name after the verbs that take it (ذَكَرَ، دَعَا، عَبَدَ…; never after كَلَّمَ / أَحَبَّ / رَأَى
+whose doer is the Name as often), the jawāb of مَنْ, a two-object verb before a definite AND a nakira (تَوَهَّمَتِ الزُّجَاجَةَ
+مَاءً رَقْرَاقًا — and the ṣifa-shaped nakira in the third seat is that object's naʿt), the addressee's تَ only with a second
+person in the sentence and no earlier visible doer of the same verb (فَلْيُسْعِدِ النُّطْقُ إِنْ لَمْ تُسْعِدِ الْحَالُ); a candidate
+after a jarr noun or a bare nakira is that noun's naʿt or muḍāf ilayh, and no object is read inside نَحْوُ / تَقُولُ / كَقَوْلِكَ.
+The writer learned that a ـَات lemma is a singular only when the lexicon gives it its own plural or it is نَبَات / ذَات and their
+kind (الْمُقَدَّرَاتِ، لَهْذَمِيَّاتٍ wear the kasra), and that the ـِينَ plural's nūn takes the fatḥa. Speaker-tāʾ on the māḍī reads
+the sentence's first-person markers (عَلَيَّ، لِي، the speaker's yāʾ). Measured on the whole shelf, blind: 49,252 → 49,289 right
+(wrong 193 → 162, undecided 283 → 277; FIXED 37 / BROKEN 0); receipts-on: 49,458 → 49,471 (FIXED 13 / BROKEN 0); the POS
+agreement of the drill bank unchanged at 98.7 %. Every story and feature kept.
+
 **Wave 140 — SPEED IV, the game starts.** Measured on v240 at 4× CPU, every Atölye tab painted in ≤ 181 ms but seven game
 starts still blocked the thread: gShop 1,182 ms, gWajh 671, gDuel 582, gKinds 404, gIbaraAr 335, gGhost 317, gHizli 304 —
 each tap rebuilt a whole pool over the shelf (41,000 tokens through RoleEngine for the duel, every sentence through
