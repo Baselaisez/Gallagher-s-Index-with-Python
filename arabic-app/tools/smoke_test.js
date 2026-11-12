@@ -10401,6 +10401,30 @@ if (!CHROME) {
     if (r.analyzeAvgMs > 400) throw new Error('a fresh sentence analyses too slowly on cleared memos: ' + r.analyzeAvgMs + ' ms average (ceiling 400)');
     for (const [k, v] of [["wajh", r.wajh], ["shop", r.shop], ["jinas", r.jinas]]) if (v[0] > 2500 || v[1] < 1) throw new Error('the ' + k + ' pool from nothing: ' + v[0] + ' ms for ' + v[1] + ' items (ceiling 2500 ms)');
   });
+  await check('wave 137 — the last fallback on the authored corpus: a noun the rules left undecided takes, within the case the author\'s ending names, the seat the IrabModel ranks highest (marked model137); every such seat agrees with the written ending; a typed sentence receives none; the receipts stay off outside grade()', async () => {
+    const r = await page.evaluate(() => {
+      const out = { graded: 0, model: 0, agree: 0, disagree: [], typedModel: 0, receiptsOff: null };
+      const V = w => { const o = String(w || "").normalize("NFC").replace(/ًا$/, "ً").replace(/اً$/, "ً"); const m = o.match(/([ًٌٍَُِ])ّ?$/); return m ? m[1] : ""; };
+      const CASE = v => /^[ٌُ]$/.test(v) ? "raf" : /^[ًَ]$/.test(v) ? "nasb" : /^[ٍِ]$/.test(v) ? "jarr" : "";
+      const st = STORIES.find(x => x.id === "al-kafiya") || STORIES[0];
+      DabtEngine._model137 = 0;
+      st.chapters.slice(0, 12).forEach(ch => ch.sentences.forEach(sen => { DabtEngine._lastGraded26 = null; const g = DabtEngine.grade(sen, "endings"); out.graded++;
+        (g.words || []).forEach((w, i) => { const s = (g.seats || g.out || [])[i]; }); }));
+      out.model = DabtEngine._model137;
+      // the seats the model named must wear the author's case: grade one chapter and read the engine's output against the written words
+      const ch = st.chapters[6] || st.chapters[0];
+      ch.sentences.forEach(sen => { DabtEngine._lastGraded26 = null; const g = DabtEngine.grade(sen, "endings"); (g.words || []).forEach((w, i) => { if (!w || w.ok === null || w.ok === undefined) return; const want = CASE(V(w.want)), got = CASE(V(w.out)); if (want && got) { if (want === got) out.agree++; else if (out.disagree.length < 5) out.disagree.push({ want: w.want, out: w.out, rule: w.rule }); } }); });
+      DabtEngine._model137 = 0; DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null;
+      DabtEngine.vowel("ذَهَبَ الطَّالِبَ إِلَى الْمَدْرَسَةِ كِتَابٌ قَلَمًا", "endings"); out.typedModel = DabtEngine._model137;
+      out.receiptsOff = DabtEngine._receiptsOn136 === false || DabtEngine._receiptsOn136 === undefined;
+      return out;
+    });
+    if (!(r.graded > 50)) throw new Error('too few sentences graded: ' + r.graded);
+    if (!(r.model > 0)) throw new Error('the model named no seat on the Kāfiya\'s first chapters — the fallback did not run');
+    if (!(r.agree > 100)) throw new Error('too few agreeing endings read: ' + r.agree);
+    if (r.typedModel !== 0) throw new Error('a typed sentence took ' + r.typedModel + ' model seats — the receipts must be off outside grade()');
+    if (!r.receiptsOff) throw new Error('the receipts flag stayed on after grade()');
+  });
 
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };

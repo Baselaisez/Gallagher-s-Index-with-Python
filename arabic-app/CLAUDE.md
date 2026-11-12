@@ -9986,6 +9986,19 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 137 — the model names the seat the receipt allows.** After wave 136 the authored corpus had 398 undecided endings,
+244 of them words no rule and no wave-133 mark reached — most of them the matn's own cited examples (131 stand after نَحْوُ:
+كَمْ رَجُلًا، ضَرْبُ زَيْدٍ عَمْرًا، ضَارِبٌ غُلَامُهُ عَمْرًا، حَسَنَةٌ وَجْهًا، سَقْيًا زَيْدًا). The last fallback of `decide()`, run only
+while the receipts are on (`grade()`, the authored corpus): a noun still undecided takes, WITHIN the case the author's own
+ending names, the seat the IrabModel ranks highest — the perceptron names the seat (doer / mubtadaʾ / khabar under a ḍamma,
+object / ḥāl under a fatḥa, the annexed noun or the majrūr under a kasra), the receipt fixes the case, and the seat carries
+`model137` so the sheet can say who named it; a word without a receipt, and every word of a typed sentence, stays undecided
+as before. Before the model, the shapes the rules know: a bare short vowel without tanwīn on a nakira is the annexed head's
+(وَجَاعِلُ الَّذِينَ، مِثْلَ أَنَّكَ — the pair is written, no tanwīn is added), a time or place noun under the fatḥa is the ẕarf
+(أَيَّامًا، يَوْمًا), the nakira after كَمْ is its tamyīz (كَمْ رَجُلًا), and a joined word follows the nearest earlier noun seated
+in its case (وَمُضَافًا). The model's context is the sentence's own (`IrabModel.hood`, the previous kind, the neighbours as
+written). Sweep of all 51 texts, 49,728 endings: 49,456 right / 174 undecided / 98 wrong (was 49,232 / 398 / 98); 224 fixed, 0 broken — the model named 84 objects, 62 ḥāls, 18 ʿaṭfs, 16 khabars, 11 majrūrs, 9 annexed nouns, 9 doers, 6 mubtadaʾs, 5 tamyīzes; what stays undecided is the cited particles (hikāya, 87), the mabnī (32) and the rhyme seats.
+
 **Wave 136 — SPEED III and the author's receipts.** The owner's complaint stood: the Atölye and the games were still slow.
 Timed cold at 4× CPU on v236, every lab tab opened under 130 ms and every game under 320 ms — except the three that read
 eight FRESH sentences through the analyser on the tap: gWajh 17.0 s, gJinas 14.9 s, gShop 12.2 s. The CPU profile put 88 % of

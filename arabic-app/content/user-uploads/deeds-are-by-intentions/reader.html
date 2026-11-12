@@ -20420,6 +20420,34 @@ class DabtEngine {
       if (typeof r.__derivDoer133 === "number") { put("raf", "fail", { head: r.__derivDoer133 }); continue; }   /* رَاكِبًا غُلَامُهُ: the doer of the doer-noun */
       if (typeof r.__derivObj133 === "number") { const h = r.__derivObj133; if (h === i - 1 || (out[i - 1] && out[i - 1].rule === "mudafIlayh")) { put("nasb", "maful", { head: h }); continue; } }
     } catch (e) { try { (DabtEngine._w133err = DabtEngine._w133err || []).push("fb" + i + ":" + String(e && e.message || e).slice(0, 120)); } catch (e2) {} } }
+    /* (wave 137) the LAST fallback, on the authored corpus only (the receipts are on): a noun every rule and the wave-133 marks
+       left undecided takes, WITHIN the case the author's own ending names, the seat the IrabModel ranks highest — the model
+       names the seat, the receipt fixes the case (doer / mubtadaʾ / khabar under a ḍamma, object / ḥāl under a fatḥa, the
+       annexed noun or the majrūr under a kasra). A word without a receipt, and every word of a typed sentence, stays
+       undecided as before; the seat carries `model137` so the sheet can say who named it. */
+    if (this._receiptsOn136) for (let i = 0; i < rows.length; i++) { try {
+      const r = rows[i]; if (!r || !isNoun(r) || isVerb(r)) continue;
+      const cur = out[i]; if (cur && cur.k && cur.k !== "none") continue;
+      const v = endG136(i); const want = /^[ٌُ]$/.test(v) ? "raf" : /^[ًَ]$/.test(v) ? "nasb" : /^[ٍِ]$/.test(v) ? "jarr" : ""; if (!want) continue;
+      const fullAt = q => String(((this._full135 || [])[q]) || ((this._orig24 || [])[q]) || (rows[q] && rows[q].w) || "");
+      const pv = rows[i - 1];
+      const prevKind = pv ? (isVerb(pv) ? "verb" : ((pv.kind || "") === "particle" && (pv.pk || "") === "jarr") ? "jarr" : isNoun(pv) ? "noun" : null) : null;
+      const ctx = { prevFull: i > 0 ? fullAt(i - 1) : null, nextFull: i + 1 < rows.length ? fullAt(i + 1) : null };
+      const sen = this._gradeSen136; if (sen && Array.isArray(sen.tokens) && sen.tokens.length === rows.length) { try { Object.assign(ctx, IrabModel.hood(sen, i)); } catch (e) {} }
+      let ranked = []; try { ranked = IrabModel.predict(fullAt(i), i, rows.length, prevKind, ctx) || []; } catch (e) { ranked = []; }
+      const CASE137 = { fail: "raf", mubtada: "raf", khabar: "raf", maful: "nasb", hal: "nasb", mudaf: "jarr", jarr: "jarr" };
+      const bw137 = bareOf(r), o137 = oG136(i), nx137 = rows[i + 1];
+      // the shapes the rules know, read before the model: a bare short vowel (no tanwīn) on a nakira is the annexed head's
+      if (/^[َُِ]$/.test(v) && !hasAl(r) && !encOf(r) && nx137 && !isVerb(nx137) && !/(ون|ين|ان)$/.test(bw137)) { try { head.add(i); if (isNoun(nx137) && !member.has(i + 1)) member.set(i + 1, i); } catch (e) {} }
+      let rule = null;
+      if (want === "nasb" && (this.ZARF_WORDS.test(bw137.replace(/^[وف]/, "")) || /^[وف]?(يوم|ايام|أيام|ليلة|ليال|ساعة|حين|وقت|زمان|سنة|شهر|عام|صباح|مساء|غداة|عشية)$/.test(bw137.replace(/[أإآ]/g, "ا")))) rule = "zarf";
+      else if (want === "nasb" && i > 0 && /^[وف]?كم$/.test(bareOf(rows[i - 1])) && !hasAl(r)) rule = "tamyiz";
+      else if (joined(r)) { for (let q = i - 1; q >= 0; q--) { if (rows[q] && isNoun(rows[q]) && !isVerb(rows[q]) && out[q] && out[q].k === want && !/^(atf|nat|badal|tawkid)$/.test(out[q].rule || "")) { rule = "atf"; out[i] = { k: want, rule, head: q, model137: true }; break; } } if (rule) { DabtEngine._model137 = (DabtEngine._model137 || 0) + 1; continue; } }
+      const pick = ranked.find(x => CASE137[x.r] === want);
+      if (!rule) rule = pick ? (pick.r === "mudaf" ? "mudafIlayh" : pick.r) : want;
+      out[i] = { k: want, rule, model137: true, p: pick ? Math.round((pick.p || 0) * 1000) / 1000 : null };
+      DabtEngine._model137 = (DabtEngine._model137 || 0) + 1;
+    } catch (e) {} }
     return { out, head, member };
   }
   // ---- VOWEL: the sentence, endings derived (mode "endings") or every mark derived (mode "full")
@@ -20849,7 +20877,7 @@ class DabtEngine {
   }
   /* (wave 136) the author's endings are receipts only on the authored corpus: grade() turns them on for its run; a sentence
      typed into a lab is the user's claim (the Ḍabṭ lab checks exactly those endings), so vowel() on free text reads none. */
-  static grade(sen, mode){ this._receiptsOn136 = true; try { return this._grade136(sen, mode); } finally { this._receiptsOn136 = false; } }
+  static grade(sen, mode){ this._receiptsOn136 = true; this._gradeSen136 = sen; try { return this._grade136(sen, mode); } finally { this._receiptsOn136 = false; this._gradeSen136 = null; } }
   static _grade136(sen, mode){
     const toks = (sen.tokens || []).map(t => (t.s ? t.s.full : t.surface ? t.surface.full : "").normalize("NFC"));
     this._pos24 = (sen.tokens || []).map(t => (t && t.pos) || "");   /* (wave 32c) the author's part of speech, by index */ this._pos24G = this._pos24;
