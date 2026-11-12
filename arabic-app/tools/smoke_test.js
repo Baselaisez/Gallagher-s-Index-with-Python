@@ -10510,6 +10510,29 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 145 — the typed sentence read faster: the engine\'s string helpers (bare, core, articleOn), the lexicon lookup, the muḍāriʿ shape and the two taggers are memoised without a verdict changed — the same objects for the same word, copies where the caller may write, a fold\'s model with its own table; twenty readings of an eight-word sentence under the ceiling', async () => {
+    const r = await page.evaluate(() => {
+      const out = {}; const S1 = "ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ صَبَاحًا وَقَرَأَ كِتَابًا جَدِيدًا";
+      const E = () => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; return DabtEngine.vowel(S1, "endings"); };
+      const v1 = E(); const t0 = performance.now(); for (let i = 0; i < 20; i++) E(); out.ms20 = Math.round(performance.now() - t0); const v2 = E();
+      out.same = JSON.stringify(v1.words.map(w => w.out + "·" + w.rule)) === JSON.stringify(v2.words.map(w => w.out + "·" + w.rule));
+      out.bareMemo = DabtEngine._bareMemo144 instanceof Map && DabtEngine._bareMemo144.size > 20 && DabtEngine.bare("الْوَلَدُ") === "الولد" && DabtEngine.core("وَالْوَلَدُ") === "الولد";
+      out.artMemo = DabtEngine._artMemo144 instanceof Map && DabtEngine.articleOn("الْكِتَابُ") === DabtEngine.articleOn0("الْكِتَابُ");
+      const l1 = DabtEngine.lex("كِتَابًا"), l2 = DabtEngine.lex("كِتَابًا"); out.lexMemo = !!l1 && l1 === l2 && DabtEngine._lexMemo144 instanceof Map && DabtEngine._lexMemoFor144 === RootFinder.nounIndex();
+      const d1 = DabtEngine.lex("الرَّجُلَانِ"), d2 = DabtEngine.lex("الرَّجُلَانِ"); out.dualFresh = !d1 || !d1.viaDual || (d1 !== d2 && JSON.stringify(d1) === JSON.stringify(d2));
+      const f1 = MudariShape.fullCore("يَكْتُبُ"), f2 = MudariShape.fullCore("يَكْتُبُ"); out.shapeCopy = !!f1 && f1 !== f2 && JSON.stringify(f1) === JSON.stringify(f2) && f1.tense === "mudari";
+      const m = SarfTagger.train(); const t1 = SarfTagger.tag("يَكْتُبُ", 3), t2 = SarfTagger.tag("يَكْتُبُ", 3); out.tagMemo = m._tagMemo144 instanceof Map && t1.length > 0 && t1 !== t2 && JSON.stringify(t1) === JSON.stringify(t2) && JSON.stringify(t1) === JSON.stringify(SarfTagger.tag0("يَكْتُبُ", 3));
+      const im = IsmTagger.train(); const i1 = IsmTagger.tag("كِتَاب", 3); out.ismMemo = im._tagMemo144 instanceof Map && JSON.stringify(i1) === JSON.stringify(IsmTagger.tag0("كِتَاب", 3));
+      return out;
+    });
+    if (!r.same) throw new Error('the reading changed between calls: ' + JSON.stringify(r));
+    if (!(r.bareMemo && r.artMemo)) throw new Error('string memos: ' + JSON.stringify(r));
+    if (!(r.lexMemo && r.dualFresh)) throw new Error('lexicon memo: ' + JSON.stringify(r));
+    if (!r.shapeCopy) throw new Error('shape memo: ' + JSON.stringify(r));
+    if (!(r.tagMemo && r.ismMemo)) throw new Error('tagger memos: ' + JSON.stringify(r));
+    if (r.ms20 > 700) throw new Error('twenty readings took ' + r.ms20 + ' ms (ceiling 700)');
+  });
+
   await check('wave 144 — SPEED VI: the search index is built a story a slice and each row carries its folds, the doctrine texts fold once, the Muḥallil reads a sentence once per language, the long text renders by frame budget, the jinās seeds are read once a session', async () => {
     const r = await page.evaluate(() => {
       const out = {};

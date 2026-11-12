@@ -10520,7 +10520,8 @@ class MudariShape {
     if (hit.how === "mudari" && hit.person === 3 && /^(نِي|نَا)$/.test(enc) && /^ت/.test(w)) hit = { ...hit, person: 6 };   // تَشْتُمْنِي: the ت before the speaker's pronoun is the addressee
     return { ...hit, pre, enc, core: w, joined: /^[وف]/.test(pre), passive: /majhul/.test(hit.tense), suffixed: !!hit.suffixed || !!enc };
   }
-  static fullCore(w){
+  static fullCore(w){ const m = MudariShape._fcMemo144 || (MudariShape._fcMemo144 = new Map()); const k = String(w || ""); if (m.has(k)) { const h = m.get(k); return h ? { ...h } : h; } const r = this.fullCore0(w); if (m.size > 30000) m.clear(); m.set(k, r); return r ? { ...r } : r; }   /* (wave 145) */
+  static fullCore0(w){
     const C = "[ء-ي]", V = "[َُِ]";
     if (/^[ء-ي][َُِ][ء-ي][َُِ]ّ(ت[َِ])?(كَ|كِ|هُ|هِ|هَا|هُمْ|هُمَا|هُنَّ|كُمْ|كُمَا|كُنَّ|نَا|نِي|يَ?)$/.test(w)) return null;   // رَبَّكَ، رَبِّنَا، غُرَّتَهُ: a two-radical geminate NOUN wearing its pronoun
     // 1 · the muḍāriʿ — bare (its last vowel or a jussive sukūn), or with its number suffix
@@ -15877,7 +15878,14 @@ class QawaidEngine {
                          "صباحا", "مساء", "ابدا", "أبدا", "دائما", "قط", "لحظة", "زمن", "زمان", "وقت", "مرة"]);
   // a jarr letter fused to what it governs — the analyzer's peel wrote the
   // letter as the row's first segment (the definite case also wears fusedJarr)
-  static fused(r){
+  static fused(r){   /* (wave 145) one verdict per row-state */
+    if (!r || typeof r !== "object") return this.fused0(r);
+    const seg = r.seg || []; const key = [String(r.w || ""), r.fusedJarr ? 1 : 0, String(seg[0] || ""), seg.length, r.lemma, r.root, r.kind].join("\u0001");
+    const memo = QawaidEngine._fusedMemo145 || (QawaidEngine._fusedMemo145 = new WeakMap()); const hit = memo.get(r);
+    if (hit && hit.key === key) return hit.val;
+    const val = this.fused0(r); memo.set(r, { key, val }); return val;
+  }
+  static fused0(r){
     if (!r) return false;
     if (/^([وف][ً-ٰ]*)?ب[ً-ٰ]*[َُ]/.test(String(r.w || "").normalize("NFC"))) return false;   /* (wave 135) بَالَنَا، وَبَالٌ: the bāʾ with its own fatḥa or ḍamma is the word's, no jarr letter fused to an article */
     if (r.fusedJarr) return true;
@@ -16739,7 +16747,8 @@ class DabtEngine {
   // the ARTICLE, told from a radical alif-lam: before a sun letter the article
   // doubles the letter (الدُّنْيَا، الشَّبَه); الْتِزَام and الْتِفَات carry no shadda on
   // their ta — that ال is the Form VIII stem's own. A bare word asks the lexicon.
-  static articleOn(w){
+  static articleOn(w){ const s = w || ""; if (typeof s !== "string") return this.articleOn0(s); const m = DabtEngine._artMemo144 || (DabtEngine._artMemo144 = new Map()); let v = m.get(s); if (v === undefined) { v = this.articleOn0(s); if (m.size > 60000) m.clear(); m.set(s, v); } return v; }   /* (wave 145) */
+  static articleOn0(w){
     const nfc = (w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*/, "").replace(/^[بكل][ً-ٰ]*(?=ال)/, "");
     const b = stripAr(nfc).replace(/[^ء-ي]/g, "");
     if (!/^ال/.test(b) || b === "الله") return /^ال/.test(b);
@@ -16867,8 +16876,8 @@ class DabtEngine {
     lexicon:   { ar: "مِنَ الْمُعْجَمِ", en: "the lexicon's own spelling", tr: "sözlüğün kendi imlâsı", note: null },
     cell:      { ar: "مِنْ تَصْرِيفِ الْفِعْلِ", en: "the paradigm's own cell", tr: "fiilin çekim hânesi", note: null },
   };
-  static bare(w){ return stripAr(w || "").replace(/[^ء-ي]/g, ""); }
-  static core(w){ return this.bare(w).replace(/^[وف](?=..)/, ""); }
+  static bare(w){ const s = w || ""; if (typeof s !== "string") return stripAr(String(s)).replace(/[^ء-ي]/g, ""); const m = DabtEngine._bareMemo144 || (DabtEngine._bareMemo144 = new Map()); let v = m.get(s); if (v === undefined) { v = stripAr(s).replace(/[^ء-ي]/g, ""); if (m.size > 60000) m.clear(); m.set(s, v); } return v; }   /* (wave 145) a word's letters are read once */
+  static core(w){ const s = w || ""; if (typeof s !== "string") return this.bare(s).replace(/^[وف](?=..)/, ""); const m = DabtEngine._coreMemo144 || (DabtEngine._coreMemo144 = new Map()); let v = m.get(s); if (v === undefined) { v = this.bare(s).replace(/^[وف](?=..)/, ""); if (m.size > 60000) m.clear(); m.set(s, v); } return v; }   /* (wave 145) */
   // ---- strip: the ENDING only (closed-class words keep every mark; a pronoun tail keeps its own), or ALL marks
   static closedClass(w){
     if (/^[وف]?[ً-ٰ]*ع[ً-ٰ]*ن[ً-ٰ]*ّ/.test((w || "").normalize("NFC"))) return false;    // عَنَّ (to appear) wears a shadda; the letter عَنْ never does
@@ -16946,6 +16955,13 @@ class DabtEngine {
   static _plByLemma = new Map();
   static plOf(lemmaBare){ this.plIndex(); return [...(this._plByLemma.get(lemmaBare) || [])]; }
   static lex(w, tail){
+    let idx = null; try { idx = RootFinder.nounIndex(); } catch (e) { idx = null; }
+    if (DabtEngine._lexMemoFor144 !== idx) { DabtEngine._lexMemo144 = new Map(); DabtEngine._lexMemoFor144 = idx; }
+    const key = (tail ? "1" : "0") + String(w || ""); const memo = DabtEngine._lexMemo144;
+    if (memo.has(key)) { const h = memo.get(key); return h && h.viaDual ? { ...h } : h; }   /* (wave 145) the dual's entry is handed out fresh, as nounFromCorpus hands it */
+    const r = this.lex0(w, tail); if (memo.size > 40000) memo.clear(); memo.set(key, r); return r;
+  }
+  static lex0(w, tail){
     try {
       const b = this.bare(w);
       let n = RootFinder.nounFromCorpus(w);
@@ -16999,7 +17015,14 @@ class DabtEngine {
     try { const rc = r && r.__encReceipt118; if (rc && new RegExp(rc + "$").test(this.bare(w || "").replace(/[أإآ]/g, "ا"))) return rc; } catch (e) {}   /* (wave 118) the author's pronoun segment, read only where the engine saw none */
     return g118;
   }
-  static guessEnc0(r, w){
+  static guessEnc0(r, w){   /* (wave 145) one guess per row-state: the key lists every row field the guess reads */
+    if (!r || typeof r !== "object") return this.guessEnc00(r, w);
+    const key = [String(w || ""), r.enc, r.kind, r.lemma, r.__next, r.construct ? r.construct.enc : undefined, r.cell ? JSON.stringify(r.cell) : "", r.__wholeNoun138, r.__seat26, r.__kindNoun, r.__encCell26, r.__numeral26, r.__noEnc33].join("\u0001");
+    const memo = DabtEngine._encMemo145 || (DabtEngine._encMemo145 = new WeakMap()); const hit = memo.get(r);
+    if (hit && hit.key === key) return hit.val;
+    const val = this.guessEnc00(r, w); memo.set(r, { key, val }); return val;
+  }
+  static guessEnc00(r, w){
     if (r && r.__noEnc33) return "";   /* (wave 33d) a word written with tanwīn wears no enclitic */
     try { if (r && (r.__wholeNoun138 || ((r.kind || "").startsWith("noun") && !(r.construct && r.construct.enc))) && !(r.cell && !r.__kindNoun && !r.__wholeNoun138)) { const b0 = this.bare(w || "").replace(/^[وف](?=...)/, "").replace(/^ال/, ""); if (b0.length >= 5 && this.plIndex().has(b0)) return ""; } } catch (e) {}   /* (wave 138) دَرَاهِمُ: the lexicon's broken plural is the whole word — no pronoun on it */
     if (r && r.__numeral26) return "";   /* (wave 26i) اثْنَا */
@@ -27590,7 +27613,13 @@ class SarfTagger {
   }
   static train(){ return this._model || (this._model = this.fit(this.rows())); }
   // ---- ranked guesses, with probabilities so the UI can show its confidence
-  static tag(word, top = 3){
+  static tag(word, top = 3){   /* (wave 145) memoised on the model object itself: evalUnseen's fold models each carry their own table */
+    const m = this.train(); if (!m || !m.L || !m.L.length) return [];
+    const memo = m._tagMemo144 || (m._tagMemo144 = new Map()); const key = String(word) + "\u0001" + top;
+    const hit = memo.get(key); if (hit) return hit.map(x => ({ ...x }));
+    const r = this.tag0(word, top); if (memo.size > 30000) memo.clear(); memo.set(key, r.map(x => ({ ...x }))); return r;
+  }
+  static tag0(word, top = 3){
     const m = this.train();
     if (!m.L.length) return [];
     const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);
@@ -32455,7 +32484,13 @@ class IsmTagger {
     return m;
   }
   static train(){ return this._model || (this._model = this.fit(this.rows())); }
-  static tag(word, top = 3){
+  static tag(word, top = 3){   /* (wave 145) memoised on the model object itself: evalUnseen's fold models each carry their own table */
+    const m = this.train(); if (!m || !m.L || !m.L.length) return [];
+    const memo = m._tagMemo144 || (m._tagMemo144 = new Map()); const key = String(word) + "\u0001" + top;
+    const hit = memo.get(key); if (hit) return hit.map(x => ({ ...x }));
+    const r = this.tag0(word, top); if (memo.size > 30000) memo.clear(); memo.set(key, r.map(x => ({ ...x }))); return r;
+  }
+  static tag0(word, top = 3){
     const m = this.train();
     if (!m.L.length) return [];
     const fs = this.feats(word), wt = 1 / Math.pow(fs.length, this.ALPHA);

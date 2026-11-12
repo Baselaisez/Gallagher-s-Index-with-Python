@@ -9986,6 +9986,23 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 145 — the typed sentence read faster, the verdicts untouched.** Profiled at 1× on v245: `DabtEngine.vowel` on an
+eight-word typed sentence 15 ms (decide 166 of 288 sampled ms, SentenceAnalyzer.analyze 96), a corpus sentence's grade 26 ms;
+the self time sat in the per-row helpers the 800 rules call again and again — `bare` / `core` / `articleOn` (the letters of
+the same word read hundreds of times), `lex` (the lexicon lookup: five nounFromCorpus probes and the plural index per call),
+`MudariShape.fullCore` (the shape regexes), and the two naive-Bayes taggers (`SarfTagger.tag`, `IsmTagger.tag`: feats and
+the log-sum per label). Each is now memoised where it is a function of its arguments alone: the string helpers in Maps
+keyed by the word (`_bareMemo144`, `_coreMemo144`, `_artMemo144`, capped and cleared), `lex` keyed by word and tail flag ON
+the noun index that produced it (the dual's entry handed out fresh, as nounFromCorpus does), `fullCore` by word with the flat
+cell object copied out, each tagger's ranking kept on the MODEL object itself (`m._tagMemo144`) — the hazard that forbade
+a word cache in wave 112 (evalUnseen swaps a fold's model in behind the caller) cannot cross, because every fold's model
+carries its own table; results are copied out, since callers write on them. The enclitic guess (`guessEnc0`, 785 callers in the
+decide loop) and the fused jarr letter (`QawaidEngine.fused`) are kept ON THE ROW in a WeakMap while the row fields they read
+stay the same (the key lists every field: enc, kind, lemma, next word, construct, cell, the wave marks). Both sweeps re-run byte-identical against the
+v245 baseline (blind 49,728 rows, receipts-on 49,728 rows: 0 lines differ, twice). After, at 1×: the typed sentence 15 → 8 ms a reading (decide 166 → 102 sampled ms), the corpus sentence 26 ms as before (its
+cost is the taggers on words seen once). The smoke check asserts the
+memos' identities, the copies, the fold-safe tagger table, and twenty readings of the sentence under 700 ms at 1×.
+
 **Wave 144 — SPEED VI, the reading surface.** Measured on v244 at 4× CPU, warm: the Atölye open 223 ms, a word tapped
 in the first seconds of a long text 150–290 ms (the frame's thirty-sentence batch ran between the tap and its sheet), the
 search sheet's first query 963 ms and its second 467, the Muḥallil 119 ms on every re-render of the same sentence. By rule
