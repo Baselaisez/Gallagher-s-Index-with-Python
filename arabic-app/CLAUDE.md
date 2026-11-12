@@ -9986,6 +9986,26 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 149 — the prose's remaining wrong endings, by rule.** The v249 blind sweep's 147 wrong rows traced to the line that
+decides each (the `continue` tracer, the condition logger, a `member.set` tracer for the construct pairings). The writer:
+a five noun behind its conjunction keeps its letter-declension (وَذُو الْجَلَالِ — the shape test strips the و/ف and the
+output puts it back); a lexicon plural on a صِيغَةُ مُنْتَهَى الْجُمُوعِ shape is barred before the lexicon's triptote default
+speaks (خَوَاصَّ); a sound plural with its nūn on is never a muḍāf — the ṣifa-with-article construct (الضَّارِبُ الرَّجُلِ) and
+its two siblings now refuse it, so الْمُؤْمِنِينَ الصَّابِرِينَ are naʿt and naʿt and the nūn wears its fatḥa. The decide loop:
+كُنْ فَيَكُونُ is the tāmma (no ism, no khabar: الْحَقُّ opens its own clause); the joined al-noun after a jarr phrase in a
+clause whose object is the verb's own enclitic joins the jarr phrase (وَأَكْرَمَهُ اللهُ بِالنُّبُوَّةِ وَالْوَحْيِ), never where
+a noun object stands (الْإِيغَالَ وَالتَّذْيِيلَ); inside a ṣila the nakira behind its jarr letter annexes the al-noun — no
+postposed doer across a construct (مَا ثَبَتَ بِنَظْمِ الْكَلَامِ); the nakira time noun after the quote's fronted jarr phrase is
+the postponed mubtadaʾ (فَقَالَ لِلنَّاقَةِ يَوْمٌ); a فَ-joined أُفْعِلَ read as a passive māḍī is the speaker's muḍāriʿ where the
+sentence has spoken in the first person after أَنْ (أُحِبُّ أَنْ … إِلَيَّ … فَأُبْصِرَ بِهِ النَّاسَ); the transitive verb's owed
+object follows its doer's jarr chain when no construct claims it (وَوَلَّدَ فِيهِمُ الِاسْتِخْفَافُ بِالْأَنْبِيَاءِ … الْغِلْظَةَ
+وَالْجَفَافَ — the ledger's verb, or a maṣdar doer with its own complement); the Mukhtaṣar's sentence-opening وَلَا يَدْخُلُ
+الْأَخْبَارَ لِأَنَّ… seats the al-noun before لِأَنَّ as the object of a verb the ledger knows with objects. The grader learned
+VERSE: a story four fifths of whose lines close on the same consonant and short vowel with no tanwīn (Badʾ al-Amālī, ـَالِ)
+rhymes, and each line's last word is a qāfiya seat — the iṭlāq rules and the rhyme forgiveness apply (انْفِصَالِ،
+اشْتِمَالِ; twelve more lines now exact). Blind sweep 49,403 → 49,418 ok (15 fixed, 0 broken); receipts-on
+49,553 → 49,561 (8 fixed, 0 broken). Ten typed sentences gate the rules.
+
 **Wave 148 — SPEED VII: the boot, the idle jobs and the engines' first use.** Measured on v248 at 4× CPU: every lab tab and
 game start was under 150 ms once warm, but three things still held the thread. (1) Boot: V8 parsed 26 MB of story object
 literal — a 1.2 s long task at 1× CPU (~5 s on a phone). The build now folds each story's BODY (chapters and morph, 23 of

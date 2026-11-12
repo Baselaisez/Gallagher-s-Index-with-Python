@@ -10510,6 +10510,41 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 149 — the prose\'s remaining wrong endings by rule: the five noun keeps its letter behind a conjunction (وَذُو), the lexicon\'s plural on a muntahā shape is barred from tanwīn (خَوَاصَّ), كُنْ فَيَكُونُ is the tāmma, the joined al-noun after a jarr phrase in a clause whose object is the verb\'s enclitic joins the jarr phrase (وَالْوَحْيِ), the ṣila\'s nakira behind its jarr letter annexes the al-noun (بِنَظْمِ الْكَلَامِ), the nakira time noun after the quote\'s fronted jarr phrase is the postponed mubtadaʾ, the speaker\'s فَأُفْعِلَ is no passive, the transitive verb\'s owed object follows its doer\'s jarr chain, the Mukhtaṣar\'s وَلَا يَدْخُلُ الْأَخْبَارَ, and a sound plural with its nūn on is never a muḍāf', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("تَفَرَّدَ ذُو الْجَلَالِ وَذُو الْمَعَالِي");
+      out.s2 = E("قَالَ لَهُ كُنْ فَيَكُونُ الْحَقُّ مِنْ رَبِّكَ");
+      out.s3 = E("وَأَكْرَمَهُ اللهُ بِالنُّبُوَّةِ وَالْوَحْيِ وَآتَاهُ الْإِنْجِيلَ");
+      out.s4 = E("وَإِشَارَتُهُ مَا ثَبَتَ بِنَظْمِ الْكَلَامِ لُغَةً");
+      out.s5 = E("يُودِعُ مَا شَاءَ مِنْ خَوَاصَّ");
+      out.s6 = E("فَقَالَ لِلنَّاقَةِ يَوْمٌ وَلِمَاشِيَتِكُمْ يَوْمٌ");
+      out.s7 = E("أُحِبُّ أَنْ يَرُدَّ اللهُ إِلَيَّ بَصَرِي فَأُبْصِرَ بِهِ النَّاسَ");
+      out.s8 = E("وَوَلَّدَ فِيهِمُ الِاسْتِخْفَافُ بِالْأَنْبِيَاءِ وَالْعَبَثُ بِالتَّعَالِيمِ الْغِلْظَةَ وَالْجَفَافَ");
+      out.s9 = E("وَلَا يَدْخُلُ الْأَخْبَارَ لِأَنَّ الْخَبَرَ لَا يَحْتَمِلُ التَّبْدِيلَ");
+      out.s10 = E("عَلَى عِبَادِهِ الْمُؤْمِنِينَ الصَّابِرِينَ");
+      out.w = (() => { try { const x = AlamaEngine.write("وَذُو", "raf", { mudaf: true }); return x && x.out; } catch (e) { return "ERR"; } })();
+      out.verse = typeof DabtEngine.verseStory149 === "function" && (() => { const st = STORIES.find(x => x.id === "bad-al-amali"); if (!st) return true; const sen = st.chapters[0].sentences[4]; return DabtEngine.verseStory149(sen) === true && DabtEngine.verseStory149(STORIES.find(x => x.id !== "bad-al-amali" && x.chapters.length).chapters[0].sentences[0]) === false; })();
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    if (r.w !== "وَذُو") throw new Error('the writer keeps the five noun behind its conjunction: ' + r.w);
+    if (!r.verse) throw new Error('verseStory149: Badʾ al-Amālī is verse, a prose story is not');
+    want('s1', 3, /^وَذُو·atf$/, 'وَذُو: the letter is the case');
+    want('s2', 4, /^الْحَقُّ·(fail|mubtada)$/, 'كُنْ فَيَكُونُ closes: الْحَقُّ opens its own clause in rafʿ');
+    want('s3', 3, /^وَالْوَحْيِ·atf$/, 'وَالْوَحْيِ joins بِالنُّبُوَّةِ');
+    want('s4', 4, /^الْكَلَامِ·mudafIlayh$/, 'بِنَظْمِ الْكَلَامِ inside the ṣila');
+    want('s5', 4, /^خَوَاصَّ·jarr$/, 'خَوَاصَّ: the plural\'s own shape bars the tanwīn');
+    want('s6', 2, /^يَوْمٌ·mubtada$/, 'the postponed mubtadaʾ after the quote\'s jarr phrase');
+    want('s7', 8, /^النَّاسَ·maful$/, 'فَأُبْصِرَ is the speaker\'s: النَّاسَ its object');
+    want('s8', 6, /^الْغِلْظَةَ·maful$/, 'the owed object after the doer\'s jarr chain');
+    want('s8', 7, /^وَالْجَفَافَ·atf$/, 'and its ʿaṭf');
+    want('s9', 2, /^الْأَخْبَارَ·maful$/, 'وَلَا يَدْخُلُ الْأَخْبَارَ: the carried topic\'s object');
+    want('s10', 2, /^الْمُؤْمِنِينَ·nat$/, 'the sound plural naʿt wears its nūn\'s fatḥa');
+    want('s10', 3, /^الصَّابِرِينَ·(nat|atf)$/, 'and the next plural is a naʿt too, no muḍāf ilayh');
+  });
+
   await check('wave 148 — SPEED VII: the story bodies ride as JSON strings and parse on first use (the shelf reads the build\'s counts and new-word list, the same numbers), the engines\' corpus indexes are built in slices under the idle budget (the paradigm bare index, the two taggers, the valency ledger, the Maqṣūd audit, the search fold and index) and come out identical to the one-shot builds, the pools and seeds wait for the parsed stories', async () => {
     const r = await page.evaluate(() => {
       const out = {};
