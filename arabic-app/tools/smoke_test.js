@@ -10482,6 +10482,31 @@ if (!CHROME) {
     r.kept.forEach((v, i) => { if (!keptWant[i].test(v)) throw new Error('kept word #' + i + ' read as ' + v); });
   });
 
+  await check('wave 140 — SPEED IV, the game starts: GamePool samples a round\'s items at the tap (duel, ghost, ʿibāra, ḥarakāt, kinds) and finishes the pool under Quiet; the sample is a subset of the whole pool, the whole pool keeps its size, a story too small for four items falls back to the library, and the five pools register their Quiet jobs', async () => {
+    const r = await page.evaluate(() => {
+      const out = {}; const T = f => { const t0 = performance.now(); const x = f(); return { ms: Math.round(performance.now() - t0), n: x.length }; };
+      const savedCur = CUR; CUR = null; GAME_SCOPE_FALLBACK = false;
+      try {
+        for (const [name, pool, n] of [["duel", DUEL_POOL, 40], ["ghost", GHOST_POOL, 8], ["ibara", IBARA_POOL, 24], ["harakat", HARAKAT_POOL, 14], ["kinds", KINDS_POOL, 8]]) {
+          pool._c = { scope: null }; const s = T(() => pool.items(n)); const pend = Quiet.pending().includes("pool:" + name) || !!pool._state().full;
+          const sampled = pool.items(n).slice(); const full = pool.items(); out[name] = { sample: s, full: full.length, subset: sampled.every(x => full.includes(x)), pend, complete: !!pool._state().full };
+        }
+        // a tiny scope falls back to the library: the smallest story on the shelf
+        const small = STORIES.slice().sort((a, b) => a.chapters.reduce((k, c) => k + c.sentences.length, 0) - b.chapters.reduce((k, c) => k + c.sentences.length, 0))[0];
+        CUR = small; GHOST_POOL._c = { scope: null }; const g = ghostItems(8); out.fallback = { story: small.id, n: g.length, scope: GHOST_POOL._state().scope };
+      } finally { CUR = savedCur; GAME_SCOPE_FALLBACK = false; [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL].forEach(p => { p._c = { scope: null }; }); }
+      return out;
+    });
+    const floors = { duel: 30000, ghost: 800, ibara: 2000, harakat: 25000, kinds: 5000 };
+    for (const k of Object.keys(floors)) { const x = r[k];
+      if (!(x.full >= floors[k])) throw new Error(k + ': the whole pool shrank to ' + x.full + ' (floor ' + floors[k] + ')');
+      if (!(x.sample.n >= Math.min(8, floors[k]))) throw new Error(k + ': the sample gave ' + x.sample.n + ' items');
+      if (!x.subset) throw new Error(k + ': a sampled item is not in the whole pool');
+      if (!x.pend) throw new Error(k + ': no Quiet job finishes the pool and the pool is not complete');
+      if (x.sample.ms > 400) throw new Error(k + ': the sample took ' + x.sample.ms + ' ms (ceiling 400)'); }
+    if (!(r.fallback.n >= 4)) throw new Error('the tiny story ' + r.fallback.story + ' did not fall back to the library: ' + r.fallback.n + ' items');
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });

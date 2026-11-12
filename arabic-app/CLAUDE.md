@@ -9986,6 +9986,22 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 140 — SPEED IV, the game starts.** Measured on v240 at 4× CPU, every Atölye tab painted in ≤ 181 ms but seven game
+starts still blocked the thread: gShop 1,182 ms, gWajh 671, gDuel 582, gKinds 404, gIbaraAr 335, gGhost 317, gHizli 304 —
+each tap rebuilt a whole pool over the shelf (41,000 tokens through RoleEngine for the duel, every sentence through
+AmilEngine for the ʿibāra, 8,251 lemmas through IsmKindsEngine for the kinds, 41,000 tokens through TaqdirEngine for the
+ghost) and then drew eight. `GamePool` (a class, before `duelItems`) is the one pool object those five games now share:
+it remembers itself per scope (the open story or the library), SAMPLES at the tap — the units (chapters; stories for the
+lemma pool, the seeds last) are visited in random order until the round has its items and a few dozen more for the
+distractors (`minSample`, 240 for the ʿibāra whose distractors are the hardest near-misses), within a time budget — and
+finishes itself under Quiet in idle slices (`pool:<id>` jobs, registered at boot after the wave-130 pre-warms), so the
+second round draws from the whole pool. `items(need)` is the legacy entry: a number asks for a round's sample, no argument
+for the whole pool (the hub's persisted supply, the audits, the harness); a story that cannot feed four items hands the
+round to the library as every pool always did. The duel asks the model only until a beatable round is seated (three it
+gets wrong, five it gets right) instead of forty predictions up front. The shop and wajh cold starts read until four items
+stand, then the clock (250 / 150 ms) decides and the drip brings the rest. The items are the same objects the old builders
+made — only when they are made changed. After, at 4× CPU: gDuel 19 ms, gKinds 5, gIbaraAr 37, gIbaraTr 31 (was 244), gGhost 14, gHizli 8, gHarakat 8 (was 120); gShop 555 and gWajh 450 are first-run costs only — both pools persist in storage after the first round. Every story, game and lab kept.
+
 **Wave 139 — the verb by its shape in every tense and person.** Wave 138 had taught the analyser one shape, the bare
 muḍāriʿ. The drill bank's part-of-speech audit (`tools/gen_drills.js`, 8,132 human-tagged tokens) still showed 126
 disagreements, and the Talkhīṣ's verbs were being read as nouns: كَسَبَتْ as كَ + سَبْت, وَكَذَّبَ as ذَبّ, فَكَبِّرْ as فَ + كَ + بِرّ,

@@ -5074,16 +5074,41 @@ function modelPredictFor(sen, ti){
     prevFull: ti > 0 ? sen.tokens[ti - 1].s.full : null,
     nextFull: ti + 1 < n ? sen.tokens[ti + 1].s.full : null, ...IrabModel.hood(sen, ti) });
 }
-function duelItems(){
-  const out = [];
-  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
+/* (wave 140) GamePool — one pool of quiz items drawn from the shelf, as an object. Every game used to rebuild its whole
+   pool at the tap that started a round (41,000 tokens through RoleEngine for the duel, every sentence through
+   AmilEngine for the ʿibāra, 8,000 lemmas through IsmKindsEngine for the kinds), then draw eight. The pool now
+   (1) remembers itself per scope (the open story, or the library), (2) is SAMPLED at the tap — the units (chapters,
+   or stories for the lemma pools) are visited in random order until the round has what it needs and a few dozen more
+   for the distractors, within a time budget — and (3) finishes itself under Quiet in idle slices, so the second round
+   draws from the whole pool. The items are the same objects the old builders made; only when they are made changed. */
+class GamePool {
+  constructor(id, cfg){ this.id = id; this.units = cfg.units; this.scan = cfg.scan; this.minSample = cfg.minSample || 48; this.budget = cfg.budget || 40; this._c = { scope: null }; }
+  static scope(){ return (typeof CUR !== "undefined" && CUR && !GAME_SCOPE_FALLBACK) ? CUR.id : "__lib"; }
+  static chapters(){ return gameStories().flatMap(st => (st.chapters || []).map(ch => ({ st, ch }))); }
+  _state(){ const sc = GamePool.scope(); if (this._c.scope !== sc) this._c = { scope: sc, full: null, items: [], done: 0, order: shuffle(this.units().slice()), seen: new Set() }; return this._c; }
+  _step(c){ if (c.done >= c.order.length) return false; const u = c.order[c.done++]; try { this.scan(u, c.items, c); } catch (e) {} return true; }
+  complete(c){ return c.done >= c.order.length; }
+  full(){ const c = this._state(); if (c.full) return c.full; while (this._step(c)) {} c.full = c.items; return c.full; }
+  sample(n){ const c = this._state(); if (c.full) return c.full; const t0 = performance.now(), want = Math.max(n, this.minSample);
+    while (!this.complete(c) && (c.items.length < n || (c.items.length < want && performance.now() - t0 < this.budget))) this._step(c);
+    if (this.complete(c)) c.full = c.items; else this.warm(); return c.items; }
+  warm(){ const c = this._state(); if (c.full) return; const self = this;
+    Quiet.add("pool:" + this.id, b => { const s = self._state(); if (s !== c || s.full) return true; const t0 = performance.now(); while (!self.complete(s) && performance.now() - t0 < Math.min(b || 20, 20)) self._step(s); if (self.complete(s)) { s.full = s.items; return true; } return false; }); }
+  // the legacy entry: a NUMBER asks for a round's sample, no argument for the whole pool (the hub's supply, the audits);
+  // a story that cannot feed four items hands the round to the library, as every pool always did
+  items(need){ const r = typeof need === "number" ? this.sample(need) : this.full();
+    if (r.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return this.items(need); } finally { GAME_SCOPE_FALLBACK = false; } }
+    return r; }
+  count(){ return this.full().length; }
+}
+window.GamePool = GamePool;
+const DUEL_POOL = new GamePool("duel", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen =>
     sen.tokens.forEach((t, ti) => {
       if (!t.irab || !t.irab.ar) return;
       const role = RoleEngine.of(t);
       if (role && sen.tokens.length >= 2) out.push({ sen, ti, tok: t, key: role });
-    }))));
-  return out;
-}
+    })) });
+function duelItems(need){ return DUEL_POOL.items(need); }
 function duelOptHtml(k){
   const r = DUEL_ROLES[k];
   return `<span lang="ar">${r.ar}</span> · ${state.uiLang === "tr" ? r.tr : r.en}`;
@@ -5104,10 +5129,9 @@ function startDuel(){
   // questions the model gets wrong. A round the model aces teaches only
   // respect; the questions it fumbles are where the learner can win — and
   // where its misreading, revealed, teaches the most.
-  const pool = shuffle(duelItems()).slice(0, 40);
-  pool.forEach(it => { it.pred = modelPredictFor(it.sen, it.ti); });
-  const wrong = pool.filter(it => !it.pred[0] || it.pred[0].r !== it.key);
-  const right = pool.filter(it => it.pred[0] && it.pred[0].r === it.key);
+  const pool = shuffle(duelItems(40).slice()).slice(0, 40);   /* (wave 140) a sampled pool; the model is asked only until the round is seated */
+  const wrong = [], right = [];
+  for (const it of pool) { if (wrong.length >= 3 && right.length >= 5) break; it.pred = modelPredictFor(it.sen, it.ti); (!it.pred[0] || it.pred[0].r !== it.key ? wrong : right).push(it); }
   const w3 = wrong.slice(0, 3);
   const items = shuffle(w3.concat(right.slice(0, Math.max(0, 8 - w3.length)))).slice(0, 8);
   if (!items.length) { openGames(); return; }
@@ -5213,7 +5237,7 @@ function wajhItems(need){
   // story, so a run of misses is normal and the drip fills the rest; an EXPLICIT larger need (the harness,
   // a lab) is honoured to the pool's end, which is the whole-pool sweep the pre-130 builder always paid.
   const cap = want <= 8 ? 16 : want * 6;
-  let tried = 0; while (C.items.length < want && C.queue.length && tried < cap) { readOne(); tried++; }
+  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < cap && (C.items.length < 4 || want > 8 || performance.now() - t0w < 150)) { readOne(); tried++; }   /* (wave 140) four items at least, then the clock decides */
   if (tried) persist();
   if (!C.dripping && C.queue.length) { C.dripping = true;
     Quiet.add("wajh-drip", () => { if (WAJH_CACHE !== C) return true; if (!C.queue.length || C.items.length >= 60) { C.dripping = false; persist(); return true; }
@@ -32742,7 +32766,7 @@ function shopItems(need){
   }
   const C = SHOP_CACHE;
   const persist = () => { try { Relax.set("shop:" + scope, C.items.slice(0, 40).map(it => ({ ...senRef32(it.st, it.ch, it.sen), ti: it.ti, e: it.e, sign: it.sign, k: it.k })), true); } catch (e) {} };
-  let tried = 0; while (C.items.length < want && C.queue.length && tried < 8) { shopReadSentence(C.queue.shift(), C); tried++; }   // the round's own need, now
+  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < 8 && (C.items.length < 4 || performance.now() - t0w < 250)) { shopReadSentence(C.queue.shift(), C); tried++; }   // (wave 140) the round's own need, now — four items at least, then the clock decides; the drip brings the rest
   if (tried) persist();
   if (!C.dripping && C.items.length < 24 && C.queue.length) { C.dripping = true;   // the rest in a drip — one sentence a slice, never during a round
     (function step(){ if (SHOP_CACHE !== C) return; if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
@@ -33421,21 +33445,14 @@ function startInna(){
   });
 }
 // gGhost — name the concealed pronoun a verb carries. Fed by the corpus's own «ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ …» lines.
-let GHOST_CACHE = { scope: null, items: null };
-function ghostItems(){
-  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
-  if (GHOST_CACHE.scope === scope && GHOST_CACHE.items) return GHOST_CACHE.items;
-  const out = []; const seen = new Set();
-  const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
-  stories.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, i) => {
+let GHOST_CACHE = { scope: null, items: null };   // kept for the harness; the pool below is the memory (wave 140)
+const GHOST_POOL = new GamePool("ghost", { units: GamePool.chapters, scan: (u, out, c) => u.ch.sentences.forEach(sen => sen.tokens.forEach((t, i) => {
     const ex = TaqdirEngine.expected(t); if (!ex || !ex.text) return; if (!/verb/.test(t.pos || "")) return;
-    const k = st.id + ":" + sen.id + ":" + i; if (seen.has(k)) return; seen.add(k);
-    out.push({ st, sen, ti: i, tok: t, want: ex.text, naib: !!ex.naib, wujub: /وُجُوبًا/.test(String((t.irab || {}).ar || "")) }); }))));
-  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return ghostItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
-  GHOST_CACHE = { scope, items: out }; return out;
-}
+    const k = u.st.id + ":" + sen.id + ":" + i; if (c.seen.has(k)) return; c.seen.add(k);
+    out.push({ st: u.st, sen, ti: i, tok: t, want: ex.text, naib: !!ex.naib, wujub: /وُجُوبًا/.test(String((t.irab || {}).ar || "")) }); })) });
+function ghostItems(need){ return GHOST_POOL.items(need); }
 function startGhost(){
-  const items = shuffle(ghostItems()).slice(0, 8);
+  const items = shuffle(ghostItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   const PRONS = ["هُوَ", "هِيَ", "أَنْتَ", "أَنَا", "نَحْنُ"];
   runQuiz({
@@ -33632,18 +33649,14 @@ function startTawkid(){
   });
 }
 // gIsmKinds — one axis of a corpus noun: gender / number / definiteness / name-or-genus / derived shape, by the IsmKindsEngine (wave 36)
-let __kindsItemsCache = { scope: null, items: null };
-function kindsItems(){
-  const scope = (typeof CUR !== "undefined" && CUR) ? CUR.id : "__lib";
-  if (__kindsItemsCache.scope === scope && __kindsItemsCache.items) return __kindsItemsCache.items;
-  const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
+let __kindsItemsCache = { scope: null, items: null };   // kept for the harness; the pool below is the memory (wave 140)
+function kindsPusher(out, seen){
   const L = IsmKindsEngine.L; const nfc = x => String(x || "").normalize("NFC");
   const AX = {
     gender: { ks: ["mudhakkar", "muannath"], opts: p => { const m = p.sub("muannath"); return [["mudhakkar", null], ["muannath", "ta"], ["muannath", "alif"], ["muannath", "samai"]]; } },
     number: { ks: ["muthanna", "jam"], opts: () => [["mufrad", null], ["muthanna", null], ["jam", "salim"], ["jam", "taksir"]] },
     definite: { ks: ["marifa", "nakira"], opts: () => [["nakira", null], ["marifa", "al"], ["marifa", "alam"], ["marifa", "pron"]] },
     kind: { ks: ["jins", "alam", "tasgir", "mansub", "adad", "ismFil"], opts: () => [["jins", null], ["alam", null], ["tasgir", null], ["mansub", null], ["adad", null], ["ismFil", null]] } };
-  const seen = new Set(); const out = [];
   const push = (lemma, gloss, opt) => {
     const b = stripAr(lemma).replace(/[^ء-ي]/g, ""); if (b.length < 2 || seen.has(b)) return; seen.add(b);
     let p = null; try { p = IsmKindsEngine.profile(lemma, opt || {}); } catch (e) { return; }
@@ -33659,14 +33672,17 @@ function kindsItems(){
       if (right !== "idafa") out.push({ lemma, gloss, axis: "definite", right, opts: [["nakira", "نَكِرَةٌ"], ["al", "مَعْرِفَةٌ بِأَل"], ["alam", "مَعْرِفَةٌ — عَلَمٌ"], ["pron", "مَعْرِفَةٌ — ضَمِيرٌ أَوْ مُبْهَمٌ"]], why: p.has("nakira") ? L.nakira : L.marifa, sub: p.sub(p.has("nakira") ? "nakira" : "marifa") }); }
     // the kind
     for (const k of ["alam", "tasgir", "mansub", "adad", "ismFil"]) if (p.has(k)) { out.push({ lemma, gloss, axis: "kind", right: k, opts: [["jins", L.jins.ar], ["alam", L.alam.ar], ["tasgir", L.tasgir.ar], ["mansub", L.mansub.ar], ["adad", L.adad.ar], ["ismFil", L.ismFil.ar]].filter(x => x[0] === k || x[0] === "jins" || Math.random() < 0.6).slice(0, 4), why: L[k], sub: p.sub(k) }); break; } };
-  for (const st of stories) for (const e of Object.values(st.glossary || {})) { if (!e || !/^(noun|propn)/.test(e.pos || "") || /pron/.test(e.pos || "")) continue; const lemma = nfc(String(e.lemma || "").split(/[()\s]/)[0]); if (/[ًٌٍ]/.test(lemma)) continue; push(lemma, e.gloss, { pos: e.pos }); }
-  for (const [w, k, o] of IsmKindsEngine.SEEDS) push(w, null, o || {});
-  const fixed = out.map(it => { const opts = it.opts.some(x => x[0] === it.right) ? it.opts : it.opts.slice(0, 3).concat([[it.right, (L[it.right] || {}).ar || it.right]]); return { ...it, opts: opts.slice(0, 4) }; }).filter(it => it.opts.some(x => x[0] === it.right) && it.opts.length >= 3);
-  if (fixed.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return kindsItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
-  __kindsItemsCache = { scope, items: fixed }; return fixed;
+  return push;
 }
+const KINDS_POOL = new GamePool("kinds", { minSample: 40, units: () => gameStories().concat([{ __seeds: true }]), scan: (u, out, c) => {
+  const tmp = []; const push = kindsPusher(tmp, c.seen); const nfc = x => String(x || "").normalize("NFC"); const L = IsmKindsEngine.L;
+  if (u.__seeds) { for (const [w, k, o] of IsmKindsEngine.SEEDS) push(w, null, o || {}); }
+  else for (const e of Object.values(u.glossary || {})) { if (!e || !/^(noun|propn)/.test(e.pos || "") || /pron/.test(e.pos || "")) continue; const lemma = nfc(String(e.lemma || "").split(/[()\s]/)[0]); if (/[ًٌٍ]/.test(lemma)) continue; push(lemma, e.gloss, { pos: e.pos }); }
+  tmp.forEach(it => { const opts = it.opts.some(x => x[0] === it.right) ? it.opts : it.opts.slice(0, 3).concat([[it.right, (L[it.right] || {}).ar || it.right]]); const f = { ...it, opts: opts.slice(0, 4) }; if (f.opts.some(x => x[0] === f.right) && f.opts.length >= 3) out.push(f); });
+} });
+function kindsItems(need){ return KINDS_POOL.items(need); }
 function startKinds(){
-  const items = shuffle(kindsItems()).slice(0, 8);
+  const items = shuffle(kindsItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   const E = escapeAttr, lg = state.uiLang === "tr" ? "tr" : "en";
   const AXL = { gender: { en: "gender", tr: "cinsiyet" }, number: { en: "number", tr: "sayı" }, definite: { en: "definiteness", tr: "belirlilik" }, kind: { en: "the kind", tr: "kısım" } };
@@ -34179,9 +34195,7 @@ class DistractorEngine {
   }
 }
 
-function ibaraItems(){
-  const out = [];
-  gameStories().forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => {
+const IBARA_POOL = new GamePool("ibara", { minSample: 240, units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => {
     if (!sen.translation || !sen.translation.tr || !sen.translation.en) return;
     const words = sen.tokens.length;
     if (words < 3 || words > 12) return;            // long enough to parse, short enough to hold
@@ -34190,13 +34204,12 @@ function ibaraItems(){
     // ismiyya or fi'liyya, from the first open-class token's own pos label —
     // computed ONCE here rather than per comparison in the scorer
     const head = sen.tokens.find(t => t.pos && !/part|prep|conj/.test(t.pos));
-    out.push({ st, sen, pairs,
+    out.push({ st: u.st, sen, pairs,
                kind: head ? (head.pos === "verb" ? "filiyya" : "ismiyya") : null,
                ar: sen.tokens.map(t => t.s.full).join(" "),
                tr: sen.translation.tr, en: sen.translation.en });
-  })));
-  return out;
-}
+  }) });
+function ibaraItems(need){ return IBARA_POOL.items(need); }
 function ibaraExplain(it){
   const tr = state.uiLang === "tr";
   const rows = it.pairs.slice(0, 4).map(p => `<li>
@@ -34212,7 +34225,7 @@ function ibaraExplain(it){
   </div>`;
 }
 function startIbara(dir){
-  const pool = ibaraItems();
+  const pool = ibaraItems(24);
   if (pool.length < 4) { openGames(); return; }
   const items = shuffle(pool).slice(0, 6);
   const toAr = dir === "toAr";
@@ -34553,18 +34566,15 @@ function pickMatch(i){
 // distractors grammatically plausible (tanwin never belongs on a definite noun).
 const HARAKAT_SET = ["\u064E", "\u064F", "\u0650", "\u0652", "\u064B", "\u064C", "\u064D"].map(s => JSON.parse('"' + s + '"'));
 const TANWIN_SET = ["\u064B", "\u064C", "\u064D"].map(s => JSON.parse('"' + s + '"'));
-function harakatItems(){
-  const items = [];
-  gameStories().flatMap(st => st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
+const HARAKAT_POOL = new GamePool("harakat", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
     const full = t.s.full;
     if (HARAKAT_SET.includes(full.slice(-1)) && t.irab && full.length > 3) {
-      items.push({sen, ti, full, base: full.slice(0, -1), last: full.slice(-1), irab: t.irab});
+      out.push({sen, ti, full, base: full.slice(0, -1), last: full.slice(-1), irab: t.irab});
     }
-  })));
-  return items;
-}
+  })) });
+function harakatItems(need){ return HARAKAT_POOL.items(need); }
 function startHarakat(){
-  const items = shuffle(harakatItems()).slice(0, 8);
+  const items = shuffle(harakatItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().harakat, ask: ui().chooseForm, items, restart: startHarakat,
@@ -34606,11 +34616,11 @@ function startSpot(){
 // explanation and Elo area; the clock, not the item count, ends the round.
 function hizliItems(){
   const out = [];
-  shuffle(harakatItems()).slice(0, 14).forEach(it => out.push({ k: "harakat", it }));
+  shuffle(harakatItems(14).slice()).slice(0, 14).forEach(it => out.push({ k: "harakat", it }));
   const spot = [];
   Object.entries(GRAMMAR).forEach(([id, g]) => (g.mistakes || []).forEach(m => spot.push({ wrong: m.wrong, right: m.right, why: m.why, noteId: id, title: g.title })));
   shuffle(spot).slice(0, 8).forEach(it => out.push({ k: "spot", it }));
-  const pool = ibaraItems();
+  const pool = ibaraItems(24);
   if (pool.length >= 4) shuffle(pool).slice(0, 8).forEach(it => out.push({ k: "ibara", it, pool }));
   return shuffle(out);
 }
@@ -35285,6 +35295,7 @@ function bootWithData(){
     Quiet.add("wajh-pool", () => { try { wajhItems(0); } catch (e) {} return true; });
     Quiet.add("shop-pool", () => { try { shopItems(0); } catch (e) {} return true; });
     Quiet.add("jinas-pool", () => { try { jinasItems(0); } catch (e) {} return true; });
+    [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140) */
   } catch (e) {} }, 1500);
 }
 window.__qissaDataReady = bootWithData;
