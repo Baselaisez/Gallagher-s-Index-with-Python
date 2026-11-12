@@ -9986,6 +9986,42 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 138 — the typed sentence read blind.** The sweep had always been run with the author's receipts on; measured BLIND
+(`DabtEngine._blind138`, the receipts off as they are for a typed sentence in the Ḍabṭ lab and the Muḥallil) v238 read
+49,229 right / 216 wrong / 283 undecided of 49,728 — the number that says how the engine reads a NEW sentence. The wrong
+ones were mostly doers: a definite noun after a verb named the doer where it was the object (يُجَالِسُ الْفُقَرَاءَ، اسْتَأْذَنَهُ
+الْخُرُوجَ، تُعَرِّفُكَ أَخْبَارَ النَّاسِ), because the wave-32e pre-pass judged transitivity by an English gloss regex and the
+paradigm's cells. (1) `LazimEngine` — the corpus's own ledger of transitivity: for every verb lemma, how the authored iʿrāb
+seated the words after it (مَفْعُولٌ بِهِ / a noun فَاعِل / two objects), built once from the embedded stories (1,178 lemmas,
+~70 ms), keyed by the bare lemma, and consulted where the gloss regex used to guess (`lazim32`, `ditrans32`, the wave-131
+`intr`, the she-verb's `intr31`); the sentence being graded is LEFT OUT of its own count (`_senKey138`), so no corpus line
+testifies for itself, and a typed sentence (`vowel()`) sees the whole ledger. `transitive`: an object at least once and at
+least twice as often as a noun doer; `takesObject`: an object at least as often as a noun doer; `ditransitive`: two objects
+twice; `lazim`: three uses and never an object. (2) `MudariShape` — the Ṣarf abwāb as vowel shapes: a word the lexicon does
+not own whose written vowels spell يَفْعُلُ / يُفَعِّلُ / يُفَاعِلُ / يُفْعِلُ / يَتَفَعَّلُ / يَتَفَاعَلُ / يَنْفَعِلُ / يَفْتَعِلُ / يَسْتَفْعِلُ (or the
+passive يُفْعَلُ) on a ي / ت / ن prefix is a muḍāriʿ whatever the statistical taggers answer (فَإِنَّهَا تَجْلُبُ الْمَوَدَّةَ — جَلَبَ
+is in no glossary); the hamza prefix only in the augmented bābs (أَنْفُسُ is a plural, أَكْبَرُ an elative). (3) The written
+dual / sound plural is the doer by its LETTERS (`dualPl138`: ان / ون, never ين, on a stem the lexicon owns as a noun, the
+whole word no lemma of its own — إِنْسَانٌ keeps its nūn), whatever vowel the writer put on the nūn: وَدَخَلَ مَعَهُ السِّجْنَ
+رَجُلَانِ. (4) The passive's deputy before its cognate: the muḍāf ilayh riding inside the jarr phrase is no noun "between"
+(وُلِدَ فِي بَنِي إِسْرَائِيلَ وَلَدٌ). (5) The verb's own person is its doer (قَدِمْتُ، فَعَلُوا, the amr): a definite noun right
+after it is the object when the ledger knows the verb mutaʿaddī, never a new clause. (6) The fallback doer consults the
+ledger: a joined verb sharing the previous verb's person and GIVEN doer (لَا يَغْفِرُ الشِّرْكَ وَيَغْفِرُ كُلَّ شَيْءٍ), or a
+sentence-opening verb whose subject continues (carried, or after ثُمَّ / وَ / فَ) with its noun past a jarr-pronoun (ثُمَّ
+أَخْرَجَ إِلَيَّ دَنَانِيرَ), seats the first noun as its OBJECT; the she-verb after إِنَّهَا / هِيَ / الَّتِي or after a feminine
+nakira (its ṣifa clause) names no new doer. (7) The ṣila's object is the relative itself (the عائد): after مَنْ / الَّذِي
+/ an annexed or jarr-governed مَا, the definite noun right after the ṣila's verb is its DOER (مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ
+يُدْرِكُهُ), and a mubtadaʾ still owed its khabar takes the pronoun-bearing noun after that ṣila as its khabar (كُلُّ مَا تَرَى
+مِنْ هٰذِهِ الْأَمْوَالِ أَجْرُكَ). (8) The emptied exception after a self-doer verb: the noun after إِلَّا is the object (هَلْ
+نُجَازِي إِلَّا الْكَفُورَ، مَا رَأَيْتُ إِلَّا الْمُعَلِّمَ); its muḍāf ilayh inside a jarr phrase is never that object. (9) The bare
+elative after the seated object is the manṣūb adverbial (هَلْ يُحِبُّ اللهَ أَكْثَرَ); a joined al-noun after an object and its
+naʿt is joined to the object (اللَّوْنَ الْحَسَنَ وَالْمَالَ); the five nouns on their wāw (أَبُوهُمْ) are rafʿ by their letter. (10)
+The analyser and the stripper: a cell reached only by peeling a pronoun loses to the lexicon's whole-word noun, and the
+lexicon's broken plural rebuilds no pronoun tail (دَرَاهِمُ is دِرْهَم's plural, never دَرَى + هُمْ); a verb read by its shape carries
+no paradigm cell to narrate, so the Sarf ledger lab leaves it to the corrector (يَقْوُلُ → يَقُولُ, as before). The Muḥallil's ṣarf column now says what the ledger knows of each verb
+(mutaʿaddī / lāzim / two objects, with the counts) and marks a verb read by its shape. Blind sweep: 49,252 right / 193 wrong / 283 undecided (was 49,229 / 216 / 283); 23 fixed, 0 broken. Receipts-on
+sweep (the release gate): 49,458 right / 96 wrong / 174 undecided (was 49,456 / 98 / 174); 2 fixed, 0 broken.
+
 **Wave 137 — the model names the seat the receipt allows.** After wave 136 the authored corpus had 398 undecided endings,
 244 of them words no rule and no wave-133 mark reached — most of them the matn's own cited examples (131 stand after نَحْوُ:
 كَمْ رَجُلًا، ضَرْبُ زَيْدٍ عَمْرًا، ضَارِبٌ غُلَامُهُ عَمْرًا، حَسَنَةٌ وَجْهًا، سَقْيًا زَيْدًا). The last fallback of `decide()`, run only

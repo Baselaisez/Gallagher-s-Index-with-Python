@@ -10426,6 +10426,43 @@ if (!CHROME) {
     if (!r.receiptsOff) throw new Error('the receipts flag stayed on after grade()');
   });
 
+  await check('wave 138 — the typed sentence read blind: the ledger of transitivity built from the shelf (LazimEngine), the muḍāriʿ known by its vowel-shape (MudariShape), the written dual as the doer, the passive\'s deputy before its cognate, the object of a verb whose doer is given, the ṣila\'s doer, the exception after a self-doer verb; the ledger leaves the graded sentence out of its own count', async () => {
+    const r = await page.evaluate(() => {
+      const out = {};
+      const t0 = performance.now(); LazimEngine._ledger = null; const L = LazimEngine.ledger(); out.ledgerMs = Math.round(performance.now() - t0); out.ledger = L.size;
+      out.akhraja = LazimEngine.transitive("أَخْرَجَ"); out.jaa = LazimEngine.transitive("جَاءَ"); out.dhahaba = LazimEngine.lazim("ذَهَبَ"); out.ata = LazimEngine.ditransitive("أَعْطَى");
+      out.shapes = ["تَجْلُبُ", "يُعَلِّمُ", "وَيَسْتَغْفِرُ", "نَذْهَبُ", "يُؤْمِنُ"].map(w => (MudariShape.of(w) || {}).bab || null);
+      out.notShapes = ["أَنْفُسُ", "يَوْمُ", "كِتَابُ", "تَمْرَةٌ", "أَكْبَرُ"].map(w => (MudariShape.of(w) || {}).bab || null);
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      out.s1 = E("وَدَخَلَ مَعَهُ السِّجْنَ رَجُلَانِ");
+      out.s2 = E("فَإِنَّهَا تَجْلُبُ الْمَوَدَّةَ");
+      out.s3 = E("وُلِدَ فِي بَنِي إِسْرَائِيلَ وَلَدٌ جَمِيلٌ");
+      out.s4 = E("اسْتَأْذَنَهُ الْخُرُوجَ إِلَى وَطَنِهِ");
+      out.s5 = E("يُجَالِسُ الْفُقَرَاءَ وَيُوَاسِي الضُّعَفَاءَ");
+      out.s6 = E("وَهَلْ نُجَازِي إِلَّا الْكَفُورَ"); out.s7 = E("هَذِهِ دَرَاهِمُ مِنْ زَمَنٍ بَعِيدٍ"); out.s8 = E("مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ");
+      out.s9 = E("فَقُلْتُ لَهُ كُلُّ مَا تَرَى مِنْ هٰذِهِ الْأَمْوَالِ أَجْرُكَ"); out.s10 = E("مَا جَاءَ إِلَّا زَيْدٌ");
+      // the graded sentence leaves its own count: a sentence present in the ledger scores one fewer use while it is graded
+      const st = STORIES.find(x => x.id === "wasiyyat-abi-hanifa-samti"); let loo = null;
+      if (st) { const sen = st.chapters.flatMap(c => c.sentences).find(sn => sn.tokens.some(t => t.s.full === "اسْتَأْذَنَهُ")); if (sen) { const all = LazimEngine.of("اِسْتَأْذَنَ").n; const key = sen.tokens.map(t => t.s.full).join(" "); loo = [all, LazimEngine.of("اِسْتَأْذَنَ", key).n]; } }
+      out.loo = loo; out.keyCleared = DabtEngine._senKey138 === null || DabtEngine._senKey138 === undefined;
+      return out;
+    });
+    if (!(r.ledger > 1000)) throw new Error('the ledger knows ' + r.ledger + ' verbs (want > 1000)');
+    if (r.ledgerMs > 400) throw new Error('the ledger took ' + r.ledgerMs + ' ms to build (ceiling 400)');
+    if (!r.akhraja || r.jaa || !r.dhahaba || !r.ata) throw new Error('ledger verdicts: akhraja ' + r.akhraja + ' jaa ' + r.jaa + ' dhahaba ' + r.dhahaba + ' ata ' + r.ata);
+    if (r.shapes.join() !== 'I,II,X,I,IV') throw new Error('the muḍāriʿ shapes: ' + r.shapes.join());
+    if (r.notShapes.some(Boolean)) throw new Error('a noun read as a muḍāriʿ shape: ' + r.notShapes.join());
+    const has = (arr, i, end, rule) => { const x = arr[i] || ""; if (!x.endsWith("·" + rule) || !new RegExp(end + "·").test(x)) throw new Error('typed reading: ' + arr.join(" ") + ' — word ' + i + ' wants ' + end + ' ' + rule); };
+    has(r.s1, 2, "السِّجْنَ", "maful"); has(r.s1, 3, "رَجُلَانِ", "fail");
+    has(r.s2, 2, "الْمَوَدَّةَ", "maful"); if (!/·raf$/.test(r.s2[1] || "")) throw new Error('تَجْلُبُ not read as a present verb in rafʿ: ' + r.s2.join(" "));
+    has(r.s3, 4, "وَلَدٌ", "naib"); has(r.s3, 5, "جَمِيلٌ", "nat");
+    has(r.s4, 1, "الْخُرُوجَ", "maful");
+    has(r.s5, 1, "الْفُقَرَاءَ", "maful");
+    has(r.s6, 3, "الْكَفُورَ", "maful"); has(r.s7, 1, "دَرَاهِمُ", "khabar"); has(r.s8, 4, "الْمَرْءُ", "fail"); has(r.s9, 8, "أَجْرُكَ", "khabar"); has(r.s10, 3, "زَيْدٌ", "fail");
+    if (!r.loo || r.loo[1] !== r.loo[0] - 1) throw new Error('leave-one-out: ' + JSON.stringify(r.loo));
+    if (!r.keyCleared) throw new Error('the graded sentence key stayed set after grade()');
+  });
+
   await check('the SifaEngine — the derived nouns classified by shape and audited against the glossary\'s own kinds; the seeds', async () => {
     const r = await page.evaluate(() => { const a = SifaEngine.audit(); const c = w => { const x = SifaEngine.classify(w); return (x.wazn || '—') + ':' + x.kinds.join('/'); };
       return { entries: a.entries, pct: a.pct, disagree: a.disagree.slice(0, 5), karim: c('كَرِيم'), allam: c('عَلَّام'), midyaf: c('مِضْيَاف'), akhass: c('أَخَصّ'), ahmar: c('أَحْمَر'), atshan: c('عَطْشَان'), maktub: c('مَكْتُوب'), muallim: c('مُعَلِّم'), muallam: c('مُعَلَّم'), qadin: c('قَاضٍ'), mikhdham: c('مِخْذَم'), mukhtafin: c('مُخْتَفٍ'), marii: c('مَرْئِيّ'), dunya: c('دُنْيَا'), murid: c('مُرِيد'), murad: c('مُرَاد'), mulabas: c('مُلَابَس'), kitab: c('كِتَاب') }; });
