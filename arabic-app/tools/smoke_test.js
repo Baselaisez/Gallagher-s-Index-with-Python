@@ -10510,6 +10510,29 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 146 — the matn\'s cited clause read as a clause of its own: after نَحْوُ a clause opened by a governing particle (إِذَنْ، لَنْ…) is analysed again and its verdict outranks the sentence\'s reading; the present-state إِذَنْ أَظُنُّكَ stays in rafʿ (the Iẕhār\'s own example); a noun-phrase example keeps the sentence\'s reading', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("يَجُوزُ الْوَجْهَانِ نَحْوُ فَإِذَنْ أُكْرِمَكَ");
+      out.s2 = E("لَمْ تَعْمَلْ نَحْوُ إِذَنْ أَظُنُّكَ كَاذِبًا");
+      out.s3 = E("تَنْصِبُ نَحْوُ إِذَنْ تَدْخُلَ الْجَنَّةَ");
+      out.s4 = E("قُلْتُ نَحْوُ لَنْ يَذْهَبَ الْوَلَدُ");
+      out.s5 = E("الْمُضَافُ نَحْوُ غُلَامِ زَيْدٍ");
+      out.fn = typeof DabtEngine.citedClauses146 === "function" && DabtEngine.CITE146 instanceof RegExp && DabtEngine.GOV146 instanceof RegExp;
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    if (!r.fn) throw new Error('citedClauses146 missing');
+    want('s1', 2, /^نَحْوُ·/, 'نَحْوُ before its example wears no tanwīn');
+    want('s1', 4, /^أُكْرِمَكَ·nasbVerb$/, 'فَإِذَنْ أُكْرِمَكَ: the cited clause\'s verb in naṣb');
+    want('s2', 4, /^أَظُنُّكَ·raf$/, 'إِذَنْ أَظُنُّكَ: the present state, rafʿ');
+    want('s3', 3, /^تَدْخُلَ·nasbVerb$/, 'إِذَنْ تَدْخُلَ: naṣb');
+    want('s4', 3, /^يَذْهَبَ·nasbVerb$/, 'لَنْ يَذْهَبَ inside the citation');
+    want('s4', 4, /^الْوَلَدُ·fail$/, 'its doer');
+    want('s5', 2, /^غُلَامِ·mudafIlayh$/, 'the noun-phrase example is the marker\'s muḍāf ilayh');
+  });
+
   await check('wave 145 — the typed sentence read faster: the engine\'s string helpers (bare, core, articleOn), the lexicon lookup, the muḍāriʿ shape and the two taggers are memoised without a verdict changed — the same objects for the same word, copies where the caller may write, a fold\'s model with its own table; twenty readings of an eight-word sentence under the ceiling', async () => {
     const r = await page.evaluate(() => {
       const out = {}; const S1 = "ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ صَبَاحًا وَقَرَأَ كِتَابًا جَدِيدًا";

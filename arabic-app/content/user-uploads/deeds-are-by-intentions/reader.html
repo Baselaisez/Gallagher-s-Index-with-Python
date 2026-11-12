@@ -20965,6 +20965,62 @@ class DabtEngine {
       if (!(/^[أا][^ا]{3}$/.test(b) || (/^[أا][^ا]{2}$/.test(b) && /ّ/.test(host)))) return false;
       const e = this.lex(host); if (e && /elative|tafdil|comparative|superlative|\bmore\b|\bmost\b|-er\b|-est\b|wider|nearer|richer|farther|faster/i.test(String((e.gloss || {}).en || ""))) return true;
       return /^[أا](كثر|قل|شد|عظم|حسن|قرب|بعد|فضل|رحب|وسع|بلغ|سرع|نفع|شمل|ولى|كبر|صغر|طول|قصر|خف|ثقل|قوى|ضعف|عز|ذل|جل|دق|كرم|بخل|جود|علم|جهل|صدق|كذب|غنى|فقر)$/.test(b); } catch (e) { return false; } }
+  /* ===== wave 146 — the cited clause read as a clause =====
+     نَحْوُ إِذَنْ تَدْخُلَ الْجَنَّةَ: the main loop keeps the words after a citation marker as the author wrote them (ḥikāya), and in the
+     blind reading that leaves them undecided. The span after the marker — up to the next pause, the next marker, or a word of
+     the author's own prose (لِأَنَّ، أَيْ، فَإِنَّ…) — is analysed again as a sentence of its own, with its own slice of the
+     receipts, and where the main loop said ḥikāya or nothing, the clause's own verdict stands. */
+  static CITE146 = /^[وف]?(نحو|كقولك|كقوله|كقولهم|تقول|قولك|قوله|قولهم|يقال|قيل)$/;
+  static GOV146 = /^[وف]?(اذن|إذن|ان|أن|لن|كي|لكي|حتى|لم|لما|الم|ألم|لا|اذا|إذا|ما)$/;   /* a governing particle opens the cited clause: its government is certain */
+  static STOP146 = /^[وف]?(لان|لأن|فان|فإن|اي|أي|كذا|هكذا|ذلك|كذلك|اذ|إذ|ثم|بخلاف|والمعنى|فالمعنى|اما|أما|وان|وإن|فالاول|فالأول|والثاني|والاول|والأول)$/;
+  static citedClauses146(rows, d){
+    if (!Array.isArray(rows) || rows.length < 3 || !d || !d.out) return;
+    const nb = w => this.bare(w || "").replace(/[أإآ]/g, "ا");
+    const spans = [];
+    for (let i = 0; i < rows.length - 1; i++) {
+      if (!rows[i] || !this.CITE146.test(nb(rows[i].w))) continue;
+      const a = i + 1; let b = a;
+      while (b < rows.length && b - a < 14) { const x = rows[b]; if (!x || this.CITE146.test(nb(x.w)) || (b > a && this.STOP146.test(nb(x.w)))) break; b++; if (this._punctAt && this._punctAt.has(b - 1)) break; }
+      if (b - a >= 2) { spans.push([a, b]); if (/^[وف]?(نحو|مثل|كمثل)$/.test(nb(rows[i].w)) && rows[i]) rows[i].__forceMudaf135 = true; }   /* نَحْوُ before its example is the muḍāf: no tanwīn */
+      i = b - 1;
+    }
+    if (!spans.length) return;
+    const isOpen = (o) => !o || !o.k || o.k === "none" || /^(hikaya)$/.test(o.rule || "");
+    const saved = { lex24: this._lex24, pos24: this._pos24, orig24: this._orig24, punctAt: this._punctAt, colonAt: this._colonAt, punct133: this._punct133, seg24: this._seg24, jarr131: this._jarr131, rhymeAt: this._rhymeAt, full135: this._full135, carry26: this._carry26, carryKana29: this._carryKana29, rows135: this._rows135, senKey: this._senKey138 };
+    const sl = (arr, a, b) => Array.isArray(arr) ? arr.slice(a, b) : arr;
+    const sub = (set, a, b) => set instanceof Set ? new Set([...set].filter(i => i >= a && i < b).map(i => i - a)) : set;
+    try {
+      spans.forEach(([a, b]) => {
+        const text = rows.slice(a, b).map(r => String(r.w || "")).join(" ");
+        this._lex24 = sl(saved.lex24, a, b); this._pos24 = sl(saved.pos24, a, b); this._orig24 = sl(saved.orig24, a, b); this._punct133 = sl(saved.punct133, a, b); this._seg24 = sl(saved.seg24, a, b); this._jarr131 = sl(saved.jarr131, a, b); this._full135 = sl(saved.full135, a, b);
+        this._punctAt = sub(saved.punctAt, a, b); this._colonAt = sub(saved.colonAt, a, b); this._rhymeAt = null; this._carry26 = null; this._carryKana29 = false; this._senKey138 = saved.senKey ? saved.senKey + "#c" + a : saved.senKey;
+        let srows = []; try { srows = SentenceAnalyzer.analyze(text) || []; } catch (e) { srows = []; }
+        if (srows.length !== b - a) return;
+        srows.forEach((r, k) => { r.__next = srows[k + 1] ? srows[k + 1].w : ""; });
+        const sd = this.decide(srows);
+        const governed = this.GOV146.test(nb(srows[0].w)) && srows.some(r => r.cell && (r.kind || "").startsWith("verb"))
+          && !(/^[وف]?(اذن|إذن)$/.test(nb(srows[0].w)) && srows[1] && /^[وف]?(اظن|احسب|اخال|اعلم|اعتقد|ارى|اراك|اظنك|احسبك|اخالك|اعلمك)/.test(nb(srows[1].w)));   /* إِذَنْ أَظُنُّكَ كَاذِبًا: the present state, no government (Iẕhār) */
+        srows.forEach((sr, k) => {
+          const i = a + k, m = d.out[i], s = sd.out[k];
+          if (!s || !s.k || s.k === "none" || /^(hikaya|symbol)$/.test(s.rule || "")) return;
+          if (!governed && !isOpen(m)) return;   // the sentence read it: only a governed clause outranks that reading
+          if (!governed && m && m.k === "keep" && s.k === "cell") return;   // نَحْوُ: أَعْلَمَ وَأَرَى — the verb quoted by name stays quoted
+          if (k === 0 && m && m.rule === "mudafIlayh") return;   // نَحْوُ غُلَامِ زَيْدٍ: the example's first word is the marker's muḍāf ilayh
+          if (s.k === "keep" && !(isOpen(m) && /^(jarrPron|munada|mabni)$/.test(s.rule || ""))) return;   // a kept word says nothing new unless the sentence left it open
+          if (m && m.k === "keep" && /^(mabni|jarrPron|munada|symbol)$/.test(m.rule || "") && s.k !== "keep" && (rows[i].kind || "") === "particle") return;   // a particle stays a particle
+          d.out[i] = Object.assign({}, s, { cited146: true, head: typeof s.head === "number" ? s.head + a : s.head });
+          const r = rows[i];
+          if (s.k === "cell" || /Verb$|^(mazi|raf|jazm|amr|nasbVerb)$/.test(s.rule || "")) { r.cell = sr.cell; r.__cell = sr.__cell; r.kind = sr.kind; r.lemma = sr.lemma; r.__kindNoun = sr.__kindNoun; }
+          else if (!r.cell) { r.kind = sr.kind; if (sr.lemma && !r.lemma) r.lemma = sr.lemma; }
+          r.__exact56 = false; r.__citedV135 = false; r.__citedV69 = false;
+          if (sd.head && sd.head.has(k)) d.head.add(i);
+          if (sd.member && sd.member.has(k)) d.member.set(i, sd.member.get(k) + a);
+        });
+      });
+    } finally {
+      this._lex24 = saved.lex24; this._pos24 = saved.pos24; this._orig24 = saved.orig24; this._punctAt = saved.punctAt; this._colonAt = saved.colonAt; this._punct133 = saved.punct133; this._seg24 = saved.seg24; this._jarr131 = saved.jarr131; this._rhymeAt = saved.rhymeAt; this._full135 = saved.full135; this._carry26 = saved.carry26; this._carryKana29 = saved.carryKana29; this._rows135 = saved.rows135; this._senKey138 = saved.senKey;
+    }
+  }
   static vowel(text, mode){
     mode = mode === "full" ? "full" : "endings";
     text = String(text || "").replace(/[.!؟]+\s*$/, "");   /* (wave 25b) a typed sentence's final stop is no letter */
@@ -20980,6 +21036,7 @@ class DabtEngine {
     this._rows135 = rows;   /* (wave 135) the sentence just read, for the addressee carried to the next */
     this._full135 = String(src || "").replace(/[«»"،؛.:!؟]/g, " ").trim().split(/\s+/);   /* (wave 135) the words as written, endings on — the tagger's receipts */
     const d = this.decide(rows);
+    try { this.citedClauses146(rows, d); } catch (e) {}   /* (wave 146) the matn's cited clause read as a clause of its own */
     this._amrFix24 = x => (x && /عمرو$/.test(this.bare(x)) ? x.normalize("NFC").replace(/(و)([ًٌٍَُِ]+)$/, "$2$1") : x);   /* (wave 24f) عَمْرٌو، بِعَمْرٍو */
     const bw0 = x => stripAr(x || "").replace(/[^ء-ي]/g, "");
     const dressCell = (host, cf, tense) => {

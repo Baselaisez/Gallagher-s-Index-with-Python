@@ -9986,6 +9986,24 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 146 — the matn's cited clause read as a clause of its own.** Of the v246 blind sweep's 182 undecided endings, 95 are
+words the author's own line calls مَحْكِيّ — the examples after نَحْوُ، كَقَوْلِكَ، تَقُولُ (the grader does not fault them, it leaves
+them undecided unless the engine's ending equals the author's). The sentence's reading inside such a citation is contaminated
+by the frame: نَحْوُ إِذَنْ تَدْخُلَ الْجَنَّةَ read تَدْخُلُ as a new clause's rafʿ and الْجَنَّةَ as a doer. `DabtEngine.citedClauses146`,
+run once the main decide has finished: the span after a citation marker (`CITE146`) up to the next pause, the next marker or
+a word of the author's resuming prose (`STOP146`: لِأَنَّ، أَيْ، فَإِنَّ…) is analysed again as a sentence of its own — the analyzer
+on the span's words, the decide loop with the span's own slice of every receipt (`_lex24`, `_pos24`, `_orig24`, the pause and
+colon sets, the sentence key), every slice restored after. Policy, learned from the sweeps: the first policy (the clause's
+verdict outranks the sentence's everywhere inside the span) fixed 7 and broke 75 — prose مِثْلُ phrases, noun-phrase examples
+whose first word is the marker's muḍāf ilayh (نَحْوُ غُلَامِ زَيْدٍ), lists of cited dual and plural forms. The policy that
+ships: a clause OPENED BY A GOVERNING PARTICLE (`GOV146`: إِذَنْ، أَنْ، لَنْ، كَيْ، حَتَّى، لَمْ، لَمَّا، لَا، إِذَا، مَا) with a verb in it is read
+whole and its verdict stands for every word but a first-word muḍāf ilayh; any other citation only fills what the sentence left
+undecided; a particle stays a particle. The Iẕhār's own exception is a rule: إِذَنْ أَظُنُّكَ كَاذِبًا — a verb of present cognition
+after إِذَنْ is the ḥāl, no government, rafʿ. The marker نَحْوُ before its example is annexed to it (no tanwīn in a typed
+sentence). Blind sweep 49,384 → 49,388 ok (FIXED 4, BROKEN 0: الْجَنَّةَ، أُكْرِمَكَ، قَائِمًا the ḥāl, عُمَرُ the ʿaṭf bayān);
+receipts-on 49,547 → 49,548 (FIXED 1, BROKEN 0). The remaining ḥikāya rows are cited WORDS and noun phrases, named in the
+case the author gave them — not clauses, and left as they were. Five typed sentences gate it.
+
 **Wave 145 — the typed sentence read faster, the verdicts untouched.** Profiled at 1× on v245: `DabtEngine.vowel` on an
 eight-word typed sentence 15 ms (decide 166 of 288 sampled ms, SentenceAnalyzer.analyze 96), a corpus sentence's grade 26 ms;
 the self time sat in the per-row helpers the 800 rules call again and again — `bare` / `core` / `articleOn` (the letters of
