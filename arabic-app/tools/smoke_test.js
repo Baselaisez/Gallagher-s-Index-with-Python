@@ -10487,17 +10487,18 @@ if (!CHROME) {
       const out = {}; const T = f => { const t0 = performance.now(); const x = f(); return { ms: Math.round(performance.now() - t0), n: x.length }; };
       const savedCur = CUR; CUR = null; GAME_SCOPE_FALLBACK = false;
       try {
-        for (const [name, pool, n] of [["duel", DUEL_POOL, 40], ["ghost", GHOST_POOL, 8], ["ibara", IBARA_POOL, 24], ["harakat", HARAKAT_POOL, 14], ["kinds", KINDS_POOL, 8]]) {
+        for (const [name, pool, n] of [["duel", DUEL_POOL, 40], ["ghost", GHOST_POOL, 8], ["ibara", IBARA_POOL, 24], ["harakat", HARAKAT_POOL, 14], ["kinds", KINDS_POOL, 8], ["sarf", SARF_POOL, 8], ["case", CASE_POOL, 8], ["role", ROLE_POOL, 8], ["nida", NIDA_POOL, 8], ["waqf", WAQF_POOL, 8], ["bahr", BAHR_POOL, 8], ["shopc", SHOPC_POOL, 8]]) {   /* (wave 142) seven more pools */
           pool._c = { scope: null }; const s = T(() => pool.items(n)); const pend = Quiet.pending().includes("pool:" + name) || !!pool._state().full;
           const sampled = pool.items(n).slice(); const full = pool.items(); out[name] = { sample: s, full: full.length, subset: sampled.every(x => full.includes(x)), pend, complete: !!pool._state().full };
         }
         // a tiny scope falls back to the library: the smallest story on the shelf
         const small = STORIES.slice().sort((a, b) => a.chapters.reduce((k, c) => k + c.sentences.length, 0) - b.chapters.reduce((k, c) => k + c.sentences.length, 0))[0];
         CUR = small; GHOST_POOL._c = { scope: null }; const g = ghostItems(8); out.fallback = { story: small.id, n: g.length, scope: GHOST_POOL._state().scope };
-      } finally { CUR = savedCur; GAME_SCOPE_FALLBACK = false; [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL].forEach(p => { p._c = { scope: null }; }); }
+        const t1 = performance.now(); const th = tahlilSentences(1); out.tahlil = { ms: Math.round(performance.now() - t1), groups: th.length, first: th[0] ? th[0].length : 0 };   /* (wave 142) a round of the taḥlīl needs one sentence with three roles, from the sample */
+      } finally { CUR = savedCur; GAME_SCOPE_FALLBACK = false; [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL, SARF_POOL, CASE_POOL, ROLE_POOL, NIDA_POOL, WAQF_POOL, BAHR_POOL, SHOPC_POOL].forEach(p => { p._c = { scope: null }; }); }
       return out;
     });
-    const floors = { duel: 30000, ghost: 800, ibara: 2000, harakat: 25000, kinds: 5000 };
+    const floors = { duel: 30000, ghost: 800, ibara: 2000, harakat: 25000, kinds: 5000, sarf: 50000, case: 25000, role: 15000, nida: 180, waqf: 3000, bahr: 80, shopc: 700 };
     for (const k of Object.keys(floors)) { const x = r[k];
       if (!(x.full >= floors[k])) throw new Error(k + ': the whole pool shrank to ' + x.full + ' (floor ' + floors[k] + ')');
       if (!(x.sample.n >= Math.min(8, floors[k]))) throw new Error(k + ': the sample gave ' + x.sample.n + ' items');
@@ -10505,6 +10506,8 @@ if (!CHROME) {
       if (!x.pend) throw new Error(k + ': no Quiet job finishes the pool and the pool is not complete');
       if (x.sample.ms > 400) throw new Error(k + ': the sample took ' + x.sample.ms + ' ms (ceiling 400)'); }
     if (!(r.fallback.n >= 4)) throw new Error('the tiny story ' + r.fallback.story + ' did not fall back to the library: ' + r.fallback.n + ' items');
+    if (!(r.tahlil.groups >= 1 && r.tahlil.first >= 3)) throw new Error('the taḥlīl sample gave no sentence with three roles: ' + JSON.stringify(r.tahlil));
+    if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
   await check('wave 141 — the prose texts\' blind endings by rule: وَحْدَهُ the ḥāl, سَنَةَ before its number the ẕarf, لَيْسُوا\'s khabar past the jarr phrase, نِعَمِ the noun annexing the Name, the nakira head before مَنِ, the sound-plural naʿt by its letters, the two-object verb\'s definite and nakira objects with the ṣifa in the third seat, the owed khabar, the kāna / إِنَّ khabar kept, the ـَات plural\'s kasra and the singular\'s fatḥa', async () => {

@@ -4822,17 +4822,9 @@ function irabWhy(irab){
 // ---------- game: Emsile-i Muhtelife drill ----------
 // Name a cell of the fourteen, pick the form. The distractors are other cells
 // of the SAME verb, so the learner must know the sigha, not just the root.
-function sarfItems(){
-  const out = [];
-  gameStories().forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
-    const rows = muhtelife(m);
-    if (!rows || rows.length < 5) return;
-    rows.forEach((row, ri) => out.push({ lex, m, ri, rows, lemma: m.mazi[0] }));
-  }));
-  return out;
-}
+function sarfItems(need){ return SARF_POOL.items(need); }   /* (wave 142) */
 function startSarfGame(){
-  const items = shuffle(sarfItems()).slice(0, 8);
+  const items = shuffle(sarfItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().sarfGame, ask: ui().sarfGameAsk, items, restart: startSarfGame,
@@ -4868,17 +4860,7 @@ const CASE_KEYS = [
   { k: "majrur", re: /مَجْرُور/ },
   { k: "majzum", re: /مَجْزُوم/ },
 ];
-function caseItems(){
-  const out = [];
-  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
-    sen.tokens.forEach((t, ti) => {
-      if (!t.irab || !t.irab.ar) return;
-      const hits = CASE_KEYS.filter(c => c.re.test(t.irab.ar));
-      if (hits.length !== 1) return;          // skip tokens naming two cases
-      out.push({ sen, ti, tok: t, key: hits[0].k, story: st.id });
-    }))));
-  return out;
-}
+function caseItems(need){ return CASE_POOL.items(need); }   /* (wave 142) */
 // ---- the ending sign, read off the word itself -------------------------
 // A refutation should point at the text, not merely assert. The signs of
 // i'rab are a closed list (Qatr al-Nada's chapter on alamat): the short
@@ -4910,7 +4892,7 @@ function caseSignOf(full){
   return null;
 }
 function startCaseGame(){
-  const items = shuffle(caseItems()).slice(0, 8);
+  const items = shuffle(caseItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().caseGame, ask: ui().caseGameAsk, items, restart: startCaseGame,
@@ -4984,22 +4966,7 @@ const ROLE_BY_KEY = Object.fromEntries(ROLE_KEYS.map(r => [r.k, r]));
 // OTHER word — «فِعْلٌ مَاضٍ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» is not a fa'il, and
 // «حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ فِي مَحَلِّ رَفْعٍ خَبَرٌ» is not a khabar.
 const NOMINAL_POS = ["noun", "propn", "pron", "adv"];
-function roleItems(){
-  const out = [];
-  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen =>
-    sen.tokens.forEach((t, ti) => {
-      if (!t.irab || !t.irab.ar) return;
-      if (!NOMINAL_POS.includes(t.pos)) return;
-      const hits = ROLE_KEYS.filter(r =>
-        r.re.test(t.irab.ar) && !(r.not && r.not.test(t.irab.ar))
-        && !(r.inner && r.inner.test(t.irab.ar)));
-      // naib al-fa'il also matches fa'il; that pair is resolved, anything else
-      // genuinely ambiguous is left out of the pool.
-      if (hits.length !== 1) return;
-      out.push({ sen, ti, tok: t, key: hits[0].k });
-    }))));
-  return out;
-}
+function roleItems(need){ return ROLE_POOL.items(need); }   /* (wave 142) */
 // Naming the WRONG role is the most instructive miss in nahw: each role has
 // its own interrogative, and the pick fails precisely because the sentence
 // does not answer that question. State both tests — theirs and the true one.
@@ -5016,7 +4983,7 @@ function roleWhyNot(it, picked){
             : `Its job here is ${nm(right)}${q(right) ? ` — «${q(right)}»` : ""}.`;
 }
 function startRoleGame(){
-  const items = shuffle(roleItems()).slice(0, 8);
+  const items = shuffle(roleItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().roleGame, ask: ui().roleGameAsk, items, restart: startRoleGame,
@@ -5109,6 +5076,53 @@ const DUEL_POOL = new GamePool("duel", { units: GamePool.chapters, scan: (u, out
       if (role && sen.tokens.length >= 2) out.push({ sen, ti, tok: t, key: role });
     })) });
 function duelItems(need){ return DUEL_POOL.items(need); }
+/* (wave 142) SPEED V — the seven starts that still swept the shelf at the tap share the pool class: sampled at the tap, finished under Quiet */
+const SARF_POOL = new GamePool("sarf", { units: () => gameStories(), scan: (st, out) => Object.entries(st.morph || {}).forEach(([lex, m]) => {
+    const rows = muhtelife(m);
+    if (!rows || rows.length < 5) return;
+    rows.forEach((row, ri) => out.push({ lex, m, ri, rows, lemma: m.mazi[0] }));
+  }) });
+const CASE_POOL = new GamePool("case", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen =>
+    sen.tokens.forEach((t, ti) => {
+      if (!t.irab || !t.irab.ar) return;
+      const hits = CASE_KEYS.filter(c => c.re.test(t.irab.ar));
+      if (hits.length !== 1) return;          // skip tokens naming two cases
+      out.push({ sen, ti, tok: t, key: hits[0].k, story: u.st.id });
+    })) });
+const ROLE_POOL = new GamePool("role", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen =>
+    sen.tokens.forEach((t, ti) => {
+      if (!t.irab || !t.irab.ar) return;
+      if (!NOMINAL_POS.includes(t.pos)) return;
+      const hits = ROLE_KEYS.filter(r =>
+        r.re.test(t.irab.ar) && !(r.not && r.not.test(t.irab.ar))
+        && !(r.inner && r.inner.test(t.irab.ar)));
+      // naib al-fa'il also matches fa'il; that pair is resolved, anything else
+      // genuinely ambiguous is left out of the pool.
+      if (hits.length !== 1) return;
+      out.push({ sen, ti, tok: t, key: hits[0].k });
+    })) });
+const NIDA_POOL = new GamePool("nida", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
+    const f = NidaEngine.flat(t.s.full);
+    if (!NidaEngine.PARTICLES.some(p => p.flat === f && f.length > 1)) return;
+    const m = sen.tokens[ti + 1];
+    if (!m) return;
+    const call = [t, m, sen.tokens[ti + 2]].filter(Boolean).map(x => x.s.full).join(" ");
+    const v = NidaEngine.read(call);
+    if (!v || !v.ok || !v.signLabel) return;
+    out.push({ sen, ti, mi: ti + 1, call, v, irab: m.irab });
+  })) });
+const WAQF_POOL = new GamePool("waqf", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => {
+    const t = sen.tokens[sen.tokens.length - 1]; if (!t) return;
+    const r = WaqfEngine.pause(t.s.full); if (!r.ok || !r.changed) return;
+    const wrong = WaqfEngine.distractors(t.s.full, r.out); if (wrong.length < 3) return;
+    out.push({ sen, ti: sen.tokens.length - 1, word: r.word, r, wrong });
+  }) });
+const BAHR_POOL = new GamePool("bahr", { minSample: 8, units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => { if (!sen.tokens.some(t => t.punctAfter === "*")) return;
+    let rs = []; try { rs = ArudEngine.scanCited(sen.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ")); } catch (e) { rs = []; }
+    if (rs.length && rs.every(r => r.ok) && !rs[0].mudawwar) out.push({ sen, r: rs[0] }); }) });
+const SHOPC_POOL = new GamePool("shopc", { units: GamePool.chapters, scan: (u, out) => u.ch.sentences.forEach(sen => {
+    if ((sen.tokens || []).some(t => t.irab && t.irab.ar && IrabShopEngine.readIrab(t.irab.ar))) out.push({ st: u.st, ch: u.ch, sen }); }) });
+const shortFirst142 = list => list.map((x, k) => [x, k]).sort((a, b) => (Math.min(a[0].sen.tokens.length, 12) - Math.min(b[0].sen.tokens.length, 12)) || (a[1] - b[1])).map(p => p[0]);   /* the shortest sentences read first: a round's four items cost the least */
 function duelOptHtml(k){
   const r = DUEL_ROLES[k];
   return `<span lang="ar">${r.ar}</span> · ${state.uiLang === "tr" ? r.tr : r.en}`;
@@ -5226,7 +5240,7 @@ function wajhItems(need){
     const stored = Relax.get("wajh:" + scope, true); const items = [], seen = new Set();
     (stored || []).forEach(r => { const x = senFromRef32(r); if (!x) return; const tbl = r.eng === "insha" ? InshaEngine.DOC : IstifhamEngine.DOC; const doc = tbl && tbl[r.key]; if (!doc) return;
       seen.add(r.st + "/" + r.ch + ":" + r.sid); items.push({ sen: x.sen, key: r.key, doc, eng: r.eng, note: r.note, st: x.st, ch: x.ch }); });
-    const queue = shuffle(wajhTaggedRefs().filter(x => !seen.has(x.st.id + "/" + (x.ch.n !== undefined ? x.ch.n : x.ch.chapter) + ":" + x.sen.id)));
+    const queue = shortFirst142(shuffle(wajhTaggedRefs().filter(x => !seen.has(x.st.id + "/" + (x.ch.n !== undefined ? x.ch.n : x.ch.chapter) + ":" + x.sen.id))));   /* (wave 142) */
     WAJH_CACHE = { scope, items, seen, queue, dripping: false };
   }
   const C = WAJH_CACHE;
@@ -5444,17 +5458,15 @@ function startAlaqa(){
 // learner to name each word's job before revealing the stored i'rab. Same
 // eligibility as roleItems (only tokens whose i'rab names exactly one role),
 // grouped by sentence; a sentence qualifies with three or more askable words.
-function tahlilSentences(){
-  const by = new Map();
-  roleItems().forEach(it => {
-    if (!by.has(it.sen)) by.set(it.sen, []);
-    by.get(it.sen).push(it);
-  });
-  return [...by.values()].filter(l => l.length >= 3)
-    .map(l => l.sort((a, b) => a.ti - b.ti));
+function tahlilSentences(need){
+  const group = items => { const by = new Map();
+    items.forEach(it => { if (!by.has(it.sen)) by.set(it.sen, []); by.get(it.sen).push(it); });
+    return [...by.values()].filter(l => l.length >= 3).map(l => l.sort((a, b) => a.ti - b.ti)); };
+  if (typeof need === "number") { const g = group(roleItems(Math.max(need, 60))); if (g.length) return g; }   /* (wave 142) a round needs ONE sentence with three roles: the sampled chapters usually hold it */
+  return group(roleItems());
 }
 function startTahlil(){
-  const pools = tahlilSentences();
+  const pools = tahlilSentences(1);
   if (!pools.length) { openGames(); return; }
   const items = pools[Math.floor(Math.random() * pools.length)];
   runQuiz({
@@ -32889,13 +32901,7 @@ function birgiviTreeHtml(lang){
 let SHOP_CACHE = { scope: null, items: null };
 function senRef32(st, ch, sen){ return { st: st.id, ch: (ch.n !== undefined ? ch.n : ch.chapter), sid: sen.id }; }
 function senFromRef32(r){ const st = STORIES.find(x => x.id === r.st); const ch = st && st.chapters.find(c => (c.n !== undefined ? c.n : c.chapter) === r.ch); const sen = ch && ch.sentences.find(x => x.id === r.sid); return (st && ch && sen) ? { st, ch, sen } : null; }
-function shopCandidates(){
-  const scan = stories => { const out = []; for (const st of stories) for (const ch of st.chapters) for (const sen of ch.sentences) {
-    if ((sen.tokens || []).some(t => t.irab && t.irab.ar && IrabShopEngine.readIrab(t.irab.ar))) out.push({ st, ch, sen }); } return out; };
-  let out = scan((CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES);
-  if (out.length < 3 && CUR && !GAME_SCOPE_FALLBACK) out = scan(STORIES);   /* (wave 32r) the old pool fell back to the shelf when the open story had too few customers; the count must too */
-  return out;
-}
+function shopCandidates(need){ return SHOPC_POOL.items(need); }   /* (wave 142) the customers' list is a pool: sampled at the tap, finished under Quiet */
 function shopReadSentence(c, C){   // the engine's table for ONE sentence → the words where the shop and the author's line AGREE (the teaching is the corpus's, the engine only confirmed it)
   const { st, ch, sen } = c; const key = st.id + "/" + (ch.n !== undefined ? ch.n : ch.chapter) + ":" + sen.id; if (C.seen.has(key)) return; C.seen.add(key);
   const claims = (sen.tokens || []).map(t => t.irab && t.irab.ar ? IrabShopEngine.readIrab(t.irab.ar) : null);
@@ -32913,17 +32919,19 @@ function shopItems(need){
   if (SHOP_CACHE.scope !== scope || !SHOP_CACHE.items) {
     const stored = Relax.get("shop:" + scope, true); const items = [], seen = new Set();
     (stored || []).forEach(r => { const x = senFromRef32(r); if (!x || !x.sen.tokens[r.ti]) return; seen.add(r.st + "/" + r.ch + ":" + r.sid); items.push({ st: x.st, ch: x.ch, sen: x.sen, ti: r.ti, tok: x.sen.tokens[r.ti], e: r.e, sign: r.sign, k: r.k }); });
-    SHOP_CACHE = { scope, items, seen, queue: shuffle(shopCandidates()), dripping: false, fallback: false };
+    SHOP_CACHE = { scope, items, seen, queue: shortFirst142(shuffle(shopCandidates(48).slice())), dripping: false, fallback: false, refilled: false };
   }
   const C = SHOP_CACHE;
   const persist = () => { try { Relax.set("shop:" + scope, C.items.slice(0, 40).map(it => ({ ...senRef32(it.st, it.ch, it.sen), ti: it.ti, e: it.e, sign: it.sign, k: it.k })), true); } catch (e) {} };
+  const refill = () => { if (C.refilled) return; C.refilled = true; const key = c => c.st.id + "/" + (c.ch.n !== undefined ? c.ch.n : c.ch.chapter) + ":" + c.sen.id; C.queue = shortFirst142(shuffle(shopCandidates().slice()).filter(c => !C.seen.has(key(c)))); };   /* (wave 142) the sampled list ran dry: the whole pool now */
+  if (!C.queue.length && C.items.length < want) refill();
   const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < 8 && (C.items.length < 4 || performance.now() - t0w < 250)) { shopReadSentence(C.queue.shift(), C); tried++; }   // (wave 140) the round's own need, now — four items at least, then the clock decides; the drip brings the rest
   if (tried) persist();
   if (!C.dripping && C.items.length < 24 && C.queue.length) { C.dripping = true;   // the rest in a drip — one sentence a slice, never during a round
-    (function step(){ if (SHOP_CACHE !== C) return; if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
+    (function step(){ if (SHOP_CACHE !== C) return; if (!C.queue.length) refill(); if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
       if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
       shopReadSentence(C.queue.shift(), C); if ((C.items.length % 6) === 0) persist(); setTimeout(step, 400); })(); }
-  if (C.items.length < 4 && !C.queue.length && CUR && !GAME_SCOPE_FALLBACK && !C.fallback) { C.fallback = true; GAME_SCOPE_FALLBACK = true; try { return shopItems(want); } finally { GAME_SCOPE_FALLBACK = false; } }   // a story that cannot feed the shop hands the round to the library
+  if (C.items.length < 4 && !C.queue.length && (refill(), !C.queue.length) && CUR && !GAME_SCOPE_FALLBACK && !C.fallback) { C.fallback = true; GAME_SCOPE_FALLBACK = true; try { return shopItems(want); } finally { GAME_SCOPE_FALLBACK = false; } }   // a story that cannot feed the shop hands the round to the library
   return C.items;
 }
 function startShop(){
@@ -33748,16 +33756,9 @@ function startMubalagha(){
   });
 }
 // gBahr — WHICH baḥr? A bayt from the corpus; the learner names its metre; the reveal cuts it into its tafāʿīl (wave 24)
-function bahrItems(){
-  const out = []; const stories = (CUR && !GAME_SCOPE_FALLBACK) ? [CUR] : STORIES;
-  stories.forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => { if (!sen.tokens.some(t => t.punctAfter === "*")) return;
-    let rs = []; try { rs = ArudEngine.scanCited(sen.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ")); } catch (e) { rs = []; }
-    if (rs.length && rs.every(r => r.ok) && !rs[0].mudawwar) out.push({ sen, r: rs[0] }); })));
-  if (out.length < 4 && CUR && !GAME_SCOPE_FALLBACK) { GAME_SCOPE_FALLBACK = true; try { return bahrItems(); } finally { GAME_SCOPE_FALLBACK = false; } }
-  return out;
-}
+function bahrItems(need){ return BAHR_POOL.items(need); }   /* (wave 142) */
 function startBahr(){
-  const items = shuffle(bahrItems()).slice(0, 8);
+  const items = shuffle(bahrItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   const lg = () => state.uiLang === "tr" ? "tr" : "en"; const POOL = ["tawil", "basit", "kamil", "wafir", "khafif", "rajaz", "ramal", "mutaqarib", "sari", "munsarih", "hazaj", "mutadarik"];
   const lbl = k => `<span lang="ar">${ArudEngine.BAHR_AR[k]}</span> <span class="fr-doc">${escapeAttr((BAHR_LBL[k] || {})[lg()] || (BAHR_LBL[k] || {}).en || k)}</span>`;
@@ -34416,20 +34417,7 @@ function tr_ibaraWhyNot(it){
 // stored anywhere — NidaEngine derives it from the letters at play time. If
 // the engine and the story's own i'rab ever disagreed, the smoke suite would
 // fail before this game could show a wrong answer.
-function nidaItems(){
-  const out = [];
-  gameStories().forEach(st => (st.chapters || []).forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((t, ti) => {
-    const f = NidaEngine.flat(t.s.full);
-    if (!NidaEngine.PARTICLES.some(p => p.flat === f && f.length > 1)) return;
-    const m = sen.tokens[ti + 1];
-    if (!m) return;
-    const call = [t, m, sen.tokens[ti + 2]].filter(Boolean).map(x => x.s.full).join(" ");
-    const v = NidaEngine.read(call);
-    if (!v || !v.ok || !v.signLabel) return;
-    out.push({ sen, ti, mi: ti + 1, call, v, irab: m.irab });
-  }))));
-  return out;
-}
+function nidaItems(need){ return NIDA_POOL.items(need); }   /* (wave 142) */
 const NIDA_DISTRACTORS = ["damma", "fatha", "fathatan", "fathaTaqdiri", "alif", "waw"];
 function nidaWhyNot(it, picked){
   const tr = state.uiLang === "tr";
@@ -34451,7 +34439,7 @@ function nidaWhyNot(it, picked){
             : "That is not the sign the last letter of this word is showing.";
 }
 function startNida(){
-  const items = shuffle(nidaItems()).slice(0, 8);
+  const items = shuffle(nidaItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().nidaGame, ask: ui().nidaAsk, items, restart: startNida,
@@ -34475,16 +34463,7 @@ function startNida(){
 
 // wave 68 — the pause falls on the last word of a sentence: every sentence-final token whose pausal form differs from the
 // written one is an item, and the wrong answers are the classic errors (the tanwīn kept, the tāʾ kept, the alif lost…)
-function waqfItems(){
-  const out = [];
-  gameStories().forEach(st => st.chapters.forEach(ch => ch.sentences.forEach(sen => {
-    const t = sen.tokens[sen.tokens.length - 1]; if (!t) return;
-    const r = WaqfEngine.pause(t.s.full); if (!r.ok || !r.changed) return;
-    const wrong = WaqfEngine.distractors(t.s.full, r.out); if (wrong.length < 3) return;
-    out.push({ sen, ti: sen.tokens.length - 1, word: r.word, r, wrong });
-  })));
-  return out;
-}
+function waqfItems(need){ return WAQF_POOL.items(need); }   /* (wave 142) */
 function waqfWhyNot(it, picked){
   const tr = state.uiLang === "tr"; const p = picked.form || "";
   if (/[ًٌٍ]$/.test(p)) return tr ? "Tenvin vakıfta asla kalmaz: nasb tenvini elif olur, ref' ve cer tenvini düşer." : "The tanwīn never survives the pause: the tanwīn of naṣb turns to an alif, that of rafʿ and jarr is dropped.";
@@ -34496,7 +34475,7 @@ function waqfWhyNot(it, picked){
   return tr ? "Vakıf kaidesi bu şekli vermez." : "No rule of the pause yields that form.";
 }
 function startWaqf(){
-  const items = shuffle(waqfItems()).slice(0, 8);
+  const items = shuffle(waqfItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
   runQuiz({
     title: ui().waqfGame, ask: ui().waqfAsk, items, restart: startWaqf,
@@ -35446,7 +35425,8 @@ function bootWithData(){
     Quiet.add("wajh-pool", () => { try { wajhItems(0); } catch (e) {} return true; });
     Quiet.add("shop-pool", () => { try { shopItems(0); } catch (e) {} return true; });
     Quiet.add("jinas-pool", () => { try { jinasItems(0); } catch (e) {} return true; });
-    [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140) */
+    [DUEL_POOL, GHOST_POOL, IBARA_POOL, HARAKAT_POOL, KINDS_POOL, SHOPC_POOL, ROLE_POOL, CASE_POOL, NIDA_POOL, WAQF_POOL, SARF_POOL, BAHR_POOL].forEach(p => { try { p.warm(); } catch (e) {} });   /* (wave 140, 142) */
+    Quiet.add("maqsud-warm", () => { try { MaqsudEngine.audit(); maqsudItems(); } catch (e) {} return true; });   /* (wave 142) the Maqṣūd lab's first paint cost ~250 ms at 4× CPU: its tables are derived here, idle */
   } catch (e) {} }, 1500);
 }
 window.__qissaDataReady = bootWithData;

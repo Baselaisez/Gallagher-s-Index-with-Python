@@ -9986,6 +9986,22 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 142 — SPEED V, the seven starts that still swept the shelf.** Measured on v242 at 4× CPU: gShop 799 ms, gWajh 307,
+gNida 290, gJinas 254, gBahr 177, gRole 168, gWaqf 141, gTahlil 132, gCase 124, gSarf 98 — each tap still built its whole pool
+over the 51 texts before drawing eight (the role regexes over 41,000 iʿrāb lines, NidaEngine.flat on every token, the ʿarūḍ
+scanner on every verse, WaqfEngine on every last word, the shop's irab reader on every token, muhtelife on every morph entry).
+Seven more pools now share the wave-140 `GamePool` class — `SARF_POOL` (units: the stories' morph tables), `CASE_POOL`,
+`ROLE_POOL`, `NIDA_POOL`, `WAQF_POOL`, `BAHR_POOL` (minSample 8) and `SHOPC_POOL` (the shop's customers) — sampled at the tap,
+finished under Quiet (`pool:<id>` jobs registered at boot with the first five), the legacy builders (`sarfItems(need)` …) their
+entries, so the hub's supply counts and the audits still see the whole pool. The taḥlīl round asks the role pool for sixty items
+and groups them by sentence (a sampled chapter is always whole, so its three-role sentences are intact); the shop and the wajh
+drips read their SHORTEST sentences first (`shortFirst142`, a stable bucket sort by token count up to twelve) so the round's four
+items cost the least DabtEngine / SentenceAnalyzer passes, and the shop's drip refills its queue from the whole pool once the
+sample runs dry. The Maqṣūd lab's first paint (its eighteen models' tables, ~250 ms at 4×) is derived under Quiet at boot
+(`maqsud-warm`). After, at 4× CPU: gShop 173, gWajh 199, gTahlil 16, gRole 9, gSarf 6, gNida / gCase / gWaqf / gBahr under 5 ms;
+the pools: sarf 60,939 items, case 29,006, role 18,458, nida 212, waqf 3,649, bahr 101, shop customers 813 — identical objects
+to the old builders'. Every story, game and lab kept.
+
 **Wave 141 — the prose texts' blind endings by rule.** The blind sweep (the engine reads the stripped sentence with no
 receipt from the author) still left 193 wrong / 283 undecided endings on v241, two thirds of them in the fourth Qiṣaṣ volume
 and the ʿAqāʾid. A pre-pass of twenty-odd rules before the main decide loop now reads what the earlier waves could not: وَحْدَهُ
