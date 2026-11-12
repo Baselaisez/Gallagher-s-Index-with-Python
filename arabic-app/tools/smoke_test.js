@@ -10510,6 +10510,55 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 153 — the engine\'s remaining blind-wrong endings by rule: the jarr letter written with its kasra outranks every rafʿ seat (مَا بِإِزَائِهِ ذَكَرٌ، وَلِمَعْمُولِهَا), the mīm-shaped host the lexicon does not know behind لِ, ابْن between a jarr name and its father, the إِلَّا-object after a negated verb (لَمْ يَجِدْ إِلَّا الْفِرَاقَ), أَلَيْسَ in kāna\'s family, مُذْ + a definite time noun, the فَ of sababiyya after لَوْ\'s wish, مِثْلَ مَا after the mubtadaʾ, وَلَا + al-noun joins the doer, the transitive bāb\'s owed object after its doer (جَوَّزَ الْمُبَرِّدُ دُخُولَهَا), the nakira pair before لِأَنَّ, آخَرَ as naʿt, the ذَانِ demonstrative after the clause-opening لِ-phrase', async () => {
+    const r = await page.evaluate(() => {
+      const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
+      const out = {};
+      out.s1 = E("مَا بِإِزَائِهِ ذَكَرٌ");
+      out.s2 = E("وَلِمَعْمُولِهَا ثَلَاثَةُ أَحْوَالٍ");
+      out.s3 = E("بِعُتَيْبَةَ بْنِ الْحَارِثِ");
+      out.s4 = E("لَمْ يَجِدْ إِلَّا الْفِرَاقَ");
+      out.s5 = E("أَلَيْسَ اللهُ بِكَافٍ عَبْدَهُ");
+      out.s6 = E("مَا رَأَيْتُهُ مُذْ يَوْمُ الْجُمُعَةِ");
+      out.s7 = E("لَوْ تَأْتِينِي فَتُحَدِّثَنِي");
+      out.s8 = E("قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ");
+      out.s9 = E("لَا يَفْنَى الْحَقُّ وَلَا الْعَدْلُ");
+      out.s10 = E("جَوَّزَ الْمُبَرِّدُ دُخُولَهَا");
+      out.s11 = E("وَفُلْكٌ جَمْعٌ لِأَنَّ تَغَيُّرَهُ مُقَدَّرٌ");
+      out.s12 = E("خَفَّفَهُ تَخْفِيفًا آخَرَ");
+      out.s13 = E("أَفْعَمَ السَّيْلُ الْوَادِيَ");
+      out.s14 = E("وَأَلَانَ اللهُ لَهُ الْحَدِيدَ");
+      out.s15 = E("مَا كُلُّ مَا يَتَمَنَّى الْمَرْءُ يُدْرِكُهُ");
+      out.s16 = E("لَمْ يَبْقَ إِلَّا الصَّبْرُ");
+      out.s17 = E("وَلِمُثَنَّاهُ ذَانِ وَذَيْنِ");
+      out.mamnu = (() => { try { const v = MamnuEngine.verdict("أَشْيَاءَ"); return [!!v.barred, v.jarr || ""]; } catch (e) { return ["ERR", e.message]; } })();
+      return out;
+    });
+    const want = (k, i, re, label) => { const x = (r[k] || [])[i] || ""; if (!re.test(x)) throw new Error(label + ': ' + x + '  (' + (r[k] || []).join(' ') + ')'); };
+    want('s1', 1, /^بِإِزَائِهِ·jarr$/, 'بِإِزَائِهِ: the jarr letter with its kasra');
+    want('s1', 2, /^ذَكَرٌ·mubtada$/, 'ذَكَرٌ: the postponed mubtadaʾ');
+    want('s2', 0, /^وَلِمَعْمُولِهَا·jarr$/, 'وَلِمَعْمُولِهَا: the mīm-shaped host behind the kasra lām');
+    want('s2', 1, /^ثَلَاثَةُ·mubtada$/, 'ثَلَاثَةُ: the postponed mubtadaʾ after the fronted khabar');
+    want('s3', 1, /^بْنِ·badal$/, 'بْنِ between the jarr name and its father takes the jarr');
+    want('s4', 3, /^الْفِرَاقَ·maful$/, 'لَمْ يَجِدْ إِلَّا الْفِرَاقَ: the إِلَّا-object of the transitive verb');
+    want('s16', 3, /^الصَّبْرُ·(fail|raf)$/, 'لَمْ يَبْقَ إِلَّا الصَّبْرُ: the lāzim verb keeps the doer');
+    want('s5', 1, /^اللهُ·kanaIsm$/, 'أَلَيْسَ: kāna\'s family behind the hamza');
+    want('s5', 3, /^عَبْدَهُ·maful$/, 'بِكَافٍ عَبْدَهُ: the participle\'s object');
+    want('s6', 3, /^يَوْمُ·khabar$/, 'مُذْ يَوْمُ الْجُمُعَةِ: مُذْ before the definite time noun is the mubtadaʾ of a nominal clause');
+    want('s7', 2, /^فَتُحَدِّثَنِي·nasbVerb$/, 'لَوْ تَأْتِينِي فَتُحَدِّثَنِي: the فَ of sababiyya');
+    want('s8', 1, /^مِثْلَ·zarf$/, 'قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ: مِثْلَ after the mubtadaʾ keeps its construct with مَا');
+    want('s9', 4, /^الْعَدْلُ·atf$/, 'وَلَا الْعَدْلُ: joins the doer');
+    want('s10', 2, /^دُخُولَهَا·maful$/, 'جَوَّزَ الْمُبَرِّدُ دُخُولَهَا: the فَعَّلَ bāb\'s owed object after its doer');
+    want('s11', 1, /^جَمْعٌ·khabar$/, 'وَفُلْكٌ جَمْعٌ: the nakira pair before لِأَنَّ');
+    want('s11', 3, /^تَغَيُّرَهُ·innaIsm$/, 'لِأَنَّ تَغَيُّرَهُ: the ism');
+    want('s12', 2, /^آخَرَ·nat$/, 'تَخْفِيفًا آخَرَ: the naʿt of the nakira object');
+    want('s13', 2, /^الْوَادِيَ·maful$/, 'أَفْعَمَ السَّيْلُ الْوَادِيَ: the manqūṣ object');
+    want('s14', 3, /^الْحَدِيدَ·maful$/, 'وَأَلَانَ اللهُ لَهُ الْحَدِيدَ: the Name is never the object');
+    want('s14', 1, /^اللهُ·(fail|raf)$/, 'اللهُ keeps its rafʿ');
+    want('s15', 4, /^الْمَرْءُ·(fail|raf)$/, 'مَا يَتَمَنَّى الْمَرْءُ: the ṣila\'s doer keeps its rafʿ');
+    want('s17', 1, /^ذَانِ·mubtada$/, 'وَلِمُثَنَّاهُ ذَانِ: the demonstrative after the fronted لِ-phrase');
+    if (JSON.stringify(r.mamnu) !== JSON.stringify([true, "fatha"])) throw new Error('MamnuEngine أَشْيَاءَ: ' + JSON.stringify(r.mamnu));
+  });
   await check('wave 152 — SPEED IX: the sarf lab\'s attested-verb map is built a story a slice under Quiet and equals the whole walk; the shop and wajh rounds start on two items and fill to eight while they are played; the shop\'s candidates are sampled to the round\'s need', async () => {
     const r = await page.evaluate(async () => {
       const out = {};

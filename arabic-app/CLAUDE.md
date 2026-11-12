@@ -9986,6 +9986,43 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 153 — the remaining wrong endings, by rule.** The v252 blind sweep's 108 wrong rows (Talkhīṣ 38, Kāfiya 30, Qiṣaṣ 4
+16, Badʾ al-Amālī 11, Mukhtaṣar 6…), each traced to its deciding line; the verse rows (rhyme seats, iṭlāq alifs, Qurʾānic
+readings) left as they are, the rest read by rule on the dry copy. The LETTER'S AUTHORITY: `set()` itself refuses a rafʿ seat
+to a word written with a بِ / لِ clitic and its kasra (مَا بِإِزَائِهِ ذَكَرٌ، وَلِمَعْمُولِهَا ثَلَاثَةُ أَحْوَالٍ); ابْن between names
+behind a jarr clitic is jarr whatever the diptote's fatḥa (بِعُتَيْبَةَ بْنِ الْحَارِثِ); the badal after a dual needs a written
+dual (مَخْلُوقَتَانِ مَوْجُودَتَانِ), never بَيَانُ. CONSTRUCTS: the augmented maṣdar before أَنْ / أَنَّ on the fatḥa hamza
+(إِظْهَارُ أَنْ، إِيهَامُ أَنَّهُ — never قِيَاسٌ إِنْ), the role-noun فَاعِل / مَفْعُول / خَبَر / اسْم before a cited māḍī, kāna, a
+quoted nakira or a cited أَفْعَلَ (مَفْعُولُ ضَرَبْتُ، لَا مَفْعُولُ ضَرْبًا، فَاعِلُ أَحْسَنَ), the grammar's noun before the cited
+particle it annexes (جَوَابُ أَمِ الْمُتَّصِلَةِ — أَمْ joins the cited particles). THE TERM: the khabar after a sound plural (وَسِنُونَ
+وَأَرَضُونَ شَاذٌّ — a singular is no naʿt of a plural, and the plural with its nūn annexes nothing), after a joined mubtadaʾ
+still owed its khabar (وَمُمَيِّزُ مِائَةٍ وَأَلْفٍ مُفْرَدٌ مَجْرُورٌ), after kāna's naṣb khabar at the line's end (مَجْمُوعًا ضَعِيفٌ);
+the term after a cited particle that is itself a verb's object is its naʿt in naṣb (يَتْبَعُ أَحَدُ الْمُتَسَاوِيَيْنِ أَمِ
+الْمُتَّصِلَةَ). THE DOER AND THE OBJECT: the verb of a transitive bāb (the ḍamma on the muḍāriʿ prefix; أَفْعَلَ، فَعَّلَ، فَاعَلَ)
+or the ledger's object-taking verb makes the al-noun after its doer the object (يَفُوقَ الْمَمْدُوحُ النَّاسَ، يُخْرِجُ الْحَيَّ مِنَ
+الْمَيِّتِ، أَفْعَمَ السَّيْلُ الْوَادِيَ); the definite before a pronoun-noun is the doer (جَوَّزَ الْمُبَرِّدُ دُخُولَهَا); the al-noun
+behind إِلَّا after a negated transitive verb — its doer earlier in the sentence or hidden — is the object (لَمْ يَجِدْ إِلَّا الْفِرَاقَ); the she-verb's doer is
+the feminine nakira, not the masculine name before it (وَرَدَتْ عُكَاظَ قَبِيلَةٌ); أَلَيْسَ is لَيْسَ (أَلَيْسَ اللهُ بِكَافٍ عَبْدَهُ);
+the sentence that opens on a فَ-joined muḍāriʿ owes its doer to the sentence before, and the quantity construct after it is
+the object (فَيَشْمَلُ بَعْضَ التَّكْمِيلِ); the al-noun after a demonstrative that follows a passive is its badal — the deputy
+(تُسْتَعْمَلُ هٰذِهِ الْكَلِمَاتُ); the elative with مِنْ after a verb that carries its object is no absolute object (جَاءَهُمْ أَمْرٌ
+مِنَ الْأَمْنِ). CLAUSES: مُذْ / مُنْذُ before the definite time noun or the dual is rafʿ (مُذْ يَوْمُ الْجُمُعَةِ، مُنْذُ يَوْمَانِ — not
+مُنْذُ الصِّغَرِ); مِثْلَ before مَا / أَنْ and a verb, after a mubtadaʾ, is the manṣūb khabar (قِيَامِي مِثْلَ مَا قَامَ زَيْدٌ); the
+nakira pair before لِأَنَّ is mubtadaʾ and khabar (وَفُلْكٌ جَمْعٌ لِأَنَّ); the فَ of sababiyya after the wish's verb (لَوْ تَأْتِينِي
+فَتُحَدِّثَنِي); the فَ-joined pronoun-noun after a مَا / مَنْ clause and its verb opens the jawāb (فَغَيْرُهُ عَلَيْهِ لَا يُقَاسُ);
+the ṣifa-shaped nakira before a jarr phrase, after a relative that opened its clause with a verb, is the relative's khabar
+(الَّذِي يَخْرُجُ مِنَ الْإِنْسَانِ نَاقِضٌ لِلْوُضُوءِ); kāna's owed khabar does not reach across a relative; تَكُونَ before a plural
+al-noun and a nakira takes the al-noun as ism (أَنْ تَكُونَ الْأَلْفَاظُ تَوَابِعَ). ʿAṬF: وَلَا + al-noun after a rafʿ doer joins it
+(لَا يَفْنَى الْجَحِيمُ وَلَا الْجِنَانُ); لَا of ʿaṭf after a nakira whose tanwīn-fatḥa closes on an alif (لَفْظًا لَا مَعْنًى); the
+joined plural with its plural pronoun after a jarr construct (عَلَى عَامَّةِ النَّاسِ وَفُقَرَائِهِمْ); the joined al-noun with its
+لِ-phrase after a citation parallels إِنَّ's ism that had the same لِ-phrase (اسْمَ الْفَاعِلِ لِلْحُدُوثِ … وَالصِّفَةَ الْمُشَبَّهَةَ
+لِلثُّبُوتِ); the فَ-joined غَيْرُهُ of a jawāb is no ʿaṭf. SMALL SEATS: غَيْرِ after a jarr nakira and its pronoun phrase (مُلَابَسٍ لَهُ
+غَيْرِ مَا هُوَ لَهُ); آخَرَ after a manṣūb nakira (تَخْفِيفًا آخَرَ); no masculine naʿt on a woman's name (هِنْدًا الْمُسْنَدُ إِلَيْهِ);
+the receipt-read inna ism never follows a cited particle (مَعَ لَكِنَّ ضَعِيفٌ). THE WRITER: أَشْيَاءَ is barred from tanwīn; خَرْشَنَة
+declines as al-Mutanabbī wrote it; the plural of ابْن wears the nūn's fatḥa (الْمَالُ وَالْبَنُونَ); the waṣl alif keeps the page's
+dress behind لَ (لَاجْتَمَعَ). blind: wrong 108 -> 85 (FIXED 23, BROKEN 0), undecided 139 -> 139
+receipts-on: wrong 61 -> 51 (FIXED 10, BROKEN 0), undecided 71 -> 71 Typed sentences gate the rules in the smoke check.
+
 **Wave 152 — SPEED IX: the cold taps.** Measured on v252 at 4× CPU: every lab tab and game start was under 50 ms once
 Quiet had run, but three taps still held the thread when they came early. (1) The Atölye's first paint: 150 ms, of
 which 136 ms was `conjAutoPick` — the sarf lab snaps its controls to the corpus's attested verb, and the attested-verb map
