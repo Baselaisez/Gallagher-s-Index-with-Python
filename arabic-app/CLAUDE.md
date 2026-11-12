@@ -9986,6 +9986,22 @@ next speed wave, if the owner asks, builds the shop and jinās pools to the roun
 work runs — anything a tap used to compute for the whole library now runs before the tap, in the reader's idle time,
 and stops the moment the reader moves.
 
+**Wave 152 — SPEED IX: the cold taps.** Measured on v252 at 4× CPU: every lab tab and game start was under 50 ms once
+Quiet had run, but three taps still held the thread when they came early. (1) The Atölye's first paint: 150 ms, of
+which 136 ms was `conjAutoPick` — the sarf lab snaps its controls to the corpus's attested verb, and the attested-verb map
+(`conjKnownMap`, every story's morph walked for `sjAttested`) was built whole at the first tap. Now `conjKnownStep(budget)`
+walks a story a slice under Quiet (`conj-known`, queued right after the model's prewarm — thirty milliseconds in all at 1×),
+and `conjKnownMap()` finishes the same walk in the same order on the spot if a tap comes first; the smoke check proves the
+sliced map equals the whole one. (2) The shop and wajh rounds: each start read FOUR sentences with the engine before the
+first question (212 and 173 ms at 4× with a cold store). Now a round starts on TWO items (and a 120 / 100 ms clock) and the
+list it plays is live: the shop's drip no longer pauses while that round is short — it reads one sentence a 300 ms slice
+and appends to the round's own list until it holds eight; the wajh round does the same with its own fill between the
+player's taps (`C.readOne`, exposed on the cache). The quiz runner reads the list's length as it grows (1/2 → 3/8), so
+nothing else changed. (3) The shop's candidate list asked the pool for 48 sentences at the tap — 470 ms at 4× before the
+pool was whole; it asks for 16 now, and a refill mid-round samples a little further instead of sweeping the whole pool
+(the sweep stays for a pool Quiet has already finished). Measured at 4× CPU, v252 → this build: the Atölye's first paint 67 → 14 ms (warm 45 → 15; the tap before any idle work 134 → 113), gShop cold 212 → 153 ms, gWajh cold 173 → 112 ms; every lab tab and every other game start under 60 ms cold and warm. Every story and feature kept; the sweeps' verdicts untouched (no engine
+rule changed).
+
 **Wave 151 — the matns' remaining wrong endings, by rule.** The v250 blind sweep's 93 wrong rows in al-Kāfiya and the
 Talkhīṣ, traced to the deciding line and read by rule, on the dry copy first. The matn CITES: the verb templates
 (يُفْعِلُ، يُفَعِّلُ، يَسْتَفْعِلُ، أَفْعِلْ، مَا أَفْعَلَهُ) are the lexicon's nouns no longer — the skeleton ف ع ل under a verb's

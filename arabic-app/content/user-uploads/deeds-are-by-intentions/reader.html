@@ -5267,11 +5267,12 @@ function wajhItems(need){
   const persist = () => { try { Relax.set("wajh:" + scope, C.items.slice(0, 60).map(it => ({ ...senRef32(it.st, it.ch, it.sen), key: it.key, eng: it.eng, note: it.note })), true); } catch (e) {} };
   const readOne = () => { const x = C.queue.shift(); if (!x) return; const key = x.st.id + "/" + (x.ch.n !== undefined ? x.ch.n : x.ch.chapter) + ":" + x.sen.id; if (C.seen.has(key)) return; C.seen.add(key);
     let it = null; try { it = wajhItemOf(x.sen, x.note); } catch (e) { it = null; } if (it) C.items.push({ ...it, st: x.st, ch: x.ch }); };
+  C.readOne = readOne; C.persist = persist;   /* (wave 152) the round's own fill reads with them */
   // (wave 130b) the round's need (eight) reads at most sixteen sentences now — the tagged pool clusters by
   // story, so a run of misses is normal and the drip fills the rest; an EXPLICIT larger need (the harness,
   // a lab) is honoured to the pool's end, which is the whole-pool sweep the pre-130 builder always paid.
   const cap = want <= 8 ? 16 : want * 6;
-  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < cap && (C.items.length < 4 || want > 8 || performance.now() - t0w < 150)) { readOne(); tried++; }   /* (wave 140) four items at least, then the clock decides */
+  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < cap && (C.items.length < 2 || want > 8 || performance.now() - t0w < 100)) { readOne(); tried++; }   /* (wave 152) two at the tap; the round fills the rest */   /* (wave 140) four items at least, then the clock decides */
   if (tried) persist();
   if (!C.dripping && C.queue.length) { C.dripping = true;
     Quiet.add("wajh-drip", () => { if (WAJH_CACHE !== C) return true; if (!C.queue.length || C.items.length >= 60) { C.dripping = false; persist(); return true; }
@@ -5296,6 +5297,11 @@ function wajhSupply(){
 function startWajh(){
   const items = shuffle(wajhItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
+  if (items.length < 8 && WAJH_CACHE && WAJH_CACHE.queue && WAJH_CACHE.queue.length && WAJH_CACHE.readOne) {   /* (wave 152) a round that started on two items reads the next ones between the player's taps, one sentence a slice */
+    const C = WAJH_CACHE, R = { items, want: 8 }; let tries = 0;
+    setTimeout(function fill(){ if (WAJH_CACHE !== C || R.items.length >= R.want || !C.queue.length || tries++ > 40) { if (C.persist) C.persist(); return; }
+      if (!(sheet.classList.contains("show") && document.querySelector(".game-q"))) return;
+      const n0 = C.items.length; C.readOne(); if (C.items.length > n0) { C.items.slice(n0).forEach(it => { if (R.items.length < R.want) R.items.push(it); }); roundCount152(R); } setTimeout(fill, 300); }, 300); }
   const others = it => {
     const tbl = it.eng === "insha" ? InshaEngine.DOC : IstifhamEngine.DOC;
     return Object.keys(tbl).filter(k => k !== it.key).map(k => ({ k, doc: tbl[k] }));
@@ -12558,23 +12564,33 @@ function conjClass(){
 // because the bab distinction is the whole pedagogical point of Form I.
 let _conjKnown = null;
 function conjKey(cls){ return cls.rs.join("").replace(/ى/g, "ي"); }
+let _conjKnownB = null;   /* (wave 152) the builder's progress — the STORIES index reached, the lexes seen, the map so far */
+function conjKnownStep(budget){   /* (wave 152) one slice of the attested-verb map: a story (its morph parsed) per step, under Quiet; the sarf lab's first paint paid 136 ms at 4× CPU for the whole walk */
+  if (_conjKnown) return true;
+  const B = _conjKnownB || (_conjKnownB = { i: 0, seen: new Set(), map: {} });
+  const t0 = performance.now();
+  while (B.i < STORIES.length && (performance.now() - t0 < (budget || 20))) {
+    const st = STORIES[B.i++];
+    Object.entries(st.morph || {}).forEach(([lex, m]) => {
+      if (m.jamid || B.seen.has(lex)) return;
+      B.seen.add(lex);
+      const e = st.glossary[lex];
+      const cls = nakilClass(e);
+      if (!cls) return;
+      const at = sjAttested(m);
+      if (!at) return;
+      const key = conjKey(cls);
+      if (B.map[key] && (B.map[key].form === "I" || at.form !== "I")) return;
+      B.map[key] = { ...at, mazi: sjN((m.mazi || [])[0] || ""),
+                     gloss: e && e.gloss ? e.gloss : null };
+    });
+  }
+  if (B.i >= STORIES.length) { _conjKnown = B.map; _conjKnownB = null; return true; }
+  return false;
+}
 function conjKnownMap(){
   if (_conjKnown) return _conjKnown;
-  _conjKnown = {};
-  const seen = new Set();
-  STORIES.forEach(st => Object.entries(st.morph || {}).forEach(([lex, m]) => {
-    if (m.jamid || seen.has(lex)) return;
-    seen.add(lex);
-    const e = st.glossary[lex];
-    const cls = nakilClass(e);
-    if (!cls) return;
-    const at = sjAttested(m);
-    if (!at) return;
-    const key = conjKey(cls);
-    if (_conjKnown[key] && (_conjKnown[key].form === "I" || at.form !== "I")) return;
-    _conjKnown[key] = { ...at, mazi: sjN((m.mazi || [])[0] || ""),
-                        gloss: e && e.gloss ? e.gloss : null };
-  }));
+  while (!conjKnownStep(1e9)) {}   /* the same walk in the same order — finished now, whatever the job had reached */
   return _conjKnown;
 }
 // On every root keystroke: if the corpus attests this root, snap the controls
@@ -33392,24 +33408,27 @@ function shopItems(need){
   if (SHOP_CACHE.scope !== scope || !SHOP_CACHE.items) {
     const stored = Relax.get("shop:" + scope, true); const items = [], seen = new Set();
     (stored || []).forEach(r => { const x = senFromRef32(r); if (!x || !x.sen.tokens[r.ti]) return; seen.add(r.st + "/" + r.ch + ":" + r.sid); items.push({ st: x.st, ch: x.ch, sen: x.sen, ti: r.ti, tok: x.sen.tokens[r.ti], e: r.e, sign: r.sign, k: r.k }); });
-    SHOP_CACHE = { scope, items, seen, queue: shortFirst142(shuffle(shopCandidates(48).slice())), dripping: false, fallback: false, refilled: false };
+    SHOP_CACHE = { scope, items, seen, queue: shortFirst142(shuffle(shopCandidates(16).slice())), dripping: false, fallback: false, refilled: false, round: null };   /* (wave 152) sixteen candidates sampled at the tap — forty-eight cost 470 ms at 4× CPU before the pool was warm */
   }
   const C = SHOP_CACHE;
   const persist = () => { try { Relax.set("shop:" + scope, C.items.slice(0, 40).map(it => ({ ...senRef32(it.st, it.ch, it.sen), ti: it.ti, e: it.e, sign: it.sign, k: it.k })), true); } catch (e) {} };
-  const refill = () => { if (C.refilled) return; C.refilled = true; const key = c => c.st.id + "/" + (c.ch.n !== undefined ? c.ch.n : c.ch.chapter) + ":" + c.sen.id; C.queue = shortFirst142(shuffle(shopCandidates().slice()).filter(c => !C.seen.has(key(c)))); };   /* (wave 142) the sampled list ran dry: the whole pool now */
+  const refill = () => { if (C.refilled) return; C.refilled = true; const key = c => c.st.id + "/" + (c.ch.n !== undefined ? c.ch.n : c.ch.chapter) + ":" + c.sen.id; const whole = SHOPC_POOL._c && SHOPC_POOL._c.scope === GamePool.scope() && SHOPC_POOL._c.full; C.queue = shortFirst142(shuffle(shopCandidates(whole ? undefined : C.seen.size + 24).slice()).filter(c => !C.seen.has(key(c)))); if (!whole && C.queue.length) C.refilled = false; };   /* (wave 152) the pool still building is sampled a little further, not swept whole mid-round */   /* (wave 142) the sampled list ran dry: the whole pool now */
   if (!C.queue.length && C.items.length < want) refill();
-  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < 8 && (C.items.length < 4 || performance.now() - t0w < 250)) { shopReadSentence(C.queue.shift(), C); tried++; }   // (wave 140) the round's own need, now — four items at least, then the clock decides; the drip brings the rest
+  const t0w = performance.now(); let tried = 0; while (C.items.length < want && C.queue.length && tried < (C.items.length ? 8 : 24) && (C.items.length < 2 || performance.now() - t0w < 120)) { shopReadSentence(C.queue.shift(), C); tried++; }   /* a run of sentences the shop cannot read (the shortest first) is no empty round: up to twenty-four are tried until the first item */   /* (wave 152) two items at the tap, then the clock; the round fills the rest while it is played */   // (wave 140) the round's own need, now — four items at least, then the clock decides; the drip brings the rest
   if (tried) persist();
   if (!C.dripping && C.items.length < 24 && C.queue.length) { C.dripping = true;   // the rest in a drip — one sentence a slice, never during a round
     (function step(){ if (SHOP_CACHE !== C) return; if (!C.queue.length) refill(); if (C.items.length >= 24 || !C.queue.length) { C.dripping = false; persist(); return; }
-      if ((sheet.classList.contains("show") && document.querySelector(".game-q")) || !Quiet.ok()) { setTimeout(step, 600); return; }   /* (wave 130) */
-      shopReadSentence(C.queue.shift(), C); if ((C.items.length % 6) === 0) persist(); setTimeout(step, 400); })(); }
+      const R = C.round, inRound = sheet.classList.contains("show") && !!document.querySelector(".game-q"), filling = !!R && inRound && R.items.length < R.want;   /* (wave 152) a round that started on two items takes the next ones as they are read */
+      if (!filling && (inRound || !Quiet.ok())) { setTimeout(step, 600); return; }   /* (wave 130) */
+      const n0 = C.items.length; shopReadSentence(C.queue.shift(), C); if (R && C.items.length > n0) { C.items.slice(n0).forEach(it => { if (R.items.length < R.want) R.items.push(it); }); roundCount152(R); } if ((C.items.length % 6) === 0) persist(); setTimeout(step, filling ? 300 : 400); })(); }
   if (C.items.length < 4 && !C.queue.length && (refill(), !C.queue.length) && CUR && !GAME_SCOPE_FALLBACK && !C.fallback) { C.fallback = true; GAME_SCOPE_FALLBACK = true; try { return shopItems(want); } finally { GAME_SCOPE_FALLBACK = false; } }   // a story that cannot feed the shop hands the round to the library
   return C.items;
 }
+function roundCount152(R){ try { const tb = document.querySelector(".tabs .on"); if (tb && document.querySelector(".game-q") && /\/\d+$/.test(tb.textContent)) tb.textContent = tb.textContent.replace(/\/\d+$/, "/" + R.items.length); } catch (e) {} }   /* (wave 152) the round's counter follows its list as the fill lengthens it; the runner repaints the whole card only at the next question */
 function startShop(){
   const items = shuffle(shopItems(8).slice()).slice(0, 8);
   if (!items.length) { openGames(); return; }
+  if (SHOP_CACHE) SHOP_CACHE.round = items.length < 8 ? { items, want: 8 } : null;   /* (wave 152) the live list the drip fills during the round — the runner reads its length as it grows */
   const S = IrabShopEngine, SIGNS = Object.keys(S.SIGN);
   const lang = state.uiLang === "tr" ? "tr" : "en";
   runQuiz({
@@ -35909,6 +35928,7 @@ function bootWithData(){
        step), the fold (a note a step). */
     Quiet.add("stories-parse", b => { const t0 = performance.now(); for (const k of ["morph", "chapters"]) for (const st of STORIES) { if (!storyParsed148(st, k)) { void st[k]; if (performance.now() - t0 > (b || 20)) return false; } } return true; });   /* the paradigms first: the Atölye opens on them */
     Quiet.add("irab-model", b => IrabModel.prewarmStep(b));
+    Quiet.add("conj-known", b => { try { return conjKnownStep(b); } catch (e) { return true; } });   /* (wave 152) the sarf lab's attested-verb map, a story a slice — thirty milliseconds in all, before the engines' long warm */
     Quiet.add("engine-warm", b => { try {   /* (wave 148) the engines' corpus indexes, in slices; then one reading of each engine so its code is compiled */
       if (!RootFinder.bareIndexStep(b)) return false; if (!SarfTagger.trainStep(b)) return false; if (!IsmTagger.trainStep(b)) return false; if (!LazimEngine.ledgerStep(b)) return false;
       RootFinder.nounIndex();

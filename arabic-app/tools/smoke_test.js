@@ -10510,6 +10510,38 @@ if (!CHROME) {
     if (r.tahlil.ms > 400) throw new Error('the taḥlīl sample took ' + r.tahlil.ms + ' ms (ceiling 400)');
   });
 
+  await check('wave 152 — SPEED IX: the sarf lab\'s attested-verb map is built a story a slice under Quiet and equals the whole walk; the shop and wajh rounds start on two items and fill to eight while they are played; the shop\'s candidates are sampled to the round\'s need', async () => {
+    const r = await page.evaluate(async () => {
+      const out = {};
+      out.fns = typeof conjKnownStep === "function" && typeof conjKnownMap === "function" && Quiet.jobs.concat([{ name: "" }]).some(() => true);
+      // the sliced walk = the whole walk, in the same order
+      _conjKnown = null; _conjKnownB = null; let steps = 0; while (!conjKnownStep(3)) steps++; const sliced = JSON.stringify(conjKnownMap());
+      _conjKnown = null; _conjKnownB = null; const whole = JSON.stringify(conjKnownMap());
+      out.mapSame = sliced === whole; out.steps = steps; out.keys = Object.keys(conjKnownMap()).length; out.nasr = !!conjKnownMap()["نصر"];
+      // the shop round: an empty store, a whole pool — the round starts on what two items' reading gives, the drip fills it during the round
+      SHOPC_POOL.full(); wajhItems(0);
+      try { Relax.set("shop:__lib", null, true); Relax.set("wajh:__lib", null, true); } catch (e) {}
+      SHOP_CACHE = { scope: null, items: null }; WAJH_CACHE = { scope: null, items: null };
+      openGames(); let t0 = performance.now(); startShop(); out.shopStart = Math.round(performance.now() - t0);
+      out.shopQ = !!document.querySelector(".game-q"); out.shopRound = SHOP_CACHE.round ? SHOP_CACHE.round.items.length : 8;
+      const t1 = Date.now(); while (SHOP_CACHE.round && SHOP_CACHE.round.items.length < 8 && Date.now() - t1 < 15000) await new Promise(r => setTimeout(r, 200));
+      out.shopAfter = SHOP_CACHE.round ? SHOP_CACHE.round.items.length : 8; out.shopLabel = (document.querySelector(".tabs .on") || {}).textContent || "";
+      closeSheet(); openGames(); t0 = performance.now(); startWajh(); out.wajhStart = Math.round(performance.now() - t0); out.wajhQ = !!document.querySelector(".game-q");
+      const lbl = () => (document.querySelector(".tabs .on") || {}).textContent || ""; const t2 = Date.now(); while (!/\/8$/.test(lbl()) && Date.now() - t2 < 15000) await new Promise(r => setTimeout(r, 300));
+      out.wajhLabel = lbl(); closeSheet();
+      // the candidates' sample: sixteen at the tap, the whole pool only when it is already whole
+      SHOP_CACHE = { scope: null, items: null }; const items = shopItems(0); out.queueSampled = SHOP_CACHE.queue.length >= 1 && SHOP_CACHE.queue.length <= SHOPC_POOL.full().length;
+      return out;
+    });
+    if (!r.fns) throw new Error('conjKnownStep / conjKnownMap missing');
+    if (!r.mapSame || r.keys < 100 || !r.nasr) throw new Error('the sliced attested-verb map differs from the whole walk: ' + JSON.stringify([r.mapSame, r.steps, r.keys, r.nasr]));
+    if (!r.shopQ || r.shopRound < 2) throw new Error('the shop round starts on at least two items with a question painted: ' + JSON.stringify([r.shopQ, r.shopRound]));
+    if (r.shopAfter < 8 || !/\/8$/.test(r.shopLabel)) throw new Error('the shop round fills to eight while it is played: ' + JSON.stringify([r.shopAfter, r.shopLabel]));
+    if (!r.wajhQ || !/\/8$/.test(r.wajhLabel)) throw new Error('the wajh round fills to eight while it is played: ' + JSON.stringify([r.wajhQ, r.wajhLabel]));
+    if (r.shopStart > 1500 || r.wajhStart > 1500) throw new Error('a round\'s start held the thread: ' + JSON.stringify([r.shopStart, r.wajhStart]));
+    if (!r.queueSampled) throw new Error('the shop\'s candidate queue is sampled from the pool');
+  });
+
   await check('wave 151 — the matns\' remaining wrong endings by rule: the cited verb templates read as verbs (يُفْعِلُ، أَفْعِلْ، مَا أَفْعَلَهُ), the kāf of comparison on a verb (كَسِرْتُ), the cited particle governs nothing (رُبَّ بَعْدَهَا، وَمِنْ زَائِدَةٌ، مِنْ هَلْ فَتَدْخُلُ), the grammar\'s term as khabar (شَاذٌّ، تَامٌّ), the maṣdar\'s object (دَفْعُ اللهِ النَّاسَ), لَمَّا the jāzima, the written nūn of the five forms, the heavy nūn before an enclitic, the oblique dual is never rafʿ, حَتَّى of ʿaṭf, the opening pair of nakiras, قَدْ before an unknown verb, the cited verb after بَعْدَ, the prohibition\'s لَا after أَوْ', async () => {
     const r = await page.evaluate(() => {
       const E = (txt) => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(txt, "endings"); return (v.words || []).map(w => (w.out || "").normalize("NFC") + "·" + (w.rule || "")); };
