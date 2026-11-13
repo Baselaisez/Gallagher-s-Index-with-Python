@@ -1411,16 +1411,25 @@
       "smart": "وَضَيَّعَ",
       "bare": "وضيع"
      },
-     "lex": "wadi",
-     "pos": "noun",
-     "grammar": [
-      "maful-bihi"
-     ],
+     "lex": "dayyaa",
+     "pos": "verb",
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile."
-     }
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "The waw conjoins; a past verb; its doer is a hidden pronoun «هُوَ».",
+      "tr": "«ve» + mâzî fiil; fâili gizli zamirdir «هُوَ»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "ضَيَّعَ",
+       "lex": "dayyaa",
+       "pos": "verb"
+      }
+     ]
     },
     {
      "surface": {
@@ -1431,12 +1440,12 @@
      "lex": "shay",
      "pos": "noun",
      "grammar": [
-      "hal"
+      "maful-bihi"
      ],
      "irab": {
-      "ar": "حَالٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The circumstantial (hal), in nasb; the sign is the fatha.",
-      "tr": "Hâl, mansûb; alâmeti fetha ile."
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha.",
+      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile."
      }
     },
     {

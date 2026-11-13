@@ -11078,3 +11078,18 @@ the gaps were classes, not words. Measured over every double-decided token of th
   was still being built paid the whole sweep (441 ms). Cold starts at 4× CPU: gWajh 206 → 140, gShop 162 → 107,
   gTawkid 441 → under 40; nothing over 150. The first search (155–188 ms) scans 64 k rows and is left as it is.
 - **Smoke** — «wave 161» (411 checks); the case floor is 97.6.
+
+### v260 — ten more al-Uṣūl lines, and what the fixes tool learned
+
+- Verbs the package had called objects, corrected WITH the words they govern — a verb's line is never corrected
+  alone: أَحَبَّ أَهْلَهُ, أَنْطَقَ الْكَافِرَ, وَضَيَّعَ شَيْئًا (the «ḥāl» was its object), أَظْمَأْتُ نَهَارِي وَأَسْهَرْتُ لَيْلِي (both
+  nouns are objects with the speaker's yāʾ; one had been called a muḍāf ilayh, the other only «اسْمٌ»). Moods:
+  تَرَوْنَ after كَمَا keeps its nūn; إِنْ تُعَذِّبْهُمْ is the condition's verb in jazm; وَلَا تَقُولَ is joined to the verb after
+  أَنْ (and its key was تَقَوَّلَ's — now قَالَ's). Two elatives the misreadings had invented (`antaq`, `wadi`) left
+  the glossary with them.
+- `apply_fixes.py` rows may carry `segments` (they must spell the word and resolve in the glossary) and an empty
+  `grammar` list drops the key. Every line in these batches is a sibling token's own wording or the builder's
+  template with one slot changed — nothing is composed freely.
+- Case layer 98.39 → 98.40 % (51,568 / 52,409). About 108 al-Uṣūl lines remain (task W162); قُبِضَ and أَمْلَاهَا need
+  verb entries with paradigms before their lines can be corrected.
+

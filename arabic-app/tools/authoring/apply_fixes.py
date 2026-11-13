@@ -5,7 +5,8 @@
     python3 tools/authoring/apply_fixes.py <package-id> <authoring-dir> <notes.json> [--dry]
 
 notes.json   {"<ch>:<sId>:<i>": {"w": "<the token as written — checked>", "irab": {"ar", "en", "tr"},
-                                  "grammar"?: [note ids], "pos"?: …, "lex"?: <lex key>}}
+                                  "grammar"?: [note ids] ([] drops the key), "pos"?: …, "lex"?: <lex key>,
+                                  "segments"?: [{form, lex, pos}] (must spell the word)}}
 
 The packages made by pkg_from_engine.py are not regenerated wholesale when one line is wrong (a later engine reads other
 words differently): the token is corrected in place, and the same row is merged into tools/authoring/<dir>/fixes.json
@@ -51,7 +52,14 @@ def main():
             raise SystemExit(f"{key}: the package's glossary has no «{row['lex']}»")
         before = json.dumps(tok, ensure_ascii=False, sort_keys=True)
         tok["irab"] = {lang: row["irab"][lang] for lang in ("ar", "en", "tr")}
-        if "grammar" in row: tok["grammar"] = list(row["grammar"])
+        if "grammar" in row:
+            if row["grammar"]: tok["grammar"] = list(row["grammar"])
+            else: tok.pop("grammar", None)   # a verb's plain line carries no note
+        if "segments" in row:   # a corrected reading may split the word differently (وَ + the verb)
+            for seg in row["segments"]:
+                if seg.get("lex") not in glossary: raise SystemExit(f"{key}: the package's glossary has no «{seg.get('lex')}» (segment)")
+            if N("".join(seg["form"] for seg in row["segments"])) != N(row["w"]): raise SystemExit(f"{key}: the segments do not spell «{row['w']}»")
+            tok["segments"] = [dict(seg) for seg in row["segments"]]
         if "pos" in row: tok["pos"] = row["pos"]
         if "lex" in row:
             for seg in tok.get("segments", []):   # the host segment carries the word's key: it follows the correction
