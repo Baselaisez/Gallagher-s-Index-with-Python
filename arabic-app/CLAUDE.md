@@ -10924,3 +10924,53 @@ kunya's أَبِي was one row away from the right lemma all along.
   finished (لَيْسَ لَكَ بِهِ عِلْمٌ إِنَّ → ibtidāʾ); the lām scan stops at the next إِنَّ; the oath by «وَالَّذِي…» answers
   with kasr; a sentence-initial وَإِنَّ after a لِأَنَّ-clause opens afresh; the knowing verb is seen behind the question hamza
   (أَتَظُنُّ); the hamza audit stands at ≥ 97 % with coverage ≥ 85 %.
+
+## Waves 157–158 (v257): the derivation engine — one law table, two interpreters
+
+- **Architecture** — `research/ARCHITECTURE.md` maps the four pillars (rule engine, learning layer, ingestion,
+  memory) onto the repo. A rule lives once as JSON under `content/rules/`; the reader's class and the typed Python
+  package `qissa_core/` both read it and must agree on `content/rules/ishtiqaq_fixtures.json` (70 hand-verified
+  derivations). Runtime models stay small, transparent and on-device — no external LLM in the app.
+- **`content/rules/ishtiqaq.json`** — roles, the nine bābs with their functions, 51 patterns (`tpl` over ف ع ل,
+  per-class `over`rides with a `why`, flags `sound_ayn` / `vowelled` / `sama` / `needs_verb`), and `rules` = the
+  ar/en/tr sentence of every rule (the smoke test fails if the table's sentence and the engine's drift apart).
+  The builder embeds it as `ISHTIQAQ_LAW` (last data file of the split).
+- **`IshtiqaqEngine`** (after `IlalEngine`): `synth(R, pat)` BUILDS (override → mask → IlalEngine.derive with an
+  `only` list → the eight noun rules in `POST`), `analyze/read(word)` READS by synthesis over inverse templates the
+  builder itself makes from placeholder radicals (`inverseStep`, `lexStep` are idle-chunked under Quiet),
+  `gloss(c)` DEDUCES EN/TR (+ the old-Turkish reading of the maṣdar: «katl eden»), `family(root)` lists only regular
+  and recited forms, `seat()` writes the hamza. Inside the engine every hamza is «ء».
+  - never change `IlalEngine.RULES` for a noun need — add a `POST` rule, or mask the letter (a doubled weak letter,
+    a vowelled first radical, the ʿayn of a lafīf or of a `sound_ayn` shape ride through under a PUA mask);
+  - `IlalEngine.isShort("")` is TRUE (a bare weak letter still counts as moved): مُقْوَمٌ → مُقَامٌ depends on it and
+    `qissa_core` mirrors it;
+  - a `sama` pattern (a Form I maṣdar shape) is believed only where the verb's own entry recites that maṣdar; a
+    recited participle/ṣifa/maṣdar no wazn builds is read through `lex().said`;
+  - one verb per (root, bāb): the alphabetically first lex key, in both interpreters;
+  - a vowelled word must write its final shadda (بَنِي is not بَنِيٌّ); the reduced manqūṣ stands bare or under the
+    sound plural only (لِسَانُهُ is not «سَانٍ»).
+- **Where it shows** — the Türetim lab tab (`data-lab="isht"`, `renderIshtOut`, card `ishtiqaqHtml`); the word sheet
+  (a noun without a paradigm whose glossary root agrees with the engine's: the entry's gloss leads, the card gives
+  the wazn's literal sense); `FahmEngine.word` (a derived noun the lexicon does not hold as that very word is read by
+  its wazn — `how: "pattern"`; the lexicon's own word stands and carries `o.ishtiqaq`). Derived English glosses
+  start with «one / ones / more», which the article logic leaves bare.
+- **`qissa_core`** — `core_grammar/sarf` (`Root`, `Wazn`/`LawTable`, `PhonologicalRule` subclasses in `SHARED` and
+  `NOUN`, `Deriver`, `Analyzer`, `SemanticDeducer`), `memory_store/lexicon.py`; `nahw`, `ml_engine`,
+  `ingestion_pipeline` are documented placeholders (Step 3 awaits the owner). Tests:
+  `python3 -m unittest discover -s qissa_core/tests -t .` (18 tests; also a CI step). The recited-form (`said`)
+  path is reader-only for now.
+- **Calibration** — the corpus's recited participles and regular maṣdars rebuilt from their roots: 2,990 / 3,025
+  (98.84 %), floor 98.5 % in both interpreters; every miss is a recited exception. Two corpus entries to review:
+  the key `adaa` (lemma أَدَاء over the paradigm of أَضَاءَ) and the participles «نَائِئ / فَائِئ» (the rule gives نَاءٍ / فَاءٍ).
+- **The typed noun with a pronoun is no imperative, third person** — in the decide pre-pass (`__retype35 =
+  "case-host"`): an amr cell + ه/ها/هم… whose TYPED host writes a vowel the cell does not end on, and whose letters
+  are a lexicon noun, is that noun (لِسَانُهُ طَوِيلٌ → «His tongue is long»); اضْرِبْهُ، رُدَّهُ، خُذْهَا stand.
+- **From v256, not yet noted here** — the generator's `name_sila` (every relative noun names its ṣila and ʿāʾid) and
+  five-nouns branch; the analyzer's whole-word-noun guard (قَنَا الْخَطِّ), reflexive-imperative guard (أَجْرُكَ), the
+  amr-yields-to-māḍī and dual-yields-to-joiner rules in `RootFinder._fromCorpusWalk` (وَدَعَا الْمَلِكُ); JamEngine
+  ceiling 230.
+- **The five sources of 2026-11-13** (Marāḥ al-Arwāḥ, Taṣrīf al-ʿIzzī, Sharḥ Shudhūr al-Dhahab pp. 1–99) are
+  inventoried: matn only — their modern introductions, footnotes and apparatus are never copied. Marāḥ's matn is
+  extracted raw from its text layer by type size into `research/sources/marah-al-arwah-matn.txt` (lossy: private-use
+  ligature glyphs drop letters; collate against the page images before any use); the two scans are not transcribed.
+

@@ -10281,7 +10281,9 @@ if (!CHROME) {
     });
     if (!r.same) throw new Error('the stepped training must equal the synchronous fit: ' + JSON.stringify(r));
     if (r.steps < 2) throw new Error('the pre-warm should take more than one slice at 200 ms: ' + r.steps);
-    if (r.wajhItems < 3 || r.wajhQueueLeft < r.wajhTagged - 16 - r.wajhItems) throw new Error('the Wajh pool should stop at the round\'s need: ' + JSON.stringify(r));
+    // (v257) two, not three: since wave 152 the tap seats TWO items and lets the clock decide the rest, so a COLD page (this check
+    // became the first of its release chunk when the 409th check moved the slice boundaries) honestly returns two; warm it returns more
+    if (r.wajhItems < 2 || r.wajhQueueLeft < r.wajhTagged - 16 - r.wajhItems) throw new Error('the Wajh pool should stop at the round\'s need: ' + JSON.stringify(r));
     if (!r.wajhPersisted) throw new Error('the Wajh items are kept across loads as references');
     if (!r.quietClosed || r.ranWhileHeld !== 0 || r.ranAfterRelease !== 1) throw new Error('Quiet gate: ' + JSON.stringify([r.quietClosed, r.ranWhileHeld, r.ranAfterRelease]));
     for (const [lab, ms] of Object.entries(r.labShell)) if (ms > 400) throw new Error('the ' + lab + ' tab should paint its shell at once, took ' + ms + ' ms');
@@ -14347,6 +14349,62 @@ if (!CHROME) {
       await page.waitForSelector('.sheet.show', { timeout: 30000 });
       await page.evaluate(() => document.getElementById('scrim').click());
     } finally { await page.setViewportSize(was); await page.evaluate(() => { setPremium(false); renderLibrary(); }); }
+  });
+
+  await check('wave 158 — IshtiqaqEngine: the shared fixtures built and read back (root, wazn, origin, surface, rules, meaning), the law table whole and in step with the engine, the corpus as calibration, nothing invented, the Muḥallil reads a derived noun by its wazn, the root family, the lab card and the word-sheet card, the budgets', async () => {
+    const fx = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'content/rules/ishtiqaq_fixtures.json'), 'utf8')).fixtures;
+    const r = await page.evaluate((fx) => {
+      const I = IshtiqaqEngine, L = I.law(), out = { bad: [], law: [] };
+      // the law table: every override names its reason; every rule's sentence in the table IS the engine's sentence
+      for (const p of L.patterns) { for (const o of Object.values(p.over || {})) if (!L.why[o.why]) out.law.push(p.id + " why " + o.why); for (const x of p.roles) if (!L.roles[x]) out.law.push(p.id + " role " + x); if (!L.babs[String(p.bab)]) out.law.push(p.id + " bab"); }
+      for (const x of I.POST.concat([I.YA_DAMMA])) if (!L.rules[x.id] || L.rules[x.id].ar !== x.ar || L.rules[x.id].tr !== x.tr) out.law.push("rule text " + x.id);
+      for (const x of IlalEngine.RULES) if (I.BASE.concat(["hamz-fail"]).includes(x.id) && (!L.rules[x.id] || L.rules[x.id].ar !== x.ar)) out.law.push("ilal text " + x.id);
+      out.patterns = L.patterns.length;
+      const t0 = performance.now(); I.inverse(); out.templates = [...I.inverse().values()].reduce((n, a) => n + a.length, 0);
+      const t1 = performance.now();
+      for (const f of fx) { const d = I.read0(f.word); if (!d) { out.bad.push(f.word + " unread"); continue; }
+        const got = { root: d.root.map(x => x === "ء" ? "أ" : x).join(" "), pattern: d.pat.id, asl: I.seat(d.asl), out: I.seat(d.out) };
+        for (const k of ["root", "pattern", "asl", "out"]) if (got[k] !== f[k]) out.bad.push(f.word + " " + k + ": " + got[k] + " ≠ " + f[k]);
+        if (d.steps.map(s => s.id).join() !== f.steps.join()) out.bad.push(f.word + " rules: " + d.steps.map(s => s.id).join());
+        if (d.steps.some(s => !s.ar || !s.en || !s.tr)) out.bad.push(f.word + " a step without its sentence");
+        if (f.en && (d.gloss.en !== f.en || d.gloss.tr !== f.tr)) out.bad.push(f.word + " meaning: " + d.gloss.en + " | " + d.gloss.tr);
+      }
+      out.perWord = (performance.now() - t1) / fx.length;
+      // the stories as the calibration set: every recited participle and every regular masdar, rebuilt from its root
+      let ok = 0, n = 0; const miss = [];
+      for (const e of RootFinder.corpusIndex()) { const b = I.babOf(e), R = I.rootKey(e.root).split(""); if (!b || R.length !== 3 || !e.m) continue;
+        for (const [kind, book] of [["fail", e.m.fail], ["maful", e.m.maful], ["masdar", b > 1 ? e.m.masdar : null]]) { if (!book) continue; const ps = L.patterns.filter(p => p.bab === b && p.id.startsWith(kind + "-")); if (!ps.length) continue; n++; if (ps.some(p => I.recites(book, I.synth(R, p).out))) ok++; else if (miss.length < 8) miss.push(e.lemma + " " + kind + " " + book); } }
+      out.cal = { ok, n, miss };
+      out.none = ["بَيْتٌ", "لِسَانُهُ", "رَجُلٌ", "بَنِي"].filter(w => I.read0(w));
+      const g = w => { const a = FahmEngine.analyze(w, "en"); const it = (a.items || [])[0] || {}; return { how: it.how, lemma: it.lemma, en: (it.gloss || {}).en, tr: (it.gloss || {}).tr, m: a.meaning && a.meaning.en }; };
+      out.mabi = g("مَبِيعٌ"); out.muallim = g("مُعَلِّمٌ"); out.qattal = g("قَتَّالٌ");
+      out.fam = I.family("ق و ل").map(f => f.shown); out.famSifa = (I.family("ف ر ح")[0] || {}).shown;
+      conjState.lab = "isht"; conjState.isht = "مُسْتَقِيمٌ"; openConjugator();
+      const card = document.querySelector("#ishtOut .isht");
+      out.lab = { tab: document.querySelectorAll('[data-lab="isht"]').length, card: !!card, steps: card ? card.querySelectorAll(".il-step").length : 0, mean: card ? (card.querySelector(".isht-mean b") || {}).textContent : "" };
+      conjState.isht = "ق و ل"; renderIshtOut(); out.lab.famRows = document.querySelectorAll("#ishtOut .isht-pick").length;
+      document.querySelector("#ishtOut .isht-pick").click(); out.lab.picked = conjState.isht; out.lab.afterPick = !!document.querySelector("#ishtOut .isht");
+      conjState.isht = ""; renderIshtOut();
+      // the word sheet: a noun of the shelf whose glossary root agrees and whose building fires a rule
+      let hit = null;
+      outer: for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) for (const t of sen.tokens) { const e = st.glossary[t.lex]; if (!e || (st.morph || {})[t.lex] || t.segments || !e.root || /prop|name/i.test(e.pos || "")) continue; const d = I.read(t.s.full); if (d && d.conf === "verb" && d.full && d.steps.length && I.rootKey(e.root) === d.rootKey) { hit = { st, t }; break outer; } }
+      if (hit) { openStory(hit.st); openWord(hit.t, null); const c = document.querySelector(".sheet .isht"); out.sheet = { word: hit.t.s.full, card: !!c, steps: c ? c.querySelectorAll(".il-step").length : 0 }; const sc = document.getElementById("scrim"); if (sc) sc.click(); renderLibrary(); }
+      return out;
+    }, fx);
+    if (r.law.length) throw new Error('law table: ' + r.law.join('; '));
+    if (r.bad.length) throw new Error('fixtures (' + r.bad.length + '): ' + r.bad.slice(0, 8).join(' · '));
+    if (fx.length < 70 || r.patterns < 50 || r.templates < 900) throw new Error('sizes: ' + JSON.stringify([fx.length, r.patterns, r.templates]));
+    // measured at v257: 2,990 of 3,025 (98.84 %) — every miss a recited exception (a ṣifa where the participle would stand, أَرَى، اتَّخَذَ، أَحْوَجَ)
+    if (r.cal.n < 2500 || r.cal.ok / r.cal.n < 0.985) throw new Error('calibration: ' + JSON.stringify(r.cal));
+    if (r.none.length) throw new Error('invented a derivation for: ' + r.none.join(' '));
+    if (r.mabi.how !== 'pattern' || r.mabi.en !== 'one sold' || r.mabi.tr !== 'satılan' || /\b[Aa]n? one\b/.test(r.mabi.m || '')) throw new Error('the Muḥallil on مَبِيعٌ: ' + JSON.stringify(r.mabi));
+    if (r.muallim.how !== 'lexicon') throw new Error('the lexicon\'s own word must stand: ' + JSON.stringify(r.muallim));
+    if (r.qattal.en !== 'one who kills much') throw new Error('قَتَّالٌ: ' + JSON.stringify(r.qattal));
+    for (const w of ['قَائِلٌ', 'مَقُولٌ', 'قَوْلٌ', 'مَقَالٌ']) if (!r.fam.includes(w)) throw new Error('family of ق و ل lacks ' + w + ': ' + r.fam.join(' '));
+    if (r.famSifa !== 'فَرِحٌ') throw new Error('the recited ṣifa must stand where the participle would: ' + r.famSifa);
+    if (r.lab.tab !== 1 || !r.lab.card || r.lab.steps !== 2 || !r.lab.mean || r.lab.famRows < 4 || !r.lab.picked || !r.lab.afterPick) throw new Error('lab: ' + JSON.stringify(r.lab));
+    if (!r.sheet || !r.sheet.card || r.sheet.steps < 1) throw new Error('word sheet: ' + JSON.stringify(r.sheet));
+    if (r.perWord > 6) throw new Error('a word read in ' + r.perWord.toFixed(2) + ' ms (budget 6)');
   });
 
   await check('no JS errors on page', async () => {

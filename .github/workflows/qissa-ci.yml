@@ -47,6 +47,11 @@ jobs:
           cd arabic-app
           python tools/validate_content.py content/user-uploads/deeds-are-by-intentions
 
+      - name: qissa_core unit tests (the typed interpreter of the law tables)
+        working-directory: arabic-app
+        run: |
+          python -m unittest discover -s qissa_core/tests -t .
+
       - name: Rebuild prototype with build_prototype.py
         env:
           PYTHONUTF8: '1'

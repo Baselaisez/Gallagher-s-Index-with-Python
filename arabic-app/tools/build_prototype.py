@@ -332,6 +332,8 @@ def main():
         # reads them only when their corpus signature is its own (the single-package hadith reader trains as before)
         js("IRAB_MODEL", json.loads((ROOT / "content/models/irab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/irab_model.json").exists() else None),
         js("CATECHISM", load_catechism()),
+        # (wave 158) the derivation law table — one JSON, read by the reader's IshtiqaqEngine and by qissa_core alike
+        js("ISHTIQAQ_LAW", json.loads((ROOT / "content/rules/ishtiqaq.json").read_text(encoding="utf-8")) if (ROOT / "content/rules/ishtiqaq.json").exists() else None),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",
