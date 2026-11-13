@@ -22552,6 +22552,33 @@ class DabtEngine {
         let own = false; for (let q = i + 1; q < n && q <= i + 3; q++) { if (R(q) === "khabar" && !joined(q)) { own = true; break; } if (!/^(mabni|jarr|mudafIlayh)$/.test(R(q))) break; }
         if (!own) { put(i, "raf", "khabar"); continue; } }
     }
+    /* (wave 172) R13–R17 — whose khabar, and khabar or naʿt */
+    const INNA172 = /^[وفبل]?(ان|لان|كان|لكن|ليت|لعل)(ه|ها|هم|هما|هن|ك|كم|كما|كن|ي|ني|نا)$/, INNA0 = /^[وفبل]?(ان|لان|كان|لكن|ليت|لعل)$/;
+    const shadda = i => /ّ/.test(W(i));
+    const innaAt = (q, bare0) => q >= 0 && R(q) === "mabni" && (bare0 ? INNA0.test(B(q)) : INNA172.test(B(q))) && (!/^[وفبل]?(كان|لكن)/.test(B(q)) || shadda(q));
+    const nisba = i => /ِيَّة[ًٌٍُِ]?$|ِيّ[ًٌٍُِ]?$|ِيٌّ$/.test(W(i));
+    for (let i = 1; i < n; i++) {
+      if (R(i) !== "khabar" || !isN(i)) continue;
+      /* R13 — لِأَنَّهُ حَرْفٌ، إِنَّ هٰذَا لَظُلْمٌ عَظِيمٌ، فَإِنَّكَ أَنْتَ الْعَزِيزُ */
+      if (K(i) === "raf") {
+        let q = i - 1; const sep = PRON171.test(B(q)) && R(q) === "mabni"; if (sep) q--;
+        if (innaAt(q, false)) { put(i, "raf", "innaKhabar"); continue; }
+        if (!sep && R(i - 1) === "mabni" && /^(هذا|هذه|ذلك|تلك|ذاك|هؤلاء|اولئك|هما|هو|هي|هم)$/.test(B(i - 1)) && innaAt(i - 2, true)) { put(i, "raf", "innaKhabar"); continue; }
+      }
+      /* R14 — يَعْقُوبُ بْنُ إِسْحَاقَ: «ابْن» between two names describes the first */
+      if (/^(بن|بنت)$/.test(B(i)) && rows[i + 1] && isN(i - 1) && !joined(i) && /^(mubtada|fail|naib|khabar|atf|maful|innaIsm|kanaIsm|munada)$/.test(R(i - 1)) && (propn(i - 1) || propn(i + 1))) { put(i, K(i), "nat"); continue; }
+      if (joined(i) || !sifa(i)) continue;
+      let h = i - 1; while (h > 0 && /^(mudafIlayh|nat)$/.test(R(h))) h--;
+      /* R15 — a definite ṣifa after a definite mubtadaʾ whose predicate is still to come */
+      if (al(i) && K(i) === "raf" && R(h) === "mubtada" && isN(h) && (al(h) || (h + 1 < i && al(h + 1))) && !(fem(h) && !fem(i)) && !many(h) && !many(i) && !/^[وف]?ال(اول|ثاني|ثالث|رابع|خامس|سادس|سابع|ثامن|تاسع|عاشر)(ة)?$/.test(B(h)) && rows[i + 1]) {
+        let pred = false; for (let q = i + 1; q < n && q <= i + 4; q++) { if (isV(q) && /^(raf|mazi)$/.test(R(q)) && !/^[وف]/.test(B(q))) { pred = true; break; } if (R(q) === "khabar" && !al(q) && !joined(q)) { pred = true; break; } if (B(q) === "ما" || /^ف(ان|هو|هي)/.test(B(q))) { pred = true; break; } if (!/^(atf|nat|mudafIlayh|jarr|jarrPron|mabni)$/.test(R(q))) break; }
+        if (pred) { put(i, "raf", "nat"); continue; }
+      }
+      /* R16 — the nisba after an indefinite predicate of its own gender */
+      if (!def(i) && nisba(i) && i - 1 === h && /^(khabar|innaKhabar|kanaKhabar)$/.test(R(h)) && isN(h) && !def(h) && !many(h) && !nisba(h) && fem(i) === fem(h) && K(i) === K(h) && !/^(نحو|مثل|قسمان|ضربان|نوعان)$/.test(B(h))) { put(i, K(i), "nat"); continue; }
+      /* R17 — فِيهَا ضَمِيرٌ عَائِدٌ: the fronted phrase is the khabar, so the ṣifa after the indefinite mubtadaʾ describes it */
+      if (!def(i) && K(i) === "raf" && i - 1 === h && R(h) === "mubtada" && isN(h) && !def(h) && fem(i) === fem(h) && h >= 1 && (/^(jarrPron|zarf)$/.test(R(h - 1)) || (R(h - 1) === "mabni" && /^(في|ل|ب|على|من|عند|ل)(ه|ها|هم|هما|هن|ك|كم|نا|ي)$/.test(B(h - 1))) || (h >= 2 && /^(jarr|mudafIlayh)$/.test(R(h - 1)) && /^(mabni|jarr|zarf)$/.test(R(h - 2)) && (h === 2 || joined(h - 2) || h - 2 === 0)))) { put(i, "raf", "nat"); continue; }
+    }
     /* R6 — مَا أَجْمَلَ السَّمَاءَ: the whole sentence is the wonder frame */
     if (n === 3 && /^[وف]?ما$/.test(B(0)) && /^ا[^ا]{3}$/.test(B(1)) && /^أَ[^ً-ٰ]ْ[^ً-ٰ]َ[^ً-ٰ]$/.test(W(1)) && isN(2) && def(2) && !joined(2) && /^(mubtada|khabar|raf)$/.test(R(1))) { put(1, "nasb", "taajjub"); put(2, "nasb", "maful"); }
   }

@@ -11568,3 +11568,39 @@ predicate (255). Both are decided by where a clause begins, and `DabtEngine.rela
   `atf | mubtadaʾ` 223 (a joined noun whose predicate is a jarr phrase — وَالْإِضَافَةُ لِلْإِيضَاحِ — is not yet told from
   a list item with its complement), `mubtadaʾ | khabar` 179, `khabar | naʿt` 135, `fāʿil | mafʿūl` 115.
 - `tools/smoke_test.js`: «wave 171» (421 checks).
+
+### v271 (wave 172) — whose khabar, and khabar or naʿt
+
+Two more gauge classes, both about the word the loop calls «khabar»: it is right that the word is a predicate and
+silent about WHOSE (`khabar | khabar inna` 114), or the word is no predicate at all but a description
+(`khabar | naʿt` 135). Five rules in `DabtEngine.relabel170`, each standing on a shape:
+
+- **R13 — the predicate after إِنَّ and her sisters is «khabar inna».** The particle wears its noun as a pronoun
+  (إِنَّهُ كَرِيمٌ، لِأَنَّهُمْ ضُعَفَاءُ، كَأَنَّهُ أَسَدٌ، لٰكِنَّهُ بَخِيلٌ), or its noun is a built word (إِنَّ هٰذَا لَظُلْمٌ عَظِيمٌ), with or without a
+  pronoun of separation between them (فَإِنَّكَ أَنْتَ الْعَزِيزُ). «كَأَنَّ» and «لٰكِنَّ» are told from «كَانَ» and «لٰكِنْ» by the
+  SHADDA, which the page shows — the bare letters are the same.
+- **R14 — «بْن / بِنْت» between two names is the first name's naʿt** (يَعْقُوبُ بْنُ إِسْحَاقَ، عُمَرُ بْنُ الْخَطَّابِ). The rule reads
+  the spelling the scribes themselves use: the alif is dropped exactly there, so «ابْنُ» written WITH its alif is left
+  alone (الْمَسِيحُ ابْنُ اللهِ in the reported claim is a khabar — the first draft of the rule turned it).
+- **R15 — a DEFINITE ṣifa right after a definite mubtadaʾ whose predicate is still to come is its naʿt** (وَتَاءُ
+  التَّأْنِيثِ السَّاكِنَةُ تَلْحَقُ، وَجَمْعُ الْمُذَكَّرِ السَّالِمُ مَا لَحِقَ، وَالْمُنَادَى الْمُفْرَدُ الْمَعْرِفَةُ فَإِنَّهُ مَبْنِيٌّ). A khabar is indefinite by
+  default; a definite adjective with a verb, a khabar, مَا or فَإِنَّ after it has not closed the clause. Gender is tested
+  one way only — a masculine adjective cannot describe a tāʾ-marked noun — because the letter-names and many nouns
+  are feminine by sense with nothing written (تَاء، لَام). Number must agree, and an ordinal head enumerates rather
+  than being described (الرَّابِعُ: الْمُثَنَّى).
+- **R16 — a nisba after an indefinite predicate of its own gender describes it** (جُمْلَةٌ اسْمِيَّةٌ، حَقِيقَةٌ عَقْلِيَّةٌ، صِفَةٌ
+  حَقِيقِيَّةٌ). The nisba is the one adjective shape that is attributive almost by nature; the division guards of wave
+  170 stand (ضَرْبَانِ لَفْظِيٌّ وَمَعْنَوِيٌّ).
+- **R17 — after a fronted khabar the indefinite mubtadaʾ's ṣifa is its naʿt** (فِيهَا ضَمِيرٌ عَائِدٌ إِلَى الْمَوْصُولِ، فِي الدَّارِ
+  رَجُلٌ كَرِيمٌ): the phrase in front is the predicate, and the description is what lets an indefinite begin.
+- **Twenty-five stored lines made precise** (`tools/authoring/hand172.py`): in the three engine-drafted books the
+  predicate after إِنَّ / أَنَّ + pronoun was named only «خَبَرٌ»; the line now reads «خَبَرُ إِنَّ / أَنَّ …», in three languages,
+  and the token is anchored to `inna-wa-akhawatuha`. The two places where a pronoun of separation stands between
+  (إِنَّهُ هُوَ التَّوَّابُ) are left with their stored reading — the pronoun in the place of rafʿ with its own khabar — since
+  both analyses are taught and the neighbouring line commits to that one.
+- Measured: label agreement 89.48 → **89.87 %** (127 offices moved to the author's reading on the dry copy before
+  the lines were corrected, 27 «away» — every one of them a stored «خَبَرٌ» after إِنَّ). Blind and receipts-on sweeps
+  **0 fixed / 0 broken**, case layer unchanged (98.65 %). Left: `atf | mubtadaʾ` 223, `mubtadaʾ | khabar` 179,
+  `fāʿil | mafʿūl` 115 (these are wrong ENDINGS, not labels — the blind sweep's own list), `khabar | mubtadaʾ` 107,
+  `khabar | naʿt` 106 (two ṣifas after a mubtadaʾ — زَيْدٌ عَالِمٌ فَاضِلٌ — where both readings are sound).
+- `tools/smoke_test.js`: «wave 172» (422 checks).

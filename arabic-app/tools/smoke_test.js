@@ -14872,6 +14872,34 @@ if (!CHROME) {
     if (!/مُبْتَدَأٌ/.test(r.u13) || !/^خَبَرٌ/.test(r.u14) || !/^خَبَرٌ/.test(r.u7)) throw new Error('al-Uṣūl 11:s2 / 21:s1 — the pronoun is the mubtadaʾ and the muḍāf after it the khabar: ' + J([r.u13, r.u14, r.u7]));
   });
 
+  await check('wave 172 — WHOSE khabar, and khabar or naʿt: the predicate after إِنَّ and her sisters is named «khabar inna» when the particle wears its noun as a pronoun (إِنَّهُ كَرِيمٌ، لِأَنَّهُ عَالِمٌ، كَأَنَّهُ أَسَدٌ، لٰكِنَّهُ بَخِيلٌ), when its noun is a built word (إِنَّ هٰذَا لَظُلْمٌ عَظِيمٌ) and across a pronoun of separation (فَإِنَّكَ أَنْتَ الْعَزِيزُ) — while هُوَ كَرِيمٌ keeps the plain khabar; «بْن» between two names is the first name\'s naʿt; a definite ṣifa after a definite mubtadaʾ whose predicate is still to come is its naʿt, feminine by sense included (وَتَاءُ التَّأْنِيثِ السَّاكِنَةُ تَلْحَقُ); a nisba after an indefinite predicate describes it (جُمْلَةٌ اسْمِيَّةٌ); after a fronted khabar the indefinite mubtadaʾ\'s ṣifa is its naʿt (فِيهَا ضَمِيرٌ عَائِدٌ); and the stored lines of the drafted books name the particle', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const tok = (id, ch, sid, i) => { const st = STORIES.find(x => x.id === id); const c = st && st.chapters.find(x => String(x.n || x.chapter) === String(ch)); const sn = c && c.sentences.find(x => x.id === sid); return (sn && sn.tokens[i]) || {}; };
+      const line = (id, ch, sid, i) => N((tok(id, ch, sid, i).irab || {}).ar);
+      return {
+        i1: dv('إِنَّهُ كَرِيمٌ'), i2: dv('زَيْدٌ كَرِيمٌ لِأَنَّهُ عَالِمٌ'), i3: dv('كَأَنَّهُ أَسَدٌ'), i4: dv('لٰكِنَّهُ بَخِيلٌ'),
+        i5: dv('إِنَّ هٰذَا لَظُلْمٌ عَظِيمٌ'), i6: dv('فَإِنَّكَ أَنْتَ الْعَزِيزُ'), k: dv('هُوَ كَرِيمٌ'),
+        b1: dv('قَالَ يَعْقُوبُ بْنُ إِسْحَاقَ'), b2: dv('جَاءَ عُمَرُ بْنُ الْخَطَّابِ'),
+        d1: dv('وَتَاءُ التَّأْنِيثِ السَّاكِنَةُ تَلْحَقُ الْفِعْلَ'), d2: dv('الطَّالِبُ الْمُجْتَهِدُ نَاجِحٌ'),
+        n1: dv('هٰذِهِ جُمْلَةٌ اسْمِيَّةٌ'), n2: dv('الْإِسْنَادُ حَقِيقَةٌ عَقْلِيَّةٌ'), n3: dv('الْكَلِمَةُ اسْمٌ وَفِعْلٌ وَحَرْفٌ'),
+        f1: dv('فِيهَا ضَمِيرٌ عَائِدٌ إِلَى الْمَوْصُولِ'), f2: dv('فِي الدَّارِ رَجُلٌ كَرِيمٌ'),
+        m: line('al-maqamat-birgivi', 2, 's7', 8), u: line('al-usul-al-munifa', 24, 's15', 47), z: line('tasrif-al-izzi', 17, 's1', 19),
+        tag: (tok('al-usul-al-munifa', 24, 's15', 47).grammar || []).includes('inna-wa-akhawatuha'), rule: !!(DabtEngine.RULE.innaKhabar && DabtEngine.RULE.innaKhabar.tr),
+      };
+    });
+    if (!/ كَرِيمٌ\/innaKhabar$/.test(r.i1) || !/ عَالِمٌ\/innaKhabar$/.test(r.i2) || !/ أَسَدٌ\/innaKhabar$/.test(r.i3) || !/ بَخِيلٌ\/innaKhabar$/.test(r.i4)) throw new Error('the khabar of the particle that wears its noun as a pronoun: ' + J([r.i1, r.i2, r.i3, r.i4]));
+    if (!/ لَظُلْمٌ\/innaKhabar عَظِيمٌ\/nat$/.test(r.i5) || !/ الْعَزِيزُ\/innaKhabar$/.test(r.i6) || !r.rule) throw new Error('…with a built noun, and across the pronoun of separation: ' + J([r.i5, r.i6, r.rule]));
+    if (!/ كَرِيمٌ\/khabar$/.test(r.k)) throw new Error('هُوَ كَرِيمٌ keeps the plain khabar: ' + r.k);
+    if (!/ بْنُ\/nat /.test(r.b1) || !/ بْنُ\/nat /.test(r.b2)) throw new Error('«بْن» between two names: ' + J([r.b1, r.b2]));
+    if (!/ السَّاكِنَةُ\/nat /.test(r.d1) || !/ الْمُجْتَهِدُ\/nat نَاجِحٌ\/khabar$/.test(r.d2)) throw new Error('the definite ṣifa before the predicate: ' + J([r.d1, r.d2]));
+    if (!/ اسْمِيَّةٌ\/nat$/.test(r.n1) || !/ عَقْلِيَّةٌ\/nat$/.test(r.n2) || /\/nat/.test(r.n3)) throw new Error('the nisba after an indefinite predicate — and a division stays a division: ' + J([r.n1, r.n2, r.n3]));
+    if (!/ ضَمِيرٌ\/mubtada عَائِدٌ\/nat /.test(r.f1) || !/ رَجُلٌ\/mubtada كَرِيمٌ\/nat$/.test(r.f2)) throw new Error('after a fronted khabar: ' + J([r.f1, r.f2]));
+    if (!/^خَبَرُ إِنَّ /.test(r.m) || !/^خَبَرُ أَنَّ /.test(r.u) || !/^خَبَرُ أَنَّ /.test(r.z) || !r.tag) throw new Error('the stored lines name the particle and carry its note: ' + J([r.m, r.u, r.z, r.tag]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
