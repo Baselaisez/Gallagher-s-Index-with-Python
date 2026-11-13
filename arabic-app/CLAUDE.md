@@ -11529,3 +11529,42 @@ first) came back with the right ending almost everywhere and the wrong OFFICE in
   one toward the textbook reading. Left: «أَنَا أَعْلَمُ ذٰلِكَ» still labels its verb «khabar» (the clause is; the word is a
   rafʿ verb), «هُوَ طَالِبٌ مُجْتَهِدٌ» keeps two khabars (طَالِب is itself a ṣifa shape), and the three classes above.
 - `tools/smoke_test.js`: «wave 170» (420 checks).
+
+### v270 (wave 171) — where a clause begins
+
+The gauge's two largest classes were one question asked twice: the engine called a joined noun «maʿṭūf» where the
+author opens a NEW clause with it (260), and called the noun after a subject «mubtadaʾ» where it is that subject's
+predicate (255). Both are decided by where a clause begins, and `DabtEngine.relabel170` now reads that in three rules.
+
+- **R9, widened — a joined definite noun opens a clause when its own predicate follows.** The predicate is named by
+  shape: a khabar the loop already found after it (وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ، وَالْإِبْلِيسُ ذِئْبٌ), its own VERB — a doer
+  never stands before its verb, so the noun is a mubtadaʾ (وَاللهُ يَهْدِي مَنْ يَشَاءُ، وَالْقَرِينَةُ تُخْرِجُ الْكِنَايَةَ), «أَنْ» with
+  its verb, the maṣdar being the khabar (وَشَرْطُهُ أَنْ يَكُونَ اسْمًا), or a second «mubtadaʾ» the loop left standing beside
+  it, which is then the khabar (وَدَلِيلُهُمْ قَوْلُ الشَّاعِرِ).
+- **Three things keep an ʿaṭf an ʿaṭf, and each is a statement about the sentence, not a tuning.** (1) An earlier
+  mubtadaʾ — or kāna's or inna's noun — still WAITING for its khabar: nothing but followers stands between it and the
+  joined noun (زَيْدٌ وَخَالِدٌ قَائِمَانِ؛ كَانَتْ إِبِلُ عَادٍ وَغَنَمُهَا تَمْلَأُ الْوَادِيَ). (2) The word joined to is a verb's doer
+  (يَلْزَمُ الْإِفْرَادُ وَالتَّذْكِيرُ). (3) The verb that follows speaks for two — a dual verb, a verb with its own stated doer
+  (رَضِيَ اللهُ), a joined verb, the praise «تَعَالَى» — so it is no predicate of this noun alone (وَالنَّجْمُ وَالشَّجَرُ يَسْجُدَانِ).
+- **R11 — the noun after a detached pronoun that opens the clause is its KHABAR** (هُوَ الْحَقُّ، أَنَا مِثْلُكُمْ، فَهُمْ أَهْلُ
+  النَّوَالِ), also across a ẓarf and its muḍāf ilayh (وَهُوَ عِنْدَ الْجُمْهُورِ غَيْرُ جَائِزٍ، أَنْتَ الْيَوْمَ مُعَلِّمٌ) — unless the pronoun is
+  the faṣl after inna's or kāna's noun. «كُلُّهَا / جَمِيعُهُمْ / نَفْسُهُ» in that seat with more to follow is the pronoun's
+  TAWKĪD (وَهِيَ كُلُّهَا بِإِرَادَتِهِ).
+- **R12 — two «mubtadaʾ»s in a row at a clause head: the second is the khabar** (وَالْمَبْنِيَّاتُ الْمُضْمَرَاتُ وَأَسْمَاءُ الْإِشَارَةِ),
+  unless the second carries a pronoun or has a khabar of its own within reach (الْخَامِسُ: الْمُسْتَعَارُ مِنْهُ حِسِّيٌّ).
+- **The gauge found errors in the STORED lines too.** In the two engine-drafted books a predicate had been named
+  «مُبْتَدَأٌ», or the subject of a new clause «مَعْطُوفٌ» while the next line named its «خَبَرٌ».
+  `tools/authoring/hand171.py` corrects nineteen lines — al-Maqāmāt 1:s8, 2:s12–13 (وَقِيلَ: الْإِيمَانُ شَاةٌ وَالْعَقْلُ رَاعٍ
+  وَالْإِبْلِيسُ ذِئْبٌ is three clauses, and رَاعٍ is manqūṣ on an estimated ḍamma), 10:s2; al-Uṣūl 11:s2, 21:s1, 22:s12 —
+  and writes them into each package's `fixes.json`. The written vowels are untouched; both stay
+  `pending-scholarly-review`.
+- **Not every «wrong» move is the engine's.** The same shape is called «مَعْطُوفٌ» in al-Kāfiya 3:s4 (وَالْفَتْحُ نَحْوُ …) and
+  «مُبْتَدَأٌ» in 3:s11 (وَالْمُنْفَصِلُ نَحْوُ …): ʿaṭf of two words on two, or of a clause on a clause — both are sound
+  readings, and the engine now gives the second everywhere. A gauge that grades against inconsistent lines has a
+  ceiling below 100 %, and the remaining rows of this class sit under it.
+- Measured: label agreement 89.15 → **89.48 %** (116 offices moved to the author's reading, 15 away — nine of those
+  the alternate reading above or a stored line since corrected). Blind and receipts-on sweeps **0 fixed / 0 broken**,
+  case layer unchanged (98.65 %): the pass restates offices and writes no ending. Left for the next waves:
+  `atf | mubtadaʾ` 223 (a joined noun whose predicate is a jarr phrase — وَالْإِضَافَةُ لِلْإِيضَاحِ — is not yet told from
+  a list item with its complement), `mubtadaʾ | khabar` 179, `khabar | naʿt` 135, `fāʿil | mafʿūl` 115.
+- `tools/smoke_test.js`: «wave 171» (421 checks).

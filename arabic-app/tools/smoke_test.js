@@ -14846,6 +14846,32 @@ if (!CHROME) {
     if (!/ وَالْجَهْلُ\/mubtada ظَلَامٌ\/khabar$/.test(r.two) || !/ وَآخِرُهُ\/mubtada الْعَمَلُ\/khabar$/.test(r.two2)) throw new Error('a new clause after a complete one: ' + J([r.two, r.two2]));
   });
 
+  await check('wave 171 — where a clause BEGINS: the noun after a detached pronoun that opens the clause is its khabar (هُوَ الْحَقُّ، أَنَا مِثْلُكُمْ، فَهُمْ أَهْلُ الْكَرَمِ), even across a ẓarf (وَهُوَ عِنْدَ الْجُمْهُورِ غَيْرُ جَائِزٍ), and «كُلُّهَا» there is a tawkīd; a joined definite noun opens a new clause as mubtadaʾ when its own predicate follows — a muḍāf (وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ), a nakira (وَالْإِبْلِيسُ ذِئْبٌ), its verb (وَاللهُ يَهْدِي) or «أَنْ» with its verb (وَشَرْطُهُ أَنْ يَكُونَ) — while a noun joined to a doer, or to a mubtadaʾ still waiting for its khabar, stays maʿṭūf; and the stored lines of the two drafted books say the same', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const line = (id, ch, sid, i) => { const st = STORIES.find(x => x.id === id); const c = st && st.chapters.find(x => String(x.n || x.chapter) === String(ch)); const sn = c && c.sentences.find(x => x.id === sid); return N(((sn && sn.tokens[i] || {}).irab || {}).ar); };
+      return {
+        p1: dv('هُوَ الْحَقُّ'), p2: dv('أَنَا مِثْلُكُمْ'), p3: dv('فَهُمْ أَهْلُ الْكَرَمِ'), p4: dv('وَهُوَ عِنْدَ الْجُمْهُورِ غَيْرُ جَائِزٍ'), p5: dv('أَنْتَ الْيَوْمَ مُعَلِّمٌ'),
+        tw: dv('وَهِيَ كُلُّهَا بِإِرَادَتِهِ'),
+        c1: dv('فَالرَّفْعُ عَلَمُ الْفَاعِلِيَّةِ وَالنَّصْبُ عَلَمُ الْمَفْعُولِيَّةِ'), c2: dv('الْإِيمَانُ شَاةٌ وَالْعَقْلُ رَاعٍ وَالْإِبْلِيسُ ذِئْبٌ'),
+        c3: dv('الْعِلْمُ نُورٌ وَاللهُ يَهْدِي مَنْ يَشَاءُ'), c4: dv('هُوَ حَرْفٌ وَشَرْطُهُ أَنْ يَكُونَ اسْمًا'), c5: dv('الطَّالِبُ مُجْتَهِدٌ وَدَلِيلُهُ قَوْلُ الْمُعَلِّمِ'),
+        k1: dv('جَاءَ زَيْدٌ وَخَالِدٌ'), k2: dv('زَيْدٌ وَخَالِدٌ قَائِمَانِ'),
+        m5: line('al-maqamat-birgivi', 2, 's12', 5), m6: line('al-maqamat-birgivi', 2, 's12', 6), m4: line('al-maqamat-birgivi', 2, 's12', 4),
+        u13: line('al-usul-al-munifa', 11, 's2', 13), u14: line('al-usul-al-munifa', 11, 's2', 14), u7: line('al-usul-al-munifa', 21, 's1', 7),
+      };
+    });
+    if (!/ الْحَقُّ\/khabar$/.test(r.p1) || !/ مِثْلُكُمْ\/khabar$/.test(r.p2) || !/ أَهْلُ\/khabar /.test(r.p3)) throw new Error('the khabar of a detached pronoun: ' + J([r.p1, r.p2, r.p3]));
+    if (!/ غَيْرُ\/khabar /.test(r.p4) || !/ مُعَلِّمٌ\/khabar$/.test(r.p5)) throw new Error('…and across a ẓarf: ' + J([r.p4, r.p5]));
+    if (!/ كُلُّهَا\/tawkid /.test(r.tw)) throw new Error('وَهِيَ كُلُّهَا: the tawkīd of the pronoun: ' + r.tw);
+    if (!/ وَالنَّصْبُ\/mubtada عَلَمُ\/khabar /.test(r.c1) || !/ وَالْعَقْلُ\/mubtada رَاعٍ\/khabar وَالْإِبْلِيسُ\/mubtada ذِئْبٌ\/khabar$/.test(r.c2)) throw new Error('a joined noun with its own predicate opens a clause: ' + J([r.c1, r.c2]));
+    if (!/ وَاللهُ\/mubtada /.test(r.c3) || !/ وَشَرْطُهُ\/mubtada /.test(r.c4) || !/ وَدَلِيلُهُ\/mubtada قَوْلُ\/khabar /.test(r.c5)) throw new Error('…before its verb, before «أَنْ», before a muḍāf predicate: ' + J([r.c3, r.c4, r.c5]));
+    if (!/ وَخَالِدٌ\/atf$/.test(r.k1) || !/ وَخَالِدٌ\/atf قَائِمَانِ\/khabar$/.test(r.k2)) throw new Error('the ʿaṭf that must stay an ʿaṭf: ' + J([r.k1, r.k2]));
+    if (!/مُبْتَدَأٌ/.test(r.m5) || !/^خَبَرٌ/.test(r.m6) || !/مُقَدَّرَةٍ/.test(r.m4)) throw new Error('al-Maqāmāt 2:s12 — three clauses, and رَاعٍ on its estimated ḍamma: ' + J([r.m4, r.m5, r.m6]));
+    if (!/مُبْتَدَأٌ/.test(r.u13) || !/^خَبَرٌ/.test(r.u14) || !/^خَبَرٌ/.test(r.u7)) throw new Error('al-Uṣūl 11:s2 / 21:s1 — the pronoun is the mubtadaʾ and the muḍāf after it the khabar: ' + J([r.u13, r.u14, r.u7]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
