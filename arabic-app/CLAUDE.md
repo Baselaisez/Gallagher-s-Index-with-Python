@@ -11402,3 +11402,40 @@ and every difference read.** What that reading found had been on the shelf for u
   **After regenerating any story: `python3 tools/authoring/fix_radical_prefix.py` (dry) must print «0 verbs, 0 pronouns».**
 - Known and left: the twenty older `author_*.py` scripts that carry a private copy of `_pre()` (pre-wave-113) still
   hold the old helper — the smoke gate and the repair tool cover them; Marāḥ's matn collation is next on the shelf.
+
+### v267 (wave 168) — the māḍī is built, so its last vowel is not iʿrāb
+
+Wave 167's fresh engine pass on al-Maqāmāt had read «فَأَوَّلُهَا الْإِيمَانُ» as the verb أَوَّلَ + هَا with «الْإِيمَانُ» its
+doer. The slip is one sentence of this file read too widely: **«the last letter's vowel is iʿrāb and may move»** is true
+of the muḍāriʿ and false of the māḍī, which is BUILT.
+
+- **`findFormInParadigm`'s loose pass (`builtClash168`).** A māḍī or majhūl-māḍī cell that ends on its FATḤA is refused
+  where the written word shows a ḍamma, a kasra or their tanwīn on that letter: «أَوَّلُ(هَا)», «قَتَلُ», «طَلَبُ
+  الْعِلْمِ», «كُتِبُ», and «يَا فَسَاقِ» (a فَعَالِ built on its kasra, which had been فَ + سَاقَ). Three things keep it
+  from being a blunt instrument, and the smoke check pins each: a cell that ends on a SUKŪN keeps the vowel that two
+  sākins borrow (قَالَتِ الْمَرْأَةُ، كَتَبْتُمُ الْكِتَابَ); an UNVOWELLED last letter proves nothing (قَتَل is still
+  the verb); the muḍāriʿ keeps every freedom it had (يَكْتُبَ، يَكْتُبُ).
+- **The typed sentence (`DabtEngine`, the wave-158 «case-host» rule extended).** The vowelling engine strips endings
+  before it decides, so the lookup's new refusal never reaches it on its own; the rule that already retyped an
+  IMPERATIVE whose typed host wears a case vowel before a pronoun (لِسَانُهُ) now covers the māḍī's «he» cell too:
+  a ḍamma or kasra typed before ـهُ/ـهَا/ـهُمْ, on a host the lexicon owns as a noun, is that noun's case. Its first
+  sweep broke «فَكَرِهَ الْكُفَّارُ النَّاقَةَ» — the hāʾ there is the verb's own third radical, and the rule had taken it
+  for a pronoun because the letters allow it. **The pronoun must be a pronoun to the CELL too** (host letters = cell
+  letters), which is the same lesson as wave 167's «وَجَدَ»: a letter the word owns is not a clitic.
+- Measured: blind 4 fixed / 0 broken, receipts-on 4 fixed / 0 broken (أَوَّلِهِ ×4, which had been written «أَوَّلَهُ»);
+  case layer 98.62 → 98.63 %. One newly judged row is wrong and is left on purpose: al-Kāfiya 6:s4 «وَمَا جَاءَ مِنْهُ
+  مَصْدَرًا» — the claim used to abstain there only because «فَسَاقِ» later in the line was misread as a second verb.
+  On the shelf, «وَمَا + a māḍī with no stated doer» at a sentence head is the relative 15 times and the negation 9
+  (authored lines, counted): the surface does not decide it, and the honest fix is an abstention rule for that
+  frame, not a guess. WujuhEngine 98.3 % (65 misses, unchanged), naibNotFail 0, HadhfEngine false 3, TaqdirEngine
+  shelf 98.9 %, IzziSteps 1,728 cells / 0 bad.
+- A fresh pass on al-Maqāmāt now reads 2:s2 «فَأَوَّلُهَا الْإِيمَانُ بِاللهِ» as mubtadaʾ … (its «الْإِيمَانُ» comes back
+  «نَعْت» where the shipped line says khabar — a maṣdar is no naʿt; the next rule this shelf wants).
+- **The refused cell is still NAMED (`RootFinder.builtShadow168`).** The first release run failed one old check: the
+  Talkhīṣ's «أَفْنَاهُ قِيلُ اللهِ» wants the analyzer's row to SAY why «قِيلُ» is no passive māḍī, and that note had hung on
+  the cell the lookup now refuses. The verdict was right and the teaching was gone. `builtShadow168(word)` asks, on a
+  walk of its own with the last vowel left free (`_free168`, set nowhere else), which māḍī cell the word WOULD have
+  matched; the analyzer puts the «it shares its letters with the verb … a mabnī ending cannot move» note on a noun row
+  that has no cell. No verdict is taken from the shadow — it only explains. **A rule that moves a decision earlier must
+  carry the explanation with it.**
+- Smoke: «wave 168» (418 checks).

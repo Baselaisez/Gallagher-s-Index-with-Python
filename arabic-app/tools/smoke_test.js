@@ -14763,6 +14763,25 @@ if (!CHROME) {
     if (!(r.jalaba.both >= 1 && r.jalaba.seats === true)) throw new Error('the ledger: يَجْلِبُهُ الْعَامِلُ seats an object with جَلَبَ: ' + J(r.jalaba));
   });
 
+  await check('wave 168 — the māḍī is BUILT, so its last vowel is not iʿrāb: a cell that ends on its fatḥa refuses a written ḍamma or kasra (أَوَّلُهَا، قَتَلُ، يَا فَسَاقِ are no past verbs), a cell that ends on a sukūn keeps the vowel two sākins borrow (قَالَتِ الْمَرْأَةُ، كَتَبْتُمُ الْكِتَابَ), an unvowelled ending proves nothing, the muḍāriʿ keeps its freedom — and the typed sentence reads «فَأَوَّلُهَا الْإِيمَانُ» as a subject, «فَكَرِهَ» (a radical hāʾ) still as a verb', async () => {
+    const r = await page.evaluate(() => {
+      const fc = w => { let x = null; try { x = RootFinder.fromCorpus(String(w).normalize('NFC')); } catch (e) {} return x && x.cell ? x.cell.tense + ':' + x.cell.i : 'none'; };
+      const out = { fc: ['فَأَوَّلُهَا', 'أَوَّلَهَا', 'قَتَلُ', 'قَتَلَ', 'قَتَل', 'قَالَتِ', 'فَسَاقِ', 'كَتَبْتُمُ', 'كُتِبُ', 'كُتِبَ', 'يَكْتُبَ', 'يَكْتُبُ', 'ضَرَبِ'].map(fc).join(' ') };
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return (v.words || []).map(w => w.out + '/' + w.rule).join(' '); };
+      const nt = (t, b) => { const x = SentenceAnalyzer.analyze(t).find(x => stripAr(x.w).replace(/[^ء-ي]/g, '') === b); return x ? x.kind + ' | ' + x.notes.map(n => n.en).join(' ') : '?'; };
+      out.talab = nt('طَلَبُ الْعِلْمِ فَرِيضَةٌ', 'طلب'); out.walad = nt('جَاءَ الْوَلَدُ', 'الولد'); out.shadow = [RootFinder.builtShadow168('قِيلُ'), RootFinder.builtShadow168('قِيلَ'), RootFinder.builtShadow168('يَكْتُبَ')].map(x => x && x.cell ? x.cell.form : 'none').join(' ');
+      out.awwal = dv('فَأَوَّلُهَا الْإِيمَانُ بِاللهِ'); out.awwala = dv('أَوَّلَهَا الْعَالِمُ'); out.kariha = dv('فَكَرِهَ الْكُفَّارُ النَّاقَةَ'); out.akhir = dv('وَآخِرُهَا الصَّبْرُ'); out.lisan = dv('لِسَانُهُ طَوِيلٌ');
+      return out;
+    });
+    const want = 'none mazi:0 none mazi:0 mazi:0 mazi:3 none mazi:8 none majhulMazi:0 mansub:0 mudari:0 none';
+    if (r.fc !== want) throw new Error('the built verb\'s last vowel: ' + r.fc + ' ≠ ' + want);
+    if (!/^noun \| it shares its letters with the verb «طَلَبَ».*a mabni ending cannot move/.test(r.talab.normalize('NFC')) || /shares its letters/.test(r.walad) || r.shadow.normalize('NFC') !== 'قِيلَ none none') throw new Error('the refused cell is still named in the row\'s note (and only there): ' + J([r.talab, r.walad, r.shadow]));
+    if (!/^فَأَوَّلُهَا\/mubtada /.test(r.awwal.normalize('NFC'))) throw new Error('فَأَوَّلُهَا الْإِيمَانُ: the typed ḍamma before the pronoun is a noun\'s case: ' + r.awwal);
+    if (!/^أَوَّلَهَا\/mazi /.test(r.awwala.normalize('NFC'))) throw new Error('أَوَّلَهَا الْعَالِمُ keeps the verb: ' + r.awwala);
+    if (!/^فَكَرِهَ\/mazi /.test(r.kariha.normalize('NFC')) || !/النَّاقَةَ\/maful$/.test(r.kariha.normalize('NFC'))) throw new Error('فَكَرِهَ ends on its own radical hāʾ — no pronoun, a verb: ' + r.kariha);
+    if (!/^وَآخِرُهَا\/mubtada الصَّبْرُ\/khabar$/.test(r.akhir.normalize('NFC')) || !/^لِسَانُهُ\/mubtada /.test(r.lisan.normalize('NFC'))) throw new Error('وَآخِرُهَا الصَّبْرُ / لِسَانُهُ طَوِيلٌ: ' + J([r.akhir, r.lisan]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

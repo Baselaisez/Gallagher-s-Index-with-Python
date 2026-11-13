@@ -6178,6 +6178,7 @@ function sjMajhul0(cell, past){
   // the NAQIS passive ends on an alif maqsura (يُسَمِّي → يُسَمَّى، يَدْعُو → يُدْعَى)
   return M.map(x => x.l + x.m).join("").normalize("NFC").replace(/َ(ّ?)(ي|و)$/, "َ$1ى").replace(/َ(ّ?)(ي|و)([ً-ٰ]*)(نَ|انِ|ونَ)$/, (m0, sh, g, v, t) => "َ" + sh + (t === "ونَ" ? "وْنَ" : t === "انِ" ? "يَانِ" : "يْنَ"));
 }
+let _free168 = false;   /* (wave 168) true only inside RootFinder.builtShadow168: the māḍī's last vowel left free, to NAME the cell it refused */
 function findFormInParadigm(morph, surface, exactOnly){
   if (!morph) return null;
   let NF = _nfMemo24.get(morph); if (!NF) { NF = { b: new Map() }; for (const k of ["amr", "mazi", "mudari"]) NF[k] = Array.isArray(morph[k]) ? morph[k].map(x => (x || "").normalize("NFC")) : null; for (const k of ["mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"]) NF[k] = morph[k] ? String(morph[k]).normalize("NFC") : null; _nfMemo24.set(morph, NF); }   /* (wave 24k) the cells normalized once, their bare forms beside them */
@@ -6185,10 +6186,15 @@ function findFormInParadigm(morph, surface, exactOnly){
   const bares = (surface === _fbKey24 && _fbVal24) ? _fbVal24 : (_fbKey24 = surface, _fbVal24 = cands.map(stripAr));   /* (wave 24j) once per surface */
   // a bare hit names the candidate it hit, so the sarf test compares the two
   // words that actually matched rather than the first spelling in the list
-  const loose = f => {
+  /* (wave 168) the māḍī is BUILT: where its cell ends on a fatḥa, a ḍamma or a kasra written on that letter is another
+     word's case (أَوَّلُهَا، طَلَبُ الْعِلْمِ، اللهُ أَكْبَرُ) — the freedom of the last vowel belongs to the muḍāriʿ alone.
+     A cell ending on sukūn keeps it (قَالَتِ الْمَرْأَةُ، كَتَبْتُمُ الْكِتَابَ), and no written mark is no evidence. */
+  const builtClash168 = (c, f) => { if (!/\u064E$/.test(f)) return false; const a = sjMarks(c), la = a[a.length - 1]; return !!(la && la.m && /[\u064F\u0650\u064C\u064D]/.test(la.m) && !/\u064E/.test(la.m)); };
+  const loose = (f, tense) => {
     let fb = NF.b.get(f); if (fb === undefined) { fb = stripAr(f); NF.b.set(f, fb); }
+    const built = tense === "mazi" || tense === "majhulMazi";
     for (let k = 0; k < bares.length; k++)
-      if (bares[k] === fb && sjSarfAgree(cands[k], f)) return true;
+      if (bares[k] === fb && sjSarfAgree(cands[k], f) && !(built && !_free168 && builtClash168(cands[k], f))) return true;
     return false;
   };
   // the same word built into its passive — tried as an EXACT match, because a
@@ -6220,7 +6226,7 @@ function findFormInParadigm(morph, surface, exactOnly){
         const f = (forms[i] || "");
         if (exact && tense === "mazi" && i === 0 && /َ$/.test(f) && cands.includes(f.replace(/َ$/, "ْ")) && !cands.includes(f))
           return { tense, i, form: f, waqf: true };   // verse pause: the rhyme quiets the he-cell's fatha (لَمَّا غَفَلْ)
-        if (exact ? cands.includes(f) : loose(f)) {
+        if (exact ? cands.includes(f) : loose(f, tense)) {
           // a paradigm may write ONE spelling into two cells — تَأْتِي is
           // «she» AND «you» in every mudari of the language — and a
           // first-hit answer there is a guess dressed as knowledge. Name
@@ -6239,7 +6245,7 @@ function findFormInParadigm(morph, surface, exactOnly){
     for (const k of ["mansub", "majzum", "majzum2", "majhulMazi", "majhulMudari"]) {
       if (!NF[k]) continue;
       const f = NF[k];
-      if (exact ? cands.includes(f) : loose(f))
+      if (exact ? cands.includes(f) : loose(f, k))
         return { tense: k, i: 0, form: f };
       // a stored majhul is a SINGULAR cell, and its plural is unreachable
       // twice over: يُوصَفُونَ is not a stored form, and the mithal's
@@ -8839,6 +8845,22 @@ class RootFinder {
     for (const k of keys) { const a = k && M.get(k); if (a) for (const i of a) if (!seen.has(i)) { seen.add(i); pos.push(i); } }
     pos.sort((a, b) => a - b);
     return pos.map(i => idx[i]);
+  }
+  /* (wave 168) the māḍī cell a written word shares its letters and inner vowels with, refused only because the built
+     verb's last vowel cannot move (قِيلُ ~ قِيلَ، طَلَبُ ~ طَلَبَ) — null where the word has a cell of its own or none at all.
+     The analyzer names it in its note; no verdict is taken from it. */
+  static builtShadow168(word){
+    const idx = this.corpusIndex();
+    if (this._bs168For !== idx) { this._bs168 = new Map(); this._bs168For = idx; }
+    const key = String(word || "");
+    if (this._bs168.has(key)) return this._bs168.get(key);
+    let sh = null;
+    try { const own = this.fromCorpus(key);
+      if (!(own && own.cell)) { _free168 = true; try { sh = this._fromCorpusWalk(key, idx, null, this.walkCandidates(key, idx)); } finally { _free168 = false; }
+        if (!(sh && sh.cell && /^(mazi|majhulMazi)$/.test(String(sh.cell.tense || "")))) sh = null; } } catch (e) { _free168 = false; sh = null; }
+    if (this._bs168.size > 4000) this._bs168.clear();
+    this._bs168.set(key, sh);
+    return sh;
   }
   static fromCorpus(word, prefer = null){
     const idx = this.corpusIndex();
@@ -12968,6 +12990,14 @@ class SentenceAnalyzer {
         const ci = row.cell ? (row.cell.person !== undefined ? row.cell.person : row.cell.i) : -1;
         afterVerbSelf = row.kind.startsWith("verb") && !!row.cell &&
                         (row.cell.tense === "amr" || ci >= 6);
+      }
+      /* (wave 168) a noun whose letters are a past verb's, kept apart from it by the one vowel a built verb cannot change:
+         the row says so, naming the cell (قِيلُ اللهِ is the maṣdar, not قِيلَ; طَلَبُ الْعِلْمِ is no طَلَبَ) */
+      if ((row.kind || "").startsWith("noun") && !row.cell && /[\u064B-\u0650]/.test(String(w || "")) && !row.notes.some(n => /shares its letters with/.test(n.en || ""))) {
+        let sh168 = null; try { sh168 = RootFinder.builtShadow168(w); } catch (e) { sh168 = null; }
+        if (sh168) row.notes.unshift({
+          en: "it shares its letters with the verb «" + sh168.lemma + "», but it wears an ending the MABNI cell «" + sh168.cell.form + "» does not have — and a mabni ending cannot move — and no verb ever does. It is a noun from that root.",
+          tr: "«" + sh168.lemma + "» fiiliyle harfleri ortaktır, fakat üzerinde MEBNÎ «" + sh168.cell.form + "» hânesinde bulunmayan bir sonek — ve mebnînin sonu yerinden oynamaz var — hiçbir fiil bunu taşımaz. Bu, o kökten bir isimdir." });
       }
       out.push(row);
     });
@@ -18497,10 +18527,12 @@ class DabtEngine {
     rows.forEach((r, i) => { const b0 = bareOf(r).replace(/[أإآ]/g, "ا"); const pv = rows[i - 1];
       if (isVerb(r) && r.cell && /mazi|amr/i.test(String(r.cell.tense || "")) && !/majhul/i.test(String(r.cell.tense || "")) /* (wave 151) أُتِيَ: the passive's ḍamma is no noun's */ && !r.enc && !encOf(r) && (() => { try { const oT = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); if (!oT || this.bare(oT) !== bareOf(r)) return false; const lv = (oT.match(/[ًٌٍَُِْ]$/) || [""])[0]; const cf = String(r.cell.form || "").normalize("NFC"); if (!lv || (lv === "َ" && /mazi/i.test(String(r.cell.tense || ""))) || /ت[ًٌٍَُِْ]?$/.test(cf) || /[او]$/.test(this.bare(oT))) return false; const lx = this.lex(r.w || ""); return !!lx && /^part$/.test(String(lx.pos || "")) && this.bare(String(lx.lemma || "").split(/[()\s]/)[0]) === b0.replace(/^[وف]/, ""); } catch (e) { return false; } })()) { r.__partKeep46 = true; r.cell = null; r.kind = "noun"; r.__kindNoun = true; r.pk = null; r.__retype35 = "part-keep"; delete r.__authorVerb35; }
       /* (wave 158) لِسَانُهُ طَوِيلٌ، أَجْرُهُ عَلَى اللهِ: the letters reach an imperative with a pronoun, but the TYPED word writes a case vowel before the pronoun — an imperative ends on its own vowel (its sukūn, or the fatḥa of a doubled verb), so a host whose written vowel is not the cell's is the lexicon's noun wearing the pronoun */
-      if (isVerb(r) && r.cell && /amr/i.test(String(r.cell.tense || "")) && /^(ه|ها|هم|هما|هن)$/.test(String(r.enc || encOf(r) || "")) && (() => { try {
+      /* (wave 168) …and the same of the māḍī's «he» cell: it is BUILT on its fatḥa, so a ḍamma or a kasra typed before the pronoun (فَأَوَّلُهَا الْإِيمَانُ، وَآخِرُهَا) is the lexicon noun's case, not أَوَّلَ + هَا */
+      if (isVerb(r) && r.cell && (/amr/i.test(String(r.cell.tense || "")) || (/^mazi$/i.test(String(r.cell.tense || "")) && Number(r.cell.i) === 0 && /\u064E$/.test(String(r.cell.form || "").normalize("NFC")))) && /^(ه|ها|هم|هما|هن)$/.test(String(r.enc || encOf(r) || "")) && (() => { try {
         const oT = String((this._orig24 || [])[i] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); if (!oT || this.bare(oT) !== bareOf(r)) return false;
         const hostV = oT.replace(/^[وف][ً-ٰ]*(?=..)/, "").replace(/(هُمَا|هِمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|هَا|هُ|هِ|هما|هم|هن|ها|ه)[ً-ٰ]*$/, "");
         const hv = (hostV.match(/[َُِ]$/) || [""])[0]; if (!hv) return false;
+        if (/^mazi$/i.test(String(r.cell.tense || "")) && this.bare(hostV) !== this.bare(String(r.cell.form || ""))) return false;   /* (wave 168) the pronoun must be a pronoun to the CELL too: فَكَرِهَ ends on its own radical hāʾ */
         const cv = (String(r.cell.form || "").normalize("NFC").match(/[َُِ]$/) || [""])[0]; if (cv === hv) return false;
         const e2 = RootFinder.nounFromCorpus(hostV.replace(/[ً-ٰ]+$/, "")); if (!e2 || /verb|part|pron|prep|conj/.test(e2.pos || "")) return false;
         if (this.bare(String(e2.lemma || "").split(/[()\s]/)[0]).replace(/^ال/, "") !== this.bare(hostV).replace(/^ال/, "")) return false;
