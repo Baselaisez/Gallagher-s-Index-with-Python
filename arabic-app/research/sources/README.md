@@ -245,3 +245,9 @@ sentence card the engines can fill from their own verdicts, which is why it
 became the IrabShop tutor rather than a note. The İzzî graphics are the sarf
 engine reference for the same wave: its nūn al-tawkīd and idghām rules are
 stated as decision tables, which is the shape an engine wants.
+
+**`tasrif-al-izzi-src.txt`** (wave 165) — the matn of al-Zanjānī's «تَصْرِيفُ الْعِزِّيِّ» (d. 655 AH), read from the
+page images of the owner's two scans (pp. 49–102 of the print): the classical matn only — nothing of the modern
+editor's introduction, headings or footnotes, and neither the copyist's colophon nor the poem after it. The
+vowelling, the punctuation and the division into nineteen chapters are ours; «يَعْتَلُّ» is read active where the
+print vowels the passive. It is the source of `content/samples/tasrif-al-izzi` (see `tools/authoring/izzi/`).

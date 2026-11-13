@@ -2,7 +2,7 @@
  "version": 1,
  "status": "induced",
  "note": "Tendencies of the Form I maṣdar, induced from the verbs the corpus recites and promoted through a gate (support, confidence, gain over the rule refined). A teacher may show them; the builder never applies them — a Form I maṣdar is recited.",
- "trained_on": 539,
+ "trained_on": 555,
  "gate": {
   "min_support": 12,
   "min_confidence": 0.6,
@@ -12,8 +12,8 @@
   "plurality_support": 24
  },
  "default": "فَعْل",
- "cv_accuracy": 0.4954,
- "cv_baseline": 0.462,
+ "cv_accuracy": 0.5063,
+ "cv_baseline": 0.4631,
  "rules": [
   {
    "if": {
@@ -55,8 +55,8 @@
     "transitive": "no"
    },
    "then": "فُعُول",
-   "support": 53,
-   "confidence": 0.472,
+   "support": 54,
+   "confidence": 0.463,
    "kind": "plurality"
   },
   {
@@ -77,8 +77,8 @@
     "transitive": "no"
    },
    "then": "فُعُول",
-   "support": 39,
-   "confidence": 0.359,
+   "support": 40,
+   "confidence": 0.35,
    "kind": "plurality"
   },
   {
@@ -87,8 +87,8 @@
     "mudari": "i"
    },
    "then": "فَعْل",
-   "support": 87,
-   "confidence": 0.736,
+   "support": 88,
+   "confidence": 0.739,
    "kind": "majority"
   },
   {
@@ -104,51 +104,21 @@
   {
    "if": {
     "class": "sahih",
-    "transitive": "yes"
-   },
-   "then": "فَعْل",
-   "support": 215,
-   "confidence": 0.67,
-   "kind": "majority"
-  },
-  {
-   "if": {
-    "mazi": "a",
-    "transitive": "yes"
-   },
-   "then": "فَعْل",
-   "support": 264,
-   "confidence": 0.659,
-   "kind": "majority"
-  },
-  {
-   "if": {
-    "class": "sahih",
     "mazi": "a"
    },
    "then": "فَعْل",
-   "support": 238,
-   "confidence": 0.647,
+   "support": 239,
+   "confidence": 0.649,
    "kind": "majority"
   },
   {
    "if": {
-    "mudari": "i",
-    "transitive": "yes"
+    "class": "mithal",
+    "mazi": "a"
    },
    "then": "فَعْل",
-   "support": 118,
-   "confidence": 0.636,
-   "kind": "majority"
-  },
-  {
-   "if": {
-    "class": "hollow",
-    "transitive": "yes"
-   },
-   "then": "فَعْل",
-   "support": 21,
-   "confidence": 0.619,
+   "support": 13,
+   "confidence": 0.615,
    "kind": "majority"
   },
   {
@@ -167,9 +137,18 @@
     "transitive": "no"
    },
    "then": "فَعَل",
-   "support": 55,
-   "confidence": 0.364,
+   "support": 56,
+   "confidence": 0.375,
    "kind": "plurality"
+  },
+  {
+   "if": {
+    "transitive": "yes"
+   },
+   "then": "فَعْل",
+   "support": 310,
+   "confidence": 0.6,
+   "kind": "majority"
   }
  ]
 }

@@ -11196,3 +11196,108 @@ The word sheet asks one word; the Qawāʿid engine asks them all.
   the same alone, in order and in reverse over ~1,360 real tokens, and that claiming rewrites no row (414 checks).
 - Still open: هَاجَرَ and وَأَحْسَنَ typed as verbs (a name after its verb; an elative joined to an elative);
   حَقَّنَا / حَقَّ عِبَادَتِهِ; أَنْفَعُ مِنْ vs مَا أَعْلَمُ مِنْ (the elative and the first person share every letter).
+
+### v264 (wave 165) — «تَصْرِيفُ الْعِزِّيِّ»: the matn as the fifty-fourth text, and the recited paradigm read cell by cell
+
+`content/samples/tasrif-al-izzi` (L5, premium, **19 chapters / 278 sentences / 3,591 words — the whole matn**) is
+al-Zanjānī's primer of ṣarf, transcribed from the owner's two scans (matn only: nothing of the editor's
+introduction, headings or footnotes, nor the copyist's colophon and poem). Source file
+`research/sources/tasrif-al-izzi-src.txt`; everything that builds the package lives in `tools/authoring/izzi/`:
+
+```
+lemmas.txt → mk_lex.py → lex.json        the word table (196 new lemmas, 73 shipped keys reused; `=key` reuses)
+sarf_izzi.py → morph_extra.json           92 paradigms (the exotic bābs and the hamzated / lafīf models spelled out)
+trans_*.txt → mk_trans.py → trans.json    the 278 sentences in English and Turkish (@ch:sId / EN / TR)
+fixes.json                                 the author's 334 corrections of the engine's reading, by coordinate
+meta.json                                  title, chapter titles, attribution, `"cellLines": true`
+```
+
+Rebuild: `engine_author.js <src> <engine.json>` (TWICE — see below), then `pkg_from_engine.py engine2.json
+izzi/meta.json <out> --lex … --morph … --fixes … --trans …`.
+
+- **Read the text twice.** The engines recognise a recited cell only once the reader knows the paradigm it belongs
+  to. First pass → draft package → `build_prototype.py` → second pass (`engine2.json`) → the final package.
+- **A ṣarf book quotes words; a quoted word is a NOUN.** A lexicon row in the «measures» section carries
+  `cite: true`: فَعَلَ، يَفْعُلُ، اِفْعَنْلَلَ … are keyed by the author, never re-keyed to a verb, and given the Iẓhār's
+  line «لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ» (with its seat after وَزْن / مِثَال / نَحْو / a preposition / كَـ). Where the
+  matn USES the verb («زَيْدٌ يَفْعَلُ الْآنَ») the fix says `"cite": false`.
+- **`tools/authoring/cell_lines.py` — the line of a recited cell comes from its PLACE in the paradigm, not from its
+  neighbours.** A run of two or more cells of one verb (لَمْ / لَنْ / لَا / مَا and the lām of command may stand
+  between them) is read by index: the māḍī's fourteen persons (the dual's alif, the group's wāw, the women's nūn,
+  the tāʾ of the feminine, the defective verb's dropped alif), the muḍāriʿ in rafʿ / naṣb / jazm (the five forms
+  drop their nūn; the women's nūn builds the verb), the amr built on what its jussive drops, and the two nūns of
+  emphasis by ending class (فَتْح / the dropped wāw and yāʾ with their ḍamma and kasra / the separating alif).
+  Where one spelling serves several persons the row order decides (increasing index, restarting with a new tense).
+  A form the paradigm does not hold (a variant, a rejected origin: رَضِيُوا، يَرْأَى، سَالَ) is a quoted word.
+  The pass is gated by the meta flag `cellLines`, so no other package changes.
+- **A cell filed under a homograph lemma goes home.** تَقُولُ had been keyed to تَقَوَّلَ fifty-four times, تَنْصُرْ to
+  تَنَصَّرَ, يُكْرِمُ to كَرُمَ: when a verb token is no cell of its own paradigm and EXACTLY ONE other paradigm owns the
+  written form, the token is re-keyed (62 tokens in the final build), its glossary entry is taken, and paradigms nobody references
+  any more are pruned. A fix with a `key` is never overruled.
+- **Vocalised lexicon keys.** A form in lemmas.txt may be written with its vowels (تُلْفَظ، أَوَّل): it is matched
+  before the bare host, with the ending's own marks off. NFC puts the vowel BEFORE the shadda and the fatḥatān
+  before both shadda and alif — strip the ending by shape, not by position.
+- **The conjugator gained the doubled تَفَاعَلَ** (`sarfDerive`, Form VI + gem): تَمَادَّ يَتَمَادُّ, breaking before a
+  sukūn (تَمَادَدْنَ). The matn says the idghām there is obligatory; the engine had no branch and wrote the fakk.
+  169 of the package's 235 paradigms regenerate from the engine with 0 mismatched cells (66 are outside its classes).
+  A verb the matn only CITES still needs its paradigm: «every glossary verb owns a paradigm» stopped the second
+  release run on اِسْتَدْعَى and اِرْعَوَى (the افْعَلَّ of a defective root, which cannot contract: اِرْعَوَى يَرْعَوِي).
+- Fixed by hand (fixes.json), each a thing no rule here can see: nouns the engine read as verbs (أَوَّلِهِ، نُونَانِ،
+  أَصْلَهُمَا، وَفَكُّهُ، وَضَمِّهَا، وَآلِهِ), passives filed under another verb (نُصِرَ، نُقِلَ، تُقْلَبُ، تُلْفَظُ), «وَذَاكَ»
+  as the demonstrative it is, «سِوَى», «حِينَئِذٍ», «يَا زَيْدُ», the hāʾ of pause (قِهْ، رَهْ).
+- The transcription reads «يَعْتَلُّ» active in five places where the print vowels the passive, and says so in the
+  attribution. The āyāt the matn cites as examples are the matn's own quotations and are kept as it has them.
+- **The first release run failed two gates, and both were right.** `WujuhEngine.audit` fell to 97.9 % and
+  `AdabEngine.naibNotFail` found three «فَاعِل» lines after a passive — so the whole package was read line by line
+  (`review.py`: `i:surface·CODE` per sentence) and 334 lines were corrected by coordinate. The classes, because the
+  next ṣarf matn will have them all: a MENTIONED particle or form («لَا» النَّاهِيَةُ، بِـ«رَضُوا»، كَـ«غَزَا») is a quoted
+  word in the seat its neighbour gives it; a cited āya's words are quoted; a noun the engine read as a verb and the
+  reverse; the passive's deputy (النَّاقِصُ، اللَّفِيفُ after يُقَالُ / يُسَمَّى); مِثْلُ / نَحْوُ as the khabar of an omitted
+  mubtadaʾ; the ḥāl (مَكْسُورَ الْعَيْنِ، مُطْلَقًا، فَصَاعِدًا).
+- **Four builder rules came out of that reading** (`pkg_from_engine.py`, all ungated — they are true of every
+  text): «وَمِنَ» is the preposition behind its wāw, not مَنْ; the NOUN «وَاو» keeps its wāw (a particle host must not
+  be the word itself); قَدْ before a muḍāriʿ is the letter of taqlīl, not taḥqīq; and **a lemma whose yāʾ and nūn
+  are radicals is no sound plural** — عَيْن، غَيْن had been declined «بِالْيَاءِ لِأَنَّهُ مُثَنًّى» forty times because
+  the plural-lemma guard looked at the bare letters. Gated by `cellLines`: the لَا of a recited prohibition row is
+  «لَا» النَّاهِيَةُ for all six persons (`la-nahiya`). And **إِمَّا is not أَمَّا**: the particle table is keyed on the
+  bare «اما», so the hamza's kasra chooses the line and the key (`imma`). The reader's analyzer
+  learned the same thing from the Talkhīṣ («Confidently wrong is worse than undecided») — a table keyed on folded
+  letters needs the vowel test at every consumer.
+  These rules reach the other engine-authored books only when those are rebuilt.
+- **`WujuhEngine` reads the prohibition row** (22 misses fixed, 0 broken; corpus audit 97.7 → 98.3 %): `mood()`
+  — a muḍāriʿ ends in a written alif only where the dual has dropped its nūn (لَا تَنْصُرَا، لَمْ يَرْمِيَا); a form
+  that carried a pronoun is left undecided, because the defective's ى is written as an alif there too
+  (يَنْهَاهُمْ). `case "la"` — the nūn of emphasis follows a request, not a plain denial (لَا تَخْشَوُنَّ), unless the
+  form is the paradigm's own cell (يَسْكُنَّ); and a cell whose ending cannot show the jazm — the women's nūn, the
+  addressed woman of a defective verb — is read with the forbidden pair standing beside it in the row.
+  The rows carry no lemma (`r.lemma` is empty in `WujuhEngine.rows`): a rule there must decide from the written
+  form and `cellOf`, never from the lexicon.
+- **Five release runs, five different gates — each found something real.** After the two above: «every glossary
+  verb owns a paradigm» (the two cited verbs); `HadhfEngine`'s false-claim floor — «يُقَالُ لَهُ النَّاقِصُ / اللَّفِيفُ»
+  is authored as the deputy doer BY QUOTATION, with the engine's own reading (the khabar of an omitted «هُوَ») named
+  beside it, which is how the books give the two faces; and `TaqdirEngine`'s story-shelf grader, which showed that
+  the builder's `person_of` had written «تَقْدِيرُهُ أَنْتَ» on «تَثْبُتُ، تَسْقُطُ، تُحْذَفُ» — verbs whose subject is a
+  LETTER. Under `cellLines` (a ṣarf matn) a passive or a state verb in تَـ is «هِيَ» and «تَقُولُ» is always «أَنْتَ»;
+  ungated: the lām of purpose is peeled before the prefix is read (لِتَفْصِلَ had been «هُوَ»), a sister of kāna whose
+  noun is written two words on keeps no hidden one beside it (25 contradictory lines), and no line ends on «..».
+  The ʿIzzī joins the matns that grader leaves out: the engine still reads the author's «فَتَقُولُ / فَتَضُمُّهَا» as
+  «she» (85.1 % on this text alone, 63 of 110 misses) — an engine gap for its own wave, not a content error.
+- **New text moves the engines' learned numbers.** `LazimEngine` reads each verb's valency off the corpus, counting
+  the FIRST noun after the verb: the matn's five «يَدْخُلُ الْجَازِمُ عَلَى …» took دَخَلَ from 49 objects / 48 doers
+  to 49 / 54, and a pinned Mukhtaṣar sentence (وَلَا يَدْخُلُ الْأَخْبَارَ — the carried topic's object) flipped to
+  «فَاعِل». The ledger now also marks a doer row that seats an object after the doer (دَخَلَ مُوسَى الْمَدِينَةَ:
+  `both`, 14 rows for دَخَلَ), and `seatsObject()` reads it for the one rule where the doer is already given. The
+  doer-first counts and the other ten callers of `takesObject` are untouched. The ʿIzzī flips fifteen verdicts in
+  that ledger in all (`probe_lazim.js` lists them); a wave that adds a text should print that list before its
+  release, not learn it from smoke chunk 6.
+- **`IzziSteps.amr` met its first doubled ending on a sound root.** The primer's step builder jazm'd by swapping a
+  final ḍamma for a sukūn and had only ever seen «sound» roots that end on one letter; احْمَرَّ and احْمَارَّ (sound
+  roots, doubled by their BĀB) came out «اِحْمَرُّ». A doubled last letter cannot take the sukūn — the ʿIzzī's own
+  chapter on the muḍāʿaf — so it is moved with a fatḥa and the step says so (kasra and the fakk named as allowed):
+  اِحْمَرَّ، مُدَّ، فِرَّ. 1,728 stored cells of the sound verbs rebuild with 0 disagreements.
+- Known and left: al-Uṣūl 31:s2:34 «الْكَوْكَبُ» is still «فَاعِل» after يُرَى (the one remaining naibNotFail
+  finding); ʿIzzī 11:s4 «لَا اسْمَ الْمَفْعُولِ» (ʿāṭifa, the engine says jins) and 16:s10 «لَا أَدْرِ» (nāfiya with the
+  yāʾ dropped for frequency — the matn's own point — the engine says nāhiya) are honest misses.
+- Masdar tendencies refitted on 555 Form I verbs (the package adds its model verbs). Smoke: «wave 165» (415 checks).
+- Next on this shelf: Sharḥ Shudhūr al-Dhahab (the matn only), and collating Marāḥ al-Arwāḥ's matn.
+

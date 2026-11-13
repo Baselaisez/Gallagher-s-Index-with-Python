@@ -560,6 +560,8 @@ def raw_at(words, q):
     return RAW.get(id(words), [""] * len(words))[q] if q < len(RAW.get(id(words), [])) else ""
 RAW = {}
 
+DIDACTIC = {"on": False}   # set from the meta flag cellLines (a ṣarf matn)
+
 def person_of(h2, hb2, tense, rule, words, i):
     """The hidden doer by the verb's own shape, then by the nearest cue in the sentence: ـَتْ is «she»; the interrogative
     hamza before تَفْعَلُ is «you»; أَ «I», نَـ «we» (behind سَـ too); تَـ is «she» after a feminine subject or هِيَ/إِنَّهَا,
@@ -568,10 +570,19 @@ def person_of(h2, hb2, tense, rule, words, i):
     if tense == "mazi" or rule == "mazi":
         return "هِيَ" if re.search(r"َتْ$", h2) else "هُوَ"
     if tense == "amr" or rule == "amr": return "أَنْتَ"
+    if re.match(r"^ل[َِ][يتنأ]", N(h2s)) and len(hb2s) >= 5: h2s = N(h2s)[2:]; hb2s = bare(h2s)   # لِتَفْصِلَ، لَتَفْعَلَنَّ: the lām of purpose / of the oath stands before the prefix
     if re.match(r"^أَت[َُ](?!ّ)", h2s) and len(hb2s) >= 4: return "أَنْتَ"
     if hb2s.startswith("أ"): return "أَنَا"
     if hb2s.startswith("ن"): return "نَحْنُ"
     if not hb2s.startswith("ت"): return "هُوَ"
+    if DIDACTIC["on"]:   # a ṣarf matn: its letters are the subjects — «تُحْذَفُ، تُقْلَبُ، تَثْبُتُ، تَسْقُطُ» speak of the wāw, the yāʾ, the nūn (she); the reader is addressed by what he DOES (تَقُولُ، تَضُمُّ، تُدْخِلُ)
+        pb_ = bare(words[i - 1]["w"]) if i > 0 else ""
+        addressed_ = bool(re.search(r"^[وف]?(انت|انك)$", pb_))
+        hn_ = N(h2s)
+        passive_ = bool(re.match(r"^تُ", hn_)) and bool(re.search(r"َا?[ء-ي]ّ?[َُِْ]?$|َّ?[ىا]$", hn_))
+        state_ = bool(re.match(r"^تَ", hn_)) and re.sub(r"^[وف]", "", hb2s) in ("تثبت", "تسقط", "تسلم", "تكون", "تعود", "تنقلب", "تصير", "تبقى", "تقع")
+        if (passive_ or state_) and not addressed_: return "هِيَ"
+        if re.sub(r"^[وف]", "", hb2s) == "تقول" and re.search(r"تَقُولُ$", hn_): return "أَنْتَ"   # «فَتَقُولُ»: the author hands the reader the form to say
     def fem(x):
         xb = re.sub(r"(هم|هما|هن|ها|ه|كم|كما|كن|ك|نا|ني)$", "", bare(x["w"])) if x.get("enc") else bare(x["w"])
         return bool(re.search(r"(ة|ات)$", xb)) and x.get("rule") in ("mubtada", "fail", "kanaIsm", "innaIsm", "naib")
@@ -627,6 +638,7 @@ def main():
     ap.add_argument("--lex", default=None); ap.add_argument("--trans", default=None); ap.add_argument("--fixes", default=None)
     a = ap.parse_args()
     E = json.load(open(a.engine, encoding="utf-8")); meta = json.load(open(a.meta, encoding="utf-8"))
+    DIDACTIC["on"] = bool(meta.get("cellLines"))
     LX = json.load(open(a.lex, encoding="utf-8")) if a.lex and os.path.exists(a.lex) else {}
     TR = json.load(open(a.trans, encoding="utf-8")) if a.trans and os.path.exists(a.trans) else {}
     FX = json.load(open(a.fixes, encoding="utf-8")) if a.fixes and os.path.exists(a.fixes) else {}
@@ -647,8 +659,12 @@ def main():
     def take(key, where):
         if key in G: used.setdefault(key, G[key]); return True
         for b, e in LX.items():
-            if e.get("key") == key: used.setdefault(key, {k: v for k, v in e.items() if k != "key"}); return True
+            if e.get("key") == key: used.setdefault(key, {k: v for k, v in e.items() if k not in ("key", "cite")}); return True
         report["nokey"].append((where, key)); return False
+    CITE = set()   # (wave 165) tokens whose lexicon row is a QUOTED PATTERN-WORD (فَعَلَ، يَفْعُلُ، اِفْعَنْلَلَ …): keyed by the author, never re-keyed, and given the quoted-word line
+    def hit(row, where):
+        if row.get("cite") and FX.get(where, {}).get("cite") is not False: CITE.add(where)
+        return row["key"]
     def key_for(w, enc, where):
         """the lex key of a written word: fixes → global lexicon via the engine → lex_extra by bare host (with or without a وَ/فَ prefix)"""
         cands = []
@@ -663,9 +679,19 @@ def main():
         b2 = bare(N(w))[1:] if pre_of(N(w)) else None
         FOLD = lambda x: x.replace("أ", "ا").replace("إ", "ا").replace("آ", "ا").replace("ٱ", "ا")
         LXF = {FOLD(k): v for k, v in LX.items()}
+        # (wave 165) a lexicon key may be VOCALISED — «فَعِل» and «فَعُل» are two measures on the same letters; the ending's own vowel is dropped
+        def VS(h):   # the ending's own marks off; a final shadda stays (NFC puts the vowel BEFORE the shadda)
+            h = re.sub(r"\u064b(\u0651?)\u0627$|\u0627\u064b$", lambda m_: m_.group(1) or "", N(h)); m = re.search(r"[\u064b-\u0652]*$", h)
+            return h[:m.start()] + ("\u0651" if "\u0651" in m.group(0) else "")
+        LXV = {VS(k): v for k, v in LX.items() if DIA.search(k)}
+        if LXV:
+            for base in ([N(host_of(w, enc)), N(w)] if enc else [N(w)]):
+                v0 = VS(base); v1 = re.sub(r"^[وف]\u064e", "", v0) if pre_of(base) else v0
+                for v, stripped in ((v0, False), (v1, v1 != v0), (re.sub(r"^(?:[بل]\u0650|ك\u064e)", "", v0), False), (re.sub(r"^(?:[بل]\u0650|ك\u064e)", "", v1), v1 != v0)):
+                    if v in LXV: return hit(LXV[v], where), stripped
         for cand in cands:
-            if cand in LX: return LX[cand]["key"], (cand == b2)
-            if FOLD(cand) in LXF: return LXF[FOLD(cand)]["key"], (cand == b2)
+            if cand in LX: return hit(LX[cand], where), (cand == b2)
+            if FOLD(cand) in LXF: return hit(LXF[FOLD(cand)], where), (cand == b2)
         return None, bool(b2)
     chapters_out = []
     for ch in E["chapters"]:
@@ -704,7 +730,7 @@ def main():
                     lb0_ = noal(bare(str((le0_ or {}).get("lemma", "")).split("(")[0].strip())) if le0_ else ""
                     fb_ = noal(bh); rb_ = noal(bh[1:])
                     rb0_ = bh[1:].replace("أ", "ا").replace("إ", "ا").replace("ٰ", "")
-                    if lb0_ and lb0_[0] == bh[0] and (fb_ == lb0_ or (fb_.startswith(lb0_) and len(fb_) - len(lb0_) <= 3) or (lb0_.endswith("ة") and fb_.startswith(lb0_[:-1]) and len(fb_) - len(lb0_) <= 3)) and not (rb_ == lb0_ or rb_.startswith(lb0_)) and rb0_ not in PART and rb0_ not in PRON and rb0_ not in DEM and rb0_ not in EXTRA_PART and not KANA_RE.match(rb0_):
+                    if lb0_ and lb0_[0] == bh[0] and (fb_ == lb0_ or (fb_.startswith(lb0_) and len(fb_) - len(lb0_) <= 3) or (lb0_.endswith("ة") and fb_.startswith(lb0_[:-1]) and len(fb_) - len(lb0_) <= 3)) and not (rb_ == lb0_ or rb_.startswith(lb0_)) and (rb0_ not in PART or bh[1:2] == "ا") and rb0_ not in PRON and rb0_ not in DEM and rb0_ not in EXTRA_PART and not KANA_RE.match(rb0_):
                         pre = ""; is_pre = False; core = bh   # وَارِدُونَ، فَضِيلَتَانِ، وَلَدٌ: the lemma begins with that letter — no prefix
                 segs = []; punct = None
                 # ---- particles / pronouns / demonstratives (mabnī)
@@ -742,7 +768,7 @@ def main():
                 ar = en = tr = ""; tags = []
                 if pb in ("لمن", "بما", "فيما", "فيمن", "كمن", "ممن", "انما", "كلما", "ايها", "هلا", "اذا", "كما", "لو", "لولا", "اما", "حتى") and not enc: kind = "particle"
                 if kind == "particle" and rule in ROLE and (pos or "").startswith("noun") and pb not in PART and pb not in DEM and pb not in PRON: kind = "noun"
-                if pb == "من" and "\u0650" in N(host_of(full, enc))[:3]: kind = "particle"   # مِنَ the preposition, not مَنْ the relative
+                if pb == "من" and "\u0650" in N(host_of(full, enc))[(2 if pre else 0):][:3]: kind = "particle"   # مِنَ the preposition, not مَنْ the relative
                 if bare(host_of(full, "")).replace("ٰ", "") in ("لله", "فلله", "ولله") and not enc:
                     toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": "allah", "pos": "propn", "grammar": [t for t in ["huruf-jarr"] + (["mubtada-khabar"] if rule in ("khabar",) else []) if t in GIDS], "irab": {"ar": ("الْوَاوُ عَاطِفَةٌ، وَ" if pre == "و" else ("الْفَاءُ عَاطِفَةٌ، وَ" if pre == "ف" else "")) + "اللَّامُ حَرْفُ جَرٍّ، وَلَفْظُ الْجَلَالَةِ مَجْرُورٌ بِالْكَسْرَةِ" + ("، وَالْجَارُّ وَالْمَجْرُورُ خَبَرٌ." if rule == "khabar" else "."), "en": "«to God» — the lam of jarr on the Name" + ("; the phrase is the khabar." if rule == "khabar" else "."), "tr": "«Allah'a» — lafza-i celâl üzerinde cer lâmı" + ("; câr-mecrûr haberdir." if rule == "khabar" else ".")}, "segments": ([{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}] if pre else []) + [{"form": "لِ", "lex": "li", "pos": "prep"}, {"form": "اللّٰهِ", "lex": "allah", "pos": "propn"}]})
                     take("allah", where); take("li", where)
@@ -776,7 +802,7 @@ def main():
                     take("la-nafiya" if wajh != "nahiya" else ("la-nahiya" if "la-nahiya" in G else "la-nafiya"), where); lx = "la-nahiya" if (wajh == "nahiya" and "la-nahiya" in G) else "la-nafiya"
                     toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": lx, "pos": "part", "grammar": [t for t in [tg] if t in GIDS], "irab": {"ar": ar0, "en": en0, "tr": tr0}, **({"segments": [{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}, {"form": full[2:], "lex": lx, "pos": "part"}]} if pre else {})})
                     continue
-                if pb == "من" and not enc and "\u0650" not in N(host_of(full, enc))[:3] and wajh in ("shart", "mawsul", "istifham"):
+                if pb == "من" and not enc and "\u0650" not in N(host_of(full, enc))[(2 if pre else 0):][:3] and wajh in ("shart", "mawsul", "istifham"):
                     nxk_ = words[i + 1] if i + 1 < len(words) else None
                     nxh_ = host_written(words, i + 1) if nxk_ is not None else ""; nxb2_ = bare(nxh_).replace("أ", "ا").replace("إ", "ا")
                     nx_verb_ = nxk_ is not None and (nxk_.get("kind") == "verb" or nxk_.get("k") == "cell" or nxb2_ in ("كان", "كانت", "كانوا", "ليس", "لم", "لا", "ما", "لن") or (verb_key_for(nxh_) is not None and not re.search(r"[ًٌٍ]", nxh_) and not nxb2_.startswith("ال") and re.search(r"[َُْ]$|ُوا$|ُونَ$|َتْ$", nxh_.replace("ّ", ""))))
@@ -806,7 +832,7 @@ def main():
                     elif nx_verb_: wajh = "mawsul"
                     elif not nx_verb_ and not prev_pause_: wajh = "mawsul"
                     elif wajh not in ("shart", "mawsul", "istifham"): wajh = "istifham"
-                if pb == "من" and not enc and "\u0650" not in N(host_of(full, enc))[:3] and wajh in FACE_MAN:
+                if pb == "من" and not enc and "\u0650" not in N(host_of(full, enc))[(2 if pre else 0):][:3] and wajh in FACE_MAN:
                     ar0, en0, tr0, tg = FACE_MAN[wajh]; ar0 = ("الْوَاوُ عَاطِفَةٌ، وَ" if pre == "و" else ("الْفَاءُ عَاطِفَةٌ، وَ" if pre == "ف" else "")) + "«مَنْ» " + ar0
                     if pre: take("wa" if pre == "و" else "fa", where)
                     take("man", where)
@@ -882,10 +908,10 @@ def main():
                     elif pb in PRON and not enc:
                         a_, e_, t_, pk = PRON[pb]; ar = a_ + " فِي مَحَلِّ رَفْعٍ."; en = e_ + " — a detached pronoun; in the place of raf'."; tr = t_ + " — munfasıl zamir, mahallen merfû."; tags = ["al-mabni-wal-mudmar"]
                         key = key or pk; take(key, where)
-                    elif (pb in DEM or (pb.startswith("لل") and ("ال" + pb[2:]) in DEM)) and not enc and (kind != "particle" or pb in ("ما", "من") or pb not in ("ما", "من")) and not (pb == "من" and "\u0650" in N(host_of(full, enc))[:3]):
+                    elif (pb in DEM or (pb.startswith("لل") and ("ال" + pb[2:]) in DEM)) and not enc and (kind != "particle" or pb in ("ما", "من") or pb not in ("ما", "من")) and not (pb == "من" and "\u0650" in N(host_of(full, enc))[(2 if pre else 0):][:3]):
                         cs = CASE_OF_RULE.get(rule)
                         ma_face_ = None
-                        if pb == "ما" and not enc and "\u0650" not in N(host_of(full, enc))[:3] and i + 1 < len(words):
+                        if pb == "ما" and not enc and "\u0650" not in N(host_of(full, enc))[(2 if pre else 0):][:3] and i + 1 < len(words):
                             # (wave 157) مَا by its written clause: ظرفية before لَمْ; استفهام before a noun at a clause head or after a saying verb; حجازية when a بِ-phrase or a manṣūb answers that noun; نافية at a clause head before a verb (or with إِلَّا later, or مَا لَهُ … مِنْ); موصولة after a noun, a jarr letter, a demonstrative or a transitive verb
                             nxm_ = host_written(words, i + 1); nxmb_ = bare(nxm_).replace("أ", "ا").replace("إ", "ا"); nxk2_ = words[i + 1]
                             nxv_ = nxk2_.get("kind") == "verb" or nxk2_.get("k") == "cell" or nxmb_ in ("كان", "كانت", "كانوا", "ليس") or (nxk2_.get("kind") != "noun" and not enc_of(nxk2_) and verb_key_for(nxm_) is not None and not re.search(r"[ًٌٍ]", nxm_) and not nxmb_.startswith("ال") and re.search(r"[َُْ]$|ُوا$|ُونَ$|َتْ$|ْتُ$|ْنَا$", nxm_.replace("ّ", "")))
@@ -919,10 +945,12 @@ def main():
                         else: report["nokey"].append((where, b))
                     elif pkey in PART:
                         a_, e_, t_, tg, pk = PART[pkey]; ar, en, tr, tags = a_, e_, t_, list(tg)
+                        if pkey == "اما" and re.search(r"إِمَّا$", N(full)) and "imma" in G:   # إِمَّا is not أَمَّا: the hamza's kasra decides
+                            a_, e_, t_, tg, pk = ("«إِمَّا» حَرْفُ تَفْصِيلٍ مَبْنِيٌّ عَلَى السُّكُونِ، لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.", "«either … or» — the letter of detailing; it never comes alone.", "«ya … ya» — tafsîl harfi; asla yalnız gelmez.", ["aw-imma-am-la-bal-lakin-fil-kafiya"], "imma"); ar, en, tr, tags = a_, e_, t_, list(tg)
                         nxw_ = N(words[i + 1]["w"]) if i + 1 < len(words) else ""; nxb_ = bare(nxw_).replace("أ", "ا").replace("إ", "ا")
                         nxww_ = host_written(words, i + 1).replace("ّ", "") if i + 1 < len(words) else ""
-                        nx_mudari_ = bool(re.match(r"^[يتأن][َُ][ء-ي]", nxww_)) and len(bare(nxww_)) >= 3 and (words[i + 1].get("kind") == "verb" or verb_key_for(nxww_) is not None) and not re.search(r"(َتْ|ْتُ|ْتَ|ْنَا|ْتُمْ)$", nxww_) and not VERB_BY_LEMMA.get(N(host_written(words, i + 1))) and re.search(r"([َُْ]|ُونَ|ُوا|ِينَ|َانِ|ْنَ)$", nxww_) and not re.search(r"[اى]$", bare(nxww_)) and not (words[i + 1].get("kind") == "verb" and words[i + 1].get("cell") and "mazi" in str(words[i + 1].get("cell")))
-                        if pkey == "قد" and nx_mudari_: ar = "«قَدْ» حَرْفٌ لِلتَّقْلِيلِ (أَوِ التَّكْثِيرِ) قَبْلَ الْمُضَارِعِ، مَبْنِيٌّ عَلَى السُّكُونِ."; en = "«qad» of rarity (or frequency) before a present verb — «sometimes».; "; tr = "«kad» muzâriden önce taklîl (yahut teksîr) için — «bazen»."
+                        nx_mudari_ = bool(re.match(r"^[يتأن][َُ][ء-ي]", nxww_)) and len(bare(nxww_)) >= 3 and (words[i + 1].get("kind") == "verb" or verb_key_for(nxww_) is not None) and not re.search(r"(َتْ|ْتُ|ْتَ|ْنَا|ْتُمْ)$", nxww_) and not VERB_BY_LEMMA.get(N(host_written(words, i + 1))) and re.search(r"([َُْ]|ُونَ|ُوا|ِينَ|َانِ|ْنَ|ِي|ُو)$", nxww_) and not re.search(r"[اى]$", bare(nxww_)) and not (words[i + 1].get("kind") == "verb" and words[i + 1].get("cell") and "mazi" in str(words[i + 1].get("cell")))
+                        if pkey == "قد" and nx_mudari_: ar = "«قَدْ» حَرْفٌ لِلتَّقْلِيلِ (أَوِ التَّكْثِيرِ) قَبْلَ الْمُضَارِعِ، مَبْنِيٌّ عَلَى السُّكُونِ."; en = "«qad» of rarity (or frequency) before a present verb — «sometimes»."; tr = "«kad» muzâriden önce taklîl (yahut teksîr) için — «bazen»."
                         lam_jawab_ = False
                         for q_ in range(i + 1, min(len(words), i + 7)):
                             wq_ = host_written(words, q_); bq_ = bare(wq_)
@@ -1005,7 +1033,7 @@ def main():
                                 if VERB_BY_LEMMA.get(rest_.replace("ٰ", "")) or (rest_.endswith("َا") and VERB_BY_LEMMA.get(rest_[:-1] + "ى")):
                                     enc = {"نَا": "نا", "هُمْ": "هم", "هَا": "ها", "هُ": "ه", "كُمْ": "كم", "نِي": "ني", "كَ": "ك"}[sfx_]; h = N(host_of(full, enc)); h2 = h[2:] if pre else h; hb2 = bare(h2); break
                     kpos_ = (G.get(key) or next((v for v in LX.values() if v.get("key") == key and v.get("pos")), None) or {}).get("pos") if key else None
-                    if not fx.get("key") and (key is None or kpos_ not in ("verb", "part")):   # a verb keyed to a homograph noun (قَالَ → قَالٍ) or to nothing: the verb that owns the form
+                    if not fx.get("key") and where not in CITE and (key is None or kpos_ not in ("verb", "part")):   # a verb keyed to a homograph noun (قَالَ → قَالٍ) or to nothing: the verb that owns the form
                         kv_ = verb_key_for(h2)
                         if not kv_ and pre and verb_key_for(h):
                             kv_ = verb_key_for(h); pre = ""; h2 = h; hb2 = bare(h2); is_pre = False   # the و / ف is the verb's first radical (وَصَفَ، وَلَدَ، فَعَلُوهُ)
@@ -1137,7 +1165,7 @@ def main():
                 if lam_ib_ and hn_b[1:] == lem_b: hn_b = hn_b[1:]
                 if lem_b and re.match(r"^[لأ]َ[ء-ي]", N(hostn)) and hn_b[1:] in (lem_b + "ون", lem_b + "ين", lem_b + "ان", lem_b + "ي", lem_b + "و") and len(hn_b) >= 6: hn_b = hn_b[1:]   # لَكَاذِبُونَ، أَمُرْسَلِينَ: the muzaḥlaqa lām / the question hamza
                 if os.environ.get("PKG_DEBUG") and where in os.environ["PKG_DEBUG"].split(","): print("SHAPE?", where, full, "hostn", hostn, "sh", sh, "cs", cs, "lem_b", lem_b, "hn_b", hn_b, "pos", pos, "pre", repr(pre), "jc", repr(jc))
-                lem_pl = lem_b and re.search(r"(ون|ين)$", lem_b) and hn_b in (lem_b, lem_b[:-2] + "ون", lem_b[:-2] + "ين")
+                lem_pl = lem_b and re.search(r"(ون|ين)$", lem_b) and hn_b in (lem_b, lem_b[:-2] + "ون", lem_b[:-2] + "ين") and not re.search(r"َيْن[ً-ْ]*$", N(str((lem_e or {}).get("lemma", "")).split("(")[0].strip()))   # عَيْن، غَيْن، بَيْن، دَيْن: the yāʾ and nūn are radicals, no plural's ending
                 def _of_lemma(hb_, lb_):
                     """hb_ is a dual/plural form of the lemma lb_: the bare stem before ـان/ـين/ـون/ـي/ـو/ـا, allowing the feminine ـت and the manqūṣ ـي"""
                     if not lb_: return False
@@ -1192,6 +1220,129 @@ def main():
                     if enc: segs.append({"form": full[len(h):], "lex": ENC.get(enc, "?"), "pos": "pron"}); take(ENC.get(enc, "?"), where)
                 if fx.get("irab"): ar, en, tr = fx["irab"]["ar"], fx["irab"]["en"], fx["irab"]["tr"]; tags = list(tags) + list(fx.get("tags", []))
                 toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": key or "?", "pos": (pos if pos in ("noun", "propn", "adj", "pron", "adv") else "noun"), **({"grammar": list(dict.fromkeys(t for t in tags if t in GIDS))} if tags else {}), "irab": {"ar": ar, "en": en, "tr": tr}, **({"segments": segs} if segs else {})})
+            for i, t in enumerate(toks):   # (wave 165) the quoted pattern-word: the Iẓhār's own wording for a word mentioned, by the seat the page shows
+                if f"{where0}:{i}" not in CITE: continue
+                fw = N(t["surface"]["full"]); pb = re.sub(r"^[وف]", "", bare(toks[i - 1]["surface"]["full"])) if i else ""
+                waw = bool(re.match(r"^[وف]\u064e", fw)) and len(bare(fw)) > 3 and not re.match(r"^فَ[عا]", fw)
+                core_ = fw[2:] if waw else fw; kaf = bool(re.match(r"^ك\u064e", core_)); ba = bool(re.match(r"^[بل]\u0650", core_))
+                if waw: ar, en, tr = "الْوَاوُ عَاطِفَةٌ، وَالْمَعْطُوفُ لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "«and …» — the word itself is quoted, joined to what precedes.", "«ve …» — kelimenin kendisi kastedilmiştir (hikâye), öncekine atfedilmiştir."
+                elif kaf: ar, en, tr = "الْكَافُ لِلتَّمْثِيلِ، وَمَا بَعْدَهَا لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ.", "«like …» — the word itself is quoted, in the place of jarr.", "«… gibi» — kelimenin kendisi kastedilmiştir (hikâye), cer mahallinde."
+                elif ba: ar, en, tr = "حَرْفُ جَرٍّ، وَمَا بَعْدَهُ لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ.", "a jarr letter, and after it the word itself is quoted, in the place of jarr.", "cer harfi; sonrasında kelimenin kendisi kastedilmiştir (hikâye), cer mahallinde."
+                elif pb in ("وزن", "مثال", "نحو", "مثل", "بناء", "لفظ"): ar, en, tr = "مُضَافٌ إِلَيْهِ فِي مَحَلِّ جَرٍّ — لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "the word itself is quoted; it sits in the place of jarr as mudaf ilayh.", "kelimenin kendisi kastedilmiştir (hikâye); muzâfun ileyh olarak cer mahallinde."
+                elif pb in ("على", "من", "في", "الى", "إلى", "عن"): ar, en, tr = "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ.", "the word itself is quoted; it sits in the place of jarr.", "kelimenin kendisi kastedilmiştir (hikâye); cer mahallinde."
+                else: ar, en, tr = "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "the word itself is quoted.", "kelimenin kendisi kastedilmiştir (hikâye)."
+                t["irab"] = {"ar": ar, "en": en, "tr": tr}; t["pos"] = "noun"; t.pop("grammar", None)
+                if t.get("segments"):
+                    for sg in t["segments"]:
+                        if sg.get("lex") == t["lex"]: sg["pos"] = "noun"
+            for ti_, t_ in enumerate(toks):   # (wave 165) a sister of kāna whose noun is written keeps no hidden one beside it; and no line ends on two full stops
+                ir_ = t_.get("irab") or {}
+                if "وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ" in ir_.get("ar", "") and any("اسْمُ كَانَ" in (x_.get("irab") or {}).get("ar", "") for x_ in toks[ti_ + 1:ti_ + 4]):
+                    ir_["ar"] = re.sub(r"، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ(?: وُجُوبًا| جَوَازًا)? تَقْدِيرُهُ [^،.]+", "", ir_["ar"])
+                    if isinstance(ir_.get("en"), str): ir_["en"] = re.sub(r"; its (?:doer|noun) is a hidden pronoun «[^»]+»", "", ir_["en"])
+                    if isinstance(ir_.get("tr"), str): ir_["tr"] = re.sub(r"; (?:fâili|ismi) gizli zamir(?:dir)? «[^»]+»", "", ir_["tr"])
+                for k_ in ("ar", "en", "tr"):
+                    if isinstance(ir_.get(k_), str) and ir_[k_].endswith(".."): ir_[k_] = ir_[k_][:-1]
+            if meta.get("cellLines"):   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
+                import cell_lines as CL
+                def vhost_(t):
+                    f = N(t["surface"]["full"]); sg = t.get("segments") or []
+                    if M.get(t.get("lex")) and CL.candidates(M[t["lex"]], f):
+                        if sg and sg[0].get("lex") in ("wa", "fa"): t.pop("segments", None)
+                    elif sg and sg[0].get("lex") in ("wa", "fa"): f = f[len(N(sg[0]["form"])):]
+                    elif re.match(r"^و\u064e", f) and len(bare(f)) > 3 and not (M.get(t.get("lex")) and CL.candidates(M[t["lex"]], f)): f = f[2:]
+                    return f
+                PARTS_ = {"لم", "لن", "لا", "ما"}
+                def mk_(t, key):
+                    h = vhost_(t); e = M.get(key); gov = ""; cs = CL.candidates(e, h) if e else []
+                    if e and not cs and re.match(r"^ل\u0650[يتنأ]", h):
+                        cs = [c for c in CL.candidates(e, h[2:]) if c[0] == "mudari" and c[2] == "jazm"]
+                        if cs or CL.tawkid_line(h[2:], "ل"): h = h[2:]; gov = "ل"
+                    return {"h": h, "e": e, "cs": cs, "gov": gov, "key": key}
+                def hosts_(f):
+                    out = [f]
+                    if re.match(r"^[وف]\u064e", f): out.append(f[2:])
+                    for h in list(out):
+                        if re.match(r"^س\u064e|^ل[\u064e\u0650]", h): out.append(h[2:])
+                    return out
+                for i, t in enumerate(toks):   # a verb cell filed under a homograph lemma (تَقُولُ under تَقَوَّلَ): exactly one other paradigm owns the written form
+                    k0 = t.get("lex")
+                    if t.get("pos") != "verb" or k0 not in M or f"{where0}:{i}" in CITE or FX.get(f"{where0}:{i}", {}).get("key"): continue
+                    hs = hosts_(N(t["surface"]["full"]))
+                    if any(CL.candidates(M[k0], h) for h in hs): continue
+                    own = [k for k, e in M.items() if k != k0 and any(CL.candidates(e, h) for h in hs)]
+                    if len(own) == 1 and take(own[0], f"{where0}:{i}"):
+                        t["lex"] = own[0]
+                        for sg in (t.get("segments") or []):
+                            if sg.get("lex") == k0: sg["lex"] = own[0]
+                        report.setdefault("cellRekey", []).append(f"{where0}:{i} {k0}->{own[0]}")
+                info = []
+                for i, t in enumerate(toks):
+                    if f"{where0}:{i}" in CITE or FX.get(f"{where0}:{i}", {}).get("irab") or isinstance(FX.get(f"{where0}:{i}", {}).get("note"), dict): info.append(None); continue
+                    info.append(mk_(t, t.get("lex")))
+                def prev_part(i):
+                    j = i - 1
+                    if j >= 0 and re.sub(r"^[وف]", "", bare(toks[j]["surface"]["full"])) in PARTS_ | {"اما", "إما"}: return re.sub(r"^[وف]", "", bare(toks[j]["surface"]["full"])).replace("إ", "ا")
+                    return ""
+                i = 0
+                while i < len(toks):
+                    a_ = info[i]
+                    if not a_ or not a_["e"]: i += 1; continue
+                    run = [i]; j = i + 1
+                    while j < len(toks):
+                        if info[j] and info[j]["key"] == a_["key"]: run.append(j); j += 1
+                        elif info[j] and len(run) >= 2 and mk_(toks[j], a_["key"])["cs"]:   # a cell of the SAME verb that a homograph lemma had claimed (تَنْصُرْ → نَصَرَ, not تَنَصَّرَ)
+                            info[j] = mk_(toks[j], a_["key"]); old_ = toks[j].get("lex"); toks[j]["lex"] = a_["key"]; take(a_["key"], f"{where0}:{j}")
+                            for sg in (toks[j].get("segments") or []):
+                                if sg.get("lex") == old_: sg["lex"] = a_["key"]
+                            report.setdefault("cellRekey", []).append(f"{where0}:{j} {old_}->{a_['key']}"); run.append(j); j += 1
+                        elif re.sub(r"^[وف]", "", bare(toks[j]["surface"]["full"])) in PARTS_ and j + 1 < len(toks) and info[j + 1] and info[j + 1]["key"] == a_["key"]: j += 1
+                        else: break
+                    if len(run) >= 2:
+                        prev = -1; ptense = None
+                        la_jazm = any(prev_part(q) == "لا" and ((info[q]["cs"] and any(c[0] == "mudari" and c[2] == "jazm" for c in info[q]["cs"]) and not any(c[0] == "mudari" and c[2] == "raf" for c in info[q]["cs"])) or (not info[q]["cs"] and CL.tawkid_line(info[q]["h"], "لا"))) for q in run)   # one cell of the row is visibly forbidden (لَا يَنْصُرْ، لَا تُرِيَنَّ): the whole row is the prohibition
+                        for q in run:
+                            x = info[q]; pp = x["gov"] or prev_part(q); want = {"لم": "jazm", "ل": "jazm", "لن": "nasb", "اما": "jazm"}.get(pp) or ("jazm" if pp == "لا" and la_jazm else None)
+                            if pp == "لا" and la_jazm and q > 0 and not FX.get(f"{where0}:{q - 1}", {}).get("irab"):
+                                tl = toks[q - 1]; wl_ = bool(re.match(r"^و\u064e", N(tl["surface"]["full"])))
+                                tl["irab"] = {"ar": ("الْوَاوُ عَاطِفَةٌ، وَ" if wl_ else "") + "«لَا» النَّاهِيَةُ: حَرْفُ نَهْيٍ وَجَزْمٍ مَبْنِيٌّ عَلَى السُّكُونِ.", "en": ("«and» + " if wl_ else "") + "«do not» — the prohibitive la, it puts the verb in jazm.", "tr": ("«ve» + " if wl_ else "") + "«-me» — nehiy lâ'sı, fiili cezmeder."}
+                                old_ = tl.get("lex"); tl["lex"] = "la-nahiya"; tl["grammar"] = ["la-nahiya"]; take("la-nahiya", f"{where0}:{q - 1}")
+                                for sg in (tl.get("segments") or []):
+                                    if sg.get("lex") == old_: sg["lex"] = "la-nahiya"
+                            cs = x["cs"]; ln = None
+                            if cs:
+                                pool = [c for c in cs if (c[0] != "mudari" or (want and c[2] == want) or (not want and (c[2] == ("jazm" if pp == "لا" and any(k[2] == "jazm" and k[2] != "raf" for k in cs) and not any(k[2] == "raf" for k in cs) else "raf"))))] or cs
+                                same = [c for c in pool if c[0] == ptense] or pool
+                                nxt = [c for c in same if c[1] > prev] or same
+                                c = min(nxt, key=lambda c: c[1]); prev, ptense = c[1], c[0]
+                                gv = pp if (c[0] == "mudari" and c[2] in ("jazm", "nasb") and pp in ("لم", "لن", "لا", "ل", "اما")) else ""
+                                ln = CL.line(x["e"], c[0], c[1], c[2], gv)
+                            else:
+                                ln = CL.tawkid_line(x["h"], pp if pp in ("لا", "ل", "اما") else "")
+                                if not ln: ln = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "the word itself is quoted.", "kelimenin kendisi kastedilmiştir (hikâye).")
+                                else: prev, ptense = -1, None
+                            t = toks[q]; pre_ = N(t["surface"]["full"])[:2] if N(t["surface"]["full"]) != x["h"] and re.match(r"^[وف]\u064e", N(t["surface"]["full"])) else ""
+                            ar, en, tr = ln
+                            if pre_: ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if pre_[0] == "و" else "الْفَاءُ عَاطِفَةٌ، وَ") + ar; en = ("The waw conjoins; " if pre_[0] == "و" else "The fa conjoins; ") + en[:1].lower() + en[1:]; tr = ("«ve» + " if pre_[0] == "و" else "«bunun üzerine» + ") + tr[:1].lower() + tr[1:]
+                            if x["gov"] == "ل": ar = "اللَّامُ لَامُ الْأَمْرِ، وَ" + ar; en = "The lām is the lām of command; " + en[:1].lower() + en[1:]; tr = "Lâm emir lâmıdır; " + tr[:1].lower() + tr[1:]
+                            quoted = "مَحْكِيٌّ" in ln[0]
+                            t["irab"] = {"ar": ar, "en": en, "tr": tr}; t["pos"] = "noun" if quoted else "verb"; t.pop("grammar", None); report["cells"] = report.get("cells", 0) + 1
+                            for sg in (t.get("segments") or []):
+                                if sg.get("lex") == t["lex"]: sg["pos"] = t["pos"]
+                    i = run[-1] + 1
+                # a same-word row of nouns (نَاصِرٌ نَاصِرَانِ نَاصِرُونَ …): each is the word itself, quoted
+                i = 0
+                while i < len(toks):
+                    j = i
+                    while j + 1 < len(toks) and toks[j + 1].get("lex") == toks[i].get("lex") and toks[i].get("lex") not in M: j += 1
+                    if j - i >= 2 and toks[i].get("pos") != "part":
+                        for q in range(i, j + 1):
+                            if f"{where0}:{q}" in CITE: continue
+                            w_ = bool(re.match(r"^و\u064e", N(toks[q]["surface"]["full"]))) and bool(toks[q].get("segments"))
+                            toks[q]["irab"] = ({"ar": "الْوَاوُ عَاطِفَةٌ، وَالْمَعْطُوفُ لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "en": "«and …» — the word itself is quoted, joined to what precedes.", "tr": "«ve …» — kelimenin kendisi kastedilmiştir (hikâye), öncekine atfedilmiştir."} if w_ else
+                                               {"ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "en": "the word itself is quoted.", "tr": "kelimenin kendisi kastedilmiştir (hikâye)."})
+                            toks[q].pop("grammar", None); report["cells"] = report.get("cells", 0) + 1
+                    i = j + 1
             for i, t in enumerate(toks):
                 nt = FX.get(f"{where0}:{i}", {}).get("note")
                 if isinstance(nt, dict) and "ar" in nt: t["irab"] = {"ar": nt["ar"], "en": nt["en"], "tr": nt.get("tr", nt["en"])}; report["fixed"] += 1
@@ -1226,6 +1377,7 @@ def main():
     for k in [k for k in used if k not in ref]: used.pop(k)
     for k in used:
         if k in M and k not in morph and ((used.get(k) or G.get(k) or {}).get("pos") == "verb") and (OWNER_G.get(k) == OWNER_M.get(k) or OWNER_M.get(k) is None or k in MX): morph[k] = M[k]   # the package's own verbs (new keys) take their paradigms too
+    for k in [k for k in morph if k not in used]: morph.pop(k)   # a paradigm whose verb every token left (re-keyed to the lemma that owns the cell)
     json.dump({"entries": dict(sorted(used.items()))}, open(out / "glossary.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     json.dump({"verbs": dict(sorted(morph.items()))}, open(out / "morphology.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     nt = sum(len(s["tokens"]) for c in chapters_out for s in c["sentences"]); ns = sum(len(c["sentences"]) for c in chapters_out)
