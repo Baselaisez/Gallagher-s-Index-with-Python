@@ -251,3 +251,12 @@ page images of the owner's two scans (pp. 49–102 of the print): the classical 
 editor's introduction, headings or footnotes, and neither the copyist's colophon nor the poem after it. The
 vowelling, the punctuation and the division into nineteen chapters are ours; «يَعْتَلُّ» is read active where the
 print vowels the passive. It is the source of `content/samples/tasrif-al-izzi` (see `tools/authoring/izzi/`).
+
+**`shudhur-al-dhahab-src.txt`** (wave 166) — the matn of Ibn Hishām al-Anṣārī's «شُذُورُ الذَّهَبِ فِي مَعْرِفَةِ كَلَامِ
+الْعَرَبِ» (d. 761 AH), part one, read from the page images of the owner's scan of the author's own SHARḤ (pp. 31–93
+of the print): only the passages the author opens with «قُلْتُ» — the matn — without that word; nothing of his
+sharḥ («وَأَقُولُ …»), and nothing of the modern editor's preface, biographies, headings or footnotes. The vowelling,
+the punctuation, the «…» around examples and āyāt, and the division into seven chapters are ours. Two readings the
+matn's own argument needs are kept as printed: «تُحَاجُّونِي» with one nūn (p. 90) and «مَنْ يَتَّقِي» with its yāʾ
+(p. 92). The scan ends inside «بَابُ الْبِنَاءِ» (p. 99), so that chapter is not in the file. It is the source of
+`content/samples/shudhur-al-dhahab` (see `tools/authoring/shudhur/`).

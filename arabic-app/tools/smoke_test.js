@@ -14684,6 +14684,40 @@ if (!CHROME) {
     if (r.stored !== 'تَمَادَّ يَتَمَادُّ'.normalize('NFC')) throw new Error('the stored paradigm of تَمَادَّ: ' + r.stored);
   });
 
+  await check('wave 166 — «شُذُورُ الذَّهَبِ» part one as the fifty-fifth text: the relative مَا after its subject is named as the predicate (مَا is never a naʿt), the seven departures from the base signs are each read by the matn\'s own point (the diptote\'s fatḥa, the ـَات plural\'s kasra, the attached plurals\' wāw, the women\'s nūn against the dropped nūn, the implied vowels of الْفَتَى and الْقَاضِي), and حَاجَّ owns a paradigm', async () => {
+    const r = await page.evaluate(() => {
+      const st = STORIES.find(s => s.id === 'shudhur-al-dhahab'); if (!st) return { missing: true };
+      const chOf = n => st.chapters.find(c => String(c.n || c.chapter) === String(n));
+      const tok = (n, sid, i) => { const ch = chOf(n), sn = ch && ch.sentences.find(s => s.id === sid); return sn && sn.tokens[i]; };
+      const line = (n, sid, i) => { const t = tok(n, sid, i); return t ? [t.s.full, t.lex, t.pos, t.irab.ar].join(' | ') : '?'; };
+      const out = { chapters: st.chapters.length, sentences: 0, tokens: 0, untranslated: 0, twoSila: 0, noTr: 0, maKhabar: 0 };
+      st.chapters.forEach(c => c.sentences.forEach(s => { out.sentences++; if (!s.translation || !s.translation.en || !s.translation.tr) out.untranslated++;
+        s.tokens.forEach(t => { out.tokens++; const ar = String(t.irab.ar || ''); if ((ar.match(/وَصِلَتُهُ/g) || []).length > 1) out.twoSila++; if (!t.irab.en || !t.irab.tr) out.noTr++;
+          if (t.s.bare === 'ما' && /فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَأِ/.test(ar)) out.maKhabar++; }); }));
+      out.ism = line(1, 's3', 0); out.ma = line(1, 's3', 1); out.huwa = line(1, 's4', 3);
+      out.udifa = line(4, 's1', 12); out.afdal = line(4, 's1', 8); out.samawat = line(4, 's2', 13); out.han = line(4, 's4', 2);
+      const s54 = chOf(5).sentences.find(s => s.id === 's4');
+      out.mulhaq = s54.tokens.filter((t, i) => i >= 2 && i <= 9 && !/بَابُهُمَا/.test(t.s.full)).map(t => /مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ/.test(t.irab.ar) ? 1 : 0).join('');
+      out.yafuna = line(6, 's2', 9); out.tafu = line(6, 's2', 16); out.fata = line(7, 's1', 8); out.qadi = line(7, 's1', 15);
+      const m = st.morph, e = m && m['hajja-argue'];
+      out.hajja = e ? [e.mazi[0], e.mudari[0], e.mazi[6]].map(x => sjN(x)).join(' ') : 'none';
+      return out;
+    });
+    if (r.missing) throw new Error('shudhur-al-dhahab is not on the shelf');
+    if (r.chapters < 7 || r.sentences < 25 || r.tokens < 330) throw new Error('part one is seven chapters / twenty-five sentences: ' + J([r.chapters, r.sentences, r.tokens]));
+    if (r.untranslated || r.noTr) throw new Error('every sentence and every line is trilingual: ' + J([r.untranslated, r.noTr]));
+    if (r.twoSila) throw new Error('a relative noun names its ṣila once: ' + r.twoSila);
+    if (!/وَخَبَرُهُ الِاسْمُ الْمَوْصُولُ «مَا» بَعْدَهُ/.test(r.ism) || !/ma-mawsula \| pron \| اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَأِ، وَصِلَتُهُ/.test(r.ma) || r.maKhabar < 7) throw new Error('فَالِاسْمُ مَا يَقْبَلُ: the relative مَا is the khabar: ' + J([r.ism, r.ma, r.maKhabar]));
+    if (!/فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ\.$/.test(r.huwa)) throw new Error('وَهُوَ مَا يَقْبَلُ: the detached pronoun is the mubtadaʾ: ' + r.huwa);
+    if (!/adafa \| verb \| فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ/.test(r.udifa)) throw new Error('إِنْ أُضِيفَ is a passive verb, not a particle: ' + r.udifa);
+    if (!/بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ/.test(r.afdal) || !/بِالْكَسْرَةِ نِيَابَةً عَنِ الْفَتْحَةِ/.test(r.samawat)) throw new Error('bābs one and two — the diptote and the ـَات plural: ' + J([r.afdal, r.samawat]));
+    if (!/الْهَنِ \| han \| noun \| مَجْرُورٌ/.test(r.han)) throw new Error('الْهَنِ is the noun هَنٌ, not the pronoun هُنَّ: ' + r.han);
+    if (r.mulhaq !== '1111111') throw new Error('أُولُو، عَالَمُونَ، أَرَضُونَ، سِنُونَ، عِشْرُونَ، أَهْلُونَ، عِلِّيُّونَ are ATTACHED to the sound plural: ' + r.mulhaq);
+    if (!/مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ/.test(r.yafuna) || !/حَذْفُ النُّونِ/.test(r.tafu)) throw new Error('يَعْفُونَ (the women\'s nūn, built) against تَعْفُوا (the nūn dropped): ' + J([r.yafuna, r.tafu]));
+    if (!/مُقَدَّرَةٍ عَلَى الْأَلِفِ/.test(r.fata) || !/مُقَدَّرَةٍ عَلَى الْيَاءِ/.test(r.qadi)) throw new Error('the implied vowels — الْفَتَى on its alif, الْقَاضِي on its yāʾ: ' + J([r.fata, r.qadi]));
+    if (r.hajja !== 'حَاجَّ يُحَاجُّ حَاجَجْتَ'.normalize('NFC')) throw new Error('the stored paradigm of حَاجَّ: ' + r.hajja);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -11301,3 +11301,49 @@ izzi/meta.json <out> --lex … --morph … --fixes … --trans …`.
 - Masdar tendencies refitted on 555 Form I verbs (the package adds its model verbs). Smoke: «wave 165» (415 checks).
 - Next on this shelf: Sharḥ Shudhūr al-Dhahab (the matn only), and collating Marāḥ al-Arwāḥ's matn.
 
+### v265 (wave 166) — «شُذُورُ الذَّهَبِ» part one: Ibn Hishām's matn as the fifty-fifth text
+
+`content/samples/shudhur-al-dhahab` (L4 Upper Intermediate, premium, v0.1.0; 7 chapters / 25 sentences / 337 words;
+glossary 197; 38 paradigms, 30 regenerating with 0 mismatches, 8 outside the conjugator's classes) carries the matn
+of «شُذُورُ الذَّهَبِ» from its first word to the end of the chapter on the implied vowels — the word and its three
+kinds, the sentence, iʿrāb and its four kinds, the seven bābs that leave the base signs, and الْفَتَى / الْقَاضِي /
+يَخْشَى / يَدْعُو. Source: `research/sources/shudhur-al-dhahab-src.txt`, read from the page images of the owner's scan
+of the SHARḤ (pp. 31–93): only the passages Ibn Hishām opens with «قُلْتُ» — the matn — without the word itself;
+nothing of his own sharḥ («وَأَقُولُ»), and nothing of the modern editor's preface, biographies or footnotes. The
+scan ends inside «بَابُ الْبِنَاءِ», so the book stops one chapter earlier and the manifest says «part one».
+Regenerate with `tools/authoring/shudhur/` (lemmas → `mk_lex.py`, `sarf_shudhur.py`, `mk_trans.py`, 133 fixes) through
+`engine_author.js` + `pkg_from_engine.py`; `meta.json` carries `"didactic": true` (the matn's «تُرْفَعُ، تُنْصَبُ» are
+«هِيَ», not «أَنْتَ»).
+
+- **The source file is written for the tokenizer, and that is recorded here because it cost three rebuilds.** No
+  `﴿ ﴾` and no `؛` (unknown tokens); no tatweel in `كَـ«X»` (the bare form no longer equals the stripped full form
+  and validation fails) — write `«كَX»`; and a conjunction is written INSIDE the quotation (`«وَX»`), or the
+  sentence's tokens misalign and the endings are stripped. The Arabic the reader sees is unchanged by any of this.
+- **`مَا` after its subject is the predicate — a builder rule, not 7 fixes.** «فَالِاسْمُ مَا يَقْبَلُ»، «وَهُوَ مَا دَلَّ»:
+  `name_khabar` took any relative after a mubtadaʾ for its naʿt and wrote «وَخَبَرُهُ مَا بَعْدَ تَمَامِ الصِّلَةِ» — true
+  of الَّذِي, never of مَا, which cannot be a naʿt. `name_ma_khabar` (after `name_sila`) gives the relative its seat
+  («فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَأِ»), names it on the subject's line, and calls the detached pronoun before it
+  «مُبْتَدَأٌ». A bare muḍāf before the مَا (أَوَّلُ مَا يَجِبُ) annexes it and is left alone. It reaches the other
+  engine-authored books only when they are rebuilt.
+- **Two more builder repairs.** A fix that says `pos: "verb"` on a word the engine kept (`k: keep` — أُضِيفَ after
+  إِنْ) was still emitted by the particle branch as `part`; it now goes through the verb branch. A fix's nominal
+  `pos` outranks the engine's lexicon guess (الْهَنِ was filed under the pronoun هُنَّ). And `name_sila` no longer
+  appends a second «وَصِلَتُهُ …» to an authored line that already names one.
+- **What the matn teaches is what the lines say.** Each of the seven bābs is read by its own point, and the smoke
+  check pins them: بِأَفْضَلَ (fatḥa for kasra), السَّمَاوَاتِ / ثُبَاتٍ (kasra for fatḥa), the six words ATTACHED to the
+  sound plural (أُولُو، عَالَمُونَ، أَرَضُونَ، سِنُونَ، عِشْرُونَ، أَهْلُونَ، عِلِّيُّونَ — «مُلْحَقٌ», never «جَمْعُ مُذَكَّرٍ
+  سَالِمٌ»), يَعْفُونَ (built on sukūn for the women's nūn; its wāw is the root's) against تَعْفُوا (the nūn dropped),
+  الْفَتَى on its alif and الْقَاضِي on its yāʾ. «إِنَّهُ مَنْ يَتَّقِي وَيَصْبِرْ» is authored on the reading the matn
+  calls «مُؤَوَّل» (مَنْ relative, the rāʾ quiescent for lightness or on the sense of the condition) — WujuhEngine
+  says «شَرْط» there and that is an honest miss, not a defect.
+- **Quoted āyāt keep their own particles honest.** A wāw or fāʾ that opens a quoted fragment («وَكُنْتُمْ أَمْوَاتًا»،
+  «فَانْفِرُوا ثُبَاتٍ»، «وَأَنْ تَعْفُوا») is «بِحَسَبِ مَا قَبْلَهَا فِي الْآيَةِ» — the builder's default «عَاطِفَةٌ» would be a
+  claim about a context the matn does not quote.
+- Gates with the text on the shelf: WujuhEngine 98.3 % (65 misses, one here); naibNotFail 1; HadhfEngine 1255 /
+  86.2 / false 3; TaqdirEngine story shelf 98.9 % WITH this text in it (26/26 of its own — it is not excluded as
+  the ʿIzzī was); paradigm audit 0 bad. `probe_lazim` flips: قَبِلَ becomes «transitive» (obj 11 / doer 5 — right),
+  and جَلَبَ loses «transitive» (obj 1 / doer 1) because «يَجْلِبُهُ الْعَامِلُ» counts as a doer row: **an enclitic
+  object before a noun doer is not yet evidence in the ledger** (wave 165's `both` only looks AFTER the doer).
+  Known and left for a wave with a sweep.
+- Smoke: «wave 166» (416 checks). Next on this shelf: Marāḥ al-Arwāḥ's matn collation; the ledger's enclitic
+  object; rebuilding the other engine-authored books with this wave's builder.

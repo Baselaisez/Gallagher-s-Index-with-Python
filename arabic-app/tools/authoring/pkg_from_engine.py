@@ -419,7 +419,7 @@ def name_sila(toks, raw, report):
     def pause(k): return bool(raw) and k < len(raw) and bool(re.search(r"[،:؛.؟!]$", raw[k]))
     for i in range(n):
         L = lines[i]
-        if not re.search(r"اسم موصول|موصول (مبني|في محل)", L) or "صلة" in L or "محكي" in L: continue
+        if not re.search(r"اسم موصول|موصول (مبني|في محل)", L) or "صلة" in L or "صلته" in L or "محكي" in L: continue   # (wave 166) an authored line that already names its ṣila («وَصِلَتُهُ …») is not given a second one
         if any("صلة" in lines[j] for j in range(i + 1, min(n, i + 10))): continue
         if i + 1 >= n: continue
         z = i + 1
@@ -439,6 +439,33 @@ def name_sila(toks, raw, report):
         if aid: ar_add += "، وَالْعَائِدُ الضَّمِيرُ فِيهَا"; en_add += "; the returning pronoun stands inside it"; tr_add += "; âid zamiri içindedir"
         t = toks[i]["irab"]; toks[i]["irab"] = {"ar": t["ar"].rstrip(".") + ar_add + ".", "en": t["en"].rstrip(".") + en_add + ".", "tr": t["tr"].rstrip(".") + tr_add + "."}
         lines[i] = _nd(toks[i]["irab"]["ar"]); report["sila_named"] = report.get("sila_named", 0) + 1
+
+def name_ma_khabar(toks, report):
+    """(wave 166) الِاسْمُ مَا يَقْبَلُ «أَلْ»، وَهُوَ مَا دَلَّ: the relative مَا that follows the mubtadaʾ (or the detached pronoun) directly is its khabar —
+    مَا is never a naʿt, so nothing else can fill the seat. A bare muḍāf before it (أَوَّلُ مَا يَجِبُ) annexes it instead and is left alone."""
+    TAIL = re.compile(r"^(?:نَعْتٌ|مُضَافٌ إِلَيْهِ|تَوْكِيدٌ)")
+    for j, t in enumerate(toks):
+        ar = (t.get("irab") or {}).get("ar", "")
+        if t["surface"]["bare"] != "ما" or not ar.startswith("اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ،"): continue
+        p_ = j - 1
+        while p_ >= 0 and TAIL.match(toks[p_]["irab"]["ar"]): p_ -= 1
+        if p_ < 0: continue
+        pi = toks[p_]["irab"]; par = pi["ar"]
+        is_pron = "ضَمِيرٌ مُنْفَصِلٌ" in par and par.endswith("فِي مَحَلِّ رَفْعٍ.")
+        is_mubt = "مُبْتَدَأٌ" in par and not re.search(r"مُضَافٌ\.$", par) and ("خَبَرُهُ" not in par or "خَبَرُهُ مَا بَعْدَ تَمَامِ الصِّلَةِ" in par)
+        if not (is_pron or is_mubt): continue
+        ti = t["irab"]
+        t["irab"] = {"ar": ti["ar"].replace("مَبْنِيٌّ عَلَى السُّكُونِ،", "مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَأِ،", 1),
+                     "en": ti["en"].replace("built (mabni);", "built (mabni), in the place of raf' as the khabar;", 1),
+                     "tr": ti["tr"].replace("mebnî;", "mebnî, mahallen merfû haber;", 1)}
+        if is_pron:
+            toks[p_]["irab"] = {"ar": par[:-1] + " مُبْتَدَأٌ.", "en": re.sub(r"in the place of raf'\.$", "in the place of raf' as the mubtada.", pi["en"]), "tr": re.sub(r"mahallen merfû\.$", "mahallen merfû, mübtedâ.", pi["tr"])}
+        elif "خَبَرُهُ مَا بَعْدَ تَمَامِ الصِّلَةِ" in par:
+            toks[p_]["irab"] = {"ar": par.replace("، وَخَبَرُهُ مَا بَعْدَ تَمَامِ الصِّلَةِ", "، وَخَبَرُهُ الِاسْمُ الْمَوْصُولُ «مَا» بَعْدَهُ"),
+                                "en": pi["en"].replace("; its khabar comes after the relative clause is complete", "; its khabar is the relative «mā» after it"),
+                                "tr": pi["tr"].replace("; haberi sıla tamamlandıktan sonra gelir", "; haberi kendisinden sonraki ism-i mevsûl «mâ»dır")}
+        report["ma_khabar"] = report.get("ma_khabar", 0) + 1
+
 
 def name_khabar(toks, raw, report):
     """(patch 32) a mubtadaʾ is never left without its khabar: the line points at it — after it (a rafʿ noun, a maṣdar clause,
@@ -560,7 +587,7 @@ def raw_at(words, q):
     return RAW.get(id(words), [""] * len(words))[q] if q < len(RAW.get(id(words), [])) else ""
 RAW = {}
 
-DIDACTIC = {"on": False}   # set from the meta flag cellLines (a ṣarf matn)
+DIDACTIC = {"on": False}   # set from the meta flags cellLines (a ṣarf matn) / didactic (any grammar matn)
 
 def person_of(h2, hb2, tense, rule, words, i):
     """The hidden doer by the verb's own shape, then by the nearest cue in the sentence: ـَتْ is «she»; the interrogative
@@ -638,7 +665,7 @@ def main():
     ap.add_argument("--lex", default=None); ap.add_argument("--trans", default=None); ap.add_argument("--fixes", default=None)
     a = ap.parse_args()
     E = json.load(open(a.engine, encoding="utf-8")); meta = json.load(open(a.meta, encoding="utf-8"))
-    DIDACTIC["on"] = bool(meta.get("cellLines"))
+    DIDACTIC["on"] = bool(meta.get("cellLines") or meta.get("didactic"))   # a grammar matn: its passives and state verbs speak of words and letters
     LX = json.load(open(a.lex, encoding="utf-8")) if a.lex and os.path.exists(a.lex) else {}
     TR = json.load(open(a.trans, encoding="utf-8")) if a.trans and os.path.exists(a.trans) else {}
     FX = json.load(open(a.fixes, encoding="utf-8")) if a.fixes and os.path.exists(a.fixes) else {}
@@ -717,7 +744,10 @@ def main():
                 k2, is_pre2 = key_for(full, enc, where)
                 key = fx.get("key") or k2 or w.get("key"); is_pre = bool(pre)
                 if key and pos == "propn" and (G.get(key) or {}).get("pos") == "noun": pos = "noun"
-                if fx.get("pos") == "verb": kind = "verb"
+                if fx.get("pos") == "verb":
+                    kind = "verb"
+                    if k == "keep" and fx.get("irab") and w.get("cell"): k = "cell"   # (wave 166) أُضِيفَ after إِنْ: the authored line is a verb's line, so the token is emitted by the verb branch
+                if fx.get("pos") in ("noun", "propn", "adj", "pron", "adv"): pos = fx["pos"]   # (wave 166) الْهَنِ: the fix's class outranks the engine's lexicon guess (هُنَّ)
                 if fx.get("pos") == "noun": kind = "noun"; k = fx.get("k", None if k in ("cell", "keep") else k); rule = fx.get("rule", rule if rule in ROLE else None)
                 prevb_ = bare(words[i - 1]["w"]) if i else ""; prevb_ = re.sub(r"^[وف]", "", prevb_) if len(prevb_) > 2 else prevb_
                 if prevb_ in JAZM_GOV and re.match(r"^[يتأن]", core) and len(core) >= 3 and not fx.get("pos"):
@@ -1359,6 +1389,7 @@ def main():
                 if fx2.get("irab"): t["irab"] = {kk: fx2["irab"].get(kk, (t.get("irab") or {}).get(kk, "")) for kk in ("ar", "en", "tr")}
             name_khabar(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_sila(toks, raw_toks if aligned else None, report)   # (patch 32)
+            name_ma_khabar(toks, report)   # (wave 166)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]
             sents.append({"id": sid, **({"page": s.get("page")} if s.get("page") else {}), "translation": {"en": tr_.get("en", ""), "tr": tr_.get("tr", "")}, "tokens": toks})
@@ -1385,6 +1416,7 @@ def main():
     print(f"package {meta['id']}: {len(chapters_out)} ch / {ns} s / {nt} t; glossary {len(used)}; verbs with paradigms {len(morph)}")
     print(f"REVIEW: no key {len(report['nokey'])}; engine≠written {len(report['mismatch'])}; undecided {len(report['undecided'])}; written ending won {report['reconciled']}; lex-verbs promoted {report['promoted']}; verbs re-keyed to their lemma {report['rekeyed']}; verbs still on a noun key {len(report.get('verbNounKey', []))}")
     print("sila named:", report.get("sila_named", 0))
+    if report.get("ma_khabar"): print("mā named as khabar:", report["ma_khabar"])
     print("khabar named:", report.get("khabar_named", 0), "| open:", len(report.get("khabar_open", [])), report.get("khabar_open", [])[:40])
     json.dump(report, open(out / "_review.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 if __name__ == "__main__": main()

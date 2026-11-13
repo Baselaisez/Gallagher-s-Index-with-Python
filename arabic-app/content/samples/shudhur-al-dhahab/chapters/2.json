@@ -1,0 +1,213 @@
+{
+ "chapter": 2,
+ "sentences": [
+  {
+   "id": "s1",
+   "page": 50,
+   "translation": {
+    "en": "Speech is an utterance that conveys a complete sense and is intended.",
+    "tr": "Kelâm; müfîd ve maksûd bir kavildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَالْكَلَامُ",
+      "smart": "وَالْكَلَامُ",
+      "bare": "والكلام"
+     },
+     "lex": "kalam",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْكَلَامُ",
+       "lex": "kalam",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "قَوْلٌ",
+      "smart": "قَوْلٌ",
+      "bare": "قول"
+     },
+     "lex": "qawl",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The khabar (predicate), in raf'; the sign is the damma.",
+      "tr": "Haber, merfû; alâmeti damme ile."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُفِيدٌ",
+      "smart": "مُفِيدٌ",
+      "bare": "مفيد"
+     },
+     "lex": "mufid",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "An adjective (na't) agreeing with its noun in case; the sign is the damma.",
+      "tr": "Sıfat (na't); mevsûfuna uyar; alâmeti damme ile."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَقْصُودٌ",
+      "smart": "مَقْصُودٌ",
+      "bare": "مقصود"
+     },
+     "lex": "maqsud",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "An adjective (na't) agreeing with its noun in case; the sign is the damma.",
+      "tr": "Sıfat (na't); mevsûfuna uyar; alâmeti damme ile."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "page": 56,
+   "translation": {
+    "en": "It is statement, request, and performative.",
+    "tr": "O; haber, taleb ve inşâdır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "huwa",
+     "pos": "pron",
+     "grammar": [
+      "al-mabni-wal-mudmar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ.",
+      "en": "The waw conjoins; «he / it» — a detached pronoun; in the place of raf'.",
+      "tr": "«ve» + «o» — munfasıl zamir, mahallen merfû."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "huwa",
+       "pos": "part"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "خَبَرٌ",
+      "smart": "خَبَرٌ",
+      "bare": "خبر"
+     },
+     "lex": "khabar",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The khabar (predicate), in raf'; the sign is the damma.",
+      "tr": "Haber, merfû; alâmeti damme ile."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَطَلَبٌ",
+      "smart": "وَطَلَبٌ",
+      "bare": "وطلب"
+     },
+     "lex": "talab",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is the damma.",
+      "tr": "«ve» + ma'tûf; aynı i'râb; alâmeti damme ile."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "طَلَبٌ",
+       "lex": "talab",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَإِنْشَاءٌ",
+      "smart": "وَإِنْشَاءٌ",
+      "bare": "وإنشاء"
+     },
+     "lex": "insha",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is the damma.",
+      "tr": "«ve» + ma'tûf; aynı i'râb; alâmeti damme ile."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "إِنْشَاءٌ",
+       "lex": "insha",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}
