@@ -15,7 +15,7 @@
   "sentenceTokens": 8132,
   "posAgreement": 98.8,
   "caseJudged": 6299,
-  "caseAgreement": 98.8,
+  "caseAgreement": 98.9,
   "rows": 9217
  },
  "endings": [
@@ -42041,7 +42041,7 @@
    "judged": 3,
    "agree": 3,
    "judgedC": 2,
-   "agreeC": 1,
+   "agreeC": 2,
    "tokens": [
     {
      "w": "لَوْ",
@@ -42102,15 +42102,15 @@
      },
      "engine": {
       "kind": "verb",
-      "lemma": "تَحَدَّثَ",
+      "lemma": "حَدَّثَ",
       "root": "ح د ث",
-      "wazn": null,
+      "wazn": "تُفَعِّلُ",
       "sure": true
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": "nasb",
      "caseHuman": "nasb",
-     "caseMatch": false
+     "caseMatch": true
     }
    ]
   },
@@ -100037,7 +100037,7 @@
    "judged": 9,
    "agree": 9,
    "judgedC": 8,
-   "agreeC": 7,
+   "agreeC": 8,
    "tokens": [
     {
      "w": "وَكَقَوْلِهِ",
@@ -100225,9 +100225,9 @@
       "sure": true
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": "nasb",
      "caseHuman": "nasb",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "وَحَزَنًا",
@@ -153300,8 +153300,8 @@
    "posAgreement": 100,
    "judged": 11,
    "agree": 11,
-   "judgedC": 8,
-   "agreeC": 8,
+   "judgedC": 9,
+   "agreeC": 9,
    "tokens": [
     {
      "w": "كَفِعْلِكَ",
@@ -153467,9 +153467,9 @@
       "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "jazm",
      "caseHuman": "jazm",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "فِي",
@@ -155823,7 +155823,7 @@
    "posAgreement": 92.3,
    "judged": 13,
    "agree": 12,
-   "judgedC": 12,
+   "judgedC": 11,
    "agreeC": 11,
    "tokens": [
     {
@@ -156039,9 +156039,9 @@
       "sure": false
      },
      "match": false,
-     "caseSaid": "mabni",
+     "caseSaid": null,
      "caseHuman": "harf",
-     "caseMatch": false
+     "caseMatch": null
     },
     {
      "w": "رَأَيْتَ",
@@ -196619,7 +196619,7 @@
    "judged": 9,
    "agree": 7,
    "judgedC": 6,
-   "agreeC": 4,
+   "agreeC": 5,
    "tokens": [
     {
      "w": "وَلَمْ",
@@ -196666,9 +196666,9 @@
       "sure": false
      },
      "match": false,
-     "caseSaid": "raf",
+     "caseSaid": "jazm",
      "caseHuman": "jazm",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "أَكْثَرَ",
@@ -207510,7 +207510,7 @@
    "judged": 16,
    "agree": 14,
    "judgedC": 12,
-   "agreeC": 10,
+   "agreeC": 11,
    "tokens": [
     {
      "w": "وَلَا",
@@ -207890,9 +207890,9 @@
       "sure": false
      },
      "match": true,
-     "caseSaid": "mabni",
+     "caseSaid": "nasb",
      "caseHuman": "nasb",
-     "caseMatch": false
+     "caseMatch": true
     }
    ]
   },

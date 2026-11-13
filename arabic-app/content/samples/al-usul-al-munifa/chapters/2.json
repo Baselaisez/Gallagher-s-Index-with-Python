@@ -326,7 +326,7 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -407,8 +407,8 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-nafiya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -423,7 +423,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
+       "lex": "ma-nafiya",
        "pos": "part"
       }
      ]
@@ -3750,13 +3750,13 @@
      "lex": "amr",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
+      "idafa-definiteness",
       "al-muthanna"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the ya — it is a dual.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti yâ ile — tesniyedir."
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the ya — it is a dual.",
+      "tr": "Muzâfun ileyh, mecrûr; alâmeti yâ ile — tesniyedir."
      }
     },
     {
@@ -3785,13 +3785,13 @@
      "lex": "amr",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
+      "atf-nasaq",
       "al-muthanna"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the ya — it is a dual.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti yâ ile — tesniyedir."
+      "ar": "مَعْطُوفٌ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "Joined by the conjunction to the word before it; the same case; the sign is the ya — it is a dual.",
+      "tr": "Ma'tûf; aynı i'râb; alâmeti yâ ile — tesniyedir."
      }
     },
     {
@@ -6571,14 +6571,14 @@
       "bare": "علمتم"
      },
      "lex": "allama",
-     "pos": "noun",
+     "pos": "verb",
      "grammar": [
-      "maful-mutlaq"
+      "naib-al-fail"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ مُطْلَقٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The absolute object (maf'ul mutlaq), in nasb; the sign is the fatha.",
-      "tr": "Mef'ûl-i mutlak, mansûb; alâmeti fetha ile."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ.",
+      "en": "A past verb in the passive; its subject pronoun suffix is the deputy doer.",
+      "tr": "Meçhul mâzî fiil; bitişik ref zamiri nâib-i fâildir."
      }
     },
     {
@@ -7983,7 +7983,7 @@
       "smart": "فَمَا",
       "bare": "فما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -7999,8 +7999,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -9987,14 +9987,13 @@
      "lex": "banu-israil",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
-      "jam-mudhakkar-salim",
+      "fail",
       "idafa-definiteness"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ، مُضَافٌ.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the ya — a sound masculine plural; annexed (mudaf).",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti yâ ile — cem'-i müzekker sâlim; muzâf."
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالْوَاوِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، مُضَافٌ.",
+      "en": "The doer, in raf' by the wāw — it follows the sound masculine plural; annexed (mudaf).",
+      "tr": "Fâil, vâv ile merfû — cem-i müzekker sâlime mülhak; muzâf."
      }
     },
     {

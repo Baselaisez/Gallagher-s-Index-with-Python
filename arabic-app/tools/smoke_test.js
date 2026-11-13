@@ -11404,7 +11404,7 @@ if (!CHROME) {
     // are boundary rows: undecided ما faces, mahall-vs-lafz phrasings,
     // deep-context bina the surface alone cannot read.
     if (r.judged < 3000) throw new Error('the case layer judges too few tokens: ' + r.judged);
-    if (r.pct < 97.6) throw new Error('case agreement regressed to ' + r.pct + '%');   // wave 161: 97.43 → 98.34 over 52,408 double-decided tokens
+    if (r.pct < 97.9) throw new Error('case agreement regressed to ' + r.pct + '%');   // wave 161: 97.43 → 98.34 over 52,408 double-decided tokens; wave 163: 98.64 (51,682 / 52,395)
     if (!r.panel) throw new Error('the tahqiq panel renders the case column');
   });
 
@@ -14513,6 +14513,72 @@ if (!CHROME) {
     if (r.dhahab[0] !== 'noun' || r.dhahab[1] !== 'raf') throw new Error('ذَهَبُ الْأَصِيلِ stays the doer: ' + JSON.stringify(r.dhahab));
     if (r.marr[0] !== 'noun' || r.marr[1] !== 'nasb') throw new Error('مَرَّ السَّحَابِ stays the mafʿūl muṭlaq: ' + JSON.stringify(r.marr));
     if (r.laqad[0] !== 'particle') throw new Error('لَقَدْ keeps its peel: ' + JSON.stringify(r.laqad));
+  });
+
+  await check('wave 163 — a verb with its pronoun is no annexed noun; the passive of the tāʾ forms; the letters the case layer reads; the corrected lines', async () => {
+    const r = await page.evaluate(() => {
+      const an = s => SentenceAnalyzer.analyze(s) || [];
+      const at = (s, w) => { const rows = an(s), i = rows.findIndex(x => x.w === w); if (i < 0) return ['?', '?']; let c = null; try { c = (CaseEngine.claim(rows, i) || {}).k || null; } catch (e) { c = 'ERR'; } return [rows[i].kind, c]; };
+      const out = {};
+      // the analyzer: a māḍī with its pronoun is not a dual / sound plural in construct
+      out.faaluhu = at('وَكُلُّ شَيْءٍ فَعَلُوهُ فِي الزُّبُرِ', 'فَعَلُوهُ');
+      out.banahu = at('يَدُلُّ عَلَى وُجُودِ بَانٍ بَنَاهُ', 'بَنَاهُ');
+      out.ardana = at('وَأَعْطَانَا حَتَّى أَرْضَانَا', 'أَرْضَانَا');
+      out.kallama = at('وَكَلَّمَهُمُ الْمَوْتَى', 'وَكَلَّمَهُمُ');
+      out.afa = at('قِيلَ لَهُ أَفَأَرَادَ أَنْ تَكُونَ', 'أَفَأَرَادَ');
+      out.tarafaha = at('طَرَفَاهَا بَعِيدَانِ', 'طَرَفَاهَا');                                  // …while the real annexed dual stays a noun in rafʿ
+      // the passive of the past: the second letter with the added tāʾ, the third with the hamzat al-waṣl
+      out.majhul = ['تَعَلَّمَ', 'تَقَاتَلَ', 'اِسْتَخْرَجَ', 'اِنْطَلَقَ', 'كَتَبَ', 'أَكْرَمَ', 'تَرَكَ'].map(v => sjMajhul(v, true));
+      out.tudhakkira = at('أَنْ تَضِلَّ إِحْدَاهُمَا فَتُذَكِّرَ إِحْدَاهُمَا الْأُخْرَى', 'فَتُذَكِّرَ');
+      // noun or imperative: the neighbour decides where the vowel cannot
+      out.ardihi = at('لَوْ عَذَّبَ اللهُ أَهْلَ سَمَاوَاتِهِ وَأَهْلَ أَرْضِهِ', 'أَرْضِهِ');
+      out.ardi = at('إِنَّ أَرْضِي وَاسِعَةٌ', 'أَرْضِي');
+      // the case layer's letters
+      out.mim = at('وَيَنْتَقِمَ مِنْهُمْ بِتَرْكِهِمُ الطَّاعَةَ', 'بِتَرْكِهِمُ')[1];
+      out.hukm = [at('يَحْكُمُ اللهُ بَيْنَهُمْ', 'يَحْكُمُ')[1], at('حَاكِمُ الْمَدِينَةِ عَادِلٌ', 'حَاكِمُ')[1]];
+      out.ayy = at('وَمَا تَدْرِي نَفْسٌ بِأَيِّ أَرْضٍ تَمُوتُ', 'بِأَيِّ')[1];
+      out.yaku = at('قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ', 'نَكُ')[1];
+      out.narahu = at('فَلَمَّا تَوَسَّطَ النَّاسَ لَمْ نَرَهُ', 'نَرَهُ')[1];
+      out.kufr = at('لَا يَرْضَى الْخَمْرَ وَلَا الْكُفْرَ', 'الْكُفْرَ')[1];
+      out.rajul = at('لَا رَجُلَ فِي الدَّارِ', 'رَجُلَ')[1];
+      out.rabbi = [at('يَا رَبِّ اغْفِرْ لِي', 'رَبِّ')[1], at('فَيَقُولُ الْمَلَكُ أَيْ رَبِّ أَذَكَرٌ أَمْ أُنْثَى', 'رَبِّ')[1], at('أَيْ لِدَفْعِ الضَّرَرِ', 'لِدَفْعِ')[1]];
+      out.uluww = at('تَعَالَى اللهُ عَنْ ذٰلِكَ عُلُوًّا كَبِيرًا', 'عُلُوًّا')[1];
+      out.umdiya = at('مَا أَسْتَطِيعُ أَنْ أُمْضِيَ الشَّهَادَةَ عَلَى أَحَدٍ', 'أُمْضِيَ')[1];
+      out.nun = at('لَا يَحْمِلَنَّكُمْ عَدَاوَةُ قَوْمٍ', 'يَحْمِلَنَّكُمْ')[1];
+      out.kama = [at('وَكَمَا يَقُولُ', 'وَكَمَا')[1], at('فَكَأَنَّمَا قَتَلَ النَّاسَ', 'فَكَأَنَّمَا')[1]];
+      out.lima = [at('قَالَ فَلِمَ لُمْتَنِي', 'فَلِمَ')[1], at('لَمْ يَقُلْ', 'لَمْ')[1], at('وَلِأَنَّهُ قَادِرٌ', 'وَلِأَنَّهُ')[1]];
+      // the corrected lines: the verbs are verbs, every face of مَا under its own key
+      const st = STORIES.find(s => s.id === 'al-usul-al-munifa'), mq = STORIES.find(s => s.id === 'al-maqamat-birgivi');
+      const tok = (n, sid, i) => { const ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(n)), sn = ch && ch.sentences.find(s => s.id === sid); return sn && sn.tokens[i]; };
+      const lp = (n, sid, i) => { const t = tok(n, sid, i); return t ? [t.lex, t.pos, CaseEngine.humanCase(t.irab.ar)].join() : '?'; };
+      out.lines = [lp(31, 's5', 25), lp(1, 's4', 5), lp(24, 's3', 23), lp(20, 's6', 8), lp(24, 's1', 9), lp(14, 's25', 1), lp(2, 's25', 17), lp(19, 's10', 17), lp(14, 's37', 30)];
+      let maBad = 0, maN = 0, laysa = 0;
+      for (const s0 of [st, mq]) if (s0) for (const ch of s0.chapters) for (const sn of ch.sentences) for (const t of sn.tokens) {
+        if (t.lex === 'ma-mawsula' && /نَافِيَةٌ|اسْتِفْهَامٍ|الْحِجَازِيَّةُ/.test(t.irab.ar) && !/مَوْصُولٌ/.test(t.irab.ar)) maBad++;
+        if (/^ma-(nafiya|istifham|hijaziyya|masdariyya)$/.test(t.lex || '')) maN++;
+        if (t.lex === 'ayisa' && /ليس/.test(t.s.bare || '')) laysa++; }
+      out.ma = [maBad, maN, laysa];
+      let qb = null; try { const c = RootFinder.fromCorpus('قُبِضَ'); qb = c && [c.lemma, c.cell && c.cell.tense].join(); } catch (e) {}
+      let am = null; try { const c = RootFinder.fromCorpus('أَمْلَى'); am = c && [c.lemma, c.cell && c.cell.tense].join(); } catch (e) {}
+      out.lexicon = [qb, am];
+      return out;
+    });
+    const J = JSON.stringify;
+    if (J(r.faaluhu) !== '["verb","mabni"]' || J(r.banahu) !== '["verb","mabni"]' || r.ardana[1] !== 'mabni' || J(r.kallama) !== '["verb","mabni"]' || J(r.afa) !== '["verb","mabni"]') throw new Error('a māḍī with its pronoun is a verb, built: ' + J([r.faaluhu, r.banahu, r.ardana, r.kallama, r.afa]));
+    if (J(r.tarafaha) !== '["noun","raf"]') throw new Error('the annexed dual stays a noun in rafʿ by its alif: ' + J(r.tarafaha));
+    if (r.majhul.join() !== 'تُعُلِّمَ,تُقُوتِلَ,اُسْتُخْرِجَ,اُنْطُلِقَ,كُتِبَ,أُكْرِمَ,تُرِكَ') throw new Error('the passive of the past: ' + J(r.majhul));
+    if (J(r.tudhakkira) !== '["verb","nasb"]') throw new Error('فَتُذَكِّرَ is ذَكَّرَ\'s muḍāriʿ in naṣb, not تَذَكَّرَ\'s passive: ' + J(r.tudhakkira));
+    if (J(r.ardihi) !== '["noun","jarr"]' || J(r.ardi) !== '["noun","nasb"]') throw new Error('أَرْضِهِ after a muḍāf and أَرْضِي after إِنَّ are the noun: ' + J([r.ardihi, r.ardi]));
+    if (r.mim !== 'jarr' || r.hukm.join() !== 'raf,raf') throw new Error('the plural mīm\'s linking ḍamma is no ending — and يَحْكُمُ / حَاكِمُ keep theirs: ' + J([r.mim, r.hukm]));
+    if (r.ayy !== 'jarr' || r.yaku !== 'jazm' || r.narahu !== 'jazm') throw new Error('بِأَيِّ / لَمْ نَكُ / لَمْ نَرَهُ: ' + J([r.ayy, r.yaku, r.narahu]));
+    if (r.kufr !== 'nasb' || r.rajul !== 'mabni') throw new Error('the lā of genus governs an indefinite only: ' + J([r.kufr, r.rajul]));
+    if (r.rabbi[0] !== null || r.rabbi[1] !== null || r.rabbi[2] !== 'jarr') throw new Error('يَا رَبِّ / أَيْ رَبِّ are silent, the explaining أَيْ is not a call: ' + J(r.rabbi));
+    if (r.uluww !== 'nasb' || r.umdiya !== 'nasb' || r.nun !== 'mabni') throw new Error('عُلُوًّا / أَنْ أُمْضِيَ الشَّهَادَةَ / لَا يَحْمِلَنَّكُمْ: ' + J([r.uluww, r.umdiya, r.nun]));
+    if (r.kama[0] === 'mabni' || r.kama[1] !== 'harf') throw new Error('وَكَمَا / فَكَأَنَّمَا are particles, never a built noun: ' + J(r.kama));
+    if (r.lima[0] !== null || r.lima[1] !== 'harf' || r.lima[2] !== null) throw new Error('لِمَ is two words, لَمْ a particle, لِأَنَّهُ three words: ' + J(r.lima));
+    if (r.lines.join(' ') !== 'qabada,verb,mabni amla,verb,mabni anf,noun,raf laysa,verb,mabni laysa,verb,mabni ma-istifham,pron,harf banu-israil,noun,raf hamala,verb,mabni ma-nafiya,part,harf') throw new Error('the corrected lines: ' + J(r.lines));
+    if (r.ma[0] !== 0 || r.ma[1] < 40 || r.ma[2] !== 0) throw new Error('one key, one word — the faces of مَا and لَيْسَ: ' + J(r.ma));
+    if (r.lexicon.join(' ') !== 'قَبَضَ,majhulMazi أَمْلَى,mazi') throw new Error('the two new paradigms answer: ' + J(r.lexicon));
   });
 
   await check('no JS errors on page', async () => {

@@ -497,13 +497,13 @@
      "lex": "nur",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
+      "idafa-definiteness",
       "al-muthanna"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the ya — it is a dual.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti yâ ile — tesniyedir."
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the ya — it is a dual.",
+      "tr": "Muzâfun ileyh, mecrûr; alâmeti yâ ile — tesniyedir."
      }
     },
     {
@@ -3991,16 +3991,12 @@
       "smart": "قُبِضَ",
       "bare": "قبض"
      },
-     "lex": "qabd",
-     "pos": "noun",
-     "grammar": [
-      "maful-bihi",
-      "idafa-definiteness"
-     ],
+     "lex": "qabada",
+     "pos": "verb",
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha; annexed (mudaf).",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile; muzâf."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "A past verb in the passive.",
+      "tr": "Meçhul mâzî fiil."
      }
     },
     {
@@ -4012,12 +4008,13 @@
      "lex": "rasul",
      "pos": "noun",
      "grammar": [
-      "mubtada-khabar"
+      "naib-al-fail",
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَخَبَرُهُ جَارٌّ وَمَجْرُورٌ مِمَّا بَعْدَهُ.",
-      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma; its khabar is one of the prepositional phrases that follow.",
-      "tr": "Mübtedâ, merfû; alâmeti damme ile; haberi sonraki câr-mecrûrlardan biridir."
+      "ar": "نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The deputy doer (na'ib al-fa'il), in raf'; the sign is the damma; annexed (mudaf).",
+      "tr": "Nâib-i fâil, merfû; alâmeti damme ile; muzâf."
      }
     },
     {
@@ -5695,8 +5692,8 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-nafiya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",

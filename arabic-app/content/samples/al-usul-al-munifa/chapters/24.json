@@ -190,15 +190,15 @@
       "smart": "لَسْتُ",
       "bare": "لست"
      },
-     "lex": "sitt",
-     "pos": "noun",
+     "lex": "laysa",
+     "pos": "verb",
      "grammar": [
-      "mubtada-khabar"
+      "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "اللَّامُ لَامُ الِابْتِدَاءِ الْمُزَحْلَقَةُ إِلَى الْخَبَرِ، وَخَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "the lām of emphasis displaced onto the khabar + The khabar (predicate), in raf'; the sign is the damma.",
-      "tr": "habere kaydırılmış te'kîd lâmı + Haber, merfû; alâmeti damme ile."
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ اسْمُهَا.",
+      "en": "A past verb with its subject pronoun suffix as doer — one of kāna's sisters: it raises its noun and puts its predicate in naṣb.",
+      "tr": "Mâzî fiil; bitişik ref zamiri fâildir — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder."
      }
     },
     {
@@ -3431,9 +3431,9 @@
      "lex": "raghima",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "A past verb.",
+      "tr": "Mâzî fiil."
      }
     },
     {
@@ -3442,15 +3442,16 @@
       "smart": "أَنْفُ",
       "bare": "أنف"
      },
-     "lex": "nafa",
-     "pos": "verb",
+     "lex": "anf",
+     "pos": "noun",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "fail",
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«إِنْ»، وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
-      "en": "A present verb, in jazm after «إِنْ»; its doer is a hidden pronoun «أَنَا».",
-      "tr": "Muzâri fiil, meczûm; fâili gizli zamir «أَنَا»."
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The doer (fa'il), in raf'; the sign is the damma; annexed (mudaf).",
+      "tr": "Fâil, merfû; alâmeti damme ile; muzâf."
      }
     },
     {
@@ -5243,7 +5244,7 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -5748,7 +5749,7 @@
       "smart": "فَمَا",
       "bare": "فما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -5764,8 +5765,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -14135,8 +14136,8 @@
       "smart": "فَمَا",
       "bare": "فما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-hijaziyya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "الْفَاءُ عَاطِفَةٌ، وَ«مَا» الْحِجَازِيَّةُ النَّافِيَةُ تَعْمَلُ عَمَلَ لَيْسَ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -14151,7 +14152,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
+       "lex": "ma-hijaziyya",
        "pos": "part"
       }
      ]
@@ -14628,7 +14629,7 @@
       "smart": "فَمَا",
       "bare": "فما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -14644,8 +14645,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -18209,13 +18210,13 @@
      "lex": "ayn-thing",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
+      "atf-nasaq",
       "al-muthanna"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
-      "en": "The waw conjoins; the object (maf'ul bihi), in nasb; the sign is the ya — it is a dual.",
-      "tr": "«ve» + mef'ûlün bih, mansûb; alâmeti yâ ile — tesniyedir."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is the ya — it is a dual.",
+      "tr": "«ve» + ma'tûf; aynı i'râb; alâmeti yâ ile — tesniyedir."
      },
      "segments": [
       {

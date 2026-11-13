@@ -11109,3 +11109,53 @@ something else on typed text, each now guarded where it over-reached (vowelling 
 - Still open on typed text: أَفَأَرَادَ (the hamza of question + فَ before a verb is not peeled).
 - Smoke: «wave 162» (412 checks).
 
+### v262 (wave 163) — the verb and its pronoun, the passive's second ḍamma, and al-Uṣūl's lines
+
+al-Uṣūl al-Munīfa's 112 remaining disagreements with the case layer were read one by one and sorted into three
+piles — the claim was wrong, the analyzer was wrong, the line was wrong. Vowelling sweeps: blind 63,176 → 63,182
+right, receipts-on 63,492 → 63,499, nothing broken. Case layer 98.43 → **98.64 %** (51,682 / 52,395; 89 fixed, 0
+broken); al-Uṣūl 112 → 45. Smoke floor 97.9.
+
+**The analyzer (typed text reads these now):**
+- **A māḍī with its pronoun is no annexed dual / sound plural.** فَعَلُوهُ، حَمِدُوهُ، بَنَاهُ، أَرْضَانَا were read as
+  «the two/many X of his» in rafʿ. `constructLetters` restores the host (the group's wāw gets its alif back, the
+  defective verb's ا its ى) and asks the corpus: a verb cell with these very marks wins. طَرَفَاهَا stays a dual.
+- **The passive of the past** (`sjMajhul0`) had only «ضُمَّ أَوَّلُهُ وَكُسِرَ مَا قَبْلَ آخِرِهِ». The books add: the SECOND
+  letter with the added tāʾ (تُعُلِّمَ، تُقُوتِلَ — the alif turns wāw), the THIRD with the hamzat al-waṣl (اُنْطُلِقَ،
+  اُسْتُخْرِجَ). So تُذَكِّرَ / تُغَيِّرَ are no longer «تَذَكَّرَ's passive» — they are ذَكَّرَ's muḍāriʿ in naṣb.
+- **أَفَأَرَادَ**: the question hamza over a joiner was peeled only before a muḍāriʿ; now also before a māḍī the corpus
+  owns with these marks, when the whole word is no verb of its own (أَفَادَ keeps its reading).
+- **No word opens on a doubled letter**: كَلَّمَهُمْ was «كَ + (لِ)مُهِمّ» behind a jarr letter.
+- **Noun or imperative where the vowel cannot tell**: the defective imperative ends on a kasra of its own (أَرْضِ),
+  so أَهْلَ أَرْضِهِ needs its neighbour — after a noun waiting for its muḍāf ilayh, or a jarr letter, it is the noun;
+  and after إِنَّ and its sisters the feminine imperative's letters (أَرْضِي) are the noun with the speaker's yāʾ.
+
+**The claim (letters only, read before `decide` touches the rows):** the plural mīm's linking ḍamma is no ending
+(بِتَرْكِهِمُ الطَّاعَةَ — not on a verb row: يَحْكُمُ keeps its ḍamma); أَيّ declines wherever it stands; لَمْ يَكُ / لَمْ نَكُ
+and لَمْ نَرَهُ are majzūm; the lā of genus governs an indefinite only (وَلَا الْكُفْرَ is manṣūb); يَا رَبِّ / أَيْ رَبِّ are
+silent (the kasra hides under the shadda in NFC) — but the explaining أَيْ is not a call; a written fatḥatān on its
+alif is naṣb; أَنْ أُمْضِيَ الشَّهَادَةَ is the active muḍāriʿ (the manṣūb object proves it); لَا يَحْمِلَنَّكُمْ is built on the
+fatḥ; أَفْعَانَا is the māḍī of أَفْعَلَ («I» never governs its own «us»); وَكَمَا / فَكَأَنَّمَا are particles; لِمَ، فِيمَ،
+مِمَّ، لَمَا، لِأَنَّهُ are two or three words and carry no single ending; a sure diptote in a majrūr's office wears
+its fatḥa for the kasra.
+
+**The lines (99 tokens through `apply_fixes.py`, every one a sibling's wording or the builder's template with one
+slot changed — `$S/w163/mk_notes.py` builds the rows from the sibling tokens themselves and asserts each slot):**
+- duals and plurals the builder had called «مَفْعُولٌ بِهِ» / «فَاعِلٌ» by their yāʾ alone (أَحَدَ الْأَمْرَيْنِ، ذُو
+  النُّورَيْنِ، كَفَى بِنَا حَاسِبِينَ …), بَنُو إِسْرَائِيلَ as the doer, أَنْفُ after رَغِمَ, وَأَشَدُّ الْعَذَابِ as mubtadaʾ;
+- verbs read as nouns, corrected with the words they govern: قُبِضَ رَسُولُ اللهِ, احْتَوَشَتْهَا … أَمْوَاجٌ, أَمْلَاهَا
+  (and its الَّتِي), عُلِّمْتُمْ, نَاشَدْتُكَ, أُعِدَّتْ, وَأَحَبَّهُ; أَلَيْسَ ×2 and لَسْتُ are لَيْسَ; آخُذَ joined in naṣb;
+  لَا يَحْمِلَنَّكُمْ with its nāhiya; لَمَا أَنْطَقَهُمْ is the answer's lām + مَا, not لَمَّا;
+- فَفِيمَ الْعَمَلُ and فَلِمَ / لِمَ (also in the Maqāmāt) are a jarr letter on the question's مَا — they had been
+  «مَفْعُولٌ بِهِ» with the key of يَمّ, and «لَمْ» the jāzim;
+- **one key, one word**: 47 tokens of مَا the negator, the Ḥijāzī, the maṣdarī and the question carried the
+  relative's key `ma-mawsula`; they now carry `ma-nafiya`, `ma-hijaziyya`, `ma-masdariyya`, `ma-istifham` (entries
+  copied by identity from al-Kāfiya / Iẓhār); eight لَيْسَتْ / لَيْسُوا carried يَئِسَ's key.
+- New entries: `qabada` and `amla` with paradigms from `tools/authoring/usul/sarf_usul.py` (108 paradigms), `anf`,
+  `lam-jawab`. Entries no token names any more left: `amal`, `qabd`, `shadda`, `sitt`, `yamm`.
+- `content/rules/masdar_tendencies.json` refit (539 Form I verbs).
+
+Still open in al-Uṣūl (45 rows): the faces of مَا where the line and the seat disagree and each needs reading
+(≈30); حَقَّنَا / حَقَّ عِبَادَتِهِ read as the verb حَقَّ; names that are also verbs (يَزِيدَ، أَحْمَدَ) in jarr;
+صَالِ الْجَحِيمِ (the yāʾ dropped in the rasm). One order-dependence was seen and not chased: وَاللهِ / أَهَمُّ claim
+differently in the corpus pass than on a fresh sentence. Smoke: «wave 163» (413 checks).

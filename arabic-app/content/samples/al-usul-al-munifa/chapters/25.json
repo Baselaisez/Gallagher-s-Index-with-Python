@@ -636,8 +636,8 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-nafiya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -1284,8 +1284,8 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-nafiya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -1300,7 +1300,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
+       "lex": "ma-nafiya",
        "pos": "part"
       }
      ]
@@ -10621,7 +10621,7 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -10637,8 +10637,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -15321,13 +15321,13 @@
      "lex": "khasla",
      "pos": "noun",
      "grammar": [
-      "maful-bihi",
+      "idafa-definiteness",
       "al-muthanna"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the ya — it is a dual.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti yâ ile — tesniyedir."
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.",
+      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the ya — it is a dual.",
+      "tr": "Muzâfun ileyh, mecrûr; alâmeti yâ ile — tesniyedir."
      },
      "punctAfter": "."
     }
@@ -18626,8 +18626,8 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-masdariyya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا لَمْ = مُدَّةَ عَدَمِ …)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -20180,24 +20180,28 @@
       "smart": "وَأَشَدُّ",
       "bare": "وأشد"
      },
-     "lex": "shadda",
-     "pos": "verb",
+     "lex": "ashadd",
+     "pos": "noun",
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "The waw conjoins; a past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "«ve» + mâzî fiil; fâili gizli zamirdir «هُوَ»."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed (mudaf).",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf."
      },
      "segments": [
       {
        "form": "وَ",
        "lex": "wa",
-       "pos": "conj"
+       "pos": "part"
       },
       {
        "form": "أَشَدُّ",
-       "lex": "shadda",
-       "pos": "verb"
+       "lex": "ashadd",
+       "pos": "noun"
       }
+     ],
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
      ]
     },
     {
@@ -20877,8 +20881,8 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-masdariyya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا لَمْ = مُدَّةَ عَدَمِ …)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",

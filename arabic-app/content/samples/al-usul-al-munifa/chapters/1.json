@@ -441,10 +441,13 @@
      "lex": "saala",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
-      "en": "A past verb with its subject pronoun suffix as doer.",
-      "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ.",
+      "en": "A past verb in the passive; its subject pronoun suffix is the deputy doer.",
+      "tr": "Meçhul mâzî fiil; bitişik ref zamiri nâib-i fâildir."
+     },
+     "grammar": [
+      "naib-al-fail"
+     ]
     },
     {
      "surface": {
@@ -848,9 +851,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «أَمْلَاهَا»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
-      "en": "a relative pronoun — built (mabni); its relative clause is the prepositional phrase «أَمْلَاهَا»; the returning pronoun stands inside it.",
-      "tr": "ism-i mevsûl — mebnî; sılası câr-mecrûr «أَمْلَاهَا»; âid zamiri içindedir."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ جُمْلَةُ «أَمْلَاهَا …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "a relative pronoun — built (mabni); its relative clause is the verbal clause «أَمْلَاهَا …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+      "tr": "ism-i mevsûl — mebnî; sılası «أَمْلَاهَا …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
      }
     },
     {
@@ -859,22 +862,21 @@
       "smart": "أَمْلَاهَا",
       "bare": "أملاها"
      },
-     "lex": "amal",
-     "pos": "noun",
+     "lex": "amla",
+     "pos": "verb",
      "grammar": [
-      "idafa-definiteness",
-      "ism-maqsur-manqus"
+      "maful-bihi"
      ],
      "irab": {
-      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is an implied kasra on the alif; annexed, the pronoun «her/its» is the mudaf ilayh.",
-      "tr": "Muzâfun ileyh, mecrûr; alâmeti elif üzerinde takdîrî kesre ile; muzâf, zamir «onun (dişil)» muzâfun ileyh."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ الْمُقَدَّرِ عَلَى الْأَلِفِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "A past verb; the pronoun suffix «her/its» is its object.",
+      "tr": "Mâzî fiil; bitişik zamir «onun (dişil)» mef'ûlün bihtir."
      },
      "segments": [
       {
        "form": "أَمْلَا",
-       "lex": "amal",
-       "pos": "noun"
+       "lex": "amla",
+       "pos": "verb"
       },
       {
        "form": "هَا",

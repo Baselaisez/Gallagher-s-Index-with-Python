@@ -1407,17 +1407,6 @@
    "level": 3,
    "root": "ع م ي"
   },
-  "amal": {
-   "lemma": "أَمَل",
-   "root": "أ م ل",
-   "pos": "noun",
-   "plural": "آمَال",
-   "gloss": {
-    "en": "hope",
-    "tr": "emel, ümit"
-   },
-   "level": 3
-  },
   "amal-governing": {
    "lemma": "الْعَمَل",
    "pos": "noun",
@@ -1543,6 +1532,16 @@
    },
    "level": 5
   },
+  "amla": {
+   "lemma": "أَمْلَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to dictate (Form IV, defective)",
+    "tr": "imlâ ettirmek, yazdırmak (if'âl, nâkıs)"
+   },
+   "level": 5,
+   "root": "م ل و"
+  },
   "amm": {
    "lemma": "عَامّ",
    "pos": "noun",
@@ -1651,6 +1650,16 @@
    "level": 4,
    "root": "ن ب أ",
    "form": "IV"
+  },
+  "anf": {
+   "lemma": "أَنْف",
+   "pos": "noun",
+   "gloss": {
+    "en": "nose",
+    "tr": "burun"
+   },
+   "level": 2,
+   "root": "أ ن ف"
   },
   "anfa": {
    "lemma": "أَنْفَع",
@@ -9184,6 +9193,15 @@
    },
    "level": 2
   },
+  "lam-jawab": {
+   "lemma": "لَ (لَامُ الْجَوَابِ)",
+   "pos": "part",
+   "gloss": {
+    "en": "the lam opening the jawab of law (and the oath)",
+    "tr": "lev'in (ve kasemin) cevabını açan lâm"
+   },
+   "level": 4
+  },
   "lam-jazima": {
    "lemma": "لَمْ",
    "pos": "part",
@@ -9416,6 +9434,33 @@
    "level": 3,
    "root": "ل ج ج"
   },
+  "ma-hijaziyya": {
+   "lemma": "مَا (الْحِجَازِيَّة)",
+   "pos": "part",
+   "gloss": {
+    "en": "«ma» that governs like laysa",
+    "tr": "«ليس» gibi amel eden «ما»"
+   },
+   "level": 5
+  },
+  "ma-istifham": {
+   "lemma": "مَا (الاِسْتِفْهَامِيَّة)",
+   "pos": "pron",
+   "gloss": {
+    "en": "what? (interrogative ma)",
+    "tr": "ne? (istifhâm mâsı)"
+   },
+   "level": 3
+  },
+  "ma-masdariyya": {
+   "lemma": "مَا (الْمَصْدَرِيَّة)",
+   "pos": "part",
+   "gloss": {
+    "en": "ma that turns its clause into a masdar",
+    "tr": "cümlesini masdara çeviren mâ"
+   },
+   "level": 4
+  },
   "ma-mawsula": {
    "lemma": "مَا (الْمَوْصُولَة)",
    "pos": "pron",
@@ -9424,6 +9469,15 @@
     "tr": "olan şey, -dığı şey"
    },
    "level": 3
+  },
+  "ma-nafiya": {
+   "lemma": "مَا (النَّافِيَة)",
+   "pos": "part",
+   "gloss": {
+    "en": "not (negating ma)",
+    "tr": "değil (nefy edatı)"
+   },
+   "level": 2
   },
   "ma-water": {
    "lemma": "مَاء",
@@ -12003,15 +12057,15 @@
    },
    "level": 3
   },
-  "qabd": {
-   "lemma": "قَبْض",
-   "root": "ق ب ض",
-   "pos": "noun",
+  "qabada": {
+   "lemma": "قَبَضَ",
+   "pos": "verb",
    "gloss": {
-    "en": "taking possession (masdar)",
-    "tr": "kabz (masdar)"
+    "en": "to seize, to take hold of — قُبِضَ: his soul was taken, he died",
+    "tr": "kabzetmek, tutmak — قُبِضَ: ruhu kabzedildi, vefat etti"
    },
-   "level": 4
+   "level": 5,
+   "root": "ق ب ض"
   },
   "qabila": {
    "lemma": "قَبِلَ",
@@ -14161,17 +14215,6 @@
    "root": "ش ب ب",
    "plural": "شُبَّان"
   },
-  "shadda": {
-   "lemma": "شَدَّ",
-   "pos": "verb",
-   "gloss": {
-    "en": "to tighten; شَدَّ عَلَى: to charge upon (doubled: شَدَّ يَشُدُّ)",
-    "tr": "sıkmak; شَدَّ عَلَى: hücum etmek (muzâaf: شَدَّ يَشُدُّ)"
-   },
-   "level": 4,
-   "root": "ش د د",
-   "form": "I"
-  },
   "shadid": {
    "lemma": "شَدِيد",
    "pos": "noun",
@@ -14682,16 +14725,6 @@
     "tr": "sır"
    },
    "level": 3
-  },
-  "sitt": {
-   "lemma": "سِتّ",
-   "root": "س ت ت",
-   "pos": "noun",
-   "gloss": {
-    "en": "six",
-    "tr": "altı"
-   },
-   "level": 2
   },
   "sitta": {
    "lemma": "سِتَّة",
@@ -16944,16 +16977,6 @@
     "tr": "Yahyâ b. Ya'mer"
    },
    "level": 5
-  },
-  "yamm": {
-   "lemma": "يَمّ",
-   "pos": "noun",
-   "gloss": {
-    "en": "the sea",
-    "tr": "deniz, yemm"
-   },
-   "level": 4,
-   "root": "ي م م"
   },
   "yaqin": {
    "lemma": "يَقِين",

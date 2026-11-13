@@ -1472,7 +1472,7 @@
       "smart": "فَمَا",
       "bare": "فما"
      },
-     "lex": "ma-mawsula",
+     "lex": "ma-istifham",
      "pos": "pron",
      "grammar": [],
      "irab": {
@@ -1488,8 +1488,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -3648,10 +3648,14 @@
      "lex": "akhadha",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
+      "en": "A present verb, in nasb; its doer is a hidden pronoun «أَنَا».",
+      "tr": "Muzâri fiil, mansûb; fâili gizli zamir «أَنَا»."
+     },
+     "grammar": [
+      "nawasib-wa-jawazim-al-mudari",
+      "atf-nasaq"
+     ]
     },
     {
      "surface": {
@@ -3838,15 +3842,14 @@
       "bare": "ناشدتك"
      },
      "lex": "nashada",
-     "pos": "noun",
+     "pos": "verb",
      "grammar": [
-      "fail",
-      "idafa-definiteness"
+      "maful-bihi"
      ],
      "irab": {
-      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The doer (fa'il), in raf'; the sign is the damma; annexed, the pronoun «your» is the mudaf ilayh.",
-      "tr": "Fâil, merfû; alâmeti damme ile; muzâf, zamir «senin» muzâfun ileyh."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "A past verb with its subject pronoun suffix as doer; the pronoun suffix «your» is its object.",
+      "tr": "Mâzî fiil; bitişik ref zamiri fâildir; bitişik zamir «senin» mef'ûlün bihtir."
      },
      "segments": [
       {
@@ -3888,12 +3891,12 @@
      "lex": "laysa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
-      "en": "A present verb, in nasb; its doer is a hidden pronoun «أَنَا».",
-      "tr": "Muzâri fiil, mansûb; fâili gizli zamir «أَنَا»."
+      "ar": "الْهَمْزَةُ لِلِاسْتِفْهَامِ، وَفِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا الْمَرْفُوعُ بَعْدَهَا.",
+      "en": "The hamza asks; a past verb — one of kāna's sisters: it raises its noun and puts its predicate in naṣb.",
+      "tr": "Hemze istifhâm; mâzî fiil — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder."
      }
     },
     {
@@ -4689,27 +4692,32 @@
       "smart": "فَلِمَ",
       "bare": "فلم"
      },
-     "lex": "lam-jazima",
-     "pos": "part",
+     "lex": "ma-istifham",
+     "pos": "pron",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari",
-      "lam-jazim"
+      "al-istifham",
+      "huruf-jarr"
      ],
      "irab": {
-      "ar": "الْفَاءُ عَاطِفَةٌ، وَحَرْفُ نَفْيٍ وَجَزْمٍ وَقَلْبٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The fa conjoins; «did not» — the jussive negator.",
-      "tr": "«bunun üzerine» + «-medi» — cezm eden nefiy harfi."
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَاللَّامُ حَرْفُ جَرٍّ، وَمَا اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، حُذِفَتْ أَلِفُهَا لِدُخُولِ الْجَارِّ.",
+      "en": "The fa conjoins; «why?» — the jarr lām on the interrogative mā, whose alif drops after a preposition.",
+      "tr": "«bunun üzerine» + «niçin?» — istifhâm mâ'sı üzerinde cer lâmı; harf-i cerden sonra elifi düşer."
      },
      "segments": [
       {
        "form": "فَ",
        "lex": "fa",
-       "pos": "conj"
+       "pos": "part"
       },
       {
-       "form": "لِمَ",
-       "lex": "lam-jazima",
+       "form": "لِ",
+       "lex": "li",
        "pos": "part"
+      },
+      {
+       "form": "مَ",
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },
@@ -5771,8 +5779,8 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-nafiya",
+     "pos": "part",
      "grammar": [],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
@@ -5787,7 +5795,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-mawsula",
+       "lex": "ma-nafiya",
        "pos": "part"
       }
      ]
