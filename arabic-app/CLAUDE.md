@@ -11159,3 +11159,40 @@ Still open in al-Uṣūl (45 rows): the faces of مَا where the line and the s
 (≈30); حَقَّنَا / حَقَّ عِبَادَتِهِ read as the verb حَقَّ; names that are also verbs (يَزِيدَ، أَحْمَدَ) in jarr;
 صَالِ الْجَحِيمِ (the yāʾ dropped in the rasm). One order-dependence was seen and not chased: وَاللهِ / أَهَمُّ claim
 differently in the corpus pass than on a fresh sentence. Smoke: «wave 163» (413 checks).
+
+### v263 (wave 164) — one word, one answer
+
+`CaseEngine.claim` asked `Murib._decide(rows)` for a word's office, and `DabtEngine.decide` REWRITES the rows it
+reads (kinds, pronouns, jarr flags). So the same word could get two answers: one if it was asked first, another
+if some other word of the sentence had been asked before it (وَاللهِ was «jarr» alone and «harf» in a full pass).
+The word sheet asks one word; the Qawāʿid engine asks them all.
+
+- **`Murib._decidePure(rows)`** decides on a COPY (its own WeakMap). The claim and `officeCase` use it; Murib's
+  prose keeps `_decide`. The rows a claim reads are the analyzer's, before and after.
+- Two alternatives were measured and rejected: every claim on the decided copy (75 broken), and the decided row
+  only where its kind was retyped (59 broken) — the claim's rules were written for the analyzer's rows.
+- The ~28 rows that had leaned on the rewrite are read by rule: the Name behind two letters (فَوَاللهِ); نَعَمْ;
+  tanwīn is a noun's mark, so no particle wears it (وَاوٌ، وَكُلًّا); يَا أَبَتِ is manṣūb; رَبِّي speaks only as a
+  majrūr; a broken plural the lexicon owns has no pronoun seam (أَشْبَاهُ، مُلُوكِ); a muḍāriʿ whose cell holds every
+  letter keeps its last one behind a nāṣib (حَتَّى تَهْلِكَ — وَأَهْلِكَ is أَهْل + كَ); the defective jussive after a
+  written jāzim (وَلَا تَقْفُ); a NAME's one fatḥa is naṣb or jarr by its office — after a noun that waits for its
+  muḍāf ilayh it is jarr (نَارُ جَهَنَّمَ), else the office (رَأَيْتُ أَحْمَدَ): 163 more words judged, 160 right.
+- **Analyzer** (sweeps: blind 63,182 → 63,183, receipts-on 63,499 → 63,500, 0 broken): the doubled passive's
+  she-cell and plurals (أُعِدَّتْ — NFC ends it on the shadda, so they were never built; exact marks only, لِأُمَّتِهِ
+  stays أُمَّة); the first person's jussive of a defective verb ends on its own vowel, so أَرْضُ / أَنْفُ / أَجْرَ are the
+  nouns (لَمْ أَرْضَ the verb; the iltiqāʾ kasra of لَمْ يَشْكُرِ اللهَ is not «another vowel»); the word «بْن» follows
+  is a name (يَزِيدُ بْنُ، يَحْيَى بْنُ); a rafʿ cell under a written fatḥa with no nāṣib before it is the lexicon's
+  diptote name (كَمَالِ الدِّينِ أَحْمَدَ).
+- `$S/w164/pos_audit.js` lists where a package's part of speech and the analyzer's disagree: al-Uṣūl 20 → 8 rows.
+  Nineteen more lines corrected from siblings (`notes_usul8/9/10.json`): قَالَهَا, فَيُؤَوَّلُ, حَقَّتْ … الضَّلَالَةُ,
+  وَنُصَلِّي (its key was نَصْل's), وَلَا تَقْفُ, يُؤَاخَذُ, يُؤَاخِذَهُ, the whole clause «مَا أَعْلَمُ مِنْ ذُنُوبِ أَهْلِ
+  الْقِبْلَةِ ذَنْبًا أَعْظَمَ … ثُمَّ دِمَاءِ أَصْحَابِ», يَا أَبَتِ, وَلَا إِبْلِيسَ. Entries that left: `qali`, `nasl`, `aba`.
+- The name rule exposed one more engine: «يَحْيَى لَدَى يَحْيَى بْنِ عَبْدِ اللهِ» (Talkhīṣ 68) — once the second يَحْيَى
+  was a name, JinasEngine called the pair a look-alike of derivation; the very same word, letter and vowel, in two
+  classes is the complete jinās (mustawfā).
+- The derivation game's wrong roots: a PERMUTATION that rebuilds the same word is no wrong answer either (ي ت ء
+  builds إِيتَاء as ء ت ي does) — the release's sampled check caught it once in four runs.
+- Case layer 98.64 → **98.68 %** (51,868 / 52,560), 23 fixed, 0 broken. Smoke: «wave 164» asserts the claim is
+  the same alone, in order and in reverse over ~1,360 real tokens, and that claiming rewrites no row (414 checks).
+- Still open: هَاجَرَ and وَأَحْسَنَ typed as verbs (a name after its verb; an elative joined to an elative);
+  حَقَّنَا / حَقَّ عِبَادَتِهِ; أَنْفَعُ مِنْ vs مَا أَعْلَمُ مِنْ (the elative and the first person share every letter).

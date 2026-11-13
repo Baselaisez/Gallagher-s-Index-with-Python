@@ -11404,7 +11404,7 @@ if (!CHROME) {
     // are boundary rows: undecided ما faces, mahall-vs-lafz phrasings,
     // deep-context bina the surface alone cannot read.
     if (r.judged < 3000) throw new Error('the case layer judges too few tokens: ' + r.judged);
-    if (r.pct < 97.9) throw new Error('case agreement regressed to ' + r.pct + '%');   // wave 161: 97.43 → 98.34 over 52,408 double-decided tokens; wave 163: 98.64 (51,682 / 52,395)
+    if (r.pct < 97.9) throw new Error('case agreement regressed to ' + r.pct + '%');   // wave 161: 97.43 → 98.34 over 52,408 double-decided tokens; wave 163: 98.64 (51,682 / 52,395); wave 164: 98.68 (51,868 / 52,560)
     if (!r.panel) throw new Error('the tahqiq panel renders the case column');
   });
 
@@ -14579,6 +14579,53 @@ if (!CHROME) {
     if (r.lines.join(' ') !== 'qabada,verb,mabni amla,verb,mabni anf,noun,raf laysa,verb,mabni laysa,verb,mabni ma-istifham,pron,harf banu-israil,noun,raf hamala,verb,mabni ma-nafiya,part,harf') throw new Error('the corrected lines: ' + J(r.lines));
     if (r.ma[0] !== 0 || r.ma[1] < 40 || r.ma[2] !== 0) throw new Error('one key, one word — the faces of مَا and لَيْسَ: ' + J(r.ma));
     if (r.lexicon.join(' ') !== 'قَبَضَ,majhulMazi أَمْلَى,mazi') throw new Error('the two new paradigms answer: ' + J(r.lexicon));
+  });
+
+  await check('wave 164 — one word, one answer: the case claim never rewrites the rows it reads, and says the same whichever word is asked first', async () => {
+    const r = await page.evaluate(() => {
+      const an = s => SentenceAnalyzer.analyze(s) || [];
+      const k = (rows, i) => { try { return (CaseEngine.claim(rows, i) || {}).k || null; } catch (e) { return 'ERR'; } };
+      const at = (s, w) => { const rows = an(s), i = rows.findIndex(x => x.w === w); return i < 0 ? ['?', '?'] : [rows[i].kind, k(rows, i)]; };
+      const out = {};
+      // order-independence over real sentences: each word alone on fresh rows, all in order, all in reverse
+      let n = 0, diff = [], touched = 0;
+      for (const id of ['al-usul-al-munifa', 'qisas-al-nabiyyin-1', 'al-kafiya']) { const st = STORIES.find(s => s.id === id); if (!st) continue; let seen = 0;
+        for (const ch of st.chapters) { for (const sn of ch.sentences) { if (seen >= 40) break; if (sn.tokens.length > 40) continue; seen++;
+          const text = sn.tokens.map(t => t.s.full).join(' ');
+          const fwdRows = an(text), snap = JSON.stringify(fwdRows.map(x => [x.kind, x.enc || '', !!x.afterJarr, !!x.fusedJarr, (x.cell || {}).tense || '']));
+          const fwd = fwdRows.map((x, i) => k(fwdRows, i));
+          if (JSON.stringify(fwdRows.map(x => [x.kind, x.enc || '', !!x.afterJarr, !!x.fusedJarr, (x.cell || {}).tense || ''])) !== snap) touched++;
+          const revRows = an(text), rev = []; for (let i = revRows.length - 1; i >= 0; i--) rev[i] = k(revRows, i);
+          for (let i = 0; i < fwdRows.length; i++) { n++; const alone = k(an(text), i); if (alone !== fwd[i] || alone !== rev[i]) { if (diff.length < 6) diff.push([id, sn.id, fwdRows[i].w, alone, fwd[i], rev[i]].join(' ')); else diff.push(''); } } } } }
+      out.order = [n, diff.length, touched, diff.slice(0, 6)];
+      // the rows that used to lean on the rewrite, read by their letters
+      out.naam = at('قَالَ نَعَمْ', 'نَعَمْ')[1];
+      out.tanwin = [at('لَحِقَ آخِرَ مُفْرَدِهِ وَاوٌ مَضْمُومٌ', 'وَاوٌ')[1], at('فَفَهَّمْنَاهَا سُلَيْمَانَ وَكُلًّا آتَيْنَا حُكْمًا', 'وَكُلًّا')[1]];
+      out.abati = at('قَالَ يَا أَبَتِ افْعَلْ مَا تُؤْمَرُ', 'أَبَتِ')[1];
+      out.rabbi = [at('هٰذَا نِعْمَةٌ مِنْ رَبِّي', 'رَبِّي')[1], at('أُبَلِّغُكُمْ رِسَالَاتِ رَبِّي', 'رَبِّي')[1], at('مَا أَعْطَانِي رَبِّي خَيْرٌ', 'رَبِّي')[1]];
+      out.plural = [at('وَأَشْبَاهُ ذٰلِكَ كَثِيرٌ', 'وَأَشْبَاهُ')[1], at('مِنْ بَعْضِ مُلُوكِ الدُّنْيَا', 'مُلُوكِ')[1]];
+      out.wallahi = at('فَوَاللهِ مَا أَعْلَمُ', 'فَوَاللهِ')[1];
+      out.uiddat = [at('أُعِدَّتْ لِلْمُتَّقِينَ', 'أُعِدَّتْ'), at('قَالَ لِأُمَّتِهِ', 'لِأُمَّتِهِ')];
+      out.tahlika = [at('حَتَّى تَهْلِكَ', 'تَهْلِكَ')[1], at('مِنْ قَوْمِكَ وَأَهْلِكَ', 'وَأَهْلِكَ')[1]];
+      // the analyzer: the jussive cell and the noun that writes another vowel; the name before «بْن»; the diptote name
+      out.ard = [at('أَلَمْ تَكُنْ أَرْضُ اللهِ وَاسِعَةً', 'أَرْضُ'), at('لَمْ أَرْضَ بِذٰلِكَ', 'أَرْضَ')[0], at('لَا نُضِيعُ أَجْرَ مَنْ أَحْسَنَ', 'أَجْرَ')];
+      out.names = [at('حَدَّثَنِي يَزِيدُ بْنُ هَارُونَ', 'يَزِيدُ')[0], at('حَدَّثَنِي يَحْيَى بْنُ عُبَيْدٍ', 'يَحْيَى')[0], at('عَنْ كَمَالِ الدِّينِ أَحْمَدَ عَنْ أَبِيهِ', 'أَحْمَدَ')[0], at('أُرِيدُ أَنْ أَحْمَدَ اللهَ', 'أَحْمَدَ')[0], at('يَزِيدُ اللهُ الَّذِينَ اهْتَدَوْا هُدًى', 'يَزِيدُ')[0]];
+      // the corrected lines
+      const st = STORIES.find(s => s.id === 'al-usul-al-munifa');
+      const lp = (n, sid, i) => { const ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(n)), sn = ch && ch.sentences.find(s => s.id === sid), t = sn && sn.tokens[i]; return t ? [t.lex, t.pos, CaseEngine.humanCase(t.irab.ar)].join() : '?'; };
+      out.lines = [lp(24, 's21', 35), lp(12, 's3', 0), lp(24, 's15', 20), lp(6, 's4', 26), lp(25, 's4', 71), lp(14, 's12', 14)];
+      return out;
+    });
+    const J = JSON.stringify;
+    if (r.order[0] < 1000 || r.order[1] !== 0 || r.order[2] !== 0) throw new Error('a claim must not depend on what was asked before, nor rewrite its rows: ' + J(r.order));
+    if (r.naam !== 'harf' || r.tanwin.join() !== 'raf,nasb') throw new Error('نَعَمْ is the answer; tanwīn is a noun\'s mark: ' + J([r.naam, r.tanwin]));
+    if (r.abati !== 'nasb' || r.rabbi.join() !== 'jarr,jarr,') throw new Error('يَا أَبَتِ is manṣūb; رَبِّي speaks only as a majrūr: ' + J([r.abati, r.rabbi]));
+    if (r.plural.join() !== 'raf,jarr' || r.wallahi !== 'jarr') throw new Error('a whole plural has no pronoun seam; the Name behind two letters: ' + J([r.plural, r.wallahi]));
+    if (J(r.uiddat) !== '[["verb","mabni"],["noun","jarr"]]') throw new Error('أُعِدَّتْ is the doubled passive\'s she-cell, لِأُمَّتِهِ the noun: ' + J(r.uiddat));
+    if (r.tahlika[0] !== 'nasb' || r.tahlika[1] === 'nasb') throw new Error('حَتَّى تَهْلِكَ keeps its kāf; وَأَهْلِكَ is أَهْل + كَ: ' + J(r.tahlika));
+    if (J(r.ard[0]) !== '["noun","raf"]' || r.ard[1] !== 'verb' || J(r.ard[2]) !== '["noun","nasb"]') throw new Error('the jussive cell ends on its own vowel — أَرْضُ / أَجْرَ are the nouns, لَمْ أَرْضَ the verb: ' + J(r.ard));
+    if (r.names.join() !== 'noun,noun,noun,verb,verb') throw new Error('the name before «بْن», the diptote name, and the verbs that stay verbs: ' + J(r.names));
+    if (r.lines.join(' ') !== 'qala,verb,mabni awwala,verb,raf alima,verb,raf ab,noun,nasb qafa-follow,verb,jazm dalalah-error,noun,raf') throw new Error('the corrected lines: ' + J(r.lines));
   });
 
   await check('no JS errors on page', async () => {

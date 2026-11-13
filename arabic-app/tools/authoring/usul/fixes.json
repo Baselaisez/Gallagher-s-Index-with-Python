@@ -156,15 +156,20 @@
   "k": "raf"
  },
  "6:s4:26": {
-  "pos": "verb",
+  "pos": "noun",
   "rule": "mazi",
   "k": "cell",
-  "key": "aba",
+  "key": "ab",
   "irab": {
-   "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَحُرِّكَتْ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
-   "en": "A past verb built on fatḥa; the tāʾ marks the feminine and takes a kasra before the following hamzat waṣl; its doer is a hidden «she».",
-   "tr": "Fetha üzere mebnî mâzî fiil; tâ te'nis için, iki sâkin karşılaştığı için kesre aldı; fâili gizli «o»."
-  }
+   "ar": "مُنَادًى مُضَافٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ، وَالتَّاءُ عِوَضٌ عَنْ يَاءِ الْمُتَكَلِّمِ الْمَحْذُوفَةِ، وَهِيَ مُضَافٌ إِلَيْهِ.",
+   "en": "The annexed vocative «my father», in nasb by an estimated fatha; the ta replaces the dropped ya of the speaker, which is the second term of the idafa.",
+   "tr": "Muzâf münâdâ «babacığım», takdîrî fetha ile mansûb; tâ, hazfedilmiş mütekellim yâ'sının ivazıdır — o yâ muzâfun ileyhtir."
+  },
+  "tags": [
+   "vocative-munada",
+   "ya-al-mutakallim",
+   "idafa-definiteness"
+  ]
  },
  "32:s3:20": {
   "pos": "noun",
@@ -1560,6 +1565,193 @@
   "tags": [
    "maful-bihi",
    "idafa-definiteness"
+  ]
+ },
+ "24:s21:35": {
+  "irab": {
+   "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+   "en": "A past verb; the pronoun suffix «her/its» is its object.",
+   "tr": "Mâzî fiil; bitişik zamir «onun (dişil)» mef'ûlün bihtir."
+  },
+  "tags": [
+   "maful-bihi"
+  ],
+  "pos": "verb",
+  "key": "qala"
+ },
+ "12:s3:0": {
+  "irab": {
+   "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
+   "en": "The fa conjoins; a present verb in the passive, in raf'.",
+   "tr": "«bunun üzerine» + muzâri fiil (meçhul), merfû."
+  },
+  "tags": [],
+  "pos": "verb"
+ },
+ "14:s12:12": {
+  "irab": {
+   "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ.",
+   "en": "A past verb (feminine).",
+   "tr": "Mâzî fiil (müennes)."
+  },
+  "tags": [],
+  "pos": "verb"
+ },
+ "14:s12:14": {
+  "irab": {
+   "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+   "en": "The doer (fa'il), in raf'; the sign is the damma.",
+   "tr": "Fâil, merfû; alâmeti damme ile."
+  },
+  "tags": [
+   "fail"
+  ]
+ },
+ "24:s15:19": {
+  "irab": {
+   "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
+   "en": "«not» — the negation before a verb.",
+   "tr": "«değil / -madı» — fiilden önce nefiy mâsı."
+  },
+  "tags": [],
+  "pos": "part",
+  "key": "ma-nafiya"
+ },
+ "24:s15:20": {
+  "irab": {
+   "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
+   "en": "A present verb, in raf'; its doer is a hidden pronoun «أَنَا».",
+   "tr": "Muzâri fiil, merfû; fâili gizli zamir «أَنَا»."
+  },
+  "tags": [],
+  "pos": "verb",
+  "key": "alima"
+ },
+ "24:s15:22": {
+  "irab": {
+   "ar": "مَجْرُورٌ بِـ«مِنْ» بِالْكَسْرَةِ، مُضَافٌ.",
+   "en": "In jarr after the preposition; the sign is the kasra; annexed (mudaf).",
+   "tr": "Mecrûr; alâmeti kesre ile; muzâf."
+  },
+  "tags": [
+   "huruf-jarr",
+   "idafa-definiteness"
+  ]
+ },
+ "24:s15:23": {
+  "irab": {
+   "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+   "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the kasra; annexed (mudaf).",
+   "tr": "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf."
+  },
+  "tags": [
+   "idafa-definiteness"
+  ]
+ },
+ "24:s15:25": {
+  "irab": {
+   "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+   "en": "The object (maf'ul bihi), in nasb; the sign is the fatha.",
+   "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile."
+  },
+  "tags": [
+   "maful-bihi"
+  ]
+ },
+ "24:s15:26": {
+  "irab": {
+   "ar": "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+   "en": "An adjective (na't) agreeing with its noun in case; the sign is the fatha.",
+   "tr": "Sıfat (na't); mevsûfuna uyar; alâmeti fetha ile."
+  },
+  "tags": [
+   "naat-sifa"
+  ]
+ },
+ "24:s15:30": {
+  "irab": {
+   "ar": "مَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+   "en": "Joined by the conjunction to the word before it; the same case; the sign is the kasra; annexed (mudaf).",
+   "tr": "Ma'tûf; aynı i'râb; alâmeti kesre ile; muzâf."
+  },
+  "tags": [
+   "atf-nasaq",
+   "idafa-definiteness"
+  ]
+ },
+ "24:s15:31": {
+  "irab": {
+   "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+   "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the kasra; annexed (mudaf).",
+   "tr": "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf."
+  },
+  "tags": [
+   "idafa-definiteness"
+  ]
+ },
+ "24:s20:49": {
+  "irab": {
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ نَحْنُ.",
+   "en": "The waw conjoins; a present verb, in raf'; its doer is a hidden pronoun «نَحْنُ».",
+   "tr": "«ve» + muzâri fiil, merfû; fâili gizli zamir «نَحْنُ»."
+  },
+  "tags": [],
+  "pos": "verb",
+  "key": "salla"
+ },
+ "25:s18:65": {
+  "irab": {
+   "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+   "en": "A present verb in the passive, in raf'; its doer is a hidden pronoun «هُوَ».",
+   "tr": "Muzâri fiil (meçhul), merfû; fâili gizli zamir «هُوَ»."
+  },
+  "tags": [],
+  "pos": "verb"
+ },
+ "25:s4:70": {
+  "irab": {
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» النَّاهِيَةُ: حَرْفُ نَهْيٍ وَجَزْمٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+   "en": "«do not» — the prohibitive la, it puts the verb in jazm.",
+   "tr": "«-me» — nehiy lâ'sı, fiili cezmeder."
+  },
+  "tags": [
+   "la-nahiya"
+  ],
+  "pos": "part",
+  "key": "la-nahiya"
+ },
+ "25:s4:71": {
+  "irab": {
+   "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا»، وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
+   "en": "A present verb, in jazm after «لَا»; its doer is a hidden pronoun «أَنْتَ».",
+   "tr": "Muzâri fiil, meczûm; fâili gizli zamir «أَنْتَ»."
+  },
+  "tags": [
+   "nawasib-wa-jawazim-al-mudari"
+  ],
+  "pos": "verb"
+ },
+ "26:s2:18": {
+  "irab": {
+   "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+   "en": "A present verb, in nasb; the pronoun suffix «his/its» is its object.",
+   "tr": "Muzâri fiil, mansûb; bitişik zamir «onun» mef'ûlün bihtir."
+  },
+  "tags": [
+   "nawasib-wa-jawazim-al-mudari",
+   "atf-nasaq",
+   "maful-bihi"
+  ],
+  "pos": "verb"
+ },
+ "6:s9:45": {
+  "irab": {
+   "ar": "مَعْطُوفٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+   "en": "Joined by the conjunction to the word before it; the same case; the sign is the fatha.",
+   "tr": "Ma'tûf; aynı i'râb; alâmeti fetha ile."
+  },
+  "tags": [
+   "atf-nasaq"
   ]
  }
 }

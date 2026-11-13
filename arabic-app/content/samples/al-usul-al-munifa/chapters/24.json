@@ -13816,15 +13816,12 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
-     "grammar": [
-      "ism-mawsul"
-     ],
+     "lex": "ma-nafiya",
+     "pos": "part",
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجُمْلَةُ بَعْدَهُ «أَعْلَمُ …».",
-      "en": "a relative pronoun — built (mabni); its relative clause is the clause after it «أَعْلَمُ …».",
-      "tr": "ism-i mevsûl — mebnî; sılası sonraki cümledir «أَعْلَمُ …»."
+      "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "«not» — the negation before a verb.",
+      "tr": "«değil / -madı» — fiilden önce nefiy mâsı."
      }
     },
     {
@@ -13833,15 +13830,12 @@
       "smart": "أَعْلَمُ",
       "bare": "أعلم"
      },
-     "lex": "alam-tafdil",
-     "pos": "noun",
-     "grammar": [
-      "mubtada-khabar"
-     ],
+     "lex": "alima",
+     "pos": "verb",
      "irab": {
-      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The khabar (predicate), in raf'; the sign is the damma.",
-      "tr": "Haber, merfû; alâmeti damme ile."
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
+      "en": "A present verb, in raf'; its doer is a hidden pronoun «أَنَا».",
+      "tr": "Muzâri fiil, merfû; fâili gizli zamir «أَنَا»."
      }
     },
     {
@@ -13870,12 +13864,13 @@
      "lex": "dhanb",
      "pos": "noun",
      "grammar": [
-      "huruf-jarr"
+      "huruf-jarr",
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "مَجْرُورٌ بِـ«مِنْ» بِالْكَسْرَةِ.",
-      "en": "In jarr after the preposition; the sign is the kasra.",
-      "tr": "Mecrûr; alâmeti kesre ile."
+      "ar": "مَجْرُورٌ بِـ«مِنْ» بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "In jarr after the preposition; the sign is the kasra; annexed (mudaf).",
+      "tr": "Mecrûr; alâmeti kesre ile; muzâf."
      }
     },
     {
@@ -13887,12 +13882,12 @@
      "lex": "ahl",
      "pos": "noun",
      "grammar": [
-      "badal"
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "بَدَلٌ مَجْرُورٌ بِالْكَسْرَةِ.",
-      "en": "A substitute (badal); the same case as its head; the sign is the kasra.",
-      "tr": "Bedel; aynı i'râb; alâmeti kesre ile."
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the kasra; annexed (mudaf).",
+      "tr": "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf."
      }
     },
     {
@@ -13921,12 +13916,12 @@
      "lex": "dhanb",
      "pos": "noun",
      "grammar": [
-      "hal"
+      "maful-bihi"
      ],
      "irab": {
-      "ar": "حَالٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The circumstantial (hal), in nasb; the sign is the fatha.",
-      "tr": "Hâl, mansûb; alâmeti fetha ile."
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha.",
+      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile."
      }
     },
     {
@@ -13938,12 +13933,12 @@
      "lex": "azam",
      "pos": "noun",
      "grammar": [
-      "maful-bihi"
+      "naat-sifa"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile."
+      "ar": "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "An adjective (na't) agreeing with its noun in case; the sign is the fatha.",
+      "tr": "Sıfat (na't); mevsûfuna uyar; alâmeti fetha ile."
      }
     },
     {
@@ -14007,12 +14002,13 @@
      "lex": "dam-blood",
      "pos": "noun",
      "grammar": [
-      "atf-nasaq"
+      "atf-nasaq",
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "مَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ.",
-      "en": "Joined by the conjunction to the word before it; the same case; the sign is the kasra.",
-      "tr": "Ma'tûf; aynı i'râb; alâmeti kesre ile."
+      "ar": "مَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "Joined by the conjunction to the word before it; the same case; the sign is the kasra; annexed (mudaf).",
+      "tr": "Ma'tûf; aynı i'râb; alâmeti kesre ile; muzâf."
      }
     },
     {
@@ -14024,12 +14020,12 @@
      "lex": "sahib",
      "pos": "noun",
      "grammar": [
-      "badal"
+      "idafa-definiteness"
      ],
      "irab": {
-      "ar": "بَدَلٌ مَجْرُورٌ بِالْكَسْرَةِ.",
-      "en": "A substitute (badal); the same case as its head; the sign is the kasra.",
-      "tr": "Bedel; aynı i'râb; alâmeti kesre ile."
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.",
+      "en": "The annexed noun (mudaf ilayh), in jarr; the sign is the kasra; annexed (mudaf).",
+      "tr": "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf."
      }
     },
     {
@@ -20741,33 +20737,23 @@
       "smart": "وَنُصَلِّي",
       "bare": "ونصلي"
      },
-     "lex": "nasl",
-     "pos": "noun",
-     "grammar": [
-      "atf-nasaq",
-      "al-taqdiri-al-thani-wal-thalith-al-mudaf-ila-al-ya-wal-mahki",
-      "idafa-definiteness"
-     ],
+     "lex": "salla",
+     "pos": "verb",
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ مَنَعَ مِنْ ظُهُورِهَا اشْتِغَالُ الْمَحَلِّ بِحَرَكَةِ يَاءِ الْمُتَكَلِّمِ، وَهُوَ مُضَافٌ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is an implied fatha — the speaker's ya takes the seat; annexed, the pronoun «my» is the mudaf ilayh.",
-      "tr": "«ve» + ma'tûf; aynı i'râb; alâmeti mütekellim yâsı sebebiyle takdîrî fetha ile; muzâf, zamir «benim» muzâfun ileyh."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ نَحْنُ.",
+      "en": "The waw conjoins; a present verb, in raf'; its doer is a hidden pronoun «نَحْنُ».",
+      "tr": "«ve» + muzâri fiil, merfû; fâili gizli zamir «نَحْنُ»."
      },
      "segments": [
       {
        "form": "وَ",
        "lex": "wa",
-       "pos": "conj"
+       "pos": "part"
       },
       {
-       "form": "نُصَلِّ",
-       "lex": "nasl",
-       "pos": "noun"
-      },
-      {
-       "form": "ي",
-       "lex": "pron-1s",
-       "pos": "pron"
+       "form": "نُصَلِّي",
+       "lex": "salla",
+       "pos": "verb"
       }
      ]
     },
@@ -21799,22 +21785,21 @@
       "smart": "قَالَهَا",
       "bare": "قالها"
      },
-     "lex": "qali",
-     "pos": "noun",
+     "lex": "qala",
+     "pos": "verb",
      "grammar": [
-      "maful-bihi",
-      "idafa-definiteness"
+      "maful-bihi"
      ],
      "irab": {
-      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The object (maf'ul bihi), in nasb; the sign is the fatha; annexed, the pronoun «her/its» is the mudaf ilayh.",
-      "tr": "Mef'ûlün bih, mansûb; alâmeti fetha ile; muzâf, zamir «onun (dişil)» muzâfun ileyh."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "en": "A past verb; the pronoun suffix «her/its» is its object.",
+      "tr": "Mâzî fiil; bitişik zamir «onun (dişil)» mef'ûlün bihtir."
      },
      "segments": [
       {
        "form": "قَالَ",
-       "lex": "qali",
-       "pos": "noun"
+       "lex": "qala",
+       "pos": "verb"
       },
       {
        "form": "هَا",

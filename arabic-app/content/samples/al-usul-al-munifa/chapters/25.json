@@ -5009,25 +5009,25 @@
       "smart": "وَلَا",
       "bare": "ولا"
      },
-     "lex": "la-nafiya",
+     "lex": "la-nahiya",
      "pos": "part",
      "grammar": [
-      "la-nafiya"
+      "la-nahiya"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» حَرْفُ نَفْيٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "«not» — the negation.",
-      "tr": "«değil / -mez» — nefiy harfi."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» النَّاهِيَةُ: حَرْفُ نَهْيٍ وَجَزْمٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "«do not» — the prohibitive la, it puts the verb in jazm.",
+      "tr": "«-me» — nehiy lâ'sı, fiili cezmeder."
      },
      "segments": [
       {
        "form": "وَ",
        "lex": "wa",
-       "pos": "conj"
+       "pos": "part"
       },
       {
        "form": "لَا",
-       "lex": "la-nafiya",
+       "lex": "la-nahiya",
        "pos": "part"
       }
      ]
@@ -5039,12 +5039,15 @@
       "bare": "تقف"
      },
      "lex": "qafa-follow",
-     "pos": "noun",
+     "pos": "verb",
      "irab": {
-      "ar": "اسْمٌ.",
-      "en": "a noun.",
-      "tr": "isim."
-     }
+      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا»، وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
+      "en": "A present verb, in jazm after «لَا»; its doer is a hidden pronoun «أَنْتَ».",
+      "tr": "Muzâri fiil, meczûm; fâili gizli zamir «أَنْتَ»."
+     },
+     "grammar": [
+      "nawasib-wa-jawazim-al-mudari"
+     ]
     },
     {
      "surface": {
@@ -21067,14 +21070,11 @@
       "bare": "يؤاخذ"
      },
      "lex": "akhadha-iii",
-     "pos": "noun",
-     "grammar": [
-      "fail"
-     ],
+     "pos": "verb",
      "irab": {
-      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The doer (fa'il), in raf'; the sign is the damma.",
-      "tr": "Fâil, merfû; alâmeti damme ile."
+      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "A present verb in the passive, in raf'; its doer is a hidden pronoun «هُوَ».",
+      "tr": "Muzâri fiil (meçhul), merfû; fâili gizli zamir «هُوَ»."
      }
     },
     {
