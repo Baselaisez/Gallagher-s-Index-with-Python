@@ -11016,3 +11016,65 @@ kunya's أَبِي was one row away from the right lemma all along.
 - **Not done** — Taṣrīf al-ʿIzzī and Sharḥ Shudhūr al-Dhahab are scans: no transcription yet (the first 27 pages of
   the ʿIzzī are the modern introduction); the Maqāmāt's case-layer gaps (W157); the three cold starts over 150 ms.
 
+## Wave 161 (v259): the case layer's rules, the seat that retypes a word, corrected lines kept beside the generator
+
+The task was W157's tail — the Maqāmāt's case-layer gaps — and it became a sweep of the whole case layer, because
+the gaps were classes, not words. Measured over every double-decided token of the shelf (`CaseEngine.claim` against
+`CaseEngine.humanCase` of the author's line): **97.43 % (50,214 / 51,538) → 98.39 % (51,563 / 52,408)**; the Maqāmāt
+1,712 / 1,717. Both vowelling sweeps hold: blind and receipts-on each fixed nine endings and broke none.
+
+- **Three sweeps, one baseline.** A change to the analyzer or to the claim is measured by the blind ḍabṭ sweep, the
+  receipts-on sweep and the case probe together. The claim is a reader of rows; the analyzer feeds the vowelling
+  engine. A rule that is right for one and moves the other is not landed.
+- **The grader reads the author's whole line.** `humanCase`: a line whose every clause opens on a letter's name is
+  the word's own case if one is named; ẓarf lines without «مُضَافٌ» and «فِي مَحَلِّ …» lines of nouns are built;
+  the lightened (مُخَفَّفَة) particles are letters.
+- **Rules of the claim** (each from a class of rows): the compound numbers 11–19 built on two fatḥas (اثْنَا declines);
+  اللّٰهُمَّ; قَبْلُ / بَعْدُ cut from the construct; غَيْرُ after لَا / لَيْسَ; فَحَسْبُ; ـوَيْهِ names (their hāʾ is no
+  pronoun, whatever the peel says); the five nouns before a pronoun read their letter (also behind a fused jarr
+  letter: بِأَبِيكَ); the defective jussive; the five verbs of a doubled root (يَظُنُّونَ) — and the heavy nūn only
+  where the nūn wears its own fatḥa (لَأَزِيدَنَّكُمْ, not لَنَظُنُّكَ), read off the word itself because the row may
+  still be typed a noun when the claim is asked; ـَاتِ and the dual / plural yāʾ ask
+  `Murib.officeCase` — the vowelling engine's office for that row — because the letters are the same in naṣb and
+  jarr; the diptote's fatḥa in a jarr office is its jarr; the munādā with a pronoun on it is annexed, so manṣūb.
+- **A claim reads the letters, not flags another engine sets.** `afterJarr` / `fusedJarr` are stamped by the vowelling
+  engine's pass; the rule-checker claims on fresh rows. لِلطَّاغِينَ went to the office and came back naṣb (two false
+  alarms in the Qawāʿid gate) until the article behind its jarr letter was read off the word itself.
+- **`Murib.officeCase` answers a chain.** The second of two yāʾ-forms asks the first, which asks its own office: the
+  guard is a depth (3), not a flag. A flag made every nested question silent.
+- **أَبَاهُ is two words until the sentence is read.** أَبَى's own māḍī with a pronoun has the same letters. The
+  analyzer's seat pass retypes it where a five-noun seat is certain; where it is not, the claim asks the office and
+  says naṣb only when the vowelling engine seats the word as a noun. Do NOT give the seat pass a wider lexicon lookup
+  for this (tried: two corpus rows moved — آدَمَ after إِنَّ أَبَاكُمْ lost its badal).
+- **The seat retypes** (`r.__seat161`): a māḍī/amr-celled word whose seat only a noun can fill (after inna, after يَا,
+  the construct before a majrūr, the object after a complete verb and its doer, the elative before مِنْ) is the
+  lexicon's noun when that noun wears the word's own vowels. The cell is kept as `__cellShadow`.
+- **مَا the noun by its seat, and a shim for the vowelling engine.** After a construct, after إِلَّا, before a ẓarf
+  with a governing word behind, between two verbs: the relative comes first. The vowelling engine was built on the old
+  ranking, so the row carries `__ma161` and `DabtEngine.decide` reads the row as it used to and restores it. When the
+  engine's own مَا rules are rewritten, drop the shim.
+- **«بَلْ + noun with a pronoun + (لَا) verb» opens a clause** — the mubtadaʾ (بَلْ أَكْثَرُهُمْ لَا يَعْقِلُونَ). The
+  row was «right» before only because the package called the word a verb.
+- **An engine-authored package is corrected token by token.** Regenerating al-Uṣūl with today's reader moves 457
+  tokens, some for the worse. `tools/authoring/apply_fixes.py <package> <dir> <notes.json>` writes a corrected line
+  into the chapter AND into `tools/authoring/<dir>/fixes.json` (irab, tags, pos, key; the token's own segment follows
+  a corrected key; a row names the word it corrects and stops the run if the address holds another). This wave: the
+  Maqāmāt's six (الدَّارَيْنِ, سَبْعِينَ, مَا … يَنْفَدُ … بَاقٍ), al-Uṣūl's twenty-four (مِنْ read as a relative ×6,
+  يَا رَبِّ read as «رُبَّ» ×3, الثَّلَاثَةِ, and nouns read as verbs: وَآلِهِ, أَرْضِهِ, أَكْثَرُهُمْ, وَحَجِّهِمْ,
+  وَقَدَرِهِ ×3 with the new entry `qadar`; the muḍāriʿ after أَنْ called marfūʿ or majzūm ×4, two muḍāriʿ called māḍī;
+  أَنْتَ after إِذَا is the doer of a deleted verb — the ḥadhf audit caught the line that named no role), the Kāfiya's سِيبَوَيْهِ (43:s4, also in its author script). The builder's
+  slip behind 402 tokens — مِنْ tagged `pron` because مَنْ shares its letters — is fixed in `pkg_from_engine.py` and
+  in the two packages. **About 118 al-Uṣūl lines still disagree with the case layer** (verbs called objects, moods
+  after أَنْ / لَا, faces of مَا in citations): list them with the case probe (story `al-usul-al-munifa`,
+  claim ≠ human) and correct them the same way; do not ship a guessed line.
+- **Analysis must not depend on what ran before it.** A probe that called `DabtEngine.decide` before printing a row
+  showed a noun where the smoke harness saw a verb: decide's pre-pass had retyped the row in place. A check of the
+  claim analyses and claims, nothing between.
+- **«Build the word», root mode:** a neighbouring root that builds the very same word is no wrong answer (زَاهٍ shows
+  nothing of its last radical) — such roots are dropped, and the smoke check rebuilds every wrong root to prove it.
+- **Speed (W158).** The wajh and shop games stop reading forty ms after their second item (the round fills itself
+  between taps), and the tawkīd game draws random verbs at the tap (two cells each, until the round is seated twice
+  over) instead of sweeping every paradigm — its cache is keyed on the lexicon's length, so a tap while the lexicon
+  was still being built paid the whole sweep (441 ms). Cold starts at 4× CPU: gWajh 206 → 140, gShop 162 → 107,
+  gTawkid 441 → under 40; nothing over 150. The first search (155–188 ms) scans 64 k rows and is left as it is.
+- **Smoke** — «wave 161» (411 checks); the case floor is 97.6.

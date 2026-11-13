@@ -11404,7 +11404,7 @@ if (!CHROME) {
     // are boundary rows: undecided ما faces, mahall-vs-lafz phrasings,
     // deep-context bina the surface alone cannot read.
     if (r.judged < 3000) throw new Error('the case layer judges too few tokens: ' + r.judged);
-    if (r.pct < 96.5) throw new Error('case agreement regressed to ' + r.pct + '%');
+    if (r.pct < 97.6) throw new Error('case agreement regressed to ' + r.pct + '%');   // wave 161: 97.43 → 98.34 over 52,408 double-decided tokens
     if (!r.panel) throw new Error('the tahqiq panel renders the case column');
   });
 
@@ -14427,6 +14427,7 @@ if (!CHROME) {
         if (!I.recites(book, it.c.out)) out.itemBad.push(it.right + " is not what its verb recites");
         if (it.wrong.some(w => w.form === it.right) || it.wrong.length < 3) out.itemBad.push(it.right + " wrong answers");
         if (it.mode === "root" && it.roots.some(R2 => R2.join("") === it.R.join(""))) out.itemBad.push(it.right + " root options");
+        if (it.mode === "root" && it.roots.some(R2 => { try { return I.seat(I.synth(R2, it.pat).out) === it.right; } catch (e) { return false; } })) out.itemBad.push(it.right + " a wrong root builds the same word");   // (wave 161) زَاهٍ shows nothing of its last radical
         if (it.mode === "mean" && it.means.some(m => m.en === it.gloss.en)) out.itemBad.push(it.right + " meaning options"); }
       // a round, played: one wrong answer shows its rule, one right answer scores
       conjState.lab = "isht"; conjState.isht = "مَبِيعٌ"; openConjugator();
@@ -14449,6 +14450,57 @@ if (!CHROME) {
     if (r.items < 40 || !r.modes.build || !r.modes.root || !r.modes.mean || r.itemBad.length) throw new Error('game items: ' + JSON.stringify([r.items, r.modes, r.itemBad.slice(0, 5)]));
     if (r.lab.chips < 8 || !r.lab.play || !r.lab.cite || !/مَرَاحُ/.test(r.lab.citeText) || r.lab.tend < 1) throw new Error('lab: ' + JSON.stringify(r.lab));
     if (!r.game.q || r.game.options !== 4 || !r.hub) throw new Error('game: ' + JSON.stringify([r.game, r.hub]));
+  });
+
+  await check('wave 161 — the case layer\'s rules: the built numbers, the five nouns, the office of a yāʾ-form, مَا the noun', async () => {
+    const r = await page.evaluate(() => {
+      const cl = s => { const rows = SentenceAnalyzer.analyze(s) || []; return rows.map((x, i) => { try { return (CaseEngine.claim(rows, i) || {}).k || null; } catch (e) { return 'ERR'; } }); };
+      const out = {};
+      out.eleven = cl('جَاءَ أَحَدَ عَشَرَ رَجُلًا');
+      out.allahumma = cl('اللّٰهُمَّ اغْفِرْ لَنَا');
+      out.qabl = cl('لِلّٰهِ الْأَمْرُ مِنْ قَبْلُ وَمِنْ بَعْدُ');
+      out.five = [cl('رَأَيْتُ أَبَاكَ')[1], cl('جَاءَ أَبُوكَ')[1], cl('مَرَرْتُ بِأَبِيكَ')[1]];
+      out.jazm = cl('لَمْ يَرْمِ الْوَلَدُ الْحَجَرَ');
+      out.zann = cl('هُمْ يَظُنُّونَ الْخَيْرَ');
+      out.dual = cl('مَرَرْتُ بِرَجُلَيْنِ كَرِيمَيْنِ');
+      out.oath = [cl('لَأَزِيدَنَّكُمْ')[0], cl('وَإِنَّا لَنَظُنُّكَ مِنَ الْكَاذِبِينَ')[1]];
+      out.kullama = cl('كُلَّمَا جَاءَ الْوَلَدُ فَرِحَ أَبُوهُ')[0];
+      out.nida = [cl('قَالُوا يَا أَبَانَا اسْتَغْفِرْ لَنَا')[2], cl('يَا رَبَّنَا اغْفِرْ لَنَا')[1], cl('يَا زَيْدُ')[1]];
+      // مَا the noun where its seat says so — and the vowelling engine still reads the sentence as before (the shim)
+      const r1 = SentenceAnalyzer.analyze('مَا عِنْدَكُمْ يَنْفَدُ') || [], r2 = SentenceAnalyzer.analyze('لِأَنَّ مَا بَعْدَهَا مُبْتَدَأٌ') || [];
+      out.ma1 = [r1[0] && r1[0].kind, r1[0] && r1[0].wajh && r1[0].wajh.k, (CaseEngine.claim(r1, 0) || {}).k];
+      const d2 = DabtEngine.decide(r2); out.ma2 = [r2[1] && r2[1].kind, !!(r2[1] && r2[1].__ma161), d2 && d2.out && d2.out[3] && d2.out[3].rule, r2[1] && r2[1].kind];
+      // سِيبَوَيْهِ in the Kāfiya: built on its kasra wherever it stands
+      const kf = STORIES.find(s => s.id === 'al-kafiya'); let sib = 0, sibOk = 0;
+      if (kf) for (const ch of kf.chapters) for (const sn of ch.sentences) { if (!sn.tokens.some(t => /سيبويه$/.test(t.s.bare || ''))) continue;
+        const rows = SentenceAnalyzer.analyze(sn.tokens.map(t => t.s.full).join(' ')) || []; if (rows.length !== sn.tokens.length) continue;
+        sn.tokens.forEach((t, i) => { if (/^سيبويه$/.test(t.s.bare || '')) { sib++; if (((CaseEngine.claim(rows, i) || {}).k) === 'mabni') sibOk++; } }); }
+      out.sib = [sibOk, sib];
+      // the engine-authored books: مِنْ is tagged a particle, and the corrected lines stand
+      let minPron = 0, minAll = 0; const lines = {};
+      for (const id of ['al-usul-al-munifa', 'al-maqamat-birgivi']) { const st = STORIES.find(s => s.id === id); if (!st) continue;
+        for (const ch of st.chapters) for (const sn of ch.sentences) for (const t of sn.tokens) if (t.lex === 'min' && /مِ/.test(t.s.full)) { minAll++; if (t.pos === 'pron') minPron++; } }
+      const tok = (id, n, sid, i) => { const st = STORIES.find(s => s.id === id), ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(n)), sn = ch && ch.sentences.find(s => s.id === sid); return sn && sn.tokens[i]; };
+      const a = tok('al-maqamat-birgivi', 12, 's1', 16), b = tok('al-usul-al-munifa', 25, 's14', 67), c = tok('al-usul-al-munifa', 14, 's6', 8), d = tok('al-usul-al-munifa', 1, 's2', 11);
+      out.lines = [a && a.irab.ar, b && b.irab.ar, c && [c.lex, c.pos], d && [d.lex, d.pos, CaseEngine.humanCase(d.irab.ar)]];
+      out.min = [minPron, minAll];
+      return out;
+    });
+    if (r.eleven[1] !== 'mabni' || r.eleven[2] !== 'mabni' || r.eleven[3] !== 'nasb') throw new Error('أَحَدَ عَشَرَ is built on its two fatḥas: ' + JSON.stringify(r.eleven));
+    if (r.allahumma[0] !== 'mabni') throw new Error('اللّٰهُمَّ: ' + JSON.stringify(r.allahumma));
+    if (r.qabl[3] !== 'mabni' || r.qabl[5] !== 'mabni') throw new Error('قَبْلُ / بَعْدُ cut off from the construct are built on the ḍamm: ' + JSON.stringify(r.qabl));
+    if (r.five.join() !== 'nasb,raf,jarr') throw new Error('the five nouns before a pronoun read their letter: ' + JSON.stringify(r.five));
+    if (r.jazm[1] !== 'jazm') throw new Error('لَمْ يَرْمِ: the dropped weak letter is the jazm: ' + JSON.stringify(r.jazm));
+    if (r.zann[1] !== 'raf') throw new Error('يَظُنُّونَ keeps its nūn — rafʿ: ' + JSON.stringify(r.zann));
+    if (r.dual[1] !== 'jarr' || r.dual[2] !== 'jarr') throw new Error('the dual after a jarr letter and its naʿt: ' + JSON.stringify(r.dual));
+    if (r.oath[0] !== 'mabni' || r.oath[1] !== 'raf') throw new Error('the heavy nūn builds; the doubled root\'s own nūn does not: ' + JSON.stringify(r.oath));
+    if (r.kullama !== 'mabni') throw new Error('كُلَّمَا: ' + r.kullama);
+    if (r.nida.join() !== 'nasb,nasb,mabni') throw new Error('the annexed munādā is manṣūb, the single name built: ' + JSON.stringify(r.nida));
+    if (r.ma1[0] !== 'noun' || r.ma1[1] !== 'mawsula' || r.ma1[2] !== 'mabni') throw new Error('مَا before a ẓarf and a verb is the relative noun: ' + JSON.stringify(r.ma1));
+    if (r.ma2[0] !== 'noun' || !r.ma2[1] || r.ma2[2] !== 'innaKhabar' || r.ma2[3] !== 'noun') throw new Error('the relative مَا after أَنَّ keeps the vowelling engine\'s reading and its own kind afterwards: ' + JSON.stringify(r.ma2));
+    if (r.sib[1] < 8 || r.sib[0] < r.sib[1] - 1) throw new Error('سِيبَوَيْهِ is built on its kasra: ' + JSON.stringify(r.sib));
+    if (r.min[1] < 300 || r.min[0] !== 0) throw new Error('مِنْ the jarr letter is no pronoun: ' + JSON.stringify(r.min));
+    if (!/^خَبَرُ/.test(r.lines[0] || '') || !/^مُنَادَى/.test(r.lines[1] || '') || (r.lines[2] || []).join() !== 'qadar,noun' || (r.lines[3] || []).join() !== 'aal,noun,jarr') throw new Error('the corrected lines: ' + JSON.stringify(r.lines));
   });
 
   await check('no JS errors on page', async () => {

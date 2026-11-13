@@ -60,9 +60,9 @@ def AMMA(full="أَمَّا", wa=False, punct=None, ar="حَرْفُ شَرْط�
 def FA_V(full, lex, stem, ar_v, en, tr, obj=None, punct=None, tags=()):
     segs = [seg("فَ", "fa", "conj"), seg(stem, lex, "verb"), prT()] + ([obj] if obj else [])
     return cited(full, lex, "verb", [FJ, AM, "fail", "maful-bihi"] + list(tags), "الْفَاءُ رَابِطَةٌ لِجَوَابِ أَمَّا، وَ" + ar_v, en, tr, punct=punct, segments=segs)
-def INDA(who, lex, en, tr, wa=True, punct=None, extra=()):
-    if wa: return [atf_wa("وَعِنْدَ", "inda", "noun", [AT, "maful-fih", "idafa-definiteness", "khabar-al-mubtada-wa-ahkamuh"], "عِنْدَ ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«and according to».", "«... -e göre».", "عِنْدَ"), W(who, lex, "propn", ["idafa-definiteness"] + list(extra), "مُضَافٌ إِلَيْهِ مَجْرُورٌ.", en, tr, punct=punct)]
-    return [W("فَعِنْدَ", "inda", "noun", ["maful-fih", "idafa-definiteness", "al-fa-fi-khabar-al-mubtada"], "الْفَاءُ لِلتَّفْرِيعِ، وَعِنْدَ ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«according to».", "«... -e göre».", segments=[seg("فَ", "fa", "conj"), seg("عِنْدَ", "inda", "noun")]), W(who, lex, "propn", ["idafa-definiteness"] + list(extra), "مُضَافٌ إِلَيْهِ مَجْرُورٌ.", en, tr, punct=punct)]
+def INDA(who, lex, en, tr, wa=True, punct=None, extra=(), mi="مُضَافٌ إِلَيْهِ مَجْرُورٌ."):   # mi: the annexed word's own line (سِيبَوَيْهِ is built on its kasra)
+    if wa: return [atf_wa("وَعِنْدَ", "inda", "noun", [AT, "maful-fih", "idafa-definiteness", "khabar-al-mubtada-wa-ahkamuh"], "عِنْدَ ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«and according to».", "«... -e göre».", "عِنْدَ"), W(who, lex, "propn", ["idafa-definiteness"] + list(extra), mi, en, tr, punct=punct)]
+    return [W("فَعِنْدَ", "inda", "noun", ["maful-fih", "idafa-definiteness", "al-fa-fi-khabar-al-mubtada"], "الْفَاءُ لِلتَّفْرِيعِ، وَعِنْدَ ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«according to».", "«... -e göre».", segments=[seg("فَ", "fa", "conj"), seg("عِنْدَ", "inda", "noun")]), W(who, lex, "propn", ["idafa-definiteness"] + list(extra), mi, en, tr, punct=punct)]
 def FAA(full="الْفَاءِ", tags=("idafa-definiteness",), ar="مُضَافٌ إِلَيْهِ مَجْرُورٌ.", punct=None): return W(full, "fa-letter", "noun", list(tags) + [FJ], ar, "«the fāʾ».", "«fâ».", punct=punct)
 def BIJUZ(verb_full, verb_ar, en_v, tr_v, segs=None):
     return [W(verb_full, "ata", "verb", ["naib-al-fail", "naqis-verbs"], verb_ar, en_v, tr_v, segments=segs),
@@ -127,7 +127,7 @@ S.append({"id": "s4", "translation": {
   atf_wa("وَفِعْلُ", "fil", "noun", ["mubtada-khabar", "idafa-definiteness"], "فِعْلُ مُبْتَدَأٌ مَرْفُوعٌ، وَهُوَ مُضَافٌ.", "«and the verb of».", "«ve ... fiili».", "فِعْلُ"),
   cited("أَمَّا", "amma-tafsil", "part", ["idafa-definiteness", AM], "مُضَافٌ إِلَيْهِ — الْحَرْفُ مَحْكِيٌّ.", "«ammā».", "«emmâ'nın»."),
   W("مَحْذُوفٌ", "mahdhuf", "noun", ["mubtada-khabar", "ism-maful", "hadhf-wa-taqdir"], "خَبَرٌ مَرْفُوعٌ.", "«is dropped».", "«hazfedilir».", punct="."),
-  *INDA("سِيبَوَيْهِ", "sibawayh", "«Sībawayh».", "«Sîbeveyh'e».", wa=False, extra=("al-mabni-wal-mudmar",)),
+  *INDA("سِيبَوَيْهِ", "sibawayh", "«Sībawayh».", "«Sîbeveyh'e».", wa=False, extra=("al-mabni-wal-mudmar",), mi="مُضَافٌ إِلَيْهِ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ جَرٍّ."),
   *BIJUZ("يُؤْتَى", "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ — الْجُمْلَةُ مُبْتَدَأٌ مُؤَخَّرٌ فِي الْمَعْنَى.", "«is placed».", "«getirilir»."),
   W("بَيْنَ", "bayna", "noun", ["maful-fih", "idafa-definiteness"], "ظَرْفٌ مَنْصُوبٌ، وَهُوَ مُضَافٌ.", "«between».", "«... arasına»."),
   cited("أَمَّا", "amma-tafsil", "part", ["idafa-definiteness", AM], "مُضَافٌ إِلَيْهِ — الْحَرْفُ مَحْكِيٌّ.", "«ammā».", "«emmâ»."),

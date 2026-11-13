@@ -255,11 +255,14 @@
      },
      "lex": "ma-mawsula",
      "pos": "pron",
-     "grammar": [],
+     "grammar": [
+      "ism-mawsul",
+      "mubtada-khabar"
+     ],
      "irab": {
-      "ar": "«مَا» الْحِجَازِيَّةُ النَّافِيَةُ تَعْمَلُ عَمَلَ لَيْسَ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "«not» — the Ḥijāzī مَا that works like لَيْسَ: its noun in rafʿ, its predicate in naṣb or after بِ.",
-      "tr": "«değil» — leyse gibi amel eden Hicâzî mâ."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَصِلَتُهُ الظَّرْفُ «عِنْدَكُمْ»، وَخَبَرُهُ جُمْلَةُ «يَنْفَدُ».",
+      "en": "A relative noun built on sukūn, in the place of rafʿ as the mubtadaʾ: «what is with you»; its ṣila is the ẓarf «عِنْدَكُمْ» and its khabar the clause «يَنْفَدُ».",
+      "tr": "Sükûn üzere mebnî ism-i mevsûl, mahallen merfû mübtedâ: «sizin yanınızdaki»; sılası «عِنْدَكُمْ» zarfı, haberi «يَنْفَدُ» cümlesidir."
      }
     },
     {
@@ -301,9 +304,9 @@
      "lex": "nafida",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ يَعُودُ عَلَى «مَا»، وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَا».",
+      "en": "A muḍāriʿ in rafʿ with a written ḍamma; its doer is the hidden «it», returning to «مَا»; the clause is the khabar of «مَا», in the place of rafʿ.",
+      "tr": "Zâhir damme ile merfû muzâri; fâili «مَا»ya dönen müstetir «o» zamiridir; cümle «مَا»nın haberi olarak mahallen merfûdur."
      }
     },
     {
@@ -315,12 +318,13 @@
      "lex": "ma-mawsula",
      "pos": "pron",
      "grammar": [
-      "ism-mawsul"
+      "ism-mawsul",
+      "mubtada-khabar"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الظَّرْفُ «عِنْدَ».",
-      "en": "The waw conjoins; a relative pronoun — built (mabni); its relative clause is the adverbial «عِنْدَ».",
-      "tr": "«ve» + ism-i mevsûl — mebnî; sılası zarf «عِنْدَ»."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَصِلَتُهُ الظَّرْفُ «عِنْدَ».",
+      "en": "The wāw joins; a relative noun built on sukūn, in the place of rafʿ as the mubtadaʾ: «and what is with God»; its ṣila is the ẓarf «عِنْدَ».",
+      "tr": "Vâv atıf; sükûn üzere mebnî ism-i mevsûl, mahallen merfû mübtedâ: «Allah katında olan»; sılası «عِنْدَ» zarfıdır."
      },
      "segments": [
       {
@@ -379,12 +383,13 @@
      "lex": "baqin",
      "pos": "noun",
      "grammar": [
-      "hal"
+      "mubtada-khabar",
+      "ism-maqsur-manqus"
      ],
      "irab": {
-      "ar": "حَالٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The circumstantial (hal), in nasb; the sign is the fatha.",
-      "tr": "Hâl, mansûb; alâmeti fetha ile."
+      "ar": "خَبَرُ «مَا» مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ الْمَحْذُوفَةِ لِالْتِقَاءِ السَّاكِنَيْنِ، لِأَنَّهُ اسْمٌ مَنْقُوصٌ.",
+      "en": "The khabar of «مَا», in rafʿ by a ḍamma understood on the yāʾ that was dropped where two sukūns met — a manqūṣ noun: «remains».",
+      "tr": "«مَا»nın haberi; iki sâkinin karşılaşmasıyla düşen yâ üzerinde takdîrî damme ile merfû — ism-i menkûs: «bâkîdir»."
      },
      "punctAfter": "."
     }
@@ -510,7 +515,7 @@
       "bare": "من"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr"
      ],
@@ -609,7 +614,7 @@
       "bare": "منهم"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr",
       "al-mabni-wal-mudmar"
@@ -690,7 +695,7 @@
       "bare": "منه"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr",
       "al-mabni-wal-mudmar"
@@ -898,7 +903,7 @@
       "bare": "من"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr"
      ],
@@ -2049,7 +2054,7 @@
       "bare": "من"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr"
      ],
@@ -3038,7 +3043,7 @@
       "bare": "من"
      },
      "lex": "min",
-     "pos": "pron",
+     "pos": "part",
      "grammar": [
       "huruf-jarr"
      ],

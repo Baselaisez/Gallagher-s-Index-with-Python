@@ -969,7 +969,7 @@ def main():
                     if pre and pb not in ("و", "ف"):
                         ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if pre == "و" else "الْفَاءُ عَاطِفَةٌ، وَ") + ar; en = ("The waw conjoins; " if pre == "و" else "The fa conjoins; ") + en[:1].lower() + en[1:]; tr = ("«ve» + " if pre == "و" else "«bunun üzerine» + ") + tr[:1].lower() + tr[1:]
                         segs = [{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}, {"form": full[2:], "lex": key, "pos": "part"}]; take("wa" if pre == "و" else "fa", where)
-                    toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": key or "?", "pos": "pron" if pb in PRON or pb in DEM else "part", **({"grammar": list(dict.fromkeys(t for t in tags if t in GIDS))} if tags else {}), "irab": {"ar": ar, "en": en, "tr": tr}, **({"segments": segs} if segs else {})})
+                    toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": key or "?", "pos": "pron" if (pb in PRON or pb in DEM) and key != "min" else "part", **({"grammar": list(dict.fromkeys(t for t in tags if t in GIDS))} if tags else {}), "irab": {"ar": ar, "en": en, "tr": tr}, **({"segments": segs} if segs else {})})
                     continue
                 # ---- a verb the engine read as a noun: the lexicon's part of speech wins, the shape gives tense and mood
                 if kind == "noun" and not fx.get("pos") and (rule in ROLE or rule in (None, "", "laJins")) and k in ("raf", "nasb", "jarr", "fath", None):
