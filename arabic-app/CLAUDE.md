@@ -10973,4 +10973,10 @@ kunya's أَبِي was one row away from the right lemma all along.
   inventoried: matn only — their modern introductions, footnotes and apparatus are never copied. Marāḥ's matn is
   extracted raw from its text layer by type size into `research/sources/marah-al-arwah-matn.txt` (lossy: private-use
   ligature glyphs drop letters; collate against the page images before any use); the two scans are not transcribed.
+- **Speed, measured on v257 at 4× CPU (53 texts)** — every Atölye tab paints in ≤ 24 ms warm (the new Türetim tab
+  among them), the Atölye opens in 21 ms warm / 124 ms cold, every game starts in ≤ 80 ms warm, a typed sentence is
+  vowelled in 101 ms, a word of a long text opens in ≤ 121 ms. The derivation engine costs 2.6 ms a word; its lexicon
+  index (137 ms) and inverse templates (386 ms) are built in idle slices, never at a tap. STILL OVER the 150 ms line,
+  cold only (a tap before any idle work): gWajh 206 ms, gShop 162 ms, the first search 155 ms — owed to the next
+  speed wave (the corpus grew by al-Uṣūl since they were last under it).
 
