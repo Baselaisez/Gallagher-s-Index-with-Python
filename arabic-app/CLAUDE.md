@@ -11093,3 +11093,19 @@ the gaps were classes, not words. Measured over every double-decided token of th
 - Case layer 98.39 → 98.40 % (51,568 / 52,409). About 108 al-Uṣūl lines remain (task W162); قُبِضَ and أَمْلَاهَا need
   verb entries with paradigms before their lines can be corrected.
 
+### v261 (wave 162) — a verb stays a verb
+
+Sixteen of al-Uṣūl's «disagreements» were the analyzer, not the book — three old rules that turn a māḍī into
+something else on typed text, each now guarded where it over-reached (vowelling sweeps identical, case layer
+98.40 → 98.43 %, nothing broken):
+
+- **«A māḍī right after a māḍī is the first one's doer»** (قَدْ جَرَى ذَهَبُ الْأَصِيلِ) made قَالَ after
+  «صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ» the noun قَالٍ in every ḥadīth. The praise is a parenthesis; a doer never wears a
+  written fatḥa; and a manqūṣ noun is not its consonants plus a vowel.
+- **«A māḍī of the same root after its verb is the mafʿūl muṭlaq»** (تَمُرُّ مَرَّ السَّحَابِ) took
+  وَلَمْ يَشَأْ وَشَاءَ الْكُفْرَ — a joined word is a second verb.
+- **The jarr-letter-before-a-particle peel** read كَلَّمَ as كَ + لَمْ and لَعَنَ as لَ + عَنْ. Those particles end on
+  their sukūn and carry no shadda (لَقَدْ keeps its peel).
+- Still open on typed text: أَفَأَرَادَ (the hamza of question + فَ before a verb is not peeled).
+- Smoke: «wave 162» (412 checks).
+

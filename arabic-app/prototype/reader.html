@@ -11756,6 +11756,7 @@ class SentenceAnalyzer {
       // «إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ» is لَامُ الِابْتِدَاءِ, slid onto the khabar
       // (الْمُزَحْلَقَة), and the majrur of في is the noun after it.
       if (!this.PARTICLES[core] && /^[بلك]/.test(core) && core.length > 2 && !/[ًٌٍ]/.test((w || "").normalize("NFC")) &&
+          !(/^(لم|عن|لن|قد|هل|بل)$/.test(core.slice(1)) && (/ّ/.test((w || "").normalize("NFC")) || /َ$/.test((w || "").normalize("NFC").replace(/[«»،.:!؟\s]/g, "")))) /* (wave 162) كَلَّمَ، لَعَنَ: the shadda and the final fatḥa are a verb's — لَمْ and عَنْ end on their sukūn */ &&
           !(/^ب[َُ]|^لُ|^ك[ُِ]/.test((w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*(?=[بلك])/, "")) && !/^.ال/.test(core)) /* (wave 139) the letter's own vowel: بَخِلَا is a verb, بِ wears kasra (لَ may be the lām of ibtidāʾ) */ &&
           !(/^(لم|لن|لا|ما|لو|كي|قد|هل|لكن|لعل|ليت|لما)$/.test(core.slice(1)) && new RegExp("^[وف]?[ً-ٰ]*" + core[0] + "[ً-ٰ]*" + core[1] + "[ُِ]").test((w || "").normalize("NFC"))) /* (wave 44a) كَلِمَ الْمُجَازَاةِ: the kasra on the lām refutes لَمْ — the word is the lexicon's كَلِم */ &&
           (/^.ال/.test(core) ||
@@ -13229,7 +13230,7 @@ class SentenceAnalyzer {
       const sameRoot = r.root && pv.root && bareR(r.root) === bareR(pv.root);
       const nxt = out[i + 1];
       const annexNext = !!nxt && (nxt.kind || "").startsWith("noun") && (/^ال/.test(stripAr(nxt.w).replace(/[^ء-ي]/g, "")) || !!nxt.enc || !!nxt.alam);
-      if (sameRoot && r.cell.tense === "mazi" && annexNext && !r.enc) {
+      if (sameRoot && r.cell.tense === "mazi" && annexNext && !r.enc && !/^[وف]َ/.test(String(r.w || "").normalize("NFC")) /* (wave 162) وَلَمْ يَشَأْ وَشَاءَ الْكُفْرَ: a joined word is a second verb, not the first one's maṣdar */) {
         r.kind = "noun"; r.sure = true; r.__cellShadow = r.cell; delete r.cell;
         r.notes.push({ en: "a MASDAR spelled like the mazi, standing after its own verb and annexed to what follows — the maf'ul mutlaq (تَمُرُّ مَرَّ السَّحَابِ); two finite verbs never stand side by side", tr: "mâzî gibi yazılan bir MASDAR: kendi fiilinden sonra gelip ardındakine muzâf — mef'ûl-i mutlak (تَمُرُّ مَرَّ السَّحَابِ); iki çekimli fiil yan yana durmaz" });
         continue;
@@ -13238,6 +13239,8 @@ class SentenceAnalyzer {
           !/^(قال|قالت|قالوا|يقول|تقول|أقول|اقول|نقول|قل|كان|كانت|ليس|صار|أصبح|اصبح|أمسى|امسى|ظل|بات|زال|كاد|جعل|أخذ|اخذ|طفق|عسى|رأى|راى|علم|وجد|ظن|حسب|زعم|خال)$/.test(stripAr(pv.lemma || "").replace(/[^ء-ي]/g, "")) &&
           !out.slice(0, i - 1).some(x => ["shart", "shart-jazim", "zarf-idh", "jazm"].includes(x.pk || "") || /^[وف]?(لما|اذا|إذا|لو|كلما|ان|إن)$/.test(stripAr(x.w).replace(/[^ء-ي]/g, "")))) {
         let nn = null; try { nn = RootFinder.nounFromCorpus(r.w); } catch (e) {}
+        /* (wave 162) صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: the praise is a parenthesis and قَالَ opens the report — and a doer never wears a fatḥa, nor is قَالَ the manqūṣ قَالٍ */
+        if (nn && (/^(سلم|تعالى|صلى|رضي|رحم|وجل|عز)$/.test(stripAr(pv.lemma || "").replace(/[^ء-ي]/g, "")) || /َ$/.test(String(r.w || "").normalize("NFC").replace(/[«»،.:!؟\s]/g, "")) || /ٍ$/.test(String(nn.lemma || "").normalize("NFC").split(/[()\s]/)[0]))) nn = null;
         if (nn && !/verb|part|pron/.test(nn.pos || "")) {
           r.kind = "noun"; r.sure = true; r.__cellShadow = r.cell; delete r.cell; r.lemma = nn.lemma; r.gloss = nn.gloss; if (nn.root) r.root = nn.root;
           r.notes.push({ en: "a noun the lexicon owns, spelled like a mazi — but it stands DIRECTLY after a mazi with no joiner: two finite verbs never meet, so this is the first verb's fa'il (قَدْ جَرَى ذَهَبُ الْأَصِيلِ)", tr: "sözlüğün tanıdığı bir isim, mâzî gibi yazılmış — fakat bağlaçsız, doğrudan bir mâzîden SONRA duruyor: iki çekimli fiil karşılaşmaz, bu ilk fiilin fâilidir (قَدْ جَرَى ذَهَبُ الْأَصِيلِ)" });

@@ -14503,6 +14503,18 @@ if (!CHROME) {
     if (!/^خَبَرُ/.test(r.lines[0] || '') || !/^مُنَادَى/.test(r.lines[1] || '') || (r.lines[2] || []).join() !== 'qadar,noun' || (r.lines[3] || []).join() !== 'aal,noun,jarr') throw new Error('the corrected lines: ' + JSON.stringify(r.lines));
   });
 
+  await check('wave 162 — a verb stays a verb: after the praise formula, joined by a wāw, and where its letters could be a letter and a particle', async () => {
+    const r = await page.evaluate(() => {
+      const kinds = s => (SentenceAnalyzer.analyze(s) || []).map((x, i, rows) => [x.kind, (() => { try { return (CaseEngine.claim(rows, i) || {}).k || null; } catch (e) { return 'ERR'; } })()]);
+      return { qala: kinds('صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ سَتَرَوْنَ رَبَّكُمْ')[4], shaa: kinds('وَلَمْ يَشَأْ وَشَاءَ الْكُفْرَ')[2], kallama: kinds('وَلَمْ يَكُنْ كَلَّمَ مُوسَى')[2], laana: kinds('قَالَ لَعَنَ الْقَدَرِيَّةَ')[1],
+               dhahab: kinds('قَدْ جَرَى ذَهَبُ الْأَصِيلِ')[2], marr: kinds('تَمُرُّ مَرَّ السَّحَابِ')[1], laqad: kinds('لَقَدْ جَاءَ الْحَقُّ')[0] };
+    });
+    for (const k of ['qala', 'shaa', 'kallama', 'laana']) if (!String(r[k][0]).startsWith('verb') || r[k][1] !== 'mabni') throw new Error(k + ' is a māḍī, built: ' + JSON.stringify(r[k]));
+    if (r.dhahab[0] !== 'noun' || r.dhahab[1] !== 'raf') throw new Error('ذَهَبُ الْأَصِيلِ stays the doer: ' + JSON.stringify(r.dhahab));
+    if (r.marr[0] !== 'noun' || r.marr[1] !== 'nasb') throw new Error('مَرَّ السَّحَابِ stays the mafʿūl muṭlaq: ' + JSON.stringify(r.marr));
+    if (r.laqad[0] !== 'particle') throw new Error('لَقَدْ keeps its peel: ' + JSON.stringify(r.laqad));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
