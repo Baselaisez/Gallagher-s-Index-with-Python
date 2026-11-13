@@ -11490,3 +11490,42 @@ Three misreads found while closing wave 168, each answered by the rule the books
   «وَهُوَ مَا عَلِمَ» wear one surface), «عَابِدُونَ مَا أَعْبُدُ» (the participle's object seat is not yet a rule), Iẓhār 61:s2
   (a list item whose head is in the sentence before).
 - Smoke: «wave 169» (419 checks).
+
+
+### v269 (wave 170) — the office beside the ending, and a gauge for it
+
+Every sweep so far graded the ENDING the vowelling engine writes. The label it shows beside the ending — fāʿil, khabar,
+ḥāl — is what a learner reads, and nothing measured it. Sixty textbook sentences typed by hand (the kind a beginner tries
+first) came back with the right ending almost everywhere and the wrong OFFICE in ten places; two endings were wrong too.
+
+- **`tools/label_gauge.js` — the new instrument.** Blind over the whole shelf, the engine's rule is mapped to a seat
+  (`RuleMiner.RULE_SEAT`) and set against the seat the author's line names; a compound line («مَعْطُوفٌ … مَجْرُورٌ») agrees
+  when it names the engine's office anywhere. **89.05 % of 32,443 tokens** where both name an office on v268. It is a
+  measuring tool, not a gate (about a minute); the top classes it prints are the next waves' work list:
+  `atf | mubtadaʾ` 260, `mubtadaʾ | khabar` 255, `khabar | naʿt` 136, `fāʿil | mafʿūl` 115.
+- **`DabtEngine.relabel170(rows, out)` — one pass after the loop, ten rules, each naming the shape it stands on:**
+  R1 the participle after a verb of coming or going and its doer is the ḤĀL (جَاءَ زَيْدٌ رَاكِبًا); R2 an indefinite right
+  after a definite mubtadaʾ with no verb before it is the KHABAR, never a badal — and where the loop had called a
+  «ـُونَ / ـَانِ» word an object, the wāw and the alif are the rafʿ itself (الْمُعَلِّمُونَ حَاضِرُونَ); R3 an أَفْعَل that no stored
+  paradigm spells as its «I …» is the elative khabar, the nakira after it its TAMYĪZ (زَيْدٌ أَكْثَرُ مَالًا); R4 a ṣifa after
+  a jāmid khabar is its NAʿT (هٰذَا كِتَابٌ جَدِيدٌ) — with agreement in gender and number, so the spelling-out of a division
+  (ضَرْبَانِ لَفْظِيٌّ وَمَعْنَوِيٌّ) is left to the badal; R5 the makhṣūṣ after نِعْمَ / بِئْسَ is a postponed mubtadaʾ in RAFʿ
+  (the engine had written «زَيْدًا»); R6 «مَا أَفْعَلَ + a definite noun» as the whole sentence is the verb of WONDER on its
+  fatḥa and its object (it had written «مَا أَجْمَلُ السَّمَاءِ»; rule label `taajjub`, linked to the Kāfiya's note); R7 مَا
+  زَالَ is kāna's sister; R8 the number heading an iḍāfa after its verb is the OBJECT; R9 a joined definite noun with its
+  own predicate after a complete nominal clause opens a NEW clause; R10 kāna / laysa + a built noun + a nakira: the
+  nakira is kāna's khabar.
+- **Why a pass and not ten edits in the loop.** The loop's state machine decides endings and its rules lean on one
+  another; an office restated AFTER it cannot disturb an ending it did not mean to. The two rules that do change an
+  ending (R5, R6) and R2's plural case are the only ones that write `k`, and the sweeps are the proof: blind and
+  receipts-on **0 fixed / 0 broken**, case layer unchanged (98.65 %).
+- **Three refinements the gauge forced, each a rule of the books and not a tuning:** a naʿt agrees with its noun in
+  number and gender (seventeen «قِسْمَانِ / ضَرْبَانِ + …» rows had turned into naʿt); a muḍāf is no ḥāl (رَائِحَةَ يُوسُفَ); and
+  the ḥāl rule keeps to the verbs of coming and going the books give — a valency-ledger guess is no licence
+  (نَجَّى اللهُ صَالِحًا had become «ḥāl»). R2 was also held to words whose own letters show rafʿ after the receipts-on
+  sweep caught it overwriting a written naṣb (al-Kāfiya 11:s3 مَقْصُورَةً).
+- Measured: label agreement 89.05 → **89.15 %** (39 offices moved to the author's reading, 2 away — «اسْمٌ وَاقِعٌ عَلَى»
+  where the engine's naʿt is arguably the better line, and one unjudged). The battery: 15 of 60 sentences changed, every
+  one toward the textbook reading. Left: «أَنَا أَعْلَمُ ذٰلِكَ» still labels its verb «khabar» (the clause is; the word is a
+  rafʿ verb), «هُوَ طَالِبٌ مُجْتَهِدٌ» keeps two khabars (طَالِب is itself a ṣifa shape), and the three classes above.
+- `tools/smoke_test.js`: «wave 170» (420 checks).

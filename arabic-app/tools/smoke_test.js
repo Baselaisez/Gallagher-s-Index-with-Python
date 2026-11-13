@@ -14820,6 +14820,32 @@ if (!CHROME) {
     if (!/^nafiya particle\? -$/.test(r.maShelf)) throw new Error('al-Kāfiya 6:s4 «وَمَا جَاءَ مِنْهُ مَصْدَرًا …» — its khabar is not in the sentence, so the class stays undecided: ' + r.maShelf);
   });
 
+  await check('wave 170 — the OFFICE beside the ending, on the sentences a beginner types: the participle after a verb of coming and its doer is the ḥāl (جَاءَ زَيْدٌ رَاكِبًا), an indefinite right after a definite mubtadaʾ is the khabar (الْمُعَلِّمُونَ حَاضِرُونَ، الطَّالِبَانِ مُجْتَهِدَانِ), the elative the paradigms do not own as «I …» is the khabar and the nakira after it its tamyīz (زَيْدٌ أَكْثَرُ مَالًا), a ṣifa after a jāmid khabar is its naʿt (هٰذَا كِتَابٌ جَدِيدٌ) but a division is no naʿt (ضَرْبَانِ لَفْظِيٌّ وَمَعْنَوِيٌّ), the makhṣūṣ after نِعْمَ is in rafʿ, مَا أَفْعَلَ is the verb of wonder with its object, مَا زَالَ is kāna\'s sister, a number heading an iḍāfa after its verb is the object, and a joined definite noun with its own predicate opens a new clause', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      return {
+        hal: dv('جَاءَ زَيْدٌ رَاكِبًا'), hal2: dv('ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ مَاشِيًا'), obj: dv('ضَرَبَ زَيْدٌ عَمْرًا'),
+        pl: dv('الْمُعَلِّمُونَ حَاضِرُونَ'), du: dv('الطَّالِبَانِ مُجْتَهِدَانِ'),
+        el: dv('زَيْدٌ أَكْثَرُ مَالًا'), el2: dv('هٰذَا أَحْسَنُ'),
+        nat: dv('هٰذَا كِتَابٌ جَدِيدٌ'), nat2: dv('هٰذِهِ مَدْرَسَةٌ كَبِيرَةٌ'), div: dv('وَالتَّعْقِيدُ ضَرْبَانِ لَفْظِيٌّ وَمَعْنَوِيٌّ'),
+        nima: dv('نِعْمَ الرَّجُلُ زَيْدٌ'), wonder: dv('مَا أَجْمَلَ السَّمَاءَ'), zala: dv('مَا زَالَ الْمَطَرُ نَازِلًا'),
+        num: dv('قَرَأْتُ ثَلَاثَ قِصَصٍ'), two: dv('الْعِلْمُ نُورٌ وَالْجَهْلُ ظَلَامٌ'), two2: dv('أَوَّلُهُ الْعِلْمُ وَآخِرُهُ الْعَمَلُ'), laysa: dv('أَفَلَيْسَ هٰذَا حَقًّا'),
+        rule: !!(DabtEngine.RULE.taajjub && DabtEngine.RULE.taajjub.tr && GRAMMAR[DabtEngine.RULE.taajjub.note]),
+      };
+    });
+    if (!/ رَاكِبًا\/hal$/.test(r.hal) || !/ مَاشِيًا\/hal$/.test(r.hal2) || !/ عَمْرًا\/maful$/.test(r.obj)) throw new Error('the ḥāl after a verb of coming and its doer — and the object stays an object: ' + J([r.hal, r.hal2, r.obj]));
+    if (!/^الْمُعَلِّمُونَ\/mubtada حَاضِرُونَ\/khabar$/.test(r.pl) || !/^الطَّالِبَانِ\/mubtada مُجْتَهِدَانِ\/khabar$/.test(r.du)) throw new Error('the plural and the dual predicate: ' + J([r.pl, r.du]));
+    if (!/^زَيْدٌ\/mubtada أَكْثَرُ\/khabar مَالًا\/tamyiz$/.test(r.el) || !/ أَحْسَنُ\/khabar$/.test(r.el2)) throw new Error('the elative khabar and its tamyīz: ' + J([r.el, r.el2]));
+    if (!/ كِتَابٌ\/khabar جَدِيدٌ\/nat$/.test(r.nat) || !/ مَدْرَسَةٌ\/khabar كَبِيرَةٌ\/nat$/.test(r.nat2) || / لَفْظِيٌّ\/nat/.test(r.div)) throw new Error('the naʿt of a jāmid khabar — never the spelling-out of a division: ' + J([r.nat, r.nat2, r.div]));
+    if (!/ زَيْدٌ\/mubtada$/.test(r.nima)) throw new Error('نِعْمَ الرَّجُلُ زَيْدٌ: the makhṣūṣ is in rafʿ: ' + r.nima);
+    if (!/ أَجْمَلَ\/taajjub السَّمَاءَ\/maful$/.test(r.wonder) || !r.rule) throw new Error('مَا أَجْمَلَ السَّمَاءَ: the verb of wonder on its fatḥa, its object, and a label that leads to the note: ' + J([r.wonder, r.rule]));
+    if (!/ الْمَطَرُ\/kanaIsm نَازِلًا\/kanaKhabar$/.test(r.zala) || !/ حَقًّا\/kanaKhabar$/.test(r.laysa)) throw new Error('مَا زَالَ and لَيْسَ with a built noun: ' + J([r.zala, r.laysa]));
+    if (!/ ثَلَاثَ\/maful /.test(r.num)) throw new Error('قَرَأْتُ ثَلَاثَ قِصَصٍ: the number is the object: ' + r.num);
+    if (!/ وَالْجَهْلُ\/mubtada ظَلَامٌ\/khabar$/.test(r.two) || !/ وَآخِرُهُ\/mubtada الْعَمَلُ\/khabar$/.test(r.two2)) throw new Error('a new clause after a complete one: ' + J([r.two, r.two2]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

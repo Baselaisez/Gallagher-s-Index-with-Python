@@ -18074,6 +18074,7 @@ class DabtEngine {
     atf:       { ar: "مَعْطُوفٌ يَتْبَعُ الْمَعْطُوفَ عَلَيْهِ", en: "a ma'tuf shares the ma'tuf alayh's case", tr: "ma'tûf, ma'tûfun aleyhin i'râbını paylaşır", note: "atf-nasaq" },
     badal:     { ar: "بَدَلٌ يَتْبَعُ الْمُبْدَلَ مِنْهُ", en: "a badal follows what it stands for", tr: "bedel, mübdelün minhe uyar", note: "badal" },
     tawkid:    { ar: "تَوْكِيدٌ يَتْبَعُ الْمُؤَكَّدَ", en: "a tawkid follows the word it stresses", tr: "te'kîd, müekkedine uyar", note: "tawkid" },
+    taajjub:   { ar: "فِعْلُ التَّعَجُّبِ — مَاضٍ جَامِدٌ مَبْنِيٌّ عَلَى الْفَتْحِ", en: "the verb of wonder (مَا أَفْعَلَ): a frozen past verb built on its fatḥa; the noun after it is its object", tr: "taaccüb fiili (مَا أَفْعَلَ): fetha üzere mebnî câmid mâzî; ardındaki isim mef'ûlüdür", note: "fil-al-taajjub-fil-kafiya" },   /* (wave 170) */
     hal:       { ar: "حَالٌ مَنْصُوبٌ", en: "a hal is mansub", tr: "hâl mansub", note: "hal" },
     tamyiz:    { ar: "تَمْيِيزٌ مَنْصُوبٌ", en: "a tamyiz is mansub", tr: "temyiz mansub", note: "tamyiz" },
     mafulMutlaq:{ ar: "مَفْعُولٌ مُطْلَقٌ مَنْصُوبٌ", en: "the maful mutlaq — the verb's own masdar — is mansub", tr: "mef'ûl-i mutlak — fiilin kendi masdarı — mansub", note: "maful-mutlaq" },
@@ -22461,7 +22462,68 @@ class DabtEngine {
       out[i] = { k: want, rule, model137: true, p: pick ? Math.round((pick.p || 0) * 1000) / 1000 : null };
       DabtEngine._model137 = (DabtEngine._model137 || 0) + 1;
     } catch (e) {} }
+    try { this.relabel170(rows, out); } catch (e) {}
     return { out, head, member };
+  }
+  /* (wave 170) the LABEL pass: the office restated where a rule of the books decides it from what the loop settled.
+     It never reads a meaning; every rule names the shape it stands on, and each is asserted in the smoke suite. */
+  static relabel170(rows, out){
+    const n = rows.length; if (n < 2) return;
+    const B = i => this.bare((rows[i] || {}).w || "").replace(/[أإآ]/g, "ا");
+    const W = i => String((rows[i] || {}).w || "").normalize("NFC").replace(/[«»،؛.:!؟]/g, "");
+    const isN = i => { const r = rows[i]; return !!r && ((r.kind || "").startsWith("noun") || !!r.__kindNoun); };
+    const isV = i => { const r = rows[i]; return !!r && (r.kind || "").startsWith("verb") && !r.__kindNoun; };
+    const al = i => /^[وف]?(ال|لل|بال|كال)/.test(B(i));
+    const enc = i => { try { return this.guessEnc(rows[i], rows[i].w) || ""; } catch (e) { return ""; } };
+    const joined = i => { const b = B(i); return /^[وف]/.test(b) && b.length > 3 && (((rows[i].seg || []).some(x => /^[وف]$/.test(this.bare(x)))) || /^[وف](ال|لل)/.test(b)); };
+    const propn = i => { try { const w0 = String(rows[i].w || ""), e = this.lex(w0) || (/ا$/.test(w0) ? this.lex(w0.normalize("NFC").replace(/[ً-ٰ]*ا$/, "")) : null); return !!(e && /propn/.test(e.pos || "")); } catch (e) { return false; } };
+    const fem = i => /ة$/.test(B(i)), many = i => /(ان|ون|ين|ات)$/.test(B(i)) && B(i).length >= 5;
+    const def = i => al(i) || !!enc(i) || propn(i);
+    const sifa = i => { try { return !!this.sifaShape(rows[i], rows[i].w); } catch (e) { return false; } };
+    const R = i => (out[i] || {}).rule || "", K = i => (out[i] || {}).k || "";
+    const put = (i, k, rule, extra) => { out[i] = { ...(out[i] || {}), k, rule, ...(extra || {}), relabel170: true }; };
+    const verbBefore = i => { for (let q = i - 1; q >= 0; q--) if (isV(q)) return q; return -1; };
+    const KANA = /^[وف]?(ا[وف]?)?(كان|كانت|كانوا|ليس|ليست|صار|صارت|اصبح|اصبحت|امسى|امست|ظل|ظلت|بات|باتت)$/;
+    const BUILT = /^[وف]?(هذا|هذه|ذلك|تلك|ذاك|هو|هي|هم|هما|هن|هؤلاء|اولئك)$/;
+    const MOTION = /^[وف]?(جاء|جاءت|ذهب|ذهبت|رجع|رجعت|خرج|خرجت|دخل|دخلت|مشى|مشت|قام|قامت|قعد|جلس|جلست|وقف|وقفت|عاد|عادت|سار|سارت|اقبل|اقبلت|مضى|مضت|نام|نامت|وصل|وصلت|اتى|اتت|قدم|قدمت|نزل|نزلت|طلع|طلعت|سافر|سافرت|حضر|حضرت|انصرف|انطلق|يجيء|يذهب|يرجع|يخرج|يدخل|يمشي|يقوم|يجلس|يعود|يسير|يقبل|يمضي|ياتي|ينزل)(وا|ت|نا|تم|ن)?$/;
+    for (let i = 0; i < n; i++) {
+      /* R5 — نِعْمَ الرَّجُلُ زَيْدٌ: the makhṣūṣ bil-madḥ is a postponed mubtadaʾ */
+      if (i >= 2 && /^[وف]?(نعم|بئس|نعمت|بئست)$/.test(B(i - 2)) && R(i - 1) === "fail" && isN(i) && !joined(i) && R(i) === "maful" && K(i) === "nasb") { put(i, "raf", "mubtada"); continue; }
+      /* R7 — مَا زَالَ الْمَطَرُ نَازِلًا */
+      if (i >= 1 && /^[وف]?(زال|زالت|يزال|تزال|يزل|تزل|برح|يبرح|انفك|ينفك|فتئ|يفتا)$/.test(B(i)) && /^[وف]?(ما|لا|لم|لن)$/.test(B(i - 1)) && rows[i + 1] && R(i + 1) === "fail" && isN(i + 1)) {
+        put(i + 1, "raf", "kanaIsm");
+        for (let q = i + 2; q < n && q <= i + 5; q++) { if (/^(mudafIlayh|nat|jarr|badal)$/.test(R(q)) || (rows[q].kind || "") === "particle") continue; if (isN(q) && !def(q) && !joined(q) && /^(khabar|maful|hal)$/.test(R(q))) put(q, "nasb", "kanaKhabar"); break; }
+        continue; }
+      /* R10 — أَفَلَيْسَ هٰذَا حَقًّا */
+      if (KANA.test(B(i)) && rows[i + 2] && BUILT.test(B(i + 1)) && R(i + 1) === "mabni" && isN(i + 2) && !def(i + 2) && !joined(i + 2) && /^(mafulMutlaq|maful|hal|khabar|tamyiz)$/.test(R(i + 2))) { put(i + 2, "nasb", "kanaKhabar"); continue; }
+      /* R8 — قَرَأْتُ ثَلَاثَ قِصَصٍ */
+      if (i >= 1 && R(i) === "hal" && this.NUMBERS.test(B(i)) && isV(i - 1) && rows[i + 1] && R(i + 1) === "mudafIlayh") { put(i, "nasb", "maful"); continue; }
+      /* R3 — زَيْدٌ أَكْثَرُ مَالًا، هٰذَا أَحْسَنُ: the loop wrote rafʿ on an أَفْعَل it had filed with Form IV's māḍī */
+      if (i >= 1 && R(i) === "raf" && K(i) === "raf" && /^ا[^ا]{3}$/.test(B(i)) && /^أَ[^ً-ٰ]ْ[^ً-ٰ]َ[^ً-ٰ]$/.test(W(i)) && !(() => { try { const c = RootFinder.fromCorpus(W(i) + "ُ"); return !!(c && c.cell && /mudari/i.test(String(c.cell.tense || ""))); } catch (e) { return true; } })() /* no stored paradigm spells its «I …» so (أَكْثُرُ، أُحْسِنُ are the verbs) */ &&
+          (R(i - 1) === "mubtada" || (R(i - 1) === "mabni" && BUILT.test(B(i - 1)))) && (i === 1 || (i === 2 && (rows[0].kind || "") === "particle"))) {
+        put(i, "raf", "khabar");
+        if (rows[i + 1] && isN(i + 1) && !def(i + 1) && !joined(i + 1) && R(i + 1) === "maful" && K(i + 1) === "nasb") put(i + 1, "nasb", "tamyiz");
+        continue; }
+      /* R2 — الْمُعَلِّمُونَ حَاضِرُونَ، الطَّالِبَانِ مُجْتَهِدَانِ */
+      if (i >= 1 && R(i - 1) === "mubtada" && def(i - 1) && isN(i) && !def(i) && !joined(i) && verbBefore(i) < 0 && ((R(i) === "badal" && K(i) === "raf") || (R(i) === "maful" && /(ون|ان)$/.test(B(i)) && B(i).length >= 5 /* the wāw / the alif is the rafʿ itself */))) { put(i, "raf", "khabar"); continue; }
+      /* R4 — هٰذَا كِتَابٌ جَدِيدٌ */
+      if (i >= 1 && R(i) === "khabar" && R(i - 1) === "khabar" && K(i) === K(i - 1) && isN(i) && isN(i - 1) && !def(i) && !def(i - 1) && !joined(i) && sifa(i) && !sifa(i - 1) && fem(i) === fem(i - 1) && !many(i - 1) && !many(i) && !this.NUMBERS.test(B(i - 1)) && !/^[وف]?(نحو|مثل|قسمان|ضربان|نوعان)$/.test(B(i - 1)) /* قِسْمَانِ مُتَّصِلٌ وَمُنْفَصِلٌ: a division is spelled out by a badal, and a naʿt agrees in number */ &&
+          !(rows[i + 1] && R(i + 1) === "khabar" && !joined(i + 1)) /* حَقٌّ جَائِزٌ كَائِنٌ: a run of predicates */) { put(i, K(i), "nat", { head: i - 1 }); continue; }
+      /* R1 — جَاءَ زَيْدٌ رَاكِبًا، ذَهَبَ الْوَلَدُ إِلَى الْمَدْرَسَةِ مَاشِيًا */
+      if (i >= 2 && R(i) === "maful" && K(i) === "nasb" && isN(i) && !def(i) && !joined(i) && sifa(i) && /^([^ً-ٰ]َا[^ً-ٰ]ِ|مُ)/.test(W(i)) && !(rows[i + 1] && R(i + 1) === "mudafIlayh") /* رَائِحَةَ يُوسُفَ: a muḍāf is no ḥāl */) {
+        const v = verbBefore(i);
+        if (v >= 0 && i - v <= 6) {
+          const lazim = MOTION.test(B(v));   /* the verbs of coming and going the books give for the ḥāl; a ledger guess is no licence here (نَجَّى اللهُ صَالِحًا) */
+          const doer = rows.slice(v + 1, i).some((x, q) => R(v + 1 + q) === "fail") || /(ت|نا|وا|تم)$/.test(B(v));
+          const clean = rows.slice(v + 1, i).every((x, q) => /^(fail|jarr|mudafIlayh|nat|mabni|jarrPron|zarf)$/.test(R(v + 1 + q)) || (x.kind || "") === "particle");
+          if (lazim && doer && clean) { put(i, "nasb", "hal"); continue; } } }
+      /* R9 — الْعِلْمُ نُورٌ وَالْجَهْلُ ظَلَامٌ؛ أَوَّلُهُ الْعِلْمُ وَآخِرُهُ الْعَمَلُ */
+      if (i >= 2 && R(i) === "atf" && K(i) === "raf" && /^[وف]/.test(B(i)) && def(i) && isN(i) && rows[i + 1] && isN(i + 1) && !joined(i + 1) && verbBefore(i) < 0 && out.slice(0, i).some(o => o && o.rule === "khabar") && (i + 2 === n || joined(i + 2))) {
+        if (R(i + 1) === "mubtada" && !def(i + 1)) { put(i, "raf", "mubtada"); put(i + 1, "raf", "khabar"); continue; }
+        if (R(i + 1) === "khabar" && !!enc(i)) { put(i, "raf", "mubtada"); continue; } }
+    }
+    /* R6 — مَا أَجْمَلَ السَّمَاءَ: the whole sentence is the wonder frame */
+    if (n === 3 && /^[وف]?ما$/.test(B(0)) && /^ا[^ا]{3}$/.test(B(1)) && /^أَ[^ً-ٰ]ْ[^ً-ٰ]َ[^ً-ٰ]$/.test(W(1)) && isN(2) && def(2) && !joined(2) && /^(mubtada|khabar|raf)$/.test(R(1))) { put(1, "nasb", "taajjub"); put(2, "nasb", "maful"); }
   }
   // ---- VOWEL: the sentence, endings derived (mode "endings") or every mark derived (mode "full")
   /* (wave 24d) is the word an elative (اسْمُ تَفْضِيلٍ)? by the lexicon's gloss, else by the أَفْعَل shape on the received list */
