@@ -14718,6 +14718,51 @@ if (!CHROME) {
     if (r.hajja !== 'حَاجَّ يُحَاجُّ حَاجَجْتَ'.normalize('NFC')) throw new Error('the stored paradigm of حَاجَّ: ' + r.hajja);
   });
 
+  await check('wave 167 — the shelf read again by rule: a verb\'s own first radical is no conjunction (وَجَدَ، وَصَلُوا، فَرِحَ — the stored paradigm decides, with its vowels), the detached pronoun behind a conjunction keeps its own key (وَهُمْ is no وَهْم), the rafʿ noun after the praise parenthesis is the clause\'s predicate and never the parenthesis\'s doer (وَاللهُ تَعَالَى وَاحِدٌ), a sister of kāna whose noun is written hides none, no line ends on two full stops or names its ṣila twice — and the valency ledger counts the object a verb already wears (يَجْلِبُهُ الْعَامِلُ)', async () => {
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const cellsOf = m => { const c = new Set(); for (const k of ['mazi', 'mudari', 'amr', 'mansub', 'majzum', 'majzum2']) { const v = m[k]; (Array.isArray(v) ? v : [v]).forEach(x => { if (typeof x === 'string') c.add(N(x)); }); } for (const k of ['majhulMazi', 'majhulMudari']) if (typeof m[k] === 'string') c.add(N(m[k])); return c; };
+      const ALL = {}; STORIES.forEach(st => Object.assign(ALL, st.morph || {}));
+      const out = { split: [], pronKey: [], praise: [], twoStops: 0, twoSila: 0, kanaBoth: [], tokens: 0 };
+      const PR = { 'هم': 1, 'هما': 1, 'هو': 1, 'هي': 1, 'هن': 1 };
+      STORIES.forEach(st => { const G = st.glossary || {}; st.chapters.forEach(ch => ch.sentences.forEach(sen => { const T = sen.tokens;
+        T.forEach((t, i) => { out.tokens++; const ar = N(t.irab.ar); const where = st.id + ' ' + (ch.n || ch.chapter) + ':' + sen.id + ':' + i + ' ' + t.s.full;
+          for (const k of ['ar', 'en', 'tr']) { const v = String(t.irab[k] || ''); if (/\.\.$/.test(v) && !/\.\.\.$/.test(v)) out.twoStops++; }
+          if ((ar.match(/وَصِلَتُهُ/g) || []).length > 1) out.twoSila++;
+          if (i >= 1 && /^فَاعِلٌ مَرْفُوعٌ/.test(ar) && T[i - 1].pos === 'verb' && /^(تعالى|سبحانه|تبارك|تقدس)$/.test(T[i - 1].s.bare) && t.lex !== 'allah') out.praise.push(where);
+          if (/وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ/.test(ar) && T.slice(i + 1, i + 4).some(x => /^اسْمُ كَانَ/.test(N(x.irab.ar)))) out.kanaBoth.push(where);
+          const sg = t.segments || t.seg || [];
+          if (sg.length >= 2 && (sg[0].lex === 'wa' || sg[0].lex === 'fa')) {
+            if (t.pos === 'pron' && PR[String(t.s.bare).slice(1)] && /ضَمِيرٌ مُنْفَصِلٌ/.test(ar)) { const g = G[sg[1].lex]; if (g && g.pos && g.pos !== 'pron') out.pronKey.push(where + ' → ' + sg[1].lex); }
+            const m = ALL[sg[1].lex];
+            if (m) { const mz = new Set((m.mazi || []).filter(x => typeof x === 'string').map(N)), C = cellsOf(m);
+              const tail = sg.slice(2), doer = tail.filter(g => !(/^pron-/.test(String(g.lex || '')) && !/^[اوُْ]+$/.test(N(g.form))));
+              const whole = N(sg[0].form + sg[1].form + doer.map(g => g.form).join('')), rest = N(sg[1].form + doer.map(g => g.form).join(''));
+              const saysMazi = /^(الْوَاوُ|الْفَاءُ) [^،]+، وَفِعْلٌ مَاضٍ/.test(ar);
+              if (mz.has(whole) && !(saysMazi ? mz.has(rest) : C.has(rest))) out.split.push(where); } } }); })); });
+      const us = STORIES.find(s => s.id === 'al-usul-al-munifa'), iz = STORIES.find(s => s.id === 'tasrif-al-izzi'), gh = STORIES.find(s => s.id === 'al-ghurab-wa-al-thalab');
+      const tok = (st, n, sid, i) => { const ch = st && st.chapters.find(c => String(c.n || c.chapter) === String(n)), sn = ch && ch.sentences.find(s => s.id === sid); return sn && sn.tokens[i]; };
+      const line = (st, n, sid, i) => { const t = tok(st, n, sid, i); return t ? [t.s.full, t.lex, t.pos, t.irab.ar].join(' | ') : '?'; };
+      out.wahid = line(us, 4, 's1', 6); out.yad = line(us, 8, 's1', 6); out.muadhdhib = line(us, 25, 's4', 57); out.kawkab = line(us, 31, 's2', 34); out.kalamuhu = line(us, 7, 's3', 15); out.dhabh = line(us, 6, 's5', 18); out.hum = line(us, 35, 's2', 0);
+      out.fauhu = line(iz, 12, 's3', 4); const fa = tok(iz, 12, 's3', 4); out.fauhuSeg = fa ? (fa.segments || fa.seg || []).map(g => g.lex).join(',') : '?'; out.fahuma = line(iz, 16, 's4', 7);
+      out.wajada = line(gh, 1, 's1', 0); const wj = tok(gh, 1, 's1', 0); out.wajadaSeg = wj ? (wj.segments || wj.seg || []).length : -1;
+      const o = LazimEngine.of('جَلَبَ'); out.jalaba = { both: o.both, seats: LazimEngine.seatsObject('جَلَبَ') };
+      return out;
+    });
+    if (r.split.length) throw new Error('a verb\'s own first radical was split off as a conjunction (run tools/authoring/fix_radical_prefix.py --write): ' + J(r.split.slice(0, 8)));
+    if (r.pronKey.length) throw new Error('a detached pronoun behind a conjunction is filed under another word\'s key: ' + J(r.pronKey.slice(0, 8)));
+    if (r.praise.length) throw new Error('the noun after the praise parenthesis is not its doer: ' + J(r.praise.slice(0, 8)));
+    if (r.kanaBoth.length) throw new Error('a sister of kāna with a written noun still hides one: ' + J(r.kanaBoth.slice(0, 8)));
+    if (r.twoStops || r.twoSila) throw new Error('lines ending on two full stops / naming the ṣila twice: ' + J([r.twoStops, r.twoSila]));
+    if (!/\| خَبَرٌ مَرْفُوعٌ/.test(r.wahid) || !/\| مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ/.test(r.yad) || !/\| خَبَرُ إِنَّ مَرْفُوعٌ/.test(r.muadhdhib)) throw new Error('وَاحِدٌ / يَدٌ / مُعَذِّبُهُ after the praise parenthesis: ' + J([r.wahid, r.yad, r.muadhdhib]));
+    if (!/\| نَائِبُ فَاعِلٍ مَرْفُوعٌ/.test(r.kawkab)) throw new Error('كَمَا يُرَى الْكَوْكَبُ: the deputy doer: ' + r.kawkab);
+    if (!/وَمُبْتَدَأٌ مَرْفُوعٌ/.test(r.kalamuhu) || !/اسْمُ «يَكُنْ» مُؤَخَّرٌ/.test(r.dhabh)) throw new Error('وَكَلَامُهُ opens its own clause; ذَبْحُهُ is the postponed noun of يَكُنْ: ' + J([r.kalamuhu, r.dhabh]));
+    if (!/\| hum \| pron \|/.test(r.hum) || !/\| huma \| pron \|/.test(r.fahuma)) throw new Error('وَهُمْ / فَهُمَا keep the pronoun\'s key: ' + J([r.hum, r.fahuma]));
+    if (!/\| fa-letter \| noun \| اسْمُ كَانَ مَرْفُوعٌ/.test(r.fauhu) || /(^|,)fa(,|$)/.test(r.fauhuSeg)) throw new Error('فَاؤُهُ is the noun فَاء with its pronoun — the hamza\'s seat follows the vowel: ' + J([r.fauhu, r.fauhuSeg]));
+    if (!/\| wajada \| verb \| فِعْلٌ مَاضٍ/.test(r.wajada) || r.wajadaSeg > 0) throw new Error('وَجَدَ غُرَابٌ: one word, a past verb: ' + J([r.wajada, r.wajadaSeg]));
+    if (!(r.jalaba.both >= 1 && r.jalaba.seats === true)) throw new Error('the ledger: يَجْلِبُهُ الْعَامِلُ seats an object with جَلَبَ: ' + J(r.jalaba));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

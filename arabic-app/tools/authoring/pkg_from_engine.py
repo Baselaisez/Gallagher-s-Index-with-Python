@@ -440,6 +440,56 @@ def name_sila(toks, raw, report):
         t = toks[i]["irab"]; toks[i]["irab"] = {"ar": t["ar"].rstrip(".") + ar_add + ".", "en": t["en"].rstrip(".") + en_add + ".", "tr": t["tr"].rstrip(".") + tr_add + "."}
         lines[i] = _nd(toks[i]["irab"]["ar"]); report["sila_named"] = report.get("sila_named", 0) + 1
 
+PRAISE_BARE = ("تعالى", "سبحانه", "تبارك", "تقدس")
+
+
+def praise_khabar(toks, report):
+    """(wave 167) وَاللهُ تَعَالَى وَاحِدٌ، إِنَّ اللهَ تَعَالَى مُعَذِّبُهُ، وَلَهُ تَعَالَى يَدٌ: the praise parenthesis is a clause of its own
+    with its own hidden doer, so the rafʿ noun AFTER it is never its fāʿil. The noun takes the seat the clause around the
+    parenthesis owes: the khabar of the mubtadaʾ (a second khabar where one is already seated), the khabar of إِنَّ, or the
+    postponed mubtadaʾ after a fronted jarr phrase. Anything else is left alone and reported."""
+    TAIL = re.compile(r"^(?:مُضَافٌ إِلَيْهِ|نَعْتٌ|تَوْكِيدٌ)")
+    def swap(t, ar_new, en_new, tr_new, tag):
+        ir = t["irab"]
+        t["irab"] = {"ar": ir["ar"].replace("فَاعِلٌ", ar_new, 1), "en": ir["en"].replace("The doer (fa'il)", en_new, 1), "tr": ir["tr"].replace("Fâil", tr_new, 1)}
+        if t.get("grammar"): t["grammar"] = list(dict.fromkeys(tag if g == "fail" else g for g in t["grammar"]))
+        report["praise_khabar"] = report.get("praise_khabar", 0) + 1
+    for i in range(2, len(toks)):
+        t = toks[i]; ar = (t.get("irab") or {}).get("ar", "")
+        if not ar.startswith("فَاعِلٌ مَرْفُوعٌ"): continue
+        pv = toks[i - 1]
+        if pv.get("pos") != "verb" or pv["surface"]["bare"] not in PRAISE_BARE: continue
+        if t.get("lex") == "allah": continue   # تَبَارَكَ اللهُ، تَعَالَى اللهُ: the Name IS the praise verb's doer
+        h = i - 2
+        while h > 0 and TAIL.match(toks[h]["irab"]["ar"]): h -= 1
+        har = toks[h]["irab"]["ar"]
+        m = re.search(r"اسْمُ (إِنَّ|أَنَّ|لٰكِنَّ|لَكِنَّ|كَأَنَّ|لَعَلَّ|لَيْتَ)", har)
+        if m: swap(t, "خَبَرُ " + m.group(1), "The predicate of inna", "İnne'nin haberi", "inna-wa-akhawatuha"); continue
+        if "مُبْتَدَأٌ" in har and "اسْمُ كَانَ" not in har:
+            swap(t, "خَبَرٌ", "The khabar (predicate)", "Haber", "mubtada-khabar")
+            hi = toks[h]["irab"]   # the mubtadaʾ's own line no longer promises its khabar elsewhere
+            toks[h]["irab"] = {"ar": hi["ar"].replace("، وَخَبَرُهُ جَارٌّ وَمَجْرُورٌ مِمَّا بَعْدَهُ", ""), "en": hi["en"].replace("; its khabar is one of the prepositional phrases that follow", ""), "tr": hi["tr"].replace("; haberi sonraki câr-mecrûrlardan biridir", "")}
+            continue
+        if har.startswith("خَبَرٌ") or "، وَخَبَرٌ" in har: swap(t, "خَبَرٌ ثَانٍ", "A second khabar", "İkinci haber", "mubtada-khabar"); continue
+        if re.match(r"^(?:الْوَاوُ عَاطِفَةٌ، وَ|الْفَاءُ عَاطِفَةٌ، وَ)?(?:اللَّامُ|الْبَاءُ|«[^»]+») حَرْفُ جَرٍّ، وَ(?:الْهَاءُ|الْكَافُ|الْيَاءُ|«)", har) and (h == 0 or re.search(r"[:،.؛]$", (toks[h - 1].get("punctAfter") or ""))):
+            swap(t, "مُبْتَدَأٌ مُؤَخَّرٌ", "The postponed mubtada", "Muahhar mübtedâ", "mubtada-khabar"); continue
+        report.setdefault("praise_open", []).append(" ".join(x["surface"]["full"] for x in toks[max(0, i - 3):i + 1]))
+
+
+def kana_dedupe(toks):
+    """(wave 165) a sister of kāna whose noun is written keeps no hidden one beside it; and no line ends on two full stops."""
+    n = 0
+    for ti_, t_ in enumerate(toks):
+        ir_ = t_.get("irab") or {}
+        if "وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ" in ir_.get("ar", "") and any("اسْمُ كَانَ" in (x_.get("irab") or {}).get("ar", "") and not (x_.get("irab") or {}).get("ar", "").startswith(("الْوَاوُ", "الْفَاءُ")) for x_ in toks[ti_ + 1:ti_ + 4]):   # (wave 167) a noun JOINED by a conjunction is not this verb's ism — it opens a clause of its own
+            ir_["ar"] = re.sub(r"، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ(?: وُجُوبًا| جَوَازًا)? تَقْدِيرُهُ [^،.]+", "", ir_["ar"]); n += 1
+            if isinstance(ir_.get("en"), str): ir_["en"] = re.sub(r"; its (?:doer|noun) is a hidden pronoun «[^»]+»", "", ir_["en"])
+            if isinstance(ir_.get("tr"), str): ir_["tr"] = re.sub(r"; (?:fâili|ismi) gizli zamir(?:dir)? «[^»]+»", "", ir_["tr"])
+        for k_ in ("ar", "en", "tr"):
+            if isinstance(ir_.get(k_), str) and ir_[k_].endswith(".."): ir_[k_] = ir_[k_][:-1]
+    return n
+
+
 def name_ma_khabar(toks, report):
     """(wave 166) الِاسْمُ مَا يَقْبَلُ «أَلْ»، وَهُوَ مَا دَلَّ: the relative مَا that follows the mubtadaʾ (or the detached pronoun) directly is its khabar —
     مَا is never a naʿt, so nothing else can fill the seat. A bare muḍāf before it (أَوَّلُ مَا يَجِبُ) annexes it instead and is left alone."""
@@ -747,7 +797,7 @@ def main():
                 if fx.get("pos") == "verb":
                     kind = "verb"
                     if k == "keep" and fx.get("irab") and w.get("cell"): k = "cell"   # (wave 166) أُضِيفَ after إِنْ: the authored line is a verb's line, so the token is emitted by the verb branch
-                if fx.get("pos") in ("noun", "propn", "adj", "pron", "adv"): pos = fx["pos"]   # (wave 166) الْهَنِ: the fix's class outranks the engine's lexicon guess (هُنَّ)
+                if fx.get("pos") == "noun" and pos == "pron" and (G.get(fx.get("key") or "") or {}).get("pos") == "noun": pos = "noun"   # (wave 166/167) الْهَنِ: where the fix re-keys a word the engine filed under a PRONOUN (هُنَّ) to a lexicon noun, the noun's class is emitted. Narrow on purpose: a fix's `pos: noun` is otherwise only the «quoted word» switch (kind), and the lexicon's own class (verb, pron, propn) must reach the segments untouched.
                 if fx.get("pos") == "noun": kind = "noun"; k = fx.get("k", None if k in ("cell", "keep") else k); rule = fx.get("rule", rule if rule in ROLE else None)
                 prevb_ = bare(words[i - 1]["w"]) if i else ""; prevb_ = re.sub(r"^[وف]", "", prevb_) if len(prevb_) > 2 else prevb_
                 if prevb_ in JAZM_GOV and re.match(r"^[يتأن]", core) and len(core) >= 3 and not fx.get("pos"):
@@ -759,6 +809,8 @@ def main():
                     le0_ = G.get(key) or next((v for v in LX.values() if v.get("key") == key and v.get("lemma")), None)
                     lb0_ = noal(bare(str((le0_ or {}).get("lemma", "")).split("(")[0].strip())) if le0_ else ""
                     fb_ = noal(bh); rb_ = noal(bh[1:])
+                    hz_ = lambda x_: re.sub(r"[ؤئأإ]", "ء", x_)   # (wave 167) فَاؤُهُ is فَاء + ـه: the hamza's SEAT follows the vowel, the letter is the lemma's own
+                    if lb0_ and lb0_[0] == bh[0] and hz_(fb_) == hz_(lb0_) and "ء" in hz_(lb0_)[1:]: fb_ = lb0_
                     rb0_ = bh[1:].replace("أ", "ا").replace("إ", "ا").replace("ٰ", "")
                     if lb0_ and lb0_[0] == bh[0] and (fb_ == lb0_ or (fb_.startswith(lb0_) and len(fb_) - len(lb0_) <= 3) or (lb0_.endswith("ة") and fb_.startswith(lb0_[:-1]) and len(fb_) - len(lb0_) <= 3)) and not (rb_ == lb0_ or rb_.startswith(lb0_)) and (rb0_ not in PART or bh[1:2] == "ا") and rb0_ not in PRON and rb0_ not in DEM and rb0_ not in EXTRA_PART and not KANA_RE.match(rb0_):
                         pre = ""; is_pre = False; core = bh   # وَارِدُونَ، فَضِيلَتَانِ، وَلَدٌ: the lemma begins with that letter — no prefix
@@ -1024,9 +1076,11 @@ def main():
                         report.setdefault("genericParticle", []).append((where, full))
                         if key: take(key, where)
                         else: report["nokey"].append((where, b))
+                    if pre and pb in PRON and len(PRON[pb]) > 3 and PRON[pb][3] in G and key != PRON[pb][3] and (G.get(key) or {}).get("pos") != "pron":
+                        key = PRON[pb][3]; take(key, where)   # (wave 167) وَهُمْ is وَ + هُمْ: the pronoun's own key, never the noun that shares the letters (وَهْم «delusion», فَهْم «understanding»)
                     if pre and pb not in ("و", "ف"):
                         ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if pre == "و" else "الْفَاءُ عَاطِفَةٌ، وَ") + ar; en = ("The waw conjoins; " if pre == "و" else "The fa conjoins; ") + en[:1].lower() + en[1:]; tr = ("«ve» + " if pre == "و" else "«bunun üzerine» + ") + tr[:1].lower() + tr[1:]
-                        segs = [{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}, {"form": full[2:], "lex": key, "pos": "part"}]; take("wa" if pre == "و" else "fa", where)
+                        segs = [{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}, {"form": full[2:], "lex": key, "pos": "pron" if (pb in PRON or pb in DEM) and key != "min" else "part"}]; take("wa" if pre == "و" else "fa", where)   # (wave 167) the segment wears the class the token wears
                     toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": key or "?", "pos": "pron" if (pb in PRON or pb in DEM) and key != "min" else "part", **({"grammar": list(dict.fromkeys(t for t in tags if t in GIDS))} if tags else {}), "irab": {"ar": ar, "en": en, "tr": tr}, **({"segments": segs} if segs else {})})
                     continue
                 # ---- a verb the engine read as a noun: the lexicon's part of speech wins, the shape gives tense and mood
@@ -1265,14 +1319,7 @@ def main():
                 if t.get("segments"):
                     for sg in t["segments"]:
                         if sg.get("lex") == t["lex"]: sg["pos"] = "noun"
-            for ti_, t_ in enumerate(toks):   # (wave 165) a sister of kāna whose noun is written keeps no hidden one beside it; and no line ends on two full stops
-                ir_ = t_.get("irab") or {}
-                if "وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ" in ir_.get("ar", "") and any("اسْمُ كَانَ" in (x_.get("irab") or {}).get("ar", "") for x_ in toks[ti_ + 1:ti_ + 4]):
-                    ir_["ar"] = re.sub(r"، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ(?: وُجُوبًا| جَوَازًا)? تَقْدِيرُهُ [^،.]+", "", ir_["ar"])
-                    if isinstance(ir_.get("en"), str): ir_["en"] = re.sub(r"; its (?:doer|noun) is a hidden pronoun «[^»]+»", "", ir_["en"])
-                    if isinstance(ir_.get("tr"), str): ir_["tr"] = re.sub(r"; (?:fâili|ismi) gizli zamir(?:dir)? «[^»]+»", "", ir_["tr"])
-                for k_ in ("ar", "en", "tr"):
-                    if isinstance(ir_.get(k_), str) and ir_[k_].endswith(".."): ir_[k_] = ir_[k_][:-1]
+            kana_dedupe(toks)   # (wave 165; a function since wave 167 so that polish_pkg.py can run it on a shipped package)
             if meta.get("cellLines"):   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
                 import cell_lines as CL
                 def vhost_(t):
@@ -1390,6 +1437,7 @@ def main():
             name_khabar(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_sila(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_ma_khabar(toks, report)   # (wave 166)
+            praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]
             sents.append({"id": sid, **({"page": s.get("page")} if s.get("page") else {}), "translation": {"en": tr_.get("en", ""), "tr": tr_.get("tr", "")}, "tokens": toks})
@@ -1417,6 +1465,7 @@ def main():
     print(f"REVIEW: no key {len(report['nokey'])}; engine≠written {len(report['mismatch'])}; undecided {len(report['undecided'])}; written ending won {report['reconciled']}; lex-verbs promoted {report['promoted']}; verbs re-keyed to their lemma {report['rekeyed']}; verbs still on a noun key {len(report.get('verbNounKey', []))}")
     print("sila named:", report.get("sila_named", 0))
     if report.get("ma_khabar"): print("mā named as khabar:", report["ma_khabar"])
+    if report.get("praise_khabar") or report.get("praise_open"): print("after the praise parenthesis:", report.get("praise_khabar", 0), "| left:", report.get("praise_open", []))
     print("khabar named:", report.get("khabar_named", 0), "| open:", len(report.get("khabar_open", [])), report.get("khabar_open", [])[:40])
     json.dump(report, open(out / "_review.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 if __name__ == "__main__": main()

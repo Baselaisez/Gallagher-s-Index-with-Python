@@ -67,9 +67,9 @@
       "al-mabni-wal-mudmar"
      ],
      "irab": {
-      "ar": "الْفَاءُ عَاطِفَةٌ، وَضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ.",
-      "en": "The fa conjoins; «he / it» — a detached pronoun; in the place of raf'.",
-      "tr": "«bunun üzerine» + «o» — munfasıl zamir, mahallen merfû."
+      "ar": "الْفَاءُ عَاطِفَةٌ، وَضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "The fa conjoins; «he / it» — a detached pronoun; in the place of raf' as the mubtada.",
+      "tr": "«bunun üzerine» + «o» — munfasıl zamir, mahallen merfû, mübtedâ."
      },
      "segments": [
       {
@@ -80,7 +80,7 @@
       {
        "form": "هُوَ",
        "lex": "huwa",
-       "pos": "part"
+       "pos": "pron"
       }
      ]
     },
@@ -96,9 +96,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ جُمْلَةُ «كَانَ …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
-      "en": "a relative pronoun — built (mabni); its relative clause is the verbal clause «كَانَ …», with no place in the iʿrāb; the returning pronoun stands inside it.",
-      "tr": "ism-i mevsûl — mebnî; sılası «كَانَ …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَأِ، وَصِلَتُهُ جُمْلَةُ «كَانَ …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "a relative pronoun — built (mabni), in the place of raf' as the khabar; its relative clause is the verbal clause «كَانَ …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+      "tr": "ism-i mevsûl — mebnî, mahallen merfû haber; sılası «كَانَ …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
      }
     },
     {
@@ -242,7 +242,7 @@
       {
        "form": "هِيَ",
        "lex": "hiya",
-       "pos": "part"
+       "pos": "pron"
       }
      ],
      "punctAfter": ":"
@@ -1340,7 +1340,7 @@
       {
        "form": "هٰذَا",
        "lex": "hadha",
-       "pos": "part"
+       "pos": "pron"
       }
      ]
     },
@@ -4022,7 +4022,7 @@
       {
        "form": "مَا",
        "lex": "ma-mawsula",
-       "pos": "part"
+       "pos": "pron"
       }
      ]
     },

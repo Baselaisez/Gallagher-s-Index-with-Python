@@ -43,6 +43,14 @@ WA_AR = "الْوَاوُ عَاطِفَةٌ، وَ"
 FA_AR = "الْفَاءُ عَاطِفَةٌ، وَ"
 def _pre(full):
     """a وَ / فَ prefix on the token: (prefix letter, bare stem, segments head, the three i'rab openings)"""
+    # (wave 167) a word's own first radical is no conjunction: وَجَدَ (wajada), وَصَلُوا (wasala), فَرِحَ (fariha), وَلَدٌ (walad).
+    # The helper is called as _pre(full) from builders that hold the token's key in a local named `lex`; a key that opens
+    # with the same letter (w / f) marks the letter as the lemma's — unless the letter is written twice (وَوَجَدَ) or the
+    # article follows it (وَالْوَلَدُ). tools/authoring/fix_radical_prefix.py holds the paradigm-exact form of the same test.
+    import sys as _sys, re as _re
+    _lex = _sys._getframe(1).f_locals.get("lex")
+    if isinstance(_lex, str) and not _re.match(r"^[اٱ]لْ?|^[اٱ]ل[ء-ي]ّ", full[2:]) and ((full.startswith("وَ") and _lex[:1] == "w" and not full[2:].startswith("و")) or (full.startswith("فَ") and _lex[:1] == "f" and not full[2:].startswith("ف"))):
+        return "", full, None, "", "", ""
     if full.startswith("وَ"): return "وَ", full[2:], seg("وَ", "wa", "conj"), WA_AR, "The waw conjoins; ", "«ve» + "
     if full.startswith("فَ"): return "فَ", full[2:], seg("فَ", "fa", "conj"), FA_AR, "The fa conjoins; ", "«bunun üzerine» + "
     return "", full, None, "", "", ""

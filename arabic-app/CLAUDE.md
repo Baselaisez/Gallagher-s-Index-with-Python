@@ -11347,3 +11347,58 @@ Regenerate with `tools/authoring/shudhur/` (lemmas → `mk_lex.py`, `sarf_shudhu
   Known and left for a wave with a sweep.
 - Smoke: «wave 166» (416 checks). Next on this shelf: Marāḥ al-Arwāḥ's matn collation; the ledger's enclitic
   object; rebuilding the other engine-authored books with this wave's builder.
+
+### v266 (wave 167) — the shelf read again by rule: five classes of shipped slips, found by rebuilding and repaired at their cause
+
+This wave began as two small jobs (the valency ledger's enclitic object; rebuilding the older engine-authored books
+with wave 166's builder) and became a shelf audit, because **every dry rebuild was diffed against the shipped package
+and every difference read.** What that reading found had been on the shelf for up to forty versions.
+
+- **Rebuild from the stored engine pass, not from a fresh one.** A fresh `engine_author.js` pass re-reads the text on
+  TODAY's lexicon, and a verb added by a later book captures an older book's noun: al-Maqāmāt's «فَأَوَّلُهَا
+  الْإِيمَانُ» came back as the verb أَوَّلَ with «الْإِيمَانُ» its doer and «بِاللهِ» a muḍāf ilayh (868 tokens of
+  al-Uṣūl differed, most of them drift). The ʿIzzī and Shudhūr are rebuilt from their stored `engine2.json`; al-Uṣūl
+  and al-Maqāmāt, whose authored pass is no longer reproducible, are NOT rebuilt — they are polished (next point).
+- **`tools/authoring/polish_pkg.py <pkg> [--write]`** runs the builder's LINE-LEVEL post-passes on a shipped package:
+  they are functions of one sentence's authored lines and need no engine. `praise_khabar`, `kana_dedupe` (a function
+  since this wave), `name_ma_khabar`. Idempotent; a dry run prints every change. al-Uṣūl: 262 lines (7 + 62 + 1, and
+  ~190 English/Turkish lines that ended on two full stops); al-Maqāmāt: 30.
+- **The noun after the praise parenthesis is never its doer** (`praise_khabar`). «وَاللهُ تَعَالَى وَاحِدٌ»، «إِنَّ اللهَ
+  تَعَالَى مُعَذِّبُهُ»، «وَلَهُ تَعَالَى يَدٌ»: تَعَالَى is a clause of its own with its own hidden doer, and the builder
+  had handed it the next rafʿ noun as «فَاعِل» nine times in al-Uṣūl. The noun takes the seat the clause AROUND the
+  parenthesis owes — khabar (a second khabar where one is seated), khabar of إِنَّ, or the postponed mubtadaʾ after a
+  fronted jarr phrase; the Name itself is exempt (تَبَارَكَ اللهُ). What the rule cannot seat it reports and leaves:
+  three sentences were then corrected by hand (`tools/authoring/usul/hand167.py`, also written into `fixes.json`) —
+  «وَلَمْ يَكُنْ مِنْ إِرَادَتِهِ تَعَالَى ذَبْحُهُ» (the postponed noun of يَكُنْ), «وَكَلَامُهُ تَعَالَى مَقْرُوءٌ مَحْفُوظٌ» (a new
+  clause, not «اسْمُ كَانَ»), and **«كَمَا يُرَى الْكَوْكَبُ» — the deputy doer; the last naibNotFail finding is gone (0).**
+- **`kana_dedupe` learned a guard from its own first false positive:** a noun JOINED by a conjunction is not the
+  verb's ism («عَمَّا كَانَ، وَكَلَامُهُ …»).
+- **A word's own first radical is not a conjunction — `tools/authoring/fix_radical_prefix.py`.** `story_kit._pre()`
+  peeled a leading وَ / فَ off anything, so «وَجَدَ غُرَابٌ» — the first word of a Level-1 story — read «الْوَاوُ
+  عَاطِفَةٌ، وَفِعْلٌ مَاضٍ» with segments [وَ + جَدَ]. Nineteen verbs in fourteen stories (وَجَدَ، وَصَلَ، وَصَلُوا، وَقَعَ،
+  وَقَفَ، وَضَعَ، وَرِثْتُ، وَكَّلَ، فَرِحَ، فَخَرَ، فَعَلَ). The test is the paradigm's, with its VOWELS: the whole
+  written word is a cell of the verb's stored māḍī and the remainder is no cell at all (where the line itself says
+  «مَاضٍ», no māḍī cell — «قَعُوا» is an imperative, so «وَقَعُوا … عَلَى الْأَرْضِ» is still caught, while a real
+  «وَ + دَعُوا» is left alone). Stripped comparison was tried first and is WRONG: «جِدْ» and «ضَعْ» are imperatives
+  of the same verbs. `_pre()` now reads the caller's `lex` and stands down where the key opens with the same letter
+  (not doubled, no article after it); two stories regenerate token-for-token to the repaired text.
+- **A pronoun keeps its own key.** «وَهُمْ / وَهُمَا / فَهُمْ» were filed under `wahm` (وَهْم «delusion») and `fahm`
+  (فَهْم «understanding») — nineteen tokens in al-Uṣūl, al-Maqāmāt and the ʿIzzī, so a tap on «and they» opened
+  «delusion». The builder's key lookup matched the bare letters; the particle branch now takes the pronoun's own
+  key, and the same repair tool re-keys the shipped tokens (only where the key belongs to a NON-pronoun entry — a
+  package's own pronoun key such as `pron-3ms-munfasil` is left alone). Three dead glossary entries removed.
+- **The hamza's seat follows the vowel; the letter is the lemma's.** «فَاؤُهُ» (the fāʾ radical + ـه) was split as
+  the conjunction فَ because «فاؤ» ≠ «فاء» letter for letter. The builder's radical-letter guard folds the seats.
+- **Builder, smaller:** a fix's `pos: noun` outranks the engine's class ONLY where it re-keys a pronoun-filed word to
+  a lexicon noun (wave 166's broader rule had turned the segments of every quoted verb into nouns — found by the
+  ʿIzzī's dry diff before it shipped anywhere but Shudhūr, which is rebuilt here); a pronoun's segment wears `pron`.
+- **LazimEngine: the object a verb already wears is evidence.** «يَجْلِبُهُ الْعَامِلُ» is a doer row that also seats
+  an object (`both`), exactly as wave 165's object after the noun doer. Blind, receipts-on and case-layer sweeps are
+  IDENTICAL before and after (0 fixed, 0 broken) — the count feeds only `seatsObject`.
+- Gates: WujuhEngine 98.3 %; naibNotFail **0**; HadhfEngine 1255 / 86.2 / false 3; TaqdirEngine story shelf 98.9 %
+  (n 3049 — the 76 kāna lines no longer claim a hidden noun). Smoke: «wave 167» (417 checks) walks the WHOLE shelf
+  for each class — split radicals, mis-keyed pronouns, a doer after the praise parenthesis, kāna hiding a written
+  noun, two full stops, a ṣila named twice — so a regenerated story that reintroduces one fails the build.
+  **After regenerating any story: `python3 tools/authoring/fix_radical_prefix.py` (dry) must print «0 verbs, 0 pronouns».**
+- Known and left: the twenty older `author_*.py` scripts that carry a private copy of `_pre()` (pre-wave-113) still
+  hold the old helper — the smoke gate and the repair tool cover them; Marāḥ's matn collation is next on the shelf.

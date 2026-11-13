@@ -188,3 +188,22 @@ every rule's own sentence as a regression; **a key is a global claim**
 (`hajar` meant حَجَر two chapters earlier; `adaa`, `safa`, `mushriq` were all
 taken) — the script's `NEW` keys are checked against every package's glossary
 before the write, and a collision is renamed, never overwritten.
+
+## After regenerating or rebuilding a text (wave 167)
+
+Two engine-free tools read the shipped lines and repair what a rule can decide; both print a dry run by default.
+
+```sh
+python3 tools/authoring/fix_radical_prefix.py            # must print «0 verbs, 0 pronouns» — add --write to repair
+python3 tools/authoring/polish_pkg.py content/samples/<pkg>   # the builder's line-level passes on a shipped package
+```
+
+- `fix_radical_prefix.py` walks every package: a verb whose own first radical was split off as a conjunction
+  (وَجَدَ read as وَ + جَدَ) is rejoined, and a detached pronoun behind a conjunction filed under another word's key
+  (وَهُمْ → `wahm`) is re-keyed. The stored paradigm decides, with its vowels.
+- `polish_pkg.py` is for an engine-authored book whose engine pass cannot be reproduced (the lexicon has grown since):
+  it applies `praise_khabar`, `kana_dedupe` and `name_ma_khabar` from `pkg_from_engine.py` without re-deciding
+  anything else. A book whose `engine2.json` is kept is rebuilt with `pkg_from_engine.py` instead — and its dry
+  rebuild is diffed against the shipped package and every changed line read before it lands.
+
+The «wave 167» smoke check holds the whole shelf to both.
