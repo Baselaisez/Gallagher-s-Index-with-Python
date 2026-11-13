@@ -92,22 +92,10 @@
       "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "الْفَاءُ عَاطِفَةٌ، وَخَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The fa conjoins; the predicate of kana, in nasb; the sign is the fatha.",
-      "tr": "«bunun üzerine» + kâne'nin haberi, mansûb; alâmeti fetha ile."
-     },
-     "segments": [
-      {
-       "form": "فَ",
-       "lex": "fa",
-       "pos": "conj"
-      },
-      {
-       "form": "انِيًا",
-       "lex": "fanin",
-       "pos": "noun"
-      }
-     ]
+      "ar": "خَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "The predicate of kana, in nasb; the sign is the fatha.",
+      "tr": "Kâne'nin haberi, mansûb; alâmeti fetha ile."
+     }
     },
     {
      "surface": {
@@ -267,13 +255,11 @@
      },
      "lex": "ma-mawsula",
      "pos": "pron",
-     "grammar": [
-      "ism-mawsul"
-     ],
+     "grammar": [],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "a relative pronoun — built (mabni).",
-      "tr": "ism-i mevsûl — mebnî."
+      "ar": "«مَا» الْحِجَازِيَّةُ النَّافِيَةُ تَعْمَلُ عَمَلَ لَيْسَ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "«not» — the Ḥijāzī مَا that works like لَيْسَ: its noun in rafʿ, its predicate in naṣb or after بِ.",
+      "tr": "«değil» — leyse gibi amel eden Hicâzî mâ."
      }
     },
     {
@@ -332,9 +318,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The waw conjoins; a relative pronoun — built (mabni).",
-      "tr": "«ve» + ism-i mevsûl — mebnî."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الظَّرْفُ «عِنْدَ».",
+      "en": "The waw conjoins; a relative pronoun — built (mabni); its relative clause is the adverbial «عِنْدَ».",
+      "tr": "«ve» + ism-i mevsûl — mebnî; sılası zarf «عِنْدَ»."
      },
      "segments": [
       {
@@ -590,12 +576,13 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِـ«لَا»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A present verb, in nasb after «لَا»; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Muzâri fiil, mansûb; fâili gizli zamir «هُوَ»."
+      "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَنْصُوبٌ بِـ«لَا»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "A present verb, in nasb after «لَا»; its doer is a hidden pronoun «هُوَ» — one of kāna's sisters: it raises its noun and puts its predicate in naṣb..",
+      "tr": "Muzâri fiil, mansûb; fâili gizli zamir «هُوَ» — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder.."
      }
     },
     {
@@ -738,7 +725,7 @@
       "smart": "قَالَ",
       "bare": "قال"
      },
-     "lex": "qali",
+     "lex": "qala",
      "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -818,7 +805,7 @@
       "smart": "وَسَلَّمَ",
       "bare": "وسلم"
      },
-     "lex": "salam",
+     "lex": "sallama",
      "pos": "verb",
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -833,7 +820,7 @@
       },
       {
        "form": "سَلَّمَ",
-       "lex": "salam",
+       "lex": "sallama",
        "pos": "verb"
       }
      ],
@@ -851,9 +838,9 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
-      "tr": "Mübtedâ, merfû; alâmeti damme ile."
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَخَبَرُهُ مَا بَعْدَ تَمَامِ الصِّلَةِ.",
+      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma; its khabar comes after the relative clause is complete.",
+      "tr": "Mübtedâ, merfû; alâmeti damme ile; haberi sıla tamamlandıktan sonra gelir."
      }
     },
     {
@@ -868,9 +855,9 @@
       "asma-al-ishara-wal-mawsulat"
      ],
      "irab": {
-      "ar": "«مَنْ» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "«the one who» — a relative pronoun, built.",
-      "tr": "«kimse ki» — ism-i mevsûl, mebnî."
+      "ar": "«مَنْ» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ جُمْلَةُ «سَلِمَ …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "«the one who» — a relative pronoun, built; its relative clause is the verbal clause «سَلِمَ …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+      "tr": "«kimse ki» — ism-i mevsûl, mebnî; sılası «سَلِمَ …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
      }
     },
     {
@@ -879,7 +866,7 @@
       "smart": "سَلِمَ",
       "bare": "سلم"
      },
-     "lex": "salam",
+     "lex": "salima-safe",
      "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -1010,9 +997,9 @@
       "idafa-definiteness"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «her/its» is the mudaf ilayh.",
-      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun (dişil)» muzâfun ileyh."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَخَبَرُهُ الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ» وَمَا بَعْدَهَا.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «her/its» is the mudaf ilayh; its khabar is the maṣdar clause opened by «أَنْ».",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun (dişil)» muzâfun ileyh; haberi «أَنْ» ile başlayan masdar-ı müevveldir."
      },
      "segments": [
       {
@@ -1317,7 +1304,7 @@
       "smart": "قَالَ",
       "bare": "قال"
      },
-     "lex": "qali",
+     "lex": "qala",
      "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -1397,7 +1384,7 @@
       "smart": "وَسَلَّمَ",
       "bare": "وسلم"
      },
-     "lex": "salam",
+     "lex": "sallama",
      "pos": "verb",
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -1412,7 +1399,7 @@
       },
       {
        "form": "سَلَّمَ",
-       "lex": "salam",
+       "lex": "sallama",
        "pos": "verb"
       }
      ],
@@ -1430,9 +1417,9 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
-      "tr": "Mübtedâ, merfû; alâmeti damme ile."
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَخَبَرُهُ جَارٌّ وَمَجْرُورٌ مِمَّا بَعْدَهُ.",
+      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma; its khabar is one of the prepositional phrases that follow.",
+      "tr": "Mübtedâ, merfû; alâmeti damme ile; haberi sonraki câr-mecrûrlardan biridir."
      }
     },
     {
@@ -1931,9 +1918,9 @@
       "idafa-definiteness"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «her/its» is the mudaf ilayh.",
-      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun (dişil)» muzâfun ileyh."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَخَبَرُهُ الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ» وَمَا بَعْدَهَا.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «her/its» is the mudaf ilayh; its khabar is the maṣdar clause opened by «أَنْ».",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun (dişil)» muzâfun ileyh; haberi «أَنْ» ile başlayan masdar-ı müevveldir."
      },
      "segments": [
       {
@@ -2018,9 +2005,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "a relative pronoun — built (mabni).",
-      "tr": "ism-i mevsûl — mebnî."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ جُمْلَةُ «صَدَرَ …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "a relative pronoun — built (mabni); its relative clause is the verbal clause «صَدَرَ …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+      "tr": "ism-i mevsûl — mebnî; sılası «صَدَرَ …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
      }
     },
     {
@@ -2029,7 +2016,7 @@
       "smart": "صَدَرَ",
       "bare": "صدر"
      },
-     "lex": "sadr",
+     "lex": "sadara",
      "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2205,9 +2192,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "a relative pronoun — built (mabni).",
-      "tr": "ism-i mevsûl — mebnî."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «فِي صُدُورِكُمْ»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "a relative pronoun — built (mabni); its relative clause is the prepositional phrase «فِي صُدُورِكُمْ»; the returning pronoun stands inside it.",
+      "tr": "ism-i mevsûl — mebnî; sılası câr-mecrûr «فِي صُدُورِكُمْ»; âid zamiri içindedir."
      }
     },
     {
@@ -2576,8 +2563,9 @@
       "smart": "أَيُّهَا",
       "bare": "أيها"
      },
-     "lex": "ayyuha",
+     "lex": "ay",
      "pos": "part",
+     "grammar": [],
      "irab": {
       "ar": "«أَيُّ» مُنَادًى مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ، وَ«هَا» لِلتَّنْبِيهِ، وَالِاسْمُ الْمُحَلَّى بِـ«ال» بَعْدَهُ نَعْتٌ لَهُ.",
       "en": "«O» (ayyuha) — the one called, built on the damma in the place of nasb; «ha» alerts; the ال-noun after it is its adjective.",
@@ -2596,9 +2584,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى الْفَتْحِ.",
-      "en": "a relative pronoun — built (mabni).",
-      "tr": "ism-i mevsûl — mebnî."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى الْفَتْحِ، وَصِلَتُهُ جُمْلَةُ «آمَنُوا …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "a relative pronoun — built (mabni); its relative clause is the verbal clause «آمَنُوا …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+      "tr": "ism-i mevsûl — mebnî; sılası «آمَنُوا …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir."
      }
     },
     {
@@ -2841,9 +2829,9 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
-      "tr": "Mübtedâ, merfû; alâmeti damme ile."
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The khabar (predicate), in raf'; the sign is the damma.",
+      "tr": "Haber, merfû; alâmeti damme ile."
      }
     },
     {
@@ -3015,7 +3003,7 @@
       "smart": "وَعَلَّمْنَاهُ",
       "bare": "وعلمناه"
      },
-     "lex": "alam-sign",
+     "lex": "allama",
      "pos": "verb",
      "grammar": [
       "maful-bihi"
@@ -3033,7 +3021,7 @@
       },
       {
        "form": "عَلَّمْنَا",
-       "lex": "alam-sign",
+       "lex": "allama",
        "pos": "verb"
       },
       {

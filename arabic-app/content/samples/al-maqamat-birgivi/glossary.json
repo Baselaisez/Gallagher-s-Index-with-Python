@@ -258,16 +258,6 @@
    "root": "ف س د",
    "form": "IV"
   },
-  "ahabb": {
-   "lemma": "أَحَبّ",
-   "pos": "noun",
-   "gloss": {
-    "en": "dearer, more beloved (elative of حَبِيب)",
-    "tr": "daha sevimli, daha sevgili (habîb'in ism-i tafdili)"
-   },
-   "level": 2,
-   "root": "ح ب ب"
-  },
   "ahabba": {
    "lemma": "أَحَبَّ",
    "pos": "verb",
@@ -309,16 +299,6 @@
    },
    "level": 2,
    "root": "أ ه ل"
-  },
-  "ahsan": {
-   "lemma": "أَحْسَن",
-   "pos": "noun",
-   "gloss": {
-    "en": "better, best (ism tafdil of حَسَن)",
-    "tr": "daha güzel, en güzel (حَسَن'in ism-i tafdili)"
-   },
-   "level": 2,
-   "root": "ح س ن"
   },
   "ajaba": {
    "lemma": "أَجَابَ",
@@ -373,16 +353,6 @@
     "tr": "almak, tutmak (emri خُذْ'dur)"
    },
    "level": 1
-  },
-  "akhdh": {
-   "lemma": "أَخْذ",
-   "pos": "noun",
-   "gloss": {
-    "en": "taking (masdar)",
-    "tr": "ahz; alma (masdar)"
-   },
-   "level": 2,
-   "root": "أ خ ذ"
   },
   "akhfa": {
    "lemma": "أَخْفَى",
@@ -444,27 +414,6 @@
     "tr": "üzerine, üzere"
    },
    "level": 1
-  },
-  "alam-sign": {
-   "lemma": "عَلَم (الْعَلَامَة)",
-   "pos": "noun",
-   "gloss": {
-    "en": "a sign, a mark — عَلَمُ الْفَاعِلِيَّةِ: the sign of doerhood (pl. أَعْلَام)",
-    "tr": "alâmet, nişan — alemü'l-fâiliyye: fâiliyet alâmeti (ç. أَعْلَام)"
-   },
-   "level": 4,
-   "root": "ع ل م",
-   "plural": "أَعْلَام"
-  },
-  "alam-tafdil": {
-   "lemma": "أَعْلَم",
-   "pos": "noun",
-   "gloss": {
-    "en": "more/most knowing (ism tafdil)",
-    "tr": "daha bilgili; en bilgili (ism-i tafdîl)"
-   },
-   "level": 3,
-   "root": "ع ل م"
   },
   "alamin": {
    "lemma": "عَالَمِين",
@@ -575,6 +524,17 @@
    "level": 1,
    "root": "ع ل م"
   },
+  "allama": {
+   "lemma": "عَلَّمَ",
+   "root": "ع ل م",
+   "pos": "verb",
+   "form": "II",
+   "gloss": {
+    "en": "to teach",
+    "tr": "öğretmek"
+   },
+   "level": 2
+  },
   "allati": {
    "lemma": "الَّتِي",
    "pos": "pron",
@@ -624,6 +584,16 @@
     "tr": "iman etmek, inanmak"
    },
    "level": 1
+  },
+  "amara-command": {
+   "lemma": "أَمَرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to command, to order (its amr is مُرْ)",
+    "tr": "emretmek (emri مُرْ)"
+   },
+   "level": 1,
+   "root": "أ م ر"
   },
   "amda": {
    "lemma": "أَمْضَى",
@@ -830,6 +800,17 @@
    "level": 2,
    "root": "ر و د"
   },
+  "arafa": {
+   "lemma": "عَرَفَ",
+   "root": "ع ر ف",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to know, recognize",
+    "tr": "bilmek, tanımak"
+   },
+   "level": 1
+  },
   "arba": {
    "lemma": "أَرْبَع",
    "pos": "noun",
@@ -871,16 +852,6 @@
    },
    "level": 1
   },
-  "arham": {
-   "lemma": "أَرْحَم",
-   "pos": "noun",
-   "gloss": {
-    "en": "the most merciful (elative of رَحِيم)",
-    "tr": "en merhametli (rahîm'in ism-i tafdîli)"
-   },
-   "level": 2,
-   "root": "ر ح م"
-  },
   "arif-knower": {
    "lemma": "عَارِف",
    "pos": "noun",
@@ -901,16 +872,16 @@
    },
    "level": 2
   },
-  "asa-staff": {
-   "lemma": "عَصًا",
-   "pos": "noun",
+  "asa": {
+   "lemma": "عَصَى",
+   "root": "ع ص ي",
+   "pos": "verb",
+   "form": "I",
    "gloss": {
-    "en": "a staff, a stick (a maqsur noun)",
-    "tr": "asâ, değnek (ism-i maksûr)"
+    "en": "to disobey",
+    "tr": "isyan etmek"
    },
-   "level": 3,
-   "root": "ع ص و",
-   "plural": "عِصِيّ"
+   "level": 3
   },
   "asaba": {
    "lemma": "أَصَابَ",
@@ -1017,6 +988,17 @@
    },
    "level": 2
   },
+  "atala-idle": {
+   "lemma": "عَطَلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to lie idle, to stand unused (of mercy: to go unexercised)",
+    "tr": "âtıl kalmak, işlemez olmak"
+   },
+   "level": 5,
+   "root": "ع ط ل",
+   "bab": "I"
+  },
   "atba": {
    "lemma": "أَتْبَاع",
    "pos": "noun",
@@ -1087,6 +1069,15 @@
    "level": 1,
    "root": "أ و ل"
   },
+  "ay": {
+   "lemma": "أَيْ",
+   "pos": "part",
+   "gloss": {
+    "en": "that is, i.e. — the particle of explanation",
+    "tr": "yani — tefsir harfi"
+   },
+   "level": 2
+  },
   "aya": {
    "lemma": "آيَة",
    "pos": "noun",
@@ -1117,15 +1108,6 @@
     "tr": "nerede?"
    },
    "level": 1
-  },
-  "ayyuha": {
-   "lemma": "أَيُّ",
-   "pos": "noun",
-   "gloss": {
-    "en": "the one addressed (in أَيُّهَا)",
-    "tr": "eyy (أَيُّهَا'daki münâdâ)"
-   },
-   "level": 3
   },
   "azza-mighty": {
    "lemma": "عَزَّ",
@@ -1303,15 +1285,6 @@
    "root": "ب ي ع",
    "plural": "بُيُوع"
   },
-  "bayd": {
-   "lemma": "بَيْدَ",
-   "pos": "noun",
-   "gloss": {
-    "en": "bayda — «except that», used only before أَنَّ",
-    "tr": "beyde — «şu kadar ki», yalnız أَنَّ önünde"
-   },
-   "level": 5
-  },
   "bayna": {
    "lemma": "بَيْنَ",
    "pos": "noun",
@@ -1352,15 +1325,6 @@
     "tr": "ile"
    },
    "level": 1
-  },
-  "bi-la": {
-   "lemma": "بِلَا",
-   "pos": "part",
-   "gloss": {
-    "en": "without",
-    "tr": "-sız, olmaksızın"
-   },
-   "level": 2
   },
   "bida": {
    "lemma": "بِدْعَة",
@@ -1509,15 +1473,16 @@
    },
    "level": 3
   },
-  "dhahab-gold": {
-   "lemma": "ذَهَب",
-   "pos": "noun",
+  "dhahaba": {
+   "lemma": "ذَهَبَ",
+   "root": "ذ ه ب",
+   "pos": "verb",
+   "form": "I",
    "gloss": {
-    "en": "gold",
-    "tr": "altın"
+    "en": "to go",
+    "tr": "gitmek"
    },
-   "level": 1,
-   "root": "ذ ه ب"
+   "level": 1
   },
   "dhalika": {
    "lemma": "ذَلِكَ",
@@ -2114,6 +2079,17 @@
    },
    "level": 3,
    "root": "ح ش ر",
+   "form": "I"
+  },
+  "hasuna": {
+   "lemma": "حَسُنَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be good, to be fitting",
+    "tr": "güzel olmak, yakışık almak"
+   },
+   "level": 3,
+   "root": "ح س ن",
    "form": "I"
   },
   "hatta": {
@@ -2774,16 +2750,6 @@
    "root": "ج ه د",
    "bab": "III"
   },
-  "jal-making": {
-   "lemma": "جَعْل",
-   "pos": "noun",
-   "gloss": {
-    "en": "making, setting (masdar of جَعَلَ)",
-    "tr": "kılma, koyma (جَعَلَ'nin masdarı)"
-   },
-   "level": 3,
-   "root": "ج ع ل"
-  },
   "jamaa": {
    "lemma": "جَمَاعَة",
    "pos": "noun",
@@ -2866,16 +2832,6 @@
    "level": 3,
    "root": "ج ز ي"
   },
-  "jida": {
-   "lemma": "جِدَة",
-   "pos": "noun",
-   "gloss": {
-    "en": "affluence, wealth (masdar of وَجَدَ in the sense «to be rich»)",
-    "tr": "zenginlik, varlık (وَجَدَ'nin «zengin olmak» mânâsındaki masdarı)"
-   },
-   "level": 5,
-   "root": "و ج د"
-  },
   "jins": {
    "lemma": "جِنْس",
    "root": "ج ن س",
@@ -2905,24 +2861,6 @@
     "tr": "gibi (cer harfi)"
    },
    "level": 1
-  },
-  "kaanna": {
-   "lemma": "كَأَنَّ",
-   "pos": "part",
-   "gloss": {
-    "en": "as if — the particle of likening among inna's sisters",
-    "tr": "sanki — innenin kardeşlerinden teşbih harfi"
-   },
-   "level": 2
-  },
-  "kadhalika": {
-   "lemma": "كَذَلِكَ",
-   "pos": "part",
-   "gloss": {
-    "en": "likewise, so too (ka + dhalika)",
-    "tr": "öylece, o da öyle (ke + zâlike)"
-   },
-   "level": 2
   },
   "kafara": {
    "lemma": "كَفَرَ",
@@ -3007,16 +2945,6 @@
    },
    "level": 2
   },
-  "karam": {
-   "lemma": "كَرَم",
-   "pos": "noun",
-   "gloss": {
-    "en": "generosity",
-    "tr": "kerem, cömertlik"
-   },
-   "level": 2,
-   "root": "ك ر م"
-  },
   "karama": {
    "lemma": "كَرَامَة",
    "pos": "noun",
@@ -3039,6 +2967,16 @@
    },
    "level": 2
   },
+  "karrama": {
+   "lemma": "كَرَّمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to honour (Form II)",
+    "tr": "ikram etmek, şereflendirmek (tef'îl)"
+   },
+   "level": 1,
+   "root": "ك ر م"
+  },
   "kasb": {
    "lemma": "كَسْب",
    "pos": "noun",
@@ -3059,12 +2997,12 @@
    },
    "level": 3
   },
-  "khadam-servants": {
-   "lemma": "خَدَم",
-   "pos": "noun",
+  "khadama-serve": {
+   "lemma": "خَدَمَ",
+   "pos": "verb",
    "gloss": {
-    "en": "servants (a collective of خَادِم)",
-    "tr": "hizmetçiler (hâdim'in cins ismi)"
+    "en": "to serve",
+    "tr": "hizmet etmek"
    },
    "level": 1,
    "root": "خ د م"
@@ -3079,6 +3017,16 @@
     "tr": "korkmak"
    },
    "level": 1
+  },
+  "khala-think": {
+   "lemma": "خَالَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to think, to suppose (خَالَ يَخَالُ; إِخَالُ «I think» with its kasra'd hamza)",
+    "tr": "sanmak (خَالَ يَخَالُ; إِخَالُ «sanırım», hemzesi meksûr)"
+   },
+   "level": 5,
+   "root": "خ ي ل"
   },
   "khalafa": {
    "lemma": "خَالَفَ",
@@ -3101,17 +3049,6 @@
    "level": 5,
    "root": "خ ل ق",
    "plural": "خَلَائِق"
-  },
-  "khalla": {
-   "lemma": "خَلَّة",
-   "root": "خ ل ل",
-   "pos": "noun",
-   "plural": "خِلَال",
-   "gloss": {
-    "en": "trait, quality",
-    "tr": "haslet, huy"
-   },
-   "level": 4
   },
   "khalq": {
    "lemma": "خَلْق",
@@ -3391,6 +3328,16 @@
     "tr": "katında, nezdinde (mebnî zarf)"
    },
    "level": 3
+  },
+  "lahiqa": {
+   "lemma": "لَحِقَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to catch up with, to join, to attach to",
+    "tr": "yetişmek, bitişmek, katılmak"
+   },
+   "level": 4,
+   "root": "ل ح ق"
   },
   "lain": {
    "lemma": "لَئِنْ",
@@ -4267,6 +4214,16 @@
    "level": 4,
    "root": "ن د م"
   },
+  "nadima": {
+   "lemma": "نَدِمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to regret",
+    "tr": "pişman olmak"
+   },
+   "level": 3,
+   "root": "ن د م"
+  },
   "nafaa": {
    "lemma": "نَفَعَ",
    "root": "ن ف ع",
@@ -4329,7 +4286,8 @@
     "tr": "nehiy; yasaklama (masdar)"
    },
    "level": 3,
-   "root": "ن ه ي"
+   "root": "ن ه ي",
+   "plural": "نَوَاهٍ"
   },
   "naib": {
    "lemma": "نَائِب",
@@ -4722,16 +4680,6 @@
    "level": 4,
    "root": "ق ل ب"
   },
-  "qali": {
-   "lemma": "قَالٍ (الْقَالِي)",
-   "root": "ق ل ي",
-   "pos": "noun",
-   "gloss": {
-    "en": "detester (ism fa'il of قَلَى)",
-    "tr": "buğzeden (قَلَى'nın ism-i fâili)"
-   },
-   "level": 5
-  },
   "qalla": {
    "lemma": "قَلَّ",
    "pos": "verb",
@@ -4814,16 +4762,6 @@
    },
    "level": 3,
    "root": "ق ب ل"
-  },
-  "qil": {
-   "lemma": "قِيل",
-   "pos": "noun",
-   "gloss": {
-    "en": "a saying, the act of saying (masdar of قَالَ)",
-    "tr": "söyleme, kavl (قَالَ masdarı)"
-   },
-   "level": 4,
-   "root": "ق و ل"
   },
   "qiyama": {
    "lemma": "قِيَامَة",
@@ -4927,25 +4865,27 @@
    "level": 4,
    "root": "ر ع د"
   },
-  "radi-pleasing": {
-   "lemma": "رَضِيّ",
-   "pos": "noun",
+  "radiya": {
+   "lemma": "رَضِيَ",
+   "root": "ر ض ي",
+   "pos": "verb",
+   "form": "I",
    "gloss": {
-    "en": "well-pleasing, agreeable",
-    "tr": "hoşnut edici, beğenilen"
+    "en": "to be pleased with, approve (with بِ)",
+    "tr": "razı olmak (بِ ile)"
    },
-   "level": 3,
-   "root": "ر ض و"
+   "level": 2
   },
-  "raghab": {
-   "lemma": "رَغَب",
-   "pos": "noun",
+  "raghiba": {
+   "lemma": "رَغِبَ",
+   "pos": "verb",
    "gloss": {
-    "en": "longing, desire",
-    "tr": "umma, arzu"
+    "en": "to desire (رَغِبَ فِي); to turn away from (رَغِبَ عَنْ)",
+    "tr": "istemek (fî ile); yüz çevirmek (an ile)"
    },
-   "level": 3,
-   "root": "ر غ ب"
+   "level": 4,
+   "root": "ر غ ب",
+   "bab": "I"
   },
   "raha-rest": {
    "lemma": "رَاحَة",
@@ -5072,6 +5012,16 @@
    },
    "level": 2
   },
+  "razaqa": {
+   "lemma": "رَزَقَ",
+   "root": "ر ز ق",
+   "pos": "verb",
+   "gloss": {
+    "en": "to provide, to grant sustenance (two objects: رَزَقَهُ وَلَدًا)",
+    "tr": "rızık vermek, nasip etmek (iki mef'ûl: رَزَقَهُ وَلَدًا)"
+   },
+   "level": 2
+  },
   "riaya": {
    "lemma": "رِعَايَة",
    "pos": "noun",
@@ -5111,17 +5061,6 @@
     "tr": "riyâzet, yetiştirme"
    },
    "level": 4
-  },
-  "rizq": {
-   "lemma": "رِزْق",
-   "root": "ر ز ق",
-   "pos": "noun",
-   "plural": "أَرْزَاق",
-   "gloss": {
-    "en": "provision",
-    "tr": "rızık"
-   },
-   "level": 1
   },
   "ruh": {
    "lemma": "رُوح",
@@ -5468,6 +5407,17 @@
    },
    "level": 2
   },
+  "salima-safe": {
+   "lemma": "سَلِمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to be safe, to come through unharmed",
+    "tr": "sâlim olmak, kurtulmak"
+   },
+   "level": 4,
+   "root": "س ل م",
+   "bab": "I"
+  },
   "salla": {
    "lemma": "صَلَّى",
    "pos": "verb",
@@ -5477,6 +5427,16 @@
    },
    "level": 3,
    "root": "ص ل و"
+  },
+  "sallama": {
+   "lemma": "سَلَّمَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to grant peace",
+    "tr": "selâm etmek"
+   },
+   "level": 3,
+   "root": "س ل م"
   },
   "saltana": {
    "lemma": "سُلْطَنَة",
@@ -5508,6 +5468,16 @@
    "level": 1,
    "root": "س ن و",
    "plural": "سِنُونَ / سَنَوَات"
+  },
+  "sanaa": {
+   "lemma": "صَنَعَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to make, to manufacture",
+    "tr": "yapmak, imal etmek"
+   },
+   "level": 1,
+   "root": "ص ن ع"
   },
   "saraqa": {
    "lemma": "سَرَقَ",
@@ -5861,16 +5831,6 @@
    "level": 4,
    "root": "س ل ك"
   },
-  "sun": {
-   "lemma": "صُنْع",
-   "pos": "noun",
-   "gloss": {
-    "en": "a doing, a kindness done (masdar of صَنَعَ)",
-    "tr": "yapış, iyilik (sane'a masdarı)"
-   },
-   "level": 5,
-   "root": "ص ن ع"
-  },
   "sunna": {
    "lemma": "سُنَّة",
    "pos": "noun",
@@ -6077,6 +6037,16 @@
     "tr": "talep, isteme"
    },
    "level": 2
+  },
+  "talaba": {
+   "lemma": "طَلَبَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to seek",
+    "tr": "aramak; talep etmek"
+   },
+   "level": 1,
+   "root": "ط ل ب"
   },
   "taladhdhudh": {
    "lemma": "تَلَذُّذ",
@@ -6478,16 +6448,6 @@
    "root": "ع م ر",
    "plural": "أَعْمَار"
   },
-  "urf": {
-   "lemma": "عُرْف",
-   "pos": "noun",
-   "gloss": {
-    "en": "kindness, bounty; what is customarily known as good",
-    "tr": "ihsan, iyilik; örfen ma'rûf olan"
-   },
-   "level": 4,
-   "root": "ع ر ف"
-  },
   "usr": {
    "lemma": "عُسْر",
    "pos": "noun",
@@ -6497,16 +6457,6 @@
    },
    "level": 1,
    "root": "ع س ر"
-  },
-  "utla": {
-   "lemma": "عُطْلَة",
-   "pos": "noun",
-   "gloss": {
-    "en": "a holiday, a day of rest",
-    "tr": "tatil"
-   },
-   "level": 1,
-   "root": "ع ط ل"
   },
   "wa": {
    "lemma": "وَ",
@@ -6599,6 +6549,16 @@
    },
    "level": 2
   },
+  "wakkala": {
+   "lemma": "وَكَّلَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to put in charge, to entrust (Form II; with bi)",
+    "tr": "başına dikmek, vekil kılmak (tef'îl; bi ile)"
+   },
+   "level": 3,
+   "root": "و ك ل"
+  },
   "waraqa": {
    "lemma": "وَرَقَة",
    "pos": "noun",
@@ -6640,16 +6600,6 @@
    },
    "level": 4,
    "plural": "وَاصِلُونَ",
-   "root": "و ص ل"
-  },
-  "wasl": {
-   "lemma": "وَصْل",
-   "pos": "noun",
-   "gloss": {
-    "en": "joining, connection (of jumlas by atf)",
-    "tr": "vasl, bağlama (cümlelerin atfı)"
-   },
-   "level": 6,
    "root": "و ص ل"
   },
   "wujud": {
@@ -6703,24 +6653,6 @@
    },
    "level": 1
   },
-  "yazid": {
-   "lemma": "يَزِيد",
-   "pos": "propn",
-   "gloss": {
-    "en": "Yazid (b. Mu'awiya)",
-    "tr": "Yezid (b. Muâviye)"
-   },
-   "level": 0
-  },
-  "yufilu-wazn": {
-   "lemma": "يُفْعِلُ",
-   "pos": "noun",
-   "gloss": {
-    "en": "the pattern يُفْعِلُ — the muḍāriʿ of Form IV, its prefix on a ḍamma",
-    "tr": "yüf'ilü vezni — IV. bâbın muzârisi, ön eki zammeli"
-   },
-   "level": 3
-  },
   "yusr": {
    "lemma": "يُسْر",
    "pos": "noun",
@@ -6730,16 +6662,6 @@
    },
    "level": 1,
    "root": "ي س ر"
-  },
-  "zad": {
-   "lemma": "زَاد",
-   "root": "ز و د",
-   "pos": "noun",
-   "gloss": {
-    "en": "provisions for a journey",
-    "tr": "azık"
-   },
-   "level": 3
   },
   "zada": {
    "lemma": "زَادَ",
@@ -6771,17 +6693,6 @@
    },
    "level": 1,
    "root": "ز ك و"
-  },
-  "zann": {
-   "lemma": "ظَنّ",
-   "pos": "noun",
-   "gloss": {
-    "en": "a thought, a supposition (masdar of ظَنَّ; pl. ظُنُون)",
-    "tr": "zan, sanı (zanne masdarı; ç. ظُنُون)"
-   },
-   "level": 3,
-   "root": "ظ ن ن",
-   "plural": "ظُنُون"
   },
   "zanna": {
    "lemma": "ظَنَّ",

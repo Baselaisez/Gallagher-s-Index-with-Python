@@ -21,9 +21,9 @@
       "al-majzum-wal-shart-wal-jaza"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَوْ» حَرْفُ شَرْطٍ غَيْرُ جَازِمٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The waw conjoins; «if» — the counterfactual conditional.",
-      "tr": "«ve» + «eğer / -saydı» — cezmetmeyen şart harfi."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَوْ» حَرْفُ شَرْطٍ غَيْرُ جَازِمٍ، حَرْفُ امْتِنَاعٍ لِامْتِنَاعٍ، مَبْنِيٌّ عَلَى السُّكُونِ.",
+      "en": "The waw conjoins; «had it been …» — the counterfactual conditional: the answer failed because the condition failed.",
+      "tr": "«ve» + «… olsaydı» — cezmetmeyen şart harfi: şartı gerçekleşmediği için cevabı da gerçekleşmeyen imtinâ harfi."
      },
      "segments": [
       {
@@ -44,15 +44,15 @@
       "smart": "كَانَ",
       "bare": "كان"
      },
-     "lex": "kaanna",
-     "pos": "part",
+     "lex": "kana",
+     "pos": "verb",
      "grammar": [
-      "inna-wa-akhawatuha"
+      "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "«كَأَنَّ» حَرْفُ تَشْبِيهٍ وَنَصْبٍ مِنْ أَخَوَاتِ إِنَّ.",
-      "en": "«as if» — a sister of inna.",
-      "tr": "«sanki» — inne'nin kardeşlerinden."
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "A past verb; its doer is a hidden pronoun «هُوَ» — one of kāna's sisters: it raises its noun and puts its predicate in naṣb..",
+      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ» — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder.."
      }
     },
     {
@@ -67,22 +67,10 @@
       "kana-wa-akhawatuha"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The waw conjoins; the noun of kana, in raf'; the sign is the damma.",
-      "tr": "«ve» + kâne'nin ismi, merfû; alâmeti damme ile."
-     },
-     "segments": [
-      {
-       "form": "وَ",
-       "lex": "wa",
-       "pos": "conj"
-      },
-      {
-       "form": "احِدٌ",
-       "lex": "wahid",
-       "pos": "noun"
-      }
-     ]
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The noun of kana, in raf'; the sign is the damma.",
+      "tr": "Kâne'nin ismi, merfû; alâmeti damme ile."
+     }
     },
     {
      "surface": {
@@ -327,6 +315,9 @@
      },
      "lex": "kana",
      "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ بِالضَّمَّةِ، وَاسْمُهُ «شَرَائِطُهُ» وَخَبَرُهُ «نَاقِصَةً».",
       "en": "A present verb of kana's family, in raf' by the damma; its noun is «its conditions» and its predicate «deficient».",
@@ -716,9 +707,9 @@
       "idafa-definiteness"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
-      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «his/its» is the mudaf ilayh.",
-      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun» muzâfun ileyh."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَخَبَرُهُ جَارٌّ وَمَجْرُورٌ مِمَّا بَعْدَهُ.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed, the pronoun «his/its» is the mudaf ilayh; its khabar is one of the prepositional phrases that follow.",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun» muzâfun ileyh; haberi sonraki câr-mecrûrlardan biridir."
      },
      "segments": [
       {
@@ -744,8 +735,12 @@
       "smart": "كَذٰلِكَ",
       "bare": "كذلك"
      },
-     "lex": "kadhalika",
+     "lex": "dhalika",
      "pos": "part",
+     "grammar": [
+      "asma-al-ishara-wa-sighuha",
+      "huruf-jarr"
+     ],
      "irab": {
       "ar": "الْكَافُ حَرْفُ جَرٍّ وَتَشْبِيهٍ، وَ«ذٰلِكَ» اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَرٍّ بِالْكَافِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِمَحْذُوفٍ.",
       "en": "The kaf of jarr and likeness; «that» — a demonstrative built on the fatha, in the place of jarr after the kaf; the phrase hangs on an omitted governor (likewise).",
@@ -922,9 +917,9 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
-      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَجُمْلَةُ «أَعْلَمُ» الْفِعْلِيَّةُ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+      "en": "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; the verbal clause «أَعْلَمُ» stands in the place of rafʿ as its khabar.",
+      "tr": "«ve» + mübtedâ, merfû; alâmeti damme ile; «أَعْلَمُ» fiil cümlesi ref mahallinde haberidir."
      },
      "segments": [
       {
@@ -945,7 +940,7 @@
       "smart": "أَعْلَمُ",
       "bare": "أعلم"
      },
-     "lex": "alam-tafdil",
+     "lex": "alima",
      "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنَا.",
@@ -1036,9 +1031,9 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma.",
-      "tr": "Mübtedâ, merfû; alâmeti damme ile."
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَخَبَرُهُ جَارٌّ وَمَجْرُورٌ مِمَّا بَعْدَهُ.",
+      "en": "The mubtada (subject of the nominal sentence), in raf'; the sign is the damma; its khabar is one of the prepositional phrases that follow.",
+      "tr": "Mübtedâ, merfû; alâmeti damme ile; haberi sonraki câr-mecrûrlardan biridir."
      }
     },
     {
@@ -1094,7 +1089,7 @@
        "pos": "prep"
       },
       {
-       "form": "لْإِمَامِ",
+       "form": "الْإِمَامِ",
        "lex": "imam",
        "pos": "noun"
       }
@@ -1210,22 +1205,10 @@
       "naat-sifa"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَنَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
-      "en": "The waw conjoins; an adjective (na't) agreeing with its noun in case; the sign is the fatha.",
-      "tr": "«ve» + sıfat (na't); mevsûfuna uyar; alâmeti fetha ile."
+      "ar": "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.",
+      "en": "An adjective (na't) agreeing with its noun in case; the sign is the fatha.",
+      "tr": "Sıfat (na't); mevsûfuna uyar; alâmeti fetha ile."
      },
-     "segments": [
-      {
-       "form": "وَ",
-       "lex": "wa",
-       "pos": "conj"
-      },
-      {
-       "form": "اسِعَةً",
-       "lex": "wasi-wide",
-       "pos": "noun"
-      }
-     ],
      "punctAfter": "."
     }
    ]

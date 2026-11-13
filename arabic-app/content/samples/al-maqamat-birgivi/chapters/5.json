@@ -201,12 +201,12 @@
      "lex": "man",
      "pos": "pron",
      "grammar": [
-      "al-istifham"
+      "asma-al-ishara-wal-mawsulat"
      ],
      "irab": {
-      "ar": "«مَنْ» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "«who?» — an interrogative noun, built.",
-      "tr": "«kim?» — istifhâm ismi, mebnî."
+      "ar": "«مَنْ» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «فِي الْأَرْضِ»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+      "en": "«the one who» — a relative pronoun, built; its relative clause is the prepositional phrase «فِي الْأَرْضِ»; the returning pronoun stands inside it.",
+      "tr": "«kimse ki» — ism-i mevsûl, mebnî; sılası câr-mecrûr «فِي الْأَرْضِ»; âid zamiri içindedir."
      }
     },
     {
@@ -282,12 +282,12 @@
      "lex": "man",
      "pos": "pron",
      "grammar": [
-      "al-istifham"
+      "asma-al-ishara-wal-mawsulat"
      ],
      "irab": {
-      "ar": "«مَنْ» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "«who?» — an interrogative noun, built.",
-      "tr": "«kim?» — istifhâm ismi, mebnî."
+      "ar": "«مَنْ» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «فِي السَّمَاءِ».",
+      "en": "«the one who» — a relative pronoun, built; its relative clause is the prepositional phrase «فِي السَّمَاءِ».",
+      "tr": "«kimse ki» — ism-i mevsûl, mebnî; sılası câr-mecrûr «فِي السَّمَاءِ»."
      }
     },
     {
@@ -829,22 +829,10 @@
       "mubtada-khabar"
      ],
      "irab": {
-      "ar": "الْفَاءُ عَاطِفَةٌ، وَخَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The fa conjoins; the khabar (predicate), in raf'; the sign is the damma.",
-      "tr": "«bunun üzerine» + haber, merfû; alâmeti damme ile."
-     },
-     "segments": [
-      {
-       "form": "فَ",
-       "lex": "fa",
-       "pos": "conj"
-      },
-      {
-       "form": "رْضٌ",
-       "lex": "fard",
-       "pos": "noun"
-      }
-     ]
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The khabar (predicate), in raf'; the sign is the damma.",
+      "tr": "Haber, merfû; alâmeti damme ile."
+     }
     },
     {
      "surface": {
@@ -902,7 +890,7 @@
       "smart": "وَأْمُرْ",
       "bare": "وأمر"
      },
-     "lex": "amr",
+     "lex": "amara-command",
      "pos": "verb",
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -917,7 +905,7 @@
       },
       {
        "form": "أْمُرْ",
-       "lex": "amr",
+       "lex": "amara-command",
        "pos": "verb"
       }
      ]
@@ -1124,9 +1112,9 @@
      "lex": "thabata",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
-      "en": "A past verb with its subject pronoun suffix as doer.",
-      "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
+      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
      }
     },
     {
@@ -1193,9 +1181,9 @@
       "ism-mawsul"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "a relative pronoun — built (mabni).",
-      "tr": "ism-i mevsûl — mebnî."
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «فِي الشَّرِيعَةِ».",
+      "en": "a relative pronoun — built (mabni); its relative clause is the prepositional phrase «فِي الشَّرِيعَةِ».",
+      "tr": "ism-i mevsûl — mebnî; sılası câr-mecrûr «فِي الشَّرِيعَةِ»."
      }
     },
     {
