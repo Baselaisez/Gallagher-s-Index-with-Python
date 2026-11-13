@@ -22579,6 +22579,22 @@ class DabtEngine {
       /* R17 — فِيهَا ضَمِيرٌ عَائِدٌ: the fronted phrase is the khabar, so the ṣifa after the indefinite mubtadaʾ describes it */
       if (!def(i) && K(i) === "raf" && i - 1 === h && R(h) === "mubtada" && isN(h) && !def(h) && fem(i) === fem(h) && h >= 1 && (/^(jarrPron|zarf)$/.test(R(h - 1)) || (R(h - 1) === "mabni" && /^(في|ل|ب|على|من|عند|ل)(ه|ها|هم|هما|هن|ك|كم|نا|ي)$/.test(B(h - 1))) || (h >= 2 && /^(jarr|mudafIlayh)$/.test(R(h - 1)) && /^(mabni|jarr|zarf)$/.test(R(h - 2)) && (h === 2 || joined(h - 2) || h - 2 === 0)))) { put(i, "raf", "nat"); continue; }
     }
+    /* (wave 173) R18–R20 — the predicate called a description, the subject called a predicate */
+    const ORD173 = /^[وف]?ال(اول|اولى|ثاني|ثانية|ثالث|ثالثة|رابع|رابعة|خامس|خامسة|سادس|سادسة|سابع|سابعة|ثامن|ثامنة|تاسع|تاسعة|عاشر|عاشرة)$/;
+    const NUM173 = /^[وف]?ال(ثلاث|اربع|خمس|ست|سبع|ثماني|تسع|عشر|اثن|مائ|الف)/;
+    /* an enumeration goes on: a joined ordinal after an earlier ordinal mubtadaʾ opens the next item (الْأَوَّلُ الْفِعْلُ وَالثَّانِي الِاسْمُ) */
+    for (let i = 2; i < n; i++) if (R(i) === "atf" && K(i) === "raf" && isN(i) && joined(i) && ORD173.test(B(i)) && !ORD173.test(B(i - 1)) && rows[i + 1] && out.slice(0, i).some((o, q) => o && o.rule === "mubtada" && ORD173.test(B(q)))) put(i, "raf", "mubtada");
+    for (let i = 1; i < n; i++) {
+      if (!isN(i) || joined(i)) continue;
+      /* R18 — وَالثَّالِثُ الْمُبْتَدَأُ وَهُوَ نَوْعَانِ؛ وَالنَّوْعُ الثَّانِي الْعَلَمُ */
+      if (R(i) === "nat" && K(i) === "raf" && al(i) && !ORD173.test(B(i)) && !NUM173.test(B(i)) && ORD173.test(B(i - 1)) && (R(i - 1) === "mubtada" || (R(i - 1) === "nat" && i >= 2 && R(i - 2) === "mubtada" && /^[وف]?ال(نوع|قسم|ضرب|باب|فصل|وجه|صنف)$/.test(B(i - 2))))) { put(i, "raf", "khabar"); continue; }
+      /* R19 — وَشَرْطُهُ الْعِلْمُ: a jāmid is no description, so the definite noun after a noun wearing a pronoun is its khabar */
+      if (R(i) === "nat" && K(i) === "raf" && al(i) && !sifa(i) && !ORD173.test(B(i)) && !NUM173.test(B(i)) && !(rows[i + 1] && isV(i + 1) && !/^[وف]/.test(B(i + 1))) && isN(i - 1) && !!enc(i - 1) && !al(i - 1) && K(i - 1) === "raf" && /^(mubtada|atf)$/.test(R(i - 1)) && (R(i - 1) === "mubtada" || (joined(i - 1) && verbBefore(i - 1) < 0))) {
+        if (R(i - 1) === "atf") put(i - 1, "raf", "mubtada");
+        put(i, "raf", "khabar"); continue; }
+      /* R20 — مَا فِيهِ عَلَامَةُ التَّأْنِيثِ: the phrase in front is the khabar, the noun after it the postponed mubtadaʾ */
+      if (R(i) === "khabar" && K(i) === "raf" && !/^(نحو|مثل)$/.test(B(i)) && i >= 2 && B(i - 2) === "ما" && R(i - 2) === "mabni" && (R(i - 1) === "jarrPron" || (R(i - 1) === "jarr" && !!enc(i - 1)) || (R(i - 1) === "mabni" && /^(في|من|على|ب|ل|مع|عند)(ه|ها|هم|هما|هن)$/.test(B(i - 1))))) { put(i, "raf", "mubtada"); continue; }
+    }
     /* R6 — مَا أَجْمَلَ السَّمَاءَ: the whole sentence is the wonder frame */
     if (n === 3 && /^[وف]?ما$/.test(B(0)) && /^ا[^ا]{3}$/.test(B(1)) && /^أَ[^ً-ٰ]ْ[^ً-ٰ]َ[^ً-ٰ]$/.test(W(1)) && isN(2) && def(2) && !joined(2) && /^(mubtada|khabar|raf)$/.test(R(1))) { put(1, "nasb", "taajjub"); put(2, "nasb", "maful"); }
   }

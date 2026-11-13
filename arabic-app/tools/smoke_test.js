@@ -14900,6 +14900,25 @@ if (!CHROME) {
     if (!/^خَبَرُ إِنَّ /.test(r.m) || !/^خَبَرُ أَنَّ /.test(r.u) || !/^خَبَرُ أَنَّ /.test(r.z) || !r.tag) throw new Error('the stored lines name the particle and carry its note: ' + J([r.m, r.u, r.z, r.tag]));
   });
 
+  await check('wave 173 — the predicate the loop called a description: after an ORDINAL mubtadaʾ the definite noun is the khabar (وَالثَّالِثُ الْمُبْتَدَأُ، وَالنَّوْعُ الثَّانِي الْعَلَمُ) and a joined ordinal opens the next item (الْأَوَّلُ الْفِعْلُ وَالثَّانِي الِاسْمُ); a definite JĀMID after a noun wearing a pronoun is its khabar (وَشَرْطُهُ الْعِلْمُ بِالْكِتَابِ) while a ṣifa or an ordinal there stays a naʿt (كِتَابُهُ الْجَدِيدُ مُفِيدٌ، مَفْعُولُهَا الْأَوَّلُ مَنْصُوبٌ) and so does the noun before the clause\'s verb (وَأَبُوهُ الشَّيْخُ يَمْشِي); and the rafʿ noun after «مَا» and a fronted jarr phrase with its pronoun is the POSTPONED mubtadaʾ (مَا فِيهِ عَلَامَةُ التَّأْنِيثِ)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      return {
+        o1: dv('وَالثَّالِثُ الْمُبْتَدَأُ وَهُوَ نَوْعَانِ'), o2: dv('وَالنَّوْعُ الثَّانِي الْعَلَمُ'), o3: dv('الْأَوَّلُ الْفِعْلُ وَالثَّانِي الِاسْمُ'),
+        j1: dv('وَشَرْطُهُ الْعِلْمُ بِالْكِتَابِ'), j2: dv('وَعَامِلُهَا الْفِعْلُ أَوْ شِبْهُهُ'),
+        s1: dv('كِتَابُهُ الْجَدِيدُ مُفِيدٌ'), s2: dv('مَفْعُولُهَا الْأَوَّلُ مَنْصُوبٌ'), s3: dv('وَأَبُوهُ الشَّيْخُ يَمْشِي'),
+        p1: dv('الْمُؤَنَّثُ مَا فِيهِ عَلَامَةُ التَّأْنِيثِ'), p2: dv('الْجَوْهَرُ مَا لَهُ قِيَامٌ بِذَاتِهِ'),
+      };
+    });
+    if (!/^وَالثَّالِثُ\/mubtada الْمُبْتَدَأُ\/khabar /.test(r.o1) || !/ الثَّانِي\/nat الْعَلَمُ\/khabar$/.test(r.o2)) throw new Error('the ordinal names its item: ' + J([r.o1, r.o2]));
+    if (!/^الْأَوَّلُ\/mubtada الْفِعْلُ\/khabar وَالثَّانِي\/mubtada الِاسْمُ\/khabar$/.test(r.o3)) throw new Error('the enumeration goes on: ' + r.o3);
+    if (!/ الْعِلْمُ\/khabar /.test(r.j1) || !/ الْفِعْلُ\/khabar /.test(r.j2)) throw new Error('a jāmid is no description: ' + J([r.j1, r.j2]));
+    if (!/ الْجَدِيدُ\/nat مُفِيدٌ\/khabar$/.test(r.s1) || !/ الْأَوَّلُ\/nat مَنْصُوبٌ\/khabar$/.test(r.s2) || !/ الشَّيْخُ\/nat /.test(r.s3)) throw new Error('the ṣifa, the ordinal and the noun before the verb stay naʿt: ' + J([r.s1, r.s2, r.s3]));
+    if (!/ فِيهِ\/jarrPron عَلَامَةُ\/mubtada /.test(r.p1) || !/ قِيَامٌ\/mubtada /.test(r.p2)) throw new Error('the postponed mubtadaʾ inside the ṣila: ' + J([r.p1, r.p2]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

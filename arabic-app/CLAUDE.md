@@ -11604,3 +11604,28 @@ silent about WHOSE (`khabar | khabar inna` 114), or the word is no predicate at 
   `fāʿil | mafʿūl` 115 (these are wrong ENDINGS, not labels — the blind sweep's own list), `khabar | mubtadaʾ` 107,
   `khabar | naʿt` 106 (two ṣifas after a mubtadaʾ — زَيْدٌ عَالِمٌ فَاضِلٌ — where both readings are sound).
 - `tools/smoke_test.js`: «wave 172» (422 checks).
+
+### v272 (wave 173) — the predicate called a description, the subject called a predicate
+
+The label gauge crosses **90 %**. Three shapes, each the mirror of a rule already in the pass:
+
+- **R18 — after an ORDINAL mubtadaʾ the definite noun is the khabar** (وَالثَّالِثُ الْمُبْتَدَأُ وَهُوَ نَوْعَانِ؛ وَالنَّوْعُ الثَّانِي
+  الْعَلَمُ). An enumeration names its item; the loop had read «the third, the mubtadaʾ» as a noun and its adjective.
+  A joined ordinal after an earlier ordinal mubtadaʾ opens the NEXT item (الْأَوَّلُ الْفِعْلُ وَالثَّانِي الِاسْمُ). A number in
+  the predicate seat is left alone (الرَّابِعُ: الثَّلَاثَةُ عَقْلِيَّةٌ — a second mubtadaʾ).
+- **R19 — a definite JĀMID after a noun wearing a pronoun is its khabar** (وَشَرْطُهُ الْعِلْمُ بِالْكِتَابِ، وَعَامِلُهَا الْفِعْلُ أَوْ
+  شِبْهُهُ، وَمُوجِبُهُ الْوُجُوبُ). This is wave 169's rule («a jāmid is no naʿt») reaching the cases the loop decides
+  otherwise when it reads blind. Three guards the first run asked for: a ṣifa stays a naʿt (كِتَابُهُ الْجَدِيدُ), an
+  ordinal or a number is a ṣifa in sense whatever its shape (مَفْعُولُهَا الْأَوَّلُ، أَحْوَالُهُ الثَّلَاثُ), and where the clause's
+  verb follows, the verb is the predicate and the definite noun an apposition (وَأَبُوهُ الشَّيْخُ يَمْشِي، حَيَاتُنَا الدُّنْيَا).
+- **R20 — inside a ṣila, the rafʿ noun after a fronted jarr phrase with its pronoun is the POSTPONED mubtadaʾ**
+  (الْمُؤَنَّثُ مَا فِيهِ عَلَامَةُ التَّأْنِيثِ، الْأَعْيَانُ مَا لَهُ قِيَامٌ بِذَاتِهِ). The phrase is the khabar and carries the ʿāʾid; «نَحْوُ»
+  after «مَا بِمَعْنَاهُ» resumes the author's sentence and is not that noun.
+- **A rule that did not earn its place is not in the build.** A fourth rule — a joined noun with a pronoun and a jarr
+  phrase after it opens a clause (وَإِعْلَالُهُ بِالنَّقْلِ) — fired once on the shelf and was wrong that once (مَالُهُ وَدَمُهُ لَهُ…).
+  Measured, dropped, recorded; the 221 rows of `atf | mubtadaʾ` still wait for a signal that separates a predicate
+  phrase from a complement.
+- Measured: label agreement 89.87 → **90.02 %** — 49 offices moved to the author's reading, **none away**, one
+  unjudged. Blind and receipts-on sweeps **0 fixed / 0 broken**, case layer unchanged (98.65 %). Since the gauge was
+  built (wave 170): 89.05 → 90.02 % over four waves, every one with identical ending sweeps.
+- `tools/smoke_test.js`: «wave 173» (423 checks).
