@@ -11439,3 +11439,54 @@ of the muḍāriʿ and false of the māḍī, which is BUILT.
   that has no cell. No verdict is taken from the shadow — it only explains. **A rule that moves a decision earlier must
   carry the explanation with it.**
 - Smoke: «wave 168» (418 checks).
+
+
+### v268 (wave 169) — the nominal sentence's khabar, and three faces of مَا
+
+Three misreads found while closing wave 168, each answered by the rule the books state, plus what those rules shook loose.
+
+- **A clause that is a khabar must carry its RĀBIṬ (`tafdilKhabar169`, SentenceAnalyzer's tenth guard).** «اللهُ أَكْبَرُ»,
+  «زَيْدٌ أَعْلَمُ مِنْ عَمْرٍو»: the letters and the vowels are the first person of the muḍāriʿ («I grow», «I know»), and the
+  lookup said so. But a verbal khabar of a third-person mubtadaʾ needs a pronoun returning to that noun, and none is there —
+  so the word is the elative أَفْعَل, the khabar itself. The verb stays where it has its licence: after أَنَا / نَحْنُ, after a
+  verb of saying, before a definite manṣūb (أَعْلَمُ الْحَقَّ), and wherever a later word wears a pronoun that could return
+  (زَيْدٌ أَعْلَمُ حَالَهُ). Each of those is asserted in the smoke check.
+- **A jāmid is no naʿt (`DabtEngine`, the wave-143 rule «وَمَأْوَاهُ النَّارُ» widened).** A definite noun that is no ṣifa shape,
+  right after a noun wearing a pronoun, is its KHABAR — now also where that noun OPENS the clause (دِينُهُ الْإِسْلَامُ) and where
+  only a jarr complement follows (فَأَوَّلُهَا الْإِيمَانُ بِاللهِ، وَآخِرُهَا الصَّبْرُ عَلَى الْبَلَاءِ). «كِتَابُهُ الْجَدِيدُ مُفِيدٌ» keeps
+  its naʿt: فَعِيل is a ṣifa shape and a khabar follows.
+- **`MaEngine` 6j — the relative mubtadaʾ at a sentence head.** «مَا + a third-person verb + a jarr phrase», no rafʿ noun
+  coming to be the doer: the seat is the ʿāʾid's. What tells it from the negation is the KHABAR the mubtadaʾ is owed — the
+  fāʾ on a pronoun or إِنَّ (وَمَا ثَبَتَ مِنْهُ بِالِاسْتِدْلَالِ فَهُوَ اكْتِسَابِيٌّ), a rafʿ nakira after the clause's manṣūb, or
+  «كُلُّ ذٰلِكَ» taking the whole up again (وَمَا يُوجَدُ مِنَ الْأَلَمِ … كُلُّ ذٰلِكَ مَخْلُوقٌ). With the khabar in sight the relative
+  leads; where the sentence merely goes on, it is listed UNDER the negation (7c) and the row is `sure: false`; where the
+  sentence ends on the jarr phrase (مَا وَصَلَ إِلَى الْكَعْبَةِ) the negation stands alone. إِلَّا / بَلْ / حَتَّى / قَطُّ, the زَالَ family
+  and «مَا كَانَ لِـ…» are the negation's own frames. al-Kāfiya 6:s4 — the row wave 168 left recorded — now abstains: its
+  khabar is not in the sentence.
+- **The fāʾ of the answer is a PREFIX.** The conditional reading of مَا («a verb follows and the answer arrives with the fāʾ»)
+  took ANY later word beginning with ف for that fāʾ — «فِي», «فَعْلَتِهِمْ», «فَوْقَ». Some مَا rows had been «right» on the
+  case layer for that reason alone (the conditional is an ism, like the relative the author meant) and others wrong. The
+  test now asks for a real prefix (a particle, a pronoun, the article or a verb behind it; a noun the lexicon owns under ف
+  is the word's own letter). **An agreement reached through a false inference is a debt, not a score**: after the fix seven
+  wrong claims and seven accidentally-right ones abstain (both are listed in the sweep), and the rows that could be read
+  for a reason are read for it — 6j above, and the fused jarr phrase that OPENS a clause as a fronted khabar
+  (وَعَلَيْهِ مَا وَرَدَ، وَمِنْهُ مَا يُخْرِجُهُ).
+- **What that shook loose, each fixed at its cause:** (1) an elative right after كَانَ is KĀNA's khabar, not the khabar an
+  earlier relative is owed (two rules — R14 and the wave-24h «أَرَقُّ» rule — now check the word before it; the Talkhīṣ's
+  «كَانَ أَشَدَّ خَفَاءً كَانَ أَقْرَبَ إِلَى الْقَبُولِ» was the witness). (2) «أَوَلَيْسَ / أَفَلَيْسَ» is لَيْسَ under the question hamza
+  and a joiner: the vowelling engine's pre-pass gave only «أَلَيْسَ» its cell, so the typed word came back «أَوَلَيْسُ» — a
+  ḍamma on a frozen māḍī. It now reads exactly as أَلَيْسَ does (mabnī, its noun in rafʿ). (3) `tools/smoke_test.js`: the
+  wave 166–168 checks threw through an undefined `J(...)` — they passed only because they never failed. Every check that
+  calls `J` now defines it.
+- **Four authored lines in «الْأُصُولُ الْمُنِيفَةُ» were wrong, and the engines' disagreement is what showed it**
+  (`tools/authoring/usul/hand169.py`, kept in `fixes.json`): 30:s3 «فَمَا تَنْفَعُهُمْ شَفَاعَةُ الشَّافِعِينَ» is the negation, not a
+  relative; 31:s11 «أَوَلَيْسَ» was called a manṣūb muḍāriʿ, «الْقَائِلُ» the noun of kāna, and the مَا of «مَا أَحَدٌ مِنَ النَّاسِ
+  أَحَبُّ إِلَيَّ» a relative where the book's own translation reads «no one … is dearer». The written vowels are untouched;
+  only the lines that name them changed. (The vowelling of الْقَائِلُ / أَحَبُّ there is ours and could not be checked against a
+  vowelled witness — it stays as shipped and stays `pending-scholarly-review`.)
+- Measured against v267: blind 4 fixed / 0 broken, receipts-on 2 fixed / 0 broken; case layer 98.63 → 98.65 % (8 fixed,
+  12 newly judged right, 0 newly wrong, 7 wrong claims silenced, 7 accidentally-right claims silenced). Left undecided on
+  purpose: «وَهُوَ مَا ثَبَتَ لَهُ اسْمٌ» / «فَهُوَ مَا كَانَ فِي أَوَّلِهِ» after an earlier verb (the definitional frame and the ḥāl
+  «وَهُوَ مَا عَلِمَ» wear one surface), «عَابِدُونَ مَا أَعْبُدُ» (the participle's object seat is not yet a rule), Iẓhār 61:s2
+  (a list item whose head is in the sentence before).
+- Smoke: «wave 169» (419 checks).

@@ -14685,6 +14685,7 @@ if (!CHROME) {
   });
 
   await check('wave 166 — «شُذُورُ الذَّهَبِ» part one as the fifty-fifth text: the relative مَا after its subject is named as the predicate (مَا is never a naʿt), the seven departures from the base signs are each read by the matn\'s own point (the diptote\'s fatḥa, the ـَات plural\'s kasra, the attached plurals\' wāw, the women\'s nūn against the dropped nūn, the implied vowels of الْفَتَى and الْقَاضِي), and حَاجَّ owns a paradigm', async () => {
+    const J = JSON.stringify;
     const r = await page.evaluate(() => {
       const st = STORIES.find(s => s.id === 'shudhur-al-dhahab'); if (!st) return { missing: true };
       const chOf = n => st.chapters.find(c => String(c.n || c.chapter) === String(n));
@@ -14719,6 +14720,7 @@ if (!CHROME) {
   });
 
   await check('wave 167 — the shelf read again by rule: a verb\'s own first radical is no conjunction (وَجَدَ، وَصَلُوا، فَرِحَ — the stored paradigm decides, with its vowels), the detached pronoun behind a conjunction keeps its own key (وَهُمْ is no وَهْم), the rafʿ noun after the praise parenthesis is the clause\'s predicate and never the parenthesis\'s doer (وَاللهُ تَعَالَى وَاحِدٌ), a sister of kāna whose noun is written hides none, no line ends on two full stops or names its ṣila twice — and the valency ledger counts the object a verb already wears (يَجْلِبُهُ الْعَامِلُ)', async () => {
+    const J = JSON.stringify;
     const r = await page.evaluate(() => {
       const N = x => String(x || '').normalize('NFC');
       const cellsOf = m => { const c = new Set(); for (const k of ['mazi', 'mudari', 'amr', 'mansub', 'majzum', 'majzum2']) { const v = m[k]; (Array.isArray(v) ? v : [v]).forEach(x => { if (typeof x === 'string') c.add(N(x)); }); } for (const k of ['majhulMazi', 'majhulMudari']) if (typeof m[k] === 'string') c.add(N(m[k])); return c; };
@@ -14764,6 +14766,7 @@ if (!CHROME) {
   });
 
   await check('wave 168 — the māḍī is BUILT, so its last vowel is not iʿrāb: a cell that ends on its fatḥa refuses a written ḍamma or kasra (أَوَّلُهَا، قَتَلُ، يَا فَسَاقِ are no past verbs), a cell that ends on a sukūn keeps the vowel two sākins borrow (قَالَتِ الْمَرْأَةُ، كَتَبْتُمُ الْكِتَابَ), an unvowelled ending proves nothing, the muḍāriʿ keeps its freedom — and the typed sentence reads «فَأَوَّلُهَا الْإِيمَانُ» as a subject, «فَكَرِهَ» (a radical hāʾ) still as a verb', async () => {
+    const J = JSON.stringify;
     const r = await page.evaluate(() => {
       const fc = w => { let x = null; try { x = RootFinder.fromCorpus(String(w).normalize('NFC')); } catch (e) {} return x && x.cell ? x.cell.tense + ':' + x.cell.i : 'none'; };
       const out = { fc: ['فَأَوَّلُهَا', 'أَوَّلَهَا', 'قَتَلُ', 'قَتَلَ', 'قَتَل', 'قَالَتِ', 'فَسَاقِ', 'كَتَبْتُمُ', 'كُتِبُ', 'كُتِبَ', 'يَكْتُبَ', 'يَكْتُبُ', 'ضَرَبِ'].map(fc).join(' ') };
@@ -14780,6 +14783,41 @@ if (!CHROME) {
     if (!/^أَوَّلَهَا\/mazi /.test(r.awwala.normalize('NFC'))) throw new Error('أَوَّلَهَا الْعَالِمُ keeps the verb: ' + r.awwala);
     if (!/^فَكَرِهَ\/mazi /.test(r.kariha.normalize('NFC')) || !/النَّاقَةَ\/maful$/.test(r.kariha.normalize('NFC'))) throw new Error('فَكَرِهَ ends on its own radical hāʾ — no pronoun, a verb: ' + r.kariha);
     if (!/^وَآخِرُهَا\/mubtada الصَّبْرُ\/khabar$/.test(r.akhir.normalize('NFC')) || !/^لِسَانُهُ\/mubtada /.test(r.lisan.normalize('NFC'))) throw new Error('وَآخِرُهَا الصَّبْرُ / لِسَانُهُ طَوِيلٌ: ' + J([r.akhir, r.lisan]));
+  });
+
+  await check('wave 169 — the nominal sentence\'s khabar: a clause that is a khabar must carry its rābiṭ, so the أَفْعَل after a third-person mubtadaʾ is the elative and no «I …» verb (اللهُ أَكْبَرُ، زَيْدٌ أَعْلَمُ مِنْ عَمْرٍو — but أَنَا أَعْلَمُ ذٰلِكَ، قَالَ أَعْلَمُ keep the verb); a definite jāmid after a noun wearing a pronoun is its khabar, at a clause head and with its jarr complement (دِينُهُ الْإِسْلَامُ، فَأَوَّلُهَا الْإِيمَانُ بِاللهِ — كِتَابُهُ الْجَدِيدُ keeps its naʿt); and the مَا that opens a sentence before a doer-less verb is the relative mubtadaʾ where its khabar is in sight, undecided where the sentence merely goes on, the negation where it ends', async () => {
+    const J = JSON.stringify;
+    const N = x => String(x || '').normalize('NFC');
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const an = (t, i) => { const x = SentenceAnalyzer.analyze(t)[i] || {}; return (x.kind || '?') + (x.cell ? ':' + x.cell.tense : '') + ' | ' + (x.notes || []).map(n => n.en).join(' '); };
+      const ma = t => { const rows = SentenceAnalyzer.analyze(t), x = rows[0] || {}, c = CaseEngine.claim(rows, 0); return [(x.wajh && x.wajh.k) || '-', x.kind + (x.sure ? '!' : '?'), c ? c.k : '-'].join(' '); };
+      const kf = STORIES.find(s => s.id === 'al-kafiya'), ks = kf && kf.chapters[5] && kf.chapters[5].sentences.find(s => s.id === 's4');
+      return {
+        akbar: dv('اللهُ أَكْبَرُ'), alam: dv('زَيْدٌ أَعْلَمُ مِنْ عَمْرٍو'), anfa: dv('الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ'),
+        aAkbar: an('اللهُ أَكْبَرُ', 1), aAlam: an('زَيْدٌ أَعْلَمُ مِنْ عَمْرٍو', 1), aAna: an('أَنَا أَعْلَمُ ذٰلِكَ', 1), aQala: an('قَالَ أَعْلَمُ أَنَّ اللهَ قَدِيرٌ', 1), aHaqq: an('زَيْدٌ أَعْلَمُ الْحَقَّ', 1), aAid: an('زَيْدٌ أَعْلَمُ حَالَهُ', 1),
+        din: dv('دِينُهُ الْإِسْلَامُ'), iman: dv('فَأَوَّلُهَا الْإِيمَانُ بِاللهِ'), sabr: dv('وَآخِرُهَا الصَّبْرُ عَلَى الْبَلَاءِ'), jadid: dv('كِتَابُهُ الْجَدِيدُ مُفِيدٌ'),
+        maFa: ma('وَمَا ثَبَتَ مِنْهُ بِالِاسْتِدْلَالِ فَهُوَ اكْتِسَابِيٌّ'), maKh: ma('وَمَا جَاءَ مِنْهُ مَصْدَرًا مَعْرِفَةً كَفَجَارِ مَبْنِيٌّ'), maEnd: ma('مَا وَصَلَ إِلَى الْكَعْبَةِ'), maIlla: ma('مَا آمَنَ بِهِ إِلَّا بَعْضُ الْأَفْرَادِ'),
+        maDoer: ma('وَمَا بَقِيَ مِنْهُمْ أَحَدٌ فِي الْقَرْيَةِ'), maKana: ma('مَا كَانَ لَنَا أَنْ نُشْرِكَ بِاللهِ مِنْ شَيْءٍ'),
+        maShelf: ks ? ma(ks.tokens.map(t => t.s.full).join(' ')) : '?',
+        laysa: dv('أَوَلَيْسَ زَيْدٌ قَائِمًا'), aqrab: dv('وَمِنْهُ مَا يُخْرِجُهُ حُسْنُ التَّصَرُّفِ وَكُلَّمَا كَانَ أَشَدَّ خَفَاءً كَانَ أَقْرَبَ إِلَى الْقَبُولِ'),
+        maKull: ma('وَمَا يُوجَدُ مِنَ الْأَلَمِ فِي الْمَضْرُوبِ كُلُّ ذٰلِكَ مَخْلُوقٌ لِلّٰهِ'), maFaRad: ma('وَمَا لَامَهُمْ يُوسُفُ عَلَى فَعْلَتِهِمْ'),
+        maKhabar: (() => { const rows = SentenceAnalyzer.analyze('وَعَلَيْهِ مَا وَرَدَ فِي الْحَدِيثِ'), x = rows[1] || {}; return ((x.wajh && x.wajh.k) || '-') + ' ' + x.kind; })(),
+        usul: (() => { const us = STORIES.find(s => s.id === 'al-usul-al-munifa'); const tk = (c, sid, i) => { const ch = us && us.chapters[c], sn = ch && ch.sentences.find(s => s.id === sid), t = sn && sn.tokens[i]; return t ? [t.s.full, t.lex, t.pos, t.irab.ar].join(' | ') : '?'; }; return [tk(29, 's3', 60), tk(30, 's11', 20), tk(30, 's11', 21), tk(30, 's11', 22)]; })(),
+      };
+    });
+    if (!/^اللهُ\/mubtada أَكْبَرُ\/khabar$/.test(r.akbar) || !/^زَيْدٌ\/mubtada أَعْلَمُ\/khabar /.test(r.alam) || !/ أَنْفَعُ\/khabar /.test(r.anfa)) throw new Error('the elative khabar: ' + J([r.akbar, r.alam, r.anfa]));
+    if (!/^noun \| .*RABIT/.test(r.aAkbar) || !/^noun \| .*RABIT/.test(r.aAlam)) throw new Error('the analyzer names the rābiṭ: ' + J([r.aAkbar, r.aAlam]));
+    if (!/^verb:mudari /.test(r.aAna) || !/^verb:mudari /.test(r.aQala) || !/^verb:mudari /.test(r.aHaqq) || !/^verb:mudari /.test(r.aAid)) throw new Error('«I know» stays a verb after أَنَا, after قَالَ, before its object, and where a pronoun returns: ' + J([r.aAna.slice(0, 40), r.aQala.slice(0, 40), r.aHaqq.slice(0, 40), r.aAid.slice(0, 40)]));
+    if (!/^دِينُهُ\/mubtada الْإِسْلَامُ\/khabar$/.test(r.din) || !/^فَأَوَّلُهَا\/mubtada الْإِيمَانُ\/khabar بِاللهِ\/jarr$/.test(r.iman) || !/ الصَّبْرُ\/khabar /.test(r.sabr)) throw new Error('a jāmid is no naʿt: ' + J([r.din, r.iman, r.sabr]));
+    if (!/^كِتَابُهُ\/mubtada الْجَدِيدُ\/nat مُفِيدٌ\/khabar$/.test(r.jadid)) throw new Error('كِتَابُهُ الْجَدِيدُ مُفِيدٌ keeps its naʿt: ' + r.jadid);
+    if (!/^mawsula noun. mabni$/.test(r.maFa) || !/^mawsula noun. mabni$/.test(r.maKh)) throw new Error('the relative mubtadaʾ with its khabar in sight: ' + J([r.maFa, r.maKh]));
+    if (r.maEnd !== 'nafiya particle! harf' || !/^nafiya particle/.test(r.maIlla) || !/^nafiya particle/.test(r.maDoer) || !/^nafiya particle/.test(r.maKana)) throw new Error('the negation keeps its own frames: ' + J([r.maEnd, r.maIlla, r.maDoer, r.maKana]));
+    if (!/^mawsula noun/.test(r.maKull) || !/^nafiya particle/.test(r.maFaRad) || r.maKhabar !== 'mawsula noun') throw new Error('«كُلُّ ذٰلِكَ» takes the relative up again; a word\'s own first فَ is no fāʾ of the answer; a fused jarr phrase that opens a clause is a fronted khabar: ' + J([r.maKull, r.maFaRad, r.maKhabar]));
+    if (!/\| ma-nafiya \| part \| الْفَاءُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ/.test(N(r.usul[0])) || !/\| verb \| .*فِعْلٌ مَاضٍ نَاقِصٌ جَامِدٌ/.test(N(r.usul[1])) || !/اسْمُ لَيْسَ/.test(N(r.usul[2])) || !/\| ma-nafiya \| part \| «مَا» نَافِيَةٌ لَا عَمَلَ لَهَا/.test(N(r.usul[3]))) throw new Error('al-Uṣūl: فَمَا تَنْفَعُهُمْ and مَا أَحَدٌ … أَحَبُّ are negations, لَيْسَ is the frozen māḍī: ' + J(r.usul));
+    if (!/^أَوَلَيْسَ\/mabni زَيْدٌ\/kanaIsm قَائِمًا\/kanaKhabar$/.test(r.laysa) || !/ أَشَدَّ\/kanaKhabar /.test(r.aqrab) || !/ أَقْرَبَ\/kanaKhabar /.test(r.aqrab)) throw new Error('أَوَلَيْسَ is لَيْسَ under the question hamza and a joiner; the elative right after كَانَ is kāna\'s khabar: ' + J([r.laysa, r.aqrab]));
+    if (!/^nafiya particle\? -$/.test(r.maShelf)) throw new Error('al-Kāfiya 6:s4 «وَمَا جَاءَ مِنْهُ مَصْدَرًا …» — its khabar is not in the sentence, so the class stays undecided: ' + r.maShelf);
   });
 
   await check('no JS errors on page', async () => {
