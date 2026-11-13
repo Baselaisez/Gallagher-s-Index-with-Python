@@ -24,7 +24,8 @@ First table: `content/rules/ishtiqaq.json` (derivation). Fixtures:
 ```
 arabic-app/
   content/
-    rules/            law tables (axioms as JSON)           <- pillar 3a
+    rules/            law tables, schemas, citations, induced tendencies   <- pillar 3a
+    sources/          source manifests (how a printing's matn is read)
     samples/          story and treatise packages           <- pillar 3b, calibration corpus
     grammar/          lesson notes linked from tokens
     catechism/        question-and-answer banks
@@ -33,9 +34,9 @@ arabic-app/
     core_grammar/
       sarf/           Root, Wazn, PhonologicalRule, Deriver, Analyzer, SemanticDeducer
       nahw/           reserved (Step 3)
-    ml_engine/        reserved (Step 3): trainers, ML-to-rule promotion
-    ingestion_pipeline/  reserved (Step 3): treatise -> law table, story -> package
-    memory_store/     Lexicon (read-only today); the growing store is Step 3
+    ml_engine/        induction: proposals, a promotion gate, tendencies written as data
+    ingestion_pipeline/  pdf_layer, treatise (matn, sections, records, citations), schema
+    memory_store/     Lexicon and the growing SQLite store
     tests/            unit tests on the shared fixtures
   prototype/reader.html   the app: every engine as a class
   tools/              builder, validators, authoring pipeline, model fitters, smoke test
@@ -88,8 +89,7 @@ rebuilds them from the root.
 Every miss is a recited exception (a ṣifa standing where the participle would, أَرَى,
 اتَّخَذَ, أَحْوَجَ). The floor is gated at 98.5 % in both interpreters.
 
-ML-to-rule promotion (a mined pattern proposed as a rule, accepted only after it passes
-the fixtures and the corpus sweep) is designed but not built; it is Step 3.
+ML-to-rule promotion is built for its first case (the Form I maṣdar): see Step 3 below.
 
 ### Pillar 3 — ingestion and memory
 
@@ -103,37 +103,110 @@ The working story pipeline is `tools/authoring/pkg_from_engine.py`. Only the cla
 matn of a printed book is ever transcribed; a modern editor's introduction, footnotes and
 apparatus are not.
 
-Memory today is the content tree itself, read through `memory_store.Lexicon`. A store
-that grows on its own (a SQLite file or graph of roots, patterns, attestations and
-promoted rules) is Step 3.
+Memory is the content tree read through `memory_store.Lexicon`, plus the growing SQLite
+store described under Step 3.
 
-## The five sources uploaded on 2026-11-13
+## Step 3 — ingestion, memory and the learning layer (built)
 
-| Source | Pages | Text layer | What it will feed |
+### Schemas (`content/rules/schema/`)
+
+| Schema | Describes |
+|---|---|
+| `law_table.schema.json` | a law table: roles, bābs, patterns with overrides, rule sentences |
+| `source.schema.json` | a source manifest: a printing, how its matn is told apart, its glyph map, its sections |
+| `records.schema.json` | the records mined from a treatise |
+
+`qissa_core.ingestion_pipeline.schema` checks them with no third-party dependency.
+
+### The treatise pipeline (`qissa_core/ingestion_pipeline/`)
+
+```
+PDF text layer --pdf_layer--> runs with size and position
+   --MatnExtractor--> the matn only (by type size), glyphs folded by the manifest's map
+   --Treatise--> sections (by the page each manifest entry names)
+   --RecordMiner--> records: objection and answer, definition, statement with its examples
+   --cites()--> which law rule is treated in which section, on which pages
+```
+
+Run: `python -m qissa_core.ingestion_pipeline content/sources/<id>.json --pdf-dir <dir>`.
+It writes the matn and the records under `research/sources/` and the citations under
+`content/rules/<id>.cites.json`. A citation is kept only where the rule's own vocabulary
+occurs on a page of the section the manifest names: evidence, not a guess.
+
+### The memory store (`qissa_core/memory_store/store.py`)
+
+One SQLite file that only grows: patterns and rules (the law), verbs (what the lexicon
+recites), sources with their citations and records, attestations (a derived noun met in a
+story, with its root and wazn), and promoted tendencies. Every write is an upsert.
+
+Run: `python -m qissa_core.memory_store` (the file is a build product, not committed; its
+summary is `research/memory-summary.json`).
+
+| Memory after the first build | Count |
+|---|---|
+| Attested derived nouns (tokens) | 5,960 |
+| Distinct attested forms | 2,587 |
+| Roots with an attested derivation | 495 |
+| Verbs recited | 1,334 |
+| Citations into Marāḥ | 22 |
+| Records from Marāḥ | 114 |
+
+### Rule induction with a promotion gate (`qissa_core/ml_engine/induction.py`)
+
+A Form I maṣdar is recited, yet the books state tendencies. `MasdarInducer` proposes
+"if these features, then this shape" over every small set of features (the two recited
+vowels, transitivity, root class) and promotes a proposal only through `PromotionGate`:
+enough verbs, enough of them agreeing, and a real gain over the rule it refines. A
+plurality rule passes only with a strong lift over the shape's base rate, and is labelled.
+
+What it found on 538 verbs matches the classical statements:
+
+| If | Then | Share | Verbs |
 |---|---|---|---|
-| Marāḥ al-Arwāḥ (two files) | 185 | yes (matn above a modern footnote apparatus) | the iʿlāl and derived-noun chapters of the ṣarf law tables |
-| Taṣrīf al-ʿIzzī (two files) | 114 | no (scan; the opening pages are a modern introduction) | bāb functions and verb classes |
-| Sharḥ Shudhūr al-Dhahab, pp. 1–99 | 99 | no (scan; the opening pages are a modern editor's front matter) | the naḥw law tables |
+| فَعَلَ, transitive, sound | فَعْل | 75 % | 184 |
+| فَعِلَ, intransitive, sound | فَعَل | 50 % | 38 |
+| فَعَلَ, intransitive, sound | فُعُول | 47 % | 53 |
 
-Status: inventoried and sampled. Marāḥ's matn has been pulled out of its text layer by type size
-(174 pages, about 9,200 words) into `research/sources/marah-al-arwah-matn.txt` — raw and lossy
-(private-use ligature glyphs drop letters), so it is working material, not yet text for the reader.
-The two scanned books have not been transcribed. The rules in
-`ishtiqaq.json` are the standard rules the reader already taught plus eight noun rules;
-each will be tied to its place in Marāḥ and al-ʿIzzī when their matn is ingested.
+Held-out accuracy is 50.4 % against a 46.1 % baseline. That modest number is the point:
+the tendency is real but weak, which is why the builder never applies it. The reader shows
+it beside a recited maṣdar ("follows the tendency" or "recited against it").
 
-## What waits for approval
+Run: `python -m qissa_core.ml_engine` (writes `content/rules/masdar_tendencies.json`).
 
-* Step 3 — the ingestion and analysis schema: JSON schema for law tables, the treatise
-  pipeline (page image or text layer → matn only → rule records → tests), the growing
-  memory store, the ML-to-rule promotion gate.
-* Step 4 — ingest the five sources through that schema.
+## Step 4 — the five sources
+
+| Source | Pages | State |
+|---|---|---|
+| Marāḥ al-Arwāḥ (two files) | 185 | ingested through the pipeline: 174 matn pages, about 9,200 words, 15 sections, 114 records, 18 law rules cited by section and page |
+| Taṣrīf al-ʿIzzī (two files) | 114 | scan, not transcribed; at least the first 27 pages are the modern editor's introduction |
+| Sharḥ Shudhūr al-Dhahab, pp. 1–99 | 99 | scan, not transcribed; the opening is the modern editor's front matter |
+
+Marāḥ's printing sets vowel marks and some ligatures as private glyphs. The manifest
+(`content/sources/marah-al-arwah.json`) names each one, checked against the page images,
+so no letter is lost. Its headings are in a display face that cannot be read as text, so
+the manifest states each section's first page and title, checked against the matn's own
+opening words. The matn is still marked raw: word spacing and the printing's vowels have
+not been collated line by line, so it is cited by section in the app and not shown as text.
+
+The two scans have no text layer. They need page-by-page transcription from the images,
+matn only, which is the next piece of Step 4.
+
+## In the app
+
+* The derivation card names where the classical primer treats each rule that fired.
+* The root family shows whether a recited maṣdar follows or breaks the induced tendency.
+* A new game, "Build the word", is generated by the engine from the verbs the shelf
+  recites: build the form, find the root, or say what it means. Wrong answers are the
+  origin form, the half-ruled form, the neighbouring wazn or the neighbouring root, and
+  the feedback names the rule left undone.
 
 ## How to run
 
 ```
 cd arabic-app
-python3 -m unittest discover -s qissa_core/tests -t .     # the Python interpreter
+python3 -m unittest discover -s qissa_core/tests -t .     # the Python side (30 tests)
+python3 -m qissa_core.ml_engine                            # induce and write the tendencies
+python3 -m qissa_core.memory_store                         # build or grow the memory
 python3 tools/build_prototype.py                           # embeds the law table in the reader
 node tools/smoke_test.js                                   # the reader, fixtures included
 ```

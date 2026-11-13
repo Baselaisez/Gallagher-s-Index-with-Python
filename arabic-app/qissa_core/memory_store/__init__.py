@@ -1,4 +1,4 @@
-"""What the system knows and keeps: today the corpus lexicon (read-only)."""
+"""What the system knows and keeps: the corpus lexicon and the growing SQLite memory."""
 
 from .lexicon import Lexicon, VerbEntry
 

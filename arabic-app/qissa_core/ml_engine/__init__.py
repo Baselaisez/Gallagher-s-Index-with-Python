@@ -1,7 +1,8 @@
-"""The learning layer — reserved for Step 3.
+"""The learning layer: small, transparent learners whose output is rules.
 
-Decision recorded in research/ARCHITECTURE.md: the runtime models stay small,
-transparent and on-device (the reader's perceptron over iʿrāb features, its
-rule miner and its taggers).  This package will hold their offline trainers
-and the ML-to-rule promotion step; no model is implemented here yet.
+Decision recorded in research/ARCHITECTURE.md: nothing learned here runs as a
+black box in the app.  A learner proposes rules, a gate promotes some, and
+what is promoted is written as data a person can read (``induction``).  The
+reader's own models (the iʿrāb perceptron, the taggers, the rule miner) are
+fitted by ``tools/`` and stay on the device.
 """

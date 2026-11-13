@@ -10980,3 +10980,39 @@ kunya's أَبِي was one row away from the right lemma all along.
   cold only (a tap before any idle work): gWajh 206 ms, gShop 162 ms, the first search 155 ms — owed to the next
   speed wave (the corpus grew by al-Uṣūl since they were last under it).
 
+## Wave 160 (v258): Steps 3–4 — ingestion, memory, rule induction; Marāḥ ingested; the derivation game
+
+- **Schemas** — `content/rules/schema/{law_table,source,records}.schema.json`, checked by
+  `qissa_core.ingestion_pipeline.schema` (no dependency). A new law table or source manifest must validate.
+- **Treatise pipeline** — `python -m qissa_core.ingestion_pipeline content/sources/<id>.json --pdf-dir DIR`:
+  `pdf_layer` (poppler `pdftohtml -xml` → runs with size/position) → `MatnExtractor` (the matn's type size only;
+  runs are stored in VISUAL order: reverse, NFKC each glyph, then the manifest's `glyphs` map; `opaque_ranges` =
+  display faces dropped; an unmapped private glyph is counted in `unknown`, never guessed) → `Treatise` (sections by
+  the manifest's `start` pages) → `RecordMiner` (qa «فإن قيل … قلنا …» / definition / statement + examples) →
+  `cites()` (rule → section, kept only on pages where `rule_terms` occur). Outputs: `research/sources/<id>-matn.txt`,
+  `research/sources/<id>.records.json`, `content/rules/<id>.cites.json`.
+- **Marāḥ al-Arwāḥ** — `content/sources/marah-al-arwah.json`: matn size 33; glyphs E820 fatḥa, E821 ḍamma, E822
+  sukūn, E823/E824 tanwīn, E825 shadda, E828/E829/E82B/E82C shadda+vowel, E811 «لمج», E812 «به», E814 «ته», E815
+  «نه» (verified on page crops); F100–F2FF = heading/running-head display face. 174 pages / 9,244 words / 15
+  sections / 114 records / 18 rules cited. Status raw-unreviewed: cited by SECTION in the app, never shown as text.
+- **Memory** — `qissa_core/memory_store/store.py` (`MemoryStore`, SQLite, every write an upsert);
+  `python -m qissa_core.memory_store` builds `arabic-app/memory/qissa.sqlite` (git-ignored) and writes
+  `research/memory-summary.json`. The script layer moved to `qissa_core/orthography.py` (the store needs it without
+  importing the grammar package; `core_grammar/sarf/orthography.py` re-exports it).
+- **Induction** — `qissa_core/ml_engine/induction.py`: `shape_of` (a recited form → its wazn; the lām is the LAST
+  letter that fits), `MasdarInducer`, `PromotionGate` (majority: support ≥ 12, confidence ≥ 0.6, gain ≥ 0.08 over the
+  rule refined; plurality: support ≥ 24, share ≥ 0.33, lift ≥ 2.5, labelled). `python -m qissa_core.ml_engine` writes
+  `content/rules/masdar_tendencies.json`; a unit test fails if the file is not the current fit, so REFIT AFTER ANY
+  CORPUS CHANGE that adds or alters a Form I verb. A tendency is shown, never applied.
+- **Builder** — `load_ishtiqaq()` merges every `*.cites.json` (as `cites`) and the tendencies (as `tendencies`)
+  into `ISHTIQAQ_LAW`.
+- **Reader** — `IshtiqaqEngine.cite(kind, id)`, `shapeOf`, `tendency(v, R)` (the same features as Python),
+  `gameItems(need)`; the card's `ishtCiteHtml`; the family's tendency line; the lab's chips come from the shelf
+  (`ishtChips`, only once `RootFinder._index` exists) with a door to the game.
+- **Game `gIsht` «Build the word»** (`startIsht`, sarf shelf): items come only from forms the verb's own entry
+  recites; modes build / root / mean; wrong answers carry `why` {asl | half | wazn | root | mean} and `ishtWhyNot`
+  names the rule left undone (a wrong root is REBUILT on the wazn for the feedback).
+- **Tests** — 30 Python tests (`test_sarf.py`, `test_step3.py`); smoke checks «wave 158» and «wave 160» (410 checks).
+- **Not done** — Taṣrīf al-ʿIzzī and Sharḥ Shudhūr al-Dhahab are scans: no transcription yet (the first 27 pages of
+  the ʿIzzī are the modern introduction); the Maqāmāt's case-layer gaps (W157); the three cold starts over 150 ms.
+

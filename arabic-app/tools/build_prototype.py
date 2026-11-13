@@ -252,6 +252,21 @@ def build_shelf_catalog(stories):
              "published": st.get("published"), "access": st.get("access")} for st in stories]
 
 
+def load_ishtiqaq():
+    """content/rules/ishtiqaq.json with what the ingestion and learning layers add to it (wave 160): `cites` — every
+    *.cites.json the treatise pipeline wrote (which rule is treated in which section of which source) — and
+    `tendencies`, the induced tendencies of the Form I masdar. The table itself stays what both interpreters share."""
+    p = ROOT / "content/rules/ishtiqaq.json"
+    if not p.exists():
+        return None
+    law = json.loads(p.read_text(encoding="utf-8"))
+    law["cites"] = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((ROOT / "content/rules").glob("*.cites.json"))]
+    t = ROOT / "content/rules/masdar_tendencies.json"
+    if t.exists():
+        law["tendencies"] = json.loads(t.read_text(encoding="utf-8"))
+    return law
+
+
 def load_catechism():
     """content/catechism/*.json — the madrasah's sual-cevap banks (wave 64): {book, title{en,tr}, source, items[{id, n, q, a, ar[], notes[], story?, chapter?}]}."""
     out = []
@@ -333,7 +348,7 @@ def main():
         js("IRAB_MODEL", json.loads((ROOT / "content/models/irab_model.json").read_text(encoding="utf-8")) if (ROOT / "content/models/irab_model.json").exists() else None),
         js("CATECHISM", load_catechism()),
         # (wave 158) the derivation law table — one JSON, read by the reader's IshtiqaqEngine and by qissa_core alike
-        js("ISHTIQAQ_LAW", json.loads((ROOT / "content/rules/ishtiqaq.json").read_text(encoding="utf-8")) if (ROOT / "content/rules/ishtiqaq.json").exists() else None),
+        js("ISHTIQAQ_LAW", load_ishtiqaq()),
         js("REF_GROUPS", [
             {"id": "sarf", "ar": "الصَّرْف",
              "label": {"en": "Morphology — after Emsile & Bina",

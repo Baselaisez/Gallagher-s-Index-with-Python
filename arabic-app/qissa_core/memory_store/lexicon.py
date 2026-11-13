@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, Iterator, Mapping, Optional, Set
 
-from ..core_grammar.sarf.orthography import fold, letters_only
+from ..orthography import fold, letters_only
 
 ROMAN: Mapping[str, int] = {
     "I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8, "X": 10,
@@ -30,6 +30,7 @@ class VerbEntry:
     masdar: Optional[str] = None
     ism_fail: Optional[str] = None
     ism_maful: Optional[str] = None
+    wazn: Optional[str] = None       # «فَعَلَ يَفْعُلُ» — the two vowels are recited, not computed
 
 
 def root_key(root: str) -> str:
@@ -108,5 +109,5 @@ class Lexicon:
                     continue
                 lex.add(VerbEntry(lex=name, root=key, bab=bab, lemma=str(e.get("lemma", "")),
                                   gloss=dict(e.get("gloss") or {}), masdar=m.get("masdar"),
-                                  ism_fail=m.get("ismFail"), ism_maful=m.get("ismMaful")))
+                                  ism_fail=m.get("ismFail"), ism_maful=m.get("ismMaful"), wazn=m.get("wazn")))
         return lex

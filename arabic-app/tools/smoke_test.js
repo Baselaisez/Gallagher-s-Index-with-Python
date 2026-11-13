@@ -14407,6 +14407,50 @@ if (!CHROME) {
     if (r.perWord > 6) throw new Error('a word read in ' + r.perWord.toFixed(2) + ' ms (budget 6)');
   });
 
+  await check('wave 160 — Steps 3–4 in the reader: the treatise pipeline\'s citations stand on pages and reach the derivation card, the induced tendencies agree with the Python fit, the root family names where a recited maṣdar follows or breaks its tendency, the derivation game\'s items are recited forms with rule-made wrong answers, a round plays in every mode, the lab is fed from the shelf', async () => {
+    const tend = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'content/rules/masdar_tendencies.json'), 'utf8'));
+    const r = await page.evaluate(async () => {
+      const I = IshtiqaqEngine, L = I.law(), out = { bad: [] };
+      out.cites = (L.cites || []).length; out.rulesCited = 0; out.noPages = [];
+      for (const c of L.cites || []) for (const [rule, places] of Object.entries(c.rules || {})) { out.rulesCited++; if (!L.rules[rule]) out.bad.push("cited rule unknown: " + rule); for (const p of places) { if (!c.sections[p.section]) out.bad.push("section unknown: " + p.section); if (!(p.pages || []).length) out.noPages.push(rule); } }
+      out.naql = I.cite("rules", "naql").map(x => x.sec.ar); out.fail = I.cite("roles", "ism-fail").map(x => x.sec.ar);
+      out.tendRules = ((L.tendencies || {}).rules || []).length; out.tendDefault = (L.tendencies || {}).default;
+      // the reader's own reading of the recited masdars against the induced list
+      let n = 0, ok = 0; for (const [k, o] of I.lex().verbs) { const v = o[1]; if (!v) continue; const t = I.tendency(v, k.split("")); if (!t || !t.said) continue; n++; if (t.agrees) ok++; } out.agree = [ok, n];
+      out.shapes = [["قَوْل", "قول"], ["دُخُول", "دخل"], ["قِيَام", "قوم"], ["بَقَاء", "بقي"], ["كِفَايَة", "كفي"], ["عُلُوّ", "علو"]].map(([f, r2]) => I.shapeOf(f, r2.split("")));
+      const fam = I.family("ف ر ح").find(x => x.tend), fam2 = I.family("د خ ل").find(x => x.tend);
+      out.farah = fam && { said: fam.tend.said, agrees: fam.tend.agrees }; out.dukhul = fam2 && { said: fam2.tend.said, agrees: fam2.tend.agrees };
+      // the game's items
+      const items = I.gameItems(60); out.items = items.length; out.modes = {}; out.itemBad = [];
+      for (const it of items) { out.modes[it.mode] = (out.modes[it.mode] || 0) + 1;
+        const book = it.pat.roles[0] === "ism-fail" ? it.v.ismFail : it.pat.roles[0] === "ism-maful" ? it.v.ismMaful : it.v.masdar;
+        if (!I.recites(book, it.c.out)) out.itemBad.push(it.right + " is not what its verb recites");
+        if (it.wrong.some(w => w.form === it.right) || it.wrong.length < 3) out.itemBad.push(it.right + " wrong answers");
+        if (it.mode === "root" && it.roots.some(R2 => R2.join("") === it.R.join(""))) out.itemBad.push(it.right + " root options");
+        if (it.mode === "mean" && it.means.some(m => m.en === it.gloss.en)) out.itemBad.push(it.right + " meaning options"); }
+      // a round, played: one wrong answer shows its rule, one right answer scores
+      conjState.lab = "isht"; conjState.isht = "مَبِيعٌ"; openConjugator();
+      out.lab = { chips: document.querySelectorAll(".isht-chips [data-isht]").length, play: !!document.getElementById("ishtPlay"), cite: !!document.querySelector("#ishtOut .isht-cite"), citeText: (document.querySelector("#ishtOut .isht-cite [lang=ar]") || {}).textContent || "" };
+      conjState.isht = "ف ر ح"; renderIshtOut(); out.lab.tend = document.querySelectorAll("#ishtOut .isht-tend").length;
+      conjState.isht = ""; document.getElementById("ishtPlay").click();
+      const q = document.querySelector(".game-q.isht-q"); out.game = { q: !!q };
+      if (q) { const host = q.parentElement; out.game.options = [...host.querySelectorAll("button")].filter(b => !/←/.test(b.textContent) && !b.classList.contains("on")).length; }
+      openGames(); out.hub = !!document.getElementById("gIsht");
+      return out;
+    });
+    if (r.bad.length) throw new Error('citations: ' + r.bad.join('; '));
+    if (r.cites < 1 || r.rulesCited < 15 || r.noPages.length) throw new Error('a citation must stand on pages: ' + JSON.stringify([r.cites, r.rulesCited, r.noPages]));
+    if (!/الْأَجْوَفِ/.test(r.naql.join(' ')) || !/اسْمِ الْفَاعِلِ/.test(r.fail.join(' '))) throw new Error('where the primer treats it: ' + JSON.stringify([r.naql, r.fail]));
+    if (r.tendRules !== tend.rules.length || r.tendDefault !== tend.default) throw new Error('tendencies embedded: ' + JSON.stringify([r.tendRules, r.tendDefault]));
+    // the Python fit's held-out accuracy and the reader's in-sample agreement are the same model read twice: within a few points
+    if (r.agree[1] < 400 || Math.abs(r.agree[0] / r.agree[1] - tend.cv_accuracy) > 0.06) throw new Error('tendency agreement ' + JSON.stringify(r.agree) + ' against the fit ' + tend.cv_accuracy);
+    if (r.shapes.join() !== ['فَعْل', 'فُعُول', 'فِعَال', 'فَعَال', 'فِعَالَة', 'فُعُول'].join()) throw new Error('shapeOf: ' + r.shapes.join(' '));
+    if (!r.farah || !r.farah.agrees || r.farah.said !== 'فَعَل' || !r.dukhul || r.dukhul.agrees) throw new Error('the family\'s tendency line: ' + JSON.stringify([r.farah, r.dukhul]));
+    if (r.items < 40 || !r.modes.build || !r.modes.root || !r.modes.mean || r.itemBad.length) throw new Error('game items: ' + JSON.stringify([r.items, r.modes, r.itemBad.slice(0, 5)]));
+    if (r.lab.chips < 8 || !r.lab.play || !r.lab.cite || !/مَرَاحُ/.test(r.lab.citeText) || r.lab.tend < 1) throw new Error('lab: ' + JSON.stringify(r.lab));
+    if (!r.game.q || r.game.options !== 4 || !r.hub) throw new Error('game: ' + JSON.stringify([r.game, r.hub]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
