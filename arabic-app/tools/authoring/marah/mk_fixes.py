@@ -914,5 +914,64 @@ L("22:s1:0", *tuple(F["10:s16:0"]["irab"][k_] for k_ in ("ar", "en", "tr")), key
 L("22:s2:2", *PASSMT, key="askana-sukun", pos="verb")
 L("22:s3:1", *PASSMT, key="damma-verb", pos="verb")
 L("22:s4:1", *PASSMT, key="kasara", pos="verb")
+# ---- part nine (pp. 63–66): the faṣl on the amr and the nahy opens — the lām of the absent one, its kasra and its sukūn, the dropped letter
+#      of the future, and the hamza of connection. Cited VERBS after مِثْل / فِي / خِلَاف are named by the packager's own rule (wave 191).
+def MT1(obj_ar="", obj_en="", obj_tr=""):
+    return ("فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" + obj_ar + ".",
+            "A past verb, built on sukun because the tāʾ of the doer is attached; the tāʾ is an attached pronoun, built on damma, in the place of raf' as the doer" + obj_en + ".",
+            "Mâzî fiil, fâil tâsı bitiştiği için sükûn üzere mebnî; tâ, damme üzere mebnî bitişik zamirdir, fâil olarak mahallen merfû" + obj_tr + ".")
+PASSF = ("الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ حَرْفٌ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ",
+         "The waw conjoins; a passive past verb, built on fatha; the tāʾ marks the feminine, a letter with no place in the i'rab",
+         "«ve» atıf harfi; meçhul mâzî fiil, feth üzere mebnî; tâ te'nîs içindir, i'râbda mahalli olmayan bir harftir")
+NAIBM = ("نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The deputy doer (na'ib al-fa'il), in raf'; the sign is the damma; annexed (mudaf).", "Nâib-i fâil, merfû; alâmeti damme ile; muzâf.")
+NAIB = ("نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ.", "The deputy doer (na'ib al-fa'il), in raf'; the sign is the damma.", "Nâib-i fâil, merfû; alâmeti damme ile.")
+
+# 24 — الْأَمْرُ وَلَامُ الْغَائِبِ
+R("24:s1:7", "khabar", "raf"); L("24:s1:7", *NAHW, key="mithl", pos="noun")
+L("24:s6:0", *MT1(), key="hawiya", pos="verb", enc="")
+L("24:s6:2", "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالنُّونُ الثَّانِيَةُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+  "The fa conjoins; a past verb, built on sukun because the nūn of the women is attached; that nūn is an attached pronoun, built on fatha, in the place of raf' as the doer; the second nūn is the nūn of protection, and the yāʾ is an attached pronoun, built on sukun, in the place of nasb as the object.",
+  "«fe» atıf harfi; mâzî fiil, nûn-ı nisve bitiştiği için sükûn üzere mebnî; o nûn, feth üzere mebnî bitişik zamirdir, fâil olarak mahallen merfû; ikinci nûn vikâye nûnudur; yâ da sükûn üzere mebnî bitişik zamirdir, mef'ûlün bih olarak mahallen mansûb.", key="shayyaba", pos="verb")
+L("24:s6:4", "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ رَفْعٍ اسْمُ كَانَ، وَخَبَرُهَا جُمْلَةُ «هَوِيتُ السِّمَانَا».",
+  "An incomplete past verb, one of kāna's sisters, built on sukun because the tāʾ of the doer is attached; the tāʾ is an attached pronoun, built on damma, in the place of raf' as kāna's noun; her khabar is the clause «هَوِيتُ السِّمَانَا».",
+  "Nâkıs mâzî fiil, kâne'nin kardeşlerinden; fâil tâsı bitiştiği için sükûn üzere mebnî; tâ, damme üzere mebnî bitişik zamirdir, kâne'nin ismi olarak mahallen merfû; haberi «هَوِيتُ السِّمَانَا» cümlesidir.", key="kana", pos="verb", enc="")
+R("24:s6:5", "zarf", "nasb"); L("24:s6:5", "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، مُتَعَلِّقٌ بِـ«هَوِيتُ».", "An adverb of time, in nasb; the sign is the fatha; it attaches to «هَوِيتُ».", "Zaman zarfı, mansûb; alâmeti fetha ile; «هَوِيتُ»ye müteallıktır.", key="qidm", pos="noun")
+L("24:s6:6", *MT1("، وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ", "; the clause is in the place of nasb as kāna's khabar", "; cümle, kâne'nin haberi olarak mahallen mansûbdur"), key="hawiya", pos="verb", enc="")
+R("24:s6:7", "maful", "nasb"); L("24:s6:7", "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، وَالْأَلِفُ لِلْإِطْلَاقِ.", "The direct object, in nasb; the sign is the fatha; the alif is the alif of the rhyme (iṭlāq).", "Mef'ûlün bih, mansûb; alâmeti fetha ile; elif ıtlâk (kafiye) elifidir.", key="samin", pos="noun")
+R("24:s7:1", "khabar", "raf"); L("24:s7:1", "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «هِيَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The khabar of an omitted mubtada — «they are» — in raf'; the sign is the damma; annexed (mudaf).", "Mahzuf bir mübtedânın («هِيَ») haberi, merfû; alâmeti damme ile; muzâf.", key="harf", pos="noun")
+L("24:s7:2", "الْجُمْلَةُ مَحْكِيَّةٌ قُصِدَ لَفْظُهَا، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ؛ وَ«هَوِيتُ» فِعْلٌ مَاضٍ وَالتَّاءُ فَاعِلُهُ.", "The clause is quoted for its wording, in the place of jarr as the mudaf ilayh; «هَوِيتُ» is a past verb and the tāʾ is its doer.", "Cümle lafzı kastedilerek hikâye edilmiştir; mahallen mecrûr, muzâfun ileyh; «هَوِيتُ» mâzî fiildir, tâ fâilidir.", key="hawiya", pos="verb", enc="")
+R("24:s8:8", "fail", "raf"); L("24:s8:8", "فَاعِلٌ مَرْفُوعٌ بِالْأَلِفِ لِأَنَّهُ مُثَنًّى، وَحُذِفَتْ نُونُهُ لِلْإِضَافَةِ، مُضَافٌ.", "The doer (fa'il), in raf'; the sign is the alif, because it is a dual; its nūn has dropped for the annexation; annexed (mudaf).", "Fâil, merfû; alâmeti elif iledir, çünkü tesniyedir; nûnu izâfet için düşmüştür; muzâf.", key="harf", pos="noun")
+
+# 25 — كَسْرُ لَامِ الْأَمْرِ
+K("25:s1:12", "fil")
+L("25:s2:0", PASSF[0] + "، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «هِيَ» يَعُودُ إِلَى اللَّامِ.", PASSF[1] + "; the deputy doer is a hidden pronoun — «it» — going back to the lām.", PASSF[2] + "; nâib-i fâil, lâma dönen gizli «هِيَ» zamiridir.", key="askana-sukun", pos="verb")
+L("25:s2:6", *QMATF, key="thumma", pos="part")
+R("25:s2:7", "khabar", "raf"); L("25:s2:7", *NAHW, key="mithl", pos="noun")
+L("25:s2:12", "حَرْفُ عَطْفٍ مَحْكِيٌّ مَعَ مَا بَعْدَهُ، وَاللَّفْظُ الْمَحْكِيُّ «ثُمَّ لْيَضْرِبْ» مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", "A conjunction quoted with what follows it; the quoted wording «ثُمَّ لْيَضْرِبْ» is joined to the word before it, in the place of jarr.", "Ardındakiyle birlikte hikâye edilen atıf harfi; hikâye edilen «ثُمَّ لْيَضْرِبْ» lafzı öncekine ma'tûftur, mahallen mecrûr.", key="thumma", pos="part")
+L("25:s2:13", "اللَّامُ لَامُ الْأَمْرِ سَاكِنَةٌ بَعْدَ «ثُمَّ»، وَفِعْلٌ مُضَارِعٌ مَجْزُومٌ بِهَا، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ جَوَازًا تَقْدِيرُهُ «هُوَ».", "The lām is the lām of command, quiescent after «ثُمَّ»; a present verb in jazm by it; the sign is the sukun; the doer is a pronoun hidden by choice — «he».", "Lâm, «ثُمَّ»den sonra sâkin olan emir lâmıdır; onunla meczûm muzâri fiil; alâmeti sükûn; fâil, cevâzen gizli «هُوَ» zamiridir.", key="daraba", pos="verb", enc="")
+L("25:s3:4", *QFI, key="fakhidh", pos="noun")
+L("25:s4:1", *QUO("فِي مَحَلِّ رَفْعٍ خَبَرُ «نَظِيرُهُ»", "in the place of raf' as the khabar of «نَظِيرُهُ»", "«نَظِيرُهُ»nün haberi olarak mahallen merfû"), key="hiya", pos="pron", enc="")
+L("25:s4:3", *QMATFR, key="hiya", pos="pron", enc="")
+L("25:s6:0", "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.", "The waw conjoins; a passive past verb, built on fatha.", "«ve» atıf harfi; meçhul mâzî fiil, feth üzere mebnî.", key="ayyana-appoint", pos="verb")
+R("25:s6:1", "naib", "raf"); L("25:s6:1", *NAIB, key="hadhf", pos="noun")
+L("25:s7:9", *QUO("فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلِ «يُقَالُ»", "in the place of raf' as the deputy doer of «يُقَالُ»", "«يُقَالُ»nün nâib-i fâili olarak mahallen merfû"), key="daraba", pos="verb", enc="")
+
+# 26 — هَمْزَةُ الْوَصْلِ
+L("26:s2:3", *QFI, key="daraba", pos="verb", enc="")
+L("26:s3:5", "اللَّامُ حَرْفُ جَرٍّ لِلتَّعْلِيلِ، وَ«أَنَّ» حَرْفُ تَوْكِيدٍ وَنَصْبٍ، وَاسْمُهَا ضَمِيرُ الشَّأْنِ مَحْذُوفٌ، وَخَبَرُهَا جُمْلَةُ «يَلْزَمُ الْخُرُوجُ».", "The lam is a preposition of cause; «أَنَّ» is a particle of emphasis and nasb; its noun is the pronoun of the matter, omitted, and its khabar is the clause «يَلْزَمُ الْخُرُوجُ».", "Lâm ta'lîl için harf-i cerdir; «أَنَّ» te'kid ve nasb harfidir; ismi mahzuf zamîr-i şe'ndir, haberi «يَلْزَمُ الْخُرُوجُ» cümlesidir.", key="lianna", pos="part")
+K("26:s4:2", "kaf-letter")
+L("26:s4:9", *KHK("يَكُونُ"), key="hajiz", pos="noun")
+R("26:s4:10", "nat", "nasb"); L("26:s4:10", "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ.", "An adjective (na't), in nasb; the sign is the fatha.", "Sıfat (na't), mansûb; alâmeti fetha ile.", key="hasin", pos="noun")
+R("26:s5:3", "naib", "raf"); L("26:s5:3", *NAIBM, key="waw-letter", pos="noun")
+L("26:s5:5", "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ.", "The second object, in nasb; the sign is the fatha.", "İkinci mef'ûl, mansûb; alâmeti fetha ile.", key="ya-letter", pos="noun")
+R("26:s8:0", "zarf", "nasb"); L("26:s8:0", "ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، مُتَعَلِّقٌ بِـ«أَشْرَبْ».", "An adverb of time, in nasb; the sign is the fatha; it attaches to «أَشْرَبْ».", "Zaman zarfı, mansûb; alâmeti fetha ile; «أَشْرَبْ»ye müteallıktır.", key="yawm", pos="noun")
+L("26:s8:1", "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَسُكِّنَ آخِرُهُ لِضَرُورَةِ الشِّعْرِ — وَهُوَ مَوْضِعُ الشَّاهِدِ — وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ «أَنَا».", "A present verb, in raf'; its last letter is made quiescent for the metre — this is the point the verse is quoted for — and the doer is a pronoun hidden by necessity — «I».", "Muzâri fiil, merfû; son harfi şiir zarureti için sâkin kılınmıştır — beytin şâhid yeri burasıdır —; fâil, vücûben gizli «أَنَا» zamiridir.", key="shariba", pos="verb", enc="")
+R("26:s8:5", "maful", "nasb"); L("26:s8:5", "مَفْعُولٌ بِهِ لِاسْمِ الْفَاعِلِ «مُسْتَحْقِبٍ»، مَنْصُوبٌ بِالْفَتْحَةِ.", "The direct object of the active participle «مُسْتَحْقِبٍ», in nasb; the sign is the fatha.", "İsm-i fâil «مُسْتَحْقِبٍ»in mef'ûlü, mansûb; alâmeti fetha ile.", key="ithm", pos="noun")
+L("26:s9:6", "حَرْفُ شَرْطٍ جَازِمٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْجُمْلَةُ مَحْكِيَّةٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "A conditional particle that governs jazm, built on sukun; the clause is quoted, in the place of jarr as the mudaf ilayh.", "Cezm eden şart harfi, sükûn üzere mebnî; cümle hikâye edilmiştir, mahallen mecrûr, muzâfun ileyh.", key="in-shartiyya", pos="part")
+L("26:s10:0", PASSF[0] + ".", PASSF[1] + ".", PASSF[2] + ".", key="fataha", pos="verb")
+R("26:s10:1", "naib", "raf"); L("26:s10:1", *NAIBM, key="alif-letter", pos="noun", enc="")
+L("26:s10:2", *QUOTE, key="aymun", pos="noun", enc="")
+R("26:s10:9", "mubtada", "raf"); L("26:s10:9", "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَخَبَرُهُ الْجَارُّ وَالْمَجْرُورُ بَعْدَهُ.", "The waw conjoins; the mubtada, in raf'; the sign is the damma; it is annexed (mudaf), and the hāʾ is an attached pronoun in the place of jarr as the mudaf ilayh; its khabar is the jarr phrase after it.", "«ve» atıf harfi; mübtedâ, merfû; alâmeti damme ile; muzâftır, hâ da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir; haberi ardındaki câr-mecrûrdur.", key="alif-letter", pos="noun")
+
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

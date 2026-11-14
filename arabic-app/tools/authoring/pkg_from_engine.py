@@ -789,8 +789,17 @@ def main():
             RAW[id(words)] = raw_toks if aligned else [""] * len(words)
             if not aligned: report.setdefault("misaligned", []).append((where0, len(src_words), len(words)))
             doers = {w["head"] for w in words if w.get("rule") in ("fail", "naib") and isinstance(w.get("head"), int)}
+            quoted_jarr_ = set()   # (wave 191) the cited words of this sentence that stand in the place of jarr
             for i, w in enumerate(words):
                 where = f"{where0}:{i}"; fx = FX.get(where, {})
+                # (wave 191) a single cited VERB in guillemets wears the quoted word's line by its seat: after مِثْل / نَحْو / خِلَاف it is the muḍāf ilayh, after فِي it is in the place of jarr, and after «وَ» behind another cited word in jarr it is joined to that one. An authored line always wins.
+                if aligned and not fx.get("irab") and i >= 1 and raw_words[i].startswith("«") and re.search(r"»[،:؛.؟!]*$", raw_words[i]) and w.get("cell") and (G.get(w.get("key")) or {}).get("pos") == "verb":
+                    pb1_ = bare(words[i - 1].get("w") or ""); qt_ = None
+                    if pb1_ in ("مثل", "نحو", "خلاف", "بخلاف", "كمثل"): qt_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "The word itself is quoted; in the place of jarr as the mudaf ilayh.", "Kelimenin kendisi kastedilmiştir (hikâye); mahallen mecrûr, muzâfun ileyh.")
+                    elif pb1_ == "في": qt_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«فِي».", "The word itself is quoted; in the place of jarr after «فِي».", "Kelimenin kendisi kastedilmiştir (hikâye); «فِي» ile mahallen mecrûr.")
+                    elif pb1_ == "و" and (i - 2) in quoted_jarr_: qt_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", "The word itself is quoted; joined to the word before it, in the place of jarr.", "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr.")
+                    if qt_: fx = {**fx, "irab": {"ar": qt_[0], "en": qt_[1], "tr": qt_[2]}, "key": w.get("key"), "pos": "verb", "enc": ""}; FX[where] = fx; report.setdefault("quotedByRule", []).append(where)   # FX too: the later verb passes ask the table, not this row
+                if fx.get("irab") and "مَحْكِيٌّ" in (fx["irab"].get("ar") or "") and "مَحَلِّ جَرٍّ" in (fx["irab"].get("ar") or ""): quoted_jarr_.add(i)
                 full = N(src_words[i]) if aligned else N(w["w"]); rule = fx.get("rule", w.get("rule")); k = fx.get("k", w.get("k")); enc = w.get("enc") or ""
                 kind = w.get("kind") or ""; pos = w.get("pos") or ""
                 if aligned and w.get("out") and bare(w["out"]) == bare(full) and N(w["out"]) != full and k not in ("keep", "cell", None): report["mismatch"].append((where, full, w["out"], rule))
@@ -1496,6 +1505,7 @@ def main():
     print(f"REVIEW: no key {len(report['nokey'])}; engine≠written {len(report['mismatch'])}; undecided {len(report['undecided'])}; written ending won {report['reconciled']}; lex-verbs promoted {report['promoted']}; verbs re-keyed to their lemma {report['rekeyed']}; verbs still on a noun key {len(report.get('verbNounKey', []))}")
     print("sila named:", report.get("sila_named", 0))
     if report.get("ma_khabar"): print("mā named as khabar:", report["ma_khabar"])
+    if report.get("quotedByRule"): print("cited verbs named by rule:", len(report["quotedByRule"]))
     if report.get("praise_khabar") or report.get("praise_open"): print("after the praise parenthesis:", report.get("praise_khabar", 0), "| left:", report.get("praise_open", []))
     print("khabar named:", report.get("khabar_named", 0), "| open:", len(report.get("khabar_open", [])), report.get("khabar_open", [])[:40])
     json.dump(report, open(out / "_review.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)

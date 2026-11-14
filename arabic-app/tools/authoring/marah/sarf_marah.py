@@ -84,6 +84,16 @@ V["taqallada"] = derived(B5, W5, "َ", "تَقَلَّد", "تَقَلَّد", "
 # تَبَخْتَرَ يَتَبَخْتَرُ — «تَتَبَخْتَرُ» (مَزِيدُ الرُّبَاعِيِّ, the bāb of تَدَحْرَجَ)
 V["tabakhtara"] = derived("مَزِيدُ الرُّبَاعِيِّ: تَفَعْلَلَ يَتَفَعْلَلُ", "تَفَعْلَلَ يَتَفَعْلَلُ", "َ", "تَبَخْتَر", "تَبَخْتَر", "تَبَخْتَر", "تَبَخْتُر", "مُتَبَخْتِر")
 
+# ---- part nine (pp. 63–66): the verse of the letters of increase, and the hamza that is brought in
+from sarf_gen import naqis1
+# هَوِيَ يَهْوَى — «هَوِيتُ السِّمَانَ»
+V["hawiya"] = naqis1("samia", "لَفِيفٌ مَقْرُونٌ (مِنْ بَابِ سَمِعَ)، مَاضِيهِ عَلَى فَعِلَ", "y", "هَوِ", "هْو", "a", "اِهْو", "هَوًى", "هَاوٍ (الْهَاوِي)")
+assert g.nfc("هَوِيتُ") in V["hawiya"]["mazi"] and V["hawiya"]["mudari"][0] == g.nfc("يَهْوَى"), (V["hawiya"]["mazi"], V["hawiya"]["mudari"][:2])
+# شَيَّبَ يُشَيِّبُ — «فَشَيَّبْنَنِي»
+V["shayyaba"] = derived(B2, W2, "ُ", "شَيَّب", "شَيِّب", "شَيِّب", "تَشْيِيب", "مُشَيِّب", "مُشَيَّب", "شُيِّبَ", "يُشَيَّبُ")
+assert g.nfc("شَيَّبْنَ") in V["shayyaba"]["mazi"], V["shayyaba"]["mazi"]
+# اِجْتَلَبَ يَجْتَلِبُ — «وَاجْتُلِبَتِ الْهَمْزَةُ»
+V["ijtalaba"] = derived(B8, W8, "َ", "اِجْتَلَب", "جْتَلِب", "اِجْتَلِب", "اِجْتِلَاب", "مُجْتَلِب", "مُجْتَلَب", "اُجْتُلِبَ", "يُجْتَلَبُ")
 # a lām that is a nūn meets the nūn of the feminine plural and of «we» and contracts (رَكَنَّ، رَكَنَّا)
 for _k in ("rakana", "ikhshawshana", "tashaytana", "tamaskana", "ayyana-appoint"):
     V[_k] = g.idgham(V[_k])

@@ -15504,6 +15504,34 @@ if (!CHROME) {
     if (!/^noun:.*:Calif$/.test(r.d.row) || !/َا\/fail$/.test(r.d.out) || r.d.noun !== N('عَلَامَة') || r.d.verb !== null || !/\/mazi$/.test(r.d.verbOut) || !/ًا\/maful$/.test(r.d.tanwin)) throw new Error('the annexed dual of a noun in ة: ' + J(r.d));
   });
 
+  await check('wave 191 — Marāḥ al-Arwāḥ part nine (the faṣl on the amr and the nahy opens: the lām of the absent one with its kasra and its sukūn, the dropped letter of the future, the hamza of connection; pp. 63–66) stands on the shelf with every line named — the cited verbs after مِثْل / فِي / خِلَاف by the packager\'s own rule and under the verb\'s own key (اضْرِبْ is ضَرَبَ, اِعْلَمْ is عَلِمَ); three rules the text called for — a time word before a verb it cannot be the doer of is that verb\'s ẓarf (الْيَوْمَ أَشْرَبُ) while «الْيَوْمُ يَمْضِي» and «الْيَوْمُ جَمِيلٌ» keep their mubtadaʾ, the vowelled dual annexed to an indefinite noun is kept as written and is the doer (حَرْفَا عِلَّةٍ) while حَرْفًا and ضَرَبَا are left alone, and the lām of command quiescent at the head of its own word after ثُمَّ is read and written as it stands', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => N((tok(n, id, i).irab || {}).ar);
+      const all = [24, 25, 26].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      return { chapters: st.chapters.length, sens: [24, 25, 26].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        q: { idrib: tok(24, 's1', 8).lex + '|' + line(24, 's1', 8), joined: tok(24, 's1', 10).lex + '|' + line(24, 's1', 10), ilam: tok(26, 's6', 6).lex + '|' + line(26, 's6', 6), uktub: tok(26, 's3', 4).lex + '|' + line(26, 's3', 4) },
+        l: { dual: line(24, 's8', 8), ashrab: line(26, 's8', 1), hawitu: line(24, 's6', 0), futihat: line(26, 's10', 0), alif: tok(26, 's10', 1).lex + '|' + line(26, 's10', 1), aymun: tok(26, 's10', 2).lex },
+        t: { ana: V('اليوم أشرب الماء', 0), nahnu: V('الليلة نسافر', 0), huwa: V('اليوم يمضي سريعا', 0), nominal: V('اليوم جميل', 0) },
+        d: { dual: V('حَتَّى لَا يَجْتَمِع حَرْفَا عِلَّة', 3), ilayh: V('حَتَّى لَا يَجْتَمِع حَرْفَا عِلَّة', 4), tanwin: V('رَأَيْتُ حَرْفًا', 1), verb: V('ضَرَبَا زَيْدًا', 0) },
+        j: { thumma: V('ثُمَّ لْيَضْرِب زَيْد عَمْرًا', 1), fa: V('فَلْيَضْرِب زَيْد', 0), noun: V('هذا لحم طيب', 1) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 26 || J(r.sens) !== '[8,7,11]' || r.n !== 251) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    const Q = N('لَفْظٌ مَحْكِيٌّ');
+    if (!r.q.idrib.startsWith('daraba|' + Q) || !r.q.idrib.includes(N('مُضَافٌ إِلَيْهِ')) || !r.q.joined.startsWith('daraba|' + Q) || !r.q.joined.includes(N('مَعْطُوفٌ')) || !r.q.ilam.startsWith('alima|' + Q) || !r.q.uktub.startsWith('kataba|' + Q)) throw new Error('the cited verbs: ' + J(r.q));
+    if (!r.l.dual.startsWith(N('فَاعِلٌ')) || !r.l.dual.includes(N('مُثَنًّى')) || !r.l.ashrab.includes(N('مَرْفُوعٌ')) || !r.l.ashrab.includes(N('لِضَرُورَةِ الشِّعْرِ')) || !r.l.hawitu.includes(N('بِتَاءِ الْفَاعِلِ')) || !r.l.futihat.includes(N('لِلْمَجْهُولِ')) || !r.l.alif.startsWith('alif-letter|' + N('نَائِبُ فَاعِلٍ')) || r.l.aymun !== 'aymun') throw new Error('the named lines: ' + J(r.l));
+    if (!/َ\/zarf$/.test(r.t.ana) || !/َ\/zarf$/.test(r.t.nahnu) || !/ُ\/mubtada$/.test(r.t.huwa) || !/ُ\/mubtada$/.test(r.t.nominal)) throw new Error('the time word before a verb: ' + J(r.t));
+    if (r.d.dual !== N('حَرْفَا') + '/fail' || !/ٍ\/mudafIlayh$/.test(r.d.ilayh) || r.d.tanwin !== N('حَرْفًا') + '/maful' || !/\/mazi$/.test(r.d.verb)) throw new Error('the vowelled dual before an indefinite noun: ' + J(r.d));
+    if (r.j.thumma !== N('لْيَضْرِبْ') + '/jazm' || r.j.fa !== N('فَلْيَضْرِبْ') + '/jazm' || /jazm|jarr/.test(r.j.noun)) throw new Error('the quiescent lām of command: ' + J(r.j));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

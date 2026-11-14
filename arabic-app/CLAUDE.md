@@ -12626,3 +12626,44 @@ and the five rules with their controls.
 23:s6); a detached pronoun after a verb whose hidden doer it matches is its tawkīd (hand-corrected at 22:s1); «ثَمَّ»
 is keyed by hand. «وَمَأْوَاهُ النَّارُ» wants a rule for the nominal clause that follows a complete verbal one.
 
+### v290 (wave 191) — «مَرَاحُ الْأَرْوَاحِ» part nine: the amr begins, and the pipeline names its own cited verbs
+
+The source grows by pp. 63–66 — «فَصْلٌ فِي الْأَمْرِ وَالنَّهْيِ» from its definition to «وَفُتِحَ أَلِفُ التَّعْرِيفِ لِكَثْرَتِهِ أَيْضًا»:
+chapter 24 (the amr, the lām of the absent one and the verse of the letters of increase; 8 sentences), 25 (the kasra
+and the sukūn of that lām, the letter of the future dropped for the one addressed; 7) and 26 (the hamza of connection
+and its vowel, the verse «الْيَوْمَ أَشْرَبْ»; 11). 26 sentences / 251 words, 13 new lemmas, 3 new paradigms (هَوِيَ،
+شَيَّبَ، اِجْتَلَبَ); the book stands at 26 chapters / 238 sentences / 2,715 words. The next span opens at p. 66's last
+clause, «وَفُتِحَ أَلِفُ أَكْرِمْ».
+
+**Two rules in the authoring pipeline** (tools, not the reader):
+- **The analyzer's verb decides the key.** `engine_author.js` looked a word up by its bare letters before asking what
+  the analyzer had read; «اضْرِبْ» — already read as the amr of ضَرَبَ — was filed under أَضْرَبَ, and «اِعْلَمْ» under
+  أَعْلَمَ. Where the row carries a verb cell and a lemma, the lexicon's key for THAT verb is the token's key.
+- **A cited verb is named by its seat.** `pkg_from_engine.py` reads the guillemets it already kept: a single cited verb
+  after مِثْل / نَحْو / خِلَاف is the muḍāf ilayh, after فِي it is in the place of jarr, and after «وَ» behind another
+  cited word in jarr it is joined to it. Seven lines of this part are written by that rule; an authored line always
+  wins, and chapters 1–23 came through the re-run without one changed token.
+
+**Three rules in the reader.**
+- **T · الْيَوْمَ أَشْرَبُ.** A time word opening the sentence before a verb whose person or gender it cannot answer to
+  is no mubtadaʾ: the verb has its doer inside it, and the word says when. «الْيَوْمُ يَمْضِي» (the verb is «he») and
+  «الْيَوْمُ جَمِيلٌ» keep their mubtadaʾ.
+- **D · حَرْفَا عِلَّةٍ.** A noun vowelled with a plain fatḥa before its last alif writes no tanwīn — it is the dual
+  with its nūn dropped, annexed also to an indefinite noun that wears no article. The construct detector accepts
+  that next word, the word is kept as written, and after a verb that has named no doer it is the doer (the alif
+  is the sign of rafʿ, no seat for a fatḥatān). «حَرْفًا» and the verb «ضَرَبَا» are untouched.
+- **J · ثُمَّ لْيَضْرِبْ.** No Arabic word opens on a quiescent letter: «لْ» at a word's head is the lām of command,
+  its kasra dropped after ثُمَّ as after وَ and فَ. The verb finder offers the verb behind it and the writer keeps
+  the sukūn.
+
+**Measured.** Blind sweep 69,576 right / 558 wrong / 302 undecided (the new chapters 243 of 251 on first contact,
+246 after the rules; 3 fixed, 0 broken), receipts-on 69,961 / 317 / 158, case layer 57,255 / 57,882 (98.92 %).
+Typed gauge 1,151 of 1,152 judged words over 378 sentences. Smoke: 440 checks; «wave 191» gates the shelf, the
+cited verbs with their keys, the named lines and the three rules with their controls.
+
+**Open.** «وَالْغَائِبُ أَيْضًا وَسَطٌ بَيْنَ …» — «وسط» with nothing to be annexed to is the khabar, and the engine still
+reads the ẓarf (a guard was tried and withdrawn: it did not see the mubtadaʾ's state). The packager writes an ACTIVE
+line for the passive māḍī with the feminine tāʾ sākina after a wāw («وَفُتِحَتْ»، «وَأُسْكِنَتْ»), and a hidden-doer
+line for «هَوِيتُ» although the analyzer reads the first person — both hand-corrected here. A noun annexed to a quoted
+clause («حُرُوفُ «هَوِيتُ السِّمَانَ»») and the rhyme of an unmarked verse («وَلَا وَاغِلِ») stay as they were.
+
