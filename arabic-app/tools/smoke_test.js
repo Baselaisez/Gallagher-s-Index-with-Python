@@ -15551,6 +15551,46 @@ if (!CHROME) {
     if (!/ٌ\/khabar$/.test(r.w.clause) || !/ٌ\/khabar$/.test(r.w.end) || !/َ\/zarf$/.test(r.w.qawm) || !/َ\/zarf$/.test(r.w.madina) || !/َ\/zarf$/.test(r.w.nahar)) throw new Error('وسط — khabar or ẓarf: ' + J(r.w));
   });
 
+  await check('wave 193 — Marāḥ al-Arwāḥ part ten (the alif of «أَكْرِمْ» and the hamza of «اِعْلَمْ» in writing, the amr apocopated or built, the two nūns of emphasis; pp. 66–70) stands on the shelf with every line named — the cited verbs and particles by the packager\'s rules (after a construct head, after any jarr letter, in a list without «وَ»), «لِمَ», «ثَمَّ» and «نَحْوُ» by their written vowels; and eight reader rules the text called for: the written vowels choose among look-alikes (ثَمَّ / ثُمَّ، مُشَابِهَة / مُشَابَهَة، بِنُونِ / بَنُونَ، فَبِذٰلِكَ), the word behind a passive that is a lexicon noun to the vowel is its deputy doer (وَفُتِحَ أَلِفُ) while speech after «قِيلَ» keeps its verb, «نُونَا التَّأْكِيدِ» is the annexed dual while «أَعْطِنَا» stays the verb, «ذِي» in jarr before its noun is ذُو of the five nouns, «بَقِيَ» takes a ḥāl, a feminine verb is not raised to «مَوْضِع», the noun after «قِيلَ:» opens a sentence, and «بَلْ» repeats a noun already said', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [27, 28, 29].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const K = (t, i) => { try { DabtEngine.vowel(t); const x = (DabtEngine._rows135 || [])[i] || {}; return (x.kind || '') + ':' + N(x.lemma || ''); } catch (e) { return 'ERR ' + e.message; } };
+      const n = w => { try { const x = RootFinder.nounFromCorpus(w); return x ? N(String(x.lemma || '').split(/[()\s]/)[0]) : null; } catch (e) { return 'ERR ' + e.message; } };
+      return { chapters: st.chapters.length, sens: [27, 28, 29].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        l: { naib: line(27, 's1', 1), head: line(27, 's1', 2), min: line(27, 's1', 13), thamma: line(28, 's3', 1), lima: line(29, 's7', 2), udkhila: line(29, 's7', 3), dhu: line(28, 's7', 7), dual: line(29, 's1', 4), nahw: line(29, 's1', 8), list: line(29, 's1', 10), rubba: line(28, 's6', 8), mushabih: line(28, 's1', 8), hal: line(28, 's5', 2), zarf: line(28, 's5', 7), mubtada: line(28, 's10', 3), nat: line(29, 's5', 2), amal: line(28, 's6', 9), old: line(25, 's7', 1) },
+        v: { thamma: n('ثَمَّ'), thumma: n('ثُمَّ'), mushabih: n('مُشَابِهَة'), mushabaha: n('مُشَابَهَة'), nun: n('بِنُونِ'), banun: n('بَنُونَ'), dhalika: n('فَبِذٰلِكَ'), kalima: n('كَلِمَة') },
+        p: { naib: V('وَفُتِح أَلِف أَكْرِمْ', 1), kind: K('وَفُتِح أَلِف أَكْرِمْ', 1), qila: V('قِيلَ ذَهَب زَيْد', 1), plain: V('ضُرِب زَيْد', 1) },
+        d: { dual: V('وَزِيدَتْ فِي آخِر الْأَمْر نُونَا التَّأْكِيد', 4), ilayh: V('وَزِيدَتْ فِي آخِر الْأَمْر نُونَا التَّأْكِيد', 5), verb: V('أَعْطِنَا الْكِتَاب', 0) },
+        z: { dhi: V('عَنْ ذِي تَمَائِم مُحْوِل', 1), ilayh: V('عَنْ ذِي تَمَائِم مُحْوِل', 2), lemma: K('عَنْ ذِي تَمَائِم مُحْوِل', 1) },
+        h: { baqiya: V('فَبَقِي الضَّاد سَاكِنا', 2), daraba: V('ضَرَب زَيْد قَائِما', 2) },
+        m: { fem: V('وَوُضِعَتْ مَوْضِع عَلَامَة الِاسْتِقْبَال', 1), masc: V('وُضِع الْكِتَاب مَوْضِع الْقَلَم', 1) },
+        q: { mub: V('قِيلَ: قَوْلهُ مُعْرَب', 1), kh: V('قِيلَ: قَوْلهُ مُعْرَب', 2), plain: V('قِيلَ الْحَقّ', 1) },
+        b: { bal: K('لَيْس مِنْ أَلِف الْأَمْر بَلْ أَلِف قَطْع', 5) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 29 || J(r.sens) !== '[7,10,8]' || r.n !== 274) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    const Q = N('لَفْظٌ مَحْكِيٌّ');
+    if (!r.l.naib.startsWith('alif-letter|' + N('نَائِبُ فَاعِلٍ')) || !r.l.naib.includes(N('مُضَافٌ')) || !r.l.head.startsWith('akrama|' + Q) || !r.l.head.includes(N('مُضَافٌ إِلَيْهِ')) || !r.l.min.startsWith('akrama|' + Q) || !r.l.min.includes(N('بِـ«مِنْ»')) || !r.l.rubba.startsWith('rubba|' + Q) || !r.l.list.startsWith('daraba|' + Q) || !r.l.list.includes(N('بِحَذْفِ حَرْفِ الْعَطْفِ'))) throw new Error('the cited words by their seat: ' + J([r.l.naib, r.l.head, r.l.min, r.l.rubba, r.l.list]));
+    if (!r.l.thamma.startsWith('thamma|' + N('اسْمُ إِشَارَةٍ')) || !r.l.old.startsWith('thamma|') || !r.l.lima.startsWith('lima|') || !r.l.lima.includes(N('اسْمُ اسْتِفْهَامٍ')) || !r.l.udkhila.includes(N('لِلْمَجْهُولِ')) || /مَجْزُومٌ|مَنْصُوبٌ/.test(r.l.udkhila) || !r.l.nahw.includes(N('لِمُبْتَدَإٍ مَحْذُوفٍ'))) throw new Error('the lines the written vowels decide: ' + J([r.l.thamma, r.l.old, r.l.lima, r.l.udkhila, r.l.nahw]));
+    if (!r.l.dhu.startsWith('dhu|') || !r.l.dhu.includes(N('بِالْيَاءِ')) || !r.l.dual.startsWith('nun-letter|' + N('نَائِبُ فَاعِلٍ')) || !r.l.dual.includes(N('مُثَنًّى')) || !r.l.mushabih.startsWith('mushabih|') || !r.l.hal.includes('|' + N('حَالٌ')) || !r.l.zarf.includes('|' + N('ظَرْفٌ')) || !r.l.mubtada.includes('|' + N('مُبْتَدَأٌ')) || !r.l.nat.includes('|' + N('نَعْتٌ')) || !r.l.amal.includes('|' + N('نَائِبُ فَاعِلٍ'))) throw new Error('the named lines: ' + J([r.l.dhu, r.l.dual, r.l.mushabih, r.l.hal, r.l.zarf, r.l.mubtada, r.l.nat, r.l.amal]));
+    if (r.v.thamma !== N('ثَمَّةَ') || r.v.thumma !== N('ثُمَّ') || r.v.mushabih !== N('مُشَابِه') || r.v.mushabaha !== N('مُشَابَهَة') || r.v.nun !== N('نُون') || r.v.banun !== N('بَنُونَ') || r.v.dhalika !== N('ذَلِكَ') || r.v.kalima !== N('كَلِمَة')) throw new Error('the written vowels among look-alikes: ' + J(r.v));
+    if (!/\/naib$/.test(r.p.naib) || !r.p.kind.startsWith('noun:') || !/\/mazi$/.test(r.p.qila) || !/\/naib$/.test(r.p.plain)) throw new Error('the deputy doer behind a passive: ' + J(r.p));
+    if (r.d.dual !== N('نُونَا') + '/naib' || !/ِ\/mudafIlayh$/.test(r.d.ilayh) || !/\/amr$/.test(r.d.verb)) throw new Error('the annexed dual: ' + J(r.d));
+    if (r.z.dhi !== N('ذِي') + '/jarr' || !/َ\/mudafIlayh$/.test(r.z.ilayh) || r.z.lemma !== 'noun:' + N('ذُو')) throw new Error('ذِي of the five nouns: ' + J(r.z));
+    if (!/ًا\/hal$/.test(r.h.baqiya) || !/\/maful$/.test(r.h.daraba)) throw new Error('the ḥāl after بَقِيَ: ' + J(r.h));
+    if (r.m.fem !== N('مَوْضِعَ') + '/zarf' || !/ُ\/naib$/.test(r.m.masc)) throw new Error('the place-noun behind a feminine verb: ' + J(r.m));
+    if (!/ُ\/mubtada$/.test(r.q.mub) || !/ٌ\/khabar$/.test(r.q.kh) || !/\/naib$/.test(r.q.plain)) throw new Error('the sentence after «قِيلَ:»: ' + J(r.q));
+    if (!r.b.bal.startsWith('noun:')) throw new Error('«بَلْ» and the noun already said: ' + J(r.b));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

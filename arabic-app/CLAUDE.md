@@ -12687,3 +12687,56 @@ clause («حُرُوفُ «هَوِيتُ السِّمَانَ»») and the rhym
 
 **Next.** Marāḥ part ten opens at p. 66's last clause, «وَفُتِحَ أَلِفُ أَكْرِمْ».
 
+
+### v292 (wave 193) — Marāḥ al-Arwāḥ part ten, and the written vowels as evidence
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 66–70 of the scan (the matn's large type only):
+  chapter 27 «أَلِفُ أَكْرِمْ وَهَمْزَةُ اِعْلَمْ فِي الْخَطِّ» (7 sentences), 28 «جَزْمُ الْأَمْرِ وَبِنَاؤُهُ» (10 — the
+  Kufans' «لِتَضْرِبْ», the reading «فَلْتَفْرَحُوا», the verse «فَمِثْلِكِ حُبْلَى»), 29 «نُونَا التَّأْكِيدِ فِي الْأَمْرِ»
+  (8). 25 sentences / 274 words, six new lemmas (`ajam-marks`, `taraqa` with its paradigm, `murdi`, `muhwil`,
+  `iktifa`, `fasil-separating`); the book stands at **29 chapters / 263 sentences / 2,989 words**, version 0.10.0. The
+  attribution records the span and the readings kept as printed («الْأَعْجَام», «حُذِفَ عَلَامَةُ», «تَصِيرُ مَبْنِيًّا»)
+  and the one we vowelled ourselves («بَلْ أَلِفُ قَطْعٍ مَحْذُوفٌ», unvowelled in the print, read in rafʿ).
+- **The pipeline reads the written vowels** (`pkg_from_engine.py`, `engine_author.js`). A cited verb or particle in
+  guillemets is named by its seat wherever it stands: behind a noun that wears neither tanwīn nor the article it is
+  that noun's muḍāf ilayh (أَلِفُ «أَكْرِمْ»، هَمْزَةُ «اِعْلَمْ»، لِفَاءِ «رُبَّ» — and the head's own line says
+  «مُضَافٌ»), behind any jarr letter it stands in that letter's place (مِنْ «تُؤَكْرِمُ»), and in a list of cited forms
+  with no «وَ» each is joined to the one before it. «لِمَ» with its kasra is the question and governs nothing (the verb
+  behind it keeps its māḍī), «ثَمَّ» with its fatḥa behind «مِنْ» is the place-demonstrative, «نَحْوُ / مِثْلُ» in rafʿ
+  after a pause and before a cited word is the khabar of an omitted mubtadaʾ. A written ـَيْنِ takes the engine's own
+  case where no jarr letter decides; a rafʿ noun behind a verb written passive is its deputy doer; an article-bearing
+  word behind an article-bearing noun in rafʿ is its naʿt; the annexed dual of any noun is no maqṣūr. Where a
+  look-alike's own vowels contradict the page, the token is keyed to the verb whose cell it is («عَلَّمَ» is not the
+  noun عَلَم). 26 cited words and 7 vowel-decided lines are written by rule in the book now; three hand lines were
+  retired and came back identical; chapters 1–26 changed in seven tokens, every one a correction (two «مِنْ ثَمَّ» that
+  had been keyed as ثُمَّ, the cited «ضَرَبَ» keyed as the maṣdar, a بِـ phrase that said «object», three tags).
+- **Reader rules** (`$S/w193/patch193.py`):
+  - **V · the written vowels among look-alikes.** `RootFinder._agree193` compares the inner vowels the page wrote
+    with a lemma's; where the lexicon's answer contradicts them, `_vowelAlt193` tries a joiner or jarr letter in its
+    own vowel (بِنُونِ is بِ + نُون, not بَنُونَ; فَبِذٰلِكَ is فَ + بِذٰلِكَ, not بَذْل), the feminine of another lemma
+    (مُشَابِهَةٌ is مُشَابِه's, not the maṣdar مُشَابَهَة) and a built word on ـةَ (ثَمَّ is ثَمَّةَ, not ثُمَّ). No word
+    opens on a doubled letter (فَعَّال is no فَ + عَالٍ); نِعْمَ and مُدَّ keep their old answers.
+  - **P · the passive's deputy.** The word right behind a passive verb that reads as a «he» māḍī, yet is a lexicon
+    noun to the vowel, is that noun (وَفُتِحَ أَلِفُ «أَكْرِمْ»); what follows «قِيلَ» is speech and keeps its verb.
+    «بَلْ» before a word this sentence has already used as a noun repeats that noun.
+  - **N / D · نُونَا التَّأْكِيدِ.** A word in ـَا whose stem is a lexicon noun, letter for letter and vowel for vowel,
+    is that noun's annexed dual even where its letters could be a verb with its pronoun (نُو + نَا).
+  - **Z · ذِي.** «ذِي» read in jarr before the noun it is annexed to is ذُو of the five nouns, not the demonstrative —
+    the writer keeps the role (jarr, muḍāf ilayh, badal) instead of «built», and the pipeline keys it `dhu`.
+  - **H · بَقِيَ** stands with the verbs of coming and going: what describes its doer is a ḥāl (فَبَقِيَ الضَّادُ سَاكِنًا).
+  - **M · وُضِعَتْ مَوْضِعَ.** A feminine verb is not raised to a masculine noun: «مَوْضِع / مَكَان / مَقَام» annexed
+    right behind it is a ẓarf.
+  - **Q · قِيلَ: قَوْلُهُ … مُعْرَبٌ.** After «قِيلَ:» the noun that opens what is said is a mubtadaʾ, not the verb's
+    deputy; a cited demonstrative is left alone.
+  - **Y · صَلَّى اللهُ تَعَالَى عَلَيْهِ وَسَلَّمَ.** The blessing with «تَعَالَى» inside it keeps the Name as its doer.
+
+**Measured** (same data, before → after). Blind sweep 69,840 / 567 / 303 → 69,842 right / 565 wrong / 303 undecided
+(2 fixed, 0 broken), receipts-on 70,229 / 323 / 158 → 70,231 / 321 / 158, case layer 57,488 of 58,115 (98.92 %).
+Typed gauge 1,158 of 1,159 judged words over 381 sentences (the battery is unchanged — these rules read written vowels, and the gauge types bare).
+Smoke: 442 checks («wave 193» is #440).
+
+**Left open.** A noun annexed to a cited verb still gets a tanwīn when read blind («أَلِفٌ أَكْرِمْ»); «مُعْرَبٌ» as the
+khabar across a blessing and a cited word; the object of reason («فِرَارًا»، «اكْتِفَاءً») is named by hand; the cited
+khabar of «أَنَّ» («أُأَكْرِمُ»، «لِتَضْرِبْ») by hand; multi-word citations («بِسْمِ اللهِ», the āya) by hand.
+
+**Next.** Marāḥ part eleven opens on p. 70 at «وَحُكْمُ الْخَفِيفَةِ مِثْلُ حُكْمِ الثَّقِيلَةِ».

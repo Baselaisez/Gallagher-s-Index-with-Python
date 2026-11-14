@@ -2,7 +2,7 @@
  "version": 1,
  "status": "induced",
  "note": "Tendencies of the Form I maṣdar, induced from the verbs the corpus recites and promoted through a gate (support, confidence, gain over the rule refined). A teacher may show them; the builder never applies them — a Form I maṣdar is recited.",
- "trained_on": 560,
+ "trained_on": 561,
  "gate": {
   "min_support": 12,
   "min_confidence": 0.6,
@@ -12,8 +12,8 @@
   "plurality_support": 24
  },
  "default": "فَعْل",
- "cv_accuracy": 0.4911,
- "cv_baseline": 0.4625,
+ "cv_accuracy": 0.492,
+ "cv_baseline": 0.4635,
  "rules": [
   {
    "if": {
@@ -33,8 +33,8 @@
     "transitive": "yes"
    },
    "then": "فَعْل",
-   "support": 186,
-   "confidence": 0.753,
+   "support": 187,
+   "confidence": 0.754,
    "kind": "majority"
   },
   {
@@ -107,8 +107,8 @@
     "mazi": "a"
    },
    "then": "فَعْل",
-   "support": 242,
-   "confidence": 0.645,
+   "support": 243,
+   "confidence": 0.646,
    "kind": "majority"
   },
   {
@@ -146,8 +146,8 @@
     "transitive": "yes"
    },
    "then": "فَعْل",
-   "support": 313,
-   "confidence": 0.601,
+   "support": 314,
+   "confidence": 0.602,
    "kind": "majority"
   }
  ]

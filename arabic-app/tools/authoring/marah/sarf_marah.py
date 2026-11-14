@@ -97,6 +97,8 @@ V["ijtalaba"] = derived(B8, W8, "َ", "اِجْتَلَب", "جْتَلِب", "�
 # a lām that is a nūn meets the nūn of the feminine plural and of «we» and contracts (رَكَنَّ، رَكَنَّا)
 for _k in ("rakana", "ikhshawshana", "tashaytana", "tamaskana", "ayyana-appoint"):
     V[_k] = g.idgham(V[_k])
+# part ten (pp. 66–70)
+V["taraqa"] = sound1("nasara", "طَرَق", "طْرُق", "اُطْرُق", "طَرْق (طُرُوق)", "طَارِق", "مَطْرُوق", "طُرِقَ", "يُطْرَقُ")
 out = sys.argv[1]
 json.dump({"verbs": {k: g.nfc(V[k]) for k in sorted(V)}}, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(f"{len(V)} paradigms → {out}")
