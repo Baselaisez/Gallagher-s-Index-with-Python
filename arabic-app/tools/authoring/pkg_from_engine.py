@@ -1052,6 +1052,29 @@ def main():
                     elif not qt_ and pb1_ == "و" and pw_.get("kind") == "particle" and lastq_ and lastq_[1] in ("raf", "nasb", "jarr") and (lastq_[0] == i - 2 or not any(words[z_].get("kind") == "verb" or raw_words[z_].startswith("«") for z_ in range(lastq_[0] + 1, i - 1))):
                         mh_ = {"raf": ("رَفْعٍ", "raf'", "merfû"), "nasb": ("نَصْبٍ", "nasb", "mansûb"), "jarr": ("جَرٍّ", "jarr", "mecrûr")}[lastq_[1]]
                         qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ " + mh_[0] + ".", QH_[1] + "joined to the word before it, in the place of " + mh_[1] + ".", QH_[2] + "öncekine ma'tûf, mahallen " + mh_[2] + ".")
+                    # (wave 198) أَصْلُهُ «اِقْرِرْنَ»، قُرِئَ «قَرْنَ»، لَا يَجُوزُ «فِرُّ»، لِأَنَّ «رَدَّ» يُعْلَمُ، أَنَّ أَصْلَهُ «رَدَدَ»، فَيَكُونُ أَصْلُهُ «اِقْرَرْنَ»، وَ «فَرَّ» أَيْضًا يُعْلَمُ:
+                    # a cited VERB stands where a noun would — the word itself is meant, and its place is the seat the sentence around it gives: the one the engine read for it, or the one the word before it leaves open
+                    if not qt_ and ke_q_.get("pos") == "verb" and not two_q_ and not fx.get("rule") and not wz_q_:
+                        LQ_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Lafzı kastedilerek hikâye edilmiş söz; ")
+                        pr_ = pw_.get("rule") or ""; pn_ = pw_.get("kind") == "noun" and bool(pw_.get("enc"))
+                        if w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "khabar" or (pn_ and pr_ == "mubtada"):
+                            qt_ = (LQ_[0] + "فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ.", LQ_[1] + "in the place of raf' as the khabar of the mubtada.", LQ_[2] + "mübtedânın haberi olarak mahallen merfû.")
+                        elif w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "naib":
+                            qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ.", QH_[1] + "in the place of raf' as the deputy doer.", QH_[2] + "nâib-i fâil olarak mahallen merfû.")
+                        elif w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "fail":
+                            qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", QH_[1] + "in the place of raf' as the doer.", QH_[2] + "fâil olarak mahallen merfû.")
+                        elif pn_ and pr_ == "innaIsm":
+                            qt_ = (LQ_[0] + "فِي مَحَلِّ رَفْعٍ خَبَرُ «أَنَّ».", LQ_[1] + "in the place of raf' as the khabar of «أَنَّ».", LQ_[2] + "«أَنَّ»nin haberi olarak mahallen merfû.")
+                        elif pn_ and pr_ == "kanaIsm":
+                            kv_ = next((N(re.sub(r"[«»،:؛.؟!]", "", raw_words[z_])) for z_ in range(i - 2, -1, -1) if words[z_].get("key") in ("kana", "sara") and words[z_].get("kind") == "verb"), None)
+                            if kv_:
+                                kv_ = re.sub(r"^[وف]َ", "", kv_)
+                                qt_ = (LQ_[0] + "فِي مَحَلِّ نَصْبٍ خَبَرُ «" + kv_ + "».", LQ_[1] + "in the place of nasb as the khabar of «" + kv_ + "».", LQ_[2] + "«" + kv_ + "»nin haberi olarak mahallen mansûb.")
+                        elif pw_.get("kind") == "particle" and re.match(r"^[وف]?[لبك]?[أإا]ن$", pb1_) and "ّ" in praw_ and not raw_words[i - 1].startswith("«"):
+                            an_ = "إِنَّ" if "إِ" in praw_ else "أَنَّ"
+                            qt_ = (QH_[0] + "فِي مَحَلِّ نَصْبٍ اسْمُ «" + an_ + "».", QH_[1] + "in the place of nasb as the ism of «" + an_ + "».", QH_[2] + "«" + an_ + "»nin ismi olarak mahallen mansûb.")
+                        elif i == 1 and pb1_ == "و" and pw_.get("kind") == "particle" and len(words) > 2 and not raw_words[2].startswith("«") and any(words[z_].get("kind") == "verb" for z_ in range(2, len(words))):
+                            qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", QH_[1] + "in the place of raf' as the mubtada.", QH_[2] + "mübtedâ olarak mahallen merfû.")
                     if hk_q_ and not wz_q_ and ke_q_.get("pos") not in ("verb", "part") and qt_ and "مَحَلِّ جَرٍّ" not in qt_[0] and "مَحَلِّ نَصْبٍ" not in qt_[0] and w.get("kind") == "noun" and w.get("k") == "raf": qt_ = None; head_q_ = False   # in a rafʿ seat the written ḍamma is the word's own iʿrāb
                     if qt_: lastq_ = (i, "raf" if "مَحَلِّ رَفْعٍ" in qt_[0] else "nasb" if "مَحَلِّ نَصْبٍ" in qt_[0] else "jarr")
                     if head_q_ and toks and toks[-1].get("irab") and "مُضَافٌ" not in toks[-1]["irab"]["ar"] and toks[-1]["irab"]["ar"].endswith(".") and not (FX.get(f"{where0}:{i - 1}") or {}).get("irab"):   # the head of that annexation says so
@@ -1545,7 +1568,8 @@ def main():
                 lem_b = noal(bare(str((lem_e or {}).get("lemma", "")).split("(")[0].strip())) if lem_e else ""
                 if rule == "jarr" and re.match(r"^[بل]ِ|^كَ", h2) and len(hb2) >= 3:
                     rest_b = noal(hb2[1:])
-                    if (lem_b and rest_b == lem_b) or (lem_b and lem_b != noal(hb2) and len(hb2) >= 4 and not re.search(r"ً", h2)) or (not lem_b and len(hb2) >= 4 and not re.search(r"ً", h2)): jc = h2[0]
+                    own198_ = bool(lem_b) and len(lem_b) >= 3 and noal(hb2).startswith(re.sub(r"[ةى]$", "", lem_b)) and rest_b != lem_b   # (wave 198) كَلِمَتَيْنِ is كَلِمَة in the dual: the kāf is the word's own
+                    if not own198_ and ((lem_b and rest_b == lem_b) or (lem_b and lem_b != noal(hb2) and len(hb2) >= 4 and not re.search(r"ً", h2)) or (not lem_b and len(hb2) >= 4 and not re.search(r"ً", h2))): jc = h2[0]
                 cs = CASE_OF_RULE.get(rule) or ({"raf": "raf", "nasb": "nasb", "jarr": "jarr"}.get(k) if k in ("raf", "nasb", "jarr") else None)
                 if rule == "kanaIsm" and re.search(r"ً[اى]?$", h2.replace("ّ", "")): rule = "kanaKhabar"; cs = "nasb"
                 if rule == "innaKhabar" and re.search(r"ً[اى]?$", h2.replace("ّ", "")):

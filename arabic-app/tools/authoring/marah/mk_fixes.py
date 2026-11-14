@@ -1111,5 +1111,44 @@ L("43:s9:3", "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَم
 L("41:s8:6", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ.", "The annexed noun (mudaf ilayh), in jarr; the sign is an implied kasra on the alif.", "Muzâfun ileyh, mecrûr; alâmeti elif üzerinde takdîrî kesre ile.")
 L("42:s7:0", "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.", "A past verb.", "Mâzî fiil.")
 # <<< part fourteen
+# >>> part fifteen
+# ---- part fifteen (pp. 92–96): the three ways two letters meet; the two readings of «وَقِرْنَ».
+for w_, k_ in (("44:s1:4", "darb"), ("44:s2:12", "mansik"), ("44:s3:30", "judda"), ("44:s3:36", "sakk"), ("44:s3:37", "surr"), ("44:s3:38", "judd"), ("44:s3:39", "tall"),
+               ("44:s4:4", "radda"), ("44:s4:10", "radda"), ("44:s4:16", "radda"), ("44:s7:3", "hayiya"), ("44:s7:15", "hayiya"), ("44:s8:13", "hayiya"),
+               ("45:s5:11", "zalla-remain"), ("45:s6:4", "qarra"), ("45:s8:2", "waqara"), ("45:s9:5", "qarra")):
+    K(w_, k_)
+K("45:s1:13", "fal-wazn")
+#      The lines below name what the rules do not reach: the two citations from the Qurʾān, the bāb named by its past and present together, the cited triple «وَقَرَ يَقِرُ وَقَارًا».
+QH15 = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Kelimenin kendisi kastedilmiştir (hikâye); ")
+FOLLOW15 = (QH15[0] + "تَابِعٌ لِمَا قَبْلَهُ فِي الْحِكَايَةِ — الْمَاضِي وَمُضَارِعُهُ مَعًا اسْمٌ لِلْبَابِ.", QH15[1] + "it follows the word before it in the quotation — the past and its present together name the bāb.", QH15[2] + "hikâyede öncekine tâbidir — mâzî ile muzârii birlikte bâbın adıdır.")
+MIN15 = (QH15[0] + "فِي مَحَلِّ جَرٍّ بِـ«مِنْ».", QH15[1] + "in the place of jarr after «مِنْ».", QH15[2] + "«مِنْ» ile mahallen mecrûr.")
+L("44:s2:2", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَنْصُوبٌ بِـ«أَنْ»، وَعَلَامَةُ نَصْبِهِ حَذْفُ النُّونِ لِأَنَّهُ مِنَ الْأَفْعَالِ الْخَمْسَةِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ اسْمُهُ.",
+  "A present verb of kāna's family, in nasb after «أَنْ»; the sign is the dropping of the nūn — it is one of the five verbs; the alif is the attached pronoun, in the place of raf' as its noun.",
+  "Kâne'nin kardeşlerinden nâkıs muzâri fiil, «أَنْ» ile mansûb; alâmeti nûnun düşmesidir — ef'âl-i hamsedendir; elif bitişik zamir olup onun ismi olarak mahallen merfûdur.", enc="")
+L("44:s2:12", "لَفْظٌ مَحْكِيٌّ مِنَ الْقُرْآنِ الْكَرِيمِ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَفَتْحَتُهُ حَرَكَةُ الْحِكَايَةِ (هُوَ فِي الْآيَةِ مَفْعُولٌ بِهِ مَنْصُوبٌ)، وَهُوَ مُضَافٌ، وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — وَمَوْضِعُ الشَّاهِدِ الْكَافَانِ الْمُتَحَرِّكَانِ فِي كَلِمَتَيْنِ.",
+  "A word quoted from the Qurʾān, in the place of jarr as the mudaf ilayh; its fatha is the vowel it is quoted with (in the āya it is an object in nasb); it is annexed, and the kāf is the attached pronoun in the place of jarr — the point is the two vowelled kāfs, each in a word of its own.",
+  "Kur'ân-ı Kerîm'den hikâye edilmiş lafız; muzâfun ileyh olarak mahallen mecrûr; fethası hikâye harekesidir (âyette mef'ûlün bih olarak mansûbdur); muzâftır, kâf bitişik zamir olup mahallen mecrûrdur — şâhit yeri, ayrı iki kelimedeki harekeli iki kâftır.")
+L("44:s3:20", "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْإِلْحَاقِيَّاتِ» مَجْرُورٌ بِالْكَسْرَةِ.", "The waw joins; joined to «الْإِلْحَاقِيَّاتِ», in jarr; the sign is the kasra.", "Vâv atıf harfidir; «الْإِلْحَاقِيَّاتِ» üzerine ma'tûf, mecrûr; alâmeti kesre ile.")
+L("44:s4:23", QH15[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH15[1] + "in the place of jarr as the mudaf ilayh.", QH15[2] + "mahallen mecrûr, muzâfun ileyh.")
+L("44:s4:24", *FOLLOW15)
+L("44:s5:11", *MIN15)
+L("44:s5:12", *FOLLOW15)
+L("44:s6:11", *MIN15)
+L("44:s6:12", *FOLLOW15)
+for w_ in ("44:s5:1", "44:s6:1"):
+    L(w_, QH15[0] + "فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَخَبَرُهُ جُمْلَةُ «يُعْلَمُ».", QH15[1] + "in the place of raf' as the mubtada; its khabar is the clause «يُعْلَمُ».", QH15[2] + "mübtedâ olarak mahallen merfû; haberi «يُعْلَمُ» cümlesidir.")
+L("45:s1:8", "مَفْعُولٌ لِأَجْلِهِ مَنْصُوبٌ بِالْفَتْحَةِ — أَيْ يَجِبُ لِلضَّرُورَةِ، وَيَجُوزُ أَنْ يَكُونَ حَالًا.",
+  "An object of reason (mafʿūl li-ajlih), in nasb; the sign is the fatha — that is, it is obligatory out of necessity; it may also be read as a ḥāl.",
+  "Mef'ûlün leh, mansûb; alâmeti fetha ile — yani zarûretten dolayı vâciptir; hâl olması da câizdir.")
+L("45:s6:4", "لَفْظٌ مَحْكِيٌّ مِنَ الْقُرْآنِ الْكَرِيمِ، فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«قَرَأَ»؛ وَهُوَ فِي نَفْسِهِ: الْوَاوُ عَاطِفَةٌ، وَفِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
+  "Words quoted from the Qurʾān, in the place of nasb as the object of «قَرَأَ»; in itself: the waw joins, and the verb is an imperative built on sukūn because the nūn of the women is attached to it; the nūn is the attached pronoun, in the place of raf' as the doer.",
+  "Kur'ân-ı Kerîm'den hikâye edilmiş lafız; «قَرَأَ»nin mef'ûlü olarak mahallen mansûb; kendi içinde: vâv atıf harfidir, fiil nûn-ı nisveye bitiştiği için sükûn üzere mebnî emirdir; nûn bitişik zamir olup fâil olarak mahallen merfûdur.")
+L("45:s8:2", *MIN15)
+L("45:s8:3", "مُضَارِعُهُ، مَحْكِيٌّ مَعَهُ مِنْ تَمَامِ الْمِثَالِ.", "Its mudari', quoted with it — part of the example.", "Onun muzârii; onunla birlikte hikâye edilir, misâlin devamıdır.")
+L("45:s8:4", "مَصْدَرُهُ، مَحْكِيٌّ مَعَهُمَا مِنْ تَمَامِ الْمِثَالِ — مَفْعُولٌ مُطْلَقٌ مَنْصُوبٌ بِالْفَتْحَةِ.", "Its maṣdar, quoted with them — part of the example; an absolute object in nasb; the sign is the fatha.", "Onun masdarı; onlarla birlikte hikâye edilir, misâlin devamıdır — mef'ûl-i mutlak, mansûb; alâmeti fetha ile.")
+L("45:s9:5", QH15[0] + "فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — وَهُوَ فِي نَفْسِهِ فِعْلٌ مُضَارِعٌ لِلْمُتَكَلِّمِ، وَالْجَارُّ وَالْمَجْرُورُ بَعْدَهُ مِنْ تَمَامِ الْمِثَالِ.",
+  QH15[1] + "in the place of jarr after «مِنْ» — in itself a present verb of the first person; the jarr phrase after it completes the example.",
+  QH15[2] + "«مِنْ» ile mahallen mecrûr — kendi içinde mütekellim muzâri fiildir; ardındaki câr-mecrûr misâlin devamıdır.")
+# <<< part fifteen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

@@ -15772,6 +15772,39 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1300 || J(r.g.stored) !== J(['حَبُبْتُ', 'يَحُبُّ', 'لَبُبْتُ', 'يَلُبُّ', 'حَبِيب', 'لَبِيب'].map(N))) throw new Error('the two stored paradigms and the audit: ' + J([r.g.checked, r.g.bad, r.g.stored]));
   });
 
+  await check('wave 198 — Marāḥ al-Arwāḥ part fifteen (the three ways two letters meet, the two readings of «وَقِرْنَ»; pp. 92–96) stands on the shelf with every line named; the khabar of «يَكُونَا», the sentence a «فَ» opens behind a pause, «تَارَةً … أُخْرَى», the khabar behind «وَهُوَ» while a «كَانَ» waits and the jarr list that goes on are read by rule, each with its control; a cited verb is named by the seat the sentence gives it; the two new paradigms hold', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [44, 45].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const mw = st.morph['waqara'] || {}, mj = st.morph['jalbaba'] || {};
+      return { chapters: st.chapters.length, sens: [44, 45].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { kana: line(44, 's2', 2), kh: line(44, 's2', 3), dual: line(44, 's2', 10), ayah: line(44, 's2', 12), l1: line(44, 's3', 38), l2: line(44, 's3', 39), ism: line(44, 's4', 10), kha: line(44, 's4', 16), mub: line(44, 's5', 1), ukhra: line(44, 's8', 11),
+             mum: line(45, 's2', 7), qirna: line(45, 's6', 4), asl: line(45, 's7', 1), naib: line(45, 's9', 2), lugha: line(45, 's9', 10), kk: line(45, 's10', 2), firr: line(45, 's12', 4), waqara: line(45, 's8', 2) },
+        e: { kh: V('الأول أن يكونا متحركين', 3), khc: V('جاء الرجلان راكبين', 2), mub: V('أن يكون الثاني ساكنا، فالإدغام فيه ممتنع', 4), mum: V('أن يكون الثاني ساكنا، فالإدغام فيه ممتنع', 6), mumc: V('في الدار رجل', 2),
+             tara: V('لأنه تسقط تارة وتقلب أخرى', 2), ukhra: V('لأنه تسقط تارة وتقلب أخرى', 4), ukhrac: V('جاءت امرأة أخرى', 2), lugha: V('يَكُونُ مِنَ الْقَرَارِ بِفَتْحِ الْقَافِ، وَهُوَ لُغَةٌ فِي غَيْرِهِ', 6, 'endings'),
+             l1: V('حَتَّى لَا يَلْتَبِسَ بِصَكٍّ وَسُرٍّ وَجُدٍّ وَطَلٍّ', 5, 'endings'), l2: V('حَتَّى لَا يَلْتَبِسَ بِصَكٍّ وَسُرٍّ وَجُدٍّ وَطَلٍّ', 6, 'endings') },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), stored: [N(mw.mazi && mw.mazi[0]), N(mw.mudari && mw.mudari[0]), N(mw.amr && mw.amr[5]), N(mj.mazi && mj.mazi[0]), N(mj.mudari && mj.mudari[0])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 45 || J(r.sens) !== '[8,13]' || r.n !== 312) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.kana.includes(N('حَذْفُ النُّونِ')) || !r.l.kh.startsWith('mutaharrik|' + N('خَبَرُ كَانَ')) || !r.l.dual.includes(N('بِالْيَاءِ لِأَنَّهُ مُثَنًّى')) || r.l.dual.includes(N('الْكَافُ')) || !r.l.ayah.startsWith('mansik|' + N('لَفْظٌ مَحْكِيٌّ مِنَ الْقُرْآنِ'))) throw new Error('44:s2: ' + J([r.l.kana, r.l.kh, r.l.dual, r.l.ayah]));
+    if (!r.l.l1.startsWith('judd|') || !r.l.l1.includes(N('مَعْطُوفٌ مَجْرُورٌ')) || !r.l.l2.startsWith('tall|') || !r.l.l2.includes(N('مَعْطُوفٌ مَجْرُورٌ'))) throw new Error('the jarr list: ' + J([r.l.l1, r.l.l2]));
+    if (!r.l.ism.includes(N('اسْمُ «أَنَّ»')) || !r.l.kha.includes(N('خَبَرُ «أَنَّ»')) || !r.l.mub.includes(N('مُبْتَدَأٌ')) || !r.l.ukhra.startsWith('ukhra|' + N('ظَرْفٌ'))) throw new Error('chapter 44: ' + J([r.l.ism, r.l.kha, r.l.mub, r.l.ukhra]));
+    if (!r.l.mum.startsWith('mumtani|' + N('خَبَرٌ')) || !r.l.qirna.startsWith('qarra|' + N('لَفْظٌ مَحْكِيٌّ مِنَ الْقُرْآنِ')) || !r.l.asl.includes(N('خَبَرُ الْمُبْتَدَإِ')) || !r.l.naib.includes(N('نَائِبُ فَاعِلٍ')) || !r.l.lugha.startsWith('lugha|' + N('خَبَرٌ')) || !r.l.kk.includes(N('خَبَرُ «يَكُونُ»')) || !r.l.firr.startsWith('farra|') || !r.l.firr.includes(N('فَاعِلٌ')) || !r.l.waqara.startsWith('waqara|')) throw new Error('chapter 45: ' + J([r.l.mum, r.l.qirna, r.l.asl, r.l.naib, r.l.lugha, r.l.kk, r.l.firr, r.l.waqara]));
+    if (!/\/kanaKhabar$/.test(r.e.kh) || /\/kanaKhabar$/.test(r.e.khc)) throw new Error('the khabar of «يَكُونَا», and its control: ' + J([r.e.kh, r.e.khc]));
+    if (!/\/mubtada$/.test(r.e.mub) || r.e.mum !== N('ممتنعٌ') + '/khabar' || !/\/mubtada$/.test(r.e.mumc)) throw new Error('the sentence behind the pause, and its control: ' + J([r.e.mub, r.e.mum, r.e.mumc]));
+    if (r.e.tara !== N('تارةً') + '/zarf' || !/\/zarf$/.test(r.e.ukhra) || !/\/nat$/.test(r.e.ukhrac)) throw new Error('«تَارَةً … أُخْرَى», and its control: ' + J([r.e.tara, r.e.ukhra, r.e.ukhrac]));
+    if (r.e.lugha !== N('لُغَةٌ') + '/khabar') throw new Error('the khabar behind «وَهُوَ» while «كَانَ» waits: ' + J([r.e.lugha]));
+    if (r.e.l1 !== N('وَجُدٍّ') + '/atf' || r.e.l2 !== N('وَطَلٍّ') + '/atf') throw new Error('the jarr list by rule: ' + J([r.e.l1, r.e.l2]));
+    if (r.g.bad.length || r.g.checked < 1300 || J(r.g.stored) !== J(['وَقَرَ', 'يَقِرُ', 'قِرْنَ', 'جَلْبَبَ', 'يُجَلْبِبُ'].map(N))) throw new Error('the two paradigms and the audit: ' + J([r.g.checked, r.g.bad, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

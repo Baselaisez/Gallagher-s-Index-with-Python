@@ -13060,3 +13060,56 @@ leaves the verb's doer slot unfilled in the engine (the stored lines are right b
 recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ الْحَقُّ» typed without the fatḥa is still read as a doer.
 
 **Next.** Marāḥ part fifteen opens on p. 92 at «وَاجْتِمَاعُ الْحَرْفَيْنِ عَلَى ثَلَاثَةِ أَضْرُبٍ».
+
+
+### v297 (wave 198) — Marāḥ al-Arwāḥ part fifteen, the cited verb's seat, and the khabar of «يَكُونَا»
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 92–96 of the scan (the matn's large type only):
+  chapter 44 «اجْتِمَاعُ الْحَرْفَيْنِ: الضَّرْبُ الْأَوَّلُ» (8 sentences — two vowelled letters in two words and in one,
+  the words of ilḥāq and the measures that would be confused, why «رَدَّ / فَرَّ / عَضَّ» are not, «حَيِيَ») and
+  45 «الضَّرْبُ الثَّانِي وَالثَّالِثُ» (13 — the quiescent first, the quiescent second and why idghām is barred,
+  the dropping in «ظَلْتُ», the two readings of «وَقِرْنَ» derived step by step, the incidental sukūn of «اُمْدُدْ»
+  with its three vowels). 21 sentences / 312 words, fourteen new entries and one measure; the book stands at
+  **45 chapters / 387 sentences / 4,459 words**, version 0.15.0. The letters were collated against the scan's text
+  layer by tool: the only difference is «أَقَرُّ / أَقِرُّ» on p. 95, where the layer is garbled and the page image
+  was read. The attribution records the span and the readings (the examples in rafʿ as printed, «الْيَاءِ الضَّعِيفِ»
+  and «لِأَنَّهُ تَسْقُطُ» as printed, the two Qurʾānic words with the reading the matn cites and the one it then
+  mentions, «تَقَضِّي الْبَازِي» without the fatḥa this page omits).
+- **Two paradigms.** «جَلْبَبَ» (the mulḥaq the matn cites) and «وَقَرَ يَقِرُ» (the mithāl whose feminine imperative
+  «قِرْنَ» is one of the two derivations) are entered as verbs through `sarf_gen`; `sarfAudit` 1,316 checked, 0 bad.
+- **The packager** (`$S/w198/patch_pkg198.py`):
+  - **a cited verb takes the seat the sentence gives it.** The seats of wave 191–196 were the ones a word before the
+    citation names (مِثْل، فِي، مِنْ، هُوَ، قَالَ). Seven more are read off the engine's own row or the word before:
+    khabar of a mubtadaʾ (أَصْلُهُ «اِقْرِرْنَ»), deputy doer (قُرِئَ «قَرْنَ»), doer (لَا يَجُوزُ «فِرُّ»), ism and khabar
+    of «أَنَّ» (لِأَنَّ «رَدَّ» يُعْلَمُ … أَنَّ أَصْلَهُ «رَدَدَ»), khabar of a form of «كَانَ» (فَيَكُونُ أَصْلُهُ
+    «اِقْرَرْنَ»), and the mubtadaʾ that opens a sentence behind a lone «وَ» (وَ «فَرَّ» أَيْضًا يُعْلَمُ). The wording
+    reuses the triples already on the shelf, so one statement keeps one English and one Turkish.
+  - **the lemma's own first letter is no jarr letter.** «كَلِمَتَيْنِ» behind «فِي» had been named «the kāf is a jarr
+    letter» because the word is not letter-for-letter its lemma; a word that opens on its lemma's stem is the lemma
+    in the dual or the plural. Chapters 1–43 repack token for token.
+- **Reader rules** (`$S/w198/patch198.py`, head of the pass):
+  - **the khabar of «يَكُونَا / تَكُونَا / يَكُونُوا».** They carry their noun in themselves; the bare indefinite
+    right behind is the khabar in naṣb, not a ḥāl (أَنْ يَكُونَا مُتَحَرِّكَيْنِ; the Iẓhār's أَنْ لَا يَكُونَا
+    مُصَغَّرَيْنِ moves to its stored line too).
+  - **the sentence a «فَ» opens behind a pause.** «…، فَالْإِدْغَامُ فِيهِ مُمْتَنِعٌ»: an article-noun, a jarr letter
+    with its pronoun and a bare indefinite are mubtadaʾ and khabar — the phrase between them is no fronted khabar
+    (the Iẓhār's وَالْمُسْتَثْنَى مِنْهُ مَذْكُورٌ likewise).
+  - **«تَارَةً … أُخْرَى».** «تَارَة» bare is a ẓarf wherever it stands, and «أُخْرَى» right behind a verb with
+    «تَارَةً / مَرَّةً» earlier is the other time — it had been named the verb's deputy doer.
+  - **the khabar behind «وَهُوَ» while «كَانَ» waits.** Behind a pause, the bare indefinite right after
+    «وَهُوَ / وَهِيَ» is told of that pronoun; it is no noun of the «كَانَ» before the pause (وَهُوَ لُغَةٌ فِي …).
+  - **the jarr list goes on.** Where only the lexicon shows that a word's wāw is a joiner (the analyzer did not
+    mark it), the bare indefinite behind a joined jarr word is one more of the list (بِصَكٍّ وَسُرٍّ وَجُدٍّ وَطَلٍّ —
+    the third had been written in naṣb and the fourth as a badal).
+  - **two drafts withdrawn by the sweep.** The list rule first fired for every joined word and broke the Iẓhār's
+    ẓarf list, a diptote and al-ʿIzzī's cited measures (10 rows) — it now stands down wherever the analyzer itself
+    marked the joiner. A rule reading «bare jarr noun + article-noun» as an annexation while «كَانَ» waits broke
+    «لَيْسَ بِشَيْءٍ، النَّائِمُ يَرَى أَشْيَاءَ» and was dropped whole.
+- **Measured.** Same-data sweeps (v296 code against v297 code on the v297 data): blind 71,268 / 574 / 338 and
+  receipts 71,681 / 323 / 176 before and after — 0 endings changed, 12 labels moved, all toward the stored lines;
+  case layer 58,700 / 59,332 = 98.93 % unchanged. Typed gauge 1,158 / 1,159; label gauge 90.27 → **90.30 %** over
+  34,643; `HadhfEngine.audit()` n = 1,347, 86.3 %, false 3 (at its ceiling). Smoke TOTAL 447, «wave 198» = #445.
+- **Left open.** The analyzer still peels a «نَا» off «يَكُونَا» (the line is authored by hand); the writer vowels a
+  bare typed dual khabar as a plural («متحركين» → ـِينَ) unless the lexicon marks the dual; bare «بفتح» is read as
+  a verb in the blind reading; «وَالْأَوْزَانِ» joined across a long parenthesis and «ضَرُورَةً» are hand lines.
+- **Next.** Marāḥ part sixteen opens on p. 96 at «وَتَقُولُ بِالنُّونِ الثَّقِيلَةِ».
