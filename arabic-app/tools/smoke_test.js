@@ -15123,6 +15123,27 @@ if (!CHROME) {
     if (bad.length) throw new Error('typed sentences by name: ' + J(bad));
   });
 
+  await check('wave 181 — Marāḥ al-Arwāḥ part three is on the shelf (the māḍī: why it is built and on what; the marks of the absent — at least ten chapters, بُنِيَ keyed to بَنَى as a verb, سُوِّيَ to سَوَّى) and the nine rules it called for hold by name: بُنِيَ with its ḍamma is the passive, never «بَنِي» the attached plural; the compound number keeps both halves built (أَرْبَعَةَ عَشَرَ وَجْهًا); the annexed noun after إِنَّ\'s ism is its khabar; حَتَّى (لَا) puts its verb in naṣb whatever conditional stands open; «كَمَا فِي …» closes the passive\'s clause; the manqūṣ written without its yāʾ takes the tanwīn of compensation (ثَانٍ، مَاضٍ) while بَاب keeps its ḍamma; the masculine noun after a Form III maṣdar with its doer pronoun is the maṣdar\'s object and a feminine one stays its naʿt; «وَاو» is the letter\'s name, not وَ + أَوْ; and ثَمَّ after مِنْ is the demonstrative of place, not ثُمَّ', async () => {
+    const J = JSON.stringify;
+    const N = x => String(x || '').normalize('NFC');
+    const shelf = await page.evaluate(() => { const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return null;
+      const ch = n => st.chapters.find(c => Number(c.n || c.id || c.chapter) === n) || st.chapters[n - 1];
+      const c9 = ch(9), c10 = ch(10); const tok = (c, si, ti) => { const sn = c && c.sentences && c.sentences[si]; const t = sn && sn.tokens && sn.tokens[ti]; return t ? [String(t.lex || ''), String(t.pos || '')] : null; };
+      return { chapters: st.chapters.length, buniya: tok(c9, 1, 1), suwwiya: c10 && c10.sentences ? tok(c10, c10.sentences.length - 1, 0) : null, s9: c9 && c9.sentences ? c9.sentences.length : 0, s10: c10 && c10.sentences ? c10.sentences.length : 0 }; });
+    if (!shelf || shelf.chapters < 10 || shelf.s9 < 7 || shelf.s10 < 16) throw new Error('Marāḥ part three is not whole on the shelf: ' + J(shelf));
+    if (J(shelf.buniya) !== J(['bana', 'verb']) || J(shelf.suwwiya) !== J(['sawwa', 'verb'])) throw new Error('part three keys: ' + J(shelf));
+    const dv = sents => page.evaluate(ss => ss.map(t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; try { const v = DabtEngine.vowel(t, 'endings'); return (v.words || []).map(w => w.out + '/' + w.rule).join(' '); } catch (e) { return 'ERR ' + e.message; } }), sents);
+    const sents = ['وَبُنِيَ الْأَمْرُ عَلَى السُّكُونِ', 'وَهُوَ يَجِيءُ عَلَى أَرْبَعَةَ عَشَرَ وَجْهًا', 'وَعَلَى الْفَتْحِ لِأَنَّهُ أَخُو السُّكُونِ لِأَنَّ الْفَتْحَةَ جُزْءُ الْأَلِفِ', 'وَإِنْ لَمْ يَكُنِ الضَّادُ بِمَا قَبْلَهَا حَتَّى لَا يَلْزَمَ الْخُرُوجُ مِنَ الْكَسْرَةِ إِلَى الضَّمَّةِ', 'ثُمَّ قُصِرَ كَمَا فِي مِخْيَطٍ أَصْلُهُ مِخْيَاطٌ', 'ضُرِبَ فِي الدَّارِ زَيْدٌ', 'هو ماض في طريقه', 'الرجل ثان في الصف', 'للبيت باب كبير', 'رأيت قاضيا عادلا', 'في معاملته الناس حكمة', 'وَعَلَى الْحَرَكَةِ لِمُشَابَهَتِهِ الِاسْمَ', 'سررت بمقابلته اللطيفة'];
+    const o = (await dv(sents)).map(N);
+    const want = [/^وَبُنِيَ\/mazi الْأَمْرُ\/naib /, / أَرْبَعَةَ\/mabni عَشَرَ\/mabni وَجْهًا\/tamyiz$/, / الْفَتْحَةَ\/innaIsm جُزْءُ\/innaKhabar /, / يَلْزَمَ\/nasbVerb الْخُرُوجُ\/fail /, / أَصْلُهُ\/mubtada مِخْيَاطٌ\/khabar$/, / زَيْدٌ\/naib$/, / ماضٍ\/[a-zA-Z]+ /, / ثانٍ\/[a-zA-Z]+ /, / بابٌ\/[a-zA-Z]+ /, / قاضيًا\/maful /, / الناسَ\/maful /, / الِاسْمَ\/maful$/, / اللطيفةِ\/nat$/];
+    const bad = sents.map((t, k) => want[k].test(o[k]) ? null : t + ' → ' + o[k]).filter(Boolean);
+    if (bad.length) throw new Error('wave-181 endings: ' + J(bad));
+    const kinds = await page.evaluate(() => { const K = (t, i) => { try { const r = SentenceAnalyzer.analyze(t); const L = Array.isArray(r) ? r : (r.rows || []); return String((L[i] || {}).kind || ''); } catch (e) { return 'ERR'; } };
+      return [K('لِلْفَرْقِ بَيْنَ وَاوِ الْعَطْفِ وَوَاوِ الْجَمْعِ', 2), K('واو العطف حرف', 0), K('جاء زيد وأو عمرو', 2), K('وَمِنْ ثَمَّ لَا يَجُوزُ الْعَطْفُ', 1), K('ومن ثم لا يجوز', 1), K('ثُمَّ جَاءَ زَيْدٌ', 0), K('جاء زيد ثم عمرو', 2)]; });
+    const wantK = ['noun', 'noun', 'particle', 'noun', 'noun', 'particle', 'particle'];
+    if (kinds.some((k, i) => !String(k).startsWith(wantK[i]))) throw new Error('wave-181 word kinds (وَاو، وَأَوْ، مِنْ ثَمَّ، ثُمَّ): ' + J(kinds));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

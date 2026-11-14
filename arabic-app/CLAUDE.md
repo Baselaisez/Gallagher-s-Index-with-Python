@@ -11988,3 +11988,64 @@ batch two's 97.5 % on first contact is the nearer estimate, and the next batch s
 «هاتان بنتان»; the yāʾ plural of an unknown participle; the al-noun after «هذان / هذين» labelled muḍāf ilayh; the
 derived jussive «نَُورِ» wears two vowels on one letter (IlalEngine/derived-cell bug, now unreachable from «نور» but not
 fixed). The Marāḥ continues at p. 34 (the māḍī).
+
+### v280 (wave 181) — Marāḥ al-Arwāḥ part three: the māḍī, and nine rules it called for
+
+**The text.** `research/sources/marah-al-arwah-src.txt` grows by pp. 34–40 of the owner's PDF (the opening of «فَصْلٌ فِي
+الْمَاضِي»), collated line by line against the page images — the large type only, never the glosses set above the lines
+or the footnotes. Two chapters: **9 «الْمَاضِي وَبِنَاؤُهُ»** (fourteen forms; built because nothing in it calls for iʿrāb;
+on a vowel because it resembles the noun; on the fatḥ, the brother of sukūn; the muḍāriʿ declined, the amr built on
+sukūn) and **10 «عَلَامَاتُ الْغَائِبِ وَالْغَائِبَةِ»** (the alif, wāw and nūn; ضَرَبُوا / رَمَوْا / رَضُوا; the written alif;
+the tāʾ of the feminine; four vowels in a row; ضَرَبَتَا، رَمَتَا and the poor dialect's رَمَاتَا; هُدَبِد and مِخْيَط;
+the two duals made alike). 23 sentences / 299 words; the book stands at **10 ch / 76 s / 926 words**, manifest 0.3.0.
+Nine new lemmas, six shipped ones reused, one new paradigm (سَوَّى), 57 new corrections (271 in all).
+
+**Readings recorded in the attribution** (all three languages): «وَفِي وُقُوعِهِ» and «وَبِخِلَافِ رَمَوْا» keep the print's
+wāw; «هُمُوا» keeps its wāw and alif; the print's joined «حضروقتل» is written «حَضَرَ وَقَتَلَ»; the print's «هُدَابِدٍ»
+after «لِأَنَّ أَصْلَهُ» is printed «هُدَابِدٌ», the khabar of أَنَّ.
+
+**Seven engine rules in the reader** (`patch181*.py` in the wave's scratch, all swept):
+
+- **A — a mulḥaq has its own vowels.** `constructLetters` answered «بني» from the attached-plural table whatever the
+  word wore. «بُنِيَ» with a ḍamma on its bāʾ is not «بَنِي»: where the written first vowel contradicts the mulḥaq's own,
+  the table is not asked, and the analyzer's passive (بُنِيَ ← بَنَى) stands. The whole chapter turns on this word.
+- **B — the compound number's second half is no doer.** «عَلَى أَرْبَعَةَ عَشَرَ وَجْهًا»: the rule "the noun after an
+  intransitive verb's jarr phrase is its doer" now skips the tail the pre-pass already tagged `__numCompound26`.
+- **C — the annexed noun right after إِنَّ's ism is its khabar.** «لِأَنَّ الْفَتْحَةَ جُزْءُ الْأَلِفِ» after a finished
+  nominal clause was opened as a NEW mubtadaʾ by the wave-24d rule; that rule now stands down while إِنَّ still owes a khabar.
+- **D — حَتَّى governs its verb whatever conditional stands open.** «وَإِنْ لَمْ يَكُنْ … حَتَّى لَا يَلْزَمَ»: the open
+  shart's jazm reached across حَتَّى. A muḍāriʿ right after حَتَّى or حَتَّى لَا is manṣūb, decided before the jazm branch.
+- **E — «كَمَا فِي …» closes the passive's clause.** «ثُمَّ قُصِرَ كَمَا فِي مِخْيَطٍ أَصْلُهُ مِخْيَاطٌ»: the noun after the
+  comparison is no deputy of the verb before كَمَا; with a pronoun or the article and a noun after it, it opens a
+  nominal clause (mubtadaʾ + khabar) and the passive's deputy is hidden. «ضُرِبَ فِي الدَّارِ زَيْدٌ» keeps its deputy.
+- **F — the manqūṣ written without its yāʾ.** `DabtEngine.manqusBare181`: a word the lexicon owns only WITH a final yāʾ
+  (ثَانِي، الْمَاضِي — kasra + yāʾ, no shadda) and that is typed without it is the indefinite manqūṣ: in rafʿ and jarr the
+  writer gives it the tanwīn of compensation (ثَانٍ، مَاضٍ), never «ثَانٌ». A word the lexicon owns as typed (بَاب، مَال،
+  جَارّ) is not asked. This closes the old «بِقَاضٍ» item for every lemma stored with its yāʾ.
+- **G — the maṣdar's object.** «لِمُشَابَهَتِهِ الِاسْمَ»: a naʿt agrees with its noun in gender, so the masculine
+  article-bearing noun right after a Form III maṣdar (مُفَاعَلَة) that carries its doer as a pronoun is the maṣdar's
+  object, in naṣb. «بِمُقَابَلَتِهِ اللَّطِيفَةِ» stays a naʿt. One shelf row fixed by it (Taṣrīf al-ʿIzzī 13:s4).
+
+**Two analyzer rules the case layer asked for:**
+
+- **H — «وَاو» is the letter's name.** The joiner peel read «وَاوِ الْعَطْفِ» as وَ + أَوْ. The bare word «واو» keeps its
+  first wāw (the conjunction before أَوْ is written with its hamza: «وَأَوْ» still peels).
+- **I — «ثَمَّ» after «مِنْ» is the demonstrative of place.** A jarr letter enters on no ḥarf, so «مِنْ ثَمَّ» is never the
+  conjunction ثُمَّ: the word is an ism built on fatḥa («hence»), and the row's note says why. ثُمَّ elsewhere is untouched.
+
+**Three builder rules** (`tools/authoring/pkg_from_engine.py`): the engine's own `majhulMazi` / `majhulMudari` cell
+makes the passive line (كُتِبَ، ضُمَّ، زِيدَتْ، قُصِرَ، يُقَالُ — three shipped lines of parts one and two improve with it);
+the naṣb governor is named «بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ حَتَّى» and a لَا between is skipped; an authored line may carry
+its own part of speech through the particle branch (لَيْسَتْ a verb, هُمُوا a pronoun).
+
+**Measured.** Package probe: ḍabṭ 921 right / 3 wrong / 2 undecided of 926 before rules F–G; audit 0 bad; 44 games.
+Sweeps against the v279 baseline: blind 67,507 → 67,807 right (2 fixed, 0 broken; the new text adds 298 right and 1 wrong),
+receipts-on 1 fixed / 0 broken, case layer 98.69 → **98.70 %** (7 fixed, 0 broken; new text 245 right / 1 wrong —
+the fused «فِيمَا», where the line names two words and the gauge reads one). Typed gauge 603 / 603. Smoke «wave 181»
+(#428 of 430) holds the shelf's part three and all nine rules by name, with their controls.
+
+**Open, named for the next wave** (found while writing the smoke control): a noun/verb homograph after a demonstrative or
+a fronted possession is still read as a māḍī when typed bare — «هذا مال كثير», «هذا علم نافع», «ذلك فضل الله»,
+«هذا حكم عادل», «عنده مال كثير». «وَفِي وُقُوعِهِ صِفَةً» (a ḥāl after a maṣdar's jarr phrase) is read as a delayed
+mubtadaʾ. The pass script must never land a package when the builder failed (`pass.sh` now checks for the manifest first
+— a broken builder edit once emptied the landed directory; it was rebuilt from the saved engine output).
