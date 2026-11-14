@@ -12388,3 +12388,60 @@ before that line was reworded. Smoke «wave 186» (#433 of 435).
 **Left open.** The analyzer itself still reads «ضَرَبَكِ» as a noun and keeps «ضَرَبُونِي» / «رَبُّنَا» unsplit — the
 pronoun reader works around it; an analyzer rule would have to be swept. `attach` cannot tell an amr from a jussive by
 shape, so «اِضْرِبْكَ» is refused only in the game. «عَصَايَ» is built but not read back.
+
+### v286 (wave 187) — the attached pronoun in the analyzer
+
+v285's pronoun reader round-tripped 288 built forms only after it worked AROUND the analyzer in four places. Each
+work-around named a gap; this wave closes them in the analyzer itself, where the typed sentence and the Jumla lab read.
+
+- **A · the pronoun's kasra is no case ending.** «ضَرَبَكِ», «رَمَاكِ», «سَأَلَكِ» were nouns and «يَرْمِيهِ», «يَضْرِبُكِ»
+  verbs with no cell: the «final kasra is a jarr sign, and no verb is majrūr» guard read the vowel of «كِ / هِ» as a
+  case. That guard is about the word's OWN last letter; where the written word is longer than the cell by a pronoun,
+  the kasra stands on no letter of the verb. A kasra at the SEAM still refuses the cell (طَلَبِكِ, بَيْتِكِ — the
+  mabnī-moved test), and «مَلِكِ» is still the noun.
+- **B · the group's wāw before the nūn of protection.** «ضَرَبُونِي», «سَمِعُونِي», «يَنْصُرُونِي» kept their pronoun
+  glued on: the host «ضَرَبُو» is no cell until its alif is put back. The host is asked WITH its vowels when the word
+  has them, so «ظُنُونِي» (my doubts) never reaches «ظَنُّوا» — that control was written before the rule.
+- **C · the wāw the mīm takes back.** «ضَرَبْتُمُوهُ» was a noun; the paradigm stores «ضَرَبْتُمْ». One line in
+  `formCandidates`, one in the wiqāya host — and one in the WRITER, found by the sweep: with a cell at last, al-Kāfiya
+  42:s7 «أَطَعْتُمُوهُمْ» came out «أَطَعْتُمُوْهُمْ», the cell's sukūn set on the wāw. Nothing rides that wāw.
+- **D · the vowelled two-letter host.** «رَبُّهُ», «كُلُّهُمْ», «حُبِّهِ», «جَدُّكَ», «رَبِّي» stayed whole and unsure;
+  «حَقُّهَا», «أُمِّهِ», «عَمُّهُ» were named by the doubled VERB that shares their letters (حَقَّ، أَمَّ، عَمَّ). Wave
+  182 had opened these for bare typing only, because «رُبَّهُ» is another word — but a vowelled word says which it is by
+  its own first vowel. The pronoun comes off where the lexicon owns the host as a noun wearing that vowel, or as a
+  doubled verb's cell (ظَنَّهُ، عَمَّهُ now show their object); the row is named by the NOUN wherever it stayed a noun.
+- **E · إِنَّ's sisters through the nūn of protection.** «لَيْتَنِي», «لَعَلَّنِي», «لٰكِنَّنِي» — three table rows; the
+  fusion block under the table already knew how to read them.
+- **D′ · behind a jarr letter.** «بِحَقِّهِ», «لِرَبِّي», «وَلِرَبِّكَ», typed bare «بحقه», «لربه»: the ordinary peel had
+  taken the pronoun and left three letters read as one unknown noun. Vowelled, the letter's own vowel, the seam's kasra
+  and the lexicon's noun open it; bare, the lexicon must own the three letters neither as a noun nor as a verb's cell
+  and the last two as a DOUBLED noun (so «كلبه», «بلده», «كتبه» stay what they are — all three are in the check).
+- **G · the case layer.** With «حَقِّي» opened, its kasra was claimed as jarr (three new-wrong on the first sweep).
+  The speaker's yāʾ hides the case after a doubled letter as after a single one — NFC writes that kasra BEFORE the
+  shadda, so the existing `ِي$` test never saw it.
+- **H · «إني طالب».** Typed bare, «طالب» is the noun and the māḍī طَالَبَ, and the engine wrote the verb after
+  «إني» / «ليتني». After إِنَّ or a sister whose ism is a first- or second-person pronoun, a «he»-māḍī cannot be the
+  khabar — nothing in it returns to the ism — so the word the lexicon owns as a noun is the khabar. A third-person
+  ism keeps the verb («ليته طالبَ»), and so does the plain sentence («طالب الرجل بحقه»). Found by the battery line
+  written for rule E, not by looking for it.
+
+**Learned.**
+- **Narrow a silence to the rows that need it.** Widening the `ِي$` test to `ِّ?ي$` fixed three rows and silenced ten
+  right ones (لِلتَّمَنِّي, بِرَبِّي — a jarr clitic leaves no flag on the row). The rule now fires only on rows rule D
+  opened (`__ya187`), stands down behind a jarr word, and lets the OFFICE speak where it seats a jarr (بَيْنَ كِنِّي,
+  كِتَابُ جَدِّي). Four sweeps to get one line right; each wrong version looked fine on the probe.
+- **A new cell wakes the writer.** A word that gains a paradigm cell is rewritten from that cell. Sweep after any
+  rule that makes more words reach their cells, however local it looks.
+
+**Measured.** Blind and receipts-on sweeps identical to v285 (68,322 / 548 / 292 and 68,700 / 310 / 152; 0 fixed,
+0 broken — the rules change what a typed or isolated word IS, and the shelf's endings were already right). Case layer
+56,176 → **56,184** right of 56,808 judged (98.90 %): FIXED 1, BROKEN 0, newly judged 7 right / 0 wrong, nothing
+silenced. Typed battery 341 → 357 sentences: sixteen new ones with pronouns, **14 of 16 clean on first contact** (one
+miss was my own battery line — «كلُّهم» written without the pronoun's marks — and one was rule H's gap); after rule H
+1,109 of 1,110 judged words. Smoke «wave 187» (#434 of 436): 35 rows by name with their controls, five lemmas, six
+claims, the Kāfiya word, and the pronoun reader on the same words.
+
+**Left open.** The typed «بحقه» is read right and WRITTEN «بِحَقِهِ» — the writer restores a doubled noun's shadda for
+«حقه» and «في حقه» but not behind a joined jarr letter (the one battery miss, kept judged). «عَلَّمَنِيهِ» (two
+objects) is still unread; «حَقَّهُ» with a fatḥa prefers the verb to «his right» (the seat should decide); «أَبُوكِ» is
+named by a compound lemma («أَبُو بَكْرٍ») from the lexicon; «آمن الرجل بربه» typed bare reads «آمن» as «I».

@@ -15358,6 +15358,39 @@ if (!CHROME) {
     if (ui.q < 3 || ui.opts < 3) throw new Error('the game round did not draw: ' + J([ui.q, ui.opts]));
   });
 
+  await check('wave 187 — the analyzer reads the attached pronoun where the pronoun engine had to work around it: the kasra of «كِ / هِ» is the pronoun\'s and refuses no verb (ضَرَبَكِ، يَرْمِيهِ) while a kasra on the word\'s own letter still does (طَلَبِكِ، مَلِكِ); the group\'s wāw before the nūn of protection (ضَرَبُونِي) with «ظُنُونِي» left a noun; the wāw the mīm takes back (ضَرَبْتُمُوهُ) and nothing written on it; the vowelled two-letter host (رَبُّهُ، كُلُّهُمْ، حُبِّهِ، رَبِّي named by the lexicon\'s noun; ظَنَّهُ the verb with its object) with «رُبَّهُ» left whole; إِنَّ\'s sisters through the nūn of protection (لَيْتَنِي); and the speaker\'s yāʾ after a doubled letter hides the case except behind a jarr letter', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const sig = w => { try { const rs = SentenceAnalyzer.analyze(w); const x = rs[rs.length - 1] || {}; return (x.kind || '?') + (x.cell ? ':' + x.cell.tense + x.cell.i : '') + ' ' + (x.seg || []).join('+'); } catch (e) { return 'ERR ' + e.message; } };
+      const lem = w => { try { const x = SentenceAnalyzer.analyze(w)[0] || {}; return N(String(x.lemma || '').split(/[()\s،]/)[0]); } catch (e) { return 'ERR'; } };
+      const claim = (t, i) => { try { const rows = SentenceAnalyzer.analyze(t); const c = CaseEngine.claim(rows, i); return c ? c.k : '-'; } catch (e) { return 'ERR ' + e.message; } };
+      const out = (t, i) => { try { return N(DabtEngine.vowel(t).words[i].out); } catch (e) { return 'ERR ' + e.message; } };
+      const st = STORIES.find(x => x.id === 'al-kafiya'); const sn = st && st.chapters[41] && st.chapters[41].sentences.find(x => x.id === 's7'); const kf = sn ? sn.tokens.map(t => t.s.full).join(' ') : '';
+      const rd = w => (DamirEngine.read(w) || []).map(x => x.kind.k + '[' + x.seats.join(',') + ']').join('+') || '-';
+      return { s: { ki: sig('ضَرَبَكِ'), hi: sig('يَرْمِيهِ'), malik: sig('مَلِكِ'), talab: sig('طَلَبِكِ'), bayt: sig('بَيْتِكِ'), uni: sig('ضَرَبُونِي'), fa: sig('فَضَرَبُونِي'), mud: sig('يَنْصُرُونِي'), zunun: sig('ظُنُونِي'), uyun: sig('عُيُونِي'),
+          tumu: sig('ضَرَبْتُمُوهُ'), tumuni: sig('ضَرَبْتُمُونِي'), rabbuhu: sig('رَبُّهُ'), kull: sig('كُلُّهُمْ'), hubb: sig('حُبِّهِ'), rabbi: sig('رَبِّي'), zanna: sig('ظَنَّهُ'), haqq: sig('حَقُّهَا'), rubba: sig('رُبَّهُ'), innahu: sig('إِنَّهُ'),
+          layta: sig('لَيْتَنِي'), laalla: sig('لَعَلَّنِي'), lakinna: sig('لٰكِنَّنِي'), laytahu: sig('لَيْتَهُ'),
+          bihaqq: sig('بِحَقِّهِ'), lirabbi: sig('لِرَبِّي'), walirabb: sig('وَلِرَبِّكَ'), bareHaqq: sig('بحقه'), bareKalb: sig('كلبه'), bareBalad: sig('بلده'), bareKataba: sig('كتبه'),
+          talibMe: sig('إني طالب'), talibWish: sig('ليتني طالب'), talibHe: sig('ليته طالب'), talibPlain: sig('طالب الرجل بحقه').length > 0 ? (SentenceAnalyzer.analyze('طالب الرجل بحقه')[0].kind || '?') : '?' },
+        l: { rabbuhu: lem('رَبُّهُ'), kull: lem('كُلُّهُمْ'), haqq: lem('حَقُّهَا'), umm: lem('أُمِّهِ'), amm: lem('عَمُّهُ') },
+        c: { haqqi: claim('هٰذَا حَقِّي', 1), birabbi: claim('آمَنْتُ بِرَبِّي', 1), kitabi: claim('هٰذَا كِتَابِي', 1), fihaqqi: claim('فِي حَقِّي', 1), jaddi: claim('كِتَابُ جَدِّي', 1), kinni: claim('بَيْنِي وَبَيْنَ كِنِّي لَيْلٌ دَامِسٌ', 2) },
+        kafiya: kf ? out(kf, 2) : 'NO SENTENCE', kafiyaWord: sn ? N(sn.tokens[2].s.full) : '',
+        rd: { tumu: rd('ضَرَبْتُمُوهُ'), ki: rd('ضَرَبَكِ'), uni: rd('ضَرَبُونِي') } }; });
+    const want = { ki: 'verb:mazi0 ضرب+ك', hi: 'verb:mudari0 يرمي+ه', malik: 'noun ملك', talab: 'noun طلب+ك', bayt: 'noun بيت+ك', uni: 'verb:mazi2 ضربو+ني', fa: 'verb:mazi2 ف+ضربو+ني', mud: 'verb:mudari2 ينصرو+ني', zunun: 'noun ظنون+ي', uyun: 'noun عيون+ي',
+      tumu: 'verb:mazi8 ضربتمو+ه', tumuni: 'verb:mazi8 ضربتمو+ني', rabbuhu: 'noun رب+ه', kull: 'noun كل+هم', hubb: 'noun حب+ه', rabbi: 'noun رب+ي', zanna: 'verb:mazi0 ظن+ه', haqq: 'noun حق+ها', rubba: 'noun ربه', innahu: 'particle إن+ه',
+      layta: 'particle لَيْتَ+نِي', laalla: 'particle لَعَلَّ+نِي', lakinna: 'particle لَكِنَّ+نِي', laytahu: 'particle ليت+ه',
+      bihaqq: 'noun ب+حق+ه', lirabbi: 'noun ل+رب+ي', walirabb: 'noun و+ل+رب+ك', bareHaqq: 'noun ب+حق+ه', bareKalb: 'noun كلب+ه', bareBalad: 'noun بلد+ه', bareKataba: 'verb:mazi0 كتب+ه',
+      talibMe: 'noun طالب', talibWish: 'noun طالب', talibHe: 'verb:mazi0 طالب', talibPlain: 'verb' };
+    const bad = Object.keys(want).filter(k => String(r.s[k]).normalize('NFC') !== want[k].normalize('NFC')).map(k => k + ' → ' + r.s[k] + ' (want ' + want[k] + ')');
+    if (bad.length) throw new Error('the analyzer\'s rows: ' + J(bad));
+    const wantL = { rabbuhu: 'رَبّ', kull: 'كُلّ', haqq: 'حَقّ', umm: 'أُمّ', amm: 'عَمّ' };
+    const badL = Object.keys(wantL).filter(k => r.l[k] !== wantL[k].normalize('NFC')).map(k => k + ' → ' + r.l[k]);
+    if (badL.length) throw new Error('the two-letter noun is not named by the lexicon\'s noun: ' + J(badL));
+    if (r.c.haqqi !== '-' || r.c.birabbi !== 'jarr' || r.c.kitabi !== '-' || r.c.fihaqqi !== 'jarr' || r.c.jaddi !== 'jarr' || r.c.kinni !== 'jarr') throw new Error('the speaker\'s yāʾ and the case claim: ' + J(r.c));
+    if (!r.kafiyaWord || r.kafiya !== r.kafiyaWord) throw new Error('al-Kāfiya 42:s7 — the writer moved «' + r.kafiyaWord + '» to «' + r.kafiya + '»');
+    if (r.rd.tumu !== 'rafMuttasil[8]+nasbMuttasil[0]' || r.rd.ki !== 'rafMuttasil[0]+nasbMuttasil[9]' || r.rd.uni !== 'rafMuttasil[2]+nasbMuttasil[12]') throw new Error('the pronoun reader on the same words: ' + J(r.rd));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
