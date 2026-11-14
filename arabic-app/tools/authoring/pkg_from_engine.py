@@ -10,7 +10,7 @@ meta.json     {"id", "storyGroup", "title":{ar,en,tr}, "subtitle":{…}, "level"
                "chapterTitles": {"1": {"en":…, "tr":…}, …}, "attribution": {ar,en,tr,reviewStatus}}
 lex_extra     {"<bare host>": {"key":…, "lemma":…, "pos":…, "gloss":{en,tr}, "level":…, "root"?, "plural"?}} — the words no shipped glossary knows
 trans         {"<ch>:<sId>": {"en":…, "tr":…}} — the sentence translations (the author's)
-fixes         {"<ch>:<sId>:<i>": {"key"?:…, "rule"?:…, "k"?:…, "note"?: {ar,en,tr}}} — the author's corrections of the engine's reading
+fixes         {"<ch>:<sId>:<i>": {"key"?:…, "pos"?:…, "rule"?:…, "k"?:…, "enc"?:…, "tags"?: [added], "grammar"?: [replacing], "irab"?: {ar,en,tr}}} — the author's corrections of the engine's reading
 
 Every iʿrāb line is TEMPLATED FROM THE RULE the engine chose and the written shape of the word (the sign: ḍamma / fatḥa /
 kasra, the letters of the dual and the sound plural, the taqdīrī sign of the maqṣūr / manqūṣ, the nūn of the five forms).
@@ -1434,6 +1434,9 @@ def main():
             for i2, t in enumerate(toks):
                 fx2 = FX.get(f"{where0}:{i2}", {}) if len(toks) == len(words) else {}
                 if fx2.get("irab"): t["irab"] = {kk: fx2["irab"].get(kk, (t.get("irab") or {}).get(kk, "")) for kk in ("ar", "en", "tr")}
+                if isinstance(fx2.get("grammar"), list):   # (wave 177) the author's own anchors REPLACE the ones read off the engine's first guess (a quoted verb is no governed muḍāriʿ)
+                    g2 = list(dict.fromkeys(x for x in fx2["grammar"] if x in GIDS)); t.pop("grammar", None)
+                    if g2: t["grammar"] = g2
             name_khabar(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_sila(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_ma_khabar(toks, report)   # (wave 166)

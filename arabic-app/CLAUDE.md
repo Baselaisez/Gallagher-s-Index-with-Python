@@ -11746,3 +11746,78 @@ not in the release script; the local gates ran everything except the one Python 
   `python -m unittest discover -s qissa_core/tests -t .` before the build, and stops the release on a failure.
   **A rule a person has to remember is a rule that will be missed; a gate that only CI runs is found out in public.**
   When CI grows a step, the local release grows the same step in the same commit.
+
+### v276 (wave 177) — «مَرَاحُ الْأَرْوَاحِ» part two: the maṣdar's measures and the thirty-five bābs
+
+Pages 22–33 of the owner's PDF, collated against the page images as before, the matn alone: three chapters
+(6 «مَصْدَرُ الثُّلَاثِيِّ وَغَيْرِهِ», 7 «الْأَبْوَابُ السِّتَّةُ وَدَعَائِمُهَا», 8 «الْمُنْشَعِبَةُ وَالرُّبَاعِيُّ
+وَالْمُلْحَقُ») — 24 sentences / 270 words; the book now stands at 8 chapters / 53 sentences / 627 words, version 0.2.0.
+Same pipeline (`tools/authoring/marah/`): 44 new lemmas, 16 new paradigms (21 in the file), 138 corrections for the new
+chapters (214 in all), translations in `trans_2.txt`. The package is a fixed point of the pipeline (a further engine
+pass rebuilds it byte for byte).
+
+**What the text is, and what was gated because of it.** The passage is two counts — Sībawayh's thirty-two measures of
+the three-letter maṣdar, and the thirty-five bābs — and both are structure, so both are gated: 6:s2 lists exactly
+thirty-two words after «نَحْوُ», all in jarr; the examples the matn cites after each «نَحْوُ» add up to
+6 + 12 + 1 + 3 + 6 + 5 + 2 = 35. Al-Kāfiya 15:s4 says the same thirty-two in one line («وَذَكَرَ سِيبَوَيْهِ مِنْ مَصَادِرِ
+الثُّلَاثِيِّ اثْنَيْنِ وَثَلَاثِينَ»); the Marāḥ is where they are named.
+
+**Print readings kept or changed, all in the manifest:** «وَمِسْعَاة» → «مَسْعَاة» (the mīm-maṣdar on مَفْعَلَة);
+«قِتَّالًا» with the print's shadda; «التَّهْدَارُ وَالتَّلْعَابُ» in the rafʿ the print vowels (the line says «quoted in
+rafʿ, as the print vowels it»); «كُدْتَّ» is the print's idghām mark for «كُدْتَ». The āya «بِأَيِّكُمُ الْمَفْتُونُ» stands
+in its own wording, and its line follows the AUTHOR's reading (المفتون a maṣdar on the ism mafʿūl's measure — a
+postponed mubtadaʾ), and says so.
+
+**Quoted dialect forms are keyed to the verb they are a dialect OF.** «بَقَى، فَنَى» (Ṭayyiʾ) → `baqiya`, `faniya`;
+«كُدْتَ» → `kada`; «دِمْتَ» → `dama`; «فَضِلَ يَفْضُلُ» → `fadala`; «رَكَنَ يَرْكَنُ» → `rakana` (stored on its own bāb,
+with a note naming the two dialects it mixes). The written form is then NOT a cell of that paradigm — which is the
+matn's whole point — and every such token's line says «لَفْظٌ مَحْكِيٌّ». The mulḥaq verbs carry no passive: none is
+stored that the sources do not show.
+
+**The builder (`pkg_from_engine.py`) learned one thing:** a fix may carry `"grammar": [...]`, which REPLACES the
+anchors read off the engine's first guess («كَفَضِلَ», «احْمَارَرَ» were anchored to the jussive's note because the engine
+had first read them as governed verbs). `tags` still adds; `enc: ""` removes a pronoun the engine peeled off a radical
+(«تَرَهْوَكَ», «تَمَسْكَنَ» were split as ـكَ and ـكَنَ). And every quoted verb's key and part of speech is pinned in
+`mk_fixes.py` (`VQ`): three of them flipped between two engine passes, because a verb standing alone in a list is the
+case where the engine has least to go on.
+
+**Six rules the new chapters called for — none of them about this book.**
+
+- **The six bābs are the bare verb's.** `sjAttested` reads a bāb off the two vowels of a wazn when no model verb names
+  it; «فَوْعَلَ يُفَوْعِلُ» and «فَيْعَلَ يُفَيْعِلُ» passed that test and the audit regenerated حَوْقَلَ as *حَقَلَ. The
+  fallback now requires the first word to be the bare ف ع ل. (The audit caught it — two bad paradigms out of 16 — and
+  the fix is in the reader, not in the data.)
+- **A kasratān before a final shadda is still a kasratān.** NFC writes طَيٍّ as yāʾ + kasratān + shadda, so the word ENDS
+  on the shadda; the construct test read the next word's ending with `/ٍ$/` and missed it. «بَنِي طَيٍّ»,
+  «مُسْلِمِي حَيٍّ». (The neighbouring line already folded the shadda for the rafʿ/naṣb test. **A normalisation fact is
+  needed by every regex that reads an ending, not by the one that happened to be bitten first.**)
+- **The maqṣūr shows no case to the ḥadhf engine.** `HadhfEngine.pageCase` read the fatḥa before the alif of
+  «الْحِثِّيثَى» as naṣb and proposed an omitted verb for it. The rule sits AFTER the pronoun test: its first placement
+  silenced every «ـهَا» in the shelf and the audit's false count said so within a minute.
+- **اثْنَيْنِ is the dual, no decade.** The «decade + tamyīz» rule tested «a number ending in ـِينَ» and took
+  «اثْنَيْنِ وَثَلَاثِينَ بَابًا» for a decade and ITS counted noun. Now: the decade joined to the dual number follows it
+  (rafʿ beside اثْنَانِ, jarr behind a jarr letter, naṣb elsewhere) and the counted noun is the decade's tamyīz; the
+  office layer lets that decade answer although the dual number, kept as written, makes no claim itself.
+- **A lemma on ـُونَ owns its form on ـِينَ.** «ثَلَاثِينَ» reached no lexicon entry (the lemma is ثَلَاثُونَ), so the
+  joined-word test — which needs a lemma — failed on it in one of the engine's two paths and not in the other. Offered
+  last, only where the lexicon has no word on the written letters, only for five letters or more, and only where the
+  entry really ends in ـُونَ (دِين is not دُونَ). Four «وَتِسْعِينَ» elsewhere on the shelf turned right with it.
+- **The dual pronoun's clause is the pronoun's.** The label reader drops «وَالْهَاءُ ضَمِيرٌ…» before reading a word's own
+  case; its list of pronouns lacked هُمَا and كُنَّ, so nine lines («رَبَّهُمَا»، «لَبَنَهُمَا»، «أَحَدُهُمَا»…) were read as
+  «mabnī».
+
+**One rule withdrawn the same hour.** «a line that says مَحْكِيّ is never a particle's line» fixed «كَفَضِلَ» and
+un-judged 353 correctly-read quoted particles in al-Kāfiya and the Iẓhār. The sweep is what said so; the rule went,
+and the one line was reworded instead («الْكَافُ جَارَّةٌ…»). **A rule that makes a number go up by silencing rows is
+not a fix — read `silenced: right` before reading the percentage.**
+
+**Numbers.** The Marāḥ: 625 of 627 endings written by the engine, 0 wrong, 2 left undecided; paradigm audit clean;
+44 games playable. Shelf: blind 67,505 / 548 / 295 (0 fixed, 0 broken outside the new text), receipts-on
+67,886 / 309 / 153, case layer 98.66 → 98.69 % (13 fixed, 0 broken, 0 silenced, 173 newly judged and all right),
+label gauge 90.03 % over 32,774 offices, ḥadhf audit n = 1,277, 86.2 %, false 3. Smoke check «wave 177» (#424 of 426).
+
+**Still open, named so they are not rediscovered:** the typed JOINED alif-dual («وَكِتَابَا الطَّالِبِ»);
+«وَالْوَاحِدُ قَبْلَ الْمُتَعَدِّدِ» blind; «دَارُوهَا» read as a verb by the blind case layer; «بِقَاضٍ» behind a fused bāʾ;
+a typed, unvowelled «بني طي» is still read as the passive بُنِيَ (the lexicon answers «بُنَيّ» for a word whose written
+vowels contradict that lemma — the agreeing-vowels test picks an alternate but does not yet refuse the hit).
+The Marāḥ continues at p. 34 (the māḍī).

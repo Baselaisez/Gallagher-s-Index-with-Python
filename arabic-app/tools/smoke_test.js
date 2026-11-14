@@ -14985,6 +14985,71 @@ if (!CHROME) {
     if (!r.c || !/^هٰهُنَا\/mabni\/true اشْتِقَاقٌ\/khabar\/true /.test(r.c)) throw new Error('هٰهُنَا اشْتِقَاقٌ صَغِيرٌ: ' + J(r.c));
   });
 
+  await check('wave 177 — Marāḥ al-Arwāḥ part two: Sībawayh\'s thirty-two measures stand in one list and the thirty-five bābs add up from the examples the matn cites (6 + 12 + 1 + 3 + 6 + 5 + 2); a wazn with an added letter names no bāb of the six (فَوْعَلَ، فَيْعَلَ); a kasratān before a final shadda still proves the annexed plural (بَنِي طَيٍّ); and the maqṣūr shows no case to the ḥadhf engine (الْحِثِّيثَى) while a pronoun\'s alif does (تَقْدِيمُهَا)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { none: true };
+      const ch = n => st.chapters.find(x => String(x.n || x.chapter) === String(n));
+      const sen = (n, id) => { const c = ch(n); return c && c.sentences.find(x => x.id === id); };
+      const full = t => N((t.s || t.surface).full); const line = t => N((t.irab && t.irab.ar) || '').replace(/[ً-ْٰ]/g, '');
+      const out = { chapters: st.chapters.length, sentences: st.chapters.reduce((a, c) => a + c.sentences.length, 0) };
+      // the thirty-two measures: everything after «نَحْوُ» in 6:s2, all in jarr
+      const m = sen(6, 's2'); out.measures = m ? m.tokens.slice(1).length : -1; out.measuresJarr = m ? m.tokens.slice(1).filter(t => /مجرور|محل جر/.test(line(t))).length : -1;
+      out.said32 = (() => { const a = sen(6, 's1'); return a ? a.tokens.map(full).join(' ') : ''; })();
+      // the thirty-five bābs: the verbs cited after «نَحْوُ» (the six come as pairs; a cited maṣdar is no bāb)
+      const cited = (n, id) => { const x = sen(n, id); if (!x) return -1; const k = x.tokens.findIndex(t => /^نَحْوُ$/.test(full(t))); return x.tokens.slice(k + 1).filter(t => t.pos === 'verb').length; };
+      out.babs = [cited(7, 's2') / 2, cited(8, 's2'), cited(8, 's5'), cited(8, 's6'), cited(8, 's7'), cited(8, 's8'), cited(8, 's9')];
+      out.said35 = (() => { const a = sen(7, 's1'); return a ? a.tokens.map(full).join(' ') : ''; })();
+      // the lines the author owns
+      const tk = (n, id, i) => { const x = sen(n, id); return x && x.tokens[i]; };
+      out.maftun = tk(6, 's3', 12) ? line(tk(6, 's3', 12)) : ''; out.qaiman = tk(6, 's3', 7) ? line(tk(6, 's3', 7)) : '';
+      out.kudta = tk(7, 's9', 8) ? [tk(7, 's9', 8).lex, tk(7, 's9', 8).pos, line(tk(7, 's9', 8))] : null;
+      out.radical = [tk(8, 's8', 7), tk(8, 's8', 8)].map(t => t ? [t.lex, t.pos, (t.segments || []).filter(g => /^pron-/.test(g.lex)).length] : null);
+      out.bani = tk(7, 's6', 8) ? [tk(7, 's6', 8).lex, line(tk(7, 's6', 8))] : null;
+      // rule A — the bāb fallback is the mujarrad's
+      out.sj = [sjAttested({ wazn: 'فَوْعَلَ يُفَوْعِلُ', bab: 'مُلْحَقٌ بِدَحْرَجَ: فَوْعَلَ يُفَوْعِلُ' }), sjAttested({ wazn: 'فَيْعَلَ يُفَيْعِلُ', bab: 'مُلْحَقٌ بِدَحْرَجَ: فَيْعَلَ يُفَيْعِلُ' }), sjAttested({ wazn: 'فَعِلَ يَفْعَلُ', bab: 'مِنْ بَابِ عَلِمَ يَعْلَمُ' })];
+      const au = sarfAudit(); out.auditBad = au.bad.filter(b => /^(baytara|hawqala|shamlala|jahwara|qalnasa|qalsa|rakana|ikhshawshana|tadaraba|tafaddala|qattaa|tajalbaba|tajawraba|tashaytana|tarahwaka|tamaskana)\b/.test(String(b.key || b))).length;
+      // rule B — the kasratān under a shadda
+      const cl = (w, nx) => { const c = SentenceAnalyzer.constructLetters(w, stripAr(w).replace(/[^ء-ي]/g, ''), nx); return c ? [c.num, c.letter, !!c.mulhaq] : null; };
+      out.cons = [cl('بَنِي', 'طَيٍّ'), cl('مُسْلِمِي', 'حَيٍّ'), cl('بَنِي', 'طَيّ'), cl('كِتَابِي', 'جَدِيدٌ')];
+      const s6 = sen(7, 's6'); if (s6) { const g = DabtEngine.grade(s6, 'endings'); out.grade = [7, 8, 9].map(i => N(g.words[i].out) + '/' + g.words[i].rule + '/' + g.words[i].ok).join(' '); }
+      // the ḥadhf engine's page case
+      out.pc = ['الْحِثِّيثَى', 'الدُّنْيَا', 'تَقْدِيمُهَا', 'كِتَابَنَا', 'زَيْدًا'].map(w => HadhfEngine.pageCase({ w }));
+      // the decade joined to the dual number; the decade's own tamyīz; the ـُونَ lemma behind ـِينَ
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      out.num = [dv('نَظَرْتُ إِلَى اثْنَيْنِ وَعِشْرِينَ رَجُلًا'), dv('جَاءَ اثْنَانِ وَعِشْرُونَ رَجُلًا'), dv('عِنْدِي عِشْرُونَ كِتَابًا')];
+      { const rows = SentenceAnalyzer.analyze('وَهُوَ عِنْدَ سِيبَوَيْهِ يَرْتَقِي إِلَى اثْنَيْنِ وَثَلَاثِينَ بَابًا'); const c = CaseEngine.claim(rows, 6), c5 = CaseEngine.claim(rows, 5), c7 = CaseEngine.claim(rows, 7); out.claim = [c5 && c5.k, c && c.k, c7 && c7.k]; }
+      { const rows = SentenceAnalyzer.analyze('وَذَكَرَ سِيبَوَيْهِ مِنْ مَصَادِرِ الثُّلَاثِيِّ اثْنَيْنِ وَثَلَاثِينَ'); const c = CaseEngine.claim(rows, 6); out.claim2 = c && c.k; }
+      out.yin = ['وَثَلَاثِينَ', 'دِين', 'حِين'].map(w => { const e = RootFinder.nounFromCorpus(w); return e ? N(String(e.lemma).split(/[()\s]/)[0]) : null; });
+      // the author's label: a quoted word behind its letter is not judged; the dual pronoun's clause is the pronoun's
+      out.hc = [CaseEngine.humanCase('الْكَافُ جَارَّةٌ، وَ«فَضِلَ» لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِالْكَافِ.'), CaseEngine.humanCase('مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَ«هُمَا» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.'), CaseEngine.humanCase('«عَلَى» حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى السُّكُونِ.'), CaseEngine.humanCase('الْكَافُ حَرْفُ جَرٍّ، وَالِاسْمُ مَجْرُورٌ بِالْكَسْرَةِ.')];
+      const s4 = sen(6, 's4'); out.h64 = s4 ? HadhfEngine.table(s4).items.map(v => v.i + ':' + v.seat) : null;
+      const s3 = sen(6, 's3'); out.h63 = s3 ? HadhfEngine.table(s3).items.map(v => v.i + ':' + v.seat) : null;
+      return out;
+    });
+    if (r.none) throw new Error('marah-al-arwah is not on the shelf');
+    if (r.chapters < 8 || r.sentences < 53) throw new Error('part two is missing: ' + J([r.chapters, r.sentences]));
+    if (r.measures !== 32 || r.measuresJarr !== 32 || !/اثْنَيْنِ وَثَلَاثِينَ/.test(r.said32)) throw new Error('the thirty-two measures, all in jarr: ' + J([r.measures, r.measuresJarr, r.said32]));
+    if (J(r.babs) !== J([6, 12, 1, 3, 6, 5, 2]) || r.babs.reduce((a, b) => a + b, 0) !== 35 || !/خَمْسَةٌ وَثَلَاثُونَ/.test(r.said35)) throw new Error('the thirty-five bābs from the cited examples: ' + J([r.babs, r.said35]));
+    if (!/مبتدأ مؤخر/.test(r.maftun) || !/مفعول مطلق/.test(r.qaiman)) throw new Error('the maṣdar on the participles\' measures: ' + J([r.maftun, r.qaiman]));
+    if (!r.kudta || r.kudta[0] !== 'kada' || r.kudta[1] !== 'verb' || !/محكي/.test(r.kudta[2])) throw new Error('كُدْتَ is the quoted dialect verb: ' + J(r.kudta));
+    if (J(r.radical) !== J([['tarahwaka', 'verb', 0], ['tamaskana', 'verb', 0]])) throw new Error('تَرَهْوَكَ / تَمَسْكَنَ end on radicals, not pronouns: ' + J(r.radical));
+    if (!r.bani || r.bani[0] !== 'ibn' || !/ملحق بجمع المذكر السالم/.test(r.bani[1])) throw new Error('بَنِي is the sons-of plural: ' + J(r.bani));
+    if (r.sj[0] !== null || r.sj[1] !== null || !r.sj[2] || r.sj[2].form !== 'I' || r.sj[2].bab !== 4) throw new Error('the bāb fallback belongs to the bare فعل: ' + J(r.sj));
+    if (r.auditBad) throw new Error('a part-two paradigm fails the audit: ' + r.auditBad);
+    if (J(r.cons[0]) !== J(['jam', 'ya', true]) || J(r.cons[1]) !== J(['jam', 'ya', false]) || J(r.cons[2]) !== J(['jam', 'ya', true]) || r.cons[3] !== null) throw new Error('the annexed plural before a doubled last letter: ' + J(r.cons));
+    if (!r.grade || !/^فَلُغَاتُ\/[a-zA-Z]+\/true بَنِي\/mudafIlayh\/true طَيٍّ\/[a-zA-Z]+\/true$/.test(r.grade)) throw new Error('فَلُغَاتُ بَنِي طَيٍّ: ' + J(r.grade));
+    if (J(r.pc) !== J(['', '', 'raf', 'nasb', 'nasb'])) throw new Error('the page case of a maqṣūr and of a pronoun\'s alif: ' + J(r.pc));
+    if (!r.h64 || r.h64.some(x => /mafulMahdhuf/.test(x)) || !r.h64.includes('2:mubtadaNahw')) throw new Error('6:s4 names one omission, the mubtadaʾ of نَحْوُ: ' + J(r.h64));
+    if (!/ اثْنَيْنِ\/mabni وَعِشْرِينَ\/atf رَجُلًا\/tamyiz$/.test(r.num[0]) || !/ اثْنَانِ\/mabni وَعِشْرُونَ\/atf رَجُلًا\/tamyiz$/.test(r.num[1]) || !/ عِشْرُونَ\/[a-zA-Z]+ كِتَابًا\/tamyiz$/.test(r.num[2])) throw new Error('the decade beside the dual number, and the decade\'s own tamyīz: ' + J(r.num));
+    if (J(r.claim) !== J(['jarr', 'jarr', 'nasb'])) throw new Error('إِلَى اثْنَيْنِ وَثَلَاثِينَ بَابًا — jarr, jarr, naṣb: ' + J(r.claim));
+    if (r.claim2 !== 'nasb') throw new Error('ذَكَرَ … اثْنَيْنِ وَثَلَاثِينَ — the decade beside the kept dual object is naṣb: ' + J(r.claim2));
+    if (r.yin[0] !== 'ثَلَاثُونَ' || r.yin[1] !== 'دِين' || !/^حِين/.test(r.yin[2] || '')) throw new Error('the ـُونَ lemma owns its ـِينَ form, and a word of its own keeps its entry: ' + J(r.yin));
+    if (r.hc[0] !== null || r.hc[1] !== 'raf' || r.hc[2] !== 'harf' || r.hc[3] !== 'jarr') throw new Error('the author\'s label (quoted word behind its letter / dual pronoun / particle / majrūr): ' + J(r.hc));
+    if (!r.h63 || !r.h63.includes('5:mubtadaNahw') || !r.h63.includes('8:mubtadaNahw')) throw new Error('6:s3 — both نَحْوُ are khabars of an omitted mubtadaʾ: ' + J(r.h63));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

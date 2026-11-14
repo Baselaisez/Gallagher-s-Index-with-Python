@@ -2,7 +2,7 @@
  "version": 1,
  "status": "induced",
  "note": "Tendencies of the Form I maṣdar, induced from the verbs the corpus recites and promoted through a gate (support, confidence, gain over the rule refined). A teacher may show them; the builder never applies them — a Form I maṣdar is recited.",
- "trained_on": 558,
+ "trained_on": 559,
  "gate": {
   "min_support": 12,
   "min_confidence": 0.6,
@@ -12,8 +12,8 @@
   "plurality_support": 24
  },
  "default": "فَعْل",
- "cv_accuracy": 0.5054,
- "cv_baseline": 0.4642,
+ "cv_accuracy": 0.4937,
+ "cv_baseline": 0.4633,
  "rules": [
   {
    "if": {
@@ -55,8 +55,19 @@
     "transitive": "no"
    },
    "then": "فُعُول",
-   "support": 55,
-   "confidence": 0.455,
+   "support": 56,
+   "confidence": 0.464,
+   "kind": "plurality"
+  },
+  {
+   "if": {
+    "class": "sahih",
+    "mudari": "u",
+    "transitive": "no"
+   },
+   "then": "فُعُول",
+   "support": 41,
+   "confidence": 0.366,
    "kind": "plurality"
   },
   {
@@ -68,17 +79,6 @@
    "then": "فَعَل",
    "support": 52,
    "confidence": 0.365,
-   "kind": "plurality"
-  },
-  {
-   "if": {
-    "class": "sahih",
-    "mudari": "u",
-    "transitive": "no"
-   },
-   "then": "فُعُول",
-   "support": 40,
-   "confidence": 0.35,
    "kind": "plurality"
   },
   {
@@ -107,8 +107,8 @@
     "mazi": "a"
    },
    "then": "فَعْل",
-   "support": 241,
-   "confidence": 0.647,
+   "support": 242,
+   "confidence": 0.645,
    "kind": "majority"
   },
   {
