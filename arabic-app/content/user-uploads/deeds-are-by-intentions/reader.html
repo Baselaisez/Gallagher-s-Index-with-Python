@@ -22512,6 +22512,13 @@ class DabtEngine {
       const cwHost = this.core(this.split(w, enc)[0]);
       const bwHost = this.bare(this.split(w, enc)[0]);
       if (!enc && !hasAl(r) && /^[وف]?(عند|لدى|لدي|لد|مع|بين|فوق|تحت|دون|قبل|بعد|امام|أمام|خلف|وراء|حول)ي$/.test(bw)) { set(i, "keep", "zarf"); continue; }   // عِنْدِي، لَدَيَّ: the zarf with the speaker's ya — nasb estimated before the ya
+      /* (wave 192) وَالْغَائِبُ أَيْضًا وَسَطٌ بَيْنَ الْمُتَكَلِّمِ وَالْمُخَاطَبِ: «وسط» is a ẓarf by annexation (وَسَطَ الْقَوْمِ). Before another ẓarf, a particle
+         or the sentence's end it has nothing to be annexed to — and where a mubtadaʾ still waits for its khabar, it is that khabar.
+         The test reads the bare host: the wāw of وَسَط is the word's own, not a conjunction to strip. */
+      const mub192 = (/^وسط$/.test(bwHost) && !hasAl(r) && !encOf(r) && (!rows[i + 1] || (rows[i + 1].kind || "") === "particle" || this.ZARF_WORDS.test(coreOf(rows[i + 1])) || !!rows[i + 1].afterJarr)) ? (() => { for (let q = i - 1; q >= 0; q--) { const o = out[q]; if (o && o.rule === "mafulMutlaq") continue; if (isNoun(rows[q]) && !isVerb(rows[q]) && o && o.k === "raf" && /^(mubtada|atf)$/.test(o.rule || "") && (hasAl(rows[q]) || !!encOf(rows[q]) || propn(rows[q]))) return q; return -1; } return -1; })() : -1;
+      /* …the mubtadaʾ may have been read as joined to the clause before it (وَزِيدَتِ اللَّامُ … وَالْغَائِبُ أَيْضًا وَسَطٌ): the khabar that follows it
+         shows that the wāw opened a clause of its own. */
+      if (mub192 >= 0) { if (out[mub192].rule === "atf") set(mub192, "raf", "mubtada"); st.khabar = true; set(i, "raf", "khabar"); continue; }
       if (this.ZARF_WORDS.test(cwHost) || QawaidEngine.ZARF.has(cwHost) || QawaidEngine.ZARF.has(bwHost) || this.ZARF_WORDS.test(bwHost)) {   // فَوْقَ: the fa is the word's own
         { const aj32 = r.afterJarr || (i > 0 && (rows[i - 1].kind || "") === "particle" && (rows[i - 1].pk || "") === "jarr" && !this.FUSED_PRON.test(bareOf(rows[i - 1])) && /^[وف]?(من|الى|إلى|في|عن|على|حتى|ب|ل|ك|مذ|منذ)$/.test(bareOf(rows[i - 1])));
           set(i, aj32 ? "jarr" : "nasb", aj32 ? "jarr" : "zarf"); }   /* (wave 32b/d) مِنْ عِنْدِهِ */

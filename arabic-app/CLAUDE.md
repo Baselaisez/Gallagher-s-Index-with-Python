@@ -12667,3 +12667,23 @@ line for the passive māḍī with the feminine tāʾ sākina after a wāw («و
 line for «هَوِيتُ» although the analyzer reads the first person — both hand-corrected here. A noun annexed to a quoted
 clause («حُرُوفُ «هَوِيتُ السِّمَانَ»») and the rhyme of an unmarked verse («وَلَا وَاغِلِ») stay as they were.
 
+### v291 (wave 192) — the three items v290 left open, closed by rule
+
+- **The packager's māḍī lines follow the analyzer's cell** (`pkg_from_engine.py`). The feminine branch wrote «فِعْلٌ مَاضٍ
+  مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ» whatever the voice, so a passive with the tāʾ sākina («وَفُتِحَتْ»،
+  «وَأُسْكِنَتْ») read as an active; it names the passive now, in the three languages, with the deputy doer. And the
+  pronoun-suffix branch asked for a sukūn before the suffix, which a long yāʾ never wears («هَوِيتُ»، «رَضِيتُ»،
+  «نَسِينَا»): where the cell says first or second person, the suffix is the doer and the verb is built on sukūn. The
+  two hand lines that covered for these (24:s6:0, 26:s10:0) are gone; the re-run changed those two tokens and no other.
+- **W · وَسَطٌ.** «وسط» is a ẓarf only by what it is annexed to. Before another ẓarf, a particle or the sentence's end,
+  after a definite rafʿ noun that owes its khabar, it IS that khabar («الْبَيْتُ وَسَطٌ»، «وَالْغَائِبُ أَيْضًا وَسَطٌ
+  بَيْنَ الْمُتَكَلِّمِ وَالْمُخَاطَبِ»); and where that noun had been read as joined to the clause before it, the khabar
+  shows the wāw opened a clause of its own, and the noun is renamed its mubtadaʾ. «وَسَطَ الْقَوْمِ» and «وَسَطَ
+  الْمَدِينَةِ» stay the ẓarf. (v290's guard never fired because it tested the word with its first letter stripped as a
+  conjunction — the wāw of وَسَط is the word's own.)
+
+**Measured.** Blind sweep 69,577 right / 557 wrong / 302 undecided (1 fixed, 0 broken), receipts-on 69,962 / 316 /
+158, case layer 98.92 %. Typed gauge 1,158 of 1,159 judged words over 381 sentences. Smoke: 441 checks.
+
+**Next.** Marāḥ part ten opens at p. 66's last clause, «وَفُتِحَ أَلِفُ أَكْرِمْ».
+

@@ -15526,10 +15526,29 @@ if (!CHROME) {
     if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
     const Q = N('لَفْظٌ مَحْكِيٌّ');
     if (!r.q.idrib.startsWith('daraba|' + Q) || !r.q.idrib.includes(N('مُضَافٌ إِلَيْهِ')) || !r.q.joined.startsWith('daraba|' + Q) || !r.q.joined.includes(N('مَعْطُوفٌ')) || !r.q.ilam.startsWith('alima|' + Q) || !r.q.uktub.startsWith('kataba|' + Q)) throw new Error('the cited verbs: ' + J(r.q));
-    if (!r.l.dual.startsWith(N('فَاعِلٌ')) || !r.l.dual.includes(N('مُثَنًّى')) || !r.l.ashrab.includes(N('مَرْفُوعٌ')) || !r.l.ashrab.includes(N('لِضَرُورَةِ الشِّعْرِ')) || !r.l.hawitu.includes(N('بِتَاءِ الْفَاعِلِ')) || !r.l.futihat.includes(N('لِلْمَجْهُولِ')) || !r.l.alif.startsWith('alif-letter|' + N('نَائِبُ فَاعِلٍ')) || r.l.aymun !== 'aymun') throw new Error('the named lines: ' + J(r.l));
+    if (!r.l.dual.startsWith(N('فَاعِلٌ')) || !r.l.dual.includes(N('مُثَنًّى')) || !r.l.ashrab.includes(N('مَرْفُوعٌ')) || !r.l.ashrab.includes(N('لِضَرُورَةِ الشِّعْرِ')) || !r.l.hawitu.includes(N('مَبْنِيٌّ عَلَى السُّكُونِ')) || !r.l.hawitu.includes(N('فَاعِلٌ')) || !r.l.futihat.includes(N('لِلْمَجْهُولِ')) || !r.l.alif.startsWith('alif-letter|' + N('نَائِبُ فَاعِلٍ')) || r.l.aymun !== 'aymun') throw new Error('the named lines: ' + J(r.l));
     if (!/َ\/zarf$/.test(r.t.ana) || !/َ\/zarf$/.test(r.t.nahnu) || !/ُ\/mubtada$/.test(r.t.huwa) || !/ُ\/mubtada$/.test(r.t.nominal)) throw new Error('the time word before a verb: ' + J(r.t));
     if (r.d.dual !== N('حَرْفَا') + '/fail' || !/ٍ\/mudafIlayh$/.test(r.d.ilayh) || r.d.tanwin !== N('حَرْفًا') + '/maful' || !/\/mazi$/.test(r.d.verb)) throw new Error('the vowelled dual before an indefinite noun: ' + J(r.d));
     if (r.j.thumma !== N('لْيَضْرِبْ') + '/jazm' || r.j.fa !== N('فَلْيَضْرِبْ') + '/jazm' || /jazm|jarr/.test(r.j.noun)) throw new Error('the quiescent lām of command: ' + J(r.j));
+  });
+
+  await check('wave 192 — the packager\'s māḍī lines follow the analyzer\'s cell: the passive with the feminine tāʾ sākina is named a passive (وَفُتِحَتْ) and the first person on a long yāʾ is built on sukūn with its pronoun as the doer (هَوِيتُ), both written by the rule and not by hand; and «وسط» with nothing to be annexed to is the khabar of the mubtadaʾ before it (وَالْغَائِبُ أَيْضًا وَسَطٌ بَيْنَ …; الْبَيْتُ وَسَطٌ) — the mubtadaʾ read as its own clause — while the ẓarf by annexation stands (وَسَطَ الْقَوْمِ، وَسَطَ الْمَدِينَةِ)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const tok = (n, id, i) => ((((st.chapters[n - 1] || {}).sentences || []).find(x => x.id === id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => N((tok(n, id, i).irab || {}).ar);
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const sen = st.chapters[23].sentences.find(x => x.id === 's3'); const g = DabtEngine.grade(sen, 'endings');
+      return { futihat: line(26, 's10', 0), hawitu: line(24, 's6', 0), en: (tok(26, 's10', 0).irab || {}).en, tr: (tok(26, 's10', 0).irab || {}).tr,
+        book: { ghaib: g.words[8].rule + ':' + g.words[8].ok, wasat: N(g.words[10].out) + '/' + g.words[10].rule + ':' + g.words[10].ok },
+        w: { clause: V('والغائب أيضا وسط بين المتكلم والمخاطب', 2), end: V('البيت وسط', 1), qawm: V('جلس وسط القوم', 1), madina: V('البيت وسط المدينة', 1), nahar: V('جاء زيد وعمرو وسط النهار', 3) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (!r.futihat.includes(N('مَبْنِيٌّ لِلْمَجْهُولِ')) || !r.futihat.includes(N('وَالتَّاءُ لِلتَّأْنِيثِ')) || /وَالْفَاعِلُ/.test(r.futihat) || !/passive/i.test(r.en || '') || !/meçhul/i.test(r.tr || '')) throw new Error('the passive with the feminine tāʾ: ' + J([r.futihat, r.en, r.tr]));
+    if (!r.hawitu.includes(N('مَبْنِيٌّ عَلَى السُّكُونِ')) || !r.hawitu.includes(N('فَاعِلٌ')) || r.hawitu.includes(N('مُسْتَتِرٌ'))) throw new Error('the first person on a long yāʾ: ' + J(r.hawitu));
+    if (r.book.ghaib !== 'mubtada:true' || r.book.wasat !== N('وَسَطٌ') + '/khabar:true') throw new Error('the book\'s own sentence: ' + J(r.book));
+    if (!/ٌ\/khabar$/.test(r.w.clause) || !/ٌ\/khabar$/.test(r.w.end) || !/َ\/zarf$/.test(r.w.qawm) || !/َ\/zarf$/.test(r.w.madina) || !/َ\/zarf$/.test(r.w.nahar)) throw new Error('وسط — khabar or ẓarf: ' + J(r.w));
   });
 
   await check('no JS errors on page', async () => {
