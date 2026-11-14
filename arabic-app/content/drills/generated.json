@@ -13,9 +13,9 @@
   "mizanDropped": 13,
   "sentences": 922,
   "sentenceTokens": 8132,
-  "posAgreement": 99,
-  "caseJudged": 6315,
-  "caseAgreement": 99,
+  "posAgreement": 99.1,
+  "caseJudged": 6320,
+  "caseAgreement": 99.1,
   "rows": 9217
  },
  "endings": [
@@ -38945,10 +38945,10 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": null,
      "caseMatch": null
     },
@@ -40858,8 +40858,8 @@
    "posAgreement": 100,
    "judged": 4,
    "agree": 4,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "مَا",
@@ -40877,12 +40877,12 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": "harf",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "زَيْدٌ",
@@ -40978,8 +40978,8 @@
    "posAgreement": 100,
    "judged": 4,
    "agree": 4,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "مَا",
@@ -40996,12 +40996,12 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": "harf",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "كَاتِبٌ",
@@ -41096,8 +41096,8 @@
    "posAgreement": 100,
    "judged": 4,
    "agree": 4,
-   "judgedC": 3,
-   "agreeC": 3,
+   "judgedC": 4,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "مَا",
@@ -41114,12 +41114,12 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": "harf",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "شَاعِرٌ",
@@ -41235,10 +41235,10 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": null,
      "caseMatch": null
     },
@@ -50141,8 +50141,8 @@
    "posAgreement": 100,
    "judged": 3,
    "agree": 3,
-   "judgedC": 1,
-   "agreeC": 1,
+   "judgedC": 2,
+   "agreeC": 2,
    "tokens": [
     {
      "w": "وَمَا",
@@ -50159,12 +50159,12 @@
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": false
+      "sure": true
      },
      "match": true,
-     "caseSaid": null,
+     "caseSaid": "harf",
      "caseHuman": "harf",
-     "caseMatch": null
+     "caseMatch": true
     },
     {
      "w": "أُبَرِّئُ",
@@ -113741,11 +113741,11 @@
     "tr": "Ondan bir kısmı TEK bir mânâdır; Amr b. Ma'dîkerib'in şu sözü gibi: (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 90,
+   "posAgreement": 100,
    "judged": 10,
-   "agree": 9,
+   "agree": 10,
    "judgedC": 7,
-   "agreeC": 6,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "فَمِنْهَا",
@@ -113784,16 +113784,16 @@
       "irab": "«what» — the relative, the delayed mubtada."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "هِيَ",
@@ -141389,9 +141389,9 @@
     "tr": "«ESÂRETE nikâhladıkları, KATLE doğurdukları, • YAĞMAYA topladıkları, ATEŞE ektikleri» — taksîm: her şeye kendi felâketi. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 66.7,
+   "posAgreement": 83.3,
    "judged": 12,
-   "agree": 8,
+   "agree": 10,
    "judgedC": 7,
    "agreeC": 7,
    "tokens": [
@@ -141577,14 +141577,14 @@
       "irab": "«what»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
       "sure": false
      },
-     "match": false,
-     "caseSaid": null,
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": null,
      "caseMatch": null
     },
@@ -141649,14 +141649,14 @@
       "irab": "«what»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": null,
      "caseMatch": null
     },
@@ -149866,11 +149866,11 @@
     "tr": "GULÜV — iddia ne aklen ne âdeten mümkünse. İlk iki kısım makbuldür. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 88.9,
+   "posAgreement": 100,
    "judged": 9,
-   "agree": 8,
+   "agree": 9,
    "judgedC": 7,
-   "agreeC": 6,
+   "agreeC": 7,
    "tokens": [
     {
      "w": "وَالْغُلُوُّ",
@@ -149909,16 +149909,16 @@
       "irab": "«what» — the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "لَا",
@@ -175493,11 +175493,11 @@
     "tr": "İkincisi, onları BENZEŞMENİN bir araya getirmesidir — iştikâka benzeyen. (Geri yazım: kaynak bu adımı yalnız Türkçe taşır.)"
    },
    "jumal": [],
-   "posAgreement": 87.5,
+   "posAgreement": 100,
    "judged": 8,
-   "agree": 7,
+   "agree": 8,
    "judgedC": 6,
-   "agreeC": 5,
+   "agreeC": 6,
    "tokens": [
     {
      "w": "وَالثَّانِي",
@@ -175631,16 +175631,16 @@
       "irab": "«that which» — the khabar."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "يُشْبِهُ",
@@ -182041,11 +182041,11 @@
     "tr": "«GEÇEN (fât) ne kadar uzak, GELECEK olan (ât) ne kadar yakın!» — Arapların sözü; iki son da sükûn ile okunur."
    },
    "jumal": [],
-   "posAgreement": 66.7,
+   "posAgreement": 77.8,
    "judged": 9,
-   "agree": 6,
+   "agree": 7,
    "judgedC": 2,
-   "agreeC": 1,
+   "agreeC": 2,
    "tokens": [
     {
      "w": "مَا",
@@ -182204,16 +182204,16 @@
       "irab": "«what» — the object."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "هُوَ",
@@ -186025,11 +186025,11 @@
     "tr": "LÜZÛM-İ MÂ LÂ YELZEM, revî harfinden yahut fâsıladan onun mânâsında olandan önce, secide gerekli olmayanın gelmesidir. (Geri yazım: kaynak bu hükmü yalnız Türkçe verir; bu, Telhîs'in alınan metnidir.)"
    },
    "jumal": [],
-   "posAgreement": 95,
+   "posAgreement": 100,
    "judged": 20,
-   "agree": 19,
+   "agree": 20,
    "judgedC": 19,
-   "agreeC": 18,
+   "agreeC": 19,
    "tokens": [
     {
      "w": "وَلُزُومُ",
@@ -186400,16 +186400,16 @@
       "irab": "«what» — the doer of «come»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "لَيْسَ",
@@ -205101,10 +205101,10 @@
     "tr": "«Seni övmekte hata ettiysem, sen beni geri çevirmekte hata etmedin: * ihtiyaçlarımı ekini olmayan bir vadiye bıraktım» (tavîl) — «ekini olmayan vadi» Kur'ân'dandır (İbrâhîm 37), manasından nakledilmiş: orada susuz otsuz vadi, burada faydasız hayırsız yer."
    },
    "jumal": [],
-   "posAgreement": 100,
+   "posAgreement": 93.3,
    "judged": 15,
-   "agree": 15,
-   "judgedC": 9,
+   "agree": 14,
+   "judgedC": 10,
    "agreeC": 9,
    "tokens": [
     {
@@ -205216,16 +205216,16 @@
       "irab": "«not»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
       "sure": false
      },
-     "match": true,
-     "caseSaid": null,
+     "match": false,
+     "caseSaid": "mabni",
      "caseHuman": "harf",
-     "caseMatch": null
+     "caseMatch": false
     },
     {
      "w": "أَخْطَأْتَ",
@@ -207506,9 +207506,9 @@
     "tr": "Küçük değişiklik zarar vermez. Bir beyit yahut fazlasının tazminine İSTİÂNE, bir mısra yahut azının tazminine ÎDÂ' (emanet) ve REFV (yama) denir. (Geri yazım: kaynak bu hükmü yalnız Türkçe verir; bu, Telhîs'in alınan metnidir.)"
    },
    "jumal": [],
-   "posAgreement": 87.5,
+   "posAgreement": 93.8,
    "judged": 16,
-   "agree": 14,
+   "agree": 15,
    "judgedC": 12,
    "agreeC": 11,
    "tokens": [
@@ -207810,14 +207810,14 @@
       "irab": "«or what»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": null,
      "caseMatch": null
     },
@@ -212254,11 +212254,11 @@
     "tr": "«Müjde! İkbal vaadini yerine getirdi» (basît) — başlangıç tebriği ilan eder."
    },
    "jumal": [],
-   "posAgreement": 83.3,
+   "posAgreement": 100,
    "judged": 6,
-   "agree": 5,
+   "agree": 6,
    "judgedC": 4,
-   "agreeC": 3,
+   "agreeC": 4,
    "tokens": [
     {
      "w": "بُشْرَى",
@@ -212370,16 +212370,16 @@
       "irab": "«what»."
      },
      "engine": {
-      "kind": "particle",
+      "kind": "noun",
       "lemma": null,
       "root": null,
       "wazn": null,
-      "sure": true
+      "sure": false
      },
-     "match": false,
-     "caseSaid": "harf",
+     "match": true,
+     "caseSaid": "mabni",
      "caseHuman": "mabni",
-     "caseMatch": false
+     "caseMatch": true
     },
     {
      "w": "وَعَدَا",

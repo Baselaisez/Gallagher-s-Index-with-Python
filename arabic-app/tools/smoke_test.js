@@ -10760,7 +10760,7 @@ if (!CHROME) {
       const c = J(IsmTagger.train()), d = J(IsmTagger.fit(IsmTagger.rows())); out.ismSame = c === d;
       const M = RootFinder.bareIndex(), idx = RootFinder.corpusIndex(), M2 = new Map(); idx.forEach((v, i) => { for (const b2 of paradigmBares136(v.m)) { let a2 = M2.get(b2); if (!a2) M2.set(b2, a2 = []); if (a2[a2.length - 1] !== i) a2.push(i); } });
       out.bareSame = M.size === M2.size && JSON.stringify([...M]) === JSON.stringify([...M2]);
-      const au = MaqsudEngine.audit(); MaqsudEngine._audit = null; MaqsudEngine._auditPart = null; let n = 0; while (!MaqsudEngine.auditStep(5)) n++; out.auditSteps = n; out.auditSame = JSON.stringify(au) === JSON.stringify(MaqsudEngine.audit());
+      const au = MaqsudEngine.audit(); MaqsudEngine._audit = null; MaqsudEngine._auditPart = null; let n = 0; while (!MaqsudEngine.auditStep(0.01)) n++; out.auditSteps = n;   /* (wave 184) a budget no machine can outrun: at 5 ms a fast CI runner finished the whole audit inside two slices and the «>= 2 steps» assertion failed on speed alone (v282's push run), while the same commit's other run passed */ out.auditSame = JSON.stringify(au) === JSON.stringify(MaqsudEngine.audit());
       out.foldBool = typeof DoctrineSearch.warm144(1e9) === "boolean";
       out.corpus = (() => { const rows = buildCorpus(); const P = { k: 0, c: 0, rows: [] }; CORPUS_PART144 = P; const saved = CORPUS; CORPUS = null; let steps = 0; while (!buildCorpusStep144(2)) steps++; const same = CORPUS.length === saved.length && CORPUS.every((r, i) => r.st === saved[i].st && r.sen === saved[i].sen && r.ti === saved[i].ti && r.fhay === saved[i].fhay); CORPUS = saved; return { steps, same }; })();
       return out;
@@ -15218,6 +15218,40 @@ if (!CHROME) {
       return out; });
     if (two.length) throw new Error('الْفَاعِلُ لَا يَتَعَدَّدُ — ' + two.length + ' verb line(s) promise a hidden doer while the next word is the stated one: ' + J(two.slice(0, 6)));
     if (tw.hayyan[0] !== 'noun' || N(tw.hayyan[1]) !== N('حَيّ') || tw.hayyan[2] !== 'nasb' || tw.haqqan[2] !== 'nasb' || tw.cellTanwin !== '' || !/mazi/i.test(tw.cellVerb)) throw new Error('wave-183 tanwīn (حَيًّا the noun in naṣb, حَقًّا in naṣb, no verb cell for a tanwīn word, حَيَّا a māḍī): ' + J(tw));
+  });
+
+  await check('wave 184 — مَا: the seat decides. The governed or defined seat owes a noun (after أَنَّ written apart, after a verb still owed its object, in the definition frame with لَا or an annexed mubtadaʾ, before a ẕarf that can only be a ṣila, the question before an annexed rafʿ noun); the negation shows itself (the bāʾ on its khabar, the extra مِنْ before an indefinite, مَا إِنْ, قَطُّ, the lām of denial, the khabar seat of لٰكِنَّ, a clause already whole); a word named by its label is that face — each by name with its control, and the shelf\'s own lines hold the measure: at least 660 of the «مَا» they judge are read as they read them, and no more than 45 against them', async () => {
+    const J = JSON.stringify;
+    const rd = list => page.evaluate(ls => ls.map(([t, i]) => { try { const rows = SentenceAnalyzer.analyze(t); const r = rows[i] || {}; let c = null; try { c = CaseEngine.claim(rows, i); } catch (e) {} return ((r.wajh || {}).k || '-') + '/' + (c ? c.k : '-'); } catch (e) { return 'ERR ' + e.message; } }), list);
+    const cases = [
+      ['وَمَا نَحْنُ بِمَبْعُوثِينَ', 0, 'hijaziyya/harf'],
+      ['مَا لَهُمْ مِنْ نَاصِرِينَ', 0, 'nafiya/harf'],
+      ['مَا إِنْ زَيْدٌ قَائِمٌ', 0, 'nafiya/harf'],
+      ['مَا رَأَيْتُهُ قَطُّ', 0, 'nafiya/harf'],
+      ['فَمَا كَانَ اللهُ لِيَظْلِمَهُمْ', 0, 'nafiya/harf'],
+      ['وَلٰكِنَّ النَّاسَ مَا عَقَلُوا', 2, 'nafiya/harf'],
+      ['مَا رَأَيْتُ رَجُلًا أَحْسَنَ مِنْهُ', 0, 'nafiya/harf'],
+      ['وَتَلْحَقُهَا مَا الْكَافَّةُ فَتَكُفُّهَا عَنِ الْعَمَلِ', 1, 'kaffa/harf'],
+      ['الْمَوْصُولُ مَا لَا يَتِمُّ جُزْءًا إِلَّا بِصِلَةٍ', 1, 'mawsula/mabni'],
+      ['أَسْمَاءُ الْعَدَدِ مَا وُضِعَ لِكَمِّيَّةِ آحَادِ الْأَشْيَاءِ', 2, 'mawsula/mabni'],
+      ['وَيَفْعَلُ اللهُ مَا يَشَاءُ', 2, 'mawsula/mabni'],
+      ['وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ', 2, 'mawsula/mabni'],
+      ['فَكَشَفْنَا مَا بِهِ مِنْ ضُرٍّ', 1, 'mawsula/mabni'],
+      ['الْمَفْتُوحِ مَا قَبْلَهَا', 1, 'mawsula/mabni'],
+      ['فَقَالَ مَا شَرَائِعُ الْإِسْلَامِ', 1, 'istifham/mabni'],
+      ['إِنَّكُمْ وَمَا تَعْبُدُونَ مِنْ دُونِ اللهِ حَصَبُ جَهَنَّمَ', 1, 'mawsula/mabni'],
+    ];
+    const got = await rd(cases.map(c => [c[0], c[1]]));
+    const bad = cases.map((c, k) => got[k] === c[2] ? null : c[0] + ' [' + c[1] + '] → ' + got[k] + ' (want ' + c[2] + ')').filter(Boolean);
+    if (bad.length) throw new Error('wave-184 faces: ' + J(bad));
+    const ctl = await rd([['مَا جَاءَ إِلَّا زَيْدٌ', 0], ['هَبَّتْ رِيحٌ شَدِيدَةٌ مَا رَأَى النَّاسُ مِثْلَهَا', 3], ['وَسَيَبْقَى السَّدُّ مَا شَاءَ اللهُ', 2]]);
+    if (!/^nafiya\//.test(ctl[0]) || /^mawsula\//.test(ctl[1]) || !/^zarfiyya\/harf$/.test(ctl[2])) throw new Error('wave-184 controls (the negation with إِلَّا; a clause already whole after a verb is no object; مَا شَاءَ after a verb of staying is «as long as»): ' + J(ctl));
+    const m = await page.evaluate(() => { let right = 0, wrong = 0, silent = 0; const strip = w => stripAr(String(w || '')).replace(/[^ء-ي]/g, '');
+      for (const st of STORIES) for (const c of st.chapters) for (const sn of (c.sentences || [])) { const T = sn.tokens || []; if (!T.some(t => /^[وف]?ما$/.test(strip(t.s.full)))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        T.forEach((t, i) => { if (!/^[وف]?ما$/.test(strip(t.s.full))) return; const h = CaseEngine.humanCase((t.irab || {}).ar); if (!h) return; let cl = null; try { cl = CaseEngine.claim(rows, i); } catch (e) {} if (!cl) { silent++; return; } if (cl.k === h) right++; else wrong++; }); }
+      return { right, wrong, silent }; });
+    if (m.right < 660 || m.wrong > 45) throw new Error('the «مَا» measure fell: ' + J(m) + ' (floors: right ≥ 660, wrong ≤ 45)');
   });
 
   await check('no JS errors on page', async () => {

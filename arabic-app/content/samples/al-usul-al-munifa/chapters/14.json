@@ -11146,15 +11146,13 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
-     "grammar": [
-      "ism-mawsul"
-     ],
+     "lex": "ma-nafiya",
+     "pos": "part",
+     "grammar": [],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجَارُّ وَالْمَجْرُورُ «مِنْ نَبِيٍّ»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
-      "en": "a relative pronoun — built (mabni); its relative clause is the prepositional phrase «مِنْ نَبِيٍّ»; the returning pronoun stands inside it.",
-      "tr": "ism-i mevsûl — mebnî; sılası câr-mecrûr «مِنْ نَبِيٍّ»; âid zamiri içindedir."
+      "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — وَ«مِنْ» بَعْدَهَا زَائِدَةٌ لِتَوْكِيدِ النَّفْيِ، وَالنَّفْيُ مَعَ «إِلَّا» قَصْرٌ.",
+      "en": "«not» — the negation; the مِنْ after it is the extra one that strengthens the denial, and the denial with «إِلَّا» confines: «there is no prophet … but he warned».",
+      "tr": "«değil» — nefiy mâsı; ardındaki مِنْ nefyi pekiştiren zâid harftir, nefiy ise «إِلَّا» ile kasr bildirir: «hiçbir peygamber yoktur ki … uyarmamış olsun»."
      }
     },
     {
@@ -12853,13 +12851,15 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-nafiya",
-     "pos": "part",
-     "grammar": [],
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul"
+     ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The waw conjoins; «not» — the negation before a verb.",
-      "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى اسْمِ «إِنَّ»، وَصِلَتُهُ جُمْلَةُ «تَعْبُدُونَ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «تَعْبُدُونَهُ».",
+      "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of nasb, joined to the noun of «إِنَّ»; its clause is «تَعْبُدُونَ»; the returning pronoun is dropped («تَعْبُدُونَهُ»).",
+      "tr": "«ve» + İsm-i mevsûl — mebnî, nasb mahallinde, «إِنَّ»nin ismine ma'tûf; sılası «تَعْبُدُونَ» cümlesidir; âid zamiri hazfedilmiştir («تَعْبُدُونَهُ»)."
      },
      "segments": [
       {
@@ -12869,7 +12869,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-nafiya",
+       "lex": "ma-mawsula",
        "pos": "part"
       }
      ]
@@ -13124,13 +13124,15 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-nafiya",
-     "pos": "part",
-     "grammar": [],
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul"
+     ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The waw conjoins; «not» — the negation before a verb.",
-      "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى اسْمِ «إِنَّ»، وَصِلَتُهُ جُمْلَةُ «تَعْبُدُونَ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «تَعْبُدُونَهُ».",
+      "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of nasb, joined to the noun of «إِنَّ»; its clause is «تَعْبُدُونَ»; the returning pronoun is dropped («تَعْبُدُونَهُ»).",
+      "tr": "«ve» + İsm-i mevsûl — mebnî, nasb mahallinde, «إِنَّ»nin ismine ma'tûf; sılası «تَعْبُدُونَ» cümlesidir; âid zamiri hazfedilmiştir («تَعْبُدُونَهُ»)."
      },
      "segments": [
       {
@@ -13140,7 +13142,7 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-nafiya",
+       "lex": "ma-mawsula",
        "pos": "part"
       }
      ]
@@ -13168,15 +13170,15 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
+     "lex": "ma-hijaziyya",
+     "pos": "part",
      "grammar": [
-      "ism-mawsul"
+      "ma-la-mushabbaha"
      ],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ الْجُمْلَةُ بَعْدَهُ «أَنْتُمْ …»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
-      "en": "a relative pronoun — built (mabni); its relative clause is the clause after it «أَنْتُمْ …»; the returning pronoun stands inside it.",
-      "tr": "ism-i mevsûl — mebnî; sılası sonraki cümledir «أَنْتُمْ …»; âid zamiri içindedir."
+      "ar": "«مَا» نَافِيَةٌ تَعْمَلُ عَمَلَ «لَيْسَ» (الْحِجَازِيَّةُ)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — وَالْبَاءُ فِي خَبَرِهَا «بِفَاتِنِينَ» زَائِدَةٌ.",
+      "en": "«not» — the negation that governs like «لَيْسَ» (the Hijazi ma); the bāʾ on its predicate «بِفَاتِنِينَ» is the extra one.",
+      "tr": "«değil» — «لَيْسَ» gibi amel eden nefiy mâsı (Hicâziyye); haberi «بِفَاتِنِينَ»deki bâ zâidedir."
      }
     },
     {
@@ -21035,15 +21037,13 @@
       "smart": "مَا",
       "bare": "ما"
      },
-     "lex": "ma-mawsula",
-     "pos": "pron",
-     "grammar": [
-      "ism-mawsul"
-     ],
+     "lex": "ma-masdariyya",
+     "pos": "part",
+     "grammar": [],
      "irab": {
-      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَصِلَتُهُ جُمْلَةُ «خَلَا …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
-      "en": "a relative pronoun — built (mabni); its relative clause is the verbal clause «خَلَا …», with no place in the iʿrāb.",
-      "tr": "ism-i mevsûl — mebnî; sılası «خَلَا …» fiil cümlesidir, i'râbdan mahalli yoktur."
+      "ar": "«مَا» مَصْدَرِيَّةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — «مَا خَلَا»: وَ«خَلَا» بَعْدَهَا فِعْلٌ لِلِاسْتِثْنَاءِ يَنْصِبُ مَا بَعْدَهُ.",
+      "en": "The masdar-making ma, a letter — «مَا خَلَا»: after it «خَلَا» is a verb of exception and puts what follows in nasb («except obedience and disobedience»).",
+      "tr": "Masdariyye mâ, harf — «مَا خَلَا»: ardındaki «خَلَا» istisnâ fiilidir ve sonrasını nasbeder («tâat ve mâsiyet hâriç»)."
      }
     },
     {

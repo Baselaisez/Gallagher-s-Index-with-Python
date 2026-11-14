@@ -12201,3 +12201,73 @@ rule does not apply and «جَاءَ زَيْدٌ مَعَهُ كِتَابٌ» 
 written. (4) al-Uṣūl 29:s1 writes «مِقْدَارُهُ خَمْسِينَ» as shipped; its line is still the bare «اسْمٌ» — the reading (ḥikāya of
 the āya's wording, or an omitted كَانَ) is not decided here. (5) The audit shows al-Uṣūl still carries bare «اسْمٌ.» lines
 (كَيْفَ, numerals): engine-authored lines are pending-scholarly-review and the next audit should count them.
+
+### v283 (wave 184) — مَا: the seat decides
+
+**Where it started.** The case layer's largest remaining class was one word. Of the 702 «مَا / وَمَا / فَمَا» the shelf's
+lines judge, the claim disagreed on 146 — and the split was telling: of the 99 the engine called a negation **with
+certainty**, 60 stood where only a noun can stand; of the relatives it named, 64 carried the negation's own marks. No new
+text in this wave; the judge is the shelf.
+
+**The rules** (`MaEngine.read`, one block at its end; each leads the shortlist and the earlier faces stay under it):
+- *The governed or defined seat owes a noun.* After أَنَّ / إِنَّ **written apart** (the restraining ma is written into its
+  particle; a ma apart is the particle's noun). After أَوْ. Joined to the pronoun that is إِنَّ's noun (إِنَّكُمْ وَمَا تَعْبُدُونَ).
+  After a verb still owed its object, its doer or a jarr phrase between (وَيَفْعَلُ اللهُ مَا يَشَاءُ) — unless the verb already
+  wears its object, the shelf's ledger has never seen it seat one, an example opens between (نَحْوُ), or the ma's own clause
+  is already whole (هَبَّتْ رِيحٌ شَدِيدَةٌ مَا رَأَى النَّاسُ مِثْلَهَا). After a manṣūb participle. In the **definition frame**, now
+  read clause-locally: the mubtadaʾ may be an annexed phrase (أَسْمَاءُ الْعَدَدِ مَا وُضِعَ), a pronoun (فَهُوَ مَا كَانَ), and the ṣila
+  may open on لَا، لَيْسَ، كَانَ or be a bare ẕarf (الْمَوْصُولُ مَا لَا يَتِمُّ، الْعَالَمُ مَا سِوَى اللهِ). Before a ẕarf that can only
+  be a ṣila (مَا قَبْلَهَا، مَا دُونَهُ). Before لَا / لَيْسَ — two denials do not stack. With مِنَ + the article after it (bayān).
+  And the **question**: an annexed rafʿ noun that ends the clause (مَا شَرَائِعُ الْإِسْلَامِ، فَمَا جَزَاؤُهُ).
+- *The negation shows itself.* The bāʾ on its khabar (وَمَا نَحْنُ بِمَبْعُوثِينَ). The extra مِنْ before an **indefinite** with no
+  verb between (مَا لَهُمْ مِنْ نَاصِرِينَ، مَا مِنْ نَبِيٍّ) — where مِنَ + the **article** is the bayān of a relative; that one vowel
+  of definiteness separates the two. «مَا إِنْ» before a noun. The زَالَ family. An indefinite in rafʿ right after it (مَا
+  قَائِمٌ الزَّيْدَانِ). «أَحَد». كُنَّا with a manṣūb khabar; the lām of denial (مَا كَانَ اللهُ لِيَظْلِمَهُمْ). A first-person muḍāriʿ
+  after the wāw or an oath (وَمَا أَدْرِي). A clause already whole (مَا رَأَيْتُ رَجُلًا). قَطُّ / بَلْ / وَلٰكِنْ / مُذْ later in its
+  clause. The khabar seat of إِنَّ / لٰكِنَّ (لٰكِنَّ النَّاسَ مَا عَقَلُوا).
+- *Named by its own label* (مَا النَّافِيَةِ، مَا الْكَافَّةُ): that face. *مَا دَامَ*, *مَا شَاءَ* after a verb of staying, and
+  *مَا عَدَا / مَا خَلَا* after a clause already whole: the masdar-making letter — but «مَا عَدَا» in a governed seat (تَقْدِيمُ مَا
+  عَدَا هٰذَا، وَالْحَرْفُ مَا عَدَا ذٰلِكَ) is the relative, and the rule reads the seat first.
+- A signal that settles the class is marked **decisive**: the row stays `sure` although another class is listed under it.
+
+**Two things the sweep taught.** (1) *A rule for the claim must not reach the vowelling.* The new faces are marked like
+wave 161's (`w161`) so `DabtEngine` keeps the earlier reading — and the first sweep still changed three endings. The
+cause was the shortlist's own de-duplication: a new leading face with the SAME key as an older one hid the older one,
+so the vowelling engine fell through to the next face. The shortlist as it stood before the block is now handed over
+whole (`pre184`). Second sweep: 0 endings changed. (2) *The first tally had 12 breaks, each a missing guard with a name:*
+the article test folded the hamza and read «إِلٰهٍ» as «ال…»; «مَا إِنْ تَأَمَّلَهُ» is a relative before a conditional;
+«مَا بِهِ مِنْ ضُرٍّ» after كَشَفْنَا is the object, its مِنْ a bayān; «أَنَّ أَفْضَلَ مَا عُلِّمْتُمْ» annexes the ma.
+
+**The lines.** Seventeen «مَا» lines of al-Uṣūl al-Munīfa were wrong where the engine now reads right — the builder had
+named the face by the word beside it (مَا لَمْ → «ظَرْفِيَّة», وَمَا + verb → «نَافِيَة»). Each was read in its sentence and
+rewritten (`tools/authoring/usul/hand184.py`, kept in `fixes.json`): the relative in a governed seat (eleven, among them
+إِنَّكُمْ وَمَا تَعْبُدُونَ twice and عَايَنُوا … مَا لَمْ نُعَايِنْ), the question وَمَا لَهُمْ لَا يَقُولُونَ, the negations مَا مِنْ نَبِيٍّ … إِلَّا,
+مَا أَنْتُمْ عَلَيْهِ بِفَاتِنِينَ, وَمَا أَسْتَطِيعُ, and the letters مَا خَلَا الطَّاعَةَ, مَا دَامُوا.
+
+**Measurements** (baseline `c183f` → `c184c`): «مَا» rows 556 right / 146 wrong → **710 right / 41 wrong**; the case layer
+98.71 → **98.89 %** (55,952 / 56,578; FIXED 106, BROKEN 0, silenced-right 0, newly judged 48 right / 1 wrong); blind and
+receipts-on endings identical (0 fixed, 0 broken); typed battery 1,075 / 1,075.
+
+**What the release gates caught.** (1) An older gate (Talkhīṣ ch. 4, «إِذَا تَقَدَّمَ فِي الْكَلَامِ مَا يُشِيرُ») failed: the new
+object-seat rule had outranked the doer-seat reading and called تَقَدَّمَ «owed its object». The rule now fires only where
+the verb's **doer is in evidence** (a rafʿ noun between, a person on its end, the speakers' nūn, an imperative); with no
+doer in sight and a verb after the ma, the older rule keeps the seat, which is the doer's. That narrowing cost eight
+rows of the first tally and is the honest version. (2) v282's push run failed in CI on a gate that had nothing to do
+with v282: «wave 148» demanded that the Maqṣūd audit take **at least two slices under a 5 ms budget**, and a fast runner
+finished it inside two (the same commit's pull-request run passed). The slices are now asked for under a budget no
+machine can outrun (0.01 ms), so the check measures slicing, not the runner's speed. **A gate that reads a clock must
+not be able to fail on a faster machine.**
+
+**Checks.** Smoke «wave 184» (#431 of 433): sixteen sentences by name (face and claim), three controls (the negation with
+إِلَّا, the whole clause that is no object, مَا شَاءَ after a verb of staying), and the shelf measure with floors (right ≥ 660,
+wrong ≤ 45). The «wave 148» slice check no longer depends on the runner's speed.
+
+**Open, said plainly.** (1) Forty «مَا» remain against their lines. Some are the surface not deciding: a joined «وَمَا +
+māḍī» after a verbal clause (وَسَكَتَتِ الْأَصْنَامُ وَمَا نَطَقَتْ، وَمَا قَتَلُوهُ وَمَا صَلَبُوهُ) is read as a relative where the
+narrative means a denial; «لَقَدْ عَلِمْتُمْ مَا جِئْنَا لِنُفْسِدَ» and the oath's answer «مَا ضَلَّ صَاحِبُكُمْ» are denials after a verb
+that could take an object. (2) One row became wrong that was silent: the verse «أَخْطَأْتُ فِي مَدْحِكَ مَا أَخْطَأْتَ فِي مَنْعِي» (a denial after
+an intransitive use the ledger does not know).
+(3) «مَا لَمْ» is left as it was: it is the letter of time (يُعْرِبُونَهُ مَا لَمْ يَكُنْ) and the relative (عَلَّمَ … مَا لَمْ يَعْلَمْ) on
+the same letters, and only the seat rules above separate them. (4) Marāḥ 11:s3 «مَا ضَمِنْتَا» still reads as a denial: the
+verb before it (تُوَفَّى, a feminine passive the oracle does not own as a cell) is not recognised as owed. (5) Twenty-seven
+bare «اسْمٌ.» lines remain in al-Uṣūl (كَيْفٍ، إِذْ، يَوْمَئِذٍ …) — counted, not yet written.

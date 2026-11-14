@@ -5780,13 +5780,15 @@
       "smart": "وَمَا",
       "bare": "وما"
      },
-     "lex": "ma-nafiya",
-     "pos": "part",
-     "grammar": [],
+     "lex": "ma-istifham",
+     "pos": "pron",
+     "grammar": [
+      "al-istifham"
+     ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-      "en": "The waw conjoins; «not» — the negation before a verb.",
-      "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَخَبَرُهُ «لَهُمْ» (مَا لَهُمْ = أَيُّ شَيْءٍ لَهُمْ).",
+      "en": "The waw conjoins; «مَا» is an interrogative noun, built, in the place of raf' as the mubtada; its khabar is «لَهُمْ» («what is it with them that …?»).",
+      "tr": "«ve» + «مَا» istifham ismi, mebnî, ref mahallinde mübtedâ; haberi «لَهُمْ»dür («onlara ne oluyor ki …?»)."
      },
      "segments": [
       {
@@ -5796,8 +5798,8 @@
       },
       {
        "form": "مَا",
-       "lex": "ma-nafiya",
-       "pos": "part"
+       "lex": "ma-istifham",
+       "pos": "pron"
       }
      ]
     },

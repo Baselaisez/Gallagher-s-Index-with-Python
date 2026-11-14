@@ -726,12 +726,27 @@
  },
  "2:s2:7": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى مَا قَبْلَهُ، وَصِلَتُهُ جُمْلَةُ «يَتَعَلَّقُ مِنْهَا بِالِاعْتِقَادِيَّاتِ»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+   "en": "The waw conjoins; a relative pronoun — built (mabni), joined to what precedes, in the place of nasb; its clause is «يَتَعَلَّقُ مِنْهَا بِالِاعْتِقَادِيَّاتِ»; the returning pronoun stands inside it.",
+   "tr": "«ve» + İsm-i mevsûl — mebnî, öncesine ma'tûf, nasb mahallinde; sılası «يَتَعَلَّقُ مِنْهَا بِالِاعْتِقَادِيَّاتِ» cümlesidir; âid zamiri içindedir."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-mawsula",
+    "pos": "part"
+   }
+  ]
  },
  "3:s18:12": {
   "irab": {
@@ -803,12 +818,15 @@
  },
  "6:s11:12": {
   "irab": {
-   "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا لَمْ = مُدَّةَ عَدَمِ …)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«as long as … not, unless» — the time-making maṣdar مَا before لَمْ.",
-   "tr": "«… -medikçe» — lem'den önce zarfiyye masdariyye mâ."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ فَاعِلُ «يَجْرِيَ»، وَصِلَتُهُ جُمْلَةُ «لَمْ يَقْضِ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «لَمْ يَقْضِهِ».",
+   "en": "A relative pronoun — built (mabni), in the place of raf' as the doer of «يَجْرِيَ»; its clause is «لَمْ يَقْضِ»; the returning pronoun is dropped («لَمْ يَقْضِهِ»).",
+   "tr": "İsm-i mevsûl — mebnî, ref mahallinde «يَجْرِيَ» fiilinin fâili; sılası «لَمْ يَقْضِ» cümlesidir; âid zamiri hazfedilmiştir («لَمْ يَقْضِهِ»)."
   },
-  "pos": "part",
-  "key": "ma-masdariyya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "7:s4:0": {
   "irab": {
@@ -921,21 +939,51 @@
  },
  "14:s20:28": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى اسْمِ «إِنَّ»، وَصِلَتُهُ جُمْلَةُ «تَعْبُدُونَ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «تَعْبُدُونَهُ».",
+   "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of nasb, joined to the noun of «إِنَّ»; its clause is «تَعْبُدُونَ»; the returning pronoun is dropped («تَعْبُدُونَهُ»).",
+   "tr": "«ve» + İsm-i mevsûl — mebnî, nasb mahallinde, «إِنَّ»nin ismine ma'tûf; sılası «تَعْبُدُونَ» cümlesidir; âid zamiri hazfedilmiştir («تَعْبُدُونَهُ»)."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-mawsula",
+    "pos": "part"
+   }
+  ]
  },
  "14:s20:41": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَعْطُوفٌ عَلَى اسْمِ «إِنَّ»، وَصِلَتُهُ جُمْلَةُ «تَعْبُدُونَ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «تَعْبُدُونَهُ».",
+   "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of nasb, joined to the noun of «إِنَّ»; its clause is «تَعْبُدُونَ»; the returning pronoun is dropped («تَعْبُدُونَهُ»).",
+   "tr": "«ve» + İsm-i mevsûl — mebnî, nasb mahallinde, «إِنَّ»nin ismine ma'tûf; sılası «تَعْبُدُونَ» cümlesidir; âid zamiri hazfedilmiştir («تَعْبُدُونَهُ»)."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-mawsula",
+    "pos": "part"
+   }
+  ]
  },
  "14:s23:15": {
   "irab": {
@@ -1098,12 +1146,27 @@
  },
  "15:s6:25": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ (وَيَجُوزُ أَنْ تَكُونَ شَرْطِيَّةً)، وَصِلَتُهُ جُمْلَةُ «آتَاكُمُ الرَّسُولُ»، وَالْعَائِدُ مَحْذُوفٌ، وَخَبَرُهُ جُمْلَةُ «فَخُذُوهُ».",
+   "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of raf' as a mubtada (it may also be read as the conditional ma); its clause is «آتَاكُمُ الرَّسُولُ»; the returning pronoun is dropped, and its khabar is the clause «فَخُذُوهُ».",
+   "tr": "«ve» + İsm-i mevsûl — mebnî, ref mahallinde mübtedâ (şartiyye de okunabilir); sılası «آتَاكُمُ الرَّسُولُ» cümlesidir; âid zamiri hazfedilmiştir; haberi «فَخُذُوهُ» cümlesidir."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-mawsula",
+    "pos": "part"
+   }
+  ]
  },
  "16:s2:12": {
   "irab": {
@@ -1116,12 +1179,27 @@
  },
  "18:s10:7": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَاسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ مَعْطُوفٌ عَلَى لَفْظِ الْجَلَالَةِ، وَصِلَتُهُ جُمْلَةُ «أُنْزِلَ إِلَى إِبْرَاهِيمَ …»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+   "en": "The waw conjoins; a relative pronoun — built (mabni), in the place of jarr, joined to the Name; its clause is «أُنْزِلَ إِلَى إِبْرَاهِيمَ …»; the returning pronoun stands inside it.",
+   "tr": "«ve» + İsm-i mevsûl — mebnî, cer mahallinde, lafza-i celâle ma'tûf; sılası «أُنْزِلَ إِلَى إِبْرَاهِيمَ …» cümlesidir; âid zamiri içindedir."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-mawsula",
+    "pos": "part"
+   }
+  ]
  },
  "18:s17:10": {
   "irab": {
@@ -1164,12 +1242,15 @@
  },
  "19:s13:17": {
   "irab": {
-   "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«not» — the negation before a verb.",
-   "tr": "«değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«يَقُولُونَ»، وَصِلَتُهُ جُمْلَةُ «سَمِعُوا»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «سَمِعُوهُ».",
+   "en": "A relative pronoun — built (mabni), in the place of nasb as the object of «يَقُولُونَ»; its clause is «سَمِعُوا»; the returning pronoun is dropped («سَمِعُوهُ»).",
+   "tr": "İsm-i mevsûl — mebnî, nasb mahallinde «يَقُولُونَ»nin mef'ûlü; sılası «سَمِعُوا» cümlesidir; âid zamiri hazfedilmiştir («سَمِعُوهُ»)."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "19:s3:3": {
   "irab": {
@@ -1236,21 +1317,39 @@
  },
  "20:s8:36": {
   "irab": {
-   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "The waw conjoins; «not» — the negation before a verb.",
-   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَخَبَرُهُ «لَهُمْ» (مَا لَهُمْ = أَيُّ شَيْءٍ لَهُمْ).",
+   "en": "The waw conjoins; «مَا» is an interrogative noun, built, in the place of raf' as the mubtada; its khabar is «لَهُمْ» («what is it with them that …?»).",
+   "tr": "«ve» + «مَا» istifham ismi, mebnî, ref mahallinde mübtedâ; haberi «لَهُمْ»dür («onlara ne oluyor ki …?»)."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-istifham",
+  "tags": [
+   "al-istifham"
+  ],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-istifham",
+    "pos": "pron"
+   }
+  ]
  },
  "22:s10:32": {
   "irab": {
-   "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا لَمْ = مُدَّةَ عَدَمِ …)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«as long as … not, unless» — the time-making maṣdar مَا before لَمْ.",
-   "tr": "«… -medikçe» — lem'den önce zarfiyye masdariyye mâ."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«عَايَنُوا»، وَصِلَتُهُ جُمْلَةُ «لَمْ نُعَايِنْ»، وَالْعَائِدُ مَحْذُوفٌ تَقْدِيرُهُ «لَمْ نُعَايِنْهُ».",
+   "en": "A relative pronoun — built (mabni), in the place of nasb as the object of «عَايَنُوا»; its clause is «لَمْ نُعَايِنْ»; the returning pronoun is dropped («لَمْ نُعَايِنْهُ»).",
+   "tr": "İsm-i mevsûl — mebnî, nasb mahallinde «عَايَنُوا»nun mef'ûlü; sılası «لَمْ نُعَايِنْ» cümlesidir; âid zamiri hazfedilmiştir («لَمْ نُعَايِنْهُ»)."
   },
-  "pos": "part",
-  "key": "ma-masdariyya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "23:s4:1": {
   "irab": {
@@ -1365,12 +1464,15 @@
  },
  "25:s17:21": {
   "irab": {
-   "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا لَمْ = مُدَّةَ عَدَمِ …)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«as long as … not, unless» — the time-making maṣdar مَا before لَمْ.",
-   "tr": "«… -medikçe» — lem'den önce zarfiyye masdariyye mâ."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«ذَكَرَ»، وَصِلَتُهُ جُمْلَةُ «لَمْ يَذْكُرْهُ»، وَالْعَائِدُ الْهَاءُ فِي «يَذْكُرْهُ».",
+   "en": "A relative pronoun — built (mabni), in the place of nasb as the object of «ذَكَرَ»; its clause is «لَمْ يَذْكُرْهُ»; the returning pronoun is the hāʾ of «يَذْكُرْهُ».",
+   "tr": "İsm-i mevsûl — mebnî, nasb mahallinde «ذَكَرَ»nin mef'ûlü; sılası «لَمْ يَذْكُرْهُ» cümlesidir; âid, «يَذْكُرْهُ»daki hâ zamiridir."
   },
-  "pos": "part",
-  "key": "ma-masdariyya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "25:s18:20": {
   "irab": {
@@ -1396,12 +1498,15 @@
  },
  "25:s1:32": {
   "irab": {
-   "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«not» — the negation before a verb.",
-   "tr": "«değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَصِلَتُهُ جُمْلَةُ «كَانَ مِنَ السَّيِّئَاتِ …»، وَالْعَائِدُ اسْمُ «كَانَ» الْمُسْتَتِرُ.",
+   "en": "A relative pronoun — built (mabni), in the place of raf' as a mubtada; its clause is «كَانَ مِنَ السَّيِّئَاتِ …»; the returning pronoun is the hidden noun of «كَانَ».",
+   "tr": "İsm-i mevsûl — mebnî, ref mahallinde mübtedâ; sılası «كَانَ مِنَ السَّيِّئَاتِ …» cümlesidir; âid, «كَانَ»nin gizli ismidir."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "25:s2:4": {
   "irab": {
@@ -1425,12 +1530,15 @@
  },
  "26:s4:83": {
   "irab": {
-   "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
-   "en": "«not» — the negation before a verb.",
-   "tr": "«değil / -madı» — fiilden önce nefiy mâsı."
+   "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرُ «الثَّالِثَةُ»، وَصِلَتُهُ جُمْلَةُ «كَانَ مِنْ عَمَلٍ …»، وَالْعَائِدُ اسْمُ «كَانَ» الْمُسْتَتِرُ.",
+   "en": "A relative pronoun — built (mabni), in the place of raf' as the khabar of «الثَّالِثَةُ»; its clause is «كَانَ مِنْ عَمَلٍ …»; the returning pronoun is the hidden noun of «كَانَ».",
+   "tr": "İsm-i mevsûl — mebnî, ref mahallinde «الثَّالِثَةُ»nün haberi; sılası «كَانَ مِنْ عَمَلٍ …» cümlesidir; âid, «كَانَ»nin gizli ismidir."
   },
-  "pos": "part",
-  "key": "ma-nafiya"
+  "pos": "pron",
+  "key": "ma-mawsula",
+  "tags": [
+   "ism-mawsul"
+  ]
  },
  "27:s1:19": {
   "irab": {
@@ -2240,6 +2348,70 @@
   "tags": [
    "mubtada-khabar",
    "idafa-definiteness"
+  ]
+ },
+ "14:s18:17": {
+  "irab": {
+   "ar": "«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — وَ«مِنْ» بَعْدَهَا زَائِدَةٌ لِتَوْكِيدِ النَّفْيِ، وَالنَّفْيُ مَعَ «إِلَّا» قَصْرٌ.",
+   "en": "«not» — the negation; the مِنْ after it is the extra one that strengthens the denial, and the denial with «إِلَّا» confines: «there is no prophet … but he warned».",
+   "tr": "«değil» — nefiy mâsı; ardındaki مِنْ nefyi pekiştiren zâid harftir, nefiy ise «إِلَّا» ile kasr bildirir: «hiçbir peygamber yoktur ki … uyarmamış olsun»."
+  },
+  "pos": "part",
+  "key": "ma-nafiya",
+  "tags": []
+ },
+ "14:s20:43": {
+  "irab": {
+   "ar": "«مَا» نَافِيَةٌ تَعْمَلُ عَمَلَ «لَيْسَ» (الْحِجَازِيَّةُ)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — وَالْبَاءُ فِي خَبَرِهَا «بِفَاتِنِينَ» زَائِدَةٌ.",
+   "en": "«not» — the negation that governs like «لَيْسَ» (the Hijazi ma); the bāʾ on its predicate «بِفَاتِنِينَ» is the extra one.",
+   "tr": "«değil» — «لَيْسَ» gibi amel eden nefiy mâsı (Hicâziyye); haberi «بِفَاتِنِينَ»deki bâ zâidedir."
+  },
+  "pos": "part",
+  "key": "ma-hijaziyya",
+  "tags": [
+   "ma-la-mushabbaha"
+  ]
+ },
+ "14:s35:17": {
+  "irab": {
+   "ar": "«مَا» مَصْدَرِيَّةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ — «مَا خَلَا»: وَ«خَلَا» بَعْدَهَا فِعْلٌ لِلِاسْتِثْنَاءِ يَنْصِبُ مَا بَعْدَهُ.",
+   "en": "The masdar-making ma, a letter — «مَا خَلَا»: after it «خَلَا» is a verb of exception and puts what follows in nasb («except obedience and disobedience»).",
+   "tr": "Masdariyye mâ, harf — «مَا خَلَا»: ardındaki «خَلَا» istisnâ fiilidir ve sonrasını nasbeder («tâat ve mâsiyet hâriç»)."
+  },
+  "pos": "part",
+  "key": "ma-masdariyya",
+  "tags": []
+ },
+ "24:s17:25": {
+  "irab": {
+   "ar": "«مَا» مَصْدَرِيَّةٌ ظَرْفِيَّةٌ (مَا دَامُوا = مُدَّةَ دَوَامِهِمْ)، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
+   "en": "«as long as» — the masdar-making ma of time before «دَامَ», a letter.",
+   "tr": "«… olduğu müddetçe» — «دَامَ»den önce zarfiyye masdariyye mâ, harf."
+  },
+  "pos": "part",
+  "key": "ma-masdariyya",
+  "tags": []
+ },
+ "25:s4:41": {
+  "irab": {
+   "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَا» نَافِيَةٌ، حَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ.",
+   "en": "The waw conjoins; «not» — the negation before a verb.",
+   "tr": "«ve» + «değil / -madı» — fiilden önce nefiy mâsı."
+  },
+  "pos": "part",
+  "key": "ma-nafiya",
+  "tags": [],
+  "segments": [
+   {
+    "form": "وَ",
+    "lex": "wa",
+    "pos": "conj"
+   },
+   {
+    "form": "مَا",
+    "lex": "ma-nafiya",
+    "pos": "part"
+   }
   ]
  }
 }
