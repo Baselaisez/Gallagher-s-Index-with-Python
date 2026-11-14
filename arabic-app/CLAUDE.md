@@ -12973,3 +12973,90 @@ own label for «أَمَّا قَوْلُهُمْ … فَمَحْمُولَةٌ
 line is right by the packager's rule).
 
 **Next.** Marāḥ part fourteen opens on p. 86 at «اسْمُ الْمَكَانِ: هُوَ اسْمٌ مُشْتَقٌّ مِنْ يَفْعَلُ لِمَكَانٍ وَقَعَ فِيهِ الْفِعْلُ».
+
+### v296 (wave 197) — Marāḥ al-Arwāḥ part fourteen, the doubled verb of the fifth bāb, and the deputy doer behind a jussive passive
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 86–92 of the scan (the matn's large type only) —
+  the last two sections of the first bāb and the opening of the second: chapter 41 «اسْمَا الزَّمَانِ وَالْمَكَانِ»
+  (13 sentences — the definition, why the mīm and not the wāw, «مَفْعَل» and «مَفْعِل» by the bāb with the mithāl and
+  the nāqiṣ excepted, the eleven nouns on «مَفْعِل» against the rule, the noun of time), 42 «اسْمُ الْآلَةِ»
+  (8 — «مِفْعَل», the poet's line on the four measures, «مِفْعَال», the two on «مُفْعُل» and Sībawayh's word on them),
+  43 «الْمُضَاعَفُ وَالْإِدْغَامُ» (9 — why it is called «أَصَمّ» and not «صَحِيح», its three bābs and the rare
+  fourth, idghām defined twice, the merged pair in sound and in writing). 30 sentences / 305 words, twenty new
+  entries; the book stands at **43 chapters / 366 sentences / 4,147 words**, version 0.14.0. The letters were collated
+  against the scan's text layer by tool (one deliberate difference: «شَطْأَهُ» for the print's «شطاءه»). The attribution
+  records the span and the readings: the print's ḍamma on «الْمَكَان» read as the annexation, «أَنَّ» for the print's
+  «إِنَّ» behind «يُظَنَّ», «وَأُعْطِيَ» as a passive, the poet's line written on one line, «أَوْ مُتَقَارِبَيْنِ» with
+  its yāʾ as printed, and the two Qurʾānic words «أَخْرَجَ شَّطْأَهُ» / «قَالَت طَّائِفَةٌ» with the print's own shadda
+  of merging on the second word's first letter.
+- **The conjugator.** `sarfDerive` refused a doubled root outside bābs 1, 2 and 4; the matn says «وَلَا يَجِيءُ مِنْ فَعُلَ
+  يَفْعُلُ إِلَّا قَلِيلًا» and names two. Bāb 5 is admitted (the broken stem keeps the bāb's ḍamma: حَبُبْتُ), so
+  «حَبَّ يَحُبُّ» and «لَبَّ يَلُبُّ» are entered as verbs with full paradigms and `sarfAudit` regenerates both
+  (1,315 paradigms checked, 0 bad). Their ism fāʿil field holds the «فَعِيل» the matn itself gives; the note on
+  «لَبَّ» says its present is cited as the printing vowels it and that the lexicons know «لَبِبْتَ تَلَبُّ».
+- **Reader rules** (`$S/w197/patch197.py`):
+  - **the deputy doer behind a jussive passive.** «وَلَمْ يُزَدِ الْوَاوُ»: the jussive of a hollow passive has lost the
+    alif the stored «يُزَادُ» shows, so the analyzer found no cell and the noun was named a doer. A present whose
+    prefix wears a ḍamma, on a lemma whose stored passive is that word with one long alif more, is flagged, and the
+    verdict setter names the doer seated behind it a deputy. (A synthetic cell was tried first and broke the jazm.)
+  - **the khabar of «صَيْرُورَة».** Wave 196's rule for «كَوْن» with a pronoun now has its sister: the chain annexed to
+    «صَيْرُورَة» holds its noun, and the bare noun behind that chain is its khabar in naṣb
+    (لِصَيْرُورَةِ أَحَدِ حَرْفَيْهِ حَرْفَ عِلَّةٍ).
+  - **«one of his two …».** The noun with a pronoun behind «أَحَد / إِحْدَى / كِلَا / كِلْتَا» is their muḍāf ilayh, a
+    dual whose nūn has fallen — three rows on the shelf had been called «mabnī» (the Marāḥ, the Talkhīṣ twice).
+  - **the ḥāl that names a vowel.** «وَيَجِيءُ مَضْمُومَ الْعَيْنِ»: the word that names a vowel's state, annexed to the
+    letter it describes, right behind a verb of coming, is a ḥāl — it had been written in rafʿ as a doer.
+  - **the second sentence of one build.** «الْمَفْعَلُ لِلْمَوْضِعِ وَالْمِفْعَلُ لِلْآلَةِ»: a joined article-noun that
+    brings its own «لِ…» phrase, behind a mubtadaʾ told of by a «لِ…» phrase, is a mubtadaʾ — it had been joined to
+    the jarr before it and written with a kasra.
+  - **the sentence behind «يَعْنِي:»**, the khabar behind «فَهُوَ / وَهُوَ» that follows a verb (حَبَّ يَحُبُّ فَهُوَ
+    حَبِيبٌ), and the mubtadaʾ that closes a clause behind «وَكَذٰلِكَ» (وَكَذٰلِكَ أَخَوَاتُهُ).
+  - **«مِقْدَارَ» as a ẓarf** behind a jarr noun closed by its pronoun or a verb with its object on it
+    (فِي مَخْرَجِهِ مِقْدَارَ إِلْبَاثِ الْحَرْفَيْنِ) — undecided before.
+  - **the maqṣūr behind «نَحْوُ».** The maqṣūr wears one tanwīn in all three cases; with a naṣb word after it
+    («نَحْوُ «مَرْمًى»، فِرَارًا …») the pair had been turned into a khabar and a mubtadaʾ. It is the muḍāf ilayh.
+  - **two words cited each in its own marks** are two words: «مِنْ بَابِ «يَفْعَلُ» «مَفْعَلٌ»» — the second is the
+    waiting mubtadaʾ's khabar, no cognate object of the first.
+  - **«سِيبَوَيْهِ»** is known by its letters (typed bare, or with its ending taken off), and the demonstrative behind
+    its colon opens the said sentence. «وَاحِد» behind a joined bare indefinite is its naʿt.
+- **Packager.** A cited word written in rafʿ right behind a cited jarr word is no longer «joined with the conjunction
+  left out» — it falls to the engine's own verdict (khabar, deputy doer). Seventeen lines of constructions met once
+  are named by hand in `mk_fixes.py` (the second mubtadaʾ, the compound number as a deputy doer, the built name as a
+  doer, the cited half-verse, «إِلَّا قَلِيلًا», the khabar of an omitted mubtadaʾ behind «قِيلَ:» and «أَمَّا … فَـ»).
+- **Measured.** Same data, v295 code → v296 code: blind **9 fixed / 0 broken** (70,954 / 580 / 334 →
+  70,963 / 575 / 330), receipts-on 0 / 0 (71,377 / 323 / 168 both), case layer 58,461 of 59,093 (98.93 %, 0 new-wrong,
+  0 silenced-right). Label gauge 90.24 → **90.27 %** over 34,514 rows; typed gauge 1,158 / 1,159 unchanged.
+  Chapters 1–40 of the book are token-for-token what v295 shipped.
+- **Tried and narrowed.** «وَاحِد» as a naʿt behind ANY bare indefinite broke three rows (it is a khabar after a
+  jarr phrase in al-Uṣūl 22:s10 and the Talkhīṣ 48:s3) — it now needs the noun before it to be a joined one.
+  «مِقْدَار» as a ẓarf behind any jarr word broke one (it is a muḍāf ilayh behind a bare muḍāf in the Talkhīṣ 49:s12)
+  — the jarr noun must be closed by a pronoun.
+- **Gate.** Smoke check «wave 197» (#444 of 446): the three chapters and their counts, no bare or contradictory line,
+  eighteen named lines, eleven engine rules each with its probe (four with a control), the conjugator's fifth-bāb
+  doubled verb with the refused third bāb as its control, the two stored paradigms and the audit.
+
+- **Two gates at release.** (1) The deleted-word audit rose to 5 false restorations against its ceiling of 3. One was
+  mine: «وَنَحْوُ …» behind an earlier «نَحْوُ» had been named «joined to the first», where the book's own line — and
+  the engine — read the khabar of an omitted «ذٰلِكَ»; the line now says so. The other was the engine's: `HadhfEngine`
+  took «قَالَتْ طَائِفَةٌ» for a saying and its one-word reply («هِيَ طَائِفَةٌ»); a feminine saying-verb with no doer
+  yet and a feminine noun right behind it is a verb and its doer. (2) The wave-136 check compares the memoised noun
+  lookup with the plain walk on a fixed-seed sample; the new words shifted the sample onto «فَعَلَى», where the
+  wrapper's wave-193 vowel rule rightly answers «عَلَى» against the plain walk's measure «فَعْلَى». The check now
+  states that departure beside the wave-174 one — its oracle had lagged the code since wave 193 and had simply never
+  drawn such a word.
+
+*Landing lessons (wave 197).* **A fixed-seed sample is not a fixed sample** — it is drawn from a set that every new
+chapter changes, so a check built on one can start failing on code that did not move; when it does, ask first
+whether the oracle or the code is behind. **A new verb with a new lemma is read as a noun until its paradigm is in the reader's
+data** — and a non-verb stand-in is worse than waiting: entering «حَبَّ يَحُبُّ» as a cited phrase made the engine
+write «حَبُّ» and «يَحُبٍّ». Where the conjugator cannot build a class, teach the conjugator and store the paradigm.
+**A cell is a contract with every later rule** — inventing one to get a label changed the verb's own ending; a flag
+read at one place did the one thing wanted. **A rule proved on five typed sentences is still a guess about the
+shelf** — two of this wave's rules were right on every probe and wrong on four stored rows; the same-data sweep is
+the only judge, and the fix each time was the condition the probe sentences happened to share.
+
+*Left open.* The writer does not vowel a typed bare dual with a pronoun («حرفيه» stays as typed); «قَالَ سِيبَوَيْهِ»
+leaves the verb's doer slot unfilled in the engine (the stored lines are right by hand); the jussive passive is
+recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ الْحَقُّ» typed without the fatḥa is still read as a doer.
+
+**Next.** Marāḥ part fifteen opens on p. 92 at «وَاجْتِمَاعُ الْحَرْفَيْنِ عَلَى ثَلَاثَةِ أَضْرُبٍ».
