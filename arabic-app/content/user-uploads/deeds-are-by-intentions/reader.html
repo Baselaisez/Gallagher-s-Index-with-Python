@@ -2881,6 +2881,11 @@ const L = {
         conjNote:"Derived live by the i'lal rules from the uploaded texts. The engine is audited against every stored, reviewed paradigm in the corpus — one mismatched cell fails the build.",
         conjKnown:"attested in Qissa's texts:",
         conjKnownOther:"You are exploring another bab — the texts recite this root as",
+        damirTab:"Pronouns", damirIntro:"The sixty pronouns, counted the way Marāḥ al-Arwāḥ counts them — and every attached one written after its host by rule. Pick a verb for the table; type a host and choose a pronoun to see which rules fire.",
+        damirSee:"see it in the text", damirTableNote:"Five kinds over fourteen seats; the dual is one word for both genders, so each kind has twelve words — 5 × 12 = 60. In the first table the māḍī's own endings are the pronouns; «he» and «she» hide inside the verb, and the tāʾ of ضَرَبَتْ / ضَرَبَتَا is the letter of the feminine, not a pronoun.",
+        damirAttachTitle:"Host + pronoun, by rule", damirHostPh:"عَلَى · كِتَابٌ · ضَرَبْتُمْ", damirKVerb:"verb", damirKNoun:"noun", damirKHarf:"letter / ẓarf", damirNoRule:"No rule had to fire: the pronoun is simply joined.",
+        damirReadTitle:"Which of the sixty is in this word?", damirPh:"عَلَيْهِمْ · ضَرَبْتُمُوهُ · إِيَّاكَ", damirNone:"No pronoun the rules can point at in this word.", damirHidden:"hidden in the verb",
+        damirGame:"The sixty pronouns", damirGameDesc:"Build the word or name its pronoun — every wrong answer is the same word with one rule left undone.", damirAsk:"Which is right?", damirAskBuild:"join them", damirAskName:"Which of the sixty is this?",
         adadTab:"Numbers Lab",
         adadIntro:"Type a figure and the lab recites its Arabic name, composed exactly as the أسماء عدد worksheets do — thousands, hundreds, units before tens. Pick a noun and the ma'dud rules apply.",
         adadPh:"125",
@@ -3264,6 +3269,11 @@ const L = {
         conjNote:"Yüklediğiniz metinlerdeki i'lâl kaideleriyle canlı türetilir. Motor, külliyattaki gözden geçirilmiş her paradigmaya karşı denetlenir — tek bir hücre uyuşmazsa derleme düşer.",
         conjKnown:"Qissa metinlerinde geçtiği şekli:",
         conjKnownOther:"Başka bir babı deniyorsunuz — metinlerde bu kök şöyle geçer:",
+        damirTab:"Zamirler", damirIntro:"Altmış zamir, Merâhu'l-Ervâh'ın saydığı gibi sayılır — bitişik olanların her biri de kelimesine kaideyle eklenir. Tablo için bir fiil seçin; bir kelime yazıp zamir seçerek hangi kaidelerin işlediğini görün.",
+        damirSee:"metinde gör", damirTableNote:"On dört sîga üzerinde beş çeşit; tesniye iki cins için tek kelimedir, böylece her çeşidin on iki kelimesi olur — 5 × 12 = 60. İlk tabloda mâzînin kendi ekleri zamirdir; «o» (eril ve dişil) fiilin içinde gizlidir; ضَرَبَتْ / ضَرَبَتَا'daki tâ ise zamir değil, te'nîs harfidir.",
+        damirAttachTitle:"Kelime + zamir, kaideyle", damirHostPh:"عَلَى · كِتَابٌ · ضَرَبْتُمْ", damirKVerb:"fiil", damirKNoun:"isim", damirKHarf:"harf / zarf", damirNoRule:"İşleyen bir kaide yok: zamir doğrudan eklenir.",
+        damirReadTitle:"Bu kelimede altmıştan hangisi var?", damirPh:"عَلَيْهِمْ · ضَرَبْتُمُوهُ · إِيَّاكَ", damirNone:"Bu kelimede kaidelerin gösterebileceği bir zamir yok.", damirHidden:"fiilin içinde gizli",
+        damirGame:"Altmış zamir", damirGameDesc:"Kelimeyi kur ya da zamirini söyle — her yanlış şık, bir kaidesi işletilmemiş aynı kelimedir.", damirAsk:"Hangisi doğru?", damirAskBuild:"birleştir", damirAskName:"Bu, altmıştan hangisidir?",
         adadTab:"Esmâ-i Aded",
         adadIntro:"Bir sayı yazın; atölye Arapça adını أسماء عدد cetvellerinin düzeniyle okusun — binler, yüzler, birler onlardan önce. Bir isim seçerseniz ma'dûd kaideleri uygulanır.",
         adadPh:"125",
@@ -14320,6 +14330,47 @@ function renderIlalOut(){
 }
 // The Nida Lab. Everything on screen is computed by NidaEngine from the call
 // as typed — the panel adds no knowledge of its own, it only lays the verdict out.
+function renderDamirOut(){
+  const out = document.getElementById("damirOut");
+  if (!out) return;
+  const E = escapeAttr, lang = state.uiLang === "tr" ? "tr" : "en";
+  const c = DamirEngine.count();
+  const stem = DamirEngine.VERBS[conjState.damirVerb || 0] || DamirEngine.VERBS[0];
+  let h = `<ol class="idf-steps damir-count">${c.steps.map(st => { const m = DamirEngine.matn(st.sen);
+      return `<li><b class="damir-n">${st.n}</b> <span class="idf-why">${T(st)}</span>${m ? `<br><span lang="ar" dir="rtl" class="idf-rule">${E(m.text)}</span> <button class="chip" data-dj="${E(m.sen)}">${ui().damirSee}</button>` : ""}</li>`; }).join("")}</ol>`;
+  h += `<div class="seg conj-seg" id="damirVerbSeg">${DamirEngine.VERBS.map((v, i) => `<button data-dv="${i}" class="${(conjState.damirVerb || 0) === i ? "on" : ""}" lang="ar">${v}َ</button>`).join("")}</div>`;
+  DamirEngine.table(stem).forEach(row => { h += `<h4 class="conj-h" lang="ar">${row.kind.ar} <small>${T(row.kind)}</small></h4>${conjTable(row.forms, PERSON_ROWS, "")}`; });
+  h += `<p class="sarf-note">${ui().damirTableNote}</p>`;
+  // host + pronoun, by rule
+  const kinds = [["verb", ui().damirKVerb], ["noun", ui().damirKNoun], ["harf", ui().damirKHarf]];
+  const dk = conjState.damirKind || "harf", ds = typeof conjState.damirSeat === "number" ? conjState.damirSeat : 2, host = conjState.damirHost === undefined ? "عَلَى" : conjState.damirHost;
+  h += `<h4 class="conj-h">${ui().damirAttachTitle}</h4>
+    <div class="conj-lab"><input id="damirHost" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" placeholder="${E(ui().damirHostPh)}" value="${E(host)}">
+      <div class="seg conj-seg" id="damirKindSeg">${kinds.map(([k, lbl]) => `<button data-dk="${k}" class="${dk === k ? "on" : ""}">${lbl}</button>`).join("")}</div>
+      <div class="seg conj-seg" id="damirSeatSeg">${DamirEngine.MUNFASIL.map((f, i) => `<button data-ds="${i}" class="${ds === i ? "on" : ""}" lang="ar" title="${E(DamirEngine.SEATS[i][lang])}">${f}</button>`).join("")}</div></div>
+    <div id="damirAttach"></div>
+    <h4 class="conj-h">${ui().damirReadTitle}</h4>
+    <div class="conj-lab"><input id="damirIn" lang="ar" dir="rtl" autocomplete="off" spellcheck="false" placeholder="${E(ui().damirPh)}" value="${E(conjState.damir || "")}"></div>
+    <div id="damirRead"></div>`;
+  out.innerHTML = h;
+  const drawAttach = () => { const box = document.getElementById("damirAttach"); if (!box) return;
+    const r = DamirEngine.attach(conjState.damirHost === undefined ? "عَلَى" : conjState.damirHost, typeof conjState.damirSeat === "number" ? conjState.damirSeat : 2, conjState.damirKind || "harf");
+    if (!r.ok) { box.innerHTML = `<div class="idf-refuse"><span class="idf-x" aria-hidden="true">✕</span>${r.refused.ar ? `<p lang="ar" dir="rtl" class="idf-ar">${r.refused.ar}</p>` : ""}<p>${T(r.refused)}</p></div>`; return; }
+    box.innerHTML = `<div class="idf-out" lang="ar" dir="rtl"><b class="idf-head">${E(r.host)}</b><b class="idf-tail">${E(r.pron)}</b></div>
+      ${r.steps.length ? `<ol class="idf-steps">${r.steps.map(st => `<li><span lang="ar" dir="rtl" class="idf-rule">${st.ar}</span> <span class="idf-why">${T(st)}</span></li>`).join("")}</ol>` : `<p class="sarf-note">${ui().damirNoRule}</p>`}`; };
+  const drawRead = () => { const box = document.getElementById("damirRead"); if (!box) return; const w = conjState.damir || "";
+    if (!w.trim()) { box.innerHTML = ""; return; }
+    const rs = DamirEngine.read(w);
+    box.innerHTML = rs.length ? `<ul class="idf-steps">${rs.map(x => `<li><span lang="ar" dir="rtl" class="idf-rule">${x.kind.ar} — ${x.seats.map(i => DamirEngine.SEATS[i].ar).join(" / ")}</span> <span class="idf-why">${T(x.kind)} · ${DamirEngine.seatLabel(x.seats, lang)}${x.note === "hidden" ? " · " + ui().damirHidden : ""}</span></li>`).join("")}</ul>` : `<p class="empty">${ui().damirNone}</p>`; };
+  out.querySelectorAll("[data-dv]").forEach(b => b.addEventListener("click", () => { conjState.damirVerb = +b.dataset.dv; renderDamirOut(); }));
+  out.querySelectorAll("[data-dk]").forEach(b => b.addEventListener("click", () => { conjState.damirKind = b.dataset.dk; out.querySelectorAll("[data-dk]").forEach(x => x.classList.toggle("on", x === b)); drawAttach(); }));
+  out.querySelectorAll("[data-ds]").forEach(b => b.addEventListener("click", () => { conjState.damirSeat = +b.dataset.ds; out.querySelectorAll("[data-ds]").forEach(x => x.classList.toggle("on", x === b)); drawAttach(); }));
+  out.querySelectorAll("[data-dj]").forEach(b => b.addEventListener("click", () => { try { jumpTo("marah-al-arwah", b.dataset.dj, undefined, 13); } catch (e) {} }));
+  const hi = document.getElementById("damirHost"); if (hi) hi.addEventListener("input", debounced(() => { conjState.damirHost = hi.value; drawAttach(); }));
+  const ri = document.getElementById("damirIn"); if (ri) ri.addEventListener("input", debounced(() => { conjState.damir = ri.value; drawRead(); }));
+  drawAttach(); drawRead();
+}
+
 function renderWaqfOut(){
   const out = document.getElementById("waqfOut"); if (!out) return;
   const txt = (conjState.waqf || "").trim(); const E = escapeAttr;
@@ -14985,6 +15036,11 @@ function renderLabBody(){
     body.querySelectorAll(".isht-chips [data-isht]").forEach(b => b.addEventListener("click", () => { conjState.isht = b.dataset.isht; inp.value = conjState.isht; renderIshtOut(); }));
     { const pb = document.getElementById("ishtPlay"); if (pb) pb.addEventListener("click", startIsht); }
     renderIshtOut();
+    return;
+  }
+  if (conjState.lab === "damir") {
+    body.innerHTML = `<p class="ref-intro">${ui().damirIntro}</p><div id="damirOut"></div>`;
+    renderDamirOut();
     return;
   }
   if (conjState.lab === "waqf") {
@@ -15798,6 +15854,7 @@ function openConjugator(){
       <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
       <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
       <button data-lab="waqf" class="${conjState.lab === "waqf" ? "on" : ""}">${arSpan("وَقْف")} ${ui().waqfTab}</button>
+      <button data-lab="damir" class="${conjState.lab === "damir" ? "on" : ""}">${arSpan("ضَمِير")} ${ui().damirTab}</button>
       <button data-lab="isht" class="${conjState.lab === "isht" ? "on" : ""}">${arSpan("اِشْتِقَاق")} ${ui().ishtTab}</button>
       <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
       <button data-lab="kernel" class="${conjState.lab === "kernel" ? "on" : ""}">${arSpan("نَوَاة")} ${ui().kernelTab}</button>
@@ -36545,6 +36602,199 @@ function renderSualOut(){
   bindCatechismChips(out);
   const f = conjState.sualFocus ? out.querySelector("details[open]") : null; if (f) { f.scrollIntoView({ block: "center" }); conjState.sualFocus = null; }
 }
+// ─── (wave 186) DamirEngine — الضَّمَائِرُ السِّتُّونَ ─────────────────────────────────────────────────────────────
+// «مَرَاحُ الْأَرْوَاحِ» counts the pronouns instead of listing them: three by case, each attached or detached — six;
+// the detached majrūr cannot be (a majrūr never stands before its jārr) — five; each of the five has eighteen forms in
+// reason and twelve in use — sixty. This engine is that count as a table, and the ATTACHED ones are written after
+// their host by rule: the hāʾ takes the kasra of what stands before it, the speaker's yāʾ is shielded from a verb by
+// a nūn, «لِ» opens to «لَ», «عَلَى» turns its alif to a yāʾ, «ضَرَبْتُمْ» gets its wāw back. An exact engine, so it
+// BUILDS and names every rule that fired — and where the rules forbid the thing, it refuses and says which rule.
+class DamirEngine {
+  static nfc(s){ return String(s || "").normalize("NFC").trim(); }
+  static KINDS = [
+    { k: "rafMuttasil",  ar: "مَرْفُوعٌ مُتَّصِلٌ",  en: "attached, in rafʿ",  tr: "muttasıl merfû" },
+    { k: "rafMunfasil",  ar: "مَرْفُوعٌ مُنْفَصِلٌ", en: "detached, in rafʿ",  tr: "munfasıl merfû" },
+    { k: "nasbMuttasil", ar: "مَنْصُوبٌ مُتَّصِلٌ",  en: "attached, in naṣb",  tr: "muttasıl mansûb" },
+    { k: "nasbMunfasil", ar: "مَنْصُوبٌ مُنْفَصِلٌ", en: "detached, in naṣb",  tr: "munfasıl mansûb" },
+    { k: "jarrMuttasil", ar: "مَجْرُورٌ مُتَّصِلٌ",  en: "attached, in jarr",  tr: "muttasıl mecrûr" } ];
+  // the fourteen seats, in the order the ṣarf books recite them
+  static SEATS = [
+    { ar: "الْغَائِبُ",      en: "he",                 tr: "o (eril)" },
+    { ar: "الْغَائِبَانِ",    en: "they two (masc.)",   tr: "o ikisi (eril)" },
+    { ar: "الْغَائِبُونَ",    en: "they (masc.)",       tr: "onlar (eril)" },
+    { ar: "الْغَائِبَةُ",     en: "she",                tr: "o (dişil)" },
+    { ar: "الْغَائِبَتَانِ",  en: "they two (fem.)",    tr: "o ikisi (dişil)" },
+    { ar: "الْغَائِبَاتُ",    en: "they (fem.)",        tr: "onlar (dişil)" },
+    { ar: "الْمُخَاطَبُ",     en: "you (masc.)",        tr: "sen (eril)" },
+    { ar: "الْمُخَاطَبَانِ",  en: "you two (masc.)",    tr: "siz ikiniz (eril)" },
+    { ar: "الْمُخَاطَبُونَ",  en: "you all (masc.)",    tr: "sizler (eril)" },
+    { ar: "الْمُخَاطَبَةُ",   en: "you (fem.)",         tr: "sen (dişil)" },
+    { ar: "الْمُخَاطَبَتَانِ", en: "you two (fem.)",    tr: "siz ikiniz (dişil)" },
+    { ar: "الْمُخَاطَبَاتُ",  en: "you all (fem.)",     tr: "sizler (dişil)" },
+    { ar: "الْمُتَكَلِّمُ",    en: "I",                  tr: "ben" },
+    { ar: "الْمُتَكَلِّمُ مَعَ غَيْرِهِ", en: "we",       tr: "biz" } ];
+  // twelve WORDS for fourteen seats: the dual is one word for both genders —
+  // «وَاكْتَفَى بِخَمْسَةٍ فِي الْغَيْبَةِ بِاشْتِرَاكِ التَّثْنِيَةِ … وَكَذٰلِكَ فِي الْمُخَاطَبِ وَالْمُخَاطَبَةِ، وَفِي الْحِكَايَةِ بِلَفْظَيْنِ»
+  static WORDS = [[0], [1, 4], [2], [3], [5], [6], [7, 10], [8], [9], [11], [12], [13]];
+  static MUNFASIL = ["هُوَ", "هُمَا", "هُمْ", "هِيَ", "هُمَا", "هُنَّ", "أَنْتَ", "أَنْتُمَا", "أَنْتُمْ", "أَنْتِ", "أَنْتُمَا", "أَنْتُنَّ", "أَنَا", "نَحْنُ"];
+  static OBJ = ["هُ", "هُمَا", "هُمْ", "هَا", "هُمَا", "هُنَّ", "كَ", "كُمَا", "كُمْ", "كِ", "كُمَا", "كُنَّ", "ي", "نَا"];
+  // what the māḍī adds to its stem for each seat; `pron` is the part that IS the pronoun (null: it hides in the verb)
+  static RAF_END = [["َ", null], ["َا", "ا"], ["ُوا", "و"], ["َتْ", null], ["َتَا", "ا"], ["ْنَ", "نَ"], ["ْتَ", "تَ"], ["ْتُمَا", "تُمَا"], ["ْتُمْ", "تُمْ"], ["ْتِ", "تِ"], ["ْتُمَا", "تُمَا"], ["ْتُنَّ", "تُنَّ"], ["ْتُ", "تُ"], ["ْنَا", "نَا"]];
+  static VERBS = ["ضَرَب", "نَصَر", "كَتَب", "عَلِم"];   // sound stems whose last radical is neither ت nor ن (no idghām at the seam)
+  static seatLabel(group, lang){ const S = this.SEATS; return group.map(i => S[i][lang] || S[i].en).join(" / "); }
+  static groupOf(seat){ return this.WORDS.find(g => g.includes(seat)) || [seat]; }
+  // the seats a WRITTEN ending can be: with its vowels «كَ» and «كِ» are two pronouns, bare they are one spelling
+  static seatsByEnd(w){
+    const t = [[/(?:هُمَا|هِمَا)$/, [1, 4]], [/كُمَا$/, [7, 10]], [/(?:هُمْ|هِمْ|هُمُ|هِمُ)$/, [2]], [/(?:هُنَّ|هِنَّ)$/, [5]], [/كُم[ُْ]$/, [8]], [/كُنَّ$/, [11]], [/هَا$/, [3]], [/نَا$/, [13]], [/كَ$/, [6]], [/كِ$/, [9]], [/ه[ُِْ]$/, [0]], [/(?:نِي|يَّ|يَ|ي)$/, [12]]];
+    const x = this.nfc(w); for (const [re, seats] of t) if (re.test(x)) return seats; return null;
+  }
+  // the vowel the hāʾ of «هُ، هُمَا، هُمْ، هُنَّ» must wear at the end of a WRITTEN word: kasra after a kasra or a quiescent yāʾ, ḍamma otherwise.
+  // null where the word does not end in that hāʾ. The corpus gate reads every attached third-person pronoun on the shelf with it.
+  static harmonyOf(word){
+    const m = this.nfc(word).match(/^(.*)ه([ُِْ]?)(?:مَا|مْ|مُ|مِ|نَّ)?$/); if (!m || !m[1]) return null;
+    const want = /(?:ِّ?|يْ|ي)$/.test(m[1]) ? "ِ" : "ُ"; return { want, got: m[2] || "", ok: m[2] === want };
+  }
+  static narrow(seats, w){ const v = this.seatsByEnd(w); const n = v ? seats.filter(i => v.includes(i)) : seats; return n.length ? n : seats; }
+  // the closed class with every pronoun, built once: «عَلَيْهِ» → jarr, «إِنَّنِي» → naṣb. Homographs of two seats share one entry.
+  static closed(){
+    if (this._closed) return this._closed; const M = new Map();
+    const put = (text, k, seat) => { const t = this.nfc(text); const e = M.get(t); if (e) { if (e.k === k && !e.seats.includes(seat)) e.seats.push(seat); } else M.set(t, { k, seats: [seat] }); };
+    for (const h of ["لِ", "بِ", "عَلَى", "إِلَى", "لَدَى", "فِي", "مِنْ", "عَنْ", "مَعَ"]) for (let i = 0; i < 14; i++) { const a = this.attach(h, i, "harf"); if (a.ok) put(a.text, "jarrMuttasil", i); }
+    for (const h of ["إِنَّ", "أَنَّ", "كَأَنَّ", "لٰكِنَّ", "لَيْتَ", "لَعَلَّ"]) { for (let i = 0; i < 14; i++) { const a = this.attach(h, i, "harf"); if (a.ok) put(a.text, "nasbMuttasil", i); }
+      if (/نَّ$/.test(h)) { put(h + "نِي", "nasbMuttasil", 12); put(h + "نَا", "nasbMuttasil", 13); } if (h === "لَعَلَّ") put("لَعَلَّنِي", "nasbMuttasil", 12); }
+    return (this._closed = M);
+  }
+
+  // the count, computed from the tables above and set beside the matn's own sentences
+  static count(){
+    const kinds = this.KINDS.length, words = this.WORDS.length, reason = 3 * 3 * 2;
+    return { cases: 3, raw: 6, kinds, reason, words, total: kinds * words, steps: [
+      { n: 3,            sen: "s2",  en: "by case there are three: rafʿ, naṣb and jarr",                                         tr: "i'rab bakımından üçtür: ref, nasb ve cer" },
+      { n: 6,            sen: "s3",  en: "each is attached or detached: 3 × 2 = 6",                                            tr: "her biri bitişik ya da ayrıdır: 3 × 2 = 6" },
+      { n: kinds,        sen: "s5",  en: "the detached majrūr is taken out — a majrūr never stands before its jārr — so five kinds remain", tr: "ayrı mecrûr çıkarılır — mecrûr cârından öne geçmez — geriye beş çeşit kalır" },
+      { n: reason,       sen: "s8",  en: "in reason each kind has eighteen forms: six for the absent, six for the addressed, six for the speaker", tr: "akla göre her çeşidin on sekiz şekli vardır: altısı gâib, altısı muhâtab, altısı mütekellim" },
+      { n: words,        sen: "s12", en: "in use twelve: five for the absent and five for the addressed (the dual is shared), two for the speaker", tr: "kullanımda on iki: gâib için beş, muhâtab için beş (tesniye ortaktır), mütekellim için iki" },
+      { n: kinds * words, sen: "s14", en: kinds + " × " + words + " = " + (kinds * words), tr: kinds + " × " + words + " = " + (kinds * words) } ] };
+  }
+  // the matn's sentence for a step of the count, read off the shelf (null where the text is not on it)
+  static matn(sen){ try { const st = STORIES.find(x => x.id === "marah-al-arwah"); const ch = st && st.chapters[12]; const sn = ch && (ch.sentences || []).find(x => x.id === sen);
+      return sn ? { story: st.id, sen, text: sn.tokens.map(t => t.s.full + (t.punctAfter || "")).join(" ") } : null; } catch (e) { return null; } }
+
+  // the five kinds over the fourteen seats, each form BUILT
+  static table(stem){
+    const st = this.nfc(stem || this.VERBS[0]), verb = st + "َ";
+    return this.KINDS.map(K => {
+      let forms;
+      if (K.k === "rafMuttasil") forms = this.RAF_END.map(e => this.nfc(st + e[0]));
+      else if (K.k === "rafMunfasil") forms = this.MUNFASIL.slice();
+      else if (K.k === "nasbMuttasil") forms = this.SEATS.map((_, i) => this.attach(verb, i, "verb").text);
+      else if (K.k === "nasbMunfasil") forms = this.SEATS.map((_, i) => this.attach("إِيَّا", i, "iyya").text);
+      else forms = this.SEATS.map((_, i) => this.attach("لِ", i, "harf").text);
+      return { kind: K, forms };
+    });
+  }
+
+  // host + pronoun, written by rule.  kind: "verb" | "noun" | "harf" (a jarr letter, a ẓarf like مَعَ, or إِنَّ's family) | "iyya"
+  // opt.skip: a Set of rule ids left UNDONE on purpose — the game's wrong answers are made this way.
+  static SKIPPABLE = new Set(["harmony", "lam", "ala", "wiqaya", "tumu", "wawalif", "kasra", "nun-idgham"]);
+  static attach(host, seat, kind, opt){
+    const skip = (opt && opt.skip) || null, use = id => !(skip && skip.has(id));
+    let h = this.nfc(host); const steps = [], fired = [];
+    const say = (id, ar, en, tr) => { steps.push({ id, ar, en, tr }); fired.push(id); };
+    if (!h || !(seat >= 0 && seat < 14)) return { ok: false, refused: { ar: "", en: "nothing to attach to", tr: "eklenecek bir kelime yok" } };
+    if (!/[ً-ْ]/.test(h)) return { ok: false, refused: { ar: "", en: "the host must be written with its vowels — every rule here reads the last one", tr: "kelime harekeli yazılmalıdır — buradaki her kaide son harekeyi okur" } };
+    if (kind === "noun" && /^(?:ال|ٱل)/.test(stripAr(h))) return { ok: false, refused: { ar: "لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ", en: "the article and annexation do not meet — a noun wearing ال takes no attached pronoun", tr: "elif-lâm ile izâfet bir arada bulunmaz — ال almış isim bitişik zamir almaz" } };
+    if (kind === "verb" && !/^(?:ظَنَنْ|حَسِبْ|عَلِمْ|رَأَيْ|وَجَدْ|خِلْ|زَعَمْ)/.test(h) && ((seat >= 6 && seat <= 11 && /ْت(?:َ|ِ|ُمَا|ُمْ|ُنَّ)$/.test(h)) || (seat >= 12 && /ْتُ$/.test(h)) || (seat >= 12 && /ْنَا$/.test(h))))
+      return { ok: false, refused: { ar: "لَا يَتَعَدَّى فِعْلُ الْمُضْمَرِ الْمُتَّصِلِ إِلَى ضَمِيرِهِ الْمُتَّصِلِ إِلَّا فِي أَفْعَالِ الْقُلُوبِ", en: "the doer and the object are not two attached pronouns of the same person — one says «نَفْس» instead (ضَرَبْتُ نَفْسِي); only the verbs of the heart allow it (ظَنَنْتُنِي)", tr: "fâil ile mef'ûl aynı şahsın iki bitişik zamiri olmaz — yerine «نَفْس» denir (ضَرَبْتُ نَفْسِي); buna yalnız kalb fiilleri izin verir (ظَنَنْتُنِي)" } };
+    // 1 · the host makes ready
+    if (kind === "noun") {
+      if (/ًى$/.test(h)) { h = h.replace(/ًى$/, "َا"); say("tanwin", "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ، وَتُرْسَمُ الْأَلِفُ الْمَقْصُورَةُ أَلِفًا", "the tanwin falls for annexation, and the alif maqṣūra is written as an alif", "izâfet sebebiyle tenvin düşer, elif-i maksûre elif olarak yazılır"); }
+      else if (/ًا$/.test(h)) { h = h.replace(/ًا$/, "َ"); say("tanwin", "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ", "the tanwin falls for annexation", "izâfet sebebiyle tenvin düşer"); }
+      else if (/[ًٌٍ]$/.test(h)) { h = h.replace(/ً$/, "َ").replace(/ٌ$/, "ُ").replace(/ٍ$/, "ِ"); say("tanwin", "يُحْذَفُ التَّنْوِينُ لِلْإِضَافَةِ", "the tanwin falls for annexation", "izâfet sebebiyle tenvin düşer"); }
+      else if (/َى$/.test(h)) { h = h.replace(/َى$/, "َا"); say("maqsur", "تُرْسَمُ الْأَلِفُ الْمَقْصُورَةُ أَلِفًا", "the alif maqṣūra is written as an alif", "elif-i maksûre elif olarak yazılır"); }
+      if (/ة[َُِ]$/.test(h)) { h = h.replace(/ة([َُِ])$/, "ت$1"); say("ta", "تُكْتَبُ التَّاءُ الْمَرْبُوطَةُ تَاءً مَفْتُوحَةً", "the tāʾ marbūṭa is written as an open tāʾ", "tâ-i merbûta açık tâ olarak yazılır"); }
+      if (/َانِ$/.test(h)) { h = h.replace(/َانِ$/, "َا"); say("nun", "تُحْذَفُ النُّونُ لِلْإِضَافَةِ", "the nūn falls for annexation", "izâfet sebebiyle nûn düşer"); }
+      else if (/َيْنِ$/.test(h)) { h = h.replace(/َيْنِ$/, "َيْ"); say("nun", "تُحْذَفُ النُّونُ لِلْإِضَافَةِ", "the nūn falls for annexation", "izâfet sebebiyle nûn düşer"); }
+      else if (/ُونَ$/.test(h)) { h = h.replace(/ُونَ$/, "ُو"); say("nun", "تُحْذَفُ النُّونُ لِلْإِضَافَةِ", "the nūn falls for annexation", "izâfet sebebiyle nûn düşer"); }
+      else if (/ِينَ$/.test(h)) { h = h.replace(/ِينَ$/, "ِي"); say("nun", "تُحْذَفُ النُّونُ لِلْإِضَافَةِ", "the nūn falls for annexation", "izâfet sebebiyle nûn düşer"); }
+    } else if (kind === "verb") {
+      if (/ُوا$/.test(h)) { if (use("wawalif")) { h = h.replace(/ُوا$/, "ُو"); say("wawalif", "تُحْذَفُ الْأَلِفُ الْفَارِقَةُ بَعْدَ وَاوِ الْجَمَاعَةِ", "the alif written after the wāw of the group falls", "cemaat vâvından sonra yazılan elif düşer"); } }
+      else if (/تُمْ$/.test(h)) { if (use("tumu")) { h = h.replace(/تُمْ$/, "تُمُو"); say("tumu", "تُرَدُّ الْوَاوُ بَعْدَ الْمِيمِ", "the wāw returns after the mīm", "mîmden sonra vâv geri gelir"); } }
+      else if (/َى$/.test(h)) { h = h.replace(/َى$/, "َا"); say("maqsur", "تُرْسَمُ الْأَلِفُ الْمَقْصُورَةُ أَلِفًا", "the alif maqṣūra is written as an alif", "elif-i maksûre elif olarak yazılır"); }
+    } else if (kind === "harf") {
+      if (h === "لِ" && seat !== 12 && use("lam")) { h = "لَ"; say("lam", "تُفْتَحُ اللَّامُ مَعَ الضَّمِيرِ إِلَّا مَعَ الْيَاءِ", "the lām takes a fatḥa before a pronoun — except the yāʾ", "lâm, zamirle birlikte fethalanır — yâ hâriç"); }
+      if (/َى$/.test(h)) { if (use("ala")) { h = h.replace(/َى$/, "َيْ"); say("ala", "تُقْلَبُ الْأَلِفُ يَاءً مَعَ الضَّمِيرِ", "the alif turns into a yāʾ before a pronoun", "elif, zamirle birlikte yâya döner"); } else h = h.replace(/َى$/, "َا"); }
+    }
+    // 2 · the pronoun
+    let pr = this.OBJ[seat];
+    if (seat === 12) {
+      if (kind === "iyya") pr = "يَ";
+      else if (kind === "verb") { if (use("wiqaya")) { pr = "نِي"; say("wiqaya", "تُزَادُ نُونُ الْوِقَايَةِ قَبْلَ يَاءِ الْمُتَكَلِّمِ", "the shielding nūn is added before the speaker's yāʾ", "mütekellim yâsından önce nûn-ı vikâye eklenir"); } else { h = h.replace(/[َُِْ]$/, "") + "ِ"; } }
+      else if (kind === "harf" && /نْ$/.test(h)) { h = h.replace(/نْ$/, "نِّ"); say("wiqaya", "تُزَادُ نُونُ الْوِقَايَةِ وَتُدْغَمُ فِيهَا النُّونُ", "the shielding nūn is added and the nūn merges into it", "nûn-ı vikâye eklenir ve nûn ona idgam edilir"); }
+      else if (kind === "harf" && /نَّ$/.test(h)) { h = h.replace(/نَّ$/, "نِّ"); say("wiqaya-drop", "تُحْذَفُ نُونُ الْوِقَايَةِ جَوَازًا — وَيُقَالُ أَيْضًا بِإِثْبَاتِهَا", "the shielding nūn may be dropped — the fuller form with it is also said", "nûn-ı vikâye cevâzen düşer — onunla birlikte söyleyiş de vardır"); }
+      else if (kind === "harf" && /تَ$/.test(h)) { pr = "نِي"; say("wiqaya", "تُزَادُ نُونُ الْوِقَايَةِ قَبْلَ يَاءِ الْمُتَكَلِّمِ", "the shielding nūn is added before the speaker's yāʾ", "mütekellim yâsından önce nûn-ı vikâye eklenir"); }
+      else if (kind === "harf" && /لَّ$/.test(h)) { h = h.replace(/لَّ$/, "لِّ"); say("kasra", "يُكْسَرُ مَا قَبْلَ يَاءِ الْمُتَكَلِّمِ لِلْمُنَاسَبَةِ", "the letter before the speaker's yāʾ takes a kasra to suit it", "mütekellim yâsından önceki harf, ona uygun düşsün diye kesrelenir"); }
+      else if (/َا$/.test(h)) { pr = "يَ"; say("ya-fath", "تُفْتَحُ يَاءُ الْمُتَكَلِّمِ بَعْدَ الْأَلِفِ", "the speaker's yāʾ takes a fatḥa after an alif", "mütekellim yâsı eliften sonra fethalanır"); }
+      else if (/ُو$/.test(h)) { h = h.replace(/ُو$/, "ِ"); pr = "يَّ"; say("ya-idgham", "تُقْلَبُ الْوَاوُ يَاءً وَتُدْغَمُ فِي يَاءِ الْمُتَكَلِّمِ", "the wāw turns into a yāʾ and merges into the speaker's yāʾ", "vâv yâya döner ve mütekellim yâsına idgam edilir"); }
+      else if (/ِي$/.test(h)) { h = h.replace(/ِي$/, "ِ"); pr = "يَّ"; say("ya-idgham", "تُدْغَمُ الْيَاءُ فِي يَاءِ الْمُتَكَلِّمِ وَتُفْتَحُ", "the yāʾ merges into the speaker's yāʾ, which takes a fatḥa", "yâ, mütekellim yâsına idgam edilir ve fethalanır"); }
+      else if (/َيْ$/.test(h)) { h = h.replace(/َيْ$/, "َ"); pr = "يَّ"; say("ya-idgham", "تُدْغَمُ الْيَاءُ فِي يَاءِ الْمُتَكَلِّمِ وَتُفْتَحُ", "the yāʾ merges into the speaker's yāʾ, which takes a fatḥa", "yâ, mütekellim yâsına idgam edilir ve fethalanır"); }
+      else if (use("kasra")) { const h0 = h; h = h.replace(/[َُِْ]$/, "") + "ِ"; if (h !== h0) say("kasra", "يُكْسَرُ مَا قَبْلَ يَاءِ الْمُتَكَلِّمِ لِلْمُنَاسَبَةِ", "the letter before the speaker's yāʾ takes a kasra to suit it", "mütekellim yâsından önceki harf, ona uygun düşsün diye kesrelenir"); }
+    } else if (seat === 13 && kind === "harf" && /نْ$/.test(h)) { if (use("nun-idgham")) { h = h.replace(/نْ$/, ""); pr = "نَّا"; say("nun-idgham", "تُدْغَمُ النُّونُ فِي نُونِ الضَّمِيرِ", "the nūn merges into the pronoun's nūn", "nûn, zamirin nûnuna idgam edilir"); } }
+    else if (seat === 13 && kind === "harf" && /نَّ$/.test(h)) { h = h.replace(/نَّ$/, ""); pr = "نَّا"; say("nun-drop", "تُحْذَفُ إِحْدَى النُّونَاتِ تَخْفِيفًا — وَيُقَالُ أَيْضًا بِإِثْبَاتِهَا", "one of the nūns is dropped for lightness — the fuller form is also said", "hafiflik için nûnlardan biri düşer — tam şekli de söylenir"); }
+    else if ([0, 1, 2, 4, 5].includes(seat) && /(?:ِّ?|يْ?)$/.test(h) && /(?:ِ|ي|يْ|ِّ)$/.test(h)) {
+      if (use("harmony")) { pr = pr.replace("هُ", "هِ"); say("harmony", "تُكْسَرُ الْهَاءُ بَعْدَ الْكَسْرَةِ وَالْيَاءِ السَّاكِنَةِ", "the hāʾ takes a kasra after a kasra or a quiescent yāʾ", "hâ, kesreden ve sâkin yâdan sonra kesrelenir"); } }
+    return { ok: true, text: this.nfc(h + pr), host: h, pron: this.nfc(pr), steps, fired };
+  }
+
+  // which of the sixty does a word carry?  a list — a verb may carry two (its doer and its object)
+  static read(word){
+    const w = this.nfc(word).replace(/[«»،.:!؟]/g, ""); if (!w) return [];
+    const out = [], K = k => this.KINDS.find(x => x.k === k), bare = stripAr(w);
+    const push = (k, seats, form, note) => out.push({ kind: K(k), seats, form, note: note || null });
+    const mi = this.MUNFASIL.map((f, i) => (f === w || stripAr(f) === w) ? i : -1).filter(i => i >= 0);
+    if (mi.length) { push("rafMunfasil", mi, w); return out; }
+    const OB = this.OBJ.map(x => stripAr(x));
+    if (/^(?:إيا|ايا)/.test(bare)) { const tail = bare.replace(/^(?:إيا|ايا)/, ""); const si = OB.map((x, i) => (x === tail || (tail === "ي" && i === 12)) ? i : -1).filter(i => i >= 0); if (si.length) { push("nasbMunfasil", this.narrow(si, w), w); return out; } }
+    /* the letters of jarr and إِنَّ's sisters are a closed class: what they look like with each pronoun is BUILT, so it is read back from the build */
+    const cw = w.replace(/^[وف]َ(?=.{3})/, ""), ch = this.closed().get(w) || this.closed().get(cw);
+    if (ch) { push(ch.k, ch.seats, w); return out; }
+    let r = null; try { r = SentenceAnalyzer.analyze(w)[0] || null; } catch (e) { r = null; }
+    if (!r) return out;
+    /* ضَرَبَكِ · ضَرَبُونِي · رَمَاكِ: the host before a written pronoun, read as its own word, is a verb the lexicon knows */
+    const vm = w.match(/^(.{3,}?)(نِي|نَا|كُمَا|كُمْ|كُنَّ|هُمَا|هِمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|هَا|كَ|كِ|هُ|هِ)$/), segN = Array.isArray(r.seg) ? r.seg.length : 0;
+    if (vm && ((r.kind || "") !== "verb" || (segN <= 1 && r.cell && stripAr(String(r.cell.form || "")) !== bare))) {
+      for (const h0 of [vm[1], vm[1].replace(/و$/, "وا"), vm[1].replace(/َا$/, "َى")]) { let x = null; try { x = SentenceAnalyzer.analyze(h0)[0] || null; } catch (e) { x = null; }
+        if (!x || (x.kind || "") !== "verb" || !x.cell || typeof x.cell.i !== "number" || stripAr(String(x.cell.form || "")) !== stripAr(h0) || (r.lemma && x.lemma && r.lemma !== x.lemma)) continue;
+        const T = String(x.cell.tense || ""), amr = /amr/i.test(T), seat = amr ? 6 + x.cell.i : x.cell.i, t0 = stripAr(vm[2]) === "ني" ? "ي" : stripAr(vm[2]);
+        const hidden = amr ? x.cell.i === 0 : /mazi/i.test(T) ? !!(this.RAF_END[seat] && this.RAF_END[seat][1] === null) : [0, 3, 6, 12, 13].includes(seat);
+        if (!(seat >= 0 && seat < 14)) continue;
+        push("rafMuttasil", this.groupOf(seat), w, hidden ? "hidden" : null); push("nasbMuttasil", this.narrow(OB.map((o, i) => o === t0 ? i : -1).filter(i => i >= 0), w), w); return out; } }
+    /* ضَرَبْتُمُوهُ: the mīm of the plural takes back its wāw before an attached pronoun — the host is «…تُمْ», read as its own word */
+    const tm = w.match(/^(.+تُم)ُو(هُ|هَا|هُمَا|هُمْ|هُنَّ|نِي|نَا)$/);
+    if (tm) { let h = null; try { h = SentenceAnalyzer.analyze(tm[1] + "ْ")[0] || null; } catch (e) { h = null; }
+      if (h && (h.kind || "") === "verb" && h.cell && /mazi/i.test(h.cell.tense || "") && h.cell.i === 8) { const t0 = stripAr(tm[2]) === "ني" ? "ي" : stripAr(tm[2]);
+        push("rafMuttasil", this.groupOf(8), w); push("nasbMuttasil", this.narrow(OB.map((o, i) => o === t0 ? i : -1).filter(i => i >= 0), w), w); return out; } }
+    const seg = Array.isArray(r.seg) ? r.seg.map(x => stripAr(String(x))) : [], last = seg.length >= 2 ? seg[seg.length - 1] : "";
+    const tailSeats = t => { const x = t === "ني" ? "ي" : t; return OB.map((o, i) => o === x ? i : -1).filter(i => i >= 0); };
+    const isVerb = (r.kind || "") === "verb";
+    if (isVerb && r.cell && typeof r.cell.i === "number") { const T = String(r.cell.tense || ""), amr = /amr/i.test(T), seat = amr ? 6 + r.cell.i : r.cell.i;
+      /* the doer is HIDDEN where the verb wears no letter for it: هُوَ and هِيَ in the māḍī; هُوَ، هِيَ، أَنْتَ، أَنَا، نَحْنُ in the muḍāriʿ; أَنْتَ in the amr */
+      const hidden = amr ? r.cell.i === 0 : /mazi/i.test(T) ? !!(this.RAF_END[seat] && this.RAF_END[seat][1] === null) : [0, 3, 6, 12, 13].includes(seat);
+      if (seat >= 0 && seat < 14) push("rafMuttasil", this.groupOf(seat), w, hidden ? "hidden" : null); }
+    /* رَبُّنَا: where the analyzer kept the word whole, its own lemma shows the host and the rest is the pronoun */
+    let last2 = last; if (!(last2 && tailSeats(last2).length) && !isVerb && r.lemma) { const lb = stripAr(String(r.lemma)).replace(/^ال/, "").replace(/ة$/, "ت"); const bw = bare.replace(/^[وفبكل](?=..)/, x => bare.startsWith(lb) ? x : "");
+      for (const t of ["هما", "كما", "هم", "هن", "كم", "كن", "ها", "نا", "ه", "ك", "ي"]) if (lb.length >= 2 && (bare === lb + t || bw === lb + t)) { last2 = t; break; } }
+    /* a word the analyzer could not open at all: the host before a written pronoun is read as its own word, and counts only if the lexicon knows it as a noun */
+    if (!(last2 && tailSeats(last2).length) && !isVerb && !r.lemma && seg.length <= 1) { const pm = w.match(/^(.{3,}?)(هُمَا|هِمَا|كُمَا|هُمْ|هِمْ|هُنَّ|هِنَّ|كُمْ|كُنَّ|هَا|نَا|هُ|هِ|كَ|كِ)$/);
+      if (pm) { let h = null; try { h = SentenceAnalyzer.analyze(pm[1])[0] || null; } catch (e) { h = null; } if (h && h.lemma && (h.kind || "").startsWith("noun")) last2 = stripAr(pm[2]); } }
+    if (last2 && tailSeats(last2).length) { const last = last2;
+      const innaLike = /^(?:[وف])?(?:إن|ان|أن|كأن|لكن|ليت|لعل)$/.test(seg.slice(0, -1).join("").replace(/ني?$/, "")) || /^(?:[وف])?(?:إن|ان|أن|كأن|لكن|ليت|لعل)/.test(bare) && (r.kind || "") === "particle" && !/^(?:[وف])?(?:إلى|الى)/.test(bare);
+      push(isVerb || innaLike ? "nasbMuttasil" : "jarrMuttasil", this.narrow(tailSeats(last), w), w);
+    }
+    return out;
+  }
+}
+
 class GameFactory {
   // id, discipline, the emblem, the two i18n keys, the supply, the floor.
   // `min` is what the game needs to be worth starting — a matching round with
@@ -36560,6 +36810,7 @@ class GameFactory {
       supply: () => clozeItems().length },
     { id: "gSarf",    group: "sarf",    emblem: "⚙️", min: 4, supply: () => sarfItems().length },
     { id: "gAdad",    group: "sarf",    emblem: "🔢", min: 1, supply: null },   // generated, never scarce
+    { id: "gDamir",   group: "sarf",    emblem: "هُوَ", min: 1, supply: null },   // wave 186: the sixty pronouns, built by DamirEngine
     { id: "gHarakat", group: "nahw",    emblem: "🎯", min: 4, supply: () => harakatItems().length },
     { id: "gCase",    group: "nahw",    emblem: "🏷️", min: 4, supply: () => caseItems().length },
     { id: "gRole",    group: "nahw",    emblem: "🧭", min: 4, supply: () => roleItems().length },
@@ -36884,6 +37135,7 @@ function openGames(){
     ${gCard("gKinds", "🗂️", ui().kindsGame, ui().kindsGameDesc)}
     ${gCard("gBab35", "٣٥", ui().bab35Game, ui().bab35GameDesc)}
     ${gCard("gAdad", "🔢", ui().adadGame, ui().adadGameDesc)}
+    ${gCard("gDamir", "هُوَ", ui().damirGame, ui().damirGameDesc)}
     ${gHead("نَحْو", ui().gGroupNahw)}
     ${gCard("gHarakat", "🎯", ui().harakat, ui().harakatDesc)}
     ${gCard("gCase", "🏷️", ui().caseGame, ui().caseGameDesc)}
@@ -36934,6 +37186,7 @@ function openGames(){
   document.getElementById("gCloze").addEventListener("click", startCloze);
   document.getElementById("gSarf").addEventListener("click", startSarfGame);
   document.getElementById("gAdad").addEventListener("click", startAdadGame);
+  document.getElementById("gDamir").addEventListener("click", startDamirGame);
   document.getElementById("gCase").addEventListener("click", startCaseGame);
   document.getElementById("gRole").addEventListener("click", startRoleGame);
   document.getElementById("gHamza").addEventListener("click", startHamza);
@@ -37261,6 +37514,63 @@ function adadGameItems(count){
   }
   return items;
 }
+// (wave 186) the sixty pronouns — every round built by DamirEngine; a wrong answer is the same word with ONE rule left undone
+const DAMIR_HOSTS = [["ضَرَبَ", "verb"], ["ضَرَبُوا", "verb"], ["ضَرَبْتُمْ", "verb"], ["رَمَى", "verb"], ["يَضْرِبُ", "verb"], ["اِضْرِبْ", "verb"],
+  ["كِتَابٌ", "noun"], ["كِتَابٍ", "noun"], ["مَدْرَسَةٌ", "noun"], ["كِتَابَانِ", "noun"], ["مُعَلِّمُونَ", "noun"], ["مُعَلِّمِينَ", "noun"],
+  ["لِ", "harf"], ["بِ", "harf"], ["عَلَى", "harf"], ["إِلَى", "harf"], ["فِي", "harf"], ["مِنْ", "harf"], ["عَنْ", "harf"], ["إِنَّ", "harf"], ["لَيْتَ", "harf"]];
+function damirGameItems(count){
+  const items = [], pick = a => a[Math.floor(Math.random() * a.length)], lang = state.uiLang === "tr" ? "tr" : "en";
+  const label = (K, g) => `<span lang="ar" dir="rtl">${K.ar} — ${g.map(i => DamirEngine.SEATS[i].ar).join(" / ")}</span><br><small>${T(K)} · ${DamirEngine.seatLabel(g, lang)}</small>`;
+  let guard = 0;
+  while (items.length < count && guard++ < 400) {
+    if (items.length % 2 === 0) {   // build it: host + seat → the written word
+      const [host, kind] = pick(DAMIR_HOSTS), seat = Math.floor(Math.random() * 14);
+      if (/(?:تُمْ|^اِضْرِبْ)$/.test(host) && seat >= 6 && seat <= 11) continue;   // «you struck yourselves» is not said with an attached object
+      const right = DamirEngine.attach(host, seat, kind); if (!right.ok) continue;
+      const wrongs = [];
+      right.fired.filter(id => DamirEngine.SKIPPABLE.has(id)).forEach(id => { const w = DamirEngine.attach(host, seat, kind, { skip: new Set([id]) }); if (w.ok && w.text !== right.text) wrongs.push(w.text); });
+      for (const d of [1, 13, 3, 11]) { if (wrongs.length >= 3) break; const o = DamirEngine.attach(host, (seat + d) % 14, kind); if (o.ok && o.text !== right.text && !wrongs.includes(o.text)) wrongs.push(o.text); }
+      if (!right.fired.some(id => DamirEngine.SKIPPABLE.has(id)) && Math.random() < 0.6) continue;   // prefer the rounds where a rule is at work
+      if (wrongs.length < 2) continue;
+      items.push({ type: "build", host, kind, seat, right, wrongs: wrongs.slice(0, 3), key: "build:" + host + ":" + seat });
+    } else {                        // name it: the word → which of the sixty
+      const ki = Math.floor(Math.random() * 5), K = DamirEngine.KINDS[ki], g = pick(DamirEngine.WORDS), seat = g[0];
+      const stem = pick(DamirEngine.VERBS); let word;
+      if (K.k === "rafMuttasil") word = DamirEngine.nfc(stem + DamirEngine.RAF_END[seat][0]);
+      else if (K.k === "rafMunfasil") word = DamirEngine.MUNFASIL[seat];
+      else if (K.k === "nasbMuttasil") word = Math.random() < 0.3 ? DamirEngine.attach("إِنَّ", seat, "harf").text : DamirEngine.attach(stem + "َ", seat, "verb").text;
+      else if (K.k === "nasbMunfasil") word = DamirEngine.attach("إِيَّا", seat, "iyya").text;
+      else { const [h2, k2] = pick(DAMIR_HOSTS.filter(x => x[1] !== "verb" && !/^(?:إِنَّ|لَيْتَ)$/.test(x[0]))); const a = DamirEngine.attach(h2, seat, k2); if (!a.ok) continue; word = a.text; }
+      if (K.k === "rafMuttasil" && (seat === 1 || seat === 0 || seat === 3)) continue;   // ضَرَبَا / ضَرَبَتَا differ by the feminine tāʾ, and the hidden pronouns show nothing to point at
+      const opts = [{ html: label(K, g), ok: true }], seen = new Set([K.k + ":" + g.join()]);
+      const add = (K2, g2) => { const id = K2.k + ":" + g2.join(); if (seen.has(id) || opts.length >= 4) return; seen.add(id); opts.push({ html: label(K2, g2), ok: false }); };
+      add(K, pick(DamirEngine.WORDS.filter(x => x !== g)));
+      const twin = K.k === "nasbMuttasil" ? "jarrMuttasil" : K.k === "jarrMuttasil" ? "nasbMuttasil" : K.k === "rafMunfasil" ? "nasbMunfasil" : K.k === "nasbMunfasil" ? "rafMunfasil" : "nasbMuttasil";
+      add(DamirEngine.KINDS.find(x => x.k === twin), g);
+      let g3 = 0; while (opts.length < 4 && g3++ < 20) add(pick(DamirEngine.KINDS), pick(DamirEngine.WORDS));
+      if (opts.length < 3) continue;
+      items.push({ type: "name", word, K, g, opts, key: "name:" + K.k + ":" + seat });
+    }
+  }
+  return items;
+}
+function startDamirGame(){
+  const lang = state.uiLang === "tr" ? "tr" : "en";
+  runQuiz({
+    title: ui().damirGame, ask: ui().damirAsk, items: damirGameItems(8), restart: startDamirGame,
+    area: "sarf", lvl: it => (it.type === "build" ? 3 : 2), itemKey: it => "damir:" + it.key,
+    question: it => it.type === "build"
+      ? `<div class="game-q"><span lang="ar" dir="rtl" style="font-family:var(--ar-font);font-size:1.5em">${it.host} + ${DamirEngine.MUNFASIL[it.seat]}</span><br><small>${ui().damirAskBuild} · ${DamirEngine.SEATS[it.seat][lang]}</small></div>`
+      : `<div class="game-q"><span lang="ar" dir="rtl" style="font-family:var(--ar-font);font-size:1.7em">${it.word}</span><br><small>${ui().damirAskName}</small></div>`,
+    options: it => it.type === "build"
+      ? shuffle([{ html: it.right.text, ok: true, ar: true }, ...it.wrongs.map(w => ({ html: w, ok: false, ar: true }))])
+      : shuffle(it.opts.slice()),
+    why: it => it.type === "build"
+      ? `<span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.right.text}</span>${it.right.steps.length ? "<br>" + it.right.steps.map(st => `<span lang="ar" dir="rtl">${st.ar}</span> — ${T(st)}`).join("<br>") : ""}`
+      : `<span lang="ar" style="font-family:var(--ar-font);font-size:1.2em">${it.word}</span> — <span lang="ar" dir="rtl">${it.K.ar}</span> · ${T(it.K)} · ${DamirEngine.seatLabel(it.g, lang)}`,
+  });
+}
+
 function startAdadGame(){
   runQuiz({
     title: ui().adadGame, ask: ui().adadAsk, items: adadGameItems(8), restart: startAdadGame,

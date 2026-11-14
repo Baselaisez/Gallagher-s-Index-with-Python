@@ -12331,3 +12331,60 @@ example's «زَيْدٍ» and one undecided badal), 1 fixed / **0 broken**; rec
 **Left open.** The unvowelled «صار كل واحد رجلين» still annexes the last word; «سِتًّا» as a badal after a compound number
 is undecided; the builder's generic «اسْمُ كَانَ / خَبَرُ إِنَّ» wording names the family, not the particle that governs
 (صَارَ، أَنَّ) — a wording change that would touch every engine-built book and the passes that read those strings.
+
+### v285 (wave 186) — the sixty pronouns, counted the way the Marāḥ counts them
+
+Marāḥ al-Arwāḥ chapter 13 (landed in v284) counts the pronouns in five sentences: three by case, doubled by attached /
+detached, less the detached majrūr, eighteen in reason, twelve in use, 5 × 12 = 60. `class DamirEngine` is that count
+as a machine, and the pronoun's ORTHOGRAPHY as an exact engine — the builder class, like `IdafaEngine`.
+
+- **`count()` / `matn(sen)`** — the six steps (3 → 6 → 5 → 18 → 12 → 60), each beside the matn sentence that says it
+  (read from the shelf, so the lab shows the author's words and a «see it in the text» jump).
+- **`table(stem)`** — five kinds × fourteen seats. The dual is one word for both genders (`WORDS`, twelve groups), so
+  five tables hold sixty pronouns. The first table shows THIRTEEN written forms and still twelve pronouns: ضَرَبَتَا
+  differs from ضَرَبَا by the letter of the feminine, not by a pronoun — the smoke check asserts exactly that, because
+  «twelve distinct strings» was the first thing I wrote and it was wrong.
+- **`attach(host, seat, kind)`** — any attached pronoun after its host, every rule that fires printed: the tanwīn and
+  the nūn of the dual/plural fall, the tāʾ marbūṭa opens, the maqṣūr alif is written as an alif, the alif of عَلَى /
+  إِلَى / لَدَى turns yāʾ, the lām takes its fatḥa (لَهُ) except before the yāʾ (لِي), the wāw of the plural loses its
+  alif, the mīm of «ـتُمْ» takes back its wāw (ضَرَبْتُمُوهُ), the nūn of protection (ضَرَبَنِي، مِنِّي، لَيْتَنِي), the
+  merging nūns (عَنَّا، إِنِّي), the yāʾ's own shapes (كِتَابِي، عَصَايَ، مُعَلِّمِيَّ، عَلَيَّ), and the hāʾ's harmony
+  (بِهِ، عَلَيْهِمْ، كِتَابِهِ). **It refuses, with the reason:** a noun wearing ال (لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ
+  وَالْإِضَافَةُ), an unvowelled host (every rule reads the last vowel), and a doer and object that are two attached
+  pronouns of one person (ضَرَبْتُنِي — one says نَفْسِي; only the verbs of the heart allow it: ظَنَنْتُنِي).
+- **`read(word)`** — which of the sixty a written word carries. Three layers, in this order: the closed class is BUILT
+  once (`closed()`: nine jarr letters/ẓurūf and إِنَّ's sisters × fourteen seats, 189 spellings) and read back from the
+  build — so «عَنَّا» is the letter with «us», not the dual of عَنَّ; then the analyzer's own split; then the host read
+  as its own word (ضَرَبَكِ، ضَرَبُونِي، رَمَاكِ — the analyzer reads «كِ» after a verb as a noun's pronoun, and keeps
+  ضَرَبُونِي whole). The hidden doer is NAMED where the verb wears no letter for it (هُوَ / هِيَ in the māḍī; هُوَ، هِيَ،
+  أَنْتَ، أَنَا، نَحْنُ in the muḍāriʿ; أَنْتَ in the amr). **«كَ» and «كِ» are one spelling bare and two pronouns
+  written** — `seatsByEnd` narrows the seat by the written vowel, everywhere.
+- **Lab tab «ضَمِير»** (Atölye): the count with its matn, the five tables for four model verbs, «host + pronoun, by
+  rule» (type a host, pick verb / noun / letter and a seat), and «which of the sixty is in this word?». **Game
+  «The sixty pronouns»** (`gDamir`, generated, never scarce): build-it rounds whose wrong answers are the SAME word
+  with one rule left undone (`opt.skip` — عَلَاهُمْ، عَنْنَا، إِلَاكُمَا) plus neighbouring seats; name-it rounds over the
+  five kinds.
+
+**The corpus as judge.** `harmonyOf(word)` reads the hāʾ's vowel off a written word. Across the shelf, 5,055 of 5,056
+attached third-person pronouns (the tokens whose last segment is `pron-3…` and whose surface ends in that hāʾ) wear the
+vowel the rule gives. The one that does not is «فَأَلْقِهْ» — the āya's own sukūn, named in the gate. The gate found one
+real error on arrival: al-Uṣūl 2:s3 «أَنْ يَتَفَقَّهَ» had its radical hāʾ split off as a pronoun «هَ», which does not
+exist (`usul/hand186.py`: `"enc": ""` in fixes.json, segments dropped; the line itself was right).
+
+**Learned.**
+- **Round-trip a builder through its reader.** 288 built forms read back to the same kind and seat; the first run
+  left 14 unread and each was a real gap (the analyzer's «كِ», ضَرَبُونِي, the closed class's merged spellings).
+- **A homograph of two seats is one entry with two seats, not a coin toss** — and where the written vowel separates
+  them, the reader must use it. Both إِيَّاكَ and ضَرَبَكِ came back as «6 or 9» until `narrow()` was applied at every
+  push, not just the one I was looking at.
+- **Arabic-only placeholders in an RTL input.** A mixed English/Arabic placeholder renders letter-spaced and
+  reversed; the waqf lab already used Arabic examples only.
+
+**Measured.** No analysis rule changed: blind and receipts-on sweeps identical to v284 (68,322 / 548 / 292 and
+68,700 / 310 / 152; 0 fixed, 0 broken). The case run reads 56,176 of 56,801 — one row above the recorded v284
+figure («هٰهُنَا», Marāḥ 13:s9), which is the v284 reader's own reading: the recorded baseline was swept one edit
+before that line was reworded. Smoke «wave 186» (#433 of 435).
+
+**Left open.** The analyzer itself still reads «ضَرَبَكِ» as a noun and keeps «ضَرَبُونِي» / «رَبُّنَا» unsplit — the
+pronoun reader works around it; an analyzer rule would have to be swept. `attach` cannot tell an amr from a jussive by
+shape, so «اِضْرِبْكَ» is refused only in the game. «عَصَايَ» is built but not read back.

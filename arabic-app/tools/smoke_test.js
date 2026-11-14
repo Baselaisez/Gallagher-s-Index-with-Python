@@ -15286,6 +15286,78 @@ if (!CHROME) {
     if (g.passive || g.bare) throw new Error('a passive line that names a «doer» in en/tr, or a bare «اسْمٌ.» line: ' + J(g));
   });
 
+  await check('wave 186 — DamirEngine counts the pronouns the way Marāḥ al-Arwāḥ counts them (3 cases × 2 = 6, less the detached majrūr = 5 kinds; 18 in reason, 12 in use; 5 × 12 = 60), each step shown beside the matn sentence that says it; its five tables hold exactly sixty distinct words; it writes any attached pronoun after its host by rule (the tanwīn and the nūn fall, the tāʾ opens, the alif of عَلَى turns yāʾ, the wāw of the plural returns in ضَرَبْتُمُوهُ, the nūn of protection, the hāʾ takes its kasra) and refuses what the grammar forbids, with the reason; every form it builds it reads back to the same pronoun; the lab tab and the game run on it; and across the shelf every attached third-person pronoun wears the vowel the harmony rule gives it', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const D = DamirEngine, N = x => String(x || '').normalize('NFC');
+      const c = D.count(); const matn = (c.steps || []).map(s => { const m = D.matn(s.sen); return m && m.text ? m.text.length : 0; });
+      const tb = D.table(); const distinct = tb.map(row => new Set(row.forms.map(N)).size);
+      const at = (h, s, k) => { const a = D.attach(h, s, k); return a.ok ? N(a.text) + ' [' + a.fired.join(',') + ']' : 'REFUSED'; };
+      const rd = w => (D.read(w) || []).map(x => x.kind.k + '[' + x.seats.join(',') + ']' + (x.note || '')).join('+') || '-';
+      let built = 0, refused = 0; const unread = [];
+      for (const [hw, hk] of DAMIR_HOSTS) for (let s = 0; s < 14; s++) { const a = D.attach(hw, s, hk); if (!a.ok) { refused++; continue; } built++;
+        const x = D.read(a.text), tail = x[x.length - 1], want = hk === 'verb' || /^(إِنَّ|لَيْتَ)$/.test(N(hw)) ? 'nasbMuttasil' : 'jarrMuttasil';
+        if (!tail || tail.kind.k !== want || tail.seats.join() !== D.groupOf(s).join()) unread.push(a.text); }
+      const items = damirGameItems(40); const badItems = [];
+      for (const it of items) { if (it.type === 'build') { const w = it.wrongs.map(N), right = N(it.right.text); if (w.length < 2 || w.includes(right) || new Set(w).size !== w.length) badItems.push('B ' + right + ' ✗ ' + w.join('/')); }
+        else if (!it.opts || it.opts.length < 3 || it.opts.filter(o => o.ok).length !== 1) badItems.push('N ' + it.word); }
+      let judged = 0; const off = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of (ch.sentences || [])) for (const t of (sn.tokens || [])) { const sg = t.segments; if (!Array.isArray(sg) || sg.length < 2) continue;
+        const lx = String(sg[sg.length - 1].lex || ''); if (!/^pron-3/.test(lx) || /^pron-3fs/.test(lx) || /munfasil/.test(lx)) continue;
+        const h = D.harmonyOf(t.s.full); if (!h) continue; judged++; if (!h.ok) off.push(st.id + ' ' + t.s.full); }
+      return { total: c.total, kinds: c.kinds, words: c.words, raw: c.raw, steps: (c.steps || []).map(s => s.n), matn, distinct, rows: tb.map(row => row.kind.k),
+        f: { he: N(tb[0].forms[2]), youFp: N(tb[0].forms[11]), obj: N(tb[2].forms[12]), iyya: N(tb[3].forms[12]), li: N(tb[4].forms[12]), hum: N(tb[1].forms[2]) },
+        a: { ala: at('عَلَى', 2, 'harf'), kitabi: at('كِتَابٌ', 12, 'noun'), madrasa: at('مَدْرَسَةٌ', 0, 'noun'), dual: at('كِتَابَانِ', 6, 'noun'), plural: at('مُعَلِّمُونَ', 12, 'noun'), fata: at('فَتًى', 0, 'noun'),
+          waw: at('ضَرَبُوا', 0, 'verb'), tumu: at('ضَرَبْتُمْ', 0, 'verb'), rama: at('رَمَى', 0, 'verb'), wiqaya: at('يَضْرِبُ', 12, 'verb'), minni: at('مِنْ', 12, 'harf'), anna: at('عَنْ', 13, 'harf'),
+          inni: at('إِنَّ', 12, 'harf'), lahu: at('لِ', 0, 'harf'), li: at('لِ', 12, 'harf'), bihi: at('بِ', 0, 'harf'), fiyya: at('فِي', 12, 'harf'), jarrH: at('كِتَابٍ', 0, 'noun'), rafH: at('كِتَابٌ', 0, 'noun'),
+          article: at('الْكِتَابُ', 0, 'noun'), bare: at('كتاب', 0, 'noun'), same2: at('ضَرَبْتُمْ', 8, 'verb'), same1: at('ضَرَبْتُ', 12, 'verb'), heart: at('ظَنَنْتُ', 12, 'verb'), other: at('ضَرَبْتَ', 12, 'verb') },
+        rd: { alayhim: rd('عَلَيْهِمْ'), tumuhu: rd('ضَرَبْتُمُوهُ'), iyyaka: rd('إِيَّاكَ'), antunna: rd('أَنْتُنَّ'), kitabuhu: rd('كِتَابُهُ'), innahu: rd('إِنَّهُ'), darabani: rd('ضَرَبَنِي'), darabna: rd('ضَرَبْنَا'),
+          ki: rd('ضَرَبَكِ'), ka: rd('ضَرَبَكَ'), amr: rd('اِضْرِبْهُ'), mudari: rd('يَنْصُرُكُمْ'), radical: rd('يَتَفَقَّهَ'), none: rd('كِتَابٌ'), anna: rd('عَنَّا'), rabbuna: rd('رَبُّنَا') },
+        fem: N(tb[0].forms[1]) + '|' + N(tb[0].forms[4]), built, refused, unread: unread.slice(0, 6), nItems: items.length, badItems: badItems.slice(0, 5), judged, off,
+        game: !!GameFactory.CATALOGUE.find(g => g.id === 'gDamir'), closed: D.closed().size }; });
+    if (r.total !== 60 || r.kinds !== 5 || r.words !== 12 || r.raw !== 6 || J(r.steps) !== '[3,6,5,18,12,60]') throw new Error('the count: ' + J([r.total, r.kinds, r.words, r.raw, r.steps]));
+    if (r.matn.some(n => n < 10)) throw new Error('a step of the count has no matn sentence beside it: ' + J(r.matn));
+    if (J(r.rows) !== J(['rafMuttasil', 'rafMunfasil', 'nasbMuttasil', 'nasbMunfasil', 'jarrMuttasil']) || J(r.distinct) !== '[13,12,12,12,12]' || r.kinds * r.words !== 60 || r.fem !== 'ضَرَبَا|ضَرَبَتَا') throw new Error('the five tables do not hold sixty pronouns (the first has thirteen written forms: ضَرَبَتَا differs from ضَرَبَا by the letter of the feminine, not by a pronoun): ' + J([r.rows, r.distinct, r.fem]));
+    const wantF = { he: 'ضَرَبُوا', youFp: 'ضَرَبْتُنَّ', obj: 'ضَرَبَنِي', iyya: 'إِيَّايَ', li: 'لِي', hum: 'هُمْ' };
+    const badF = Object.keys(wantF).filter(k => r.f[k] !== wantF[k].normalize('NFC')).map(k => k + ' → ' + r.f[k]);
+    if (badF.length) throw new Error('table cells: ' + J(badF));
+    const wantA = { ala: ['عَلَيْهِمْ', ['ala', 'harmony']], kitabi: ['كِتَابِي', ['tanwin']], madrasa: ['مَدْرَسَتُهُ', ['ta']], dual: ['كِتَابَاكَ', ['nun']], plural: ['مُعَلِّمِيَّ', []], fata: ['فَتَاهُ', ['tanwin']],
+      waw: ['ضَرَبُوهُ', ['wawalif']], tumu: ['ضَرَبْتُمُوهُ', ['tumu']], rama: ['رَمَاهُ', ['maqsur']], wiqaya: ['يَضْرِبُنِي', ['wiqaya']], minni: ['مِنِّي', []], anna: ['عَنَّا', ['nun-idgham']],
+      inni: ['إِنِّي', []], lahu: ['لَهُ', ['lam']], li: ['لِي', []], bihi: ['بِهِ', ['harmony']], fiyya: ['فِيَّ', []], jarrH: ['كِتَابِهِ', ['harmony']], rafH: ['كِتَابُهُ', ['tanwin']],
+      heart: ['ظَنَنْتُنِي', []], other: ['ضَرَبْتَنِي', ['wiqaya']] };
+    const badA = Object.keys(wantA).filter(k => { const got = String(r.a[k]); const [text, fired] = wantA[k]; const m = got.match(/^(.*) \[(.*)\]$/); if (!m) return true; const f = m[2] ? m[2].split(',') : [];
+      return m[1] !== text.normalize('NFC') || fired.some(id => !f.includes(id)) || (k === 'rafH' && f.includes('harmony')); }).map(k => k + ' → ' + r.a[k]);
+    if (badA.length) throw new Error('attach: ' + J(badA));
+    const refusals = ['article', 'bare', 'same2', 'same1'].filter(k => r.a[k] !== 'REFUSED').map(k => k + ' → ' + r.a[k]);
+    if (refusals.length) throw new Error('these must be refused with their reason: ' + J(refusals));
+    const wantR = { alayhim: 'jarrMuttasil[2]', tumuhu: 'rafMuttasil[8]+nasbMuttasil[0]', iyyaka: 'nasbMunfasil[6]', antunna: 'rafMunfasil[11]', kitabuhu: 'jarrMuttasil[0]', innahu: 'nasbMuttasil[0]',
+      darabani: 'rafMuttasil[0]hidden+nasbMuttasil[12]', darabna: 'rafMuttasil[13]', ki: 'rafMuttasil[0]hidden+nasbMuttasil[9]', ka: 'rafMuttasil[0]hidden+nasbMuttasil[6]', amr: 'rafMuttasil[6]hidden+nasbMuttasil[0]',
+      mudari: 'rafMuttasil[0]hidden+nasbMuttasil[8]', radical: 'rafMuttasil[0]hidden', none: '-', anna: 'jarrMuttasil[13]', rabbuna: 'jarrMuttasil[13]' };
+    const badR = Object.keys(wantR).filter(k => r.rd[k] !== wantR[k]).map(k => k + ' → ' + r.rd[k] + ' (want ' + wantR[k] + ')');
+    if (badR.length) throw new Error('read: ' + J(badR));
+    if (r.built < 280 || r.refused !== 6 || r.unread.length) throw new Error('round trip (built / refused / not read back): ' + J([r.built, r.refused, r.unread]));
+    if (r.nItems < 30 || r.badItems.length) throw new Error('game items: ' + J([r.nItems, r.badItems]));
+    if (!r.game || r.closed < 150) throw new Error('the game is not declared, or the closed class is short: ' + J([r.game, r.closed]));
+    const known = ['فَأَلْقِهْ'.normalize('NFC')];   // the āya's own sukūn (al-Naml 28, the reading of Ḥafṣ) — received, not a slip
+    const strays = r.off.filter(x => !known.some(k => x.normalize('NFC').endsWith(k)));
+    if (r.judged < 5000 || strays.length) throw new Error('the shelf: ' + r.judged + ' attached third-person pronouns read; these do not wear the vowel the rule gives: ' + J(strays.slice(0, 6)));
+    // the lab tab and one game round, on the page
+    const ui = await page.evaluate(async () => { const wait = ms => new Promise(res => setTimeout(res, ms));
+      openConjugator(); await wait(120); const tab = document.querySelector('[data-lab="damir"]'); if (!tab) return { tab: false }; tab.click(); await wait(200);
+      const out = document.getElementById('damirOut'); const tables = out ? out.querySelectorAll('table').length : 0; const see = out ? out.querySelectorAll('[data-dj]').length : 0;
+      const hi = document.getElementById('damirHost'); hi.value = 'عَلَى'; hi.dispatchEvent(new Event('input', { bubbles: true })); await wait(320);
+      const seat = document.querySelector('#damirSeatSeg [data-ds="2"]'); if (seat) seat.click(); await wait(200);
+      const kind = document.querySelector('#damirKindSeg [data-dk="harf"]'); if (kind) kind.click(); await wait(200);
+      const att = (document.getElementById('damirAttach') || {}).innerText || '';
+      const ri = document.getElementById('damirIn'); ri.value = 'ضَرَبْتُمُوهُ'; ri.dispatchEvent(new Event('input', { bubbles: true })); await wait(320);
+      const read = (document.getElementById('damirRead') || {}).innerText || '';
+      startDamirGame(); await wait(250); const q = document.querySelector('.game-q'); const opts = document.querySelectorAll('.opts [data-o]').length;
+      return { tab: true, tables, see, att: att.normalize('NFC'), read: read.normalize('NFC'), q: q ? q.innerText.length : 0, opts }; });
+    if (!ui.tab || ui.tables !== 5 || ui.see < 6) throw new Error('the lab tab: ' + J([ui.tab, ui.tables, ui.see]));
+    if (!ui.att.includes('عَلَيْهِمْ'.normalize('NFC')) || !ui.att.includes('تُقْلَبُ الْأَلِفُ يَاءً'.normalize('NFC'))) throw new Error('the lab does not build عَلَيْهِمْ with its rule: ' + ui.att.slice(0, 160));
+    if (!ui.read.includes('مَرْفُوعٌ مُتَّصِلٌ'.normalize('NFC')) || !ui.read.includes('مَنْصُوبٌ مُتَّصِلٌ'.normalize('NFC'))) throw new Error('the lab does not read both pronouns of ضَرَبْتُمُوهُ: ' + ui.read.slice(0, 160));
+    if (ui.q < 3 || ui.opts < 3) throw new Error('the game round did not draw: ' + J([ui.q, ui.opts]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
