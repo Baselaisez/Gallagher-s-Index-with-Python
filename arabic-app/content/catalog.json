@@ -1,0 +1,902 @@
+{
+  "catalogVersion": "0.1",
+  "generatedFrom": "tools/build_prototype.py",
+  "packages": [
+    {
+      "id": "al-asad-wa-al-far",
+      "title": {
+        "ar": "الْأَسَدُ وَالْفَأْرُ",
+        "en": "The Lion and the Mouse",
+        "tr": "Aslan ile Fare"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-09",
+      "access": "free",
+      "storyGroup": "al-asad-wa-al-far",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-ghurab-wa-al-thalab",
+      "title": {
+        "ar": "الْغُرَابُ وَالثَّعْلَبُ",
+        "en": "The Crow and the Fox",
+        "tr": "Karga ile Tilki"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-09",
+      "access": "free",
+      "storyGroup": "al-ghurab-wa-al-thalab",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "ashab-al-fil",
+      "title": {
+        "ar": "أَصْحَابُ الْفِيل",
+        "en": "The People of the Elephant",
+        "tr": "Fil Ashabı"
+      },
+      "level": 1,
+      "levelName": "Newbie",
+      "version": "0.1.0",
+      "published": "2026-07-18",
+      "access": "free",
+      "storyGroup": "ashab-al-fil",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 1
+    },
+    {
+      "id": "hud-wa-aad",
+      "title": {
+        "ar": "هُودٌ وَعَادٌ",
+        "en": "Hud and Ad",
+        "tr": "Hûd ve Âd"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "hud-wa-aad",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "musa-fi-madyan",
+      "title": {
+        "ar": "مُوسَى فِي مَدْيَنَ",
+        "en": "Musa in Madyan",
+        "tr": "Mûsâ Medyen'de"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "musa-wa-firawn",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "musa-wa-bani-israil",
+      "title": {
+        "ar": "مُوسَى وَبَنُو إِسْرَائِيلَ",
+        "en": "Musa and the Children of Israel",
+        "tr": "Mûsâ ve İsrailoğulları"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-06",
+      "access": "free",
+      "storyGroup": "musa-wa-firawn",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "musa-wa-firawn",
+      "title": {
+        "ar": "مُوسَى وَفِرْعَوْنُ",
+        "en": "Musa and Pharaoh",
+        "tr": "Mûsâ ve Firavun"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-06",
+      "access": "free",
+      "storyGroup": "musa-wa-firawn",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 6
+    },
+    {
+      "id": "musa-wal-khadir",
+      "title": {
+        "ar": "مُوسَى وَالْخَضِرُ",
+        "en": "Musa and al-Khidr",
+        "tr": "Mûsâ ve Hızır"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "musa-wa-firawn",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "nuh-wa-al-safina",
+      "title": {
+        "ar": "نُوحٌ وَالسَّفِينَةُ",
+        "en": "Nuh and the Ship",
+        "tr": "Nûh ve Gemi"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "nuh-wa-al-safina",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "qisas-al-nabiyyin-1",
+      "title": {
+        "ar": "قِصَصُ النَّبِيِّينَ — الْجُزْءُ الْأَوَّلُ",
+        "en": "Stories of the Prophets — Part One",
+        "tr": "Peygamber Kıssaları — Birinci Cüz"
+      },
+      "level": 1,
+      "levelName": "Newbie",
+      "version": "0.23.0",
+      "published": "2026-10-01",
+      "access": "premium",
+      "storyGroup": "qisas-al-nabiyyin",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 23
+    },
+    {
+      "id": "qisas-al-nabiyyin-2",
+      "title": {
+        "ar": "قِصَصُ النَّبِيِّينَ — الْجُزْءُ الثَّانِي",
+        "en": "Stories of the Prophets — Part Two",
+        "tr": "Peygamber Kıssaları — İkinci Cüz"
+      },
+      "level": 1,
+      "levelName": "Newbie",
+      "version": "0.39.0",
+      "published": "2026-10-07",
+      "access": "premium",
+      "storyGroup": "qisas-al-nabiyyin",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 39
+    },
+    {
+      "id": "salih-wa-al-naqa",
+      "title": {
+        "ar": "صَالِحٌ وَالنَّاقَةُ",
+        "en": "Salih and the She-Camel",
+        "tr": "Sâlih ve Deve"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "salih-wa-al-naqa",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "sulayman-wa-al-hudhud",
+      "title": {
+        "ar": "سُلَيْمَانُ وَالْهُدْهُدُ",
+        "en": "Sulayman and the Hoopoe",
+        "tr": "Süleyman ve Hüdhüd"
+      },
+      "level": 1,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "sulayman-wa-al-hudhud",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "yunus-wa-al-hut",
+      "title": {
+        "ar": "يُونُسُ وَالْحُوتُ",
+        "en": "Yunus and the Whale",
+        "tr": "Yunus ve Balina"
+      },
+      "level": 1,
+      "levelName": "Newbie",
+      "version": "0.1.0",
+      "published": "2026-07-14",
+      "access": "free",
+      "storyGroup": "yunus-wa-al-hut",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 1
+    },
+    {
+      "id": "adam-wa-iblis",
+      "title": {
+        "ar": "آدَمُ وَإِبْلِيسُ",
+        "en": "Adam and Iblis",
+        "tr": "Âdem ve İblis"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "adam-wa-iblis",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-asad-wa-al-arnab",
+      "title": {
+        "ar": "الْأَسَدُ وَالْأَرْنَبُ",
+        "en": "The Lion and the Hare",
+        "tr": "Aslan ile Tavşan"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "al-asad-wa-al-arnab",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-rahma-bil-hayawan",
+      "title": {
+        "ar": "الرَّحْمَةُ بِالْحَيَوَانِ",
+        "en": "Mercy to Animals",
+        "tr": "Hayvanlara Merhamet"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-09",
+      "access": "free",
+      "storyGroup": "al-rahma-bil-hayawan",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "ashab-al-kahf",
+      "title": {
+        "ar": "أَصْحَابُ الْكَهْفِ",
+        "en": "The People of the Cave",
+        "tr": "Ashâb-ı Kehf"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "ashab-al-kahf",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "ayyub-wa-al-sabr",
+      "title": {
+        "ar": "أَيُّوبُ وَالصَّبْرُ",
+        "en": "Ayyub and Patience",
+        "tr": "Eyyûb ve Sabır"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "ayyub-wa-al-sabr",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "dawud-wa-jalut",
+      "title": {
+        "ar": "دَاوُدُ وَجَالُوتُ",
+        "en": "Dawud and Jalut",
+        "tr": "Dâvûd ve Câlût"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "dawud-wa-jalut",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "dhu-al-qarnayn-wa-al-sadd",
+      "title": {
+        "ar": "ذُو الْقَرْنَيْنِ وَالسَّدُّ",
+        "en": "Dhu l-Qarnayn and the Barrier",
+        "tr": "Zülkarneyn ve Sed"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "dhu-al-qarnayn-wa-al-sadd",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "habil-wa-qabil",
+      "title": {
+        "ar": "هَابِيلُ وَقَابِيلُ",
+        "en": "Habil and Qabil",
+        "tr": "Hâbil ve Kâbil"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "habil-wa-qabil",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "juha-wa-al-himar",
+      "title": {
+        "ar": "جُحَا وَالْحِمَارُ",
+        "en": "Juha and the Donkey",
+        "tr": "Cuhâ ile Eşek"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "juha-wa-al-himar",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "jumal-al-tadrib",
+      "title": {
+        "ar": "جُمَلُ التَّدْرِيبِ",
+        "en": "Practice Sentences",
+        "tr": "Alıştırma Cümleleri"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "1.3.0",
+      "published": "2026-08-03",
+      "access": "free",
+      "storyGroup": "jumal-al-tadrib",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 7
+    },
+    {
+      "id": "luqman-wa-ibnuh",
+      "title": {
+        "ar": "لُقْمَانُ وَابْنُهُ",
+        "en": "Luqman and His Son",
+        "tr": "Lokman ve Oğlu"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "luqman-wa-ibnuh",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "qarun-wa-kunuzuh",
+      "title": {
+        "ar": "قَارُونُ وَكُنُوزُهُ",
+        "en": "Qarun and His Treasures",
+        "tr": "Kârûn ve Hazineleri"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "qarun-wa-kunuzuh",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "shuayb-wa-ahl-madyan",
+      "title": {
+        "ar": "شُعَيْبٌ وَأَهْلُ مَدْيَنَ",
+        "en": "Shu'ayb and the People of Madyan",
+        "tr": "Şuayb ve Medyen Halkı"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "shuayb-wa-ahl-madyan",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "wasiyyat-abi-hanifa-L2",
+      "title": {
+        "ar": "وَصِيَّةُ أَبِي حَنِيفَةَ",
+        "en": "Abu Hanifa's Testament",
+        "tr": "Ebu Hanife'nin Vasiyeti"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-07-10",
+      "access": "free",
+      "storyGroup": "wasiyyat-abi-hanifa",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 3
+    },
+    {
+      "id": "zakariyya-wa-yahya",
+      "title": {
+        "ar": "زَكَرِيَّا وَيَحْيَى",
+        "en": "Zakariyya and Yahya",
+        "tr": "Zekeriyyâ ve Yahyâ"
+      },
+      "level": 2,
+      "levelName": "Elementary",
+      "version": "0.1.0",
+      "published": "2026-11-07",
+      "access": "free",
+      "storyGroup": "zakariyya-wa-yahya",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-abras-wa-al-aqra-wa-al-ama",
+      "title": {
+        "ar": "الْأَبْرَصُ وَالْأَقْرَعُ وَالْأَعْمَى",
+        "en": "The Leper, the Bald Man and the Blind Man",
+        "tr": "Alacalı, Kel ve Kör"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "al-abras-wa-al-aqra-wa-al-ama",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-amana-wa-al-khashaba",
+      "title": {
+        "ar": "الْأَمَانَةُ وَالْخَشَبَةُ",
+        "en": "The Trust and the Log",
+        "tr": "Emanet ve Odun"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "al-amana-wa-al-khashaba",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "ashab-al-ghar",
+      "title": {
+        "ar": "أَصْحَابُ الْغَارِ",
+        "en": "The Men in the Cave",
+        "tr": "Mağaradakiler"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "ashab-al-ghar",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "deeds-are-by-intentions",
+      "title": {
+        "ar": "إنما الأعمال بالنيات",
+        "en": "Deeds Are by Intentions",
+        "tr": "Ameller Niyetlere Göredir"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-07-10",
+      "access": "user-upload",
+      "storyGroup": "deeds-are-by-intentions",
+      "reviewStatus": "auto-generated-unreviewed",
+      "chapters": 1
+    },
+    {
+      "id": "jurayj-al-abid",
+      "title": {
+        "ar": "جُرَيْجٌ الْعَابِدُ",
+        "en": "Jurayj the Worshipper",
+        "tr": "Âbid Cüreyc"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-09",
+      "access": "free",
+      "storyGroup": "jurayj-al-abid",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "qisas-al-nabiyyin-4",
+      "title": {
+        "ar": "قِصَصُ النَّبِيِّينَ — الْجُزْءُ الرَّابِعُ",
+        "en": "Stories of the Prophets — Part Four",
+        "tr": "Peygamber Kıssaları — Dördüncü Cüz"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.45.0",
+      "published": "2026-10-06",
+      "access": "premium",
+      "storyGroup": "qisas-al-nabiyyin",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 45
+    },
+    {
+      "id": "sahib-al-jannatayn",
+      "title": {
+        "ar": "صَاحِبُ الْجَنَّتَيْنِ",
+        "en": "The Man with Two Gardens",
+        "tr": "İki Bahçe Sahibi"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-09",
+      "access": "free",
+      "storyGroup": "sahib-al-jannatayn",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "tawbat-al-qatil",
+      "title": {
+        "ar": "تَوْبَةُ الْقَاتِلِ",
+        "en": "The Killer's Repentance",
+        "tr": "Katilin Tövbesi"
+      },
+      "level": 3,
+      "levelName": "Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-08",
+      "access": "free",
+      "storyGroup": "tawbat-al-qatil",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 4
+    },
+    {
+      "id": "al-maqamat-birgivi",
+      "title": {
+        "ar": "الْمَقَامَاتُ",
+        "en": "The Stations (al-Maqamat)",
+        "tr": "Makāmāt"
+      },
+      "level": 4,
+      "levelName": "Upper Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-12",
+      "access": "premium",
+      "storyGroup": "al-maqamat-birgivi",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 13
+    },
+    {
+      "id": "kitab-al-waqf",
+      "title": {
+        "ar": "كِتَابُ الْوَقْفِ",
+        "en": "The Book of Waqf",
+        "tr": "Vakıf Bahsi"
+      },
+      "level": 4,
+      "levelName": "Upper Intermediate",
+      "version": "0.2.0",
+      "published": "2026-07-31",
+      "access": "premium",
+      "storyGroup": "kitab-al-waqf",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 2
+    },
+    {
+      "id": "shudhur-al-dhahab",
+      "title": {
+        "ar": "شُذُورُ الذَّهَبِ",
+        "en": "Shudhur al-Dhahab — the word, speech and i'rab",
+        "tr": "Şüzûrü'z-Zeheb — kelime, kelâm ve i'râb"
+      },
+      "level": 4,
+      "levelName": "Upper Intermediate",
+      "version": "0.1.0",
+      "published": "2026-11-13",
+      "access": "premium",
+      "storyGroup": "shudhur-al-dhahab",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 7
+    },
+    {
+      "id": "wasiyyat-abi-hanifa-L4",
+      "title": {
+        "ar": "وَصِيَّةُ أَبِي حَنِيفَةَ",
+        "en": "Abu Hanifa's Testament (Advanced)",
+        "tr": "Ebu Hanife'nin Vasiyeti (İleri)"
+      },
+      "level": 4,
+      "levelName": "Upper Intermediate",
+      "version": "0.1.0",
+      "published": "2026-07-18",
+      "access": "premium",
+      "storyGroup": "wasiyyat-abi-hanifa",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 2
+    },
+    {
+      "id": "al-kafiya",
+      "title": {
+        "ar": "الْكَافِيَةُ فِي النَّحْوِ",
+        "en": "Al-Kafiya: The Sufficient Book of Syntax",
+        "tr": "El-Kâfiye: Nahivde Yeter Kitap"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.46.0",
+      "published": "2026-09-30",
+      "access": "premium",
+      "storyGroup": "al-kafiya",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 46
+    },
+    {
+      "id": "al-usul-al-munifa",
+      "title": {
+        "ar": "الْأُصُولُ الْمُنِيفَةُ لِلْإِمَامِ أَبِي حَنِيفَةَ",
+        "en": "The Sublime Principles of Imam Abu Hanifa (al-Usul al-Munifa)",
+        "tr": "İmam Ebû Hanîfe'nin Yüce Usûlü (el-Usûlü'l-Münîfe)"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.1.0",
+      "published": "2026-11-13",
+      "access": "premium",
+      "storyGroup": "al-usul-al-munifa",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 35
+    },
+    {
+      "id": "aqaid-ahl-al-sunna",
+      "title": {
+        "ar": "مِنْ عَقَائِدِ أَهْلِ السُّنَّة",
+        "en": "From the Creed of Ahl al-Sunna",
+        "tr": "Ehl-i Sünnet Akaidinden"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.46.0",
+      "published": "2026-07-27",
+      "access": "premium",
+      "storyGroup": "aqaid-ahl-al-sunna",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 46
+    },
+    {
+      "id": "izhar-al-asrar",
+      "title": {
+        "ar": "إِظْهَارُ الْأَسْرَارِ",
+        "en": "Izhar al-Asrar: The Disclosure of the Secrets",
+        "tr": "İzhârü'l-Esrâr: Sırların Açığa Çıkarılması"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.56.0",
+      "published": "2026-10-06",
+      "access": "premium",
+      "storyGroup": "izhar-al-asrar",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 66
+    },
+    {
+      "id": "kitab-al-sulh",
+      "title": {
+        "ar": "كِتَابُ الصُّلْحِ",
+        "en": "The Book of Sulh",
+        "tr": "Sulh Bahsi"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "1.0.0",
+      "published": "2026-07-31",
+      "access": "premium",
+      "storyGroup": "kitab-al-sulh",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 6
+    },
+    {
+      "id": "marah-al-arwah",
+      "title": {
+        "ar": "مَرَاحُ الْأَرْوَاحِ",
+        "en": "Marah al-Arwah — the debate book of sarf (parts one to twelve)",
+        "tr": "Merâhu'l-Ervâh — sarfın delilli metni (birinci–on ikinci kısım)"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.12.0",
+      "published": "2026-11-14",
+      "access": "premium",
+      "storyGroup": "marah-al-arwah",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 36
+    },
+    {
+      "id": "min-muqaddimat-al-maqsud",
+      "title": {
+        "ar": "مِنْ مُقَدِّمَةِ الْمَقْصُود",
+        "en": "From the Preface of al-Maqsud",
+        "tr": "el-Maksûd'un Mukaddimesinden"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.1.0",
+      "published": "2026-07-27",
+      "access": "premium",
+      "storyGroup": "min-muqaddimat-al-maqsud",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 2
+    },
+    {
+      "id": "tasrif-al-izzi",
+      "title": {
+        "ar": "تَصْرِيفُ الْعِزِّيِّ",
+        "en": "Tasrif al-Izzi — the classical primer of sarf",
+        "tr": "Tasrîfü'l-İzzî — sarf ilminin klasik metni"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.1.0",
+      "published": "2026-11-13",
+      "access": "premium",
+      "storyGroup": "tasrif-al-izzi",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 19
+    },
+    {
+      "id": "wasiyyat-abi-hanifa-samti",
+      "title": {
+        "ar": "وَصِيَّةُ أَبِي حَنِيفَةَ لِلسَّمْتِيِّ",
+        "en": "Abu Hanifa's Counsel to al-Samti",
+        "tr": "Ebû Hanîfe'nin Semtî'ye Vasiyeti"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.1.0",
+      "published": "2026-07-29",
+      "access": "premium",
+      "storyGroup": "wasiyya-samti",
+      "reviewStatus": "",
+      "chapters": 11
+    },
+    {
+      "id": "wasiyyat-abi-yusuf-L5",
+      "title": {
+        "ar": "وَصِيَّةُ الْإِمَامِ الْأَعْظَمِ لِأَبِي يُوسُفَ",
+        "en": "The Great Imam's Testament to Abu Yusuf",
+        "tr": "İmam-ı Azam'ın Ebu Yusuf'a Vasiyeti"
+      },
+      "level": 5,
+      "levelName": "Advanced",
+      "version": "0.2.0",
+      "published": "2026-07-20",
+      "access": "premium",
+      "storyGroup": "wasiyyat-abi-yusuf",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 5
+    },
+    {
+      "id": "bad-al-amali",
+      "title": {
+        "ar": "بَدْءُ الْأَمَالِي",
+        "en": "Bad' al-Amali — the Creed Poem",
+        "tr": "Bed'ü'l-Emâlî — Emâlî Kasidesi"
+      },
+      "level": 6,
+      "levelName": "Master",
+      "version": "1.0.0",
+      "published": "2026-07-29",
+      "access": "premium",
+      "storyGroup": "bad-al-amali",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 14
+    },
+    {
+      "id": "kitab-al-buyu",
+      "title": {
+        "ar": "مِنْ كِتَابِ الْبُيُوع",
+        "en": "From the Book of Sales",
+        "tr": "Büyû' Bahsinden"
+      },
+      "level": 6,
+      "levelName": "Master",
+      "version": "0.1.0",
+      "published": "2026-07-27",
+      "access": "premium",
+      "storyGroup": "kitab-al-buyu",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 3
+    },
+    {
+      "id": "kitab-al-kaffarat",
+      "title": {
+        "ar": "مِنْ أَحْكَامِ الْكَفَّارَاتِ",
+        "en": "From the Rulings of the Kaffaras",
+        "tr": "Keffâret Hükümlerinden"
+      },
+      "level": 6,
+      "levelName": "Master",
+      "version": "0.1.0",
+      "published": "2026-07-28",
+      "access": "premium",
+      "storyGroup": "kitab-al-kaffarat",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 3
+    },
+    {
+      "id": "mukhtasar-al-manar",
+      "title": {
+        "ar": "مُخْتَصَرُ الْمَنَار: التَّعْرِيفَاتُ وَالْأَدِلَّةُ وَأَقْسَامُ اللَّفْظ",
+        "en": "Mukhtasar al-Manar: The Definitions, the Sources and the Divisions of the Wording",
+        "tr": "Muhtasaru'l-Menâr: Tarifler, Deliller ve Lafzın Kısımları"
+      },
+      "level": 6,
+      "levelName": "Mastery",
+      "version": "0.16.0",
+      "published": "2026-07-27",
+      "access": "premium",
+      "storyGroup": "mukhtasar-al-manar",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 16
+    },
+    {
+      "id": "talkhis-al-miftah",
+      "title": {
+        "ar": "تَلْخِيصُ الْمِفْتَاح: عِلْمُ الْمَعَانِي — الْفَصَاحَةُ وَالْبَلَاغَة",
+        "en": "Talkhis al-Miftah: The Science of Maʿani — Fasaha and Balagha",
+        "tr": "Telhîsu'l-Miftâh: İlm-i Meânî — Fesâhat ve Belâgat"
+      },
+      "level": 6,
+      "levelName": "Master",
+      "version": "0.74.0",
+      "published": "2026-08-12",
+      "access": "premium",
+      "storyGroup": "talkhis-al-miftah",
+      "reviewStatus": "pending-scholarly-review",
+      "chapters": 76
+    }
+  ]
+}

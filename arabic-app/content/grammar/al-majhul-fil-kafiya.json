@@ -1,0 +1,129 @@
+{
+ "id": "al-majhul-fil-kafiya",
+ "title": {
+  "ar": "الْفِعْلُ الْمَجْهُولُ فِي الْكَافِيَةِ",
+  "en": "The passive in the Kafiya's notebook: the two vowel rules, the waṣl-hamza and tāʾ forms, the hollow passive with its three readings and the derivation of قِيلَ",
+  "tr": "Kâfiye defterinde meçhûl: iki hareke kuralı, vasl hemzeli ve tâlı bâblar, üç vechiyle ecvef meçhûl ve قِيلَ'nin türetilişi"
+ },
+ "level": 4,
+ "group": "sarf",
+ "classicalSources": [
+  "ضياء صونغور اوغلى — دفتر الكافية: مجهول الماضي بضم أوله وكسر ما قبل آخره؛ ضم الثالث مع همزة الوصل والثاني مع التاء لئلا يلتبس؛ قِيلَ وبِيعَ بالإشمام وقُولَ وبُوعَ؛ أصل قِيلَ قُوِلَ؛ مجهول الافتعال والانفعال كالثلاثي دون الاستفعال والإفعال؛ مجهول المضارع بضم أوله وفتح ما قبل آخره؛ قلب العين ألفا",
+  "الشافية لابن الحاجب — باب المجهول"
+ ],
+ "question": {
+  "en": [
+   "How is a passive MĀḌĪ made? Put a ḍamma on the first letter and a kasra on the letter before the last: نَصَرَ → نُصِرَ, أَكْرَمَ → أُكْرِمَ, قَاتَلَ → قُوتِلَ (the alif of Form III turns into a wāw because it now follows a ḍamma).",
+   "What of forms that begin with a waṣl hamza or a tāʾ? The ḍamma goes on the hamza AND on the third letter (اُقْتُدِرَ، اُسْتُخْرِجَ), on the tāʾ AND the second (تُجُوهِلَ) — otherwise, the notebook says, the forms could be confused: a waṣl hamza carries no vowel of its own in speech, so the ḍamma has to be heard somewhere.",
+   "How is a passive MUḌĀRIʿ made? A ḍamma on the first letter and a fatḥa before the last: يَضْرِبُ → يُضْرَبُ, يُكْرِمُ → يُكْرَمُ, يَسْتَخْرِجُ → يُسْتَخْرَجُ. The engine's majhūl builder is exactly these two rules and nothing more.",
+   "Why is قِيلَ not قُوِلَ? Because a ḍamma before a kasra-bearing wāw is heavy: the qāf's ḍamma is dropped, the wāw's kasra moves back onto the qāf (قِوْلَ), and a quiescent wāw after a kasra becomes a yāʾ — قِيلَ. The same road takes بُيِعَ to بِيعَ. The IlalEngine walks these very steps, naql before qalb.",
+   "Are there other readings? Three: قِيلَ (most eloquent), قِيلَ with ishmām — the kasra coloured toward a ḍamma, as in some Qurʾānic readings — and the weak قُولَ. Forms VIII and VII share all three (اُخْتِيرَ، اُنْقِيدَ); Forms X and IV do not (أُقِيمَ only).",
+   "And the hollow muḍāriʿ? Its ʿayn, wāw or yāʾ, becomes an alif: يُقَالُ، يُخْتَارُ. This is why the engine refuses to derive a hollow verb's passive from the vowel rule alone and reads it from the stored cell — يُقَالُ is not يُقْوَلُ.",
+   "Which verbs did the notebook cite that the chapter leaves out? فُرِّحَ، اُنْطُلِقَ، تُعُلِّمَ، اُسْتُخِيرَ، يُلْتَزَمُ، يُتَدَحْرَجُ — the corpus holds no checked paradigm for them, and a cited verb without one would fail the paradigm gate."
+  ],
+  "tr": [
+   "Meçhûl MÂZÎ nasıl yapılır? İlk harfe zamme, sondan önceki harfe kesre: نَصَرَ → نُصِرَ, أَكْرَمَ → أُكْرِمَ, قَاتَلَ → قُوتِلَ (III. bâbın elifi artık zammeden sonra geldiği için vâva döner).",
+   "Vasl hemzesi ya da tâ ile başlayan bâblar? Zamme hemzeye VE üçüncü harfe (اُقْتُدِرَ، اُسْتُخْرِجَ), tâya VE ikinciye (تُجُوهِلَ) konur — yoksa, defter der, biçimler karışabilir: vasl hemzesinin konuşmada kendi harekesi yoktur, zamme bir yerde duyulmalıdır.",
+   "Meçhûl MUZÂRİ nasıl yapılır? İlk harfe zamme, sondan öncekine fetha: يَضْرِبُ → يُضْرَبُ, يُكْرِمُ → يُكْرَمُ, يَسْتَخْرِجُ → يُسْتَخْرَجُ. Motorun meçhûl kurucusu tam bu iki kuraldır, başka bir şey değil.",
+   "قِيلَ neden قُوِلَ değildir? Çünkü kesreli vâvdan önce zamme ağırdır: kâfın zammesi düşer, vâvın kesresi geriye kâfa taşınır (قِوْلَ), kesreden sonra sâkin vâv yâ olur — قِيلَ. Aynı yol بُيِعَ'yı بِيعَ'ya götürür. IlalEngine tam bu adımları yürür, kalbden önce nakil.",
+   "Başka okuyuşlar var mı? Üç: قِيلَ (en fasîh), işmâm ile قِيلَ — kesre zammeye doğru renklenir, bazı kıraatlerdeki gibi — ve zayıf قُولَ. VIII. ve VII. bâb üçünü paylaşır (اُخْتِيرَ، اُنْقِيدَ); X. ve IV. bâb paylaşmaz (yalnız أُقِيمَ).",
+   "Ya ecvef muzâri? Aynı, vâv ya da yâ, elif olur: يُقَالُ، يُخْتَارُ. Motorun ecvef fiilin meçhûlünü yalnız hareke kuralından türetmeyi reddedip saklanan hücreden okumasının sebebi budur — يُقَالُ, يُقْوَلُ değildir.",
+   "Defterin zikredip bâbın dışarıda bıraktığı fiiller? فُرِّحَ، اُنْطُلِقَ، تُعُلِّمَ، اُسْتُخِيرَ، يُلْتَزَمُ، يُتَدَحْرَجُ — külliyatta onlar için denetlenmiş bir çekim yok ve çekimsiz zikredilen bir fiil çekim kapısından geçemezdi."
+  ]
+ },
+ "plain": {
+  "en": "To make a verb passive, give its first letter a ḍamma and the letter before its last a kasra in the past (نُصِرَ) or a fatḥa in the present (يُضْرَبُ). Forms opening on a silent hamza or a tāʾ take a second ḍamma. A hollow verb's middle letter turns to yāʾ in the past (قِيلَ) and alif in the present (يُقَالُ).",
+  "tr": "Bir fiili meçhûl yapmak için ilk harfe zamme, sondan önceki harfe geçmişte kesre (نُصِرَ), şimdiki zamanda fetha (يُضْرَبُ) verin. Sessiz hemze ya da tâ ile başlayan bâblar zammeyi bir sonraki harekeli harfe de koyar. Ecvef fiilin orta harfi geçmişte yâ (قِيلَ), şimdiki zamanda elif (يُقَالُ) olur."
+ },
+ "explanation": {
+  "en": "The notebook turns from the verb's tenses to its voice with a page that is pure ṣarf, and the chapter keeps it because the app's own passive builder was written from the same two sentences: ḍamma on the first and kasra before the last for the māḍī, ḍamma on the first and fatḥa before the last for the muḍāriʿ. The notebook's refinements are the places where that rule meets orthography. A form that opens on a waṣl hamza has no vowel of its own to carry the ḍamma, so the third letter takes it as well — اُقْتُدِرَ against اِقْتَدَرَ — and a form that opens on a tāʾ moves the second ḍamma to the second letter, تُجُوهِلَ; the stated reason, so that forms are not confused, is the same reason the engine stores and does not derive these cells. The hollow verb is the chapter's centre. The notebook gives the three received readings of the passive of قَالَ and بَاعَ — the eloquent قِيلَ، بِيعَ, the ishmām reading that colours the kasra toward a ḍamma, and the weak قُولَ، بُوعَ — and then derives قِيلَ step by step from قُوِلَ: the heavy ḍamma is dropped, the wāw's kasra transferred, the quiescent wāw after a kasra turned to yāʾ. That is the IlalEngine's naql-then-qalb order written out by hand. It adds the comparison the student needs: Forms VIII and VII behave like the triliteral and admit all three readings, Forms X and IV admit only one. The muḍāriʿ closes the chapter — the ʿayn becomes an alif, يُقَالُ، يُخْتَارُ — and this is the boundary the engine respects by refusing to vowel-shift a hollow verb into its passive. Six of the notebook's examples are omitted because the corpus holds no checked paradigm for them; the manifest names them.",
+  "tr": "Defter fiilin zamanlarından çatısına saf sarf olan bir sayfayla geçer ve bâb onu tutar, çünkü uygulamanın kendi meçhûl kurucusu aynı iki cümleden yazılmıştır: mâzî için ilke zamme sondan öncekine kesre, muzâri için ilke zamme sondan öncekine fetha. Defterin incelikleri bu kuralın imlâyla buluştuğu yerlerdir. Vasl hemzesiyle açılan bir bâbın zammeyi taşıyacak kendi harekesi yoktur, bu yüzden üçüncü harf de onu alır — اِقْتَدَرَ'ye karşı اُقْتُدِرَ — tâ ile açılan bâb ikinci zammeyi ikinci harfe taşır, تُجُوهِلَ; söylenen sebep, biçimlerin karışmaması, motorun bu hücreleri türetmeyip saklamasının da sebebidir. Ecvef fiil bâbın merkezidir. Defter قَالَ ve بَاعَ'nın meçhûlünün alınan üç okuyuşunu verir — fasîh قِيلَ، بِيعَ, kesreyi zammeye doğru renklendiren işmâm okuyuşu ve zayıf قُولَ، بُوعَ — sonra قِيلَ'yi قُوِلَ'den adım adım türetir: ağır zamme düşer, vâvın kesresi taşınır, kesreden sonra sâkin vâv yâya döner. Bu, IlalEngine'in önce-nakil-sonra-kalb sırasının elle yazılmış hâlidir. Öğrencinin ihtiyaç duyduğu karşılaştırmayı ekler: VIII. ve VII. bâb sülâsî gibi davranıp üç okuyuşu da kabul eder, X. ve IV. bâb yalnız birini. Muzâri bâbı kapatır — ayn elif olur, يُقَالُ، يُخْتَارُ — ve bu, motorun ecvef fiili hareke kaydırarak meçhûle çevirmeyi reddederek saygı gösterdiği sınırdır. Defterin altı örneği, külliyatta onlar için denetlenmiş çekim bulunmadığından dışarıda bırakılmıştır; manifest onları adlandırır."
+ },
+ "examples": [
+  {
+   "ar": "نُصِرَ، أُكْرِمَ، قُوتِلَ",
+   "en": "The māḍī rule.",
+   "tr": "Mâzî kuralı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "اُقْتُدِرَ، اُسْتُخْرِجَ — تُجُوهِلَ",
+   "en": "The waṣl hamza and the tāʾ.",
+   "tr": "Vasl hemzesi ve tâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "قِيلَ وَبِيعَ — قُولَ وَبُوعَ",
+   "en": "The hollow passive's readings.",
+   "tr": "Ecvef meçhûlün okuyuşları.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "قُوِلَ → قِوْلَ → قِيلَ",
+   "en": "The derivation.",
+   "tr": "Türetiliş.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "اُخْتِيرَ، اُنْقِيدَ — أُقِيمَ",
+   "en": "Which forms share the three readings.",
+   "tr": "Hangi bâblar üç okuyuşu paylaşır.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "يُضْرَبُ، يُكْرَمُ، يُسْتَخْرَجُ — يُقَالُ، يُخْتَارُ",
+   "en": "The muḍāriʿ rule and the hollow ʿayn.",
+   "tr": "Muzâri kuralı ve ecvef ayn.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«اِقْتُدِرَ — hemze kesreli»",
+   "right": "«اُقْتُدِرَ — vasl hemzesi de üçüncü harf de zammelenir»",
+   "why": {
+    "en": "The ḍamma must be heard; a waṣl hamza alone cannot carry it.",
+    "tr": "Zamme duyulmalıdır; vasl hemzesi tek başına onu taşıyamaz."
+   }
+  },
+  {
+   "wrong": "«قُوِلَ»",
+   "right": "«قِيلَ (en fasîh), işmâm ile قِيلَ, zayıf قُولَ — قُوِلَ yalnız asıldır»",
+   "why": {
+    "en": "The notebook's derivation shows why the origin is never pronounced.",
+    "tr": "Defterin türetilişi aslın neden telaffuz edilmediğini gösterir."
+   }
+  },
+  {
+   "wrong": "«يُقْوَلُ»",
+   "right": "«يُقَالُ — meçhûl muzâride ecvef ayn elife döner»",
+   "why": {
+    "en": "The two-vowel rule is not the last step for a hollow verb; iʿlāl follows it.",
+    "tr": "İki hareke kuralı ecvef fiil için son adım değildir; i'lâl onu izler."
+   }
+  },
+  {
+   "wrong": "«أُقِيمَ ile birlikte أُقُومَ de câiz»",
+   "right": "«أُقِيمَ — ifâl ve istifâl bâblarının meçhûlünde tek vecih vardır»",
+   "why": {
+    "en": "Only the triliteral and Forms VII–VIII admit the three readings.",
+    "tr": "Üç okuyuşu yalnız sülâsî ile VII–VIII. bâblar kabul eder."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "naib-al-fail",
+  "naib-al-fail",
+  "hollow-verbs",
+  "form-viii-verbs",
+  "form-vii-verbs",
+  "form-iv-verbs",
+  "al-fil-wal-madi-wal-mudari-fil-kafiya"
+ ]
+}

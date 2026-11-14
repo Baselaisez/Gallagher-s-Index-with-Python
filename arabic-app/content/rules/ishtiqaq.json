@@ -1,0 +1,853 @@
+{
+ "version": 1,
+ "title": {
+  "ar": "قَانُونُ الِاشْتِقَاقِ",
+  "en": "The law of derivation",
+  "tr": "İştikak kanunu"
+ },
+ "note": "One table, two interpreters: the reader's IshtiqaqEngine (JavaScript) and qissa_core.core_grammar.sarf (Python) both read this file. A pattern is a template over ف ع ل; `over` holds the template a root class takes where the books state a special rule; everything else falls out of the ordered i'lal rules. Patterns marked «sama» are the recited Form I maṣdar shapes: an interpreter may name the shape, but believes it only where the verb's own lexicon entry recites that very maṣdar.",
+ "roles": {
+  "ism-fail": {
+   "ar": "اسْمُ الْفَاعِلِ",
+   "en": "active participle — the one who does it",
+   "tr": "ism-i fâil — işi yapan"
+  },
+  "ism-maful": {
+   "ar": "اسْمُ الْمَفْعُولِ",
+   "en": "passive participle — the one it is done to",
+   "tr": "ism-i mef'ûl — işe uğrayan"
+  },
+  "mubalagha": {
+   "ar": "صِيغَةُ الْمُبَالَغَةِ",
+   "en": "intensive — the one who does it much",
+   "tr": "mübâlağa sîgası — işi çokça yapan"
+  },
+  "sifa": {
+   "ar": "الصِّفَةُ الْمُشَبَّهَةُ",
+   "en": "lasting quality",
+   "tr": "sıfat-ı müşebbehe — kalıcı vasıf"
+  },
+  "makan": {
+   "ar": "اسْمُ الْمَكَانِ وَالزَّمَانِ",
+   "en": "noun of place and time",
+   "tr": "ism-i mekân ve zaman"
+  },
+  "alat": {
+   "ar": "اسْمُ الْآلَةِ",
+   "en": "noun of instrument",
+   "tr": "ism-i âlet"
+  },
+  "tafdil": {
+   "ar": "اسْمُ التَّفْضِيلِ",
+   "en": "elative — more / most",
+   "tr": "ism-i tafdîl — daha / en"
+  },
+  "masdar": {
+   "ar": "الْمَصْدَرُ",
+   "en": "verbal noun — the act itself",
+   "tr": "masdar — işin kendisi"
+  }
+ },
+ "babs": {
+  "1": {
+   "mazi": "فَعَلَ",
+   "name": {
+    "ar": "الثُّلَاثِيُّ الْمُجَرَّدُ",
+    "en": "Form I — the bare triliteral",
+    "tr": "sülâsî mücerred"
+   }
+  },
+  "2": {
+   "mazi": "فَعَّلَ",
+   "name": {
+    "ar": "بَابُ التَّفْعِيلِ",
+    "en": "Form II — tafʿīl",
+    "tr": "tef'îl bâbı"
+   },
+   "sense": {
+    "ar": "لِلتَّكْثِيرِ وَالتَّعْدِيَةِ",
+    "en": "doing it much, or making another do it",
+    "tr": "işi çokça yapmak ya da başkasına yaptırmak"
+   }
+  },
+  "3": {
+   "mazi": "فَاعَلَ",
+   "name": {
+    "ar": "بَابُ الْمُفَاعَلَةِ",
+    "en": "Form III — mufāʿala",
+    "tr": "müfâale bâbı"
+   },
+   "sense": {
+    "ar": "لِلْمُشَارَكَةِ",
+    "en": "doing it with or against another",
+    "tr": "işi bir başkasıyla karşılıklı yapmak"
+   }
+  },
+  "4": {
+   "mazi": "أَفْعَلَ",
+   "name": {
+    "ar": "بَابُ الْإِفْعَالِ",
+    "en": "Form IV — ifʿāl",
+    "tr": "if'âl bâbı"
+   },
+   "sense": {
+    "ar": "لِلتَّعْدِيَةِ",
+    "en": "making another do it / bringing it about",
+    "tr": "işi başkasına yaptırmak, meydana getirmek"
+   }
+  },
+  "5": {
+   "mazi": "تَفَعَّلَ",
+   "name": {
+    "ar": "بَابُ التَّفَعُّلِ",
+    "en": "Form V — tafaʿʿul",
+    "tr": "tefa''ul bâbı"
+   },
+   "sense": {
+    "ar": "لِلْمُطَاوَعَةِ وَالتَّكَلُّفِ",
+    "en": "taking the act upon oneself, by effort",
+    "tr": "işi kendi üzerine almak, zorlanarak yapmak"
+   }
+  },
+  "6": {
+   "mazi": "تَفَاعَلَ",
+   "name": {
+    "ar": "بَابُ التَّفَاعُلِ",
+    "en": "Form VI — tafāʿul",
+    "tr": "tefâul bâbı"
+   },
+   "sense": {
+    "ar": "لِلْمُشَارَكَةِ بَيْنَ اثْنَيْنِ فَأَكْثَرَ",
+    "en": "doing it to one another",
+    "tr": "işi birbirine karşı yapmak"
+   }
+  },
+  "7": {
+   "mazi": "اِنْفَعَلَ",
+   "name": {
+    "ar": "بَابُ الِانْفِعَالِ",
+    "en": "Form VII — infiʿāl",
+    "tr": "infiâl bâbı"
+   },
+   "sense": {
+    "ar": "لِلْمُطَاوَعَةِ",
+    "en": "undergoing the act",
+    "tr": "işin etkisini kabul etmek"
+   }
+  },
+  "8": {
+   "mazi": "اِفْتَعَلَ",
+   "name": {
+    "ar": "بَابُ الِافْتِعَالِ",
+    "en": "Form VIII — iftiʿāl",
+    "tr": "iftiâl bâbı"
+   },
+   "sense": {
+    "ar": "لِلْمُطَاوَعَةِ وَالِاتِّخَاذِ",
+    "en": "doing it for oneself / undergoing it",
+    "tr": "işi kendisi için yapmak ya da etkisini kabul etmek"
+   }
+  },
+  "10": {
+   "mazi": "اِسْتَفْعَلَ",
+   "name": {
+    "ar": "بَابُ الِاسْتِفْعَالِ",
+    "en": "Form X — istifʿāl",
+    "tr": "istif'âl bâbı"
+   },
+   "sense": {
+    "ar": "لِلطَّلَبِ",
+    "en": "seeking or asking for it",
+    "tr": "işi istemek, talep etmek"
+   }
+  }
+ },
+ "why": {
+  "hollow-masdar": {
+   "ar": "حُذِفَتِ الْعَيْنُ بَعْدَ نَقْلِ حَرَكَتِهَا وَعُوِّضَ عَنْهَا التَّاءُ فِي آخِرِهِ.",
+   "en": "The middle weak letter is dropped after its vowel moves back, and a tāʾ at the end makes up for it.",
+   "tr": "Orta illet harfi, harekesi öncesine nakledildikten sonra düşer; sonuna gelen tâ onun bedelidir."
+  },
+  "hollow-waw-kasra": {
+   "ar": "قُلِبَتِ الْوَاوُ يَاءً لِانْكِسَارِ مَا قَبْلَهَا.",
+   "en": "The wāw turns into yāʾ because the letter before it carries a kasra.",
+   "tr": "Vâv, öncesi kesreli olduğu için yâ'ya çevrilir."
+  },
+  "mithal-ya": {
+   "ar": "قُلِبَتِ الْوَاوُ السَّاكِنَةُ يَاءً لِانْكِسَارِ مَا قَبْلَهَا.",
+   "en": "The silent wāw turns into yāʾ after the kasra.",
+   "tr": "Sâkin vâv kesreden sonra yâ'ya çevrilir."
+  },
+  "mithal-iftial": {
+   "ar": "قُلِبَتْ فَاءُ الِافْتِعَالِ تَاءً وَأُدْغِمَتْ فِي تَاءِ الِافْتِعَالِ.",
+   "en": "The first radical turns into tāʾ and merges into the tāʾ of iftiʿāl.",
+   "tr": "Fâ'ü'l-fiil tâ'ya çevrilir ve iftiâl tâ'sına idgam edilir."
+  },
+  "naqis-tafila": {
+   "ar": "مَصْدَرُ التَّفْعِيلِ مِنَ النَّاقِصِ عَلَى تَفْعِلَةٍ، وَالْوَاوُ تُقْلَبُ يَاءً.",
+   "en": "The Form-II masdar of a final-weak root rides tafʿila, its wāw turned to yāʾ.",
+   "tr": "Nâkıs kökün tef'îl masdarı «tef'ile» vezninde gelir; vâv yâ'ya çevrilir."
+  },
+  "naqis-tafaul": {
+   "ar": "قُلِبَتِ الضَّمَّةُ كَسْرَةً لِمُنَاسَبَةِ الْيَاءِ ثُمَّ أُعِلَّ إِعْلَالَ قَاضٍ.",
+   "en": "The ḍamma turns into kasra to suit the yāʾ, then the word is treated like qāḍin.",
+   "tr": "Zamme, yâ'ya uysun diye kesreye çevrilir; sonra kelime «kâdın» gibi i'lâl edilir."
+  },
+  "mahmuz-tafila": {
+   "ar": "مَصْدَرُ فَعَّلَ مِنَ الْمَهْمُوزِ اللَّامِ عَلَى تَفْعِلَةٍ كَالنَّاقِصِ.",
+   "en": "A Form II verb whose last radical is hamza takes its maṣdar on تَفْعِلَة, as the defective verb does.",
+   "tr": "Lâmı hemzeli tef'îl fiilinin masdarı, nâkıs gibi تَفْعِلَة vezninde gelir."
+  }
+ },
+ "patterns": [
+  {
+   "id": "fail-1",
+   "bab": 1,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "فَاعِلٌ"
+  },
+  {
+   "id": "maful-1",
+   "bab": 1,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مَفْعُولٌ"
+  },
+  {
+   "id": "faal",
+   "bab": 1,
+   "roles": [
+    "mubalagha"
+   ],
+   "tpl": "فَعَّالٌ"
+  },
+  {
+   "id": "faul",
+   "bab": 1,
+   "roles": [
+    "mubalagha"
+   ],
+   "tpl": "فَعُولٌ",
+   "vowelled": true,
+   "sound_ayn": true
+  },
+  {
+   "id": "fail-sifa",
+   "bab": 1,
+   "roles": [
+    "sifa",
+    "mubalagha",
+    "ism-maful"
+   ],
+   "tpl": "فَعِيلٌ",
+   "sound_ayn": true
+  },
+  {
+   "id": "mifal",
+   "bab": 1,
+   "roles": [
+    "alat",
+    "mubalagha"
+   ],
+   "tpl": "مِفْعَالٌ",
+   "sound_ayn": true
+  },
+  {
+   "id": "mifal-a",
+   "bab": 1,
+   "roles": [
+    "alat"
+   ],
+   "tpl": "مِفْعَلٌ",
+   "sound_ayn": true
+  },
+  {
+   "id": "mifala",
+   "bab": 1,
+   "roles": [
+    "alat"
+   ],
+   "tpl": "مِفْعَلَةٌ",
+   "sound_ayn": true
+  },
+  {
+   "id": "mafal",
+   "bab": 1,
+   "roles": [
+    "makan"
+   ],
+   "tpl": "مَفْعَلٌ"
+  },
+  {
+   "id": "mafil",
+   "bab": 1,
+   "roles": [
+    "makan"
+   ],
+   "tpl": "مَفْعِلٌ"
+  },
+  {
+   "id": "mafala",
+   "bab": 1,
+   "roles": [
+    "makan"
+   ],
+   "tpl": "مَفْعَلَةٌ"
+  },
+  {
+   "id": "tafdil",
+   "bab": 1,
+   "roles": [
+    "tafdil"
+   ],
+   "tpl": "أَفْعَلُ",
+   "sound_ayn": true
+  },
+  {
+   "id": "masdar-fal",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعْلٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fuul",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فُعُولٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fil",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فِعْلٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-ful",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فُعْلٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-faal",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعَلٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fala",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعْلَةٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fual",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فُعَالٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fial",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فِعَالٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true,
+   "over": {
+    "hollow-w": {
+     "tpl": "فِيَالٌ",
+     "why": "hollow-waw-kasra"
+    }
+   }
+  },
+  {
+   "id": "masdar-fiala",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فِعَالَةٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fa-al",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعَالٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fa-ala",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعَالَةٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fuula",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فُعُولَةٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-failan",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فَعَلَانٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-filan",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فِعْلَانٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "masdar-fulan",
+   "bab": 1,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فُعْلَانٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "sama": true
+  },
+  {
+   "id": "fail-2",
+   "bab": 2,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُفَعِّلٌ"
+  },
+  {
+   "id": "maful-2",
+   "bab": 2,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُفَعَّلٌ"
+  },
+  {
+   "id": "masdar-2",
+   "bab": 2,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "تَفْعِيلٌ",
+   "sound_ayn": true,
+   "over": {
+    "naqis": {
+     "tpl": "تَفْعِيَةٌ",
+     "why": "naqis-tafila"
+    },
+    "mahmuz-l": {
+     "tpl": "تَفْعِلَةٌ",
+     "why": "mahmuz-tafila"
+    }
+   }
+  },
+  {
+   "id": "fail-3",
+   "bab": 3,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُفَاعِلٌ"
+  },
+  {
+   "id": "maful-3",
+   "bab": 3,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُفَاعَلٌ"
+  },
+  {
+   "id": "masdar-3",
+   "bab": 3,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "مُفَاعَلَةٌ"
+  },
+  {
+   "id": "masdar-3b",
+   "bab": 3,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "فِعَالٌ",
+   "vowelled": true,
+   "sound_ayn": true,
+   "needs_verb": true
+  },
+  {
+   "id": "fail-4",
+   "bab": 4,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُفْعِلٌ"
+  },
+  {
+   "id": "maful-4",
+   "bab": 4,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُفْعَلٌ"
+  },
+  {
+   "id": "masdar-4",
+   "bab": 4,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "إِفْعَالٌ",
+   "sound_ayn": true,
+   "over": {
+    "hollow": {
+     "tpl": "إِفَالَةٌ",
+     "why": "hollow-masdar"
+    },
+    "mithal": {
+     "tpl": "إِيعَالٌ",
+     "why": "mithal-ya"
+    }
+   }
+  },
+  {
+   "id": "fail-5",
+   "bab": 5,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُتَفَعِّلٌ"
+  },
+  {
+   "id": "maful-5",
+   "bab": 5,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُتَفَعَّلٌ"
+  },
+  {
+   "id": "masdar-5",
+   "bab": 5,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "تَفَعُّلٌ",
+   "over": {
+    "naqis": {
+     "tpl": "تَفَعٍّ",
+     "why": "naqis-tafaul"
+    }
+   }
+  },
+  {
+   "id": "fail-6",
+   "bab": 6,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُتَفَاعِلٌ"
+  },
+  {
+   "id": "maful-6",
+   "bab": 6,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُتَفَاعَلٌ"
+  },
+  {
+   "id": "masdar-6",
+   "bab": 6,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "تَفَاعُلٌ",
+   "over": {
+    "naqis": {
+     "tpl": "تَفَاعٍ",
+     "why": "naqis-tafaul"
+    }
+   }
+  },
+  {
+   "id": "fail-7",
+   "bab": 7,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُنْفَعِلٌ"
+  },
+  {
+   "id": "masdar-7",
+   "bab": 7,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "اِنْفِعَالٌ",
+   "sound_ayn": true,
+   "over": {
+    "hollow-w": {
+     "tpl": "اِنْفِيَالٌ",
+     "why": "hollow-waw-kasra"
+    }
+   }
+  },
+  {
+   "id": "fail-8",
+   "bab": 8,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُفْتَعِلٌ",
+   "over": {
+    "mithal": {
+     "tpl": "مُتَّعِلٌ",
+     "why": "mithal-iftial"
+    }
+   }
+  },
+  {
+   "id": "maful-8",
+   "bab": 8,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُفْتَعَلٌ",
+   "over": {
+    "mithal": {
+     "tpl": "مُتَّعَلٌ",
+     "why": "mithal-iftial"
+    }
+   }
+  },
+  {
+   "id": "masdar-8",
+   "bab": 8,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "اِفْتِعَالٌ",
+   "sound_ayn": true,
+   "over": {
+    "hollow-w": {
+     "tpl": "اِفْتِيَالٌ",
+     "why": "hollow-waw-kasra"
+    },
+    "mithal": {
+     "tpl": "اِتِّعَالٌ",
+     "why": "mithal-iftial"
+    }
+   }
+  },
+  {
+   "id": "fail-10",
+   "bab": 10,
+   "roles": [
+    "ism-fail"
+   ],
+   "tpl": "مُسْتَفْعِلٌ"
+  },
+  {
+   "id": "maful-10",
+   "bab": 10,
+   "roles": [
+    "ism-maful"
+   ],
+   "tpl": "مُسْتَفْعَلٌ"
+  },
+  {
+   "id": "masdar-10",
+   "bab": 10,
+   "roles": [
+    "masdar"
+   ],
+   "tpl": "اِسْتِفْعَالٌ",
+   "sound_ayn": true,
+   "over": {
+    "hollow": {
+     "tpl": "اِسْتِفَالَةٌ",
+     "why": "hollow-masdar"
+    },
+    "mithal": {
+     "tpl": "اِسْتِيعَالٌ",
+     "why": "mithal-ya"
+    }
+   }
+  }
+ ],
+ "rules": {
+  "naql": {
+   "ar": "اسْتُثْقِلَتِ الْحَرَكَةُ عَلَى حَرْفِ الْعِلَّةِ فَنُقِلَتْ إِلَى السَّاكِنِ الصَّحِيحِ قَبْلَهُ.",
+   "en": "The vowel sat heavy on the weak letter, so it was carried back to the sound quiescent letter before it.",
+   "tr": "Hareke illet harfine ağır geldi; öncesindeki sahih sâkine nakledildi."
+  },
+  "qalb-alif": {
+   "ar": "تَحَرَّكَ حَرْفُ الْعِلَّةِ وَانْفَتَحَ مَا قَبْلَهُ فَقُلِبَ أَلِفًا.",
+   "en": "The weak letter bore a vowel after a fatha, so it turned into an alif.",
+   "tr": "İllet harfi harekeli, öncesi fethalı olunca elife çevrildi."
+  },
+  "qalb-waw-ya": {
+   "ar": "اجْتَمَعَتِ الْوَاوُ وَالْيَاءُ وَسُبِقَتْ إِحْدَاهُمَا بِالسُّكُونِ فَقُلِبَتِ الْوَاوُ يَاءً.",
+   "en": "A waw and a ya met with the first of them quiescent, so the waw turned into a ya.",
+   "tr": "Vav ile yâ bir araya geldi ve öncekisi sâkin oldu; vav yâya çevrildi."
+  },
+  "qalb-waw-kasra": {
+   "ar": "سَكَنَتِ الْوَاوُ وَانْكَسَرَ مَا قَبْلَهَا فَقُلِبَتْ يَاءً.",
+   "en": "The waw fell quiescent after a kasra, so it turned into a ya.",
+   "tr": "Vav sâkin oldu ve öncesi kesralı idi; yâya çevrildi."
+  },
+  "qalb-waw-tarafiyya": {
+   "ar": "تَطَرَّفَتِ الْوَاوُ وَانْكَسَرَ مَا قَبْلَهَا فَقُلِبَتْ يَاءً.",
+   "en": "The waw came at the very end after a kasra, so it turned into a ya.",
+   "tr": "Vav kelimenin sonuna geldi ve öncesi kesralı idi; yâya çevrildi."
+  },
+  "idgham": {
+   "ar": "اِلْتَقَى الْمِثْلَانِ فَأُدْغِمَ الْأَوَّلُ فِي الثَّانِي.",
+   "en": "Two of a kind met, so the first was fused into the second.",
+   "tr": "İki mislî harf buluştu; birincisi ikinciye idgam edildi."
+  },
+  "hadhf-sakinayn": {
+   "ar": "اِلْتَقَى سَاكِنَانِ فَحُذِفَ حَرْفُ الْعِلَّةِ.",
+   "en": "Two quiescent letters met, so the weak one was dropped.",
+   "tr": "İki sâkin buluştu; illet harfi hazfedildi."
+  },
+  "harmoniya": {
+   "ar": "حُرِّكَ مَا قَبْلَ حَرْفِ الْعِلَّةِ بِمَا يُجَانِسُهُ دَلَالَةً عَلَى الْمَحْذُوفِ.",
+   "en": "The letter before was given the vowel that matches the weak letter — the evidence of what was dropped.",
+   "tr": "Düşenin delili olsun diye, öncesindeki harf illet harfine uygun hareke ile harekelendi."
+  },
+  "munasaba": {
+   "ar": "ثَقُلَتِ الضَّمَّةُ قَبْلَ الْيَاءِ فَقُلِبَتْ كَسْرَةً لِمُنَاسَبَتِهَا.",
+   "en": "A damma before a ya is heavy, so it turned into a kasra to suit it.",
+   "tr": "Yâdan önceki damme ağır geldi; ona uygun düşsün diye kesraya çevrildi."
+  },
+  "hamz-fail": {
+   "ar": "وَقَعَ حَرْفُ الْعِلَّةِ بَعْدَ أَلِفِ «فَاعِل» فَقُلِبَ هَمْزَةً.",
+   "en": "The weak letter fell after the alif of fa'il, so it turned into a hamza.",
+   "tr": "İllet harfi «fâil» elifinden sonra geldi ve hemzeye çevrildi."
+  },
+  "hadhf-manqus": {
+   "ar": "اِجْتَمَعَ التَّنْوِينُ وَيَاءُ الْمَنْقُوصِ فَحُذِفَتِ الْيَاءُ.",
+   "en": "The tanwin met the ya of a manqus noun, so the ya was dropped.",
+   "tr": "Tenvin ile menkūsun yâsı buluştu; yâ hazfedildi."
+  },
+  "ibdal-iftial": {
+   "ar": "أُبْدِلَتْ تَاءُ الِافْتِعَالِ طَاءً بَعْدَ حُرُوفِ الْإِطْبَاقِ، وَدَالًا بَعْدَ الدَّالِ وَالذَّالِ وَالزَّايِ.",
+   "en": "The tāʾ of iftiʿāl turns into ṭāʾ after an emphatic letter, and into dāl after dāl, dhāl or zāy.",
+   "tr": "İftiâl tâsı, ıtbâk harflerinden sonra tâ'ya (ط); dâl, zâl ve zây'dan sonra dâl'e çevrilir."
+  },
+  "idgham-mithlayn": {
+   "ar": "اِلْتَقَى الْمِثْلَانِ فَأُدْغِمَ الْأَوَّلُ فِي الثَّانِي، وَنُقِلَتْ حَرَكَتُهُ إِلَى السَّاكِنِ قَبْلَهُ إِنْ كَانَ.",
+   "en": "Two identical letters met, so the first merged into the second — its vowel moving back onto a silent letter before it, where there is one.",
+   "tr": "İki aynı harf yan yana geldi; birincisi ikincisine idgam edildi, harekesi de — varsa — öncesindeki sâkin harfe nakledildi."
+  },
+  "qalb-maqsur": {
+   "ar": "تَحَرَّكَتِ الْيَاءُ أَوِ الْوَاوُ فِي الطَّرَفِ وَانْفَتَحَ مَا قَبْلَهَا فَقُلِبَتْ أَلِفًا.",
+   "en": "The final weak letter bore a vowel after a fatḥa, so it turned into an alif — the word ends in a fixed alif (maqṣūr).",
+   "tr": "Sondaki illet harfi harekeli, öncesi fethalı olunca elife çevrildi — kelime maksûr oldu."
+  },
+  "idgham-ya": {
+   "ar": "اِجْتَمَعَتِ الْوَاوُ وَالْيَاءُ فِي الطَّرَفِ وَسُبِقَتْ إِحْدَاهُمَا بِالسُّكُونِ فَقُلِبَتِ الْوَاوُ يَاءً وَأُدْغِمَتْ.",
+   "en": "A final wāw or yāʾ met a silent yāʾ before it, so they merged into one doubled yāʾ.",
+   "tr": "Sondaki vâv ya da yâ, öncesindeki sâkin yâ ile buluştu; vâv yâya çevrildi ve ikisi idgam edildi."
+  },
+  "hamz-tarafiyya": {
+   "ar": "تَطَرَّفَتِ الْوَاوُ أَوِ الْيَاءُ بَعْدَ أَلِفٍ زَائِدَةٍ فَقُلِبَتْ هَمْزَةً.",
+   "en": "The final wāw or yāʾ came after an added alif, so it turned into a hamza.",
+   "tr": "Vâv ya da yâ, zâid elifin ardından kelimenin sonuna geldi; hemzeye çevrildi."
+  },
+  "qalb-hamza-ya": {
+   "ar": "اِجْتَمَعَتْ هَمْزَتَانِ فِي الطَّرَفِ فَقُلِبَتِ الثَّانِيَةُ يَاءً ثُمَّ أُعِلَّ إِعْلَالَ الْمَنْقُوصِ.",
+   "en": "Two hamzas met at the end, so the second turned into a yāʾ — and the word is then treated as a manqūṣ (جَاءٍ).",
+   "tr": "Sonda iki hemze yan yana geldi; ikincisi yâya çevrildi, kelime de menkûs gibi i'lâl edildi (جَاءٍ)."
+  },
+  "tashil-hamza": {
+   "ar": "اِجْتَمَعَتْ هَمْزَتَانِ ثَانِيَتُهُمَا سَاكِنَةٌ فَقُلِبَتِ الثَّانِيَةُ مَدًّا مِنْ جِنْسِ حَرَكَةِ الْأُولَى.",
+   "en": "Two hamzas met with the second silent, so the second turned into the long vowel that matches the first one's vowel.",
+   "tr": "İki hemze yan yana geldi ve ikincisi sâkindi; ikincisi, birincinin harekesine uygun med harfine çevrildi."
+  },
+  "qalb-waw-sakina": {
+   "ar": "سَكَنَتِ الْوَاوُ وَانْكَسَرَ مَا قَبْلَهَا فَقُلِبَتْ يَاءً.",
+   "en": "A silent wāw came after a kasra, so it turned into a yāʾ.",
+   "tr": "Sâkin vâv, öncesi kesreli olunca yâya çevrildi."
+  },
+  "qalb-ya-damma": {
+   "ar": "سَكَنَتِ الْيَاءُ وَانْضَمَّ مَا قَبْلَهَا فَقُلِبَتْ وَاوًا.",
+   "en": "A silent yāʾ came after a ḍamma, so it turned into a wāw.",
+   "tr": "Sâkin yâ, öncesi dammeli olunca vâva çevrildi."
+  }
+ }
+}

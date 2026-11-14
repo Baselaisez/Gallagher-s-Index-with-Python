@@ -1,0 +1,699 @@
+{
+ "chapter": 45,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "And what the Prophet — upon him be blessing and peace — told of the signs of the Hour: the coming of the Dajjāl, the Beast of the Earth, Gog and Magog, the descent of Jesus — upon him be peace — from the sky, and the rising of the sun from its west — it is true.",
+    "tr": "Peygamber'in — ona salât ve selâm olsun — kıyâmet alâmetlerinden haber verdiği şeyler: Deccâl'in çıkışı, Dâbbetü'l-arz, Ye'cûc ve Me'cûc, Îsâ'nın — ona selâm olsun — gökten inişi ve güneşin batısından doğuşu — hepsi haktır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَمَا",
+      "smart": "وَمَا",
+      "bare": "وما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "mubtada-khabar",
+      "al-fa-fi-khabar-al-mubtada",
+      "anwa-ma"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَ«مَا» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَدَخَلَتِ الْفَاءُ فِي خَبَرِهِ لِتَضَمُّنِهِ مَعْنَى الشَّرْطِ.",
+      "en": "«and what» — the mubtada of a long sentence; its khabar is فَهُوَ حَقٌّ at the end.",
+      "tr": "«ve her ne ki» — uzun bir cümlenin mübtedası; haberi sondaki فَهُوَ حَقٌّ'tur."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَا",
+       "lex": "ma-mawsula",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "أَخْبَرَ",
+      "smart": "أَخْبَرَ",
+      "bare": "أخبر"
+     },
+     "lex": "akhbara",
+     "pos": "verb",
+     "grammar": [
+      "ism-mawsul",
+      "form-iv-verbs",
+      "fail"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ «النَّبِيُّ» — وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+      "en": "«told» — the ṣila.",
+      "tr": "«haber verdi» — sıla."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِهِ",
+      "smart": "بِهِ",
+      "bare": "به"
+     },
+     "lex": "pron-3ms",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالضَّمِيرُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«أَخْبَرَ».",
+      "en": "«of it» — the returning pronoun of مَا.",
+      "tr": "«onu» — مَا'nın âidi."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّبِيُّ",
+      "smart": "النَّبِيُّ",
+      "bare": "النبي"
+     },
+     "lex": "nabi",
+     "pos": "noun",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«the Prophet».",
+      "tr": "«Peygamber»."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَيْهِ",
+      "smart": "عَلَيْهِ",
+      "bare": "عليه"
+     },
+     "lex": "pron-3ms",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "al-bariz-al-muttasil",
+      "jumla-mutarida",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "«عَلَى» حَرْفُ جَرٍّ، وَالضَّمِيرُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـمَحْذُوفٍ خَبَرٌ مُقَدَّمٌ — جُمْلَةٌ دُعَائِيَّةٌ مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا.",
+      "en": "«upon him» — the opening of a parenthetical prayer; the jarr phrase is its khabar, put first.",
+      "tr": "«ona» — mu'teriza dua cümlesinin açılışı; câr-mecrûr öne alınmış haberidir."
+     },
+     "segments": [
+      {
+       "form": "عَلَيْ",
+       "lex": "ala",
+       "pos": "prep"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الصَّلَاةُ",
+      "smart": "الصَّلَاةُ",
+      "bare": "الصلاة"
+     },
+     "lex": "salat",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "jumla-mutarida",
+      "khabar-insha",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«blessing».",
+      "tr": "«salât»."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالسَّلَامُ",
+      "smart": "وَالسَّلَامُ",
+      "bare": "والسلام"
+     },
+     "lex": "salam",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الصَّلَاةُ» تَابِعٌ لَهُ فِي الرَّفْعِ.",
+      "en": "«and peace».",
+      "tr": "«ve selâm»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "السَّلَامُ",
+       "lex": "salam",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "«of» — explaining what «it» is.",
+      "tr": "«-den» — «o»nun ne olduğunu açıklar."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَشْرَاطِ",
+      "smart": "أَشْرَاطِ",
+      "bare": "أشراط"
+     },
+     "lex": "ashrat",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "idafa-definiteness",
+      "jam-taksir",
+      "hal"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ بِـ«مِنْ» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«مَحْذُوفٍ حَالٌ مِنَ الْهَاءِ فِي «بِهِ»».",
+      "en": "«the signs of» — the plural of شَرَط.",
+      "tr": "«alâmetlerinden» — شَرَط'ın çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّاعَةِ",
+      "smart": "السَّاعَةِ",
+      "bare": "الساعة"
+     },
+     "lex": "saa-hour",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the Hour» — the Resurrection.",
+      "tr": "«kıyâmetin» — Saat."
+     },
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ — بَدَلٌ مِنْ «مِنْ أَشْرَاطِ»، بَيَانٌ لِلْأَشْرَاطِ.",
+      "en": "«of» — a second min, detailing the signs.",
+      "tr": "«-den» — alâmetleri tafsil eden ikinci min."
+     }
+    },
+    {
+     "surface": {
+      "full": "خُرُوجِ",
+      "smart": "خُرُوجِ",
+      "bare": "خروج"
+     },
+     "lex": "khuruj",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "idafa-definiteness",
+      "masdar",
+      "badal"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ بِـ«مِنْ» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ.",
+      "en": "«the coming out of».",
+      "tr": "«çıkışı»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّجَّالِ",
+      "smart": "الدَّجَّالِ",
+      "bare": "الدجال"
+     },
+     "lex": "dajjal",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the Dajjāl» — the great deceiver.",
+      "tr": "«Deccâl» — büyük yalancı."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَدَابَّةِ",
+      "smart": "وَدَابَّةِ",
+      "bare": "ودابة"
+     },
+     "lex": "dabba",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «خُرُوجِ» تَابِعٌ لَهُ فِي الْجَرِّ، وَهُوَ مُضَافٌ.",
+      "en": "«and the Beast of».",
+      "tr": "«ve Dâbbe'si»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "دَابَّةِ",
+       "lex": "dabba",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الْأَرْضِ",
+      "smart": "الْأَرْضِ",
+      "bare": "الأرض"
+     },
+     "lex": "ard",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the Earth».",
+      "tr": "«yerin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَيَأْجُوجَ",
+      "smart": "وَيَأْجُوجَ",
+      "bare": "ويأجوج"
+     },
+     "lex": "yajuj",
+     "pos": "propn",
+     "grammar": [
+      "atf-nasaq",
+      "mamnu-min-sarf",
+      "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«يَأْجُوجَ» مَعْطُوفٌ عَلَى «خُرُوجِ» مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعُجْمَةِ — أَيْ: وَخُرُوجِ يَأْجُوجَ.",
+      "en": "«and Gog» — a foreign proper name, barred from tanwīn: its jarr is by the fatḥa.",
+      "tr": "«ve Ye'cûc» — acemî alem, gayr-i munsarif: cerri fetha iledir."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَأْجُوجَ",
+       "lex": "yajuj",
+       "pos": "propn"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَمَأْجُوجَ",
+      "smart": "وَمَأْجُوجَ",
+      "bare": "ومأجوج"
+     },
+     "lex": "majuj",
+     "pos": "propn",
+     "grammar": [
+      "atf-nasaq",
+      "mamnu-min-sarf",
+      "ghayr-al-munsarif-al-qiyasi-al-alam-wal-sifa-wal-ajami-wal-muannath"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«مَأْجُوجَ» مَعْطُوفٌ عَلَى «خُرُوجِ» مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعُجْمَةِ — أَيْ: وَخُرُوجِ مَأْجُوجَ.",
+      "en": "«and Magog».",
+      "tr": "«ve Me'cûc»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "مَأْجُوجَ",
+       "lex": "majuj",
+       "pos": "propn"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَنُزُولِ",
+      "smart": "وَنُزُولِ",
+      "bare": "ونزول"
+     },
+     "lex": "nuzul",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «خُرُوجِ» تَابِعٌ لَهُ فِي الْجَرِّ، وَهُوَ مُضَافٌ.",
+      "en": "«and the descent of».",
+      "tr": "«ve inişi»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "نُزُولِ",
+       "lex": "nuzul",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "عِيسَى",
+      "smart": "عِيسَى",
+      "bare": "عيسى"
+     },
+     "lex": "isa",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "ism-maqsur-manqus",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْفَتْحَةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالْعُجْمَةِ.",
+      "en": "«Jesus» — a maqṣūr diptote: its fatḥa of jarr is estimated on the alif.",
+      "tr": "«Îsâ'nın» — maksûr gayr-i munsarif: cer fethası elif üzerinde takdirîdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "عَلَيْهِ",
+      "smart": "عَلَيْهِ",
+      "bare": "عليه"
+     },
+     "lex": "pron-3ms",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "al-bariz-al-muttasil",
+      "jumla-mutarida",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "«عَلَى» حَرْفُ جَرٍّ، وَالضَّمِيرُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـمَحْذُوفٍ خَبَرٌ مُقَدَّمٌ — جُمْلَةٌ دُعَائِيَّةٌ مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا.",
+      "en": "«upon him» — the opening of a parenthetical prayer; the jarr phrase is its khabar, put first.",
+      "tr": "«ona» — mu'teriza dua cümlesinin açılışı; câr-mecrûr öne alınmış haberidir."
+     },
+     "segments": [
+      {
+       "form": "عَلَيْ",
+       "lex": "ala",
+       "pos": "prep"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "السَّلَامُ",
+      "smart": "السَّلَامُ",
+      "bare": "السلام"
+     },
+     "lex": "salam",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "jumla-mutarida",
+      "khabar-insha",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«peace».",
+      "tr": "«selâm»."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنَ",
+      "smart": "مِنَ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، حُرِّكَ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "السَّمَاءِ",
+      "smart": "السَّمَاءِ",
+      "bare": "السماء"
+     },
+     "lex": "sama",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "ism-mamdud"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ بِـ«مِنَ» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ««نُزُولِ»».",
+      "en": "«the sky» — the supplied transcription reads المساء, a slip for the received السَّمَاءِ.",
+      "tr": "«gök» — nüsha المساء yazar; alınan metindeki السَّمَاءِ'nin yazım hatası."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَطُلُوعِ",
+      "smart": "وَطُلُوعِ",
+      "bare": "وطلوع"
+     },
+     "lex": "tulu",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "idafa-definiteness",
+      "masdar"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «خُرُوجِ» تَابِعٌ لَهُ فِي الْجَرِّ، وَهُوَ مُضَافٌ.",
+      "en": "«and the rising of».",
+      "tr": "«ve doğuşu»."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "طُلُوعِ",
+       "lex": "tulu",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "الشَّمْسِ",
+      "smart": "الشَّمْسِ",
+      "bare": "الشمس"
+     },
+     "lex": "shams",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«the sun».",
+      "tr": "«güneşin»."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "«from».",
+      "tr": "«-den»."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَغْرِبِهَا",
+      "smart": "مَغْرِبِهَا",
+      "bare": "مغربها"
+     },
+     "lex": "maghrib",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ بِـ«مِنْ» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«طُلُوعِ».",
+      "en": "«its west» — the place of its setting.",
+      "tr": "«batısından» — batış yeri."
+     },
+     "segments": [
+      {
+       "form": "مَغْرِبِ",
+       "lex": "maghrib",
+       "pos": "noun"
+      },
+      {
+       "form": "هَا",
+       "lex": "pron-3fs",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "فَهُوَ",
+      "smart": "فَهُوَ",
+      "bare": "فهو"
+     },
+     "lex": "pron-3ms-munfasil",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "al-fa-fi-khabar-al-mubtada",
+      "al-marifa-al-mudmarat-wal-alam"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ دَاخِلَةٌ فِي خَبَرِ الْمُبْتَدَإِ لِتَضَمُّنِهِ مَعْنَى الشَّرْطِ، وَ«هُوَ» ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ ثَانٍ، وَالْجُمْلَةُ خَبَرُ «مَا».",
+      "en": "«it» — the fāʾ of the khabar returns to the opening مَا.",
+      "tr": "«o» — haber fâ'sı baştaki مَا'ya döner."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "pron-3ms-munfasil",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "حَقٌّ",
+      "smart": "حَقٌّ",
+      "bare": "حق"
+     },
+     "lex": "haqq",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِـ«هُوَ» مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«is true».",
+      "tr": "«haktır»."
+     },
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

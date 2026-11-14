@@ -1,0 +1,129 @@
+{
+ "id": "al-jam-al-salim-fil-kafiya",
+ "title": {
+  "ar": "الْمَجْمُوعُ وَالْجَمْعُ الصَّحِيحُ فِي الْكَافِيَةِ",
+  "en": "The plural in the Kafiya: the definition, what is and is not a plural, and the two sound plurals with their conditions",
+  "tr": "Kâfiye'de cemi: tarif, neyin cemi olup olmadığı ve şartlarıyla iki sâlim cemi"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المجموع: ما دل على آحاد مقصودة بحروف مفرده بتغير ما؛ تمر وركب ليسا بجمع على الأصح؛ جمع المذكر السالم وشرط مفرده؛ سنون وأرضون شاذ؛ جمع المؤنث السالم وشرطه",
+  "ضياء صونغور اوغلى — دفتر الكافية: التعريفات الثلاثة بلفظها، الزيادة والنقصان وتغير الحركة، قاضون ومصطفون، الشروط الخمسة، مسلمو القوم، حائض وحيض"
+ ],
+ "question": {
+  "en": [
+   "What is a PLURAL? A word pointing to intended units by the letters of its singular, with some change to them — by addition (رِجَال), removal (كُتُب) or a shift of vowels (أُسْد). A generic noun like تَمْر and a collective like رَكْب are not plurals (they have no singular of their own letters); فُلْك is, because its change is estimated.",
+   "What is the SOUND MASCULINE PLURAL? The singular plus a wāw after a ḍamma (rafʿ) or a yāʾ after a kasra (naṣb, jarr) and a nūn with a fatḥa: مُسْلِمُونَ / مُسْلِمِينَ. A manqūṣ loses its yāʾ first (قَاضُونَ), a maqṣūr its alif with the fatḥa kept (مُصْطَفَوْنَ).",
+   "Who may take it? A NOUN only if it is the proper name of a rational male with no tāʾ and no compounding (زَيْدُونَ); a DESCRIPTION only if it describes a rational male, has no tāʾ, is not أَفْعَلُ/فَعْلَاءُ (أَحْمَرُ), not فَعْلَانُ/فَعْلَى (سَكْرَانُ), and not shared by both genders (جَرِيحٌ، صَبُورٌ). عَلَّامَةٌ fails by its tāʾ.",
+   "What of its nūn? It drops in annexation — جَاءَنِي مُسْلِمُو الْقَوْمِ — exactly like the dual's. سِنُونَ and أَرَضُونَ (from سَنَة and أَرْض) take the ending against every condition and are recorded as irregular.",
+   "What is the SOUND FEMININE PLURAL? The singular plus an alif and a tāʾ. A description takes it only if its masculine takes the wāw-plural (نَاصِرَاتٌ، مَنْصُورَاتٌ); one with no masculine must carry the tāʾ (حَائِضَةٌ → حَائِضَاتٌ, but حَائِضٌ → حُيَّضٌ); a plain noun takes it freely.",
+   "What does the engine do? The IdafaEngine drops the sound plural's nūn and the dual's before a muḍāf ilayh, and the AlamaEngine declines both by their letters; the plural rules of the Kafiya are the conditions the IsmTagger's wazn roles and the games' plural items are checked against."
+  ],
+  "tr": [
+   "CEMİ nedir? Müfredinin harfleriyle, onlarda bir değişiklikle kastedilen fertlere delâlet eden kelime — ziyâde ile (رِجَال), noksan ile (كُتُب) ya da hareke değişmesiyle (أُسْد). تَمْر gibi cins ismi ve رَكْب gibi ism-i cem' cemi değildir (kendi harflerinden müfredi yoktur); فُلْك cemidir, çünkü değişmesi takdîrîdir.",
+   "SÂLİM MÜZEKKER CEMİ nedir? Müfred + dammeden sonra vâv (ref') ya da kesreden sonra yâ (nasb, cer) ve meftûh nûn: مُسْلِمُونَ / مُسْلِمِينَ. Mankûs önce yâsını kaybeder (قَاضُونَ), maksûr elifini, fethası kalarak (مُصْطَفَوْنَ).",
+   "Kim alabilir? İSİM ancak tâsız ve terkibsiz, âkil bir müzekkerin alemiyse (زَيْدُونَ); SIFAT ancak âkil bir müzekkeri niteliyor, tâ taşımıyor, أَفْعَلُ/فَعْلَاءُ (أَحْمَرُ) ve فَعْلَانُ/فَعْلَى (سَكْرَانُ) vezninde değil ve iki cinste ortak değilse (جَرِيحٌ، صَبُورٌ). عَلَّامَةٌ tâ'sı yüzünden elenir.",
+   "Ya nûnu? İzâfette düşer — جَاءَنِي مُسْلِمُو الْقَوْمِ — tam tesniyeninki gibi. سِنُونَ ve أَرَضُونَ (سَنَة ve أَرْض'dan) her şarta aykırı olarak eki alır ve şâz diye kaydedilir.",
+   "SÂLİM MÜENNES CEMİ nedir? Müfred + elif ve tâ. Sıfat ancak müzekkeri vâvlı cemi alıyorsa alır (نَاصِرَاتٌ، مَنْصُورَاتٌ); müzekkeri olmayan tâ taşımalıdır (حَائِضَةٌ → حَائِضَاتٌ, ama حَائِضٌ → حُيَّضٌ); yalın isim serbestçe alır.",
+   "Motor ne yapar? IdafaEngine muzâfun ileyhten önce sâlim ceminin ve tesniyenin nûnunu düşürür, AlamaEngine ikisini harfleriyle i'râblar; Kâfiye'nin cemi kuralları, IsmTagger'ın vezin rollerinin ve oyunlardaki cemi maddelerinin sınandığı şartlardır."
+  ]
+ },
+ "plain": {
+  "en": "A plural changes its singular somehow (letters added, dropped or re-vowelled). Men's names and most adjectives for men take -ūna/-īna; women's and things' nouns take -āt; but an adjective takes -āt only if its masculine takes -ūna. The -na of both sound plurals drops before a possessor.",
+  "tr": "Cemi, müfredini bir şekilde değiştirir (harf eklenir, düşer ya da harekesi değişir). Erkek adları ve erkekler için çoğu sıfat -ûne/-îne alır; kadınların ve şeylerin isimleri -ât alır; ama sıfat ancak müzekkeri -ûne alıyorsa -ât alır. İki sâlim ceminin -ne'si bir sahipten önce düşer."
+ },
+ "explanation": {
+  "en": "The Kafiya defines the plural by a relation to its singular: the same letters, changed somehow, pointing to more than one. That «somehow» is the hinge of the chapter. Three changes are visible (an added alif in رِجَال, a dropped one in كُتُب, re-vowelling in أُسْد); a fourth is only estimated, which is how فُلْك — written alike for one ship and for many — is still a plural, its pattern reckoned قُفْل in the singular and أُسْد in the plural. Where there is no singular of the same letters at all, there is no plural: تَمْر is a generic noun whose unit is تَمْرَة, رَكْب a collective with no unit of its own. The sound plurals then get the longest treatment because they are the plurals a learner can BUILD, and building needs conditions. The masculine ending is reserved, for nouns, to the proper names of rational men, and for descriptions to those of rational men that have no tāʾ, are not the colour-and-defect pattern (أَحْمَرُ، whose plural is حُمْر), not the فَعْلَانُ pattern (سَكْرَانُ), and not the patterns that one form serves for both genders (جَرِيحٌ، صَبُورٌ) — because an ending that says «male plural» can only sit on a word that already says «male». The feminine ending mirrors it: a description takes -āt only where its masculine takes -ūna, so that the pair نَاصِرُونَ / نَاصِرَاتٌ stays a pair, and a description with no masculine must at least wear the tāʾ (حَائِضَةٌ), while an ordinary noun takes -āt without conditions. The exceptions are listed as exceptions: سِنُونَ and أَرَضُونَ wear the masculine ending with none of its conditions, and the notebook keeps حَائِض beside حُيَّض to show the broken plural standing where the sound one is refused.",
+  "tr": "Kâfiye cemiyi müfrediyle bir ilişki üzerinden tarif eder: aynı harfler, bir şekilde değişmiş, birden fazlaya delâlet eder. Bu «bir şekilde» bâbın menteşesidir. Üç değişiklik görünür (رِجَال'de eklenen elif, كُتُب'de düşen elif, أُسْد'de hareke değişimi); dördüncüsü yalnız takdîrîdir ki فُلْك — tek gemi için de çok gemi için de aynı yazılır — böylece yine cemidir, vezni müfredde قُفْل, cemide أُسْد sayılır. Aynı harflerden bir müfred hiç yoksa cemi de yoktur: تَمْر birimi تَمْرَة olan bir cins ismi, رَكْب kendi birimi olmayan bir ism-i cem'dir. Sâlim cemiler en uzun ele alınır; çünkü onlar öğrencinin KURABİLECEĞİ cemilerdir ve kurmak şart ister. Müzekker ek, isimlerde âkil erkeklerin alemlerine, sıfatlarda ise tâ taşımayan, renk-kusur vezninde olmayan (أَحْمَرُ, cem'i حُمْر), فَعْلَانُ vezninde olmayan (سَكْرَانُ) ve tek şeklin iki cinse hizmet ettiği vezinlerde olmayan (جَرِيحٌ، صَبُورٌ) âkil erkek sıfatlarına ayrılmıştır — çünkü «erkek çoğul» diyen ek ancak zaten «erkek» diyen bir kelimeye oturabilir. Müennes ek onu yansıtır: sıfat -ât'ı ancak müzekkeri -ûne alıyorsa alır ki نَاصِرُونَ / نَاصِرَاتٌ çifti çift kalsın; müzekkeri olmayan sıfat en azından tâ giymelidir (حَائِضَةٌ); sıradan isim ise -ât'ı şartsız alır. İstisnâlar istisnâ olarak sayılır: سِنُونَ ve أَرَضُونَ hiçbir şartı taşımadan müzekker eki giyer; defter حَائِض'i حُيَّض'in yanında tutar ki sâlimin reddedildiği yerde mükesserin durduğu görülsün."
+ },
+ "examples": [
+  {
+   "ar": "الْمَجْمُوعُ: مَا دَلَّ عَلَى آحَادٍ مَقْصُودَةٍ بِحُرُوفِ مُفْرَدِهِ بِتَغَيُّرٍ مَا",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "رِجَالٌ — كُتُبٌ — أُسْدٌ",
+   "en": "The three changes.",
+   "tr": "Üç değişiklik.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "مُسْلِمُونَ وَمُسْلِمِينَ — قَاضُونَ — مُصْطَفَوْنَ",
+   "en": "The sound masculine plural and its weak-ended singulars.",
+   "tr": "Sâlim müzekker cemi ve illetli sonlu müfredleri.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "زَيْدُونَ — لَا أَحْمَرُ وَسَكْرَانُ وَجَرِيحٌ وَصَبُورٌ وَعَلَّامَةٌ",
+   "en": "The conditions.",
+   "tr": "Şartlar.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  },
+  {
+   "ar": "جَاءَنِي مُسْلِمُو الْقَوْمِ — سِنُونَ وَأَرَضُونَ شَاذٌّ",
+   "en": "The nūn in annexation; the irregular pair.",
+   "tr": "İzâfette nûn; şâz çift.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "نَاصِرَاتٌ وَمَنْصُورَاتٌ — لَا يُقَالُ حَائِضَاتٌ",
+   "en": "The sound feminine plural's conditions.",
+   "tr": "Sâlim müennes ceminin şartları.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s11"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«أَحْمَرُونَ — kırmızılar, sâlim cemi»",
+   "right": "«حُمْرٌ — أَفْعَلُ فَعْلَاءُ sıfatı vâvlı cemi almaz; mükesser gelir»",
+   "why": {
+    "en": "The colour-and-defect pattern is excluded by name from the sound masculine plural.",
+    "tr": "Renk-kusur vezni sâlim müzekker cemiden adıyla dışlanmıştır."
+   }
+  },
+  {
+   "wrong": "«قَاضِيُونَ — mankûs yâsıyla cemi'lenir»",
+   "right": "«قَاضُونَ — yânın dammesi dâd'a taşınır, iki sâkin birleşince yâ düşer»",
+   "why": {
+    "en": "The notebook's derivation: قَاضِيُونَ → the kasra of the ḍād removed, the yāʾ's ḍamma given to it, two sakins meet, the yāʾ falls.",
+    "tr": "Defterin türetimi: قَاضِيُونَ → dâd'ın kesresi atılır, yânın dammesi ona verilir, iki sâkin birleşir, yâ düşer."
+   }
+  },
+  {
+   "wrong": "«حَائِضَاتٌ — hayızlı kadınlar»",
+   "right": "«حُيَّضٌ — hâiz'in müzekkeri yok ve tâ'sı yok; -ât alamaz. حَائِضَاتٌ ancak حَائِضَة'dan»",
+   "why": {
+    "en": "A description with no masculine must carry the tāʾ to take the alif-and-tāʾ plural.",
+    "tr": "Müzekkeri olmayan sıfat, elif-tâ cemisini alabilmek için tâ taşımalıdır."
+   }
+  },
+  {
+   "wrong": "«مُسْلِمُونَ الْقَوْمِ — izâfette nûn kalır»",
+   "right": "«مُسْلِمُو الْقَوْمِ — sâlim ceminin nûnu izâfette düşer, tesniyeninki gibi»",
+   "why": {
+    "en": "The nūn stands for the tanwīn; a muḍāf takes neither.",
+    "tr": "Nûn tenvinin yerini tutar; muzâf ikisini de almaz."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jam-mudhakkar-salim",
+  "jam-muannath-salim",
+  "jam-taksir",
+  "al-muthanna",
+  "idafa-definiteness",
+  "ism-maqsur-manqus",
+  "mamnu-min-sarf",
+  "al-muannath-wa-alamatuh",
+  "jam-al-taksir-fil-kafiya"
+ ]
+}

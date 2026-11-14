@@ -1,0 +1,128 @@
+{
+ "id": "asma-al-ishara-wal-mawsulat",
+ "title": {
+  "ar": "أَسْمَاءُ الْإِشَارَةِ وَالْمَوْصُولَاتُ فِي الْكَافِيَةِ",
+  "en": "The demonstratives and the relatives in the Kafiya: their forms, the ha of alerting, the kaf of address, the sila and the 'a'id, and why they are mabni",
+  "tr": "Kâfiye'de işaret isimleri ve mevsûller: şekilleri, tenbih hâ'sı, hitap kâfı, sıla ile âid ve neden mebnî oldukları"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — اسم الإشارة: ما وضع لمشار إليه؛ الموصول: ما لا يتم جزءا إلا بصلة وعائد",
+  "ضياء صونغور اوغلى — دفتر الكافية: صيغ الإشارة والموصول، سؤال الإعراب وجواب الجمهور، حروف الخطاب الخمسة والصيغ الخمس والعشرون، الآيتان"
+ ],
+ "question": {
+  "en": [
+   "What is the DEMONSTRATIVE? A noun coined for a thing pointed at: ذَا for one man, ذَانِ / ذَيْنِ for two, تَا تِي ذِي ذِهْ for one woman, تَانِ / تَيْنِ for two, أُولَى / أُولَاءِ for all plurals.",
+   "Is ذَانِ muʿrab, since it changes to ذَيْنِ? For the majority no: the change is by coinage (the two forms were coined), not by a governor — which is the whole definition of mabnī.",
+   "What enters before it? The hāʾ of alerting (هٰذَا، هٰذَانِ، هَاتَا، هَاتَانِ، هٰؤُلَاءِ). What attaches after it? The kāf of address with its five letters (كَ كُمَا كُمْ كِ كُنَّ — the two كُمَا are one), five letters times five kinds, twenty-five forms: ذَاكَ … ذَاكُنَّ.",
+   "What is the RELATIVE? A noun that is not a complete part of speech until a ṣila (the clause after it) and an ʿāʾid (the pronoun inside the ṣila pointing back) complete it: الَّذِي الَّتِي، اللَّذَانِ اللَّتَانِ / اللَّذَيْنِ اللَّتَيْنِ، الَّذِينَ الْأُلَى، اللَّاتِي اللَّوَاتِي اللَّائِي.",
+   "مَنْ or مَا? مَنْ for those with reason, مَا for the rest: ﴿كُلُّ مَنْ عَلَيْهَا فَانٍ﴾ — ﴿مَا عِنْدَكُمْ يَنْفَدُ وَمَا عِنْدَ اللهِ بَاقٍ﴾. The ʿāʾid may be a hidden doer (فَانٍ's subject) or the ṣila may be a bare ẓarf (عِنْدَكُمْ).",
+   "What does the engine read? The DabtEngine keeps every demonstrative and relative mabnī (no ending to predict), reads the cited forms after نَحْوُ as words in the place of jarr, and finds the manqūṣ khabars فَانٍ and بَاقٍ by their taqdīrī ḍamma."
+  ],
+  "tr": [
+   "İŞARET İSMİ nedir? İşaret edilen için konulmuş isim: bir erkek için ذَا, iki için ذَانِ / ذَيْنِ, bir kadın için تَا تِي ذِي ذِهْ, iki için تَانِ / تَيْنِ, bütün cemiler için أُولَى / أُولَاءِ.",
+   "ذَيْنِ'ye dönüştüğüne göre ذَانِ mu'reb midir? Cumhûra göre hayır: değişme âmille değil vaz' iledir (iki şekil ayrı ayrı konulmuştur) — mebnînin tarifi de budur.",
+   "Önüne ne gelir? Tenbih hâ'sı (هٰذَا، هٰذَانِ، هَاتَا، هَاتَانِ، هٰؤُلَاءِ). Sonuna ne bitişir? Beş harfiyle hitap kâfı (كَ كُمَا كُمْ كِ كُنَّ — iki كُمَا birdir); beş harf çarpı beş nev', yirmi beş şekil: ذَاكَ … ذَاكُنَّ.",
+   "MEVSÛL nedir? Bir sıla (sonrasındaki cümle) ve bir âid (sıla içinde ona dönen zamir) tamamlamadıkça cümlenin tam bir cüz'ü olmayan isim: الَّذِي الَّتِي، اللَّذَانِ اللَّتَانِ / اللَّذَيْنِ اللَّتَيْنِ، الَّذِينَ الْأُلَى، اللَّاتِي اللَّوَاتِي اللَّائِي.",
+   "مَنْ mi مَا mı? Akıl sahipleri için مَنْ, diğerleri için مَا: ﴿كُلُّ مَنْ عَلَيْهَا فَانٍ﴾ — ﴿مَا عِنْدَكُمْ يَنْفَدُ وَمَا عِنْدَ اللهِ بَاقٍ﴾. Âid gizli bir fâil olabilir (فَانٍ'in öznesi), sıla yalın bir zarf olabilir (عِنْدَكُمْ).",
+   "Motor neyi okur? DabtEngine her işaret ismini ve mevsûlü mebnî tutar (tahmin edilecek son yoktur), نَحْوُ'dan sonra zikredilen şekilleri cer mahallinde kelime olarak okur ve فَانٍ ile بَاقٍ mankûs haberlerini takdîrî dammeleriyle bulur."
+  ]
+ },
+ "plain": {
+  "en": "A demonstrative points at something; a relative needs the clause after it to say anything. Both have fixed forms for one, two and many, masculine and feminine, and both are mabnī: their forms were coined that way, no governor changes them. مَنْ is for people, مَا for things.",
+  "tr": "İşaret ismi bir şeyi gösterir; mevsûl bir şey söylemek için sonrasındaki cümleye muhtaçtır. İkisinin de bir, iki ve çok, müzekker ve müennes için sabit şekilleri vardır ve ikisi de mebnîdir: şekilleri öyle konulmuştur, âmil değiştirmez. مَنْ kişiler, مَا şeyler içindir."
+ },
+ "explanation": {
+  "en": "Ibn al-Hajib defines the demonstrative by its job — a noun coined for a thing pointed at — and lists its forms by number and gender; the notebook adds the question every student asks at ذَانِ / ذَيْنِ: is it not muʿrab, since the ending moves? The majority's answer is the definition of mabnī turned round: a word is muʿrab only when a GOVERNOR moves its ending, and here the two forms were coined separately, so the change is by coinage. The same answer returns for اللَّذَانِ / اللَّذَيْنِ at the end of the chapter. Two particles frame the demonstrative: the hāʾ of alerting in front (هٰذَا) and the kāf of address behind (ذَاكَ), and the notebook counts the kāf's forms — five letters, because كُمَا serves both duals, against five kinds of pointing, twenty-five words. The relative is defined by what it lacks: it is not a complete part of speech until a ṣila follows and an ʿāʾid inside the ṣila returns to it; its forms run parallel to the demonstrative's. مَنْ and مَا are relatives too, divided by reason, and the two āyas the notebook cites show both a hidden ʿāʾid (the doer of فَانٍ, the subject of يَنْفَدُ) and a ṣila that is nothing but a ẓarf (عِنْدَكُمْ).",
+  "tr": "İbnü'l-Hâcib işaret ismini işiyle tarif eder — işaret edilen için konulmuş isim — ve şekillerini sayı ve cinse göre sayar; defter her talebenin ذَانِ / ذَيْنِ'de sorduğu soruyu ekler: sonu değiştiğine göre mu'reb değil midir? Cumhûrun cevabı mebnî tarifinin tersten okunuşudur: bir kelime ancak ÂMİL sonunu değiştirince mu'rebdir; burada iki şekil ayrı ayrı konulmuştur, değişme vaz' iledir. Aynı cevap bâbın sonunda اللَّذَانِ / اللَّذَيْنِ için döner. İşaret ismini iki harf çerçeveler: önde tenbih hâ'sı (هٰذَا), arkada hitap kâfı (ذَاكَ); defter kâfın şekillerini sayar — كُمَا iki tesniyeye birden hizmet ettiğinden beş harf, beş işaret nev'iyle çarpılınca yirmi beş kelime. Mevsûl eksiğiyle tarif edilir: bir sıla gelip içindeki bir âid ona dönmedikçe cümlenin tam bir cüz'ü değildir; şekilleri işaret ismininkine paraleldir. مَنْ ve مَا da mevsûldür, akılla ayrılır; defterin zikrettiği iki âyet hem gizli bir âidi (فَانٍ'in fâili, يَنْفَدُ'nün öznesi) hem de yalnız bir zarftan ibaret sılayı (عِنْدَكُمْ) gösterir."
+ },
+ "examples": [
+  {
+   "ar": "اسْمُ الْإِشَارَةِ: مَا وُضِعَ لِمُشَارٍ إِلَيْهِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "ذَا، وَذَانِ فِي الرَّفْعِ وَذَيْنِ فِي النَّصْبِ وَالْجَرِّ",
+   "en": "The masculine forms.",
+   "tr": "Müzekker şekiller.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "هٰذَا وَهٰذَانِ وَهَاتَا وَهَاتَانِ وَهٰؤُلَاءِ",
+   "en": "The hāʾ of alerting.",
+   "tr": "Tenbih hâ'sı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "ذَاكَ وَذَاكُمَا وَذَاكُمْ وَذَاكِ وَذَاكُمَا وَذَاكُنَّ",
+   "en": "The kāf of address.",
+   "tr": "Hitap kâfı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "الْمَوْصُولُ: مَا لَا يَتِمُّ جُزْءًا إِلَّا بِصِلَةٍ وَعَائِدٍ",
+   "en": "The relative defined.",
+   "tr": "Mevsûlün tarifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "كُلُّ مَنْ عَلَيْهَا فَانٍ — مَا عِنْدَكُمْ يَنْفَدُ وَمَا عِنْدَ اللهِ بَاقٍ",
+   "en": "مَنْ for the rational, مَا for the rest (55:26, 16:96).",
+   "tr": "Akıllılar için مَنْ, diğerleri için مَا (55:26, 16:96).",
+   "sourceStory": "al-kafiya",
+   "sentence": "s12"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«ذَانِ mu'rebdir, çünkü nasbda ذَيْنِ olur»",
+   "right": "«ذَانِ cumhûra göre mebnîdir: değişme vaz' iledir, âmille değil»",
+   "why": {
+    "en": "Only a change made by a governor is iʿrāb; two separately coined forms are not one word declining.",
+    "tr": "Yalnız âmilin yaptığı değişme i'râbdır; ayrı ayrı konulmuş iki şekil, çekimlenen tek kelime değildir."
+   }
+  },
+  {
+   "wrong": "«هٰذَا tek kelimedir, hâ işaret isminin parçasıdır»",
+   "right": "«هٰذَا = هَا (tenbih harfi) + ذَا (işaret ismi)»",
+   "why": {
+    "en": "The hāʾ is a particle that enters the demonstrative; it is why هَاتَا and هٰؤُلَاءِ exist beside تَا and أُولَاءِ.",
+    "tr": "Hâ, işaret isminin önüne giren bir harftir; تَا ve أُولَاءِ yanında هَاتَا ve هٰؤُلَاءِ bu yüzden vardır."
+   }
+  },
+  {
+   "wrong": "«الَّذِي tek başına mübtedâ olur: الَّذِي قَائِمٌ»",
+   "right": "«الَّذِي جَاءَ قَائِمٌ — mevsûl ancak sılası ve âidiyle tamamlanır»",
+   "why": {
+    "en": "A relative without its ṣila is not yet a part of speech; the clause after it, with the pronoun returning to it, is what makes it a mubtada.",
+    "tr": "Sılasız mevsûl henüz cümlenin bir cüz'ü değildir; ona dönen zamiri taşıyan cümle onu mübtedâ yapar."
+   }
+  },
+  {
+   "wrong": "«مَا عِنْدَكُمْ'deki مَا nefiy harfidir»",
+   "right": "«مَا عِنْدَكُمْ'deki مَا mevsûldür: 'sizin yanınızdaki şey'; sılası عِنْدَكُمْ zarfıdır»",
+   "why": {
+    "en": "A negation needs a subject and predicate to work on; here the ẓarf is the whole ṣila and يَنْفَدُ is the khabar of مَا.",
+    "tr": "Nefiy, üzerinde çalışacağı bir özne ve yüklem ister; burada zarf sılanın tamamıdır, يَنْفَدُ ise مَا'nın haberidir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "asma-al-ishara",
+  "ism-mawsul",
+  "al-mabni-wal-mudmar",
+  "huruf-tanbih",
+  "al-muthanna",
+  "ism-maqsur-manqus",
+  "anwa-ma",
+  "al-mabni-ghayr-al-lazim-al-maqtu-an-al-idafa-wal-munada"
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "id": "al-muthanna-fil-kafiya",
+ "title": {
+  "ar": "الْمُثَنَّى فِي الْكَافِيَةِ",
+  "en": "The dual in the Kafiya: its definition, the maqṣūr's alif and the mamdūd's hamza before the dual ending, the nūn in annexation, the irregular pair",
+  "tr": "Kâfiye'de tesniye: tarifi, tesniye ekinden önce maksûrun elifi ve memdûdun hemzesi, izâfette nûn, kıyâsa aykırı çift"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المثنى: ما لحق آخره ألف أو ياء مفتوح ما قبلها ونون مكسورة ليدل على أن معه مثله من جنسه؛ ألف المقصور وهمزة الممدود؛ نونه تحذف في الإضافة؛ خصيان وأليان",
+  "ضياء صونغور اوغلى — دفتر الكافية: التعريف بلفظه، عصوان ورحيان وأعليان، قراءان وحمراوان وكساءان وكساوان، الضاربا زيد"
+ ],
+ "question": {
+  "en": [
+   "What is the DUAL? A noun that takes, at its end, an alif in rafʿ or a yāʾ (with a fatḥa before it) in naṣb and jarr, plus a nūn with a kasra — the ending saying «and another like it of its kind»: مُسْلِمَانِ / مُسْلِمَيْنِ.",
+   "What does a maqṣūr do? Its alif must become a letter again: a wāw when it is the third letter and came from a wāw (عَصًا → عَصَوَانِ), a yāʾ in every other case (رَحًى → رَحَيَانِ; أَعْلَى → أَعْلَيَانِ, a fourth letter).",
+   "And a mamdūd? Its hamza stays when it is a root letter (قُرَّاء → قُرَّاءَانِ), turns to wāw when it is the mark of the feminine (حَمْرَاء → حَمْرَاوَانِ), and may do either when it replaced a radical (كِسَاء → كِسَاءَانِ / كِسَاوَانِ).",
+   "What happens in annexation? The nūn drops, exactly as the sound plural's does: الضَّارِبَا زَيْدٍ — the alif stays, and that is how a dual muḍāf is known.",
+   "Why خُصْيَانِ without the tāʾ? Because the Arabs reckon the pair as one thing; the Kafiya records it as against the rule (and أَلْيَانِ with it), not as a licence to drop any tāʾ.",
+   "What does the engine do? The IdafaEngine drops the dual's nūn before a muḍāf ilayh and breaks a dual's yāʾ with a kasra before the article's silent alif; the AlamaEngine and IrabSign read the alif and the yāʾ as letters of iʿrāb, not vowels."
+  ],
+  "tr": [
+   "TESNİYE nedir? Sonuna ref'de bir elif, nasb ve cerde (mâkabli meftûh) bir yâ ile meksûr bir nûn alan isim — ek «ve cinsinden bir benzeri daha» der: مُسْلِمَانِ / مُسْلِمَيْنِ.",
+   "Maksûr ne yapar? Elifi yeniden harf olmalıdır: üçüncü harf olup vâvdan geldiyse vâv (عَصًا → عَصَوَانِ), diğer her durumda yâ (رَحًى → رَحَيَانِ; أَعْلَى → أَعْلَيَانِ, dördüncü harf).",
+   "Ya memdûd? Hemzesi kök harfiyse kalır (قُرَّاء → قُرَّاءَانِ), te'nîs alâmetiyse vâva döner (حَمْرَاء → حَمْرَاوَانِ), aslî bir harften dönüşmüşse ikisi de olur (كِسَاء → كِسَاءَانِ / كِسَاوَانِ).",
+   "İzâfette ne olur? Nûn, sâlim ceminki gibi düşer: الضَّارِبَا زَيْدٍ — elif kalır; tesniye muzâf böyle tanınır.",
+   "Neden tâsız خُصْيَانِ? Çünkü Araplar çifti tek şey sayar; Kâfiye bunu (أَلْيَانِ ile birlikte) kıyâsa aykırı diye kaydeder, her tâ'yı düşürme ruhsatı olarak değil.",
+   "Motor ne yapar? IdafaEngine muzâfun ileyhten önce tesniyenin nûnunu düşürür ve lâm-ı tarifin sâkin elifinden önce tesniyenin yâsını kesre ile kırar; AlamaEngine ve IrabSign elif ile yâyı hareke değil i'râb harfi olarak okur."
+  ]
+ },
+ "plain": {
+  "en": "Two of a thing: add -āni (or -ayni in the other cases). A word ending in a short alif turns it back into w or y first (عَصَوَانِ، رَحَيَانِ); a word ending in a long alif-hamza keeps the hamza or turns it to w depending on where the hamza came from. Before a possessor the -ni falls away.",
+  "tr": "Bir şeyin ikisi: -âni (öteki hâllerde -eyni) eklenir. Kısa elifle biten kelime önce onu v ya da y'ye geri çevirir (عَصَوَانِ، رَحَيَانِ); uzun elif-hemze ile biten kelime hemzeyi, nereden geldiğine göre korur ya da v'ye çevirir. Bir sahipten önce -ni düşer."
+ },
+ "explanation": {
+  "en": "The Kafiya defines the dual by its ending and by what the ending says — «with it is another like it of its kind» — and then spends the chapter on the one thing a learner cannot guess: what the last letter of the singular does when the ending arrives. A maqṣūr ends in an alif, and an alif cannot carry the ending, so the letter it replaced comes back: the wāw if the alif is third and came from a wāw (the notebook's عَصَوٌ behind عَصًا), the yāʾ otherwise — for an alif from a yāʾ (رَحَيٌ) and for every alif beyond the third letter, which is turned to yāʾ whatever its origin (أَعْلَيَانِ). A mamdūd ends in alif + hamza, and the hamza has three histories: a root letter keeps its place (قُرَّاءَانِ), the hamza of femininity gives way to wāw (حَمْرَاوَانِ, the same wāw the nisba and the plural of حَمْرَاء show), and a hamza that itself replaced a wāw or yāʾ may do either (كِسَاءَانِ / كِسَاوَانِ) — the IlalEngine's chapter on the mamdūd is this rule seen from the other side. Two rulings close it: the nūn falls in annexation, as it does on the sound plural, leaving الضَّارِبَا زَيْدٍ; and خُصْيَانِ، أَلْيَانِ drop the singular's tāʾ because the two are one thing — recorded as an exception to the rule, which is the Kafiya's way of saying the rule holds everywhere else.",
+  "tr": "Kâfiye tesniyeyi ekiyle ve ekin söylediğiyle tarif eder — «kendisiyle birlikte cinsinden bir benzeri daha vardır» — sonra bâbı öğrencinin tahmin edemeyeceği tek şeye harcar: ek gelince müfredin son harfi ne yapar? Maksûr elifle biter, elif eki taşıyamaz; bu yüzden yerini aldığı harf geri gelir: elif üçüncü olup vâvdan geldiyse vâv (defterin عَصًا arkasındaki عَصَوٌ'u), diğer hâllerde yâ — yâdan gelen elif için (رَحَيٌ) ve üçüncü harfin ötesindeki her elif için, aslı ne olursa olsun yâya çevrilir (أَعْلَيَانِ). Memdûd elif + hemze ile biter ve hemzenin üç geçmişi vardır: kök harfi yerinde kalır (قُرَّاءَانِ), te'nîs hemzesi vâva bırakır (حَمْرَاوَانِ, nisbenin ve حَمْرَاء cem'inin gösterdiği aynı vâv) ve kendisi bir vâv ya da yânın yerini almış hemze ikisini de yapabilir (كِسَاءَانِ / كِسَاوَانِ) — IlalEngine'in memdûd faslı bu kuralın öbür yüzden görünüşüdür. İki hüküm kapatır: nûn, sâlim cemideki gibi izâfette düşer ve الضَّارِبَا زَيْدٍ kalır; خُصْيَانِ، أَلْيَانِ ise ikisi bir şey olduğundan müfredin tâ'sını düşürür — kurala istisnâ olarak kaydedilir ki bu Kâfiye'nin kuralın başka her yerde geçerli olduğunu söyleme biçimidir."
+ },
+ "examples": [
+  {
+   "ar": "الْمُثَنَّى: مَا لَحِقَ آخِرَهُ أَلِفٌ أَوْ يَاءٌ مَفْتُوحٌ مَا قَبْلَهَا وَنُونٌ مَكْسُورَةٌ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "عَصَوَانِ — رَحَيَانِ، أَعْلَيَانِ",
+   "en": "The maqṣūr's alif.",
+   "tr": "Maksûrun elifi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "حَمْرَاوَانِ — قُرَّاءَانِ — كِسَاءَانِ وَكِسَاوَانِ",
+   "en": "The mamdūd's hamza.",
+   "tr": "Memdûdun hemzesi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "الضَّارِبَا زَيْدٍ",
+   "en": "The nūn in annexation.",
+   "tr": "İzâfette nûn.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "خُصْيَانِ وَأَلْيَانِ",
+   "en": "The irregular pair.",
+   "tr": "Kıyâsa aykırı çift.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«عَصَيَانِ — maksûrun elifi her zaman yâ olur»",
+   "right": "«عَصَوَانِ — üçüncü elif vâvdan geldiyse vâva döner; yâ yalnız diğer hâllerde: رَحَيَانِ»",
+   "why": {
+    "en": "The alif only disguises a radical; the dual restores the radical it came from.",
+    "tr": "Elif yalnız bir aslî harfi gizler; tesniye geldiği harfi geri getirir."
+   }
+  },
+  {
+   "wrong": "«حَمْرَاءَانِ — hemze olduğu gibi kalır»",
+   "right": "«حَمْرَاوَانِ — te'nîs hemzesi vâva çevrilir; yalnız kök hemzesi kalır: قُرَّاءَانِ»",
+   "why": {
+    "en": "The hamza of femininity is not a root letter, so it cannot carry the dual's alif and gives way to wāw.",
+    "tr": "Te'nîs hemzesi kök harfi değildir; tesniyenin elifini taşıyamaz, vâva bırakır."
+   }
+  },
+  {
+   "wrong": "«الضَّارِبَانِ زَيْدٍ — tesniye nûnu izâfette kalır»",
+   "right": "«الضَّارِبَا زَيْدٍ — izâfette tesniyenin nûnu, sâlim ceminki gibi düşer»",
+   "why": {
+    "en": "The nūn stands in for the tanwīn, and a muḍāf takes no tanwīn.",
+    "tr": "Nûn tenvinin yerini tutar; muzâf tenvin almaz."
+   }
+  },
+  {
+   "wrong": "«خُصْيَانِ gibi her tâlı ismin tesniyesinde tâ düşer»",
+   "right": "«خُصْيَتَانِ kıyâstır; خُصْيَانِ ve أَلْيَانِ kıyâsa aykırı iki kelimedir, kural değil»",
+   "why": {
+    "en": "The Kafiya cites them as heard exceptions; the tāʾ stays in every regular dual (امْرَأَتَانِ، نَاقَتَانِ).",
+    "tr": "Kâfiye onları işitilmiş istisnâlar olarak nakleder; her kıyâsî tesniyede tâ kalır (امْرَأَتَانِ، نَاقَتَانِ)."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-muthanna",
+  "ism-maqsur-manqus",
+  "ism-mamdud",
+  "idafa-definiteness",
+  "jam-mudhakkar-salim",
+  "al-murab-wal-mabni-wal-irab"
+ ]
+}

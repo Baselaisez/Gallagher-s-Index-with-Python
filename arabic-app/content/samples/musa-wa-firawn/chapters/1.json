@@ -1,0 +1,1127 @@
+{
+ "chapter": 1,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "There was in Egypt an unjust king.",
+    "tr": "Mısır'da zalim bir kral vardı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كَانَ",
+      "smart": "كَانَ",
+      "bare": "كان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "كَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ كَانَ مُقَدَّمٌ.",
+      "en": "a jarr letter; the jarr phrase is the FRONTED predicate of كَانَ.",
+      "tr": "«-de» — cer harfi; câr-mecrûr, kâne'nin öne alınmış haberidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِصْرَ",
+      "smart": "مِصْرَ",
+      "bare": "مصر"
+     },
+     "lex": "misr",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ مُؤَنَّثٌ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "In jarr after the letter — a feminine proper name, barred from tanwin.",
+      "tr": "Cer harfiyle mecrûr — müennes özel isim, gayr-i munsarif."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَلِكٌ",
+      "smart": "مَلِكٌ",
+      "bare": "ملك"
+     },
+     "lex": "malik-king",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The noun of كَانَ (placed after its predicate), in raf'.",
+      "tr": "Kâne'nin ismi (haberinden sonraya bırakılmış), merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "ظَالِمٌ",
+      "smart": "ظَالِمٌ",
+      "bare": "ظالم"
+     },
+     "lex": "zalim",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "An adjective (na't), agreeing with its noun — the ism fa'il of ظَلَمَ.",
+      "tr": "Na't (sıfat), mevsûfuna uyar — zaleme'nin ism-i fâili."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "And the name of this king was Pharaoh.",
+    "tr": "Ve bu kralın adı Firavun idi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اسْمُ",
+      "smart": "اسْمُ",
+      "bare": "اسم"
+     },
+     "lex": "ism",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The noun of كَانَ, in raf', the first term of an idafa.",
+      "tr": "Kâne'nin ismi, merfû, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "هَذَا",
+      "smart": "هَذَا",
+      "bare": "هذا"
+     },
+     "lex": "hadha",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "A demonstrative, built; it fills the seat of the mudaf ilayh in jarr.",
+      "tr": "İsm-i işâret, mebnî; mahallen mecrûr, muzâfun ileyh."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمَلِكِ",
+      "smart": "الْمَلِكِ",
+      "bare": "الملك"
+     },
+     "lex": "malik-king",
+     "pos": "noun",
+     "grammar": [
+      "badal",
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "A badal (the noun explaining the demonstrative), in jarr.",
+      "tr": "İsm-i işâretten bedel, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِرْعَوْنَ",
+      "smart": "فِرْعَوْنَ",
+      "bare": "فرعون"
+     },
+     "lex": "firawn",
+     "pos": "propn",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The predicate of كَانَ, in nasb — a foreign proper name, barred from tanwin.",
+      "tr": "Kâne'nin haberi, mansûb — yabancı özel isim, gayr-i munsarif."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "And Pharaoh used to say: «I am your lord.»",
+    "tr": "Ve Firavun «Ben sizin rabbinizim» derdi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِرْعَوْنُ",
+      "smart": "فِرْعَوْنُ",
+      "bare": "فرعون"
+     },
+     "lex": "firawn",
+     "pos": "propn",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The noun of كَانَ, in raf' — a foreign proper name, barred from tanwin.",
+      "tr": "Kâne'nin ismi, merfû — yabancı özel isim, gayr-i munsarif."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَقُولُ",
+      "smart": "يَقُولُ",
+      "bare": "يقول"
+     },
+     "lex": "qala",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mudari-marfu",
+      "hollow-verbs",
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ، وَمَقُولُ الْقَوْلِ مَفْعُولٌ بِهِ.",
+      "en": "Present verb in raf'; its doer is a hidden pronoun, and the clause fills the seat of كَانَ's predicate; what is said is its object.",
+      "tr": "Merfû muzâri; fâili gizli zamir — cümle, kâne'nin haberi olarak mahallen mansûbdur; söylenen söz mef'ûlüdür."
+     },
+     "punctAfter": ":"
+    },
+    {
+     "surface": {
+      "full": "أَنَا",
+      "smart": "أَنَا",
+      "bare": "أنا"
+     },
+     "lex": "ana",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "A detached pronoun, built; it fills the mubtada's seat in raf'.",
+      "tr": "Munfasıl zamir, mebnî; mahallen merfû mübtedâ."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَبُّكُمْ",
+      "smart": "رَبُّكُمْ",
+      "bare": "ربكم"
+     },
+     "lex": "rabb",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ، وَكُمْ مُضَافٌ إِلَيْهِ.",
+      "en": "The khabar in raf', annexed to the attached pronoun «your».",
+      "tr": "Haber, merfû; «sizin» zamirine muzâf."
+     },
+     "segments": [
+      {
+       "form": "رَبُّ",
+       "lex": "rabb",
+       "pos": "noun"
+      },
+      {
+       "form": "كُمْ",
+       "lex": "pron-2mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "And the people were afraid of Pharaoh.",
+    "tr": "Ve insanlar Firavun'dan korkardı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "النَّاسُ",
+      "smart": "النَّاسُ",
+      "bare": "الناس"
+     },
+     "lex": "nas",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The noun of كَانَ, in raf'.",
+      "tr": "Kâne'nin ismi, merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَخَافُونَ",
+      "smart": "يَخَافُونَ",
+      "bare": "يخافون"
+     },
+     "lex": "khafa",
+     "pos": "verb",
+     "grammar": [
+      "afal-khamsa",
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مِنَ الْأَفْعَالِ الْخَمْسَةِ مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ فَاعِلٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.",
+      "en": "one of the five verbs, in raf' by the kept nun; the waw is its doer, and the clause fills the seat of كَانَ's predicate.",
+      "tr": "ef'âl-i hamseden muzâri, nûnun sübûtuyla merfû; vâv fâildir — cümle, kâne'nin haberi olarak mahallen mansûbdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِنْ",
+      "smart": "مِنْ",
+      "bare": "من"
+     },
+     "lex": "min",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ.",
+      "en": "a jarr letter.",
+      "tr": "«-den» — cer harfi."
+     }
+    },
+    {
+     "surface": {
+      "full": "فِرْعَوْنَ",
+      "smart": "فِرْعَوْنَ",
+      "bare": "فرعون"
+     },
+     "lex": "firawn",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "In jarr after the letter — a foreign proper name, barred from tanwin.",
+      "tr": "Cer harfiyle mecrûr — yabancı özel isim, gayr-i munsarif."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "And there was in Egypt a weak people.",
+    "tr": "Ve Mısır'da zayıf bir kavim vardı."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ كَانَ مُقَدَّمٌ.",
+      "en": "a jarr letter; the jarr phrase is the FRONTED predicate of كَانَ.",
+      "tr": "«-de» — cer harfi; câr-mecrûr, kâne'nin öne alınmış haberidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مِصْرَ",
+      "smart": "مِصْرَ",
+      "bare": "مصر"
+     },
+     "lex": "misr",
+     "pos": "propn",
+     "grammar": [
+      "huruf-jarr",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ مُؤَنَّثٌ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "In jarr after the letter — a feminine proper name, barred from tanwin.",
+      "tr": "Cer harfiyle mecrûr — müennes özel isim, gayr-i munsarif."
+     }
+    },
+    {
+     "surface": {
+      "full": "قَوْمٌ",
+      "smart": "قَوْمٌ",
+      "bare": "قوم"
+     },
+     "lex": "qawm",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ.",
+      "en": "The noun of كَانَ (placed after its predicate), in raf'.",
+      "tr": "Kâne'nin ismi (haberinden sonraya bırakılmış), merfû."
+     }
+    },
+    {
+     "surface": {
+      "full": "ضُعَفَاءُ",
+      "smart": "ضُعَفَاءُ",
+      "bare": "ضعفاء"
+     },
+     "lex": "daif",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "jam-taksir",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ بِالضَّمَّةِ — جَمْعُ ضَعِيفٍ عَلَى فُعَلَاءَ، مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "An adjective (na't), agreeing with its noun — the broken plural of ضَعِيف on فُعَلَاء, barred from tanwin.",
+      "tr": "Na't (sıfat), mevsûfuna uyar — zaîf'in fu'alâ' veznindeki cem'i, gayr-i munsarif."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "And the name of this people was «the Children of Israel».",
+    "tr": "Ve bu kavmin adı «İsrailoğulları» idi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اسْمُ",
+      "smart": "اسْمُ",
+      "bare": "اسم"
+     },
+     "lex": "ism",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+      "en": "The noun of كَانَ, in raf', the first term of an idafa.",
+      "tr": "Kâne'nin ismi, merfû, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "هَؤُلَاءِ",
+      "smart": "هَؤُلَاءِ",
+      "bare": "هؤلاء"
+     },
+     "lex": "haulai",
+     "pos": "pron",
+     "grammar": [
+      "asma-al-ishara",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمُ إِشَارَةٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+      "en": "A demonstrative (plural), built; it fills the seat of the mudaf ilayh in jarr.",
+      "tr": "İsm-i işâret (çoğul), mebnî; mahallen mecrûr, muzâfun ileyh."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْقَوْمِ",
+      "smart": "الْقَوْمِ",
+      "bare": "القوم"
+     },
+     "lex": "qawm",
+     "pos": "noun",
+     "grammar": [
+      "badal",
+      "asma-al-ishara"
+     ],
+     "irab": {
+      "ar": "بَدَلٌ مِنِ اسْمِ الْإِشَارَةِ مَجْرُورٌ بِالْكَسْرَةِ.",
+      "en": "A badal of the demonstrative, in jarr.",
+      "tr": "İsm-i işâretten bedel, mecrûr."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَنِي",
+      "smart": "بَنِي",
+      "bare": "بني"
+     },
+     "lex": "banu",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرُ كَانَ مَنْصُوبٌ بِالْيَاءِ — مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتْ نُونُهُ لِلْإِضَافَةِ، مُضَافٌ.",
+      "en": "The predicate of كَانَ, in nasb — attached to the sound masculine plural; its nun is dropped for the idafa.",
+      "tr": "Kâne'nin haberi, mansûb — cem-i müzekker sâlime mülhak; izâfet için nûnu düşmüş, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِسْرَائِيلَ",
+      "smart": "إِسْرَائِيلَ",
+      "bare": "إسرائيل"
+     },
+     "lex": "israil",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The second term of the idafa, in jarr — a foreign proper name, barred from tanwin.",
+      "tr": "Muzâfun ileyh, mecrûr — yabancı özel isim, gayr-i munsarif."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "And Pharaoh used to oppress the Children of Israel.",
+    "tr": "Ve Firavun İsrailoğullarına zulmederdi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِرْعَوْنُ",
+      "smart": "فِرْعَوْنُ",
+      "bare": "فرعون"
+     },
+     "lex": "firawn",
+     "pos": "propn",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالضَّمَّةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The noun of كَانَ, in raf' — a foreign proper name, barred from tanwin.",
+      "tr": "Kâne'nin ismi, merfû — yabancı özel isim, gayr-i munsarif."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَظْلِمُ",
+      "smart": "يَظْلِمُ",
+      "bare": "يظلم"
+     },
+     "lex": "zalama",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.",
+      "en": "Present verb in raf'; its doer is a hidden pronoun, and the clause fills the seat of كَانَ's predicate.",
+      "tr": "Merfû muzâri; fâili gizli zamir — cümle, kâne'nin haberi olarak mahallen mansûbdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَنِي",
+      "smart": "بَنِي",
+      "bare": "بني"
+     },
+     "lex": "banu",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ — مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتْ نُونُهُ لِلْإِضَافَةِ، مُضَافٌ.",
+      "en": "The direct object, in nasb — attached to the sound masculine plural; its nun is dropped for the idafa.",
+      "tr": "Mef'ûlün bih, mansûb — cem-i müzekker sâlime mülhak; izâfet için nûnu düşmüş, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِسْرَائِيلَ",
+      "smart": "إِسْرَائِيلَ",
+      "bare": "إسرائيل"
+     },
+     "lex": "israil",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The second term of the idafa, in jarr — a foreign proper name, barred from tanwin.",
+      "tr": "Muzâfun ileyh, mecrûr — yabancı özel isim, gayr-i munsarif."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "And he used to kill their sons.",
+    "tr": "Ve onların oğullarını öldürürdü."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "يَقْتُلُ",
+      "smart": "يَقْتُلُ",
+      "bare": "يقتل"
+     },
+     "lex": "qatala",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "mudari-marfu"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالضَّمَّةِ، وَالْفَاعِلُ مُسْتَتِرٌ تَقْدِيرُهُ: هُوَ — وَاسْمُ كَانَ ضَمِيرٌ مُسْتَتِرٌ، وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُهَا.",
+      "en": "Present verb in raf' with a hidden doer; كَانَ's own noun is a hidden pronoun (he), and this clause is its predicate.",
+      "tr": "Merfû muzâri, fâili gizli; kâne'nin ismi de gizli zamirdir (o), bu cümle onun haberidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَوْلَادَهُمْ",
+      "smart": "أَوْلَادَهُمْ",
+      "bare": "أولادهم"
+     },
+     "lex": "walad",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "jam-taksir",
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَهُمْ مُضَافٌ إِلَيْهِ — جَمْعُ وَلَدٍ.",
+      "en": "The direct object, in nasb, annexed to «their» — the broken plural of وَلَد.",
+      "tr": "Mef'ûlün bih, mansûb, «onların» zamirine muzâf — veled'in cem'i."
+     },
+     "segments": [
+      {
+       "form": "أَوْلَادَ",
+       "lex": "walad",
+       "pos": "noun"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s9",
+   "translation": {
+    "en": "And the Children of Israel used to weep and call upon God.",
+    "tr": "Ve İsrailoğulları ağlar ve Allah'a dua ederlerdi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَكَانَ",
+      "smart": "وَكَانَ",
+      "bare": "وكان"
+     },
+     "lex": "kana",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "hollow-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَكَانَ فِعْلٌ مَاضٍ نَاقِصٌ مَبْنِيٌّ عَلَى الْفَتْحِ يَرْفَعُ الِاسْمَ وَيَنْصِبُ الْخَبَرَ.",
+      "en": "The waw conjoins; كَانَ is the defective past verb: it raises its noun and puts its predicate in nasb.",
+      "tr": "«ve» + «idi» — nâkıs mâzî fiil kâne: ismini ref, haberini nasb eder."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "كَانَ",
+       "lex": "kana",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "بَنُو",
+      "smart": "بَنُو",
+      "bare": "بنو"
+     },
+     "lex": "banu",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha",
+      "jam-mudhakkar-salim",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "اسْمُ كَانَ مَرْفُوعٌ بِالْوَاوِ — مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتْ نُونُهُ لِلْإِضَافَةِ، مُضَافٌ.",
+      "en": "The noun of كَانَ, in raf' — attached to the sound masculine plural, raised by the waw; its nun is dropped for the idafa.",
+      "tr": "Kâne'nin ismi, merfû — cem-i müzekker sâlime mülhak, vâv ile merfû; izâfet için nûnu düşmüş, muzâf."
+     }
+    },
+    {
+     "surface": {
+      "full": "إِسْرَائِيلَ",
+      "smart": "إِسْرَائِيلَ",
+      "bare": "إسرائيل"
+     },
+     "lex": "israil",
+     "pos": "propn",
+     "grammar": [
+      "idafa-definiteness",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ، عَلَمٌ أَعْجَمِيٌّ مَمْنُوعٌ مِنَ الصَّرْفِ.",
+      "en": "The second term of the idafa, in jarr — a foreign proper name, barred from tanwin.",
+      "tr": "Muzâfun ileyh, mecrûr — yabancı özel isim, gayr-i munsarif."
+     }
+    },
+    {
+     "surface": {
+      "full": "يَبْكُونَ",
+      "smart": "يَبْكُونَ",
+      "bare": "يبكون"
+     },
+     "lex": "baka",
+     "pos": "verb",
+     "grammar": [
+      "afal-khamsa",
+      "kana-wa-akhawatuha",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مُضَارِعٌ مِنَ الْأَفْعَالِ الْخَمْسَةِ مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ فَاعِلٌ — وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.",
+      "en": "one of the five verbs, in raf' by the kept nun; the waw is its doer, and the clause fills the seat of كَانَ's predicate.",
+      "tr": "ef'âl-i hamseden muzâri, nûnun sübûtuyla merfû; vâv fâildir — cümle, kâne'nin haberi olarak mahallen mansûbdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَيَدْعُونَ",
+      "smart": "وَيَدْعُونَ",
+      "bare": "ويدعون"
+     },
+     "lex": "daa",
+     "pos": "verb",
+     "grammar": [
+      "afal-khamsa",
+      "atf-nasaq",
+      "naqis-verbs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَيَدْعُونَ فِعْلٌ مُضَارِعٌ مِنَ الْأَفْعَالِ الْخَمْسَةِ مَرْفُوعٌ بِثُبُوتِ النُّونِ، وَالْوَاوُ فَاعِلٌ — مَعْطُوفٌ عَلَى يَبْكُونَ.",
+      "en": "The waw conjoins; one of the five verbs in raf' by the kept nun, the waw its doer — conjoined to «weep».",
+      "tr": "«ve» + «dua ederler» — ef'âl-i hamseden, nûnun sübûtuyla merfû; «ağlarlar»a ma'tûf."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَدْعُونَ",
+       "lex": "daa",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهَ",
+      "smart": "اللهَ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "maful-bihi"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ — لَفْظُ الْجَلَالَةِ.",
+      "en": "The direct object, in nasb — the Name of Majesty.",
+      "tr": "Mef'ûlün bih, mansûb — lafza-i celâl."
+     },
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s10",
+   "translation": {
+    "en": "And God heard their prayer.",
+    "tr": "Ve Allah onların duasını işitti."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَسَمِعَ",
+      "smart": "وَسَمِعَ",
+      "bare": "وسمع"
+     },
+     "lex": "samia",
+     "pos": "verb",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "The waw conjoins; past verb built on fatha.",
+      "tr": "«ve» + fetha üzere mebnî mâzî."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "سَمِعَ",
+       "lex": "samia",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "اللهُ",
+      "smart": "اللهُ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "propn",
+     "grammar": [
+      "fail"
+     ],
+     "irab": {
+      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ — لَفْظُ الْجَلَالَةِ.",
+      "en": "The doer (fa'il), in raf' — the Name of Majesty.",
+      "tr": "Fâil, merfû — lafza-i celâl."
+     }
+    },
+    {
+     "surface": {
+      "full": "دُعَاءَهُمْ",
+      "smart": "دُعَاءَهُمْ",
+      "bare": "دعاءهم"
+     },
+     "lex": "dua",
+     "pos": "noun",
+     "grammar": [
+      "maful-bihi",
+      "idafa-definiteness",
+      "al-bariz-al-muttasil"
+     ],
+     "irab": {
+      "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ، وَهُمْ مُضَافٌ إِلَيْهِ.",
+      "en": "The direct object, in nasb, annexed to «their».",
+      "tr": "Mef'ûlün bih, mansûb, «onların» zamirine muzâf."
+     },
+     "segments": [
+      {
+       "form": "دُعَاءَ",
+       "lex": "dua",
+       "pos": "noun"
+      },
+      {
+       "form": "هُمْ",
+       "lex": "pron-3mp",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

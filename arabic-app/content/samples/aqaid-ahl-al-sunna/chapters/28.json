@@ -1,0 +1,628 @@
+{
+ "chapter": 28,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "— since it is substances and accidents.",
+    "tr": "— çünkü o, a'yân ve a'râzdan ibarettir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِذْ",
+      "smart": "إِذْ",
+      "bare": "إذ"
+     },
+     "lex": "idh-talil",
+     "pos": "part",
+     "grammar": [
+      "al-ghayat-wa-baqiyyat-al-zuruf-al-mabniyya",
+      "lam-taleel"
+     ],
+     "irab": {
+      "ar": "«إِذْ» حَرْفُ تَعْلِيلٍ مَبْنِيٌّ عَلَى السُّكُونِ لَا مَحَلَّ لَهُ — وَقِيلَ: ظَرْفٌ لِمَا مَضَى أُشْرِبَ مَعْنَى التَّعْلِيلِ؛ وَهُوَ يُعَلِّلُ قَوْلَهُ: وَالْعَالَمُ مُحْدَثٌ.",
+      "en": "«since» — idh giving the reason for «the world is originated» (chapter 3); some read it as a ẓarf of the past coloured by causation.",
+      "tr": "«çünkü» — «âlem hâdistir» (3. bâb) hükmünün gerekçesini veren iz; kimi onu ta'lîl mânâsı yüklenmiş bir mâzî zarfı sayar."
+     }
+    },
+    {
+     "surface": {
+      "full": "هُوَ",
+      "smart": "هُوَ",
+      "bare": "هو"
+     },
+     "lex": "pron-3ms-munfasil",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "al-marifa-al-mudmarat-wal-alam"
+     ],
+     "irab": {
+      "ar": "«هُوَ» ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«it» — the world.",
+      "tr": "«o» — âlem."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَعْيَانٌ",
+      "smart": "أَعْيَانٌ",
+      "bare": "أعيان"
+     },
+     "lex": "ayan",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«substances» — the plural of عَيْن: what stands by itself.",
+      "tr": "«a'yân» — عَيْن'in çoğulu: kendi başına kâim olan."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَأَعْرَاضٌ",
+      "smart": "وَأَعْرَاضٌ",
+      "bare": "وأعراض"
+     },
+     "lex": "arad",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «أَعْيَانٌ» تَابِعٌ لَهُ فِي الرَّفْعِ.",
+      "en": "«and accidents» — what does not stand by itself.",
+      "tr": "«ve a'râz» — kendi başına kâim olmayan."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "أَعْرَاضٌ",
+       "lex": "arad",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "So the substances are what has subsistence by itself; and it is either composite, or non-composite like the atom.",
+    "tr": "A'yân, kendi zâtıyla kâim olandır; o ya mürekkeptir ya da cevher gibi mürekkep değildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فَالْأَعْيَانُ",
+      "smart": "فَالْأَعْيَانُ",
+      "bare": "فالأعيان"
+     },
+     "lex": "ayan",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْفَاءُ لِلتَّفْصِيلِ، وَمُبْتَدَأٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«so the substances» — the fāʾ opens the detail of the pair just named.",
+      "tr": "«a'yân ise» — fâ, az önce anılan çiftin tafsiline girer."
+     },
+     "segments": [
+      {
+       "form": "فَ",
+       "lex": "fa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْأَعْيَانُ",
+       "lex": "ayan",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "مَا",
+      "smart": "مَا",
+      "bare": "ما"
+     },
+     "lex": "ma-mawsula",
+     "pos": "pron",
+     "grammar": [
+      "ism-mawsul",
+      "mubtada-khabar",
+      "anwa-ma"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ خَبَرٌ.",
+      "en": "«that which» — the relative as khabar.",
+      "tr": "«o şey ki» — haber olan ism-i mevsûl."
+     }
+    },
+    {
+     "surface": {
+      "full": "لَهُ",
+      "smart": "لَهُ",
+      "bare": "له"
+     },
+     "lex": "pron-3ms",
+     "pos": "pron",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "al-bariz-al-muttasil",
+      "zarf-mustaqarr-wa-laghw",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "اللَّامُ حَرْفُ جَرٍّ، وَالضَّمِيرُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـمَحْذُوفٍ خَبَرٌ مُقَدَّمٌ لِـ«قِيَامٌ».",
+      "en": "«has» — the jarr phrase stands first as the khabar of قِيَامٌ inside the ṣila: «to it is subsistence».",
+      "tr": "«vardır» — sıla içinde قِيَامٌ'un öne alınmış haberi olan câr-mecrûr: «onun için kıyam vardır»."
+     },
+     "segments": [
+      {
+       "form": "لِ",
+       "lex": "li",
+       "pos": "prep"
+      },
+      {
+       "form": "هُ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "قِيَامٌ",
+      "smart": "قِيَامٌ",
+      "bare": "قيام"
+     },
+     "lex": "qiyam",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-mawsul",
+      "taqdim-al-musnad"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ لَا مَحَلَّ لَهَا.",
+      "en": "«subsistence» — the delayed mubtada; an indefinite mubtada follows its jarr-phrase khabar.",
+      "tr": "«kıyam» — sonraya bırakılmış mübteda; nekre mübteda, câr-mecrûr haberinden sonra gelir."
+     }
+    },
+    {
+     "surface": {
+      "full": "بِذَاتِهِ",
+      "smart": "بِذَاتِهِ",
+      "bare": "بذاته"
+     },
+     "lex": "dhat",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "al-bariz-al-muttasil",
+      "huruf-jarr",
+      "mahall-al-majrur"
+     ],
+     "irab": {
+      "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَ«ذَاتِ» مَجْرُورٌ بِالْبَاءِ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَهُوَ مُضَافٌ، وَالضَّمِيرُ الْمُتَّصِلُ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«قِيَامٌ».",
+      "en": "«by itself» — by its own essence.",
+      "tr": "«kendi zâtıyla»."
+     },
+     "segments": [
+      {
+       "form": "بِ",
+       "lex": "bi",
+       "pos": "prep"
+      },
+      {
+       "form": "ذَاتِ",
+       "lex": "dhat",
+       "pos": "noun"
+      },
+      {
+       "form": "هِ",
+       "lex": "pron-3ms",
+       "pos": "pron"
+      }
+     ],
+     "punctAfter": "،"
+    },
+    {
+     "surface": {
+      "full": "وَهُوَ",
+      "smart": "وَهُوَ",
+      "bare": "وهو"
+     },
+     "lex": "pron-3ms-munfasil",
+     "pos": "pron",
+     "grammar": [
+      "mubtada-khabar",
+      "al-marifa-al-mudmarat-wal-alam"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَ«هُوَ» ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "«and it» — the substance.",
+      "tr": "«ve o» — ayn."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "هُوَ",
+       "lex": "pron-3ms-munfasil",
+       "pos": "pron"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "إِمَّا",
+      "smart": "إِمَّا",
+      "bare": "إما"
+     },
+     "lex": "imma",
+     "pos": "part",
+     "grammar": [
+      "aw-imma-am-la-bal-lakin-fil-kafiya"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَفْصِيلٍ مَبْنِيٌّ عَلَى السُّكُونِ لَا مَحَلَّ لَهُ، وَجَوَابُهُ «أَوْ».",
+      "en": "«either» — immā offers a division and is answered by أَوْ (or by a second إِمَّا).",
+      "tr": "«ya» — immâ bir taksim sunar; cevabı أَوْ (ya da ikinci bir إِمَّا) gelir."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُرَكَّبٌ",
+      "smart": "مُرَكَّبٌ",
+      "bare": "مركب"
+     },
+     "lex": "murakkab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-maful",
+      "form-ii-verbs"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ لِـ«هُوَ» مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ.",
+      "en": "«composite» — the ism mafʿūl of Form II.",
+      "tr": "«mürekkep» — tef'îl ism-i mef'ûlü."
+     }
+    },
+    {
+     "surface": {
+      "full": "أَوْ",
+      "smart": "أَوْ",
+      "bare": "أو"
+     },
+     "lex": "aw",
+     "pos": "conj",
+     "grammar": [
+      "atf-nasaq",
+      "aw-imma-am-la-bal-lakin-fil-kafiya"
+     ],
+     "irab": {
+      "ar": "حَرْفُ عَطْفٍ مَبْنِيٌّ عَلَى السُّكُونِ لَا مَحَلَّ لَهُ.",
+      "en": "«or».",
+      "tr": "«ya da»."
+     }
+    },
+    {
+     "surface": {
+      "full": "غَيْرُ",
+      "smart": "غَيْرُ",
+      "bare": "غير"
+     },
+     "lex": "ghayr",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مَعْطُوفٌ عَلَى «مُرَكَّبٌ» تَابِعٌ لَهُ فِي الرَّفْعِ، وَهُوَ مُضَافٌ.",
+      "en": "«non-» — غَيْر annexed to the thing negated.",
+      "tr": "«olmayan» — nefyedilene muzâf غَيْر."
+     }
+    },
+    {
+     "surface": {
+      "full": "مُرَكَّبٍ",
+      "smart": "مُرَكَّبٍ",
+      "bare": "مركب"
+     },
+     "lex": "murakkab",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+      "en": "«composite».",
+      "tr": "«mürekkep»."
+     }
+    },
+    {
+     "surface": {
+      "full": "كَالْجَوْهَرِ",
+      "smart": "كَالْجَوْهَرِ",
+      "bare": "كالجوهر"
+     },
+     "lex": "jawhar",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur"
+     ],
+     "irab": {
+      "ar": "الْكَافُ حَرْفُ جَرٍّ لِلتَّشْبِيهِ، وَ«الْجَوْهَرِ» مَجْرُورٌ بِهَا وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـمَحْذُوفٍ صِفَةٌ لِـ«غَيْرُ مُرَكَّبٍ».",
+      "en": "«like the atom» — the indivisible part; the phrase describes «non-composite».",
+      "tr": "«cevher gibi» — bölünmez parça; câr-mecrûr «mürekkep olmayan»ın sıfatıdır."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "الْجَوْهَرِ",
+       "lex": "jawhar",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "— and it (the accident) occurs in bodies and atoms, like colours, modes of being, tastes and smells.",
+    "tr": "— ve o (araz), cisimlerde ve cevherlerde meydana gelir; renkler, oluş hâlleri, tatlar ve kokular gibi."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "وَيَحْدُثُ",
+      "smart": "وَيَحْدُثُ",
+      "bare": "ويحدث"
+     },
+     "lex": "hadatha",
+     "pos": "verb",
+     "grammar": [
+      "mudari-marfu",
+      "thulathi-mujarrad-babs",
+      "atf-nasaq"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ لِتَجَرُّدِهِ عَنِ النَّاصِبِ وَالْجَازِمِ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ جَوَازًا تَقْدِيرُهُ هُوَ يَعُودُ عَلَى «الْعَرَضِ» — وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى صِلَةِ «مَا» فِي قَوْلِهِ: وَالْعَرَضُ مَا لَا يَقُومُ بِذَاتِهِ.",
+      "en": "«and it occurs» — the accident; this clause continues «the accident is what does not stand by itself» (chapter 3).",
+      "tr": "«ve meydana gelir» — araz; bu cümle «araz kendi zâtıyla kâim olmayandır» (3. bâb) hükmünü sürdürür."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "يَحْدُثُ",
+       "lex": "hadatha",
+       "pos": "verb"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "«in».",
+      "tr": "«-de»."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْأَجْسَامِ",
+      "smart": "الْأَجْسَامِ",
+      "bare": "الأجسام"
+     },
+     "lex": "jism",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "اسْمٌ مَجْرُورٌ بِـ«فِي» وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ««يَحْدُثُ»».",
+      "en": "«bodies» — the plural of جِسْم.",
+      "tr": "«cisimler» — جِسْم'in çoğulu."
+     }
+    },
+    {
+     "surface": {
+      "full": "وَالْجَوَاهِرِ",
+      "smart": "وَالْجَوَاهِرِ",
+      "bare": "والجواهر"
+     },
+     "lex": "jawhar",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "jam-taksir",
+      "mamnu-min-sarf"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْأَجْسَامِ» تَابِعٌ لَهُ فِي الْجَرِّ.",
+      "en": "«and atoms» — the plural of جَوْهَر, on the diptote pattern فَوَاعِل, yet in jarr by the kasra because of the article.",
+      "tr": "«ve cevherler» — جَوْهَر'in çoğulu; فَوَاعِل vezninde gayr-i munsarif olsa da elif-lâm sebebiyle kesre ile mecrûrdur."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْجَوَاهِرِ",
+       "lex": "jawhar",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "كَالْأَلْوَانِ",
+      "smart": "كَالْأَلْوَانِ",
+      "bare": "كالألوان"
+     },
+     "lex": "lawn",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr",
+      "mahall-al-majrur",
+      "hadhf-wa-taqdir",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْكَافُ حَرْفُ جَرٍّ لِلتَّشْبِيهِ، وَ«الْأَلْوَانِ» مَجْرُورٌ بِهَا وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـمَحْذُوفٍ خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ، أَيْ: وَذَلِكَ كَائِنٌ كَالْأَلْوَانِ.",
+      "en": "«like colours» — the khabar of a dropped mubtada: «and that is like …».",
+      "tr": "«renkler gibi» — hazfedilmiş bir mübtedanın haberi: «o da … gibidir»."
+     },
+     "segments": [
+      {
+       "form": "كَ",
+       "lex": "ka",
+       "pos": "part"
+      },
+      {
+       "form": "الْأَلْوَانِ",
+       "lex": "lawn",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَالْأَكْوَانِ",
+      "smart": "وَالْأَكْوَانِ",
+      "bare": "والأكوان"
+     },
+     "lex": "kawn",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْأَلْوَانِ» تَابِعٌ لَهُ فِي الْجَرِّ.",
+      "en": "«and modes of being» — the four akwān of the theologians: motion, rest, union, separation.",
+      "tr": "«ve ekvân» — kelâmcıların dört ekvânı: hareket, sükûn, ictimâ, iftirâk."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الْأَكْوَانِ",
+       "lex": "kawn",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَالطُّعُومِ",
+      "smart": "وَالطُّعُومِ",
+      "bare": "والطعوم"
+     },
+     "lex": "tam-taste",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْأَلْوَانِ» تَابِعٌ لَهُ فِي الْجَرِّ.",
+      "en": "«tastes» — the plural of طَعْم.",
+      "tr": "«tatlar» — طَعْم'in çoğulu."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الطُّعُومِ",
+       "lex": "tam-taste",
+       "pos": "noun"
+      }
+     ]
+    },
+    {
+     "surface": {
+      "full": "وَالرَّوَائِحِ",
+      "smart": "وَالرَّوَائِحِ",
+      "bare": "والروائح"
+     },
+     "lex": "raiha",
+     "pos": "noun",
+     "grammar": [
+      "atf-nasaq",
+      "jam-taksir"
+     ],
+     "irab": {
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْأَلْوَانِ» تَابِعٌ لَهُ فِي الْجَرِّ.",
+      "en": "«and smells» — the plural of رَائِحَة.",
+      "tr": "«ve kokular» — رَائِحَة'nin çoğulu."
+     },
+     "segments": [
+      {
+       "form": "وَ",
+       "lex": "wa",
+       "pos": "conj"
+      },
+      {
+       "form": "الرَّوَائِحِ",
+       "lex": "raiha",
+       "pos": "noun"
+      }
+     ],
+     "punctAfter": "."
+    }
+   ]
+  }
+ ]
+}

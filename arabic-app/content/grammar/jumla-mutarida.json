@@ -1,0 +1,70 @@
+{
+  "id": "jumla-mutarida",
+  "title": {
+    "ar": "الْجُمْلَةُ الْمُعْتَرِضَة",
+    "en": "The parenthetical clause",
+    "tr": "Cümle-i mu'teriza"
+  },
+  "level": 5,
+  "group": "nahw",
+  "classicalSources": [
+    "الكافية (ابن الحاجب)",
+    "قطر الندى (ابن هشام)"
+  ],
+  "plain": {
+    "en": "A clause dropped into the middle of a sentence without belonging to it — most often a blessing, like «Allah, exalted is He».",
+    "tr": "Cümlenin ortasına, ona dâhil olmadan giren cümlecik — çoğu zaman «Allah — teâlâ —» gibi bir duâ."
+  },
+  "explanation": {
+    "en": "A clause can be dropped into the middle of a sentence without being part of it. It comes between two things that belong together — a verb and its object, a mubtada and its khabar, a mudaf and what follows — and it has no case position at all: لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ. The commonest kind by far is the invocation: تَعَالَى, سُبْحَانَهُ, رَحِمَهُ اللهُ, صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ. When you read «إِنْسَانٌ بَعَثَهُ اللهُ تَعَالَى إِلَى الْخَلْقِ», the تَعَالَى is not an adjective of the majestic name and not a second verb in the chain; it is a prayer set inside the sentence, and the sentence would be complete without it. The practical test: lift the clause out. If what remains is still a whole sentence, the clause was mu'tarida.",
+    "tr": "Bir cümle, cümlenin öğesi olmadan söz arasına girebilir. Birbirine bağlı iki unsurun — fiil ile mef'ûlünün, mübteda ile haberin, muzâf ile muzâfun ileyhin — arasına girer ve i'rabdan mahalli yoktur. En yaygın türü duâ cümlesidir: تَعَالَى، سُبْحَانَهُ، رَحِمَهُ اللهُ، صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ. «إِنْسَانٌ بَعَثَهُ اللهُ تَعَالَى إِلَى الْخَلْقِ» okurken تَعَالَى, lafza-i celâlin sıfatı yahut ikinci bir fiil değildir; cümlenin içine yerleştirilmiş bir duâdır ve o olmadan da cümle tamamdır. Pratik ölçü: cümleyi çıkarın; geriye kalan hâlâ tam bir cümle ise o cümle mu'terizadır."
+  },
+  "examples": [
+    {
+      "ar": "الرَّسُولُ إِنْسَانٌ بَعَثَهُ اللهُ تَعَالَى إِلَى الْخَلْقِ.",
+      "en": "…whom Allah — exalted is He — has sent to creation.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s1",
+      "chapter": 4,
+      "tr": "…Allah Teâlâ'nın mahlukata gönderdiği."
+    },
+    {
+      "ar": "مُتَابَعَةُ أَهْلِ السُّنَّةِ وَالْجَمَاعَةِ — اللهُ سُبْحَانَهُ كَثَّرَهُمْ — فِي الْأَفْعَالِ وَالْأَقْوَالِ.",
+      "en": "…following Ahl al-Sunna — may Allah, glorified is He, increase them — in deeds and words. The prayer sits between the mudaf ilayh and the phrase that completes مُتَابَعَة.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s5",
+      "chapter": 4,
+      "tr": "…Ehl-i Sünnet'e tâbi olmak — Allah Sübhânehû onları çoğaltsın — fiillerde ve sözlerde. Duâ, muzâfun ileyh ile مُتَابَعَة'yi tamamlayan ifade arasına girmiştir."
+    },
+    {
+      "ar": "الْعَالَمُ مَا سِوَى اللهِ تَعَالَى مِنَ الْمَوْجُودَاتِ.",
+      "en": "The world is what is other than Allah — exalted is He — among existent things.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "sentence": "s1",
+      "chapter": 4,
+      "tr": "Âlem, Allah Teâlâ'nın dışında kalan mevcudattır."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "اللهُ تَعَالَى — «تَعَالَى» نَعْتٌ لِلَفْظِ الْجَلَالَةِ",
+      "right": "«تَعَالَى» جُمْلَةٌ فِعْلِيَّةٌ دُعَائِيَّةٌ مُعْتَرِضَةٌ",
+      "why": {
+        "en": "تَعَالَى is a verb, and a verb is never a na't. It is a whole clause slipped into the sentence.",
+        "tr": "تَعَالَى fiildir, fiil ise na't olmaz. Söz arasına girmiş müstakil bir cümledir."
+      }
+    },
+    {
+      "wrong": "قَالَ — رَحِمَهُ اللهُ — كَلَامًا؛ فَـ«رَحِمَهُ» مَعْطُوفَةٌ عَلَى «قَالَ»",
+      "right": "«رَحِمَهُ اللهُ» مُعْتَرِضَةٌ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ",
+      "why": {
+        "en": "The invocation is not coupled to the main verb — nothing joins them, and the speaker is not doing two things.",
+        "tr": "Duâ cümlesi ana fiile matûf değildir; aralarında atıf harfi yoktur ve fâil iki iş yapmamaktadır."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "maful-mutlaq",
+    "mubtada-khabar"
+  ]
+}

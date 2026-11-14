@@ -1,0 +1,83 @@
+{
+ "id": "ilm-al-arud",
+ "title": {
+  "ar": "عِلْمُ الْعَرُوضِ — التَّقْطِيعُ وَالْبُحُورُ",
+  "en": "ʿIlm al-ʿarud — the scansion and the metres",
+  "tr": "İlm-i arûz — taktî' ve bahirler"
+ },
+ "level": 6,
+ "group": "arud",
+ "classicalSources": [
+  "الخليل بن أحمد — كتاب العروض: البحور الخمسة عشر وتفاعيلها؛ الأخفش — المتدارك",
+  "الخزرجية (الشيخ ضياء الدين الخزرجي) — منظومة في العروض والقافية"
+ ],
+ "question": {
+  "en": [
+   "What is a bayt made of? Not letters but UNITS: a letter that moves (mutaḥarrik, /) and a letter that stands (sākin, ○). A tanwīn is a nūn, a shadda is two letters, the article's alif and its assimilated lām are not said mid-line, a long vowel is a letter that stands, a madd falls before a waṣl, and the close is lengthened (ishbāʿ) or read in pause.",
+   "What is a tafʿīla? A named run of units — فَعُولُنْ //○/○, مَفَاعِيلُنْ //○/○/○, مُسْتَفْعِلُنْ /○/○//○, فَاعِلُنْ /○//○, فَاعِلَاتُنْ /○//○/○, مُتَفَاعِلُنْ ///○//○, مُفَاعَلَتُنْ //○///○, مَفْعُولَاتُ /○/○/○/ — and a baḥr is a fixed row of them per hemistich: the ṭawīl فَعُولُنْ مَفَاعِيلُنْ فَعُولُنْ مَفَاعِلُنْ, the basīṭ مُسْتَفْعِلُنْ فَاعِلُنْ مُسْتَفْعِلُنْ فَعِلُنْ, the kāmil مُتَفَاعِلُنْ ×3, the wāfir مُفَاعَلَتُنْ مُفَاعَلَتُنْ فَعُولُنْ, the khafīf فَاعِلَاتُنْ مُسْتَفْعِلُنْ فَاعِلَاتُنْ …",
+   "What may change? The ziḥāf inside the line (a sākin dropped: مُتَفْعِلُنْ, فَعِلُنْ, مَفَاعِلُنْ; a mutaḥarrik stilled: مُتْفَاعِلُنْ, مُفَاعَلْتُنْ) and the ʿilla at the ʿarūḍ and the ḍarb (a foot cut: فَعِلُنْ for فَاعِلُنْ, مُفَاعَلْ for مُفَاعَلَتُنْ). The card names the form each foot took.",
+   "What does the engine read? It builds the units off the marks by these rules and tries every baḥr: the one whose feet consume both hemistichs with the fewest ziḥāfāt is the metre; where none does, it says so and shows the units. It also audits the hemistich mark: where the metre closes the ṣadr inside a word the bayt is mudawwar, and where the mark stands elsewhere the mark is wrong."
+  ],
+  "tr": [
+   "Beyit neden yapılır? Harflerden değil BİRİMLERDEN: hareketli harf (müteharrik, /) ve sâkin harf (○). Tenvin nûndur, şedde iki harftir, harf-i tarifin elifi ve idgamlı lâmı mısra içinde okunmaz, uzun ünlü sâkin bir harftir, vasıldan önce med düşer, sonda ya işbâ yapılır ya vakıf.",
+   "Tef'ile nedir? Adlandırılmış bir birim dizisi — فَعُولُنْ //○/○, مَفَاعِيلُنْ //○/○/○, مُسْتَفْعِلُنْ /○/○//○, فَاعِلُنْ /○//○, فَاعِلَاتُنْ /○//○/○, مُتَفَاعِلُنْ ///○//○, مُفَاعَلَتُنْ //○///○, مَفْعُولَاتُ /○/○/○/ — bahir ise her mısrada sabit bir tef'ile sırasıdır: tavîl فَعُولُنْ مَفَاعِيلُنْ فَعُولُنْ مَفَاعِلُنْ, basît مُسْتَفْعِلُنْ فَاعِلُنْ مُسْتَفْعِلُنْ فَعِلُنْ, kâmil مُتَفَاعِلُنْ ×3, vâfir مُفَاعَلَتُنْ مُفَاعَلَتُنْ فَعُولُنْ, hafîf فَاعِلَاتُنْ مُسْتَفْعِلُنْ فَاعِلَاتُنْ …",
+   "Ne değişebilir? Mısra içinde zihâf (bir sâkin düşer: مُتَفْعِلُنْ, فَعِلُنْ, مَفَاعِلُنْ; bir müteharrik sâkinleşir: مُتْفَاعِلُنْ, مُفَاعَلْتُنْ) ve arûz ile darbda illet (tef'ile kesilir: فَاعِلُنْ yerine فَعِلُنْ, مُفَاعَلَتُنْ yerine مُفَاعَلْ). Kart her tef'ilenin aldığı şekli söyler.",
+   "Motor neyi okur? Birimleri bu kurallarla harekelerden kurar ve her bahri dener: tef'ileleri iki mısrayı en az zihâfla dolduran bahir vezindir; hiçbiri doldurmazsa bunu söyler ve birimleri gösterir. Mısra işaretini de denetler: vezin sadrı bir kelimenin içinde kapatıyorsa beyit müdevverdir, işaret başka yerdeyse işaret yanlıştır."
+  ]
+ },
+ "plain": {
+  "en": "A verse is a fixed row of sound-patterns; scan the letters into moving and still ones and the pattern names the metre.",
+  "tr": "Şiir sabit bir ses örgüsü dizisidir; harfleri hareketli ve sâkin diye ayır, örgü vezni söyler."
+ },
+ "explanation": {
+  "en": "الْعَرُوضُ مِيزَانُ الشِّعْرِ. Al-Khalil's science weighs a line by its units, not its letters: every consonant with a vowel is a mutaḥarrik, every consonant without one — and every long vowel — a sākin. The written page hides some of the units and shows others that are not said: a tanwīn is a nūn (كِتَابٌ = كِتَابُنْ), a shadda is a sākin and a mutaḥarrik (الشَّمْس = أَشْ شَمْس), the alif of waṣl is silent after the first word and a long vowel before it falls (مَا الْحَقُّ = مَلْحَقُّ), the pronoun's hāʾ may be lengthened (بِهِ = بِهِي), and the last vowel of a hemistich is lengthened or the word is read in pause. The units then fall into feet — sabab (a mutaḥarrik and a sākin: /○), watid (two moving and one still: //○) — and the feet into the eight tafāʿīl, and the tafāʿīl into the sixteen buḥūr. The changes the metre licenses are the ziḥāfāt (inside the line) and the ʿilal (at the two closes), each with its name: khabn drops the second sākin (مُتَفْعِلُنْ), ṭayy the fourth (مُسْتَعِلُنْ), qabḍ the fifth (مَفَاعِلُنْ, فَعُولُ), iḍmār stills the second letter (مُتْفَاعِلُنْ), ʿaṣb the fifth (مُفَاعَلْتُنْ); ḥadhf cuts the last sabab (فَعُولُنْ → فَعُو), qaṭʿ the watid's last (فَاعِلُنْ → فَاعِلْ = فَعْلُنْ). The scansion is exact because the marks are: a vowelled bayt has one reading, and the engine finds it or refuses.",
+  "tr": "الْعَرُوضُ مِيزَانُ الشِّعْرِ. Halîl'in ilmi mısrayı harfleriyle değil birimleriyle tartar: harekeli her ünsüz müteharrik, harekesiz her ünsüz — ve her uzun ünlü — sâkindir. Yazılı sayfa bazı birimleri gizler, okunmayan bazılarını gösterir: tenvin nûndur (كِتَابٌ = كِتَابُنْ), şedde bir sâkin bir müteharriktir (الشَّمْس = أَشْ شَمْس), vasıl elifi ilk kelimeden sonra sessizdir ve öncesindeki uzun ünlü düşer (مَا الْحَقُّ = مَلْحَقُّ), zamir hâsı uzayabilir (بِهِ = بِهِي), mısra sonunda son hareke uzatılır yahut kelime vakıf okunur. Birimler sonra cüzlere düşer — sebeb (bir müteharrik bir sâkin: /○), veted (iki hareketli bir sâkin: //○) — cüzler sekiz tef'ileye, tef'ileler on altı bahre. Veznin izin verdiği değişimler zihâflar (mısra içinde) ve illetlerdir (iki sonda), her birinin adı vardır: habn ikinci sâkini düşürür (مُتَفْعِلُنْ), tayy dördüncüyü (مُسْتَعِلُنْ), kabz beşinciyi (مَفَاعِلُنْ, فَعُولُ), izmâr ikinci harfi sâkinleştirir (مُتْفَاعِلُنْ), asb beşinciyi (مُفَاعَلْتُنْ); hazf son sebebi keser (فَعُولُنْ → فَعُو), kat' vetedin sonunu (فَاعِلُنْ → فَاعِلْ = فَعْلُنْ). Taktî' kesindir çünkü harekeler kesindir: harekeli bir beytin tek okunuşu vardır, motor onu bulur ya da reddeder."
+ },
+ "examples": [
+  {
+   "ar": "إِذَا أَنْتَ لَمْ تُنْصِفْ أَخَاكَ وَجَدْتَهُ * عَلَى طَرَفِ الْهِجْرَانِ إِنْ كَانَ يَعْقِلُ",
+   "en": "ṭawīl — فَعُولُنْ مَفَاعِيلُنْ فَعُولُ مَفَاعِلُنْ.",
+   "tr": "tavîl — فَعُولُنْ مَفَاعِيلُنْ فَعُولُ مَفَاعِلُنْ.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s10"
+  },
+  {
+   "ar": "مَنْ رَاقَبَ النَّاسَ لَمْ يَظْفَرْ بِحَاجَتِهِ * وَفَازَ بِالطَّيِّبَاتِ الْفَاتِكُ اللَّهِجُ",
+   "en": "basīṭ — مُسْتَفْعِلُنْ فَاعِلُنْ مُسْتَفْعِلُنْ فَعِلُنْ.",
+   "tr": "basît — مُسْتَفْعِلُنْ فَاعِلُنْ مُسْتَفْعِلُنْ فَعِلُنْ.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s15"
+  },
+  {
+   "ar": "هَيْهَاتَ لَا يَأْتِي الزَّمَانُ بِمِثْلِهِ * إِنَّ الزَّمَانَ بِمِثْلِهِ لَبَخِيلُ",
+   "en": "kāmil — مُتْفَاعِلُنْ مُتْفَاعِلُنْ مُتَفَاعِلُنْ, the iḍmār stilling the second letter.",
+   "tr": "kâmil — مُتْفَاعِلُنْ مُتْفَاعِلُنْ مُتَفَاعِلُنْ, izmâr ikinci harfi sâkinleştirir.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s18"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«كِتَابٌ üç harftir: /○/»",
+   "right": "«كِتَابُنْ — tenvin bir nûndur: //○/○»",
+   "why": {
+    "en": "The scansion reads what is SAID: the tanwīn is a sākin nūn, the shadda two letters, the article's alif nothing mid-line.",
+    "tr": "Taktî' SÖYLENENİ okur: tenvin sâkin bir nûn, şedde iki harf, harf-i tarifin elifi mısra içinde hiçtir."
+   }
+  },
+  {
+   "wrong": "«Her tef'ilede مُتْفَاعِلُنْ var: kâmil»",
+   "right": "«Bir yerde bile مُتَفَاعِلُنْ yoksa rajazdır — مُسْتَفْعِلُنْ ile aynı birimler»",
+   "why": {
+    "en": "The kāmil with every foot stilled is indistinguishable from the rajaz; the books call it rajaz, and the engine prefers the baḥr that needs fewer changes.",
+    "tr": "Her tef'ilesi sâkinleşmiş kâmil recezden ayırt edilemez; kitaplar ona recez der, motor daha az değişim isteyen bahri yeğler."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-qafiya",
+  "saj",
+  "tashtir",
+  "sariqat-ghayr-zahira"
+ ]
+}

@@ -1,0 +1,1193 @@
+{
+  "chapter": 1,
+  "sentences": [
+    {
+      "id": "s1",
+      "translation": {
+        "en": "O Ya'qub, honor the ruler and magnify his standing.",
+        "tr": "Ey Yakub, sultana saygı göster ve mevkiini yücelt."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "يَا",
+            "smart": "يَا",
+            "bare": "يا"
+          },
+          "lex": "ya",
+          "pos": "part",
+          "grammar": [
+            "vocative-munada"
+          ],
+          "irab": {
+            "ar": "حَرْفُ نِدَاءٍ.",
+            "en": "Vocative particle."
+          },
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "يَعْقُوبُ",
+            "smart": "يَعْقُوبُ",
+            "bare": "يعقوب"
+          },
+          "lex": "yaqub",
+          "pos": "propn",
+          "grammar": [
+            "vocative-munada"
+          ],
+          "irab": {
+            "ar": "مُنَادًى مُفْرَدٌ عَلَمٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ نَصْبٍ.",
+            "en": "Vocative (munada): a single proper name, fixed on damma, in the position of nasb."
+          },
+          "punctAfter": "،"
+        },
+        {
+          "surface": {
+            "full": "وَقِّرِ",
+            "smart": "وَقِّرِ",
+            "bare": "وقر"
+          },
+          "lex": "waqqara",
+          "pos": "verb",
+          "grammar": [
+            "imperative-amr",
+            "form-ii-verbs",
+            "augmented-babs"
+          ],
+          "irab": {
+            "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+            "en": "Imperative on sukun, voweled with kasra before the following ال; hidden subject «you». Form II: وَقَّرَ يُوَقِّرُ."
+          }
+        },
+        {
+          "surface": {
+            "full": "السُّلْطَانَ",
+            "smart": "السُّلْطَانَ",
+            "bare": "السلطان"
+          },
+          "lex": "sultan",
+          "pos": "noun",
+          "grammar": [
+            "maful-bihi"
+          ],
+          "irab": {
+            "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.",
+            "en": "Direct object in nasb, marked by fatha."
+          }
+        },
+        {
+          "surface": {
+            "full": "وَعَظِّمْ",
+            "smart": "وَعَظِّمْ",
+            "bare": "وعظم"
+          },
+          "lex": "azzama",
+          "pos": "verb",
+          "grammar": [
+            "imperative-amr",
+            "form-ii-verbs",
+            "atf-nasaq"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «عَظِّمْ» فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+            "en": "The و joins; imperative on sukun; hidden subject «you». Form II: عَظَّمَ يُعَظِّمُ."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "عَظِّمْ",
+              "lex": "azzama",
+              "pos": "verb"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَنْزِلَتَهُ",
+            "smart": "مَنْزِلَتَهُ",
+            "bare": "منزلته"
+          },
+          "lex": "manzila",
+          "pos": "noun",
+          "grammar": [
+            "maful-bihi",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مُضَافٌ إِلَيْهِ.",
+            "en": "Direct object in nasb; mudaf, with the attached ـه as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "مَنْزِلَتَ",
+              "lex": "manzila",
+              "pos": "noun"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "translation": {
+        "en": "And beware of lying in his presence.",
+        "tr": "Ve onun huzurunda yalandan sakın."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَإِيَّاكَ",
+            "smart": "وَإِيَّاكَ",
+            "bare": "وإياك"
+          },
+          "lex": "iyya",
+          "pos": "pron",
+          "grammar": [
+            "at-tahdhir"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ لِلِاسْتِئْنَافِ، «إِيَّا» ضَمِيرُ نَصْبٍ مُنْفَصِلٌ مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ تَقْدِيرُهُ «احْذَرْ»، وَالْكَافُ حَرْفُ خِطَابٍ.",
+            "en": "The و resumes; «iyya» is a detached object pronoun, object of an implied verb «beware»; the ـك is a particle of address — the tahdhir (warning) construction."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "إِيَّا",
+              "lex": "iyya",
+              "pos": "pron"
+            },
+            {
+              "form": "كَ",
+              "lex": "pron-2ms",
+              "pos": "pron"
+            }
+          ],
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "وَالْكَذِبَ",
+            "smart": "وَالْكَذِبَ",
+            "bare": "والكذب"
+          },
+          "lex": "kadhib",
+          "pos": "noun",
+          "grammar": [
+            "at-tahdhir",
+            "maful-bihi",
+            "atf-nasaq"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «الْكَذِبَ» مَفْعُولٌ بِهِ مَنْصُوبٌ لِفِعْلٍ مَحْذُوفٍ (احْذَرِ الْكَذِبَ)، وَهُوَ الْمُحَذَّرُ مِنْهُ.",
+            "en": "The و joins; «lying» is the object of the implied «beware» — the thing warned against, in nasb."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "الْكَذِبَ",
+              "lex": "kadhib",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "بَيْنَ",
+            "smart": "بَيْنَ",
+            "bare": "بين"
+          },
+          "lex": "bayna",
+          "pos": "adv",
+          "irab": {
+            "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ، وَهُوَ مُضَافٌ.",
+            "en": "Adverb of place in nasb; mudaf."
+          },
+          "grammar": [
+            "maful-fih",
+            "haqiqa-majaz"
+          ],
+          "phrase": {
+            "lex": "bayna-yadayh",
+            "span": 2
+          }
+        },
+        {
+          "surface": {
+            "full": "يَدَيْهِ",
+            "smart": "يَدَيْهِ",
+            "bare": "يديه"
+          },
+          "lex": "yad",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness",
+            "haqiqa-majaz"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْيَاءُ لِأَنَّهُ مُثَنًّى، وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Mudaf ilayh in jarr, marked by ي because it is dual (muthanna); itself mudaf, with ـه as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "يَدَيْ",
+              "lex": "yad",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "translation": {
+        "en": "For if you go to him too often, he will make light of you and your standing with him will shrink.",
+        "tr": "Zira ona çok sık gidersen seni hafife alır ve yanındaki mevkiin küçülür."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "فَإِنَّكَ",
+            "smart": "فَإِنَّكَ",
+            "bare": "فإنك"
+          },
+          "lex": "inna",
+          "pos": "part",
+          "grammar": [
+            "inna-wa-akhawatuha"
+          ],
+          "irab": {
+            "ar": "الْفَاءُ تَعْلِيلِيَّةٌ، «إِنَّ» حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ، وَالْكَافُ اسْمُهَا فِي مَحَلِّ نَصْبٍ.",
+            "en": "The ف gives the reason; إنّ is a verb-like particle; the ـك is its ism, in the position of nasb."
+          },
+          "segments": [
+            {
+              "form": "فَ",
+              "lex": "fa",
+              "pos": "part"
+            },
+            {
+              "form": "إِنَّ",
+              "lex": "inna",
+              "pos": "part"
+            },
+            {
+              "form": "كَ",
+              "lex": "pron-2ms",
+              "pos": "pron"
+            }
+          ],
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "إِذَا",
+            "smart": "إِذَا",
+            "bare": "إذا"
+          },
+          "lex": "idha",
+          "pos": "part",
+          "grammar": [
+            "idha-shartiyya"
+          ],
+          "irab": {
+            "ar": "ظَرْفٌ لِمَا يُسْتَقْبَلُ مِنَ الزَّمَانِ مُتَضَمِّنٌ مَعْنَى الشَّرْطِ.",
+            "en": "A future-time adverb carrying conditional force."
+          }
+        },
+        {
+          "surface": {
+            "full": "أَكْثَرْتَ",
+            "smart": "أَكْثَرْتَ",
+            "bare": "أكثرت"
+          },
+          "lex": "akthara",
+          "pos": "verb",
+          "grammar": [
+            "form-iv-verbs",
+            "idha-shartiyya"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ فَاعِلٌ، وَالْجُمْلَةُ فِعْلُ الشَّرْطِ.",
+            "en": "Past verb on sukun before the subject تَ; the clause is the shart of إذا. Form IV: أَكْثَرَ يُكْثِرُ."
+          },
+          "segments": [
+            {
+              "form": "أَكْثَرْ",
+              "lex": "akthara",
+              "pos": "verb"
+            },
+            {
+              "form": "تَ",
+              "lex": "pron-2ms-subj",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "الِاخْتِلَافَ",
+            "smart": "الِاخْتِلَافَ",
+            "bare": "الاختلاف"
+          },
+          "lex": "ikhtilaf",
+          "pos": "noun",
+          "grammar": [
+            "maful-bihi"
+          ],
+          "irab": {
+            "ar": "مَفْعُولٌ بِهِ مَنْصُوبٌ — وَالْمُرَادُ كَثْرَةُ التَّرَدُّدِ عَلَيْهِ لَا الْخِلَافُ فِي الرَّأْيِ.",
+            "en": "Direct object in nasb — here it means frequent visiting, not disagreement."
+          }
+        },
+        {
+          "surface": {
+            "full": "إِلَيْهِ",
+            "smart": "إِلَيْهِ",
+            "bare": "إليه"
+          },
+          "lex": "ila",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«إِلَى» حَرْفُ جَرٍّ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition إلى; the attached pronoun is in jarr."
+          },
+          "segments": [
+            {
+              "form": "إِلَيْ",
+              "lex": "ila",
+              "pos": "prep"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "تَهَاوَنَ",
+            "smart": "تَهَاوَنَ",
+            "bare": "تهاون"
+          },
+          "lex": "tahawana",
+          "pos": "verb",
+          "grammar": [
+            "form-vi-verbs"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَهُوَ جَوَابُ الشَّرْطِ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ» يَعُودُ عَلَى السُّلْطَانِ.",
+            "en": "Past verb on fatha — the answer to the condition; hidden subject «he» (the ruler). Form VI (تَفَاعَلَ): to make light of."
+          }
+        },
+        {
+          "surface": {
+            "full": "بِكَ",
+            "smart": "بِكَ",
+            "bare": "بك"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَالْكَافُ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقٌ بِـ«تَهَاوَنَ».",
+            "en": "Preposition ب with the ـك in jarr, attached to «made light of»."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "كَ",
+              "lex": "pron-2ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "وَصَغُرَتْ",
+            "smart": "وَصَغُرَتْ",
+            "bare": "وصغرت"
+          },
+          "lex": "saghura",
+          "pos": "verb",
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «صَغُرَتْ» فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ السَّاكِنَةُ.",
+            "en": "The و joins; past verb on fatha; the ت marks the feminine."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "صَغُرَتْ",
+              "lex": "saghura",
+              "pos": "verb"
+            }
+          ],
+          "grammar": [
+            "atf-nasaq",
+            "thulathi-mujarrad-babs",
+            "istiara"
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَنْزِلَتُكَ",
+            "smart": "مَنْزِلَتُكَ",
+            "bare": "منزلتك"
+          },
+          "lex": "manzila",
+          "pos": "noun",
+          "grammar": [
+            "fail",
+            "idafa-definiteness",
+            "istiara"
+          ],
+          "irab": {
+            "ar": "فَاعِلٌ مَرْفُوعٌ لِـ«صَغُرَتْ» وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَهُوَ مُضَافٌ، وَالْكَافُ مُضَافٌ إِلَيْهِ.",
+            "en": "Subject of «shrank», nominative with damma; mudaf, with ـك as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "مَنْزِلَتُ",
+              "lex": "manzila",
+              "pos": "noun"
+            },
+            {
+              "form": "كَ",
+              "lex": "pron-2ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عِنْدَهُ",
+            "smart": "عِنْدَهُ",
+            "bare": "عنده"
+          },
+          "lex": "inda",
+          "pos": "adv",
+          "grammar": [
+            "maful-fih",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Adverb of place in nasb; mudaf, with ـه as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "عِنْدَ",
+              "lex": "inda",
+              "pos": "adv"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "translation": {
+        "en": "So be toward him as you are toward fire.",
+        "tr": "Öyleyse ona karşı, ateşe karşı olduğun gibi ol."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "فَكُنْ",
+            "smart": "فَكُنْ",
+            "bare": "فكن"
+          },
+          "lex": "kana",
+          "pos": "verb",
+          "grammar": [
+            "imperative-amr",
+            "kana-wa-akhawatuha"
+          ],
+          "irab": {
+            "ar": "الْفَاءُ فَصِيحَةٌ، «كُنْ» فِعْلُ أَمْرٍ نَاقِصٌ مَبْنِيٌّ عَلَى السُّكُونِ، وَاسْمُهُ مُسْتَتِرٌ «أَنْتَ».",
+            "en": "The ف draws the consequence; «be» is the imperative of كان (an incomplete verb) on sukun; its ism is the hidden «you»."
+          },
+          "segments": [
+            {
+              "form": "فَ",
+              "lex": "fa",
+              "pos": "part"
+            },
+            {
+              "form": "كُنْ",
+              "lex": "kana",
+              "pos": "verb"
+            }
+          ],
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "مِنْهُ",
+            "smart": "مِنْهُ",
+            "bare": "منه"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«مِنْ» حَرْفُ جَرٍّ، وَالْهَاءُ فِي مَحَلِّ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ فِي مَحَلِّ نَصْبٍ خَبَرُ «كُنْ».",
+            "en": "Preposition من; the phrase stands as the khabar of «be»."
+          },
+          "segments": [
+            {
+              "form": "مِنْ",
+              "lex": "min",
+              "pos": "prep"
+            },
+            {
+              "form": "هُ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "كَمَا",
+            "smart": "كَمَا",
+            "bare": "كما"
+          },
+          "lex": "ka",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "tashbih"
+          ],
+          "irab": {
+            "ar": "الْكَافُ حَرْفُ جَرٍّ لِلتَّشْبِيهِ، وَ«مَا» مَصْدَرِيَّةٌ، وَالْمَصْدَرُ الْمُؤَوَّلُ فِي مَحَلِّ جَرٍّ.",
+            "en": "The ك is the preposition of comparison; ما is masdariyya («as, just as»)."
+          },
+          "segments": [
+            {
+              "form": "كَ",
+              "lex": "ka",
+              "pos": "prep"
+            },
+            {
+              "form": "مَا",
+              "lex": "ma-masdariyya",
+              "pos": "part"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "أَنْتَ",
+            "smart": "أَنْتَ",
+            "bare": "أنت"
+          },
+          "lex": "anta",
+          "pos": "pron",
+          "grammar": [
+            "mubtada-khabar"
+          ],
+          "irab": {
+            "ar": "ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+            "en": "Detached pronoun, in the position of raf' as mubtada."
+          }
+        },
+        {
+          "surface": {
+            "full": "مِنَ",
+            "smart": "مِنَ",
+            "bare": "من"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "حَرْفُ جَرٍّ، حُرِّكَ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
+            "en": "Preposition, voweled with fatha before the following ال."
+          }
+        },
+        {
+          "surface": {
+            "full": "النَّارِ",
+            "smart": "النَّارِ",
+            "bare": "النار"
+          },
+          "lex": "nar",
+          "pos": "noun",
+          "grammar": [
+            "huruf-jarr",
+            "tashbih"
+          ],
+          "irab": {
+            "ar": "اسْمٌ مَجْرُورٌ بِمِنْ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرُ الْمُبْتَدَأِ «أَنْتَ».",
+            "en": "Noun in jarr after من; the phrase is the khabar of «you»."
+          },
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "translation": {
+        "en": "You benefit from it, keep your distance from it, and do not draw near it.",
+        "tr": "Ondan faydalanırsın, ondan uzak durursun ve ona yaklaşmazsın."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "تَنْتَفِعُ",
+            "smart": "تَنْتَفِعُ",
+            "bare": "تنتفع"
+          },
+          "lex": "intafaa",
+          "pos": "verb",
+          "grammar": [
+            "form-viii-verbs",
+            "mudari-marfu",
+            "augmented-babs"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ»، وَالْجُمْلَةُ حَالٌ.",
+            "en": "Present verb in raf' (damma); hidden subject «you»; the clause is a hal. Form VIII: اِنْتَفَعَ يَنْتَفِعُ (to benefit)."
+          },
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "بِهَا",
+            "smart": "بِهَا",
+            "bare": "بها"
+          },
+          "lex": "bi",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "الْبَاءُ حَرْفُ جَرٍّ، وَ«هَا» فِي مَحَلِّ جَرٍّ تَعُودُ عَلَى النَّارِ.",
+            "en": "Preposition ب; «ها» (in jarr) refers back to the fire."
+          },
+          "segments": [
+            {
+              "form": "بِ",
+              "lex": "bi",
+              "pos": "prep"
+            },
+            {
+              "form": "هَا",
+              "lex": "pron-3fs",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "وَتَتَبَاعَدُ",
+            "smart": "وَتَتَبَاعَدُ",
+            "bare": "وتتباعد"
+          },
+          "lex": "tabaaada",
+          "pos": "verb",
+          "grammar": [
+            "form-vi-verbs",
+            "mudari-marfu",
+            "atf-nasaq",
+            "augmented-babs"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «تَتَبَاعَدُ» فِعْلٌ مُضَارِعٌ مَرْفُوعٌ. بَابُ تَفَاعَلَ يُفِيدُ هُنَا التَّدَرُّجَ.",
+            "en": "The و joins; present verb in raf'. Form VI (تفاعل), here the gradual sense: to keep one's distance."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "تَتَبَاعَدُ",
+              "lex": "tabaaada",
+              "pos": "verb"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "عَنْهَا",
+            "smart": "عَنْهَا",
+            "bare": "عنها"
+          },
+          "lex": "an-jarr",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«عَنْ» حَرْفُ جَرٍّ، وَ«هَا» فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition عن; «ها» in jarr."
+          },
+          "segments": [
+            {
+              "form": "عَنْ",
+              "lex": "an-jarr",
+              "pos": "prep"
+            },
+            {
+              "form": "هَا",
+              "lex": "pron-3fs",
+              "pos": "pron"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "وَلَا",
+            "smart": "وَلَا",
+            "bare": "ولا"
+          },
+          "lex": "la-nahiya",
+          "pos": "part",
+          "grammar": [
+            "la-nahiya",
+            "atf-nasaq"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، وَ«لَا» نَاهِيَةٌ جَازِمَةٌ.",
+            "en": "The و joins; لا of prohibition, governing the jussive."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "لَا",
+              "lex": "la-nahiya",
+              "pos": "part"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "تَدْنُ",
+            "smart": "تَدْنُ",
+            "bare": "تدن"
+          },
+          "lex": "dana",
+          "pos": "verb",
+          "grammar": [
+            "la-nahiya"
+          ],
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِلَا النَّاهِيَةِ وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ (الْوَاوِ)، وَالْفَاعِلُ مُسْتَتِرٌ «أَنْتَ».",
+            "en": "Present verb in the jussive after prohibitive لا, marked by DROPPING the weak letter (و) — the naqis verb دَنَا يَدْنُو; hidden subject «you»."
+          }
+        },
+        {
+          "surface": {
+            "full": "مِنْهَا",
+            "smart": "مِنْهَا",
+            "bare": "منها"
+          },
+          "lex": "min",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "«مِنْ» حَرْفُ جَرٍّ، وَ«هَا» فِي مَحَلِّ جَرٍّ.",
+            "en": "Preposition من; «ها» in jarr."
+          },
+          "segments": [
+            {
+              "form": "مِنْ",
+              "lex": "min",
+              "pos": "prep"
+            },
+            {
+              "form": "هَا",
+              "lex": "pron-3fs",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "translation": {
+        "en": "And beware of talking too much before him.",
+        "tr": "Ve onun huzurunda çok konuşmaktan sakın."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "وَإِيَّاكَ",
+            "smart": "وَإِيَّاكَ",
+            "bare": "وإياك"
+          },
+          "lex": "iyya",
+          "pos": "pron",
+          "grammar": [
+            "at-tahdhir",
+            "atf-nasaq"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «إِيَّا» ضَمِيرُ نَصْبٍ مُنْفَصِلٌ مَفْعُولٌ بِهِ لِفِعْلٍ مَحْذُوفٍ «احْذَرْ»، وَالْكَافُ حَرْفُ خِطَابٍ.",
+            "en": "The و joins; «iyya» is the detached object of the implied «beware»; the ـك is a particle of address (tahdhir)."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "إِيَّا",
+              "lex": "iyya",
+              "pos": "pron"
+            },
+            {
+              "form": "كَ",
+              "lex": "pron-2ms",
+              "pos": "pron"
+            }
+          ],
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "وَكَثْرَةَ",
+            "smart": "وَكَثْرَةَ",
+            "bare": "وكثرة"
+          },
+          "lex": "kathra",
+          "pos": "noun",
+          "grammar": [
+            "at-tahdhir",
+            "maful-bihi",
+            "idafa-definiteness",
+            "atf-nasaq"
+          ],
+          "irab": {
+            "ar": "الْوَاوُ عَاطِفَةٌ، «كَثْرَةَ» مَفْعُولٌ بِهِ مَنْصُوبٌ لِفِعْلٍ مَحْذُوفٍ (احْذَرْ)، وَهُوَ مُضَافٌ.",
+            "en": "The و joins; «excess» is the object of the implied «beware»; mudaf."
+          },
+          "segments": [
+            {
+              "form": "وَ",
+              "lex": "wa",
+              "pos": "conj"
+            },
+            {
+              "form": "كَثْرَةَ",
+              "lex": "kathra",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "الْكَلَامِ",
+            "smart": "الْكَلَامِ",
+            "bare": "الكلام"
+          },
+          "lex": "kalam",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Mudaf ilayh in jarr with kasra."
+          }
+        },
+        {
+          "surface": {
+            "full": "بَيْنَ",
+            "smart": "بَيْنَ",
+            "bare": "بين"
+          },
+          "lex": "bayna",
+          "pos": "adv",
+          "irab": {
+            "ar": "ظَرْفُ مَكَانٍ مَنْصُوبٌ وَهُوَ مُضَافٌ.",
+            "en": "Adverb of place in nasb; mudaf."
+          },
+          "grammar": [
+            "maful-fih",
+            "haqiqa-majaz"
+          ],
+          "phrase": {
+            "lex": "bayna-yadayh",
+            "span": 2
+          }
+        },
+        {
+          "surface": {
+            "full": "يَدَيْهِ",
+            "smart": "يَدَيْهِ",
+            "bare": "يديه"
+          },
+          "lex": "yad",
+          "pos": "noun",
+          "grammar": [
+            "idafa-definiteness",
+            "haqiqa-majaz"
+          ],
+          "irab": {
+            "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Mudaf ilayh in jarr, marked by ي (dual); ـه as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "يَدَيْ",
+              "lex": "yad",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "translation": {
+        "en": "For the ruler does not regard anyone as he regards himself.",
+        "tr": "Çünkü sultan, kimseye kendisine baktığı gibi bakmaz."
+      },
+      "tokens": [
+        {
+          "surface": {
+            "full": "فَإِنَّ",
+            "smart": "فَإِنَّ",
+            "bare": "فإن"
+          },
+          "lex": "inna",
+          "pos": "part",
+          "grammar": [
+            "inna-wa-akhawatuha"
+          ],
+          "irab": {
+            "ar": "الْفَاءُ تَعْلِيلِيَّةٌ، «إِنَّ» حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ يَنْصِبُ الِاسْمَ وَيَرْفَعُ الْخَبَرَ.",
+            "en": "The ف gives the reason; إنّ, a verb-like particle: nasb on the noun, raf' on the predicate."
+          },
+          "segments": [
+            {
+              "form": "فَ",
+              "lex": "fa",
+              "pos": "part"
+            },
+            {
+              "form": "إِنَّ",
+              "lex": "inna",
+              "pos": "part"
+            }
+          ],
+          "quoteBefore": "«"
+        },
+        {
+          "surface": {
+            "full": "السُّلْطَانَ",
+            "smart": "السُّلْطَانَ",
+            "bare": "السلطان"
+          },
+          "lex": "sultan",
+          "pos": "noun",
+          "grammar": [
+            "inna-wa-akhawatuha"
+          ],
+          "irab": {
+            "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ.",
+            "en": "The ism of إنّ, in nasb marked by fatha."
+          }
+        },
+        {
+          "surface": {
+            "full": "لَا",
+            "smart": "لَا",
+            "bare": "لا"
+          },
+          "lex": "la-nafiya",
+          "pos": "part",
+          "irab": {
+            "ar": "حَرْفُ نَفْيٍ لَا عَمَلَ لَهُ.",
+            "en": "Negation particle (it governs nothing)."
+          }
+        },
+        {
+          "surface": {
+            "full": "يَرَى",
+            "smart": "يَرَى",
+            "bare": "يرى"
+          },
+          "lex": "raa",
+          "pos": "verb",
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ضَمَّةٌ مُقَدَّرَةٌ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ»، وَجُمْلَةُ «لَا يَرَى» خَبَرُ «إِنَّ».",
+            "en": "Present verb in raf' with an IMPLIED damma on the alif; hidden subject «he»; the clause «does not regard» is the khabar of إنّ. (رَأَى يَرَى drops its hamza in the present.)"
+          },
+          "grammar": [
+            "mudari-marfu",
+            "tibaq"
+          ]
+        },
+        {
+          "surface": {
+            "full": "لِأَحَدٍ",
+            "smart": "لِأَحَدٍ",
+            "bare": "لأحد"
+          },
+          "lex": "li",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr"
+          ],
+          "irab": {
+            "ar": "اللَّامُ حَرْفُ جَرٍّ، «أَحَدٍ» اسْمٌ مَجْرُورٌ وَعَلَامَةُ جَرِّهِ الْكَسْرَةُ.",
+            "en": "Preposition ل; «anyone» in jarr with kasra."
+          },
+          "segments": [
+            {
+              "form": "لِ",
+              "lex": "li",
+              "pos": "prep"
+            },
+            {
+              "form": "أَحَدٍ",
+              "lex": "ahad",
+              "pos": "noun"
+            }
+          ]
+        },
+        {
+          "surface": {
+            "full": "مَا",
+            "smart": "مَا",
+            "bare": "ما"
+          },
+          "lex": "ma-mawsula",
+          "pos": "pron",
+          "irab": {
+            "ar": "اسْمٌ مَوْصُولٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ لِـ«يَرَى».",
+            "en": "Relative noun, in the position of nasb as the object of «regard»."
+          }
+        },
+        {
+          "surface": {
+            "full": "يَرَى",
+            "smart": "يَرَى",
+            "bare": "يرى"
+          },
+          "lex": "raa",
+          "pos": "verb",
+          "irab": {
+            "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ، وَالْفَاعِلُ مُسْتَتِرٌ «هُوَ»، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.",
+            "en": "Present verb in raf' (implied damma); hidden subject «he»; the clause is the sila of the relative."
+          },
+          "grammar": [
+            "mudari-marfu",
+            "tibaq"
+          ]
+        },
+        {
+          "surface": {
+            "full": "لِنَفْسِهِ",
+            "smart": "لِنَفْسِهِ",
+            "bare": "لنفسه"
+          },
+          "lex": "li",
+          "pos": "prep",
+          "grammar": [
+            "huruf-jarr",
+            "idafa-definiteness"
+          ],
+          "irab": {
+            "ar": "اللَّامُ حَرْفُ جَرٍّ، «نَفْسِ» مَجْرُورٌ وَهُوَ مُضَافٌ، وَالْهَاءُ مُضَافٌ إِلَيْهِ.",
+            "en": "Preposition ل; «himself» in jarr as mudaf, with ـه as mudaf ilayh."
+          },
+          "segments": [
+            {
+              "form": "لِ",
+              "lex": "li",
+              "pos": "prep"
+            },
+            {
+              "form": "نَفْسِ",
+              "lex": "nafs",
+              "pos": "noun"
+            },
+            {
+              "form": "هِ",
+              "lex": "pron-3ms",
+              "pos": "pron"
+            }
+          ],
+          "punctAfter": ".",
+          "quoteAfter": "»"
+        }
+      ]
+    }
+  ]
+}

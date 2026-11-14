@@ -1,0 +1,531 @@
+{
+ "chapter": 2,
+ "sentences": [
+  {
+   "id": "s1",
+   "translation": {
+    "en": "Knowledge is light.",
+    "tr": "İlim nurdur."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "الْعِلْمُ",
+      "smart": "الْعِلْمُ",
+      "bare": "العلم"
+     },
+     "lex": "ilm",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "نُورٌ",
+      "smart": "نُورٌ",
+      "bare": "نور"
+     },
+     "lex": "nur",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ.",
+      "en": "Khabar in raf'.",
+      "tr": "Merfû haber."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "الْعِلْمُ نُورٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "translation": {
+    "en": "The book is new.",
+    "tr": "Kitap yenidir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "الْكِتَابُ",
+      "smart": "الْكِتَابُ",
+      "bare": "الكتاب"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَدِيدٌ",
+      "smart": "جَدِيدٌ",
+      "bare": "جديد"
+     },
+     "lex": "jadid",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ.",
+      "en": "Khabar in raf'.",
+      "tr": "Merfû haber."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "الْكِتَابُ جَدِيدٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "translation": {
+    "en": "Zayd's book is new.",
+    "tr": "Zeyd'in kitabı yenidir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "كِتَابُ",
+      "smart": "كِتَابُ",
+      "bare": "كتاب"
+     },
+     "lex": "kitab",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "Mubtada in raf', itself a mudaf.",
+      "tr": "Merfû mübteda ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "زَيْدٍ",
+      "smart": "زَيْدٍ",
+      "bare": "زيد"
+     },
+     "lex": "zayd",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "Mudaf ilayh in jarr.",
+      "tr": "Mecrûr muzâfun ileyhtir."
+     }
+    },
+    {
+     "surface": {
+      "full": "جَدِيدٌ",
+      "smart": "جَدِيدٌ",
+      "bare": "جديد"
+     },
+     "lex": "jadid",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ.",
+      "en": "Khabar in raf'.",
+      "tr": "Merfû haber."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "كِتَابُ زَيْدٍ جَدِيدٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "translation": {
+    "en": "The diligent student is beloved.",
+    "tr": "Çalışkan öğrenci sevilendir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "الطَّالِبُ",
+      "smart": "الطَّالِبُ",
+      "bare": "الطالب"
+     },
+     "lex": "talib",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْمُجْتَهِدُ",
+      "smart": "الْمُجْتَهِدُ",
+      "bare": "المجتهد"
+     },
+     "lex": "mujtahid",
+     "pos": "noun",
+     "grammar": [
+      "naat-sifa",
+      "ism-fail",
+      "form-viii-verbs"
+     ],
+     "irab": {
+      "ar": "نَعْتٌ مَرْفُوعٌ — اسْمُ فَاعِلٍ مِنَ «اجْتَهَدَ».",
+      "en": "Na't in raf' — the ism fa'il of اجْتَهَدَ (Form VIII).",
+      "tr": "Merfû na't — «اجْتَهَدَ» (iftiâl) fiilinin ism-i fâili."
+     }
+    },
+    {
+     "surface": {
+      "full": "مَحْبُوبٌ",
+      "smart": "مَحْبُوبٌ",
+      "bare": "محبوب"
+     },
+     "lex": "mahbub",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "ism-maful"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ — اسْمُ مَفْعُولٍ مِنْ «حَبَّ».",
+      "en": "Khabar in raf' — an ism maf'ul.",
+      "tr": "Merfû haber — ism-i mef'ûldür."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "الطَّالِبُ الْمُجْتَهِدُ مَحْبُوبٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "translation": {
+    "en": "In the house there is a man.",
+    "tr": "Evde bir adam vardır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "فِي",
+      "smart": "فِي",
+      "bare": "في"
+     },
+     "lex": "fi",
+     "pos": "prep",
+     "grammar": [
+      "huruf-jarr",
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "حَرْفُ جَرٍّ، وَالْجَارُّ وَالْمَجْرُورُ خَبَرٌ مُقَدَّمٌ.",
+      "en": "Jarr letter; the phrase is a fronted khabar.",
+      "tr": "Cer harfi; câr-mecrûr öne geçmiş haberdir."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْبَيْتِ",
+      "smart": "الْبَيْتِ",
+      "bare": "البيت"
+     },
+     "lex": "bayt",
+     "pos": "noun",
+     "grammar": [
+      "huruf-jarr"
+     ],
+     "irab": {
+      "ar": "مَجْرُورٌ بِـ«فِي».",
+      "en": "In jarr after فِي.",
+      "tr": "«فِي» ile mecrurdur."
+     }
+    },
+    {
+     "surface": {
+      "full": "رَجُلٌ",
+      "smart": "رَجُلٌ",
+      "bare": "رجل"
+     },
+     "lex": "rajul",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ.",
+      "en": "The delayed mubtada, in raf'.",
+      "tr": "Sonraya bırakılmış merfû mübteda (mübteda-i muahhar)."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "فِي الْبَيْتِ رَجُلٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مِنْ خَبَرٍ مُقَدَّمٍ وَمُبْتَدَإٍ مُؤَخَّرٍ — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause of fronted khabar and delayed mubtada — i'rabless.",
+     "tr": "Haber-i mukaddem ile mübteda-i muahhardan kurulu isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "translation": {
+    "en": "The mosque is the house of Allah.",
+    "tr": "Mescid, Allah'ın evidir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "الْمَسْجِدُ",
+      "smart": "الْمَسْجِدُ",
+      "bare": "المسجد"
+     },
+     "lex": "masjid",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar"
+     ],
+     "irab": {
+      "ar": "مُبْتَدَأٌ مَرْفُوعٌ.",
+      "en": "Mubtada in raf'.",
+      "tr": "Merfû mübteda."
+     }
+    },
+    {
+     "surface": {
+      "full": "بَيْتُ",
+      "smart": "بَيْتُ",
+      "bare": "بيت"
+     },
+     "lex": "bayt",
+     "pos": "noun",
+     "grammar": [
+      "mubtada-khabar",
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "خَبَرٌ مَرْفُوعٌ وَهُوَ مُضَافٌ.",
+      "en": "Khabar in raf', itself a mudaf.",
+      "tr": "Merfû haber ve muzâftır."
+     }
+    },
+    {
+     "surface": {
+      "full": "اللهِ",
+      "smart": "اللهِ",
+      "bare": "الله"
+     },
+     "lex": "allah",
+     "pos": "noun",
+     "grammar": [
+      "idafa-definiteness"
+     ],
+     "irab": {
+      "ar": "لَفْظُ الْجَلَالَةِ مُضَافٌ إِلَيْهِ مَجْرُورٌ.",
+      "en": "The majestic name — mudaf ilayh in jarr.",
+      "tr": "Lafza-i celâl — mecrûr muzâfun ileyhtir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "الْمَسْجِدُ بَيْتُ اللهِ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ ابْتِدَائِيَّةٌ — لَا مَحَلَّ لَهَا.",
+     "en": "An opening nominal clause — i'rabless.",
+     "tr": "İbtidâiyye isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s7",
+   "translation": {
+    "en": "Truly knowledge is beneficial.",
+    "tr": "Şüphesiz ilim faydalıdır."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "إِنَّ",
+      "smart": "إِنَّ",
+      "bare": "إن"
+     },
+     "lex": "inna",
+     "pos": "part",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "inna-am-anna"
+     ],
+     "irab": {
+      "ar": "حَرْفُ تَوْكِيدٍ وَنَصْبٍ، كُسِرَتْ هَمْزَتُهُ لِوُقُوعِهِ فِي صَدْرِ الْكَلَامِ.",
+      "en": "The particle of emphasis and nasb; its hamza takes kasra because it opens the speech.",
+      "tr": "Te'kid ve nasb harfi; söz başında geldiği için hemzesi kesralıdır."
+     }
+    },
+    {
+     "surface": {
+      "full": "الْعِلْمَ",
+      "smart": "الْعِلْمَ",
+      "bare": "العلم"
+     },
+     "lex": "ilm",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «إِنَّ» مَنْصُوبٌ.",
+      "en": "The ism of إِنَّ, in nasb.",
+      "tr": "«إِنَّ»nin mensub ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "نَافِعٌ",
+      "smart": "نَافِعٌ",
+      "bare": "نافع"
+     },
+     "lex": "nafi",
+     "pos": "noun",
+     "grammar": [
+      "inna-wa-akhawatuha",
+      "ism-fail"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «إِنَّ» مَرْفُوعٌ — اسْمُ فَاعِلٍ.",
+      "en": "The khabar of إِنَّ in raf' — an ism fa'il.",
+      "tr": "«إِنَّ»nin merfû haberi — ism-i fâildir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "إِنَّ الْعِلْمَ نَافِعٌ",
+     "ar": "جُمْلَةٌ اسْمِيَّةٌ مُؤَكَّدَةٌ بِـ«إِنَّ» — لَا مَحَلَّ لَهَا.",
+     "en": "A nominal clause emphasized by إِنَّ — i'rabless.",
+     "tr": "«إِنَّ» ile te'kid edilmiş isim cümlesi — mahalsizdir."
+    }
+   ]
+  },
+  {
+   "id": "s8",
+   "translation": {
+    "en": "The lesson is not difficult.",
+    "tr": "Ders zor değildir."
+   },
+   "tokens": [
+    {
+     "surface": {
+      "full": "لَيْسَ",
+      "smart": "لَيْسَ",
+      "bare": "ليس"
+     },
+     "lex": "laysa",
+     "pos": "verb",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ «كَانَ».",
+      "en": "Defective past verb of the kana family.",
+      "tr": "Kâne'nin kardeşlerinden nâkıs fiil."
+     }
+    },
+    {
+     "surface": {
+      "full": "الدَّرْسُ",
+      "smart": "الدَّرْسُ",
+      "bare": "الدرس"
+     },
+     "lex": "dars",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "اسْمُ «لَيْسَ» مَرْفُوعٌ.",
+      "en": "The ism of لَيْسَ, in raf'.",
+      "tr": "«لَيْسَ»nin merfû ismidir."
+     }
+    },
+    {
+     "surface": {
+      "full": "صَعْبًا",
+      "smart": "صَعْبًا",
+      "bare": "صعبا"
+     },
+     "lex": "sab",
+     "pos": "noun",
+     "grammar": [
+      "kana-wa-akhawatuha"
+     ],
+     "irab": {
+      "ar": "خَبَرُ «لَيْسَ» مَنْصُوبٌ.",
+      "en": "The khabar of لَيْسَ, in nasb.",
+      "tr": "«لَيْسَ»nin mensub haberidir."
+     },
+     "punctAfter": "."
+    }
+   ],
+   "jumal": [
+    {
+     "text": "لَيْسَ الدَّرْسُ صَعْبًا",
+     "ar": "جُمْلَةٌ فِعْلِيَّةٌ مَنْسُوخَةٌ بِـ«لَيْسَ» — لَا مَحَلَّ لَهَا.",
+     "en": "A clause governed by لَيْسَ — i'rabless.",
+     "tr": "«لَيْسَ» ile mensuh cümle — mahalsizdir."
+    }
+   ]
+  }
+ ]
+}

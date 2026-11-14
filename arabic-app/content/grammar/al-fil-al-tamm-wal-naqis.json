@@ -1,0 +1,135 @@
+{
+ "id": "al-fil-al-tamm-wal-naqis",
+ "title": {
+  "ar": "الْفِعْلُ التَّامُّ وَالنَّاقِصُ، وَكَانَ وَأَخَوَاتُهَا عِنْدَ الْبِرْكِوِيِّ",
+  "en": "The tāmm and the nāqiṣ verb, and kāna's sisters as Birgivī counts them",
+  "tr": "Tâm ve nâkıs fiil, Birgivî'nin saydığı kâne ve kardeşleri"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — الفعل التام والناقص",
+  "الكافية لابن الحاجب — كان وأخواتها",
+  "قطر الندى لابن هشام — الأفعال الناقصة"
+ ],
+ "amil": "الْفِعْلُ النَّاقِصُ — raises its ism and puts its khabar in naṣb; it needs a manṣūb beyond its marfūʿ, and enters only on a mubtadaʾ and a khabar in origin",
+ "question": {
+  "en": [
+   "How does a verb reach three objects? أَعْلَمَ and أَرَى: the first object is like the object of أَعْطَيْتُ (a plain thing), the last two are like the two objects of عَلِمْتُ — a mubtadaʾ and a khabar in origin (أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا).",
+   "What must every verb have? A marfūʿ — no verb stands without one.",
+   "What is a TĀMM verb? One that completes a sentence with its marfūʿ and needs nothing else: its marfūʿ is the doer, its manṣūb (if transitive) the object — every verb met so far.",
+   "What is a NĀQIṢ verb? One that still needs a manṣūb governed word: its marfūʿ is its ISM, its manṣūb its KHABAR; in origin it enters only on a mubtadaʾ and a khabar.",
+   "Which are the nāqiṣ verbs with no sense of approach? كَانَ and صَارَ — and آلَ، رَجَعَ، حَالَ، اسْتَحَالَ، تَحَوَّلَ، ارْتَدَّ، جَاءَ، قَعَدَ when they mean صَارَ; أَصْبَحَ، أَمْسَى، أَضْحَى، ظَلَّ، بَاتَ، آضَ، غَدَا، رَاحَ; مَا فَتِئَ، مَا انْفَكَّ، مَا بَرِحَ، مَا وَنَى (all meaning مَا زَالَ); مَا دَامَ and لَيْسَ.",
+   "Can a tāmm verb turn nāqiṣ? Yes, when it takes on the sense of صَارَ: تَمَّ التِّسْعَةُ بِهٰذَا عَشَرَةً (became a complete ten), كَمُلَ زَيْدٌ عَالِمًا (came to be a complete scholar).",
+   "May their khabar stand before them? Yes — except the sisters that begin with مَا: قَائِمًا مَا زَالَ زَيْدٌ is not allowed, because nothing may stand before the negation that these verbs never leave.",
+   "What does the engine READ here? The DabtEngine raises the noun after كَانَ and its sisters as the ism and writes the khabar's naṣb, keeps a verb mentioned as a word as written, reads مَا with its verb as one quoted word, and takes a tāmm verb's noun after it as its ism only where the chapter says the verb carries the sense of صَارَ."
+  ],
+  "tr": [
+   "Fiil üç mef'ûle nasıl ulaşır? A'leme ve erâ: birinci mef'ûl a'taytü'nün mef'ûlü gibi (düz bir şey), son ikisi alimtü'nün iki mef'ûlü gibi — aslında mübtedâ ve haber (a'leme Zeydün Amren Bekren fâdılen).",
+   "Her fiilde ne bulunmalıdır? Bir merfû — merfûsuz fiil olmaz.",
+   "TÂM fiil nedir? Merfûuyla bir cümle tamamlayan ve başkasına muhtaç olmayan fiil: merfûu fâil, mansûbu (müteaddî ise) mef'ûl — şimdiye kadar görülen her fiil.",
+   "NÂKIS fiil nedir? Hâlâ mansûb bir ma'mûle muhtaç olan fiil: merfûu İSMİ, mansûbu HABERİ; aslında yalnız mübtedâ ve habere girer.",
+   "Yaklaşma mânâsı taşımayan nâkıs fiiller hangileridir? Kâne ve sâra — sâra mânâsında olduklarında âle, racea, hâle, istehâle, tehavvele, irtedde, câe, kaade; asbaha, emsâ, adhâ, zalle, bâte, âda, gadâ, râha; mâ fetie, mâ'nfekke, mâ beriha, mâ venâ (hepsi mâ zâle mânâsında); mâ dâme ve leyse.",
+   "Tâm fiil nâkıs olabilir mi? Evet, sâra mânâsını yüklendiğinde: temme't-tis'atü bi-hâzâ aşeraten (tam bir on oldu), kemüle Zeydün âlimen (kâmil bir âlim oldu).",
+   "Haberleri onlardan önce gelebilir mi? Evet — başında mâ bulunan kardeşler hariç: kâimen mâ zâle Zeydün câiz değildir, çünkü bu fiillerin hiç ayrılmadığı nefyin önüne bir şey geçemez.",
+   "Motor burada neyi OKUR? DabtEngine kâne ve kardeşlerinden sonraki ismi isim olarak ref eder, haberin nasbını yazar, lafzı kastedilen fiili olduğu gibi tutar, mâ'yı fiiliyle tek bir hikâye kelimesi olarak okur ve tâm fiilin ardındaki ismi ancak bölümün «sâra mânâsı yüklendi» dediği yerde onun ismi sayar."
+  ]
+ },
+ "plain": {
+  "en": "Every verb has a word in rafʿ. If that word finishes the thought, the verb is complete and the word is its doer. If it still needs a word in naṣb — «Zayd was … a scholar» — it is deficient: its noun, then its predicate. The ones beginning with «not» cannot have the predicate put in front.",
+  "tr": "Her fiilin merfû bir kelimesi vardır. O kelime düşünceyi bitiriyorsa fiil tamdır, kelime de fâilidir. Fiil bitmek için hâlâ mansûb bir kelime istiyorsa — «Zeyd … âlim idi» — nâkıstır: birinci kelime ismi, ikincisi haberidir. Birgivî bunları sayar ve «mâ» ile başlayanların haberinin öne alınamayacağını söyler."
+ },
+ "explanation": {
+  "en": "The third kind of the mutaʿaddī is transitive to three objects, as أَعْلَمَ and أَرَى: their first object is like the object of the bāb of أَعْطَيْتُ, and the last two like the two objects of the bāb of عَلِمْتُ — أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا. Then know that every verb must have a marfūʿ. If a sentence is complete with it and the verb needs nothing else, it is named a tāmm verb, its marfūʿ a doer and its manṣūb — if it is transitive — an object, like the verbs before. If it needs a manṣūb governed word it is named a nāqiṣ verb, its marfūʿ its ism and its manṣūb its khabar; in origin it enters only on the mubtadaʾ and the khabar. It is of two divisions. The first signifies no sense of approach — the common one, what first comes to mind when «the nāqiṣ verb» is said: كَانَ and صَارَ, and likewise آلَ، رَجَعَ، حَالَ، اسْتَحَالَ، تَحَوَّلَ، ارْتَدَّ، جَاءَ، قَعَدَ when they are in the sense of صَارَ; أَصْبَحَ، أَمْسَى، أَضْحَى، ظَلَّ، بَاتَ، آضَ، غَدَا، رَاحَ; مَا فَتِئَ (with the tāʾ's fatḥa and its kasra), مَا انْفَكَّ، مَا بَرِحَ، مَا وَنَى — all in the sense of مَا زَالَ — and مَا دَامَ and لَيْسَ. A tāmm verb may carry the sense of صَارَ and become nāqiṣ: تَمَّ التِّسْعَةُ بِهٰذَا عَشَرَةً (became a complete ten), كَمُلَ زَيْدٌ عَالِمًا (became a complete scholar), and other such. Their khabars may be put before them, except the ones opened by مَا: قَائِمًا مَا زَالَ زَيْدٌ is not allowed. The second division — the verbs of approach — follows.",
+  "tr": "Müteaddînin üçüncü türü üç mef'ûle müteaddîdir: a'leme ve erâ gibi; birinci mef'ûlleri a'taytü bâbının mef'ûlü, son ikisi alimtü bâbının iki mef'ûlü gibidir — a'leme Zeydün Amren Bekren fâdılen. Sonra bil ki her fiilin mutlaka bir merfûu vardır. Onunla cümle tamam olur ve fiil başkasına muhtaç olmazsa tâm fiil, merfûu fâil, mansûbu — müteaddî ise — mef'ûl diye adlandırılır, önceki fiiller gibi. Mansûb bir ma'mûle muhtaç olursa nâkıs fiil, merfûu ismi, mansûbu haberi diye adlandırılır; aslında yalnız mübtedâ ve habere girer. İki kısımdır. Birincisi yaklaşma mânâsına delâlet etmeyendir — yaygın olan, «nâkıs fiil» denince ilk akla gelen: kâne ve sâra; sâra mânâsında olduklarında âle, racea, hâle, istehâle, tehavvele, irtedde, câe, kaade; asbaha, emsâ, adhâ, zalle, bâte, âda, gadâ, râha; mâ fetie (tânın fethası ve kesresiyle), mâ'nfekke, mâ beriha, mâ venâ — hepsi mâ zâle mânâsında — ve mâ dâme ile leyse. Tâm fiil sâra mânâsını yüklenip nâkıs olabilir: temme't-tis'atü bi-hâzâ aşeraten (tam bir on oldu), kemüle Zeydün âlimen (kâmil bir âlim oldu) ve benzerleri. Haberleri onlardan önce gelebilir, mâ ile açılanlar hariç: kâimen mâ zâle Zeydün câiz değildir. İkinci kısım — mukârebe fiilleri — bundan sonra gelir."
+ },
+ "examples": [
+  {
+   "ar": "أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا",
+   "en": "three objects: the first a plain thing, the last two a mubtadaʾ and khabar in origin",
+   "tr": "üç mef'ûl: birincisi düz bir şey, son ikisi aslında mübtedâ ve haber",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s1"
+  },
+  {
+   "ar": "يُسَمَّى فِعْلًا تَامًّا، وَمَرْفُوعُهُ فَاعِلًا",
+   "en": "the tāmm verb: its marfūʿ the doer",
+   "tr": "tâm fiil: merfûu fâil",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s2"
+  },
+  {
+   "ar": "يُسَمَّى فِعْلًا نَاقِصًا، وَمَرْفُوعُهُ اسْمًا لَهُ، وَمَنْصُوبُهُ خَبَرًا لَهُ",
+   "en": "the nāqiṣ verb: ism and khabar",
+   "tr": "nâkıs fiil: isim ve haber",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s3"
+  },
+  {
+   "ar": "كَانَ وَصَارَ، وَكَذَا آلَ وَرَجَعَ وَحَالَ وَاسْتَحَالَ وَتَحَوَّلَ وَارْتَدَّ وَجَاءَ وَقَعَدَ إِذَا كُنَّ بِمَعْنَى صَارَ",
+   "en": "the sisters that mean «to become»",
+   "tr": "«olmak» mânâsındaki kardeşler",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَا فَتِئَ وَمَا انْفَكَّ وَمَا بَرِحَ وَمَا وَنَى كُلُّهَا بِمَعْنَى مَا زَالَ",
+   "en": "the sisters that never leave the negation",
+   "tr": "nefiyden hiç ayrılmayan kardeşler",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s5"
+  },
+  {
+   "ar": "تَمَّ التِّسْعَةُ بِهٰذَا عَشَرَةً",
+   "en": "a tāmm verb carrying the sense of ṣāra, governing an ism and a khabar",
+   "tr": "sâra mânâsı yüklenip isim ve habere amel eden tâm fiil",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s6"
+  },
+  {
+   "ar": "قَائِمًا مَا زَالَ زَيْدٌ",
+   "en": "the forbidden fronting before a sister opened by mā",
+   "tr": "mâ ile açılan kardeşin önüne alınan haber — yasak",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "كَانَ زَيْدٌ عَالِمٌ",
+   "right": "كَانَ زَيْدٌ عَالِمًا",
+   "why": {
+    "en": "the nāqiṣ verb puts its khabar in naṣb — it still needed a manṣūb to be complete",
+    "tr": "nâkıs fiil haberini nasb eder — tamam olmak için hâlâ bir mansûba muhtaçtı"
+   }
+  },
+  {
+   "wrong": "قَائِمًا مَا زَالَ زَيْدٌ",
+   "right": "مَا زَالَ زَيْدٌ قَائِمًا",
+   "why": {
+    "en": "the khabar of a sister opened by مَا may not stand before it",
+    "tr": "mâ ile açılan kardeşin haberi onun önüne alınamaz"
+   }
+  },
+  {
+   "wrong": "زَالَ زَيْدٌ قَائِمًا",
+   "right": "مَا زَالَ زَيْدٌ قَائِمًا",
+   "why": {
+    "en": "زَالَ, فَتِئَ, انْفَكَّ, بَرِحَ, وَنَى work as sisters of kāna only under a negation",
+    "tr": "zâle, fetie, infekke, beriha, venâ ancak nefiy altında kâne'nin kardeşi olur"
+   }
+  },
+  {
+   "wrong": "أَعْلَمَ زَيْدٌ عَمْرًا بَكْرٌ فَاضِلٌ",
+   "right": "أَعْلَمَ زَيْدٌ عَمْرًا بَكْرًا فَاضِلًا",
+   "why": {
+    "en": "the mubtadaʾ and khabar that follow the first object become the second and third objects, in naṣb",
+    "tr": "birinci mef'ûlden sonraki mübtedâ ve haber ikinci ve üçüncü mef'ûl olarak nasb edilir"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "afal-al-muqaraba",
+  "al-mustathna-wa-nawah-wa-nasbuh"
+ ]
+}

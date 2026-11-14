@@ -1,0 +1,129 @@
+{
+ "id": "asma-al-adad-fil-kafiya",
+ "title": {
+  "ar": "أَسْمَاءُ الْعَدَدِ فِي الْكَافِيَةِ",
+  "en": "The number nouns in the Kafiya: the twelve roots, the gender rule, the compounds, the decades, the joining, the tamyīz, the ordinals",
+  "tr": "Kâfiye'de sayı isimleri: on iki asıl, cins kuralı, mürekkebler, onluklar, atıf, temyîz, sıra sayıları"
+ },
+ "level": 3,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — أسماء العدد: ما وضع لكمية آحاد الأشياء؛ أصولها اثنتا عشرة كلمة؛ الثلاثة إلى العشرة بالتاء للمذكر؛ أحد عشر إلى تسعة عشر؛ العقود؛ المائة والألف؛ مميز العدد؛ ثان إلى عاشر",
+  "ضياء صونغور اوغلى — دفتر الكافية: التعريف بلفظه، جداول الصيغ من الواحد إلى الألف، واحد واثنان لا يميزان"
+ ],
+ "question": {
+  "en": [
+   "What is a NUMBER NOUN? A noun coined for the quantity of the units of things. Twelve roots: one to ten, a hundred, a thousand; every other number is compounded, joined or derived from them.",
+   "Why does ثَلَاثَةُ رِجَالٍ carry a tāʾ for MEN? Because three to ten reverse the ordinary gender mark: tāʾ with a masculine counted noun, none with a feminine (ثَلَاثُ نِسْوَةٍ). One and two simply agree (وَاحِدٌ / وَاحِدَةٌ) and take no tamyīz, since رَجُلٌ and رَجُلَانِ already say it.",
+   "What happens from eleven to nineteen? The two parts fuse and are built on the fatḥ (أَحَدَ عَشَرَ، ثَلَاثَةَ عَشَرَ); only اثْنَا عَشَرَ keeps its first part declining like a dual (اثْنَيْ عَشَرَ). The feminine runs إِحْدَى عَشْرَةَ … تِسْعَ عَشْرَةَ with the gender marks swapped as before.",
+   "And above? The decades عِشْرُونَ … تِسْعُونَ serve both genders and decline like the sound plural; مِائَةٌ and أَلْفٌ serve both too. Units are joined to decades with the wāw (أَحَدٌ وَعِشْرُونَ، إِحْدَى وَعِشْرُونَ) and everything above a hundred or a thousand is joined to it (مِائَةٌ وَوَاحِدٌ).",
+   "How is the counted noun put? Three to ten: a plural in jarr (ثَلَاثَةُ رِجَالٍ). Eleven to ninety-nine: a singular in naṣb (أَحَدَ عَشَرَ رَجُلًا، عِشْرُونَ رَجُلًا). A hundred and a thousand: a singular in jarr (مِائَةُ رَجُلٍ).",
+   "What are the ordinals? ثَانٍ to عَاشِرٌ, derived on فَاعِل from the singulars «for making the number» — the third makes two into three — with the tāʾ for the feminine; there is none below two and none above ten.",
+   "What does the engine do? The AdadEngine composes 1–9999 exactly by these rules — the gender polarity, the fused teens with their dual exception, the decades on the wāw — and puts the counted noun in the case the chapter assigns; the numbers game draws its wrong answers from the classic slips (polarity flipped, tamyīz in the wrong shape)."
+  ],
+  "tr": [
+   "SAYI İSMİ nedir? Eşyanın fertlerinin miktarı için konulmuş isim. On iki asıl: birden ona, yüz, bin; diğer her sayı bunlardan birleştirilir, atfedilir ya da türetilir.",
+   "ثَلَاثَةُ رِجَالٍ ERKEKLER için neden tâ taşır? Çünkü üçten ona kadar olağan cins alâmeti tersine döner: müzekker ma'dûdla tâ, müennesle tâsız (ثَلَاثُ نِسْوَةٍ). Bir ve iki yalnızca uyar (وَاحِدٌ / وَاحِدَةٌ) ve temyîz almaz; çünkü رَجُلٌ ve رَجُلَانِ bunu zaten söyler.",
+   "On birden on dokuza ne olur? İki cüz' kaynaşır ve feth üzere mebnî olur (أَحَدَ عَشَرَ، ثَلَاثَةَ عَشَرَ); yalnız اثْنَا عَشَرَ birinci cüz'ünü tesniye gibi i'râblamaya devam eder (اثْنَيْ عَشَرَ). Müennes إِحْدَى عَشْرَةَ … تِسْعَ عَشْرَةَ şeklinde, cins alâmetleri yine ters.",
+   "Ya yukarısı? Onluklar عِشْرُونَ … تِسْعُونَ iki cinse birden hizmet eder ve sâlim cemi gibi i'râblanır; مِائَةٌ ve أَلْفٌ de her iki cinse. Birler onluklara vâv ile atfedilir (أَحَدٌ وَعِشْرُونَ، إِحْدَى وَعِشْرُونَ); yüzü ya da bini aşan ona atfedilir (مِائَةٌ وَوَاحِدٌ).",
+   "Ma'dûd nasıl konur? Üçten ona: cemi mecrûr (ثَلَاثَةُ رِجَالٍ). On birden doksan dokuza: müfred mansûb (أَحَدَ عَشَرَ رَجُلًا، عِشْرُونَ رَجُلًا). Yüz ve bin: müfred mecrûr (مِائَةُ رَجُلٍ).",
+   "Sıra sayıları nedir? Müfredlerden «sayıyı yapan» manasında فَاعِل üzere türetilen ثَانٍ'den عَاشِرٌ'e — üçüncü, ikiyi üç yapar — müennesde tâ ile; ikinin altında ve onun üstünde yoktur.",
+   "Motor ne yapar? AdadEngine 1–9999'u tam bu kurallarla kurar — cins zıtlığı, tesniye istisnâlı kaynaşık on'lu sayılar, vâv üzere onluklar — ve ma'dûdu bâbın verdiği hâle koyar; sayı oyunu yanlış cevaplarını klasik sürçmelerden (ters zıtlık, yanlış şekilde temyîz) çeker."
+  ]
+ },
+ "plain": {
+  "en": "Twelve words make every number: one to ten, a hundred, a thousand. Three to ten take the tāʾ for masculine things and drop it for feminine; eleven to nineteen fuse on -a (except twelve); the decades serve both genders. The counted noun is plural after 3–10, singular accusative after 11–99, singular genitive after 100.",
+  "tr": "On iki kelime her sayıyı yapar: birden ona, yüz, bin. Üçten ona kadar müzekkeri sayarken tâ alır, müennesde düşürür; on birden on dokuza tek kelimeye -a üzere kaynaşır (on iki hariç); onluklar iki cinse birdir. Ma'dûd 3–10'dan sonra cemi, 11–99'dan sonra müfred mansûb, 100 ve 1000'den sonra müfred mecrûrdur."
+ },
+ "explanation": {
+  "en": "Ibn al-Hajib puts the whole arithmetic of Arabic into one short chapter by naming its twelve roots and the three operations that build everything else: compounding (the teens, two words fused and built on the fatḥ, with twelve the lone exception because its first half is a real dual that loses its nūn like a muḍāf), joining (the units set before the decades with the wāw, and anything beyond a hundred or a thousand set after it), and derivation (the ordinals on فَاعِل, «the one who makes the count»). The famous reversed tāʾ of three to ten is stated as the rule it is — tāʾ with the masculine, none with the feminine — and the notebook's tables walk it from ثَلَاثَةٌ to تِسْعَةٌ in both genders, then through every decade with its units, which is why the AdadEngine can be checked against them row by row. The counted noun's case is the chapter's second half, and it is a case rule rather than a meaning rule: the small numbers annex a plural (ثَلَاثَةُ رِجَالٍ), the teens and decades take a singular tamyīz in naṣb (عِشْرُونَ رَجُلًا), and the large round numbers annex a singular (مِائَةُ رَجُلٍ) — three shapes for one idea, and the games' wrong answers are exactly the three shapes put in the wrong places. The notebook's remark that وَاحِدٌ and اثْنَانِ take no tamyīz belongs to the same logic: the counted noun says «one man» or «two men» by its own form, so a number word beside it would only repeat.",
+  "tr": "İbnü'l-Hâcib Arapçanın bütün sayı düzenini on iki aslı ve geri kalan her şeyi kuran üç işlemi adlandırarak kısa bir bâba sığdırır: terkip (on'lu sayılar, iki kelime kaynaşıp feth üzere mebnî; on iki tek istisnâ, çünkü birinci yarısı nûnunu muzâf gibi kaybeden gerçek bir tesniyedir), atıf (birler vâv ile onlukların önüne, yüzü ya da bini aşan onun arkasına) ve iştikak (فَاعِل üzere sıra sayıları, «sayıyı yapan»). Üçten ona meşhur ters tâ olduğu gibi kural olarak söylenir — müzekkerle tâ, müennesle tâsız — ve defterin tabloları onu iki cinste ثَلَاثَةٌ'den تِسْعَةٌ'ye, sonra birleriyle her onluk boyunca yürütür; AdadEngine'in satır satır bunlara karşı denetlenebilmesi bu yüzdendir. Ma'dûdun hâli bâbın ikinci yarısıdır ve mana kuralı değil hâl kuralıdır: küçük sayılar bir cemi muzâf alır (ثَلَاثَةُ رِجَالٍ), on'lu sayılar ve onluklar müfred mansûb temyîz alır (عِشْرُونَ رَجُلًا), büyük yuvarlak sayılar bir müfred muzâf alır (مِائَةُ رَجُلٍ) — tek fikir için üç şekil; oyunların yanlış cevapları tam da yanlış yere konmuş bu üç şekildir. Defterin وَاحِدٌ ve اثْنَانِ'nin temyîz almadığı notu aynı mantıktandır: ma'dûd kendi şekliyle «bir adam» ya da «iki adam» der; yanındaki sayı kelimesi yalnız tekrar olur."
+ },
+ "examples": [
+  {
+   "ar": "أَسْمَاءُ الْعَدَدِ: مَا وُضِعَ لِكَمِّيَّةِ آحَادِ الْأَشْيَاءِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "ثَلَاثَةٌ … عَشَرَةٌ لِلْمُذَكَّرِ، وَثَلَاثٌ … عَشْرٌ لِلْمُؤَنَّثِ",
+   "en": "The reversed tāʾ.",
+   "tr": "Ters tâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "أَحَدَ عَشَرَ، اثْنَا عَشَرَ، ثَلَاثَةَ عَشَرَ — إِحْدَى عَشْرَةَ، اثْنَتَا عَشْرَةَ",
+   "en": "The compounds and the dual exception.",
+   "tr": "Mürekkebler ve tesniye istisnâsı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "أَحَدٌ وَعِشْرُونَ، إِحْدَى وَعِشْرُونَ، مِائَةٌ وَوَاحِدٌ",
+   "en": "The joining.",
+   "tr": "Atıf.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "مَجْمُوعٌ مَجْرُورٌ — مُفْرَدٌ مَنْصُوبٌ — مُفْرَدٌ مَجْرُورٌ",
+   "en": "The three shapes of the counted noun.",
+   "tr": "Ma'dûdun üç şekli.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "ثَانٍ، ثَالِثٌ … عَاشِرٌ",
+   "en": "The ordinals.",
+   "tr": "Sıra sayıları.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«ثَلَاثُ رِجَالٍ — adamlar müzekker, sayı tâsız»",
+   "right": "«ثَلَاثَةُ رِجَالٍ — üçten ona müzekker ma'dûdla tâ gelir; ثَلَاثُ نِسْوَةٍ»",
+   "why": {
+    "en": "Three to ten reverse the gender mark; the counted noun's own gender decides, in the opposite direction.",
+    "tr": "Üçten ona cins alâmeti ters döner; ma'dûdun kendi cinsi karar verir, ters yönde."
+   }
+  },
+  {
+   "wrong": "«خَمْسَةَ عَشَرَ رِجَالٍ — on'lu sayıdan sonra cemi mecrûr»",
+   "right": "«خَمْسَةَ عَشَرَ رَجُلًا — on birden doksan dokuza temyîz müfred mansûbdur»",
+   "why": {
+    "en": "Only three to ten annex a plural; the teens and decades take a singular in naṣb.",
+    "tr": "Yalnız üçten ona cemi muzâf alır; on'lu sayılar ve onluklar müfred mansûb alır."
+   }
+  },
+  {
+   "wrong": "«اثْنَا عَشَرَ رَجُلًا رَأَيْتُ — on iki her hâlde اثْنَا ile»",
+   "right": "«رَأَيْتُ اثْنَيْ عَشَرَ رَجُلًا — birinci cüz' tesniye gibi i'râblanır: nasb ve cerde اثْنَيْ»",
+   "why": {
+    "en": "Twelve is the one compound whose first half declines, because its nūn drops as a muḍāf's would.",
+    "tr": "On iki, birinci yarısı i'râblanan tek mürekkebdir; çünkü nûnu bir muzâfınki gibi düşer."
+   }
+  },
+  {
+   "wrong": "«وَاحِدُ رَجُلٍ — bir adam»",
+   "right": "«رَجُلٌ — bir ve iki temyîz almaz; ma'dûd kendi şekliyle söyler»",
+   "why": {
+    "en": "The notebook's point: رَجُلٌ and رَجُلَانِ already convey one and two, so the number word would only repeat.",
+    "tr": "Defterin noktası: رَجُلٌ ve رَجُلَانِ bir ve ikiyi zaten söyler; sayı kelimesi yalnız tekrar olur."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-tamyiz-wa-ahkamuh",
+  "tamyiz",
+  "al-mabni-al-lazim-al-murakkab-al-adadi-wa-bayta-bayta-wa-ithna-ashar",
+  "al-muthanna",
+  "jam-mudhakkar-salim",
+  "al-muannath-wa-alamatuh",
+  "idafa-definiteness"
+ ]
+}

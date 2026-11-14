@@ -1,0 +1,122 @@
+{
+ "id": "huruf-al-qasam-fil-kafiya",
+ "title": {
+  "ar": "حُرُوفُ الْقَسَمِ وَجَوَابُهُ فِي الْكَافِيَةِ",
+  "en": "The oath letters in the Kafiya: the wāw's three restrictions, the tāʾ on the name of God, the bāʾ's generality, the three answers, and when the answer is dropped",
+  "tr": "Kâfiye'de kasem harfleri: vâvın üç kaydı, Allah lafzındaki tâ, bâ'nın umumîliği, üç cevap ve cevabın düştüğü yer"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — واو القسم لا تستعمل إلا بحذف الفعل، ولغير السؤال، ومختصة بالاسم الظاهر؛ والتاء كالواو مختصة باسم الله؛ والباء أعم",
+  "ضياء صونغور اوغلى — دفتر الكافية: جواب القسم باللام وإن والنفي؛ حذف الجواب إذا تقدمت الجملة الدالة عليه أو توسط القسم"
+ ],
+ "question": {
+  "en": [
+   "What does the wāw of the oath refuse? Three things: a stated verb (أَقْسَمْتُ وَاللهِ is not said — the wāw already means «I swear»), a request (وَاللهِ أَخْبِرْنِي is not said), and a pronoun (وَكَ is not said). Each refusal is a test the analyzer can run on the surface.",
+   "And the tāʾ? Everything the wāw refuses, plus one more: it takes no noun but the name of God — تَاللهِ and nothing else.",
+   "Why is the bāʾ «more general»? Because it passes every test the other two fail: أُقْسِمُ بِاللهِ with the verb, بِاللهِ without it, بِاللهِ لَأَفْعَلَنَّ in a statement, بِاللهِ اجْلِسْ in a request, and بِكَ لَأَفْعَلَنَّ on a pronoun. The three letters are one meaning at three widths.",
+   "How is an oath answered? By one of three heads: the lām (لَزَيْدٌ قَائِمٌ, لَأَفْعَلَنَّ — with the emphatic nūn on a verb), إِنَّ (إِنَّ زَيْدًا لَقَائِمٌ), or a negation (مَا زَيْدٌ بِقَائِمٍ, لَا يَقُومُ زَيْدٌ). The kernel's oath detector looks for exactly these three after a majrūr name of God.",
+   "When is the answer missing? When the sentence that would be the answer already stands before the oath (زَيْدٌ قَائِمٌ وَاللهِ) or has the oath lodged inside it (زَيْدٌ وَاللهِ قَائِمٌ). The answer is then said to be dropped, because the earlier sentence shows it — the HadhfEngine's rule for the jawāb al-qasam.",
+   "What does the engine do? The oath letters are registered in the PARTICLES table with their restrictions; the HadhfEngine audits the dropped jawāb; and the SignEngine reads لَأَفْعَلَنَّ as built on the fatḥa because of the nūn, not as manṣūb."
+  ],
+  "tr": [
+   "Kasem vâvı neyi reddeder? Üç şeyi: açık bir fiili (أَقْسَمْتُ وَاللهِ denmez — vâv zaten «yemin ederim» demektir), bir isteği (وَاللهِ أَخْبِرْنِي denmez) ve bir zamiri (وَكَ denmez). Her ret, analizörün yüzeyde çalıştırabileceği bir testtir.",
+   "Ya tâ? Vâvın reddettiği her şey, artı bir tane daha: Allah lafzından başka isim almaz — تَاللهِ, başka hiçbir şey.",
+   "Bâ neden «daha umumî»dir? Çünkü ötekilerin kaldığı her testten geçer: fiille أُقْسِمُ بِاللهِ, fiilsiz بِاللهِ, haberde بِاللهِ لَأَفْعَلَنَّ, sualde بِاللهِ اجْلِسْ ve zamirde بِكَ لَأَفْعَلَنَّ. Üç harf, üç genişlikte tek mânâdır.",
+   "Kasem nasıl cevaplanır? Üç baştan biriyle: lâm (لَزَيْدٌ قَائِمٌ, لَأَفْعَلَنَّ — fiilde te'kid nûnuyla), إِنَّ (إِنَّ زَيْدًا لَقَائِمٌ) ya da nefy (مَا زَيْدٌ بِقَائِمٍ, لَا يَقُومُ زَيْدٌ). Çekirdeğin kasem dedektörü mecrûr Allah lafzından sonra tam bu üçünü arar.",
+   "Cevap ne zaman yoktur? Cevap olacak cümle zaten kasemden önce durduğunda (زَيْدٌ قَائِمٌ وَاللهِ) ya da kasem onun içine yerleştiğinde (زَيْدٌ وَاللهِ قَائِمٌ). O zaman cevap hazfedilmiş sayılır, çünkü önceki cümle onu gösterir — HadhfEngine'in cevâb-ı kasem kuralı.",
+   "Motor ne yapar? Kasem harfleri kayıtlarıyla PARTICLES tablosuna kayıtlıdır; HadhfEngine mahzûf cevabı denetler; SignEngine لَأَفْعَلَنَّ'yi mansûb değil nûn sebebiyle fetha üzere mebnî okur."
+  ]
+ },
+ "plain": {
+  "en": "Arabic swears with three letters: wa-llāhi, ta-llāhi, bi-llāhi. The wāw needs no «I swear», cannot ask for anything and takes no pronoun; the tāʾ works only on God's name; the bāʾ does everything. An oath is answered by «surely», by inna, or by «not»; the answer is left out when the sentence around it says it.",
+  "tr": "Arapça üç harfle yemin eder: vallahi, tallahi, billâhi. Vâv «yemin ederim» istemez, bir şey isteyemez ve zamir almaz; tâ yalnız Allah lafzında işler; bâ her şeyi yapar. Kasem «elbette» ile, inne ile ya da «değil» ile cevaplanır ve çevresindeki cümle onu zaten söylüyorsa cevap bırakılabilir."
+ },
+ "explanation": {
+  "en": "The three oath letters are presented as the notebook presents them: by what each may and may not do. The wāw's three bars — no stated verb, no request, no pronoun — are each given with the sentence that is not said, which is the madrasah's way of teaching a prohibition. The tāʾ inherits them and adds the restriction to the name of God. The bāʾ is defined as the widest of the three, and the notebook proves it by walking the bāʾ through every door the wāw cannot open: the stated verb, the request, the pronoun. The answer of the oath is then given in the three heads with their paired examples, and the chapter closes with the rule of the dropped answer, which is really a rule about order: an answer-sentence that stands before the oath, or that the oath interrupts, is not repeated. Two notes for the parser: لَأَفْعَلَنَّ is a muḍāriʿ built on the fatḥa because of the heavy nūn, not a manṣūb; and in مَا زَيْدٌ بِقَائِمٍ the bāʾ is the redundant bāʾ of the previous chapters, so قَائِمٍ is majrūr in letter and khabar in place.",
+  "tr": "Üç kasem harfi defterin sunduğu gibi sunulur: her birinin yapabildiği ve yapamadığıyla. Vâvın üç yasağı — açık fiil yok, istek yok, zamir yok — her biri söylenmeyen cümleyle verilir; medresenin yasak öğretme yolu budur. Tâ bunları devralır ve Allah lafzı kaydını ekler. Bâ üçün en genişi olarak tarif edilir ve defter bunu bâ'yı vâvın açamadığı her kapıdan geçirerek kanıtlar: açık fiil, istek, zamir. Sonra kasemin cevabı çift örnekli üç başla verilir ve bâb, aslında bir sıra kuralı olan mahzûf cevap kuralıyla kapanır: kasemden önce duran ya da kasemin böldüğü cevap cümlesi tekrarlanmaz. Çözümleyici için iki not: لَأَفْعَلَنَّ şeddeli nûn sebebiyle fetha üzere mebnî bir muzâridir, mansûb değil; مَا زَيْدٌ بِقَائِمٍ'deki bâ önceki bâbların zâid bâ'sıdır, dolayısıyla قَائِمٍ lafzen mecrûr, mahallen haberdir."
+ },
+ "examples": [
+  {
+   "ar": "أَقْسَمْتُ وَاللهِ — وَاللهِ أَخْبِرْنِي — وَكَ",
+   "en": "The three things the wāw refuses.",
+   "tr": "Vâvın reddettiği üç şey.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "تَاللهِ",
+   "en": "The tāʾ on the name of God.",
+   "tr": "Allah lafzında tâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "أُقْسِمُ بِاللهِ — بِاللهِ اجْلِسْ — بِكَ لَأَفْعَلَنَّ",
+   "en": "The bāʾ passes every door.",
+   "tr": "Bâ her kapıdan geçer.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "وَاللهِ لَزَيْدٌ قَائِمٌ — وَاللهِ إِنَّ زَيْدًا لَقَائِمٌ — وَاللهِ مَا زَيْدٌ بِقَائِمٍ",
+   "en": "The three answers.",
+   "tr": "Üç cevap.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "زَيْدٌ قَائِمٌ وَاللهِ — زَيْدٌ وَاللهِ قَائِمٌ",
+   "en": "The answer dropped.",
+   "tr": "Mahzûf cevap.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«أَقْسَمْتُ وَاللهِ»",
+   "right": "«أُقْسِمُ بِاللهِ — fiil açıkça gelince kasem harfi bâ'dır»",
+   "why": {
+    "en": "The wāw is used only with the verb dropped.",
+    "tr": "Vâv ancak fiilin hazfiyle kullanılır."
+   }
+  },
+  {
+   "wrong": "«تَرَبِّي»",
+   "right": "«تَاللهِ — tâ yalnız Allah lafzına girer; وَرَبِّي، بِرَبِّي»",
+   "why": {
+    "en": "The tāʾ is confined to the name of God.",
+    "tr": "Tâ Allah lafzına mahsustur."
+   }
+  },
+  {
+   "wrong": "«وَاللهِ لَأَفْعَلَنَّ — mansûb muzâri»",
+   "right": "«te'kid nûnu sebebiyle fetha üzere mebnî muzâri»",
+   "why": {
+    "en": "The heavy nūn builds the verb; nothing governs it in naṣb.",
+    "tr": "Şeddeli nûn fiili mebnî kılar; onu nasb eden bir şey yoktur."
+   }
+  },
+  {
+   "wrong": "«زَيْدٌ وَاللهِ قَائِمٌ — cevap قَائِمٌ'dur»",
+   "right": "«cevap mahzûftur; قَائِمٌ, زَيْدٌ'ün haberidir»",
+   "why": {
+    "en": "An oath lodged inside a sentence takes no separate answer.",
+    "tr": "Cümle içine yerleşen kasem ayrı cevap almaz."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-lam-wa-rubba-fil-kafiya",
+  "huruf-jarr",
+  "nun-tawkid",
+  "inna-wa-akhawatuha",
+  "hadhf-wa-taqdir",
+  "qasr",
+  "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya",
+  "al-qasam-wal-shart-fil-kafiya",
+  "nun-al-tawkid-fil-kafiya"
+ ]
+}

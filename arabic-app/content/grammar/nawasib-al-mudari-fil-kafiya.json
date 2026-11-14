@@ -1,0 +1,136 @@
+{
+ "id": "nawasib-al-mudari-fil-kafiya",
+ "title": {
+  "ar": "نَوَاصِبُ الْمُضَارِعِ فِي الْكَافِيَةِ",
+  "en": "The nāṣibs of the muḍāriʿ in the Kafiya: the four that govern openly, the six places of the hidden أَنْ, and the notebook's conditions for each",
+  "tr": "Kâfiye'de muzârinin nasb edicileri: açıkça amel eden dört, gizli أَنْ'in altı yeri ve defterin her biri için şartları"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — المضارع يرفع إذا تجرد عن الناصب والجازم؛ وينصب بأن ولن وكي وإذن، وبأن مضمرة بعد حتى ولام كي ولام الجحود والفاء والواو وأو",
+  "ضياء صونغور اوغلى — دفتر الكافية: أن المصدرية والمخففة بعد العلم والظن؛ لن للتأكيد لا للتأبيد؛ شرطا إذن؛ كي للسببية؛ حتى بمعنى كي وإلى وحرف الابتداء؛ الفاء والواو بعد الستة؛ أو بمعنى إلى أن؛ إظهار أن وإضمارها"
+ ],
+ "question": {
+  "en": [
+   "When is a muḍāriʿ in RAFʿ? When nothing governs it — no nāṣib, no jāzim: يَقُومُ زَيْدٌ. Rafʿ is the absence of a governor, which is why the Iẓhār calls its governor «maʿnawī».",
+   "Which particles put it in NAṢB openly? Four: أَنْ, لَنْ, كَيْ, إِذَنْ. And a hidden أَنْ does the work in six more places: after حَتَّى, the lām of كَيْ, the lām of denial, the fāʾ, the wāw and أَوْ.",
+   "What does أَنْ do? It makes the clause a maṣdar — أُرِيدُ أَنْ تُحْسِنَ إِلَيَّ is «I want your doing-good», أَنْ تَصُومُوا خَيْرٌ لَكُمْ «your fasting is better». After a verb of certainty (عَلِمْتُ) the أَنْ is the lightened أَنَّ and governs nothing (عَلِمْتُ أَنْ سَيَقُومُ); after a verb of opinion both readings stand (وَحَسِبُوا أَنْ لَا تَكُونَ فِتْنَةٌ).",
+   "What of لَنْ and إِذَنْ? لَنْ denies the future emphatically, not eternally (لَنْ أَبْرَحَ). إِذَنْ governs only when its clause does not lean on what came before AND the verb is future (إِذَنْ تَدْخُلَ الْجَنَّةَ); lose either and the verb is raised (أَنَا إِذَنْ أَظُنُّكَ كَاذِبًا); after وَ or فَ both are allowed.",
+   "When does حَتَّى govern? When it means كَيْ or إِلَى and the verb after it is future from the standpoint of what precedes (أَسْلَمْتُ حَتَّى أَدْخُلَ الْجَنَّةَ، أَسِيرُ حَتَّى تَغِيبَ الشَّمْسُ). If a present is meant, actual or narrated, it is a particle of beginning and the verb stays in rafʿ (مَرِضَ فُلَانٌ حَتَّى لَا يَرْجُونَهُ).",
+   "When do the fāʾ and the wāw govern? Only after the SIX — command, prohibition, question, negation, wish, offer — the fāʾ for cause (زُرْنِي فَأُكْرِمَكَ: your visit causes my honouring) and the wāw for joining (زُرْنِي وَأُكْرِمَكَ: both together). أَوْ governs when it means «until» or «unless» (لَأَلْزَمَنَّكَ أَوْ تُعْطِيَنِي حَقِّي), and any conjunction does when it joins a verb to a plain noun (ضَرْبُكَ زَيْدًا وَتَشْتُمَ).",
+   "May the hidden أَنْ be written? After the lām of كَيْ and after a conjunction, yes (لِأَنْ أَدْخُلَ، وَأَنْ تَشْتُمَ); when لَا follows the lām it must be, and the three fuse into لِئَلَّا. The engine's analyzer pushes a verb expectation after each of these and refuses to read a مَا after لِئَلَّا as anything but the merged negation."
+  ],
+  "tr": [
+   "Muzâri ne zaman REF'tedir? Onu yöneten yokken — nasb edici de cezm edici de yok: يَقُومُ زَيْدٌ. Ref' âmilin yokluğudur; İzhâr'ın âmiline «ma'nevî» demesinin sebebi budur.",
+   "Hangi edatlar onu açıkça NASB eder? Dört: أَنْ, لَنْ, كَيْ, إِذَنْ. Altı yerde daha işi gizli bir أَنْ görür: حَتَّى, kéy lâmı, cuhûd lâmı, fâ, vâv ve أَوْ'den sonra.",
+   "أَنْ ne yapar? Cümleyi masdar kılar — أُرِيدُ أَنْ تُحْسِنَ إِلَيَّ «ihsan etmeni istiyorum», أَنْ تَصُومُوا خَيْرٌ لَكُمْ «oruç tutmanız daha hayırlıdır». Yakîn fiilinden sonra (عَلِمْتُ) أَنْ, hafifletilmiş أَنَّ'dir ve amel etmez (عَلِمْتُ أَنْ سَيَقُومُ); zan fiilinden sonra iki okunuş da durur (وَحَسِبُوا أَنْ لَا تَكُونَ فِتْنَةٌ).",
+   "Ya لَنْ ve إِذَنْ? لَنْ istikbâli te'kîdle nefy eder, ebediyyen değil (لَنْ أَبْرَحَ). إِذَنْ yalnız cümlesi öncekine dayanmadığında VE fiil müstakbel olduğunda amel eder (إِذَنْ تَدْخُلَ الْجَنَّةَ); biri eksilince fiil ref'edilir (أَنَا إِذَنْ أَظُنُّكَ كَاذِبًا); وَ ya da فَ'dan sonra ikisi de câizdir.",
+   "حَتَّى ne zaman amel eder? كَيْ veya إِلَى mânâsında olup ardındaki fiil öncekine göre müstakbel olduğunda (أَسْلَمْتُ حَتَّى أَدْخُلَ الْجَنَّةَ، أَسِيرُ حَتَّى تَغِيبَ الشَّمْسُ). Hakikî ya da hikâye edilen hâl kastedilirse ibtidâ harfidir ve fiil ref'te kalır (مَرِضَ فُلَانٌ حَتَّى لَا يَرْجُونَهُ).",
+   "Fâ ve vâv ne zaman amel eder? Yalnız ALTI'dan sonra — emir, nehiy, istifhâm, nefy, temennî, arz — fâ sebep için (زُرْنِي فَأُكْرِمَكَ: ziyaretin ikramıma sebep), vâv cem'iyyet için (زُرْنِي وَأُكْرِمَكَ: ikisi birlikte). أَوْ «-inceye kadar» ya da «-medikçe» mânâsında amel eder (لَأَلْزَمَنَّكَ أَوْ تُعْطِيَنِي حَقِّي); her atıf harfi de fiili sarîh bir isme bağladığında (ضَرْبُكَ زَيْدًا وَتَشْتُمَ).",
+   "Gizli أَنْ yazılabilir mi? Kéy lâmından ve atıf harfinden sonra evet (لِأَنْ أَدْخُلَ، وَأَنْ تَشْتُمَ); lâmı لَا izlediğinde yazılması gerekir ve üçü لِئَلَّا olarak kaynaşır. Motorun analizörü bunların her birinden sonra bir fiil beklentisi iter ve لِئَلَّا'dan sonraki bir مَا'yı birleşik nefyden başka bir şey okumayı reddeder."
+  ]
+ },
+ "plain": {
+  "en": "A present-future verb ends in -u unless something governs it. Four words (أَنْ، لَنْ، كَيْ، إِذَنْ) switch it to -a openly; six more do it through an unspoken أَنْ: حَتَّى, the lām of purpose, the lām of denial, the fāʾ and wāw after a command, prohibition, question, negation, wish or offer, and أَوْ meaning «until».",
+  "tr": "Şimdiki-gelecek zaman fiili bir şey onu yönetmedikçe -u ile biter. Dört kelime (أَنْ، لَنْ، كَيْ، إِذَنْ) onu açıkça -a'ya çevirir; altı yapı daha bunu gizli bir أَنْ ile yapar: حَتَّى, ta'lil lâmı, cuhûd lâmı, emir, nehiy, soru, nefy, dilek ya da teklif sonrası fâ ve vâv, ve «-inceye kadar» anlamındaki أَوْ."
+ },
+ "explanation": {
+  "en": "The matn gives the list in two lines — four open nāṣibs and six seats for a hidden أَنْ — and the notebook spends five pages on what each requires, which is the material the chapter keeps as commentary. The organising fact is that أَنْ is the only real nāṣib of meaning: it turns a clause into a maṣdar, and every hidden-أَنْ case is a place where the language wants that maṣdar reading without pronouncing the particle. That is why حَتَّى governs only when it means «in order to» or «until» and the verb is still ahead — a present state, actual or narrated, makes it a mere particle of beginning — and why the fāʾ and the wāw govern only after the six kinds of non-assertion, where «visit me, that I may honour you» names a consequence rather than stating a fact. The notebook's distinctions are the ones a learner will be asked: the أَنْ after عَلِمْتُ is the lightened أَنَّ and governs nothing, while after حَسِبَ either reading stands; لَنْ is emphatic, not eternal; إِذَنْ needs independence and futurity and loses its force after a conjunction; the fāʾ means cause and the wāw means togetherness. The chapter closes with the surface forms: أَنْ may be shown after the lām of purpose and after a conjunction, and must be shown when لَا follows, where the three letters fuse into لِئَلَّا — a spelling the analyzer has to recognise as a unit. Two readings diverge from the notebook and are recorded: فَأَشْرَبَهُ for its فَأَشْرَبَهَا, and the Form I لَأَلْزَمَنَّكَ for its Form IV.",
+  "tr": "Metin listeyi iki satırda verir — dört açık nasb edici ve gizli أَنْ için altı yer — defter ise her birinin ne gerektirdiğine beş sayfa harcar; bâbın şerh olarak tuttuğu malzeme budur. Düzenleyici olgu, أَنْ'in mânâca tek gerçek nasb edici olmasıdır: cümleyi masdara çevirir ve her gizli-أَنْ hâli, dilin edatı söylemeden o masdar okunuşunu istediği bir yerdir. حَتَّى'nın yalnız «-mek için» ya da «-inceye kadar» anlamına gelip fiil hâlâ ileride olduğunda amel etmesinin — hakikî ya da hikâye edilen bir hâl onu salt ibtidâ harfi yapar — ve fâ ile vâvın yalnız altı tür iddiasızlıktan sonra amel etmesinin sebebi budur; «beni ziyaret et ki sana ikram edeyim» bir olguyu değil bir sonucu adlandırır. Defterin ayrımları öğrenciye sorulacak olanlardır: عَلِمْتُ'den sonraki أَنْ hafifletilmiş أَنَّ'dir ve amel etmez, حَسِبَ'den sonra ise iki okunuş da durur; لَنْ te'kîdlidir, ebedî değil; إِذَنْ bağımsızlık ve istikbâl ister, atıf harfinden sonra gücünü yitirir; fâ sebep, vâv birliktelik demektir. Bâb yüzey biçimleriyle kapanır: أَنْ ta'lil lâmından ve atıf harfinden sonra gösterilebilir, لَا izlediğinde gösterilmelidir; orada üç harf لِئَلَّا olarak kaynaşır — analizörün bir birim olarak tanıması gereken bir yazım. Defterden iki okuyuş ayrılır ve kaydedilir: فَأَشْرَبَهَا yerine فَأَشْرَبَهُ, IV. bâb yerine I. bâb لَأَلْزَمَنَّكَ."
+ },
+ "examples": [
+  {
+   "ar": "يُنْصَبُ بِأَنْ وَلَنْ وَكَيْ وَإِذَنْ، وَبِأَنْ مُضْمَرَةٍ بَعْدَ حَتَّى وَلَامِ كَيْ وَلَامِ الْجُحُودِ وَالْفَاءِ وَالْوَاوِ وَأَوْ",
+   "en": "The matn's list.",
+   "tr": "Metnin listesi.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "أُرِيدُ أَنْ تُحْسِنَ إِلَيَّ — أَنْ تَصُومُوا خَيْرٌ لَكُمْ",
+   "en": "أَنْ as a maṣdar-maker.",
+   "tr": "Masdar kılan أَنْ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "عَلِمْتُ أَنْ سَيَقُومُ — وَحَسِبُوا أَنْ لَا تَكُونَ فِتْنَةٌ",
+   "en": "After certainty, after opinion.",
+   "tr": "Yakînden, zandan sonra.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "إِذَنْ تَدْخُلَ الْجَنَّةَ — أَنَا إِذَنْ أَظُنُّكَ كَاذِبًا",
+   "en": "إِذَنْ governing and not.",
+   "tr": "Amel eden ve etmeyen إِذَنْ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s6"
+  },
+  {
+   "ar": "أَسِيرُ حَتَّى تَغِيبَ الشَّمْسُ — مَرِضَ فُلَانٌ حَتَّى لَا يَرْجُونَهُ",
+   "en": "حَتَّى of end, حَتَّى of beginning.",
+   "tr": "Gâye hattâsı, ibtidâ hattâsı.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "زُرْنِي فَأُكْرِمَكَ … أَلَا تَنْزِلُ فَتُصِيبَ خَيْرًا",
+   "en": "The fāʾ after the six.",
+   "tr": "Altıdan sonra fâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s9"
+  },
+  {
+   "ar": "لِئَلَّا يَعْلَمَ",
+   "en": "The obligatory written أَنْ.",
+   "tr": "Vâcib izhâr edilen أَنْ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s11"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«عَلِمْتُ أَنْ يَقُومَ»",
+   "right": "«عَلِمْتُ أَنْ سَيَقُومُ — yakîn fiilinden sonra أَنْ hafifletilmiş أَنَّ'dir, nasb etmez»",
+   "why": {
+    "en": "Certainty cannot take the hoping أَنْ; the lightened أَنَّ follows and the verb stays raised, often with a sīn or قَدْ between.",
+    "tr": "Yakîn ümit bildiren أَنْ'i alamaz; hafifletilmiş أَنَّ gelir ve fiil merfû kalır, çoğu kez araya sîn ya da قَدْ girer."
+   }
+  },
+  {
+   "wrong": "«لَنْ أَبْرَحَ — ebediyyen ayrılmayacağım»",
+   "right": "«kat'iyyen ayrılmayacağım — لَنْ te'kîd içindir, ebedîlik için değil»",
+   "why": {
+    "en": "The notebook rejects the eternity reading explicitly.",
+    "tr": "Defter ebedîlik okunuşunu açıkça reddeder."
+   }
+  },
+  {
+   "wrong": "«أَنَا إِذَنْ أَظُنَّكَ كَاذِبًا»",
+   "right": "«أَنَا إِذَنْ أَظُنُّكَ كَاذِبًا — fiil öncekinin haberidir ve hâl içindir; إِذَنْ amel etmez»",
+   "why": {
+    "en": "Both of إِذَنْ's conditions fail: the verb leans on أَنَا and is present.",
+    "tr": "إِذَنْ'in iki şartı da düşer: fiil أَنَا'ya dayanır ve hâl içindir."
+   }
+  },
+  {
+   "wrong": "«يَزُورُنِي فَأُكْرِمَهُ — fâ nasb eder»",
+   "right": "«fâ yalnız emir, nehiy, istifhâm, nefy, temennî ve arzdan sonra nasb eder; haberden sonra fiil merfû kalır»",
+   "why": {
+    "en": "After a plain statement the fāʾ is an ordinary conjunction.",
+    "tr": "Düz bir haberden sonra fâ sıradan bir atıf harfidir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "nawasib-wa-jawazim-al-mudari",
+  "an-masdariyya",
+  "jawab-al-talab",
+  "anwa-al-waw",
+  "hikayat-al-hal",
+  "zanna-wa-akhawatuha",
+  "al-fil-wal-madi-wal-mudari-fil-kafiya"
+ ]
+}

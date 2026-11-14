@@ -1,0 +1,95 @@
+{
+  "id": "la-nafiya",
+  "title": {
+    "ar": "لَا النَّافِيَة",
+    "en": "The negating la — «not», and it governs nothing",
+    "tr": "Nefiy لَا'sı — «değil / -mez», amel etmez"
+  },
+  "level": 1,
+  "group": "nahw",
+  "classicalSources": [
+    "إظهار الأسرار (البيركوي)",
+    "قطر الندى (ابن هشام)",
+    "مغني اللبيب (ابن هشام)"
+  ],
+  "plain": {
+    "en": "لَا before a present verb just means «not». It changes nothing on the verb: the damma stays. لَا تَتَكَلَّمُ = «she does not speak».",
+    "tr": "Şimdiki-geniş zaman fiilinin önündeki لَا yalnızca «-mez» demektir. Fiile dokunmaz, ötre kalır: لَا تَتَكَلَّمُ = «konuşmaz»."
+  },
+  "explanation": {
+    "en": "لا النافية is the plain negation of the present and the future: it enters on the mudari' and leaves it marfu' — لَا تَتَكَلَّمُ وَلَا تَسْمَعُ. Birgivi files it among the letters that enter on the verb and govern nothing, and the books tell it from its two sisters by the ENDING: لا الناهية (prohibition) puts the verb in jazm (لَا تَتَكَلَّمْ — don't speak!), and لا النافية للجنس enters on a NOUN and works like إِنَّ (لَا رَجُلَ فِي الدَّارِ). It can also negate a noun phrase without governing it (لَا أَبٌ وَلَا أُمٌّ) and is repeated after a waw — وَلَا — to join one negation onto another: the second لا re-asserts the negation, so the verb after it stays marfu' too. In the children's reader it is the commonest word after the article: the idols neither speak nor hear, neither harm nor benefit.",
+    "tr": "Nefiy lâsı şimdiki ve gelecek zamanın düz olumsuzudur: muzariye girer ve onu merfû bırakır — لَا تَتَكَلَّمُ وَلَا تَسْمَعُ. Birgivî onu fiile giren ve amel etmeyen harfler arasında sayar; kitaplar iki kız kardeşinden SON HAREKE ile ayırır: nehiy lâsı fiili cezmeder (لَا تَتَكَلَّمْ — konuşma!), cinsini nefyeden لا ise İSME girer ve إِنَّ gibi amel eder (لَا رَجُلَ فِي الدَّارِ). Amel etmeden bir isim öbeğini de olumsuzlayabilir (لَا أَبٌ وَلَا أُمٌّ) ve vav'dan sonra tekrarlanır — وَلَا — bir nefyi öbürüne bağlar: ikinci لا nefyi yeniler, sonraki fiil de merfû kalır. Çocuk okuma kitabında harf-i tariften sonra en sık kelime budur: putlar ne konuşur ne işitir, ne zarar verir ne fayda."
+  },
+  "question": {
+    "tr": ["Ne yapmaz?", "Ne değil?"],
+    "en": ["What does it not do?", "What is it not?"]
+  },
+  "examples": [
+    {
+      "ar": "وَكَانَ يَعْرِفُ أَنَّ الْأَصْنَامَ لَا تَتَكَلَّمُ وَلَا تَسْمَعُ.",
+      "en": "And he knew that the idols neither speak nor hear.",
+      "tr": "Ve putların konuşmadığını ve işitmediğini bilirdi.",
+      "sourceStory": "qisas-al-nabiyyin-1",
+      "sentence": "s15"
+    },
+    {
+      "ar": "إِنَّ هٰذِهِ الْأَصْنَامَ لَا تَتَكَلَّمُ وَلَا تَسْمَعُ!",
+      "en": "These idols neither speak nor hear!",
+      "tr": "Bu putlar ne konuşur ne işitir!",
+      "sourceStory": "qisas-al-nabiyyin-1",
+      "sentence": "s25"
+    },
+    {
+      "ar": "وَكَانَ آزَرُ يَغْضَبُ وَلَا يَفْهَمُ.",
+      "en": "And Āzar used to get angry and not understand.",
+      "tr": "Ve Âzer kızar ve anlamazdı.",
+      "sourceStory": "qisas-al-nabiyyin-1",
+      "sentence": "s29"
+    },
+    {
+      "ar": "وَاللهُ لَا يُحِبُّ الْفَسَادَ.",
+      "en": "And Allah does not love corruption. (Quran 2:205)",
+      "tr": "Allah bozgunculuğu sevmez. (Bakara 2:205)"
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "الأصنام لا تتكلمْ (بمعنى النفي)",
+      "right": "الأصنام لا تتكلمُ",
+      "why": {
+        "en": "A sukun turns the statement into a prohibition («do not speak!»). The negating لا leaves the damma.",
+        "tr": "Sükûn haberi nehye çevirir («konuşma!»). Nefiy lâsı ötreyi bırakır."
+      }
+    },
+    {
+      "wrong": "لا رجلٌ في الدار (بمعنى نفي الجنس)",
+      "right": "لا رجلَ في الدار",
+      "why": {
+        "en": "To deny the whole genus لا enters on a noun and governs it like إِنَّ: fatha, no tanwin. With the tanwin it is the plain negating لا and the sentence means only «there is not a man» (one — another may be).",
+        "tr": "Cinsi bütünüyle nefyetmek için لا isme girer ve إِنَّ gibi amel eder: fetha, tenvinsiz. Tenvinle sade nefiy lâsıdır; cümle yalnızca «bir adam yok» demektir (bir tane — başkası olabilir)."
+      }
+    },
+    {
+      "wrong": "الأصنام لا تتكلم ولا تسمعَ",
+      "right": "الأصنام لا تتكلمُ ولا تسمعُ",
+      "why": {
+        "en": "The waw joins the second verb onto the first and the repeated لا governs nothing — both verbs stay marfu'. Nasb would need a nasib like لَنْ.",
+        "tr": "Vav ikinci fiili birinciye atfeder, tekrarlanan لا amel etmez — iki fiil de merfû kalır. Nasb için لَنْ gibi bir nâsıb gerekir."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "la-nahiya",
+    "la-nafiya-lil-jins",
+    "lam-jazim",
+    "mudari-marfu",
+    "atf-nasaq"
+  ],
+  "gameSeeds": {
+    "spotTheError": true,
+    "harakatTargets": [
+      "لَا تَتَكَلَّمُ",
+      "وَلَا تَسْمَعُ"
+    ]
+  }
+}

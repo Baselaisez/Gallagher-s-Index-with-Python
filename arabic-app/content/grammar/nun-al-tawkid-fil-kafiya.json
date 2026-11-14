@@ -1,0 +1,110 @@
+{
+ "id": "nun-al-tawkid-fil-kafiya",
+ "title": {
+  "ar": "نُونُ التَّأْكِيدِ فِي الْكَافِيَةِ",
+  "en": "The nūn of emphasis in the Kafiya: the light and the heavy nūn, where each may go, the vowel before it, and the rule for the pronouns it meets",
+  "tr": "Kâfiye'de te'kid nûnu: hafif ve şeddeli nûn, her birinin gidebildiği yer, öncesindeki hareke ve karşılaştığı zamirler kuralı"
+ },
+ "level": 5,
+ "group": "sarf",
+ "classicalSources": [
+  "الكافية لابن الحاجب — نون التأكيد مخففة ومشددة؛ تدخل قليلا على النفي، وتلزم في جواب القسم المثبت، وتكثر في الشرط المؤكد بما؛ ما قبلها مضموم مع الواو ومكسور مع الياء ومفتوح في غيرهما؛ الخفيفة لا تدخل على التثنية وجمع المؤنث",
+  "ضياء صونغور اوغلى — دفتر الكافية: اضربن اضربن اضربن اضربان اضربنان؛ يونس؛ كالكلمة المنفصلة والمتصلة؛ هل ترين هل ترون هل ترين"
+ ],
+ "question": {
+  "en": [
+   "How many nūns of emphasis are there, and how do they sound? Two: the LIGHT one is a quiescent nūn (اِضْرِبَنْ); the HEAVY one is doubled, on a fatḥa (اِضْرِبَنَّ), and on a kasra after the dual's alif and the feminine plural (اِضْرِبَانِّ، اِضْرِبْنَانِّ). The sarf lab prints both rows for every verb.",
+   "Where may the nūn go? Mainly on request — command, prohibition, question, wish. The notebook's three refinements: rarely on a plain negation (مَا يَقُومَنَّ زَيْدٌ); OBLIGATORILY in the affirmative answer of an oath (وَاللهِ لَأَفْعَلَنَّ); and frequently in a condition strengthened by مَا (إِمَّا تَفْعَلَنَّ).",
+   "What vowel stands before the nūn? It copies the pronoun it replaced: ḍamma for the plural wāw (اِضْرِبُنَّ), kasra for the woman's yāʾ (اِضْرِبِنَّ), fatḥa everywhere else (اِضْرِبَنَّ). The analyzer reads the person of an emphatic verb off that vowel, since the pronoun letter itself is gone.",
+   "Why can the light nūn not join a dual or a feminine plural? اِضْرِبَانْ would set a quiescent alif against a quiescent nūn — two quiescents meeting — so the heavy nūn is used there and takes a kasra. Yūnus allowed it; the Kafiya does not.",
+   "What is the «separate word / attached word» rule? With an apparent pronoun (the wāw, the yāʾ) the nūn counts as a separate word, so the pronoun is dropped unless a fatḥa precedes it — then it stays, vowelled (تَرَوُنَّ، تَرَيِنَّ). With no apparent pronoun the nūn is part of the word, and the letter before it simply takes a fatḥa (تَرَيَنَّ, the alif returned to its yāʾ).",
+   "Why does the sarf engine refuse to generate the emphatic rows for a weak verb from a template? Because تَرَى → تَرَيَنَّ needs the i'lāl chain run backwards (the alif is a turned yāʾ); the engine derives it from the rules rather than pasting نَّ on the surface."
+  ],
+  "tr": [
+   "Kaç te'kid nûnu vardır ve nasıl okunur? İki: HAFİF olan sâkin bir nûndur (اِضْرِبَنْ); ŞEDDELİ olan çifttir, fethalıdır (اِضْرِبَنَّ), tesniye elifi ve cemi müennesten sonra kesrelidir (اِضْرِبَانِّ، اِضْرِبْنَانِّ). Sarf atölyesi her fiil için iki satırı da basar.",
+   "Nûn nereye gidebilir? Başlıca talebe — emir, nehiy, soru, temenni. Defterin üç inceliği: düz nefye nadiren (مَا يَقُومَنَّ زَيْدٌ); kasemin müsbet cevabında VÂCİP olarak (وَاللهِ لَأَفْعَلَنَّ); مَا ile pekiştirilmiş şartta çokça (إِمَّا تَفْعَلَنَّ).",
+   "Nûndan önce hangi hareke durur? Yerini aldığı zamiri kopyalar: cemi vâvı için damme (اِضْرِبُنَّ), kadının yâ'sı için kesre (اِضْرِبِنَّ), başka her yerde fetha (اِضْرِبَنَّ). Analizör te'kidli fiilin şahsını o harekeden okur, çünkü zamir harfinin kendisi gitmiştir.",
+   "Hafif nûn niçin tesniyeye ya da cemi müennese eklenemez? اِضْرِبَانْ sâkin elifi sâkin nûnun karşısına koyardı — iki sâkinin buluşması — bu yüzden orada şeddeli nûn kullanılır ve kesre alır. Yûnus izin verdi; Kâfiye vermez.",
+   "«Munfasıl kelime / muttasıl kelime» kuralı nedir? Bâriz zamirle (vâv, yâ) nûn ayrı bir kelime sayılır; bu yüzden zamir, önünde fetha yoksa düşer — varsa harekelenerek kalır (تَرَوُنَّ، تَرَيِنَّ). Bâriz zamir yoksa nûn kelimenin parçasıdır ve öncesindeki harf yalnızca fetha alır (تَرَيَنَّ, elif yâ'sına döner).",
+   "Sarf motoru illetli fiilin te'kid satırlarını niçin şablondan üretmeyi reddeder? Çünkü تَرَى → تَرَيَنَّ i'lâl zincirinin tersten yürütülmesini ister (elif, dönmüş bir yâ'dır); motor نَّ'yi yüzeye yapıştırmak yerine onu kurallardan türetir."
+  ]
+ },
+ "plain": {
+  "en": "Arabic can bolt a «really!» nūn onto a verb: a light one (just n) or a heavy one (nn). It goes on commands and wishes, must go on a sworn promise, and the vowel just before it tells you who is being spoken to. When the verb already ends in a «you all» or «you, woman» letter, that letter either drops or gets a vowel.",
+  "tr": "Arapça bir fiile «gerçekten!» nûnu takabilir: hafif (sadece n) ya da ağır (nn). Emir ve temennilere gelir, yeminli söze gelmek zorundadır ve hemen öncesindeki hareke kime söylendiğini anlatır. Fiil zaten «siz» ya da «sen, kadın» harfiyle bitiyorsa o harf ya düşer ya da hareke alır."
+ },
+ "explanation": {
+  "en": "The Kafiya's bāb on the nūn of emphasis in the notebook's order: the two kinds and their vowels, the three places outside plain request (negation rarely, the oath's affirmative answer obligatorily, the مَا-strengthened condition frequently), the vowel before the nūn as a copy of the pronoun it displaced, the light nūn's exclusion from the dual and the feminine plural with Yūnus' dissent, and the rule that decides what happens to the wāw and the yāʾ — the nūn as a separate word when a pronoun shows, as part of the word when none does — closed by the three هَلْ تَرَى forms that the rule predicts. Every form in the chapter is a verb-paradigm cell the sarf engine can derive, and the chapter is also the specification of the emphatic rows the lab prints.",
+  "tr": "Kâfiye'nin te'kid nûnu bâbı defterin sırasıyla: iki kısım ve harekeleri, düz talep dışındaki üç yer (nefye nadiren, kasemin müsbet cevabına vâcip olarak, مَا ile pekiştirilmiş şarta çokça), nûndan önceki hareke yerini aldığı zamirin kopyası olarak, hafif nûnun Yûnus'un muhalefetiyle tesniye ve cemi müennesten dışlanması ve vâv ile yâ'ya ne olacağını belirleyen kural — zamir görününce nûn ayrı kelime, görünmeyince kelimenin parçası — kuralın öngördüğü üç هَلْ تَرَى şekliyle kapanır. Bâbdaki her şekil sarf motorunun türetebildiği bir çekim hücresidir ve bâb aynı zamanda atölyenin bastığı te'kid satırlarının şartnamesidir."
+ },
+ "examples": [
+  {
+   "ar": "اِضْرِبَنَّ — اِضْرِبُنَّ — اِضْرِبِنَّ — اِضْرِبَانِّ — اِضْرِبْنَانِّ",
+   "en": "The heavy nūn across the persons.",
+   "tr": "Şahıslar boyunca şeddeli nûn.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "وَاللهِ لَأَفْعَلَنَّ الْفَرَائِضَ",
+   "en": "Obligatory in the oath's affirmative answer.",
+   "tr": "Kasemin müsbet cevabında vâcip.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "اِضْرِبُنْ — اِضْرِبِنْ — اِضْرِبَنْ",
+   "en": "The vowel before the light nūn.",
+   "tr": "Hafif nûndan önceki hareke.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "لَا يُقَالُ اِضْرِبَانْ وَلَا اِضْرِبْنَانْ إِلَّا عِنْدَ يُونُسَ",
+   "en": "The light nūn barred from the dual and the feminine plural.",
+   "tr": "Hafif nûn tesniye ve cemi müennesten menedilir.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "هَلْ تَرَيَنَّ — هَلْ تَرَوُنَّ — هَلْ تَرَيِنَّ",
+   "en": "The separate-word rule applied to a weak verb.",
+   "tr": "Munfasıl kelime kuralı illetli fiile uygulanmış.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«اِضْرِبُونَّ»",
+   "right": "«اِضْرِبُنَّ — vâv düşer, dammesi kalır»",
+   "why": {
+    "en": "Before the nūn the plural wāw drops unless a fatḥa precedes it.",
+    "tr": "Nûndan önce cemi vâvı, önünde fetha yoksa düşer."
+   }
+  },
+  {
+   "wrong": "«اِضْرِبَانْ»",
+   "right": "«اِضْرِبَانِّ — tesniyede yalnız şeddeli nûn, kesre ile»",
+   "why": {
+    "en": "The light nūn would meet the quiescent alif.",
+    "tr": "Hafif nûn sâkin elifle buluşurdu."
+   }
+  },
+  {
+   "wrong": "«وَاللهِ لَأَفْعَلُ الْفَرَائِضَ»",
+   "right": "«وَاللهِ لَأَفْعَلَنَّ الْفَرَائِضَ — kasemin müsbet cevabında nûn lâzımdır»",
+   "why": {
+    "en": "An affirmative oath-answer in the present takes the lām and the nūn together.",
+    "tr": "Muzâride müsbet kasem cevabı lâm ile nûnu birlikte alır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "nun-tawkid",
+  "huruf-al-qasam-fil-kafiya",
+  "al-qasam-wal-shart-fil-kafiya",
+  "al-muthanna",
+  "al-mabni-wal-mudmar"
+ ]
+}

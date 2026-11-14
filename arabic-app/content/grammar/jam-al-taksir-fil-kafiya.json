@@ -1,0 +1,126 @@
+{
+ "id": "jam-al-taksir-fil-kafiya",
+ "title": {
+  "ar": "جَمْعُ التَّكْسِيرِ فِي الْكَافِيَةِ",
+  "en": "The broken plural in the Kafiya: paucity (four patterns) against multitude, the utmost-of-plurals pattern, and the notebook's twenty-two examples",
+  "tr": "Kâfiye'de cem-i teksîr: kıllet (dört vezin) ile kesret, müntehe'l-cumû' sîgası ve defterin yirmi iki örneği"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — جمع التكسير: ما تغير بناء واحده؛ جمع القلة أفعل وأفعال وأفعلة وفعلة؛ وما سواها جمع كثرة؛ صيغة منتهى الجموع",
+  "ضياء صونغور اوغلى — دفتر الكافية: التعريف بلفظه، أربعة أوزان القلة بأمثلتها، اثنان وعشرون مثالا للكثرة بمفرداتها، عد ابن الحاجب الجمعين السالمين من القلة"
+ ],
+ "question": {
+  "en": [
+   "What is a BROKEN plural? One whose singular's build has changed — by adding, dropping or re-vowelling — as رِجَال from رَجُل and أَفْرَاس from فَرَس; the sound plurals leave the singular whole and only add an ending.",
+   "Which plurals say «a few»? The plural of PAUCITY, for three to ten, on four patterns: أَفْعُل (أَفْلُس), أَفْعَال (أَفْرَاس), أَفْعِلَة (أَرْغِفَة), فِعْلَة (غِلْمَة). Every other broken pattern is a plural of MULTITUDE, for more than ten.",
+   "What is the utmost of plurals? فَعَالِل and فَعَالِيل (عَوَامِل، مَصَابِيح) — a plural that cannot itself be pluralised again, and a diptote for that very reason.",
+   "How does the notebook teach the multitude patterns? Not by their names but by twenty-two pairs, each plural beside its singular: حُمْر / أَحْمَر، غِلْمَان / غُلَام، جَرْحَى / جَرِيح، فِرَق / فِرْقَة، صُوَّام / صَائِم، أَوْلِيَاء / وَلِيّ، حُيَّض / حَائِض، رِجَال / رَجُل، غُرَف / غُرْفَة، نَصَرَة / نَاصِر، قُضَاة / قَاضِيَة، قِرَطَة / قُرْط، يَتَامَى / يَتِيم، عَبِيد / عَبْد، وُجُوه / وَجْه، ظُرَفَاء / ظَرِيف، أُسَارَى / أَسِير، ظِرْبَى / ظِرْبَان، أُسْد / أَسَد، مَشْيُوخَاء / شَيْخ.",
+   "Are the sound plurals plurals of paucity? Ibn al-Ḥājib counts them so; the notebook records the other view, that -ūna and -āt are plurals absolutely, bound to neither number.",
+   "What does the engine do? The IsmTagger reads a broken plural back to its wazn (رِجَال → فِعَال) and the glossary stores the plural a human checked; the AlamaEngine knows the utmost-of-plurals pattern as a diptote and reads its tanwīn on a manqūṣ (مَعَانٍ) as the tanwīn of compensation."
+  ],
+  "tr": [
+   "MÜKESSER cemi nedir? Müfredinin binâsı değişmiş olan — ekleyerek, atarak ya da harekesini değiştirerek — رَجُل'den رِجَال, فَرَس'ten أَفْرَاس gibi; sâlim cemiler müfredi bütün bırakıp yalnız ek getirir.",
+   "Hangi cemiler «birkaç» der? Üçten ona KILLET cemi, dört vezinde: أَفْعُل (أَفْلُس), أَفْعَال (أَفْرَاس), أَفْعِلَة (أَرْغِفَة), فِعْلَة (غِلْمَة). Diğer her mükesser vezin KESRET cemidir, ondan fazlası için.",
+   "Müntehe'l-cumû' nedir? فَعَالِل ve فَعَالِيل (عَوَامِل، مَصَابِيح) — tekrar cemi'lenemeyen cemi; tam bu yüzden gayr-i munsarif.",
+   "Defter kesret vezinlerini nasıl öğretir? Adlarıyla değil, her cemi müfredinin yanında yirmi iki çiftle: حُمْر / أَحْمَر، غِلْمَان / غُلَام، جَرْحَى / جَرِيح، فِرَق / فِرْقَة، صُوَّام / صَائِم، أَوْلِيَاء / وَلِيّ، حُيَّض / حَائِض، رِجَال / رَجُل، غُرَف / غُرْفَة، نَصَرَة / نَاصِر، قُضَاة / قَاضِيَة، قِرَطَة / قُرْط، يَتَامَى / يَتِيم، عَبِيد / عَبْد، وُجُوه / وَجْه، ظُرَفَاء / ظَرِيف، أُسَارَى / أَسِير، ظِرْبَى / ظِرْبَان، أُسْد / أَسَد، مَشْيُوخَاء / شَيْخ.",
+   "Sâlim cemiler kıllet cemisi midir? İbnü'l-Hâcib öyle sayar; defter öteki görüşü de kaydeder: -ûne ve -ât mutlak cemidir, iki sayıya da bağlı değildir.",
+   "Motor ne yapar? IsmTagger mükesser cemiyi veznine geri okur (رِجَال → فِعَال), sözlük bir insanın denetlediği cemiyi saklar; AlamaEngine müntehe'l-cumû' sîgasını gayr-i munsarif bilir ve mankûs üzerindeki tenvinini (مَعَانٍ) ivaz tenvini olarak okur."
+  ]
+ },
+ "plain": {
+  "en": "A broken plural reshapes the word itself (رَجُل → رِجَال). Four shapes mean «three to ten» (أَفْعُل، أَفْعَال، أَفْعِلَة، فِعْلَة); all the other shapes mean «many». The heaviest shape, فَعَالِل/فَعَالِيل, is the end of the line — it cannot be pluralised again and takes no tanwīn.",
+  "tr": "Mükesser cemi kelimenin kendisini yeniden biçimlendirir (رَجُل → رِجَال). Dört biçim «üçten ona» demektir (أَفْعُل، أَفْعَال، أَفْعِلَة، فِعْلَة); diğer bütün biçimler «çok» demektir. En ağır biçim, فَعَالِل/فَعَالِيل, yolun sonudur — tekrar cemi'lenemez ve tenvin almaz."
+ },
+ "explanation": {
+  "en": "Where the sound plurals add an ending and leave the word alone, the broken plural reaches inside the word: the Kafiya's definition says only that the singular's build has changed, and the notebook's one-line examples show the three ways it can — رِجَال adds a letter, كُتُب drops one, أُسْد re-vowels. The chapter then draws the one line Arabic draws through its plurals that European grammars do not: some shapes mean a few and some mean many. Four patterns are reserved for three to ten — the two with the hamza of أَفْعُل and أَفْعَال, the أَفْعِلَة of the long-vowelled singulars, and فِعْلَة — and everything else is multitude. The notebook does not recite the twenty-two multitude patterns by name; it hands the student twenty-two words with their singulars, which is the way the patterns are actually learned, and the chapter keeps them as the notebook gives them. Two notes close it. The utmost of plurals, فَعَالِل and فَعَالِيل, is the ceiling: a form already so heavy that it cannot be pluralised again, and that heaviness is why it is barred from the tanwīn — the AlamaEngine's row for مَعَانٍ is this rule met on a manqūṣ. And Ibn al-Ḥājib's own placing of the sound plurals among the plurals of paucity is recorded with the dissent, since a learner who meets مُسْلِمُونَ for a thousand men needs to know that the ending was never a count.",
+  "tr": "Sâlim cemiler ek getirip kelimeyi rahat bırakırken mükesser cemi kelimenin içine girer: Kâfiye'nin tarifi yalnız müfredin binâsının değiştiğini söyler, defterin tek satırlık örnekleri bunun üç yolunu gösterir — رِجَال harf ekler, كُتُب atar, أُسْد harekeyi değiştirir. Bâb sonra Arapçanın cemileri arasına Avrupa gramerlerinin çizmediği tek çizgiyi çeker: bazı biçimler az, bazıları çok demektir. Dört vezin üçten ona ayrılmıştır — أَفْعُل ve أَفْعَال'in hemzelileri, uzun ünlülü müfredlerin أَفْعِلَة'si ve فِعْلَة — gerisi kesrettir. Defter yirmi iki kesret veznini adıyla saymaz; öğrenciye müfredleriyle yirmi iki kelime verir ki vezinler gerçekte böyle öğrenilir ve bâb onları defterin verdiği gibi tutar. İki not kapatır. Müntehe'l-cumû', فَعَالِل ve فَعَالِيل, tavandır: tekrar cemi'lenemeyecek kadar ağır bir biçim; bu ağırlık tenvinden men edilmesinin sebebidir — AlamaEngine'in مَعَانٍ satırı bu kuralın mankûsla karşılaşmasıdır. İbnü'l-Hâcib'in sâlim cemileri kıllet cemilerine koyması muhâlif görüşle birlikte kaydedilir; çünkü bin adam için مُسْلِمُونَ ile karşılaşan öğrenci, ekin hiçbir zaman bir sayı olmadığını bilmelidir."
+ },
+ "examples": [
+  {
+   "ar": "جَمْعُ التَّكْسِيرِ: مَا تَغَيَّرَ بِنَاءُ وَاحِدِهِ",
+   "en": "The definition.",
+   "tr": "Tarif.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "أَفْعُلٌ، أَفْعَالٌ، أَفْعِلَةٌ، فِعْلَةٌ",
+   "en": "The four patterns of paucity.",
+   "tr": "Dört kıllet vezni.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "عَوَامِلُ جَمْعُ عَامِلٍ، وَمَصَابِيحُ جَمْعُ مِصْبَاحٍ",
+   "en": "The utmost of plurals.",
+   "tr": "Müntehe'l-cumû'.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "حُمْرٌ جَمْعُ أَحْمَرَ … أَوْلِيَاءُ جَمْعُ وَلِيٍّ",
+   "en": "The notebook's examples, first group.",
+   "tr": "Defterin örnekleri, birinci grup.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "وُجُوهٌ جَمْعُ وَجْهٍ … مَشْيُوخَاءُ جَمْعُ شَيْخٍ",
+   "en": "The notebook's examples, last group.",
+   "tr": "Defterin örnekleri, son grup.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  },
+  {
+   "ar": "عَدَّ ابْنُ الْحَاجِبِ الْجَمْعَيْنِ السَّالِمَيْنِ مِنْ جُمُوعِ الْقِلَّةِ",
+   "en": "The sound plurals and paucity.",
+   "tr": "Sâlim cemiler ve kıllet.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s8"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«رِجَالٌ üçten ona kadar adam demektir»",
+   "right": "«رِجَالٌ (فِعَال) kesret cemidir; kıllet için أَرْجُلٌ yoktur, kıllet vezinleri dörttür»",
+   "why": {
+    "en": "Only the four named patterns carry the sense of paucity; فِعَال is a pattern of multitude.",
+    "tr": "Yalnız dört adlı vezin kıllet manası taşır; فِعَال kesret veznidir."
+   }
+  },
+  {
+   "wrong": "«مَصَابِيحٌ — tenvinli»",
+   "right": "«مَصَابِيحُ — müntehe'l-cumû' sîgası gayr-i munsariftir»",
+   "why": {
+    "en": "The utmost-of-plurals pattern is barred from the tanwīn by the heaviness of its form alone.",
+    "tr": "Müntehe'l-cumû' sîgası yalnız biçiminin ağırlığıyla tenvinden men edilmiştir."
+   }
+  },
+  {
+   "wrong": "«مَعَانٍ tenvinlidir, demek ki munsariftir»",
+   "right": "«مَعَانٍ müntehe'l-cumû'dür; tenvini ivaz tenvinidir, düşen yânın karşılığı — nasbda مَعَانِيَ»",
+   "why": {
+    "en": "A manqūṣ on this pattern drops its yāʾ in rafʿ and jarr and takes a tanwīn of compensation, not of declension.",
+    "tr": "Bu vezindeki mankûs ref' ve cerde yâsını düşürür ve i'râb değil ivaz tenvini alır."
+   }
+  },
+  {
+   "wrong": "«مُسْلِمُونَ on kişiden az Müslüman demektir»",
+   "right": "«مُسْلِمُونَ her sayıyı karşılar; İbnü'l-Hâcib'in onu kıllet'ten sayması bir taksimdir, bir sınır değil»",
+   "why": {
+    "en": "The notebook records both views; usage uses the sound plural for any number.",
+    "tr": "Defter iki görüşü de kaydeder; kullanım sâlim cemiyi her sayı için kullanır."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jam-taksir",
+  "jam-mudhakkar-salim",
+  "jam-muannath-salim",
+  "mamnu-min-sarf",
+  "ism-maqsur-manqus",
+  "al-jam-al-salim-fil-kafiya"
+ ]
+}

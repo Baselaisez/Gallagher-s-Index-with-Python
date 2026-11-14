@@ -1,0 +1,68 @@
+{
+  "id": "tashbih",
+  "title": {
+    "ar": "التَّشْبِيه",
+    "en": "Simile — the four pillars",
+    "tr": "Teşbih ve dört rüknü"
+  },
+  "level": 4,
+  "group": "balagha",
+  "classicalSources": [
+    "تلخيص المفتاح (القزويني) — علم البيان",
+    "مختصر السعد"
+  ],
+  "plain": {
+    "en": "Saying one thing is like another — and the four pieces that make the comparison.",
+    "tr": "Bir şeyin başka bir şeye benzediğini söylemek ve teşbihi kuran dört rükün."
+  },
+  "explanation": {
+    "en": "A tashbih says that one thing shares a quality with another. It has four pillars: the thing compared (مُشَبَّه), the thing compared to (مُشَبَّهٌ بِهِ), the tool that joins them (أَدَاةُ التَّشْبِيه — كَ, كَأَنَّ, مِثْل, كَمَا), and the point they share (وَجْهُ الشَّبَه). «فَكُنْ مِنْهُ كَمَا أَنْتَ مِنَ النَّارِ» has all four: you and fire, joined by كَمَا, sharing the way one keeps a careful distance. The tradition grades a tashbih by how much it leaves out. Name all four and it is مُرْسَلٌ مُفَصَّل, the plainest kind. Drop the tool and it is مُؤَكَّد; drop the shared point and it is مُجْمَل; drop both — «أَنْتَ بَدْرٌ» — and you have تَشْبِيهٌ بَلِيغ, the strongest, because nothing is left between the two things. That grading is the whole craft: the more the ear has to supply, the more forceful the comparison.",
+    "tr": "Teşbih, bir şeyin başka bir şeyle bir vasıfta ortak olduğunu söyler. Dört rüknü vardır: müşebbeh, müşebbehün bih, edât (كَ، كَأَنَّ، مِثْل، كَمَا) ve vech-i şebeh. «فَكُنْ مِنْهُ كَمَا أَنْتَ مِنَ النَّارِ» dördünü de taşır: sen ve ateş, كَمَا ile birleşmiş, ortak nokta ise ölçülü mesafeyi korumaktır. Gelenek teşbihi, ne kadarını hazfettiğine göre derecelendirir. Dördü de zikredilirse mürsel-mufassaldır, en sadesi. Edât hazfedilirse müekked; vech-i şebeh hazfedilirse mücmel; ikisi birden hazfedilirse — «أَنْتَ بَدْرٌ» — teşbîh-i belîğ olur, en kuvvetlisi; çünkü iki şeyin arasında hiçbir şey kalmaz. Bu derecelendirme işin kendisidir: kulak ne kadar çok tamamlarsa teşbih o kadar tesirli olur."
+  },
+  "examples": [
+    {
+      "ar": "فَكُنْ مِنْهُ كَمَا أَنْتَ مِنَ النَّارِ.",
+      "en": "Be to him as you are to fire — all four pillars, with كَمَا as the tool.",
+      "tr": "Ona karşı ateşe karşı olduğun gibi ol — dört rükün de var, edât كَمَا.",
+      "sourceStory": "wasiyyat-abi-yusuf-L5",
+      "chapter": 1,
+      "sentence": "s4"
+    },
+    {
+      "ar": "وَمَاؤُهُ أَبْيَضُ مِنَ اللَّبَنِ وَرِيحُهُ أَطْيَبُ مِنَ الْمِسْكِ.",
+      "en": "Its water whiter than milk, its scent sweeter than musk — comparison carried by the elative and مِنْ rather than by an adat.",
+      "tr": "Suyu sütten beyaz, kokusu miskten güzel — mukayese, edâtla değil ism-i tafdîl ve مِنْ ile taşınır.",
+      "sourceStory": "aqaid-ahl-al-sunna",
+      "chapter": 1,
+      "sentence": "s3"
+    },
+    {
+      "ar": "أَنْتَ بَدْرٌ.",
+      "en": "You are a full moon — tool and shared point both dropped: tashbih baligh.",
+      "tr": "Sen bir dolunaysın — edât da vech-i şebeh de hazfedilmiş: teşbîh-i belîğ."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "wrong": "«أَنْتَ بَدْرٌ» اسْتِعَارَةٌ",
+      "right": "تَشْبِيهٌ بَلِيغٌ، لِأَنَّ الْمُشَبَّهَ مَذْكُورٌ",
+      "why": {
+        "en": "Both sides are still named, so it is a tashbih with its tool dropped. An isti'ara names only ONE side.",
+        "tr": "İki taraf da zikredilmiştir; bu, edâtı hazfedilmiş bir teşbihtir. İstiârede taraflardan yalnız BİRİ zikredilir."
+      }
+    },
+    {
+      "wrong": "زَيْدٌ كَعَمْرٍو فِي الطُّولِ — تَشْبِيهٌ بَلِيغٌ",
+      "right": "مُرْسَلٌ مُفَصَّلٌ",
+      "why": {
+        "en": "The tool and the shared point are both stated, which is the plainest grade, not the strongest.",
+        "tr": "Edât da vech-i şebeh de zikredilmiştir; bu en sade derecedir, en kuvvetlisi değil."
+      }
+    }
+  ],
+  "relatedNotes": [
+    "istiara",
+    "haqiqa-majaz",
+    "ism-tafdil"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+ "id": "qalb-al-kull",
+ "title": {
+  "ar": "قَلْبُ الْكُلِّ — اللَّفْظُ يُقْرَأُ مِنْ آخِرِهِ",
+  "en": "The qalb of the whole — the line read from its end",
+  "tr": "Kalb-i küll — mısra sonundan okunur"
+ },
+ "level": 6,
+ "group": "badi",
+ "classicalSources": [
+  "تلخيص المفتاح — والقلب: أن يكون اللفظ يقرأ من آخره كما يقرأ من أوله"
+ ],
+ "question": {
+  "en": [
+   "Do the bare letters of the line read the same BACKWARDS? مَوَدَّتُهُ تَدُومُ لِكُلِّ هَوْلٍ وَهَلْ كُلٌّ مَوَدَّتُهُ تَدُومُ (al-Arrajani) — strip the marks and the spaces and reverse: the same string. So too وَرَبَّكَ فَكَبِّرْ (74:3): ر ب ك ف ك ب ر.",
+   "What does the engine read? Only letters — hamza seats folded, the ta marbuta as ha, a joining waw on the first word set aside (it is not of the line) — and it claims the figure only when the whole string, or a whole hemistich, is a palindrome. A near-miss is nothing."
+  ],
+  "tr": [
+   "Mısraın çıplak harfleri TERSTEN de aynı okunuyor mu? مَوَدَّتُهُ تَدُومُ لِكُلِّ هَوْلٍ وَهَلْ كُلٌّ مَوَدَّتُهُ تَدُومُ (Errecânî) — harekeleri ve boşlukları at, tersine çevir: aynı dizi. وَرَبَّكَ فَكَبِّرْ (Müddessir 3) de öyle: ر ب ك ف ك ب ر.",
+   "Motor neyi okur? Yalnız harfleri — hemze oturakları katlanır, tâ-i merbûta hâ sayılır, ilk kelimedeki atıf vâvı bir yana konur (mısradan değildir) — ve sanatı ancak bütün dizi yahut bütün bir mısra palindrom ise iddia eder. Az kaçırmak hiçtir."
+  ]
+ },
+ "plain": {
+  "en": "A line whose letters read the same from either end.",
+  "tr": "Harfleri iki uçtan aynı okunan bir mısra."
+ },
+ "explanation": {
+  "en": "وَالْقَلْبُ أَنْ يُقْرَأَ اللَّفْظُ مِنْ آخِرِهِ كَمَا يُقْرَأُ مِنْ أَوَّلِهِ. The jinas of qalb (jinas-qalb) reverses the letters of ONE word into another (فَتْح / حَتْف); the qalb of the whole reverses a whole utterance into itself. It is the one figure of wording an engine can settle with no lexicon at all: the letters are the claim and the letters are the proof. Al-Arrajani's bayt and the aya وَرَبَّكَ فَكَبِّرْ are the book's two examples; the waw of وَرَبَّكَ is the joiner and stands outside the mirror.",
+  "tr": "وَالْقَلْبُ أَنْ يُقْرَأَ اللَّفْظُ مِنْ آخِرِهِ كَمَا يُقْرَأُ مِنْ أَوَّلِهِ. Kalb cinâsı (jinas-qalb) BİR kelimenin harflerini başka bir kelimeye çevirir (فَتْح / حَتْف); bütünün kalbi bütün bir sözü kendisine çevirir. Motorun hiç sözlüksüz kesebildiği tek lafız sanatıdır: harfler iddiadır, harfler delildir. Errecânî'nin beyti ve وَرَبَّكَ فَكَبِّرْ âyeti kitabın iki örneğidir; وَرَبَّكَ'nin vâvı atıf vâvıdır, aynanın dışında durur."
+ },
+ "examples": [
+  {
+   "ar": "مَوَدَّتُهُ تَدُومُ لِكُلِّ هَوْلٍ وَهَلْ كُلٌّ مَوَدَّتُهُ تَدُومُ",
+   "en": "al-Arrajani — the whole bayt.",
+   "tr": "Errecânî — bütün beyit.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s7"
+  },
+  {
+   "ar": "وَرَبَّكَ فَكَبِّرْ",
+   "en": "74:3 — seven letters, mirrored.",
+   "tr": "Müddessir 3 — yedi harf, aynalı.",
+   "sourceStory": "talkhis-al-miftah",
+   "sentence": "s8"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«كُلٌّ فِي فَلَكٍ palindromdur, öyleyse kalb-i küll»",
+   "right": "«Evet: ك ل ف ي ف ل ك — Yâsîn 40'ın bu parçası da bütünün kalbidir; motor onu da harflerinden okur»",
+   "why": {
+    "en": "The test is mechanical; the book's list is not exhaustive. Any string that mirrors is a qalb.",
+    "tr": "Ölçü mekaniktir; kitabın listesi tüketici değildir. Aynalanan her dizi kalbdir."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "jinas-qalb",
+  "jinas",
+  "ilm-al-badi"
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "id": "al-hal-jumla-wa-rabituha",
+ "title": {
+  "ar": "الْحَالُ جُمْلَةً وَرَابِطُهَا، وَتَعَدُّدُ الْحَالِ، وَحَذْفُ عَامِلِهَا",
+  "en": "The ḥāl as a sentence and its binder; the ḥāl multiplied; its governor dropped",
+  "tr": "Cümle olarak hâl ve râbıtı; hâlin taaddüdü; âmilinin hazfi"
+ },
+ "level": 5,
+ "group": "awamil",
+ "classicalSources": [
+  "إظهار الأسرار للبركوي — المنصوبات: الحال جملةً",
+  "الكافية لابن الحاجب — الحال",
+  "شرح قطر الندى لابن هشام — الجملة الحالية ورابطها"
+ ],
+ "amil": "the ḥāl may be a declarative sentence, and then a binder is a must: in the affirmed muḍāriʿ the pronoun alone (جَاءَنِي زَيْدٌ يَرْكَبُ — never وَيَرْكَبُ); elsewhere the pronoun with the wāw or the wāw alone, the wāw prevailing in the nominal clause (لَا يَرْكَبُ، وَلَا يَرْكَبُ، وَلَا يَرْكَبُ عَمْرٌو؛ رَكِبَ، وَرَكِبَ، وَرَكِبَ عَمْرٌو؛ هُوَ رَاكِبٌ، وَهُوَ رَاكِبٌ، وَعَمْرٌو رَاكِبٌ); the ḥāl may be multiplied (جَاءَنِي زَيْدٌ رَاكِبًا ضَاحِكًا) and its governor dropped by a clue (رَاشِدًا مَهْدِيًّا to one who said أُرِيدُ السَّفَرَ: the dropped governor سِرْ)",
+ "question": {
+  "en": [
+   "May the ḥāl be a sentence? Yes, a declarative one — and then a binder tying the clause to the owner of the ḥāl is a must.",
+   "What binds the affirmed muḍāriʿ? The pronoun only: جَاءَنِي زَيْدٌ يَرْكَبُ — the hidden هُوَ; the wāw is refused here (not وَيَرْكَبُ).",
+   "And the other clauses? The pronoun with the wāw, or the wāw alone: the negated muḍāriʿ (لَا يَرْكَبُ، وَلَا يَرْكَبُ، وَلَا يَرْكَبُ عَمْرٌو), the māḍī (رَكِبَ، وَرَكِبَ، وَرَكِبَ عَمْرٌو), the nominal (هُوَ رَاكِبٌ، وَهُوَ رَاكِبٌ، وَعَمْرٌو رَاكِبٌ).",
+   "Which binder prevails in the nominal clause? The wāw — وَهُوَ رَاكِبٌ is the usual; هُوَ رَاكِبٌ with the pronoun alone is rarer.",
+   "May the ḥāl be multiplied? Yes: جَاءَنِي زَيْدٌ رَاكِبًا ضَاحِكًا — two ḥāls of one owner.",
+   "May its governor be dropped? By a clue: رَاشِدًا مَهْدِيًّا to one who said أُرِيدُ السَّفَرَ — the governor سِرْ «go» is understood from the state of the speaker.",
+   "What does the engine READ here? The DabtEngine reads the muḍāriʿ after a doer as its ḥāl-clause, the wāw-initial verb or pronoun after the doer as a ḥāl-clause with its wāw, the أَوْ-list of cited clauses word by word, the two tanwīn-fatḥ participles after the doer as ḥāls, and the cited رَاشِدًا مَهْدِيًّا without a governor as ḥāls."
+  ],
+  "tr": [
+   "Hâl cümle olabilir mi? Evet, haber cümlesi — o zaman cümleyi hâl sahibine bağlayan bir râbıt zorunludur.",
+   "Müsbet muzâriyi ne bağlar? Yalnız zamir: câenî Zeydün yerkebu — gizli hüve; burada vâv reddedilir (ve-yerkebu değil).",
+   "Diğer cümleler? Vâv ile zamir ya da yalnız vâv: menfî muzâri (lâ yerkebu, ve-lâ yerkebu, ve-lâ yerkebu Amrun), mâzî (rakibe, ve-rakibe, ve-rakibe Amrun), isim cümlesi (hüve râkibün, ve-hüve râkibün, ve-Amrun râkibün).",
+   "İsim cümlesinde hangi râbıt galiptir? Vâv — ve-hüve râkibün olağandır; yalnız zamirli hüve râkibün daha seyrektir.",
+   "Hâl taaddüd eder mi? Evet: câenî Zeydün râkiben dâhiken — bir sahibin iki hâli.",
+   "Âmili hazfedilir mi? Karîne ile: ürîdü's-sefera diyene râşiden mehdiyyen — âmil sir «git» konuşanın hâlinden anlaşılır.",
+   "Motor burada neyi OKUR? DabtEngine fâilden sonraki muzâriyi hâl cümlesi; fâilden sonraki vâv'lı fiil veya zamiri vâv'ıyla hâl cümlesi; ev ile sıralanan alıntı cümleleri kelime kelime; fâilden sonraki iki tenvîn-fethalı ism-i fâili hâl; âmilsiz alıntılanan râşiden mehdiyyen'i hâl okur."
+  ]
+ },
+ "plain": {
+  "en": "A state-word may be a whole clause, but then a pronoun, an «and», or both must tie it to its owner. A plain present-tense clause takes the pronoun only («Zayd came to me riding»); other clauses take «and» too, noun-clauses usually «and». Two state-words may stack, and the verb may be left unsaid when obvious.",
+  "tr": "Hâl bütün bir cümle olabilir, ama o zaman onu sahibine bağlayan bir şey gerekir: zamir, «ve» ya da ikisi. Düz bir muzâri cümlesi yalnız zamir alır («Zeyd bana biner hâlde geldi»); diğerleri «ve» de alır, isim cümleleri çoğunlukla «ve» alır. İki hâl üst üste gelebilir («binmiş, gülerek»), fiil belliyse söylenmeyebilir."
+ },
+ "explanation": {
+  "en": "The ḥāl may be a declarative sentence, and then a binder is a must. In the affirmed muḍāriʿ the binder is the pronoun only (جَاءَنِي زَيْدٌ يَرْكَبُ — the hidden هُوَ; the wāw is not added, since the muḍāriʿ already stands for the participle). Elsewhere — the negated muḍāriʿ, the māḍī, the nominal clause — the binder is the pronoun with the wāw or the wāw alone, though in the nominal clause the wāw prevails: لَا يَرْكَبُ، وَلَا يَرْكَبُ، وَلَا يَرْكَبُ عَمْرٌو؛ رَكِبَ، وَرَكِبَ، وَرَكِبَ عَمْرٌو؛ هُوَ رَاكِبٌ، وَهُوَ رَاكِبٌ، وَعَمْرٌو رَاكِبٌ. The ḥāl may be multiplied (جَاءَنِي زَيْدٌ رَاكِبًا ضَاحِكًا), and its governor dropped by a clue: رَاشِدًا مَهْدِيًّا said to one who announced أُرِيدُ السَّفَرَ, the governor سِرْ understood. The lithograph's line skips the middle member of the negated-muḍāriʿ triplet; the Ottoman commentary prints all three, and the chapter follows it.",
+  "tr": "Hâl haber cümlesi olabilir; o zaman râbıt zorunludur. Müsbet muzâride râbıt yalnız zamirdir (câenî Zeydün yerkebu — gizli hüve; muzâri zaten ism-i fâilin yerini tuttuğundan vâv eklenmez). Diğerlerinde — menfî muzâri, mâzî, isim cümlesi — râbıt vâv ile zamir ya da yalnız vâv'dır; isim cümlesinde ise vâv galiptir: lâ yerkebu, ve-lâ yerkebu, ve-lâ yerkebu Amrun; rakibe, ve-rakibe, ve-rakibe Amrun; hüve râkibün, ve-hüve râkibün, ve-Amrun râkibün. Hâl taaddüd edebilir (câenî Zeydün râkiben dâhiken); âmili de karîne ile hazfedilir: ürîdü's-sefera diyene râşiden mehdiyyen; âmil sir anlaşılır. Taşbaskının satırı menfî muzâri üçlüsünün ortadaki üyesini atlar; Osmanlıca şerh üçünü de basar, bab onu izler."
+ },
+ "examples": [
+  {
+   "ar": "وَتَكُونُ جُمْلَةً خَبَرِيَّةً فَلَا بُدَّ فِيهَا مِنْ رَابِطٍ",
+   "en": "the ḥāl-sentence needs a binder",
+   "tr": "hâl cümlesi râbıt ister",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s1"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ يَرْكَبُ",
+   "en": "the affirmed muḍāriʿ bound by the pronoun alone",
+   "tr": "yalnız zamirle bağlı müsbet muzâri",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s2"
+  },
+  {
+   "ar": "لَا يَرْكَبُ، أَوْ وَلَا يَرْكَبُ، أَوْ وَلَا يَرْكَبُ عَمْرٌو",
+   "en": "the negated muḍāriʿ triplet",
+   "tr": "menfî muzâri üçlüsü",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s4"
+  },
+  {
+   "ar": "هُوَ رَاكِبٌ، أَوْ وَهُوَ رَاكِبٌ، أَوْ وَعَمْرٌو رَاكِبٌ",
+   "en": "the nominal triplet, the wāw prevailing",
+   "tr": "isim cümlesi üçlüsü, vâv galip",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s6"
+  },
+  {
+   "ar": "جَاءَنِي زَيْدٌ رَاكِبًا ضَاحِكًا",
+   "en": "the ḥāl multiplied",
+   "tr": "hâlin taaddüdü",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s7"
+  },
+  {
+   "ar": "رَاشِدًا مَهْدِيًّا لِمَنْ قَالَ أُرِيدُ السَّفَرَ",
+   "en": "the governor dropped by a clue",
+   "tr": "karîne ile hazfedilen âmil",
+   "sourceStory": "izhar-al-asrar",
+   "sentence": "s8"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "جَاءَنِي زَيْدٌ وَيَرْكَبُ",
+   "right": "جَاءَنِي زَيْدٌ يَرْكَبُ",
+   "why": {
+    "en": "the affirmed muḍāriʿ takes the pronoun alone as its binder — no wāw",
+    "tr": "müsbet muzâri yalnız zamirle bağlanır — vâv yok"
+   }
+  },
+  {
+   "wrong": "جَاءَنِي زَيْدٌ عَمْرٌو رَاكِبٌ",
+   "right": "جَاءَنِي زَيْدٌ وَعَمْرٌو رَاكِبٌ",
+   "why": {
+    "en": "a nominal clause with no pronoun of the owner needs the wāw to bind it",
+    "tr": "sahibin zamirini taşımayan isim cümlesi vâv ile bağlanır"
+   }
+  },
+  {
+   "wrong": "رَاشِدٌ مَهْدِيٌّ (as the answer)",
+   "right": "رَاشِدًا مَهْدِيًّا",
+   "why": {
+    "en": "the answer is the ḥāl of a dropped سِرْ and keeps its naṣb",
+    "tr": "cevap hazfedilmiş sir'in hâlidir ve nasbını korur"
+   }
+  }
+ ],
+ "relatedNotes": [
+  "al-tamyiz-wa-ahkamuh"
+ ]
+}

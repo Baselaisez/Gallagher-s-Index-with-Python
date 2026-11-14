@@ -1,0 +1,125 @@
+{
+ "id": "an-ala-al-kaf-mudh-wa-huruf-al-istithna-fil-kafiya",
+ "title": {
+  "ar": "عَنْ وَعَلَى وَالْكَافُ وَمُذْ وَمُنْذُ وَحُرُوفُ الِاسْتِثْنَاءِ فِي الْكَافِيَةِ",
+  "en": "ʿan, ʿalā, the kāf, mudh/mundhu and the exception letters in the Kafiya: passing-over in three shapes, being-above, the two that turn into nouns after min, the kāf's three uses, time since and time within, and letters that become verbs",
+  "tr": "Kâfiye'de an, alâ, kâf, müz/münzü ve istisnâ harfleri: üç şekliyle mücâveze, isti'lâ, min'den sonra isme dönen ikisi, kâfın üç kullanımı, -den beri ve içinde, fiile dönen harfler"
+ },
+ "level": 4,
+ "group": "nahw",
+ "classicalSources": [
+  "الكافية لابن الحاجب — عن للمجاوزة؛ على للاستعلاء؛ وهما اسمان بعد من؛ الكاف للتشبيه وزائدة وبمعنى مثل؛ مذ ومنذ؛ حاشا وخلا وعدا للاستثناء",
+  "ضياء صونغور اوغلى — دفتر الكافية: أوجه المجاوزة الثلاثة؛ القلم على المكتب؛ من عن يميني ومن عليه؛ ليس كمثله شيء؛ يضحكن عن كالبرد المنهم؛ المبرد؛ ما رأيته مذ شهرنا ومنذ يومنا؛ حاشا زيد وحاشا زيدا"
+ ],
+ "question": {
+  "en": [
+   "What is ʿan? The letter of passing beyond — something leaves one point and the letter marks it. The notebook finds three shapes and gives each its sentence: leave-and-reach (the arrow from the bow to the game), reach-only (knowledge taken from a teacher — it reaches you and does not leave him), leave-only (a debt paid on someone's behalf — it leaves him and reaches no one).",
+   "And ʿalā? Being above: the pen on the desk. Then the surprise both letters share — after min they stop being letters: مِنْ عَنْ يَمِينِي means «from the side of my right» and مِنْ عَلَيْهِ «from above him». A letter cannot be governed by min; a noun can.",
+   "What does the kāf do? Likeness (زَيْدٌ كَالْأَسَدِ); nothing at all in لَيْسَ كَمِثْلِهِ شَيْءٌ, where it is redundant so that the verse does not say God has a like; and «the like of» as a noun after ʿan in Dhū l-Rumma's يَضْحَكْنَ عَنْ كَالْبَرَدِ. It takes an explicit noun only — al-Mubarrad, once more, allows the pronoun.",
+   "How do mudh and mundhu differ? They do not, in sense: both mark the start of a past span or the inside of a present one. مَا رَأَيْتُهُ مُذْ شَهْرِنَا is «since our month began» (a muḍāf supplied) or «within this month»; مَا رَأَيْتُهُ مُنْذُ يَوْمِنَا is «within today». What is understood is a muḍāf, and the HadhfEngine names it.",
+   "Why are ḥāshā, khalā and ʿadā in two chapters? Because they are two words each: with the noun in jarr they are letters of exception, with it in naṣb they are verbs whose hidden doer is «it». The reader decides by the last vowel, and the SignEngine reads that vowel and names the class.",
+   "What does the engine do? The PARTICLES table holds all five with their restrictions; the analyzer reclassifies ʿan and ʿalā as nouns when min precedes; the kāf's redundant face is read from لَيْسَ; and the exception trio is classed letter or verb from the ending of the next word."
+  ],
+  "tr": [
+   "An nedir? Aşma harfi — bir şey bir noktadan ayrılır ve harf bunu işaretler. Defter üç şekil bulur ve her birine cümlesini verir: ayrıl-ve-ulaş (yaydan ava ok), yalnız ulaş (hocadan alınan ilim — sana ulaşır, ondan ayrılmaz), yalnız ayrıl (birinin yerine ödenen borç — ondan ayrılır, kimseye ulaşmaz).",
+   "Ya alâ? Üstte olma: masanın üstündeki kalem. Sonra iki harfin paylaştığı sürpriz — min'den sonra harf olmaktan çıkarlar: مِنْ عَنْ يَمِينِي «sağ tarafımdan», مِنْ عَلَيْهِ «üstünden» demektir. Bir harf min'in ma'mûlü olamaz; bir isim olabilir.",
+   "Kâf ne yapar? Teşbih (زَيْدٌ كَالْأَسَدِ); لَيْسَ كَمِثْلِهِ شَيْءٌ'de hiçbir şey — âyet Allah'ın benzeri var demesin diye zâiddir; ve Zü'r-Rumme'nin يَضْحَكْنَ عَنْ كَالْبَرَدِ'inde an'dan sonra isim olarak «benzeri». Yalnız zâhir isim alır — Müberred, yine, zamire izin verir.",
+   "Müz ile münzü nasıl ayrılır? Mânâda ayrılmaz: ikisi de geçmiş bir sürenin başını ya da şimdiki bir sürenin içini işaretler. مَا رَأَيْتُهُ مُذْ شَهْرِنَا «ayımız başlayalı» (muzâf takdir edilir) ya da «bu ay içinde»; مَا رَأَيْتُهُ مُنْذُ يَوْمِنَا «bugün içinde». Takdir edilen bir muzâftır ve HadhfEngine onu adlandırır.",
+   "Hâşâ, halâ ve adâ neden iki bâbda? Çünkü her biri iki kelimedir: isim cerdeyse istisnâ harfi, nasbdaysa gizli fâili «o» olan fiil. Okuyucu son harekeyle karar verir; SignEngine o harekeyi okur ve sınıfı adlandırır.",
+   "Motor ne yapar? PARTICLES tablosu beşini kayıtlarıyla tutar; analizör min öncelediğinde an ve alâ'yı isim olarak yeniden sınıflar; kâfın zâid yüzü لَيْسَ'den okunur; istisnâ üçlüsü sonraki kelimenin sonundan harf ya da fiil sayılır."
+  ]
+ },
+ "plain": {
+  "en": "ʿAn means «away from», ʿalā «on», and after «from» both become nouns. The kāf means «like», says nothing in «there is nothing like Him», and after ʿan means «the like of». Mudh and mundhu say «since» or «within». Ḥāshā, khalā and ʿadā mean «except» and are letters or verbs by the vowel that follows.",
+  "tr": "An «-den uzağa», alâ «üstünde» demektir; «-den»den sonra ikisi de isim olur. Kâf «gibi» demektir, «O'nun benzeri yoktur»da hiçbir şey söylemez, an'dan sonra «benzeri» demektir. Müz ve münzü «-den beri» ya da «içinde» der. Hâşâ, halâ ve adâ «hariç» demektir; ardındaki harekeye göre harf ya da fiildir."
+ },
+ "explanation": {
+  "en": "The last five letters of the Kafiya's list, in the notebook's order. ʿAn is defined by passing-over and then analysed into three shapes by whether the thing leaves its source, reaches its goal, or both — a small piece of semantics the notebook makes mechanical with three sentences. ʿAlā is given in one line, and the rule that follows it is the chapter's most useful: after min, ʿan and ʿalā are nouns, because a letter cannot be governed. The kāf has its three uses, and the notebook keeps the Qurʾānic case honest: the kāf in لَيْسَ كَمِثْلِهِ شَيْءٌ is redundant, so the verse denies a like, not a like of a like. Mudh and mundhu are explained by what is understood: a beginning needs a muḍāf (دُخُولِ شَهْرِنَا), containment does not. The exception trio closes the chapter with the Kafiya's own criterion: jarr after them makes them letters, naṣb makes them verbs — the same word read two ways by one vowel, and both readings are stored side by side in the last sentence.",
+  "tr": "Kâfiye listesinin son beş harfi, defterin sırasıyla. An mücâveze ile tarif edilir, sonra şeyin kaynağından ayrılıp ayrılmadığına, hedefine ulaşıp ulaşmadığına ya da ikisine göre üç şekle ayrılır — defterin üç cümleyle mekanik kıldığı küçük bir anlam parçası. Alâ tek satırda verilir ve ardından gelen kural bâbın en faydalısıdır: min'den sonra an ve alâ isimdir, çünkü bir harf yönetilemez. Kâfın üç kullanımı vardır ve defter Kur'ânî örneği dürüst tutar: لَيْسَ كَمِثْلِهِ شَيْءٌ'deki kâf zâiddir, dolayısıyla âyet benzeri reddeder, benzerin benzerini değil. Müz ve münzü takdir edilenle açıklanır: ibtidâ bir muzâf ister (دُخُولِ شَهْرِنَا), zarfiyet istemez. İstisnâ üçlüsü bâbı Kâfiye'nin kendi ölçütüyle kapar: ardlarında cer onları harf, nasb fiil yapar — tek harekeyle iki türlü okunan aynı kelime; son cümlede iki okuyuş yan yana saklanır."
+ },
+ "examples": [
+  {
+   "ar": "رَمَيْتُ السَّهْمَ عَنِ الْقَوْسِ إِلَى الصَّيْدِ",
+   "en": "ʿan: leave and reach.",
+   "tr": "An: ayrıl ve ulaş.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s1"
+  },
+  {
+   "ar": "أَخَذْتُ عَنْهُ الْعِلْمَ — أَدَّيْتُ عَنْهُ الدَّيْنَ",
+   "en": "ʿan: reach only, leave only.",
+   "tr": "An: yalnız ulaş, yalnız ayrıl.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s2"
+  },
+  {
+   "ar": "مِنْ عَنْ يَمِينِي — مِنْ عَلَيْهِ",
+   "en": "ʿan and ʿalā as nouns after min.",
+   "tr": "Min'den sonra isim olarak an ve alâ.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s3"
+  },
+  {
+   "ar": "لَيْسَ كَمِثْلِهِ شَيْءٌ — يَضْحَكْنَ عَنْ كَالْبَرَدِ الْمُنْهَمِّ",
+   "en": "The redundant kāf and the kāf as a noun.",
+   "tr": "Zâid kâf ve isim olarak kâf.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s4"
+  },
+  {
+   "ar": "مَا رَأَيْتُهُ مُذْ شَهْرِنَا — مُنْذُ يَوْمِنَا",
+   "en": "Since and within.",
+   "tr": "-den beri ve içinde.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s5"
+  },
+  {
+   "ar": "جَاءَنِي الْقَوْمُ حَاشَا زَيْدٍ — حَاشَا زَيْدًا",
+   "en": "Letter with jarr, verb with naṣb.",
+   "tr": "Cerle harf, nasbla fiil.",
+   "sourceStory": "al-kafiya",
+   "sentence": "s7"
+  }
+ ],
+ "commonMistakes": [
+  {
+   "wrong": "«مِنْ عَنْ يَمِينِي — iki cer harfi üst üste»",
+   "right": "«عَنْ burada جَانِب mânâsında isimdir ve min ile mecrûrdur»",
+   "why": {
+    "en": "A letter cannot be governed; after min the word is a noun.",
+    "tr": "Harf yönetilemez; min'den sonra kelime isimdir."
+   }
+  },
+  {
+   "wrong": "«لَيْسَ كَمِثْلِهِ شَيْءٌ — O'nun benzerinin benzeri yoktur»",
+   "right": "«kâf zâiddir: O'nun benzeri yoktur»",
+   "why": {
+    "en": "The redundant kāf adds no second likeness.",
+    "tr": "Zâid kâf ikinci bir benzerlik katmaz."
+   }
+  },
+  {
+   "wrong": "«مَا رَأَيْتُهُ مُذْ شَهْرِنَا — ayımızdan beri (muzâfsız)»",
+   "right": "«مُذْ دُخُولِ شَهْرِنَا — ibtidâ için bir muzâf takdir edilir»",
+   "why": {
+    "en": "A span cannot begin at a month; it begins at the month's coming in.",
+    "tr": "Bir süre ayda başlamaz; ayın girmesinde başlar."
+   }
+  },
+  {
+   "wrong": "«حَاشَا زَيْدًا — cer harfi»",
+   "right": "«nasb ile حَاشَا fiildir; cer ile حَاشَا زَيْدٍ harftir»",
+   "why": {
+    "en": "The vowel after the word decides its class.",
+    "tr": "Kelimeden sonraki hareke sınıfını belirler."
+   }
+  }
+ ],
+ "relatedNotes": [
+  "huruf-al-qasam-fil-kafiya",
+  "huruf-jarr",
+  "huruf-jarr-nawadir",
+  "istithna",
+  "tashbih"
+ ]
+}
