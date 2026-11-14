@@ -15254,6 +15254,38 @@ if (!CHROME) {
     if (m.right < 660 || m.wrong > 45) throw new Error('the «مَا» measure fell: ' + J(m) + ' (floors: right ≥ 660, wrong ≤ 45)');
   });
 
+  await check('wave 185 — Marāḥ al-Arwāḥ part five is on the shelf (the sixty pronouns and how they are counted; the origin of هُوَ and the mīm of هُمَا and أَنْتُمَا), its lines say what the words wear (the decade follows the sound plural, اثْنَيْنِ the dual, the imperative on a sukūn takes its kasra only before a sākin, أُدْخِلَ is the passive); the rules it called for hold with their controls (after a nāṣib «أُفْعِلَ» is the muḍāriʿ; a jarr letter alone is the letter; the muḍāriʿ of ṣāra opens kāna\'s clause; a yāʾ-form seated as kāna\'s khabar is no naʿt of the majrūr before it); and across every text a passive verb\'s line names the DEPUTY doer in all three languages, and no word is left at the bare line «اسْمٌ.»', async () => {
+    const J = JSON.stringify;
+    const shelf = await page.evaluate(() => { const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return null;
+      const tok = (ch, sid, i) => { const c = st.chapters[ch - 1]; const sn = c && (c.sentences || []).find(x => x.id === sid); return sn && sn.tokens[i]; };
+      const ar = (ch, sid, i) => { const t = tok(ch, sid, i); return t ? [t.s.full, t.lex, (t.irab || {}).ar || ''] : null; };
+      return { chapters: st.chapters.length, s13: ((st.chapters[12] || {}).sentences || []).length, s14: ((st.chapters[13] || {}).sentences || []).length,
+        sittin: ar(13, 's1', 8), sittun: ar(13, 's14', 7), ithnayn: ar(13, 's4', 1), idrib: ar(13, 's4', 0), akhrij: ar(13, 's5', 1), udkhila: ar(14, 's5', 0), yuqal: ar(13, 's6', 1), ithna: ar(13, 's13', 8) }; });
+    if (!shelf) throw new Error('marah-al-arwah is not on the shelf');
+    if (shelf.chapters < 14 || shelf.s13 < 16 || shelf.s14 < 10) throw new Error('part five is short: ' + J([shelf.chapters, shelf.s13, shelf.s14]));
+    const want = [['sittin', 'مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ', 'sittun'], ['sittun', 'بِالْوَاوِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ', 'sittun'], ['ithnayn', 'بِالْيَاءِ لِأَنَّهُ مُلْحَقٌ بِالْمُثَنَّى', 'ithnan'],
+      ['idrib', 'مَبْنِيٌّ عَلَى السُّكُونِ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ', 'daraba'], ['akhrij', 'لِالْتِقَاءِ السَّاكِنَيْنِ', 'akhraja'], ['udkhila', 'مَبْنِيٌّ لِلْمَجْهُولِ', 'adkhala'], ['yuqal', 'الْجُمْلَةُ الْمَحْكِيَّةُ بَعْدَهُ', 'qala'], ['ithna', 'وَحَقُّهُ النَّصْبُ بِالْيَاءِ', 'ithnan']];
+    const badLine = want.filter(([k, frag, lex]) => !shelf[k] || shelf[k][1] !== lex || !shelf[k][2].normalize('NFC').includes(frag.normalize('NFC'))).map(([k]) => k + ' → ' + J(shelf[k]));
+    if (badLine.length) throw new Error('part-five lines: ' + J(badLine));
+    const r = await page.evaluate(() => {
+      const cell = (t, i) => { try { const x = SentenceAnalyzer.analyze(t)[i]; return (x.kind || '') + ':' + ((x.cell || {}).tense || '-'); } catch (e) { return 'ERR ' + e.message; } };
+      const claim = (t, i) => { try { const rows = SentenceAnalyzer.analyze(t); const c = CaseEngine.claim(rows, i); return c ? c.k : '-'; } catch (e) { return 'ERR ' + e.message; } };
+      const rule = (t, i) => { try { const w = DabtEngine.vowel(t).words[i]; return (w.rule || '-') + '/' + (w.k || '-'); } catch (e) { return 'ERR ' + e.message; } };
+      return { lan: cell('لَنْ أُدْخِلَ أَحَدًا', 1), an: cell('أُرِيدُ أَنْ أُكْرِمَ الضَّيْفَ', 2), bare: cell('أُدْخِلَ الْمِيمُ فِي الْكَلِمَةِ', 0), anna: cell('عَلِمْتُ أَنَّهُ أُكْرِمَ', 2),
+        bi: cell('فَلَا يُقَالُ مَرَرْتُ زَيْدٍ بِ', 4), biClaim: claim('فَلَا يُقَالُ مَرَرْتُ زَيْدٍ بِ', 4), biJoined: claim('مَرَرْتُ بِزَيْدٍ', 1),
+        ism: rule('يَصِيرُ الْمَاءُ ثَلْجًا', 1), khabar: rule('يَصِيرُ الْمَاءُ ثَلْجًا', 2), ismSubh: rule('يُصْبِحُ الْوَلَدُ نَشِيطًا', 1), doer: rule('يَذْهَبُ الْوَلَدُ مُسْرِعًا', 1),
+        ithnayn: claim('ثُمَّ يَصِيرُ كُلُّ وَاحِدٍ اثْنَيْنِ نَظَرًا إِلَى اتِّصَالِهِ', 4), dual: claim('صَارَ كُلُّ وَاحِدٍ رَجُلَيْنِ', 3), natA: claim('مَرَرْتُ بِغُلَامِ رَجُلَيْنِ كَرِيمَيْنِ', 2), natB: claim('مَرَرْتُ بِغُلَامِ رَجُلَيْنِ كَرِيمَيْنِ', 3) }; });
+    const exp = { lan: 'verb:mudari', an: 'verb:mudari', bare: 'verb:majhulMazi', anna: 'verb:majhulMazi', bi: 'particle:-', biClaim: 'harf', biJoined: 'jarr', ism: 'kanaIsm/raf', khabar: 'kanaKhabar/nasb', ismSubh: 'kanaIsm/raf', doer: 'fail/raf', ithnayn: 'nasb', dual: 'nasb', natA: 'jarr', natB: 'jarr' };
+    const badRule = Object.keys(exp).filter(k => r[k] !== exp[k]).map(k => k + ' → ' + r[k] + ' (want ' + exp[k] + ')');
+    if (badRule.length) throw new Error('wave-185 rules: ' + J(badRule));
+    const g = await page.evaluate(() => { let passive = 0, bare = 0; const ex = [];
+      for (const st of STORIES) for (const c of st.chapters) for (const sn of (c.sentences || [])) for (const t of (sn.tokens || [])) { const ir = t.irab || {}; const ar = String(ir.ar || '').normalize('NFC');
+        if (/^اسْمٌ\.?$/.test(ar.trim())) { bare++; if (ex.length < 4) ex.push(st.id + ' ' + t.s.full); }
+        if (ar.includes('نَائِبُ الْفَاعِلِ') && (/; its doer is a hidden pronoun/.test(ir.en || '') || /; fâili gizli zamir/.test(ir.tr || ''))) { passive++; if (ex.length < 4) ex.push(st.id + ' ' + t.s.full + ' | ' + ir.en); } }
+      return { passive, bare, ex }; });
+    if (g.passive || g.bare) throw new Error('a passive line that names a «doer» in en/tr, or a bare «اسْمٌ.» line: ' + J(g));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

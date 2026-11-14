@@ -12271,3 +12271,63 @@ an intransitive use the ledger does not know).
 the same letters, and only the seat rules above separate them. (4) Marāḥ 11:s3 «مَا ضَمِنْتَا» still reads as a denial: the
 verb before it (تُوَفَّى, a feminine passive the oracle does not own as a cell) is not recognised as owed. (5) Twenty-seven
 bare «اسْمٌ.» lines remain in al-Uṣūl (كَيْفٍ، إِذْ، يَوْمَئِذٍ …) — counted, not yet written.
+
+### v284 (wave 185) — «مَرَاحُ الْأَرْوَاحِ» part five, and one statement in three languages
+
+**The text.** `research/sources/marah-al-arwah-src.txt` is consumed through p. 49 of the printing («مِنَ الْقَدْرِ الصَّالِحِ»):
+chapter 13, the sixty pronouns and how the count is reached (3 cases × attached/detached = 6, less the detached majrūr = 5;
+18 forms in reason, 12 in use; 5 × 12 = 60), and chapter 14, the origin of «هُوَ» (هُوَ، هُوَا، هُوُوا → هُمُوا → هُمْ) and the
+mīm of «هُمَا» and «أَنْتُمَا». The package stands at **14 chapters / 125 sentences / 1,441 words** (manifest 0.5.0), three new
+lemmas (اِكْتَفَى with a generated paradigm, اِشْتِرَاك, and صَالِح in the sense «fit» — keyed `salih-fit`, because `salih` is
+«a righteous person» and a lex key is a global claim). Readings recorded in the attribution: «وَاكْتَفَى» with the alif maqṣūra
+as printed (the printing dots its final yāʾ everywhere, so this is the active verb); «ثُمَّ أَخْرِجِ» as an imperative beside
+«فَاضْرِبِ» and «انْظُرْ»; «اثْنَا عَشَرَ» with its alif after «صَارَ» as printed, the line saying the rule would give «اثْنَيْ»;
+the impossible example «مَرَرْتُ زَيْدٍ بِ» as the author gives it. The next sentence of the matn is «وَيُحْذَفُ وَاوُ هُوَ إِذَا
+تَعَانَقَ…» (p. 49–50).
+
+**What the builder learned** (`tools/authoring/pkg_from_engine.py` — rules, so the next text gets them free):
+- *The engine names the paradigm that owns the cell; the key must follow it.* «فَاضْرِبِ» was keyed to أَضْرَبَ and «وَتَدْخُلُ» to
+  تَدَخَّلَ by their bare letters while the engine's own `lemma` said ضَرَبَ and دَخَلَ. A verb key whose lemma is not the
+  engine's is re-keyed to the verb that is.
+- *أُدْخِلَ shares its letters with «أُفْعِلُ».* The engine reads ending-stripped words, so the passive māḍī of Form IV came back
+  as a first-person muḍāriʿ with the rule «māḍī» beside it — and the line said an active verb with a hidden doer. Where the
+  rule says māḍī and the written word is أُفْعِلَ, it is the passive.
+- *An imperative that ends in a kasra is not therefore defective.* The paradigm's own cell ends in a sukūn (اِضْرِبْ); before a
+  sākin it is vowelled with a kasra: «مَبْنِيٌّ عَلَى السُّكُونِ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ».
+- *A lemma that is itself dual- or plural-shaped keeps the letters' signs.* اِثْنَانِ → اثْنَيْنِ takes the yāʾ («مُلْحَقٌ
+  بِالْمُثَنَّى»), the decades take the wāw and the yāʾ («مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ»); سِتِّينَ after إِلَى had been
+  called a diptote with a fatḥa. **NFC puts the kasra before the shadda** — the test for ـِينَ has to allow «ِّينَ».
+- «مَجْرُورٌ بِـ«فِي»» names the governor, not the wāw joined to it; «يُقَالُ» before a quoted clause takes that clause as its deputy.
+
+**One statement in three languages** (`tools/authoring/passive_trilingual.py`, called by the builder and run over the shelf).
+Reading the new chapter's «قِيلَ» line found the Arabic saying «وَنَائِبُ الْفَاعِلِ الْجُمْلَةُ الْمَحْكِيَّةُ بَعْدَهُ» while the English
+under it said «its doer is a hidden pronoun». Counted across the five engine-built books: **82** passive lines whose Arabic
+named a hidden *deputy* doer and whose English and Turkish named a *doer*, and **15** «قِيلَ» lines that named a hidden pronoun
+where the Arabic names the quoted clause. All 97 now say what the Arabic says, and the smoke suite fails on the next one.
+The lesson is wave 183's again: **a line is three sentences, and a gate that reads only the Arabic checks a third of it.**
+
+**al-Uṣūl's last bare lines** (`tools/authoring/usul/hand185.py`). The 27 words the engine had left at «اسْمٌ.» are read in
+their sentences: «بِلَا كَيْفٍ» six times (majrūr across the negating لَا, and keyed to the noun كَيْف, not the question كَيْفَ),
+the question كَيْفَ four times by its seat, إِذْ four times, يَوْمَئِذٍ twice, and the rest by name; «خَمْسِينَ» in 29:s1 is keyed
+to خَمْسُونَ and its line says the āya's wording is kept where the rule would give rafʿ. **No word on the shelf is left at a
+bare «اسْمٌ.»** — gated.
+
+**What the reader learned** (seven small rules, `patch185.py`):
+- *النَّاصِبُ لَا يَدْخُلُ عَلَى الْمَاضِي.* «لَنْ أُدْخِلَ أَحَدًا» was read as the passive māḍī; after لَنْ / أَنْ / كَيْ / حَتَّى the same
+  letters are the manṣūb of «أُدْخِلُ». «عَلِمْتُ أَنَّهُ أُكْرِمَ» is the control and stays passive.
+- *A jarr letter standing alone is the letter itself* («مَرَرْتُ زَيْدٍ بِ») — a particle, and the noun after it, if there is
+  one, is its majrūr.
+- *The muḍāriʿ of ṣāra's family seats an ism and a khabar.* يَصِيرُ / يُصْبِحُ / يَظَلُّ … had given «doer» and «object»; the
+  endings were right and the offices were not. **Done as a relabelling after the decision**, because the first version —
+  opening kāna's clause in the main pass — moved one ending in the Kāfiya (a cited «أَحْسَنَ»). A rule that only renames an
+  office should not be allowed to touch a vowel; write it where it cannot.
+- «اثْنَيْنِ» keeps its written letters and still takes the khabar's office; a yāʾ-form seated as kāna's khabar is no naʿt of
+  the majrūr before it (صَارَ كُلُّ وَاحِدٍ رَجُلَيْنِ); the number two follows only a dual; «كَيْفٍ» with tanwīn is declined.
+
+**Measured.** Blind 68,070 → 68,322 right (the new chapters read 251 of 253 on first contact; the two are the impossible
+example's «زَيْدٍ» and one undecided badal), 1 fixed / **0 broken**; receipts-on 0 broken; case layer **98.89 → 98.90 %**
+(56,175 of 56,801; FIXED 3, BROKEN 0, newly judged 15 right / 0 wrong after the Uṣūl lines); typed battery 1,075 / 1,075.
+
+**Left open.** The unvowelled «صار كل واحد رجلين» still annexes the last word; «سِتًّا» as a badal after a compound number
+is undecided; the builder's generic «اسْمُ كَانَ / خَبَرُ إِنَّ» wording names the family, not the particle that governs
+(صَارَ، أَنَّ) — a wording change that would touch every engine-built book and the passes that read those strings.

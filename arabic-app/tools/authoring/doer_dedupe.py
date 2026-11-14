@@ -18,8 +18,8 @@ landed packages:
 import io, json, os, re, sys, glob
 
 HID_AR = re.compile(r"، وَ(?:الْفَاعِلُ|نَائِبُ الْفَاعِلِ) ضَمِيرٌ مُسْتَتِرٌ(?: وُجُوبًا| جَوَازًا)?(?: تَقْدِيرُهُ [^،.]+)?")
-HID_EN = re.compile(r"; its doer is a hidden pronoun(?: «[^»]+»)?")
-HID_TR = re.compile(r"; fâili gizli zamir(?:dir)?(?: «[^»]+»)?")
+HID_EN = re.compile(r"; its (?:deputy )?doer is a hidden pronoun(?: «[^»]+»)?")
+HID_TR = re.compile(r"; (?:nâib-i )?fâili gizli zamir(?:dir)?(?: «[^»]+»)?")
 DOER = re.compile(r"^(?:فَاعِلٌ|نَائِبُ فَاعِلٍ)(?![ًٌٍَُِّْ]*[ء-ي])|فِي مَحَلِّ رَفْعٍ (?:فَاعِلٌ|نَائِبُ فَاعِلٍ)")
 BETWEEN = re.compile(r"^(?:«[^»]+» )?(?:حَرْفُ|مَجْرُورٌ|مُضَافٌ إِلَيْهِ|ظَرْفُ|مَفْعُولٌ بِهِ|اللَّامُ حَرْفُ جَرٍّ|الْبَاءُ حَرْفُ جَرٍّ|الْكَافُ حَرْفُ جَرٍّ|اسْمٌ مَجْرُورٌ)")
 PAUSE = re.compile(r"[.:،؛؟!]")

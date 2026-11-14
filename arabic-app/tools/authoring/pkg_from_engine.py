@@ -478,6 +478,7 @@ def praise_khabar(toks, report):
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from doer_dedupe import doer_dedupe   # (wave 183)
+from passive_trilingual import passive_trilingual   # (wave 185)
 
 
 def kana_dedupe(toks):
@@ -782,6 +783,7 @@ def main():
             words = s["words"]; toks = []
             src_words = [re.sub(r"[،:؛.؟!«»\"()]", "", x) for x in s["text"].split() if re.sub(r"[،:؛.؟!«»\"()]", "", x)]
             aligned = len(src_words) == len(words)
+            raw_words = [x for x in s["text"].split() if re.sub(r"[،:؛.؟!«»\"()]", "", x)]   # (wave 185) the same words with their quotation marks kept
             raw_toks = [x for x in s["text"].split() if re.sub(r"[،:؛.؟!«»\"()]", "", x)]
             pauses = [bool(re.search(r"[،:؛.؟!]$", x)) for x in raw_toks] if aligned else [False] * len(words)
             RAW[id(words)] = raw_toks if aligned else [""] * len(words)
@@ -1128,7 +1130,12 @@ def main():
                             kv_ = verb_key_for(h); pre = ""; h2 = h; hb2 = bare(h2); is_pre = False   # the و / ف is the verb's first radical (وَصَفَ، وَلَدَ، فَعَلُوهُ)
                         if kv_: key = kv_; report["rekeyed"] += 1
                         elif key: report.setdefault("verbNounKey", []).append((where, full, key))
+                    lmw_ = N(str(w.get("lemma") or "")).replace("ٰ", "")   # (wave 185) the engine names the paradigm that owns the cell (فَاضْرِبِ is ضَرَبَ's, وَتَدْخُلُ is دَخَلَ's): a verb keyed by its bare letters to another verb follows that lemma
+                    if not fx.get("key") and where not in CITE and key and kpos_ == "verb" and lmw_ and VERB_BY_LEMMA.get(lmw_) and VERB_BY_LEMMA[lmw_][0] != key:
+                        ke_ = G.get(key) or next((v for v in LX.values() if v.get("key") == key), {})
+                        if N(str(ke_.get("lemma") or "").split("(")[0].strip()).replace("ٰ", "") != lmw_: key = VERB_BY_LEMMA[lmw_][0]; report["rekeyed"] += 1
                     tense = (w.get("cell") or {}).get("tense") or rule
+                    if rule == "mazi" and tense == "mudari" and re.match(r"^أُ[ء-ي]ْ[ء-ي]ِ[ء-ي]َ(?:تْ|تِ)?$", h2): tense = "mazi"   # (wave 185) أُدْخِلَ: the passive māḍī of أَفْعَلَ shares its letters with «أُفْعِلُ» — the written fatḥa and the engine's own rule say māḍī
                     if tense not in ("mazi", "amr") and not fx.get("rule") and not enc and VERB_BY_LEMMA.get(h2.replace("ٰ", "")): tense = "mazi"; rule = "mazi"   # أَحْدَثَ، تَوَسَّطَ after مَنْ is the māḍī of the lexicon, not a muḍāriʿ
                     if tense not in ("mazi", "amr") and not fx.get("rule") and enc and re.search(r"َا$", h2) and VERB_BY_LEMMA.get(h2[:-1] + "ى") and not re.match(r"^[يتن][َُ]", h2): tense = "mazi"; rule = "mazi"   # أَتَانَا، عَصَاهُ: the defective māḍī writes its ى as ا before an enclitic
                     if tense not in ("mazi", "amr") and not fx.get("rule") and re.search(r"[ّْ](تُ|تَ|تِ|نَا|تُمْ|تُنَّ)$|نَّا$", h2.replace("ٰ", "")) and not re.match(r"^[يتن][َُ][ء-ي]+ْنَ$", h2.replace("ّ", "")): tense = "mazi"; rule = "mazi"   # أَظْمَأْتُ، كُنَّا: a person suffix after a sukūn is the māḍī
@@ -1155,6 +1162,7 @@ def main():
                     doer_ar = f"، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ {person}" if hidden and not re.search(r"ُوا$|[ّْ](تُ|تَ|تِ|نَا|تُمْ|تُنَّ)$|نَّا$", h2) and not enc or (hidden and enc) else ""
                     if passive: doer_ar = doer_ar.replace("وَالْفَاعِلُ", "وَنَائِبُ الْفَاعِلِ")
                     if hb2 == "قيل": doer_ar = "، وَنَائِبُ الْفَاعِلِ الْجُمْلَةُ الْمَحْكِيَّةُ بَعْدَهُ"
+                    if hb2 in ("يقال", "تقال") and passive and aligned and i + 1 < len(raw_words) and raw_words[i + 1].startswith("«") and "»" not in raw_words[i + 1]: doer_ar = "، وَنَائِبُ الْفَاعِلِ الْجُمْلَةُ الْمَحْكِيَّةُ بَعْدَهُ"   # (wave 185) يُقَالُ «مَرَرْتُ بِزَيْدٍ»: what is said is the quoted clause
                     if tense == "mazi" or rule == "mazi":
                         if re.search(r"ُوا$", h2ns) or (enc and re.search(r"ُو$", h2ns) and len(hb2) >= 4): ar = "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ"; en = "A past verb; the waw of the group is its doer"; tr = "Mâzî fiil; cemaat vâvı fâildir"
                         elif re.search(r"[ّْ](تُ|تَ|تِ|تُمْ|تُنَّ|نَا)$|نَّا$", h2): ar = "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ"; en = "A past verb with its subject pronoun suffix as doer"; tr = "Mâzî fiil; bitişik ref zamiri fâildir"
@@ -1164,6 +1172,8 @@ def main():
                         tags = ["hollow-verbs"] if re.search(r"^[ء-ي]َا[ء-ي]$", h2) else []
                     elif tense == "amr" or rule == "amr":
                         sign = "حَذْفِ النُّونِ" if re.search(r"(وا|ي|ا)$", hb2) and len(hb2) >= 4 else ("حَذْفِ حَرْفِ الْعِلَّةِ" if not re.search(r"ْ$", h2) and not enc else "السُّكُونِ")
+                        if sign == "حَذْفِ حَرْفِ الْعِلَّةِ" and re.search(r"[ء-ي]ِ$", h2) and re.search(r"ْ$", N(str((w.get("cell") or {}).get("form") or ""))) and i + 1 < len(words) and re.match(r"^[اٱ]", N(words[i + 1]["w"])):
+                            sign = "السُّكُونِ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ"   # (wave 185) فَاضْرِبِ الِاثْنَيْنِ، أَخْرِجِ الْمَجْرُورَ: the paradigm's own cell ends in a sukūn; the kasra only keeps two sākins apart
                         ar = f"فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى {sign}" + ("، وَالْوَاوُ فَاعِلٌ" if re.search(r"وا$", hb2) else "، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ"); en = "An imperative; its doer is «you»"; tr = "Emir fiili; fâili «sen»"; tags = ["al-amr-wa-wujuhuh"]
                     else:
                         rule = mk
@@ -1249,7 +1259,7 @@ def main():
                         if os.environ.get("PKG_DEBUG") and where in os.environ["PKG_DEBUG"].split(","): print("DEBUG", where, full, "rule", r0_, "->", rule, "wc", wc, "pre", repr(pre), "lem_b", lem_b, "prev", [(words[q]["w"], words[q].get("kind"), words[q].get("rule")) for q in range(max(0, i - 4), i)], "pauses", pauses[max(0, i - 4):i])
                 r_ar, r_en, r_tr, tags = ROLE.get(rule, ("", "", "", []))
                 if rule in ("atf", "nat", "badal", "tawkid") and cs: r_ar = r_ar + " " + {"raf": "مَرْفُوعٌ", "nasb": "مَنْصُوبٌ", "jarr": "مَجْرُورٌ"}[cs]
-                if rule == "jarr" and i > 0 and not jc: r_ar = "مَجْرُورٌ بِـ«" + N(words[i - 1]["w"]) + "»"
+                if rule == "jarr" and i > 0 and not jc: r_ar = "مَجْرُورٌ بِـ«" + (re.sub(r"^[وف]َ", "", N(words[i - 1]["w"])) if re.sub(r"^[وف]", "", bare(words[i - 1]["w"])) in ("في", "من", "عن", "على", "الى", "إلى", "حتى") and re.match(r"^[وف]َ", N(words[i - 1]["w"])) else N(words[i - 1]["w"])) + "»"   # (wave 185) «وَفِي الْحِكَايَةِ»: the governor is «فِي», not the wāw before it
                 hostn = h2[2:] if jc else h2
                 if jc == "ل" and h2.startswith("لِلْ"): hostn = "ا" + hostn   # لِلْمُؤْمِنِينَ: the article's alif returns for the shape
                 sh = shape(hostn, cs, enc, pos, "al" if bare(hostn).startswith("ال") else "")
@@ -1268,6 +1278,10 @@ def main():
                 if sh in ("muthanna", "jam-m") and lem_b and not lem_pl and hn_b not in ("بنو", "بني", "كلا", "كلتا", "كلي", "كلتي") and not _of_lemma(hn_b, lem_b) and not (hn_b in (lem_b + "ان", lem_b + "ين", lem_b + "ون", lem_b + "ي", lem_b + "و", lem_b + "ا") or (lem_b.endswith("ة") and hn_b in (lem_b[:-1] + "تان", lem_b[:-1] + "تين", lem_b[:-1] + "تي", lem_b[:-1] + "تا")) or (lem_b.endswith("ى") and hn_b in (lem_b[:-1] + "يان", lem_b[:-1] + "يين"))): sh = "sahih"
                 if sh == "sahih" and lem_b and (hn_b in (lem_b + "ان", lem_b + "ين") or (lem_b.endswith("ة") and hn_b in (lem_b[:-1] + "تان", lem_b[:-1] + "تين", lem_b[:-1] + "تي", lem_b[:-1] + "تا"))) and re.search(r"(َانِ|َيْنِ)$", hostn): sh = "muthanna"
                 if sh == "sahih" and lem_b and hn_b != lem_b and (hn_b in (lem_b + "ون", lem_b + "ين") or lem_pl) and re.search(r"(ُونَ|ِينَ)$", hostn): sh = "jam-m"   # (wave 174) دُونَ / حِينَ are the lemma itself, never its sound plural
+                mulhaq_ = None; lemf_ = N(str((lem_e or {}).get("lemma") or "").split("(")[0].strip())   # (wave 185) اِثْنَانِ → اثْنَيْنِ / اثْنَا / اثْنَيْ ؛ سِتُّونَ → سِتِّينَ: the lemma is itself dual- or plural-shaped, so its other cases wear the letters' signs
+                if lem_b and len(lem_b) >= 5 and lemf_.endswith("َانِ") and hn_b != lem_b and hn_b in (lem_b[:-2] + "ين", lem_b[:-2] + "ا", lem_b[:-2] + "ي"): sh = "muthanna"; mulhaq_ = "muthanna" if lem_b in ("اثنان", "اثنتان") else None
+                if lem_pl and hn_b != lem_b and sh == "mamnu" and re.search(r"ِّ?ينَ$", N(hostn)): sh = "jam-m"
+                if lem_b in ("عشرون", "ثلاثون", "أربعون", "اربعون", "خمسون", "ستون", "سبعون", "ثمانون", "تسعون") and hn_b in (lem_b, lem_b[:-2] + "ين") and cs in ("raf", "nasb", "jarr"): sh = "jam-m"; mulhaq_ = "jam-m"   # the decades: the wāw in rafʿ, the yāʾ in naṣb and jarr
                 if os.environ.get("PKG_DEBUG") and where in os.environ["PKG_DEBUG"].split(","): print("LAJINS?", where, full, "cs", cs, "rule", rule, "prev", bare(words[i - 1]["w"]) if i else None, "enc", repr(enc))
                 la_jins = (not cs or (cs == "nasb" and rule in ("maful", "hal", "zarf"))) and i > 0 and re.sub(r"^[وف]", "", bare(words[i - 1]["w"])) == "لا" and not enc and not bare(h2).startswith("ال") and re.search(r"َ$", N(h2).replace("ّ", "")) and not re.search(r"[ًٌٍ]", N(h2)) and not re.search(r"(ُونَ|ِينَ|َانِ|َوْنَ)$", N(h2).replace("ّ", "")) and not (re.match(r"^[يتأن][َُ]", N(h2).replace("ّ", "")) and len(bare(h2)) >= 4 and (G.get(key) or {}).get("pos") != "noun")
                 if la_jins:
@@ -1288,6 +1302,8 @@ def main():
                     if rule == "fail" and k is None: pass
                 else:
                     sign_ar, sign_en, sign_tr = SIGN.get((cs, sh), SIGN[(cs, "sahih")])
+                    if mulhaq_ == "muthanna": sign_ar = sign_ar.replace("لِأَنَّهُ مُثَنًّى", "لِأَنَّهُ مُلْحَقٌ بِالْمُثَنَّى"); sign_en = sign_en.replace("it is a dual", "it follows the dual"); sign_tr = sign_tr.replace("tesniyedir", "tesniyeye mülhaktır")
+                    if mulhaq_ == "jam-m": sign_ar = sign_ar.replace("لِأَنَّهُ جَمْعُ مُذَكَّرٍ سَالِمٌ", "لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ"); sign_en = sign_en.replace("a sound masculine plural", "it follows the sound masculine plural"); sign_tr = sign_tr.replace("cem'-i müzekker sâlim", "cem'-i müzekker sâlime mülhak")
                     ar = f"{r_ar} {sign_ar}"; en = f"{r_en}; the sign is {sign_en}"; tr = f"{r_tr}; alâmeti {sign_tr}"
                     if lam_ib_: ar = "اللَّامُ لَامُ الِابْتِدَاءِ الْمُزَحْلَقَةُ إِلَى الْخَبَرِ، وَ" + ar; en = "the lām of emphasis displaced onto the khabar + " + en; tr = "habere kaydırılmış te'kîd lâmı + " + tr
                     tags = list(tags) + SHAPE_TAG.get(sh, [])
@@ -1330,6 +1346,7 @@ def main():
                         if sg.get("lex") == t["lex"]: sg["pos"] = "noun"
             kana_dedupe(toks)   # (wave 165; a function since wave 167 so that polish_pkg.py can run it on a shipped package)
             doer_dedupe(toks)   # (wave 183) a verb whose doer is written keeps no hidden one beside it — see doer_dedupe.py
+            passive_trilingual(toks)   # (wave 185) the en/tr of a passive verb's line name the DEPUTY doer the Arabic names — see passive_trilingual.py
             if meta.get("cellLines"):   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
                 import cell_lines as CL
                 def vhost_(t):
