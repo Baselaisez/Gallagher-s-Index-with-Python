@@ -14919,6 +14919,49 @@ if (!CHROME) {
     if (!/ فِيهِ\/jarrPron عَلَامَةُ\/mubtada /.test(r.p1) || !/ قِيَامٌ\/mubtada /.test(r.p2)) throw new Error('the postponed mubtadaʾ inside the ṣila: ' + J([r.p1, r.p2]));
   });
 
+  await check('wave 174 — «مَرَاحُ الْأَرْوَاحِ» part one as the fifty-sixth text: the homographs are keyed to the word the matn means (دَارُوهَا «those who know it», no «دَارَ»; لِمَ the question, no «لَمْ»; وَجَلًا whose wāw is a radical), the sound plural annexed to a pronoun is read by its wāw and the dual by its alif (وَاسْمَا الْفَاعِلِ), a ẓarf that ends like a plural keeps its fatḥa (دُونَ، حِينَ), the words the author quotes are named as quoted (جَبَذَ مِنَ الْجَذْبِ), and the new verbs own their paradigms (وَصَمَ يَصِمُ)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { missing: true };
+      const tok = (ch, sid, i) => { const c = st.chapters.find(x => String(x.n || x.chapter) === String(ch)); const sn = c && c.sentences.find(x => x.id === sid); return (sn && sn.tokens[i]) || {}; };
+      const T = (ch, sid, i) => { const t = tok(ch, sid, i); return { w: N((t.s || {}).full), lex: t.lex, ar: N((t.irab || {}).ar) }; };
+      let root = null; try { const f = RootFinder.fromCorpus('يَصِمُ'); root = f && N(f.lemma || (f.entry || {}).lemma || ''); } catch (e) { root = 'ERR ' + e.message; }
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const claim = (t, i) => { try { const a = SentenceAnalyzer.analyze(t); const L = Array.isArray(a) ? a : (a.rows || []); const c = CaseEngine.claim(L, i); return c ? c.k : '-'; } catch (e) { return 'ERR ' + e.message; } };
+      const x174 = {};
+      x174.adhab = dv('لِيَكُونَ أَعْذَبَ لَفْظًا وَأَحْسَنَ سَبْكًا');
+      x174.wajalla = dv('يَقُولُ اللهُ عَزَّ وَجَلَّ'); x174.wajal = dv('فِي قَلْبِهِ وَجَلٌ');
+      x174.nfc = N((RootFinder.nounFromCorpus('وَجَلَّ') || {}).lemma || '') + '|' + N((RootFinder.nounFromCorpus('وَجَلٌ') || {}).lemma || '');
+      { const mq = STORIES.find(x => x.id === 'al-maqamat-birgivi'); const c2 = mq && mq.chapters.find(x => String(x.n || x.chapter) === '2'); const sn = c2 && c2.sentences.find(x => x.id === 's37');
+        if (sn) { DabtEngine._blind138 = false; const g = DabtEngine.grade(sn, 'endings'); x174.adrib = { lex: sn.tokens[23].lex, out: N(g.words[23].out), rule: g.words[23].rule, ok: g.words[23].ok }; } }
+      x174.ghafara = dv('إِنَّ اللهَ لَا يَغْفِرُ الشِّرْكَ وَيَغْفِرُ كُلَّ شَيْءٍ');
+      x174.dar = claim('فَلَا يُقَالُ صَلَّيْتُ دَارًا بَلْ فِي دَارٍ', 6); x174.baq = claim('فَمَجْرُورُ الزَّائِدِ وَرُبَّ بَاقٍ عَلَى مَا كَانَ', 3);
+      x174.hahuna = claim('وَالْمُرَادُ مِنَ الِاشْتِقَاقِ الْمَذْكُورِ هٰهُنَا اشْتِقَاقٌ صَغِيرٌ', 4) + '|' + claim('فَمِنْ هَاهُنَا قُلْنَا', 1);
+      { const us = STORIES.find(x => x.id === 'al-usul-al-munifa'); const c22 = us && us.chapters.find(x => String(x.n || x.chapter) === '22'); const sn = c22 && c22.sentences.find(x => x.id === 's9'); x174.usul = sn ? N((sn.tokens[1].irab || {}).ar) : ''; }
+      x174.hayya = dv('وَحَيَّ يَحْيَا حَيَاةً فَهُوَ حَيٌّ وَحَيَّا');
+      return { x174, chapters: st.chapters.length, sentences: st.chapters.reduce((a, c) => a + c.sentences.length, 0),
+        daru: T(1, 's3', 11), aru: T(1, 's3', 15), lima: T(3, 's2', 2), wajal: T(5, 's2', 11), isma: T(2, 's2', 11), duna: T(4, 's3', 8), hina: T(1, 's4', 14), jabadha: T(4, 's3', 11), root };
+    });
+    if (r.missing) throw new Error('the package is not on the shelf');
+    if (r.chapters < 5 || r.sentences < 29) throw new Error('five chapters / twenty-nine sentences at least: ' + J([r.chapters, r.sentences]));
+    if (r.daru.lex !== 'darin-knower' || !/بِالْوَاوِ/.test(r.daru.ar) || !/بِالْوَاوِ/.test(r.aru.ar)) throw new Error('دَارُوهَا / عَارُوهَا — the knower and the bare, each a sound plural on its wāw: ' + J([r.daru, r.aru]));
+    if (r.lima.lex !== 'lima' || !/اسْتِفْهَامٍ/.test(r.lima.ar)) throw new Error('لِمَ is the lām with the asking mā: ' + J(r.lima));
+    if (r.wajal.lex !== 'wajal' || !/^مَفْعُولٌ مُطْلَقٌ/.test(r.wajal.ar) || /عَاطِفَةٌ/.test(r.wajal.ar)) throw new Error('وَجَلًا — the maṣdar, its wāw a radical: ' + J(r.wajal));
+    if (!/بِالْأَلِفِ/.test(r.isma.ar)) throw new Error('وَاسْمَا الْفَاعِلِ — the dual in rafʿ by its alif: ' + J(r.isma));
+    if (!/بِالْفَتْحَةِ/.test(r.duna.ar) || /جَمْعُ/.test(r.duna.ar) || !/بِالْفَتْحَةِ/.test(r.hina.ar) || /جَمْعُ/.test(r.hina.ar)) throw new Error('دُونَ / حِينَ are no sound plurals: ' + J([r.duna, r.hina]));
+    if (!/مَحْكِيٌّ/.test(r.jabadha.ar)) throw new Error('جَبَذَ after نَحْوُ is a quoted word: ' + J(r.jabadha));
+    if (!/وَصَمَ/.test(String(r.root))) throw new Error('يَصِمُ finds its paradigm (وَصَمَ): ' + J(r.root));
+    const x = r.x174;
+    if (!/ أَعْذَبَ\/kanaKhabar /.test(x.adhab)) throw new Error('no word begins on a sukūn — the hamza of أَعْذَبَ is أَفْعَل\'s own, a diptote, whatever «عَذْب» the lexicon holds: ' + x.adhab);
+    if (!/ وَجَلَّ\/mazi$/.test(x.wajalla) || !/ وَجَلٌ\//.test(x.wajal) || x.nfc !== '|وَجَل') throw new Error('a final shadda is ṣarf: عَزَّ وَجَلَّ is no «وَجَل», and وَجَلٌ still is: ' + J([x.wajalla, x.wajal, x.nfc]));
+    if (!x.adrib || x.adrib.lex !== 'daraba' || x.adrib.ok !== true || /amr/.test(x.adrib.rule || '')) throw new Error('فَلَا أَضْرِبُ: لَا never enters the imperative — the speaker\'s muḍāriʿ of ضَرَبَ, marfūʿ: ' + J(x.adrib));
+    if (!/ وَيَغْفِرُ\/raf كُلَّ\/maful شَيْءٍ\/mudafIlayh$/.test(x.ghafara)) throw new Error('the same verb took its object a clause earlier: ' + x.ghafara);
+    if (x.dar !== 'jarr' || x.baq === 'jarr') throw new Error('فِي دَارٍ is jarr behind its letter; رُبَّ بَاقٍ keeps the stand-down: ' + J([x.dar, x.baq]));
+    if (x.hahuna !== 'mabni|mabni' || !/اسْمُ إِشَارَةٍ/.test(x.usul)) throw new Error('هٰهُنَا / هَاهُنَا — the tanbīh on هُنَا, built: ' + J([x.hahuna, x.usul]));
+    if (/[ًٌٍ][َُِ]|[َُِ][ًٌٍ]/.test(x.hayya)) throw new Error('no letter wears a tanwīn and a vowel at once: ' + x.hayya);
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

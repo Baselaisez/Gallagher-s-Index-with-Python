@@ -11629,3 +11629,81 @@ The label gauge crosses **90 %**. Three shapes, each the mirror of a rule alread
   unjudged. Blind and receipts-on sweeps **0 fixed / 0 broken**, case layer unchanged (98.65 %). Since the gauge was
   built (wave 170): 89.05 → 90.02 % over four waves, every one with identical ending sweeps.
 - `tools/smoke_test.js`: «wave 173» (423 checks).
+
+### v273 (wave 174) — «مَرَاحُ الْأَرْوَاحِ» part one: the debate book of ṣarf as the fifty-sixth text
+
+`content/samples/marah-al-arwah` (L5 Advanced, premium, v0.1.0; **5 chapters / 29 sentences / 357 words**; glossary
+206, 32 new lemmas; 35 verbs with paradigms, 5 of them new — وَصَمَ، جَبَذَ، نَعَقَ، قَاوَمَ، تَوَلَّدَ) carries Aḥmad b. ʿAlī b.
+Masʿūd's matn from the basmala to the end of the argument over whether the maṣdar or the verb is the root: the
+opening, the seven bābs and the nine derived things, the sound word, why ف ع ل are the measure, the Basran case
+(the maṣdar's meaning is one, the verb's is two; a noun does without a verb), the three derivations (ضَرَبَ مِنَ
+الضَّرْبِ، جَبَذَ مِنَ الْجَذْبِ، نَعَقَ مِنَ النَّهْقِ), the Kufan case and its answer. It is the first text on the shelf that ARGUES
+its ṣarf — «فَإِنْ قِيلَ … قُلْنَا» — where the ʿIzzī only states it.
+
+- **Source and collation.** `research/sources/marah-al-arwah-src.txt` (vowelled, tokenizer-ready) from pp. 9–21 of
+  the owner's PDF. The raw text layer (`marah-al-arwah-matn.txt`, wave 160) was collated against the page images:
+  the matn is the large type above the rule on each page; the tiny interlinear glosses and everything below the rule
+  are the editors' and are not transcribed. The raw layer held up where it looked clean; its garbles are the
+  printing's ligatures (بمترلة for بِمَنْزِلَةِ, «عَنَ قَ» for نَعَقَ, وَجْلاً for the printed وَجَلًا). The print vowels only a
+  few words; the rest of the vowelling is ours.
+- **One divergence, recorded in the manifest in three languages.** The printing reads «وَاسْمَي الْفَاعِلِ وَالْمَفْعُولِ» with
+  a yāʾ, in a list that is the khabar of «وَهِيَ». The place is rafʿ, so the package prints «وَاسْمَا» and says so
+  (`[print: …]` in the source, the note in `attribution`). «الْبِصْرِيِّينَ» keeps the printing's kasra — a heard nisba.
+- **`tools/authoring/marah/`** on the ʿIzzī model: `lemmas.txt → mk_lex.py`, `sarf_marah.py`, `trans_1.txt →
+  mk_trans.py`, `meta.json`, and — new here — **`mk_fixes.py`**, which WRITES `fixes.json` from named templates (the
+  quoted word, the omitted mubtadaʾ, the sound plural annexed to a pronoun), so the 76 corrections are readable as
+  the review they were instead of a JSON dump. Build: `engine_author.js` twice, `pkg_from_engine.py` each time.
+- **What the engines misread, by kind — the review's findings.** (1) HOMOGRAPHS the lexicon keyed to a commoner
+  word: دَارُوهَا «those who know it» as دَارَ, لِمَ as لَمْ, أَبُوهَا as the name Abū Bakr, الْمُعِينُ as مُعَيَّن, عَذْبٌ as عَذَّبَ,
+  وَمَرْكَبٌ as مُرَكَّب, عِدَةً as عِدَّة, وَجَلًا split at its radical wāw. A particle keeps the table's key unless the fix
+  gives a NOMINAL pos (لِمَ needed `pos: "noun"` with `key: "lima"`). (2) QUOTED WORDS: a ṣarf book's examples
+  after نَحْوُ / فِي (جَبَذَ، يَعِدُ، تُكْرِمُ) are «لَفْظٌ مَحْكِيٌّ» in the seat the preposition or the iḍāfa gives them, and the
+  maṣdar after each is its mafʿūl muṭlaq, part of the example. (3) The PREDICATE the loop still misses in long
+  definitional prose: جَنَاحُ النَّجَاحِ after «وَهُوَ لِلصَّبِيِّ», أَصْلًا after كَانَ, مَصْدَرٌ after يُقَالُ لَهُ (the deputy doer).
+- **A builder bug found and fixed at the cause.** `pkg_from_engine.py` gave any word whose lemma has a stored plural
+  and whose ending is ـُونَ / ـِينَ the SOUND PLURAL's sign — so دُونَ and حِينَ were «مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ جَمْعُ مُذَكَّرٍ
+  سَالِمٌ». The test now requires the word not to be its own lemma. It reaches the other engine-authored books when
+  they are rebuilt.
+- **A new text's lexicon is a claim on every other text — read the sweep before the release, not after.** The first
+  release attempt stopped at an old pin: «لِيَكُونَ أَعْذَبَ لَفْظًا» came out «أَعْذَبًا». Nothing in the engine had changed;
+  the package had added the noun «عَذْب», and a rule that peels a question hamza off a noun the lexicon owns now found
+  one behind «أَعْذَبَ». The sweep against the v272 baseline then showed four more words moved by entries alone
+  (وَجَلَّ read as «وَجَل», «فِي دَارٍ» silenced by the manqūṣ «دَارٍ», two context shifts). Each is fixed by a RULE, not
+  by renaming the entry:
+  1. **No word begins on a sukūn.** After a peeled hamza the rest is asked of the lexicon only as itself, or — where
+     its first letter is quiescent — with its waṣl alif restored (أَبْنُكَ = أَ + ابْنُكَ). «عْذَب» is no word, so the
+     hamza of «أَعْذَبَ» is أَفْعَل's own and the diptote stands.
+  2. **A final shadda is ṣarf, not iʿrāb.** `RootFinder.nounFromCorpus` refuses a vowelled lemma without the shadda
+     the written word ends on: عَزَّ وَجَلَّ is not «وَجَل» (and وَحَيَّ is not «وَحْي» — that one had been wrong since the
+     ʿIzzī landed and nobody could see it).
+  3. **لَا never enters the imperative.** A hamza-fatḥa form read as an amr cell after لَا / فَلَا / وَلَا is the speaker's
+     muḍāriʿ (فَلَا أَضْرِبُ بِهَا وَجْهَهُ). The rule runs twice — in the pre-pass, and again after the author's verb is
+     restored, because the grade path seats that cell late.
+  4. **The sentence is its own witness.** The ledger's «does this verb take an object?» moved with one new «غَفَرَ اللهُ
+     لَهُ»; where the same verb took its object a clause earlier (لَا يَغْفِرُ الشِّرْكَ وَيَغْفِرُ كُلَّ شَيْءٍ) the ledger is
+     not asked.
+  5. **Behind a jarr letter the kasratān is jarr** on the sound noun and on the manqūṣ alike, so the case claim no
+     longer stands down there — except behind «رُبَّ», whose majrūr holds a rafʿ place (وَرُبَّ بَاقٍ عَلَى مَا كَانَ).
+  6. **«هٰهُنَا / هَاهُنَا»** is the tanbīh's hāʾ on «هُنَا»: in the particle table, the demonstrative and the built-ẓarf
+     sets, and the case claim.
+  And one writer guard: no letter wears a tanwīn and a vowel at once (NFC keeps a fatḥa BEFORE its shadda, where a
+  trailing strip never looks — حَيًّا, never حَيًَّا).
+- **Two drafted readings corrected (`tools/authoring/hand174.py`).** al-Maqāmāt 2:s37 «أَضْرِبُ» was keyed to Form IV
+  أَضْرَبَ; it is ضَرَبَ's first person (a Form IV muḍāriʿ wears a ḍamma), and the dead entry leaves the package.
+  al-Uṣūl 22:s9 «هَاهُنَا» had been split «هَاهُ + نَا» and called a khabar; it is the demonstrative in the place of jarr
+  by «مِنْ». The first had been scoring as RIGHT for the wrong reason — rule 1 took away the accident (a question
+  hamza on «ضَرْب») and the mis-key showed. **An agreement can be wrong**, again.
+- **The Hadhf gate counts what a line does not name.** The first lines named one deletion per sentence, and the
+  audit's `false` ceiling (3) tripped at 5: «نَحْوُ» as the khabar of an omitted mubtadaʾ and «مَصْدَرٌ» after «يُقَالُ
+  لَهُ» are deletions the engine finds and the line had not said. The templates `NAHW` and `YUQAL` say them now.
+- Gates on arrival: validator 0 errors; the paradigm audit regenerates the new verbs with 0 mismatched cells; 44
+  games playable on the story's own content; the vowelling engine reads the new text 357 / 0 / 0 with the receipts on
+  and 354 / 3 blind. Against v272 on the shared rows: blind 4 fixed / 0 broken, receipts-on 2 fixed / 0 broken; the
+  case layer 98.65 % (55,136 / 55,888). Smoke: «wave 174» (424 checks) pins the homograph keys, the wāw and alif
+  signs, the two ẓarfs, a quoted word, وَصَمَ's paradigm, and each of the six rules above.
+- **Left open, named.** «دَارُوهَا» reads «they turned it» to the blind case layer — the surface carries both words, and
+  only the stored key says which; the three blind endings the new text still misses (وَالنَّحْوَ joined to إِنَّ's ism
+  with its own khabar after it, وَالْمَفْعُولِ, وَالْوَاحِدُ) go to the next engine wave.
+- **Next on this shelf:** part two — pp. 22–33, the maṣdar's thirty-odd measures and the thirty-five bābs (the page
+  bands are already cropped in the scratchpad's notes; the measure list needs the print's vowels checked word by
+  word), then the māḍī.
