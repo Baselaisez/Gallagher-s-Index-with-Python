@@ -6226,6 +6226,8 @@ function findFormInParadigm(morph, surface, exactOnly){
         const f = (forms[i] || "");
         if (exact && tense === "mazi" && i === 0 && /َ$/.test(f) && cands.includes(f.replace(/َ$/, "ْ")) && !cands.includes(f))
           return { tense, i, form: f, waqf: true };   // verse pause: the rhyme quiets the he-cell's fatha (لَمَّا غَفَلْ)
+        /* (wave 179) سافر الرجل، انطلق القطار: typed with no vowel at all, the command and the «he» of the māḍī of one augmented verb are the same letters — the māḍī is the unmarked reading and is offered first (the same order wave 157 keeps between two paradigms) */
+        if (!exact && tense === "amr" && i === 0 && NF.mazi && NF.mazi[0] && !/[ً-ْٰ]/.test(String(surface || "")) && loose(f, tense) && loose(NF.mazi[0], "mazi")) return { tense: "mazi", i: 0, form: NF.mazi[0] };
         if (exact ? cands.includes(f) : loose(f, tense)) {
           // a paradigm may write ONE spelling into two cells — تَأْتِي is
           // «she» AND «you» in every mudari of the language — and a
@@ -8863,6 +8865,7 @@ class RootFinder {
     return sh;
   }
   static fromCorpus(word, prefer = null){
+    if (!/[ً-ْ]/.test(String(word || "")) && /^[وف]?هذ(ان|ين)$/.test(stripAr(String(word || "")).replace(/[^ء-ي]/g, ""))) return null;   /* (wave 179) قرأت هذين الكتابين: the dual demonstrative is a closed-class word (it declines, so it is no particle-table entry) — typed bare it is never هَذَى's «هَذَيْنَ» */
     const idx = this.corpusIndex();
     if (this._fcMemoFor !== idx) { this._fcMemo = new Map(); this._fcMemoFor = idx; }
     const key = String(word || "") + (prefer ? "|" + prefer : "");   /* (wave 112) a tense preference is part of the question */
@@ -11707,6 +11710,14 @@ class SentenceAnalyzer {
     // the regular shape: the singular behind the letter must be a noun the lexicon owns WHOLE
     let sg = null; try { sg = RootFinder.nounFromCorpus(stem); } catch (e) {}
     const sgB = sg ? stripAr(String(sg.lemma || "").split(/[()\s]/)[0]).replace(/[^ء-ي]/g, "") : "";
+    /* (wave 179) مُهَنْدِسُو الْمَدِينَةِ: the lexicon is a list of the words the shelf has met, not of the language — a word on the participle's
+       measure (مُـ… of four letters or more, or فَاعِل) that ends on a wāw with no alif behind it is no verb (the group's wāw is written وا) and no
+       singular (none ends so): it is the sound plural annexed, its nūn dropped. On the yāʾ the same shape could be the speaker's own
+       (مُهَنْدِسِي الْمَاهِرُ), so there the next word must visibly be in jarr. */
+    if (!sg && num === "jam" && (/^م[ء-ي]{3,}$/.test(stem) || /^[ء-ي]ا[ء-ي]{2}$/.test(stem)) && !/[اوي]$/.test(stem) && (letter === "waw" || strong)) {
+      let wh9 = null, vc9 = null; try { wh9 = RootFinder.nounFromCorpus(w); } catch (e) {} try { vc9 = RootFinder.fromCorpus(nfc); } catch (e) {}
+      if (!wh9 && !(vc9 && vc9.cell)) return { num, letter, stem, mulhaq: false, lemma: stem, root: "", gloss: null, sure: vow ? true : strong, byShape: true };
+    }
     if (!sg || /verb|part|pron|prep|conj/.test(sg.pos || "") || sgB !== stem) return null;
     // a MANQUS singular (قَالٍ، قَاضٍ) spells its bare form without the ya, so
     // its bare letters equal the stem by accident — its dual and plural take
@@ -11850,7 +11861,7 @@ class SentenceAnalyzer {
           // guard, ported from the hamza-ride peel to this base peel: without
           // it فلان peeled to ف + لان and read as لِأَنَّ, an inna-sister)
           !/^[وف][ًٌٍُِّْ]/.test(w.normalize("NFC")) &&
-          (this.PARTICLES[core.slice(1)] || /^ال/.test(core.slice(1)) ||
+          (this.PARTICLES[core.slice(1)] || (/^ال/.test(core.slice(1)) && !/^[وف][ً-ٰ]*ا[ً-ٰ]*ل(?:[َُ](?!ّ)|ِ(?![ّاٱ]))/.test(w.normalize("NFC"))) /* (wave 179) وَالِدُ، وَالَاهُ: the article's lām wears no vowel of its own — a lām with a vowel (and no shadda after it, no waṣl alif after its kasra) is a radical, and the wāw before it is the word's first letter */ ||
            this.fusedJarr(core.slice(1)) ||
            // …a jarr clitic riding a particle or an ال-word (وَلِهٰذَا، فَبِالْعَكْسِ)
            (/^[بلك]/.test(core.slice(1)) && (this.PARTICLES[core.slice(2)] || /^ال/.test(core.slice(2)))) ||
@@ -12119,7 +12130,9 @@ class SentenceAnalyzer {
       // عَنَّ «to present itself» and عَنْ the jarr letter share bare letters; the
       // shadda on the nun names the verb (the min/man shape, one letter over).
       const annaVerb = core === "عن" && /ن[ً-ٰ]*ّ/.test(w.normalize("NFC"));
-      const p = (amNoun || rubbNoun || kilaNoun || idhnNoun || annaVerb) ? null : this.PARTICLES[core];
+      /* (wave 179) قَلَمَا الْوَلَدِ: قَلَّمَا the particle doubles its lām; the word written with its vowels and no shadda is the dual of قَلَم, its nūn dropped for the iḍāfa (the min/man shape) */
+      const qalamNoun = core === "قلما" && /^ق[ً-ٰ]*َ[ً-ٰ]*ل[ً-ٰ]*َ/.test(w.normalize("NFC")) && !/ّ/.test(w.normalize("NFC"));
+      const p = (amNoun || rubbNoun || kilaNoun || idhnNoun || annaVerb || qalamNoun) ? null : this.PARTICLES[core];
       if (p) {
         // The table is a table of CLOSED CLASSES, not of harf. كَانَ وَأَخَوَاتُهَا
         // sit in it because they govern like governors, but they are verbs —
@@ -18456,7 +18469,10 @@ class DabtEngine {
     if (row && row.construct && (opt.mudaf || row.construct.sure || row.construct.enc)) {
       const c = row.construct;
       const st = this.rawStrip(host).replace(/[ً-ٰ]*[يوا][ً-ٰ]*$/, "").replace(/[ً-ٰ]+$/, "");
-      const tail = c.num === "jam" ? (k === "raf" ? "ُو" : "ِي") : (k === "raf" ? "َا" : "َيْ");
+      /* (wave 179) a word typed with no vowel at all shows one receipt of its case — the letter itself; the writer supplies the vowel before it and never trades the typed letter for the other one */
+      const typed179 = !/[ً-ٰ]/.test(nfc) ? ((bare.match(/[وياى]$/) || [""])[0]) : "";
+      const kL = typed179 === "و" || typed179 === "ا" ? "raf" : typed179 === "ي" ? (k === "raf" ? "nasb" : k) : k;
+      const tail = c.num === "jam" ? (kL === "raf" ? "ُو" : "ِي") : (kL === "raf" ? "َا" : "َيْ");
       return (st + tail).normalize("NFC");
     }
     if (this.core(host) === "عمرو") return this.rawStrip(host).replace(/و$/, "") + ({ raf: "ٌو", nasb: "ًا", jarr: "ٍو" })[k];
@@ -18479,6 +18495,9 @@ class DabtEngine {
     }
     if (opt.pron && /[اوي]$/.test(bare) && !/ّ$/.test(nfc) && (lv => /ا$/.test(lv) || /ُ[ً-ٰ]*و$/.test(lv) || /ِ[ً-ٰ]*ي$/.test(lv) || !/[ً-ٰ]/.test(lv))(nfc.replace(/[ً-ٰ]+$/, ""))) return nfc;   // أَخُوكَ، عَصَاكَ، قَاضِيهِ: the letter is the case — سَعْيِهِ، نَحْوُهُ decline
     if (opt.mudaf && /^[وف]?(ال)?[ء-ي]{3,}[وا]$/.test(bare) && /(ُ[ً-ٰ]*و|َ[ً-ٰ]*ا)$/.test(nfc.replace(/[ً-ٰ]+$/, "")) && !/[ًٌٍ]/.test(nfc) && !/[وا][ً-ٰ]*ّ/.test(nfc) /* (wave 50ah) لِعُلُوِّ: the doubled wāw is no plural */) return nfc.replace(/[ً-ٰ]+$/, "");   /* (wave 50b) وَالضَّارِبُو زَيْدٍ: the construct keeps its letter */
+    /* (wave 179) الْمُعَلِّمُونَ، حَاضِرِينَ، الْكِتَابَانِ: typed bare, the sound plural and the dual still carry their case in the LETTER — what the writer owes them is the vowel before the letter and the nūn's own vowel (fatḥa after the plural's, kasra after the dual's), never a ḍamma or a tanwīn stacked on the nūn */
+    { const m179 = !opt.pron ? nfc.match(/^(.*[ء-ي])(ون|ين|ان)$/) : null;
+      if (m179) { const t179 = this.typedNun179(bare); if (t179) return (m179[1] + ({ jamRaf: "ُونَ", jamObl: "ِينَ", dualRaf: "َانِ", dualObl: "َيْنِ" })[t179]).normalize("NFC"); } }
     // letter-declension: the letters are on the page, the nun takes its vowel
     if (/(ُّ?ون|ِّ?ين)[ً-ٰ]*$/.test(nfc) && !(opt.mamnu && (() => { try { const x = bare.replace(/^[وف]?/, "").replace(/^ال/, ""); const x2 = x.replace(/^[بلك](ال)?/, ""); const stored = y => { const e = RootFinder.nounFromCorpus(y); return !!(e && e.viaPlural && this.bare(String(e.plural || "")) === y); }; return (!!JamEngine.muntaha(x) && stored(x)) || (/^[بلك]/.test(x) && !!JamEngine.muntaha(x2) && stored(x2)); } catch (e) { return false; } })()) /* (wave 35b) بَسَاتِينُ: the pattern's yāʾ-nūn, a diptote's ḍamma */ && !(() => { try { const n8 = this.lex(host) || this.lex(host.replace(/^[وف][ً-ٰ]*/, "")) || this.lex(host.replace(/^(?:[وف][ً-ٰ]*)?[بلك][ً-ٰ]*/, "")) /* (wave 50a) وَبِالتَّنْوِينِ */; const lb8 = this.bare(String((n8 && n8.lemma) || "").split(/[()\s]/)[0]); return !!(n8 && !n8.viaPlural && !n8.viaDual && lb8 && lb8 === bare.replace(/^[وف]?[بلك]?(ال)?/, "") && !this.NUMBERS.test(lb8) && !/^(عالم|اهل|أهل|بن|سن|ارض|أرض)(ون|ين)$/.test(lb8)); } catch (e) { return false; } })() /* (wave 29d) بِسُكُونِ السِّينِ: a waw-nun singular the lexicon owns, clitic or not — the tens (عِشْرُون) are no singulars */ && ((bare.replace(/^[وف]?[بلك]?(ال)?/, "").length >= 5 /* (wave 46v) وَبِدُونِهَا */ || /^(بن|سن|ارض|أرض|اهل|أهل)(ون|ين)$/.test(bare.replace(/^[وف]?[بلك]?(ال)?/, "")) /* (wave 153) الْمَالُ وَالْبَنُونَ */ || (bare.length >= 5 && !(() => { const stm9 = bare.replace(/^[وف]?[بلك]?(ال)?/, ""); if (stm9 === bare) return false; try { const e9 = RootFinder.nounFromCorpus(stm9); return !!e9 && !e9.viaPlural && this.bare(String(e9.lemma || "").split(/[()\s]/)[0]) === stm9; } catch (e) { return false; } })())) /* (wave 49c) فَرِحِينَ: a radical fāʾ is no clitic */ || /^[وف]?[بلك]?(ال)?(سنين|سنون|بنين|بنون|ستون|ستين)$/.test(bare)) /* (wave 26q) سِنِينَ */ && (!opt.singular || this.NUMBERS.test(bare.replace(/^[وف]?(ال)?/, ""))) && (/^(بنون|بنين|سنون|سنين|اهلون|اهلين|أهلون|أهلين|عالمون|عالمين|ارضون|ارضين|أرضون|أرضين)$/.test(bare.replace(/^[وف]?[بلك]?(ال)?/, "")) || !this.plIndex().has(bare.replace(/^[وف]?[بلك]?(ال)?/, "")) || (() => { try { const n9 = this.lex(host); const lb9 = this.bare(String((n9 && n9.lemma) || "").split(/[()\s]/)[0]); const x9 = bare.replace(/^[وف]?[بلك]?(ال)?/, ""); return !!(n9 && n9.viaPlural && lb9 && (lb9 + "ون" === x9 || lb9 + "ين" === x9)); } catch (e) { return false; } })()) && !this.masdarShape(this.rawStrip(host).replace(/^[وف]?[بلك][ً-ٰ]*(?=[^ً-ٰ])/, "").replace(/^ا[ً-ٰ]*ل[ً-ٰ]*(?=[^ً-ٰ])/, "").replace(/^ل[ً-ٰ]*(?=[^ً-ٰ][ً-ٰ]*ّ)/, "").replace(/^([ء-ي])([ًٌٍَُِ]*)ّ/, "$1$2"), true)) return this.setEnding(host, opt.mudaf ? "" : "َ");
     if (/َ[ً-ٰ]*(ان|يْن)$/.test(nfc) && (bare.length >= 5 || (bare.length === 4 && /ّ/.test(nfc))) && opt.dual) return this.setEnding(host, opt.mudaf ? "" : "ِ");   /* (wave 31e) حُقَّانِ: the doubled noun's dual */
@@ -19868,7 +19887,7 @@ class DabtEngine {
         const isNum = this.NUMBERS.test(cj) && !/^[وف]?[ً-ٰ]*ع[ً-ٰ]*ِ/.test((r.w || "").normalize("NFC")) &&
                       (/(عشر|ون|ين)$/.test(cj) || (rows[j + 1] && /^(عشر|عشرة)$/.test(cn)));   // only 11-99 take a TAMYIZ; ثَلَاثَةُ كُتُبٍ، مِائَةُ رَجُلٍ annex
         const citeHead = /^[وف]?نحو$/.test(cj) && !hasAl(r) && !r.afterJarr && !fused(r) && !encOf(r) && (hasAl(n) || (isNoun(n) && !n.afterJarr && rows[j + 2] && (isNoun(rows[j + 2]) || isVerb(rows[j + 2])) && !joined(rows[j + 2])));   // نَحْوَ الشَّمْسُ وَالْقَمَرُ (wave 19)
-        const cutHead = citeHead || (() => { const on = String((this._orig24 || [])[j + 1] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); const ob = this.bare(on); return !!on && ob === bareOf(n) && /ً/.test(on.replace(/ّ/g, "")) && !/ى$/.test(ob) && !/[اى]$/.test(this.bare(String(n.lemma || (this.lex(n.w || "") || {}).lemma || "").split(/[()\s]/)[0])); })() /* (wave 35p) أَبْعَدَ مَنَالًا: the fatḥatān member is a tamyīz, no annex */ || this.alifSeat(r) || (propn(r) && !r.alam) || (j > 0 && rows[j - 1] && (rows[j - 1].kind || "") === "particle" && /^[وف]?لا$/.test(bareOf(rows[j - 1])) && !hasAl(r) && !encOf(r) && hasAl(n) && /^(ال)?(يوم|ليلة|غد|ساعة|ان|آن)$/.test(bareOf(n).replace(/[أإآ]/g, "ا"))) /* (wave 35k) لَا عَاصِمَ الْيَوْمَ */ || /^[وف]?(يك|تك|نك|اك|أك|يكن|تكن|نكن|اكن|أكن)$/.test(bj) /* (wave 32o) لَمْ يَكُ أَكْثَرَ: the jussive kāna annexes nothing */ || (() => { const oj = ((this._orig24 || [])[j] || "").normalize("NFC").replace(/[«»"]/g, ""); return !!oj && (() => { const a = this.bare(oj).replace(/[أإآ]/g, "ا"), b = bj.replace(/[أإآ]/g, "ا"); return a === b || (b.length >= 3 && a.endsWith(b)) || (a.length >= 3 && b.endsWith(a)); })() && /[ًٌٍ]$|ً[ً-ٰ]*[اى]$/.test(oj.replace(/ّ/g, "")); })() /* (wave 26r3) رَجَاءٌ كَبِيرٌ، يَدًا خَفِيَّةً: a tanwīn head annexes nothing */ || /^[وفلب]?(انت|أنت|انا|أنا|هو|هي|هم|هن|نحن|انتم|أنتم|انتما|أنتما|هما|انتن|أنتن)$/.test(bj) /* (wave 26r3) لَأَنْتَ يُوسُفُ */ || (r.pk && !this.MUDAF_WORDS.has(cj) && !/^[وف]?(مكان|وسط|جانب|ناحية|جهة)$/.test(cj)) /* (wave 26q3) مَكَانَ يُوسُفَ */ || isNum || (/ي$/.test(bj) && this.ZARF_WORDS.test(bj.replace(/^[وف]/, "").replace(/ي$/, ""))) || (hasAl(r) && !/^[وف]?(لل)/.test(bj)) ||
+        const cutHead = citeHead || (/^[وف]?(هذان|هذين|ذان|ذين|هاتان|هاتين|تان|تين|ذانك|تانك)$/.test(bareOf(r).replace(/[أإآ]/g, "ا")) && !hasAl(n) && !encOf(n)) /* (wave 179) هٰذَانِ كِتَابَانِ: the dual demonstrative declines like a dual but annexes nothing — a noun without the article after it is its khabar (the article-bearing one keeps its seat beside it: its badal, in the same case) */ || (() => { const on = String((this._orig24 || [])[j + 1] || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, ""); const ob = this.bare(on); return !!on && ob === bareOf(n) && /ً/.test(on.replace(/ّ/g, "")) && !/ى$/.test(ob) && !/[اى]$/.test(this.bare(String(n.lemma || (this.lex(n.w || "") || {}).lemma || "").split(/[()\s]/)[0])); })() /* (wave 35p) أَبْعَدَ مَنَالًا: the fatḥatān member is a tamyīz, no annex */ || this.alifSeat(r) || (propn(r) && !r.alam) || (j > 0 && rows[j - 1] && (rows[j - 1].kind || "") === "particle" && /^[وف]?لا$/.test(bareOf(rows[j - 1])) && !hasAl(r) && !encOf(r) && hasAl(n) && /^(ال)?(يوم|ليلة|غد|ساعة|ان|آن)$/.test(bareOf(n).replace(/[أإآ]/g, "ا"))) /* (wave 35k) لَا عَاصِمَ الْيَوْمَ */ || /^[وف]?(يك|تك|نك|اك|أك|يكن|تكن|نكن|اكن|أكن)$/.test(bj) /* (wave 32o) لَمْ يَكُ أَكْثَرَ: the jussive kāna annexes nothing */ || (() => { const oj = ((this._orig24 || [])[j] || "").normalize("NFC").replace(/[«»"]/g, ""); return !!oj && (() => { const a = this.bare(oj).replace(/[أإآ]/g, "ا"), b = bj.replace(/[أإآ]/g, "ا"); return a === b || (b.length >= 3 && a.endsWith(b)) || (a.length >= 3 && b.endsWith(a)); })() && /[ًٌٍ]$|ً[ً-ٰ]*[اى]$/.test(oj.replace(/ّ/g, "")); })() /* (wave 26r3) رَجَاءٌ كَبِيرٌ، يَدًا خَفِيَّةً: a tanwīn head annexes nothing */ || /^[وفلب]?(انت|أنت|انا|أنا|هو|هي|هم|هن|نحن|انتم|أنتم|انتما|أنتما|هما|انتن|أنتن)$/.test(bj) /* (wave 26r3) لَأَنْتَ يُوسُفُ */ || (r.pk && !this.MUDAF_WORDS.has(cj) && !/^[وف]?(مكان|وسط|جانب|ناحية|جهة)$/.test(cj)) /* (wave 26q3) مَكَانَ يُوسُفَ */ || isNum || (/ي$/.test(bj) && this.ZARF_WORDS.test(bj.replace(/^[وف]/, "").replace(/ي$/, ""))) || (hasAl(r) && !/^[وف]?(لل)/.test(bj)) ||
                         (fused(r) && /^(لل|بال|كال)/.test(bj.replace(/^[وف]/, ""))) ||
                         mabniWord(r) && !this.MUDAF_WORDS.has(cj) ||
                         (/(ان|ين|ون)$/.test(bj) && bj.length >= 5 && !this.MUDAF_WORDS.has(cj) && !!this.lemmaOf(r.w) && this.bare(this.lemmaOf(r.w)) !== bj && !(() => { try { const e = this.lex(r.w); return !!(e && e.viaPlural); } catch (e) { return false; } })() /* (wave 24d) عِقْبَانُ أَعْلَامِهِ */) ||
@@ -21897,7 +21916,7 @@ class DabtEngine {
             const stem = bareOf(x).replace(/^[وف]?ال/, "").replace(/(ون|ين)$/, "");
             try { const g0 = TaalluqEngine.governs(x); if (g0 && g0.how !== "model") return true; } catch (e) {}
             try { const e0 = this.lex(x.w); if (e0 && /ism fa'il|participle|ism-i fâil/i.test(String((e0.gloss || {}).en || "") + " " + String((e0.gloss || {}).tr || ""))) return true; } catch (e) {}
-            return /^[^ا]ا[^ا]{2}$/.test(stem) && !!RootFinder.nounIndex().has(stem); })()) { set(i, "nasb", "maful", { head: i - 1 }); continue; }
+            return /^[^ا]ا[^ا]{2}$/.test(stem) && !!RootFinder.nounIndex().has(stem); })() && !(!rows[i + 1] && out[0] && out[0].rule === "mubtada" && !rows.slice(0, i).some(x => isVerb(x)) && !out.slice(0, i).some(o => o && o.rule === "khabar")) /* (wave 179) الْمُسْلِمُونَ إِخْوَةٌ، بِرُّ الْوَالِدَيْنِ وَاجِبٌ: where a mubtadaʾ opened the sentence, no khabar has come and this word ends it, the sentence owes its khabar before any participle owes an object */) { set(i, "nasb", "maful", { head: i - 1 }); continue; }
       // وَاحِد after an indefinite noun is its na't, sharing the case (نَوْعٍ وَاحِدٍ) — unless a number's list is open: سَبْعَةُ أَقْسَامٍ وَاحِدٌ حِسِّيٌّ is badal al-tafsil
       if (/^[وف]?واحدة?$/.test(bw) && i > 0 && isNoun(rows[i - 1]) && !hasAl(rows[i - 1]) && !hasAl(r) && !joined(r) && out[i - 1] && ["jarr", "nasb", "raf"].includes(out[i - 1].k) && !encOf(rows[i - 1]) && !(st.tafsil && !st.tafsil.used)) { set(i, out[i - 1].k, "nat", { head: i - 1 }); continue; }
       if (isNoun(r) && !hasAl(r) && !enc && !joined(r) && !r.afterJarr && !fused(r) && !jarrClit(r) && !propn(r) && !mabniWord(r) && !head.has(i) && !member.has(i) && own68(i) && /ٌّ?$/.test(o68(i)) && i > 0 && (/^[وف]?(هذا|هذه|هذان|هاتان|هؤلاء|ذلك|تلك|ذاك|اولئك)$/.test(bareOf(rows[i - 1]).replace(/[أإآ]/g, "ا").replace(/ٰ/g, "")) || (rows[i - 1].pk || "") === "ishara")) { set(i, "raf", "khabar"); st.mubtada = true; st.khabar = true; st.subject = true; st.subjectAt = i - 1; continue; }   /* (round 73d) هٰذَا صِرَاطٌ مُسْتَقِيمٌ: a ḍammatan noun after a demonstrative is its khabar */
@@ -22656,6 +22675,32 @@ class DabtEngine {
   static CLAUSETERM151 = /^(تام|ناقص|لازم|متعد|متعدي|شاذ|مطرد|جائز|ممنوع|واجب|قياسي|سماعي|ضعيف|قوي|صحيح|فاسد|قبيح|نادر|مشهور|غالب|كثير|قليل)$/;   /* the terms that judge a CLAUSE (فَعَلِمَ اللهُ تَامٌّ) — a word's seat-term (مَرْفُوعٌ) judges a word */
   static NOGOV151 = /^(ام|هل|قد|لن|لم|لما|سوف|ليت|لعل|رب|لو|لولا|كي|اذن|ان|لكن|كأن|انما|عن|من|الى|على|في|حتى|ب|ل|ك|كان|ليس|اذا|اذ|ما|لا)$/;
   /* the written dual / sound-plural nūn (مَعْنَيَانِ، شَيْئَانِ، اللَّفْظَيْنِ، الْمُسْلِمِينَ): the stem is a noun the lexicon owns and the whole word is no lemma of its own (مَكَان، إِنْسَان، سُلْطَان keep their nūn) — such a word is never a construct head */
+  /* (wave 179) which nūn a bare-typed word ends on: "jamRaf" (ـُونَ), "jamObl" (ـِينَ), "dualRaf" (ـَانِ), "dualObl" (ـَيْنِ) — or null where the word is a
+     singular of its own (قَانُون، إِنْسَان، مِسْكِين، مَيْدَان). The lexicon answers first; where it is silent only a participle's measure may vouch
+     (مُـ… of four letters or more — not مَفَاعِيل —, فَاعِل, the nisba). On ـين the sound plural is the QUALITY's (a participle or nisba with no broken
+     plural of its own) and the tens'; a noun with a broken plural, a feminine in ـة, and الْوَالِدَيْنِ are duals. */
+  static typedNun179(bare){ const strip = x => x.replace(/^لل/, "").replace(/^[بلك](?=ال)/, "").replace(/^ال/, ""); const b0 = String(bare || ""), b1 = b0.replace(/^[وف](?=[ء-ي]{5,})/, "");
+    return this._typedNun179(strip(b0)) || (b1 !== b0 ? this._typedNun179(strip(b1)) : null); }   /* وَالِدَيْنِ: the word whole first, then behind a joiner */
+  static _typedNun179(b){ try {
+      const suf = b.slice(-2), stem = b.slice(0, -2); if (!/^(ون|ين|ان)$/.test(suf) || stem.length < 3) return null;
+      if (/^(عشر|ثلاث|اربع|أربع|خمس|ست|سبع|ثمان|تسع)(ون|ين)$/.test(b)) return suf === "ون" ? "jamRaf" : "jamObl";
+      if (/^(ياسمين|بنيامين|فلسطين)$/.test(b)) return null;
+      const lemB = n => n ? this.bare(String(n.lemma || "").split(/[()\s]/)[0]).replace(/^ال/, "") : "";
+      let whole = null; try { whole = RootFinder.nounFromCorpus(b); } catch (e) {}
+      if (whole && !whole.viaPlural && !whole.viaDual && lemB(whole) === b) return null;
+      let sg = null, fem = false;
+      try { sg = RootFinder.nounFromCorpus(stem); if (!(sg && lemB(sg) === stem) && /ت$/.test(stem)) { const s2 = RootFinder.nounFromCorpus(stem.replace(/ت$/, "ة")); if (s2 && lemB(s2) === stem.replace(/ت$/, "ة")) { sg = s2; fem = true; } } } catch (e) {}
+      const known = !!sg && !/verb|part|pron|prep|conj|propn/.test(sg.pos || "") && (fem || lemB(sg) === stem);
+      const partShape = (/^م[ء-ي]{3,}$/.test(stem) && !/^م[ء-ي]ا[ء-ي]$/.test(stem)) || /^[ء-ي]ا[ء-ي]{2}$/.test(stem) || /^[ء-ي]{3,}ي$/.test(stem);
+      if (!known && /ت$/.test(stem) && stem.length >= 5 && suf !== "ون") return suf === "ان" ? "dualRaf" : "dualObl";   /* مَدْرَسَتَيْنِ، مُعَلِّمَتَانِ: the opened tāʾ of the feminine stands before the dual's letters, never before the sound masculine plural's */
+      if (!known && !(partShape && !whole && !/[اوى]$/.test(stem))) return null;
+      if (suf === "ون") return fem ? null : "jamRaf";
+      if (suf === "ان") return known ? "dualRaf" : null;
+      if (fem || /^(والد|ابو|أبو)$/.test(stem)) return "dualObl";
+      const pl = known ? this.bare(String(sg.plural || "").split(/[\/،,]/)[0].trim()) : "";
+      const broken = !!pl && !/(ون|ين)$/.test(pl);
+      return (!broken && (partShape || /(ون|ين)$/.test(pl))) ? "jamObl" : "dualObl";
+    } catch (e) { return null; } }
   static dualNun151(r){ try { if (!r || (r.kind || "").startsWith("verb") || (r.kind || "") === "particle") return false; if (this.guessEnc(r, r.w)) return false;
       const b = this.bare(r.w || "").replace(/^[وف](?=...)/, "").replace(/^ال/, ""); if (!/(ان|ين|ون)$/.test(b) || b.length < 5) return false;
       const norm = x => String(x || "").replace(/ئ$/, "ء").replace(/[يى]$/, "ى").replace(/^ال/, ""); const stem = b.slice(0, -2);
@@ -22893,7 +22938,7 @@ class DabtEngine {
           const ko = k === "raf" ? (fem ? "اثْنَتَا" : "اثْنَا") : (fem ? "اثْنَتَيْ" : "اثْنَيْ");
           res.out = (/^[وف]?[ً-ٰ]*ا[ً-ٰ]*ل/.test(o25) ? o25.replace(/[ً-ٰ]+$/, "") : pre25 + ko).normalize("NFC"); res.src = "numeral"; return res; } }
       const artHere = !/^([وف][ً-ٰ]*)?ب[ً-ٰ]*[َُ]/.test(String(host || "").normalize("NFC")) /* (wave 135) بَالَنَا، وَبَالٌ: the bāʾ with its own fatḥa is the word's, no clitic before an article */ && /^[وف]?(ال|لل|بال|كال)/.test(this.bare(host)) && (/^[وف]?(لل|بال|كال)/.test(this.bare(host)) || this.articleOn(host)) && !(r.lemma && /^[وف]?لل/.test(this.bare(host)) && !/^[وف]?[ً-ٰ]*ل[ً-ٰ]*ل[ً-ٰ]*ّ/.test(String(host || "")) && this.bare(String(r.lemma).split(/[()\s]/)[0]) === this.bare(host).replace(/^[وف]?ل/, ""));   /* (wave 100) لِلُقْمَانَ: the lam before a lexicon name is no article; (wave 100b) لِلِّسَانِ keeps it when the second lam carries the shadda */
-      const seatAlif = /ا$/.test(this.bare(host)) && !artHere && lm && !/[اى]$/.test(this.bare(lm)) && !pron && this.bare(host).length >= 3 &&
+      const seatAlif = /ا$/.test(this.bare(host)) && !artHere && lm && !/[اى]$/.test(this.bare(lm)) && !pron && this.bare(host).length >= 3 && !(r.construct && r.construct.num === "muthanna" && r.construct.letter === "alif" && !r.construct.enc) /* (wave 179) وَالِدَا الطَّالِبِ: the annexed dual's alif is its case letter, no seat of a tanwīn */ &&
         !(() => { try { const e9 = this.lex(w); return !!(e9 && e9.viaPlural && e9.plural && /[اى]$/.test(this.bare(String(e9.plural).split(/[\/،,]/)[0].trim()))); } catch (e) { return false; } })();   // (wave 23j) مَهَا، قَنَا: the plural's own alif
       if (seatAlif) { host = host.replace(/ا$/, ""); k = "nasb"; }
       const isDef = artHere || !!r.alam || !!pron;

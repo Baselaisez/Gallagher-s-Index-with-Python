@@ -11851,3 +11851,74 @@ Three of the items v276 left open, read by rule; nothing in the content moved.
 shadda; «وَمُهَنْدِسُو الْمَدِينَةِ» joined after a doer is seated as an object though it wears rafʿ's letter;
 «وَصَلَ وَالِدَا الطَّالِبِ» is written «وَالِدًا»; a typed, unvowelled «بني» before a common noun is still open between
 the sons-of plural and the passive بُنِيَ where no noun stands before it; «بِقَاضٍ» behind a fused bāʾ; «دَارُوهَا».
+
+### v278 (wave 179) — what a typed word IS, with its vowels and without them
+
+The three items v277 named were one question — what the word is, before its case is read — and answering them opened
+the sentence a learner actually types: **no vowels at all**. Ten rules, nothing in the content moved.
+
+**With the vowels written.**
+
+- **«قَلَمَا» is the dual of قَلَم.** The closed-class table is a table of bare letters, and «قلما» is in it as قَلَّمَا.
+  The particle doubles its lām; a word written with its vowels and no shadda is the dual, its nūn dropped for the
+  iḍāfa («هٰذَانِ قَلَمَا الْوَلَدِ»). The min/man shape again (أَمْ / أُمّ, رُبَّ / رَبّ, كَلَّا / كِلَا); typed bare it stays the
+  particle — missing evidence is not contrary evidence.
+- **The article's lām wears no vowel.** The analyzer peeled a wāw wherever «ال» followed it, so «وَالِدُ» was
+  وَ + الـ + د in every text (the lemma was right, the segment was not, and «وَالِدَا الطَّالِبِ» had no way to be a dual).
+  A lām with a vowel is a radical — unless a shadda follows (وَاللَّيْلِ: the article assimilated) or its kasra stands
+  before a waṣl (وَالِاسْمُ).
+- **The annexed dual's alif is no seat of a tanwīn.** Once the dual was seen, the writer's seat-alif rule («a final
+  alif on a word whose lemma has none is the tanwīn's») wrote it «وَالِدَيِ». The rule now stands down where the
+  construct says dual.
+- **A participle the lexicon never met still annexes.** `constructLetters` asked the lexicon for the singular and
+  returned nothing for «مُهَنْدِسُو»; with no lemma the word was not even *joined*, so «وَمُهَنْدِسُو الْمَدِينَةِ» after a doer
+  fell to the object's seat. Now: on the participle's measure (مُـ… of four letters or more, or فَاعِل), a word ending
+  on a wāw with no alif behind it is the sound plural annexed — no verb ends so (the group's wāw is written وا), no
+  singular does. On the YĀʾ the same shape may be the speaker's own (مُهَنْدِسِي), so there the next word must visibly
+  be in jarr; a wider yāʾ rule was tried and withdrawn within the hour («هذا مستقبلي المشرق» became «مستقبلُو»).
+
+**Typed bare.** Probing those four showed what the engine did with plain typed Arabic: «المعلمونُ», «حاضرينًا»,
+«سَافِرْ معلمِي المدرسةِ», «سافرُ الرجلِ», «قَرَأْتُ هَذَيْنَ». Six rules:
+
+- **The sound plural and the dual carry their case in the letter; the writer owes the nūn its own vowel**
+  (`DabtEngine.typedNun179`): «المعلمُونَ», «حاضرِينَ», «الطالبَانِ», «كتابَيْنِ» — never a ḍamma or a tanwīn stacked on
+  the nūn. The lexicon answers first (قَانُون، إِنْسَان، مِسْكِين are their own singulars); where it is silent only a
+  participle's measure vouches (not مَفَاعِيل: مَسَاكِين, مَجَانِين). On ـين the sound plural is the QUALITY's — a
+  participle or nisba with no broken plural of its own — and the tens'; a noun with a broken plural, a feminine in ـة
+  (the opened tāʾ: مَدْرَسَتَيْنِ) and الْوَالِدَيْنِ are duals. **This is a default, not a proof:** «الطالبين» is written
+  «الطالبِينَ» where «الطَّالِبَيْنِ» is as likely.
+- **The typed case letter is kept.** An annexed plural typed bare is never re-lettered against the hand that typed
+  it («معلمو» stays on its wāw whatever seat the sentence gave it). Only for bare words: on the vowelled shelf a
+  re-lettered word is the engine's seat showing, and the gauge must go on seeing it.
+- **Typed bare, the māḍī before the command.** «سافر», «انطلق», «حاول»: the «he» of the māḍī and the command of one
+  augmented verb are the same letters, and the walk tried the command first. The māḍī is the unmarked reading
+  (wave 157 already ruled so between two paradigms). One shelf row turned right with it (Talkhīṣ 64:s11
+  «لَأَمْكَنَا»).
+- **«هذين» is the demonstrative.** Typed bare it walked into هَذَى's «هَذَيْنَ». The first fix — putting هذان / هذين in
+  the particle table beside هاتان — broke three case rows and silenced four: the dual demonstrative DECLINES
+  («مَجْرُورٌ بِالْيَاءِ», the stored lines say), so it is no table entry. The guard sits in the verb lookup instead.
+- **The dual demonstrative annexes nothing — where no article follows.** «هذان كتابان» was a muḍāf and its muḍāf
+  ilayh. The cut first took every noun after it, and «هٰذَيْنِ الْمَوْضِعَيْنِ» lost its jarr (the pair was doing the
+  badal's work). It now cuts only before a noun without the article — the khabar.
+- **The sentence owes its khabar before a participle owes an object.** «المسلمون إخوة» came out «إخوةً» (the object of
+  the participle, a rule written for «الضَّارِبُونَ زَيْدًا»). Where a mubtadaʾ opened the sentence, no khabar has come and
+  the word ends it, it is the khabar («بر الوالدين واجب»); «الضاربون زيدا قادمون» keeps its object.
+
+**Two rules withdrawn the same hour**, both by the sweep or the probe and not by the example that asked for them
+(the yāʾ plural; the table entry). **A closed-class table and a lexicon answer different questions — «is this word
+built?» is not «is this word a particle?»**
+
+**Numbers.** Blind 67,507 / 547 / 294 (1 fixed, 0 broken); receipts-on 67,887 / 308 / 153 (1 fixed, 0 broken); case
+layer 55,332 of 56,068 (98.69 %, 0 broken, 0 silenced, 3 newly judged and right). The typed rules do not move the
+shelf — it is vowelled — so they are held by the smoke check «wave 179» (#426 of 428): 30 typed sentences and
+`typedNun179` on ten words.
+
+**Housekeeping.** The session's scratch allowance ran out mid-wave (a probe browser crashed on a full disk); 724 old
+reader copies and published splits were removed from the scratchpad. Nothing in the repository was touched.
+
+**Still open, typed bare:** «ساعد الرجل» (a Form III verb the lexicon has only as a noun is read as a mubtadaʾ);
+«هاتان بنتان» (بنتان read as بَنَتْ); «رأيت مهندسي المدينة» (the yāʾ plural of an unknown participle, next word's ending
+hidden); «سلمت على مهندسي الشركة» (الشركة left as a doer); «جاء مدرسي الجديد» (the naʿt after the speaker's yāʾ);
+the al-noun after «هذان / هذين» is labelled muḍāf ilayh though its case is right; «قلما الولد» and «والدا الطالب»
+typed bare; «بني البيت»; «دَارُوهَا». The lexicon still answers «بُنَيّ» for a word whose vowels contradict it.
+The Marāḥ continues at p. 34 (the māḍī).

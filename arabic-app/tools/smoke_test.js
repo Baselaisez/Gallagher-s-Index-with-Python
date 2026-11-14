@@ -15074,6 +15074,33 @@ if (!CHROME) {
     if (!r.g || !/^بَنِي\/mudafIlayh\/true آدَمَ\/mudafIlayh\/true ثَلَاثَمِائَةِ\/maful\/true مَلَكٍ\/mudafIlayh\/true$/.test(r.g)) throw new Error('al-Maqāmāt 2:s16 — كُلِّ بَنِي آدَمَ ثَلَاثَمِائَةِ مَلَكٍ: ' + J(r.g));
   });
 
+  await check('wave 179 — what a typed word IS: «قَلَمَا» with its vowels and no shadda is the dual of قَلَم, not قَلَّمَا; the article\'s lām wears no vowel, so «وَالِدُ» keeps its wāw and «وَالِدَا الطَّالِبِ» keeps its alif; a participle the lexicon never met still annexes as a sound plural on its wāw (مُهَنْدِسُو الْمَدِينَةِ) and joins a doer; and the sentence typed with NO vowels: the sound plural and the dual take their nūn\'s own vowel (الْمُعَلِّمُونَ، حَاضِرِينَ، كِتَابَيْنِ، الطَّالِبَانِ) while قانون and الإنسان stay singulars, سافر / انطلق before a doer are the māḍī and not the command, هذين is the demonstrative and not هَذَى, and a two-part nominal sentence gets its khabar (هذان كتابان، المسلمون إخوة)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const seg = (t, i) => (SentenceAnalyzer.analyze(t)[i] || {}).seg || [];
+      const fc = w => { const c = RootFinder.fromCorpus(w); return c && c.cell ? c.cell.tense : null; };
+      const cl = (w, nx) => { const c = SentenceAnalyzer.constructLetters(w, stripAr(w).replace(/[^ء-ي]/g, ''), nx); return c ? [c.num, c.letter, !!c.byShape] : null; };
+      return {
+        q1: dv('هٰذَانِ قَلَمَا الْوَلَدِ'), q2: dv('قَلَّمَا يَصْدُقُ الْكَذُوبُ'), qk: [SentenceAnalyzer.analyze('هٰذَانِ قَلَمَا الْوَلَدِ')[1].kind, SentenceAnalyzer.analyze('قلما يصدق')[0].kind],
+        w1: dv('وَصَلَ وَالِدَا الطَّالِبِ'), w2: dv('وَالِدُ الطَّالِبِ مُعَلِّمٌ'), ws: [seg('وَصَلَ وَالِدُ الطَّالِبِ', 1).length, seg('وَاللَّيْلِ إِذَا يَغْشَى', 0)[0], seg('وَالِاسْمُ مَرْفُوعٌ', 0)[0], seg('وَالْكِتَابُ جَدِيدٌ', 0)[0]],
+        m1: dv('جَاءَ مُعَلِّمُو الْمَدْرَسَةِ وَمُهَنْدِسُو الْمَدِينَةِ'), m2: dv('جاء مهندسو المدينة'), mc: [cl('مهندسو', 'المدينة'), cl('يدعو', 'الرجل'), cl('مهندسي', 'المدينة')],
+        t1: dv('كان المعلمون حاضرين'), t2: dv('إن المعلمين حاضرون'), t3: dv('قرأت كتابين'), t4: dv('جاء الطالبان'), t5: dv('هذا قانون جديد'), t6: dv('رأيت الإنسان'), t7: dv('في المدرستين طلاب'),
+        tn: ['المعلمون', 'حاضرين', 'كتابين', 'قانون', 'الإنسان', 'مدرستين', 'عشرون', 'مساكين', 'والدين', 'للمسلمين'].map(w => DabtEngine.typedNun179(w)),
+        v1: dv('سافر الرجل'), v2: dv('سافر معلمو المدرسة'), v3: dv('انطلق القطار'), vf: [fc('سافر'), fc('سَافِرْ'), fc('اكتب')],
+        d1: dv('هذان كتابان'), d2: dv('قرأت هذين الكتابين'), d3: dv('المسلمون إخوة'), d4: dv('بر الوالدين واجب'), d5: dv('الضاربون زيدا قادمون'),
+      };
+    });
+    if (!/ قَلَمَا\/khabar الْوَلَدِ\/mudafIlayh$/.test(r.q1) || !/^قَلَّمَا\/mabni /.test(r.q2) || J(r.qk) !== J(['noun', 'particle'])) throw new Error('قَلَمَا the dual beside قَلَّمَا the particle: ' + J([r.q1, r.q2, r.qk]));
+    if (!/ وَالِدَا\/fail الطَّالِبِ\/mudafIlayh$/.test(r.w1) || !/^وَالِدُ\/mubtada الطَّالِبِ\/mudafIlayh /.test(r.w2) || J(r.ws) !== J([1, 'و', 'و', 'و'])) throw new Error('وَالِد keeps its wāw, the article keeps its joiner: ' + J([r.w1, r.w2, r.ws]));
+    if (!/ وَمُهَنْدِسُو\/atf الْمَدِينَةِ\/mudafIlayh$/.test(r.m1) || !/ مهندسُو\/fail المدينةِ\/mudafIlayh$/.test(r.m2) || J(r.mc) !== J([['jam', 'waw', true], null, null])) throw new Error('the unknown participle\'s sound plural: ' + J([r.m1, r.m2, r.mc]));
+    if (!/ المعلمُونَ\/kanaIsm حاضرِينَ\/kanaKhabar$/.test(r.t1) || !/ المعلمِينَ\/innaIsm حاضرُونَ\/innaKhabar$/.test(r.t2) || !/ كتابَيْنِ\/maful$/.test(r.t3) || !/ الطالبَانِ\/fail$/.test(r.t4) || !/ قانونٌ\/khabar /.test(r.t5) || !/ الإنسانَ\/maful$/.test(r.t6) || !/ المدرستَيْنِ\/jarr /.test(r.t7)) throw new Error('the bare-typed sound plural and dual: ' + J([r.t1, r.t2, r.t3, r.t4, r.t5, r.t6, r.t7]));
+    if (J(r.tn) !== J(['jamRaf', 'jamObl', 'dualObl', null, null, 'dualObl', 'jamRaf', null, 'dualObl', 'jamObl'])) throw new Error('typedNun179: ' + J(r.tn));
+    if (r.v1 !== 'سَافَرَ/mazi الرجلُ/fail' || !/^سَافَرَ\/mazi معلمُو\/fail المدرسةِ\/mudafIlayh$/.test(r.v2) || !/\/mazi القطارُ\/fail$/.test(r.v3) || J(r.vf) !== J(['mazi', 'amr', 'amr'])) throw new Error('typed bare, the māḍī before the command: ' + J([r.v1, r.v2, r.v3, r.vf]));
+    if (!/ كتابَانِ\/khabar$/.test(r.d1) || /\/mazi .*\/mazi/.test(r.d2) || !/ هذينِ\/maful /.test(r.d2) || !/ إخوةٌ\/khabar$/.test(r.d3) || !/ واجبٌ\/khabar$/.test(r.d4) || !/ زيدًا\/maful قادمُونَ\/khabar$/.test(r.d5)) throw new Error('the dual demonstrative and the owed khabar: ' + J([r.d1, r.d2, r.d3, r.d4, r.d5]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
