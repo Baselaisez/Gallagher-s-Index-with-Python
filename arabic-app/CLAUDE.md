@@ -12445,3 +12445,68 @@ claims, the Kāfiya word, and the pronoun reader on the same words.
 «حقه» and «في حقه» but not behind a joined jarr letter (the one battery miss, kept judged). «عَلَّمَنِيهِ» (two
 objects) is still unread; «حَقَّهُ» with a fatḥa prefers the verb to «his right» (the seat should decide); «أَبُوكِ» is
 named by a compound lemma («أَبُو بَكْرٍ») from the lexicon; «آمن الرجل بربه» typed bare reads «آمن» as «I».
+
+### v287 (wave 188) — «مَرَاحُ الْأَرْوَاحِ» part six, and what the matn says the engines already do
+
+The source grows by pp. 49–55 — from «وَيُحْذَفُ وَاوُ هُوَ» to «وَنَفْعَلُ زَيْدُونَ», the end of the faṣl on the māḍī:
+chapter 15 (the hāʾ of the pronoun, «هِيَ» and «هُنَّ»; 6 sentences), 16 (the manṣūb and the majrūr pronouns; 8) and
+17 (where the attached marfūʿ hides; 25). 39 sentences / 462 words through the engine-authoring pipeline, 6 new
+lemmas, 2 new paradigms (تَعَانَقَ، عَيَّنَ), 173 corrections; the book stands at 17 chapters / 164 sentences / 1,903
+words. p. 56 opens «فصل في المستقبل» — part seven starts there.
+
+**The chapter is about the hidden pronoun, so the lines name it.** Every form the matn cites for istitār carries its
+own verb's iʿrāb, the hidden doer BY NAME, whether it hides by choice or by necessity, and the place of the quoted
+word — one helper (`SH`) writes all nineteen, so «ضَرَبَ … جَوَازًا «هُوَ»» and «أَضْرِبُ … وُجُوبًا «أَنَا»» cannot
+drift apart. The matn's own impossible examples say so in their line («ضَرَبْتَكَ»: مِثَالُ الْمُمْتَنِعِ; «افْعَلْ زَيْدٌ»:
+مَوْضِعُ الْقُبْحِ) — a learner tapping a word the author cites as wrong must be told it is cited as wrong.
+
+**Two places where the matn and an engine written before it agree, now gated.**
+- 16:s2 forbids the doer's and the object's pronoun of ONE person on one verb and 16:s3 excepts the verbs of the
+  heart. `DamirEngine.attach` (v285) refuses «ضَرَبْتَ + كَ» and «ضَرَبْتُ + نِي» and builds «عَلِمْتَكَ», «عَلِمْتُنِي» —
+  the smoke check compares the engine's output with the matn's own tokens.
+- 17:s25 calls «أَفْعَلُ زَيْدٌ» ugly. Read blind, the engine writes «زَيْدًا»: it will not seat a noun as the doer of
+  a first-person verb. That row stays a counted miss in the sweep — the engine declining what the author cites as
+  what must not be said is the finding, not a defect.
+
+**Three rules the text called for.**
+- **A · يَا غُلَامَا.** The writer set a ḍamma ON the alif («غُلَامَاُ») and the case layer read the alif as the
+  annexed dual's rafʿ. After the vocative, a noun the lexicon owns without its last alif, written with a fatḥa
+  before that alif and no tanwīn, wears the alif the speaker's yāʾ turned into: manṣūb, kept as written. It is never
+  the dual — annexed, the dual's naṣb is a yāʾ; alone, it keeps its nūn. «يَا عَصَا» / «يَا دُنْيَا» (the lemma's own
+  alif) and «يَا زَيْدُ» are the controls.
+- **E · أَوْلَى.** «أَفْعَى» is the māḍī of أَفْعَلَ from a defective root and, vowel for vowel, the elative of the same
+  root. The verb is transitive and must have its object; where the clause ends on the word or a jarr phrase follows
+  (أَوْلَى بِـ، أَوْلَى مِنْ) and something stands before it to be told about, it is the elative the lexicon owns.
+  «زَيْدٌ أَوْلَى عَمْرًا مَعْرُوفًا», «قَدْ أَوْلَى» and «ثُمَّ أَعْطَى وَأَوْلَى» keep the verb. Four typed battery
+  lines, right on first contact.
+- **B · مِنْ «ضَرَبَهُ» إِلَى «ضَرَبَنَا».** After a jarr letter every verb-shaped word was made a noun («nothing a
+  jarr letter governs is a verb»), so the matn's cited «ضَرَبَنَا» was «our striking», manṣūb. The exact test is the
+  annexed noun's own rule: a noun that carries a pronoun is annexed, and the annexed noun's jarr is ALWAYS a kasra
+  — the diptote takes it back the moment it is annexed. A host that is vowel for vowel a māḍī cell and does not end
+  in a kasra is therefore no majrūr: it is the verb, cited. «فِي طَلَبِهِ», «مِنْ ضَرْبِهِ», «فِي كِتَابِهِ» stay nouns.
+
+**Measured.** Blind 68,322 / 548 / 292 → 68,780 / 550 / 294 (the 39 sentences add 458 right, 2 wrong, 2 undecided);
+receipts-on 68,700 / 310 / 152 → 69,161 / 311 / 152; case layer 56,184 / 56,808 → 56,585 / 57,209 (98.90 → 98.91 %),
+1 fixed, 0 broken on all three. Typed battery 361 sentences, 1,117 / 1,118.
+
+**Learned.**
+- **A fix that carries a new line must carry its key and part of speech.** A line given without them let the
+  packager re-file the word from the line's own text: «كَانَ» became the particle كَأَنَّ, «عَلِمْتَكَ» and «غُلَامَا»
+  particles. The audit that caught it compares key / pos / segments between two passes, not the lines.
+- **Write the line so the label reader hears the right word first.** «اللَّامُ … مَبْنِيٌّ عَلَى الْكَسْرِ، وَفِعْلٌ
+  مُضَارِعٌ مَجْزُومٌ» was scored as a mabnī word against the engine's correct jazm. The lām's own bināʾ is not what
+  the token IS; the line now says the verb's iʿrāb and stops.
+- **A lemma with no surface never reaches the glossary.** `ama-handmaid` and `awla-fitter` were written surface-less
+  to keep them from competing with أُمَّة and the verb أَوْلَى; the packager dropped them and the validator said so.
+  The surfaces went in only after counting them in the source (one أمة, two أولى, both the intended word).
+
+**The held-out grade's clock.** The release stopped once on the cross-validation ceiling: 8.08 s against 8 s inside
+the third smoke chunk. Alone it is 6.2 – 7.3 s at 57,562 rows / 56 folds (cvPrepare 2.0 s, a fold 73 ms), and a row
+costs what it cost when the ceiling was set (0.13 ms at 39,843 rows, 0.115 ms now) — the corpus grew, the reader did
+not slow. Ceiling 10 s, with the measurement in the check. `cvPrepare`'s one 2 s featurisation is the piece not yet
+sliced; that is the next speed item, and the ceiling should not move again before it is done.
+
+**Left open.** «ضَارِبٌ» after نَحْوُ is claimed rafʿ by the case layer and filed as a quoted word by its line — both
+true, one counted wrong. «وَالْإِبْرَازَ» joined to أَنَّ's ism is written rafʿ blind (the istiʾnāf reading is
+grammatical). «يَا عَصَا مُوسَى», annexed, is still called mabnī. «زيد» opening a typed sentence is read as the
+passive «زِيدَ» by the analyzer though the writer seats it as the mubtadaʾ. The v286 items stand.

@@ -66,8 +66,14 @@ from sarf_gen import B8, W8
 V["iktafa"] = derived_naqis(B8, W8, "َ", "اِكْتَفَ", "كْتَف", "i", "اِكْتَف", "اِكْتِفَاء", "مُكْتَفٍ (الْمُكْتَفِي)", "مُكْتَفًى", "اُكْتُفِيَ", "يُكْتَفَى",
                             "اِكْتَفَى بِالشَّيْءِ يَكْتَفِي بِهِ: اسْتَغْنَى بِهِ عَنْ غَيْرِهِ.")
 
+# ================================================================ part six (pp. 49–55)
+# تَعَانَقَ يَتَعَانَقُ — «إِذَا تَعَانَقَ وَانْضَمَّ بِشَيْءٍ آخَرَ»
+V["taanaqa"] = derived(B6, W6, "َ", "تَعَانَق", "تَعَانَق", "تَعَانَق", "تَعَانُق", "مُتَعَانِق")
+# عَيَّنَ يُعَيِّنُ — «وَعُيِّنَتِ الْيَاءُ»
+V["ayyana-appoint"] = derived(B2, W2, "ُ", "عَيَّن", "عَيِّن", "عَيِّن", "تَعْيِين", "مُعَيِّن", "مُعَيَّن", "عُيِّنَ", "يُعَيَّنُ")
+
 # a lām that is a nūn meets the nūn of the feminine plural and of «we» and contracts (رَكَنَّ، رَكَنَّا)
-for _k in ("rakana", "ikhshawshana", "tashaytana", "tamaskana"):
+for _k in ("rakana", "ikhshawshana", "tashaytana", "tamaskana", "ayyana-appoint"):
     V[_k] = g.idgham(V[_k])
 out = sys.argv[1]
 json.dump({"verbs": {k: g.nfc(V[k]) for k in sorted(V)}}, open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
