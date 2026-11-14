@@ -15185,6 +15185,41 @@ if (!CHROME) {
     if (segs[0] !== 'ه' || segs[1] !== 'ه' || segs[3] !== '') throw new Error('wave-182 short hosts (أمه، يده peel a pronoun; أمة does not): ' + J(segs));
   });
 
+  await check('wave 183 — Marāḥ al-Arwāḥ part four is on the shelf (the mīm of ضَرَبْتُمَا and ضَرَبْتُمْ, the nūn of ضَرَبْتُنَّ, the speakers\' tāʾ and nūn — at least twelve chapters; حَيَّاكَ keyed to حَيَّا, تُوَفَّى to وَفَّى, شُدِّدَ to شَدَّدَ, أَدْلٍ to دَلْو) and the rules it called for hold by name: the tanwīn belongs to the noun alone (حَيًّا is the noun حَيّ and keeps its naṣb claim; حَقًّا keeps its own; حَيَّا stays the verb); the article-bearing noun right after a passive verb is its deputy whatever «كَمَا» clause follows; «أَصْلُهُ …» after the word cited behind «كَمَا فِي» opens its own clause; and «ẓarf + returning pronoun, then an indefinite word» after an indefinite noun is the noun\'s naʿt clause, its last word a mubtadaʾ in rafʿ — after a deputy, a doer, an object or a mubtadaʾ — while the two-object passive keeps its second object and the alif of naṣb keeps the verb\'s object', async () => {
+    const J = JSON.stringify;
+    const N = x => String(x || '').normalize('NFC');
+    const shelf = await page.evaluate(() => { const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return null;
+      const ch = n => st.chapters.find(c => Number(c.n || c.id || c.chapter) === n) || st.chapters[n - 1];
+      const tok = (c, si, ti) => { const sn = c && c.sentences && c.sentences[si]; const t = sn && sn.tokens && sn.tokens[ti]; return t ? [String(t.lex || ''), String(t.pos || '')] : null; };
+      const c11 = ch(11), c12 = ch(12);
+      return { chapters: st.chapters.length, s11: c11 && c11.sentences ? c11.sentences.length : 0, s12: c12 && c12.sentences ? c12.sentences.length : 0, hayya: tok(c11, 1, 4), waffa: tok(c11, 2, 4), dalw: tok(c11, 11, 6), shaddada: tok(c12, 0, 0), full: c11 && c11.sentences && c11.sentences[5] ? c11.sentences[5].tokens.map(t => String((t.s || {}).full || '')).join(' ') : '' }; });
+    if (!shelf || shelf.chapters < 12 || shelf.s11 < 14 || shelf.s12 < 9) throw new Error('Marāḥ part four is not whole on the shelf: ' + J(shelf));
+    if (J(shelf.hayya) !== J(['hayya', 'verb']) || J(shelf.waffa) !== J(['waffa', 'verb']) || J(shelf.dalw) !== J(['dalw', 'noun']) || J(shelf.shaddada) !== J(['shaddada', 'verb'])) throw new Error('part four keys: ' + J(shelf));
+    if (!/ضَرَبْتُمْ/.test(N(shelf.full)) || !/وَضُمَّتِ/.test(N(shelf.full))) throw new Error('11:s6 lost its written endings (the source and the engine words fell out of step): ' + shelf.full);
+    const dv = sents => page.evaluate(ss => ss.map(t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; try { const v = DabtEngine.vowel(t, 'endings'); return (v.words || []).map(w => w.out + '/' + w.rule).join(' '); } catch (e) { return 'ERR ' + e.message; } }), sents);
+    const R = '[a-zA-Z]+';
+    const cases = [
+      ['وَمِنْ ثَمَّ تُبْدَلُ الْمِيمُ مِنَ النُّونِ كَمَا فِي عَمْبَرٍ أَصْلُهُ عَنْبَرٌ', / الْمِيمُ\/naib .* عَمْبَرٍ\/jarr أَصْلُهُ\/mubtada عَنْبَرٌ\/khabar$/],
+      ['ثُمَّ قُصِرَ كَمَا فِي مِخْيَطٍ أَصْلُهُ مِخْيَاطٌ', / أَصْلُهُ\/mubtada مِخْيَاطٌ\/khabar$/],
+      ['وَلَا يُوجَد فِي آخِر الِاسْم وَاو قَبْلهَا مَضْمُوم', / قَبْلَهَا\/zarf مَضْمُومٌ\/mubtada$/],
+      ['جَاءَ رَجُل مَعَهُ كِتَاب', / رَجُلٌ\/fail مَعَهُ\/zarf كِتَابٌ\/mubtada$/],
+      ['فِي الدَّار رَجُل مَعَهُ كِتَاب', / مَعَهُ\/zarf كِتَابٌ\/mubtada$/],
+      ['أَخَذَ رَجُل مَعَهُ كِتَابا', / كِتَابًا\/maful$/],
+      ['وُجِدَ زَيْدٌ قَائِمًا', / زَيْدٌ\/naib قَائِمًا\/maful$/],
+    ];
+    const o = (await dv(cases.map(c => c[0]))).map(N);
+    const bad = cases.map((c, k) => c[1].test(o[k]) ? null : c[0] + ' → ' + o[k]).filter(Boolean);
+    if (bad.length) throw new Error('wave-183 endings: ' + J(bad));
+    const tw = await page.evaluate(() => { const C = (t, i) => { try { const r = SentenceAnalyzer.analyze(t); const L = Array.isArray(r) ? r : (r.rows || []); const c = CaseEngine.claim(L, i); return [String((L[i] || {}).kind || ''), String((L[i] || {}).lemma || ''), c ? String(c.k || '') : '-']; } catch (e) { return ['ERR', e.message, '']; } };
+      const fc = w => { try { const x = RootFinder.fromCorpus(w); return x && x.cell ? String(x.cell.tense || '') : ''; } catch (e) { return 'ERR'; } };
+      return { hayyan: C('فَصَارَ بَشَرًا حَيًّا', 2), haqqan: C('وَكَانَ وَعْدُ اللهِ حَقًّا', 3), cellTanwin: fc('حَيًّا'), cellVerb: fc('حَيَّا') }; });
+    const two = await page.evaluate(() => { const out = []; const HID = /، وَ(?:الْفَاعِلُ|نَائِبُ الْفَاعِلِ) ضَمِيرٌ مُسْتَتِرٌ/; const DOER = /^(?:فَاعِلٌ|نَائِبُ فَاعِلٍ)(?: |،|\.|$)/;
+      for (const st of STORIES) for (const c of st.chapters) for (const sn of (c.sentences || [])) { const T = sn.tokens || []; for (let i = 0; i + 1 < T.length; i++) { const a = String((T[i].irab || {}).ar || '').normalize('NFC'), b = String((T[i + 1].irab || {}).ar || '').normalize('NFC'); if (T[i].pos === 'verb' && T[i + 1].pos !== 'verb' && !T[i].punctAfter && HID.test(a) && DOER.test(b)) out.push(st.id + ' ' + sn.id + ' ' + T[i].s.full + ' ' + T[i + 1].s.full); } }
+      return out; });
+    if (two.length) throw new Error('الْفَاعِلُ لَا يَتَعَدَّدُ — ' + two.length + ' verb line(s) promise a hidden doer while the next word is the stated one: ' + J(two.slice(0, 6)));
+    if (tw.hayyan[0] !== 'noun' || N(tw.hayyan[1]) !== N('حَيّ') || tw.hayyan[2] !== 'nasb' || tw.haqqan[2] !== 'nasb' || tw.cellTanwin !== '' || !/mazi/i.test(tw.cellVerb)) throw new Error('wave-183 tanwīn (حَيًّا the noun in naṣb, حَقًّا in naṣb, no verb cell for a tanwīn word, حَيَّا a māḍī): ' + J(tw));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

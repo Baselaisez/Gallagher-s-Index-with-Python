@@ -12131,3 +12131,73 @@ allow two readings are out of the battery, not solved: «رسم الولد صو�
 picture»), «بيت الجار القديم واسع» (whose adjective?), «أخته طالبة جامعة» (the engine reads naʿt; the iḍāfa is likelier),
 «زار عمه في البيت» (doer or object). (3) «وفي» at a sentence's end is still وَ + فِي: the lexicon has no وَفِيّ. (4) «الرجل قال
 الحق» reads الحقُّ as a new sentence after قَالَ (pre-existing).
+
+### v282 (wave 183) — «مَرَاحُ الْأَرْوَاحِ» part four, and one verb keeps one doer
+
+**The text.** Marāḥ al-Arwāḥ pp. 40–45 (the classical matn only, from the page images): the mīm of ضَرَبْتُمَا and ضَرَبْتُمْ and
+the vowel of the tāʾ (ch. 11, 14 sentences) and the nūn of ضَرَبْتُنَّ, the speaker's tāʾ and the nūn of ضَرَبْنَا (ch. 12,
+9 sentences) — it stops at «فَصَارَ ضَرَبْنَا»; the package is 12 chapters / 99 sentences / 1,188 tokens, manifest 0.4.0. Two
+verses are cited (the alif of ishbāʿ in «أَنْتَا» and «ضَمِنْتَا»). New lemmas with generated paradigms: حَيَّا (derived naqis;
+its third person is stored حَيَّا), ضَمِنَ, شَدَّدَ; nouns إِشْبَاع، مُكَاثَرَة، ضِحْك، شَفَوِيّ، عَمْبَر. The attribution states the
+readings taken where the print is bare («تُوَفَّى», «وَضِحْكٍ», «لِهُمَا», «ضَرَبْتُمُوا»). 67 authored fixes; the package reaches
+a fixed point under the pipeline (`bash pass.sh N`).
+
+**Rules the text called for** (reader, `DabtEngine` / analyzer):
+- **The tanwīn belongs to the noun alone.** The new verb حَيَّا shares its letters with حَيًّا / حَيٌّ, and the paradigm hit
+  silenced four right case claims on the shelf. `RootFinder.fromCorpus` returns null for a word written with tanwīn, and
+  the analyzer hands the row the NOUN's lemma when a tanwīn word reached it through a verb's cell — only when the noun's
+  letters differ from the word's and from the verb's lemma. The first attempt (drop the paradigm hit for every tanwīn
+  word) silenced «حَقًّا» and «أَوَّلًا» (nine rows): the narrow form is the one that ships.
+- **The article-bearing noun right after a passive verb is its deputy doer**, whatever «كَمَا» clause follows (تُبْدَلُ الْمِيمُ
+  مِنَ النُّونِ كَمَا فِي …) — no new mubtadaʾ is opened there.
+- **«أَصْلُهُ …» after the word cited behind «كَمَا فِي»** opens a nominal clause of its own (كَمَا فِي عَمْبَرٍ أَصْلُهُ عَنْبَرٌ); the
+  cited word annexes nothing (`cutHead`).
+- **جَاءَ رَجُلٌ مَعَهُ كِتَابٌ.** An indefinite noun, a ẓarf carrying the pronoun that returns to it, and one indefinite word
+  closing the clause: the ẓarf is a fronted khabar and the word its postponed mubtadaʾ in rafʿ — after a doer, a deputy,
+  an object or a mubtadaʾ. Controls: a word written with the alif of naṣb stays the verb's object (أَخَذَ رَجُلٌ مَعَهُ
+  كِتَابًا), and the two-object passive keeps its second object (وُجِدَ زَيْدٌ قَائِمًا). Written first for the typed path, it did
+  not fire in the corpus path (the verb there is keyed وَجَدَ and the two-object rule took the word) — **a rule proven on a
+  typed sentence is re-proven on the shelf's own path before it counts.**
+- Builder: a particle's key given by a fix together with its line is honoured (لِمَ is no لَمْ).
+- **A wāw written apart is still its word's wāw.** The source writes «وَ «ضَرَبْتُمْ» وَ «ضَرَبْتُنَّ»» with the wāw outside the
+  quotation marks, so two wāws arrived as tokens of their own and `WawEngine.read` — which reads the wāw off the front of
+  a word — said nothing about them; the release's Waw gate («no wāw the engine is silent about») caught it. A lone wāw is
+  now read through the word it stands before. (Writing the wāw against the mark, `وَ«…»`, is what misaligned the builder
+  earlier in this wave: the space stays, and the engine learned the shape.)
+
+**One verb, one doer — an audit the new chapters started.** Checking chapter 11 by eye found «وَضُمَّتِ» described as an
+active verb with a pronoun doer, and three passives whose lines promised a hidden deputy while the very next word's
+line said «نَائِبُ فَاعِلٍ». The engine composes a verb's line before it knows what the next word turned out to be. A scan
+of the whole shelf found the same contradiction **113 times** in the four engine-authored books (al-Uṣūl 90, Taṣrīf
+al-ʿIzzī 9, Marāḥ 7, al-Maqāmāt 7) — «قَالَ عَطَاءُ», «تُبْدَلُ الْمِيمُ», «لَا يُوجَدُ فِي آخِرِ الِاسْمِ وَاوٌ» — and none in the
+hand-authored ones.
+- `tools/authoring/doer_dedupe.py` is the rule: from a verb whose line promises a hidden doer, walk only over what can
+  stand between a verb and its doer (particles, a jarr phrase with its annexation, a ẓarf, a fronted object), stop at a
+  pause, at another verb, and at a word joined by a conjunction; if a word there is the stated doer or deputy, the hidden
+  clause leaves the verb's line in all three languages. `pkg_from_engine.py` runs it on every package it builds; it was
+  run once over the three other landed packages (104 lines) and Marāḥ was regenerated (7 lines + the two rewritten
+  passives 11:s5, 11:s6).
+- Two of the 113 were the NOUN's line being wrong, not the verb's, and were corrected by hand instead
+  (`tools/authoring/usul/hand183.py`, kept in `fixes.json`): al-Uṣūl 2:s3 «وَلَأَنْ يَتَفَقَّهَ الرَّجُلُ كَيْفَ يَعْبُدُ رَبَّهُ خَيْرٌ لَهُ»
+  — the lām of ibtidāʾ with the maṣdar-making أَنْ (the line read «لِأَنَّ»), «خَيْرٌ» its khabar (the line called it the
+  doer of يَعْبُدُ), «كَيْفَ» a ḥāl; and 29:s1 «فِي زَمَانٍ مِقْدَارُهُ …» — a mubtadaʾ opening the clause that describes «زَمَانٍ».
+- Smoke now holds the shelf to it: no verb line may promise a hidden doer while the next word's line is the stated one.
+
+**Measurements** (baseline v281 `c182c` → landed `c183f`): blind endings 67,807 → 68,070 right (547 wrong / 292
+undecided; FIXED 2, BROKEN 0 — وَحَيَّا / وَحَيُّوا in Taṣrīf al-ʿIzzī); receipts-on 68,185 → 68,448 (FIXED 2, BROKEN 0); the
+new chapters read 261 of 262 endings blind (only the cited non-word «ضَرَبْتُنْ» undecided); case layer 98.70 → 98.71 %
+(55,798 / 56,529; FIXED 1, BROKEN 0, silenced-right 0; 213 newly judged right, 5 wrong); typed battery 1,075 / 1,075.
+The doer audit changed no ending and no case verdict (sweeps identical before and after it).
+
+**Checks.** Smoke «wave 183» (#430 of 432): the shelf facts (12 chapters; حَيَّاكَ → حَيَّا, تُوَفَّى → وَفَّى, شُدِّدَ → شَدَّدَ, أَدْلٍ →
+دَلْو; 11:s6 keeps its written endings), seven sentences by name with their controls, the tanwīn rule (حَيًّا the noun in
+naṣb, حَقًّا in naṣb, no verb cell for a tanwīn word, حَيَّا a māḍī), and the one-doer gate over every text.
+
+**Open, said plainly.** (1) Four «مَا + verb» claims read ḥarf where the line says mawṣūl (al-Kāfiya 27:s1 «مَا وُضِعَ»,
+al-Uṣūl 33:s1 «وَمَا وَرَدَ», Iẓhār 59:s3 «مَا كَانَ», Marāḥ 11:s3 «مَا ضَمِنْتَا») — three of them were silent before only
+because a tanwīn noun was mistaken for a verb; the faces of مَا before a verb are the next claim work. (2) «ضَرَبْتُنْ», a
+form the matn cites as impossible, is written back as ضَرَبْتُنَّ (left undecided). (3) After a PROPER name the naʿt-clause
+rule does not apply and «جَاءَ زَيْدٌ مَعَهُ كِتَابٌ» still reads كِتَابًا — there the clause is a ḥāl, and the rule has not been
+written. (4) al-Uṣūl 29:s1 writes «مِقْدَارُهُ خَمْسِينَ» as shipped; its line is still the bare «اسْمٌ» — the reading (ḥikāya of
+the āya's wording, or an omitted كَانَ) is not decided here. (5) The audit shows al-Uṣūl still carries bare «اسْمٌ.» lines
+(كَيْفَ, numerals): engine-authored lines are pending-scholarly-review and the next audit should count them.

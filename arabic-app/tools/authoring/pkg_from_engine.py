@@ -476,6 +476,10 @@ def praise_khabar(toks, report):
         report.setdefault("praise_open", []).append(" ".join(x["surface"]["full"] for x in toks[max(0, i - 3):i + 1]))
 
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from doer_dedupe import doer_dedupe   # (wave 183)
+
+
 def kana_dedupe(toks):
     """(wave 165) a sister of kāna whose noun is written keeps no hidden one beside it; and no line ends on two full stops."""
     n = 0
@@ -1081,6 +1085,7 @@ def main():
                     if pre and pb not in ("و", "ف"):
                         ar = ("الْوَاوُ عَاطِفَةٌ، وَ" if pre == "و" else "الْفَاءُ عَاطِفَةٌ، وَ") + ar; en = ("The waw conjoins; " if pre == "و" else "The fa conjoins; ") + en[:1].lower() + en[1:]; tr = ("«ve» + " if pre == "و" else "«bunun üzerine» + ") + tr[:1].lower() + tr[1:]
                         segs = [{"form": full[:2], "lex": "wa" if pre == "و" else "fa", "pos": "conj"}, {"form": full[2:], "lex": key, "pos": "pron" if (pb in PRON or pb in DEM) and key != "min" else "part"}]; take("wa" if pre == "و" else "fa", where)   # (wave 167) the segment wears the class the token wears
+                    if fx.get("key") and fx.get("irab") and fx["key"] in G and fx["key"] != key: key = fx["key"]; take(key, where)   # (wave 183) لِمَ: an authored line names the particle's own key (لِ + مَا, never لَمْ)
                     toks.append({"surface": {"full": full, "smart": full, "bare": b}, "lex": key or "?", "pos": (fx.get("pos") if fx.get("pos") in ("verb", "pron", "noun") and fx.get("irab") else None) or ("pron" if (pb in PRON or pb in DEM) and key != "min" else "part"), **({"grammar": list(dict.fromkeys(t for t in tags if t in GIDS))} if tags else {}), "irab": {"ar": ar, "en": en, "tr": tr}, **({"segments": segs} if segs else {})})
                     continue
                 # ---- a verb the engine read as a noun: the lexicon's part of speech wins, the shape gives tense and mood
@@ -1324,6 +1329,7 @@ def main():
                     for sg in t["segments"]:
                         if sg.get("lex") == t["lex"]: sg["pos"] = "noun"
             kana_dedupe(toks)   # (wave 165; a function since wave 167 so that polish_pkg.py can run it on a shipped package)
+            doer_dedupe(toks)   # (wave 183) a verb whose doer is written keeps no hidden one beside it — see doer_dedupe.py
             if meta.get("cellLines"):   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
                 import cell_lines as CL
                 def vhost_(t):

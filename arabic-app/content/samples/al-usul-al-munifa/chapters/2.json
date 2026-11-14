@@ -569,16 +569,16 @@
       "smart": "وَلَأَنْ",
       "bare": "ولأن"
      },
-     "lex": "lianna",
+     "lex": "an-masdariyya",
      "pos": "part",
      "grammar": [
-      "inna-wa-akhawatuha",
-      "huruf-jarr"
+      "an-masdariyya",
+      "mubtada-khabar"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَاللَّامُ حَرْفُ جَرٍّ لِلتَّعْلِيلِ، وَ«أَنَّ» حَرْفُ تَوْكِيدٍ وَنَصْبٍ.",
-      "en": "The waw conjoins; «because» — the lam of cause with enne.",
-      "tr": "«ve» + «çünkü» — ta'lîl lâmı + enne."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَاللَّامُ لَامُ الِابْتِدَاءِ، وَ«أَنْ» حَرْفٌ مَصْدَرِيٌّ وَنَصْبٍ، وَالْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ يَتَفَقَّهَ» فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+      "en": "The waw conjoins; the lam of ibtida' (emphasis); «أَنْ» — the masdar-maker that governs nasb: the clause it makes («that a man gain understanding») stands in the place of raf' as the mubtada.",
+      "tr": "«ve» + ibtidâ (te'kîd) lâmı + «أَنْ» — masdariyye, nasbeder: kurduğu te'villi masdar («kişinin fıkıh öğrenmesi») ref mahallinde mübtedâdır."
      },
      "segments": [
       {
@@ -588,7 +588,7 @@
       },
       {
        "form": "لَأَنْ",
-       "lex": "lianna",
+       "lex": "an-masdariyya",
        "pos": "part"
       }
      ]
@@ -648,10 +648,13 @@
      "lex": "kayfa",
      "pos": "noun",
      "irab": {
-      "ar": "اسْمٌ.",
-      "en": "a noun.",
-      "tr": "isim."
-     }
+      "ar": "اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ حَالٌ.",
+      "en": "An interrogative noun, built on the fatha, in the place of nasb as a hal («in what manner»).",
+      "tr": "İstifham ismi, fetha üzere mebnî; nasb mahallinde hâl («ne şekilde»)."
+     },
+     "grammar": [
+      "al-istifham"
+     ]
     },
     {
      "surface": {
@@ -706,12 +709,12 @@
      "lex": "khayr",
      "pos": "noun",
      "grammar": [
-      "fail"
+      "mubtada-khabar"
      ],
      "irab": {
-      "ar": "فَاعِلٌ مَرْفُوعٌ بِالضَّمَّةِ.",
-      "en": "The doer (fa'il), in raf'; the sign is the damma.",
-      "tr": "Fâil, merfû; alâmeti damme ile."
+      "ar": "خَبَرُ الْمُبْتَدَإِ مَرْفُوعٌ بِالضَّمَّةِ — وَالْمُبْتَدَأُ الْمَصْدَرُ الْمُؤَوَّلُ مِنْ «أَنْ يَتَفَقَّهَ».",
+      "en": "The khabar, in raf'; the sign is the damma — its mubtada is the masdar clause «أَنْ يَتَفَقَّهَ».",
+      "tr": "Haber, merfû; alâmeti damme ile — mübtedâsı «أَنْ يَتَفَقَّهَ» te'villi masdarıdır."
      }
     },
     {
@@ -1511,9 +1514,9 @@
      "lex": "tadhakkara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
+      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
+      "en": "A present verb, in raf'.",
+      "tr": "Muzâri fiil, merfû."
      }
     },
     {
@@ -1716,9 +1719,9 @@
       "nawasib-wa-jawazim-al-mudari"
      ],
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِـ«أَنْ»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A present verb, in nasb after «أَنْ»; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Muzâri fiil, mansûb; fâili gizli zamir «هُوَ»."
+      "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِـ«أَنْ»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
+      "en": "A present verb, in nasb after «أَنْ».",
+      "tr": "Muzâri fiil, mansûb."
      }
     },
     {
@@ -7184,9 +7187,9 @@
      "lex": "ahdatha",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "A past verb.",
+      "tr": "Mâzî fiil."
      }
     },
     {
@@ -8014,9 +8017,9 @@
      "lex": "ahdatha",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
+      "en": "A past verb.",
+      "tr": "Mâzî fiil."
      }
     },
     {
@@ -8514,7 +8517,7 @@
       "maful-bihi"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
       "en": "The waw conjoins; a past verb; the pronoun suffix «me» is its object.",
       "tr": "«ve» + mâzî fiil; bitişik zamir «beni» mef'ûlün bihtir."
      },
@@ -9188,7 +9191,7 @@
       "maful-bihi"
      ],
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ، وَ«نَا» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَ«نَا» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
       "en": "The waw conjoins; a past verb; the pronoun suffix «our» is its object.",
       "tr": "«ve» + mâzî fiil; bitişik zamir «bizim» mef'ûlün bihtir."
      },
@@ -9975,9 +9978,9 @@
      "lex": "iftaraqa",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
-      "en": "A past verb (feminine); its doer is a hidden pronoun.",
-      "tr": "Mâzî fiil (müennes); fâili gizli zamirdir."
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ.",
+      "en": "A past verb (feminine).",
+      "tr": "Mâzî fiil (müennes)."
      }
     },
     {
