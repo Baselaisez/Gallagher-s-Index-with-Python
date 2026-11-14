@@ -15473,6 +15473,37 @@ if (!CHROME) {
     if (c.after.n !== c.before.n || c.after.folds !== c.before.folds || c.after.top1 !== c.before.top1 || c.after.top2 !== c.before.top2 || c.units !== c.chaptersAll || c.prep !== c.units + 1 || c.maxPrep > 1500) throw new Error('the validation in slices: ' + J(c));
   });
 
+  await check('wave 190 — Marāḥ al-Arwāḥ part eight (the quiescent ḍād of «يَضْرِبُ», the tāʾ of the one addressed and the absent woman, the nūn of rafʿ and what «لَمْ» does; pp. 60–62) stands on the shelf with every line named; five rules the text called for — the passive of a doubled verb under a governor or stripped of its ending (لَمْ يُضَمَّ، لَنْ تُمَدَّ), «لَا» before a passive she-verb is the negation (وَلَا تُضَمُّ) while the prohibition after a vocative and before an active verb stands, «لم» written لِمَ or before a māḍī is the question «why» while لَمْ before a muḍāriʿ stays the jāzim, the maqṣūr noun keeps its lemma before a pronoun (مَعْنَاهُ، مَوْلَانَا), and the annexed dual of a noun in ة (عَلَامَتَا التَّأْنِيثِ) is a construct head in rafʿ by its alif — with نَصَرَتَا still the verb and كتابا still the tanwīn', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => N((tok(n, id, i).irab || {}).ar);
+      const all = [21, 22, 23].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const A = (t, i) => { try { const x = SentenceAnalyzer.analyze(t)[i]; return x.kind + ':' + (x.pk || '') + ':' + N(x.lemma || '') + (x.construct ? ':C' + x.construct.letter : '') + (x.cell ? ':' + x.cell.tense + '/' + (x.cell.gov || '') : ''); } catch (e) { return 'ERR ' + e.message; } };
+      const n = w => { try { const x = RootFinder.nounFromCorpus(w); return x ? N(x.lemma) : null; } catch (e) { return 'ERR ' + e.message; } };
+      return { chapters: st.chapters.length, sens: [21, 22, 23].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        l: { lima: line(23, 's1', 2), limaKey: tok(23, 's1', 2).lex, dual: line(23, 's4', 8), tudamm: line(22, 's3', 1), thamma: tok(21, 's3', 1).lex, tawkid: line(22, 's1', 7), mana: line(23, 's6', 4) },
+        p: { stripped: V('وَلَا تُضَمّ حَتَّى لَا يَلْتَبِس بِالْمَجْهُول', 1), jazm: V('لَمْ يُضَمّ الْحَرْف', 1), nasb: A('لَنْ تُمَدَّ الْيَدُ', 1) },
+        la: { passive: V('لَا تُكْتَب الْأَلِف', 1), nida: V('يَا زَيْد لَا تُخْدَع', 3), active: V('لا تضرب الولد', 1) },
+        q: { written: A('لِمَ أُدْخِلَ النون', 0), mazi: A('لم ضربت زيدا', 0), mudari: A('لم يضرب زيد', 0), lam: A('لَمْ يَذْهَبْ', 0) },
+        m: { mana: n('مَعْنَاهُ'), mawla: n('مولانا') },
+        d: { row: A('لا يجتمع علامتا التأنيث', 2), out: V('لا يجتمع علامتا التأنيث', 2), noun: n('عَلَامَتَا'), verb: n('نَصَرَتَا'), verbOut: V('البنتان نصرتا الولد', 1), tanwin: V('قرأت كتابا', 1) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 23 || J(r.sens) !== '[3,6,6]') throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens));
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    if (!r.l.lima.includes(N('اسْمُ اسْتِفْهَامٍ')) || r.l.limaKey !== 'lima' || !r.l.dual.includes(N('بِالْأَلِفِ لِأَنَّهُ مُثَنًّى')) || !r.l.dual.startsWith(N('فَاعِلٌ')) || !r.l.tudamm.includes(N('لِلْمَجْهُولِ')) || !r.l.tudamm.includes(N('مَرْفُوعٌ')) || r.l.thamma !== 'thamma' || !r.l.tawkid.includes(N('تَوْكِيدٌ')) || !r.l.mana.startsWith(N('فَاعِلٌ')) || !r.l.mana.includes(N('لِلتَّعَذُّرِ'))) throw new Error('the named lines: ' + J(r.l));
+    if (r.p.stripped !== N('تُضَمُّ') + '/raf' || r.p.jazm !== N('يُضَمَّ') + '/jazm' || !/^verb:.*majhulMudari\/nasb$/.test(r.p.nasb)) throw new Error('the doubled passive: ' + J(r.p));
+    if (r.la.passive !== N('تُكْتَبُ') + '/raf' || r.la.nida !== N('تُخْدَعْ') + '/jazm' || !/\/jazm$/.test(r.la.active)) throw new Error('لا before the passive: ' + J(r.la));
+    if (!r.q.written.startsWith('noun:istif-ism:') || !r.q.mazi.startsWith('noun:istif-ism:') || !r.q.mudari.startsWith('particle:jazm') || !r.q.lam.startsWith('particle:jazm')) throw new Error('لِمَ and لَمْ: ' + J(r.q));
+    if (r.m.mana !== N('مَعْنًى') || r.m.mawla !== N('مَوْلَى')) throw new Error('the maqṣūr before a pronoun: ' + J(r.m));
+    if (!/^noun:.*:Calif$/.test(r.d.row) || !/َا\/fail$/.test(r.d.out) || r.d.noun !== N('عَلَامَة') || r.d.verb !== null || !/\/mazi$/.test(r.d.verbOut) || !/ًا\/maful$/.test(r.d.tanwin)) throw new Error('the annexed dual of a noun in ة: ' + J(r.d));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

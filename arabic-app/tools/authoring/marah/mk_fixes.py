@@ -844,5 +844,75 @@ L("20:s10:5", *QUOTE, key="taqallada", pos="verb")
 L("20:s10:7", *QMATF, key="tabaaada", pos="verb")
 L("20:s10:9", *QMATF, key="tabakhtara", pos="verb")
 R("20:s10:11", "mudafIlayh", "jarr")
+# ---- part eight (pp. 60–62): the end of the faṣl on the future — the quiescent ḍād and bāʾ, the tāʾ of the one addressed and the
+#      absent woman, the nūn of rafʿ, and what «لَمْ» does
+LIMA = tuple(F["19:s13:2"]["irab"][k_] for k_ in ("ar", "en", "tr"))
+THAMMA = ("اسْمُ إِشَارَةٍ لِلْمَكَانِ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — وَ«مِنْ ثَمَّ»: مِنْ أَجْلِ ذٰلِكَ.",
+          "A demonstrative of place («there»), built on fatha, in the place of jarr after «مِنْ» — «مِنْ ثَمَّ»: for that reason.",
+          "Mekân için ism-i işaret («orası»), feth üzere mebnî, «مِنْ» ile mahallen mecrûr — «مِنْ ثَمَّ»: bundan ötürü.")
+BAM = ("الْبَاءُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهِ بِالْكَسْرَةِ، مُضَافٌ.", "The ba is a preposition; in jarr after it; the sign is the kasra; annexed (mudaf).", "Bâ harf-i cerdir; onunla mecrûr; alâmeti kesre ile; muzâf.")
+MIM = ("مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.", "The mudaf ilayh (second term of the idafa), in jarr; the sign is the kasra; annexed (mudaf).", "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf.")
+def TAWK(v): return ("ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ، تَوْكِيدٌ لِلضَّمِيرِ الْمُسْتَتِرِ فِي «" + v + "».",
+                     "A detached pronoun, built on fatha, in the place of raf': it emphasises the pronoun hidden in «" + v + "».",
+                     "Ayrı zamir, feth üzere mebnî, mahallen merfû: «" + v + "»daki gizli zamirin te'kididir.")
+
+# 21 — سُكُونُ الضَّادِ
+L("21:s1:3", *QFI, key="daraba", pos="verb")
+R("21:s1:4", "mafulLah", "nasb"); K("21:s1:4", "firar")
+R("21:s2:9", "mubtada", "raf")
+L("21:s2:9", "الْفَاءُ لِلتَّفْرِيعِ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The fāʾ draws the consequence; the mubtada, in raf'; the sign is the damma; annexed (mudaf).", "Fâ tefrî içindir; mübtedâ, merfû; alâmeti damme ile; muzâf.", key="iskan", pos="noun")
+R("21:s2:15", "khabar", "raf"); L("21:s2:15", *tuple(x.replace("إِعْطَاءُ", "إِسْكَانُ") for x in AWLA), key="awla-fitter", pos="noun")
+L("21:s3:1", *THAMMA, key="thamma", pos="noun")
+L("21:s3:5", *QFI, key="daraba", pos="verb", enc="")
+
+# 22 — تَاءُ الْمُخَاطَبِ وَالْغَائِبَةِ
+L("22:s1:5", *MITHLFI, key="mithl", pos="noun")
+SHV("22:s1:6", HMD, "أَنْتَ", True, TJQ)
+L("22:s1:7", *TAWK("تَضْرِبُ"), key="anta", pos="pron")
+SHV("22:s1:9", HMD, "هِيَ", False, TJA)
+L("22:s1:10", *TAWK("تَضْرِبُ"), key="hiya", pos="pron")
+R("22:s1:11", "jarr", "jarr")
+L("22:s1:11", "اللَّامُ حَرْفُ جَرٍّ لِلتَّعْلِيلِ، وَ«اسْتِوَاءِ» مَجْرُورٌ بِهِ بِالْكَسْرَةِ، وَهُوَ مُضَافٌ، وَ«هُمَا» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+  "The lam is a preposition of cause; «اسْتِوَاءِ» is in jarr after it; the sign is the kasra; it is annexed (mudaf), and «هُمَا» is an attached pronoun in the place of jarr as the mudaf ilayh.",
+  "Lâm ta'lîl için harf-i cerdir; «اسْتِوَاءِ» onunla mecrûr; alâmeti kesre ile; muzâftır, «هُمَا» da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir.", key="istiwa", pos="noun")
+R("22:s1:14", "khabar", "raf"); L("22:s1:14", *NAHW, key="mithl", pos="noun")
+L("22:s1:15", *QUOTE, key="nasara", pos="verb", enc="")
+L("22:s1:17", *QMATF, key="nasara", pos="verb", enc="")
+K("22:s2:2", "askana-sukun")
+K("22:s2:7", "ibtida-start")
+L("22:s3:7", *MITHLFI, key="mithl", pos="noun")
+L("22:s3:8", *QUOTE, key="madaha", pos="verb")
+L("22:s4:6", *DIAL(*DMI), key="alima", pos="verb")
+
+# 23 — نُونُ الرَّفْعِ وَ«لَمْ»
+L("23:s1:2", *LIMA, key="lima", pos="pron")
+L("23:s1:3", *CAP(PASS("", "", "")), key="adkhala", pos="verb")
+R("23:s2:1", "hal", "nasb")
+L("23:s2:1", "حَالٌ مِنَ النُّونِ مَنْصُوبٌ بِالْفَتْحَةِ، وَعَامِلُهُ مَحْذُوفٌ تَقْدِيرُهُ «أُدْخِلَ».", "A hal (circumstantial) of the nūn, in nasb; the sign is the fatha; its governor is omitted — «it was brought in».", "Nûndan hâl, mansûb; alâmeti fetha ile; âmili mahzuftur, takdiri «أُدْخِلَ»dir.", key="alama", pos="noun")
+L("23:s2:7", *BAM, key="ittisal", pos="noun")
+L("23:s2:11", *MIM, key="wasat", pos="noun")
+L("23:s3:1", "مُسْتَثْنًى مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.", "The excepted noun (mustathna), in nasb; the sign is the fatha; annexed (mudaf).", "Müstesnâ, mansûb; alâmeti fetha ile; muzâf.", key="nun-letter", pos="noun")
+L("23:s3:2", *QUOTE, key="daraba", pos="verb", enc="")
+L("23:s3:3", *PMUB(HALW, "هُوَ", "الْفَتْحِ", "fatha", "feth"), key="huwa", pos="pron")
+L("23:s3:8", *QFI, key="faala", pos="verb", enc="")
+L("23:s4:1", *THAMMA, key="thamma", pos="noun")
+K("23:s4:8", "alama")   # the annexed dual: the engine writes the line itself since wave 190
+L("23:s5:0", *MUBTW, key="ya-letter", pos="noun")
+L("23:s5:2", *QFI, key="daraba", pos="verb", enc="")
+R("23:s5:3", "khabar", "raf"); L("23:s5:3", *KHM, key="damir", pos="noun")
+L("23:s6:1", "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَهُوَ فِعْلُ الشَّرْطِ.", "A past verb, built on fatha; it is the verb of the condition.", "Mâzî fiil, feth üzere mebnî; şart fiilidir.", key="dakhala", pos="verb")
+L("23:s6:2", *QUO("فِي مَحَلِّ رَفْعٍ فَاعِلُ «دَخَلَ»", "in the place of raf' as the doer of «دَخَلَ»", "«دَخَلَ»nin fâili olarak mahallen merfû"), key="lam-jazima", pos="part")
+L("23:s6:3", "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْجُمْلَةُ جَوَابُ «إِذَا» لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.", "A present verb, in raf'; the sign is the visible damma; its clause is the answer of «إِذَا» and has no place in the i'rab.", "Muzâri fiil, merfû; alâmeti zâhir damme ile; cümlesi «إِذَا»nın cevabıdır, i'râbdan mahalli yoktur.", key="intaqala", pos="verb")
+R("23:s6:4", "fail", "raf")
+L("23:s6:4", "فَاعِلٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "The doer (fa'il), in raf'; the sign is a damma estimated on the alif, which can carry none; it is annexed (mudaf), and the hāʾ is an attached pronoun in the place of jarr as the mudaf ilayh.", "Fâil, merfû; alâmeti elif üzerinde takdir edilen damme ile (taazzür); muzâftır, hâ da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir.", key="mana", pos="noun")
+K("23:s6:8", "mushabih")
+
+PASSMT = ("فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «هِيَ» يَعُودُ إِلَى تَاءِ الْمُضَارَعَةِ.",
+          "A present verb in the passive, in raf'; the sign is the visible damma; its deputy doer is a hidden pronoun, «هِيَ», going back to the tāʾ of the muḍāriʿ.",
+          "Meçhul muzâri fiil, merfû; alâmeti zâhir damme ile; nâib-i fâili, muzâraat tâsına dönen gizli «هِيَ» zamiridir.")
+L("22:s1:0", *tuple(F["10:s16:0"]["irab"][k_] for k_ in ("ar", "en", "tr")), key="sawwa", pos="verb")
+L("22:s2:2", *PASSMT, key="askana-sukun", pos="verb")
+L("22:s3:1", *PASSMT, key="damma-verb", pos="verb")
+L("22:s4:1", *PASSMT, key="kasara", pos="verb")
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

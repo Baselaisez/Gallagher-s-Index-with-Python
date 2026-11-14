@@ -12582,3 +12582,47 @@ tanwīn (the three wāws read as a joined word). «بِأَنَّ وَاوَ و�
 word is read as its naʿt. «وَالرُّبَاعِيُّ فَرْعٌ» after أَنَّ's khabar is joined to her ism (naṣb — grammatical, not
 what the print has). «أَصْلُهُ» between two cited forms is read as a muḍāf ilayh. Typed bare, «وليقوم» after a
 lām-khabar is still a noun to the analyzer, and «إن له لأجرا» keeps its jarr. The v287 items stand.
+
+### v289 (wave 190) — «مَرَاحُ الْأَرْوَاحِ» part eight: the faṣl on the future closes, and five rules it called for
+
+The source grows by pp. 60–62 — from «وَأُسْكِنَتِ الضَّادُ فِي يَضْرِبُ» to «لِأَنَّهَا مُشَابِهَةٌ بِكَلِمَةِ الشَّرْطِ»:
+chapter 21 (why the ḍād of «يَضْرِبُ» and the bāʾ of «ضَرَبْنَ» are quiescent; 3 sentences), 22 (the tāʾ of the one
+addressed and of the absent woman; 6) and 23 (the nūn of rafʿ, and what «لَمْ» does to the muḍāriʿ; 6). 15 sentences /
+161 words through the engine-authoring pipeline, two new lemmas (فِرَار، اسْتِوَاء); the book stands at 23 chapters /
+212 sentences / 2,464 words. The next span opens at p. 63, «فَصْلٌ فِي الْأَمْرِ وَالنَّهْيِ».
+
+**Two v288 mis-keys corrected by the re-run.** 19:s6 «لِلْمُوَافَقَةِ» had been keyed to the participle `muwafiq` and
+20:s1 «لِلْخِفَّةِ» to `khuff`; they sit on the maṣdars `muwafaqa` and `khiffa` now, and the two «يَصِيرُ» lines name
+the hidden ism.
+
+**Five rules the text called for.**
+- **P · يُضَمُّ.** The derived passive of a DOUBLED verb under a governor, or typed without its ending, was not found:
+  NFC orders the ḍamma before the shadda, so «the last mark» of يُضَمُّ is the shadda, and cutting it lost the twin
+  letters. The vowel is lifted out from under the shadda; the jussive of a doubled verb moves its last letter with a
+  fatḥa (لَمْ يُضَمَّ), not a sukūn.
+- **N · وَلَا تُضَمُّ.** «لَا» before a she-verb written in the PASSIVE is the negation: a prohibition is said to
+  someone about what he does, and the one addressed does nothing in a passive. A vocative or a quoted speech before it
+  keeps the prohibition (يَا زَيْدُ لَا تُخْدَعْ), and the active verb is untouched (لَا تَضْرِبِ الْوَلَدَ).
+- **Q · لِمَ.** «لم» is two words. لَمْ enters nothing but the muḍāriʿ; written لِمَ, or standing before a verb that can
+  only be a māḍī, it is the lām of jarr on the question مَا with its alif dropped. The analyzer reads it as an
+  interrogative noun and the line says so.
+- **M · مَعْنَاهُ.** The alif maqṣūra is written as a full alif the moment a pronoun clings to it, on a noun as on a
+  verb: مَعْنَاهُ is مَعْنًى, مَوْلَانَا is مَوْلًى. Three seats had to learn what follows from it — the broken-plural
+  guess that hands a she-verb its doer («تَقْلِبُ مَعْنَاهُ»: the object), the naʿt after a joined maqṣūr whose case the
+  page cannot show («وَمَأْوَاهُ النَّارُ» stays undecided rather than guessed), and the saying verb: what is said
+  before an «أَمْ» is a question between two, a clause whose first noun is its mubtadaʾ («قُلْنَ لَنَا لَيْلَايَ
+  مِنْكُنَّ أَمْ لَيْلَى مِنَ الْبَشَرِ» — the Talkhīṣ's tajāhul frame reads it so, and its smoke check caught the slip).
+- **D · عَلَامَتَا التَّأْنِيثِ.** A word in ـتَا whose ـة form the lexicon owns is the dual annexed, its nūn dropped —
+  the tanwīn of a tāʾ marbūṭa takes no alif, so no other reading spells it. The lexicon lookup, the construct-head
+  detector (typed bare too), the writer and the packager («بِالْأَلِفِ لِأَنَّهُ مُثَنًّى») all take the stem with its ة
+  back. Where vowels are written they must be the singular's own: نَصَرَتَا stays the verb, not نُصْرَة's dual.
+
+**Measured.** Blind sweep 69,330 right / 555 wrong / 300 undecided (1 fixed, 0 broken; the new chapters 161 of 161),
+receipts-on 69,714 / 314 / 157, case layer 57,041 / 57,665 (98.92 %). Typed gauge 1,141 of 1,142 judged words over
+374 sentences (the one recorded miss is «بحقِّهِ»). Smoke: 439 checks; «wave 190» gates the shelf, the named lines
+and the five rules with their controls.
+
+**Open.** The cited «لَمْ» as the doer of دَخَلَ still makes the engine apocopate the next verb (hand-corrected at
+23:s6); a detached pronoun after a verb whose hidden doer it matches is its tawkīd (hand-corrected at 22:s1); «ثَمَّ»
+is keyed by hand. «وَمَأْوَاهُ النَّارُ» wants a rule for the nominal clause that follows a complete verbal one.
+
