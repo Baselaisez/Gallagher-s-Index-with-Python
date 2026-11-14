@@ -15683,6 +15683,55 @@ if (!CHROME) {
     if (!/\/khabar$/.test(r.h.noun) || !/\/mazi$/.test(r.h.verb)) throw new Error('typed «غير»: ' + J(r.h));
   });
 
+  await check('wave 196 — Marāḥ al-Arwāḥ part thirteen («فَعِيل» and «فَعُول», the intensive forms, the ism al-fāʿil of the augmented verbs, the ism al-mafʿūl; pp. 80–85) stands on the shelf with every line named; the cited word behind «صَارَ» and «قَوْلُهُمْ», the cited noun with its adjective, the khabar of «كَوْن», «فَرْقًا بَيْنَ» as the object of reason and the khabar that closes «وَنَحْوُ …» are read by rule; a measure written whole keeps its fāʾ, and a lemma does not take another word\'s plural', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [37, 38, 39, 40].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const L = w => { try { const n = RootFinder.nounFromCorpus(w); return n ? N(n.lemma) + (n.viaPlural ? '/pl' : '') : 'none'; } catch (e) { return 'ERR ' + e.message; } };
+      const FQ = 'يَسْتَوِي فِيهِ الْمُذَكَّرُ وَالْمُؤَنَّثُ فَرْقًا بَيْنَ الْفَاعِلِ', NH = 'وَنَحْوُ «مُسْهَبٍ» مِنْ «أَسْهَبَ» شَاذٌّ.';
+      return { chapters: st.chapters.length, sens: [37, 38, 39, 40].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،'))).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        split: [[35, 's1', 15], [40, 's10', 10], [40, 's10', 12]].map(a => line(a[0], a[1], a[2])),
+        l: { lah: line(37, 's2', 13), pv: line(37, 's3', 1), maN: line(37, 's3', 3), pron: line(37, 's3', 4), nahwQ: line(37, 's3', 7), aya: line(37, 's3', 11), said: line(37, 's6', 3), saidN: line(37, 's6', 4),
+             sayf: line(38, 's1', 5), mij: line(38, 's1', 6), d1: line(38, 's1', 29), d2: line(38, 's1', 31), maqul: line(38, 's3', 2), amma: line(38, 's3', 3), hiya: line(38, 's3', 8), wasl: line(38, 's3', 11),
+             kawn: line(39, 's2', 11), nahw: line(39, 's4', 0), shadh: line(39, 's4', 12), maN2: line(39, 's5', 1),
+             sara: line(40, 's5', 4), stage: line(40, 's5', 5), stage4: line(40, 's8', 10), ashb: line(40, 's8', 1), damma: line(40, 's8', 2), q1: line(40, 's10', 10), q2: line(40, 's10', 12),
+             oldPron: line(29, 's6', 3), oldWz: line(35, 's1', 15) },
+        k: { book: V('فِي كَوْنِهِمَا شَفَوِيَّةً', 2), typed: V('لكونه حرفا', 1) },
+        f: { book: V(FQ, 4), typed: V('يستوي فيه المذكر والمؤنث فرقا بين الفاعل والمفعول', 4), guard: V('رَأَيْتُ فَرْقًا كَبِيرًا', 1) },
+        h: { mub: V(NH, 0), kh: V(NH, 4), guard: V('نَحْوُ «ضَرَبَ».', 0) },
+        p: { pl: L('كِبَارٌ'), plAl: L('الْكِبَارِ'), lemma: L('كُبَّارٍ'), tiwal: L('طِوَالٌ'), tuwwal: L('طُوَّالٍ') },
+        c: { give: V('ثُمَّ أَعْطَى زَيْدٌ مَالًا', 1), fa: L('فَاعَلٌ') } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 40 || J(r.sens) !== '[7,3,5,12]' || r.n !== 338) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    if (r.split.some(x => x.includes(N('الْفَاءُ')) || x.includes(N('حَرْفُ عَطْفٍ')) || /^(fa|\?)\|/.test(x))) throw new Error('a measure written whole was split at its fāʾ: ' + J(r.split));
+    const Q = N('لَفْظٌ مَحْكِيٌّ'), NB = N('فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ'), MB = N('فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.');
+    if (!r.l.lah.startsWith('farq|' + N('مَفْعُولٌ لِأَجْلِهِ'))) throw new Error('«فَرْقًا بَيْنَ»: ' + r.l.lah);
+    if (!r.l.maN.includes(NB) || r.l.pv.includes(N('ضَمِيرٌ مُسْتَتِرٌ')) || !r.l.maN2.includes(NB)) throw new Error('the relative «مَا» behind a passive verb: ' + J([r.l.pv, r.l.maN, r.l.maN2]));
+    if (!r.l.pron.endsWith(MB) || !r.l.hiya.endsWith(MB) || !r.l.oldPron.endsWith(MB)) throw new Error('the pronoun that opens a ṣila or a quoted sentence: ' + J([r.l.pron, r.l.hiya, r.l.oldPron]));
+    if (!r.l.nahwQ.includes(N('لِمُبْتَدَإٍ مَحْذُوفٍ')) || !r.l.aya.startsWith('rahma|' + N('اسْمُ إِنَّ'))) throw new Error('«نَحْوُ قَوْلِهِ تَعَالَى» and the verse: ' + J([r.l.nahwQ, r.l.aya]));
+    if (!r.l.said.startsWith('naqa|' + N('نَائِبُ فَاعِلٍ')) || !r.l.saidN.startsWith('haluba|' + N('نَعْتٌ مَرْفُوعٌ'))) throw new Error('what is said behind «يُقَالُ»: ' + J([r.l.said, r.l.saidN]));
+    if (!r.l.sayf.startsWith('sayf|' + Q) || !r.l.sayf.includes(N('مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ')) || !r.l.mij.startsWith('mijdham|' + N('نَعْتٌ مَرْفُوعٌ')) || !r.l.d1.startsWith('duhaka|' + N('مَعْطُوفٌ مَجْرُورٌ')) || !r.l.d2.startsWith('duhka|' + N('مَعْطُوفٌ مَجْرُورٌ'))) throw new Error('the intensive forms: ' + J([r.l.sayf, r.l.mij, r.l.d1, r.l.d2]));
+    if (!r.l.maqul.startsWith('miskin|' + Q) || !r.l.maqul.includes(N('مَقُولُ الْقَوْلِ')) || !r.l.amma.includes(N('فِي جَوَابِ «أَمَّا»')) || !r.l.amma.includes(N('خَبَرٌ')) || !r.l.wasl.includes(N('وَصْلِيَّةٌ'))) throw new Error('«أَمَّا قَوْلُهُمْ …» and «وَإِنْ»: ' + J([r.l.maqul, r.l.amma, r.l.wasl]));
+    if (!r.l.kawn.startsWith('shafawi|' + N('خَبَرُ الْمَصْدَرِ النَّاقِصِ «كَوْن»'))) throw new Error('the khabar of «كَوْن»: ' + r.l.kawn);
+    if (!r.l.nahw.startsWith('nahw|') || !r.l.nahw.includes(N('مُبْتَدَأٌ')) || !r.l.nahw.includes(N('وَخَبَرُهُ «شَاذٌّ»')) || !r.l.shadh.startsWith('shadhdh|' + N('خَبَرٌ مَرْفُوعٌ'))) throw new Error('«وَنَحْوُ … شَاذٌّ»: ' + J([r.l.nahw, r.l.shadh]));
+    if (!r.l.sara.includes(N('وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ')) || !r.l.stage.startsWith('madrub|' + Q) || !r.l.stage.includes(N('خَبَرُ «صَارَ»')) || !r.l.stage4.startsWith('madrub|' + Q)) throw new Error('the cited word behind «صَارَ»: ' + J([r.l.sara, r.l.stage, r.l.stage4]));
+    if (!r.l.ashb.startsWith('ashbaa|') || !r.l.ashb.includes(N('لِلْمَجْهُولِ')) || !r.l.damma.startsWith('damma|' + N('نَائِبُ فَاعِلٍ'))) throw new Error('«أُشْبِعَتِ الضَّمَّةُ»: ' + J([r.l.ashb, r.l.damma]));
+    if (!r.l.q1.startsWith('faal-qiyas-wazn|' + N('خَبَرٌ')) || r.l.q1.includes(N('الْفَاءُ')) || !r.l.q2.startsWith('faul-qiyas-wazn|' + N('مَعْطُوفٌ')) || r.l.q2.includes(N('الْفَاءُ')) || !r.l.oldWz.startsWith('faal-sifa-wazn|' + Q)) throw new Error('the two measures analogy would give: ' + J([r.l.q1, r.l.q2, r.l.oldWz]));
+    if (!/ً\/kanaKhabar$/.test(r.k.book) || !/\/kanaKhabar$/.test(r.k.typed)) throw new Error('the khabar behind «كَوْن» with a pronoun: ' + J(r.k));
+    if (!/ًا?\/mafulLah$/.test(r.f.book) || !/\/mafulLah$/.test(r.f.typed) || !/\/maful$/.test(r.f.guard)) throw new Error('«فَرْقًا بَيْنَ» in the engine: ' + J(r.f));
+    if (!/ُ\/mubtada$/.test(r.h.mub) || !/ٌّ\/khabar$/.test(r.h.kh) || /\/mubtada$/.test(r.h.guard)) throw new Error('«وَنَحْوُ … شَاذٌّ» in the engine: ' + J(r.h));
+    if (r.p.pl !== N('كَبِير') + '/pl' || r.p.plAl !== N('كَبِير') + '/pl' || r.p.lemma !== N('كُبَّار') || r.p.tiwal !== N('طِوَال') || r.p.tuwwal !== N('طُوَّال')) throw new Error('a lemma and another word\'s plural on the same letters: ' + J(r.p));
+    if (!/\/mazi$/.test(r.c.give) || r.c.fa === 'none') throw new Error('the lexicon\'s claims: ' + J(r.c));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

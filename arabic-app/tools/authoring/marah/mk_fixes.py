@@ -1074,5 +1074,11 @@ R("36:s8:10", "atf", "jarr"); L("36:s8:10", "مَعْطُوفٌ عَلَى «أ�
   "«أَعْطَاهُمْ»a ma'tûf, mecrûr; alâmeti elif üzerinde takdîrî kesre ile; muzâftır, «هُمْ» da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir — mezîd «أَوْلَى»dan kıyasa aykırı yapılmış ism-i tafdîl: «onların en çok ihsan edeni».", key="awla-elative", pos="noun", enc="هم")
 R("36:s8:19", "khabar", "raf")
 # <<< part twelve
+# >>> part thirteen
+# ---- part thirteen (pp. 80–85): «فَعِيل» and «فَعُول», the intensive forms, the ism al-fāʿil of the augmented verbs, the ism al-mafʿūl.
+#      The cited word behind «صَارَ» and behind «قَوْلُهُمْ», the cited noun with its adjective, the pronoun that opens a ṣila, «وَنَحْوُ … شَاذٌّ», the relative «مَا»
+#      as a deputy doer, the «وَإِنْ» of concession and the khabar of «كَوْن» are named by rule (wave 196). One key is named here, until the reader has met the verb.
+K("40:s8:1", "ashbaa")
+# <<< part thirteen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

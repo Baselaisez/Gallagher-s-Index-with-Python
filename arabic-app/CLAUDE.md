@@ -12897,3 +12897,79 @@ emphatic verb and «نَحْوُ» behind a fronted jarr phrase are still named 
 called «الْهَاءُ» in the lines.
 
 **Next.** Marāḥ part thirteen opens on p. 80 at «وَيَجِيءُ الْفَاعِلُ عَلَى الْفَعِيلِ، نَحْوُ نَصِيرٍ».
+
+### v295 (wave 196) — Marāḥ al-Arwāḥ part thirteen, the khabar of «كَوْن», and a measure written whole
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 80–85 of the scan (the matn's large type only) —
+  the rest of the section on the ism al-fāʿil and the whole section on the ism al-mafʿūl: chapter 37 «فَعِيلٌ وَفَعُولٌ»
+  (7 sentences — «فَعِيل» for the doer, where masculine and feminine are alike, the verse of al-Aʿrāf 56 as the matn
+  cites it, «فَعُول» and the fairness between the two), 38 «أَبْنِيَةُ الْمُبَالَغَةِ» (3 — the fourteen intensive
+  examples, the nine that take no feminine, «مِسْكِينَة» and «عَدُوَّة»), 39 «اسْمُ الْفَاعِلِ مِنْ غَيْرِ الثُّلَاثِيِّ»
+  (5 — the mīm and its ḍamma, the irregular «مُسْهَب» and «يَافِع», the fatḥa before the tāʾ), 40 «اسْمُ الْمَفْعُولِ»
+  (12 — its definition, «مَفْعُول» reached in four stages مُضْرَب → مَضْرَب → مَضْرُب → مَضْرُوب, and why the
+  three-letter verb's form was altered). 27 sentences / 338 words, twenty-nine new lemmas (the intensive examples,
+  three Form IV verbs أَسْهَبَ، أَيْفَعَ، أَشْبَعَ with their paradigms, the measures «مَفْعُل», «فَاعَل», «فَاعُل»); the
+  book stands at **40 chapters / 336 sentences / 3,842 words**, version 0.13.0. The attribution records the span and
+  the readings: «وَسَيْفٌ مِجْذَمٌ» in rafʿ, «رَوَّايَة» with a doubled wāw and «مِجْزَامَة» with a zāy as printed (the
+  lexicons know «رَاوِيَة» and «مِجْذَامَة»); «ضُحَكَة» then «ضُحْكَة» vowelled after the well-known usage; «رَحْمَتَ»
+  with the open tāʾ of the muṣḥaf; the examples behind «نَحْوُ» in jarr as the print vowels «قَتِيلٍ وَجَرِيحٍ»;
+  «وَضُمَّ الْمِيمُ» as a passive like «وَاخْتِيرَ الْمِيمُ».
+- **Reader rules** (`$S/w196/patch196.py`):
+  - **B · the khabar of «كَوْن».** «فِي كَوْنِهِمَا شَفَوِيَّةً»: the maṣdar «كَوْن» works as «كَانَ» does — the pronoun
+    on it is its noun and the bare indefinite behind it its khabar in naṣb. Eight rows across four books now carry
+    the office (al-Kāfiya 4:s2, 29:s2, 41:s7; the Iẓhār 18:s8, 27:s7; the Marāḥ 5:s5, 19:s7, 39:s2).
+  - **A · «فَرْقًا بَيْنَ».** The maṣdar of reason may lean on «بَيْنَ» as others lean on a preposition
+    (يَسْتَوِي فِيهِ الْمُذَكَّرُ وَالْمُؤَنَّثُ فَرْقًا بَيْنَ الْفَاعِلِ وَالْمَفْعُولِ) — the wave-194 table gains the pair
+    «فَرْقًا / تَمْيِيزًا» + «بَيْنَ»; «رَأَيْتُ فَرْقًا كَبِيرًا» keeps its object and is gated as the control.
+  - **C · the khabar that closes «وَنَحْوُ …».** «وَنَحْوُ «مُسْهَبٍ» … مِنْ «أَيْفَعَ» شَاذٌّ»: a sentence that opens on
+    «نَحْوُ» and closes on a bare indefinite the word before it cannot own (a cited word, or an article-noun in jarr)
+    has found the khabar its opening was waiting for; «نَحْوُ» is the mubtadaʾ. «نَحْوُ «ضَرَبَ».» alone is untouched.
+  - **E · another word's plural.** A new lemma (كُبَّار the intensive) took the bare letters of another word's plural
+    (كِبَار of كَبِير). Where the written vowels are the plural's, the plural's word answers — the one label row the
+    new lexicon had moved (Qiṣaṣ 2, 33:s5 «كِبَارًا») is back.
+  - **F · two seats decided before the shape rules.** The word that names a letter's vowel right behind the bare
+    letter-name a jarr letter governs is that letter's naʿt (بِمِيمٍ مَضْمُومَةٍ); the bare noun right behind «دُونَ» is
+    its muḍāf ilayh whatever its shape (دُونَ مَفْعُولِ سَائِرِ الْأَفْعَالِ — «دُونَ» itself had been written «دُونًا»).
+- **Packager** (`tools/authoring/pkg_from_engine.py`): a word listed whole in the lemma table (a tanwīn form or a
+  `!form`) cancels a prefix the letters only seem to carry — **v294 had shipped «فَعَلٌ» (35:s1) split into «فَ» +
+  «عَلٌ»**, because wave 195's phrase lemma «وَزْنُ فَعَلٍ» no longer answered for the bare word; «فَاعَلٌ» and
+  «فَاعُلٌ» are protected by the same rule. The engine's `naibFail` is normalised to `naib` (it had no template and
+  printed an empty role). New line rules: the cited word behind «صَارَ / يَصِيرُ» is its khabar in the place of naṣb
+  and the verb's line names its hidden noun; behind «قَوْلُهُمْ» it is the maqūl; a cited noun joined by «وَ» to a
+  cited jarr noun is joined in the place of jarr; behind «يُقَالُ / قِيلَ» it is the deputy doer and the second word
+  of a two-word citation its naʿt; «نَحْوُ قَوْلِهِ» is the khabar of an omitted mubtadaʾ; the pronoun that opens a ṣila
+  or a quoted sentence is a mubtadaʾ; the relative «مَا» behind a passive verb is its deputy doer (the verb's line
+  drops its hidden one); «إِنْ» al-waṣliyya; the khabar of «كَوْن»; and the khabar behind «أَمَّا … فَـ».
+- **Measured.** Same data, v294 code → v295 code: blind **4 fixed / 0 broken** (70,653 / 579 / 331 →
+  70,657 / 576 / 330), receipts-on **2 fixed / 0 broken** (71,072 / 325 / 166 → 71,074 / 323 / 166), case layer
+  58,197 → 58,198 of 58,830 (98.93 %, 0 new-wrong, 0 silenced-right). Label gauge 90.20 → **90.24 %** over 34,351
+  rows; typed gauge 1,158 / 1,159 unchanged. Chapters 1–36 differ from v294 in four tokens (two «كَوْن» khabars, the
+  «هِيَ» of 29:s6 now a mubtadaʾ, the unsplit «فَعَلٌ»). Label-only moves that are not gains and are recorded as such:
+  the Iẓhār 18:s8 «خِلَافًا» mafʿūl muṭlaq → mafʿūl (a step back in the label, the ending right), Qiṣaṣ 4 17:s1#17
+  khabar → mubtadaʾ (both labels wrong, the ending right).
+- **Tried and removed.** A reader rule for «أَمَّا قَوْلُهُمْ «X» فَـY» never took effect (the row is decided elsewhere)
+  and was taken out — the packager names the line. A rule joining a list of cited words through a free-standing «وَ»
+  changed nothing in three sweeps (the v294 reader already reads the typed list in jarr; the blind rows did not
+  move) and was taken out as unmeasured.
+- **Gate.** Smoke check «wave 196» (#443 of 445): the shelf's four chapters and their sentence counts, no bare or
+  contradictory line, nineteen named lines, the five engine rules each with its control, and the two repaired old
+  rows (29:s6, 35:s1).
+
+*Landing lessons (wave 196).* **A fix to one layer can hand the word to a worse rule in the next layer** — the
+phrase lemma that stopped the noun «فَعَل» from taking a verb's entry (wave 195) left the bare word with no owner, and
+the packager's prefix peel took it apart; the release was green because no check looked at that token's segments.
+When a lemma changes shape, read the tokens it used to answer for. **A new verb and its first token are a
+chicken-and-egg pair** — the reader cannot key «أُشْبِعَتِ» to «أَشْبَعَ» until the paradigm is in its data, and the
+paradigm only lands with the package: key the token by hand for the first pass, land, and let the next pass confirm.
+**A helper defined in the test runner does not exist in the page** (the second time: `stripAr`, now `J`) — and a
+check that reads a field the reader's tokens never carry can never fail, which is worse than no check. **A probe run
+on the plain reader is not a blind run** — the blind helper needs the blind-patched copy; a «true» from the wrong
+copy nearly kept an unmeasured rule.
+
+*Left open.* Blind (receipts off): «سَيْفٌ» in 38:s1 undecided (a cited two-word phrase in rafʿ inside a jarr list),
+the seven ة-words «عَلَّامَةٍ … مِجْزَامَةٍ» of the same list read in rafʿ, «يَافِعٍ» (39:s4) read as a ḥāl. The reader's
+own label for «أَمَّا قَوْلُهُمْ … فَمَحْمُولَةٌ» is still naʿt (the stored line is right); typed without vowels,
+«ونحو «مسهب» … شاذ» still reads «مسهب» as a naʿt; «نَحْوُ» in 37:s2 is read as an object in receipts mode (the stored
+line is right by the packager's rule).
+
+**Next.** Marāḥ part fourteen opens on p. 86 at «اسْمُ الْمَكَانِ: هُوَ اسْمٌ مُشْتَقٌّ مِنْ يَفْعَلُ لِمَكَانٍ وَقَعَ فِيهِ الْفِعْلُ».
