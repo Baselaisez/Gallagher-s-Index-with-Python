@@ -15144,6 +15144,47 @@ if (!CHROME) {
     if (kinds.some((k, i) => !String(k).startsWith(wantK[i]))) throw new Error('wave-181 word kinds (وَاو، وَأَوْ، مِنْ ثَمَّ، ثُمَّ): ' + J(kinds));
   });
 
+  await check('wave 182 — the typed sentence\'s homographs are read by their seat: after a demonstrative or a fronted possession the bare word the lexicon owns as a noun is the noun (هذا مال كثير، عنده علم واسع، عنده عمل كثير) while a jarr letter after it leaves the verb standing (هذا ذهب إلى السوق); a nominal sentence\'s second word before an agreeing adjective is the noun and فَاعَلَ without its object is the ism fāʿil (أخوه طالب مجتهد، ابنه ولد ذكي) while the verb keeps its object (زيد أكل تفاحة، أخوه ذهب); two verbs do not follow each other unjoined (سمع الطالب صوت المعلم); the word that opens the sentence before an article-bearing noun is the verb, not the name (عاد الرجل); a two-letter noun takes its pronoun and keeps its doubled letter (أمه، عمه) while الجار and أبيه keep theirs plain; the built demonstratives wear their own vowel (تلكَ، هؤلاءِ); the sound plural in «ـون» is no muḍāf ilayh; the naʿt goes to the noun it agrees with, tāʾ or no tāʾ (كتاب البنت الصغيرة، باب المدرسة الكبير); «وَ + noun + jarr phrase» after a nominal clause opens a second one; and the time word after إِنَّ\'s khabar is a ẓarf', async () => {
+    const J = JSON.stringify;
+    const N = x => String(x || '').normalize('NFC');
+    const dv = sents => page.evaluate(ss => ss.map(t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; try { const v = DabtEngine.vowel(t, 'endings'); return (v.words || []).map(w => w.out + '/' + w.rule).join(' '); } catch (e) { return 'ERR ' + e.message; } }), sents);
+    const R = '[a-zA-Z]+';
+    const cases = [
+      ['هذا مال كثير', new RegExp('^هذا/' + R + ' مالٌ/' + R + ' كثيرٌ/' + R + '$')],
+      ['عنده علم واسع', new RegExp(' علمٌ/' + R + ' واسعٌ/' + R + '$')],
+      ['عنده عمل كثير', new RegExp(' عملٌ/' + R + ' كثيرٌ/' + R + '$')],
+      ['هذه نار حامية', new RegExp(' نارٌ/' + R + ' حاميةٌ/' + R + '$')],
+      ['هذا ذهب إلى السوق', / ذَهَبَ\/mazi إلى\//],
+      ['هذه بنت جالسة', new RegExp(' بنتٌ/' + R + ' جالسةٌ/' + R + '$')],
+      ['ذلك رجل صالح', new RegExp('^ذلكَ/' + R + ' رجلٌ/' + R + ' صالحٌ/' + R + '$')],
+      ['ذلك جبل عال', new RegExp(' جبلٌ/' + R + ' عالٍ/' + R + '$')],
+      ['أخوه طالب مجتهد', new RegExp(' طالبٌ/' + R + ' مجتهدٌ/' + R + '$')],
+      ['ابنه ولد ذكي', new RegExp('^ابنُهُ/mubtada ولدٌ/' + R + ' ذكيٌّ/' + R + '$')],
+      ['زيد أكل تفاحة', / أَكَلَ\/mazi تفاحةً\/maful$/],
+      ['أخوه ذهب', / ذَهَبَ\/mazi$/],
+      ['سمع الطالب صوت المعلم', / الطالبُ\/fail صوتَ\/maful المعلمِ\/mudafIlayh$/],
+      ['عاد الرجل إلى بيته', /^عَادَ\/mazi الرجلُ\/fail /],
+      ['غاب الولد لأن أمه مريضة', new RegExp(' أمَّهُ/innaIsm مريضةٌ/' + R + '$')],
+      ['عمه كريم', new RegExp('^عمُّهُ/mubtada كريمٌ/' + R + '$')],
+      ['بيت الجار كبير', new RegExp(' الجارِ/mudafIlayh كبيرٌ/' + R + '$')],
+      ['كتب الولد رسالة إلى أبيه', / أبيهِ\/jarr$/],
+      ['تلك دار واسعة', new RegExp('^تلكَ/' + R + ' دارٌ/' + R + ' واسعةٌ/' + R + '$')],
+      ['هؤلاء طلاب مجتهدون', new RegExp('^هؤلاءِ/' + R + ' طلابٌ/' + R + ' مجتهدُونَ/' + R + '$')],
+      ['كتاب البنت الصغيرة جديد', / البنتِ\/mudafIlayh الصغيرةِ\/nat جديدٌ\/khabar$/],
+      ['باب المدرسة الكبير مفتوح', / المدرسةِ\/mudafIlayh الكبيرُ\/nat مفتوحٌ\/khabar$/],
+      ['الكتاب على المكتب والقلم في الحقيبة', / والقلمُ\/mubtada في\//],
+      ['لعل الجو جميل اليوم', / الجوَّ\/innaIsm جميلٌ\/innaKhabar اليومَ\/zarf$/],
+      ['يا طالب العلم اجتهد', / العلمِ\/mudafIlayh اجْتَهِدْ\/amr$/],
+      ['من يزرع يحصد', new RegExp(' يَزْرَعْ/' + R + ' يَحْصُدْ/' + R + '$')],
+      ['رُبَّهُ رَجُلًا', /^رُبَّهُ\//],
+    ];
+    const o = (await dv(cases.map(c => c[0]))).map(N);
+    const bad = cases.map((c, k) => c[1].test(o[k]) ? null : c[0] + ' → ' + o[k]).filter(Boolean);
+    if (bad.length) throw new Error('wave-182 typed readings: ' + J(bad));
+    const segs = await page.evaluate(() => { const K = t => { try { const r = SentenceAnalyzer.analyze(t); const L = Array.isArray(r) ? r : (r.rows || []); return String((L[0] || {}).enc || ''); } catch (e) { return 'ERR'; } }; return [K('أمه مريضة'), K('يده نظيفة'), K('رُبَّهُ رَجُلًا'), K('أمة مؤمنة')]; });
+    if (segs[0] !== 'ه' || segs[1] !== 'ه' || segs[3] !== '') throw new Error('wave-182 short hosts (أمه، يده peel a pronoun; أمة does not): ' + J(segs));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

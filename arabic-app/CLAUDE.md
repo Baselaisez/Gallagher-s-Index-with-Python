@@ -12049,3 +12049,85 @@ a fronted possession is still read as a māḍī when typed bare — «هذا م
 «هذا حكم عادل», «عنده مال كثير». «وَفِي وُقُوعِهِ صِفَةً» (a ḥāl after a maṣdar's jarr phrase) is read as a delayed
 mubtadaʾ. The pass script must never land a package when the builder failed (`pass.sh` now checks for the manifest first
 — a broken builder edit once emptied the landed directory; it was rebuilt from the saved engine output).
+
+### v281 (wave 182) — the typed sentence's homographs, read by their seat
+
+**Why.** v279 gave the typed sentence its own gauge (`tools/typed_gauge.js` over `tools/typed_battery.txt`), and v280 left it at
+603/603. A battery the engine already passes measures nothing new, so this wave wrote **batch three** (58 sentences / 230
+judged words: the homograph in its seat, longer sentences, the relative clause, the clause after لأنّ/أنّ/لعلّ, questions and
+the verb's governors, kāna's family, plurals and numbers) and then **three held-out batches**, each written only after the
+previous round of rules was finished and measured once on first contact:
+
+| batch | sentences / words | first contact | after its rules |
+|---|---|---|---|
+| batch three | 58 / 230 | 88.1 % (on v280) | 100 % |
+| held-out one | 24 / 98 | 92.9 % | 100 % |
+| held-out two | 20 / 76 | 90.8 % | 100 % |
+| held-out three | 20 / 77 | 83.1 % | 100 % (two sentences dropped as two-reading, one word unjudged) |
+
+The first-contact column is the honest number: the engine reads everyday typed Arabic at roughly **nine words in ten** before
+it has seen the sentence, and the misses are almost all one family — a bare word that is two words (مال / مَالَ, علم / عَلِمَ,
+طالب / طَالَبَ, صوت / صَوَّتَ, عاد / عَادٌ, بنت / بَنَتْ). All four batches are now in the battery (**341 sentences / 1,075 judged
+words, 100 %**); the next held-out batch will again start lower. Two lines of the old battery were corrected (`الأمُّ`
+— the engine now writes the lemma's shadda, and the expectation had none).
+
+**The rules** (`$S/w182/patch182*.py`; every one swept: blind 0 fixed / 0 broken, receipts-on 0 / 0, case layer unchanged
+at 98.70 % — the corpus is vowelled, so rules that only speak for bare words must change nothing there, and they do not):
+
+*What a bare word IS (the pre-pass, the «typed with no vowels» block)*
+- after a demonstrative or a fronted possession (هذا، ذلك، عنده، له …) the second word that is both a māḍī and a lexicon noun,
+  letter for letter, is the **noun** where nothing, a noun or an adjective follows (هذا مالٌ كثيرٌ، عنده علمٌ واسعٌ، ذلك فضلُ
+  اللهِ); a jarr letter after it leaves the verb (هذا ذَهَبَ إلى السوق). The «she» cell counts too (هذه بنتٌ, not بَنَتْ). A lexicon
+  noun that is only a manqūṣ participle (قَالٍ) claims nothing.
+- the adjective's seat: *nominal opener + bare noun + a word that is both a māḍī and a lexicon adjective*, closing the clause,
+  is the adjective (ذلك رجلٌ صالحٌ، عمها تاجرٌ غنيٌّ، ذلك جبلٌ عالٍ — the manqūṣ too, unless the verb is one the shelf shows a
+  hundred times: قَالَ stays).
+- a sentence that opens on a noun: its second word is the noun where an agreeing bare adjective closes the clause (ابنه ولدٌ
+  ذكيٌّ), and **فَاعَلَ never stands without its object**, so with nothing after it the word is the ism fāʿil (أخوه طالبٌ،
+  أخوه كاتبٌ). The verb keeps what is the verb's: زيدٌ أَكَلَ تفاحةً، أخوه ذَهَبَ.
+- two verbs do not follow each other unjoined: after a verb and its doer, the māḍī/noun homograph before an article-bearing
+  noun is the noun (سمع الطالبُ صوتَ المعلمِ) — speech after قَالَ is another sentence and is left alone.
+- the word that opens the sentence before an article-bearing noun is the verb, not the proper name (عَادَ الرجلُ, not «عَادٌ»).
+- «ابن» + pronoun before another word, with no verb yet, is the son — no imperative of بَنَى.
+- after a vocative the bare māḍī-shaped word whose imperative has the same letters is the imperative (يا طالبَ العلمِ اجْتَهِدْ).
+- bare «من» before a muḍāriʿ is مَنْ, since a jarr letter enters on no verb (من يزرعْ يحصدْ); a fused inna typed bare and أن
+  before an article-bearing word are the inna pair (لأنه مجتهدٌ، علمت أن الدرسَ سهلٌ).
+
+*Who annexes whom (the chain cutter)*
+- typed bare, after a demonstrative / fronted possession the noun and the adjective that agrees with it are noun + naʿt,
+  whatever maṣdar the noun is (عنده عملٌ كثيرٌ, not «عملُ كثيرٍ»); the feminine demonstrative says its noun is feminine
+  (هذه نارٌ حاميةٌ); after a mubtadaʾ carrying its pronoun two bare feminines are khabar + naʿt (أخته طبيبةٌ ماهرةٌ).
+- a word written with the sound plural's «ـون» is in rafʿ by its own letters — never a muḍāf ilayh (طلابٌ مجتهدُونَ); after the
+  plural demonstrative the broken-plural adjective is the naʿt (هؤلاءِ رجالٌ كرامٌ).
+- the time word that closes the sentence after an adjective is a ẓarf (جميلٌ اليومَ), also after إِنَّ's or kāna's khabar.
+
+*Seats in the main loop*
+- *annexed mubtadaʾ + muḍāf ilayh + article-bearing adjective + one bare adjective*: the last word is the khabar and the
+  one before it a naʿt of whichever noun it agrees with — the head in rafʿ (بابُ المدرسةِ الكبيرُ مفتوحٌ) or the muḍāf ilayh
+  in jarr (كتابُ البنتِ الصغيرةِ جديدٌ); gender is read off the noun with or without a tāʾ (بنت، أخت، أم، شمس، أرض، نار، دار …).
+- «وَ + article-bearing noun + jarr letter + noun» after a nominal clause whose khabar is a jarr phrase opens a second
+  clause in rafʿ (الكتابُ على المكتبِ والقلمُ في الحقيبةِ) — it is no member of the jarr phrase behind it.
+
+*The writer*
+- a bare host whose lexicon lemma ends on a doubled letter keeps it (الجوَّ، حارًّا، غنيٌّ), unless the lexicon also owns the
+  letters without one (جَار beside جَارّ) or the yāʾ is the five nouns' (أبيهِ).
+- the built demonstratives typed bare wear their own vowel (تلكَ، هؤلاءِ، أولئكَ), as ذلكَ already did.
+- فَاعِلَة typed bare and unknown to the lexicon is read as the feminine participle (حامية، ماهرة، جالسة).
+
+*The analyzer*
+- a **two-letter noun** takes its pronoun like any other (أمه، عمه، يده، جده) — where the word is typed bare, the lexicon owns
+  the two letters as a noun and owns the whole word neither as a noun nor as a verb's cell. The first sweep showed why
+  «typed bare» belongs in the rule: on vowelled text the same peel turned رُبَّهُ into رَبُّهُ and فَمِهِ into a tanwīn (ten
+  broken rows); a vowelled word says itself which word it is. The noun entry answers even where a particle shares the
+  letters (أُمّ / أَمْ).
+
+**Checks.** Smoke «wave 182» (#429 of 431): 27 sentences by name — every rule with its control (the verb that must stay a
+verb, الجارِ without a shadda, أبيهِ, رُبَّهُ) — and the analyzer's peel (أمه، يده yes; أمة no). «wave 180» now measures the
+341-sentence battery (floor 99 %).
+
+**Open, said plainly.** (1) The held-out curve did not rise (92.9 → 90.8 → 83.1): each batch found a new homograph seat.
+The rules are seat rules, so they generalise within a seat, but the list of seats is not closed. (2) Sentences whose letters
+allow two readings are out of the battery, not solved: «رسم الولد صورة جميلة» (verb + object, or «the boy's drawing is a fine
+picture»), «بيت الجار القديم واسع» (whose adjective?), «أخته طالبة جامعة» (the engine reads naʿt; the iḍāfa is likelier),
+«زار عمه في البيت» (doer or object). (3) «وفي» at a sentence's end is still وَ + فِي: the lexicon has no وَفِيّ. (4) «الرجل قال
+الحق» reads الحقُّ as a new sentence after قَالَ (pre-existing).
