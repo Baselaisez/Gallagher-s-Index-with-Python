@@ -12510,3 +12510,75 @@ sliced; that is the next speed item, and the ceiling should not move again befor
 true, one counted wrong. «وَالْإِبْرَازَ» joined to أَنَّ's ism is written rafʿ blind (the istiʾnāf reading is
 grammatical). «يَا عَصَا مُوسَى», annexed, is still called mabnī. «زيد» opening a typed sentence is read as the
 passive «زِيدَ» by the analyzer though the writer seats it as the mubtadaʾ. The v286 items stand.
+
+### v288 (wave 189) — «مَرَاحُ الْأَرْوَاحِ» part seven: the muḍāriʿ begins, and the held-out grade is prepared in slices
+
+The source grows by pp. 56–60 — from «فَصْلٌ فِي الْمُسْتَقْبَلِ» to «وَالْعَلَامَةُ لَا تُحْذَفُ»: chapter 18 (why the
+muḍāriʿ is declined; 8 sentences), 19 (the letters of «أَتَيْنَ» and why they stand at the front; 14) and 20 (the
+vowel of the muḍāriʿ's letters, the dialect that gives them a kasra, the second tāʾ dropped; 11). 33 sentences / 400
+words through the engine-authoring pipeline, 14 new lemmas, 3 new paradigms (اِبْتَدَأَ، تَقَلَّدَ، تَبَخْتَرَ), 91
+corrections; the book stands at 20 chapters / 197 sentences / 2,303 words. The next span opens at p. 60's last clause,
+«وَأُسْكِنَتِ الضَّادُ فِي يَضْرِبُ».
+
+**One word, one key — across texts.** The Marāḥ's «الْعَيْن» (the second radical) had been filed under `ayn-thing`,
+a key Taṣrīf al-ʿIzzī owned with a fiqh gloss («a specific thing»). A learner tapping the ʿayn of فَعَلَ read a
+definition from the law of sale. The letter has its own entry now (`ayn-letter`), 35 tokens of the ʿIzzī and 2 of the
+Marāḥ moved to it, the stale key is gone from that glossary, and the smoke check counts both. The many-meaninged word
+«عَيْن» the matn itself brings as its example of ishtirāk (18:s8) keeps the common noun's key and its line says so.
+
+**Four rules the text called for.**
+- **L · لَامُ الِابْتِدَاءِ.** After إِنَّ — the only sister that takes it — a lām fused to an indefinite noun is one
+  of two letters, and the seat tells them apart. Once the ism is named, a lām on a ṢIFA is the lām of ibtidāʾ on the
+  khabar («إِنَّ زَيْدًا لَقَائِمٌ», «إِنَّهُ لَكَرِيمٌ»): rafʿ, the lām with its fatḥa. A name or a jāmid noun there
+  is the owner in a jarr phrase («إِنَّ الْمَالَ لِزَيْدٍ») and is left alone. Where a jarr phrase came FIRST and no
+  ism has been named, the lām-word is the postponed ism («إِنَّ فِي ذٰلِكَ لَعِبْرَةً»): إِنَّ must have her ism. And a
+  muḍāriʿ joined to a lām-khabar wears the same letter («وَلَيَقُومُ», rafʿ) — a kasra or a sukūn written on the lām
+  says otherwise. Controls: the radical lām («لَحْمٌ»), the lām of purpose, أَنَّ, the conditional إِنْ.
+- **E · أَقَلَّ.** أَفْعَل of a doubled root merges its two likes and is written with THREE letters; the elative
+  tests asked for four letters or a written shadda, so the word typed bare was a plain noun — «أَقَلٌّ», with a
+  tanwīn, as a doer. The closed set of those roots stands in for the mark when no mark is written, in the shape test
+  and in the diptote test alike.
+- **K · يَصِيرُ.** kāna's sisters conjugate. The table that opens the two seats listed صَارَ in the māḍī only, so
+  «يَصِيرُ الْمَاءُ ثَلْجًا» had a doer and an object. The muḍāriʿ and the feminine of صَارَ / أَصْبَحَ / ظَلَّ open
+  them now; under such a verb that has not named its ism the elative before مِنْ is her khabar (it was being handed
+  to the rule for «يُحِبُّهُ أَكْثَرَ مِنْ»), and where the analyzer had read it as the Form IV māḍī («أَشَدَّ») the
+  seat overrules the shape.
+- **H · حَرْفُ الْمُضَارَعَةِ.** Nine cited dialect forms («يِعْلَمُ … نِسْتَنْصِرُ») were scored as particles by the
+  gauge, because their line says «بِكَسْرِ حَرْفِ الْمُضَارَعَةِ». That phrase names one of the word's own letters; the
+  gauge's reader blanks it with the other ṣarf phrases.
+
+**The held-out grade in slices (the speed item v287 left).** `cvPrepare()` featurised the whole corpus in one breath
+before the first fold ran — on the main thread, when the Model lab opened. `cvPlan()` / `cvPlanStep()` lay the same
+work out for the lab's stepper: one CHAPTER of rows per step (630 steps, the longest 51 ms), then the interning, then
+one fold per step. The rows are the same rows in the same order, so the score is the same to the digit — the smoke
+check runs both and compares all four numbers (57,893 rows, 56 folds, 66.09 / 81.12). `crossVal()` itself is
+untouched; the ceiling did not move.
+
+**Measured.** Blind 68,780 / 550 / 294 → 69,167 / 557 / 300 with the new chapters → 69,169 / 555 / 300 after the
+rules; receipts-on 69,161 / 311 / 152 → 69,553 / 314 / 157; case layer 56,585 / 57,209 (98.91 %) → 56,914 / 57,538
+(98.92 %). 2 + 1 fixed, 0 broken; the nine gauge rows cleared. Typed battery 369 sentences, 1,131 / 1,132 — the
+eight new sentences right on first contact.
+
+**Learned.**
+- **A widened table is a widened rule everywhere it is read.** Adding صَارَ to the shared list of kāna-forms fixed
+  the Kāfiya's «فَيَصِيرُ أَحْسَنَ» and broke «لَمْ يَقْدِرْ يَأْجُوجُ وَمَأْجُوجُ» two clauses after a «فَصَارَ» in
+  another story — the list is consulted by nine rules. The form went into the ONE rule that needed it.
+- **An accidental right answer is a break waiting for the first honest rule.** «أَحْسَنَ» after «فَيَصِيرُ» had been
+  right only because يَصِيرُ was not known as a sister and the word fell to the ḥāl. Naming the verb correctly made
+  it wrong until the elative's seat was stated for it too.
+- **A transitive verb cannot give up the pronoun of the matter.** «لِأَنَّهُ يَلْزَمُ … تَوَالِي أَرْبَعِ حَرَكَاتٍ»: the
+  هُ is ḍamīr al-shaʾn and the noun the doer, but لَزِمَ takes objects and a manqūṣ shows no mark — the bare letters
+  leave it open. A rule was written, measured on its controls, and withdrawn.
+
+- **A check that samples the corpus is re-drawn by every new chapter.** The release stopped on the wave-136 gate:
+  «the memoised noun lookup disagrees with the plain one on 1 words». The word was «وَرُدَّ», new to the 150-word
+  sample; the memoised lookup has carried the wave-174 guard since v273 (a shadda on the last letter the lemma does
+  not wear — «وَرُدَّ» is not «وَرْد»), and the plain walk under it does not. The two were never the same function;
+  the sample had simply never held such a word. The check now names that one licensed difference (a refusal, on a
+  word ending in a shadda) and still fails on any other.
+
+**Left open.** «تَوَالِي» above (written «تَوَالِيَ» blind). «مِثْلِ» before the hypothetical «وَوَوْجَلُ» takes a
+tanwīn (the three wāws read as a joined word). «بِأَنَّ وَاوَ وَرَنْتَلٍ أَصْلِيٌّ»: the khabar after a cited foreign
+word is read as its naʿt. «وَالرُّبَاعِيُّ فَرْعٌ» after أَنَّ's khabar is joined to her ism (naṣb — grammatical, not
+what the print has). «أَصْلُهُ» between two cited forms is read as a muḍāf ilayh. Typed bare, «وليقوم» after a
+lām-khabar is still a noun to the analyzer, and «إن له لأجرا» keeps its jarr. The v287 items stand.

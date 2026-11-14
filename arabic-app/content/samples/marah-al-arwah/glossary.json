@@ -44,6 +44,16 @@
    "root": "ب د ل",
    "form": "IV"
   },
+  "adad": {
+   "lemma": "عَدَد",
+   "pos": "noun",
+   "gloss": {
+    "en": "number, count",
+    "tr": "sayı; aded"
+   },
+   "level": 2,
+   "root": "ع د د"
+  },
   "adam": {
    "lemma": "عَدَم",
    "pos": "noun",
@@ -93,6 +103,17 @@
    },
    "level": 2,
    "root": "ف ع ل"
+  },
+  "ahd": {
+   "lemma": "عَهْد",
+   "pos": "noun",
+   "gloss": {
+    "en": "a time, an era; a covenant",
+    "tr": "zaman, dönem; ahit"
+   },
+   "level": 1,
+   "root": "ع ه د",
+   "plural": "عُهُود"
   },
   "ahl": {
    "lemma": "أَهْل",
@@ -491,6 +512,16 @@
    "level": 2,
    "root": "أ ن ت"
   },
+  "aqall": {
+   "lemma": "أَقَلّ",
+   "root": "ق ل ل",
+   "pos": "noun",
+   "gloss": {
+    "en": "less, fewer (ism tafdil)",
+    "tr": "daha az (ism-i tafdîl)"
+   },
+   "level": 3
+  },
   "aql": {
    "lemma": "عَقْل",
    "root": "ع ق ل",
@@ -501,6 +532,16 @@
     "tr": "akıl"
    },
    "level": 1
+  },
+  "aqsa": {
+   "lemma": "الْأَقْصَى",
+   "pos": "noun",
+   "gloss": {
+    "en": "the farthest (an elative, maqṣūr); الْمَسْجِدُ الْأَقْصَى",
+    "tr": "en uzak (maksûr ism-i tafdil); Mescid-i Aksâ"
+   },
+   "level": 2,
+   "root": "ق ص و"
   },
   "aqsam": {
    "lemma": "أَقْسَام",
@@ -625,6 +666,25 @@
    },
    "level": 2
   },
+  "asli": {
+   "lemma": "أَصْلِيّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "original (nisba of أَصْل)",
+    "tr": "aslî (أَصْل'e nisbet)"
+   },
+   "level": 3,
+   "root": "أ ص ل"
+  },
+  "atayna-huruf": {
+   "lemma": "أَتَيْنَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "«atayna»: the word that gathers the four letters added to make the muḍāriʿ — أ، ت، ي، ن",
+    "tr": "«أَتَيْنَ»: muzâraat harflerini toplayan kelime — أ، ت، ي، ن"
+   },
+   "level": 5
+  },
   "atf": {
    "lemma": "عَطْف",
    "pos": "noun",
@@ -683,14 +743,24 @@
    "level": 2,
    "root": "أ ي ض"
   },
-  "ayn-thing": {
+  "ayn": {
    "lemma": "عَيْن",
    "root": "ع ي ن",
    "pos": "noun",
    "plural": "أَعْيَان",
    "gloss": {
-    "en": "specified thing, corporeal object (fiqh)",
-    "tr": "ayn — muayyen şey (fıkıh)"
+    "en": "the very self; eye; essence",
+    "tr": "ayn; bizzat kendisi"
+   },
+   "level": 3
+  },
+  "ayn-letter": {
+   "lemma": "عَيْن",
+   "root": "ع ي ن",
+   "pos": "noun",
+   "gloss": {
+    "en": "the letter ʿayn (ع) — in ṣarf, the SECOND radical: the letter of a word that stands where the ع of «فَعَلَ» stands",
+    "tr": "ayn harfi (ع) — sarfta kelimenin İKİNCİ asıl harfi: «فَعَلَ»deki ع'ın yerinde duran harf"
    },
    "level": 4
   },
@@ -742,6 +812,26 @@
    "level": 1,
    "root": "ب و ب",
    "plural": "أَبْوَاب"
+  },
+  "bad": {
+   "lemma": "بَعْض",
+   "pos": "noun",
+   "gloss": {
+    "en": "some, a part of",
+    "tr": "bazı; bir kısmı"
+   },
+   "level": 1,
+   "root": "ب ع ض"
+  },
+  "bada": {
+   "lemma": "بَعْدَ",
+   "root": "ب ع د",
+   "pos": "noun",
+   "gloss": {
+    "en": "after (adverbial)",
+    "tr": "sonra (zarf)"
+   },
+   "level": 1
   },
   "badiya": {
    "lemma": "بَادِيَة",
@@ -1200,6 +1290,26 @@
    },
    "level": 4
   },
+  "faaala-wazn": {
+   "lemma": "فَعَّلَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "the pattern faʿʿala — the doubled middle letter (فَرَّحَ)",
+    "tr": "fa''ale vezni — aynı şeddeli bâb, tef'îl (فَرَّحَ)"
+   },
+   "level": 5,
+   "root": "ف ع ل"
+  },
+  "faaala3-wazn": {
+   "lemma": "فَاعَلَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "the pattern fāʿala — an alif after the first letter (قَاتَلَ)",
+    "tr": "fâ'ale vezni — müfâale bâbı (قَاتَلَ)"
+   },
+   "level": 5,
+   "root": "ف ع ل"
+  },
   "faala": {
    "lemma": "فَعَلَ",
    "pos": "verb",
@@ -1251,6 +1361,26 @@
    "level": 2,
    "root": "ف ع ل"
   },
+  "falala-wazn": {
+   "lemma": "فَعْلَلَ",
+   "pos": "noun",
+   "gloss": {
+    "en": "the pattern faʿlala — the bare four-letter verb (دَحْرَجَ)",
+    "tr": "fa'lele vezni — mücerred rubâî (دَحْرَجَ)"
+   },
+   "level": 5,
+   "root": "ف ع ل"
+  },
+  "fam": {
+   "lemma": "فَم",
+   "pos": "noun",
+   "gloss": {
+    "en": "a mouth — annexed it becomes فُو / فِي / فَا (a five-noun)",
+    "tr": "ağız — muzâf olunca فُو / فِي / فَا olur (beş isimden)"
+   },
+   "level": 3,
+   "root": "ف و ه"
+  },
   "faniya": {
    "lemma": "فَنِيَ",
    "pos": "verb",
@@ -1260,6 +1390,17 @@
    },
    "level": 3,
    "root": "ف ن ي"
+  },
+  "far": {
+   "lemma": "فَرْع",
+   "pos": "noun",
+   "gloss": {
+    "en": "branch case — the one being measured",
+    "tr": "fer'; kıyas edilen taraf"
+   },
+   "level": 3,
+   "root": "ف ر ع",
+   "plural": "فُرُوع"
   },
   "farih-brisk": {
    "lemma": "فَارِه",
@@ -1544,6 +1685,17 @@
    "level": 3,
    "root": "ه ن"
   },
+  "hakama": {
+   "lemma": "حَكَمَ",
+   "root": "ح ك م",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to judge, adjudge (with بِ)",
+    "tr": "hükmetmek (بِ ile)"
+   },
+   "level": 2
+  },
   "hal-state": {
    "lemma": "حَال",
    "root": "ح و ل",
@@ -1657,6 +1809,16 @@
     "tr": "tâ ki; hattâ (إِذَا'dan önce ibtidâ harfi)"
    },
    "level": 3
+  },
+  "hawa": {
+   "lemma": "هَوَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "air",
+    "tr": "hava"
+   },
+   "level": 2,
+   "root": "ه و ي"
   },
   "hawqala": {
    "lemma": "حَوْقَلَ",
@@ -1856,6 +2018,37 @@
    "root": "ب ر ز",
    "form": "IV"
   },
+  "ibtadaa-begin": {
+   "lemma": "اِبْتَدَأَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to begin, to start (Form VIII)",
+    "tr": "başlamak (iftiâl)"
+   },
+   "level": 5,
+   "root": "ب د أ"
+  },
+  "ibtal": {
+   "lemma": "إِبْطَال",
+   "pos": "noun",
+   "gloss": {
+    "en": "annulment, voiding (masdar of أَبْطَلَ)",
+    "tr": "iptal — geçersiz kılma (ebtale'nin masdarı)"
+   },
+   "level": 4,
+   "root": "ب ط ل"
+  },
+  "ibtida-nahw": {
+   "lemma": "الِابْتِدَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "the ibtidāʾ — the maʿnawī governor that raises the mubtada",
+    "tr": "ibtidâ — mübtedâyı ref' eden mânevî âmil"
+   },
+   "level": 4,
+   "root": "ب د أ",
+   "form": "VIII"
+  },
   "ida-promise": {
    "lemma": "عِدَة",
    "pos": "noun",
@@ -1865,6 +2058,16 @@
    },
    "level": 5,
    "root": "و ع د"
+  },
+  "idgham": {
+   "lemma": "إِدْغَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "assimilation — sinking a quiescent letter into its like",
+    "tr": "idgam: sâkin harfi benzerine katmak"
+   },
+   "level": 5,
+   "root": "د غ م"
   },
   "idha": {
    "lemma": "إِذَا",
@@ -2148,6 +2351,16 @@
    "level": 4,
    "root": "ل ب س"
   },
+  "imkan": {
+   "lemma": "إِمْكَان",
+   "pos": "noun",
+   "gloss": {
+    "en": "possibility (masdar of أَمْكَنَ)",
+    "tr": "imkân (أَمْكَنَ'nin masdarı)"
+   },
+   "level": 3,
+   "root": "م ك ن"
+  },
   "in-shartiyya": {
    "lemma": "إِنْ",
    "pos": "part",
@@ -2234,6 +2447,16 @@
    "level": 3,
    "root": "ص ر ف",
    "form": "VII"
+  },
+  "intaha": {
+   "lemma": "اِنْتَهَى",
+   "pos": "verb",
+   "gloss": {
+    "en": "to end, to come to an end (Form VIII, defective)",
+    "tr": "bitmek, sona ermek (iftiâl, nâkıs)"
+   },
+   "level": 1,
+   "root": "ن ه ي"
   },
   "iqansasa": {
    "lemma": "اقْعَنْسَسَ",
@@ -2379,6 +2602,17 @@
    "root": "خ ر ج",
    "form": "X"
   },
+  "istansara": {
+   "lemma": "اِسْتَنْصَرَ",
+   "root": "ن ص ر",
+   "pos": "verb",
+   "form": "X",
+   "gloss": {
+    "en": "to ask for support",
+    "tr": "yardım istemek"
+   },
+   "level": 4
+  },
   "istatara": {
    "lemma": "اِسْتَتَرَ",
    "pos": "verb",
@@ -2398,6 +2632,16 @@
    },
    "level": 4,
    "root": "ع م ل"
+  },
+  "istiqbal": {
+   "lemma": "الِاسْتِقْبَال",
+   "pos": "noun",
+   "gloss": {
+    "en": "the future, the time to come (masdar of اسْتَقْبَلَ)",
+    "tr": "istikbâl — gelecek zaman"
+   },
+   "level": 3,
+   "root": "ق ب ل"
   },
   "istitar": {
    "lemma": "اسْتِتَار",
@@ -2706,6 +2950,16 @@
    "root": "ك و د",
    "form": "I"
   },
+  "kalam": {
+   "lemma": "كَلَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "speech (masdar)",
+    "tr": "kelâm; konuşma (masdar)"
+   },
+   "level": 2,
+   "root": "ك ل م"
+  },
   "kalima": {
    "lemma": "كَلِمَة",
    "pos": "noun",
@@ -2768,6 +3022,16 @@
    "level": 1,
    "root": "ك س ر",
    "form": "I"
+  },
+  "kasr": {
+   "lemma": "كَسْر",
+   "pos": "noun",
+   "gloss": {
+    "en": "the kasra — reading the hamza of إِنَّ with an i",
+    "tr": "kesr — inne'nin hemzesini kesreli okuma"
+   },
+   "level": 3,
+   "root": "ك س ر"
   },
   "kasra": {
    "lemma": "كَسْرَة",
@@ -2889,6 +3153,16 @@
    "level": 1,
    "root": "خ و ف"
   },
+  "khayshum": {
+   "lemma": "خَيْشُوم",
+   "pos": "noun",
+   "gloss": {
+    "en": "the nasal passage, the upper part of the nose",
+    "tr": "geniz, burnun üst boşluğu"
+   },
+   "level": 5,
+   "root": "خ ش م"
+  },
   "khilaf": {
    "lemma": "خِلَاف",
    "pos": "noun",
@@ -2909,6 +3183,17 @@
    "level": 3,
    "root": "خ ط ب"
   },
+  "khuff": {
+   "lemma": "خُفّ",
+   "pos": "noun",
+   "gloss": {
+    "en": "a khuff — a leather sock that may be wiped instead of washing the foot",
+    "tr": "mest — ayak yıkamak yerine üzerine mesh edilebilen deri çorap"
+   },
+   "level": 3,
+   "root": "خ ف ف",
+   "plural": "خِفَاف"
+  },
   "khuruj": {
    "lemma": "خُرُوج",
    "root": "خ ر ج",
@@ -2918,6 +3203,16 @@
     "tr": "çıkış, ayrılış (masdar)"
    },
    "level": 2
+  },
+  "khusus": {
+   "lemma": "خُصُوص",
+   "pos": "noun",
+   "gloss": {
+    "en": "particularity, specificity",
+    "tr": "husus, özellik"
+   },
+   "level": 3,
+   "root": "خ ص ص"
   },
   "killam": {
    "lemma": "كِلَّام",
@@ -3006,6 +3301,16 @@
     "tr": "lafız, söz"
    },
    "level": 3
+  },
+  "lahiq": {
+   "lemma": "لَاحِق",
+   "pos": "noun",
+   "gloss": {
+    "en": "attached, joined on (ism fa'il of لَحِقَ); the jinas whose differing letters are far in makhraj",
+    "tr": "bitişik, katılan (لَحِقَ'nin ism-i fâili); ayrı harfleri mahreçte uzak cinas"
+   },
+   "level": 5,
+   "root": "ل ح ق"
   },
   "lakinna": {
    "lemma": "لَكِنَّ",
@@ -3129,6 +3434,16 @@
     "tr": "ile; beraber"
    },
    "level": 1
+  },
+  "mabda": {
+   "lemma": "مَبْدَأ",
+   "pos": "noun",
+   "gloss": {
+    "en": "a beginning, the place where a thing starts",
+    "tr": "başlangıç, bir şeyin başladığı yer"
+   },
+   "level": 5,
+   "root": "ب د أ"
   },
   "madar": {
    "lemma": "مَدَار",
@@ -3381,6 +3696,16 @@
    "level": 3,
    "root": "ن ز ل"
   },
+  "maqam": {
+   "lemma": "مَقَام",
+   "pos": "noun",
+   "gloss": {
+    "en": "place, standing",
+    "tr": "makam, yer"
+   },
+   "level": 3,
+   "root": "ق و م"
+  },
   "marah": {
    "lemma": "مَرَاح",
    "pos": "noun",
@@ -3543,6 +3868,16 @@
    "level": 5,
    "root": "و س م"
   },
+  "mazid": {
+   "lemma": "مَزِيد",
+   "pos": "noun",
+   "gloss": {
+    "en": "more, an increase",
+    "tr": "fazla, ziyade"
+   },
+   "level": 2,
+   "root": "ز ي د"
+  },
   "mikhyaat": {
    "lemma": "مِخْيَاط",
    "pos": "noun",
@@ -3692,6 +4027,17 @@
    },
    "level": 2,
    "root": "ض ع ف"
+  },
+  "mudaraa": {
+   "lemma": "مُضَارَعَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "resemblance — حَرْفُ الْمُضَارَعَةِ: the prefix letter of the muḍāriʿ (أ ن ي ت)",
+    "tr": "muzâraat — harfü'l-muzâraa: muzârinin ön harfi (e n y t)"
+   },
+   "level": 4,
+   "root": "ض ر ع",
+   "form": "III"
   },
   "mudari": {
    "lemma": "الْمُضَارِع",
@@ -3844,6 +4190,17 @@
    "level": 5,
    "root": "ش ع ب"
   },
+  "muntaha": {
+   "lemma": "مُنْتَهًى",
+   "pos": "noun",
+   "gloss": {
+    "en": "limit, utmost point (Form VIII derived noun of اِنْتَهَى)",
+    "tr": "son, nihayet (اِنْتَهَى'nın VIII. bâb türemiş ismi)"
+   },
+   "level": 4,
+   "root": "ن ه ي",
+   "form": "VIII"
+  },
   "muqabala": {
    "lemma": "مُقَابَلَة",
    "pos": "noun",
@@ -3872,6 +4229,16 @@
     "tr": "müşâbehet (شَابَهَ'nin masdarı)"
    },
    "level": 4,
+   "root": "ش ب ه"
+  },
+  "mushabih": {
+   "lemma": "مُشَابِه",
+   "pos": "noun",
+   "gloss": {
+    "en": "resembling, similar (ism fāʿil of شَابَهَ)",
+    "tr": "benzeyen, müşâbih (şâbehe'nin ism-i fâili)"
+   },
+   "level": 3,
    "root": "ش ب ه"
   },
   "mushakala": {
@@ -3984,6 +4351,16 @@
    },
    "level": 4,
    "root": "و ص ل"
+  },
+  "muwafiq": {
+   "lemma": "مُوَافِق",
+   "pos": "noun",
+   "gloss": {
+    "en": "agreeing, in accordance — the Form III ism fāʿil of وَافَقَ",
+    "tr": "uygun, mutâbık — vâfeka'nın ism-i fâili"
+   },
+   "level": 3,
+   "root": "و ف ق"
   },
   "naaqa": {
    "lemma": "نَعَقَ",
@@ -4188,6 +4565,16 @@
     "tr": "nûn harfi; nûn (tesniye, cem' nûnu)"
    },
    "level": 2
+  },
+  "nuqsan": {
+   "lemma": "نُقْصَان",
+   "root": "ن ق ص",
+   "pos": "noun",
+   "gloss": {
+    "en": "loss, diminution (masdar)",
+    "tr": "noksan, eksilme (masdar)"
+   },
+   "level": 4
   },
   "pron-1p": {
    "lemma": "نَا",
@@ -4402,6 +4789,17 @@
    },
    "level": 2
   },
+  "qarib": {
+   "lemma": "قَرِيب",
+   "root": "ق ر ب",
+   "pos": "noun",
+   "plural": "أَقْرِبَاء",
+   "gloss": {
+    "en": "kinsman; near",
+    "tr": "akraba; yakın"
+   },
+   "level": 2
+  },
   "qarina": {
    "lemma": "قَرِينَة",
    "pos": "noun",
@@ -4566,6 +4964,16 @@
    },
    "level": 4,
    "root": "ق و م"
+  },
+  "qiyas": {
+   "lemma": "قِيَاس",
+   "pos": "noun",
+   "gloss": {
+    "en": "analogy (masdar, Form III)",
+    "tr": "kıyâs (masdar)"
+   },
+   "level": 4,
+   "root": "ق ي س"
   },
   "qurb": {
    "lemma": "قُرْب",
@@ -4826,6 +5234,16 @@
    "root": "س ك ن",
    "plural": "سَاكِنُونَ"
   },
+  "sakna": {
+   "lemma": "سَكْنَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "a quiescence, one sukūn — its plural «سَكَنَات» is set beside «حَرَكَات»",
+    "tr": "bir sükûn, harekesizlik — çoğulu «سَكَنَات», «حَرَكَات»ın karşılığıdır"
+   },
+   "level": 5,
+   "root": "س ك ن"
+  },
   "sala": {
    "lemma": "سَالَ",
    "pos": "verb",
@@ -4846,6 +5264,17 @@
    },
    "level": 5,
    "root": "ص ل ح"
+  },
+  "saluha-karuma": {
+   "lemma": "صَلَحَ",
+   "root": "ص ل ح",
+   "pos": "verb",
+   "form": "I",
+   "gloss": {
+    "en": "to be fit, serve well",
+    "tr": "yaramak, elverişli olmak"
+   },
+   "level": 3
   },
   "samma": {
    "lemma": "سَمَّى",
@@ -4920,6 +5349,15 @@
    },
    "level": 5,
    "root": "ص ر ف"
+  },
+  "sawfa": {
+   "lemma": "سَوْفَ",
+   "pos": "part",
+   "gloss": {
+    "en": "shall (the far future)",
+    "tr": "ileride -ecek (uzak gelecek)"
+   },
+   "level": 2
   },
   "sawt": {
    "lemma": "صَوْت",
@@ -5074,6 +5512,15 @@
    "level": 2,
    "root": "ص غ ر"
   },
+  "sin-letter": {
+   "lemma": "السِّين",
+   "pos": "noun",
+   "gloss": {
+    "en": "the letter sīn — named as a noun; here the prefix of the near future",
+    "tr": "sin harfi — isim olarak; burada yakın gelecek sîni"
+   },
+   "level": 6
+  },
   "siraf": {
    "lemma": "صِرَاف",
    "pos": "noun",
@@ -5185,6 +5632,16 @@
    "level": 5,
    "root": "ع ن ق"
   },
+  "taayyun": {
+   "lemma": "تَعَيُّن",
+   "pos": "noun",
+   "gloss": {
+    "en": "being singled out, being fixed for one thing (masdar of تَعَيَّنَ, Form V)",
+    "tr": "belirlenmiş olma, bir şeye tahsis edilmiş olma (تَعَيَّنَ'nin masdarı, tefa''ul)"
+   },
+   "level": 5,
+   "root": "ع ي ن"
+  },
   "taba-following": {
    "lemma": "تَبَع",
    "pos": "noun",
@@ -5194,6 +5651,27 @@
    },
    "level": 5,
    "root": "ت ب ع"
+  },
+  "tabaaada": {
+   "lemma": "تَبَاعَدَ",
+   "root": "ب ع د",
+   "pos": "verb",
+   "form": "VI",
+   "gloss": {
+    "en": "to keep one's distance, move gradually away",
+    "tr": "uzak durmak, gitgide uzaklaşmak"
+   },
+   "level": 3
+  },
+  "tabakhtara": {
+   "lemma": "تَبَخْتَرَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to strut, to walk with a proud sway (tafaʿlala)",
+    "tr": "çalımla yürümek, salınmak (tefa'lül)"
+   },
+   "level": 5,
+   "root": "ب خ ت ر"
   },
   "tabia": {
    "lemma": "طَبِيعَة",
@@ -5409,6 +5887,16 @@
    "root": "أ ن ث",
    "form": "II"
   },
+  "taqallada": {
+   "lemma": "تَقَلَّدَ",
+   "pos": "verb",
+   "gloss": {
+    "en": "to gird oneself with, to take upon oneself (a sword, an office) (Form V)",
+    "tr": "kuşanmak, üstlenmek (tefa''ul)"
+   },
+   "level": 5,
+   "root": "ق ل د"
+  },
   "taqdim": {
    "lemma": "تَقْدِيم",
    "pos": "noun",
@@ -5480,6 +5968,16 @@
    "level": 3,
    "root": "ث ن ي"
   },
+  "tawali": {
+   "lemma": "تَوَالٍ",
+   "pos": "noun",
+   "gloss": {
+    "en": "coming one after another, an unbroken run (masdar of تَوَالَى, Form VI)",
+    "tr": "art arda gelme, tevâlî (تَوَالَى'nin masdarı, tefâul)"
+   },
+   "level": 5,
+   "root": "و ل ي"
+  },
   "tawallada": {
    "lemma": "تَوَلَّدَ",
    "pos": "verb",
@@ -5499,6 +5997,16 @@
    },
    "level": 5,
    "root": "ط و ي"
+  },
+  "thabat": {
+   "lemma": "ثَبَات",
+   "pos": "noun",
+   "gloss": {
+    "en": "firmness, steadiness (masdar)",
+    "tr": "sebat, sağlamlık (masdar)"
+   },
+   "level": 3,
+   "root": "ث ب ت"
   },
   "thalatha": {
    "lemma": "ثَلَاثَة",
@@ -5545,6 +6053,16 @@
    "gloss": {
     "en": "second (ordinal; a manqus noun)",
     "tr": "ikinci (menkūs isim)"
+   },
+   "level": 2,
+   "root": "ث ن ي"
+  },
+  "thaniya": {
+   "lemma": "الثَّانِيَة",
+   "pos": "noun",
+   "gloss": {
+    "en": "the second (feminine)",
+    "tr": "ikincisi (müennes)"
    },
    "level": 2,
    "root": "ث ن ي"
@@ -5668,6 +6186,16 @@
     "tr": "anne"
    },
    "level": 1
+  },
+  "umum": {
+   "lemma": "عُمُوم",
+   "pos": "noun",
+   "gloss": {
+    "en": "generality (masdar of عَمَّ) — عَلَى الْعُمُومِ: in general",
+    "tr": "umum, genellik (amme masdarı) — ale'l-umûm: genel olarak"
+   },
+   "level": 5,
+   "root": "ع م م"
   },
   "wa": {
    "lemma": "وَ",
@@ -5810,6 +6338,26 @@
    },
    "level": 2
   },
+  "waraa": {
+   "lemma": "وَرَاء",
+   "pos": "noun",
+   "gloss": {
+    "en": "behind; beyond (also: ahead, on one's road)",
+    "tr": "arka; öte (bazen: ileride, yol üstünde)"
+   },
+   "level": 2,
+   "root": "و ر ي"
+  },
+  "warantal": {
+   "lemma": "وَرَنْتَل",
+   "pos": "noun",
+   "gloss": {
+    "en": "«warantal»: hardship, a grave affair (also said to be a place-name) — the word the ṣarf books cite for a wāw that opens a word as a RADICAL",
+    "tr": "«verentel»: sıkıntı, büyük iş (bir yer adı olduğu da söylenir) — sarf kitaplarının, kelime başında ASLÎ olan vâva örnek verdiği kelime"
+   },
+   "level": 5,
+   "root": "و ر ن ت ل"
+  },
   "wasama": {
    "lemma": "وَصَمَ",
    "pos": "verb",
@@ -5889,6 +6437,36 @@
    },
    "level": 1
   },
+  "yafilu-wazn": {
+   "lemma": "يَفْعِلُ",
+   "pos": "noun",
+   "gloss": {
+    "en": "the pattern yafʿilu — a present with kasra on its middle letter",
+    "tr": "yef'ilü vezni — aynı kesreli muzâri"
+   },
+   "level": 5,
+   "root": "ف ع ل"
+  },
+  "yuhariqu-cited": {
+   "lemma": "يُهَرِيقُ",
+   "pos": "noun",
+   "gloss": {
+    "en": "«he pours out» — the muḍāriʿ of هَرَاقَ, cited: its hāʾ stands where the hamza of أَرَاقَ stood, kept against analogy",
+    "tr": "«döker» — هَرَاقَ'nin muzârisi, misâl olarak: hâsı أَرَاقَ'nin hemzesi yerindedir, kıyasa aykırı olarak kalmıştır"
+   },
+   "level": 5,
+   "root": "ه ر ق"
+  },
+  "yuriqu-cited": {
+   "lemma": "يُرِيقُ",
+   "pos": "noun",
+   "gloss": {
+    "en": "«he pours out» — the muḍāriʿ of أَرَاقَ (Form IV, hollow), cited as the origin of «يُهَرِيقُ»",
+    "tr": "«döker» — أَرَاقَ'nin muzârisi (if'âl, ecvef), «يُهَرِيقُ»nun aslı olarak anılır"
+   },
+   "level": 5,
+   "root": "ر ي ق"
+  },
   "zada": {
    "lemma": "زَادَ",
    "pos": "verb",
@@ -5919,6 +6497,16 @@
    },
    "level": 2,
    "root": "ظ ه ر"
+  },
+  "zaid": {
+   "lemma": "زَائِد",
+   "pos": "noun",
+   "gloss": {
+    "en": "added, over and above (ism fa'il)",
+    "tr": "zâid; fazladan olan"
+   },
+   "level": 3,
+   "root": "ز ي د"
   },
   "zalzala": {
    "lemma": "زَلْزَلَ",

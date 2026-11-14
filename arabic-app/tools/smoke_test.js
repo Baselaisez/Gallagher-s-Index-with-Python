@@ -10382,7 +10382,9 @@ if (!CHROME) {
         if (a) hits++; if (J(a) !== J(c)) { mism++; if (ex.length < 5) ex.push({ w, prefer, a: a && a.lemma, c: c && c.lemma }); }
       }
       out.walkTests = sample.length * 3; out.walkHits = hits; out.walkMismatch = mism; out.walkExamples = ex;
-      let nm = 0; for (const w of sample.slice(0, 150)) { const a = RootFinder._nounFromCorpus0(w); RootFinder._nfcMemo136.delete(w); const c = RootFinder.nounFromCorpus(w), d = RootFinder.nounFromCorpus(w); if (J(a) !== J(c) || J(c) !== J(d)) nm++; }
+      // (wave 189) the memoised lookup is the plain walk PLUS the wave-174 guard (a shadda on the word's last letter that the lemma does not wear: عَزَّ وَجَلَّ is not «وَجَل», وَرُدَّ is not «وَرْد») — there, and only there, the two may differ, and only as a refusal; the sample is drawn from the corpus, so a new chapter can bring such a word in
+      const guarded174 = (w, a, c) => c === null && !!a && /\u0651[\u064B-\u0652\u0670]*$/.test(String(w).normalize("NFC").replace(/[«»،:.!؟\s]/g, ""));
+      let nm = 0; for (const w of sample.slice(0, 150)) { const a = RootFinder._nounFromCorpus0(w); RootFinder._nfcMemo136.delete(w); const c = RootFinder.nounFromCorpus(w), d = RootFinder.nounFromCorpus(w); if ((J(a) !== J(c) && !guarded174(w, a, c)) || J(c) !== J(d)) nm++; }
       out.nounMismatch = nm;
       // the shipped model
       out.shippedSig = (typeof IRAB_MODEL !== "undefined" && IRAB_MODEL && IRAB_MODEL.corpus) ? IRAB_MODEL.corpus.sig : null; out.sig = IrabModel.corpusSig();
@@ -14681,7 +14683,7 @@ if (!CHROME) {
     if (r.taqawwala > 1 || r.qala < 50) throw new Error('تَقُولُ belongs to قَالَ (one تَقَوَّلَ is cited in the hollow chapter): ' + J([r.taqawwala, r.qala]));
     if (r.la.dual !== 'nahiya' || r.la.row !== 'nahiya,nahiya,nahiya,nahiya,nahiya,nahiya' || r.la.emph !== 'nahiya' || r.la.pron !== 'nafiya' || r.la.plain !== 'nafiya') throw new Error('the prohibition row: the dual has dropped its nūn, the women\'s nūn and the addressed woman are read with the forbidden pair beside them, the nūn of emphasis follows a request — and يَنْهَاهُمْ, لَا يَكْتُبُ stay plain denials: ' + J(r.la));
     if (!/إِمَّا \| imma \| part \| «إِمَّا» حَرْفُ تَفْصِيلٍ/.test(r.imma)) throw new Error('إِمَّا is the letter of detailing, not أَمَّا: ' + r.imma);
-    if (!/الْعَيْنِ \| ayn-thing \| noun \| مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ/.test(r.ayn) || r.dualAyn) throw new Error('الْعَيْن is a singular — its yāʾ and nūn are radicals: ' + J([r.ayn, r.dualAyn]));
+    if (!/الْعَيْنِ \| ayn-letter \| noun \| مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ/.test(r.ayn) /* (wave 189) the letter has its own key: it was filed under the fiqh word's `ayn-thing` */ || r.dualAyn) throw new Error('الْعَيْن is a singular — its yāʾ and nūn are radicals: ' + J([r.ayn, r.dualAyn]));
     if (r.nahyRow !== 'la-nahiya,la-nahiya,la-nahiya,la-nahiya,la-nahiya,la-nahiya') throw new Error('every لَا of the recited prohibition row is the nāhiya: ' + r.nahyRow);
     if (!(r.dk.both >= 10 && r.dk.seats === true && r.dk.lazimSeats === false)) throw new Error('the valency ledger: a verb–doer–object row (دَخَلَ مُوسَى الْمَدِينَةَ) is evidence that the verb seats an object, so دَخَلَ still takes one where its doer is carried — and جَلَسَ does not: ' + J(r.dk));
     if (r.amrGem !== 'اِحْمَرَّ مُدَّ اُكْتُبْ'.normalize('NFC')) throw new Error('the primer\'s steps: a doubled last letter cannot take the sukūn of the jazm — اِحْمَرَّ، مُدَّ — and the sound verb keeps its sukūn: ' + r.amrGem);
@@ -15431,6 +15433,44 @@ if (!CHROME) {
     if (r.ya.one !== 'particle:harf noun:nasb' || r.ya.ctx !== 'particle:harf noun:nasb particle:harf' || r.ya.w !== N('غُلَامَا') + '/munadaMudaf' || r.ya.asa !== 'particle:harf noun:mabni' || r.ya.zayd !== 'particle:harf noun:mabni' || !/^verb:mazi0:mabni noun:raf /.test(r.ya.dual)) throw new Error('the vocative\'s alif: ' + J(r.ya));
     if (!/ noun:-$/.test(r.el.khabar) || !/^noun:mabni noun:- /.test(r.el.bi) || !/ noun:- noun:/.test(' ' + r.el.typed) || !/^noun:raf verb:mazi0:mabni noun:nasb/.test(r.el.verb) || r.el.qad !== 'particle:harf verb:mazi0:mabni' || !/verb:mazi0:mabni$/.test(r.el.joined)) throw new Error('the elative on «أَفْعَى»: ' + J(r.el));
     if (r.cv.ila !== 'particle:harf verb:mazi0:mabni' || r.cv.fi !== 'particle:harf verb:mazi0:mabni' || r.cv.min !== 'particle:harf verb:mazi0:mabni' || r.cv.talab !== 'particle:harf noun:jarr' || r.cv.darb !== 'particle:harf noun:jarr' || r.cv.kitab !== 'particle:harf noun:jarr') throw new Error('the verb cited after a jarr letter: ' + J(r.cv));
+  });
+
+  await check('wave 189 — Marāḥ al-Arwāḥ part seven (the muḍāriʿ: the letters of «أَتَيْنَ», the vowel of the muḍāriʿ\'s letters; pp. 56–60) stands on the shelf with every line named, and the letter «ʿayn» of the two ṣarf texts no longer wears the fiqh word\'s gloss; four rules the text called for — the lām of ibtidāʾ after إِنَّ (on a ṣifa khabar: لَقَائِمٌ; on the postponed ism after a jarr phrase: لَعِبْرَةً; on a joined muḍāriʿ: وَلَيَقُومُ) with the owner\'s lām (لِزَيْدٍ), the radical lām (لَحْمٌ), the lām of purpose and أَنَّ left as they were; the doubled elative typed bare as the khabar of kāna\'s family (صَارَ أَقَلَّ مِنْ، كَانَ أَشَدَّ مِنْ) and her sisters in the muḍāriʿ (يَصِيرُ); «حَرْفُ الْمُضَارَعَةِ» in a line is no claim that the word is a particle — and the held-out grade prepared a chapter at a time gives the very numbers of the one-breath run', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => N((tok(n, id, i).irab || {}).ar);
+      const all = [18, 19, 20].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const iz = STORIES.find(x => x.id === 'tasrif-al-izzi'); let aynLetter = 0, aynThing = 0;
+      if (iz) iz.chapters.forEach(c => c.sentences.forEach(x => x.tokens.forEach(t => { [t.lex].concat((t.segments || []).map(g => g.lex)).forEach(k => { if (k === 'ayn-letter') aynLetter++; if (k === 'ayn-thing') aynThing++; }); })));
+      const before = IrabModel._cv || IrabModel.crossVal();
+      IrabModel._cv = null; IrabModel._rows = null; const p = IrabModel.cvPlan(), n = IrabModel.cvPlanCount(p); let mx = 0;
+      for (let i = 0; i < n; i++) { const a = performance.now(); IrabModel.cvPlanStep(p, i); const d = performance.now() - a; if (i < p.prep && d > mx) mx = d; }
+      const after = IrabModel.cvFinish(p);
+      return { chapters: st.chapters.length, sens: [18, 19, 20].map(n => ((ch(n) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        l: { lamKh: line(18, 's5', 7), lamV: line(18, 's5', 8), zidat: line(19, 's1', 1), atayna: tok(19, 's1', 5).lex, aqall: line(19, 's1', 14), tawali: line(20, 's9', 5), uyyinat: line(20, 's11', 0) },
+        ayn: { marah: tok(3, 's1', 7).lex, word: tok(18, 's8', 0).lex, letter: aynLetter, thing: aynThing, gloss: String((((iz || {}).glossary || {})['ayn-letter'] || {}).gloss && (iz.glossary['ayn-letter'].gloss.en || '')) },
+        lam: { typed: V('إن زيدا لقائم', 2), pron: V('إنه لكريم', 1), owner: V('إن المال لزيد', 2), jamid: V('إن الكتاب لرجل كريم', 2), ism: V('إن في ذلك لعبرة', 3), radical: V('إِنَّ هٰذَا لَحْمٌ طَيِّبٌ', 2), verb: V('إِنَّ زَيْدًا لَقَائِمٌ وَلَيَقُومُ', 3), purpose: V('إِنَّ زَيْدًا لَقَائِمٌ وَلِيَقُومَ عَمْرٌو', 3), plain: V('جئت ليقوم زيد', 1), anna: V('أن زيدا لكريم', 2), shart: V('إِنْ جَاءَ زَيْدٌ لِكَرِيمٍ فَأَكْرِمْهُ', 3) },
+        el: { sara: V('صار أقل من القدر', 1), yasir: V('يصير أقل من القدر الصالح', 1), ashadd: V('كان أشد من أخيه', 1), qad: V('قد أشد الحبل', 1), obj: V('يحبه أكثر من أخيه', 1), ism: V('يصير الماء ثلجا', 1) + ' ' + V('يصير الماء ثلجا', 2), fem: V('صارت البنت معلمة', 1) + ' ' + V('صارت البنت معلمة', 2) },
+        gauge: { cited: CaseEngine.humanCase(line(20, 's6', 20)), harf: CaseEngine.humanCase(N('«فِي» حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى السُّكُونِ.')) },
+        cv: { before, after, units: p.units.length, chaptersAll: STORIES.reduce((a, x) => a + x.chapters.length, 0), prep: p.prep, steps: n, maxPrep: Math.round(mx) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 20 || J(r.sens) !== '[8,14,11]') throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens));
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    if (!r.l.lamKh.includes(N('لَامُ الِابْتِدَاءِ')) || !r.l.lamKh.includes(N('خَبَرُ إِنَّ')) || !r.l.lamV.includes(N('لَامُ الِابْتِدَاءِ')) || !r.l.lamV.includes(N('مَرْفُوعٌ')) || !r.l.zidat.includes(N('لِلْمَجْهُولِ')) || r.l.atayna !== 'atayna-huruf' || !r.l.aqall.startsWith(N('خَبَرُ «يَصِيرُ»')) || !r.l.tawali.startsWith(N('فَاعِلٌ')) || !r.l.uyyinat.includes(N('لِلْمَجْهُولِ'))) throw new Error('the named lines: ' + J(r.l));
+    if (r.ayn.marah !== 'ayn-letter' || r.ayn.word !== 'ayn' || r.ayn.letter < 30 || r.ayn.thing !== 0 || !/radical/i.test(r.ayn.gloss)) throw new Error('the letter ʿayn of the ṣarf texts: ' + J(r.ayn));
+    const L = r.lam;
+    if (!/^لَ.*ٌ\/innaKhabar$/.test(L.typed) || !/^لَ.*ٌ\/innaKhabar$/.test(L.pron) || !/ٍ\/jarr$/.test(L.owner) || !/ٍ\/jarr$/.test(L.jamid) || !/^لَ.*ً\/innaIsm$/.test(L.ism) || !L.radical.startsWith(N('لَحْمٌ/')) || /jarr/.test(L.radical) || L.verb !== N('وَلَيَقُومُ') + '/raf' || L.purpose !== N('وَلِيَقُومَ') + '/nasbVerb' || !/\/nasbVerb$/.test(L.plain) || !/ٍ\/jarr$/.test(L.anna) || L.shart !== N('لِكَرِيمٍ') + '/jarr') throw new Error('the lām of ibtidāʾ: ' + J(L));
+    const E = r.el;
+    if (!/َّ\/kanaKhabar$/.test(E.sara) || !/َّ\/kanaKhabar$/.test(E.yasir) || !/َّ\/kanaKhabar$/.test(E.ashadd) || !/\/mazi$/.test(E.qad) || !/َ\/(hal|mafulMutlaq)$/.test(E.obj) || !/ُ\/kanaIsm .*ًا\/kanaKhabar$/.test(E.ism) || !/ُ\/kanaIsm .*ً\/kanaKhabar$/.test(E.fem)) throw new Error('the doubled elative and kāna\'s sisters: ' + J(E));
+    if (r.gauge.cited !== null || r.gauge.harf !== 'harf') throw new Error('the gauge\'s reader: ' + J(r.gauge));
+    const c = r.cv;
+    if (c.after.n !== c.before.n || c.after.folds !== c.before.folds || c.after.top1 !== c.before.top1 || c.after.top2 !== c.before.top2 || c.units !== c.chaptersAll || c.prep !== c.units + 1 || c.maxPrep > 1500) throw new Error('the validation in slices: ' + J(c));
   });
 
   await check('no JS errors on page', async () => {

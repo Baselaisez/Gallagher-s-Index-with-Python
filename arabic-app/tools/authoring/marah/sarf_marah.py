@@ -72,6 +72,18 @@ V["taanaqa"] = derived(B6, W6, "َ", "تَعَانَق", "تَعَانَق", "ت
 # عَيَّنَ يُعَيِّنُ — «وَعُيِّنَتِ الْيَاءُ»
 V["ayyana-appoint"] = derived(B2, W2, "ُ", "عَيَّن", "عَيِّن", "عَيِّن", "تَعْيِين", "مُعَيِّن", "مُعَيَّن", "عُيِّنَ", "يُعَيَّنُ")
 
+# ================================================================ part seven (pp. 56–60)
+# اِبْتَدَأَ يَبْتَدِئُ — «هُوَ الَّذِي يَبْتَدِئُ الْكَلَامُ مِنْهُ». The lām is a hamza: after the kasra of the muḍāriʿ and the amr it sits on a yāʾ
+# throughout; in the māḍī it sits on an alif, becomes a madda before the alif of the dual and takes a wāw seat before the
+# wāw of the plural — the two cells the suffix-attaching builder cannot write.
+V["ibtadaa-begin"] = derived(B8, W8, "َ", "اِبْتَدَأ", "بْتَدِئ", "اِبْتَدِئ", "اِبْتِدَاء", "مُبْتَدِئ", "مُبْتَدَأ", "اُبْتُدِئَ", "يُبْتَدَأُ")
+assert V["ibtadaa-begin"]["mazi"][1] == g.nfc("اِبْتَدَأَا") and V["ibtadaa-begin"]["mazi"][2] == g.nfc("اِبْتَدَأُوا"), V["ibtadaa-begin"]["mazi"][:3]
+V["ibtadaa-begin"]["mazi"][1] = "اِبْتَدَآ"; V["ibtadaa-begin"]["mazi"][2] = "اِبْتَدَؤُوا"
+# تَقَلَّدَ يَتَقَلَّدُ — «تَتَقَلَّدُ»
+V["taqallada"] = derived(B5, W5, "َ", "تَقَلَّد", "تَقَلَّد", "تَقَلَّد", "تَقَلُّد", "مُتَقَلِّد")
+# تَبَخْتَرَ يَتَبَخْتَرُ — «تَتَبَخْتَرُ» (مَزِيدُ الرُّبَاعِيِّ, the bāb of تَدَحْرَجَ)
+V["tabakhtara"] = derived("مَزِيدُ الرُّبَاعِيِّ: تَفَعْلَلَ يَتَفَعْلَلُ", "تَفَعْلَلَ يَتَفَعْلَلُ", "َ", "تَبَخْتَر", "تَبَخْتَر", "تَبَخْتَر", "تَبَخْتُر", "مُتَبَخْتِر")
+
 # a lām that is a nūn meets the nūn of the feminine plural and of «we» and contracts (رَكَنَّ، رَكَنَّا)
 for _k in ("rakana", "ikhshawshana", "tashaytana", "tamaskana", "ayyana-appoint"):
     V[_k] = g.idgham(V[_k])
