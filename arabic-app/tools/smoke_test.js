@@ -15101,6 +15101,28 @@ if (!CHROME) {
     if (!/ كتابَانِ\/khabar$/.test(r.d1) || /\/mazi .*\/mazi/.test(r.d2) || !/ هذينِ\/maful /.test(r.d2) || !/ إخوةٌ\/khabar$/.test(r.d3) || !/ واجبٌ\/khabar$/.test(r.d4) || !/ زيدًا\/maful قادمُونَ\/khabar$/.test(r.d5)) throw new Error('the dual demonstrative and the owed khabar: ' + J([r.d1, r.d2, r.d3, r.d4, r.d5]));
   });
 
+  await check('wave 180 — the sentence typed with no vowels is measured: tools/typed_battery.txt (plain everyday sentences with their endings written out) is stripped bare, read by the ḍabṭ engine and judged word by word — at least 99 % of the judged words right over at least 200 sentences; and by name: a verbless sentence gets its khabar where the last word is also a verb\'s letters (أنا طالب، العلم نور، اسمي أحمد), the speaker\'s yāʾ closes its noun (أبي معلم، بيتي قريب), a transitive verb gets its object before its doer gets a naʿt (سأل الطالب المعلم) while حضر الطالب الجديد keeps the naʿt, the kāna family is vowelled like every verb (كان، كانت السيارة، ليس), a ẓarf is no verb before its noun (بعد الدرس), فهم opens a sentence as the verb, ركب is رَكِبَ, and the speaker\'s own verb owns its doer (جلست في البيت الكبير، أكلت التفاحة)', async () => {
+    const J = JSON.stringify;
+    const MK = /[ً-ْٰ]/;
+    const units = w => { const out = []; for (const ch of String(w || '').normalize('NFC')) { if (MK.test(ch)) { if (out.length) out[out.length - 1].m += ch; } else out.push({ l: ch, m: '' }); } return out; };
+    const sortM = m => m.split('').sort().join('');
+    const judge = (exp, got) => { const a = units(exp), b = units(got); if (a.map(x => x.l).join('') !== b.map(x => x.l).join('')) return false; for (let i = 0; i < a.length; i++) { const last = i === a.length - 1; if ((a[i].m || last) && sortM(a[i].m) !== sortM(b[i].m)) return false; } return true; };
+    const lines = fs.readFileSync(path.join(__dirname, 'typed_battery.txt'), 'utf8').split('\n').map(x => x.trim()).filter(x => x && !x.startsWith('#'));
+    const items = lines.map(line => { const ws = line.split(/\s+/); return { exp: ws.map(w => w.replace(/^~/, '')), skip: ws.map(w => w.startsWith('~')), bare: ws.map(w => w.replace(/^~/, '').normalize('NFC').replace(/[ً-ْٰ]/g, '')).join(' ') }; });
+    const run = sents => page.evaluate(ss => ss.map(t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; try { return (DabtEngine.vowel(t, 'endings').words || []).map(w => String(w.out || '') + '/' + String(w.rule || '')); } catch (e) { return []; } }), sents);
+    const outs = await run(items.map(x => x.bare));
+    let words = 0, right = 0; const misses = [];
+    items.forEach((it, k) => it.exp.forEach((e, i) => { if (it.skip[i]) return; words++; const g = String((outs[k] || [])[i] || '').split('/')[0]; if (judge(e, g)) right++; else misses.push(it.bare + ' #' + i + ' want ' + e + ' got ' + g); }));
+    if (items.length < 200 || words < 550) throw new Error('the typed battery shrank: ' + items.length + ' sentences, ' + words + ' judged words');
+    if (right / words < 0.99) throw new Error('typed gauge ' + right + ' of ' + words + ' (' + (100 * right / words).toFixed(2) + ' %), below its floor of 99 %: ' + J(misses.slice(0, 12)));
+    const N = x => String(x || '').normalize('NFC');
+    const named = ['أنا طالب', 'العلم نور', 'اسمي أحمد', 'أبي معلم', 'بيتي قريب من المدرسة', 'سأل الطالب المعلم', 'حضر الطالب الجديد', 'كان الطقس جميلا', 'كانت السيارة جديدة', 'ليس الدرس صعبا', 'رجع الولد بعد الدرس', 'فهم الطلاب الدرس', 'ركب المسافرون الطائرة', 'جلست في البيت الكبير', 'أكلت التفاحة', 'طلعت الشمس', 'الرجل ذهب', 'كتب الطلاب الواجب', 'أعطى المعلم الطالب كتابا', 'سافرت إلى مدينة بعيدة'];
+    const o = (await run(named)).map(x => N(x.join(' ')));
+    const want = [/ طالبٌ\/khabar$/, / نورٌ\/khabar$/, / أحمدُ\/[a-zA-Z]+$/, / معلمٌ\/khabar$/, / قريبٌ\/khabar /, / المعلمَ\/maful$/, / الجديدُ\/nat$/, /^كَانَ\/[a-zA-Z]+ الطقسُ\/kanaIsm جميلًا\/kanaKhabar$/, /^كَانَتِ\/[a-zA-Z]+ السيارةُ\/kanaIsm جديدةً\/kanaKhabar$/, /^لَيْسَ\/[a-zA-Z]+ الدرسُ\/kanaIsm صعبًا\/kanaKhabar$/, / بعدَ\/[a-zA-Z]+ الدرسِ\/mudafIlayh$/, /^فَهِمَ\/mazi الطلابُ\/fail الدرسَ\/maful$/, /^رَكِبَ\/mazi المسافرُونَ\/fail الطائرةَ\/maful$/, / البيتِ\/jarr الكبيرِ\/nat$/, /^أَكَلْتُ\/mazi التفاحةَ\/maful$/, /\/mazi الشمسُ\/fail$/, /^الرجلُ\/mubtada ذَهَبَ\/mazi$/, / الطلابُ\/fail الواجبَ\/maful$/, / المعلمُ\/fail الطالبَ\/maful كتابًا\/maful$/, / مدينةٍ\/jarr بعيدةٍ\/[a-zA-Z]+$/];
+    const bad = named.map((t, k) => want[k].test(o[k]) ? null : t + ' → ' + o[k]).filter(Boolean);
+    if (bad.length) throw new Error('typed sentences by name: ' + J(bad));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

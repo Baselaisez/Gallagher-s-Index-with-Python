@@ -11922,3 +11922,69 @@ hidden); «سلمت على مهندسي الشركة» (الشركة left as a d
 the al-noun after «هذان / هذين» is labelled muḍāf ilayh though its case is right; «قلما الولد» and «والدا الطالب»
 typed bare; «بني البيت»; «دَارُوهَا». The lexicon still answers «بُنَيّ» for a word whose vowels contradict it.
 The Marāḥ continues at p. 34 (the māḍī).
+
+### v279 (wave 180) — the typed sentence gets a gauge of its own
+
+v278 found the typed-bare class by accident. This wave gives it an instrument, because the shelf's sweeps cannot see
+it: the shelf is vowelled, and «blind» there strips endings only — every interior vowel still reaches the engine. A
+sentence a learner types carries none.
+
+**`tools/typed_gauge.js` + `tools/typed_battery.txt`.** 221 plain everyday sentences with their endings written out
+(603 judged words). The gauge strips every mark, hands the bare sentence to `DabtEngine.vowel`, and judges each word:
+letters unchanged, every mark the expected word writes standing on the same letter, the last letter carrying exactly
+the expected marks. `~word` is not judged (a verb whose person the bare letters leave open, a particle the engine
+leaves as typed). Sentences whose bare letters are genuinely two sentences are NOT in the battery («عمل المهندس في
+المصنع», «من فتح الباب», «درس الطالب النحو», «قرأت خمسة كتب») — a gauge that asserts one reading of an open
+sentence teaches the engine to guess. `--floor N` exits 1 below N %; the smoke check «wave 180» (#427 of 429) reads
+the battery file itself and holds 99 %.
+
+**The method was the drill bank's:** write a batch, fix by rule, then write a SECOND batch the rules have never seen.
+Batch one (119 sentences): 93.0 % → 100 %. Batch two (102 new sentences) on first contact: **97.5 %** — that is the
+honest number for unseen plain sentences after one round — then 100 % after five more rules. v278 reads the whole
+battery at 93.4 % (563 of 603); v279 at 100 %. The shelf did not move (blind, receipts-on and case layer: 0 fixed,
+0 broken) — every rule below is conditioned on a word typed with no mark at all, or is a seat rule the shelf already
+obeyed.
+
+**The rules (all in `patch180`, none about a sentence):**
+
+- **A bare word that is two words is read by its seat.** A ẓarf before its noun is the ẓarf (بعد ≠ بَعُدَ); «غدا»
+  after the sentence's verb is the adverb; «فهم» OPENING a sentence is the verb — a joiner joins to something; the word
+  that ends a verbless sentence and is also a noun the lexicon owns letter for letter is that noun (أنا طالب، العلم نور،
+  اسمي أحمد) — unless the verb reading is a māḍī the shelf never once shows with an object («الرجل ذهب»: ذَهَبَ, 70
+  uses, 0 objects). **The first draft tested «transitive» by whether the paradigm stores an ism mafʿūl — every paradigm
+  does, mechanically — and turned «الرجل ذهب» into «the man is gold». The measured valency (`LazimEngine.of`) is the
+  test; a field that is always filled answers nothing.**
+- **The speaker's yāʾ closes its noun.** «اسمي», «بيتي» (read as an imperative of بَاتَ), «مدرستي»: where the stem is a
+  noun the lexicon owns and the word opens the sentence or follows a verb or particle. «اسمي أحمد» had been a sound
+  plural annexed to a name — اِسْم has no sound plural; only a quality's measure does. And **أَبِي as the kunya is in
+  jarr**: where a rafʿ or naṣb is owed (sentence-initial, right after a verb) the kunya would be أَبُو / أَبَا, so the yāʾ
+  there is the speaker's («اشترى أبي سيارة»).
+- **The kāna family is vowelled like every verb** when typed bare (كَانَ، كَانَتِ before the article، أَصْبَحَ، صَارَ،
+  لَيْسَ) — the writer kept them as «closed-class words», which they are, and verbs, which they also are.
+- **The object before the naʿt, three ways.** A two-object verb's first object stands right after its doer (أعطى المعلم
+  الطالب كتابا). A naʿt agrees in number: a singular behind a broken plural is no naʿt of it (كتب الطلاب الواجب). And
+  the sentence's end closes a transitive clause as a pause does (سأل الطالب المعلم) — only for a verb the shelf itself
+  shows as transitive, so «حضر الطالب الجديد» keeps its naʿt.
+- **The reading that fills every seat the verb owes.** «أكلت التفاحة»: «she ate» and «I ate» are one spelling; a verb
+  the shelf shows taking objects owes two seats, and with one noun and the sentence ending only the speaker's reading
+  fills both. «طلعت الشمس» keeps «she». Once the twin is the speaker's, no noun is owed the doer's seat —
+  «جلست في البيت الكبير» had seated الكبير as a doer on every version since the twin cell was written; «سكنت في البيت
+  الكبير» passed only because سكنت was misread as سَكَّنْتُ.
+- **Typed bare, the plain measure before the doubled one** (ركب is رَكِبَ, not رَكَّبَ) — yielding only to a plain māḍī
+  of another paradigm. The first version yielded to «the next hit» and نور came back as a derived jussive of أَوْرَى.
+- **Small ones:** a bare feminine wears its masculine lemma's shape in `sifaShape` (مدينةٍ بعيدةٍ is no iḍāfa); «الأم»
+  wears the article and is no «أَمْ».
+
+**What the battery does not claim.** It is 221 sentences written by the same hand that wrote the rules, in a register
+(schoolbook MSA) the lexicon knows well. 100 % on it is a regression floor, not a measure of typed Arabic at large —
+batch two's 97.5 % on first contact is the nearer estimate, and the next batch should be drawn from somewhere else
+(longer sentences, relative clauses, لأنّ / لكنّ, the passive). Labels are not judged: «اسمي أحمدُ» is labelled badal,
+«مدينةٍ بعيدةٍ» jarr/jarr; the endings are right and the offices are still open.
+
+**Numbers.** Typed gauge 93.37 → 100 % (603 judged words, 221 sentences). Shelf: blind 67,507 / 547 / 294, receipts-on
+67,887 / 308 / 153, case layer 55,332 of 56,068 (98.69 %) — all unchanged. Smoke «wave 180» (#427 of 429).
+
+**Still open:** the office labels above; «ساعد الرجل» (a Form III verb the lexicon has only as a noun);
+«هاتان بنتان»; the yāʾ plural of an unknown participle; the al-noun after «هذان / هذين» labelled muḍāf ilayh; the
+derived jussive «نَُورِ» wears two vowels on one letter (IlalEngine/derived-cell bug, now unreachable from «نور» but not
+fixed). The Marāḥ continues at p. 34 (the māḍī).

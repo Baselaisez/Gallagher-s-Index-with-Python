@@ -13,7 +13,7 @@
  * and the network copy, when it arrives, is stored for the NEXT launch; a new deploy is therefore one launch late, which
  * the CACHE bump turns into a clean install. A reader who has nothing cached still gets the network.
  */
-const CACHE = 'qissa-v367';
+const CACHE = 'qissa-v368';
 const ASSETS = [
   './reader.html',
   './manifest.webmanifest',
