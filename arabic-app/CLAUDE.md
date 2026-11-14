@@ -11821,3 +11821,33 @@ label gauge 90.03 % over 32,774 offices, ḥadhf audit n = 1,277, 86.2 %, false 
 a typed, unvowelled «بني طي» is still read as the passive بُنِيَ (the lexicon answers «بُنَيّ» for a word whose written
 vowels contradict that lemma — the agreeing-vowels test picks an alternate but does not yet refuse the hit).
 The Marāḥ continues at p. 34 (the māḍī).
+
+### v277 (wave 178) — the annexed plural, the joined dual, and where a fused number keeps its case
+
+Three of the items v276 left open, read by rule; nothing in the content moved.
+
+- **«بَنُو / بَنِي» right after a bare noun is that noun's muḍāf ilayh.** «هذه لغة بني أسد» came out
+  «لُغَةٌ بَنُو أَسَدٍ» — the engine recognised the sons-of plural (it wrote its wāw) and then seated it as a NAʿT in
+  rafʿ, which an annexed jāmid noun can never be; «مَرَرْتُ بِدَارِ بَنِي تَمِيمٍ» gave it the object's seat. Now: after a
+  noun that may annex (no article, no pronoun, no name, not built) it is the muḍāf ilayh, typed with or without
+  vowels; after a verb it stays the doer or the object («جَاءَ بَنُو أَسَدٍ», «دَعَا مُوسَى بَنِي إِسْرَائِيلَ»).
+- **The joiner comes off before the case letter is read.** `constructLetters` peeled a jarr letter and never a wāw, so
+  «وَكِتَابَا الطَّالِبِ» was «وَكِتَابًا الطَّالِبُ». Three guards, each earned from the sweep within the hour: not where
+  the lexicon owns the word WITH its wāw (وَالِدَا); not inside the pronoun-host call — fourteen joined verbs
+  («وَعَظَّمُوهُ», «فَذَبَحُوهَا») turned into plurals of the maṣdar behind their letters; and the first written vowel must
+  be the singular's («وَخُطَا» is no dual of خَطّ). **A peel that is right for the noun is offered to every word that
+  shares its letters; the sweep, not the example, says which.**
+- **In the fused hundreds the case sits on the first half.** «وَكَّلَ عَلَى كُلِّ بَنِي آدَمَ ثَلَاثَمِائَةِ مَلَكٍ»: the first rule
+  gave بَنِي its true seat, the object's seat then fell to the number — correctly — and the writer put the object's
+  fatḥa on the END of the word («ثَلَاثَمِائَةَ»). The stored line had said it all along: «مَنْصُوبٌ بِالْفَتْحَةِ عَلَى «ثَلَاثَ»،
+  وَ«مِائَةِ» مُضَافٌ إِلَيْهِ». The writer now ends ثلاثمائة … تسعمائة on the kasra in every office. Before this wave the
+  engine had the right ENDING there for the wrong reason (it thought the number a muḍāf ilayh) — **the third
+  «agreement that was wrong» this shelf has shown; a fix that breaks one is usually uncovering it.**
+
+**Numbers.** Blind 67,506 / 548 / 294 (1 fixed, 0 broken); receipts-on unchanged (67,886 / 309 / 153); case layer
+55,329 of 56,065 (98.69 %, 1 fixed, 0 broken, 5 newly judged and right). Smoke check «wave 178» (#425 of 427).
+
+**Still open:** «قَلَمَا الْوَلَدِ» (the dual of قَلَم) is read as the particle قَلَّمَا — the table is asked without the
+shadda; «وَمُهَنْدِسُو الْمَدِينَةِ» joined after a doer is seated as an object though it wears rafʿ's letter;
+«وَصَلَ وَالِدَا الطَّالِبِ» is written «وَالِدًا»; a typed, unvowelled «بني» before a common noun is still open between
+the sons-of plural and the passive بُنِيَ where no noun stands before it; «بِقَاضٍ» behind a fused bāʾ; «دَارُوهَا».

@@ -15050,6 +15050,30 @@ if (!CHROME) {
     if (!r.h63 || !r.h63.includes('5:mubtadaNahw') || !r.h63.includes('8:mubtadaNahw')) throw new Error('6:s3 — both نَحْوُ are khabars of an omitted mubtadaʾ: ' + J(r.h63));
   });
 
+  await check('wave 178 — the annexed plural and the fused hundreds: «بَنُو / بَنِي» right after a bare noun is that noun\'s muḍāf ilayh, typed with or without vowels (لُغَةُ بَنِي أَسَدٍ، بِدَارِ بَنِي تَمِيمٍ), and stays the doer or the object where a verb stands before it; the joiner comes off before the case letter is read (وَكِتَابَا الطَّالِبِ) but never off a verb with its pronoun (وَعَظَّمُوهُ) nor off a word whose first vowel is not the singular\'s (وَخُطَا); in ثَلَاثَمِائَةِ مَلَكٍ the case sits on the first half and the word ends on its kasra whatever the office', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const cl = (w, nx) => { const c = SentenceAnalyzer.constructLetters(w, stripAr(w).replace(/[^ء-ي]/g, ''), nx); return c ? [c.num, c.letter, c.joiner || ''] : null; };
+      const out = {
+        a1: dv('هذه لغة بني أسد'), a2: dv('مررت بدار بني تميم'), a3: dv('هٰذِهِ لُغَةُ بَنِي أَسَدٍ'), a4: dv('جاء بنو أسد'), a5: dv('رأيت بني تميم'), a6: dv('دعا موسى بني إسرائيل'),
+        b1: dv('هٰذَانِ قَلَمَانِ وَكِتَابَا الطَّالِبِ'), b2: dv('وَفَرِحَ النَّاسُ بِيُوسُفَ وَعَظَّمُوهُ'),
+        c: [cl('وَكِتَابَا', 'الطَّالِبِ'), cl('وَبَنُو', 'تَمِيمٍ'), cl('وَعَظَّمُوهُ', 'النَّاسُ'), cl('وَخُطَا', 'الرَّجُلِ'), cl('وَالِدَا', 'الطَّالِبِ')],
+        h1: dv('وَكَّلَ اللهُ عَلَى كُلِّ بَنِي آدَمَ ثَلَاثَمِائَةِ مَلَكٍ'), h2: dv('عِنْدِي خَمْسُمِائَةِ دِرْهَمٍ'),
+      };
+      const st = STORIES.find(x => x.id === 'al-maqamat-birgivi'); const c3 = st && st.chapters.find(x => String(x.n || x.chapter) === '2'); const sn = c3 && c3.sentences.find(x => x.id === 's16');
+      if (sn) { const g = DabtEngine.grade(sn, 'endings'); out.g = [7, 8, 9, 10].map(i => N(g.words[i].out) + '/' + g.words[i].rule + '/' + g.words[i].ok).join(' '); }
+      return out;
+    });
+    if (!/ لغةُ\/khabar بنِي\/mudafIlayh أسدٍ\/mudafIlayh$/.test(r.a1) || !/ بدارِ\/jarr بنِي\/mudafIlayh تميمٍ\/mudafIlayh$/.test(r.a2) || !/ لُغَةُ\/khabar بَنِي\/mudafIlayh أَسَدٍ\/mudafIlayh$/.test(r.a3)) throw new Error('بَنِي after a bare noun is its muḍāf ilayh: ' + J([r.a1, r.a2, r.a3]));
+    if (!/ بنُو\/fail /.test(r.a4) || !/ بنِي\/maful /.test(r.a5) || !/ موسى\/fail بنِي\/maful /.test(r.a6)) throw new Error('after a verb بَنُو / بَنِي keep the doer\'s and the object\'s seat: ' + J([r.a4, r.a5, r.a6]));
+    if (!/ وَكِتَابَا\/atf الطَّالِبِ\/mudafIlayh$/.test(r.b1) || !/ وَعَظَّمُوهُ\/mazi$/.test(r.b2)) throw new Error('the joined dual, and the joined verb with its pronoun: ' + J([r.b1, r.b2]));
+    if (J(r.c[0]) !== J(['muthanna', 'alif', 'و']) || J(r.c[1]) !== J(['jam', 'waw', 'و']) || r.c[2] !== null || r.c[3] !== null) throw new Error('the joiner before the case letter: ' + J(r.c));
+    if (!/ ثَلَاثَمِائَةِ\/[a-zA-Z]+ مَلَكٍ\/mudafIlayh$/.test(r.h1) || !/ خَمْسُمِائَةِ\/[a-zA-Z]+ دِرْهَمٍ\/mudafIlayh$/.test(r.h2)) throw new Error('the fused hundreds end on the kasra: ' + J([r.h1, r.h2]));
+    if (!r.g || !/^بَنِي\/mudafIlayh\/true آدَمَ\/mudafIlayh\/true ثَلَاثَمِائَةِ\/maful\/true مَلَكٍ\/mudafIlayh\/true$/.test(r.g)) throw new Error('al-Maqāmāt 2:s16 — كُلِّ بَنِي آدَمَ ثَلَاثَمِائَةِ مَلَكٍ: ' + J(r.g));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
