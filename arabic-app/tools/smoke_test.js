@@ -15591,6 +15591,45 @@ if (!CHROME) {
     if (!r.b.bal.startsWith('noun:')) throw new Error('«بَلْ» and the noun already said: ' + J(r.b));
   });
 
+  await check('wave 194 — Marāḥ al-Arwāḥ part eleven (the light nūn and the seven places of the two nūns, the passive and its form, the passive of the augmented bābs; pp. 70–74) stands on the shelf with every line named — the verbs under the nūn of emphasis with «لَا» the prohibiting and the oath\'s lām, «لَيْتَكَ», «كِلْتَاهُمَا», the cited measures by their seat (khabar of a pronoun, what «قُلْتَ» says, joined to an earlier cited word, behind the annexed dual), the second object of a passive and «مَا» annexed, all by the packager\'s rules; and the reader rules the text called for: the emphatic verb keeps its object and its hidden doer, «كَمَا مَرَّ» is a closed aside so the list goes on, a new office — the object of reason (قِيَاسًا عَلَى، فِرَارًا عَنْ، اكْتِفَاءً بِـ، تَبَعًا لِـ) —, the badal after «إِلَّا» where the verb already has its doer, «مِثْلَ» as a ḥāl behind a verb that takes no object, the hollow verb with its own maṣdar (قَامَ قِيَامًا), and «أَلَا» told from «أَلَّا» and «إِلَّا» by its written vowels', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [30, 31, 32].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const n = w => { try { const x = RootFinder.nounFromCorpus(w); return x ? N(String(x.lemma || '').split(/[()\s]/)[0]) : null; } catch (e) { return 'ERR ' + e.message; } };
+      return { chapters: st.chapters.length, sens: [30, 31, 32].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        l: { la: line(30, 's4', 6), emph: line(30, 's4', 7), oath: line(30, 's4', 23), layta: line(30, 's4', 14), kilta: line(30, 's3', 0), manqus: line(30, 's4', 12), lah: line(30, 's2', 3), lah2: line(32, 's2', 8), lah3: line(30, 's4', 26), nahw: line(30, 's4', 5), nafy: line(30, 's4', 29),
+             hal: line(31, 's1', 2), second: line(31, 's4', 3), khabar: line(31, 's4', 6), badal: line(31, 's5', 9), ala: line(31, 's6', 3), list: line(32, 's4', 5), dual: line(32, 's5', 7), head: line(32, 's5', 8), maqul: line(32, 's7', 3), atf: line(32, 's7', 11), ma: line(32, 's1', 9), old: line(29, 's2', 4) },
+        t: { obj: V('لَا تَضْرِبَنَّ زَيْدًا', 2), oath: V('وَاللهِ لَأَضْرِبَنَّ زَيْدًا', 2), qawl: V('وَلَئِنْ سَأَلْتَهُمْ مَنْ خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ لَيَقُولُنَّ اللَّهُ', 7) },
+        k: { a: V('فِي الْأَمْرِ كَمَا مَرَّ وَالنَّهْيِ وَالتَّمَنِّي وَالْعَرْضِ', 4), b: V('فِي الْأَمْرِ كَمَا مَرَّ وَالنَّهْيِ وَالتَّمَنِّي وَالْعَرْضِ', 6) },
+        h: { qiyas: V('يَدْخُلُ قِيَاسًا عَلَى الثَّقِيلَةِ', 1), firar: V('وَفُتِحَ الْبَاءُ فِرَارًا عَنِ اجْتِمَاعِ السَّاكِنَيْنِ', 2), iktifa: V('وَحُذِفَتِ الْوَاوُ اكْتِفَاءً بِالضَّمَّةِ', 2), typed: V('ذهب زيد خوفا من الاسد', 2), guard: V('لِأَنَّ اللَّامَ مُشَابِهَةٌ بِكَلِمَةِ الشَّرْطِ', 2), obj: V('ضَرَبَ زَيْدٌ عَمْرًا', 2), table: !!(DabtEngine.LAH194 && DabtEngine.LAH194['قياسا']) },
+        b: { badal: V('لَا يَجِيءُ عَلَى هٰذِهِ الصِّيغَةِ كَلِمَةٌ إِلَّا وُعِلٌ', 7), empty: V('مَا قَامَ إِلَّا زَيْدٌ', 3), obj: V('مَا ضَرَبَ زَيْدٌ إِلَّا الرَّجُلَ', 4) },
+        m: { hal: V('وَيَجِيءُ الْمَجْهُولُ مِثْلَ الْأَشْيَاءِ الْمَذْكُورَةِ', 2), obj: V('ضَرَبَ زَيْدٌ مِثْلَ عَمْرٍو', 2) },
+        c: { qiyam: V('قَامَ زَيْدٌ قِيَامًا', 2), qiwam: V('وَقَاوَمَ قِوَامًا', 1), obj: V('زَارَ زَيْدٌ دَارًا', 2) },
+        v: { ala: n('أَلَا'), alla: n('أَلَّا'), illa: n('إِلَّا'), thumma: n('ثُمَّ') } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 32 || J(r.sens) !== '[5,6,8]' || r.n !== 245) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    const Q = N('لَفْظٌ مَحْكِيٌّ');
+    if (!r.l.la.startsWith('la-nahiya|') || !r.l.emph.startsWith('daraba|' + N('فِعْلٌ مُضَارِعٌ مَبْنِيٌّ عَلَى الْفَتْحِ')) || !r.l.emph.includes(N('النَّاهِيَةِ')) || !r.l.emph.includes(N('أَنْتَ')) || !r.l.oath.startsWith('daraba|' + N('اللَّامُ وَاقِعَةٌ فِي جَوَابِ الْقَسَمِ')) || !r.l.oath.includes(N('أَنَا')) || !r.l.nafy.startsWith('la-nafiya|') || !r.l.old.includes(N('مَفْعُولٌ لِأَجْلِهِ'))) throw new Error('the verbs under the nūn of emphasis: ' + J([r.l.la, r.l.emph, r.l.oath, r.l.nafy, r.l.old]));
+    if (!r.l.layta.startsWith('layta|') || !r.l.layta.includes(N('تَمَنٍّ')) || !r.l.kilta.includes(N('مُلْحَقٌ بِالْمُثَنَّى')) || !r.l.manqus.includes(N('مُقَدَّرَةٍ عَلَى الْيَاءِ')) || !r.l.nahw.includes(N('لِمُبْتَدَإٍ مَحْذُوفٍ'))) throw new Error('the particle, the dual\'s follower, the manqūṣ and «نَحْوُ»: ' + J([r.l.layta, r.l.kilta, r.l.manqus, r.l.nahw]));
+    if (![r.l.lah, r.l.lah2, r.l.lah3].every(x => x.includes('|' + N('مَفْعُولٌ لِأَجْلِهِ'))) || !r.l.hal.includes('|' + N('حَالٌ')) || !r.l.second.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || !r.l.badal.startsWith('wuil|' + N('بَدَلٌ')) || !r.l.ma.includes(N('مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ'))) throw new Error('the named offices: ' + J([r.l.lah, r.l.lah2, r.l.lah3, r.l.hal, r.l.second, r.l.badal, r.l.ma]));
+    if (!r.l.khabar.startsWith('faala|' + Q) || !r.l.khabar.includes(N('خَبَرٌ')) || !r.l.ala.includes(N('بِـ«عَلَى»')) || !r.l.list.startsWith('iftaala-wazn|' + Q) || !r.l.list.includes(N('مَحَلِّ رَفْعٍ')) || !r.l.dual.startsWith('mudari|') || !r.l.dual.includes(N('مُثَنًّى')) || !r.l.dual.includes(N('مُضَافٌ')) || !r.l.head.includes(N('مُضَافٌ إِلَيْهِ')) || !r.l.maqul.includes(N('مَقُولُ الْقَوْلِ')) || !r.l.atf.includes(N('مَحَلِّ نَصْبٍ'))) throw new Error('the cited measures by their seat: ' + J([r.l.khabar, r.l.ala, r.l.list, r.l.dual, r.l.head, r.l.maqul, r.l.atf]));
+    if (!/ًا\/maful$/.test(r.t.obj) || !/ًا\/maful$/.test(r.t.oath) || !/ُ\/mubtada$/.test(r.t.qawl)) throw new Error('the emphatic verb and what follows it: ' + J(r.t));
+    if (!/ِ\/atf$/.test(r.k.a) || !/ِ\/atf$/.test(r.k.b)) throw new Error('«كَمَا مَرَّ» and the list: ' + J(r.k));
+    if (!/\/mafulLah$/.test(r.h.qiyas) || !/\/mafulLah$/.test(r.h.firar) || !/\/mafulLah$/.test(r.h.iktifa) || !/\/mafulLah$/.test(r.h.typed) || !/\/innaKhabar$/.test(r.h.guard) || !/\/maful$/.test(r.h.obj) || !r.h.table) throw new Error('the object of reason: ' + J(r.h));
+    if (!/ٌ\/badal$/.test(r.b.badal) || !/\/fail$/.test(r.b.empty) || !/\/maful$/.test(r.b.obj)) throw new Error('the badal after «إِلَّا»: ' + J(r.b));
+    if (!/\/hal$/.test(r.m.hal) || !/\/maful$/.test(r.m.obj)) throw new Error('«مِثْلَ» as a ḥāl: ' + J(r.m));
+    if (!/\/mafulMutlaq$/.test(r.c.qiyam) || !/\/mafulMutlaq$/.test(r.c.qiwam) || !/\/maful$/.test(r.c.obj)) throw new Error('the hollow verb and its own maṣdar: ' + J(r.c));
+    if (r.v.ala !== N('أَلَا') || r.v.alla !== N('أَلَّا') || r.v.illa !== N('إِلَّا') || r.v.thumma !== N('ثُمَّ')) throw new Error('«أَلَا» by its written vowels: ' + J(r.v));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

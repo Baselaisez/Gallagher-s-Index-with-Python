@@ -1013,5 +1013,43 @@ L("29:s6:16", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَ�
 R("29:s6:17", "kanaKhabar", "nasb"); L("29:s6:17", *KHK("تَصِيرُ"), key="mabni", pos="noun")
 R("29:s8:1", "mafulLah", "nasb"); L("29:s8:1", "مَفْعُولٌ لِأَجْلِهِ لِفِعْلٍ مَحْذُوفٍ دَلَّ عَلَيْهِ السُّؤَالُ، أَيْ: أُدْخِلَتْ فِرَارًا، مَنْصُوبٌ بِالْفَتْحَةِ.", "The object of purpose of an omitted verb that the question points to — «it was brought in to escape…» — in nasb; the sign is the fatha.", "Sorunun delâlet ettiği mahzuf fiilin mef'ûlün lieclihi — «…kaçınmak için getirildi» — mansûb; alâmeti fetha ile.", key="firar", pos="noun")
 
+# >>> part eleven
+# ---- part eleven (pp. 70–74): the light nūn and the seven places of the two nūns, the passive and its form, the passive of the augmented bābs.
+#      The emphatic verbs, «لَا» the prohibiting, «لَيْتَكَ», «كِلْتَاهُمَا», the cited measures by their seat (khabar of a pronoun, what «قُلْتَ» says,
+#      joined to an earlier cited word), the objects of reason, the badal after «إِلَّا», «مِثْلَ» as a ḥāl, the second object of a passive and
+#      «مَا» annexed to a construct head are named by rule (wave 194). What is left here is what only the meaning decides.
+NMF = lambda masdar_ar, en, tr: ("نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ مَنْصُوبٌ بِالْفَتْحَةِ — صِفَةٌ لِمَصْدَرٍ مَحْذُوفٍ، أَيْ: " + masdar_ar + ".",
+                                 "Standing in for the absolute object, in nasb; the sign is the fatha — the adjective of an omitted masdar: «" + en + "».",
+                                 "Mef'ûl-i mutlaktan nâib, mansûb; alâmeti fetha ile — hazfedilmiş bir masdarın sıfatı: «" + tr + "».")
+MMK = ("مُبْتَدَأٌ مُؤَخَّرٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَخَبَرُهُ الْمُقَدَّمُ الْجَارُّ وَالْمَجْرُورُ قَبْلَهُ.",
+       "The postponed mubtada, in raf'; the sign is the damma; annexed (mudaf) — its fronted khabar is the prepositional phrase before it.",
+       "Muahhar mübtedâ, merfû; alâmeti damme ile; muzâf — mukaddem haberi, öncesindeki câr-mecrûrdur.")
+
+# 30 — النُّونُ الْخَفِيفَةُ وَمَوَاضِعُ النُّونَيْنِ
+L("30:s4:18", "«أَلَا» حَرْفُ عَرْضٍ مَبْنِيٌّ عَلَى السُّكُونِ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+  "«won't you…?» — the particle of the gentle offer (ʿarḍ), built on sukun, with no place in i'rab.",
+  "«-mez misin?» — arz harfi, sükûn üzere mebnî, i'rabda mahalli yoktur.", key="ala-ard", pos="part")
+R("30:s4:25", "mafulMutlaq", "nasb"); L("30:s4:25", *NMF("دُخُولًا قَلِيلًا", "a rare entering", "az bir giriş"), key="qalil", pos="noun")
+L("30:s4:29", "«لَا» حَرْفُ نَفْيٍ مَبْنِيٌّ عَلَى السُّكُونِ لَا عَمَلَ لَهُ — وَهُوَ مَوْضِعُ الشَّاهِدِ: دَخَلَتِ النُّونُ بَعْدَ النَّفْيِ لِمُشَابَهَتِهِ النَّهْيَ.",
+  "«not» — the negating la, built on sukun, governing nothing — the point of the citation: the nun enters after a negation because the negation resembles the prohibition.",
+  "«-mez» — nefy lâ'sı, sükûn üzere mebnî, amel etmez — şâhid yeri: nefiy nehye benzediği için nûn nefiyden sonra da girer.", key="la-nafiya", pos="part")
+L("30:s4:30", "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، فِي مَحَلِّ رَفْعٍ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
+  "A present verb built on fatḥa because the heavy nūn of emphasis is attached, in the place of raf' — «لَا» here negates and governs nothing; the heavy nūn is a particle of emphasis; its doer is a hidden «you».",
+  "Muzâri fiil; şeddeli (sakîle) te'kid nûnuna bitiştiği için fetha üzere mebnî, mahallen merfû — buradaki «لَا» nefy içindir, amel etmez; şeddeli (sakîle) nûn te'kid harfi; fâili gizli «sen».", key="daraba", pos="verb", enc="")
+
+# 31 — الْفِعْلُ الْمَجْهُولُ وَصِيغَتُهُ
+R("31:s1:7", "mubtada", "raf"); L("31:s1:7", *MMK, key="nahw", pos="noun")
+R("31:s1:13", "mubtada", "raf"); L("31:s1:13", *MMK, key="nahw", pos="noun")
+R("31:s3:6", "innaIsm", "nasb"); L("31:s3:6", "اسْمُ «أَنَّ» مَنْصُوبٌ بِفَتْحَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+  "The noun of «أَنَّ», in nasb; the sign is a fatha estimated on the alif, which can carry none; it is annexed (mudaf), and the hāʾ is an attached pronoun in the place of jarr as the mudaf ilayh.",
+  "«أَنَّ»nin ismi, mansûb; alâmeti elif üzerinde takdir edilen fetha ile (taazzür); muzâftır, hâ da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir.", key="mana", pos="noun")
+L("31:s5:5", "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ جَرٍّ بِـ«عَلَى».", "A demonstrative, built on kasra, in the place of jarr after «عَلَى».", "İsm-i işâret, kesre üzere mebnî, «عَلَى» ile mahallen mecrûr.", key="hadhihi", pos="pron")
+K("31:s6:3", "faala")
+L("31:s6:5", "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ نَصْبٍ اسْمُ «أَنَّ».", "A demonstrative, built on kasra, in the place of nasb as the noun of «أَنَّ».", "İsm-i işâret, kesre üzere mebnî, mahallen mansûb, «أَنَّ»nin ismi.", key="hadhihi", pos="pron")
+
+# 32 — مَجْهُولُ الزَّوَائِدِ
+K("32:s5:7", "mudari")
+
+# <<< part eleven
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

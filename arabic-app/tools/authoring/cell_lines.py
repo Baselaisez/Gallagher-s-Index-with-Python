@@ -137,7 +137,7 @@ def line(e, tense, i, mood=None, gov=""):
     return mazi_line(e, i) if tense == "mazi" else amr_line(e, i) if tense == "amr" else mudari_line(e, i, mood or "raf", gov)
 
 # ------------------------------------------------------------------------------------------------ the two nūns of emphasis
-def tawkid_line(host, gov=""):
+def tawkid_line(host, gov="", addr=False):
     """a verb wearing the heavy or the light nūn, read off its own ending — the ʿIzzī's rule: fatḥa before the nūn for the single
     man and woman, ḍamma for the men (their wāw dropped unless a fatḥa stands before it), kasra for the woman addressed (her yāʾ
     likewise), the alif of the two kept with a kasra on the nūn, and an alif parting the women's nūn from the heavy one."""
@@ -166,7 +166,7 @@ def tawkid_line(host, gov=""):
         d = ("وَيَاءُ الْمُخَاطَبَةِ فَاعِلٌ، حُرِّكَتْ بِالْكَسْرِ لِانْفِتَاحِ مَا قَبْلَهَا", "the yāʾ of the woman addressed is its doer, kept and given a kasra because a fatḥa stands before it", "muhâtaba yâ'sı fâil; öncesi fethalı olduğu için düşmemiş, kesrelenmiştir") if kept else ("وَيَاءُ الْمُخَاطَبَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالْكَسْرَةُ دَلِيلٌ عَلَيْهَا", "the yāʾ of the woman addressed, dropped where two quiescent letters met, is its doer — the kasra points to it", "iki sâkinin buluşmasıyla düşen muhâtaba yâ'sı fâil; kesre ona delildir")
     elif last == "َ":
         st = "مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ " + nn[0]
-        who = ("أَنْتَ", "you", "sen") if amr or re.match(r"^تَ|^تُ", h) and gov == "لا" else ("هُوَ", "he", "o") if re.match(r"^ي", b) else ("هِيَ أَوْ أَنْتَ", "she / you", "o (dişil) / sen") if re.match(r"^ت", b) else ("أَنْتَ", "you", "sen")
+        who = ("أَنْتَ", "you", "sen") if amr or re.match(r"^تَ|^تُ", h) and (gov == "لا" or addr) else ("هُوَ", "he", "o") if re.match(r"^ي", b) else ("هِيَ أَوْ أَنْتَ", "she / you", "o (dişil) / sen") if re.match(r"^ت", b) else ("أَنَا", "I", "ben") if re.match(r"^[أا]", b) else ("نَحْنُ", "we", "biz") if re.match(r"^ن", b) else ("أَنْتَ", "you", "sen")   # (wave 194) the request addresses «you»; أَفْعَلَنَّ is «I», نَفْعَلَنَّ «we»
         mah = (f"، فِي مَحَلِّ جَزْمٍ {g[0]}", f", in the place of jazm {g[1]}", f"; {g[2]} cezm mahallinde") if (g[0] and not amr) else ("", "", "")
         return (f"{kind[0]} {st}{mah[0]}، {nun[0]}، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ {who[0]}.",
                 f"{kind[1]} built on fatḥa because the {nn[1]} nūn of emphasis is attached{mah[1]}; {nun[1]}; its doer is a hidden «{who[1]}».", f"{kind[2]}; {nn[2]} te'kid nûnuna bitiştiği için fetha üzere mebnî{mah[2]}; {nun[2]}; fâili gizli «{who[2]}».")

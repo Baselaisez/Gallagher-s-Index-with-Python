@@ -12740,3 +12740,70 @@ khabar across a blessing and a cited word; the object of reason («فِرَار�
 khabar of «أَنَّ» («أُأَكْرِمُ»، «لِتَضْرِبْ») by hand; multi-word citations («بِسْمِ اللهِ», the āya) by hand.
 
 **Next.** Marāḥ part eleven opens on p. 70 at «وَحُكْمُ الْخَفِيفَةِ مِثْلُ حُكْمِ الثَّقِيلَةِ».
+
+### v293 (wave 194) — Marāḥ al-Arwāḥ part eleven, the object of reason, and the verb under the nūn of emphasis
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 70–74 of the scan (the matn's large type only) —
+  the end of the section on the amr and the nahy: chapter 30 «النُّونُ الْخَفِيفَةُ وَمَوَاضِعُ النُّونَيْنِ» (5 sentences —
+  Yūnus's analogy, the seven places of request with their cited clauses «لَا تَضْرِبَنَّ», «هَلْ تَضْرِبَنَّ», «لَيْتَكَ
+  تَضْرِبَنَّ», «أَلَا تَضْرِبَنَّ», «وَاللهِ لَأَضْرِبَنَّ»), 31 «الْفِعْلُ الْمَجْهُولُ وَصِيغَتُهُ» (6 — why «فُعِلَ», and
+  «وُعِلٌ» and «دُئِلٌ»), 32 «مَجْهُولُ الزَّوَائِدِ» (8 — the seven bābs whose first vowelled letter takes a ḍamma). 19
+  sentences / 245 words, seven new lemmas (`khasasa`, `shuhra`, `maqul-reasonable`, `wuil`, `duil`, `fulal-wazn`,
+  `labs`); the book stands at **32 chapters / 282 sentences / 3,234 words**, version 0.11.0. The attribution records the
+  span, the readings kept as printed (the masculine verbs before «صِيغَتُهُ» and «كَلِمَةٌ», «مِثْلَ الْأَشْيَاءِ
+  الْمَذْكُورَةِ», «وَافْتُعِلَ» with its ḍamma), the abbreviation «إلخ» written out, and «وَاخْتُصَّ», unvowelled in the
+  print, vowelled as at «لِمَ اخْتُصَّ الْفَاءُ».
+- **Reader rules** (`$S/w194/patch194.py`):
+  - **L · a new office — the object of reason (mafʿūl li-ajlih).** The engine had no such label: a maṣdar of reason was
+    an «object», a «ḥāl» or a «tamyīz». Now a maṣdar in tanwīn naṣb with its own preposition right behind it
+    (قِيَاسًا عَلَى، بِنَاءً عَلَى، حَمْلًا عَلَى، فِرَارًا عَنْ / مِنْ، خَوْفًا مِنْ، حَذَرًا مِنْ، اكْتِفَاءً بِـ، تَبَعًا لِـ،
+    طَلَبًا لِـ، إِكْرَامًا لِـ، مُشَابَهَةً بِـ، نَظَرًا إِلَى …; the table is `DabtEngine.LAH194`, each maṣdar with the
+    letter it governs, standing alone or written on the next word) is `mafulLah` — in the vowelling engine, the office
+    tables, the case table, the governor table and the seat labels, with the grammar note `maful-lah`. A word in ة
+    needs a clause that is already complete (لِأَنَّ اللَّامَ مُشَابِهَةٌ بِكَلِمَةِ الشَّرْطِ keeps its khabar). Seventeen
+    lines across six books changed their label to it (فِرَارًا، اكْتِفَاءً، خَوْفًا، اتِّبَاعًا، نَظَرًا، حَمْلًا، طَلَبًا،
+    إِكْرَامًا، حَذَرًا، بِنَاءً).
+  - **T · the verb under the nūn of emphasis is a verb still.** The engine knew «تَضْرِبَنَّ» as built and stopped there:
+    the noun behind it was read as a doer. Now the single form with a fatḥa before the nūn keeps a verb's state — its
+    doer hidden for «you / I / we», the noun behind it its object (لَا تَضْرِبَنَّ زَيْدًا، وَاللهِ لَأَضْرِبَنَّ زَيْدًا) —
+    and where punctuation follows it its clause is closed. «لَيَقُولُنَّ اللهُ» is left to what is said.
+  - **K · «كَمَا مَرَّ».** «كَمَا» with مَرَّ / سَبَقَ / تَقَدَّمَ / ذَكَرْنَا … is a closed aside: it takes no doer from the
+    words after it, so «فِي الْأَمْرِ كَمَا مَرَّ، وَالنَّهْيِ …، وَالتَّمَنِّي …» goes on as one jarr list (five endings the
+    blind reader had raised). The list rule looks past an oath inside a cited example («وَاللهِ لَأَضْرِبَنَّ»، وَالنَّفْيِ).
+  - **B · the badal after «إِلَّا».** In a negated sentence whose verb takes no object and already has its doer, the
+    rafʿ noun after «إِلَّا» is that doer's badal (لَا يَجِيءُ … كَلِمَةٌ إِلَّا وُعِلٌ); with no doer before it it is the
+    doer (مَا قَامَ إِلَّا زَيْدٌ), and the excepted object stays an object.
+  - **M · «مِثْلَ» as a ḥāl** behind a verb that takes no object and has its doer (وَيَجِيءُ الْمَجْهُولُ مِثْلَ الْأَشْيَاءِ).
+  - **C · the hollow verb and its own maṣdar.** Where the maṣdar's root is only guessed from its shape («ق ي م و/ي»),
+    it is the verb's root when the strong letters agree in order: قَامَ قِيَامًا، قَاوَمَ قِوَامًا، صَامَ صِيَامًا are the
+    mafʿūl muṭlaq, not an object or a tamyīz.
+  - **V4 · homographs by their written vowels.** `RootFinder.homographs194` keeps every non-verb entry of the shelf by
+    its head word's letters; where the first answer contradicts the page's vowels and another entry agrees with them,
+    that one answers: «أَلَا» is the opening particle, not «أَلَّا» or «إِلَّا»; «عِدَةً» is وَعَدَ's maṣdar, not عِدَّة
+    (and so «يَعِدُ عِدَةً» is a mafʿūl muṭlaq in two books).
+- **The pipeline** (`pkg_from_engine.py`, `cell_lines.py`). A single verb under the nūn of emphasis gets the ʿIzzī's
+  line (`CL.tawkid_line`: built on the fatḥa, the nūn a letter of emphasis, the doer «أَنْتَ» after a request particle,
+  «أَنَا» / «نَحْنُ» by its prefix), the oath's lām is named, and «لَا» before it is rewritten as the prohibiting one. A
+  cited measure written as a verb is written (key `…-wazn`) is a cited word; three more seats: the khabar of a detached
+  pronoun (وَهُوَ «تُفُعِّلَ»، وَهِيَ «فُعِلَ»), what a form of «قَالَ» says (إِذَا قُلْتَ «وَافْتُعِلَ»), and a cited
+  word joined by «وَ» to an earlier cited word of the sentence, next to it or across jarr phrases, in that word's place.
+  A noun written ـَيْ is the annexed dual, never «my» (بِمُضَارِعَيْ «فَعَّلَ») and heads a construct; «لَيْتَ» with a
+  pronoun and «كِلَا / كِلْتَا» (mulḥaq bi-l-muthannā) have their lines; a manqūṣ under a shadda is a manqūṣ
+  (التَّمَنِّي); «نَحْوُ» before a cited word needs no pause before it; the object of a passive two-object verb whose
+  deputy is already seated is the second object (فَجُعِلَ صِيغَتُهُ … غَيْرَ مَعْقُولَةٍ); «مَا» right behind a construct
+  head is its muḍāf ilayh and the head says «مُضَافٌ». 43 cited words and 18 vowel-decided lines are written by rule in
+  the book now. Eleven hand fixes remain for part eleven (the negating «لَا» example and its verb, «أَلَا» of the
+  offer, «قَلِيلًا», the two «نَحْوُ» behind a fronted jarr phrase, «مَعْنَاهُ», two demonstratives, two keys). Chapters
+  1–29 changed in three tokens (two tags on the hollow cognates, one English/Turkish line brought level with its Arabic).
+
+**Measured** (same data, v292 code → v293 code). Blind sweep 70,072 / 570 / 313 → 70,078 right / 565 wrong / 312 undecided (6 fixed, 0 broken), receipts-on 70,471 / 322 / 162 → 70,472 / 321 / 162 (1 fixed, 0 broken), case layer 57,695 of 58,323 (98.92 %), unchanged.
+Typed gauge 1,158 of 1,159 judged words over 381 sentences (unchanged).
+Smoke: 443 checks («wave 194» is #441).
+
+**Left open.** «قَلِيلًا / كَثِيرًا» standing for an omitted maṣdar are named by hand; the negating «لَا» before an
+emphatic verb cannot be told from the prohibiting one by form (the matn itself calls it rare) and is named by hand;
+«نَحْوُ» behind a fronted jarr phrase (فَمِنَ الْمَاضِي نَحْوُ «ضُرِبَ») as the postponed mubtadaʾ by hand; a
+demonstrative's place behind a jarr letter or «أَنَّ» by hand; the object of reason outside the table (تَأْدِيبًا لَهُ)
+is not yet seen; «قَبِلَ» and «لِمَا» typed with their vowels still answer as «قَبْلَ» and «لَمَّا».
+
+**Next.** Marāḥ part twelve opens on p. 75 at «فَصْلٌ فِي اسْمِ الْفَاعِلِ: وَهُوَ اسْمٌ مُشْتَقٌّ مِنَ الْمُضَارِعِ».
