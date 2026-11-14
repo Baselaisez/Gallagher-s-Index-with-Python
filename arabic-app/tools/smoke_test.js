@@ -14962,6 +14962,29 @@ if (!CHROME) {
     if (/[ًٌٍ][َُِ]|[َُِ][ًٌٍ]/.test(x.hayya)) throw new Error('no letter wears a tanwīn and a vowel at once: ' + x.hayya);
   });
 
+  await check('wave 175 — two pairs and two walls: the joined noun before a predicate that wears its rafʿ as a LETTER is the second pair of إِنَّ (وَالنَّحْوَ أَبُوهَا), a ṣifa there stays where it was (وَالْكَرِيمِ أَبُوهُ); a DUAL annexed to a singular owes a second in jarr, and the list then goes on in the dual\'s own case (اسْمَا الْفَاعِلِ وَالْمَفْعُولِ وَالْمَكَانُ), while a maqṣūr is no dual (عَصَا الرَّجُلِ وَالْمَرْأَةُ); the word after إِنَّ and her sisters is their ism and no cognate object reaches across (عَلِمْتُ أَنَّ عِلْمَ النَّحْوِ نَافِعٌ); and «هٰهُنَا» is no muḍāf whatever tag it carries', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const dv = t => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; const v = DabtEngine.vowel(t, 'endings'); return N((v.words || []).map(w => w.out + '/' + w.rule).join(' ')); };
+      const out = {
+        a1: dv('اعْلَمْ أَنَّ عِلْمَ الصَّرْفِ أُمُّ الْعُلُومِ وَالنَّحْوَ أَبُوهَا'), a2: dv('إِنَّ الْعِلْمَ نُورٌ وَالْجَهْلَ أَخُوهُ'), a3: dv('مَرَرْتُ بِزَيْدٍ وَالْكَرِيمِ أَبُوهُ'),
+        b1: dv('هُمَا اسْمَا الْفَاعِلِ وَالْمَفْعُولِ وَالْمَكَانُ وَالزَّمَانُ'), b2: dv('هٰذِهِ عَصَا الرَّجُلِ وَالْمَرْأَةُ جَالِسَةٌ'),
+        d1: dv('عَلِمْتُ أَنَّ عِلْمَ النَّحْوِ نَافِعٌ'), d2: dv('عَلِمَ زَيْدٌ عِلْمًا نَافِعًا'), d3: dv('إِنَّ زَيْدًا عَلِمَ عِلْمَ الْيَقِينِ'),
+      };
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); const c4 = st && st.chapters.find(x => String(x.n || x.chapter) === '4'); const sn = c4 && c4.sentences.find(x => x.id === 's5');
+      if (sn) { const g = DabtEngine.grade(sn, 'endings'); out.c = [4, 5, 6].map(i => N(g.words[i].out) + '/' + g.words[i].rule + '/' + g.words[i].ok).join(' '); }
+      return out;
+    });
+    if (!/ عِلْمَ\/innaIsm .* وَالنَّحْوَ\/atf أَبُوهَا\/innaKhabar$/.test(r.a1) || !/ وَالْجَهْلَ\/atf أَخُوهُ\/innaKhabar$/.test(r.a2)) throw new Error('the second pair of إِنَّ: ' + J([r.a1, r.a2]));
+    if (!/ وَالْكَرِيمِ\/atf /.test(r.a3)) throw new Error('a ṣifa before «أَبُوهُ» is the described noun\'s, in its case: ' + r.a3);
+    if (!/ اسْمَا\/khabar الْفَاعِلِ\/mudafIlayh وَالْمَفْعُولِ\/atf وَالْمَكَانُ\/atf وَالزَّمَانُ\/atf$/.test(r.b1)) throw new Error('the dual\'s pair, then the list in the dual\'s case: ' + r.b1);
+    if (!/ وَالْمَرْأَةُ\/mubtada /.test(r.b2)) throw new Error('عَصَا is no dual: ' + r.b2);
+    if (!/^عَلِمْتُ\/mazi أَنَّ\/mabni عِلْمَ\/innaIsm النَّحْوِ\/mudafIlayh نَافِعٌ\/innaKhabar$/.test(r.d1)) throw new Error('the ism of أَنَّ is no cognate object: ' + r.d1);
+    if (!/ عِلْمًا\/mafulMutlaq /.test(r.d2) || !/ عِلْمَ\/mafulMutlaq /.test(r.d3)) throw new Error('the cognate object keeps its seat where no إِنَّ stands before it: ' + J([r.d2, r.d3]));
+    if (!r.c || !/^هٰهُنَا\/mabni\/true اشْتِقَاقٌ\/khabar\/true /.test(r.c)) throw new Error('هٰهُنَا اشْتِقَاقٌ صَغِيرٌ: ' + J(r.c));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -11707,3 +11707,28 @@ its ṣarf — «فَإِنْ قِيلَ … قُلْنَا» — where the ʿIz
 - **Next on this shelf:** part two — pp. 22–33, the maṣdar's thirty-odd measures and the thirty-five bābs (the page
   bands are already cropped in the scratchpad's notes; the measure list needs the print's vowels checked word by
   word), then the māḍī.
+
+### v274 (wave 175) — two pairs and two walls: what the Marāḥ still asked of the blind engine
+
+The new text's four blind misses, read as constructions; three are rules now, the fourth stays named.
+
+- **إِنَّ's second pair (عَطْفُ مَعْمُولَيْنِ).** «أَنَّ عِلْمَ الصَّرْفِ أُمُّ الْعُلُومِ وَالنَّحْوَ أَبُوهَا»: the engine joined وَالنَّحْو
+  to the jarr beside it. The evidence that it is not was on the page the whole time — «أَبُوهَا» wears its rafʿ as a
+  LETTER, so a predicate follows and the joined noun is a subject. Where an ism of إِنَّ stands behind it with its
+  first pair complete and no verb between, the noun joins the ism in naṣb and the letter-word joins the khabar.
+  A ṣifa in that seat is left alone (مَرَرْتُ بِزَيْدٍ وَالْكَرِيمِ أَبُوهُ is the naʿt sababī, and «أَبُوهُ» its doer).
+- **The dual owes a second.** «وَاسْمَا الْفَاعِلِ وَالْمَفْعُولِ وَالْمَكَانُ»: a dual annexed to a SINGULAR noun is not
+  finished — the joined noun after its muḍāf ilayh completes the pair in jarr, and the list then goes on in the
+  DUAL's own case. The dual is told by the lexicon owning its stem whole (اسْم + ا), so «عَصَا الرَّجُلِ» is no dual;
+  and its written alif is its rafʿ, whatever the loop had guessed for it.
+- **A built demonstrative is no muḍāf.** «هٰهُنَا» carried the author's `noun` tag, and the rule that lets that tag
+  retype a particle had a list of demonstratives it leaves alone; هٰهُنَا / هَاهُنَا join the list.
+- **No cognate object reaches across إِنَّ.** Found while writing the smoke check, on the typed path: «عَلِمْتُ أَنَّ عِلْمَ
+  النَّحْوِ نَافِعٌ» read «عِلْمَ» as عَلِمَ's mafʿūl muṭlaq and «نَافِعًا» as an ism. The word after إِنَّ and her sisters
+  is their ism — a wall, like the ṣila's. **A grade-path sweep cannot see a typed-path bug**: the corpus sentence
+  was right only because the receipts were on.
+- Sweeps against v273: blind 3 fixed / 0 broken (67,239 / 548 / 291), receipts-on identical, case layer identical
+  (98.66 %); label gauge 90.00 % over 32,648 offices. Smoke: «wave 175» (425 checks).
+- **Left open, named.** «وَالْوَاحِدُ قَبْلَ الْمُتَعَدِّدِ» after a jarr chain — a new clause whose khabar is a ẓarf, or one
+  more member of the chain: the surface carries both, and the engine says jarr. The typed JOINED alif-dual
+  («وَكِتَابَا الطَّالِبِ» comes out «وَكِتَابًا») — the dual test does not peel the wāw; next engine wave.
