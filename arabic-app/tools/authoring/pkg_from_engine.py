@@ -539,6 +539,109 @@ def name_ma_khabar(toks, report):
         report["ma_khabar"] = report.get("ma_khabar", 0) + 1
 
 
+def name_pron_mubtada(toks, report):
+    """(wave 195) وَهُوَ اسْمٌ مُشْتَقٌّ، وَهِيَ «فُعِلَ»، وَهُوَ يَخْتَصُّ: a detached rafʿ pronoun that opens its clause — first in the sentence or behind «وَ / فَ» —
+    with its predicate after it is the mubtadaʾ; the line said only «in the place of rafʿ»."""
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if "ضَمِيرٌ مُنْفَصِلٌ" not in ar or not ar.endswith("فِي مَحَلِّ رَفْعٍ.") or j + 1 >= len(toks): continue
+        if not (j == 0 or ar.startswith("الْوَاوُ عَاطِفَةٌ،") or ar.startswith("الْفَاءُ ")): continue
+        nar = (toks[j + 1].get("irab") or {}).get("ar", "")
+        if not (nar.startswith("خَبَرٌ") or "فِي مَحَلِّ رَفْعٍ خَبَرٌ" in nar or nar.startswith("فِعْلٌ") or "حَرْفُ جَرٍّ" in nar[:60] or nar.startswith("«أَنْ» حَرْفٌ مَصْدَرِيٌّ") or nar.startswith("اسْمٌ مَوْصُولٌ")): continue
+        en = re.sub(r"in the place of raf'\.$", "in the place of raf' as the mubtada.", ir.get("en", ""))
+        tr = re.sub(r"mahallen merfû\.$", "mahallen merfû, mübtedâ.", ir.get("tr", ""))
+        if en == ir.get("en") or tr == ir.get("tr"): continue
+        t["irab"] = {"ar": ar[:-1] + " مُبْتَدَأٌ.", "en": en, "tr": tr}
+        report["pron_mubtada"] = report.get("pron_mubtada", 0) + 1
+
+
+def name_sisters(toks, report):
+    """(wave 195) يَصِيرُ مُشَابِهًا، فَيَصِيرُ كُلُّ وَاحِدٍ مِثْلَ: the noun and the khabar of a sister of kāna are named after their own verb, not after «كَانَ»."""
+    SIS = ("sara", "asbaha", "amsa", "adha", "zalla", "bata", "ma-zala", "zala", "dama", "ma-dama")
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if not (ar.startswith("اسْمُ كَانَ ") or ar.startswith("خَبَرُ كَانَ ")): continue
+        v = next((toks[q] for q in range(j - 1, -1, -1) if toks[q].get("pos") == "verb" and (toks[q].get("lex") in SIS or toks[q].get("lex") == "kana")), None)
+        if not v or v.get("lex") == "kana": continue
+        sf = re.sub(r"^[وف]\u064e(?=.{4})", "", v["surface"]["full"])
+        en = ir.get("en", "").replace("The noun of kana", "The noun of «" + sf + "» (a sister of kana)", 1).replace("The predicate of kana", "The predicate of «" + sf + "» (a sister of kana)", 1)
+        tr = ir.get("tr", "").replace("Kâne'nin ismi", "«" + sf + "» fiilinin ismi (kâne'nin kardeşlerinden)", 1).replace("Kâne'nin haberi", "«" + sf + "» fiilinin haberi (kâne'nin kardeşlerinden)", 1)
+        if en == ir.get("en") or tr == ir.get("tr"): continue
+        t["irab"] = {"ar": ar.replace("كَانَ", "«" + sf + "»", 1), "en": en, "tr": tr}
+        report["sisters"] = report.get("sisters", 0) + 1
+
+
+def name_shan(toks, report):
+    """(wave 195) لِأَنَّ فِي الْأَوَّلِ يَصِيرُ، لِأَنَّ بِتَقْدِيرِ الْفَتْحِ يَصِيرُ: «أَنَّ» with no noun anywhere behind it — a jarr phrase and a verb follow — has left out
+    its noun, the pronoun of the matter (ضَمِيرُ الشَّأْنِ); the clause is its khabar."""
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if not ar.endswith("وَ«أَنَّ» حَرْفُ تَوْكِيدٍ وَنَصْبٍ.") or j + 2 >= len(toks): continue
+        rest = toks[j + 1:]
+        cut = next((q for q, x in enumerate(rest) if "حَرْفُ تَوْكِيدٍ وَنَصْبٍ" in (x.get("irab") or {}).get("ar", "")), len(rest))
+        rest = rest[:cut]
+        if any(re.search(r"اسْمُ (?:إِنَّ|أَنَّ|«أَنَّ»|«إِنَّ»)", (x.get("irab") or {}).get("ar", "")) for x in rest): continue
+        if "حَرْفُ جَرٍّ" not in (rest[0].get("irab") or {}).get("ar", "")[:60]: continue
+        if not any((x.get("irab") or {}).get("ar", "").startswith("فِعْلٌ") for x in rest[1:5]): continue
+        t["irab"] = {"ar": ar[:-1] + "، وَاسْمُهَا ضَمِيرُ الشَّأْنِ مَحْذُوفٌ — أَيْ: لِأَنَّهُ — وَخَبَرُهَا الْجُمْلَةُ بَعْدَهَا.",
+                     "en": ir.get("en", "").rstrip(".") + "; its noun, the pronoun of the matter (ḍamīr al-shaʾn), is left out — that is, «لِأَنَّهُ» — and the clause after it is its khabar.",
+                     "tr": ir.get("tr", "").rstrip(".") + "; ismi olan şân zamiri hazfedilmiştir — yani «لِأَنَّهُ» — haberi de sonraki cümledir."}
+        report["shan"] = report.get("shan", 0) + 1
+
+
+def name_ishara(toks, report):
+    """(wave 195) مَعَ ذٰلِكَ، مِنْ تِلْكَ: a demonstrative behind a jarr letter is in the place of jarr by it; behind a ẓarf it is the ẓarf's muḍāf ilayh."""
+    PAT = re.compile(r"^اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى (?:الْفَتْحِ|السُّكُونِ|الْكَسْرِ)\.$")
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if j == 0 or not PAT.match(ar): continue
+        pi = toks[j - 1].get("irab") or {}; par = pi.get("ar", "")
+        m = re.match(r"^«([^»]+)» حَرْفُ جَرٍّ", par)
+        if m:
+            t["irab"] = {"ar": ar[:-1] + " فِي مَحَلِّ جَرٍّ بِـ«" + m.group(1) + "».", "en": ir.get("en", "").rstrip(".") + ", in the place of jarr after «" + m.group(1) + "».", "tr": ir.get("tr", "").rstrip(".") + ", «" + m.group(1) + "» ile mahallen mecrûr."}
+        elif par.startswith("ظَرْفٌ مَنْصُوبٌ"):
+            t["irab"] = {"ar": ar[:-1] + " فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "en": ir.get("en", "").rstrip(".") + ", in the place of jarr as the mudaf ilayh.", "tr": ir.get("tr", "").rstrip(".") + ", mahallen mecrûr, muzâfun ileyh."}
+            if "مُضَافٌ" not in par and par.endswith("."): toks[j - 1]["irab"] = {"ar": par[:-1] + "، مُضَافٌ.", "en": pi.get("en", "").rstrip(".") + "; annexed (mudaf).", "tr": pi.get("tr", "").rstrip(".") + "; muzâf."}
+        else: continue
+        report["ishara"] = report.get("ishara", 0) + 1
+
+
+def name_mudaf_chain(toks, report):
+    """(wave 195) لِعَدَمِ إِمْكَانِ مُحَافَظَةِ جَمِيعِ حُرُوفِهِ: a muḍāf ilayh that is itself annexed to the word behind it says so."""
+    for j, t in enumerate(toks[:-1]):
+        ir = t.get("irab") or {}; ar = ir.get("ar", ""); sf = t["surface"]["full"]
+        if not ar.startswith("مُضَافٌ إِلَيْهِ مَجْرُورٌ") or ar.count("مُضَافٌ") != 1 or not ar.endswith(".") or "—" in ar: continue
+        if re.search(r"[\u064b-\u064d]", sf) or re.match(r"^(?:ال|ٱل)", bare(sf)): continue
+        nar = (toks[j + 1].get("irab") or {}).get("ar", "")
+        if not nar.startswith("مُضَافٌ إِلَيْهِ مَجْرُورٌ"): continue
+        t["irab"] = {"ar": ar[:-1] + "، مُضَافٌ.", "en": ir.get("en", "").rstrip(".") + "; annexed (mudaf).", "tr": ir.get("tr", "").rstrip(".") + "; muzâf."}
+        report["mudaf_chain"] = report.get("mudaf_chain", 0) + 1
+
+
+def name_ba_zaida(toks, report):
+    """(wave 195) مِمَّا لَيْسَ بِلَوْنٍ: the bāʾ on the khabar of «لَيْسَ» is the extra one — the word is in jarr in form and in naṣb in place."""
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", ""); sf = t["surface"]["full"]
+        if j == 0 or toks[j - 1].get("lex") != "laysa" or ar != "الْبَاءُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهِ بِالْكَسْرَةِ." or not sf.startswith("بِ"): continue
+        wd = sf[2:]
+        t["irab"] = {"ar": "الْبَاءُ حَرْفُ جَرٍّ زَائِدٌ لِتَوْكِيدِ النَّفْيِ، وَ«" + wd + "» خَبَرُ «لَيْسَ» مَجْرُورٌ لَفْظًا بِالْكَسْرَةِ مَنْصُوبٌ مَحَلًّا.",
+                     "en": "The ba is an extra (zaid) preposition that strengthens the negation; «" + wd + "» is the khabar of «لَيْسَ» — in jarr in form (the kasra), in nasb in place.",
+                     "tr": "Bâ, nefyi pekiştiren zâid harf-i cerdir; «" + wd + "» «لَيْسَ»nin haberidir — lafzen mecrûr (kesre ile), mahallen mansûb."}
+        report["ba_zaida"] = report.get("ba_zaida", 0) + 1
+
+
+def name_khabar_atf(toks, report):
+    """(wave 195) لِأَنَّ الْفَاعِلَ مَقْصُودٌ وَالْمَفْعُولَ فَضْلَةٌ: the bare rafʿ word behind a noun joined (in naṣb) to the noun of «إِنَّ / أَنَّ» is joined to its khabar — the line names it."""
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}
+        if ir.get("ar") != "مَعْطُوفٌ مَرْفُوعٌ بِالضَّمَّةِ.": continue
+        kh = next((q for q in range(j - 1, max(-1, j - 9), -1) if (toks[q].get("irab") or {}).get("ar", "").startswith("خَبَرُ إِنَّ")), None)
+        if kh is None or not any((toks[q].get("irab") or {}).get("ar", "").startswith("الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَنْصُوبٌ") for q in range(kh + 1, j)): continue
+        pt = "أَنَّ" if any("أَنَّ" in toks[q]["surface"]["full"] for q in range(0, kh)) else "إِنَّ"; kw = toks[kh]["surface"]["full"]
+        t["irab"] = {"ar": "مَعْطُوفٌ عَلَى خَبَرِ " + pt + " «" + kw + "» مَرْفُوعٌ بِالضَّمَّةِ.", "en": "Joined to the khabar of " + pt + " («" + kw + "»), in raf'; the sign is the damma.", "tr": ("Enne" if pt == "أَنَّ" else "İnne") + "'nin haberine («" + kw + "») ma'tûf, merfû; alâmeti damme ile."}
+        report["khabar_atf"] = report.get("khabar_atf", 0) + 1
+
+
 def name_khabar(toks, raw, report):
     """(patch 32) a mubtadaʾ is never left without its khabar: the line points at it — after it (a rafʿ noun, a maṣdar clause,
     a jarr phrase, a verb clause), before it (the fronted jarr phrase / ẕarf) or in the answer of أَمَّا."""
@@ -742,6 +845,11 @@ def main():
     TR = json.load(open(a.trans, encoding="utf-8")) if a.trans and os.path.exists(a.trans) else {}
     FX = json.load(open(a.fixes, encoding="utf-8")) if a.fixes and os.path.exists(a.fixes) else {}
     G, M = load_global()
+    # (wave 195) the book's own lemma table is the source of its own entries: a gloss corrected there reaches the glossary on the next pass
+    #            (the shelf's copy of this very package had been answering first, so a landed entry could never be corrected)
+    for v_ in LX.values():
+        k_ = v_.get("key")
+        if k_ and OWNER_G.get(k_) == meta["id"] and v_.get("lemma") and v_.get("gloss") and isinstance(G.get(k_), dict) and (G[k_].get("gloss") != v_.get("gloss") or G[k_].get("lemma") != v_.get("lemma") or (v_.get("pos") and G[k_].get("pos") != v_.get("pos"))): G[k_] = dict(G[k_], gloss=v_["gloss"], lemma=v_["lemma"], **({"pos": v_["pos"]} if v_.get("pos") else {}))   # the lemma and the part of speech too: an entry's written head is a claim on the whole shelf, and must be correctable
     global LXF_, VERB_BY_LEMMA, VERB_BY_STEM
     LXF_ = {k.replace("أ", "ا").replace("إ", "ا").replace("آ", "ا").replace("ٱ", "ا"): v for k, v in LX.items()}
     VERB_BY_LEMMA = {}; VERB_BY_STEM = {}
@@ -782,7 +890,15 @@ def main():
         def VS(h):   # the ending's own marks off; a final shadda stays (NFC puts the vowel BEFORE the shadda)
             h = re.sub(r"\u064b(\u0651?)\u0627$|\u0627\u064b$", lambda m_: m_.group(1) or "", N(h)); m = re.search(r"[\u064b-\u0652]*$", h)
             return h[:m.start()] + ("\u0651" if "\u0651" in m.group(0) else "")
-        LXV = {VS(k): v for k, v in LX.items() if DIA.search(k)}
+        # (wave 195) «فَعِلٌ» the adjective's measure is not «فَعِلَ» the verb's: a form written with its tanwīn, or flagged with a leading «!», answers the whole written word only
+        XO = lambda k_: k_.startswith("!") or bool(re.search(r"[\u064b-\u064d]$", k_))
+        LXX = {N(k_.lstrip("!")): v_ for k_, v_ in LX.items() if DIA.search(k_) and XO(k_)}
+        if LXX:
+            for base in ([N(host_of(w, enc)), N(w)] if enc else [N(w)]):
+                if base in LXX: return hit(LXX[base], where), False
+                b0_ = re.sub(r"^[وف]\u064e", "", base)
+                if pre_of(base) and b0_ in LXX: return hit(LXX[b0_], where), True
+        LXV = {VS(k): v for k, v in LX.items() if DIA.search(k) and not XO(k)}
         if LXV:
             for base in ([N(host_of(w, enc)), N(w)] if enc else [N(w)]):
                 v0 = VS(base); v1 = re.sub(r"^[وف]\u064e", "", v0) if pre_of(base) else v0
@@ -814,14 +930,16 @@ def main():
                 # (wave 193) …and for a cited verb the engine could not read as a cell (تُؤَكْرِمُ, لِيَضْرِبْنَانِّ — keyed by the book's own lexicon) and for a cited particle (رُبَّ). A cited word right behind a noun that wears neither tanwīn nor the article is that noun's muḍāf ilayh (أَلِفُ «أَكْرِمْ»، هَمْزَةُ «اِعْلَمْ»، لِفَاءِ «رُبَّ»), and every jarr letter names its own place (مِنْ «تُؤَكْرِمُ»).
                 ke_q_ = None
                 if aligned and not fx.get("irab") and i >= 1 and raw_words[i].startswith("«") and re.search(r"»[،:؛.؟!]*$", raw_words[i]):
-                    kq_ = fx.get("key") or w.get("key")   # (wave 194) the fix table may name the cited word's key
+                    kq_ = fx.get("key") or key_for(N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])), "", where)[0] or w.get("key")   # (wave 194) the fix table may name the cited word's key; (wave 195) then the book's own lexicon, then the engine
                     ke_q_ = (G.get(kq_) or next((v for v in LX.values() if v.get("key") == kq_ and v.get("pos")), None)) if kq_ else None
                     if ke_q_ and not ke_q_.get("key"): ke_q_ = dict(ke_q_, key=kq_)
                     if not ke_q_:
                         lx_q_ = LX.get(bare(w.get("w") or ""))
                         if lx_q_ and lx_q_.get("key"): ke_q_ = dict(G.get(lx_q_["key"]) or lx_q_, key=lx_q_["key"])
                 wz_q_ = bool(ke_q_) and str(ke_q_.get("key") or "").endswith("-wazn") and bool(re.search(r"[َْ]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("ّ", "")))   # (wave 194) a cited measure written as a verb is written (تُفُعِّلَ، فَعَّلَ، افْتَعِلْ) is a quoted word too
-                if ke_q_ and (ke_q_.get("pos") in ("verb", "part") or wz_q_) and (w.get("cell") or ke_q_.get("pos") == "part" or w.get("kind") in ("noun", "verb", "particle")):
+                # (wave 195) عَلَى وَزْنِ «فَعِلٌ» وَ «فَعْلٌ»، نَحْوُ «فَرِقٌ» وَ «شَكْسٌ»: a cited noun the page keeps in rafʿ where its seat asks for jarr or naṣb is told as it is said — the word itself is meant, and the seat is its place
+                hk_q_ = bool(ke_q_) and ke_q_.get("pos") not in ("verb", "part", "pron") and bool(re.search(r"[\u064c\u064f]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("ّ", ""))) and not re.match(r"^ال", bare(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])))
+                if ke_q_ and (ke_q_.get("pos") in ("verb", "part") or wz_q_ or hk_q_) and (w.get("cell") or ke_q_.get("pos") == "part" or w.get("kind") in ("noun", "verb", "particle")):
                     pw_ = words[i - 1]; pb1_ = bare(pw_.get("w") or ""); praw_ = N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i - 1])); qt_ = None; head_q_ = False
                     QH_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Kelimenin kendisi kastedilmiştir (hikâye); ")
                     if pb1_ in ("مثل", "نحو", "خلاف", "بخلاف", "كمثل"): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH_[1] + "in the place of jarr as the mudaf ilayh.", QH_[2] + "mahallen mecrûr, muzâfun ileyh.")
@@ -832,6 +950,12 @@ def main():
                     elif (pw_.get("kind") == "noun" and not raw_words[i - 1].startswith("«") and not re.search(r"[،:؛.؟!»]$", raw_words[i - 1]) and (re.search(r"[َُِ]$", praw_.replace("ّ", "")) or re.search(r"َيْ$", praw_)) and not re.match(r"^[وف]?[بكل]?ال", bare(praw_))
                           and (G.get(pw_.get("key")) or {}).get("pos") in ("noun", None) and (not pw_.get("enc") or (pw_.get("enc") == "ي" and re.search(r"َيْ$", praw_)))): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH_[1] + "in the place of jarr as the mudaf ilayh.", QH_[2] + "mahallen mecrûr, muzâfun ileyh."); head_q_ = True
                     # (wave 194) three more seats: the khabar of a detached pronoun (وَهُوَ «تُفُعِّلَ»), what a form of «قَالَ» says (إِذَا قُلْتَ «وَافْتُعِلَ»), and a cited word joined by «وَ» to an earlier cited word of this sentence — next to it, or with only jarr phrases between — in that word's place
+                    if not qt_ and re.sub(r"^[وف]", "", pb1_) in ("جاء", "جاءت", "يجيء", "تجيء", "يجئ", "تجئ") and not raw_words[i - 1].startswith("«"):   # (wave 195) وَيَجِيءُ «أَفْعَلُ»، وَكَذٰلِكَ يَجِيءُ «خَرُقَ»
+                        qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", QH_[1] + "in the place of raf' as the doer.", QH_[2] + "fâil olarak mahallen merfû.")
+                    elif not qt_ and re.sub(r"^[وف]", "", pb1_) in ("اعني", "أعني", "يعني") and i + 1 < len(words) and words[i + 1].get("kind") == "noun" and not raw_words[i + 1].startswith("«"):   # (wave 195) أَعْنِي: «فَعِلَ» لُغَةٌ فِيهِنَّ — the cited word opens the sentence that is meant, and the noun behind it tells of it
+                        qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", QH_[1] + "in the place of raf' as the mubtada.", QH_[2] + "mübtedâ olarak mahallen merfû.")
+                        nxw_ = f"{where0}:{i + 1}"
+                        if not (FX.get(nxw_) or {}).get("rule") and not (FX.get(nxw_) or {}).get("irab"): FX[nxw_] = {**(FX.get(nxw_) or {}), "rule": "khabar", "k": "raf"}
                     if not qt_ and re.sub(r"^[وف]", "", pb1_) in ("هو", "هي") and pw_.get("kind") != "verb" and not raw_words[i - 1].startswith("«"):
                         qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ خَبَرٌ.", QH_[1] + "in the place of raf' as the khabar.", QH_[2] + "haber olarak mahallen merfû.")
                     elif not qt_ and re.sub(r"^[وف]", "", pb1_) in ("قلت", "قال", "قالوا", "قلنا", "تقول", "يقول", "نقول") and not raw_words[i - 1].startswith("«"):
@@ -839,6 +963,7 @@ def main():
                     elif not qt_ and pb1_ == "و" and pw_.get("kind") == "particle" and lastq_ and lastq_[1] in ("raf", "nasb", "jarr") and (lastq_[0] == i - 2 or not any(words[z_].get("kind") == "verb" or raw_words[z_].startswith("«") for z_ in range(lastq_[0] + 1, i - 1))):
                         mh_ = {"raf": ("رَفْعٍ", "raf'", "merfû"), "nasb": ("نَصْبٍ", "nasb", "mansûb"), "jarr": ("جَرٍّ", "jarr", "mecrûr")}[lastq_[1]]
                         qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ " + mh_[0] + ".", QH_[1] + "joined to the word before it, in the place of " + mh_[1] + ".", QH_[2] + "öncekine ma'tûf, mahallen " + mh_[2] + ".")
+                    if hk_q_ and not wz_q_ and ke_q_.get("pos") not in ("verb", "part") and qt_ and "مَحَلِّ جَرٍّ" not in qt_[0] and "مَحَلِّ نَصْبٍ" not in qt_[0] and w.get("kind") == "noun" and w.get("k") == "raf": qt_ = None; head_q_ = False   # in a rafʿ seat the written ḍamma is the word's own iʿrāb
                     if qt_: lastq_ = (i, "raf" if "مَحَلِّ رَفْعٍ" in qt_[0] else "nasb" if "مَحَلِّ نَصْبٍ" in qt_[0] else "jarr")
                     if head_q_ and toks and toks[-1].get("irab") and "مُضَافٌ" not in toks[-1]["irab"]["ar"] and toks[-1]["irab"]["ar"].endswith(".") and not (FX.get(f"{where0}:{i - 1}") or {}).get("irab"):   # the head of that annexation says so
                         pi_ = toks[-1]["irab"]; toks[-1]["irab"] = {"ar": pi_["ar"][:-1] + "، مُضَافٌ.", "en": pi_["en"].rstrip(".") + "; annexed (mudaf).", "tr": pi_["tr"].rstrip(".") + "; muzâf."}
@@ -847,13 +972,14 @@ def main():
                 if aligned and not fx.get("irab"):
                     rw_ = N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i]))
                     if rw_ == "لِمَ" and "lima" in G: fx = {**fx, "irab": {"ar": "اللَّامُ حَرْفُ جَرٍّ، وَ«مَ» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ فِي مَحَلِّ جَرٍّ، حُذِفَتْ أَلِفُهُ لِدُخُولِ الْجَارِّ عَلَيْهِ.", "en": "The lam is a preposition; «مَ» is the question noun «مَا», in the place of jarr — its alif is dropped because a jarr letter has come upon it.", "tr": "Lâm harf-i cerdir; «مَ» istifhâm ismi «مَا»dır, mahallen mecrûr — üzerine câr girdiği için elifi düşmüştür."}, "key": "lima", "pos": "pron"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)
-                    elif rw_ in ("نَحْوُ", "مِثْلُ") and i >= 1 and (pauses[i - 1] or rw_ == "نَحْوُ") and i + 1 < len(words) and raw_words[i + 1].startswith("«"): fx = {**fx, "rule": "khabar", "k": "raf", "irab": {"ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «ذٰلِكَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "en": "The khabar of an omitted mubtada («that is»), in raf'; the sign is the damma; annexed (mudaf).", "tr": "Hazfedilmiş mübtedânın («bu») haberi, merfû; alâmeti damme ile; muzâf."}, "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)   # …، نَحْوُ «لِيَضْرِبَنَّ»
+                    elif rw_ in ("نَحْوُ", "مِثْلُ") and ((i >= 1 and (pauses[i - 1] or rw_ == "نَحْوُ")) or (i == 0 and rw_ == "نَحْوُ")) and i + 1 < len(words) and raw_words[i + 1].startswith("«"): fx = {**fx, "rule": "khabar", "k": "raf", "irab": {"ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «ذٰلِكَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "en": "The khabar of an omitted mubtada («that is»), in raf'; the sign is the damma; annexed (mudaf).", "tr": "Hazfedilmiş mübtedânın («bu») haberi, merfû; alâmeti damme ile; muzâf."}, "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)   # …، نَحْوُ «لِيَضْرِبَنَّ»
                     elif rw_ == "ثَمَّ" and i >= 1 and re.sub(r"^[وف]", "", bare(words[i - 1].get("w") or "")) == "من" and "thamma" in G: fx = {**fx, "irab": {"ar": "اسْمُ إِشَارَةٍ لِلْمَكَانِ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — وَ«مِنْ ثَمَّ»: مِنْ أَجْلِ ذٰلِكَ.", "en": "A demonstrative of place («there»), built on fatha, in the place of jarr after «مِنْ» — «مِنْ ثَمَّ»: for that reason.", "tr": "Mekân için ism-i işaret («orası»), feth üzere mebnî, «مِنْ» ile mahallen mecrûr — «مِنْ ثَمَّ»: bundan ötürü."}, "key": "thamma", "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)
                 if fx.get("irab") and "مَحْكِيٌّ" in (fx["irab"].get("ar") or "") and "مَحَلِّ جَرٍّ" in (fx["irab"].get("ar") or ""): quoted_jarr_.add(i)
                 if fx.get("irab") and "مَحْكِيٌّ" in (fx["irab"].get("ar") or "") and aligned and raw_words[i].startswith("«"):   # (wave 194) an authored cited word names its place too
                     a_ = fx["irab"].get("ar") or ""; lastq_ = (i, "raf" if "مَحَلِّ رَفْعٍ" in a_ else "nasb" if "مَحَلِّ نَصْبٍ" in a_ else "jarr" if "مَحَلِّ جَرٍّ" in a_ else "")
                 full = N(src_words[i]) if aligned else N(w["w"]); rule = fx.get("rule", w.get("rule")); k = fx.get("k", w.get("k")); enc = w.get("enc") or ""
-                if enc == "ي" and w.get("kind") == "noun" and re.search(r"[ء-ي]َيْ$", re.sub(r"[«»،:؛.؟!]", "", full)) and len(bare(full)) >= 5: enc = ""   # (wave 194) بِمُضَارِعَيْ «فَعَّلَ»: a fatḥa and a yāʾ with its sukūn is the dual's yāʾ, its nūn dropped for the annexation — the speaker's yāʾ is ـِي or ـَيَّ
+                if enc == "ي" and w.get("kind") == "noun" and re.search(r"[ء-ي]َيْ$", re.sub(r"[«»،:؛.؟!]", "", full)) and len(bare(full)) >= 5: enc = ""
+                if enc == "ي" and w.get("kind") == "noun" and re.search(r"ِي$", re.sub(r"[«»،:؛.؟!]", "", full)) and i + 1 < len(words) and words[i + 1].get("rule") == "mudafIlayh" and words[i + 1].get("head") == i: enc = ""   # (wave 195) بِمَاضِي الْمُفَاعَلَةِ: the manqūṣ annexed to the word behind it keeps its own yāʾ   # (wave 194) بِمُضَارِعَيْ «فَعَّلَ»: a fatḥa and a yāʾ with its sukūn is the dual's yāʾ, its nūn dropped for the annexation — the speaker's yāʾ is ـِي or ـَيَّ
                 kind = w.get("kind") or ""; pos = w.get("pos") or ""
                 if aligned and w.get("out") and bare(w["out"]) == bare(full) and N(w["out"]) != full and k not in ("keep", "cell", None): report["mismatch"].append((where, full, w["out"], rule))
                 if rule in (None, "", "fail") and k is None: report["undecided"].append((where, full))
@@ -1563,6 +1689,8 @@ def main():
             name_khabar(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_sila(toks, raw_toks if aligned else None, report)   # (patch 32)
             name_ma_khabar(toks, report)   # (wave 166)
+            name_pron_mubtada(toks, report); name_sisters(toks, report); name_shan(toks, report)   # (wave 195)
+            name_ishara(toks, report); name_mudaf_chain(toks, report); name_ba_zaida(toks, report); name_khabar_atf(toks, report)   # (wave 195)
             praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]

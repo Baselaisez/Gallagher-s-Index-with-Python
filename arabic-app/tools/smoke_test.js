@@ -15630,6 +15630,59 @@ if (!CHROME) {
     if (r.v.ala !== N('أَلَا') || r.v.alla !== N('أَلَّا') || r.v.illa !== N('إِلَّا') || r.v.thumma !== N('ثُمَّ')) throw new Error('«أَلَا» by its written vowels: ' + J(r.v));
   });
 
+  await check('wave 195 — Marāḥ al-Arwāḥ part twelve (the ism al-fāʿil and its form, the kasra of its ʿayn, the ṣifa mushabbaha and afʿal of colours and defects, afʿal of preference; pp. 75–80) stands on the shelf with every line named — the measures and examples kept in rafʿ as cited words by their seat, the cited doer behind «يَجِيءُ», «أَعْنِي: «فَعِلَ» لُغَةٌ», the clause-opening pronoun as mubtadaʾ, the khabar of «يَصِيرُ» named after its own verb, the omitted ḍamīr al-shaʾn behind «لِأَنَّ», the demonstrative\'s place, the annexation chain, the extra bāʾ behind «لَيْسَ» and the word joined to the khabar of «أَنَّ», all by the packager\'s rules; and the reader rules the text called for: no badal of a demonstrative under its own jarr letter, the said sentence opening on a construct head, two words joined to the two «أَنَّ» governs, the adjective behind the doer as its naʿt, the exception behind a pronoun\'s verb, the elative «أَوْلَى» before «لِأَنَّ», the cited doer and «غَيْرَ» as a ḥāl, the ʿaṭf behind «وَلَا», the manqūṣ head under a jarr letter, and typed «غير» behind a noun', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [33, 34, 35, 36].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i) => { try { const v = DabtEngine.vowel(t).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const A = 'لِأَنَّ الْأَمْرَ مُشْتَقٌّ مِنَ الْمُسْتَقْبَلِ، وَاسْمَ الْفَاعِلِ أَيْضًا مُشْتَقٌّ', G = 'وَيَجِيءُ «أَفْعَلُ» لِتَفْضِيلِ الْفَاعِلِ مِنَ الثُّلَاثِيِّ غَيْرَ مَزِيدٍ فِيهِ';
+      return { chapters: st.chapters.length, sens: [33, 34, 35, 36].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        passiveDoer: all.filter(x => x.ar.includes(N('لِلْمَجْهُولِ')) && x.ar.includes(N('وَالْفَاعِلُ'))).map(x => x.w),
+        l: { pron: line(33, 's1', 0), shan: line(33, 's5', 0), sis: line(33, 's5', 4), manqus: line(34, 's1', 7), mi: line(34, 's1', 8), zarf: line(34, 's4', 2), dem: line(34, 's4', 3), lam: line(34, 's4', 4), said: line(34, 's5', 1), awla: line(34, 's5', 4), ismAtf: line(34, 's6', 5), khAtf: line(34, 's6', 8),
+             nat: line(35, 's1', 2), wz1: line(35, 's1', 5), wz2: line(35, 's1', 7), wz10: line(35, 's1', 23), nahw: line(35, 's2', 0), ex1: line(35, 's2', 1), ex2: line(35, 's2', 3), ex9: line(35, 's2', 17), exc: line(35, 's3', 5), verbWz: line(35, 's3', 3), doerNoun: line(35, 's6', 3), afterMin: line(35, 's6', 5),
+             doerV: line(35, 's7', 2), doerV2: line(35, 's7', 6), mub: line(35, 's8', 1), kh: line(35, 's8', 2), doerM: line(36, 's1', 1), hal: line(36, 's1', 6), ba: line(36, 's1', 11), wala: line(36, 's1', 13), chain: line(36, 's2', 7), inFi: line(36, 's2', 11), awla2: line(36, 's6', 3), khAtf2: line(36, 's6', 8),
+             last0: line(36, 's8', 0), last1: line(36, 's8', 1), last8: line(36, 's8', 8), last19: line(36, 's8', 19),
+             oldPron: line(1, 's4', 6), oldSis: line(13, 's3', 4), oldShan: line(19, 's1', 9), oldDem: line(13, 's13', 5), oldChain: line(20, 's10', 16), oldForm: line(17, 's3', 0) },
+        d: { lam: V('وَلٰكِنْ أُبْقِيَ مَعَ ذٰلِكَ لِلضَّرُورَةِ', 4) },
+        q: { m: V('وَقِيلَ: اخْتِيَارُ الِالْتِبَاسِ بِالْأَمْرِ أَوْلَى', 1), k: V('وَقِيلَ: اخْتِيَارُ الِالْتِبَاسِ بِالْأَمْرِ أَوْلَى', 4), typed: V('وقيل: اختيار الالتباس بالامر اولى', 1) },
+        a: { ism: V(A, 5), kh: V(A, 8), guard: V('إِنَّ اللَّهَ غَفُورٌ رَحِيمٌ وَاللَّهُ عَلِيمٌ حَكِيمٌ', 4) },
+        na: { book: V('وَتَجِيءُ الصِّفَةُ الْمُشَبَّهَةُ عَلَى وَزْنِ فَاعِلٍ', 2), typed: V('جاء الرجل الكريم الى البيت', 2), end: V('جاء الرجل الكريم', 2), guard: V('جاء زيد والرجل كريم', 2) },
+        x: { book: V('وَهُوَ يَخْتَصُّ بِبَابِ الْفِعْلِ إِلَّا سِتَّةً', 5), typed: V('وهو يختص بالباب الا ستة', 4) },
+        e: { awla: V('جَعْلُهُ لِلْفَاعِلِ أَوْلَى، لِأَنَّ الْفَاعِلَ مَقْصُودٌ', 2) },
+        g: { doer: V(G, 1), hal: V(G, 6) },
+        w: { atf: V('مِمَّا لَيْسَ بِلَوْنٍ وَلَا عَيْبٍ', 4), atf2: V('لا يجيء من لون ولا عيب', 5) },
+        m: { book: V('يَصِيرُ مُشَابِهًا بِمَاضِي الْمُفَاعَلَةِ', 3), typed: V('مررت بقاضي البلد', 2), guard: V('مررت بكتابي الجديد', 2) },
+        h: { noun: V('هذا الكلام غير مفيد', 2), verb: V('غير زيد رأيه', 0) } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 36 || J(r.sens) !== '[5,6,8,8]' || r.n !== 270) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length || r.passiveDoer.length) throw new Error('unnamed or contradictory lines: ' + J(r.bare) + ' ' + J(r.passiveDoer));
+    const Q = N('لَفْظٌ مَحْكِيٌّ'), MJ = N('فِي مَحَلِّ جَرٍّ');
+    if (!r.l.pron.endsWith(N('فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.')) || !r.l.oldPron.endsWith(N('فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.')) || !r.l.shan.includes(N('ضَمِيرُ الشَّأْنِ مَحْذُوفٌ')) || !r.l.oldShan.includes(N('ضَمِيرُ الشَّأْنِ مَحْذُوفٌ')) || !r.l.sis.includes('|' + N('خَبَرُ «يَصِيرُ»')) || !r.l.oldSis.includes('|' + N('خَبَرُ «يَصِيرُ»'))) throw new Error('the pronoun, the pronoun of the matter and the sister of kāna: ' + J([r.l.pron, r.l.oldPron, r.l.shan, r.l.oldShan, r.l.sis, r.l.oldSis]));
+    if (!r.l.manqus.startsWith('madi|') || !r.l.manqus.includes(N('مُقَدَّرَةٍ عَلَى الْيَاءِ')) || !r.l.manqus.endsWith(N('مُضَافٌ.')) || !r.l.mi.startsWith('mufaala|' + N('مُضَافٌ إِلَيْهِ')) || !r.l.zarf.endsWith(N('، مُضَافٌ.')) || !r.l.dem.includes(N('فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ')) || !r.l.oldDem.includes(N('فِي مَحَلِّ جَرٍّ بِـ«مِنْ»')) || !r.l.lam.includes('|' + N('اللَّامُ حَرْفُ جَرٍّ')) || !r.l.chain.endsWith(N('، مُضَافٌ.')) || !r.l.oldChain.endsWith(N('، مُضَافٌ.'))) throw new Error('the manqūṣ head, the demonstrative and the annexation chain: ' + J([r.l.manqus, r.l.mi, r.l.zarf, r.l.dem, r.l.oldDem, r.l.lam, r.l.chain, r.l.oldChain]));
+    if (!r.l.said.startsWith('ikhtiyar|' + N('مُبْتَدَأٌ')) || !r.l.awla.startsWith('awla-fitter|' + N('خَبَرٌ')) || !r.l.awla2.startsWith('awla-fitter|' + N('خَبَرٌ')) || !r.l.ismAtf.includes(N('مَعْطُوفٌ مَنْصُوبٌ')) || !r.l.khAtf.includes('|' + N('مَعْطُوفٌ عَلَى خَبَرِ أَنَّ «مُشْتَقٌّ»')) || !r.l.khAtf2.includes('|' + N('مَعْطُوفٌ عَلَى خَبَرِ أَنَّ «مَقْصُودٌ»'))) throw new Error('the said sentence, the elative and the two joined words: ' + J([r.l.said, r.l.awla, r.l.awla2, r.l.ismAtf, r.l.khAtf, r.l.khAtf2]));
+    if (!r.l.nat.includes('|' + N('نَعْتٌ مَرْفُوعٌ')) || !r.l.exc.includes('|' + N('مُسْتَثْنًى مَنْصُوبٌ')) || !r.l.hal.includes('|' + N('حَالٌ')) || !r.l.ba.includes(N('حَرْفُ جَرٍّ زَائِدٌ')) || !r.l.ba.includes(N('مَنْصُوبٌ مَحَلًّا')) || !r.l.wala.includes('|' + N('مَعْطُوفٌ مَجْرُورٌ'))) throw new Error('the naʿt, the exception, the ḥāl and the extra bāʾ: ' + J([r.l.nat, r.l.exc, r.l.hal, r.l.ba, r.l.wala]));
+    if (!r.l.wz1.startsWith('fail-sifa-wazn|' + Q) || !r.l.wz1.includes(MJ + N(' مُضَافٌ إِلَيْهِ')) || !r.l.wz2.startsWith('fal-sifa-wazn|' + Q) || !r.l.wz2.includes(N('مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ')) || !r.l.wz10.startsWith('afal-wazn|' + Q) || !r.l.verbWz.startsWith('faila-wazn|' + Q) || !r.l.oldForm.includes('|')) throw new Error('the measures kept in rafʿ: ' + J([r.l.wz1, r.l.wz2, r.l.wz10, r.l.verbWz]));
+    if (!r.l.nahw.includes(N('لِمُبْتَدَإٍ مَحْذُوفٍ')) || !r.l.ex1.startsWith('fariq-fearful|' + Q) || !r.l.ex1.includes(MJ + N(' مُضَافٌ إِلَيْهِ')) || !r.l.ex2.startsWith('shaks|' + Q) || !r.l.ex9.startsWith('atshan|' + Q) || !r.l.ex9.includes(MJ)) throw new Error('the examples kept in rafʿ: ' + J([r.l.nahw, r.l.ex1, r.l.ex2, r.l.ex9]));
+    if (!r.l.doerNoun.startsWith('ahmaq|' + N('فَاعِلٌ مَرْفُوعٌ')) || !r.l.afterMin.startsWith('hamuqa|' + Q) || !r.l.afterMin.includes(N('بِـ«مِنْ»')) || !r.l.doerV.startsWith('kharuqa|' + Q) || !r.l.doerV.includes(N('فِي مَحَلِّ رَفْعٍ فَاعِلٌ')) || !r.l.doerV2.startsWith('ajufa|' + Q) || !r.l.doerV2.includes(N('فِي مَحَلِّ رَفْعٍ')) || !r.l.doerM.startsWith('afal-wazn|' + Q) || !r.l.doerM.includes(N('فِي مَحَلِّ رَفْعٍ فَاعِلٌ')) || !r.l.inFi.startsWith('afal-wazn|' + Q) || !r.l.inFi.includes(N('بِـ«فِي»'))) throw new Error('the cited doer: ' + J([r.l.doerNoun, r.l.afterMin, r.l.doerV, r.l.doerV2, r.l.doerM, r.l.inFi]));
+    if (!r.l.mub.startsWith('faila-wazn|' + Q) || !r.l.mub.includes(N('فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ')) || !r.l.kh.startsWith('lugha|' + N('خَبَرٌ'))) throw new Error('«أَعْنِي: «فَعِلَ» لُغَةٌ»: ' + J([r.l.mub, r.l.kh]));
+    if (!r.l.last0.startsWith('nahw|') || !r.l.last0.includes(N('مُبْتَدَأٌ')) || !r.l.last1.startsWith('ashghal|' + N('مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ')) || !r.l.last8.startsWith('aata|') || !r.l.last19.startsWith('shadhdh|' + N('خَبَرٌ'))) throw new Error('the last sentence: ' + J([r.l.last0, r.l.last1, r.l.last8, r.l.last19]));
+    if (!/ِ\/jarr$/.test(r.d.lam)) throw new Error('no badal under a jarr letter: ' + J(r.d));
+    if (!/ُ\/mubtada$/.test(r.q.m) || !/\/khabar$/.test(r.q.k) || !/\/mubtada$/.test(r.q.typed)) throw new Error('the said sentence on a construct head: ' + J(r.q));
+    if (!/َ\/atf$/.test(r.a.ism) || !/ٌّ\/atf$/.test(r.a.kh) || !/\/mubtada$/.test(r.a.guard)) throw new Error('two words joined to the two «أَنَّ» governs: ' + J(r.a));
+    if (!/\/nat$/.test(r.na.book) || !/\/nat$/.test(r.na.typed) || !/\/nat$/.test(r.na.end) || !/\/mubtada$/.test(r.na.guard)) throw new Error('the adjective behind the doer: ' + J(r.na));
+    if (!/ً\/mustathna$/.test(r.x.book) || !/ً\/mustathna$/.test(r.x.typed)) throw new Error('the exception behind a pronoun\'s verb: ' + J(r.x));
+    if (!/\/khabar$/.test(r.e.awla)) throw new Error('the elative before «لِأَنَّ»: ' + J(r.e));
+    if (!/\/hikaya$/.test(r.g.doer) || !/َ\/hal$/.test(r.g.hal)) throw new Error('the cited doer and «غَيْرَ»: ' + J(r.g));
+    if (!/ٍ\/atf$/.test(r.w.atf) || !/ٍ\/atf$/.test(r.w.atf2)) throw new Error('the ʿaṭf behind «وَلَا»: ' + J(r.w));
+    if (!/\/mudafIlayh$/.test(r.m.book) || !/\/mudafIlayh$/.test(r.m.typed) || !/\/nat$/.test(r.m.guard)) throw new Error('the manqūṣ head under a jarr letter: ' + J(r.m));
+    if (!/\/khabar$/.test(r.h.noun) || !/\/mazi$/.test(r.h.verb)) throw new Error('typed «غير»: ' + J(r.h));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -12807,3 +12807,93 @@ demonstrative's place behind a jarr letter or «أَنَّ» by hand; the object
 is not yet seen; «قَبِلَ» and «لِمَا» typed with their vowels still answer as «قَبْلَ» and «لَمَّا».
 
 **Next.** Marāḥ part twelve opens on p. 75 at «فَصْلٌ فِي اسْمِ الْفَاعِلِ: وَهُوَ اسْمٌ مُشْتَقٌّ مِنَ الْمُضَارِعِ».
+
+### v294 (wave 195) — Marāḥ al-Arwāḥ part twelve, the cited word kept in rafʿ, and the adjective behind the doer
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 75–80 of the scan (the matn's large type only) —
+  the opening of «فَصْلٌ فِي اسْمِ الْفَاعِلِ»: chapter 33 «اسْمُ الْفَاعِلِ وَصِيغَتُهُ» (5 sentences — its definition, why it
+  is derived from the muḍāriʿ, the measure «فَاعِل», where the alif goes and why), 34 «كَسْرُ عَيْنِ اسْمِ الْفَاعِلِ»
+  (6 — the three vowels weighed, and the confusion with the amr preferred), 35 «الصِّفَةُ الْمُشَبَّهَةُ وَأَفْعَلُ
+  الصِّفَةِ» (8 — the ten measures with their ten examples, afʿal of colours and defects with the six from «فَعُلَ»,
+  al-Aṣmaʿī and al-Farrāʾ), 36 «أَفْعَلُ التَّفْضِيلِ» (8 — whence it is made and whence not, why it prefers the doer,
+  and the three irregular proverbs). 27 sentences / 270 words, twenty-nine new lemmas (the eight adjective measures, the
+  examples فَرِق، مِلْح، أَحْوَل، أَخْرَق، آدَم، أَرْعَن، أَسْمَر، أَعْجَف, four verbs on «فَعُلَ» with their paradigms, the
+  two irregular elatives, two names); the book stands at **36 chapters / 309 sentences / 3,504 words**, version
+  0.12.0. The attribution records the span and the readings: «لِأَنَّ فِي الْأَوَّلِ يَصِيرُ» and its two sisters without a
+  stated noun for «أَنَّ», «وَحُذِفَ عَلَامَةُ» in the masculine, the measures and examples in rafʿ as cited words and
+  «أَشْغَلَ» with its fatḥa — all as printed; «فَعْلَانُ / عَطْشَانُ» written without the print's tanwīn (a diptote in the
+  well-known usage); «غَيْرَ مَزِيدٍ فِيهِ» and «أَحْمَقَ مِنْ هَبَنَّقَةَ», unvowelled in the print, vowelled as a ḥāl and
+  like «أَشْغَلَ».
+- **Reader rules** (`$S/w195/patch195.py`):
+  - **N · the adjective behind the doer.** «جَاءَ الرَّجُلُ الْكَرِيمُ إِلَى الْبَيْتِ» was read as a verb, its doer and a new
+    mubtadaʾ left without a khabar. An article-adjective right behind the doer it agrees with, with a jarr phrase or
+    the pause after it, is that doer's naʿt (وَتَجِيءُ الصِّفَةُ الْمُشَبَّهَةُ عَلَى وَزْنِ …). Five label rows across the shelf
+    moved to «naʿt», each agreeing with its stored line.
+  - **I · two words joined to the two «أَنَّ» governs.** Behind a finished «إِنَّ / أَنَّ» clause — a jarr phrase may
+    stand between — a joined noun that brings its own bare predicate is joined to the particle's noun in naṣb and the
+    predicate to its khabar in rafʿ (لِأَنَّ الْأَمْرَ مُشْتَقٌّ مِنَ الْمُسْتَقْبَلِ، وَاسْمَ الْفَاعِلِ أَيْضًا مُشْتَقٌّ؛ لِأَنَّ
+    الْفَاعِلَ مَقْصُودٌ وَالْمَفْعُولَ فَضْلَةٌ). «أَيْضًا» takes no naʿt. The page's own ḍamma on the joined noun, or «وَاللهُ»,
+    keeps the new sentence.
+  - **Q · the said sentence on a construct head.** «وَقِيلَ: اخْتِيَارُ الِالْتِبَاسِ بِالْأَمْرِ أَوْلَى»: the bare noun
+    annexed to the article-noun behind it opens the said sentence as its mubtadaʾ (wave 193 knew only the article
+    and the pronoun), and «أَوْلَى» is its khabar.
+  - **D · no badal under a jarr letter.** «وَلٰكِنْ أُبْقِيَ مَعَ ذٰلِكَ لِلضَّرُورَةِ»: a word that wears its own jarr
+    letter is never the demonstrative's badal — it had been raised as a deputy doer.
+  - **X · the exception behind a pronoun's verb.** «وَهُوَ يَخْتَصُّ بِبَابِ «فَعِلَ» إِلَّا سِتَّةً»: the verb told of a
+    pronoun has its doer in it, so the positive clause is complete and the noun after «إِلَّا» is the mustathnā.
+  - **E · the elative before «لِأَنَّ».** «جَعْلُهُ لِلْفَاعِلِ أَوْلَى، لِأَنَّ …»: «because» is no object, so «أَوْلَى» is
+    the elative and the khabar there too.
+  - **G · the cited doer and «غَيْرَ».** One word in guillemets right behind «جَاءَ / يَجِيءُ» that has no doer yet is
+    the word itself, said as the doer (وَيَجِيءُ «أَفْعَلُ» لِتَفْضِيلِ الْفَاعِلِ — read as a verb it left the sentence
+    without one); the typed text's own guillemets are kept beside its pauses and colons (`_own25.q`). «غَيْرَ» before
+    a bare indefinite, behind such a verb with its doer, is a ḥāl like «مِثْلَ».
+  - **L · the ʿaṭf behind «وَلَا».** «مِمَّا لَيْسَ بِلَوْنٍ وَلَا عَيْبٍ»: the bare noun after «وَلَا» that answers a bare
+    noun under a jarr letter, behind a negation, is joined to it in jarr — it had been raised as kāna's noun.
+  - **M · the manqūṣ head under a jarr letter.** «بِمَاضِي الْمُفَاعَلَةِ، بِقَاضِي الْبَلَدِ»: a manqūṣ the lexicon owns
+    keeps its own yāʾ and annexes the article-noun behind it; «بِكِتَابِي الْجَدِيدِ» stays «my new book».
+  - **H · typed «غير».** Typed without vowels, «غير» behind a noun and before one bare word is the noun «غَيْر», not
+    the verb «غَيَّرَ» (هذا الكلام غير مفيد); «غير زيد رأيه» stays the verb.
+- **The SifaEngine learns the matn's list** (`$S/w195/patch195b.py`). «وَتَجِيءُ الصِّفَةُ الْمُشَبَّهَةُ عَلَى وَزْنِ فَعِل وَفَعْل وَفُعْل
+  وَفِعْل وَفُعُل وَفَعَل وَفَعَال وَفُعَال وَفَعْلَان وَأَفْعَل»: the engine read three of the ten by shape (فَعِل، فَعْلَان، أَفْعَل).
+  The other seven are shapes of plain nouns and maṣdars too, so no shape rule can tell them — the quality on them is
+  heard. `SifaEngine.SAMAI195` keeps, per measure, the matn's own example first and words of the same standing
+  (شَكْس، ضَخْم، صَعْب … · صُلْب، حُلْو · مِلْح، صِفْر · جُنُب · حَسَن، بَطَل · جَبَان · شُجَاع، فُرَات); a word outside the table stays
+  unknown rather than guessed. The engine's audit against the glossaries' own kinds rose from 95.3 % (728 / 764) to
+  96.0 % (736 / 767); the ṣifa mushabbaha row from 27 / 37 to 34 / 39.
+- **The pipeline** (`pkg_from_engine.py`; `$S/w195/pkg195.py`, `pkg195b.py`). A lexicon form written with its tanwīn,
+  or flagged «!», answers the whole written word only («فَعِلٌ» the adjective's measure is not «فَعِلَ» the verb's;
+  «!أَعْطَاهُمْ»), and the book's own lexicon answers for a cited word before the engine's guess. A cited NOUN the
+  page keeps in rafʿ where its seat is jarr is told as it is said (عَلَى وَزْنِ «فَعِلٌ» وَ «فَعْلٌ»، نَحْوُ «فَرِقٌ» وَ
+  «شَكْسٌ» — 28 lines); the cited doer behind «يَجِيءُ» and the cited mubtadaʾ behind «أَعْنِي:» have their seats;
+  «نَحْوُ» opening a sentence before a cited word is the khabar of an omitted mubtadaʾ. Eight post-passes name what
+  the lines left unsaid, across the whole book: the detached pronoun that opens its clause is the mubtadaʾ (15 lines
+  in chapters 1–32), the noun and khabar of «صَارَ / يَصِيرُ» are named after their own verb (6), «لِأَنَّ» with no noun
+  behind it has left out the pronoun of the matter (2), a muḍāf ilayh annexed to the next word says so (27), a
+  demonstrative behind a jarr letter or a ẓarf has its place (1 — W194's open item), the bāʾ on the khabar of «لَيْسَ»
+  is the extra one, and the word joined to the khabar of «أَنَّ» names it. Chapters 1–32 changed in 52 tokens, every
+  one of them one of these. The book's own lemma table now corrects an entry it has already landed (the shelf's copy of the
+  package had been answering first, so a landed gloss, lemma or part of speech could never change).
+  **A lexicon key is a claim on the whole shelf — twice in this wave.** A noun entry «أَعْطَى» for the irregular elative made the
+  written verb «أَعْطَى» a noun everywhere (the wave-188 check «ثُمَّ أَعْطَى وَأَوْلَى» failed in the release, «كَأَعْطَى» in the
+  Taṣrīf was labelled jarr), and a noun entry «فَعَل» for the adjective's measure took the verb measure «فَعَلَ» of the Taṣrīf
+  (two endings lost). So «أَعْطَاهُمْ» answers from the verb's own entry (`aata`) with its hand line, and the measure is
+  entered as the phrase «وَزْنُ فَعَلٍ» (`faal-sifa-wazn`, matched on the written «فَعَلٌ» only); «أَوْلَاهُمْ» keeps `awla-elative`,
+  whose lemma the shelf already owned as a noun. Six hand lines remain for part twelve, all in the last sentence, whose subject is three
+  proverbs long (the two «نَحْوُ», «أَشْغَلَ», the two irregular elatives «أَعْطَاهُمْ / أَوْلَاهُمْ», the khabar «شَاذٌّ»).
+
+**Measured.** Final sweep (71,225 words): blind 70,327 right / 568 wrong / 330 undecided, receipts-on 70,737 / 322 / 166,
+case layer 57,903 / 58,534 (98.92 %). Against v293 on the 70,955 words both shelves hold: blind 0 fixed / 0 broken, six label rows
+(four to naʿt, two to ʿaṭf on a khabar); receipts-on 0 fixed / 0 broken, sixteen label rows (the same six, nine ḥāl ↔ mafʿūl
+choices of the refitted model on endings that stay right, one on a row that was already wrong); case layer 0 broken, three new
+wrong claims — the three diptote/maqṣūr elatives of the last sentence, which the hand lines carry. Label gauge 90.20 % over
+34,159 offices. Typed gauge 1,158 / 1,159 (380 of 381 sentences clean).
+Smoke: 444 checks («wave 195» is #442).
+
+**Left open.** Typed without vowels, «جاء القوم غير زيد» still reads «غَيَّرَ» (the noun reading is taken only where the
+analyzer first saw the verb), «ليس بلون ولا عيب» still denies a genus, and «إن زيدا كريم وعمرا بخيل» still hangs
+«بخيل» on the name as a naʿt; where the page writes «وَعَمْرٌو قَائِمٌ» after «إِنَّ زَيْدًا قَائِمٌ» the blind reader
+cannot see the ḍamma and joins the pair. «قَلِيلًا / كَثِيرًا» for an omitted maṣdar, the negating «لَا» before an
+emphatic verb and «نَحْوُ» behind a fronted jarr phrase are still named by hand; the attached dual pronoun is still
+called «الْهَاءُ» in the lines.
+
+**Next.** Marāḥ part thirteen opens on p. 80 at «وَيَجِيءُ الْفَاعِلُ عَلَى الْفَعِيلِ، نَحْوُ نَصِيرٍ».

@@ -1051,5 +1051,28 @@ L("31:s6:5", "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْ
 K("32:s5:7", "mudari")
 
 # <<< part eleven
+# >>> part twelve
+# ---- part twelve (pp. 75–80): the ism al-fāʿil and its form, the kasra of its ʿayn, the ṣifa mushabbaha and afʿal of colours and defects, afʿal of preference.
+#      The cited measures and examples kept in rafʿ, the cited doer behind «يَجِيءُ», «أَعْنِي: «فَعِلَ» لُغَةٌ», the clause-opening pronoun, the sisters of kāna,
+#      the omitted ḍamīr al-shaʾn, the demonstrative's place, the annexation chain, the extra bāʾ, the two words joined to «أَنَّ»'s two, the exception, «غَيْرَ» as
+#      a ḥāl and the manqūṣ head under a jarr letter are named by rule (wave 195). What is left is the last sentence, whose subject is three proverbs long.
+# 36 — أَفْعَلُ التَّفْضِيلِ
+R("36:s8:0", "mubtada", "raf"); L("36:s8:0", "الْوَاوُ عَاطِفَةٌ، وَ«نَحْوُ» مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَخَبَرُهُ «شَاذٌّ» فِي آخِرِ الْكَلَامِ.",
+  "The waw conjoins; «نَحْوُ» is the mubtada, in raf'; the sign is the damma; annexed (mudaf) — its khabar is «شَاذٌّ» at the end of the sentence.",
+  "«ve» + «نَحْوُ» mübtedâ, merfû; alâmeti damme ile; muzâf — haberi cümlenin sonundaki «شَاذٌّ»dür.", key="nahw", pos="noun")
+R("36:s8:1", "mudafIlayh", "jarr"); L("36:s8:1", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ — اسْمُ تَفْضِيلٍ بِمَعْنَى الْمَفْعُولِ، أَيْ: أَشَدُّ شُغْلًا، مِنْ «شُغِلَ» الْمَبْنِيِّ لِلْمَجْهُولِ.",
+  "The annexed noun (mudaf ilayh), in jarr; the sign is the fatha in place of the kasra — a diptote. An elative in the sense of the object: «more occupied», from the passive «شُغِلَ».",
+  "Muzâfun ileyh, mecrûr; alâmeti kesre yerine fetha ile — gayr-i munsarif. Mef'ûl mânâsında ism-i tafdîl: «daha meşgul», meçhul «شُغِلَ»den.", key="ashghal", pos="noun", enc="")
+R("36:s8:7", "atf", "raf"); L("36:s8:7", "الْوَاوُ عَاطِفَةٌ، وَ«نَحْوُ» مَعْطُوفٌ عَلَى «نَحْوُ» الْأَوَّلِ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.",
+  "The waw conjoins; «نَحْوُ» is joined to the first «نَحْوُ», in raf'; the sign is the damma; annexed (mudaf).",
+  "«ve» + «نَحْوُ» ilk «نَحْوُ»ya ma'tûf, merfû; alâmeti damme ile; muzâf.", key="nahw", pos="noun")
+R("36:s8:8", "mudafIlayh", "jarr"); L("36:s8:8", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَهُوَ مُضَافٌ، وَ«هُمْ» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — اسْمُ تَفْضِيلٍ مِنْ «أَعْطَى» الْمَزِيدِ فِيهِ عَلَى غَيْرِ قِيَاسٍ.",
+  "The annexed noun (mudaf ilayh), in jarr; the sign is an implied kasra on the alif; it is annexed, and «هُمْ» is an attached pronoun in the place of jarr as the mudaf ilayh — an elative made, against the rule, from the augmented «أَعْطَى»: «the most giving of them».",
+  "Muzâfun ileyh, mecrûr; alâmeti elif üzerinde takdîrî kesre ile; muzâftır, «هُمْ» da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir — mezîd «أَعْطَى»dan kıyasa aykırı yapılmış ism-i tafdîl: «onların en çok vereni».", key="aata", pos="noun", enc="هم")
+R("36:s8:10", "atf", "jarr"); L("36:s8:10", "مَعْطُوفٌ عَلَى «أَعْطَاهُمْ» مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَهُوَ مُضَافٌ، وَ«هُمْ» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — اسْمُ تَفْضِيلٍ مِنْ «أَوْلَى» الْمَزِيدِ فِيهِ عَلَى غَيْرِ قِيَاسٍ.",
+  "Joined to «أَعْطَاهُمْ», in jarr; the sign is an implied kasra on the alif; it is annexed, and «هُمْ» is an attached pronoun in the place of jarr as the mudaf ilayh — an elative made, against the rule, from the augmented «أَوْلَى»: «the most bestowing of them».",
+  "«أَعْطَاهُمْ»a ma'tûf, mecrûr; alâmeti elif üzerinde takdîrî kesre ile; muzâftır, «هُمْ» da mahallen mecrûr muzâfun ileyh olan bitişik zamirdir — mezîd «أَوْلَى»dan kıyasa aykırı yapılmış ism-i tafdîl: «onların en çok ihsan edeni».", key="awla-elative", pos="noun", enc="هم")
+R("36:s8:19", "khabar", "raf")
+# <<< part twelve
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")
