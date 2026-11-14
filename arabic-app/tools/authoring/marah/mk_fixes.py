@@ -1150,5 +1150,47 @@ L("45:s9:5", QH15[0] + "فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — 
   QH15[1] + "in the place of jarr after «مِنْ» — in itself a present verb of the first person; the jarr phrase after it completes the example.",
   QH15[2] + "«مِنْ» ile mahallen mecrûr — kendi içinde mütekellim muzâri fiildir; ardındaki câr-mecrûr misâlin devamıdır.")
 # <<< part fifteen
+# >>> part sixteen
+# ---- part sixteen (pp. 96–100): the doubled verb's emphatic imperative and its nouns; the idghām before the tāʾ of iftiʿāl.
+for w_, k_ in (("46:s1:3", "madda"), ("46:s1:4", "madda"), ("46:s1:5", "madda"), ("46:s1:6", "madda"), ("46:s1:7", "madda"), ("46:s1:8", "madda"), ("46:s1:11", "madda"), ("46:s1:12", "madda"), ("46:s1:13", "madda"),
+               ("46:s6:3", "madd"), ("47:s2:1", "iththaara"), ("47:s2:5", "iththaara"), ("47:s2:13", "satashhathuka-khasafah"), ("47:s2:14", "satashhathuka-khasafah"),
+               ("47:s4:1", "iddana"), ("47:s5:17", "iddana"), ("47:s7:29", "iddana"), ("47:s7:1", "izdana"), ("47:s5:4", "iddakara"), ("47:s5:6", "iddakara"), ("47:s8:1", "istamaa"),
+               ("47:s7:23", "kabir"), ("47:s7:25", "saghir"), ("47:s8:20", "izam-greatness"), ("47:s1:9", "huruf-qabl-ta-iftial"), ("47:s1:10", "huruf-qabl-ta-iftial"), ("47:s1:11", "huruf-qabl-ta-iftial")):
+    K(w_, k_)
+#      The recited row of the emphatic imperative, the cited triple of the passive, the two strings of letters, and four lines the rules do not reach.
+QH16 = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Kelimenin kendisi kastedilmiştir (hikâye); ")
+def EMPH16(kind, heavy):
+    n_ar, n_en, n_tr = ("الثَّقِيلَةِ", "heavy", "şeddeli") if heavy else ("الْخَفِيفَةِ", "light", "hafif")
+    if kind == "ms": return ("فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ " + n_ar + "، وَالنُّونُ حَرْفٌ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ «أَنْتَ».",
+                             "An imperative verb, built on fatha because the " + n_en + " nūn of emphasis is attached to it; the nūn is a letter with no place in the i'rab; its doer is a hidden pronoun «you».",
+                             "Emir fiili; " + n_tr + " te'kîd nûnu bitiştiği için fetha üzere mebnî; nûn, i'râbda mahalli olmayan harftir; fâili gizli zamir «sen».")
+    if kind == "dual": return ("فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ بَعْدَهَا مَكْسُورَةٌ — لِلْمُثَنَّى مُذَكَّرًا وَمُؤَنَّثًا.",
+                               "An imperative verb, built on the dropping of the nūn; the alif is the attached pronoun, in the place of raf' as the doer; the heavy nūn of emphasis after it takes a kasra — the dual, masculine and feminine alike.",
+                               "Emir fiili; nûnun hazfi üzere mebnî; elif bitişik zamir olup fâil olarak mahallen merfûdur; ondan sonraki şeddeli te'kîd nûnu meksûrdur — müzekker ve müennes tesniye için.")
+    if kind in ("mp", "fs"):
+        l_ar, v_ar, l_en, v_en, l_tr, v_tr = ("وَاوُ الْجَمَاعَةِ", "الضَّمَّةُ", "the wāw of the group", "ḍamma", "cemâat vâvı", "zamme") if kind == "mp" else ("يَاءُ الْمُخَاطَبَةِ", "الْكَسْرَةُ", "the yāʾ of the woman addressed", "kasra", "muhâtaba yâsı", "kesre")
+        return ("فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَ" + l_ar[1:] + " — الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ، وَ" + v_ar + " دَلِيلٌ عَلَيْهَا — فَاعِلٌ، وَالنُّونُ نُونُ التَّوْكِيدِ " + n_ar + ".",
+                "An imperative verb, built on the dropping of the nūn; " + l_en + " — dropped because two quiescent letters met, the " + v_en + " pointing to it — is the doer; the nūn is the " + n_en + " nūn of emphasis.",
+                "Emir fiili; nûnun hazfi üzere mebnî; " + l_tr + " — iki sâkin bir araya geldiği için hazfedilmiş, " + v_tr + " ona delâlet eder — fâildir; nûn " + n_tr + " te'kîd nûnudur.")
+    return ("فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَنُونُ النِّسْوَةِ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ — وَفُكَّ الْإِدْغَامُ لِأَنَّ سُكُونَ الدَّالِ الثَّانِيَةِ لَازِمٌ.",
+            "An imperative verb, built on sukūn because the nūn of the women is attached to it; that nūn is the attached pronoun, in the place of raf' as the doer; the alif separates, and the heavy nūn of emphasis takes a kasra — the two dāls stand apart because the sukūn of the second is fixed.",
+            "Emir fiili; nûn-ı nisve bitiştiği için sükûn üzere mebnî; nûn-ı nisve bitişik zamir olup fâil olarak mahallen merfûdur; elif fâsıladır, şeddeli te'kîd nûnu meksûrdur — ikinci dâlin sükûnu lâzım olduğu için idgâm çözülmüştür.")
+for w_, k_, h_ in (("46:s1:3", "ms", True), ("46:s1:4", "dual", True), ("46:s1:5", "mp", True), ("46:s1:6", "fs", True), ("46:s1:7", "dual", True), ("46:s1:8", "fp", True), ("46:s1:11", "ms", False), ("46:s1:12", "mp", False), ("46:s1:13", "fs", False)):
+    L(w_, *EMPH16(k_, h_), enc="")
+L("46:s6:1", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ.", "The word itself is quoted; in the place of raf' as the khabar of the mubtada.", "Lafzı kastedilerek hikâye edilmiş söz; mübtedânın haberi olarak mahallen merfû.")
+L("46:s6:2", "مُضَارِعُهُ، مَحْكِيٌّ مَعَهُ مِنْ تَمَامِ الْمِثَالِ.", "Its mudari', quoted with it — part of the example.", "Onun muzârii; onunla birlikte hikâye edilir, misâlin devamıdır.")
+L("46:s6:3", "مَصْدَرُهُ، مَحْكِيٌّ مَعَهُمَا مِنْ تَمَامِ الْمِثَالِ — مَفْعُولٌ مُطْلَقٌ مَنْصُوبٌ بِالْفَتْحَةِ.", "Its maṣdar, quoted with them — part of the example; an absolute object in nasb; the sign is the fatha.", "Onun masdarı; onlarla birlikte hikâye edilir, misâlin devamıdır — mef'ûl-i mutlak, mansûb; alâmeti fetha ile.")
+L("47:s1:9", QH16[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH16[1] + "in the place of jarr as the mudaf ilayh.", QH16[2] + "mahallen mecrûr, muzâfun ileyh.")
+for w_ in ("47:s1:10", "47:s1:11"):
+    L(w_, "تَتِمَّةُ الْحُرُوفِ الْمَسْرُودَةِ، مَحْكِيَّةٌ مَعَ مَا قَبْلَهَا.", "The rest of the listed letters, quoted with what is before them.", "Sıralanan harflerin devamı; öncekilerle birlikte hikâye edilir.", enc="")
+L("47:s1:16", "الْوَاوُ عَاطِفَةٌ، وَخَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «ذٰلِكَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The waw joins; the khabar of an omitted mubtada («that is»), in raf'; the sign is the damma; annexed (mudaf).", "Vâv atıf harfidir; mahzûf mübtedânın («ذٰلِكَ») haberi, merfû; alâmeti damme ile; muzâf.")
+L("47:s2:12", "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — يَعُودُ عَلَى «الْمَهْمُوسَةِ».",
+  "The waw opens a new sentence; the mubtada, in raf'; the sign is the damma; it is annexed, and the hāʾ is the attached pronoun in the place of jarr — it goes back to «الْمَهْمُوسَةِ».",
+  "Vâv istînâfiyyedir; mübtedâ, merfû; alâmeti damme ile; muzâftır, hâ bitişik zamir olup mahallen mecrûrdur — «الْمَهْمُوسَةِ» kelimesine döner.")
+L("47:s2:13", QH16[0] + "فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ — وَالْكَلِمَتَانِ جَامِعَتَانِ لِلْحُرُوفِ الْعَشَرَةِ الْمَهْمُوسَةِ.", QH16[1] + "in the place of raf' as the khabar of the mubtada — the two words gather the ten whispered letters.", QH16[2] + "mübtedânın haberi olarak mahallen merfû — bu iki kelime on mehmûse harfini toplar.", enc="")
+L("47:s2:14", "تَتِمَّةُ اللَّفْظِ الْمَحْكِيِّ قَبْلَهُ.", "The rest of the words quoted before it.", "Önceki hikâye edilen sözün devamı.", enc="")
+L("47:s6:13", "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْإِدْغَامُ» مَرْفُوعٌ بِالضَّمَّةِ.", "The waw joins; joined to «الْإِدْغَامُ», in raf'; the sign is the damma.", "Vâv atıf harfidir; «الْإِدْغَامُ» üzerine ma'tûf, merfû; alâmeti damme ile.")
+L("47:s7:29", "الْبَاءُ حَرْفُ جَرٍّ، وَ«اِدَّانَ» لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِالْبَاءِ، وَسَقَطَتْ هَمْزَةُ وَصْلِهِ فِي الدَّرْجِ.", "The ba is a preposition; «اِدَّانَ» is quoted as a word, in the place of jarr after the ba; its connecting hamza falls in continuous speech.", "Bâ harf-i cerdir; «اِدَّانَ» lafzı kastedilerek hikâye edilmiştir, bâ ile mahallen mecrûrdur; vasıl hemzesi geçişte düşmüştür.")
+# <<< part sixteen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

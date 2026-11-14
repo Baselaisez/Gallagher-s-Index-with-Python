@@ -15805,6 +15805,39 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1300 || J(r.g.stored) !== J(['وَقَرَ', 'يَقِرُ', 'قِرْنَ', 'جَلْبَبَ', 'يُجَلْبِبُ'].map(N))) throw new Error('the two paradigms and the audit: ' + J([r.g.checked, r.g.bad, r.g.stored]));
   });
 
+  await check('wave 199 — Marāḥ al-Arwāḥ part sixteen (the doubled verb under the nūn of emphasis and its nouns; idghām before the tāʾ of iftiʿāl; pp. 96–100) stands on the shelf with every line named; «نَحْوُ» as the mubtadaʾ of the sentence told of it and the second object of «جَعَلَ» and of its masdar are read by rule, each with its control; the five-verbs line names the pronoun by the word\'s ending; the conjugator writes the masdar of iftiʿāl on a tāʾ-initial root, and the five new paradigms hold', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [46, 47].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const d1 = sarfDerive(nakilClass({ root: 'ت ج ر' }), 'VIII'), d2 = sarfDerive(nakilClass({ root: 'ت ب ع' }), 'VIII');
+      const sent = 'فَيَجُوزُ لَكَ الْإِدْغَامُ بِجَعْلِ التَّاءِ ثَاءً وَالثَّاءِ تَاءً';
+      return { chapters: st.chapters.length, sens: [46, 47].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { emph: line(46, 's1', 3), fp: line(46, 's1', 8), maadd: line(46, 's2', 2), nahw: line(47, 's2', 0), doer: line(47, 's2', 5), five: line(47, 's3', 0), o2: line(47, 's3', 12), o2b: line(47, 's3', 14), hin: line(47, 's4', 27), iddana: line(47, 's4', 1),
+             like: line(47, 's7', 0), mithl: line(47, 's7', 2), izdana: line(47, 's7', 1), omitted: line(47, 's1', 16), wazaa: line(47, 's7', 28) },
+        e: { mub: V('ونحو «اذكر» يجوز فيه «ادكر»', 0), mubc: V('نحو «اذكر» بالذال', 0), like: V('ونحو «ازان» مثل «اذكر»', 2), o2: V('إذا جعلت التاء دالا', 3), o2c: V('إذا رأيت الرجل قائما', 3),
+             m1: V(sent, 5, 'endings'), m2: V(sent, 6, 'endings'), m3: V(sent, 7, 'endings') },
+        g: { masdar: [N(d1.masdar), N(d2.masdar)], checked: au.checked, bad: au.bad.slice(0, 3),
+             stored: [N((M('iddana').mazi || [])[5]), N((M('izdana').mudari || [])[0]), N((M('wazaa').mudari || [])[0]), N(M('ittajara').masdar), N((M('iththaara').mazi || [])[0])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 47 || J(r.sens) !== '[6,8]' || r.n !== 214) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.emph.startsWith('madda|') || !r.l.emph.includes(N('بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ')) || !r.l.fp.includes(N('بِنُونِ النِّسْوَةِ')) || !r.l.maadd.startsWith('maadd|' + N('خَبَرٌ'))) throw new Error('chapter 46: ' + J([r.l.emph, r.l.fp, r.l.maadd]));
+    if (!r.l.nahw.includes(N('مُبْتَدَأٌ')) || !r.l.nahw.includes(N('جُمْلَةُ «يَجُوزُ»')) || !r.l.doer.startsWith('iththaara|') || !r.l.doer.includes(N('فَاعِلٌ')) || !r.l.like.includes(N('وَخَبَرُهُ «مِثْلُ»')) || !r.l.mithl.startsWith('mithl|' + N('خَبَرٌ')) || !r.l.omitted.includes(N('لِمُبْتَدَإٍ مَحْذُوفٍ'))) throw new Error('«نَحْوُ» and what is told of it: ' + J([r.l.nahw, r.l.doer, r.l.like, r.l.mithl, r.l.omitted]));
+    if (!r.l.five.includes(N('وَالْأَلِفُ')) || r.l.five.includes(N('وَالْوَاوُ ضَمِيرٌ')) || !r.l.o2.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || !r.l.o2b.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || !r.l.hin.includes(N('ظَرْفُ زَمَانٍ')) || !r.l.iddana.startsWith('iddana|') || !r.l.izdana.startsWith('izdana|') || !r.l.wazaa.startsWith('wazaa|')) throw new Error('chapter 47: ' + J([r.l.five, r.l.o2, r.l.o2b, r.l.hin, r.l.iddana, r.l.izdana, r.l.wazaa]));
+    if (!/\/mubtada$/.test(r.e.mub) || /\/mubtada$/.test(r.e.mubc) || r.e.like !== N('مثلُ') + '/khabar') throw new Error('«نَحْوُ» as a mubtadaʾ, its control, and «مِثْلُ»: ' + J([r.e.mub, r.e.mubc, r.e.like]));
+    if (r.e.o2 !== N('دالًا') + '/maful2' || /\/maful2$/.test(r.e.o2c)) throw new Error('the second object of «جَعَلَ», and its control: ' + J([r.e.o2, r.e.o2c]));
+    if (r.e.m1 !== N('ثَاءً') + '/maful2' || r.e.m2 !== N('وَالثَّاءِ') + '/atf' || r.e.m3 !== N('تَاءً') + '/maful2') throw new Error('the masdar «جَعْل» and its two pairs: ' + J([r.e.m1, r.e.m2, r.e.m3]));
+    if (J(r.g.masdar) !== J(['اِتِّجَار', 'اِتِّبَاع'].map(N))) throw new Error('the masdar of iftiʿāl on a tāʾ-initial root: ' + J(r.g.masdar));
+    if (r.g.bad.length || r.g.checked < 1310 || J(r.g.stored) !== J(['اِدَّنَّ', 'يَزْدَانُ', 'يُوَازِي', 'اِتِّجَار', 'اِثَّأَرَ'].map(N))) throw new Error('the five paradigms and the audit: ' + J([r.g.checked, r.g.bad, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

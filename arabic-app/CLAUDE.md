@@ -13113,3 +13113,47 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   bare typed dual khabar as a plural («متحركين» → ـِينَ) unless the lexicon marks the dual; bare «بفتح» is read as
   a verb in the blind reading; «وَالْأَوْزَانِ» joined across a long parenthesis and «ضَرُورَةً» are hand lines.
 - **Next.** Marāḥ part sixteen opens on p. 96 at «وَتَقُولُ بِالنُّونِ الثَّقِيلَةِ».
+
+
+### v298 (wave 199) — Marāḥ al-Arwāḥ part sixteen, «نَحْوُ» as a mubtadaʾ, and the second object of «جَعَلَ»
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 96–100 of the scan (the matn's large type only):
+  chapter 46 «تَصْرِيفُ الْمُضَاعَفِ» (6 sentences — «مُدَّ» under the heavy and the light nūn, its two participles, its
+  noun of time and place, its noun of instrument, its passive) and 47 «إِدْغَامُ مَا قَبْلَ تَاءِ الِافْتِعَالِ»
+  (8 — the fourteen letters, «اِتَّخَذَ / اِتَّجَرَ», «اِثَّارَ / اِتَّارَ» and the whispered letters, «اِدَّانَ»,
+  «اِذَّكَرَ / اِدَّكَرَ / اِذْدَكَرَ» and the voiced letters, «اِزَّانَ» and the bowl inside the smaller bowl,
+  «اِسَّمَعَ»). 14 sentences / 214 words; the book stands at **47 chapters / 401 sentences / 4,673 words**, version
+  0.16.0. The letters collate with the scan's text layer exactly. The attribution records the span and the readings:
+  the two strings of letters, «اِثَّارَ» with its alif, «جَعَلْتَ» in the second person, the print's «يجعل» read as
+  the passive «يُجْعَلُ» without changing its letters, the bāʾ joined in «بِادَّانَ».
+- **Five paradigms** through `sarf_gen`: «اِتَّجَرَ», «اِثَّأَرَ», «اِدَّانَ», «اِزْدَانَ» (the hollow two with the
+  nūn's idghām: اِدَّنَّ، يَدَّنَّ) and «وَازَى». `sarfAudit` 1,319 checked, 0 bad.
+- **The conjugator.** The masdar of iftiʿāl on a tāʾ-initial root came out «اِتْتِجَار»: the verb's two tāʾs are run
+  together by the seam rule, and the masdar never passed through it. It is «اِتِّجَار / اِتِّبَاع» now.
+- **Reader rules** (`$S/w199/patch199.py`):
+  - **«نَحْوُ» as the mubtadaʾ of the sentence told of it.** «وَنَحْوُ «اِذَّكَرَ» يَجُوزُ فِيهِ «اِدَّكَرَ»»: with
+    «يَجُوزُ فِيهِ» behind the cited word (a jarr phrase or «لَا» may stand between) the pronoun comes back to
+    «نَحْوُ» — it is a mubtadaʾ, no khabar of an omitted «ذٰلِكَ»; with «مِثْلُ» and another cited word, «مِثْلُ» is
+    its khabar. The typed reading only: a stored sentence carries no quote set for the rule to read.
+  - **the second object of «جَعَلَ» and of its masdar.** «إِذَا جَعَلْتَ التَّاءَ دَالًا»: the bare indefinite behind
+    the first object is the second (it was a second «مَفْعُولٌ بِهِ»). «بِجَعْلِ التَّاءِ ثَاءً وَالثَّاءِ تَاءً»: the
+    masdar annexes its first object, the indefinite behind is the second, and a joined article-noun with a bare
+    indefinite after them is one more pair — the joined noun in jarr, the indefinite a second object (the fourth
+    word had been a ḥāl, an «اسْمُ إِنَّ» and a khabar in three sentences). Five rows in other books move with it
+    (جَعَلَ الشَّمْسَ سِرَاجًا، يَجْعَلُ الْوِلْدَانَ شِيبًا، فَجَعَلُوا الْفِعْلَ عَامًّا …).
+- **The packager** (`$S/w199/patch_pkg199.py`):
+  - **the five verbs by the word's ending.** «فَتَكُونَانِ» was told «وَالْوَاوُ ضَمِيرٌ … فَاعِلٌ» because the test
+    looked for «ون» anywhere in the word and found it in the stem; the tests are anchored to the ending, and under
+    «كَانَ» the alif is the verb's noun.
+  - **the cited doer behind «يَجُوزُ فِيهِ»**, the shelf's own line for «حِينَئِذٍ» (it had been a bare «اسْمٌ.»),
+    and the line of «نَحْوُ» as a mubtadaʾ with the khabar named («جُمْلَةُ «يَجُوزُ»», «مِثْلُ»).
+- **HadhfEngine.** A second «وَنَحْوُ» inside a sentence (47:s1) is written with the omitted-«ذٰلِكَ» wording the
+  engine restores; the audit stands at n = 1,349, 86.3 %, false 3.
+- **Measured.** Same-data sweeps: blind 2 fixed / 0 broken (71,473 → 71,475), receipts 1 fixed / 0 broken, 10 labels
+  moved; case layer 58,862 / 59,498 = 98.93 % unchanged. Typed gauge 1,158 / 1,159; label gauge 90.29 % over 34,754
+  (the five stored «نَحْوُ» mubtadaʾ lines are five rows the stored-sentence reading still calls khabar). Smoke
+  TOTAL 448, «wave 199» = #446.
+- **Left open.** «بجعل» typed bare is read as a verb, as «بفتح» is; the emphatic imperatives of the doubled verb
+  (مُدَّنَّ …) are hand lines — the analyzer finds no cell for them; the nine cited variants are keyed to their
+  verbs by hand.
+- **Next.** Marāḥ part seventeen opens on p. 101 at «وَنَحْوُ «اِشَّبَهَ» مِثْلُ «اِسَّمَعَ»».

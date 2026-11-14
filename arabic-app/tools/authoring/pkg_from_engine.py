@@ -869,6 +869,20 @@ def noal(x):
     """strip a LEADING article only (the ا-ل inside عَالَم is no article)"""
     return re.sub(r"^ال", "", x)
 
+HIN199 = ("«حِينَ» ظَرْفُ زَمَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، وَهُوَ مُضَافٌ، وَ«إِذٍ» ظَرْفٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَالتَّنْوِينُ عِوَضٌ عَنِ الْجُمْلَةِ الْمَحْذُوفَةِ.", "«ḥīna» is a time adverb in naṣb by the fatḥa, annexed to «idh», which is built on sukūn in the seat of jarr; its tanwīn stands in for the omitted clause («at that time»).", "«Hîne» fetha ile mansûb zaman zarfı ve muzâf; «iz» sükûn üzere mebnî, cer mahallinde muzâfun ileyh; tenvin, hazfedilen cümlenin ivazıdır («o vakit»).")   # (wave 199) «حِينَئِذٍ» as Taṣrīf al-ʿIzzī names it
+
+
+def told199(words, raw_words):
+    """(wave 199) what a sentence opening on «نَحْوُ» + one cited word is told by: «يَجُوزُ» / «لَا يَجُوزُ» with «فِيهِ» behind it (a jarr phrase may stand between), or «مِثْلُ» with another cited word; None otherwise"""
+    z = 2
+    while z < len(words) - 1 and z < 5 and re.match(r"^[بلك]ال", bare(words[z].get("w") or "")): z += 1
+    neg = z < len(words) and bare(words[z].get("w") or "") == "لا"
+    if neg: z += 1
+    if z + 1 < len(words) and bare(words[z].get("w") or "") == "يجوز" and bare(words[z + 1].get("w") or "") in ("فيه", "فيها"): return ("لَا " if neg else "") + "يَجُوزُ"
+    if len(words) >= 4 and bare(words[2].get("w") or "") == "مثل" and raw_words[3].startswith("«"): return "مِثْلُ"
+    return None
+
+
 def shape(w, case, enc, pos, pre_jarr):
     """the written shape of a noun host, for its sign"""
     h = N(w); b = bare(h)
@@ -1057,7 +1071,9 @@ def main():
                     if not qt_ and ke_q_.get("pos") == "verb" and not two_q_ and not fx.get("rule") and not wz_q_:
                         LQ_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Lafzı kastedilerek hikâye edilmiş söz; ")
                         pr_ = pw_.get("rule") or ""; pn_ = pw_.get("kind") == "noun" and bool(pw_.get("enc"))
-                        if w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "khabar" or (pn_ and pr_ == "mubtada"):
+                        if i >= 2 and pb1_ in ("فيه", "فيها") and re.sub(r"^[وف]", "", bare(words[i - 2].get("w") or "")) == "يجوز":   # (wave 199) يَجُوزُ فِيهِ «اِدَّكَرَ»: the cited word is what is permitted — the verb's doer, set behind the jarr phrase
+                            qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", QH_[1] + "in the place of raf' as the doer.", QH_[2] + "fâil olarak mahallen merfû.")
+                        elif w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "khabar" or (pn_ and pr_ == "mubtada"):
                             qt_ = (LQ_[0] + "فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ.", LQ_[1] + "in the place of raf' as the khabar of the mubtada.", LQ_[2] + "mübtedânın haberi olarak mahallen merfû.")
                         elif w.get("kind") == "noun" and not w.get("cell") and w.get("rule") == "naib":
                             qt_ = (QH_[0] + "فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ.", QH_[1] + "in the place of raf' as the deputy doer.", QH_[2] + "nâib-i fâil olarak mahallen merfû.")
@@ -1084,6 +1100,14 @@ def main():
                 if aligned and not fx.get("irab"):
                     rw_ = N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i]))
                     if rw_ == "لِمَ" and "lima" in G: fx = {**fx, "irab": {"ar": "اللَّامُ حَرْفُ جَرٍّ، وَ«مَ» اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى السُّكُونِ الْمُقَدَّرِ فِي مَحَلِّ جَرٍّ، حُذِفَتْ أَلِفُهُ لِدُخُولِ الْجَارِّ عَلَيْهِ.", "en": "The lam is a preposition; «مَ» is the question noun «مَا», in the place of jarr — its alif is dropped because a jarr letter has come upon it.", "tr": "Lâm harf-i cerdir; «مَ» istifhâm ismi «مَا»dır, mahallen mecrûr — üzerine câr girdiği için elifi düşmüştür."}, "key": "lima", "pos": "pron"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)
+                    elif rw_ == "حِينَئِذٍ" and w.get("kind") != "verb":   # (wave 199) the shelf's own line for the word
+                        fx = {**fx, "irab": {"ar": HIN199[0], "en": HIN199[1], "tr": HIN199[2]}}
+                    elif i == 0 and rw_ in ("نَحْوُ", "وَنَحْوُ") and len(words) >= 4 and raw_words[1].startswith("«") and re.search(r"»[،:؛.؟!]*$", raw_words[1]) and told199(words, raw_words):   # (wave 199) وَنَحْوُ «اِذَّكَرَ» يَجُوزُ فِيهِ …، وَنَحْوُ «اِزَّانَ» مِثْلُ «اِذَّكَرَ»
+                        kh_ = told199(words, raw_words); wa_ = rw_.startswith("وَ"); cl_ = kh_ != "مِثْلُ"
+                        fx = {**fx, "rule": "mubtada", "k": "raf", "irab": {"ar": ("الْوَاوُ عَاطِفَةٌ، وَ«نَحْوُ» " if wa_ else "") + "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَخَبَرُهُ " + ("جُمْلَةُ " if cl_ else "") + "«" + kh_ + "».",
+                                                                           "en": ("The waw conjoins; «نَحْوُ» is the mubtada" if wa_ else "The mubtada") + ", in raf'; the sign is the damma; annexed (mudaf) — its khabar is " + ("the clause " if cl_ else "") + "«" + kh_ + "».",
+                                                                           "tr": ("«ve» + «نَحْوُ» mübtedâ" if wa_ else "Mübtedâ") + ", merfû; alâmeti damme ile; muzâf — haberi «" + kh_ + "»" + (" cümlesidir." if cl_ else "dür.")}}
+                        if not cl_ and not (FX.get(f"{where0}:2") or {}).get("irab"): FX[f"{where0}:2"] = {**(FX.get(f"{where0}:2") or {}), "rule": "khabar", "k": "raf"}
                     elif i == 0 and rw_ in ("نَحْوُ", "وَنَحْوُ") and len(words) >= 4 and "»" not in raw_words[-1] and "«" not in raw_words[-1] and re.search(r"\u064c$", N(re.sub(r"[،:؛.؟!]", "", raw_words[-1])).replace("ّ", "")) and words[-1].get("rule") == "khabar":   # (wave 196) وَنَحْوُ «مُسْهَبٍ» … شَاذٌّ
                         kh_ = N(re.sub(r"[،:؛.؟!]", "", raw_words[-1])); wa_ = rw_.startswith("وَ")
                         fx = {**fx, "rule": "mubtada", "k": "raf", "irab": {"ar": ("الْوَاوُ عَاطِفَةٌ، وَ«نَحْوُ» " if wa_ else "") + "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَخَبَرُهُ «" + kh_ + "» فِي آخِرِ الْكَلَامِ.",
@@ -1518,7 +1542,7 @@ def main():
                         elif re.search(r"[يو]$", hb2) and rule == "raf": sign = "الضَّمَّةُ الْمُقَدَّرَةُ عَلَى " + ("الْيَاءِ" if hb2.endswith("ي") else "الْوَاوِ") + " لِلثِّقَلِ"
                         else: sign = "الضَّمَّةُ الظَّاهِرَةُ" if rule == "raf" else "الْفَتْحَةُ الظَّاهِرَةُ"
                         doer2 = "" if five else doer_ar
-                        if five: doer2 = "، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" if re.search(r"ون|وا", hb2) else ("، وَالْأَلِفُ فَاعِلٌ" if re.search(r"ان|ا$", hb2) else "، وَالْيَاءُ فَاعِلٌ")
+                        if five: doer2 = "، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ" if re.search(r"(ون|وا)$", hb2) else (("، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ اسْمُهُ" if key == "kana" else "، وَالْأَلِفُ فَاعِلٌ") if re.search(r"(ان|ا)$", hb2) else "، وَالْيَاءُ فَاعِلٌ")   # (wave 199) by the ending, not by a letter pair inside the stem
                         ar = f"فِعْلٌ مُضَارِعٌ {'مَبْنِيٌّ لِلْمَجْهُولِ ' if passive else ''}{mood[0]} {gov}، وَعَلَامَةُ {'رَفْعِهِ' if rule == 'raf' else ('نَصْبِهِ' if rule == 'nasbVerb' else 'جَزْمِهِ')} {sign}{doer2}".replace("  ", " ").replace(" ،", "،")
                         en = f"A present verb{' in the passive' if passive else ''}, {mood[1]}" + (f" after {gov.replace('بِـ', '')}" if gov else "") + ("; its doer is a hidden pronoun «" + person + "»" if hidden and not five and not enc else ""); tr = f"Muzâri fiil{' (meçhul)' if passive else ''}, {mood[2]}" + ("; fâili gizli zamir «" + person + "»" if hidden and not five and not enc else "")
                         tags = ["nawasib-wa-jawazim-al-mudari"] if rule in ("nasbVerb", "jazm") else (["afal-khamsa"] if five else [])
