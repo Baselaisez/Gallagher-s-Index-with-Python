@@ -11732,3 +11732,17 @@ The new text's four blind misses, read as constructions; three are rules now, th
 - **Left open, named.** «وَالْوَاحِدُ قَبْلَ الْمُتَعَدِّدِ» after a jarr chain — a new clause whose khabar is a ẓarf, or one
   more member of the chain: the surface carries both, and the engine says jarr. The typed JOINED alif-dual
   («وَكِتَابَا الطَّالِبِ» comes out «وَكِتَابًا») — the dual test does not peel the wāw; next engine wave.
+
+### v275 (wave 176) — the gate that only CI ran
+
+v273 and v274 went red in CI twenty seconds in: `qissa_core/tests/test_step3.py` compares
+`content/rules/masdar_tendencies.json` with a fresh fit, and the Marāḥ had added three Form I verbs (وَصَمَ، جَبَذَ،
+نَعَقَ — 555 examples became 558). The rule «a Form I verb changes → refit the tendencies» was written down and was
+not in the release script; the local gates ran everything except the one Python test that would have said so.
+
+- `python -m qissa_core.ml_engine` refits the file (558 examples; same thirteen rules, supports and confidences moved
+  in the third decimal); the builder embeds it, so the reader is rebuilt and released again.
+- **The release script now does both itself**: it refits the tendencies and runs
+  `python -m unittest discover -s qissa_core/tests -t .` before the build, and stops the release on a failure.
+  **A rule a person has to remember is a rule that will be missed; a gate that only CI runs is found out in public.**
+  When CI grows a step, the local release grows the same step in the same commit.
