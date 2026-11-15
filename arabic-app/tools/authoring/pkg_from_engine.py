@@ -685,6 +685,12 @@ def name_kawn_khabar(toks, report):
     """(wave 196) فِي كَوْنِهِمَا شَفَوِيَّةً: the khabar behind the maṣdar «كَوْن» is that maṣdar's khabar — «كَانَ» itself is not in the sentence."""
     for j, t in enumerate(toks):
         ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if j and re.match(r"^خَبَرُ «[^»]+» مَنْصُوبٌ بِالْفَتْحَةِ\.$", ar):   # (wave 200) كَوْنُ الْفِعْلِ مَرَّةً يَائِيًّا: named after an earlier sister of the sentence though «كَوْن» stands right before it, a ẓarf between
+            k2 = next((q for q in range(j - 1, max(-1, j - 5), -1) if toks[q].get("lex") == "kawn"), None)
+            if k2 is not None and not any(x.get("pos") == "verb" for x in toks[k2 + 1:j]):
+                t["irab"] = {"ar": "خَبَرُ الْمَصْدَرِ النَّاقِصِ «كَوْن» مَنْصُوبٌ بِالْفَتْحَةِ.", "en": "The predicate of the maṣdar «كَوْن» (the maṣdar of kana works as kana does), in nasb; the sign is the fatha.", "tr": "«كَوْن» masdarının haberi (kâne'nin masdarı da onun gibi amel eder), mansûb; alâmeti fetha ile."}
+                report["kawn_khabar"] = report.get("kawn_khabar", 0) + 1
+            continue
         if not ar.startswith("خَبَرُ كَانَ ") or j == 0: continue
         if any(x.get("pos") == "verb" and x.get("lex") in ("kana",) for x in toks[max(0, j - 6):j]): continue
         k = next((q for q in range(j - 1, max(-1, j - 4), -1) if toks[q].get("lex") == "kawn"), None)
@@ -878,7 +884,9 @@ def told199(words, raw_words):
     while z < len(words) - 1 and z < 5 and re.match(r"^[بلك]ال", bare(words[z].get("w") or "")): z += 1
     neg = z < len(words) and bare(words[z].get("w") or "") == "لا"
     if neg: z += 1
-    if z + 1 < len(words) and bare(words[z].get("w") or "") == "يجوز" and bare(words[z + 1].get("w") or "") in ("فيه", "فيها"): return ("لَا " if neg else "") + "يَجُوزُ"
+    V200 = {"يجوز": "يَجُوزُ", "يجب": "يَجِبُ", "يمتنع": "يَمْتَنِعُ", "يلزم": "يَلْزَمُ"}   # (wave 200)
+    if z + 1 < len(words) and bare(words[z].get("w") or "") in V200 and bare(words[z + 1].get("w") or "") in ("فيه", "فيها"): return ("لَا " if neg else "") + V200[bare(words[z].get("w") or "")]
+    if len(words) >= 4 and bare(words[2].get("w") or "") in ("اصله", "أصله", "اصلها", "أصلها") and raw_words[3].startswith("«"): return "أَصْلُهُ …" if bare(words[2].get("w") or "").endswith("ه") else "أَصْلُهَا …"   # (wave 200) وَنَحْوُ «اِتَّقَدَ» أَصْلُهُ «اِوْتَقَدَ»
     if len(words) >= 4 and bare(words[2].get("w") or "") == "مثل" and raw_words[3].startswith("«"): return "مِثْلُ"
     return None
 
@@ -898,7 +906,7 @@ def shape(w, case, enc, pos, pre_jarr):
     if re.search(r"ِّ?ينَ?$", h) and len(b) >= 5 and case in ("nasb", "jarr") and stem3: return "jam-m"
     if re.search(r"َيْ$", h) and len(b) >= 3 and case in ("nasb", "jarr") and enc == "": return "muthanna"
     if re.search(r"َات[ً-ٰ]*$", h) and len(b) >= 4: return "jam-f"
-    if re.search(r"[َ]?[اى]$", b) and not re.search(r"[ًٌٍَُِ]$", h) and len(b) >= 3 and case and b[-1] in "اى" and not b.startswith("ال") and re.search(r"[َ][اى]$|ى$", h): return "maqsur"
+    if re.search(r"[َ]?[اى]$", b) and not re.search(r"[ًٌٍَُِ]$", h) and len(b) >= 3 and case and b[-1] in "اى" and (not b.startswith("ال") or (pos != "particle" and len(b) >= 5 and re.match(r"^[اٱ]ل[ْ]?[ء-ي]", h) and (b[-1] == "ى" or b[-2] == "ي" or len(b) == 5))) and re.search(r"[َ][اى]$|ى$", h): return "maqsur"   # (wave 200) the article's own letters, never «إِلَى»; an alif after the article-word counts only behind a yāʾ (الدُّنْيَا) or on three letters (الْعَصَا) — «السِّمَانَا» ends on the alif of the rhyme
     if re.search(r"\u0650\u0651?ي$", h) and len(b) >= 3 and case in ("raf", "jarr") and not enc: return "manqus"   # (wave 194) التَّمَنِّي: the kasra may sit under a shadda
     if b in ("ابو", "اخو", "حمو", "فو", "ذو", "أبو", "أخو") or b in ("ابا", "اخا", "ذا", "أبا", "أخا") or b in ("ابي", "اخي", "ذي", "أبي", "أخي"): return "khamsa"
     if case == "jarr" and re.search(r"َ$", h) and not b.startswith("ال") and not pre_jarr == "al" and not re.search(r"[ًٌٍ]", h): return "mamnu"

@@ -13157,3 +13157,58 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   (مُدَّنَّ …) are hand lines — the analyzer finds no cell for them; the nine cited variants are keyed to their
   verbs by hand.
 - **Next.** Marāḥ part seventeen opens on p. 101 at «وَنَحْوُ «اِشَّبَهَ» مِثْلُ «اِسَّمَعَ»».
+
+### v299 (wave 200) — Marāḥ al-Arwāḥ part seventeen, «نَحْوُ» told of by a sentence, «مَرَّةً … وَمَرَّةً», and the second object behind a pronoun
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 101–104 of the scan (the matn's large type only):
+  chapter 48 «تَاءُ الِافْتِعَالِ بَعْدَ حُرُوفِ الْإِطْبَاقِ» (8 sentences — «اِشَّبَهَ», «اِصَّبَرَ / اِصْطَبَرَ» and
+  the seven elevated letters «صضطظ خغق», «سِتٌّ» from «سِدْسٌ», «اِضَّرَبَ / اِضْطَرَبَ», «اِطَّلَبَ», «اِظَّلَمَ /
+  اِطَّلَمَ / اِظْطَلَمَ») and 49 «الْوَاوُ وَالْيَاءُ قَبْلَ تَاءِ الِافْتِعَالِ» (4 — «اِتَّقَدَ» from «اِوْتَقَدَ»,
+  «اِتَّسَرَ» from «اِيتَسَرَ», why «اِيتَكَلَ» is not merged, «اِتَّخَذَ» irregular). 12 sentences / 222 words; the
+  book stands at **49 chapters / 413 sentences / 4,895 words**, version 0.17.0. The letters collate with the scan's
+  text layer but for the two spellings the attribution records («لِمُسَاوَات» written «لِمُسَاوَاةٍ»; the print's
+  repeated «كَوْن» printed once) and the layer's own run-together words.
+- **Five paradigms** through `sarf_gen`: «اِشْتَبَهَ», «اِصْطَبَرَ», «اِطَّلَبَ», «اِتَّقَدَ», «اِيتَكَلَ» (with
+  «آتَكِلُ» in the first person). «اِضْطَرَبَ», «اِتَّسَرَ» and «اِظْطَلَمَ» are the shelf's own entries (Taṣrīf
+  al-ʿIzzī), reused. `sarfAudit` 1,323 checked, 0 bad. The letter ṣād is entered as the phrase «حَرْفُ الصَّادِ»: a
+  noun lemma «صَاد» would be, letter for letter, the shelf's verb «صَادَ».
+- **Reader rules** (`$S/w200/patch200.py`):
+  - **«نَحْوُ» told of by more than «يَجُوزُ فِيهِ».** «يَجِبُ فِيهِ / يَمْتَنِعُ فِيهِ / يَلْزَمُ فِيهِ» behind the cited
+    word, and the sentence «أَصْلُهُ «…»» — there «نَحْوُ» is the first mubtadaʾ and «أَصْلُهُ» the second. A stored
+    sentence has no quote marks: «نَحْوُ» annexes, so a māḍī verb the lexicon knows right behind it is a cited word
+    by its own form — the rule reads stored sentences now (seven stored «نَحْوُ» lines moved from khabar).
+  - **the khabar behind a cited word.** «وَإِدْغَامُ «اِتَّخَذَ» شَاذٌّ»: a noun that opens its clause and is annexed
+    to a quoted word is a mubtadaʾ, the bare indefinite closing the clause its khabar (it had been the cited
+    verb's doer). Quotes only — without them «زَيْدٌ ضَرَبَ رَجُلًا» has the same shape.
+  - **«مَرَّةً … وَمَرَّةً».** Two ẓarfs; the bare indefinite behind each is the khabar a «كَوْن» still owes
+    (كَوْنُ الْفِعْلِ مَرَّةً يَائِيًّا … وَمَرَّةً وَاوِيًّا) or a ḥāl (يَأْتِي مَرَّةً رَاكِبًا وَمَرَّةً مَاشِيًا), the
+    second pair joined to the first. «مَرَّةً وَاحِدَةً» is no such pair.
+  - **the second object of «جَعَلَ»** behind the pronoun on the verb (جَعَلْتَهُ ثُلَاثِيًّا، جَعَلَنِي نَبِيًّا — 19
+    rows across the shelf moved from «مَفْعُولٌ بِهِ»), and behind the passive whose deputy doer is hidden where the
+    clause closes on the word (لَمْ تُجْعَلْ تَاءً). Where more of the clause follows, the noun behind a passive is
+    its deputy (تُجْعَلُ يَاءُ «هِيَ» أَلِفًا).
+  - **«تَصِيرُ» before a letter's name.** The names of the letters are feminine: «تَصِيرُ الْيَاءُ هَمْزَةً» speaks
+    of the letter, not to a «you», even where a second person stands later in the sentence.
+  - **the hollow verb's long vowel is no jussive.** «إِنْ لَمْ تُجْعَلْ تَاءً يَصِيرُ يَاءً»: the answer keeps its
+    rafʿ — «يَصِرْ» would be the jussive — as it may after a condition past in meaning.
+- **The packager** (`$S/w200/patch_pkg200.py`): the maqṣūr noun that wears the article takes its hidden sign
+  (الْأُولَى، الْمَعْنَى — the old test shut out every word opening on «ال» to keep «إِلَى» away; two stored
+  «الْأُولَى» lines of earlier chapters are corrected, «السِّمَانَا» with its alif of the rhyme is not touched); the
+  «نَحْوُ» mubtadaʾ line names «جُمْلَةُ «يَجِبُ»» and «جُمْلَةُ «أَصْلُهُ …»»; the khabar of «كَوْن» is named for
+  «كَوْن» where a ẓarf stands between and an earlier sister had claimed it.
+- **HadhfEngine.** «نَحْوُ» that is itself told of supposes no omitted mubtadaʾ before it; n = 1,353, 86.3 %,
+  false 3.
+- **IshtiqaqEngine.** The two-hamza law counts the hamza of joining: a silent hamza behind it turns into the long
+  vowel of its kasra or ḍamma, so the masdar of iftiʿāl on a hamza-initial root is built «اِيتِكَال»; reciting takes
+  the page's seat-spelling and the spoken long vowel for one word (اِئْتِمَام = اِيتِمَام). Calibration 3,217 / 3,265
+  (the first release run stopped at this check: one new miss had carried the ratio a hair under 98.5 %).
+- **Two earlier tokens re-keyed.** «الْمَخْرَجِ» in 47:s4 and 47:s5 is the point of articulation (`makhraj-harf`),
+  not the noun of place.
+- **Measured.** Same-data sweeps: 0 endings changed (blind 71,693 / 583 / 340; receipts 72,106 / 330 / 180), 30
+  labels moved, all toward the stored lines; case layer 59,029 / 59,665 = 98.93 % unchanged. Typed gauge
+  1,158 / 1,159; label gauge 90.29 % over 34,838. Smoke TOTAL 449, «wave 200» = #447.
+- **Left open.** A cited word the lexicon does not own («اِشَّبَهَ») is not known for a citation in a stored
+  sentence, so four stored «نَحْوُ … مِثْلُ» lines are still read as khabar there; «رأيته / زرته» typed bare are
+  read as nouns; the packager's passive «تُجْعَلْ» names «أَنْتَ» for its hidden deputy (a hand line says «هِيَ»);
+  Taṣrīf al-ʿIzzī's one «صَادًا» is still keyed to the verb.
+- **Next.** Marāḥ part eighteen opens on p. 104 at «وَيَجُوزُ الْإِدْغَامُ إِذَا وَقَعَ بَعْدَ تَاءِ الِافْتِعَالِ مِنْ حُرُوفِ «تدذز سصضطظ»».

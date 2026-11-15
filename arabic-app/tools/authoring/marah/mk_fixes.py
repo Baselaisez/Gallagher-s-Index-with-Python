@@ -1192,5 +1192,29 @@ L("47:s2:14", "تَتِمَّةُ اللَّفْظِ الْمَحْكِيِّ ق
 L("47:s6:13", "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الْإِدْغَامُ» مَرْفُوعٌ بِالضَّمَّةِ.", "The waw joins; joined to «الْإِدْغَامُ», in raf'; the sign is the damma.", "Vâv atıf harfidir; «الْإِدْغَامُ» üzerine ma'tûf, merfû; alâmeti damme ile.")
 L("47:s7:29", "الْبَاءُ حَرْفُ جَرٍّ، وَ«اِدَّانَ» لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِالْبَاءِ، وَسَقَطَتْ هَمْزَةُ وَصْلِهِ فِي الدَّرْجِ.", "The ba is a preposition; «اِدَّانَ» is quoted as a word, in the place of jarr after the ba; its connecting hamza falls in continuous speech.", "Bâ harf-i cerdir; «اِدَّانَ» lafzı kastedilerek hikâye edilmiştir, bâ ile mahallen mecrûrdur; vasıl hemzesi geçişte düşmüştür.")
 # <<< part sixteen
+# >>> part seventeen
+# ---- part seventeen (pp. 101–104): the tāʾ of iftiʿāl after the covered letters; the wāw and the yāʾ before it.
+for w_, k_ in (("48:s2:6", "sad-letter"), ("48:s5:6", "sad-letter"), ("48:s5:19", "sad-letter"), ("48:s5:22", "sad-letter"),
+               ("48:s3:10", "makhraj-harf"), ("48:s4:16", "makhraj-harf"), ("48:s7:10", "makhraj-harf"), ("47:s4:25", "makhraj-harf"), ("47:s5:19", "makhraj-harf")):
+    K(w_, k_, pos="noun")
+#      The string of letters and the sentence around it; «فَقَطْ» in the shelf's own wording; the joined ism across the parenthesis.
+L("48:s2:11", "الْوَاوُ اسْتِئْنَافِيَّةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — يَعُودُ عَلَى «الْمُسْتَعْلِيَةِ».",
+  "The waw opens a new sentence; the mubtada, in raf'; the sign is the damma; it is annexed, and the hāʾ is the attached pronoun in the place of jarr — it goes back to «الْمُسْتَعْلِيَةِ».",
+  "Vâv istînâfiyyedir; mübtedâ, merfû; alâmeti damme ile; muzâftır, hâ bitişik zamir olup mahallen mecrûrdur — «الْمُسْتَعْلِيَةِ» kelimesine döner.")
+L("48:s2:12", QH16[0] + "فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ — وَهِيَ حُرُوفُ الِاسْتِعْلَاءِ السَّبْعَةُ.", QH16[1] + "in the place of raf' as the khabar of the mubtada — these are the seven elevated letters.", QH16[2] + "mübtedânın haberi olarak mahallen merfû — bunlar yedi isti'lâ harfidir.", enc="")
+L("48:s2:13", "تَتِمَّةُ الْحُرُوفِ الْمَسْرُودَةِ، مَحْكِيَّةٌ مَعَ مَا قَبْلَهَا.", "The rest of the listed letters, quoted with what is before them.", "Sıralanan harflerin devamı; öncekilerle birlikte hikâye edilir.", enc="")
+L("48:s2:17", "خَبَرٌ ثَانٍ مَرْفُوعٌ بِالضَّمَّةِ.", "A second khabar, in raf'; the sign is the damma.", "İkinci haber, merfû; alâmeti damme ile.")
+L("48:s2:21", "الْفَاءُ زَائِدَةٌ لِلتَّزْيِينِ، وَقَطْ اسْمٌ بِمَعْنَى حَسْبُ مَبْنِيٌّ عَلَى السُّكُونِ — حَالٌ.", "«only» — mabnī; the ḥāl.", "«yalnız» — mebnî; hâl.")
+L("48:s2:22", "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ عَلَى «الصَّادَ» مَنْصُوبٌ بِالْفَتْحَةِ.", "The waw joins; joined to «الصَّادَ», in nasb; the sign is the fatha.", "Vâv atıf harfidir; «الصَّادَ» üzerine ma'tûf, mansûb; alâmeti fetha ile.")
+#      The condition whose answer keeps its rafʿ, the pair joined by one wāw, and «تَصِيرُ» with her noun written out.
+L("49:s1:10", "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ — يَعُودُ عَلَى «الْوَاوُ»، وَهُوَ فِعْلُ الشَّرْطِ.",
+  "A present verb in the passive, in jazm after «لَمْ»; its deputy doer is a hidden pronoun «هِيَ» — it goes back to «الْوَاوُ»; it is the verb of the condition.",
+  "Muzâri fiil (meçhul), meczûm; nâib-i fâili gizli zamir «هِيَ» — «الْوَاوُ» kelimesine döner; şart fiilidir.")
+L("49:s1:12", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ — وَهُوَ جَوَابُ الشَّرْطِ، وَرُفِعَ لِأَنَّ فِعْلَ الشَّرْطِ مَاضٍ فِي الْمَعْنَى بِـ«لَمْ».",
+  "A present verb, in raf'; its doer is a hidden pronoun «هُوَ» — one of kāna's sisters: it raises its noun and puts its predicate in naṣb; it is the answer of the condition, and stands in raf' because the verb of the condition is past in meaning after «لَمْ».",
+  "Muzâri fiil, merfû; fâili gizli zamir «هُوَ» — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder; şartın cevabıdır; şart fiili «لَمْ» ile mânen mâzî olduğu için merfû kalmıştır.")
+L("49:s1:26", "مَعْطُوفٌ عَلَى «يَائِيًّا» مَنْصُوبٌ بِالْفَتْحَةِ — عُطِفَ مَعَ «مَرَّةً» بِوَاوٍ وَاحِدَةٍ.", "Joined to «يَائِيًّا», in nasb; the sign is the fatha — one waw joins it together with «مَرَّةً».", "«يَائِيًّا» üzerine ma'tûf, mansûb; alâmeti fetha ile — «مَرَّةً» ile birlikte tek vâvla atfedilmiştir.")
+L("49:s3:10", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.", "A present verb, in raf' — one of kāna's sisters: it raises its noun and puts its predicate in naṣb.", "Muzâri fiil, merfû — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder.")
+# <<< part seventeen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")
