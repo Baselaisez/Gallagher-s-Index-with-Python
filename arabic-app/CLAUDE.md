@@ -13468,3 +13468,51 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   written apart is read by the hand line, not the wave-201 rule; the packager's cited khabar behind «فَصَارَ» /
   «أَصْلُ «Y»» does not yet cover forms outside the stored paradigm.
 - **Next.** Marāḥ part twenty-three opens on p. 122.
+
+### v306 (wave 207) — Marāḥ al-Arwāḥ part twenty-three (the participles of «رَأَى», the bābs of the hamzated verb, the writing of the hamza — the end of the third bāb), the cited pair by rule, the hamza's seat in the conjugator, two reader rules
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 122–125 of the scan (the matn's large type only):
+  chapter 60 «اسْمُ الْفَاعِلِ وَالْمَفْعُولِ مِنْ «رَأَى»» (10 sentences — «رَاءٍ», «مَرْئِيٌّ» from «مَرْءُويٌ», why the hamza
+  stays, «مُرًى», «مَرْأًى / مِرْأًى», «رُئِيَ يُرَى»), 61 «أَبْوَابُ الْمَهْمُوزِ وَمَوَاضِعُ الْهَمْزَةِ» (6 — five, three and four
+  bābs with their example pairs; which weak class admits which hamza) and 62 «كِتَابَةُ الْهَمْزَةِ» (5 — at the head,
+  in the middle, at the end, behind a sukūn). 21 sentences / 327 words; the book stands at
+  **62 chapters / 490 sentences / 6,232 words**, version 0.23.0 — the third bāb (the hamzated verb) is whole.
+- **Readings, said so** (attribution, three languages). The printing has «جزؤ يجزؤ» with a zāy; read «جَرُؤَ يَجْرُؤُ» — the
+  verb of that bāb in the lexica, and the fourth of the grammarians' own four examples (checked against a second
+  witness on the web). «طرء» is printed with the hamza on the line and written «طَرُؤَ», as the sentence's own rule
+  asks; «دَفْء» is read «دِفْءٍ»; «وَإِذَا كَانَتْ مَا قَبْلَهَا سَاكِنًا» and «مَرْءُويٌ» stand as printed.
+- **Nine paradigms** through `sarf_gen` (82 in the book): «أَرِجَ» «أَسُلَ» «صَدِئَ» «جَرُؤَ» «سَئِمَ» «طَرُؤَ» «وَأَدَ» «وَجَأَ»
+  «أَعَلَّ». Five cited verbs are entered as **cited forms only** (`…-cited`, pos phrase): «أَدَبَ» «سَبَأَ» «أَنَّ» «آنَ»
+  «أَهَبَ» — a paradigm would claim «أَدَب», «سَبَأ», «أَنَّ», «إِنَّ», «إِنْ» for a verb in every text.
+- **The hamza's seat in the conjugator** (`sarf_gen.seat_hamza`). The makers join stem and suffix letter by letter;
+  the hand writes the meeting by rule — «أَ + ا → آ» (وَجَآ، يَصْدَآنِ), «أَأْ → آ» (آسُلُ), «أ + ُو → ؤُو» (وَجَؤُوا),
+  «أ/ؤ + ِي → ئِي» (تَصْدَئِينَ، تَجْرُئِينَ). Applied by name to the new verbs; the shelf's older paradigms keep the
+  spelling they were reviewed in.
+- **The cited pair, by rule** (`tools/authoring/pkg_from_engine.py`). «نَحْوُ «أَخَذَ» «يَأْخُذُ» وَ «أَدَبَ» «يَأْدِبُ» …»: the
+  muḍāriʿ set beside its own māḍī with no conjunction was read as the author's verb (its ḍamma looked like a
+  khabar's), and the chain behind it broke. `PAIR_` knows the pair — a muḍāriʿ prefix, the first word's own letters
+  (the mithāl drops its wāw) or one key — and names the second «مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ» in
+  the place the first holds: jarr, and now rafʿ or naṣb behind a cited khabar or object. A muḍāriʿ no lexicon row
+  names takes its key from the māḍī beside it; the book's `-cited` entries pass the cited-word gate.
+- **The heading before cited forms** (packager, `name_khabar`). «الْمَجْهُولُ «رُئِيَ» «يُرَى»»: no sentence is said — the
+  khabar is the cited word with what is joined to it. Two older headings change with it, as intended
+  (57 «الْمُسْتَقْبَلُ», 59 «الْأَمْرُ»); no other token of chapters 1–59 changed.
+- **Reader rules** (`$S/w207/patch207.py`):
+  - **behind «إِنَّ» the maṣdar is her ism.** «يَجِبُ … لِأَنَّ وُجُوبَ حَذْفِ الْهَمْزَةِ … غَيْرُ قِيَاسِيٍّ»: the cognate-object rule
+    took «وُجُوبَ» for the maṣdar of «يَجِبُ», and the khabar behind it was then written in naṣb as her ism — a wrong
+    vowel on typed text. The rule now stands aside while إِنَّ still owes her ism.
+  - **the maqṣūr khabar.** «هٰذَا هُدًى»، «الْقُرْآنُ هُدًى لِلنَّاسِ»، «الْمَوْضِعُ مَرْأًى»: the indefinite maqṣūr the author
+    wrote (ـًى) right behind a mubtadaʾ that still owes its khabar is that khabar (it had come out a second
+    mubtadaʾ, or undecided). «رَأَيْتُ فَتًى» stays an object. On the shelf the pipeline hands the engine words with
+    their endings peeled, so the two stored lines are named by label.
+- **Hand lines** (`mk_fixes.py`, part twenty-three): «رَاءٍ» the manqūṣ khabar, «لِمَا يَجِيءُ» (lām + the relative mā),
+  the cited object behind «قِسْ عَلَى هٰذَا», «فَأُعِلَّ» in the passive, «مُرًى» annexed to «نَحْوِ», the doer of the verb
+  left unsaid («وَفِي الْأَجْوَفِ إِلَّا مَهْمُوزُ …»), «أُمٍّ» the noun (the engine reads the quoted word as the particle).
+- **Sweeps** (same data, v305 code against the candidate): blind 72,986 → 72,987 true (598 wrong, 368 undecided) and receipts-on 73,416 → 73,417 — one ending fixed (the Marāḥ's «مَرْأًى»), none broken. The full sweep ran on the first cut of the maqṣūr rule, which also moved an example of al-Kāfiya («زَيْدٌ مُعْطًى غُلَامُهُ دِرْهَمًا»: the participle's object went undecided in blind mode); the rule now stands aside before a noun that carries a pronoun, and that sentence was graded again and is as before. Case layer 60,067/60,741 = 98.89 %. Label gauge
+  90.29 % over 35,423 (31,984 agree); typed gauge 1,158/1,159.
+- **Smoke.** `wave 207` (#454; TOTAL 456).
+- **Open.** A quoted «أُمٍّ» is still read as the particle by the engine; the pipeline's peeled endings hide the
+  maqṣūr and manqūṣ shapes from the rules that read written vowels; «فَأُعِلَّ» is not read as a passive by the
+  analyzer; `K(…, pos=)` is not honoured by the packager (cited-only tokens keep the engine's part of speech);
+  typed without vowels, «وسيجيء في الناقص» still opens on a noun.
+- **Next.** Marāḥ part twenty-four opens the fourth bāb (the mithāl) on p. 126 at «وَيُقَالُ لِلْمُعْتَلِّ الْفَاءِ مِثَالٌ».

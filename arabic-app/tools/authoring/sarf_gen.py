@@ -545,6 +545,27 @@ def idgham(e):
         e[f] = [fix(c) for c in e[f]]
     return e
 
+# (wave 207) The hamza's seat where a suffix meets it. The makers join stem and
+# suffix letter by letter; the hand writes the meeting by rule:
+#   أَ + ا  → آ      (سَبَآ، يَسْبَآنِ)        two alifs are one madda
+#   أَ + أْ → آ      (آدِبُ)                    two hamzas at the head of the word
+#   أ + ُو  → ؤُو    (سَبَؤُوا، يَسْبَؤُونَ)    a ḍamma on the hamza seats it on the wāw
+#   أ/ؤ + ِي → ئِي   (تَسْبَئِينَ، تَجْرُئِينَ)  a kasra on the hamza seats it on the yāʾ
+# Applied by name to the verbs authored with it — the shelf's older paradigms
+# keep the spelling they were reviewed in.
+def seat_hamza(e):
+    def fix(s):
+        if not isinstance(s, str): return s
+        s = s.replace("أَأْ", "آ").replace("أَا", "آ")
+        s = s.replace("أُو", "ؤُو")
+        s = s.replace("أِي", "ئِي").replace("ؤِي", "ئِي")
+        return s
+    for f in ("mazi", "mudari", "amr"):
+        e[f] = [fix(c) for c in e[f]]
+    for f in ("mansub", "majzum", "majzum2"):
+        if f in e: e[f] = fix(e[f])
+    return nfc(e)
+
 for _lex in ("hana", "shana", "zana", "imtahana", "mata-die", "khana", "hazana"):
     SAMTI[_lex] = idgham(SAMTI[_lex])
 

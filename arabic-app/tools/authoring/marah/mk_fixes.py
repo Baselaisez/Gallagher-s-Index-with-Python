@@ -1380,5 +1380,41 @@ L("59:s7:2", "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى الْفَ
 L("59:s7:3", "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَوَاوُ الْجَمَاعَةِ فَاعِلٌ، حُرِّكَتْ بِالضَّمِّ لِانْفِتَاحِ مَا قَبْلَهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.", "An imperative built on the dropping of the nūn; the wāw of the group is its doer, kept and given a ḍamma because a fatḥa stands before it; the light nūn is a particle of emphasis.", "Emir fiili, nûnun hazfi üzere mebnî; cemâat vâvı fâil; öncesi fethalı olduğu için düşmemiş, zammelenmiştir; sâkin (hafîfe) nûn te'kid harfi.", key="raa", pos="verb", enc="")
 L("59:s7:4", "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَيَاءُ الْمُخَاطَبَةِ فَاعِلٌ، حُرِّكَتْ بِالْكَسْرِ لِانْفِتَاحِ مَا قَبْلَهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.", "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed is its doer, kept and given a kasra because a fatḥa stands before it; the light nūn is a particle of emphasis.", "Emir fiili, nûnun hazfi üzere mebnî; muhâtaba yâ'sı fâil; öncesi fethalı olduğu için düşmemiş, kesrelenmiştir; sâkin (hafîfe) nûn te'kid harfi.", key="raa", pos="verb", enc="")
 # <<< part twenty-two
+# >>> part twenty-three (pp. 122–125): the participles of «رَأَى», the bābs of the hamzated verb, the writing of the hamza
+# the cited forms the lexer hands to a homograph: named by key, their lines by the packager's cited-word rules
+K("61:s1:11", "adaba-cited", pos="noun")
+K("61:s1:13", "ahaba-cited", pos="noun")
+K("61:s1:14", "ahaba-cited", pos="noun")
+K("61:s3:10", "sabaa-cited", pos="noun")
+K("61:s3:11", "sabaa-cited", pos="noun")
+K("61:s4:8", "anna-cited", pos="noun")
+K("61:s4:9", "anna-cited", pos="noun")
+K("61:s6:21", "ana-cited", pos="noun")
+K("60:s4:3", "ara")
+K("60:s7:7", "ara")
+K("62:s1:21", "ibtida-start")
+#      «وَالْفَاعِلُ «رَاءٍ»»: the manqūṣ khabar — the line of «ثَانٍ» (10:s6)
+L("60:s1:1", "خَبَرٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى الْيَاءِ الْمَحْذُوفَةِ.", "The khabar (predicate), in raf'; the sign is a damma estimated on the dropped yāʾ — a manqūṣ noun.", "Haber, merfû; alâmeti hazfedilmiş yâ üzerinde takdir edilen damme — menkûs isim.", key="rai-seer", pos="noun")
+#      «لِمَا يَجِيءُ»: the lām of jarr and the relative mā — not the «لَمَّا» of time
+L("60:s2:3", "اللَّامُ حَرْفُ جَرٍّ، وَ«مَا» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ بِاللَّامِ، وَصِلَتُهُ جُمْلَةُ «يَجِيءُ» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+  "«for what»: the lām a jarr letter, «mā» a relative noun built on sukūn in the seat of jarr; its relative clause is the verbal clause «يَجِيءُ», with no place in the iʿrāb; the returning pronoun stands inside it.",
+  "«…-den dolayı»: lâm harf-i cer, «mâ» sükûn üzere mebnî ism-i mevsûl, cer mahallinde; sılası «يَجِيءُ» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir.", key="ma-mawsula", pos="pron")
+#      «وَقِسْ عَلَى هٰذَا «أَرَى» «يُرِي» «إِرَاءَةً»»: the three cited words are what is to be measured — the first the object, the others joined to it
+L("60:s4:3", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.", "The word itself is quoted; in the place of nasb as the object.", "Kelimenin kendisi kastedilmiştir (hikâye); mahallen mansûb mef'ûlün bih.", key="ara", pos="verb")
+L("60:s4:5", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ فِي مَحَلِّ نَصْبٍ.", "The word itself is quoted; joined to the word before it — the conjunction left out — in the place of nasb.", "Kelimenin kendisi kastedilmiştir (hikâye); atıf harfi hazfedilerek öncekine ma'tûf, mahallen mansûb.", key="iraa", pos="noun")
+#      «فَأُعِلَّ»: the passive of the doubled Form IV — its deputy doer the hidden pronoun
+L("60:s5:6", "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.", "The fa conjoins; a past verb in the passive; its deputy doer is a hidden pronoun «هُوَ».", "«bunun üzerine» + meçhul mâzî fiil; nâib-i fâili gizli zamirdir «هُوَ».", key="aalla", pos="verb")
+#      «فِي نَحْوِ «مُرًى»»: the cited word annexed to «نَحْوِ»; «وَأَخَوَاتُهُمَا» joined to the cited khabar
+L("60:s7:3", *QUOTE, key="mura", pos="noun")
+R("60:s7:9", "atf", "raf")
+#      «وَفِي الْأَجْوَفِ إِلَّا مَهْمُوزُ الْفَاءِ وَاللَّامِ» …: the verb is left unsaid after its first mention
+for _w in ("61:s6:17", "61:s6:27", "61:s6:38", "61:s6:45"):
+    L(_w, "فَاعِلٌ لِفِعْلٍ مَحْذُوفٍ دَلَّ عَلَيْهِ مَا قَبْلَهُ، تَقْدِيرُهُ «يَجِيءُ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The doer (fa'il) of an omitted verb that what came before points to — «يَجِيءُ» understood; in raf'; the sign is the damma; annexed (mudaf).", "Öncesinin delâlet ettiği mahzûf bir fiilin fâili — takdiri «يَجِيءُ»; merfû; alâmeti damme ile; muzâf.", key="mahmuz", pos="noun")
+#      «وَالْمَوْضِعُ «مَرْأًى» وَالْآلَةُ «مِرْأًى»»: two sentences side by side — the second noun opens its own; «أُمٍّ» is the noun joined to «أَبٍ», not the particle
+R("60:s8:1", "khabar", "raf")
+R("60:s8:2", "mubtada", "raf")
+R("60:s8:3", "khabar", "raf")
+R("62:s1:13", "atf", "jarr")
+# <<< part twenty-three
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")
