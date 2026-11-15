@@ -13617,3 +13617,56 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   keeps a naʿt; «كَانَ» still claims a later wāw-noun as its ism where a new sentence opens; «مِثْل» before a
   demonstrative lacks «مُضَافٌ» by rule; the older items stand (the quoted «أُمٍّ», «فَأُعِلَّ», `K(…, pos=)`).
 - **Next.** Marāḥ part twenty-five opens the fifth bāb (the ajwaf) on p. 132 at «وَيُقَالُ لَهُ أَجْوَفُ لِخُلُوِّ جَوْفِهِ».
+
+### v309 (wave 210) — six rules the last wave left open: the naʿt behind a jarr letter's noun, the article against the annexation, the khabar a joined «وَمَا …» is owed, the plural that is no doer, the doubled verb's past, the manqūṣ before the plural
+
+No new text. Wave 209 closed with a list of sentences the engine read wrongly; this wave reads them by rule, each with
+the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
+
+- **The typed sentence was worse than the sweep said.** The shelf's «blind» sweep hands the engine each word's lexicon
+  key; a typed sentence has none. «وَمَا وَرَدَ بِالْأَخْبَارِ الصَّحِيحَةِ حَقٌّ كَائِنٌ» swept as one wrong office — typed, it came
+  back «الصَّحِيحَةُ حَقٍّ كَائِنٍ», three wrong vowels. **Probe the typed path (`DabtEngine.vowel`) as well as the graded
+  one (`DabtEngine.grade`) before calling a sentence one miss.**
+- **(1) the naʿt behind a jarr letter's own noun.** The relative's intransitive verb names its doer in the noun after
+  it, or after the jarr PRONOUN between them («مَا يَحْتَاجُ إِلَيْهِ كُلُّ مُعْرِبٍ»). The rule also fired across a jarr
+  letter's NOUN: behind «بِالْأَخْبَارِ» the adjective «الصَّحِيحَة» was seated as the doer. A word with the article in an
+  adjective's shape right behind a majrūr noun with the article is that noun's naʿt.
+- **(2) لَا يَجْتَمِعُ الْأَلِفُ وَاللَّامُ وَالْإِضَافَةُ — again.** «صِفَةُ ذَمٍّ» (wave 24h) taught that a he-verb reading behind a
+  feminine noun is the lexicon's noun, annexed to her; the rule never asked whether she wears the article, and
+  «الصَّحِيحَةِ حَقّ» became an annexation. The noun reading stands, the pair does not. (This file states the principle already, for
+  the Analyzer's enclitic peel; a rule written for one sentence inherits that sentence's shape — here, an indefinite
+  head.)
+- **(3) the khabar a joined «وَمَا …» is owed.** «خُرُوجُ الدَّجَّالِ … وَمَا وَرَدَ بِالْأَخْبَارِ الصَّحِيحَةِ حَقٌّ»: a «وَمَا» joined to a
+  mubtadaʾ that still owes its khabar is a noun joined to a noun — a negation would need a clause of its own (the
+  `MaEngine`'s own argument, now in the vowelling loop). Its verb is the ṣila, the doer the returning pronoun, and the
+  indefinite in rafʿ behind the ṣila's jarr phrases is the owed khabar. Controls that keep their doer: «مَا بَقِيَ
+  عِنْدَهُمْ شَكٌّ», «الْعِلْمُ نُورٌ وَمَا نَزَلَ بِالْقَوْمِ عَذَابٌ» (the khabar is already said), «وَمَا وَرَدَ … حَقٌّ» with nothing before it
+  (there the negation is as good a reading, and the rule is silent).
+- **(4) the plural written with its yāʾ is no doer.** «يُحِبُّ اللهُ الْمُحْسِنِينَ»: the verb branch had stamped the Name
+  as the object and the next word as the doer (the order «يُحِبُّ اللهَ الْمُؤْمِنُونَ» does exist). A word written ـِينَ is
+  not in rafʿ: the stamps come off, the Name takes the doer's seat and wave 209's rule seats the plural as the object.
+  «يُحِبُّ اللهَ الْمُؤْمِنُونَ» and «يُحِبُّ الْمُؤْمِنُ اللهَ» stand.
+- **(5) the doubled verb's past is written as its command.** «وَدَّ، مَسَّ، عَضَّ، ظَلَّ» — the bāb «فَعِلَ يَفْعَلُ» doubled — say
+  the imperative exactly as the past (and «وَدَّا», «وَدُّوا» likewise). `findFormInParadigm` asks the imperative row
+  first, since every other verb tells the two apart by a vowel, and «وَدَّ الرَّجُلُ الْخَيْرَ» came back a command with its
+  doer in naṣb. Where one paradigm writes both alike the cell returned is the past, with `amrTwin: true`; behind a
+  vocative the loop still reads the command («يَا زَيْدُ وَدَّ الْخَيْرَ»). «مُدَّ» (ḍamma) is untouched.
+- **(6) the manqūṣ before the plural.** Typed bare, «المتقين» and «المصلين» came back with the dual's vowels
+  («الْمُتَّقَيْنِ») — a short stem with no plural stored. The manqūṣ answers by its own yāʾ: the dual gives it back
+  («الْقَاضِيَيْنِ»، «الْمُتَّقِيَيْنِ») and the sound plural drops it («الْقَاضِينَ»، «الْمُتَّقِينَ»). One yāʾ behind a manqūṣ
+  stem is the plural's (`_typedNun179`). Found by the typed gauge on first contact, not by the sweep.
+- **A regexp in a patch file.** Writing `\u0651` into a Python `'''` string that is itself pasted into a `"""`
+  string turns the escape into the combining mark itself: the rule still worked, with two invisible characters in a
+  character class. Write such a line as a raw string and grep the built code for the escape before trusting it.
+- **Typed battery**: 381 → 392 sentences (eleven on first contact, all clean after rule 6). Left out on purpose:
+  «في المدينة المنورة مسجد» — bare, «المنورة» can open a clause as well as describe the city; the battery holds only
+  sentences the bare letters do not leave open. With its vowels typed the sentence is gated in the smoke check.
+- **Sweeps** (v308 code against the candidate, same data): blind 0 fixed / 0 broken (73,340 right of 74,308; 598 wrong, 370 undecided), receipts-on 0 / 0 (73,768; 340; 200); one office renamed in each, rightly — «حَقٌّ» in al-Uṣūl 34:s1 from doer to khabar. The other five rules move typed sentences only. Case layer 60,388 / 61,067 = 98.89 %. Label gauge
+  90.32 % (32,159 / 35,605); typed gauge 1,187 / 1,188 over 392 sentences; calibration 3,278 / 3,321.
+- **Smoke.** `wave 210` (#457; TOTAL 459).
+- **Open.** «مَسَّ الرَّجُلُ الْمُصْحَفَ»، «عَلِمَ الرَّجُلُ الْيَقِينَ»: the word with the article behind the doer is read a naʿt
+  where it is the object — the glossaries mark adjectives as `noun` (42 entries say `adj`), so the lexicon cannot
+  settle it and the shape (فَعِيل، مُفْعَل) points the wrong way; «مُدَّ يَدَكَ» typed is read as the passive past with a
+  deputy doer; «لَيْتَهُ طَالَبَ بِحَقِّهِ» typed bare loses the shadda of «حَقّ»; «كَانَ» still claims a later wāw-noun as its
+  ism where a new sentence opens; «مِثْل» before a demonstrative lacks «مُضَافٌ» by rule.
+- **Next.** Marāḥ part twenty-five opens the fifth bāb (the ajwaf) on p. 132 at «وَيُقَالُ لَهُ أَجْوَفُ لِخُلُوِّ جَوْفِهِ».

@@ -16214,6 +16214,35 @@ if (!CHROME) {
     if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
   });
 
+  await check('wave 210 — six rules the shelf and the typed sentence asked for, each with its control: the adjective behind a jarr letter\'s own noun is its naʿt and no doer of the relative\'s verb; a word wearing the article annexes nothing; a «وَمَا …» joined to a mubtadaʾ still owed its khabar hands that khabar to the indefinite behind the ṣila, and the negation keeps its doer; the word written with the plural\'s yāʾ is no doer («يُحِبُّ اللهُ الْمُحْسِنِينَ»); the doubled verb\'s past is not read as its command («وَدَّ الرَّجُلُ»), and behind a vocative it is; the manqūṣ drops its yāʾ before the sound plural («الْمُتَّقِينَ»)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const reset = () => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; };
+      const S = t => { try { reset(); return DabtEngine.vowel(t, 'endings').words.map(v => N(v.out) + '/' + v.rule).join(' '); } catch (e) { return 'ERR ' + e.message; } };
+      const F = w => { try { const v = RootFinder.find(w); if (!v) return 'null'; return N(v.lemma || (v.entry && v.entry.lemma) || '') + '/' + (v.cell ? v.cell.tense + ':' + v.cell.i + (v.cell.amrTwin ? ':twin' : '') : ''); } catch (e) { return 'ERR ' + e.message; } };
+      const st = STORIES.find(x => x.id === 'al-usul-al-munifa'); const tk = (n, id, i) => { const c = st && st.chapters[n - 1]; const sn = c && c.sentences.find(x => x.id === id); return sn ? N(sn.tokens[i].s.full) + '|' + N((sn.tokens[i].irab || {}).ar) : ''; };
+      return {
+        rel: S('خُرُوجُ الدَّجَّالِ وَمَا وَرَدَ بِالْأَخْبَارِ الصَّحِيحَةِ حَقٌّ كَائِنٌ'), rel2: S('الْجَنَّةُ وَالنَّارُ وَمَا جَاءَ فِي الْكِتَابِ حَقٌّ'), rel3: S('الْحَقُّ وَمَا نَزَلَ مِنَ السَّمَاءِ نُورٌ'),
+        neg: S('مَا بَقِيَ عِنْدَهُمْ شَكٌّ'), neg2: S('الْعِلْمُ نُورٌ وَمَا نَزَلَ بِالْقَوْمِ عَذَابٌ'), relDoer: S('الْحَقُّ مَا وَرَدَ بِهِ الشَّرْعُ'),
+        nat: S('وَمَا جَاءَ فِي الْكُتُبِ الصَّحِيحَةِ حَقٌّ'), idafa: S('هٰذِهِ صِفَةُ ذَمٍّ'), nat2: S('فِي الْمَدِينَةِ الْمُنَوَّرَةِ مَسْجِدٌ'),
+        love: S('يُحِبُّ اللهُ الْمُحْسِنِينَ'), love2: S('يُحِبُّ اللهَ الْمُؤْمِنُونَ'), love3: S('يُحِبُّ الْمُؤْمِنُ اللهَ'), love4: S('يُضِلُّ اللهُ الظَّالِمِينَ'),
+        wadda: S('وَدَّ الرَّجُلُ الْخَيْرَ'), waddaBare: S('ود الرجل الخير'), waddaVoc: S('يَا زَيْدُ وَدَّ الْخَيْرَ'), madda: S('مَدَّ الرَّجُلُ يَدَهُ'),
+        find: { wadda: F('وَدَّ'), waddu: F('وَدُّوا'), massa: F('مَسَّ'), zalla: F('ظَلَّ'), madda: F('مَدَّ'), mudda: F('مُدَّ'), waddat: F('وَدَّتْ') },
+        manq: S('يحب الله المتقين'), manq2: S('يحب الله المصلين'), manq3: S('رأيت الولدين'), manq4: S('يحب الله المهتدين'),
+        usul: [tk(28, 's5', 21), tk(34, 's1', 27)] }; });
+    const N = x => String(x || '').normalize('NFC'), has = (a, b) => N(a).includes(N(b));
+    if (!has(r.rel, 'الصَّحِيحَةِ/nat') || !has(r.rel, 'حَقٌّ/khabar') || !has(r.rel, 'كَائِنٌ/') || has(r.rel, 'كَائِنٍ')) throw new Error('the khabar a joined «وَمَا …» is owed: ' + r.rel);
+    if (!has(r.rel2, 'حَقٌّ/khabar') || !has(r.rel3, 'نُورٌ/khabar')) throw new Error('the khabar behind the ṣila: ' + J([r.rel2, r.rel3]));
+    if (!has(r.neg, 'شَكٌّ/fail') || !has(r.neg2, 'عَذَابٌ/fail') || !has(r.relDoer, 'الشَّرْعُ/fail')) throw new Error('the negation and the relative keep their doer: ' + J([r.neg, r.neg2, r.relDoer]));
+    if (!has(r.nat, 'الصَّحِيحَةِ/nat') || has(r.nat, 'حَقٍّ') || !has(r.idafa, 'ذَمٍّ/mudafIlayh') || !has(r.nat2, 'الْمُنَوَّرَةِ/nat') || !has(r.nat2, 'مَسْجِدٌ/mubtada')) throw new Error('the article and the annexation never meet; «صِفَةُ ذَمٍّ» still annexes: ' + J([r.nat, r.idafa, r.nat2]));
+    if (r.love !== N('يُحِبُّ/raf اللهُ/fail الْمُحْسِنِينَ/maful') || !has(r.love2, 'اللهَ/maful') || !has(r.love2, 'الْمُؤْمِنُونَ/fail') || !has(r.love3, 'الْمُؤْمِنُ/fail') || !has(r.love3, 'اللهَ/maful') || !has(r.love4, 'اللهُ/fail') || !has(r.love4, 'الظَّالِمِينَ/maful')) throw new Error('the plural written with its yāʾ is the object: ' + J([r.love, r.love2, r.love3, r.love4]));
+    if (r.wadda !== N('وَدَّ/mazi الرَّجُلُ/fail الْخَيْرَ/maful') || !has(r.waddaBare, 'وَدَّ/mazi') || !has(r.waddaBare, '/fail') || !has(r.waddaVoc, 'وَدَّ/amr') || !has(r.madda, 'مَدَّ/mazi')) throw new Error('the doubled verb\'s past and its command: ' + J([r.wadda, r.waddaBare, r.waddaVoc, r.madda]));
+    const F = r.find;
+    if (F.wadda !== N('وَدَّ') + '/mazi:0:twin' || F.waddu !== N('وَدَّ') + '/mazi:2:twin' || !F.massa.endsWith('/mazi:0:twin') || !F.zalla.includes('/mazi:0') || F.madda !== N('مَدَّ') + '/mazi:0' || F.mudda !== N('مَدَّ') + '/amr:0' || F.waddat !== N('وَدَّ') + '/mazi:3') throw new Error('the paradigm cells of the doubled verb: ' + J(F));
+    if (!has(r.manq, 'المتقِينَ/maful') || !has(r.manq2, 'المصلِينَ/maful') || !has(r.manq3, 'الولدَيْنِ/') || !has(r.manq4, 'المهتدِينَ/maful')) throw new Error('the manqūṣ before the sound plural, the dual beside it: ' + J([r.manq, r.manq2, r.manq3, r.manq4]));
+    if (!has(r.usul[0], 'مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْيَاءِ') || !has(r.usul[1], 'خَبَرٌ مَرْفُوعٌ')) throw new Error('al-Uṣūl\'s two corrected lines: ' + J(r.usul));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
