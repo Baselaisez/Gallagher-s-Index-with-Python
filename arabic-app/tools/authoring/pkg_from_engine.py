@@ -1106,6 +1106,12 @@ def main():
                     if pb1_ in ("مثل", "نحو", "خلاف", "بخلاف", "كمثل"): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH_[1] + "in the place of jarr as the mudaf ilayh.", QH_[2] + "mahallen mecrûr, muzâfun ileyh.")
                     elif pb1_ in ("في", "وفي", "ففي"): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ بِـ«فِي».", QH_[1] + "in the place of jarr after «فِي».", QH_[2] + "«فِي» ile mahallen mecrûr.")
                     elif pb1_ in ("من", "على", "الى", "إلى", "عن") and pw_.get("kind") == "particle": qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ بِـ«" + praw_ + "».", QH_[1] + "in the place of jarr after «" + praw_ + "».", QH_[2] + "«" + praw_ + "» ile mahallen mecrûr.")
+                    elif pb1_ == "و" and (i - 2) in quoted_jarr_ and i >= 4 and bare(words[i - 3].get("w") or "") == "في" and raw_words[i - 4].startswith("«") and i + 2 < len(words) and bare(words[i + 1].get("w") or "") == "في" and raw_words[i + 2].startswith("«") and words[i - 4].get("k") in ("raf", "nasb") and w.get("rule") == "atf" and w.get("k") == words[i - 4].get("k"):
+                        # (wave 205) لَا يَجِبُ «يَنَى» فِي «يَنْأَى» وَ «يَسَلُ» فِي «يَسْأَلُ»: pairs set side by side — the word that opens the second pair is joined to the word that opens the first, not to the one «فِي» governs
+                        hq_ = i - 4
+                        while hq_ >= 4 and bare(words[hq_ - 1].get("w") or "") == "و" and bare(words[hq_ - 3].get("w") or "") == "في" and raw_words[hq_ - 4].startswith("«"): hq_ -= 4
+                        hw_ = N(re.sub(r"[«»،:؛.؟!]", "", raw_words[hq_])); mh_ = {"raf": ("رَفْعٍ", "raf'", "merfû"), "nasb": ("نَصْبٍ", "nasb", "mansûb")}[w.get("k")]
+                        qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى «" + hw_ + "» فِي مَحَلِّ " + mh_[0] + ".", QH_[1] + "joined to «" + hw_ + "», in the place of " + mh_[1] + ".", QH_[2] + "«" + hw_ + "» üzerine ma'tûf, mahallen " + mh_[2] + ".")
                     elif pb1_ == "و" and (i - 2) in quoted_jarr_: qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", QH_[1] + "joined to the word before it, in the place of jarr.", QH_[2] + "öncekine ma'tûf, mahallen mecrûr.")
                     elif raw_words[i - 1].startswith("«") and (i - 1) in quoted_jarr_ and not re.search(r"[\u064c\u064f]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("\u0651", "")): qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ فِي مَحَلِّ جَرٍّ.", QH_[1] + "joined to the word before it — the conjunction left out — in the place of jarr.", QH_[2] + "atıf harfi hazfedilerek öncekine ma'tûf, mahallen mecrûr.")   # «لِيَضْرِبَنَّ» «لِيَضْرِبَانِّ» …: a list of cited forms
                     elif (pw_.get("kind") == "noun" and not raw_words[i - 1].startswith("«") and not re.search(r"[،:؛.؟!»]$", raw_words[i - 1]) and (re.search(r"[َُِ]$", praw_.replace("ّ", "")) or re.search(r"َيْ$", praw_)) and not re.match(r"^[وف]?[بكل]?ال", bare(praw_))
@@ -1787,7 +1793,8 @@ def main():
             kana_dedupe(toks)   # (wave 165; a function since wave 167 so that polish_pkg.py can run it on a shipped package)
             doer_dedupe(toks)   # (wave 183) a verb whose doer is written keeps no hidden one beside it — see doer_dedupe.py
             passive_trilingual(toks)   # (wave 185) the en/tr of a passive verb's line name the DEPUTY doer the Arabic names — see passive_trilingual.py
-            if meta.get("cellLines"):   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
+            ROWMIN_ = 2 if meta.get("cellLines") else int(meta.get("cellRows") or 0)   # (wave 205) «cellRows: n» in a book's meta: only a recited row of n or more cells of one verb takes its lines from the paradigm (يَرَى يَرَيَانِ يَرَوْنَ …); «cellLines» reads every pair so, as the ʿIzzī needs
+            if ROWMIN_:   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
                 import cell_lines as CL
                 def vhost_(t):
                     f = N(t["surface"]["full"]); sg = t.get("segments") or []
@@ -1811,6 +1818,7 @@ def main():
                     return out
                 for i, t in enumerate(toks):   # a verb cell filed under a homograph lemma (تَقُولُ under تَقَوَّلَ): exactly one other paradigm owns the written form
                     k0 = t.get("lex")
+                    if not meta.get("cellLines"): break
                     if t.get("pos") != "verb" or k0 not in M or f"{where0}:{i}" in CITE or FX.get(f"{where0}:{i}", {}).get("key"): continue
                     hs = hosts_(N(t["surface"]["full"]))
                     if any(CL.candidates(M[k0], h) for h in hs): continue
@@ -1835,14 +1843,14 @@ def main():
                     run = [i]; j = i + 1
                     while j < len(toks):
                         if info[j] and info[j]["key"] == a_["key"]: run.append(j); j += 1
-                        elif info[j] and len(run) >= 2 and mk_(toks[j], a_["key"])["cs"]:   # a cell of the SAME verb that a homograph lemma had claimed (تَنْصُرْ → نَصَرَ, not تَنَصَّرَ)
+                        elif meta.get("cellLines") and info[j] and len(run) >= 2 and mk_(toks[j], a_["key"])["cs"]:   # a cell of the SAME verb that a homograph lemma had claimed (تَنْصُرْ → نَصَرَ, not تَنَصَّرَ)
                             info[j] = mk_(toks[j], a_["key"]); old_ = toks[j].get("lex"); toks[j]["lex"] = a_["key"]; take(a_["key"], f"{where0}:{j}")
                             for sg in (toks[j].get("segments") or []):
                                 if sg.get("lex") == old_: sg["lex"] = a_["key"]
                             report.setdefault("cellRekey", []).append(f"{where0}:{j} {old_}->{a_['key']}"); run.append(j); j += 1
                         elif re.sub(r"^[وف]", "", bare(toks[j]["surface"]["full"])) in PARTS_ and j + 1 < len(toks) and info[j + 1] and info[j + 1]["key"] == a_["key"]: j += 1
                         else: break
-                    if len(run) >= 2:
+                    if len(run) >= ROWMIN_ and (meta.get("cellLines") or all(info[q]["cs"] for q in run)):
                         prev = -1; ptense = None
                         la_jazm = any(prev_part(q) == "لا" and ((info[q]["cs"] and any(c[0] == "mudari" and c[2] == "jazm" for c in info[q]["cs"]) and not any(c[0] == "mudari" and c[2] == "raf" for c in info[q]["cs"])) or (not info[q]["cs"] and CL.tawkid_line(info[q]["h"], "لا"))) for q in run)   # one cell of the row is visibly forbidden (لَا يَنْصُرْ، لَا تُرِيَنَّ): the whole row is the prohibition
                         for q in run:
@@ -1875,7 +1883,7 @@ def main():
                                 if sg.get("lex") == t["lex"]: sg["pos"] = t["pos"]
                     i = run[-1] + 1
                 # a same-word row of nouns (نَاصِرٌ نَاصِرَانِ نَاصِرُونَ …): each is the word itself, quoted
-                i = 0
+                i = 0 if meta.get("cellLines") else len(toks)
                 while i < len(toks):
                     j = i
                     while j + 1 < len(toks) and toks[j + 1].get("lex") == toks[i].get("lex") and toks[i].get("lex") not in M: j += 1

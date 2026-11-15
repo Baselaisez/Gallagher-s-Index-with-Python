@@ -13383,3 +13383,51 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   known from its active («تقلب الواو ياء»).
 - **Next.** Marāḥ part twenty-one opens on p. 115 at «وَعِنْدَ بَعْضِ الْعَرَبِ يُقْحَمُ بَيْنَهُمَا أَلِفٌ لِلْفَصْلِ» — collate the
   half-verse «آأَنْتِ أَمْ أُمُّ سَالِمِ» against a dīwān first.
+
+### v304 (wave 205) — Marāḥ al-Arwāḥ part twenty-one (the alif of separation, the hamza at the head of the word, «يَرَى» and its paradigm), the recited paradigm read cell by cell, and three reader rules
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 115–118 of the scan (the matn's large type only):
+  chapter 56 «أَلِفُ الْفَصْلِ، وَالْهَمْزَةُ فِي أَوَّلِ الْكَلِمَةِ» (5 sentences — the alif thrust between two hamzas, the hamza
+  never lightened at the head of the word, «نَاسٌ» from «أُنَاسٌ», the two derivations of the Name, «يَرَى» from «يَرْأَيُ»)
+  and 57 «تَخْفِيفُ «يَرَى» وَتَصْرِيفُهُ» (6 — why the lightening binds «يَرَى» alone, «رَأَى رَأَيَا رَأَوْا …», the fourteen
+  cells of the muḍāriʿ, «يَرَوْنَ», the incidental vowel of «يَرَيَانِ»). 11 sentences / 200 words; the book stands at
+  **57 chapters / 459 sentences / 5,754 words**, version 0.21.0. The letters collate with the scan's text layer but
+  for the hamza spellings, two split words and the written-out «إلخ».
+- **Readings, said so.** The example of the alif of separation is printed «ءاءنتِ ظبيّة أم أُمّ سالم»; it is vowelled
+  «آأَنْتِ ظُبَيَّةٌ أَمْ أُمُّ سَالِمٍ» — the diminutive, because the printing draws the shadda. The words come from the
+  close of Dhū al-Rumma's verse («… آأَنْتِ أَمْ أُمُّ سَالِمِ», checked against a second witness on the web); the matn's
+  sentence is kept as printed, and the attribution says so in three languages, with «لُيِّنَتِ», «يَنْأَى», «مُرْأًى»,
+  «إِلَى آخِرِهِ» and «أَنْ يَرَى».
+- **One paradigm** through `sarf_gen` (72 in the book): «أَقْحَمَ». «رَأَى» was on the shelf already — its stored
+  māḍī and muḍāriʿ are the matn's own two lists, cell for cell.
+- **The recited paradigm, by rule** (`tools/authoring/pkg_from_engine.py`, meta `cellRows: 4`). The engine read every
+  cell of «رَأَى رَأَيَا رَأَوْا …» and «يَرَى يَرَيَانِ يَرَوْنَ …» rightly; the packager's shape tests did not know
+  the defective verb's «ـَوْا / ـَوْنَ / ـَيْنَ» and wrote «رَأَوْا» with a hidden «هُوَ» and «يَرَوْنَ» in naṣb. The
+  ʿIzzī's cell-line table (`cell_lines.py`) is now open to any book: with `cellRows: n` a run of n or more cells of one
+  verb takes each line from its seat in the stored paradigm — so the first «تَرَى» is «هِيَ» and the second «أَنْتَ»,
+  the first «تَرَيْنَ» the woman addressed (the five verbs) and the second the women's nūn. `cellLines` keeps its
+  wider reading for the ʿIzzī. No token of chapters 1–55 changed.
+- **Pairs set side by side** (packager). «لَا يَجِبُ «يَنَى» فِي «يَنْأَى» وَ «يَسَلُ» فِي «يَسْأَلُ»»: the word that opens
+  the second pair is joined to the word that opens the first — named in the line — not to the one «فِي» governs.
+- **Reader rules** (`$S/w205/patch205.py`):
+  - **the letter-name annexed to a cited verb.** «وَحَرَكَةُ يَاءِ «يَرَيَانِ» طَارِيَةٌ»: a letter-name the author wrote
+    with a bare short vowel, itself annexed to a mubtadaʾ, annexes the verb behind it as a cited word — the verb
+    governs nothing, and the bare noun behind it is the mubtadaʾ's khabar (it had come out a verb, a doer in rafʿ and
+    «طَارِيَةً» its object). «الْيَاءُ تُقْلَبُ أَلِفًا» is untouched.
+  - **the khabar behind the parenthesis «أَصْلُهُ «X»».** «وَتَخْفِيفُهَا بِالْحَذْفِ فِي «نَاسٌ» أَصْلُهُ «أُنَاسٌ» شَاذٌّ»: the
+    bare noun behind the closing quote is the khabar the earlier mubtadaʾ still owes; the label pass (R4, R13–R17)
+    leaves it be. On the shelf the packages carry no quotes, so the rule speaks only for typed text — the stored
+    line is the engine's all the same, through the packager's pass.
+  - **the second object before «لِأَنَّ».** «وَلَا تُقْلَبُ أَلِفًا لِأَنَّهُ …»: wave 204's clause-closing test now
+    knows the reason-clause.
+- **Hand lines** (`mk_fixes.py`, part twenty-one): «آأَنْتِ» with its three parts, «ظُبَيَّةٌ» as the khabar and the
+  diminutive, the Name as a cited word behind «فِي» and behind «فَصَارَ», «الْلَاهُ / اَلِلَاهُ», «سَوَاكِنَ» as a
+  diptote, «مُرًى / مُرْأًى».
+- **Sweeps** (same data, v303 code against the candidate): blind 72,519 true / 595 wrong / 361 undecided → 72,520 / 594 / 361 (one fixed, none broken — «طَارِيَةٌ»); receipts-on 72,946 / 336 / 193 both, three labels righted in the same sentence. Case layer 59,704 / 60,363 = 98.91 %. Label gauge
+  90.28 % over 35,219 (31,797 agree); typed gauge 1,158 / 1,159.
+- **Smoke.** `wave 205` (#452; TOTAL 454).
+- **Open.** A letter-name that is itself the mubtadaʾ before a cited verb («يَاءُ «يَرْمِي» سَاكِنَةٌ») is still read by
+  the packager's quotes alone; a heading before a recited row («الْمُسْتَقْبَلُ:») is told as mubtadaʾ with a verbal
+  khabar; typed without vowels, «وحكم يرون» opens on a verb.
+- **Next.** Marāḥ part twenty-two opens on p. 118 at «وَأَصْلُ «تَرَيْنَ»: «تَرْأَيِينَ» عَلَى وَزْنِ «تَفْعَلِينَ»» and
+  runs through the amr «رَ رَيَا رَوْا» and the nūn of emphasis (pp. 119–121).

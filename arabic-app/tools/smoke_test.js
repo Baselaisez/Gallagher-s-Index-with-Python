@@ -16007,6 +16007,38 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1333 || r.g.hadhf > 3 || J(r.g.stored) !== J(['أُوجِرُ', 'إِيجَار', 'أُودِمُ', 'اِئْسِرْ', 'آسِرُ', 'يُفْضِي'].map(N))) throw new Error('the four paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
   });
 
+  await check('wave 205 — Marāḥ al-Arwāḥ part twenty-one (the alif of separation, the hamza at the head of the word, «يَرَى» and its paradigm; pp. 115–118) stands on the shelf with every line named; a recited paradigm takes each cell\'s line from its seat; the letter-name annexed to a cited verb, the khabar behind an «أَصْلُهُ» parenthesis and the second object before «لِأَنَّ» are read by rule, each with its control; the new paradigm holds', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [56, 57].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const ya = 'وَحَرَكَةُ يَاءِ «يَرَيَانِ» طَارِيَةٌ وَلَا تُقْلَبُ أَلِفًا لِأَنَّهُ لَوْ قُلِبَتْ يَجْتَمِعُ السَّاكِنَانِ', nas = 'وَتَخْفِيفُهَا بِالْحَذْفِ فِي «نَاسٌ» أَصْلُهُ «أُنَاسٌ» شَاذٌّ';
+      return { chapters: st.chapters.length, sens: [56, 57].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { aqhama: line(56, 's1', 3), anti: line(56, 's1', 8), zabya: line(56, 's1', 9), umm: line(56, 's1', 11), salim: line(56, 's1', 12), shadhdh: line(56, 's3', 6), fi: line(56, 's4', 2), lah: line(56, 's4', 15), sara: line(56, 's4', 21), allah: line(56, 's4', 22), yarayu: line(56, 's5', 24), sawakin: line(56, 's5', 36),
+             yana: line(57, 's1', 21), yasal: line(57, 's1', 25), mura: line(57, 's1', 29), raaw: line(57, 's2', 6), raayna: line(57, 's2', 9), yarawna: line(57, 's4', 3), yarayna: line(57, 's4', 6), tara2: line(57, 's4', 7), tarayna1: line(57, 's4', 10), tarayna2: line(57, 's4', 12), ara: line(57, 's4', 13), ya: line(57, 's6', 1), yarayani: line(57, 's6', 2), tari: line(57, 's6', 3), alif: line(57, 's6', 6) },
+        e: { y1: V(ya, 1, 'endings'), y2: V(ya, 2, 'endings'), y3: V(ya, 3, 'endings'), a6: V(ya, 6, 'endings'), yc: V('الْيَاءُ تُقْلَبُ أَلِفًا', 1, 'endings'), n6: V(nas, 6, 'endings'), nc: V('هٰذَا كِتَابٌ جَدِيدٌ', 2, 'endings') },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), hadhf: HadhfEngine.audit().false,
+             stored: [N((M('aqhama').mudari || [])[0]), N(M('aqhama').majhulMudari), N(M('aqhama').masdar), N((M('raa').mudari || [])[9]), N((M('raa').mazi || [])[2])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 57 || J(r.sens) !== '[5,6]' || r.n !== 200) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.aqhama.startsWith('aqhama|' + N('فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ')) || !r.l.anti.startsWith('anti|') || !r.l.anti.includes(N('مُقْحَمَةٌ لِلْفَصْلِ')) || !r.l.zabya.includes(N('خَبَرُ الْمُبْتَدَإِ «أَنْتِ»')) || !r.l.zabya.includes(N('تَصْغِيرُ')) || !r.l.umm.includes(N('مَعْطُوفٌ مَرْفُوعٌ')) || !r.l.salim.startsWith('salim-name|')) throw new Error('the alif of separation: ' + J([r.l.aqhama, r.l.anti, r.l.zabya, r.l.umm, r.l.salim]));
+    if (!r.l.shadhdh.includes(N('خَبَرٌ مَرْفُوعٌ')) || !r.l.fi.startsWith('allah|') || !r.l.fi.includes(N('فِي مَحَلِّ جَرٍّ بِـ«فِي»')) || !r.l.lah.startsWith('lah-cited|') || !r.l.lah.includes(N('خَبَرُ «صَارَ»')) || !r.l.sara.includes(N('وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ')) || !r.l.allah.includes(N('خَبَرُ «صَارَ»')) || !r.l.yarayu.startsWith('raa|') || !r.l.sawakin.startsWith('sakin|') || !r.l.sawakin.includes(N('مَمْنُوعٌ مِنَ الصَّرْفِ'))) throw new Error('the hamza at the head of the word: ' + J([r.l.shadhdh, r.l.fi, r.l.lah, r.l.sara, r.l.allah, r.l.yarayu, r.l.sawakin]));
+    if (!r.l.yana.startsWith('naa|') || !r.l.yana.includes(N('فِي مَحَلِّ رَفْعٍ فَاعِلٌ')) || !r.l.yasal.startsWith('saala|') || !r.l.yasal.includes(N('مَعْطُوفٌ عَلَى «يَنَى» فِي مَحَلِّ رَفْعٍ')) || !r.l.mura.startsWith('mura|') || !r.l.mura.includes(N('مَعْطُوفٌ عَلَى «يَنَى» فِي مَحَلِّ رَفْعٍ'))) throw new Error('the pairs set side by side: ' + J([r.l.yana, r.l.yasal, r.l.mura]));
+    if (!r.l.raaw.includes(N('الْأَلِفِ الْمَحْذُوفَةِ لِالْتِقَاءِ السَّاكِنَيْنِ')) || !r.l.raaw.includes(N('وَالْوَاوُ')) || !r.l.raayna.includes(N('بِنُونِ النِّسْوَةِ')) || !r.l.yarawna.includes(N('ثُبُوتُ النُّونِ')) || !r.l.yarawna.includes(N('وَالْوَاوُ')) || !r.l.yarayna.includes(N('بِنُونِ النِّسْوَةِ')) || !r.l.tara2.includes(N('أَنْتَ')) || !r.l.tarayna1.includes(N('ثُبُوتُ النُّونِ')) || !r.l.tarayna1.includes(N('الْمُخَاطَبَةِ')) || !r.l.tarayna2.includes(N('بِنُونِ النِّسْوَةِ')) || !r.l.ara.startsWith('raa|') || !r.l.ara.includes(N('أَنَا'))) throw new Error('the recited paradigm, cell by cell: ' + J([r.l.raaw, r.l.raayna, r.l.yarawna, r.l.yarayna, r.l.tara2, r.l.tarayna1, r.l.tarayna2, r.l.ara]));
+    if (!r.l.ya.includes(N('مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ')) || !r.l.yarayani.includes(N('فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ')) || !r.l.tari.startsWith('tari-incidental|' + N('خَبَرٌ مَرْفُوعٌ')) || !r.l.alif.includes(N('مَفْعُولٌ بِهِ ثَانٍ'))) throw new Error('the letter-name annexed to a cited verb, on the shelf: ' + J([r.l.ya, r.l.yarayani, r.l.tari, r.l.alif]));
+    if (r.e.y1 !== N('يَاءِ') + '/mudafIlayh' || r.e.y2 !== N('يَرَيَانِ') + '/hikaya' || r.e.y3 !== N('طَارِيَةٌ') + '/khabar' || !/\/raf$/.test(r.e.yc)) throw new Error('the letter-name annexed to a cited verb, and its control: ' + J([r.e.y1, r.e.y2, r.e.y3, r.e.yc]));
+    if (r.e.a6 !== N('أَلِفًا') + '/maful2') throw new Error('the second object before «لِأَنَّ»: ' + J([r.e.a6]));
+    if (r.e.n6 !== N('شَاذٌّ') + '/khabar' || !/\/nat$/.test(r.e.nc)) throw new Error('the khabar behind the parenthesis, and its control: ' + J([r.e.n6, r.e.nc]));
+    if (r.g.bad.length || r.g.checked < 1333 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يُقْحِمُ', 'يُقْحَمُ', 'إِقْحَام', 'تَرَيْنَ', 'رَأَوْا'].map(N))) throw new Error('the paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

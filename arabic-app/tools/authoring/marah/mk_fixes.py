@@ -1318,5 +1318,37 @@ for w_ in ("55:s7:2", "55:s7:7"):
       "Nâkıs mâzî fiil, kâne'nin kardeşlerinden, fetha üzere mebnî; tâ te'nîs içindir, tesniye elifi de mahallen merfû muttasıl zamîr olup ismidir.",
       key="kana", pos="verb", enc="")
 # <<< part twenty
+# >>> part twenty-one
+#      «آأَنْتِ ظُبَيَّةٌ أَمْ أُمُّ سَالِمٍ»: the hamza of question, the alif thrust in, the pronoun; its khabar, and what is joined to the khabar.
+K("56:s1:12", "salim-name")
+R("56:s1:8", "mabni", "keep")
+L("56:s1:8", "الْهَمْزَةُ حَرْفُ اسْتِفْهَامٍ، وَالْأَلِفُ مُقْحَمَةٌ لِلْفَصْلِ بَيْنَ الْهَمْزَتَيْنِ، وَ«أَنْتِ» ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.",
+  "The hamza is the particle of question, and the alif is thrust in to part the two hamzas; «أَنْتِ» is a detached pronoun built on the kasra, in the place of raf' as the mubtada.",
+  "Hemze istifhâm harfidir; elif iki hemzeyi ayırmak için araya sokulmuştur; «أَنْتِ» kesre üzere mebnî munfasıl zamîr olup mahallen merfû mübtedâdır.", key="anti", pos="pron", enc="")
+R("56:s1:9", "khabar", "raf")
+L("56:s1:9", "خَبَرُ الْمُبْتَدَإِ «أَنْتِ» مَرْفُوعٌ بِالضَّمَّةِ — وَهُوَ تَصْغِيرُ «ظَبْيَةٍ».",
+  "The khabar of the mubtada «أَنْتِ», in raf'; the sign is the damma — the diminutive of «ظَبْيَة».",
+  "«أَنْتِ» mübtedâsının haberi, merfû; alâmeti damme ile — «ظَبْيَة» kelimesinin tasgîridir.", key="zabya")
+R("56:s1:11", "atf", "raf")
+#      the Name as a cited word: behind «فِي», and as what «صَارَ» ends in; the steps toward it likewise.
+QSARP21 = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ نَصْبٍ خَبَرُ «صَارَ».", "The word itself is quoted; in the place of nasb as the khabar of «صَارَ».", "Kelimenin kendisi kastedilmiştir (hikâye); «صَارَ»nin haberi olarak mahallen mansûb.")
+SARF21 = ("الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+          "The fa conjoins; a past verb; its doer is a hidden pronoun «هُوَ» — one of kāna's sisters: it raises its noun and puts its predicate in naṣb.",
+          "«bunun üzerine» + mâzî fiil; fâili gizli zamirdir «هُوَ» — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder.")
+L("56:s4:2", *QFI, key="allah", pos="noun", enc="")
+for w_ in ("56:s4:15", "56:s5:11"): L(w_, *QSARP21, key="lah-cited", pos="noun", enc="")
+for w_ in ("56:s4:22", "56:s5:18"): L(w_, *QSARP21, key="allah", pos="noun", enc="")
+for w_ in ("56:s4:21", "56:s5:17"): L(w_, *SARF21, key="sara", pos="verb", enc="")
+#      «ثَلَاثُ سَوَاكِنَ»: the plural on the measure «فَوَاعِل» is a diptote.
+R("56:s5:36", "mudafIlayh", "jarr")
+L("56:s5:36", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ — صِيغَةُ مُنْتَهَى الْجُمُوعِ.",
+  "The mudaf ilayh, in jarr; the sign is the fatha standing for the kasra, for the word is a diptote — the measure of the ultimate plural.",
+  "Muzâfun ileyh, mecrûr; alâmeti kesre yerine fetha ile, çünkü gayr-i munsariftir — müntehe'l-cümû‘ sîgası.", key="sakin", pos="noun", enc="")
+#      «مُرًى» فِي «مُرْأًى»: the third pair of the list — a maqṣūr shows no case, the seat is its place.
+L("57:s1:29", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى «يَنَى» فِي مَحَلِّ رَفْعٍ.", "The word itself is quoted; joined to «يَنَى», in the place of raf'.", "Kelimenin kendisi kastedilmiştir (hikâye); «يَنَى» üzerine ma'tûf, mahallen merfû.", key="mura", pos="noun", enc="")
+L("57:s1:31", *QFI, key="mura", pos="noun", enc="")
+#      «حَرَكَةُ يَاءِ يَرَيَانِ»: the letter-name is annexed in its turn to the cited verb.
+L("57:s6:1", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.", "The annexed noun (mudaf ilayh), in jarr; the sign is the kasra; annexed (mudaf).", "Muzâfun ileyh, mecrûr; alâmeti kesre ile; muzâf.")
+# <<< part twenty-one
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")
