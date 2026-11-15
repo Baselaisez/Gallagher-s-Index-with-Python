@@ -13554,3 +13554,66 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
 - **Open.** The conjugator's older paradigms are not yet run through `seat_hamza`; the engine does not judge the
   hamzat al-waṣl (it reads only written hamzas); 32 hamzas on the shelf stand unvowelled and are not judged.
 - **Next.** Marāḥ part twenty-four opens the fourth bāb (the mithāl) on p. 126 at «وَيُقَالُ لِلْمُعْتَلِّ الْفَاءِ مِثَالٌ».
+
+### v308 (wave 209) — Marāḥ al-Arwāḥ part twenty-four (the fourth bāb, the mithāl — whole), the mithāl's wāw in the root finder, the passive's cells by rule, the plural object behind a singular doer, two packager rules
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 126–131 of the scan (the matn's large type only):
+  chapter 63 «الْبَابُ الرَّابِعُ فِي الْمِثَالِ» (7 sentences — why it is called «مِثَال», its five bābs, «وَجَدَ يَجُدُ» of the
+  Banū ʿĀmir, the weak letter at the head ruled like a sound one), 64 «لِمَ لَا تُعَلُّ فَاءُ الْمِثَالِ» (6 — iʿlāl is
+  by sukūn, by turning or by dropping, and none of the three is possible), 65 «التَّاءُ فِي «عِدَةٍ» وَحَذْفُهَا» (6 —
+  Sībawayh and al-Farrāʾ, the hemistich, «وَإِقَامَ الصَّلَاةِ») and 66 «تَصْرِيفُ الْمِثَالِ» (15 — «وَعَدَ … يَعِدُ» from
+  «يَوْعِدُ», «يَضَعُ», «يُوعِدُ», the participles, «مِيعَدٌ» from «مِوْعَدٌ»). 34 sentences / 355 words; the book stands at
+  **66 chapters / 524 sentences / 6,587 words**, version 0.24.0 — the fourth bāb is whole.
+- **Readings, said so** (attribution, three languages). «فاتبع لِيَعِدُ» is read «فَأُتْبِعَ لِ «يَعِدُ»» in the passive; the
+  printer's hemistich sign «ع» is not transcribed; the āya is kept as the printing vowels it («وَإِقَامَ», the wording
+  of al-Anbiyāʾ 73 — the editor's bracketed reference is his and stays out); «تَضَعُ» is kept as printed;
+  «يُقَلِّبُونَهَا» / «أَقْلَبُ» are read «يَقْلِبُونَهَا» / «أَقْلَبَ», the khabar of «يَكُونُونَ».
+- **Three paradigms** through `sarf_gen` (85 in the book): «يَنَعَ» (the yāʾ-mithāl, which keeps its yāʾ: «يَيْنَعُ»),
+  «وَزَنَ» (through `idgham`: «وَزَنَّ»), «أَوْلَجَ» (the Form IV mithāl: «يُولِجُ», «إِيلَاج»); «وَقَرَ» gains its stored
+  passive. **A noun lemma must not be a passive's letters**: «فُعِل» the measure was entered as a noun
+  (`fuil-wazn`) and at once claimed the passive «فُعِلَ» in chapter 31 — it is an alias of `faala` now. A removed
+  lemma row survives in the shipped glossary (the scripts only add, and the reader's lexicon reads the shipped file
+  back), so it was deleted there by hand before the next pass.
+- **Packager** (`tools/authoring/pkg_from_engine.py`):
+  - **the recited row, cell by cell** («وَعَدَ» «وَعَدَا» «وَعَدُوا»). A cited word right behind a cited verb, itself a
+    cell of that verb's paradigm, takes the verb's key and the line of its own cell (`cell_lines.line`) — a row of
+    three is under `cellRows: 4` and had kept the engine's guesses.
+  - **the fāʾ behind «أَمَّا»** is «وَاقِعَةٌ فِي جَوَابِ «أَمَّا»», not «عَاطِفَةٌ» — the first fāʾ-word behind each «أَمَّا»
+    with no hand line (it runs right after `name_amma_khabar`: placed before it, it hid that rule's own test). Two
+    older lines change with it, as intended (5:s2 «فَفِي» twice); no other token of chapters 1–62 changed.
+- **Reader rules** (`$S/w209/patch209.py`):
+  - **the mithāl's wāw is a radical before it is a conjunction** (`RootFinder._fromCorpusWalk`). The pipeline hands
+    words over with the ending peeled, and «وَعَد» is no exact cell of anything — the loose pass then took the first
+    paradigm that owns the letters behind a joining wāw («عَدَّ»). Two passes are added before the loose one: the
+    whole word less its last vowel is a cell less its last vowel (`w0e`), then the same behind one joiner (`w1e`,
+    «فَوَعَدَهُمْ»); an attached pronoun is taken off first. «وَعَدَّ» with its shadda is still the joiner and «عَدَّ».
+    The blind sweep's two fixes (al-Uṣūl 34:s1, «حَقٌّ كَائِنٌ» behind «وَمَا وَرَدَ») come with this change.
+  - **the passive māḍī's cells by rule** (`findFormInParadigm`). Where a paradigm stores no passive, the he-cell was
+    already built by `sjMajhul`; her cell, the two and the group were not, and «أُبْدِلَتْ» read as a noun. They are
+    built from the he-cell on the exact pass only. Her cell is returned **on its sukūn** whatever was typed
+    («أُبْدِلَتِ», «أُبْدِلَت»): the first draft returned the typed shape, and the writer wrote the peeled «رُكِّبَت»
+    back without a mark — the sweep caught it as two breaks. The kasra before a sākin is the writer's to give.
+  - **the plural object behind a singular doer.** «نَصَرَ اللهُ الْمُؤْمِنِينَ»، «رَأَى الرَّجُلُ الْمُعَلِّمِينَ / الْوَلَدَيْنِ»: a
+    word with the article written with the yāʾ of the sound plural or the dual, right behind a singular doer in
+    rafʿ, with a verb that can take an object and has none, is that object — a naʿt would follow its noun in number
+    and in case. Guards: the head is no dual or plural by shape or by lexicon, and the word's own lemma does not end
+    in ـِين («الْمِسْكِينَ»). «جَاءَ الرَّجُلُ الْكَرِيمُ» keeps its naʿt.
+  - **a vowel is turned into a vowel** — «فَتْحَة / ضَمَّة / كَسْرَة» join the letter names that are the second object
+    behind a passive of turning («فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً»).
+- **Two stored lines of al-Uṣūl corrected** (`tools/authoring/hand209.py`, kept in the package's `fixes.json`): the
+  new rules disagreed with them and the rules were right — 28:s5 «وَيُضِلُّ اللهُ الظَّالِمِينَ» was a naʿt «مَرْفُوعٌ
+  بِالْوَاوِ» on a word that wears a yāʾ (object, naṣb by the yāʾ); 34:s1 «… وَمَا وَرَدَ بِالْأَخْبَارِ الصَّحِيحَةِ حَقٌّ كَائِنٌ»
+  called «حَقٌّ» a doer (khabar of the opening mubtadaʾ).
+- **Hand lines** (`mk_fixes.py`, part twenty-four): the excepted cited pair «وَجَدَ» «يَجُدُ», «فَأُتْبِعَ لِ «يَعِدُ»», the
+  hemistich's «عِدَ الْأَمْرِ» (second object, its tāʾ dropped for the annexation — the passage's own point), the
+  āya's cited words, «جُعِلَ «تَضَعُ» مَفْتُوحًا» (cited deputy doer and second object), three mubtadaʾs that
+  open a new clause («وَثَلَاثَتُهَا لَا تُمْكِنُ»).
+- **Sweeps** (same data, v307 code against the candidate): blind 2 fixed / 0 broken (73,338 → 73,340 right of 74,308; 598 wrong, 370 undecided), receipts-on 0 / 0 (73,768 right; 340 wrong, 200 undecided); nine offices renamed in each — six plural objects that had been naʿt, the deputy doer and the second object of «فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً», and «حَقٌّ» (see Open). Case layer 60,387 / 61,067 = 98.89 %. Label gauge
+  90.29 → 90.32 % (32,158 / 35,605); typed gauge 1,158 / 1,159; calibration 3,278 / 3,321.
+- **Smoke.** `wave 209` (#456; TOTAL 458).
+- **Open.** «وَمَا وَرَدَ بِالْأَخْبَارِ الصَّحِيحَةِ حَقٌّ»: with the verb now read rightly the engine seats «حَقٌّ» as its doer
+  (the vowel is right, the office is the khabar's — the relative's verb has its doer in the returning pronoun);
+  «يُحِبُّ اللهُ الْمُحْسِنِينَ» typed still gives «اللهَ»; «وَدَّ الرَّجُلُ» reads as an imperative; «عَلِمَ الرَّجُلُ الْيَقِينَ»
+  keeps a naʿt; «كَانَ» still claims a later wāw-noun as its ism where a new sentence opens; «مِثْل» before a
+  demonstrative lacks «مُضَافٌ» by rule; the older items stand (the quoted «أُمٍّ», «فَأُعِلَّ», `K(…, pos=)`).
+- **Next.** Marāḥ part twenty-five opens the fifth bāb (the ajwaf) on p. 132 at «وَيُقَالُ لَهُ أَجْوَفُ لِخُلُوِّ جَوْفِهِ».

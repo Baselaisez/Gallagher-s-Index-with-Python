@@ -1416,5 +1416,44 @@ R("60:s8:2", "mubtada", "raf")
 R("60:s8:3", "khabar", "raf")
 R("62:s1:13", "atf", "jarr")
 # <<< part twenty-three
+# >>> part twenty-four (pp. 126–131): the fourth bāb — the mithāl
+QLAM24 = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِاللَّامِ.", "The word itself is quoted; in the place of jarr after the lām.", "Kelimenin kendisi kastedilmiştir (hikâye); lâm ile mahallen mecrûr.")
+QATFH_R = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ فِي مَحَلِّ رَفْعٍ.", "The word itself is quoted; joined to the word before it — the conjunction left out — in the place of raf'.", "Kelimenin kendisi kastedilmiştir (hikâye); atıf harfi hazfedilerek öncekine ma'tûf, mahallen merfû.")
+QATFH_J = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ فِي مَحَلِّ جَرٍّ.", "The word itself is quoted; joined to the word before it — the conjunction left out — in the place of jarr.", "Kelimenin kendisi kastedilmiştir (hikâye); atıf harfi hazfedilerek öncekine ma'tûf, mahallen mecrûr.")
+#      «لِلْمُعْتَلِّ الْفَاءِ»: the adjective annexed to what it is said of
+L("63:s1:1", "اللَّامُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهِ بِالْكَسْرَةِ، مُضَافٌ.", "preposition + noun: In jarr after the preposition; the sign is the kasra; annexed (mudaf).", "harf-i cer + isim: Mecrûr; alâmeti kesre ile; muzâf.")
+R("63:s1:2", "mudafIlayh", "jarr")
+#      «إِلَّا «وَجَدَ» «يَجُدُ»»: the cited pair excepted from what the hidden doer of «يَجِيءُ» covers
+L("63:s4:6", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مُسْتَثْنًى بِـ«إِلَّا» بَدَلٌ مِنَ الضَّمِيرِ الْمُسْتَتِرِ فِي «يَجِيءُ» فِي مَحَلِّ رَفْعٍ.", "The word itself is quoted; excepted by «إِلَّا» — a badal of the hidden pronoun in «يَجِيءُ», in the place of raf'.", "Kelimenin kendisi kastedilmiştir (hikâye); «إِلَّا» ile müstesnâ — «يَجِيءُ»daki gizli zamirden bedel, mahallen merfû.", key="wajada", pos="verb", enc="")
+L("63:s4:7", *QATFH_R, key="wajada", pos="verb", enc="")
+K("63:s4:10", "ibn", pos="noun")
+L("63:s4:10", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْيَاءِ لِأَنَّهُ مُلْحَقٌ بِجَمْعِ الْمُذَكَّرِ السَّالِمِ، وَحُذِفَتِ النُّونُ لِلْإِضَافَةِ، مُضَافٌ.", "The mudaf ilayh, in jarr; the sign is the ya, because it is attached to the sound masculine plural; its nun is dropped for annexation; annexed (mudaf).", "Muzâfun ileyh, mecrûr; alâmeti yâ ile — cem'-i müzekker sâlime mülhak olduğu için; izâfet sebebiyle nûnu düşmüştür; muzâf.")
+#      «وَقِيلَ هٰذِهِ لُغَةٌ ضَعِيفَةٌ فَأُتْبِعَ لِ «يَعِدُ»»: the demonstrative opens what is said; the lām governs the cited verb
+L("63:s6:1", "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "A demonstrative, built on kasra, in the place of raf' as the mubtada.", "İşaret ismi, kesre üzere mebnî, mahallen merfû mübtedâ.")
+R("63:s6:5", "mabni", "keep")
+L("63:s6:5", "اللَّامُ حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ.", "The lām is a preposition, built on the kasra.", "Lâm harf-i cerdir; kesre üzere mebnîdir.", key="li", enc="")
+L("63:s6:6", *QLAM24, key="waada", pos="verb", enc="")
+#      the sentence a wāw opens behind a finished one: its noun is a mubtadaʾ, not the noun of the «يَكُونُ» said before it
+R("64:s1:13", "mubtada", "raf")
+R("64:s2:5", "mubtada", "raf")
+R("64:s3:9", "mubtada", "raf")
+R("64:s3:5", "hal", "nasb")
+L("64:s5:10", *QATFH_J, key="iilaj-insert", pos="noun")
+#      «وَعِنْدَ سِيبَوَيْهِ»; the half-line «وَأَخْلَفُوكَ عِدَ الْأَمْرِ الَّذِي وَعَدُوا»: «عِدَ» is «عِدَة» with its tāʾ dropped for the annexation — the point of the citation
+L("65:s3:0", "الْوَاوُ عَاطِفَةٌ، وَظَرْفٌ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.", "The waw conjoins; an adverb (zarf), in nasb; the sign is the fatha; annexed (mudaf).", "«ve» atıf harfi; zarf, mansûb; alâmeti fetha ile; muzâf.")
+R("65:s3:1", "mabni", "keep")
+L("65:s3:1", "عَلَمٌ مَخْتُومٌ بِـ«وَيْهِ» مَبْنِيٌّ عَلَى الْكَسْرِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "A proper name ending in «وَيْهِ», built on kasra, in the place of jarr as the mudaf ilayh.", "«وَيْهِ» ile biten özel isim, kesre üzere mebnî, mahallen mecrûr muzâfun ileyh.", key="sibawayh", pos="propn")
+L("65:s3:10", "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ — أَصْلُهُ «عِدَةَ» حُذِفَتْ تَاؤُهُ لِلْإِضَافَةِ، وَهُوَ مَوْضِعُ الشَّاهِدِ.", "The second object, in nasb; the sign is the fatha; annexed (mudaf) — it is «عِدَةَ» with its tāʾ dropped for the annexation, which is the point of the citation.", "İkinci mef'ûlün bih, mansûb; alâmeti fetha ile; muzâf — aslı «عِدَةَ»dir, tâsı izâfet sebebiyle hazfedilmiştir; şâhid yeri burasıdır.", key="ida-promise", pos="noun", enc="")
+L("65:s3:13", "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْجُمْلَةُ صِلَةُ الْمَوْصُولِ.", "A past verb, built on damma for the plural waw attached to it; the waw is an attached pronoun in the place of raf' as the doer; the clause is the relative's sila.", "Mâzî fiil, cemâat vâvına bitiştiği için damme üzere mebnî; vâv, mahallen merfû muttasıl zamir, fâil; cümle ism-i mevsûlün sılasıdır.", key="waada", pos="verb", enc="")
+#      the āya as the matn cites it — «وَإِقَامَ الصَّلَاةِ» with its fatḥa
+L("65:s6:7", "لَفْظٌ مَحْكِيٌّ مَعَ مَا بَعْدَهُ مِنَ الْآيَةِ، فِي مَحَلِّ جَرٍّ بَدَلٌ مِنْ «قَوْلِهِ» — وَهُوَ فِي الْآيَةِ: الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ؛ أَصْلُهُ «إِقَامَةَ» حُذِفَتْ تَاؤُهُ لِلْإِضَافَةِ.", "Quoted with what follows it of the āya; in the place of jarr as a badal of «قَوْلِهِ» — in the āya itself: the waw conjoins, and the word is joined in nasb with the fatha, annexed (mudaf); it is «إِقَامَةَ» with its tāʾ dropped for the annexation.", "Âyetin devamıyla birlikte hikâye edilmiştir; «قَوْلِهِ»den bedel olarak mahallen mecrûr — âyetin kendisinde: vâv atıf harfi, kelime fetha ile mansûb ma'tûf, muzâf; aslı «إِقَامَةَ»dir, tâsı izâfet sebebiyle hazfedilmiştir.")
+#      «وَمِثْلُ هٰذَا ثَقِيلٌ»، «فِي مِثْلِ «يَضَعُ»»
+L("66:s4:19", "الْوَاوُ عَاطِفَةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The waw conjoins; the mubtada (subject of the nominal sentence), in raf'; the sign is the damma; annexed (mudaf).", "«ve» + mübtedâ, merfû; alâmeti damme ile; muzâf.")
+L("66:s4:20", "اسْمُ إِشَارَةٍ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "A demonstrative, built on sukun, in the place of jarr as the mudaf ilayh.", "İşaret ismi, sükûn üzere mebnî, mahallen mecrûr muzâfun ileyh.")
+L("66:s7:2", "مَجْرُورٌ بِـ«فِي» بِالْكَسْرَةِ، مُضَافٌ.", "In jarr after the preposition; the sign is the kasra; annexed (mudaf).", "Mecrûr; alâmeti kesre ile; muzâf.")
+#      «ثُمَّ جُعِلَ «تَضَعُ» مَفْتُوحًا»: the cited verb is the deputy doer, and what it was made is the second object
+L("66:s8:2", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ لِـ«جُعِلَ».", "The word itself is quoted; in the place of raf' as the deputy doer of «جُعِلَ».", "Kelimenin kendisi kastedilmiştir (hikâye); «جُعِلَ»nin nâib-i fâili olarak mahallen merfû.", key="wadaa", pos="verb", enc="")
+L("66:s8:3", "مَفْعُولٌ بِهِ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ — وَالْمَفْعُولُ الْأَوَّلُ صَارَ نَائِبَ الْفَاعِلِ.", "The second object, in nasb; the sign is the fatha — the first object has become the deputy doer.", "İkinci mef'ûl, mansûb; alâmeti fetha ile — birinci mef'ûl nâib-i fâil olmuştur.")
+# <<< part twenty-four
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

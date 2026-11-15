@@ -1805,6 +1805,19 @@ def main():
             kana_dedupe(toks)   # (wave 165; a function since wave 167 so that polish_pkg.py can run it on a shipped package)
             doer_dedupe(toks)   # (wave 183) a verb whose doer is written keeps no hidden one beside it — see doer_dedupe.py
             passive_trilingual(toks)   # (wave 185) the en/tr of a passive verb's line name the DEPUTY doer the Arabic names — see passive_trilingual.py
+            # (wave 209) «وَعَدَ» «وَعَدَا» «وَعَدُوا»: a quoted word right behind a quoted cell of a verb, itself written exactly as a cell of that verb's
+            # paradigm, is the next cell of the same row — the look-alike its letters give behind a joining wāw (عَدَا، عَادَ) yields to its neighbour
+            if len(raw_words) == len(toks):
+                import cell_lines as CL209
+                q209_ = lambda i_: raw_words[i_].count("«") == 1 and raw_words[i_].count("»") == 1
+                for i in range(1, len(toks)):
+                    kp_ = toks[i - 1].get("lex"); t = toks[i]; wh_ = f"{where0}:{i}"
+                    if kp_ in M and t.get("lex") != kp_ and q209_(i) and q209_(i - 1) and not FX.get(wh_, {}).get("key") and wh_ not in CITE and f"{where0}:{i - 1}" not in CITE:
+                        if CL209.candidates(M[kp_], N(t["surface"]["full"])) and CL209.candidates(M[kp_], N(toks[i - 1]["surface"]["full"])) and take(kp_, wh_):
+                            report.setdefault("rowNeighbour", []).append(f"{wh_} {t.get('lex')}->{kp_}")
+                            t["lex"] = kp_; t["pos"] = "verb"; t.pop("segments", None)
+                            c209_ = CL209.candidates(M[kp_], N(t["surface"]["full"]))[0]; ar_, en_, tr_ = CL209.line(M[kp_], c209_[0], c209_[1], c209_[2])
+                            t["irab"] = {"ar": ar_, "en": en_, "tr": tr_}
             ROWMIN_ = 2 if meta.get("cellLines") else int(meta.get("cellRows") or 0)   # (wave 205) «cellRows: n» in a book's meta: only a recited row of n or more cells of one verb takes its lines from the paradigm (يَرَى يَرَيَانِ يَرَوْنَ …); «cellLines» reads every pair so, as the ʿIzzī needs
             if ROWMIN_:   # (wave 165) a recited paradigm row: each cell's line from its place in the stored paradigm (tools/authoring/cell_lines.py)
                 import cell_lines as CL
@@ -1930,6 +1943,20 @@ def main():
             name_pron_mubtada(toks, report); name_sisters(toks, report); name_shan(toks, report)   # (wave 195)
             name_ishara(toks, report); name_mudaf_chain(toks, report); name_ba_zaida(toks, report); name_khabar_atf(toks, report)   # (wave 195)
             name_ma_naib(toks, report); name_in_wasliyya(toks, report); name_kawn_khabar(toks, report); name_amma_khabar(toks, report)   # (wave 196)
+            # (wave 209) أَمَّا السُّكُونُ فَلِتَعَذُّرِهِ: the fāʾ behind «أَمَّا» is no conjunction — it answers «أَمَّا», which holds a condition's meaning. The first
+            # word opening with فَ after each «أَمَّا» is that answer; a hand line keeps its own wording.
+            for i, t in enumerate(toks):
+                if t.get("lex") != "amma": continue
+                for j in range(i + 1, len(toks)):
+                    if toks[j].get("lex") == "amma": break
+                    if not N(toks[j]["surface"]["full"]).startswith("فَ"): continue
+                    ir_ = toks[j].get("irab") or {}
+                    if str(ir_.get("ar", "")).startswith("الْفَاءُ عَاطِفَةٌ") and not FX.get(f"{where0}:{j}", {}).get("irab"):
+                        toks[j]["irab"] = {"ar": "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَمَّا»" + ir_["ar"][len("الْفَاءُ عَاطِفَةٌ"):],
+                                           "en": ir_.get("en", "").replace("The fa conjoins", "The fa answers «أَمَّا»", 1),
+                                           "tr": ir_.get("tr", "").replace("«bunun üzerine»", "«أَمَّا»nın cevabındaki fâ", 1)}
+                        report.setdefault("ammaFa", []).append(f"{where0}:{j}")
+                    break
             name_kana_tamma(toks, report); name_ma_seat(toks, report); name_passive_hiya(toks, report)   # (wave 202)
             praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:

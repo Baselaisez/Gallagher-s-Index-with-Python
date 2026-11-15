@@ -16163,6 +16163,57 @@ if (!CHROME) {
     if (ui.q < 3 || ui.blank !== 1 || ui.opts !== 4) throw new Error('the game round did not draw: ' + J([ui.q, ui.blank, ui.opts]));
   });
 
+  await check('wave 209 — Marāḥ al-Arwāḥ part twenty-four (the fourth bāb, the mithāl; pp. 126–131) stands on the shelf with every line named; the mithāl\'s wāw is a radical before it is a conjunction («وَعَدَ زَيْدٌ», «فَوَعَدَهُمْ»), and «وَعَدَّ» keeps its joiner; the passive māḍī\'s she, two and group are built by the rule that built the he («أُبْدِلَتِ»); the plural written with its yāʾ behind a singular doer is the verb\'s object, never a naʿt, and the naʿt keeps its seat beside it; the fāʾ behind «أَمَّا» is named as her answer; the recited row «وَعَدَ» «وَعَدَا» «وَعَدُوا» is read cell by cell', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [63, 64, 65, 66].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const reset = () => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; };
+      const V = (t, i) => { try { reset(); const v = DabtEngine.vowel(t, 'endings').words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const F = w => { try { const v = RootFinder.find(w); if (!v) return 'null'; return N(v.lemma || (v.entry && v.entry.lemma) || '') + '/' + (v.cell ? v.cell.tense + ':' + (v.cell.person === undefined ? v.cell.i : v.cell.person) : ''); } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      return { chapters: st.chapters.length, sens: [63, 64, 65, 66].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { mutall: line(63, 's1', 1), wajada: line(63, 's4', 6), yajudu: line(63, 's4', 7), ida: line(65, 's3', 10), iqam: line(65, 's6', 7), tadau: line(66, 's8', 2), maftuh: line(66, 's8', 3),
+             row: [4, 5, 6].map(i => N(tok(66, 's1', i).s.full) + '|' + line(66, 's1', i)), ammaOld: line(5, 's2', 2), ammaOld2: line(5, 's2', 9), amma1: line(64, 's2', 2), amma2: line(64, 's4', 2) },
+        find: { waad: F('وَعَد'), waada: F('وَعَدَ'), fa: F('فَوَعَدَهُمْ'), add: F('وَعَدَّ'), she: F('أُبْدِلَتِ'), she2: F('أُبْدِلَتْ'), they: F('أُبْدِلُوا'), act: F('أَبْدَلَتِ') },
+        typed: { waad0: V('وَعَدَ زَيْدٌ عَمْرًا خَيْرًا', 0), waad1: V('وَعَدَ زَيْدٌ عَمْرًا خَيْرًا', 1), nasara: V('نَصَرَ اللهُ الْمُؤْمِنِينَ', 2), raa: V('رَأَى الرَّجُلُ الْمُعَلِّمِينَ', 2), dual: V('رَأَى الرَّجُلُ الْوَلَدَيْنِ', 2),
+                 karim: V('جَاءَ الرَّجُلُ الْكَرِيمُ', 2), jadid: V('حَضَرَ الطَّالِبُ الْجَدِيدُ', 2), miskin: V('أَكْرَمَ الرَّجُلُ الْمِسْكِينَ', 2), pass0: V('فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً', 0), pass1: V('فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً', 1), pass2: V('فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً', 2) },
+        morph: { yanaa: [M('yanaa').mazi, M('yanaa').mudari, M('yanaa').amr].map(a => N((a || [])[0])).join(' ') + ' ' + N(M('yanaa').majhulMazi) + ' ' + N(M('yanaa').majhulMudari),
+                 wazana: [M('wazana').mazi, M('wazana').mudari, M('wazana').amr].map(a => N((a || [])[0])).join(' ') + ' ' + N((M('wazana').mazi || [])[5]),
+                 awlaja: [M('awlaja').mazi, M('awlaja').mudari, M('awlaja').amr].map(a => N((a || [])[0])).join(' ') + ' ' + N(M('awlaja').masdar) + ' ' + N(M('awlaja').majhulMazi) + ' ' + N(M('awlaja').majhulMudari),
+                 waqara: N(M('waqara').majhulMazi) + ' ' + N(M('waqara').majhulMudari) },
+        audit: [au.checked, au.bad.length, au.bad.slice(0, 3)] }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => String(x || '').normalize('NFC'), has = (a, b) => N(a).includes(N(b));
+    if (r.chapters < 66 || J(r.sens) !== '[7,6,6,15]' || r.n !== 355) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    const L = r.l;
+    if (!L.mutall.startsWith('mutall|') || !has(L.mutall, 'مُضَافٌ')) throw new Error('«لِمُعْتَلِّ الْفَاءِ» is annexed: ' + L.mutall);
+    if (!L.wajada.startsWith('wajada|') || !has(L.wajada, 'مَحْكِيٌّ') || !has(L.wajada, 'مُسْتَثْنًى') || !L.yajudu.startsWith('wajada|') || !has(L.yajudu, 'بِحَذْفِ حَرْفِ الْعَطْفِ')) throw new Error('the excepted pair «وَجَدَ» «يَجُدُ»: ' + J([L.wajada, L.yajudu]));
+    if (!L.ida.startsWith('ida-promise|') || !has(L.ida, 'مَفْعُولٌ بِهِ ثَانٍ') || !has(L.ida, 'مُضَافٌ')) throw new Error('the hemistich\'s «عِدَ الْأَمْرِ»: ' + L.ida);
+    if (!has(L.iqam, 'مَحْكِيٌّ') || !has(L.iqam, 'الْآيَةِ')) throw new Error('the āya\'s cited words: ' + L.iqam);
+    if (!L.tadau.startsWith('wadaa|') || !has(L.tadau, 'نَائِبُ فَاعِلٍ') || !has(L.maftuh, 'مَفْعُولٌ بِهِ ثَانٍ')) throw new Error('«جُعِلَ «تَضَعُ» مَفْتُوحًا»: ' + J([L.tadau, L.maftuh]));
+    if (L.row.length !== 3 || !L.row.every(x => x.includes('|waada|')) || !has(L.row[0], 'تَقْدِيرُهُ هُوَ') || !has(L.row[1], 'الْأَلِفُ ضَمِيرٌ') || !has(L.row[2], 'الْجَمَاعَةِ')) throw new Error('the recited row is read cell by cell: ' + J(L.row));
+    for (const a of [L.ammaOld, L.ammaOld2, L.amma1, L.amma2]) if (!has(a, 'الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَمَّا»') || has(a, 'الْفَاءُ عَاطِفَةٌ')) throw new Error('the fāʾ behind «أَمَّا» is her answer: ' + a);
+    const F = r.find, waada = N('وَعَدَ') + '/', abdala = N('أَبْدَلَ') + '/';
+    if (!F.waad.startsWith(waada) || !F.waada.startsWith(waada) || !F.fa.startsWith(waada)) throw new Error('the mithāl\'s wāw is the verb\'s own: ' + J([F.waad, F.waada, F.fa]));
+    if (!F.add.startsWith(N('عَدَّ') + '/')) throw new Error('«وَعَدَّ» is the joiner and «عَدَّ»: ' + F.add);
+    if (F.she !== abdala + 'majhulMazi:3' || F.she2 !== abdala + 'majhulMazi:3' || F.they !== abdala + 'majhulMazi:2') throw new Error('the passive\'s cells by rule: ' + J([F.she, F.she2, F.they]));
+    if (!F.act.startsWith(abdala + 'mazi')) throw new Error('the active «أَبْدَلَتِ» stays active: ' + F.act);
+    const T = r.typed;
+    if (!T.waad1.endsWith('/fail') || /\/(amr|atf)/.test(T.waad0)) throw new Error('«وَعَدَ زَيْدٌ»: ' + J([T.waad0, T.waad1]));
+    if (T.nasara !== N('الْمُؤْمِنِينَ') + '/maful' || T.raa !== N('الْمُعَلِّمِينَ') + '/maful' || T.dual !== N('الْوَلَدَيْنِ') + '/maful') throw new Error('the plural and the dual behind a singular doer are the object: ' + J([T.nasara, T.raa, T.dual]));
+    if (T.karim !== N('الْكَرِيمُ') + '/nat' || T.jadid !== N('الْجَدِيدُ') + '/nat') throw new Error('the naʿt keeps its seat: ' + J([T.karim, T.jadid]));
+    if (!T.miskin.startsWith(N('الْمِسْكِينَ') + '/')) throw new Error('«الْمِسْكِينَ» — a singular whose lemma ends in ـِين: ' + T.miskin);
+    if (T.pass1 !== N('الْكَسْرَةُ') + '/naib' || !T.pass2.startsWith(N('فَتْحَةً') + '/maful')) throw new Error('«فَأُبْدِلَتِ الْكَسْرَةُ فَتْحَةً»: ' + J([T.pass0, T.pass1, T.pass2]));
+    const Mo = r.morph;
+    if (Mo.yanaa !== N('يَنَعَ يَيْنَعُ اِينَعْ يُنِعَ يُونَعُ') || Mo.wazana !== N('وَزَنَ يَزِنُ زِنْ وَزَنَّ') || Mo.awlaja !== N('أَوْلَجَ يُولِجُ أَوْلِجْ إِيلَاج أُولِجَ يُولَجُ') || Mo.waqara !== N('وُقِرَ يُوقَرُ')) throw new Error('the new paradigms: ' + J(Mo));
+    if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
