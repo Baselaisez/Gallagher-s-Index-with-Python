@@ -13212,3 +13212,53 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   read as nouns; the packager's passive «تُجْعَلْ» names «أَنْتَ» for its hidden deputy (a hand line says «هِيَ»);
   Taṣrīf al-ʿIzzī's one «صَادًا» is still keyed to the verb.
 - **Next.** Marāḥ part eighteen opens on p. 104 at «وَيَجُوزُ الْإِدْغَامُ إِذَا وَقَعَ بَعْدَ تَاءِ الِافْتِعَالِ مِنْ حُرُوفِ «تدذز سصضطظ»».
+
+### v300 (wave 201) — Marāḥ al-Arwāḥ part eighteen (the second bāb ends), «بِكَسْرِ الْخَاءِ» typed bare, «لَا غَيْرُ», and the ḥāl behind «يَجِيءُ»
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 104–108 of the scan (the matn's large type only):
+  chapter 50 «الْإِدْغَامُ بَعْدَ تَاءِ الِافْتِعَالِ» (9 sentences — the nine letters «تدذز سصضطظ» and «يَقَتِّلُ …
+  يَنَظِّمُ», why only the tāʾ is made like the ʿayn, the three views on the māḍī «خِصَّمَ / اِخِصَّمَ», the
+  muḍāriʿ, the participle «مُخِصِّمُونَ», the masdar «خِصَّامًا / خَصَّامًا / اِخِصَّامًا») and 51 «تَاءُ التَّفَعُّلِ
+  وَالتَّفَاعُلِ وَالِاسْتِفْعَالِ» (4 — «اِطَّهَّرَ» from «تَطَهَّرَ», «اِثَّاقَلَ» from «تَثَاقَلَ», no idghām in
+  «اِسْتَطْعَمَ / اِسْتَدَانَ», «اِسْطَاعَ يَسْطِيعُ», and «أَسْطَاعَ» with its extra sīn like the hāʾ of «أَهْرَاقَ»).
+  13 sentences / 208 words; the book stands at **51 chapters / 426 sentences / 5,103 words**, version 0.18.0, and
+  the second bāb (the doubled verb) is whole. The letters collate with the scan's text layer but for the layer's
+  displaced «ويبدل» and its run-together wāws.
+- **Nine paradigms** through `sarf_gen` (65 in the book): «اِبْتَسَمَ», «اِخْتَصَمَ», «اِنْتَضَلَ», «اِنْتَظَمَ»,
+  «تَطَهَّرَ», «تَثَاقَلَ», «اِسْتَطْعَمَ», «اِسْتَدَانَ» (hollow) and «أَرَاقَ» (hollow, with «أَهْرَاقَ» as its
+  surface). `sarfAudit` 1,332 checked, 0 bad; the IshtiqaqEngine calibration holds at 3,235 / 3,283 (all 18 new rows
+  derived). With «أَرَاقَ» on the shelf the cited «يُهَرِيقُ / يُرِيقُ» of chapter 20 would read as verbs; their
+  fix lines name the offices, and the one token whose note list changed lost a spurious annexation tag.
+- **Reader rules** (`$S/w201/patch201.py`):
+  - **«بِكَسْرِ الْخَاءِ، بِفَتْحِ الْعَيْنِ» typed bare.** «بِـ» and «كَـ» enter no verb, so a three-letter host the
+    lexicon knows under those very letters is a noun and the article-noun behind it what it is annexed to (the
+    reader had «بكسرٍ الخاءُ»). A word that is its own lemma («كتاب», «كلام») and a real verb («كسرت») are untouched.
+    The two «جَعْل» rules of wave 199 take the same licence (بِجَعْلِ التَّاءِ ثَاءً typed bare).
+  - **the second object of the masdar «جَعْل» before «مِثْلَ».** «بِجَعْلِ التَّاءِ مِثْلَ الْعَيْنِ»: «مِثْلَ» is the
+    second object and annexed to what the first is made like (it had been a ḥāl).
+  - **«لَا غَيْرُ».** Typed without vowels «غير» is the verb «غَيَّرَ» letter for letter; right behind «لا», closing
+    the sentence or before a word that carries a clitic, it is the noun cut from its annexation, built on the ḍamm
+    — the same office (`maqtu`) rule R10 gives where the author wrote the ḍamma. «لا غير الله حالكم» stays a verb.
+  - **the cited ḥāl behind «يَجِيءُ».** «وَيَجِيءُ مَصْدَرُهُ «خِصَّامًا»», «وَيَجِيءُ «خَصَّامًا»»: a cited word the
+    page writes with the tanwīn of naṣb behind «يَجِيءُ / جَاءَ / يَأْتِي» and its doer — or behind the verb alone,
+    whose doer is then the hidden «it» — is a ḥāl (it had been an object, or the doer).
+  - **«اِعْتِبَارًا لِـ».** An object of reason, as «نَظَرًا إِلَى» is.
+  - **«أَصْلُهُ» between two cited words** opens a sentence of its own wherever it stands (وَ «اِثَّاقَلَ»، أَصْلُهُ
+    «تَثَاقَلَ»): a mubtadaʾ, the cited origin its khabar. Wave 200 knew only the first one behind «نَحْوُ».
+  - **the ḥāl behind a verb of coming and going, typed bare.** «جاء زيد راكبا، يذهب الولد مسرعا»: rule R1 of the
+    label pass asked for the written vowels of «فَاعِل / مُفْعِل»; the letters alone now serve (a «م»-word the
+    lexicon knows as a plain noun — «مسجدا» — stays an object).
+- **The packager** (`$S/w201/patch_pkg201.py`): the pronoun of the matter is named behind a ẓarf too (لِأَنَّ
+  عِنْدَهُمْ تُنْقَلُ); a demonstrative right behind an active verb, with its badal in rafʿ behind it, is that
+  verb's doer and the verb's line supposes no hidden one (لَا يَجِيءُ هٰذَا الْإِدْغَامُ); «وَفِي» governs a cited
+  verb as «فِي» does; a cited word the engine read as a ḥāl in written naṣb keeps the engine's line.
+- **Sweeps** (same data, v299 code against the candidate): blind 71,895 true / 583 false / 346 undecided and
+  receipts-on 72,309 / 330 / 185 on both sides — 0 endings changed, 0 broken; two labels moved, both to the stored
+  line («مِثْلَ» second object, «اعْتِبَارًا» object of reason). Case layer 59,195 / 59,831 = 98.94 %. Label gauge 90.29 % over 34,940 (31,548 agree); typed
+  gauge 1,158 / 1,159. HadhfEngine n = 1,360, false 3.
+- **Smoke.** `wave 201` (#448; TOTAL 450): the two chapters' lines, each rule with its control, the nine paradigms.
+- **Open.** «بِسُكُونِ الطَّاءِ تَحْقِيقًا وَفِي «…» تَقْدِيرًا» typed as a fragment reads the two adverbs as a
+  nominal pair (the stored line is by hand); «لكسر العين» keeps its tanwīn (the lām may be a verb's); the stored
+  «غَيْرُ» with its ending stripped still joins as an ʿaṭf.
+- **Next.** Marāḥ part nineteen opens the third bāb (the hamzated verb) on p. 109 at «وَلَا يُقَالُ لَهُ صَحِيحٌ
+  لِصَيْرُورَةِ هَمْزَتِهِ حَرْفَ الْعِلَّةِ».

@@ -581,7 +581,8 @@ def name_shan(toks, report):
         cut = next((q for q, x in enumerate(rest) if "حَرْفُ تَوْكِيدٍ وَنَصْبٍ" in (x.get("irab") or {}).get("ar", "")), len(rest))
         rest = rest[:cut]
         if any(re.search(r"اسْمُ (?:إِنَّ|أَنَّ|«أَنَّ»|«إِنَّ»)", (x.get("irab") or {}).get("ar", "")) for x in rest): continue
-        if "حَرْفُ جَرٍّ" not in (rest[0].get("irab") or {}).get("ar", "")[:60]: continue
+        r0ar = (rest[0].get("irab") or {}).get("ar", "")
+        if "حَرْفُ جَرٍّ" not in r0ar[:60] and not r0ar.startswith("ظَرْفٌ مَنْصُوبٌ"): continue   # (wave 201) لِأَنَّ عِنْدَهُمْ تُنْقَلُ
         if not any((x.get("irab") or {}).get("ar", "").startswith("فِعْلٌ") for x in rest[1:5]): continue
         t["irab"] = {"ar": ar[:-1] + "، وَاسْمُهَا ضَمِيرُ الشَّأْنِ مَحْذُوفٌ — أَيْ: لِأَنَّهُ — وَخَبَرُهَا الْجُمْلَةُ بَعْدَهَا.",
                      "en": ir.get("en", "").rstrip(".") + "; its noun, the pronoun of the matter (ḍamīr al-shaʾn), is left out — that is, «لِأَنَّهُ» — and the clause after it is its khabar.",
@@ -602,6 +603,13 @@ def name_ishara(toks, report):
         elif par.startswith("ظَرْفٌ مَنْصُوبٌ"):
             t["irab"] = {"ar": ar[:-1] + " فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "en": ir.get("en", "").rstrip(".") + ", in the place of jarr as the mudaf ilayh.", "tr": ir.get("tr", "").rstrip(".") + ", mahallen mecrûr, muzâfun ileyh."}
             if "مُضَافٌ" not in par and par.endswith("."): toks[j - 1]["irab"] = {"ar": par[:-1] + "، مُضَافٌ.", "en": pi.get("en", "").rstrip(".") + "; annexed (mudaf).", "tr": pi.get("tr", "").rstrip(".") + "; muzâf."}
+        elif par.startswith("فِعْلٌ") and "لِلْمَجْهُولِ" not in par and j + 1 < len(toks) and (toks[j + 1].get("irab") or {}).get("ar", "").startswith("بَدَلٌ مَرْفُوعٌ"):
+            # (wave 201) the verb's line no longer supposes a hidden doer
+            HID = re.compile(r"، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ (?:هُوَ|هِيَ)\.$")
+            if HID.search(par):
+                toks[j - 1]["irab"] = {"ar": HID.sub(".", par), "en": re.sub(r"; its doer is a hidden pronoun «(?:هُوَ|هِيَ)»\.$", ".", pi.get("en", "")), "tr": re.sub(r"; fâili gizli zamir «(?:هُوَ|هِيَ)»\.$", ".", pi.get("tr", ""))}
+            elif "فَاعِل" in par: continue
+            t["irab"] = {"ar": ar[:-1] + " فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", "en": ir.get("en", "").rstrip(".") + ", in the place of raf' as the doer.", "tr": ir.get("tr", "").rstrip(".") + ", fâil olarak mahallen merfû."}
         else: continue
         report["ishara"] = report.get("ishara", 0) + 1
 
@@ -1035,11 +1043,11 @@ def main():
                 wz_q_ = bool(ke_q_) and str(ke_q_.get("key") or "").endswith("-wazn") and bool(re.search(r"[َْ]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("ّ", "")))   # (wave 194) a cited measure written as a verb is written (تُفُعِّلَ، فَعَّلَ، افْتَعِلْ) is a quoted word too
                 # (wave 195) عَلَى وَزْنِ «فَعِلٌ» وَ «فَعْلٌ»، نَحْوُ «فَرِقٌ» وَ «شَكْسٌ»: a cited noun the page keeps in rafʿ where its seat asks for jarr or naṣb is told as it is said — the word itself is meant, and the seat is its place
                 hk_q_ = bool(ke_q_) and ke_q_.get("pos") not in ("verb", "part", "pron") and bool(re.search(r"[\u064c\u064f]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("ّ", ""))) and not re.match(r"^ال", bare(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])))
-                if ke_q_ and (ke_q_.get("pos") in ("verb", "part") or wz_q_ or hk_q_) and (w.get("cell") or ke_q_.get("pos") == "part" or w.get("kind") in ("noun", "verb", "particle")):
+                if ke_q_ and (ke_q_.get("pos") in ("verb", "part") or wz_q_ or hk_q_) and (w.get("cell") or ke_q_.get("pos") == "part" or w.get("kind") in ("noun", "verb", "particle")) and not (w.get("rule") == "hal" and re.search("\u064b[\u0627\u0649]?$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])))):   # (wave 201) وَيَجِيءُ «خَصَّامًا»: a cited word the page writes in naṣb behind «يَجِيءُ» is a ḥāl, and keeps the engine's line
                     pw_ = words[i - 1]; pb1_ = bare(pw_.get("w") or ""); praw_ = N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i - 1])); qt_ = None; head_q_ = False
                     QH_ = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، ", "The word itself is quoted; ", "Kelimenin kendisi kastedilmiştir (hikâye); ")
                     if pb1_ in ("مثل", "نحو", "خلاف", "بخلاف", "كمثل"): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", QH_[1] + "in the place of jarr as the mudaf ilayh.", QH_[2] + "mahallen mecrûr, muzâfun ileyh.")
-                    elif pb1_ == "في": qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ بِـ«فِي».", QH_[1] + "in the place of jarr after «فِي».", QH_[2] + "«فِي» ile mahallen mecrûr.")
+                    elif pb1_ in ("في", "وفي", "ففي"): qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ بِـ«فِي».", QH_[1] + "in the place of jarr after «فِي».", QH_[2] + "«فِي» ile mahallen mecrûr.")
                     elif pb1_ in ("من", "على", "الى", "إلى", "عن") and pw_.get("kind") == "particle": qt_ = (QH_[0] + "فِي مَحَلِّ جَرٍّ بِـ«" + praw_ + "».", QH_[1] + "in the place of jarr after «" + praw_ + "».", QH_[2] + "«" + praw_ + "» ile mahallen mecrûr.")
                     elif pb1_ == "و" and (i - 2) in quoted_jarr_: qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", QH_[1] + "joined to the word before it, in the place of jarr.", QH_[2] + "öncekine ma'tûf, mahallen mecrûr.")
                     elif raw_words[i - 1].startswith("«") and (i - 1) in quoted_jarr_ and not re.search(r"[\u064c\u064f]$", N(re.sub(r"[«»،:؛.؟!]", "", raw_words[i])).replace("\u0651", "")): qt_ = (QH_[0] + "مَعْطُوفٌ عَلَى مَا قَبْلَهُ بِحَذْفِ حَرْفِ الْعَطْفِ فِي مَحَلِّ جَرٍّ.", QH_[1] + "joined to the word before it — the conjunction left out — in the place of jarr.", QH_[2] + "atıf harfi hazfedilerek öncekine ma'tûf, mahallen mecrûr.")   # «لِيَضْرِبَنَّ» «لِيَضْرِبَانِّ» …: a list of cited forms

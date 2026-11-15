@@ -1216,5 +1216,26 @@ L("49:s1:12", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَ�
 L("49:s1:26", "مَعْطُوفٌ عَلَى «يَائِيًّا» مَنْصُوبٌ بِالْفَتْحَةِ — عُطِفَ مَعَ «مَرَّةً» بِوَاوٍ وَاحِدَةٍ.", "Joined to «يَائِيًّا», in nasb; the sign is the fatha — one waw joins it together with «مَرَّةً».", "«يَائِيًّا» üzerine ma'tûf, mansûb; alâmeti fetha ile — «مَرَّةً» ile birlikte tek vâvla atfedilmiştir.")
 L("49:s3:10", "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.", "A present verb, in raf' — one of kāna's sisters: it raises its noun and puts its predicate in naṣb.", "Muzâri fiil, merfû — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder.")
 # <<< part seventeen
+# >>> part eighteen
+# ---- part eighteen (pp. 104–108): idghām after the tāʾ of iftiʿāl; the tāʾ of tafaʿʿul, tafāʿul and istifʿāl.
+#      The two paradigms the part adds read «يُهَرِيقُ / يُرِيقُ» of chapter 20 as verbs; the page cites them as words.
+F["20:s5:1"].update(rule="mubtada", k="raf"); F["20:s5:3"].update(rule="khabar", k="raf")
+#      The string of letters behind «حُرُوفِ».
+L("50:s1:9", *QUOTE, enc="")
+L("50:s1:10", "تَتِمَّةُ الْحُرُوفِ الْمَسْرُودَةِ، مَحْكِيَّةٌ مَعَ مَا قَبْلَهَا.", "The rest of the listed letters, quoted with what is before them.", "Sıralanan harflerin devamı; öncekilerle birlikte hikâye edilir.", enc="")
+#      «يَجِيءُ بِكَسْرِ الْفَاءِ»: what comes is the māḍī just spoken of.
+HID18 = ("فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.", "A present verb, in raf'; its doer is a hidden pronoun «هُوَ».", "Muzâri fiil, merfû; fâili gizli zamir «هُوَ».")
+L("50:s4:2", *HID18)
+#      «لَا غَيْرُ» in the shelf's own wording (al-Kāfiya).
+L("50:s8:5", "«لَا» النَّافِيَةُ لِلْجِنْسِ، تَعْمَلُ عَمَلَ إِنَّ، مَبْنِيَّةٌ عَلَى السُّكُونِ.", "«no …» — the la of absolute negation, it works like inna.", "cinsini nefyeden «lâ» — inne gibi amel eder.")
+L("50:s8:6", "مَبْنِيٌّ عَلَى الضَّمِّ لِقَطْعِهِ عَنِ الْإِضَافَةِ، فِي مَحَلِّ نَصْبٍ — أَيْ لَا غَيْرَ ذَلِكَ.", "«else» — built on the ḍamm, cut from its annexation.", "«başkası» — izâfetten kesildiği için damm üzere mebnî.")
+#      The measure joined by its wāw; «نَحْوِ» annexed to the cited verb; the second ḥāl joined to the first.
+L("51:s1:3", "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ.", "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is the kasra.", "«ve» + ma'tûf; aynı i'râb; alâmeti kesre ile.")
+L("51:s2:3", "مَجْرُورٌ بِـ«فِي» بِالْكَسْرَةِ، مُضَافٌ.", "In jarr after the preposition; the sign is the kasra; annexed (mudaf).", "Mecrûr; alâmeti kesre ile; muzâf.")
+R("51:s2:10", "atf", "nasb"); L("51:s2:10", "مَعْطُوفٌ عَلَى «تَحْقِيقًا» مَنْصُوبٌ بِالْفَتْحَةِ.", "Joined to «تَحْقِيقًا», in nasb; the sign is the fatha.", "«تَحْقِيقًا» üzerine ma'tûf, mansûb; alâmeti fetha ile.")
+#      «اِسْطَاعَ يَسْطِيعُ»: the verb cited with its muḍāriʿ.
+L("51:s3:8", *QUOTE)
+L("51:s3:9", "مُضَارِعُهُ، مَحْكِيٌّ مَعَهُ مِنْ تَمَامِ الْمِثَالِ.", "Its mudari', quoted with it — part of the example.", "Onun muzârii; onunla birlikte hikâye edilir, misâlin devamıdır.")
+# <<< part eighteen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

@@ -15875,6 +15875,41 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1320 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يَتَّقِدُ', 'آتَكِلُ', 'اِطِّلَاب', 'اِصْطَبَرَ', 'اِشْتِبَاه'].map(N))) throw new Error('the five paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
   });
 
+  await check('wave 201 — Marāḥ al-Arwāḥ part eighteen (idghām after the tāʾ of iftiʿāl; the tāʾ of tafaʿʿul, tafāʿul and istifʿāl; pp. 104–108, the end of the second bāb) stands on the shelf with every line named; the second object of the masdar «جَعْل» before «مِثْلَ», «بِكَسْرِ الْخَاءِ» typed bare, «لَا غَيْرُ», the cited ḥāl behind «يَجِيءُ», «اعْتِبَارًا لِـ», «أَصْلُهُ» between two cited words and the ḥāl behind a verb of coming and going are read by rule, each with its control; the nine new paradigms hold', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [50, 51].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const jal = 'إلا الإدغام بجعل التاء مثل العين', kasr = 'يجيء بكسر الفاء وبفتح العين', ghayr = 'ويجيء مصدره «خصاما» بكسر الخاء لا غير', itibar = 'ويجيء «اخصاما» اعتبارا لسكون الأصل', asl = 'نحو «اطهر»، أصله «تطهر»، و «اثاقل»، أصله «تثاقل»';
+      return { chapters: st.chapters.length, sens: [50, 51].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { huruf: line(50, 's1', 9), m2: line(50, 's2', 9), verb: line(50, 's3', 4), dha: line(50, 's3', 5), shan: line(50, 's3', 14), shan2: line(50, 's4', 7), hal: line(50, 's8', 2), ghayr: line(50, 's8', 6), hal2: line(50, 's9', 1), v9: line(50, 's9', 0), lah: line(50, 's9', 10),
+             asl: line(51, 's1', 15), kh: line(51, 's1', 16), kh2: line(51, 's1', 20), fi: line(51, 's2', 9), atf: line(51, 's2', 10), mud: line(51, 's3', 9), araqa: line(51, 's4', 12) },
+        e: { m2: V(jal, 4), m2c: V('جعل الله الأرض مثل الفراش', 3), kasr: V(kasr, 1), fa: V(kasr, 2), kitab: V('كتاب الرجل جديد', 0), kasart: V('كسرت الزجاج', 0),
+             hal: V(ghayr, 2), kha: V(ghayr, 4), ghayr: V(ghayr, 6), ghc: V('هذا الكلام غير مفيد', 2), ghv: V('لا غير الله حالكم', 1),
+             hal2: V(itibar, 1), lah: V(itibar, 2), asl: V(asl, 6),
+             rakib: V('جاء زيد راكبا', 2), musri: V('يذهب الولد مسرعا', 2), masjid: V('دخل الولد مسجدا', 2), kitaban: V('جاء الرجل كتابا', 2) },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), hadhf: HadhfEngine.audit().false,
+             stored: [N((M('ikhtasama').mudari || [])[0]), N(M('istadana').masdar), N((M('araqa').mudari || [])[0]), N(M('tatahhara').masdar), N((M('tathaqala').mazi || [])[0]), N((M('ibtasama').amr || [])[0]), N((M('istatama').mudari || [])[12])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 51 || J(r.sens) !== '[9,4]' || r.n !== 208) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.huruf.startsWith('huruf-bad-ta-iftial|' + N('لَفْظٌ مَحْكِيٌّ')) || !r.l.m2.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || r.l.verb.includes(N('مُسْتَتِرٌ')) || !r.l.dha.includes(N('فِي مَحَلِّ رَفْعٍ فَاعِلٌ')) || !r.l.shan.includes(N('ضَمِيرُ الشَّأْنِ')) || !r.l.shan2.includes(N('ضَمِيرُ الشَّأْنِ'))) throw new Error('chapter 50, the first half: ' + J([r.l.huruf, r.l.m2, r.l.verb, r.l.dha, r.l.shan, r.l.shan2]));
+    if (!r.l.hal.startsWith('ikhtasama|' + N('حَالٌ')) || !r.l.ghayr.includes(N('مَبْنِيٌّ عَلَى الضَّمِّ')) || !r.l.hal2.startsWith('ikhtasama|' + N('حَالٌ')) || !r.l.v9.includes(N('مُسْتَتِرٌ')) || !r.l.lah.includes(N('مَفْعُولٌ لِأَجْلِهِ'))) throw new Error('chapter 50, the second half: ' + J([r.l.hal, r.l.ghayr, r.l.hal2, r.l.v9, r.l.lah]));
+    if (!r.l.asl.startsWith('asl|' + N('مُبْتَدَأٌ')) || !r.l.kh.includes(N('خَبَرُ الْمُبْتَدَإِ')) || !r.l.kh2.includes(N('خَبَرُ الْمُبْتَدَإِ')) || !r.l.fi.startsWith('istadana|') || !r.l.fi.includes(N('بِـ«فِي»')) || !r.l.atf.includes(N('مَعْطُوفٌ عَلَى «تَحْقِيقًا»')) || !r.l.mud.includes(N('مُضَارِعُهُ')) || !r.l.araqa.startsWith('araqa|') || !r.l.araqa.includes(N('خَبَرُ الْمُبْتَدَإِ'))) throw new Error('chapter 51: ' + J([r.l.asl, r.l.kh, r.l.kh2, r.l.fi, r.l.atf, r.l.mud, r.l.araqa]));
+    if (r.e.m2 !== N('مثلَ') + '/maful2' || /\/maful2$/.test(r.e.m2c)) throw new Error('the second object of «جَعْل» before «مِثْلَ», and its control: ' + J([r.e.m2, r.e.m2c]));
+    if (r.e.kasr !== N('بكسرِ') + '/jarr' || r.e.fa !== N('الفاءِ') + '/mudafIlayh' || r.e.kitab !== N('كتابُ') + '/mubtada' || !/\/mazi$/.test(r.e.kasart)) throw new Error('«بِكَسْرِ الْفَاءِ» typed bare, and its controls: ' + J([r.e.kasr, r.e.fa, r.e.kitab, r.e.kasart]));
+    if (r.e.hal !== N('خصامًا') + '/hal' || r.e.kha !== N('الخاءِ') + '/mudafIlayh' || r.e.ghayr !== N('غيرُ') + '/maqtu' || r.e.ghc !== N('غيرُ') + '/khabar' || !/\/mazi$/.test(r.e.ghv)) throw new Error('the cited ḥāl, «لَا غَيْرُ», and their controls: ' + J([r.e.hal, r.e.kha, r.e.ghayr, r.e.ghc, r.e.ghv]));
+    if (r.e.hal2 !== N('اخصامًا') + '/hal' || r.e.lah !== N('اعتبارًا') + '/mafulLah' || r.e.asl !== N('أصلُهُ') + '/mubtada') throw new Error('the ḥāl behind «يَجِيءُ» alone, «اعْتِبَارًا لِـ», the second «أَصْلُهُ»: ' + J([r.e.hal2, r.e.lah, r.e.asl]));
+    if (r.e.rakib !== N('راكبًا') + '/hal' || r.e.musri !== N('مسرعًا') + '/hal' || r.e.masjid !== N('مسجدًا') + '/maful' || r.e.kitaban !== N('كتابًا') + '/maful') throw new Error('the ḥāl behind a verb of coming and going typed bare, and its controls: ' + J([r.e.rakib, r.e.musri, r.e.masjid, r.e.kitaban]));
+    if (r.g.bad.length || r.g.checked < 1330 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يَخْتَصِمُ', 'اِسْتِدَانَة', 'يُرِيقُ', 'تَطَهُّر', 'تَثَاقَلَ', 'اِبْتَسِمْ', 'أَسْتَطْعِمُ'].map(N))) throw new Error('the nine paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
