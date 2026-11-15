@@ -1264,5 +1264,59 @@ L("53:s1:25", "اللَّامُ حَرْفُ جَرٍّ، وَ«مَا» اسْ�
 R("53:s1:32", "nat", "nasb"); R("53:s1:37", "nat", "nasb")
 L("53:s2:5", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", "The word itself is quoted; joined to the word before it, in the place of jarr.", "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr.")
 # <<< part nineteen
+# >>> part twenty
+# ---- part twenty (pp. 112–115): loading the vowel onto the weak letters; the added soft letter; two hamzas meeting.
+#      The list of lightened examples carries on the «نَحْوُ» of chapter 53: each is a quoted word (or two words quoted as one).
+MOVED20 = lambda asl, let_ar, let_en, let_tr: (
+    "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ — أَصْلُهُ «" + asl + "»، حُذِفَتْ هَمْزَتُهُ وَنُقِلَتْ حَرَكَتُهَا إِلَى " + let_ar + ".",
+    "The word itself is quoted; joined to the word before it, in the place of jarr — from «" + asl + "»: its hamza is dropped and the hamza's vowel moved onto the " + let_en + ".",
+    "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr — aslı «" + asl + "»: hemzesi hazfedilmiş, harekesi " + let_tr + " nakledilmiştir.")
+L("54:s1:1", *MOVED20("جَيْأَلٌ", "الْيَاءِ", "yāʾ", "yâya"))
+L("54:s1:3", *MOVED20("حَوْأَبَةٌ", "الْوَاوِ", "wāw", "vâva"))
+L("54:s1:5", "لَفْظٌ مَحْكِيٌّ مَعَ مَا بَعْدَهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ — أَصْلُهُ «أَبُو أَيُّوبَ»: «أَبُو» مَرْفُوعٌ بِالْوَاوِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَالْفَتْحَةُ عَلَى وَاوِهِ حَرَكَةُ الْهَمْزَةِ الْمَحْذُوفَةِ نُقِلَتْ إِلَيْهَا.",
+  "Quoted together with the word after it; joined to the word before it, in the place of jarr — from «أَبُو أَيُّوبَ»: «أَبُو» is in raf' by the wāw, as one of the five nouns, and the fatha on its wāw is the vowel of the dropped hamza, moved onto it.",
+  "Sonraki kelimeyle birlikte hikâye edilmiştir; öncekine ma'tûf, mahallen mecrûr — aslı «أَبُو أَيُّوبَ»: «أَبُو» esmâ-i hamseden olduğu için vâv ile merfûdur; vâvındaki fetha, hazfedilen hemzenin ona nakledilen harekesidir.")
+L("54:s1:6", "مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ — أَصْلُهُ «أَيُّوبَ»، حُذِفَتْ هَمْزَتُهُ.",
+  "The annexed noun (mudaf ilayh), in jarr; the sign is the fatha in place of the kasra — a diptote — from «أَيُّوبَ», its hamza dropped.",
+  "Muzâfun ileyh, mecrûr; alâmeti kesre yerine fetha ile — gayr-i munsarif — aslı «أَيُّوبَ», hemzesi hazfedilmiştir.")
+VERB20 = lambda asl, let_ar, let_en, let_tr: (
+    "لَفْظٌ مَحْكِيٌّ مَعَ مَا بَعْدَهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ — أَصْلُهُ «" + asl + "»: فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِضَمَّةٍ مُقَدَّرَةٍ عَلَى " + let_ar + " لِلثِّقَلِ، وَالْفَتْحَةُ الظَّاهِرَةُ حَرَكَةُ الْهَمْزَةِ الْمَحْذُوفَةِ نُقِلَتْ إِلَيْهَا.",
+    "Quoted together with the word after it; joined to the word before it, in the place of jarr — from «" + asl + "»: a present-tense verb in raf' by a damma estimated on the " + let_en + " for its heaviness; the fatha that shows is the vowel of the dropped hamza, moved onto it.",
+    "Sonraki kelimeyle birlikte hikâye edilmiştir; öncekine ma'tûf, mahallen mecrûr — aslı «" + asl + "»: muzâri fiil, " + let_tr + " üzerinde ağırlıktan dolayı takdîr edilen damme ile merfû; görünen fetha, hazfedilen hemzenin ona nakledilen harekesidir.")
+L("54:s1:8", *VERB20("يَغْزُو أَخَاهُ", "الْوَاوِ", "wāw", "vâv"))
+L("54:s1:11", *VERB20("يَرْمِي أَبَاهُ", "الْيَاءِ", "yāʾ", "yâ"))
+OBJ20 = lambda asl: (
+    "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْأَلِفِ لِأَنَّهُ مِنَ الْأَسْمَاءِ الْخَمْسَةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ — أَصْلُهُ «" + asl + "»، حُذِفَتْ هَمْزَتُهُ.",
+    "The object, in nasb by the alif, as one of the five nouns; it is annexed, and the hāʾ is an attached pronoun in the place of jarr as the mudaf ilayh — from «" + asl + "», its hamza dropped.",
+    "Mef'ûlün bih, esmâ-i hamseden olduğu için elif ile mansûb; muzâftır, hâ da mahallen mecrûr muttasıl zamîr olup muzâfun ileyhtir — aslı «" + asl + "», hemzesi hazfedilmiştir.")
+L("54:s1:9", *OBJ20("أَخَاهُ")); L("54:s1:12", *OBJ20("أَبَاهُ"))
+#      «يَاءً أَوْ وَاوًا مَدَّتَيْنِ»: the dual describes the pair.
+R("54:s2:13", "nat", "nasb")
+L("54:s2:13", "نَعْتٌ مَنْصُوبٌ بِالْيَاءِ لِأَنَّهُ مُثَنًّى.", "An adjective (na't), in nasb; the sign is the yāʾ — a dual.", "Na't (sıfat), mansûb; alâmeti yâ ile — tesniye.")
+#      «كَيَاءِ جَيَلٌ وَيَاءِ يَرْمِيَ بَاهُ»: two words quoted as one in the annexed seat.
+L("54:s3:21", "لَفْظٌ مَحْكِيٌّ مَعَ مَا بَعْدَهُ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "Quoted together with the word after it; in the place of jarr as the mudaf ilayh.", "Sonraki kelimeyle birlikte hikâye edilmiştir; mahallen mecrûr, muzâfun ileyh.")
+L("54:s3:22", "تَتِمَّةُ اللَّفْظِ الْمَحْكِيِّ «يَرْمِيَ بَاهُ».", "The rest of the quoted wording «يَرْمِيَ بَاهُ».", "Hikâye edilen «يَرْمِيَ بَاهُ» sözünün devamı.")
+#      «تُجْعَلُ بَيْنَ بَيْنَ»: the compound of part nineteen.
+L("54:s4:4", *BB1_19); L("54:s4:5", *BB2_19)
+#      The āya the matn cites stands, as wording, in the deputy doer's seat of «قُرِئَ».
+L("55:s4:12", "لَفْظٌ مَحْكِيٌّ مَعَ مَا بَعْدَهُ مِنَ الْآيَةِ، فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ لِـ«قُرِئَ» — وَهُوَ فِي الْآيَةِ مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.",
+  "Quoted from the āya together with the word after it; in the place of raf' as the deputy doer of «قُرِئَ» — in the āya itself it is the object, in nasb by the fatha, and annexed.",
+  "Sonraki kelimeyle birlikte âyetten hikâye edilmiştir; «قُرِئَ»nin nâib-i fâili olarak mahallen merfû — âyetin içinde ise mef'ûlün bih, fetha ile mansûb ve muzâftır.")
+#      «فَلِمَ» and «فَكَيْفَ», in the shelf's own wording.
+L("55:s5:7", "الْفَاءُ عَاطِفَةٌ، وَاللَّامُ حَرْفُ جَرٍّ، وَمَا اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ، حُذِفَتْ أَلِفُهَا لِدُخُولِ الْجَارِّ.", "The fa conjoins; «why?» — the jarr lām on the interrogative mā, whose alif drops after a preposition.", "«bunun üzerine» + «niçin?» — istifhâm mâ'sı üzerinde cer lâmı; harf-i cerden sonra elifi düşer.")
+L("55:s5:13", "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَخَبَرُهُ جُمْلَةُ «لَيْسَتْ بِمَدَّةٍ».", "The mubtada, in raf'; the sign is the damma — its khabar is the sentence «لَيْسَتْ بِمَدَّةٍ».", "Mübtedâ, merfû; alâmeti damme ile — haberi «لَيْسَتْ بِمَدَّةٍ» cümlesidir.")
+L("55:s5:18", "الْفَاءُ عَاطِفَةٌ، وَكَيْفَ اسْمُ اسْتِفْهَامٍ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ نَصْبٍ حَالٌ.", "The fa conjoins; كَيْفَ «how» is an interrogative noun built on fatha, in the seat of nasb as a hal.", "«bunun üzerine» + keyfe «nasıl»: istifhâm ismi, fetha üzere mebnî, hâl olarak mahallen mansûb.")
+#      «وَأَمَّا كُلْ وَخُذْ وَمُرْ فَشَاذٌّ»: three imperatives quoted as words — a mubtadaʾ, two joined to it, and the khabar behind the fāʾ.
+L("55:s6:1", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "The word itself is quoted; in the place of raf' as the mubtada.", "Kelimenin kendisi kastedilmiştir (hikâye); mahallen merfû, mübtedâ.")
+for w_ in ("55:s6:3", "55:s6:5"):
+    L(w_, "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ رَفْعٍ.", "The word itself is quoted; joined to the word before it, in the place of raf'.", "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen merfû.")
+L("55:s6:6", "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «أَمَّا»، وَخَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.", "The fa answers «أَمَّا»; the khabar (predicate), in raf'; the sign is the damma.", "Fâ «أَمَّا»nın cevabındadır; haber, merfû; alâmeti damme ile.")
+#      «كَانَتَا»: kāna with the feminine tāʾ and the alif of the two.
+for w_ in ("55:s7:2", "55:s7:7"):
+    L(w_, "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَأَلِفُ الِاثْنَيْنِ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ اسْمُهَا.",
+      "A deficient past verb, one of kāna's sisters, built on the fatha; the tāʾ marks the feminine, and the alif of the dual is an attached pronoun in the place of raf' as its noun.",
+      "Nâkıs mâzî fiil, kâne'nin kardeşlerinden, fetha üzere mebnî; tâ te'nîs içindir, tesniye elifi de mahallen merfû muttasıl zamîr olup ismidir.",
+      key="kana", pos="verb", enc="")
+# <<< part twenty
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

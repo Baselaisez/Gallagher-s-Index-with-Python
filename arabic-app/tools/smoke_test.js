@@ -15974,6 +15974,39 @@ if (!CHROME) {
     if (!r.c1.includes(N('مُؤْتَخِذٌ')) || !r.c2.includes(N('مُدَّكِرٌ')) || !r.c2.includes(N('مُذْدَكِرٌ')) || !r.c2.includes(N('يَجُوزُ الْبَيَانُ')) || r.c3) throw new Error('the card: ' + J([r.c1, r.c2, r.c3]));
   });
 
+  await check('wave 204 — Marāḥ al-Arwāḥ part twenty (loading the vowel onto the weak letters, the added soft letter, two hamzas meeting; pp. 112–115) stands on the shelf with every line named; the second object behind a passive of turning, kāna\'s annexed khabar behind «مَا قَبْلَهَا», and the pair joined to kāna\'s noun and khabar are read by rule, each with its control; the four new paradigms hold', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [54, 55].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const two = 'وَإِذَا اجْتَمَعَتْ هَمْزَتَانِ وَكَانَتِ الْأُولَى مَفْتُوحَةً وَالثَّانِيَةُ سَاكِنَةً تُقْلَبُ الثَّانِيَةُ أَلِفًا', lin = 'وَإِذَا كَانَ مَا قَبْلَهَا حَرْفَ لِينٍ مَزِيدًا نُظِرَ';
+      return { chapters: st.chapters.length, sens: [54, 55].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.') || x.ar.includes(N('تَقْدِيرُهُ أَنْتَ'))).map(x => x.w),
+        l: { jayal: line(54, 's1', 1), ghaza: line(54, 's1', 8), akh: line(54, 's1', 9), ayyub: line(54, 's1', 6), harf: line(54, 's2', 4), mazid: line(54, 's2', 6), madda: line(54, 's2', 13), mithl: line(54, 's2', 21), afda: line(54, 's2', 34), bb: line(54, 's4', 4),
+             atf1: line(55, 's1', 6), atf2: line(55, 's1', 7), alif: line(55, 's1', 10), ajara: line(55, 's1', 12), adama: line(55, 's1', 14), waw: line(55, 's2', 6), ujira: line(55, 's2', 8), ya: line(55, 's3', 6), isir: line(55, 's3', 8), ayimma: line(55, 's3', 11), ya2: line(55, 's3', 20),
+             aya: line(55, 's4', 12), lima: line(55, 's5', 7), kayfa: line(55, 's5', 18), kul: line(55, 's6', 1), shadhdh: line(55, 's6', 6), kanata: line(55, 's7', 2), old: line(47, 's6', 11) },
+        e: { a1: V(two, 6, 'endings'), a2: V(two, 7, 'endings'), m2: V(two, 10, 'endings'), t1: V('كان الولد صغيرا والبيت كبيرا', 3), t2: V('كان الولد صغيرا والبيت كبيرا', 4), tc: V('جاء زيد والبيت كبير', 2),
+             j2: V('ثُمَّ جُعِلَتْ يَاءً وَكُسِرَتْ لِاجْتِمَاعِ السَّاكِنَيْنِ', 2, 'endings'), kh: V(lin, 4, 'endings'), mi: V(lin, 5, 'endings'), nt: V(lin, 6, 'endings'), mth: V('ثُمَّ جُعِلَتْ مِثْلَ مَا قَبْلَهَا', 2, 'endings'), c1: V('فَتُجْعَلُ يَاءً أَوْ وَاوًا', 1, 'endings'), c2: V('فَتُجْعَلُ يَاءً أَوْ وَاوًا', 3, 'endings') },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), hadhf: HadhfEngine.audit().false,
+             stored: [N((M('aajara').mudari || [])[12]), N(M('aajara').masdar), N((M('aadama-iv').mudari || [])[12]), N((M('asara-capture').amr || [])[0]), N((M('asara-capture').mudari || [])[12]), N((M('afda').mudari || [])[0])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 55 || J(r.sens) !== '[4,7]' || r.n !== 234) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.jayal.startsWith('jayal|') || !r.l.jayal.includes(N('جَيْأَلٌ')) || !r.l.ghaza.includes(N('يَغْزُو أَخَاهُ')) || !r.l.akh.startsWith('akh|' + N('مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْأَلِفِ')) || !r.l.ayyub.startsWith('ayyub|' + N('مُضَافٌ إِلَيْهِ مَجْرُورٌ بِالْفَتْحَةِ'))) throw new Error('the lightened examples: ' + J([r.l.jayal, r.l.ghaza, r.l.akh, r.l.ayyub]));
+    if (!r.l.harf.startsWith('harf|' + N('خَبَرُ كَانَ')) || !r.l.harf.includes(N('مُضَافٌ')) || !r.l.mazid.includes(N('نَعْتٌ مَنْصُوبٌ')) || !r.l.madda.startsWith('madda-letter|' + N('نَعْتٌ مَنْصُوبٌ بِالْيَاءِ')) || !r.l.mithl.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || !r.l.afda.startsWith('afda|' + N('فِعْلٌ مُضَارِعٌ')) || !r.l.bb.includes(N('فَتْحِ الْجُزْأَيْنِ'))) throw new Error('the added soft letter: ' + J([r.l.harf, r.l.mazid, r.l.madda, r.l.mithl, r.l.afda, r.l.bb]));
+    if (!r.l.atf1.includes(N('وَمَعْطُوفٌ مَرْفُوعٌ')) || !r.l.atf2.includes(N('مَعْطُوفٌ مَنْصُوبٌ')) || ![r.l.alif, r.l.waw, r.l.ya, r.l.ya2].every(x => x.includes(N('مَفْعُولٌ بِهِ ثَانٍ'))) || !r.l.ajara.startsWith('aajara|') || !r.l.adama.startsWith('aadama-iv|') || !r.l.ujira.startsWith('aajara|') || !r.l.isir.startsWith('asara-capture|') || !r.l.ayimma.startsWith('imam|')) throw new Error('two hamzas in one word: ' + J([r.l.atf1, r.l.atf2, r.l.alif, r.l.waw, r.l.ya, r.l.ya2, r.l.ajara, r.l.adama, r.l.ujira, r.l.isir, r.l.ayimma]));
+    if (!r.l.aya.includes(N('نَائِبُ فَاعِلٍ لِـ«قُرِئَ»')) || !r.l.lima.startsWith('lima|' + N('الْفَاءُ عَاطِفَةٌ، وَاللَّامُ حَرْفُ جَرٍّ')) || !r.l.kayfa.includes(N('حَالٌ')) || !r.l.kul.includes(N('فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ')) || !r.l.shadhdh.includes(N('جَوَابِ «أَمَّا»')) || !r.l.kanata.startsWith('kana|') || !r.l.kanata.includes(N('أَلِفُ الِاثْنَيْنِ')) || !r.l.old.includes(N('وَمَعْطُوفٌ'))) throw new Error('the citation, the questions and «كَانَتَا»: ' + J([r.l.aya, r.l.lima, r.l.kayfa, r.l.kul, r.l.shadhdh, r.l.kanata, r.l.old]));
+    if (r.e.a1 !== N('وَالثَّانِيَةُ') + '/atf' || r.e.a2 !== N('سَاكِنَةً') + '/atf' || r.e.t1 !== N('والبيتُ') + '/atf' || r.e.t2 !== N('كبيرًا') + '/atf' || !/\/mubtada$/.test(r.e.tc)) throw new Error('the pair joined to kāna\'s noun and khabar, and its control: ' + J([r.e.a1, r.e.a2, r.e.t1, r.e.t2, r.e.tc]));
+    if (r.e.m2 !== N('أَلِفًا') + '/maful2' || r.e.j2 !== N('يَاءً') + '/maful2' || r.e.mth !== N('مِثْلَ') + '/maful2' || r.e.c1 !== N('يَاءً') + '/maful2' || r.e.c2 !== N('وَاوًا') + '/atf') throw new Error('the second object behind a passive of turning: ' + J([r.e.m2, r.e.j2, r.e.mth, r.e.c1, r.e.c2]));
+    if (r.e.kh !== N('حَرْفَ') + '/kanaKhabar' || r.e.mi !== N('لِينٍ') + '/mudafIlayh' || r.e.nt !== N('مَزِيدًا') + '/nat') throw new Error('kāna\'s annexed khabar behind «مَا قَبْلَهَا»: ' + J([r.e.kh, r.e.mi, r.e.nt]));
+    if (r.g.bad.length || r.g.checked < 1333 || r.g.hadhf > 3 || J(r.g.stored) !== J(['أُوجِرُ', 'إِيجَار', 'أُودِمُ', 'اِئْسِرْ', 'آسِرُ', 'يُفْضِي'].map(N))) throw new Error('the four paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -13342,3 +13342,44 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   مْرَأَةً», a form the rule it illustrates cannot produce; no second witness was found. The next part will carry the
   list's five sound examples and say in its reading notes that the sixth is left out.
 - **Next.** Marāḥ part twenty from p. 112 («وَ «جَيَلٌ» وَ «حَوَبَةٌ»» …, the added soft letter, two hamzas meeting).
+
+### v303 (wave 204) — Marāḥ al-Arwāḥ part twenty (the added soft letter, two hamzas meeting), the second object behind a passive of turning, and the pair joined to kāna's noun and khabar
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 112–115 of the scan (the matn's large type only):
+  chapter 54 «تَحْمِيلُ الْحَرَكَةِ عَلَى حُرُوفِ الْعِلَّةِ وَحَرْفُ اللِّينِ الْمَزِيدُ» (4 sentences — «جَيَلٌ / حَوَبَةٌ / أَبُوَ يُّوبَ / يَغْزُوَ
+  خَاهُ / يَرْمِيَ بَاهُ», the added soft letter with «خَطِيَّةٌ / مَقْرُوَّةٌ / أُفَيِّسٌ», the objection about the second yāʾ, «بَيْنَ بَيْنَ»
+  behind an alif) and 55 «اجْتِمَاعُ الْهَمْزَتَيْنِ» (7 — «آجَرَ / آدَمَ», «أُوجِرَ / أُودِمَ», «اِيسِرْ», «أَيِمَّةٌ» and the Kūfans'
+  «أَئِمَّةَ الْكُفْرِ», the objection about «آمَّةٌ», «كُلْ / خُذْ / مُرْ», the two hamzas in two words). 11 sentences / 234 words;
+  the book stands at **55 chapters / 448 sentences / 5,554 words**, version 0.20.0. The letters collate with the scan's
+  text layer but for the layer's split words and the printer's sūra reference.
+- **What is left out, and said so.** The sixth example of the list on p. 112 — this printing's «وَابْتَغِي مْرَأَةً», a form
+  the rule cannot produce; no second witness was found. The attribution says it in three languages, with the four words
+  the printing leaves unvowelled and how they are read. The part stops before «وَعِنْدَ بَعْضِ الْعَرَبِ يُقْحَمُ بَيْنَهُمَا
+  أَلِفٌ» — the half-verse it cites is printed with a shadda the verse does not bear.
+- **Four paradigms** through `sarf_gen` (71 in the book): «أَفْضَى», «آجَرَ», «آدَمَ», «أَسَرَ». Their first-person muḍāriʿ is
+  the chapter's own rule and is stored so: «أُوجِرُ، أُودِمُ، آسِرُ». The cited «اِيسِرْ» is keyed to «أَسَرَ», whose stored amr
+  is «اِئْسِرْ». `sarfAudit` 1,333 checked, 0 bad.
+- **Reader rules** (`$S/w204/patch204.py`):
+  - **the second object behind a passive of turning.** «تُقْلَبُ الثَّانِيَةُ أَلِفًا», «ثُمَّ جُعِلَتْ يَاءً», «جُعِلَتْ مِثْلَ مَا
+    قَبْلَهَا»: «قَلَبَ / جَعَلَ / أَبْدَلَ / صَيَّرَ» take two objects; in the passive the first is the deputy and the letter's
+    name stays the second object (the three sentences of chapter 55 had come out a cognate object, a ḥāl and a plain
+    object). «يُجْعَلُ الدَّالُ ذَالًا وَالذَّالُ دَالًا» keeps its joined second pair.
+  - **kāna's annexed khabar behind «مَا قَبْلَهَا».** «إِذَا كَانَ مَا قَبْلَهَا حَرْفَ لِينٍ مَزِيدًا»: «مَا» with its ẓarf is
+    kāna's noun; the bare noun behind them is the khabar — annexed where the author wrote no tanwīn — and the indefinite
+    in naṣb behind the annexation its naʿt.
+  - **the pair joined to kāna's noun and khabar.** «وَكَانَتِ الْأُولَى مَفْتُوحَةً وَالثَّانِيَةُ سَاكِنَةً»: «وَ» with an
+    article-noun and a bare indefinite behind kāna's noun and khabar joins two words to the two; typed bare, «كان الولد
+    صغيرا والبيت كبيرا» ends «كبيرًا» (it had opened a new nominal sentence). «جاء زيد والبيت كبير» is untouched.
+  - **the dual that describes a pair.** «يَاءً أَوْ وَاوًا مَدَّتَيْنِ»: a naʿt in the pair's case (the stored line is by hand —
+    with the endings hidden the engine still seats «يَاء» as kāna's noun).
+- **Hand lines** (`mk_fixes.py`, part twenty): the lightened examples with their origins, «أَئِمَّةَ الْكُفْرِ» in the deputy's
+  seat of «قُرِئَ», «فَلِمَ» and «فَكَيْفَ» in the shelf's own wording, «كُلْ / خُذْ / مُرْ» as quoted words behind «أَمَّا»,
+  «كَانَتَا» with its alif.
+- **Sweeps** (same data, v302 code against the candidate): blind 72,326 true / 592 false / 357 undecided on both sides, receipts-on 72,749 / 335 / 191 → 72,750 / 334 / 191 — 0 endings broken, 1 fixed; 25 labels moved, all to the stored line (the second objects, the joined pairs, two dual naʿts). IshtiqaqEngine calibration 3,257 / 3,298 (0.9876; all eleven new rows derived). Case layer 59,545 / 60,201 (98.91 %). Label gauge
+  90.27 % over 35,140; typed gauge 1,158 / 1,159.
+- **Smoke.** `wave 204` (#451; TOTAL 453).
+- **Open.** A cited verb joined by «وَ» to another cited verb is read as the noun it looks like («آدَمَ» → the name);
+  with the endings hidden «كَانَ يَاءً أَوْ وَاوًا» seats the first as kāna's noun; typed bare, a passive of turning is not
+  known from its active («تقلب الواو ياء»).
+- **Next.** Marāḥ part twenty-one opens on p. 115 at «وَعِنْدَ بَعْضِ الْعَرَبِ يُقْحَمُ بَيْنَهُمَا أَلِفٌ لِلْفَصْلِ» — collate the
+  half-verse «آأَنْتِ أَمْ أُمُّ سَالِمِ» against a dīwān first.
