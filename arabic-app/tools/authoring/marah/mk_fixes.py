@@ -1237,5 +1237,32 @@ R("51:s2:10", "atf", "nasb"); L("51:s2:10", "مَعْطُوفٌ عَلَى «ت�
 L("51:s3:8", *QUOTE)
 L("51:s3:9", "مُضَارِعُهُ، مَحْكِيٌّ مَعَهُ مِنْ تَمَامِ الْمِثَالِ.", "Its mudari', quoted with it — part of the example.", "Onun muzârii; onunla birlikte hikâye edilir, misâlin devamıdır.")
 # <<< part eighteen
+# >>> part nineteen
+# ---- part nineteen (pp. 109–112): the hamzated verb; lightening the hamza.
+for w_ in ("52:s3:15", "52:s3:17"):
+    K(w_, "makhraj-harf", pos="noun")
+#      The khabar of the maṣdar «صَيْرُورَة», in the shelf's own wording (part fourteen).
+L("52:s1:6", "خَبَرُ الْمَصْدَرِ النَّاقِصِ «صَيْرُورَة» مَنْصُوبٌ بِالْفَتْحَةِ، مُضَافٌ.", "The predicate of the maṣdar «صَيْرُورَة» (the maṣdar of «صَارَ» works as it does), in nasb; the sign is the fatha; annexed (mudaf).", "«صَيْرُورَة» masdarının haberi («صَارَ»nin masdarı da onun gibi amel eder), mansûb; alâmeti fetha ile; muzâf.")
+#      The three kinds spelled out behind the colon.
+L("52:s2:5", "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «هِيَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "The khabar of an omitted mubtada («they are»), in raf'; the sign is the damma; annexed (mudaf).", "Hazfedilmiş mübtedânın («onlar») haberi, merfû; alâmeti damme ile; muzâf.")
+#      «بَيْنَ بَيْنَ»: one compound, the second object of «جَعْل» and of its passive.
+BB1_19 = ("اسْمٌ مُرَكَّبٌ مَعَ مَا بَعْدَهُ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ ثَانٍ.", "Compounded with the word after it — both halves built on the fatha — in the place of nasb as the second object.", "Sonraki kelimeyle birlikte mürekkeb — iki cüzü fetha üzere mebnî — ikinci mef'ûl olarak mahallen mansûb.")
+BB2_19 = ("الْجُزْءُ الثَّانِي مِنَ الْمُرَكَّبِ «بَيْنَ بَيْنَ»، مَبْنِيٌّ عَلَى الْفَتْحِ.", "The second half of the compound «بَيْنَ بَيْنَ», built on the fatha.", "«بَيْنَ بَيْنَ» mürekkebinin ikinci cüzü; fetha üzere mebnî.")
+L("52:s3:11", *BB1_19); L("52:s3:12", *BB2_19); L("52:s5:12", *BB1_19); L("52:s5:13", *BB2_19)
+#      The ḥāl clause: its wāw, and the second predicate.
+L("52:s7:7", "الْوَاوُ حَالِيَّةٌ، وَمُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، وَهُوَ مُضَافٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ، وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ حَالٌ.", "The waw of the ḥāl; the mubtada, in raf'; the sign is the damma; annexed, the pronoun «his/its» is the mudaf ilayh; the clause is in the place of nasb as a ḥāl.", "Hâl vâvı; mübtedâ, merfû; alâmeti damme ile; muzâf, zamir «onun» muzâfun ileyh; cümle hâl olarak mahallen mansûbdur.")
+R("52:s7:9", "khabar", "raf"); L("52:s7:9", "خَبَرٌ ثَانٍ مَرْفُوعٌ بِالضَّمَّةِ.", "A second predicate, in raf'.", "İkinci haber, merfû.")
+#      The piece of verse: «هَنَاكِ» is «هَنَأَكِ» with its hamza lightened — the very thing the matn calls irregular.
+L("52:s8:2", "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى فَتْحٍ مُقَدَّرٍ عَلَى الْأَلِفِ — أَصْلُهُ «هَنَأَكِ» فَخُفِّفَتْ هَمْزَتُهُ بِقَلْبِهَا أَلِفًا — وَالْكَافُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ، وَالْجُمْلَةُ مَحْكِيَّةٌ فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.", "A past verb, built on a fatha supposed on the alif — its origin is «هَنَأَكِ», the hamza lightened by turning it into an alif; the kāf is an attached pronoun in the place of nasb as the object; the clause is quoted, in the place of jarr as the mudaf ilayh.", "Mâzî fiil, elif üzerinde mukadder fetha üzere mebnî — aslı «هَنَأَكِ»dir, hemzesi elife çevrilerek hafifletilmiştir; kâf muttasıl zamir, mef'ûlün bih olarak mahallen mansûb; cümle hikâye edilmiştir, muzâfun ileyh olarak mahallen mecrûrdur.", key="hanaa", pos="verb", enc="")
+R("52:s8:3", "fail", "raf")
+#      Chapter 53: the passive «تُلَيَّنُ»; «لِينِ عَرِيكَتِهَا»; «مَا قَبْلَهَا» as a badal; «لِمَا»; the two naʿts; the cited word joined.
+L("53:s1:9", "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.", "A present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هِيَ».", "Muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هِيَ».")
+L("53:s1:12", "اللَّامُ حَرْفُ جَرٍّ، وَمَجْرُورٌ بِهِ بِالْكَسْرَةِ، مُضَافٌ.", "preposition + noun: In jarr after the preposition; the sign is the kasra; annexed (mudaf).", "harf-i cer + isim: Mecrûr; alâmeti kesre ile; muzâf.")
+R("53:s1:13", "mudafIlayh", "jarr")
+L("53:s1:16", "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ بَدَلٌ مِنَ «السَّاكِنِ»، وَصِلَتُهُ الظَّرْفُ «قَبْلَهَا»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.", "a relative pronoun — built (mabni), in the place of jarr as a badal of «السَّاكِنِ»; its relative clause is the adverbial «قَبْلَهَا»; the returning pronoun stands inside it.", "ism-i mevsûl — mebnî, «السَّاكِنِ»den bedel olarak mahallen mecrûr; sılası zarf «قَبْلَهَا»; âid zamiri içindedir.")
+L("53:s1:25", "اللَّامُ حَرْفُ جَرٍّ، وَ«مَا» اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ، وَصِلَتُهُ الظَّرْفُ «قَبْلَهَا»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.", "The lam is a preposition; «مَا» is a relative pronoun — built (mabni), in the place of jarr; its relative clause is the adverbial «قَبْلَهَا»; the returning pronoun stands inside it.", "Lâm harf-i cerdir; «مَا» ism-i mevsûl — mebnî, mahallen mecrûr; sılası zarf «قَبْلَهَا»; âid zamiri içindedir.", key="ma-mawsula", pos="pron", enc="")
+R("53:s1:32", "nat", "nasb"); R("53:s1:37", "nat", "nasb")
+L("53:s2:5", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", "The word itself is quoted; joined to the word before it, in the place of jarr.", "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr.")
+# <<< part nineteen
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

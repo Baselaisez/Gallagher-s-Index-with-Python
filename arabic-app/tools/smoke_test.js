@@ -15910,6 +15910,39 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1330 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يَخْتَصِمُ', 'اِسْتِدَانَة', 'يُرِيقُ', 'تَطَهُّر', 'تَثَاقَلَ', 'اِبْتَسِمْ', 'أَسْتَطْعِمُ'].map(N))) throw new Error('the nine paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
   });
 
+  await check('wave 202 — Marāḥ al-Arwāḥ part nineteen (the third bāb opens: the hamzated verb and the lightening of its hamza; pp. 109–112) stands on the shelf with every line named; the compound «بَيْنَ بَيْنَ», the ṣila\'s own postponed mubtadaʾ, the paired second object behind the passive of «جَعَلَ» are read by rule, each with its control; the complete «يَكُونُ», the seat of «مَا» and the passive\'s «هِيَ» are named; the two new paradigms hold', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [52, 53].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const bb = 'فلا تقلب بل يجعل بين بين لقوة عريكتها', sila = 'أَنَّهَا قَدْ تُخَفَّفُ بِالْقَلْبِ بَيْنَ مَخْرَجِ الْحَرْفِ الَّتِي مِنْهُ حَرَكَتُهَا';
+      return { chapters: st.chapters.length, sens: [52, 53].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.') || x.ar.includes(N('تَقْدِيرُهُ أَنْتَ'))).map(x => x.w),
+        l: { sayr: line(52, 's1', 6), bb1: line(52, 's3', 11), bb2: line(52, 's3', 12), khf: line(52, 's3', 8), har: line(52, 's3', 21), tamm: line(52, 's4', 1), kh2: line(52, 's4', 5), ma: line(52, 's4', 6), ras: line(52, 's4', 21), bir: line(52, 's4', 25),
+             matf: line(52, 's6', 4), kas: line(52, 's6', 6), ya: line(52, 's6', 10), hal: line(52, 's7', 7), kh: line(52, 's7', 8), hana: line(52, 's8', 2), marta: line(52, 's8', 3),
+             lay: line(53, 's1', 9), lima: line(53, 's1', 25), ism: line(53, 's1', 29), masala: line(53, 's2', 1), malak: line(53, 's2', 7), old: line(26, 's3', 1), old2: line(26, 's1', 8) },
+        e: { b1: V(bb, 4), b2: V(bb, 5), bc: V('جلس زيد بين عمرو وخالد', 2), sila: V(sila, 9, 'endings'), s2: V('جاء الرجل الذي في بيته كتاب', 5), s3: V('هذه المدينة التي في وسطها نهر', 5), sc: V('رأيت الرجل الذي في بيته', 4),
+             o2: V('فَتُجْعَلُ يَاءً أَوْ وَاوًا', 1, 'endings'), o2b: V('فَتُجْعَلُ يَاءً أَوْ وَاوًا', 3, 'endings') },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), hadhf: HadhfEngine.audit().false,
+             stored: [N((M('layyana').mudari || [])[0]), N(M('layyana').masdar), N((M('lauma').mudari || [])[0]), N(M('lauma').masdar), N((M('lauma').amr || [])[0])] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 53 || J(r.sens) !== '[8,3]' || r.n !== 217) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.sayr.includes(N('خَبَرُ الْمَصْدَرِ النَّاقِصِ «صَيْرُورَة»')) || !r.l.bb1.includes(N('فَتْحِ الْجُزْأَيْنِ')) || !r.l.bb2.includes(N('الْجُزْءُ الثَّانِي')) || !r.l.khf.endsWith(N('تَقْدِيرُهُ هِيَ.')) || !r.l.har.startsWith('haraka|' + N('مُبْتَدَأٌ'))) throw new Error('chapter 52, the opening: ' + J([r.l.sayr, r.l.bb1, r.l.bb2, r.l.khf, r.l.har]));
+    if (!r.l.tamm.includes(N('فِعْلٌ مُضَارِعٌ تَامٌّ')) || !r.l.kh2.startsWith('mutaharrik|' + N('خَبَرٌ ثَانٍ')) || !r.l.ma.includes(N('فَاعِلٌ لِاسْمِ الْفَاعِلِ «مُتَحَرِّكًا»')) || !r.l.ras.startsWith('ras|') || !r.l.bir.startsWith('bir|')) throw new Error('the first kind of lightening: ' + J([r.l.tamm, r.l.kh2, r.l.ma, r.l.ras, r.l.bir]));
+    if (!r.l.matf.includes(N('مَعْطُوفٌ عَلَى اسْمِ كَانَ')) || !r.l.kas.startsWith('maksur|' + N('مَعْطُوفٌ عَلَى خَبَرِ كَانَ')) || !r.l.ya.includes(N('مَفْعُولٌ بِهِ ثَانٍ')) || !r.l.hal.includes(N('الْوَاوُ حَالِيَّةٌ')) || !r.l.kh.startsWith('maftuh|' + N('خَبَرٌ')) || !r.l.hana.startsWith('hanaa|' + N('فِعْلٌ مَاضٍ')) || !r.l.marta.startsWith('marta|' + N('فَاعِلٌ'))) throw new Error('the second kind and the verse: ' + J([r.l.matf, r.l.kas, r.l.ya, r.l.hal, r.l.kh, r.l.hana, r.l.marta]));
+    if (!r.l.lay.startsWith('layyana|') || !r.l.lay.includes(N('لِلْمَجْهُولِ')) || !r.l.lima.startsWith('ma-mawsula|') || !r.l.ism.includes(N('اسْمُ كَانَ')) || !r.l.masala.startsWith('masala|') || !r.l.malak.startsWith('malak|') || !r.l.old.endsWith(N('تَقْدِيرُهُ هِيَ.')) || !r.l.old2.includes(N('اسْمُ كَانَ'))) throw new Error('chapter 53 and the two earlier lines: ' + J([r.l.lay, r.l.lima, r.l.ism, r.l.masala, r.l.malak, r.l.old, r.l.old2]));
+    if (r.e.b1 !== N('بينَ') + '/mabni' || r.e.b2 !== N('بينَ') + '/mabni' || r.e.bc !== N('بينَ') + '/zarf') throw new Error('the compound «بَيْنَ بَيْنَ», and its control: ' + J([r.e.b1, r.e.b2, r.e.bc]));
+    if (r.e.sila !== N('حَرَكَتُهَا') + '/mubtada' || r.e.s2 !== N('كتابٌ') + '/mubtada' || r.e.s3 !== N('نهرٌ') + '/mubtada' || !/\/jarr$/.test(r.e.sc)) throw new Error('the postponed mubtadaʾ of the ṣila, and its control: ' + J([r.e.sila, r.e.s2, r.e.s3, r.e.sc]));
+    if (r.e.o2 !== N('يَاءً') + '/maful2' || r.e.o2b !== N('وَاوًا') + '/atf') throw new Error('the paired second object behind the passive: ' + J([r.e.o2, r.e.o2b]));
+    if (r.g.bad.length || r.g.checked < 1330 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يُلَيِّنُ', 'تَلْيِين', 'يَلْؤُمُ', 'لُؤْم', 'اُلْؤُمْ'].map(N))) throw new Error('the two paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

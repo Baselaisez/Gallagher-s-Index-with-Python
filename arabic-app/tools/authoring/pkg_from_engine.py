@@ -710,6 +710,63 @@ def name_kawn_khabar(toks, report):
         report["kawn_khabar"] = report.get("kawn_khabar", 0) + 1
 
 
+def name_passive_hiya(toks, report):
+    """(wave 202) قَدْ تُخَفَّفُ، لَمْ تُكْسَرْ: a passive muḍāriʿ on «تُـ» whose deputy doer is hidden speaks of a feminine thing — «هِيَ» — unless the sentence itself addresses a «you»."""
+    second = any(x.get("lex") in ("anta", "anti", "antum") or re.search(r"(?:ْتَ|ْتُمْ)$", N(x["surface"]["full"])) and x.get("pos") == "verb" for x in toks)
+    if second: return
+    for t in toks:
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if "لِلْمَجْهُولِ" not in ar or not ar.endswith("وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.") or not re.match(r"^(?:[وف]َ)?تُ", N(t["surface"]["full"])): continue
+        en = ir.get("en", ""); tr = ir.get("tr", "")
+        if "«أَنْتَ»" not in en or "«أَنْتَ»" not in tr: continue
+        t["irab"] = {"ar": ar[:-len("أَنْتَ.")] + "هِيَ.", "en": en.replace("«أَنْتَ»", "«هِيَ»"), "tr": tr.replace("«أَنْتَ»", "«هِيَ»")}
+        report["passive_hiya"] = report.get("passive_hiya", 0) + 1
+
+
+def name_kana_tamma(toks, report):
+    """(wave 202) الْأَوَّلُ يَكُونُ إِذَا كَانَتْ سَاكِنَةً: «يَكُونُ» with «إِذَا» right behind it and nothing for it to raise or set in naṣb is the complete «كَانَ» — «it comes about»."""
+    for j, t in enumerate(toks[:-1]):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        if t.get("lex") != "kana" or toks[j + 1].get("lex") != "idha": continue
+        if "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ" not in ar or "وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ" not in ar: continue
+        en = ir.get("en", ""); tr = ir.get("tr", "")
+        EN_OLD = " — one of kāna's sisters: it raises its noun and puts its predicate in naṣb."; TR_OLD = " — kâne'nin kardeşlerinden: ismini ref, haberini nasb eder."
+        if not en.endswith(EN_OLD) or not tr.endswith(TR_OLD): continue
+        t["irab"] = {"ar": ar.replace("فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ", "فِعْلٌ مُضَارِعٌ تَامٌّ مَرْفُوعٌ").replace("وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ", "وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ"),
+                     "en": en[:-len(EN_OLD)] + " — the complete «كَانَ»: «it comes about», and it needs no predicate.",
+                     "tr": tr[:-len(TR_OLD)] + " — tam «كَانَ»: «meydana gelir» demektir, habere ihtiyaç duymaz."}
+        report["kana_tamma"] = report.get("kana_tamma", 0) + 1
+
+
+def name_ma_seat(toks, report):
+    """(wave 202) إِذَا كَانَ مَا قَبْلَهَا حَرْفًا، سَاكِنَةً مُتَحَرِّكًا مَا قَبْلَهَا، مَفْتُوحَةً وَمَا قَبْلَهَا مَكْسُورَةً: the relative «مَا» whose ṣila is a ẓarf
+    is named for its seat — kāna's noun right behind kāna, the doer of the participle in naṣb right before it, or joined to kāna's noun with a second khabar behind its ṣila."""
+    PAT = re.compile(r"^(الْوَاوُ عَاطِفَةٌ، وَ)?اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ(، وَصِلَتُهُ الظَّرْفُ «[^»]+»، وَالْعَائِدُ الضَّمِيرُ فِيهَا\.)$")
+    def put(t, ar_ins, en_ins, tr_ins):
+        ir = t["irab"]; m = PAT.match(ir["ar"])
+        t["irab"] = {"ar": (m.group(1) or "") + "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ " + ar_ins + m.group(2),
+                     "en": ir.get("en", "").replace("built (mabni);", "built (mabni), " + en_ins + ";", 1), "tr": ir.get("tr", "").replace("mebnî;", "mebnî, " + tr_ins + ";", 1)}
+        report["ma_seat"] = report.get("ma_seat", 0) + 1
+    for j, t in enumerate(toks):
+        ir = t.get("irab") or {}; ar = ir.get("ar", "")
+        m = PAT.match(ar)
+        if t.get("lex") != "ma-mawsula" or not m or j == 0 or j + 1 >= len(toks) or "built (mabni);" not in ir.get("en", "") or "mebnî;" not in ir.get("tr", ""): continue
+        pv = toks[j - 1]; par = (pv.get("irab") or {}).get("ar", ""); psf = N(pv["surface"]["full"])
+        if not m.group(1) and pv.get("lex") == "kana" and pv.get("pos") == "verb":
+            put(t, "فِي مَحَلِّ رَفْعٍ اسْمُ كَانَ", "in the place of raf' as the noun of kāna", "kâne'nin ismi olarak mahallen merfû"); continue
+        if not m.group(1) and re.search("ًا?$", psf) and re.match(r"^(?:[وف]َ)?(?:مُ|[^ً-ْ]َا[^ً-ْ]ِ)", psf) and (par.startswith("نَعْتٌ مَنْصُوبٌ") or par.startswith("خَبَرُ كَانَ") or par.startswith("خَبَرٌ ثَانٍ") or "مَعْطُوفٌ مَنْصُوبٌ" in par):
+            cited = re.sub("^[وف]َ", "", psf)
+            put(t, "فِي مَحَلِّ رَفْعٍ فَاعِلٌ لِاسْمِ الْفَاعِلِ «" + cited + "»", "in the place of raf' as the doer of the participle «" + cited + "»", "ism-i fâil «" + cited + "»in fâili olarak mahallen merfû")
+            if par == "نَعْتٌ مَنْصُوبٌ بِالْفَتْحَةِ." and j >= 2 and (toks[j - 2].get("irab") or {}).get("ar", "").startswith("خَبَرُ كَانَ"):
+                pv["irab"] = {"ar": "خَبَرٌ ثَانٍ مَنْصُوبٌ بِالْفَتْحَةِ.", "en": "A second predicate, in nasb.", "tr": "İkinci haber, mansûb."}
+            continue
+        if m.group(1) and j + 2 < len(toks) and any(x.get("lex") == "kana" and x.get("pos") == "verb" for x in toks[max(0, j - 3):j]) and (toks[j - 1].get("irab") or {}).get("ar", "").startswith("خَبَرُ كَانَ"):
+            nx = toks[j + 2]; nar = (nx.get("irab") or {}).get("ar", "")
+            if re.search("ًا?$", N(nx["surface"]["full"])) and nar == "مَفْعُولٌ بِهِ مَنْصُوبٌ بِالْفَتْحَةِ.":
+                put(t, "مَعْطُوفٌ عَلَى اسْمِ كَانَ فِي مَحَلِّ رَفْعٍ", "joined to the noun of kāna, in the place of raf'", "kâne'nin ismine ma'tûf, mahallen merfû")
+                nx["irab"] = {"ar": "مَعْطُوفٌ عَلَى خَبَرِ كَانَ مَنْصُوبٌ بِالْفَتْحَةِ.", "en": "Joined to the predicate of kāna, in nasb; the sign is the fatha.", "tr": "Kâne'nin haberine ma'tûf, mansûb; alâmeti fetha ile."}
+
+
 def name_amma_khabar(toks, report):
     """(wave 196) أَمَّا قَوْلُهُمْ «مِسْكِينَةٌ» فَمَحْمُولَةٌ عَلَى …: behind «أَمَّا» the first word on a fāʾ answers it — an adjective-shaped word there is the topic's khabar,
     not the naʿt of the cited word before it."""
@@ -1853,6 +1910,7 @@ def main():
             name_pron_mubtada(toks, report); name_sisters(toks, report); name_shan(toks, report)   # (wave 195)
             name_ishara(toks, report); name_mudaf_chain(toks, report); name_ba_zaida(toks, report); name_khabar_atf(toks, report)   # (wave 195)
             name_ma_naib(toks, report); name_in_wasliyya(toks, report); name_kawn_khabar(toks, report); name_amma_khabar(toks, report)   # (wave 196)
+            name_kana_tamma(toks, report); name_ma_seat(toks, report); name_passive_hiya(toks, report)   # (wave 202)
             praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]

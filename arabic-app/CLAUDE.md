@@ -13262,3 +13262,44 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   «غَيْرُ» with its ending stripped still joins as an ʿaṭf.
 - **Next.** Marāḥ part nineteen opens the third bāb (the hamzated verb) on p. 109 at «وَلَا يُقَالُ لَهُ صَحِيحٌ
   لِصَيْرُورَةِ هَمْزَتِهِ حَرْفَ الْعِلَّةِ».
+
+### v301 (wave 202) — Marāḥ al-Arwāḥ part nineteen (the hamzated verb opens), «بَيْنَ بَيْنَ», the ṣila's own mubtadaʾ, and the passive's «هِيَ»
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 109–112 of the scan (the matn's large type only):
+  chapter 52 «الْمَهْمُوزُ وَتَخْفِيفُ الْهَمْزَةِ» (8 sentences — why it is not called «صَحِيح», its three kinds «أَخَذَ /
+  سَأَلَ / قَرَأَ», the three ways of lightening, the first «رَاسٌ / لُومٌ / بِيرٌ», the second «سَأَلَ / لَؤُمَ /
+  سُئِلَ» with «مِيَرٌ / جُوَنٌ», the question on «سَأَلَ», and «لَا هَنَاكِ الْمَرْتَعُ» as irregular) and 53 «حَذْفُ
+  الْهَمْزَةِ وَنَقْلُ حَرَكَتِهَا» (3 — the third way and its conditions, «مَسَلَةٌ / مَلَكٌ», «لَحْمَرُ / اَلَحْمَرُ»).
+  11 sentences / 217 words; the book stands at **53 chapters / 437 sentences / 5,320 words**, version 0.19.0. The
+  letters collate with the scan's text layer but for the layer's broken words and «مسئلة» (written «مَسْأَلَةٌ»).
+  The part stops before the list «وَجَيَلٌ وَحَوَبَةٌ …»: its last example differs between printings, and it is not
+  published until read against a second witness.
+- **Two paradigms** through `sarf_gen` (67 in the book): «لَيَّنَ» and «لَؤُمَ» (فَعُلَ, hamzated ʿayn). The
+  lightened forms are keyed to the words they lighten («رَاسٌ» → «رَأْس», «بِيرٌ» → «بِئْر», «مَسَلَةٌ» →
+  «مَسْأَلَة», «مَلْأَكٌ» → «مَلَك», «هَنَاكِ» → «هَنَأَ»). `sarfAudit` 1,333 checked, 0 bad; IshtiqaqEngine
+  calibration 3,239 / 3,287 (0.9854 — the gate is 0.985; the seven misses that open on an alif are the idghām
+  variants of iftiʿāl the Marāḥ itself permits side by side — the next engine item).
+- **Reader rules** (`$S/w202/patch202.py`):
+  - **«بَيْنَ بَيْنَ».** «بين» said twice with nothing annexed is one compound, both halves built on the fatḥa
+    (it had been a ẓarf and its emphasis). «بَيْنَ عَمْرٍو وَخَالِدٍ» is untouched.
+  - **the ṣila's own postponed mubtadaʾ.** «الْحَرْفِ الَّتِي مِنْهُ حَرَكَتُهَا»: behind a relative noun and its
+    jarr phrase the noun is the ṣila's mubtadaʾ — never the deputy an earlier passive still owes; and typed bare,
+    «الرجل الذي في بيته كتاب» closes on that mubtadaʾ (it had been an object).
+  - **the wāw of the ḥāl.** «لِمَ لَا تُقْلَبُ فِي «سَأَلَ» وَهَمْزَتُهُ مَفْتُوحَةٌ»: a «وَ»-joined noun the author
+    wrote in rafʿ with its pronoun, an indefinite in rafʿ behind it, and a passive before them that names no
+    deputy — a mubtadaʾ and its khabar; a deputy doer is not brought in by a wāw.
+  - **the paired second object** behind the passive of «جَعَلَ»: «فَتُجْعَلُ يَاءً أَوْ وَاوًا».
+- **The packager** (`$S/w202/patch_pkg202.py`, `patch_pkg202b.py`): «يَكُونُ» with «إِذَا» right behind it is the
+  complete «كَانَ» (فِعْلٌ مُضَارِعٌ تَامٌّ); the relative «مَا» whose ṣila is a ẓarf is named for its seat — kāna's
+  noun, the doer of the participle in naṣb before it (سَاكِنَةً مُتَحَرِّكًا مَا قَبْلَهَا — the participle then a
+  second khabar), or joined to kāna's noun with the second khabar behind (وَمَا قَبْلَهَا مَكْسُورَةً); a passive
+  muḍāriʿ on «تُـ» whose deputy is hidden speaks of «هِيَ» unless the sentence addresses a «you» — the open item
+  of wave 200. Six lines of earlier chapters are corrected by these rules (26:s1 «مَا», and the passives of
+  26:s3, 26:s6 ×2, 27:s7, 44:s8).
+- **Sweeps** (same data, v300 code against the candidate): blind 72,107 true / 586 false / 348 undecided and receipts-on 72,524 / 332 / 185 on both sides — 0 endings changed, 0 broken; eight labels moved («بَيْنَ بَيْنَ» ×6, of them two in Iẓhār al-Asrār's chapter on the built compounds, «حَرَكَتُهَا» mubtadaʾ, «يَاءً» second object). Case layer 59,371 / 60,008 = 98.94 %. Label gauge
+  90.28 % over 35,052 (31,646 agree); typed gauge 1,158 / 1,159. HadhfEngine n = 1,367, false 3.
+- **Smoke.** `wave 202` (#449; TOTAL 451).
+- **Open.** The idghām variants of iftiʿāl in the IshtiqaqEngine's calibration; «مُتَحَرِّكًا مَا قَبْلَهَا» is named
+  by the packager, the reader still labels the participle a naʿt; the wāw-of-ḥāl rule needs the author's ḍamma.
+- **Next.** Marāḥ part twenty opens on p. 112 at «وَ «جَيَلٌ» وَ «حَوَبَةٌ»» — read the last example of that list
+  against a second witness first (this printing: «وَابْتَغِي مْرَأَةً»; its own note gives the origin as «ابتغي امرأة»).
