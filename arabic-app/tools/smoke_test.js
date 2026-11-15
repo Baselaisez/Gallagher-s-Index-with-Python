@@ -16039,6 +16039,43 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1333 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يُقْحِمُ', 'يُقْحَمُ', 'إِقْحَام', 'تَرَيْنَ', 'رَأَوْا'].map(N))) throw new Error('the paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
   });
 
+  await check('wave 206 — Marāḥ al-Arwāḥ part twenty-two («تَرَيْنَ», the nūn of emphasis in the condition, the amr «رَ رَيَا رَوْا» with its heavy and light nūn; pp. 118–121) stands on the shelf with every line named; the emphatic cells take their lines from the cell table; the verb that wears the sīn of the future is the author\'s own and never one more cited form, with its control; the defective فَعِلَ māḍī is conjugated rightly', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [58, 59].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const V = (t, i, m) => { try { const v = (m ? DabtEngine.vowel(t, m) : DabtEngine.vowel(t)).words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const sin = 'وَاكْتَفَى بِالْفَرْقِ التَّقْدِيرِيِّ كَمَا فِي «تَرْمِينَ» وَسَيَجِيءُ فِي النَّاقِصِ';
+      const G = (id, n, sid, i) => { try { const b = STORIES.find(x => x.id === id), c = b.chapters[n - 1], sn = c.sentences.find(x => x.id === sid); const w = DabtEngine.grade(sn, 'endings').words[i]; return N(w.want) + '/' + w.ok + '/' + w.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const izzi = STORIES.find(x => x.id === 'tasrif-al-izzi');
+      const wrong = N('التَّوْكِيدِ الثَّقِيلَةِ مَكْسُورَةٌ');
+      const stale = [st, izzi].filter(Boolean).flatMap(b => b.chapters.flatMap(c => (c.sentences || []).flatMap(x => x.tokens.filter(t => N((t.irab || {}).ar).includes(wrong)).map(t => N(t.s.full)))));
+      return { chapters: st.chapters.length, sens: [58, 59].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { asl: line(58, 's1', 0), tarayina: line(58, 's1', 2), sara: line(58, 's1', 17), tarayiina: line(58, 's1', 18), taraayna: line(58, 's1', 27), sayaji: line(58, 's2', 10), imma: line(58, 's3', 10), tarayinna: line(58, 's3', 11), ahad: line(58, 's3', 14), ikhshayinna: line(58, 's3', 30),
+             ra: line(59, 's1', 1), raya: line(59, 's1', 2), raw: line(59, 's1', 3), ray: line(59, 's1', 4), rayna: line(59, 's1', 6), taba: line(59, 's2', 6), li: line(59, 's2', 7), yarayani: line(59, 's2', 8), mithl: line(59, 's3', 3), rah: line(59, 's3', 4),
+             h1: line(59, 's4', 2), h2: line(59, 's4', 3), h3: line(59, 's4', 4), h4: line(59, 's4', 5), h6: line(59, 's4', 7), irmiyanna: line(59, 's5', 8), ughzunna: line(59, 's6', 11), irminna: line(59, 's6', 13), k1: line(59, 's7', 2), k2: line(59, 's7', 3), k3: line(59, 's7', 4) },
+        e: { s6: V(sin, 6, 'endings'), s8: V(sin, 8, 'endings'), g10: G('marah-al-arwah', 58, 's2', 10), c15: G('izhar-al-asrar', 9, 's9', 15) },
+        g: { checked: au.checked, bad: au.bad.slice(0, 3), hadhf: HadhfEngine.audit().false, stale: stale.slice(0, 3),
+             stored: [N((M('khashiya').mazi || [])[0]), N((M('khashiya').mazi || [])[2]), N((M('khashiya').mazi || [])[3]), N((M('hawiya').mazi || [])[0]), N((M('hawiya').mazi || [])[2]), N((M('hawiya').mazi || [])[3]), N((M('raa').amr || []).join(' '))] } }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => x.normalize('NFC');
+    if (r.chapters < 59 || J(r.sens) !== '[3,7]' || r.n !== 151) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    if (!r.l.asl.includes(N('مُبْتَدَأٌ مَرْفُوعٌ')) || !r.l.tarayina.startsWith('raa|') || !r.l.tarayina.includes(N('فِي مَحَلِّ رَفْعٍ خَبَرُ الْمُبْتَدَإِ')) || !r.l.sara.includes(N('وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ')) || !r.l.tarayiina.startsWith('raa|') || !r.l.tarayiina.includes(N('خَبَرُ «صَارَ»')) || !r.l.taraayna.includes(N('خَبَرُ «صَارَ»'))) throw new Error('the origin of «تَرَيْنَ»: ' + J([r.l.asl, r.l.tarayina, r.l.sara, r.l.tarayiina, r.l.taraayna]));
+    if (!r.l.sayaji.startsWith('jaa|') || !r.l.sayaji.includes(N('فِعْلٌ مُضَارِعٌ مَرْفُوعٌ')) || !r.l.sayaji.includes(N('ضَمِيرٌ مُسْتَتِرٌ')) || r.l.sayaji.includes(N('مَحْكِيٌّ'))) throw new Error('the verb with the sīn of the future, on the shelf: ' + J([r.l.sayaji]));
+    if (!r.l.imma.startsWith('in-shartiyya|') || !r.l.imma.includes(N('أُدْغِمَتْ نُونُهَا فِي «مَا» الزَّائِدَةِ')) || !r.l.tarayinna.startsWith('raa|') || !r.l.tarayinna.includes(N('عَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ')) || !r.l.tarayinna.includes(N('يَاءُ الْمُخَاطَبَةِ فَاعِلٌ')) || !r.l.ahad.includes(N('مَفْعُولٌ بِهِ مَنْصُوبٌ')) || !r.l.ikhshayinna.startsWith('khashiya|')) throw new Error('the nūn of emphasis in the condition: ' + J([r.l.imma, r.l.tarayinna, r.l.ahad, r.l.ikhshayinna]));
+    if (!r.l.ra.startsWith('raa|' + N('فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ')) || !r.l.raya.includes(N('وَالْأَلِفُ ضَمِيرٌ')) || !r.l.raw.includes(N('حَذْفِ النُّونِ')) || !r.l.raw.includes(N('وَالْوَاوُ')) || !r.l.ray.includes(N('ضَمِيرُ الْمُخَاطَبَةِ')) || !r.l.rayna.includes(N('نُونِ النِّسْوَةِ'))) throw new Error('the amr, cell by cell: ' + J([r.l.ra, r.l.raya, r.l.raw, r.l.ray, r.l.rayna]));
+    if (!r.l.taba.startsWith('taba-following|' + N('مَفْعُولٌ لِأَجْلِهِ')) || !r.l.li.startsWith('li|') || !r.l.li.includes(N('حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ')) || !r.l.yarayani.includes(N('فِي مَحَلِّ جَرٍّ بِاللَّامِ')) || !r.l.mithl.includes(N('خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ')) || !r.l.rah.startsWith('raa|') || !r.l.rah.includes(N('فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ'))) throw new Error('«تَبَعًا لِ «يَرَيَانِ»» and the hāʾ of the pause: ' + J([r.l.taba, r.l.li, r.l.yarayani, r.l.mithl, r.l.rah]));
+    const heavy = [r.l.h1, r.l.h2, r.l.h3, r.l.h4, r.l.h6], light = [r.l.k1, r.l.k2, r.l.k3];
+    if (!heavy.every(x => x.startsWith('raa|' + N('فِعْلُ أَمْرٍ'))) || !r.l.h1.includes(N('مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ')) || !r.l.h4.includes(N('يَاءُ الْمُخَاطَبَةِ فَاعِلٌ')) || !r.l.h6.includes(N('نُونِ النِّسْوَةِ')) || !light.every(x => x.startsWith('raa|' + N('فِعْلُ أَمْرٍ'))) || !r.l.k1.includes(N('بِنُونِ التَّوْكِيدِ الْخَفِيفَةِ')) || !r.l.irmiyanna.startsWith('rama|') || !r.l.ughzunna.startsWith('ghaza|') || !r.l.irminna.startsWith('rama|')) throw new Error('the emphatic rows: ' + J([heavy, light, r.l.irmiyanna, r.l.ughzunna, r.l.irminna]));
+    if (r.e.s6 !== N('وَسَيَجِيءُ') + '/raf' || !r.e.s8.startsWith(N('النَّاقِصِ')) || r.e.g10 !== N('وَسَيَجِيءُ') + '/true/raf' || r.e.c15 !== N('وَسَأَلْتُ') + '/true/hikaya') throw new Error('the sīn of the future, and the cited «وَسَأَلْتُ» whose sīn is its root: ' + J([r.e.s6, r.e.s8, r.e.g10, r.e.c15]));
+    if (r.g.bad.length || r.g.checked < 1335 || r.g.hadhf > 3 || r.g.stale.length || J(r.g.stored) !== J(['خَشِيَ', 'خَشُوا', 'خَشِيَتْ', 'هَوِيَ', 'هَوُوا', 'هَوِيَتْ', 'رَ رَيَا رَوْا رَيْ رَيَا رَيْنَ'].map(N))) throw new Error('the paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stale, r.g.stored]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

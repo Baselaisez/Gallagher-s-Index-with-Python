@@ -13431,3 +13431,40 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   khabar; typed without vowels, «وحكم يرون» opens on a verb.
 - **Next.** Marāḥ part twenty-two opens on p. 118 at «وَأَصْلُ «تَرَيْنَ»: «تَرْأَيِينَ» عَلَى وَزْنِ «تَفْعَلِينَ»» and
   runs through the amr «رَ رَيَا رَوْا» and the nūn of emphasis (pp. 119–121).
+
+### v305 (wave 206) — Marāḥ al-Arwāḥ part twenty-two («تَرَيْنَ», the nūn of emphasis in the condition, the amr «رَ رَيَا رَوْا» with its heavy and light nūn), a conjugator fix and a shelf-wide line corrected
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 118–121 of the scan (the matn's large type only):
+  chapter 58 «أَصْلُ «تَرَيْنَ»، وَنُونُ التَّأْكِيدِ فِي الشَّرْطِ» (3 sentences — «تَرَيْنَ» from «تَرْأَيِينَ», the singular and
+  its plural left alike, the heavy nūn behind «إِمَّا») and 59 «الْأَمْرُ مِنْ «رَأَى»» (7 — «رَ رَيَا رَوْا رَيْ رَيَا رَيْنَ»,
+  the yāʾ kept in «رَيَا», the hāʾ of the pause «رَهْ», the heavy row «رَيَنَّ … رَيْنَانِّ», why the wāw of «رَوُنَّ»
+  stays, the light row «رَيَنْ رَوُنْ رَيِنْ»). 10 sentences / 151 words; the book stands at
+  **59 chapters / 469 sentences / 5,905 words**, version 0.22.0.
+- **Readings, said so.** «وَاكْتَفَى» is read active as earlier in the matn and «أُدْخِلَتِ النُّونُ» passive; the āya the
+  matn cites is the matn's own citation, transcribed as printed, and the editor's bracketed sūra reference is not
+  reproduced. «لِـ«يَرَيَانِ»» is written with the lām as its own word (a tatwīl is no letter of the matn).
+- **One paradigm** (73 in the book): «خَشِيَ» — identical to the ʿIzzī's.
+- **The conjugator's defective فَعِلَ māḍī** (`tools/authoring/sarf_gen.py`, `naqis1`). A kasra stem took the
+  fatḥa-stem's endings; it now goes through `mazi_naqis_kasra` — «خَشِيَ خَشِيَا خَشُوا خَشِيَتْ …». This corrects a
+  paradigm already on the shelf: the Marāḥ's «هَوِيَ» had been stored «هَوِى هَوِيَا هَوِوْا هَوِتْ».
+- **A line corrected across two books** (`tools/authoring/cell_lines.py`). The emphatic cell's line read
+  «وَنُونُ التَّوْكِيدِ الثَّقِيلَةِ مَكْسُورَةٌ»; the adjective describes «نُونُ» and stands in rafʿ — «الثَّقِيلَةُ». Fixed in
+  the generator, in 30 stored tokens of Taṣrīf al-ʿIzzī (chapters 10, 14–17) and in three hand lines.
+- **The emphatic rows by the cell table.** «رَيَنَّ رَيَانِّ رَوُنَّ رَيِنَّ رَيَانِّ رَيْنَانِّ» and «رَيَنْ رَوُنْ رَيِنْ» take
+  `cell_lines.tawkid_line`; «فَإِمَّا تَرَيِنَّ» takes the jussive line of the conditional «إِنْ» merged into «مَا».
+- **Reader rule** (`$S/w206/patch206.py`): **the sīn of the future is the author's own.** «كَمَا فِي «تَرْمِينَ»
+  وَسَيَجِيءُ فِي النَّاقِصِ»: a joined verb behind a cited verb was read as one more cited form; a verb wearing
+  «سَ» before a muḍāriʿ prefix is the author speaking again (two guards: the `__citedV69` chain and wave 47's
+  `__quotedVerb47`). The guard asks the analyzer's cell, so «وَسَأَلْتُ» — a māḍī whose sīn is its root — stays
+  the cited form it is in the Iẓhār (the first cut lost it; the sweep caught it).
+- **Hand lines** (`mk_fixes.py`, part twenty-two): the cited khabar behind «أَصْلُ «تَرَيْنَ»» and behind «فَصَارَ»,
+  «فَإِمَّا», «أَحَدًا» as the object, «تَبَعًا» as the object of reason with the lām and its cited verb, «مِثْلُ» as
+  the khabar of an omitted mubtadaʾ.
+- **Sweeps** (same data, v304 code against the candidate): blind 72,668 true / 595 wrong / 363 undecided and receipts-on 73,096 / 336 / 194 on both sides; one row changed its label (the Marāḥ's «وَسَيَجِيءُ», cited form → rafʿ), none broken. Case layer 59,807/60,467 = 98.91 %. Label gauge
+  90.29 % over 35,274 (31,849 agree); typed gauge 1,158/1,159.
+- **Smoke.** `wave 206` (#453; TOTAL 455).
+- **Open.** Typed without vowels, «وسيجيء في الناقص» still opens on a noun; the heading before a recited row
+  («الْأَمْرُ «رَ» «رَيَا» …») is told as a mubtadaʾ whose khabar is the first cell's sentence; «تَبَعًا» before a lām
+  written apart is read by the hand line, not the wave-201 rule; the packager's cited khabar behind «فَصَارَ» /
+  «أَصْلُ «Y»» does not yet cover forms outside the stored paradigm.
+- **Next.** Marāḥ part twenty-three opens on p. 122.

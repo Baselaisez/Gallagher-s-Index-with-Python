@@ -154,8 +154,10 @@ def naqis1(bab, cls, glide, b_mazi, bb, typ, amr_bb, masdar, fail,
     mansub = "يَ"+bb+({"i": "ِيَ", "u": "ُوَ", "a": "َى"}[typ])
     majzum = "يَ"+bb+({"i": "ِ", "u": "ُ", "a": "َ"}[typ])
     majzum2 = "تَ"+bb+({"i": "ِ", "u": "ُ", "a": "َ"}[typ])
+    # (wave 206) خَشِيَ، هَوِيَ: on «فَعِلَ» the yāʾ is a sound consonant in the māḍī — خَشِيَ خَشِيَا خَشُوا خَشِيَتْ — never the alif of «رَمَى»
+    mz = mazi_naqis_kasra(b_mazi, b_mazi[:-1] + "ُوا") if b_mazi.endswith("ِ") else mazi_naqis(b_mazi, glide)
     return entry(bb_ + " — " + cls, w, masdar, fail,
-                 mazi_naqis(b_mazi, glide), mudari_naqis("َ", bb, typ),
+                 mz, mudari_naqis("َ", bb, typ),
                  amr_naqis(amr_bb, typ), mansub, majzum, majzum2,
                  maful, pmz, pmd, note)
 

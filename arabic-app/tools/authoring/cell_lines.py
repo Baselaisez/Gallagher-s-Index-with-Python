@@ -150,12 +150,12 @@ def tawkid_line(host, gov="", addr=False):
     g = GOV.get(gov, GOV[""]); nn = ("الثَّقِيلَةِ", "heavy", "şeddeli (sakîle)") if heavy else ("الْخَفِيفَةِ", "light", "sâkin (hafîfe)")
     nun = (f"وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ", f"the {nn[1]} nūn is a particle of emphasis", f"{nn[2]} nûn te'kid harfi")
     if heavy and re.search(r"ْنَا$", core):
-        return (f"{kind[0]} مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ بَيْنَ النُّونَاتِ، وَنُونُ التَّوْكِيدِ {nn[0]} مَكْسُورَةٌ بَعْدَهَا.",
+        return (f"{kind[0]} مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ بَيْنَ النُّونَاتِ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَهَا.",
                 f"{kind[1]} built on sukūn because the women's nūn is attached; that nūn is its doer, an alif parts the nūns, and the heavy nūn of emphasis follows with a kasra.",
                 f"{kind[2]}; nûn-ı nisveye bitiştiği için sükûn üzere mebnî, nûn fâil; elif nûnların arasını ayırır, ardından kesreli şeddeli te'kid nûnu gelir.")
     if heavy and core.endswith("َا"):
         st = ("مَبْنِيٌّ عَلَى حَذْفِ النُّونِ", "built on the dropping of the nūn", "nûnun hazfi üzere mebnî") if amr else (f"مَجْزُومٌ{(' ' + g[0]) if g[0] else ''}، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ", f"in jazm{(' ' + g[1]) if g[1] else ''}, its sign the dropping of the nūn", f"meczûm{(' ' + g[2]) if g[2] else ''}, cezm alâmeti nûnun hazfi")
-        return (f"{kind[0]} {st[0]}، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ {nn[0]} مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
+        return (f"{kind[0]} {st[0]}، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
                 f"{kind[1]} {st[1]}; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.", f"{kind[2]}, {st[2]}; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir.")
     last = core[-1:] if core else ""
     if last == "ُ":
