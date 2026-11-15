@@ -16115,6 +16115,54 @@ if (!CHROME) {
     if (r.g.bad.length || r.g.checked < 1335 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يَصْدَآنِ', 'تَصْدَئِينَ', 'تَجْرُئِينَ', 'وَجَآ', 'وَجَؤُوا', 'آسُلُ', 'إِدْ', 'أُعِلَّ', 'طَرُؤَ', 'يَسْأَمُ', 'أَرَج'].map(N))) throw new Error('the paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
   });
 
+  await check('wave 208 — HamzaEngine writes the hamza by the five rules of Marāḥ al-Arwāḥ (chapter 62): the matn\'s own fifteen examples fall under its five rules; the later conventions are named, never called mistakes; of the shelf\'s vowelled hamzas none is left unexplained (the one the engine caught — the Maqāmāt\'s «وَرِضَائِهِ» — is corrected: the seat told the case); the «هَمْزَة» lab tab draws the rules beside their sentences and reads a typed word; the game gKursi asks the seat and stands beside the older gHamza without taking its name', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      if (typeof HamzaEngine === 'undefined') return { err: 'no HamzaEngine' };
+      const H = HamzaEngine, one = w => H.analyse(w).hamzas.map(h => h.rule + ':' + h.pos + ':' + h.seat + ':' + h.verdict + (h.later ? '(' + h.later.why + ')' : ''));
+      const EX = ['أَبٍ', 'أُمٍّ', 'إِبِلٍ', 'رَأْسٍ', 'لُؤْمٍ', 'ذِئْبٍ', 'سَأَلَ', 'لَؤُمَ', 'سَئِمَ', 'قَرَأَ', 'طَرُؤَ', 'فَتِئَ', 'خَبْءٍ', 'دِفْءٍ', 'بَرْءٍ'];
+      const ex = EX.map(w => { const h = H.analyse(w).hamzas; return h.length === 1 ? h[0].rule + h[0].verdict : 'n' + h.length; });
+      const later = { strong: one('سُؤَالٌ'), strong2: one('مِئَةٌ'), afterAlif: one('تَسَاءَلَ'), afterYa: one('شَيْئًا'), afterWaw: one('مُرُوءَةٌ'), twoWaws: one('مَسْئُولٌ'), twoHamzas: one('ءَأَنَّكَ'), line: one('جُزْءًا') };
+      const head = ['وَأَخَذَ', 'بِأَنَّ', 'الْأَرْضُ', 'وَفَإِمَّا', 'سَأُرِيكُمْ'].map(w => one(w).join('+'));
+      const mid = { mara: one('مَرْأًى'), waad: H.analyse('وَأَدَ', { lemma: 'وَأَدَ' }).hamzas.map(h => h.rule + ':' + h.pos), quran: one('الْقُرْآنُ'), amana: one('آمَنَ'), bare: H.analyse('سأل').hamzas.map(h => h.verdict), none: H.analyse('كَتَبَ').hamzas.length };
+      const wrong = { u: one('رِضَائُهُ'), ok: one('رِضَاؤُهُ'), i: one('وَرِضَائِهِ') };
+      const a = H.audit();
+      const rules = [1, 2, 3, 4, 5].map(n => { const R = H.RULES[n], m = H.matn(R.sen); return { n, sen: R.sen, len: m ? m.text.length : 0, hz: m ? /همز|الْهَمْزَة|تُكْتَبُ|كُتِبَتْ|وَفِي/.test(m.text) : false, en: (R.en || '').length, tr: (R.tr || '').length }; });
+      const st = STORIES.find(x => x.id === 'al-maqamat-birgivi'); const sn = st && ((st.chapters[9] || {}).sentences || []).find(x => x.id === 's7'); const tk = sn && sn.tokens[3];
+      const ids = GameFactory.CATALOGUE.map(g => g.id); const items = kursiGameItems(40); const bad = [];
+      for (const it of items) { const h = H.analyse(it.word).hamzas; if (h.length !== 1 || !it.x.follows || it.x.seat !== h[0].seat || !['alif', 'waw', 'ya', 'line'].includes(it.x.seat) || !/[ءأإؤئآ]/.test(it.word[it.x.i])) bad.push(it.word); }
+      return { ex, later, head, mid, wrong, audit: { total: a.total, matn: a.matn, later: a.later, other: a.other, unknown: a.unknown, by: a.byRule.slice(1).map(x => x.ok + '/' + x.n), otherEx: a.otherEx.slice(0, 6), laterBy: a.laterBy, pool: a.pool.slice(1).map(x => x.length) },
+        rules, maq: tk ? N(tk.s.full) + '|' + N((tk.irab || {}).ar) : '', ids: ids.length, uniq: new Set(ids).size, old: ids.includes('gHamza'), neu: ids.includes('gKursi'), oldStr: [ui().hamzaGame, ui().kursiGame], items: items.length, bad, rulesSeen: [...new Set(items.map(it => it.x.rule))].sort().join('') }; });
+    if (r.err) throw new Error(r.err);
+    if (J(r.ex) !== J(['1matn', '1matn', '1matn', '2matn', '2matn', '2matn', '3matn', '3matn', '3matn', '4matn', '4matn', '4matn', '5matn', '5matn', '5matn'])) throw new Error('the matn\'s fifteen examples do not fall under its five rules: ' + J(r.ex));
+    const L = r.later;
+    if (J(L.strong) !== J(['3:middle:waw:later(strong)']) || J(L.strong2) !== J(['3:middle:ya:later(strong)']) || J(L.afterAlif) !== J(['3:middle:line:later(afterAlif)']) || J(L.afterYa) !== J(['5:end:ya:later(afterYa)']) || J(L.afterWaw) !== J(['3:middle:line:later(afterWaw)']) || J(L.twoWaws) !== J(['3:middle:ya:later(twoWaws)']) || L.twoHamzas[0] !== '1:head:line:later(twoHamzas)' || L.twoHamzas[1] !== '1:head:alif:matn' || J(L.line) !== J(['5:end:line:matn'])) throw new Error('the later conventions are not named as such: ' + J(L));
+    if (J(r.head) !== J(['1:head:alif:matn', '1:head:alif:matn', '1:head:alif:matn', '1:head:alif:matn', '1:head:alif:matn'])) throw new Error('a hamza behind a proclitic is still the head of its word: ' + J(r.head));
+    if (J(r.mid.mara) !== J(['3:middle:alif:matn']) || J(r.mid.waad) !== J(['3:middle']) || J(r.mid.quran) !== J(['3:middle:alif:matn']) || J(r.mid.amana) !== J(['1:head:alif:matn']) || J(r.mid.bare) !== J(['unknown']) || r.mid.none !== 0) throw new Error('the middle hamza, the madda, the bare word: ' + J(r.mid));
+    if (J(r.wrong.u) !== J(['3:middle:ya:other(strong)']) || J(r.wrong.ok) !== J(['3:middle:waw:matn']) || J(r.wrong.i) !== J(['3:middle:ya:matn'])) throw new Error('a spelling no rule gives must be called so, and the two right ones accepted: ' + J(r.wrong));
+    const A = r.audit;
+    if (A.total < 15000 || A.matn + A.later + A.other + A.unknown !== A.total || A.other !== 0 || A.unknown > 40 || A.matn / A.total < 0.96 || A.later < 400 || A.pool.some(n => n < 20)) throw new Error('the shelf\'s hamzas by the five rules: ' + J(A));
+    if (r.rules.some(x => x.len < 30 || !x.hz || x.en < 30 || x.tr < 30) || J(r.rules.map(x => x.sen)) !== J(['s1', 's2', 's3', 's4', 's5'])) throw new Error('each rule must stand beside its sentence of chapter 62: ' + J(r.rules));
+    if (!r.maq.startsWith('وَرِضَائِهِ|'.normalize('NFC')) || !r.maq.includes('مَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ'.normalize('NFC'))) throw new Error('the Maqāmāt\'s corrected word (10:s7 #3): ' + r.maq);
+    if (r.ids !== r.uniq || !r.old || !r.neu || !r.oldStr[0] || !r.oldStr[1] || r.oldStr[0] === r.oldStr[1]) throw new Error('the game catalogue: every id once, gHamza (the hamza of the question) and gKursi (the seat) side by side: ' + J([r.ids, r.uniq, r.old, r.neu, r.oldStr]));
+    if (r.items < 30 || r.bad.length || r.rulesSeen !== '12345') throw new Error('the game\'s items: ' + J([r.items, r.bad.slice(0, 5), r.rulesSeen]));
+    // the lab tab and one game round, on the page
+    const ui = await page.evaluate(async () => { const wait = ms => new Promise(res => setTimeout(res, ms));
+      openConjugator(); await wait(120); const tab = document.querySelector('[data-lab="hamza"]'); if (!tab) return { tab: false }; tab.click(); await wait(250);
+      const out = document.getElementById('hamzaOut'); const see = out ? out.querySelectorAll('[data-hj]').length : 0; const txt = out ? out.innerText.normalize('NFC') : '';
+      const first = (document.getElementById('hamzaRead') || {}).innerText || '';
+      const ri = document.getElementById('hamzaIn'); ri.value = 'سُؤَالٌ'; ri.dispatchEvent(new Event('input', { bubbles: true })); await wait(320);
+      const read = (document.getElementById('hamzaRead') || {}).innerText || '';
+      ri.value = 'كَتَبَ'; ri.dispatchEvent(new Event('input', { bubbles: true })); await wait(320);
+      const none = (document.getElementById('hamzaRead') || {}).innerText || '';
+      const noneWant = ui().hamzaNone, laterWant = ui().hamzaLater;
+      startKursiGame(); await wait(250); const q = document.querySelector('.game-q'); const blank = document.querySelectorAll('.game-q .hz-q').length; const opts = document.querySelectorAll('.opts [data-o]').length;
+      return { tab: true, see, matn: txt.includes('وَتُكْتَبُ الْهَمْزَةُ فِي الْأَوَّلِ'.normalize('NFC')), first: first.length, read: read.normalize('NFC'), later: read.includes(laterWant), none: none.includes(noneWant), q: q ? q.innerText.length : 0, blank, opts }; });
+    if (!ui.tab || ui.see !== 5 || !ui.matn) throw new Error('the lab tab: ' + J([ui.tab, ui.see, ui.matn]));
+    if (ui.first < 20 || !ui.later || !ui.read.includes('ؤ') || !ui.none) throw new Error('the lab does not read a typed word: ' + J([ui.first, ui.later, ui.none, ui.read.slice(0, 160)]));
+    if (ui.q < 3 || ui.blank !== 1 || ui.opts !== 4) throw new Error('the game round did not draw: ' + J([ui.q, ui.blank, ui.opts]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

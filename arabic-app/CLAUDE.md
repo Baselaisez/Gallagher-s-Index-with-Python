@@ -13516,3 +13516,41 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   analyzer; `K(…, pos=)` is not honoured by the packager (cited-only tokens keep the engine's part of speech);
   typed without vowels, «وسيجيء في الناقص» still opens on a noun.
 - **Next.** Marāḥ part twenty-four opens the fourth bāb (the mithāl) on p. 126 at «وَيُقَالُ لِلْمُعْتَلِّ الْفَاءِ مِثَالٌ».
+
+### v307 (wave 208) — HamzaEngine: the writing of the hamza by the five rules of Marāḥ al-Arwāḥ, read off every vowelled hamza on the shelf; a lab tab and a game fed by it; one word the engine caught
+
+- **The engine** (`class HamzaEngine`, before `GameFactory`; `$S/w208/patch208.py`). Chapter 62 of the Marāḥ gives the
+  hamza's seat in five rules, and the engine is those five rules, each tied to its sentence (`RULES[n].sen`, read live
+  from the shelf by `matn()`): (1) at the head, the alif in every case; (2) in the middle and quiescent, the letter
+  of the vowel before it; (3) in the middle and vowelled, the letter of its own vowel; (4) at the end behind a vowel,
+  the letter of that vowel; (5) at the end behind a sukūn, no seat. `analyse(word, {lemma})` reads each hamza's place,
+  its own vowel and what stands before it, and returns the rule, the seat the rule gives, the seat written and a
+  verdict. The proclitics (وَ فَ بِ لِ كَ, the article, the hamza of the question, the sīn of the future) do not
+  make a head hamza a middle one — unless the lemma says the wāw is the word's own («وَأَدَ»).
+- **The later hand is named, not called a mistake.** Where the written seat is not the matn's, `laterSeat` asks the
+  conventions that came after it, each a named case with its sentence in two languages: the stronger vowel
+  (سُؤَال، مِئَة), the line behind a long alif (تَسَاءَلَ) or a quiescent wāw (مُرُوءَة), the yāʾ behind a quiescent yāʾ
+  (شَيْئًا، هَيْئَة), before the alif of the dual, the two wāws (مَسْئُول، رُءُوس), and the muṣḥaf's hamza of the question
+  on the line (ءَأَنَّكَ). A verdict is `matn`, `later`, `other` (no rule gives it) or `unknown` (unvowelled).
+- **The audit** (`HamzaEngine.audit()`, memoised): of the shelf's 15,529 written hamzas 15,008 stand as the matn's five rules write them (rule 1: 11,267 of 11,269; rule 2: 688 of 688; rule 3: 1,412 of 1,835; rule 4: 169 of 169; rule 5: 1,472 of 1,536), 489 follow a named later convention (the stronger vowel 191, behind a long alif 180, behind a quiescent yāʾ 102, the two wāws 11, the rest 5), 32 stand unvowelled and none is left unexplained.
+  The rule that the shelf departs from most is the third — exactly where the later convention replaced «its own
+  vowel» by «the stronger of the two».
+- **What the engine caught.** One spelling no rule gives: the Maqāmāt's «وَرِضَائُهُ» (10:s7). The print (p. 18,
+  unvowelled) has «ورضائه» — a yāʾ seat, which only a kasra gives: «رِعَايَةُ الْقَلْبِ وَرِضَائِهِ», joined to
+  «الْقَلْبِ» in jarr. Our vowelling had read rafʿ against the letters. The source, the stored line (three languages),
+  the translation and the side files are corrected by `$S/w208/fix_maqamat.py` — by hand at the one token, because
+  the stored Maqāmāt is no longer the pipeline's fixed point (later waves corrected its lines in place).
+- **The lab** («هَمْزَة» tab, `renderHamzaOut`): the five rules beside their sentences, each with «see it in the text»
+  (`jumpTo` chapter 62), the shelf's count per rule, and a word box — any vowelled word is read hamza by hamza:
+  place, vowels, rule, the seat the rule gives, the seat written, and which convention the writer followed.
+- **The game** `gKursi` («the seat of the hamza», group sarf): a shelf word with its hamza blanked, four seats to
+  choose from, revealed with the rule and the matn's sentence; items come from `HamzaEngine.pool()` (words with one
+  hamza that follows the matn), one rule after another. The older `gHamza` (the hamza of the question) keeps its
+  name and strings — the first cut of this wave had taken both; the smoke check now gates that every game id is
+  unique.
+- **Sweeps** (same data, v306 code against the candidate — the vowelling engine is untouched): blind 72,987 true / 598 / 368 and receipts-on 73,417 / 338 / 198, both files identical byte for byte. Case
+  layer 60,067 / 60,741 = 98.89 %. Label gauge 90.29 % over 35,423 (31,984 agree); typed gauge 1,158 / 1,159.
+- **Smoke.** `wave 208` (#455; TOTAL 457).
+- **Open.** The conjugator's older paradigms are not yet run through `seat_hamza`; the engine does not judge the
+  hamzat al-waṣl (it reads only written hamzas); 32 hamzas on the shelf stand unvowelled and are not judged.
+- **Next.** Marāḥ part twenty-four opens the fourth bāb (the mithāl) on p. 126 at «وَيُقَالُ لِلْمُعْتَلِّ الْفَاءِ مِثَالٌ».
