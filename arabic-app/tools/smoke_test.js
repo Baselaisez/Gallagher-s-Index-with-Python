@@ -16304,6 +16304,54 @@ if (!CHROME) {
     if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
   });
 
+  await check('wave 212 — Marāḥ al-Arwāḥ part twenty-six (what is weakened by following, what is not for want of a condition, the four after a ḍamma; pp. 137–140) stands on the shelf with every line named; «نَحْوُ» right behind the passive that opens the sentence is its deputy doer and annexes the cited noun, while a verb further in keeps its khabar; the letter-name behind a passive of turning is the second object across a jarr phrase; «وَلَا» behind a negation joins a noun on the alif of tanwīn and the genus-lā keeps its built noun; the nakira on that alif right behind kāna is its khabar; a word the author set in kasra is no verb — the lexicon\'s noun joins the noun in jarr before it', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [71, 72, 73].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const reset = () => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; };
+      const V = (t, i) => { try { reset(); const v = DabtEngine.vowel(t, 'endings').words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const P = k => [M(k).mazi, M(k).mudari, M(k).amr].map(a => N((a || [])[0])).join(' ') + ' ' + N(M(k).masdar);
+      return { chapters: st.chapters.length, sens: [71, 72, 73].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { hadhihi: line(71, 's3', 2), ashya: line(71, 's3', 3), filan: line(71, 's3', 7), isman: line(71, 's3', 9), nahw: line(72, 's1', 2), hawaka: line(72, 's1', 3), khawana: line(72, 's1', 5), yuall: line(72, 's1', 1),
+             nahwOld: line(54, 's2', 41), yadlulna: line(72, 's2', 2), nahw3: line(72, 's3', 0), daaw: line(72, 's3', 1), ayn: line(72, 's4', 14), iwarra: line(72, 's4', 15), alif: line(72, 's4', 16), tajawara: line(72, 's4', 17),
+             mana: line(72, 's5', 7), mawatan: line(72, 's6', 1), yahayu: line(72, 's10', 6), qawad: line(72, 's11', 1), waw: line(73, 's2', 3), lin: line(73, 's2', 7), arika: line(73, 's2', 8), musir: line(73, 's2', 11),
+             sara: line(73, 's4', 9), bia: line(73, 's4', 11), ghuyaba: line(73, 's7', 4), nuwama: line(73, 's7', 6) },
+        typed: { nahw: V('وَلَا يُعَلُّ نَحْوُ «الْحَوَكَةِ» وَ «الْخَوَنَةِ».', 2), hawaka: V('وَلَا يُعَلُّ نَحْوُ «الْحَوَكَةِ» وَ «الْخَوَنَةِ».', 3), nahwC: V('تُجْعَلُ الْهَمْزَةُ يَاءً فَتُدْغَمُ نَحْوُ خَطِيَّةٌ', 4),
+                 waw: V('تُجْعَلُ فِي الْأُولَى وَاوًا لِضَمَّةِ مَا قَبْلَهَا', 3), wawC: V('وَتُجْعَلُ يَاءُ هِيَ أَلِفًا', 1),
+                 isman: V('وَإِنْ لَمْ تَكُنْ فِعْلًا وَلَا اسْمًا عَلَى وَزْنِ فِعْلٍ', 5), filan: V('وَإِنْ لَمْ تَكُنْ فِعْلًا وَلَا اسْمًا عَلَى وَزْنِ فِعْلٍ', 3), katib: V('ليس زيد شاعرا ولا كاتبا', 4), jins: V('لا رجل في الدار ولا امرأة', 1), jins2: V('لَا رَجُلَ فِي الدَّارِ', 1),
+                 rajul: V('كان رجلا صالحا', 1), salih: V('كان رجلا صالحا', 2), shair: V('كان الرجل شاعرا', 1), shair2: V('كان الرجل شاعرا', 2),
+                 lin: V('لِضَمَّةِ مَا قَبْلَهَا وَلِينِ عَرِيكَةِ السَّاكِنِ', 3), arika: V('لِضَمَّةِ مَا قَبْلَهَا وَلِينِ عَرِيكَةِ السَّاكِنِ', 4), alif: V('فِي حُكْمِ عَيْنِ الْكَلِمَةِ وَأَلِفِ الْوَصْلِ', 4), amr: V('قُلِ الْحَقَّ', 0), din: V('نَظَرَ إِلَى الدِّينِ وَالْعِلْمِ', 3) },
+        morph: { tawa: P('tawa') + ' ' + N(M('tawa').majhulMazi) + ' ' + N((M('tawa').mazi || [])[2]), awira: P('awira') + ' ' + N((M('awira').mazi || [])[12]), tajawara: P('tajawara') },
+        audit: [au.checked, au.bad.length, au.bad.slice(0, 3)] }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => String(x || '').normalize('NFC'), has = (a, b) => N(a).includes(N(b));
+    if (r.chapters < 73 || J(r.sens) !== '[3,11,7]' || r.n !== 204) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    const L = r.l;
+    if (!has(L.hadhihi, 'فِي مَحَلِّ رَفْعٍ نَائِبُ فَاعِلٍ') || !has(L.ashya, 'بَدَلٌ') || !has(L.filan, 'خَبَرُ كَانَ') || !has(L.isman, 'مَعْطُوفٌ مَنْصُوبٌ')) throw new Error('«تُعَلُّ هٰذِهِ الْأَشْيَاءُ وَإِنْ لَمْ تَكُنْ فِعْلًا وَلَا اسْمًا»: ' + J([L.hadhihi, L.ashya, L.filan, L.isman]));
+    if (!has(L.nahw, 'نَائِبُ فَاعِلٍ') || !has(L.nahw, 'مُضَافٌ') || has(L.yuall, 'ضَمِيرٌ مُسْتَتِرٌ') || !L.hawaka.startsWith('haik|') || !has(L.hawaka, 'مُضَافٌ إِلَيْهِ') || !L.khawana.startsWith('khain|') || !has(L.khawana, 'مَعْطُوفٌ مَجْرُورٌ')) throw new Error('«وَلَا يُعَلُّ نَحْوُ «الْحَوَكَةِ» وَ «الْخَوَنَةِ»»: ' + J([L.yuall, L.nahw, L.hawaka, L.khawana]));
+    if (!has(L.nahwOld, 'خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ')) throw new Error('«فَيُدْغَمُ نَحْوُ «خَطِيَّةٌ»» keeps its khabar: ' + L.nahwOld);
+    if (!has(L.yadlulna, 'نُونِ النِّسْوَةِ') || !has(L.yadlulna, 'فِي مَحَلِّ نَصْبٍ') || !has(L.nahw3, 'مَعْطُوفٌ عَلَى «نَحْوُ»') || !L.daaw.startsWith('daa|') || !has(L.daaw, 'وَالْجُمْلَةُ مَحْكِيَّةٌ')) throw new Error('«حَتَّى يَدْلُلْنَ» / «وَنَحْوُ «دَعَوُا الْقَوْمَ»»: ' + J([L.yadlulna, L.nahw3, L.daaw]));
+    if (!L.ayn.startsWith('ayn-letter|') || !L.iwarra.startsWith('iwarra-cited|') || !L.alif.startsWith('alif-letter|') || !has(L.alif, 'مَعْطُوفٌ مَجْرُورٌ') || !has(L.alif, 'مُضَافٌ') || !L.tajawara.startsWith('tajawara|') || !has(L.tajawara, 'فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ')) throw new Error('«عَيْنِ «اعْوَرَّ» وَأَلِفِ «تَجَاوَرَ»»: ' + J([L.ayn, L.iwarra, L.alif, L.tajawara]));
+    if (!L.mana.startsWith('mana|') || !has(L.mana, 'مُضَافٌ إِلَيْهِ مَجْرُورٌ بِكَسْرَةٍ مُقَدَّرَةٍ') || !L.mawatan.startsWith('mawatan|') || !has(L.yahayu, 'فِي مَحَلِّ نَصْبٍ حَالٌ') || !L.qawad.startsWith('qawad|')) throw new Error('«مَعْنَاهُ» / «الْمَوَتَانُ» / «يَحَايُ» / «الْقَوَدِ»: ' + J([L.mana, L.mawatan, L.yahayu, L.qawad]));
+    if (!has(L.waw, 'مَفْعُولٌ بِهِ ثَانٍ') || !L.lin.startsWith('lin|') || !has(L.lin, 'مَعْطُوفٌ مَجْرُورٌ') || !has(L.arika, 'مُضَافٌ إِلَيْهِ') || !L.musir.startsWith('musir|') || !has(L.musir, 'خَبَرُ «صَارَ»')) throw new Error('«تُجْعَلُ فِي الْأُولَى وَاوًا … وَلِينِ عَرِيكَةِ السَّاكِنِ فَصَارَ «مُوسِرٌ»»: ' + J([L.waw, L.lin, L.arika, L.musir]));
+    if (!has(L.sara, 'جَوَابِ «إِذَا»') || !L.bia.startsWith('baa|') || !has(L.bia, 'خَبَرُ «صَارَ»') || !L.ghuyaba.startsWith('ghuyaba|') || !has(L.ghuyaba, 'نَائِبُ فَاعِلٍ') || !L.nuwama.startsWith('nuwama|')) throw new Error('«فَصَارَ حِينَئِذٍ «بِيعَ»» / «لَا يُعَلُّ «غُيَبَةٌ» وَ «نُوَمَةٌ»»: ' + J([L.sara, L.bia, L.ghuyaba, L.nuwama]));
+    const T = r.typed;
+    if (T.nahw !== N('نَحْوُ') + '/naib' || T.hawaka !== N('الْحَوَكَةِ') + '/mudafIlayh' || T.nahwC.endsWith('/naib')) throw new Error('«نَحْوُ» behind the passive that opens the sentence: ' + J([T.nahw, T.hawaka, T.nahwC]));
+    if (T.waw !== N('وَاوًا') + '/maful2' || T.wawC.endsWith('/maful2')) throw new Error('the second object across a jarr phrase: ' + J([T.waw, T.wawC]));
+    if (T.isman !== N('اسْمًا') + '/atf' || T.filan !== N('فِعْلًا') + '/kanaKhabar' || !T.katib.endsWith('/atf') || !T.jins.endsWith('/laJins') || T.jins2 !== N('رَجُلَ') + '/laJins') throw new Error('«وَلَا» behind a negation joins; the genus-lā keeps its noun: ' + J([T.isman, T.filan, T.katib, T.jins, T.jins2]));
+    if (!T.rajul.endsWith('/kanaKhabar') || !T.salih.endsWith('/nat') || !T.shair.endsWith('/kanaIsm') || !T.shair2.endsWith('/kanaKhabar')) throw new Error('the nakira on the alif of tanwīn behind kāna: ' + J([T.rajul, T.salih, T.shair, T.shair2]));
+    if (T.lin !== N('وَلِينِ') + '/atf' || T.arika !== N('عَرِيكَةِ') + '/mudafIlayh' || T.alif !== N('وَأَلِفِ') + '/atf' || !T.amr.endsWith('/amr') || T.din !== N('وَالْعِلْمِ') + '/atf') throw new Error('the kasra the author wrote is jarr: ' + J([T.lin, T.arika, T.alif, T.amr, T.din]));
+    const Mo = r.morph;
+    if (Mo.tawa !== N('طَوَى يَطْوِي اِطْوِ طَيّ طُوِيَ طَوَوْا') || Mo.awira !== N('عَوِرَ يَعْوَرُ اِعْوَرْ عَوَر عَوِرْتُ') || Mo.tajawara !== N('تَجَاوَرَ يَتَجَاوَرُ تَجَاوَرْ تَجَاوُر')) throw new Error('the new paradigms: ' + J(Mo));
+    if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

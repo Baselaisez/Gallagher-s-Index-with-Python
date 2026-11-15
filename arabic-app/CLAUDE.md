@@ -13738,3 +13738,62 @@ the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
   «وَلِينِ عَرِيكَةِ» joined to an annexed jarr noun is still a hand line; «ذَكَرَ الشَّيْخُ قَاعِدَةً نَافِعَةً» typed gives the
   doer a fatḥa; «أَصْلًا شَامِلًا» reads «أَصْلًا» as the frozen adverb; the wave-210 items stand.
 - **Next.** Marāḥ part twenty-six continues on p. 137 at «وَيُعَلُّ مِثْلُ «دِيَارٌ» تَبَعًا لِوَاحِدِهِ» (PDF page 43).
+
+### v311 (wave 212) — Marāḥ al-Arwāḥ part twenty-six (what is weakened by following, what is not, the four after a ḍamma), five reader rules the new pages asked for
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 137–140 of the scan (the matn's large type only):
+  chapter 71 «مَا يُعَلُّ تَبَعًا لِغَيْرِهِ» (3 sentences — «دِيَارٌ», «قِيَامٌ», «سِيَاطٌ», each weakened in the wake of another word),
+  72 «مَا لَا يُعَلُّ لِفَقْدِ شَرْطٍ» (11 — «الْحَوَكَةُ», «دَعَوُا الْقَوْمَ», «عَوِرَ», «حَيَوَانٌ», «طَوَى», «حَيِيَ», «الْقَوَدُ», each with
+  the condition it lacks) and 73 «الْأَرْبَعَةُ إِذَا كَانَ مَا قَبْلَهَا مَضْمُومًا» (7 — «مُوسِرٌ», «بُوعَ» / «بِيعَ», «يَغْزُو», «لَنْ يَدْعُوَ»).
+  21 sentences / 204 words; the book stands at **73 chapters / 569 sentences / 7,109 words**, version 0.26.0. Three
+  paradigms through `sarf_gen` (90 in the book): «طَوَى» (lafīf maqrūn through the nāqiṣ maker), «عَوِرَ» (the sound hollow
+  verb of defects — the reader's `SOUND_HOLLOW` table already held the root, so the audit regenerates it sound), «تَجَاوَرَ».
+  «اِجْتَوَرَ» and «اِعْوَرَّ» are `-cited` phrase rows: a hollow Form VIII kept sound and a Form IX are outside what the
+  conjugator can re-derive, and a paradigm the audit cannot regenerate is not stored.
+- **Readings, said so** (attribution, three languages). «الْخَوَنَةِ» (printed with a sukūn on the wāw — the moving wāw
+  is the point of the example); «وَأَلِفِ «تَجَاوَرَ»» (printed «وَالْأَلِفِ تَجَاوَرَ»); «طَوَيَا» vowelled as the dual;
+  «مَضْمُومًا» (printed «مَضْمُونًا»); «يَدُلَّ حَرَكَتُهُ» kept in the masculine; the madd letters written without the
+  printing's sukūn sign; «غُيَبَةٌ» «نُوَمَةٌ» given rafʿ.
+- **Reader rules** (`$S/w212/patch212.py`):
+  - **(1) «نَحْوُ» behind the passive that OPENS the sentence is its deputy doer.** «وَلَا يُعَلُّ نَحْوُ «الْحَوَكَةِ»»: the
+    citing rule of wave 52 fired first (the cited noun wears the article and a kasra) and called «نَحْوُ» a khabar.
+    It now stands back where the passive verb right before «نَحْوُ» is the sentence's first word after its particles,
+    and the deputy annexes the cited noun. **The first draft had no «opens the sentence» test and turned
+    «فَيُدْغَمُ نَحْوُ «خَطِيَّةٌ»» (54:s2) into a deputy too** — there the verb continues a chain and carries its deputy
+    with it, and «نَحْوُ» is the example. The diff against the shipped package caught it before the sweep did.
+  - **(2) the second object across a jarr phrase.** «تُجْعَلُ فِي الْأُولَى وَاوًا»: wave 211's rule asked for the letter-name
+    right behind the passive of turning; a jarr phrase may stand between them.
+  - **(3) «وَلَا» behind a negation joins.** «لَمْ تَكُنْ فِعْلًا وَلَا اسْمًا»: a noun wearing the alif of tanwīn is never the
+    built ism of the genus-lā — it joins the nearest manṣūb nakira before it. One stored label follows it
+    (Badʾ al-Amālī 1:s5 «وَلَا غَيْرًا سِوَاهُ», joined to the khabar of «لَيْسَتْ»). «لَا رَجُلَ فِي الدَّارِ وَلَا امْرَأَةَ» keeps its
+    built noun.
+  - **(4) the nakira on the alif of tanwīn right behind kāna is its khabar** — kāna's noun is in rafʿ and wears no
+    alif, so the noun is the pronoun hidden in the verb («كان رجلا صالحا» typed bare: khabar and its naʿt; before,
+    the engine seated «رجلا» as kāna's noun).
+  - **(5) a final kasra the author wrote is a sign of jarr, and no verb is majrūr.** «وَلِينِ عَرِيكَةِ السَّاكِنِ» had been
+    read as an imperative of «وَلِيَ» (wave 211's open item), «وَأَلِفِ «تَجَاوَرَ»» as the verb «أَلِفَ». Where no quiescent
+    letter follows to explain the kasra («قُلِ الْحَقَّ» keeps its verb), the lexicon's noun of the same letters and
+    inner vowels is the word; joined, it joins the nearest noun in jarr before it — not the adverb of a relative
+    clause between them — and on a plain kasra it is itself annexed. This is the fourth member of the analyzer's
+    guard («tanwīn, the article, the tāʾ marbūṭa, the jarr kasra») arriving in the ḍabṭ engine.
+  - **`tanwinAlif212` and `radNun212` are named once.** The first answers «is this the alif of tanwīn?» from the
+    author's receipt, or on bare text from the lexicon (the lemma ends in no alif). The second answers «does this
+    nūn belong to the word?» — «لِينِ», «دِينِ», «إِنْسَانِ» end like a dual or a sound plural and are neither; the
+    receipt helper `nunEnd136` had taken them for one and withheld the kasra as evidence. **The first draft also
+    covered lemmas in «ـون» and lemmas stored in the dual's own shape** — the receipts-on sweep moved one label
+    («وَثِنْتَانِ», Shudhūr 5:s2) and the helper now refuses a lemma whose own last letter is a vowelled nūn.
+- **The typed path and the authoring pipeline run with receipts OFF.** `_receiptsOn136` is set only inside `grade()`;
+  `DabtEngine.vowel()` — what the pipeline calls — never sees `endR136` / `caseWant136`. A rule that must read the
+  author's ending there reads `_orig24` itself (`o68` / `own68`), as rules 3–5 do.
+- **Hand lines** (`mk_fixes.py`, part twenty-six): «تُعَلُّ هٰذِهِ الْأَشْيَاءُ» (the demonstrative is the deputy, the noun its
+  badal), «حَتَّى يَدْلُلْنَ», the six sentence-opening «وَنَحْوُ …» (each joined to the deputy doer of «وَلَا يُعَلُّ» at the head
+  of the chapter — the antecedent lies in an earlier sentence, which no rule holds), «دَعَوُا الْقَوْمَ» (a whole
+  sentence quoted), «عَيْنِ «اعْوَرَّ»» keyed as the letter, «مَعْنَاهُ», «يَحَايُ» (a quoted ḥāl), «فَصَارَ حِينَئِذٍ «بِيعَ»».
+- **Sweeps** (v310 code against the candidate, same data): blind 0 fixed / 0 broken (three labels move: «وَاوًا» to the second object, «وَلَا غَيْرًا» to ʿaṭf, «فَصَارَ «مُوسِرٌ»» to a doer); receipts-on 2 fixed / 0 broken («وَلِينِ» twice) — blind 73,849 true / 606 false / 375 null of 74,830 rows, receipts-on 74,285 / 342 / 203. Case layer 60,815/61,496 = 98.89 %. Label gauge
+  90.32 % (32,379/35,851); typed gauge 1,210/1,211 over 403 sentences (the one standing miss «ليته طالبَ بحقِّهِ»); calibration 3,288/3,332 (0.987).
+- **Smoke.** `wave 212` (#459; TOTAL 461).
+- **Open.** «ولين عريكة الساكن» typed BARE is still the verb (rule 5 needs the author's kasra); «مَعْنَاهُ» is keyed to
+  the poet «مَعْن» by the lexicon's form match and corrected by hand; «فَصَارَ «مُوسِرٌ»» is labelled a doer by the
+  blind engine (ending right; the stored line says khabar of «صَارَ»); «ما كان زيد بخيلا» typed bare reads «بِ + خيلا»;
+  the wave-211 items stand except «وَلِينِ».
+- **Next.** Marāḥ part twenty-seven continues on p. 140 at «الْأَرْبَعَةُ إِذَا كَانَ مَا قَبْلَهَا مَكْسُورًا» (PDF page 46).
