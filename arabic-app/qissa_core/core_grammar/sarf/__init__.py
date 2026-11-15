@@ -1,7 +1,7 @@
 """Ṣarf: build a derived noun from root + wazn, read one back, deduce its meaning."""
 
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
 from ...memory_store.lexicon import Lexicon
 from .analyzer import Analyzer, Reading
@@ -29,6 +29,10 @@ class Sarf:
 
     def build(self, root: str, pattern: str) -> Derivation:
         return self.deriver.derive(Root.of(root), self._wazn[pattern])
+
+    def variants(self, root: str, pattern: str) -> List[Derivation]:
+        """(wave 203) The forms the Marāḥ permits beside the regular one (iftiʿāl only)."""
+        return self.deriver.variants(Root.of(root), self._wazn[pattern])
 
     def read(self, word: str) -> Optional[Reading]:
         return self.analyzer.read(word)

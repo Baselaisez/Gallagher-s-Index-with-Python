@@ -94,7 +94,7 @@ class Analyzer:
         self.law = law
         self.lexicon = lexicon
         self.deriver = deriver or Deriver()
-        self._inverse: Optional[Dict[int, List[Tuple[Wazn, Root, List[str]]]]] = None
+        self._inverse: Optional[Dict[int, List[Tuple[Wazn, Root, List[str], str]]]] = None
 
     # -- the inverse templates ---------------------------------------------
     @staticmethod
@@ -103,20 +103,24 @@ class Analyzer:
              ("ي", _Y, _Z), (_X, _Y, _Y), (_X, "و", "ي"), (_X, "ي", "ي"), ("و", _Y, "ي"), ("ء", _Y, _Z),
              ("ء", _Y, "ي"), ("ء", _Y, "و"), ("ء", _Y, _Y), (_X, "ي", "ء"), (_X, "و", "ء")]
         if bab == 8:
-            for f in "صضطظدذزت":
+            for f in "صضطظدذزتثسش":
                 v += [(f, _Y, _Z), (f, _Y, "و"), (f, _Y, "ي"), (f, _Y, _Y), (f, "و", _Z), (f, "ي", _Z)]
+            v.append(("ء", "خ", "ذ"))   # (wave 203) the one root اِتَّخَذَ is heard in
         return [Root(*t) for t in v]
 
-    def inverse(self) -> Dict[int, List[Tuple[Wazn, Root, List[str]]]]:
+    def inverse(self) -> Dict[int, List[Tuple[Wazn, Root, List[str], str]]]:
         if self._inverse is not None:
             return self._inverse
-        table: Dict[int, List[Tuple[Wazn, Root, List[str]]]] = {}
+        table: Dict[int, List[Tuple[Wazn, Root, List[str], str]]] = {}
         seen = set()
         scratch = Deriver()   # placeholder roots stay out of the real memo
         for wazn in self.law.patterns:
             for var in self._variants(wazn.bab):
                 d = scratch.derive(var, wazn)
-                for form in (d.out, d.full):
+                forms = [(d.out, ""), (d.full, "")]
+                for alt in scratch.variants(var, wazn):   # (wave 203) the permitted variants are readable too
+                    forms += [(alt.out, alt.jawaz), (alt.full, alt.jawaz)]
+                for form, jz in forms:
                     if not form:
                         continue
                     sk = _letters(form)
@@ -124,7 +128,7 @@ class Analyzer:
                     if key in seen:
                         continue
                     seen.add(key)
-                    table.setdefault(len(sk), []).append((wazn, var, sk))
+                    table.setdefault(len(sk), []).append((wazn, var, sk, jz))
         self._inverse = table
         return table
 
@@ -231,7 +235,7 @@ class Analyzer:
         found: Dict[Tuple[str, str], Reading] = {}
         for st in self.stems(word):
             lt = _letters(join(list(st.units)))
-            for wazn, var, sk in inverse.get(len(lt), []):
+            for wazn, var, sk, jz in inverse.get(len(lt), []):
                 bind: Dict[str, str] = {}
                 ok = True
                 for s, ch in zip(sk, lt):
@@ -251,7 +255,7 @@ class Analyzer:
                 key = (root.key, wazn.id)
                 if key in found and found[key].stem.pre == "":
                     continue
-                d = self.deriver.derive(root, wazn)
+                d = self.deriver.derive(root, wazn, jz)
                 m = self.compare(st.units, d.out)
                 if m and d.full:   # the reduced manqūṣ stands bare or under the sound plural only
                     if st.suf and not st.suf.startswith("mp"):
@@ -269,6 +273,11 @@ class Analyzer:
                 if wazn.vowelled and not full:
                     continue
                 own = self.lexicon.verb(root.key, wazn.bab)
+                # (wave 203) a permitted variant is read only where the writer's vowels prove it or the verb's own
+                # entry recites it — never guessed from bare letters
+                if jz and not (full or (own and any(b and self.recites(b, d.out)
+                                                    for b in (own.ism_fail, own.ism_maful, own.masdar)))):
+                    continue
                 if wazn.sama and not (own and self.recites(own.masdar, d.out)):
                     continue   # a Form I maṣdar is recited, never computed
                 has_verb = root.key in self.lexicon.verbs
@@ -280,7 +289,7 @@ class Analyzer:
                 score = ((6 if own else 3 if has_verb else 2 if conf == "root" else 0) + (2 if full else 0)
                          + ev * 0.1 - (0.5 if st.pre else 0) - (0.3 if st.suf else 0)
                          - (0.5 if wazn.vowelled else 0) + _PRIOR.get(wazn.roles[0], 0)
-                         - (0.2 if root.f == "ي" else 0) - wazn.bab * 0.01)
+                         - (0.2 if root.f == "ي" else 0) - wazn.bab * 0.01 - (0.4 if jz else 0))
                 prev = found.get(key)
                 if prev and prev.score >= score:
                     continue

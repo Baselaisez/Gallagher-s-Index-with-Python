@@ -13303,3 +13303,42 @@ recognised only when its prefix ḍamma is written; «لَمْ يُقَلِ ال
   by the packager, the reader still labels the participle a naʿt; the wāw-of-ḥāl rule needs the author's ḍamma.
 - **Next.** Marāḥ part twenty opens on p. 112 at «وَ «جَيَلٌ» وَ «حَوَبَةٌ»» — read the last example of that list
   against a second witness first (this printing: «وَابْتَغِي مْرَأَةً»; its own note gives the origin as «ابتغي امرأة»).
+
+### v302 (wave 203) — the forms the Marāḥ permits beside the regular iftiʿāl, in both interpreters
+
+- **The engine item wave 202 left open.** The IshtiqaqEngine built one form where the tāʾ of iftiʿāl meets its first
+  radical; the Marāḥ's second bāb permits others beside it, and seven recited forms of the shelf («مُتَّخِذ»,
+  «مُذَّكِر», «مُثَّئِر» …) were counted as misses. The variants are now rule objects of their own
+  (`IshtiqaqEngine.JAWAZ`; in Python `rules.JAWAZ`), each with its sentence in three languages in
+  `content/rules/ishtiqaq.json` and its citation to the scan's pages:
+  - `jawaz-idgham-fa` — the tāʾ made like the fāʾ: «اِذَّكَرَ، اِثَّأَرَ، اِزَّانَ، اِسَّمَعَ، اِشَّبَهَ، اِصَّبَرَ، اِضَّرَبَ،
+    اِظَّلَمَ»;
+  - `jawaz-idgham-ta` — the fāʾ made like what the tāʾ became: «اِتَّأَرَ، اِطَّلَمَ»;
+  - `jawaz-bayan` — the two letters left apart: «اِذْدَكَرَ»;
+  - `shadhdh-ittakhadha` — the hamza of «أَخَذَ» turned into a tāʾ and merged: heard in this one verb, said to be
+    irregular, never extended to another root.
+  Where the book permits nothing beside the regular form («اِدَّانَ», «اِطَّلَبَ», a sound first radical, the mithāl's
+  «اِتَّصَلَ») the engine offers nothing.
+- **API.** `synth(R, pat, jz)` takes a variant's mode (the memo key carries it); `variants(R, pat)` returns the
+  permitted roads beside the regular one, each a whole derivation whose first step is the variant's own rule;
+  `built(R, pat, book)` is the road the BOOK recites. The family, the derivation game and the calibration use
+  `built`. Python mirrors it: `Deriver.derive(root, wazn, jawaz)`, `Deriver.variants`, `Sarf.variants`,
+  `Derivation.jawaz`.
+- **Reading back.** The inverse table holds the variants' skeletons (with «ث س ش» as literal first radicals and the
+  one root «ء خ ذ»). A variant is read only where the writer's vowels prove it or the verb's own entry recites
+  that very form — bare letters never call one up («مسمع» stays «مَسْمَع», «مذكر» stays «مُذَكِّر»; «متخذ» is
+  «مُتَّخِذ» because «اِتَّخَذَ» recites it).
+- **The card** (Atölye → derivation, and the word sheet) lists what stands beside a form of iftiʿāl: the other
+  permitted forms with their sentences and citations, and the regular form — labelled «what analogy alone would
+  build» where the heard form is the irregular one.
+- **The ingestion manifest** (`content/sources/marah-al-arwah.json`) carries the four rules' sections and terms, so
+  a re-ingest writes the same citations (pp. 97–104) the cites file now holds.
+- **Measures.** Calibration 3,246 / 3,287 (0.9875; it stood at 0.9854 against a 0.985 gate) in the reader and the
+  same count in `qissa_core`'s test; inverse table 1,374 templates, built in 75 ms. `sarfAudit` 1,333 / 0 bad.
+  Sweeps (same data, v301 code against the candidate): blind 72,107 true / 586 false / 348 undecided and receipts-on 72,524 / 332 / 185 on both sides, the two files identical line for line — the change touches no sentence reading. Case layer 59,371 / 60,008 (98.94 %). Label gauge
+  90.28 % over 35,052 (unchanged); typed gauge 1,158 / 1,159 (unchanged).
+- **Smoke.** `wave 203` (#450; TOTAL 452); `qissa_core` gains `test_permitted_variants` (31 tests).
+- **Not in this wave.** Marāḥ part twenty: the list on p. 112 ends in an example this printing gives as «وَابْتَغِي
+  مْرَأَةً», a form the rule it illustrates cannot produce; no second witness was found. The next part will carry the
+  list's five sound examples and say in its reading notes that the sixth is left out.
+- **Next.** Marāḥ part twenty from p. 112 («وَ «جَيَلٌ» وَ «حَوَبَةٌ»» …, the added soft letter, two hamzas meeting).

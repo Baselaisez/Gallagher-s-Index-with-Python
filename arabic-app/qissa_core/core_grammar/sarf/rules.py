@@ -25,6 +25,8 @@ class Context:
     root: Optional[Root] = None
     wazn: Optional[Wazn] = None
     pending: Optional[tuple] = None   # (dropped letter, index) for the harmony rule
+    jawaz: str = ""                   # (wave 203) the permitted variant asked for: fa | ta | bayan | shadhdh
+    fired_as: Optional[str] = None    # the id of the variant rule that fired in place of the regular one
 
 
 class PhonologicalRule(ABC):
@@ -208,6 +210,36 @@ SHARED: Sequence[PhonologicalRule] = (Naql(), QalbAlif(), QalbWawYa(), QalbWawKa
 
 # ---- the noun rules (the reader's IshtiqaqEngine.POST, same order) ---------
 
+@dataclass(frozen=True)
+class Jawaz:
+    """(wave 203) A form the Marāḥ permits beside the regular iftiʿāl: its id in the law
+    table, the first radicals it applies to, and what it does to the fāʾ and the tāʾ."""
+
+    id: str
+    mode: str
+    letters: str          # the first radicals it is said of («» = one whole root, see `root`)
+    root: str = ""        # the one root an irregular form is heard in
+
+    def ok(self, r: Root) -> bool:
+        return r.key == self.root if self.root else r.f in self.letters
+
+    def run(self, u: List[Unit], f: str) -> None:
+        if self.mode == "fa":            # the tāʾ made like the fāʾ: اِذَّكَرَ، اِسَّمَعَ، اِصَّبَرَ
+            u[2].c = f
+        elif self.mode == "ta":          # the fāʾ made like what the tāʾ became: اِتَّأَرَ، اِطَّلَمَ
+            t = "ت" if f == "ث" else "ط"
+            u[1].c = t
+            u[2].c = t
+        elif self.mode == "bayan":       # the two letters left apart: اِذْدَكَرَ
+            u[2].c = "د"
+        elif self.mode == "shadhdh":     # اِتَّخَذَ — heard, not built by analogy
+            u[1].c = "ت"
+
+
+JAWAZ: Sequence[Jawaz] = (Jawaz("jawaz-idgham-fa", "fa", "ثذزسشصضظ"), Jawaz("jawaz-idgham-ta", "ta", "ثظ"),
+                          Jawaz("jawaz-bayan", "bayan", "ذ"), Jawaz("shadhdh-ittakhadha", "shadhdh", "", "ءخذ"))
+
+
 class IbdalIftial(PhonologicalRule):
     id = "ibdal-iftial"
     pre = True
@@ -216,6 +248,12 @@ class IbdalIftial(PhonologicalRule):
         w, r = ctx.wazn, ctx.root
         if w is None or r is None or w.bab != 8 or len(u) < 3 or u[2].c != "ت" or u[1].c != r.f:
             return False
+        if ctx.jawaz:   # (wave 203) a permitted variant fires in the regular rule's place, under its own id
+            j = next((x for x in JAWAZ if x.mode == ctx.jawaz), None)
+            if j is not None and j.ok(r):
+                j.run(u, r.f)
+                ctx.fired_as = j.id
+                return True
         if r.f in "صضطظ":
             u[2].c = "ط"
             return True

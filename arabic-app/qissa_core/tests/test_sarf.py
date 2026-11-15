@@ -143,6 +143,39 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(qail.tr, "diyen / kavl eden")
         self.assertEqual(self.sarf.build("ق و ل", "fail-1").rule_ids, ["hamz-fail"])
 
+    def test_permitted_variants(self) -> None:
+        """(wave 203) Beside the regular iftiʿāl the Marāḥ permits other forms; each is a road of its own."""
+        import unicodedata
+
+        def nfc(text: str) -> str:
+            return unicodedata.normalize("NFC", text)
+
+        def alts(root: str, pattern: str) -> List[str]:
+            return [nfc(seat(d.out)) for d in self.sarf.variants(root, pattern)]
+
+        self.assertEqual(nfc(seat(self.sarf.build("ذ ك ر", "fail-8").out)), nfc("مُدَّكِرٌ"))
+        self.assertEqual(alts("ذ ك ر", "fail-8"), [nfc(x) for x in ["مُذَّكِرٌ", "مُذْدَكِرٌ"]])
+        self.assertEqual(alts("ث أ ر", "fail-8"), [nfc(x) for x in ["مُثَّئِرٌ", "مُتَّئِرٌ"]])
+        self.assertEqual(alts("أ خ ذ", "masdar-8"), [nfc(x) for x in ["اِتِّخَاذٌ"]])
+        self.assertEqual(alts("ص ب ر", "masdar-8"), [nfc(x) for x in ["اِصِّبَارٌ"]])
+        self.assertEqual(alts("ظ ل م", "fail-8"), [nfc(x) for x in ["مُظَّلِمٌ", "مُطَّلِمٌ"]])
+        self.assertEqual(alts("ز ي ن", "fail-8"), [nfc(x) for x in ["مُزَّانٌ"]])
+        for root, pattern in [("ج م ع", "fail-8"), ("د ع و", "fail-8"), ("ط ل ع", "fail-8"), ("أ م ر", "fail-8"),
+                              ("ك ت ب", "fail-1"), ("ذ ك ر", "fail-2")]:
+            self.assertEqual(alts(root, pattern), [], root)
+        law = self.sarf.law
+        for d in self.sarf.variants("ذ ك ر", "fail-8") + self.sarf.variants("أ خ ذ", "fail-8"):
+            self.assertIn(d.rule_ids[0], law.rules)
+            self.assertTrue(d.jawaz)
+        # read back: the vowelled variant, and the bare word where the verb's own entry recites it
+        for word, root in [("مُتَّخِذٌ", "أ خ ذ"), ("متخذ", "أ خ ذ"), ("مُذَّكِرٌ", "ذ ك ر"), ("مُسَّمِعٌ", "س م ع")]:
+            r = self.sarf.read(word)
+            assert r is not None
+            self.assertEqual((r.root.shown(), r.wazn.id), (root, "fail-8"), word)
+        r = self.sarf.read("مسمع")   # bare letters alone never call a variant up
+        assert r is not None
+        self.assertNotEqual(r.wazn.id, "fail-8")
+
     def test_calibration_on_the_corpus(self) -> None:
         """The stories are the calibration set: rebuild every recited participle and
         every regular maṣdar, and hold the agreement above the measured floor."""
@@ -159,6 +192,8 @@ class EngineTests(unittest.TestCase):
                     continue
                 total += 1
                 built = {plain(self.sarf.deriver.derive(root, p).out) for p in pats}
+                for p in pats:   # (wave 203) …or a variant the Marāḥ permits beside the regular form
+                    built |= {plain(d.out) for d in self.sarf.deriver.variants(root, p)}
                 if any(plain(a) in built for a in alternatives(book)):
                     ok += 1
         self.assertGreater(total, 2500)

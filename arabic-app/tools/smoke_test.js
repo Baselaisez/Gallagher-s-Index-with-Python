@@ -14384,7 +14384,7 @@ if (!CHROME) {
       // the stories as the calibration set: every recited participle and every regular masdar, rebuilt from its root
       let ok = 0, n = 0; const miss = [];
       for (const e of RootFinder.corpusIndex()) { const b = I.babOf(e), R = I.rootKey(e.root).split(""); if (!b || R.length !== 3 || !e.m) continue;
-        for (const [kind, book] of [["fail", e.m.fail], ["maful", e.m.maful], ["masdar", b > 1 ? e.m.masdar : null]]) { if (!book) continue; const ps = L.patterns.filter(p => p.bab === b && p.id.startsWith(kind + "-")); if (!ps.length) continue; n++; if (ps.some(p => I.recites(book, I.synth(R, p).out))) ok++; else if (miss.length < 8) miss.push(e.lemma + " " + kind + " " + book); } }
+        for (const [kind, book] of [["fail", e.m.fail], ["maful", e.m.maful], ["masdar", b > 1 ? e.m.masdar : null]]) { if (!book) continue; const ps = L.patterns.filter(p => p.bab === b && p.id.startsWith(kind + "-")); if (!ps.length) continue; n++; if (ps.some(p => I.recites(book, I.built(R, p, book).out))) ok++; else if (miss.length < 8) miss.push(e.lemma + " " + kind + " " + book); } }
       out.cal = { ok, n, miss };
       out.none = ["بَيْتٌ", "لِسَانُهُ", "رَجُلٌ", "بَنِي"].filter(w => I.read0(w));
       const g = w => { const a = FahmEngine.analyze(w, "en"); const it = (a.items || [])[0] || {}; return { how: it.how, lemma: it.lemma, en: (it.gloss || {}).en, tr: (it.gloss || {}).tr, m: a.meaning && a.meaning.en }; };
@@ -14406,6 +14406,7 @@ if (!CHROME) {
     if (r.bad.length) throw new Error('fixtures (' + r.bad.length + '): ' + r.bad.slice(0, 8).join(' · '));
     if (fx.length < 70 || r.patterns < 50 || r.templates < 900) throw new Error('sizes: ' + JSON.stringify([fx.length, r.patterns, r.templates]));
     // measured at v257: 2,990 of 3,025 (98.84 %) — every miss a recited exception (a ṣifa where the participle would stand, أَرَى، اتَّخَذَ، أَحْوَجَ)
+    // v302 (wave 203): 3,246 of 3,287 (98.75 %) — اتَّخَذَ، اذَّكَرَ، اثَّأَرَ are now built as the variants the Marāḥ permits
     if (r.cal.n < 2500 || r.cal.ok / r.cal.n < 0.985) throw new Error('calibration: ' + JSON.stringify(r.cal));
     if (r.none.length) throw new Error('invented a derivation for: ' + r.none.join(' '));
     if (r.mabi.how !== 'pattern' || r.mabi.en !== 'one sold' || r.mabi.tr !== 'satılan' || /\b[Aa]n? one\b/.test(r.mabi.m || '')) throw new Error('the Muḥallil on مَبِيعٌ: ' + JSON.stringify(r.mabi));
@@ -15941,6 +15942,36 @@ if (!CHROME) {
     if (r.e.sila !== N('حَرَكَتُهَا') + '/mubtada' || r.e.s2 !== N('كتابٌ') + '/mubtada' || r.e.s3 !== N('نهرٌ') + '/mubtada' || !/\/jarr$/.test(r.e.sc)) throw new Error('the postponed mubtadaʾ of the ṣila, and its control: ' + J([r.e.sila, r.e.s2, r.e.s3, r.e.sc]));
     if (r.e.o2 !== N('يَاءً') + '/maful2' || r.e.o2b !== N('وَاوًا') + '/atf') throw new Error('the paired second object behind the passive: ' + J([r.e.o2, r.e.o2b]));
     if (r.g.bad.length || r.g.checked < 1330 || r.g.hadhf > 3 || J(r.g.stored) !== J(['يُلَيِّنُ', 'تَلْيِين', 'يَلْؤُمُ', 'لُؤْم', 'اُلْؤُمْ'].map(N))) throw new Error('the two paradigms and the audits: ' + J([r.g.checked, r.g.bad, r.g.hadhf, r.g.stored]));
+  });
+
+  await check('wave 203 — the derivation engine builds the forms the Marāḥ permits beside the regular iftiʿāl (the tāʾ made like the fāʾ, the fāʾ made like the tāʾ, the two left apart, and the heard «اِتَّخَذَ»), each with its own sentence in the law table and its citation; the reader reads them back only where the vowels or the verb\'s own entry prove them; the card shows what stands beside a form', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const I = IshtiqaqEngine, L = I.law(), by = {}; L.patterns.forEach(p => { by[p.id] = p; });
+      const alts = (root, id) => { const R = I.rootKey(root).split(''); return [N(I.seat(I.synth(R, by[id]).out))].concat(I.variants(R, by[id]).map(v => N(I.seat(v.out)) + ':' + v.jawaz.mode + ':' + v.steps.map(s => s.id).join('>'))); };
+      const rd = w => { const d = I.read0(w); return d ? d.root.join('') + '|' + d.pat.id + '|' + N(I.seat(d.out)) + '|' + d.steps.map(s => s.id).join('>') : '-'; };
+      const law = I.JAWAZ.filter(x => !L.rules[x.id] || L.rules[x.id].ar !== x.ar || L.rules[x.id].en !== x.en || L.rules[x.id].tr !== x.tr).map(x => x.id);
+      const cited = I.JAWAZ.map(x => (I.cite('rules', x.id)[0] || { sec: {} }).sec.ar ? 1 : 0).join('');
+      const fam = root => I.family(root).filter(f => f.steps.some(s => /^(jawaz|shadhdh)/.test(s.id))).map(f => N(f.shown));
+      conjState.lab = 'isht'; conjState.isht = 'مُتَّخِذٌ'; openConjugator();
+      const card = () => { const c = document.querySelector('#ishtOut .isht'), j = c && c.querySelector('.isht-jawaz'); return j ? N(j.textContent.replace(/\s+/g, ' ').trim()) : ''; };
+      const c1 = card(); conjState.isht = 'مُذَّكِرٌ'; renderIshtOut(); const c2 = card(); conjState.isht = 'مُجْتَمِعٌ'; renderIshtOut(); const c3 = card(); conjState.isht = ''; renderIshtOut();
+      return { v: { dhakara: alts('ذ ك ر', 'fail-8'), dhMasdar: alts('ذ ك ر', 'masdar-8'), thaara: alts('ث أ ر', 'fail-8'), akhadha: alts('أ خ ذ', 'masdar-8'), zana: alts('ز ي ن', 'fail-8'), samia: alts('س م ع', 'fail-8'), sabara: alts('ص ب ر', 'masdar-8'), zalama: alts('ظ ل م', 'fail-8'),
+                    none: [alts('ج م ع', 'fail-8'), alts('د ع و', 'fail-8'), alts('ط ل ع', 'fail-8'), alts('أ م ر', 'fail-8'), alts('و ص ل', 'fail-8'), alts('ذ ك ر', 'fail-2')].map(a => a.length) },
+               rd: { muttakhidh: rd('مُتَّخِذٌ'), bare: rd('متخذ'), ittikhadh: rd('اتخاذ'), mudhdhakir: rd('مُذَّكِرٌ'), muddakir: rd('مُدَّكِرٌ'), muththair: rd('مُثَّئِرٌ'), mussami: rd('مُسَّمِعٌ'), mustami: rd('مُسْتَمِعٌ'), masma: rd('مسمع'), mudhakkir: rd('مذكر'), mustabir: rd('مُصْطَبِرٌ') },
+               law, cited, fam: [fam('أ خ ذ'), fam('ذ ك ر'), fam('ث أ ر')], c1, c2, c3, n: I.JAWAZ.length }; });
+    const N = x => x.normalize('NFC'), eq = (a, b) => J(a) === J(b.map(N));
+    if (!eq(r.v.dhakara, ['مُدَّكِرٌ', 'مُذَّكِرٌ:fa:jawaz-idgham-fa>idgham-mithlayn', 'مُذْدَكِرٌ:bayan:jawaz-bayan']) || !eq(r.v.dhMasdar, ['اِدِّكَارٌ', 'اِذِّكَارٌ:fa:jawaz-idgham-fa>idgham-mithlayn', 'اِذْدِكَارٌ:bayan:jawaz-bayan'])) throw new Error('«اِذَّكَرَ / اِدَّكَرَ / اِذْدَكَرَ»: ' + J([r.v.dhakara, r.v.dhMasdar]));
+    if (!eq(r.v.thaara, ['مُثْتَئِرٌ', 'مُثَّئِرٌ:fa:jawaz-idgham-fa>idgham-mithlayn', 'مُتَّئِرٌ:ta:jawaz-idgham-ta>idgham-mithlayn']) || !eq(r.v.zalama, ['مُظْطَلِمٌ', 'مُظَّلِمٌ:fa:jawaz-idgham-fa>idgham-mithlayn', 'مُطَّلِمٌ:ta:jawaz-idgham-ta>idgham-mithlayn'])) throw new Error('the idghām both ways (ث، ظ): ' + J([r.v.thaara, r.v.zalama]));
+    if (!eq(r.v.akhadha, ['إِيتِخَاذٌ', 'اِتِّخَاذٌ:shadhdh:shadhdh-ittakhadha>idgham-mithlayn']) && !eq(r.v.akhadha, ['اِيتِخَاذٌ', 'اِتِّخَاذٌ:shadhdh:shadhdh-ittakhadha>idgham-mithlayn'])) throw new Error('the heard «اِتَّخَذَ»: ' + J(r.v.akhadha));
+    if (!eq(r.v.zana, ['مُزْدَانٌ', 'مُزَّانٌ:fa:jawaz-idgham-fa>qalb-alif>idgham-mithlayn']) || !eq(r.v.samia, ['مُسْتَمِعٌ', 'مُسَّمِعٌ:fa:jawaz-idgham-fa>idgham-mithlayn']) || !eq(r.v.sabara, ['اِصْطِبَارٌ', 'اِصِّبَارٌ:fa:jawaz-idgham-fa>idgham-mithlayn'])) throw new Error('the tāʾ made like the fāʾ (ز، س، ص): ' + J([r.v.zana, r.v.samia, r.v.sabara]));
+    if (J(r.v.none) !== '[1,1,1,1,1,1]') throw new Error('roots the Marāḥ permits nothing beside (controls): ' + J(r.v.none));
+    if (!r.rd.muttakhidh.startsWith('ءخذ|fail-8|') || !r.rd.muttakhidh.endsWith('shadhdh-ittakhadha>idgham-mithlayn') || !r.rd.bare.startsWith('ءخذ|fail-8|') || !r.rd.ittikhadh.startsWith('ءخذ|masdar-8|')) throw new Error('reading «مُتَّخِذ»: ' + J([r.rd.muttakhidh, r.rd.bare, r.rd.ittikhadh]));
+    if (!r.rd.mudhdhakir.startsWith('ذكر|fail-8|') || !r.rd.mudhdhakir.endsWith('jawaz-idgham-fa>idgham-mithlayn') || !r.rd.muddakir.endsWith('ibdal-iftial>idgham-mithlayn') || !r.rd.muththair.startsWith('ثءر|fail-8|') || !r.rd.mussami.startsWith('سمع|fail-8|')) throw new Error('reading the vowelled variants: ' + J([r.rd.mudhdhakir, r.rd.muddakir, r.rd.muththair, r.rd.mussami]));
+    if (!r.rd.mustami.startsWith('سمع|fail-8|') || /jawaz/.test(r.rd.mustami) || /fail-8/.test(r.rd.masma) || !r.rd.mudhakkir.startsWith('ذكر|fail-2|') || !r.rd.mustabir.endsWith('|ibdal-iftial')) throw new Error('bare letters never call a variant up (controls): ' + J([r.rd.mustami, r.rd.masma, r.rd.mudhakkir, r.rd.mustabir]));
+    if (r.n !== 4 || r.law.length || r.cited !== '1111') throw new Error('the four sentences in the law table, each cited: ' + J([r.n, r.law, r.cited]));
+    if (r.fam[0].length !== 3 || r.fam[1].length !== 2 || r.fam[2].length !== 2) throw new Error('the families build what their verbs recite: ' + J(r.fam));
+    if (!r.c1.includes(N('مُؤْتَخِذٌ')) || !r.c2.includes(N('مُدَّكِرٌ')) || !r.c2.includes(N('مُذْدَكِرٌ')) || !r.c2.includes(N('يَجُوزُ الْبَيَانُ')) || r.c3) throw new Error('the card: ' + J([r.c1, r.c2, r.c3]));
   });
 
   await check('no JS errors on page', async () => {

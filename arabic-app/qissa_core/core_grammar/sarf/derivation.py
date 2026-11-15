@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Tuple
 
 from .orthography import DAMMA, SHADDA, Unit, is_sakin, is_weak, join, parse, vowel
 from .root import Root
-from .rules import NOUN, SHARED, Context, PhonologicalRule
+from .rules import JAWAZ, NOUN, SHARED, Context, Jawaz, PhonologicalRule
 from .wazn import Wazn
 
 _MASK = {"و": "", "ي": ""}
@@ -38,6 +38,7 @@ class Derivation:
     out: str                 # the surface, hamzas unseated
     steps: Tuple[Step, ...] = field(default_factory=tuple)
     full: Optional[str] = None   # the unreduced form of a manqūṣ (دَاعِيٌ)
+    jawaz: str = ""              # (wave 203) the permitted variant this road took, if any
 
     @property
     def rule_ids(self) -> List[str]:
@@ -48,7 +49,7 @@ class Deriver:
     """Runs the two rule groups over a filled template, with a memo."""
 
     def __init__(self) -> None:
-        self._memo: Dict[Tuple[str, str], Derivation] = {}
+        self._memo: Dict[Tuple[str, str, str], Derivation] = {}
 
     @staticmethod
     def _shared_for(root: Root, wazn: Wazn) -> List[PhonologicalRule]:
@@ -81,8 +82,22 @@ class Deriver:
         ctx.pending = None
         return join(u), steps
 
-    def derive(self, root: Root, wazn: Wazn) -> Derivation:
-        key = (root.key, wazn.id)
+    def variants(self, root: Root, wazn: Wazn) -> List[Derivation]:
+        """(wave 203) The forms the Marāḥ permits beside the regular iftiʿāl, each a whole road."""
+        if wazn.bab != 8:
+            return []
+        main = self.derive(root, wazn).out
+        out: List[Derivation] = []
+        for j in JAWAZ:
+            if not j.ok(root):
+                continue
+            d = self.derive(root, wazn, j.mode)
+            if d.out != main and all(d.out != x.out for x in out):
+                out.append(d)
+        return out
+
+    def derive(self, root: Root, wazn: Wazn, jawaz: str = "") -> Derivation:
+        key = (root.key, wazn.id, jawaz)
         hit = self._memo.get(key)
         if hit is not None:
             return hit
@@ -98,7 +113,7 @@ class Deriver:
                 x.c = _MASK[x.c]
         cur = join(units)
         steps: List[Step] = []
-        ctx = Context(root=root, wazn=wazn)
+        ctx = Context(root=root, wazn=wazn, jawaz=jawaz)
         if why:
             steps.append(Step("qiyas-" + why, asl, _unmask(cur)))
 
@@ -109,12 +124,13 @@ class Deriver:
                 if rule.pre != pre:
                     continue
                 u = parse(cur)
+                ctx.fired_as = None
                 if not rule.apply(u, ctx):
                     continue
                 after = join(u)
                 if after == cur:
                     continue
-                steps.append(Step(rule.id, _unmask(cur), _unmask(after)))
+                steps.append(Step(ctx.fired_as or rule.id, _unmask(cur), _unmask(after)))
                 cur, fired = after, True
             return fired
 
@@ -141,6 +157,7 @@ class Deriver:
                 break
         cur = _unmask(cur)
         full = next((s.before for s in steps if s.rule == "hadhf-manqus"), None)
-        result = Derivation(root=root, wazn=wazn, tpl=tpl, asl=asl, out=cur, steps=tuple(steps), full=full)
+        result = Derivation(root=root, wazn=wazn, tpl=tpl, asl=asl, out=cur, steps=tuple(steps), full=full,
+                            jawaz=jawaz)
         self._memo[key] = result
         return result
