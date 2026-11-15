@@ -1204,7 +1204,7 @@ def main():
                         fx = {**fx, "rule": "mubtada", "k": "raf", "irab": {"ar": ("الْوَاوُ عَاطِفَةٌ، وَ«نَحْوُ» " if wa_ else "") + "مُبْتَدَأٌ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَخَبَرُهُ «" + kh_ + "» فِي آخِرِ الْكَلَامِ.",
                                                                            "en": ("The waw conjoins; «نَحْوُ» is the mubtada" if wa_ else "The mubtada") + ", in raf'; the sign is the damma; annexed (mudaf) — its khabar is «" + kh_ + "» at the end of the sentence.",
                                                                            "tr": ("«ve» + «نَحْوُ» mübtedâ" if wa_ else "Mübtedâ") + ", merfû; alâmeti damme ile; muzâf — haberi cümlenin sonundaki «" + kh_ + "»dür."}}
-                    elif rw_ in ("نَحْوُ", "مِثْلُ") and ((i >= 1 and (pauses[i - 1] or rw_ == "نَحْوُ")) or (i == 0 and rw_ == "نَحْوُ")) and i + 1 < len(words) and (raw_words[i + 1].startswith("«") or bare(raw_words[i + 1]) in ("قوله", "قولهم", "قولك", "قولنا")): fx = {**fx, "rule": "khabar", "k": "raf", "irab": {"ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «ذٰلِكَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "en": "The khabar of an omitted mubtada («that is»), in raf'; the sign is the damma; annexed (mudaf).", "tr": "Hazfedilmiş mübtedânın («bu») haberi, merfû; alâmeti damme ile; muzâf."}, "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)   # …، نَحْوُ «لِيَضْرِبَنَّ»
+                    elif rw_ in ("نَحْوُ", "مِثْلُ") and not (words[i].get("rule") == "naib" and i >= 1 and "majhul" in str((words[i - 1].get("cell") or {}).get("tense", ""))) and ((i >= 1 and (pauses[i - 1] or rw_ == "نَحْوُ")) or (i == 0 and rw_ == "نَحْوُ")) and i + 1 < len(words) and (raw_words[i + 1].startswith("«") or bare(raw_words[i + 1]) in ("قوله", "قولهم", "قولك", "قولنا")): fx = {**fx, "rule": "khabar", "k": "raf", "irab": {"ar": "خَبَرٌ لِمُبْتَدَإٍ مَحْذُوفٍ تَقْدِيرُهُ «ذٰلِكَ»، مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ.", "en": "The khabar of an omitted mubtada («that is»), in raf'; the sign is the damma; annexed (mudaf).", "tr": "Hazfedilmiş mübtedânın («bu») haberi, merfû; alâmeti damme ile; muzâf."}, "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)   # …، نَحْوُ «لِيَضْرِبَنَّ»
                     elif rw_ == "ثَمَّ" and i >= 1 and re.sub(r"^[وف]", "", bare(words[i - 1].get("w") or "")) == "من" and "thamma" in G: fx = {**fx, "irab": {"ar": "اسْمُ إِشَارَةٍ لِلْمَكَانِ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — وَ«مِنْ ثَمَّ»: مِنْ أَجْلِ ذٰلِكَ.", "en": "A demonstrative of place («there»), built on fatha, in the place of jarr after «مِنْ» — «مِنْ ثَمَّ»: for that reason.", "tr": "Mekân için ism-i işaret («orası»), feth üzere mebnî, «مِنْ» ile mahallen mecrûr — «مِنْ ثَمَّ»: bundan ötürü."}, "key": "thamma", "pos": "noun"}; FX[where] = fx; report.setdefault("vowelNamed", []).append(where)
                 if fx.get("irab") and "مَحْكِيٌّ" in (fx["irab"].get("ar") or "") and "مَحَلِّ جَرٍّ" in (fx["irab"].get("ar") or ""): quoted_jarr_.add(i)
                 if fx.get("irab") and "مَحْكِيٌّ" in (fx["irab"].get("ar") or "") and aligned and raw_words[i].startswith("«"):   # (wave 194) an authored cited word names its place too
@@ -1958,6 +1958,27 @@ def main():
                         report.setdefault("ammaFa", []).append(f"{where0}:{j}")
                     break
             name_kana_tamma(toks, report); name_ma_seat(toks, report); name_passive_hiya(toks, report)   # (wave 202)
+            # (wave 211) إِذَا كَانَ مَا قَبْلَهَا مَفْتُوحًا، إِذَا انْفَتَحَ مَا قَبْلَهَا: the relative «مَا» right behind «كَانَ» is its noun, and right behind a verb of
+            # اِنْفَعَلَ — which takes no object — it is the doer. The verb's line must not call its doer hidden while «مَا» is seated as it. A hand line keeps its wording.
+            for j in range(len(toks) - 1):
+                t_, m_ = toks[j], toks[j + 1]
+                if N(m_["surface"]["full"]) != N("مَا") or FX.get(f"{where0}:{j}", {}).get("irab") or FX.get(f"{where0}:{j + 1}", {}).get("irab"): continue
+                ar_, mar_ = N((t_.get("irab") or {}).get("ar", "")), N((m_.get("irab") or {}).get("ar", ""))
+                if not mar_.startswith(N("اسْمٌ مَوْصُولٌ")): continue
+                if ar_ == N("فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.") and N("فِي مَحَلِّ رَفْعٍ اسْمُ كَانَ") in mar_:
+                    t_["irab"] = {"ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا الِاسْمُ الْمَوْصُولُ «مَا» بَعْدَهَا.",
+                                  "en": "An incomplete past verb, one of kāna's sisters, built on fatha; its noun is the relative «مَا» after it.",
+                                  "tr": "Nâkıs mâzî fiil, kâne'nin kardeşlerinden, feth üzere mebnî; ismi kendisinden sonraki ism-i mevsûl «مَا»dır."}
+                    report.setdefault("maDoer", []).append(f"{where0}:{j}")
+                elif ar_ == N("فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.") and re.match(r"^[وف]?ان[^ا]{2,3}$", t_["surface"]["bare"]) and N("فِي مَحَلِّ") not in mar_ and N("وَصِلَتُهُ الظَّرْفُ") in mar_ and N("مَبْنِيٌّ عَلَى السُّكُونِ") in mar_:
+                    t_["irab"] = {"ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَفَاعِلُهُ الِاسْمُ الْمَوْصُولُ «مَا» بَعْدَهُ.",
+                                  "en": "A past verb, built on fatha; its doer is the relative «مَا» after it.",
+                                  "tr": "Mâzî fiil, feth üzere mebnî; fâili kendisinden sonraki ism-i mevsûl «مَا»dır."}
+                    im_ = m_["irab"]
+                    m_["irab"] = {"ar": N(im_["ar"]).replace(N("مَبْنِيٌّ عَلَى السُّكُونِ"), N("مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ"), 1),
+                                  "en": im_.get("en", "").replace("built (mabni)", "built (mabni), in the place of raf' as the doer", 1),
+                                  "tr": im_.get("tr", "").replace("mebnî", "mebnî, mahallen merfû fâil", 1)}
+                    report.setdefault("maDoer", []).append(f"{where0}:{j}")
             praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]

@@ -13670,3 +13670,71 @@ the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
   deputy doer; «لَيْتَهُ طَالَبَ بِحَقِّهِ» typed bare loses the shadda of «حَقّ»; «كَانَ» still claims a later wāw-noun as its
   ism where a new sentence opens; «مِثْل» before a demonstrative lacks «مُضَافٌ» by rule.
 - **Next.** Marāḥ part twenty-five opens the fifth bāb (the ajwaf) on p. 132 at «وَيُقَالُ لَهُ أَجْوَفُ لِخُلُوِّ جَوْفِهِ».
+
+### v310 (wave 211) — Marāḥ al-Arwāḥ part twenty-five (the fifth bāb, the ajwaf, opens), eight reader rules the new pages asked for, the packager names «مَا» as a verb's doer
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 132–137 of the scan (the matn's large type only):
+  chapter 67 «الْبَابُ الْخَامِسُ فِي الْأَجْوَفِ» (3 sentences — why it is called «أَجْوَف» and «ذُو الثَّلَاثَةِ», its three bābs),
+  68 «أَصْلٌ شَامِلٌ فِي الْإِعْلَالِ» (6 — the sixteen faces: four states of the weak letter by four of the letter before
+  it, less the one that cannot be), 69 «حَرْفُ الْعِلَّةِ السَّاكِنُ» (10 — «مِيزَانٌ», «يُوسِرُ», «أَغْزَيْتُ», «كَيْنُونَةٌ» by
+  al-Khalīl's origin and by the other) and 70 «شُرُوطُ قَلْبِ حَرْفِ الْعِلَّةِ أَلِفًا» (5 — Ibn Jinnī's seven conditions,
+  «قَالَ» from «قَوَلَ», «دَارٌ» from «دَوَرٌ»). 24 sentences / 318 words; the book stands at **70 chapters / 548 sentences /
+  6,905 words**, version 0.25.0. Two paradigms through `sarf_gen` (87 in the book): «خَرَّجَ», «أَغْزَى» (Form IV nāqiṣ).
+- **Readings, said so** (attribution, three languages). «فِي الْمَاضِي الْمُتَكَلِّمِ» kept as printed; the origin of «مِيزَان»
+  is printed with an alif before the zāy and read «مِوْزَانٌ»; «قَالٌ» kept with its tanwīn; «فَأُبْدِلَ الْوَاوُ» kept in the
+  masculine; Ibn Jinnī's one long sentence is divided at its joints (70:s1–s4), nothing left out, nothing moved.
+- **A lemma row's forms are a claim on every text.** «قَالٌ» (the maṣdar «قَوْلٌ» with its wāw turned) was first entered
+  as a phrase row with the form «قَالٌ». The pipeline peels endings before it looks a word up, so the row at once
+  claimed every cited «قَالَ» in the new chapters. The row is gone; the one token is keyed by hand to `qawl`
+  (`L(…, key=, pos=)` in the fixes). **A form that differs from a common word only in its ending must never be a
+  lemma form** — key the token, not the lexicon. (And a removed row still has to be deleted from the shipped
+  glossary by hand: the scripts only add.)
+- **A new row needs its seven columns and its surface forms** — nine words came back keyed `?` because the rows
+  ended at the gloss. Behind «لِ» the bare host form is what matches («لخلو», «لليائيات»).
+- **Reader rules** (`$S/w211/patch211.py`; the typed path and the pipeline read words with their endings PEELED —
+  the author's ending reaches the engine only as a receipt in `_orig24`, so a rule about an ending must read it there):
+  - **(1) the doubled past refuses a written ḍamma.** Wave 168 taught that the built past keeps its fatḥa; the test
+    asked whether the cell ENDS on a fatḥa, and NFC writes «ضَمَّ» fatḥa first, shadda last. Every doubled past
+    slipped through, and `RootFinder.find('ضَمُّ')` answered «ضَمَّ». The test now allows the shadda behind the fatḥa.
+  - **(2) «نَحْوُ» is the passive's deputy doer** where it stands right behind a passive verb in the masculine
+    singular that owes one and no topic precedes («وَيُعَلُّ نَحْوُ «أَغْزَيْتُ»»). The packager's khabar line for
+    «نَحْوُ» yields only there: an older engine verdict gave «naib» to «لَا تُكْتَبُ عَلَى صُورَةِ شَيْءٍ … نَحْوُ خَبْءٍ»
+    (62:s5), where the deputy is hidden and «نَحْوُ» IS the khabar — letting every engine «naib» through changed that
+    stored line, and the packager now asks for the passive verb in the word before.
+  - **(3) the emptied exception behind a jarr phrase.** «لَا يَجِيءُ مِنَ الْوَاوِيَّاتِ غَيْرُ «الْكَيْنُونَةِ»»: a negated verb
+    that takes no object and has no doer yet finds it in «غَيْر»; the word had been read as the naʿt of the jarr
+    noun before it (and, typed bare, as the verb «غَيَّرَ»). «مَا رَأَيْتُ غَيْرَ زَيْدٍ» keeps its object.
+  - **(4) the compound number is built in the doer's seat too.** «يَحْصُلَ لَكَ سِتَّةَ عَشَرَ وَجْهًا», «فَبَقِيَ لَكَ خَمْسَةَ
+    عَشَرَ»: the postposed-doer rule had given «سِتَّةٌ». Behind a verb that takes no object the head half is the doer in
+    the place of rafʿ and keeps the fatḥa of its building.
+  - **(5) «أُفْعِل»: the speaker's present or the passive past.** One spelling up to the last vowel. Where the author
+    wrote the fatḥa of the built past, no nāṣib stands before it and the sentence names no speaker, it is the
+    passive («فَأُبْدِلَ الْوَاوُ يَاءً»); «أُكْرِمُ الضَّيْفَ» and «أُرِيدُ أَنْ أُكْرِمَ الضَّيْفَ» stand. Two cited words of
+    earlier chapters («نَحْوُ «أُكْرِمَ»», «أُوجِرَ») lose a wrong `nawasib-wa-jawazim-al-mudari` tag with it, and
+    Taṣrīf al-ʿIzzī's «وَأُومِنَ» is read.
+  - **(6) no past verb right behind a present one that owes its doer.** «وَلَا يَلْزَمُ ضَمُّ حُرُوفِ الْعِلَّةِ»: the lexicon's
+    noun of the same letters and inner vowels is that doer (and the next noun its muḍāf ilayh). A fatḥa the author
+    wrote keeps the verb; verbs of saying and kāna's family are left alone («يَقُولُ ضَرَبَ زَيْدٌ»).
+  - **(7) the letter-name behind a passive of turning whose deputy is hidden** is the second object («ثُمَّ تُقْلَبُ
+    أَلِفًا») — unless a letter-name still to come is that object and this one the deputy («وَتُجْعَلُ يَاءُ «هِيَ» أَلِفًا»:
+    the first draft broke that stored line, and the sweep said so).
+  - **(8) «وَقِيلَ أَصْلُهَا «كُونُونَةٌ»»** — what is said is a sentence: the noun with its pronoun right behind «قِيلَ»,
+    followed by a bare noun, is its mubtadaʾ and the bare noun the khabar. «قِيلَ الْحَقُّ» keeps its deputy.
+- **Packager** (`tools/authoring/pkg_from_engine.py`): the relative «مَا» right behind «كَانَ» is named as kāna's noun
+  on the VERB's line too, and right behind a verb of اِنْفَعَلَ — which takes no object — as its doer («إِذَا انْفَتَحَ مَا
+  قَبْلَهَا»). The block runs behind `name_ma_seat` (before it, «مَا» has no seat yet and the test saw nothing). Three
+  stored lines of earlier chapters are corrected by it (26:s1, 53:s1, 54:s2: «كَانَ» no longer says its noun is hidden
+  while «مَا» is seated as it).
+- **Hand lines** (`mk_fixes.py`, part twenty-five): «ذُو الثَّلَاثَةِ» as the name it is called by, the three cited pairs,
+  the compound numbers' seats, «أَرْبَعَةُ أَوْجُهٍ: الْحَرَكَاتُ …» (deputy doer and its badal), «الَّتِي فَوْقَهَا سَاكِنٌ», «تَبَعًا لِ
+  «يُغْزِي»», «كُنَّ» (the nūn is kāna's noun), «ابْنُ جِنِّي» (the engine had read a speaker's yāʾ), «وَلِينِ عَرِيكَةِ».
+- **Sweeps** (v309 code against the candidate, same data): blind 5 fixed / 0 broken (73,650 → 73,655 right of 74,626; wrong 605 → 601, undecided 371 → 370); receipts-on 2 fixed / 0 broken (74,084 → 74,086). Case layer 60,654 / 61,334 = 98.89 %. Label gauge
+  90.32 % (32,295 / 35,758); typed gauge 1,199 / 1,200 over 398 sentences.
+- **Smoke.** `wave 211` (#458; TOTAL 460).
+- **Open.** «إِذَا أُضِيفَ أَوْ دَخَلَهُ لَامُ التَّعْرِيفِ» (Iẓhār 56:s6): with «أُضِيفَ» now the passive it is, the typed path
+  leaves «لَامُ» undecided and the blind sweep labels it a mubtadaʾ (ending right, office wrong) — the old reading
+  seated it as a doer only because «أُضِيفَ» was taken for «I add». The cause sits in the conditional's state behind
+  «إِذَا», not in the hidden-doer inheritance (a rule written for that changed nothing and was not shipped).
+  «وَلِينِ عَرِيكَةِ» joined to an annexed jarr noun is still a hand line; «ذَكَرَ الشَّيْخُ قَاعِدَةً نَافِعَةً» typed gives the
+  doer a fatḥa; «أَصْلًا شَامِلًا» reads «أَصْلًا» as the frozen adverb; the wave-210 items stand.
+- **Next.** Marāḥ part twenty-six continues on p. 137 at «وَيُعَلُّ مِثْلُ «دِيَارٌ» تَبَعًا لِوَاحِدِهِ» (PDF page 43).
