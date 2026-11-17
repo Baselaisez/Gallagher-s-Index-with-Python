@@ -9,7 +9,7 @@ It READS the packages and WRITES a report. It never edits content: every finding
     python3 tools/review_batch.py --collect <report dir>        # resume: poll a submitted batch and write its report
 
 Options: --packages id,id (choose packages; with --pilot it overrides the automatic pick), --effort low|medium|high|
-xhigh|max (default high), --max-findings N (per request, default 40), --budget USD (default 190), --no-wait (submit and
+xhigh|max (default high), --max-findings N (per request, default 40), --budget USD (default 215), --cache-ttl 5m|1h (default 5m), --medium-originals, --no-wait (submit and
 exit; --collect later), --out <dir> (default reports/review-<UTC date>).
 
 Model and API: Claude Fable 5.2 through the Message Batches API (50% of standard price: $4 / $20 per MTok in / out).
@@ -23,7 +23,7 @@ line in Arabic, English and Turkish (a line used more than once is given once in
 of every lex key used; each sentence's English and Turkish translation (where a doctrinal misstatement would live);
 the plain-language definition of every grammar note the part uses. Bare spellings (derivable from the vowelled word),
 segments, parts of speech, lemmas and roots are left out. The system prompt is two cached blocks: the review rubric
-with an index of the grammar registry (shared by every request), then the package's provenance paragraph with its
+with an index of the grammar registry (shared by every request; 5-minute cache by default, --cache-ttl 1h), then the package's provenance paragraph with its
 deliberate readings (shared by the requests of one package; cached only when the package has more than one).
 
 Cost estimate: input is counted exactly with count_tokens. Output is estimated per request as thinking plus the
@@ -33,8 +33,10 @@ and --all read. Batch caching is best-effort, so the plan prices the cached bloc
 of cache hits and prints beside it what the run would cost with no cache_control at all (a cache write costs
 twice plain input at the 1-hour TTL, so caching pays only above a ~50% hit rate; the pilot measures the real rate).
 
---all: packages go in priority order — the Level 1–2 stories first, then the other packages from the smallest to the
-largest, so the long classical texts come last — and packages are added until the projected cost reaches --budget.
+--all: packages go in priority order — the engine-source texts first (ENGINE_SOURCES: always effort high, never
+deferred; CLAUDE.md), then the Level 1–2 stories, then the other packages from the smallest to the largest — and
+packages are added until the projected cost reaches --budget. Over budget, the cut order is CLAUDE.md's: the original
+Level 1–2 stories at effort medium first (--medium-originals); anything further is the owner's decision.
 What does not fit is printed as deferred. Packages that already have a report in the output directory (the pilot's)
 are not sent again.
 
@@ -56,6 +58,11 @@ MAX_TOKENS = 64000                                    # thinking + the JSON answ
 PKG_CHARS = 150_000                                   # a package whose request text is longer is sent chapter by chapter
 CHAPTER_CHARS = 220_000                               # a chapter longer than this is sent in sentence parts
 ASSUME = {"thinking": 8000, "tok_per_finding": 220, "finding_every": 1500, "summary": 500, "cache_hit": 0.5}
+# The source texts the engines are built and gated on (CLAUDE.md, "Engine-source texts come first"): reviewed first,
+# always at effort high, never deferred and never downgraded to fit a budget.
+ENGINE_SOURCES = ["al-usul-al-munifa", "talkhis-al-miftah", "mukhtasar-al-manar", "marah-al-arwah", "tasrif-al-izzi",
+                  "al-kafiya", "izhar-al-asrar", "shudhur-al-dhahab", "min-muqaddimat-al-maqsud", "jumal-al-tadrib"]
+CACHE_TTL = "5m"                                      # set from --cache-ttl; a 5m write is 1.25x input, a 1h write 2x
 ISSUE_TYPES = ["irab_ar", "irab_en", "irab_tr", "tashkeel", "lex_gloss", "grammar_id", "doctrinal_sensitivity"]
 SEVERITIES = ["critical", "major", "minor"]
 FIELDS = ["surface", "irab.ar", "irab.en", "irab.tr", "lex", "gloss", "grammar", "translation.en", "translation.tr", "other"]
@@ -174,7 +181,8 @@ def build_requests(pkgs, trm, reg):
                     + "SENTENCES (@chapter:sentence with its EN / TR translation; then one line per token: index, word, lex key, grammar note ids, iʿrāb AR | EN | TR or =L<n>):\n"
                     + unit_text(items, trm))
             loc = {f"{c}:{s['id']}:{i}": N((t.get("surface") or {}).get("full")) for c, s in items for i, t in enumerate(s.get("tokens") or [])}
-            reqs.append({"custom_id": cid, "package": man["id"], "level": man.get("level") or 9, "unit": label or "all",
+            orig = bool(re.search(r"\boriginal\b", (man.get("attribution") or {}).get("en") or "", re.I))
+            reqs.append({"custom_id": cid, "package": man["id"], "level": man.get("level") or 9, "unit": label or "all", "original": orig,
                          "prov": prov, "text": text, "loc": loc})
     ids = [r["custom_id"] for r in reqs]
     assert len(ids) == len(set(ids)), "custom_id collision"
@@ -210,12 +218,12 @@ GRAMMAR REGISTRY INDEX (id | group | title):
 
 def system_main(reg, max_findings):
     idx = "\n".join(f"{k} | {d.get('group')} | {one_line((d.get('title') or {}).get('en'))}" for k, d in sorted(reg.items()))
-    return {"type": "text", "text": RUBRIC.replace("{max_findings}", str(max_findings)) + idx, "cache_control": {"type": "ephemeral", "ttl": "1h"}}
+    return {"type": "text", "text": RUBRIC.replace("{max_findings}", str(max_findings)) + idx, "cache_control": {"type": "ephemeral", "ttl": CACHE_TTL}}
 
 
 def system_blocks(req, main):
     prov = {"type": "text", "text": req["prov"]}
-    if req["shared_prov"]: prov["cache_control"] = {"type": "ephemeral", "ttl": "1h"}
+    if req["shared_prov"]: prov["cache_control"] = {"type": "ephemeral", "ttl": CACHE_TTL}
     return [main, prov]
 
 
@@ -279,17 +287,21 @@ def out_tokens(user, A, cap):
     return A["thinking"] + A["summary"] + findings * A["tok_per_finding"], A["thinking"] + A["summary"] + cap * A["tok_per_finding"]
 
 
-def plan_cost(reqs, counts, main_t, prov_t, A, cap, effort=None):
-    """Per package: expected cost (cache hits at A['cache_hit']), no-cache ceiling, and output at the findings cap."""
-    h = A["cache_hit"]
-    blended = h * PRICE["cache_read"] + (1 - h) * PRICE["cache_write_1h"]   # a cached block is either read or written
+def plan_cost(reqs, counts, main_t, prov_t, A, cap, effort_of=None):
+    """Per package: expected cost (cache hits at the measured rate), the cost without caching, and output at the
+    findings cap. A is one assumption set, or {effort: set}; effort_of(package) picks the effort (default high)."""
+    AA = A if "high" in A or "medium" in A else {"high": A}
+    wp = PRICE["cache_write_" + CACHE_TTL]
     first_main = True
     per = {}
     for r in reqs:
-        pk = r["package"]; p = per.setdefault(pk, {"requests": 0, "user": 0, "exp": 0.0, "nocache": 0.0, "capped": 0.0, "level": r["level"]})
+        pk = r["package"]; eff = (effort_of or (lambda _: "high"))(pk); A1 = AA.get(eff) or AA["high"]
+        h = A1["cache_hit"]; blended = h * PRICE["cache_read"] + (1 - h) * wp      # a cached block is either read or written
+        p = per.setdefault(pk, {"requests": 0, "user": 0, "exp": 0.0, "nocache": 0.0, "capped": 0.0, "level": r["level"],
+                                "engine": pk in ENGINE_SOURCES, "original": r.get("original", False), "effort": eff})
         pv = prov_t[pk]; user = max(0, counts[r["custom_id"]] - main_t - pv)
-        o, ocap = out_tokens(user, A, cap)
-        mainc = (PRICE["cache_write_1h"] if first_main else blended) * main_t; first_main = False
+        o, ocap = out_tokens(user, A1, cap)
+        mainc = (wp if first_main else blended) * main_t; first_main = False
         provc = (blended if r["shared_prov"] else PRICE["in"]) * pv
         p["requests"] += 1; p["user"] += user
         p["exp"] += (user * PRICE["in"] + mainc + provc + o * PRICE["out"]) / 1e6
@@ -299,8 +311,13 @@ def plan_cost(reqs, counts, main_t, prov_t, A, cap, effort=None):
 
 
 def priority(per):
-    """Level 1–2 stories first (smallest first), then every other package from the smallest to the largest."""
-    return sorted(per, key=lambda k: (0 if per[k]["level"] <= 2 else 1, per[k]["user"]))
+    """The engine sources first, then the Level 1–2 stories, then every other package — smallest first in each group."""
+    return sorted(per, key=lambda k: (0 if k in ENGINE_SOURCES else 1 if per[k]["level"] <= 2 else 2, per[k]["user"]))
+
+
+def cut_candidates(per):
+    """Cut step (1) of CLAUDE.md: the original Level 1–2 stories that are not engine sources."""
+    return {k for k, v in per.items() if v["level"] <= 2 and v["original"] and k not in ENGINE_SOURCES}
 
 
 def assumptions(effort, override):
@@ -308,7 +325,8 @@ def assumptions(effort, override):
     files = sorted(ROOT.glob("reports/review-*/assumptions.json"))
     if files:
         m = json.loads(files[-1].read_text(encoding="utf-8")).get(effort)
-        if m: A.update(m); src = f"measured by the pilot ({files[-1].parent.name})"
+        if m:
+            A.update({k: v for k, v in m.items() if k in ASSUME}); src = f"measured by the pilot ({files[-1].parent.name})"
     for k, v in override.items():
         if v is not None: A[k] = v; src += f"; {k} overridden"
     return A, src
@@ -499,12 +517,46 @@ def pick_pilot(per, n):
 def print_plan(per, budget, label):
     order = priority(per); total = 0.0; take, defer = [], []
     for pk in order:
-        if total + per[pk]["exp"] <= budget: take.append(pk); total += per[pk]["exp"]
+        if pk in ENGINE_SOURCES or total + per[pk]["exp"] <= budget: take.append(pk); total += per[pk]["exp"]   # never deferred
         else: defer.append(pk)
     print(f"{label}: {len(take)} packages fit ${budget:.0f} (expected ${total:.2f}, ceiling with output at the findings cap "
           f"${sum(per[p]['capped'] for p in take):.2f}, without caching ${sum(per[p]['nocache'] for p in take):.2f})")
     if defer: print("  deferred (in order): " + ", ".join(f"{p} ${per[p]['exp']:.2f}" for p in defer))
     return take, defer
+
+
+def load_measured(override):
+    """{effort: assumptions} from the latest pilot, with the defaults where nothing was measured."""
+    AA = {}
+    for eff in ("high", "medium"):
+        AA[eff], _ = assumptions(eff, override)
+    return AA
+
+
+def scenarios(reqs, counts, main_t, prov_t, AA, cap, budget, skip=()):
+    """The plan the CLAUDE.md cut order gives: everything at high; if over budget, the original Level 1–2 stories at
+    medium. Engine sources are always high and never deferred. Returns the effort function of the plan chosen."""
+    rq = [r for r in reqs if r["package"] not in skip]
+    hi = plan_cost(rq, counts, main_t, prov_t, AA, cap)
+    cut = cut_candidates(hi)
+    eff1 = lambda pk: "medium" if pk in cut else "high"
+    md = plan_cost(rq, counts, main_t, prov_t, AA, cap, eff1)
+    tot = lambda per, key="exp": sum(v[key] for v in per.values())
+    eng = [k for k in ENGINE_SOURCES if k in hi]
+    print(f"engine sources ({len(eng)}, first, effort high, never deferred): expected ${sum(hi[k]['exp'] for k in eng):.2f} — "
+          + ", ".join(f"{k} ${hi[k]['exp']:.2f}" for k in sorted(eng, key=lambda k: hi[k]['user'])))
+    print(f"plan A, everything at high: expected ${tot(hi):.2f} (findings-cap ceiling ${tot(hi, 'capped'):.2f})")
+    print(f"plan B, the {len(cut)} original Level 1–2 stories at medium: expected ${tot(md):.2f} "
+          f"(saves ${tot(hi) - tot(md):.2f}; ceiling ${tot(md, 'capped'):.2f})")
+    l5 = [k for k, v in hi.items() if v["level"] == 5 and k not in ENGINE_SOURCES]
+    l5m = plan_cost(rq, counts, main_t, prov_t, AA, cap, lambda pk: "medium" if pk in l5 else "high")
+    print(f"for comparison, Level 5 at medium would touch only its non-engine packages ({', '.join(sorted(l5))}): "
+          f"saves ${tot(hi) - tot(l5m):.2f}")
+    if tot(hi) <= budget: print(f"→ plan A fits ${budget:.0f}"); return lambda pk: "high", hi
+    if tot(md) <= budget: print(f"→ plan B fits ${budget:.0f}; plan A does not (over by ${tot(hi) - budget:.2f})"); return eff1, md
+    print(f"→ neither fits ${budget:.0f} (plan B over by ${tot(md) - budget:.2f}): cut step 2 (Opus 5.5 with a Fable 5.2 "
+          "advisor for those stories) or step 3 (the rest after 2026-11-30) needs the owner's decision")
+    return eff1, md
 
 
 def main():
@@ -514,10 +566,14 @@ def main():
     g.add_argument("--collect")
     ap.add_argument("--packages"); ap.add_argument("--effort", default="high", choices=["low", "medium", "high", "xhigh", "max"])
     ap.add_argument("--also-medium", help="pilot: send this package a second time at effort medium, for comparison")
-    ap.add_argument("--max-findings", type=int, default=40); ap.add_argument("--budget", type=float, default=190.0)
+    ap.add_argument("--max-findings", type=int, default=40); ap.add_argument("--budget", type=float, default=215.0)
+    ap.add_argument("--cache-ttl", default="5m", choices=["5m", "1h"])
+    ap.add_argument("--medium-originals", action="store_true",
+                    help="--all: send the original Level 1–2 stories (not engine sources) at effort medium (cut step 1)")
     ap.add_argument("--no-wait", action="store_true"); ap.add_argument("--out")
     for k in ASSUME: ap.add_argument("--assume-" + k.replace("_", "-"), type=float, default=None)
     a = ap.parse_args()
+    global CACHE_TTL; CACHE_TTL = a.cache_ttl
     c = client()
     if a.collect:
         outdir = Path(a.collect); state = json.loads((outdir / "batch.json").read_text(encoding="utf-8"))
@@ -548,6 +604,7 @@ def main():
               f"findings × {A['tok_per_finding']:.0f} tokens per request; cache hits assumed {A['cache_hit']:.0%}")
         exp = sum(p["exp"] for p in per.values()); cap = sum(p["capped"] for p in per.values()); nc = sum(p["nocache"] for p in per.values())
         print(f"full run, effort {a.effort}: expected ${exp:.2f}; with every request at the findings cap ${cap:.2f}; without prompt caching ${nc:.2f}")
+        scenarios(reqs, counts, main_t, prov_t, load_measured(override), a.max_findings, a.budget)
         print_plan(per, a.budget, f"--all --budget {a.budget:.0f}")
         pil = pick_pilot(per, 3)
         print(f"default --pilot 3: {', '.join(pil)} — {sum(per[p]['requests'] for p in pil)} requests, expected ${sum(per[p]['exp'] for p in pil):.2f}")
@@ -577,18 +634,27 @@ def main():
             m = measure(usage, eff, user)
             if m: meas[eff] = m
         (outdir / "assumptions.json").write_text(json.dumps(meas, indent=1), encoding="utf-8")
+        cr = sum(u["cache_read"] for u in usage.values()); cw = sum(u["cache_write"] for u in usage.values())
+        print(f"cache ({CACHE_TTL} TTL): read {cr:,}, written {cw:,} → hit rate {cr / (cr + cw):.0%}" if cr + cw else "cache: no cached tokens")
+        print(f"pilot cost: ${sum(u['cost_usd'] for u in usage.values()):.2f}")
         for eff, m in meas.items():
             print(f"measured at {eff}: thinking {m['thinking']:,}/request, {m['tok_per_finding']} answer tokens per finding, one finding per {m['finding_every']:,} input tokens, cache hits {m['cache_hit']:.0%} ({m['requests']} requests)")
-            pe = plan_cost(reqs, counts, main_t, prov_t, dict(ASSUME, **m), a.max_findings)
-            print(f"  projected full run at {eff}: expected ${sum(p['exp'] for p in pe.values()):.2f}, at the findings cap ${sum(p['capped'] for p in pe.values()):.2f}, without caching ${sum(p['nocache'] for p in pe.values()):.2f}")
-            print_plan(pe, a.budget, f"  --all --effort {eff} --budget {a.budget:.0f}")
+            pe = plan_cost(reqs, counts, main_t, prov_t, dict(ASSUME, **{k: v for k, v in m.items() if k in ASSUME}), a.max_findings)
+            print(f"  projected full run, everything at {eff}: expected ${sum(p['exp'] for p in pe.values()):.2f}, at the findings cap ${sum(p['capped'] for p in pe.values()):.2f}, without caching ${sum(p['nocache'] for p in pe.values()):.2f}")
+        print("\nthe rest of the shelf (the pilot packages already reviewed):")
+        scenarios(reqs, counts, main_t, prov_t, load_measured(override), a.max_findings, a.budget, skip=set(names))
         if a.also_medium: compare(got, state["requests"], outdir)
         return
     # --all: priority order up to the budget; packages already reported in this directory are not sent again
     done = {p.stem for p in outdir.glob("*.json") if p.stem not in ("batch", "dry-run", "assumptions", "refused", "truncated", "failed", "usage") and "@" not in p.stem}
     per = {k: v for k, v in per.items() if k not in done}
     print(f"cost model: {src}" + (f"; already reviewed here, skipped: {', '.join(sorted(done))}" if done else ""))
-    take, defer = print_plan(per, a.budget, f"--all --budget {a.budget:.0f}")
+    cut = cut_candidates(per) if a.medium_originals else set()
+    eff_of = lambda pk: "medium" if pk in cut else a.effort
+    if any(pk in ENGINE_SOURCES and eff_of(pk) != "high" for pk in per): sys.exit("engine sources are reviewed at effort high only")
+    per = {k: v for k, v in plan_cost(reqs, counts, main_t, prov_t, load_measured(override), a.max_findings, eff_of).items() if k not in done}
+    for r in reqs: efforts[r["custom_id"]] = eff_of(r["package"])
+    take, defer = print_plan(per, a.budget, f"--all --budget {a.budget:.0f}" + (" (original Level 1–2 stories at medium)" if cut else ""))
     sel = [r for pk in take for r in reqs if r["package"] == pk]     # grouped by package, in priority order, for cache reuse
     if not sel: sys.exit("nothing fits the budget")
     state = submit(c, sel, main_block, efforts, outdir, "all")
