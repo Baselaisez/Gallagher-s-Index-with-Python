@@ -218,9 +218,21 @@ GRAMMAR REGISTRY INDEX (id | group | title):
 """
 
 
-def system_main(reg, max_findings=None):
+def false_positives(limit=40):
+    """The scholar's RET decisions (tools/review_intake.py), newest first: suggestions the review must not repeat."""
+    fp = ROOT / "reports/review-false-positives.jsonl"
+    if not fp.is_file(): return ""
+    rows = [json.loads(x) for x in fp.read_text(encoding="utf-8").splitlines() if x.strip()][::-1][:limit]
+    if not rows: return ""
+    return ("\n\nTHE SCHOLAR REJECTED THESE EARLIER SUGGESTIONS — do not make the same kind of suggestion again "
+            "(word | the line as it stands | what was suggested | the scholar's note):\n"
+            + "\n".join(f"- {one_line(r.get('surface'))} | {one_line(r.get('current'))[:160]} | {one_line(r.get('suggested'))[:160]} | {one_line(r.get('note'))[:200]}" for r in rows))
+
+
+def system_main(reg, max_findings=None, learn=False):
     idx = "\n".join(f"{k} | {d.get('group')} | {one_line((d.get('title') or {}).get('en'))}" for k, d in sorted(reg.items()))
-    return {"type": "text", "text": RUBRIC.replace("{max_findings}", str(max_findings)) + idx, "cache_control": {"type": "ephemeral", "ttl": CACHE_TTL}}
+    return {"type": "text", "text": RUBRIC.replace("{max_findings}", str(max_findings)) + idx + (false_positives() if learn else ""),
+            "cache_control": {"type": "ephemeral", "ttl": CACHE_TTL}}
 
 
 def system_blocks(req, main):
@@ -592,6 +604,8 @@ def main():
     ap.add_argument("--medium-originals", action="store_true",
                     help="--all: send the original Level 1–2 stories (not engine sources) at effort medium (cut step 1)")
     ap.add_argument("--no-wait", action="store_true"); ap.add_argument("--out")
+    ap.add_argument("--learn-from-rejections", action="store_true",
+                    help="show the review the scholar's earlier RET decisions (reports/review-false-positives.jsonl) so it does not repeat them")
     ap.add_argument("--fill-units", action="store_true", help="with --all: fill the budget request by request (chapter by chapter), not package by package")
     ap.add_argument("--dry-run-all", action="store_true", help="with --all: count and plan exactly what --all would send, submit nothing")
     for k in ASSUME: ap.add_argument("--assume-" + k.replace("_", "-"), type=float, default=None)
@@ -616,7 +630,7 @@ def main():
     if a.only_units:
         keep = set(a.only_units.split(",")); limited = {u.split("--")[0] for u in keep}
         reqs = [r for r in reqs if r["package"] not in limited or r["custom_id"] in keep]
-    main_block = system_main(reg, a.max_findings)
+    main_block = system_main(reg, a.max_findings, a.learn_from_rejections)
     override = {k: getattr(a, "assume_" + k) for k in ASSUME}
     print(f"{len(pkgs)} packages pending review → {len(reqs)} requests ({sum(1 for r in reqs if r['unit'] == 'all')} whole packages, "
           f"{sum(1 for r in reqs if r['unit'] != 'all')} chapter or chapter-part requests)")
