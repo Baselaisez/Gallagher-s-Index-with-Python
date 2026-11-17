@@ -376,40 +376,91 @@ STUDENT_INTRO = [
     "Satırların çoğu Arapça iʿrâb satırıdır; başında [hareke], [çeviri TR] gibi etiket olan satırlar o alanı (kelimenin harekesi, çeviri…) önerir.",
 ]
 
-def xlsx_group(path, title, rows):
+AI_TR = {"AI-ONAY": "AI-ONAY", "AI-RET": "AI-RET", "AI-ŞÜPHELİ": "AI-ŞÜPHELİ"}
+AI_INTRO = [
+    "Yapay zekâ kontrolü (Claude Opus 5.5, kitaplara dayanarak): «AI kararı» sütunu her satır için AI-ONAY (bulgu doğru, düzeltme "
+    "«AI düzeltmesi»nde), AI-RET (yanlış alarm) ya da AI-ŞÜPHELİ (kitaplar kesin hüküm vermiyor) der. AI-ONAY'ların her biri bir kaynak "
+    "(kitap, yer, alıntı) taşır. AI-ŞÜPHELİ satırlar en üstte; kalan satırlar eski sırasıyla.",
+    "Sizin kararınız yine sizin sütununuzdadır: AI'nın düzeltmesini kabul ediyorsanız ONAY, reddediyorsanız RET, başka bir düzeltme "
+    "gerekiyorsa DÜZELT. AI'nın kararı hiçbir zaman sizin yerinize sayılmaz.",
+]
+
+
+def xlsx_group(path, title, rows, ai=None):
+    """One student sheet. With `ai` ({id: checked verdict}) the four AI columns are added and the AI-ŞÜPHELİ rows go
+    first; every other row keeps its order, and every id stays the same."""
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.worksheet.datavalidation import DataValidation
+    intro = STUDENT_INTRO + (AI_INTRO if ai is not None else [])
+    if ai is not None:
+        rows = [f for f in rows if (ai.get(f["id"]) or {}).get("verdict") == "AI-ŞÜPHELİ"] + \
+               [f for f in rows if (ai.get(f["id"]) or {}).get("verdict") != "AI-ŞÜPHELİ"]
     wb = Workbook(); ws = wb.active; ws.title = "İnceleme"
+    hdr = ["id", "paket", "bölüm:cümle", "kelime", "mevcut iʿrâb (ar)", "önerilen iʿrâb (ar)", "gerekçe (tr)", "önem"]
+    if ai is not None: hdr += ["AI kararı", "AI düzeltmesi", "kaynak", "AI notu"]
+    hdr += ["karar (ONAY/RET/DÜZELT/ŞÜPHELİ)", "düzeltilmiş iʿrâb (DÜZELT ise)", "inceleyen", "not", "desen"]
+    ncol = len(hdr); K = hdr.index("karar (ONAY/RET/DÜZELT/ŞÜPHELİ)") + 1
     ws.cell(row=1, column=1, value=title).font = Font(bold=True, size=13)
-    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=13)
-    for i, t in enumerate(STUDENT_INTRO, 2):
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=ncol)
+    for i, t in enumerate(intro, 2):
         ws.cell(row=i, column=1, value=t).alignment = Alignment(wrap_text=True)
-        ws.merge_cells(start_row=i, start_column=1, end_row=i, end_column=13)
-    H = len(STUDENT_INTRO) + 3
-    hdr = ["id", "paket", "bölüm:cümle", "kelime", "mevcut iʿrâb (ar)", "önerilen iʿrâb (ar)", "gerekçe (tr)", "önem",
-           "karar (ONAY/RET/DÜZELT/ŞÜPHELİ)", "düzeltilmiş iʿrâb (DÜZELT ise)", "inceleyen", "not", "desen"]
+        ws.merge_cells(start_row=i, start_column=1, end_row=i, end_column=ncol)
+    H = len(intro) + 3
     for j, h in enumerate(hdr, 1):
-        c = ws.cell(row=H, column=j, value=h); c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="44546A")
+        c = ws.cell(row=H, column=j, value=h); c.font = Font(bold=True, color="FFFFFF")
+        c.fill = PatternFill("solid", fgColor="7F6000" if h.startswith(("AI", "kaynak")) else "44546A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
     dv = DataValidation(type="list", formula1='"' + ",".join(DECISIONS) + '"', allow_blank=True); ws.add_data_validation(dv)
-    yellow = PatternFill("solid", fgColor="FFF2CC")
+    yellow = PatternFill("solid", fgColor="FFF2CC"); grey = PatternFill("solid", fgColor="EDEDED")
+    rtl = {"kelime", "mevcut iʿrâb (ar)", "önerilen iʿrâb (ar)", "AI düzeltmesi", "düzeltilmiş iʿrâb (DÜZELT ise)"}
     for i, f in enumerate(rows):
         r = H + 1 + i
         lab = FIELD_TR.get(f.get("field"), "")
-        vals = [f["id"], f["package"], f"{f['chapter']}:{f['sentence']}", f"{f['surface']}  (#{f['token']})", lab + N(f["current"]), lab + N(f["suggested"]),
-                f.get("reason_tr") or "", SEV_TR.get(f["severity"], f["severity"]), "", "", "", "", f.get("pattern") or ""]
-        for j, v in enumerate(vals, 1):
-            c = ws.cell(row=r, column=j, value=v); c.alignment = Alignment(wrap_text=True, vertical="top", readingOrder=(2 if j in (4, 5, 6, 10) else 0))
-            if j in (9, 10, 11, 12): c.fill = yellow
-        dv.add(ws.cell(row=r, column=9))
-    for j, w in enumerate([13, 18, 11, 16, 44, 44, 44, 9, 16, 40, 14, 28, 7], 1): ws.column_dimensions[chr(64 + j)].width = w
+        vals = [f["id"], f["package"], f"{f['chapter']}:{f['sentence']}", f"{f['surface']}  (#{f['token']})", lab + N(f["current"]),
+                lab + N(f["suggested"]), f.get("reason_tr") or "", SEV_TR.get(f["severity"], f["severity"])]
+        if ai is not None:
+            v = ai.get(f["id"]) or {}
+            c = v.get("corrected") or {}
+            fix = (c.get("ar") or c.get("value") or "") if v.get("verdict") == "AI-ONAY" else ""
+            src = v.get("source") or {}
+            vals += [v.get("verdict") or "—", lab + N(fix) if fix else "",
+                     " · ".join(x for x in (src.get("book"), src.get("locator"), f"«{src.get('quote')}»" if src.get("quote") else None) if x) if v.get("verdict") == "AI-ONAY" else "",
+                     v.get("note_tr") or ""]
+        vals += ["", "", "", "", f.get("pattern") or ""]
+        for j, val in enumerate(vals, 1):
+            c = ws.cell(row=r, column=j, value=val)
+            c.alignment = Alignment(wrap_text=True, vertical="top", readingOrder=(2 if hdr[j - 1] in rtl else 0))
+            if K <= j <= K + 3: c.fill = yellow
+            elif ai is not None and hdr[j - 1].startswith(("AI", "kaynak")): c.fill = grey
+        dv.add(ws.cell(row=r, column=K))
+    widths = {"id": 13, "paket": 18, "bölüm:cümle": 11, "kelime": 16, "gerekçe (tr)": 44, "önem": 9, "AI kararı": 12, "kaynak": 40,
+              "AI notu": 36, "inceleyen": 14, "not": 28, "desen": 7}
+    from openpyxl.utils import get_column_letter
+    for j, h in enumerate(hdr, 1): ws.column_dimensions[get_column_letter(j)].width = widths.get(h, 40 if "iʿrâb" in h or "düzelt" in h.lower() else 16)
     ws.freeze_panes = ws.cell(row=H + 1, column=2)
-    ws.auto_filter.ref = f"A{H}:M{H + len(rows)}"
+    ws.auto_filter.ref = f"A{H}:{get_column_letter(ncol)}{H + len(rows)}"
     wb.save(path)
+    return [f["id"] for f in rows]
 
 
-# ---------------------------------------------------------------- main
+def regen_with_ai(out, master):
+    """Rewrite every student sheet already handed out (same file, same ids) with the AI pre-check columns."""
+    ai = {}
+    for f in sorted((ROOT / "review/ai-precheck/checked").glob("*.jsonl")):
+        for line in f.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                v = json.loads(line); ai[v["id"]] = v
+    F = master["findings"]; n = Counter()
+    for name, ids in master["sheets"].items():
+        rows = [F[i] for i in ids]
+        title = f"{name[:-5]} — {rows[0]['package'] if len({r['package'] for r in rows}) == 1 else 'küçük paketler'} — {len(rows)} satır — AI kontrollü"
+        order = xlsx_group(out / name, title, rows, ai)
+        master.setdefault("sheet_order_ai", {})[name] = order
+        n.update((ai.get(i) or {}).get("verdict", "yok") for i in ids)
+    print("sheets rewritten with the AI columns:", len(master["sheets"]), dict(n))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--out", default=str(ROOT / "reports/hoca-inceleme"))
@@ -417,8 +468,12 @@ def main():
     ap.add_argument("--severity", default="critical", help="severities for the student sheets, comma-separated")
     ap.add_argument("--no-scan", action="store_true")
     ap.add_argument("--small", type=int, default=30, help="packages with fewer rows than this share one sheet")
+    ap.add_argument("--with-ai", action="store_true", help="rewrite the sheets already handed out with the AI pre-check columns")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
+    if a.with_ai:
+        mp = out / "master.json"; master = json.loads(mp.read_text(encoding="utf-8"))
+        regen_with_ai(out, master); mp.write_text(json.dumps(master, ensure_ascii=False, indent=1), encoding="utf-8"); return
     findings, runs = load_findings()
     for f in findings: f["pattern"] = classify(f)
     mpath = out / "master.json"

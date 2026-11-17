@@ -26,7 +26,7 @@ default**: read the sentence yourself, find the rule in the books, and decide.
  "corrected": {"ar": "…", "en": "…", "tr": "…"},
  "source": {"book": "Iẓhār al-Asrār (Birgivî)", "file": "research/sources/izhar-full-corrected.txt",
             "locator": "bāb al-fāʿil / line 1234", "quote": "<copied VERBATIM from the file>"},
- "note_tr": "kısa gerekçe (Türkçe)", "note_en": "short reason"}
+ "note_tr": "kısa gerekçe (Türkçe)", "note_en": "short reason", "model": "claude-opus-5-5"}
 ```
 - **AI-ONAY** — the current value IS wrong. `corrected` is the right value (your own — it may differ from the
   earlier suggestion). For an iʿrāb field give all three lines (ar, en, tr) in the house style of the neighbouring
@@ -41,6 +41,10 @@ default**: read the sentence yourself, find the rule in the books, and decide.
   Say exactly what is open.
 
 ## Rules
+- **Model.** By the owner's decision of 2026-11-17 this pass runs on Claude Opus 5.5 (the Fable 5.2 limit was reached);
+  every verdict line carries `"model": "claude-opus-5-5"`.
+- **Be economical.** Find each RULE once and reuse its citation for every finding it decides; grep for the rule,
+  read only the lines around the hit, and do not read whole source files.
 - Read the whole sentence before judging a word; the governor may be several words away. Respect the package's
   deliberate readings (the provenance paragraph of its manifest).
 - Do not edit any content file. Write only your verdict file(s).
