@@ -24,6 +24,18 @@ N = lambda s: unicodedata.normalize("NFC", s or "")
 bare = lambda s: re.sub(r"[ً-ْٰـ]", "", N(s))
 
 
+def quoted(q, line):
+    """The finding quoted the line, perhaps shortened with «…»: every quoted piece must stand in the line, in order."""
+    q, line = bare(q).replace("...", "…"), bare(line)
+    pos = 0
+    for piece in [x.strip(" ،.") for x in q.split("…")]:
+        if not piece: continue
+        k = line.find(piece, pos)
+        if k < 0: return False
+        pos = k + len(piece)
+    return True
+
+
 def main():
     write = "--write" in sys.argv
     names = [a for a in sys.argv[1:] if not a.startswith("--")]
@@ -62,7 +74,7 @@ def main():
             c = v["corrected"]; fld = f["field"]
             if fld.startswith("irab"):
                 ir = t.get("irab") or {}
-                if bare(ir.get("ar")) != bare(f["current"]) and fld == "irab.ar":
+                if fld == "irab.ar" and not quoted(f["current"], ir.get("ar")):
                     skipped.append((v["id"], "the line no longer reads as the finding quoted it")); continue
                 if not all(c.get(k) for k in ("ar", "en", "tr")):
                     skipped.append((v["id"], "corrected iʿrāb is not trilingual")); continue

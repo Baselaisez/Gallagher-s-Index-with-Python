@@ -1,0 +1,24 @@
+== label_gauge
+tokens 75481 · both name an office 35932 · agree 32405 · 90.18%
+  239  engine atf | author mubtada
+  193  engine mubtada | author khabar
+  121  engine khabar | author mubtada
+  119  engine khabar | author nat
+  119  engine fail | author maful
+== typed_gauge
+typed gauge: 1214 of 1215 judged words right (99.92 %), 404 of 405 sentences clean
+  ✗ ليته طالبَ بحقِّهِ  #2  want بحقِّهِ  got بحقِهِ  (jarr)
+== drills
+DRIFT: the generated bank no longer matches the committed one.
+Run `node tools/gen_drills.js` and read the diff — an engine changed.
+== pattern scans
+D01 12
+D02 105
+D03 40
+D04 6
+D05 49
+D06 30
+D07 53
+D08 2
+D11 2
+D12 0
