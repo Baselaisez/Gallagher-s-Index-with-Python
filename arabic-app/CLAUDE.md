@@ -14057,3 +14057,23 @@ Three things learned building it:
   a substring match also found «sordu» (he asked): 264 hits instead of 26.
 - **Highlight through a position map.** Folding drops apostrophes and changes case, so an index in the folded string
   is not an index in the original; `mark()` folds char by char and keeps the map («Ebrehe’nin **ordu**suyla»).
+
+## v320 — the critique pass, measured (design handoff 13a, 13b)
+
+**Tap targets.** An audit of every visible button and input at 390×844 found the segmented controls (25–29px), the
+story chips (23), the header controls (34), the per-sentence play/iʿrāb buttons (27), the sheet tabs (27–33), the
+backup row (28), the goal edit (18) and the search fields (37) under the 44px floor. Where the layout has room the
+control grows (`min-height: var(--tap)`); in the dense rows it cannot — wave 72's phone budget held the first card at
+401px of 403 — so the control keeps its size and an invisible 44px hit area is laid round it (`::after`). A
+before/after sweep of `elementFromPoint` over every control's box showed the hit areas take nothing from their
+neighbours. The smoke check gates the CLASS: no visible control under 44px, an absolute `::after` of 44px counting.
+
+**Contrast.** An audit of every text node against its composited background, in all four themes, found one real bug
+and a handful of near misses. The bug: `.goal-card` is a `<button>`, buttons do not inherit `color`, and in Gece the
+front door's «Daily goal · 0%» was black on navy at 1.24:1 — invisible, on the first screen. The near misses (the
+shelf count pills, the level chip, the Sarf Lab's «attested» line, the thin-game note, `--lvl3` as text) take their
+hue mixed into `--ink` (the engine badge's rule); `--lvl3` of the light palettes is darkened to #9A6814.
+Two traps in measuring it, both now written into the check: **a page that is not the foreground tab does not run CSS
+transitions**, so the 0.45s theme fade never finished in the suite and the old theme's colours were measured — the
+check switches transitions off while it measures; and **where nothing is painted the canvas shows `--ground`**, not
+white.

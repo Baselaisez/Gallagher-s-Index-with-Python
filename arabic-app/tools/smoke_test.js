@@ -16574,6 +16574,52 @@ if (!CHROME) {
     if (J(s0) !== J([5, true, true]) || s1 !== Math.min(r.n, 60) || opened !== target[0]) throw new Error('the section: ' + J([s0, s1, r.n, target, opened]));
   });
 
+  await check('v320 — the critique pass (handoff 13a, 13b): on a 390×844 phone no visible control in the library, the reader or a word sheet is a tap target under 44px (an invisible 44px hit area counts; running words do not), and in all four themes no text on the library, the reader or the games hub falls under 4.5:1 (3:1 for large text) against what it is painted on', async () => {
+    const J = JSON.stringify;
+    const TAP = () => page.evaluate(() => { const out = [];
+      document.querySelectorAll('button, input:not([type=hidden]), select, [role=button], a[href]').forEach(el => { const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+        if (!r.width || !r.height || cs.visibility === 'hidden' || r.bottom < 0 || r.top > innerHeight) return; if (el.closest('.word')) return;
+        const ps = getComputedStyle(el, '::after'), ph = ps.content && ps.content !== 'none' && ps.position === 'absolute' ? parseFloat(ps.height) || 0 : 0;
+        if ((r.height < 43.5 && ph < 43.5) || r.width < 24) out.push((el.id || el.className || el.tagName) + ':' + Math.round(r.height)); }); return out; });
+    const CON = () => page.evaluate(() => {
+      const rgba = s => { const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const a = m[1].split(/[ ,/]+/).filter(Boolean).map(Number); return [a[0], a[1], a[2], a.length > 3 ? a[3] : 1]; };
+      const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+      const over = (t, b) => [0, 1, 2].map(i => t[i] * t[3] + b[i] * (1 - t[3])).concat(1);
+      const bgOf = el => { const st = []; for (let e = el; e; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.backgroundImage !== 'none' && /url|gradient/.test(cs.backgroundImage) && !/gradient\(transparent/.test(cs.backgroundImage)) return null; const c = rgba(cs.backgroundColor); if (c && c[3] > 0) { st.push(c); if (c[3] >= 1) break; } } const gh = getComputedStyle(document.documentElement).getPropertyValue('--ground').trim().replace('#', ''); let b = gh.length === 6 ? [parseInt(gh.slice(0, 2), 16), parseInt(gh.slice(2, 4), 16), parseInt(gh.slice(4, 6), 16), 1] : [255, 255, 255, 1];   // nothing painted: the canvas shows the theme's ground
+        for (let i = st.length - 1; i >= 0; i--) b = over(st[i], b); return b; };
+      const bad = [];
+      document.querySelectorAll('body *').forEach(el => { if (![...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+        const r = el.getBoundingClientRect(), cs = getComputedStyle(el); if (!r.width || !r.height || r.bottom < 0 || r.top > innerHeight || cs.visibility === 'hidden') return;
+        let op = 1; for (let e = el; e; e = e.parentElement) op *= +getComputedStyle(e).opacity; if (op < .99) return;
+        const fg = rgba(cs.color), bg = bgOf(el); if (!fg || !bg) return; const c = over(fg, bg), L1 = lum(c), L2 = lum(bg), ratio = (Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05);
+        const big = parseFloat(cs.fontSize) >= 24 || (parseFloat(cs.fontSize) >= 18.66 && +cs.fontWeight >= 700);
+        if (ratio < (big ? 3 : 4.5)) bad.push((el.className || el.tagName) + ' ' + Math.round(ratio * 100) / 100 + ' «' + el.textContent.trim().slice(0, 12) + '» on ' + bg.slice(0, 3).map(Math.round).join(',') + ' (' + (document.documentElement.dataset.theme || '') + ')'); });
+      return bad; });
+    const keepTheme = await page.evaluate(() => localStorage.getItem('qissa-theme') || '');
+    // the suite's page is not the foreground tab by now, and Chromium pauses CSS transitions there: the theme's 0.45 s
+    // fade would never finish and the old colours would be measured. Transitions are switched off while we measure.
+    await page.evaluate(() => { const st = document.createElement('style'); st.id = 'v320NoAnim'; st.textContent = '*, *::before, *::after { transition: none !important; animation: none !important; }'; document.head.appendChild(st); });
+    await page.setViewportSize({ width: 390, height: 844 });
+    const taps = {}, low = {};
+    try {
+      await page.evaluate(() => { closeSheet(); renderLibrary(); window.scrollTo(0, 0); }); await page.waitForTimeout(300); taps.library = await TAP();
+      await page.evaluate(() => openStory(STORIES.find(s => s.id === 'ashab-al-fil'))); await page.waitForSelector('#story .word'); await page.waitForTimeout(300); taps.reader = await TAP();
+      await page.locator('#story .word').nth(1).click(); await page.waitForSelector('.sheet.show'); await page.waitForTimeout(500); taps.sheet = await TAP();
+      for (const th of ['murekkep', 'gece', 'bahce', 'paper']) {
+        await page.evaluate(t => { closeSheet(); setTheme(t); renderLibrary(); window.scrollTo(0, 0); }, th); await page.waitForTimeout(150);
+        const a = await CON(); await page.evaluate(() => openStory(STORIES.find(s => s.id === 'ashab-al-fil'))); await page.waitForSelector('#story .word'); await page.waitForTimeout(250);
+        const b = await CON(); await page.evaluate(() => openGames()); await page.waitForTimeout(500); const c = await CON();
+        if (a.length || b.length || c.length) low[th] = [...a, ...b, ...c].slice(0, 6);
+      }
+    } finally {
+      await page.evaluate(k => { closeSheet(); if (k) setTheme(k); else { try { localStorage.removeItem('qissa-theme'); } catch (e) {} setTheme(''); } renderLibrary(); const st = document.getElementById('v320NoAnim'); if (st) st.remove(); }, keepTheme).catch(() => {});
+      await page.setViewportSize({ width: 1280, height: 720 });
+    }
+    const small = Object.entries(taps).filter(([, v]) => v.length);
+    if (small.length) throw new Error('tap targets under 44px: ' + J(Object.fromEntries(small.map(([k, v]) => [k, v.slice(0, 6)]))));
+    if (Object.keys(low).length) throw new Error('text under its contrast floor: ' + J(low));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
