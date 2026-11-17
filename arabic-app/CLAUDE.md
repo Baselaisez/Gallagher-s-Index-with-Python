@@ -22,6 +22,13 @@ review's root-cause groups come in, rank the engine fixes by the same order: ta�
   opens its jawāb (الْفَاءُ وَاقِعَةٌ فِي جَوَابِ أَمَّا), not a conjunction, and the note amma-tafsiliyya belongs on the
   أَمَّا. A candidate RULE fix in the authoring pipeline (one rule, every text), not a token-by-token patch.
 
+**Speed and correctness, every wave (owner's rule, 2026-11-17).** Optimisation, speed and correction are kept up
+in every wave, never traded for a feature: a new view reads what the engines already computed instead of computing
+again (the decision chain is the model), work that is not on screen yet is deferred, and the release's speed checks
+(the SPEED waves of the smoke suite) and correctness gates (validators, the drill bank, the gauges) must stay green.
+A change that makes opening the app, a story or a word slower, or moves a gauge down, is reported with its number and
+fixed before it ships — or the owner decides.
+
 ## Where things live
 
 ```
