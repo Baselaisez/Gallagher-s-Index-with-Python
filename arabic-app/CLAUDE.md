@@ -13960,3 +13960,31 @@ tok.s, RoleEngine.of, GRAMMAR and modelPredictFor, the calls the role layer and 
 no cost to opening a word. The verdict text uses the contrast rule of item 13 (the hue mixed into --ink).
 The third theme keeps its key «bahce» (saved choices carry over) but is now İznik — turquoise, cobalt and coral, a 2 px
 button depth instead of 4 px; three smoke checks that had pinned the old green were moved to the new tokens on purpose.
+
+## v316 — a correct correction can fail a gate, and the gate is then pointing at the engine
+
+The AI pre-check's corrections (precheck branch) broke ten smoke checks, and none of them because a correction was
+wrong. They came down to three causes, and each was an engine or tag fault that the old, wrong lines had been hiding:
+
+- **The HadhfEngine audit only reads sentences that author at least one deletion.** Correcting عَدْلٌ to «خَبَرٌ
+  لِمُبْتَدَإٍ مَحْذُوفٍ» pulled al-usul 20:s11 into the audit for the first time, and the engine's old guesses in that
+  sentence surfaced as false alarms. Rule 22b (يُقَالُ لَهُ إِبْرَاهِيمُ → [هُوَ] إِبْرَاهِيمُ) had never been given the two
+  guards rule 22 has had since wave 157: what is said may be a QUESTION (قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ — the hamza on the
+  fronted khabar, the pronoun its mubtadaʾ), and a noun carrying its own pronoun opens a full sentence (قَوْلُكَ …
+  أَعَدْلٌ أَمْ جَوْرٌ). The istighātha rule likewise read «يَا لَهُ رَجُلًا» — wonder, its tamyīz the mansūb indefinite —
+  as a cry for help. False alarms 3 → 1 on main (5 → 1 on the precheck branch); the last one, Iẓhār 20:s7 «قِسْمَانِ:
+  قِسْمٌ …», is a genuine two-reading case and is left for the hoca.
+- **A grammar TAG is evidence the SignEngine trusts.** دُونَ، حِينَ، دِين، مِسْكِين and the letter نُون carried
+  «jam-mudhakkar-salim» because they end in ـونَ/ـينَ; it never showed while their lines named no sign. The
+  corrections wrote «مَنْصُوبٌ بِالْفَتْحَةِ» and the class fell to 96.1%. 27 tags removed, and `SignEngine.plStem()` now
+  refuses the plural reading — tagged or by shape — when taking the ending off leaves a single letter. The mulḥaq
+  (عَالَمِينَ، بَنُونَ, the decades) keep theirs: the tradition files them with the sound plural.
+- **The IrabModel's shipped weights are a function of the corpus**, so changed lines need `node tools/gen_irab_model.js`
+  and a rebuild — mechanical, and the gate says so by name.
+
+The general form: **when a correction fails a gate, ask first what the gate was standing on.** Here every failure was
+an engine reading the old error as support.
+
+The v315 story-end sheet also learned manners: it opens only if the reader is still in that story, nothing else is
+open, and they have not tapped or typed since the last sentence was finished (`LAST_TOUCH`). Under load it had landed
+on top of the grammar index a test had just opened — which is exactly what it would do to a person.

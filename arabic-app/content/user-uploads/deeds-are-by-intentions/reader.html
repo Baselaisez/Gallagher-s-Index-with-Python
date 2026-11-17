@@ -4330,6 +4330,8 @@ function storyEndWords(st, limit = 14){
 }
 
 /* 3) The sheet */
+let LAST_TOUCH = 0;
+["pointerdown", "keydown"].forEach(ev => document.addEventListener(ev, () => { LAST_TOUCH = Date.now(); }, { capture: true, passive: true }));
 function openStoryEnd(st){
   if (!st) return;
   const all = storyEndWords(st), words = all.slice(0, 14);
@@ -4444,8 +4446,11 @@ function markRead(sen, ch){
     const st = storyStats(CUR);
     if (st.total && st.read === st.total) {
       showToast(ui().storyDone);
-      const story = CUR;
-      setTimeout(() => { if (!sheet.classList.contains("show")) openStoryEnd(story); }, 700);
+      const story = CUR, t0 = Date.now();
+      // Polite: only if the reader is still in this story, nothing else is open, and they have not tapped or typed
+      // since — a sheet that lands on top of what someone just opened steals their tap. The card at the story's foot
+      // offers the same screen whenever they want it.
+      setTimeout(() => { if (CUR === story && !sheet.classList.contains("show") && LAST_TOUCH <= t0) openStoryEnd(story); }, 700);
     }
   }
 }
@@ -33047,7 +33052,8 @@ class HadhfEngine {
       if (this.isPron(r) && /^(نحن|أنا|انا|أنتم|انتم|إنا|انا|إننا|إني|إنك|إنكم|أنتن)$/.test(c) && nx && !this.isVerb(nx) && ((this.hasAl(nx.w) && this.pageCase(nx) === "nasb") || /^(أيها|ايها|أيتها|ايتها)$/.test(nc)) && !(pv && /^(يا|أيا)$/.test(pc))) { R(i + 1, "ikhtisas", "أَخُصُّ", "wajib", { before: true }); i++; continue; }
       if (/^(أيها|ايها|أيتها|ايتها)$/.test(c) && pv && !/^(يا|أيا|هيا)$/.test(pc) && !this.stop(rows, i) && (this.isPron(pv) || this.isVerb(pv) || this.enc(pv) || rows.slice(0, i).some(x => /^(أنا|انا|نحن|إنا|إننا|إني|أنتم|انتم)$/.test(this.core(x.w)) || (this.isVerb(x) && /^[أنت]/.test(this.bare(x.w)))))) { R(i, "ikhtisas", "أَخُصُّ", "wajib", { before: true }); continue; }
       // 6 · istighātha: يَا لَفُلَانٍ
-      if (/^(يا)$/.test(c) && nx && /^لَ[^ا]/.test(this.nfc(nx.w)) && !/^(لن|لم|لا|لعل|لكن|ليس|لو|لولا)$/.test(nc)) { R(i + 1, "istighatha", "أَسْتَغِيثُ", "wajib", { before: true, lahu: nx2 && /^لِ/.test(this.nfc(nx2.w)) ? this.nfc(nx2.w) : "" }); i++; continue; }
+      if (/^(يا)$/.test(c) && nx && /^لَ[^ا]/.test(this.nfc(nx.w)) && !/^(لن|لم|لا|لعل|لكن|ليس|لو|لولا)$/.test(nc)
+          && !(/^(له|لها|لهم|لهما|لك|لكم|لي|لنا)$/.test(nc) && nx2 && /ً[اى]?$/.test(this.nfc(nx2.w)))) /* (v316) يَا لَهُ رَجُلًا: the lām on a PRONOUN with a mansūb indefinite behind it is wonder — the indefinite its tamyīz — not a cry for help (يَا لَزَيْدٍ لِعَمْرٍو keeps its seat) */ { R(i + 1, "istighatha", "أَسْتَغِيثُ", "wajib", { before: true, lahu: nx2 && /^لِ/.test(this.nfc(nx2.w)) ? this.nfc(nx2.w) : "" }); i++; continue; }
       // 7 · nudba: وَا زَيْدَاهْ، يَا أَسَفَى
       if (/^(وا)$/.test(b) && nx) { R(i + 1, "nudba", "أَنْدُبُ", "wajib", { before: true }); i++; continue; }
       if (/^(يا)$/.test(c) && nx && /(َاهْ|َاه|َا|َى)$/.test(this.nfc(nx.w)) && /^(أسفى|اسفى|ويلتى|حسرتى|أبتاه|ابتاه|أماه|اماه|ويلاه|حسرتاه|أسفاه|اسفاه)/.test(this.bare(nx.w)) ) { R(i + 1, "nudba", "أَنْدُبُ", "wajib", { before: true }); i++; continue; }
@@ -33180,7 +33186,9 @@ class HadhfEngine {
         }
       }
       // 22b · the naming: يُقَالُ لَهُ إِبْرَاهِيمُ — «[he is] Ibrāhīm»
-      if (i >= 2 && /^(له|لها|لهم|لهما)$/.test(pc) && /^(يقال|قيل|ويقال|فيقال)$/.test(this.bare(rows[i - 2].w)) && !this.isVerb(r) && (this.pageCase(r) === "raf" || r.pos === "propn")) { R(i, "mubtadaJawab", "هُوَ", "jaizQarina", { before: true }); continue; }
+      if (i >= 2 && /^(له|لها|لهم|لهما)$/.test(pc) && /^(يقال|قيل|ويقال|فيقال)$/.test(this.bare(rows[i - 2].w)) && !this.isVerb(r) && (this.pageCase(r) === "raf" || r.pos === "propn")
+          && !(/^أَ[ء-ي]/.test(this.nfc(r.w)) && !/^أَنّ?/.test(this.nfc(r.w).replace(/[ً-ْ]/g, "")) && nx && this.isPron(nx)) /* (v316) قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ: what is said to him is a QUESTION — the hamza on the fronted khabar, the pronoun its mubtadaʾ; nothing is unsaid (the guard rule 22 has had since wave 157) */
+          && !(this.enc(r) && r.pos !== "propn")) /* (v316) يُقَالُ لَهُ قَوْلُكَ لَا أَدْرِي أَعَدْلٌ أَمْ جَوْرٌ: a noun carrying its own pronoun opens a full sentence with its khabar after it — a name is not that */ { R(i, "mubtadaJawab", "هُوَ", "jaizQarina", { before: true }); continue; }
       // 22c · a heading word opens the sentence: فَصْلٌ، بَابٌ، مَسْأَلَةٌ — «[this is] a section»
       if (i === 0 && /^(فصل|باب|مسألة|مسالة|تنبيه|فائدة|فايدة|خاتمة|مقدمة|تتمة|تذنيب|فرع|قاعدة)$/.test(b) && /ٌ$/.test(f)) { R(i, "mubtadaUnwan", "هٰذَا", "jaizQarina", { before: true }); continue; }
       // 22d · «none of … but …»: إِنْ / مَا + مِنْ + majrūr … إِلَّا — the unsaid أَحَدٌ
@@ -33517,6 +33525,11 @@ class SignEngine {
   static tailIsStem(b, lex){ const l = this.lexStem(lex); if (!l) return false; return this.skelAr(b) <= this.skelLat(l); }
   static BROKEN_IN2 = /[ء-ي][ًٌٍَُِْ]?[ء-ي][ًٌٍَُِْ]?ا[ء-ي]ِينَ$/;   // no shadda before the alif: فَعَّالِين (بَنَّائِين) is a sound plural
   static tagged(opt, tag){ return Array.isArray(opt.tags) && opt.tags.includes(tag); }
+  /* (v316) A sound plural is a singular plus ـونَ/ـينَ, so taking the ending off must leave a word: دُونَ، حِينَ، دِينَ، نُون
+     leave one letter — the ending is their own root — and a tag that says otherwise is refused, never trusted. */
+  static plStem(f){ let b = String(f || "").normalize("NFC").replace(/[ً-ْٰـ]/g, "");
+    b = b.replace(/^(?:[وف]?(?:بال|لل|كال|ال)|[وف])(?=..)/, "").replace(/(?:كم|هم|هما|هن|كما|كن|ها|نا|ه|ك)$/, "");
+    return b.replace(/(?:ون|ين|و|ي)$/, "").length; }
   // the next word makes this one a muḍāf: a proper name, or a noun with the article and a majrūr tail, or an indefinite majrūr after the word's own kasra / truncated tail; a proper name is never the muḍāf
   static annexedTo(f, opt){
     const nx = opt.next; if (!nx || !nx.w) return false;
@@ -33577,7 +33590,7 @@ class SignEngine {
     if (any(/^(كلا|كلي|كلتا|كلتي)$/)) return enc ? R("muthanna", "kilā with a pronoun: dual signs") : R("maqsur", "kilā before a noun: estimated on the alif");
     // a maqṣūr carrying a pronoun (مَعْنَاهُ، مَوْلَانَا) is not a dual: the lexeme ends in the alif
     if ((enc || annexed) && /[ىا]$/.test(b) && (this.lexEndsA(opt.lex) || this.tagged(opt, "ism-maqsur-manqus"))) return R("maqsur", enc ? "maqṣūr with a pronoun" : "maqṣūr annexed", false, propn || mamnuTag);
-    if (this.tagged(opt, "jam-mudhakkar-salim") && /[ُّ]ونَ$|[ِّ]ينَ$|[ُّ]و$|[ِّ]ي$/.test(f) && !propn) return R("jamMudhakkar", "sound masculine plural (tagged)", true);
+    if (this.tagged(opt, "jam-mudhakkar-salim") && /[ُّ]ونَ$|[ِّ]ينَ$|[ُّ]و$|[ِّ]ي$/.test(f) && !propn && this.plStem(f) >= 2) return R("jamMudhakkar", "sound masculine plural (tagged)", true);
     if (this.tagged(opt, "al-muthanna") && /[َّ]انِ$|[َّ]يْنِ$|[َّ]يْ$|[َّ]ا$|[َّ]يِ$/.test(f) && !propn) return R("muthanna", "dual (tagged)", true);
     // a manqūṣ carrying a pronoun or annexed (بَاقِيهِ، مُشْتَرِيهِ، أَيْدِي النَّاسِ): the yāʾ is the lexeme's
     if ((enc || annexed) && /[ِّ]ي$/.test(f) && !/ِيّ$/.test(f) && (/i$/.test(this.lexStem(opt.lex)) || this.tagged(opt, "ism-maqsur-manqus"))) return R("manqus", enc ? "manqūṣ with a pronoun" : "manqūṣ annexed");
@@ -33589,7 +33602,7 @@ class SignEngine {
     // the sound masculine plural and what is attached to it
     if (/ِيَّ$/.test(f) && /^(بني|اولي|اهلي|ذوي|عالمي)$/.test(gflat)) return R("jamMudhakkar", "attached to the sound plural, with the speaker's ya");
     if (this.MULHAQ_JAM.test(gbNoAl) || (/^(اولو|اولي|اهلو|اهلي|بنو|بني|ذوو|ذوي|عالمو|عالمي)$/.test(gflat.replace(/^ال/, "")) && (enc || annexed))) return R("jamMudhakkar", "attached to the sound plural");
-    const plFull = /[ُّ]ونَ$|[ِّ]ينَ$/.test(f) && (nounish || !this.verbPrefix(f));
+    const plFull = /[ُّ]ونَ$|[ِّ]ينَ$/.test(f) && (nounish || !this.verbPrefix(f)) && this.plStem(f) >= 2;   /* (v316) دُونَ، حِينَ: no singular is left */
     const plTrunc = !ownTail && (nounish || !this.verbPrefix(f)) && !al && b.length >= 4 && !/ِيّ/.test(f) && (/[ُّ]و$/.test(f) || (/[ِّ]ي$/.test(f) && (enc || (annexed && this.tagged(opt, "jam-mudhakkar-salim")))));
     const broken = taksir || this.BROKEN_IN2.test(g.replace(/^(?:[وف]َ)?(?:[بكل]ِ?)?[اٱ][ً-ٰ]*ل/, ""));
     if (!broken && !propn && ((plFull && !this.tailIsStem(gb, opt.lex)) || plTrunc)) return R("jamMudhakkar", plFull ? "sound masculine plural" : "sound masculine plural, its nūn dropped");
