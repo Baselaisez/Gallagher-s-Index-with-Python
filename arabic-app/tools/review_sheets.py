@@ -138,7 +138,7 @@ def scan_amma():
         for i, t in enumerate(toks):
             if bare(surf(t)).lstrip("و") in ("أما", "اما") and "ّ" in surf(t):
                 for u in toks[i + 1:]:
-                    if bare(surf(u)).startswith("ف"):
+                    if bare(ar(u)).startswith("الفاء"):            # the fāʾ itself, not فِي / فَوْقَ
                         if "جواب" not in ar(u) and "رابطة" not in ar(u) and "واقعة" not in ar(u): n += 1
                         break
     return n
