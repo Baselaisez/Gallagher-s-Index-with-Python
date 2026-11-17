@@ -222,7 +222,8 @@ def false_positives(limit=40):
     """The scholar's RET decisions (tools/review_intake.py), newest first: suggestions the review must not repeat."""
     fp = ROOT / "reports/review-false-positives.jsonl"
     if not fp.is_file(): return ""
-    rows = [json.loads(x) for x in fp.read_text(encoding="utf-8").splitlines() if x.strip()][::-1][:limit]
+    rows = [json.loads(x) for x in fp.read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [r for r in rows if r.get("by") != "ai" and r.get("confirmed_by_human", True)][::-1][:limit]   # human RET only
     if not rows: return ""
     return ("\n\nTHE SCHOLAR REJECTED THESE EARLIER SUGGESTIONS — do not make the same kind of suggestion again "
             "(word | the line as it stands | what was suggested | the scholar's note):\n"
