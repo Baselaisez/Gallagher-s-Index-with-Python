@@ -3,7 +3,7 @@
 
     python3 tools/review_sheets.py [--out reports/hoca-inceleme] [--rows 120] [--severity critical]
 
-Reads every finished review batch under reports/ (review-*/ and review-*/w*/ with a batch.json), keeps the newest result
+Reads every finished review batch under reports/ (review-*/ and review-*/<sub>/ with a batch.json), keeps the newest result
 for each request (a re-run supersedes the first run; the @medium comparison copy is left out) and writes:
 
   01-hoca-desenler.xlsx   the systematic error patterns, most frequent first: what the pattern is, 2–3 examples, how
@@ -37,7 +37,7 @@ FIELD_TR = {"surface": "[hareke] ", "irab.en": "[iʿrâb EN] ", "irab.tr": "[iʿ
 
 # ---------------------------------------------------------------- findings
 def load_findings():
-    dirs = sorted({str(Path(p).parent) for p in glob.glob(str(ROOT / "reports/review-*/batch.json")) + glob.glob(str(ROOT / "reports/review-*/w*/batch.json"))})
+    dirs = sorted({str(Path(p).parent) for p in glob.glob(str(ROOT / "reports/review-*/batch.json")) + glob.glob(str(ROOT / "reports/review-*/*/batch.json"))})
     runs = []
     for d in dirs:
         st = json.loads(Path(d, "batch.json").read_text(encoding="utf-8"))
@@ -416,6 +416,7 @@ def main():
     ap.add_argument("--rows", type=int, default=120, help="rows per student sheet")
     ap.add_argument("--severity", default="critical", help="severities for the student sheets, comma-separated")
     ap.add_argument("--no-scan", action="store_true")
+    ap.add_argument("--small", type=int, default=30, help="packages with fewer rows than this share one sheet")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     findings, runs = load_findings()
@@ -435,8 +436,19 @@ def main():
     by = defaultdict(list)
     for f in todo: by[f["package"]].append(f)
     pk_order = [p for p in ORDER if p in by] + sorted([p for p in by if p not in ORDER], key=lambda p: -len(by[p]))
+    small = [p for p in pk_order if len(by[p]) < a.small and p not in ORDER]   # small packages share sheets
+    pk_order = [p for p in pk_order if p not in small]
     n = len(master["sheets"])
     made = []
+    pack = []
+    for pk in small:
+        pack += sorted(by[pk], key=lambda f: (int(f["chapter"] or 0), str(f["sentence"]), int(f["token"] or 0)))
+    for k in range(0, len(pack), a.rows):
+        n += 1
+        part = pack[k:k + a.rows]
+        name = f"02-grup-{n:02d}-kucuk-paketler.xlsx"
+        xlsx_group(out / name, f"Grup {n:02d} — küçük paketler ({len({f['package'] for f in part})} paket) — {len(part)} satır", part)
+        master["sheets"][name] = [f["id"] for f in part]; made.append((name, len(part)))
     for pk in pk_order:
         rows = sorted(by[pk], key=lambda f: (int(f["chapter"] or 0), str(f["sentence"]), int(f["token"] or 0)))
         parts = -(-len(rows) // a.rows); size = -(-len(rows) // parts)          # even split: 121 rows -> 61 + 60, not 120 + 1
