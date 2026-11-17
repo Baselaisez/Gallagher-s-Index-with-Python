@@ -1671,6 +1671,15 @@ Applies to every model call the project makes or delegates: subagents, workflows
 - **Keys.** API calls the tools make read `QISSA_ANTHROPIC_API_KEY` (or the gitignored `arabic-app/.env.local`)
   and pass it explicitly to the client. Never use the name `ANTHROPIC_API_KEY`: it would also move Claude Code's
   own billing onto the API credit. Never print, log or commit a key.
+- **Engine-source texts come first and are never downgraded.** The classical grammar, ṣarf, balāgha and uṣūl
+  texts the engines are built and gated on — al-usul-al-munifa, talkhis-al-miftah, mukhtasar-al-manar,
+  marah-al-arwah, tasrif-al-izzi, al-kafiya, izhar-al-asrar, shudhur-al-dhahab, min-muqaddimat-al-maqsud — and the
+  drill garden jumal-al-tadrib (the qawāʿid automations, the gauges, the taggers and the iʿrāb model's training
+  data all stand on them) are reviewed first, always on Claude Fable 5.2 at effort high, and are never deferred
+  to save cost. The list is `ENGINE_SOURCES` in `tools/review_batch.py`; a new source text the engines start to
+  depend on joins it. When a review run must be cut to fit a budget, cut in this order: (1) the original Level 1–2
+  stories to Fable 5.2 at effort medium, if a side-by-side shows no real loss; (2) those stories to Opus 5.5 with
+  Fable 5.2 as advisor; (3) anything still left waits, and the owner is asked first. Never below Opus 5.5.
 - **Commit each wave as soon as it passes its checks, and push it.** Release work never stays uncommitted in the
   session's container: on 2026-11-17 the container was replaced while wave 213 sat finished and uncommitted, and
   the whole wave had to be rebuilt from the conversation.
