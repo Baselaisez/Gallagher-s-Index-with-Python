@@ -592,6 +592,7 @@ def main():
     ap.add_argument("--medium-originals", action="store_true",
                     help="--all: send the original Level 1–2 stories (not engine sources) at effort medium (cut step 1)")
     ap.add_argument("--no-wait", action="store_true"); ap.add_argument("--out")
+    ap.add_argument("--fill-units", action="store_true", help="with --all: fill the budget request by request (chapter by chapter), not package by package")
     ap.add_argument("--dry-run-all", action="store_true", help="with --all: count and plan exactly what --all would send, submit nothing")
     for k in ASSUME: ap.add_argument("--assume-" + k.replace("_", "-"), type=float, default=None)
     a = ap.parse_args()
@@ -685,8 +686,22 @@ def main():
     rate = rates_by_group() or load_measured(override)
     per = {k: v for k, v in plan_cost(reqs, counts, main_t, prov_t, rate, a.max_findings, eff_of).items() if k not in done}
     for r in reqs: efforts[r["custom_id"]] = eff_of(r["package"])
-    take, defer = print_plan(per, a.budget, f"--all --budget {a.budget:.0f}" + (" (original Level 1–2 stories at medium)" if cut else ""))
-    sel = [r for pk in take for r in reqs if r["package"] == pk]     # grouped by package, in priority order, for cache reuse
+    if a.fill_units:
+        # chapter by chapter: packages in priority order, each package's requests in order, until the budget is spent
+        chap = lambda r: [int(x) for x in re.findall(r"\d+", r["unit"])] or [0]
+        ordered = [r for pk in priority(per) for r in sorted([q for q in reqs if q["package"] == pk], key=chap)]
+        sel, total, prev, defer = [], 0.0, 0.0, []
+        for r in ordered:
+            cost = sum(v["exp"] for v in plan_cost(sel + [r], counts, main_t, prov_t, rate, a.max_findings, eff_of).values())
+            if not defer and cost <= a.budget: sel.append(r); total = cost
+            else: defer.append(r["custom_id"])
+        take = list(dict.fromkeys(r["package"] for r in sel))
+        print(f"--all --fill-units --budget {a.budget:.2f}: {len(sel)} requests fit (expected ${total:.2f}); "
+              f"deferred {len(defer)} requests" + (f": {defer[0]} … {defer[-1]}" if defer else ""))
+        per = {k: v for k, v in plan_cost(sel, counts, main_t, prov_t, rate, a.max_findings, eff_of).items()} if sel else {}
+    else:
+        take, defer = print_plan(per, a.budget, f"--all --budget {a.budget:.0f}" + (" (original Level 1–2 stories at medium)" if cut else ""))
+        sel = [r for pk in take for r in reqs if r["package"] == pk]     # grouped by package, in priority order, for cache reuse
     if not sel: sys.exit("nothing fits the budget")
     if a.dry_run_all:
         print("--dry-run-all: nothing submitted"); return
