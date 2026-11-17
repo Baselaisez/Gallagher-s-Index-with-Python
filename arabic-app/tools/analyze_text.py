@@ -13,10 +13,16 @@ suggestions instead of invented links.
 Usage:
     python3 tools/analyze_text.py mytext.txt --title-en "On Intentions" \
         --title-ar "باب النية" [--out content/user-uploads/on-intentions] \
-        [--build-reader] [--model claude-opus-4-8]
+        [--build-reader] [--model claude-fable-5-2] [--effort high]
 
-Credentials: resolved the standard way (ANTHROPIC_API_KEY / ANTHROPIC_AUTH_TOKEN /
-`ant auth login` profile). For offline testing of the packaging pipeline, pass
+Model: Claude Fable 5.2 by default (the project's model policy in CLAUDE.md: iʿrāb is crucial work); Claude
+Opus 5.5 is the only other model accepted. Thinking is always on for Fable 5.2, so no `thinking` parameter is sent;
+depth is set with --effort. No server-side refusal fallback is requested: its permitted targets (Opus 4.8, Opus 5)
+are below the policy's floor, so a refused chunk stops the run instead.
+
+Credentials: the key is read from QISSA_ANTHROPIC_API_KEY (or a line `QISSA_ANTHROPIC_API_KEY=...` in the
+gitignored arabic-app/.env.local) and passed to the client explicitly. ANTHROPIC_API_KEY is never read — it would
+also move Claude Code's own billing onto the API credit. The key is never printed or written. For offline testing of the packaging pipeline, pass
 --mock <analysis.json> with a pre-baked model response.
 
 The output is machine-generated: the manifest is stamped
@@ -25,6 +31,7 @@ human review upgrades it. Audio for uploaded texts uses on-device TTS in the
 reader (no audio timestamps are produced here).
 """
 import argparse
+import os
 import json
 import re
 import subprocess
@@ -155,7 +162,21 @@ def chunk_text(text: str, max_words: int):
     return chunks or [text.strip()]
 
 
-def analyze_chunk(client, model: str, chunk: str, notes, known_lex):
+def api_key():
+    """QISSA_ANTHROPIC_API_KEY from the environment, else from the gitignored arabic-app/.env.local."""
+    k = os.environ.get("QISSA_ANTHROPIC_API_KEY", "").strip()
+    env_file = ROOT / ".env.local"
+    if not k and env_file.is_file():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            m = re.match(r"\s*(?:export\s+)?QISSA_ANTHROPIC_API_KEY\s*=\s*(.*)$", line)
+            if m:
+                k = m.group(1).strip().strip("'\"")
+    if not k:
+        raise SystemExit("QISSA_ANTHROPIC_API_KEY is not set (environment or arabic-app/.env.local); no request was made.")
+    return k
+
+
+def analyze_chunk(client, model: str, chunk: str, notes, known_lex, effort: str = "high"):
     prompt = (
         "## Grammar registry (the ONLY valid ids for token \"grammar\")\n"
         + "\n".join(f"- {n['id']}: {n['ar']} — {n['en']}" for n in notes)
@@ -165,11 +186,11 @@ def analyze_chunk(client, model: str, chunk: str, notes, known_lex):
     )
     with client.messages.stream(
         model=model,
-        max_tokens=64000,
+        max_tokens=128000,   # thinking counts toward it; streaming keeps a large value safe
         system=[{"type": "text", "text": SYSTEM_PROMPT,
                  "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": prompt}],
-        output_config={"format": {"type": "json_schema", "schema": ANALYSIS_SCHEMA}},
+        output_config={"effort": effort, "format": {"type": "json_schema", "schema": ANALYSIS_SCHEMA}},
     ) as stream:
         message = stream.get_final_message()
     if message.stop_reason == "refusal":
@@ -222,7 +243,8 @@ def main():
     ap.add_argument("--title-tr", default=None)
     ap.add_argument("--out", type=Path, default=None,
                     help="output package dir (default content/user-uploads/<slug>)")
-    ap.add_argument("--model", default="claude-opus-4-8")
+    ap.add_argument("--model", default="claude-fable-5-2", choices=["claude-fable-5-2", "claude-opus-5-5"])
+    ap.add_argument("--effort", default="high", choices=["low", "medium", "high", "xhigh", "max"])
     ap.add_argument("--grammar-dir", type=Path, default=ROOT / "content/grammar")
     ap.add_argument("--max-chunk-words", type=int, default=400)
     ap.add_argument("--mock", type=Path, default=None,
@@ -246,11 +268,12 @@ def main():
         print("mock mode: using pre-baked analysis")
     else:
         import anthropic
-        client = anthropic.Anthropic()  # ANTHROPIC_API_KEY / AUTH_TOKEN / ant profile
+        os.environ.pop("ANTHROPIC_AUTH_TOKEN", None)   # only the key given here authenticates this process
+        client = anthropic.Anthropic(api_key=api_key())
         known_lex = set()
         for i, chunk in enumerate(chunks, 1):
             print(f"analyzing chapter {i}/{len(chunks)} ({len(chunk.split())} words)…")
-            analysis = analyze_chunk(client, args.model, chunk, notes, known_lex)
+            analysis = analyze_chunk(client, args.model, chunk, notes, known_lex, args.effort)
             known_lex.update(e["lex"] for e in analysis["glossary"])
             analyses.append(analysis)
 
