@@ -166,3 +166,7 @@ arabic-app/node_modules/
 !arabic-app/flutter/lib/
 !arabic-app/flutter/lib/**
 arabic-app/memory/
+
+# Qissa AI pre-review (tools/review_batch.py): the reports and the local API key never go into the repository
+arabic-app/reports/
+arabic-app/.env.local
