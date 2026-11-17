@@ -398,6 +398,8 @@ SEV_RANK = {s: i for i, s in enumerate(SEVERITIES)}
 def findings_of(cid, d, reqs):
     out = []
     for f in d.get("findings") or []:
+        sid = str(f.get("sentence") or "")
+        if sid.startswith(f"{f.get('chapter')}:"): f = dict(f, sentence=sid.split(":", 1)[1])   # the model sometimes echoes "4:s2" for "s2"
         key = f"{f.get('chapter')}:{f.get('sentence')}:{f.get('token')}"
         at = reqs[cid]["loc"].get(key)
         ok = (f.get("token") == -1 and any(k.startswith(f"{f.get('chapter')}:{f.get('sentence')}:") for k in reqs[cid]["loc"])) or (at is not None and N(at) == N(f.get("surface")))
