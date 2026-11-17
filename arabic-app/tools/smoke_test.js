@@ -16527,6 +16527,32 @@ if (!CHROME) {
     if (opened.shown !== phone.shown + 18 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
   });
 
+  await check('v318 — who governs whom (handoff 12, 13d): the Zabt lab reads «جاء أبرهة من اليمن بجيش كبير» as mebni · ←جَاءَ · mebni · ←مِنَ · attached · follower of بِجَيْشٍ from the stored lines, reads text the corpus does not hold by the DabtEngine\'s rules, outlines the governor of the tapped word; the word sheet of يَهْدِمَ outlines أَنْ and moves to it on a tap', async () => {
+    const J = JSON.stringify;
+    const z = await page.evaluate(() => { const rd = txt => { const v = DabtEngine.vowel(txt), g = GovView.forDabt(v); return [g.src, g.r.map(x => x ? x.kind + (x.amil != null ? ':' + x.amil : '') : null)]; };
+      return { fil: rd('جاء أبرهة من اليمن بجيش كبير'), free: rd('ذهب الولد إلى المدرسة الكبيرة'), inna: rd('إن الله غفور رحيم') }; });
+    if (J(z.fil) !== J(['corpus', ['mebni', 'amil:0', 'mebni', 'amil:2', 'self', 'tabi:4']])) throw new Error('the Fīl sentence: ' + J(z.fil));
+    if (J(z.free) !== J(['rule', ['mebni', 'amil:0', 'mebni', 'amil:2', 'tabi:3']]) || z.inna[1][1] !== 'amil:0' || z.inna[1][2] !== 'amil:0') throw new Error('typed text by rule: ' + J([z.free, z.inna]));
+    // the Zabt lab: tap the fourth word, its governor is outlined and the card names the kind
+    await page.evaluate(() => { conjState.lab = 'dabt'; conjState.dabt = 'جاء أبرهة من اليمن بجيش كبير'; conjState.dabtPick = 3; openConjugator(); });
+    await page.waitForSelector('#dabtOut .gov-card', { timeout: 10000 });
+    const lab = await page.evaluate(() => ({ gov: [...document.querySelectorAll('#dabtOut .dabt-w.gov')].map(b => +b.dataset.i), pressed: [...document.querySelectorAll('#dabtOut .dabt-w[aria-pressed="true"]')].map(b => +b.dataset.i), kind: document.querySelector('#dabtOut .gov-card').dataset.kind, hint: !!document.querySelector('#dabtOut .gov-hint') }));
+    if (J(lab) !== J({ gov: [2], pressed: [3], kind: 'amil', hint: true })) throw new Error('the Zabt lab: ' + J(lab));
+    await page.evaluate(() => { conjState.dabt = ''; conjState.dabtPick = -1; conjState.lab = 'sarf'; closeSheet(); });
+    // the word sheet
+    const at = await page.evaluate(() => { const N = x => x.normalize('NFC'); const st = STORIES.find(s => s.id === 'ashab-al-fil'); for (const ch of st.chapters) for (const s of ch.sentences) { const i = s.tokens.findIndex(t => N(t.s.full) === N('يَهْدِمَ')); if (i >= 0) return [ch.n, s.id, i]; } return null; });
+    if (!at) throw new Error('يَهْدِمَ is not in Aṣḥāb al-Fīl');
+    await page.evaluate(() => openStory(STORIES.find(s => s.id === 'ashab-al-fil'))); await page.waitForSelector('#story .word', { timeout: 30000 });
+    await page.evaluate(a => jumpTo('ashab-al-fil', a[1], a[2], a[0]), at); await page.waitForSelector('.sheet.show [data-tab="irab"]', { timeout: 10000 });
+    await page.locator('.sheet.show [data-tab="irab"]').click(); await page.waitForSelector('.sheet.show .gov-block', { timeout: 10000 });
+    const w1 = await page.evaluate(() => [document.querySelector('.gov-w.on').textContent, (document.querySelector('.gov-w.gov') || {}).textContent, document.querySelector('.gov-card').dataset.kind]);
+    await page.locator('.sheet.show .gov-w.gov').click(); await page.waitForTimeout(300);
+    const w2 = await page.evaluate(() => [(document.querySelector('.sheet.show .lemma') || {}).textContent, (document.querySelector('.word.active') || {}).textContent]);
+    await page.evaluate(() => { closeSheet(); renderLibrary(); });
+    const N = s => s.normalize('NFC');
+    if (J(w1.map(N)) !== J([N('يَهْدِمَ'), N('أَنْ'), 'amil']) || N(w2[0] || '') !== N('أَنْ') || N(w2[1] || '') !== N('أَنْ')) throw new Error('the word sheet: ' + J([w1, w2]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

@@ -14025,3 +14025,19 @@ on top of the grammar index a test had just opened — which is exactly what it 
   throws, the caches are dropped and the write is tried again. Proven with a storage filled to the last byte. The
   check also reads its own write back before reloading, and prints the storage size if it ever fails again, so the
   next occurrence names its cause instead of reading as a lost preference.
+
+## v318 — who governs whom, in the Zabt lab and in the word sheet (design handoff 12 and 13d)
+
+`GovView` is one component in two places. The sentence is a row of buttons; the chosen word is filled with
+`--accent`, its governor outlined with a dashed `--lvl2` — never the accent and never the iʿrāb colour, so «chosen»,
+«case ending» and «governor» never share a hue — and a card names the KIND (lafẓī, maʿnawī, tābiʿ, attached, deleted,
+mabnī, no work) and says why in one sentence.
+
+**Where the answer comes from is the whole design.** A stored sentence is read by `AmilEngine.word()` off its own
+iʿrāb lines (v313's two pairing fixes make that safe). Typed text in the Zabt lab is first looked up in the corpus by
+its bare letters — the example chips come from the stories, so the showcase sentence is read from the human lines —
+and only otherwise read off the DabtEngine's rules (`fromDabt`): fāʿil/mafʿūl/ḥāl/tamyīz → the nearest verb before it,
+majrūr → the letter before it or the letter fused to it, a follower → its head, mubtadaʾ/khabar and the raised
+muḍāriʿ → maʿnawī, mabnī → none. A rule that table does not name makes no claim, and the card says the engines do
+not decide it. The Fīl sentence reads mebni · ←جَاءَ · mebni · ←مِنَ · attached · follower of بِجَيْشٍ, exactly as the
+handoff draws it; the word sheet of يَهْدِمَ outlines أَنْ and a tap on أَنْ moves the sheet to it.

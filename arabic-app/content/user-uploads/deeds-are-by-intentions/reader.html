@@ -541,6 +541,19 @@
   .lab-tile .ar { font-family: var(--ar-font); font-size: 1.2rem; color: var(--accent); line-height: 1.6; }
   .lab-tile b { font-size: var(--t-xs); font-weight: 600; }
   .lab-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gov-hint { font-size: var(--t-sm); color: var(--ink-soft); margin: var(--s2) 0; }
+  .gov-block { margin: var(--s3) 0; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+  .gov-block h4 { margin: 0 0 var(--s2); font-size: var(--t-sm); }
+  .gov-line { font-family: var(--ar-font); font-size: 1.35rem; line-height: 2.1; display: flex; flex-wrap: wrap; gap: 2px 4px; align-items: center; }
+  .gov-w { font: inherit; min-height: 44px; padding: 0 .35rem; border: 0; border-radius: 10px; background: transparent; color: var(--ink); cursor: pointer; }
+  .gov-w.on { background: var(--accent); color: var(--accent-ink); }
+  .gov-w.gov, .dabt-w.gov { outline: 2px dashed var(--lvl2); outline-offset: 2px; }
+  .gov-card { margin: var(--s2) 0; padding: var(--s2) var(--s3); border-inline-start: 3px solid var(--lvl2); background: color-mix(in srgb, var(--lvl2) 7%, var(--panel)); border-radius: 10px; }
+  .gov-card p { margin: var(--s1) 0 0; font-size: var(--t-sm); }
+  .gov-chip { display: inline-block; padding: 0 .5rem; border-radius: 999px; font-size: var(--t-xs); font-weight: 600; background: color-mix(in srgb, var(--lvl2) 14%, var(--panel)); color: color-mix(in srgb, var(--lvl2) 70%, var(--ink)); }
+  .gov-pair { font-family: var(--ar-font); font-size: 1.25rem; margin-top: var(--s1); }
+  .gov-pair .gov-g { color: color-mix(in srgb, var(--lvl2) 72%, var(--ink)); }
+  .gov-rel { color: var(--ink-soft); }
   .tabs.labrail button {
     flex: 0 0 auto; scroll-snap-align: center;
     display: inline-flex; align-items: center; gap: .35rem;
@@ -2987,7 +3000,7 @@ const L = {
         mizanComputedWhy:"the root letters stood in ف ع ل and everything else left where it was — no model, no lookup",
         mizanLearned:"Learned",
         mizanAmbiguous:"The scale is settled; the OFFICE is not. This one carries {n} at once, and only the sentence around the word decides which is meant.",
-        labRailLabel:"Workshop tools", labHomeTab:"Index", labSearchPh:"Find a tool — Turkish, English or Arabic", labRecent:"Recently used", labNoHit:"No tool matches «{q}».", labGroup_sarf:"Ṣarf", labGroup_nahw:"Naḥw", labGroup_balagha:"Balāgha", labGroup_fahm:"Reading and learning",
+        labRailLabel:"Workshop tools", zabtTapHint:"Tap a word to see what governs it.", wordGovTitle:"Its governor in the sentence", amilLafzi:"Governing word", amilManevi:"Abstract governor", amilTabi:"Follower", amilSelf:"Attached governor", amilHidden:"Deleted governor", amilMebni:"Built (mabnī)", amilNone:"No work", govWhyAmil:"«{g}» governs «{w}».", govWhyManevi:"No word governs it: its governor is abstract — the ibtidāʾ for a mubtadaʾ and its khabar, the bareness (tajarrud) for a raised muḍāriʿ.", govWhyTabi:"It follows «{g}» and takes its case from it.", govWhySelf:"The letter fused to its front governs it.", govWhyHidden:"Its governor is deleted: it hangs on an unsaid word (mutaʿalliq bi-maḥdhūf).", govWhyMebni:"It is built (mabnī): its ending does not change, so no governor's work shows on it.", govWhyNone:"It does no grammatical work and receives none.", govUnknown:"The engines do not decide this word's governor.", labHomeTab:"Index", labSearchPh:"Find a tool — Turkish, English or Arabic", labRecent:"Recently used", labNoHit:"No tool matches «{q}».", labGroup_sarf:"Ṣarf", labGroup_nahw:"Naḥw", labGroup_balagha:"Balāgha", labGroup_fahm:"Reading and learning",
         gameThin:"only {n} here — a full round wants {m}; it will draw from the library instead",
         idafaTab:"Idafa",
         idafaIntro:"Two nouns and a case. The lab builds the idafa and names every rule that fired — or refuses, and names the rule that forbids it.",
@@ -3380,7 +3393,7 @@ const L = {
         mizanComputedWhy:"kök harfleri ف ع ل'e oturtuldu, geri kalan her şey yerinde bırakıldı — ne model ne tablo",
         mizanLearned:"Öğrenilen",
         mizanAmbiguous:"Vezin bellidir; VAZÎFE değil. Bu vezin aynı anda {n} vazîfe taşır; hangisinin kastedildiğini ancak kelimenin etrafındaki cümle tayin eder.",
-        labRailLabel:"Atölye âletleri", labHomeTab:"Dizin", labSearchPh:"Âlet ara — Türkçe, İngilizce ya da Arapça", labRecent:"Son kullanılanlar", labNoHit:"«{q}» ile eşleşen âlet yok.", labGroup_sarf:"Sarf", labGroup_nahw:"Nahiv", labGroup_balagha:"Belâgat", labGroup_fahm:"Anlama ve öğrenme",
+        labRailLabel:"Atölye âletleri", zabtTapHint:"Bir kelimeye dokun: âmilini cümlede göstereyim.", wordGovTitle:"Cümlede âmili", amilLafzi:"Lafzî âmil", amilManevi:"Mânevî âmil", amilTabi:"Tâbiʿ", amilSelf:"Bitişik âmil", amilHidden:"Mahzûf âmil", amilMebni:"Mebnî", amilNone:"Ameli yok", govWhyAmil:"«{g}», «{w}» kelimesinin âmilidir.", govWhyManevi:"Onu bir kelime amel etmiyor; âmili mânevîdir: mübtedâ ve haber için ibtidâ, merfû muzâri için tecerrüd.", govWhyTabi:"«{g}» kelimesine tâbidir; i'râbını ondan alır.", govWhySelf:"Önüne bitişik harf onu amel eder.", govWhyHidden:"Âmili mahzûftur: söylenmemiş bir kelimeye müteallıktır.", govWhyMebni:"Mebnîdir: sonu değişmez, üzerinde âmil eseri görünmez.", govWhyNone:"Ameli yoktur, amel de görmez.", govUnknown:"Bu kelimenin âmilini motorlar belirlemiyor.", labHomeTab:"Dizin", labSearchPh:"Âlet ara — Türkçe, İngilizce ya da Arapça", labRecent:"Son kullanılanlar", labNoHit:"«{q}» ile eşleşen âlet yok.", labGroup_sarf:"Sarf", labGroup_nahw:"Nahiv", labGroup_balagha:"Belâgat", labGroup_fahm:"Anlama ve öğrenme",
         gameThin:"burada yalnız {n} tane var — tam bir tur {m} ister; eksiği kütüphaneden tamamlar",
         idafaTab:"İzâfet",
         idafaIntro:"İki isim, bir i'râb. Atölye izâfeti kurar ve işleyen her kaideyi adıyla gösterir — yahut reddeder ve buna mâni olan kaideyi söyler.",
@@ -16213,10 +16226,15 @@ function renderDabtOut(){
       const nd = marked ? dabtCompare(v, txt) : -1;
       const decided = v.words.filter(x => x.src !== "none" && x.src !== "kept").length;
       const pick = conjState.dabtPick >= 0 && conjState.dabtPick < v.words.length ? conjState.dabtPick : -1;
+      const gv = GovView.forDabt(v), gw = v.words.map(x => x.out || x.w);
       out.innerHTML = (marked && decided ? `<p class="dabt-verdict ${nd ? "bad" : "ok"}">${nd ? u.dabtDisagree.replace("{n}", nd) : u.dabtAgree}</p>` : "") +
-        dabtLineHtml(v, { compare: marked, pick }) + dabtLegendHtml() + (pick >= 0 ? dabtDetailHtml(v, pick, lang) : "") +
+        `<p class="gov-hint">${u.zabtTapHint}</p>` +
+        dabtLineHtml(v, { compare: marked, pick }) + dabtLegendHtml() + (pick >= 0 ? GovView.cardHtml(gw, gv.r, pick) + dabtDetailHtml(v, pick, lang) : "") +
         `<ul class="dabt-ledger" hidden></ul>` + seeds + tools;
-      out.querySelectorAll(".dabt-w").forEach(b => b.addEventListener("click", () => { conjState.dabtPick = +b.dataset.i; renderDabtOut(); }));
+      out.querySelectorAll(".dabt-w").forEach(b => { const i = +b.dataset.i; b.setAttribute("aria-pressed", String(i === pick));
+        if (pick >= 0 && gv.r[pick] && gv.r[pick].amil === i) b.classList.add("gov");
+        b.addEventListener("click", () => { conjState.dabtPick = i; renderDabtOut(); }); });
+      out.__gov = gv;
       out.__v = v;
     }
   }
@@ -16537,6 +16555,65 @@ let sarfNakilTense = "mazi";
 const DC_GROUP = { nahw: { en: "Naḥw", tr: "Nahiv" }, sarf: { en: "Ṣarf", tr: "Sarf" }, awamil: { en: "ʿAwāmil", tr: "Avâmil" },
   balagha: { en: "Balāgha", tr: "Belâgat" }, bayan: { en: "Bayān", tr: "Beyân" } };
 
+// ---------- who governs whom (v318 · design handoff 12 and 13d) ----------
+// One component for the Zabt lab and the word sheet: the sentence as buttons, the chosen word filled with --accent,
+// its governor outlined in a dashed --lvl2 (never the accent or the iʿrāb colour, so «chosen», «case ending» and
+// «governor» never share a hue), and one card that names the KIND of governor and says why in a sentence.
+// Stored sentences are read by AmilEngine.word() off their own iʿrāb lines. Typed text the corpus also holds is read
+// the same way; other typed text is read off the DabtEngine's rules, and a rule this table does not name makes no claim.
+const GovView = {
+  KIND: { amil: "amilLafzi", manevi: "amilManevi", tabi: "amilTabi", self: "amilSelf", hidden: "amilHidden", mebni: "amilMebni", none: "amilNone" },
+  WHY: { amil: "govWhyAmil", manevi: "govWhyManevi", tabi: "govWhyTabi", self: "govWhySelf", hidden: "govWhyHidden", mebni: "govWhyMebni", none: "govWhyNone" },
+  _idx: null,
+  key(words){ return words.map(w => stripAr(String(w || "")).replace(/[^ء-ي]/g, "")).filter(Boolean).join(" "); },
+  index(){ if (this._idx) return this._idx; const m = new Map();
+    for (const st of STORIES) for (const ch of st.chapters) for (const sen of ch.sentences) { const k = this.key(sen.tokens.map(t => t.s.full)); if (k && !m.has(k)) m.set(k, sen); }
+    return (this._idx = m); },
+  stored(sen){ return sen.tokens.map((t, i) => { try { return AmilEngine.word(sen, i); } catch (e) { return null; } }); },
+  // the DabtEngine's rule → the governor's kind and seat, for typed text the corpus does not hold
+  fromDabt(v){
+    const W = v.words, VERB = /^(mazi|amr|nasbVerb|jazm|raf|cell|nahy|lamAmr|mudari)$/;
+    const isVerb = j => VERB.test(W[j].rule || "") || W[j].src === "cell" || ((v.rows || [])[j] || {}).kind === "verb";
+    const isPart = j => W[j].rule === "mabni" || ((v.rows || [])[j] || {}).kind === "particle";
+    const back = (i, f) => { for (let j = i - 1; j >= 0; j--) if (f(j)) return j; return -1; };
+    return W.map((w, i) => { const r = w.rule || "";
+      if (/^(fail|naib|naibFail|maful|mafulMutlaq|mafulLah|zarf|hal|tamyiz|kanaIsm|kanaKhabar)$/.test(r)) { const j = back(i, isVerb); return j >= 0 ? { kind: "amil", amil: j } : null; }
+      if (/^(innaIsm|innaKhabar|munada|munadaMudaf)$/.test(r)) { const j = back(i, isPart); return j >= 0 ? { kind: "amil", amil: j } : null; }
+      if (r === "nasbVerb" || r === "jazm") { const j = i > 0 && isPart(i - 1) ? i - 1 : -1; return j >= 0 ? { kind: "amil", amil: j } : null; }
+      if (r === "jarr") { if (i > 0 && isPart(i - 1)) return { kind: "amil", amil: i - 1 }; return /^[بلك]/.test(stripAr(w.w || "")) ? { kind: "self", amil: null } : null; }
+      if (r === "jarrPron") return { kind: "self", amil: null };
+      if (r === "mudafIlayh") return i > 0 ? { kind: "amil", amil: i - 1 } : null;
+      if (/^(nat|naat|atf|badal|tawkid|atfBayan)$/.test(r)) { const h = Number(w.head); return { kind: "tabi", amil: Number.isInteger(h) && h >= 0 && h < i ? h : null }; }
+      if (/^(mubtada|khabar)$/.test(r) || (r === "raf" && isVerb(i))) return { kind: "manevi", amil: null };
+      if (/^(mabni|mazi|amr)$/.test(r)) return { kind: "mebni", amil: null };
+      return null; });
+  },
+  forDabt(v){ const sen = this.index().get(this.key(v.words.map(w => w.w)));
+    return sen && sen.tokens.length === v.words.length ? { src: "corpus", r: this.stored(sen) } : { src: "rule", r: this.fromDabt(v) }; },
+  cardHtml(words, r, i){
+    const u = ui(), x = r[i], E = escapeAttr;
+    if (!x) return `<div class="gov-card" data-kind="unknown"><p>${u.govUnknown}</p></div>`;
+    const g = x.amil != null && words[x.amil] != null ? words[x.amil] : null, w = words[i];
+    const B = t => `<bdi lang="ar">${E(t || "")}</bdi>`, why = (u[this.WHY[x.kind]] || "").replace("{g}", B(g)).replace("{w}", B(w));
+    const rel = x.rel ? (x.rel[state.uiLang === "tr" ? "tr" : "en"] || "") : "";
+    return `<div class="gov-card" data-kind="${x.kind}"><span class="gov-chip">${u[this.KIND[x.kind]]}</span>
+      ${g ? `<div class="gov-pair" dir="rtl" lang="ar"><b class="gov-g">${E(g)}</b> <span aria-hidden="true">←</span> <b class="gov-me">${E(w)}</b></div>` : ""}
+      <p>${why}${rel ? ` <span class="gov-rel">(${E(rel)})</span>` : ""}</p></div>`;
+  },
+  // the word sheet's block: a window round the word and its governor, so a sixty-word sentence stays readable
+  blockHtml(sen, ti){
+    let x = null; try { x = AmilEngine.word(sen, ti); } catch (e) { x = null; } if (!x) return "";
+    const r = []; r[ti] = x;   // only the open word is asked: word() walks the sentence's pairs once per call
+    const words = sen.tokens.map(t => t.s.full), a = x.amil != null ? x.amil : ti;
+    const lo = Math.max(0, Math.min(ti, a) - 3), hi = Math.min(words.length - 1, Math.max(ti, a) + 3);
+    const btn = j => `<button class="gov-w${j === ti ? " on" : ""}${j === x.amil ? " gov" : ""}" data-gj="${j}" aria-pressed="${j === ti}">${escapeAttr(words[j])}</button>`;
+    const line = (lo > 0 ? "… " : "") + Array.from({ length: hi - lo + 1 }, (_, k) => btn(lo + k)).join(" ") + (hi < words.length - 1 ? " …" : "");
+    return `<section class="gov-block"><h4>${ui().wordGovTitle}</h4><div class="gov-line" dir="rtl" lang="ar">${line}</div>${this.cardHtml(words, r, ti)}</section>`;
+  },
+  // the reader element of token j, found from the open word's own element
+  wordEl(el, sen, ti, j){ let p = el; while (p && p.querySelectorAll && p.querySelectorAll(".word").length < sen.tokens.length) p = p.parentElement;
+    if (!p || !p.querySelectorAll) return null; const ws = [...p.querySelectorAll(".word")], at = ws.indexOf(el); return at >= 0 ? ws[at - ti + j] || null : null; },
+};
 function decisionChainHtml(tok){
   if (!tok || !tok.irab) return "";
   const lang = state.uiLang === "tr" ? "tr" : "en";
@@ -16732,6 +16809,7 @@ function openWord(tok, el, tab, ctx){
     html += `<p class="lemma">${tok.s.full}</p>
       <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
+      ${wordCtx && wordCtx.sen && wordCtx.sen.tokens && wordCtx.sen.tokens[wordCtx.ti] === tok ? GovView.blockHtml(wordCtx.sen, wordCtx.ti) : ""}
       ${decisionChainHtml(tok)}
       <p class="sarf-note">${ui().irabNote}</p>`;
   } else {
@@ -16740,6 +16818,10 @@ function openWord(tok, el, tab, ctx){
   sheetInner.innerHTML = html;
   sheetInner.querySelectorAll("[data-tab]").forEach(b =>
     b.addEventListener("click", () => openWord(tok, el, b.dataset.tab)));
+  sheetInner.querySelectorAll("[data-gj]").forEach(b => b.addEventListener("click", () => {   // (v318) another word of the sentence
+    const j = +b.dataset.gj, sen = wordCtx && wordCtx.sen; if (!sen || j === wordCtx.ti) return;
+    const t2 = sen.tokens[j], el2 = GovView.wordEl(el, sen, wordCtx.ti, j);
+    openWord(t2, el2, t2.irab ? "irab" : "word", { sen, ti: j }); }));
   sheetInner.querySelectorAll("[data-tense]").forEach(b =>
     b.addEventListener("click", () => {
       sarfTense = b.dataset.tense; sarfUserPick = true;
