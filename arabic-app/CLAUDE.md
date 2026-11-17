@@ -4,6 +4,24 @@ An Arabic graded-reader app (DuChinese-shaped) built on classical Islamic texts,
 with madrasah grammar attached to every word. Target: iOS + Android launch.
 Everything here is the *why*; the code is the *what*.
 
+## Core mission: depth over breadth (owner's rule, 2026-11-17)
+
+The core engines come first and must be excellent, in this order:
+
+1. **Taṣrīf** — conjugation, and naql (transfer) of a root through the bābs.
+2. **Iʿlāl** — the weak-letter changes, and iʿlāl inside taṣrīf.
+3. **Naḥw** — iʿrāb.
+
+…and the next core layers after these. **Do not build dozens of new atölyes (workshops).** Keep the existing ones as
+they are; a new atölye or oyun (game) is added only when it directly exercises one of the core engines. When the AI
+review's root-cause groups come in, rank the engine fixes by the same order: taṣrīf/iʿlāl and iʿrāb fixes first.
+
+**Held until the scholar has seen the review report — no engine or content change before then:**
+- *The fāʾ after أَمَّا is parsed as ʿāṭifa.* The pilot review (2026-11-17) flagged it again and again in
+  tasrif-al-izzi (e.g. 8:s1 فَهُوَ, 11:s6 فَالضَّابِطُ, 13:s5 فَتُحْذَفُ): it is the obligatory fāʾ that answers أَمَّا and
+  opens its jawāb (الْفَاءُ وَاقِعَةٌ فِي جَوَابِ أَمَّا), not a conjunction, and the note amma-tafsiliyya belongs on the
+  أَمَّا. A candidate RULE fix in the authoring pipeline (one rule, every text), not a token-by-token patch.
+
 ## Where things live
 
 ```
