@@ -63,6 +63,7 @@ ASSUME = {"thinking": 8000, "tok_per_finding": 220, "finding_every": 1500, "summ
 # always at effort high, never deferred and never downgraded to fit a budget.
 ENGINE_SOURCES = ["al-usul-al-munifa", "talkhis-al-miftah", "mukhtasar-al-manar", "marah-al-arwah", "tasrif-al-izzi",
                   "al-kafiya", "izhar-al-asrar", "shudhur-al-dhahab", "min-muqaddimat-al-maqsud", "jumal-al-tadrib"]
+ALWAYS_HIGH = ["aqaid-ahl-al-sunna"]                  # doctrinal: never medium (owner's rule, 2026-11-17)
 CACHE_TTL = "5m"                                      # set from --cache-ttl; a 5m write is 1.25x input, a 1h write 2x
 ISSUE_TYPES = ["irab_ar", "irab_en", "irab_tr", "tashkeel", "lex_gloss", "grammar_id", "doctrinal_sensitivity"]
 SEVERITIES = ["critical", "major", "minor"]
@@ -586,6 +587,8 @@ def main():
     ap.add_argument("--cache-ttl", default="5m", choices=["5m", "1h"])
     ap.add_argument("--engine-max-findings", type=int, default=ENGINE_MAX_FINDINGS)
     ap.add_argument("--only-units", help="custom_ids: for the packages they name, send only these units (e.g. a re-run of chapters that hit the cap)")
+    ap.add_argument("--medium-packages", default="",
+                    help="--all: these packages at effort medium (never an engine source, never aqaid-ahl-al-sunna)")
     ap.add_argument("--medium-originals", action="store_true",
                     help="--all: send the original Level 1–2 stories (not engine sources) at effort medium (cut step 1)")
     ap.add_argument("--no-wait", action="store_true"); ap.add_argument("--out")
@@ -601,8 +604,11 @@ def main():
     outdir.mkdir(parents=True, exist_ok=True)
     pkgs = pending_packages()
     if a.packages and not a.pilot:
-        want = set(a.packages.split(",")); pkgs = [p for p in pkgs if p.name in want]
-        if want - {p.name for p in pkgs}: sys.exit("not pending or not found: " + ", ".join(sorted(want - {p.name for p in pkgs})))
+        want = set(a.packages.split(","))                          # a package id (manifest) or its folder name
+        pid = lambda p: json.loads((p / "manifest.json").read_text(encoding="utf-8"))["id"]
+        pkgs = [p for p in pkgs if p.name in want or pid(p) in want]
+        found = {p.name for p in pkgs} | {pid(p) for p in pkgs}
+        if want - found: sys.exit("not pending or not found: " + ", ".join(sorted(want - found)))
     reg = notes(); trm = irab_tr_memory()
     reqs = build_requests(pkgs, trm, reg)
     for r in reqs: r["cap"] = a.engine_max_findings if r["package"] in ENGINE_SOURCES else a.max_findings
@@ -672,7 +678,8 @@ def main():
     done = {p.stem for p in outdir.glob("*.json") if p.stem not in ("batch", "dry-run", "assumptions", "refused", "truncated", "failed", "usage") and "@" not in p.stem}
     per = {k: v for k, v in per.items() if k not in done}
     print(f"cost model: {src}" + (f"; already reviewed here, skipped: {', '.join(sorted(done))}" if done else ""))
-    cut = cut_candidates(per) if a.medium_originals else set()
+    cut = (cut_candidates(per) if a.medium_originals else set()) | {x for x in a.medium_packages.split(",") if x}
+    if cut & (set(ENGINE_SOURCES) | set(ALWAYS_HIGH)): sys.exit("refused: engine sources and doctrinal texts are reviewed at effort high only")
     eff_of = lambda pk: "medium" if pk in cut else a.effort
     if any(pk in ENGINE_SOURCES and eff_of(pk) != "high" for pk in per): sys.exit("engine sources are reviewed at effort high only")
     rate = rates_by_group() or load_measured(override)
