@@ -1554,5 +1554,57 @@ L("73:s4:9", "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ «إِذ
 R("73:s4:11", "mabni", "keep")
 L("73:s4:11", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ نَصْبٍ خَبَرُ «صَارَ».", "The word itself is quoted; in the place of nasb as the khabar of «صَارَ».", "Kelimenin kendisi kastedilmiştir (hikâye); «صَارَ»nin haberi olarak mahallen mansûb.", key="baa", pos="verb", enc="")
 # <<< part twenty-six
+# >>> part twenty-seven (pp. 140–144): the four after a kasra, the three after a quiescent letter, what is not weakened
+#      (R() replaces a row, K() and L() merge into it: write R first, then K, then L)
+#      «تُجْعَلُ يَاءً لِمَا مَرَّ»: the lām of the reason and the relative «مَا» — no «لَمَّا»
+L("74:s2:4", *F["14:s3:3"]["irab"].values(), key="ma-mawsula", pos="pron")
+#      «لِاسْتِدْعَاءِ مَا قَبْلَهَا وَلِينِ عَرِيكَةِ …»: the second reason joined to the first, annexed like it
+for _w in ("74:s3:7", "75:s3:8"):
+    L(_w, "الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ بِالْكَسْرَةِ، مُضَافٌ.", "The waw conjoins; joined by the conjunction to the word before it; the same case; the sign is the kasra; annexed (mudaf).", "«ve» + ma'tûf; aynı i'râb; alâmeti kesre ile; muzâf.")
+#      «لِأَنَّ الْأَسْمَاءَ الَّتِي لَيْسَتْ بِمُشْتَقَّةٍ»: the relative describes the noun of «أَنَّ»
+L("74:s4:6", "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ نَعْتٌ لِـ«الْأَسْمَاءَ»، وَصِلَتُهُ جُمْلَةُ «لَيْسَتْ …» الْفِعْلِيَّةُ لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+  "a relative pronoun — built (mabni), in the place of nasb as the na't of «الْأَسْمَاءَ»; its relative clause is the verbal clause «لَيْسَتْ …», with no place in the iʿrāb; the returning pronoun stands inside it.",
+  "ism-i mevsûl — mebnî, «الْأَسْمَاءَ»nın sıfatı olarak mahallen mansûb; sılası «لَيْسَتْ …» fiil cümlesidir, i'râbdan mahalli yoktur; âid zamiri içindedir.")
+#      «تُعْطَى حَرَكَاتُهُنَّ إِلَى مَا قَبْلَهُنَّ»: the relative in the place of jarr after «إِلَى»
+L("75:s2:3", "اسْمٌ مَوْصُولٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ جَرٍّ بِـ«إِلَى»، وَصِلَتُهُ الظَّرْفُ «قَبْلَهُنَّ»، وَالْعَائِدُ الضَّمِيرُ فِيهَا.",
+  "a relative pronoun — built (mabni), in the place of jarr after «إِلَى»; its relative clause is the adverbial «قَبْلَهُنَّ»; the returning pronoun stands inside it.",
+  "ism-i mevsûl — mebnî, «إِلَى» ile mahallen mecrûr; sılası zarf «قَبْلَهُنَّ»; âid zamiri içindedir.")
+#      «فَصِرْنَ «يَخَافُ» …»: the sister of kāna built on the sukūn for the nūn of the feminine plural, which is its noun
+L("75:s4:0", "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ اسْمُهَا.",
+  "The fa conjoins; a past verb, incomplete — one of the sisters of kāna — built on sukūn because the nūn of women is attached; the nūn is an attached pronoun, built on fatha, in the place of raf' as its noun (ism).",
+  "«fe» atıf harfi; nâkıs mâzî fiil — kâne'nin kardeşlerinden —, nûn-i nisve bitiştiği için sükûn üzere mebnî; nûn muttasıl zamirdir, feth üzere mebnî, mahallen merfû, onun ismidir.")
+#      «وَ «مِخْيَطٌ» مَنْقُوصٌ مِنَ «الْمِخْيَاطِ»»: the cited word is told of — a mubtadaʾ and its khabar
+R("76:s6:1", "mabni", "keep")
+L("76:s6:1", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ.", "The word itself is quoted; in the place of raf' as the mubtada.", "Kelimenin kendisi kastedilmiştir (hikâye); mahallen merfû, mübtedâ.")
+R("76:s6:2", "khabar", "raf")
+L("76:s6:2", "خَبَرٌ مَرْفُوعٌ بِالضَّمَّةِ.", "The khabar, in raf'; the sign is the damma.", "Haber, merfû; alâmeti damme ile.")
+#      «تَبَعًا لِ «قَامَ» وَهُوَ ثُلَاثِيٌّ أَصِيلٌ»: the wāw of the state
+L("76:s9:9", *PMUB(("الْوَاوُ حَالِيَّةٌ، وَ", "The waw is circumstantial; ", "Vâv hâliyyedir; "), "هُوَ", "الْفَتْحِ", "fatha", "feth"), key="huwa", pos="pron")
+#      «وَإِنْ كَانَ أَصِيلًا فِي الْإِعْلَالِ»: the linking «إِنْ»
+L("76:s10:6", *WASL)
+#      «وَلَا يَصْلُحُ «أَقَامَ» أَنْ يَكُونَ مُقَوِّيًا»: the cited verb is the doer
+L("76:s11:1", "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.", "A present verb, in raf'; the sign is the visible damma.", "Muzâri fiil, merfû; alâmeti zâhir damme.")
+R("76:s11:2", "mabni", "keep")
+L("76:s11:2", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ رَفْعٍ فَاعِلٌ.", "The word itself is quoted; in the place of raf' as the doer.", "Kelimenin kendisi kastedilmiştir (hikâye); fâil olarak mahallen merfû.", pos="verb")
+#      «مِثْلُ «مَا أَقْوَلَهُ» وَ «أَغْيَلَتِ الْمَرْأَةُ» وَ «اسْتَحْوَذَ»»: two cited sentences and a cited verb, each left on its origin
+R("76:s12:3", "mabni", "keep"); K("76:s12:3", "ma-taajjub", pos="part")
+L("76:s12:3", "«مَا» التَّعَجُّبِيَّةُ: نَكِرَةٌ تَامَّةٌ بِمَعْنَى «شَيْءٌ» مَبْنِيَّةٌ عَلَى السُّكُونِ فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ، وَجُمْلَةُ «مَا أَقْوَلَهُ» مَحْكِيَّةٌ قُصِدَ لَفْظُهَا فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
+  "The mā of wonder: a complete indefinite meaning «something», built on sukun, in the place of raf' as the mubtada; the sentence «مَا أَقْوَلَهُ» is quoted for its wording, in the place of jarr as the mudaf ilayh.",
+  "Taaccüb mâ'sı: «bir şey» mânâsında nekre-i tâmme, sükûn üzere mebnî, mahallen merfû mübtedâ; «مَا أَقْوَلَهُ» cümlesi lafzı kastedilerek hikâye edilmiştir, mahallen mecrûr muzâfun ileyh.")
+R("76:s12:4", "mabni", "keep")
+L("76:s12:4", "فِعْلُ تَعَجُّبٍ مَاضٍ جَامِدٌ مَبْنِيٌّ عَلَى الْفَتْحِ — بَقِيَتْ وَاوُهُ عَلَى الْأَصْلِ بِلَا إِعْلَالٍ، وَهُوَ مَوْضِعُ الشَّاهِدِ — وَفَاعِلُهُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ «هُوَ» يَعُودُ عَلَى «مَا»، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ، وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ «مَا».",
+  "The verb of wonder — a past verb that does not conjugate, built on fatha; its wāw stays on its origin with no iʿlāl, which is the point of the example. Its doer is a pronoun hidden by necessity, «هُوَ», returning to «مَا»; the hāʾ is an attached pronoun in the place of nasb as the object; the clause is in the place of raf' as the khabar of «مَا».",
+  "Taaccüb fiili — câmid mâzî fiil, feth üzere mebnî; vâvı i'lâl edilmeden aslı üzere kalmıştır, misâlin şâhidi budur. Fâili vücûben gizli «هُوَ» zamiridir, «مَا»ya döner; hâ muttasıl zamirdir, mahallen mansûb mef'ûlün bih; cümle «مَا»nın haberi olarak mahallen merfûdur.")
+R("76:s12:6", "mabni", "keep")
+L("76:s12:6", "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ — بَقِيَتْ يَاؤُهُ عَلَى الْأَصْلِ بِلَا إِعْلَالٍ، وَهُوَ مَوْضِعُ الشَّاهِدِ — وَالتَّاءُ عَلَامَةُ التَّأْنِيثِ حَرْفٌ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، حُرِّكَتْ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَجُمْلَةُ «أَغْيَلَتِ الْمَرْأَةُ» مَحْكِيَّةٌ مَعْطُوفَةٌ عَلَى مَا قَبْلَهَا فِي مَحَلِّ جَرٍّ.",
+  "A past verb, built on fatha — its yāʾ stays on its origin with no iʿlāl, which is the point of the example; the tāʾ is the sign of the feminine, a letter with no place in the iʿrāb, given a kasra because two quiescent letters meet. The sentence «أَغْيَلَتِ الْمَرْأَةُ» is quoted, joined to what is before it, in the place of jarr.",
+  "Mâzî fiil, feth üzere mebnî — yâsı i'lâl edilmeden aslı üzere kalmıştır, misâlin şâhidi budur; tâ te'nîs alâmetidir, i'râbdan mahalli olmayan harftir, iki sâkin bir araya geldiği için kesre ile harekelenmiştir. «أَغْيَلَتِ الْمَرْأَةُ» cümlesi hikâye edilmiştir; öncekine ma'tûf, mahallen mecrûr.")
+R("76:s12:7", "fail", "raf")
+L("76:s12:7", "فَاعِلُ «أَغْيَلَتْ» مَرْفُوعٌ بِالضَّمَّةِ، مِنْ تَمَامِ الْجُمْلَةِ الْمَحْكِيَّةِ.", "The doer of «أَغْيَلَتْ», in raf'; the sign is the damma — part of the quoted sentence.", "«أَغْيَلَتْ» fiilinin fâili, merfû; alâmeti damme ile — hikâye edilen cümlenin devamıdır.")
+R("76:s12:9", "mabni", "keep")
+L("76:s12:9", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.", "The word itself is quoted; joined to the word before it, in the place of jarr.", "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr.")
+#      «حَتَّى يَدْلُلْنَ عَلَى الْأَصْلِ»: built on the sukūn for the nūn of the feminine plural, in the place of naṣb
+L("76:s12:11", *F["72:s2:2"]["irab"].values())
+# <<< part twenty-seven
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

@@ -13797,3 +13797,76 @@ the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
   blind engine (ending right; the stored line says khabar of «صَارَ»); «ما كان زيد بخيلا» typed bare reads «بِ + خيلا»;
   the wave-211 items stand except «وَلِينِ».
 - **Next.** Marāḥ part twenty-seven continues on p. 140 at «الْأَرْبَعَةُ إِذَا كَانَ مَا قَبْلَهَا مَكْسُورًا» (PDF page 46).
+
+### v312 (wave 213) — Marāḥ al-Arwāḥ part twenty-seven (the four after a kasra, the three after a quiescent letter, what is not weakened), three reader rules, four packager rules
+
+- **Content.** `research/sources/marah-al-arwah-src.txt` grows by pp. 140–144 of the scan (the matn's large type only):
+  chapter 74 «الْأَرْبَعَةُ إِذَا كَانَ مَا قَبْلَهَا مَكْسُورًا» (7 sentences — «مِوْزَانٌ», «دَاعِوَةٌ» → «دَاعِيَةٌ», «رَضِيُوا» → «رَضُوا», «تَرْمِيِينَ»,
+  and why «دِوَلٌ» stays), 75 «الثَّلَاثَةُ إِذَا كَانَ مَا قَبْلَهَا سَاكِنًا» (4 — «يَخْوَفُ» «يَبْيِعُ» «يَقْوُلُ» → «يَخَافُ» «يَبِيعُ» «يَقُولُ»)
+  and 76 «مَا لَا يُعَلُّ وَمَا قَبْلَهُ سَاكِنٌ» (12 — «أَدْوُرٌ», «جَدْوَلٌ», «قَوَّمَ», «الرَّمْيُ», «تَقْوِيمٌ» …, «مِخْيَطٌ», the two «فَإِنْ قِيلَ … قُلْنَا»
+  on «الْإِقَامَةُ» and «التَّقْوِيمُ», and «مَا أَقْوَلَهُ», «أَغْيَلَتِ الْمَرْأَةُ», «اسْتَحْوَذَ»). 23 sentences / 249 words; the book stands at
+  **76 chapters / 592 sentences / 7,358 words**, version 0.27.0. One paradigm through `sarf_gen`: «قَوَّمَ» (Form II of a
+  hollow root — sound by its shadda, which is the chapter's own point). «مَا أَقْوَلَهُ», «أَغْيَلَتِ» and «اسْتَحْوَذَ» are `-cited`
+  phrase rows: each is cited precisely because it REFUSES the iʿlāl its bāb applies, and the conjugator applies it
+  (أَقَالَ، اسْتَحَاذَ) — a stored paradigm would either fail the audit or teach the audit to accept the exception.
+- **Readings, said so** (attribution, three languages). «مِوْزَانٌ» «دَاعِوَةٌ» «دَاعِيَةٌ» given rafʿ like «مُوسِرٌ» (printed
+  without a final vowel); «تَرْمِيِينَ» vowelled on its origin; «دِوَلٍ» «أَدْوُرٍ» «جَدْوَلٍ» «تَقْوِيمٍ» «تِبْيَانٍ» «مِقْوَالٍ» «مِخْيَاطٍ» given jarr
+  as annexed to «مِثْلُ» / «نَحْوُ»; «لَا يُعَلُّ لِخِفَّتِهَا» and «ثُمَّ يُحْذَفُ» kept in the masculine, «حَرْفِ الصَّحِيحِ» kept as an
+  annexation; the madd letters of «رَضُوا» «يَقُولُ» written without the printing's sukūn; the jarr lām written apart
+  from the cited word («لِ «أَقَامَ»»); the long passage on p. 141 divided at «فَحِينَئِذٍ».
+- **Reader rules** (`patch213.py`, kept with the release scripts):
+  - **(1) «صِرْنَ», «قُلْنَ», «بِعْنَ», «كُنَّ», «جِئْنَ» — one spelling, two cells.** The hollow verb's «they (the women) did» and its
+    «do, you women» are letter for letter and vowel for vowel the same word, and `RootFinder.fromCorpus` returns the
+    imperative first (its tense preference is not honoured among exact hits — compare `corpusIndex()` paradigm cells
+    directly). Where something stands before the word in its sentence (or a فَ continues a narration), no one is
+    addressed (no vocative, no «أَنْتُنَّ», no «ـكُنَّ», no «ـتُنَّ» verb BEFORE it) and the word before it is not itself an
+    imperative, it is the past and the nūn is its doer. **The first draft had no «word before it» tests** and (a) turned
+    the last cell of a recited imperative paradigm («صُنْ صُونَا … صُنَّ», Taṣrīf 14:s15) into a past — the label sweep
+    showed it beside the true fix two sentences earlier («صَانَ … صَانَتَا صُنَّ», 14:s5) — and (b) read a bare
+    sentence-opening «قُمْنَ وَصُمْنَ» as a report. Sentence-initial with nothing before it, the surface does not decide,
+    and the engine keeps the command it always gave. Four labels on the shelf follow: «فَصِرْنَ» here, «صُنَّ» in the
+    Taṣrīf's recited past (14:s5), «جِئْنَ» in the Iẓhār («الْمُسْلِمَاتُ جَاءَتْ أَوْ جِئْنَ», 27:s9) and «كُنَّ» in al-Uṣūl (below).
+    The addressee test looks only at the words BEFORE the verb — a recited past ends in «صُنْتُنَّ», which is no one
+    being spoken to.
+  - **(2) a lām written apart is the jarr letter.** «تَبَعًا لِ «أَقَامَ»»: the receipts carry no quotation marks, so the
+    lone «ل» inside a sentence with a word behind it had been read as the imperative of «وَلِيَ». The seat is the sign.
+    It is written with its kasra (`__mabniEnd24`), keyed `li` by the packager, and the cited word behind it sits «فِي
+    مَحَلِّ جَرٍّ بِاللَّامِ».
+  - **(3) the object of reason before its lām.** «فَلَا يُعَلُّ تَبَعًا لَهُ», «تَبَعًا لِ «قَامَ»»: wave 194's rule asked for a
+    particle of the table's own list behind the maṣdar; a lām with its pronoun, or the lām of rule 2, is the same
+    frame. Six older Marāḥ labels follow: the «تَبَعًا» of 11:s5, 59:s2 and 69:s4 (they had been «deputy», «object»
+    and «doer») and the lām behind each of 59:s2, 63:s6 and 69:s4.
+- **Two stored lines the sweep exposed** (al-Uṣūl al-Munīfa 31:s14, through `apply_fixes.py`): «… رَضِيَ اللهُ تَعَالَى عَنْهُنَّ
+  كُنَّ جَمِيعًا بَنَاتِ رَسُولِ اللهِ» had «كُنَّ» stored as an IMPERATIVE with a hidden «أَنْتَ» and «بَنَاتِ» as an object. They are
+  kāna's past with the nūn its noun, and its khabar in naṣb by the kasra. Rule 1 reads the verb right now; the line
+  had been wrong since the book was authored, and nothing compared it — **a label sweep that shows a changed label on
+  an OLD sentence is asking whether the stored line was ever right.**
+- **Packager** (`pkg_from_engine.py`): the lone lām keyed and named; the cited word behind it in jarr; every person of
+  «صَارَ» leaves the khabar seat to a cited word («فَصِرْنَ «يَخَافُ»»); «فَحِينَئِذٍ» / «وَحِينَئِذٍ» get the shelf's own line behind
+  their conjunction; `join_elliptic_nahw()` — a sentence that opens on «وَنَحْوُ» / «وَمِثْلُ», names its cited words and
+  goes straight to its reason («وَنَحْوُ «جَدْوَلٍ» حَتَّى لَا يَبْطُلَ الْإِلْحَاقُ») has no verb of its own and is joined to the
+  «نَحْوُ» an earlier sentence of the chapter seated as the deputy doer of a passive (wave 212 wrote those six lines by
+  hand; chapter 76's four come from the rule, and chapter 72's hand lines still win); the wonder-mā keyed by hand
+  keeps the shelf's class (`part`) and notes instead of the relative's.
+- **`R()` replaces, `K()` and `L()` merge.** In `mk_fixes.py` a `K(where, key)` written BEFORE `R(where, …)` is lost —
+  `R` assigns a fresh dict. Order: `R`, then `K`, then `L`. (It cost one pass; the token kept the relative's key.)
+- **Hand lines** (`mk_fixes.py`, part twenty-seven): «لِمَا مَرَّ» (the lām of reason and the relative — no «لَمَّا»),
+  «وَلِينِ عَرِيكَةِ …» twice, «الَّتِي» as the naʿt of «الْأَسْمَاءَ», «إِلَى مَا قَبْلَهُنَّ», «فَصِرْنَ» (built on the sukūn for the nūn,
+  which is its noun), «وَ «مِخْيَطٌ» مَنْقُوصٌ» (a cited mubtadaʾ and its khabar), «وَهُوَ ثُلَاثِيٌّ» (the wāw of the state),
+  «وَإِنْ كَانَ أَصِيلًا» (the linking إِنْ), «وَلَا يَصْلُحُ «أَقَامَ»» (the cited verb is the doer), and the three cited
+  clauses of 76:s12 — «مَا» the mā of wonder, «أَقْوَلَهُ» the verb of wonder left on its origin, «أَغْيَلَتِ الْمَرْأَةُ» a quoted
+  sentence with its own doer.
+- **The wave was built twice.** The first build was finished and its gates were running when the session's container
+  was replaced; nothing of it had been committed, and the scratch tools went with the container. It was rebuilt from
+  the patches kept in the conversation: the package came back to its fixed point in three passes with the same two
+  changed tokens in chapters ≤ 73 and the same lines in 74–76. **Commit a wave's inputs (source, lemmas, fixes,
+  patches) as soon as they validate, not only at release** — the container is not a place to keep a day's work.
+- **Sweeps.** measured on this code before the rebuild (v311 code against the candidate, same data): blind 0 fixed / 0 broken, receipts-on 0 fixed / 0 broken, 16 labels moving (all listed above); the shelf read blind 74,093 true / 609 false / 377 undecided over 75,079 rows, receipts-on 74,533 / 343 / 203. After the rebuild the label rows of a v311-code build and the v312 build of the same data differ in exactly those 16 tokens. Case layer 61,013/61,699 = 98.89 % (before the rebuild). Label gauge
+  90.31 % (32,470/35,953 — the same number on the v311 code with this data, so the rules move no agreement; 32,471 before the rebuild); typed gauge 1,214/1,215 over 405 sentences (two lines added for the object of reason; the standing miss is «ليته طالبَ بحقِّهِ»).
+- **Smoke.** `wave 213` (#460; TOTAL 462).
+- **Open.** «يَا نِسَاءُ قُلْنَ الْحَقَّ» is still misread by the ḍabṭ engine though the analyzer calls «قُلْنَ» a verb — the
+  construct-chain pass pairs «نِسَاء + قلن + الحق» before any verb rule sees the row; «النِّسَاءُ قُلْنَ الْحَقَّ» leaves «الْحَقّ»
+  a mubtadaʾ (the nūn is the doer, so the noun behind it is the object); «وَهُنَّ بِعْنَ الدَّارَ» is read as «بِ + عَنْ».
+  «وَ «مِخْيَطٌ» مَنْقُوصٌ مِنَ …» (a cited mubtadaʾ before a nakira) and the cited doer behind «يَصْلُحُ» are hand lines, not
+  rules. The wave-212 items stand.
+- **Next.** Marāḥ part twenty-eight continues on p. 144 at «وَتَقُولُ فِي إِلْحَاقِ الضَّمَائِرِ: قَالَ قَالَا قَالُوا …» (PDF page 50).

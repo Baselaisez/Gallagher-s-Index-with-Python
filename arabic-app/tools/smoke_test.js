@@ -16352,6 +16352,53 @@ if (!CHROME) {
     if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
   });
 
+  await check('wave 213 — Marāḥ al-Arwāḥ part twenty-seven (the four after a kasra, the three after a quiescent letter, what is not weakened; pp. 140–144) stands on the shelf with every line named; the hollow «صِرْنَ» is the past of the absent women where no one is addressed, the lām written apart is the jarr letter, and «تَبَعًا» before its lām is the object of reason', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const N = x => String(x || '').normalize('NFC');
+      const st = STORIES.find(x => x.id === 'marah-al-arwah'); if (!st) return { err: 'no story' };
+      const ch = n => st.chapters[n - 1], sen = (n, id) => ((ch(n) || {}).sentences || []).find(x => x.id === id), tok = (n, id, i) => ((sen(n, id) || {}).tokens || [])[i] || { s: {}, irab: {} };
+      const line = (n, id, i) => tok(n, id, i).lex + '|' + N((tok(n, id, i).irab || {}).ar);
+      const all = [74, 75, 76].flatMap(n => ((ch(n) || {}).sentences || []).flatMap(x => x.tokens.map(t => ({ w: N(t.s.full), ar: N((t.irab || {}).ar), en: (t.irab || {}).en, tr: (t.irab || {}).tr, lex: t.lex }))));
+      const reset = () => { DabtEngine._lex24 = null; DabtEngine._pos24 = null; DabtEngine._orig24 = null; DabtEngine._lastGraded26 = null; DabtEngine._carry26 = null; };
+      const V = (t, i) => { try { reset(); const v = DabtEngine.vowel(t, 'endings').words[i]; return N(v.out) + '/' + v.rule; } catch (e) { return 'ERR ' + e.message; } };
+      const au = sarfAudit(); const M = k => st.morph[k] || {};
+      const P = k => [M(k).mazi, M(k).mudari, M(k).amr].map(a => N((a || [])[0])).join(' ') + ' ' + N(M(k).masdar);
+      return { chapters: st.chapters.length, sens: [74, 75, 76].map(k => ((ch(k) || {}).sentences || []).length), n: all.length,
+        bare: all.filter(x => !x.lex || x.lex === '?' || !x.ar || !x.en || !x.tr || x.ar === N('اسْمٌ.') || /^\s/.test(x.ar) || x.ar.startsWith(N('اسْمٌ،')) || x.ar.endsWith(N('وَاسْمٌ.')) || x.ar === N('حَرْفٌ مَبْنِيٌّ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.')).map(x => x.w),
+        l: { lima: line(74, 's2', 4), lin: line(74, 's3', 7), daiya: line(74, 's3', 11), mithl: line(74, 's4', 2), dawla: line(74, 's4', 3), allati: line(74, 's4', 6), hina: line(74, 's5', 0), radu: line(74, 's6', 9),
+             ma75: line(75, 's2', 3), lin75: line(75, 's3', 8), sirna: line(75, 's4', 0), yakhafu: line(75, 's4', 1), yaqulu: line(75, 's4', 5),
+             nahw: line(76, 's1', 2), adwur: line(76, 's1', 3), nahw2: line(76, 's2', 0), nahw5: line(76, 's5', 0), qawwama: line(76, 's3', 1), mikhyat: line(76, 's6', 1), manqus: line(76, 's6', 2),
+             taba6: line(76, 's6', 7), taba8: line(76, 's8', 1), li8: line(76, 's8', 2), aqama8: line(76, 's8', 3), taba9: line(76, 's9', 6), li9: line(76, 's9', 7), qama9: line(76, 's9', 8), huwa: line(76, 's9', 9),
+             taba69: line(69, 's4', 7), wasl: line(76, 's10', 6), yasluhu: line(76, 's11', 1), aqama11: line(76, 's11', 2), li11: line(76, 's11', 6), qama11: line(76, 's11', 7),
+             ma: line(76, 's12', 3), maPos: tok(76, 's12', 3).pos, aqwala: line(76, 's12', 4), aghyalat: line(76, 's12', 6), mara: line(76, 's12', 7), istahwadha: line(76, 's12', 9), yadlulna: line(76, 's12', 11) },
+        typed: { sirna: V('فَصِرْنَ «يَخَافُ» وَ «يَبِيعُ» وَ «يَقُولُ».', 0), sunnaM: V('صَانَ صَانَا صَانُوا صَانَتْ صَانَتَا صُنَّ صُنْتَ', 5), sunnaA: V('وَقِسْ عَلَيْهِ الْأَمْرَ نَحْوُ صُنْ صُونَا صُونُوا صُونِي صُونَا صُنَّ', 9),
+                 qulna: V('إِنْ جِئْتُنَّ فَقُلْنَ خَيْرًا', 2), qumna: V('قُمْنَ وَصُمْنَ', 0), kunna: V('وَالْبَنَاتُ كُنَّ جَمِيعًا صَالِحَاتٍ', 1),
+                 taba: V('فَلَا يُعَلُّ تَبَعًا لَهُ.', 2), taba2: V('قُلْنَا: تَبَعًا لِ «أَقَامَ».', 1), li: V('قُلْنَا: تَبَعًا لِ «أَقَامَ».', 2), ikram: V('جَاءَ زَيْدٌ إِكْرَامًا لَهُ', 2) },
+        morph: { qawwama: P('qawwama') + ' ' + N(M('qawwama').majhulMazi) + ' ' + N(M('qawwama').majhulMudari) },
+        audit: [au.checked, au.bad.length, au.bad.slice(0, 3)] }; });
+    if (r.err) throw new Error(r.err);
+    const N = x => String(x || '').normalize('NFC'), has = (a, b) => N(a).includes(N(b));
+    if (r.chapters < 76 || J(r.sens) !== '[7,4,12]' || r.n !== 249) throw new Error('the shelf: ' + r.chapters + ' chapters, sentences ' + J(r.sens) + ', ' + r.n + ' words');
+    if (r.bare.length) throw new Error('unnamed lines: ' + J(r.bare));
+    const L = r.l;
+    if (!L.lima.startsWith('ma-mawsula|') || !has(L.lima, 'اللَّامُ حَرْفُ جَرٍّ لِلتَّعْلِيلِ') || !L.lin.startsWith('lin|') || !has(L.lin, 'الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ') || !L.lin75.startsWith('lin|') || !has(L.lin75, 'الْوَاوُ عَاطِفَةٌ، وَمَعْطُوفٌ مَجْرُورٌ') || !L.daiya.startsWith('daiya|') || !has(L.daiya, 'خَبَرُ «صَارَ»')) throw new Error('«لِمَا مَرَّ», «وَلِينِ عَرِيكَةِ …», «فَصَارَ «دَاعِيَةٌ»»: ' + J([L.lima, L.lin, L.lin75, L.daiya]));
+    if (!has(L.mithl, 'نَائِبُ فَاعِلٍ') || !L.dawla.startsWith('dawla|') || !has(L.dawla, 'مُضَافٌ إِلَيْهِ') || !has(L.allati, 'نَعْتٌ لِـ«الْأَسْمَاءَ»') || !L.hina.startsWith('hinaidhin|') || !has(L.hina, 'الْفَاءُ عَاطِفَةٌ') || !L.radu.startsWith('radiya|') || !has(L.radu, 'خَبَرُ «صَارَ»')) throw new Error('«وَلَا يُعَلُّ مِثْلُ «دِوَلٍ» …», «فَحِينَئِذٍ», «فَصَارَ «رَضُوا»»: ' + J([L.mithl, L.dawla, L.allati, L.hina, L.radu]));
+    if (!has(L.ma75, 'فِي مَحَلِّ جَرٍّ بِـ«إِلَى»') || !L.sirna.startsWith('sara|') || !has(L.sirna, 'نُونِ النِّسْوَةِ') || !has(L.sirna, 'اسْمُهَا') || has(L.sirna, 'أَمْرٍ') || !L.yakhafu.startsWith('khafa|') || !has(L.yakhafu, 'خَبَرُ «صَارَ»') || !L.yaqulu.startsWith('qala|') || !has(L.yaqulu, 'فِي مَحَلِّ نَصْبٍ')) throw new Error('«فَصِرْنَ «يَخَافُ» وَ «يَبِيعُ» وَ «يَقُولُ»»: ' + J([L.ma75, L.sirna, L.yakhafu, L.yaqulu]));
+    const joined = 'مَعْطُوفٌ عَلَى «نَحْوُ» نَائِبِ فَاعِلِ «لَا يُعَلُّ» الْمُتَقَدِّمِ';
+    if (!has(L.nahw, 'نَائِبُ فَاعِلٍ') || !L.adwur.startsWith('dar|') || !has(L.adwur, 'مُضَافٌ إِلَيْهِ') || !has(L.nahw2, joined) || !has(L.nahw5, joined) || !L.qawwama.startsWith('qawwama|') || !has(L.qawwama, 'مُضَافٌ إِلَيْهِ')) throw new Error('«وَلَا يُعَلُّ نَحْوُ …. وَنَحْوُ … حَتَّى …»: ' + J([L.nahw, L.adwur, L.nahw2, L.nahw5, L.qawwama]));
+    if (!L.mikhyat.startsWith('mikhyat|') || !has(L.mikhyat, 'فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ') || !has(L.manqus, 'خَبَرٌ مَرْفُوعٌ') || has(L.manqus, 'نَعْتٌ')) throw new Error('«وَ «مِخْيَطٌ» مَنْقُوصٌ مِنَ «الْمِخْيَاطِ»»: ' + J([L.mikhyat, L.manqus]));
+    const lah = 'مَفْعُولٌ لِأَجْلِهِ', lam = 'اللَّامُ حَرْفُ جَرٍّ مَبْنِيٌّ عَلَى الْكَسْرِ', bil = 'فِي مَحَلِّ جَرٍّ بِاللَّامِ';
+    if (![L.taba6, L.taba8, L.taba9, L.taba69].every(x => x.startsWith('taba-following|') && has(x, lah)) || ![L.li8, L.li9, L.li11].every(x => x.startsWith('li|') && has(x, lam)) || !L.aqama8.startsWith('aqama|') || ![L.aqama8, L.qama9, L.qama11].every(x => has(x, bil))) throw new Error('«تَبَعًا لَهُ», «تَبَعًا لِ «أَقَامَ»», «مُقَوِّيًا لِ «قَامَ»»: ' + J([L.taba6, L.taba8, L.taba9, L.taba69, L.li8, L.li9, L.li11, L.aqama8, L.qama9, L.qama11]));
+    if (!has(L.huwa, 'الْوَاوُ حَالِيَّةٌ') || !has(L.wasl, 'وَصْلِيَّةٌ') || has(L.yasluhu, 'ضَمِيرٌ مُسْتَتِرٌ') || !L.aqama11.startsWith('aqama|') || !has(L.aqama11, 'فِي مَحَلِّ رَفْعٍ فَاعِلٌ')) throw new Error('«وَهُوَ ثُلَاثِيٌّ», «وَإِنْ كَانَ أَصِيلًا», «وَلَا يَصْلُحُ «أَقَامَ»»: ' + J([L.huwa, L.wasl, L.yasluhu, L.aqama11]));
+    if (!L.ma.startsWith('ma-taajjub|') || !has(L.ma, 'التَّعَجُّبِيَّةُ') || L.maPos !== 'part' || !L.aqwala.startsWith('aqwala-cited|') || !has(L.aqwala, 'فِعْلُ تَعَجُّبٍ') || !L.aghyalat.startsWith('aghyalat-cited|') || !has(L.aghyalat, 'لِالْتِقَاءِ السَّاكِنَيْنِ') || !has(L.mara, 'فَاعِلُ «أَغْيَلَتْ»') || !L.istahwadha.startsWith('istahwadha-cited|') || !has(L.istahwadha, 'مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ') || !has(L.yadlulna, 'نُونِ النِّسْوَةِ') || !has(L.yadlulna, 'فِي مَحَلِّ نَصْبٍ')) throw new Error('«مِثْلُ «مَا أَقْوَلَهُ» وَ «أَغْيَلَتِ الْمَرْأَةُ» وَ «اسْتَحْوَذَ» حَتَّى يَدْلُلْنَ»: ' + J([L.ma, L.maPos, L.aqwala, L.aghyalat, L.mara, L.istahwadha, L.yadlulna]));
+    const T = r.typed;
+    if (T.sirna !== N('فَصِرْنَ') + '/mazi' || T.sunnaM !== N('صُنَّ') + '/mazi' || T.kunna !== N('كُنَّ') + '/mazi' || !T.sunnaA.endsWith('/amr') || !T.qulna.endsWith('/amr') || !T.qumna.endsWith('/amr')) throw new Error('the hollow verb with the nūn of women — the past of the absent, the command where someone is addressed or a command stands before it: ' + J([T.sirna, T.sunnaM, T.kunna, T.sunnaA, T.qulna, T.qumna]));
+    if (T.taba !== N('تَبَعًا') + '/mafulLah' || T.taba2 !== N('تَبَعًا') + '/mafulLah' || T.li !== N('لِ') + '/mabni' || T.ikram !== N('إِكْرَامًا') + '/mafulLah') throw new Error('the object of reason before its lām; the lām written apart: ' + J([T.taba, T.taba2, T.li, T.ikram]));
+    const Mo = r.morph;
+    if (Mo.qawwama !== N('قَوَّمَ يُقَوِّمُ قَوِّمْ تَقْوِيم قُوِّمَ يُقَوَّمُ')) throw new Error('the paradigm of the part: ' + J(Mo));
+    if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
