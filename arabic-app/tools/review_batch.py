@@ -54,7 +54,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]          # arabic-app/
 MODEL = "claude-fable-5-2"
 PRICE = {"in": 4.00, "out": 20.00, "cache_read": 0.10, "cache_write_1h": 8.00, "cache_write_5m": 5.00}   # $/MTok, batch (50%)
-MAX_TOKENS = 64000                                    # thinking + the JSON answer; a hard cap on output, billed as used
+MAX_TOKENS = 128000                                   # thinking + the JSON answer; a hard cap on output, billed as used
+ENGINE_MAX_FINDINGS = 80                              # an engine source may list 80 findings per request; stories 40 (--max-findings)
 PKG_CHARS = 150_000                                   # a package whose request text is longer is sent chapter by chapter
 CHAPTER_CHARS = 220_000                               # a chapter longer than this is sent in sentence parts
 ASSUME = {"thinking": 8000, "tok_per_finding": 220, "finding_every": 1500, "summary": 500, "cache_hit": 0.5}
@@ -210,13 +211,13 @@ Severity: critical — a learner would absorb a wrong rule or a wrong Arabic for
 
 Location: give the chapter number, the sentence id and the token index exactly as written in the input, and copy the word into "surface". Use token -1 for a problem in a sentence's translation. "current" quotes the value as it stands (shorten long lines with …); "suggested" gives the corrected value in the same language as the field. Give each reason in English (reason_en) and Turkish (reason_tr), one or two short sentences each.
 
-List at most {max_findings} findings, the most severe first. If you found more, put the number left out in more_findings_not_listed. Write summary_en and summary_tr for the scholar: two to four sentences on the overall quality of this part and the kinds of problems seen, so a reader who has not seen the text understands it.
+List at most the number of findings the request names on its FINDINGS CAP line, the most severe first. If you found more, put the number left out in more_findings_not_listed. Write summary_en and summary_tr for the scholar: two to four sentences on the overall quality of this part and the kinds of problems seen, so a reader who has not seen the text understands it.
 
 GRAMMAR REGISTRY INDEX (id | group | title):
 """
 
 
-def system_main(reg, max_findings):
+def system_main(reg, max_findings=None):
     idx = "\n".join(f"{k} | {d.get('group')} | {one_line((d.get('title') or {}).get('en'))}" for k, d in sorted(reg.items()))
     return {"type": "text", "text": RUBRIC.replace("{max_findings}", str(max_findings)) + idx, "cache_control": {"type": "ephemeral", "ttl": CACHE_TTL}}
 
@@ -256,7 +257,7 @@ SCHEMA = {
 def params(req, main, effort):
     return {"model": MODEL, "max_tokens": MAX_TOKENS, "system": system_blocks(req, main),
             "output_config": {"effort": effort, "format": {"type": "json_schema", "schema": SCHEMA}},
-            "messages": [{"role": "user", "content": "Review this part of the shelf.\n\n" + req["text"]}]}
+            "messages": [{"role": "user", "content": f"Review this part of the shelf.\nFINDINGS CAP: {req.get('cap', 40)}\n\n" + req["text"]}]}
 
 
 # ---------------------------------------------------------------- counting and the cost model
@@ -290,17 +291,18 @@ def out_tokens(user, A, cap):
 def plan_cost(reqs, counts, main_t, prov_t, A, cap, effort_of=None):
     """Per package: expected cost (cache hits at the measured rate), the cost without caching, and output at the
     findings cap. A is one assumption set, or {effort: set}; effort_of(package) picks the effort (default high)."""
-    AA = A if "high" in A or "medium" in A else {"high": A}
+    AA = A if callable(A) or "high" in A or "medium" in A else {"high": A}
+    rate = A if callable(A) else (lambda pk, eff: AA.get(eff) or AA["high"])
     wp = PRICE["cache_write_" + CACHE_TTL]
     first_main = True
     per = {}
     for r in reqs:
-        pk = r["package"]; eff = (effort_of or (lambda _: "high"))(pk); A1 = AA.get(eff) or AA["high"]
+        pk = r["package"]; eff = (effort_of or (lambda _: "high"))(pk); A1 = rate(pk, eff)
         h = A1["cache_hit"]; blended = h * PRICE["cache_read"] + (1 - h) * wp      # a cached block is either read or written
         p = per.setdefault(pk, {"requests": 0, "user": 0, "exp": 0.0, "nocache": 0.0, "capped": 0.0, "level": r["level"],
                                 "engine": pk in ENGINE_SOURCES, "original": r.get("original", False), "effort": eff})
         pv = prov_t[pk]; user = max(0, counts[r["custom_id"]] - main_t - pv)
-        o, ocap = out_tokens(user, A1, cap)
+        o, ocap = out_tokens(user, A1, r.get("cap", cap))
         mainc = (wp if first_main else blended) * main_t; first_main = False
         provc = (blended if r["shared_prov"] else PRICE["in"]) * pv
         p["requests"] += 1; p["user"] += user
@@ -527,6 +529,18 @@ def print_plan(per, budget, label):
     return take, defer
 
 
+def rates_by_group():
+    """Measured rates for engine sources and for stories (assumptions-by-group.json, written after the pilot):
+    an engine text yields far more findings per token than a story, so one shelf-wide rate misprices both."""
+    files = sorted(ROOT.glob("reports/review-*/assumptions-by-group.json"))
+    if not files: return None
+    G = json.loads(files[-1].read_text(encoding="utf-8"))
+    def rate(pk, eff):
+        if pk in ENGINE_SOURCES: return G["engine_high"]
+        return G.get(f"story_{eff}") or G["story_high"]
+    return rate
+
+
 def load_measured(override):
     """{effort: assumptions} from the latest pilot, with the defaults where nothing was measured."""
     AA = {}
@@ -570,9 +584,12 @@ def main():
     ap.add_argument("--also-medium", help="pilot: send this package a second time at effort medium, for comparison")
     ap.add_argument("--max-findings", type=int, default=40); ap.add_argument("--budget", type=float, default=215.0)
     ap.add_argument("--cache-ttl", default="5m", choices=["5m", "1h"])
+    ap.add_argument("--engine-max-findings", type=int, default=ENGINE_MAX_FINDINGS)
+    ap.add_argument("--only-units", help="custom_ids: for the packages they name, send only these units (e.g. a re-run of chapters that hit the cap)")
     ap.add_argument("--medium-originals", action="store_true",
                     help="--all: send the original Level 1–2 stories (not engine sources) at effort medium (cut step 1)")
     ap.add_argument("--no-wait", action="store_true"); ap.add_argument("--out")
+    ap.add_argument("--dry-run-all", action="store_true", help="with --all: count and plan exactly what --all would send, submit nothing")
     for k in ASSUME: ap.add_argument("--assume-" + k.replace("_", "-"), type=float, default=None)
     a = ap.parse_args()
     global CACHE_TTL; CACHE_TTL = a.cache_ttl
@@ -588,6 +605,10 @@ def main():
         if want - {p.name for p in pkgs}: sys.exit("not pending or not found: " + ", ".join(sorted(want - {p.name for p in pkgs})))
     reg = notes(); trm = irab_tr_memory()
     reqs = build_requests(pkgs, trm, reg)
+    for r in reqs: r["cap"] = a.engine_max_findings if r["package"] in ENGINE_SOURCES else a.max_findings
+    if a.only_units:
+        keep = set(a.only_units.split(",")); limited = {u.split("--")[0] for u in keep}
+        reqs = [r for r in reqs if r["package"] not in limited or r["custom_id"] in keep]
     main_block = system_main(reg, a.max_findings)
     override = {k: getattr(a, "assume_" + k) for k in ASSUME}
     print(f"{len(pkgs)} packages pending review → {len(reqs)} requests ({sum(1 for r in reqs if r['unit'] == 'all')} whole packages, "
@@ -654,12 +675,18 @@ def main():
     cut = cut_candidates(per) if a.medium_originals else set()
     eff_of = lambda pk: "medium" if pk in cut else a.effort
     if any(pk in ENGINE_SOURCES and eff_of(pk) != "high" for pk in per): sys.exit("engine sources are reviewed at effort high only")
-    per = {k: v for k, v in plan_cost(reqs, counts, main_t, prov_t, load_measured(override), a.max_findings, eff_of).items() if k not in done}
+    rate = rates_by_group() or load_measured(override)
+    per = {k: v for k, v in plan_cost(reqs, counts, main_t, prov_t, rate, a.max_findings, eff_of).items() if k not in done}
     for r in reqs: efforts[r["custom_id"]] = eff_of(r["package"])
     take, defer = print_plan(per, a.budget, f"--all --budget {a.budget:.0f}" + (" (original Level 1–2 stories at medium)" if cut else ""))
     sel = [r for pk in take for r in reqs if r["package"] == pk]     # grouped by package, in priority order, for cache reuse
     if not sel: sys.exit("nothing fits the budget")
+    if a.dry_run_all:
+        print("--dry-run-all: nothing submitted"); return
     state = submit(c, sel, main_block, efforts, outdir, "all")
+    (outdir / "plan.json").write_text(json.dumps({"expected_usd": round(sum(per[p]["exp"] for p in take), 2),
+                                                  "ceiling_usd": round(sum(per[p]["capped"] for p in take), 2),
+                                                  "per_package": {p: per[p] for p in take}}, indent=1), encoding="utf-8")
     (outdir / "deferred.json").write_text(json.dumps(defer, indent=1), encoding="utf-8")
     if a.no_wait: return
     wait(c, state["batch_id"]); collect(c, state, outdir)
