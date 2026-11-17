@@ -14077,3 +14077,17 @@ Two traps in measuring it, both now written into the check: **a page that is not
 transitions**, so the 0.45s theme fade never finished in the suite and the old theme's colours were measured — the
 check switches transitions off while it measures; and **where nothing is painted the canvas shows `--ground`**, not
 white.
+
+## v321 — one frame for every Atölye tool (design handoff 9 and 11)
+
+`LabFrame` wraps `renderLabBody` instead of rewriting 37 renderers: every tool opens with the same head — the Arabic
+tile, the name, the science, and the ENGINE KIND (green «Rule engine · exact»; amber «Statistical · odds» for the two
+learned tools, Model and Learn, only) — and keeps its own input and output untouched underneath. Where a tool declares
+them, the foot carries a rule reference and up to three «continue» chips (tool or game).
+
+The rule reference carries only what the engine or the app already holds — never an invented page. İʿlāl names the
+rule of its LAST step in Arabic and the Marāḥ al-Arwāḥ bāb of the root's class (4 mithāl · 5 ajwaf · 6 nāqiṣ · 7
+lafīf — the numbering the shelf's own Marāḥ chapters use); Zabt names the app's own grammar note for the chosen word
+when the sentence is one the corpus holds. Both outputs re-render on every keystroke without passing through
+`renderLabBody`, so they call `LabFrame.foot()` themselves — a reference that does not follow the word or the root
+would be describing the last one.

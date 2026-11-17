@@ -549,6 +549,21 @@
   .in-text mark, .txt-hit mark { background: var(--accent-soft); color: inherit; border-radius: 4px; padding: 0 2px; }
   .in-text .h-tr { font-size: var(--t-sm); color: var(--ink-soft); margin-top: 2px; }
   .in-text #inTextAll { min-height: 44px; margin-top: var(--s2); }
+  .tool-head { display: flex; gap: var(--s3); align-items: center; margin: var(--s2) 0 var(--s3); }
+  .tool-head .th-tile { flex: none; min-width: 3.2rem; min-height: 3.2rem; display: grid; place-items: center; padding: 0 .4rem; border-radius: 12px; background: var(--accent-soft); color: color-mix(in srgb, var(--accent) 80%, var(--ink)); font-family: var(--ar-font); font-size: 1.15rem; }
+  .tool-head .th-main { display: grid; gap: 4px; }
+  .tool-head .th-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-head .th-sci, .tool-head .th-eng { font-size: var(--t-xs); font-weight: 600; padding: 1px .55rem; border-radius: 999px; }
+  .tool-head .th-sci { background: var(--sf2, var(--line)); color: var(--ink); }
+  .tool-head .th-eng.rule { background: color-mix(in srgb, var(--ok) 13%, var(--panel)); color: color-mix(in srgb, var(--ok) 72%, var(--ink)); }
+  .tool-head .th-eng.stat { background: color-mix(in srgb, var(--lvl3) 15%, var(--panel)); color: color-mix(in srgb, var(--lvl3) 62%, var(--ink)); }
+  .tool-foot { margin-top: var(--s4); display: grid; gap: var(--s3); }
+  .tool-ref { padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+  .tool-ref h4 { margin: 0 0 var(--s1); font-size: var(--t-sm); }
+  .tool-ref .tr-ar { font-family: var(--ar-font); font-size: 1.2rem; }
+  .tool-ref .tr-src { font-size: var(--t-sm); color: var(--ink-soft); }
+  .tool-next { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+  .tool-next > span { font-size: var(--t-sm); color: var(--ink-soft); }
   .gov-hint { font-size: var(--t-sm); color: var(--ink-soft); margin: var(--s2) 0; }
   .gov-block { margin: var(--s3) 0; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
   .gov-block h4 { margin: 0 0 var(--s2); font-size: var(--t-sm); }
@@ -3024,7 +3039,7 @@ const L = {
         mizanComputedWhy:"the root letters stood in ف ع ل and everything else left where it was — no model, no lookup",
         mizanLearned:"Learned",
         mizanAmbiguous:"The scale is settled; the OFFICE is not. This one carries {n} at once, and only the sentence around the word decides which is meant.",
-        labRailLabel:"Workshop tools", zabtTapHint:"Tap a word to see what governs it.", wordGovTitle:"Its governor in the sentence", amilLafzi:"Governing word", amilManevi:"Abstract governor", amilTabi:"Follower", amilSelf:"Attached governor", amilHidden:"Deleted governor", amilMebni:"Built (mabnī)", amilNone:"No work", govWhyAmil:"«{g}» governs «{w}».", govWhyManevi:"No word governs it: its governor is abstract — the ibtidāʾ for a mubtadaʾ and its khabar, the bareness (tajarrud) for a raised muḍāriʿ.", govWhyTabi:"It follows «{g}» and takes its case from it.", govWhySelf:"The letter fused to its front governs it.", govWhyHidden:"Its governor is deleted: it hangs on an unsaid word (mutaʿalliq bi-maḥdhūf).", govWhyMebni:"It is built (mabnī): its ending does not change, so no governor's work shows on it.", govWhyNone:"It does no grammatical work and receives none.", govUnknown:"The engines do not decide this word's governor.", labHomeTab:"Index", labSearchPh:"Find a tool — Turkish, English or Arabic", labRecent:"Recently used", labNoHit:"No tool matches «{q}».", labGroup_sarf:"Ṣarf", labGroup_nahw:"Naḥw", labGroup_balagha:"Balāgha", labGroup_fahm:"Reading and learning",
+        labRailLabel:"Workshop tools", engRule:"Rule engine · exact", engStat:"Statistical · odds", toolRef:"Rule reference", toolRefMarah:"Marāḥ al-Arwāḥ, {b}", toolRefNote:"Open the note", toolNext:"Continue", toolGame:"Game", zabtTapHint:"Tap a word to see what governs it.", wordGovTitle:"Its governor in the sentence", amilLafzi:"Governing word", amilManevi:"Abstract governor", amilTabi:"Follower", amilSelf:"Attached governor", amilHidden:"Deleted governor", amilMebni:"Built (mabnī)", amilNone:"No work", govWhyAmil:"«{g}» governs «{w}».", govWhyManevi:"No word governs it: its governor is abstract — the ibtidāʾ for a mubtadaʾ and its khabar, the bareness (tajarrud) for a raised muḍāriʿ.", govWhyTabi:"It follows «{g}» and takes its case from it.", govWhySelf:"The letter fused to its front governs it.", govWhyHidden:"Its governor is deleted: it hangs on an unsaid word (mutaʿalliq bi-maḥdhūf).", govWhyMebni:"It is built (mabnī): its ending does not change, so no governor's work shows on it.", govWhyNone:"It does no grammatical work and receives none.", govUnknown:"The engines do not decide this word's governor.", labHomeTab:"Index", labSearchPh:"Find a tool — Turkish, English or Arabic", labRecent:"Recently used", labNoHit:"No tool matches «{q}».", labGroup_sarf:"Ṣarf", labGroup_nahw:"Naḥw", labGroup_balagha:"Balāgha", labGroup_fahm:"Reading and learning",
         gameThin:"only {n} here — a full round wants {m}; it will draw from the library instead",
         idafaTab:"Idafa",
         idafaIntro:"Two nouns and a case. The lab builds the idafa and names every rule that fired — or refuses, and names the rule that forbids it.",
@@ -3417,7 +3432,7 @@ const L = {
         mizanComputedWhy:"kök harfleri ف ع ل'e oturtuldu, geri kalan her şey yerinde bırakıldı — ne model ne tablo",
         mizanLearned:"Öğrenilen",
         mizanAmbiguous:"Vezin bellidir; VAZÎFE değil. Bu vezin aynı anda {n} vazîfe taşır; hangisinin kastedildiğini ancak kelimenin etrafındaki cümle tayin eder.",
-        labRailLabel:"Atölye âletleri", zabtTapHint:"Bir kelimeye dokun: âmilini cümlede göstereyim.", wordGovTitle:"Cümlede âmili", amilLafzi:"Lafzî âmil", amilManevi:"Mânevî âmil", amilTabi:"Tâbiʿ", amilSelf:"Bitişik âmil", amilHidden:"Mahzûf âmil", amilMebni:"Mebnî", amilNone:"Ameli yok", govWhyAmil:"«{g}», «{w}» kelimesinin âmilidir.", govWhyManevi:"Onu bir kelime amel etmiyor; âmili mânevîdir: mübtedâ ve haber için ibtidâ, merfû muzâri için tecerrüd.", govWhyTabi:"«{g}» kelimesine tâbidir; i'râbını ondan alır.", govWhySelf:"Önüne bitişik harf onu amel eder.", govWhyHidden:"Âmili mahzûftur: söylenmemiş bir kelimeye müteallıktır.", govWhyMebni:"Mebnîdir: sonu değişmez, üzerinde âmil eseri görünmez.", govWhyNone:"Ameli yoktur, amel de görmez.", govUnknown:"Bu kelimenin âmilini motorlar belirlemiyor.", labHomeTab:"Dizin", labSearchPh:"Âlet ara — Türkçe, İngilizce ya da Arapça", labRecent:"Son kullanılanlar", labNoHit:"«{q}» ile eşleşen âlet yok.", labGroup_sarf:"Sarf", labGroup_nahw:"Nahiv", labGroup_balagha:"Belâgat", labGroup_fahm:"Anlama ve öğrenme",
+        labRailLabel:"Atölye âletleri", engRule:"Kural motoru · kesin", engStat:"İstatistik · olasılık", toolRef:"Kural kaynağı", toolRefMarah:"Merâhu'l-Ervâh, {b}", toolRefNote:"Notu aç", toolNext:"Devam", toolGame:"Oyun", zabtTapHint:"Bir kelimeye dokun: âmilini cümlede göstereyim.", wordGovTitle:"Cümlede âmili", amilLafzi:"Lafzî âmil", amilManevi:"Mânevî âmil", amilTabi:"Tâbiʿ", amilSelf:"Bitişik âmil", amilHidden:"Mahzûf âmil", amilMebni:"Mebnî", amilNone:"Ameli yok", govWhyAmil:"«{g}», «{w}» kelimesinin âmilidir.", govWhyManevi:"Onu bir kelime amel etmiyor; âmili mânevîdir: mübtedâ ve haber için ibtidâ, merfû muzâri için tecerrüd.", govWhyTabi:"«{g}» kelimesine tâbidir; i'râbını ondan alır.", govWhySelf:"Önüne bitişik harf onu amel eder.", govWhyHidden:"Âmili mahzûftur: söylenmemiş bir kelimeye müteallıktır.", govWhyMebni:"Mebnîdir: sonu değişmez, üzerinde âmil eseri görünmez.", govWhyNone:"Ameli yoktur, amel de görmez.", govUnknown:"Bu kelimenin âmilini motorlar belirlemiyor.", labHomeTab:"Dizin", labSearchPh:"Âlet ara — Türkçe, İngilizce ya da Arapça", labRecent:"Son kullanılanlar", labNoHit:"«{q}» ile eşleşen âlet yok.", labGroup_sarf:"Sarf", labGroup_nahw:"Nahiv", labGroup_balagha:"Belâgat", labGroup_fahm:"Anlama ve öğrenme",
         gameThin:"burada yalnız {n} tane var — tam bir tur {m} ister; eksiği kütüphaneden tamamlar",
         idafaTab:"İzâfet",
         idafaIntro:"İki isim, bir i'râb. Atölye izâfeti kurar ve işleyen her kaideyi adıyla gösterir — yahut reddeder ve buna mâni olan kaideyi söyler.",
@@ -14921,6 +14936,7 @@ function renderIlalOut(){
       </div></li>`).join("") + `</ol>`;
   }
   out.innerHTML = h;
+  try { LabFrame.foot(); } catch (e) {}   // the rule reference follows the root
 }
 // The Nida Lab. Everything on screen is computed by NidaEngine from the call
 // as typed — the panel adds no knowledge of its own, it only lays the verdict out.
@@ -15391,7 +15407,51 @@ function renderModelOut(){
     if (bars) bars.innerHTML = modelBarsHtml(c.fs.filter((_, k) => !c.dropped.has(k)));
   }));
 }
-function renderLabBody(){
+// ---------- one frame for every Atölye tool (v321 · design handoff 9 and 11) ----------
+// The tools keep their own input and output; the frame gives every one of them the same head — the Arabic tile, the
+// name, the science and the ENGINE KIND (rule-derived and exact, or statistical odds) — and, where a tool declares
+// them, a rule reference and up to three «continue» chips at the foot. Only the two learned tools are statistical.
+const LabFrame = {
+  STAT: new Set(["model", "learn"]),
+  NEXT: { dabt: [{ game: "gSpot" }, { game: "gCase" }, { lab: "jumla" }], ilal: [{ lab: "sarf" }, { lab: "jadhr" }, { game: "gSarf" }],
+          jadhr: [{ lab: "sarf" }, { lab: "mizan" }], sarf: [{ lab: "ilal" }, { game: "gSarf" }], mizan: [{ lab: "jadhr" }, { lab: "sarf" }] },
+  MARAH: { 4: { ar: "الْبَابُ الرَّابِعُ: الْمِثَالُ", en: "bāb 4, the mithāl", tr: "4. bâb, misâl" }, 5: { ar: "الْبَابُ الْخَامِسُ: الْأَجْوَفُ", en: "bāb 5, the ajwaf", tr: "5. bâb, ecvef" },
+           6: { ar: "الْبَابُ السَّادِسُ: النَّاقِصُ", en: "bāb 6, the nāqiṣ", tr: "6. bâb, nâkıs" }, 7: { ar: "الْبَابُ السَّابِعُ: اللَّفِيفُ", en: "bāb 7, the lafīf", tr: "7. bâb, lefîf" } },
+  head(t){ const u = ui(), stat = this.STAT.has(t.id);
+    return `<div class="tool-head"><span class="th-tile" lang="ar" dir="rtl">${t.ar}</span><div class="th-main"><b>${escapeAttr(u[t.key] || t.id)}</b>
+      <span class="th-chips"><span class="th-sci">${u["labGroup_" + t.group]}</span><span class="th-eng ${stat ? "stat" : "rule"}">${stat ? u.engStat : u.engRule}</span></span></div></div>`; },
+  // the rule reference: only where the engine or the app itself carries the source — never an invented page
+  ref(id){ const u = ui(), L = state.uiLang === "tr" ? "tr" : "en";
+    if (id === "ilal") { const raw = (conjState.ilalRoot || "").normalize("NFC").replace(/[^ء-ي]/g, ""); if (raw.length !== 3) return "";
+      let b = null; try { b = IlalEngine.build(raw, conjState.ilalShape); } catch (e) {} if (!b || !b.steps || !b.steps.length) return "";
+      const w = [...raw].map(c => /[وي]/.test(c)), bab = (w[0] && (w[1] || w[2])) ? 7 : w[0] ? 4 : w[1] ? 5 : w[2] ? 6 : 0, last = b.steps[b.steps.length - 1];
+      return `<section class="tool-ref"><h4>${u.toolRef}</h4><div class="tr-ar" lang="ar" dir="rtl">${last.ar}</div>${this.MARAH[bab] ? `<div class="tr-src">${u.toolRefMarah.replace("{b}", this.MARAH[bab][L])} · <span lang="ar" dir="rtl">${this.MARAH[bab].ar}</span></div>` : ""}</section>`; }
+    if (id === "dabt") { const out = document.getElementById("dabtOut"), gv = out && out.__gov, pick = conjState.dabtPick; if (!gv || gv.src !== "corpus" || !(pick >= 0)) return "";
+      let sen = null; try { sen = GovView.index().get(GovView.key((conjState.dabt || "").trim().split(/\s+/))); } catch (e) {} const tok = sen && sen.tokens[pick]; const gid = tok && (tok.grammar || []).find(g => GRAMMAR[g]);
+      return gid ? `<section class="tool-ref"><h4>${u.toolRef}</h4><div class="tr-ar" lang="ar" dir="rtl">${GRAMMAR[gid].title.ar}</div><button class="chip" data-note="${escapeAttr(gid)}">${u.toolRefNote}</button></section>` : ""; }
+    return ""; },
+  next(id){ const xs = this.NEXT[id]; if (!xs) return ""; const u = ui();
+    return `<nav class="tool-next" aria-label="${escapeAttr(u.toolNext)}"><span>${u.toolNext}</span>${xs.map(x => x.lab ? (t => t ? `<button class="chip" data-next-lab="${t.id}">${escapeAttr(u[t.key])}</button>` : "")(LAB_TOOLS.find(t => t.id === x.lab))
+      : `<button class="chip" data-next-game="${x.game}">${escapeAttr(u.toolGame)}: ${escapeAttr(this.gameName(x.game))}</button>`).join("")}</nav>`; },
+  gameName(id){ const k = { gSpot: "spot", gCase: "caseGame", gSarf: "sarfGame" }[id]; return (k && ui()[k]) || id; },
+  decorate(){ const body = document.getElementById("labBody"); if (!body || conjState.lab === "home") return;
+    const t = LAB_TOOLS.find(x => x.id === conjState.lab); if (!t) return;
+    body.querySelectorAll(":scope > .tool-head").forEach(x => x.remove());
+    body.insertAdjacentHTML("afterbegin", this.head(t));
+    this.foot();
+  },
+  foot(){ const body = document.getElementById("labBody"); if (!body || conjState.lab === "home") return;
+    const t = LAB_TOOLS.find(x => x.id === conjState.lab); if (!t) return;
+    body.querySelectorAll(":scope > .tool-foot").forEach(x => x.remove());
+    const foot = this.ref(t.id) + this.next(t.id);
+    if (foot) { body.insertAdjacentHTML("beforeend", `<div class="tool-foot">${foot}</div>`);
+      body.querySelectorAll(".tool-foot [data-next-lab]").forEach(b => b.addEventListener("click", () => { conjState.lab = b.dataset.nextLab; LabIndex.use(b.dataset.nextLab); openConjugator(); }));
+      body.querySelectorAll(".tool-foot [data-next-game]").forEach(b => b.addEventListener("click", () => { openGames(); const g = document.getElementById(b.dataset.nextGame); if (g && !g.disabled) g.click(); }));
+      body.querySelectorAll(".tool-foot [data-note]").forEach(b => b.addEventListener("click", () => openRef(b.dataset.note))); }
+  },
+};
+function renderLabBody(){ renderLabBody0(); try { LabFrame.decorate(); } catch (e) {} }
+function renderLabBody0(){
   const body = document.getElementById("labBody");
   if (!body) return;
   if (conjState.lab === "home") { body.innerHTML = LabIndex.html(conjState.labQ || ""); bindLabHome(body); return; }
@@ -16259,6 +16319,7 @@ function renderDabtOut(){
         if (pick >= 0 && gv.r[pick] && gv.r[pick].amil === i) b.classList.add("gov");
         b.addEventListener("click", () => { conjState.dabtPick = i; renderDabtOut(); }); });
       out.__gov = gv;
+      setTimeout(() => { try { LabFrame.foot(); } catch (e) {} }, 0);   // the rule reference follows the chosen word
       out.__v = v;
     }
   }

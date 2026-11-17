@@ -16620,6 +16620,23 @@ if (!CHROME) {
     if (Object.keys(low).length) throw new Error('text under its contrast floor: ' + J(low));
   });
 
+  await check('v321 — one frame for every Atölye tool (handoff 9, 11): all 37 tools open with the same head — the Arabic tile, the name, the science and the engine kind, statistical for the two learned tools only; İʿlāl names the rule of its last step and the Marāḥ bāb of the root\'s class, Zabt the app\'s own note for the chosen word, and both offer «continue» chips that open their tool or game', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(async () => { const heads = {}; const keep = conjState.lab;
+      for (const t of LAB_TOOLS) { conjState.lab = t.id; openConjugator(); await new Promise(res => setTimeout(res, 20)); const h = document.querySelector('#labBody > .tool-head'); heads[t.id] = h ? (h.querySelector('.th-eng.stat') ? 'stat' : h.querySelector('.th-eng.rule') ? 'rule' : '?') : 'missing'; }
+      const keepShape = conjState.ilalShape; conjState.lab = 'ilal'; conjState.ilalRoot = 'قول'; openConjugator(); await new Promise(res => setTimeout(res, 50));
+      const il = [(document.querySelector('.tool-ref .tr-src') || {}).textContent || '', [...document.querySelectorAll('.tool-next [data-next-lab]')].map(b => b.dataset.nextLab)];
+      conjState.lab = 'ilal'; conjState.ilalRoot = 'وعد'; conjState.ilalShape = 'mudari'; openConjugator();   /* يَوْعِدُ → يَعِدُ */ await new Promise(res => setTimeout(res, 50));
+      const il2 = (document.querySelector('.tool-ref .tr-src') || {}).textContent || '';
+      conjState.lab = 'dabt'; conjState.dabt = 'جاء أبرهة من اليمن بجيش كبير'; conjState.dabtPick = 1; openConjugator(); await new Promise(res => setTimeout(res, 50));
+      const db = [(document.querySelector('.tool-ref [data-note]') || {}).dataset || {}].map(d => d.note)[0] || null;
+      conjState.dabt = ''; conjState.dabtPick = -1; conjState.ilalShape = keepShape; conjState.lab = keep; closeSheet(); return { heads, il, il2, db }; });
+    const bad = Object.entries(r.heads).filter(([k, v]) => v !== (k === 'model' || k === 'learn' ? 'stat' : 'rule'));
+    if (Object.keys(r.heads).length !== 37 || bad.length) throw new Error('the heads: ' + J(bad));
+    if (!/bāb 5|5\. bâb/.test(r.il[0]) || J(r.il[1]) !== J(['sarf', 'jadhr']) || !/bāb 4|4\. bâb/.test(r.il2)) throw new Error('İʿlāl reference: ' + J([r.il, r.il2]));
+    if (!r.db) throw new Error('Zabt has no note for أَبْرَهَةُ');
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
