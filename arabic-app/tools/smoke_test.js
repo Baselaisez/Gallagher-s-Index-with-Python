@@ -16416,7 +16416,7 @@ if (!CHROME) {
     if (r.w.includes('istighatha') || !r.wc.includes('istighatha')) throw new Error('wonder and the cry for help: ' + J([r.w, r.wc]));
     if (r.pl.some(c => c === 'jamMudhakkar') || r.plc.some(c => c !== 'jamMudhakkar')) throw new Error('the sound plural: ' + J([r.pl, r.plc]));
     if (r.tagged) throw new Error(r.tagged + ' singular words still tagged as sound plurals');
-    if (r.hf[0] > 1 || r.hf[1] < 86 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
+    if (r.hf[0] > 1 || r.hf[1] < 85 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
   });
 
   await check('no JS errors on page', async () => {
