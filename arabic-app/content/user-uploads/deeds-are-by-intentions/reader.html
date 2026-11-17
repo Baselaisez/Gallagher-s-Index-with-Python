@@ -167,6 +167,56 @@
 .dc-verdict.ok { background: color-mix(in srgb, var(--ok) 13%, var(--panel)); color: color-mix(in srgb, var(--ok) 70%, var(--ink)); }
 .dc-verdict.warn { background: color-mix(in srgb, var(--lvl3) 15%, var(--panel)); color: color-mix(in srgb, var(--lvl3) 62%, var(--ink)); }
 
+/* design wave D-1 · 02 — story end. Tokens only. */
+.story-end { display: grid; gap: var(--s4); font-family: var(--ui-font); }
+.se-hero {
+  position: relative; display: grid; justify-items: center; gap: var(--s2); text-align: center;
+  padding: var(--s6) var(--s4) var(--s5); border-radius: var(--radius);
+  background: var(--hero); color: var(--hero-ink); overflow: hidden;
+}
+.se-hero::before { content: ""; position: absolute; inset: 12px; border: 1px solid var(--hero-soft);
+  border-radius: calc(var(--radius) - 6px); pointer-events: none; }
+.se-badge { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--hero-soft); color: var(--hero-ac); font-size: 2rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .se-badge { animation: sePop .45s cubic-bezier(.3, 1.5, .6, 1) both; }
+  @keyframes sePop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+}
+.se-eyebrow { margin: var(--s1) 0 0; font-size: var(--t-xs); font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase; opacity: .85; }
+.se-title { margin: 0; font-family: var(--ar-font); font-size: 2rem; line-height: 1.5; color: var(--hero-ac); font-weight: 700; }
+.se-lead { margin: 0; max-width: 18rem; font-family: var(--body-font); font-size: var(--t-lg); line-height: var(--lh-tight); text-wrap: balance; }
+
+.se-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s2); }
+.se-stats > div { display: grid; gap: var(--s1); padding: var(--s3); border-radius: var(--r-md);
+  background: var(--panel); border: 1px solid var(--line); }
+.se-stats b { font-size: var(--t-xl); font-variant-numeric: tabular-nums; }
+.se-stats b.se-ac { color: var(--accent); }
+.se-stats span { font-size: var(--t-xs); color: var(--ink-soft); }
+
+.se-head { display: flex; align-items: center; justify-content: space-between;
+  font-size: var(--t-xs); font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--ink-soft); }
+.se-all { min-height: var(--tap); border: 0; background: none; color: var(--accent); font: 600 var(--t-sm) var(--ui-font);
+  letter-spacing: 0; text-transform: none; cursor: pointer; }
+.se-chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.se-chip { display: inline-flex; align-items: center; gap: var(--s2); min-height: var(--tap); padding: 0 var(--s3);
+  border-radius: var(--r-full); border: 1.5px solid var(--line); background: var(--panel); color: var(--ink);
+  font: 500 var(--t-sm) var(--ui-font); cursor: pointer;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease); }
+.se-chip .ar { font-family: var(--ar-font); font-size: 1.15rem; font-weight: 700; }
+.se-chip .se-mark { color: var(--ink-soft); }
+.se-chip.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.se-chip.on .se-mark { color: var(--accent); }
+.se-hint { margin: 0; font-size: var(--t-sm); color: var(--ink-soft); line-height: var(--lh-body); }
+.se-actions { display: grid; gap: var(--s2); }
+.se-actions .btn { width: 100%; min-height: 52px; }
+
+.story-end-cta { display: grid; justify-items: center; gap: var(--s3); margin: var(--s7) 0 var(--s6);
+  padding-top: var(--s5); border-top: 1px solid var(--line); text-align: center; font-family: var(--ui-font); }
+.story-end-cta p { margin: 0; font-size: var(--t-sm); color: var(--ink-soft); }
+.sec-orn { display: flex; align-items: center; gap: var(--s2); width: 120px; }
+.sec-orn i { flex: 1; height: 1px; background: var(--line); }
+.sec-orn b { width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent); }
+
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--ground); color: var(--ink);
@@ -3680,6 +3730,7 @@ Object.assign(L.en, {
   bkExport:"⬇ Save backup", bkCopy:"Copy", bkImport:"Restore from file…", bkAsk:"Replace everything on this device with the backup? The app will reload.", bkDone:"{n} items restored — reloading", bkBad:"That file is not a Qissa backup.", bkCopied:"Copied — paste it somewhere safe.",
   storyDone:"✓ Story finished — marked on your shelf",
   dcHead:"How it was decided", dcDabt:"Ḍabṭ engine", dcDabtSub:"vowelled the bare spelling", dcRule:"Rule engine", dcModel:"ML model", dcModelSub:"statistical — gives odds, the rule decides", dcModelNone:"not needed", dcModelNoneSub:"the rule alone decides for this word", dcAgree:"Rule and model agree", dcUnsure:"Model unsure — the rule decides", dcRuleOnly:"Decided by the rule engine",
+  seEyebrow:"Story finished", seLead:"You read it from the first sentence to the last.", seSentences:"sentences", seWords:"words", seInDeck:"in your deck", seWordsHead:"Words from this story", seAddAll:"Add all", seRemoveAll:"Remove all", seHint:"Tap a word to add it to your deck or take it out. Added words come back tomorrow as review cards.", seStudy:"Study these words", seBack:"Back to the library", seEndOf:"End of the story", seFinish:"Finish the story", seDeckFull:"Your deck is full",
   vocabChip:"{n} words", vocabTitle:"Vocabulary of this story",
   vocabHint:"Every teachable word in this story, counted once, easiest first. Save the ones you want to drill.",
   statsBtn:"Progress", statsTitle:"Your progress",
@@ -3702,6 +3753,7 @@ Object.assign(L.tr, {
   bkExport:"⬇ Yedeği kaydet", bkCopy:"Kopyala", bkImport:"Dosyadan geri yükle…", bkAsk:"Bu cihazdaki her şey yedekle değiştirilsin mi? Uygulama yeniden yüklenecek.", bkDone:"{n} öğe geri yüklendi — yeniden yükleniyor", bkBad:"Bu dosya bir Qissa yedeği değil.", bkCopied:"Kopyalandı — güvenli bir yere yapıştırın.",
   storyDone:"✓ Hikâye bitti — rafında işaretlendi",
   dcHead:"Nasıl karar verildi", dcDabt:"Zabt motoru", dcDabtSub:"harekesiz yazımı harekeledi", dcRule:"Kaide motoru", dcModel:"ML modeli", dcModelSub:"istatistik — ihtimal söyler, kaide karar verir", dcModelNone:"gerekmedi", dcModelNoneSub:"bu kelimede kaide tek başına karar verir", dcAgree:"Kaide ve model aynı fikirde", dcUnsure:"Model kararsız — kaide karar verdi", dcRuleOnly:"Kaide motoru karar verdi",
+  seEyebrow:"Hikâye bitti", seLead:"İlk cümlesinden sonuncusuna kadar okudun.", seSentences:"cümle", seWords:"kelime", seInDeck:"destende", seWordsHead:"Bu hikâyenin kelimeleri", seAddAll:"Hepsini ekle", seRemoveAll:"Hepsini çıkar", seHint:"Dokunarak desteye ekle ya da çıkar. Eklediklerin yarın tekrar kartı olarak gelir.", seStudy:"Kelimeleri çalış", seBack:"Kütüphaneye dön", seEndOf:"Hikâyenin sonu", seFinish:"Hikâyeyi bitir", seDeckFull:"Destende yer kalmadı",
   vocabChip:"{n} kelime", vocabTitle:"Bu hikâyenin kelimeleri",
   vocabHint:"Bu hikâyedeki bütün öğretilebilir kelimeler — bir kez, kolaydan zora. Çalışmak istediklerinizi desteye ekleyin.",
   statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
@@ -4139,7 +4191,7 @@ function renderStory(){
     storyEl.appendChild(sec);
   };
   const tail = () => {
-    if (!storyLocked(CUR)) return;
+    if (!storyLocked(CUR)) { storyEl.appendChild(storyEndCta(CUR)); return; }
     const up = document.createElement("div");
     up.className = "upsell";
     up.innerHTML = `<div class="ut">${ui().upsellTitle}</div><p>${ui().upsellBody}</p>
@@ -4266,6 +4318,83 @@ function hydrateStory148(st){
 function hydrateStories148(){ try { STORIES.forEach(hydrateStory148); } catch (e) {} }
 function storyParsed148(st, k){ const d = Object.getOwnPropertyDescriptor(st, k || "chapters"); return !(d && d.get); }
 function chapterCount148(st){ return st.stats && typeof st.stats.chapters === "number" ? st.stats.chapters : (st.chapters || []).length; }
+/* design wave D-1 · 02 — story end: read → finish → review */
+function storyEndWords(st, limit = 14){
+  const seen = new Map();
+  const chs = (st === CUR && typeof CHAPTERS !== "undefined" && CHAPTERS.length) ? CHAPTERS : st.chapters, gl = st.glossary || GLOSSARY;
+  chs.forEach(ch => ch.sentences.forEach(sen => sen.tokens.forEach((tok, ti) => {
+    const e = gl[tok.lex];
+    if (e && e.level >= 1 && !seen.has(tok.lex)) seen.set(tok.lex, { tok, sen, ti, e });
+  })));
+  return [...seen.values()];
+}
+
+/* 3) The sheet */
+function openStoryEnd(st){
+  if (!st) return;
+  const all = storyEndWords(st), words = all.slice(0, 14);
+  const { total } = storyStats(st);
+  const inDeck = all.filter(w => cardSaved("word:" + w.tok.lex)).length;
+  const allIn = words.length > 0 && words.every(w => cardSaved("word:" + w.tok.lex));
+  sheetInner.innerHTML = `
+  <section class="story-end" aria-labelledby="seTitle">
+    <div class="se-hero">
+      <span class="se-badge" aria-hidden="true">۞</span>
+      <p class="se-eyebrow">${ui().seEyebrow}</p>
+      <h2 class="se-title" id="seTitle" lang="ar" dir="rtl">${st.title.ar}</h2>
+      <p class="se-lead">${T(st.title)} — ${ui().seLead}</p>
+    </div>
+    <div class="se-stats">
+      <div><b>${total}</b><span>${ui().seSentences}</span></div>
+      <div><b>${all.length}</b><span>${ui().seWords}</span></div>
+      <div><b class="se-ac">${inDeck}</b><span>${ui().seInDeck}</span></div>
+    </div>
+    <div class="se-head"><span>${ui().seWordsHead}</span>
+      <button class="se-all" data-se-all>${allIn ? ui().seRemoveAll : ui().seAddAll}</button></div>
+    <div class="se-chips">
+      ${words.map((w, i) => {
+        const on = cardSaved("word:" + w.tok.lex);
+        return `<button class="se-chip${on ? " on" : ""}" data-se-i="${i}" aria-pressed="${on}">
+          <span class="ar" lang="ar">${w.e.lemma}</span><span>${escapeAttr(T(w.e.gloss).split(/[,(;]/)[0])}</span>
+          <span class="se-mark" aria-hidden="true">${on ? "✓" : "+"}</span></button>`;
+      }).join("")}
+    </div>
+    <p class="se-hint">${ui().seHint}</p>
+    <div class="se-actions">
+      <button class="btn primary" data-se-study>${ui().seStudy} →</button>
+      <button class="btn" data-se-back>${ui().seBack}</button>
+    </div>
+  </section>`;
+  sheetInner.querySelectorAll("[data-se-i]").forEach(b => b.addEventListener("click", () => {
+    const w = words[+b.dataset.seI];
+    if (toggleSave(w.tok, { sen: w.sen, ti: w.ti }) === false) showToast(ui().seDeckFull);
+    openStoryEnd(st);
+  }));
+  sheetInner.querySelector("[data-se-all]").addEventListener("click", () => {
+    words.forEach(w => { if (cardSaved("word:" + w.tok.lex) === allIn) toggleSave(w.tok, { sen: w.sen, ti: w.ti }); });
+    openStoryEnd(st);
+  });
+  sheetInner.querySelector("[data-se-study]").addEventListener("click", () => { closeSheet(); openDeck(); });
+  sheetInner.querySelector("[data-se-back]").addEventListener("click", () => { closeSheet(); renderLibrary(); });
+  showSheet();
+}
+
+/* 4) The block after the last sentence — append at the end of renderStory(), after the last chapter */
+function storyEndCta(st){
+  const box = document.createElement("div");
+  box.className = "story-end-cta";
+  const { total } = storyStats(st);
+  box.innerHTML = `<div class="sec-orn" aria-hidden="true"><i></i><b></b><i></i></div>
+    <p>${ui().seEndOf} · ${total} ${ui().seSentences}<span class="se-n"></span></p>
+    <button class="btn primary" type="button">${ui().seFinish}</button>`;
+  box.querySelector("button").addEventListener("click", () => openStoryEnd(st));
+  // speed: the word walk is not on the render path — it fills in when the browser is idle
+  (window.requestIdleCallback || (f => setTimeout(f, 200)))(() => {
+    const n = box.querySelector(".se-n"); if (n && box.isConnected) n.textContent = ` · ${storyEndWords(st).length} ${ui().seWords}`;
+  });
+  return box;
+}
+
 function storyStats(st){
   let total = 0;
   if (st.stats && typeof st.stats.sentences === "number") total = st.stats.sentences; else st.chapters.forEach(c => total += c.sentences.length);
@@ -4313,7 +4442,11 @@ function markRead(sen, ch){
     countActivity("read");
     // The completion moment: exactly once, on the read that finishes the story.
     const st = storyStats(CUR);
-    if (st.total && st.read === st.total) showToast(ui().storyDone);
+    if (st.total && st.read === st.total) {
+      showToast(ui().storyDone);
+      const story = CUR;
+      setTimeout(() => { if (!sheet.classList.contains("show")) openStoryEnd(story); }, 700);
+    }
   }
 }
 function setHeader(titleAr, sub, chipsHtml){
