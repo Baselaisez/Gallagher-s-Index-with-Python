@@ -14041,3 +14041,19 @@ majrūr → the letter before it or the letter fused to it, a follower → its h
 muḍāriʿ → maʿnawī, mabnī → none. A rule that table does not name makes no claim, and the card says the engines do
 not decide it. The Fīl sentence reads mebni · ←جَاءَ · mebni · ←مِنَ · attached · follower of بِجَيْشٍ, exactly as the
 handoff draws it; the word sheet of يَهْدِمَ outlines أَنْ and a tap on أَنْ moves the sheet to it.
+
+## v319 — search reaches into the text (design handoff 13c)
+
+Search found words and showed where each occurs; it could not search the TRANSLATIONS, so «army» or «ordu» reached
+only dictionary glosses. `InText` adds «In the text · N»: Arabic is matched in the folded letters of every token,
+Latin script in the folded English and Turkish translations, five sentences shown and «Show all» beyond; a match is
+shown in the language it was found in, highlighted in place, and a tap opens that sentence.
+Three things learned building it:
+- **One index, not two.** The first draft built its own index and cost ~300 ms, most of it parsing every story body
+  (story bodies ride as JSON strings and parse on first use since wave 148). The corpus index already holds every
+  token's folded letters and is built a chapter a slice in idle time; `InText` now reads the sentences off it and
+  folds only the translations, once, on the first Latin search (~50 ms, then ~6 ms a query).
+- **Latin matches at the start of a word.** Turkish adds suffixes, so «ordu» must find «orduyla» and «Ordunun» — and
+  a substring match also found «sordu» (he asked): 264 hits instead of 26.
+- **Highlight through a position map.** Folding drops apostrophes and changes case, so an index in the folded string
+  is not an index in the original; `mark()` folds char by char and keeps the map («Ebrehe’nin **ordu**suyla»).

@@ -541,6 +541,14 @@
   .lab-tile .ar { font-family: var(--ar-font); font-size: 1.2rem; color: var(--accent); line-height: 1.6; }
   .lab-tile b { font-size: var(--t-xs); font-weight: 600; }
   .lab-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .in-text h4 { margin: var(--s4) 0 var(--s2); font-size: var(--t-sm); }
+  .txt-hit { all: unset; display: block; cursor: pointer; width: 100%; box-sizing: border-box; padding: .5rem .6rem; border-radius: 10px; border: 1px solid transparent; min-height: 44px; }
+  .txt-hit:hover, .txt-hit:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+  .txt-hit .h-ar { font-family: var(--ar-font); font-size: 1.15rem; direction: rtl; text-align: right; line-height: 1.9; }
+  .txt-hit .h-src { font-family: var(--ui-font); font-size: .7rem; color: var(--ink-soft); margin-top: .15rem; }
+  .in-text mark, .txt-hit mark { background: var(--accent-soft); color: inherit; border-radius: 4px; padding: 0 2px; }
+  .in-text .h-tr { font-size: var(--t-sm); color: var(--ink-soft); margin-top: 2px; }
+  .in-text #inTextAll { min-height: 44px; margin-top: var(--s2); }
   .gov-hint { font-size: var(--t-sm); color: var(--ink-soft); margin: var(--s2) 0; }
   .gov-block { margin: var(--s3) 0; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
   .gov-block h4 { margin: 0 0 var(--s2); font-size: var(--t-sm); }
@@ -3176,7 +3184,7 @@ const L = {
         searchNotes:"Grammar notes", searchQa:"Questions from the books",
         searchNone:"Nothing in the stories matches that.",
         searchFound:"{n} occurrences of {w} words.",
-        searchMore:"+{n} more",
+        searchMore:"+{n} more", searchInText:"In the text · {n}", storySentence:"{story} · chapter {c}, sentence {n}", searchShowAll:"Show all {n}",
         dayStreak:"day streak", goalEdit:"change goal",
         goalReviews:"{a} of {b} reviews today", goalNew:"{a} of {b} new words today",
         learnHere:"Learn {n} new words from this story",
@@ -3569,7 +3577,7 @@ const L = {
         searchNotes:"Gramer notları", searchQa:"Kitaplardan sorular",
         searchNone:"Hikâyelerde buna uyan bir şey yok.",
         searchFound:"{w} kelimede {n} geçiş.",
-        searchMore:"+{n} tane daha",
+        searchMore:"+{n} tane daha", searchInText:"Metinde geçtiği yerler · {n}", storySentence:"{story} · {c}. bölüm, {n}. cümle", searchShowAll:"Hepsini göster ({n})",
         dayStreak:"günlük seri", goalEdit:"hedefi değiştir",
         goalReviews:"Bugün {b} tekrardan {a} tanesi", goalNew:"Bugün {b} yeni kelimeden {a} tanesi",
         learnHere:"Bu hikâyeden {n} yeni kelime öğren",
@@ -17066,6 +17074,59 @@ function strip(t){ return String(t).replace(DIACRITICS_RE, ""); }
 function foldAr(t){ return strip(t).replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي"); }
 
 let searchQuery = "";
+// ---------- search reaches into the text (v319 · design handoff 13c) ----------
+// A learner who types جيش wants to see it IN USE, and one who types «army» or «ordu» has only the translation to go
+// by. One flat index over every sentence (built once, on the first search): the bare letters of each token and the
+// folded English and Turkish translations. Arabic is matched on the tokens, Latin script on the translations.
+let searchAllInText = false;
+const InText = {
+  // (v319) one index, not two: the sentences are read off the corpus index (built a chapter a slice by the idle
+  // worker since wave 144, with each token's folded letters already on its row); only the translations are folded
+  // here, once per sentence, on the first Latin-script search.
+  _sens: null, _tr: new Map(),
+  fold(x){ return String(x || "").replace(/İ/g, "i").replace(/I/g, "ı").toLowerCase().replace(/ı/g, "i").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/['’ʼ`ʿʾ]/g, ""); },
+  bare(x){ return foldAr(strip(String(x || ""))); },
+  sentences(){ if (this._sens) return this._sens; const out = []; let last = null;
+    for (const r of buildCorpus()) { if (r.sen !== last) { out.push({ st: r.st, ch: r.ch, sen: r.sen, rows: [] }); last = r.sen; } out[out.length - 1].rows.push(r); }
+    return (this._sens = out); },
+  trOf(sen){ let t = this._tr.get(sen); if (!t) { const x = sen.translation || {}; t = { en: this.fold(x.en), tr: this.fold(x.tr) }; this._tr.set(sen, t); } return t; },
+  find(q, cap){
+    q = String(q || "").trim(); if (q.length < 2) return { n: 0, hits: [] };
+    const ar = /[ء-ي]/.test(q), f = ar ? this.bare(q) : this.fold(q); if (f.length < 2) return { n: 0, hits: [] };
+    // Latin script matches at the START of a word: Turkish adds suffixes (ordusu, orduyla) but «sordu» is another word
+    const re = ar ? null : new RegExp("(?:^|[^a-z0-9])" + f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    const hits = []; let n = 0;
+    for (const x of this.sentences()) {
+      let ti = -1, inL = null;
+      if (ar) { const r = x.rows.find(r => (r.fBare || "").includes(f)); if (!r) continue; ti = r.ti; }
+      else { const t = this.trOf(x.sen), e = re.test(t.en), k = re.test(t.tr); if (!e && !k) continue; inL = { en: e, tr: k }; }
+      n++; if (hits.length < cap) hits.push({ st: x.st, ch: x.ch, sen: x.sen, k: x.ch.sentences.indexOf(x.sen), ti, f, ar, inL });
+    }
+    return { n, hits };
+  },
+  mark(text, f){   // highlight a folded match inside the original text: fold char by char and keep the position map
+    const src = String(text || ""), chars = [...src]; let fo = ""; const at = [];
+    chars.forEach((c, k) => { const x = this.fold(c); for (let m = 0; m < x.length; m++) { fo += x[m]; at.push(k); } });
+    const hit = new RegExp("(?:^|[^a-z0-9])(" + f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")").exec(fo);
+    if (!hit) return escapeAttr(src);
+    const a = at[hit.index + hit[0].length - f.length], b = at[hit.index + hit[0].length - 1] + 1;
+    return escapeAttr(chars.slice(0, a).join("")) + `<mark>${escapeAttr(chars.slice(a, b).join(""))}</mark>` + escapeAttr(chars.slice(b).join("")); },
+  html(q){
+    const res = this.find(q, searchAllInText ? 60 : 5); if (!res.n) return "";
+    const L = state.uiLang === "tr" ? "tr" : "en", u = ui();
+    const items = res.hits.map(h => {
+      const line = h.sen.tokens.map((t, i) => (i === h.ti ? `<mark>${t.s.full}</mark>` : t.s.full) + (t.punctAfter || "")).join(" ");
+      const T2 = h.sen.translation || {}, other = L === "tr" ? "en" : "tr";
+      // a Latin match is shown in the language it was found in — the reader must see why this sentence came up
+      const tr = (!h.ar && h.inL && !h.inL[L] && T2[other]) ? T2[other] : (T2[L] || "");
+      return `<button class="txt-hit" data-sid="${escapeAttr(h.st.id)}" data-ch="${h.ch.n}" data-sen="${escapeAttr(h.sen.id)}" data-ti="${h.ti}">
+        <div class="h-ar" lang="ar" dir="rtl">${line}</div>
+        ${tr ? `<div class="h-tr">${h.ar ? escapeAttr(tr) : this.mark(tr, h.f)}</div>` : ""}
+        <div class="h-src">${u.storySentence.replace("{story}", T(h.st.title) || h.st.title.ar).replace("{c}", h.ch.n).replace("{n}", h.k + 1)}</div></button>`; }).join("");
+    const more = res.n > res.hits.length ? `<button class="btn" id="inTextAll">${u.searchShowAll.replace("{n}", res.n)}</button>` : "";
+    return `<section class="in-text"><h4>${u.searchInText.replace("{n}", res.n)}</h4>${items}${more}</section>`;
+  },
+};
 function searchCorpus(q){
   const needle = q.trim();
   if (needle.length < 2) return [];
@@ -17192,6 +17253,7 @@ function openSearch(q){
           .replace("{n}", rows.length - 4)}</div>`;
     });
   }
+  if (searchQuery.trim().length >= 2) { try { body += InText.html(searchQuery); } catch (e) {} }   // v319
   if (searchQuery.trim().length >= 2) { try { body += DoctrineSearch.html(searchQuery); } catch (e) {} }   // wave 74
   sheetInner.innerHTML = `<div class="tabs"><button class="on">${arSpan("بَحْث")} ${ui().searchTitle}</button></div>
     <div class="ref-search-row">
@@ -17200,8 +17262,12 @@ function openSearch(q){
         value="${escapeAttr(searchQuery)}">
     </div>${body}`;
   const input = document.getElementById("corpusSearch");
+  sheetInner.querySelectorAll(".txt-hit").forEach(b =>
+    b.addEventListener("click", () => jumpTo(b.dataset.sid, b.dataset.sen, Number(b.dataset.ti), Number(b.dataset.ch))));
+  const ita = document.getElementById("inTextAll");
+  if (ita) ita.addEventListener("click", () => { searchAllInText = true; openSearch(); });
   input.addEventListener("input", () => {
-    searchQuery = input.value;
+    searchQuery = input.value; searchAllInText = false;
     const at = input.selectionStart;
     openSearch();
     const again = document.getElementById("corpusSearch");

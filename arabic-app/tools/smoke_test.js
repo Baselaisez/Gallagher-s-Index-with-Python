@@ -16438,6 +16438,9 @@ if (!CHROME) {
     await page.locator('.src-card[data-src="mutun"]').click();
     const stored = await page.evaluate(() => { let n = 0, big = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), v = localStorage.getItem(k) || ''; n += k.length + v.length; if (v.length > 50000) big.push(k + ':' + v.length); } return [localStorage.getItem('qissa-libsource'), n, big.slice(0, 6)]; });
     if (stored[0] !== 'mutun') throw new Error('the choice was not written: ' + J(stored));
+    // Chromium commits localStorage to the browser process asynchronously; a reload in the same few milliseconds as
+    // the write can beat the commit (CI did, once). A person does not reload within a frame of a tap, so neither do we.
+    await page.waitForTimeout(400);
     await page.reload(); await page.waitForSelector('.src-card', { timeout: 60000 });
     const kept = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.querySelector('.src-card.on') && document.querySelector('.src-card.on').getAttribute('aria-pressed')]);
     await page.locator('.src-card[data-src="mutun"]').click();
@@ -16551,6 +16554,24 @@ if (!CHROME) {
     await page.evaluate(() => { closeSheet(); renderLibrary(); });
     const N = s => s.normalize('NFC');
     if (J(w1.map(N)) !== J([N('يَهْدِمَ'), N('أَنْ'), 'amil']) || N(w2[0] || '') !== N('أَنْ') || N(w2[1] || '') !== N('أَنْ')) throw new Error('the word sheet: ' + J([w1, w2]));
+  });
+
+  await check('v319 — search reaches into the text (handoff 13c): Arabic is found in the words of every sentence (جيش in Aṣḥāb al-Fīl, its hit marked), Latin script in the translations at the START of a word (ordu finds orduyla, never sordu), five shown with «Show all», the match shown in the language it was found in, and a tap opens that sentence', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => { const a = InText.find('جيش', 60), o = InText.find('ordu', 400);
+      return { fil: a.hits.filter(h => h.st.id === 'ashab-al-fil').map(h => h.sen.id), filMarked: a.hits.filter(h => h.st.id === 'ashab-al-fil').every(h => h.ti >= 0 && InText.bare(h.sen.tokens[h.ti].s.full).includes('جيش')),
+        sordu: o.hits.filter(h => { const t = InText.trOf(h.sen); return /(^|[^a-z])sordu/.test(t.tr) && !/(^|[^a-z])ordu/.test(t.tr) && !/(^|[^a-z])ordu/.test(t.en); }).length, n: o.n, mark: InText.mark('Ebrehe ordusuyla geldi; sordu.', 'ordu') }; });
+    if (r.fil.length < 4 || !r.filMarked) throw new Error('جيش in Aṣḥāb al-Fīl: ' + J(r));
+    if (r.sordu || r.mark !== 'Ebrehe <mark>ordu</mark>suyla geldi; sordu.') throw new Error('word-start matching: ' + J(r));
+    await page.evaluate(() => { searchAllInText = false; openSearch('ordu'); }); await page.waitForSelector('.sheet.show .in-text', { timeout: 10000 });
+    const s0 = await page.evaluate(() => [document.querySelectorAll('.in-text .txt-hit').length, !!document.getElementById('inTextAll'), [...document.querySelectorAll('.in-text .h-tr')].every(x => !!x.querySelector('mark'))]);
+    await page.locator('#inTextAll').click(); await page.waitForTimeout(200);
+    const s1 = await page.evaluate(() => document.querySelectorAll('.in-text .txt-hit').length);
+    const target = await page.evaluate(() => { const b = document.querySelector('.in-text .txt-hit'); return [b.dataset.sid, b.dataset.sen]; });
+    await page.locator('.in-text .txt-hit').first().click(); await page.waitForTimeout(800);
+    const opened = await page.evaluate(() => CUR && CUR.id);
+    await page.evaluate(() => { searchQuery = ''; searchAllInText = false; closeSheet(); renderLibrary(); });
+    if (J(s0) !== J([5, true, true]) || s1 !== Math.min(r.n, 60) || opened !== target[0]) throw new Error('the section: ' + J([s0, s1, r.n, target, opened]));
   });
 
   await check('no JS errors on page', async () => {
