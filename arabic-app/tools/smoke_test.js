@@ -16399,6 +16399,26 @@ if (!CHROME) {
     if (r.audit[1] !== 0) throw new Error('the conjugator and the stored paradigms disagree: ' + J(r.audit));
   });
 
+  await check('v316 — three guards the AI pre-check made visible, each with its control: «قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ» is a question, not an answer with its mubtadaʾ unsaid (يُقَالُ لَهُ إِبْرَاهِيمُ keeps [هُوَ]); «يَا لَهُ رَجُلًا» is wonder, not a cry for help (يَا لَزَيْدٍ لِعَمْرٍو keeps it); دُونَ، حِينَ، دِينَ are no sound plurals, tag or no tag (الْمُؤْمِنِينَ, بَنُو and the decades stay)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const seats = t => (HadhfEngine.table(t).items || []).map(v => v.seat);
+      const cls = (w, tags) => (SignEngine.classify(w, { pos: 'noun', tags: tags || [] }) || {}).cls || null;
+      const WRONG = new Set(['duna', 'hina', 'din', 'miskin', 'nun-letter']);
+      let tagged = 0; for (const st of STORIES) for (const ch of st.chapters) for (const s of ch.sentences) for (const t of s.tokens) if (WRONG.has(t.lex) && (t.grammar || []).includes('jam-mudhakkar-salim')) tagged++;
+      const h = HadhfEngine.audit();
+      return { q: seats('قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ.'), qc: seats('يُقَالُ لَهُ إِبْرَاهِيمُ.'), own: seats('فَيُقَالُ لَهُ قَوْلُكَ لَا أَدْرِي أَعَدْلٌ أَمْ جَوْرٌ.'),
+        w: seats('يَا لَهُ رَجُلًا.'), wc: seats('يَا لَزَيْدٍ لِعَمْرٍو.'),
+        pl: ['دُونَ', 'حِينَ', 'دِينَ'].map(w => cls(w, ['jam-mudhakkar-salim'])), plc: [cls('الْمُؤْمِنِينَ', ['jam-mudhakkar-salim']), cls('مُسْلِمُونَ'), cls('عِشْرُونَ')],
+        tagged, hf: [h.false, h.acc], sg: [SignEngine.audit().byClass.jamMudhakkar.rate] };
+    });
+    if (r.q.includes('mubtadaJawab') || r.own.includes('mubtadaJawab') || !r.qc.includes('mubtadaJawab')) throw new Error('the question and the naming: ' + J([r.q, r.own, r.qc]));
+    if (r.w.includes('istighatha') || !r.wc.includes('istighatha')) throw new Error('wonder and the cry for help: ' + J([r.w, r.wc]));
+    if (r.pl.some(c => c === 'jamMudhakkar') || r.plc.some(c => c !== 'jamMudhakkar')) throw new Error('the sound plural: ' + J([r.pl, r.plc]));
+    if (r.tagged) throw new Error(r.tagged + ' singular words still tagged as sound plurals');
+    if (r.hf[0] > 1 || r.hf[1] < 86 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
+  });
+
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

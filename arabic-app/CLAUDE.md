@@ -13930,3 +13930,28 @@ the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
   «وَ «مِخْيَطٌ» مَنْقُوصٌ مِنَ …» (a cited mubtadaʾ before a nakira) and the cited doer behind «يَصْلُحُ» are hand lines, not
   rules. The wave-212 items stand.
 - **Next.** Marāḥ part twenty-eight continues on p. 144 at «وَتَقُولُ فِي إِلْحَاقِ الضَّمَائِرِ: قَالَ قَالَا قَالُوا …» (PDF page 50).
+
+## v316 — a correct correction can fail a gate, and the gate is then pointing at the engine
+
+The AI pre-check's corrections (precheck branch) broke ten smoke checks, and none of them because a correction was
+wrong. They came down to three causes, and each was an engine or tag fault that the old, wrong lines had been hiding:
+
+- **The HadhfEngine audit only reads sentences that author at least one deletion.** Correcting عَدْلٌ to «خَبَرٌ
+  لِمُبْتَدَإٍ مَحْذُوفٍ» pulled al-usul 20:s11 into the audit for the first time, and the engine's old guesses in that
+  sentence surfaced as false alarms. Rule 22b (يُقَالُ لَهُ إِبْرَاهِيمُ → [هُوَ] إِبْرَاهِيمُ) had never been given the two
+  guards rule 22 has had since wave 157: what is said may be a QUESTION (قِيلَ لَهُ أَمُؤْمِنٌ أَنْتَ — the hamza on the
+  fronted khabar, the pronoun its mubtadaʾ), and a noun carrying its own pronoun opens a full sentence (قَوْلُكَ …
+  أَعَدْلٌ أَمْ جَوْرٌ). The istighātha rule likewise read «يَا لَهُ رَجُلًا» — wonder, its tamyīz the mansūb indefinite —
+  as a cry for help. False alarms 3 → 1 on main (5 → 1 on the precheck branch); the last one, Iẓhār 20:s7 «قِسْمَانِ:
+  قِسْمٌ …», is a genuine two-reading case and is left for the hoca.
+- **A grammar TAG is evidence the SignEngine trusts.** دُونَ، حِينَ، دِين، مِسْكِين and the letter نُون carried
+  «jam-mudhakkar-salim» because they end in ـونَ/ـينَ; it never showed while their lines named no sign. The
+  corrections wrote «مَنْصُوبٌ بِالْفَتْحَةِ» and the class fell to 96.1%. 27 tags removed, and `SignEngine.plStem()` now
+  refuses the plural reading — tagged or by shape — when taking the ending off leaves a single letter. The mulḥaq
+  (عَالَمِينَ، بَنُونَ, the decades) keep theirs: the tradition files them with the sound plural.
+- **The IrabModel's shipped weights are a function of the corpus**, so changed lines need `node tools/gen_irab_model.js`
+  and a rebuild — mechanical, and the gate says so by name.
+
+The general form: **when a correction fails a gate, ask first what the gate was standing on.** Here every failure was
+an engine reading the old error as support.
+
