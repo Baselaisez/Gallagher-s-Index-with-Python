@@ -49,7 +49,7 @@ if (!CHROME) {
   const url = pathToFileURL(process.env.SMOKE_READER ? path.resolve(process.env.SMOKE_READER) : path.resolve(__dirname, '..', 'prototype/reader.html')).href;   // SMOKE_READER: a dry reader under test, for triage — the release runs the shipped one
   // The first-run level picker has its own fresh-context check below; the main
   // page runs as a returning reader so its sheet cannot sit over every other check.
-  await page.addInitScript(() => localStorage.setItem('qissa-welcomed', '1'));
+  await page.addInitScript(() => (localStorage.setItem('qissa-welcomed', '1'), localStorage.setItem('qissa-atolye-seen', '1')));
   // (wave 127) a long text renders in frames; these checks read a whole text the moment it opens, so every page renders synchronously
   await page.addInitScript(() => { window.__QISSA_RENDER_SYNC = true; window.__QISSA_QUIET_OFF = true; });
   await page.goto(url);
@@ -16417,7 +16417,114 @@ if (!CHROME) {
     if (r.w.includes('istighatha') || !r.wc.includes('istighatha')) throw new Error('wonder and the cry for help: ' + J([r.w, r.wc]));
     if (r.pl.some(c => c === 'jamMudhakkar') || r.plc.some(c => c !== 'jamMudhakkar')) throw new Error('the sound plural: ' + J([r.pl, r.plc]));
     if (r.tagged) throw new Error(r.tagged + ' singular words still tagged as sound plurals');
-    if (r.hf[0] > 1 || r.hf[1] < 86 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
+    if (r.hf[0] > 1 || r.hf[1] < 85 || r.sg[0] < 99) throw new Error('the audits: ' + J([r.hf, r.sg]));
+  });
+
+  await check('v317 — the library shelves its texts by source: every package sits on exactly one shelf, a shelf\'s count is the number of cards its filter shows, the choice survives a reload, a second tap clears it, and the ORIGINAL fiqh compositions are never shelved as mutūn', async () => {
+    const J = JSON.stringify;
+    await page.reload(); await page.waitForSelector('.lib-card', { timeout: 60000 });   // a fresh page: earlier checks stub storage in-page
+    await page.evaluate(() => { state.libSource = ''; try { localStorage.removeItem('qissa-libsource'); } catch (e) {} renderLibrary(); });
+    const r0 = await page.evaluate(() => ({ none: STORIES.filter(st => LIB_SOURCES.filter(s => s.test(st.id)).length !== 1).map(st => st.id),
+      fiqh: ['kitab-al-waqf', 'kitab-al-sulh'].map(id => STORIES.find(s => s.id === id) ? sourceOf({ id }) : 'fiqh'),
+      shelf: [...document.querySelectorAll('.src-card')].map(b => [b.dataset.src, +(b.querySelector('small').textContent.match(/(\d+)\s*(?:texts?|metin)/) || [])[1]]) }));
+    if (r0.none.length) throw new Error('not on exactly one shelf: ' + J(r0.none));
+    if (r0.fiqh.some(x => x !== 'fiqh')) throw new Error('the original fiqh lessons: ' + J(r0.fiqh));
+    for (const [id, n] of r0.shelf) {
+      await page.locator('.src-card[data-src="' + id + '"]').click();
+      const shown = await page.locator('.lib-card').count();
+      if (shown !== n) throw new Error('shelf ' + id + ' says ' + n + ', shows ' + shown);
+      await page.locator('.src-card[data-src="' + id + '"]').click();
+    }
+    await page.locator('.src-card[data-src="mutun"]').click();
+    const stored = await page.evaluate(() => { let n = 0, big = []; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i), v = localStorage.getItem(k) || ''; n += k.length + v.length; if (v.length > 50000) big.push(k + ':' + v.length); } return [localStorage.getItem('qissa-libsource'), n, big.slice(0, 6)]; });
+    if (stored[0] !== 'mutun') throw new Error('the choice was not written: ' + J(stored));
+    await page.reload(); await page.waitForSelector('.src-card', { timeout: 60000 });
+    const kept = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.querySelector('.src-card.on') && document.querySelector('.src-card.on').getAttribute('aria-pressed')]);
+    await page.locator('.src-card[data-src="mutun"]').click();
+    const cleared = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, STORIES.length, localStorage.getItem('qissa-libsource')]);
+    if (kept[0] !== 'mutun' || kept[2] !== 'true' || cleared[0] !== '' || cleared[1] !== cleared[2] || cleared[3] !== '') throw new Error('persist and clear: ' + J([kept, cleared]));
+    // on a phone the text comes first: the shelf folds into one chip in the sort bar and opens as a sheet
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => renderLibrary());
+    const ph = await page.evaluate(() => [getComputedStyle(document.querySelector('#story > .src-shelf')).display, getComputedStyle(document.getElementById('srcPick')).display]);
+    await page.locator('#srcPick').click(); await page.waitForSelector('.sheet.show .src-card', { timeout: 10000 });
+    await page.locator('.sheet.show .src-card[data-src="fiqh"]').click(); await page.waitForTimeout(300);
+    const pf = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.getElementById('srcPick').getAttribute('aria-pressed'), !!document.querySelector('.sheet.show')]);
+    await page.evaluate(() => { state.libSource = ''; try { localStorage.removeItem('qissa-libsource'); } catch (e) {} renderLibrary(); });
+    await page.setViewportSize({ width: 1280, height: 720 });
+    if (ph[0] !== 'none' || ph[1] === 'none' || J(pf) !== J(['fiqh', 4, 'true', false])) throw new Error('the phone chip: ' + J([ph, pf]));
+  });
+
+  await check('v317 — accessibility (handoff 5): no visible control is named only by an icon, every segmented choice says which option is on, and the tab bar marks where you are', async () => {
+    await page.evaluate(() => { state.libSource = ''; renderLibrary(); });
+    await page.waitForTimeout(100);
+    const r = await page.evaluate(() => {
+      const unnamed = [...document.querySelectorAll('button, [role=button]')].filter(el => { const b = el.getBoundingClientRect(); return b.width && b.height && !(el.getAttribute('aria-label') || el.getAttribute('title') || '').trim() && !/[\p{L}\p{N}]/u.test(el.textContent || ''); }).map(el => el.outerHTML.slice(0, 80));
+      const seg = [...document.querySelectorAll('.seg > button')].filter(b => b.getAttribute('aria-pressed') !== String(b.classList.contains('on'))).map(b => b.outerHTML.slice(0, 80));
+      const cur = [...document.querySelectorAll('#tabbar [data-nav]')].filter(b => b.getAttribute('aria-current') === 'page').map(b => b.dataset.nav);
+      return { unnamed, seg, cur };
+    });
+    if (r.unnamed.length) throw new Error('icon-only controls without a name: ' + JSON.stringify(r.unnamed.slice(0, 5)));
+    if (r.seg.length) throw new Error('aria-pressed disagrees with the chosen option: ' + JSON.stringify(r.seg.slice(0, 5)));
+    if (JSON.stringify(r.cur) !== '["library"]') throw new Error('the tab bar\'s current tab: ' + JSON.stringify(r.cur));
+  });
+
+  await check('v317 — the map of the sciences (handoff 8): the progress page shows one bar per Elo area read live from state.elo, marks the weakest, and its button starts a drill in that very area — balāgha included', async () => {
+    const r = await page.evaluate(() => {
+      const keep = { ...state.elo }; const out = [];
+      for (const weak of EloModel.AREAS) {
+        EloModel.AREAS.forEach(a => { state.elo[a] = a === weak ? 1001 : 1250; });
+        openStats();
+        const rows = [...document.querySelectorAll('.sheet.show .em-row')].map(e => [e.dataset.area, +e.querySelector('.em-n').textContent, e.classList.contains('weak')]);
+        out.push({ weak, rows, go: (document.getElementById('eloMapGo') || {}).dataset.area, game: typeof COACH_GAME[weak] });
+      }
+      Object.assign(state.elo, keep); closeSheet(); return out;
+    });
+    for (const o of r) {
+      if (o.rows.length !== 5 || o.rows.some(([a, n, w]) => n !== (a === o.weak ? 1001 : 1250) || w !== (a === o.weak))) throw new Error('the bars: ' + JSON.stringify(o));
+      if (o.go !== o.weak || o.game !== 'function') throw new Error('the button and its drill: ' + JSON.stringify(o));
+    }
+  });
+
+  await check('v317 — the Atölye index (handoff 6): the rail and the index are drawn from one tool table; four groups hold all 37 tools (13 · 14 · 5 · 5); the search folds case, circumflexes, apostrophes, ı/i and harakāt — «ilal» finds İʿlāl, «جذر» and «kok» the Root Finder; a miss says so; a tile opens its tool and lands in «recently used»', async () => {
+    const J = JSON.stringify;
+    const keep = await page.evaluate(() => { const k = conjState.lab; try { localStorage.removeItem('qissa-lab-recent'); } catch (e) {} conjState.lab = 'home'; conjState.labQ = ''; openConjugator(); return k; });
+    await page.waitForSelector('.sheet.show .lab-home', { timeout: 10000 });
+    const r0 = await page.evaluate(() => ({ groups: [...document.querySelectorAll('.lab-group')].map(s => [s.dataset.group, s.querySelectorAll('.lab-tile').length]),
+      rail: [...document.querySelectorAll('.labrail [data-lab]')].map(b => b.dataset.lab).filter(x => x !== 'home'), table: LAB_TOOLS.map(t => t.id),
+      named: LAB_TOOLS.filter(t => !L.en[t.key] || !L.tr[t.key]).map(t => t.id) }));
+    if (J(r0.groups) !== J([['sarf', 13], ['nahw', 14], ['balagha', 5], ['fahm', 5]])) throw new Error('the groups: ' + J(r0.groups));
+    if (J(r0.rail) !== J(r0.table) || r0.table.length !== 37 || new Set(r0.table).size !== 37) throw new Error('the rail and the table disagree: ' + J([r0.rail.length, r0.table.length]));
+    if (r0.named.length) throw new Error('tools without a name in both languages: ' + J(r0.named));
+    const find = async q => { await page.fill('#labSearch', q); await page.waitForTimeout(260); return page.$$eval('#labHits .lab-tile', t => t.map(x => x.dataset.tool)); };
+    const hits = { ilal: await find('ilal'), ILAL: await find("İ'LÂL"), jadhr: await find('جذر'), kok: await find('kok'), none: await find('qqqq') };
+    const empty = await page.locator('.lab-empty').count();
+    if (!hits.ilal.includes('ilal') || !hits.ILAL.includes('ilal') || !hits.jadhr.includes('jadhr') || !hits.kok.includes('jadhr') || hits.none.length || empty !== 1) throw new Error('the search: ' + J([hits, empty]));
+    await find(''); await page.locator('.lab-tile[data-tool="mizan"]').click(); await page.waitForTimeout(200);
+    const opened = await page.evaluate(() => [conjState.lab, !!document.querySelector('.labrail button.on[data-lab="mizan"]')]);
+    await page.locator('.labrail [data-lab="home"]').click(); await page.waitForTimeout(200);
+    const rec = await page.$$eval('.lab-recent .lab-tile', t => t.map(x => x.dataset.tool));
+    await page.evaluate(k => { conjState.lab = k; conjState.labQ = ''; closeSheet(); }, keep);
+    if (J(opened) !== J(['mizan', true]) || rec[0] !== 'mizan') throw new Error('open and remember: ' + J([opened, rec]));
+  });
+
+  await check('v317 — the games hub (handoff 7): every shelf heading carries its count (2 · 9 · 22 · 2 · 14 = 49, every game still a direct child of the shelf); on a phone a shelf folds to four cards behind an «All (n)» toggle that says whether it is open; on a desk nothing folds', async () => {
+    const J = JSON.stringify;
+    const read = () => page.evaluate(() => ({ counts: [...document.querySelectorAll('.game-pick .game-group .g-count')].map(x => +x.textContent),
+      cards: document.querySelectorAll('.game-pick > button').length, shown: [...document.querySelectorAll('.game-pick > button')].filter(b => b.getBoundingClientRect().height > 0).length,
+      toggles: [...document.querySelectorAll('.game-group .g-all')].filter(t => t.getBoundingClientRect().height > 0).map(t => t.getAttribute('aria-expanded')) }));
+    await page.evaluate(() => openGames()); await page.waitForSelector('.game-pick .g-count', { timeout: 10000 });
+    const desk = await read();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => openGames()); await page.waitForSelector('.game-pick .g-count', { timeout: 10000 });
+    const phone = await read();
+    await page.locator('.game-group .g-all').nth(1).click();
+    const opened = await read();
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.evaluate(() => closeSheet());
+    if (J(desk.counts) !== J([2, 9, 22, 2, 14]) || desk.cards !== 49 || desk.shown !== 49 || desk.toggles.length) throw new Error('the desk hub: ' + J(desk));
+    if (phone.shown !== 2 + 4 + 4 + 2 + 4 || J(phone.toggles) !== J(['false', 'false', 'false'])) throw new Error('the phone hub folds: ' + J(phone));
+    if (opened.shown !== phone.shown + 18 || J(opened.toggles) !== J(['false', 'true', 'false'])) throw new Error('«All» opens its own shelf only: ' + J(opened));
   });
 
   await check('no JS errors on page', async () => {

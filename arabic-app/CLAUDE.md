@@ -13988,3 +13988,40 @@ an engine reading the old error as support.
 The v315 story-end sheet also learned manners: it opens only if the reader is still in that story, nothing else is
 open, and they have not tapped or typed since the last sentence was finished (`LAST_TOUCH`). Under load it had landed
 on top of the grammar index a test had just opened — which is exactly what it would do to a person.
+
+## v317 — design handoff items 4, 5, 6 and 8
+
+- **The library shelves its texts by source** (`LIB_SOURCES`, `renderSourceShelf`, `state.libSource` / `qissa-libsource`).
+  Membership is by package id. One deliberate change from the handoff: the four `kitab-al-*` fiqh lessons have their
+  own «Fıkıh dersleri» shelf — kitab-al-waqf and kitab-al-sulh are ORIGINAL compositions, and the handoff's regex would
+  have shelved them as classical mutūn. A shelf label is a provenance claim; it gets the same honesty rule as an
+  attribution. The smoke check walks every shelf and asserts its count equals the cards its filter shows.
+  **On a phone the shelf is a chip.** Wave 72 holds the first library card in the upper half of a 390×844 screen,
+  and before the shelf it stood at 401px of an allowed 403 — there is no room above the cards on a phone, for this or
+  for anything. Below 860px the shelf hides and a «From the sources ▾» chip in the sort bar opens it as a sheet; the
+  chip names the active collection. Any future library feature has the same budget: zero pixels above the first card.
+- **Accessibility, measured before patched.** A probe over the library, the reader and a word sheet found that the
+  icon buttons already carried `title` — the handoff's per-button list was mostly done. What was really missing: no
+  segmented control said which option was on (27 `.seg` rows), the tab bar never marked the current page, and the
+  desktop 🎨 toggle had no name at all. `.seg` state is mirrored into `aria-pressed` by ONE observer, batched to a frame
+  and only touched when a value changes, rather than by editing 27 render paths. The smoke check is the class, not the
+  instances: no visible control named only by an icon, every `.seg` choice agrees with its `aria-pressed`.
+- **The Atölye index** (`LAB_TOOLS`, `LabIndex`, rail button «Dizin»). The rail and the index are generated from ONE
+  table, so they cannot disagree about which tools exist. Search folds case, circumflexes, apostrophes, ı/i and
+  harakāt. A new learner lands on the index once (`qissa-atolye-seen`); after that the Atölye opens on the last tool —
+  58 smoke call sites rely on that, and every fresh-context test pre-seeds the flag the way it pre-seeds
+  `qissa-welcomed`.
+- **The map of the sciences** on the progress page reads `state.elo` live and starts a drill in the weakest area.
+  Writing it found that `COACH_GAME` had no balāgha entry: when balāgha was weakest, the coach's button had been opening
+  a vocabulary drill. It now opens «Which relation?».
+- **The games hub** (`HubLayout`): every shelf heading carries its count (2 · 9 · 22 · 2 · 14), and below 860px a shelf
+  folds to four cards behind an «All (n)» toggle with `aria-expanded`. The cards stay direct children of `.game-pick`,
+  because the shelving gate walks that flat list. A «For you» card was built and then REMOVED: the hub already had one
+  (the wave-79 recommendation, Elo's weakest area and its drill), and two cards recommending two different games is
+  worse than one. The existing card now states the 75% band instead. Look for the feature before building it.
+- **The learner's data outranks every cache.** The source-shelf check found that late in a long session a preference
+  write could fail silently (the choice did not survive a reload in the full smoke run, though it did in isolation).
+  `Storage.prototype.setItem` is now guarded once at boot: if a write OUTSIDE the recomputable `qissa-relax-*` caches
+  throws, the caches are dropped and the write is tried again. Proven with a storage filled to the last byte. The
+  check also reads its own write back before reloading, and prints the storage size if it ever fails again, so the
+  next occurrence names its cause instead of reading as a lost preference.

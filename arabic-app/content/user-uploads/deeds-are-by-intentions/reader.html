@@ -489,6 +489,15 @@
   .coach .co-abil { margin-top: .6rem; }
   .coach .co-lbl { display: block; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
     color: var(--ink-soft); margin-bottom: .25rem; }
+  .elo-map { margin: var(--s4) 0; padding: var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+  .elo-map h4 { margin: 0 0 var(--s1); }
+  .elo-map .em-row { display: grid; grid-template-columns: 7.5rem 1fr 3rem; align-items: center; gap: var(--s2); margin: var(--s1) 0; font-size: var(--t-sm); }
+  .elo-map .em-row small { color: var(--lvl4); font-weight: 600; }
+  .elo-map .em-bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+  .elo-map .em-bar span { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+  .elo-map .em-row.weak .em-bar span { background: var(--lvl4); }
+  .elo-map .em-n { text-align: end; font-variant-numeric: tabular-nums; }
+  .elo-map .btn { margin-top: var(--s2); min-height: 44px; width: 100%; }
   .coach .co-row { display: flex; align-items: center; gap: .5rem; font-size: .72rem; margin: .15rem 0; }
   .coach .co-a { flex: 0 0 6.5rem; color: var(--ink-soft); }
   .coach .co-bar { flex: 1; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
@@ -524,6 +533,14 @@
       #000 calc(100% - 1.25rem), transparent);
   }
   .tabs.labrail::-webkit-scrollbar { display: none; }
+  .lab-home #labSearch { width: 100%; min-height: 44px; box-sizing: border-box; padding: 0 var(--s3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); font: inherit; margin: var(--s2) 0 var(--s3); }
+  .lab-group h4 { margin: var(--s3) 0 var(--s2); font-size: var(--t-sm); }
+  .lab-group h4 small { color: var(--ink-soft); font-weight: 500; }
+  .lab-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s2); }
+  .lab-tile { display: grid; gap: 2px; justify-items: center; min-height: 72px; padding: var(--s2); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); color: var(--ink); cursor: pointer; text-align: center; }
+  .lab-tile .ar { font-family: var(--ar-font); font-size: 1.2rem; color: var(--accent); line-height: 1.6; }
+  .lab-tile b { font-size: var(--t-xs); font-weight: 600; }
+  .lab-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .tabs.labrail button {
     flex: 0 0 auto; scroll-snap-align: center;
     display: inline-flex; align-items: center; gap: .35rem;
@@ -855,6 +872,12 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .game-group .g-count { padding: 0 .45rem; border-radius: 999px; background: var(--line); font-size: var(--t-xs); letter-spacing: 0; }
+  .game-group .g-all { display: none; margin-inline-start: auto; min-height: 44px; align-items: center; padding: 0 var(--s2); cursor: pointer; color: var(--accent); font-size: var(--t-sm); letter-spacing: 0; text-transform: none; }
+  @media (max-width: 860px) {
+    .game-group .g-all { display: inline-flex; }
+    .game-pick .g-more:not(.g-open) { display: none; }
+  }
   .game-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--s3); }
   .game-pick button {
     position: relative; overflow: hidden; text-align: start;
@@ -2694,6 +2717,40 @@
 .lib-card.skel .meta-row{opacity:.8} body.data-pending #goalCard,body.data-pending .stat-strip{display:none}
 body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent,#5a9e6f),transparent);animation:qd-sweep 1.1s linear infinite}
 @keyframes qd-sweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+/* design wave D-1 · 04 — source shelf. Tokens only. The row is the second
+   thing on the page allowed to scroll sideways (after the lab rail), so it
+   fades at its edges the same way. */
+.src-shelf { margin: 0 0 var(--s4); font-family: var(--ui-font); }
+.src-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--s2);
+  font-size: var(--t-xs); font-weight: 600; letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--ink-soft); }
+.src-clear { letter-spacing: 0; text-transform: none; font-weight: 500; }
+.src-row { display: flex; gap: var(--s2); overflow-x: auto; scrollbar-width: none; padding: 2px 2px var(--s2);
+  scroll-snap-type: x proximity; overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 1.5rem), transparent); }
+.src-row::-webkit-scrollbar { display: none; }
+.src-card { flex: 0 0 9.5rem; scroll-snap-align: start; display: grid; gap: 2px; text-align: start;
+  min-height: 7.5rem; padding: var(--s3); border-radius: var(--radius); cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink); box-shadow: var(--btn-sh2, none);
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease); }
+.src-card .ar { font-family: var(--ar-font); font-size: 1.55rem; line-height: 1.5; color: var(--accent); text-align: right; font-weight: 700; }
+.src-card b { font-size: var(--t-md); }
+.src-card small { font-size: var(--t-xs); color: var(--ink-soft); line-height: 1.3; }
+.src-card.on { background: var(--hero); border-color: var(--hero); color: var(--hero-ink); }
+.src-card.on .ar { color: var(--hero-ac); }
+.src-card.on small { color: var(--hero-ink); opacity: .8; }
+.src-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.src-card { min-height: 44px; }
+#srcPick { display: none; position: relative; }
+#srcPick.on { background: var(--hero); color: var(--hero-ink); border-color: var(--hero); }
+#srcPick::before { content: ""; position: absolute; inset: -8px -2px; }
+.src-shelf.in-sheet .src-row { flex-wrap: wrap; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+.src-shelf.in-sheet .src-card { flex: 1 1 9.5rem; }
+@media (max-width: 860px) {
+  #srcPick { display: inline-flex; align-items: center; }
+  #story > .src-shelf { display: none; }
+}
 </style>
 
 <div class="readbar" id="readbar" aria-hidden="true"><div></div></div>
@@ -2800,7 +2857,7 @@ const L = {
         playerSent:"Sentence {i} / {n}", playerListening:"Listening", playerPrev:"Previous sentence", playerNext:"Next sentence", playerStop:"Stop",
         /* wave 79 */ goalH:"Daily goal · {p}%", goalSub:"{r} reviews and {n} new words still to go today.", goalDone:"Today's goal is done — the streak is safe.",
         xpLbl:"XP", xpToday:"today", hubTask:"Today's task: {n} answers", hubTaskSub:"Reward: +{x} XP", hubTaskDone:"Done — the reward is yours.",
-        hubReco:"Recommended", hubRecoDesc:"Your weakest area right now, by your own ratings.", pgStreakSub:"best {b}",
+        hubReco:"Recommended", hubRecoDesc:"Your weakest area right now, by your own ratings — its questions are picked at about 75 % expected success.", pgStreakSub:"best {b}",
         pgShield:"Your weekly mercy is still there — one missed day will not break the chain.", pgShieldUsed:"The weekly mercy is spent — read every day till the week turns.",
         pgXp:"Weekly XP", pgXpTotal:"{n} XP in all", pgPath:"Level path", pgPathSub:"Reading level {n} · texts of your level in the library", pgPathNone:"Pick your level and the path lights up.",
         pgBadges:"Badges", badgeStory:"First story", badgeStreak:"7-day streak", badgeWords:"100 words", badgeSarf:"Sarf master", badgeNahw:"Naḥw master", badgeDeck:"50 cards", badgeQa:"Catechist", badgeRound:"Perfect round",
@@ -2876,7 +2933,7 @@ const L = {
         alamaShape:{ sahih:"sound-ending noun", maqsur:"maqsur", manqus:"manqus",
                      muthanna:"dual", "jam-mudhakkar":"sound masculine plural",
                      "jam-muannath":"sound feminine plural", khamsa:"one of the five nouns" },
-        coachTitle:"Your coach",
+        coachTitle:"Your coach", mapTitle:"Map of the sciences", mapLead:"Your rating in each science, moved by every answer you give in the games. The weakest is marked.", mapGo:"Practise the weakest: {a}", mapWeak:"weakest",
         coachReview:"{n} card(s) are due — reviewing them now is worth more than anything else.",
         coachFading:"{n} word(s) are fading below the recall line — the games will seat them first.",
         coachWeak:"Your weakest area is {a} — one round now, while it costs the least.",
@@ -2930,7 +2987,7 @@ const L = {
         mizanComputedWhy:"the root letters stood in ف ع ل and everything else left where it was — no model, no lookup",
         mizanLearned:"Learned",
         mizanAmbiguous:"The scale is settled; the OFFICE is not. This one carries {n} at once, and only the sentence around the word decides which is meant.",
-        labRailLabel:"Workshop tools",
+        labRailLabel:"Workshop tools", labHomeTab:"Index", labSearchPh:"Find a tool — Turkish, English or Arabic", labRecent:"Recently used", labNoHit:"No tool matches «{q}».", labGroup_sarf:"Ṣarf", labGroup_nahw:"Naḥw", labGroup_balagha:"Balāgha", labGroup_fahm:"Reading and learning",
         gameThin:"only {n} here — a full round wants {m}; it will draw from the library instead",
         idafaTab:"Idafa",
         idafaIntro:"Two nouns and a case. The lab builds the idafa and names every rule that fired — or refuses, and names the rule that forbids it.",
@@ -3038,7 +3095,7 @@ const L = {
         alaqaHaqiqi:"Literally:", alaqaMajazi:"Meant:", alaqaQarina:"What forbids the literal reading:",
         alaqaIstiara:"This relation alone makes the majaz an ISTI'ARA rather than a mursal.",
         alaqaPanel:"The relations of majaz mursal", alaqaNamed:"Named by the books without a worked example here:",
-        gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha", gGroupIbara:"Rendering",
+        gAll:"All ({n})", gLess:"Fewer", gGroupVocab:"Words", gGroupSarf:"Sarf and number", gGroupNahw:"Nahw", gGroupBalagha:"Balagha", gGroupIbara:"Rendering",
         tagScore:"🔤 And the two engines trained on the RULES rather than on the corpus, both graded five-fold on roots they have never met. The VERB tagger reads a conjugated form back to its cell — {v}% first try, {v2}% within two, over {vn} examples the conjugator wrote itself from {vr} roots. The NOUN tagger reads a derived noun back to its scale — {i}% first try, {i2}% within two, over {in} examples from {ir} roots and {is} patterns. The scale is all it claims: what the scale is FOR is a second question, and the sentence answers that one.",
         mlScore:"🧠 Held out and re-tested: the model is trained on every story but one and asked about the one it has never seen, {k} times over, across {n} labelled words. It names the role right first try {a}% of the time, and within two guesses {b}%. Graded instead on the corpus it memorised it would claim {r}% — that gap is why the honest number is the one shown.",
         stStreak:"day streak", stDue:"due now", stKnown:"words held",
@@ -3193,7 +3250,7 @@ const L = {
         playerSent:"Cümle {i} / {n}", playerListening:"Dinleniyor", playerPrev:"Önceki cümle", playerNext:"Sonraki cümle", playerStop:"Durdur",
         /* wave 79 */ goalH:"Günlük hedef · %{p}", goalSub:"Bugün {r} tekrar ve {n} yeni kelime kaldı.", goalDone:"Bugünün hedefi tamam — seri güvende.",
         xpLbl:"XP", xpToday:"bugün", hubTask:"Günün görevi: {n} cevap", hubTaskSub:"Ödül: +{x} XP", hubTaskDone:"Tamam — ödül senin.",
-        hubReco:"Önerilen", hubRecoDesc:"Kendi puanlarına göre şu an en zayıf alanın.", pgStreakSub:"en iyisi {b}",
+        hubReco:"Önerilen", hubRecoDesc:"Kendi puanlarına göre şu an en zayıf alanın — soruları yaklaşık %75 başarı beklenen yerden seçilir.", pgStreakSub:"en iyisi {b}",
         pgShield:"Haftalık affın duruyor — bir gün kaçırırsan seri bozulmaz.", pgShieldUsed:"Haftalık af kullanıldı — hafta dönene kadar her gün oku.",
         pgXp:"Haftalık XP", pgXpTotal:"toplam {n} XP", pgPath:"Seviye yolu", pgPathSub:"Okuma seviyen {n} · kütüphanede seviyenin metinleri", pgPathNone:"Seviyeni seç, yol aydınlansın.",
         pgBadges:"Rozetler", badgeStory:"İlk hikâye", badgeStreak:"7 gün seri", badgeWords:"100 kelime", badgeSarf:"Sarf ustası", badgeNahw:"Nahiv ustası", badgeDeck:"50 kart", badgeQa:"Suâl-cevap", badgeRound:"Kusursuz tur",
@@ -3269,7 +3326,7 @@ const L = {
         alamaShape:{ sahih:"sahîhu'l-âhir isim", maqsur:"ism-i maksûr", manqus:"ism-i menkūs",
                      muthanna:"tesniye", "jam-mudhakkar":"cem'-i müzekker-i sâlim",
                      "jam-muannath":"cem'-i müennes-i sâlim", khamsa:"esmâ-i hamseden" },
-        coachTitle:"Koçun",
+        coachTitle:"Koçun", mapTitle:"İlim haritası", mapLead:"Her ilimdeki puanın; oyunlarda verdiğin her cevap onu oynatır. En zayıfı işaretli.", mapGo:"En zayıfı çalış: {a}", mapWeak:"en zayıf",
         coachReview:"{n} kart vadesinde — şimdi tekrarlamak her şeyden değerlidir.",
         coachFading:"{n} kelime hatırlama çizgisinin altına düşüyor — oyunlar önce onları oturtacak.",
         coachWeak:"En zayıf alanın: {a} — maliyeti en düşükken bir tur şimdi.",
@@ -3323,7 +3380,7 @@ const L = {
         mizanComputedWhy:"kök harfleri ف ع ل'e oturtuldu, geri kalan her şey yerinde bırakıldı — ne model ne tablo",
         mizanLearned:"Öğrenilen",
         mizanAmbiguous:"Vezin bellidir; VAZÎFE değil. Bu vezin aynı anda {n} vazîfe taşır; hangisinin kastedildiğini ancak kelimenin etrafındaki cümle tayin eder.",
-        labRailLabel:"Atölye âletleri",
+        labRailLabel:"Atölye âletleri", labHomeTab:"Dizin", labSearchPh:"Âlet ara — Türkçe, İngilizce ya da Arapça", labRecent:"Son kullanılanlar", labNoHit:"«{q}» ile eşleşen âlet yok.", labGroup_sarf:"Sarf", labGroup_nahw:"Nahiv", labGroup_balagha:"Belâgat", labGroup_fahm:"Anlama ve öğrenme",
         gameThin:"burada yalnız {n} tane var — tam bir tur {m} ister; eksiği kütüphaneden tamamlar",
         idafaTab:"İzâfet",
         idafaIntro:"İki isim, bir i'râb. Atölye izâfeti kurar ve işleyen her kaideyi adıyla gösterir — yahut reddeder ve buna mâni olan kaideyi söyler.",
@@ -3431,7 +3488,7 @@ const L = {
         alaqaHaqiqi:"Hakiki manası:", alaqaMajazi:"Kastedilen:", alaqaQarina:"Hakiki manayı engelleyen karîne:",
         alaqaIstiara:"Yalnız bu alâka mecazı MÜRSEL değil İSTİÂRE yapar.",
         alaqaPanel:"Mecâz-ı mürselin alâkaları", alaqaNamed:"Kitapların adını sayıp burada örneklendirilmeyenler:",
-        gGroupVocab:"Kelime", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
+        gAll:"Hepsi ({n})", gLess:"Daha az", gGroupSarf:"Sarf ve aded", gGroupNahw:"Nahiv", gGroupBalagha:"Belâgat", gGroupIbara:"Tercüme",
         tagScore:"🔤 Külliyattan değil KAİDELERDEN eğitilen iki motor; ikisi de hiç görmedikleri kökler üzerinde beş katlı ölçüldü. FİİL etiketleyicisi, çekimli bir sîgayı kendi hânesine geri okur — ilk tahminde %{v}, ilk iki tahminde %{v2}; {vr} kökten çekim motorunun kendi ürettiği {vn} örnek üzerinde. İSİM etiketleyicisi, türemiş bir ismi kendi veznine geri okur — ilk tahminde %{i}, ilk iki tahminde %{i2}; {ir} kök ve {is} kalıptan {in} örnek üzerinde. İddiası yalnız vezindir: o veznin hangi vazîfede olduğu ayrı bir sorudur, onu da cümle söyler.",
         mlScore:"🧠 Dışarıda bırakıp yeniden sınama: model, bir hikâye hariç bütün hikâyelerle eğitilip hiç görmediği o hikâyeden sorulur — {k} kez, toplam {n} etiketli kelime üzerinde. İlk tahminde %{a}, ilk iki tahmin içinde %{b} isabet eder. Ezberlediği külliyat üzerinde ölçülseydi %{r} iddia ederdi; gösterilen sayının dürüst olanı seçilmesinin sebebi bu farktır.",
         stStreak:"günlük seri", stDue:"tekrar zamanı", stKnown:"tutulan kelime",
@@ -3741,6 +3798,11 @@ Object.assign(L.en, {
   welcomeBody:"Stories run from Level {a} (first words) to Level {b} (classical texts as they were written). Pick the level that fits you and the library will shelve the closest stories first — you can change it any time.",
   welcomeUnsure:"Not sure? Start at Level {a}",
   sortForYou:"For you",
+  srcHead:"From the sources", srcClear:"Tap again to clear", srcCount:"{n} texts", srcCount1:"1 text",
+  srcWasaya:"Waṣāyā", srcWasayaSub:"Abū Ḥanīfa's testaments", srcMutun:"Mutūn", srcMutunSub:"Kāfiya, Iẓhār, ʿIzzī, Talkhīṣ…",
+  srcFiqh:"Fiqh lessons", srcFiqhSub:"buyūʿ, kaffārāt, waqf, ṣulḥ", srcMaqamat:"Maqāmāt", srcMaqamatSub:"Birgivī's Maqāmāt",
+  srcQisas:"Prophets' stories", srcQisasSub:"from the Qurʾān and the sīra", srcHikaya:"Fables", srcHikayaSub:"lions, crows and Juḥā",
+  srcPractice:"Practice", srcPracticeSub:"graded sentences",
   yourLevel:"Your level: {n}",
   yourLevelHint:"Tap to change your level"
 });
@@ -3764,6 +3826,11 @@ Object.assign(L.tr, {
   welcomeBody:"Hikâyeler {a}. seviyeden (ilk kelimeler) {b}. seviyeye (asıl klasik metinler) kadar uzanır. Size uyan seviyeyi seçin; kütüphane en yakın hikâyeleri öne dizsin — istediğiniz zaman değiştirebilirsiniz.",
   welcomeUnsure:"Emin değil misiniz? {a}. seviyeden başlayın",
   sortForYou:"Size göre",
+  srcHead:"Kaynaklarından", srcClear:"Kaldırmak için tekrar dokun", srcCount:"{n} metin", srcCount1:"1 metin",
+  srcWasaya:"Vesâyâ", srcWasayaSub:"İmam-ı Âzam'ın vasiyetleri", srcMutun:"Mütûn", srcMutunSub:"Kâfiye, İzhâr, İzzî, Telhîs…",
+  srcFiqh:"Fıkıh dersleri", srcFiqhSub:"büyû, keffârât, vakıf, sulh", srcMaqamat:"Makâmât", srcMaqamatSub:"Birgivî'nin Makâmât'ı",
+  srcQisas:"Kısas", srcQisasSub:"Kur'an ve siyerden", srcHikaya:"Hikmet hikâyeleri", srcHikayaSub:"aslan, karga ve Cuhâ",
+  srcPractice:"Alıştırma", srcPracticeSub:"derecelendirilmiş cümleler",
   yourLevel:"Seviyeniz: {n}",
   yourLevelHint:"Seviyenizi değiştirmek için dokunun"
 });
@@ -3805,6 +3872,7 @@ const state = {
   taqdir: localStorage.getItem("qissa-taqdir") === "1",
   deepNotes: localStorage.getItem("qissa-deep") === "1",
   libSort: localStorage.getItem("qissa-libsort") || "level",
+  libSource: (() => { try { return localStorage.getItem("qissa-libsource") || ""; } catch (e) { return ""; } })(),
   // 0 = never chosen. The picker asks once on first run; the level chip in the
   // library reopens it, so a wrong first answer costs one tap.
   myLevel: parseInt(localStorage.getItem("qissa-mylevel"), 10) || 0,
@@ -4290,6 +4358,47 @@ function forYouRank(st){
   const my = state.myLevel || 1;   // a cleared level degrades to the beginner shelf, not a crash
   return st.level === my ? 0 : st.level < my ? 2 * (my - st.level) : 2 * (st.level - my) + 1;
 }
+// ---------- the source shelf (design handoff D-1 · 04) ----------
+// A madrasa reader trusts a text by where it comes from. Membership is by package id, so it survives retitling; the
+// four fiqh lessons have their own shelf — two of them are ORIGINAL compositions and must never sit under «mutūn».
+const LIB_SOURCES = [
+  { id: "wasaya",   k: "Wasaya",   ar: "الْوَصَايَا",   test: id => /^wasiyyat-/.test(id) },
+  { id: "mutun",    k: "Mutun",    ar: "الْمُتُون",     test: id => /^(al-kafiya|izhar-al-asrar|tasrif-al-izzi|marah-al-arwah|shudhur-al-dhahab|min-muqaddimat-al-maqsud|mukhtasar-al-manar|talkhis-al-miftah|bad-al-amali|aqaid-ahl-al-sunna|al-usul-al-munifa)$/.test(id) },
+  { id: "fiqh",     k: "Fiqh",     ar: "الْفِقْه",      test: id => /^kitab-al-/.test(id) },
+  { id: "maqamat",  k: "Maqamat",  ar: "الْمَقَامَات",  test: id => /^al-maqamat/.test(id) },
+  { id: "qisas",    k: "Qisas",    ar: "الْقَصَص",      test: id => /^(qisas-al-nabiyyin|adam-|nuh-|hud-|salih-|ibrahim-|yusuf-|musa-|dawud-|sulayman-|yunus-|ayyub-|zakariyya-|shuayb-|dhu-al-qarnayn|ashab-|habil-|qarun-|luqman-|sahib-al-jannatayn|tawbat-al-qatil|jurayj-|al-abras|al-amana|al-rahma)/.test(id) },
+  { id: "hikaya",   k: "Hikaya",   ar: "الْحِكَايَات",  test: id => /^(al-asad-|al-ghurab-|juha-)/.test(id) },
+  { id: "practice", k: "Practice", ar: "التَّدْرِيب",    test: id => /^(jumal-al-tadrib|deeds-are-by-intentions)$/.test(id) },
+];
+// The stored choice is never erased by a render: while the data is still arriving in slices a shelf can read empty for
+// a moment, and that render simply shows everything — the choice applies again as soon as its texts are there.
+function activeLibSource(){ const s = state.libSource; return s && STORIES.some(st => sourceOf(st) === s) ? s : ""; }
+function sourceOf(st){ const s = LIB_SOURCES.find(x => x.test(st.id)); return s ? s.id : null; }
+function srcName(st){ const s = LIB_SOURCES.find(x => x.test(st.id)); return s ? ui()["src" + s.k] : ""; }
+function setLibSource(id){
+  state.libSource = state.libSource === id ? "" : id;
+  try { localStorage.setItem("qissa-libsource", state.libSource); } catch (e) {}
+  renderLibrary();
+}
+function renderSourceShelf(){
+  const box = document.createElement("div");
+  box.className = "src-shelf";
+  const counts = {}; STORIES.forEach(st => { const k = sourceOf(st); if (k) counts[k] = (counts[k] || 0) + 1; });
+  box.innerHTML = `<div class="src-head"><span>${ui().srcHead}</span>${activeLibSource() ? `<span class="src-clear">${ui().srcClear}</span>` : ""}</div>
+    <div class="src-row" role="group" aria-label="${escapeAttr(ui().srcHead)}">${LIB_SOURCES.filter(s => counts[s.id]).map(s => {
+      const on = activeLibSource() === s.id;
+      return `<button class="src-card${on ? " on" : ""}" data-src="${s.id}" aria-pressed="${on}"><span class="ar" lang="ar" dir="rtl">${s.ar}</span><b>${ui()["src" + s.k]}</b><small>${ui()["src" + s.k + "Sub"]} · ${counts[s.id] === 1 ? ui().srcCount1 : ui().srcCount.replace("{n}", counts[s.id])}</small></button>`;
+    }).join("")}</div>`;
+  box.querySelectorAll("[data-src]").forEach(b => b.addEventListener("click", () => setLibSource(b.dataset.src)));
+  return box;
+}
+// On a phone the text comes first (wave 72: the first card in the upper half of the screen), so the shelf folds into
+// one chip in the sort bar and opens as a sheet; choosing a collection re-renders the library, which closes the sheet.
+function openSourceSheet(){
+  sheetInner.innerHTML = `<h3 class="welcome-h">${ui().srcHead}</h3>`;
+  const shelf = renderSourceShelf(); shelf.classList.add("in-sheet"); sheetInner.appendChild(shelf);
+  showSheet();
+}
 function storiesSorted(){
   return STORIES.slice().sort(LIB_SORTS[state.libSort] || LIB_SORTS.level);
 }
@@ -4572,14 +4681,17 @@ function renderLibrary(){
     </div>
     ${state.myLevel ? `<button class="chip sib" id="myLevelChip" title="${escapeAttr(ui().yourLevelHint)}">${
       ui().yourLevel.replace("{n}", state.myLevel)}</button>` : ""}
-    ${fresh ? `<span class="chip newchip">${ui().newCount.replace("{n}", fresh).replace("{d}", NEW_FOR_DAYS)}</span>` : ""}`;
+    ${fresh ? `<span class="chip newchip">${ui().newCount.replace("{n}", fresh).replace("{d}", NEW_FOR_DAYS)}</span>` : ""}
+    <button class="chip src-pick${activeLibSource() ? " on" : ""}" id="srcPick" aria-haspopup="dialog" aria-pressed="${!!activeLibSource()}">${activeLibSource() ? escapeAttr(ui()["src" + (LIB_SOURCES.find(x => x.id === activeLibSource()) || { k: "Head" }).k] || ui().srcHead) : ui().srcHead} ▾</button>`;
   sortBar.querySelectorAll("[data-sort]").forEach(b =>
     b.addEventListener("click", () => setLibSort(b.dataset.sort)));
+  sortBar.querySelector("#srcPick").addEventListener("click", openSourceSheet);
   const mlc = sortBar.querySelector("#myLevelChip");
   if (mlc) mlc.addEventListener("click", () => openLevelPicker());
   storyEl.appendChild(sortBar);
+  storyEl.appendChild(renderSourceShelf());
   const have = new Set(state.deck.filter(d => d.type === "word").map(d => d.lex));
-  storiesSorted().forEach(st => {
+  storiesSorted().filter(st => { const a = activeLibSource(); return !a || sourceOf(st) === a; }).forEach(st => {
     const {total, read} = storyStats(st);
     const nw = storyNewWords(st, have);
     const card = document.createElement("button");
@@ -4593,6 +4705,7 @@ function renderLibrary(){
       <div class="s">${T(st.subtitle) || T(st.title) || ""}</div>
       <div class="meta-row">
         ${isNewStory(st) ? `<span class="chip newchip">${ui().newBadge}</span>` : ""}
+        ${srcName(st) ? `<span class="chip src">${srcName(st)}</span>` : ""}
         <span class="chip level">${ui().level} ${st.level} \u00b7 ${levelName(st)}</span>
         <span class="chip">${chapterCount148(st)} ${ui().chaptersWord}</span>
         <span class="chip">${accessLabel(st)}</span>
@@ -8996,7 +9109,7 @@ class RoleEngine {
 function updateRoleMode(){
   document.body.classList.toggle("role-mode", !!state.roles);
   const btn = document.getElementById("roleToggle");
-  if (btn) btn.classList.toggle("on", !!state.roles);
+  if (btn) { btn.classList.toggle("on", !!state.roles); btn.setAttribute("aria-pressed", String(!!state.roles)); btn.setAttribute("aria-label", ui().readCtrlPaint); }   // (v317 · handoff 5) the 🎨 alone named nothing
   let leg = document.getElementById("roleLegend");
   if (!state.roles) { if (leg) leg.remove(); return; }
   if (!leg) {
@@ -15244,6 +15357,7 @@ function renderModelOut(){
 function renderLabBody(){
   const body = document.getElementById("labBody");
   if (!body) return;
+  if (conjState.lab === "home") { body.innerHTML = LabIndex.html(conjState.labQ || ""); bindLabHome(body); return; }
   if (conjState.lab === "qawaid") {
     body.innerHTML = `<p class="ref-intro">${ui().qawaidIntro}</p>
       <div class="conj-lab">
@@ -16306,46 +16420,84 @@ function bindAtlasEvents(){
   });
 }
 
+// ---------- the Atölye index (v317 · design handoff 6) ----------
+// ONE table of the tools: the rail and the index are both drawn from it, so they can never disagree about what exists.
+// The index searches the Turkish and the English name and the bare Arabic, folding case, circumflexes, apostrophes and
+// the dotless ı — «ilal» finds İ'lâl, «جذر» finds the Root Finder. A new learner lands here once; after that the
+// Atölye opens on the last tool used, and the index is the first button of the rail.
+const LAB_TOOLS = [
+  { id: "sarf", ar: "صَرْف", key: "sarfLabTab", group: "sarf" },
+  { id: "bab35", ar: "٣٥ بَابًا", key: "bab35Tab", group: "sarf" },
+  { id: "adad", ar: "عَدَد", key: "adadTab", group: "sarf" },
+  { id: "jadhr", ar: "جَذْر", key: "jadhrTab", group: "sarf" },
+  { id: "mizan", ar: "مِيزَان", key: "mizanTab", group: "sarf" },
+  { id: "ism", ar: "نِسْبَة", key: "ismTab", group: "sarf" },
+  { id: "jumla", ar: "جُمْلَة", key: "jumlaTab", group: "nahw" },
+  { id: "model", ar: "نَمُوذَج", key: "modelTab", group: "fahm" },
+  { id: "alama", ar: "عَلَامَة", key: "alamaTab", group: "nahw" },
+  { id: "irabshop", ar: "مَغَازَة", key: "shopTab", group: "nahw" },
+  { id: "inna", ar: "إِنَّ", key: "innaTab", group: "nahw" },
+  { id: "wujuh", ar: "وُجُوه", key: "wujuhTab", group: "nahw" },
+  { id: "hadhf", ar: "حَذْف", key: "hadhfTab", group: "nahw" },
+  { id: "adab", ar: "آدَاب", key: "adabTab", group: "fahm" },
+  { id: "sign", ar: "عَلَامَات", key: "signTab", group: "nahw" },
+  { id: "maqsud", ar: "الْمَقْصُود", key: "maqsudTab", group: "sarf" },
+  { id: "tartib", ar: "تَرْتِيب", key: "tartibTab", group: "nahw" },
+  { id: "idafa", ar: "إِضَافَة", key: "idafaTab", group: "nahw" },
+  { id: "nida", ar: "نِدَاء", key: "nidaTab", group: "nahw" },
+  { id: "waqf", ar: "وَقْف", key: "waqfTab", group: "nahw" },
+  { id: "damir", ar: "ضَمِير", key: "damirTab", group: "sarf" },
+  { id: "hamza", ar: "هَمْزَة", key: "hamzaTab", group: "sarf" },
+  { id: "isht", ar: "اِشْتِقَاق", key: "ishtTab", group: "sarf" },
+  { id: "ilal", ar: "إِعْلَال", key: "ilalTab", group: "sarf" },
+  { id: "kernel", ar: "نَوَاة", key: "kernelTab", group: "nahw" },
+  { id: "qawaid", ar: "قَوَاعِد", key: "qawaidTab", group: "nahw" },
+  { id: "sledger", ar: "دَفْتَر", key: "sledgerTab", group: "sarf" },
+  { id: "dabt", ar: "ضَبْط", key: "dabtTab", group: "nahw" },
+  { id: "fahm", ar: "فَهْم", key: "fahmTab", group: "fahm" },
+  { id: "tashbih", ar: "تَشْبِيه", key: "tashbihTab", group: "balagha" },
+  { id: "majaz", ar: "مَجَاز", key: "majazTab", group: "balagha" },
+  { id: "kinaya", ar: "كِنَايَة", key: "kinayaTab", group: "balagha" },
+  { id: "badi", ar: "بَدِيع", key: "badiTab", group: "balagha" },
+  { id: "arud", ar: "عَرُوض", key: "arudTab", group: "balagha" },
+  { id: "tawkid", ar: "تَوْكِيد", key: "tawkidTab", group: "sarf" },
+  { id: "sual", ar: "سُؤَال", key: "sualTab", group: "fahm" },
+  { id: "learn", ar: "تَعَلُّم", key: "learnTab", group: "fahm" },
+];
+const LAB_GROUPS = ["sarf", "nahw", "balagha", "fahm"];
+const LabIndex = {
+  fold(x){ return String(x || "").normalize("NFC").replace(/[ً-ْٰـ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه")
+    .replace(/İ/g, "i").replace(/I/g, "ı").toLowerCase().replace(/ı/g, "i").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/['’ʼʻ`ʿʾ\-·\s]+/g, ""); },
+  names(t){ return [L.tr[t.key], L.en[t.key], t.ar, t.id].filter(Boolean); },
+  match(q){ const f = this.fold(q); if (!f) return LAB_TOOLS.slice(); return LAB_TOOLS.filter(t => this.names(t).some(n => this.fold(n).includes(f))); },
+  recent(){ try { return (JSON.parse(localStorage.getItem("qissa-lab-recent") || "[]") || []).filter(id => LAB_TOOLS.some(t => t.id === id)).slice(0, 3); } catch (e) { return []; } },
+  use(id){ if (!LAB_TOOLS.some(t => t.id === id)) return; const r = [id, ...this.recent().filter(x => x !== id)].slice(0, 3); try { localStorage.setItem("qissa-lab-recent", JSON.stringify(r)); } catch (e) {} },
+  tile(t){ return `<button class="lab-tile" data-tool="${t.id}"><span class="ar" lang="ar" dir="rtl">${t.ar}</span><b>${escapeAttr(ui()[t.key] || t.id)}</b></button>`; },
+  html(q){
+    const hits = this.match(q), rec = this.recent().map(id => LAB_TOOLS.find(t => t.id === id));
+    const groups = LAB_GROUPS.map(g => { const ts = hits.filter(t => t.group === g); return ts.length ? `<section class="lab-group" data-group="${g}"><h4>${ui()["labGroup_" + g]} <small>${ts.length}</small></h4><div class="lab-grid">${ts.map(t => this.tile(t)).join("")}</div></section>` : ""; }).join("");
+    return `<div class="lab-home"><input id="labSearch" type="search" autocomplete="off" spellcheck="false" placeholder="${escapeAttr(ui().labSearchPh)}" aria-label="${escapeAttr(ui().labSearchPh)}" value="${escapeAttr(q || "")}">
+      ${!q && rec.length ? `<section class="lab-group lab-recent"><h4>${ui().labRecent}</h4><div class="lab-grid">${rec.map(t => this.tile(t)).join("")}</div></section>` : ""}
+      <div id="labHits">${groups || `<p class="ref-intro lab-empty">${ui().labNoHit.replace("{q}", escapeAttr(q))}</p>`}</div></div>`;
+  },
+};
+function openAtolye(){
+  let seen = true; try { seen = !!localStorage.getItem("qissa-atolye-seen"); localStorage.setItem("qissa-atolye-seen", "1"); } catch (e) {}
+  if (!seen) conjState.lab = "home";
+  openConjugator();
+}
+function bindLabHome(body){
+  const go = id => { conjState.lab = id; LabIndex.use(id); sheetInner.querySelectorAll(".labrail [data-lab]").forEach(x => x.classList.toggle("on", x.dataset.lab === id)); renderLabBody(); const on = sheetInner.querySelector(".labrail button.on"); if (on && on.scrollIntoView) try { on.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {} };
+  const wire = () => body.querySelectorAll("[data-tool]").forEach(b => b.addEventListener("click", () => go(b.dataset.tool)));
+  const inp = body.querySelector("#labSearch"); let tm = 0;
+  inp.addEventListener("input", () => { clearTimeout(tm); tm = setTimeout(() => { conjState.labQ = inp.value; const box = document.createElement("div"); box.innerHTML = LabIndex.html(inp.value); body.querySelector("#labHits").replaceWith(box.querySelector("#labHits")); const rc = body.querySelector(".lab-recent"); if (rc) rc.remove(); wire(); }, 120); });
+  wire();
+}
 function openConjugator(){
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
   sheetInner.innerHTML = `<div class="tabs labrail" role="tablist" aria-label="${escapeAttr(ui().labRailLabel)}">
-      <button data-lab="sarf" class="${conjState.lab === "sarf" ? "on" : ""}">${arSpan("صَرْف")} ${ui().sarfLabTab}</button>
-      <button data-lab="bab35" class="${conjState.lab === "bab35" ? "on" : ""}">${arSpan("٣٥ بَابًا")} ${ui().bab35Tab}</button>
-      <button data-lab="adad" class="${conjState.lab === "adad" ? "on" : ""}">${arSpan("عَدَد")} ${ui().adadTab}</button>
-      <button data-lab="jadhr" class="${conjState.lab === "jadhr" ? "on" : ""}">${arSpan("جَذْر")} ${ui().jadhrTab}</button>
-      <button data-lab="mizan" class="${conjState.lab === "mizan" ? "on" : ""}">${arSpan("مِيزَان")} ${ui().mizanTab}</button>
-      <button data-lab="ism" class="${conjState.lab === "ism" ? "on" : ""}">${arSpan("نِسْبَة")} ${ui().ismTab}</button>
-      <button data-lab="jumla" class="${conjState.lab === "jumla" ? "on" : ""}">${arSpan("جُمْلَة")} ${ui().jumlaTab}</button>
-      <button data-lab="model" class="${conjState.lab === "model" ? "on" : ""}">${arSpan("نَمُوذَج")} ${ui().modelTab}</button>
-      <button data-lab="alama" class="${conjState.lab === "alama" ? "on" : ""}">${arSpan("عَلَامَة")} ${ui().alamaTab}</button>
-      <button data-lab="irabshop" class="${conjState.lab === "irabshop" ? "on" : ""}">${arSpan("مَغَازَة")} ${ui().shopTab}</button>
-      <button data-lab="inna" class="${conjState.lab === "inna" ? "on" : ""}">${arSpan("إِنَّ")} ${ui().innaTab}</button>
-      <button data-lab="wujuh" class="${conjState.lab === "wujuh" ? "on" : ""}">${arSpan("وُجُوه")} ${ui().wujuhTab}</button>
-      <button data-lab="hadhf" class="${conjState.lab === "hadhf" ? "on" : ""}">${arSpan("حَذْف")} ${ui().hadhfTab}</button>
-      <button data-lab="adab" class="${conjState.lab === "adab" ? "on" : ""}">${arSpan("آدَاب")} ${ui().adabTab}</button>
-      <button data-lab="sign" class="${conjState.lab === "sign" ? "on" : ""}">${arSpan("عَلَامَات")} ${ui().signTab}</button>
-      <button data-lab="maqsud" class="${conjState.lab === "maqsud" ? "on" : ""}">${arSpan("الْمَقْصُود")} ${ui().maqsudTab}</button>
-      <button data-lab="tartib" class="${conjState.lab === "tartib" ? "on" : ""}">${arSpan("تَرْتِيب")} ${ui().tartibTab}</button>
-      <button data-lab="idafa" class="${conjState.lab === "idafa" ? "on" : ""}">${arSpan("إِضَافَة")} ${ui().idafaTab}</button>
-      <button data-lab="nida" class="${conjState.lab === "nida" ? "on" : ""}">${arSpan("نِدَاء")} ${ui().nidaTab}</button>
-      <button data-lab="waqf" class="${conjState.lab === "waqf" ? "on" : ""}">${arSpan("وَقْف")} ${ui().waqfTab}</button>
-      <button data-lab="damir" class="${conjState.lab === "damir" ? "on" : ""}">${arSpan("ضَمِير")} ${ui().damirTab}</button>
-      <button data-lab="hamza" class="${conjState.lab === "hamza" ? "on" : ""}">${arSpan("هَمْزَة")} ${ui().hamzaTab}</button>
-      <button data-lab="isht" class="${conjState.lab === "isht" ? "on" : ""}">${arSpan("اِشْتِقَاق")} ${ui().ishtTab}</button>
-      <button data-lab="ilal" class="${conjState.lab === "ilal" ? "on" : ""}">${arSpan("إِعْلَال")} ${ui().ilalTab}</button>
-      <button data-lab="kernel" class="${conjState.lab === "kernel" ? "on" : ""}">${arSpan("نَوَاة")} ${ui().kernelTab}</button>
-      <button data-lab="qawaid" class="${conjState.lab === "qawaid" ? "on" : ""}">${arSpan("قَوَاعِد")} ${ui().qawaidTab}</button>
-      <button data-lab="sledger" class="${conjState.lab === "sledger" ? "on" : ""}">${arSpan("دَفْتَر")} ${ui().sledgerTab}</button>
-      <button data-lab="dabt" class="${conjState.lab === "dabt" ? "on" : ""}">${arSpan("ضَبْط")} ${ui().dabtTab}</button>
-      <button data-lab="fahm" class="${conjState.lab === "fahm" ? "on" : ""}">${arSpan("فَهْم")} ${ui().fahmTab}</button>
-      <button data-lab="tashbih" class="${conjState.lab === "tashbih" ? "on" : ""}">${arSpan("تَشْبِيه")} ${ui().tashbihTab}</button>
-      <button data-lab="majaz" class="${conjState.lab === "majaz" ? "on" : ""}">${arSpan("مَجَاز")} ${ui().majazTab}</button>
-      <button data-lab="kinaya" class="${conjState.lab === "kinaya" ? "on" : ""}">${arSpan("كِنَايَة")} ${ui().kinayaTab}</button>
-      <button data-lab="badi" class="${conjState.lab === "badi" ? "on" : ""}">${arSpan("بَدِيع")} ${ui().badiTab}</button>
-      <button data-lab="arud" class="${conjState.lab === "arud" ? "on" : ""}">${arSpan("عَرُوض")} ${ui().arudTab}</button>
-      <button data-lab="tawkid" class="${conjState.lab === "tawkid" ? "on" : ""}">${arSpan("تَوْكِيد")} ${ui().tawkidTab}</button>
-      <button data-lab="sual" class="${conjState.lab === "sual" ? "on" : ""}">${arSpan("سُؤَال")} ${ui().sualTab}</button>
-      <button data-lab="learn" class="${conjState.lab === "learn" ? "on" : ""}">${arSpan("تَعَلُّم")} ${ui().learnTab}</button>
+      <button data-lab="home" class="${conjState.lab === "home" ? "on" : ""}">${arSpan("فِهْرِس")} ${ui().labHomeTab}</button>
+      ${LAB_TOOLS.map(t => `<button data-lab="${t.id}" class="${conjState.lab === t.id ? "on" : ""}">${arSpan(t.ar)} ${ui()[t.key]}</button>`).join("\n      ")}
     </div>
     <div id="labBody"></div>`;
   // Bring the current tool into view. A rail whose selected item is scrolled
@@ -16354,7 +16506,7 @@ function openConjugator(){
     requestAnimationFrame(() => { const on = sheetInner.querySelector(".labrail button.on"); if (on && on.scrollIntoView) { try { on.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {} } });
   };
   sheetInner.querySelectorAll("[data-lab]").forEach(b => b.addEventListener("click", () => {
-    conjState.lab = b.dataset.lab;
+    conjState.lab = b.dataset.lab; LabIndex.use(b.dataset.lab);
     sheetInner.querySelectorAll("[data-lab]").forEach(x => x.classList.toggle("on", x === b));
     renderLabBody();
     railSync();
@@ -30254,6 +30406,7 @@ function openStats(){
     <p class="ref-intro">${ui().todayLine.replace("{r}", t.reviewed)
       .replace("{n}", t.learned).replace("{s}", t.read)}</p>
     ${lvlRows}
+    ${eloMapHtml()}
     ${ProgressPage.xpHtml()}
     ${ProgressPage.pathHtml()}
     ${ProgressPage.badgesHtml()}
@@ -30261,7 +30414,20 @@ function openStats(){
     ${ReviewNotes.statsHtml()}`;
   Backup.bind(sheetInner);
   ReviewNotes.bind(sheetInner);
+  const mg = sheetInner.querySelector("#eloMapGo");
+  if (mg) mg.addEventListener("click", () => (COACH_GAME[mg.dataset.area] || COACH_GAME.vocab)());
   showSheet();
+}
+// (v317 · design handoff 8) The map of the sciences: the learner's live Elo rating in each area, read from state.elo
+// and nothing else, the weakest one marked, and one button that starts a drill there — the coach's own route.
+function eloMapHtml(){
+  const weak = EloModel.weakest();
+  const lo = 900, hi = Math.max(1400, ...EloModel.AREAS.map(a => state.elo[a]));
+  const rows = EloModel.AREAS.map(a => { const v = state.elo[a], pct = Math.round(Math.min(100, Math.max(6, (v - lo) / (hi - lo) * 100)));
+    return `<div class="em-row${a === weak ? " weak" : ""}" data-area="${a}"><span class="em-a">${ui().coachAreas[a]}${a === weak ? ` <small>${ui().mapWeak}</small>` : ""}</span>
+      <span class="em-bar" role="meter" aria-valuemin="${lo}" aria-valuemax="${hi}" aria-valuenow="${v}" aria-label="${escapeAttr(ui().coachAreas[a])}"><span style="width:${pct}%"></span></span><b class="em-n">${v}</b></div>`; }).join("");
+  return `<section class="elo-map"><h4>${ui().mapTitle}</h4><p class="ref-intro">${ui().mapLead}</p>${rows}
+    <button class="btn primary" id="eloMapGo" data-area="${weak}">${ui().mapGo.replace("{a}", ui().coachAreas[weak])}</button></section>`;
 }
 // A verb card asks for cells of the Muhtelife; a word card asks for a meaning.
 // A round asks SEVERAL cells, not one: recalling a single form lets the reader
@@ -30295,7 +30461,8 @@ function verbPrompt(card){
 // everything (spacing), fading words next (retrieval before forgetting),
 // then a round in the weakest area (desirable difficulty).
 const COACH_GAME = { vocab: () => startCloze(), sarf: () => startSarfGame(),
-                     nahw: () => startTahlil(), adad: () => startAdadGame() };
+                     nahw: () => startTahlil(), adad: () => startAdadGame(),
+                     balagha: () => startAlaqa() };   // (v317) the fifth area had no drill here and fell through to vocabulary
 function coachPlan(st){
   const nf = fadingWords(3).length;
   if (st.due) return { msg: ui().coachReview.replace("{n}", st.due), act: "review" };
@@ -37430,6 +37597,17 @@ const Relax = {
   // the caches of OTHER builds are dropped once, at start
   sweep(){ try { const pre = "qissa-relax-", mine = this.key(""); for (let i = localStorage.length - 1; i >= 0; i--) { const k = localStorage.key(i); if (k && k.startsWith(pre) && !k.startsWith(mine)) localStorage.removeItem(k); } } catch (e) {} }
 };
+// (v317) The learner's data outranks every cache. The Relax caches are recomputable; a deck, a streak or a preference
+// is not. If a write outside the caches finds the storage full, the caches go and the write is tried once more —
+// before this, a full storage made every later preference fail silently (found by the source-shelf check, whose
+// choice did not survive a reload late in the smoke run).
+(() => { try { const P = Storage.prototype, put = P.setItem;
+  P.setItem = function(k, v){ try { return put.call(this, k, v); } catch (e) {
+    if (this !== window.localStorage || String(k).startsWith("qissa-relax-")) throw e;
+    for (let i = this.length - 1; i >= 0; i--) { const kk = this.key(i); if (kk && kk.startsWith("qissa-relax-")) this.removeItem(kk); }
+    try { Relax._mem.clear(); } catch (x) {}
+    return put.call(this, k, v); } };
+} catch (e) {} })();
 // the perceptron's 55 KB of weights are a function of the build: trained once, remembered (the first open of the model lab cost ~3 s on every fresh load)
 { const train0 = IrabModel.train.bind(IrabModel); IrabModel.train = function(){ if (this._model) return this._model; { const s = this.shipped(); if (s) { this._model = s; return s; } }   /* (wave 136) the build's model first */ const c = Relax.get("irab-model", true); if (c && c.total && c.w) { this._model = c; return c; } const m = train0(); try { Relax.set("irab-model", m, true); } catch (e) {} return m; }; }
 
@@ -38148,6 +38326,32 @@ function startWaqf(){
   });
 }
 
+// ---------- the games hub, laid out (v317 · design handoff 7) ----------
+// The hub's cards stay one flat list of headings and buttons (every card is still a direct child of .game-pick, which
+// the shelving gate walks). The «For you» the handoff asks for already exists — the wave-79 recommendation card names
+// the Elo model's weakest area and its drill; it now also states the band its questions come from. Each heading
+// carries its count; below 860px a shelf shows four cards and an «All (n)» toggle, so the first screen holds the
+// recommendation and several shelves.
+const HubLayout = {
+  FOLD: 4,
+  groups(pick){ const out = []; [...pick.children].forEach(k => { if (k.classList.contains("game-group")) out.push({ head: k, cards: [] }); else if (k.tagName === "BUTTON" && out.length) out[out.length - 1].cards.push(k); }); return out; },
+  apply(){
+    const pick = sheetInner.querySelector(".game-pick"); if (!pick) return;
+    const groups = this.groups(pick);
+    groups.forEach(g => {
+      g.head.insertAdjacentHTML("beforeend", `<small class="g-count">${g.cards.length}</small>`);
+      if (g.cards.length > this.FOLD) {
+        g.cards.slice(this.FOLD).forEach(c => c.classList.add("g-more"));
+        const t = document.createElement("span"); t.className = "g-all"; t.setAttribute("role", "button"); t.tabIndex = 0;
+        const paint = open => { t.textContent = open ? ui().gLess : ui().gAll.replace("{n}", g.cards.length); t.setAttribute("aria-expanded", String(open)); };
+        paint(false);
+        const flip = () => { const open = t.getAttribute("aria-expanded") !== "true"; g.cards.forEach(c => c.classList.toggle("g-open", open)); paint(open); };
+        t.addEventListener("click", flip); t.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } });
+        g.head.appendChild(t);
+      }
+    });
+  },
+};
 function openGames(){
   QUIZ_RESUME = null;
   if (activeWordEl) { activeWordEl.classList.remove("active"); activeWordEl = null; }
@@ -38234,6 +38438,7 @@ function openGames(){
     ${gCard("gSaj", "≈", ui().sajGame, ui().sajGameDesc)}
     ${gCard("gBahr", "♫", ui().bahrGame, ui().bahrGameDesc)}
   </div>`;
+  HubLayout.apply();   // v317 · handoff 7: a count on every shelf, phone shelves that fold to four
   bindHubTask();   // wave 79: the recommendation card clicks the shelf's own card
   document.getElementById("gMatch").addEventListener("click", startMatch);
   document.getElementById("gHarakat").addEventListener("click", startHarakat);
@@ -38758,7 +38963,7 @@ document.querySelectorAll("#uiLangSeg [data-ui]").forEach(b =>
     document.querySelectorAll("#uiLangSeg [data-ui]").forEach(x => x.classList.toggle("on", x === b));
     renderModeSeg();   // the mode labels are localized too
     document.getElementById("refOpen").textContent = ui().grammarBtn;
-document.getElementById("conjOpen").textContent = ui().conjBtn;
+document.getElementById("conjOpen").textContent = ui().conjBtn; { const rt = document.getElementById("roleToggle"); if (rt) { rt.setAttribute("aria-label", ui().readCtrlPaint); rt.setAttribute("aria-pressed", String(!!state.roles)); } }
     document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
     document.getElementById("statsOpen").textContent = ui().statsBtn;
@@ -38776,7 +38981,7 @@ document.getElementById("statsOpen").addEventListener("click", openStats);
 // The streak chip is the same numbers seen smaller — tapping it opens the page.
 document.getElementById("streakChip").addEventListener("click", openStats);
 document.getElementById("refOpen").addEventListener("click", () => openRef());
-document.getElementById("conjOpen").addEventListener("click", openConjugator);
+document.getElementById("conjOpen").addEventListener("click", openAtolye);
 document.getElementById("gamesOpen").addEventListener("click", openGames);
 document.getElementById("searchOpen").addEventListener("click", () => openSearch(searchQuery));
 
@@ -38789,9 +38994,16 @@ const TAB_NAV = {
   library:  () => { if (CUR) renderLibrary(); else { closeSheet(); window.scrollTo({ top: 0, behavior: "smooth" }); } },
   deck:     () => openDeck(),
   games:    () => openGames(),
-  atolye:   () => openConjugator(),
+  atolye:   () => openAtolye(),
   progress: () => openStats(),
 };
+// (v317 · design handoff 5) A segmented control says which option is chosen. Twenty-seven .seg rows set their «on»
+// class in their own render code; rather than teach each one, one pass per frame mirrors the class into aria-pressed,
+// and only when something changed. A class flip on a word (the speaking highlight) costs one parent test.
+const SEG_A11Y = { queued: false, run(){ this.queued = false; document.querySelectorAll(".seg > button").forEach(b => { const v = b.classList.contains("on") ? "true" : "false"; if (b.getAttribute("aria-pressed") !== v) b.setAttribute("aria-pressed", v); }); },
+  kick(){ if (!this.queued) { this.queued = true; requestAnimationFrame(() => this.run()); } } };
+new MutationObserver(recs => { for (const r of recs) { if (r.type === "childList" ? r.addedNodes.length : (r.target.parentElement && r.target.parentElement.classList.contains("seg"))) { SEG_A11Y.kick(); return; } } })
+  .observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
 function syncTabbar(){
   const bar = document.getElementById("tabbar");
   if (!bar) return;
@@ -38799,6 +39011,7 @@ function syncTabbar(){
   bar.querySelectorAll("[data-nav]").forEach(b => {
     const k = b.dataset.nav;
     b.classList.toggle("on", k === "library" && inLib);
+    if (k === "library" && inLib) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");   // (v317 · handoff 5)
     // Games play from wherever you are — the whole library at the front door,
     // this story once one is open — so the tab is always live.
     b.disabled = false;
@@ -38831,7 +39044,7 @@ renderModeSeg();
 document.querySelectorAll("#speedSeg [data-rate]").forEach(x => x.classList.toggle("on", parseFloat(x.dataset.rate) === state.rate));
 document.querySelectorAll(".controls .seg [data-layer]").forEach(x => x.classList.toggle("on", x.dataset.layer === state.layer));
 document.getElementById("refOpen").textContent = ui().grammarBtn;
-document.getElementById("conjOpen").textContent = ui().conjBtn;
+document.getElementById("conjOpen").textContent = ui().conjBtn; { const rt = document.getElementById("roleToggle"); if (rt) { rt.setAttribute("aria-label", ui().readCtrlPaint); rt.setAttribute("aria-pressed", String(!!state.roles)); } }
 document.getElementById("gamesOpen").textContent = ui().games;
     document.getElementById("searchOpen").textContent = ui().searchBtn;
     document.getElementById("statsOpen").textContent = ui().statsBtn;
