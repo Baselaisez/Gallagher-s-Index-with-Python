@@ -13943,3 +13943,13 @@ tabi / manevi / hidden / mebni / none — and gives a reading for 69.5 % of the 
 مِنَ الْيَمَنِ بِجَيْشٍ كَبِيرٍ» it answers mebni · ←جَاءَ · mebni · ←مِنَ · self · tābiʿ of بِجَيْشٍ, as the design shows.
 The two existing callers (the corpus block of the analyzer, the İbare pool) filter `!p.self`, so they behave as before.
 The tab bar is solid in every theme (its 94–96 % background let titles show through once the blur was removed).
+
+## v314 (design handoff D-1 · 03 and D-3 · 10): the word sheet shows how the iʿrāb was decided; Bahçe becomes İznik
+
+The iʿrāb tab now ends with «How it was decided»: the ḍabṭ engine's bare → vowelled form, the rule engine's office and
+note (RoleEngine + the first grammar id), the IrabModel's top guess for nouns badged as statistical, and a verdict —
+rule and model agree / model unsure, the rule decides / decided by the rule engine. It computes nothing new: it reads
+tok.s, RoleEngine.of, GRAMMAR and modelPredictFor, the calls the role layer and the Model lab already make, so it adds
+no cost to opening a word. The verdict text uses the contrast rule of item 13 (the hue mixed into --ink).
+The third theme keeps its key «bahce» (saved choices carry over) but is now İznik — turquoise, cobalt and coral, a 2 px
+button depth instead of 4 px; three smoke checks that had pinned the old green were moved to the new tokens on purpose.

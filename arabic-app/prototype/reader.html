@@ -135,16 +135,37 @@
     --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 4px 0 #9A7430; --btn-sh2: none;
     --tab-bg: #111824; --radius: 18px; --radius-lg: 24px;
   }
-  :root[data-theme="bahce"] {
-    --ground: #F1F4E9; --panel: #FFFFFF; --ink: #14251A; --ink-soft: #56655A; --line: #D9E0CB;
-    --accent: #1F9157; --accent-ink: #FFFFFF; --accent-soft: rgba(31,145,87,.12);
-    --danger: #E0533F; --ok: #1F9157;
-    --lvl1: #1F9157; --lvl2: #2B83C9; --lvl3: #E5A01A; --lvl4: #E0533F; --irab-ink: #B4472E;
-    --shadow: 0 18px 50px rgba(20,37,26,.18); --shadow-sm: 0 3px 0 #D9E0CB;
-    --sf2: #E6EBDA; --gold: #E5A01A; --fire: #F06A36; --hero: #1F9157; --hero-ink: #FFFFFF;
-    --hero-soft: rgba(255,255,255,.2); --hero-ac: #FFD34D; --btn-sh: 0 4px 0 #14703F; --btn-sh2: 0 3px 0 #D9E0CB;
-    --tab-bg: #FFFFFF; --radius: 22px; --radius-lg: 28px;
+  :root[data-theme="bahce"] {              /* İznik (design wave D-3): turquoise, cobalt and coral — the key stays "bahce" */
+    --ground: #EDF3F2; --panel: #FFFFFF; --ink: #132A30; --ink-soft: #4C6166; --line: #CCDCD9;
+    --accent: #17777A; --accent-ink: #FFFFFF; --accent-soft: rgba(23,119,122,.12);
+    --danger: #C8553D; --ok: #2C8A57;
+    --lvl1: #2C8A57; --lvl2: #2E5EAA; --lvl3: #B9862A; --lvl4: #C8553D; --irab-ink: #B4432E;
+    --shadow: 0 18px 50px rgba(19,42,48,.16); --shadow-sm: 0 2px 6px rgba(19,42,48,.08);
+    --sf2: #DDE9E7; --gold: #B9862A; --fire: #C8553D; --hero: #1E3A6B; --hero-ink: #F2F5FA;
+    --hero-soft: rgba(242,245,250,.16); --hero-ac: #86D3C9; --btn-sh: 0 2px 0 #0F5759; --btn-sh2: none;
+    --tab-bg: #FFFFFF; --radius: 18px; --radius-lg: 24px;
   }
+
+
+/* design wave D-1 · 03 — decision chain. Tokens only. */
+.dc { margin-top: var(--s4); font-family: var(--ui-font); }
+.dc-head { margin: 0 0 var(--s2); font-size: var(--t-xs); font-weight: 600; letter-spacing: var(--track-caps);
+  text-transform: uppercase; color: var(--ink-soft); }
+.dc-steps { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--r-md);
+  overflow: hidden; background: var(--panel); }
+.dc-steps li { display: flex; align-items: center; gap: var(--s3); padding: var(--s3); min-height: var(--tap); }
+.dc-steps li + li { border-top: 1px solid var(--line); }
+.dc-i { flex: none; width: 34px; height: 34px; border-radius: var(--r-sm); display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.dc-t { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.dc-t b { font-size: var(--t-sm); }
+.dc-t small { font-size: var(--t-xs); color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dc-v { flex: none; font-family: var(--ar-font); font-size: 1.15rem; }
+.dc-bare { color: var(--ink-soft); }
+.dc-num { font-family: var(--ui-font); font-size: var(--t-sm); font-weight: 700; font-variant-numeric: tabular-nums; }
+.dc-verdict { margin: var(--s2) 0 0; padding: var(--s3); border-radius: var(--r-md); font-size: var(--t-sm); font-weight: 700; }
+.dc-verdict.ok { background: color-mix(in srgb, var(--ok) 13%, var(--panel)); color: color-mix(in srgb, var(--ok) 70%, var(--ink)); }
+.dc-verdict.warn { background: color-mix(in srgb, var(--lvl3) 15%, var(--panel)); color: color-mix(in srgb, var(--lvl3) 62%, var(--ink)); }
 
   * { box-sizing: border-box; }
   body {
@@ -3658,6 +3679,7 @@ Object.assign(L.en, {
   bkTitle:"Backup", bkIntro:"Everything the app remembers — your deck, progress, streak, ratings and settings — as one file. Save it, move it to another phone, restore it there. Nothing leaves your device unless you send the file.",
   bkExport:"⬇ Save backup", bkCopy:"Copy", bkImport:"Restore from file…", bkAsk:"Replace everything on this device with the backup? The app will reload.", bkDone:"{n} items restored — reloading", bkBad:"That file is not a Qissa backup.", bkCopied:"Copied — paste it somewhere safe.",
   storyDone:"✓ Story finished — marked on your shelf",
+  dcHead:"How it was decided", dcDabt:"Ḍabṭ engine", dcDabtSub:"vowelled the bare spelling", dcRule:"Rule engine", dcModel:"ML model", dcModelSub:"statistical — gives odds, the rule decides", dcModelNone:"not needed", dcModelNoneSub:"the rule alone decides for this word", dcAgree:"Rule and model agree", dcUnsure:"Model unsure — the rule decides", dcRuleOnly:"Decided by the rule engine",
   vocabChip:"{n} words", vocabTitle:"Vocabulary of this story",
   vocabHint:"Every teachable word in this story, counted once, easiest first. Save the ones you want to drill.",
   statsBtn:"Progress", statsTitle:"Your progress",
@@ -3679,6 +3701,7 @@ Object.assign(L.tr, {
   bkTitle:"Yedek", bkIntro:"Uygulamanın hatırladığı her şey — desteniz, ilerlemeniz, seriniz, puanlarınız ve ayarlarınız — tek bir dosya olarak. Kaydedin, başka bir telefona taşıyın, orada geri yükleyin. Dosyayı siz göndermedikçe hiçbir şey cihazınızdan çıkmaz.",
   bkExport:"⬇ Yedeği kaydet", bkCopy:"Kopyala", bkImport:"Dosyadan geri yükle…", bkAsk:"Bu cihazdaki her şey yedekle değiştirilsin mi? Uygulama yeniden yüklenecek.", bkDone:"{n} öğe geri yüklendi — yeniden yükleniyor", bkBad:"Bu dosya bir Qissa yedeği değil.", bkCopied:"Kopyalandı — güvenli bir yere yapıştırın.",
   storyDone:"✓ Hikâye bitti — rafında işaretlendi",
+  dcHead:"Nasıl karar verildi", dcDabt:"Zabt motoru", dcDabtSub:"harekesiz yazımı harekeledi", dcRule:"Kaide motoru", dcModel:"ML modeli", dcModelSub:"istatistik — ihtimal söyler, kaide karar verir", dcModelNone:"gerekmedi", dcModelNoneSub:"bu kelimede kaide tek başına karar verir", dcAgree:"Kaide ve model aynı fikirde", dcUnsure:"Model kararsız — kaide karar verdi", dcRuleOnly:"Kaide motoru karar verdi",
   vocabChip:"{n} kelime", vocabTitle:"Bu hikâyenin kelimeleri",
   vocabHint:"Bu hikâyedeki bütün öğretilebilir kelimeler — bir kez, kolaydan zora. Çalışmak istediklerinizi desteye ekleyin.",
   statsBtn:"İlerleme", statsTitle:"İlerlemeniz",
@@ -16220,6 +16243,42 @@ let sarfUserPick = false;   // an explicit tense click outranks the auto-jump
 // Null means the drill is showing its table rather than one bab's paradigm.
 let sarfNakilPick = null;   // { form, bab }
 let sarfNakilTense = "mazi";
+/* design wave D-1 · 03 — the word sheet shows how the iʿrāb was decided (reads only what the engines already hold) */
+const DC_GROUP = { nahw: { en: "Naḥw", tr: "Nahiv" }, sarf: { en: "Ṣarf", tr: "Sarf" }, awamil: { en: "ʿAwāmil", tr: "Avâmil" },
+  balagha: { en: "Balāgha", tr: "Belâgat" }, bayan: { en: "Bayān", tr: "Beyân" } };
+
+function decisionChainHtml(tok){
+  if (!tok || !tok.irab) return "";
+  const lang = state.uiLang === "tr" ? "tr" : "en";
+  const roleId = (() => { try { return RoleEngine.of(tok); } catch (e) { return null; } })();
+  const role = roleId ? RoleEngine.ROLES.find(r => r.id === roleId) : null;
+  const g = (tok.grammar || []).map(id => GRAMMAR[id]).find(Boolean);
+  const ruleName = g ? T(g.title) : (role ? role[lang] : "");
+  const science = g && DC_GROUP[g.group] ? DC_GROUP[g.group][lang] : "";
+  const isNoun = tok.pos === "noun" || tok.pos === "propn";
+  let top = null;
+  if (isNoun && wordCtx && wordCtx.sen) { try { top = (modelPredictFor(wordCtx.sen, wordCtx.ti) || [])[0] || null; } catch (e) { top = null; } }
+  const topRole = top ? RoleEngine.ROLES.find(r => r.id === top.r) : null;
+  const agree = !top || !roleId || top.r === roleId;
+  const verdict = !top ? ui().dcRuleOnly : agree ? ui().dcAgree : ui().dcUnsure;
+  const pct = top ? Math.round(top.p * 100) : 0;
+  return `
+  <section class="dc" aria-label="${escapeAttr(ui().dcHead)}">
+    <h4 class="dc-head">${ui().dcHead}</h4>
+    <ol class="dc-steps">
+      <li><span class="dc-i" aria-hidden="true">ـَ</span>
+        <span class="dc-t"><b>${ui().dcDabt}</b><small>${ui().dcDabtSub}</small></span>
+        <span class="dc-v" lang="ar" dir="rtl"><span class="dc-bare">${tok.s.bare || ""}</span> ← ${tok.s.full}</span></li>
+      <li><span class="dc-i" aria-hidden="true">§</span>
+        <span class="dc-t"><b>${ui().dcRule}${science ? " · " + science : ""}</b><small>${escapeAttr(ruleName)}</small></span></li>
+      <li><span class="dc-i" aria-hidden="true">≈</span>
+        <span class="dc-t"><b>${ui().dcModel}</b><small>${top ? ui().dcModelSub : ui().dcModelNoneSub}</small></span>
+        <span class="dc-v dc-num">${top && topRole ? `${topRole[lang]} · %${pct}` : ui().dcModelNone}</span></li>
+    </ol>
+    <p class="dc-verdict ${top ? (agree ? "ok" : "warn") : "ok"}">${verdict}</p>
+  </section>`;
+}
+
 let wordCtx = null;
 function openWord(tok, el, tab, ctx){
   if (ctx) wordCtx = ctx;
@@ -16383,6 +16442,7 @@ function openWord(tok, el, tab, ctx){
     html += `<p class="lemma">${tok.s.full}</p>
       <div class="irab-ar" lang="ar">${tok.irab.ar}</div>
       <p class="irab-en">${tok.irab[state.uiLang] || tok.irab.en}</p>
+      ${decisionChainHtml(tok)}
       <p class="sarf-note">${ui().irabNote}</p>`;
   } else {
     tok.grammar.forEach(gid => { html += renderNote(gid); });
@@ -38706,7 +38766,7 @@ const THEMES = {
   paper:    { name: { en: "Paper", tr: "Kâğıt" }, sub: { en: "Cream and teal — the reader you know", tr: "Krem ve çam yeşili — alıştığın okuyucu" }, bg: "#FAF6EE", line: "#E4DCCB", ac: "#0E7C74", ink: "#22303A" },
   murekkep: { name: { en: "Ink", tr: "Mürekkep" }, sub: { en: "Paper, ink, a quiet serif — the most book-like", tr: "Kâğıt, mürekkep, sakin serif — en «kitap» olanı" }, bg: "#F3EDE1", line: "#DED3C0", ac: "#A5432B", ink: "#1E1A16" },
   gece:     { name: { en: "Night", tr: "Gece" }, sub: { en: "Deep navy, gold accents — for long evenings", tr: "Koyu lacivert, altın vurgu — uzun gece okumaları" }, bg: "#0E131D", line: "#283247", ac: "#E2B65C", ink: "#EEE8DA" },
-  bahce:    { name: { en: "Garden", tr: "Bahçe" }, sub: { en: "Bright green, bold shapes — the most playful", tr: "Canlı yeşil, tok biçimler — en oyunlu olanı" }, bg: "#F1F4E9", line: "#D9E0CB", ac: "#1F9157", ink: "#14251A" },
+  bahce:    { name: { en: "İznik", tr: "İznik" }, sub: { en: "Turquoise, cobalt and coral — the tile palette", tr: "Turkuaz, kobalt ve mercan; çini ferahlığı" }, bg: "#EDF3F2", line: "#CCDCD9", ac: "#17777A", ink: "#132A30" },
 };
 const THEME_ALIAS = { light: "paper", dark: "gece" };   // what an older build stored
 function themeKey(){ const t = THEME_ALIAS[state.theme] || state.theme; return THEMES[t] ? t : "auto"; }

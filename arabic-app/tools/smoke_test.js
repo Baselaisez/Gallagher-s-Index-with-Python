@@ -3968,13 +3968,13 @@ if (!CHROME) {
     const on = await page.evaluate(() => (document.querySelector('.sheet.show .theme-card.on') || {}).dataset.themePick);
     if (on !== 'gece') throw new Error('the picker marks the chosen card, got ' + on);
     const legacy = {};
-    for (const [k, want, g] of [['dark', 'gece', '#0E131D'], ['light', 'paper', '#FAF6EE'], ['murekkep', 'murekkep', '#F3EDE1'], ['bahce', 'bahce', '#F1F4E9']]) {
+    for (const [k, want, g] of [['dark', 'gece', '#0E131D'], ['light', 'paper', '#FAF6EE'], ['murekkep', 'murekkep', '#F3EDE1'], ['bahce', 'bahce', '#EDF3F2']]) {
       await page.evaluate(k => { state.theme = k; applyTheme(); }, k);
       legacy[k] = [await page.evaluate(() => document.documentElement.dataset.theme), await ground()];
       if (legacy[k][0] !== want || legacy[k][1] !== g) throw new Error('theme ' + k + ' → ' + JSON.stringify(legacy[k]) + ', wanted ' + want + ' ' + g);
     }
     const meta = await page.evaluate(() => document.querySelector('meta[name="theme-color"]').getAttribute('content'));
-    if (meta !== '#1F9157') throw new Error('the browser chrome follows the theme: ' + meta);
+    if (meta !== '#17777A') throw new Error('the browser chrome follows the theme: ' + meta);
     await page.evaluate(() => { state.theme = 'auto'; localStorage.removeItem('qissa-theme'); applyTheme(); document.getElementById('scrim').click(); });
   });
 
@@ -13187,7 +13187,8 @@ if (!CHROME) {
     if (r.easy.layer !== 'full' || !r.easy.ul || !r.easy.cls || !r.easy.tr) throw new Error('Easy = full tashkil, level lines, translation: ' + JSON.stringify(r.easy));
     if (r.speaking !== 1 || !r.playing || !r.finished) throw new Error('the timer karaoke should light one word at a time and finish the sentence: ' + JSON.stringify({ speaking: r.speaking, playing: r.playing, finished: r.finished }));
     if (r.blur.length) throw new Error('no backdrop blur in the stylesheet: ' + r.blur.join(' | '));
-    for (const th of ['paper', 'murekkep', 'gece', 'bahce']) if (!/^0 4px 0 #/.test(r.depth[th])) throw new Error('every theme gives the primary button a solid 4px depth: ' + JSON.stringify(r.depth));
+    // İznik (design wave D-3, the old «bahce» key) keeps a quieter 2px depth on purpose; the other three stay at 4px
+    for (const th of ['paper', 'murekkep', 'gece', 'bahce']) if (!(th === 'bahce' ? /^0 2px 0 #/ : /^0 4px 0 #/).test(r.depth[th])) throw new Error('every theme gives the primary button a solid depth (İznik 2px, the rest 4px): ' + JSON.stringify(r.depth));
     if (r.kinds.length < 2 || r.n < 6 || !r.card || !r.inCat) throw new Error('the quick tour mixes at least two kinds, has its card and its catalogue row: ' + JSON.stringify({ kinds: r.kinds, n: r.n, card: r.card, inCat: r.inCat }));
     if (!/60|Quick|Hızlı/.test(r.title) || !/⏱/.test(r.clock) || r.opts < 2) throw new Error('the quick tour opens with its clock and options: ' + JSON.stringify({ title: r.title, clock: r.clock, opts: r.opts }));
     if (!r.overAtOnce || !r.clock2 || r.overAfter !== '2') throw new Error('a timed round ends on the clock or on the last item with a summary: ' + JSON.stringify({ overAtOnce: r.overAtOnce, clock2: r.clock2, overAfter: r.overAfter }));
