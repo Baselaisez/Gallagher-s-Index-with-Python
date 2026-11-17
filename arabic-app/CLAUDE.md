@@ -1674,6 +1674,19 @@ must never ship.
 - `git push -u origin <branch>`; retry only on network errors (2s/4s/8s/16s).
 - Every story manifest carries `reviewStatus: pending-scholarly-review`. Keep it there
   until a human scholar signs off.
+- **"Scholarly review" means the project owner, who is the reviewing hoca, together with their students**
+  (owner's rule, 2026-11-17). No one else signs a package off, and no AI review counts as one: the AI pre-review
+  (`tools/review_batch.py`) only tells the hoca and the students where to look.
+- **The review loop.** `tools/review_sheets.py` turns the AI findings into Turkish review material in the
+  gitignored `reports/hoca-inceleme/`: `01-hoca-desenler.xlsx` (the systematic error patterns, each with examples,
+  its count, a shelf-wide signature scan, the proposed RULE fix and an ONAY / RET / DÜZELT column for the hoca) and
+  `02-grup-NN-<paket>.xlsx` (one sheet per student group; decisions ONAY / RET / DÜZELT / ŞÜPHELİ, a corrected
+  iʿrāb for DÜZELT, the reviewer's name). Ids are stable hashes, so a re-run only adds new group files.
+  `tools/review_intake.py <returned sheets>` validates what comes back and writes the root-cause fix list (patterns
+  the hoca approved, taṣrīf/iʿlāl before iʿrāb), the ŞÜPHELİ list, and appends every RET to
+  `reports/review-false-positives.jsonl` so later review runs learn from the scholar's rejections.
+  **No engine or content change from the review before the hoca has decided** — the fix list is the input to the
+  next wave, not a patch to apply.
 
 ### Model policy (owner's rule, 2026-11-17)
 
