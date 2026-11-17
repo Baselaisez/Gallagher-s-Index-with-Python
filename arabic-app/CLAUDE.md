@@ -1059,9 +1059,11 @@ these raw interpolations).
 
 **Fable orchestrates; lighter models execute.** Standing user directive: the
 crucial passes (adversarial verification, anything shipping) run under a
-Fable-driven Workflow; mechanical finder/reader stages delegate to
-sonnet/haiku. Precedent: the v71 pre-ship review (3 finder lenses on
-sonnet/haiku + Fable verifiers) returned 3 confirmed defects — train/predict
+Fable-driven Workflow; mechanical finder/reader stages delegate to a
+lighter model — since 2026-11-17 that means Claude Opus 5.5 at the least, never
+Sonnet or Haiku (see **Model policy** under Process). Precedent: the v71
+pre-ship review (3 finder lenses on sonnet/haiku, as the rule then was, + Fable
+verifiers) returned 3 confirmed defects — train/predict
 feature skew, unlabeled ML questions, raw-interpolation XSS — all fixed
 before commit. Reviews that only confirm are wasted; wire the findings back
 in before shipping.
@@ -1654,6 +1656,24 @@ must never ship.
 - `git push -u origin <branch>`; retry only on network errors (2s/4s/8s/16s).
 - Every story manifest carries `reviewStatus: pending-scholarly-review`. Keep it there
   until a human scholar signs off.
+
+### Model policy (owner's rule, 2026-11-17)
+
+Applies to every model call the project makes or delegates: subagents, workflows, the authoring tools under
+`tools/` (`analyze_text.py`, `review_batch.py`) and anything added later.
+
+- **Floor: Claude Opus 5.5 (`claude-opus-5-5`).** Never Sonnet, never Haiku, never an older Opus or Fable —
+  not even for a "mechanical" finder or reader stage, and not to save cost.
+- **Claude Fable 5.2 (`claude-fable-5-2`) for crucial work:** iʿrāb, naḥw and ṣarf, anything doctrinal, the
+  stories themselves, and design decisions. When in doubt whether a task is crucial, it is.
+- **Everything else: Claude Opus 5.5 with Claude Fable 5.2 as its advisor** (the advisor tool; with a Fable 5.2
+  advisor the advice comes back encrypted, so nothing may depend on reading its text).
+- **Keys.** API calls the tools make read `QISSA_ANTHROPIC_API_KEY` (or the gitignored `arabic-app/.env.local`)
+  and pass it explicitly to the client. Never use the name `ANTHROPIC_API_KEY`: it would also move Claude Code's
+  own billing onto the API credit. Never print, log or commit a key.
+- **Commit each wave as soon as it passes its checks, and push it.** Release work never stays uncommitted in the
+  session's container: on 2026-11-17 the container was replaced while wave 213 sat finished and uncommitted, and
+  the whole wave had to be rebuilt from the conversation.
 
 ## The Form IV mithal — substituting into the scale is not the last step
 
