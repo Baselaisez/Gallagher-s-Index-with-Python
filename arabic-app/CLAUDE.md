@@ -13930,3 +13930,16 @@ the control that keeps the neighbouring reading (`$S/w210/patch210.py`).
   «وَ «مِخْيَطٌ» مَنْقُوصٌ مِنَ …» (a cited mubtadaʾ before a nakira) and the cited doer behind «يَصْلُحُ» are hand lines, not
   rules. The wave-212 items stand.
 - **Next.** Marāḥ part twenty-eight continues on p. 144 at «وَتَقُولُ فِي إِلْحَاقِ الضَّمَائِرِ: قَالَ قَالَا قَالُوا …» (PDF page 50).
+
+## v313 (design wave D-5/D-1 from the owner's handoff): who governs whom, read right
+
+`AmilEngine.pairs()` paired two classes of word with the wrong governor. A word that carries its own jarr letter
+(بِجَيْشٍ) was paired backwards with an earlier particle (مِنَ) — **1,534** pairs on the shelf; and a follower (naʿt,
+ʿaṭf, badal, tawkīd), whose line also says «مَجْرُورٌ مِثْلُهُ», was paired as governed BY the word it follows —
+**1,234** pairs. Both are fixed (the handoff's `patches/12-amil.js`): the attached letter governs its own host and is
+returned as a `self` pair, followers are never someone's maʿmūl, and the host of an attached letter still governs as a
+muḍāf (بِسْمِ اللهِ). `AmilEngine.word(sen, i)` reads one word's governor off its own stored line — kind amil / self /
+tabi / manevi / hidden / mebni / none — and gives a reading for 69.5 % of the 64,184 tokens checked; for «جَاءَ أَبْرَهَةُ
+مِنَ الْيَمَنِ بِجَيْشٍ كَبِيرٍ» it answers mebni · ←جَاءَ · mebni · ←مِنَ · self · tābiʿ of بِجَيْشٍ, as the design shows.
+The two existing callers (the corpus block of the analyzer, the İbare pool) filter `!p.self`, so they behave as before.
+The tab bar is solid in every theme (its 94–96 % background let titles show through once the blur was removed).

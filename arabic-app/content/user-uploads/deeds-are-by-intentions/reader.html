@@ -47,7 +47,7 @@
        which theme is on. */
     --sf2: #EFE8DA; --gold: #B8862F; --fire: #C9622A; --hero: #1E3F42; --hero-ink: #EDF3EF;
     --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: none; --btn-sh2: none;
-    --tab-bg: rgba(255,253,247,.96);
+    --tab-bg: #FFFDF7;
     /* ===== the design system: one scale for space, type, motion, touch =====
        Colour was already tokenised; everything ELSE was ad-hoc rem literals,
        which is why two panels built a week apart never quite lined up. These
@@ -102,7 +102,7 @@
       --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
       --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
       --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 4px 0 #9A7430; --btn-sh2: none;
-      --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
+      --tab-bg: #111824; --radius: 18px; --radius-lg: 24px;
     }
   }
   :root[data-theme="light"], :root[data-theme="paper"] {
@@ -113,7 +113,7 @@
     --shadow: 0 18px 50px rgba(34,48,58,.22); --shadow-sm: 0 3px 14px rgba(34,48,58,.10);
     --sf2: #EFE8DA; --gold: #B8862F; --fire: #C9622A; --hero: #1E3F42; --hero-ink: #EDF3EF;
     --hero-soft: rgba(237,243,239,.16); --hero-ac: #D9A54A; --btn-sh: 0 4px 0 #085A54; --btn-sh2: none;
-    --tab-bg: rgba(255,253,247,.96); --radius: 14px; --radius-lg: 20px;
+    --tab-bg: #FFFDF7; --radius: 14px; --radius-lg: 20px;
   }
   :root[data-theme="murekkep"] {
     --ground: #F3EDE1; --panel: #FBF8F2; --ink: #1E1A16; --ink-soft: #6B6056; --line: #DED3C0;
@@ -123,7 +123,7 @@
     --shadow: 0 18px 50px rgba(30,26,22,.18); --shadow-sm: 0 1px 0 rgba(30,26,22,.03), 0 8px 22px rgba(30,26,22,.06);
     --sf2: #ECE4D5; --gold: #B8862F; --fire: #C9622A; --hero: #2A241F; --hero-ink: #F5ECDD;
     --hero-soft: rgba(245,236,221,.16); --hero-ac: #D9A54A; --btn-sh: 0 4px 0 #7A2F1E; --btn-sh2: none;
-    --tab-bg: rgba(251,248,242,.94); --radius: 14px; --radius-lg: 20px;
+    --tab-bg: #FBF8F2; --radius: 14px; --radius-lg: 20px;
   }
   :root[data-theme="dark"], :root[data-theme="gece"] {
     --ground: #0E131D; --panel: #161D2B; --ink: #EEE8DA; --ink-soft: #9BA3B4; --line: #283247;
@@ -133,7 +133,7 @@
     --shadow: 0 14px 34px rgba(0,0,0,.45); --shadow-sm: 0 3px 14px rgba(0,0,0,.35);
     --sf2: #1F2839; --gold: #E2B65C; --fire: #F08A4B; --hero: #1D2A45; --hero-ink: #EEE8DA;
     --hero-soft: rgba(238,232,218,.12); --hero-ac: #E2B65C; --btn-sh: 0 4px 0 #9A7430; --btn-sh2: none;
-    --tab-bg: rgba(14,19,29,.94); --radius: 18px; --radius-lg: 24px;
+    --tab-bg: #111824; --radius: 18px; --radius-lg: 24px;
   }
   :root[data-theme="bahce"] {
     --ground: #F1F4E9; --panel: #FFFFFF; --ink: #14251A; --ink-soft: #56655A; --line: #D9E0CB;
@@ -143,7 +143,7 @@
     --shadow: 0 18px 50px rgba(20,37,26,.18); --shadow-sm: 0 3px 0 #D9E0CB;
     --sf2: #E6EBDA; --gold: #E5A01A; --fire: #F06A36; --hero: #1F9157; --hero-ink: #FFFFFF;
     --hero-soft: rgba(255,255,255,.2); --hero-ac: #FFD34D; --btn-sh: 0 4px 0 #14703F; --btn-sh2: 0 3px 0 #D9E0CB;
-    --tab-bg: rgba(255,255,255,.96); --radius: 22px; --radius-lg: 28px;
+    --tab-bg: #FFFFFF; --radius: 22px; --radius-lg: 28px;
   }
 
   * { box-sizing: border-box; }
@@ -35722,7 +35722,7 @@ class GrammarKernel {
       add("stored", "corpus",
         { ar: "إِعْرَابُ الْمُدَوَّنَةِ", en: "The corpus's own i'rab", tr: "Külliyatın kendi i'râbı" },
         hit.sen.tokens.filter(t => t.irab).slice(0, 8).map(t => [t.s.full + " — " + t.irab.ar, T(t.irab)]));
-      const pairs = AmilEngine.pairs(hit.sen);
+      const pairs = AmilEngine.pairs(hit.sen).filter(p => !p.self);
       if (pairs.length) add("amil", "rule",
         { ar: "الْعَامِلُ وَالْمَعْمُولُ", en: "Who governs whom", tr: "Âmil ve ma'mûl" },
         pairs.map(p => [`${p.amil.s.full} ${p.gov.ar} → ${p.mamul.s.full} ${p.rel.ar}`,
@@ -35829,6 +35829,64 @@ class AmilEngine {
     return out;
   }
 }
+// design wave D-5 · 12 — AmilEngine: two pairing fixes + a per-word reading for
+// the Zabt "tap a word, see its governor" view. Paste after `class AmilEngine`.
+// Nothing here is new grammar: every answer is read off the word's own stored
+// i'rab line, the same way govOf / mamOf already do.
+
+(() => {
+  const line = t => ((t.irab && t.irab.ar) || "").normalize("NFC");
+  const bare = s => stripAr(s || "").replace(/[^ء-ي]/g, "");
+  // A follower names what it follows: «نَعْتٌ لِـ«جَيْشٍ» مَجْرُورٌ مِثْلُهُ».
+  AmilEngine.TABI = /^(نَعْتٌ|مَعْطُوفٌ|بَدَلٌ|تَوْكِيدٌ)/;
+  AmilEngine.NAMED = /لِـ?«([^»]+)»/;
+  // A particle the line itself names as the governor: «مَنْصُوبٌ بِأَنْ», «مَجْزُومٌ بِلَمْ».
+  AmilEngine.BY = /(?:مَنْصُوبٌ|مَجْزُومٌ)\s+بِـ?«?([ء-يً-ْ]+)»?/;
+
+  // FIX 1 — an attached jarr letter (بِـ، لِـ، كَـ) governs its own host word.
+  //   Before: «مِنَ الْيَمَنِ بِجَيْشٍ» paired بِجَيْشٍ with the earlier مِنَ.
+  // FIX 2 — a follower (na't, 'atf, badal, tawkid) is not governed by the word
+  //   it follows. Before: «بِجَيْشٍ كَبِيرٍ» paired كَبِيرٍ as majrur BY بِجَيْشٍ,
+  //   because its line also says مَجْرُورٌ.
+  AmilEngine.pairs = function (sen) {
+    const out = [], seen = [];
+    sen.tokens.forEach(t => {
+      const ar = line(t), g = this.govOf(t), m = this.mamOf(t);
+      const self = !!(g && m && g.k === "jarr" && m.k === "majrur");
+      if (self) out.push({ amil: t, gov: g, mamul: t, rel: m, self: true });
+      else if (m && !this.TABI.test(ar)) {
+        for (let i = seen.length - 1; i >= 0; i--)
+          if (m.from.includes(seen[i].g.k)) { out.push({ amil: seen[i].t, gov: seen[i].g, mamul: t, rel: m }); break; }
+      }
+      // the host of an attached letter can still be a mudaf («بِسْمِ اللهِ»)
+      const next = self ? this.GOV.find(x => x.k !== "jarr" && x.re.test(ar)) : g;
+      if (next) seen.push({ t, g: next });
+    });
+    return out;
+  };
+
+  // One word's reading for the UI. kind: amil · self · tabi · manevi · hidden · mebni · none · null
+  AmilEngine.word = function (sen, i) {
+    const toks = sen.tokens, t = toks[i], ar = line(t);
+    if (!ar) return null;
+    const back = test => { for (let j = i - 1; j >= 0; j--) if (test(toks[j], j)) return j; return -1; };
+    const by = ar.match(this.BY);
+    if (by) { const j = back(w => bare(w.s.full) === bare(by[1])); if (j >= 0) return { kind: "amil", amil: j, via: "named" }; }
+    if (this.TABI.test(ar)) {
+      // the named word may carry an attached letter: «لِـ«جَيْشٍ»» names بِجَيْشٍ
+      const n = ar.match(this.NAMED), j = n ? back(w => bare(w.s.full).endsWith(bare(n[1]))) : -1;
+      return { kind: "tabi", amil: j >= 0 ? j : null };
+    }
+    const p = this.pairs(sen).find(x => x.mamul === t);
+    if (p) return p.self ? { kind: "self", amil: null, rel: p.rel } : { kind: "amil", amil: toks.indexOf(p.amil), rel: p.rel };
+    if (/^ظَرْفُ (مَكَانٍ|زَمَانٍ)/.test(ar)) { const j = back(w => this.govOf(w)?.k === "verb"); if (j >= 0) return { kind: "amil", amil: j, via: "zarf" }; }
+    if (/مُتَعَلِّقٌ بِمَحْذُوفٍ/.test(ar)) return { kind: "hidden", amil: null };
+    if (/مُبْتَدَأٌ/.test(ar)) return { kind: "manevi", amil: null };
+    if (/لَا عَمَلَ لَهُ/.test(ar)) return { kind: "none", amil: null };
+    if (/مَبْنِيٌّ|^حَرْفُ|^حَرْفٌ/.test(ar)) return { kind: "mebni", amil: null };
+    return null;
+  };
+})();
 
 // ---------- game: العِبَارَة — the phrase, both ways -------------------
 // Translation is where grammar stops being a hobby: you cannot render the
@@ -37746,7 +37804,7 @@ const IBARA_POOL = new GamePool("ibara", { minSample: 240, units: GamePool.chapt
     if (!sen.translation || !sen.translation.tr || !sen.translation.en) return;
     const words = sen.tokens.length;
     if (words < 3 || words > 12) return;            // long enough to parse, short enough to hold
-    const pairs = AmilEngine.pairs(sen);
+    const pairs = AmilEngine.pairs(sen).filter(p => !p.self);
     if (!pairs.length) return;                       // nothing to explain = nothing to teach
     // ismiyya or fi'liyya, from the first open-class token's own pos label —
     // computed ONCE here rather than per comparison in the scorer
