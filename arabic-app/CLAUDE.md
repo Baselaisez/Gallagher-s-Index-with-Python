@@ -14101,3 +14101,17 @@ would be describing the last one.
   Keep it short: the phone budget (first card ≤403px) broke at 431px with the level name inside the chip.
 - Reading modes keep their behaviour; labels now say what they show (Easy · translation / Medium · word by word / Hard · Arabic only)
   and a switch inside a story toasts the mode's hint — on a phone the segment shows only سَهْل وَسَط صَعْب.
+
+### v324 — stories at the upper levels (testers: «4'ten itibaren hikâye değil ilmî metin var»)
+- Four ORIGINAL retold histories, each pending the hoca: «عُمَرُ وَالْقِدْرُ» (L4, 24 sentences), «أَبُو حَنِيفَةَ وَالسَّفِينَةُ»
+  (L5, 28), «فَتْحُ الْقُسْطَنْطِينِيَّةِ» (L5, 29), «صَلَاحُ الدِّينِ وَالْقُدْسُ» (L6, 30). Regenerators in tools/authoring/
+  (author_umar_wa_al_qidr.py, author_abu_hanifa_wa_al_safina.py, author_fath_al_qustantiniyya.py, author_salah_al_din_wa_al_quds.py);
+  each honours QISSA_PKG_ROOT so a draft can be staged outside content/samples while a release runs.
+- A new shelf «التَّارِيخ / History / Tarih» in LIB_SOURCES; v324 smoke check: L4, L5 and L6 each hold a history story,
+  never on the mutūn shelf, ORIGINAL in both languages.
+- Register by level is the brief: L4 kāna/inna sisters, ḥāl, simple conditionals; L5 maf'ūl muṭlaq/lahu, tamyīz, istithnāʾ,
+  لَمَّا، حَتَّى + subjunctive; L6 periodic sentences, فَبَيْنَمَا … إِذْ, ثُمَّ إِنَّهُ, ḥaṣr, kam khabariyya, qasam.
+- Spelling convention: the demonstratives take the dagger alif (ذٰلِكَ، هٰذَا، هٰذِهِ — 158:19 on the shelf).
+- Two sibling stories may mint the same word in one wave: the collision guard accepts the same LEMMA under the same key.
+- Left for the hoca (from the authors): كَادَ's stored bāb (فَتَحَ on the shelf; كَوِدَ يَكْوَدُ of سَمِعَ expected);
+  `nasaba-set` stores يَنْصُبُ where نَصَبَ «set up» is يَنْصِبُ; حِطِّين diptote reason; رَجَب with tanwīn.
