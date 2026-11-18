@@ -63,3 +63,21 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   (`precheck_apply.py`, `relex_ma`, run after every apply and by `--relex`) — only on lines a correction touched, since
   the matcher cannot tell «نَافِيَةٌ، وَلَيْسَتِ الْحِجَازِيَّةَ» from a Ḥijāzī mā. 9 keys retargeted in al-Uṣūl.
   For the hoca: ʿIzzī 6:s7 and 7:s3 — authored lines say «نَافِيَةٌ» while the key says the relative; which is right?
+
+### 2026-11-18, night — r04–r06 applied
+
+- r04–r06 (al-Uṣūl ch. 14–22, 119 findings): 116 AI-ONAY applied, 1 skipped by the applier because the correction changes
+  the LETTERS (19:s5 token 8: «فَرَضَ عَلَى الصَّلَاةَ» → «عَلَيَّ», both translations say «on me/bana»; the iʿrāb line
+  of that token must change with it) — a reading of the text, left for the hoca. 2 AI-ŞÜPHELİ: QR-C8C479EB (nawāṣib,
+  the five verbs) and QR-2F4E6B70 («بِخِصَالٍ ثَلَاثٍ وَاحِدَةٌ فَإِنَّهُمْ …» — mubtadaʾ with the fāʾ in its khabar
+  without a written أَمَّا?).
+- Alternatives the verifier chose between, for the hoca: 16:s2 الْقَيِّمُ made khabar because token 34 الدِّينُ is
+  badal (the usual reading: الدِّينُ khabar, الْقَيِّمُ naʿt — two lines change); 17:s1 مِثْلَ ḥāl (or مِثْلِ naʿt/badal,
+  a vowel change); 18:s16 رَدًّا mafʿūl lahu (or ḥāl); 19:s12 «لَيَقُولُنَّ اللهُ» mubtadaʾ with khabar dropped (or the
+  doer of a dropped verb).
+- Lines outside the packets the verifier flagged (next packet or the hoca): 19:s2 token 22 «مَجْرُورٌ بِـ«مَنْ»» → «مِنْ»;
+  19:s11 token 18 وَعِبَادَتُهُمْ maʿṭūf, not mubtadaʾ; 18:s13 لَيْسَ — its noun is the maṣdar «أَنْ يَتَكَلَّفُوا», not a
+  hidden pronoun.
+- After applying r04–r06: `precheck_apply.py --relex --write` retargeted 4 mā keys (14:s11, s12, s16 → nafiya; s23 →
+  mawsula); `irab_rules.py --write` (D04) dropped the hidden-doer clause from 3 lines whose doer is written after the verb;
+  14:s18 «بَعَثَهُ اللهُ» repaired by hand the same way (the hāʾ an object placed before the doer, the Name the doer).
