@@ -136,3 +136,13 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   the verse) applied by hand; 1 AI-ŞÜPHELİ (21:87 «لَنْ نَقْدِرَ عَلَيْهِ», shared with al-Uṣūl QR-4B58419B).
 - K01 KanaIsmTwiceRule: 19 lines (al-Uṣūl 10, Marāḥ 9) named kāna's noun twice; the written noun (or a detached pronoun right
   after the verb) keeps «الْمَرْفُوعُ بَعْدَهَا», otherwise the hidden pronoun stands. Logged by:"ai", confirmed_by_human:false.
+
+### 2026-11-18, night — r24–r26 applied: ALL 26 PACKETS DONE
+
+- r24 (Qaṣaṣ 1) 18, r25 (small) 38 + 2 AI-ŞÜPHELİ, r26 (small) 3 — 57 applied by the tool, 2 by hand (they change letters):
+  Qaṣaṣ 1 9:s23 «وَلَا وَتَخَفْ» → «وَلَا تَخَفْ» (the doubled wāw; segment dropped) and 21:s23 «ءَأَنَّكَ» → «ءَإِنَّكَ» (12:90 — the lām
+  on لَأَنْتَ follows only the kasra إِنَّ; lex anna→inna, segment, and t3 «خَبَرُ إِنَّ») — the hoca may check the Karachi print.
+- Open for the hoca from r25: qisas-2 26:s16 لَيَالٍ (Zajjāj vs Sībawayh/Khalīl on the جَوَارٍ plurals); qisas-2 35:s4 «عَلَى اللهِ رَبِّ
+  الْعَالَمِينَ» vs 26:145 «عَلَىٰ رَبِّ الْعَالَمِينَ».
+- Totals over r01–r26: about 1,060 corrections applied with a verbatim source each, every one logged by:"ai", confirmed_by_human:false;
+  the open questions are in this file; the lines found OUTSIDE the packets are in outside-packet-notes.md — the next pass.

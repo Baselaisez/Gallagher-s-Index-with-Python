@@ -178,3 +178,10 @@
   clause is its single object: al-ghurab 4:s1 t3, 2:s3 t2, qisas-2 19:s7 t5; ayyub 4:s2 t3 «اسْمُ أَنَّ»; juha 2:s1 t9 tag badal.
 - For the hoca (r25): qisas-2 26:s16 لَيَالٍ — Zajjāj (estimated kasra, like قَاضٍ) or Sībawayh/Khalīl (diptote, estimated fatḥa; the
   attached line); qisas-2 35:s4 t9 «عَلَى اللهِ رَبِّ الْعَالَمِينَ» — 26:145 reads «إِلَّا عَلَىٰ رَبِّ الْعَالَمِينَ»: does the print have اللهِ?
+
+## found by the engines (v326, main) — authored lines the new rules contradict
+- لَمْ يَكُ: al-Uṣūl يَكُ, نَكُ ×2 say «وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ» — the sign is the sukūn on the nūn dropped for lightness.
+- The passive: al-Uṣūl «رُدَّ الْعَرْشُ» and ʿIzzī «… أَوْ كُسِرَ ضُمَّ» are written with the passive's ḍamma and called an active māḍī with a
+  hidden doer.
+- The nūn of emphasis: al-Uṣūl لَيَقُولُنَّ «فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ»; ʿIzzī لَا تُرِينَانِّ called a dual majzūm by the dropped nūn (the
+  women's plural, built on sukūn); al-Uṣūl ﴿وَلَا يَجْرِمَنَّكُمْ﴾ tagged a noun «مَعْطُوفٌ مَنْصُوبٌ».
