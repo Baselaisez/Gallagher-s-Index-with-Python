@@ -149,7 +149,7 @@ def scan_hidden_vs_overt():
         for i, t in enumerate(toks):
             if is_verb(t) and "ضمير مستتر" in ar(t):
                 for u in toks[i + 1:i + 4]:
-                    if is_verb(u): break
+                    if is_verb(u) or re.search(r"عاطفة|موصول|معطوف", ar(u)): break   # (2026-11-18) the doer of another clause
                     if head_fail(ar(u)): n += 1; break
     return n
 
