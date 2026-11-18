@@ -119,6 +119,11 @@ def check_manifest(pkg: Path, rep: Report):
     level = manifest.get("level")
     if not isinstance(level, int) or not 1 <= level <= 6:
         rep.error(f"manifest.json: level must be an integer 1-6, got {level!r}")
+    else:
+        # (v323) one name per level number — testers read «Elementary» on both L1 and L2 as a mixed-up shelf
+        want = ["Beginner", "Elementary", "Intermediate", "Upper Intermediate", "Advanced", "Master"][level - 1]
+        if manifest.get("levelName") not in (None, want):
+            rep.error(f"manifest.json: levelName {manifest.get('levelName')!r} does not match level {level} (want {want!r})")
     title = manifest.get("title", {})
     if not isinstance(title, dict) or "ar" not in title or "en" not in title:
         rep.error("manifest.json: title must contain at least 'ar' and 'en'")

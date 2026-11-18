@@ -2791,8 +2791,8 @@ body.data-pending header.app::after{content:"";position:absolute;left:0;right:0;
    itself grows; in the dense rows the phone budget forbids it (wave 72: the first card and the first sentence in the
    upper half of a 390×844 screen) the control keeps its size and an invisible 44px hit area is laid round it. */
 .tabs button, .ref-view button, #sayWord, .rev-row button, .rev-row input, .ref-search, #corpusSearch, #refSearch { min-height: var(--tap); }
-.seg > button, .meta-row .chip, #srcPick, .sent-tools .play, .controls .tbtn, #goalEdit, header.app .tbtn { position: relative; }
-.seg > button::after, .meta-row button.chip::after, #srcPick::after, .sent-tools .play::after, .controls .tbtn::after, #goalEdit::after, header.app .tbtn::after {
+.seg > button, .meta-row .chip, #srcPick, #myLevelChip, .sent-tools .play, .sent-tools .peek, .controls .tbtn, #goalEdit, header.app .tbtn { position: relative; }
+.seg > button::after, .meta-row button.chip::after, #srcPick::after, #myLevelChip::after, .sent-tools .play::after, .sent-tools .peek::after, .controls .tbtn::after, #goalEdit::after, header.app .tbtn::after {
   content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, var(--tap)); height: var(--tap); transform: translate(-50%, -50%); }
 
 #srcPick { display: none; position: relative; }
@@ -3203,9 +3203,9 @@ const L = {
         shartGame:"Which conditional?", shartAsk:"Which adat was blanked out?",
         shartGameDesc:"In for the doubtful, idha for the certain, law for the impossible, kullama for the repeated.",
         roleGameAsk:"What is the highlighted word in this sentence?",
-        mode_easy:"Easy", mode_medium:"Medium", mode_hard:"Hard",
-        modeHint_easy:"Every sentence is translated underneath.",
-        modeHint_medium:"No sentence translation — each word carries its meaning beneath it.",
+        mode_easy:"Easy · translation", mode_medium:"Medium · word by word", mode_hard:"Hard · Arabic only",
+        modeHint_easy:"Full vowels, and every sentence translated underneath — the most help.",
+        modeHint_medium:"Fewer vowels and no sentence translation — you build the sentence from each word's meaning beneath it.",
         modeHint_hard:"Arabic only. Tap a word to see what it means.",
         peek:"Show meaning",
         formChip:"Form", rootChip:"root:", pluralChip:"pl.",
@@ -3596,9 +3596,9 @@ const L = {
         shartGame:"Hangi şart edatı?", shartAsk:"Hangi edat boş bırakıldı?",
         shartGameDesc:"Şüpheliye in, kesine izâ, muhâle lev, tekrara küllemâ.",
         roleGameAsk:"İşaretli kelime bu cümlede nedir?",
-        mode_easy:"Kolay", mode_medium:"Orta", mode_hard:"Zor",
-        modeHint_easy:"Her cümlenin altında tam tercümesi vardır.",
-        modeHint_medium:"Cümle tercümesi yok — her kelimenin manası altında yazılıdır.",
+        mode_easy:"Kolay · tercümeli", mode_medium:"Orta · kelime kelime", mode_hard:"Zor · yalnız Arapça",
+        modeHint_easy:"Tam hareke, her cümlenin altında tam tercümesi — en çok yardım.",
+        modeHint_medium:"Hareke azalır, cümle tercümesi kalkar — cümleyi her kelimenin altındaki manadan siz kurarsınız.",
         modeHint_hard:"Sadece Arapça. Manası için kelimeye dokunun.",
         peek:"Manayı göster",
         formChip:"Bâb", rootChip:"kök:", pluralChip:"çoğ.",
@@ -3855,8 +3855,12 @@ Object.assign(L.en, {
   srcFiqh:"Fiqh lessons", srcFiqhSub:"buyūʿ, kaffārāt, waqf, ṣulḥ", srcMaqamat:"Maqāmāt", srcMaqamatSub:"Birgivī's Maqāmāt",
   srcQisas:"Prophets' stories", srcQisasSub:"from the Qurʾān and the sīra", srcHikaya:"Fables", srcHikayaSub:"lions, crows and Juḥā",
   srcPractice:"Practice", srcPracticeSub:"graded sentences",
-  yourLevel:"Your level: {n}",
-  yourLevelHint:"Tap to change your level"
+  yourLevel:"Level {n}",
+  yourLevelHint:"Tap to change your level",
+  pickLevel:"Set level",
+  changeLevelTitle:"Your level",
+  changeLevelBody:"Pick another level any time — the library re-shelves itself around it at once. Level {a} is first words; Level {b} is classical texts as they were written.",
+  modeSwitched:"{m}: {h}"
 });
 Object.assign(L.tr, {
   continueReading:"Kaldığınız yerden devam",
@@ -3883,8 +3887,12 @@ Object.assign(L.tr, {
   srcFiqh:"Fıkıh dersleri", srcFiqhSub:"büyû, keffârât, vakıf, sulh", srcMaqamat:"Makâmât", srcMaqamatSub:"Birgivî'nin Makâmât'ı",
   srcQisas:"Kısas", srcQisasSub:"Kur'an ve siyerden", srcHikaya:"Hikmet hikâyeleri", srcHikayaSub:"aslan, karga ve Cuhâ",
   srcPractice:"Alıştırma", srcPracticeSub:"derecelendirilmiş cümleler",
-  yourLevel:"Seviyeniz: {n}",
-  yourLevelHint:"Seviyenizi değiştirmek için dokunun"
+  yourLevel:"Seviye {n}",
+  yourLevelHint:"Seviyenizi değiştirmek için dokunun",
+  pickLevel:"Seviye seç",
+  changeLevelTitle:"Seviyeniz",
+  changeLevelBody:"Seviyenizi istediğiniz an değiştirin — kütüphane hemen ona göre dizilir. {a}. seviye ilk kelimeler, {b}. seviye asıl klasik metinlerdir.",
+  modeSwitched:"{m}: {h}"
 });
 function ui(){ return L[state.uiLang] || L.en; }
 function T(v){ return (v && typeof v === "object") ? (v[state.uiLang] || v.en || "") : (v || ""); }
@@ -4731,8 +4739,8 @@ function renderLibrary(){
       <button data-sort="level" class="${state.libSort === "level" ? "on" : ""}">${ui().sortLevel}</button>
       <button data-sort="new" class="${state.libSort === "new" ? "on" : ""}">${ui().sortNewest}</button>
     </div>
-    ${state.myLevel ? `<button class="chip sib" id="myLevelChip" title="${escapeAttr(ui().yourLevelHint)}">${
-      ui().yourLevel.replace("{n}", state.myLevel)}</button>` : ""}
+    <button class="chip sib lvl-pick${state.myLevel ? " on" : ""}" id="myLevelChip" aria-haspopup="dialog" title="${escapeAttr((state.myLevel ? levelLabel(levelNameOf(state.myLevel)) + " — " : "") + ui().yourLevelHint)}">${
+      state.myLevel ? ui().yourLevel.replace("{n}", state.myLevel) : ui().pickLevel} ▾</button>
     ${fresh ? `<span class="chip newchip">${ui().newCount.replace("{n}", fresh).replace("{d}", NEW_FOR_DAYS)}</span>` : ""}
     <button class="chip src-pick${activeLibSource() ? " on" : ""}" id="srcPick" aria-haspopup="dialog" aria-pressed="${!!activeLibSource()}">${activeLibSource() ? escapeAttr(ui()["src" + (LIB_SOURCES.find(x => x.id === activeLibSource()) || { k: "Head" }).k] || ui().srcHead) : ui().srcHead} ▾</button>`;
   sortBar.querySelectorAll("[data-sort]").forEach(b =>
@@ -4777,15 +4785,16 @@ function renderLibrary(){
 // library that has no Master story asks no Master question.
 function levelChoices(){
   const seen = new Map();
-  STORIES.forEach(st => { if (!seen.has(st.level)) seen.set(st.level, st.levelName || ""); });
+  STORIES.forEach(st => { if (!seen.has(st.level)) seen.set(st.level, levelNameOf(st.level)); });
   return [...seen.entries()].sort((a, b) => a[0] - b[0]);
 }
 function openLevelPicker(){
   const lvls = levelChoices();
   const lo = lvls[0][0], hi = lvls[lvls.length - 1][0];
+  const again = !!state.myLevel;   // (v323) changing a level is not a welcome
   sheetInner.innerHTML = `
-    <h3 class="welcome-h">${ui().welcomeTitle}</h3>
-    <p class="ref-intro">${ui().welcomeBody.replace("{a}", lo).replace("{b}", hi)}</p>
+    <h3 class="welcome-h">${again ? ui().changeLevelTitle : ui().welcomeTitle}</h3>
+    <p class="ref-intro">${(again ? ui().changeLevelBody : ui().welcomeBody).replace("{a}", lo).replace("{b}", hi)}</p>
     <div class="level-pick">
       ${lvls.map(([lv, en]) => `<button class="btn ${state.myLevel === lv ? "saved" : ""}" data-pick-level="${lv}">
         ${ui().level} ${lv} · ${levelLabel(en)}</button>`).join("")}
@@ -6215,6 +6224,7 @@ function closeSheet(){
   refQuery = ""; refLevel = "all"; // don't over-engineer persistence — reset on close
   wordCtx = null;                 // the idiom banner belongs to one tap, not the next
   QUIZ_RESUME = null;             // closing the sheet ends the round's detour rights
+  NAV_AT = null; try { syncTabbar(); } catch (e) {}   // (v323) the scrim and the back key hold the original reference
 }
 // A detour destination (note, i'rab sheet) offers the way home when a quiz
 // round is waiting — prepend this bar and bind it after rendering.
@@ -6264,13 +6274,17 @@ const POS_TR = {
 function posLabel(pos){
   return state.uiLang === "tr" ? (POS_TR[pos] || pos) : pos;
 }
+// (v323) A level's name belongs to its NUMBER, not to each manifest: testers found Level 1 shelved as both «Newbie» and
+// «Elementary» and Level 2 as «Elementary» too, so the picker offered two «Temel» rows and the shelf read as mixed up.
+const LEVEL_NAMES = ["Beginner", "Elementary", "Intermediate", "Upper Intermediate", "Advanced", "Master"];
+function levelNameOf(lv){ return LEVEL_NAMES[Math.min(6, Math.max(1, +lv || 1)) - 1]; }
 const LEVEL_TR = {
-  "Newbie": "Yeni Başlayan", "Elementary": "Temel", "Intermediate": "Orta",
+  "Beginner": "Başlangıç", "Newbie": "Yeni Başlayan", "Elementary": "Temel", "Intermediate": "Orta",
   "Upper Intermediate": "Orta-İleri", "Advanced": "İleri", "Master": "Usta",
   "Mastery": "Ustalık",
 };
 function levelLabel(en){ return state.uiLang === "tr" ? (LEVEL_TR[en] || en) : en; }
-function levelName(st){ return levelLabel(st.levelName || ""); }
+function levelName(st){ return levelLabel(levelNameOf(st.level)); }
 
 function chip(txt, cls){ return `<span class="chip ${cls||""}">${txt}</span>`; }
 function arSpan(t){ return `<span class="ar">${t}</span>`; }
@@ -39172,6 +39186,9 @@ document.querySelectorAll("#modeSeg [data-mode]").forEach(b =>
     setMode(b.dataset.mode);
     applyModePreset105(b.dataset.mode);
     renderStory();
+    // (v323) on a phone the segment speaks Arabic alone (سَهْل وَسَط صَعْب); say what the step just changed, so «Medium»
+    // reading as more help than «Easy» (word meanings appear) is explained at the moment it is seen
+    try { if (CUR) showToast(ui().modeSwitched.replace("{m}", ui()["mode_" + b.dataset.mode]).replace("{h}", ui()["modeHint_" + b.dataset.mode])); } catch (e) {}
   }));
 document.getElementById("playAll").addEventListener("click", () => {
   if (playAllActive) stopPlayAll(); else startPlayAll();
@@ -39230,14 +39247,21 @@ const SEG_A11Y = { queued: false, run(){ this.queued = false; document.querySele
   kick(){ if (!this.queued) { this.queued = true; requestAnimationFrame(() => this.run()); } } };
 new MutationObserver(recs => { for (const r of recs) { if (r.type === "childList" ? r.addedNodes.length : (r.target.parentElement && r.target.parentElement.classList.contains("seg"))) { SEG_A11Y.kick(); return; } } })
   .observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
+// (v323 · user report, 17–18 Nov: «sayfalar değişiyor ama belirteç kütüphanede kalıyor») The Deck, Games, Atölye and
+// Progress pages are sheets, and the bar only knew «a story is open or not» — so the pill stayed on Library while the
+// learner was on another page. Each of the four pages now says which tab it is when it opens; closing the sheet, or
+// opening a sheet that is no tab page (a word, a search, a note), hands the pill back to where the reader really is.
+var NAV_AT = null;   // var: closeSheet() runs during boot, before this line would bind a let
 function syncTabbar(){
   const bar = document.getElementById("tabbar");
   if (!bar) return;
+  if (NAV_AT && !(typeof sheet !== "undefined" && sheet.classList.contains("show"))) NAV_AT = null;
   const inLib = !CUR;
+  const here = NAV_AT || (inLib ? "library" : null);
   bar.querySelectorAll("[data-nav]").forEach(b => {
     const k = b.dataset.nav;
-    b.classList.toggle("on", k === "library" && inLib);
-    if (k === "library" && inLib) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");   // (v317 · handoff 5)
+    b.classList.toggle("on", k === here);
+    if (k === here) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");   // (v317 · handoff 5)
     // Games play from wherever you are — the whole library at the front door,
     // this story once one is open — so the tab is always live.
     b.disabled = false;
@@ -39262,6 +39286,17 @@ document.querySelectorAll("#tabbar [data-nav]").forEach(b =>
   const orig = window[fn];
   if (typeof orig !== "function") return;
   window[fn] = function(...a){ const r = orig.apply(this, a); try { syncTabbar(); } catch (e) {} return r; };
+});
+// (v323) the four tab pages name their tab; a sheet that is no tab page, or the sheet closing, clears it
+Object.entries({ deck: "openDeck", games: "openGames", atolye: "openConjugator", progress: "openStats" }).forEach(([k, fn]) => {
+  const orig = window[fn];
+  if (typeof orig !== "function") return;
+  window[fn] = function(...a){ NAV_AT = k; const r = orig.apply(this, a); NAV_AT = k; try { syncTabbar(); } catch (e) {} return r; };
+});
+["openWord", "openSearch", "openRef"].forEach(fn => {
+  const orig = window[fn];
+  if (typeof orig !== "function") return;
+  window[fn] = function(...a){ NAV_AT = null; const r = orig.apply(this, a); try { syncTabbar(); } catch (e) {} return r; };
 });
 syncTabbar();
 

@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # Level names live in manifests as plain English and are translated in the
 # reader by lookup; every value used must be in that table.
 KNOWN_LEVEL_NAMES = {
-    "Newbie", "Elementary", "Intermediate", "Upper Intermediate",
+    "Beginner", "Newbie", "Elementary", "Intermediate", "Upper Intermediate",
     "Advanced", "Master", "Mastery",
 }
 

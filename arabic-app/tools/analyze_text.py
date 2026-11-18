@@ -299,7 +299,7 @@ def main():
         "title": {"ar": args.title_ar, "en": args.title_en,
                   **({"tr": args.title_tr} if args.title_tr else {})},
         "level": min(max(level, 1), 6),
-        "levelName": ["Newbie", "Elementary", "Intermediate", "Upper-Intermediate",
+        "levelName": ["Beginner", "Elementary", "Intermediate", "Upper Intermediate",
                       "Advanced", "Master"][min(max(level, 1), 6) - 1],
         "version": "0.1.0",
         # An upload enters the library the day it is analyzed — that is exactly

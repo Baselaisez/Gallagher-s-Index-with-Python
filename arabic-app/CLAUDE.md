@@ -14091,3 +14091,13 @@ lafīf — the numbering the shelf's own Marāḥ chapters use); Zabt names the 
 when the sentence is one the corpus holds. Both outputs re-render on every keystroke without passing through
 `renderLabBody`, so they call `LabFrame.foot()` themselves — a reference that does not follow the word or the root
 would be describing the last one.
+
+### v323 — testers' reports (17–18 Nov)
+- Tab pill: `NAV_AT` (a `var`, closeSheet runs at boot) records which tab page the sheet shows; the four tab openers are wrapped,
+  word/search/ref sheets clear it, closeSheet() resets it (the scrim and Back hold the original closeSheet reference).
+- One name per level NUMBER: `LEVEL_NAMES` / `levelNameOf(lv)`; `levelName(st)` and `levelChoices()` ignore manifest strings.
+  validate_content.py errors on a manifest whose levelName disagrees with its level (L1 Beginner … L6 Master).
+- The level chip is always on the shelf («Level N ▾» / «Choose your level ▾»); the picker titles itself «Your level» when changing.
+  Keep it short: the phone budget (first card ≤403px) broke at 431px with the level name inside the chip.
+- Reading modes keep their behaviour; labels now say what they show (Easy · translation / Medium · word by word / Hard · Arabic only)
+  and a switch inside a story toasts the mode's hint — on a phone the segment shows only سَهْل وَسَط صَعْب.

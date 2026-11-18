@@ -773,7 +773,7 @@ if (!CHROME) {
     // the mode survives a reload and localizes with the UI
     await page.locator('#uiLangSeg [data-ui="tr"]').click();
     const label = await page.locator('#modeSeg [data-mode="hard"] .m-en').textContent();
-    if (label !== 'Zor') throw new Error('mode label not Turkish under TR UI: ' + label);
+    if (!/^Zor\b/.test(label)) throw new Error('mode label not Turkish under TR UI: ' + label);
     await page.locator('#uiLangSeg [data-ui="en"]').click();
     await page.locator('#modeSeg [data-mode="easy"]').click();
     await page.locator('#backLib').click();
@@ -16639,6 +16639,34 @@ if (!CHROME) {
     if (!r.db) throw new Error('Zabt has no note for أَبْرَهَةُ');
   });
 
+  await check('v323 — testers\' three reports: the tab pill follows Deck / Games / Atölye / Progress and returns to Library when the sheet closes (scrim included); every level has ONE name (L1 was both «Newbie» and «Elementary», L2 «Elementary» too); the level chip is always on the shelf and changes the level in place; switching reading mode says what changed', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(async () => {
+      const w = () => new Promise(res => setTimeout(res, 60));
+      const pill = () => { const on = document.querySelector('#tabbar [data-nav].on'); return on ? on.dataset.nav : ''; };
+      renderLibrary(); await w();
+      const tabs = {};
+      for (const [k, fn] of [['deck', 'openDeck'], ['games', 'openGames'], ['atolye', 'openConjugator'], ['progress', 'openStats']]) { window[fn](); await w(); tabs[k] = pill(); document.getElementById('scrim').click(); await w(); tabs[k + '>close'] = pill(); }
+      const names = {}; STORIES.forEach(st => { (names[st.level] = names[st.level] || new Set()).add(levelName(st)); });
+      const multi = Object.entries(names).filter(([, v]) => v.size > 1).map(([k, v]) => k + ':' + [...v].join('/'));
+      const choices = levelChoices().map(x => x[1]);
+      const keep = state.myLevel, keepSort = state.libSort;
+      const chip = document.getElementById('myLevelChip'); const chipTxt = chip ? chip.textContent : null;
+      if (chip) chip.click(); await w();
+      const h = (document.querySelector('.sheet.show .welcome-h') || {}).textContent || '';
+      const b4 = document.querySelector('.sheet.show [data-pick-level="4"]'); if (b4) b4.click(); await w();
+      const after = [state.myLevel, (document.getElementById('myLevelChip') || {}).textContent || '', !!document.querySelector('.sheet.show')];
+      state.myLevel = keep; if (keep) localStorage.setItem('qissa-mylevel', String(keep)); else localStorage.removeItem('qissa-mylevel'); state.libSort = keepSort; localStorage.setItem('qissa-libsort', keepSort); renderLibrary(); await w();
+      return { tabs, multi, choices, chipTxt, h, after, hint: [ui().mode_easy, ui().mode_medium] };
+    });
+    const want = { deck: 'deck', games: 'games', atolye: 'atolye', progress: 'progress' };
+    for (const k in want) if (r.tabs[k] !== want[k] || r.tabs[k + '>close'] !== 'library') throw new Error('tab pill: ' + J(r.tabs));
+    if (r.multi.length) throw new Error('a level with two names: ' + J(r.multi));
+    if (new Set(r.choices).size !== r.choices.length) throw new Error('the picker repeats a level name: ' + J(r.choices));
+    if (!r.chipTxt || !/▾/.test(r.chipTxt)) throw new Error('no level chip on the shelf: ' + J(r.chipTxt));
+    if (r.after[0] !== 4 || !/4/.test(r.after[1]) || r.after[2]) throw new Error('changing the level in place: ' + J(r));
+    if (!/·/.test(r.hint[0]) || !/·/.test(r.hint[1])) throw new Error('mode labels do not say what they show: ' + J(r.hint));
+  });
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });
