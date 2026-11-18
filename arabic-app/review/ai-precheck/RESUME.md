@@ -59,3 +59,7 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   only breaks two sākins; the first scan counted them and was wrong.
 - Left for the hoca: 2:s16 «مَا الْمَخْرَجُ مِنْهَا» — the line of مَا says khabar muqaddam, the line of الْمَخْرَجُ makes
   مِنْهَا its khabar; one of the two readings must be chosen.
+- «One key, one word»: a correction that changes the face of مَا now carries the token's lexicon key with it
+  (`precheck_apply.py`, `relex_ma`, run after every apply and by `--relex`) — only on lines a correction touched, since
+  the matcher cannot tell «نَافِيَةٌ، وَلَيْسَتِ الْحِجَازِيَّةَ» from a Ḥijāzī mā. 9 keys retargeted in al-Uṣūl.
+  For the hoca: ʿIzzī 6:s7 and 7:s3 — authored lines say «نَافِيَةٌ» while the key says the relative; which is right?

@@ -36,6 +36,50 @@ def quoted(q, line):
     return True
 
 
+MA_KEYS = [("مَوْصُولٌ", "ma-mawsula"), ("اسْتِفْهَامٍ", "ma-istifham"), ("الْحِجَازِيَّةُ", "ma-hijaziyya"), ("مَصْدَرِيَّةٌ", "ma-masdariyya"), ("نَافِيَةٌ", "ma-nafiya")]
+
+
+def relex_ma(root, write):
+    """«One key, one word»: a مَا whose line was corrected to another face must carry that face's lexicon key (on the
+    token and on its segment), and the package's glossary must own the key — copied from the shelf, where every مَا
+    face is already defined once. Returns the list of changes."""
+    import review_batch as rb
+    shelf = {}
+    for p in rb.pending_packages():
+        g = json.loads((p / "glossary.json").read_text(encoding="utf-8")) if (p / "glossary.json").is_file() else {}
+        for k, v in (g.get("entries") or {}).items():
+            if k.startswith("ma-") and k not in shelf: shelf[k] = v
+    touched = set()                        # only lines a correction changed: the authored rest keeps the key its author chose
+    for name in ("applied.jsonl", "rule-applied.jsonl"):
+        fp = D / name
+        if fp.is_file():
+            for l in fp.read_text(encoding="utf-8").splitlines():
+                if l.strip(): a = json.loads(l); touched.add((a["package"], a["where"]))
+    out = []
+    for p in rb.pending_packages():
+        pk = json.loads((p / "manifest.json").read_text(encoding="utf-8"))["id"]
+        gp = p / "glossary.json"; gl = json.loads(gp.read_text(encoding="utf-8")); ent = gl.get("entries") or {}; gchanged = False
+        for f in (p / "chapters").glob("*.json"):
+            ch = json.loads(f.read_text(encoding="utf-8")); changed = False
+            for sen in ch["sentences"]:
+                for i, t in enumerate(sen["tokens"]):
+                    segs = t.get("segments") or []
+                    holders = [t] if (t.get("lex") or "").startswith("ma-") else [x for x in segs if (x.get("lex") or "").startswith("ma-")]
+                    if not holders or bare((t.get("surface") or {}).get("full")).lstrip("وف") != "ما": continue
+                    if (pk, f"{ch.get('chapter', f.stem)}:{sen['id']}:{i}") not in touched: continue
+                    line = N((t.get("irab") or {}).get("ar")); want = None
+                    for mark, key in MA_KEYS:
+                        if mark in line: want = key; break
+                    if not want: continue
+                    for h in holders:
+                        if h.get("lex") != want and want in shelf:
+                            out.append((p.name, f.stem, sen["id"], i, h.get("lex"), want)); h["lex"] = want; changed = True
+                            if want not in ent: ent[want] = shelf[want]; gchanged = True
+            if write and changed: f.write_text(json.dumps(ch, ensure_ascii=False, indent=1), encoding="utf-8")
+        if write and gchanged: gl["entries"] = ent; gp.write_text(json.dumps(gl, ensure_ascii=False, indent=1), encoding="utf-8")
+    return out
+
+
 def main():
     write = "--write" in sys.argv
     names = [a for a in sys.argv[1:] if not a.startswith("--")]
@@ -97,6 +141,7 @@ def main():
     if not write: return
     for cf, ch in chapters.items():
         cf.write_text(json.dumps(ch, ensure_ascii=False, indent=1), encoding="utf-8")
+    for r in relex_ma(ROOT, True): print("RELEX", *r)
     with open(ap, "a", encoding="utf-8") as fh:
         for c in changes: fh.write(json.dumps(c, ensure_ascii=False) + "\n")
     with open(rej, "a", encoding="utf-8") as fh:
@@ -105,4 +150,7 @@ def main():
 
 if __name__ == "__main__":
     sys.path.insert(0, str(ROOT / "tools"))
-    main()
+    if "--relex" in sys.argv:
+        for r in relex_ma(ROOT, "--write" in sys.argv): print("RELEX", *r)
+    else:
+        main()
