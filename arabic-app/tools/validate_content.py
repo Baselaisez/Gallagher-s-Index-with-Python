@@ -300,6 +300,12 @@ def check_token(tok: dict, where: str, glossary: dict, grammar_ids: set,
         irab = tok["irab"]
         if not irab.get("ar") or not irab.get("en"):
             rep.error(f"{where}: irab must contain both 'ar' and 'en'")
+        # (2026-11-18) a line must NAME the word's office before it names its sign: « بِالْفَتْحَةِ، مُضَافٌ.» is a line whose
+        # role the authoring pass dropped (25 were found in al-usul-al-munifa and the Maqāmāt) — the reader shows it as if
+        # it were an analysis. Warned, not failed: the repair is a reading of the sentence and belongs to the review loop.
+        ar0 = irab.get("ar") or ""
+        if ar0 and (ar0[:1].isspace() or ar0.lstrip().startswith(("بِالْ", "بِفَتْحَةٍ", "بِضَمَّةٍ", "بِكَسْرَةٍ"))):
+            rep.warn(f"{where}: irab line names a sign but no role: '{ar0.strip()[:40]}'")
         stats["irab_tokens"] += 1
 
 
