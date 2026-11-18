@@ -135,3 +135,28 @@
 - A ẓarf called «fronted khabar» while a mubtadaʾ and its own khabar follow: 29:s10 t23 (+t25 هُوَ), 4:s7 t4 (+t6), 22:s11 t14
   (+t16), 16:s5 t0 (+t2; t3 «second khabar» → khabar), 38:s3 t21 (t23 the mubtadaʾ, t27 its khabar), 28:s4 t15; 25:s3 t0 «وَعِنْدَ
   سِيبَوَيْهِ كُلُّ فِعْلٍ …» for the hoca (no written khabar of كُلُّ); 10:s6 t25 يُعْطَفُ add «وَالْجُمْلَةُ … خَبَرُ مَا».
+
+## from r19 (Mukhtaṣar al-Manār)
+- 8:s2/s4 وَمُوجِبُهُ → وَمُوجَبُهُ (surface + line, for the hoca against a printed Manār — the repo has none); with it: 8:s2 t1 الْوُجُوبُ
+  note «هَذَا الْأَثَرُ، وَذَاكَ الْمُؤَثِّرُ» and its EN/TR must be rewritten; tag ism-fail → ism-maful on 8:s2/s4 t0; the global key
+  `mujib` serves both مُوجِب and مُوجَب across packages (Iẓhār 38:s3, 39:s1 are مُوجَب) — split it (`mujab`). 13:s1 t6 وَآحَادٌ drop
+  mamnu-min-sarf (munṣarif); ʿAqāʾid 12:s1 t1 رُوِيَ nāqiṣ yāʾī (lafīf maqrūn), not wāwī.
+
+## from r21 (Maqāmāt)
+- قَالَ with no doer once السَّلَامُ stopped being one: 8:s6 t0, 8:s7 t0, 10:s5 t0 (+ «وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ»), 9:s5 t3
+  خَافَ; manqūṣ/maqṣūr visible: 7:s5 t2 مُرَاءٍ, 10:s4 t8 / 10:s5 t10 الدُّنْيَا; passives: 11:s5 t6 يُثَابُ nāʾib, t2 يُعَذَّبُ «مَبْنِيٌّ
+  لِلْمَجْهُولِ»; 12:s2 t12 هُمْ maʿṭūf on the hidden noun of يَكُونَ; 13:s5 t3 يَسْتَلْزِمُ the khabar of أَنَّ; 7:s5 t4 الَّذِي the ṣila is the
+  whole إِذَا clause; lex 13:s6 t1 أَعْلَمُ (elative, not `alima` verb); tags 9:s5 t6, 11:s5 t10 fail→mubtada-khabar, 13:s7 t9 hal→
+  maful-mutlaq, 8:s7 t4 drop ism-maqsur-manqus.
+- For the hoca (r21): 12:s2 «وَلَا هُمْ مُتَأَذِّينَ مِنْهُ» — keep the print (naṣb, joined to kāna's khabar) or emend مُتَأَذُّونَ; 7:s5
+  «إِذَا رَآهُ حَالًا» — ḥāl, second object of رَأَى, or a print slip for رَأَى حَالًا; 10:s5 t11 فَمَنْ — conditional with قَادَتْهُ its answer?
+
+## from r20 (Maqāmāt)
+- 2:s2 t0 فَأَوَّلُهَا — khabar «الْإِيمَانُ», not a jarr phrase; 2:s26 t2 رِضَاءَ annexed to أَنْفُسِهِمْ; no role: 3:s2 t0 وَهُوَ, 2:s15 t0 وَفِيهِ
+  (fronted khabar) / t1 نُكْتَةٌ (postponed mubtadaʾ) / t3 وَهِيَ / t9 هُوَ, 2:s18 t5 فَأَنْتَ, 1:s5 t1 تِلْكَ (muḍāf ilayh), 1:s6 t1 مَنْ (ism
+  of إِنَّ, khabar the clause لَمْ يَحْصُلْ), 4:s2 t3 السَّلَامُ (postponed mubtadaʾ); 1:s9 t5 وَالْبَاقِيَ / t6 فَرْعٌ joined to anna's noun /
+  khabar. «اسْمُ إِنَّ» under أَنَّ (consistency only): 1:s9 t3, 1:s11 t4, 2:s15 t5, 2:s16 t2, 2:s24 t3, 2:s33 t1, 3:s2 t8, 3:s6 t4,
+  6:s4 t1, 9:s4 t3, 9:s6 t16, 11:s2 t14/t35, 11:s3 t1, 13:s5 t1. Lex: 3:s7 t1 طَلَبَ / 4:s3 t4 لُبْسُ → the maṣdar; 3:s2 t2 بِأَنْ
+  mukhaffafa; 5:s3 t13 وَانْهَ pos verb. Tags with each correction are named in the verdict notes.
+- For the hoca (r20): 3:s2 «لَا إِلٰهَ إِلَّا اللهُ» — اللهُ badal of lā and its noun (chosen), of the pronoun in the omitted khabar,
+  or the minority reading; 2:s39 t8 «وَلَا فَأُدْخِلُهُ» (the print) vs وَإِلَّا (both translations); 4:s2 وَسُنَّةٌ; 1:s9 وَوُجُودُ.

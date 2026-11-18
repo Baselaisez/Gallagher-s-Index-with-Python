@@ -286,7 +286,39 @@ class PronounBuildRule(IrabRule):
         return {"ar": ar, "en": en, "tr": tr}
 
 
-RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule(), OvertDoerRule(), PronounBuildRule()]
+class KanaIsmTwiceRule(IrabRule):
+    """K01 — a verb of kāna's house whose line names its noun TWICE: «وَاسْمُهَا الْمَرْفُوعُ بَعْدَهَا» and «وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ …».
+    One verb has one noun. The words after it decide which clause stands: if a following word's line calls itself the noun of
+    kāna or its sister (before another verb intervenes), the hidden-pronoun clause goes; otherwise «الْمَرْفُوعُ بَعْدَهَا» goes."""
+    id = "K01"
+    title = "kāna's noun named twice"
+    source = {"book": "Iẓhār al-Asrār (Birgivî), Arabic matn", "file": "research/sources/izhar-al-asrar-matn-lithograph.txt", "locator": "al-marfūʿāt — ism kāna / line 120",
+              "quote": "اسم كان وأخواتها"}
+    BOTH = re.compile(r"وَاسْمُهَا الْمَرْفُوعُ بَعْدَهَا.*وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ|وَاسْمُهُ ضَمِيرٌ مُسْتَتِرٌ.*وَاسْمُهُ الْمَرْفُوعُ بَعْدَهُ|وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ.*وَاسْمُهَا الْمَرْفُوعُ بَعْدَهَا")
+    AFTER = re.compile(r"،\s*وَاسْمُهَا الْمَرْفُوعُ بَعْدَهَا")
+    HIDDEN = re.compile(r"،\s*وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ(?: جَوَازًا| وُجُوبًا)?(?: تَقْدِيرُهُ «?(?:هُوَ|هِيَ)»?)?")
+
+    def _overt(self, toks, i):
+        nx = toks[i + 1] if i + 1 < len(toks) else None
+        if nx and re.fullmatch(r"(?:هُوَ|هِيَ|هُمْ|هُنَّ|هُمَا|أَنْتَ|أَنْتِ|أَنْتُمْ|أَنَا|نَحْنُ)", N((nx.get("surface") or nx.get("s") or {}).get("full"))): return True   # «وَلَيْسَتْ هِيَ»: the written pronoun is the noun
+        for u in toks[i + 1:i + 5]:
+            b = N((u.get("irab") or {}).get("ar"))
+            if re.search(r"^(?:الْوَاوُ عَاطِفَةٌ، وَ)?(?:فِعْلٌ|فِعْلُ)", b): return False
+            if re.search(r"اسْمُ (?:كَانَ|لَيْسَ|صَارَ|أَصْبَحَ|أَمْسَى|ظَلَّ|بَاتَ|مَا زَالَ|زَالَ|دَامَ|كَانَتْ|لَيْسَتْ)|اسْمُهَا|اسْمُهُ", b): return True
+        return False
+
+    def candidates(self, toks, prev=None):
+        return [i for i, t in enumerate(toks) if self.BOTH.search(N((t.get("irab") or {}).get("ar")))]
+
+    def rewrite(self, tok, toks=None, j=None):
+        ir = tok.get("irab") or {}; a0 = N(ir.get("ar"))
+        overt = self._overt(toks or [], j if j is not None else -1)
+        ar = (self.HIDDEN if overt else self.AFTER).sub("", a0, count=1)
+        if ar == a0: return None
+        return {"ar": ar, "en": ir.get("en") or "", "tr": ir.get("tr") or ""}
+
+
+RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule(), OvertDoerRule(), PronounBuildRule(), KanaIsmTwiceRule()]
 
 
 def main():

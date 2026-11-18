@@ -124,3 +124,8 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   source at l.654). If accepted, the manifest attribution must record it; if not, revert the token and its two translations.
 - The Iẓhār catechism (izhar-mamul q58) quoted «يَا تَيْمُ تَيْمَ عَدِيٍّ» while its own TR/EN answer wrote «يَا تَيْمَ» — once r16 set the
   chapter to تَيْمَ (QR-25CB89C1 + QR-8E47605A, for the hoca), the verified string follows the chapter and its own answer.
+
+### 2026-11-18, night — r19–r21 applied
+
+- r19 (Manār) 8, r20 (Maqāmāt) 30, r21 (Maqāmāt) 31 — 69 AI-ONAY applied; relex one key. Two surfaces: Manār 8:s2/s4 وَمُوجَبُهُ
+  (ism mafʿūl — for the hoca against a printed Manār; the repo holds none) and Maqāmāt سَلْطَنَتِي (فَعْلَلَة).
