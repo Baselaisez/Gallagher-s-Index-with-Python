@@ -100,3 +100,15 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
 - Talkhīṣ 74:s3 «فَلَلرَّيْثُ فِي بَعْضِ الْمَوَاضِعِ أَنْفَعُ» (the package's source, l.4677): once the surface became the lām of
   inception, its line was rewritten by hand to match (lām al-ibtidāʾ + mubtadaʾ, segment keyed `lam-ibtida`, أَنْفَعُ its khabar);
   the smart layer of the two surface corrections (فَلَلرَّيْثُ، هَوَاكِ) follows the full.
+
+### 2026-11-18, late — r13–r15 applied
+
+- r13–r14 (Taṣrīf al-ʿIzzī): 50 AI-ONAY, 6 AI-RET (17:s32 already repaired by rule S01); r15 (Iẓhār): 19 AI-ONAY, 2 AI-ŞÜPHELİ
+  (14:s5 «وَالْمُضَافُ غَيْرَ/غَيْرُ غَيْرٍ»). 69 corrections; relex one mā key.
+- Iẓhār 12:s3 QR-D253FE03 holds only with its surface: the verifier read «لَمْ يَضُرَّ عَمَلَهُمَا السَّابِقَ» (the object in naṣb,
+  the description the hidden doer — both commentaries, Ottoman l.673 and the Turkish), so the surface was changed with the line:
+  عَمَلُهُمَا → عَمَلَهُمَا, السَّابِقُ → السَّابِقَ (its line now naʿt in naṣb). The passive reading يُضَرَّ عَمَلُهُمَا fits the old
+  EN/TR — for the hoca to confirm.
+- ʿIzzī 3:s11 t9 نَحْوُ: once r13 made مِثْلُ the khabar of an omitted «ذٰلِكَ», the bare «خَبَرٌ مَرْفُوعٌ» of نَحْوُ left it no
+  mubtadaʾ (the Hadhf audit's new false alarm) — rewritten as the second khabar of that omitted «ذٰلِكَ». 3:s6 t11/t13 and 3:s8
+  t4/t6 carry the same bare «خَبَرٌ» on مِثْلُ / نَحْوُ: for the outside-packet packet.

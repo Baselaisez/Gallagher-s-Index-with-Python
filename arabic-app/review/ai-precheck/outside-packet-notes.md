@@ -95,3 +95,43 @@
   manqūṣ with an apparent sign: 1:s2 t14 لِمَعَانٍ, 17:s14 t5, 17:s28 t5 رَاءٍ, 17:s30 t13 مُرٍ; 9:s3/s5/s6 the كَانَ / قُلِبَتْ lines do not
   name the condition and the answer (9:s3 t13 lacks «مَبْنِيٌّ لِلْمَجْهُولِ»); 14:s26 t2–13 quoted words as muḍāf ilayh of نَحْوُ, t15
   سَائِرُ tag fail vs mubtadaʾ; 6:s7 t16 فَإِنَّ — a causal fāʾ (open). Tags follow the corrections (named in each note).
+
+## found by the engines (v325, main) — authored lines the new rules contradict
+- The bināʾ vowel: «وُلِدْنَا» (al-Uṣūl) is built on sukūn, not fatḥa; «تَعَنَّتَ» (al-Uṣūl) on fatḥa, not sukūn.
+- The defective muḍāriʿ: lines that call the estimated ḍamma «visible» (الضَّمَّةُ / الظَّاهِرَةُ): يَمْشِي ×3 (juha-wa-al-himar),
+  تَمْشِي (qisas-al-nabiyyin-2), يَرَى ×3, يَرَاهُ ×2, نَرَاكَ, يَدْعُوكَ ×2 (qisas-al-nabiyyin-1), يُرَائِي, and «نُصْحِي» (al-Uṣūl —
+  check whether it is a verb at all).
+
+## from r16 (Iẓhār ch. 22–66) — surface pairs to apply WITH their lines
+- Pairs that must land together (the applier writes surface.full only — set smart too): 42:s4 تَيْمُ → تَيْمَ (QR-25CB89C1 +
+  QR-8E47605A); 44:s6 فَيَرْحَمْكَ → فَيَرْحَمُكَ (QR-89887ABF + QR-547B12F2); 66:s3 t3 الْمُتَّصِلُ (QR-E991F496), t5/t6 الْمُفْرَدُ،
+  النَّكِرَةُ with rafʿ lines (QR-23E2E172, QR-92203BFF); 50:s1 وَضَرَبْتَ — the sentence translation too («you struck, you» /
+  «dövdün, sen»).
+- Outside: 22:s8 t25 أَسَدٌ — doer hidden by necessity (a borrowed noun meaning «bold»); 54:s6 t3–t20 (مَوْحَدَ … قُزَحَ) «مَعْطُوفٌ
+  مَجْرُورٌ بِالْفَتْحَةِ»; marah 53:s1 t40 لِمَعْنًى estimated kasra (EN/TR «ḥāl» wrong); 58:s2 t27 دَعْنِي — its own key for وَدَعَ
+  (`daa` is دَعَا, `wadaa` is وَضَعَ), drop naqis-verbs; tags: 42:s6 t13 / 64:s1 t8 fail→naib-al-fail, 25:s5 t0 drop mubtada-khabar,
+  54:s6 t2 atf-nasaq→idafa, 44:s6 t13 drop nawasib; talkhis 71:s6 t7 بِزَوَاجِرِ add «مُضَافٌ».
+- For the hoca (r16): 43:s2 الْأَوَّلُ — ism of an omitted kāna or joined to the alif of كَانَا; 42:s4 تَيْمَ (Birgivî) vs the Kāfiya's
+  ḍamma; 53:s5 كِلَا — ḍamma estimated or a cited word.
+
+## from r17 (Marāḥ) 
+- 59:s6 اِرْمِنَّ → اِرْمُنَّ (QR-F72952C4) is an EMENDATION against the print (matn l.346, src l.654): EN/TR quote the word, the manifest
+  must record it — for the hoca. Outside: 60:s3 t17 the second بَيْنَ (same line, «جُزْؤُهُ الثَّانِي»), drop maful-fih on both; 4:s1 t1
+  هُوَ / 24:s5 t2 هِيَ, t3 الَّتِي name their roles; 4:s1 t12 ثَلَاثَةِ annexed to أَنْوَاعٍ; 76:s10 t7 كَانَ EN/TR «noun» not «doer»; tags 61:s5
+  maful-bihi→maful-fih, 76:s10 maful-mutlaq→maful-bihi, + mamnu-min-sarf 28:s7, + ism-maqsur-manqus 20:s6.
+- The doubled «اسمها المرفوع بعدها» on لَيْسَتْ (drop it): Marāḥ 49:s3 t7, 52:s4 t3, 52:s5 t3, 52:s6 t2, 52:s7 t12, 53:s1 t3, 62:s2 t3,
+  62:s3 t1, 62:s4 t1, 74:s4 t7; al-Uṣūl 8:s4 t8/t25, 14:s7 t1, 14:s8 t1, 16:s1 t28, 24:s1 t24, 24:s21 t136, 31:s11 t47 (14:s43 t36
+  «وَلَيْسَتْ هِيَ»: the hidden-pronoun clause goes instead). A RULE candidate.
+- Manqūṣ with a visible sign: ʿIzzī مَاضِيهِ 2:s1 t5, 2:s4 t2, 2:s5 t2, 3:s3 t3, 3:s6 t3, 3:s11 t3, 6:s7 t12 (rafʿ), 14:s1 t9, 15:s1 t9
+  (jarr); Maqāmāt وَثَانِيهَا 7:s1 t0, 9:s4 t0, 11:s4 t0, نَوَاهِيهِ 2:s15 t13, 2:s35 t14; al-Uṣūl أَيْدِيكُمْ 14:s43 t52; Iẓhār 51:s7 t12
+  مَعْنًى (jarr as fatḥa). A RULE candidate. Jarr-phrase khabar: Marāḥ 40:s2 t0, 72:s8 t1; al-Uṣūl 26:s4 t1, 21:s8 t4.
+- D04 misses a QUOTED word as the doer (35:s7, 47:s2) — extend the rule.
+- For the hoca (r17): هُوَ / هِيَ in 4:s1, 24:s5 — second mubtadaʾ or ḍamīr al-faṣl; 28:s7 حُبْلَى badal or naʿt.
+
+## from r18 (al-Kāfiya)
+- Surface 44:s4 t24 الْمُسْنَدُ → الْمُسْنَدَ (full and smart); lex 25:s2 t20 ma-nafiya→ma-masdariyya; tags: drop ism-maqsur-manqus
+  5:s1 t4, naib-al-fail→mubtada-khabar 10:s6 t19, drop idafa-definiteness 31:s2 t7, drop khabar-al-mubtada… on 27:s6 t12, 31:s4
+  t3, 31:s5 t8, 35:s3 t0, 37:s6 t4; drop al-fa-fi-khabar on 31:s5 t8; EN 31:s2 t7 drop «of».
+- A ẓarf called «fronted khabar» while a mubtadaʾ and its own khabar follow: 29:s10 t23 (+t25 هُوَ), 4:s7 t4 (+t6), 22:s11 t14
+  (+t16), 16:s5 t0 (+t2; t3 «second khabar» → khabar), 38:s3 t21 (t23 the mubtadaʾ, t27 its khabar), 28:s4 t15; 25:s3 t0 «وَعِنْدَ
+  سِيبَوَيْهِ كُلُّ فِعْلٍ …» for the hoca (no written khabar of كُلُّ); 10:s6 t25 يُعْطَفُ add «وَالْجُمْلَةُ … خَبَرُ مَا».
