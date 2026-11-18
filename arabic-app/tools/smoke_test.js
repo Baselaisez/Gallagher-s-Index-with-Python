@@ -16443,9 +16443,11 @@ if (!CHROME) {
     await page.waitForTimeout(400);
     await page.reload(); await page.waitForSelector('.src-card', { timeout: 60000 });
     const kept = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, document.querySelector('.src-card.on') && document.querySelector('.src-card.on').getAttribute('aria-pressed')]);
+    // what the storage itself says after the reload, and how much of it survived — so a failure names its cause
+    const after = await page.evaluate(() => { const ks = []; for (let i = 0; i < localStorage.length; i++) ks.push(localStorage.key(i)); return { raw: localStorage.getItem('qissa-libsource'), n: ks.length, qissa: ks.filter(k => k.startsWith('qissa-')).length, welcomed: localStorage.getItem('qissa-welcomed'), url: location.href.slice(-40) }; });
     await page.locator('.src-card[data-src="mutun"]').click();
     const cleared = await page.evaluate(() => [state.libSource, document.querySelectorAll('.lib-card').length, STORIES.length, localStorage.getItem('qissa-libsource')]);
-    if (kept[0] !== 'mutun' || kept[2] !== 'true' || cleared[0] !== '' || cleared[1] !== cleared[2] || cleared[3] !== '') throw new Error('persist and clear: ' + J([kept, cleared]));
+    if (kept[0] !== 'mutun' || kept[2] !== 'true' || cleared[0] !== '' || cleared[1] !== cleared[2] || cleared[3] !== '') throw new Error('persist and clear: ' + J([kept, cleared, stored, after]));
     // on a phone the text comes first: the shelf folds into one chip in the sort bar and opens as a sheet
     await page.setViewportSize({ width: 390, height: 844 });
     await page.evaluate(() => renderLibrary());
