@@ -14115,3 +14115,19 @@ would be describing the last one.
 - Two sibling stories may mint the same word in one wave: the collision guard accepts the same LEMMA under the same key.
 - Left for the hoca (from the authors): كَادَ's stored bāb (فَتَحَ on the shelf; كَوِدَ يَكْوَدُ of سَمِعَ expected);
   `nasaba-set` stores يَنْصُبُ where نَصَبَ «set up» is يَنْصِبُ; حِطِّين diptote reason; رَجَب with tanwīn.
+
+### v325 — the second history wave, and the first Shudhūr rules in the engine
+- Four more ORIGINAL retold histories on the «History» shelf (now eight, L4 ×2, L5 ×4, L6 ×2): «عُمَرُ بْنُ عَبْدِ الْعَزِيزِ
+  وَالسِّرَاجُ» (L4), «الْبُخَارِيُّ فِي بَغْدَادَ» (L5), «طَارِقُ بْنُ زِيَادٍ وَعُبُورُ الْبَحْرِ» (L5), «أَلْب أَرْسَلَانُ وَمَلَاذْكِرْد» (L6).
+  Kept out by doubt: the ship-burning and the speech of Ṭāriq, the Manzikert dialogue, army sizes, ransom figures, إِفْرِيقِيَّة,
+  طُلَيْطِلَة, the field's own name in the body. The validator refuses a `published` date more than one day ahead.
+- `Murib.binaVowel(r)` (Shudhūr R2–R3, triage T1): the bināʾ vowel is a CELL of the paradigm — māḍī on fatḥa / ḍamma before
+  the plural wāw / sukūn before a moving rafʿ pronoun; muḍāriʿ + nūn of women on sukūn; amr on the dropped nūn or the dropped
+  weak letter. A derived passive cell carries its person in `cell.person`, not `cell.i`. Where the weak letter has melted into
+  the ending (رَمَتْ، رَمَوْا، بَقُوا), a doubled amr (اِحْمَرَّ is also its māḍī twin), or the nūn of emphasis, the old line stands.
+  Against the authored lines: 4,940 agree, 2 differ — both corpus slips (وُلِدْنَا is on sukūn; تَعَنَّتَ on fatḥa).
+- `Murib.naqisSign(r, k, ca)` (R4, R90, R186, R195; triage T2): the defective muḍāriʿ's sign sits on the weak letter or its
+  absence — read on `r.cell.form`, the verb WITHOUT its clitics (يَأْتِيَ of يَأْتِيَكُمَا). 946 agree, 16 differ — 14 of them
+  authored lines that call the estimated ḍamma of يَرَى / يَمْشِي / يَدْعُوكَ «visible» (the line is wrong, for the precheck).
+- The triage of all 210 Shudhūr rules against the engines is in the scratchpad (engine-triage.md): 49 covered, 105 decidable gaps,
+  26 shortlist gaps, 30 not automatable. Next by the owner's order: T3 nūn al-tawkīd, T4 the intransitive patterns, then I-1 أَنْ.
