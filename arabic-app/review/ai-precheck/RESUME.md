@@ -29,3 +29,20 @@ Resume order (once Fable 5.2 answers again):
 - Next: wave 3 = p-D09, p-D10-1, p-D10-2; then the package packets r01–r26 (al-usul-al-munifa first).
 - Rule fixes (from the verifiers' reports): D03, D11, D12 deterministic; D06 deterministic by the glossary lemma;
   D08 for يـ/أ/نـ only; D07 for a bare بْن between names; D02, D04 partial; D01, D05 flag only.
+
+## 2026-11-18 — rule classes for the confirmed patterns, and a sweep for headless lines (Opus 5.5)
+
+`tools/authoring/irab_rules.py` now carries five rule classes, each with its source quoted verbatim from
+`research/sources/` and every change logged to `rule-applied.jsonl` (`by: ai`, `confirmed_by_human: false`):
+
+| rule | what | lines |
+|---|---|---|
+| D03 `AmmaFaRule` | the fāʾ answering أَمَّا (earlier wave) | 24 |
+| H01 `HeadlessLineRule` | a line whose ROLE the authoring pass dropped (« بِالْفَتْحَةِ، مُضَافٌ.») — role read off the context: munādā muḍāf after يَا, muḍāf ilayh after بْنِ, majrūr after a jarr letter, غَيْرَ أَنَّ the exception, kāna's postponed noun | 25 (al-uṣūl 22, Maqāmāt 2, ʿIzzī 1) |
+| S01 `AmrTakidRule` | a recited emphatic row right after the imperative row holds IMPERATIVES, built (Marāḥ l. 517; Iẓhār l. 186) — ʿIzzī 17:s32 read all six as muḍāriʿ, four of them in rafʿ or jazm | 6 |
+| D07 `IbnNatRule` | «بْنُ» without its alif between two names, and the nisba after them, are naʿt — not doers | 3 |
+| D06 `ZarfSingularRule` | حِينَ، دُونَ given the sound plural's yāʾ | 4 |
+
+The pattern SCANS in `review_sheets.py` were tightened at the same time: the old ones counted correct lines (the
+mulḥaq عَالَمِينَ and the real duals; «عَنِ ابْنِ مَسْعُودٍ» where ابْنِ opens the name; the question hamza of أَتَظُنُّ;
+the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan at 0.

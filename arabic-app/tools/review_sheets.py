@@ -168,22 +168,26 @@ def scan_sound_sign_on_singular():
             a = ar(t)
             m = re.search(r"لأنه (جمع مذكر سالم|مثنى)", a)
             if not m: continue
-            lemma = bare((gl.get(t.get("lex")) or {}).get("lemma") or "")
-            if lemma and re.search(r"(ين|ون|ان)$", lemma): n += 1
+            # (2026-11-18) a SINGULAR is one whose ending is its own root: taking ين/ون off leaves one letter (حين، دون).
+            # The mulḥaq (عالمين، عشرون) and real duals (نونان، عينين) keep the sign rightly and are not counted.
+            b = re.sub(r"(?:كم|هم|هما|هن|ها|نا|ه|ك)$", "", re.sub(r"^(?:[وف]?(?:بال|لل|كال|ال)|[وف])(?=..)", "", bare(surf(t))))
+            if len(re.sub(r"(?:ون|ين)$", "", b)) < 2: n += 1
     return n
 
 def scan_ibn():
     n = 0
     for pk, c, sid, toks, gl in shelf():
         for t in toks:
-            if bare(surf(t)).lstrip("و") in ("بن", "ابن", "بنت") and not re.search(r"نعت|صفة|بدل|عطف بيان", ar(t)): n += 1
+            # (2026-11-18) only «بْن» written WITHOUT its alif — the spelling that stands between two names — called a doer
+            # or a mubtadaʾ; «عَنِ ابْنِ مَسْعُودٍ» opens the name and is rightly governed by the letter before it
+            if surf(t).startswith("بْن") and re.match(r"(فاعل|مبتدأ)", ar(t)) and not re.search(r"نعت|صفة|بدل|عطف بيان", ar(t)): n += 1
     return n
 
 def scan_ya_fail():
     n = 0
     for pk, c, sid, toks, gl in shelf():
         for t in toks:
-            if re.search(r"الياء فاعل|والياء ضمير[^،]*فاعل", ar(t)) and re.search(r"ُو[اهنك]|ُونَ", surf(t)): n += 1
+            if re.search(r"الياء فاعل|والياء ضمير[^،]*فاعل", ar(t)) and "المخاطبة" not in ar(t) and re.search(r"ُو[اهنك]|ُونَ", surf(t)): n += 1
     return n
 
 def scan_lam_lan():
@@ -202,8 +206,11 @@ def scan_person():
         for t in toks:
             a = ar(t)
             m = re.search(r"ضمير مستتر[^،.]*تقديره (هو|هي|أنت|أنا|نحن)", a)
-            if not m or "مضارع" not in a: continue
-            pre = re.sub(r"^(?:[وف]|ل|س)", "", bare(surf(t)))[:1]
+            if not m or "مضارع" not in a or "فعل أمر" in a: continue
+            b0 = re.sub(r"^(?:[وف]|ل|س)", "", bare(surf(t)))
+            pre = b0[:1]
+            # the question hamza (أَتَظُنُّ): only when the pronoun fails the أ and fits the prefix behind it — أَتَعَلَّمُ is «I learn»
+            if pre == "أ" and m.group(1) not in ok["أ"] and len(b0) > 3 and b0[1] in ok and m.group(1) in ok[b0[1]]: continue
             if pre in ok and m.group(1) not in ok[pre]: n += 1
     return n
 
