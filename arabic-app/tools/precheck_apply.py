@@ -36,7 +36,7 @@ def quoted(q, line):
     return True
 
 
-MA_KEYS = [("مَوْصُولٌ", "ma-mawsula"), ("اسْتِفْهَامٍ", "ma-istifham"), ("الْحِجَازِيَّةُ", "ma-hijaziyya"), ("مَصْدَرِيَّةٌ", "ma-masdariyya"), ("نَافِيَةٌ", "ma-nafiya")]
+MA_KEYS = [("مَوْصُولٌ", "ma-mawsula"), ("اسْتِفْهَامٍ", "ma-istifham"), ("الْحِجَازِيَّةُ", "ma-hijaziyya"), ("مَصْدَرِيَّةٌ", "ma-masdariyya"), ("نَافِيَةٌ", "ma-nafiya"), ("حَرْفُ نَفْيٍ", "ma-nafiya")]
 
 
 def relex_ma(root, write):

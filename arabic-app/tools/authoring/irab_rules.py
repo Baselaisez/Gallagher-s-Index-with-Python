@@ -246,7 +246,9 @@ class OvertDoerRule(IrabRule):
         ar = self.HID.sub("", N(ir.get("ar")), count=1)
         en = re.sub(r";\s*(?:its|the) doer is a hidden (?:pronoun )?«?(?:هُوَ|هِيَ|he|she|it)»?", "", ir.get("en") or "", count=1)
         tr = re.sub(r";\s*fâili gizli zamir(?:dir)? «?(?:هُوَ|هِيَ|o)»?", "", ir.get("tr") or "", count=1)
-        if ar == N(ir.get("ar")) or en == ir.get("en") or tr == ir.get("tr"): return None
+        if ar == N(ir.get("ar")): return None
+        # (r07) an EN/TR line that never named the hidden doer has nothing to drop — the Arabic line alone is repaired
+        if (en == ir.get("en") and re.search(r"hidden", en or "")) or (tr == ir.get("tr") and re.search(r"gizli", tr or "")): return None
         return {"ar": ar, "en": en, "tr": tr}
 
 

@@ -81,3 +81,14 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
 - After applying r04–r06: `precheck_apply.py --relex --write` retargeted 4 mā keys (14:s11, s12, s16 → nafiya; s23 →
   mawsula); `irab_rules.py --write` (D04) dropped the hidden-doer clause from 3 lines whose doer is written after the verb;
   14:s18 «بَعَثَهُ اللهُ» repaired by hand the same way (the hāʾ an object placed before the doer, the Name the doer).
+
+### 2026-11-18, night — r07–r09 applied
+
+- r07–r09 (al-Uṣūl ch. 22–26, 118 findings): 114 AI-ONAY applied, 4 AI-ŞÜPHELİ for the hoca (23:s6 «لتنازله وجوم» letters and
+  vowels ×3; 24:s11 the Turkish of «لَنْ نَقْدِرَ عَلَيْهِ»). The verifiers' alternatives and the lines they flagged OUTSIDE their
+  packets are in outside-packet-notes.md, for a packet of their own.
+- relex learned «حَرْفُ نَفْيٍ» as the face of the negation (3 keys retargeted); D04 now repairs a line whose EN/TR never named the
+  hidden doer (2 lines); 24:s10 «أَنْ تَضِلَّ إِحْدَاهُمَا فَتُذَكِّرَ إِحْدَاهُمَا الْأُخْرَى» (2:282) repaired by hand — the second إِحْدَاهُمَا
+  is the doer, الْأُخْرَى the object, no hidden «أَنْتَ».
+- The «مَا» measure's ceiling moved 45 → 46 because two LINES moved: 22:s6 «… إِذَا قَاتَلَ مَا أَقْدَمَ» (the answer of لَوْلَا) and
+  22:s3 «وَمَا يَرْكَبُ الْمَعْصِيَةَ وَهُوَ يَعْلَمُ» are negations the seat rule reads as objects — named engine misses.
