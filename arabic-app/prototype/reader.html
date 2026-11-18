@@ -12273,6 +12273,55 @@ class SentenceAnalyzer {
     "سنو": { lemma: "سِنُونَ (سَنَة)", root: "س ن و", en: "the years of — سِنُونَ, attached to the sound plural", tr: "…yılları — سِنُونَ, cem-i sâlime mülhak" },
     "سني": { lemma: "سِنُونَ (سَنَة)", root: "س ن و", en: "the years of — سِنُونَ, attached to the sound plural", tr: "…yılları — سِنُونَ, cem-i sâlime mülhak" },
   };
+  /* (v326 · Shudhūr R74, triage T6) لَمْ يَكُ — KĀNA WITH ITS NŪN DROPPED. The nūn of يَكُنْ may fall, for lightness, in the
+     jussive muḍāriʿ of kāna and nowhere else: يَكُ، تَكُ، نَكُ، أَكُ (﴿وَلَمْ يَكُ مِنَ الْمُشْرِكِينَ﴾، ﴿لَمْ نَكُ مِنَ الْمُصَلِّينَ﴾،
+     ﴿وَلَمْ أَكُ بَغِيًّا﴾). The surface decides it: a muḍāriʿ prefix on its fatḥa, the kāf, and the ḍamma left WRITTEN on the kāf with nothing
+     after it — the indicative is يَكُونُ, the subjunctive يَكُونَ, so the bare kāf can only be the jussive with its nūn gone. The
+     word is then a verb of kāna's class (it governs an ism and a khabar), its cell the cell of يَكُنْ in the paradigm, and its
+     jazm sign the sukūn on the nūn that was dropped. Limits: the kāf must carry its ḍamma (an unvowelled «يك» is left alone),
+     the restored form must be a cell of ك و ن the corpus owns, and a proclitic wāw/fāʾ fused to the verb is not peeled here. */
+  static yaku326(w, core){
+    try { if (!/^[ينتأ]ك$/.test(core)) return null;
+      const f = String(w || "").normalize("NFC").replace(/[«»،.:!؟؛]/g, ""); if (!/^[يتنأ]َكُ$/.test(f)) return null;
+      const a = RootFinder.fromCorpus(f + "نْ"); if (!a || a.root !== "ك و ن" || !a.cell || !/^majzum2?$/.test(a.cell.tense || "")) return null;
+      return a; } catch (e) { return null; }
+  }
+  /* (v326 · Shudhūr R52 with R144, R190, R191; triage T5) THREE PASSIVE MĀḌĪ SHAPES THE ROOT WALK NEVER REACHED. The majhūl māḍī
+     is «ضُمَّ أَوَّلُهُ وَكُسِرَ مَا قَبْلَ آخِرِهِ», and three kinds of verb wear that rule in a shape of their own:
+       · the HOLLOW verb, whose ḍamma and kasra meet over the weak middle and leave a kasra and a yāʾ: صِيمَ، جِيءَ، بِيعَ (فِيلَ);
+       · the DOUBLED verb, whose kasra falls with the merging of its twin letters: قُدَّ، شُدَّ، رُدَّ (فُعَّ);
+       · the THIRD FORM, whose alif after the ḍamma becomes a wāw: بُورِكَ، قُوتِلَ، نُودِيَ (فُوعِلَ).
+     The vowel skeleton names the passive, and the corpus must own the ACTIVE verb it was built from (صَامَ، قَدَّ، بَارَكَ) with the
+     same radicals — a shape alone is not a verb. Then the nāʾib al-fāʿil is whatever the sentence gives it (Murib.doer). Limits,
+     each a refusal and never a guess: (1) where a noun the lexicon owns fits the same letters AND vowels (دِينَ، فِيلَ، رِيحَ، عِيدَ،
+     حُبَّ، كُلَّ، أُمَّ), the noun stands — «never guess a passive where a noun reading fits the vowels»; the control is بَيْعُ, whose
+     fatḥa and sukūn are the maṣdar's. (2) The doubled فُعَّ is also the AMR of يَفْعُلُّ (قُدَّ «cut!») letter for letter. A noun in
+     visible rafʿ after it that cannot be a vocative (it has the article, a pronoun, or tanwīn) settles the passive — an amr's doer is
+     the hidden «you», and nothing after it is marfūʿ; a noun in visible naṣb after it keeps the amr (مُدَّ يَدَكَ); with neither, the
+     passive leads (the corpus writes فُعَّ as a passive 27 times to 1), sure: false, and the amr is named as its twin — a shortlist.
+     (3) Only the third person singular (ـَ، ـَتْ) is read; after a jarr letter or a governor of the muḍāriʿ nothing here is a verb. */
+  static majhul326(w){
+    try {
+      const f = String(w || "").normalize("NFC").replace(/[«»،.:!؟؛]/g, "").replace(/^[وف]َ(?=.[ُِ])/, ""); const H = z => String(z || "").replace(/[أإآؤئء]/g, "ء");
+      const C = "([ء-ي])", SUF = "(َ|َتْ|َتِ)", P = { "َ": 0, "َتْ": 3, "َتِ": 3 };
+      let m, shape, active, rad;
+      if ((m = f.match(new RegExp("^" + C + "ِي" + C + SUF + "$")))) { const [, c1, c3] = m; shape = "ajwaf"; active = c1 + "َا" + c3 + "َ"; rad = r => H(r[0]) === H(c1) && /^[وي]$/.test(r[1]) && H(r[2]) === H(c3); }
+      else if ((m = f.match(new RegExp("^" + C + "ُ" + C + "(?:َّ|َّ)(|تْ|تِ)$")))) { const [, c1, c2] = m; shape = "mudaaf"; active = c1 + "َ" + c2 + "َّ"; rad = r => H(r[0]) === H(c1) && H(r[1]) === H(c2) && H(r[2]) === H(c2); m = [m[0], c1, c2, m[3] ? "َ" + m[3] : "َ"]; }
+      else if ((m = f.match(new RegExp("^" + C + "ُو" + C + "ِ" + C + SUF + "$")))) { const [, c1, c2, c3] = m; shape = "faul"; active = c1 + "َا" + c2 + "َ" + c3 + "َ"; rad = r => H(r[0]) === H(c1) && H(r[1]) === H(c2) && H(r[2]) === H(c3); m = [m[0], c1, c2, m[4]]; }
+      else return null;
+      const person = P[m[3]]; if (person === undefined) return null;
+      { const b0 = stripAr(f).replace(/[^ء-ي]/g, ""); if (this.PARTICLES[b0] && b0 !== "قد") return null; }   // ثُمَّ is a letter, whatever its vowels
+      let a = null; try { a = RootFinder.fromCorpus(active); } catch (e) {} if (!a || !a.root || !a.cell || !/^mazi$/.test(a.cell.tense || "")) return null;
+      const r3 = String(a.root).split(/\s+/); if (r3.length !== 3 || !rad(r3)) return null;
+      if (shape === "faul" && a.form !== "III") return null;
+      // (1) a noun the lexicon owns, letter for letter and vowel for vowel, stands
+      const bz = z => stripAr(String(z || "")).replace(/[^ء-ي]/g, "");
+      const stem = f.replace(/َ(تْ|تِ)?$/, ""), fits = (n, x) => !!n && !/verb/.test(n.pos || "") && [String(n.lemma || "").split(/[()\s]/)[0], n.viaPlural ? n.plural : null].some(y => y && bz(y) === bz(x) && sjSarfAgree(x, String(y).normalize("NFC")));
+      for (const x of [f, stem]) { let n = null; try { n = RootFinder.nounFromCorpus(x); } catch (e) {} if (fits(n, x)) return null; }
+      return { shape, root: a.root, lemma: a.lemma, gloss: a.gloss, person, active,
+               cell: { tense: "majhulMazi", i: 0, person, form: f, derived: true } };
+    } catch (e) { return null; }
+  }
   /* (wave 193) نُونَا التَّأْكِيدِ: is the word in ـَا the dual of a noun the lexicon owns — its stem that noun letter for letter and vowel for vowel? */
   static nounDual193(nfc, core){
     try { if (!/َا$/.test(nfc) || core.length < 4) return false; const st = nfc.replace(/َا$/, ""); const n = RootFinder.nounFromCorpus(st);
@@ -12810,7 +12859,8 @@ class SentenceAnalyzer {
       /* (wave 179) قَلَمَا الْوَلَدِ: قَلَّمَا the particle doubles its lām; the word written with its vowels and no shadda is the dual of قَلَم, its nūn dropped for the iḍāfa (the min/man shape) */
       const qalamNoun = core === "قلما" && /^ق[ً-ٰ]*َ[ً-ٰ]*ل[ً-ٰ]*َ/.test(w.normalize("NFC")) && !/ّ/.test(w.normalize("NFC"));
       const thamma181 = core === "ثم" && !/^ث[ً-ٰ]*ُ/.test(w.normalize("NFC")) && (() => { const pv = out[out.length - 1]; return !!pv && /^[وف]?من$/.test(stripAr(String(pv.w || "")).replace(/[^ء-ي]/g, "")) && !/^(?:[وف][ً-ٰ]*)?م[ً-ٰ]*َ/.test(String(pv.w || "").normalize("NFC")); })();   /* (wave 181) وَمِنْ ثَمَّ */
-      const p = (amNoun || rubbNoun || kilaNoun || idhnNoun || annaVerb || qalamNoun) ? null : thamma181 ? { k: "ishara" } : this.PARTICLES[core];
+      const yaku326 = this.yaku326(w, core);   /* (v326 · triage T6) يَكُ: kāna's jussive with its nūn dropped joins kāna's row */
+      const p = yaku326 ? { k: "kana" } : (amNoun || rubbNoun || kilaNoun || idhnNoun || annaVerb || qalamNoun) ? null : thamma181 ? { k: "ishara" } : this.PARTICLES[core];
       if (p) {
         // The table is a table of CLOSED CLASSES, not of harf. كَانَ وَأَخَوَاتُهَا
         // sit in it because they govern like governors, but they are verbs —
@@ -12846,6 +12896,13 @@ class SentenceAnalyzer {
           tr: "harekesiz «من» — kesralı ise cer harfi, fethalı ise «her kim» mânâsında isimdir. Yüzeyde bunu tayin eden bir şey yok; daha yaygın olduğu için cer okuyuşu gösterilmiştir." });
         else if (p.k === "ishara") row.notes.push(thamma181 ? { en: "ثَمَّ — «there»: a demonstrative of distant PLACE, an ism built on fatḥa; a jarr letter enters on no ḥarf, so after مِنْ it is never the conjunction ثُمَّ («مِنْ ثَمَّ» = hence)", tr: "ثَمَّ — «orada»: uzak MEKÂN için ism-i işaret, feth üzere mebnî; cer harfi harfe girmez, bu yüzden مِنْ'den sonra atıf harfi ثُمَّ olamaz («مِنْ ثَمَّ» = bundan dolayı)" } : this.isharaLbl(core));
         else row.notes.push(this.KIND_LBL[p.k]);
+        if (yaku326) {   /* (v326 · triage T6) the row carries the cell of يَكُنْ, and says what was dropped and why */
+          const full326 = String(w).normalize("NFC").replace(/[«»،.:!؟؛]/g, "") + "نْ";
+          row.root = yaku326.root; row.lemma = yaku326.lemma; if (yaku326.gloss) row.gloss = yaku326.gloss; row.cell = Object.assign({}, yaku326.cell); row.nunDropped326 = true;
+          row.realize = { by: "hadhf", manner: "taqdiri", cases: ["majzum"], word: w,
+            why: { ar: "مَجْزُومٌ بِالسُّكُونِ عَلَى النُّونِ الْمَحْذُوفَةِ — حُذِفَتِ النُّونُ لِلتَّخْفِيفِ", en: "jussive: the sukūn sits on the nūn of «" + full326 + "», dropped for lightness", tr: "meczum: sükûn, hafiflik için düşen nûnun üzerindedir («" + full326 + "»)" } };
+          row.notes.push({ en: "kāna's jussive «" + full326 + "» with its nūn dropped for lightness (Shudhūr R74) — still a verb of kāna's class", tr: "kâne'nin meczum «" + full326 + "» sîgası, nûnu hafiflik için düşmüş (Şüzûr R74) — yine kâne ailesinden bir fiil" });
+        }
         // -- the hamza of ان reads by position (Qatr al-Nada): sentence-
         // initial and after the qawl verbs it is إِنَّ with kasra (speech is
         // quoted whole); after other verbs the clause melts into a masdar,
@@ -14356,6 +14413,65 @@ class SentenceAnalyzer {
       if (/^(?:بِ?|كَ)$/.test(w185) && (r.kind || "") !== "particle") {
         r.kind = "particle"; r.pk = "jarr"; r.sure = true; r.cell = null; r.root = null; r.wazn = null; r.lemma = w185; r.seg = [stripAr(w185)]; r.afterJarr = false; if (out[i + 1] && (out[i + 1].kind || "").startsWith("noun")) out[i + 1].afterJarr = true;
         r.notes = [{ en: "a jarr letter standing alone — the letter itself is cited; with no noun after it there is nothing for it to govern.", tr: "tek başına duran bir cer harfi — harfin kendisi anılmıştır; kendisinden sonra isim olmadığı için amel edeceği bir şey yoktur." }]; }
+    });
+    /* (v326 · Shudhūr R6, R198; triage T3) THE NŪN OF EMPHASIS, read by TawkidNunEngine. A muḍāriʿ wearing the heavy nūn — with
+       the oath's lām before it (لَأُكْرِمَنَّ، لَنُخْرِجَنَّكَ) and an object pronoun after it or not — is a verb, its base cell the one
+       the nūn re-attaches to. The vowel before the nūn decides its iʿrāb (Shudhūr R6): a fatḥa means the nūn TOUCHES the verb, and
+       the verb is built on the fatḥa; a ḍamma, a kasra or the dual's alif means the subject's wāw, yāʾ or alif stood between (even
+       when the wāw or yāʾ itself fell for the meeting of two stills: يَقُولُنَّ، تَرَيِنَّ) — then the verb is muʿrab: marfūʿ by its nūn,
+       dropped for the meeting of like letters (لَتُبْلَوُنَّ), or majzūm by dropping it after a jāzim (لَا تَتَّبِعَانِّ). Limits: the light
+       nūn is not read here (يَكُنْ is the jussive of يَكُونُ, not a light nūn on يَكُونَ — the letters cannot tell them apart), nor the amr,
+       which is built either way; a base no corpus verb and no muḍāriʿ shape vouches for is left as it was. */
+    out.forEach((r, i) => { if (!r || !r.w) return;
+      const w3 = String(r.w).normalize("NFC").replace(/[«»،.:!؟؛]/g, "");
+      if (!/ن(?:َّ|َّ|ِّ|ِّ)(?:هُمَا|كُمَا|هُمْ|كُمْ|كُنَّ|هُنَّ|نِي|نَا|هَا|هُ|كَ|كِ)?$/.test(w3) || !/^(?:[وف]َ)?(?:لَ)?[يتنأ][َُ]/.test(w3)) return;
+      if ((r.kind || "") === "particle" && /^(inna|an-amb|nasb-verb)$/.test(r.pk || "")) return;
+      let rd = null; try { rd = TawkidNunEngine.read(w3); } catch (e) { rd = null; }
+      if (!rd || !rd.ok || rd.kind !== "heavy" || !rd.cell || !/^(mudari|majhulMudari|mansub|majzum2?)$/.test(rd.cell.tense || "")) return;
+      { const c0 = rd.cell, ps = [typeof c0.person === "number" ? c0.person : (/^(mansub|majzum2?)$/.test(c0.tense) ? 0 : c0.i)].concat(c0.also || []);   // the base cell must be of the nūn's own class: يَصُنَّ is يَصُونَ's root nūn and the women's nūn, not a plural with the nūn of emphasis
+        if (!ps.some(p => TawkidNunEngine.MUD_CLASS[p] === rd.cls)) return; }
+      if (rd.viaShape) {   // a shape is weaker evidence than a corpus cell: it speaks only in the oath's answer (لَ + the verb), and never over a word the corpus owns whole (تَطْمَئِنَّ is the subjunctive of اطْمَأَنَّ, its own nūn doubled)
+        if (!rd.qasam) return; let whole = null; try { whole = RootFinder.fromCorpus(rd.core); } catch (e) {} if (whole && whole.cell) return; }
+      const pv = out[i - 1], pb = pv ? stripAr(String(pv.w || "")).replace(/[^ء-ي]/g, "").replace(/^[وف](?=..)/, "").replace(/[أإآ]/g, "ا") : "";
+      const gov = rd.bina !== "murab" ? null : (!rd.qasam && pv && ((pv.kind || "") === "particle" && /^(jazm|shart-jazim|lam-amr)$/.test(pv.pk || "") || /^(لا|اما)$/.test(pb))) ? "jazm" : "raf";
+      const cell = Object.assign({}, rd.cell, { tense: /majhul/.test(rd.cell.tense) ? "majhulMudari" : "mudari" });
+      if (typeof cell.person !== "number" && typeof cell.i === "number") cell.person = cell.i;
+      r.kind = "verb"; r.pk = null; r.cell = cell; r.root = rd.root || null; r.lemma = rd.lemma || null; r.gloss = rd.gloss || r.gloss; if (rd.viaShape) { r.gloss = null; r.wazn = null; } r.sure = true; r.__kindNoun = false; r.afterJarr = false; r.realize = undefined;
+      r.enc = rd.enc ? stripAr(rd.enc).replace(/[^ء-ي]/g, "") : null; r.seg = [stripAr(rd.core).replace(/[^ء-ي]/g, "")].concat(r.enc ? [r.enc] : []);
+      r.tawkid326 = { cls: rd.cls, bina: rd.bina, qasam: !!rd.qasam, gov, base: rd.base, viaShape: !!rd.viaShape, dropped: /^(pl|f2)$/.test(rd.cls) && !/[وي][ُِ]ن/.test(rd.core) };
+      r.notes = [{ en: (rd.qasam ? "the lām of the oath's answer, then " : "") + "the muḍāriʿ «" + rd.base + "» with the heavy nūn of emphasis — " + (rd.bina === "fath" ? "the nūn touches the verb, which is built on the fatḥa" : rd.bina === "sukun" ? "after the women's nūn: built on the sukūn" : "the subject's " + ({ pl: "wāw", f2: "yāʾ", du: "alif" }[rd.cls] || "letter") + " stands between (written or fallen): the verb stays muʿrab") + (rd.viaShape ? " (read by its shape — the texts do not hold this verb)" : ""),
+                   tr: (rd.qasam ? "kasem cevabının lâmı, sonra " : "") + "«" + rd.base + "» muzârisi, sakîl te'kid nûnuyla — " + (rd.bina === "fath" ? "nûn fiile doğrudan bitişir; fiil fetha üzere mebnîdir" : rd.bina === "sukun" ? "nisve nûnundan sonra: sükûn üzere mebnî" : "aradaki fâil " + ({ pl: "vâvı", f2: "yâsı", du: "elifi" }[rd.cls] || "harfi") + " (yazılı ya da düşmüş) nûnu ayırır: fiil mu'reb kalır") + (rd.viaShape ? " (kalıbından okundu — metinlerde bu fiil yok)" : "") }];
+      if (r.enc) r.notes.push({ en: "attached pronoun — its maf'ul bihi", tr: "bitişik zamir — mef'ûlün bihidir" });
+    });
+    /* (v326 · Shudhūr R52, triage T5) the passive māḍī of the hollow, the doubled and the third-form verb — the shapes and their
+       refusals are written at majhul326. A row the corpus already reads as a passive is left as it is. */
+    out.forEach((r, i) => { if (!r || !r.w) return;
+      if ((r.kind || "") === "verb" && r.cell && /majhul/i.test(r.cell.tense || "")) return;
+      const pv = out[i - 1];
+      if (r.afterJarr || (pv && (pv.kind || "") === "particle" && /^(jarr|jazm|nasb-verb|lam-amr|sawfa)$/.test(pv.pk || ""))) return;   // no māḍī after a jarr letter or a governor of the muḍāriʿ
+      const mj = this.majhul326(r.w); if (!mj) return;
+      const WZ = { ajwaf: "فِيلَ", mudaaf: "فُعَّ", faul: "فُوعِلَ" }[mj.shape];
+      let twin = false;
+      if (mj.shape === "mudaaf") {
+        const nx = out[i + 1], nw = nx ? String(nx.w || "").normalize("NFC").replace(/[«»،.:!؟؛]/g, "") : "", nb = stripAr(nw).replace(/[^ء-ي]/g, "");
+        const ENC = "(?:هُ|هِ|هَا|هُمْ|هِمْ|هُمَا|هِمَا|هُنَّ|هِنَّ|كَ|كِ|كُمْ|كُمَا|كُنَّ|نَا)";
+        const nounNx = !!nx && (nx.kind || "").startsWith("noun") && !nx.afterJarr && !/^(?:[وف][ً-ٰ]*)?[بلك]ِ/.test(nw);   // a jarr letter fused on the next word is no rafʿ or naṣb of its own
+        const rafVis = nounNx && (/ٌ$/.test(nw) || (/^(?:[وف])?ال/.test(nb) && /ُ$/.test(nw)) || new RegExp("ُ" + ENC + "$").test(nw));
+        const nasbVis = nounNx && (/ًا?$|َا$/.test(nw) || (/^(?:[وف])?ال/.test(nb) && /َ$/.test(nw)) || new RegExp("َ" + ENC + "$").test(nw));
+        if (nasbVis) {   // a noun in visible naṣb after it: the AMR (مُدَّ يَدَكَ) heads the list, the passive is its twin
+          r.__amr326 = true;
+          if ((r.kind || "") === "verb" && r.cell && r.cell.tense === "amr") { r.sure = false; r.notes = (r.notes || []).concat([{ en: "«" + r.w + "» is also, letter for letter, the PASSIVE māḍī of «" + mj.lemma + "» (فُعَّ); the noun in naṣb after it reads as the imperative's object, so the imperative is shown first.", tr: "«" + r.w + "» harfi harfine «" + mj.lemma + "» fiilinin MEÇHUL mâzîsidir de (فُعَّ); ardındaki mansûb isim emrin mef'ûlü olarak okunduğundan önce emir gösterilir." }]); return; }
+          let a = null; try { a = RootFinder.fromCorpus(String(r.w).normalize("NFC").replace(/[«»،.:!؟؛]/g, "")); } catch (e) {}
+          if (!a || !a.cell || a.cell.tense !== "amr" || a.root !== mj.root) return;
+          r.kind = "verb"; r.pk = null; r.cell = a.cell; r.root = a.root; r.lemma = a.lemma; if (a.gloss) r.gloss = a.gloss; r.sure = false; r.realize = undefined; r.enc = null; r.__kindNoun = false; r.seg = [stripAr(String(r.w)).replace(/[^ء-ي]/g, "")]; r.__passive326 = "amr";
+          r.notes = [{ en: "«" + r.w + "» is the imperative of «" + a.lemma + "» — or, letter for letter, its PASSIVE māḍī (فُعَّ); the noun in naṣb after it reads as the imperative's object. The ḍamma and the shadda rule out the particle قَدْ.", tr: "«" + r.w + "», «" + a.lemma + "» fiilinin emridir — ya da harfi harfine MEÇHUL mâzîsi (فُعَّ); ardındaki mansûb isim emrin mef'ûlüdür. Zamme ve şedde قَدْ edatını dışarıda bırakır." }];
+          return; }
+        twin = !rafVis;   // with no noun in visible rafʿ the passive leads (the corpus writes فُعَّ as a passive 27 times to 1) and the amr is named as its twin
+      }
+      r.kind = "verb"; r.pk = null; r.cell = mj.cell; r.root = mj.root; r.lemma = mj.lemma; if (mj.gloss) r.gloss = mj.gloss; r.wazn = WZ; r.sure = !twin;
+      r.enc = null; r.al = false; r.tanwin = false; r.realize = undefined; r.__kindNoun = false; r.seg = [stripAr(String(r.w)).replace(/[^ء-ي]/g, "")]; r.__passive326 = mj.shape;
+      r.notes = [{ en: "the PASSIVE māḍī of «" + mj.lemma + "» on «" + WZ + "» — " + (mj.shape === "ajwaf" ? "the hollow verb's ḍamma and kasra meet over the weak middle and leave a kasra and a yāʾ" : mj.shape === "mudaaf" ? "the doubled verb loses its kasra to the merging of its twin letters" + (twin ? "; it is also, letter for letter, the imperative of «" + mj.lemma + "» — nothing after it settles which, and the passive is shown first" : ", and the noun in rafʿ after it rules out the imperative twin") : "the alif of the third form turns to a wāw after the ḍamma") + " (Shudhūr R52)",
+                   tr: "«" + mj.lemma + "» fiilinin «" + WZ + "» vezninde MEÇHUL mâzîsi — " + (mj.shape === "ajwaf" ? "ecvef fiilde zamme ile kesra illetli orta harf üzerinde buluşur; geriye kesra ile yâ kalır" : mj.shape === "mudaaf" ? "muzâaf fiil, iki misil harfin idgâmıyla kesrasını kaybeder" + (twin ? "; harfi harfine «" + mj.lemma + "» fiilinin emridir de — ardındaki hiçbir şey hangisi olduğunu belirlemez, önce meçhul gösterilir" : "; ardındaki merfû isim emir ikizini dışarıda bırakır") : "üçüncü babın elifi zammeden sonra vâva döner") + " (Şüzûr R52)" }];
     });
     return out;
   }
@@ -17470,6 +17586,7 @@ class CaseEngine {
   static claim(rows, i){
     const r = rows[i];
     if (!r || !r.kind) return null;
+    if (r.tawkid326 && String(r.kind).startsWith("verb")) return r.tawkid326.bina !== "murab" ? { k: "mabni" } : { k: r.tawkid326.gov === "jazm" ? "jazm" : "raf" };   /* (v326 · Shudhūr R6, triage T3) the vowel before the nūn of emphasis decides */
     let w = (r.w || "").normalize("NFC").replace(/[«»،.:!؟\s]/g, "");
     // a FUSED particle + pronoun (لَهُ، فِيهِ، مِنْهُمْ) is one token and TWO
     // i'rabs — no single case claim is honest, so the engine stays silent.
@@ -18061,16 +18178,35 @@ class Murib {
   static doer(rows, i){
     const r = rows[i]; const cell = r.__cell || r.cell; const t = String((cell || {}).tense || ""); const passive = /majhul/.test(t);
     const who = passive ? "نَائِبُ الْفَاعِلِ" : "الْفَاعِلُ"; const whoE = passive ? "the nāʾib al-fāʿil" : "the doer"; const whoT = passive ? "nâib-i fâil" : "fâil";
-    const enc = r.enc || "";
+    if (passive && /^(ajwaf|mudaaf|faul)$/.test(r.__passive326 || "")) {   /* (v326 · Shudhūr R192, triage T5) جِيءَ بِالْأَسِيرِ، بُورِكَ فِيكَ: with no object to stand
+         in for, the jarr phrase right after the passive takes the doer's seat — unless a noun in rafʿ follows, or the clause before
+         holds what a concealed pronoun would refer to; the surface cannot see the second, so both are offered, the jarr phrase first */
+      const nx = rows[i + 1], nb = nx ? this.bareOf(nx.w) : ""; let jp = null; const ck = j => { try { return (CaseEngine.claim(rows, j) || {}).k || null; } catch (e) { return null; } };
+      if (nx && (nx.kind || "") === "particle" && nx.pk === "jarr" && rows[i + 2] && ck(i + 2) === "jarr") jp = nx.w + " " + rows[i + 2].w;
+      else if (nx && (nx.kind || "") === "particle" && /^(في|ب|ل|ك|من|عن|على|الي|إلي|إلى|الى)(ه|ها|هم|هما|هن|ك|كم|كما|كن|ي|نا)$/.test(nb)) jp = nx.w;
+      else if (nx && (nx.kind || "").startsWith("noun") && /^[بلك]ِ/.test(String(nx.w || "").normalize("NFC")) && ck(i + 1) === "jarr") jp = nx.w;
+      const rafAfter = rows.slice(i + 1, i + 5).some((x, k) => (x.kind || "").startsWith("noun") && ck(i + 1 + k) === "raf");
+      if (jp && !rafAfter) return { ar: "وَنَائِبُ الْفَاعِلِ شِبْهُ الْجُمْلَةِ «" + jp + "» فِي مَحَلِّ رَفْعٍ، أَوْ ضَمِيرٌ مُسْتَتِرٌ إِنْ تَقَدَّمَ مَا يَعُودُ عَلَيْهِ",
+        en: "and the nāʾib al-fāʿil is the jarr phrase «" + jp + "» (in the seat of rafʿ) — or a concealed pronoun, if something before it is what it refers to",
+        tr: "ve nâib-i fâil «" + jp + "» câr-mecrûrudur (ref mahallinde) — ya da öncesinde döneceği bir şey varsa müstetir zamir" };
+    }
+    if (r.nunDropped326) { /* (v326 · triage T6) يَكُ is kāna's: it raises an ISM, never a doer */
+      const g = this._ghosts(rows, this._decide(rows)).find(x => x.i === i && x.kind === "mustatir");
+      for (let j = i + 1; j < Math.min(rows.length, i + 4); j++) { if (this.ruleOf(rows, j) === "kanaIsm") return { ar: "وَاسْمُهَا «" + rows[j].w + "»", en: "and its ism (a nāsikh verb has an ism, not a doer) is «" + rows[j].w + "»", tr: "ve ismi «" + rows[j].w + "»" }; }
+      const P = { 12: "أَنَا", 13: "نَحْنُ" }[r.cell && r.cell.person] || (g && g.text) || (r.cell && r.cell.tense === "majzum2" ? null : "هُوَ");
+      return P ? { ar: "وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ «" + P + "»", en: "and its ism is a concealed pronoun: «" + P + "»", tr: "ve ismi müstetir zamir: «" + P + "»" } : null; }
+    const enc = r.tawkid326 ? "" : (r.enc || "");   // (v326 · triage T3) the nūn of emphasis carries no doer of its own; its enclitic is an object
     if (/^(ت|تم|تن|تما)$/.test(enc)) return { ar: "وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ " + (passive ? "نَائِبُ فَاعِلٍ" : "فَاعِلٌ"), en: "and the attached TĀʾ is " + whoE, tr: "ve muttasıl TÂ " + whoT + "dir" };
     if (enc === "نا") return { ar: "وَ«نَا» ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ " + (passive ? "نَائِبُ فَاعِلٍ" : "فَاعِلٌ"), en: "and «nā» is " + whoE, tr: "ve «nâ» " + whoT + "dir" };
     if (cell && typeof cell.i === "number") {
-      const pi = typeof cell.person === "number" ? cell.person : cell.i; const base = /amr/.test(t) ? "amr" : /mudari|mansub|majzum/.test(t) ? "mudari" : "mazi";
+      const pi = typeof cell.person === "number" ? cell.person : cell.i; const base = /amr/.test(t) ? "amr" : /mudari|mansub|majzum/i.test(t) ? "mudari" : "mazi";   /* (v326) «majhulMudari»: the passive muḍāriʿ's persons are the muḍāriʿ's letters */
       // the māḍī writes its 2nd person and its «I» as the tāʾ, its «we» as nā; the duals as the alif, the masculine plural as the wāw, the feminine plural as the nūn;
       // the muḍāriʿ and the amr write the duals, the plurals and the 2fs as letters — everything else is concealed
       const L = base === "mazi"
         ? ([6, 7, 8, 9, 10, 11, 12].includes(pi) ? ["الثَّاءُ", "TĀʾ", "TÂ"] : pi === 13 ? ["«نَا»", "nā", "nâ"] : [1, 4].includes(pi) ? ["الْأَلِفُ", "ALIF", "ELİF"] : pi === 2 ? ["الْوَاوُ", "WĀW", "VÂV"] : pi === 5 ? ["النُّونُ", "NŪN", "NÛN"] : null)
         : ([1, 4, 7, 10].includes(pi) ? ["الْأَلِفُ", "ALIF", "ELİF"] : [2, 8].includes(pi) ? ["الْوَاوُ", "WĀW", "VÂV"] : [5, 11].includes(pi) ? ["النُّونُ", "NŪN", "NÛN"] : pi === 9 ? ["الْيَاءُ", "YĀʾ", "YÂ"] : null);
+      if (L && r.tawkid326 && r.tawkid326.dropped && /^(الْوَاوُ|الْيَاءُ)$/.test(L[0])) { const nm = L[0] === "الْوَاوُ" ? "وَاوُ الْجَمَاعَةِ" : "يَاءُ الْمُخَاطَبَةِ";   /* (v326 · triage T3) يَقُولُنَّ، تَرَيِنَّ: the subject's letter fell before the nūn and is still the doer */
+        return { ar: "وَ" + nm + " الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ " + (passive ? "نَائِبُ فَاعِلٍ" : "فَاعِلٌ"), en: "and the " + L[1] + ", fallen for the meeting of two stills, is " + whoE, tr: "ve iki sâkin buluştuğu için düşen " + L[2] + " " + whoT + "dir" }; }
       if (L) { const ar0 = L[0] === "الثَّاءُ" ? "التَّاءُ" : L[0]; return { ar: "وَ" + ar0 + " ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ رَفْعٍ " + (passive ? "نَائِبُ فَاعِلٍ" : "فَاعِلٌ"), en: "and the " + L[1] + " is " + whoE, tr: "ve " + L[2] + " " + whoT + "dir" }; }
     }
     const g = this._ghosts(rows, this._decide(rows)).find(x => x.i === i && (x.kind === "mustatir" || x.kind === "naib"));
@@ -18139,6 +18275,14 @@ class Murib {
     }
     return null;
   }
+  /* (v326 · Shudhūr R6, triage T3) the bināʾ of a muḍāriʿ that wears the nūn of emphasis: on the fatḥa where the nūn touches it, on the
+     sukūn where the women's nūn stands between; the muʿrab forms (a wāw, yāʾ or alif between) are written by the case clause. */
+  static tawkidBina(r){
+    const t = r && r.tawkid326; if (!t) return null;
+    if (t.bina === "fath") return { ar: "مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ", en: "built on the fatḥa — the heavy nūn of emphasis touches it (the nūn is a letter with no seat)", tr: "fetha üzere mebnî — sakîl te'kid nûnu ona doğrudan bitişir (nûn, mahalli olmayan bir harftir)" };
+    if (t.bina === "sukun") return { ar: "مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ الْمُشَدَّدَةُ لِلتَّوْكِيدِ", en: "built on the sukūn — the women's nūn is attached; the heavy nūn emphasises", tr: "sükûn üzere mebnî — nisve nûnu bitişiktir; şeddeli nûn te'kid içindir" };
+    return null;
+  }
   static binaVowel(r){
     const cell = r && r.cell; if (!cell || typeof cell.i !== "number") return null;
     const rad = String(r.root || "").split(/\s+/).filter(Boolean);
@@ -18155,7 +18299,7 @@ class Murib {
     if (t === "mazi" || t === "majhulMazi") {
       if (i >= 5) return say("sukun", "لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ", "before a moving rafʿ pronoun", "harekeli ref' zamirine bitiştiği için");
       if (naqis) {
-        const alifType = /[اى]$/.test(stripAr(String(r.lemma || (i === 0 ? f0 : "")).split(/[()\s]/)[0]));   // رَمَى، دَعَا — not بَقِيَ، رَضِيَ
+        const alifType = t !== "majhulMazi" && /[اى]$/.test(stripAr(String(r.lemma || (i === 0 ? f0 : "")).split(/[()\s]/)[0]));   // رَمَى، دَعَا — not بَقِيَ، رَضِيَ; (v326) nor the passive نُودِيَ، رُمِيَ, whose yāʾ wears its fatḥa
         if (i === 2) return null;                                              // رَمَوْا، بَقُوا: the books word these apart
         if (alifType && i === 0) return { ar: "مَبْنِيٌّ عَلَى الْفَتْحِ الْمُقَدَّرِ عَلَى الْأَلِفِ لِلتَّعَذُّرِ", en: "built on a fatḥa estimated on the alif (it cannot be voiced)", tr: "elif üzerinde takdîrî fetha üzere mebnî (taazzur)" };
         if (alifType && i !== 1) return null;                                  // رَمَتْ، رَمَتَا: on the alif dropped before the tāʾ
@@ -18186,9 +18330,10 @@ class Murib {
     const rule = this.ruleOf(rows, i);
     { const jf = this.jawabFa(rows, i); if (jf) push(jf.ar, jf.en, jf.tr); }
     // ---- 1 · the CLASS, with the tasrif where the corpus owns the cell
+    if (r.tawkid326 && r.tawkid326.qasam && kind.startsWith("verb")) push("اللَّامُ وَاقِعَةٌ فِي جَوَابِ الْقَسَمِ", "the lām falls in the answer of an oath", "lâm kasemin cevabında vâkidir");   // (v326 · Shudhūr R198, triage T3)
     if (kind.startsWith("verb") && r.cell) {
       const lbl = formCellLabel(r.cell);
-      push(this.TENSE_AR[r.cell.tense] || "فِعْلٌ",
+      push((this.TENSE_AR[r.cell.tense] || "فِعْلٌ") + (r.nunDropped326 ? " نَاقِصٌ" : ""),   /* (v326 · triage T6) يَكُ is kāna's: a nāqiṣ verb */
         "a corpus verb — " + lbl.en + (r.lemma ? " of «" + r.lemma + "»" : ""),
         "külliyat fiili — " + lbl.tr + (r.lemma ? " («" + r.lemma + "»)" : ""));
     } else if (kind.startsWith("verb")) {
@@ -18211,7 +18356,7 @@ class Murib {
     if (!kind.startsWith("particle")) {
       let c = null; try { c = CaseEngine.claim(rows, i); } catch (e) {}
       const rz = r.realize;
-      const bv = (c && c.k === "mabni") ? this.binaVowel(r) : null;
+      const bv = (c && c.k === "mabni") ? (this.tawkidBina(r) || this.binaVowel(r)) : null;
       if (bv) push(bv.ar, bv.en, bv.tr);
       else if (c && c.k === "mabni") {
         push("مَبْنِيٌّ لَا يَتَغَيَّرُ آخِرُهُ",
@@ -18232,6 +18377,8 @@ class Murib {
         else if (rz && rz.by === "hadhf") sign = " وَعَلَامَةُ " + ca.s + " " + (/السُّكُون/.test((rz.why || {}).ar || "") ? "السُّكُونُ" : /نُون/.test((rz.why || {}).ar || "") ? "حَذْفُ النُّونِ" : "حَذْفُ حَرْفِ الْعِلَّةِ");
         else if (rz && rz.manner === "lafzi") sign = " وَعَلَامَةُ " + ca.s + " " + ca.h + " الظَّاهِرَةُ";
         if (kind.startsWith("verb")) { const ns = this.naqisSign(r, c.k, ca); if (ns) sign = ns; }   // (v325 · triage T2) the defective verb's own signs
+        if (r.tawkid326 && r.tawkid326.bina === "murab") sign = c.k === "raf" ? " وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ، وَالنُّونُ الْمُشَدَّدَةُ لِلتَّوْكِيدِ" : c.k === "jazm" ? " وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالنُّونُ الْمُشَدَّدَةُ لِلتَّوْكِيدِ" : sign;   // (v326 · Shudhūr R6, triage T3)
+        if (r.nunDropped326 && c.k === "jazm") sign = " وَعَلَامَةُ جَزْمِهِ السُّكُونُ عَلَى النُّونِ الْمَحْذُوفَةِ، حُذِفَتِ النُّونُ لِلتَّخْفِيفِ";   // (v326 · Shudhūr R74, triage T6) لَمْ يَكُ
         const cx = r.construct && rz && rz.construct ? {
           en: ` — by the ${r.construct.letter === "waw" ? "WAW" : r.construct.letter === "alif" ? "ALIF" : "YA"}, because it is ${r.construct.num === "jam" ? (r.construct.mulhaq ? "attached to the sound masculine plural" : "a sound masculine plural") : "a dual"}; the nun dropped for the idafa`,
           tr: ` — ${r.construct.letter === "waw" ? "VÂV" : r.construct.letter === "alif" ? "ELİF" : "YÂ"} ile, çünkü ${r.construct.num === "jam" ? (r.construct.mulhaq ? "cem-i müzekker-i sâlime mülhaktır" : "cem-i müzekker-i sâlimdir") : "tesniyedir"}; nûn izâfet için düşmüştür` } : null;
@@ -18280,6 +18427,13 @@ class Murib {
       if (!office) office = o;
     }
     if (rule === "naib") office = this.RULE_OFFICE.naib;
+    { const o6 = ((this._decide(rows) || {}).out || [])[i]; const v6 = o6 && o6.v326; if (v6 && this.RULE_OFFICE[o6.rule]) {   /* (v326 · Shudhūr R202, triage T4) the shortlist after a lāzim verb, with its signal */
+        const V6 = rows[v6.verb] || {}, vw = String(V6.w || ""), base = this.RULE_OFFICE[o6.rule];
+        const sigAr = "الْفِعْلُ «" + vw + "» لَازِمٌ " + (v6.by === "pattern" ? "بِوَزْنِهِ «" + v6.wznAr + "»" : "بِشَهَادَةِ الْمُتُونِ") + " وَفَاعِلُهُ «" + String((rows[v6.doer] || {}).w || "") + "» مَذْكُورٌ، وَالِاسْمُ نَكِرَةٌ مَنْصُوبَةٌ " + (v6.derived ? "مُشْتَقَّةٌ" : "جَامِدَةٌ");
+        const sigEn = "«" + vw + "» is lāzim " + (v6.by === "pattern" ? "by its pattern " + v6.wznAr : "by the texts' own use") + ", its doer is written, and the noun is indefinite, in naṣb, " + (v6.derived ? "derived" : "jāmid");
+        office = { ar: base.ar + " — " + sigAr + (v6.keepObj ? "؛ وَيُحْتَمَلُ: مَفْعُولٌ بِهِ، فَقَدْ عُدِّيَ الْفِعْلُ فِي الْمُتُونِ" : ""),
+          en: base.en + " (shortlist: " + sigEn + (v6.keepObj ? "; or the MAFʿŪL BIHI — the texts once gave this verb an object" : "") + ")",
+          tr: base.tr + " (kısa liste: «" + vw + "» lâzımdır, fâili yazılı, isim nekre ve mansûb" + (v6.keepObj ? "; ya da MEF'ÛLÜN BİH — metinler bu fiile bir yerde mef'ûl vermiş" : "") + ")" }; } }
     if (kind === "particle") office = null;                 // a letter has no office — the vocative note belongs to the noun after it
     if (office && /فَاعِلٌ$/.test(office.ar || "") && (ck === "jarr" || ck === "nasb"))
       office = null;
@@ -19196,8 +19350,35 @@ class LazimEngine {
   static seatsObject(lemma, ex){ const o = this.of(lemma, ex); return o.obj + o.both >= 1 && o.obj + o.both >= o.doer - o.both; }
   /* the verb the text gave two objects at least twice (أَعْطَى، آتَى، جَعَلَ) */
   static ditransitive(lemma, ex){ return this.of(lemma, ex).dit >= 2; }
-  /* lāzim by the ledger: three or more uses and never an object */
-  static lazim(lemma, ex){ const o = this.of(lemma, ex); return o.n >= 3 && o.obj === 0 && o.doer >= 1; }
+  /* (v326 · Shudhūr R202, triage T4) THE PATTERN PRIOR. Some verbs are lāzim by their WAZN, whatever the ledger has seen: «مَا لَا
+     يَتَعَدَّى إِلَيْهِ أَصْلًا … كَالْمُوَازِنِ لِانْفَعَلَ … أَوْ فَعُلَ» (Shudhūr R202: انْكَسَرَ، ظَرُفَ), and the Maqṣūd's rule that every five-
+     and six-letter bāb is lāzim save افْتَعَلَ، تَفَعَّلَ، تَفَاعَلَ and اسْتَفْعَلَ — which names افْعَلَّ (احْمَرَّ) and افْعَالَّ (احْمَارَّ). The
+     four patterns of the triage entry, read on the māḍī with its root:
+       · فَعُلَ — bāb karuma (فَعُلَ يَفْعُلُ: كَرُمَ يَكْرُمُ; the Maqṣūd's حَسُنَ يَحْسُنُ), the verb of a lasting quality;
+       · انْفَعَلَ — the verb of yielding (انْكَسَرَ، انْطَلَقَ; hollow انْقَادَ, doubled انْشَقَّ);
+       · افْعَلَّ and افْعَالَّ — colours and defects (احْمَرَّ، احْمَارَّ).
+     The ROOT must be the three letters the pattern frames, so اِنْتَقَلَ (ن ق ل, an افْتَعَلَ) and اِشْتَدَّ (ش د د) never pass for انْفَعَلَ
+     and افْعَلَّ; with no root to check, the pattern is not claimed. Limits: R202's other classes (verbs of coming-into-being, of a
+     sensory quality, of an accident; فَعَلَ / فَعِلَ whose adjective is فَعِيل) are MEANING classes the letters cannot settle — the
+     ledger keeps answering for those. */
+  static patternOf(lemma, root){
+    try { const f = String(lemma || "").split(/[()\s]/)[0].normalize("NFC").replace(/[«»،.:!؟؛]/g, ""); if (!f) return null;
+      let rt = String(root || "").split(/\s+/).filter(Boolean); const H = z => String(z || "").replace(/[أإآؤئء]/g, "ء");
+      const need = () => { if (rt.length === 3) return true; try { const c = RootFinder.fromCorpus(f); rt = c && c.root ? String(c.root).split(/\s+/) : []; } catch (e) { rt = []; } return rt.length === 3; };
+      const eq = (a, b) => H(a) === H(b), C = "([ء-ي])", SH = "(?:َّ|َّ)";
+      let m;
+      if ((m = f.match(new RegExp("^" + C + "َ" + C + "ُ" + C + "َ$")))) return { wazn: "فَعُلَ", bab: "karuma", ar: "فَعُلَ (بَابُ كَرُمَ)", en: "faʿula (bāb karuma)", tr: "feʿule (kerume babı)" };
+      if ((m = f.match(new RegExp("^[اٱإ]ِ?نْ" + C + "َ" + C + "َ" + C + "َ$"))) && need() && eq(rt[0], m[1]) && eq(rt[1], m[2]) && eq(rt[2], m[3])) return { wazn: "اِنْفَعَلَ", bab: "VII", ar: "اِنْفَعَلَ", en: "infaʿala", tr: "infiʿâl" };
+      if ((m = f.match(new RegExp("^[اٱإ]ِ?نْ" + C + "َا" + C + "َ$"))) && need() && eq(rt[0], m[1]) && /^[وي]$/.test(rt[1]) && eq(rt[2], m[2])) return { wazn: "اِنْفَعَلَ", bab: "VII", ar: "اِنْفَعَلَ", en: "infaʿala", tr: "infiʿâl" };
+      if ((m = f.match(new RegExp("^[اٱإ]ِ?نْ" + C + "َ" + C + SH + "$"))) && need() && eq(rt[0], m[1]) && eq(rt[1], m[2]) && eq(rt[2], m[2])) return { wazn: "اِنْفَعَلَ", bab: "VII", ar: "اِنْفَعَلَ", en: "infaʿala", tr: "infiʿâl" };
+      if ((m = f.match(new RegExp("^[اٱإ]ِ?" + C + "ْ" + C + "َ" + C + SH + "$"))) && need() && eq(rt[0], m[1]) && eq(rt[1], m[2]) && eq(rt[2], m[3])) return { wazn: "اِفْعَلَّ", bab: "IX", ar: "اِفْعَلَّ", en: "ifʿalla", tr: "ifʿilâl" };
+      if ((m = f.match(new RegExp("^[اٱإ]ِ?" + C + "ْ" + C + "َا" + C + SH + "$"))) && need() && eq(rt[0], m[1]) && eq(rt[1], m[2]) && eq(rt[2], m[3])) return { wazn: "اِفْعَالَّ", bab: "XI", ar: "اِفْعَالَّ", en: "ifʿālla", tr: "ifʿîlâl" };
+      return null; } catch (e) { return null; }
+  }
+  /* why a verb is lāzim, or null: the pattern prior first (EXACT for the four patterns), then the ledger */
+  static lazimWhy(lemma, ex, root){ const p = this.patternOf(lemma, root); if (p) return { by: "pattern", ...p }; const o = this.of(lemma, ex); return (o.n >= 3 && o.obj === 0 && o.doer >= 1) ? { by: "ledger", n: o.n, doer: o.doer } : null; }
+  /* lāzim by its pattern (v326), or by the ledger: three or more uses and never an object */
+  static lazim(lemma, ex, root){ return !!this.lazimWhy(lemma, ex, root); }
 }
 class DabtEngine {
   /* (wave 33a) verbs whose أَنْ-clause shares their doer (control verbs): ability, attempt, imminence, habit — NOT أَرَادَ, whose clause may name its own doer (أَرَادَ اللهُ أَنْ يَعْرِفَ النَّاسُ) */
@@ -20735,7 +20916,7 @@ class DabtEngine {
           if (!r.__verbSure && /^(قال|قالت|قالوا|قالا|قالتا)$/.test(b26) && !hasAl(r) && !r.afterJarr) {
             try { const f26 = ({ "قال": "قَالَ", "قالت": "قَالَتْ", "قالوا": "قَالُوا", "قالا": "قَالَا", "قالتا": "قَالَتَا" })[b26]; const c26 = RootFinder.fromCorpus(f26);
               if (c26 && c26.cell) { r.kind = "verb"; r.__kindNoun = false; r.pk = null; r.cell = { ...c26.cell }; r.lemma = c26.lemma || "قَالَ"; if (c26.root) r.root = c26.root; r.__verbSure = true; r.sure = true; } } catch (e) {} }   /* فِي اللَّيْلِ قَالَ إِبْرَاهِيمُ: the saying verb wherever it stands */
-          if (isVerb(r) && r.cell && r.cell.tense === "amr" && /َ$/.test(o25b) && !encOf(r) && !r.__kindNoun) { try { const v26 = RootFinder.corpusIndex().find(x => x.lemma === r.lemma); const mz26 = v26 && v26.m && v26.m.mazi && v26.m.mazi[0];
+          if (isVerb(r) && r.cell && r.cell.tense === "amr" && /َ$/.test(o25b) && !encOf(r) && !r.__kindNoun && !r.__amr326 /* (v326 · triage T5) مُدَّ يَدَكَ: the doubled amr ends on a fatḥa of its own */) { try { const v26 = RootFinder.corpusIndex().find(x => x.lemma === r.lemma); const mz26 = v26 && v26.m && v26.m.mazi && v26.m.mazi[0];
             if (mz26 && this.bare(mz26) === this.bare(body25 || r.w || "")) { r.cell = { tense: "mazi", i: 0, person: 0, form: mz26.normalize("NFC") }; r.__verbSure = true; } } catch (e) {} }   /* تَعَجَّبَ النَّاسُ: the author's fatḥa picks the māḍī twin */
           if (/^[أا]ا?(انت|انتم|انتما|انتن|انا|نحن|هو|هي|هم|هما|هن)$/.test(b26.replace(/[أإآ]/g, "ا")) && !hasAl(r) && !r.__istifham24) { const rest26 = (r.w || "").normalize("NFC").replace(/^[وف][ً-ٰ]*/, "").replace(/^[أا][ً-ٰ]*/, "");
             r.kind = "noun"; r.pk = "pron"; r.cell = null; r.__kindNoun = true; r.__mabni25 = true; r.__istifham24 = true; r.seg = ["أ", this.bare(rest26)]; }   /* أَأَنْتَ فَعَلْتَ: the question hamza on a detached pronoun */
@@ -24188,7 +24369,36 @@ class DabtEngine {
           if (!/^(mudafIlayh|nat|jarr)$/.test(ox.rule || "") && (rows[x].kind || "") !== "particle") break; }
         if (kh185 > 0) o1.rule = "kanaIsm"; } } catch (e) {}
     try { this.relabel170(rows, out); } catch (e) {}
+    try { this.lazimSeat326(rows, out, head); } catch (e) {}
     return { out, head, member };
+  }
+  /* (v326 · Shudhūr R202 with R117, R201; triage T4 and I-9 (d)) AFTER A LĀZIM VERB WHOSE DOER IS STATED, an indefinite manṣūb noun has
+     no object's seat to take. If it is JĀMID it is offered as a TAMYĪZ (حَسُنَ الطَّالِبُ خُلُقًا، طَابَ زَيْدٌ نَفْسًا: the tamyīz of the
+     relation), if it is DERIVED — a participle's or a ṣifa's shape — as a ḤĀL (خَرَجَ زَيْدٌ مُسْرِعًا). This is a SHORTLIST, and the row
+     says why: the verb is lāzim (by its pattern, LazimEngine.patternOf, or by the ledger's count), its doer stands written, the noun is
+     indefinite and in naṣb. It PROMOTES, never removes: where the ledger shows the verb took an object somewhere in the texts, the
+     mafʿūl bihi stays underneath (`alt`). Limits: only a seat the vowelling engine handed the mafʿūl bihi is reread; a noun of the
+     verb's own root is its mafʿūl muṭlaq and is left alone; a passive, a nāsikh or a verb with no written noun doer is not touched. */
+  static lazimSeat326(rows, out, head){
+    const isV = x => !!x && (x.kind || "").startsWith("verb") && !x.__kindNoun, isN = x => !!x && (x.kind || "").startsWith("noun") && !(x.kind || "").startsWith("verb");
+    rows.forEach((r, i) => { const o = out[i]; if (!o || o.k !== "nasb" || o.rule !== "maful" || !isN(r)) return;
+      const w = String((this._orig24 || [])[i] || r.w || "").normalize("NFC").replace(/[«»"،؛.:!؟]/g, "");
+      if (!/(ً|ًا|اً)$/.test(w) || /^(?:[وف][ً-ٰ]*)?(?:[بلك][ً-ٰ]*)?ال/.test(w) || r.enc || (head && head.has && head.has(i)) || r.afterJarr) return;   // indefinite, by its own written tanwīn
+      let v = typeof o.head === "number" ? o.head : -1; if (v < 0) for (let q = i - 1; q >= 0 && q >= i - 4; q--) if (isV(rows[q])) { v = q; break; }
+      const V = rows[v]; if (!isV(V) || !V.cell || /majhul/i.test(String(V.cell.tense || "")) || V.pk === "kana" || this.KANA_FORMS.has(this.bare(String(V.w || "")).replace(/^[وف]/, ""))) return;
+      let doer = -1; for (let q = v + 1; q < i; q++) if (out[q] && out[q].rule === "fail" && isN(rows[q])) { doer = q; break; } if (doer < 0) return;
+      for (let q = doer + 1; q < i; q++) if (!(out[q] && (/^(mudafIlayh|nat|jarr)$/.test(out[q].rule || "") || (rows[q].kind || "") === "particle" || (out[q].k === "keep" && /^(?:[وف][ً-ٰ]*)?[بلك]/.test(String(rows[q].w || "")))))) return;   // between the doer and the noun: only what hangs on the doer, or a jarr phrase (فَطَابَ الْمُسْلِمُونَ بِذٰلِكَ نَفْسًا) — a second noun of its own is another construction
+      const rv = String(V.root || "").replace(/\s+/g, ""), rn = String(r.root || "").replace(/\s+/g, ""); if (rv && rn && rv === rn) return;   // the verb's own maṣdar: its mafʿūl muṭlaq
+      let lx = null; try { lx = RootFinder.nounFromCorpus(w); } catch (e) {} const gl = String((lx && lx.gloss && (lx.gloss.en || lx.gloss)) || "");
+      if (/^(an? )?(day|days|time|period|year|month|hour|night|week|while|moment|age|era|century)\b|[;,] (age|time|period)\b/i.test(gl)) return;   // a noun of time: the ẓarf's
+      const why = LazimEngine.lazimWhy(V.lemma || V.w, this._senKey138, V.root); if (!why) return;
+      if (why.by === "ledger") { const lm = String(V.lemma || "").split(/[()\s]/)[0].normalize("NFC");   // the ledger speaks for the bare triliteral only: نَجَّى، أَعْلَمَ، أَمْطَرَ take their object by their bāb, whatever the count says
+        if (!/^[ء-ي]َ(?:[ء-ي][َُِ][ء-ي]|ا[ء-ي]|[ء-ي](?:َّ|َّ)|[ء-ي][َِ][اىي])َ?$/.test(lm)) return; }   // فَعَلَ / فَعِلَ / فَعُلَ, hollow فَالَ, doubled فَعَّ, defective فَعَى / فَعِيَ
+      const lm0 = String((lx && lx.lemma) || "").split(/[()\s]/)[0].normalize("NFC");
+      const derived = this.sifaShape(r, w) || (!!lm0 && (this.sifaShape(r, lm0) || /^[ء-ي]َ[ء-ي]ِي[ء-ي]$|^[ء-ي]َا[ء-ي]ِ[ء-ي]$|^مَ[ء-ي]ْ[ء-ي]ُو[ء-ي]$|^مُ[ء-ي]/.test(lm0)));
+      if (!derived && lx && (lx.verbal || /ma[sṣ]dar/i.test(gl))) return;                                             // a maṣdar: the mafʿūl muṭlaq or li-ajlih, not this rule's
+      const keepObj = (() => { try { return LazimEngine.of(V.lemma || "", this._senKey138).obj >= 1; } catch (e) { return false; } })();
+      o.rule = derived ? "hal" : "tamyiz"; o.head = v; o.v326 = { from: "maful", by: why.by, wazn: why.wazn || null, wznAr: why.ar || null, verb: v, doer, derived, keepObj }; });
   }
   /* (wave 170) the LABEL pass: the office restated where a rule of the books decides it from what the loop settled.
      It never reads a meaning; every rule names the shape it stands on, and each is asserted in the smoke suite. */
@@ -25189,7 +25399,10 @@ class TawkidNunEngine {
   static read(word){
     const w0 = this.N(word).replace(/[«»،.:!؟\s]/g, ""); if (!w0) return null;
     const m = w0.match(/^((?:وَ|فَ)?)(لَ)?(.+)$/); if (!m) return null;
-    const core = m[3]; let cls = null, kind = "heavy", bases = [];
+    /* (v326 · Shudhūr R6, R198; triage T3) an object pronoun may follow the nūn (لَأُعَذِّبَنَّهُ، لَنُخْرِجَنَّكَ): it is peeled and handed back
+       as `enc`, and the verb under it is read as before. Only the heavy nūn carries one here — the light nūn before a pronoun is unheard. */
+    let core = m[3], enc = ""; { const mE = core.match(/^(.+ن(?:َّ|َّ))(هُمَا|كُمَا|هُمْ|كُمْ|كُنَّ|هُنَّ|نِي|نَا|هَا|هُ|كَ|كِ)$/); if (mE && stripAr(mE[1]).replace(/[^ء-ي]/g, "").length >= 4) { core = mE[1]; enc = mE[2]; } }
+    let cls = null, kind = "heavy", bases = [];
     if (/نَانِّ$/.test(core)) { cls = "fpl"; bases = [core.replace(/انِّ$/, "")]; }
     else if (/َانِّ$/.test(core)) { cls = "du"; bases = [core.replace(/انِّ$/, "انِ"), core.replace(/انِّ$/, "ا")]; }
     else if (/(نَّ|نْ)$/.test(core)) {
@@ -25208,9 +25421,17 @@ class TawkidNunEngine {
       let v = null; try { v = RootFinder.corpusIndex().find(x => x.lemma === hit.lemma) || null; } catch (e) { v = null; }
       const naqis = this.naqisType(v && v.m); const tense = hit.cell.tense || "";
       const a = this.attach(hit.cell.form, cls, kind, { naqis, tense });
-      if (a.ok && a.out === this.N(core)) { found = { ok: true, word: w0, core, base: this.N(hit.cell.form), cell: hit.cell, lemma: hit.lemma, root: hit.root, gloss: hit.gloss, cls, kind, qasam: !!m[2], clitic: m[1] || "", bina: a.bina, steps: a.steps }; break; }
+      if (a.ok && a.out === this.N(core)) { found = { ok: true, word: w0, core, enc, base: this.N(hit.cell.form), cell: hit.cell, lemma: hit.lemma, root: hit.root, gloss: hit.gloss, cls, kind, qasam: !!m[2], clitic: m[1] || "", bina: a.bina, steps: a.steps }; break; }
     }
-    return found || { ok: false, word: w0, core, cls, kind, qasam: !!m[2] };
+    /* (v326 · triage T3) no corpus verb re-attaches (لَيُنْبَذَنَّ — نَبَذَ is not in the texts; لَتُبْلَوُنَّ — the stored paradigm has no
+       plural passive): the muḍāriʿ SHAPE of a base may still vouch for it, if the nūn re-attaches to that base exactly. Such a reading
+       names no lemma (`viaShape`), only the verb, its person and its bināʾ or iʿrāb — which is all the vowel before the nūn decides. */
+    if (!found && typeof MudariShape !== "undefined") for (const b0 of bases) { const b = this.N(b0); if (!b) continue;
+      let sh = null; try { sh = MudariShape.full(b); } catch (e) { sh = null; } if (!sh || sh.how !== "mudari" || sh.enc || sh.pre) continue;
+      const tense = sh.tense; const a = this.attach(b, cls, kind, { naqis: null, tense });
+      const pre = b[0], person = cls === "pl" ? (pre === "ي" ? 2 : 8) : cls === "f2" ? 9 : cls === "du" ? (pre === "ي" ? 1 : 4) : cls === "fpl" ? (pre === "ي" ? 5 : 11) : sh.person;   // the nūn's own class names the person (تُبْلَوْنَ is he-plural or she-plural; تُبْلَوُنَّ is the men's)
+      if (a.ok && a.out === this.N(core)) { found = { ok: true, word: w0, core, enc, base: b, cell: { tense, i: person, person, form: b, derived: true, shape: true }, lemma: null, root: null, gloss: null, cls, kind, qasam: !!m[2], clitic: m[1] || "", bina: a.bina, steps: a.steps, viaShape: true }; break; } }
+    return found || { ok: false, word: w0, core, enc, cls, kind, qasam: !!m[2] };
   }
   // wrong answers a learner actually writes — for the game and the drills; never equal to the right form
   static distractors(right, cls, kind, base){
@@ -27434,7 +27655,7 @@ class TaqdirEngine {
       // 1 · the concealed DOER
       if (isVerb(r) && cell && typeof cell.i === "number") {
         const t = String(cell.tense || ""); const passive = /majhul/.test(t);
-        const base = /amr/.test(t) ? "amr" : /mudari|mansub|majzum/.test(t) ? "mudari" : "mazi";
+        const base = /amr/.test(t) ? "amr" : /mudari|mansub|majzum/i.test(t) ? "mudari" : "mazi";   /* (v326) «majhulMudari»: the passive muḍāriʿ's persons are the muḍāriʿ's letters */
         let pi = typeof cell.person === "number" ? cell.person : (/^(majzum2|mansub2)$/.test(t) ? 6 : cell.i);   // a rebuilt cell carries its person
         // (wave 121) تَفْعَلُ is ONE written form for two persons — the absent she and the present you — and the paradigm
         // cell the tagger met first decides nothing; the sentence does. The addressee reader walks back from the verb.

@@ -14131,3 +14131,40 @@ would be describing the last one.
   authored lines that call the estimated ḍamma of يَرَى / يَمْشِي / يَدْعُوكَ «visible» (the line is wrong, for the precheck).
 - The triage of all 210 Shudhūr rules against the engines is in the scratchpad (engine-triage.md): 49 covered, 105 decidable gaps,
   26 shortlist gaps, 30 not automatable. Next by the owner's order: T3 nūn al-tawkīd, T4 the intransitive patterns, then I-1 أَنْ.
+
+### v326 — four more Shudhūr rules in the engine (triage T6, T5, T3, T4)
+- **لَمْ يَكُ (R74, T6)** — `SentenceAnalyzer.yaku326`: يَكُ / تَكُ / نَكُ / أَكُ, the prefix on its fatḥa and the ḍamma left WRITTEN on the
+  kāf, can only be kāna's jussive with its nūn dropped; the row joins kāna's class (pk «kana») with the cell of يَكُنْ, and Murib writes
+  «فِعْلٌ مُضَارِعٌ نَاقِصٌ، مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ عَلَى النُّونِ الْمَحْذُوفَةِ، حُذِفَتِ النُّونُ لِلتَّخْفِيفِ» and «اسْمُهَا», never a doer.
+  An unvowelled «يك» is left alone. Corpus: all 4 tokens are kāna's verb in the authored lines; 1 agrees on the sign, 3 differ —
+  **corpus slips**: the Uṣūl's يَكُ and نَكُ ×2 say «وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ» (the wāw fell for the two stills; the jazm sign is the sukūn).
+- **The passive māḍī shapes (R52, R192, T5)** — `SentenceAnalyzer.majhul326` + a pass at the end of analyze(): the hollow فِيلَ (صِيمَ، جِيءَ),
+  the doubled فُعَّ (قُدَّ — no longer the particle قَدْ) and the third form فُوعِلَ (بُورِكَ) are passive verbs when the corpus owns the ACTIVE
+  verb with the same radicals. Refusals: a noun the lexicon owns with the same letters and vowels stands (دِينَ، فِيلَ، حُبَّ، كُلَّ; the control
+  بَيْعُ); the doubled فُعَّ is also the amr — a noun in visible naṣb after it keeps the amr (مُدَّ يَدَكَ, and Dabt's wave-26e «the author's fatḥa
+  picks the māḍī twin» no longer turns a doubled amr into a passive), a noun in visible rafʿ settles the passive, otherwise the passive leads
+  (the corpus writes فُعَّ as a passive 27 times to 1) with the amr named as its twin. Murib.doer offers the jarr phrase right after such a
+  passive as its nāʾib (جِيءَ بِالْأَسِيرِ، بُورِكَ فِيكَ) «أَوْ ضَمِيرٌ مُسْتَتِرٌ إِنْ تَقَدَّمَ مَا يَعُودُ عَلَيْهِ» — a shortlist. Corpus: 24 agree, 6 differ —
+  four are cited forms (مُدَّ in the Marāḥ and the ʿIzzī, one of them the amr «مُدَّ بِحَرَكَاتِ الدَّالِ»), two are **corpus slips**: the Uṣūl's
+  «رُدَّ الْعَرْشُ» and the ʿIzzī's «… أَوْ كُسِرَ ضُمَّ», both written with the passive's ḍamma and both called an active māḍī with a hidden doer.
+  Also fixed on the way: `Murib.binaVowel` named نُودِيَ / رُمِيَ «on a fatḥa estimated on the alif» (the passive's yāʾ wears its fatḥa), and
+  Murib.doer and TaqdirEngine read «majhulMudari» as a māḍī (case-sensitive /mudari/) and named its persons by the tāʾ.
+- **The nūn of emphasis (R6, R198, T3)** — `TawkidNunEngine.read` now peels an object pronoun after the nūn (لَأُعَذِّبَنَّهُ، لَنُخْرِجَنَّكَ)
+  and, where no corpus verb re-attaches, lets a muḍāriʿ SHAPE vouch for the base (لَيُنْبَذَنَّ، لَتُبْلَوُنَّ) — the analyzer accepts a shape
+  only in the oath's answer and never over a word the corpus owns whole (تَطْمَئِنَّ). A pass in analyze() makes every heavy-nūn muḍāriʿ a verb
+  (`r.tawkid326`), its base cell of the nūn's own class (يَصُنَّ is the root nūn + the women's nūn, not a plural with the nūn of emphasis).
+  The vowel before the nūn decides: fatḥa → «مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ»; ḍamma / kasra / the dual's alif →
+  muʿrab, «مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ» (after لَا of prohibition or إِمَّا: «مَجْزُومٌ … حَذْفُ النُّونِ»), the
+  fallen wāw/yāʾ named as the doer; the oath's lām is named. The light nūn is not read (يَكُنْ is no light nūn on يَكُونَ). Corpus: 54 agree,
+  2 differ, 56 of the tokens are the authors' verbs and 1 is not — **corpus slips**: the Uṣūl's لَيَقُولُنَّ «فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ», the
+  ʿIzzī's لَا تُرِينَانِّ called a dual majzūm by the dropped nūn (it is the women's plural, built on the sukūn), and the Uṣūl's ﴿وَلَا يَجْرِمَنَّكُمْ﴾
+  tagged a noun «مَعْطُوفٌ مَنْصُوبٌ».
+- **The intransitive patterns (R202, T4)** — `LazimEngine.patternOf` / `lazimWhy`: انْفَعَلَ, فَعُلَ (bāb karuma, فَعُلَ يَفْعُلُ), افْعَلَّ and افْعَالَّ are
+  lāzim by their pattern (R202 names انْفَعَلَ and فَعُلَ; the Maqṣūd makes every five- and six-letter bāb lāzim save افْتَعَلَ، تَفَعَّلَ، تَفَاعَلَ،
+  اسْتَفْعَلَ), the root checked so اِنْتَقَلَ and اِشْتَدَّ never pass; `lazim()` asks the pattern first, then the ledger. R202's meaning classes stay
+  the ledger's. `DabtEngine.lazimSeat326`: after a lāzim verb whose noun doer is written, an indefinite manṣūb noun the engine had seated as
+  the mafʿūl bihi is offered as a TAMYĪZ if jāmid and a ḤĀL if derived, the signal written into the line; «object» stays underneath only
+  where the ledger shows the verb ever took one. The ledger speaks only for the bare triliteral (نَجَّى، أَعْلَمَ، أَمْطَرَ take objects by their
+  bāb); a maṣdar, a noun of time and a noun of the verb's own root are left alone. Corpus: 6 agree, 3 differ (بَقِيَ … مَرِيضًا and كَمُلَ … عَالِمًا
+  read by their authors as kāna's khabar, ضَرُورَةً as a mafʿūl li-ajlih) — no slips. طَابَ زَيْدٌ نَفْسًا is reached through the ledger;
+  اشْتَعَلَ الرَّأْسُ شَيْبًا is NOT: اِشْتَعَلَ is no verb of the texts and افْتَعَلَ is no lāzim pattern, so it stays «مَفْعُولٌ بِهِ».

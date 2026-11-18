@@ -7449,7 +7449,7 @@ if (!CHROME) {
       throw new Error('سَأَلْتَهُمْ answers from its paradigm: ' + r.saalNote);
     if (r.khalaqKind !== 'verb' || !/corpus verb — past — he/.test(r.khalaqNote))
       throw new Error('خَلَقَ after the ism مَنْ is a verb, not a promised majrur: ' + r.khalaqKind + ' / ' + r.khalaqNote);
-    if (r.yaqulKind !== 'verb' || !/they \(m\)/.test(r.yaqulNote))
+    if (r.yaqulKind !== 'verb' || !(/they \(m\)/.test(r.yaqulNote) || /يَقُولُونَ.*wāw/.test(r.yaqulNote)))
       throw new Error('لَيَقُولُنَّ is يَقُولُونَ under the heavy nun: ' + r.yaqulKind + ' / ' + r.yaqulNote);
     if (r.yaqulLemma !== 'قَالَ') throw new Error('…and its lemma is قَالَ: ' + r.yaqulLemma);
     if (!(r.bimaKs.length === 2 && r.bimaKs.every(k => k === 'mawsula')))
@@ -16716,6 +16716,94 @@ if (!CHROME) {
     if (!/الْفَتْحَةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ/.test(c.lanYarḍā) || !/حَذْفُ حَرْفِ الْعِلَّةِ/.test(c.lamYadʿu) || !/حَذْفُ حَرْفِ الْعِلَّةِ/.test(c.lamYarmi)) throw new Error('naṣb and jazm of the defective: ' + J(c));
     if (!/الْفَتْحَةُ الظَّاهِرَةُ/.test(c.yarmiya) || /مُقَدَّر|حَذْفُ حَرْفِ الْعِلَّةِ/.test(c.yadʿūna + c.yaʾtiyakumā)) throw new Error('the controls — a written fatḥa, the five verbs, a verb with its pronoun: ' + J(c));
     if (r.agree < 930 || r.dis > 16) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis }));
+  });
+  await check('v326 — لَمْ يَكُ: kāna with its nūn dropped (Shudhūr R74, triage T6): يَكُ / نَكُ / أَكُ after the jāzim are kāna\'s verb with the cell of يَكُنْ, majzūm by the sukūn on the dropped nūn, «حُذِفَتِ النُّونُ لِلتَّخْفِيفِ», with an ism and its khabar; the full يَكُنْ keeps its old line; against the authored lines all 4 tokens are kāna\'s verb, 1 names the sign the same and 3 differ — the Uṣūl\'s three «حَذْفُ حَرْفِ الْعِلَّةِ», corpus slips', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = (s, k) => { const rows = SentenceAnalyzer.analyze(s); return { kind: rows[k].kind, pk: rows[k].pk || '', nd: !!rows[k].nunDropped326, line: (Murib.line(rows, k) || {}).ar || '', next: rows[k + 1] ? (Murib.line(rows, k + 1) || {}).ar || '' : '' }; };
+      const c = { yaku: at('وَلَمْ يَكُ مِنَ الْمُشْرِكِينَ', 1), naku: at('قَالُوا لَمْ نَكُ مِنَ الْمُصَلِّينَ', 2), aku: at('وَلَمْ أَكُ بَغِيًّا', 1), control: at('لَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ', 1) };
+      let verb = 0, verbDis = 0, agree = 0, dis = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => /^(?:[وف]َ)?[يتنأ]َكُ$/.test(String(t.s.full).normalize('NFC')))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        rows.forEach((x, i) => { if (!x.nunDropped326) return; const a = String((T[i].irab || {}).ar || '').normalize('NFC');
+          if (T[i].pos === 'verb' && /نَاقِص|كَانَ/.test(a)) verb++; else verbDis++;
+          if (/السُّكُون|تَخْفِيف/.test(a)) agree++; else { dis++; list.push(st.id + ':' + T[i].s.full); } }); }
+      return { c, verb, verbDis, agree, dis, list };
+    });
+    const c = r.c;
+    for (const k of ['yaku', 'naku', 'aku']) if (c[k].kind !== 'verb' || c[k].pk !== 'kana' || !c[k].nd || !/السُّكُونُ عَلَى النُّونِ الْمَحْذُوفَةِ/.test(c[k].line) || !/حُذِفَتِ النُّونُ لِلتَّخْفِيفِ/.test(c[k].line) || !/فِعْلٌ مُضَارِعٌ نَاقِصٌ/.test(c[k].line)) throw new Error('the dropped nūn: ' + k + ' ' + J(c[k]));
+    if (!/تَقْدِيرُهُ «نَحْنُ»/.test(c.naku.line) || !/تَقْدِيرُهُ «أَنَا»/.test(c.aku.line) || !/خَبَرُ كَانَ/.test(c.aku.next)) throw new Error('kāna\'s ism and khabar: ' + J([c.naku.line, c.aku.line, c.aku.next]));
+    if (c.control.nd || /لِلتَّخْفِيفِ/.test(c.control.line) || c.control.kind !== 'verb') throw new Error('the full يَكُنْ keeps its line: ' + J(c.control));
+    if (r.verb < 4 || r.verbDis > 0 || r.agree < 1 || r.dis > 3) throw new Error('against the authored lines: ' + J({ verb: r.verb, verbDis: r.verbDis, agree: r.agree, dis: r.dis, list: r.list }));
+  });
+  await check('v326 — the passive māḍī of the hollow, the doubled and the third-form verb (Shudhūr R52, R192; triage T5): صِيمَ رَمَضَانُ, جِيءَ بِالْأَسِيرِ, قُدَّ قَمِيصُهُ (no longer قَدْ), بُورِكَ فِيكَ are passive verbs with their nāʾib — the jarr phrase offered first where no rafʿ follows; the maṣdar بَيْعُ stays a noun and مُدَّ يَدَكَ an imperative; against the authored lines ≥ 24 agree and no more than 6 differ (two corpus slips, four cited forms)', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => ({ w: x.w, kind: x.kind, t: (x.cell || {}).tense || '', p: x.__passive326 || '', line: (Murib.line(rows, k) || {}).ar || '' })); };
+      const c = { sima: at('صِيمَ رَمَضَانُ'), jia: at('جِيءَ بِالْأَسِيرِ'), qudda: at('قُدَّ قَمِيصُهُ مِنْ دُبُرٍ'), burika: at('بُورِكَ فِيكَ'), bay: at('بَيْعُ الْعَبْدِ جَائِزٌ'), mudda: at('مُدَّ يَدَكَ'), din: at('أَخَذَ دِينَ اللهِ') };
+      let agree = 0, dis = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => /^(?:[وف]َ)?[ء-ي][ُِ]/.test(String(t.s.full).normalize('NFC')))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        rows.forEach((x, i) => { if (!/^(ajwaf|mudaaf|faul)$/.test(x.__passive326 || '')) return; const a = String((T[i].irab || {}).ar || '');
+          if (T[i].pos === 'verb' && /مَجْهُول/.test(a)) agree++; else { dis++; list.push(st.id + ':' + T[i].s.full); } }); }
+      return { c, agree, dis, list };
+    });
+    const c = r.c, maj = x => x.kind === 'verb' && x.t === 'majhulMazi' && /فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ/.test(x.line);
+    if (!maj(c.sima[0]) || !/نَائِبُ فَاعِلٍ/.test(c.sima[1].line)) throw new Error('صِيمَ رَمَضَانُ: ' + J(c.sima));
+    if (!maj(c.jia[0]) || !/نَائِبُ الْفَاعِلِ شِبْهُ الْجُمْلَةِ «بِالْأَسِيرِ»/.test(c.jia[0].line)) throw new Error('جِيءَ بِالْأَسِيرِ: ' + J(c.jia));
+    if (!maj(c.qudda[0]) || /حَرْفُ تَحْقِيقٍ/.test(c.qudda[0].line) || !/نَائِبُ فَاعِلٍ/.test(c.qudda[1].line)) throw new Error('قُدَّ قَمِيصُهُ: ' + J(c.qudda));
+    if (!maj(c.burika[0]) || !/«فِيكَ»/.test(c.burika[0].line)) throw new Error('بُورِكَ فِيكَ: ' + J(c.burika));
+    if (c.bay[0].kind !== 'noun' || c.bay[0].p || !/مُبْتَدَأٌ/.test(c.bay[0].line)) throw new Error('the control بَيْعُ — the maṣdar stays a noun: ' + J(c.bay));
+    if (c.mudda[0].t !== 'amr' || c.din[1].kind !== 'noun' || c.din[1].p) throw new Error('the imperative twin and the noun دِينَ stand: ' + J([c.mudda, c.din]));
+    if (r.agree < 24 || r.dis > 6) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, list: r.list }));
+  });
+  await check('v326 — the nūn of emphasis (Shudhūr R6, R198; triage T3, TawkidNunEngine): the oath\'s لَ + muḍāriʿ + heavy nūn + an object pronoun is a verb (لَأُعَذِّبَنَّهُ، لَنُخْرِجَنَّكَ), built on the fatḥa where the nūn touches it; muʿrab — marfūʿ by its nūn dropped for the meeting of like letters — where the subject\'s wāw or yāʾ stood between (لَتُبْلَوُنَّ، لَيَقُولُنَّ); لِأَنَّ stays a particle; against the authored lines ≥ 54 agree and no more than 2 differ (both corpus slips), and ≥ 56 of the tokens are the authors\' verbs', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = (s, k) => { const rows = SentenceAnalyzer.analyze(s); return { kind: rows[k].kind, line: (Murib.line(rows, k) || {}).ar || '' }; };
+      const c = { uadh: at('وَاللهِ لَأُعَذِّبَنَّهُ عَذَابًا شَدِيدًا', 1), nukh: at('لَنُخْرِجَنَّكَ يَا شُعَيْبُ', 0), tubla: at('لَتُبْلَوُنَّ فِي أَمْوَالِكُمْ', 0), yaqul: at('لَيَقُولُنَّ اللهُ', 0), li: at('لِأَنَّ الْعِلْمَ نُورٌ', 0) };
+      const cls = a => { a = String(a || '').normalize('NFC'); if (/نُونُ الرَّفْعِ|نُونِ الرَّفْعِ|ثُبُوتُ النُّونِ|ثُبُوتِ النُّونِ/.test(a)) return 'murab'; a = a.split(/،? ?(?:وَالْأَلِفُ|وَالْوَاوُ|وَالْيَاءُ|وَنُونُ التَّوْكِيدِ|وَالنُّونُ|وَالْهَاءُ|وَالْكَافُ|وَالْفَاعِلُ|وَاسْمُهَا)/)[0];
+        if (/مَبْنِيٌّ عَلَى الْفَتْحِ/.test(a)) return 'fath'; if (/مَبْنِيٌّ عَلَى السُّكُونِ/.test(a)) return 'sukun'; if (/مَرْفُوعٌ|مَجْزُومٌ|مُعْرَبٌ|حَذْفُ النُّونِ|حَذْفِ النُّونِ/.test(a)) return 'murab'; return null; };
+      let agree = 0, dis = 0, verb = 0, verbDis = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        const cand = T.map((t, i) => { const f = String(t.s.full).normalize('NFC').replace(/[«»،.:!؟؛]/g, ''); return /ن(?:َّ|َّ|ِّ|ِّ)(?:هُمَا|كُمَا|هُمْ|كُمْ|كُنَّ|هُنَّ|نِي|نَا|هَا|هُ|كَ|كِ)?$/.test(f) && /^(?:[وف]َ)?(?:لَ)?[يتنأ][َُ]/.test(f) ? i : -1; }).filter(i => i >= 0); if (!cand.length) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        for (const i of cand) { const x = rows[i]; if (!x.tawkid326) continue; if (T[i].pos === 'verb') verb++; else verbDis++;
+          const au = cls((T[i].irab || {}).ar); if (!au) continue; const en = x.tawkid326.bina; if (au === en) agree++; else { dis++; list.push(st.id + ':' + T[i].s.full); } } }
+      return { c, agree, dis, verb, verbDis, list };
+    });
+    const c = r.c;
+    if (c.uadh.kind !== 'verb' || !/مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ/.test(c.uadh.line) || !/الْمَفْعُولُ بِهِ/.test(c.uadh.line) || /مُضَافٌ إِلَيْهِ/.test(c.uadh.line) || !/جَوَابِ الْقَسَمِ/.test(c.uadh.line)) throw new Error('لَأُعَذِّبَنَّهُ: ' + J(c.uadh));
+    if (c.nukh.kind !== 'verb' || /^اسْمٌ/.test(c.nukh.line) || !/مَبْنِيٌّ عَلَى الْفَتْحِ/.test(c.nukh.line)) throw new Error('لَنُخْرِجَنَّكَ: ' + J(c.nukh));
+    if (c.tubla.kind !== 'verb' || !/مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ/.test(c.tubla.line) || /مَبْنِيٌّ عَلَى/.test(c.tubla.line) || !/وَالْوَاوُ ضَمِيرٌ/.test(c.tubla.line)) throw new Error('لَتُبْلَوُنَّ: ' + J(c.tubla));
+    if (!/ثُبُوتُ النُّونِ/.test(c.yaqul.line) || !/الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ/.test(c.yaqul.line)) throw new Error('لَيَقُولُنَّ — the fallen wāw: ' + J(c.yaqul));
+    if (c.li.kind !== 'particle') throw new Error('the control لِأَنَّ: ' + J(c.li));
+    if (r.agree < 54 || r.dis > 2 || r.verb < 56 || r.verbDis > 1) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, verb: r.verb, verbDis: r.verbDis, list: r.list }));
+  });
+  await check('v326 — the intransitive patterns (Shudhūr R202; triage T4): انْفَعَلَ، فَعُلَ (bāb karuma)، افْعَلَّ، افْعَالَّ are lāzim by their pattern, the root checked (اِنْتَقَلَ is no انْفَعَلَ); after a lāzim verb whose doer is written, the indefinite manṣūb jāmid noun is offered as a tamyīz (حَسُنَ الطَّالِبُ خُلُقًا، طَابَ زَيْدٌ نَفْسًا) and the derived one as a ḥāl, with the signal named; كَسَرَ الْوَلَدُ الْإِنَاءَ keeps its object; against the authored lines ≥ 6 agree and no more than 3 differ', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const at = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => ({ w: x.w, root: x.root || '', line: (Murib.line(rows, k) || {}).ar || '' })); };
+      const c = { hasuna: at('حَسُنَ الطَّالِبُ خُلُقًا'), inkasara: at('انْكَسَرَ الْإِنَاءُ'), kasara: at('كَسَرَ الْوَلَدُ الْإِنَاءَ'), taba: at('طَابَ زَيْدٌ نَفْسًا'), musri: at('خَرَجَ زَيْدٌ مُسْرِعًا') };
+      const pat = { inkasara: LazimEngine.lazimWhy(c.inkasara[0].w, null, c.inkasara[0].root), hamarra: LazimEngine.patternOf('اِحْمَرَّ', 'ح م ر'), hamarra2: LazimEngine.patternOf('اِحْمَارَّ', 'ح م ر'), intaqala: LazimEngine.patternOf('اِنْتَقَلَ', 'ن ق ل'), ishtadda: LazimEngine.patternOf('اِشْتَدَّ', 'ش د د'), kasara: LazimEngine.lazim('كَسَرَ') };
+      let agree = 0, dis = 0; const list = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => /ً/.test(String(t.s.full)))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        let d; try { d = DabtEngine.decide(rows); } catch (e) { continue; }
+        (d.out || []).forEach((o, i) => { if (!o || !o.v326) return; const a = String((T[i].irab || {}).ar || '').normalize('NFC');
+          if ((o.rule === 'tamyiz' ? /تَمْيِيز/ : /حَال/).test(a)) agree++; else { dis++; list.push(st.id + ':' + T[i].s.full + '→' + o.rule); } }); }
+      return { c, pat, agree, dis, list };
+    });
+    const c = r.c, p = r.pat;
+    if (!/تَمْيِيزٌ — الْفِعْلُ «حَسُنَ» لَازِمٌ بِوَزْنِهِ «فَعُلَ \(بَابُ كَرُمَ\)»/.test(c.hasuna[2].line) || /مَفْعُولٌ بِهِ/.test(c.hasuna[2].line)) throw new Error('حَسُنَ الطَّالِبُ خُلُقًا: ' + J(c.hasuna));
+    if (!p.inkasara || p.inkasara.by !== 'pattern' || p.inkasara.wazn !== 'اِنْفَعَلَ' || !/فَاعِلٌ/.test(c.inkasara[1].line)) throw new Error('انْكَسَرَ الْإِنَاءُ: ' + J([p.inkasara, c.inkasara]));
+    if (!p.hamarra || p.hamarra.wazn !== 'اِفْعَلَّ' || !p.hamarra2 || p.hamarra2.wazn !== 'اِفْعَالَّ' || p.intaqala || p.ishtadda) throw new Error('the patterns and their roots: ' + J(p));
+    if (!/تَمْيِيزٌ — الْفِعْلُ «طَابَ» لَازِمٌ بِشَهَادَةِ الْمُتُونِ/.test(c.taba[2].line) || !/حَالٌ/.test(c.musri[2].line)) throw new Error('the ledger\'s lāzim, and the derived noun: ' + J([c.taba, c.musri]));
+    if (p.kasara || !/مَفْعُولٌ بِهِ/.test(c.kasara[2].line) || /تَمْيِيزٌ|حَالٌ/.test(c.kasara[2].line)) throw new Error('the control كَسَرَ الْوَلَدُ الْإِنَاءَ: ' + J(c.kasara));
+    if (r.agree < 6 || r.dis > 3) throw new Error('against the authored lines: ' + J({ agree: r.agree, dis: r.dis, list: r.list }));
   });
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
