@@ -129,3 +129,10 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
 
 - r19 (Manār) 8, r20 (Maqāmāt) 30, r21 (Maqāmāt) 31 — 69 AI-ONAY applied; relex one key. Two surfaces: Manār 8:s2/s4 وَمُوجَبُهُ
   (ism mafʿūl — for the hoca against a printed Manār; the repo holds none) and Maqāmāt سَلْطَنَتِي (فَعْلَلَة).
+
+### 2026-11-18, night — r22–r23 applied; rule K01 applied
+
+- r22–r23 (Qaṣaṣ 4): 48 AI-ONAY applied; QR-681D784B (5:76 TR «gücü yeten» → «gücü yetmeyen», the dropped negation reversed
+  the verse) applied by hand; 1 AI-ŞÜPHELİ (21:87 «لَنْ نَقْدِرَ عَلَيْهِ», shared with al-Uṣūl QR-4B58419B).
+- K01 KanaIsmTwiceRule: 19 lines (al-Uṣūl 10, Marāḥ 9) named kāna's noun twice; the written noun (or a detached pronoun right
+  after the verb) keeps «الْمَرْفُوعُ بَعْدَهَا», otherwise the hidden pronoun stands. Logged by:"ai", confirmed_by_human:false.

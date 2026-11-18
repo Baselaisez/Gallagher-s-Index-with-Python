@@ -160,3 +160,21 @@
   mukhaffafa; 5:s3 t13 وَانْهَ pos verb. Tags with each correction are named in the verdict notes.
 - For the hoca (r20): 3:s2 «لَا إِلٰهَ إِلَّا اللهُ» — اللهُ badal of lā and its noun (chosen), of the pronoun in the omitted khabar,
   or the minority reading; 2:s39 t8 «وَلَا فَأُدْخِلُهُ» (the print) vs وَإِلَّا (both translations); 4:s2 وَسُنَّةٌ; 1:s9 وَوُجُودُ.
+
+## from r22–r23 (Qaṣaṣ al-Nabiyyīn 4)
+- Translation verdicts are applied by hand (5:76 TR «gücü yeten» → «gücü yetmeyen» — the negation was dropped). Outside: «None»
+  hidden doer 39:s6 t3 يَتَسَاقَطُ (doer بَعْضُ), 39:s7 t4 يَلْتَبِسُ (doer أَمْرُ); EN/TR «doer concealed» with a written doer: 36:s6 t28,
+  42:s2 t23 وَتَقُومُ (حُجَّتُهُ), 42:s4 t8 وَتَذُوبُ (الْقُلُوبُ); مَعَ as a ḥarf jarr 4:s1 t8; a diptote's jarr given as «كَسْرَةٍ مُقَدَّرَةٍ»:
+  زَكَرِيَّا 20:s1 t16, 20:s6 t4, 20:s9 t7, عِيسَى 23:s8 t2, 33:s4 t9, 36:s3 t17; 8:s12 t12 وَلَا — the wāw of ḥāl (يَشْعُرُ marfūʿ).
+- For the hoca: QR-48BCF3BB «لَنْ نَقْدِرَ عَلَيْهِ» (21:87) — «onu sıkıştırmayacağımızı (darlığa düşürmeyeceğimizi)» in both packages
+  (19:s13 t8 نَقْدِرَ's TR gloss follows); QR-492C9D0F وَرَهْبَةُ (joined to تَيَقُّظُ) — if the Karachi print has the kasra, an emendation;
+  QR-04CBEB7A بَدَأَتْ as a verb of beginning (Iẓhār l.34 does not name بَدَأَ).
+
+## from r24–r26 (Qaṣaṣ 1, small packages)
+- Letter changes by hand (the applier skips them): 9:s23 t9 وَتَخَفْ → تَخَفْ (the wāw is already on وَلَا; drop the «وَ» segment);
+  21:s23 t1 ءَأَنَّكَ → ءَإِنَّكَ (12:90; lex anna→inna, segment, and t3 يُوسُفُ «خَبَرُ إِنَّ») — the hoca may check the Karachi print.
+- Outside: qisas-1 2:s1 t8/t9 يَفْهَمُ written twice (check the print); 23:s1 t1 يَشْغَلْ — the doer is هٰذَا, الْمُلْكُ its badal; 20:s12 t4
+  يَمْتَحِنُ «خَبَرُ لَمْ يَزَلْ»; zakariyya-wa-yahya 1:s2 t0 وَكَانَتْ false kasra on the tāʾ; عَرَفَ said to take two objects — the anna
+  clause is its single object: al-ghurab 4:s1 t3, 2:s3 t2, qisas-2 19:s7 t5; ayyub 4:s2 t3 «اسْمُ أَنَّ»; juha 2:s1 t9 tag badal.
+- For the hoca (r25): qisas-2 26:s16 لَيَالٍ — Zajjāj (estimated kasra, like قَاضٍ) or Sībawayh/Khalīl (diptote, estimated fatḥa; the
+  attached line); qisas-2 35:s4 t9 «عَلَى اللهِ رَبِّ الْعَالَمِينَ» — 26:145 reads «إِلَّا عَلَىٰ رَبِّ الْعَالَمِينَ»: does the print have اللهِ?
