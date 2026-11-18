@@ -318,7 +318,59 @@ class KanaIsmTwiceRule(IrabRule):
         return {"ar": ar, "en": ir.get("en") or "", "tr": ir.get("tr") or ""}
 
 
-RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule(), OvertDoerRule(), PronounBuildRule(), KanaIsmTwiceRule()]
+class MaqsurDiptoteJarrRule(IrabRule):
+    """M01 — a maqṣūr DIPTOTE in jarr (مُوسَى، عِيسَى، يَحْيَى، أَعْلَى، and the alif of femininity: أُنْثَى، أُخْرَى، دُنْيَا، يُمْنَى،
+    ذِكْرَى، دَعْوَى، بُشْرَى) is majrūr by the FATḤA estimated on the alif, standing in for the kasra — never by an estimated
+    kasra. Free of ال and of annexation only: an annexed or definite diptote is fully declined, and its kasra is right."""
+    id = "M01"
+    title = "maqṣūr diptote in jarr: estimated fatḥa for the kasra"
+    source = {"book": "Shudhūr al-Dhahab (Ibn Hishām) — matn", "file": "research/sources/shudhur-al-dhahab-src.txt",
+              "locator": "al-iʿrāb by substitution: what is not declined / line 30",
+              "quote": "مَا لَا يَنْصَرِفُ، فَإِنَّهُ يُجَرُّ بِالْفَتْحَةِ"}
+    WORDS = {"موسى", "عيسى", "يحيى", "أعلى", "أنثى", "دنيا", "يمنى", "أخرى", "ذكرى", "دعوى", "بشرى"}
+    ANNEXED = re.compile(r"(?:،|وَهُوَ)\s*مُضَافٌ(?!\s*إِلَيْهِ)")
+
+    def _word(self, t):
+        b = bare((t.get("surface") or {}).get("full"))
+        return b if b in self.WORDS else re.sub(r"^[وفبلك](?=..)", "", b)
+
+    def candidates(self, toks, prev=None):
+        out = []
+        for i, t in enumerate(toks):
+            a = N((t.get("irab") or {}).get("ar"))
+            if self._word(t) in self.WORDS and "مَجْرُور" in a and re.search(r"بِكَسْرَةٍ مُقَدَّرَةٍ|مَجْرُورٌ بِالْكَسْرَةِ", a) and not self.ANNEXED.search(a):
+                out.append(i)
+        return out
+
+    def rewrite(self, tok, toks=None, j=None):
+        ir = tok.get("irab") or {}; a0 = N(ir.get("ar")); en0 = ir.get("en") or ""; tr0 = ir.get("tr") or ""
+        WHY = " نِيَابَةً عَنِ الْكَسْرَةِ لِأَنَّهُ مَمْنُوعٌ مِنَ الصَّرْفِ"
+        if "مَجْرُورٌ بِالْكَسْرَةِ" in a0:
+            ar = a0.replace("مَجْرُورٌ بِالْكَسْرَةِ", "مَجْرُورٌ بِالْفَتْحَةِ الْمُقَدَّرَةِ نِيَابَةً عَنِ الْكَسْرَةِ", 1).replace("وَالْكَسْرَةُ مُقَدَّرَةٌ", "وَالْفَتْحَةُ مُقَدَّرَةٌ")
+        else:
+            ar = re.sub(r"بِكَسْرَةٍ مُقَدَّرَةٍ((?: عَلَى الْأَلِفِ)?(?: لِلتَّعَذُّرِ)?)", lambda m: "بِفَتْحَةٍ مُقَدَّرَةٍ" + m.group(1) + WHY, a0, count=1)
+        if ar == a0: return None
+        en = en0
+        for pat, rep in ((r"\b(an implied|an assumed|a|the) kasra", r"\1 fatha standing for the kasra (a diptote)"),
+                         (r"its kasra estimated", "its fatha (standing for the kasra — a diptote) estimated"),
+                         (r"the vowel is estimated on the alif", "the vowel — a fatha standing for the kasra, since it is a diptote — is estimated on the alif"),
+                         (r"its vowel estimated on the alif", "its vowel — a fatha standing for the kasra — estimated on the alif")):
+            en = re.sub(pat, rep, en, count=1)
+        tr = tr0
+        for pat, rep in ((r"takdîrî kesreyle", "takdîrî fethayla (kesreye niyâbeten; gayr-i munsarıf)"),
+                         (r"takdîrî kesre", "takdîrî fetha (kesreye niyâbeten; gayr-i munsarıf)"),
+                         (r"takdîr edilen kesre", "takdîr edilen fetha (kesreye niyâbeten; gayr-i munsarıf)"),
+                         (r"kesrası", "kesreye niyâbeten fethası (gayr-i munsarıf)"),
+                         (r"hareke elif üzerinde takdîrî", "kesreye niyâbeten fetha elif üzerinde takdîrî")):
+            tr = re.sub(pat, lambda m, r=rep: (r[0].upper() + r[1:]) if m.group(0)[0].isupper() else r, tr, count=1, flags=re.I)
+        # an English or Turkish line that still names the kasra as the sign would contradict the Arabic: leave it for a reader
+        if re.search(r"kasra", en) and "standing for the kasra" not in en: return None
+        if re.search(r"kesre", tr) and "niyâbeten" not in tr: return None
+        if en == en0 and re.search(r"estimated|implied|assumed", en0): return None
+        return {"ar": ar, "en": en, "tr": tr}
+
+
+RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule(), OvertDoerRule(), PronounBuildRule(), KanaIsmTwiceRule(), MaqsurDiptoteJarrRule()]
 
 
 def main():

@@ -86,6 +86,10 @@ def main():
     files = sorted((D / "checked").glob("*.jsonl"))
     if names: files = [f for f in files if f.stem in names]
     F = {f["id"]: f for f in json.loads((D / "findings-critical.json").read_text(encoding="utf-8"))}
+    # outside-packet findings (QO- ids) live in their own tracked file: the packets folder is gitignored
+    fo = D / "findings-outside.json"
+    if fo.is_file():
+        F.update({f["id"]: f for f in json.loads(fo.read_text(encoding="utf-8"))})
     folders = {}
     import review_batch as rb
     for p in rb.pending_packages():

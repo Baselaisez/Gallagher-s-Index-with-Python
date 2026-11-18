@@ -146,3 +146,118 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   الْعَالَمِينَ» vs 26:145 «عَلَىٰ رَبِّ الْعَالَمِينَ».
 - Totals over r01–r26: about 1,060 corrections applied with a verbatim source each, every one logged by:"ai", confirmed_by_human:false;
   the open questions are in this file; the lines found OUTSIDE the packets are in outside-packet-notes.md — the next pass.
+
+## Outside-packet batch o01 — al-Uṣūl al-munīfa (85 findings, all AI-ONAY, applied, unconfirmed)
+
+Ids are QO-…; the findings are in `findings-outside.json` (tracked) and the verdicts in `verdicts/o01-al-usul-al-munifa.jsonl`.
+`precheck_apply.py` now also reads `findings-outside.json`.
+
+**For the hoca**
+- 24:s15 t38 أَهَمُّ: only the missing «مُضَافٌ» was added. Mubtadaʾ or khabar is left open.
+- The four أُولٰئِكَ lines now say «مَبْنِيٌّ عَلَى الْكَسْرِ» (house wording had «عَلَى الْفَتْحِ»). No repo book states the
+  vowel, so please confirm.
+- 23:s6 t101 and 30:s4 t87 ذٰلِكَ: the open «يَسْمَعُ ذٰلِكَ الْمَلِكُ» question. Not touched. On 30:s4 t85 only the hidden
+  doer was removed.
+- 31:s12: the names after t21 mix «مَعْطُوفٌ» with one «مُبْتَدَأٌ» (t37). Both can be defended, so this is consistency only.
+
+**Out of scope (lexicon, POS, tags, letters, translations)**
+- Lex keys and POS:
+  - 24:s20 t12 إِنَّا (ana→inna); 24:s16 t92 (alima→allama); 24:s21 t121/t127 فَسَّرَهُ (sarra→fassara); 24:s2 t15 وَهْبٍ;
+    24:s6:16 and 24:s21:77 (ma-hijaziyya / ma-mawsula).
+  - From r07: إِذًا, وَأَوْضَحُ, وَذَا النُّونِ.
+  - From r09: لِمَا; يَكُ, keyed ilayka-ism-fil, should be kana; أَكْرَمَكُمْ; عَرَضَ; تُرْجِيَ; 25:s6 t20 أَعْلَمُ.
+  - 29:s2 t21 and 30:s3 t36 (→ ma-istifham); 30:s2 t22 لِمَنْ; 27:s7 t3 أَسْلَمَ.
+  - رُقَيَّةُ, بَعْدِي, جَارَ, أَجْرُكُمْ, أَنَّا, نُعْمَانَ; 24:s10 t29 تَقُولُ keyed taqawwala.
+  - 14:s15 t6 نُصْحِي has pos verb (should be noun). 19:s10 t5 يَجْرِمَنَّكُمْ has pos noun (should be verb).
+- Grammar tags: the tags on the 85 corrected tokens still name the old roles, as do the r10 tag list.
+- Source-file letters (usul-al-munifa-src.txt): p.48 تَرْجِيَ→تُرْجِيَ; l.367 أَعْتِقْ→أُعْتِقْ; p.58 وَلَنَسْكُتْ→وَلْنَسْكُتْ.
+- Translations: the en/tr formula "its doer is a hidden pronoun — one of kāna's sisters" on correct kāna/laysa lines
+  (8:s4 t8/t25, 14:s7 t1, 14:s8 t1, 16:s1 t28, 24:s1 t24, 31:s11 t47, 14:s43 t36).
+
+**Same errors on tokens no note names (next batch)**
+- 24:s20 t17 and 24:s11 t29 بِكَافِرٍ: laysa's extra bāʾ.
+- 25:s19 t24 يُعَذَّبَ: passive called «فاعل».
+- 19:s2 t25 كُفْرُهُ: «اسم كان» under لَيْسَ.
+- No role: 19:s2 t10 فَهُوَ, 24:s18 t26 هُمُ, 14:s43 t37 هِيَ.
+- The r17 note "D04 misses a quoted word as the doer (35:s7, 47:s2)" belongs to Marāḥ, not al-Uṣūl.
+
+## Outside-packet batch o02 — the rest of the shelf (181 findings: 180 AI-ONAY applied, 1 AI-ŞÜPHELİ)
+
+The verdicts are in `verdicts/o02-shelf.jsonl` and the findings in `findings-outside.json`.
+
+Findings per package: ʿIzzī 58, Maqāmāt 42, Iẓhār 17, Marāḥ 15, Kāfiya 14, Qaṣaṣ 4 13, Qaṣaṣ 1 9, Talkhīṣ 3, Juḥā 3, al-Ghurāb 2,
+Qaṣaṣ 2 2, ʿAqāʾid 1, Zakariyyā 1, Ayyūb 1.
+
+Surface (vowel-only) corrections:
+- Iẓhār 2:s11 t14 مُسْتَقَرًّا and 22:s8 t10 الْمُسْتَقَرِّ («ظرف مستقر أي … مستقر فيه»)
+- 3:s6 t14/t24 مَضْرِب (place noun of yaḍribu)
+- 66:s3 t3 الْمُتَّصِلُ. This is the surface half of r16's QR-E991F496, which never landed because the applier ignores
+  `corrected.surface`.
+
+**For the hoca**
+- AI-ŞÜPHELİ QO-C31CBB84, ʿIzzī 6:s7 t16 فَإِنَّ: is the fāʾ taʿlīliyya or ʿāṭifa? No repo book names the causal fāʾ.
+- 13 findings fix only the EN/TR of a correct Arabic line, where "doer" stands for kāna's noun (pattern
+  `kana-noun-called-doer`; Marāḥ 76:s10, the ten لَيْسَتْ/كَانَتْ tokens, Qaṣaṣ 4 36:s6 t28). o01 listed the same kind as out of
+  scope. Keep or revert, so the two batches agree.
+- Rewrites that go past the note: Kāfiya 10:s6 t25 يُعْطَفُ now has «عَلَيْهِ» as the nāʾib al-fāʿil (per Iẓhār's «مُرَّ بِزَيْدٍ»).
+  Maqāmāt 2:s18 t5 فَأَنْتَ: the fāʾ now opens the answer of إِذَا.
+- ʿIzzī 9:s3, s5, s6: the jazm seat was added to the كَانَ condition lines, and قُلِبَتْ is now named as passive.
+- Left out because they belong to an open question:
+  - Talkhīṣ 70:s10 t6 قَلِيلًا
+  - the faṣl/second-mubtadaʾ question: Marāḥ 4:s1 t1 هُوَ and 24:s5 t2/t3; Maqāmāt 2:s15 t9 هُوَ
+  - Maqāmāt 12:s2 t12 هُمْ
+  - Manār 8:s2 t1 (مُوجَب/مُوجِب)
+  - Kāfiya 25:s3 t0
+  - ʿIzzī 3:s2 t1 and 6:s1 t1/t2 after أَمَّا
+
+**Out of scope**
+- Lexicon keys and POS:
+  - Iẓhār: 2:s11 t8 `mutadammin`; the glossary lemmas of `mustaqarr` and `madrab` (→ مَضْرِب); 58:s2 t27 دَعْنِي (وَدَعَ).
+  - Kāfiya: 25:s2 t20 ma-nafiya→ma-masdariyya.
+  - Manār: split `mujib` / `mujab`.
+  - Maqāmāt: 13:s6 t1 أَعْلَمُ; 3:s7 t1 طَلَبَ and 4:s3 t4 لُبْسُ → their maṣdar; 3:s2 t2 بِأَنْ; 5:s3 t13 وَانْهَ.
+  - Qaṣaṣ 4: 4:s1 t8 مَعَهُمْ has pos prep.
+- Grammar tags:
+  - ʿIzzī 14:s32 t11, 14:s26 t15
+  - Talkhīṣ 62:s10/s11, 3:s4
+  - Iẓhār 42:s6 t13, 64:s1 t8, 25:s5 t0, 54:s6 t2, 44:s6 t13, 3:s16 t2, 6:s4 t15
+  - Marāḥ 60:s3 t16/t17, 61:s5, 76:s10, 28:s7, 20:s6, 53:s1 t40
+  - Kāfiya: the r18 list
+  - Manār 8:s2/s4, 13:s1 t6
+  - Maqāmāt 9:s5 t6, 11:s5 t10, 13:s7 t9, 8:s7 t4
+  - Juḥā 2:s1 t9; Qaṣaṣ 4 4:s1 t8
+- Letters: qisas-1 2:s1 t8/t9 يَفْهَمُ written twice (check the print); talkhis-src l.4197 and l.4719.
+
+**Seen while working, for the next batch**
+- ʿIzzī 13:s6 t5 وَاعِدٌ: its wāw is a radical, but the line says «عاطفة».
+- ʿIzzī 15:s4 t3/t4 الْمُعْطَى / الْمُشْتَرَى: maqṣūr, but the line says «بالكسرة».
+- ʿIzzī 19:s6 t6 يَكُونُ: EN/TR say "doer".
+- ʿIzzī 9:s6 t15 أُدْغِمَتْ: the line doesn't say passive.
+- ʿIzzī 13:s17 t15 وَهٰذَا: no role.
+- ʿIzzī 3:s6 t11/t13 and 3:s8 t4/t6: bare «خَبَرٌ» on مِثْلُ / نَحْوُ.
+- Marāḥ 40:s2 t3 يَجِيءُ: no doer.
+
+## Rule M01 — maqṣūr diptote in jarr (32 lines, rule-applied, unconfirmed) + SignEngine fix
+
+o02 corrected six maqṣūr diptotes to «مجرور بفتحة مقدرة … نيابة عن الكسرة». About 30 more lines on the shelf still said
+«بكسرة مقدرة» for the same kind of word, so the corpus disagreed with itself and the SignEngine's maqṣūr class fell
+below its 97% floor.
+
+**Doctrine** (Shudhūr l.30, «مَا لَا يَنْصَرِفُ، فَإِنَّهُ يُجَرُّ بِالْفَتْحَةِ … إِلَّا إِنْ أُضِيفَ أَوْ دَخَلَتْهُ أَلْ»): a maqṣūr
+diptote free of ال and annexation is majrūr by the fatḥa ESTIMATED on the alif, in place of the kasra.
+
+**Rule M01** (`tools/authoring/irab_rules.py`) rewrote 32 lines on مُوسَى، عِيسَى، يَحْيَى، أَعْلَى، أُنْثَى، أُخْرَى، دُنْيَا، يُمْنَى،
+ذِكْرَى، دَعْوَى، بُشْرَى. Lines that say the word itself is «مُضَافٌ» were left alone, because an annexed diptote is
+declined fully. Every rewrite is in rule-applied.jsonl.
+
+**SignEngine (precheck reader only):**
+- the maqṣūr diptote's jarr is now an estimated fatḥa;
+- the alif-of-femininity pattern فُعْلَى / فَعْلَى / فِعْلَى is flagged as a diptote;
+- مَفْعَل words (مَعْنًى) are excluded.
+
+The maqṣūr class went from 96.3% to 97.9%. This engine change must travel with the M01 content to main, never before
+it: main's corpus still has the kasra lines.
+
+**For the hoca:**
+- juha-wa-al-… جُحَا «مجرور بكسرة مقدرة على الألف» was left as it is. Is جحا a diptote at all? It has no clear second cause.
+- Marāḥ عَلَامَتَا (s4, s14) is counted as a maqṣūr by the engine, but it is a dual. That is the engine's error and is noted.
