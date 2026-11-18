@@ -128,6 +128,23 @@ def main():
                 if bare(val) != bare((t.get("surface") or {}).get("full")):
                     skipped.append((v["id"], "corrected vowelling changes the letters")); continue
                 before = dict(t["surface"]); t["surface"]["full"] = val
+                # (r12 lesson) the smart layer follows a vowel correction — فَلَلرَّيْثُ and هَوَاكِ kept their old smart form
+                if bare(t["surface"].get("smart") or "") == bare(val): t["surface"]["smart"] = val
+                # the segments move with it: each segment's letters are found in order in the new word and take its vowels
+                units = []
+                for ch in val:
+                    if units and ("\u064b" <= ch <= "\u0652" or ch == "\u0670"): units[-1] += ch
+                    else: units.append(ch)
+                letters = "".join(u[0] for u in units); pos = 0
+                for sg in t.get("segments") or []:
+                    b = bare(sg.get("form") or "")
+                    if not b: continue
+                    k = letters.find(b, pos)
+                    if k < 0: continue
+                    sg["form"] = "".join(units[k:k + len(b)]); pos = k + len(b)
+                # an iʿrāb correction carried in the same verdict lands with its surface (r16: line and word never disagree)
+                ci = c.get("irab") if isinstance(c.get("irab"), dict) else None
+                if ci and all(ci.get(k) for k in ("ar", "en", "tr")): t["irab"] = {"ar": N(ci["ar"]), "en": ci["en"], "tr": ci["tr"]}
             else:
                 skipped.append((v["id"], f"field {fld} is applied by hand")); continue
             changes.append({"id": v["id"], "package": f["package"], "where": f"{f['chapter']}:{f['sentence']}:{f['token']}",

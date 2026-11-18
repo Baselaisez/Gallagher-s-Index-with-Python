@@ -112,3 +112,15 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
 - ʿIzzī 3:s11 t9 نَحْوُ: once r13 made مِثْلُ the khabar of an omitted «ذٰلِكَ», the bare «خَبَرٌ مَرْفُوعٌ» of نَحْوُ left it no
   mubtadaʾ (the Hadhf audit's new false alarm) — rewritten as the second khabar of that omitted «ذٰلِكَ». 3:s6 t11/t13 and 3:s8
   t4/t6 carry the same bare «خَبَرٌ» on مِثْلُ / نَحْوُ: for the outside-packet packet.
+
+### 2026-11-18, night — r16–r18 applied
+
+- r16 (Iẓhār ch. 22–66) 21, r17 (Marāḥ) 13, r18 (Kāfiya) 16 — 50 AI-ONAY applied, none skipped; relex one key.
+- `precheck_apply.py` now lands a surface correction whole: the smart layer follows the full, every segment takes the new vowels
+  (its letters found in order in the word), and an iʿrāb carried in the same verdict (`corrected.irab`) lands with it.
+- Hand-carried with them: Iẓhār 50:s1 sentence translation («you struck, you» / «dövdün, sen»); Marāḥ 59:s6 EN/TR quote اِرْمُنَّ.
+- **For the hoca — an emendation against the print:** Marāḥ 59:s6 اِرْمِنَّ → اِرْمُنَّ (the sentence is about the plural's wāw
+  dropped after a ḍamma; the book's own nāqiṣ paradigm separates the two, matn l.463, but the print reads اِرْمِنَّ at l.346 and the
+  source at l.654). If accepted, the manifest attribution must record it; if not, revert the token and its two translations.
+- The Iẓhār catechism (izhar-mamul q58) quoted «يَا تَيْمُ تَيْمَ عَدِيٍّ» while its own TR/EN answer wrote «يَا تَيْمَ» — once r16 set the
+  chapter to تَيْمَ (QR-25CB89C1 + QR-8E47605A, for the hoca), the verified string follows the chapter and its own answer.
