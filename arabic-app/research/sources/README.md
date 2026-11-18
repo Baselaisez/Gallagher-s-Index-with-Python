@@ -260,3 +260,14 @@ the punctuation, the «…» around examples and āyāt, and the division into s
 matn's own argument needs are kept as printed: «تُحَاجُّونِي» with one nūn (p. 90) and «مَنْ يَتَّقِي» with its yāʾ
 (p. 92). The scan ends inside «بَابُ الْبِنَاءِ» (p. 99), so that chapter is not in the file. It is the source of
 `content/samples/shudhur-al-dhahab` (see `tools/authoring/shudhur/`).
+
+**Part two** (2026-11-18, appended to the same file under its own header) — printed pp. 100–375 of the same edition,
+from the owner's three further scans (image-only PDFs): bābs 8–50, from البناء through the marfūʿāt, the manṣūbāt, the
+majrūrāt and the jawāzim to عمل الفعل. Matn only, as above, but here the harakāt are ONLY those the page prints (many
+particles stand bare) — nothing was vowelled from memory; `[?…]` marks the three words not read with certainty, and every
+āya carries a `# VERSE-CHECK` line naming where its reference came from (eight have none in the edition). Pages 94–99
+are in the first scan and not yet transcribed. **`shudhur-al-dhahab-qawaid.jsonl`** is NOT matn: 210 rules a learner must
+know, one per line, drawn from the author's sharḥ on those pages (`bab`, `page`, `rule_ar` — quoted only where read with
+certainty, else a close paraphrase — `rule_en`, `rule_tr` in the madrasa register, the page's own examples with the
+transcriber's full vowelling, and an `engine_hint`). It is the input of the engine triage and of new grammar notes; a
+rule enters the app only through a note or an engine rule with its own smoke check.
