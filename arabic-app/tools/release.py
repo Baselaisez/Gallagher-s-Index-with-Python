@@ -37,6 +37,9 @@ def main():
             run(f"validate {p.name}", [sys.executable, "tools/validate_content.py", str(p)])
 
     # 2. both readers rebuild
+    # (v324) CI runs the qissa_core unit tests and the release did not: the masdar tendencies file is fitted on the
+    # lexicon, so a new story's verbs move it — release caught nothing and CI went red. Same gate, both places now.
+    run("qissa_core tests", [sys.executable, "-m", "unittest", "discover", "-s", "qissa_core/tests", "-t", "."])
     run("build main reader", [sys.executable, "tools/build_prototype.py"])
     hadith = ROOT / "content/user-uploads/deeds-are-by-intentions"
     (hadith / "reader.html").write_bytes((ROOT / "prototype/reader.html").read_bytes())
