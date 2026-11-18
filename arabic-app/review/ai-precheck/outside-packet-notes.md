@@ -53,3 +53,12 @@
   Source usul-al-munifa-src.txt l.367 أَعْتِقْ → أُعْتِقْ (with QR-2486B768).
 - For the hoca (r10): 27:s7 t3 «أَسْلَمَ» — the narrator from Ṭāriq b. Shihāb is Qays b. Muslim al-Jadalī: does the print read
   «قيس بن مسلم» (مُسْلِمٍ)?; 30:s3 نَكُ — the nūn dropped for lightness (as r09); 28:s3 t48 دِينُكَ follows r08's مَا-as-mubtadaʾ choice.
+
+## from r12 (Talkhīṣ al-Miftāḥ)
+- 21:s3 t1 زَيْدٌ drop «(أَوِ اسْمُ «مَا»)»; 74:s3 t7 فَلَلرَّيْثُ — lām al-ibtidāʾ + mubtadaʾ (drop huruf-jarr), t11 أَنْفَعُ «خَبَرٌ
+  مَرْفُوعٌ»; 70:s10 t6 قَلِيلًا contradicts itself; 3:s1 t9 تَأْكِيدٍ majrūr by the bāʾ, not «بِـ«بِلَا»»; tags: 62:s10/s11 drop
+  kana-wa-akhawatuha on دَامَتِ / السَّمَاوَاتُ (tāmm), 3:s4 هَذِهِ drop idafa-definiteness. Source typos (information only):
+  talkhis-al-miftah-balagha.txt l.4197 «فَالْيُسْعِدِ», l.4719 «هَوَاكَ» beside لِذِكْرِكِ.
+- For the hoca (r12): 63:s15 «وَلَا مَالَ» (the source) vs «مَالُ» (the received al-Mutanabbī, rhyming on الْحَالُ) — and with
+  rafʿ, which analysis of لَا; 70:s10 «إِلَّا مُعَرَّجَ سَاعَةٍ» in naṣb as khabar of يَكُنْ (the commentaries)? Choices taken:
+  21:s4/s5 زَيْدٌ khabar; 48:s9 تَهَاوَى muḍāriʿ (one tāʾ dropped); 74:s21 هَوَاكِ (one addressee).
