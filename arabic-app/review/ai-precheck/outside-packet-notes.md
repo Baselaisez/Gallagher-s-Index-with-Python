@@ -62,3 +62,36 @@
 - For the hoca (r12): 63:s15 «وَلَا مَالَ» (the source) vs «مَالُ» (the received al-Mutanabbī, rhyming on الْحَالُ) — and with
   rafʿ, which analysis of لَا; 70:s10 «إِلَّا مُعَرَّجَ سَاعَةٍ» in naṣb as khabar of يَكُنْ (the commentaries)? Choices taken:
   21:s4/s5 زَيْدٌ khabar; 48:s9 تَهَاوَى muḍāriʿ (one tāʾ dropped); 74:s21 هَوَاكِ (one addressee).
+
+## from r11 (al-Uṣūl ch. 30–35)
+- 31:s1 t15 الصِّدِّيقُ / t20 الْفَارُوقُ / t25 ذُو are epithets (naʿt/badal), not «خبر»; t40 أُولٰئِكَ mubtadaʾ; t49 فَهُوَ the fāʾ in the khabar
+  of «كُلُّ مَنْ»; 31:s12 the names after t21 follow it (all maʿṭūf on a mubtadaʾ); 31:s2 t28 مَنْ «فِي مَحَلِّ رَفْعٍ فَاعِلٌ», t29 هُوَ no
+  role, t9 الْعَوْفِيُّ naʿt, t8 عَطِيَّةُ no «مضاف»; 32:s1 t32 فَيَكْفُرُ drop hidden هُوَ; 31:s5 t32 وَهُوَ ḥāliyya; 31:s11 t47 وَكَانَتْ
+  contradicts itself; 30:s4 t85 فَيَذْهَبُ drop hidden هُوَ (doer ذٰلِكَ t87, which needs its role). Missing «مُضَافٌ»: 31:s1 t29,
+  31:s3 t12/t19, 32:s1 t18/t19, 32:s5 t2/t3/t8/t9. Lex: رُقَيَّةُ (waraq), بَعْدِي (adi-name), جَارَ (jarr-active), أَجْرُكُمْ (jara),
+  أَنَّا (ana), نُعْمَانَ (naam). Source usul-al-munifa-src.txt p.58 وَلَنَسْكُتْ → وَلْنَسْكُتْ.
+- For the hoca (r11): 32:s6 «وَإِلَّا قَاتَلْتَهُ» — إِلَّا = إِنْ + لَا with the condition dropped (no book in the repo states it), and
+  is the answer without fāʾ the print?; 32:s6 t63 صَالِحُونَ after «فَإِنَّ فِيهِمْ أَيْضًا» (ḍamīr al-shaʾn, or صَالِحِينَ?);
+  31:s6 «وَمَنْ قَاتَلَهُ كَانَ الْخَطَأُ» — kāna with no khabar: the print?
+
+## from r14 (Taṣrīf al-ʿIzzī ch. 14–17)
+- 6 AI-RET: 17:s32 t1–6 (أَرِيَنَّ …) already repaired by rule S01. Outside: ذٰلِكَ «فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ» 16:s10 t6, 16:s19 t5;
+  16:s6 t2 اِحْيَ the quoted khabar (as 16:s9); 17:s14 t5 سَاءٍ ḍamma estimated on the dropped yāʾ; 19:s6 t0 بِنَاءُ — khabar the
+  clause «يَكُونُ عَلَى فَعْلَةٍ»; pronoun after fāʾ with no role (mubtadaʾ): 9:s4 t7, 13:s6 t4, 13:s15 t21, 13:s16 t13/t20, 13:s17
+  t4/t10, 16:s2 t10, 16:s4 t3/t7/t11, 17:s14 t4, 17:s28 t4, 17:s30 t12, 19:s8 t6; after أَمَّا (the hoca's pattern — flagged only):
+  3:s2 t1 الثُّلَاثِيُّ, 6:s1 t1/t2 الْمُضَارِعُ; tag 14:s32 t11 huruf-jarr not idafa-definiteness.
+
+## from r15 (Iẓhār)
+- 2:s11 t8 مُتَضَمِّنًا «اسْمُ مَفْعُولٍ» (own key — `mutadammin` is the active, used at 56:s3, 63:s3), t14 مُسْتَقِرًّا → مُسْتَقَرًّا;
+  glossary `mustaqarr` lemma مُسْتَقَرّ; `madrab` مَضْرِب on مَفْعِل (3:s6 t14/t24); 22:s8 t10 الْمُسْتَقِرِّ check; 3:s16 t2 مَجْرُورًا
+  ḥāl; 6:s4 t15 active «مَنْصُوبٌ بِأَنْ»; 6:s5 t15 «انْتَقَضَ»; 10:s4 t22 آلَ «مُبْتَدَأٌ مُؤَخَّرٌ فِي مَحَلِّ رَفْعٍ», t24–t29 joined to it
+  in rafʿ; 12:s3 t25–27 with QR-D253FE03 (عَمَلَهُمَا السَّابِقَ — the surface must change with the line).
+- For the hoca (r15): 14:s5 «وَالْمُضَافُ غَيْرَ/غَيْرُ غَيْرٍ» — (a) naṣb, ʿaṭf on kāna's ism/khabar (Iẓhār l.149, the Turkish
+  translation) or (b) rafʿ, wāw of ḥāl (the Ottoman sharḥ l.748); mā dāma's mā as maṣdariyya ẓarfiyya — no book in the repo says it.
+
+## from r13 (Taṣrīf al-ʿIzzī ch. 1–14)
+- Khabar named as a jarr phrase: 3:s2 t1 / 6:s1 t1 (after أَمَّا — the hoca's pattern), 15:s30 t0 / 15:s34 t0 (the quoted forms), 6:s9 t0
+  مِثَالُهُ, 19:s6 t0, 15:s4 t0 (كَالْمُعْطَى khabar, مِنْهُ to the mubtadaʾ); relative مَا with no seat: 5:s2 t3, 5:s6 t9, 6:s7 t10;
+  manqūṣ with an apparent sign: 1:s2 t14 لِمَعَانٍ, 17:s14 t5, 17:s28 t5 رَاءٍ, 17:s30 t13 مُرٍ; 9:s3/s5/s6 the كَانَ / قُلِبَتْ lines do not
+  name the condition and the answer (9:s3 t13 lacks «مَبْنِيٌّ لِلْمَجْهُولِ»); 14:s26 t2–13 quoted words as muḍāf ilayh of نَحْوُ, t15
+  سَائِرُ tag fail vs mubtadaʾ; 6:s7 t16 فَإِنَّ — a causal fāʾ (open). Tags follow the corrections (named in each note).

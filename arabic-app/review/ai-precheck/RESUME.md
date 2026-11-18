@@ -92,3 +92,11 @@ the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan a
   is the doer, الْأُخْرَى the object, no hidden «أَنْتَ».
 - The «مَا» measure's ceiling moved 45 → 46 because two LINES moved: 22:s6 «… إِذَا قَاتَلَ مَا أَقْدَمَ» (the answer of لَوْلَا) and
   22:s3 «وَمَا يَرْكَبُ الْمَعْصِيَةَ وَهُوَ يَعْلَمُ» are negations the seat rule reads as objects — named engine misses.
+
+### 2026-11-18, late — r10–r12 applied
+
+- r10–r11 (al-Uṣūl ch. 26–35): 79 AI-ONAY; r12 (Talkhīṣ): 25 AI-ONAY — 104 corrections applied; relex retargeted 2 mā keys;
+  D04 one line. 4 AI-ŞÜPHELİ for the hoca (r11 32:s6 «وَإِلَّا قَاتَلْتَهُ»; r12 63:s15 «وَلَا مَالَ/مَالُ» ×2; r12 70:s10 مُعَرَّجُ).
+- Talkhīṣ 74:s3 «فَلَلرَّيْثُ فِي بَعْضِ الْمَوَاضِعِ أَنْفَعُ» (the package's source, l.4677): once the surface became the lām of
+  inception, its line was rewritten by hand to match (lām al-ibtidāʾ + mubtadaʾ, segment keyed `lam-ibtida`, أَنْفَعُ its khabar);
+  the smart layer of the two surface corrections (فَلَلرَّيْثُ، هَوَاكِ) follows the full.

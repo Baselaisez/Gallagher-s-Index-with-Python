@@ -14,7 +14,7 @@
   "sentences": 922,
   "sentenceTokens": 8132,
   "posAgreement": 99.1,
-  "caseJudged": 6316,
+  "caseJudged": 6318,
   "caseAgreement": 99.1,
   "rows": 9217
  },
@@ -23218,7 +23218,7 @@
        "huruf-jarr",
        "huruf-jarr-nawadir"
       ],
-      "irab": "The ba is a jarr letter and «la» rides on it to negate; together they mean «without», and the phrase hangs on «be delivered». Two letters written apart and read as one word — the sort of thing a parser must be told rather than left to work out."
+      "irab": "The ba is a jarr letter, and «la» stands between it and its noun: the la does the negating itself, and the ba's government passes over it to تَأْكِيدٍ. Together they mean «without», and the phrase hangs on «be delivered». Two letters written apart and read as one word — the sort of thing a parser must be told rather than left to work out."
      },
      "engine": {
       "kind": "particle",
@@ -23957,7 +23957,7 @@
       "grammar": [
        "idafa-definiteness"
       ],
-      "irab": "A demonstrative, fixed in form, in the position of jarr — and what it points at is the three kinds just named. A demonstrative reaching back over three sentences is the matn's way of saying «all of that, together»; nothing else in Arabic gathers a list that cheaply."
+      "irab": "A demonstrative, fixed in form on the kasra, in the position of jarr after «عَلَى»; the noun after it is its badal, not a word it is annexed to — and what it points at is the three kinds just named. A demonstrative reaching back over three sentences is the matn's way of saying «all of that, together»; nothing else in Arabic gathers a list that cheaply."
      },
      "engine": {
       "kind": "noun",
@@ -36757,7 +36757,7 @@
    "judged": 8,
    "agree": 8,
    "judgedC": 6,
-   "agreeC": 6,
+   "agreeC": 5,
    "tokens": [
     {
      "w": "وَلَئِنْ",
@@ -36907,7 +36907,7 @@
        "afal-khamsa",
        "tark-al-musnad"
       ],
-      "irab": "«they will SURELY say» — the aya's densest word, four pieces in one: the lam answers the paved-for OATH (this is the jawab al-qasam, which is why no jazm appears); the verb is يَقُولُونَ with its raf'-nun dropped and then the group's waw squeezed out against the heavy nun (تَوَالِي الْأَمْثَالِ); that omitted waw is still the FA'IL; and the doubled nun is the NUN OF EMPHASIS. Assemble it backwards and يَقُولُونَ stands whole again."
+      "irab": "«they will SURELY say» — the aya's densest word, four pieces in one: the lam answers the paved-for OATH (this is the jawab al-qasam, which is why no jazm appears); the verb is يَقُولُونَ, still MU'RAB and in raf' — its raf'-nun is dropped so that three nuns do not follow one another (تَوَالِي الْأَمْثَالِ), and the group's waw then falls before the heavy nun to break the two sakins; that omitted waw is still the FA'IL; and the doubled nun is the NUN OF EMPHASIS. The verb is not built: the nun reaches it only through the waw. Assemble it backwards and يَقُولُونَ stands whole again."
      },
      "engine": {
       "kind": "verb",
@@ -36918,8 +36918,8 @@
      },
      "match": true,
      "caseSaid": "mabni",
-     "caseHuman": "mabni",
-     "caseMatch": true
+     "caseHuman": "raf",
+     "caseMatch": false
     },
     {
      "w": "اللَّهُ",
@@ -40870,7 +40870,7 @@
        "aqsam-al-qasr",
        "anwa-ma"
       ],
-      "irab": "«not» — Hijazi (working like laysa) or bare: the schools differ on its government here, and the QASR stands on either reading — the frame's meaning does not hang on the i'rab khilaf."
+      "irab": "«not» — a bare negator here: its negation is broken by «illa», so it cannot work like laysa, and the khabar كَاتِبٌ stands in raf'. The QASR is built by the pair mā … illā."
      },
      "engine": {
       "kind": "particle",
@@ -41055,7 +41055,7 @@
       "grammar": [
        "aqsam-al-qasr"
       ],
-      "irab": "«Zayd» — the maqsur alayh; and because the claim is not literally true, the qasr is IDAFI, aimed at THIS addressee: he believed Zayd AND Amr both write, and the sentence cuts Amr away — qasr IFRAD, the partnership-cutter. Its condition: the two beliefs must not be contradictories, merely companions."
+      "irab": "«Zayd» — the khabar of كَاتِبٌ, in raf': the exception is emptied (mufarragh), so the word takes the office the sentence lacks; it is no badal, for nothing stands before illa for it to replace. It is the maqsur alayh; and because the claim is not literally true, the qasr is IDAFI, aimed at THIS addressee: he believed Zayd AND Amr both write, and the sentence cuts Amr away — qasr IFRAD, the partnership-cutter. Its condition: the two beliefs must not be contradictories, merely companions."
      },
      "engine": {
       "kind": "noun",
@@ -41175,7 +41175,7 @@
        "aqsam-al-qasr",
        "qasr"
       ],
-      "irab": "«Zayd» — the maqsur alayh, and the addressee names the kind: to one convinced the poet is AMR, this is QALB — his ruling reversed outright; to one who stood undecided between the two men, TAYIN — the wavering resolved. Three sentences, one frame, and the whole taxonomy taught by whom you say them to."
+      "irab": "«Zayd» — the khabar of شَاعِرٌ, in raf' (the exception is emptied, so no badal); the maqsur alayh, and the addressee names the kind: to one convinced the poet is AMR, this is QALB — his ruling reversed outright; to one who stood undecided between the two men, TAYIN — the wavering resolved. Three sentences, one frame, and the whole taxonomy taught by whom you say them to."
      },
      "engine": {
       "kind": "noun",
@@ -42485,8 +42485,8 @@
    "posAgreement": 100,
    "judged": 5,
    "agree": 5,
-   "judgedC": 2,
-   "agreeC": 2,
+   "judgedC": 3,
+   "agreeC": 3,
    "tokens": [
     {
      "w": "أَدِبْسٌ",
@@ -42496,7 +42496,7 @@
       "grammar": [
        "al-istifham"
       ],
-      "irab": "the hamza riding «date-syrup» — the first CANDIDATE. What stands after the hamza is what is asked, and here a thing stands there, not the whole sentence: the asker concedes something is in the vessel and demands its NAME."
+      "irab": "the hamza riding «date-syrup» — the mubtada in its own first place: an indefinite may open the sentence because the question comes before it. It is the first CANDIDATE. What stands after the hamza is what is asked, and here a thing stands there, not the whole sentence: the asker concedes something is in the vessel and demands its NAME."
      },
      "engine": {
       "kind": "noun",
@@ -42507,8 +42507,8 @@
      },
      "match": true,
      "caseSaid": "raf",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "raf",
+     "caseMatch": true
     },
     {
      "w": "فِي",
@@ -72464,7 +72464,7 @@
    "judged": 9,
    "agree": 9,
    "judgedC": 9,
-   "agreeC": 9,
+   "agreeC": 8,
    "tokens": [
     {
      "w": "كَأَنَّ",
@@ -72649,7 +72649,7 @@
        "form-vi-verbs",
        "naqis-verbs"
       ],
-      "irab": "«come tumbling» — Form VI, naqis; the clause is a na't of the indefinite لَيْلٌ — what makes the bihi a picture."
+      "irab": "«come tumbling» — Form VI, naqis: a mudari' in raf' (the damma unseen on the alif), تَتَهَاوَى with one of its two ta's dropped — the falling goes on as the picture is watched; the clause is a na't of the indefinite لَيْلٌ — what makes the bihi a picture."
      },
      "engine": {
       "kind": "verb",
@@ -72660,8 +72660,8 @@
      },
      "match": true,
      "caseSaid": "mabni",
-     "caseHuman": "mabni",
-     "caseMatch": true
+     "caseHuman": "raf",
+     "caseMatch": false
     },
     {
      "w": "كَوَاكِبُهُ",
@@ -131175,7 +131175,7 @@
        "aks",
        "an-masdariyya"
       ],
-      "irab": "«that» — the interpreted masdar is the khabar."
+      "irab": "«that» — the interpreted masdar is the postponed mubtada; «مِنْهَا» before it is its fronted khabar."
      },
      "engine": {
       "kind": "particle",
@@ -131555,7 +131555,7 @@
        "aks",
        "an-masdariyya"
       ],
-      "irab": "«that» — the interpreted masdar is the khabar."
+      "irab": "«that» — the interpreted masdar is the postponed mubtada; «مِنْهَا» before it is its fronted khabar."
      },
      "engine": {
       "kind": "particle",
@@ -131983,7 +131983,7 @@
        "aks",
        "an-masdariyya"
       ],
-      "irab": "«that» — the interpreted masdar is the khabar."
+      "irab": "«that» — the interpreted masdar is the postponed mubtada; «مِنْهَا» before it is its fronted khabar."
      },
      "engine": {
       "kind": "particle",
@@ -132759,7 +132759,7 @@
        "maful-bihi",
        "fail"
       ],
-      "irab": "«has effaced it» — jazm by dropping the alif; the preceding speech that will be retracted."
+      "irab": "«has effaced it» — jazm by dropping the final waw (يَعْفُو → لَمْ يَعْفُ; the damma stays as its trace), and ha is the object; the preceding speech that will be retracted."
      },
      "engine": {
       "kind": "verb",
@@ -137497,7 +137497,7 @@
        "jam",
        "idafa-definiteness"
       ],
-      "irab": "«of the life»."
+      "irab": "«of the life» — the mudaf ilayh of زِينَةُ; it carries the article and is followed by its na't الدُّنْيَا, so it is not itself a mudaf."
      },
      "engine": {
       "kind": "noun",
@@ -142801,7 +142801,7 @@
    "judged": 24,
    "agree": 23,
    "judgedC": 20,
-   "agreeC": 20,
+   "agreeC": 19,
    "tokens": [
     {
      "w": "فَأَمَّا",
@@ -143097,7 +143097,7 @@
        "kana-wa-akhawatuha",
        "hollow-verbs"
       ],
-      "irab": "«endure» — a sister of kana; its ta takes a kasra before the wasl."
+      "irab": "«endure» — dama here is COMPLETE (tamm), meaning «remain»: it is satisfied with its raf' noun and takes no khabar; its ta takes a kasra before the wasl."
      },
      "engine": {
       "kind": "verb",
@@ -143108,8 +143108,8 @@
      },
      "match": true,
      "caseSaid": "mabni",
-     "caseHuman": "mabni",
-     "caseMatch": true
+     "caseHuman": "raf",
+     "caseMatch": false
     },
     {
      "w": "السَّمَاوَاتُ",
@@ -143121,7 +143121,7 @@
        "kana-wa-akhawatuha",
        "jam-muannath-salim"
       ],
-      "irab": "«the heavens» — the ism of dama."
+      "irab": "«the heavens» — the fa'il of the complete dama."
      },
      "engine": {
       "kind": "noun",
@@ -143593,7 +143593,7 @@
        "kana-wa-akhawatuha",
        "hollow-verbs"
       ],
-      "irab": "«endure» — dama; the ta's kasra before the wasl."
+      "irab": "«endure» — the complete dama («remain»), with no khabar; the ta's kasra before the wasl."
      },
      "engine": {
       "kind": "verb",
@@ -143617,7 +143617,7 @@
        "kana-wa-akhawatuha",
        "jam-muannath-salim"
       ],
-      "irab": "«the heavens»."
+      "irab": "«the heavens» — the fa'il of dama."
      },
      "engine": {
       "kind": "noun",
@@ -158955,7 +158955,7 @@
        "takid-al-madh-wal-dhamm",
        "an-masdariyya"
       ],
-      "irab": "«that» — the masdar-making an; the clause is the khabar."
+      "irab": "«that» — the masdar-making an, here before a past verb, so it puts nothing in nasb; the interpreted masdar is the OBJECT of تَنْقِمُ — the exception is emptied, so it takes the office the verb lacks."
      },
      "engine": {
       "kind": "particle",
@@ -185420,8 +185420,8 @@
    "posAgreement": 100,
    "judged": 2,
    "agree": 2,
-   "judgedC": 1,
-   "agreeC": 1,
+   "judgedC": 2,
+   "agreeC": 2,
    "tokens": [
     {
      "w": "وَرَبَّكَ",
@@ -185434,7 +185434,7 @@
        "idafa-definiteness",
        "taqdim-al-musnad"
       ],
-      "irab": "«and your Lord» — the fronted object of an elided verb the next one explains (ishtighal)."
+      "irab": "«and your Lord» — the fronted object of كَبِّرْ itself (no ishtighal: the verb holds no pronoun of it); the fronting is what gives «Him alone»."
      },
      "engine": {
       "kind": "noun",
@@ -185445,8 +185445,8 @@
      },
      "match": true,
      "caseSaid": "nasb",
-     "caseHuman": null,
-     "caseMatch": null
+     "caseHuman": "nasb",
+     "caseMatch": true
     },
     {
      "w": "فَكَبِّرْ",
@@ -186558,7 +186558,7 @@
        "maful-bihi",
        "amma-tafsiliyya"
       ],
-      "irab": "«the orphan» — the object of an elided verb the next explains (ishtighal)."
+      "irab": "«the orphan» — the fronted object of تَقْهَرْ itself: not ishtighal, for the verb carries no pronoun of it; it is brought forward to stand between amma and the fa."
      },
      "engine": {
       "kind": "noun",
@@ -186656,7 +186656,7 @@
        "amma-tafsiliyya",
        "ism-fail"
       ],
-      "irab": "«the beggar» — the fronted object (ishtighal)."
+      "irab": "«the beggar» — the fronted object of تَنْهَرْ (no ishtighal: the verb holds no pronoun of it)."
      },
      "engine": {
       "kind": "noun",
@@ -190917,7 +190917,7 @@
        "idha-shartiyya",
        "mafulayn"
       ],
-      "irab": "«you will find him» — the jawab; the ha its first object."
+      "irab": "«you will find him» — the waw is the verb's own first radical (وَجَدَ), not a particle; a past verb answering idha takes no fa, so nothing is extra or understood. The ta is the fa'il, the ha its first object."
      },
      "engine": {
       "kind": "verb",
@@ -194868,7 +194868,7 @@
    "story": "talkhis-al-miftah",
    "chapter": 74,
    "sentence": "s3",
-   "text": "هُوَ الصُّنْعُ إِنْ يَعْجَلْ فَخَيْرٌ وَإِنْ يَرِثْ فَلِلرَّيْثِ فِي بَعْضِ الْمَوَاضِعِ أَنْفَعُ",
+   "text": "هُوَ الصُّنْعُ إِنْ يَعْجَلْ فَخَيْرٌ وَإِنْ يَرِثْ فَلَلرَّيْثُ فِي بَعْضِ الْمَوَاضِعِ أَنْفَعُ",
    "translation": {
     "en": "«It is a favour: if it hastens, good; and if it delays, * then in some places the delay is more useful» (Abu Tammam — ṭawīl).",
     "tr": "«O bir ihsandır: acele gelirse hayırdır; gecikirse * bazı yerlerde gecikme daha faydalıdır» (Ebû Temmâm — tavîl)."
@@ -195046,17 +195046,16 @@
      "caseMatch": true
     },
     {
-     "w": "فَلِلرَّيْثِ",
+     "w": "فَلَلرَّيْثُ",
      "lex": "rayth",
      "human": {
       "pos": "noun",
       "grammar": [
        "sariqat-ghayr-zahira",
        "in-shartiyya",
-       "huruf-jarr",
        "masdar"
       ],
-      "irab": "«for the delay» — the fronted khabar."
+      "irab": "The fa opens the answer of the condition; the lam is the lam of inception; «delay» is the mubtada, in raf' with damma — the clause is in the seat of jazm as the answer."
      },
      "engine": {
       "kind": "noun",
@@ -195066,8 +195065,8 @@
       "sure": false
      },
      "match": true,
-     "caseSaid": "jarr",
-     "caseHuman": "jarr",
+     "caseSaid": "raf",
+     "caseHuman": "raf",
      "caseMatch": true
     },
     {
@@ -195153,7 +195152,7 @@
        "mubtada-khabar",
        "ism-tafdil"
       ],
-      "irab": "«more useful» — the delayed mubtada; rhyme: rawi ʿayn."
+      "irab": "The khabar of «delay», in raf' with damma — an elative. The rhyme letter is the ʿayn."
      },
      "engine": {
       "kind": "verb",
@@ -199698,7 +199697,7 @@
    "story": "talkhis-al-miftah",
    "chapter": 74,
    "sentence": "s21",
-   "text": "أَجِدُ الْمَلَامَةَ فِي هَوَاكَ لَذِيذَةً حُبًّا لِذِكْرِكِ فَلْيَلُمْنِي اللُّوَّمُ",
+   "text": "أَجِدُ الْمَلَامَةَ فِي هَوَاكِ لَذِيذَةً حُبًّا لِذِكْرِكِ فَلْيَلُمْنِي اللُّوَّمُ",
    "translation": {
     "en": "«I find the blame, in loving you, delicious — * for love of your mention: so let the blamers blame me» (Abu l-Shis — kāmil).",
     "tr": "«Sana olan aşkımda kınanmayı lezzetli bulurum — * anılmanı sevdiğimden: kınayanlar beni kınasın» (Ebü'ş-Şîs — kâmil)."
@@ -199782,7 +199781,7 @@
      "caseMatch": true
     },
     {
-     "w": "هَوَاكَ",
+     "w": "هَوَاكِ",
      "lex": "hawa-passion",
      "human": {
       "pos": "noun",
