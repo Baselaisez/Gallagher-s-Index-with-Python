@@ -261,3 +261,19 @@ it: main's corpus still has the kasra lines.
 **For the hoca:**
 - juha-wa-al-… جُحَا «مجرور بكسرة مقدرة على الألف» was left as it is. Is جحا a diptote at all? It has no clear second cause.
 - Marāḥ عَلَامَتَا (s4, s14) is counted as a maqṣūr by the engine, but it is a dual. That is the engine's error and is noted.
+
+## Engine-found corpus slips (v327 engine wave on main: أَنْ, kāna's ism, objects carrying a pronoun)
+
+Token numbers here count from 1. Not yet written as a packet.
+
+- I-1 أَنْ:
+  - qisas-al-nabiyyin-4:19:s7:6 «أَنْ لَا تَأْكُلَ». The أَنْ line says tafsīriyya with lā of prohibition, but تَأْكُلَ has a
+    fatḥa and its own line says «منصوب بأن», so it is the maṣdariyya.
+  - al-usul-al-munifa:14:s30:37 and 14:s34:18 «أَلَّا تَعْبُدُوا», and 19:s10:10 «أَلَّا تَعْدِلُوا». The token أَلَّا carries
+    the line of «إِلَّا» («أداة استثناء»).
+- I-2: a kāna-family verb whose line says «فاعل» or «والفاعل ضمير مستتر»:
+  - al-maqamat-birgivi:3:s7:11 كُونُوا
+  - al-usul-al-munifa: 6:s9:30, 13:s4:15, 14:s21:14, 18:s1:18, 21:s5:22, 21:s5:41, 23:s2:66, 23:s7:92, 20:s2:29,
+    20:s2:31, 24:s17:27, 25:s12:20, 31:s5:53, 31:s5:57, 31:s7:27
+  - luqman-wa-ibnuh:4:s3:9 صَارَ
+  - qisas-al-nabiyyin-4:22:s4:10 and 22:s4:17 كَانُوا
