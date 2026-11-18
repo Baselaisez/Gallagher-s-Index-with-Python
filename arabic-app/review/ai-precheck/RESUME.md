@@ -46,3 +46,16 @@ Resume order (once Fable 5.2 answers again):
 The pattern SCANS in `review_sheets.py` were tightened at the same time: the old ones counted correct lines (the
 mulḥaq عَالَمِينَ and the real duals; «عَنِ ابْنِ مَسْعُودٍ» where ابْنِ opens the name; the question hamza of أَتَظُنُّ;
 the yāʾ of the woman addressed). After the rules, D06 / D07 / D08 / D11 scan at 0.
+
+### 2026-11-18, later — r01–r03 applied; D04 and P01 rule classes
+
+- r01–r03 (al-Uṣūl, 118 findings): 109 AI-ONAY applied, 1 AI-RET (2:s11 فَإِمَّا — the line is right, the vowel should be
+  فَأَمَّا), 8 AI-ŞÜPHELİ for the hoca, three of them readings of the TEXT (6:s7 عَلِمَ/عَمِلَ, 10:s2 الفعل/المفعول,
+  11:s1 the wāw of وَتَفَضُّلًا) and four the one choice «أَمَّا بَعْدُ: الْحَمْدُ …» vs «أَمَّا بَعْدَ الْحَمْدِ …» (1:s2).
+- D04 `OvertDoerRule` (8 lines): the hidden-doer clause removed where the doer stands written after the verb; the search
+  stops at a conjunction or a relative (Maqāmāt 8:s2 «تَعَالَى وَتَرْكُ مَا سِوَاهُ» is left alone). Open for the hoca:
+  «لَمْ يَكْفُرْ هٰذَا الْمُسْتَدِلُّ», «يَسْمَعُ ذٰلِكَ الْمَلِكُ» — is the demonstrative the doer and the noun its badal?
+- P01 `PronounBuildRule` (1 line): أَنْتِ is built on kasra. هُمُ / أَنْتُمُ before a sākin stay «on sukūn» — the ḍamma
+  only breaks two sākins; the first scan counted them and was wrong.
+- Left for the hoca: 2:s16 «مَا الْمَخْرَجُ مِنْهَا» — the line of مَا says khabar muqaddam, the line of الْمَخْرَجُ makes
+  مِنْهَا its khabar; one of the two readings must be chosen.

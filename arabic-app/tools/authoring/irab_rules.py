@@ -221,7 +221,70 @@ class ZarfSingularRule(IrabRule):
         return {"ar": na, "en": ne, "tr": nt}
 
 
-RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule()]
+class OvertDoerRule(IrabRule):
+    """D04 — the verb's line says «وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ» while its doer stands written right after it (no other verb,
+    conjunction or relative between). Only the hidden-doer clause is removed: the overt word names the doer on its own line."""
+    id = "D04"
+    title = "a hidden doer beside an overt one"
+    source = {"book": "Iẓhār al-Asrār (Birgivî), Arabic matn", "file": "research/sources/izhar-al-asrar-matn-lithograph.txt", "locator": "al-marfūʿāt, al-fāʿil — jāʾiz al-istitār / line 84",
+              "quote": "ضرب زيد وكذا البواقي فلا يستتر فيه ضمير"}
+    HID = re.compile(r"،\s*وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ(?: جَوَازًا| وُجُوبًا)? تَقْدِيرُهُ «?(?:هُوَ|هِيَ)»?")
+
+    def candidates(self, toks, prev=None):
+        out = []
+        for i, t in enumerate(toks):
+            a = N((t.get("irab") or {}).get("ar"))
+            if not self.HID.search(a) or not re.search(r"فِعْلٌ (?:مَاضٍ|مُضَارِعٌ)", a): continue
+            for u in toks[i + 1:i + 4]:
+                b = N((u.get("irab") or {}).get("ar"))
+                if re.search(r"فِعْلٌ|فِعْلُ أَمْرٍ|عَاطِفَةٌ|مَوْصُولٌ|مَعْطُوفٌ", b): break
+                if b.startswith("فَاعِلٌ"): out.append(i); break
+        return out
+
+    def rewrite(self, tok, toks=None, j=None):
+        ir = tok.get("irab") or {}
+        ar = self.HID.sub("", N(ir.get("ar")), count=1)
+        en = re.sub(r";\s*(?:its|the) doer is a hidden (?:pronoun )?«?(?:هُوَ|هِيَ|he|she|it)»?", "", ir.get("en") or "", count=1)
+        tr = re.sub(r";\s*fâili gizli zamir(?:dir)? «?(?:هُوَ|هِيَ|o)»?", "", ir.get("tr") or "", count=1)
+        if ar == N(ir.get("ar")) or en == ir.get("en") or tr == ir.get("tr"): return None
+        return {"ar": ar, "en": en, "tr": tr}
+
+
+class PronounBuildRule(IrabRule):
+    """P01 — a detached pronoun is built on the vowel of its own last letter where that vowel is part of the word
+    (أَنْتَ on fatḥa, أَنْتِ on kasra, هُوَ / هِيَ on fatḥa, نَحْنُ on ḍamma). هُمُ / أَنْتُمُ before a sākin are built on
+    sukūn — their ḍamma only breaks the meeting of two sākins — and are left alone."""
+    id = "P01"
+    title = "the detached pronoun's building vowel"
+    source = {"book": "Iẓhār al-Asrār (Birgivî), Arabic matn", "file": "research/sources/izhar-al-asrar-matn-lithograph.txt", "locator": "al-mabnī / line 186",
+              "quote": "والثاني المبني فهو ما كان حركته وسكونه لا بعامل"}
+    OWN = {"أَنْتَ": "الْفَتْحِ", "أَنْتِ": "الْكَسْرِ", "هُوَ": "الْفَتْحِ", "هِيَ": "الْفَتْحِ", "نَحْنُ": "الضَّمِّ"}
+    EN = {"الْفَتْحِ": "fatḥa", "الْكَسْرِ": "kasra", "الضَّمِّ": "ḍamma", "السُّكُونِ": "sukūn"}
+    TR = {"الْفَتْحِ": "fetha", "الْكَسْرِ": "kesre", "الضَّمِّ": "zamme", "السُّكُونِ": "sükûn"}
+
+    def candidates(self, toks, prev=None):
+        out = []
+        for i, t in enumerate(toks):
+            f = re.sub(r"^[وَفَ]{2}", "", N((t.get("surface") or {}).get("full")))
+            want = self.OWN.get(f); m = re.search(r"ضَمِيرٌ مُنْفَصِلٌ مَبْنِيٌّ عَلَى (الْفَتْحِ|الضَّمِّ|الْكَسْرِ|السُّكُونِ)", N((t.get("irab") or {}).get("ar")))
+            if want and m and m.group(1) != want: out.append(i)
+        return out
+
+    def rewrite(self, tok, toks=None, j=None):
+        f = re.sub(r"^[وَفَ]{2}", "", N((tok.get("surface") or {}).get("full"))); want = self.OWN[f]; ir = tok.get("irab") or {}
+        a = N(ir.get("ar")); had = re.search(r"مَبْنِيٌّ عَلَى (الْفَتْحِ|الضَّمِّ|الْكَسْرِ|السُّكُونِ)", a).group(1)
+        ar = a.replace("مَبْنِيٌّ عَلَى " + had, "مَبْنِيٌّ عَلَى " + want, 1)
+        # the pronoun after a fronted khabar is its postponed mubtadaʾ — say so when the line names no role (أَمُؤْمِنَةٌ أَنْتِ)
+        if re.search(r"فِي مَحَلِّ رَفْعٍ\.?$", ar) and j and "مُبْتَدَأٌ مُؤَخَّرٌ" in N(((toks[j - 1].get("irab") or {}).get("ar"))):
+            ar = re.sub(r"فِي مَحَلِّ رَفْعٍ\.?$", "فِي مَحَلِّ رَفْعٍ مُبْتَدَأٌ مُؤَخَّرٌ.", ar)
+            return {"ar": ar, "en": f"A detached pronoun, built on {self.EN[want]}, in the place of rafʿ: the postponed mubtadaʾ.",
+                    "tr": f"Munfasıl zamir, {self.TR[want]} üzere mebnî, mahallen merfû: muahhar mübtedâ."}
+        en = re.sub(r"built on (?:fatḥa|fatha|kasra|ḍamma|damma|sukūn|sukun)", "built on " + self.EN[want], ir.get("en") or "")
+        tr = re.sub(r"(?:fetha|kesre|zamme|sükûn) üzere", self.TR[want] + " üzere", ir.get("tr") or "")
+        return {"ar": ar, "en": en, "tr": tr}
+
+
+RULES = [AmmaFaRule(), HeadlessLineRule(), AmrTakidRule(), IbnNatRule(), ZarfSingularRule(), OvertDoerRule(), PronounBuildRule()]
 
 
 def main():
