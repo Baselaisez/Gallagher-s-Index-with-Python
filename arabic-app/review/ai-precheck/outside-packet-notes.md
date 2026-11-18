@@ -41,3 +41,15 @@
   أَعْلَمُ 25:s6 t20. Grammar tags on corrected tokens still name the old roles. Source file usul-al-munifa-src.txt p.48 تَرْجِيَ → تُرْجِيَ.
 - For the hoca (r09): 25:s19 t1 «وَالْمَرِيضُ مَا كَانَ مَرَضُهُ أَقَلَّ كَانَ أَهْوَنَ» — مَا maṣdariyya ẓarfiyya?; 25:s5 «عَرَضَ عَلَيْهِمَا»
   (dual) vs عَلَيْهِمْ — print or transcription?; 25:s19 لَمْ يَكُ — the nūn dropped for lightness (no book in the repo has the rule).
+
+## from r10 (al-Uṣūl ch. 26–30)
+- 26:s3 t26–27 «وَكَفَى بِنَا» — the bāʾ extra, «نَا» the doer in the seat of rafʿ (as 29:s3 t10–11); 27:s2 t8 مَخْلُوقَتَيْنِ and
+  20:s11 t28 عَدْلًا «خَبَرُ لَيْسَ», not «كَانَ»; 27:s2 t15 بِشَيْءٍ extra bāʾ, khabar of laysa; 18:s20 t19 يُولَدُونَ nāʾib fāʿil;
+  27:s4 t18/t27 أُولٰئِكَ and t21/t30 هُمْ mubtadaʾ; 29:s2 t22 هٰذَا khabar, t26 هٰذَا mubtadaʾ; 30:s1 t10 وَشَفَاعَةُ a new mubtadaʾ
+  (khabar لِلْمُؤْمِنِينَ); 28:s4 t8 قَالَ add the hidden «هُوَ»; 27:s7 t28 قَالَ drop it (عُمَرُ the doer).
+- Lex/pos: هَاهْ keyed `hahuna` (wrong); 29:s2 t21 ma-mawsula→ma-istifham; 30:s3 t36 ma-nafiya→ma-istifham (pos part→pron);
+  30:s2 t22 لِمَنْ tag ism-mawsul→interrogative; 27:s7 t3 أَسْلَمَ pos verb→propn, lex `aslama` wrong. Old-role tags on سَرْمَدًا,
+  بُرَيْدَةَ, عَذَابًا, الْجِنَّ, الدُّنْيَا, الْيَوْمَ, يُرَائِي (maful-bihi), اللهُ / عَمَلُكَ (naib-al-fail), ضَغْطَةُ / عُمَرُ / 30:s3 أَهْلُ (mubtada-khabar).
+  Source usul-al-munifa-src.txt l.367 أَعْتِقْ → أُعْتِقْ (with QR-2486B768).
+- For the hoca (r10): 27:s7 t3 «أَسْلَمَ» — the narrator from Ṭāriq b. Shihāb is Qays b. Muslim al-Jadalī: does the print read
+  «قيس بن مسلم» (مُسْلِمٍ)?; 30:s3 نَكُ — the nūn dropped for lightness (as r09); 28:s3 t48 دِينُكَ follows r08's مَا-as-mubtadaʾ choice.
