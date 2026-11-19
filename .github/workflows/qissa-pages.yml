@@ -5,6 +5,10 @@ name: Qissa Pages
 # Owner's one-time step: Settings → Pages → Build and deployment → Source: GitHub Actions.
 on:
   workflow_dispatch:
+    inputs:
+      source_ref:
+        description: 'Branch to publish the app from (the github-pages environment deploys from the default branch only)'
+        default: 'claude/arabic-app-research-ozd58s'
 
 permissions:
   contents: read
@@ -20,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || 'claude/arabic-app-research-ozd58s' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
