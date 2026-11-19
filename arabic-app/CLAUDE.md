@@ -15276,3 +15276,4 @@ Still slow, and why:
 Smoke: five checks «v334-S — …» before «v333 — the received imports» (the taggers' table and grade; the five walks and the
 hub; cloze / foldAr / the Quiet order; the stepped search and the shelf's CSS; the dedup). No older check changed, no
 threshold loosened. Full suite (`node tools/smoke_test.js`, the reader as built): 525 checks, 525 pass.
+
