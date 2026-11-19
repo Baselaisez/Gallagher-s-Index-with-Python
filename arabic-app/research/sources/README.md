@@ -361,3 +361,5 @@ punctuation, the entry number, the star of the heading and the footnote marks, n
 editor's footnotes themselves are not copied. It is the source of `content/samples/siyar-al-shaykh-al-mufid` (see
 `tools/authoring/author_siyar_al_shaykh_al_mufid.py`, whose manifest attribution lists the two vowelling layers; the
 package holds the entire entry, in three adjacent spans).
+
+- `muallaqat-antara-src.txt` — (1) Ibn Qutayba, al-Shiʿr wa-l-shuʿarāʾ (Dār al-Ḥadīth, Cairo, 1423 AH), shamela.ws/book/23785/236–238 (1/243–245, § 419); (2) al-Zawzanī, Sharḥ al-Muʿallaqāt al-sabʿ (Dār Iḥyāʾ al-Turāth al-ʿArabī, 1423/2002), shamela.ws/book/11253/268–288 (pp. 245–265); (3) Muḥammad ʿAlī Ṭāhā al-Durra, Fatḥ al-Kabīr al-Mutaʿāl: Iʿrāb al-Muʿallaqāt al-ʿashr al-ṭiwāl (Maktabat al-Sawādī, Jeddah, 2nd ed., 1409/1989), shamela.ws/book/151017/670–803 (2/131–264). Fetched 2026-11-19. One block per Shamela page (158 blocks), verbatim. Used for the package `muallaqat-antara`.
