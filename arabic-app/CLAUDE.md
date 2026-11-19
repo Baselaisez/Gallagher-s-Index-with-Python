@@ -14672,3 +14672,51 @@ renamed; and the TOKENS decide, not the glossary line — in four packages the e
   زَادَ + a pronoun (a second object by the ledger); سُبْحَانَهُ, جِدًّا, أَيْضًا, مَرَّةً as mafʿūl muṭlaq; the six naʿt lines the veto cannot
   reach (a diptote-shaped muḍāf: مَنْزِلَةَ غَيْرِ الْمُنْكِرِ); the verb's own doer clause still names a manṣūb maṣdar the loop seated as its doer
   («يَفِرُّ … وَفَاعِلُهُ «مَخَافَةَ»»); «عِشْرُونَ» called «مضاف إليه» after عِنْدِي; وَهَمَ (no corpus verb vouches for it) is still وَ + هُمْ.
+
+## v333 — the received imports the owner asked for by name: al-Tanūkhī, three entries of the Siyar, two Muʿallaqāt whole
+
+The owner (2026-11-19): import stories from reliable sources such as al-Dhahabī's Siyar; add the Muʿallaqāt with their balāgha «based on
+what was learned from the Talkhīṣ»; open the Shamela story of Muḥammad ibn Zayd; «keep the poems whole, and add al-Mufīd too».
+
+- **Six packages, every one a RECEIVED text** (no ORIGINAL composition among them; all `pending-scholarly-review`):
+  - `muhammad-ibn-zayd-wa-al-umawi` (L5, 6 chapters, 46 sentences): the WHOLE ḥikāya from al-Tanūkhī, al-Mustajād (Shamela 768, pp. 42–43).
+    The owner remembered it as «Sulaymān ibn Hishām»; the text has MUḤAMMAD ibn Hishām ibn ʿAbd al-Malik. The e-text is unvowelled, so
+    every vowel is ours; nine e-text slips are corrected against al-Faraj baʿd al-shidda (ed. al-Shāljī 2/334–337) and each is listed in
+    the attribution.
+  - `siyar-abi-hanifa` (L5, 6 chapters, 35), `siyar-ibn-al-mubarak` (L5, 6 chapters, 36), `siyar-al-shaykh-al-mufid` (L5, 3 chapters, 18 —
+    the whole entry): al-Dhahabī, Siyar Aʿlām al-Nubalāʾ (Shamela 10906, the Risāla edition). Each chapter is ONE contiguous span; what
+    lies between the spans is named in the attribution. Al-Dhahabī's judgements stand as he wrote them, neither softened nor commented on.
+  - `muallaqat-zuhayr` (L6, 10 chapters: the khabar + 62 verses) and `muallaqat-imri-al-qays` (L6, 14 chapters: the khabar + 81 verses):
+    chapter 1 is the poet's khabar verbatim from Ibn Qutayba, al-Shiʿr wa-l-shuʿarāʾ (23785); the poem is WHOLE in al-Zawzanī's recension,
+    order and numbering (11253); every token's iʿrāb line was checked against al-Durra's iʿrāb of the Muʿallaqāt (151017) and written in
+    the shelf's own wording. The amatory verses are translated plainly and soberly after al-Zawzanī.
+- **The balāgha claim rule** (the orchestrator's decision; the owner may reverse it). A figure stated in a verse's line rests on one of
+  two bases, and the line says which: (1) a commentator names or describes it, or the Talkhīṣ itself cites the verse; (2) «عَلَى حَدِّ
+  التَّلْخِيصِ» — it meets the Talkhīṣ's own definition exactly (ṭibāq ch. 57, muqābala ch. 58, jinās ch. 68–69, radd al-ʿajuz ʿalā al-ṣadr
+  ch. 70 of the shelf package `talkhis-al-miftah`), though no commentator names it. A figure on neither basis stays out. A second
+  reader once removed every figure of sound from Zuhayr; they were restored under basis (2) after each was checked against the
+  definition's conditions.
+- **Verse dress:** a verse is ONE sentence; the last token of the first hemistich carries `punctAfter: "•"`, and the reader centres the
+  verse from that alone (as in `bad-al-amali`).
+- **Two new shelves** in `LIB_SOURCES` (before `practice`): `akhbar` «الْأَخْبَار وَالتَّرَاجِم» ("Reports and lives" / "Ahbâr ve terâcim") for
+  `siyar-*` and the Tanūkhī ḥikāya; `shir` «الشِّعْر» ("Poetry" / "Şiir") for `muallaqat-*`. A new import whose id matches no shelf regex
+  lands on NO shelf and fails «v317 — the library shelves its texts by source».
+- **How an import is made** (briefs kept in the scratchpad as IMPORT_BRIEF.md / MUALLAQA_BRIEF.md; the rules that matter):
+  the source page is saved to `research/sources/<slug>-src.txt` (with a witness file where a second edition was used) BEFORE authoring;
+  the text is never retold, re-ordered or silently corrected — a correction is made only against a named witness and is listed; the
+  author script is `tools/authoring/author_<slug>.py`; a second reader (the orchestrator's model) re-reads every iʿrāb line without
+  touching the text. Sources and scripts are committed as soon as they exist: a machine restart killed seven agents this day.
+- **Two measured checks moved with the corpus, the engines unchanged:**
+  - «the Ta'alluq engine names what every jarr-majrur hangs on»: floor 55 → 54. The older shelf is unchanged at 501 of 886 (56.5%); the
+    six imports add 132 graded attachments of which the engine gets 53. What it does not answer: 28 lines hang a ẒARF that is no jarr
+    phrase on its governor (إِذَا / لَمَّا on the jawāb, مَتَى on the sharṭ verb, a time noun on its verb) and the engine is silent; 29 are
+    a maḥdhūf ḥāl / second khabar where it names the nearest word. The ẓarf seats are the next TaalluqEngine item (audit group B).
+  - «JamEngine … the corpus audit holds»: ceiling 237 → 275. Thirty-eight HEARD plurals from al-Zawzanī's gharīb, each listed in the
+    check's message. Three are the builder's OWN gaps, owed to the iʿlāl round: the weak-final أَفْعَال it leaves unturned (أَقْنَاو، أَثْنَاي
+    for أَقْنَاء، أَثْنَاء), the hamza it does not write as madda (أَرْئَام for أَرْآم), and أَجْوِءَة for أَجْوِيَة.
+- Smoke: «v333 — the received imports the hoca asked for by name…» (the two shelves and what stands on each, the labels, 81 and 62
+  verses each with exactly one `•`, no ORIGINAL in an attribution, every status pending).
+- Left out so far, by choice: al-Fuḍayl's question in the Ibn al-Mubārak entry; the forty-years-wuḍūʾ khabar in Abū Ḥanīfa's. Next:
+  the other five Muʿallaqāt (Ṭarafa, Labīd, ʿAntara, ʿAmr ibn Kulthūm, al-Ḥārith), whole, by the same brief.
+- Questions for the hoca from these imports: Zuhayr's chapter cuts; «فَمِنْ أَيِّهِمْ» for the e-text's «أمن أيهم»; whether to keep only the
+  figures a commentator names; ishtiqāq or plain repetition for same-verb pairs.

@@ -87,6 +87,10 @@ def build_story(pkg: Path, irab_tr=None):
                     entry[key] = m[key]
             if m.get("note"):
                 entry["note"] = m["note"]
+            # (v333) a HEARD paradigm no rule builds (هَرَاقَ يُهَرِيقُ, تَحَيَّلَ): the
+            # reader's sarfAudit lists it apart instead of regenerating it.
+            if m.get("samai"):
+                entry["samai"] = True
             morph[lex] = entry
 
     chapters = []
