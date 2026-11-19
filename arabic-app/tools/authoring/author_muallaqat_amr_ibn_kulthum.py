@@ -1534,7 +1534,7 @@ ROLE["khbl"] = ("خَبَرُ «لَيْسَ» مَنْصُوبٌ", "the predica
 NISA = HIYA("النِّسَاءِ", "the women", "kadınlara")
 VV(86, "— they are surely to carry off horses and white (swords), and captives coupled together in iron.",
   "— mutlaka atlar, beyaz (kılıçlar) ve demirlere bağlanmış esirler kapacaklardır.",
- [T("لَيَسْتَلِبُنَّ", "istalaba-amr", "verb", ["form-x-verbs", "nun-tawkid", "afal-khamsa"], "اللَّامُ وَاقِعَةٌ فِي جَوَابِ الْقَسَمِ الَّذِي تَضَمَّنَهُ «عَهْدًا» فِي الْبَيْتِ قَبْلَهُ، وَ«يَسْتَلِبُنَّ» فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالنُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ — الدَّالُّ عَلَيْهَا الضَّمَّةُ — " + _FA + "، وَالنُّونُ لِلتَّوْكِيدِ؛ وَالْجُمْلَةُ جَوَابُ الْقَسَمِ لَا مَحَلَّ لَهَا، وَجَوَابُ «إِذَا» مَحْذُوفٌ دَلَّ عَلَيْهِ جَوَابُ الْقَسَمِ (الدُّرَّةُ).",
+ [T("لَيَسْتَلِبُنَّ", "istalaba-amr", "verb", ["form-viii-verbs", "nun-tawkid", "afal-khamsa"], "اللَّامُ وَاقِعَةٌ فِي جَوَابِ الْقَسَمِ الَّذِي تَضَمَّنَهُ «عَهْدًا» فِي الْبَيْتِ قَبْلَهُ، وَ«يَسْتَلِبُنَّ» فِعْلٌ مُضَارِعٌ مَرْفُوعٌ بِالنُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ — الدَّالُّ عَلَيْهَا الضَّمَّةُ — " + _FA + "، وَالنُّونُ لِلتَّوْكِيدِ؛ وَالْجُمْلَةُ جَوَابُ الْقَسَمِ لَا مَحَلَّ لَهَا، وَجَوَابُ «إِذَا» مَحْذُوفٌ دَلَّ عَلَيْهِ جَوَابُ الْقَسَمِ (الدُّرَّةُ).",
     "The lam opens the answer of the oath held in «a pledge» in the verse before; يَسْتَلِبُنَّ is a present verb in raf' by a nun dropped because like letters follow one another; the dropped waw of the group, shown by the damma, is the doer, in the seat of raf'; the nun is of emphasis; the clause answers the oath and has no seat, and the answer of إِذَا is left out, the oath's answer showing it (al-Durra).",
     "Lâm, önceki beyitteki «ahit» kelimesinin taşıdığı yeminin cevabındadır; «yestelibunne», benzer harfler art arda geldiği için düşen nûn ile merfû muzâridir; dammenin delâlet ettiği düşmüş cemaat vâvı fâildir, mahallen merfû; nûn te'kîd içindir; cümle yeminin cevabıdır, mahalli yoktur; «izâ»nın cevabı mahzûftur, yeminin cevabı ona delâlet eder (Dürre).",
     segs=SG(("لَ", "lam-jawab", "part"), ("يَسْتَلِبُ", "istalaba-amr", "verb"), ("نَّ", "nun-tawkid", "part"))),
@@ -1837,9 +1837,9 @@ HOLLOW_N = "أَجْوَفُ: تُحْذَفُ عَيْنُهُ عِنْدَ ا�
 def F5(v, masdar, fail, note=None):
     return _sg.derived(_sg.B5, _sg.W5, "َ", v, v, v, masdar, fail, note=note)
 def F8(v, core, masdar, fail, note=None):
-    return _sg.derived(_sg.B8, _sg.W8, "َ", v, core, v, masdar, fail, note=note)
+    return _sg.derived(_sg.B8, _sg.W8, "َ", v, core, "اِ" + core, masdar, fail, note=note)   # the amr on the muḍāriʿ's stem: اِفْتَعِلْ
 def F10(v, core, masdar, fail, note=None):
-    return _sg.derived(_sg.B10, _sg.W10, "َ", v, core, v, masdar, fail, note=note)
+    return _sg.derived(_sg.B10, _sg.W10, "َ", v, core, "اِ" + core, masdar, fail, note=note)   # اِسْتَفْعِلْ
 def F3(v, core, masdar, fail, maful=None, pmz=None, pmd=None, note=None):
     return _sg.derived(_sg.B3, _sg.W3, "ُ", v, core, core, masdar, fail, maful, pmz, pmd, note)
 def F2(v, core, masdar, fail, maful=None, pmz=None, pmd=None, note=None):
@@ -2274,7 +2274,7 @@ TAILOR.update({
  "khalata": ("to mix, to join together (خَلَطَ يَخْلِطُ)", "karıştırmak, bir araya getirmek (خَلَطَ يَخْلِطُ)"),
 })
 NEW_GLOSS.update({
- "istalaba-amr": VB("اِسْتَلَبَ", "س ل ب", "to snatch away, to carry off as spoil (Form X)", "kapıp götürmek, yağma etmek (istif'âl)", "X"),
+ "istalaba-amr": VB("اِسْتَلَبَ", "س ل ب", "to snatch away, to carry off as spoil (Form VIII)", "kapıp götürmek, yağma etmek (ifti'âl)", "VIII"),
  "muqarran-amr": N("مُقَرَّن", "ق ر ن", "coupled, bound together (ism maf'ul of قَرَّنَ)", "birbirine bağlanmış (قَرَّنَ'den ism-i mef'ûl)"),
  "huwayna-amr": N("هُوَيْنَى", "ه و ن", "a gentle, easy pace (diminutive of هُونَى, feminine of أَهْوَن — al-Zawzanī)", "yavaş, ağır yürüyüş («ehven»in müennesi «hûnâ»nın tasgîri — Zevzenî)"),
  "qata-amr": VB("قَاتَ", "ق و ت", "to feed with a ration, to give one's daily food (قَاتَ يَقُوتُ قُوتًا)", "azık vermek, gündelik yiyeceği vermek (قَاتَ يَقُوتُ قُوتًا)"),
@@ -2283,7 +2283,7 @@ NEW_GLOSS.update({
  "qula-amr": N("قُلَة", "ق ل و", "the short stick struck with a bat in the boys' game of tipcat (pl. قُلُونَ / قُلِينَ like the sound masculine plural)", "çocukların çelik çomak oyununda sopayla vurulan kısa çubuk (ç. قُلُونَ / قُلِينَ)"),
 })
 NEW_VERBS.update({
- "istalaba-amr": F10("اِسْتَلَب", "سْتَلِب", "اِسْتِلَاب", "مُسْتَلِب"),
+ "istalaba-amr": F8("اِسْتَلَب", "سْتَلِب", "اِسْتِلَاب", "مُسْتَلِب"),
  "qata-amr": _sg.hollow1("nasara", "أَجْوَفُ وَاوِيٌّ", "قَات", "قُت", "قُوت", "قُت", "قُوت", "قُت", "قُوت", "قَائِت", note=HOLLOW_N + "يَقُوتُ ← لَمْ يَقُتْ؛ وَيَقُتْنَ مَعَ نُونِ النِّسْوَةِ."),
 })
 DIV += [

@@ -15491,3 +15491,55 @@ measured over the 78 packages (authored lines naming the construction vs the eng
   indefinite common word is no ishtighāl (هَزِجًا is a khabar continuing the verse before, its pronoun the fly's). (2) v327's object-with-
   pronoun ceiling had been moved 3 → 4 by BOTH waves for different lines (Labīd 10:s4 in v335; the Uṣūl's مَرْضَاتَهُ in v336-Sh); the
   merge kept two copies of the line. One line now, ceiling 5, both reasons cited.
+
+## v337 — ʿAmr ibn Kulthūm's and al-Ḥārith's Muʿallaqāt on the shelf: the seven complete
+
+- **The poems, whole** (L6, `pending-scholarly-review`, by the MUALLAQA brief; the Poetry shelf now holds all seven): `muallaqat-amr-ibn-kulthum`
+  (16 chapters: Ibn Qutayba's khabar + all 103 verses in al-Zawzanī's recension; al-wāfir, rawī nūn; 111 sentences, 966 tokens; new keys «-amr»)
+  and `muallaqat-al-harith` (13 chapters: Ibn Qutayba § 319 + all 82 verses in al-Zawzanī's recension; al-khafīf, rawī hamza; 89 sentences,
+  769 tokens; new keys «-hr»). Author scripts `tools/authoring/author_muallaqat_amr_ibn_kulthum.py` and `…_al_harith.py`, assembled from the
+  parts in the scratchpad (`work-muallaqat-amr/`, `work-muallaqat-al-harith/`: head / chNN / tail1 / gloss / tail2), staged with
+  `QISSA_PKG_ROOT`, copied in. iʿrāb checked against al-Durra; sources in `research/sources/muallaqat-{amr-ibn-kulthum,al-harith}-*.txt`.
+  One heard paradigm: `dahda-amr` (دَهْدَى, دَهْدَهَ with its last hāʾ turned yāʾ), so `sarfAudit().samai` has eight names; al-Ḥārith stores none.
+- **The gate.** ʿAmr's poem failed 36 checks on its first run, al-Ḥārith's 29 more (most of each one cause: the Sarf audit, which a dozen
+  Marāḥ/Talkhīṣ/İzzî checks include). Each was traced to the token that moved it and sorted A / B / C, every engine rule measured on the
+  shelf without the poem (same build, the id spliced out of STORIES). No received text or vowel was changed.
+  - **WujuhEngine (A)**: لَا at the head of a relative's ṣila or after مَنْ / مَا is the negation, never the prohibition (الَّذِي لَا تَصْبَحِينَا،
+    بِمَا لَا تَعْلَمِينَا — the rhyme's alif after the five verbs' nūn is no pronoun نَا; and Zuhayr 9:s2, 10:s1); أَيُّ annexed with an إِلَّا in its
+    clause before any verb is the question that denies (فَأَيُّ الْمَجْدِ إِلَّا قَدْ وَلِينَا); a وَإِذْ joined to an earlier إِذْ of the sentence is the
+    second ẓarf of the same past (al-Ḥārith «إِذْ وَلَّوْا شِلَالًا وَإِذْ تَلَظَّى الصِّلَاءُ»). Older 4525 → 4527; with both poems 98.0.
+  - **MaEngine (A)**: the extra bāʾ on the khabar is looked for six words on (وَمَا شَرُّ الثَّلَاثَةِ أُمَّ عَمْرٍو بِصَاحِبِكِ); the ma between two
+    annexed terms before a DEFINITE noun in jarr is zāʾida (قَبْلَ مَا الْيَوْمِ — al-Zawzanī «صِلَةٌ زَائِدَةٌ»); أَمْ joins a مَا to the noun before it
+    as أَوْ does (أَمْ مَا جَمَّعَتْ مِنْ مُحَارِبٍ). Ceiling 47 → 49 (B; the older shelf still 45; the four the books leave open are listed in the check).
+  - **The noun index (A)**: one spelling, a NAME and a common noun (قَتَادَة the poet, قَتَادَة the thorn): the second is kept as `twin337` and
+    the written ending chooses — a bare fatḥa on a name in ة is the diptote name's, tanwīn the common noun's (al-Talkhīṣ 63:s11). And a whole word
+    refused by the wave-174 shadda rule that opens on a joiner still gets the joiner's reading (وَجُدٍّ = وَ + جُدّ, not ʿAmr's وَجْد); wave 136's
+    memo guard knows both.
+  - **binaVowel (A)**: before نَا / نَ the yāʾ written quiescent (حُدِينَا، عُصِينَا، بُنِينَا) and any written sukūn (اشْتَرَطْنَا، اخْتَلَفْنَا) are the
+    verb's own — نَا is its rafʿ pronoun; the feminine tāʾ's sukūn is not (آذَنَتْنَا «she told us»). Ceiling 2 → 4 (B): the two new are al-Uṣūl
+    al-Munīfa 2:s9/s10 «ابْتُلِينَا» authored «مَبْنِيٌّ عَلَى الْفَتْحِ … وَنَا مَفْعُولٌ بِهِ» for a passive — the same slip as 14:s24 «وُلِدْنَا».
+  - **wave 111 / 32k (A)**: the elative-with-pronoun rule obeys the v333 weight — a noun met at most twice (ʿAmr's أَكْرَم) does not take a
+    pronoun-bearing أَفْعَلَ from a māḍī met twenty times and ten times as often («وَأَكْرَمَهُ اللهُ» is أَكْرَمَ).
+  - **TaalluqEngine.zarf334 (A)**: an إِذَا with no answer written hangs on the governing word right before it (Mughnī: «نَحْنُ الْحَاكِمُونَ إِذَا
+    أُطِعْنَا»). The v328 floor stays 55 (628 of 1140 with ʿAmr); both poems are measured apart with the v333 imports (litMd held at 42).
+  - **HadhfEngine (A)**: a manṣūb joined by وَ to the manṣūb before it is that noun's maʿṭūf, no ishtighāl (ضَرْبًا وَطَعْنًا أَقَرَّ بِهِ). The two poems
+    are set apart in v316 and «Faces, Inna and Unsaid» (ʿAmr 9/22, al-Ḥārith 1/16 — the verse's own ellipses, listed in the check); older 85.2.
+  - **TartibEngine.isnadsOf (A)**: looking AFTER a mubtadaʾ for its khabar, a phrase whose line says «خَبَرٌ مُقَدَّمٌ» is fronted before a LATER
+    mubtadaʾ — the look stops there (al-Ḥārith «مِنَ الْخَيْرِ آيَاتٌ ثَلَاثٌ فِي كُلِّهِنَّ الْقَضَاءُ»). Three of the five older violations were this slip
+    (al-Kāfiya 37:s6, Badʾ al-Amālī 12:s60, al-Talkhīṣ 76:s4) and three older frames false pairs: older 2567/955/5 → 2567/952/2; pinned 2584/986/2.
+  - **MamnuEngine (A)**: a written fatḥa before the last yāʾ-nūn is the dual's ـَيْنِ, never فَعَالِيل (al-Ḥārith's place «الْحِيَارَيْنِ»; older tokens
+    مُضَافَيْنِ، كَلَامَيْنِ). The lexicon audit 9 → 8 (ceiling 8 kept); الْأَرَاقِم joins the al-names (الْأَخْفَش …) that MamnuEngine wins.
+  - **JamEngine.build (A)**: the madda of a hamza before the plural's alif (مَأْكَمَة → مَآكِم); the weak lām: the hamza after a فِعَال's alif returns as
+    yāʾ in أَفْعِلَة (رِدَاء → أَرْدِيَة، لِوَاء → أَلْوِيَة، إِنَاء → آنِيَة), فَعَائِل on a weak or hamzated last is فَعَالَى (خَطِيئَة → خَطَايَا، جِنَايَة →
+    جَنَايَا، هِرَاوَة → هَرَاوَى). Older 301 → 295; ceiling 316 → 312 (B): ʿAmr's fifteen heard plurals and al-Ḥārith's two (رِئَال، قَرَاضِبَة), each
+    named in the check.
+  - **Measures (B)**: v327 kāna ceiling 47 → 49 (older 40; al-Ḥārith's two kāna tāmma — «شَيْءٍ كَانَ بَيْنَ بَكْرٍ وَتَغْلِبَ», «فَلَمَّا أَصْبَحُوا» —
+    NasikhGate's next item); the Nisba lab's unknown control كُرَة → ظُبَة (ʿAmr put كُرَة in the lexicon with its lām: كُرَوِيّ).
+  - **C (the poems' own slips)**, fixed in the parts: the F8 / F10 helpers built the amr on the māḍī's stem (اِنْتَهَبْ، اِرْتَجَلْ، اِسْتَرْجَعْ) — now on
+    the muḍāriʿ's (اِنْتَهِبْ، اِرْتَجِلْ، اِسْتَرْجِعْ), in both poems; ʿAmr's اِسْتَلَبَ is Form VIII (س ل ب), not X — glossary and ch. 14 tag.
+- Smoke: «v333 — the received imports…» holds the Poetry shelf at seven poems: Imruʾ al-Qays 81, Zuhayr 62, ʿAntara 75, Labīd 88, Ṭarafa 103,
+  ʿAmr ibn Kulthūm 103, al-Ḥārith ibn Ḥilliza 82, each verse with exactly one «•»; `sarfAudit().samai` the eight heard paradigms.
+- **For the hoca.** Wujūh left open: ʿAmr «وَلَا تُبْقِي», «حَتَّى يَلِينَا» (a homograph of وَلِيَ), «حَتَّى ضَاقَ»; the «مَا» four — «فَمَا وَجَدَتْ كَوَجْدِي»,
+  «نُطَاعِنُ مَا تَرَاخَى النَّاسُ», al-Ḥārith «وَمَا يُحِيرُ الْبُكَاءُ» (authored the question; al-Durra allows the negation), «قَبْلُ مَا قَدْ وَشَى بِنَا»;
+  al-Uṣūl al-Munīfa 2:s9/s10 «ابْتُلِينَا» (fatḥa and an object نَا for a passive); whether دَهْدَى (dahda-amr) is heard; the kāna tāmma two; the heard
+  plurals رِئَال، قَرَاضِبَة and ʿAmr's fifteen; the Hadhf seats the engine leaves open in both poems.
