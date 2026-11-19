@@ -363,3 +363,7 @@ editor's footnotes themselves are not copied. It is the source of `content/sampl
 package holds the entire entry, in three adjacent spans).
 
 - `muallaqat-antara-src.txt` — (1) Ibn Qutayba, al-Shiʿr wa-l-shuʿarāʾ (Dār al-Ḥadīth, Cairo, 1423 AH), shamela.ws/book/23785/236–238 (1/243–245, § 419); (2) al-Zawzanī, Sharḥ al-Muʿallaqāt al-sabʿ (Dār Iḥyāʾ al-Turāth al-ʿArabī, 1423/2002), shamela.ws/book/11253/268–288 (pp. 245–265); (3) Muḥammad ʿAlī Ṭāhā al-Durra, Fatḥ al-Kabīr al-Mutaʿāl: Iʿrāb al-Muʿallaqāt al-ʿashr al-ṭiwāl (Maktabat al-Sawādī, Jeddah, 2nd ed., 1409/1989), shamela.ws/book/151017/670–803 (2/131–264). Fetched 2026-11-19. One block per Shamela page (158 blocks), verbatim. Used for the package `muallaqat-antara`.
+
+- `muallaqat-labid-src.txt` — Ibn Qutayba (d. 276 AH), «الشعر والشعراء», edition as Shamela names it: دار الحديث، القاهرة، ١٤٢٣ هـ (book 23785). Pages https://shamela.ws/book/23785/259 and /260 (vol. 1 pp. 266–267). Used: § 469, whole. Fetched 2026-11-19.
+- `muallaqat-labid-zawzani.txt` — al-Zawzanī (d. 486 AH), «شرح المعلقات السبع», edition as Shamela names it: دار إحياء التراث العربي، ١٤٢٣ هـ / ٢٠٠٢ م (book 11253). Pages https://shamela.ws/book/11253/183 … /214 (pp. 171–202, all 88 verses with the commentary). Fetched 2026-11-19.
+- `muallaqat-labid-durra.txt` — Muḥammad ʿAlī Ṭāhā al-Durra, «فتح الكبير المتعال إعراب المعلقات العشر الطوال», مكتبة السوادي، جدة، ط ٢، ١٤٠٩ هـ / ١٩٨٩ م (book 151017). Pages https://shamela.ws/book/151017/548 … /664 (vol. 2 pp. 7–123, 89 verses). Fetched 2026-11-19.
