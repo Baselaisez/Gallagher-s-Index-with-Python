@@ -14552,3 +14552,123 @@ renamed; and the TOKENS decide, not the glossary line — in four packages the e
   line of أَمَّا; adam-wa-iblis:1:s4:4 لٰكِنَّهُ whose line says «إِنَّ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ».
 - Before minting a key: check `entries` in every glossary under content/samples AND content/user-uploads, and read the TOKENS
   under the key, not only the lemma — a PREF copy can give a package the right key's wrong entry.
+
+### The hoca's rulings, 2026-11-19 (applied in the v332 content)
+
+- **الْغَزَّالِيّ** takes a doubled zāy. The story, its glossary and its title are changed; the «some read it light» note is
+  removed. English is now al-Ghazzālī; Turkish was already Gazzâlî.
+- **دَابِق is a diptote, with no tanwin:** مَرْجُ دَابِقَ، يَوْمُ مَرْجِ دَابِقَ. Its jarr is by the fatḥa standing for the kasra
+  (ʿalamiyya + taʾnīth, as a place).
+- **طُومَانَ بَايُ** stands as written: a blended compound, the first part built on the fatḥa, the case on the second.
+- **Imports are wanted VERBATIM from reliable books:** al-Dhahabī's Siyar aʿlām al-nubalāʾ, al-Tanūkhī, and the Muʿallaqāt
+  with their balāgha after the Talkhīṣ. The first wave of these imports is v332–v333.
+  - shamela.ws, usul.ai and m-noor.com are allowed on the Default environment since this date.
+  - Shamela book ids:
+    - Siyar: 10906
+    - al-Mustajād: 768
+    - al-Faraj baʿd al-shidda: 12828
+    - al-Zawzanī's Sharḥ al-Muʿallaqāt: 11253
+    - al-Durra's iʿrāb of the Muʿallaqāt: 151017
+    - Ibn Qutayba's al-Shiʿr wa-l-shuʿarāʾ: 23785
+  - The briefs are IMPORT_BRIEF.md and MUALLAQA_BRIEF.md.
+- **«100% correct in the Atölyes»:** a labelled shortlist or a refusal with a reason is correct; a confident wrong line is
+  not. An audit of all 37 tools runs beside the engine waves, and its findings file feeds them.
+
+### v332 — the manṣūb offices: the naʿt veto (I-5), the ḥāl (I-4), the mafʿūl muṭlaq and its deputy (I-8), the tamyīz (I-9), the mafʿūl lahu (I-18)
+- **One engine, one verdict per word** — `MansubEngine` (`read / office / one / gov / sig / owner / veto / natMismatch / elativeBefore`), hooked in
+  `Murib.line` after the office is chosen and before MuqarabaEngine / IstithnaEngine. It reads the vowelling engine's seats (`Murib._decide`),
+  the case layer's claims and the page's letters, and returns `{ gap, office, exact | shortlist | veto, rule }` or nothing. It never touches a
+  seat another engine settled (kāna's khabar, inna's ism, maʿṭūf, badal, tawkīd, mustathnā, v326's shortlist) — save the number frame below.
+  «Complete clause» (`gov`) is read off the letters: the verb is lāzim (its pattern, or the ledger for a bare triliteral), passive, has its
+  object written (a noun in naṣb the loop seated, a demonstrative right after it, or the pronoun it wears), or reaches its complement through
+  its own jarr letter (`DabtEngine.prepGov93`, also behind a written doer). A verb of two or three objects (أَعْلَمَ، أَرَى، أَنْبَأَ … added) and
+  a clause with a second manṣūb noun already seated is left alone, whatever the ledger says (زَعَمْتَ إِحْدَاهُمَا مُهْتَدِينَ). A wāw- or fāʾ-joined
+  word is left alone; the wāw is the word's own letter only where a LEMMA says so (the root finder's «و ز د» for وَزَائِدَةً proves nothing).
+- **The naʿt agrees with its head in case (Shudhūr R69, R112, R179, R184; I-5) — EXACT veto.** Where the seat says «نعت» and the word's
+  written case cannot be its head's, the label is withdrawn and the model's guess is not handed back. Then the next office speaks: kāna's
+  khabar where one is still owed (كَانَ أَسَدٌ كَبِيرٌ نَائِمًا — also across a jarr phrase), a noun of time in naṣb → «ظَرْفٌ» (الصَّوْمُ الْيَوْمَ),
+  or one of the offices below (تَكْرِيمًا after لِآدَمَ, خَاتَمٌ حَدِيدًا); otherwise the line carries no office. The naʿt STANDS where a noun of
+  the same phrase agrees with it in case and definiteness — behind a muḍāf ilayh or a jarr phrase (يَدُ الْقُدْرَةِ الْإِلٰهِيَّةِ الْقَوِيَّةُ، فَضْلٌ خَالٍ
+  عَنْ عِوَضٍ مَشْرُوطٌ): only the head was misnamed. Not a head: كُلّ / بَعْض, a number before a singular (ثَلَاثَةُ رِجَالٍ أَبْرَصُ), a ẓarf, a word
+  that was itself withdrawn. A head that is a mubtadaʾ with no other khabar written gives «خَبَرُ «…»، أَوْ نَعْتٌ لَهُ» (a shortlist:
+  حُرُوفُ الْعَطْفِ الْوَاوُ). Refusals: a head whose ending allows the word's case (a diptote's fatḥa — but with the article a fatḥa is naṣb
+  alone); the naʿt on the PLACE behind the extra «مِنْ» of a negation or question (مَا لَكُمْ مِنْ إِلٰهٍ غَيْرُهُ). A word that carries its own
+  jarr letter (بِالْمَغْضُوبِيَّةِ، كَمَجْهُولِ) is never a naʿt. `WR()` reads what an ending allows: ـُونَ is rafʿ (not هَارُونَ), ـَانِ says nothing.
+  Corpus: «نعت» lines whose case differs from their named head's 148 → 19 (the 19: a same-phrase noun agrees, or the head's ending allows
+  it — 13 are true naʿts); authored naʿts still named 1,983 → 1,983 of 2,488; 157 vetoes — 139 leave the office silent, 10 the khabar /
+  naʿt shortlist, 3 kāna's khabar, 5 ẓarf; an authored naʿt withdrawn: 4 (three corpus slips, one true second naʿt across a verbal ṣifa —
+  izhar-al-asrar:9:s3:11 دَاخِلَةٌ, now silent).
+- **The ḥāl after a complete clause (R111, R113, R114; I-4) — SHORTLIST, the signal written.** An indefinite manṣūb DERIVED noun
+  (`derived`: the scale — فَاعِل، مَفْعُول، فَعِيل، مُفْعِل … — then `DabtEngine.sifaShape`; never a maṣdar) after a complete clause:
+  «حَالٌ — الْفِعْلُ «خَرَجَ» لَازِمٌ بِشَهَادَةِ الْمُتُونِ، وَالِاسْمُ نَكِرَةٌ مَنْصُوبَةٌ مُشْتَقَّةٌ، وَصَاحِبُ الْحَالِ …» — the owner named only where one
+  candidate stands or only one agrees in number and gender (`owner`). The ledger's softer word («لَازِمٌ فِي غَالِبِ الْمُتُونِ», «لَمْ يَرِدْ لَهُ
+  مَفْعُولٌ فِي الْمُتُونِ») keeps «وَيُحْتَمَلُ: مَفْعُولٌ بِهِ» beside it; behind a jarr-letter verb «… إِنْ تَعَدَّى الْفِعْلُ بِنَفْسِهِ». Right behind an
+  indefinite manṣūb noun the NAʿT leads and the ḥāl stands beside it (تَوْبَةً نَصُوحًا — فَعُول and فَعِيل serve both genders); the control
+  رَأَيْتُ رَجُلًا طَوِيلًا stays a naʿt. غَيْرَ + an indefinite description is a ḥāl the same way. وَحْدَهُ / وَحْدِي is «حَالٌ (مَعْرِفَةٌ لَفْظًا مُؤَوَّلَةٌ
+  بِنَكِرَةٍ: «مُنْفَرِدًا»)» — EXACT, by its word. The accusatives of time, place and manner (`ADVERB`: سَابِقًا، بَعِيدًا، قَرِيبًا، طَوِيلًا،
+  دَائِمًا …) are no ḥāl by their shape: after a verb that takes no object they get «ظَرْفٌ أَوْ نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ …، أَوْ حَالٌ»,
+  elsewhere nothing. Corpus (525 lines the authors open on «حال»): named 171 → 243; وَحْدَهُ 0 → 31 of 31; 43 ḥāl shortlists — 40 where
+  the authors say ḥāl, 3 where they do not (two slips below; يَبْقَى مَجْرُورًا, read by its author as kāna's sister).
+- **The mafʿūl muṭlaq and its deputy (R99–R101; I-8).** EXACT: كُلّ / بَعْض / أَيّ / an elative / a number before a maṣdar of its governor's
+  own root → «نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ — أُضِيفَ إِلَى مَصْدَرِ «…»» / «عَدَدُ مَصْدَرِ «…»» (فَلَا تَمِيلُوا كُلَّ الْمَيْلِ، ثَمَانِينَ جَلْدَةً — and جَلْدَةً
+  its tamyīz); the governor may be a ṣifa (حَرِيصِينَ كُلَّ الْحِرْصِ); a same-root maṣdar after its verb is «مَفْعُولٌ مُطْلَقٌ» whatever pronoun the
+  verb wears (ضَرَبْتُهُ ضَرْبًا). `sameRoot` also reads a verb the corpus does not own off its letters. SHORTLIST: مِثْلَ and the adjective
+  that stands for the maṣdar (كَثِيرًا، قَلِيلًا، شَدِيدًا …) — after a complete clause «نَائِبٌ … (صِفَةُ مَصْدَرٍ مَحْذُوفٍ)، أَوْ حَالٌ — <signal>»; with
+  no object written the mafʿūl bihi is the third name. The control رَأَى كُلَّ شَيْءٍ stays «مَفْعُولٌ بِهِ».
+  Corpus (353 authored mafʿūl muṭlaq / nāʾib): named 225 → 258; 18 exact verdicts (14 mafʿūl muṭlaq, 4 deputies) — 16 agree, 2 corpus
+  slips; 31 shortlists.
+- **The frames of the tamyīz (R115–R117, R201; I-9) — EXACT.** After an elative (+ its muḍāf ilayh / pronoun) (+ مِنْ …):
+  «تَمْيِيزٌ — بَعْدَ اسْمِ التَّفْضِيلِ «أَكْثَرُ»» — a jāmid noun only, never a word of time (أَنْفَعُ مِنَ الْقُوَّةِ أَحْيَانًا), never behind a verb's
+  particle (لَا أَعْلَمُ مِنْ ذُنُوبِهِمْ ذَنْبًا is «I know»; مَا أَحْسَنَ زَيْدًا); خَيْرٌ / شَرٌّ with «مِنْ», or in rafʿ right before the word (خَيْرٌ مَقَامًا).
+  After كَمْ: tanwīn-naṣb → «تَمْيِيزُ «كَمِ» الِاسْتِفْهَامِيَّةِ», tanwīn-jarr → «مُضَافٌ إِلَيْهِ — تَمْيِيزُ «كَمِ» الْخَبَرِيَّةِ». After the numbers 11–99
+  (v330's `adad330` second part, a decade) — this frame alone outranks every other seat (كَانَ لَهُ أَحَدَ عَشَرَ أَخًا was «خبر كان»). After a
+  measure (`MEASURE` + `MEASURE_V`: the vowels must be the measure's own — مُدٌّ, not the maṣdar مَدٌّ), what is like one (مِثْقَالَ ذَرَّةٍ خَيْرًا),
+  the thing made of a material (خَاتَمٌ حَدِيدًا), مُمْتَلِئٌ مَاءً, and the books' own lāzim verbs of the converted doer (اشْتَعَلَ الرَّأْسُ
+  شَيْبًا، امْتَلَأَ، تَصَبَّبَ، طَابَ، ضَاقَ). طَابَ زَيْدٌ نَفْسًا keeps v326's line. SHORTLISTS: اِزْدَادَ + a jāmid noun (tamyīz or object); an
+  elative-shaped word the analyzer reads as a verb, with «مِنْ» or its own pronoun pointing to the elative (وَأَكْثَرَ مِنْهَا أَحْوَالًا): «تَمْيِيزٌ إِنْ
+  كَانَ «…» اسْمَ تَفْضِيلٍ، أَوْ مَنْصُوبٌ بِالْفِعْلِ … إِنْ كَانَ فِعْلًا». Control خَرَجَ زَيْدٌ مُسْرِعًا: a ḥāl.
+  Corpus (212 authored tamyīz): named 70 → 136; 52 exact frames — 43 agree, 9 corpus slips; all 14 «كَمِ الْخَبَرِيَّةِ» agree; 11 shortlists.
+- **The mafʿūl lahu (R102; I-18) — SHORTLIST against the ḥāl.** An indefinite manṣūb maṣdar of a heart-act or a motive (`HEART` roots — تَأْدِيب, the books' own example, among them; the glossary's
+  `verbal` flag, a derived bāb's shape, or the closed `HEART_WORDS` for bare measures — عَظْمًا «a bone» and حَيًّا «alive» are none) that is
+  not of the verb's root, after a complete clause: «مَفْعُولٌ لِأَجْلِهِ — مَصْدَرٌ قَلْبِيٌّ مَنْصُوبٌ لَيْسَ مِنْ لَفْظِ الْفِعْلِ، وَ<signal>؛ وَيُحْتَمَلُ: حَالٌ (مَصْدَرٌ فِي
+  مَوْضِعِ الْحَالِ)»; a muḍāf maṣdar too (مَخَافَةَ أَنْ …). Any other glossary maṣdar before a jarr phrase: «مَفْعُولٌ لِأَجْلِهِ إِنْ كَانَ عِلَّةً لِلْفِعْلِ،
+  أَوْ حَالٌ». With no object written (the clause not shown complete) the mafʿūl bihi is the second name: «… إِنْ كَانَ عِلَّةَ الْفِعْلِ، أَوْ مَفْعُولٌ
+  بِهِ إِنْ وَقَعَ الْفِعْلُ عَلَيْهِ، أَوْ حَالٌ» (أَظْهَرَ الرَّجُلُ فَرَحًا). R102's «same time, same agent» stays the reader's check — hence no exact
+  verdict. Control ضَرَبْتُهُ ضَرْبًا: the mafʿūl muṭlaq. The loop's «مفعول مطلق» on such a maṣdar that is not of the verb's root is weighed here too
+  (ضَرَبْتُ زَيْدًا تَأْدِيبًا); the formula تَعَالَى / تَبَارَكَ / عَلَيْهِ وَسَلَّمَ is no governor. Corpus (79 authored): named 42 → 54; 16 verdicts
+  (9 after a complete clause, 2 before a jarr phrase, 5 with the mafʿūl bihi beside them), 15 with the authors' office in them, 1 corpus
+  slip.
+- **Two analyzer misreadings met on the way (both «100% in the labs»):** فَهْمًا / وَهْمًا / وَهْنًا were فَ + هُمَا / وَ + هُنَا — a pronoun or a
+  demonstrative never wears the tanwīn (`SentenceAnalyzer`'s wāw / fāʾ peel, and `CaseEngine.claim`'s «built core behind a clitic»); and
+  فَهِمَ was فَ + هُمْ — a verb the texts own with these very vowels is not peeled (jumal-al-tadrib:6:s8:4 read «ضَمِيرٌ مُنْفَصِلٌ» on a tamyīz;
+  qisas-al-nabiyyin-1:8:s7:2 and -2:26:s6:3 on the verb). `MansubEngine.isElative` reads the shadda before its vowel (أَشَدَّ، أَصَحَّ).
+- **Corpus slips for the hoca** (package:chapter:sentence:token, tokens counted from 1):
+  - the counted noun after a number called «ظرف» (the number takes the ẓarf's seat; the noun is its tamyīz): al-usul-al-munifa:1:s5:10
+    حَدِيثًا, :12:s2:27 and :12:s2:32 لَيْلَةً, :14:s16:33 يَوْمًا, :24:s17:16 لَيْلَةً, :24:s17:18 يَوْمًا.
+  - al-usul-al-munifa:24:s20:7 مَنْزِلَةً «حال» (the tamyīz of أَرْدَاهُمْ); :26:s2:75 خَيْرًا «مفعول مطلق» and :26:s2:81 شَرًّا «حال» — both the
+    tamyīz of «مِثْقَالَ ذَرَّةٍ», and the two lines disagree with one another.
+  - a same-root maṣdar after its verb called «حال»: al-maqamat-birgivi:13:s7:10 رَحْمَةً (رَحِمَهُ … رَحْمَةً وَاسِعَةً), al-usul-al-munifa:24:s17:30
+    تَفْسِيرًا (يُفَسِّرُونَهُ تَفْسِيرًا).
+  - al-usul-al-munifa:23:s5:16 مَخَافَةَ «مفعول به» (يَفِرُّ مِنْهُ مَخَافَةَ أَنْ … — the mafʿūl lahu).
+  - «نعت» on a word that cannot agree: al-usul-al-munifa:3:s14:12 صَائِرُونَ (the khabar of وَالنَّاسُ), :20:s2:45 حَقِيقَةً (inna's ism, after
+    its khabar لِكُلِّ حَقٍّ), :22:s1:34 مُؤْمِنًا (the khabar of يَكُونَ).
+  - a ẓarf called otherwise: al-usul-al-munifa:18:s15:2, :18:s15:7, :29:s3:13 الْيَوْمَ «مفعول به»; :24:s21:95 الْيَوْمَ «اسم إن»; :13:s3:19
+    وَقْتَ «خبر كان» (the khabar is مُسْتَغْنِيًا).
+  - a ḥāl or a naʿt called «مفعول به»: al-usul-al-munifa:14:s2:17 مُؤْمِنًا (وَلَا خَلَقَهُ مُؤْمِنًا), :20:s3:19 بَارِزًا (أَنْظُرُ إِلَى عَرْشِ رَبِّي
+    بَارِزًا); al-maqamat-birgivi:6:s3:7 نَصُوحًا (تَوْبَةً نَصُوحًا — the naʿt).
+- Smoke (one shared pass, `v332scan`, memoised on the page): «v332 — the naʿt must agree with its head in case» (mismatches ≤ 20, authored
+  naʿts named ≥ 1975, an authored naʿt withdrawn ≤ 4), «v332 — the ḥāl after a complete clause» (named ≥ 238, وَحْدَهُ 31 of 31, offered
+  against the authors ≤ 3), «v332 — the mafʿūl muṭlaq and its deputy» (named ≥ 252, exact against the authors ≤ 2), «v332 — the frames of the
+  tamyīz» (named ≥ 133, exact agreeing ≥ 42, exact against the authors ≤ 9), «v332 — the mafʿūl lahu» (named ≥ 51, offered where the authors
+  name neither it nor the ḥāl ≤ 1) — each with its examples and controls. Measurement: scratchpad e332/m_v332.js (the smoke's own pass) via
+  the page server e332/server.js + p.sh — before = v332_before.json (base.html, the pre-v332 code on the same data), after =
+  v332_after.json; per-token dumps dump_base.json / dump_final.json with rep.py / mrep.py / grep.py (authored class against engine class).
+- Full suite (`node tools/smoke_test.js`, the reader as built): 504 checks, 503 pass. The one failure is «wave 136 — SPEED III»: the
+  shipped IrabModel no longer equals a fresh fit, because the analyzer now reads فَهِمَ / فَهْمًا / وَهْمًا as words (the peel fixes above) —
+  `node tools/gen_irab_model.js && python3 tools/build_prototype.py` (2,409 weights over 65,902 rows). Verified on a dry copy with the
+  refit: 504 of 504 pass, SPEED III and «v317 — the library shelves its texts by source» among them. No older check was changed.
+- Not done (next): the long tail of the ḥāl (in a nominal clause, a second ḥāl, after a transitive verb with no object written — 282 of
+  525 still unnamed); لَفْظًا / مَعْنًى / تَقْدِيرًا / وُجُودًا (the authors split between tamyīz, ḥāl and mafʿūl muṭlaq); the tamyīz after
+  زَادَ + a pronoun (a second object by the ledger); سُبْحَانَهُ, جِدًّا, أَيْضًا, مَرَّةً as mafʿūl muṭlaq; the six naʿt lines the veto cannot
+  reach (a diptote-shaped muḍāf: مَنْزِلَةَ غَيْرِ الْمُنْكِرِ); the verb's own doer clause still names a manṣūb maṣdar the loop seated as its doer
+  («يَفِرُّ … وَفَاعِلُهُ «مَخَافَةَ»»); «عِشْرُونَ» called «مضاف إليه» after عِنْدِي; وَهَمَ (no corpus verb vouches for it) is still وَ + هُمْ.

@@ -17274,6 +17274,97 @@ if (!CHROME) {
     if (!/مَفْعُولٌ بِهِ، وَالضَّمِيرُ مُضَافٌ إِلَيْهِ/.test(c.samia[2]) || !/وَفَاعِلُهُ «الْمَلِكُ»/.test(c.samia[0])) throw new Error('سَمِعَ الْمَلِكُ سُؤَالَهُ: ' + J(c.samia));
     if (r.n.fail < 230 || r.n.mubtada < 250 || r.n.kanaIsm < 75 || r.pronOnly > 200) throw new Error('against the authored lines: ' + J(r));
   });
+  // (v332) one pass over the authored lines serves the five checks below: what the authors call a word (the office that OPENS their line) against what MansubEngine and Murib.line say of it
+  const v332scan = () => page.evaluate(() => (() => { if (window.__v332) return window.__v332;
+  const S = x => stripAr(String(x || '')).replace(/[^ء-ي ]/g, '').replace(/[أإآ]/g, 'ا');
+  const OFF = [['nat', /نعت|صفه |صفة |^صفه|^صفة/], ['hal', /حال/], ['tamyiz', /تمييز/], ['naib', /نائب (عن|مناب) (ال)?(مفعول المطلق|مصدر)|نائب مفعول مطلق/], ['mm', /مفعول مطلق/], ['lah', /مفعول (لاجله|له|من اجله)/], ['maful', /مفعول به/], ['zarf', /ظرف|مفعول فيه/], ['khabar', /خبر/], ['atf', /معطوف/], ['badal', /بدل/], ['tawkid', /توكيد/], ['mubtada', /مبتدا/], ['fail', /فاعل/], ['ism', /اسم (ان|كان|لا|ليس)/], ['mustathna', /مستثنى/], ['mudaf', /مضاف اليه/]];
+  const lead = a => { let b = null, p = 1e9; for (const [k, re] of OFF) { const m = re.exec(a); if (m && m.index < p) { b = k; p = m.index; } } return b; };
+  /* the AUTHOR's office is the one that opens the line (a joining letter's clause or the word itself may stand before it) */
+  const leadA = a => { const a0 = a.replace(/^(ال(واو|فاء|لام|باء|كاف|همزه|همزة) [^ ]+( [^ ]+)? (و)?)/, ''); let b = null, p = 1e9; for (const [k, re] of OFF) { const m = re.exec(a0); if (m && m.index < p) { b = k; p = m.index; } } return p <= 12 ? b : null; };
+  const has = (a, k) => OFF.find(o => o[0] === k)[1].test(a);
+  const RE = /نعت|صفه|صفة|حال|تمييز|مفعول مطلق|المفعول المطلق|نائب عن المصدر|مفعول لاجله|مفعول له|مفعول من اجله/, CS = ['raf', 'nasb', 'jarr'], ME = typeof MansubEngine !== 'undefined';
+  const R = { n: 0, natMis: 0, natA: 0, natKept: 0, veto: 0, vetoNat: 0, halA: 0, halNamed: 0, i4: 0, i4agree: 0, i4other: 0, wahd: 0, wahdAgree: 0, mmA: 0, mmNamed: 0, i8x: 0, i8xAgree: 0, i8xDiffer: 0, i8s: 0, tamA: 0, tamNamed: 0, i9x: 0, i9xAgree: 0, i9xDiffer: 0, i9s: 0, lahA: 0, lahNamed: 0, i18: 0, i18agree: 0, i18other: 0, list: { vetoNat: [], i8x: [], i9x: [], i18: [], i4: [] } };
+  for (const st of STORIES) for (const ch of (st.chapters || [])) for (const sn of (ch.sentences || [])) { const T = sn.tokens || []; if (!T.length) continue; let rows = null;
+    try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { rows = []; } if (rows.length !== T.length) continue;
+    let out = []; try { out = (Murib._decide(rows) || {}).out || []; } catch (e) {}
+    const ck = j => { try { return (CaseEngine.claim(rows, j) || {}).k || null; } catch (e) { return null; } };
+    for (let i = 0; i < T.length; i++) { if (!(rows[i].kind || '').startsWith('noun')) continue; const a = S((T[i].irab || {}).ar), o = out[i] || {};
+      let m = null; if (ME) { try { m = MansubEngine.office(rows, i); } catch (e) {} }
+      if (!m && !RE.test(a) && o.rule !== 'nat') continue; R.n++;
+      let e = ''; try { e = S((Murib.line(rows, i) || {}).ar); } catch (x) {} const al = leadA(a), el = lead(e), key = st.id + ':' + ch.n + ':' + sn.id + ':' + (i + 1);
+      if (el === 'nat' && o.rule === 'nat' && typeof o.head === 'number' && rows[o.head]) { const k = ck(i), hk = ck(o.head); if (CS.includes(k) && CS.includes(hk) && k !== hk) R.natMis++; }
+      if (al === 'nat') { R.natA++; if (has(e, 'nat')) R.natKept++; }
+      if (al === 'hal') { R.halA++; if (has(e, 'hal')) R.halNamed++; }
+      if (al === 'mm' || al === 'naib') { R.mmA++; if (/مفعول مطلق|المفعول المطلق/.test(e)) R.mmNamed++; }
+      if (al === 'tamyiz') { R.tamA++; if (has(e, 'tamyiz')) R.tamNamed++; }
+      if (al === 'lah') { R.lahA++; if (has(e, 'lah')) R.lahNamed++; }
+      if (!m) continue;
+      if (m.veto) { R.veto++; if (al === 'nat' && !m.shortlist) { R.vetoNat++; R.list.vetoNat.push(key); } }
+      if (m.gap === 'I-4' && m.rule === 'hal') { if (m.exact) { R.wahd++; if (al === 'hal') R.wahdAgree++; } else { R.i4++; if (al === 'hal' || has(a, 'hal')) R.i4agree++; else { R.i4other++; R.list.i4.push(key); } } }
+      if (m.gap === 'I-8') { if (m.exact) { R.i8x++; if (has(a, 'mm') || has(a, 'naib')) R.i8xAgree++; else { R.i8xDiffer++; R.list.i8x.push(key); } } else R.i8s++; }
+      if (m.gap === 'I-9' && m.rule === 'tamyiz') { if (m.exact) { R.i9x++; if (has(a, 'tamyiz')) R.i9xAgree++; else { R.i9xDiffer++; R.list.i9x.push(key); } } else R.i9s++; }
+      if (m.gap === 'I-18') { R.i18++; if (has(a, 'lah') || has(a, 'hal') || (m.tier3 && has(a, 'maful'))) R.i18agree++; else { R.i18other++; R.list.i18.push(key); } } } }
+  return (window.__v332 = R); })());
+  const v332L = () => page.evaluate(() => { const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); }; const o = {};
+    for (const [k, s] of Object.entries({ asad: 'كَانَ أَسَدٌ كَبِيرٌ نَائِمًا', adam: 'سَجَدُوا لِآدَمَ تَكْرِيمًا لَهُ', sawm: 'الصَّوْمُ الْيَوْمَ', khatam: 'هَذَا خَاتَمٌ حَدِيدًا', yahud: 'وَصَفَ الْيَهُودَ بِالْمَغْضُوبِيَّةِ', tawil: 'رَأَيْتُ رَجُلًا طَوِيلًا', yad: 'هُنَالِكَ تَبْرُزُ يَدُ الْقُدْرَةِ الْإِلٰهِيَّةِ الْقَوِيَّةُ',
+      khaif: 'خَرَجَ مِنَ الْمَدِينَةِ خَائِفًا', arnab: 'مَشَى الْأَرْنَبُ بَطِيئًا', wahd: 'صَلَّى وَحْدَهُ', nasuh: 'تُوبُوا إِلَى اللهِ تَوْبَةً نَصُوحًا', zaama: 'فَإِنْ زَعَمْتَ إِحْدَاهُمَا مُهْتَدِينَ', baid: 'وَلَا يَذْهَبُ بَعِيدًا', zaida: 'نَحْوُ كَانَتِ الْكَائِنَةُ وَكُنْ فَيَكُونُ وَزَائِدَةً نَحْوُ كَيْفَ',
+      mayl: 'فَلَا تَمِيلُوا كُلَّ الْمَيْلِ', jald: 'فَاجْلِدُوهُمْ ثَمَانِينَ جَلْدَةً', darb: 'ضَرَبْتُهُ ضَرْبًا', fahm: 'فَهِمَ الدَّرْسَ فَهْمًا', baka: 'بَكَى كَثِيرًا', kull: 'رَأَى كُلَّ شَيْءٍ', sharib: 'شَرِبَ أَكْثَرُهُمْ كَثِيرًا',
+      mal: 'أَنَا أَكْثَرُ مِنْكَ مَالًا', kam: 'كَمْ كِتَابًا قَرَأْتَ', shayb: 'اشْتَعَلَ الرَّأْسُ شَيْبًا', ratl: 'عِنْدِي رِطْلٌ زَيْتًا', dirham: 'عِنْدِي عِشْرُونَ دِرْهَمًا', akh: 'كَانَ لَهُ أَحَدَ عَشَرَ أَخًا', nafs: 'طَابَ زَيْدٌ نَفْسًا', musri: 'خَرَجَ زَيْدٌ مُسْرِعًا', alam: 'لَا أَعْلَمُ مِنْ ذُنُوبِهِمْ ذَنْبًا', ahyan: 'الْحِيلَةُ أَنْفَعُ مِنَ الْقُوَّةِ أَحْيَانًا', madd: 'وَفِي نَحْوِ مَدٍّ مَصْدَرًا', ahsana: 'مَا أَحْسَنَ زَيْدًا',
+      ijlal: 'قُمْتُ إِجْلَالًا لَكَ', hayra: 'نَظَرَ إِلَيْهِ حَيْرَةً', azm: 'وَلَا تَهْشِمْ لَهُ عَظْمًا', hayy: 'وَيَوْمَ يُبْعَثُ حَيًّا', farah: 'أَظْهَرَ الرَّجُلُ فَرَحًا', tadib1: 'ضَرَبْتُهُ تَأْدِيبًا', tadib2: 'ضَرَبْتُ زَيْدًا تَأْدِيبًا', taala: 'تَقَرَّبُوا إِلَى اللهِ تَعَالَى زَادَهُمْ خُشُوعًا' })) o[k] = L(s);
+    const rg = SentenceAnalyzer.analyze('مَا لَكُمْ مِنْ إِلٰهٍ غَيْرُهُ'); o.ghayrVeto = !!((MansubEngine.office(rg, 4) || {}).veto); return o; });
+  await check('v332 — the naʿt must agree with its head in case (Shudhūr R69, R112, R179, R184; triage I-5, MansubEngine.natMismatch / veto): كَانَ أَسَدٌ كَبِيرٌ نَائِمًا — نَائِمًا «خَبَرُ كَانَ», never «نَعْتٌ»; سَجَدُوا لِآدَمَ تَكْرِيمًا لَهُ — no naʿt of a majrūr; الصَّوْمُ الْيَوْمَ — «ظَرْفٌ»; هَذَا خَاتَمٌ حَدِيدًا — «تَمْيِيزٌ»; a word behind its own jarr letter (بِالْمَغْضُوبِيَّةِ) is no naʿt; the controls رَأَيْتُ رَجُلًا طَوِيلًا and يَدُ الْقُدْرَةِ الْإِلٰهِيَّةِ الْقَوِيَّةُ keep their naʿt, and مِنْ إِلٰهٍ غَيْرُهُ (the naʿt on the place) is not vetoed; against the authored lines the «نَعْتٌ» lines whose case differs from their head\'s fall from 148 to ≤ 20, the authored naʿts still named ≥ 1975, an authored naʿt withdrawn ≤ 4', async () => {
+    const J = JSON.stringify, c = await v332L(), r = await v332scan();
+    if (!/خَبَرُ كَانَ/.test(c.asad[3]) || /نَعْتٌ/.test(c.asad[3])) throw new Error('نَائِمًا: ' + J(c.asad));
+    if (/نَعْتٌ/.test(c.adam[2])) throw new Error('تَكْرِيمًا: ' + J(c.adam));
+    if (!/ظَرْفٌ/.test(c.sawm[1]) || /نَعْتٌ/.test(c.sawm[1])) throw new Error('الْيَوْمَ: ' + J(c.sawm));
+    if (!/تَمْيِيزٌ/.test(c.khatam[2]) || /نَعْتٌ/.test(c.khatam[2])) throw new Error('حَدِيدًا: ' + J(c.khatam));
+    if (/نَعْتٌ/.test(c.yahud[2])) throw new Error('بِالْمَغْضُوبِيَّةِ: ' + J(c.yahud));
+    if (!/نَعْتٌ/.test(c.tawil[2]) || /حَالٌ/.test(c.tawil[2])) throw new Error('the control طَوِيلًا: ' + J(c.tawil));
+    if (!/نَعْتٌ/.test(c.yad[5]) || c.ghayrVeto) throw new Error('the naʿt behind a muḍāf ilayh / on the place: ' + J([c.yad, c.ghayrVeto]));
+    if (r.natMis > 20 || r.natKept < 1975 || r.vetoNat > 4) throw new Error('against the authored lines: ' + J({ natMis: r.natMis, natA: r.natA, natKept: r.natKept, veto: r.veto, vetoNat: r.vetoNat, list: r.list.vetoNat }));
+  });
+  await check('v332 — the ḥāl after a complete clause (Shudhūr R111, R113, R114; triage I-4, MansubEngine.gov / owner): خَرَجَ مِنَ الْمَدِينَةِ خَائِفًا — «حَالٌ — الْفِعْلُ «خَرَجَ» لَازِمٌ …» with its owner named; مَشَى الْأَرْنَبُ بَطِيئًا — ḥāl; صَلَّى وَحْدَهُ — «حَالٌ (مَعْرِفَةٌ لَفْظًا …)» exact; right behind an indefinite manṣūb noun the naʿt leads (تَوْبَةً نَصُوحًا) and the control رَأَيْتُ رَجُلًا طَوِيلًا stays a naʿt; a verb of two objects is left alone (زَعَمْتَ إِحْدَاهُمَا مُهْتَدِينَ); بَعِيدًا after a lāzim verb is a named shortlist, not a mafʿūl bihi; a wāw-joined word is left alone; against the authored lines the ḥāl named ≥ 238 (was 171), all 31 وَحْدَهُ, and a ḥāl offered where the authors do not say ḥāl ≤ 3', async () => {
+    const J = JSON.stringify, c = await v332L(), r = await v332scan();
+    if (!/حَالٌ — الْفِعْلُ «خَرَجَ» لَازِمٌ/.test(c.khaif[3]) || !/صَاحِبُ الْحَالِ/.test(c.khaif[3])) throw new Error('خَائِفًا: ' + J(c.khaif));
+    if (!/حَالٌ —/.test(c.arnab[2])) throw new Error('بَطِيئًا: ' + J(c.arnab));
+    if (!/حَالٌ \(مَعْرِفَةٌ لَفْظًا/.test(c.wahd[1])) throw new Error('وَحْدَهُ: ' + J(c.wahd));
+    if (!/نَعْتٌ لِـ«تَوْبَةً»/.test(c.nasuh[4]) || !/وَيُحْتَمَلُ: حَالٌ/.test(c.nasuh[4])) throw new Error('نَصُوحًا: ' + J(c.nasuh));
+    if (!/نَعْتٌ/.test(c.tawil[2]) || /حَالٌ/.test(c.tawil[2])) throw new Error('the control طَوِيلًا: ' + J(c.tawil));
+    if (/حَالٌ/.test(c.zaama[3])) throw new Error('مُهْتَدِينَ (a second object): ' + J(c.zaama));
+    if (!/ظَرْفٌ أَوْ نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ/.test(c.baid[2]) || /مَفْعُولٌ بِهِ/.test(c.baid[2])) throw new Error('بَعِيدًا: ' + J(c.baid));
+    if (/حَالٌ/.test(c.zaida[5])) throw new Error('وَزَائِدَةً (joined): ' + J(c.zaida));
+    if (r.halNamed < 238 || r.wahd < 31 || r.wahdAgree !== r.wahd || r.i4other > 3) throw new Error('against the authored lines: ' + J({ halA: r.halA, halNamed: r.halNamed, i4: r.i4, i4agree: r.i4agree, i4other: r.i4other, wahd: r.wahd, wahdAgree: r.wahdAgree, list: r.list.i4 }));
+  });
+  await check('v332 — the mafʿūl muṭlaq and its deputy (Shudhūr R99–R101; triage I-8, MansubEngine): فَلَا تَمِيلُوا كُلَّ الْمَيْلِ — كُلَّ «نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ»; فَاجْلِدُوهُمْ ثَمَانِينَ جَلْدَةً — ثَمَانِينَ the deputy, جَلْدَةً its tamyīz; ضَرَبْتُهُ ضَرْبًا — «مَفْعُولٌ مُطْلَقٌ» behind an object pronoun; فَهِمَ الدَّرْسَ فَهْمًا — فَهِمَ is the texts\' verb (never فَ + هُمْ) and the tanwīn makes فَهْمًا a noun (never فَ + هُمَا), the mafʿūl muṭlaq; بَكَى كَثِيرًا — the deputy or a ḥāl, the signal named; with no object written the mafʿūl bihi stays in the shortlist (شَرِبَ أَكْثَرُهُمْ كَثِيرًا); the control رَأَى كُلَّ شَيْءٍ stays «مَفْعُولٌ بِهِ»; against the authored lines named ≥ 252 (was 225) and an exact verdict the authors do not share ≤ 2', async () => {
+    const J = JSON.stringify, c = await v332L(), r = await v332scan();
+    if (!/نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ — أُضِيفَ إِلَى مَصْدَرِ/.test(c.mayl[2])) throw new Error('كُلَّ الْمَيْلِ: ' + J(c.mayl));
+    if (!/نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ — عَدَدُ مَصْدَرِ/.test(c.jald[1]) || !/تَمْيِيزٌ — بَعْدَ الْعَدَدِ/.test(c.jald[2])) throw new Error('ثَمَانِينَ جَلْدَةً: ' + J(c.jald));
+    if (!/مَفْعُولٌ مُطْلَقٌ/.test(c.darb[1]) || /حَالٌ/.test(c.darb[1])) throw new Error('ضَرْبًا: ' + J(c.darb));
+    if (!/مَنْصُوبٌ وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، مَفْعُولٌ مُطْلَقٌ/.test(c.fahm[2]) || /ضَمِيرٌ/.test(c.fahm[2]) || !/^فِعْلٌ مَاضٍ/.test(c.fahm[0])) throw new Error('فَهِمَ … فَهْمًا: ' + J(c.fahm));
+    if (!/نَائِبٌ عَنِ الْمَفْعُولِ الْمُطْلَقِ \(صِفَةُ مَصْدَرٍ مَحْذُوفٍ\)، أَوْ حَالٌ — الْفِعْلُ «بَكَى» لَازِمٌ/.test(c.baka[1])) throw new Error('كَثِيرًا: ' + J(c.baka));
+    if (!/أَوْ حَالٌ، أَوْ مَفْعُولٌ بِهِ/.test(c.sharib[2]) || /تَمْيِيزٌ/.test(c.sharib[2])) throw new Error('شَرِبَ أَكْثَرُهُمْ كَثِيرًا: ' + J(c.sharib));
+    if (!/مَفْعُولٌ بِهِ/.test(c.kull[1]) || /نَائِبٌ/.test(c.kull[1])) throw new Error('the control كُلَّ شَيْءٍ: ' + J(c.kull));
+    if (r.mmNamed < 252 || r.i8xDiffer > 2 || r.i8xAgree < 15) throw new Error('against the authored lines: ' + J({ mmA: r.mmA, mmNamed: r.mmNamed, i8x: r.i8x, i8xAgree: r.i8xAgree, i8xDiffer: r.i8xDiffer, i8s: r.i8s, list: r.list.i8x }));
+  });
+  await check('v332 — the frames of the tamyīz (Shudhūr R115–R117, R201; triage I-9, MansubEngine.elativeBefore): أَنَا أَكْثَرُ مِنْكَ مَالًا — «تَمْيِيزٌ — بَعْدَ اسْمِ التَّفْضِيلِ»; كَمْ كِتَابًا قَرَأْتَ — «تَمْيِيزُ «كَمِ» الِاسْتِفْهَامِيَّةِ»; اشْتَعَلَ الرَّأْسُ شَيْبًا — the doer converted; عِنْدِي رِطْلٌ زَيْتًا — after the measure; عِشْرُونَ دِرْهَمًا and أَحَدَ عَشَرَ أَخًا (behind kāna) — after the number; طَابَ زَيْدٌ نَفْسًا keeps v326\'s line; the controls: خَرَجَ زَيْدٌ مُسْرِعًا a ḥāl, لَا أَعْلَمُ … ذَنْبًا (the verb «I know») no tamyīz, أَحْيَانًا a ẓarf, مَدٍّ مَصْدَرًا (the maṣdar مَدّ, not the measure مُدّ) and مَا أَحْسَنَ زَيْدًا no tamyīz; against the authored lines named ≥ 133 (was 70), exact frames agreeing ≥ 42, exact where the authors say otherwise ≤ 9 — nine corpus slips', async () => {
+    const J = JSON.stringify, c = await v332L(), r = await v332scan();
+    if (!/تَمْيِيزٌ — بَعْدَ اسْمِ التَّفْضِيلِ «أَكْثَرُ»/.test(c.mal[3])) throw new Error('مَالًا: ' + J(c.mal));
+    if (!/تَمْيِيزُ «كَمِ» الِاسْتِفْهَامِيَّةِ/.test(c.kam[1])) throw new Error('كَمْ كِتَابًا: ' + J(c.kam));
+    if (!/تَمْيِيزٌ — نِسْبَةُ الْفِعْلِ اللَّازِمِ/.test(c.shayb[2]) || /مَفْعُولٌ بِهِ/.test(c.shayb[2])) throw new Error('شَيْبًا: ' + J(c.shayb));
+    if (!/تَمْيِيزٌ — بَعْدَ الْمِقْدَارِ «رِطْلٌ»/.test(c.ratl[2])) throw new Error('زَيْتًا: ' + J(c.ratl));
+    if (!/تَمْيِيزٌ/.test(c.dirham[2]) || !/تَمْيِيزٌ — بَعْدَ الْعَدَدِ «عَشَرَ»/.test(c.akh[4]) || /خَبَرُ/.test(c.akh[4])) throw new Error('the numbers: ' + J([c.dirham, c.akh]));
+    if (!/تَمْيِيزٌ/.test(c.nafs[2])) throw new Error('نَفْسًا: ' + J(c.nafs));
+    if (!/حَالٌ/.test(c.musri[2]) || /تَمْيِيزٌ/.test(c.musri[2])) throw new Error('the control مُسْرِعًا: ' + J(c.musri));
+    if (/تَمْيِيزٌ/.test(c.alam[4]) || /تَمْيِيزٌ/.test(c.ahyan[4]) || /تَمْيِيزٌ/.test(c.madd[3]) || /تَمْيِيزٌ/.test(c.ahsana[2])) throw new Error('a tamyīz where there is none: ' + J([c.alam[4], c.ahyan[4], c.madd[3], c.ahsana[2]]));
+    if (r.tamNamed < 133 || r.i9xAgree < 42 || r.i9xDiffer > 9) throw new Error('against the authored lines: ' + J({ tamA: r.tamA, tamNamed: r.tamNamed, i9x: r.i9x, i9xAgree: r.i9xAgree, i9xDiffer: r.i9xDiffer, i9s: r.i9s, list: r.list.i9x }));
+  });
+  await check('v332 — the mafʿūl lahu (Shudhūr R102; triage I-18, MansubEngine.HEART): قُمْتُ إِجْلَالًا لَكَ, سَجَدُوا لِآدَمَ تَكْرِيمًا لَهُ, نَظَرَ إِلَيْهِ حَيْرَةً and the books\' own ضَرَبْتُهُ تَأْدِيبًا / ضَرَبْتُ زَيْدًا تَأْدِيبًا — «مَفْعُولٌ لِأَجْلِهِ — مَصْدَرٌ قَلْبِيٌّ … لَيْسَ مِنْ لَفْظِ الْفِعْلِ» with the clause\'s signal and the ḥāl beside it (a shortlist, by design); with no object written the mafʿūl bihi joins the shortlist (أَظْهَرَ الرَّجُلُ فَرَحًا); the controls: ضَرَبْتُهُ ضَرْبًا is the mafʿūl muṭlaq, عَظْمًا «a bone» and حَيًّا «alive» are no heart-maṣdars, and the formula «تَعَالَى» governs nothing after it; against the authored lines named ≥ 51 (was 42) and offered where the authors name neither it nor the ḥāl ≤ 1', async () => {
+    const J = JSON.stringify, c = await v332L(), r = await v332scan();
+    for (const [k, i] of [['ijlal', 1], ['adam', 2], ['hayra', 2], ['tadib1', 1], ['tadib2', 2]]) if (!/مَفْعُولٌ لِأَجْلِهِ — مَصْدَرٌ قَلْبِيٌّ مَنْصُوبٌ لَيْسَ مِنْ لَفْظِ الْفِعْلِ، وَالْفِعْلُ «/.test(c[k][i]) || !/وَيُحْتَمَلُ: حَالٌ/.test(c[k][i])) throw new Error(k + ': ' + J(c[k]));
+    if (!/مَفْعُولٌ لِأَجْلِهِ إِنْ كَانَ عِلَّةَ الْفِعْلِ، أَوْ مَفْعُولٌ بِهِ إِنْ وَقَعَ الْفِعْلُ عَلَيْهِ، أَوْ حَالٌ/.test(c.farah[2])) throw new Error('أَظْهَرَ الرَّجُلُ فَرَحًا: ' + J(c.farah));
+    if (/لِأَجْلِهِ/.test(c.darb[1]) || /لِأَجْلِهِ/.test(c.azm[3]) || /لِأَجْلِهِ/.test(c.hayy[2]) || /لِأَجْلِهِ/.test(c.taala[5])) throw new Error('a mafʿūl lahu where there is none: ' + J([c.darb[1], c.azm[3], c.hayy[2], c.taala[5]]));
+    if (r.lahNamed < 51 || r.i18other > 1) throw new Error('against the authored lines: ' + J({ lahA: r.lahA, lahNamed: r.lahNamed, i18: r.i18, i18agree: r.i18agree, i18other: r.i18other, list: r.list.i18 }));
+  });
   await check('no JS errors on page', async () => {
     if (errors.length) throw new Error(errors.join(' | '));
   });

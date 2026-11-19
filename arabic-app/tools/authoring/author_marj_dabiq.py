@@ -1,4 +1,4 @@
-"""Author content/samples/marj-dabiq — «مَرْجُ دَابِقٍ», an ORIGINAL historical story at Level 5 (Advanced).
+"""Author content/samples/marj-dabiq — «مَرْجُ دَابِقَ», an ORIGINAL historical story at Level 5 (Advanced).
 
 ORIGINAL graded Arabic, kept to the well-attested core of the years 922–923 AH / 1516–1517 CE as Ibn Iyās tells it in
 Badāʾiʿ al-zuhūr fī waqāʾiʿ al-duhūr, with Ibn Ṭūlūn's Mufākahat al-khillān fī ḥawādith al-zamān for Syria: the Mamluks
@@ -18,15 +18,14 @@ capture and death beyond the bare line that he was killed.
 NAMES (only the five the brief certifies; every other person is «the sultan of Egypt», «the emirs»).
  سَلِيمٌ — an Arabic name (فَعِيل, the adjective «sound»), masculine with no second cause: fully declined, with tanwin.
  الْغَوْرِيُّ — a nisba title with the article: fully declined.
- مَرْجُ دَابِقٍ — a place-name built as an idafa (carries the phrase key marj-dabiq, as the shelf's عَيْنُ جَالُوتَ does):
-   مَرْج «meadow» (pl. مُرُوج, as in al-Masʿūdī's مُرُوجُ الذَّهَبِ) takes the case of its seat; دَابِق is read as a masculine
-   place-name and declined with tanwin (بِدَابِقٍ, as the place is voweled in the ḥadīth editions) — LEFT FOR THE SCHOLAR,
-   since a place-name may also be read feminine and a diptote.
+ مَرْجُ دَابِقَ — a place-name built as an idafa (carries the phrase key marj-dabiq, as the shelf's عَيْنُ جَالُوتَ does):
+   مَرْج «meadow» (pl. مُرُوج, as in al-Masʿūdī's مُرُوجُ الذَّهَبِ) takes the case of its seat; دَابِق is a DIPTOTE, with no
+   tanwin (مَرْجِ دَابِقَ) — the hoca's ruling of 2026-11-19; the first draft had declined it with tanwin.
  الرَّيْدَانِيَّةُ — a place-name with the article: fully declined.
  طُومَانَ بَايُ — a foreign compound name, analysed by the shelf's own doctrine of the blended compound (content/grammar,
    after the Kāfiya: «the first part built on fatḥa when it ends in a sound letter, the second declined as a diptote»):
    the first token طُومَانَ is built on fatḥa with no seat, the second بَايُ carries the case (ʿalamiyya + tarkīb mazjī +
-   ʿujma). It stands only in raf', where diptote and triptote differ in nothing but the tanwin — LEFT FOR THE SCHOLAR.
+   ʿujma). It stands only in raf'. Confirmed by the hoca, 2026-11-19.
 
 Five chapters, twenty-eight sentences. The Level-5 constructions: the mafʿūl muṭlaq (قِتَالًا شَدِيدًا twice — once as the
 deputy of اقْتِتَال — هَزِيمَةً شَدِيدَةً after a passive verb, خَوْفًا شَدِيدًا); the mafʿūl lahu (طَلَبًا لِسُلْطَانِهَا); tamyīz after
@@ -197,7 +196,7 @@ QABLU = lambda punct=None: tok("قَبْلُ", "qablu", "noun", ["maful-fih", "a
 
 # ============================================ the text ============================================
 TITLES = [{"ar": "سُلْطَانَانِ", "en": "Two Sultans", "tr": "İki Sultan"},
-          {"ar": "يَوْمُ مَرْجِ دَابِقٍ", "en": "The Day of Marj Dābiq", "tr": "Mercidâbık Günü"},
+          {"ar": "يَوْمُ مَرْجِ دَابِقَ", "en": "The Day of Marj Dābiq", "tr": "Mercidâbık Günü"},
           {"ar": "الشَّامُ فِي يَدِ سَلِيمٍ", "en": "Al-Shām in Selim's Hand", "tr": "Şam Diyarı Selim'in Elinde"},
           {"ar": "يَوْمُ الرَّيْدَانِيَّةِ", "en": "The Day of al-Raydāniyya", "tr": "Ridâniye Günü"},
           {"ar": "نِهَايَةُ الدَّوْلَةِ", "en": "The End of a State", "tr": "Bir Devletin Sonu"}]
@@ -278,7 +277,7 @@ S1.append({"id": "s6", "translation": {
   SALIM("fail"),
   BI_NOUN("بِجُيُوشِهِ", "jaysh", "جُيُوشِهِ", enc="هِ", extra=["jam-taksir"], note_ar=" — جَمْعُ جَيْشٍ، وَالْبَاءُ لِلْمُصَاحَبَةِ", note_en=" — the plural of «army»; the ba of company («with»)", note_tr=" — ceyş'in cem'i; bâ musâhabe içindir («ile»)", punct=".")]})
 
-# ---- Chapter 2 — يَوْمُ مَرْجِ دَابِقٍ ----
+# ---- Chapter 2 — يَوْمُ مَرْجِ دَابِقَ ----
 S2 = []
 S2.append({"id": "s1", "translation": {
   "en": "The two hosts met at a place near Aleppo which is called Marj Dābiq, «the Meadow of Dābiq».",
@@ -291,10 +290,10 @@ S2.append({"id": "s1", "translation": {
   YUQALU("مَوْضِعٍ", "a place", "yer", "جَرٍّ", "jarr", "mecrûr"),
   LAHU_AID("مَوْضِعٍ", "a place", "yer"),
   PH(tok("مَرْجُ", "marj", "noun", ["naib-al-fail", "idafa-definiteness"],
-      "نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَهُوَ الِاسْمُ الْمَقُولُ نَفْسُهُ، وَ«مَرْجُ دَابِقٍ» اسْمُ مَوْضِعٍ مُرَكَّبٌ تَرْكِيبَ إِضَافَةٍ.",
+      "نَائِبُ فَاعِلٍ مَرْفُوعٌ بِالضَّمَّةِ، مُضَافٌ — وَهُوَ الِاسْمُ الْمَقُولُ نَفْسُهُ، وَ«مَرْجُ دَابِقَ» اسْمُ مَوْضِعٍ مُرَكَّبٌ تَرْكِيبَ إِضَافَةٍ.",
       "The deputy doer of «is called», in raf' and annexed — the very name that is said; «Marj Dābiq» is a place-name built as an idafa.",
       "«Denir»in nâib-i fâili, merfû, muzâf — söylenen ismin kendisi; «Mercidâbık» izâfetle kurulmuş bir yer adıdır."), "marj-dabiq"),
-  MUDAF_ILAYH("دَابِقٍ", "dabiq", "propn", note_ar=" — اسْمُ مَوْضِعٍ مُذَكَّرٌ مَصْرُوفٌ، فَجُرَّ بِالْكَسْرَةِ مَعَ التَّنْوِينِ", note_en=" — a masculine place-name, fully declined, so its jarr is the kasra with tanwin", note_tr=" — müzekker, munsarif bir yer adı; bu yüzden tenvinli kesre ile mecrûr", punct=".")]})
+  MUDAF_ILAYH("دَابِقَ", "dabiq", "propn", extra=["mamnu-min-sarf"], sign="بِالْفَتْحَةِ نِيَابَةً عَنِ الْكَسْرَةِ", note_ar=" — اسْمُ مَوْضِعٍ مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالتَّأْنِيثِ، فَلَا يُنَوَّنُ", note_en="; its sign is the fatha standing for the kasra — a place-name barred from tanwin (a proper name, feminine as a place)", note_tr="; alâmeti kesreden nâib fethadır — yer adı olarak gayr-i munsarif (alemiyet ve te'nîs), tenvin almaz", punct=".")]})
 S2.append({"id": "s2", "translation": {
   "en": "That was in the year nine hundred and twenty-two.",
   "tr": "Bu, dokuz yüz yirmi iki yılında oldu."},
@@ -636,13 +635,13 @@ NEW_GLOSS = {
  "marj": {"lemma": "مَرْج", "root": "م ر ج", "pos": "noun", "plural": "مُرُوج", "gloss": {
     "en": "a meadow, open grassland where beasts graze (pl. مُرُوج)", "tr": "çayır, hayvanların otladığı açık otlak (ç. مُرُوج)"}, "level": 5},
  "dabiq": {"lemma": "دَابِق", "pos": "propn", "gloss": {
-    "en": "Dābiq — a village north of Aleppo, beside the meadow called Marj Dābiq; read here as a masculine place-name and fully declined (دَابِقٍ)",
-    "tr": "Dâbık — Halep'in kuzeyinde, Mercidâbık denen çayırın yanındaki köy; burada müzekker bir yer adı olarak munsarif okunur (دَابِقٍ)"}, "level": 5},
- "marj-dabiq": PHRASE("مَرْجُ دَابِقٍ", 5, "Marj Dābiq — the meadow by the village of Dābiq, north of Aleppo, where the Ottomans broke the Mamluk army in 922 / 1516 and the sultan al-Ghawrī died",
+    "en": "Dābiq — a village north of Aleppo, beside the meadow called Marj Dābiq; a diptote, with no tanwin (دَابِقَ in jarr)",
+    "tr": "Dâbık — Halep'in kuzeyinde, Mercidâbık denen çayırın yanındaki köy; gayr-i munsariftir, tenvin almaz (cerde دَابِقَ)"}, "level": 5},
+ "marj-dabiq": PHRASE("مَرْجُ دَابِقَ", 5, "Marj Dābiq — the meadow by the village of Dābiq, north of Aleppo, where the Ottomans broke the Mamluk army in 922 / 1516 and the sultan al-Ghawrī died",
     "Mercidâbık — Halep'in kuzeyinde, Dâbık köyünün yanındaki çayır; Osmanlılar 922 / 1516'da Memlük ordusunu burada bozdu ve Sultan Gavrî burada öldü",
     "literally «the Meadow of Dābiq»", "lafzen «Dâbık Çayırı»",
-    "A place-name built as an idafa: مَرْج «meadow» takes the case of its seat (مَرْجُ in raf', مَرْجِ in jarr), and دَابِق stays its second term, in jarr — declined here with tanwin: مَرْجُ دَابِقٍ، يَوْمُ مَرْجِ دَابِقٍ.",
-    "İzâfetle kurulmuş bir yer adı: مَرْج «çayır» bulunduğu yerin i'râbını alır (refte مَرْجُ, cerde مَرْجِ); دَابِق ise muzâfun ileyh olarak mecrûr kalır — burada tenvinle okunur: مَرْجُ دَابِقٍ، يَوْمُ مَرْجِ دَابِقٍ."),
+    "A place-name built as an idafa: مَرْج «meadow» takes the case of its seat (مَرْجُ in raf', مَرْجِ in jarr), and دَابِق stays its second term, in jarr by the fatha, for it is a diptote: مَرْجُ دَابِقَ، يَوْمُ مَرْجِ دَابِقَ.",
+    "İzâfetle kurulmuş bir yer adı: مَرْج «çayır» bulunduğu yerin i'râbını alır (refte مَرْجُ, cerde مَرْجِ); دَابِق ise muzâfun ileyh olarak mecrûr kalır; gayr-i munsarif olduğu için cer alâmeti fethadır: مَرْجُ دَابِقَ، يَوْمُ مَرْجِ دَابِقَ."),
  "raydaniyya": {"lemma": "الرَّيْدَانِيَّة", "pos": "propn", "gloss": {
     "en": "al-Raydāniyya — a place just outside Cairo to the north-east, where the Ottomans routed the last Mamluk army at the end of 922 / January 1517",
     "tr": "Ridâniye — Kahire'nin hemen kuzeydoğusunda bir yer; Osmanlılar son Memlük ordusunu 922 sonunda / Ocak 1517'de burada bozguna uğrattı"}, "level": 5},
@@ -684,7 +683,7 @@ assert not no_par, no_par
 MANIFEST = {
  "id": SLUG,
  "storyGroup": SLUG,
- "title": {"ar": "مَرْجُ دَابِقٍ", "en": "Marj Dābiq", "tr": "Mercidâbık"},
+ "title": {"ar": "مَرْجُ دَابِقَ", "en": "Marj Dābiq", "tr": "Mercidâbık"},
  "subtitle": {"ar": "سُلْطَانَانِ يَلْتَقِيَانِ قُرْبَ حَلَبَ، وَدَوْلَةٌ تَنْتَهِي، وَمِصْرُ وَالشَّامُ تَصِيرَانِ إِلَى الْعُثْمَانِيِّينَ — قِصَّةٌ لِلْمُسْتَوَى الْخَامِسِ",
               "en": "Two sultans meet near Aleppo, a state comes to its end, and Egypt and al-Shām pass to the Ottomans — a story for the fifth level",
               "tr": "Halep yakınında karşılaşan iki sultan, sona eren bir devlet ve Osmanlılara geçen Mısır ile Şam — beşinci seviye için bir hikâye"},
@@ -695,7 +694,7 @@ MANIFEST = {
  "access": "free",
  "chapters": [{"n": i + 1, "title": t} for i, t in enumerate(TITLES)],
  "attribution": {
-  "ar": "إِعَادَةُ صِيَاغَةٍ أَصْلِيَّةٌ (الْمُسْتَوَى الْخَامِسُ) لِخَبَرِ وَقْعَةِ مَرْجِ دَابِقٍ سَنَةَ ٩٢٢ هـ / ١٥١٦ م، وَمَوْتِ السُّلْطَانِ الْغَوْرِيِّ فِيهَا، وَدُخُولِ السُّلْطَانِ سَلِيمٍ الشَّامَ ثُمَّ مِصْرَ بَعْدَ وَقْعَةِ الرَّيْدَانِيَّةِ، وَدُخُولِهِ الْقَاهِرَةَ أَوَّلَ سَنَةِ ٩٢٣ هـ / ١٥١٧ م، وَانْتِهَاءِ دَوْلَةِ الْمَمَالِيكِ، عَلَى مَا يَرْوِيهِ ابْنُ إِيَاسٍ فِي «بَدَائِعِ الزُّهُورِ فِي وَقَائِعِ الدُّهُورِ»، وَابْنُ طُولُونَ فِي «مُفَاكَهَةِ الْخِلَّانِ فِي حَوَادِثِ الزَّمَانِ» لِأَخْبَارِ الشَّامِ. النَّصُّ مِنْ تَأْلِيفِ الْمَشْرُوعِ، وَلَيْسَتْ فِيهِ جُمْلَةٌ مَنْقُولَةٌ مِنْ تِلْكَ الْكُتُبِ، وَلَا آيَةٌ وَلَا حَدِيثٌ، وَلَا قَوْلٌ يُنْسَبُ إِلَى أَحَدٍ. وَتُرِكَ خَبَرُ انْتِقَالِ الْخِلَافَةِ، وَأَعْدَادُ الْجُيُوشِ وَالْقَتْلَى، وَصِفَةُ مَوْتِ الْغَوْرِيِّ، وَتَفْصِيلُ أَسْرِ طُومَانَ بَايَ وَقَتْلِهِ؛ وَاكْتُفِيَ بِأَنَّهُ قُتِلَ. وَكُلُّ إِعْرَابٍ فِيهَا اجْتِهَادُ الْمُؤَلِّفِ، وَهِيَ بِانْتِظَارِ الْمُرَاجَعَةِ الْعِلْمِيَّةِ.",
+  "ar": "إِعَادَةُ صِيَاغَةٍ أَصْلِيَّةٌ (الْمُسْتَوَى الْخَامِسُ) لِخَبَرِ وَقْعَةِ مَرْجِ دَابِقَ سَنَةَ ٩٢٢ هـ / ١٥١٦ م، وَمَوْتِ السُّلْطَانِ الْغَوْرِيِّ فِيهَا، وَدُخُولِ السُّلْطَانِ سَلِيمٍ الشَّامَ ثُمَّ مِصْرَ بَعْدَ وَقْعَةِ الرَّيْدَانِيَّةِ، وَدُخُولِهِ الْقَاهِرَةَ أَوَّلَ سَنَةِ ٩٢٣ هـ / ١٥١٧ م، وَانْتِهَاءِ دَوْلَةِ الْمَمَالِيكِ، عَلَى مَا يَرْوِيهِ ابْنُ إِيَاسٍ فِي «بَدَائِعِ الزُّهُورِ فِي وَقَائِعِ الدُّهُورِ»، وَابْنُ طُولُونَ فِي «مُفَاكَهَةِ الْخِلَّانِ فِي حَوَادِثِ الزَّمَانِ» لِأَخْبَارِ الشَّامِ. النَّصُّ مِنْ تَأْلِيفِ الْمَشْرُوعِ، وَلَيْسَتْ فِيهِ جُمْلَةٌ مَنْقُولَةٌ مِنْ تِلْكَ الْكُتُبِ، وَلَا آيَةٌ وَلَا حَدِيثٌ، وَلَا قَوْلٌ يُنْسَبُ إِلَى أَحَدٍ. وَتُرِكَ خَبَرُ انْتِقَالِ الْخِلَافَةِ، وَأَعْدَادُ الْجُيُوشِ وَالْقَتْلَى، وَصِفَةُ مَوْتِ الْغَوْرِيِّ، وَتَفْصِيلُ أَسْرِ طُومَانَ بَايَ وَقَتْلِهِ؛ وَاكْتُفِيَ بِأَنَّهُ قُتِلَ. وَكُلُّ إِعْرَابٍ فِيهَا اجْتِهَادُ الْمُؤَلِّفِ، وَهِيَ بِانْتِظَارِ الْمُرَاجَعَةِ الْعِلْمِيَّةِ.",
   "en": "ORIGINAL Level-5 graded Arabic: the battle of Marj Dābiq in 922 AH / 1516 CE, where the Mamluk sultan al-Ghawrī died on the field, the Ottoman sultan Selim's taking of Syria, his victory over Ṭūmān Bāy at al-Raydāniyya and his entry into Cairo at the beginning of 923 AH / 1517 CE, and the end of the Mamluk state — RETOLD FREELY along the well-attested core of the classical accounts: Ibn Iyās, Badāʾiʿ al-zuhūr fī waqāʾiʿ al-duhūr, and, for Syria, Ibn Ṭūlūn, Mufākahat al-khillān fī ḥawādith al-zamān. No sentence is a quotation from these works; no āya or ḥadīth is quoted; no words are put in a historical person's mouth. Left out on purpose: the transfer of the caliphate, the sizes of the armies and the numbers of the slain, the manner of al-Ghawrī's death, and the details of Ṭūmān Bāy's capture and death — one neutral line says only that he was killed. Every iʿrāb line is the author's own analysis, pending scholarly review.",
   "tr": "ÖZGÜN 5. seviye Arapça: 922 h. / 1516 m. yılındaki Mercidâbık savaşı ve Memlük sultanı Gavrî'nin savaş meydanında ölümü, Osmanlı sultanı Selim'in Şam'ı alışı, Ridâniye'de Tûmân Bây'ı yenişi ve 923 h. / 1517 m. yılı başında Kahire'ye girişi ile Memlük devletinin sonu; klasik kaynakların — İbn İyâs, Bedâi'u'z-zühûr fî vekâi'i'd-dühûr ve Şam için İbn Tûlûn, Müfâkehetü'l-hillân fî havâdisi'z-zamân — üzerinde birleştiği sağlam çekirdeğe bağlı kalınarak SERBESTÇE yeniden anlatılmıştır. Hiçbir cümle bu eserlerden alıntı değildir; hiçbir âyet veya hadis aktarılmamıştır; hiçbir tarihî şahsın ağzına söz konmamıştır. Bilerek dışarıda bırakılanlar: hilâfetin intikali, ordu büyüklükleri ve ölü sayıları, Gavrî'nin ölüm şekli ve Tûmân Bây'ın esir alınıp öldürülmesinin ayrıntıları — yalnızca öldürüldüğünü söyleyen tarafsız bir cümle vardır. Her i'râb satırı yazarın kendi tahlilidir ve ilmî incelemeyi beklemektedir.",
   "reviewStatus": "pending-scholarly-review",

@@ -1,6 +1,6 @@
-"""Author content/samples/al-ghazali-wa-al-uzla — «الْغَزَالِيُّ وَالْعُزْلَةُ», an ORIGINAL historical story at Level 6 (Master).
+"""Author content/samples/al-ghazali-wa-al-uzla — «الْغَزَّالِيُّ وَالْعُزْلَةُ», an ORIGINAL historical story at Level 6 (Master).
 
-ORIGINAL graded Arabic in a classical narrative register, kept to the well-attested core of Abū Ḥāmid al-Ghazālī's own
+ORIGINAL graded Arabic in a classical narrative register, kept to the well-attested core of Abū Ḥāmid al-Ghazzālī's own
 account of his crisis and return in al-Munqidh min al-ḍalāl, with the closing years as the biographers give them (ʿAbd
 al-Ghāfir al-Fārisī by way of Ibn ʿAsākir's Tabyīn kadhib al-muftarī; al-Subkī, Ṭabaqāt al-Shāfiʿiyya al-kubrā; Ibn
 Khallikān, Wafayāt al-aʿyān): the celebrated teacher of the Niẓāmiyya in Baghdad, with standing and wealth; his heart not
@@ -14,7 +14,7 @@ home town (Ṭūs), keeping to his house in worship and teaching until he died t
 knowledge joined to action.
 
 The account is RETOLD FREELY — no sentence is a quotation from al-Munqidh or from any of the biographers, no āya or ḥadīth is
-quoted, and no words are put in al-Ghazālī's mouth (his inner states are told in the narrator's words). Left out on purpose:
+quoted, and no words are put in al-Ghazzālī's mouth (his inner states are told in the narrator's words). Left out on purpose:
 the exact length of each stay (Damascus, Jerusalem, Hebron), the stories of meetings on the journey, the minaret of the
 Umayyad mosque, the months and the day of the crisis, the arrangements for his family, the vizier who called him back to
 Nīshāpūr, the khānqāh and the madrasa by his house, the date of his death, and every disputed anecdote. Ṭūs is not named:
@@ -22,8 +22,8 @@ it is «بَلَدُهُ», his home town. Nīshāpūr is named (نَيْسَا�
 gives it (بِفَتْحِ أَوَّلِهِ) — listed for the scholar's review with the nisba below.
 
 NAMES. أَبُو حَامِدٍ: a kunya — أَبُو takes the case of its seat by the five-nouns' letters, حَامِدٍ is a fully declined
-name. الْغَزَالِيّ: a nisba become his name, read here in its best-known vowelling with a light zāy; the iʿrāb line and the
-glossary say that some read it with a doubled zāy (الْغَزَّالِيّ) — the khilāf is taught as a khilāf and listed for review.
+name. الْغَزَّالِيّ: a nisba become his name, with a doubled zāy — the hoca's ruling of 2026-11-19 (the first draft had the
+light zāy and listed the question for review).
 
 Five chapters, thirty sentences. The Level-6 constructions: long periodic sentences (ch2 s2, ch4 s6, ch5 s3); فَبَيْنَمَا …
 إِذْ … (ch3 s2); ثُمَّ إِنَّهُ (ch2 s1, ch4 s1); ḥaṣr by إِنَّمَا (ch1 s5; ch3 s4, closed by لَا الْعَاطِفَةُ) and by negation
@@ -86,7 +86,7 @@ JAWAB_LAMMA = (" — وَالْجُمْلَةُ جَوَابُ لَمَّا لَ
 FAIL_BAAD = ("، وَالْفَاعِلُ بَعْدَهُ", "; its doer follows", "; fâili ondan sonra gelir")
 KH_KAM = (" — وَالْجُمْلَةُ فِي مَحَلِّ رَفْعٍ خَبَرُ كَمْ", "; the clause is the khabar of كَمْ, in the seat of raf'", "; cümle kem'in haberi, mahallen merfû")
 ATF_CL = (" — وَالْجُمْلَةُ مَعْطُوفَةٌ عَلَى مَا قَبْلَهَا", "; the clause is conjoined to the one before it", "; cümle öncekine ma'tûftur")
-HID_G = ("، يَعُودُ عَلَى الْغَزَالِيِّ", " (al-Ghazālī)", " (Gazzâlî)")
+HID_G = ("، يَعُودُ عَلَى الْغَزَّالِيِّ", " (al-Ghazzālī)", " (Gazzâlî)")
 SADDA = lambda v_ar, v_en, v_tr: (" — وَأَنَّ وَمَا بَعْدَهَا فِي تَأْوِيلِ مَصْدَرٍ سَدَّ مَسَدَّ مَفْعُولَيْ «" + v_ar + "»",
                                   "; أَنَّ with its clause stands for a masdar that fills both objects of «" + v_en + "»",
                                   "; enne ve sonrası, «" + v_tr + "»in iki mef'ûlünün yerini tutan müevvel masdardır")
@@ -102,10 +102,10 @@ ABU_ISMK = lambda: tok("أَبُو", "ab", "noun", ["kana-wa-akhawatuha", "five-
     "The noun of كَانَ, in raf' by the waw — one of the five nouns; annexed. «Abū Ḥāmid» is his kunya.",
     "Kâne'nin ismi, esmâ-i hamseden olduğu için vâv ile merfû; muzâf — «Ebû Hâmid» künyesidir.")
 HAMID_MI = lambda: MUDAF_ILAYH("حَامِدٍ", "hamid", "propn", note_ar=" — عَلَمٌ مُنْصَرِفٌ، فَنُوِّنَ", note_en=" — a fully declined proper name, so it takes tanwin", note_tr=" — munsarif özel isim; bu yüzden tenvin alır")
-GHAZALI_NAAT = lambda punct=None: tok("الْغَزَالِيُّ", "ghazali", "propn", ["naat-sifa", "ism-mansub"],
-    "نَعْتٌ لِـ«أَبُو» مَرْفُوعٌ بِالضَّمَّةِ — نِسْبَةٌ صَارَتْ عَلَمًا عَلَيْهِ، وَالْمَشْهُورُ فِي ضَبْطِهَا تَخْفِيفُ الزَّايِ، وَبَعْضُهُمْ يُشَدِّدُهَا (الْغَزَّالِيُّ).",
-    "An adjective of «Abū», in raf' — a nisba that became his name; its best-known vowelling has a light zāy, and some double it (al-Ghazzālī).",
-    "«Ebû»nun na'tı, merfû — onun adı olmuş bir nisbe; meşhur zabtında zâ şeddesizdir, bazıları şeddeli okur (el-Gazzâlî).", punct=punct)
+GHAZALI_NAAT = lambda punct=None: tok("الْغَزَّالِيُّ", "ghazali", "propn", ["naat-sifa", "ism-mansub"],
+    "نَعْتٌ لِـ«أَبُو» مَرْفُوعٌ بِالضَّمَّةِ — نِسْبَةٌ صَارَتْ عَلَمًا عَلَيْهِ، بِتَشْدِيدِ الزَّايِ.",
+    "An adjective of «Abū», in raf' — a nisba that became his name, read with a doubled zāy.",
+    "«Ebû»nun na'tı, merfû — onun adı olmuş bir nisbe; zâ şeddelidir.", punct=punct)
 DIPT_TOWN = ("، عَلَمٌ مُؤَنَّثٌ مَمْنُوعٌ مِنَ الصَّرْفِ لِلْعَلَمِيَّةِ وَالتَّأْنِيثِ", " — a feminine proper name (a town), barred from tanwin", " — müennes özel isim (şehir adı), gayr-i munsarif")
 BAGHDAD_J = lambda punct=None, note=("", "", ""): MAJR("بَغْدَادَ", "baghdad", "propn", ["mamnu-min-sarf"], sign=FATHA_JARR, note_ar=DIPT_TOWN[0] + note[0], note_en=" — by a fatha standing in for the kasra" + DIPT_TOWN[1] + note[1], note_tr=" — kesre yerine fetha ile" + DIPT_TOWN[2] + note[2], punct=punct)
 def BI_TOWN(full, lex, stem, why, punct=None, note=("", "", "")):
@@ -282,12 +282,12 @@ FA_LA = lambda: tok("فَلَا", "la-nafiya", "part", ["la-nafiya"], FA_AR + "�
     "«bunun üzerine» + nefiy lâ'sı; amel etmez.", segments=[seg("فَ", "fa", "conj"), seg("لَا", "la-nafiya", "part")])
 JARR_FIXED = (" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِمَحْذُوفٍ خَبَرِ كَانَ", "; the jarr phrase hangs on the omitted predicate of كَانَ", "; câr-mecrûr kâne'nin mahzûf haberine müteallik")
 RESTR = (" — وَهُوَ الْمَقْصُورُ عَلَيْهِ", "; it is what the statement is restricted TO", "; hüküm ona hasredilmiştir")
-SILA_G = ("، يَعُودُ عَلَى الْغَزَالِيِّ" + SILA_[0], " (al-Ghazālī)" + SILA_[1], " (Gazzâlî)" + SILA_[2])
+SILA_G = ("، يَعُودُ عَلَى الْغَزَّالِيِّ" + SILA_[0], " (al-Ghazzālī)" + SILA_[1], " (Gazzâlî)" + SILA_[2])
 
 # ---- Chapter 1 — الْمُعَلِّمُ فِي بَغْدَادَ ----
 S1 = []
 S1.append({"id": "s1", "translation": {
-  "en": "Abū Ḥāmid al-Ghazālī was one of the greatest scholars of his age; he taught people at the Niẓāmiyya school in Baghdad.",
+  "en": "Abū Ḥāmid al-Ghazzālī was one of the greatest scholars of his age; he taught people at the Niẓāmiyya school in Baghdad.",
   "tr": "Ebû Hâmid el-Gazzâlî zamanının en büyük âlimlerinden biriydi; Bağdat'taki Nizâmiye Medresesi'nde insanlara ders veriyordu."},
  "tokens": [KANA("كَانَ"), ABU_ISMK(), HAMID_MI(), GHAZALI_NAAT(),
   MIN_ROLE(JARR_FIXED),
@@ -305,7 +305,7 @@ S1.append({"id": "s2", "translation": {
   "en": "And how many a student came to him from distant lands!",
   "tr": "Uzak diyarlardan nice talebe ona yöneldi!"},
  "tokens": [KAM("وَكَمْ"), KAM_TAMYIZ("طَالِبٍ", "talib"),
-  ENC_MADI("قَصَدَهُ", "qasada", "هُ", hidden=True, note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «كَمْ»، وَالْهَاءُ لِلْغَزَالِيِّ" + KH_KAM[0], note_en="; the hidden doer returns to كَمْ, and «him» is al-Ghazālī" + KH_KAM[1], note_tr="; gizli fâil kem'e, zamir Gazzâlî'ye döner" + KH_KAM[2]),
+  ENC_MADI("قَصَدَهُ", "qasada", "هُ", hidden=True, note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «كَمْ»، وَالْهَاءُ لِلْغَزَّالِيِّ" + KH_KAM[0], note_en="; the hidden doer returns to كَمْ, and «him» is al-Ghazzālī" + KH_KAM[1], note_tr="; gizli fâil kem'e, zamir Gazzâlî'ye döner" + KH_KAM[2]),
   MIN_ROLE((" — وَالْجَارُّ وَالْمَجْرُورُ مُتَعَلِّقَانِ بِـ«قَصَدَهُ»", "; the jarr phrase hangs on «came to him»", "; câr-mecrûr «ona yöneldi»ye müteallik")),
   MAJR("بِلَادٍ", "bilad", extra=["jam-taksir"], note_ar=" — جَمْعُ بَلَدٍ", note_en=" — the plural of «land»", note_tr=" — beled'in cem'i"),
   NAAT("بَعِيدَةٍ", "baid", "jarr", note_ar=" — وَأُنِّثَ لِأَنَّ مَنْعُوتَهُ جَمْعٌ لِغَيْرِ الْعَاقِلِ", note_en=" — feminine, because the noun it describes is a plural of things", note_tr=" — mevsûfu akılsızların cem'i olduğu için müennes geldi", punct="!")]})
@@ -433,7 +433,7 @@ S2.append({"id": "s5", "translation": {
   "tr": "İlme gelince, o zaten onda vardı; amele gelince, ondan itibarını ve malını bırakmasını istiyordu."},
  "tokens": [FA_AMMA("فَأَمَّا"), MUBTADA("الْعِلْمُ", "ilm"), FA_QAD_AMMA(),
   KANA_IN("كَانَ", "«الْعِلْمُ»", "«knowledge»", "«ilim»e", "", "", "", note=KH_MUB_CL),
-  ZARF_ENC("عِنْدَهُ", "inda", "هُ", note_ar=" — وَالظَّرْفُ مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرِ كَانَ، وَالْهَاءُ لِلْغَزَالِيِّ", note_en=" — the adverb hangs on the omitted predicate of كَانَ; «him» is al-Ghazālī", note_tr=" — zarf kâne'nin mahzûf haberine müteallik; zamir Gazzâlî'ye döner", punct="،"),
+  ZARF_ENC("عِنْدَهُ", "inda", "هُ", note_ar=" — وَالظَّرْفُ مُتَعَلِّقٌ بِمَحْذُوفٍ خَبَرِ كَانَ، وَالْهَاءُ لِلْغَزَّالِيِّ", note_en=" — the adverb hangs on the omitted predicate of كَانَ; «him» is al-Ghazzālī", note_tr=" — zarf kâne'nin mahzûf haberine müteallik; zamir Gazzâlî'ye döner", punct="،"),
   FA_AMMA("وَأَمَّا"), MUBTADA("الْعَمَلُ", "amal-work"),
   KANA_IN("فَكَانَ", "«الْعَمَلُ»", "«action»", "«amel»e", "الْفَاءُ وَاقِعَةٌ فِي جَوَابِ أَمَّا، وَ", "The fa answers أَمَّا; ", "Fâ emmâ'nın cevabına gelmiştir; ", note=KH_MUB_CL),
   MUDARI("يَطْلُبُ", "talaba", **W(KH_KANA)),
@@ -599,7 +599,7 @@ S4.append({"id": "s2", "translation": {
   JARR_PRON("مِنْهُ", "min", "مِنْ", "هُ", " («ondan»)"),
   ILLA_HASR(),
   MA_MAF(RESTR),
-  MUDARI("يَكْفِيهِ", "kafa", naqis="ي", enc="هُ", note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «مَا»، وَالْهَاءُ لِلْغَزَالِيِّ" + SILA_[0], note_en="; the hidden doer is «what», and «him» is al-Ghazālī" + SILA_[1], note_tr="; gizli fâil «mâ», zamir Gazzâlî" + SILA_[2], punct=".")]})
+  MUDARI("يَكْفِيهِ", "kafa", naqis="ي", enc="هُ", note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «مَا»، وَالْهَاءُ لِلْغَزَّالِيِّ" + SILA_[0], note_en="; the hidden doer is «what», and «him» is al-Ghazzālī" + SILA_[1], note_tr="; gizli fâil «mâ», zamir Gazzâlî" + SILA_[2], punct=".")]})
 S4.append({"id": "s3", "translation": {
   "en": "Then he travelled to the lands of Syria and stayed in Damascus, then went on from there to Jerusalem.",
   "tr": "Sonra Şam diyarına gitti ve Dımaşk'ta ikamet etti; sonra oradan Beytülmakdis'e geçti."},
@@ -704,7 +704,7 @@ S5.append({"id": "s3", "translation": {
   PREP("وَعَلَى", "ala", " — وَالْجَارُّ وَالْمَجْرُورُ مَعْطُوفٌ عَلَى «عَلَى الْعِبَادَةِ»", "; the jarr phrase is conjoined to «to worship»", "; câr-mecrûr «ibadete»ye ma'tûf", gloss_tr="«üzerine»"),
   MAJR("تَعْلِيمِ", "talim", **W(MUDAF)),
   MAN_ONE("جَرٍّ مُضَافٌ إِلَيْهِ", "jarr as the second term of the idafa", "mecrûr — muzâfun ileyh", ["idafa-definiteness"]),
-  ENC_MADI("قَصَدَهُ", "qasada", "هُ", hidden=True, note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «مَنْ»، وَالْهَاءُ لِلْغَزَالِيِّ" + SILA_[0], note_en="; the hidden doer returns to «those who», and «him» is al-Ghazālī" + SILA_[1], note_tr="; gizli fâil «men»e, zamir Gazzâlî'ye döner" + SILA_[2], punct="،"),
+  ENC_MADI("قَصَدَهُ", "qasada", "هُ", hidden=True, note_ar="؛ وَالْفَاعِلُ يَعُودُ عَلَى «مَنْ»، وَالْهَاءُ لِلْغَزَّالِيِّ" + SILA_[0], note_en="; the hidden doer returns to «those who», and «him» is al-Ghazzālī" + SILA_[1], note_tr="; gizli fâil «men»e, zamir Gazzâlî'ye döner" + SILA_[2], punct="،"),
   HATTA_IBT(), MADI("مَاتَ", "mata-die", ["hollow-verbs"], hidden=True),
   JARR_PRON("فِيهِ", "fi", "فِي", "هِ", " («orada»)", note_ar=" — وَالضَّمِيرُ لِبَلَدِهِ", note_en=" — «it» is his home town", note_tr=" — zamir memleketine döner", punct=".")]})
 S5.append({"id": "s4", "translation": {
@@ -814,7 +814,7 @@ def find_verb(k):
     return None
 
 NEW_GLOSS = {
- "ghazali": {"lemma": "الْغَزَالِيّ", "pos": "propn", "gloss": {"en": "al-Ghazālī — Abū Ḥāmid Muḥammad ibn Muḥammad (450–505 / 1058–1111), the Shāfiʿī jurist, theologian and ṣūfī of Ṭūs, author of al-Munqidh min al-ḍalāl and Iḥyāʾ ʿulūm al-dīn; a nisba, best known with a light zāy (some read al-Ghazzālī)", "tr": "Gazzâlî — Ebû Hâmid Muhammed b. Muhammed (450–505 / 1058–1111), Tûslu Şâfiî fakih, kelâmcı ve sûfî; el-Munkız mine'd-dalâl ile İhyâü ulûmi'd-dîn'in müellifi; bir nisbe, en meşhur zabtında zâ şeddesizdir (bazıları el-Gazzâlî okur)"}, "level": 6},
+ "ghazali": {"lemma": "الْغَزَّالِيّ", "pos": "propn", "gloss": {"en": "al-Ghazzālī — Abū Ḥāmid Muḥammad ibn Muḥammad (450–505 / 1058–1111), the Shāfiʿī jurist, theologian and ṣūfī of Ṭūs, author of al-Munqidh min al-ḍalāl and Iḥyāʾ ʿulūm al-dīn; a nisba, read with a doubled zāy", "tr": "Gazzâlî — Ebû Hâmid Muhammed b. Muhammed (450–505 / 1058–1111), Tûslu Şâfiî fakih, kelâmcı ve sûfî; el-Munkız mine'd-dalâl ile İhyâü ulûmi'd-dîn'in müellifi; bir nisbe, zâ şeddelidir"}, "level": 6},
  "hamid": {"lemma": "حَامِد", "pos": "propn", "gloss": {"en": "Ḥāmid — a man's name (in the kunya Abū Ḥāmid); fully declined", "tr": "Hâmid — erkek adı (Ebû Hâmid künyesinde); munsarif"}, "level": 5},
  "madrasa": {"lemma": "مَدْرَسَة", "root": "د ر س", "pos": "noun", "gloss": {"en": "a school, a college of learning (noun of place from دَرَسَ)", "tr": "medrese, okul (derase'den mekân ismi)"}, "level": 4},
  "nizamiyya": {"lemma": "النِّظَامِيَّة", "pos": "noun", "gloss": {"en": "the Niẓāmiyya — the colleges founded by the Seljuk vizier Niẓām al-Mulk, chief among them the one in Baghdad (a nisba)", "tr": "Nizâmiye — Selçuklu veziri Nizâmülmülk'ün kurduğu medreseler; en meşhuru Bağdat'takidir (nisbe)"}, "level": 6},
@@ -873,7 +873,7 @@ assert not no_par, no_par
 MANIFEST = {
  "id": SLUG,
  "storyGroup": SLUG,
- "title": {"ar": "الْغَزَالِيُّ وَالْعُزْلَةُ", "en": "Al-Ghazālī and Solitude", "tr": "Gazzâlî ve İnziva"},
+ "title": {"ar": "الْغَزَّالِيُّ وَالْعُزْلَةُ", "en": "Al-Ghazzālī and Solitude", "tr": "Gazzâlî ve İnziva"},
  "subtitle": {"ar": "عَالِمٌ يَتْرُكُ مَجْلِسَهُ فِي بَغْدَادَ طَلَبًا لِلْيَقِينِ، ثُمَّ يَرْجِعُ — قِصَّةٌ لِلْمُسْتَوَى السَّادِسِ",
               "en": "A scholar leaves his chair in Baghdad in search of certainty, and comes back — a story for the sixth level",
               "tr": "Kesin bilgi arayışıyla Bağdat'taki kürsüsünü bırakan ve geri dönen bir âlim — altıncı seviye için bir hikâye"},
@@ -884,8 +884,8 @@ MANIFEST = {
  "access": "free",
  "chapters": [{"n": i + 1, "title": t} for i, t in enumerate(TITLES)],
  "attribution": {
-  "ar": "إِعَادَةُ صِيَاغَةٍ أَصْلِيَّةٌ (الْمُسْتَوَى السَّادِسُ) لِخَبَرِ أَزْمَةِ أَبِي حَامِدٍ الْغَزَالِيِّ وَخُرُوجِهِ مِنْ بَغْدَادَ سَنَةَ ٤٨٨ هـ وَعُزْلَتِهِ وَرُجُوعِهِ، عَلَى مَا رَوَاهُ هُوَ نَفْسُهُ فِي «الْمُنْقِذِ مِنَ الضَّلَالِ»، وَمَا ذَكَرَهُ الْمُتَرْجِمُونَ لَهُ مِنْ رُجُوعِهِ إِلَى التَّدْرِيسِ بِنَيْسَابُورَ ثُمَّ إِلَى بَلَدِهِ (ابْنُ عَسَاكِرَ فِي «تَبْيِينِ كَذِبِ الْمُفْتَرِي» نَقْلًا عَنْ عَبْدِ الْغَافِرِ الْفَارِسِيِّ، وَالسُّبْكِيُّ فِي «طَبَقَاتِ الشَّافِعِيَّةِ الْكُبْرَى»، وَابْنُ خَلِّكَانَ فِي «وَفَيَاتِ الْأَعْيَانِ»). النَّصُّ مِنْ تَأْلِيفِ الْمَشْرُوعِ، وَلَيْسَتْ فِيهِ جُمْلَةٌ مَنْقُولَةٌ مِنَ «الْمُنْقِذِ» وَلَا مِنْ غَيْرِهِ، وَلَا آيَةٌ وَلَا حَدِيثٌ، وَلَا قَوْلٌ يُنْسَبُ إِلَى الْغَزَالِيِّ؛ وَتُرِكَتِ التَّفَاصِيلُ الْمُخْتَلَفُ فِيهَا.",
-  "en": "ORIGINAL Level-6 graded Arabic in a classical narrative register: the crisis of Abū Ḥāmid al-Ghazālī, his leaving Baghdad in 488 AH / 1095 CE, his years of solitude and his return, RETOLD FREELY along the well-attested core of his own account in al-Munqidh min al-ḍalāl, with his return to teaching at Nīshāpūr and his last years in his home town Ṭūs as the biographers give them (ʿAbd al-Ghāfir al-Fārisī as cited by Ibn ʿAsākir in Tabyīn kadhib al-muftarī; al-Subkī, Ṭabaqāt al-Shāfiʿiyya al-kubrā; Ibn Khallikān, Wafayāt al-aʿyān). No sentence is a quotation from al-Munqidh or from any other source; no āya or ḥadīth is quoted; no words are put in al-Ghazālī's mouth — his inner states are told in the narrator's words, and the closing reflection on knowledge and action is the narrator's. Left out: the exact length of each stay, the stories of meetings on the journey, the months and days of the crisis, the arrangements for his family, the vizier who called him back to Nīshāpūr, the buildings by his house, the date of his death, and every disputed anecdote. Ṭūs is not named in the text («his home town»). The vowelling of the nisba (al-Ghazālī / al-Ghazzālī) and of Nīshāpūr is listed for the scholar's review.",
+  "ar": "إِعَادَةُ صِيَاغَةٍ أَصْلِيَّةٌ (الْمُسْتَوَى السَّادِسُ) لِخَبَرِ أَزْمَةِ أَبِي حَامِدٍ الْغَزَّالِيِّ وَخُرُوجِهِ مِنْ بَغْدَادَ سَنَةَ ٤٨٨ هـ وَعُزْلَتِهِ وَرُجُوعِهِ، عَلَى مَا رَوَاهُ هُوَ نَفْسُهُ فِي «الْمُنْقِذِ مِنَ الضَّلَالِ»، وَمَا ذَكَرَهُ الْمُتَرْجِمُونَ لَهُ مِنْ رُجُوعِهِ إِلَى التَّدْرِيسِ بِنَيْسَابُورَ ثُمَّ إِلَى بَلَدِهِ (ابْنُ عَسَاكِرَ فِي «تَبْيِينِ كَذِبِ الْمُفْتَرِي» نَقْلًا عَنْ عَبْدِ الْغَافِرِ الْفَارِسِيِّ، وَالسُّبْكِيُّ فِي «طَبَقَاتِ الشَّافِعِيَّةِ الْكُبْرَى»، وَابْنُ خَلِّكَانَ فِي «وَفَيَاتِ الْأَعْيَانِ»). النَّصُّ مِنْ تَأْلِيفِ الْمَشْرُوعِ، وَلَيْسَتْ فِيهِ جُمْلَةٌ مَنْقُولَةٌ مِنَ «الْمُنْقِذِ» وَلَا مِنْ غَيْرِهِ، وَلَا آيَةٌ وَلَا حَدِيثٌ، وَلَا قَوْلٌ يُنْسَبُ إِلَى الْغَزَّالِيِّ؛ وَتُرِكَتِ التَّفَاصِيلُ الْمُخْتَلَفُ فِيهَا.",
+  "en": "ORIGINAL Level-6 graded Arabic in a classical narrative register: the crisis of Abū Ḥāmid al-Ghazzālī, his leaving Baghdad in 488 AH / 1095 CE, his years of solitude and his return, RETOLD FREELY along the well-attested core of his own account in al-Munqidh min al-ḍalāl, with his return to teaching at Nīshāpūr and his last years in his home town Ṭūs as the biographers give them (ʿAbd al-Ghāfir al-Fārisī as cited by Ibn ʿAsākir in Tabyīn kadhib al-muftarī; al-Subkī, Ṭabaqāt al-Shāfiʿiyya al-kubrā; Ibn Khallikān, Wafayāt al-aʿyān). No sentence is a quotation from al-Munqidh or from any other source; no āya or ḥadīth is quoted; no words are put in al-Ghazzālī's mouth — his inner states are told in the narrator's words, and the closing reflection on knowledge and action is the narrator's. Left out: the exact length of each stay, the stories of meetings on the journey, the months and days of the crisis, the arrangements for his family, the vizier who called him back to Nīshāpūr, the buildings by his house, the date of his death, and every disputed anecdote. Ṭūs is not named in the text («his home town»). The vowelling of the nisba (al-Ghazzālī / al-Ghazzālī) and of Nīshāpūr is listed for the scholar's review.",
   "tr": "ÖZGÜN 6. seviye Arapça, klasik anlatı üslûbunda: Ebû Hâmid el-Gazzâlî'nin buhranı, 488 h. / 1095 m. yılında Bağdat'tan ayrılışı, inziva yılları ve dönüşü; kendi anlatısı olan el-Munkız mine'd-dalâl'ın sağlam çekirdeğine bağlı kalınarak, Nîşâbur'da yeniden ders vermesi ile memleketi Tûs'taki son yılları ise biyografi yazarlarının aktardığı şekliyle (İbn Asâkir'in Tebyînü kezibi'l-müfterî'de Abdülgâfir el-Fârisî'den naklettiği; Sübkî, Tabakâtü'ş-Şâfiiyyeti'l-kübrâ; İbn Hallikân, Vefeyâtü'l-a'yân) SERBESTÇE yeniden anlatılmıştır. Hiçbir cümle el-Munkız'dan veya başka bir kaynaktan alıntı değildir; hiçbir âyet veya hadis aktarılmamış, Gazzâlî'nin ağzına söz konmamıştır — iç hâlleri anlatıcının sözleriyle anlatılır; ilim ve amel üzerine kapanış düşüncesi de anlatıcınındır. Dışarıda bırakılanlar: her duraktaki kalış süresi, yolculuktaki karşılaşma hikâyeleri, buhranın ayları ve günleri, ailesi için yaptığı düzenlemeler, onu Nîşâbur'a çağıran vezir, evinin yanındaki binalar, vefat tarihi ve ihtilaflı her rivayet. Tûs metinde adıyla anılmaz («memleketi»). Nisbenin (Gazâlî / Gazzâlî) ve Nîşâbur'un zabtı âlim incelemesine bırakılmıştır.",
   "reviewStatus": "pending-scholarly-review",
  },
