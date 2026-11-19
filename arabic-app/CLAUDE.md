@@ -14932,3 +14932,69 @@ One cluster per tool, each fixed at its cause; every finding's inputs are assert
 - Smoke: two checks after «v329 — a demonstrative is never muḍāf». Full suite: 500 pass, 1 fail — SPEED III, the IrabModel refit
   only (`node tools/gen_irab_model.js && python3 tools/build_prototype.py`).
 - Written by the orchestrator from the agent's PROGRESS notes: the agent stopped (model limit) after its full run.
+
+## v334-C — the Atölye audit, group C (balāgha and the reading tools): findings C01–C12
+
+`research/atolye-audit-2026-11-19.md` group C, fixed at the cause. Every finding's inputs are asserted in a smoke check named
+«v334-C — <tool>: …» (eight checks, right before «v333 — the received imports»). Code comments carry `(v334-C · audit Cxx)`.
+
+- **C01 · Model lab — cause: the lab printed the perceptron's softmax as «belief» and nothing beside it.** زَيْدٌ after قَامَ read
+  «khabar %100» while the rules say fāʿil. `renderModelOut` now runs `DabtEngine.decide` on the typed sentence and puts the RULES'
+  verdict on every noun's card (the rule's own name: اسْمُ إِنَّ، فَاعِلٌ …, the model's class in brackets) with «the model agrees» or
+  «the model is WRONG here — the rules overrule it» (`.model-rule.ok/.bad`, the overruled bars dimmed); a seat the rules leave
+  open says that only there does the model vote. `modelHonest` names the percentages raw scores, not calibrated probabilities;
+  `modelIntro` no longer claims the lab shows only the model's vote. The model is not hidden and not changed. Not calibrated:
+  a temperature fit would need the full cross-validation in `gen_irab_model.js` — labelled instead.
+- **C02 · Fahm — cause: `DabtEngine.vowel(…, "endings")` strips every last vowel to place the iʿrāb, and the māḍī's تُ is the
+  doer, not an ending** — رَأَيْتُ became رَأَيْت, which loose-matched the «you» cell. `FahmEngine.typed334` reads the typed sentence
+  again and, for a māḍī whose doer tāʾ carries a typed vowel, takes the person from the typed word's own cell.
+- **C03 · Fahm — three causes.** (1) «مَا أَفْعَلَ X» was read as negation + amr: `typed334` reads ما + أَفْعَلَ (three radicals, no
+  tanwīn, no amr ḍamma, no case ending) + a noun as the verb of wonder; `meaning()` says «How good the heaven is!» / «Semâ ne kadar
+  güzel!», the adjective from the root's Form-I «to be X» gloss or its lexicon adjective. (2) «عمرا» took the lexicon's عُمْر «life»:
+  the name drops its silent wāw in the naṣb, so عمرا without a ḍamma on the ʿayn is ʿAmr (Iẓhār L149). (3) الْحَمَّام was built as
+  «one who catches a fever much» — an intensive on حُمَّ, a verb the shelf has only in the passive: `FahmEngine.passiveOnly` stops
+  the ism fāʿil and the فَعَّال on such a verb (in `derive`, the wave-158 derivation pass and the root fallback); the word now reads
+  as the labelled root guess «[fever?]». A noun with no gloss shows itself in «» instead of «…». The DabtEngine (B06) was not
+  touched — group B owns it.
+- **C04 · Tashbīh — cause: the rank had a branch for the baligh and treated every other adat-less likening as adat-spoken.**
+  The rank now counts what is dropped, each of the two on its own (Talkhīṣ L3434–L3437): the adat is spoken only by a mursal or
+  the verb of تَشَابَهَ. زَيْدٌ أَسَدٌ فِي الشَّجَاعَةِ and زَيْدٌ كَالْأَسَدِ are mid, زَيْدٌ أَسَدٌ high, زَيْدٌ كَالْأَسَدِ فِي الشَّجَاعَةِ low. The ten authored
+  ranks of Talkhīṣ ch. 50 still agree.
+- **C05 · Kināya — cause: `KinayaEngine.ladder(null)` returned «near» (no rungs known = no rungs).** No authored frame now means
+  `known: false`: the svg and the chips say «الْقُرْبُ وَالْبُعْدُ عِلْمٌ — near or far is knowledge». `KinayaEngine.authoredFor(rows,
+  f)` finds the shelf's framed SAID phrase by kind and letters, so كَثِيرُ الرَّمَادِ after any subject is the Talkhīṣ's far kinaya with
+  its four rungs (L3907–L3909) and طَوِيلُ النِّجَادِ its near one (L3901–L3903).
+- **C10 · Kināya — three causes.** `quality()` wanted a sifa SHAPE and a lexicon «quality» at once: it now also takes a word on a
+  quality's scale (sifa mushabbaha, intensive, active or passive participle — `SifaEngine.classify`) when the lexicon calls it a
+  quality (its `pos: "adj"` included) or does not know it (جَبَان، نَؤُوم، مَهْزُول، طَاهِر); a known plain noun on such a scale
+  (صَاحِب، بَاب) stays out. A naʿt the analyzer hangs on an opening indefinite with nothing after the idafa (فُلَانٌ طَاهِرُ الذَّيْلِ) is
+  read as what is said of it (`natAsKhabar`). And نَقِيُّ was the verb نَقِي «we guard»: `sjSarfAgree` now treats a shadda written
+  on a letter the cell leaves bare as a madd as contrary evidence.
+- **C06 · Badīʿ — cause: `negBefore` took every غَيْرُ for a negation.** After a negation in its own clause غَيْرُ is the exceptive
+  (مَا لَبِثُوا غَيْرَ سَاعَةٍ = إِلَّا سَاعَةً): the noun is affirmed, no ṭibāq al-salb. The verse is the Talkhīṣ's jinās tāmm mumāthil
+  (L4402–L4403): `JinasEngine.read(rows, {sen})` takes the authored frame of a shelf line and marks it sure (`f.book`, chip «مِنَ
+  الْكِتَابِ»); the Badīʿ lab passes the sentence through.
+- **C11 · Badīʿ — cause: the very same word twice was dropped in silence.** The letters cannot tell the tāmm from a repetition
+  (L4398: two meanings make the jinās), so it is now a labelled candidate: tāmm + «إِنِ اخْتَلَفَ الْمَعْنَيَانِ» (`ifMeaning`) — except
+  where one of the two is denied (that is the ṭibāq al-salb, one meaning). The maqṣūr's last letter is one sound on ى or ا
+  (يَحْيَى / لِيَحْيَا), and `BadiEngine.stem` peels the lām before a muḍāriʿ's prefix. `FigurePredictor.feats` ignores these
+  candidates, so the trained badīʿ shortlist is fed what it was trained on.
+- **C08 · Majāz — cause: an empty reading was worded as a ruling.** `majazNone` / `kinayaNone` now say the engine finds none and that
+  this is no ruling that the words are literal. `MajazEngine.AQLI_RECEIVED` stores the six ʿaqlī examples the Talkhīṣ recites by
+  name (L534–L549: عِيشَةٌ رَاضِيَةٌ، سَيْلٌ مُفْعَمٌ، شِعْرٌ شَاعِرٌ، نَهَارُهُ صَائِمٌ، نَهْرٌ جَارٍ، بَنَى الْأَمِيرُ الْمَدِينَةَ), each with the book's «حقيقة
+  الكلام» as its murād; `PAIRS` gains جَعَلَ + أَصَابِع (the whole for the fingertips, L3502). Stored, never derived: بَنَى زَيْدٌ
+  الْبَيْتَ stays plain.
+- **C07, C12 · ʿArūḍ — cause: `unitsOfWord` took any clitic letter + bare alif for a clitic before a waṣl alif.** بَانَتْ، كَامِنٌ،
+  وَاحِدٌ lost their madd. The branch now needs the letter after the alif to be sākin, as after every waṣl alif. And `unitsOfShatr`
+  now moves a sākin consonant before a waṣl (iltiqāʾ al-sākinayn): حَرْفٌ الْكَلِمْ is «حَرْفُنِ لْكَلِمْ», the mīm of the plural takes its
+  ḍamma. Bānat Suʿād's first foot is مُسْتَفْعِلُنْ, أَنَا الْبَحْرُ … the ṭawīl, the Alfiyya's opening the rajaz. `arudNote` says so.
+- **C09 · Learning lab — cause: the bāb guess was asked where the shelf recites the root.** `BabModel.labBadge` answers from
+  `IlalEngine.babOf` (حَسُنَ يَحْسُنُ، كَرُمَ يَكْرُمُ — bāb 5, ʿIzzī L17) and shows the model's guess inside the same badge, marked
+  «agrees» or «WRONG here»; a root the shelf does not recite gets the guess alone. `learnBabNote` no longer names the Talkhīṣ.
+- **Refuses / says it does not know:** near or far of a kinaya the shelf has not framed; whether two identical words are a jinās
+  (a candidate); a majāz or kināya the surface cannot show (no ruling either way); the Model lab's percentages (labelled raw).
+- **Older checks:** none changed. One broke under the subset run and was fixed in the engine: the Learning lab badge stays ONE
+  `.learn-badge` (the guess rides inside the shelf badge).
+- **Measured:** refit + rebuild + drills: posAgreement 99.1 over 8132 tokens, caseAgreement 99.1 over 6328 (was 6327). Full suite: 527 pass, 1 fail — «v317 — the library shelves», the persist-and-reload step: a file:// localStorage write lost on
+  reload at random, reproduced with a bare script on the untouched v331 audit copy as well (one wait in six loses the key); it passes
+  alone twice in a row after the run. Not an engine fault; nothing touched.

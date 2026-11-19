@@ -16751,6 +16751,118 @@ if (!CHROME) {
       throw new Error('the healed keys: ' + JSON.stringify(s));
     if (r.drillTa < 6 || r.drillTaWrong) throw new Error('the drill garden\'s tāʾ: ' + JSON.stringify({ n: r.drillTa, wrong: r.drillTaWrong }));
   });
+  // >>> v334-C — the Atölye audit, group C (balāgha and the reading tools)
+  await check('v334-C — Model lab: every open noun\'s card carries the RULES\' verdict beside the model\'s raw scores, and says when the model is overruled (C01: قَامَ زَيْدٌ … إِنَّ زَيْدًا قَائِمٌ — Iẓhār L149)', async () => {
+    const r = await page.evaluate(() => {
+      const want = [['قَامَ زَيْدٌ', 1, 'fail'], ['ضَرَبَ زَيْدٌ عَمْرًا', 1, 'fail'], ['ضَرَبَ زَيْدٌ عَمْرًا', 2, 'maful'], ['فَتَحَ زَيْدٌ الْبَابَ', 1, 'fail'], ['رَأَيْتُ زَيْدًا', 1, 'maful'],
+        ['مَرَرْتُ بِزَيْدٍ', 1, 'jarr'], ['كَانَ زَيْدٌ قَائِمًا', 1, 'kanaIsm'], ['كِتَابُ زَيْدٍ جَدِيدٌ', 0, 'mubtada'], ['إِنَّ زَيْدًا قَائِمٌ', 1, 'innaIsm']];
+      let d = document.getElementById('modelOut'); if (!d) { d = document.createElement('div'); d.id = 'modelOut'; document.body.appendChild(d); }
+      const bad = [];
+      for (const [t, i, rule] of want) {
+        conjState.modelSen = null; conjState.model = t; try { renderModelOut(); } catch (e) { bad.push(t + ' THROW ' + e.message); continue; }
+        const rows = SentenceAnalyzer.analyze(t); const nounsBefore = rows.slice(0, i).filter(x => (x.kind || '').startsWith('noun')).length;
+        const card = d.querySelectorAll('.model-card')[nounsBefore]; const line = card ? card.querySelector('.model-rule') : null;
+        const R = DabtEngine.RULE[rule];
+        if (!line || !R || line.textContent.indexOf(R.ar) < 0) { bad.push(t + ' #' + i + ' rule line: ' + (line ? line.textContent : 'none')); continue; }
+        const role = { fail: 'fail', maful: 'maful', jarr: 'jarr', kanaIsm: 'mubtada', innaIsm: 'mubtada', mubtada: 'mubtada' }[rule];
+        const top = card.querySelector('.mbar-lbl') ? card.querySelector('.mbar-lbl').textContent : '';
+        const agrees = top.indexOf(DUEL_ROLES[role].ar) >= 0;
+        if (line.classList.contains('ok') !== agrees || card.classList.contains('model-overruled') === agrees) bad.push(t + ' #' + i + ' agree flag wrong: ' + line.className + ' top=' + top);
+      }
+      return { bad, honest: /NOT calibrated/.test(ui().modelHonest) && /overrule/.test(ui().modelIntro) };
+    });
+    if (r.bad.length || !r.honest) throw new Error(JSON.stringify(r));
+  });
+  await check('v334-C — Understand (Fahm): the typed tāʾ of the doer is the speaker (C02, ʿIzzī\'s māḍī table), مَا أَفْعَلَ is the wonder, عمرا is ʿAmr, no doer-noun from a passive-only verb (C03, Iẓhār L149)', async () => {
+    const r = await page.evaluate(() => { const m = (t, l) => { try { return FahmEngine.analyze(t, l).meaning[l]; } catch (e) { return 'THROW ' + e.message; } };
+      return { a: m('رَأَيْتُ أَسَدًا فِي الْحَمَّامِ', 'en'), at: m('رَأَيْتُ أَسَدًا فِي الْحَمَّامِ', 'tr'), b: m('جَاءَ الرَّجُلُ الَّذِي أَكْرَمْتُهُ', 'en'), bt: m('جَاءَ الرَّجُلُ الَّذِي أَكْرَمْتُهُ', 'tr'),
+        c: m('ما احسن السماء', 'en'), ct: m('ما احسن السماء', 'tr'), c2: m('مَا أَحْسَنَ السَّمَاءَ', 'en'), d: m('ضرب زيد عمرا', 'en'), dt: m('ضرب زيد عمرا', 'tr'),
+        e: m('كَتَبْتَ الدَّرْسَ', 'en'), f: m('كَتَبْتِ الدَّرْسَ', 'en'), g: m('عَاشَ عُمْرًا طَوِيلًا', 'en'), h: m('ما كتب زيد الدرس', 'en') }; });
+    const bad = [];
+    if (!/^I saw a lion/.test(r.a) || !/gördüm/.test(r.at) || /fever much/.test(r.a)) bad.push('C02/C03 the lion: ' + r.a + ' | ' + r.at);
+    if (!/I honoured/.test(r.b) || !/ettim/.test(r.bt)) bad.push('C02 whom I honoured: ' + r.b + ' | ' + r.bt);
+    if (!/^How good the heaven is!$/.test(r.c) || !/^How good/.test(r.c2) || !/ne kadar güzel/.test(r.ct)) bad.push('C03 the wonder: ' + r.c + ' | ' + r.c2 + ' | ' + r.ct);
+    if (!/^Zayd struck ʿAmr/.test(r.d) || !/Amr/.test(r.dt)) bad.push('C03 ʿAmr: ' + r.d + ' | ' + r.dt);
+    if (!/^You wrote/.test(r.e) || !/^You \(f\.\) wrote/.test(r.f) || !/long life/.test(r.g) || !/did not write/.test(r.h)) bad.push('the rest stands: ' + [r.e, r.f, r.g, r.h].join(' | '));
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — Tashbīh lab: the rank counts what is DROPPED — زَيْدٌ أَسَدٌ فِي الشَّجَاعَةِ is the middle rank (C04, Talkhīṣ L3434–L3437)', async () => {
+    const r = await page.evaluate(() => Object.fromEntries(['زَيْدٌ أَسَدٌ فِي الشَّجَاعَةِ', 'هُوَ بَحْرٌ فِي الْجُودِ', 'زَيْدٌ كَالْأَسَدِ', 'زَيْدٌ أَسَدٌ', 'زَيْدٌ كَالْأَسَدِ فِي الشَّجَاعَةِ'].map(t => [t, TashbihEngine.readText(t).frames.map(f => f.rank).join(',')])));
+    const want = { 'زَيْدٌ أَسَدٌ فِي الشَّجَاعَةِ': 'mid', 'هُوَ بَحْرٌ فِي الْجُودِ': 'mid', 'زَيْدٌ كَالْأَسَدِ': 'mid', 'زَيْدٌ أَسَدٌ': 'ala', 'زَيْدٌ كَالْأَسَدِ فِي الشَّجَاعَةِ': 'adna' };
+    const bad = Object.entries(want).filter(([t, w]) => r[t] !== w).map(([t, w]) => t + ' → ' + r[t] + ' (want ' + w + ')');
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — Kināya lab: كَثِيرُ الرَّمَادِ is the Talkhīṣ\'s FAR kinaya after any subject (C05, L3907–L3909); a quality annexed to a thing is read in all five audit phrases (C10); with no authored frame near or far is said to be knowledge, never «near»', async () => {
+    const r = await page.evaluate(() => {
+      const one = t => { const x = KinayaEngine.readText(t); const f = x.frames[0]; if (!f) return '∅'; const h = KinayaEngine.authoredFor(x.rows, f); const l = KinayaEngine.ladder(h); return f.kind + '|' + f.shape + '|' + (l.known ? (l.near ? 'near' : 'far' + l.count) : 'unknown'); };
+      let d = document.getElementById('kinayaOut'); if (!d) { d = document.createElement('div'); d.id = 'kinayaOut'; document.body.appendChild(d); }
+      conjState.kinaya = 'زَيْدٌ جَبَانُ الْكَلْبِ'; renderKinayaOut(); const lowNear = /قَرِيبَةٌ/.test(d.querySelector('.kinaya') ? d.querySelector('.kinaya').textContent : '');
+      conjState.kinaya = 'زَيْدٌ كَثِيرُ الرَّمَادِ'; renderKinayaOut(); const farChip = /بَعِيدَةٌ/.test((d.querySelector('.kn-ladder-chips') || {}).textContent || '') && d.querySelectorAll('.kn-rung').length === 4;
+      return { ramad: one('زَيْدٌ كَثِيرُ الرَّمَادِ'), najad: one('زَيْدٌ طَوِيلُ النِّجَادِ'), five: ['زَيْدٌ جَبَانُ الْكَلْبِ', 'زَيْدٌ مَهْزُولُ الْفَصِيلِ', 'هِيَ نَؤُومُ الضُّحَى', 'فُلَانٌ طَاهِرُ الذَّيْلِ', 'هُوَ نَقِيُّ الثَّوْبِ'].map(one),
+        none: ['زَيْدٌ صَاحِبُ الْبَيْتِ', 'كِتَابُ زَيْدٍ جَدِيدٌ', 'كَتَبَ زَيْدٌ رِسَالَةً'].map(one), nullLadder: KinayaEngine.ladder(null), lowNear, farChip, msg: ui().kinayaNone,
+        naqiy: (SentenceAnalyzer.analyze('هُوَ نَقِيُّ الثَّوْبِ')[1] || {}).kind };
+    });
+    const bad = [];
+    if (r.ramad !== 'sifa|idafa|far4' || !r.farChip) bad.push('C05 كَثِيرُ الرَّمَادِ: ' + r.ramad + ' chip ' + r.farChip);
+    if (r.najad !== 'sifa|idafa|near') bad.push('طَوِيلُ النِّجَادِ is near (L3901–L3903): ' + r.najad);
+    if (r.five.some(x => x !== 'sifa|idafa|unknown')) bad.push('C10: ' + r.five.join(' / '));
+    if (r.none.some(x => x !== '∅')) bad.push('no kinaya on plain idafa / prose: ' + r.none.join(' / '));
+    if (r.nullLadder.known !== false || r.nullLadder.near !== false || r.lowNear) bad.push('no frame, no «near»: ' + JSON.stringify(r.nullLadder) + ' ' + r.lowNear);
+    if (/taken as it stands/.test(r.msg)) bad.push('kinayaNone still rules the wording literal');
+    if (r.naqiy !== 'noun') bad.push('نَقِيُّ with its shadda is no cell of نَقِي (we guard): ' + r.naqiy);
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — Badīʿ lab: the Talkhīṣ\'s complete jinās (السَّاعَةُ / سَاعَةٍ, L4402–L4403) is no ṭibāq al-salb (C06); the very same word twice is offered as the tāmm when the meanings differ (C11, L4398)', async () => {
+    const r = await page.evaluate(() => {
+      const read = t => { const x = BadiEngine.readText(t); return { badi: x.frames.map(f => f.kind + ':' + (f.sub || '')), jinas: JinasEngine.read(x.rows, { sen: x.sen }).map(f => f.sub + ':' + f.kind2 + ':' + (f.ifMeaning ? 'if' : f.sure ? 'sure' : 'cand')) }; };
+      let d = document.getElementById('badiOut'); if (!d) { d = document.createElement('div'); d.id = 'badiOut'; document.body.appendChild(d); }
+      conjState.badi = 'وَيَوْمَ تَقُومُ السَّاعَةُ يُقْسِمُ الْمُجْرِمُونَ مَا لَبِثُوا غَيْرَ سَاعَةٍ'; renderBadiOut();
+      const book = !!d.querySelector('.jinas .jn-book'), salbShown = /طِبَاقُ السَّلْبِ/.test(d.textContent);
+      return { saa: read('وَيَوْمَ تَقُومُ السَّاعَةُ يُقْسِمُ الْمُجْرِمُونَ مَا لَبِثُوا غَيْرَ سَاعَةٍ'), book, salbShown,
+        maghrib: read('صَلَّيْتُ الْمَغْرِبَ فِي الْمَغْرِبِ'), yahya: read('يَحْيَى لِيَحْيَا'), abu: read('مَا مَاتَ مِنْ كَرَمِ الزَّمَانِ فَإِنَّهُ يَحْيَى لَدَى يَحْيَى بْنِ عَبْدِ اللَّهِ'),
+        la: read('لَا يَعْلَمُونَ يَعْلَمُونَ'), khsh: read('فَلَا تَخْشَوُا النَّاسَ وَاخْشَوْنِ'), zahir: read('ظَاهِرٌ وَغَيْرُ ظَاهِرٍ') }; });
+    const J = JSON.stringify, bad = [];
+    if (r.saa.badi.some(x => /tibaq/.test(x)) || r.salbShown || !r.saa.jinas.includes('tamm:mumathil:sure') || !r.book) bad.push('C06: ' + J(r.saa) + ' book ' + r.book + ' salb ' + r.salbShown);
+    if (J(r.maghrib.jinas) !== J(['tamm:mumathil:if']) || J(r.yahya.jinas) !== J(['tamm:mumathil:if'])) bad.push('C11: ' + J([r.maghrib, r.yahya]));
+    if (!r.abu.jinas.includes('tamm:mustawfa:sure')) bad.push('يَحْيَى لَدَى يَحْيَى stays the mustawfā (L4405–L4407): ' + J(r.abu));
+    if (!r.la.badi.includes('tibaq:salb') || !r.khsh.badi.includes('tibaq:salb') || !r.zahir.badi.includes('tibaq:salb') || r.la.jinas.length || r.zahir.jinas.length) bad.push('the salb stands, with no jinās beside it: ' + J([r.la, r.khsh, r.zahir]));
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — Majāz lab: the six ʿaqlī examples the Talkhīṣ recites (L534–L549) and the fingers for their tips (L3502) are read; no ruling that the words are literal (C08)', async () => {
+    const r = await page.evaluate(() => Object.assign(Object.fromEntries(['بَنَى الْأَمِيرُ الْمَدِينَةَ', 'نَهَارُهُ صَائِمٌ', 'عِيشَةٌ رَاضِيَةٌ', 'سَيْلٌ مُفْعَمٌ', 'شِعْرٌ شَاعِرٌ', 'نَهْرٌ جَارٍ', 'يَجْعَلُونَ أَصَابِعَهُمْ فِي آذَانِهِمْ', 'بَنَى زَيْدٌ الْبَيْتَ']
+      .map(t => [t, MajazEngine.readText(t).frames.map(f => f.kind + ':' + f.alaqa + ':' + f.word).join(',')])), { msg: ui().majazNone }));
+    const want = { 'بَنَى الْأَمِيرُ الْمَدِينَةَ': 'aqli:sababiyyaAqli:1', 'نَهَارُهُ صَائِمٌ': 'aqli:zamaniyya:1', 'عِيشَةٌ رَاضِيَةٌ': 'aqli:mafuliyyaAqli:1', 'سَيْلٌ مُفْعَمٌ': 'aqli:failiyyaAqli:1',
+      'شِعْرٌ شَاعِرٌ': 'aqli:masdariyyaAqli:1', 'نَهْرٌ جَارٍ': 'aqli:makaniyya:1', 'يَجْعَلُونَ أَصَابِعَهُمْ فِي آذَانِهِمْ': 'mursal:kulliyya:1', 'بَنَى زَيْدٌ الْبَيْتَ': '' };
+    const bad = Object.entries(want).filter(([t, w]) => r[t] !== w).map(([t, w]) => t + ' → ' + r[t] + ' (want ' + w + ')');
+    if (/literal reading stands/.test(r.msg)) bad.push('majazNone still rules the words literal');
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — ʿArūḍ lab: بَانَتْ keeps its alif (C07, مُسْتَفْعِلُنْ); أَنَا الْبَحْرُ … is the ṭawīl and the Alfiyya\'s opening the rajaz, the tanwīn moved before the waṣl (C12)', async () => {
+    const r = await page.evaluate(() => { const s = t => ArudEngine.scan(t);
+      const a = s('بَانَتْ سُعَادُ فَقَلْبِي الْيَوْمَ مَتْبُولُ * مُتَيَّمٌ إِثْرَهَا لَمْ يُفْدَ مَكْبُولُ'), b = s('أَنَا الْبَحْرُ فِي أَحْشَائِهِ الدُّرُّ كَامِنٌ * فَهَلْ سَاءَلُوا الْغَوَّاصَ عَنْ صَدَفَاتِي'),
+        c = s('كَلَامُنَا لَفْظٌ مُفِيدٌ كَاسْتَقِمْ * وَاسْمٌ وَفِعْلٌ ثُمَّ حَرْفٌ الْكَلِمْ'), q = s('قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ * بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ');
+      const w = u => JSON.stringify(ArudEngine.unitsOfWord(u, 1, false).map(x => x.t));
+      return { a: a.ok && a.bahr + '|' + a.sadr[0].text + '|' + a.sadr[0].name + '|' + a.sadr[0].pat, b: b.ok ? b.bahr : b.why, c: c.ok ? c.bahr + '|' + c.ajuz[2].text : c.why, q: q.ok ? q.bahr : q.why,
+        kamin: w('كَامِنٌ'), wahid: w('وَاحِدٌ'), wasl: w('وَاسْمٌ') }; });
+    const bad = [];
+    if (r.a !== 'basit|بَانَتْ سُعَا|مُسْتَفْعِلُنْ|vovovvo') bad.push('C07: ' + r.a);
+    if (r.b !== 'tawil' || r.c !== 'rajaz|فُنِ لْكَلِمْ' || r.q !== 'tawil') bad.push('C12: ' + JSON.stringify([r.b, r.c, r.q]));
+    if (r.kamin !== JSON.stringify(['كَ', 'ا', 'مِ', 'نُ', 'نْ']) || r.wahid !== JSON.stringify(['وَ', 'ا', 'حِ', 'دُ', 'نْ']) || r.wasl !== JSON.stringify(['وَ', 'سْ', 'مُ', 'نْ'])) bad.push('the madd alif vs the waṣl alif: ' + [r.kamin, r.wahid, r.wasl].join(' '));
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  await check('v334-C — Learning lab: a root the shelf recites is answered from the shelf, the model\'s guess beside it marked right or wrong (C09: حَسُنَ يَحْسُنُ, كَرُمَ يَكْرُمُ — ʿIzzī L17)', async () => {
+    const r = await page.evaluate(() => ({ hasan: BabModel.labBadge('حسن'), karam: BabModel.labBadge('كرم'), sami: BabModel.labBadge('سمع'), unknown: BabModel.labBadge('ثقل'), sk: BabModel.shelfBab('حسن').map(x => x.bab),
+      guessH: (BabModel.predict('حسن') || {}).best, guessS: (BabModel.predict('سمع') || {}).best, unknownShelf: BabModel.shelfBab('ثقل').length }));
+    const bad = [];
+    if (!/حَسُنَ يَحْسُنُ/.test(r.hasan) || !/learn-badge-shelf/.test(r.hasan) || JSON.stringify(r.sk) !== '[5]') bad.push('حسن: ' + r.hasan.slice(0, 200));
+    if (!/كَرُمَ يَكْرُمُ/.test(r.karam)) bad.push('كرم: ' + r.karam.slice(0, 200));
+    if (!/سَمِعَ يَسْمَعُ/.test(r.sami) || !/learn-badge-shelf/.test(r.sami)) bad.push('سمع: ' + r.sami.slice(0, 200));
+    const flag = (html, ok) => ok ? /does not read the shelf\) agrees|rafı okumaz\) uyuyor/.test(html) : /WRONG|YANLIŞ/.test(html);
+    if (!flag(r.hasan, r.guessH === 'karuma') || !flag(r.sami, r.guessS === 'samia')) bad.push('the guess is marked against the shelf');
+    if (!r.unknownShelf && /learn-badge-shelf/.test(r.unknown)) bad.push('a root the shelf does not recite gets the guess alone');
+    if (bad.length) throw new Error(bad.join(' ;; '));
+  });
+  // <<< v334-C
   await check('v333 — the received imports the hoca asked for by name: al-Tanūkhī\'s ḥikāya and three entries of al-Dhahabī\'s Siyar stand on the «Reports and lives» shelf, the Muʿallaqāt of Imruʾ al-Qays (81 verses) and Zuhayr (62) on the «Poetry» shelf — whole, in verse dress, none of them called ORIGINAL, all awaiting the hoca', async () => {
     const r = await page.evaluate(() => { const of = id => STORIES.find(s => s.id === id);
       const verses = id => { const st = of(id); let n = 0, bad = 0; (st ? st.chapters : []).slice(1).forEach(c => c.sentences.forEach(sn => { n++; const k = sn.tokens.filter(t => (t.punctAfter || t.p || '') === '•' || /•/.test(t.punctAfter || '')).length; if (k !== 1) bad++; })); return [n, bad]; };
