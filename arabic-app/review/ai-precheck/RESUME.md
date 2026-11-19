@@ -350,3 +350,23 @@ Token numbers count from 1. Not yet written as a packet.
   - 14:s28 t12 مُيَسَّرٌ «نعت»: should be the khabar
   - 14:s28 t14 خُلِقَ «الفاعل ضمير مستتر»: should be nāʾib al-fāʿil
 - **Lex keys:** the five «لِمَا» tokens are keyed `lamma` (→ ma-mawsula), and 8:s5 t15 «لَمَا» is keyed `lamma` (→ ma-nafiya).
+
+## Engine-found corpus slips (v330 engine wave on main: the verbs of approach, istithnāʾ, ism fiʿl, the compound numbers)
+
+Token numbers count from 1. Not yet a packet.
+
+- **«فاعل» on the noun after عسى / تكاد.** It is the ism of a nāsikh:
+  - al-usul-al-munifa 23:s5:4 اللهُ
+  - al-usul-al-munifa 25:s7:70 اللهُ
+  - al-usul-al-munifa 25:s17:68 السَّمَاوَاتُ
+- **qisas-al-nabiyyin-4 45:s4:18 النَّصْرَانِيَّةُ «فاعل».** The next line calls تَأْخُذُ «خبر بدأت من أفعال الشروع», so the two lines contradict
+  each other.
+- **al-usul-al-munifa 2:s25:32 السَّوَادَ «مفعول به».** In «كلهم في النار إلا السواد», a complete affirmative clause, it is the
+  manṣūb mustathnā.
+- **al-usul-al-munifa 2:s22:1 «عَلَيْكَ بِالْأَثَرِ» is read as a jarr phrase.** It is the ism fiʿl «الزم» with an extra bāʾ, which is how
+  wasiyyat-abi-hanifa-samti 4:s26:1 reads the same phrase.
+- **For the hoca:**
+  - In Uṣūl 2:s16:2, 23:s4:62, 24:s20:19 and 30:s4:42, عسى + أن is given «والفاعل ضمير مستتر». That pronoun is the ism if عسى is
+    deficient. If it is complete, the maṣdar from أن + muḍāriʿ is the fāʿil.
+  - marah-al-arwah 13:s13:9 has اثْنَا as the khabar of صار. اثْنَيْ is due, and the author's own line says so. This is the edition's
+    spelling.
