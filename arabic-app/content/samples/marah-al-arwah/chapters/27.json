@@ -33,6 +33,10 @@
        "lex": "fataha",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -61,7 +65,9 @@
      "lex": "akrama",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "form-iv-verbs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
@@ -303,6 +309,10 @@
        "lex": "hadhafa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -383,7 +393,10 @@
       "en": "The word itself is quoted; in the place of jarr after «فِي».",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); «فِي» ile mahallen mecrûr."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -499,7 +512,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb in the passive, in raf'.",
       "tr": "Muzâri fiil (meçhul), merfû."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -527,7 +544,9 @@
      "lex": "alima",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
@@ -643,7 +662,8 @@
      "lex": "iltabasa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "form-viii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ «حَتَّى»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
@@ -697,7 +717,10 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«مِنْ».",
       "en": "The word itself is quoted; in the place of jarr after «مِنْ».",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); «مِنْ» ile mahallen mecrûr."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -741,7 +764,10 @@
       "en": "The word itself is quoted; in the place of jarr as the mudaf ilayh.",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); mahallen mecrûr, muzâfun ileyh."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "form-ii-verbs"
+     ]
     }
    ]
   },
@@ -796,7 +822,12 @@
       "en": "A past verb in the passive; its deputy doer is the clause quoted after it.",
       "tr": "Meçhul mâzî fiil; nâib-i fâili ondan sonra hikâye edilen cümledir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -810,7 +841,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -865,7 +900,11 @@
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -896,7 +935,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -971,7 +1014,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb; the waw of the group is its doer.",
       "tr": "Mâzî fiil; cemaat vâvı fâildir."
-     }
+     },
+     "grammar": [
+      "form-ii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1108,6 +1154,10 @@
        "lex": "hadhafa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1259,7 +1309,9 @@
      "lex": "hadhafa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
@@ -1293,7 +1345,9 @@
      "lex": "qaraa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ «أَنْتَ» — وَاللَّفْظُ الْمَذْكُورُ مِنَ الْآيَةِ مَحْكِيٌّ فِي مَحَلِّ جَرٍّ بِـ«فِي».",

@@ -68,7 +68,9 @@
      "pos": "verb",
      "grammar": [
       "nawasib-wa-jawazim-al-mudari",
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَنْصُوبٌ بِـ«أَنْ»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
@@ -123,7 +125,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -346,7 +352,9 @@
      "pos": "verb",
      "grammar": [
       "nawasib-wa-jawazim-al-mudari",
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَنْصُوبٌ بِـ«أَنْ»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
@@ -637,7 +645,12 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -749,6 +762,9 @@
        "lex": "ijtamaa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "form-viii-verbs"
      ]
     },
     {
@@ -794,6 +810,10 @@
        "lex": "farra",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -854,6 +874,10 @@
        "lex": "waqaa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -927,7 +951,12 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1118,7 +1147,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb; the waw of the group is its doer.",
       "tr": "Mâzî fiil; cemaat vâvı fâildir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "form-ii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1322,7 +1355,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الضَّمِّ لِاتِّصَالِهِ بِوَاوِ الْجَمَاعَةِ، وَالْوَاوُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb; the waw of the group is its doer.",
       "tr": "Mâzî fiil; cemaat vâvı fâildir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "form-ii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1499,7 +1536,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb.",
       "tr": "Mâzî fiil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1682,6 +1722,10 @@
        "lex": "hadhafa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1743,6 +1787,10 @@
        "lex": "naqala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1839,7 +1887,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb in the passive.",
       "tr": "Meçhul mâzî fiil."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1932,7 +1984,9 @@
      "lex": "sara",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2005,7 +2059,12 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2036,7 +2095,11 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«مِنْ».",
       "en": "The word itself is quoted; in the place of jarr after «مِنْ».",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); «مِنْ» ile mahallen mecrûr."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2050,7 +2113,11 @@
       "ar": "مُضَارِعُهُ، مَحْكِيٌّ مَعَهُ مِنْ تَمَامِ الْمِثَالِ.",
       "en": "Its mudari', quoted with it — part of the example.",
       "tr": "Onun muzârii; onunla birlikte hikâye edilir, misâlin devamıdır."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2121,7 +2188,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb in the passive.",
       "tr": "Meçhul mâzî fiil."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2149,7 +2220,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2186,7 +2259,11 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«مِنْ» — وَهُوَ فِي نَفْسِهِ فِعْلٌ مُضَارِعٌ لِلْمُتَكَلِّمِ، وَالْجَارُّ وَالْمَجْرُورُ بَعْدَهُ مِنْ تَمَامِ الْمِثَالِ.",
       "en": "The word itself is quoted; in the place of jarr after «مِنْ» — in itself a present verb of the first person; the jarr phrase after it completes the example.",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); «مِنْ» ile mahallen mecrûr — kendi içinde mütekellim muzâri fiildir; ardındaki câr-mecrûr misâlin devamıdır."
-     }
+     },
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2362,7 +2439,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
@@ -2421,7 +2500,10 @@
      "lex": "qarra",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ نَصْبٍ خَبَرُ «يَكُونُ».",
@@ -2472,7 +2554,9 @@
      "lex": "alima",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
@@ -2505,6 +2589,10 @@
        "lex": "naqala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2585,7 +2673,9 @@
      "lex": "sara",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2688,7 +2778,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -2799,7 +2891,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2836,7 +2930,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2917,7 +3015,10 @@
      "lex": "madda",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "imperative-amr",
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
@@ -2954,7 +3055,12 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.",
       "en": "The word itself is quoted; joined to the word before it, in the place of jarr.",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); öncekine ma'tûf, mahallen mecrûr."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3367,7 +3473,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3482,7 +3592,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3527,7 +3641,10 @@
      "lex": "madda",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "imperative-amr",
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«فِي».",

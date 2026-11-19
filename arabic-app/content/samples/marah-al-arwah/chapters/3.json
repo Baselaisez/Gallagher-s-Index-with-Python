@@ -370,7 +370,12 @@
       "en": "A past verb in the passive; its deputy doer is the clause quoted after it.",
       "tr": "Meçhul mâzî fiil; nâib-i fâili ondan sonra hikâye edilen cümledir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -401,7 +406,12 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb in the passive.",
       "tr": "Meçhul mâzî fiil."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "doubled-verbs",
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {
@@ -531,7 +541,11 @@
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -557,7 +571,9 @@
      "pos": "verb",
      "grammar": [
       "nawasib-wa-jawazim-al-mudari",
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ «حَتَّى»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -746,7 +762,11 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -794,7 +814,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "form-v-verbs"
+     ]
     },
     {
      "surface": {
@@ -1318,7 +1342,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -1381,7 +1407,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -1636,6 +1664,11 @@
        "lex": "qala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1738,7 +1771,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb, in raf'; its doer is a hidden pronoun «هِيَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «هِيَ»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {

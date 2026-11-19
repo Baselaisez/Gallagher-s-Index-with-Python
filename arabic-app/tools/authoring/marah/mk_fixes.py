@@ -1606,5 +1606,14 @@ L("76:s12:9", "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، �
 #      «حَتَّى يَدْلُلْنَ عَلَى الْأَصْلِ»: built on the sukūn for the nūn of the feminine plural, in the place of naṣb
 L("76:s12:11", *F["72:s2:2"]["irab"].values())
 # <<< part twenty-seven
+# (v334-N1) «تُسْكَنُ حُرُوفُ الْعِلَّةِ»، «تُسْكَنُ لِلْخِفَّةِ»: the passive of أَسْكَنَ «to make quiescent» — سَكَنَ is lāzim and has no such passive;
+# the four tokens had been keyed to it (found when the ṣarf notes were computed from each token's lex: a Form IV passive under a Form I key)
+for w334_ in ("70:s1:6", "73:s3:2", "73:s5:0", "74:s6:2"): K(w334_, "askana-sukun")
+# (v334-N1) the rows tools/authoring/apply_fixes.py merged into the shipped package and into fixes.json (a corrected line, an added note
+# id, a re-keyed word) live in fixes_applied.json — refreshed by the wave that applies them — and are laid over the rows above,
+# so that re-running this script reproduces fixes.json and does not lose them
+_side = H / "fixes_applied.json"
+if _side.exists():
+    for _k, _v in json.load(open(_side, encoding="utf-8")).items(): F[_k] = _v
 json.dump(F, open(H / "fixes.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(len(F), "fixes → fixes.json")

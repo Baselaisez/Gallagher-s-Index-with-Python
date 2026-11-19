@@ -52,7 +52,12 @@
       "en": "A past verb in the passive; its deputy doer is the clause quoted after it.",
       "tr": "Meçhul mâzî fiil; nâib-i fâili ondan sonra hikâye edilen cümledir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -84,7 +89,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A passive past verb, built on fatha.",
       "tr": "Meçhul mâzî fiil, feth üzere mebnî."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -179,7 +188,11 @@
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -290,7 +303,9 @@
      "lex": "sara",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -482,7 +497,10 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
       "en": "The word itself is quoted; in the place of jarr as the mudaf ilayh.",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); mahallen mecrûr, muzâfun ileyh."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -591,7 +609,8 @@
      "lex": "faala",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«فِي».",
@@ -682,7 +701,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -753,7 +777,8 @@
      "lex": "ijtamaa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "form-viii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ «حَتَّى»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",
@@ -863,7 +888,8 @@
      "lex": "daraba",
      "pos": "verb",
      "grammar": [
-      "afal-khamsa"
+      "afal-khamsa",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«فِي».",
@@ -936,7 +962,11 @@
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -989,7 +1019,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَهُوَ فِعْلُ الشَّرْطِ.",
       "en": "A past verb, built on fatha; it is the verb of the condition.",
       "tr": "Mâzî fiil, feth üzere mebnî; şart fiilidir."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1021,7 +1054,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْجُمْلَةُ جَوَابُ «إِذَا» لَا مَحَلَّ لَهَا مِنَ الْإِعْرَابِ.",
       "en": "A present verb, in raf'; the sign is the visible damma; its clause is the answer of «إِذَا» and has no place in the i'rab.",
       "tr": "Muzâri fiil, merfû; alâmeti zâhir damme ile; cümlesi «إِذَا»nın cevabıdır, i'râbdan mahalli yoktur."
-     }
+     },
+     "grammar": [
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {

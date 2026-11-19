@@ -19,7 +19,7 @@ undecided) and corrects by the fixes file; nothing is invented by a model.
 """
 import json, sys, re, unicodedata, glob, os, argparse, datetime
 from pathlib import Path
-ROOT = Path("/home/user/Gallagher-s-Index-with-Python/arabic-app")
+ROOT = Path(os.environ.get("QISSA_ROOT") or Path(__file__).resolve().parents[2])   # (v334-N1) the checkout this script lives in — a worktree builds from its own shelf
 N = lambda s: unicodedata.normalize("NFC", s or "")
 DIA = re.compile("[ً-ْٰـ]")
 bare = lambda s: DIA.sub("", N(s))
@@ -1934,7 +1934,7 @@ def main():
                                 gv = pp if (c[0] == "mudari" and c[2] in ("jazm", "nasb") and pp in ("لم", "لن", "لا", "ل", "اما")) else ""
                                 ln = CL.line(x["e"], c[0], c[1], c[2], gv)
                             else:
-                                ln = CL.tawkid_line(x["h"], pp if pp in ("لا", "ل", "اما") else "")
+                                ln = CL.tawkid_line(x["h"], pp if pp in ("لا", "ل", "اما") else "", e=x["e"])   # (v334-N1) the paradigm says whether the form is an imperative (أَرِيَنَّ) and whose nūn it ends in (قِينَانِّ)
                                 if not ln: ln = ("لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ.", "the word itself is quoted.", "kelimenin kendisi kastedilmiştir (hikâye).")
                                 else: prev, ptense = -1, None
                             t = toks[q]; pre_ = N(t["surface"]["full"])[:2] if N(t["surface"]["full"]) != x["h"] and re.match(r"^[وف]\u064e", N(t["surface"]["full"])) else ""
@@ -2022,6 +2022,12 @@ def main():
             praise_khabar(toks, report)   # (wave 167)
             for t_ in toks:
                 if (t_.get("pos") in ("noun", "propn")) and "مَمْنُوعٌ مِنَ الصَّرْفِ" in (t_.get("irab") or {}).get("ar", "") and "mamnu-min-sarf" in GIDS and "mamnu-min-sarf" not in t_.get("grammar", []): t_["grammar"] = list(t_.get("grammar", [])) + ["mamnu-min-sarf"]
+            if meta.get("cellLines") or meta.get("cellRows"):   # (v334-N1, backlog F1) a ṣarf matn: every verb that is a verified cell of its stored paradigm takes the ṣarf notes that teach it — see sarf_tags.py
+                import sarf_tags as ST334
+                for t_ in toks:
+                    if t_.get("pos") == "verb" and M.get(t_.get("lex")):
+                        new_, _c = ST334.apply(t_, M[t_["lex"]], used.get(t_["lex"]) or G.get(t_["lex"]), GIDS)
+                        if new_: report["sarfTagged"] = report.get("sarfTagged", 0) + 1
             sents.append({"id": sid, **({"page": s.get("page")} if s.get("page") else {}), "translation": {"en": tr_.get("en", ""), "tr": tr_.get("tr", "")}, "tokens": toks})
         chapters_out.append({"n": ch["n"], "title_ar": ch["title"], "sentences": sents})
     # ---- write the package
@@ -2045,6 +2051,7 @@ def main():
     if report.get("paradigmSkipped"): print("paradigm not copied (glossary holder differs from paradigm owner):", sorted(set(report["paradigmSkipped"])))
     print(f"package {meta['id']}: {len(chapters_out)} ch / {ns} s / {nt} t; glossary {len(used)}; verbs with paradigms {len(morph)}")
     print(f"REVIEW: no key {len(report['nokey'])}; engine≠written {len(report['mismatch'])}; undecided {len(report['undecided'])}; written ending won {report['reconciled']}; lex-verbs promoted {report['promoted']}; verbs re-keyed to their lemma {report['rekeyed']}; verbs still on a noun key {len(report.get('verbNounKey', []))}")
+    if report.get("sarfTagged"): print("verbs given their ṣarf notes:", report["sarfTagged"])
     print("sila named:", report.get("sila_named", 0))
     if report.get("ma_khabar"): print("mā named as khabar:", report["ma_khabar"])
     if report.get("quotedByRule"): print("cited words named by rule:", len(report["quotedByRule"]), "| named by their written vowels / seat:", len(report.get("vowelNamed", [])))
