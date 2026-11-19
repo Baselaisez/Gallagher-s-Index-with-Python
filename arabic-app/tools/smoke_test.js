@@ -3247,14 +3247,20 @@ if (!CHROME) {
     for (const f of ['اِسْتَرْمَى', 'يَسْتَرْمِي', 'اِسْتِرْمَاء'])
       if (!naqisX.normalize('NFC').includes(f.normalize('NFC')))
         throw new Error('derived-naqis tables lack ' + f);
+    /* (v334-N3 · F2) a hamzated root is now CONJUGATED by rule (ʿIzzī L289–L293: يَأْخُذُ with the heard amr خُذْ); what the books refuse is refused
+       with its reason — a root weak in fāʾ and ʿayn builds no verb (L284) */
     const refusal = await page.evaluate(() => {
-      conjState.root = 'أخذ'; conjState.form = 'I'; renderConjOut();
+      conjState.root = 'أخذ'; conjState.form = 'I'; conjState.bab = 1; renderConjOut();
+      const hz = document.getElementById('conjOut').textContent;
+      conjState.root = 'يوم'; renderConjOut();
       const txt = document.getElementById('conjOut').textContent;
       conjState.root = 'نصر'; closeSheet();
-      return txt;
+      return { hz, txt };
     });
-    if (!/hamza|Hemze|hemze/i.test(refusal))
-      throw new Error('a hamzated root was not honestly refused');
+    if (!refusal.hz.normalize('NFC').includes('يَأْخُذُ'.normalize('NFC')) || !refusal.hz.normalize('NFC').includes('خُذْ'.normalize('NFC')))
+      throw new Error('a hamzated root is conjugated by rule: ' + refusal.hz.slice(0, 120));
+    if (!/builds no verb|fiil bina olunmaz/.test(refusal.txt))
+      throw new Error('a root weak in fāʾ and ʿayn was not honestly refused: ' + refusal.txt.slice(0, 120));
   });
 
   await check('the Sarf Lab auto-detects the attested bab for a known root', async () => {
@@ -16760,8 +16766,10 @@ if (!CHROME) {
     const J = JSON.stringify;
     if (J(r.akhbar) !== J(['muhammad-ibn-zayd-wa-al-umawi', 'siyar-abi-hanifa', 'siyar-al-shaykh-al-mufid', 'siyar-ibn-al-mubarak']) || J(r.shir) !== J(['muallaqat-imri-al-qays', 'muallaqat-zuhayr']) || !r.labels) throw new Error('the shelves: ' + J(r));
     if (r.miq[0] !== 81 || r.miq[1] || r.zuh[0] !== 62 || r.zuh[1]) throw new Error('the poems are not whole or a verse lacks its one hemistich mark: ' + J([r.miq, r.zuh]));
-    /* (v333) the HEARD paradigms the Sarf audit skips (samai: true) are exactly هَرَاقَ يُهَرِيقُ and تَحَيَّلَ — the flag may not spread unseen */
-    if (J(r.samai) !== J(['haraqa', 'tahayyala'])) throw new Error('sarfAudit().samai must be exactly the two heard paradigms: ' + J(r.samai));
+    /* (v333) the HEARD paradigms the Sarf audit skips (samai: true) are exactly هَرَاقَ يُهَرِيقُ and تَحَيَّلَ — the flag may not spread unseen.
+       (v334-N3) the audit now reaches the hamzated and the lafīf, and three more are heard: آيَسَ (the metathesis of أَيْأَسَ), تَجَزَّى (the hamza softened),
+       وَاسَى (the lugha of آسَى) — no rule of the books builds them, so they are stored and named */
+    if (J(r.samai) !== J(['ayisa', 'haraqa', 'tahayyala', 'tajazza', 'wasa'])) throw new Error('sarfAudit().samai must be exactly the five heard paradigms: ' + J(r.samai));
     const fs = require('fs'), path = require('path');
     for (const id of [...r.akhbar, ...r.shir]) { const m = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'samples', id, 'manifest.json'), 'utf8')); const a = m.attribution || {};
       if (/\bORIGINAL\b/.test(a.en || '') || a.reviewStatus !== 'pending-scholarly-review') throw new Error(id + ': a received text must not be called ORIGINAL, and waits for review'); }
@@ -17632,6 +17640,115 @@ if (!CHROME) {
     if (r.mud > 0 || r.mi > 1 || r.named < 272) throw new Error('against the authored lines: ' + J({ mud: r.mud, mi: r.mi, auth: r.auth, named: r.named, list: r.list }));
   });
 
+  await check('v334-N3 — the hamzated and the lafīf verbs derived by rule (feeding backlog F2; ʿIzzī L266–L327): every cell the ʿIzzī recites for its model roots comes out of sarfDerive (اُومُلْ / وَأْمُلْ، اِيزِرْ، اُودُبْ، يَهْنِئُ، اِيتِ / تِ، اِيوِ، وَقَى يَقِي قِ / قِهْ، وَجِيَ يَوْجَى اِيجَ، يَرَى رَ رَهْ، أَرَى يُرِي مُرٍ مُرًى، سَاءٍ، اِيتَالَ، إِيمَان …); the heard (خُذْ كُلْ مُرْ، سَلْ، تِ، يَرَى) sits in SJ_HEARD_X with its line; sarfAudit reaches ≥ 160 hamzated / lafīf corpus paradigms with 0 mismatches; two-hamza, fāʾ-ʿayn and bāb refusals; MaqsudEngine.formI on any root; control سَأَلَ → اِسْأَلْ', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const J = JSON.stringify, N = x => String(x || '').normalize('NFC'), W = x => N(x).replace(/^اِ/, 'ا').replace(/[ًٌٍ](ّ?)$/, '$1');
+      const D = (root, form, bab) => { const d = sarfDerive(sarfClassX({ root }), form, bab); return d; };
+      const bad = []; let cells = 0;
+      const want = (root, form, bab, field, i, book) => { const d = D(root, form, bab); cells++;
+        const got = !d.ok ? 'REFUSED:' + d.reason : i === null ? d[field] : (d[field] || [])[i];
+        const ok = Array.isArray(got) ? got.map(W).includes(W(book)) : W(got) === W(book);
+        if (!ok) bad.push(root + ' ' + form + bab + ' ' + field + (i === null ? '' : '[' + i + ']') + ': ' + J(got) + ' ≠ ' + book); };
+      const BOOK = [
+        ['ش و ي', 'I', 2, [['mazi', 0, 'شَوَى'], ['mudari', 0, 'يَشْوِي']]],                                             // L266
+        ['ق و ي', 'I', 4, [['mazi', 0, 'قَوِيَ'], ['mudari', 0, 'يَقْوَى']]], ['ر و ي', 'I', 4, [['mazi', 0, 'رَوِيَ'], ['mudari', 0, 'يَرْوَى']]],   // L267
+        ['ح ي ي', 'I', 4, [['mazi', 0, 'حَيِيَ'], ['mudari', 0, 'يَحْيَا'], ['amr', 0, 'اِحْيَ'], ['maziAlt', null, 'حَيَّ'], ['maziAlt', null, 'حَيِيُوا']]],   // L268–L271
+        ['ر و ي', 'IV', 1, [['mazi', 0, 'أَرْوَى'], ['mudari', 0, 'يُرْوِي']]], ['ح ي ي', 'IV', 1, [['mazi', 0, 'أَحْيَا'], ['mudari', 0, 'يُحْيِي'], ['masdar', null, 'إِحْيَاء']]],
+        ['ح ي ي', 'III', 1, [['mazi', 0, 'حَايَا'], ['mudari', 0, 'يُحَايِي'], ['masdar', null, 'مُحَايَاة']]],
+        ['ح ي ي', 'X', 1, [['mazi', 0, 'اسْتَحْيَا'], ['mudari', 0, 'يَسْتَحْيِي'], ['amr', 0, 'اسْتَحْيِ'], ['masdar', null, 'اسْتِحْيَاء']]],   // L272–L274
+        ['و ق ي', 'I', 2, [['mazi', 0, 'وَقَى'], ['mazi', 1, 'وَقَيَا'], ['mazi', 2, 'وَقَوْا'], ['mudari', 0, 'يَقِي'], ['mudari', 1, 'يَقِيَانِ'], ['mudari', 2, 'يَقُونَ'],
+          ['amr', 0, 'قِ'], ['amr', 1, 'قِيَا'], ['amr', 2, 'قُوا'], ['amr', 3, 'قِي'], ['amr', 4, 'قِيَا'], ['amr', 5, 'قِينَ'], ['amrWaqf', null, 'قِهْ']]],   // L276–L278
+        ['و ج ي', 'I', 4, [['mazi', 0, 'وَجِيَ'], ['mudari', 0, 'يَوْجَى'], ['amr', 0, 'اِيجَ']]],                    // L282–L283
+        ['أ م ل', 'I', 1, [['mazi', 0, 'أَمَلَ'], ['mudari', 0, 'يَأْمُلُ'], ['amr', 0, 'اُومُلْ'], ['amrWasl', null, 'أْمُلْ']]],   // L289–L291
+        ['أ خ ذ', 'I', 1, [['amr', 0, 'خُذْ']]], ['أ ك ل', 'I', 1, [['amr', 0, 'كُلْ']]], ['أ م ر', 'I', 1, [['amr', 0, 'مُرْ'], ['amrWasl', null, 'أْمُرْ']]],   // L293–L294
+        ['أ ز ر', 'I', 2, [['mazi', 0, 'أَزَرَ'], ['mudari', 0, 'يَأْزِرُ'], ['amr', 0, 'اِيزِرْ']]], ['ه ن أ', 'I', 2, [['mazi', 0, 'هَنَأَ'], ['mudari', 0, 'يَهْنِئُ']]],   // L295–L296
+        ['أ د ب', 'I', 5, [['mazi', 0, 'أَدُبَ'], ['mudari', 0, 'يَأْدُبُ'], ['amr', 0, 'اُودُبْ']]],              // L297–L298
+        ['س أ ل', 'I', 3, [['mazi', 0, 'سَأَلَ'], ['mudari', 0, 'يَسْأَلُ'], ['amr', 0, 'اِسْأَلْ'], ['amrAlt', null, 'سَلْ'], ['maziAlt', null, 'سَالَ'], ['mudariAlt', null, 'يَسَالُ']]],   // L299–L301
+        ['أ و ب', 'I', 1, [['mazi', 0, 'آبَ'], ['mudari', 0, 'يَؤُوبُ']]], ['س و أ', 'I', 1, [['mazi', 0, 'سَاءَ'], ['mudari', 0, 'يَسُوءُ'], ['fail', null, 'سَاءٍ']]],   // L302
+        ['ج ي أ', 'I', 2, [['mazi', 0, 'جَاءَ'], ['mudari', 0, 'يَجِيءُ'], ['fail', null, 'جَاءٍ']]],                 // L303
+        ['أ س و', 'I', 1, [['mazi', 0, 'أَسَا'], ['mudari', 0, 'يَأْسُو']]], ['أ ت ي', 'I', 2, [['mazi', 0, 'أَتَى'], ['mudari', 0, 'يَأْتِي'], ['amr', 0, 'اِيتِ'], ['amrAlt', null, 'تِ']]],   // L304–L307
+        ['و أ ي', 'I', 2, [['mazi', 0, 'وَأَى'], ['mudari', 0, 'يَئِي']]], ['أ و ي', 'I', 2, [['mazi', 0, 'أَوَى'], ['mudari', 0, 'يَأْوِي'], ['amr', 0, 'اِيوِ']]],   // L308–L311
+        ['ن أ ي', 'I', 3, [['mazi', 0, 'نَأَى'], ['mudari', 0, 'يَنْأَى']]],                                          // L312
+        ['ر أ ي', 'I', 3, ['يَرَى', 'يَرَيَانِ', 'يَرَوْنَ', 'تَرَى', 'تَرَيَانِ', 'يَرَيْنَ', 'تَرَى', 'تَرَيَانِ', 'تَرَوْنَ', 'تَرَيْنَ', 'تَرَيَانِ', 'تَرَيْنَ', 'أَرَى', 'نَرَى'].map((x, k) => ['mudari', k, x])
+          .concat(['رَ', 'رَيَا', 'رَوْا', 'رَيْ', 'رَيَا', 'رَيْنَ'].map((x, k) => ['amr', k, x]), [['amrAlt', null, 'اِرْءَ'], ['amrWaqf', null, 'رَهْ'], ['fail', null, 'رَاءٍ'], ['maful', null, 'مَرْئِيٌّ']])],   // L312–L318
+        ['ر أ ي', 'IV', 1, [['mazi', 0, 'أَرَى'], ['mudari', 0, 'يُرِي'], ['fail', null, 'مُرٍ'], ['maful', null, 'مُرًى']].concat(['أَرِ', 'أَرِيَا', 'أَرُوا', 'أَرِي', 'أَرِيَا', 'أَرِينَ'].map((x, k) => ['amr', k, x]), [['majzum2', null, 'تُرِ']])],   // L319–L322
+        ['أ و ل', 'VIII', 1, [['mazi', 0, 'ايتَالَ']]], ['أ ل و', 'VIII', 1, [['mazi', 0, 'ايتَلَى']]],              // L327
+        ['أ م ن', 'IV', 1, [['mazi', 0, 'آمَنَ'], ['mudari', 12, 'أُومِنُ'], ['masdar', null, 'إِيمَان']]],            // L290 «كَآمَنَ وَأُومِنَ وَإِيمَانٍ»
+      ];
+      for (const [root, form, bab, cs] of BOOK) for (const [f, i, b] of cs) want(root, form, bab, f, i, b);
+      // the emphatic nūn on the recited amr (L279–L280, L320–L321), read off the Sarf lab's own table
+      const tw = x => tawkidTable(D(x[0], 'I', x[1]), '').replace(/<[^>]+>/g, ' ');
+      const tq = tw(['و ق ي', 2]), tr = tw(['ر أ ي', 3]);
+      for (const x of ['قِيَنَّ', 'قِيَانِّ', 'قُنَّ', 'قِنَّ', 'قِينَانِّ']) { cells++; if (!tq.includes(x)) bad.push('tawkid ' + x); }
+      for (const x of ['رَيَنَّ', 'رَيَانِّ', 'رَوُنَّ', 'رَيِنَّ', 'رَيْنَانِّ']) { cells++; if (!tr.includes(x)) bad.push('tawkid ' + x); }
+      const heard = ['ءخذ', 'ءكل', 'ءمر', 'سءل', 'ءتي', 'رءي'].every(k => SJ_HEARD_X[k] && /L\d/.test(SJ_HEARD_X[k].line || ''));
+      const refuse = { yawm: D('ي و م', 'I', 1).reason, two: D('أ أ ب', 'I', 1).reason, bab: D('و ق ي', 'I', 1).reason,
+        why: ['hamza-two', 'lafif-fa-ayn', 'lafif-bab', 'x-late'].every(k => L.en.conjNoWhy[k] && L.tr.conjNoWhy[k]) };
+      const ctrl = D('س أ ل', 'I', 3), ctrl2 = D('ن أ ي', 'I', 3);
+      const M = (root, cls, bab) => { const d = MaqsudEngine.formI({ root, cls, bab }); return d ? [N(d.mudari[0]), N(d.amr[0])] : null; };
+      const maq = { amal: M('أ م ل', 'mahmuz-f', 1), azar: M('أ ز ر', 'mahmuz-f', 2), adab: M('أ د ب', 'mahmuz-f', 5), awa: M('أ و ي', 'lafif-maqrun', 2), hana: M('ه ن أ', 'mahmuz-l', 2), waji: M('و ج ي', 'lafif-mafruq', 4) };
+      const au = sarfAudit(); const xc = au.xClass || {}; const sum = re => Object.keys(xc).filter(k => re.test(k)).reduce((a, k) => a + xc[k], 0);
+      return { bad, cells, heard, refuse, ctrl: [N(ctrl.amr[0]), ctrl.amrAlt, N(ctrl.mudari[0])], ctrl2: N(ctrl2.mudari[0]), maq,
+        audit: { checked: au.checked, x: au.x, bad: au.bad.slice(0, 3), lafifMaqrun: sum(/^lafif-maqrun:/), lafifMafruq: sum(/^lafif-mafruq:/), mahmuzF: sum(/^mahmuz-f/), mahmuzA: sum(/^mahmuz-a/), mahmuzL: sum(/^mahmuz-l/), formI: sum(/:I$/) } };
+    });
+    if (r.bad.length || r.cells < 120) throw new Error(r.bad.length + ' recited cell(s) of ' + r.cells + ' not derived: ' + r.bad.slice(0, 6).join(' | '));
+    if (!r.heard) throw new Error('the heard amrs must sit in SJ_HEARD_X with their book line');
+    if (r.refuse.yawm !== 'lafif-fa-ayn' || r.refuse.two !== 'hamza-two' || r.refuse.bab !== 'lafif-bab' || !r.refuse.why) throw new Error('the refusals: ' + J(r.refuse));
+    if (r.ctrl[0] !== 'اِسْأَلْ' || J(r.ctrl[1]) !== J(['سَلْ']) || r.ctrl[2] !== 'يَسْأَلُ' || r.ctrl2 !== 'يَنْأَى') throw new Error('control: سَأَلَ keeps its hamza (سَلْ is the heard variant only), نَأَى keeps it in the muḍāriʿ: ' + J([r.ctrl, r.ctrl2]));
+    const mq = r.maq; if (J(mq.amal) !== J(['يَأْمُلُ', 'اُومُلْ']) || mq.azar[1] !== 'اِيزِرْ' || mq.adab[1] !== 'اُودُبْ' || mq.awa[1] !== 'اِيوِ' || mq.hana[0] !== 'يَهْنِئُ' || J(mq.waji) !== J(['يَوْجَى', 'اِيجَ'])) throw new Error('MaqsudEngine.formI on any root: ' + J(mq));
+    const a = r.audit; if (a.bad.length || a.x < 160 || a.checked < 1620 || a.lafifMaqrun < 25 || a.lafifMafruq < 15 || a.mahmuzF < 65 || a.mahmuzA < 14 || a.mahmuzL < 30 || a.formI < 65) throw new Error('sarfAudit over the hamzated and the lafīf: ' + J(a));
+  });
+
+  await check('v334-N3 — the doubled verb in jazm and amr (feeding backlog F4; ʿIzzī L146–L152, Marāḥ L530–L531): sarfDerive lists the permitted jussives and amrs by the vowel before the twin (يَمُدَّ يَمُدِّ يَمُدُّ يَمْدُدْ؛ يَفِرَّ يَفِرِّ يَفْرِرْ؛ مُدَّ مُدِّ مُدُّ اُمْدُدْ؛ فِرَّ فِرِّ اِفْرِرْ — فِرُّ refused); IdghamRuleEngine names the jāʾiz vowels; the analyzer reads لَمْ يَمُدُّ، لَمْ يَفِرِّ زَيْدٌ، لَمْ يَمُدَّ as majzūm with the vowel\'s reason, and مَنْ يُضْلِلِ اللهُ (the fakk with the kasra of two sākins) gives مَنْ its conditional line; control: يَمُدُّ زَيْدٌ stays marfūʿ', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const G = (root, bab) => { const d = sarfDerive(nakilClass({ root }), 'I', bab); return { j: [d.majzum].concat(d.majzumAlt || []).map(N), a: [d.amr[0]].concat(d.amrIdghamAlt || []).map(N), ref: d.amrRefused ? N(d.amrRefused.w) : null, v: d.jazmVowels }; };
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      const ju = (w, root, bab) => { const x = IdghamRuleEngine.judge(w, root, bab); return [x.ok, x.vowel || x.form || null, !!x.why]; };
+      const rl = IdghamRuleEngine.ruleFor('م د د', 1, 'majzum', 0);
+      // the corpus: every doubled muḍāriʿ right after a jāzim whose authored line says majzūm is read majzūm, its vowel named
+      let n = 0, hit = 0; const miss = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some((t, k) => k > 0 && /[َُِ]ّ$/.test(N(t.s.full)) && /^[وف]?َ?لَمْ$/.test(N(T[k - 1].s.full)))) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        T.forEach((t, k) => { const rd = String(rows[k].root || '').split(/\s+/); if (!(k > 0 && rd.length === 3 && rd[1] === rd[2] && /[َُِ]ّ$/.test(N(t.s.full)) && /^[وف]?َ?لَمْ$/.test(N(T[k - 1].s.full)) && /مَجْزُوم/.test((t.irab || {}).ar || ''))) return; n++;
+          const ln = (Murib.line(rows, k) || {}).ar || ''; if (/مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ الْمُقَدَّرُ، وَحُرِّكَ بِ/.test(ln)) hit++; else miss.push(st.id + ':' + t.s.full + ' ' + ln.slice(0, 50)); }); }
+      return { mdd: G('م د د', 1), frr: G('ف ر ر', 2), add: G('ع ض ض', 4), allowed: rl.allowed.map(N), lbl: rl.vowelsLbl && rl.vowelsLbl.ar,
+        judge: [ju('فِرُّ', 'ف ر ر', 2), ju('فِرِّ', 'ف ر ر', 2), ju('مُدُّ', 'م د د', 1), ju('اُمْدُدْ', 'م د د', 1)],
+        a: L('لَمْ يَمُدُّ'), b: L('لَمْ يَفِرِّ زَيْدٌ'), f: L('لَمْ يَمُدَّ'), c: L('مَنْ يُضْلِلِ اللهُ فَلَا هَادِيَ لَهُ'), ctrl: L('يَمُدُّ زَيْدٌ'), corpus: { n, hit, miss: miss.slice(0, 4) } };
+    });
+    if (J(r.mdd.j) !== J(['يَمُدَّ', 'يَمُدِّ', 'يَمُدُّ', 'يَمْدُدْ']) || J(r.mdd.a) !== J(['مُدَّ', 'مُدِّ', 'مُدُّ', 'اُمْدُدْ']) || r.mdd.ref !== null || J(r.mdd.v) !== J(['fatha', 'kasra', 'damma'])) throw new Error('مَدَّ يَمُدُّ (L148–L150): ' + J(r.mdd));
+    if (J(r.frr.j) !== J(['يَفِرَّ', 'يَفِرِّ', 'يَفْرِرْ']) || J(r.frr.a) !== J(['فِرَّ', 'فِرِّ', 'اِفْرِرْ']) || r.frr.ref !== 'فِرُّ') throw new Error('فَرَّ يَفِرُّ (L146–L147, Marāḥ L531): ' + J(r.frr));
+    if (J(r.add.j) !== J(['يَعَضَّ', 'يَعَضِّ', 'يَعْضَضْ']) || J(r.add.a) !== J(['عَضَّ', 'عَضِّ', 'اِعْضَضْ'])) throw new Error('عَضَّ يَعَضُّ (L146): ' + J(r.add));
+    if (J(r.allowed) !== J(['يَمُدَّ', 'يَمُدِّ', 'يَمُدُّ', 'يَمْدُدْ']) || !/الضَّمُّ لِلْإِتْبَاعِ/.test(r.lbl || '')) throw new Error('IdghamRuleEngine — the jāʾiz names its vowels: ' + J([r.allowed, r.lbl]));
+    if (J(r.judge) !== J([[false, null, true], [true, 'kasra', false], [true, 'damma', false], [true, 'fakk', false]])) throw new Error('judge: فِرُّ refused with Marāḥ L531, فِرِّ / مُدُّ / اُمْدُدْ permitted: ' + J(r.judge));
+    if (!/مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ الْمُقَدَّرُ، وَحُرِّكَ بِالضَّمِّ لِلْإِتْبَاعِ/.test(r.a[1])) throw new Error('لَمْ يَمُدُّ is majzūm: ' + r.a[1]);
+    if (!/مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ الْمُقَدَّرُ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ/.test(r.b[1]) || !/فَاعِلٌ/.test(r.b[2])) throw new Error('لَمْ يَفِرِّ زَيْدٌ: ' + J(r.b));
+    if (!/وَحُرِّكَ بِالْفَتْحِ لِلْخِفَّةِ/.test(r.f[1]) || /الظَّاهِرَةُ/.test(r.f[1])) throw new Error('لَمْ يَمُدَّ — the sukūn is estimated, the fatḥa for lightness: ' + r.f[1]);
+    if (!/^اسْمُ شَرْطٍ جَازِمٌ/.test(r.c[0]) || !/فِعْلٌ مُضَارِعٌ، مَجْزُومٌ وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَحُرِّكَ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، فِعْلُ الشَّرْطِ/.test(r.c[1])) throw new Error('مَنْ يُضْلِلِ اللهُ — the fakk jussive and the conditional noun: ' + J(r.c.slice(0, 2)));
+    if (!/مَرْفُوعٌ وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ/.test(r.ctrl[0])) throw new Error('control — يَمُدُّ with no jāzim stays marfūʿ: ' + r.ctrl[0]);
+    if (r.corpus.n < 10 || r.corpus.hit !== r.corpus.n) throw new Error('the corpus\'s doubled jussives after لَمْ: ' + J(r.corpus));
+  });
+
+  await check('v334-N3 — وَأْمُرْ: the hamza that comes back after wāw and fāʾ (feeding backlog F9; ʿIzzī L291 «وَأْمُلْ», L294 «وَقَدْ يَجِيءُ مُرْ عَلَى الْأَصْلِ عِنْدَ الْوَصْلِ: وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ»): the analyzer reads وَأْمُرْ، فَأْتِ، وَأْتُوا as the amr after a joiner; every corpus verb so written reads as an amr; control: وَأَمَرَ stays a māḍī', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC');
+      const L = s => { const rows = SentenceAnalyzer.analyze(s); return rows.map((x, k) => (Murib.line(rows, k) || {}).ar || ''); };
+      let n = 0, amr = 0; const miss = [];
+      for (const st of STORIES) for (const ch of st.chapters) for (const sn of ch.sentences || []) { const T = sn.tokens || [];
+        if (!T.some(t => /^[وف]َ?أْ/.test(N(t.s.full)) && t.pos === 'verb')) continue;
+        let rows; try { rows = SentenceAnalyzer.analyze(T.map(t => t.s.full).join(' ')); } catch (e) { continue; } if (!rows || rows.length !== T.length) continue;
+        T.forEach((t, k) => { if (!(/^[وف]َ?أْ/.test(N(t.s.full)) && t.pos === 'verb')) return; n++; const ln = (Murib.line(rows, k) || {}).ar || ''; if (/^فِعْلُ أَمْرٍ/.test(ln)) amr++; else miss.push(st.id + ':' + t.s.full); }); }
+      return { a: L('وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ'), b: L('فَأْتِ بِهَا'), c: L('وَأْتُوا الْبُيُوتَ مِنْ أَبْوَابِهَا'), ctrl: L('وَأَمَرَ زَيْدٌ'), corpus: { n, amr, miss } };
+    });
+    if (!/^فِعْلُ أَمْرٍ، مَبْنِيٌّ عَلَى السُّكُونِ/.test(r.a[0]) || !/مَفْعُولٌ بِهِ/.test(r.a[1])) throw new Error('وَأْمُرْ أَهْلَكَ بِالصَّلَاةِ: ' + J(r.a));
+    if (!/^فِعْلُ أَمْرٍ/.test(r.b[0]) || !/^فِعْلُ أَمْرٍ/.test(r.c[0])) throw new Error('فَأْتِ / وَأْتُوا: ' + J([r.b[0], r.c[0]]));
+    if (!/^فِعْلٌ مَاضٍ/.test(r.ctrl[0])) throw new Error('control — وَأَمَرَ is a māḍī: ' + r.ctrl[0]);
+    if (r.corpus.n < 9 || r.corpus.amr !== r.corpus.n) throw new Error('the corpus\'s وَأْ / فَأْ verbs: ' + J(r.corpus));
+  });
   await check('v334-N2 — the first ṣarf catechism (backlog F6): Marāḥ al-Arwāḥ\'s own «فَإِنْ قِيلَ … قُلْنَا» pairs and reasoned refusals and the Maqṣūd\'s six pairs are banks of area sarf; every Arabic string stands in the cited lines of the source file and in the anchored chapter; the lab lists the bank with the book\'s question, and a round credits the ṣarf rating', async () => {
     const J = JSON.stringify;
     const root = path.resolve(__dirname, '..');
