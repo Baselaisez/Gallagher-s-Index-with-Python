@@ -322,3 +322,20 @@ Token numbers count from 1. Not yet a packet.
 - The list entry 24:s21:54 لِيُفَرِّقَ follows «وَلَمْ يَبْعَثْ». It is lām al-taʿlīl, not juḥūd, and the line already says so.
 - 22:s3:21 reads «بِأَنْ مُضْمَرَةً» with a fatḥa (as a ḥāl). This can be defended, so it was not raised.
 - Row 8, al-Uṣūl 25:s12:20, is the same token as o03 row 17. It was given its own id, QO-49A51F6D.
+
+## Engine-found corpus slips (v329 engine wave on main: the feminine plural, the conditional nouns, the built ẓurūf)
+
+Token numbers count from 1. Not yet written as a packet.
+
+- **Singulars called «جمع مؤنث سالم» with the kasra.** The tāʾ wears a fatḥa before the pronoun:
+  - al-usul-al-munifa 22:s11:21 وَصَلَاتَهُمْ
+  - al-usul-al-munifa 23:s7:34 مَرْضَاتَهُ
+  - al-usul-al-munifa 24:s7:36 and 24:s7:59 زَكَاتَهُ
+- **يَرَهُ called naṣb by the fatḥa.** It is the answer of مَنْ, majzūm by the dropped alif: al-usul-al-munifa 26:s2:76 and 26:s2:82.
+- **مَنْ led as a relative while the jazm of يَتَّقِ shows:** qisas-al-nabiyyin-1 21:s24:11.
+- **لِمَا (the jarr lām + a relative مَا) called «ظرف بمعنى حين»:** al-usul-al-munifa 14:s25:8, 14:s28:14, 14:s37:35,
+  14:s37:41, 25:s18:27.
+- **A line calls the word the ḥīniyya لَمَّا, but the page writes no shadda:** al-usul-al-munifa 8:s5:16 «لَمَا قَدَرَ». Either the page or the
+  line is wrong.
+- **For the hoca, بَنَات:** the engine treats it as a SOUND feminine plural, taking the kasra in naṣb (R12; «بَنِينَ وَبَنَاتٍ»).
+  The triage had called it broken.
