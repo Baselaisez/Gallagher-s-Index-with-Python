@@ -331,3 +331,34 @@ names «ت التركي», book 4445, 13/610–611 (https://shamela.ws/book/4445
 «خُوَارِزْميَّةٌ» → «خُوَارِزْمِيَّةً» and for the kept reading «لَا مُلْكَ هَارُونَ»; and the same passages in «سير أعلام النبلاء»
 «ط الحديث» (Dār al-Ḥadīth), book 22669, 7/365, 368, 369 (https://shamela.ws/book/22669/3930, /3933, /3934), which differ
 from the Risāla text in one word («يطعمهم» for «وَيُطعِمُهُم»).
+
+**`muallaqat-imri-al-qays-src.txt`** (2026-11-19) — the Shamela pages behind `content/samples/muallaqat-imri-al-qays`, the
+Muʿallaqa of Imruʾ al-Qays, in four groups. (A) Ibn Qutayba (d. 276 AH), «الشعر والشعراء», the edition al-Maktaba
+al-Shāmila names «دار الحديث، القاهرة، 1423 هـ», book 23785, the entry «امرؤ القيس بن حجر», vol. 1 pp. 108–109 (the span of
+chapter 1 is on p. 109) and pp. 111–112 (his judgements on the poet's similes and on the horse passage, cited in two iʿrāb
+lines): https://shamela.ws/book/23785/101, /102, /104, /105. (B) al-Zawzanī (d. 486 AH), «شرح المعلقات السبع», the edition
+Shamela names «دار إحياء التراث العربي، الطبعة الأولى 1423 هـ / 2002 م», book 11253, «معلقة امرئ القيس», printed pp. 35–78
+(https://shamela.ws/book/11253/46–/89) — the verse text, the order and the count of the package (81 verses), with his
+commentary; the file holds the pages of the verses authored so far and grows with the package. (C) Muḥammad ʿAlī Ṭāhā
+al-Durra, «فتح الكبير المتعال إعراب المعلقات العشر الطوال», the edition Shamela names «مكتبة السوادي، جدة، الطبعة الثانية
+1409 هـ / 1989 م», book 151017, vol. 1 (the poem runs https://shamela.ws/book/151017/22–/161) — the iʿrāb of the same
+verses (his recension counts and orders them differently), used as a CHECK on every token's line and as a second witness
+for the verse text. (D) al-Tibrīzī (d. 502 AH), «شرح القصائد العشر», the edition Shamela names «إدارة الطباعة المنيرية،
+1352 هـ», book 37488 (https://shamela.ws/book/37488/…) — a fully vowelled second witness, cited only where a slip of the
+Zawzanī e-text is corrected (the manifest attribution lists each correction with its page). Fetched 2026-11-19;
+`/book/<id>/<n>` is the site's running page, the block header gives the printed volume and page (the two one-volume books
+are headed `1/<page>`). One block per page, the whole page exactly as the site gives it — the edition's own partial
+vowelling, its typos and the editors' footnotes untouched; nothing normalised. See
+`tools/authoring/author_muallaqat_imri_al_qays.py`, whose manifest attribution lists the two vowelling layers, the verse
+numbers of every chapter and every correction.
+
+**`siyar-al-shaykh-al-mufid-src.txt`** (2026-11-19) — the WHOLE of al-Dhahabī's entry no. 213, «الشيخ المفيد محمد بن محمد بن
+النعمان البغدادي», in «سير أعلام النبلاء» by Shams al-Dīn Muḥammad ibn Aḥmad al-Dhahabī (d. 748 AH), in the edition
+al-Maktaba al-Shāmila names «ط الرسالة» (Muʾassasat al-Risāla), book 10906, vol. 17, printed pp. 344–345. Fetched 2026-11-19
+from https://shamela.ws/book/10906/10755 (17/344, the heading and the body) and https://shamela.ws/book/10906/10756
+(17/345, to «يُكْنَى أَبَا عَبْدِ اللهِ.», where entry no. 214 begins) — the running page of the site, not the printed page.
+One block per Shamela page, copied exactly as the page gives it — the edition's own partial vowelling, its spelling and
+punctuation, the entry number, the star of the heading and the footnote marks, nothing normalised or corrected; the
+editor's footnotes themselves are not copied. It is the source of `content/samples/siyar-al-shaykh-al-mufid` (see
+`tools/authoring/author_siyar_al_shaykh_al_mufid.py`, whose manifest attribution lists the two vowelling layers; the
+package holds the entire entry, in three adjacent spans).
