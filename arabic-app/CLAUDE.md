@@ -14987,3 +14987,48 @@ heard sits in the engine's own table with its line. Three smoke checks «v334-N3
 - **Known and left:** the passive of the hamzated / lafīf verbs is not built by `sarfDerive` (the Maqṣūd engine's `majhul` covers its models);
   the four late doors of an x-root are refused; the ʿIzzī's fāʿil of a bāb-4 lafīf is the ṣifa (رَيَّانُ، حَيٌّ) shown as a chip — the `fail` cell keeps
   the qiyāsī ism fāʿil. gSarf's pool is unchanged (it reads stored cells).
+
+## v334-N4 — iʿlāl's conditions and the meanings of the augmented bābs (feeding backlog L1, L2, F3)
+
+All engine work in `prototype/reader.html`, each rule with its book line beside it as `(v334-N4 · L1/L2/F3)`. Three smoke checks «v334-N4 — …»
+right after «v329 — a demonstrative is never muḍāf». No older check was changed. Full suite: 526 pass, 0 fail; `gen_drills --check` unchanged (9217 rows).
+
+- **L1 — the conditions are GATES.** `IlalEngine.GATES` (15), asked by `qalb-alif`, `naql`, `hamz-fail` and the new `majhul-ajwaf` through
+  `IlalEngine.gate(rule, u, i)` before a letter turns; a passing rule is noted as held (`IlalEngine.HELD`: Ibn Jinnī's conditions L760–L763,
+  naql L803, the fāʿil ʿIzzī L209, the following of مَفْعُول ʿIzzī L211 and of الْإِقَامَةُ L815–L816, the فِعَال L766), and a typed origin that no
+  rule touched names why (`IlalEngine.QUIET`: sukūn after fatḥa L745–L747, غُيَبَةٌ L790–L791, دِوَلٌ L797). `derive()` returns `gates` beside
+  `steps`; `IshtiqaqEngine.synth` and `IlalEngine.build` carry them. Two kinds, as `blocked()`: a WAZN gate (فَعَلَان L775 · the accidental
+  vowel دَعَوُا L773 · two iʿlāls طَوَى L778 (+ʿIzzī L266) · حَيِيَ L780 · the doubled قَوَّمَ L810 · أَفْعُل L808 · the ilḥāq جَدْوَل L809 · مِفْعَل L814 ·
+  the final weak letter الرَّمْي L811 · a madd after the weak letter L813, with the following exemption of مَفْعُول / إِفْعَال / اِسْتِفْعَال) and a
+  RECITED word (the ة / ى four of L771–L772 — قَادَةٌ-type plurals ARE weakened, so the tāʾ is the book's list, not a rule over فَعَلَة; the defect
+  verbs and VIII-as-VI from `SOUND_HOLLOW` / `SOUND_HOLLOW_VIII`, Form I only — أَحَالَ، اسْتَعَارَ weaken; `IlalEngine.KEPT`). New rules (raw origin
+  only, not in the derivation engine's `BASE`): `qalb-waw-kasra-ta` (دَاعِوَةٌ → دَاعِيَةٌ L795), `qalb-waw-kasra-tabaa` (قِوَامٌ → قِيَامٌ, دِيَارٌ، سِيَاطٌ
+  L766 — only for the book's three or a caller passing `opts.tabaa`; any other فِعَال is reported «open», never turned: سِوَارٌ), `hadhf-lam-damir`
+  (رَضِيُوا → رَضُوا, تَرْمِيِينَ → تَرْمِينَ, L799–L800, ʿIzzī L230), `majhul-ajwaf` (بُيِعَ → بِيعَ, قُوِلَ → قِيلَ, L787–L788). Fixed in the raw runner:
+  `hadhf-damma` and `qalb-ya-damma` run on a typed origin (يَغْزُوُ، مُيْسِرٌ → مُوسِرٌ); `wasl-drop` no longer eats a written hamza or a fatḥa
+  (أَقْوَمَ → أَقَامَ, was قَامَ; أَدْوُرٌ was دُورٌ); `hadhf-sakinayn` spares the plural's written alif and the article's alif.
+  - **Lab:** every root/shape shows «the conditions the books set» (held ✓ / blocked ✕ / open ?) with the book's line and whether it is a shape or a
+    recited word; a second box takes any typed origin (`ilalAslRead`, every word with the whole phrase as context — مَا أَقْوَلَهُ) and offers the book's
+    own 41 words of ch. 70–76 as chips (`ILAL_BOOK_YES` / `ILAL_BOOK_NO`).
+  - **Tests:** 17 recited weakenings and 29 recited keepings come out as the book says, each with its gate; every gate's quoted line is checked
+    verbatim against `research/sources` within its cited lines; the 27 older pinned derivations unchanged.
+  - **Corpus sweep:** 16,049 noun surfaces → 7,509 read by `IshtiqaqEngine` (7,508 before; 0 lost, 0 changed); 419 read through a gate (naql 223,
+    qalb 186, fāʿil hamza 132, مَفْعُول following 59); one blocked: الْمُعْتَوِرَةِ, now read as مُفْتَعِل of ع و ر through «عَوِرَ وَاجْتَوَرَ» (L774). No stored
+    form contradicts the engine — nothing to list.
+- **L2 — مَا أَقْوَلَهُ، أَغْيَلَتِ الْمَرْأَةُ، اسْتَحْوَذَ.** In `IlalEngine.KEPT` with Marāḥ L821 (and الْقَوَدُ L783). `sarfDerive` asks `IlalEngine.keptForm(key,
+  form)`: IV غ ي ل → أَغْيَلَ يُغْيِلُ إِغْيَال, X ح و ذ → اِسْتَحْوَذَ يَسْتَحْوِذُ اِسْتِحْوَاذ, each cell carrying `kept` and the book's line as its note; اِسْتَقَامَ،
+  أَقَامَ، أَحْوَجَ unchanged.
+- **F3 — the meanings of the augmented bābs.** `Bab35Engine.MEANINGS` (IV 7, X 6, III 2, VI 2, II 2, V/VII/VIII 1 — 22, each with the book's example
+  and line: Maqṣūd L462–L541, ʿIzzī L46, the 35-door table) and `Bab35Engine.meanings(form, {root})` → a SHORTLIST, ranked only on a book's ground:
+  the verb is the book's own example (أَكْرَمَ، اِسْتَغْفَرَ), a Form I the shelf shows lāzim (bāb فَعُلَ, or no object in `LazimEngine`) for IV / II
+  (ʿIzzī L46), the book's own «rarely / sometimes» (III, VI). أَرْسَلَ stays unranked. Shown in the Sarf lab (mazīd forms) and the word sheet's ṣarf
+  tab (`babMeaningsHtml`), headed «a SHORTLIST, not a verdict». Notes: 34 examples via `scratchpad/feed4/add_examples4.py` — hollow-verbs 13
+  (Marāḥ L760–L821, anchored), augmented-babs 3 (taʿdiya L463–L465), form-iv 7, form-x 6, form-iii 2, form-vi 3 (Maqṣūd, `source` only — the Maqṣūd
+  is no story package); augmented-babs' explanation says a bāb carries several meanings and the app offers them as a shortlist. The Maqṣūd's
+  Arabic was written as printed except the hamza's seat (اَ → أَ, اَىْ → أَيْ), the sukūns its print dropped (اَخرَجتُهُ → أَخْرَجْتُهُ), لِى → لِي,
+  خَلاًّ → خَلًّا and a space in اَسْتَغْفِرُاللهَ.
+- **Known and left:** the «which meaning?» round in gBab35 (the Maqṣūd's twenty-odd example/meaning pairs are a clean source; not built for budget); the
+  analyzer still reads the free sentence اسْتَحْوَذَ عَلَيْهِمُ الشَّيْطَانُ as a noun — no lexicon verb of ح و ذ or غ ي ل exists (the Marāḥ tokens are quoted
+  words, pos part); the taʿajjub مَا أَفْعَلَهُ is not read by the analyzer for any root; كَيْنُونَة (L750–L756) and أَغْزَيْتُ by following (L748) are
+  not modelled in the raw runner (sarfDerive builds أَغْزَيْتُ); the plural رَمَيُوا → رَمَوْا (ʿIzzī L228) is left to sarfDerive; the Python twin
+  (`qissa_core`) has no gates — the derivation engine's outputs it shares did not change on the corpus.
