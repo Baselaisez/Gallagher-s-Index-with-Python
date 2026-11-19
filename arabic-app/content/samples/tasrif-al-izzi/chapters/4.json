@@ -119,7 +119,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "form-v-verbs"
+     ]
     },
     {
      "surface": {
@@ -256,7 +260,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -285,9 +292,9 @@
      "lex": "samma",
      "pos": "verb",
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "The waw conjoins; a present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
-      "tr": "«ve» + muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "The waw conjoins; a present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
+      "tr": "«ve» + muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
      },
      "segments": [
       {
@@ -300,6 +307,11 @@
        "lex": "samma",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "naqis-verbs",
+      "form-ii-verbs"
      ]
     },
     {
@@ -514,7 +526,9 @@
      "lex": "tajawaza-v",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "hollow-verbs",
+      "form-vi-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَحُرِّكَ آخِرُهُ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -640,7 +654,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb.",
       "tr": "Mâzî fiil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -669,9 +686,9 @@
      "lex": "samma",
      "pos": "verb",
      "irab": {
-      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "The waw conjoins; a present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
-      "tr": "«ve» + muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
+      "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "The waw conjoins; a present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
+      "tr": "«ve» + muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
      },
      "segments": [
       {
@@ -684,6 +701,11 @@
        "lex": "samma",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "naqis-verbs",
+      "form-ii-verbs"
      ]
     },
     {
@@ -994,7 +1016,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "form-ii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1022,7 +1047,8 @@
      "lex": "ajlasa",
      "pos": "verb",
      "grammar": [
-      "maful-bihi"
+      "maful-bihi",
+      "form-iv-verbs"
      ],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
@@ -1165,7 +1191,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1220,6 +1249,9 @@
        "lex": "intalaqa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "form-vii-verbs"
      ]
     },
     {

@@ -137,15 +137,61 @@ def line(e, tense, i, mood=None, gov=""):
     return mazi_line(e, i) if tense == "mazi" else amr_line(e, i) if tense == "amr" else mudari_line(e, i, mood or "raf", gov)
 
 # ------------------------------------------------------------------------------------------------ the two nūns of emphasis
-def tawkid_line(host, gov="", addr=False):
+def _skel(s):
+    """the letters of a form: marks off, a shadda written out, hamza seats and the alifs folded, trailing weak letters off"""
+    out = []
+    for ch in N(s):
+        if ch == "ّ":
+            if out: out.append(out[-1])
+        elif re.match(f"[{MARKS}ـ]", ch): continue
+        else: out.append(ch)
+    b = re.sub("[أإآٱ]", "ا", "".join(out)).replace("ى", "ي").replace("ؤ", "ء").replace("ئ", "ء")
+    return re.sub("[اوي]+$", "", b)
+
+def tawkid_core(host):
+    """the verb in front of its nūn of emphasis (اُنْصُرَنَّ → اُنْصُرَ، قِينَانِّ → قِينَا) — or None where the form wears none"""
+    h = N(host); m = re.search(r"ن[َِ]?ّ[َِ]?$", h)
+    if m: return h[:m.start()]
+    return h[:-2] if h.endswith("نْ") else None
+
+def tawkid_kind(e, host):
+    """(v334-N1) whose form is this emphatic verb — by the paradigm, not by its first letter: → (tense, women) where tense is
+    'amr' / 'mudari' / None (no cell of e carries this stem, or both do) and women is True when the core is the women's-nūn
+    cell with the parting alif (قِينَ + ا + نِّ), False when it is another cell. «أَرِيَنَّ» opens on a hamza with a fatḥa and is
+    the imperative of أَرَى; «قِينَانِّ» ends in ـِينَا and is no dual."""
+    core = tawkid_core(host)
+    if not e or not core or not re.sub(f"[{MARKS}]", "", core): return None, None
+    head = fin(core)[:2]; sk = _skel(core); kinds = set(); women = False
+    amr = [N(c) for c in (e.get("amr") or [])]
+    for i, c in enumerate(amr):
+        if fin(c)[:2] == head and _skel(c) == sk: kinds.add("amr")
+    if len(amr) > 5 and fin(amr[5] + "ا") == fin(core): women = True
+    if e.get("mudari"):
+        for i in range(14):
+            for f in moods(e, i).values():
+                if f and fin(f)[:2] == head and _skel(f) == sk: kinds.add("mudari")
+            if i in (5, 11) and fin(N(e["mudari"][i]) + "ا") == fin(core): women = True
+    return (kinds.pop() if len(kinds) == 1 else None), women
+
+def tawkid_line(host, gov="", addr=False, e=None):
     """a verb wearing the heavy or the light nūn, read off its own ending — the ʿIzzī's rule: fatḥa before the nūn for the single
     man and woman, ḍamma for the men (their wāw dropped unless a fatḥa stands before it), kasra for the woman addressed (her yāʾ
-    likewise), the alif of the two kept with a kasra on the nūn, and an alif parting the women's nūn from the heavy one."""
+    likewise), the alif of the two kept with a kasra on the nūn, and an alif parting the women's nūn from the heavy one.
+    With the verb's stored paradigm `e` (v334-N1) the paradigm, not the first letter, says whether the form is an imperative,
+    and whether an ending ـنَا behind a long vowel is the women's nūn (قِينَانِّ) or the dual of a verb whose last letter is ن
+    (صُونَانِّ)."""
     h = N(host); b = re.sub(f"[{MARKS}]", "", h)
     heavy = bool(re.search(r"ن[َِ]?ّ[َِ]?$", h)); light = (not heavy) and h.endswith("نْ")
     if not (heavy or light) or len(b) < 2: return None
     core = re.sub(r"ن[َِ]?ّ[َِ]?$", "", h) if heavy else h[:-2]
     amr = not re.match(r"^[يتنأ][َُ]", h) or bool(re.match(r"^ا", b))
+    k_, women_ = tawkid_kind(e, h) if e else (None, None)
+    if k_: amr = (k_ == "amr")
+    if heavy and women_ and not re.search(r"ْنَا$", core):   # the women's nūn behind a long vowel: the same line as اُنْصُرْنَانِّ
+        kind = ("فِعْلُ أَمْرٍ", "An imperative", "Emir fiili") if amr else ("فِعْلٌ مُضَارِعٌ", "A present verb", "Muzâri fiil")
+        return (f"{kind[0]} مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ بَيْنَ النُّونَاتِ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَهَا.",
+                f"{kind[1]} built on sukūn because the women's nūn is attached; that nūn is its doer, an alif parts the nūns, and the heavy nūn of emphasis follows with a kasra.",
+                f"{kind[2]}; nûn-ı nisveye bitiştiği için sükûn üzere mebnî, nûn fâil; elif nûnların arasını ayırır, ardından kesreli şeddeli te'kid nûnu gelir.")
     kind = ("فِعْلُ أَمْرٍ", "An imperative", "Emir fiili") if amr else ("فِعْلٌ مُضَارِعٌ", "A present verb", "Muzâri fiil")
     g = GOV.get(gov, GOV[""]); nn = ("الثَّقِيلَةِ", "heavy", "şeddeli (sakîle)") if heavy else ("الْخَفِيفَةِ", "light", "sâkin (hafîfe)")
     nun = (f"وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ", f"the {nn[1]} nūn is a particle of emphasis", f"{nn[2]} nûn te'kid harfi")

@@ -281,7 +281,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb in the passive, in rafʿ by the written ḍamma; its deputy doer is the hidden «it (f.)».",
       "tr": "Meçhul muzâri fiil, zâhir damme ile merfû; nâib-i fâili müstetir «hiye»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "form-ii-verbs"
+     ]
     },
     {
      "surface": {
@@ -312,7 +316,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ.",
       "en": "A past verb (feminine).",
       "tr": "Mâzî fiil (müennes)."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -493,7 +501,11 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -507,7 +519,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb built on fatḥa; its doer is a hidden «he».",
       "tr": "Fetha üzere mebnî mâzî fiil; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -521,7 +536,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -550,7 +568,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -601,7 +622,9 @@
      "lex": "amala-hope",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -740,7 +763,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb; the alif of the dual is its doer.",
       "tr": "Mâzî fiil; tesniye elifi fâildir."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {
@@ -857,7 +884,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb.",
       "tr": "Mâzî fiil."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1119,13 +1150,17 @@
       "smart": "كَانَتِ",
       "bare": "كانت"
      },
-     "lex": "anta",
-     "pos": "part",
+     "lex": "kana",
+     "pos": "verb",
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ حُرِّكَتْ بِالْكَسْرِ لِالْتِقَاءِ السَّاكِنَيْنِ.",
       "en": "A defective past verb of kāna's family, built on fatḥa; the tāʾ marks the feminine and is vowelled with kasra because two unvowelled letters met.",
       "tr": "Kâne'nin kardeşlerinden nâkıs mâzî fiil, fetha üzere mebnî; tâ müenneslik içindir, iltikâ-i sâkineynden dolayı kesre ile harekelenmiştir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1191,7 +1226,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1291,7 +1330,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "form-vii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1423,6 +1465,10 @@
        "lex": "hadhafa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1676,7 +1722,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb in rafʿ by the written ḍamma.",
       "tr": "Zâhir damme ile merfû muzâri fiil."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1935,6 +1985,9 @@
        "lex": "azara",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1950,7 +2003,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1976,6 +2032,9 @@
        "lex": "hanaa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1991,7 +2050,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2020,7 +2082,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -2071,7 +2136,9 @@
      "lex": "azara",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -2114,6 +2181,9 @@
        "lex": "aduba",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2128,7 +2198,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2157,7 +2230,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -2208,7 +2284,9 @@
      "lex": "aduba",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -2251,6 +2329,9 @@
        "lex": "saala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2265,7 +2346,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2294,7 +2378,10 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -2345,7 +2432,9 @@
      "lex": "saala",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -2388,6 +2477,10 @@
        "lex": "jaaza",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2497,6 +2590,10 @@
        "lex": "aba-return",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2512,7 +2609,11 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2538,6 +2639,10 @@
        "lex": "saa-bad",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2553,7 +2658,11 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2582,7 +2691,11 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -2618,6 +2731,10 @@
        "lex": "jaa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2632,7 +2749,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2661,7 +2782,11 @@
       "en": "A present verb in rafʿ, its sign the written ḍamma; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti zâhir zamme; fâili gizli «o»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2773,6 +2898,10 @@
        "lex": "asa-heal",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2787,7 +2916,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْوَاوِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the wāw, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti vâv üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2816,7 +2949,11 @@
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the wāw, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti vâv üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -2852,6 +2989,10 @@
        "lex": "ata",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -2866,7 +3007,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2895,7 +3040,11 @@
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -3043,7 +3192,11 @@
       "en": "A present verb, in raf'; its doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «هُوَ»."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3132,6 +3285,10 @@
        "lex": "waa-promise",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -3146,7 +3303,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3175,7 +3336,11 @@
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -3211,6 +3376,10 @@
        "lex": "awa-shelter",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -3225,7 +3394,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3267,7 +3440,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3376,6 +3553,10 @@
        "lex": "naa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -3390,7 +3571,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3419,7 +3604,11 @@
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «o»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -3567,7 +3756,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A past verb (feminine); its doer is a hidden pronoun.",
       "tr": "Mâzî fiil (müennes); fâili gizli zamirdir."
-     }
+     },
+     "grammar": [
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {
@@ -3694,7 +3886,11 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -3718,7 +3914,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3732,7 +3932,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the alif of the dual is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3747,7 +3952,12 @@
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the wāw of the group is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; cemâat vâvı fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3761,7 +3971,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «she».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «o (dişil)»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3775,7 +3989,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the alif of the dual is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3790,7 +4009,11 @@
       "en": "A present verb built on sukūn because the women's nūn is attached; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî muzâri; nûn fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3804,7 +4027,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «you».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «sen»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3818,7 +4045,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the alif of the dual is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3833,7 +4065,12 @@
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the wāw of the group is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; cemâat vâvı fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3847,7 +4084,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ، وَالْيَاءُ ضَمِيرُ الْمُخَاطَبَةِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the yāʾ of the woman addressed is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; muhâtaba yâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3861,7 +4103,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in rafʿ, its sign the keeping of the nūn; the alif of the dual is its doer.",
       "tr": "Merfû muzâri; ref' alâmeti nûnun sübûtu; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3876,7 +4123,11 @@
       "en": "A present verb built on sukūn because the women's nūn is attached; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî muzâri; nûn fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3890,7 +4141,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنَا.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «I».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «ben»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -3905,7 +4160,11 @@
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the alif, which carries no vowel; its doer is a hidden «we».",
       "tr": "Merfû muzâri; ref' alâmeti elif üzerinde takdîrî zamme; fâili gizli «biz»."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -3941,6 +4200,10 @@
        "lex": "ittafaqa",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "mithal-verbs",
+      "form-viii-verbs"
      ]
     },
     {
@@ -4222,7 +4485,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4254,7 +4520,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4382,7 +4652,10 @@
      "lex": "raa",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -4400,7 +4673,8 @@
      "lex": "lazima",
      "pos": "verb",
      "grammar": [
-      "maful-bihi"
+      "maful-bihi",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
@@ -4502,7 +4776,11 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4513,7 +4791,10 @@
      "lex": "raa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ، وَالْهَاءُ هَاءُ السَّكْتِ حَرْفٌ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
@@ -4533,7 +4814,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4548,7 +4834,12 @@
       "en": "An imperative built on the dropping of the nūn; the wāw of the group is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; cemâat vâvı fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4562,7 +4853,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْيَاءُ ضَمِيرُ الْمُخَاطَبَةِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; muhâtaba yâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4576,7 +4872,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4591,7 +4892,12 @@
       "en": "An imperative built on sukūn because the women's nūn is attached; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî emir fiili; nûn fâil."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -4650,7 +4956,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
       "en": "An imperative built on fatḥa because the heavy nūn of emphasis is attached; the heavy nūn is a particle of emphasis; its doer is a hidden «you».",
       "tr": "Emir fiili; şeddeli (sakîle) te'kid nûnuna bitiştiği için fetha üzere mebnî; şeddeli (sakîle) nûn te'kid harfi; fâili gizli «sen»."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4664,7 +4976,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4679,7 +4997,13 @@
       "en": "An imperative built on the dropping of the nūn; the wāw of the group is its doer, kept and given a ḍamma because a fatḥa stands before it; the heavy nūn is a particle of emphasis.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; cemâat vâvı fâil; öncesi fethalı olduğu için düşmemiş, zammelenmiştir; şeddeli (sakîle) nûn te'kid harfi."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4693,7 +5017,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَيَاءُ الْمُخَاطَبَةِ فَاعِلٌ، حُرِّكَتْ بِالْكَسْرِ لِانْفِتَاحِ مَا قَبْلَهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
       "en": "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed is its doer, kept and given a kasra because a fatḥa stands before it; the heavy nūn is a particle of emphasis.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; muhâtaba yâ'sı fâil; öncesi fethalı olduğu için düşmemiş, kesrelenmiştir; şeddeli (sakîle) nûn te'kid harfi."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4707,7 +5037,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4722,7 +5058,13 @@
       "en": "An imperative built on sukūn because the women's nūn is attached; that nūn is its doer, an alif parts the nūns, and the heavy nūn of emphasis follows with a kasra.",
       "tr": "Emir fiili; nûn-ı nisveye bitiştiği için sükûn üzere mebnî, nûn fâil; elif nûnların arasını ayırır, ardından kesreli şeddeli te'kid nûnu gelir."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -4781,7 +5123,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الْخَفِيفَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
       "en": "An imperative built on fatḥa because the light nūn of emphasis is attached; the light nūn is a particle of emphasis; its doer is a hidden «you».",
       "tr": "Emir fiili; sâkin (hafîfe) te'kid nûnuna bitiştiği için fetha üzere mebnî; sâkin (hafîfe) nûn te'kid harfi; fâili gizli «sen»."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4795,7 +5143,13 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَوَاوُ الْجَمَاعَةِ فَاعِلٌ، حُرِّكَتْ بِالضَّمِّ لِانْفِتَاحِ مَا قَبْلَهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
       "en": "An imperative built on the dropping of the nūn; the wāw of the group is its doer, kept and given a ḍamma because a fatḥa stands before it; the light nūn is a particle of emphasis.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; cemâat vâvı fâil; öncesi fethalı olduğu için düşmemiş, zammelenmiştir; sâkin (hafîfe) nûn te'kid harfi."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -4810,7 +5164,13 @@
       "en": "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed is its doer, kept and given a kasra because a fatḥa stands before it; the light nūn is a particle of emphasis.",
       "tr": "Emir fiili, nûnun hazfi üzere mebnî; muhâtaba yâ'sı fâil; öncesi fethalı olduğu için düşmemiş, kesrelenmiştir; sâkin (hafîfe) nûn te'kid harfi."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -5200,7 +5560,11 @@
        "pos": "verb"
       }
      ],
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -5214,7 +5578,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى فَتْحٍ مُقَدَّرٍ عَلَى الْأَلِفِ لِلتَّعَذُّرِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb built on a fatḥa estimated on the alif; its doer is a hidden «he».",
       "tr": "Elif üzerinde takdîrî fetha üzere mebnî mâzî fiil; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5228,7 +5596,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الْمُقَدَّرَةُ عَلَى الْيَاءِ لِلثِّقَلِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in rafʿ, its sign a ḍamma estimated on the yāʾ, too heavy to pronounce; its doer is a hidden «he».",
       "tr": "Merfû muzâri; ref' alâmeti yâ üzerinde, ağırlıktan dolayı takdîrî zamme; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5572,6 +5944,10 @@
        "lex": "qala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -5639,7 +6015,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
       "en": "An imperative built on the dropping of the weak letter; its doer is a hidden «you».",
       "tr": "Illet harfinin hazfi üzere mebnî emir fiili; fâili gizli «sen»."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5653,7 +6034,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5668,7 +6054,12 @@
       "en": "An imperative built on the dropping of the nūn; the wāw of the group is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; cemâat vâvı fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5682,7 +6073,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْيَاءُ ضَمِيرُ الْمُخَاطَبَةِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; muhâtaba yâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5696,7 +6092,12 @@
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Nûnun hazfi üzere mebnî emir fiili; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5711,7 +6112,12 @@
       "en": "An imperative built on sukūn because the women's nūn is attached; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî emir fiili; nûn fâil."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     }
    ]
   },
@@ -5767,10 +6173,16 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
-      "en": "A present verb built on fatḥa because the heavy nūn of emphasis is attached; the heavy nūn is a particle of emphasis; its doer is a hidden «you».",
-      "tr": "Muzâri fiil; şeddeli (sakîle) te'kid nûnuna bitiştiği için fetha üzere mebnî; şeddeli (sakîle) nûn te'kid harfi; fâili gizli «sen»."
-     }
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
+      "en": "An imperative built on fatḥa because the heavy nūn of emphasis is attached; the heavy nūn is a particle of emphasis; its doer is a hidden «you».",
+      "tr": "Emir fiili; şeddeli (sakîle) te'kid nûnuna bitiştiği için fetha üzere mebnî; şeddeli (sakîle) nûn te'kid harfi; fâili gizli «sen»."
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5781,10 +6193,16 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
-      "en": "A present verb in jazm, its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
-      "tr": "Muzâri fiil, meczûm, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
+      "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
+      "tr": "Emir fiili, nûnun hazfi üzere mebnî; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5795,11 +6213,17 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالضَّمَّةُ دَلِيلٌ عَلَيْهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
-      "en": "A present verb in rafʿ, its sign the keeping of a nūn that was then dropped because three nūns met; the wāw of the group, dropped where two quiescent letters met, is its doer — the ḍamma points to it; the heavy nūn is a particle of emphasis.",
-      "tr": "Muzâri fiil, merfû; ref' alâmeti, üç nûn art arda geldiği için düşen nûnun sübûtu; iki sâkinin buluşmasıyla düşen cemâat vâvı fâil; zamme ona delildir; şeddeli (sakîle) nûn te'kid harfi."
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَوَاوُ الْجَمَاعَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالضَّمَّةُ دَلِيلٌ عَلَيْهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "An imperative built on the dropping of the nūn; the wāw of the group, dropped where two quiescent letters met, is its doer — the ḍamma points to it; the heavy nūn is a particle of emphasis.",
+      "tr": "Emir fiili, nûnun hazfi üzere mebnî; iki sâkinin buluşmasıyla düşen cemâat vâvı fâil; zamme ona delildir; şeddeli (sakîle) nûn te'kid harfi."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5810,10 +6234,16 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ ثُبُوتُ النُّونِ الْمَحْذُوفَةِ لِتَوَالِي الْأَمْثَالِ، وَيَاءُ الْمُخَاطَبَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالْكَسْرَةُ دَلِيلٌ عَلَيْهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
-      "en": "A present verb in rafʿ, its sign the keeping of a nūn that was then dropped because three nūns met; the yāʾ of the woman addressed, dropped where two quiescent letters met, is its doer — the kasra points to it; the heavy nūn is a particle of emphasis.",
-      "tr": "Muzâri fiil, merfû; ref' alâmeti, üç nûn art arda geldiği için düşen nûnun sübûtu; iki sâkinin buluşmasıyla düşen muhâtaba yâ'sı fâil; kesre ona delildir; şeddeli (sakîle) nûn te'kid harfi."
-     }
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَيَاءُ الْمُخَاطَبَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالْكَسْرَةُ دَلِيلٌ عَلَيْهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
+      "en": "An imperative built on the dropping of the nūn; the yāʾ of the woman addressed, dropped where two quiescent letters met, is its doer — the kasra points to it; the heavy nūn is a particle of emphasis.",
+      "tr": "Emir fiili, nûnun hazfi üzere mebnî; iki sâkinin buluşmasıyla düşen muhâtaba yâ'sı fâil; kesre ona delildir; şeddeli (sakîle) nûn te'kid harfi."
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5824,10 +6254,16 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
-      "en": "A present verb in jazm, its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
-      "tr": "Muzâri fiil, meczûm, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى حَذْفِ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
+      "en": "An imperative built on the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
+      "tr": "Emir fiili, nûnun hazfi üzere mebnî; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5838,11 +6274,17 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
-      "en": "A present verb in jazm, its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
-      "tr": "Muzâri fiil, meczûm, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
+      "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ بَيْنَ النُّونَاتِ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَهَا.",
+      "en": "An imperative built on sukūn because the women's nūn is attached; that nūn is its doer, an alif parts the nūns, and the heavy nūn of emphasis follows with a kasra.",
+      "tr": "Emir fiili; nûn-ı nisveye bitiştiği için sükûn üzere mebnî, nûn fâil; elif nûnların arasını ayırır, ardından kesreli şeddeli te'kid nûnu gelir."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "imperative-amr",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     }
    ]
   },
@@ -5918,7 +6360,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ حَرْفِ الْعِلَّةِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the weak letter; its doer is a hidden «she».",
       "tr": "Meczûm muzâri nehiy «lâ»sı ile; cezm alâmeti illet harfinin hazfi; fâili gizli «o (dişil)»."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5949,7 +6395,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Meczûm muzâri nehiy «lâ»sı ile; cezm alâmeti nûnun hazfi; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -5981,7 +6432,12 @@
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the wāw of the group is its doer.",
       "tr": "Meczûm muzâri nehiy «lâ»sı ile; cezm alâmeti nûnun hazfi; cemâat vâvı fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6012,7 +6468,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْيَاءُ ضَمِيرُ الْمُخَاطَبَةِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the yāʾ of the woman addressed is its doer.",
       "tr": "Meczûm muzâri nehiy «lâ»sı ile; cezm alâmeti nûnun hazfi; muhâtaba yâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6043,7 +6504,12 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the alif of the dual is its doer.",
       "tr": "Meczûm muzâri nehiy «lâ»sı ile; cezm alâmeti nûnun hazfi; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "afal-khamsa",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6075,7 +6541,11 @@
       "en": "A present verb built on sukūn because the women's nūn is attached, in the place of jazm by the prohibiting «lā»; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî muzâri; cezm mahallinde nehiy «lâ»sı ile; nûn fâil."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     }
    ]
   },
@@ -6151,7 +6621,13 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ عَلَى الْفَتْحِ لِاتِّصَالِهِ بِنُونِ التَّوْكِيدِ الثَّقِيلَةِ، فِي مَحَلِّ جَزْمٍ بِـ«لَا» النَّاهِيَةِ، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
       "en": "A present verb built on fatḥa because the heavy nūn of emphasis is attached, in the place of jazm by the prohibiting «lā»; the heavy nūn is a particle of emphasis; its doer is a hidden «you».",
       "tr": "Muzâri fiil; şeddeli (sakîle) te'kid nûnuna bitiştiği için fetha üzere mebnî; nehiy «lâ»sı ile cezm mahallinde; şeddeli (sakîle) nûn te'kid harfi; fâili gizli «sen»."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6182,7 +6658,13 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
       "tr": "Muzâri fiil, meczûm nehiy «lâ»sı ile, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6214,7 +6696,13 @@
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the wāw of the group, dropped where two quiescent letters met, is its doer — the ḍamma points to it; the heavy nūn is a particle of emphasis.",
       "tr": "Muzâri fiil, nehiy «lâ»sı ile meczûm, cezm alâmeti nûnun hazfi; iki sâkinin buluşmasıyla düşen cemâat vâvı fâil; zamme ona delildir; şeddeli (sakîle) nûn te'kid harfi."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6245,7 +6733,13 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَيَاءُ الْمُخَاطَبَةِ الْمَحْذُوفَةُ لِالْتِقَاءِ السَّاكِنَيْنِ فَاعِلٌ، وَالْكَسْرَةُ دَلِيلٌ عَلَيْهَا، وَالنُّونُ حَرْفُ تَوْكِيدٍ لَا مَحَلَّ لَهُ مِنَ الْإِعْرَابِ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the yāʾ of the woman addressed, dropped where two quiescent letters met, is its doer — the kasra points to it; the heavy nūn is a particle of emphasis.",
       "tr": "Muzâri fiil, nehiy «lâ»sı ile meczûm, cezm alâmeti nûnun hazfi; iki sâkinin buluşmasıyla düşen muhâtaba yâ'sı fâil; kesre ona delildir; şeddeli (sakîle) nûn te'kid harfi."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6276,7 +6770,13 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
       "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
       "tr": "Muzâri fiil, meczûm nehiy «lâ»sı ile, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
-     }
+     },
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -6304,11 +6804,17 @@
      "lex": "ara",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا» النَّاهِيَةِ، وَعَلَامَةُ جَزْمِهِ حَذْفُ النُّونِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَ الْأَلِفِ.",
-      "en": "A present verb in jazm by the prohibiting «lā», its sign the dropping of the nūn; the alif of the dual is its doer, and the heavy nūn of emphasis takes a kasra after the alif.",
-      "tr": "Muzâri fiil, meczûm nehiy «lâ»sı ile, cezm alâmeti nûnun hazfi; tesniye elifi fâil, şeddeli te'kid nûnu eliften sonra kesrelidir."
+      "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْأَلِفُ فَاصِلَةٌ بَيْنَ النُّونَاتِ، وَنُونُ التَّوْكِيدِ الثَّقِيلَةُ مَكْسُورَةٌ بَعْدَهَا.",
+      "en": "A present verb built on sukūn because the women's nūn is attached; that nūn is its doer, an alif parts the nūns, and the heavy nūn of emphasis follows with a kasra.",
+      "tr": "Muzâri fiil; nûn-ı nisveye bitiştiği için sükûn üzere mebnî, nûn fâil; elif nûnların arasını ayırır, ardından kesreli şeddeli te'kid nûnu gelir."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "nun-al-tawkid-fil-kafiya",
+      "nun-tawkid",
+      "naqis-verbs",
+      "form-iv-verbs"
+     ]
     }
    ]
   },
@@ -6344,6 +6850,10 @@
        "lex": "qala",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {

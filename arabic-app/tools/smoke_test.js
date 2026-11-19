@@ -17746,6 +17746,91 @@ if (!CHROME) {
     if (r.citing < 12) throw new Error('twelve notes name the Shudhūr among their sources: ' + r.citing);
   });
 
+  await check('v334-N1 — the two ṣarf books teach their own verbs (backlog F1): every verb token of Taṣrīf al-ʿIzzī and Marāḥ al-Arwāḥ that is a cell of its stored paradigm carries a ṣarf note — computed from its lex and paradigm by tools/authoring/sarf_tags.py; a verb has ONE bāb note, an emphatic verb ends in its nūn, the six emphatic imperatives of أَرَى are imperatives and قِينَانِّ ends in the women\'s nūn, no passive verb of the two books names a hidden doer, and every ṣarf note those verbs carry has a worked example from one of the two books', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const N = x => String(x || '').normalize('NFC').replace(/ٱ/g, 'ا').replace(/^ا[َ-ِ]/, 'ا');
+      const out = {};
+      const used = new Set();
+      for (const id of ['tasrif-al-izzi', 'marah-al-arwah']) {
+        const st = STORIES.find(s => s.id === id); const o = out[id] = { verbs: 0, cells: 0, sarf: 0, miss: [], twoBabs: [], nun: [], passiveDoer: [] };
+        if (!st) { o.missing = true; continue; }
+        for (const ch of st.chapters) for (const sn of ch.sentences || []) (sn.tokens || []).forEach((t, i) => {
+          if (t.pos !== 'verb') return; o.verbs++;
+          const g = (t.grammar || []).filter(x => GRAMMAR[x]); const sarf = g.filter(x => GRAMMAR[x].group === 'sarf'); sarf.forEach(x => used.add(x)); if (g.includes('nun-tawkid')) used.add('nun-tawkid');
+          if (sarf.length) o.sarf++;
+          const at = ch.n + ':' + sn.id + ':' + i + ' ' + t.s.full;
+          const m = (st.morph || {})[t.lex];
+          if (m && !m.jamid && m.mazi) {
+            const seg = (t.segments || []).find(x => x.lex === t.lex); const hosts = [N(t.s.full)]; if (seg && seg.form) hosts.push(N(seg.form));
+            hosts.slice().forEach(h => { if (/^[وف]َ/.test(h)) hosts.push(h.slice(2)); });
+            const ar = (t.irab || {}).ar || ''; const said = /فِعْلُ أَمْرٍ/.test(ar) ? 'amr' : /فِعْلٌ مَاضٍ/.test(ar) ? 'mazi' : /فِعْلٌ مُضَارِعٌ/.test(ar) ? 'mudari' : null;   // «نَارًا تَلَظَّى»: a present with one tāʾ dropped is written like the past cell and is not that cell
+            const all = (said ? (m[said] || []) : [].concat(m.mazi || [], m.mudari || [], m.amr || [])).map(N);
+            if (hosts.some(h => all.includes(h))) { o.cells++; if (!sarf.length) o.miss.push(at); }
+          }
+          const bab = sarf.filter(x => x === 'thulathi-mujarrad-babs' || x === 'rubai-babs' || /^form-[ivx]+-verbs$/.test(x));
+          if (bab.length > 1) o.twoBabs.push(at + ' ' + bab.join('+'));
+          if (g.includes('nun-al-tawkid-fil-kafiya') && !/ن[َِ]?ّ[َِ]?$|نْ$/.test(N(t.s.full))) o.nun.push(at);
+          if (g.includes('al-majhul-fil-kafiya') && /وَالْفَاعِلُ ضَمِيرٌ/.test((t.irab || {}).ar || '')) o.passiveDoer.push(at);
+        });
+        if (id === 'tasrif-al-izzi') {
+          const sen = (c, sid) => (st.chapters.find(x => x.n === c).sentences.find(x => x.id === sid) || {}).tokens || [];
+          o.ara = sen(17, 's32').slice(1, 7).map(t => [t.s.full, /^فِعْلُ أَمْرٍ/.test(t.irab.ar), (t.grammar || []).includes('imperative-amr')]);
+          o.qina = sen(16, 's14').filter(t => /ينَان/.test(t.s.full)).map(t => t.irab.ar);
+          o.kanat = sen(17, 's3')[1] && [sen(17, 's3')[1].lex, sen(17, 's3')[1].pos];
+        }
+      }
+      out.unanchored = [...used].filter(x => !(GRAMMAR[x].examples || []).some(e => e.src === 'tasrif-al-izzi' || e.src === 'marah-al-arwah'));
+      out.used = [...used].sort();
+      return out;
+    });
+    const a = r['tasrif-al-izzi'], b = r['marah-al-arwah'];
+    if (!a || !b || a.missing || b.missing) throw new Error('the two stories: ' + J(r));
+    if (a.miss.length || b.miss.length) throw new Error('paradigm cells with no ṣarf note: ' + J([a.miss.slice(0, 12), b.miss.slice(0, 12)]));
+    if (a.cells < 800 || a.sarf < 1080 || b.cells < 790 || b.sarf < 1330)   /* measured: 815 exact cells and 1,092 verbs with a ṣarf note of 1,106 (ʿIzzī); 801 and 1,347 of 1,491 (Marāḥ) — the tagger also verifies the moods, the passives and the emphatic forms this check does not rebuild */ throw new Error('the counts fell: ' + J({ izzi: [a.verbs, a.cells, a.sarf], marah: [b.verbs, b.cells, b.sarf] }));
+    if (a.twoBabs.length || b.twoBabs.length || a.nun.length || b.nun.length) throw new Error('a verb with two bābs / an emphatic note off a nūn: ' + J([a.twoBabs, b.twoBabs, a.nun, b.nun]));
+    if (a.passiveDoer.length || b.passiveDoer.length) throw new Error('a passive verb whose line names a hidden doer: ' + J([a.passiveDoer, b.passiveDoer]));
+    if (a.ara.length !== 6 || !a.ara.every(x => x[1] && x[2])) throw new Error('the emphatic imperatives of أَرَى: ' + J(a.ara));
+    if (a.qina.length !== 1 || !/نُونِ النِّسْوَةِ/.test(a.qina[0]) || /الْأَلِفُ ضَمِيرٌ/.test(a.qina[0])) throw new Error('قِينَانِّ: ' + J(a.qina));
+    if (J(a.kanat) !== J(['kana', 'verb'])) throw new Error('كَانَتِ in 17:s3: ' + J(a.kanat));
+    if (r.unanchored.length || r.used.length < 20) throw new Error('ṣarf notes on the two books\' verbs with no example from them: ' + J([r.unanchored, r.used]));
+  });
+  await check('v334-N1 — the nouns of time and place, of instrument, the single act and the manner (backlog F5): three ṣarf notes fed from ʿIzzī l. 330–352 and Marāḥ l. 466–491 exist, open in plain language with their question test, carry the مَفْعَلَة of abundance, the eleven heard exceptions and Sībawayh on مُسْعُط, are anchored to both books, and are worn by the story tokens that show the forms — الْمَسْجِدُ، مَسْبَعَةٌ، مِحْلَبٍ، ضَرْبَةً، الْجِلْسَةِ; قَوْمَةً is keyed to قَوْمَة, not to قَوْم; the note opens from the word in the reader', async () => {
+    const J = JSON.stringify;
+    const r = await page.evaluate(() => {
+      const ids = ['ism-al-zaman-wal-makan', 'ism-al-ala', 'ism-al-marra-wal-naw']; const out = { notes: {}, tok: {} };
+      ids.forEach(id => { const g = GRAMMAR[id]; out.notes[id] = g ? { group: g.group, plain: !!(g.plain && g.plain.en && g.plain.tr), q: g.question ? [g.question.tr.length, g.question.en.length] : null, ex: (g.examples || []).length,
+        izzi: (g.examples || []).filter(e => e.src === 'tasrif-al-izzi').length, marah: (g.examples || []).filter(e => e.src === 'marah-al-arwah').length, tr: (g.examples || []).every(e => e.gloss && e.gloss.tr && e.gloss.en),
+        mist: (g.mistakes || []).length, expl: (g.explanation.en || '') + (g.explanation.tr || ''), title: g.title } : null; });
+      const count = {}; const seen = {};
+      for (const sid of ['tasrif-al-izzi', 'marah-al-arwah']) { const st = STORIES.find(s => s.id === sid);
+        for (const ch of st.chapters) for (const sn of ch.sentences || []) (sn.tokens || []).forEach(t => (t.grammar || []).forEach(g => { if (ids.includes(g)) { count[g + '@' + sid] = (count[g + '@' + sid] || 0) + 1; (seen[g] = seen[g] || []).push(t.s.bare); if (t.pos === 'verb') out.verbTagged = t.s.full; } })); }
+      out.count = count; out.seen = seen;
+      const st = STORIES.find(s => s.id === 'tasrif-al-izzi'); const sen = st.chapters.find(c => c.n === 19).sentences.find(x => x.id === 's6');
+      const qawma = sen.tokens.find(t => t.s.bare === 'قومة'); out.qawma = qawma && [qawma.lex, (st.glossary[qawma.lex] || {}).lemma];
+      openStory(st);
+      const masjid = st.chapters.find(c => c.n === 18).sentences.find(x => x.id === 's3').tokens[1];
+      openWord(masjid, null, 'grammar');
+      const sheet = document.getElementById('sheetInner'); out.sheet = { word: masjid.s.full, hasTab: !!sheet.querySelector('[data-tab="grammar"]'), text: sheet.textContent.slice(0, 4000) };
+      closeSheet(); renderLibrary();
+      return out;
+    });
+    for (const id of ['ism-al-zaman-wal-makan', 'ism-al-ala', 'ism-al-marra-wal-naw']) {
+      const n = r.notes[id];
+      if (!n || n.group !== 'sarf' || !n.plain || !n.q || n.q[0] !== n.q[1] || n.q[0] < 1 || n.ex < 4 || !n.tr || n.mist < 2 || n.izzi < 3 || n.marah < 1) throw new Error('the note ' + id + ': ' + J(n && { ...n, expl: undefined }));
+    }
+    const z = r.notes['ism-al-zaman-wal-makan'].expl, al = r.notes['ism-al-ala'].expl, mr = r.notes['ism-al-marra-wal-naw'].expl;
+    if (!/مَسْبَعَةٌ/.test(z) || !/مَفْعَلَة/.test(z) || !['الْمَسْجِد', 'الْمَشْرِق', 'الْمَغْرِب', 'الْمَطْلِع', 'الْمَجْزِر', 'الْمَرْفِق', 'الْمَفْرِق', 'الْمَسْكِن', 'الْمَنْسِك', 'الْمَسْقِط', 'الْمَنْبِت'].every(w => z.includes(w))) throw new Error('the abundance pattern and the eleven: ' + z.slice(0, 300));
+    if (!/مُسْعُط/.test(al) || !/Sībawayh/.test(al) || !/Sîbeveyh/.test(al) || !/مِرْقَاة/.test(al)) throw new Error('the instrument note: ' + al.slice(0, 300));
+    if (!/ضَرْبَةً/.test(mr) || !/الْجِلْسَةِ/.test(mr) || !/وَاحِدَةً/.test(mr)) throw new Error('the once / manner note: ' + mr.slice(0, 300));
+    const c = r.count;
+    if ((c['ism-al-zaman-wal-makan@tasrif-al-izzi'] || 0) < 39 || (c['ism-al-zaman-wal-makan@marah-al-arwah'] || 0) < 15 || (c['ism-al-ala@tasrif-al-izzi'] || 0) < 13 || (c['ism-al-ala@marah-al-arwah'] || 0) < 5 || (c['ism-al-marra-wal-naw@tasrif-al-izzi'] || 0) < 8) throw new Error('the anchors: ' + J(c));
+    if (r.verbTagged) throw new Error('a verb wears a noun\'s note: ' + r.verbTagged);
+    const has = (id, w) => (r.seen[id] || []).some(x => x.replace(/^[وفكبل]/, '').replace(/^ال/, '') === w || x.replace(/^(وال|كال|ال)/, '') === w || x === w);
+    if (!has('ism-al-zaman-wal-makan', 'مسجد') || !has('ism-al-zaman-wal-makan', 'مسبعة') || !has('ism-al-ala', 'محلب') || !has('ism-al-marra-wal-naw', 'ضربة') || !has('ism-al-marra-wal-naw', 'جلسة')) throw new Error('the forms\' own tokens: ' + J(r.seen));
+    if (J(r.qawma) !== J(['qawma', 'قَوْمَة'])) throw new Error('قَوْمَةً is keyed to ' + J(r.qawma));
+    if (!r.sheet.hasTab || !r.sheet.text.includes('اسْمَا الزَّمَانِ وَالْمَكَانِ') || !/Where\?|Nerede\?/.test(r.sheet.text)) throw new Error('the note does not open from ' + r.sheet.word + ': ' + r.sheet.text.slice(0, 200));
+  });
   await check('v330 — the compound numbers are built on two fatḥas (Shudhūr R7, R116; triage I-17, AdadEngine.murakkab330): جَاءَنِي أَحَدَ عَشَرَ رَجُلًا — أَحَدَ «عَدَدٌ مُرَكَّبٌ مَبْنِيٌّ عَلَى فَتْحِ الْجُزْأَيْنِ» and never muḍāf, عَشَرَ «الْجُزْءُ الثَّانِي … لَا مَحَلَّ لَهُ»; رَأَيْتُ خَمْسَةَ عَشَرَ طَالِبًا in the seat of naṣb as the object; اثْنَيْ عَشَرَ declined like the dual (by the yāʾ, no pronoun); the control جَاءَ خَمْسَةُ رِجَالٍ keeps its idafa; against the authored lines all 39 compounds built on two fatḥas and all 17 اثْنَا / اثْنَتَا named the dual, no first part called muḍāf, and no seat that differs from the authors\' (≥ 39 agree)', async () => {
     const J = JSON.stringify;
     const r = await page.evaluate(() => {

@@ -119,7 +119,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -165,10 +169,15 @@
      "lex": "wajada",
      "pos": "verb",
      "irab": {
-      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
-      "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
-      "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+      "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
+      "en": "A past verb in the passive; its deputy doer is a hidden pronoun «هُوَ».",
+      "tr": "Meçhul mâzî fiil; nâib-i fâili gizli zamirdir «هُوَ»."
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -335,7 +344,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -417,7 +428,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -549,7 +562,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb built on fatḥa; its doer is a hidden «he».",
       "tr": "Fetha üzere mebnî mâzî fiil; fâili gizli «o»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -563,7 +579,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb built on fatḥa; the alif of the dual is its doer.",
       "tr": "Fetha üzere mebnî mâzî fiil; tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -578,7 +597,10 @@
       "en": "A past verb built on ḍamma because the wāw of the group is attached; the wāw is its doer.",
       "tr": "Cemâat vâvına bitiştiği için zamme üzere mebnî mâzî fiil; vâv fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -592,7 +614,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A past verb built on fatḥa; the tāʾ marks the feminine; its doer is a hidden «she».",
       "tr": "Fetha üzere mebnî mâzî fiil; tâ te'nîs alâmeti; fâili gizli «o (dişil)»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -606,7 +631,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ، وَالْأَلِفُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb built on fatḥa; the tāʾ marks the feminine and the alif of the dual is its doer.",
       "tr": "Fetha üzere mebnî mâzî fiil; tâ te'nîs alâmeti, tesniye elifi fâil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -621,7 +649,10 @@
       "en": "A past verb built on sukūn because the women's nūn is attached; the nūn is its doer.",
       "tr": "Nûn-ı nisveye bitiştiği için sükûn üzere mebnî mâzî fiil; nûn fâil."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -635,7 +666,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالتَّاءُ ضَمِيرُ الْمُخَاطَبِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ of the one addressed is its doer.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; muhâtab tâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -649,7 +683,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْمِيمُ وَالْأَلِفُ عَلَامَةُ التَّثْنِيَةِ.",
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ is its doer, and the mīm and alif mark the dual.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; tâ fâil, mîm ile elif tesniye alâmeti."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -664,7 +701,10 @@
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ is its doer, and the mīm marks the plural.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; tâ fâil, mîm cemi alâmeti."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -678,7 +718,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالتَّاءُ ضَمِيرُ الْمُخَاطَبَةِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ of the woman addressed is its doer.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; muhâtaba tâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -692,7 +735,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْمِيمُ وَالْأَلِفُ عَلَامَةُ التَّثْنِيَةِ.",
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ is its doer, and the mīm and alif mark the dual.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; tâ fâil, mîm ile elif tesniye alâmeti."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -707,7 +753,10 @@
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ is its doer, and the doubled nūn marks the feminine plural.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; tâ fâil, şeddeli nûn cemi müennes alâmeti."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -721,7 +770,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالتَّاءُ ضَمِيرُ الْمُتَكَلِّمِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; the tāʾ of the speaker is its doer.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; mütekellim tâ'sı fâil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -736,7 +788,10 @@
       "en": "A past verb built on sukūn because a vowelled subject pronoun is attached; «nā» is its doer.",
       "tr": "Harekeli ref' zamirine bitiştiği için sükûn üzere mebnî mâzî fiil; «nâ» fâil."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     }
    ]
   },
@@ -757,7 +812,10 @@
      "lex": "qasa",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -1204,7 +1262,8 @@
      "lex": "itabara",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "form-viii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَجْزُومٌ بِـ«لَا»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ أَنْتَ.",
@@ -1348,7 +1407,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb, in raf'; its doer is a hidden pronoun «هِيَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «هِيَ»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1408,6 +1470,9 @@
        "lex": "saqata",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1622,7 +1687,10 @@
      "lex": "samma",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "al-majhul-fil-kafiya",
+      "naqis-verbs",
+      "form-ii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَحُرِّكَ آخِرُهُ بِالْفَتْحِ لِالْتِقَاءِ السَّاكِنَيْنِ لِأَنَّهُ مُضَاعَفٌ.",
@@ -1687,7 +1755,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -1993,7 +2063,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى الْفَتْحِ.",
@@ -2201,7 +2273,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هِيَ.",
       "en": "A present verb, in raf'; its doer is a hidden pronoun «هِيَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «هِيَ»."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2367,7 +2442,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَاسْمُهَا ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -2423,7 +2500,11 @@
       "en": "A present verb, in raf'; its doer is a hidden pronoun «أَنْتَ».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «أَنْتَ»."
      },
-     "punctAfter": ":"
+     "punctAfter": ":",
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2437,7 +2518,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb in the passive, built on fatḥa.",
       "tr": "Meçhul mâzî fiil, fetha üzere mebnî."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -2465,7 +2550,9 @@
      "lex": "istakhraja",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "al-majhul-fil-kafiya",
+      "form-x-verbs"
      ],
      "irab": {
       "ar": "الْوَاوُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ.",

@@ -55,7 +55,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb in the passive, in raf'.",
       "tr": "Muzâri fiil (meçhul), merfû."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -152,7 +156,9 @@
      "lex": "daraba",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
@@ -186,7 +192,8 @@
      "lex": "daraba",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، مَعْطُوفٌ عَلَى مَا قَبْلَهُ فِي مَحَلِّ جَرٍّ.",
@@ -263,7 +270,12 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb in the passive; its deputy doer is a hidden pronoun «هُوَ».",
       "tr": "Meçhul mâzî fiil; nâib-i fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "doubled-verbs",
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {
@@ -427,6 +439,11 @@
        "lex": "zada",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -897,7 +914,8 @@
      "lex": "ishtamala",
      "pos": "verb",
      "grammar": [
-      "maful-bihi"
+      "maful-bihi",
+      "form-viii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْهَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
@@ -975,7 +993,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1003,7 +1025,9 @@
      "lex": "shayyaba",
      "pos": "verb",
      "grammar": [
-      "maful-bihi"
+      "maful-bihi",
+      "hollow-verbs",
+      "form-ii-verbs"
      ],
      "irab": {
       "ar": "الْفَاءُ عَاطِفَةٌ، وَفِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِنُونِ النِّسْوَةِ، وَالنُّونُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الْفَتْحِ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالنُّونُ الثَّانِيَةُ لِلْوِقَايَةِ، وَالْيَاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى السُّكُونِ فِي مَحَلِّ نَصْبٍ مَفْعُولٌ بِهِ.",
@@ -1066,7 +1090,11 @@
       "ar": "فِعْلٌ مَاضٍ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ رَفْعٍ اسْمُ كَانَ، وَخَبَرُهَا جُمْلَةُ «هَوِيتُ السِّمَانَا».",
       "en": "An incomplete past verb, one of kāna's sisters, built on sukun because the tāʾ of the doer is attached; the tāʾ is an attached pronoun, built on damma, in the place of raf' as kāna's noun; her khabar is the clause «هَوِيتُ السِّمَانَا».",
       "tr": "Nâkıs mâzî fiil, kâne'nin kardeşlerinden; fâil tâsı bitiştiği için sükûn üzere mebnî; tâ, damme üzere mebnî bitişik zamirdir, kâne'nin ismi olarak mahallen merfû; haberi «هَوِيتُ السِّمَانَا» cümlesidir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1097,7 +1125,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِتَاءِ الْفَاعِلِ، وَالتَّاءُ ضَمِيرٌ مُتَّصِلٌ مَبْنِيٌّ عَلَى الضَّمِّ فِي مَحَلِّ رَفْعٍ فَاعِلٌ، وَالْجُمْلَةُ فِي مَحَلِّ نَصْبٍ خَبَرُ كَانَ.",
       "en": "A past verb, built on sukun because the tāʾ of the doer is attached; the tāʾ is an attached pronoun, built on damma, in the place of raf' as the doer; the clause is in the place of nasb as kāna's khabar.",
       "tr": "Mâzî fiil, fâil tâsı bitiştiği için sükûn üzere mebnî; tâ, damme üzere mebnî bitişik zamirdir, fâil olarak mahallen merfû; cümle, kâne'nin haberi olarak mahallen mansûbdur."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1171,7 +1203,11 @@
       "ar": "الْجُمْلَةُ مَحْكِيَّةٌ قُصِدَ لَفْظُهَا، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ؛ وَ«هَوِيتُ» فِعْلٌ مَاضٍ وَالتَّاءُ فَاعِلُهُ.",
       "en": "The clause is quoted for its wording, in the place of jarr as the mudaf ilayh; «هَوِيتُ» is a past verb and the tāʾ is its doer.",
       "tr": "Cümle lafzı kastedilerek hikâye edilmiştir; mahallen mecrûr, muzâfun ileyh; «هَوِيتُ» mâzî fiildir, tâ fâilidir."
-     }
+     },
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1240,7 +1276,10 @@
      "lex": "zada",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَجْزُومٌ بِـ«لَمْ»، وَعَلَامَةُ جَزْمِهِ السُّكُونُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
@@ -1340,7 +1379,8 @@
      "lex": "ijtamaa",
      "pos": "verb",
      "grammar": [
-      "nawasib-wa-jawazim-al-mudari"
+      "nawasib-wa-jawazim-al-mudari",
+      "form-viii-verbs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ مَنْصُوبٌ بِأَنْ مُضْمَرَةٍ وُجُوبًا بَعْدَ «حَتَّى»، وَعَلَامَةُ نَصْبِهِ الْفَتْحَةُ الظَّاهِرَةُ.",

@@ -101,7 +101,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb.",
       "tr": "Mâzî fiil."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -270,7 +274,10 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ.",
       "en": "A past verb.",
       "tr": "Mâzî fiil."
-     }
+     },
+     "grammar": [
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -365,6 +372,9 @@
        "lex": "ahsana",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "form-iv-verbs"
      ]
     },
     {
@@ -435,7 +445,9 @@
      "lex": "alima",
      "pos": "verb",
      "grammar": [
-      "al-amr-wa-wujuhuh"
+      "al-amr-wa-wujuhuh",
+      "imperative-amr",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلُ أَمْرٍ مَبْنِيٌّ عَلَى السُّكُونِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنْتَ.",
@@ -614,6 +626,10 @@
        "lex": "qawiya",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -704,6 +720,10 @@
        "lex": "tagha",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "naqis-verbs",
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -806,6 +826,9 @@
        "lex": "jamaa-gather",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "thulathi-mujarrad-babs"
      ]
     },
     {
@@ -1136,7 +1159,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1264,7 +1291,10 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ وُجُوبًا تَقْدِيرُهُ أَنَا.",
       "en": "A present verb in raf'; the sign is the visible damma; its doer is a necessarily hidden pronoun «أَنَا».",
       "tr": "Muzâri fiil, merfû; alâmeti zâhir damme; fâili vücûben gizli zamirdir «أَنَا»."
-     }
+     },
+     "grammar": [
+      "form-viii-verbs"
+     ]
     },
     {
      "surface": {
@@ -1296,7 +1326,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ يَعُودُ إِلَى «مَا».",
       "en": "A present verb in raf'; the sign is the visible damma; its doer is a hidden pronoun «هُوَ» returning to «مَا».",
       "tr": "Muzâri fiil, merfû; alâmeti zâhir damme; fâili «مَا»ya dönen gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "mithal-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1341,7 +1375,11 @@
       "en": "A present verb, in raf'; its doer is a hidden pronoun «أَنَا».",
       "tr": "Muzâri fiil, merfû; fâili gizli zamir «أَنَا»."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "hollow-verbs",
+      "form-x-verbs"
+     ]
     },
     {
      "surface": {

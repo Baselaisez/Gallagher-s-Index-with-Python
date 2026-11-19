@@ -33,6 +33,10 @@
        "lex": "adghama",
        "pos": "verb"
       }
+     ],
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "form-iv-verbs"
      ]
     },
     {
@@ -211,7 +215,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -344,7 +352,10 @@
       "en": "The word itself is quoted; in the place of raf' as the khabar of the mubtada.",
       "tr": "Lafzı kastedilerek hikâye edilmiş söz; mübtedânın haberi olarak mahallen merfû."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "form-v-verbs"
+     ]
     },
     {
      "surface": {
@@ -424,7 +435,10 @@
       "en": "The word itself is quoted; in the place of raf' as the khabar of the mubtada.",
       "tr": "Lafzı kastedilerek hikâye edilmiş söz; mübtedânın haberi olarak mahallen merfû."
      },
-     "punctAfter": "."
+     "punctAfter": ".",
+     "grammar": [
+      "form-vi-verbs"
+     ]
     }
    ]
   },
@@ -477,7 +491,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَبْنِيٌّ لِلْمَجْهُولِ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ، وَنَائِبُ الْفَاعِلِ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A present verb in the passive, in raf'; its deputy doer is a hidden pronoun «هُوَ».",
       "tr": "Muzâri fiil (meçhul), merfû; nâib-i fâili gizli zamir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -525,7 +543,10 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ مُضَافٌ إِلَيْهِ.",
       "en": "The word itself is quoted; in the place of jarr as the mudaf ilayh.",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); mahallen mecrûr, muzâfun ileyh."
-     }
+     },
+     "grammar": [
+      "form-x-verbs"
+     ]
     },
     {
      "surface": {
@@ -633,7 +654,11 @@
       "ar": "لَفْظٌ مَحْكِيٌّ قُصِدَ لَفْظُهُ، فِي مَحَلِّ جَرٍّ بِـ«فِي».",
       "en": "The word itself is quoted; in the place of jarr after «فِي».",
       "tr": "Kelimenin kendisi kastedilmiştir (hikâye); «فِي» ile mahallen mecrûr."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "form-x-verbs"
+     ]
     },
     {
      "surface": {
@@ -701,7 +726,11 @@
       "ar": "فِعْلٌ مُضَارِعٌ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
       "en": "A present verb, in raf'.",
       "tr": "Muzâri fiil, merfû."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -885,7 +914,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى الْفَتْحِ، وَالْفَاعِلُ ضَمِيرٌ مُسْتَتِرٌ تَقْدِيرُهُ هُوَ.",
       "en": "A past verb; its doer is a hidden pronoun «هُوَ».",
       "tr": "Mâzî fiil; fâili gizli zamirdir «هُوَ»."
-     }
+     },
+     "grammar": [
+      "doubled-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -970,7 +1003,11 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ عَلَى السُّكُونِ لِاتِّصَالِهِ بِضَمِيرِ رَفْعٍ مُتَحَرِّكٍ، وَالضَّمِيرُ فِي مَحَلِّ رَفْعٍ فَاعِلٌ.",
       "en": "A past verb with its subject pronoun suffix as doer.",
       "tr": "Mâzî fiil; bitişik ref zamiri fâildir."
-     }
+     },
+     "grammar": [
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {
@@ -1045,7 +1082,9 @@
      "lex": "kana",
      "pos": "verb",
      "grammar": [
-      "kana-wa-akhawatuha"
+      "kana-wa-akhawatuha",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
      ],
      "irab": {
       "ar": "فِعْلٌ مُضَارِعٌ نَاقِصٌ مِنْ أَخَوَاتِ كَانَ مَرْفُوعٌ، وَعَلَامَةُ رَفْعِهِ الضَّمَّةُ الظَّاهِرَةُ.",
@@ -1194,7 +1233,11 @@
       "en": "The word itself is quoted; in the place of raf' as the khabar of the mubtada.",
       "tr": "Lafzı kastedilerek hikâye edilmiş söz; mübtedânın haberi olarak mahallen merfû."
      },
-     "punctAfter": "،"
+     "punctAfter": "،",
+     "grammar": [
+      "hollow-verbs",
+      "form-iv-verbs"
+     ]
     },
     {
      "surface": {
@@ -1289,7 +1332,12 @@
       "ar": "فِعْلٌ مَاضٍ مَبْنِيٌّ لِلْمَجْهُولِ، مَبْنِيٌّ عَلَى الْفَتْحِ، وَالتَّاءُ لِلتَّأْنِيثِ.",
       "en": "A past verb in the passive (feminine).",
       "tr": "Meçhul mâzî fiil (müennes)."
-     }
+     },
+     "grammar": [
+      "al-majhul-fil-kafiya",
+      "hollow-verbs",
+      "thulathi-mujarrad-babs"
+     ]
     },
     {
      "surface": {

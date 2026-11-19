@@ -14871,3 +14871,21 @@ One cluster per tool, each fixed at its cause; every finding's inputs are assert
   derived nāqiṣ's ism mafʿūl, اِسْتِيعَاد) and 546 sentence tokens' `engine.wazn` (455 lost the sun letter's shadda, 61 absurd scales
   such as «فَالْمُوَاعَلَةُ» became مُفَاعَلَةُ, 29 gained a scale, 6 two-clitic words reached the lexicon); posAgreement 99.1 and
   caseAgreement 99.1 over 6327 are unchanged, and the IrabModel was not touched.
+
+## v334-N1 — ṣarf notes tagged on every paradigm cell, examples from the books, three new notes (feeding backlog F1, F5)
+
+- **F1 — every paradigm cell carries its ṣarf note.** `tools/authoring/sarf_tags.py` (new; `tags_for` / `apply` / `identify`; CLI
+  `sarf_tags.py <pkg> [--write] [--list]`) names the note a cell teaches from the cell's own metadata; `pkg_from_engine.py` calls it
+  for every built cell, and the same function ran over the shipped packages (house way: a builder rule plus a pass that applies it
+  to what is already shipped — a wholesale rebuild of the ʿIzzī differs from the shipped package in 291 of 3591 tokens by later hand
+  fixes, so it was NOT landed). A dry rebuild agrees with the pass on all 1085 identical tokens (0 tag differences). ʿIzzī: 1091 of
+  1092 cells tagged; Marāḥ: 1345 of 1347.
+- Line fixes landed with `apply_fixes.py`: ʿIzzī 37 rows (8 emphatic, 29 passive), Marāḥ 4; `cell_lines.py` learned the tawkīd line
+  of the imperative of أَرَى and the women's nūn behind a long vowel. Re-keyed: ʿIzzī 17:s3:1 كَانَتِ anta → kana, 13:s5:18 تَسْلَمُ
+  tasallama → salima-safe; Marāḥ تُسْكَنُ sakana → askana-sukun.
+- 49 book lines (ʿIzzī, Marāḥ) added as examples to 23 ṣarf notes (`add_examples.py`).
+- **F5 — three new notes:** `ism-al-zaman-wal-makan`, `ism-al-ala`, `ism-al-marra-wal-naw`, anchored on 80 tokens (60 ʿIzzī, 20
+  Marāḥ); new keys `qawma` (قَوْمَةً) and `tima` (الطِّعْمَةِ).
+- Smoke: two checks after «v329 — a demonstrative is never muḍāf». Full suite: 500 pass, 1 fail — SPEED III, the IrabModel refit
+  only (`node tools/gen_irab_model.js && python3 tools/build_prototype.py`).
+- Written by the orchestrator from the agent's PROGRESS notes: the agent stopped (model limit) after its full run.
